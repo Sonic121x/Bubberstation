@@ -35,7 +35,7 @@
 	if (record)
 		target_rank = record.rank
 	else
-		target_rank = "Unknown"
+		target_rank = "未知"
 
 	if (payout_type == CONTRACT_PAYOUT_LARGE)
 		contract.payout_bonus = rand(9,13)
@@ -140,8 +140,8 @@
 	if(!contractor_id || !contractor_id.registered_account)
 		return
 	contractor_id.registered_account.adjust_money(ransom * 0.35)
-	contractor_id.registered_account.bank_card_talk("We've processed the ransom, agent. \
-		Here's your cut - your balance is now [contractor_id.registered_account.account_balance] [MONEY_SYMBOL].", TRUE)
+	contractor_id.registered_account.bank_card_talk("赎金已处理完毕，特工。\
+		这是你的分成——你现在的余额为 [contractor_id.registered_account.account_balance] [MONEY_SYMBOL]。", TRUE)
 
 #define VICTIM_EXPERIENCE_START 0
 #define VICTIM_EXPERIENCE_FIRST_HIT 1
@@ -175,27 +175,27 @@
 			victim.flash_act()
 			victim.adjust_confusion(1 SECONDS)
 			victim.adjust_eye_blur(5 SECONDS)
-			to_chat(victim, span_warning("You feel strange..."))
+			to_chat(victim, span_warning("你感觉有些奇怪……"))
 			time_until_next = 6 SECONDS
 		if(VICTIM_EXPERIENCE_FIRST_HIT)
-			to_chat(victim, span_warning("That pod did something to you..."))
+			to_chat(victim, span_warning("那个投放舱对你做了什么……"))
 			victim.adjust_dizzy(3.5 SECONDS)
 			time_until_next = 6.5 SECONDS
 		if(VICTIM_EXPERIENCE_SECOND_HIT)
-			to_chat(victim, span_warning("Your head pounds... It feels like it's going to burst out your skull!"))
+			to_chat(victim, span_warning("你的头阵阵作痛……感觉它快要把颅骨撑爆了！"))
 			victim.flash_act()
 			victim.adjust_confusion(2 SECONDS)
 			victim.adjust_eye_blur(3 SECONDS)
 			time_until_next = 3 SECONDS
 		if(VICTIM_EXPERIENCE_THIRD_HIT)
-			to_chat(victim, span_warning("Your head pounds..."))
+			to_chat(victim, span_warning("你的头阵阵作痛……"))
 			time_until_next = 10 SECONDS
 		if(VICTIM_EXPERIENCE_LAST_HIT)
 			victim.flash_act()
 			victim.Unconscious(200)
-			to_chat(victim, span_hypnophrase("A million voices echo in your head... <i>\"Your mind held many valuable secrets - \
-				we thank you for providing them. Your value is expended, and you will be ransomed back to your station. We always get paid, \
-				so it's only a matter of time before we ship you back...\"</i>"))
+			to_chat(victim, span_hypnophrase("无数声音在你脑中回响……<i>“你的头脑中曾藏着许多宝贵的秘密——\
+				感谢你提供了它们。你的价值已被榨干，我们将用你向空间站索取赎金。我们一向都能拿到钱，\
+				所以把你送回去只是时间问题……”</i>"))
 			victim.adjust_eye_blur(10 SECONDS)
 			victim.adjust_dizzy(1.5 SECONDS)
 			victim.adjust_confusion(2 SECONDS)
@@ -255,4 +255,4 @@
 	victim.adjust_dizzy(3.5 SECONDS)
 	victim.adjust_confusion(2 SECONDS)
 	//Bubberstation change, adds flavourtext that they forget who contracted them.
-	to_chat(victim, span_big(span_hypnophrase("You don't remember anything leading up to being abducted by the syndicate - All you can remember is a million voices echoing through your mind and pain whenever you try to think of anything further.")))
+	to_chat(victim, span_big(span_hypnophrase("你不记得被辛迪加绑架之前的任何事情——你只记得无数声音在脑中回响，以及每当你想再多想一点时袭来的剧痛。")))

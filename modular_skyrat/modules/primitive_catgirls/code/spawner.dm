@@ -1,18 +1,18 @@
 /obj/effect/mob_spawn/ghost_role/human/primitive_catgirl
-	name = "hole in the ground"
-	desc = "A clearly hand dug hole in the ground that appears to lead into a small cave of some kind? It's pretty dark in there."
-	prompt_name = "icemoon dweller"
+	name = "地洞"
+	desc = "一个显然是手工挖出的地洞，似乎通往某种小型洞穴？里面相当黑。"
+	prompt_name = "冰月居民"
 	icon = 'icons/mob/simple/lavaland/nest.dmi'
 	icon_state = "hole"
 	mob_species = /datum/species/human/felinid/primitive
 	outfit = /datum/outfit/primitive_catgirl
 	density = FALSE
-	you_are_text = "You are an icemoon dweller."
-	flavour_text = "For as long as you can remember, the icemoon has been your home. \
-		It's been the home of your ancestors, and their ancestors, and the ones before them. \
-		Currently, you and your kin live in uneasy tension with your nearby human-and-otherwise \
-		neighbors. Keep your village and your Kin safe, but bringing death on their heads from \
-		being reckless with the outsiders will not have the Gods be so kind."
+	you_are_text = "你是一名冰月居民。"
+	flavour_text = "自你记事起，冰月便是你的家园。\
+		你的祖辈、祖辈的祖辈，以及更早的先人，也都以此为家。\
+		如今，你和族人与附近的人类及其他种族邻居之间\
+		保持着紧张而不安的共处。保护你的村落和族人；但若因鲁莽对待外来者\
+		而招致族人死亡，诸神绝不会宽恕。"
 	spawner_job_path = /datum/job/primitive_catgirl
 
 	/// The team the spawner will assign players to and use to keep track of people that have already used the spawner
@@ -28,7 +28,7 @@
 /obj/effect/mob_spawn/ghost_role/human/primitive_catgirl/Initialize(mapload)
 	. = ..()
 	team = new /datum/team/primitive_catgirls()
-	important_text = "Read the full policy <a href=\"[CONFIG_GET(string/icecats_policy_link)]\">here</a>."
+	important_text = "请在<a href=\"[CONFIG_GET(string/icecats_policy_link)]\">此处</a>阅读完整规则。"
 	START_PROCESSING(SSprocessing, src)
 
 /obj/effect/mob_spawn/ghost_role/human/primitive_catgirl/Destroy()
@@ -50,12 +50,12 @@
 		else
 			uses += 1
 
-		visible_message(span_warning("[consumed_mob] slowly and with finality falls into [src]. There was no thump..."))
+		visible_message(span_warning("[consumed_mob]缓缓坠入[src]，再无回返。没有传来落地声……"))
 
 		var/delivery_key = consumed_mob.fingerprintslast
 		var/mob/living/delivery_mob = get_mob_by_key(delivery_key)
 		if(delivery_mob && (delivery_mob.mind?.has_antag_datum(/datum/antagonist/primitive_catgirl)) && (delivery_key in team.players_spawned) && (prob(60)))
-			to_chat(delivery_mob, span_warning("A strange feeling fills your chest. [src] seems to echo your name, pleased..."))
+			to_chat(delivery_mob, span_warning("一种奇异的感觉充满胸膛。[src]似乎欣悦地回响着你的名字……"))
 			team.players_spawned -= delivery_key
 
 		qdel(consumed_mob)
@@ -64,9 +64,9 @@
 	. = ..()
 
 	if(uses)
-		. += span_notice("You can see <b>[uses]</b> figures sound asleep down there.")
+		. += span_notice("你能看见下面有<b>[uses]</b>个身影正在熟睡。")
 	else
-		. += span_notice("It looks pretty empty.")
+		. += span_notice("里面看起来空荡荡的。")
 
 	return .
 
@@ -74,7 +74,7 @@
 	if(!(user.key in team.players_spawned)) // One spawn per person
 		return TRUE
 	if(!silent)
-		to_chat(user, span_warning("It'd be weird if there were multiple of you in that cave, wouldn't it?"))
+		to_chat(user, span_warning("洞里如果有好几个你，岂不是很奇怪？"))
 	return FALSE
 
 /obj/effect/mob_spawn/ghost_role/human/primitive_catgirl/special(mob/living/spawned_mob, mob/mob_possessor, apply_prefs)
@@ -98,19 +98,19 @@
 // Antag and team datums
 
 /datum/team/primitive_catgirls
-	name = "Icewalkers"
-	member_name = "Icewalker"
+	name = "冰行者"
+	member_name = "冰行者"
 	show_roundend_report = FALSE
 
 /datum/team/primitive_catgirls/roundend_report()
 	var/list/report = list()
 
-	report += span_header("An Ice Walker Tribe inhabited the wastes...</span><br>")
+	report += span_header("一个冰行者部落栖居于荒原……</span><br>")
 	if(length(members))
-		report += "The [member_name]s were:"
+		report += "[member_name]成员："
 		report += printplayerlist(members)
 	else
-		report += "<b>But none of its members woke up!</b>"
+		report += "<b>但没有任何成员醒来！</b>"
 
 	return "<div class='panel redborder'>[report.Join("<br>")]</div>"
 

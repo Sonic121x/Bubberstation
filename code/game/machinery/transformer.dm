@@ -1,8 +1,8 @@
 /obj/machinery/transformer
-	name = "\improper Automatic Robotic Factory 5000"
-	desc = "A large metallic machine with an entrance and an exit. A sign on \
-		the side reads, 'human go in, robot come out'. The human must be \
-		lying down and alive. Has a cooldown between each use."
+	name = "\improper 自动机器人制造厂5000"
+	desc = "一台带有入口和出口的大型金属机器。侧面的\
+		标牌写着：‘人类进去，机器人出来。’进入的人类必须\
+		躺着且活着。每次使用后需要冷却。"
 	icon = 'icons/obj/machines/recycling.dmi'
 	icon_state = "separator-AO1"
 	layer = ABOVE_ALL_MOB_LAYER // Overhead
@@ -35,7 +35,7 @@
 /obj/machinery/transformer/examine(mob/user)
 	. = ..()
 	if(cooldown && (issilicon(user) || isobserver(user)))
-		. += "It will be ready in [DisplayTimeText(cooldown_timer - world.time)]."
+		. += "将在[DisplayTimeText(cooldown_timer - world.time)]后就绪。"
 
 /obj/machinery/transformer/Destroy()
 	QDEL_NULL(countdown)

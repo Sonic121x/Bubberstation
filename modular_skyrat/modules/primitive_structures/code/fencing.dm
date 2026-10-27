@@ -1,8 +1,8 @@
 // Short wooden fences, oh me oh my
 
 /obj/structure/railing/wooden_fencing
-	name = "wooden fence"
-	desc = "A basic wooden fence meant to prevent people like you either in or out of somewhere."
+	name = "木栅栏"
+	desc = "一道简易木栅栏，用来把你这样的人关在里面，或拦在外面。"
 	icon = 'modular_skyrat/modules/primitive_structures/icons/wooden_fence.dmi'
 	icon_state = "fence"
 	layer = BELOW_OBJ_LAYER // I think this is the default but lets be safe?
@@ -30,8 +30,8 @@
 // Fence gates for the above mentioned fences
 
 /obj/structure/railing/wooden_fencing/gate
-	name = "wooden fence gate"
-	desc = "A basic wooden gate meant to prevent animals like you escaping."
+	name = "木栅栏门"
+	desc = "一扇简易木门，用来防止你这样的动物逃出去。"
 	icon_state = "gate"
 	random_icons = FALSE
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
@@ -47,7 +47,7 @@
 /// Proc that checks if the gate is open or not, then closes/opens the gate repsectively
 /obj/structure/railing/wooden_fencing/gate/proc/open_or_close(mob/user)
 	if(!user.can_interact_with(src))
-		balloon_alert(user, "can't interact")
+		balloon_alert(user, "无法操作")
 		return
 	opened = !opened
 	set_density(!opened)
@@ -63,7 +63,7 @@
 // Large wooden gate, used for big doors or entrances to camps
 
 /obj/structure/mineral_door/wood/large_gate
-	name = "large wooden gate"
+	name = "大型木门"
 	icon = 'modular_skyrat/modules/primitive_structures/icons/wooden_gate.dmi'
 	icon_state = "gate"
 	openSound = 'sound/machines/closet/wooden_closet_open.ogg'

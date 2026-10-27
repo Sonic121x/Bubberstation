@@ -26,12 +26,12 @@
 
 	bleeding_bodypart = picked
 
-	feedback_details += "Bleeding: [bleeding_bodypart]"
+	feedback_details += "出血：[bleeding_bodypart]"
 
 	RegisterSignals(bleeding_bodypart, list(COMSIG_QDELETING, COMSIG_BODYPART_REMOVED), PROC_REF(stop_bleeding))
 	RegisterSignal(hallucinator, COMSIG_LIVING_UPDATE_BLOOD_STATUS, PROC_REF(stop_bleeding))
 
-	to_chat(hallucinator, span_warning("Your [bleeding_bodypart.plaintext_zone] looses a spray of blood!"))
+	to_chat(hallucinator, span_warning("你的[chinese_body_zone_display(bleeding_bodypart.plaintext_zone)]喷出一股鲜血！"))
 	var/bleed_duration = rand(16 SECONDS, 40 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(stop_bleeding)), bleed_duration)
 	if(prob(25))
@@ -57,7 +57,7 @@
 	if(QDELETED(src) || QDELETED(hallucinator) || QDELETED(bleeding_bodypart))
 		return
 
-	to_chat(hallucinator, span_warning("The blood doesn't stop flowing, yet [bleeding_bodypart.plaintext_zone] doesn't seem to hurt..."))
+	to_chat(hallucinator, span_warning("血一直流个不停，可[chinese_body_zone_display(bleeding_bodypart.plaintext_zone)]似乎一点也不疼……"))
 
 /datum/hallucination/blood_flow/proc/on_update_blood_status(datum/source, had_blood, has_blood, old_blood_volume, new_blood_volume)
 	SIGNAL_HANDLER
@@ -69,7 +69,7 @@
 	UnregisterSignal(bleeding_bodypart, list(COMSIG_QDELETING, COMSIG_BODYPART_REMOVED))
 	UnregisterSignal(hallucinator, COMSIG_LIVING_UPDATE_BLOOD_STATUS)
 	if(!QDELETED(bleeding_bodypart))
-		to_chat(hallucinator, span_warning("Your [bleeding_bodypart.plaintext_zone] stops bleeding."))
+		to_chat(hallucinator, span_warning("你的[chinese_body_zone_display(bleeding_bodypart.plaintext_zone)]停止流血了。"))
 	if(!QDELETED(src))
 		qdel(src)
 

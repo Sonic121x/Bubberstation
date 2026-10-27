@@ -90,7 +90,7 @@
  *
  * Returns the memory selected, or null otherwise.
  */
-/datum/mind/proc/select_memory(verbage = "use")
+/datum/mind/proc/select_memory(verbage = "使用")
 	RETURN_TYPE(/datum/memory)
 	var/list/choice_list = list()
 
@@ -100,7 +100,7 @@
 			continue
 		choice_list[memory_iter.name] = memory_iter
 
-	var/choice = tgui_input_list(usr, "Select a memory to [verbage]", "Memory Selection?", choice_list)
+	var/choice = tgui_input_list(usr, "选择要[verbage]的记忆", "选择记忆", choice_list)
 	if(isnull(choice))
 		return FALSE
 	if(isnull(choice_list[choice]))

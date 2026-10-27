@@ -1,10 +1,10 @@
 /datum/heretic_knowledge/armor
-	name = "Armorer's Ritual"
-	desc = "Create a set of Eldritch Armor. \
-		Eldritch Armor provides great protection while also acting as a focus when hooded."
-	transmute_text = "Transmute a table (or a suit) and a mask."
-	gain_text = "The Rusted Hills welcomed the Blacksmith in their generosity. And the Blacksmith \
-		returned their generosity in kind."
+	name = "甲匠仪式"
+	desc = "制作一套邪异护甲。 \
+		邪异护甲能提供出色的防护，戴起兜帽时还可作为法器。"
+	transmute_text = "转化一张桌子（或一件套装）和一个面具。"
+	gain_text = "锈蚀群丘以慷慨之姿迎接了铁匠。而铁匠 \
+		也以同样的慷慨回报了他们。"
 
 	required_atoms = list(
 		list(/obj/structure/table, /obj/item/clothing/suit) = 1,

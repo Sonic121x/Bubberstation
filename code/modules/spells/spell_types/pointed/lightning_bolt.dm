@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/pointed/projectile/lightningbolt
-	name = "Lightning Bolt"
-	desc = "Fire a lightning bolt at your foes! It will jump between targets, but can't knock them down."
+	name = "闪电箭"
+	desc = "向敌人射出一道闪电！它会在目标之间跳跃，但无法将其击倒。"
 	button_icon_state = "lightning"
 	active_overlay_icon_state = "bg_spell_border_active_yellow"
 
@@ -13,8 +13,8 @@
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
 
-	active_msg = "You energize your hands with arcane lightning!"
-	deactive_msg = "You let the energy flow out of your hands back into yourself..."
+	active_msg = "你用奥术闪电为双手充能！"
+	deactive_msg = "你让能量从手中流回体内……"
 	projectile_type = /obj/projectile/magic/aoe/lightning
 
 	/// The range the bolt itself (different to the range of the projectile)

@@ -2,7 +2,7 @@
 #define SS_TICKER_TRAIT "SS_Ticker"
 
 SUBSYSTEM_DEF(ticker)
-	name = "Ticker"
+	name = "回合控制"
 	priority = FIRE_PRIORITY_TICKER
 	ss_flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME
@@ -127,11 +127,11 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_STARTUP)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
-			to_chat(world, span_notice("<b>Welcome to [station_name()]!</b>"))
+			to_chat(world, span_notice("<b>欢迎来到[station_name()]！</b>"))
 			for(var/channel_tag in CONFIG_GET(str_list/channel_announce_new_game))
 				// BUBBER EDIT CHANGE BEGIN - Replace with more rich message
 				// send2chat(new /datum/tgs_message_content("New round starting on [SSmapping.current_map.map_name]!"), channel_tag)
-				send2chat(new /datum/tgs_message_content("Round **[GLOB.round_id]** starting on [SSmapping.current_map.map_name], [CONFIG_GET(string/servername)]! \nIf you wish to be pinged for game related stuff, go to <#[CONFIG_GET(string/role_assign_channel_id)]> and assign yourself the roles."), channel_tag)
+				send2chat(new /datum/tgs_message_content("第 **[GLOB.round_id]** 回合即将在[CONFIG_GET(string/servername)]的[SSmapping.current_map.map_name]开始！\n如果希望收到游戏相关提醒，请前往 <#[CONFIG_GET(string/role_assign_channel_id)]> 领取相应身份组。"), channel_tag)
 				// BUBBER EDIT CHANGE END - Replace with more rich message
 
 			current_state = GAME_STATE_PREGAME
@@ -140,7 +140,7 @@ SUBSYSTEM_DEF(ticker)
 			if(storyteller)
 				SSgamemode.set_storyteller(text2path(storyteller), TRUE)
 			else
-				SSvote.initiate_vote(/datum/vote/storyteller, "Storyteller Vote", forced = TRUE)
+				SSvote.initiate_vote(/datum/vote/storyteller, "故事讲述者投票", forced = TRUE)
 		// BUBBERSTATION EDIT END
 			SStitle.change_title_screen() //SKYRAT EDIT ADDITION - Title screen
 			addtimer(CALLBACK(SStitle, TYPE_PROC_REF(/datum/controller/subsystem/title, change_title_screen)), 1 SECONDS) //SKYRAT EDIT ADDITION - Title screen
@@ -202,9 +202,9 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_FINISHED)
 			if(ready_for_reboot)
 				if(isnull(reboot_timer))
-					reboot_hud.maptext = MAPTEXT_PIXELLARI("<center>Server reboot \n\ DELAYED</center>")
+					reboot_hud.maptext = MAPTEXT_PIXELLARI("<center>服务器重启\n\ 已推迟</center>")
 				else
-					reboot_hud.maptext = MAPTEXT_PIXELLARI("<center>Server rebooting in:\n\ [DisplayTimeText(timeleft(SSticker.reboot_timer), 1)]</center>")
+					reboot_hud.maptext = MAPTEXT_PIXELLARI("<center>服务器重启倒计时：\n\ [DisplayTimeText(timeleft(SSticker.reboot_timer), 1)]</center>")
 
 /datum/controller/subsystem/ticker/vv_edit_var(var_name, var_value)
 	if(var_name == NAMEOF(src, login_music))
@@ -231,7 +231,7 @@ SUBSYSTEM_DEF(ticker)
 	return player_states
 
 /datum/controller/subsystem/ticker/proc/setup()
-	to_chat(world, span_boldannounce("Starting game..."))
+	to_chat(world, span_boldannounce("正在开始游戏……"))
 	var/init_start = world.timeofday
 
 	var/list/players_and_readiness = get_player_ready_states()
@@ -254,11 +254,11 @@ SUBSYSTEM_DEF(ticker)
 	if(!GLOB.debugging_enabled)
 		if(!can_continue)
 			log_game("Game failed pre_setup")
-			to_chat(world, "<B>Error setting up game.</B> Reverting to pre-game lobby.")
+			to_chat(world, "<B>游戏设置出错。</B>正在返回游戏大厅。")
 			SSjob.reset_occupations()
 			return FALSE
 	else
-		message_admins(span_notice("DEBUG: Bypassing prestart checks..."))
+		message_admins(span_notice("调试：正在跳过开局前检查……"))
 
 	CHECK_TICK
 
@@ -295,14 +295,14 @@ SUBSYSTEM_DEF(ticker)
 	log_world("Game start took [(world.timeofday - init_start)/10]s")
 	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore,SetRoundStart))
 
-	to_chat(world, span_notice(span_bold("Welcome to [station_name()], enjoy your stay!")))
+	to_chat(world, span_notice(span_bold("欢迎来到[station_name()]，祝你玩得愉快！")))
 	SEND_SOUND(world, sound(SSstation.announcer.get_rand_welcome_sound()))
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
 
 	if(length(GLOB.holidays))
-		to_chat(world, span_notice("and..."))
+		to_chat(world, span_notice("还有……"))
 		for(var/holidayname in GLOB.holidays)
 			var/datum/holiday/holiday = GLOB.holidays[holidayname]
 			to_chat(world, span_info(holiday.greet()))
@@ -356,7 +356,7 @@ SUBSYSTEM_DEF(ticker)
 
 	var/list/adm = get_admin_counts()
 	var/list/allmins = adm["present"]
-	send2adminchat("Server", "Round [GLOB.round_id ? "#[GLOB.round_id]" : ""] has started[allmins.len ? ".":" with no active admins online!"]")
+	send2adminchat("服务器", "回合[GLOB.round_id ? "#[GLOB.round_id]" : ""]已开始[allmins.len ? "。":"，当前没有活跃的管理员在线！"]")
 	setup_done = TRUE
 
 	for(var/i in GLOB.start_landmarks_list)
@@ -380,12 +380,12 @@ SUBSYSTEM_DEF(ticker)
 		if(!iter_human.hardcore_survival_score)
 			continue
 		if(iter_human.is_antag())
-			to_chat(iter_human, span_notice("You will gain [round(iter_human.hardcore_survival_score) * 2] hardcore random points if you greentext this round!"))
+			to_chat(iter_human, span_notice("如果你在本回合完成所有目标，将获得[round(iter_human.hardcore_survival_score) * 2]点硬核随机积分！"))
 		else
-			to_chat(iter_human, span_notice("You will gain [round(iter_human.hardcore_survival_score)] hardcore random points if you survive this round!"))
+			to_chat(iter_human, span_notice("如果你在本回合存活，将获得[round(iter_human.hardcore_survival_score)]点硬核随机积分！"))
 
 /datum/controller/subsystem/ticker/proc/display_roundstart_logout_report()
-	var/list/msg = list("[span_boldnotice("Roundstart logout report")]\n\n")
+	var/list/msg = list("[span_boldnotice("开局离线报告")]\n\n")
 
 	for(var/i in GLOB.mob_living_list)
 		var/mob/living/L = i
@@ -394,23 +394,23 @@ SUBSYSTEM_DEF(ticker)
 			continue  // never had a client
 
 		if(L.ckey && !GLOB.directory[L.ckey])
-			msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
+			msg += "<b>[L.name]</b> ([L.key])，[L.job]（<font color='#ffcc00'><b>已断开连接</b></font>）\n"
 
 
 		if(L.ckey && L.client)
 			var/failed = FALSE
 			if(L.client.inactivity >= GLOB.logout_timer_set) //Connected, but inactive (alt+tabbed or something)
-				msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
+				msg += "<b>[L.name]</b> ([L.key])，[L.job]（<font color='#ffcc00'><b>在线，未活动</b></font>）\n"
 				failed = TRUE //AFK client
 			if(!failed && IS_UNCONSCIOUS_OR_CRIT(L))
 				if(HAS_TRAIT(L, TRAIT_SUICIDED)) //Suicider
-					msg += "<b>[L.name]</b> ([L.key]), the [L.job] ([span_bolddanger("Suicide")])\n"
+					msg += "<b>[L.name]</b> ([L.key])，[L.job]（[span_bolddanger("自杀")]）\n"
 					failed = TRUE //Disconnected client
 				if(!failed && (L.stat == HARD_CRIT))
-					msg += "<b>[L.name]</b> ([L.key]), the [L.job] (Dying)\n"
+					msg += "<b>[L.name]</b> ([L.key])，[L.job]（濒死）\n"
 					failed = TRUE //Unconscious
 				if(!failed && L.stat == DEAD)
-					msg += "<b>[L.name]</b> ([L.key]), the [L.job] (Dead)\n"
+					msg += "<b>[L.name]</b> ([L.key])，[L.job]（死亡）\n"
 					failed = TRUE //Dead
 
 			continue //Happy connected client
@@ -418,19 +418,19 @@ SUBSYSTEM_DEF(ticker)
 			if(D.mind && D.mind.current == L)
 				if(L.stat == DEAD)
 					if(HAS_TRAIT(L, TRAIT_SUICIDED)) //Suicider
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_bolddanger("Suicide")])\n"
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)])，[L.job]（[span_bolddanger("自杀")]）\n"
 						continue //Disconnected client
 					else
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (Dead)\n"
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)])，[L.job]（死亡）\n"
 						continue //Dead mob, ghost abandoned
 				else
 					if(D.can_reenter_corpse)
 						continue //Adminghost, or cult/wizard ghost
 					else
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_bolddanger("Ghosted")])\n"
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)])，[L.job]（[span_bolddanger("已出窍")]）\n"
 						continue //Ghosted while alive
 
-	msg += "[span_boldnotice("Roundstart logout reported at: [DisplayTimeText(GLOB.logout_timer_set)]")]\n"
+	msg += "[span_boldnotice("开局离线报告生成于：[DisplayTimeText(GLOB.logout_timer_set)]")]\n"
 
 	var/concatenated_message = msg.Join()
 	log_admin(concatenated_message)
@@ -456,22 +456,22 @@ SUBSYSTEM_DEF(ticker)
 				reopened_job_report_positions = "[reopened_job_report_positions ? "[reopened_job_report_positions]\n":""][dead_dudes_job]"
 
 			var/suicide_command_report = {"
-				<font size = 3><b>[command_name()] Human Resources Board</b><br>
-				Notice of Personnel Change</font><hr>
-				To personnel management staff aboard [station_name()]:<br><br>
-				Our medical staff have detected a series of anomalies in the vital sensors
-				of some of the staff aboard your station.<br><br>
-				Further investigation into the situation on our end resulted in us discovering
-				a series of rather... unforturnate decisions that were made on the part of said staff.<br><br>
-				As such, we have taken the liberty to automatically reopen employment opportunities for the positions of the crew members
-				who have decided not to partake in our research. We will be forwarding their cases to our employment review board
-				to determine their eligibility for continued service with the company (and of course the
-				continued storage of cloning records within the central medical backup server.)<br><br>
-				<i>The following positions have been reopened on our behalf:<br><br>
+				<font size = 3><b>[command_name()]人力资源委员会</b><br>
+				人员变动通知</font><hr>
+				致[station_name()]的人事管理人员：<br><br>
+				我们的医务人员在贵站部分员工的生命体征传感器上
+				检测到了一系列异常。<br><br>
+				经进一步调查，我们发现这些员工做出了
+				一系列相当……令人遗憾的决定。<br><br>
+				因此，我们已自行将那些决定不再参与研究的船员
+				所占职位重新开放招聘。相关个案将转交雇佣审查委员会，
+				以确定他们是否仍有资格继续为公司服务（当然，也包括是否
+				继续将其克隆记录保存在中央医疗备份服务器中）。<br><br>
+				<i>我们已重新开放以下职位：<br><br>
 				[reopened_job_report_positions]</i>
 			"}
 
-			print_command_report(suicide_command_report, "Central Command Personnel Update")
+			print_command_report(suicide_command_report, "中央指挥部人事通告")
 
 //These callbacks will fire after roundstart key transfer
 /datum/controller/subsystem/ticker/proc/OnRoundstart(datum/callback/cb)
@@ -583,7 +583,7 @@ SUBSYSTEM_DEF(ticker)
 		for(var/mob/dead/new_player/new_player_mob as anything in GLOB.new_player_list)
 			var/mob/living/carbon/human/new_player_human = new_player_mob.new_character
 			if(new_player_human)
-				to_chat(new_player_mob, span_notice("Captainship not forced on anyone."))
+				to_chat(new_player_mob, span_notice("未强制任命任何人为舰长。"))
 			CHECK_TICK
 
 
@@ -640,7 +640,7 @@ SUBSYSTEM_DEF(ticker)
 	if(!hard_popcap)
 		list_clear_nulls(queued_players)
 		for (var/mob/dead/new_player/new_player in queued_players)
-			to_chat(new_player, span_userdanger("The alive players limit has been released!<br><a href='byond://?src=[REF(new_player)];late_join=override'>[html_encode(">>Join Game<<")]</a>"))
+			to_chat(new_player, span_userdanger("存活玩家人数限制已解除！<br><a href='byond://?src=[REF(new_player)];late_join=override'>[html_encode(">>加入游戏<<")]</a>"))
 			SEND_SOUND(new_player, sound('sound/announcer/notice/notice1.ogg'))
 			GLOB.latejoin_menu.ui_interact(new_player)
 		queued_players.len = 0
@@ -655,14 +655,14 @@ SUBSYSTEM_DEF(ticker)
 			list_clear_nulls(queued_players)
 			if(living_player_count() < hard_popcap)
 				if(next_in_line?.client)
-					to_chat(next_in_line, span_userdanger("A slot has opened! You have approximately 20 seconds to join. <a href='byond://?src=[REF(next_in_line)];late_join=override'>\>\>Join Game\<\<</a>"))
+					to_chat(next_in_line, span_userdanger("有空位了！你有约20秒的时间加入。<a href='byond://?src=[REF(next_in_line)];late_join=override'>\>\>加入游戏\<\<</a>"))
 					SEND_SOUND(next_in_line, sound('sound/announcer/notice/notice1.ogg'))
 					next_in_line.ui_interact(next_in_line)
 					return
 				queued_players -= next_in_line //Client disconnected, remove he
 			queue_delay = 0 //No vacancy: restart timer
 		if(25 to INFINITY)  //No response from the next in line when a vacancy exists, remove he
-			to_chat(next_in_line, span_danger("No response received. You have been removed from the line."))
+			to_chat(next_in_line, span_danger("未收到响应，你已被移出队列。"))
 			queued_players -= next_in_line
 			queue_delay = 0
 
@@ -716,74 +716,74 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/send_news_report()
 	var/news_message
-	var/news_source = "Nanotrasen News Network"
+	var/news_source = "纳米传讯新闻网"
 	var/decoded_station_name = html_decode(CONFIG_GET(string/cross_comms_name)) //decode station_name to avoid minor_announce double encode // SKYRAT EDIT: CROSS COMMS CONFIG
 	var/decoded_emergency_reason = html_decode(emergency_reason)
 
 	switch(news_report)
 		// The nuke was detonated on the syndicate recon outpost
 		if(NUKE_SYNDICATE_BASE)
-			news_message = "In a daring raid, the heroic crew of [decoded_station_name] \
-				detonated a nuclear device in the heart of a terrorist base."
+			news_message = "在一次大胆的突袭中，[decoded_station_name]的英勇船员\
+				在恐怖分子基地的核心引爆了一枚核装置。"
 		// The station was destroyed by nuke ops
 		if(STATION_DESTROYED_NUKE)
-			news_message = "We would like to reassure all employees that the reports of a Syndicate \
-				backed nuclear attack on [decoded_station_name] are, in fact, a hoax. Have a secure day!"
+			news_message = "我们在此向全体员工保证，所谓辛迪加\
+				支持对[decoded_station_name]发动核袭击的报道实为谣言。祝各位平安！"
 		// The station was evacuated (normal result)
 		if(STATION_EVACUATED)
 			// Had an emergency reason supplied to pass along
 			if(emergency_reason)
-				news_message = "[decoded_station_name] has been evacuated after transmitting \
-					the following distress beacon:\n\n[decoded_emergency_reason]"
+				news_message = "[decoded_station_name]在发出以下\
+					求救信号后已撤离：\n\n[decoded_emergency_reason]"
 			else
-				news_message = "The crew of [decoded_station_name] has been \
-					evacuated amid unconfirmed reports of enemy activity."
+				news_message = "有未经证实的报告称存在敌对活动，\
+					[decoded_station_name]的船员现已撤离。"
 		// A blob won
 		if(BLOB_WIN)
-			news_message = "[decoded_station_name] was overcome by an unknown biological outbreak, killing \
-				all crew on board. Don't let it happen to you! Remember, a clean work station is a safe work station."
+			news_message = "[decoded_station_name]被不明生物灾害吞噬，\
+				全体船员遇难。不要让悲剧在你身上重演！牢记：整洁的工作场所才是安全的工作场所。"
 		// A blob was destroyed
 		if(BLOB_DESTROYED)
-			news_message = "[decoded_station_name] is currently undergoing decontamination procedures \
-				after the destruction of a biological hazard. As a reminder, any crew members experiencing \
-				cramps or bloating should report immediately to security for incineration."
+			news_message = "生物危害已被消灭，[decoded_station_name]\
+				目前正在进行消杀。提醒各位：如有船员出现\
+				痉挛或腹胀，请立即向安保部报到并接受焚烧处理。"
 		// A certain percentage of all cultists managed to escape at the end of round
 		if(CULT_ESCAPE)
-			news_message = "Security Alert: A group of religious fanatics have escaped from [decoded_station_name]."
+			news_message = "安保警报：一群宗教狂热分子已从[decoded_station_name]逃脱。"
 		// Cult was completely or almost completely wiped out
 		if(CULT_FAILURE)
-			news_message = "Following the dismantling of a restricted cult aboard [decoded_station_name], \
-				we would like to remind all employees that worship outside of the Chapel is strictly prohibited, \
-				and cause for termination."
+			news_message = "[decoded_station_name]上的非法教团已被取缔，\
+				在此提醒所有员工，严禁在礼拜堂之外举行宗教活动，\
+				违者将被终止雇佣。"
 		// Cult summoned Nar'sie
 		if(CULT_SUMMON)
-			news_message = "Company officials would like to clarify that [decoded_station_name] was scheduled \
-				to be decommissioned following meteor damage earlier this year. Earlier reports of an \
-				unknowable eldritch horror were made in error."
+			news_message = "公司负责人在此澄清，[decoded_station_name]在今年早些时候\
+				遭受陨石损坏后便已计划退役。先前关于\
+				不可名状恐怖存在的报道纯属错误。"
 		// Nuke detonated, but missed the station entirely
 		if(NUKE_MISS)
-			news_message = "The Syndicate have bungled a terrorist attack [decoded_station_name], \
-				detonating a nuclear weapon in empty space nearby."
+			news_message = "辛迪加对[decoded_station_name]的恐怖袭击失败了，\
+				他们在附近空无一物的太空中引爆了核武器。"
 		// All nuke ops got killed
 		if(OPERATIVES_KILLED)
-			news_message = "Repairs to [decoded_station_name] are underway after an elite \
-				Syndicate death squad was wiped out by the crew."
+			news_message = "船员歼灭了一支辛迪加精英\
+				死亡小队，[decoded_station_name]的修复工作现已展开。"
 		// Nuke ops results inconclusive - Crew escaped without the disk, or nukies were left alive, or something
 		if(OPERATIVE_SKIRMISH)
-			news_message = "A skirmish between security forces and Syndicate agents aboard [decoded_station_name] \
-				ended with both sides bloodied but intact."
+			news_message = "[decoded_station_name]上的安保部队与辛迪加特工发生了一场小规模冲突，\
+				双方均有伤亡，但都保持了战斗力。"
 		// Revolution victory
 		if(REVS_WIN)
-			news_message = "Company officials have reassured investors that despite a union led revolt \
-				aboard [decoded_station_name] there will be no wage increases for workers."
+			news_message = "公司负责人向投资者保证，尽管[decoded_station_name]发生了工会领导的叛乱，\
+				工人的工资也不会因此上涨。"
 		// Revolution defeat
 		if(REVS_LOSE)
-			news_message = "[decoded_station_name] quickly put down a misguided attempt at mutiny. \
-				Remember, unionizing is illegal!"
+			news_message = "[decoded_station_name]迅速平定了一场误入歧途的叛乱。\
+				请牢记，组织工会是违法的！"
 		// All wizards (plus apprentices) have been killed
 		if(WIZARD_KILLED)
-			news_message = "Tensions have flared with the Space Wizard Federation following the death \
-				of one of their members aboard [decoded_station_name]."
+			news_message = "太空巫师联邦的一名成员在[decoded_station_name]死亡，\
+				导致双方关系骤然紧张。"
 		// The station was nuked generically
 		if(STATION_NUKED)
 			// There was a blob on board, guess it was nuked to stop it
@@ -792,41 +792,41 @@ SUBSYSTEM_DEF(ticker)
 					if(overmind.max_count < overmind.announcement_size)
 						continue
 
-					news_message = "[decoded_station_name] is currently undergoing decontanimation after a controlled \
-						burst of radiation was used to remove a biological ooze. All employees were safely evacuated prior, \
-						and are enjoying a relaxing vacation."
+					news_message = "[decoded_station_name]以受控辐射爆发清除了一团\
+						生物黏液，目前正在进行消杀。全体员工事先均已安全撤离，\
+						正在享受轻松愉快的假期。"
 					break
 			// A self destruct or something else
 			else
-				news_message = "[decoded_station_name] activated its self-destruct device for unknown reasons. \
-					Attempts to clone the Captain for arrest and execution are underway."
+				news_message = "[decoded_station_name]因不明原因启动了自毁装置。\
+					目前正在尝试克隆舰长，以便将其逮捕并处决。"
 		// The emergency escape shuttle was hijacked
 		if(SHUTTLE_HIJACK)
-			news_message = "During routine evacuation procedures, the emergency shuttle of [decoded_station_name] \
-				had its navigation protocols corrupted and went off course, but was recovered shortly after. \
-				The following distress beacon was sent prior to evacuation:\n\n[Gibberish(decoded_emergency_reason, FALSE, 8)]"
+			news_message = "在例行撤离过程中，[decoded_station_name]的紧急穿梭机\
+				因导航协议损坏而偏离航线，但不久后便已找回。\
+				撤离前曾发出以下求救信号：\n\n[Gibberish(decoded_emergency_reason, FALSE, 8)]"
 		// A supermatter cascade triggered
 		if(SUPERMATTER_CASCADE)
-			news_message = "Officials are advising nearby colonies about a newly declared exclusion zone in \
-				the sector surrounding [decoded_station_name]."
+			news_message = "官方正在通知附近殖民地，\
+				[decoded_station_name]周边星区已被划为禁区。"
 
 	//SKYRAT EDIT - START
 	if(SSblackbox.first_death)
 		var/list/ded = SSblackbox.first_death
 		if(ded.len)
-			news_message += " NT Sanctioned Psykers picked up faint traces of someone near the station, allegedly having had died. Their name was: [ded["name"]], [ded["role"]], at [ded["area"]].[ded["last_words"] ? " Their last words were: \"[ded["last_words"]]\"" : ""]" // " // An Extra quote and comment because highlighting goes weird
+			news_message += " 纳米传讯授权灵能者在空间站附近捕捉到某人的微弱痕迹，据称此人已经死亡。其姓名为[ded["name"]]，职位为[ded["role"]]，地点为[ded["area"]]。[ded["last_words"] ? " 其遗言为：\"[ded["last_words"]]\"" : ""]" // " // An Extra quote and comment because highlighting goes weird
 		else
-			news_message += " NT Sanctioned Psykers proudly confirm reports that nobody died this shift!"
+			news_message += " 纳米传讯授权灵能者自豪地证实，本班次无人死亡！"
 	//SKYRAT EDIT - END
 
 	if(news_message && length(CONFIG_GET(keyed_list/cross_server))) //SKYRAT EDIT - CONFIG CHECK MOVED FROM ROUNDEND.DM
-		news_message += " (Shift on [CONFIG_GET(string/cross_server_name)] ending!)" //SKYRAT EDIT ADDITION
+		news_message += " （[CONFIG_GET(string/cross_server_name)]的班次即将结束！）" //SKYRAT EDIT ADDITION
 		send2otherserver(news_source, news_message,"News_Report")
 	//SKYRAT EDIT - START
 	if(news_message)
 		return news_message
 	else
-		return "We regret to inform you that shit be whack, yo. None of our reporters have any idea of what may or may not have gone on."
+		return "很遗憾地告诉大家，这事儿简直乱套了。我们的记者没一个搞得清究竟发生了什么，或者根本没发生什么。"
 	//SKYRAT EDIT - END
 
 /datum/controller/subsystem/ticker/proc/GetTimeLeft()
@@ -857,17 +857,17 @@ SUBSYSTEM_DEF(ticker)
 
 	var/skip_delay = check_rights()
 	if(delay_end && !skip_delay)
-		to_chat(world, span_boldannounce("An admin has delayed the round end."))
+		to_chat(world, span_boldannounce("管理员已推迟本回合结束。"))
 		return
 
-	to_chat(world, span_boldannounce("Rebooting World in [DisplayTimeText(delay)]. [reason]"))
+	to_chat(world, span_boldannounce("服务器将在[DisplayTimeText(delay)]后重启。[reason]"))
 
 	var/statspage = CONFIG_GET(string/roundstatsurl)
 	var/gamelogloc = CONFIG_GET(string/gamelogurl)
 	if(statspage)
-		to_chat(world, span_info("Round statistics and logs can be viewed <a href=\"[statspage][GLOB.round_id]\">at this website!</a>"))
+		to_chat(world, span_info("回合统计与日志可在<a href=\"[statspage][GLOB.round_id]\">此网站</a>查看！"))
 	else if(gamelogloc)
-		to_chat(world, span_info("Round logs can be located <a href=\"[gamelogloc]\">at this website!</a>"))
+		to_chat(world, span_info("回合日志可在<a href=\"[gamelogloc]\">此网站</a>查看！"))
 
 	var/start_wait = world.time
 	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2)) //don't wait forever
@@ -892,9 +892,9 @@ SUBSYSTEM_DEF(ticker)
  */
 /datum/controller/subsystem/ticker/proc/cancel_reboot(mob/user)
 	if(!reboot_timer)
-		to_chat(user, span_warning("There is no pending reboot!"))
+		to_chat(user, span_warning("当前没有待执行的重启！"))
 		return FALSE
-	to_chat(world, span_boldannounce("An admin has delayed the round end."))
+	to_chat(world, span_boldannounce("管理员已推迟本回合结束。"))
 	deltimer(reboot_timer)
 	reboot_timer = null
 	return TRUE

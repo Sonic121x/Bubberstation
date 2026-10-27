@@ -1,6 +1,6 @@
 /obj/item/anomaly_neutralizer
-	name = "anomaly neutralizer"
-	desc = "A one-use device capable of instantly neutralizing anomalous or otherworldly entities."
+	name = "异常体中和器"
+	desc = "能够瞬间中和异常实体或异界实体的一次性装置。"
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "neutralyzer"
 	inhand_icon_state = "electronic"
@@ -17,15 +17,15 @@
 
 	// Primarily used to delete and neutralize anomalies.
 	AddComponent(/datum/component/effect_remover, \
-		success_feedback = "You neutralize %THEEFFECT with %THEWEAPON, frying its circuitry in the process.", \
-		tip_text = "Neutralize anomaly", \
+		success_feedback = "你用%THEWEAPON中和了%THEEFFECT，同时烧毁了装置的电路。", \
+		tip_text = "中和异常体", \
 		on_clear_callback = CALLBACK(src, PROC_REF(on_anomaly_neutralized)), \
 		effects_we_clear = list(/obj/effect/anomaly))
 
 	// Can also be used to delete drained heretic influences, to stop fools from losing arms.
 	AddComponent(/datum/component/effect_remover, \
-		success_feedback = "You close %THEEFFECT with %THEWEAPON, frying its circuitry in the process.", \
-		tip_text = "Close rift", \
+		success_feedback = "你用%THEWEAPON关闭了%THEEFFECT，同时烧毁了装置的电路。", \
+		tip_text = "关闭裂隙", \
 		on_clear_callback = CALLBACK(src, PROC_REF(on_use)), \
 		effects_we_clear = list(/obj/effect/visible_heretic_influence))
 

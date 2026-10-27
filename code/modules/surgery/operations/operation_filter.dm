@@ -1,7 +1,7 @@
 /datum/surgery_operation/limb/filter_blood
-	name = "blood filtration"
-	rnd_name = "Hemodialysis (Blood Filtration)"
-	desc = "Remove unwanted chemicals from a patient's bloodstream."
+	name = "血液过滤"
+	rnd_name = "血液透析（血液过滤）"
+	desc = "清除病人血液中不需要的化学物质。"
 	implements = list(/obj/item/blood_filter = 1)
 	time = 2.5 SECONDS
 	operation_flags = OPERATION_LOOPING
@@ -12,9 +12,9 @@
 
 /datum/surgery_operation/limb/filter_blood/all_required_strings()
 	. = list()
-	. += "operate on chest (target chest)"
+	. += "对胸部施行手术（目标：胸部）"
 	. += ..()
-	. += "the patient must not be husked"
+	. += "病人不能已成焦尸"
 
 /datum/surgery_operation/limb/filter_blood/get_default_radial_image()
 	return image(/obj/item/blood_filter)
@@ -27,7 +27,7 @@
 
 /datum/surgery_operation/limb/filter_blood/on_preop(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	. = ..()
-	display_pain(limb.owner, "You feel a throbbing pain in your chest!")
+	display_pain(limb.owner, "你感到胸口传来阵阵抽痛！")
 
 /datum/surgery_operation/limb/filter_blood/on_success(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	. = ..()
@@ -39,9 +39,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("[tool] completes a cycle filtering [limb.owner]'s blood."),
-		span_notice("[tool] whirrs as it filters [limb.owner]'s blood."),
-		span_notice("[tool] whirrs as it pumps."),
+		span_notice("[tool] 完成了一次循环，过滤了 [limb.owner] 的血液。"),
+		span_notice("[tool] 嗡嗡作响，过滤着 [limb.owner] 的血液。"),
+		span_notice("[tool] 嗡嗡作响，泵动着。"),
 	)
 
 	if(surgeon.is_holding_item_of_type(/obj/item/healthanalyzer))
@@ -51,9 +51,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_warning("You screw up, bruising [limb.owner]'s chest!"),
-		span_warning("[surgeon] screws up, bruising [limb.owner]'s chest!"),
-		span_warning("[surgeon] screws up!"),
+		span_warning("你搞砸了，撞伤了 [limb.owner] 的胸部！"),
+		span_warning("[surgeon] 搞砸了，撞伤了 [limb.owner] 的胸部！"),
+		span_warning("[surgeon] 搞砸了！"),
 	)
 	limb.receive_damage(5, damage_source = tool)
 
@@ -63,7 +63,7 @@
 		return TRUE
 	// BUBBER EDIT ADDITION END
 	if(!length(target.reagents?.reagent_list))
-		bloodfilter.audible_message(span_notice("[bloodfilter] pings as it reports no chemicals detected in [target]'s blood."))
+		bloodfilter.audible_message(span_notice("[bloodfilter] 发出提示音，报告在 [target] 的血液中未检测到化学物质。"))
 		playsound(target, 'sound/machines/ping.ogg', 75, TRUE, falloff_exponent = 12, falloff_distance = 1)
 		return FALSE
 
@@ -77,7 +77,7 @@
 	return FALSE
 
 /datum/surgery_operation/limb/filter_blood/mechanic
-	name = "purge hydraulics"
-	rnd_name = "Hydraulics Purge (Blood Filtration)"
+	name = "冲洗液压系统"
+	rnd_name = "液压系统冲洗（血液过滤）"
 	required_bodytype = BODYTYPE_ROBOTIC
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC

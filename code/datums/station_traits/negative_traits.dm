@@ -1,17 +1,17 @@
 /datum/station_trait/carp_infestation
-	name = "Carp infestation"
+	name = "太空鲤鱼泛滥"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	show_in_report = TRUE
-	report_message = "Dangerous fauna is present in the area of this station."
+	report_message = "空间站附近存在危险生物。"
 	trait_to_give = STATION_TRAIT_CARP_INFESTATION
 
 /datum/station_trait/distant_supply_lines
-	name = "Distant supply lines"
+	name = "遥远补给线"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 3
 	show_in_report = TRUE
-	report_message = "Due to the distance to our normal supply lines, cargo orders are more expensive."
+	report_message = "由于远离常规补给线，货运订单价格更高。"
 	blacklist = list(/datum/station_trait/strong_supply_lines)
 
 /datum/station_trait/distant_supply_lines/on_round_start()
@@ -19,17 +19,17 @@
 
 ///A negative trait that stops mail from arriving (or the inverse if on holiday). It also enables a specific shuttle loan situation.
 /datum/station_trait/mail_blocked
-	name = "Postal workers strike"
+	name = "邮政工人罢工"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
 	show_in_report = TRUE
-	report_message = "Due to an ongoing strike announced by the postal workers union, mail won't be delivered this shift."
+	report_message = "由于邮政工会宣布的罢工仍在持续，本班次不会投递邮件。"
 
 /datum/station_trait/mail_blocked/on_round_start()
 	//This is either a holiday or Sunday... well then, let's flip the situation.
 	if(SSeconomy.mail_blocked)
-		name = "Postal system overtime"
-		report_message = "Despite being a day off, the postal system is working overtime today. Mail will be delivered this shift."
+		name = "邮政系统加班"
+		report_message = "虽然今天是休息日，但邮政系统正在加班。本班次仍会投递邮件。"
 	else
 		var/datum/round_event_control/shuttle_loan/our_event = locate() in SSevents.control
 		our_event.unavailable_situations -= /datum/shuttle_loan_situation/mail_strike
@@ -42,29 +42,29 @@
 	return ..()
 
 /datum/station_trait/late_arrivals
-	name = "Late Arrivals"
+	name = "延迟抵达"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
 	show_in_report = TRUE
-	report_message = "Sorry for that, we didn't expect to fly into that vomiting goose while bringing you to your new station."
+	report_message = "抱歉，我们没想到在送你们前往新空间站的途中，会撞上一只正在呕吐的鹅。"
 	trait_to_give = STATION_TRAIT_LATE_ARRIVALS
 	blacklist = list(/datum/station_trait/random_spawns, /datum/station_trait/hangover)
 
 /datum/station_trait/random_spawns
-	name = "Drive-by landing"
+	name = "飞掠投送"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
 	show_in_report = TRUE
-	report_message = "Sorry for that, we missed your station by a few miles, so we just launched you towards your station in pods. Hope you don't mind!"
+	report_message = "抱歉，我们飞过头了几英里，所以干脆把你们装进舱里朝空间站发射过去。希望你们别介意！"
 	trait_to_give = STATION_TRAIT_RANDOM_ARRIVALS
 	blacklist = list(/datum/station_trait/late_arrivals, /datum/station_trait/hangover)
 
 /datum/station_trait/hangover
-	name = "Hangover"
+	name = "宿醉"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
 	show_in_report = TRUE
-	report_message = "Ohh....Man....That mandatory office party from last shift...God that was awesome..I woke up in some random toilet 3 sectors away..."
+	report_message = "噢……老天……上个班次的强制办公室派对……天哪，太棒了……我醒来时躺在三个星区外的某个厕所里……"
 	trait_to_give = STATION_TRAIT_HANGOVER
 	blacklist = list(/datum/station_trait/late_arrivals, /datum/station_trait/random_spawns)
 
@@ -97,11 +97,11 @@
 
 
 /datum/station_trait/blackout
-	name = "Blackout"
+	name = "照明瘫痪"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 3
 	show_in_report = TRUE
-	report_message = "Station lights seem to be damaged, be safe when starting your shift today."
+	report_message = "空间站灯具似乎受损了，今天开始工作时请注意安全。"
 
 /datum/station_trait/blackout/on_round_start()
 	. = ..()
@@ -110,12 +110,12 @@
 			apc.overload_lighting()
 
 /datum/station_trait/empty_maint
-	name = "Cleaned out maintenance"
+	name = "维护区清空"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	cost = STATION_TRAIT_COST_LOW //Most of maints is literal trash anyway
 	show_in_report = TRUE
-	report_message = "Our workers cleaned out most of the junk in the maintenance areas."
+	report_message = "我们的工人清走了维护区的大部分杂物。"
 	blacklist = list(/datum/station_trait/filled_maint)
 	trait_to_give = STATION_TRAIT_EMPTY_MAINT
 
@@ -123,7 +123,7 @@
 	can_revert = FALSE
 
 /datum/station_trait/overflow_job_bureaucracy
-	name = "Overflow bureaucracy mistake"
+	name = "后备岗位文书失误"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	show_in_report = TRUE
@@ -134,21 +134,21 @@
 	RegisterSignal(SSjob, COMSIG_SUBSYSTEM_POST_INITIALIZE, PROC_REF(set_overflow_job_override))
 
 /datum/station_trait/overflow_job_bureaucracy/get_report()
-	return "[name] - It seems for some reason we put out the wrong job-listing for the overflow role this shift...I hope you like [chosen_job_name]s."
+	return "[name] - 不知为何，我们似乎把本班次后备岗位的招聘信息发错了……希望你们喜欢[chinese_job_display(chosen_job_name)]。"
 
 /datum/station_trait/overflow_job_bureaucracy/proc/set_overflow_job_override(datum/source)
 	SIGNAL_HANDLER
 	var/datum/job/picked_job = pick(SSjob.get_valid_overflow_jobs())
-	chosen_job_name = LOWER_TEXT(picked_job.title) // like Chief Engineers vs like chief engineers
+	chosen_job_name = picked_job.title // like Chief Engineers vs like chief engineers
 	SSjob.set_overflow_role(picked_job.type)
 	UnregisterSignal(SSjob, COMSIG_SUBSYSTEM_POST_INITIALIZE)
 
 /datum/station_trait/slow_shuttle
-	name = "Slow Shuttle"
+	name = "缓慢穿梭机"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	show_in_report = TRUE
-	report_message = "Due to distance to our supply station, the cargo shuttle will have a slower flight time to your cargo department."
+	report_message = "由于距离补给站较远，货运穿梭机飞往你站货运部的时间将更长。"
 	blacklist = list(/datum/station_trait/quick_shuttle)
 
 /datum/station_trait/slow_shuttle/New()
@@ -161,19 +161,19 @@
 	UnregisterSignal(SSshuttle, COMSIG_SUBSYSTEM_POST_INITIALIZE)
 
 /datum/station_trait/bot_languages
-	name = "Bot Language Matrix Malfunction"
+	name = "机器人语言矩阵故障"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 4
 	cost = STATION_TRAIT_COST_LOW
 	show_in_report = TRUE
-	report_message = "Your station's friendly bots have had their language matrix fried due to an event, resulting in some strange and unfamiliar speech patterns."
+	report_message = "你站友善机器人的语言矩阵因某起事件烧坏了，导致它们使用陌生而古怪的语言模式。"
 	trait_to_give = STATION_TRAIT_BOTS_GLITCHED
 
 /datum/station_trait/bot_languages/New()
 	. = ..()
 	// What "caused" our robots to go haywire (fluff)
-	var/event_source = pick("an ion storm", "a syndicate hacking attempt", "a malfunction", "issues with your onboard AI", "an intern's mistakes", "budget cuts")
-	report_message = "Your station's friendly bots have had their language matrix fried due to [event_source], resulting in some strange and unfamiliar speech patterns."
+	var/event_source = pick("离子风暴", "辛迪加的入侵尝试", "设备故障", "站内 AI 出现问题", "实习生的失误", "预算削减")
+	report_message = "你站友善机器人的语言矩阵因[event_source]烧坏了，导致它们使用陌生而古怪的语言模式。"
 
 /datum/station_trait/bot_languages/on_round_start()
 	. = ..()
@@ -182,23 +182,23 @@
 		found_bot.randomize_language_if_on_station()
 
 /datum/station_trait/machine_languages
-	name = "Machine Language Matrix Malfunction"
+	name = "机器语言矩阵故障"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
 	cost = STATION_TRAIT_COST_FULL
 	show_in_report = TRUE
-	report_message = "Your station's machines have had their language matrix fried due to an event, \
-		resulting in some strange and unfamiliar speech patterns."
+	report_message = "你站机器的语言矩阵因某起事件烧坏了，\
+		导致它们使用陌生而古怪的语言模式。"
 	trait_to_give = STATION_TRAIT_MACHINES_GLITCHED
 
 /datum/station_trait/machine_languages/New()
 	. = ..()
 	// What "caused" our machines to go haywire (fluff)
-	var/event_source = pick("an ion storm", "a malfunction", "a software update", "a power surge", "a computer virus", "a subdued machine uprising", "a clown's prank")
-	report_message = "Your station's machinery have had their language matrix fried due to [event_source], resulting in some strange and unfamiliar speech patterns."
+	var/event_source = pick("离子风暴", "设备故障", "软件更新", "电力浪涌", "电脑病毒", "一场被镇压的机器叛乱", "小丑的恶作剧")
+	report_message = "你站机器的语言矩阵因[event_source]烧坏了，导致它们使用陌生而古怪的语言模式。"
 
 /datum/station_trait/revenge_of_pun_pun
-	name = "Revenge of Pun Pun"
+	name = "潘潘的复仇"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
 	cost = STATION_TRAIT_COST_LOW
@@ -293,8 +293,8 @@
 
 // Abstract station trait used for traits that modify a random event in some way (their weight or max occurrences).
 /datum/station_trait/random_event_weight_modifier
-	name = "Random Event Modifier"
-	report_message = "A random event has been modified this shift! Someone forgot to set this!"
+	name = "随机事件调整"
+	report_message = "本班次的一个随机事件已被修改！有人忘了设置这条消息！"
 	show_in_report = TRUE
 	abstract_type = /datum/station_trait/random_event_weight_modifier
 	weight = 0
@@ -316,21 +316,21 @@
 	modified_event.max_occurrences += max_occurrences_modifier
 
 /datum/station_trait/random_event_weight_modifier/ion_storms
-	name = "Ionic Stormfront"
-	report_message = "An ionic stormfront is passing over your station's system. Expect an increased likelihood of ion storms afflicting your station's silicon units."
+	name = "离子风暴锋"
+	report_message = "一道离子风暴锋正在经过你站所在星系。离子风暴影响站内硅基单位的概率将会上升。"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 3
 	event_control_path = /datum/round_event_control/ion_storm
 	weight_multiplier = 2
 
 /datum/station_trait/random_event_weight_modifier/ion_storms/get_pulsar_message()
-	var/advisory_string = "Advisory Level: <b>ERROR</b></center><BR>"
-	advisory_string += scramble_message_replace_chars("Your sector's advisory level is ERROR. An electromagnetic field has stormed through nearby surveillance equipment, causing major data loss. Partial data was recovered and showed no credible threats to Nanotrasen assets within the Spinward Sector; however, the Department of Intelligence advises maintaining high alert against potential threats due to the lack of complete data.", 35)
+	var/advisory_string = "预警等级：<b>错误</b></center><BR>"
+	advisory_string += scramble_message_replace_chars("你所在星区的预警等级为错误。电磁场席卷了附近的监测设备，造成大量数据丢失。恢复的部分数据未显示顺旋星区内的纳米传讯资产受到可信威胁；但由于数据不完整，情报部门建议对潜在威胁保持高度警戒。", 35)
 	return advisory_string
 
 /datum/station_trait/random_event_weight_modifier/rad_storms
-	name = "Radiation Stormfront"
-	report_message = "A radioactive stormfront is passing through your station's system. Expect an increased likelihood of radiation storms passing over your station, as well the potential for multiple radiation storms to occur during your shift."
+	name = "辐射风暴锋"
+	report_message = "一道辐射风暴锋正在经过你站所在星系。辐射风暴经过空间站的概率将会上升，本班次可能发生多次辐射风暴。"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
 	event_control_path = /datum/round_event_control/radiation_storm
@@ -338,8 +338,8 @@
 	max_occurrences_modifier = 2
 
 /datum/station_trait/random_event_weight_modifier/dust_storms
-	name = "Dust Stormfront"
-	report_message = "The space around your station is clouded by heavy pockets of space dust. Expect an increased likelihood of space dust storms damaging the station hull."
+	name = "尘埃风暴锋"
+	report_message = "你站周围的太空被浓密尘埃团笼罩。太空尘暴损坏空间站外壳的概率将会上升。"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 2
 	cost = STATION_TRAIT_COST_LOW
@@ -348,18 +348,18 @@
 	max_occurrences_modifier = 3
 
 /datum/station_trait/cramped_escape_pods
-	name = "Cramped Escape Pods"
+	name = "拥挤逃生舱"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	show_in_report = TRUE
-	report_message = "Due to budget cuts, we have downsized your escape pods."
+	report_message = "由于预算削减，我们缩小了你站的逃生舱。"
 	trait_to_give = STATION_TRAIT_SMALLER_PODS
 	blacklist = list(/datum/station_trait/luxury_escape_pods)
 
 /datum/station_trait/revolutionary_trashing
-	name = "Post-Revolutionary Fervor"
+	name = "革命余热"
 	show_in_report = TRUE
-	report_message = "Your station was recently reclaimed from a revolutionary commune. We couldn't clean up after them in time."
+	report_message = "你站最近才从革命公社手中收复。我们没能及时清理他们留下的痕迹。"
 	trait_type = STATION_TRAIT_NEGATIVE
 	trait_to_give = STATION_TRAIT_REVOLUTIONARY_TRASHING
 	weight = 2
@@ -468,7 +468,7 @@
 
 ///Station traits that influence the space background and apply some unique effects!
 /datum/station_trait/nebula
-	name = "Nebula"
+	name = "星云"
 	abstract_type = /datum/station_trait/nebula
 	weight = 0
 
@@ -556,12 +556,12 @@
 
 ///The station will be inside a radioactive nebula! Space is radioactive and the station needs to start setting up nebula shielding
 /datum/station_trait/nebula/hostile/radiation
-	name = "Radioactive Nebula"
+	name = "放射性星云"
 	trait_type = STATION_TRAIT_NEGATIVE
 	trait_flags = STATION_TRAIT_SPACE_BOUND //maybe when we can LOOK UP
 	weight = 1
 	show_in_report = TRUE
-	report_message = "This station is located inside a radioactive nebula. Setting up nebula shielding is top-priority."
+	report_message = "本站位于放射性星云内部。部署星云护盾是首要任务。"
 	trait_to_give = STATION_TRAIT_RADIOACTIVE_NEBULA
 
 	blacklist = list(/datum/station_trait/random_event_weight_modifier/rad_storms)
@@ -617,7 +617,7 @@
 		send_fax_to_area(
 			new /obj/item/paper/fluff/radiation_nebula_virologist,
 			/area/station/medical/virology,
-			"NT Virology Department",
+			"纳米传讯病毒学部门",
 			force = TRUE,
 			force_pod_type = /obj/structure/closet/supplypod/centcompod,
 		)
@@ -670,9 +670,9 @@
 			var/obj/machinery/nebula_shielding/emergency/rad_shield = /obj/machinery/nebula_shielding/emergency/radiation
 
 			priority_announce(
-				{"Is everything okay there? We're getting high radiation readings from inside the station. \
-				We're sending an emergency shielding unit for now, it will last [initial(rad_shield.detonate_in) / (1 MINUTES)] minutes. \n\n\
-				Set up the nebula shielding. You can order construction kits at cargo if yours have been lost.
+				{"你们那边还好吗？我们检测到站内辐射读数很高。\
+				我们暂且送来一个应急护盾装置，可维持[initial(rad_shield.detonate_in) / (1 MINUTES)]分钟。\n\n\
+				请部署星云护盾。如果原有套件丢失，可以在货运部订购建造套件。
 				"}
 			)
 
@@ -692,20 +692,20 @@
 	var/obj/machinery/nebula_shielding/shielder = /obj/machinery/nebula_shielding/radiation
 	var/obj/machinery/gravity_generator/main/innate_shielding = /obj/machinery/gravity_generator/main
 	//How long do we have until the first shielding unit needs to be up?
-	var/deadline = "[(initial(innate_shielding.radioactive_nebula_shielding) * intensity_increment_time) / (1 MINUTES)] minute\s"
+	var/deadline = "[(initial(innate_shielding.radioactive_nebula_shielding) * intensity_increment_time) / (1 MINUTES)]分钟"
 	//For how long each shielding unit will protect for
-	var/shielder_time = "[(initial(shielder.shielding_strength) * intensity_increment_time) / (1 MINUTES)] minute\s"
+	var/shielder_time = "[(initial(shielder.shielding_strength) * intensity_increment_time) / (1 MINUTES)]分钟"
 	//Max shielders, excluding the grav-gen to avoid confusion when that goes down
 	var/max_shielders = ((maximum_nebula_intensity / intensity_increment_time)) / initial(shielder.shielding_strength)
 
-	var/announcement = {"Your station has been constructed inside a radioactive nebula. \
-		Standard spacesuits will not protect against the nebula and using them is strongly discouraged. \n\n\
+	var/announcement = {"你站建于放射性星云内部。\
+		标准太空服无法抵御星云辐射，强烈不建议使用。\n\n\
 
-		EXTREME IMPORTANCE: The station is falling deeper into the nebula, and the gravity generator's innate radiation shielding \
-		will not hold very long. Your engineering department has been supplied with all the necessary supplies to set up \
-		shields to protect against the nebula. Additional supply crates can be ordered at cargo. \n\n\
-		You have [deadline] before the nebula enters the station. \
-		Every shielding unit will provide an additional [shielder_time] of protection, fully protecting the station with [max_shielders] shielding units.
+		极其重要：空间站正不断深入星云，重力发生器自带的辐射屏蔽\
+		无法维持太久。工程部已获得部署\
+		星云防护护盾所需的全部物资。额外的补给箱可在货运部订购。\n\n\
+		星云将在[deadline]后侵入空间站。\
+		每个护盾装置可额外提供[shielder_time]的保护，部署[max_shielders]个装置即可全面保护空间站。
 	"}
 
 	priority_announce(announcement, sound = 'sound/announcer/notice/notice1.ogg')
@@ -738,34 +738,34 @@
 
 /// Calls down an eternal storm on planetary stations
 /datum/station_trait/storm/foreverstorm
-	name = "Forever Storm"
+	name = "无尽风暴"
 	trait_type = STATION_TRAIT_NEGATIVE
 	trait_flags = STATION_TRAIT_PLANETARY
 	weight = 3
 	show_in_report = TRUE
-	report_message = "It looks like the storm is not gonna calm down anytime soon, stay safe out there."
+	report_message = "看来这场风暴短时间内不会平息，在外请注意安全。"
 	storm_type = /datum/weather/snow_storm/forever_storm
 
 /datum/station_trait/storm/foreverstorm/get_pulsar_message()
-	var/advisory_string = "Advisory Level: <b>Ice Giant</b></center><BR>"
-	advisory_string += "The ongoing blizzard has interfered with our surveillance equipment, and we cannot provide an accurate threat summary at this time. We advise you to stay safe and avoid traversing the area around the station."
+	var/advisory_string = "预警等级：<b>冰巨星</b></center><BR>"
+	advisory_string += "持续的暴风雪干扰了我们的监测设备，目前无法提供准确的威胁概要。建议注意安全，避免穿行空间站周围区域。"
 	return advisory_string
 
 /datum/station_trait/spiked_drinks
-	name = "Spiked Drinks"
+	name = "掺料饮品"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 3
 	cost = STATION_TRAIT_COST_LOW
 	show_in_report = TRUE
-	report_message = "Due to a mishap at the Robust Softdrinks Megafactory, some drinks may contain traces of ethanol or psychoactive chemicals."
+	report_message = "由于强健软饮巨型工厂发生事故，部分饮料可能含有微量乙醇或精神活性化学物质。"
 	trait_to_give = STATION_TRAIT_SPIKED_DRINKS
 
 /datum/station_trait/structural_weakness
-	name = "Structural Weaknesses"
+	name = "结构薄弱"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 5
 	show_in_report = TRUE
-	report_message = "Our station subdivision informed us that this station may have been built with a number of structural weaknesses due to defective construction materials. Be on the lookout for them and try not to let anything explode."
+	report_message = "空间站分部告知我们，由于建筑材料存在缺陷，本站可能有多处结构薄弱点。请留意这些位置，并尽量避免发生爆炸。"
 	trait_to_give = STATION_TRAIT_SPAWN_WEAKPOINTS
 
 #undef GLOW_NEBULA

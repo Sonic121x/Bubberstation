@@ -1,7 +1,7 @@
 
 /obj/item/clothing/gloves/cargo_gauntlet
-	name = "\improper H.A.U.L. gauntlets"
-	desc = "These clunky gauntlets allow you to drag things with more confidence on them not getting nabbed from you."
+	name = "\improper H.A.U.L. 搬运护手"
+	desc = "这副笨重的护手能让你更放心地拖拉东西，不必担心它们被人抢走。"
 	icon_state = "haul_gauntlet"
 	greyscale_colors = "#2f2e31"
 	equip_delay_self = 3 SECONDS
@@ -28,7 +28,7 @@
 		stack_trace("Gloves already have a pull component associated with \[[pull_component.parent]\] when \[[equipper]\] is trying to equip them.")
 		QDEL_NULL(pull_component_weakref)
 
-	to_chat(equipper, span_notice("You feel the gauntlets activate as soon as you fit them on, making your pulls stronger!"))
+	to_chat(equipper, span_notice("你一戴上护手就感到它启动了，你的拉拽变得更有力！"))
 
 	pull_component_weakref = WEAKREF(equipper.AddComponent(/datum/component/strong_pull))
 
@@ -46,13 +46,13 @@
 	if(!pull_component)
 		return
 
-	to_chat(pull_component.parent, span_warning("You have lost the grip power of [src]!"))
+	to_chat(pull_component.parent, span_warning("你失去了 [src] 的抓握力！"))
 
 	QDEL_NULL(pull_component_weakref)
 
 /obj/item/clothing/gloves/rapid
-	name = "Gloves of the North Star"
-	desc = "Just looking at these fills you with an urge to beat the shit out of people."
+	name = "北斗神拳手套"
+	desc = "光是看着它们，你就涌起一股想把人揍个稀烂的冲动。"
 	icon_state = "rapid"
 	inhand_icon_state = null
 	clothing_traits = list(TRAIT_FINGERPRINT_PASSTHROUGH)
@@ -63,16 +63,16 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, -9)
 
 /obj/item/clothing/gloves/radio
-	name = "translation gloves"
-	desc = "A pair of electronic gloves which connect to nearby radios wirelessly. Allows for sign language users to 'speak' over comms."
+	name = "翻译手套"
+	desc = "一副电子手套，可无线连接附近的无线电。让使用手语的人也能通过通讯频道“说话”。"
 	icon_state = "radio_g"
 	inhand_icon_state = null
 	clothing_traits = list(TRAIT_CAN_SIGN_ON_COMMS)
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.9, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.4)
 
 /obj/item/clothing/gloves/race
-	name = "race gloves"
-	desc = "Extremely finely made gloves meant for use by sportsmen in speed-shooting competitions."
+	name = "竞速手套"
+	desc = "做工极其精细的手套，供运动员在速射比赛中使用。"
 	clothing_traits = list(TRAIT_DOUBLE_TAP)
 	icon_state = "black"
 	greyscale_colors = "#2f2e31"
@@ -82,8 +82,8 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, -9)
 
 /obj/item/clothing/gloves/captain
-	desc = "Regal blue gloves, with a nice gold trim, a diamond anti-shock coating, and an integrated thermal barrier. Swanky."
-	name = "captain's gloves"
+	desc = "华贵的蓝色手套，配有漂亮的金色饰边、钻石防震涂层和一体化隔热层。真够气派的。"
+	name = "舰长手套"
 	icon_state = "captain"
 	inhand_icon_state = null
 	greyscale_colors = null
@@ -107,8 +107,8 @@
 	acid = 50
 
 /obj/item/clothing/gloves/latex
-	name = "latex gloves"
-	desc = "Cheap sterile gloves made from latex. Provides quicker carrying from a good grip."
+	name = "乳胶手套"
+	desc = "由乳胶制成的廉价无菌手套。良好的抓握力让你搬运得更快。"
 	icon_state = "latex"
 	inhand_icon_state = "latex_gloves"
 	greyscale_colors = null
@@ -122,8 +122,8 @@
 	bio = 100
 
 /obj/item/clothing/gloves/latex/nitrile
-	name = "nitrile gloves"
-	desc = "Pricy sterile gloves that are thicker than latex. Excellent grip ensures very fast carrying of patients along with the faster use time of various chemical related items."
+	name = "丁腈手套"
+	desc = "比乳胶更厚的昂贵无菌手套。出色的抓握力确保能极快地搬运病患，同时加快各类化学相关物品的使用速度。"
 	icon_state = "nitrile"
 	inhand_icon_state = "greyscale_gloves"
 	greyscale_colors = "#99eeff"
@@ -134,8 +134,8 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, -6)
 
 /obj/item/clothing/gloves/latex/coroner
-	name = "coroner's gloves"
-	desc = "Black gloves made from latex with a superhydrophobic coating. Useful for picking bodies up instead of dragging blood behind."
+	name = "验尸官手套"
+	desc = "带有超疏水涂层的黑色乳胶手套。方便你直接抱起尸体，而不是一路拖出血痕。"
 	icon_state = "latex_black"
 	inhand_icon_state = "greyscale_gloves"
 	greyscale_colors = "#15191a"
@@ -145,8 +145,8 @@
 	return FALSE
 
 /obj/item/clothing/gloves/tinkerer
-	name = "tinker's gloves"
-	desc = "Overdesigned engineering gloves that have automated construction subroutines dialed in, allowing for faster construction while worn."
+	name = "工匠手套"
+	desc = "设计过度复杂的工程手套，内置调校好的自动化建造子程序，穿戴时能加快建造速度。"
 	inhand_icon_state = "greyscale_gloves"
 	icon_state = "clockwork_gauntlets"
 	greyscale_colors = "#996e23"
@@ -160,8 +160,8 @@
 	bio = 70
 
 /obj/item/clothing/gloves/atmos
-	name = "atmospheric extrication gloves"
-	desc = "Heavy duty gloves for firefighters. These are thick, non-flammable and let you carry people faster."
+	name = "大气救援手套"
+	desc = "消防员用的重型手套。厚实、不易燃，能让你更快地搬运他人。"
 	icon_state = "atmos"
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
@@ -178,8 +178,8 @@
 
 ///A pair of gloves that both allow the user to fish without the need of a held fishing rod and provides athletics experience.
 /obj/item/clothing/gloves/fishing
-	name = "athletic fishing gloves"
-	desc = "A pair of gloves to fish without a fishing rod but your raw <b>athletics</b> strength. It doubles as a good workout device. <i><b>WARNING</b>: May cause injuries when catching bigger fish.</i>"
+	name = "运动钓鱼手套"
+	desc = "一副让你不用钓竿、仅凭<b>运动</b>能力就能钓鱼的手套。它同时也是一件不错的锻炼器材。<i><b>警告</b>：钓到较大的鱼时可能会受伤。</i>"
 	icon_state = "fishing_gloves"
 	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT, /datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
 	///The current fishing minigame datum the wearer is engaged in.
@@ -235,14 +235,14 @@
 
 ///The internal fishing rod of the athletic fishing gloves. The more athletic you're, the easier the minigame will be.
 /obj/item/fishing_rod/mob_fisher/athletic
-	name = "athletics fishing gloves"
+	name = "运动钓鱼手套"
 	icon = /obj/item/clothing/gloves/fishing::icon
 	icon_state = /obj/item/clothing/gloves/fishing::icon_state
 	frame_state = "frame_athletic"
 	line = null
 	bait = null
-	ui_description = "A pair of gloves to fish without a fishing rod while training your athletics."
-	wiki_description = "<b>It requires the Advanced Fishing Technology Node to be researched to be printed.</b> It may hurt the user when catching larger fish."
+	ui_description = "一副让你不用钓竿就能钓鱼、同时锻炼运动能力的手套。"
+	wiki_description = "<b>需要先研究高级钓鱼技术节点才能打印。</b>钓到较大的鱼时可能会伤到使用者。"
 	show_in_wiki = TRUE //Show this cool pair of gloves in the wiki.
 
 /obj/item/fishing_rod/mob_fisher/athletic/Initialize(mapload)

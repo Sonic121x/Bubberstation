@@ -1,6 +1,6 @@
 /datum/supply_pack
 	/// The name of the supply pack, as listed on th cargo purchasing UI.
-	var/name = "Crate"
+	var/name = "板条箱"
 	/// The group that the supply pack is sorted into within the cargo purchasing UI.
 	var/group = ""
 	// BUBBER EDIT START
@@ -22,7 +22,7 @@
 	/// A list of items that are spawned in the crate of the supply pack.
 	var/list/contains = null
 	/// What is the name of the crate that is spawned with the crate's contents??
-	var/crate_name = "crate"
+	var/crate_name = "板条箱"
 	/// When spawning a gas canistor, what kind of gas type are we spawning?
 	var/id
 	/// The description shown on the cargo purchasing UI. No desc by default.
@@ -82,7 +82,7 @@
 		crate_type_to_spawn = get_account_crate_type(paying_account)
 	C = new crate_type_to_spawn(A)
 	// BUBBER EDIT END
-	C.name = "[crate_name || C.name][paying_account ? " - Purchased by [paying_account.account_holder]" : ""]"
+	C.name = "[crate_name || C.name][paying_account ? " - 由 [paying_account.account_holder] 购买" : ""]"
 	if(paying_account) // adds component for locking the crate so only the buyer (or their department) can open it
 		C.AddComponent(/datum/component/locked_to_account, paying_account)
 
@@ -139,27 +139,27 @@
  * This is for adding custom orders to the Cargo console (like order consoles)
  */
 /datum/supply_pack/custom
-	name = "mining order"
+	name = "采矿订单"
 	order_flags = ORDER_INVISIBLE
-	crate_name = "shaft mining delivery crate"
+	crate_name = "矿井采矿配送板条箱"
 	access = ACCESS_MINING
 	test_ignored = TRUE
 
 /datum/supply_pack/custom/New(purchaser, cost, list/contains)
 	. = ..()
-	name = "[purchaser]'s Mining Order"
+	name = "[purchaser] 的采矿订单"
 	src.cost = cost
 	src.contains = contains
 
 /datum/supply_pack/custom/minerals
-	name = "materials order"
-	crate_name = "galactic materials market delivery crate"
+	name = "材料订单"
+	crate_name = "银河材料市场配送板条箱"
 	access = FALSE
 	crate_type = /obj/structure/closet/crate/cargo/mining
 
 /datum/supply_pack/custom/minerals/New(purchaser, cost, list/contains)
 	. = ..()
-	name = "[purchaser]'s Materials Order"
+	name = "[purchaser] 的材料订单"
 	src.cost = cost
 	src.contains = contains
 
@@ -173,10 +173,10 @@
 		var/market_quantity = SSstock_market.materials_quantity[material_type]
 		var/available_quantity = contains[possible_stack]
 		if(available_quantity > market_quantity)
-			var/message = "[possible_stack::singular_name]: requested=[available_quantity] sheets, available=[market_quantity] sheets, adjusted=[market_quantity - available_quantity] sheets."
+			var/message = "[possible_stack::singular_name]：申请 [available_quantity] 张，可用 [market_quantity] 张，已调整 [market_quantity - available_quantity] 张。"
 			available_quantity = market_quantity
 			if(!available_quantity)
-				. += "[possible_stack::singular_name]: order cancelled due to insufficient sheets in the market."
+				. += "[possible_stack::singular_name]：因市场板材不足，订单已取消。"
 				contains -= possible_stack
 				continue
 			. += message

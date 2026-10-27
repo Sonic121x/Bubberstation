@@ -1,11 +1,11 @@
 /datum/quirk/nameless
 	name = "Nameless"
-	desc = "You don't have a name. You are known only as a number."
-	medical_record_text = "Subject lacks a name in records."
+	desc = "你没有名字。别人只用编号称呼你。"
+	medical_record_text = "该人员档案中没有姓名。"
 	value = 0
 	icon = FA_ICON_USER_NINJA
-	gain_text = span_notice("You feel your name slip away.")
-	lose_text = span_notice("You spontaniously remember your full name!")
+	gain_text = span_notice("你感觉自己的名字正从记忆中消失。")
+	lose_text = span_notice("你突然想起了自己的全名！")
 	quirk_flags = QUIRK_HIDE_FROM_SCAN
 	var/character_name
 	var/new_name
@@ -55,7 +55,7 @@
 	if(prefix)
 		job = prefix
 	else
-		job = isnull(quirk_holder.job) ? pick("Alpha", "Beta", "Delta", "Echo", "Zulu", "Omega") : quirk_holder.job
+		job = isnull(quirk_holder.job) ? pick("阿尔法", "贝塔", "德尔塔", "回声", "祖鲁", "欧米伽") : chinese_job_display(quirk_holder.job)
 
 	return "[job] #[number]"
 

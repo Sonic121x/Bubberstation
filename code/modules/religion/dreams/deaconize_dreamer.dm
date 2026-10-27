@@ -1,11 +1,11 @@
 /datum/religion_rites/deaconize/dreamers
-	desc = "Converts someone to your sect. They must be willing, so the first invocation will only prompt them to join. \
-		They will gain the same holy abilities as you. You can deaconize up to three followers, so choose wisely!"
+	desc = "将某人转化为你的教派成员。对方必须自愿，因此第一次施仪只会邀请其加入。\
+		他们将获得与你相同的神圣能力。你最多可授任三名追随者，慎重选择！"
 	rite_flags = parent_type::rite_flags & ~RITE_ONE_TIME_USE
 
 /datum/religion_rites/deaconize/dreamers/invoke_effect(mob/living/carbon/human/user, atom/movable/religious_tool)
 	if(HAS_TRAIT(potential_deacon, TRAIT_NIGHTMARISH))
-		to_chat(user, span_warning("[potential_deacon] is a nightmare, an affront to [GLOB.deity] and all they stand for!"))
+		to_chat(user, span_warning("[potential_deacon] 是梦魇，是对 [GLOB.deity] 及其所代表一切的公然亵渎！"))
 		return FALSE
 	return ..()
 

@@ -1,19 +1,19 @@
 /obj/effect/mob_spawn/ghost_role/human/lobotomite
-	name = "lobotomite containment tube"
-	prompt_name = "a lobotomite"
-	desc = "A pod containing a sleeping experiment. Peering through the frost reveals a sleeping human."
-	mob_name = "Lobotomite"
+	name = "脑叶切除者收容管"
+	prompt_name = "一名脑叶切除者"
+	desc = "一个装着沉睡实验体的舱体。透过霜雾看去，里面是一名沉睡的人类。"
+	mob_name = "脑叶切除者"
 	mob_species = /datum/species/human
 	outfit = /datum/outfit/lobotomite
-	you_are_text = "You are a lobotomite, an experiment of those who took you away from... why can't you remember?"
-	flavour_text = "You are the Lobotomite. \
-	Do not explore the gateway. \
-	Do not touch anything in the gateway. \
-	Do not use anything in the gateway.\
-	This is not meant to be a protagonist or an antagonist.\
-	You are meant to work with the exploration team.\
-	Do not attack anything in the gateway except in self-defense.\
-	DO NOT TOUCH ANYTHING IN THE GATEWAY."
+	you_are_text = "你是一名脑叶切除者，是那些把你带走的人的实验品……可你为什么什么都想不起来了？"
+	flavour_text = "你是脑叶切除者。\
+	不要探索传送门。\
+	不要触碰传送门里的任何东西。\
+	不要使用传送门里的任何东西。\
+	你不该扮演主角或反派。\
+	你应当与探索队合作。\
+	除自卫外，不要攻击传送门里的任何东西。\
+	绝对不要触碰传送门里的任何东西。"
 
 /datum/outfit/lobotomite
 	name = "Abductor Lobotomite"

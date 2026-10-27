@@ -3,9 +3,9 @@
  * A variant of arctan. When given a deltaX and deltaY, returns the angle. I will blow you out of the sky
  */
 /obj/item/circuit_component/arctan2
-	display_name = "Arctangent 2 Component"
-	desc = "A two parameter arctan2 component, for calculating any angle you want."
-	category = "Math"
+	display_name = "反正切 2"
+	desc = "双参数的 arctan2 元件，可计算你想要的任意角度。"
+	category = "数学"
 
 	/// The input port for the x-offset
 	var/datum/port/input/input_port_x

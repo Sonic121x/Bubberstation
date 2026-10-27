@@ -1,12 +1,12 @@
 /datum/computer_file/program/status
 	filename = "statusdisplay"
-	filedesc = "Status Display"
+	filedesc = "状态显示屏"
 	program_icon = "signal"
 	program_open_overlay = "generic"
 	size = 1
 	circuit_comp_type = /obj/item/circuit_component/mod_program/status
 
-	extended_desc = "An app used to change the message on the station status displays."
+	extended_desc = "用于更改空间站状态显示屏信息的一款应用。"
 	tgui_id = "NtosStatus"
 
 	can_run_on_flags = PROGRAM_ALL
@@ -46,7 +46,7 @@
  */
 /datum/computer_file/program/status/proc/post_message(upper, lower, log_usr = key_name(usr))
 	post_status("message", upper, lower)
-	log_game("[log_usr] has changed the station status display message to \"[upper] [lower]\" [loc_name(usr)]")
+	log_game("[log_usr] 将空间站状态显示屏信息更改为“[upper] [lower]” [loc_name(usr)]")
 
 /**
  * Post a picture to status displays
@@ -64,7 +64,7 @@
 		else
 			post_status("alert", picture)
 
-	log_game("[log_usr] has changed the station status display message to \"[picture]\" [loc_name(usr)]")
+	log_game("[log_usr] 将空间站状态显示屏信息更改为“[picture]” [loc_name(usr)]")
 
 /datum/computer_file/program/status/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()

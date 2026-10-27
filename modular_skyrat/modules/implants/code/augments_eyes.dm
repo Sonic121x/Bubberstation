@@ -1,8 +1,8 @@
 /obj/item/organ/eyes/night_vision/cyber
-	name = "nightvision eyes"
+	name = "夜视义眼"
 	icon = 'modular_skyrat/modules/implants/icons/internal_HA.dmi' //All in the chest implants .dmi
 	icon_state = "eyes_nvcyber"
-	desc = "A pair of eyes with built-in nightvision optics, with the additional bonus of being rad as hell."
+	desc = "一对内置夜视光学元件的眼睛，还额外附带酷到爆表的效果。"
 	eye_color_left = "#0ffc03"
 	eye_color_right = "#ff2700"
 	organ_flags = ORGAN_ROBOTIC

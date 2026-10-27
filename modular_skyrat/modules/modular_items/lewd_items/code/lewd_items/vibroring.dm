@@ -1,6 +1,6 @@
 /obj/item/clothing/sextoy/vibroring
-	name = "vibrating ring"
-	desc = "A ring toy used to keep your erection going strong."
+	name = "振动环"
+	desc = "用于维持强劲勃起的环形玩具。"
 	icon_state = "vibroring_pink_off"
 	base_icon_state = "vibroring"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
@@ -20,7 +20,7 @@
 
 /obj/item/clothing/sextoy/vibroring/attack_self(mob/user)
 	toy_on = !toy_on
-	to_chat(user, span_notice("You turn the vibroring [toy_on ? "on. Brrrr..." : "off."]"))
+	to_chat(user, span_notice("你[toy_on ? "打开了振动环。嗡嗡……" : "关闭了振动环。"]"))
 	conditional_pref_sound(user, toy_on ? 'sound/items/weapons/magin.ogg' : 'sound/items/weapons/magout.ogg', 40, TRUE)
 	update_icon_state()
 	update_icon()
@@ -39,12 +39,12 @@
 /obj/item/clothing/sextoy/vibroring/examine(mob/user)
 	. = ..()
 	if(!color_changed)
-		. += span_notice("Alt-click to change it's color.")
+		. += span_notice("按住 Alt 点击可更换颜色。")
 
 /obj/item/clothing/sextoy/vibroring/click_alt(mob/user)
 	if(color_changed)
 		return CLICK_ACTION_BLOCKING
-	var/choice = show_radial_menu(user, src, vibroring_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
+	var/choice = chinese_skyrat_item_radial(user, src, vibroring_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 	if(!choice)
 		return CLICK_ACTION_BLOCKING
 	current_color = choice

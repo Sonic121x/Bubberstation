@@ -1,10 +1,10 @@
 /datum/round_event_control/dark_matteor
-	name = "Dark Matt-eor"
+	name = "黑暗陨石"
 	typepath = /datum/round_event/dark_matteor
 	weight = 0
 	max_occurrences = 0
 	category = EVENT_CATEGORY_SPACE
-	description = "Throw a dark matt-eor somewhere near the station."
+	description = "在空间站附近的某处投下一颗黑暗陨石。"
 	admin_setup = list(/datum/event_admin_setup/warn_admin/dark_matteor)
 	map_flags = EVENT_SPACE_ONLY
 
@@ -25,10 +25,10 @@
 	spawn_meteor(list(/obj/effect/meteor/dark_matteor = 1), null, target, distance_from_edge = 10)
 
 /datum/round_event/dark_matteor/announce(fake)
-	priority_announce("Warning. Excessive tampering of meteor satellites has attracted a dark matt-eor. Signature approaching [GLOB.station_name]. Please brace for impact.", "Meteor Alert", 'sound/announcer/alarm/airraid.ogg')
+	priority_announce("警告。对陨石卫星的过度干预招来了一颗黑暗陨石。信号正在接近 [GLOB.station_name]。请做好撞击准备。", "陨石警报", 'sound/announcer/alarm/airraid.ogg')
 
 /datum/event_admin_setup/warn_admin/dark_matteor
-	warning_text = "Dark Matt-eors spawn singularities. The round is ending once a dark matt-eor hits the station. Proceed anyways?"
+	warning_text = "黑暗陨石会生成奇点。一旦黑暗陨石击中空间站，本回合即告结束。仍要继续吗？"
 	snitch_text = null //since this is not a conditional alert, there is nothing to snitch on. announcing a triggered event is enough.
 
 /datum/event_admin_setup/warn_admin/dark_matteor/should_warn()

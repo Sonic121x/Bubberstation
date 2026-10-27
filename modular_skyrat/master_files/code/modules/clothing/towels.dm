@@ -30,8 +30,8 @@
 
 
 /obj/item/towel
-	name = "towel"
-	desc = "Everyone knows what a towel is. Use it to dry yourself, or wear it around your chest, your waist or even your head!"
+	name = "毛巾"
+	desc = "毛巾是什么，人人都知道。你可以用它擦干身体，也可以把它围在胸前、腰间，甚至头上！"
 	icon = TOWEL_OBJ_ICON
 	worn_icon = TOWEL_WORN_ICON
 	worn_icon_digi = TOWEL_WORN_ICON_DIGI
@@ -71,7 +71,7 @@
 	. = ..()
 
 	if(wet)
-		. += span_notice("\nIt appears to be wet.")
+		. += span_notice("\n它看上去湿了。")
 
 
 	if(!ishuman(user) && !iscyborg(user))
@@ -84,46 +84,46 @@
 		in_hands = user.get_active_held_item() == src || user.get_inactive_held_item() == src
 
 		if(in_hands)
-			. += span_notice("<b>Use in hand</b> to shape [src] into something different.")
+			. += span_notice("<b>在手中使用</b>可将 [src] 变成别的形状。")
 
 	if(in_hands && shape != TOWEL_FOLDED)
-		. += span_notice("<b>Ctrl-click</b> to [wet && ishuman(user) ? "wring parts of the liquids out of [src]" : "fold [src] neatly"].")
+		. += span_notice("<b>Ctrl 点击</b>以[wet && ishuman(user) ? "拧出 [src] 中的部分液体" : "将 [src] 整齐叠好"]。")
 
 	if(iscyborg(user))
 		return
 
 	if(shape == TOWEL_FULL || shape == TOWEL_WAIST)
-		. += span_notice("<b>Alt-click</b> to adjust the fit of [src].")
+		. += span_notice("<b>Alt 点击</b>可调整 [src] 的穿着方式。")
 
 	if(wet)
-		. += span_notice("<b>Right-click</b> [src] on a bucket to wring the liquids out of it and transfer a portion of them to the bucket.")
-		. += span_notice("<b>Wash in a washing machine</b> in order to clean [src].")
+		. += span_notice("<b>右键点击</b>把 [src] 对准水桶，即可把其中的液体拧出来，并将一部分转移到桶里。")
+		. += span_notice("<b>在洗衣机中清洗</b>即可清洁 [src]。")
 
 
 /obj/item/towel/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(istype(held_item) && (held_item.tool_behaviour == TOOL_WIRECUTTER || held_item.get_sharpness()) && !(flags_1 & HOLOGRAM_1))
-		context[SCREENTIP_CONTEXT_LMB] = "Shred into cloth"
+		context[SCREENTIP_CONTEXT_LMB] = "撕成布料"
 
 	if(ishuman(user))
 		if((shape == TOWEL_FULL || shape == TOWEL_WAIST))
-			context[SCREENTIP_CONTEXT_ALT_LMB] = "Adjust Fit"
+			context[SCREENTIP_CONTEXT_ALT_LMB] = "调整穿着"
 
 		var/mob/living/carbon/human/towel_user = user
 		var/worn = towel_user.wear_suit == src || towel_user.head == src
 
 		if(!worn)
-			context[SCREENTIP_CONTEXT_LMB] = "Change Shape"
-			context[SCREENTIP_CONTEXT_CTRL_LMB] = wet ? "Wring" : "Fold"
+			context[SCREENTIP_CONTEXT_LMB] = "变换形状"
+			context[SCREENTIP_CONTEXT_CTRL_LMB] = wet ? "拧干" : "叠好"
 
 	if(iscyborg(user))
-		context[SCREENTIP_CONTEXT_CTRL_LMB] = wet ? "Wring" : "Fold"
+		context[SCREENTIP_CONTEXT_CTRL_LMB] = wet ? "拧干" : "叠好"
 
 	return CONTEXTUAL_SCREENTIP_SET
 
 
 /obj/item/towel/add_item_context(datum/source, list/context, mob/living/target)
 	if(isliving(target) && target.fire_stacks < 0) // If the target indeed is a living mob, and has wet stacks (which are just negative fire stacks)
-		context[SCREENTIP_CONTEXT_LMB] = "Dry up"
+		context[SCREENTIP_CONTEXT_LMB] = "擦干"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return NONE
@@ -137,25 +137,25 @@
 
 	var/free_space = reagents.maximum_volume - reagents.total_volume
 	if(free_space <= 0)
-		to_chat(user, span_warning("Your [src] can't absorb any more liquid!"))
+		to_chat(user, span_warning("你的 [src] 已经吸不下更多液体了！"))
 		return
 
 	var/cleaning_themselves = target_mob == user
 
-	target_mob.visible_message(span_notice("[user] starts drying [cleaning_themselves ? "themselves" : target_mob] up with [src]."), span_notice("[cleaning_themselves ? "You start drying yourself" : "[user] starts drying you"] up with \the [src]."), ignored_mobs = cleaning_themselves ? null : user)
+	target_mob.visible_message(span_notice("[user] 开始用 [src] 擦干[cleaning_themselves ? "自己" : target_mob]。"), span_notice("[cleaning_themselves ? "你开始用 \the [src] 擦干自己" : "[user] 开始用 \the [src] 擦干你"]。"), ignored_mobs = cleaning_themselves ? null : user)
 
 	if(!cleaning_themselves)
-		to_chat(user, span_notice("You start drying [target_mob] up with [src]."))
+		to_chat(user, span_notice("你开始用 [src] 擦干 [target_mob]。"))
 
 	if(!do_after(user, 2 SECONDS, src))
-		to_chat(user, span_notice("You stop drying [target_mob]."))
+		to_chat(user, span_notice("你停下了擦干 [target_mob] 的动作。"))
 		return
 
 
-	target_mob.visible_message(span_notice("[user] finishes drying [cleaning_themselves ? "themselves" : target_mob] up with [src]."), span_notice("[cleaning_themselves ? "You finish drying yourself" : "[user] finishes drying you "] up with \the [src]."), ignored_mobs = cleaning_themselves ? null : user)
+	target_mob.visible_message(span_notice("[user] 用 [src] 擦干了[cleaning_themselves ? "自己" : target_mob]。"), span_notice("[cleaning_themselves ? "你用 \the [src] 擦干了自己" : "[user] 用 \the [src] 擦干了你"]。"), ignored_mobs = cleaning_themselves ? null : user)
 
 	if(!cleaning_themselves)
-		to_chat(user, span_notice("You finish drying [target_mob] up with [src]."))
+		to_chat(user, span_notice("你用 [src] 擦干了 [target_mob]。"))
 
 	var/water_to_remove = min(max(-target_mob.fire_stacks, 0), free_space)
 
@@ -208,7 +208,7 @@
 		transfer_fingerprints_to(shreds)
 		shreds.add_fingerprint(user)
 
-	to_chat(user, span_notice("You tear [src] up into cloth."))
+	to_chat(user, span_notice("你把 [src] 撕成了布料。"))
 	qdel(src)
 
 
@@ -219,18 +219,18 @@
 		return
 
 	if(!reagents.total_volume)
-		to_chat(user, span_warning("\The [src] is dry, you can't squeeze anything out!"))
+		to_chat(user, span_warning("\The [src] 是干的，什么都挤不出来！"))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	var/obj/item/reagent_containers/cup/bucket/target_bucket = target
 
 	if(target_bucket.reagents.total_volume >= target_bucket.reagents.maximum_volume)
-		to_chat(user, span_warning("[target] is full!"))
+		to_chat(user, span_warning("[target] 已经满了！"))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	transfer_towel_reagents_to(target_bucket, reagents.total_volume, user, loss_factor = SQUEEZING_DISPERSAL_RATIO, make_used = TRUE) // If it didn't have enough space, oh well, you lost like 3/4th of what was in the towel anyway, there's just even more loss that way. Doesn't really matter.
 
-	to_chat(user, span_notice("You wring the liquid out of [src], transferring some of it to [target]."))
+	to_chat(user, span_notice("你把 [src] 里的液体拧了出来，其中一部分流进了 [target]。"))
 
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -251,18 +251,18 @@
 	if(!worn)
 		return CLICK_ACTION_SUCCESS
 
-	to_chat(user, span_notice(shape == TOWEL_FULL ? "You raise \the [src] over your [shape]." : "You lower \the [src] down to your [shape]."))
+	to_chat(user, span_notice(shape == TOWEL_FULL ? "你把 \the [src] 往上提到 [shape] 的位置。" : "你把 \the [src] 往下拉到 [shape] 的位置。"))
 	return CLICK_ACTION_SUCCESS
 
 
 /obj/item/towel/item_ctrl_click(mob/user)
 	if(!wet && shape == TOWEL_FOLDED) // You can't fold a wet towel, so you can't get a folded towel that's also wet. And you can't fold what's already folded, obviously.
-		to_chat(user, span_warning("You can't fold a towel that's already folded!"))
+		to_chat(user, span_warning("已经叠好的毛巾没法再叠一次！"))
 		return
 
 	if(ishuman(user) || iscyborg(user))
 		if(iscyborg(user) && wet) // Cyborgs can't wring towels.
-			to_chat(user, span_warning("Folding a wet towel doesn't really make sense. You stop yourself before doing that."))
+			to_chat(user, span_warning("把湿毛巾叠起来实在没什么意义。你在动手之前停住了。"))
 			return
 
 		var/in_hands = TRUE
@@ -276,15 +276,15 @@
 
 		if(!wet)
 			change_towel_shape(user, TOWEL_FOLDED, silent = TRUE)
-			to_chat(user, span_notice("You fold [src] up neatly."))
+			to_chat(user, span_notice("你把 [src] 整齐地叠好了。"))
 			return
 
 		// No cyborgs past this point.
 
-		to_chat(user, span_warning("You start wringing [src], it's going to make a mess!"))
+		to_chat(user, span_warning("你开始拧 [src]，这下非弄得到处都是不可！"))
 
 		if(!do_after(user, 2 SECONDS, src))
-			to_chat(user, span_warning("You give wringing [src] a second thought, and stop doing it, maybe for the best..."))
+			to_chat(user, span_warning("你重新考虑了一下要不要拧 [src]，然后收手了，说不定这样最好……"))
 			return
 
 		var/turf/current_turf = get_turf(src) // It's done by a user so it should always have a turf.
@@ -298,7 +298,7 @@
 
 		qdel(temp_holder)
 
-		user.visible_message(span_warning("[user] wrings [src], making a mess on \the [current_turf]!"), span_warning("You wring [src], making a mess on \the [current_turf]!"))
+		user.visible_message(span_warning("[user] 拧了拧 [src]，把 \the [current_turf] 弄得一团糟！"), span_warning("你拧了拧 [src]，把 \the [current_turf] 弄得一团糟！"))
 
 
 /obj/item/towel/machine_wash(obj/machinery/washing_machine/washer)
@@ -310,7 +310,7 @@
 	set_wet(FALSE, FALSE)
 	make_used(null, silent = TRUE)
 
-	var/fresh_mood = AddComponent(/datum/component/onwear_mood, saved_event_type = /datum/mood_event/fresh_laundry, examine_string = "[src] looks crisp and pristine.")
+	var/fresh_mood = AddComponent(/datum/component/onwear_mood, saved_event_type = /datum/mood_event/fresh_laundry, examine_string = "[src] 看起来平整如新。")
 
 	QDEL_IN(fresh_mood, 2 MINUTES)
 
@@ -380,7 +380,7 @@
 	update_slot_related_flags()
 
 	if(!silent && user)
-		to_chat(user, span_notice(shape ? "You adjust [src] so that it can be worn over your [shape]." : "You fold [src] neatly."))
+		to_chat(user, span_notice(shape ? "你调整了 [src]，让它能罩住你的 [shape]。" : "你把 [src] 整齐地叠好了。"))
 
 
 /**
@@ -507,7 +507,7 @@
 
 	var/free_space = reagents.maximum_volume - reagents.total_volume
 	if(free_space <= 0)
-		to_chat(user, span_warning("Your [src] can't absorb any more liquid!"))
+		to_chat(user, span_warning("你的 [src] 已经吸不下更多液体了！"))
 		return TRUE
 
 	var/datum/reagents/temp_holder = liquids.take_reagents_flat(free_space)
@@ -515,7 +515,7 @@
 	set_wet(reagents.total_volume)
 	make_used(user, silent = TRUE)
 
-	to_chat(user, span_notice("You soak \the [src] with some liquids."))
+	to_chat(user, span_notice("你用一些液体浸湿了 \the [src]。"))
 
 	qdel(temp_holder)
 	user.changeNext_move(CLICK_CD_MELEE)

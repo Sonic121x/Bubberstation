@@ -1,9 +1,9 @@
 /datum/action/changeling/defib_grasp
-	name = "Defibrillator Grasp"
-	desc = "We prepare ourselves while in stasis. If one of our enemies attempts to defibrillate us, \
-		we will snatch their arms off and instantly finalize our stasis."
-	helptext = "This ability is passive, and will trigger when a defibrillator paddle is applied to our chest \
-		while we are dead or in stasis. Will also stun cyborgs momentarily."
+	name = "除颤器之握"
+	desc = "我们在假死中做好准备。若有敌人试图对我们使用除颤器，\
+		我们会扯掉对方的手臂，并立即结束假死、恢复行动。"
+	helptext = "此能力为被动效果，当我们死亡或处于假死状态时，若有除颤电极板贴到我们胸口便会触发。\
+		也会让半机械人短暂麻痹。"
 	button_icon_state = "defibrillator_grasp"
 	category = "utility"
 	owner_has_control = FALSE
@@ -54,7 +54,7 @@
 
 	if(iscyborg(defibber))
 		if(defibber.flash_act(affect_silicon = TRUE))
-			to_chat(defibber, span_userdanger("[changeling] awakens suddenly, overloading your sensors!"))
+			to_chat(defibber, span_userdanger("[changeling]突然苏醒，过载了你的传感器！"))
 			// run default visible message regardless, no overt indication of the cyborg being overloaded to watchers
 
 	else
@@ -77,18 +77,18 @@
 				defibber.emote("scream")
 
 				changeling.visible_message(
-					span_bolddanger("[changeling] awakens suddenly, snatching [defib] out of [defibber]'s hands while ripping off [removed_arms >= 2 ? "" : "one of "][defibber.p_their()] arms!"),
+					span_bolddanger("[changeling]突然苏醒，从[defibber]手中夺过[defib]，并扯下了对方[removed_arms >= 2 ? "双" : "一条"]手臂！"),
 					vision_distance = COMBAT_MESSAGE_RANGE,
 					ignored_mobs = list(changeling, defibber),
 				)
-				to_chat(changeling, span_changeling("The power of [defib] course through us, reviving us from our stasis! \
-					With this newfound energy, we snap [removed_arms >= 2 ? "" : "one of "][defibber]'s arms off!"))
-				to_chat(defibber, span_userdanger("[changeling] awakens suddenly, snapping [removed_arms >= 2 ? "" : "one of "]your arms off!"))
+				to_chat(changeling, span_changeling("[defib]的力量流遍我们全身，将我们从假死中唤醒！\
+					借着这股新生的力量，我们扯下了[defibber]的[removed_arms >= 2 ? "双臂" : "一条手臂"]！"))
+				to_chat(defibber, span_userdanger("[changeling]突然苏醒，扯掉了你的[removed_arms >= 2 ? "双臂" : "一条手臂"]！"))
 				return // no default message if we got an arm
 
 	changeling.visible_message(
-		span_bolddanger("[changeling] awakens suddenly!"),
+		span_bolddanger("[changeling]突然苏醒！"),
 		vision_distance = COMBAT_MESSAGE_RANGE,
 		ignored_mobs = changeling,
 	)
-	to_chat(changeling, span_changeling("The power of [defib] course through us, reviving us from our stasis!"))
+	to_chat(changeling, span_changeling("[defib]的力量流遍我们全身，将我们从假死中唤醒！"))

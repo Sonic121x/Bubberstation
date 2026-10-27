@@ -1,7 +1,7 @@
 // The organ jar - a 120u beaker that can hold a single organ
 /obj/item/reagent_containers/cup/beaker/organ_jar
-	name = "organ jar"
-	desc = "A large shatter-resistant jar, unwieldy for the sake of chemistry, but big enough to put an organ inside of."
+	name = "器官罐"
+	desc = "一个大号防碎罐子，用来做化学实验不太顺手，但足以装下一个器官。"
 	icon_state = "organ_jar"
 	fill_icon_state = "organ_jar"
 	// The plastic makes it more shatter-proof!
@@ -20,9 +20,9 @@
 
 /obj/item/reagent_containers/cup/beaker/organ_jar/examine(mob/user)
 	. = ..()
-	. += span_info("Any organ inside the jar will be preserved if it is entirely filled with formaldehyde.")
+	. += span_info("如果罐中完全装满甲醛，里面的任何器官都会被保存下来。")
 	if(held_organ && held_organ.GetComponent(/datum/component/ghostrole_on_revive))
-		. += span_smallnoticeital("The brain is twitching...") // Guaranteed to be a brain if it has that component
+		. += span_smallnoticeital("大脑正在抽搐……") // Guaranteed to be a brain if it has that component
 
 /obj/item/reagent_containers/cup/beaker/organ_jar/Destroy(force)
 	. = ..()
@@ -31,7 +31,7 @@
 // Alt click lets you take the organ out, if it's present
 /obj/item/reagent_containers/cup/beaker/organ_jar/click_alt(mob/user)
 	if(held_organ)
-		balloon_alert(user, "removed [held_organ]")
+		balloon_alert(user, "已取出 [held_organ]")
 		user.put_in_hands(held_organ)
 		held_organ.organ_flags &= ~ORGAN_FROZEN
 		held_organ = null
@@ -47,15 +47,15 @@
 	if(!istype(tool, /obj/item/organ))
 		return ..()
 	if(held_organ)
-		balloon_alert(user, "the jar already contains [held_organ]")
+		balloon_alert(user, "罐子里已经装着 [held_organ] 了")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "inserted [tool]")
+	balloon_alert(user, "已装入 [tool]")
 	held_organ = tool
-	name = "[tool.name] in a jar"
-	desc = "A jar with \the [tool] inside it."
+	name = "[tool.name]罐"
+	desc = "一个里面装着 \the [tool] 的罐子。"
 	check_organ_freeze()
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -109,24 +109,24 @@
 
 /obj/item/reagent_containers/cup/beaker/organ_jar/brain_in_a_jar/examine(mob/user)
 	. = ..()
-	. += span_notice("<i>You can see a note attached to the bottom..</i>")
+	. += span_notice("<i>你能看到底部贴着一张便条……</i>")
 
 /obj/item/reagent_containers/cup/beaker/organ_jar/brain_in_a_jar/examine_more(mob/user)
 	. = ..()
 	// Flavor for why the brain is scarred
 	switch(note_type)
 		if(NOTE_STUCK_IN_MAIL)
-			. += span_notice("According to the note, this jar must've been stuck in the mail for at least 50 years...")
+			. += span_notice("根据便条上的说法，这个罐子肯定在邮件系统里卡了至少 50 年……")
 		if(NOTE_MORBID_GIFT)
-			. += span_notice("It reads...")
-			. += span_notice("Greetings, XXX. I stumbled upon a hermit in my travels, \
-			whose quirks immediately piqued my interest. I'm sure his brain will be as useful to your research \
-			as it has been to mine. Signed, YYY.")
+			. += span_notice("上面写着……")
+			. += span_notice("你好，XXX。我在旅途中偶然遇到了一位隐士，\
+			他的怪癖立刻引起了我的兴趣。我相信他的大脑对你的研究\
+			会像对我的一样有用。署名：YYY。")
 		if(NOTE_DISCARDED_LOST_CREW)
-			. += span_notice("It reads...")
-			. += span_notice("Hey, XXX. Management wanted me to discard this poor schmuck's brain, \
-			claiming it's 'too damaged to viably recover', so I figured I might as well throw you a bone. \
-			I know you like these sorts of things. Signed, ZZZ.")
+			. += span_notice("上面写着……")
+			. += span_notice("嘿，XXX。管理层想让我把这个可怜虫的大脑扔掉，\
+			说它“损伤太严重，已经无法有效恢复了”，所以我想着干脆给你点好处。\
+			我知道你喜欢这类东西。署名：ZZZ。")
 
 
 /obj/item/reagent_containers/cup/beaker/organ_jar/brain_in_a_jar/Initialize(mapload)
@@ -141,8 +141,8 @@
 		)
 	held_organ = scarred_brain // Put the brain inside the jar
 	reagents.add_reagent(/datum/reagent/toxin/formaldehyde, reagents.maximum_volume) // Fill the jar with formaldehyde
-	name = "brain in a jar" // Set a custom name&description
-	desc = "A brain in a jar. You can see it twitching..."
+	name = "罐中之脑" // Set a custom name&description
+	desc = "罐子里的大脑。你能看到它在抽搐……"
 	update_appearance()
 
 // All this does is add a random special brain trauma + add recovered crew antag datum for logging

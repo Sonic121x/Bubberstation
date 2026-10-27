@@ -12,8 +12,8 @@
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	icon = 'icons/obj/devices/remote.dmi'
-	name = "control wand"
-	desc = "A remote for controlling a set of airlocks."
+	name = "控制法杖"
+	desc = "用于控制一组气闸的遥控器。"
 	w_class = WEIGHT_CLASS_TINY
 	drop_sound = 'sound/items/door_remote/door_remote_drop1.ogg'
 	pickup_sound = 'sound/items/door_remote/door_remote_pick_up1.ogg'
@@ -63,13 +63,13 @@
 	. = ..()
 	if(obj_flags & EMAGGED)
 		return FALSE
-	balloon_alert(user, "restricted functions unlocked")
+	balloon_alert(user, "受限功能已解锁")
 	obj_flags |= EMAGGED
 	update_icon_state()
 	return TRUE
 
 /obj/item/door_remote/attack_self(mob/user)
-	var/static/list/ops = list(WAND_OPEN = "Open Door", WAND_BOLT = "Toggle Bolts", WAND_EMERGENCY = "Toggle Emergency Access", WAND_SHOCK = "Shock Door", WAND_DEPOWER = "Depower Door")
+	var/static/list/ops = list(WAND_OPEN = "开门", WAND_BOLT = "切换门闩", WAND_EMERGENCY = "切换紧急通行", WAND_SHOCK = "电击门", WAND_DEPOWER = "切断门电源")
 	switch(mode)
 		if(WAND_OPEN)
 			mode = WAND_BOLT
@@ -85,7 +85,7 @@
 		if(WAND_DEPOWER)
 			mode = WAND_OPEN
 	update_icon_state()
-	balloon_alert(user, "mode: [ops[mode]]")
+	balloon_alert(user, "模式：[ops[mode]]")
 	if(mode_switch_sound)
 		playsound(src, mode_switch_sound, 50, TRUE)
 
@@ -95,17 +95,17 @@
 	return ranged_interact_with_atom(interacting_with, user, modifiers)
 
 /obj/item/door_remote/omni
-	name = "omni door remote"
-	desc = "This control wand can access any door on the station."
+	name = "全能门控遥控器"
+	desc = "这根控制法杖可以开启空间站上的任何一扇门。"
 	department = "omni"
 	region_access = REGION_ALL_STATION
 	our_domain = list(	/area/station	)
 
 /obj/item/door_remote/captain
-	name = "command door remote"
-	desc = "A remote for controlling a set of airlocks. Despite its gaudy insignia denoting the Captain as its owner, some fine print \
-		indicates that its access is exclusively relegated to the Bridge and high-security command areas -- an additional byline \
-		specifically excludes Security from the high-security areas. Ironic."
+	name = "指挥部门控遥控器"
+	desc = "用于控制一组气闸的遥控器。尽管其花哨的徽记表明舰长是它的主人，但附带的细则 \
+		说明它的权限仅限于舰桥及高安保级别的指挥区域——另有一行小字 \
+		明确将安保部排除在高安保区域之外。真是讽刺。"
 	department = "command"
 	region_access = REGION_COMMAND
 	our_domain = list(
@@ -113,16 +113,16 @@
 	)
 
 /obj/item/door_remote/chief_engineer
-	name = "engineering door remote"
-	desc = "A remote for controlling a set of airlocks. This one smells like burnt flesh and ozone."
+	name = "工程部门控遥控器"
+	desc = "用于控制一组气闸的遥控器。这一个闻起来像烧焦的血肉和臭氧。"
 	department = "engi"
 	region_access = REGION_ENGINEERING
 	owner_trim = /datum/id_trim/job/chief_engineer
 	// doesn't need a domain because their specific high-security areas aren't on anyone else's trim but cap
 
 /obj/item/door_remote/research_director
-	name = "research door remote"
-	desc = "A remote for controlling a set of airlocks. This one is slightly misshapen, as if squeezed by a person possessing ludicrous strength."
+	name = "科研部门控遥控器"
+	desc = "用于控制一组气闸的遥控器。这一个略微变形，仿佛被某个力大无穷的人捏过。"
 	department = "sci"
 	region_access = REGION_RESEARCH
 	owner_trim = /datum/id_trim/job/research_director
@@ -132,34 +132,34 @@
 	)
 
 /obj/item/door_remote/head_of_security
-	name = "security door remote"
-	desc = "A remote for controlling a set of airlocks. This one smells like sweat, blood, resentment, and coffee. \
-		Someone appears to have tampered with the identifier."
+	name = "安保部门控遥控器"
+	desc = "用于控制一组气闸的遥控器。这一个闻起来有汗水、血、怨恨和咖啡的味道。\
+		似乎有人篡改过它的标识。"
 	department = "security"
 	region_access = REGION_SECURITY
 	owner_trim = /datum/id_trim/job/head_of_security
 	our_domain = list(	/area/station/security	)
 
 /obj/item/door_remote/quartermaster
-	name = "cargo door remote"
-	desc = "Remotely controls airlocks. This remote has additional Vault access. Despite that, holding it makes you feel insecure for some reason."
+	name = "货运部门控遥控器"
+	desc = "远程控制气闸。这台遥控器额外拥有金库权限。尽管如此，拿着它总会让你莫名感到不安。"
 	department = "cargo"
 	region_access = REGION_SUPPLY
 	owner_trim = /datum/id_trim/job/quartermaster
 	our_domain = list( /area/station/command/vault )
 
 /obj/item/door_remote/chief_medical_officer
-	name = "medical door remote"
-	desc = "A remote for controlling a set of airlocks. It has the overpowering odor of blood and, despite its medical insignia, \
-		has absolutely no accompanying odor of disinfectant."
+	name = "医疗部门控遥控器"
+	desc = "用于控制一组气闸的遥控器。它散发着浓烈刺鼻的血腥味，而且尽管带有医疗徽记，\
+		却完全没有一丝消毒剂的气味。"
 	department = "med"
 	region_access = REGION_MEDBAY
 	owner_trim = /datum/id_trim/job/chief_medical_officer
 
 /obj/item/door_remote/head_of_personnel
-	name = "service door remote"
-	desc = "A remote for controlling a set of airlocks. This one smells like printer ink, and fills its holder with the urge \
-		to mysteriously vanish."
+	name = "服务部门控遥控器"
+	desc = "用于控制一组气闸的遥控器。这一个闻起来像打印机墨水，还会让持有者产生\
+		神秘消失的冲动。"
 	department = "civilian"
 	region_access = REGION_GENERAL
 	owner_trim = /datum/id_trim/job/head_of_personnel
@@ -184,18 +184,18 @@
 			return ITEM_INTERACT_BLOCKING
 
 	if (!door.check_access_list(access_list) || !door.requiresID())
-		interacting_with.balloon_alert(user, "can't access!")
+		interacting_with.balloon_alert(user, "无法通行！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/area/door_area = get_area(door)
 	if(is_type_in_list(door_area, restricted_areas) && !is_my_domain(get_area(door)))
-		interacting_with.balloon_alert(user, "can't access!")
+		interacting_with.balloon_alert(user, "无法通行！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/machinery/door/airlock/airlock = door
 
 	if (!door.hasPower() || (istype(airlock) && !airlock.canAIControl()))
-		interacting_with.balloon_alert(user, mode == WAND_OPEN ? "it won't budge!" : "nothing happens!")
+		interacting_with.balloon_alert(user, mode == WAND_OPEN ? "它纹丝不动！" : "什么也没发生！")
 		return ITEM_INTERACT_BLOCKING
 
 	switch (mode)
@@ -207,19 +207,19 @@
 
 		if (WAND_BOLT)
 			if (!istype(airlock))
-				interacting_with.balloon_alert(user, "only airlocks!")
+				interacting_with.balloon_alert(user, "只能用于气闸！")
 				return ITEM_INTERACT_BLOCKING
 
 			if (airlock.locked)
 				airlock.unbolt()
-				log_combat(user, airlock, "unbolted", src)
+				log_combat(user, airlock, "解开门闩", src)
 			else
 				airlock.bolt()
-				log_combat(user, airlock, "bolted", src)
+				log_combat(user, airlock, "锁上门闩", src)
 
 		if (WAND_EMERGENCY)
 			if (!istype(airlock))
-				interacting_with.balloon_alert(user, "only airlocks!")
+				interacting_with.balloon_alert(user, "只能用于气闸！")
 				return ITEM_INTERACT_BLOCKING
 
 			airlock.emergency = !airlock.emergency
@@ -227,20 +227,20 @@
 
 		if (WAND_SHOCK)
 			if (!istype(airlock))
-				interacting_with.balloon_alert(user, "only airlocks!")
+				interacting_with.balloon_alert(user, "只能用于气闸！")
 				return ITEM_INTERACT_BLOCKING
 			if (!COOLDOWN_FINISHED(src, shock_cooldown))
-				interacting_with.balloon_alert(user, "shock pulse resetting!")
+				interacting_with.balloon_alert(user, "电击脉冲正在重置！")
 				return ITEM_INTERACT_BLOCKING
 			if (airlock.isElectrified())
-				interacting_with.balloon_alert(user, "already electrified!")
+				interacting_with.balloon_alert(user, "已经带电了！")
 			else
 				airlock.set_electrified(MACHINE_DEFAULT_ELECTRIFY_TIME, user)
 				COOLDOWN_START(src, shock_cooldown, 10 SECONDS)
 
 		if (WAND_DEPOWER)
 			if (!istype(airlock))
-				interacting_with.balloon_alert(user, "only airlocks!")
+				interacting_with.balloon_alert(user, "只能用于气闸！")
 				return ITEM_INTERACT_BLOCKING
 			// First hit disrupts main power, backup comes back in ten seconds, if you stick around you can hit backup for 60 more seconds of downtime.
 			if (!airlock.main_power_timer)

@@ -1,5 +1,5 @@
 /datum/antagonist/spider
-	name = "\improper Spider"
+	name = "\improper 蜘蛛"
 	antagpanel_category = ANTAG_GROUP_ARACHNIDS
 	show_in_roundend = FALSE
 	show_in_antagpanel = FALSE
@@ -21,12 +21,12 @@
 	owner.announce_objectives()
 
 /datum/objective/spider
-	explanation_text = "Spread the infestation."
+	explanation_text = "散播虫害。"
 
 /datum/objective/spider/New(directive)
 	..()
 	if(directive)
-		explanation_text = "Your queen has given you a directive! Follow it at all costs: [directive]"
+		explanation_text = "你的女王给你下达了一道指令！不惜一切代价执行它：[directive]"
 
 /datum/objective/spider/check_completion()
 	return owner.current && owner.current.stat != DEAD
@@ -38,12 +38,12 @@
 
 /// Subtype for flesh spiders who don't have a queen
 /datum/antagonist/spider/flesh
-	name = "Flesh Spider"
+	name = "血肉蜘蛛"
 
 /datum/antagonist/spider/flesh/forge_objectives()
 	var/datum/objective/custom/destroy = new()
 	destroy.owner = owner
-	destroy.explanation_text = "Wreak havoc and consume living flesh."
+	destroy.explanation_text = "大肆破坏并吞食活体血肉。"
 	objectives += destroy
 
 	var/datum/objective/survive/dont_die = new()
@@ -52,6 +52,6 @@
 
 /datum/antagonist/spider/flesh/greet()
 	. = ..()
-	to_chat(owner, span_boldwarning("An abomination of flesh set upon the station by changelings, \
-		you are aggressive to all living beings outside of your species and know no loyalties... even to your creator. \
-		<br>Your malleable flesh quickly regenerates if you can avoid taking damage for a few seconds."))
+	to_chat(owner, span_boldwarning("你是变形怪投放于空间站的血肉憎恶，\
+		对所有与你不同种的活物都充满敌意，也不效忠于任何人……甚至包括你的创造者。\
+		<br>只要你能在数秒内不受伤，你柔韧的血肉就会迅速再生。"))

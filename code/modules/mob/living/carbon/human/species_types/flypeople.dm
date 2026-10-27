@@ -1,6 +1,6 @@
 /datum/species/fly
-	name = "Flyperson"
-	plural_form = "Flypeople"
+	name = "蝇人"
+	plural_form = "蝇人"
 	id = SPECIES_FLYPERSON
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
 	meat = /obj/item/food/meat/slab/human/mutant/fly
@@ -27,26 +27,26 @@
 	)
 
 /datum/species/fly/get_physical_attributes()
-	return "These hideous creatures suffer from pesticide immensely, eat waste, and are incredibly vulnerable to bright lights. They do have wings though."
+	return "这些丑陋的生物对杀虫剂极为敏感，以废物为食，并且极易受到强光伤害。不过，他们确实有翅膀。"
 
 /datum/species/fly/get_species_description()
-	return "With no official documentation or knowledge of the origin of \
-		this species, they remain a mystery to most. Any and all rumours among \
-		Nanotrasen staff regarding flypeople are often quickly silenced by high \
-		ranking staff or officials."
+	return "由于没有任何官方文献或关于该物种起源的资料，\
+		他们对大多数人而言仍是个谜。纳米传讯员工之间流传的 \
+		各种关于蝇人的传闻，往往会被高层人员或官员 \
+		迅速压下。"
 
 /datum/species/fly/get_species_lore()
 	return list(
-		"Flypeople are a curious species with a striking resemblance to the insect order of Diptera, \
-		commonly known as flies. With no publically known origin, flypeople are rumored to be a side effect of bluespace travel, \
-		despite statements from Nanotrasen officials.",
+		"蝇人是一种奇特的物种，外形与昆虫纲中的双翅目（俗称苍蝇）极为相似。\
+		他们的起源并无公开记载，据传蝇人是蓝空间旅行的副产物，\
+		尽管纳米传讯官员另有说法。",
 
-		"Little is known about the origins of this race, \
-		however they posess the ability to communicate with giant spiders, originally discovered in the Australicus sector \
-		and now a common occurence in black markets as a result of a breakthrough in syndicate bioweapon research.",
+		"关于这个种族的起源所知甚少，\
+		不过他们能够与巨型蜘蛛交流；这一能力最初发现于澳斯特拉利库斯星区，\
+		如今由于辛迪加生物武器研究的突破，已成为黑市上的常见现象。",
 
-		"Flypeople are often feared or avoided among other species, their appearance often described as unclean or frightening in some cases, \
-		and their eating habits even more so with an insufferable accent to top it off.",
+		"蝇人常被其他物种畏惧或避而远之，他们的外貌常被形容为不洁，某些情况下甚至令人恐惧，\
+		而他们的进食习惯更是如此，再加上一口让人难以忍受的口音。",
 	)
 
 /datum/species/fly/create_pref_unique_perks()
@@ -56,28 +56,28 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "grin-tongue",
-			SPECIES_PERK_NAME = "Uncanny Digestive System",
-			SPECIES_PERK_DESC = "Flypeople regurgitate their stomach contents and drink it \
-				off the floor to eat and drink with little care for taste, favoring gross foods.",
+			SPECIES_PERK_NAME = "诡异的消化系统",
+			SPECIES_PERK_DESC = "蝇人会将胃里的东西反刍出来，再从地板上喝下去，\
+				以此进食饮水；他们不在意味道，偏爱恶心的食物。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "fist-raised",
-			SPECIES_PERK_NAME = "Insectoid Biology",
-			SPECIES_PERK_DESC = "Fly swatters will deal significantly higher amounts of damage to a Flyperson.",
+			SPECIES_PERK_NAME = "昆虫生物学",
+			SPECIES_PERK_DESC = "苍蝇拍会对蝇人造成显著更高的伤害。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "sun",
-			SPECIES_PERK_NAME = "Radial Eyesight",
-			SPECIES_PERK_DESC = "Flypeople can be flashed from all angles.",
+			SPECIES_PERK_NAME = "放射状视觉",
+			SPECIES_PERK_DESC = "蝇人会被来自各个角度的闪光晃到。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "briefcase-medical",
-			SPECIES_PERK_NAME = "Weird Organs",
-			SPECIES_PERK_DESC = "Flypeople take specialized medical knowledge to be \
-				treated. Their organs are disfigured and organ manipulation can be interesting...",
+			SPECIES_PERK_NAME = "怪异器官",
+			SPECIES_PERK_DESC = "治疗蝇人需要专门的医学知识。\
+				他们的器官形态畸变，器官手术可能会相当有趣……",
 		),
 	)
 

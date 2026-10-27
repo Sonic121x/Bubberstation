@@ -5,26 +5,26 @@
 */
 
 /mob/living/basic/lizard
-	name = "Lizard"
-	desc = "A cute tiny lizard."
+	name = "蜥蜴"
+	desc = "一只可爱的小蜥蜴。"
 	icon_state = "lizard"
 	icon_living = "lizard"
 	icon_dead = "lizard_dead"
 	icon_gib = "lizard_gib"
-	speak_emote = list("hisses")
+	speak_emote = list("发出嘶声")
 	health = 10
 	maxHealth = 10
 	faction = list(FACTION_LIZARD)
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "啃咬"
+	attack_verb_simple = "啃咬"
 	melee_damage_lower = 1
 	melee_damage_upper = 2
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "shoos"
-	response_disarm_simple = "shoo"
-	response_harm_continuous = "stomps on"
-	response_harm_simple = "stomp on"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "驱赶"
+	response_disarm_simple = "驱赶"
+	response_harm_continuous = "踩踏"
+	response_harm_simple = "踩踏"
 	density = FALSE
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
@@ -52,7 +52,7 @@
 
 /datum/emote/lizard/whicker
 	key = "tongue"
-	message = "sticks its tongue out contentedly!"
+	message = "满足地吐出舌头！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /mob/living/basic/lizard/Initialize(mapload)
@@ -77,8 +77,8 @@
 
 /// Lizards that can survive in space.
 /mob/living/basic/lizard/space
-	name = "Space Lizard"
-	desc = "A cute tiny lizard with a tiny space helmet."
+	name = "太空蜥蜴"
+	desc = "一只戴着小小太空头盔的可爱小蜥蜴。"
 	icon_state = "lizard_space"
 	icon_living = "lizard_space"
 	unsuitable_atmos_damage = 0
@@ -87,10 +87,10 @@
 
 /// Janitor's pet lizard.
 /mob/living/basic/lizard/wags_his_tail
-	name = "Wags-His-Tail"
-	desc = "The janitorial department's trusty pet lizard."
+	name = "摇尾巴"
+	desc = "清洁部可靠的宠物蜥蜴。"
 
 /// Another pet lizard for the janitor.
 /mob/living/basic/lizard/eats_the_roaches
-	name = "Eats-The-Roaches"
-	desc = "The janitorial department's less trusty pet lizard."
+	name = "吃蟑螂"
+	desc = "清洁部不太可靠的宠物蜥蜴。"

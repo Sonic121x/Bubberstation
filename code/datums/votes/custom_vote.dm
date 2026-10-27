@@ -3,7 +3,7 @@
 
 /datum/vote/custom_vote
 	name = "Custom"
-	default_message = "Click here to start a custom vote."
+	default_message = "点击此处发起自定义投票。"
 
 // Custom votes ares always accessible.
 /datum/vote/custom_vote/is_accessible_vote()
@@ -24,29 +24,29 @@
 
 	// Custom votes can only be created if they're forced to be made.
 	// (Either an admin makes it, or otherwise.)
-	return "Only admins can create custom votes."
+	return "只有管理员可以创建自定义投票。"
 
 /datum/vote/custom_vote/create_vote(mob/vote_creator)
 	var/custom_count_method = tgui_input_list(
 		user = vote_creator,
-		message = "Single, multiple, or ranked choice?", // BUBBER EDIT CHANGE - Ranked Choice Voting - Original: "Single or multiple choice?"
-		title = "Choice Method",
-		items = list("Single", "Multiple", "Ranked"), // BUBBER EDIT CHANGE - Ranked Choice Voting - Original: ("Single", "Multiple")
-		default = "Single",
+		message = "使用单选、多选还是排序选择？", // BUBBER EDIT CHANGE - Ranked Choice Voting - Original: "Single or multiple choice?"
+		title = "选择方式",
+		items = list("单选", "多选", "排序选择"), // BUBBER EDIT CHANGE - Ranked Choice Voting - Original: ("Single", "Multiple")
+		default = "单选",
 	)
 	switch(custom_count_method)
-		if("Single")
+		if("单选")
 			count_method = VOTE_COUNT_METHOD_SINGLE
-		if("Multiple")
+		if("多选")
 			count_method = VOTE_COUNT_METHOD_MULTI
 		// BUBBER EDIT ADDITION BEGIN - Ranked Choice Voting
-		if("Ranked")
+		if("排序选择")
 			count_method = VOTE_COUNT_METHOD_RANKED
 			// Ask for the threshold if it's ranked voting
 			var/threshold = tgui_input_number(
 				user = vote_creator,
-				message = "Set the victory threshold percentage (1-100)",
-				title = "Ranked Choice Threshold",
+				message = "设置获胜门槛百分比（1–100）",
+				title = "排序选择门槛",
 				default = 50,
 				min_value = 1,
 				max_value = 100
@@ -59,65 +59,65 @@
 			return FALSE
 		else
 			stack_trace("Got '[custom_count_method]' in create_vote() for custom voting.")
-			to_chat(vote_creator, span_boldwarning("Unknown choice method. Contact a coder."))
+			to_chat(vote_creator, span_boldwarning("未知的选择方式。请联系开发人员。"))
 			return FALSE
 
 	var/custom_win_method = tgui_input_list(
 		user = vote_creator,
-		message = "How should the vote winner be determined?",
-		title = "Winner Method",
-		items = list("Simple", "Weighted Random", "Ranked", "No Winner"), // BUBBER EDIT CHANGE - Ranked Choice Voting - Original: ("Simple", "Weighted Random", "No Winner")
-		default = "Simple",
+		message = "如何决定投票的获胜选项？",
+		title = "获胜判定方式",
+		items = list("简单多数", "加权随机", "排序选择", "不选出胜者"), // BUBBER EDIT CHANGE - Ranked Choice Voting - Original: ("Simple", "Weighted Random", "No Winner")
+		default = "简单多数",
 	)
 	switch(custom_win_method)
-		if("Simple")
+		if("简单多数")
 			winner_method = VOTE_WINNER_METHOD_SIMPLE
-		if("Weighted Random")
+		if("加权随机")
 			winner_method = VOTE_WINNER_METHOD_WEIGHTED_RANDOM
 		// BUBBER EDIT ADDITION BEGIN - Ranked Choice Voting
-		if("Ranked")
+		if("排序选择")
 			winner_method = VOTE_WINNER_METHOD_RANKED
 		// BUBBER EDIT ADDITION END
-		if("No Winner")
+		if("不选出胜者")
 			winner_method = VOTE_WINNER_METHOD_NONE
 		if(null)
 			return FALSE
 		else
 			stack_trace("Got '[custom_win_method]' in create_vote() for custom voting.")
-			to_chat(vote_creator, span_boldwarning("Unknown winner method. Contact a coder."))
+			to_chat(vote_creator, span_boldwarning("未知的获胜判定方式。请联系开发人员。"))
 			return FALSE
 
 	var/display_stats = tgui_alert(
 		vote_creator,
-		"Should voting statistics be public?",
-		"Show voting stats?",
-		list("Yes", "No"),
+		"是否公开投票统计？",
+		"显示投票统计？",
+		list("是", "否"),
 	)
 
 	if(isnull(display_stats))
 		return FALSE
-	display_statistics = display_stats == "Yes"
+	display_statistics = display_stats == "是"
 
 	if (!display_statistics)
 		var/set_print_result = tgui_alert(
 			vote_creator,
-			"Should the vote tally be public after the vote is concluded?",
-			"Print vote tally after vote?",
-			list("Yes", "No"),
+			"是否在投票结束后公开票数？",
+			"投票后显示票数？",
+			list("是", "否"),
 		)
 
 		if (isnull(set_print_result))
 			return FALSE
 
-		print_results = set_print_result == "Yes"
+		print_results = set_print_result == "是"
 
-	override_question = tgui_input_text(vote_creator, "What is the vote for?", "Custom Vote")
+	override_question = tgui_input_text(vote_creator, "投票的主题是什么？", "自定义投票")
 	if(!override_question)
 		return FALSE
 
 	default_choices = list()
 	for(var/i in 1 to MAX_CUSTOM_VOTE_OPTIONS)
-		var/option = tgui_input_text(vote_creator, "Please enter an option, or hit cancel to finish. [MAX_CUSTOM_VOTE_OPTIONS] max.", "Options", max_length = MAX_NAME_LEN)
+		var/option = tgui_input_text(vote_creator, "请输入一个选项，或点击取消以完成。最多[MAX_CUSTOM_VOTE_OPTIONS]项。", "选项", max_length = MAX_NAME_LEN)
 		if(!vote_creator?.client)
 			return FALSE
 		if(!option)

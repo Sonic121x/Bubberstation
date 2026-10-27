@@ -38,7 +38,7 @@
 	slot = AUGMENT_SLOT_HEAD
 
 /datum/augment_item/limb/head/cyborg
-	name = "Cyborg head"
+	name = "半机械人头"
 	path = /obj/item/bodypart/head/robot/weak
 
 //CHESTS
@@ -46,7 +46,7 @@
 	slot = AUGMENT_SLOT_CHEST
 
 /datum/augment_item/limb/chest/cyborg
-	name = "Cyborg chest"
+	name = "半机械人躯干"
 	path = /obj/item/bodypart/chest/robot/weak
 
 //LEFT ARMS
@@ -54,21 +54,21 @@
 	slot = AUGMENT_SLOT_L_ARM
 
 /datum/augment_item/limb/l_arm/prosthetic
-	name = "Prosthetic left arm"
+	name = "廉价义体左臂"
 	path = /obj/item/bodypart/arm/left/robot/surplus
 	cost = -1
 
 /datum/augment_item/limb/l_arm/cyborg
-	name = "Cyborg left arm"
+	name = "半机械人左臂"
 	path = /obj/item/bodypart/arm/left/robot/weak
 
 /datum/augment_item/limb/l_arm/plasmaman
-	name = "Plasmaman left arm"
+	name = "等离子人左臂"
 	path = /obj/item/bodypart/arm/left/plasmaman
 	uses_robotic_styles = FALSE
 
 /datum/augment_item/limb/l_arm/self_destruct
-	name = "No Left Arm"
+	name = "无左臂"
 	path = /obj/item/bodypart/arm/left/self_destruct
 	cost = -3
 	uses_robotic_styles = FALSE
@@ -78,21 +78,21 @@
 	slot = AUGMENT_SLOT_R_ARM
 
 /datum/augment_item/limb/r_arm/prosthetic
-	name = "Prosthetic right arm"
+	name = "廉价义体右臂"
 	path = /obj/item/bodypart/arm/right/robot/surplus
 	cost = -1
 
 /datum/augment_item/limb/r_arm/cyborg
-	name = "Cyborg right arm"
+	name = "半机械人右臂"
 	path = /obj/item/bodypart/arm/right/robot/weak
 
 /datum/augment_item/limb/r_arm/plasmaman
-	name = "Plasmaman right arm"
+	name = "等离子人右臂"
 	path = /obj/item/bodypart/arm/right/plasmaman
 	uses_robotic_styles = FALSE
 
 /datum/augment_item/limb/r_arm/self_destruct
-	name = "No Right Arm"
+	name = "无右臂"
 	path = /obj/item/bodypart/arm/right/self_destruct
 	cost = -3
 	uses_robotic_styles = FALSE
@@ -102,21 +102,21 @@
 	slot = AUGMENT_SLOT_L_LEG
 
 /datum/augment_item/limb/l_leg/prosthetic
-	name = "Prosthetic left leg"
+	name = "廉价义体左腿"
 	path = /obj/item/bodypart/leg/left/robot/surplus
 	cost = -1
 
 /datum/augment_item/limb/l_leg/cyborg
-	name = "Cyborg left leg"
+	name = "半机械人左腿"
 	path = /obj/item/bodypart/leg/left/robot/weak
 
 /datum/augment_item/limb/l_leg/plasmaman
-	name = "Plasmaman left leg"
+	name = "等离子人左腿"
 	path = /obj/item/bodypart/leg/left/plasmaman
 	uses_robotic_styles = FALSE
 
 /datum/augment_item/limb/l_leg/self_destruct
-	name = "No Left Leg"
+	name = "无左腿"
 	path = /obj/item/bodypart/leg/left/self_destruct
 	cost = -3
 	uses_robotic_styles = FALSE
@@ -126,21 +126,21 @@
 	slot = AUGMENT_SLOT_R_LEG
 
 /datum/augment_item/limb/r_leg/prosthetic
-	name = "Prosthetic right leg"
+	name = "廉价义体右腿"
 	path = /obj/item/bodypart/leg/right/robot/surplus
 	cost = -1
 
 /datum/augment_item/limb/r_leg/cyborg
-	name = "Cyborg right leg"
+	name = "半机械人右腿"
 	path = /obj/item/bodypart/leg/right/robot/weak
 
 /datum/augment_item/limb/r_leg/plasmaman
-	name = "Plasmaman right leg"
+	name = "等离子人右腿"
 	path = /obj/item/bodypart/leg/right/plasmaman
 	uses_robotic_styles = FALSE
 
 /datum/augment_item/limb/r_leg/self_destruct
-	name = "No Right Leg"
+	name = "无右腿"
 	path = /obj/item/bodypart/leg/right/self_destruct
 	cost = -3
 	uses_robotic_styles = FALSE

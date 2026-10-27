@@ -1,8 +1,8 @@
 /datum/computer_file/program/arcade
 	filename = "dsarcade"
-	filedesc = "Donksoft Micro Arcade"
+	filedesc = "咚克软微型街机"
 	program_open_overlay = "arcade"
-	extended_desc = "This port of the classic game 'Outbomb Cuban Pete', redesigned to run on tablets, with thrilling graphics and chilling storytelling."
+	extended_desc = "经典游戏《炸翻古巴皮特》的移植版，经过重新设计以在平板上运行，画面刺激，剧情令人胆寒。"
 	downloader_category = PROGRAM_CATEGORY_GAMES
 	size = 6
 	tgui_id = "NtosArcade"
@@ -18,30 +18,30 @@
 	var/player_mp = 10
 	var/ticket_count = 0
 	///Shows what text is shown on the app, usually showing the log of combat actions taken by the player.
-	var/heads_up = "Nanotrasen says, winners make us money."
-	var/boss_name = "Cuban Pete's Minion"
+	var/heads_up = "纳米传讯说：赢家才能给我们赚钱。"
+	var/boss_name = "古巴皮特的手下"
 	///Determines which boss image to use on the UI.
 	var/boss_id = 1
 
 ///Lazy version of the arade that can be found in maintenance disks
 /datum/computer_file/program/arcade/eazy
 	filename = "dsarcadeez"
-	filedesc = "Donksoft Micro Arcade Ez"
+	filedesc = "咚克软微型街机 Ez"
 	filetype = "MNT"
 	program_flags = PROGRAM_UNIQUE_COPY
-	extended_desc = "Some sort of fan-made conversion of the classic game 'Outbomb Cuban Pete'. This one has you fight the weaker 'George Melon' instead."
+	extended_desc = "某位粉丝制作的经典游戏《炸翻古巴皮特》改版。这一版里你要对付的是更弱的“乔治·梅隆”。"
 	boss_hp = 40
 	boss_mp = 10
 	player_hp = 35
 	player_mp = 15
-	heads_up = "Are you a bad enough dude to grief the station?"
-	boss_name = "George Melon"
+	heads_up = "你是不是够狠的家伙，敢去祸害空间站？"
+	boss_name = "乔治·梅隆"
 
 /datum/computer_file/program/arcade/proc/game_check(mob/living/user)
 	sleep(0.5 SECONDS)
 	user?.mind?.adjust_experience(/datum/skill/gaming, 1)
 	if(boss_hp <= 0)
-		heads_up = "You have crushed [boss_name]! Rejoice!"
+		heads_up = "你击溃了 [boss_name]！欢呼吧！"
 		playsound(computer.loc, 'sound/machines/arcade/win.ogg', 50)
 		game_active = FALSE
 		program_open_overlay = "arcade_off"
@@ -52,7 +52,7 @@
 		user.won_game()
 		sleep(1 SECONDS)
 	else if(player_hp <= 0 || player_mp <= 0)
-		heads_up = "You have been defeated... how will the station survive?"
+		heads_up = "你被击败了……空间站该如何存续？"
 		playsound(computer.loc, 'sound/machines/arcade/lose.ogg', 50)
 		game_active = FALSE
 		program_open_overlay = "arcade_off"
@@ -73,17 +73,17 @@
 	if(game_active == FALSE)
 		return
 	if (boss_mp <= 5)
-		heads_up = "[boss_mpamt] magic power has been stolen from you!"
+		heads_up = "[boss_mpamt] 点魔力被从你身上夺走了！"
 		playsound(computer.loc, 'sound/machines/arcade/steal.ogg', 50, TRUE)
 		player_mp -= boss_mpamt
 		boss_mp += boss_mpamt
 	else if(boss_mp > 5 && boss_hp <12)
-		heads_up = "[boss_name] heals for [bossheal] health!"
+		heads_up = "[boss_name] 恢复了 [bossheal] 点生命值！"
 		playsound(computer.loc, 'sound/machines/arcade/heal.ogg', 50, TRUE)
 		boss_hp += bossheal
 		boss_mp -= boss_mpamt
 	else
-		heads_up = "[boss_name] attacks you for [boss_attackamt] damage!"
+		heads_up = "[boss_name] 攻击你，造成 [boss_attackamt] 点伤害！"
 		playsound(computer.loc, 'sound/machines/arcade/hit.ogg', 50, TRUE)
 		player_hp -= boss_attackamt
 
@@ -124,7 +124,7 @@
 			if(pause_state == FALSE)
 				attackamt = rand(2,6) + rand(0, gamerSkill)
 			pause_state = TRUE
-			heads_up = "You attack for [attackamt] damage."
+			heads_up = "你发起攻击，造成 [attackamt] 点伤害。"
 			playsound(computer.loc, 'sound/machines/arcade/hit.ogg', 50, TRUE)
 			boss_hp -= attackamt
 			sleep(1 SECONDS)
@@ -141,7 +141,7 @@
 					maxPointCost = 2
 				healcost = rand(1, maxPointCost)
 			pause_state = TRUE
-			heads_up = "You heal for [healamt] damage."
+			heads_up = "你恢复了 [healamt] 点生命值。"
 			playsound(computer.loc, 'sound/machines/arcade/heal.ogg', 50, TRUE)
 			player_hp += healamt
 			player_mp -= healcost
@@ -154,7 +154,7 @@
 			if(pause_state == FALSE)
 				rechargeamt = rand(4,7) + rand(0, gamerSkill)
 			pause_state = TRUE
-			heads_up = "You regain [rechargeamt] magic power."
+			heads_up = "你恢复了 [rechargeamt] 点魔力。"
 			playsound(computer.loc, 'sound/machines/arcade/mana.ogg', 50, TRUE)
 			player_mp += rechargeamt
 			sleep(1 SECONDS)
@@ -163,24 +163,24 @@
 			return TRUE
 		if("Dispense_Tickets")
 			if(computer.stored_paper <= 0)
-				to_chat(gamer, span_notice("Printer is out of paper."))
+				to_chat(gamer, span_notice("打印机没纸了。"))
 				return
 			else
-				computer.visible_message(span_notice("\The [computer] prints out paper."))
+				computer.visible_message(span_notice("\The [computer] 打印出了一张纸。"))
 				if(ticket_count >= 1)
 					new /obj/item/stack/arcadeticket((get_turf(computer)))
-					to_chat(gamer, span_notice("[computer] dispenses a ticket!"))
+					to_chat(gamer, span_notice("[computer] 吐出了一张奖券！"))
 					ticket_count -= 1
 					computer.stored_paper -= 1
 				else
-					to_chat(gamer, span_notice("You don't have any stored tickets!"))
+					to_chat(gamer, span_notice("你没有存下的奖券！"))
 				return TRUE
 		if("Start_Game")
 			game_active = TRUE
 			boss_hp = initial(boss_hp)
 			player_hp = initial(player_hp)
 			player_mp = initial(player_mp)
-			heads_up = "You stand before [boss_name]! Prepare for battle!"
+			heads_up = "你站在了 [boss_name] 面前！准备战斗！"
 			program_open_overlay = "arcade"
 			boss_id = rand(1,6)
 			pause_state = FALSE

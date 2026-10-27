@@ -19,7 +19,7 @@
 	w_class = WEIGHT_CLASS_TINY
 
 	/// The name of the component shown on the UI
-	var/display_name = "Generic"
+	var/display_name = "通用"
 
 	/// The category of the component in the UI
 	var/category = COMPONENT_DEFAULT_CATEGORY
@@ -115,7 +115,7 @@
 /obj/item/circuit_component/examine(mob/user)
 	. = ..()
 	if(circuit_flags & CIRCUIT_FLAG_REFUSE_MODULE)
-		. += span_notice("It's incompatible with module components.")
+		. += span_notice("它与模块元件不兼容。")
 
 /// updates the ui alerts in the given component. new_flag adds flags, remove_flag removes them
 /obj/item/circuit_component/proc/update_ui_alerts(new_flag, remove_flag)
@@ -124,11 +124,11 @@
 	if(remove_flag)
 		circuit_flags &= ~remove_flag
 	if(circuit_flags & CIRCUIT_FLAG_INSTANT)
-		ui_alerts["tachometer-alt"] = "Instant"
+		ui_alerts["tachometer-alt"] = "即时"
 	else
 		ui_alerts -= "tachometer-alt"
 	if(circuit_flags & CIRCUIT_FLAG_DISABLED)
-		ui_alerts["exclamation"] = "Non-functional"
+		ui_alerts["exclamation"] = "无法使用"
 	else
 		ui_alerts -= "exclamation"
 
@@ -284,7 +284,7 @@
 
 	if(!parent.admin_only)
 		if(circuit_flags & CIRCUIT_FLAG_ADMIN)
-			message_admins("[display_name] tried to execute on [parent.get_creator_admin()] that has admin_only set to 0")
+			message_admins("[display_name] 试图在 [parent.get_creator_admin()] 上执行，但该电路的 admin_only 被设为 0")
 			return FALSE
 
 		var/flags = SEND_SIGNAL(parent, COMSIG_CIRCUIT_PRE_POWER_USAGE, energy_usage_per_input)
@@ -350,18 +350,18 @@
 	. = list()
 
 	if(circuit_flags & CIRCUIT_FLAG_INSTANT)
-		. += create_ui_notice("Instant Execution", "red", "tachometer-alt")
+		. += create_ui_notice("即时执行", "red", "tachometer-alt")
 
 	if(!removable)
-		. += create_ui_notice("Unremovable", "red", "lock")
+		. += create_ui_notice("不可拆卸", "red", "lock")
 
 	if(length(required_shells))
-		. += create_ui_notice("Supported Shells:", "green", "notes-medical")
+		. += create_ui_notice("支持的外壳：", "green", "notes-medical")
 		for(var/atom/movable/shell as anything in required_shells)
 			. += create_ui_notice(initial(shell.name), "green", "plus-square")
 
 	if(length(input_ports))
-		. += create_ui_notice("Energy Usage Per Input: [display_energy(energy_usage_per_input)]", "orange", "bolt")
+		. += create_ui_notice("每次输入的能量消耗：[display_energy(energy_usage_per_input)]", "orange", "bolt")
 
 
 /**
@@ -399,15 +399,15 @@
  * Returns a list that can then be added to the return list in get_ui_notices()
  * Used by components to list their available columns. Recommended to use at the end of get_ui_notices()
  */
-/obj/item/circuit_component/proc/create_table_notices(list/entries, column_name = "Column", column_name_plural = "Columns")
+/obj/item/circuit_component/proc/create_table_notices(list/entries, column_name = "列", column_name_plural = "列")
 	SHOULD_BE_PURE(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	. = list()
-	. += create_ui_notice("Available [column_name_plural]:", "grey", "question-circle")
+	. += create_ui_notice("可用的[column_name_plural]：", "grey", "question-circle")
 
 
 	for(var/entry in entries)
-		. += create_ui_notice("[column_name] Name: '[entry]'", "grey", "columns")
+		. += create_ui_notice("[column_name]名称：“[entry]”", "grey", "columns")
 
 /**
  * Called when a circuit component is added to an object with a USB port.

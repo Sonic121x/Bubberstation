@@ -13,15 +13,15 @@
 #define OPFOR_OBJECTIVE_STATUS_APPROVED "Approved"
 #define OPFOR_OBJECTIVE_STATUS_DENIED "Denied"
 
-#define OPFOR_OBJECTIVE_INTENSITY_1 "1 - Minor theft or basic antagonizing"
-#define OPFOR_OBJECTIVE_INTENSITY_2 "2 - Kidnapping / Theft"
-#define OPFOR_OBJECTIVE_INTENSITY_3 "3 - Assassination / Grand Theft"
-#define OPFOR_OBJECTIVE_INTENSITY_4 "4 - Mass sabotage (engine delamination)"
-#define OPFOR_OBJECTIVE_INTENSITY_5 "5 - Mass destruction or mass killings"
+#define OPFOR_OBJECTIVE_INTENSITY_1 "1 - 小额盗窃或轻度敌对行为"
+#define OPFOR_OBJECTIVE_INTENSITY_2 "2 - 绑架 / 盗窃"
+#define OPFOR_OBJECTIVE_INTENSITY_3 "3 - 暗杀 / 重大盗窃"
+#define OPFOR_OBJECTIVE_INTENSITY_4 "4 - 大规模破坏（引擎脱层）"
+#define OPFOR_OBJECTIVE_INTENSITY_5 "5 - 大规模毁灭或屠杀"
 
-#define OPFOR_SUBSYSTEM_REJECT_CAP "OPFOR application system has reached the maximum number of applications"
-#define OPFOR_SUBSYSTEM_REJECT_CLOSED "OPFOR application system is not accepting new applications"
-#define OPFOR_SUBSYSTEM_READY "OPFOR application system is ready to accept new applications"
+#define OPFOR_SUBSYSTEM_REJECT_CAP "敌对势力申请系统的申请数量已达上限"
+#define OPFOR_SUBSYSTEM_REJECT_CLOSED "敌对势力申请系统目前不接受新申请"
+#define OPFOR_SUBSYSTEM_READY "敌对势力申请系统已准备好接受新申请"
 
 #define OPFOR_REQUEST_UPDATE_COOLDOWN (5 MINUTES)
 #define OPFOR_PING_COOLDOWN (1 MINUTES)
@@ -41,39 +41,39 @@
 
 /// EQUIPMENT CATEGORIES
 // Uplink Items
-#define OPFOR_EQUIPMENT_CATEGORY_CLOTHING_UPLINK "1. Uplink Services"
+#define OPFOR_EQUIPMENT_CATEGORY_CLOTHING_UPLINK "1. 上行链路服务"
 // Clothing
-#define OPFOR_EQUIPMENT_CATEGORY_CLOTHING_SYNDICATE "2. Syndicate Outfits"
-#define OPFOR_EQUIPMENT_CATEGORY_CLOTHING_SOL "3. Sol-Federation Outfits"
-#define OPFOR_EQUIPMENT_CATEGORY_CLOTHING_PIRATE "4. Piracy Outfits"
-#define OPFOR_EQUIPMENT_CATEGORY_CLOTHING_MAGIC "5. Spellcaster Outfits"
+#define OPFOR_EQUIPMENT_CATEGORY_CLOTHING_SYNDICATE "2. 辛迪加套装"
+#define OPFOR_EQUIPMENT_CATEGORY_CLOTHING_SOL "3. 太阳联邦套装"
+#define OPFOR_EQUIPMENT_CATEGORY_CLOTHING_PIRATE "4. 海盗套装"
+#define OPFOR_EQUIPMENT_CATEGORY_CLOTHING_MAGIC "5. 施法者套装"
 // MODsuits
-#define OPFOR_EQUIPMENT_CATEGORY_MODSUIT "6. MOD Suits"
-#define OPFOR_EQUIPMENT_CATEGORY_MODSUIT_MODULES "7. MOD Modules"
+#define OPFOR_EQUIPMENT_CATEGORY_MODSUIT "6. MOD 模块化外骨骼"
+#define OPFOR_EQUIPMENT_CATEGORY_MODSUIT_MODULES "7. MOD 模块"
 // Implants
-#define OPFOR_EQUIPMENT_CATEGORY_IMPLANTS "8. Implants"
-#define OPFOR_EQUIPMENT_CATEGORY_IMPLANTS_ILLEGAL "9. Illegal Implants"
+#define OPFOR_EQUIPMENT_CATEGORY_IMPLANTS "8. 植入物"
+#define OPFOR_EQUIPMENT_CATEGORY_IMPLANTS_ILLEGAL "9. 非法植入物"
 // Guns
-#define OPFOR_EQUIPMENT_CATEGORY_RANGED "10. Ranged Weapons"
-#define OPFOR_EQUIPMENT_CATEGORY_RANGED_STEALTH "11. Stealthy Ranged Weapons"
+#define OPFOR_EQUIPMENT_CATEGORY_RANGED "10. 远程武器"
+#define OPFOR_EQUIPMENT_CATEGORY_RANGED_STEALTH "11. 隐蔽式远程武器"
 // Ammo
-#define OPFOR_EQUIPMENT_CATEGORY_AMMO_EXOTIC "12. Exotic Ammunition"
+#define OPFOR_EQUIPMENT_CATEGORY_AMMO_EXOTIC "12. 特种弹药"
 // Melee
-#define OPFOR_EQUIPMENT_CATEGORY_MELEE "13. Melee Weapons"
-#define OPFOR_EQUIPMENT_CATEGORY_MELEE_STEALTH "14. Stealthy Melee Weapons"
+#define OPFOR_EQUIPMENT_CATEGORY_MELEE "13. 近战武器"
+#define OPFOR_EQUIPMENT_CATEGORY_MELEE_STEALTH "14. 隐蔽式近战武器"
 // Medical items
-#define OPFOR_EQUIPMENT_CATEGORY_MEDICAL "15. Medical Items"
+#define OPFOR_EQUIPMENT_CATEGORY_MEDICAL "15. 医疗用品"
 // Gadgets
-#define OPFOR_EQUIPMENT_CATEGORY_GADGET "16. Gadgets"
-#define OPFOR_EQUIPMENT_CATEGORY_GADGET_STEALTH "17. Stealthy Gadgets"
+#define OPFOR_EQUIPMENT_CATEGORY_GADGET "16. 实用装置"
+#define OPFOR_EQUIPMENT_CATEGORY_GADGET_STEALTH "17. 隐蔽式装置"
 // Bombs
-#define OPFOR_EQUIPMENT_CATEGORY_BOMB_CHEM "18. Chemical Grenades"
-#define OPFOR_EQUIPMENT_CATEGORY_BOMB_PAYLOAD "19. Dirty Bombs"
+#define OPFOR_EQUIPMENT_CATEGORY_BOMB_CHEM "18. 化学手榴弹"
+#define OPFOR_EQUIPMENT_CATEGORY_BOMB_PAYLOAD "19. 脏弹"
 // Spells and scrolls (martial arts)
-#define OPFOR_EQUIPMENT_CATEGORY_SPELLS "20. Spells"
-#define OPFOR_EQUIPMENT_CATEGORY_SCROLLS "21. Martial Art Scrolls"
+#define OPFOR_EQUIPMENT_CATEGORY_SPELLS "20. 法术"
+#define OPFOR_EQUIPMENT_CATEGORY_SCROLLS "21. 武术卷轴"
 // Language and biology
-#define OPFOR_EQUIPMENT_CATEGORY_LANGUAGE "22. Language"
-#define OPFOR_EQUIPMENT_CATEGORY_ORGANS "23. Organs"
+#define OPFOR_EQUIPMENT_CATEGORY_LANGUAGE "22. 语言"
+#define OPFOR_EQUIPMENT_CATEGORY_ORGANS "23. 器官"
 // Category for uncategorized items
-#define OPFOR_EQUIPMENT_CATEGORY_OTHER "Other"
+#define OPFOR_EQUIPMENT_CATEGORY_OTHER "其他"

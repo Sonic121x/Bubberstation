@@ -36,8 +36,8 @@
  */
 
 /obj/structure/alien/gelpod
-	name = "gelatinous mound"
-	desc = "A mound of jelly-like substance encasing something inside."
+	name = "凝胶质土丘"
+	desc = "一堆果冻状的物质，里面裹着什么东西。"
 	icon = 'icons/obj/fluff/general.dmi'
 	icon_state = "gelmound"
 
@@ -48,8 +48,8 @@
  * Resin
  */
 /obj/structure/alien/resin
-	name = "resin"
-	desc = "Looks like some kind of thick resin."
+	name = "树脂"
+	desc = "看起来像某种厚重的树脂。"
 	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi'
 	icon_state = "resin_wall-0"
 	base_icon_state = "resin_wall"
@@ -79,8 +79,8 @@
 	move_update_air(T)
 
 /obj/structure/alien/resin/wall
-	name = "resin wall"
-	desc = "Thick resin solidified into a wall."
+	name = "树脂墙"
+	desc = "厚重树脂凝固而成的墙。"
 	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi'
 	icon_state = "resin_wall-0"
 	base_icon_state = "resin_wall"
@@ -93,17 +93,17 @@
 
 /// meant for one lavaland ruin or anywhere that has simplemobs who can push aside structures
 /obj/structure/alien/resin/wall/immovable
-	desc = "Dense resin solidified into a wall."
+	desc = "致密树脂凝固而成的墙。"
 	move_resist = MOVE_FORCE_VERY_STRONG
 
 /obj/structure/alien/resin/wall/creature
-	name = "gelatinous wall"
-	desc = "Thick material shaped into a wall. Yuck."
+	name = "凝胶质墙"
+	desc = "厚重材料塑造而成的墙。真恶心。"
 	color = "#8EC127"
 
 /obj/structure/alien/resin/membrane
-	name = "resin membrane"
-	desc = "Resin just thin enough to let light pass through."
+	name = "树脂膜"
+	desc = "薄得刚好能让光线透过的树脂。"
 	icon = 'icons/obj/smooth_structures/alien/resin_membrane.dmi'
 	icon_state = "resin_membrane-0"
 	base_icon_state = "resin_membrane"
@@ -118,8 +118,8 @@
 
 ///Used in the big derelict ruin exclusively.
 /obj/structure/alien/resin/membrane/creature
-	name = "gelatinous membrane"
-	desc = "A strange combination of thin, gelatinous material."
+	name = "凝胶质膜"
+	desc = "一种由薄薄凝胶状材料构成的奇特组合。"
 	color = "#4BAE56"
 
 /*
@@ -130,8 +130,8 @@
 
 /obj/structure/alien/weeds
 	gender = PLURAL
-	name = "resin floor"
-	desc = "A thick resin surface covers the floor."
+	name = "树脂地面"
+	desc = "一层厚厚的树脂覆盖着地面。"
 	anchored = TRUE
 	density = FALSE
 	layer = ABOVE_OPEN_TURF_LAYER
@@ -252,8 +252,8 @@
 	take_damage(5, BURN, 0, 0)
 
 /obj/structure/alien/weeds/node
-	name = "glowing resin"
-	desc = "Blue bioluminescence shines from beneath the surface."
+	name = "发光树脂"
+	desc = "蓝色的生物光从表面下透出。"
 	icon = 'icons/obj/smooth_structures/alien/weednode.dmi'
 	icon_state = "weednode-0"
 	base_icon_state = "weednode"
@@ -309,8 +309,8 @@
 	return //No icon randomization at init. The node's icon is already well defined.
 
 /obj/structure/alien/weeds/creature
-	name = "gelatinous floor"
-	desc = "A thick gelatinous surface covers the floor.  Someone get the galoshes."
+	name = "凝胶质地面"
+	desc = "一层厚厚的凝胶覆盖着地面。  谁去把胶靴拿来。"
 	color = "#4BAE56"
 
 
@@ -331,8 +331,8 @@
 #define MAX_GROWTH_TIME 1500
 
 /obj/structure/alien/egg
-	name = "egg"
-	desc = "A large mottled egg."
+	name = "异形卵"
+	desc = "一枚巨大的斑驳卵。"
 	icon_state = "egg_growing"
 	base_icon_state = "egg"
 	density = FALSE
@@ -389,22 +389,22 @@
 	if(user.get_organ_by_type(/obj/item/organ/alien/plasmavessel))
 		switch(status)
 			if(BURSTING)
-				to_chat(user, span_notice("The child is hatching out."))
+				to_chat(user, span_notice("里面的幼体正在破壳而出。"))
 				return
 			if(BURST)
-				to_chat(user, span_notice("You clear the hatched egg."))
+				to_chat(user, span_notice("你清理掉了已孵化的卵。"))
 				playsound(loc, 'sound/effects/blob/attackblob.ogg', 100, TRUE)
 				qdel(src)
 				return
 			if(GROWING)
-				to_chat(user, span_notice("The child is not developed yet."))
+				to_chat(user, span_notice("里面的幼体还没发育完全。"))
 				return
 			if(GROWN)
-				to_chat(user, span_notice("You retrieve the child."))
+				to_chat(user, span_notice("你取出了里面的幼体。"))
 				Burst(kill=FALSE)
 				return
 	else
-		to_chat(user, span_notice("It feels slimy."))
+		to_chat(user, span_notice("它摸起来黏糊糊的。"))
 		user.changeNext_move(CLICK_CD_MELEE)
 
 

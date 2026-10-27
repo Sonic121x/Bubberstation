@@ -98,7 +98,7 @@
 		return 0
 
 	if (COOLDOWN_FINISHED(src, message_cd) && SPT_PROB(15, seconds_per_tick))
-		to_chat(owner, span_warning("You feel trapped! Must escape... can't breathe..."))
+		to_chat(owner, span_warning("你觉得自己被困住了！必须逃走……喘不过气……"))
 		COOLDOWN_START(src, message_cd, TERROR_MESSAGE_CD)
 
 	return 15
@@ -135,7 +135,7 @@
 		return 0
 
 	if (COOLDOWN_FINISHED(src, message_cd) && SPT_PROB(15, seconds_per_tick))
-		to_chat(owner, span_warning("Santa Claus is here! I gotta get out of here!"))
+		to_chat(owner, span_warning("圣诞老人来了！我得逃离这里！"))
 		COOLDOWN_START(src, message_cd, TERROR_MESSAGE_CD)
 
 	return 15
@@ -157,7 +157,7 @@
 			return 0
 
 	if (COOLDOWN_FINISHED(src, message_cd) && SPT_PROB(10, seconds_per_tick))
-		to_chat(owner, span_warning("You feel terribly lonely..."))
+		to_chat(owner, span_warning("你感到无比孤独……"))
 		COOLDOWN_START(src, message_cd, TERROR_MESSAGE_CD)
 
 	return 2.5 // Pretty low, ~4 minutes to reach passive cap

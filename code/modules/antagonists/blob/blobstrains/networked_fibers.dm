@@ -1,11 +1,11 @@
 //does massive brute and burn damage, but can only expand manually
 /datum/blobstrain/reagent/networked_fibers
-	name = "Networked Fibers"
-	description = "will do a high mix of brute and burn damage, and will generate resources quicker, but can only expand manually using the core or nodes."
-	shortdesc = "will do a high mix of brute and burn damage."
-	effectdesc = "will move your core or node when manually expanding near it."
-	analyzerdescdamage = "Does a high mix of brute and burn damage."
-	analyzerdesceffect = "Is mobile and generates resources rapidly."
+	name = "网络纤维"
+	description = "会造成高额的钝击与灼烧混合伤害，并更快地产生资源，但只能通过核心或节点手动扩张。"
+	shortdesc = "会造成高额的钝击与灼烧混合伤害。"
+	effectdesc = "在核心或节点附近手动扩张时，会移动你的核心或节点。"
+	analyzerdescdamage = "造成高额的钝击与灼烧混合伤害。"
+	analyzerdesceffect = "具有机动性，并能快速产生资源。"
 	color = "#4F4441"
 	complementary_color = "#414C4F"
 	reagent = /datum/reagent/blob/networked_fibers
@@ -29,8 +29,8 @@
 
 //does massive brute and burn damage, but can only expand manually
 /datum/reagent/blob/networked_fibers
-	name = "Networked Fibers"
-	taste_description = "efficiency"
+	name = "网络纤维"
+	taste_description = "效率"
 	color = "#4F4441"
 
 /datum/reagent/blob/networked_fibers/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message, touch_protection, mob/eye/blob/overmind)

@@ -1,7 +1,7 @@
 /datum/surgery_operation/limb/lipoplasty
-	name = "excise excess fat"
-	rnd_name = "Lipoplasty (Excise Fat)"
-	desc = "Remove excess fat from a patient's body."
+	name = "切除多余脂肪"
+	rnd_name = "脂肪抽吸术（切除脂肪）"
+	desc = "去除病人体内多余的脂肪。"
 	operation_flags = OPERATION_NOTABLE | OPERATION_AFFECTS_MOOD
 	implements = list(
 		TOOL_SAW = 1,
@@ -23,16 +23,16 @@
 	any_surgery_states_blocked = SURGERY_VESSELS_UNCLAMPED
 
 /datum/surgery_operation/limb/lipoplasty/get_any_tool()
-	return "Any sharp edged item"
+	return "任意带刃物品"
 
 /datum/surgery_operation/limb/lipoplasty/get_default_radial_image()
 	return image(/obj/item/food/meat/slab/human)
 
 /datum/surgery_operation/limb/lipoplasty/all_required_strings()
 	. = list()
-	. += "operate on chest (target chest)"
+	. += "对胸部施行手术（目标：胸部）"
 	. += ..()
-	. += "the patient must have excess fat to remove"
+	. += "病人必须有多余脂肪可供切除"
 
 /datum/surgery_operation/limb/lipoplasty/tool_check(obj/item/tool)
 	// Require edged sharpness OR a tool behavior match
@@ -51,19 +51,19 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to cut away [limb.owner]'s excess fat..."),
-		span_notice("[surgeon] begins to cut away [limb.owner]'s excess fat."),
-		span_notice("[surgeon] begins to cut [limb.owner]'s [limb.plaintext_zone] with [tool]."),
+		span_notice("你开始切除 [limb.owner] 多余脂肪……"),
+		span_notice("[surgeon] 开始切除 [limb.owner] 多余的脂肪。"),
+		span_notice("[surgeon] 开始用 [tool] 切开 [limb.owner] 的[chinese_body_zone_display(limb.plaintext_zone)]。"),
 	)
-	display_pain(limb.owner, "You feel a stabbing in your [limb.plaintext_zone]!")
+	display_pain(limb.owner, "你感觉[chinese_body_zone_display(limb.plaintext_zone)]被刺了一下！")
 
 /datum/surgery_operation/limb/lipoplasty/on_success(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You successfully remove excess fat from [limb.owner]'s body!"),
-		span_notice("[surgeon] successfully removes excess fat from [limb.owner]'s body!"),
-		span_notice("[surgeon] finishes cutting away excess fat from [limb.owner]'s [limb.plaintext_zone]."),
+		span_notice("你成功去除了 [limb.owner] 体内多余的脂肪！"),
+		span_notice("[surgeon] 成功去除了 [limb.owner] 体内多余的脂肪！"),
+		span_notice("[surgeon] 完成了对 [limb.owner] 的[chinese_body_zone_display(limb.plaintext_zone)]多余脂肪的切除。"),
 	)
 	var/removednutriment = limb.owner.nutrition
 	limb.owner.overeatduration = 0 //patient is unfatted
@@ -83,15 +83,15 @@
 		return
 
 	var/obj/item/food/meat/slab/newmeat = new typeofmeat(limb.owner.drop_location())
-	newmeat.name = "fatty meat"
-	newmeat.desc = "Extremely fatty tissue taken from a patient."
+	newmeat.name = "肥肉"
+	newmeat.desc = "从病人身上取下的极度肥腻的组织。"
 	newmeat.subjectname = limb.owner.real_name
 	newmeat.subjectjob = limb.owner.job
 	newmeat.reagents.add_reagent(/datum/reagent/consumable/nutriment, (removednutriment / /datum/reagent/consumable/nutriment::nutriment_factor))
 
 /datum/surgery_operation/limb/lipoplasty/mechanic
-	name = "engage expulsion valve" //gross
-	rnd_name = "Nutrient Reserve Expulsion (Excise Fat)"
+	name = "接上排放阀" //gross
+	rnd_name = "营养储备排放（切除脂肪）"
 	implements = list(
 		TOOL_WRENCH = 1.05,
 		TOOL_CROWBAR = 1.05,

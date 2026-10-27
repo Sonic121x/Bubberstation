@@ -1,12 +1,12 @@
 /datum/quirk/hypnotic
 	name = "Hypnotic"
-	desc = "You are extremely captivating to people who might be suspectable to fall into a stupor"
+	desc = "对于容易陷入恍惚的人，你有着极强的吸引力。"
 	icon = FA_ICON_FACE_GRIN_HEARTS
 	value = 0
 	quirk_flags = QUIRK_HUMAN_ONLY | QUIRK_HIDE_FROM_SCAN
-	gain_text = "Your presence grows richer."
-	lose_text = "Your potent presence dulls."
-	medical_record_text = "Patient shows signs of a far richer presence then normal."
+	gain_text = "你的气场变得更加浓烈。"
+	lose_text = "你强大的气场减弱了。"
+	medical_record_text = "患者的气场明显比常人更强烈。"
 	erp_quirk = TRUE
 	var/hypnotic_text
 	var/hypnotic_color
@@ -49,7 +49,7 @@
 		if("Cult")
 			choice = "cult"
 
-	return "<span class='[choice]'>[isnull(hypnotic_text) ? "Their eyes are enticing to stare at." : hypnotic_text]</span>"
+	return "<span class='[choice]'>[isnull(hypnotic_text) ? "那双眼睛令人忍不住凝视。" : hypnotic_text]</span>"
 
 /datum/quirk_constant_data/hypnotic
 	associated_typepath = /datum/quirk/hypnotic
@@ -84,7 +84,7 @@
 	return
 
 /datum/preference/text/hypnotic_text/create_default_value()
-	return "Their eyes are inciticing to stare at."
+	return "那双眼睛令人忍不住凝视。"
 
 /datum/preference/choiced/hypnotic_span/create_default_value()
 	return "Hypnophrase"

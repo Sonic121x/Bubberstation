@@ -1,6 +1,6 @@
 /datum/action/cooldown/alien/hide
-	name = "Hide"
-	desc = "Allows you to hide beneath tables and certain objects."
+	name = "躲藏"
+	desc = "让你能躲在桌子和其他特定物体下面。"
 	button_icon_state = "alien_hide"
 	plasma_cost = 0
 	/// The layer we are on while hiding
@@ -10,24 +10,24 @@
 	if(owner.layer == hide_layer)
 		owner.layer = initial(owner.layer)
 		owner.visible_message(
-			span_notice("[owner] slowly peeks up from the ground..."),
-			span_noticealien("You stop hiding."),
+			span_notice("[owner] 慢慢地从地面探出头来……"),
+			span_noticealien("你不再躲藏。"),
 		)
 		ADD_TRAIT(owner, TRAIT_IGNORE_ELEVATION, ACTION_TRAIT)
 
 	else
 		owner.layer = hide_layer
 		owner.visible_message(
-			span_name("[owner] scurries to the ground!"),
-			span_noticealien("You are now hiding."),
+			span_name("[owner] 一溜烟钻进了地面！"),
+			span_noticealien("你开始躲藏。"),
 		)
 		REMOVE_TRAIT(owner, TRAIT_IGNORE_ELEVATION, ACTION_TRAIT)
 
 	return TRUE
 
 /datum/action/cooldown/alien/larva_evolve
-	name = "Evolve"
-	desc = "Evolve into a higher alien caste."
+	name = "进化"
+	desc = "进化为更高阶的异形等级。"
 	button_icon_state = "alien_evolve_larva"
 	plasma_cost = 0
 

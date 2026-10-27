@@ -4,9 +4,9 @@
  * General logic unit with AND OR capabilities
  */
 /obj/item/circuit_component/not
-	display_name = "Not"
-	desc = "A component that inverts its input."
-	category = "Math"
+	display_name = "非运算"
+	desc = "将输入取反的元件。"
+	category = "数学"
 
 	/// The input port
 	var/datum/port/input/input_port

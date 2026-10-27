@@ -110,7 +110,7 @@
 
 ///Prefs menu
 /atom/movable/screen/lobby/button/character_setup
-	name = "View Character Setup"
+	name = "查看角色设置"
 	screen_loc = "TOP:-70,CENTER:-54"
 	icon = 'icons/hud/lobby/character_setup.dmi'
 	icon_state = "character_setup_disabled"
@@ -147,7 +147,7 @@
 
 ///Button that appears before the game has started
 /atom/movable/screen/lobby/button/ready
-	name = "Toggle Readiness"
+	name = "切换准备状态"
 	screen_loc = "TOP:-8,CENTER:-65"
 	icon = 'icons/hud/lobby/ready.dmi'
 	icon_state = "not_ready"
@@ -196,7 +196,7 @@
 
 ///Shown when the game has started
 /atom/movable/screen/lobby/button/join
-	name = "Join Game"
+	name = "加入游戏"
 	screen_loc = "TOP:-13,CENTER:-58"
 	icon = 'icons/hud/lobby/join.dmi'
 	icon_state = "" //Default to not visible
@@ -221,7 +221,7 @@
 		return
 
 	if(!SSticker?.IsRoundInProgress())
-		to_chat(hud.mymob, span_boldwarning("The round is either not ready, or has already finished..."))
+		to_chat(hud.mymob, span_boldwarning("本回合尚未准备就绪，或已经结束……"))
 		return
 
 	//Determines Relevent Population Cap
@@ -240,12 +240,12 @@
 
 		var/queue_position = SSticker.queued_players.Find(new_player)
 		if(queue_position == 1)
-			to_chat(new_player, span_notice("You are next in line to join the game. You will be notified when a slot opens up."))
+			to_chat(new_player, span_notice("你排在加入游戏队列的首位。有空位时会通知你。"))
 		else if(queue_position)
-			to_chat(new_player, span_notice("There are [queue_position-1] players in front of you in the queue to join the game."))
+			to_chat(new_player, span_notice("加入游戏的队列中，你前面还有 [queue_position-1] 名玩家。"))
 		else
 			SSticker.queued_players += new_player
-			to_chat(new_player, span_notice("You have been added to the queue to join the game. Your position in queue is [SSticker.queued_players.len]."))
+			to_chat(new_player, span_notice("你已加入游戏等候队列。目前排在第 [SSticker.queued_players.len] 位。"))
 		return
 
 	new_player.auto_deadmin_on_ready_or_latejoin()
@@ -253,7 +253,7 @@
 	if(!LAZYACCESS(params2list(params), CTRL_CLICK))
 		GLOB.latejoin_menu.ui_interact(new_player)
 	else
-		to_chat(new_player, span_warning("Opening emergency fallback late join menu! If THIS doesn't show, ahelp immediately!"))
+		to_chat(new_player, span_warning("正在打开应急备用中途加入菜单！如果这个菜单也没有显示，请立即向管理员求助！"))
 		GLOB.latejoin_menu.fallback_ui(new_player)
 
 
@@ -270,7 +270,7 @@
 	RegisterSignal(SSticker, COMSIG_TICKER_ENTER_SETTING_UP, PROC_REF(show_join_button))
 
 /atom/movable/screen/lobby/button/observe
-	name = "Observe"
+	name = "旁观"
 	screen_loc = "TOP:-40,CENTER:-54"
 	icon = 'icons/hud/lobby/observe.dmi'
 	icon_state = "observe_disabled"
@@ -304,7 +304,7 @@
 	icon = 'icons/hud/lobby/bottom_buttons.dmi'
 
 /atom/movable/screen/lobby/button/bottom/settings
-	name = "View Game Preferences"
+	name = "查看游戏偏好设置"
 	icon_state = "settings_disabled"
 	base_icon_state = "settings"
 	screen_loc = "TOP:-122,CENTER:+29"
@@ -337,7 +337,7 @@
 	UnregisterSignal(SSatoms, COMSIG_SUBSYSTEM_POST_INITIALIZE)
 
 /atom/movable/screen/lobby/button/bottom/changelog_button
-	name = "View Changelog"
+	name = "查看更新日志"
 	icon_state = "changelog"
 	base_icon_state = "changelog"
 	screen_loc ="TOP:-122,CENTER:+57"
@@ -347,7 +347,7 @@
 	usr.client?.changelog()
 
 /atom/movable/screen/lobby/button/bottom/crew_manifest
-	name = "View Crew Manifest"
+	name = "查看船员名册"
 	icon_state = "crew_manifest"
 	base_icon_state = "crew_manifest"
 	screen_loc = "TOP:-122,CENTER:+2"
@@ -360,7 +360,7 @@
 	new_player.ViewManifest()
 
 /atom/movable/screen/lobby/button/bottom/poll
-	name = "View Available Polls"
+	name = "查看可参与的投票"
 	icon_state = "poll"
 	base_icon_state = "poll"
 	screen_loc = "TOP:-122,CENTER:-26"
@@ -441,7 +441,7 @@
 	closeToolTip(usr)
 
 /atom/movable/screen/lobby/button/collapse
-	name = "Collapse Lobby Menu"
+	name = "收起大厅菜单"
 	icon = 'icons/hud/lobby/collapse_expand.dmi'
 	icon_state = "collapse"
 	base_icon_state = "collapse"
@@ -480,7 +480,7 @@
 		return
 	var/datum/hud/new_player/our_hud = hud
 	base_icon_state = our_hud.menu_hud_status ? "expand" : "collapse"
-	name = "[our_hud.menu_hud_status ? "Expand" : "Collapse"] Lobby Menu"
+	name = "[our_hud.menu_hud_status ? "展开" : "收起"]大厅菜单"
 	set_button_status(FALSE)
 
 	//get the shutter object used by our hud
@@ -573,7 +573,7 @@ BUBBER REMOVAL END
 
 /// LOCALHOST ONLY - Start Now button
 /atom/movable/screen/lobby/button/start_now
-	name = "Start Now (LOCALHOST ONLY)"
+	name = "立即开始（仅限本机）"
 	screen_loc = "TOP:-146,CENTER:-54"
 	icon = 'icons/hud/lobby/start_now.dmi'
 	icon_state = "start_now"
@@ -588,14 +588,14 @@ BUBBER REMOVAL END
 	SEND_SOUND(hud.mymob, sound('sound/effects/cartoon_sfx/cartoon_splat.ogg', volume = 50))
 	SSticker.start_immediately = TRUE
 	if(SSticker.current_state == GAME_STATE_STARTUP)
-		to_chat(usr, span_admin("The server is still setting up, but the round will be started as soon as possible."))
+		to_chat(usr, span_admin("服务器仍在初始化，回合会在准备就绪后尽快开始。"))
 
 #define OVERLAY_X_DIFF 12
 #define OVERLAY_Y_DIFF 5
 
 ///Lobby screen that appears before the game has started showing how many players there are and who is ready.
 /atom/movable/screen/lobby/new_player_info
-	name = "New Player Info"
+	name = "大厅信息"
 	screen_loc = "EAST-3,CENTER:140"
 	icon = 'icons/hud/lobby/newplayer.dmi'
 	icon_state = null //we only show up when we get update appearance called, cause we need our overlay to not look bad.
@@ -638,7 +638,7 @@ BUBBER REMOVAL END
 	. = ..()
 	if(QDELETED(src) || isnull(job_overlay))
 		return
-	openToolTip(usr, src, params, title = "[SSjob.overflow_role::title] overflow", content = "The overflow for the round has been set as [SSjob.overflow_role::title].")
+	openToolTip(usr, src, params, title = "兜底职业：[SSjob.overflow_role::title]", content = "本回合的兜底职业已设为[SSjob.overflow_role::title]。")
 
 /atom/movable/screen/lobby/new_player_info/MouseExited()
 	closeToolTip(usr)
@@ -687,39 +687,39 @@ BUBBER REMOVAL END
 
 	var/round_started = SSticker.HasRoundStarted()
 	if(!MC_RUNNING())
-		maptext = MAPTEXT("<span style='text-align: center; vertical-align: middle'>[(round_started ? null : "Starting in [time_remaining_str()]<br />")]Loading...</span>")
+		maptext = MAPTEXT("<span style='text-align: center; vertical-align: middle'>[(round_started ? null : "开始倒计时：[time_remaining_str()]<br />")]加载中……</span>")
 		return
 
 	if(SSticker.IsPostgame())
-		maptext = MAPTEXT("<span style='text-align: center; vertical-align: middle'>Game ended, <br /> \
-			restart soon</span>")
+		maptext = MAPTEXT("<span style='text-align: center; vertical-align: middle'>游戏已结束，<br /> \
+			即将重启</span>")
 		return
 
 	var/new_maptext
 	if(round_started)
 		new_maptext = "<span style='text-align: center; vertical-align: middle'>[SSmapping.current_map.map_name]<br /> \
-			[LAZYLEN(GLOB.clients)] player\s online<br /> \
-			[round_timestamp()] in<br />"
+			[LAZYLEN(GLOB.clients)] 名玩家在线<br /> \
+			已进行 [round_timestamp()]<br />"
 		new_maptext += "</span>"
 	else
 		if(hud.mymob.client?.holder)
-			new_maptext = "<span style='text-align: center; vertical-align: middle'>Starting in [time_remaining_str()]<br /> \
-				[LAZYLEN(GLOB.clients)] player\s<br /> \
-				[SSticker.totalPlayersReady] players ready<br /> \
-				[SSticker.total_admins_ready] / [length(GLOB.admins)] admins ready</span>"
+			new_maptext = "<span style='text-align: center; vertical-align: middle'>开始倒计时：[time_remaining_str()]<br /> \
+				[LAZYLEN(GLOB.clients)] 名玩家<br /> \
+				[SSticker.totalPlayersReady] 名玩家已准备<br /> \
+				[SSticker.total_admins_ready] / [length(GLOB.admins)] 名管理员已准备</span>"
 		else
 			new_maptext = "<span style='text-align: center; vertical-align: middle; font-size: 18px'>[time_remaining_str()]</span><br /> \
-				<span style='text-align: center; vertical-align: middle'>[LAZYLEN(GLOB.clients)] player\s</span>"
+				<span style='text-align: center; vertical-align: middle'>[LAZYLEN(GLOB.clients)] 名玩家</span>"
 
 	maptext = MAPTEXT(new_maptext)
 
 /atom/movable/screen/lobby/new_player_info/proc/time_remaining_str()
 	var/time_remaining = SSticker.GetTimeLeft()
 	if(time_remaining > 0)
-		return "[round(time_remaining/10)]s"
+		return "[round(time_remaining/10)]秒"
 	if(time_remaining == -10)
-		return "DELAYED"
-	return "SOON"
+		return "已推迟"
+	return "即将开始"
 
 #undef OVERLAY_X_DIFF
 #undef OVERLAY_Y_DIFF

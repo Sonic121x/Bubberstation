@@ -15,8 +15,8 @@
 	pickup_sound = 'sound/items/handling/gun/ballistics/smg/smg_pickup1.ogg'
 
 /obj/item/gun/ballistic/automatic/proto
-	name = "\improper Nanotrasen Saber SMG"
-	desc = "A prototype full-auto 9mm submachine gun, designated 'SABR'. Has a threaded barrel for suppressors."
+	name = "\improper 纳米传讯军刀冲锋枪"
+	desc = "一款原型全自动 9mm 冲锋枪，代号“SABR”。枪管带螺纹，可安装消音器。"
 	icon_state = "saber"
 	burst_size = 1
 	actions_types = list()
@@ -35,8 +35,8 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/automatic/c20r
-	name = "\improper C-20r SMG"
-	desc = "A bullpup three-round burst .45 SMG, designated 'C-20r'. Has a 'Scarborough Arms - Per falcis, per pravitas' buttstamp."
+	name = "\improper C-20r 冲锋枪"
+	desc = "一款无托式三发点射 .45 冲锋枪，代号“C-20r”。枪托上印着“斯卡伯勒军火公司——Per falcis, per pravitas”的铭文。"
 	icon_state = "c20r"
 	inhand_icon_state = "c20r"
 	selector_switch_icon = TRUE
@@ -64,12 +64,12 @@
 	update_appearance()
 
 /obj/item/gun/ballistic/automatic/wt550
-	name = "\improper WT-550 Autorifle"
-	desc = "Recalled by Nanotrasen due to public backlash around heat distribution resulting in unintended discombobulation. \
-		This outcry was fabricated through various Syndicate-backed misinformation operations to force Nanotrasen to abandon \
-		its ballistics weapon program, cornering them into the energy weapons market. Most often found today in the hands of pirates, \
-		underfunded security personnel, cargo technicians, theoretical physicists, and gang bangers out on the rim. \
-		Light-weight and fully automatic. Uses 4.6x30mm rounds."
+	name = "\improper WT-550 自动步枪"
+	desc = "因散热问题会导致意外失能而引发公众反弹，纳米传讯将其召回。 \
+		但这场声讨其实是辛迪加支持的一系列虚假信息行动炮制出来的，目的是迫使纳米传讯放弃 \
+		它的弹道武器计划，把它逼进能量武器市场。如今它最常出现在海盗、 \
+		经费不足的安保人员、货运技师、理论物理学家，以及边区黑帮分子手里。 \
+		轻量且全自动。使用 4.6x30mm 弹药。"
 	icon_state = "wt550"
 	w_class = WEIGHT_CLASS_BULKY
 	inhand_icon_state = "arg"
@@ -90,9 +90,9 @@
 	AddComponent(/datum/component/bayonet_attachable, offset_x = 25, offset_y = 12)
 
 /obj/item/gun/ballistic/automatic/smartgun
-	name = "\improper Abielle Smart-SMG"
-	desc = "An old experiment in smart-weapon technology that guides bullets towards the target the gun was aimed at when fired. \
-		While the tracking functions worked fine, the gun is prone to insanely wide spread thanks to it's practically non-existant barrel."
+	name = "\improper 阿比耶尔智能冲锋枪"
+	desc = "一项关于智能武器技术的早期实验，能让子弹追踪开火时枪支所瞄准的目标。 \
+		虽然追踪功能运作良好，但由于它几乎没有枪管，散布大得离谱。"
 	icon_state = "smartgun"
 	inhand_icon_state = "smartgun"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/smartgun
@@ -118,8 +118,8 @@
 	playsound(src, picked_fire_sound, fire_sound_volume, vary_fire_sound)
 
 /obj/item/gun/ballistic/automatic/mini_uzi
-	name = "\improper Type U3 Uzi"
-	desc = "A lightweight, burst-fire submachine gun, for when you really want someone dead. Uses 9mm rounds."
+	name = "\improper U3 型乌兹冲锋枪"
+	desc = "一款轻量化的点射冲锋枪，适合你真的很想让某个人死的时候。使用 9mm 弹药。"
 	icon_state = "miniuzi"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/uzim9mm
 	burst_size = 2
@@ -134,15 +134,15 @@
  */
 /obj/item/gun/ballistic/automatic/mini_uzi/chimpgun
 	name = "\improper MONK-10"
-	desc = "Developed by Syndicate monkeys, for syndicate Monkeys. Despite the name, this weapon resembles an Uzi significantly more than a MAC-10. Uses 9mm rounds. There's a label on the other side of the gun that says \"Do what comes natural.\""
+	desc = "由辛迪加猴子为辛迪加猴子研发。尽管名字如此，这把武器看起来远比 MAC-10 更像乌兹。使用 9mm 弹药。枪身另一侧贴着一张标签，上面写着“干点天性使然的事吧”。"
 	projectile_damage_multiplier = 0.4
 	projectile_wound_bonus = -25
 	pin = /obj/item/firing_pin/monkey
 
 /obj/item/gun/ballistic/automatic/m90
-	name = "\improper M-90gl Carbine"
-	desc = "A three-round burst .223 toploading carbine, designated 'M-90gl'. Has an attached underbarrel grenade launcher."
-	desc_controls = "Right-click to use grenade launcher."
+	name = "\improper M-90gl 卡宾枪"
+	desc = "一款三发点射的 .223 顶装式卡宾枪，代号“M-90gl”。下挂一具榴弹发射器。"
+	desc_controls = "右键使用榴弹发射器。"
 	icon_state = "m90"
 	w_class = WEIGHT_CLASS_BULKY
 	inhand_icon_state = "m90"
@@ -189,8 +189,8 @@
 	return ..()
 
 /obj/item/gun/ballistic/automatic/tommygun
-	name = "\improper Thompson SMG"
-	desc = "Based on the classic 'Chicago Typewriter'."
+	name = "\improper 汤普森冲锋枪"
+	desc = "基于经典的“芝加哥打字机”。"
 	icon_state = "tommygun"
 	inhand_icon_state = "shotgun"
 	selector_switch_icon = TRUE
@@ -216,8 +216,8 @@
  * Roughly 9 damage per bullet every 0.2 seconds, equaling out to downing an opponent in a bit over a second, if they have no armor.
  */
 /obj/item/gun/ballistic/automatic/tommygun/chimpgun
-	name = "\improper Typewriter"
-	desc = "It was the best of times, it was the BLURST of times!? You stupid monkeys!"
+	name = "\improper 打字机"
+	desc = "那是最美好的时代，那是最 BLURST 的时代！？你们这群蠢猴子！"
 	burst_delay = 2
 	rof = 0.2 SECONDS
 	projectile_damage_multiplier = 0.4
@@ -225,8 +225,8 @@
 	pin = /obj/item/firing_pin/monkey
 
 /obj/item/gun/ballistic/automatic/ar
-	name = "\improper NT-ARG 'Boarder'"
-	desc = "A robust assault rifle used by Nanotrasen fighting forces."
+	name = "\improper NT-ARG“登舰者”"
+	desc = "纳米传讯战斗部队使用的坚固突击步枪。"
 	icon_state = "arg"
 	inhand_icon_state = "arg"
 	slot_flags = 0
@@ -239,7 +239,7 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw
 	name = "\improper L6 SAW"
-	desc = "A heavily modified 7mm light machine gun, designated 'L6 SAW'. Has 'Aussec Armoury - 2531' engraved on the receiver below the designation."
+	desc = "一款经过大量改装的 7mm 轻机枪，代号“L6 SAW”。机匣上代号下方刻有“奥赛克军械公司——2531”。"
 	icon_state = "l6"
 	inhand_icon_state = "l6closedmag"
 	base_icon_state = "l6"
@@ -272,14 +272,14 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw/examine(mob/user)
 	. = ..()
-	. += "<b>alt + click</b> to [cover_open ? "close" : "open"] the dust cover."
+	. += "<b>Alt + 点击</b>以[cover_open ? "关上" : "打开"]防尘盖。"
 	if(cover_open && magazine)
-		. += span_notice("It seems like you could use an <b>empty hand</b> to remove the magazine.")
+		. += span_notice("看起来你可以用<b>空着的手</b>取下弹匣。")
 
 
 /obj/item/gun/ballistic/automatic/l6_saw/click_alt(mob/user)
 	cover_open = !cover_open
-	balloon_alert(user, "cover [cover_open ? "opened" : "closed"]")
+	balloon_alert(user, "防尘盖已[cover_open ? "打开" : "关上"]")
 	playsound(src, 'sound/items/weapons/gun/l6/l6_door.ogg', 60, TRUE)
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
@@ -295,7 +295,7 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw/try_fire_gun(atom/target, mob/living/user, params)
 	if(cover_open)
-		balloon_alert(user, "close the cover!")
+		balloon_alert(user, "先把防尘盖关上！")
 		return FALSE
 
 	. = ..()
@@ -309,21 +309,21 @@
 		..()
 		return
 	if (!cover_open)
-		balloon_alert(user, "open the cover!")
+		balloon_alert(user, "先把防尘盖打开！")
 		return
 	..()
 
 /obj/item/gun/ballistic/automatic/l6_saw/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!cover_open && istype(tool, accepted_magazine_type))
-		balloon_alert(user, "open the cover!")
+		balloon_alert(user, "先把防尘盖打开！")
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
 // Laser rifle (rechargeable magazine) //
 
 /obj/item/gun/ballistic/automatic/laser
-	name = "laser rifle"
-	desc = "Though sometimes mocked for the relatively weak firepower of their energy weapons, the logistic miracle of rechargeable ammunition has given Nanotrasen a decisive edge over many a foe."
+	name = "激光步枪"
+	desc = "尽管能量武器的火力相对较弱、有时会遭人嘲笑，但可充电弹药带来的后勤奇迹，让纳米传讯在许多敌人面前占尽优势。"
 	icon_state = "oldrifle"
 	w_class = WEIGHT_CLASS_BULKY
 	inhand_icon_state = "arg"
@@ -340,10 +340,10 @@
 // NT Battle Rifle //
 
 /obj/item/gun/ballistic/automatic/battle_rifle
-	name = "\improper NT BR-38 battle rifle"
-	desc = "Nanotrasen's latest prototype .38 Special longarm, found exclusively in the hands of their private security teams. \
-		Technically a pistol-caliber carbine, despite the name and its use as a designated marksman rifle. Acceleration technology \
-		enables improved ballistic performance, but necessitates maintenance."
+	name = "\improper NT BR-38 战斗步枪"
+	desc = "纳米传讯最新式的 .38 特种长枪原型，仅配发给其私人安保队伍。 \
+		严格来说它是一支手枪弹口径的卡宾枪，尽管名字和用途都把它当精确射手步枪。加速技术 \
+		提升了弹道性能，但也带来了维护负担。"
 	icon = 'icons/obj/weapons/guns/wide_guns.dmi'
 	icon_state = "battle_rifle"
 	inhand_icon_state = "battle_rifle"
@@ -392,19 +392,19 @@
 	. = ..()
 	AddComponent(/datum/component/scope, range_modifier = 2)
 	AddElement(/datum/element/examine_lore, \
-		lore = "The BR-38 is Nanotrasen's latest foray into entirely in-house, standard-issue-ready, accelerator-assisted ballistic firearms.<br>\
+		lore = "BR-38 是纳米传讯最新一款完全自研、可直接列装、带加速辅助的弹道枪械。<br>\
 		<br>\
-		The acceleration rail built into the barrel assembly boosts fired projectiles to higher velocities than unassisted bullets, \
-		allowing even less powerful cartridges, such as the venerable .38 Special, to have improved ballistic performance and stopping power. \
-		Even though the chambering makes this more of a pistol-caliber carbine than a battle rifle, countless arguments in both the marketing office \
-		and the corporate boardroom about the name meant that something had to give; in this case, the slightly misleading designation.<br>\
+		集成在枪管组件中的加速导轨能把射出的弹丸推到比无辅助子弹更高的速度， \
+		让即使 .38 特种这样老而威力偏弱的弹药也能获得更好的弹道性能与停止作用。 \
+		尽管这样的膛室设计让它更像一支手枪弹口径的卡宾枪，而不是战斗步枪，但市场部和 \
+		董事会议室里围绕名字的无数争论终究得有一方让步；最终让步的，是这个略显误导的代号。<br>\
 		<br>\
-		It's hard to cover up everything about its troubled development, though.<br>\
+		不过，它坎坷的研发经历并非全都能遮掩过去。<br>\
 		<br>\
-		In a sour twist of irony for Nanotrasen's historical issues with ballistics-based security weapons, the BR-38 has one significant flaw. \
-		It is possible for the weapons system to suffer from unintended discombulations due to closed heat distribution systems, should the weapon be tampered with. \
-		Nanotrasen's weapons R&D teams are still working on this issue, while also trying to work out why the weapon's onboard computation systems \
-		suffer from so many calculation errors, before moving onto a full commercial rollout." \
+		讽刺的是，纳米传讯在弹道安保武器上历来多有麻烦，而 BR-38 也有一个重大缺陷。 \
+		若武器被非法改装，其封闭式散热系统可能让武器系统出现意料之外的失能。 \
+		纳米传讯的武器研发团队仍在处理这个问题，同时还在设法弄清为什么该武器的板载计算系统 \
+		会出现如此多的计算错误，之后才能推进全面商业化。" \
 	)
 	register_context()
 
@@ -412,16 +412,16 @@
 	. = ..()
 
 	if(held_item?.tool_behaviour == TOOL_MULTITOOL && shots_before_degradation < max_shots_before_degradation)
-		context[SCREENTIP_CONTEXT_LMB] = "Reset System"
+		context[SCREENTIP_CONTEXT_LMB] = "重置系统"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/gun/ballistic/automatic/battle_rifle/examine(mob/user)
 	. = ..()
 	if(shots_before_degradation)
-		. += span_notice("[src] can fire [shots_before_degradation] more times before risking system degradation.")
+		. += span_notice("[src] 还能再射击 [shots_before_degradation] 次，之后就可能出现系统退化。")
 	else
-		. += span_notice("[src] is in the process of system degradation. It is currently at stage [degradation_stage] of [degradation_stage_max]. Use a multitool on [src] to recalibrate. Alternatively, insert it into a weapon recharger.")
-	. += span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src].")
+		. += span_notice("[src] 正处于系统退化过程中。目前处于第 [degradation_stage] 阶段，共 [degradation_stage_max] 阶段。用多功能工具对 [src] 重新校准。或者把它放进武器充电器。")
+	. += span_notice("你可以[EXAMINE_HINT("仔细查看")]来多了解一点 [src] 的情况。")
 
 
 
@@ -453,12 +453,12 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	projectile_damage_multiplier = emagged_projectile_damage_multiplier
-	balloon_alert(user, "heat distribution systems deactivated")
+	balloon_alert(user, "散热系统已关闭")
 	return TRUE
 
 /obj/item/gun/ballistic/automatic/battle_rifle/multitool_act(mob/living/user, obj/item/tool)
 	if(!tool.use_tool(src, user, 20 SECONDS, volume = 50))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return ITEM_INTERACT_BLOCKING
 
 	emp_malfunction = FALSE
@@ -467,12 +467,12 @@
 	projectile_speed_multiplier = initial(projectile_speed_multiplier)
 	fire_delay = initial(fire_delay)
 	update_appearance()
-	balloon_alert(user, "system reset")
+	balloon_alert(user, "系统已重置")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/gun/ballistic/automatic/battle_rifle/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(chambered.loaded_projectile && prob(75) && (emp_malfunction || degradation_stage == degradation_stage_max))
-		balloon_alert_to_hearers("*click*")
+		balloon_alert_to_hearers("*咔嗒*")
 		playsound(src, dry_fire_sound, dry_fire_sound_volume, TRUE)
 		return
 
@@ -520,7 +520,7 @@
 
 /// Proc to handle the countdown for our detonation
 /obj/item/gun/ballistic/automatic/battle_rifle/proc/perform_extreme_malfunction(mob/living/user)
-	balloon_alert(user, "gun is exploding, throw it!")
+	balloon_alert(user, "枪要炸了，快扔掉！")
 	explosion_timer = addtimer(CALLBACK(src, PROC_REF(fucking_explodes_you)), 5 SECONDS, (TIMER_UNIQUE|TIMER_OVERRIDE))
 	playsound(src, 'sound/items/weapons/gun/general/empty_alarm.ogg', 50, FALSE)
 

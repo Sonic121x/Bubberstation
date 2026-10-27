@@ -1,6 +1,6 @@
 /obj/machinery/griddle/stone
-	name = "stone griddle"
-	desc = "You could probably cook an egg on this... the griddle slab looks very unsanitary."
+	name = "石板煎台"
+	desc = "大概能在上面煎个鸡蛋……不过这块煎板看起来很不卫生。"
 	icon = 'modular_skyrat/modules/primitive_cooking_additions/icons/stone_kitchen_machines.dmi'
 	icon_state = "griddle1_off"
 	density = TRUE
@@ -21,10 +21,10 @@
 /obj/machinery/griddle/stone/examine(mob/user)
 	. = ..()
 
-	. += span_notice("It can be taken apart with a <b>crowbar</b>.")
+	. += span_notice("可用<b>撬棍</b>拆解。")
 
 /obj/machinery/griddle/stone/crowbar_act(mob/living/user, obj/item/tool)
-	user.balloon_alert_to_viewers("disassembling...")
+	user.balloon_alert_to_viewers("正在拆解……")
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 100))
 		return
 	new /obj/item/stack/sheet/mineral/stone(drop_location(), 5)

@@ -2,8 +2,8 @@
 // Simple power generator that would replace "magic SMES" on various derelicts.
 
 /obj/machinery/power/rtg
-	name = "radioisotope thermoelectric generator"
-	desc = "A simple nuclear power generator, used in small outposts to reliably provide power for decades."
+	name = "放射性同位素热电发电机"
+	desc = "一台结构简单的核能发电机，常用于小型前哨站，可数十年如一日地稳定供电。"
 	icon = 'icons/obj/machines/engine/other.dmi'
 	icon_state = "rtg"
 	base_icon_state = "rtg"
@@ -50,7 +50,7 @@
 /obj/machinery/power/rtg/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Power generation at <b>[display_power(power_gen, convert = FALSE)]</b>.")
+		. += span_notice("状态显示屏显示：发电功率为 <b>[display_power(power_gen, convert = FALSE)]</b>。")
 
 /obj/machinery/power/rtg/update_icon_state()
 	. = ..()
@@ -68,7 +68,7 @@
 		RefreshParts()
 
 /obj/machinery/power/rtg/advanced
-	desc = "An advanced RTG capable of moderating isotope decay, increasing power output but reducing lifetime. It uses plasma-fueled radiation collectors to increase output even further."
+	desc = "一台高级的 RTG，能调节同位素衰变速度，从而提升输出功率，但会缩短使用寿命。它还会利用等离子体辐射收集器把输出再提高一截。"
 	power_gen = 1.25 KILO WATTS
 	circuit = /obj/item/circuitboard/machine/rtg/advanced
 
@@ -76,11 +76,11 @@
 // Provides a lot of power, but tends to explode when mistreated.
 
 /obj/machinery/power/rtg/abductor
-	name = "void core"
+	name = "虚空核心"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "core"
 	base_icon_state = "core"
-	desc = "An alien power source that produces energy seemingly out of nowhere."
+	desc = "一种外星能源装置，似乎能凭空产生能量。"
 	circuit = /obj/item/circuitboard/machine/abductor/core
 	power_gen = 20 KILO WATTS
 	can_buckle = FALSE
@@ -93,8 +93,8 @@
 		return
 	going_kaboom = TRUE
 	visible_message(
-		message = span_danger("[src] lets out a shower of sparks as it starts to lose stability!"),
-		blind_message = span_hear("You hear a loud electrical crack!"),
+		message = span_danger("[src] 迸射出一片火花，开始失去稳定！"),
+		blind_message = span_hear("你听到一声响亮的电弧爆裂声！"),
 	)
 	playsound(src, 'sound/effects/magic/lightningshock.ogg', 100, TRUE, extrarange = 5)
 	tesla_zap(source = src, zap_range = 5, power = power_gen * 20)
@@ -103,7 +103,7 @@
 /obj/machinery/power/rtg/abductor/bullet_act(obj/projectile/proj)
 	. = ..()
 	if(!going_kaboom && istype(proj) && proj.damage > 0 && ((proj.damage_type == BURN) || (proj.damage_type == BRUTE)))
-		log_bomber(proj.firer, "triggered a", src, "explosion via projectile")
+		log_bomber(proj.firer, "用投射物触发了", src, "的爆炸")
 		overload()
 
 /obj/machinery/power/rtg/abductor/blob_act(obj/structure/blob/B)
@@ -126,15 +126,15 @@
 		overload()
 
 /obj/machinery/power/rtg/debug
-	name = "debug " + parent_type::name
-	desc = "You really shouldn't be seeing this if you're not a coder or jannie."
+	name = "调试 " + parent_type::name
+	desc = "如果你不是程序员或清洁工，真不该看到这东西。"
 	power_gen = 20 KILO WATTS
 	circuit = null
 	affected_by_parts = FALSE
 
 /obj/machinery/power/rtg/lavaland
-	name = "lava powered " + parent_type::name
-	desc = "A power generator that uses the heat and atmosphere of Lavaland to generate power. Won't generate squat anywhere else."
+	name = "熔岩动力 " + parent_type::name
+	desc = "一种利用熔岩地带的热量和大气发电的发电机。在其他地方一点电也发不出来。"
 	circuit = null
 	power_gen = 20 KILO WATTS
 	anchored = TRUE
@@ -151,8 +151,8 @@
 	return 0
 
 /obj/machinery/power/rtg/old_station
-	name = "old " + parent_type::name
-	desc = "A very old " + parent_type::name + ". It seems on the verge of being destroyed."
+	name = "陈旧 " + parent_type::name
+	desc = "一台非常陈旧的 " + parent_type::name + "。看起来随时都会彻底散架。"
 	circuit = null
 	power_gen = 0.75 KILO WATTS
 	anchored = TRUE
@@ -160,14 +160,14 @@
 /obj/machinery/power/rtg/old_station/default_deconstruction_screwdriver(mob/user, obj/item/screwdriver)
 	. = ..()
 	if(. & ITEM_INTERACT_SUCCESS)
-		to_chat(user, span_warning("You feel [src] crumbling under your hands!"))
+		to_chat(user, span_warning("你感觉 [src] 正在你手中碎裂！"))
 
 /obj/machinery/power/rtg/old_station/default_deconstruction_crowbar(mob/living/user, obj/item/crowbar, ignore_panel, custom_deconstruct)
-	to_chat(user, span_warning("As you pry, [src] starts to fall apart!"))
+	to_chat(user, span_warning("就在你撬动时，[src] 开始四分五裂！"))
 	if(!crowbar.use_tool(src, user, 3 SECONDS, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_warning("You feel like you made a mistake."))
+	to_chat(user, span_warning("你觉得自己犯了个错误。"))
 	new /obj/effect/decal/cleanable/ash/large(drop_location())
 	deconstruct(FALSE)
 	return ITEM_INTERACT_SUCCESS

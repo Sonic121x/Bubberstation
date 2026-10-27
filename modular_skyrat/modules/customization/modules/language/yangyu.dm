@@ -1,8 +1,8 @@
 /datum/language/yangyu
 	name = "Martian Yangyu"
-	desc = "Also known as \"Konjin\", this language group is a result of a genetic relationship between Chinese, Tibetan, Burmese, and other Asiatic languages \
-	that was first proposed in the early 19th century. This group of tongues is the second most popular in Terran space to Galactic Common. \
-	Many loanwords, idioms, and cultural relics have managed to persist, especially in the daily lives of speakers coming from Martian cities."
+	desc = "又称“Konjin”，这一语系是汉语、藏语、缅语以及其他亚洲语言之间存在亲缘关系的产物， \
+	该关系最早于十九世纪初被提出。在人类疆域中，这一语系是仅次于银河通用语的第二大语言。 \
+	许多借词、习语与文化遗存得以延续至今，尤其是在来自火星城市的母语者的日常生活中。"
 	key = "Y"
 	flags = LANGUAGE_TONGUELESS_SPEECH
 	space_chance = 70

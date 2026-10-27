@@ -9,8 +9,8 @@
  * The midround even version also creates rifts which summon carp, and heals when near them.
  */
 /mob/living/basic/space_dragon
-	name = "Space Dragon"
-	desc = "A serpentine leviathan whose flight defies all modern understanding of physics. Said to be the ultimate stage in the life cycle of the Space Carp."
+	name = "太空龙"
+	desc = "一头蛇形的利维坦，它的飞行违背了现代物理学的一切认知。据说它是太空鲤鱼生命周期的终极阶段。"
 	icon = 'icons/mob/nonhuman-player/spacedragon.dmi'
 	icon_state = "spacedragon"
 	icon_living = "spacedragon"
@@ -29,8 +29,8 @@
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0.5, OXY = 1)
 	combat_mode = TRUE
 	speed = 0
-	attack_verb_continuous = "chomps"
-	attack_verb_simple = "chomp"
+	attack_verb_continuous = "撕咬"
+	attack_verb_simple = "撕咬"
 	attack_sound = 'sound/effects/magic/demon_attack1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	obj_damage = 50
@@ -45,7 +45,7 @@
 	maptext_width = 64
 	mouse_opacity = MOUSE_OPACITY_ICON
 	death_sound = 'sound/mobs/non-humanoids/space_dragon/space_dragon_roar.ogg'
-	death_message = "screeches in agony as it collapses to the floor, its life extinguished."
+	death_message = "痛苦地尖啸着瘫倒在地，生命随之熄灭。"
 	butcher_results = list(/obj/item/stack/ore/diamond = 5, /obj/item/stack/sheet/sinew = 5, /obj/item/stack/sheet/bone = 30)
 	initial_language_holder = /datum/language_holder/carp/dragon
 	can_buckle_to = FALSE
@@ -102,7 +102,7 @@
 	if(!isnull(chosen_colour))
 		return
 	if(client.get_award_status(/datum/award/achievement/misc/sharkdragon))
-		if(tgui_alert(src, "Shall you take the dragon form or the shark form?","Shark Form Unlocked", list("Dragon","Shark")) == "Shark")
+		if(tgui_alert(src, "你要选择龙形态还是鲨鱼形态？","鲨鱼形态已解锁", list("Dragon","Shark")) == "Shark")
 			sharkify()
 	rename_dragon()
 	select_colour()
@@ -119,7 +119,7 @@
 	base_pixel_z -= 3
 	do_jitter_animation(150)
 	shark_form = TRUE
-	desc = "A piscine mutation of the fearsome leviathan whose flight defies modern physics. Said to be the other ultimate stage in the life cycle of the Space Carp."
+	desc = "那头可怕利维坦的鱼类变体，它的飞行违背了现代物理学。据说这是太空鲤鱼生命周期的另一个终极阶段。"
 	icon_state = icon_state == icon_living ? "sharkdragon" : "sharkdragon_dead"
 	icon_living = "sharkdragon"
 	icon_dead = "sharkdragon_dead"
@@ -130,24 +130,24 @@
 
 /// Allows the space dragon to pick a funny name
 /mob/living/basic/space_dragon/proc/rename_dragon()
-	var/chosen_name = sanitize_name(reject_bad_text(tgui_input_text(src, "What would you like your name to be?", "Choose Your Name", real_name, MAX_NAME_LEN)))
+	var/chosen_name = sanitize_name(reject_bad_text(tgui_input_text(src, "你想要叫什么名字？", "选择你的名字", real_name, MAX_NAME_LEN)))
 	if(!chosen_name) // Null or empty or rejected
-		to_chat(src, span_warning("Not a valid name, please try again."))
+		to_chat(src, span_warning("名字无效，请重试。"))
 		rename_dragon()
 		return
-	to_chat(src, span_notice("Your name is now [span_name("[chosen_name]")], the feared Space Dragon."))
+	to_chat(src, span_notice("你现在的名字是 [span_name("[chosen_name]")]，令人畏惧的太空龙。"))
 	fully_replace_character_name(null, chosen_name, log_new_name = TRUE)
 
 /// Select scale colour with the colour picker
 /mob/living/basic/space_dragon/proc/select_colour()
-	chosen_colour = tgui_color_picker(src, "What colour would you like to be?" ,"Colour Selection", COLOR_WHITE)
+	chosen_colour = tgui_color_picker(src, "你想变成什么颜色？" ,"选择颜色", COLOR_WHITE)
 	if(!chosen_colour) // Redo proc until we get a color
-		to_chat(src, span_warning("Not a valid colour, please try again."))
+		to_chat(src, span_warning("颜色无效，请重试。"))
 		select_colour()
 		return
 	var/list/skin_hsv = rgb2hsv(chosen_colour)
 	if(skin_hsv[3] < REJECT_DARK_COLOUR_THRESHOLD)
-		to_chat(src, span_danger("Invalid colour. Your colour is not bright enough."))
+		to_chat(src, span_danger("颜色无效。你的颜色不够明亮。"))
 		select_colour()
 		return
 	add_atom_colour(chosen_colour, FIXED_COLOUR_PRIORITY)
@@ -190,7 +190,7 @@
 	if (target == src)
 		return COMPONENT_HOSTILE_NO_ATTACK // Easy to misclick yourself, let's not
 	if (DOING_INTERACTION(source, DOAFTER_SOURCE_SPACE_DRAGON_INTERACTION))
-		balloon_alert(source, "busy!")
+		balloon_alert(source, "正忙！")
 		return COMPONENT_HOSTILE_NO_ATTACK
 	if(isfish(target))
 		INVOKE_ASYNC(src, PROC_REF(try_eat), target)
@@ -204,7 +204,7 @@
 
 /// Try putting something inside us
 /mob/living/basic/space_dragon/proc/try_eat(atom/movable/food)
-	balloon_alert(src, "swallowing...")
+	balloon_alert(src, "正在吞咽……")
 	if (do_after(src, 3 SECONDS, target = food))
 		if(isliving(food))
 			eat(food)
@@ -223,7 +223,7 @@
 	if (QDELETED(food) || food.loc == src)
 		return FALSE
 	playsound(src, 'sound/effects/magic/demon_attack1.ogg', 60, TRUE)
-	visible_message(span_boldwarning("[src] swallows [food] whole!"))
+	visible_message(span_boldwarning("[src] 把 [food] 整个吞了下去！"))
 	food.extinguish_mob() // It's wet in there, and our food is likely to be on fire. Let's be decent and not husk them.
 	food.forceMove(src)
 	return TRUE
@@ -240,24 +240,24 @@
 			fish_left = initial(fish_left) //prevent begin_sharkify from being called again by eating another fish.
 	adjust_health(round(-health_recovered, 1))
 	playsound(src, 'sound/effects/magic/demon_attack1.ogg', 40, TRUE)
-	visible_message(span_boldwarning("[src] swallows [fish] whole!"))
+	visible_message(span_boldwarning("[src] 把 [fish] 整个吞了下去！"))
 	if(HAS_TRAIT(fish, TRAIT_YUCKY_FISH))
-		balloon_alert(src, "disgusting!")
-		to_chat(src, span_warning("that [fish.name] tasted awful, you feel like you're about to throw up..."))
+		balloon_alert(src, "真恶心！")
+		to_chat(src, span_warning("那条 [fish.name] 难吃极了，你觉得自己快要吐出来了……"))
 		addtimer(CALLBACK(src, PROC_REF(barf_contents)), 3 SECONDS)
 	qdel(fish)
 
 /mob/living/basic/space_dragon/proc/begin_sharkify()
 	do_jitter_animation(300)
 	addtimer(CALLBACK(src, PROC_REF(sharkify)), 1.2 SECONDS)
-	visible_message(span_warning("[src] begins mutating!"))
+	visible_message(span_warning("[src] 开始变异了！"))
 
 /mob/living/basic/space_dragon/proc/barf_contents()
 	if(stat == DEAD)
 		return
 	new /obj/effect/decal/cleanable/vomit(loc)
 	playsound(src, 'sound/effects/splat.ogg', vol = 50, vary = TRUE)
-	visible_message(span_danger("[src] vomits up everything it ate so far!"))
+	visible_message(span_danger("[src] 把之前吃下去的东西全都吐了出来！"))
 	for(var/atom/movable/eaten in src)
 		if(HAS_TRAIT(eaten, TRAIT_NOT_BARFABLE))
 			continue
@@ -282,7 +282,7 @@
 		return
 	new /obj/effect/decal/cleanable/vomit(loc)
 	playsound(src, 'sound/effects/splat.ogg', vol = 50, vary = TRUE)
-	visible_message(span_danger("[src] vomits up [eaten]!"))
+	visible_message(span_danger("[src] 把 [eaten] 吐了出来！"))
 	eaten.forceMove(loc)
 	eaten.Paralyze(5 SECONDS)
 

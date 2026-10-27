@@ -1,6 +1,6 @@
 /obj/machinery/rbmk2_sniffer
-	name = "\improper RB-MK2 \"Boombox\" reactor sniffer"
-	desc = "A modified air alarm designed to detect stray ionization particles, also known as a meltdown. Can be linked to nearby RB-MK2 machines by interacting with the wires."
+	name = "\improper RB-MK2“轰鸣盒”反应堆探测器"
+	desc = "经过改装的空气警报器，用于检测逸散的电离粒子，也就是熔毁迹象。可通过操作线路连接附近的 RB-MK2 设备。"
 	icon = 'modular_zubbers/icons/obj/equipment/burger_reactor.dmi'
 	icon_state = "reactor_sniffer"
 	base_icon_state = "reactor_sniffer"
@@ -75,7 +75,7 @@
 /obj/machinery/rbmk2_sniffer/proc/link_reactor(mob/user,obj/machinery/power/rbmk2/desired_reactor)
 
 	if(linked_reactors[desired_reactor])
-		if(user) balloon_alert(user, "already linked!")
+		if(user) balloon_alert(user, "已经连接！")
 		return FALSE
 
 	linked_reactors[desired_reactor] = TRUE
@@ -97,12 +97,12 @@
 
 	. = ..()
 
-	. += "It is linked to [length(linked_reactors)] reactor(s)."
+	. += "它连接了[length(linked_reactors)]座反应堆。"
 
 	if(last_meltdown)
-		. += span_danger("It is flashing red!")
+		. += span_danger("它正闪烁红光！")
 	else
-		. += span_notice("It is glowing a steady green.")
+		. += span_notice("它亮着稳定的绿光。")
 
 
 /obj/machinery/rbmk2_sniffer/proc/alert_radio(alert_text,bypass_cooldown=FALSE,alert_emergency_channel=FALSE,criticality=TRUE)

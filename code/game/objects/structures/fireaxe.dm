@@ -1,6 +1,6 @@
 /obj/structure/fireaxecabinet
-	name = "fire axe cabinet"
-	desc = "There is a small label that reads \"For Emergency use only\" along with details for safe use of the axe. As if."
+	name = "消防斧柜"
+	desc = "上面有一张小标签，写着“仅供紧急情况使用”，还附有安全使用斧头的注意事项。说得倒好听。"
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "fireaxe"
 	anchored = TRUE
@@ -55,10 +55,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet, 32)
 	if(istype(tool, /obj/item/stack/sheet/glass) && broken)
 		var/obj/item/stack/sheet/glass/glass_stack = tool
 		if(glass_stack.get_amount() < 2)
-			balloon_alert(user, "need more glass!")
+			balloon_alert(user, "玻璃不够！")
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, "repairing")
+		balloon_alert(user, "维修中")
 		if(!glass_stack.use_tool(src, user, 2 SECONDS, 2))
 			return ITEM_INTERACT_BLOCKING
 
@@ -75,7 +75,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet, 32)
 			return ITEM_INTERACT_BLOCKING
 
 		if(HAS_TRAIT(tool, TRAIT_WIELDED))
-			balloon_alert(user, "unwield it!")
+			balloon_alert(user, "请先取消双手持握！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
@@ -92,19 +92,19 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet, 32)
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
 	if(atom_integrity == max_integrity)
-		balloon_alert(user, "already repaired!")
+		balloon_alert(user, "已经修好了！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.tool_start_check(user, amount = 2))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "repairing...")
+	balloon_alert(user, "维修中……")
 	if(!tool.use_tool(src, user, 4 SECONDS, volume= 50, amount = 2))
 		return ITEM_INTERACT_BLOCKING
 
 	repair_damage(max_integrity - get_integrity())
 	update_appearance()
-	balloon_alert(user, "repaired")
+	balloon_alert(user, "已修复")
 	return ITEM_INTERACT_SUCCESS
 
 
@@ -214,16 +214,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet, 32)
 	. += locked ? "locked" : "unlocked"
 
 /obj/structure/fireaxecabinet/proc/toggle_lock(mob/user)
-	to_chat(user, span_notice("Resetting circuitry..."))
+	to_chat(user, span_notice("正在重置电路……"))
 	playsound(src, 'sound/machines/locktoggle.ogg', 50, TRUE)
 	if(do_after(user, 2 SECONDS, target = src))
-		to_chat(user, span_notice("You [locked ? "disable" : "re-enable"] the locking modules."))
+		to_chat(user, span_notice("你[locked ? "禁用" : "重新启用"]了锁定模块。"))
 		locked = !locked
 		update_appearance()
 
 /obj/structure/fireaxecabinet/proc/toggle_open(mob/user)
 	if(locked)
-		balloon_alert(user, "won't budge!")
+		balloon_alert(user, "纹丝不动！")
 		return
 	else
 		open = !open
@@ -237,8 +237,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet, 32)
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet/empty, 32)
 
 /obj/item/wallframe/fireaxecabinet
-	name = "fire axe cabinet"
-	desc = "Home to a window's greatest nightmare. Apply to wall to use."
+	name = "消防斧柜"
+	desc = "窗户最可怕的噩梦就住在这里。对着墙壁使用即可安装。"
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "fireaxe"
 	result_path = /obj/structure/fireaxecabinet/empty
@@ -246,8 +246,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet/empty, 32)
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 5.1, /datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 5, /datum/material/iron = SMALL_MATERIAL_AMOUNT)
 
 /obj/structure/fireaxecabinet/mechremoval
-	name = "mech removal tool cabinet"
-	desc = "There is a small label that reads \"For Emergency use only\" along with details for safe use of the tool. As if."
+	name = "机甲拆除工具柜"
+	desc = "上面有一张小标签，写着“仅供紧急情况使用”，还附有安全使用该工具的注意事项。说得倒好听。"
 	icon_state = "mechremoval"
 	item_path = /obj/item/crowbar/mechremoval
 	item_overlay = "crowbar"
@@ -265,15 +265,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet/mechremoval, 32)
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet/mechremoval/empty, 32)
 
 /obj/item/wallframe/fireaxecabinet/mechremoval
-	name = "mech removal tool cabinet"
-	desc = "Home to a very special crowbar. Apply to wall to use."
+	name = "机甲拆除工具柜"
+	desc = "里面放着一把非常特别的撬棍。对着墙壁使用即可安装。"
 	icon_state = "mechremoval"
 	result_path = /obj/structure/fireaxecabinet/mechremoval/empty
 
 /obj/structure/fireaxecabinet/jawsofrecovery
-	name = "jaws of recovery tool cabinet"
-	desc = "There is a small label that reads \"For Emergency use only\" along with details for safe use of the jaws of recovery. \
-		The lock seems to require...a surgical drill bit to unlock? You have no idea who thought this was a good idea."
+	name = "复苏钳工具柜"
+	desc = "上面有一张小标签，写着“仅供紧急情况使用”，还附有安全使用复苏钳的注意事项。\
+		这把锁似乎需要……手术钻头才能打开？你完全不明白是谁觉得这是个好主意。"
 	icon_state = "jaws_of_recovery"
 	item_path = /obj/item/crowbar/power/paramedic
 	item_overlay = "jaws"
@@ -292,7 +292,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet/jawsofrecovery, 32)
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet/jawsofrecovery/empty, 32)
 
 /obj/item/wallframe/fireaxecabinet/jawsofrecovery
-	name = "jaws of recovery tool cabinet"
-	desc = "Home to the paramedic's jaws of recovery. Apply to wall to use."
+	name = "复苏钳工具柜"
+	desc = "里面放着护理人员的复苏钳。对着墙壁使用即可安装。"
 	icon_state = "jaws_of_recovery"
 	result_path = /obj/structure/fireaxecabinet/jawsofrecovery/empty

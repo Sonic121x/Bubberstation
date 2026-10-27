@@ -1,5 +1,5 @@
 /mob/eye/camera/ai
-	name = "Inactive AI Eye"
+	name = "未激活的 AI 视点"
 	icon_state = "ai_camera"
 
 	hud_possible = list(ANTAG_HUD, AI_DETECT_HUD = HUD_LIST_LIST)
@@ -118,7 +118,7 @@
 /mob/eye/camera/ai/examine(mob/user) //Displays a silicon's laws to ghosts
 	. = ..()
 	if(istype(ai) && ai.laws && isobserver(user))
-		. += "<b>[ai] has the following laws:</b>"
+		. += "<b>[ai] 拥有以下法则：</b>"
 		for(var/law in ai.laws.get_law_list(include_zeroth = TRUE))
 			. += law
 
@@ -185,7 +185,7 @@
 		ai_tracking_tool.reset_tracking()
 
 	if(isturf(loc) && (QDELETED(eyeobj) || !eyeobj.loc))
-		to_chat(src, "ERROR: Eyeobj not found. Creating new eye...")
+		to_chat(src, "错误：未找到视点对象。正在创建新的视点……")
 		stack_trace("AI eye object wasn't found! Location: [loc] / Eyeobj: [eyeobj] / QDELETED: [QDELETED(eyeobj)] / Eye loc: [eyeobj?.loc]")
 		QDEL_NULL(eyeobj)
 		create_eye()
@@ -198,7 +198,7 @@
 	eyeobj = new /mob/eye/camera/ai()
 	all_eyes += eyeobj
 	eyeobj.ai = src
-	eyeobj.name = "[name] (AI Eye)"
+	eyeobj.name = "[name]（AI 视点）"
 	eyeobj.setLoc(loc, TRUE)
 	set_eyeobj_visible(TRUE)
 
@@ -211,12 +211,12 @@
 	else
 		eyeobj.RemoveInvisibility(type)
 
-GAME_VERB(/mob/living/silicon/ai, toggle_acceleration, "Toggle Camera Acceleration", "AI Commands")
+GAME_VERB(/mob/living/silicon/ai, toggle_acceleration, "切换摄像头加速", "AI 指令")
 
 	if(incapacitated)
 		return
 	acceleration = !acceleration
-	to_chat(usr, "Camera acceleration has been toggled [acceleration ? "on" : "off"].")
+	to_chat(usr, "摄像头加速已[acceleration ? "开启" : "关闭"]。")
 
 /mob/eye/camera/ai/Hear(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range)
 	. = ..()

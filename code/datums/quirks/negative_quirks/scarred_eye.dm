@@ -1,11 +1,11 @@
 /datum/quirk/item_quirk/scarred_eye
 	name = "Scarred Eye"
-	desc = "An accident in your past has cost you one of your eyes, but you got a cool eyepatch. Yarr!"
+	desc = "过去的一场事故让你失去了一只眼睛，不过你得到了一副酷炫的眼罩。哟吼！"
 	icon = FA_ICON_EYE_SLASH
 	value = -2
-	gain_text = span_danger("After all this time, your eye still stings a bit...")
-	lose_text = span_notice("Your peripherial vision grows by about thirty percent.")
-	medical_record_text = "Patient has severe scarring on one of their eyes, resulting in partial vision loss."
+	gain_text = span_danger("过了这么久，你的眼睛还是有些刺痛……")
+	lose_text = span_notice("你的周边视野扩大了约百分之三十。")
+	medical_record_text = "患者一只眼睛有严重瘢痕，导致部分视力丧失。"
 	hardcore_value = 2
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE
 	mail_goodies = list(/obj/item/reagent_containers/cup/glass/bottle/rum, /obj/item/clothing/mask/bandana/red)

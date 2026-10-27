@@ -1,8 +1,8 @@
 ///Contains fish that can be found in the syndicate fishing portal setting as well as the ominous fish case.
 /obj/item/fish/emulsijack
-	name = "toxic emulsijack"
+	name = "有毒乳化杰克"
 	fish_id = "emulsijack"
-	desc = "Ah, the terrifying emulsijack. Created in a laboratory, the only real use of this slimey, scaleless fish is for completely ruining a tank."
+	desc = "啊，可怕的乳化杰克。它在实验室里被创造出来，这种黏滑无鳞的鱼唯一真正的用处就是把鱼缸彻底毁掉。"
 	icon_state = "emulsijack"
 	random_case_rarity = FISH_RARITY_GOOD_LUCK_FINDING_THIS
 	required_fluid_type = AQUARIUM_FLUID_ANADROMOUS
@@ -18,9 +18,9 @@
 	return list("raw fish" = 2, "acid" = 1) //no scales
 
 /obj/item/fish/donkfish
-	name = "donk co. company patent donkfish"
+	name = "咚克公司专利咚克鱼"
 	fish_id = "donkfish"
-	desc = "A lab-grown donkfish. Its invention was an accident for the most part, as it was intended to be consumed in donk pockets. Unfortunately, it tastes horrible, so it has now become a pseudo-mascot."
+	desc = "实验室培育的咚克鱼。它的诞生很大程度上是个意外，原本是想让它被做成咚克口袋饼食用。可惜它味道糟透了，于是如今成了准吉祥物。"
 	icon_state = "donkfish"
 	random_case_rarity = FISH_RARITY_VERY_RARE
 	stable_population = 4
@@ -33,7 +33,7 @@
 	beauty = FISH_BEAUTY_EXCELLENT
 
 /obj/item/fish/donkfish/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] swallows [src] whole! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 把 [src] 整个吞了下去！看起来这是要自杀！"))
 	if(!ishuman(user))
 		return TOXLOSS
 
@@ -45,10 +45,10 @@
 	return TOXLOSS
 
 /obj/item/fish/jumpercable
-	name = "monocloning jumpercable"
+	name = "单克隆跨接电缆"
 	fish_id = "jumpercable"
-	desc = "A surprisingly useful if nasty looking creation from the syndicate fish labs. Drop one in a tank, and \
-		watch it self-feed and multiply. Generates more and more power as a growing swarm!"
+	desc = "辛迪加鱼类实验室的产物，模样恶心却出奇地有用。往鱼缸里丢一条，\
+		然后看着它自行进食并不断增殖。随着群体壮大，它会产生越来越多的电力！"
 	icon_state = "jumpercable"
 	sprite_width = 16
 	sprite_height = 5
@@ -72,16 +72,16 @@
 	return ..() * 0.04
 
 /obj/item/fish/jumpercable/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] hooks both ends of [src] to their chest! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 把 [src] 的两端都接到自己胸口上！看起来这是要自杀！"))
 	electrocute_mob(user, power_source = get_area(src), source = src, siemens_coeff = 1, dist_check = FALSE)
 	tesla_zap(source = user, zap_range = 4, power = electrogenesis_power, cutoff = 1e3, zap_flags = ZAP_LOW_POWER_GEN|ZAP_MOB_DAMAGE)
 	playsound(user, 'sound/items/weapons/zapbang.ogg', 75)
 	return OXYLOSS
 
 /obj/item/fish/chainsawfish
-	name = "chainsawfish"
+	name = "电锯鱼"
 	fish_id = "chainsawfish"
-	desc = "A very, very angry bioweapon, whose sole purpose is to rip and tear."
+	desc = "一件非常、非常愤怒的生物武器，它唯一的目的就是撕裂与撕碎。"
 	icon = 'icons/obj/aquarium/wide.dmi'
 	icon_state = "chainsawfish"
 	inhand_icon_state = "chainsawfish"
@@ -203,11 +203,11 @@
 // you suicide like a real chainsaw
 /obj/item/fish/chainsawfish/suicide_act(mob/living/user)
 	if(status == FISH_DEAD)
-		user.visible_message(span_suicide("[user] smashes [src] into [user.p_their()] neck, destroying [user.p_their()] esophagus! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user] 把 [src] 砸在自己脖子上，砸碎了食管！看起来这是要自杀！"))
 		playsound(src, 'sound/items/weapons/genhit1.ogg', 100, TRUE)
 		return BRUTELOSS
 
-	user.visible_message(span_suicide("[user] begins to tear [user.p_their()] head off with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 开始用 [src] 把自己的头撕下来！看起来这是要自杀！"))
 	playsound(src, 'sound/items/weapons/chainsawhit.ogg', 100, TRUE)
 	var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)
 	if(myhead)
@@ -215,9 +215,9 @@
 	return BRUTELOSS
 
 /obj/item/fish/pike/armored
-	name = "armored pike"
+	name = "装甲狗鱼"
 	fish_id = "armored_pike"
-	desc = "A long-bodied, metal-clad predator with a snout that almost looks like a halberd. Definitely a weapon to swing around."
+	desc = "身披金属甲胄的长身掠食者，吻部看起来几乎像一柄戟。绝对是一件可以抡起来的武器。"
 	icon_state = "armored_pike"
 	inhand_icon_state = "armored_pike"
 	attack_verb_continuous = list("attacks", "pokes", "jabs", "tears", "lacerates", "gores")

@@ -7,9 +7,9 @@
  * Listens out for signals on the designated frequencies and sends signals on designated frequencies
  */
 /obj/item/circuit_component/radio
-	display_name = "Radio"
-	desc = "A component that can listen and send frequencies. If set to private, the component will only receive signals from other components attached to circuitboards with the same owner id."
-	category = "Action"
+	display_name = "无线电"
+	desc = "一种可以监听并发送频率的元件。若设为私有，该元件只会接收同一所有者 ID 的电路板上其他元件发出的信号。"
+	category = "动作"
 
 	/// The publicity options. Controls whether it's public or private.
 	var/datum/port/input/option/public_options
@@ -37,7 +37,7 @@
 /obj/item/circuit_component/radio/Initialize(mapload)
 	. = ..()
 	if(signal_cooldown_time > 0)
-		desc = "[desc] It has a [signal_cooldown_time * 0.1] second cooldown between sending signals."
+		desc = "[desc] 发送信号之间有 [signal_cooldown_time * 0.1] 秒冷却时间。"
 
 /obj/item/circuit_component/radio/register_shell(atom/movable/shell)
 	parent_shell = shell
@@ -88,11 +88,11 @@
 		var/turf/location = get_turf(src)
 		var/time = time2text(world.realtime,"hh:mm:ss", TIMEZONE_UTC)
 
-		var/list/loggable_strings = list("[time] <B>:</B> The [QDELETED(parent_shell) ? "null circuit shell(?)" : parent_shell] @ location ([location.x],[location.y],[location.z]) transmitted the following signal <B>:</B> [format_frequency(current_freq)]/[signal_code] via the radio circuit component.")
+		var/list/loggable_strings = list("[time] <B>:</B> [QDELETED(parent_shell) ? "空电路外壳(?)" : parent_shell] @ 位置 ([location.x],[location.y],[location.z]) 通过无线电电路元件发送了以下信号 <B>:</B> [format_frequency(current_freq)]/[signal_code]。")
 		if(!isnull(owner_ckey))
-			loggable_strings += "<B>:</B> The person who inserted the signalling circuit component was very likely [owner_ckey]."
+			loggable_strings += "<B>:</B> 安装该信号电路元件的人极可能是 [owner_ckey]。"
 		if(!QDELETED(parent_shell))
-			loggable_strings += "<B>:</B> The last fingerprints on the containing shell was [parent_shell.fingerprintslast]."
+			loggable_strings += "<B>:</B> 容纳该元件的外壳上最后留下的指纹属于 [parent_shell.fingerprintslast]。"
 
 		var/loggable_string = loggable_strings.Join(" ")
 		add_to_signaler_investigate_log(loggable_string)

@@ -1,6 +1,6 @@
 /obj/machinery/medipen_refiller
-	name = "Medipen Refiller"
-	desc = "A machine that refills used medipens with chemicals."
+	name = "医疗注射笔补充机"
+	desc = "为用过的医疗注射笔重新注入化学药剂的机器。"
 	icon = 'icons/obj/machines/medipen_refiller.dmi'
 	icon_state = "medipen_refiller"
 	base_icon_state = "medipen_refiller"
@@ -34,22 +34,22 @@
 		return NONE
 
 	if(held_item.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = anchored ? "Unsecure" : "Secure"
+		context[SCREENTIP_CONTEXT_LMB] = anchored ? "解除固定" : "固定"
 		. = CONTEXTUAL_SCREENTIP_SET
 	else if(held_item.tool_behaviour == TOOL_CROWBAR && panel_open)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		. = CONTEXTUAL_SCREENTIP_SET
 	else if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = panel_open ? "Close panel" : "Open panel"
+		context[SCREENTIP_CONTEXT_LMB] = panel_open ? "关闭面板" : "打开面板"
 		. = CONTEXTUAL_SCREENTIP_SET
 	else if(is_reagent_container(held_item) && held_item.is_open_container())
-		context[SCREENTIP_CONTEXT_LMB] = "Refill machine"
+		context[SCREENTIP_CONTEXT_LMB] = "补充机器药剂"
 		. = CONTEXTUAL_SCREENTIP_SET
 	else if(istype(held_item, /obj/item/reagent_containers/hypospray/medipen) && reagents.has_reagent(allowed_pens[held_item.type]))
-		context[SCREENTIP_CONTEXT_LMB] = "Refill medipen"
+		context[SCREENTIP_CONTEXT_LMB] = "补充注射笔"
 		. = CONTEXTUAL_SCREENTIP_SET
 	else if(istype(held_item, /obj/item/plunger))
-		context[SCREENTIP_CONTEXT_LMB] = "Plunge machine"
+		context[SCREENTIP_CONTEXT_LMB] = "用皮搋子疏通机器"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/medipen_refiller/RefreshParts()
@@ -68,35 +68,35 @@
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
 	if(DOING_INTERACTION(user, src))
-		balloon_alert(user, "already interacting!")
+		balloon_alert(user, "正在操作中！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(is_reagent_container(tool) && tool.is_open_container())
 		var/obj/item/reagent_containers/reagent_container = tool
 		if(!length(reagent_container.reagents.reagent_list))
-			balloon_alert(user, "nothing to transfer!")
+			balloon_alert(user, "没有可转移的药剂！")
 			return ITEM_INTERACT_BLOCKING
 
 		var/units = reagent_container.reagents.trans_to(src, reagent_container.amount_per_transfer_from_this, transferred_by = user)
 		if(units)
-			balloon_alert(user, "[units] units transferred")
+			balloon_alert(user, "已转移 [units] 单位")
 			return ITEM_INTERACT_SUCCESS
 		else
-			balloon_alert(user, "reagent storage full!")
+			balloon_alert(user, "试剂储罐已满！")
 			return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/reagent_containers/hypospray/medipen))
 		var/obj/item/reagent_containers/hypospray/medipen/medipen = tool
 		if(!(LAZYFIND(allowed_pens, medipen.type) || LAZYFIND(moreallowed_pens, medipen.type))) // BUBBER EDIT - Original if(!(LAZYFIND(allowed_pens, medipen.type)))
-			balloon_alert(user, "medipen incompatible!")
+			balloon_alert(user, "注射笔不兼容！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(medipen.reagents?.reagent_list.len)
-			balloon_alert(user, "medipen full!")
+			balloon_alert(user, "注射笔已满！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!reagents.has_reagent(allowed_pens[medipen.type], 10))
-			balloon_alert(user, "not enough reagents!")
+			balloon_alert(user, "试剂不足！")
 			return ITEM_INTERACT_BLOCKING
 
 		add_overlay("active")
@@ -104,16 +104,16 @@
 			medipen.used_up = FALSE
 			medipen.add_initial_reagents()
 			reagents.remove_reagent(allowed_pens[medipen.type], 10)
-			balloon_alert(user, "refilled")
+			balloon_alert(user, "已补满")
 			use_energy(active_power_usage)
 		cut_overlays()
 		return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/medipen_refiller/plunger_act(obj/item/plunger/attacking_plunger, mob/living/user, reinforced)
-	user.balloon_alert_to_viewers("furiously plunging...", "plunging medipen refiller...")
+	user.balloon_alert_to_viewers("正在用力疏通……", "正在疏通注射笔补充机……")
 	if(!do_after(user, 3 SECONDS, target = src))
 		return TRUE
-	user.balloon_alert_to_viewers("finished plunging")
+	user.balloon_alert_to_viewers("疏通完成")
 	reagents.expose(get_turf(src), TOUCH)
 	reagents.clear_reagents()
 	return TRUE

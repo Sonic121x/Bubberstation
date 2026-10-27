@@ -4,9 +4,9 @@
  * Allows for creating a list of atoms within a range of 1.
  */
 /obj/item/circuit_component/target_scanner
-	display_name = "Target Scanner"
-	desc = "A component that will create a list of the things within a location depending on an offset to the shell."
-	category = "Action"
+	display_name = "目标扫描器"
+	desc = "根据相对于外壳的偏移量，生成指定位置内事物列表的元件。"
+	category = "动作"
 
 	// the offsets required for scanning
 	var/datum/port/input/x_pos

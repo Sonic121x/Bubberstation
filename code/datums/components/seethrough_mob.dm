@@ -113,8 +113,8 @@
 		untrick_mob()
 
 /datum/action/cooldown/toggle_seethrough
-	name = "Toggle Seethrough"
-	desc = "Allows you to see behind your massive body and click through it."
+	name = "切换身体透视"
+	desc = "让你看见庞大身躯后面的东西，并穿过身体进行点击。"
 	button_icon = 'icons/mob/actions/actions_xeno.dmi'
 	button_icon_state = "alien_sneak"
 	background_icon_state = "bg_alien"

@@ -10,8 +10,8 @@
 	our_heretic.passive_level = level
 
 /datum/heretic_knowledge/passive_upgrade/one
-	name = "Passive - Level One"
-	desc = "PLACEHOLDER GIves level one passive"
+	name = "被动能力 - 一级"
+	desc = "占位说明：获得一级被动能力。"
 	level = 1
 	cost = 1
 
@@ -25,8 +25,8 @@
 	living_user.apply_status_effect(our_heretic.heretic_path.start.eldritch_passive)
 
 /datum/heretic_knowledge/passive_upgrade/two
-	name = "Passive - Level Two"
-	desc = "PLACEHOLDER GIves level two passive"
+	name = "被动能力 - 二级"
+	desc = "占位说明：获得二级被动能力。"
 	level = 2
 	cost = 2
 
@@ -36,8 +36,8 @@
 	SEND_SIGNAL(our_heretic, COMSIG_HERETIC_PASSIVE_UPGRADE_FIRST)
 
 /datum/heretic_knowledge/passive_upgrade/three
-	name = "Passive - Level Three"
-	desc = "PLACEHOLDER GIves level three passive"
+	name = "被动能力 - 三级"
+	desc = "占位说明：获得三级被动能力。"
 	level = 3
 	cost = 3
 
@@ -53,17 +53,17 @@
 
 /datum/heretic_knowledge/passive_upgrade/one/void
 	research_tree_icon_state = "void_blade"
-	desc = "Grants you immunity to cold and low pressure."
+	desc = "使你免疫寒冷和低压。"
 	cost = 2
 
 /datum/heretic_knowledge/passive_upgrade/two/void
 	research_tree_icon_state = "void_blade"
-	desc = "Makes you not need to breathe."
+	desc = "使你无需呼吸。"
 	cost = 1
 
 /datum/heretic_knowledge/passive_upgrade/three/void
 	research_tree_icon_state = "void_blade"
-	desc = "You can no longer slip on any surface."
+	desc = "使你不会在任何表面上滑倒。"
 	cost = 2
 
 //moon
@@ -74,17 +74,17 @@
 
 /datum/heretic_knowledge/passive_upgrade/one/moon
 	research_tree_icon_state = "moon_blade"
-	desc = "Gain immunity to brain trauma, and regenerate brain damage passively."
+	desc = "使你免疫脑部创伤，并被动修复脑损伤。"
 	cost = 2
 
 /datum/heretic_knowledge/passive_upgrade/two/moon
 	research_tree_icon_state = "moon_blade"
-	desc = "Grants sleep immunity, and improves your passive brain regeneration."
+	desc = "使你免疫睡眠，并增强大脑的被动恢复。"
 	cost = 2
 
 /datum/heretic_knowledge/passive_upgrade/three/moon
 	research_tree_icon_state = "moon_blade"
-	desc = "Mind gate and Ringleader's rise will channel the moon amulet effects, further inreases brain regeneration."
+	desc = "心灵之门和头目崛起会传导月之护符的效果，并进一步增强大脑恢复。"
 	cost = 2
 
 //flesh
@@ -95,17 +95,17 @@
 
 /datum/heretic_knowledge/passive_upgrade/one/flesh
 	research_tree_icon_state = "flesh_blade"
-	desc = "Gain immunity to diseases, disgust, and space ants."
+	desc = "使你免疫疾病、恶心和太空蚂蚁。"
 	cost = 0.5
 
 /datum/heretic_knowledge/passive_upgrade/two/flesh
 	research_tree_icon_state = "flesh_blade"
-	desc = "Eating organs or meat now heals you, gain the voracious and gluttonous trait and being fat doesn't slow you down."
+	desc = "食用器官或肉类可以治疗你；获得狼吞虎咽和暴食特质，肥胖也不会降低你的速度。"
 	cost = 2
 
 /datum/heretic_knowledge/passive_upgrade/three/flesh
 	research_tree_icon_state = "flesh_blade"
-	desc = "Gain a flat 25% damage and stamina damage reduction when fat as well as baton resistance."
+	desc = "肥胖时，受到的伤害和耐力伤害固定减少25%，并获得电击棍抗性。"
 	cost = 2
 
 //lock
@@ -116,17 +116,17 @@
 
 /datum/heretic_knowledge/passive_upgrade/one/lock
 	research_tree_icon_state = "key_blade"
-	desc = "Gain shock immunity."
+	desc = "使你免疫电击。"
 	cost = 1
 
 /datum/heretic_knowledge/passive_upgrade/two/lock
 	research_tree_icon_state = "key_blade"
-	desc = "Gain x-ray vision."
+	desc = "获得透视视觉。"
 	cost = 3 // thjis is so strong
 
 /datum/heretic_knowledge/passive_upgrade/three/lock
 	research_tree_icon_state = "key_blade"
-	desc = "Grasp now has a reduced cooldown when used on a door/locker." // BUBBER EDIT CHANGE - now only reduced CD
+	desc = "对门或储物柜使用漫宿之握时，冷却时间缩短。" // BUBBER EDIT CHANGE - now only reduced CD
 	cost = 3 // this is actually pretty powerful and makes running away easy as fuck. 8 sec cooldown severely limits urself
 
 //cosmic
@@ -137,15 +137,15 @@
 
 /datum/heretic_knowledge/passive_upgrade/one/cosmic
 	research_tree_icon_state = "cosmic_blade"
-	desc = "Cosmic fields speed you up and regenerate stamina."
+	desc = "星辰领域会加快你的移动速度并恢复耐力。"
 	cost = 2
 
 /datum/heretic_knowledge/passive_upgrade/two/cosmic
 	research_tree_icon_state = "cosmic_blade"
-	desc = "Cosmic fields disrupt grenades or signalers from being activated and turn off already primed grenades."
+	desc = "星辰领域会阻止手榴弹和信号器启动，并解除已引信手榴弹的引爆状态。"
 	cost = 2
 
 /datum/heretic_knowledge/passive_upgrade/three/cosmic
 	research_tree_icon_state = "cosmic_blade"
-	desc = "Cosmic fields slow projectiles down."
+	desc = "星辰领域会减慢弹丸。"
 	cost = 2

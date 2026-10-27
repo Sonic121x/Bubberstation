@@ -1,5 +1,5 @@
-#define CHOICE_SUPERMATTER "Supermatter Crystal"
-#define CHOICE_RBMK "RB-MK2 Reactor"
+#define CHOICE_SUPERMATTER "超物质晶体"
+#define CHOICE_RBMK "RB-MK2反应堆"
 
 /obj/machinery/power/supermatter_crystal/Initialize(mapload)
 
@@ -11,9 +11,9 @@
 
 /obj/machinery/engine_choice
 
-	name = "engine choice beacon"
-	desc = "A clusterfuck of wiring and components that somehow allows you to select the desired engine you want for the shift. \
-	Selection is permanent and cannot be reversed after deployment. Can be destroyed with a mulitool, with a considerable delay."
+	name = "引擎选择信标"
+	desc = "一堆乱七八糟的线缆和零件，不知怎么就能让你为本班次选择想要的引擎。\
+	选择是永久性的，部署后无法撤销。可以用多功能工具将其销毁，但需要相当长的时间。"
 
 	icon = 'modular_zubbers/icons/obj/structures/engine_choice.dmi'
 	icon_state = "choice"
@@ -75,7 +75,7 @@
 
 	radio.talk_into(
 		src,
-		"[user] is currently removing [src]. If this is not intentional, please contact security.",
+		"[user]正在移除[src]。若此举未经授权，请联系安保部。",
 		RADIO_CHANNEL_ENGINEERING
 	)
 
@@ -90,9 +90,9 @@
 
 	var/turf/center_turf = get_turf(src)
 
-	message_admins("[user] has deleted [src][ADMIN_VERBOSEJMP(center_turf)]")
-	log_game("[user] has deleted [src] [AREACOORD(center_turf)]")
-	user.investigate_log("deleted [src] [AREACOORD(center_turf)]", INVESTIGATE_ENGINE)
+	message_admins("[user]删除了[src][ADMIN_VERBOSEJMP(center_turf)]")
+	log_game("[user]删除了[src] [AREACOORD(center_turf)]")
+	user.investigate_log("删除了[src] [AREACOORD(center_turf)]", INVESTIGATE_ENGINE)
 
 	playsound(src, SFX_SPARKS, 50, FALSE)
 
@@ -111,38 +111,38 @@
 		playsound(src, 'sound/machines/terminal_alert_short.ogg', 50, FALSE)
 		radio.talk_into(
 			src,
-			"Deployment operation canceled by [user].",
+			"[user]取消了部署操作。",
 			RADIO_CHANNEL_ENGINEERING
 		)
 		deltimer(deployment_timer_id)
 		deployment_timer_id = null
-		message_admins("[user] has canceled the engine type to be used for the shift [ADMIN_VERBOSEJMP(center_turf)]")
-		log_game("[user] has canceled the  engine type to be used for the shift [AREACOORD(center_turf)]")
-		user.investigate_log("canceled the  engine type to be used for the shift [AREACOORD(center_turf)]", INVESTIGATE_ENGINE)
+		message_admins("[user]取消了本班次的引擎部署 [ADMIN_VERBOSEJMP(center_turf)]")
+		log_game("[user]取消了本班次的引擎部署 [AREACOORD(center_turf)]")
+		user.investigate_log("取消了本班次的引擎部署 [AREACOORD(center_turf)]", INVESTIGATE_ENGINE)
 		return FALSE
 
 	playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 
 	radio.talk_into(
 		src,
-		"[user] is currently selecting the engine type to use for the shift.",
+		"[user]正在选择本班次使用的引擎类型。",
 		RADIO_CHANNEL_ENGINEERING
 	)
 
-	var/choice = tgui_input_list(user, "Which engine would you like to order?", "Select an engine!", list(CHOICE_SUPERMATTER,CHOICE_RBMK))
+	var/choice = tgui_input_list(user, "你想订购哪种引擎？", "选择引擎！", list(CHOICE_SUPERMATTER,CHOICE_RBMK))
 
 	if(!choice || !can_use(user) || deployment_timer_id)
 		return FALSE
 
 	//Deployment time!
 
-	message_admins("[user] has selected engine type \"[choice]\" to be used for the shift [ADMIN_VERBOSEJMP(center_turf)]")
-	log_game("[user] has selected engine type \"[choice]\" to be used for the shift [AREACOORD(center_turf)]")
-	user.investigate_log("selected engine type \"[choice]\" to be used for the shift [AREACOORD(center_turf)]", INVESTIGATE_ENGINE)
+	message_admins("[user]选择了本班次使用的引擎类型：\"[choice]\" [ADMIN_VERBOSEJMP(center_turf)]")
+	log_game("[user]选择了本班次使用的引擎类型：\"[choice]\" [AREACOORD(center_turf)]")
+	user.investigate_log("选择了本班次使用的引擎类型：\"[choice]\" [AREACOORD(center_turf)]", INVESTIGATE_ENGINE)
 
 	radio.talk_into(
 		src,
-		"[user] has selected option \"[choice]\" to be used for the shift! Stay clear of the deployment zone! ETA: [deployment_time/10] seconds!",
+		"[user]选择了\"[choice]\"供本班次使用！请远离部署区域！预计部署时间：[deployment_time/10]秒！",
 		RADIO_CHANNEL_ENGINEERING
 	)
 

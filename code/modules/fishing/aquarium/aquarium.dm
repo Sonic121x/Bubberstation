@@ -1,6 +1,6 @@
 /obj/structure/aquarium
-	name = "aquarium"
-	desc = "A vivarium in which aquatic fauna and flora are usually kept and displayed."
+	name = "水族箱"
+	desc = "一种通常用来饲养并展示水生动植物的生态箱。"
 	density = TRUE
 	anchored = FALSE
 
@@ -65,13 +65,13 @@
 	if(!istype(tool, /obj/item/stack/sheet/glass))
 		return
 	if(!broken)
-		balloon_alert(user, "aquarium not broken!")
+		balloon_alert(user, "水族箱没有破损！")
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/stack/sheet/glass/glass = tool
 	if(glass.get_amount() < 2)
-		balloon_alert(user, "it needs two sheets!")
+		balloon_alert(user, "需要两张玻璃板！")
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "fixing the aquarium...")
+	balloon_alert(user, "正在修复水族箱……")
 	if(!do_after(user, 2 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 	glass.use(2)
@@ -120,8 +120,8 @@
 	reagents.add_reagent(/datum/reagent/consumable/nutriment, 3)
 
 /obj/item/fish_tank
-	name = "fish tank"
-	desc = "A more portable sort of aquarium to store various fishes in, unless they're too big or there're too many of them."
+	name = "鱼缸"
+	desc = "一种更便于携带的水族箱，可存放各种鱼，前提是它们不能太大、数量也不能太多。"
 	icon = 'icons/obj/aquarium/tanks.dmi'
 	icon_state = "fish_tank_map"
 	base_icon_state = "fish_tank"
@@ -200,10 +200,10 @@
 		return
 	var/obj/item/fish/fish = item
 	if(fish.size > maximum_relative_size)
-		balloon_alert(user, "fish is too big!")
+		balloon_alert(user, "鱼太大了！")
 		return COMSIG_CANNOT_INSERT_IN_AQUARIUM
 	if(current_summed_size > max_total_size)
-		balloon_alert(user, "fish tank is full!")
+		balloon_alert(user, "鱼缸满了！")
 		return COMSIG_CANNOT_INSERT_IN_AQUARIUM
 	return COMSIG_CAN_INSERT_IN_AQUARIUM
 
@@ -253,7 +253,7 @@
 /obj/item/fish_tank/examine(mob/user)
 	. = ..()
 	if(HAS_TRAIT_FROM(src, TRAIT_STOP_FISH_REPRODUCTION_AND_GROWTH, INNATE_TRAIT))
-		. += span_warning("It's cramped in there. There's no more room for fish to reproduce and grow!")
+		. += span_warning("里面太拥挤了。已经没有空间让鱼繁殖和生长了！")
 
 ///The lawyer's own pet goldfish's fish tank. It used to be an aquarium, but now it can be held and carried around.
 /obj/item/fish_tank/lawyer

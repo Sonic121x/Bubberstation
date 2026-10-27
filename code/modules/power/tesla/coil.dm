@@ -1,6 +1,6 @@
 /obj/machinery/power/energy_accumulator/tesla_coil
-	name = "tesla coil"
-	desc = "For the union!"
+	name = "特斯拉线圈"
+	desc = "为了工会！"
 	icon = 'icons/obj/machines/engine/tesla_coil.dmi'
 	icon_state = "coil0"
 	base_icon_state = "coil"
@@ -39,7 +39,7 @@
 	if(panel_open)
 		return NONE
 	if(anchored)
-		balloon_alert(user, "unanchor first!")
+		balloon_alert(user, "请先解除固定！")
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -57,11 +57,11 @@
 /obj/machinery/power/energy_accumulator/tesla_coil/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads:<br>" + \
-		  "Power generation at <b>[input_power_multiplier*100]%</b>.<br>" + \
-			"Shock interval at <b>[zap_cooldown*0.1]</b> seconds.<br>" + \
-			"Stored <b>[display_energy(get_stored_joules())]</b>.<br>" + \
-			"Processing <b>[display_power(processed_energy)]</b>.")
+		. += span_notice("状态显示屏显示：<br>" + \
+		  "发电功率为 <b>[input_power_multiplier*100]%</b>。<br>" + \
+			"电击间隔为 <b>[zap_cooldown*0.1]</b> 秒。<br>" + \
+			"已储存 <b>[display_energy(get_stored_joules())]</b>。<br>" + \
+			"处理功率为 <b>[display_power(processed_energy)]</b>。")
 
 /obj/machinery/power/energy_accumulator/tesla_coil/set_anchored(anchorvalue)
 	. = ..()
@@ -114,8 +114,8 @@
 	zap_buckle_check(power)
 
 /obj/machinery/power/energy_accumulator/grounding_rod
-	name = "grounding rod"
-	desc = "Keeps an area from being fried by Edison's Bane."
+	name = "接地棒"
+	desc = "防止某片区域被“爱迪生克星”烤焦。"
 	icon = 'icons/obj/machines/engine/tesla_coil.dmi'
 	icon_state = "grounding_rod0"
 	base_icon_state = "grounding_rod"
@@ -135,9 +135,9 @@
 /obj/machinery/power/energy_accumulator/grounding_rod/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads:<br>" + \
-			"Recently grounded <b>[display_energy(get_stored_joules())]</b>.<br>" + \
-			"This energy would sustainably release <b>[display_power(calculate_sustainable_power(), convert = FALSE)]</b>.")
+		. += span_notice("状态显示屏显示：<br>" + \
+			"最近接地吸收 <b>[display_energy(get_stored_joules())]</b>。<br>" + \
+			"这些能量可持续释放 <b>[display_power(calculate_sustainable_power(), convert = FALSE)]</b>。")
 
 /obj/machinery/power/energy_accumulator/grounding_rod/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()

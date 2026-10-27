@@ -1,13 +1,13 @@
 /mob/living/basic/faithless
-	name = "The Faithless"
-	desc = "The Wish Granter's faith in humanity, incarnate."
+	name = "无信者"
+	desc = "许愿者对人类之信念的化身。"
 	icon_state = "faithless"
 	icon_living = "faithless"
 	icon_dead = "faithless_dead"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	gender = MALE
-	response_help_continuous = "passes through"
-	response_help_simple = "pass through"
+	response_help_continuous = "穿过"
+	response_help_simple = "穿过"
 	speed = 0.5
 	maxHealth = 80
 	health = 80
@@ -15,11 +15,11 @@
 	obj_damage = 50
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	attack_verb_continuous = "grips"
-	attack_verb_simple = "grip"
+	attack_verb_continuous = "抓握"
+	attack_verb_simple = "抓握"
 	attack_sound = 'sound/effects/hallucinations/growl1.ogg'
 	melee_attack_cooldown = 1 SECONDS
-	speak_emote = list("growls")
+	speak_emote = list("低吼")
 
 	unsuitable_atmos_damage = 0
 	unsuitable_cold_damage = 0
@@ -51,8 +51,8 @@
 	var/mob/living/living_target = target
 	if (prob(paralyze_chance))
 		living_target.Paralyze(paralyze_duration)
-		living_target.visible_message(span_danger("\The [src] knocks \the [target] down!"), \
-			span_userdanger("\The [src] knocks you down!"))
+		living_target.visible_message(span_danger("\The [src] 把 \the [target] 撞倒在地！"), \
+			span_userdanger("\The [src] 把你撞倒在地！"))
 
 /datum/ai_controller/basic_controller/faithless
 	behavior_tree_json = "code/modules/mob/living/basic/space_fauna/faithless.bt.json"

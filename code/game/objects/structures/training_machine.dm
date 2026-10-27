@@ -13,8 +13,8 @@
  * movespeed controlled by cooldown macros. Can attach obj/item/target, obj/item/training_toolbox, and can buckle mobs to this.
  */
 /obj/structure/training_machine
-	name = "AURUMILL-Brand MkII. Personnel Training Machine"
-	desc = "Used for combat training simulations. Accepts standard training targets. A pair of buckling straps are attached."
+	name = "奥鲁米尔品牌 MkII 人员训练机"
+	desc = "用于战斗训练模拟。可接受标准训练靶。附有一对固定束带。"
 	icon = 'icons/obj/machines/sec.dmi'
 	icon_state = "training_machine"
 	can_buckle = TRUE
@@ -84,7 +84,7 @@
 	if(.)
 		return
 	if (moving && obj_flags & EMAGGED)
-		visible_message(span_warning("The [src]'s control panel fizzles slightly."))
+		visible_message(span_warning("[src]的控制面板微微冒了下火花。"))
 		return
 	switch(action)
 		if("toggle")
@@ -116,11 +116,11 @@
 		return NONE
 
 	if (obj_flags & EMAGGED)
-		to_chat(user, span_warning("The toolbox is somehow stuck on! It won't budge!"))
+		to_chat(user, span_warning("工具箱不知怎么卡住了！怎么也动不了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	attach_item(tool)
-	to_chat(user, span_notice("You attach \the [attached_item] to the training device."))
+	to_chat(user, span_notice("你把[attached_item]装到了训练装置上。"))
 	playsound(src, SFX_RUSTLE, 50, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -186,9 +186,9 @@
 	if (!attached_item)
 		return NONE
 	if (obj_flags & EMAGGED)
-		to_chat(user, span_warning("The toolbox is somehow stuck on! It won't budge!"))
+		to_chat(user, span_warning("工具箱不知怎么卡住了！怎么也动不了！"))
 		return CLICK_ACTION_BLOCKING
-	to_chat(user, span_notice("You remove \the [attached_item] from the training device."))
+	to_chat(user, span_notice("你从训练装置上取下了[attached_item]。"))
 	remove_attached_item(user)
 	playsound(src, SFX_RUSTLE, 50, TRUE)
 	return CLICK_ACTION_SUCCESS
@@ -209,7 +209,7 @@
  * Arguments
  * * Message - the message the machine says when stopping
  */
-/obj/structure/training_machine/proc/stop_moving(message = "Ending training simulation.")
+/obj/structure/training_machine/proc/stop_moving(message = "结束训练模拟。")
 	moving = FALSE
 	starting_turf = null
 	say(message)
@@ -224,7 +224,7 @@
 /obj/structure/training_machine/proc/start_moving()
 	moving = TRUE
 	starting_turf = get_turf(src)
-	say("Beginning training simulation.")
+	say("开始训练模拟。")
 	playsound(src,'sound/machines/beep/triple_beep.ogg',50,FALSE)
 	START_PROCESSING(SSfastprocess, src)
 
@@ -247,7 +247,7 @@
 	if (!target_position)
 		target_position = find_target_position()
 		if (!target_position)
-			stop_moving("ERROR! Cannot calculate suitable movement path.")
+			stop_moving("错误！无法计算合适的移动路径。")
 	var/turf/nextStep = get_step_towards(src, target_position)
 	if (!Move(nextStep, get_dir(src, nextStep)))
 		target_position = null //We couldn't move towards the target turf, so find a new target turf
@@ -324,7 +324,7 @@
 	obj_flags |= EMAGGED
 	remove_attached_item(throwing = TRUE) //Toss out the old attached item!
 	attach_item(new /obj/item/storage/toolbox/syndicate(src))
-	to_chat(user, span_warning("You override the training machine's safety protocols, and activate its realistic combat feature. A toolbox pops out of a slot on the top."))
+	to_chat(user, span_warning("你覆盖了训练机的安全协议，并激活了它的真实战斗模式。一个工具箱从顶部的槽口弹出。"))
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	add_overlay("evil_trainer")
 	return TRUE
@@ -333,12 +333,12 @@
 	. = ..()
 	var/has_buckled_mob = has_buckled_mobs()
 	if(has_buckled_mob)
-		. += span_notice("<b>Alt-Click to unbuckle \the [buckled_mobs[1]]</b>")
+		. += span_notice("<b>按住 Alt 点击以解开[buckled_mobs[1]]</b>")
 	if (obj_flags & EMAGGED)
-		. += span_warning("It has a dangerous-looking toolbox attached to it, and the control panel is smoking sightly...")
+		. += span_warning("上面装着一个看起来危险的工具箱，控制面板还在微微冒烟……")
 	else if (!has_buckled_mob && attached_item) //Can't removed the syndicate toolbox!
-		. += span_notice("<b>Alt-Click to remove \the [attached_item]</b>")
-	. += span_notice("<b>Click to open control interface.</b>")
+		. += span_notice("<b>按住 Alt 点击以取下[attached_item]</b>")
+	. += span_notice("<b>点击打开控制界面。</b>")
 
 /**
  * Device that simply counts the number of times you've hit a mob or target with. Looks like a toolbox but isn't.
@@ -346,8 +346,8 @@
  * Also has a 'Lap' function for keeping track of hits made at a certain point. Also, looks kinda like his grace for laughs and pranks.
  */
 /obj/item/training_toolbox
-	name = "Training Toolbox"
-	desc = "AURUMILL-Brand Baby's First Training Toolbox. A digital display on the back keeps track of hits made by the user. Second toolbox sold separately!"
+	name = "训练工具箱"
+	desc = "奥鲁米尔品牌“宝宝的第一把训练工具箱”。背面的数字显示屏会记录使用者击中的次数。第二个工具箱需另行购买！"
 	icon = 'icons/obj/storage/toolbox.dmi'
 	icon_state = "gold"
 	inhand_icon_state = "toolbox_gold"
@@ -405,20 +405,20 @@
 		check_hit(hit_atom)
 
 /obj/item/training_toolbox/click_alt(mob/user)
-	to_chat(user, span_notice("You push the 'Lap' button on the toolbox's display."))
+	to_chat(user, span_notice("你按下了工具箱显示屏上的“计圈”按钮。"))
 	lap_hits = initial(lap_hits)
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/training_toolbox/examine(mob/user)
 	. = ..()
 	if(!in_range(src, user) && !isobserver(user))
-		. += span_notice("You can see a display on the back. You'll need to get closer to read it, though.")
+		. += span_notice("你能看到背面有个显示屏。不过要靠近一些才能看清。")
 		return
-	. += span_notice("A display on the back reads:")
-	. += span_notice("Total Hits: <b>[total_hits]</b>")
+	. += span_notice("背面的显示屏上写着：")
+	. += span_notice("总击中数：<b>[total_hits]</b>")
 	if (lap_hits != total_hits)
-		. += span_notice("Current Lap: <b>[lap_hits]</b>")
-	. += span_notice("<b>Alt-Click to 'Lap' the hit counter.</b>")
+		. += span_notice("当前计圈：<b>[lap_hits]</b>")
+	. += span_notice("<b>按住 Alt 点击以记录本圈。</b>")
 
 #undef MIN_RANGE
 #undef MIN_SPEED

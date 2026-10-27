@@ -1,6 +1,6 @@
 /datum/job/bitrunner
 	title = JOB_BITRUNNER
-	description = "Surf the virtual domain for gear and loot, decrypt your rewards on station."
+	description = "在虚拟域中冲浪，搜刮装备与战利品，回到空间站后解密你的奖励。"
 	faction = FACTION_STATION
 	total_positions = 3
 	spawn_positions = 3
@@ -27,11 +27,11 @@
 		/obj/item/food/cornchips/purple = 1,
 		/obj/item/food/cornchips/blue = 1,
 	)
-	rpg_title = "Recluse"
+	rpg_title = "隐士"
 	job_flags = STATION_JOB_FLAGS
 
 /datum/outfit/job/bitrunner
-	name = "Bitrunner"
+	name = "比特潜行者"
 	jobtype = /datum/job/bitrunner
 
 	id_trim = /datum/id_trim/job/bitrunner
@@ -40,4 +40,4 @@
 	ears = /obj/item/radio/headset/headset_cargo
 
 /datum/job/bit_avatar
-	title = "Bit Avatar"
+	title = "比特化身"

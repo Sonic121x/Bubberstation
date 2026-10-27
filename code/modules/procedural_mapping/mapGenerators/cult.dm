@@ -8,9 +8,9 @@
 	modules = list(/datum/map_generator_module/bottom_layer/cult_floor, \
 		/datum/map_generator_module/border/cult_walls, \
 		/datum/map_generator_module/bottom_layer/repressurize)
-	buildmode_name = "Pattern: Cult Room"
+	buildmode_name = "图案：血教房间"
 
 /datum/map_generator/cult/floor //floors only
 	modules = list(/datum/map_generator_module/bottom_layer/cult_floor, \
 		/datum/map_generator_module/bottom_layer/repressurize)
-	buildmode_name = "Block: Cult Floor"
+	buildmode_name = "区块：血教地板"

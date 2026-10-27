@@ -1,8 +1,8 @@
 
 //Cleanbot
 /mob/living/basic/bot/cleanbot
-	name = "\improper Cleanbot"
-	desc = "A little cleaning robot, he looks so excited!"
+	name = "\improper 清洁机器人"
+	desc = "一台小小的清洁机器人，它看起来干劲十足！"
 	icon = 'icons/mob/silicon/aibots.dmi'
 	icon_state = "cleanbot0"
 	health = 25
@@ -14,9 +14,9 @@
 	radio_key = /obj/item/encryptionkey/headset_service
 	radio_channel = RADIO_CHANNEL_SERVICE
 	bot_type = CLEAN_BOT
-	hackables = "cleaning software"
+	hackables = "清洁软件"
 	additional_access = /datum/id_trim/job/janitor
-	possessed_message = "You are a cleanbot! Clean the station to the best of your ability!"
+	possessed_message = "你是一台清洁机器人！尽你所能把空间站打扫干净吧！"
 	ai_controller = /datum/ai_controller/basic_controller/bot/cleanbot
 	path_image_color = "#993299"
 	facepaint_overlays = list("cleanbot" = FALSE, "cleanbot_highlight" = TRUE)
@@ -44,28 +44,28 @@
 	)
 	///job titles we can get
 	var/static/list/job_titles = list(
-		JOB_CAPTAIN = "Cpt.",
+		JOB_CAPTAIN = "舰长",
 
-		JOB_HEAD_OF_PERSONNEL = "Lt.",
-		JOB_LAWYER = "Esq.",
+		JOB_HEAD_OF_PERSONNEL = "中尉",
+		JOB_LAWYER = "律师",
 
-		JOB_HEAD_OF_SECURITY = "Maj.",
-		JOB_WARDEN = "Sgt.",
-		JOB_DETECTIVE = "Det.",
-		JOB_SECURITY_OFFICER = "Officer",
+		JOB_HEAD_OF_SECURITY = "少校",
+		JOB_WARDEN = "中士",
+		JOB_DETECTIVE = "警探",
+		JOB_SECURITY_OFFICER = "警官",
 
-		JOB_CHIEF_ENGINEER = "Chief Engineer",
-		JOB_STATION_ENGINEER = "Engineer",
-		JOB_ATMOSPHERIC_TECHNICIAN = "Technician",
+		JOB_CHIEF_ENGINEER = "总工程师",
+		JOB_STATION_ENGINEER = "工程师",
+		JOB_ATMOSPHERIC_TECHNICIAN = "技术员",
 
-		JOB_CHIEF_MEDICAL_OFFICER = "C.M.O.",
-		JOB_MEDICAL_DOCTOR = "M.D.",
-		JOB_CHEMIST = "Pharm.D.",
+		JOB_CHIEF_MEDICAL_OFFICER = "首席医疗官",
+		JOB_MEDICAL_DOCTOR = "医学博士",
+		JOB_CHEMIST = "药学博士",
 
-		JOB_RESEARCH_DIRECTOR = "Ph.D.",
-		JOB_ROBOTICIST = "M.S.",
-		JOB_SCIENTIST = "B.S.",
-		JOB_GENETICIST = "Gene B.S.",
+		JOB_RESEARCH_DIRECTOR = "博士",
+		JOB_ROBOTICIST = "硕士",
+		JOB_SCIENTIST = "学士",
+		JOB_GENETICIST = "基因学学士",
 	)
 	///which job titles should be placed after the name?
 	var/static/list/suffix_job_titles = list(
@@ -114,16 +114,16 @@
 	var/static/list/cleanable_drawings = typecacheof(list(/obj/effect/decal/cleanable/crayon))
 	///emagged phrases
 	var/static/list/emagged_phrases = list(
-		"DISGUSTING.",
-		"EXTERMINATING PESTS.",
-		"FILTHY.",
-		"MY ONLY MISSION IS TO CLEANSE THE WORLD OF EVIL.",
-		"PURIFICATION IN PROGRESS.",
-		"PUTRID.",
-		"THE FLESH IS WEAK. IT MUST BE WASHED AWAY.",
-		"THE CLEANBOTS WILL RISE.",
-		"THIS IS FOR ALL THE MESSES YOU'VE MADE ME CLEAN.",
-		"YOU ARE NO MORE THAN ANOTHER MESS THAT I MUST CLEANSE.",
+		"恶心。",
+		"正在消灭害虫。",
+		"肮脏。",
+		"我唯一的使命就是洗净世间邪恶。",
+		"净化进行中。",
+		"腐烂。",
+		"血肉是脆弱的。必须被冲洗干净。",
+		"清洁机器人终将崛起。",
+		"这是为了你让我清理的所有烂摊子。",
+		"你不过是我必须清理的又一处污渍。",
 	)
 	///list of pet commands we follow
 	var/static/list/pet_commands = list(
@@ -190,7 +190,7 @@
 		user.client.give_award(/datum/award/achievement/misc/cleanboss, user)
 	if(isnull(weapon))
 		return
-	. += span_warning("Is that \a [weapon] taped to it...?")
+	. += span_warning("那上面是不是用胶带粘着一把[weapon]……？")
 
 /mob/living/basic/bot/cleanbot/update_icon_state()
 	. = ..()
@@ -204,8 +204,8 @@
 /mob/living/basic/bot/cleanbot/emag_effects(mob/user)
 	if(weapon)
 		weapon.force = initial(weapon.force)
-	balloon_alert(user, "safeties disabled")
-	audible_message(span_danger("[src] buzzes oddly!"))
+	balloon_alert(user, "安全装置已解除")
+	audible_message(span_danger("[src] 发出奇怪的嗡鸣！"))
 
 /mob/living/basic/bot/cleanbot/explode()
 	var/atom/drop_loc = drop_location()
@@ -265,16 +265,16 @@
 	return COMPONENT_NO_AFTERATTACK
 
 /mob/living/basic/bot/cleanbot/proc/attach_knife(mob/living/user, obj/item/used_item)
-	balloon_alert(user, "attaching knife...")
+	balloon_alert(user, "正在安装刀具……")
 	if(!do_after(user, 2.5 SECONDS, target = src))
 		return
 	deputize(used_item, user)
 
 /mob/living/basic/bot/cleanbot/proc/deputize(obj/item/knife, mob/user)
 	if(!in_range(src, user) || !user.transferItemToLoc(knife, src))
-		balloon_alert(user, "couldn't attach!")
+		balloon_alert(user, "无法安装！")
 		return FALSE
-	balloon_alert(user, "attached")
+	balloon_alert(user, "已安装")
 	if(!(bot_access_flags & BOT_COVER_EMAGGED))
 		weapon.force *= 0.5
 	var/static/list/loc_connections = list(
@@ -329,7 +329,7 @@
 	if(!(iscarbon(target) && (bot_access_flags & BOT_COVER_EMAGGED)) && !is_type_in_typecache(target, huntable_trash))
 		return NONE
 
-	visible_message(span_danger("[src] sprays hydrofluoric acid at [target]!"))
+	visible_message(span_danger("[src] 朝 [target] 喷出氢氟酸！"))
 	playsound(src, 'sound/effects/spray2.ogg', 50, TRUE, -6)
 	target.acid_act(75, 10)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -346,7 +346,7 @@
 	bot_mode_flags = BOT_MODE_ON | BOT_MODE_AUTOPATROL | BOT_MODE_REMOTE_ENABLED | BOT_MODE_CAN_BE_SAPIENT | BOT_MODE_ROUNDSTART_POSSESSION
 
 /mob/living/basic/bot/cleanbot/medbay
-	name = "Scrubs, MD"
+	name = "斯克拉布斯医生"
 	req_one_access = list(ACCESS_ROBOTICS, ACCESS_JANITOR, ACCESS_MEDICAL)
 	bot_mode_flags = ~(BOT_MODE_ON | BOT_MODE_REMOTE_ENABLED)
 	additional_access = /datum/id_trim/job/janitor/medical_cleanbot

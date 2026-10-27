@@ -5,8 +5,8 @@
  * Power cells, used primarily for handheld and portable things. Holds a reasonable amount of power.
  */
 /obj/item/stock_parts/power_store/cell
-	name = "power cell"
-	desc = "A rechargeable electrochemical power cell."
+	name = "电池"
+	desc = "可充电的电化学电池。"
 	icon = 'icons/obj/machines/cell_charger.dmi'
 	icon_state = "cell"
 	inhand_icon_state = "cell"
@@ -38,8 +38,8 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/cell/crap
-	name = "\improper Nanotrasen brand rechargeable AA cell"
-	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
+	name = "\improper 纳米传讯牌可充 AA 电池"
+	desc = "等离子顶盖，无人能及。" //TOTALLY TRADEMARK INFRINGEMENT
 	icon_state = "aa_cell"
 	maxcharge = STANDARD_CELL_CHARGE * 0.5
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT*0.4)
@@ -52,8 +52,8 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/cell/upgraded
-	name = "upgraded power cell"
-	desc = "A power cell with a slightly higher capacity than normal!"
+	name = "升级版电池"
+	desc = "容量比普通电池略高的电池！"
 	icon_state = "9v_cell"
 	maxcharge = STANDARD_CELL_CHARGE * 2.5
 
@@ -67,12 +67,12 @@
 */// BUBBER EDIT REMOVAL END
 
 /obj/item/stock_parts/power_store/cell/upgraded/plus
-	name = "upgraded power cell+"
-	desc = "A power cell with an even higher capacity than the base model!"
+	name = "升级版电池+"
+	desc = "容量比基础型号更高的电池！"
 	maxcharge = STANDARD_CELL_CHARGE * 5
 
 /obj/item/stock_parts/power_store/cell/secborg
-	name = "security borg rechargeable D cell"
+	name = "安保半机械人可充 D 型电池"
 	maxcharge = STANDARD_CELL_CHARGE * 0.6
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT*0.4)
 
@@ -80,33 +80,33 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/cell/mini_egun
-	name = "miniature energy gun power cell"
+	name = "微型能量枪电池"
 	maxcharge = STANDARD_CELL_CHARGE * 0.6
 
 /obj/item/stock_parts/power_store/cell/hos_gun
-	name = "X-01 multiphase energy gun power cell"
+	name = "X-01 多相能量枪电池"
 	maxcharge = STANDARD_CELL_CHARGE * 1.2
 
 /obj/item/stock_parts/power_store/cell/pulse //200 pulse shots
-	name = "pulse rifle power cell"
+	name = "脉冲步枪电池"
 	emp_damage_modifier = 0.5
 	maxcharge = STANDARD_CELL_CHARGE * 40
 	chargerate = STANDARD_CELL_RATE * 0.75
 
 /obj/item/stock_parts/power_store/cell/pulse/carbine //25 pulse shots
-	name = "pulse carbine power cell"
+	name = "脉冲卡宾枪电池"
 	maxcharge = STANDARD_CELL_CHARGE * 5
 
 /obj/item/stock_parts/power_store/cell/pulse/pistol //10 pulse shots
-	name = "pulse pistol power cell"
+	name = "脉冲手枪电池"
 	maxcharge = STANDARD_CELL_CHARGE * 2
 
 /obj/item/stock_parts/power_store/cell/laser_pistol
-	name = "laser pistol power cell"
+	name = "激光手枪电池"
 	chargerate = STANDARD_CELL_RATE * 0.15
 
 /obj/item/stock_parts/power_store/cell/ninja
-	name = "black power cell"
+	name = "黑色电池"
 	icon_state = "bscell"
 	emp_damage_modifier = 3
 	maxcharge = STANDARD_CELL_CHARGE * 10
@@ -114,7 +114,7 @@
 	chargerate = STANDARD_CELL_RATE
 
 /obj/item/stock_parts/power_store/cell/high
-	name = "high-capacity power cell"
+	name = "高容量电池"
 	icon_state = "hcell"
 	emp_damage_modifier = 3
 	maxcharge = STANDARD_CELL_CHARGE * 10
@@ -126,7 +126,7 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/cell/super
-	name = "super-capacity power cell"
+	name = "超大容量电池"
 	icon_state = "scell"
 	emp_damage_modifier = 5
 	maxcharge = STANDARD_CELL_CHARGE * 20
@@ -137,7 +137,7 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/cell/hyper
-	name = "hyper-capacity power cell"
+	name = "超高容量电池"
 	icon_state = "hpcell"
 	emp_damage_modifier = 5
 	maxcharge = STANDARD_CELL_CHARGE * 30
@@ -148,8 +148,8 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/cell/bluespace
-	name = "bluespace power cell"
-	desc = "A rechargeable transdimensional power cell."
+	name = "蓝空间电池"
+	desc = "可充电的跨次元电池。"
 	icon_state = "bscell"
 	emp_damage_modifier = 5
 	maxcharge = STANDARD_CELL_CHARGE * 40
@@ -167,7 +167,7 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/cell/infinite
-	name = "infinite-capacity power cell"
+	name = "无限容量电池"
 	icon_state = "icell"
 	emp_damage_modifier = 0
 	maxcharge = INFINITY //little disappointing if you examine it and it's not huge
@@ -179,8 +179,8 @@
 	return used
 
 /obj/item/stock_parts/power_store/cell/infinite/abductor
-	name = "void core"
-	desc = "An alien power cell that produces energy seemingly out of nowhere."
+	name = "虚空核心"
+	desc = "一种似乎能凭空产生能量的外星电池。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "cell"
 	maxcharge = STANDARD_CELL_CHARGE * 50
@@ -191,8 +191,8 @@
 	return ..()
 
 /obj/item/stock_parts/power_store/cell/potato
-	name = "potato battery"
-	desc = "A rechargeable starch based power cell."
+	name = "土豆电池"
+	desc = "可充电的淀粉基电池。"
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "potato"
 	maxcharge = STANDARD_CELL_CHARGE * 0.3
@@ -208,8 +208,8 @@
 	. = ..()
 
 /obj/item/stock_parts/power_store/cell/emproof
-	name = "\improper EMP-proof cell"
-	desc = "An EMP-proof cell."
+	name = "\improper 防电磁脉冲电池"
+	desc = "一块防电磁脉冲的电池。"
 	emp_damage_modifier = 0
 	maxcharge = STANDARD_CELL_CHARGE * 0.5
 
@@ -224,8 +224,8 @@
 	return
 
 /obj/item/stock_parts/power_store/cell/emproof/slime
-	name = "EMP-proof slime core"
-	desc = "A yellow slime core infused with plasma. Its organic nature makes it immune to EMPs."
+	name = "防电磁脉冲史莱姆核心"
+	desc = "注入等离子体的黄色史莱姆核心。其有机特质使它不受电磁脉冲影响。"
 	icon = 'icons/mob/simple/slimes.dmi'
 	icon_state = "yellow-core"
 	custom_materials = null
@@ -234,8 +234,8 @@
 	connector_type = "slimecore"
 
 /obj/item/stock_parts/power_store/cell/emergency_light
-	name = "miniature power cell"
-	desc = "A tiny power cell with a very low power capacity. Used in light fixtures to power them in the event of an outage."
+	name = "微型电池"
+	desc = "一块容量极小的微型电池。装在灯具中，在停电时为其供电。"
 	maxcharge = STANDARD_CELL_CHARGE * 0.12 //Emergency lights use 0.2 W per tick, meaning ~10 minutes of emergency power from a cell
 	custom_materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT*0.2)
 	w_class = WEIGHT_CLASS_TINY
@@ -248,8 +248,8 @@
 			charge = 0 //For naturally depowered areas, we start with no power
 
 /obj/item/stock_parts/power_store/cell/crystal_cell
-	name = "crystal power cell"
-	desc = "A very high power cell made from crystallized plasma"
+	name = "水晶电池"
+	desc = "由结晶等离子体制成的高功率电池"
 	icon_state = "crystal_cell"
 	maxcharge = STANDARD_CELL_CHARGE * 50
 	chargerate = 0
@@ -261,8 +261,8 @@
 	return null
 
 /obj/item/stock_parts/power_store/cell/ethereal
-	name = "ahelp it"
-	desc = "you sohuldn't see this"
+	name = "请上报管理员"
+	desc = "你不应该看到这个"
 	maxcharge = ETHEREAL_CHARGE_DANGEROUS
 	charge = ETHEREAL_CHARGE_FULL
 	icon_state = null

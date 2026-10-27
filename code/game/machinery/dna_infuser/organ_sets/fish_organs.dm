@@ -10,9 +10,9 @@
 	id = "organ_set_bonus_fish"
 	tick_interval = 1 SECONDS
 	organs_needed = 3
-	bonus_activate_text = span_notice("Fish DNA is deeply infused with you! While wet, you crawl faster, are slippery, cannot slip, and it takes longer to dry out. \
-		You're also resistant to high pressure, better at fishing, but less resilient when dry, especially against burns.")
-	bonus_deactivate_text = span_notice("You no longer feel as fishy. The moisture around your body begins to dissipate faster...")
+	bonus_activate_text = span_notice("鱼类的 DNA 已与你深度融合！身体湿润时，你爬行得更快，浑身湿滑，不会滑倒，而且更难干燥。\
+		你还能够抵抗高压，更擅长钓鱼，但干燥时更为脆弱，尤其容易受到烧伤。")
+	bonus_deactivate_text = span_notice("你感觉自己没那么像鱼了。身体周围的水分开始更快地散去……")
 	bonus_traits = list(
 		TRAIT_RESISTHIGHPRESSURE,
 		TRAIT_EXPERT_FISHER,
@@ -210,8 +210,8 @@
 
 ///Tail for fish DNA-infused spacemen. It provides a speed buff while in water. It's also needed for the crawl speed bonus once the threshold is reached.
 /obj/item/organ/tail/fish
-	name = "fish tail"
-	desc = "A severed tail from some sort of marine creature... or a fish-infused spaceman. It's smooth, faintly wet and definitely not flopping."
+	name = "鱼尾"
+	desc = "从某种海洋生物……或融合了鱼类 DNA 的太空人身上切下的尾巴。光滑、微湿，而且绝对没有在扑腾。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/organ/tail/fish"
 	post_init_icon_state = "fish_tail"
@@ -233,7 +233,7 @@
 	// Seafood instead of meat, because it's a fish organ
 	foodtype_flags = RAW | SEAFOOD | GORE
 	// Also just tastes like fish
-	food_tastes = list("fatty fish" = 1)
+	food_tastes = list("肥鱼" = 1)
 	/// The fillet type this fish tail is processable into
 	var/fillet_type = /obj/item/food/fishmeat/fish_tail
 	/// The amount of fillets this gets processed into
@@ -243,7 +243,7 @@
 	. = ..()
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/fish)
 	var/time_to_fillet = fillet_amount * 0.5 SECONDS
-	AddElement(/datum/element/processable, TOOL_KNIFE, fillet_type, fillet_amount, time_to_fillet, screentip_verb = "Cut")
+	AddElement(/datum/element/processable, TOOL_KNIFE, fillet_type, fillet_amount, time_to_fillet, screentip_verb = "切割")
 
 /obj/item/organ/tail/fish/on_mob_insert(mob/living/carbon/owner)
 	. = ..()
@@ -303,15 +303,15 @@
 
 ///Lungs that replace the need of oxygen with water vapor or being wet
 /obj/item/organ/lungs/fish
-	name = "mutated gills"
-	desc = "Fish DNA infused on what once was a normal pair of lungs that now require spacemen to breathe water vapor, or keep themselves covered in water."
+	name = "突变鱼鳃"
+	desc = "一对原本正常的肺，融合了鱼类 DNA，如今需要太空人呼吸水蒸气，或保持全身浸水。"
 	icon = 'icons/obj/medical/organs/infuser_organs.dmi'
 	icon_state = "gills"
-	breath_noise = "the dribbling of water"
+	breath_noise = "滴水声"
 	organ_traits = list(TRAIT_NODROWN)
 	// Seafood instead of meat, because it's a fish organ. Additionally gross for being gills
 	foodtype_flags = RAW | SEAFOOD | GORE | GROSS
-	food_tastes = list("gross fish" = 1)
+	food_tastes = list("恶心的鱼" = 1)
 	safe_oxygen_min = 0 //We don't breathe this
 	///The required partial pressure of water_vapor for not suffocating.
 	var/safe_water_level = parent_type::safe_oxygen_min
@@ -327,7 +327,7 @@
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/fish)
 	if(has_gills)
 		gills = new()
-		AddElement(/datum/element/noticable_organ, "%PRONOUN_Theyve a set of gills on %PRONOUN_their neck.", BODY_ZONE_PRECISE_MOUTH)
+		AddElement(/datum/element/noticable_organ, "颈部长着一对鳃。", BODY_ZONE_PRECISE_MOUTH)
 	AddComponent(/datum/component/bubble_icon_override, "fish", BUBBLE_ICON_PRIORITY_ORGAN)
 	AddComponent(/datum/component/speechmod, replacements = strings("crustacean_replacement.json", "crustacean"))
 
@@ -389,8 +389,8 @@
 
 /// Subtype of gills that allow the mob to optionally breathe water.
 /obj/item/organ/lungs/fish/amphibious
-	name = "mutated semi-aquatic lungs"
-	desc = "DNA from an amphibious or semi-aquatic creature infused on a pair lungs. Enjoy breathing underwater without drowning outside water."
+	name = "突变半水生肺"
+	desc = "一对融合了两栖或半水生生物 DNA 的肺。尽情在水下呼吸，离开水也不会窒息。"
 	safe_oxygen_min = /obj/item/organ/lungs::safe_oxygen_min
 	has_gills = FALSE
 	/**
@@ -427,8 +427,8 @@
 
 ///Fish infuser organ, allows mobs to safely eat raw fish.
 /obj/item/organ/stomach/fish
-	name = "mutated fish-stomach"
-	desc = "Fish DNA infused into a stomach now permeated by the faint smell of salt and slightly putrefied fish."
+	name = "突变鱼胃"
+	desc = "融合了鱼类 DNA 的胃，弥漫着淡淡的盐味和略微腐败的鱼腥味。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/organ/stomach/fish"
 	post_init_icon_state = "stomach"
@@ -442,8 +442,8 @@
 	foodtype_flags = RAW | SEAFOOD | GORE
 	// Salty and putrid like it smells, yum
 	food_tastes = list(
-		"salt" = 1,
-		"putrid fish" = 1,
+		"盐" = 1,
+		"腐鱼" = 1,
 	)
 
 /obj/item/organ/stomach/fish/Initialize(mapload)
@@ -453,8 +453,8 @@
 
 ///Organ from fish with the ink production trait. Doesn't count toward the organ set bonus but is buffed once it's active.
 /obj/item/organ/tongue/inky
-	name = "ink-secreting tongue"
-	desc = "A black tongue linked to two swollen black sacs underneath the palate."
+	name = "分泌墨汁的舌头"
+	desc = "一条黑色舌头，连接着上腭下方两个鼓胀的黑色囊袋。"
 	icon = 'icons/obj/medical/organs/infuser_organs.dmi'
 	icon_state = "inky_tongue"
 	actions_types = list(/datum/action/cooldown/ink_spit)
@@ -494,13 +494,13 @@
 	foodtype_flags = RAW | SEAFOOD | GORE
 	// Squid with a hint of the sea (from the ink)
 	food_tastes = list(
-		"squid" = 1,
-		"the sea" = 0.2,
+		"鱿鱼" = 1,
+		"大海" = 0.2,
 	)
 
 /obj/item/organ/tongue/inky/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "Slick black ink seldom rivulets from %PRONOUN_their mouth.", BODY_ZONE_PRECISE_MOUTH)
+	AddElement(/datum/element/noticable_organ, "嘴角偶尔淌下黏滑的黑色墨汁。", BODY_ZONE_PRECISE_MOUTH)
 
 /obj/item/organ/tongue/inky/get_possible_languages()
 	. = ..()
@@ -508,8 +508,8 @@
 
 ///Organ from fish with the toxic trait. Allows the user to use tetrodotoxin as a healing chem instead of a toxin.
 /obj/item/organ/liver/fish
-	name = "mutated fish-liver"
-	desc = "Fish DNA infused into a stomach that now uses tetrodotoxin as regenerative material. It also processes alcohol quite well."
+	name = "突变鱼肝"
+	desc = "融合了鱼类 DNA 的肝脏，如今能够利用河豚毒素再生，对酒精的代谢能力也相当不错。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/organ/liver/fish"
 	post_init_icon_state = "liver"
@@ -523,7 +523,7 @@
 	// Seafood instead of meat, because it's a fish organ
 	foodtype_flags = RAW | SEAFOOD | GORE
 	// Just fish, the toxin isn't obvious
-	food_tastes = list("fish" = 1)
+	food_tastes = list("鱼" = 1)
 
 /obj/item/organ/liver/fish/Initialize(mapload)
 	. = ..()

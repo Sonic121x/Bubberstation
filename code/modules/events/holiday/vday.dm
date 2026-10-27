@@ -6,15 +6,15 @@
 // valentine / candy heart distribution //
 
 /datum/round_event_control/valentines
-	name = "Valentines!"
+	name = "情人节！"
 	holidayID = VALENTINES
 	typepath = /datum/round_event/valentines
 	weight = -1 //forces it to be called, regardless of weight
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
 	category = EVENT_CATEGORY_HOLIDAY
-	description = "Puts people on dates! They must protect each other. \
-		Some dates will have third wheels, and any odd ones out will be given the role of 'heartbreaker'."
+	description = "让人们成双成对去约会！他们必须保护彼此。 \
+		有些约会还会有电灯泡加入，而落单的人会被赋予‘心碎者’的角色。"
 	/// If TRUE, any odd candidate out will be given the role of "heartbreaker" and will be tasked with ruining the dates.
 	var/heartbreaker = TRUE
 	/// Probability that any given pair will be given a third wheel candidate
@@ -72,18 +72,18 @@
 		candidates += player
 
 	var/list/mob/living/candidates_pruned = SSpolling.poll_candidates(
-		question = "Do you want a Valentine?",
+		question = "你想要一个情人节对象吗？",
 		group = candidates,
 		poll_time = 30 SECONDS,
 		flash_window = FALSE,
 		start_signed_up = TRUE,
 		alert_pic = /obj/item/storage/fancy/heart_box,
 		custom_response_messages = list(
-			POLL_RESPONSE_SIGNUP = "You have signed up for a date!",
-			POLL_RESPONSE_ALREADY_SIGNED = "You are already signed up for a date.",
-			POLL_RESPONSE_NOT_SIGNED = "You aren't signed up for a date.",
-			POLL_RESPONSE_TOO_LATE_TO_UNREGISTER = "It's too late to decide against going on a date.",
-			POLL_RESPONSE_UNREGISTERED = "You decide against going on a date.",
+			POLL_RESPONSE_SIGNUP = "你已报名参加约会！",
+			POLL_RESPONSE_ALREADY_SIGNED = "你已经报名参加约会了。",
+			POLL_RESPONSE_NOT_SIGNED = "你尚未报名参加约会。",
+			POLL_RESPONSE_TOO_LATE_TO_UNREGISTER = "现在反悔不去约会已经太迟了。",
+			POLL_RESPONSE_UNREGISTERED = "你决定不去约会了。",
 		),
 		chat_text_border_icon = /obj/item/storage/fancy/heart_box,
 	)
@@ -96,7 +96,7 @@
 	if(length(candidates_pruned) == 0)
 		return
 	if(length(candidates_pruned) == 1)
-		to_chat(candidates_pruned[1], span_warning("You are the only one who wanted a Valentine..."))
+		to_chat(candidates_pruned[1], span_warning("你是唯一想要情人节对象的人……"))
 		return
 
 	while(length(candidates_pruned) >= 2)
@@ -120,24 +120,24 @@
 		candidates_pruned[1].mind.add_antag_datum(/datum/antagonist/heartbreaker)
 
 /datum/round_event/valentines/announce(fake)
-	priority_announce("It's Valentine's Day! Give a valentine to that special someone!")
+	priority_announce("今天是情人节！快把情人节礼物送给那位特别的人吧！")
 
 /obj/item/paper/valentine
-	name = "valentine"
-	desc = "A Valentine's card! Wonder what it says..."
+	name = "情人节贺卡"
+	desc = "一张情人节贺卡！不知道上面写了什么……"
 	icon = 'icons/obj/toys/playing_cards.dmi'
 	icon_state = "sc_Ace of Hearts_syndicate" // shut up // bye felicia
 	show_written_words = FALSE
 
 /obj/item/paper/valentine/Initialize(mapload)
-	default_raw_text = pick_list(VALENTINE_FILE, "valentines") || "A generic message of love or whatever."
+	default_raw_text = pick_list(VALENTINE_FILE, "valentines") || "一段泛泛的爱意留言之类的东西。"
 	return ..()
 
 /obj/item/food/candyheart
-	name = "candy heart"
+	name = "心形糖果"
 	icon = 'icons/obj/holiday/holiday_misc.dmi'
 	icon_state = "candyheart"
-	desc = "A heart-shaped candy that reads: "
+	desc = "一颗心形糖果，上面写着： "
 	food_reagents = list(/datum/reagent/consumable/sugar = 2)
 	junkiness = 5
 

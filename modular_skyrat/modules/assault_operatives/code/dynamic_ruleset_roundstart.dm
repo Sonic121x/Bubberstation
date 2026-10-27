@@ -3,7 +3,7 @@
 */
 
 /datum/dynamic_ruleset/roundstart/assault_operatives
-	name = "Assault Operatives"
+	name = "突击特工"
 	config_tag = "Roundstart Assault Operatives"
 	pref_flag = ROLE_ASSAULT_OPERATIVE
 	preview_antag_datum = /datum/antagonist/assault_operative

@@ -1,18 +1,18 @@
 // Machine categories
 
-#define FABRICATOR_CATEGORY_APPLIANCES "/Appliances"
-#define FABRICATOR_SUBCATEGORY_POWER "/Power"
-#define FABRICATOR_SUBCATEGORY_ATMOS "/Atmospherics"
-#define FABRICATOR_SUBCATEGORY_FLUIDS "/Liquids"
-#define FABRICATOR_SUBCATEGORY_MATERIALS "/Materials"
-#define FABRICATOR_SUBCATEGORY_SUSTENANCE "/Sustenance"
+#define FABRICATOR_CATEGORY_APPLIANCES "/设备"
+#define FABRICATOR_SUBCATEGORY_POWER "/电力"
+#define FABRICATOR_SUBCATEGORY_ATMOS "/大气"
+#define FABRICATOR_SUBCATEGORY_FLUIDS "/液体"
+#define FABRICATOR_SUBCATEGORY_MATERIALS "/材料"
+#define FABRICATOR_SUBCATEGORY_SUSTENANCE "/食物"
 
 // Techweb node that shouldnt show up anywhere ever specifically for the fabricator to work with
 
 /datum/techweb_node/colony_fabricator_appliances
 	id = TECHWEB_NODE_COLONY_APPLIANCES
-	display_name = "Colony Fabricator Appliance Designs"
-	description = "Contains all of the colony fabricator's appliance machine designs."
+	display_name = "殖民地制造机设备设计"
+	description = "包含殖民地制造机的所有设备机器设计。"
 	design_ids = list(
 		"wall_multi_cell_rack",
 		"portable_lil_pump",
@@ -37,7 +37,7 @@
 // Wall mountable multi cell charger
 
 /datum/design/wall_mounted_multi_charger
-	name = "Mounted Multi-Cell Charging Rack"
+	name = "壁挂式多电池充电架"
 	id = "wall_multi_cell_rack"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -54,7 +54,7 @@
 // Portable scrubber and pumps for all your construction atmospherics needs
 
 /datum/design/portable_gas_pump
-	name = "Portable Air Pump"
+	name = "便携式空气泵"
 	id = "portable_lil_pump"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -70,7 +70,7 @@
 	construction_time = 30 SECONDS
 
 /datum/design/portable_gas_scrubber
-	name = "Portable Air Scrubber"
+	name = "便携式空气洗涤器"
 	id = "portable_scrubbs"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -88,7 +88,7 @@
 /// Space heater, but it mounts on walls
 
 /datum/design/wall_mounted_space_heater
-	name = "Mounted Heater"
+	name = "壁挂式加热器"
 	id = "wall_heater"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -106,7 +106,7 @@
 // Plumbable chem machine that makes nothing but water
 
 /datum/design/water_synthesizer
-	name = "Water Synthesizer"
+	name = "水合成器"
 	id = "water_synth"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -123,7 +123,7 @@
 // Plumbable chem machine that makes nothing but water
 
 /datum/design/hydro_synthesizer
-	name = "Hydroponics Chemical Synthesizer"
+	name = "水培化学品合成器"
 	id = "hydro_synth"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -140,7 +140,7 @@
 // Chem dispenser that dispenses various flavored beverages and nutrislop, yum!
 
 /datum/design/frontier_sustenance_dispenser
-	name = "Sustenance Dispenser"
+	name = "饮食分配器"
 	id = "frontier_sustenance_dispenser"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -158,7 +158,7 @@
 // CO2 cracker, portable machines that takes CO2 and turns it into oxygen
 
 /datum/design/co2_cracker
-	name = "Portable Carbon Dioxide Cracker"
+	name = "便携式 CO2 裂解机"
 	id = "co2_cracker"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -176,7 +176,7 @@
 // A portable recycling machine, use item with materials on it to recycle
 
 /datum/design/portable_recycler
-	name = "Portable Recycler"
+	name = "便携式回收机"
 	id = "portable_recycler"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -194,7 +194,7 @@
 // Rations printer, turns biomass into seeds, some synthesized foods, ingredients, so on
 
 /datum/design/foodricator
-	name = "Organic Rations Printer"
+	name = "有机口粮打印机"
 	id = "foodricator"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -213,7 +213,7 @@
 // Really, its just a microwave
 
 /datum/design/macrowave
-	name = "Microwave Oven"
+	name = "微波炉"
 	id = "macrowave"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -231,7 +231,7 @@
 // A range, but it looks cool af
 
 /datum/design/frontier_range
-	name = "Frontier Range"
+	name = "边疆一体炉灶"
 	id = "frontier_range"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -249,7 +249,7 @@
 // Griddles that fit on top of any regular table
 
 /datum/design/tabletop_griddle
-	name = "Tabletop Griddle"
+	name = "桌面铁板烤盘"
 	id = "tabletop_griddle"
 	build_type = COLONY_FABRICATOR
 	materials = list(

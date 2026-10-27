@@ -29,7 +29,7 @@
 /datum/chemical_reaction/medicine/oculine
 	results = list(/datum/reagent/medicine/oculine = 3)
 	required_reagents = list(/datum/reagent/medicine/c2/multiver = 1, /datum/reagent/carbon = 1, /datum/reagent/hydrogen = 1)
-	mix_message = "The mixture bubbles noticeably and becomes a dark grey color!"
+	mix_message = "混合物明显冒泡，变成了深灰色！"
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_HEALING | REACTION_TAG_ORGAN
 	//Fermichem vars
 	required_temp = 200
@@ -57,7 +57,7 @@
 /datum/chemical_reaction/medicine/inacusiate
 	results = list(/datum/reagent/medicine/inacusiate = 2)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/carbon = 1, /datum/reagent/medicine/c2/multiver = 1)
-	mix_message = "The mixture sputters loudly and becomes a light grey color!"
+	mix_message = "混合物噼啪作响，变成了浅灰色！"
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_HEALING | REACTION_TAG_ORGAN
 	//Fermichem vars
 	required_temp = 300
@@ -75,12 +75,12 @@
 
 ///Calls it over and over
 /datum/chemical_reaction/medicine/inacusiate/overheated(datum/reagents/holder, datum/equilibrium/equilibrium, vol_added)
-	holder.my_atom.audible_message(span_notice("[icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src))]The [holder.my_atom] suddenly gives out a loud bang!"))
+	holder.my_atom.audible_message(span_notice("[icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src))][holder.my_atom] 突然发出一声巨响！"))
 	explode_deafen(holder, equilibrium, 0.5, 10, 3)
 
 /datum/chemical_reaction/medicine/inacusiate/overly_impure(datum/reagents/holder, datum/equilibrium/equilibrium, vol_added)
 	var/power = equilibrium.reacted_vol/10
-	holder.my_atom.audible_message(span_notice("[icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src))]The [holder.my_atom] suddenly gives out an ear-crushingly loud bang!"))
+	holder.my_atom.audible_message(span_notice("[icon2html(holder.my_atom, viewers(DEFAULT_MESSAGE_RANGE, src))][holder.my_atom] 突然发出震耳欲聋的巨响！"))
 	explode_deafen(holder, equilibrium, power/2, power*2, max(power/2, 3))
 	clear_products(holder)
 
@@ -176,7 +176,7 @@
 	overheat_temp = 980
 	thermic_constant = 75
 	rate_up_lim = 10
-	mix_message = "The solution rapidly changes colors, boiling into a pale blue."
+	mix_message = "溶液迅速变色，沸腾成淡蓝色。"
 
 /datum/chemical_reaction/medicine/albuterol_to_salbutamol
 	results = list(/datum/reagent/medicine/salbutamol = 2, /datum/reagent/ammonia = 1)
@@ -186,7 +186,7 @@
 	required_temp = 300
 	optimal_temp = 500
 	overheat_temp = 800
-	mix_message = "The solution breaks apart, turning a deeper blue."
+	mix_message = "溶液分解开来，变成更深的蓝色。"
 
 /datum/chemical_reaction/medicine/albuterol_to_convermol
 	results = list(/datum/reagent/medicine/c2/convermol = 1, /datum/reagent/lithium = 3, /datum/reagent/aluminium = 3, /datum/reagent/bromine = 3)
@@ -197,7 +197,7 @@
 	optimal_temp = 920
 	overheat_temp = 990
 	thermic_constant = 25
-	mix_message = "The solution rapidly breaks apart, turning a mix of colors."
+	mix_message = "溶液迅速分解，变成混杂的多种颜色。"
 
 /datum/chemical_reaction/medicine/albuterol_to_convermol/overheated(datum/reagents/holder, datum/equilibrium/equilibrium, step_volume_added, impure = FALSE)
 	var/bonus = impure ? 2 : 1
@@ -206,7 +206,7 @@
 /datum/chemical_reaction/medicine/ephedrine
 	results = list(/datum/reagent/medicine/ephedrine = 4)
 	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/fuel/oil = 1, /datum/reagent/hydrogen = 1, /datum/reagent/diethylamine = 1)
-	mix_message = "The solution fizzes and gives off toxic fumes."
+	mix_message = "溶液嘶嘶冒泡，并散发出有毒气体。"
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_HEALING | REACTION_TAG_OTHER | REACTION_TAG_DANGEROUS
 	//FermiChem vars:
 	required_temp = 200
@@ -231,7 +231,7 @@
 /datum/chemical_reaction/medicine/diphenhydramine
 	results = list(/datum/reagent/medicine/diphenhydramine = 4)
 	required_reagents = list(/datum/reagent/fuel/oil = 1, /datum/reagent/carbon = 1, /datum/reagent/bromine = 1, /datum/reagent/diethylamine = 1, /datum/reagent/consumable/ethanol = 1)
-	mix_message = "The mixture dries into a pale blue powder."
+	mix_message = "混合物干燥成淡蓝色粉末。"
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_HEALING | REACTION_TAG_OTHER
 
 /datum/chemical_reaction/medicine/atropine
@@ -267,7 +267,7 @@
 /datum/chemical_reaction/medicine/mannitol
 	results = list(/datum/reagent/medicine/mannitol = 3)
 	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/hydrogen = 1, /datum/reagent/water = 1)
-	mix_message = "The solution slightly bubbles, becoming thicker."
+	mix_message = "溶液微微冒泡，变得更加浓稠。"
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_HEALING | REACTION_TAG_ORGAN
 	//FermiChem vars:
 	required_temp = 50

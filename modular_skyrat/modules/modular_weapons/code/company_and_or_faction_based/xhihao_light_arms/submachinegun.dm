@@ -1,9 +1,9 @@
 // Evil .585 smg that blueshields spawn with that will throw your screen like hell but itll sure kill whoever threatens a head really good
 
 /obj/item/gun/ballistic/automatic/xhihao_smg
-	name = "\improper Bogseo Submachine Gun"
-	desc = "A weapon that could hardly be called a 'sub' machinegun, firing the monstrous .585 cartridge. \
-		It provides enough kick to bruise a shoulder pretty bad if used without protection."
+	name = "\improper 拳师冲锋枪"
+	desc = "一件几乎不能算作“小型”机枪的武器，发射骇人的.585弹药。\
+		若没有防护，其后坐力足以让肩膀严重瘀伤。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/xhihao_light_arms/guns32x.dmi'
 	icon_state = "bogseo"
@@ -43,19 +43,19 @@
 
 /obj/item/gun/ballistic/automatic/xhihao_smg/examine(mob/user)
 	. = ..()
-	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
+	. += span_notice("你可以<b>仔细查看</b>以进一步了解这件武器。")
 
 /obj/item/gun/ballistic/automatic/xhihao_smg/examine_more(mob/user)
 	. = ..()
 
-	. += "The Bogseo submachinegun is seen in highly different lights based on \
-		who you ask. Ask a Jovian, and they'll go off all day about how they \
-		love the thing so. A big weapon for shooting big targets, like the \
-		fuel-stat raiders in their large suits of armor. Ask a space pirate, however \
-		and you'll get a different story. That is thanks to many TerraGov anti-piracy \
-		units picking the Bogseo as their standard boarding weapon. What better \
-		to ruin a brigand's day than a bullet large enough to turn them into \
-		mist at full auto, after all?"
+	. += "对拳师冲锋枪的评价因\
+		受访者而异。问木星人，他们能讲上一整天自己\
+		有多喜欢它。大武器对付大目标，比如\
+		身披厚重护甲的燃料站劫掠者。不过问太空海盗，\
+		你就会听到另一种故事。这是因为许多地球政府反海盗\
+		部队选择拳师作为制式登舰武器。毕竟，还有什么\
+		比全自动倾泻足以将匪徒打成\
+		血雾的大口径子弹，更能毁掉他们的一天呢？"
 
 	return .
 

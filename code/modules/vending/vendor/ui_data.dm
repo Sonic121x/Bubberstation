@@ -28,7 +28,7 @@
 	PROTECTED_PROC(TRUE)
 
 	var/static/list/default_category = list(
-		"name" = "Products",
+		"name" = "商品",
 		"icon" = "cart-shopping",
 	)
 
@@ -129,7 +129,7 @@
 			user_data["job"] = card_used.registered_account.account_job.title
 			user_data["department"] = card_used.registered_account.account_job.paycheck_department
 		else
-			user_data["job"] = "No Job"
+			user_data["job"] = "无职业"
 			user_data["department"] = DEPARTMENT_UNASSIGNED
 	.["user"] = user_data
 

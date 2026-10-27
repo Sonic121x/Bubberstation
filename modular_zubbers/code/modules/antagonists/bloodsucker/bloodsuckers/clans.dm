@@ -20,12 +20,12 @@
 	for(var/datum/bloodsucker_clan/all_clans as anything in typesof(/datum/bloodsucker_clan))
 		if(!initial(all_clans.joinable_clan)) //flavortext only
 			continue
-		options[initial(all_clans.name)] = all_clans
+		options[chinese_bloodsucker_clan_display(initial(all_clans.name))] = all_clans
 
 		var/datum/radial_menu_choice/option = new
 		option.image = image(icon = initial(all_clans.join_icon), icon_state = initial(all_clans.join_icon_state))
-		option.info = "[initial(all_clans.name)] - [span_boldnotice(initial(all_clans.join_description))]"
-		radial_display[initial(all_clans.name)] = option
+		option.info = "[chinese_bloodsucker_clan_display(initial(all_clans.name))] - [span_boldnotice(initial(all_clans.join_description))]"
+		radial_display[chinese_bloodsucker_clan_display(initial(all_clans.name))] = option
 	var/anchor = get_turf(owner.current) == owner.current.loc ? owner.current : get_turf(owner.current)
 	var/require_near = person_selecting == owner.current ? TRUE : FALSE
 	var/chosen_clan = show_radial_menu(person_selecting, anchor, radial_display, require_near = require_near)
@@ -33,16 +33,16 @@
 	if(QDELETED(src) || QDELETED(owner.current))
 		return FALSE
 	if(!chosen_clan)
-		to_chat(person_selecting, span_announce("You choose to remain ignorant, for now."))
+		to_chat(person_selecting, span_announce("你选择暂时继续保持无知。"))
 		return
 	my_clan = new chosen_clan(src)
 
 /datum/antagonist/bloodsucker/proc/remove_clan(mob/admin)
 	if(owner.current.has_status_effect(/datum/status_effect/frenzy))
-		to_chat(admin, span_announce("Removing a Bloodsucker from a Clan while they are in a Frenzy will break stuff, this action has been blocked."))
+		to_chat(admin, span_announce("将狂暴中的吸血鬼移出氏族会导致故障，此操作已被阻止。"))
 		return
 	QDEL_NULL(my_clan)
-	to_chat(owner.current, span_announce("You have been forced out of your clan! You can re-enter one by regular means."))
+	to_chat(owner.current, span_announce("你被强行逐出了氏族！你可以通过正常方式重新加入氏族。"))
 
 /datum/antagonist/bloodsucker/proc/admin_set_clan(mob/admin)
 	assign_clan_and_bane(admin)

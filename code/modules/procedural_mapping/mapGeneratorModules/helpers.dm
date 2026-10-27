@@ -65,20 +65,20 @@
 
 /datum/map_generator/repressurize
 	modules = list(/datum/map_generator_module/bottom_layer/repressurize)
-	buildmode_name = "Block: Restore Roundstart Air Contents"
+	buildmode_name = "区块：恢复开局空气含量"
 
 /datum/map_generator/massdelete
 	modules = list(/datum/map_generator_module/bottom_layer/massdelete)
-	buildmode_name = "Block: Full Mass Deletion"
+	buildmode_name = "区块：完全批量删除"
 
 /datum/map_generator/massdelete/nomob
 	modules = list(/datum/map_generator_module/bottom_layer/massdelete/no_delete_mobs)
-	buildmode_name = "Block: Mass Deletion - Leave Mobs"
+	buildmode_name = "区块：批量删除——保留生物"
 
 /datum/map_generator/massdelete/noturf
 	modules = list(/datum/map_generator_module/bottom_layer/massdelete/leave_turfs)
-	buildmode_name = "Block: Mass Deletion - Leave Turfs"
+	buildmode_name = "区块：批量删除——保留地块"
 
 /datum/map_generator/massdelete/regen
 	modules = list(/datum/map_generator_module/bottom_layer/massdelete/regeneration_delete)
-	buildmode_name = "Block: Mass Deletion - Leave Mobs and Turfs"
+	buildmode_name = "区块：批量删除——保留生物与地块"

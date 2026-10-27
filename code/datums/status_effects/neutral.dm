@@ -65,8 +65,8 @@
 	. = ..()
 
 /atom/movable/screen/alert/status_effect/in_love
-	name = "In Love"
-	desc = "You feel so wonderfully in love!"
+	name = "坠入爱河"
+	desc = "恋爱的感觉真美好！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "in_love"
 
@@ -82,7 +82,7 @@
 	if(!.)
 		return
 
-	linked_alert.desc = "You're in love with [date.real_name]! How lovely."
+	linked_alert.desc = "你爱上了[date.real_name]！多么美好。"
 	hearts = WEAKREF(date.add_alt_appearance(
 		/datum/atom_hud/alternate_appearance/basic/one_person,
 		"in_love",
@@ -134,7 +134,7 @@
 		rewarded = caster
 
 /datum/status_effect/bounty/on_apply()
-	to_chat(owner, span_boldnotice("You hear something behind you talking... \"You have been marked for death by [rewarded]. If you die, they will be rewarded.\""))
+	to_chat(owner, span_boldnotice("你听到身后有什么东西在说话……\"[rewarded]已将你标记为死亡目标。你死后，对方将获得奖赏。\""))
 	playsound(owner, 'sound/items/weapons/gun/shotgun/rack.ogg', 75, FALSE)
 	return ..()
 
@@ -145,9 +145,9 @@
 
 /datum/status_effect/bounty/proc/rewards()
 	if(rewarded && rewarded.mind && rewarded.stat != DEAD)
-		to_chat(owner, span_boldnotice("You hear something behind you talking... \"Bounty claimed.\""))
+		to_chat(owner, span_boldnotice("你听到身后有什么东西在说话……\"悬赏已领取。\""))
 		playsound(owner, 'sound/items/weapons/gun/shotgun/shot.ogg', 75, FALSE)
-		to_chat(rewarded, span_greentext("You feel a surge of mana flow into you!"))
+		to_chat(rewarded, span_greentext("你感觉一股魔力涌入体内！"))
 		for(var/datum/action/cooldown/spell/spell in rewarded.actions)
 			spell.reset_spell_cooldown()
 
@@ -168,8 +168,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/heldup
 
 /atom/movable/screen/alert/status_effect/heldup
-	name = "Held Up"
-	desc = "Making any sudden moves would probably be a bad idea!"
+	name = "遭到枪口威胁"
+	desc = "突然乱动恐怕不是什么好主意！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "aimed"
 
@@ -190,8 +190,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/holdup
 
 /atom/movable/screen/alert/status_effect/holdup
-	name = "Holding Up"
-	desc = "You're currently pointing a gun at someone. Click to cancel."
+	name = "持枪威胁"
+	desc = "你正用枪指着某人。点击取消。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "aimed"
 	clickable_glow = TRUE
@@ -273,7 +273,7 @@
 	if(taker.IsReachableBy(owner) || ((owner.pulling == taker) || (taker.pulling == owner)) && !taker.incapacitated)
 		return
 
-	to_chat(taker, span_warning("You moved out of range of [owner]!"))
+	to_chat(taker, span_warning("你离[owner]太远了！"))
 	remove_candidate(taker)
 
 /// The offerer moved, see if anyone is out of range now
@@ -376,8 +376,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/surrender
 
 /atom/movable/screen/alert/status_effect/surrender
-	name = "Surrender"
-	desc = "Looks like you're in trouble now, bud. Click here to surrender. (Warning: You will be incapacitated.)"
+	name = "投降"
+	desc = "伙计，看来你有麻烦了。点击此处投降。（警告：你将失去行动能力。）"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "surrender"
 	clickable_glow = TRUE
@@ -472,12 +472,12 @@
 
 	if(!QDELETED(alt_clone)) //catch any stragglers
 		do_sparks(5, FALSE, alt_clone)
-		owner.visible_message("[owner] is snapped across to a different alternative reality!")
+		owner.visible_message("[owner]被猛然拉进了另一个平行现实！")
 		QDEL_NULL(alt_clone)
 
 	if(block_effects)
 		if(!stable_message)
-			owner.visible_message("You feel stable...for now.")
+			owner.visible_message("你感到稳定了下来……暂时如此。")
 			stable_message = TRUE
 		return
 	stable_message = FALSE
@@ -489,7 +489,7 @@
 	//These run on specific cycles
 	switch(current_cycle)
 		if(0)
-			to_chat(owner, span_userdanger("You feel like you're being pulled across to somewhere else. You feel empty inside."))
+			to_chat(owner, span_userdanger("你感觉自己正被拉向别处。你的内心空空如也。"))
 
 		//phase 1
 		if(1 to EIGENSTASIUM_PHASE_1_END)
@@ -499,7 +499,7 @@
 		//phase 2
 		if(EIGENSTASIUM_PHASE_1_END to EIGENSTASIUM_PHASE_2_END)
 			if(current_cycle == 51)
-				to_chat(owner, span_userdanger("You start to convlse violently as you feel your consciousness merges across realities, your possessions flying wildy off your body!"))
+				to_chat(owner, span_userdanger("你感觉自己的意识跨越现实融为一体，身体开始剧烈抽搐，身上的物品四散飞出！"))
 				owner.set_jitter_if_lower(400 SECONDS)
 				owner.Knockdown(10)
 
@@ -529,14 +529,14 @@
 			switch(phase_3_cycle) //Loops 0 -> 1 -> 2 -> 1 -> 2 -> 1 ...ect.
 				if(0)
 					owner.set_jitter_if_lower(200 SECONDS)
-					to_chat(owner, span_userdanger("Your eigenstate starts to rip apart, drawing in alternative reality versions of yourself!"))
+					to_chat(owner, span_userdanger("你的本征态开始撕裂，将其他平行现实中的你吸引过来！"))
 				if(1)
 					var/typepath = owner.type
 					alt_clone = new typepath(owner.loc)
 					alt_clone.appearance = owner.appearance
 					alt_clone.real_name = owner.real_name
 					RegisterSignal(alt_clone, COMSIG_QDELETING, PROC_REF(remove_clone_from_var))
-					owner.visible_message("[owner] splits into seemingly two versions of themselves!")
+					owner.visible_message("[owner]似乎分裂成了两个自己！")
 					do_teleport(alt_clone, get_turf(alt_clone), 2, no_effects=TRUE) //teleports clone so it's hard to find the real one!
 					do_sparks(5,FALSE,alt_clone)
 					alt_clone.emote("spin")
@@ -558,8 +558,8 @@
 			do_sparks(5, FALSE, owner)
 			owner.Sleeping(100)
 			owner.set_jitter_if_lower(100 SECONDS)
-			to_chat(owner, span_userdanger("You feel your eigenstate settle, as \"you\" become an alternative version of yourself!"))
-			owner.emote("me",1,"flashes into reality suddenly, gasping as they gaze around in a bewildered and highly confused fashion!",TRUE)
+			to_chat(owner, span_userdanger("你感觉本征态稳定了下来，\"你\"变成了另一个版本的自己！"))
+			owner.emote("me",1,"突然闪现于现实之中，喘着粗气，茫然而困惑地环顾四周！",TRUE)
 			owner.log_message("has become an alternative universe version of themselves via EIGENSTASIUM.", LOG_GAME)
 			//new you new stuff
 			SSquirks.randomise_quirks(owner)
@@ -586,7 +586,7 @@
 /datum/status_effect/eigenstasium/on_remove()
 	if(!QDELETED(alt_clone))//catch any stragilers
 		do_sparks(5, FALSE, alt_clone)
-		owner.visible_message("One of the [owner]s suddenly phases out of reality in front of you!")
+		owner.visible_message("其中一个[owner]突然在你面前脱离了现实！")
 		QDEL_NULL(alt_clone)
 	return ..()
 
@@ -726,24 +726,24 @@
 		owner.adjust_disgust(2)
 
 /atom/movable/screen/alert/status_effect/washing_regen
-	name = "Washing"
-	desc = "A good wash fills me with energy!"
+	name = "洗浴"
+	desc = "好好洗个澡让我活力满满！"
 	icon_state = "shower_regen"
 
 /atom/movable/screen/alert/status_effect/washing_regen/hater
-	desc = "Waaater... Fuck this WATER!!"
+	desc = "水……去他妈的水！！"
 	icon_state = "shower_regen_catgirl"
 
 /atom/movable/screen/alert/status_effect/washing_regen/dislike
-	desc = "This water feels dirty..."
+	desc = "这水感觉脏兮兮的……"
 	icon_state = "shower_regen_dirty"
 
 /atom/movable/screen/alert/status_effect/washing_regen/bloody_like
-	desc = "Mhhhmmmm... the crimson red drops of life. How delightful."
+	desc = "嗯……猩红的生命之滴。多么美妙。"
 	icon_state = "shower_regen_blood_happy"
 
 /atom/movable/screen/alert/status_effect/washing_regen/bloody_dislike
-	desc = "Is that... blood? What the fuck!"
+	desc = "那是……血？什么鬼！"
 	icon_state = "shower_regen_blood_bad"
 
 /datum/status_effect/washing_regen/hot_spring
@@ -762,13 +762,13 @@
 	owner.adjust_bodytemperature(10 * seconds_between_ticks, 0, T0C + 45)
 
 /atom/movable/screen/alert/status_effect/washing_regen/hotspring
-	name = "Hotspring"
-	desc = "Hot Springs are so relaxing..."
+	name = "温泉"
+	desc = "泡温泉真是令人放松……"
 	icon_state = "hotspring_regen"
 
 /atom/movable/screen/alert/status_effect/washing_regen/hotspring/hater
-	name = "Hotspring"
-	desc = "Waaater... FUCK THIS HOT WATER!!"
+	name = "温泉"
+	desc = "水……去他妈的热水！！"
 	icon_state = "hotspring_regen_catgirl"
 
 #define BEAM_ALPHA 62

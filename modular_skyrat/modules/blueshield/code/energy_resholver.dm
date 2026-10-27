@@ -2,8 +2,8 @@
 //Icon and such by @EspeciallyStrange 'Calvin'
 
 /obj/item/gun/energy/e_gun/blueshield
-	name = "X-02 energy revolver"
-	desc = "An energy weapon fitted with self recharging-cells. Feels somewhat heavy to carry and would certainly hurt to get whacked by."
+	name = "X-02 能量左轮手枪"
+	desc = "一把装有自充电电池的能量武器。拿起来有些沉，被它砸一下肯定很疼。"
 	icon = 'modular_skyrat/modules/blueshield/icons/energy.dmi'
 	icon_state = "blackgrip"
 	lefthand_file = 'modular_skyrat/modules/blueshield/icons/guns_lefthand.dmi'
@@ -19,14 +19,14 @@
 	ammo_x_offset = 1
 
 /obj/item/gun/energy/e_gun/blueshield/specop
-	name = "tactical energy revolver"
-	desc = "An advanced model of the energy revolver with all of it's benefit and a much more powerful phase emitter."
+	name = "战术能量左轮手枪"
+	desc = "能量左轮手枪的进阶型号，保留了全部优点，并配备了强大得多的相位发射器。"
 	icon_state = "redgrip"
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode/spec, /obj/item/ammo_casing/energy/laser/hellfire)
 //Alternative for people who prefers energy carbine, remain inclusive and all.
 /obj/item/gun/energy/e_gun/stun/blueshield
-	name = "defender energy carbine"
-	desc = "Military issue energy gun, is able to fire stun rounds. Extremely slow recharge"
+	name = "防御者能量卡宾枪"
+	desc = "军用制式能量枪，可发射眩晕弹。充能极慢。"
 	ammo_x_offset = 2
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode/blueshield, /obj/item/ammo_casing/energy/laser/scatter/disabler, /obj/item/ammo_casing/energy/lasergun/blueshield)
 	charge_delay = 14

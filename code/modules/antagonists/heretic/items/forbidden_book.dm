@@ -1,8 +1,8 @@
 // Ye old forbidden book, the Codex Cicatrix.
 /obj/item/codex_cicatrix
-	name = "Codex Cicatrix"
-	desc = "This heavy tome is full of cryptic scribbles and impossible diagrams. \
-		According to legend, it can be deciphered to reveal the secrets of the veil between worlds."
+	name = "疤痕法典"
+	desc = "这本厚重的典籍满是晦涩的涂写与不可能存在的图解。\
+		据传说，若能解读它，便可揭开世界之间帷幕的秘密。"
 	icon = 'icons/obj/antags/eldritch.dmi'
 	base_icon_state = "book"
 	icon_state = "book"
@@ -19,8 +19,8 @@
 /obj/item/codex_cicatrix/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/effect_remover, \
-		success_feedback = "You remove %THEEFFECT.", \
-		tip_text = "Clear rune", \
+		success_feedback = "你移除了%THEEFFECT。", \
+		tip_text = "清除符文", \
 		on_clear_callback = CALLBACK(src, PROC_REF(after_clear_rune)), \
 		effects_we_clear = list(/obj/effect/heretic_rune))
 
@@ -33,8 +33,8 @@
 	if(!IS_HERETIC(user))
 		return
 
-	. += span_notice("Can be used to tap influences for additional knowledge points.")
-	. += span_notice("Can also be used to draw or remove transmutation runes with ease.")
+	. += span_notice("可用于轻触影响点，以获取额外的知识点数。")
+	. += span_notice("也可用于轻松绘制或移除转化符文。")
 
 /obj/item/codex_cicatrix/attack_self(mob/user, modifiers)
 	. = ..()
@@ -81,8 +81,8 @@
 
 // Upgraded version of the codex cicatrix that allows us to cast curses
 /obj/item/codex_cicatrix/morbus // I'm morbing all over
-	name = "Codex Morbus"
-	desc = "A hideous, ragged book covered in separately-blinking eyes, all of them staring at you. You have no idea how to hold this thing, and to be honest you're not sure if you want to."
+	name = "疫病法典"
+	desc = "一本丑陋破烂的书，封面布满各自独立眨动的眼睛，全都盯着你。你完全不知道怎么拿这东西，说实话你也不确定自己是否想拿。"
 	base_icon_state = "book_morbus"
 	icon_state = "book_morbus"
 	drain_speed = 5 SECONDS
@@ -93,13 +93,13 @@
 /obj/item/codex_cicatrix/morbus/examine(mob/user)
 	. = ..()
 	if(IS_HERETIC(user))
-		. += span_info("Can be used to cast a curse with blood in your offhand by right clicking a rune.")
+		. += span_info("副手拿着血液并右键点击符文，即可施放诅咒。")
 		return
-	. += span_danger("The eyes stop blinking. They stare at you. Their gaze burns...")
+	. += span_danger("那些眼睛停止了眨动。它们盯着你。它们的目光灼烧着……")
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/human_user = user
-	to_chat(human_user, span_userdanger("Your mind burns as you stare at the pages!"))
+	to_chat(human_user, span_userdanger("当你凝视这些书页时，你的心智在燃烧！"))
 	human_user.adjust_organ_loss(ORGAN_SLOT_BRAIN, 10, 190)
 	human_user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
 
@@ -116,7 +116,7 @@
 	// BUBBER EDIT ADDITION BEGIN - blacklist certain ones
 	curse_list -= "Curse of Transmutation" // can just kill ppl with certain species :(
 	// BUBBER EDIT ADDITION END
-	var/selected_curse = tgui_input_list(user, "Cast any curse", "Select a curse!", curse_list, timeout = 0)
+	var/selected_curse = tgui_input_list(user, "施放任意诅咒", "选择一种诅咒！", curse_list, timeout = 0)
 	if(!selected_curse)
 		return NONE
 
@@ -125,7 +125,7 @@
 
 	var/atom/held_offhand = user.get_inactive_held_item()
 	if(!held_offhand)
-		user.balloon_alert(user, "no catalyst!")
+		user.balloon_alert(user, "没有催化剂！")
 		return
 	var/blood_samples = list()
 	for(var/blood in GET_ATOM_BLOOD_DNA(held_offhand))
@@ -135,7 +135,7 @@
 			continue
 		blood_samples += usable_reagent.data[BLOOD_DATA_DNA]
 	if(isnull(blood_samples))
-		user.balloon_alert(user, "no blood!")
+		user.balloon_alert(user, "没有血液！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/curse_type = curse_list[selected_curse]

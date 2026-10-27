@@ -1,8 +1,8 @@
 /datum/action/cooldown/spell/pointed/projectile/furious_steel
-	name = "Furious Steel"
-	desc = "Summon three silver blades which orbit you. \
-		While orbiting you, these blades will protect you from attacks, but will be consumed on use. \
-		Additionally, you can click to fire the blades at a target, dealing damage and causing bleeding."
+	name = "暴怒之钢"
+	desc = "召唤三把银刃环绕自身。\
+		环绕期间，这些银刃会保护你免受攻击，但每次使用后都会消耗。\
+		此外，你可以点击将银刃射向目标，造成伤害并引发流血。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -16,8 +16,8 @@
 
 	spell_requirements = NONE
 
-	active_msg = "You summon forth three blades of furious silver."
-	deactive_msg = "You conceal the blades of furious silver."
+	active_msg = "你召唤出三把暴怒银刃。"
+	deactive_msg = "你收起暴怒银刃。"
 	cast_range = 20
 	projectile_type = /obj/projectile/floating_blade
 	projectile_amount = 3
@@ -98,7 +98,7 @@
 		current_amount -= 1
 
 /obj/projectile/floating_blade
-	name = "blade"
+	name = "刀刃"
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "dio_knife"
 	speed = 0.5
@@ -127,13 +127,13 @@
 				return PROJECTILE_PIERCE_PHASE
 
 		if(victim.can_block_magic(MAGIC_RESISTANCE))
-			visible_message(span_warning("[src] drops to the ground and melts on contact [victim]!"))
+			visible_message(span_warning("[src]落到地上，接触[victim]时便融化了！"))
 			return PROJECTILE_DELETE_WITHOUT_HITTING
 
 	return ..()
 
 /obj/projectile/floating_blade/haunted
-	name = "ritual blade"
+	name = "仪式之刃"
 	icon = 'icons/obj/weapons/khopesh.dmi'
 	icon_state = "render"
 	damage = 35
@@ -141,17 +141,17 @@
 	outline_color = "#D7CBCA"
 
 /datum/action/cooldown/spell/pointed/projectile/furious_steel/solo
-	name = "Lesser Furious Steel"
+	name = "次级暴怒之钢"
 	cooldown_time = 20 SECONDS
 	projectile_amount = 1
-	active_msg = "You summon forth a blade of furious silver."
-	deactive_msg = "You conceal the blade of furious silver."
+	active_msg = "你召唤出一把暴怒银刃。"
+	deactive_msg = "你收起暴怒银刃。"
 
 /datum/action/cooldown/spell/pointed/projectile/furious_steel/haunted
-	name = "Cursed Steel"
-	desc = "Summon two cursed blades which orbit you. \
-		While orbiting you, these blades will protect you from attacks, but will be consumed on use. \
-		Additionally, you can click to fire the blades at a target, dealing damage and causing bleeding."
+	name = "诅咒之钢"
+	desc = "召唤两把被诅咒的刀刃环绕自身。\
+		环绕期间，这些刀刃会保护你免受攻击，但每次使用后都会消耗。\
+		此外，你可以点击将刀刃射向目标，造成伤害并引发流血。"
 	background_icon_state = "bg_heretic" // kept intentionally
 	overlay_icon_state = "bg_cult_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -164,8 +164,8 @@
 
 	spell_requirements = NONE
 
-	active_msg = "You summon forth two cursed blades."
-	deactive_msg = "You conceal the cursed blades."
+	active_msg = "你召唤出两把被诅咒的刀刃。"
+	deactive_msg = "你收起被诅咒的刀刃。"
 	projectile_amount = 2
 	projectile_type = /obj/projectile/floating_blade/haunted
 	projectile_effect = /obj/effect/floating_blade/haunted

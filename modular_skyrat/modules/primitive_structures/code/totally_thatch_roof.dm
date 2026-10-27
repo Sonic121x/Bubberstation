@@ -1,6 +1,6 @@
 /turf/open/misc/grass/roofing
-	name = "thatched roof"
-	desc = "A collection of various dried greens, not so green anymore, that makes a passable roof material."
+	name = "茅草屋顶"
+	desc = "各种晒干的草叶，虽然早已不再翠绿，但用来盖屋顶还算凑合。"
 	baseturfs = /turf/open/openspace/icemoon
 	initial_gas_mix = "ICEMOON_ATMOS"
 	icon_state = "grass-255"

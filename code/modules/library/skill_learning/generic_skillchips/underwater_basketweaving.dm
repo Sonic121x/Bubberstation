@@ -1,12 +1,12 @@
 
 /obj/item/skillchip/basketweaving
-	name = "Basketsoft 3000 skillchip"
-	desc = "Underwater edition."
-	skill_name = "Underwater Basketweaving"
-	skill_description = "Master intricate art of using twine to create perfect baskets while submerged."
+	name = "编篮软件 3000 技能芯片"
+	desc = "水下版。"
+	skill_name = "水下编篮"
+	skill_description = "掌握用细麻绳在水下编出完美篮子的精妙技艺。"
 	skill_icon = "shopping-basket"
-	activate_message = span_notice("You're one with the twine and the sea.")
-	deactivate_message = span_notice("Higher mysteries of underwater basketweaving leave your mind.")
+	activate_message = span_notice("你与麻绳和海洋合而为一。")
+	deactivate_message = span_notice("水下编篮的更高奥秘离开了你的脑海。")
 
 /obj/item/skillchip/basketweaving/has_mob_incompatibility(mob/living/carbon/target)
 	. = ..()
@@ -14,7 +14,7 @@
 		return
 
 	if(!target.mind)
-		return "Target incapable of learning recipe."
+		return "目标无法学习配方。"
 
 /obj/item/skillchip/basketweaving/on_activate(mob/living/carbon/user, silent=FALSE)
 	. = ..()

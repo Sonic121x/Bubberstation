@@ -46,7 +46,7 @@ GAME_VERB_HIDDEN(/mob/living, suicide, "suicide")
 	if(!can_suicide())
 		return FALSE
 
-	var/confirm = tgui_alert(src, "Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
+	var/confirm = tgui_alert(src, "你确定要自杀吗？", "确认自杀", list("Yes", "No"))
 
 	// ensure our situation didn't change while we were sleeping waiting for the tgui_alert.
 	if(!can_suicide() || (ckey != oldkey))
@@ -55,38 +55,38 @@ GAME_VERB_HIDDEN(/mob/living, suicide, "suicide")
 	if(confirm == "Yes")
 		return TRUE
 
-	balloon_alert(src, "suicide attempt aborted!")
+	balloon_alert(src, "自杀尝试已中止！")
 	return FALSE
 
 /// Checks if we are in a valid state to suicide (not already suiciding, capable of actually killing ourselves, area checks, etc.) Returns TRUE if we can suicide, FALSE if we can not.
 /mob/living/proc/can_suicide()
 	// SKYRAT EDIT ADDITION
 	if(CONFIG_GET(flag/disable_suicide))
-		to_chat(src, span_warning("Suicide is disabled on this server."))
+		to_chat(src, span_warning("本服务器已禁用自杀。"))
 		return FALSE
 	// SKYRAT EDIT END
 
 	if(HAS_TRAIT_FROM_ONLY(src, TRAIT_SUICIDED, REF(src)))
-		to_chat(src, span_warning("You are already commiting suicide!"))
+		to_chat(src, span_warning("你已经正在自杀了！"))
 		return FALSE
 
 	var/area/checkable = get_area(src)
 	if(checkable.area_flags & BLOCK_SUICIDE)
-		to_chat(src, span_warning("You can't commit suicide here! You can ghost if you'd like."))
+		to_chat(src, span_warning("你不能在这里自杀！如果你愿意，可以化为幽灵。"))
 		return FALSE
 
 	if(!IS_UNCONSCIOUS_OR_CRIT(src))
 		return TRUE
 
 	if(stat == DEAD)
-		to_chat(src, span_warning("You're already dead!"))
+		to_chat(src, span_warning("你已经死了！"))
 		return FALSE
 
 	if(IS_UNCONSCIOUS(src))
-		to_chat(src, span_warning("You need to be conscious to commit suicide!"))
+		to_chat(src, span_warning("你必须保持清醒才能自杀！"))
 		return FALSE
 
-	to_chat(src, span_warning("You can't commit suicide while in a critical condition!"))
+	to_chat(src, span_warning("你无法在重伤状态下自杀！"))
 	return FALSE
 
 /// Inserts in logging and death + mind dissociation when we're fully done with ending the life of our mob, as well as adjust the health. We will disallow re-entering the body when this is called.
@@ -107,16 +107,16 @@ GAME_VERB_HIDDEN(/mob/living, suicide, "suicide")
 /// Returns a subtype-specific flavorful string pertaining to this exact living mob's ending their own life to those who can see it (visible message).
 /// If you don't want a message, prefer to override send_applicable_messages() on your subtype instead.
 /mob/living/proc/get_visible_suicide_message()
-	return "[src] begins to fall down. It looks like [p_theyve()] lost the will to live."
+	return "[src] 开始倒下，看起来已经失去了活下去的意志。"
 
 /// Returns an appropriate string for what people who lack visibility hear when this mob kills itself.
 /// If you don't want a message, prefer to override send_applicable_messages() on your subtype instead.
 /mob/living/proc/get_blind_suicide_message()
-	return "You hear something hitting the floor."
+	return "你听见有什么东西撞在地板上。"
 
 /// Inserts logging in both the mob's logs and the investigate log pertaining to their death. Suicide tool is the object we used to commit suicide, if one was held and used (presently only humans use this arg).
 /mob/living/proc/suicide_log(obj/item/suicide_tool)
-	investigate_log("has died from committing suicide.", INVESTIGATE_DEATHS)
+	investigate_log("因自杀而死亡。", INVESTIGATE_DEATHS)
 	log_message("committed suicide as [src.type]", LOG_ATTACK)
 
 /// The actual proc that will apply the damage to the suiciding mob. damage_type is the actual type of damage we want to deal, if that matters.

@@ -5,64 +5,64 @@
 //engineering
 
 /datum/award/achievement/jobs/theoretical_limits
-	name = "All Within Theoretical Limits"
-	desc = "I never thought I'd see a resonance cascade, let alone prevent one..."
+	name = "一切都在理论极限之内"
+	desc = "我从未想过能亲眼见到共振级联，更别说阻止它了……"
 	database_id = MEDAL_THEORETICAL_LIMITS
 	icon_state = "theoreticallimits"
 
 //medical
 
 /datum/award/achievement/jobs/sandman
-	name = "Mister Sandman"
-	desc = "Mechanically speaking, there's no real benefit to being unconscious during surgery. Weird how insistent this doctor is about using the N2O anyway though, huh?"
+	name = "睡魔先生"
+	desc = "从游戏机制上说，手术时昏迷并没有实际好处。但这位医生仍然坚持使用笑气，真奇怪，对吧？"
 	database_id = MEDAL_SANDMAN
 	icon_state = "basemisc"
 
 /datum/award/achievement/jobs/helbitaljanken
-	name = "Helbitaljanken"
-	desc = "You janked hard"
+	name = "赫尔比妥猜拳"
+	desc = "你这拳猜得够狠。"
 	database_id = MEDAL_HELBITALJANKEN
 	icon_state = "helbital"
 
 //mining
 
 /datum/award/achievement/jobs/frenching
-	name = "Frenching"
-	desc = "Just a taste, for science!"
+	name = "法式热吻"
+	desc = "就尝一口，为了科学！"
 	database_id = MEDAL_FRENCHING
 	icon_state = "frenchingthebubble"
 
 //science
 
 /datum/award/achievement/jobs/feat_of_strength
-	name = "Feat of Strength"
-	desc = "If the rod is immovable, is it passing you or are you passing it?"
+	name = "力拔山兮"
+	desc = "如果那根棒不可移动，究竟是它穿过了你，还是你穿过了它？"
 	database_id = MEDAL_RODSUPLEX
 	icon_state = "featofstrength"
 
 /datum/award/achievement/jobs/snail
-	name = "KKKiiilll mmmeee"
-	desc = "You were a little too ambitious, but hey, I guess you're still alive?"
+	name = "杀杀杀了我吧——"
+	desc = "你的野心有点太大了，不过，至少你应该还活着？"
 	database_id = MEDAL_SNAIL
 	icon_state = "snail"
 
 //all of service! hip hip!
 
 /datum/award/achievement/jobs/service_bad
-	name = "Centcom Grade: Shitty Service"
-	desc = "Well, you at least tried. How about trying harder?"
+	name = "中央指挥部评级：服务糟糕"
+	desc = "好吧，你至少努力过。要不要再努点力？"
 	database_id = MEDAL_BAD_SERVICE
 	icon_state = "service_bad"
 
 /datum/award/achievement/jobs/service_okay
-	name = "Centcom Grade: Acceptable Service"
-	desc = "Well, it'll do! You and your department did just fine."
+	name = "中央指挥部评级：服务合格"
+	desc = "好吧，过得去！你和你的部门表现还不错。"
 	database_id = MEDAL_OKAY_SERVICE
 	icon_state = "service_okay"
 
 /datum/award/achievement/jobs/service_good
-	name = "Centcom Grade: Exemplary Service"
-	desc = "Centcom is very impressed with your department!"
+	name = "中央指挥部评级：服务典范"
+	desc = "中央指挥部对你的部门印象极佳！"
 	database_id = MEDAL_GOOD_SERVICE
 	icon_state = "service_good"
 

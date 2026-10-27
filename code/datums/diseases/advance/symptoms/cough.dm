@@ -7,9 +7,9 @@
  * Bonus: Spreads the virus in a small square around the host. Can force the affected mob to drop small items!
 */
 /datum/symptom/cough
-	name = "Cough"
-	desc = "The virus irritates the throat of the host, causing occasional coughing. Each cough will try to infect bystanders who are within 1 tile of the host with the virus."
-	illness = "Jest Infection"
+	name = "咳嗽"
+	desc = "病毒刺激宿主喉咙，导致偶尔咳嗽。每次咳嗽都会尝试将病毒传染给宿主周围一格内的人。"
+	illness = "玩笑感染"
 	stealth = -1
 	resistance = 3
 	stage_speed = 1
@@ -20,11 +20,11 @@
 	symptom_delay = 8.5
 	required_organ = ORGAN_SLOT_LUNGS
 	threshold_descs = list(
-		"Resistance 11" = "The host will drop small items when coughing.",
-		"Resistance 15" = "Occasionally causes coughing fits that stun the host. The extra coughs do not spread the virus.",
-		"Stage Speed 6" = "Increases cough frequency.",
-		"Transmission 7" = "Coughing will now infect bystanders up to 2 tiles away.",
-		"Stealth 4" = "The symptom remains hidden until active.",
+		"抗性 11" = "宿主咳嗽时会掉落小型物品。",
+		"抗性 15" = "偶尔引发使宿主眩晕的剧烈咳嗽。额外的咳嗽不会传播病毒。",
+		"阶段速度 6" = "增加咳嗽频率。",
+		"传染性 7" = "咳嗽现在可感染两格内的人。",
+		"隐蔽性 4" = "症状在发作前不会显露。",
 	)
 	///emote cooldowns
 	COOLDOWN_DECLARE(cough_cooldown)
@@ -57,7 +57,7 @@
 	switch(active_disease.stage)
 		if(1, 2, 3)
 			if(prob(base_message_chance) && !suppress_warning)
-				to_chat(affected_mob, span_warning("[pick("You swallow excess mucus.", "You lightly cough.")]"))
+				to_chat(affected_mob, span_warning("[pick("你咽下了多余的黏液。", "你轻咳了一声。")]"))
 		else
 			if(COOLDOWN_FINISHED(src, cough_cooldown) || !COOLDOWN_FINISHED(src, cough_cooldown) && prob(60) && !off_cooldown_coughed)
 				affected_mob.emote("cough")
@@ -72,7 +72,7 @@
 				if(held_object && held_object.w_class == WEIGHT_CLASS_TINY)
 					affected_mob.dropItemToGround(held_object)
 			if(power >= 2 && prob(30))
-				to_chat(affected_mob, span_userdanger("[pick("You have a coughing fit!", "You can't stop coughing!")]"))
+				to_chat(affected_mob, span_userdanger("[pick("你剧烈地咳嗽起来！", "你咳个不停！")]"))
 				affected_mob.Immobilize(20)
 				addtimer(CALLBACK(affected_mob, TYPE_PROC_REF(/mob/, emote), "cough"), 0.6 SECONDS)
 				addtimer(CALLBACK(affected_mob, TYPE_PROC_REF(/mob/, emote), "cough"), 1.2 SECONDS)

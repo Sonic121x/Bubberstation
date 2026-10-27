@@ -2,11 +2,11 @@
 #define SCANNING_TOGGLE_COOLDOWN 5
 
 /obj/machinery/netpod
-	name = "netpod"
+	name = "网络舱"
 
 	base_icon_state = "netpod"
 	circuit = /obj/item/circuitboard/machine/netpod
-	desc = "A link to the netverse. It has an assortment of cables to connect yourself to a virtual domain."
+	desc = "通往网络宇宙的链接。它配有一整套线缆，可将你自己接入一个虚拟领域。"
 	icon = 'icons/obj/machines/bitrunning.dmi'
 	icon_state = "netpod"
 	max_integrity = 300
@@ -56,57 +56,57 @@
 	. = ..()
 
 	if(isnull(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "Select Outfit"
+		context[SCREENTIP_CONTEXT_LMB] = "选择服装"
 	else
 		if(held_item.tool_behaviour == TOOL_SCREWDRIVER && !occupant && !state_open)
-			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] Panel"
+			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 
 		if(held_item.tool_behaviour == TOOL_CROWBAR)
 			if(isnull(occupant))
 				if(panel_open)
-					context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+					context[SCREENTIP_CONTEXT_LMB] = "拆解"
 				else
-					context[SCREENTIP_CONTEXT_LMB] = "[state_open ? "Close" : "Open"] Cover"
+					context[SCREENTIP_CONTEXT_LMB] = "[state_open ? "关闭" : "打开"]盖板"
 			else
-				context[SCREENTIP_CONTEXT_LMB] = "Break out"
+				context[SCREENTIP_CONTEXT_LMB] = "挣脱"
 
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "[copy_body ? "Disable" : "Enable"] Scan"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "[copy_body ? "禁用" : "启用"]扫描"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/netpod/examine(mob/user)
 	. = ..()
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "close" : "open"].")
+	. += span_notice("它的维护面板可以[EXAMINE_HINT("用螺丝刀")][panel_open ? "关闭" : "打开"]。")
 	if(isnull(occupant))
 		if(panel_open)
-			. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
+			. += span_notice("它可以用[EXAMINE_HINT("撬棍")]撬开。")
 		else
-			. += span_notice("Its hatch can be [EXAMINE_HINT("pried")] [state_open ? "closed" : "open"].")
+			. += span_notice("它的舱盖可以[EXAMINE_HINT("用撬棍")][state_open ? "关闭" : "打开"]。")
 
 	if(isnull(server_ref?.resolve()))
-		. += span_infoplain("It's not connected to anything.")
-		. += span_infoplain("Netpods must be built within 4 tiles of a server.")
+		. += span_infoplain("它没有连接到任何东西。")
+		. += span_infoplain("网络舱必须建在服务器 4 格范围内。")
 		return
 
 	if(!isobserver(user))
-		. += span_infoplain("Drag yourself into the pod to engage the link.")
-		. += span_infoplain("It has limited resuscitation capabilities. Remaining in the pod can heal some injuries.")
-		. += span_infoplain("It has a security system that will alert the occupant if it is tampered with.")
+		. += span_infoplain("把自己拖入舱内即可建立链接。")
+		. += span_infoplain("它具有有限的复苏能力。待在舱内可以治愈部分伤势。")
+		. += span_infoplain("它配有安全系统，一旦被动手脚就会警告舱内的人员。")
 		if(copy_body)
-			. += span_infoplain("Occupant scanning is currently enabled, which will cause bit avatars to look like the occupant when first created.")
-		. += span_infoplain("Alt-click to [copy_body ? "disable" : "enable"] occupant scanning.")
+			. += span_infoplain("乘员扫描当前已启用，这会让比特化身在首次创建时长得像乘员。")
+		. += span_infoplain("按住 Alt 点击以[copy_body ? "禁用" : "启用"]乘员扫描。")
 
 	if(isnull(occupant))
-		. += span_infoplain("It's currently unoccupied.")
+		. += span_infoplain("它当前无人使用。")
 		return
 
-	. += span_infoplain("It's currently occupied by [occupant].")
+	. += span_infoplain("它当前由 [occupant] 使用。")
 
 	if(isobserver(user))
-		. += span_notice("As an observer, you can click this netpod to jump to its avatar.")
+		. += span_notice("作为观察者，你可以点击这个网络舱，跳转到它的化身处。")
 		return
 
-	. += span_notice("It can be pried open with a crowbar, but its safety mechanisms will alert the occupant.")
+	. += span_notice("它可以用撬棍撬开，但它的安全机制会警告舱内的人员。")
 
 
 /obj/machinery/netpod/update_icon_state()
@@ -162,7 +162,7 @@
 	copy_body = !copy_body
 	scanning_can_toggle = world.time + SCANNING_TOGGLE_COOLDOWN
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
-	user.balloon_alert_to_viewers(user, "scanning [copy_body ? "enabled" : "disabled"]")
+	user.balloon_alert_to_viewers(user, "扫描已[copy_body ? "启用" : "禁用"]")
 	return CLICK_ACTION_SUCCESS
 
 #undef BASE_DISCONNECT_DAMAGE

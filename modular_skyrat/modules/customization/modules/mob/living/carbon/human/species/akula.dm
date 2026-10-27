@@ -6,8 +6,8 @@
 #define WETSTACK_THRESHOLD 3
 
 /datum/species/akula
-	name = "Akula"
-	plural_form = "Akula"
+	name = "阿库拉"
+	plural_form = "阿库拉人"
 	id = SPECIES_AKULA
 	lore_protected = TRUE
 	offset_features = list(
@@ -53,17 +53,17 @@
 	)
 
 /datum/species/akula/get_species_description()
-	return list("The Akula are a species of sharklike humanoids hailing from a largely oceanic homeworld, Azulea. They tend to be tall, with smooth skin unlike the sharks of Earth, but share a lot of similarities in biology with those sharks, including their buoyant liver and their ability to store chlorine and consume saltwater with no ill effects. They are amphibious, and have skin that can retain small amounts of water for a time. They also posess the shark's unhinged jaw and constantly regenerating, unseated teeth.",
+	return list("阿库拉是一种形似鲨鱼的人形种族，来自一颗以海洋为主的母星——阿祖莱亚。他们通常身材高大，皮肤光滑，与地球上的鲨鱼不同，但在生理结构上却与那些鲨鱼有许多相似之处，包括能提供浮力的肝脏，以及储存氯气、饮用海水而不受伤害的能力。他们水陆两栖，皮肤能在短时间内保持少量水分。他们还拥有鲨鱼那样可以脱臼的下颌，以及不断再生、从不固定的牙齿。",
 	)
 
 /datum/species/akula/get_species_lore()
-	return list("The Akula, once known as the Azuleans for their homeworld, are known for their pride and their martial prowess. They are a democratic people, who overthrew the old feudal monarchy that once governed them, and now live as a democratic vassal under the mysterious Soato Empire.",
-	"In the times before the Democratic Union, the Akula were ruled by a longstanding royal line, the Line of Agurrkal, dating back to the ancient times. This line was often carried by very corrupt and very mentally unwell rulers due to several queens not wishing to reproduce with anyone and undergoing parthenogenesis, causing mental and physical deformities in their offspring. To this day, the reputation of the Old Nobility as a bunch of degenerate, unstable, feckless hedonists is still held by the surviving Nobles who fled to the fringes of Akulaspace.",
-	"In the modern day, the Akula people are split into three factions: the Akula Democratic Union, the main government of the Akula people; the Old Nobles, who have fled to the edge of Akulaspace and still squabble with eachother over who would logically succeed the dead line of Agurrkal; and the Border Principalities, who are largely independent border fiefdoms that consist of merchant princes, Old Nobles, and the occasional Mercenary Bandit Kingdom.",
-	"The Akula Democratic Union is the largest of the three, and comprises most of Akulaspace, headquartered on Azulea. It is a representative democracy, with delegates from each world coming together alongside the elected President and VP to govern the Akula. ADU Akula tend to be very community-minded and close, often forming tight webs of association, and are known for their large and common celebrations. The ADU, also, hilariously, has a galaxy-famous wrestling entertainment industry.",
-	"The Old Nobles, once the lords and masters of the old Azulean people, are now consigned to the fringes of Akulaspace, having fled the persecutions of the revolution that overthrew their rule. These Old Nobles are widely seen as a bunch of vile, backwards, hedonistic fops, obsessed with honor and genetics. They routinely espouse views of Azulean genetic supremacy, attempt to genetically transform their subjects into Azuleans, and endlessly squabble with eachother over who should rightfully succeed the broken Line of Agurrkal. While most of these deplorable beings of pomp and circumstance fit this reputation, there are a few who were, and are, not as reprehensible.",
-	"The Border Principalities consist of various relatively small fiefdoms that, in one way or another, refuse governance by the ADU or the Kingdom of Agurrkal before them. These principalities are ruled by merchant princes, independent-minded lesser nobles, and other independents, the largest of which is the wealthy and opportunistic Principality of Hakonen, who has brokered deals with the ADU to be their one trade inroad to the rest of the galaxy. The cultures of these border states are as varied as their rulers; some are capitalist paradises where everything has a price, and others are cruel despotic dictatorships ruled by madmen or wealthy retired mercenaries.",
-	"These three factions have deep divides, and those who belong to them often tend to clash. Regardless of faction, however, most Akula are known rather well for their pride, their loyalty to friends, family, and ideals, and their love of the oceans they come from, and the whales they once lived beside.",
+	return list("阿库拉人曾因母星而被称作阿祖莱亚人，以骄傲和武艺闻名。他们是一个民主的民族，推翻了曾统治他们的旧封建君主制，如今作为神秘的索阿托帝国的民主附庸而生活。",
+	"在民主联盟建立之前，阿库拉由一支历史悠久的王室血脉——阿古尔卡尔家族——统治，其渊源可追溯至远古时代。由于数位女王不愿与任何人交配，转而进行孤雌生殖，导致后代出现精神和身体上的畸形，这条血脉常常由极其腐败、精神极不健全的统治者延续。时至今日，那些逃往阿库拉空间边缘的幸存旧贵族，仍背负着旧贵族是一群堕落、不稳定、无能的享乐主义者的名声。",
+	"如今，阿库拉人分裂为三个派系：阿库拉民主联盟，阿库拉人的主要政府；旧贵族，他们逃到阿库拉空间边缘，仍在为谁才理应继承已断绝的阿古尔卡尔血脉而争吵不休；以及边疆诸侯国，这些基本上独立的边疆领地由商业亲王、旧贵族，偶尔还有佣兵匪王组成。",
+	"阿库拉民主联盟是三者中最大的，占据了阿库拉空间的大部分，首府设在阿祖莱亚。它是一个代议制民主政体，各世界的代表与民选的总统和副总统共同治理阿库拉。民主联盟的阿库拉人往往极具社群意识、关系紧密，常结成牢固的社交网络，并以规模盛大、频繁举行的庆典闻名。说来好笑，民主联盟还拥有一个银河闻名的摔角娱乐产业。",
+	"旧贵族曾是旧阿祖莱亚人的领主与主人，如今在推翻其统治的革命迫害下逃亡，被贬至阿库拉空间的边缘。人们普遍认为这些旧贵族是一群卑劣、落后、耽于享乐的纨绔，痴迷于荣誉与血统。他们惯常鼓吹阿祖莱亚人的基因优越论，试图用基因改造让自己的臣民变成阿祖莱亚人，并为了谁才应当合法继承断绝的阿古尔卡尔血脉而彼此争吵不休。这些虚饰排场的可鄙存在大多名副其实，但也有少数人过去和现在都不那么令人不齿。",
+	"边疆诸侯国由诸多相对较小的领地组成，它们以各自的方式拒绝接受民主联盟或先前的阿古尔卡尔王国的统治。这些诸侯国由商业亲王、思想独立的低级贵族以及其他独立势力统治，其中最大的是富有而投机的哈科宁诸侯国，它已与民主联盟达成协议，成为其通往银河其他地区的唯一贸易入口。这些边疆国家的文化如同其统治者一样多样；有些是一切皆可标价的资本主义天堂，另一些则是由疯子或富有的退役佣兵统治的残酷专制独裁。",
+	"这三个派系分歧极深，分属各派的人常常发生冲突。然而，无论属于哪一派，大多数阿库拉人都以骄傲、对朋友、家人与理想的忠诚，以及对故乡海洋和曾与他们共处的鲸类的热爱而广为人知。",
 	)
 
 /datum/species/akula/randomize_features()

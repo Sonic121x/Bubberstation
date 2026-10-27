@@ -7,14 +7,14 @@
 */
 /datum/infuser_entry/fly
 	name = "Rejected"
-	infuse_mob_name = "rejected creature"
-	desc = "For whatever reason, when the body rejects DNA, the DNA goes sour, ending up as some kind of fly-like DNA jumble."
-	threshold_desc = "the DNA mess takes over, and you become a full-fledged flyperson."
+	infuse_mob_name = "被排斥的生物"
+	desc = "不知为何，身体排斥DNA时，这些DNA会恶化，最终变成某种类似苍蝇的混乱DNA。"
+	threshold_desc = "混乱的DNA占据主导，你会完全变成苍蝇人。"
 	qualities = list(
-		"buzzy-like speech",
-		"vomit drinking",
-		"unidentifiable organs",
-		"this is a bad idea",
+		"说话嗡嗡作响",
+		"喝呕吐物",
+		"无法辨认的器官",
+		"这不是个好主意",
 	)
 	output_organs = list(
 		/obj/item/organ/appendix/fly,
@@ -24,18 +24,18 @@
 		/obj/item/organ/stomach/fly,
 		/obj/item/organ/tongue/fly,
 	)
-	infusion_desc = "fly-like"
+	infusion_desc = "像苍蝇"
 	tier = DNA_MUTANT_TIER_ZERO
 
 /datum/infuser_entry/vulpini
-	name = "Fox"
-	infuse_mob_name = "vulpini"
-	desc = "Foxes are now quite rare because of the \"fox ears\" craze back in 2555. I mean, also because we're spacefarers who destroyed foxes' natural habitats ages ago, but that applies to most animals."
+	name = "狐狸"
+	infuse_mob_name = "狐族动物"
+	desc = "由于2555年的‘狐耳’热潮，狐狸如今相当稀少。我的意思是，也因为我们这些太空旅行者很久以前就破坏了狐狸的自然栖息地，不过这对大多数动物都适用。"
 	threshold_desc = DNA_INFUSION_NO_THRESHOLD
 	qualities = list(
-		"oh come on really",
-		"you bring SHAME to all geneticists",
-		"i hope it was worth it",
+		"不是吧，你认真的？",
+		"你让所有遗传学家蒙羞",
+		"希望你觉得这值得",
 	)
 	input_obj_or_mob = list(
 		/mob/living/basic/pet/fox,
@@ -43,19 +43,19 @@
 	output_organs = list(
 		/obj/item/organ/ears/fox,
 	)
-	infusion_desc = "inexcusable"
+	infusion_desc = "不可原谅"
 	tier = DNA_MUTANT_TIER_ZERO
 
 /datum/infuser_entry/mothroach
-	name = "Mothroach"
-	infuse_mob_name = "lepi-blattidae"
-	desc = "So first they mixed moth and roach DNA to make mothroaches, and now we mix mothroach DNA with humanoids to make mothmen hybrids?"
+	name = "蛾蟑"
+	infuse_mob_name = "鳞翅蜚蠊科生物"
+	desc = "所以，他们先将飞蛾和蟑螂DNA混合，造出了蛾蟑，现在我们又把蛾蟑DNA与人形生物混合，造出蛾人混种？"
 	threshold_desc = DNA_INFUSION_NO_THRESHOLD
 	qualities = list(
-		"eyes weak to bright lights",
-		"you flutter when you talk",
-		"wings that can't even carry your body weight",
-		"i hope it was worth it",
+		"眼睛怕强光",
+		"说话时会扑动翅膀",
+		"翅膀连你的体重都托不起来",
+		"希望你觉得这值得",
 	)
 	input_obj_or_mob = list(
 		/mob/living/basic/mothroach,
@@ -66,19 +66,19 @@
 		/obj/item/organ/eyes/moth,
 		/obj/item/organ/tongue/moth,
 	)
-	infusion_desc = "fluffy"
+	infusion_desc = "毛茸茸"
 	tier = DNA_MUTANT_TIER_ZERO
 
 /datum/infuser_entry/lizard
-	name = "Lizard"
-	infuse_mob_name = "lacertilia"
-	desc = "Turns out infusing most humanoids with lizard DNA creates features remarkably similar to those of lizardpeople. What a strange coincidence."
+	name = "蜥蜴"
+	infuse_mob_name = "蜥蜴类动物"
+	desc = "事实证明，大多数人形生物融合蜥蜴DNA后，会出现与蜥蜴人极其相似的特征。真是奇妙的巧合。"
 	threshold_desc = DNA_INFUSION_NO_THRESHOLD
 	qualities = list(
-		"long tails",
-		"decorative horns",
-		"aesthetic snouts",
-		"not much honestly",
+		"长尾巴",
+		"装饰性的角",
+		"美观的吻部",
+		"说实话，没多少别的",
 	)
 	input_obj_or_mob = list(
 		/mob/living/basic/lizard,
@@ -90,16 +90,16 @@
 		/obj/item/organ/tail/lizard,
 		/obj/item/organ/tongue/lizard,
 	)
-	infusion_desc = "scaly"
+	infusion_desc = "多鳞"
 	tier = DNA_MUTANT_TIER_ZERO
 
 /datum/infuser_entry/felinid
-	name = "Cat"
-	infuse_mob_name = "feline"
-	desc = "EVERYONE CALM DOWN! I'm not implying anything with this entry. Are we really so surprised that felinids are humans with mixed feline DNA?"
+	name = "猫"
+	infuse_mob_name = "猫科动物"
+	desc = "大家冷静！这个条目没有任何暗示。猫人就是混入猫科DNA的人类，这有什么可惊讶的？"
 	threshold_desc = DNA_INFUSION_NO_THRESHOLD
 	qualities = list(
-		"oh, let me guess, you're a big fan of those Japanese tourist bots",
+		"哦，让我猜猜，你很喜欢那些日本游客机器人吧",
 	)
 	input_obj_or_mob = list(
 		/mob/living/basic/pet/cat,
@@ -108,16 +108,16 @@
 		/obj/item/organ/ears/cat,
 		/obj/item/organ/tail/cat,
 	)
-	infusion_desc = "domestic"
+	infusion_desc = "温顺亲人"
 	tier = DNA_MUTANT_TIER_ZERO
 
 /datum/infuser_entry/penguin
-	name = "Penguin"
-	infuse_mob_name = "penguin"
-	desc = "Honestly, there wasn't much to gleam from a penguin's DNA, other than they walk funny."
+	name = "企鹅"
+	infuse_mob_name = "企鹅"
+	desc = "说实话，除了走路很滑稽之外，从企鹅DNA里也找不出多少亮点。"
 	threshold_desc = DNA_INFUSION_NO_THRESHOLD
 	qualities = list(
-		"you waddle when you walk",
+		"走路时摇摇摆摆",
 	)
 	input_obj_or_mob = list(
 		/mob/living/basic/pet/penguin,
@@ -125,18 +125,18 @@
 	output_organs = list(
 		/obj/item/organ/ears/penguin,
 	)
-	infusion_desc = "waddly"
+	infusion_desc = "摇摇摆摆"
 	tier = DNA_MUTANT_TIER_ZERO
 
 /datum/infuser_entry/plants
-	name = "Plant"
-	infuse_mob_name = "plant hybrid"
-	desc = "Hydroponics research has long been interested in splicing human DNA into plant DNA, creating podpeople. \
-		Many scientists didn't want to let those hippies get the leg up on them, so they attempted the opposite - to pretty uninteresting results."
+	name = "植物"
+	infuse_mob_name = "植物混种"
+	desc = "水培研究长期致力于将人类DNA拼接到植物DNA中，创造植物人。 \
+		许多科学家不愿让那些嬉皮士抢先，便尝试反过来做——结果实在没什么意思。"
 	threshold_desc = DNA_INFUSION_NO_THRESHOLD
 	qualities = list(
-		"gives you neat hair",
-		"not much else, honestly",
+		"给你漂亮的头发",
+		"说实话，没多少别的",
 	)
 	input_obj_or_mob = list(
 		/obj/item/food/grown,
@@ -154,7 +154,7 @@
 		/obj/item/organ/stomach/pod,
 		/obj/item/organ/tongue/pod,
 	)
-	infusion_desc = "botanical"
+	infusion_desc = "像植物"
 	tier = DNA_MUTANT_TIER_ZERO
 
 /datum/infuser_entry/plants/get_output_organs(mob/living/carbon/human/target, atom/movable/infused_from)

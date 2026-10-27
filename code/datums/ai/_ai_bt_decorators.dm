@@ -72,12 +72,12 @@
 	if(observer_abort != BT_ABORT_NONE)
 		var/abort_name = ""
 		if(observer_abort == BT_ABORT_SELF)
-			abort_name = "SELF"
+			abort_name = "自身"
 		else if(observer_abort == BT_ABORT_LOWER_PRIORITY)
-			abort_name = "LOWER"
+			abort_name = "低优先级"
 		else if(observer_abort == BT_ABORT_BOTH)
-			abort_name = "BOTH"
-		observer_text = " (abort-[abort_name])"
+			abort_name = "两者"
+		observer_text = "（中止：[abort_name]）"
 	lines += "[indent][get_status_marker()] [label][observer_text]"
 	if(child)
 		child.append_full_tree_state(lines, "[indent]  ")
@@ -163,13 +163,13 @@
 	if(!condition_result && (observer_abort & BT_ABORT_SELF))
 		var/active = controller.active_execution_index
 		if(!execution_index || (active >= execution_index && active <= last_execution_index))
-			EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_DECISIONMAKING, "[controller.pawn] [type]: ABORT_SELF on key=[key]  condition lost, replanning")
+			EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_DECISIONMAKING, "[controller.pawn] [type]：键 [key] 触发 ABORT_SELF；条件不再满足，重新规划")
 			controller.cancel_current_plan()
 
 	if(condition_result && (observer_abort & BT_ABORT_LOWER_PRIORITY))
 		var/active = controller.active_execution_index
 		if(!execution_index || !active || active > last_execution_index)
-			EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_DECISIONMAKING, "[controller.pawn] [type]: ABORT_LOWER on key=[key]  condition gained, replanning")
+			EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_DECISIONMAKING, "[controller.pawn] [type]：键 [key] 触发 ABORT_LOWER；条件已满足，重新规划")
 			controller.cancel_current_plan()
 
 /datum/bt_node/decorator/reset_tick_state()

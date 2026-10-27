@@ -50,10 +50,10 @@
 			/atom/movable/screen/alert/bitrunning,
 			new_master = src,
 		)
-		alert.name = "Queue Deletion"
-		alert.desc = "The server is resetting. Oblivion awaits."
+		alert.name = "队列删除"
+		alert.desc = "服务器正在重置。湮灭将至。"
 
-		to_chat(baddie, span_userdanger("You have been flagged for deletion! Thank you for your service."))
+		to_chat(baddie, span_userdanger("你已被标记为删除！感谢你的服务。"))
 
 
 /// Removes a specific threat - used when station spawning
@@ -76,14 +76,14 @@
 	var/datum/antagonist/bitrunning_glitch/chosen_role = forced_role || get_antagonist_role()
 	var/role_name = initial(chosen_role.name)
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
-		question = "<span class='ooc'>A temporary antagonist role is spawning in the virtual domain.</span>\
-		\n<span class='boldnotice'>You will return to your previous body on conclusion.</span>",
+		question = "<span class='ooc'>一个临时反派角色正在虚拟域中生成。</span>\
+		\n<span class='boldnotice'>本次结束后你将回到先前的躯体。</span>",
 		check_jobban = ROLE_GLITCH,
 		poll_time = 20 SECONDS,
 		checked_target = mutation_target,
 		ignore_category = POLL_IGNORE_GLITCH,
 		alert_pic = mutation_target,
-		role_name_text = "Malfunction: [role_name]",
+		role_name_text = "故障：[role_name]",
 	)
 	spawn_glitch(chosen_role, mutation_target, chosen_one)
 	return mutation_target
@@ -121,25 +121,25 @@
 	antag_mind.set_assigned_role(SSjob.get_job_type(/datum/job/bitrunning_glitch))
 
 	playsound(new_mob, 'sound/effects/magic/ethereal_exit.ogg', 50, vary = TRUE)
-	message_admins("[ADMIN_LOOKUPFLW(new_mob)] has been made into virtual antagonist by an event.")
-	new_mob.log_message("was spawned as a virtual antagonist by an event.", LOG_GAME)
+	message_admins("[ADMIN_LOOKUPFLW(new_mob)] 因一场事件被转化为虚拟反派。")
+	new_mob.log_message("因一场事件被生成为虚拟反派。", LOG_GAME)
 
 	add_threats(new_mob)
 
 
 /// Oh boy - transports the antag station side
 /obj/machinery/quantum_server/proc/station_spawn(mob/living/antag, obj/machinery/byteforge/chosen_forge)
-	antag.balloon_alert(antag, "scanning...")
+	antag.balloon_alert(antag, "扫描中……")
 	chosen_forge.setup_particles(angry = TRUE)
 	var/obj/machinery/announcement_system/aas = get_announcement_system(null, src, list(RADIO_CHANNEL_SUPPLY))
 	if (aas)
-		aas.broadcast("QUANTUM SERVER ALERT: Security breach detected. Unauthorized entry sequence in progress...", list(RADIO_CHANNEL_SUPPLY))
+		aas.broadcast("量子服务器警报：检测到安全入侵。未经授权的进入程序正在进行……", list(RADIO_CHANNEL_SUPPLY))
 	SEND_SIGNAL(src, COMSIG_BITRUNNER_STATION_SPAWN)
 
 	var/timeout = 2 SECONDS
 	if(!ishuman(antag))
 		if (aas)
-			aas.broadcast("QUANTUM SERVER ALERT: Fabrication protocols have crashed unexpectedly. Please evacuate the area.", list(RADIO_CHANNEL_SUPPLY))
+			aas.broadcast("量子服务器警报：制造协议意外崩溃。请撤离该区域。", list(RADIO_CHANNEL_SUPPLY))
 		timeout = 10 SECONDS
 
 	var/bitrunners_alive = 0
@@ -156,7 +156,7 @@
 		bitrunners_alive++
 		timeout *= 5
 	if(bitrunners_alive)
-		to_chat(antag, span_warning("[bitrunners_alive] criminals still remain here, pilfering your domain. It will be more difficult to leave until they are handled."))
+		to_chat(antag, span_warning("还有 [bitrunners_alive] 名罪犯留在这里，盗取你的域。在你处理掉他们之前，离开会更加困难。"))
 
 	if(!do_after(antag, timeout) || QDELETED(chosen_forge) || QDELETED(antag) || QDELETED(src) || !is_ready || !is_operational)
 		chosen_forge.setup_particles()
@@ -178,7 +178,7 @@
 	if(ishuman(antag))
 		reset_equipment(antag)
 	else if (aas)
-		aas.broadcast("QUANTUM SERVER CRITICAL ALERT: Unregistered mechanical entity deployed.", list())
+		aas.broadcast("量子服务器严重警报：未注册的机械实体已部署。", list())
 
 	var/datum/antagonist/antag_datum = antag.mind?.has_antag_datum(/datum/antagonist/bitrunning_glitch)
 	if(istype(antag_datum))

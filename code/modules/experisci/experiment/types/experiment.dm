@@ -8,11 +8,11 @@
  */
 /datum/experiment
 	/// Name that distinguishes the experiment
-	var/name = "Experiment"
+	var/name = "实验"
 	/// A brief description of the experiment to be shown as details
-	var/description = "Base experiment"
+	var/description = "基础实验"
 	/// A descriptive tag used on UI elements to denote 'types' of experiments
-	var/exp_tag = "Base"
+	var/exp_tag = "基础"
 	/// A list of types that are allowed to experiment with this dastum
 	var/list/allowed_experimentors
 	/// Whether the experiment has been completed
@@ -33,7 +33,7 @@
  */
 /datum/experiment/New(datum/techweb/techweb)
 	if (traits & EXPERIMENT_TRAIT_DESTRUCTIVE)
-		exp_tag = "Destructive [exp_tag]"
+		exp_tag = "破坏性[exp_tag]"
 
 /**
  * Checks if the experiment is complete
@@ -124,7 +124,7 @@
 	var/list/english_list_keys = list()
 	for(var/points_type in points_reward)
 		english_list_keys += "[points_reward[points_type]] [points_type]"
-	return "[english_list(english_list_keys)] points"
+	return "[english_list(english_list_keys)] 点"
 
 /datum/experiment/proc/to_ui_data()
 	return list(

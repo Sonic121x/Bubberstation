@@ -1,6 +1,6 @@
 /obj/machinery/power/manufacturing/router // Basically a splitter
-	name = "manufacturing router"
-	desc = "Distributes input to 3 output directions equally. Stacks are split, and you may toggle outputs with a multitool. May not receive from other routers."
+	name = "制造分流器"
+	desc = "将输入平均分配到 3 个输出方向。堆叠会被拆分，你可以用多功能工具切换输出。不能接收其他分流器的输入。"
 	allow_mob_bump_intake = TRUE
 	icon_state = "splitter"
 	circuit = /obj/item/circuitboard/machine/manurouter
@@ -17,14 +17,14 @@
 	. = ..()
 	var/to_toggle = get_dir(src, user)
 	if(!(to_toggle in GLOB.cardinals))
-		balloon_alert(user, "stand inline!")
+		balloon_alert(user, "请站在正对方向！")
 		return ITEM_INTERACT_FAILURE
 	if(to_toggle in disabled_dirs)
 		disabled_dirs -= to_toggle
 	else
 		disabled_dirs += to_toggle
 	update_appearance(UPDATE_OVERLAYS)
-	balloon_alert(user, "toggled output")
+	balloon_alert(user, "已切换输出")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/power/manufacturing/router/update_overlays()

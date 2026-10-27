@@ -1,6 +1,6 @@
 /obj/structure/flora/biolumi
-	name = "glowing plants"
-	desc = "Several sticks with bulbous, bioluminescent tips."
+	name = "发光植物"
+	desc = "几根顶端膨大、泛着生物光的枝条。"
 	icon = 'modular_skyrat/modules/jungle/icons/jungleflora.dmi'
 	icon_state = "stick"
 	gender = PLURAL
@@ -28,22 +28,22 @@
 		overlay.color = light_color
 
 /obj/structure/flora/biolumi/mine
-	name = "glowing plant"
-	desc = "Glowing sphere encased in jungle leaves."
+	name = "发光植物"
+	desc = "被丛林叶片包裹的发光球体。"
 	icon_state = "mine"
 	variants = 4
 	random_light = list("#FF0066","#00FFEE", "#D9FF00", "#FFC800")
 
 /obj/structure/flora/biolumi/flower
-	name = "glowing flower"
-	desc = "Beautiful, bioluminescent flower."
+	name = "发光花"
+	desc = "美丽且泛着生物光的花朵。"
 	icon_state = "flower"
 	variants = 2
 	random_light = list("#6F00FF","#00FFEE", "#D9FF00", "#FF73D5")
 
 /obj/structure/flora/biolumi/lamp
-	name = "plant lamp"
-	desc = "Bioluminescent plant much in a shape of a street lamp."
+	name = "植物路灯"
+	desc = "一株外形酷似路灯的生物光植物。"
 	icon_state = "lamp"
 	variants = 2
 	random_light = list("#6AFF00","#00FFEE", "#D9FF00", "#FFC800")

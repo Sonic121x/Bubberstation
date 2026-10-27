@@ -7,9 +7,9 @@
 		BB_EAT_FOOD_COOLDOWN = 10 SECONDS,
 		BB_EAT_EMOTES = list(),
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_SAY = list("Honk!"),
-			BB_EMOTE_HEAR = list("honks.", "honks loudly.", "honks aggressively."),
-			BB_EMOTE_SEE = list("flaps.", "preens.", "glares around."),
+			BB_EMOTE_SAY = list("嘎！"),
+			BB_EMOTE_HEAR = list("嘎嘎叫着。", "大声嘎嘎叫着。", "凶狠地嘎嘎叫着。"),
+			BB_EMOTE_SEE = list("扇动翅膀。", "整理羽毛。", "恶狠狠地环顾四周。"),
 			BB_SPEAK_CHANCE = 3,
 		),
 	)
@@ -26,9 +26,9 @@
 		BB_EAT_FOOD_COOLDOWN = 0.5 SECONDS, // Uh oh
 		BB_EAT_EMOTES = list(),
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_SAY = list("Honk!"),
-			BB_EMOTE_HEAR = list("honks.", "honks loudly.", "honks aggressively."),
-			BB_EMOTE_SEE = list("flaps.", "preens.", "glares around."),
+			BB_EMOTE_SAY = list("嘎！"),
+			BB_EMOTE_HEAR = list("嘎嘎叫着。", "大声嘎嘎叫着。", "凶狠地嘎嘎叫着。"),
+			BB_EMOTE_SEE = list("扇动翅膀。", "整理羽毛。", "恶狠狠地环顾四周。"),
 			BB_SPEAK_CHANCE = 3,
 		),
 	)

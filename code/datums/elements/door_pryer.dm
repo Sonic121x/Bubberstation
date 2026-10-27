@@ -32,15 +32,15 @@
 		return NONE // It's already open numbnuts
 
 	if(DOING_INTERACTION_WITH_TARGET(attacker, target) || (!isnull(interaction_key) && DOING_INTERACTION(attacker, interaction_key)))
-		attacker.balloon_alert(attacker, "busy!")
+		attacker.balloon_alert(attacker, "正忙着！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if (attacker.combat_mode)
 		return // Attack the door
 
 	if (airlock_target.locked || airlock_target.welded || airlock_target.seal)
-		airlock_target.balloon_alert(attacker, "it's sealed!")
-		attacker.log_message("Tried to pry open [src], located at [loc_name(src)], but failed due to the airlock being sealed.", LOG_GAME)
+		airlock_target.balloon_alert(attacker, "气闸已密封！")
+		attacker.log_message("试图撬开位于[loc_name(src)]的[src]，但因气闸已密封而失败。", LOG_GAME)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	INVOKE_ASYNC(src, PROC_REF(open_door), attacker, airlock_target)
@@ -49,8 +49,8 @@
 /// Try opening the door, and if we can't then try forcing it
 /datum/element/door_pryer/proc/open_door(mob/living/basic/attacker, obj/machinery/door/airlock/airlock_target)
 	if (!airlock_target.hasPower())
-		attacker.visible_message(span_warning("[attacker] forces the [airlock_target] to open."))
-		attacker.log_message("Pried open [src], located at [loc_name(src)].", LOG_GAME)
+		attacker.visible_message(span_warning("[attacker]强行打开了[airlock_target]。"))
+		attacker.log_message("撬开了位于[loc_name(src)]的[src]。", LOG_GAME)
 		airlock_target.open(FORCING_DOOR_CHECKS)
 		return
 
@@ -59,21 +59,21 @@
 		return
 
 	attacker.visible_message(\
-		message = span_warning("[attacker] starts forcing the [airlock_target] open!"),
-		blind_message = span_hear("You hear a metal screeching sound."),
+		message = span_warning("[attacker]开始强行打开[airlock_target]！"),
+		blind_message = span_hear("你听见刺耳的金属摩擦声。"),
 	)
-	attacker.log_message("Started prying open [src], located at [loc_name(src)].", LOG_GAME)
+	attacker.log_message("开始撬开位于[loc_name(src)]的[src]。", LOG_GAME)
 
 	playsound(airlock_target, 'sound/machines/airlock/airlock_alien_prying.ogg', 100, TRUE)
-	airlock_target.balloon_alert(attacker, "prying...")
+	airlock_target.balloon_alert(attacker, "正在撬动……")
 	if(!do_after(attacker, pry_time, airlock_target))
-		airlock_target.balloon_alert(attacker, "interrupted!")
-		attacker.log_message("Tried and failed to pry open [src], located at [loc_name(src)], due to getting interrupted.", LOG_GAME)
+		airlock_target.balloon_alert(attacker, "被打断了！")
+		attacker.log_message("试图撬开位于[loc_name(src)]的[src]，但因被打断而失败。", LOG_GAME)
 		return
 	if(airlock_target.locked)
-		attacker.log_message("Tried and failed to pry open [src], located at [loc_name(src)], due to the airlock getting bolted during the do_after.", LOG_GAME)
+		attacker.log_message("试图撬开位于[loc_name(src)]的[src]，但因气闸在操作途中落栓而失败。", LOG_GAME)
 		return
-	attacker.visible_message(span_warning("[attacker] forces the [airlock_target] to open."))
-	attacker.log_message("Successfully pried open [src], located at [loc_name(src)].", LOG_GAME)
+	attacker.visible_message(span_warning("[attacker]强行打开了[airlock_target]。"))
+	attacker.log_message("成功撬开位于[loc_name(src)]的[src]。", LOG_GAME)
 	airlock_target.open(BYPASS_DOOR_CHECKS)
 	airlock_target.take_damage(AIRLOCK_PRY_DAMAGE, BRUTE, sound_effect = FALSE)

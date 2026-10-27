@@ -20,7 +20,7 @@
 	outfit_weight = 2
 
 /obj/item/coupon/bee
-	desc = "BEEEES???? AT AN AFFORDAbLE PORICE?!!!" //wordcoders seething
+	desc = "蜜蜂蜜蜂蜜蜂蜜蜂？？？？这价格也太实惠了吧？！！！" //wordcoders seething
 
 	discounted_pack = /datum/supply_pack/organic/hydroponics/beekeeping_fullkit
 	discount_pct_off = 0.7

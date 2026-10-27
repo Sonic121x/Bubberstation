@@ -38,8 +38,8 @@
 #define BATTLE_ARCADE_PLAYER_DEFEND "Defend"
 
 /obj/machinery/computer/arcade/battle
-	name = "battle arcade"
-	desc = "Explore vast worlds and conquer."
+	name = "战斗街机"
+	desc = "探索并征服广阔的世界。"
 	icon_state = MAP_SWITCH("arcade", "/obj/machinery/computer/arcade/battle")
 	icon_screen = "fighters"
 	circuit = /obj/item/circuitboard/computer/arcade/battle
@@ -59,10 +59,10 @@
 		BATTLE_WORLD_NINE = 3,
 	)
 	var/static/list/all_attack_types = list(
-		BATTLE_ARCADE_PLAYER_ATTACK = "Attack the enemy in a default attack at no MP cost.",
-		BATTLE_ARCADE_PLAYER_HEAVY_ATTACK = "Attack the enemy with the power of Magic, costing MP for additional damage.",
-		BATTLE_ARCADE_PLAYER_COUNTERATTACK = "Use magic to prepare a counterattack of your enemy, allowing you to deal extra damage if you succeed.",
-		BATTLE_ARCADE_PLAYER_DEFEND = "Defend from the next incoming attack, lowing the amount of damage you take while restoring some HP and MP.",
+		BATTLE_ARCADE_PLAYER_ATTACK = "以普通攻击打击敌人，不消耗魔力。",
+		BATTLE_ARCADE_PLAYER_HEAVY_ATTACK = "以魔法之力攻击敌人，消耗魔力以造成额外伤害。",
+		BATTLE_ARCADE_PLAYER_COUNTERATTACK = "使用魔法准备反击，成功后可造成额外伤害。",
+		BATTLE_ARCADE_PLAYER_DEFEND = "防御下一次攻击，降低受到的伤害，同时恢复部分生命值和魔力。",
 	)
 	///The world we're currently in.
 	var/player_current_world = BATTLE_WORLD_ONE
@@ -124,10 +124,10 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "hard mode enabled")
-	to_chat(user, span_warning("A mesmerizing Rhumba beat starts playing from the arcade machine's speakers!"))
+	balloon_alert(user, "困难模式已启用")
+	to_chat(user, span_warning("街机的扬声器开始播放令人着迷的伦巴节奏！"))
 	setup_new_opponent(user)
-	feedback_message = "If you die in the game, you die for real!"
+	feedback_message = "如果你在游戏里死了，现实中也会死！"
 	SStgui.update_uis(src)
 	return TRUE
 
@@ -172,7 +172,7 @@
 		boss_adjective ||= pick_list(ARCADE_FILE, "rpg_adjective")
 		boss_name ||= pick_list(ARCADE_FILE, "rpg_enemy")
 
-	return "The [boss_adjective] [boss_name]"
+	return "[boss_adjective] [boss_name]"
 
 ///Sets up a new opponent depending on what stage they are at.
 /obj/machinery/computer/arcade/battle/proc/setup_new_opponent(mob/living/user, enemy_gets_first_move = FALSE)
@@ -188,11 +188,11 @@
 		enemy_gold_reward *= 1.5
 
 	enemy_icon_id = rand(1,6)
-	enemy_name = make_boss_name(boss_adjective = (boss ? "Big Boss" : null))
-	feedback_message = "New game started against [enemy_name]"
+	enemy_name = make_boss_name(boss_adjective = (boss ? "大头目" : null))
+	feedback_message = "新游戏开始，对手是[enemy_name]"
 
 	if(obj_flags & EMAGGED)
-		enemy_name = "Cuban Pete"
+		enemy_name = "古巴皮特"
 		enemy_hp += 100 //extra HP just to make cuban pete even more bullshit
 
 	//set max HP to reference later
@@ -222,14 +222,14 @@
 				var/current_world = all_worlds.Find(latest_unlocked_world)
 				latest_unlocked_world = all_worlds[current_world + 1]
 				ui_panel = UI_PANEL_WORLD_MAP
-				say("New world unlocked, [latest_unlocked_world]!")
+				say("新世界已解锁：[latest_unlocked_world]！")
 		enemies_defeated++
 	if(obj_flags & EMAGGED)
 		obj_flags &= ~EMAGGED
 		bomb_cooldown = initial(bomb_cooldown)
 		new /obj/effect/spawner/newbomb/plasma(loc, /obj/item/assembly/timer)
 		new /obj/item/clothing/head/collectable/petehat(loc)
-		message_admins("[ADMIN_LOOKUPFLW(user)] has outbombed Cuban Pete and been awarded a bomb.")
+		message_admins("[ADMIN_LOOKUPFLW(user)]在炸弹对决中战胜了古巴皮特，并获得了一枚炸弹。")
 		user.log_message("outbombed Cuban Pete and has been awarded a bomb.", LOG_GAME)
 	else
 		victory_tickets(2,FALSE)
@@ -261,13 +261,13 @@
 	player_current_hp -= round(max(0, damage_taken), 1)
 	if(player_current_hp <= 0)
 		ui_panel = UI_PANEL_GAMEOVER
-		feedback_message = "GAME OVER."
-		say("You have been crushed! GAME OVER.")
+		feedback_message = "游戏结束。"
+		say("你被彻底击败了！游戏结束。")
 		playsound(loc, 'sound/machines/arcade/lose.ogg', 40, TRUE)
 		lose_game(user)
 		return
 
-	feedback_message = "User took [damage_taken] damage!"
+	feedback_message = "玩家受到[damage_taken]点伤害！"
 	playsound(loc, 'sound/machines/arcade/hit.ogg', 40, TRUE, extrarange = -3)
 	SStgui.update_uis(src)
 
@@ -282,18 +282,18 @@
 			var/datum/battle_arcade_gear/weapon = equipped_gear[WEAPON_SLOT]
 			damage_dealt = (rand(15, 25) * (!isnull(weapon) ? weapon.bonus_modifier : 1))
 		if(BATTLE_ARCADE_PLAYER_COUNTERATTACK)
-			feedback_message = "User prepares to counterattack!"
+			feedback_message = "玩家准备反击！"
 			process_enemy_turn(user, defending_flags = BATTLE_ATTACK_FLAG_COUNTERATTACK)
 			playsound(loc, 'sound/machines/arcade/mana.ogg', 40, TRUE, extrarange = -3)
 		if(BATTLE_ARCADE_PLAYER_DEFEND)
-			feedback_message = "User pulls up their shield!"
+			feedback_message = "玩家举起了盾牌！"
 			process_enemy_turn(user, defending_flags = BATTLE_ATTACK_FLAG_DEFEND)
 			playsound(loc, 'sound/machines/arcade/mana.ogg', 40, TRUE, extrarange = -3)
 
 	if(!damage_dealt)
 		return
 	enemy_hp -= round(max(0, damage_dealt), 1)
-	feedback_message = "[enemy_name] took [damage_dealt] damage!"
+	feedback_message = "[enemy_name]受到[damage_dealt]点伤害！"
 	playsound(loc, 'sound/machines/arcade/hit.ogg', 40, TRUE, extrarange = -3)
 	process_enemy_turn(user)
 
@@ -302,7 +302,7 @@
 	var/datum/battle_arcade_gear/weapon = equipped_gear[WEAPON_SLOT]
 	var/damage_dealt = (rand(20, 30) * (!isnull(weapon) ? weapon.bonus_modifier : 1))
 	enemy_hp -= round(max(0, damage_dealt), 1)
-	feedback_message = "User counterattacked for [damage_dealt] damage!"
+	feedback_message = "玩家反击，造成[damage_dealt]点伤害！"
 	playsound(loc, 'sound/machines/arcade/boom.ogg', 40, TRUE, extrarange = -3)
 	if(enemy_hp <= 0)
 		on_battle_win(user)
@@ -318,15 +318,15 @@
 		bomb_cooldown--
 		switch(bomb_cooldown)
 			if(18)
-				feedback_message = "[enemy_name] takes two valve tank and links them together, what's he planning?"
+				feedback_message = "[enemy_name]拿出两个带阀气罐并将其连在一起，他想干什么？"
 			if(15)
-				feedback_message = "[enemy_name] adds a remote control to the tan- ho god is that a bomb?"
+				feedback_message = "[enemy_name]往气罐上装了个遥控器——天哪，那是炸弹吗？"
 			if(12)
-				feedback_message = "[enemy_name] throws the bomb next to you, you'r too scared to pick it up."
+				feedback_message = "[enemy_name]将炸弹扔到你身旁，你吓得不敢捡起来。"
 			if(6)
-				feedback_message = "[enemy_name]'s hand brushes the remote linked to the bomb, your heart skipped a beat."
+				feedback_message = "[enemy_name]的手拂过炸弹遥控器，你的心跳漏了一拍。"
 			if(2)
-				feedback_message = "[enemy_name] is going to press the button! It's now or never!"
+				feedback_message = "[enemy_name]就要按下按钮了！成败在此一举！"
 			if(0)
 				player_current_hp = 0 //instant death
 	addtimer(CALLBACK(src, PROC_REF(perform_enemy_turn), user, defending_flags), 1 SECONDS)
@@ -347,7 +347,7 @@
 			var/healed_amount = rand(10, 20)
 			enemy_hp = round(min(enemy_max_hp, enemy_hp + healed_amount), 1)
 			enemy_mp -= round(max(0, 10), 1)
-			feedback_message = "[enemy_name] healed for [healed_amount] health points!"
+			feedback_message = "[enemy_name]恢复了[healed_amount]点生命值！"
 			playsound(loc, 'sound/machines/arcade/heal.ogg', 40, TRUE, extrarange = -3)
 			SStgui.update_uis(src)
 			return
@@ -355,7 +355,7 @@
 			var/healed_amount = rand(5, 10)
 			player_current_mp -= round(max(0, healed_amount), 1)
 			enemy_mp += healed_amount
-			feedback_message = "[enemy_name] stole [healed_amount] MP from you!"
+			feedback_message = "[enemy_name]偷走了你[healed_amount]点魔力！"
 			playsound(loc, 'sound/machines/arcade/steal.ogg', 40, TRUE)
 			SStgui.update_uis(src)
 			return
@@ -426,7 +426,7 @@
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "BattleArcade", "Battle Arcade")
+		ui = new(user, src, "BattleArcade", "战斗街机")
 		ui.set_autoupdate(FALSE)
 		ui.open()
 
@@ -449,7 +449,7 @@
 			switch(action)
 				if("sleep")
 					if(player_gold < DEFAULT_ITEM_PRICE / 2)
-						say("You don't have enough gold to rest!")
+						say("你的金币不足，无法休息！")
 						return TRUE
 					player_gold -= DEFAULT_ITEM_PRICE / 2
 					playsound(loc, 'sound/vehicles/mecha/skyfall_power_up.ogg', 40)
@@ -459,10 +459,10 @@
 				if("buy_item")
 					var/datum/battle_arcade_gear/gear = battle_arcade_gear_list[params["purchasing_item"]]
 					if(latest_unlocked_world != gear.world_available || equipped_gear[gear.slot] == gear)
-						say("That item is not in stock.")
+						say("该物品缺货。")
 						return TRUE
 					if(player_gold < (DEFAULT_ITEM_PRICE * all_worlds[latest_unlocked_world]))
-						say("You don't have enough gold to buy that!")
+						say("你的金币不足，买不起它！")
 						return TRUE
 					player_gold -= DEFAULT_ITEM_PRICE * all_worlds[latest_unlocked_world]
 					equipped_gear[gear.slot] = gear
@@ -476,7 +476,7 @@
 					var/world_travelling = all_worlds.Find(params["selected_arena"])
 					var/max_unlocked_worlds = all_worlds.Find(latest_unlocked_world)
 					if(world_travelling > max_unlocked_worlds)
-						say("That world is not unlocked yet!")
+						say("那个世界尚未解锁！")
 						return TRUE
 					player_current_world = all_worlds[world_travelling]
 					setup_new_opponent(gamer)
@@ -520,7 +520,7 @@
 					return TRUE
 				if(BATTLE_ARCADE_PLAYER_HEAVY_ATTACK)
 					if(player_current_mp < SPELL_MP_COST)
-						say("You don't have enough MP to heavy attack!")
+						say("你的魔力不足，无法重击！")
 						player_turn = TRUE
 						return TRUE
 					player_current_mp -= SPELL_MP_COST
@@ -528,7 +528,7 @@
 					return TRUE
 				if(BATTLE_ARCADE_PLAYER_COUNTERATTACK)
 					if(player_current_mp < SPELL_MP_COST)
-						say("You don't have enough MP to counterattack!")
+						say("你的魔力不足，无法反击！")
 						player_turn = TRUE
 						return TRUE
 					player_current_mp -= SPELL_MP_COST

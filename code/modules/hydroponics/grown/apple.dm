@@ -1,10 +1,10 @@
 // Apple
 /obj/item/seeds/apple
-	name = "apple seed pack"
-	desc = "These seeds grow into apple trees."
+	name = "苹果种子包"
+	desc = "这些种子会长成苹果树。"
 	icon_state = "seed-apple"
 	species = "apple"
-	plantname = "Apple Tree"
+	plantname = "苹果树"
 	product = /obj/item/food/grown/apple
 	lifespan = 55
 	endurance = 35
@@ -18,18 +18,18 @@
 
 /obj/item/food/grown/apple
 	seed = /obj/item/seeds/apple
-	name = "apple"
-	desc = "It's a little piece of Eden."
+	name = "苹果"
+	desc = "这是伊甸园的一小片。"
 	icon_state = "apple"
 	foodtypes = FRUIT
-	tastes = list("apple" = 1)
+	tastes = list("苹果" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/hcider
 
 /obj/item/food/grown/apple/juice_typepath()
 	return /datum/reagent/consumable/applejuice
 
 /obj/item/food/grown/apple/make_processable()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/appleslice, 5, 20, screentip_verb = "Slice", sound_to_play = SFX_KNIFE_SLICE)
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/appleslice, 5, 20, screentip_verb = "切片", sound_to_play = SFX_KNIFE_SLICE)
 
 /obj/item/food/grown/apple/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
@@ -63,11 +63,11 @@
 
 // Gold Apple
 /obj/item/seeds/apple/gold
-	name = "golden apple seed pack"
-	desc = "These seeds grow into golden apple trees. Good thing there are no firebirds in space."
+	name = "金苹果种子包"
+	desc = "这些种子会长成金苹果树。幸好太空里没有火鸟。"
 	icon_state = "seed-goldapple"
 	species = "goldapple"
-	plantname = "Golden Apple Tree"
+	plantname = "金苹果树"
 	product = /obj/item/food/grown/apple/gold
 	maturation = 10
 	production = 10
@@ -81,8 +81,8 @@
 
 /obj/item/food/grown/apple/gold
 	seed = /obj/item/seeds/apple/gold
-	name = "golden apple"
-	desc = "Emblazoned upon the apple is the word 'Kallisti'."
+	name = "金苹果"
+	desc = "苹果上刻着“Kallisti”一词。"
 	icon_state = "goldapple"
 	distill_reagent = null
 	wine_power = 50

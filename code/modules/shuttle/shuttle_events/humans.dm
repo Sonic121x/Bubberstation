@@ -13,7 +13,7 @@
 	human.equipOutfit(new outfit ())
 
 /datum/shuttle_event/simple_spawner/player_controlled/human/greytide
-	name = "Greytide! (10 assistants)"
+	name = "灰色浪潮！（10 名助理）"
 	spawning_list = list(/mob/living/carbon/human = 10)
 	spawning_flags = SHUTTLE_EVENT_HIT_SHUTTLE
 	outfit = /datum/outfit/job/assistant/breath_mask
@@ -24,7 +24,7 @@
 	spawns_per_spawn = 10
 
 	spawn_anyway_if_no_player = TRUE
-	ghost_alert_string = "Would you like to be an assistant shot at the shuttle?"
+	ghost_alert_string = "你想成为被射向穿梭机的助理吗？"
 	remove_from_list_when_spawned = TRUE
 	self_destruct_when_empty = TRUE
 
@@ -37,29 +37,29 @@
 	internals_slot = ITEM_SLOT_LPOCKET
 
 /datum/shuttle_event/simple_spawner/player_controlled/human/greytide/interns
-	name = "Intern Wave (Unarmed, 10 interns)"
+	name = "实习生浪潮（徒手，10 名实习生）"
 	event_probability = 0
 	outfit = /datum/outfit/centcom/centcom_intern/unarmed
 
 	spawn_anyway_if_no_player = FALSE
-	ghost_alert_string = "Would you like to be a centcom intern shot at the shuttle?"
+	ghost_alert_string = "你想成为被射向穿梭机的中央指挥部实习生吗？"
 
 /datum/shuttle_event/simple_spawner/player_controlled/human/greytide/interns/activate()
 	..()
 
-	minor_announce("We're sending you our bravest interns, please let them in when they arrive.",
-		title = "Emergency Shuttle", alert = TRUE)
+	minor_announce("我们正在派出最勇敢的实习生，他们抵达时请让他们进来。",
+		title = "紧急穿梭机", alert = TRUE)
 
 /datum/shuttle_event/simple_spawner/player_controlled/human/greytide/interns/armed
-	name = "Intern Wave (Armed, 10 interns)"
+	name = "实习生浪潮（持械，10 名实习生）"
 	event_probability = 0
 	outfit = /datum/outfit/centcom/centcom_intern
 
 	spawn_anyway_if_no_player = FALSE
-	ghost_alert_string = "Would you like to be a centcom intern shot at the shuttle?"
+	ghost_alert_string = "你想成为被射向穿梭机的中央指挥部实习生吗？"
 
 /datum/shuttle_event/simple_spawner/player_controlled/human/hitchhiker
-	name = "Hitchhiker! (Harmless, single ghost spawn)"
+	name = "搭便车者！（无害，仅限一个幽灵名额）"
 	spawning_list = list(/mob/living/carbon/human = 1)
 	spawning_flags = SHUTTLE_EVENT_HIT_SHUTTLE
 	outfit = /datum/outfit/job/assistant/hitchhiker
@@ -69,7 +69,7 @@
 	activation_fraction = 0.2
 
 	spawn_anyway_if_no_player = TRUE
-	ghost_alert_string = "Would you like to be an assistant shot at the shuttle?"
+	ghost_alert_string = "你想成为被射向穿梭机的助理吗？"
 	remove_from_list_when_spawned = TRUE
 	self_destruct_when_empty = TRUE
 
@@ -85,7 +85,7 @@
 	internals_slot = ITEM_SLOT_LPOCKET
 
 /datum/shuttle_event/simple_spawner/player_controlled/human/nukie
-	name = "Nuclear Operative (Dangerous as heck)!"
+	name = "核爆特工（危险得要命）！"
 	spawning_list = list(/mob/living/carbon/human = 1)
 	spawning_flags = SHUTTLE_EVENT_HIT_SHUTTLE
 	outfit = /datum/outfit/deathmatch_loadout/nukie
@@ -94,7 +94,7 @@
 	spawn_probability_per_process = 100
 
 	spawn_anyway_if_no_player = FALSE
-	ghost_alert_string = "Would you like to be a nuclear operative to assault the shuttle?"
+	ghost_alert_string = "你想成为袭击穿梭机的核爆特工吗？"
 	remove_from_list_when_spawned = TRUE
 	self_destruct_when_empty = TRUE
 

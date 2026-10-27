@@ -6,9 +6,9 @@
 		playsound(src, 'sound/effects/magic/enter_blood.ogg', vol = 60, vary = TRUE, ignore_walls = FALSE)
 
 		visible_message(
-			message = span_bolddanger("\The [src] enter[p_s()] \the [new_host]!"),
-			self_message = span_notice("You enter \the [new_host]."),
-			blind_message = span_hear("You hear a squelch.")
+			message = span_bolddanger("[src] 钻入了 [new_host] 体内！"),
+			self_message = span_notice("你钻入了 [new_host] 体内。"),
+			blind_message = span_hear("你听到一声黏滑的响动。")
 		)
 
 		new /obj/effect/temp_visual/blood_worm_invade_host(get_turf(new_host), effect_name)
@@ -73,7 +73,7 @@
 
 	forceMove(host)
 
-	log_blood_worm("[key_name(src)] entered their new host [key_name(host)]")
+	log_blood_worm("[key_name(src)] 进入了其新宿主 [key_name(host)] 体内")
 
 	if (host.stat != DEAD)
 		possess_host()
@@ -83,14 +83,14 @@
 		return
 
 	visible_message(
-		message = span_bolddanger("\The [src] emerge[p_s()] from \the [host]!"),
-		blind_message = span_hear("You hear a squelch."),
+		message = span_bolddanger("[src] 从 [host] 体内钻了出来！"),
+		blind_message = span_hear("你听到一声黏滑的响动。"),
 		ignored_mobs = list(host, src)
 	)
 
-	to_chat_self(span_notice("You emerge from \the [host]."))
+	to_chat_self(span_notice("你从 [host] 体内钻了出来。"))
 
-	log_blood_worm("[key_name(src)] left their host [key_name(host)]")
+	log_blood_worm("[key_name(src)] 离开了其宿主 [key_name(host)]")
 
 	forceMove(host.drop_location()) // This will call unregister_host() via Moved()
 
@@ -141,7 +141,7 @@
 	if (host.stat != DEAD)
 		host.death() // I don't care if you have TRAIT_NODEATH, can't die from bloodloss normally, or whatever else. I just need you to die.
 
-	log_blood_worm("[key_name(src)] unregistered their host [key_name(host)]")
+	log_blood_worm("[key_name(src)] 注销了其宿主 [key_name(host)]")
 
 	host = null
 
@@ -165,7 +165,7 @@
 
 	host.grant_language(/datum/language/wormspeak, UNDERSTOOD_LANGUAGE, LANGUAGE_BLOOD_WORM)
 
-	log_blood_worm("[key_name(src)] possessed their host [key_name(host)]")
+	log_blood_worm("[key_name(src)] 占据了其宿主 [key_name(host)]")
 
 /mob/living/basic/blood_worm/proc/possess_worm()
 	if (!host || !is_possessing_host)
@@ -184,7 +184,7 @@
 
 	host.remove_language(/datum/language/wormspeak, UNDERSTOOD_LANGUAGE, LANGUAGE_BLOOD_WORM)
 
-	log_blood_worm("[key_name(src)] unpossessed their host [key_name(host)]")
+	log_blood_worm("[key_name(src)] 放弃了对宿主 [key_name(host)] 的占据")
 
 /mob/living/basic/blood_worm/proc/on_host_qdel(datum/source, force)
 	SIGNAL_HANDLER
@@ -219,7 +219,7 @@
 
 	// Ignored while possessing a host, as [carbon/proc/bleed_warn] handles it instead.
 	if (!is_possessing_host && COOLDOWN_FINISHED(src, host_bleed_alert_cooldown) && host.get_bleed_rate() > 0)
-		to_chat_self(span_userdanger("Your host is bleeding!"))
+		to_chat_self(span_userdanger("你的宿主正在流血！"))
 		COOLDOWN_START(src, host_bleed_alert_cooldown, 15 SECONDS)
 
 /mob/living/basic/blood_worm/proc/handle_host_temperature(seconds_per_tick, times_fired)
@@ -230,7 +230,7 @@
 	adjust_worm_health(-unsuitable_heat_damage * (burn_coeff ? burn_coeff : 1) * seconds_per_tick)
 
 	if (COOLDOWN_FINISHED(src, host_heat_alert_cooldown))
-		to_chat_self(span_userdanger("Your blood is burning up!"))
+		to_chat_self(span_userdanger("你的血液正在沸腾！"))
 		COOLDOWN_START(src, host_heat_alert_cooldown, 15 SECONDS)
 
 /mob/living/basic/blood_worm/proc/on_host_adjust_oxy_damage(datum/source, type, amount, forced)

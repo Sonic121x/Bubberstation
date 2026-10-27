@@ -50,9 +50,9 @@
 			take_bodypart_damage(5 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
 		else if(!iscarbon(hit_atom) && extra_speed)
 			take_bodypart_damage(5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
-		visible_message(span_danger("[src] crashes into [hit_atom][extra_speed ? " really hard" : ""]!"),\
-			span_userdanger("You violently crash into [hit_atom][extra_speed ? " extra hard" : ""]!"))
-		log_combat(hit_atom, src, "crashes ")
+		visible_message(span_danger("[src] 撞上了 [hit_atom][extra_speed ? "，撞得相当狠" : ""]！"),\
+			span_userdanger("你猛地撞上了 [hit_atom][extra_speed ? "，力道格外大" : ""]！"))
+		log_combat(hit_atom, src, "撞上了")
 		oof_noise = TRUE
 
 	if(iscarbon(hit_atom) && hit_atom != src)
@@ -71,22 +71,22 @@
 		oof_noise = TRUE
 
 		if(blocked)
-			visible_message(span_danger("[src] crashes into [victim][extra_speed ? " really hard" : ""], but [victim] blocked the worst of it!"),\
-				span_userdanger("You violently crash into [victim][extra_speed ? " extra hard" : ""], but [victim] managed to block the worst of it!"))
-			log_combat(src, victim, "crashed into and was blocked by")
+			visible_message(span_danger("[src] 撞上了 [victim][extra_speed ? "，撞得相当狠" : ""]，但 [victim] 挡下了最严重的冲击！"),\
+				span_userdanger("你猛地撞上了 [victim][extra_speed ? "，力道格外大" : ""]，但 [victim] 挡住了最严重的冲击！"))
+			log_combat(src, victim, "撞上了并被格挡")
 			return
 		else if(HAS_TRAIT(victim, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED))
 			victim.take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
 			victim.apply_damage(10 + 10 * extra_speed, STAMINA)
 			victim.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH * 2, 10 SECONDS)
-			visible_message(span_danger("[src] crashes into [victim][extra_speed ? " really hard" : ""], but [victim] was able to stay on their feet!"),\
-				span_userdanger("You violently crash into [victim][extra_speed ? " extra hard" : ""], but [victim] managed to stay on their feet!"))
+			visible_message(span_danger("[src] 撞上了 [victim][extra_speed ? "，撞得相当狠" : ""]，但 [victim] 还是站稳了脚跟！"),\
+				span_userdanger("你猛地撞上了 [victim][extra_speed ? "，力道格外大" : ""]，但 [victim] 还是站稳了脚跟！"))
 		else
 			victim.Paralyze(2 SECONDS)
 			victim.take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
-			visible_message(span_danger("[src] crashes into [victim][extra_speed ? " really hard" : ""], knocking them both over!"),\
-				span_userdanger("You violently crash into [victim][extra_speed ? " extra hard" : ""]!"))
-		log_combat(src, victim, "crashed into")
+			visible_message(span_danger("[src] 撞上了 [victim][extra_speed ? "，撞得相当狠" : ""]，把两人都撞倒了！"),\
+				span_userdanger("你猛地撞上了 [victim][extra_speed ? "，力道格外大" : ""]！"))
+		log_combat(src, victim, "撞上了")
 
 	if(oof_noise)
 		playsound(src,'sound/items/weapons/punch1.ogg',50,TRUE)
@@ -118,13 +118,13 @@
 		var/obj/item/tourniquet = LAZYACCESS(limb?.applied_items, LIMB_ITEM_TOURNIQUET)
 		if(QDELETED(limb) || QDELETED(patient) || QDELETED(tourniquet))
 			return
-		balloon_alert_to_viewers("removing tourniquet...")
+		balloon_alert_to_viewers("正在取下止血带……")
 		if(!do_after(usr, 4 SECONDS, target = src))
 			return
 		if(QDELETED(limb) || QDELETED(patient) || QDELETED(tourniquet) || limb.owner != patient || tourniquet.loc != limb)
 			return
 
-		balloon_alert_to_viewers("tourniquet removed")
+		balloon_alert_to_viewers("止血带已取下")
 		usr.put_in_hands(tourniquet)
 		return
 
@@ -152,13 +152,13 @@
 		var/obj/item/restraints/cuffs = src.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
 		buckle_cd = cuffs.breakouttime
 
-	visible_message(span_warning("[src] attempts to unbuckle [p_them()]self!"),
-				span_notice("You attempt to unbuckle yourself... \
-				(This will take around [DisplayTimeText(buckle_cd)] and you must stay still.)"))
+	visible_message(span_warning("[src] 试图解开自己的束缚！"),
+				span_notice("你试图解开自己的束缚…… \
+				（这大约需要 [DisplayTimeText(buckle_cd)]，期间你必须保持不动。）"))
 
 	if(!do_after(src, buckle_cd, target = src, timed_action_flags = IGNORE_HELD_ITEM, cog_icon = null))
 		if(buckled)
-			to_chat(src, span_warning("You fail to unbuckle yourself!"))
+			to_chat(src, span_warning("你没能解开自己的束缚！"))
 		return
 
 	if(QDELETED(src) || isnull(buckled))
@@ -199,27 +199,27 @@
 	if((cuff_break != INSTANT_CUFFBREAK) && (SEND_SIGNAL(src, COMSIG_MOB_REMOVING_CUFFS, cuffs) & COMSIG_MOB_BLOCK_CUFF_REMOVAL))
 		return //The blocking object should sent a fluff-appropriate to_chat about cuff removal being blocked
 	if(cuffs.item_flags & BEING_REMOVED)
-		to_chat(src, span_warning("You're already attempting to remove [cuffs]!"))
+		to_chat(src, span_warning("你已经在尝试取下 [cuffs] 了！"))
 		return
 	cuffs.item_flags |= BEING_REMOVED
 	if (isnull(breakouttime))
 		breakouttime = cuffs.breakouttime
 	if(!cuff_break)
-		visible_message(span_warning("[src] attempts to remove [cuffs]!"))
-		to_chat(src, span_notice("You attempt to remove [cuffs]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)"))
+		visible_message(span_warning("[src] 试图取下 [cuffs]！"))
+		to_chat(src, span_notice("你试图取下 [cuffs]……（这大约需要 [DisplayTimeText(breakouttime)]，期间你必须站定不动。）"))
 		if(do_after(src, breakouttime, target = src, timed_action_flags = IGNORE_HELD_ITEM, cog_icon = null))
 			. = clear_cuffs(cuffs, cuff_break)
 		else
-			to_chat(src, span_warning("You fail to remove [cuffs]!"))
+			to_chat(src, span_warning("你没能取下 [cuffs]！"))
 
 	else if(cuff_break == FAST_CUFFBREAK)
 		breakouttime = 5 SECONDS
-		visible_message(span_warning("[src] is trying to break [cuffs]!"))
-		to_chat(src, span_notice("You attempt to break [cuffs]... (This will take around 5 seconds and you need to stand still.)"))
+		visible_message(span_warning("[src] 正试图挣脱 [cuffs]！"))
+		to_chat(src, span_notice("你试图挣脱 [cuffs]……（这大约需要 5 秒，期间你必须站定不动。）"))
 		if(do_after(src, breakouttime, target = src, timed_action_flags = IGNORE_HELD_ITEM))
 			. = clear_cuffs(cuffs, cuff_break)
 		else
-			to_chat(src, span_warning("You fail to break [cuffs]!"))
+			to_chat(src, span_warning("你没能挣脱 [cuffs]！"))
 
 	else if(cuff_break == INSTANT_CUFFBREAK)
 		. = clear_cuffs(cuffs, cuff_break)
@@ -238,8 +238,8 @@
 		return FALSE
 	if(I != handcuffed && I != legcuffed)
 		return FALSE
-	visible_message(span_danger("[src] manages to [cuff_break ? "break" : "remove"] [I]!"))
-	to_chat(src, span_notice("You successfully [cuff_break ? "break" : "remove"] [I]."))
+	visible_message(span_danger("[src] 成功地[cuff_break ? "挣脱" : "取下"]了 [I]！"))
+	to_chat(src, span_notice("你成功地[cuff_break ? "挣脱" : "取下"]了 [I]。"))
 
 	if(cuff_break)
 		. = !((I == handcuffed) || (I == legcuffed))
@@ -313,8 +313,8 @@
 	if(!force && !blood && (nutrition < 100))
 		if(message)
 			visible_message(
-				span_warning("[src] dry heaves!"),
-				span_userdanger("You try to throw up, but there's nothing in your stomach!"),
+				span_warning("[src] 干呕起来！"),
+				span_userdanger("你想吐，但胃里空空如也！"),
 			)
 		if(stun)
 			var/stun_time = 20 SECONDS
@@ -328,15 +328,15 @@
 	if(is_mouth_covered()) //make this add a blood/vomit overlay later it'll be hilarious
 		if(message)
 			visible_message(
-				span_danger("[src] throws up all over [p_them()]self!"),
-				span_userdanger("You throw up all over yourself!"),
+				span_danger("[src] 吐了自己一身！"),
+				span_userdanger("你吐了自己一身！"),
 			)
 			add_mood_event("vomit", /datum/mood_event/vomitself)
 		distance = 0
 	else if(message)
 		visible_message(
-			span_danger("[src] throws up!"),
-			span_userdanger("You throw up!"),
+			span_danger("[src] 吐了！"),
+			span_userdanger("你吐了！"),
 		)
 		if(!HAS_TRAIT(src, TRAIT_VOMIT_SLURPER))
 			add_mood_event("vomit", /datum/mood_event/vomit)
@@ -386,8 +386,8 @@
  * * amount: int The amount of reagent
  */
 /mob/living/carbon/proc/expel_ingested(atom/bite, amount)
-	visible_message(span_danger("[src] throws up all over [p_them()]self!"), \
-					span_userdanger("You are unable to keep the [bite] down without a stomach!"))
+	visible_message(span_danger("[src] 吐了自己一身！"), \
+					span_userdanger("你没有胃，没法把 [bite] 留在体内！"))
 
 	var/turf/floor = get_turf(src)
 	var/obj/effect/decal/cleanable/vomit/spew = new(floor, get_static_viruses())
@@ -856,7 +856,7 @@
 			organ.Remove(src)
 			organ.forceMove(drop_location())
 	if(organs_amt)
-		to_chat(user, span_notice("You retrieve some of [src]\'s internal organs!"))
+		to_chat(user, span_notice("你取出了 [src] 的一些内脏！"))
 	remove_all_embedded_objects()
 
 /// Creates body parts for this carbon completely from scratch.
@@ -973,11 +973,11 @@
 /mob/living/carbon/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "--- /carbon ---")
-	VV_DROPDOWN_OPTION(VV_HK_MODIFY_BODYPART, "Modify bodypart")
-	VV_DROPDOWN_OPTION(VV_HK_MODIFY_ORGANS, "Modify organs")
-	VV_DROPDOWN_OPTION(VV_HK_MARTIAL_ART, "Give Martial Arts")
-	VV_DROPDOWN_OPTION(VV_HK_GIVE_TRAUMA, "Give Brain Trauma")
-	VV_DROPDOWN_OPTION(VV_HK_CURE_TRAUMA, "Cure Brain Traumas")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_BODYPART, "修改肢体")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_ORGANS, "修改器官")
+	VV_DROPDOWN_OPTION(VV_HK_MARTIAL_ART, "授予武术")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_TRAUMA, "造成脑创伤")
+	VV_DROPDOWN_OPTION(VV_HK_CURE_TRAUMA, "治愈脑创伤")
 
 /mob/living/carbon/vv_do_topic(list/href_list)
 	. = ..()
@@ -989,7 +989,7 @@
 		if(!check_rights(R_SPAWN))
 			return
 
-		var/edit_action = tgui_alert(usr, "What would you like to do?", "Modify Body Part", list("Replace", "Remove"))
+		var/edit_action = tgui_alert(usr, "你想做什么？", "修改肢体", list("Replace", "Remove"))
 		if(!edit_action)
 			return
 
@@ -1003,7 +1003,7 @@
 			for(var/zone in GLOB.all_body_zones)
 				limb_list[parse_zone(zone)] = zone
 
-		var/result = tgui_input_list(usr, "Please choose which bodypart to [LOWER_TEXT(edit_action)]","[edit_action] Bodypart", sort_list(limb_list))
+		var/result = tgui_input_list(usr, "请选择要操作的肢体（[LOWER_TEXT(edit_action)]）","[edit_action] 肢体", sort_list(limb_list))
 		if (!result)
 			return
 
@@ -1027,28 +1027,28 @@
 		if(edit_action == "Remove")
 			if(part)
 				part.drop_limb()
-				admin_ticket_log("[key_name_admin(usr)] has removed [src]'s [part.plaintext_zone]")
+				admin_ticket_log("[key_name_admin(usr)] 移除了 [src] 的 [part.plaintext_zone]")
 			else
-				to_chat(usr, span_boldwarning("[src] doesn't have such bodypart."))
-				admin_ticket_log("[key_name_admin(usr)] has attempted to modify the bodyparts of [src]")
+				to_chat(usr, span_boldwarning("[src] 没有这个肢体。"))
+				admin_ticket_log("[key_name_admin(usr)] 试图修改 [src] 的肢体")
 			return
 
 		var/list/limb_picks = list()
 		for (var/obj/item/bodypart/part_type as anything in sort_list(limbtypes, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 			limb_picks[replacetext("[part_type]", "/obj/item/bodypart/", ":")] = part_type
 
-		var/choice = tgui_input_list(usr, "Select a bodypart type to add", "Add/Replace Bodypart", limb_picks)
+		var/choice = tgui_input_list(usr, "选择要添加的肢体类型", "添加/替换肢体", limb_picks)
 		if (!choice)
 			return
 
 		var/limb2add = limb_picks[choice]
 		var/obj/item/bodypart/new_bp = new limb2add()
 		if(new_bp.replace_limb(src))
-			admin_ticket_log("key_name_admin(usr)] has replaced [src]'s [part?.type || "missing limb"] with [new_bp.type]")
+			admin_ticket_log("key_name_admin(usr)] 已将 [src] 的 [part?.type || "缺失肢体"] 替换为 [new_bp.type]")
 			qdel(part)
 		else
-			to_chat(usr, "Failed to replace bodypart! They might be incompatible.")
-			admin_ticket_log("[key_name_admin(usr)] has attempted to modify the bodyparts of [src]")
+			to_chat(usr, "替换肢体失败！它们可能不兼容。")
+			admin_ticket_log("[key_name_admin(usr)] 试图修改 [src] 的肢体")
 
 	if(href_list[VV_HK_MODIFY_ORGANS])
 		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/manipulate_organs, src)
@@ -1059,38 +1059,38 @@
 		for(var/i in artpaths)
 			var/datum/martial_art/M = i
 			artnames[initial(M.name)] = M
-		var/result = tgui_input_list(usr, "Choose the martial art to teach", "JUDO CHOP", sort_list(artnames, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		var/result = tgui_input_list(usr, "选择要传授的武术", "柔道手刀", sort_list(artnames, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		if(!usr)
 			return
 		if(QDELETED(src))
-			to_chat(usr, span_boldwarning("Mob doesn't exist anymore."))
+			to_chat(usr, span_boldwarning("该生物已不存在。"))
 			return
 		if(result)
 			var/chosenart = artnames[result]
 			var/datum/martial_art/MA = new chosenart(src)
 			MA.teach(src)
-			log_admin("[key_name(usr)] has taught [MA] to [key_name(src)].")
-			message_admins(span_notice("[key_name_admin(usr)] has taught [MA] to [key_name_admin(src)]."))
+			log_admin("[key_name(usr)] 向 [key_name(src)] 传授了 [MA]。")
+			message_admins(span_notice("[key_name_admin(usr)] 向 [key_name_admin(src)] 传授了 [MA]。"))
 
 	if(href_list[VV_HK_GIVE_TRAUMA])
 		var/list/traumas = subtypesof(/datum/brain_trauma)
-		var/result = tgui_input_list(usr, "Choose the brain trauma to apply", "Traumatize", sort_list(traumas, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		var/result = tgui_input_list(usr, "选择要施加的脑创伤", "制造创伤", sort_list(traumas, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		if(!usr)
 			return
 		if(QDELETED(src))
-			to_chat(usr, "Mob doesn't exist anymore")
+			to_chat(usr, "该生物已不存在")
 			return
 		if(!result)
 			return
 		var/datum/brain_trauma/BT = gain_trauma(result)
 		if(BT)
-			log_admin("[key_name(usr)] has traumatized [key_name(src)] with [BT.name]")
-			message_admins(span_notice("[key_name_admin(usr)] has traumatized [key_name_admin(src)] with [BT.name]."))
+			log_admin("[key_name(usr)] 用 [BT.name] 使 [key_name(src)] 患上了脑创伤")
+			message_admins(span_notice("[key_name_admin(usr)] 用 [BT.name] 使 [key_name_admin(src)] 患上了脑创伤。"))
 
 	if(href_list[VV_HK_CURE_TRAUMA])
 		cure_all_traumas(TRAUMA_RESILIENCE_ABSOLUTE)
-		log_admin("[key_name(usr)] has cured all traumas from [key_name(src)].")
-		message_admins(span_notice("[key_name_admin(usr)] has cured all traumas from [key_name_admin(src)]."))
+		log_admin("[key_name(usr)] 治愈了 [key_name(src)] 的所有创伤。")
+		message_admins(span_notice("[key_name_admin(usr)] 治愈了 [key_name_admin(src)] 的所有创伤。"))
 
 /mob/living/carbon/can_resist()
 	return bodyparts.len > 2 && ..()
@@ -1341,11 +1341,11 @@
 	if(isnull(head))
 		return ..()
 	if(!can_bleed())
-		to_chat(src, span_notice("You get a headache."))
+		to_chat(src, span_notice("你感到一阵头痛。"))
 		return
 	var/add_stacks = HAS_TRAIT(src, TRAIT_BLOOD_FOUNTAIN) ? 7 : 5
 	head.adjustBleedStacks(add_stacks)
-	visible_message(span_notice("[src] gets a nosebleed."), span_warning("You get a nosebleed."))
+	visible_message(span_notice("[src] 流鼻血了。"), span_warning("你流鼻血了。"))
 
 /mob/living/carbon/check_hit_limb_zone_name(hit_zone)
 	if(get_bodypart(hit_zone))
@@ -1366,10 +1366,10 @@
 		if (overeatduration >= OVEREAT_TIME_LIMIT)
 			return
 
-		to_chat(src, span_notice("You feel fit again!"))
+		to_chat(src, span_notice("你感觉自己又健美了！"))
 		remove_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)
 		return
 
 	if (overeatduration >= OVEREAT_TIME_LIMIT)
-		to_chat(src, span_danger("You suddenly feel blubbery!"))
+		to_chat(src, span_danger("你突然感觉自己浑身都是肥肉！"))
 		add_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)

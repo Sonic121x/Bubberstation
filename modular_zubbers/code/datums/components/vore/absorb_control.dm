@@ -1,6 +1,6 @@
 /datum/action/innate/absorb_control
-	name = "Take Back Control"
-	desc = "Take control of your body back."
+	name = "收回控制权"
+	desc = "重新掌控自己的身体。"
 
 	background_icon = 'modular_skyrat/master_files/icons/mob/actions/action_backgrounds.dmi'
 	background_icon_state = "android"
@@ -14,8 +14,8 @@
 	AC.revert()
 
 /datum/action/innate/absorb_control/prey
-	name = "Yield Control"
-	desc = "Yield control to the body's rightful owner and go back to being absorbed."
+	name = "交还控制权"
+	desc = "将控制权交还给身体原本的主人，回到被吸收的状态。"
 
 /datum/component/absorb_control
 	dupe_mode = COMPONENT_DUPE_UNIQUE
@@ -62,7 +62,7 @@
 	PRIVATE_PROC(TRUE)
 
 	var/mob/living/puppet = parent
-	to_chat(puppet, span_userdanger("You feel your control being taken away..."))
+	to_chat(puppet, span_userdanger("你感觉自己的控制权正在被夺走……"))
 
 	var/mob/living/puppetmaster
 	var/mob/living/backseat
@@ -72,9 +72,9 @@
 	else
 		puppetmaster = controller
 		backseat = pred_backseat
-		backseat.name = "[puppet.real_name] (Backseat)"
+		backseat.name = "[puppet.real_name]（旁观）"
 
-	to_chat(puppetmaster, span_userdanger("You take control of [puppet]!"))
+	to_chat(puppetmaster, span_userdanger("你取得了 [puppet] 的控制权！"))
 
 	// Swap puppet to backseat
 	var/puppet_id = puppet.computer_id
@@ -119,7 +119,7 @@
 		qdel(src)
 
 /mob/living/pred_backseat
-	name = "pred backseat"
+	name = "吞食者旁观位"
 	var/mob/living/body
 	var/datum/component/absorb_control/absorb_control
 

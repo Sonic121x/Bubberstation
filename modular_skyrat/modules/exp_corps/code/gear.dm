@@ -1,7 +1,7 @@
 //Gateway Medkit, no more combat defibs!
 /obj/item/storage/medkit/expeditionary
-	name = "combat medical kit"
-	desc = "Now with 100% less bullshit."
+	name = "战斗医疗包"
+	desc = "现在少了 100% 的废话。"
 	icon_state = "medkit_tactical"
 	damagetype_healed = "all"
 
@@ -17,8 +17,8 @@
 
 //Field Medic's weapon, no more tomahawk!
 /obj/item/circular_saw/field_medic
-	name = "bone saw"
-	desc = "Did that sting? SAW-ry!"
+	name = "骨锯"
+	desc = "疼吗？真是锯歉！"
 	force = 15
 	icon_state = "bonesaw"
 	icon = 'modular_skyrat/modules/exp_corps/icons/bonesaw.dmi'
@@ -32,8 +32,8 @@
 
 //Pointman's riot shield. Fixable with 1 plasteel, crafting recipe for broken shield
 /obj/item/shield/riot/pointman
-	name = "pointman shield"
-	desc = "A shield fit for those that want to sprint headfirst into the unknown! Cumbersome as hell."
+	name = "尖兵盾牌"
+	desc = "一面适合那些想一头冲向未知之人的盾牌！笨重得要命。"
 	icon_state = "riot"
 	icon = 'modular_skyrat/modules/exp_corps/icons/riot.dmi'
 	lefthand_file = 'modular_skyrat/modules/exp_corps/icons/riot_left.dmi'
@@ -44,8 +44,8 @@
 	throw_range = 1
 	block_chance = 60
 	w_class = WEIGHT_CLASS_BULKY
-	attack_verb_continuous = list("shoves", "bashes")
-	attack_verb_simple = list("shove", "bash")
+	attack_verb_continuous = list("猛推", "猛砸")
+	attack_verb_simple = list("猛推", "猛砸")
 	transparent = TRUE
 	max_integrity = 200
 	shield_break_sound = 'sound/effects/glass/glassbr3.ogg'
@@ -68,18 +68,18 @@
 	atom_integrity = max_integrity
 	if(user)
 		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-		to_chat(user, span_notice("You fix the damage on [src]."))
+		to_chat(user, span_notice("你修复了 [src] 上的损伤。"))
 
 /obj/item/pointman_broken
-	name = "broken pointman shield"
-	desc = "Might be able to be repaired with plasteel and a welder."
+	name = "破损的尖兵盾牌"
+	desc = "也许可以用塑钢和焊接工具修复。"
 	icon_state = "riot_broken"
 	icon = 'modular_skyrat/modules/exp_corps/icons/riot.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 
 //broken shield fixing
 /datum/crafting_recipe/pointman
-	name = "Broken Riot Repair"
+	name = "破损防暴盾修复"
 	result = /obj/item/shield/riot/pointman
 	reqs = list(/obj/item/pointman_broken = 1,
 				/obj/item/stack/sheet/plasteel = 3,
@@ -90,15 +90,15 @@
 
 //Marksman's throwing knife and a pouch for it
 /obj/item/knife/combat/marksman
-	name = "throwing knife"
-	desc = "Very well weighted for throwing, feels awkward to use for anything else."
+	name = "飞刀"
+	desc = "配重非常适合投掷，但用来做其他事就很别扭。"
 	icon = 'modular_skyrat/modules/exp_corps/icons/throwing.dmi'
 	icon_state = "throwing"
 	force = 12
 	throwforce = 30
 
 /obj/item/storage/pouch/ammo/marksman
-	name = "marksman's knife pouch"
+	name = "射手刀袋"
 
 /obj/item/storage/pouch/ammo/marksman/Initialize(mapload)
 	. = ..()

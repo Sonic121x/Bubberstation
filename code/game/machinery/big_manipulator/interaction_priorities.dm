@@ -9,45 +9,45 @@
 	var/active = TRUE
 
 /datum/manipulator_priority/drop/on_floor
-	name = "DROP ON FLOOR"
+	name = "放在地板上"
 	atom_typepath = /turf
 
 /datum/manipulator_priority/drop/in_storage
-	name = "DROP IN STORAGE"
+	name = "放入储物容器"
 	atom_typepath = /obj/item/storage
 
 /datum/manipulator_priority/interact/with_living
-	name = "USE ON LIVING"
+	name = "对生物使用"
 	atom_typepath = /mob/living
 
 /datum/manipulator_priority/interact/with_structure
-	name = "USE ON STRUCTURE"
+	name = "对结构使用"
 	atom_typepath = /obj/structure
 
 /datum/manipulator_priority/interact/with_machinery
-	name = "USE ON MACHINERY"
+	name = "对机器使用"
 	atom_typepath = /obj/machinery
 
 /datum/manipulator_priority/interact/with_items
-	name = "USE ON ITEM"
+	name = "对物品使用"
 	atom_typepath = /obj/item
 
 /datum/manipulator_priority/interact/with_vehicles
-	name = "USE ON VEHICLES"
+	name = "对载具使用"
 	atom_typepath = /obj/vehicle
 
 /datum/manipulator_priority/interact/with_turf
-	name = "USE ON FLOOR"
+	name = "对地板使用"
 	atom_typepath = /turf
 
 /datum/manipulator_priority/pickup/items
-	name = "PICK UP ITEMS"
+	name = "拾取物品"
 	atom_typepath = /obj/item
 
 /datum/manipulator_priority/pickup/closets
-	name = "PICK UP CLOSETS"
+	name = "抓取储物柜"
 	atom_typepath = /obj/structure/closet
 
 /datum/manipulator_priority/pickup/humans
-	name = "PICK UP HUMANS"
+	name = "抓取人类"
 	atom_typepath = /mob/living/carbon/human

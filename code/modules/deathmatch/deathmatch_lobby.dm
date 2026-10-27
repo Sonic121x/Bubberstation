@@ -31,7 +31,7 @@
 		return qdel(src)
 	host = player.ckey
 	map = GLOB.deathmatch_game.maps[pick(GLOB.deathmatch_game.maps)]
-	log_game("[host] created a deathmatch lobby.")
+	log_game("[host] 创建了一个死斗大厅。")
 	if (map.allowed_loadouts)
 		loadouts = map.allowed_loadouts
 	else
@@ -60,7 +60,7 @@
 	if (playing)
 		return
 	if(map.template_in_use)
-		to_chat(get_mob_by_ckey(host), span_warning("This map is currently loading for another lobby. Please wait until that other map finishes loading. It would be a disaster if these two mixed up."))
+		to_chat(get_mob_by_ckey(host), span_warning("这张地图目前正被另一个大厅加载。请等那张地图加载完成。要是两张地图混在一起可就糟了。"))
 		return
 	playing = DEATHMATCH_PRE_PLAYING
 
@@ -68,7 +68,7 @@
 	RegisterSignal(map, COMSIG_LAZY_TEMPLATE_LOADED, PROC_REF(find_spawns_and_start_delay))
 	location = map.lazy_load()
 	if (!location)
-		to_chat(get_mob_by_ckey(host), span_warning("Couldn't reserve/load a map location (all locations used?), try again later, or contact a coder."))
+		to_chat(get_mob_by_ckey(host), span_warning("无法预留/加载地图位置（所有位置都被占用了？），请稍后再试，或联系程序员。"))
 		playing = FALSE
 		map.template_in_use = FALSE
 		UnregisterSignal(map, COMSIG_LAZY_TEMPLATE_LOADED)
@@ -97,7 +97,7 @@
 	for (var/key in players)
 		var/mob/dead/observer/observer = players[key]["mob"]
 		if (isnull(observer) || !observer.client)
-			log_game("Removed player [key] from deathmatch lobby [host], as they couldn't be found.")
+			log_game("由于找不到玩家 [key]，已将其从死斗大厅 [host] 移除。")
 			remove_ckey_from_play(key)
 			continue
 
@@ -115,13 +115,13 @@
 
 	playing = DEATHMATCH_PLAYING
 	addtimer(CALLBACK(src, PROC_REF(game_took_too_long)), initial(map.automatic_gameend_time))
-	log_game("Deathmatch game [host] started.")
-	announce(span_reallybig("GO!"))
+	log_game("死斗游戏 [host] 已开始。")
+	announce(span_reallybig("开始！"))
 	if(length(modifiers))
 		var/list/modifier_names = list()
 		for(var/datum/deathmatch_modifier/modifier as anything in modifiers)
 			modifier_names += uppertext(initial(modifier.name))
-		announce(span_boldnicegreen("THIS MATCH MODIFIERS: [english_list(modifier_names, and_text = " ,")]."))
+		announce(span_boldnicegreen("本场对局修正：[english_list(modifier_names, and_text = " ,")]。"))
 	return TRUE
 
 /datum/deathmatch_lobby/proc/spawn_observer_as_player(ckey, loc)
@@ -175,13 +175,13 @@
 /datum/deathmatch_lobby/proc/game_took_too_long()
 	if (!location || QDELING(src))
 		return
-	announce(span_reallybig("The players have took too long! Game ending!"))
+	announce(span_reallybig("玩家们拖得太久了！游戏结束！"))
 	end_game()
 
 /datum/deathmatch_lobby/proc/lobby_afk_probably()
 	if (QDELING(src) || playing)
 		return
-	announce(span_warning("Lobby ([host]) was closed due to not starting after 5 minutes, being potentially AFK. Please be faster next time."))
+	announce(span_warning("大厅（[host]）因 5 分钟内未开始游戏而被关闭，可能是挂机了。下次请快一点。"))
 	GLOB.deathmatch_game.remove_lobby(host)
 
 /datum/deathmatch_lobby/proc/end_game()
@@ -193,7 +193,7 @@
 		if(!isnull(winner_info["mob"]))
 			winner = winner_info["mob"] //only one should remain anyway but incase of a draw
 
-	announce(span_reallybig("THE GAME HAS ENDED.<BR>THE WINNER IS: [winner ? winner.real_name : "no one"]."))
+	announce(span_reallybig("游戏已结束。<BR>获胜者是：[winner ? winner.real_name : "无人"]。"))
 
 	for(var/ckey in players)
 		var/mob/loser = players[ckey]["mob"]
@@ -210,7 +210,7 @@
 
 	clear_reservation()
 	GLOB.deathmatch_game.remove_lobby(host)
-	log_game("Deathmatch game [host] ended.")
+	log_game("死斗游戏 [host] 已结束。")
 
 /datum/deathmatch_lobby/proc/player_wabbajacked(mob/living/player, mob/living/new_mob)
 	SIGNAL_HANDLER
@@ -238,7 +238,7 @@
 	var/mob/dead/observer/ghost = !player.client ? player.get_ghost() : player.ghostize() //this doesnt work on those who used the ghost verb
 	if(!isnull(ghost))
 		add_observer(ghost, (host == ckey))
-	announce(span_reallybig("[player.real_name] HAS DIED.<br>[players.len] REMAIN."))
+	announce(span_reallybig("[player.real_name] 已死亡。<br>剩余 [players.len] 人。"))
 
 	//Bubber Edit - retain respawn timer
 	var/mob/dead_player_mob = get_mob_by_ckey(ckey)
@@ -383,7 +383,7 @@
 	var/is_admin = check_rights_for(user.client, R_ADMIN)
 	var/has_auth = is_host || is_admin
 
-	data["active_mods"] = "No modifiers selected"
+	data["active_mods"] = "未选择修正"
 	data["admin"] = is_admin
 	data["host"] = is_host
 	data["loadouts"] = list("Randomize")
@@ -409,13 +409,13 @@
 		var/list/mod_names = list()
 		for(var/datum/deathmatch_modifier/modpath as anything in modifiers)
 			mod_names += modpath::name
-		data["active_mods"] = "Selected modifiers: [english_list(mod_names)]"
+		data["active_mods"] = "已选修正：[english_list(mod_names)]"
 
 	if(is_player && !isnull(players[user.ckey]["loadout"]))
 		var/datum/outfit/deathmatch_loadout/loadout = players[user.ckey]["loadout"]
 		data["loadoutdesc"] = loadout::desc
 	else
-		data["loadoutdesc"] = "You are an observer! As an observer, you can hear lobby announcements."
+		data["loadoutdesc"] = "你是观战者！作为观战者，你可以听到大厅公告。"
 
 	return data
 
@@ -429,7 +429,7 @@
 			if (usr.ckey != host)
 				return FALSE
 			if (map.min_players > players.len)
-				to_chat(usr, span_warning("Not enough players to start yet."))
+				to_chat(usr, span_warning("玩家人数还不够，暂时无法开始。"))
 				return FALSE
 			start_game()
 			return TRUE
@@ -534,12 +534,12 @@
 
 		if ("admin") // Admin functions
 			if (!check_rights(R_ADMIN))
-				message_admins("[usr.key] has attempted to use admin functions in a deathmatch lobby without being an admin!")
-				log_admin("[key_name(usr)] tried to use the deathmatch lobby admin functions without authorization.")
+				message_admins("[usr.key] 在不是管理员的情况下，试图在死斗大厅中使用管理员功能！")
+				log_admin("[key_name(usr)] 试图未经授权使用死斗大厅的管理员功能。")
 				return
 			switch (params["func"])
 				if ("Force start")
-					log_admin("[key_name(usr)] force started deathmatch lobby [host].")
+					log_admin("[key_name(usr)] 强制启动了死斗大厅 [host]。")
 					start_time = 0
 					start_game()
 

@@ -36,7 +36,7 @@
 				precision = max(rand(1,100)*interference,100)
 				if(isliving(teleatom))
 					var/mob/living/MM = teleatom
-					to_chat(MM, span_warning("The clashing pulls of bluespace interfere with your teleport!"))
+					to_chat(MM, span_warning("相互冲突的蓝空间牵引力干扰了你的传送！"))
 
 			// if effects are not specified and not explicitly disabled, sparks
 			if((!effectin || !effectout) && !no_effects)
@@ -70,7 +70,7 @@
 
 	if(!destturf || (!forced && !check_teleport_valid(teleatom, destturf, channel, original_destination = destination)))
 		if(ismob(teleatom))
-			teleatom.balloon_alert(teleatom, "something holds you back!")
+			teleatom.balloon_alert(teleatom, "有什么东西阻止了你！")
 		return FALSE
 
 	if(SEND_SIGNAL(teleatom, COMSIG_MOVABLE_TELEPORTING, destination, channel))
@@ -91,12 +91,12 @@
 	. = TRUE
 	/* Past this point, the teleport is successful and you can assume that they're already there */
 
-	log_game("[key_name(teleatom)] has teleported from [loc_name(curturf)] to [loc_name(destturf)]")
+	log_game("[key_name(teleatom)]从[loc_name(curturf)]传送到了[loc_name(destturf)]")
 	tele_play_specials(teleatom, destturf, effectout, asoundout)
 
 	if(ismob(teleatom))
 		var/mob/M = teleatom
-		teleatom.log_message("teleported from [loc_name(curturf)] to [loc_name(destturf)].", LOG_GAME, log_globally = FALSE)
+		teleatom.log_message("从[loc_name(curturf)]传送到了[loc_name(destturf)]。", LOG_GAME, log_globally = FALSE)
 		M.cancel_camera()
 
 	SEND_SIGNAL(teleatom, COMSIG_MOVABLE_POST_TELEPORT, destination, channel)
@@ -112,7 +112,7 @@
 				continue
 
 			if(get_turf(rider) != destturf) //precision made them teleport somewhere else
-				to_chat(rider, span_warning("As you reorient your senses, you realize you aren't riding [teleatom] anymore!"))
+				to_chat(rider, span_warning("你重新辨明周围的情况，发现自己已经不在[teleatom]背上了！"))
 				continue
 
 			// [mob/living].forceMove() forces mobs to unbuckle, so we need to buckle them again

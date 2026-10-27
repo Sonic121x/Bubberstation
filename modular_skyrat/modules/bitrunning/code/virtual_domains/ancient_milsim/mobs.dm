@@ -1,11 +1,11 @@
 /mob/living/basic/trooper/cin_soldier
-	name = "Coalition Operative"
-	desc = "Death to SolFed."
+	name = "联盟特工"
+	desc = "太阳联邦去死。"
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	ai_controller = /datum/ai_controller/basic_controller/trooper/calls_reinforcements/ancient_milsim
-	attack_verb_continuous = "slashes"
-	attack_verb_simple = "slash"
+	attack_verb_continuous = "劈砍"
+	attack_verb_simple = "劈砍"
 	attack_sound = 'sound/items/weapons/blade1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	faction = list(ROLE_SYNDICATE)
@@ -16,7 +16,7 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_TARGET_MINIMUM_STAT = SOFT_CRIT,
-		BB_REINFORCEMENTS_SAY = "Call contact at nine dash two."
+		BB_REINFORCEMENTS_SAY = "九二坐标发现接触。"
 	)
 
 /datum/ai_controller/basic_controller/trooper/calls_reinforcements/ancient_milsim/ranged
@@ -29,7 +29,7 @@
 
 /mob/living/basic/trooper/cin_soldier/melee/bullet_act(obj/projectile/projectile)
 	if(prob(projectile_deflect_chance))
-		visible_message(span_danger("[src] blocks [projectile] with their shield!"))
+		visible_message(span_danger("[src] 用盾牌挡下了 [projectile]！"))
 		return BULLET_ACT_BLOCK
 	return ..()
 
@@ -70,7 +70,7 @@
 
 /mob/living/basic/trooper/cin_soldier/ranged/shotgun_revolver/bullet_act(obj/projectile/projectile)
 	if(prob(projectile_deflect_chance))
-		visible_message(span_danger("[src] blocks [projectile] with their shield!"))
+		visible_message(span_danger("[src] 用盾牌挡下了 [projectile]！"))
 		return BULLET_ACT_BLOCK
 	return ..()
 
@@ -83,8 +83,8 @@
 	)
 
 /obj/effect/mob_spawn/corpse/human/cin_soldier
-	name = "Coalition Operative"
+	name = "联盟特工"
 	hairstyle = "Bald"
 	facial_hairstyle = "Shaved"
 	outfit = /datum/outfit/cin_soldier_corpse
-	mob_name = "Echo One"
+	mob_name = "回声一号"

@@ -7,8 +7,8 @@
  * Each bullsquid is hostile to other bullsquids, creating organic free-for-all combat.
  */
 /mob/living/basic/blackmesa/xen/bullsquid
-	name = "bullsquid"
-	desc = "Some highly aggressive alien creature. Thrives in toxic environments."
+	name = "公牛鱿"
+	desc = "一种极具攻击性的外星生物。在有毒环境中如鱼得水。"
 	icon = 'modular_skyrat/modules/black_mesa/icons/mobs.dmi'
 	icon_state = "bullsquid"
 	icon_living = "bullsquid"
@@ -21,8 +21,8 @@
 	melee_damage_upper = 18
 	obj_damage = 50
 	combat_mode = TRUE
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "撕咬"
+	attack_verb_simple = "咬"
 	attack_sound = 'modular_skyrat/modules/black_mesa/sound/mobs/bullsquid/attack1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 1, OXY = 1)
@@ -33,7 +33,7 @@
 	basic_mob_flags = FLAMMABLE_MOB
 	unsuitable_cold_damage = 15
 	unsuitable_heat_damage = 15
-	speak_emote = list("growls")
+	speak_emote = list("低吼")
 
 	// AI and behavior
 	ai_controller = /datum/ai_controller/basic_controller/bullsquid
@@ -52,11 +52,11 @@
 	AddComponent(/datum/component/ranged_attacks, projectile_type = /obj/projectile/bullsquid, projectile_sound = 'modular_skyrat/modules/black_mesa/sound/mobs/bullsquid/goo_attack3.ogg', cooldown_time = 3 SECONDS)
 
 /obj/item/ammo_casing/bullsquid
-	name = "nasty ball of ooze"
+	name = "恶心的黏液球"
 	projectile_type = /obj/projectile/bullsquid
 
 /obj/projectile/bullsquid
-	name = "nasty ball of ooze"
+	name = "恶心的黏液球"
 	icon_state = "neurotoxin"
 	damage = 5
 	damage_type = BURN

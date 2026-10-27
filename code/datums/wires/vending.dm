@@ -1,6 +1,6 @@
 /datum/wires/vending
 	holder_type = /obj/machinery/vending
-	proper_name = "Vending Unit"
+	proper_name = "自动售货机"
 	/// Keeps track of which language is selected
 	var/language_iterator = 1
 
@@ -47,12 +47,12 @@
 	var/datum/language_holder/vending_languages = vending_machine.get_language_holder()
 	var/datum/language/current_language = GLOB.language_datum_instances[vending_languages.get_selected_language()]
 	var/list/status = list()
-	status += "The orange light is [vending_machine.seconds_electrified ? "on" : "off"]."
-	status += "The red light is [vending_machine.shoot_inventory ? "off" : "blinking"]."
-	status += "The green light is [vending_machine.extended_inventory ? "on" : "off"]."
-	status += "A [vending_machine.scan_id ? "purple" : "yellow"] light is on."
-	status += "A white light is [vending_machine.age_restrictions ? "on" : "off"]."
-	status += "The speaker light is [vending_machine.shut_up ? "off" : "on"]. The language is set to [current_language.name]."
+	status += "橙灯[vending_machine.seconds_electrified ? "亮起" : "熄灭"]。"
+	status += "红灯[vending_machine.shoot_inventory ? "熄灭" : "正在闪烁"]。"
+	status += "绿灯[vending_machine.extended_inventory ? "亮起" : "熄灭"]。"
+	status += "一盏[vending_machine.scan_id ? "紫灯" : "黄灯"]亮着。"
+	status += "一盏白灯[vending_machine.age_restrictions ? "亮起" : "熄灭"]。"
+	status += "扬声器指示灯[vending_machine.shut_up ? "熄灭" : "亮起"]。语言设为[chinese_language_display(current_language.name)]。"
 	return status
 
 /datum/wires/vending/on_pulse(wire)

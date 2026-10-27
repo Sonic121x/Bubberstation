@@ -1,7 +1,7 @@
 /// Materials made from other materials.
 /datum/material/alloy
 	name = "alloy"
-	desc = "A material composed of two or more other materials."
+	desc = "由两种或更多材料组成的材料。"
 	abstract_type = /datum/material/alloy
 	/// The materials this alloy is made from weighted by their ratios.
 	var/list/composition = null
@@ -26,7 +26,7 @@
  */
 /datum/material/alloy/plasteel
 	name = "plasteel"
-	desc = "The heavy duty result of infusing iron with plasma."
+	desc = "将等离子体注入铁中制成的高强度材料。"
 	color = "#706374"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_METAL | MATERIAL_CLASS_RIGID
 	mat_properties = list(
@@ -60,7 +60,7 @@
  */
 /datum/material/alloy/plastitanium
 	name = "plastitanium"
-	desc = "The extremely heat resistant result of infusing titanium with plasma."
+	desc = "将等离子体注入钛中制成的极耐高温材料。"
 	color = "#3a313a"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_METAL | MATERIAL_CLASS_RIGID
 	mat_properties = list(
@@ -94,7 +94,7 @@
  */
 /datum/material/alloy/plasmaglass
 	name = "plasmaglass"
-	desc = "Plasma-infused silicate. It is much more durable and heat resistant than either of its component materials."
+	desc = "注入了等离子体的硅酸盐，比两种原材料都更加坚固耐热。"
 	color = "#ff80f4"
 	alpha = 150
 	starlight_color = COLOR_STRONG_MAGENTA
@@ -121,7 +121,7 @@
  */
 /datum/material/alloy/titaniumglass
 	name = "titanium glass"
-	desc = "A specialized silicate-titanium alloy that is commonly used in shuttle windows."
+	desc = "一种特殊的硅酸盐钛合金，常用于穿梭机窗户。"
 	color = "#cfbee0"
 	alpha = 150
 	starlight_color = COLOR_COMMAND_BLUE
@@ -148,7 +148,7 @@
  */
 /datum/material/alloy/plastitaniumglass
 	name = "plastitanium glass"
-	desc = "A specialized silicate-plastitanium alloy."
+	desc = "一种特殊的硅酸盐塑钛合金。"
 	color = "#5d3369"
 	starlight_color = COLOR_CENTCOM_BLUE
 	alpha = 150
@@ -177,7 +177,7 @@
  */
 /datum/material/alloy/alien
 	name = "alien alloy"
-	desc = "An extremely dense alloy similar to plasteel in composition. It requires exotic metallurgical processes to create."
+	desc = "一种密度极高、成分类似塑钢的合金，需要特殊的冶金工艺才能制成。"
 	color = "#6041aa"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_METAL | MATERIAL_CLASS_RIGID
 	mat_properties = list(

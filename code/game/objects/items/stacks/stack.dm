@@ -163,7 +163,7 @@
 	if(!is_cyborg)
 		return TRUE
 	if (user)
-		to_chat(user, span_warning("[src] is too integrated into your chassis and can't be ground up!"))
+		to_chat(user, span_warning("[src]与你的机身结合得过于紧密，无法被研磨！"))
 	return FALSE
 
 /obj/item/stack/grind_atom(datum/reagents/target_holder, mob/user)
@@ -234,14 +234,14 @@
 		return
 	if(singular_name)
 		if(get_amount()>1)
-			. += "There are [get_amount()] [singular_name]\s in the stack."
+			. += "这一叠里有 [get_amount()] 个[singular_name]。"
 		else
-			. += "There is [get_amount()] [singular_name] in the stack."
+			. += "这一叠里有 [get_amount()] 个[singular_name]。"
 	else if(get_amount()>1)
-		. += "There are [get_amount()] in the stack."
+		. += "这一叠里有 [get_amount()] 个。"
 	else
-		. += "There is [get_amount()] in the stack."
-	. += span_notice("<b>Right-click</b> with an empty hand to take a custom amount.")
+		. += "这一叠里有 [get_amount()] 个。"
+	. += span_notice("用空手<b>右键</b>可以取走指定数量。")
 
 /obj/item/stack/proc/get_amount()
 	if(is_cyborg)
@@ -426,10 +426,10 @@
 		return
 	if(recipe.time)
 		var/adjusted_time = 0
-		builder.balloon_alert(builder, "building...")
+		builder.balloon_alert(builder, "建造中……")
 		builder.visible_message(
-			span_notice("[builder] starts building \a [recipe.title]."),
-			span_notice("You start building \a [recipe.title]..."),
+			span_notice("[builder]开始建造[recipe.title]。"),
+			span_notice("你开始建造[recipe.title]……"),
 		)
 		if(HAS_TRAIT(builder, recipe.trait_booster))
 			adjusted_time = (recipe.time * recipe.trait_modifier)
@@ -437,7 +437,7 @@
 			adjusted_time = recipe.time
 		var/skill_modifier = builder.mind.get_skill_modifier(/datum/skill/construction, SKILL_SPEED_MODIFIER) //SKYRAT EDIT: Construction Skill
 		if(!do_after(builder, adjusted_time * skill_modifier, target = builder))
-			builder.balloon_alert(builder, "interrupted!")
+			builder.balloon_alert(builder, "被打断了！")
 			return
 		if(!building_checks(builder, recipe, multiplier))
 			return
@@ -445,18 +445,18 @@
 	var/atom/created
 	if(recipe.max_res_amount > 1) // Is it a stack?
 		created = new recipe.result_type(builder.drop_location(), recipe.res_amount * multiplier)
-		builder.balloon_alert(builder, "built items")
+		builder.balloon_alert(builder, "已建成物品")
 
 	else if(ispath(recipe.result_type, /turf))
 		var/turf/covered_turf = builder.drop_location()
 		if(!isturf(covered_turf))
 			return
 		created = covered_turf.place_on_top(recipe.result_type, flags = CHANGETURF_INHERIT_AIR)
-		builder.balloon_alert(builder, "placed [ispath(recipe.result_type, /turf/open) ? "floor" : "wall"]")
+		builder.balloon_alert(builder, "已放置[ispath(recipe.result_type, /turf/open) ? "地板" : "墙壁"]")
 
 	else
 		created = new recipe.result_type(builder.drop_location())
-		builder.balloon_alert(builder, "built item")
+		builder.balloon_alert(builder, "已建成物品")
 
 	// split the material and use it for the craft
 	var/obj/item/stack/used_stack = split_stack(recipe.req_amount * multiplier)
@@ -466,7 +466,7 @@
 
 	builder.mind?.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT: Construction Skill
 
-	builder.investigate_log("crafted [recipe.title]", INVESTIGATE_CRAFTING)
+	builder.investigate_log("制作了[recipe.title]", INVESTIGATE_CRAFTING)
 
 	// Apply mat datums
 	if(LAZYLEN(used_stack.mats_per_unit) && !(recipe.crafting_flags & CRAFT_NO_MATERIALS))
@@ -525,33 +525,33 @@
 /// Checks if we can build here, validly.
 /obj/item/stack/proc/building_checks(mob/builder, datum/stack_recipe/recipe, multiplier)
 	if (get_amount() < recipe.req_amount * multiplier)
-		builder.balloon_alert(builder, "not enough material!")
+		builder.balloon_alert(builder, "材料不足！")
 		return FALSE
 	var/turf/dest_turf = get_turf(builder)
 
 	if((recipe.crafting_flags & CRAFT_ONE_PER_TURF) && (locate(recipe.result_type) in dest_turf))
-		builder.balloon_alert(builder, "already one here!")
+		builder.balloon_alert(builder, "这里已经有一个了！")
 		return FALSE
 
 	if(recipe.crafting_flags & CRAFT_CHECK_DIRECTION)
 		if(!valid_build_direction(dest_turf, builder.dir, is_fulltile = (recipe.crafting_flags & CRAFT_IS_FULLTILE)))
-			builder.balloon_alert(builder, "won't fit here!")
+			builder.balloon_alert(builder, "这里放不下！")
 			return FALSE
 
 	if(recipe.crafting_flags & CRAFT_ON_SOLID_GROUND)
 		if(isclosedturf(dest_turf))
-			builder.balloon_alert(builder, "cannot be made on a wall!")
+			builder.balloon_alert(builder, "不能建在墙上！")
 			return FALSE
 
 		if(is_type_in_typecache(dest_turf, GLOB.turfs_without_ground))
 			if(!locate(/obj/structure/thermoplastic) in dest_turf) // for tram construction
-				builder.balloon_alert(builder, "must be made on solid ground!")
+				builder.balloon_alert(builder, "必须建在坚固地面上！")
 				return FALSE
 
 	if(recipe.crafting_flags & CRAFT_CHECK_DENSITY)
 		for(var/obj/object in dest_turf)
 			if(object.density && !(object.obj_flags & IGNORE_DENSITY) || object.obj_flags & BLOCKS_CONSTRUCTION)
-				builder.balloon_alert(builder, "something is in the way!")
+				builder.balloon_alert(builder, "有东西挡住了！")
 				return FALSE
 
 	if(recipe.placement_checks & STACK_CHECK_CARDINALS)
@@ -559,23 +559,23 @@
 		for(var/direction in GLOB.cardinals)
 			nearby_turf = get_step(dest_turf, direction)
 			if(locate(recipe.result_type) in nearby_turf)
-				to_chat(builder, span_warning("\The [recipe.title] must not be built directly adjacent to another!"))
-				builder.balloon_alert(builder, "can't be adjacent to another!")
+				to_chat(builder, span_warning("[recipe.title]不能紧贴着另一个同类建造！"))
+				builder.balloon_alert(builder, "不能紧贴另一个！")
 				return FALSE
 
 	if(recipe.placement_checks & STACK_CHECK_ADJACENT)
 		if(locate(recipe.result_type) in range(1, dest_turf))
-			builder.balloon_alert(builder, "can't be near another!")
+			builder.balloon_alert(builder, "不能靠近另一个！")
 			return FALSE
 
 	if(recipe.placement_checks & STACK_CHECK_TRAM_FORBIDDEN)
 		if(locate(/obj/structure/transport/linear/tram) in dest_turf || locate(/obj/structure/thermoplastic) in dest_turf)
-			builder.balloon_alert(builder, "can't be on tram!")
+			builder.balloon_alert(builder, "不能建在轨道电车上！")
 			return FALSE
 
 	if(recipe.placement_checks & STACK_CHECK_TRAM_EXCLUSIVE)
 		if(!locate(/obj/structure/transport/linear/tram) in dest_turf)
-			builder.balloon_alert(builder, "must be made on a tram!")
+			builder.balloon_alert(builder, "必须建在轨道电车上！")
 			return FALSE
 
 	return TRUE
@@ -600,15 +600,15 @@
 /obj/item/stack/tool_use_check(mob/living/user, amount, heat_required)
 	if(get_amount() < amount)
 		// general balloon alert that says they don't have enough
-		user.balloon_alert(user, "not enough material!")
+		user.balloon_alert(user, "材料不足！")
 		// then a more specific message about how much they need and what they need specifically
 		if(singular_name)
 			if(amount > 1)
-				to_chat(user, span_warning("You need at least [amount] [singular_name]\s to do this!"))
+				to_chat(user, span_warning("你至少需要 [amount] 个[singular_name]才能这样做！"))
 			else
-				to_chat(user, span_warning("You need at least [amount] [singular_name] to do this!"))
+				to_chat(user, span_warning("你至少需要 [amount] 个[singular_name]才能这样做！"))
 		else
-			to_chat(user, span_warning("You need at least [amount] to do this!"))
+			to_chat(user, span_warning("你至少需要 [amount] 个才能这样做！"))
 
 		return FALSE
 
@@ -761,11 +761,11 @@
 	if(is_zero_amount(delete_if_zero = TRUE))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	var/max = get_amount()
-	var/stackmaterial = tgui_input_number(user, "How many sheets do you wish to take out of this stack?", "Stack Split", max_value = max)
+	var/stackmaterial = tgui_input_number(user, "你想从这一叠里取出多少个？", "拆分堆叠", max_value = max)
 	if(!stackmaterial || QDELETED(user) || QDELETED(src) || !usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	split_n_take(user, stackmaterial)
-	to_chat(user, span_notice("You take [stackmaterial] sheets out of the stack."))
+	to_chat(user, span_notice("你从这一叠里取出了 [stackmaterial] 个。"))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /** Splits the stack into two stacks, returns the new stack.
@@ -806,7 +806,7 @@
 	var/obj/item/stack/overtaking_stack = tool
 	if(!merge(overtaking_stack))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("Your [overtaking_stack.name] stack now contains [overtaking_stack.get_amount()] [overtaking_stack.singular_name]\s."))
+	to_chat(user, span_notice("你的[overtaking_stack.name]叠里现在有 [overtaking_stack.get_amount()] 个[overtaking_stack.singular_name]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/stack/proc/copy_evidences(obj/item/stack/from)

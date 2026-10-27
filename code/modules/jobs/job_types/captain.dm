@@ -1,13 +1,13 @@
 /datum/job/captain
 	title = JOB_CAPTAIN
-	description = "Be responsible for the station, manage your Heads of Staff, \
-		keep the crew alive, be prepared to do anything and everything or die \
-		horribly trying."
+	description = "对空间站负全责，管理各部门主管，\
+		保证船员们活着，并做好做任何事、或为此惨烈\
+		牺牲的准备。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "Nanotrasen officials and Space Law"
+	supervisors = "纳米传讯官员与太空法"
 	req_admin_notify = 1
 	minimal_player_age = 14
 	exp_requirements = 180
@@ -44,7 +44,7 @@
 	)
 
 	job_flags = STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS | JOB_ANTAG_PROTECTED
-	rpg_title = "Star Duke"
+	rpg_title = "星辰公爵"
 
 	human_authority = JOB_AUTHORITY_HUMANS_ONLY
 
@@ -52,11 +52,11 @@
 
 
 /datum/job/captain/get_captaincy_announcement(mob/living/captain)
-	return "Captain [captain.real_name] on deck!"
+	return "舰长 [captain.real_name] 已到任！"
 
 /datum/job/captain/get_radio_information()
 	. = ..()
-	. += "\nYou have access to all radio channels, but they are not automatically tuned. Check your radio for more information."
+	. += "\n你可以使用所有无线电频道，但它们不会自动调谐。查看你的无线电以了解更多信息。"
 
 /datum/outfit/job/captain
 	name = "Captain"

@@ -7,9 +7,9 @@
  * See weakpoint.dm for more specifics on their effects.
  */
 /obj/item/earthcracker
-	name = "E-2 Earthcracker"
-	desc = "A nasty automated pilebunker can be used to create a massive weakpoint in flooring,\
-		which can be triggered afterwards by a sufficiently strong enough explosion."
+	name = "E-2 裂地锤"
+	desc = "一台凶狠的自动打桩机，可在地板上制造巨大的结构弱点，\
+		随后用足够强烈的爆炸即可引发坍塌。"
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "earthcracker"
 	base_icon_state = "earthcracker"
@@ -39,7 +39,7 @@
 		if(EARTHCRACKER_ACTIVE)
 			if(activation_timer)
 				return FALSE
-			var/response = tgui_alert(user, "Activate the earthcracker?", "Activate?", list("Yes", "No")) == "Yes"
+			var/response = tgui_alert(user, "启动裂地锤？", "启动？", list("是", "否")) == "是"
 			if(!response)
 				return FALSE
 			if(!user.Adjacent(src))
@@ -51,7 +51,7 @@
 			activation_timer = addtimer(CALLBACK(src, PROC_REF(strike_the_earth)), 1.2 SECONDS)
 			return TRUE
 		if(EARTHCRACKER_SPENT)
-			balloon_alert(user, "used up!")
+			balloon_alert(user, "已耗尽！")
 			return FALSE
 
 /obj/item/earthcracker/update_icon_state()
@@ -66,15 +66,15 @@
 
 /obj/item/earthcracker/wrench_act(mob/living/user, obj/item/tool)
 	if(anchored && status == EARTHCRACKER_SPENT)
-		balloon_alert(user, "it falls apart")
+		balloon_alert(user, "它散架了")
 		animate(src, 0.6 SECONDS, alpha = 0, easing = CIRCULAR_EASING|EASE_IN)
 		addtimer(CALLBACK(src, PROC_REF(post_break)), 0.6 SECONDS)
 		return ITEM_INTERACT_SUCCESS
 	if(!anchored && status == EARTHCRACKER_READY)
-		balloon_alert(user, "arm in hands first!")
+		balloon_alert(user, "先手持部署！")
 		return ITEM_INTERACT_SUCCESS
 	if(anchored && status == EARTHCRACKER_ACTIVE)
-		balloon_alert(user, "unfastening from the floor...")
+		balloon_alert(user, "正在解除地面固定……")
 		if(!tool.use_tool(src, user, 8 SECONDS, volume = 50))
 			return ITEM_INTERACT_FAILURE
 		anchored = FALSE
@@ -85,33 +85,33 @@
 /obj/item/earthcracker/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	switch(status)
 		if(EARTHCRACKER_ACTIVE)
-			context[SCREENTIP_CONTEXT_LMB] = "Activate device"
+			context[SCREENTIP_CONTEXT_LMB] = "启动装置"
 		if(EARTHCRACKER_SPENT)
 			if(held_item?.tool_behaviour == TOOL_WRENCH)
-				context[SCREENTIP_CONTEXT_LMB] = "Disassemble device"
+				context[SCREENTIP_CONTEXT_LMB] = "拆解装置"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/earthcracker/examine(mob/user)
 	. = ..()
 	if(status == EARTHCRACKER_SPENT)
-		. += span_warning("This device is toast. You could disassemble the remains using a [EXAMINE_HINT("Wrench")].")
+		. += span_warning("这台装置报废了。你可以用[EXAMINE_HINT("扳手")]拆解残骸。")
 	else
-		. += span_info("This device can be unanchored using a [EXAMINE_HINT("Wrench")].")
+		. += span_info("可以用[EXAMINE_HINT("扳手")]解除此装置的固定。")
 
 /obj/item/earthcracker/proc/handle_arming(mob/user)
 	var/turf/arm_location = get_turf(user)
 	if(!arm_location)
 		return FALSE
 	if(isgroundlessturf(arm_location))
-		balloon_alert(user, "can't deploy here")
+		balloon_alert(user, "不能在这里部署")
 		return FALSE
 
 	if(status == EARTHCRACKER_SPENT)
-		balloon_alert(user, "used up!")
+		balloon_alert(user, "已耗尽！")
 		return FALSE
-	balloon_alert(user, "arming...")
+	balloon_alert(user, "正在部署……")
 	if(!do_after(user, 3 SECONDS, src))
-		balloon_alert(user, "failed to arm")
+		balloon_alert(user, "部署失败")
 		return FALSE
 
 	forceMove(arm_location)
@@ -167,10 +167,10 @@
 
 /// Small subtype for shenanigans.
 /obj/item/earthcracker/small
-	name = "E-1 Earthcracker"
-	desc = "A rusty automated pilebunker can be used to create a weakpoint in flooring,\
-		which can be triggered afterwards by a sufficiently strong enough explosion.\
-		You're pretty sure the mining company that used to make these got bought by Nanotrasen ages ago."
+	name = "E-1 裂地锤"
+	desc = "一台生锈的自动打桩机，可在地板上制造结构弱点，\
+		随后用足够强烈的爆炸即可引发坍塌。\
+		你很确定，以前生产这些装置的矿业公司早就被纳米传讯收购了。"
 	weakpoint_type = /obj/effect/weakpoint
 
 #undef EARTHCRACKER_READY

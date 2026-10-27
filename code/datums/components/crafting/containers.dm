@@ -1,19 +1,19 @@
 /datum/crafting_recipe/papersack
-	name = "Paper Sack"
+	name = "纸袋"
 	result = /obj/item/storage/box/papersack
 	time = 1 SECONDS
 	reqs = list(/obj/item/paper = 5)
 	category = CAT_CONTAINERS
 
 /datum/crafting_recipe/sillycup
-	name = "Paper Cup"
+	name = "纸杯"
 	result =  /obj/item/reagent_containers/cup/glass/sillycup
 	time = 1 SECONDS
 	reqs = list(/obj/item/paper = 2)
 	category = CAT_CONTAINERS
 
 /datum/crafting_recipe/boh
-	name = "Bag of Holding"
+	name = "次元背包"
 	reqs = list(
 		/obj/item/bag_of_holding_inert = 1,
 		/obj/item/assembly/signaler/anomaly/bluespace = 1,
@@ -22,7 +22,7 @@
 	category = CAT_CONTAINERS
 
 /datum/crafting_recipe/underwater_basket
-	name = "Underwater Basket (Bamboo)"
+	name = "水下编织篮（竹）"
 	reqs = list(
 		/obj/item/stack/sheet/mineral/bamboo = 20
 	)
@@ -30,8 +30,8 @@
 	category = CAT_CONTAINERS
 	crafting_flags = parent_type::crafting_flags | CRAFT_MUST_BE_LEARNED | CRAFT_SKIP_MATERIALS_PARITY
 	steps = list(
-		"master the art of underwater basketweaving",
-		"be underwater"
+		"掌握水下编篮的技艺",
+		"处于水下"
 	)
 
 /datum/crafting_recipe/underwater_basket/check_requirements(mob/user, list/collected_requirements)
@@ -45,5 +45,5 @@
 
 //Same but with wheat
 /datum/crafting_recipe/underwater_basket/wheat
-	name = "Underwater Basket (Wheat)"
+	name = "水下编织篮（麦秆）"
 	reqs = list(/obj/item/food/grown/wheat = 50)

@@ -1,6 +1,6 @@
 /obj/item/clothing/under/sweater
-	name = "cableknit sweater"
-	desc = "Why trade style for comfort? Now you can go commando down south and still be cozy up north."
+	name = "绞花针织毛衣"
+	desc = "为什么要为了舒适牺牲风格？现在你下半身可以什么都不穿，上半身依旧暖和。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/sweater"
 	post_init_icon_state = "cableknit_sweater"
@@ -14,18 +14,18 @@
 	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/under/sweater/black
-	name = "black cableknit sweater"
+	name = "黑色绞花针织毛衣"
 	icon_state = "/obj/item/clothing/under/sweater/black"
 	greyscale_colors = "#4f4f4f"
 
 /obj/item/clothing/under/sweater/red
-	name = "red cableknit sweater"
+	name = "红色绞花针织毛衣"
 	icon_state = "/obj/item/clothing/under/sweater/red"
 	greyscale_colors = "#9a0000"
 
 /obj/item/clothing/under/sweater/keyhole
-	name = "keyhole sweater"
-	desc = "So let me get this straight. They cut cleavage out of something meant to keep you warm..? Why? \"Now you can go commando down south and be freezing cold on your chest\" isn't a good motto!"
+	name = "钥匙孔毛衣"
+	desc = "让我理理清楚。他们把一件本该保暖的衣服挖了个露乳沟的洞……为什么？“现在你下半身可以什么都不穿，胸口却冻得冰凉”可不是什么好口号！"
 	icon_state = "/obj/item/clothing/under/sweater/keyhole"
 	post_init_icon_state = "keyhole_sweater"
 	greyscale_colors = "#c5699c"

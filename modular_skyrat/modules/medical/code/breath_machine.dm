@@ -7,8 +7,8 @@
 	qdel(src)
 
 /obj/machinery/breath_machine
-	name = "portable breath machine"
-	desc = "A stand on wheels with a digital regulator, similar to an IV drip, that can hold a canister of gas along with a gas mask.<br>Is it N2 for humans and N2O for vox again? Other way? What's O2? I'm not the doctor here."
+	name = "便携式呼吸机"
+	desc = "一个带轮子的支架，配有类似输液架的数字调节器，可同时放置一个气罐和一副防毒面具。<br>人类用 N2、Vox 用 N2O 来着？还是反了？O2 又是什么？反正我又不是医生。"
 	icon = 'modular_zubbers/icons/obj/medical/breath_machine.dmi'
 	icon_state = "breath_machine"
 	anchored = FALSE
@@ -27,11 +27,11 @@
 /obj/machinery/breath_machine/examine(mob/user)
 	. = ..()
 
-	. += "<b>Right-clicking</b> with a wrench will deconstruct the stand, if there is no tank attached."
+	. += "若未安装气罐，用扳手<b>右键</b>可拆解这个支架。"
 	if(mask_out)
-		. += "<b>Click</b> on the stand to retract the mask, if the mask is currently out"
+		. += "若面罩已展开，<b>点击</b>支架可将其收回。"
 	if(attached_tank)
-		. += "<b>Alt + Click</b> to remove [attached_tank]."
+		. += "<b>Alt + 点击</b>可取下 [attached_tank]。"
 
 /obj/machinery/breath_machine/Initialize(mapload)
 	. = ..()
@@ -43,16 +43,16 @@
 		return ..()
 
 	if(mask_out)
-		to_chat(user, span_warning("There is someone currently attached to the [src]!"))
+		to_chat(user, span_warning("目前有人连接在 [src] 上！"))
 		return TRUE
 
 	if(attached_tank)
-		to_chat(user, span_warning("[attached_tank] must be removed from [src] first!"))
+		to_chat(user, span_warning("必须先取下 [src] 上的 [attached_tank]！"))
 		return TRUE
 
 	new /obj/item/breath_machine_kit(get_turf(src))
 	tool.play_tool_sound(user)
-	to_chat(user, span_notice("You deconstruct the [src]."))
+	to_chat(user, span_notice("你拆解了 [src]。"))
 	qdel(src)
 	return TRUE
 
@@ -93,7 +93,7 @@
 	. = ..()
 	if(!retract_mask())
 		return FALSE
-	visible_message(span_notice("[user] retracts [attached_mask] back into [src]."))
+	visible_message(span_notice("[user] 将 [attached_mask] 收回 [src] 中。"))
 
 /obj/machinery/breath_machine/attackby(obj/item/attacking_item, mob/user, params)
 	if(!istype(attacking_item, /obj/item/tank))
@@ -103,7 +103,7 @@
 		attached_tank.forceMove(loc)
 
 	attacking_item.forceMove(src) // Put new tank in, set it as attached tank
-	visible_message(span_notice("[user] inserts [attacking_item] into [src]."))
+	visible_message(span_notice("[user] 将 [attacking_item] 放入 [src] 中。"))
 	attached_tank = attacking_item
 	update_appearance(UPDATE_OVERLAYS)
 
@@ -112,7 +112,7 @@
 		return CLICK_ACTION_BLOCKING
 
 	attached_tank.forceMove(loc)
-	to_chat(user, span_notice("You remove the [attached_tank]."))
+	to_chat(user, span_notice("你取下了 [attached_tank]。"))
 	attached_tank = null
 	update_appearance(UPDATE_OVERLAYS)
 	if(mask_out)
@@ -146,7 +146,7 @@
 		return FALSE
 
 	if(!attached_tank || mask_out)
-		to_chat(user, span_warning("[mask_out ? "The machine is already in use!" : "The machine has no attached tank!"]"))
+		to_chat(user, span_warning("[mask_out ? "机器正在使用中！" : "机器没有连接气罐！"]"))
 		return FALSE
 
 	// if we somehow lost the mask, let's just make a brand new one. the wonders of technology!
@@ -154,14 +154,14 @@
 		attached_mask = new /obj/item/clothing/mask/breath/machine(src)
 		update_appearance(UPDATE_OVERLAYS)
 
-	user.visible_message(span_warning("[user] attemps to attach the [attached_mask] to [target]."), span_notice("You attempt to attach the [attached_mask] to [target]"))
+	user.visible_message(span_warning("[user] 试图将 [attached_mask] 戴到 [target] 上。"), span_notice("你试图将 [attached_mask] 戴到 [target] 上"))
 	if(!do_after(user, 5 SECONDS, target))
 		return
 	if(!target.equip_to_appropriate_slot(attached_mask))
-		to_chat(user, span_warning("You are unable to attach the [attached_mask] to [target]!"))
+		to_chat(user, span_warning("你无法将 [attached_mask] 戴到 [target] 上！"))
 		return
 
-	user.visible_message(span_warning("[user] attaches the [attached_mask] to [target]."), span_notice("You attach the [attached_mask] to [target]"))
+	user.visible_message(span_warning("[user] 将 [attached_mask] 戴到了 [target] 上。"), span_notice("你将 [attached_mask] 戴到了 [target] 上"))
 
 	// Open the tank externally
 	target.open_internals(attached_tank, is_external = TRUE)
@@ -175,7 +175,7 @@
 
 	var/mob/living/carbon/carbon_target = attached_mask.loc
 	if(get_dist(src, get_turf(attached_mask)) > 1) // If too far away, detach
-		to_chat(carbon_target, span_warning("[attached_mask] is ripped off of your face!"))
+		to_chat(carbon_target, span_warning("[attached_mask] 从你脸上被扯了下来！"))
 		retract_mask()
 		return PROCESS_KILL
 
@@ -236,7 +236,7 @@
 		return
 
 	if(loc != our_machine) //If it isn't in the machine, then it retracts when dropped
-		to_chat(user, span_notice("[src] retracts back into the [our_machine]."))
+		to_chat(user, span_notice("[src] 缩回了 [our_machine] 中。"))
 		our_machine.retract_mask()
 
 /obj/item/clothing/mask/breath/machine/adjust_visor(mob/living/carbon/user)
@@ -249,8 +249,8 @@
 
 /// A boxed version of the breath Machine. This is what is printed from the medical prolathe.
 /obj/item/breath_machine_kit
-	name = "breath stand parts kit"
-	desc = "Contains all of the parts needed to assemble a portable breath stand. Use in hand to construct."
+	name = "呼吸支架零件套装"
+	desc = "包含组装便携式呼吸支架所需的全部零件。拿在手中使用即可组装。"
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/obj/storage/box.dmi'
 	icon_state = "plasticbox"

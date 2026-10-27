@@ -34,7 +34,7 @@
 
 
 /obj/item/organ/genital/proc/get_description_string(datum/sprite_accessory/genital/gas)
-	return "You see genitals"
+	return "你看到了生殖器官"
 
 /obj/item/organ/genital/proc/update_genital_icon_state()
 	return
@@ -137,8 +137,8 @@
 */
 
 /obj/item/organ/genital/penis
-	name = "penis"
-	desc = "A male reproductive organ."
+	name = "阴茎"
+	desc = "男性生殖器官。"
 	icon_state = "penis"
 	icon = 'modular_skyrat/master_files/icons/obj/genitals/penis.dmi'
 	zone = BODY_ZONE_PRECISE_GROIN
@@ -162,14 +162,14 @@
 	if(sheath != SHEATH_NONE && aroused != AROUSAL_FULL) //Hidden in sheath
 		switch(sheath)
 			if(SHEATH_NORMAL)
-				returned_string = "You see a sheath."
+				returned_string = "你看到了一个鞘。"
 			if(SHEATH_SLIT)
-				returned_string = "You see a slit." ///Typo fix.
+				returned_string = "你看到了一条裂缝。" ///Typo fix.
 		if(aroused != AROUSAL_PARTIAL)
 			return returned_string
-		returned_string += " There's a [pname]penis poking out of it. "
+		returned_string += " 有一根[pname]阴茎从中探出。"
 	else
-		returned_string += "You see a [pname]penis. "
+		returned_string += " 你看到了一根[pname]阴茎。"
 
 	var/reported_girth = CEILING( girth / 3.1415, 0.25) //Circum to Diameter
 	var/reported_length = genital_size
@@ -180,15 +180,15 @@
 			//I love penis math
 			reported_length *= max(0.5, 1 - (-temperature_difference/50)**4)
 	reported_length = CEILING(reported_length,0.25)
-	returned_string += "You estimate it's about [reported_length] inches long, and about [reported_girth] inches in diameter."
+	returned_string += "你估计它长约 [reported_length] 英寸，直径约 [reported_girth] 英寸。"
 
 	switch(aroused)
 		if(AROUSAL_NONE)
-			returned_string += " It seems flaccid."
+			returned_string += " 它看起来是疲软的。"
 		if(AROUSAL_PARTIAL)
-			returned_string += " It's partically erect."
+			returned_string += " 它部分勃起了。"
 		if(AROUSAL_FULL)
-			returned_string += " It's fully erect."
+			returned_string += " 它完全勃起了。"
 
 	return returned_string
 
@@ -295,8 +295,8 @@
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_PENIS]
 
 /obj/item/organ/genital/testicles
-	name = "testicles"
-	desc = "A male reproductive organ."
+	name = "睾丸"
+	desc = "男性生殖器官。"
 	icon_state = "testicles"
 	icon = 'modular_skyrat/master_files/icons/obj/genitals/testicles.dmi'
 	mutantpart_key = ORGAN_SLOT_TESTICLES
@@ -328,7 +328,7 @@
 	if(genital_name == "Internal") //Checks if Testicles are of Internal Variety
 		visibility_preference = GENITAL_SKIP_VISIBILITY //Removes visibility if yes.
 	else
-		return "You see a pair of testicles, they look [LOWER_TEXT(balls_size_to_description(genital_size))]."
+		return "你看到一对睾丸，看起来[LOWER_TEXT(balls_size_to_description(genital_size))]。"
 
 /obj/item/organ/genital/testicles/build_from_dna(datum/dna/DNA, associated_key)
 	uses_skin_color = DNA.features["testicles_uses_skincolor"]
@@ -369,7 +369,7 @@
 	return 0
 
 /obj/item/organ/genital/vagina
-	name = "vagina"
+	name = "阴道"
 	icon = 'modular_skyrat/master_files/icons/obj/genitals/vagina.dmi'
 	icon_state = "vagina"
 	mutantpart_key = ORGAN_SLOT_VAGINA
@@ -385,16 +385,16 @@
 	layers = list(EXTERNAL_FRONT = VAGINA_FRONT_LAYER)
 
 /obj/item/organ/genital/vagina/get_description_string(datum/sprite_accessory/genital/gas)
-	var/returned_string = "You see a [LOWER_TEXT(genital_name)] vagina."
+	var/returned_string = "你看到了一个[LOWER_TEXT(genital_name)]阴道。"
 	if(LOWER_TEXT(genital_name) == "cloaca")
-		returned_string = "You see a cloaca." //i deserve a pipebomb for this
+		returned_string = "你看到了一个泄殖腔。" //i deserve a pipebomb for this
 	switch(aroused)
 		if(AROUSAL_NONE)
-			returned_string += " It seems dry."
+			returned_string += " 它看起来很干燥。"
 		if(AROUSAL_PARTIAL)
-			returned_string += " It's glistening with arousal."
+			returned_string += " 它因兴奋而泛着光泽。"
 		if(AROUSAL_FULL)
-			returned_string += " It's bright and dripping with arousal."
+			returned_string += " 它因兴奋而鲜亮，还滴淌着液体。"
 	return returned_string
 
 /obj/item/organ/genital/vagina/get_sprite_size_string()
@@ -416,8 +416,8 @@
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_VAGINA]
 
 /obj/item/organ/genital/womb
-	name = "womb"
-	desc = "A female reproductive organ."
+	name = "子宫"
+	desc = "女性生殖器官。"
 	icon = 'modular_skyrat/master_files/icons/obj/genitals/vagina.dmi'
 	icon_state = "womb"
 	mutantpart_key = ORGAN_SLOT_WOMB
@@ -439,8 +439,8 @@
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_WOMB]
 
 /obj/item/organ/genital/anus
-	name = "anus"
-	desc = "What do you want me to tell you?"
+	name = "肛门"
+	desc = "你想让我跟你说什么？"
 	icon = 'modular_skyrat/master_files/icons/obj/genitals/anus.dmi'
 	icon_state = "anus"
 	mutantpart_key = ORGAN_SLOT_ANUS
@@ -457,19 +457,19 @@
 	layer_offset = ANUS_LAYER_OFFSET
 
 /obj/item/organ/genital/anus/get_description_string(datum/sprite_accessory/genital/gas)
-	var/returned_string = "You see an [LOWER_TEXT(genital_name)]."
+	var/returned_string = "你看到了一个[LOWER_TEXT(genital_name)]。"
 	if(aroused == AROUSAL_PARTIAL)
-		returned_string += " It looks tight."
+		returned_string += " 它看起来很紧。"
 	if(aroused == AROUSAL_FULL)
-		returned_string += " It looks very tight."
+		returned_string += " 它看起来非常紧。"
 	return returned_string
 
 /datum/bodypart_overlay/mutant/genital/anus/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_ANUS]
 
 /obj/item/organ/genital/breasts
-	name = "breasts"
-	desc = "Female milk producing organs."
+	name = "胸部"
+	desc = "女性的泌乳器官。"
 	icon_state = "breasts"
 	icon = 'modular_skyrat/master_files/icons/obj/genitals/breasts.dmi'
 	genital_type = "pair"
@@ -489,22 +489,22 @@
 	offset_location = ENTIRE_BODY
 
 /obj/item/organ/genital/breasts/get_description_string(datum/sprite_accessory/genital/gas)
-	var/returned_string = "You see a [LOWER_TEXT(genital_name)] of breasts."
+	var/returned_string = "你看到了[LOWER_TEXT(genital_name)]型的胸部。"
 	var/size_description
 	var/translation = breasts_size_to_cup(genital_size)
 	switch(translation)
 		if(BREAST_SIZE_FLATCHESTED)
-			size_description = " They are small and flat, however."
+			size_description = " 不过，它们又小又平。"
 		if(BREAST_SIZE_BEYOND_MEASUREMENT)
-			size_description = " Their size is enormous, you estimate they're around [genital_size] inches in diameter."
+			size_description = " 它们的尺寸极为巨大，你估计直径约为 [genital_size] 英寸。"
 		else
-			size_description = " You estimate they are [translation]-cups."
+			size_description = " 你估计它们是 [translation] 罩杯。"
 	returned_string += size_description
 	if(aroused == AROUSAL_FULL)
 		if(lactates)
-			returned_string += " The nipples seem hard, perky and are leaking milk."
+			returned_string += " 乳头看起来坚挺而翘起，还在溢奶。"
 		else
-			returned_string += " Their nipples look hard and perky."
+			returned_string += " 它们的乳头看起来坚挺而翘起。"
 	return returned_string
 
 /obj/item/organ/genital/breasts/update_genital_icon_state()
@@ -564,8 +564,8 @@
 	return 0
 
 /obj/item/organ/genital/butt
-	name = "butt"
-	desc = "You see a pair of asscheeks."
+	name = "臀部"
+	desc = "你看到一对臀瓣。"
 	icon = 'modular_skyrat/master_files/icons/obj/genitals/butt.dmi'
 	icon_state = "butt"
 	drop_when_organ_spilling = FALSE
@@ -582,25 +582,25 @@
 	var/butt_style = gas ? LOWER_TEXT(gas.icon_state) : LOWER_TEXT(genital_name)
 	switch(round(genital_size))
 		if(1)
-			size_name = "average"
+			size_name = "中等大小的"
 		if(2)
-			size_name = "sizable"
+			size_name = "相当可观的"
 		if(3)
-			size_name = "squeezable"
+			size_name = "手感十足的"
 		if(4)
-			size_name = "hefty"
+			size_name = "丰厚的"
 		if(5)
-			size_name = "massive"
+			size_name = "硕大的"
 		if(6)
-			size_name = "gigantic"
+			size_name = "巨大的"
 		if(7)
-			size_name = "unfathomably large"
+			size_name = "大得难以想象的"
 		if(8)
-			size_name = "humongous"
+			size_name = "庞大无比的"
 		else
-			size_name = "nonexistent"
+			size_name = "不存在的"
 
-	return "You see a [butt_style] of [size_name] asscheeks."
+	return "你看到一对[size_name]臀瓣，样式是 [butt_style]。"
 
 /obj/item/organ/genital/butt/set_size(size)
 	. = ..()
@@ -657,8 +657,8 @@
 		. += "above_uniform"
 
 /obj/item/organ/genital/belly
-	name = "belly"
-	desc = "You see a belly on their midsection."
+	name = "腹部"
+	desc = "你看到其腰腹处有一块肚腩。"
 	icon = null //apparently theres no organ sprite?
 	icon_state = null
 	drop_when_organ_spilling = FALSE
@@ -680,9 +680,9 @@
 	var/old_size = genital_size
 	. = ..()
 	if(size > old_size)
-		to_chat(owner, span_warning("Your guts [pick("swell up to", "gurgle into", "expand into", "plump up into", "grow eagerly into", "fatten up into", "distend into")] a larger midsection."))
+		to_chat(owner, span_warning("你的内脏[pick("鼓胀成", "咕噜着变成", "扩张成", "饱满地变成", "热切地长成", "肥厚地变成", "撑大成")]更大的腰腹。"))
 	else
-		to_chat(owner, span_warning("Your guts [pick("shrink down to", "decrease into", "wobble down into", "diminish into", "deflate into", "contracts into")] a smaller midsection."))
+		to_chat(owner, span_warning("你的内脏[pick("缩小成", "缩减成", "晃动着缩成", "变小成", "瘪成", "收缩成")]更小的腰腹。"))
 
 /obj/item/organ/genital/belly/build_from_dna(datum/dna/DNA, associated_key)
 	uses_skin_color = DNA.features["belly_uses_skincolor"]
@@ -699,23 +699,23 @@
 	var/size_name
 	switch(round(genital_size))
 		if(1)
-			size_name = "average"
+			size_name = "中等大小的"
 		if(2)
-			size_name = "round"
+			size_name = "圆润的"
 		if(3)
-			size_name = "squishable"
+			size_name = "软乎乎的"
 		if(4)
-			size_name = "fat"
+			size_name = "肥胖的"
 		if(5)
-			size_name = "sagging"
+			size_name = "下垂的"
 		if(6)
-			size_name = "gigantic"
+			size_name = "巨大的"
 		if(7 to INFINITY)
-			size_name = "humongous"
+			size_name = "庞大无比的"
 		else
-			size_name = "nonexistent"
+			size_name = "不存在的"
 
-	desc = "You see a [size_name] [round(genital_size) >= 4 ? "belly, it bounces around as [owner] walks" : "belly in [owner?.p_their() ? owner?.p_their() : "their"] midsection"]."
+	desc = "你看到了一个[size_name]肚子，[round(genital_size) >= 4 ? "随着 [owner] 走动而晃来晃去" : "长在[owner?.p_their() ? owner?.p_their() : "其"]腰腹上"]。"
 
 
 /datum/bodypart_overlay/mutant/genital/belly
@@ -727,9 +727,9 @@
 /datum/bodypart_overlay/mutant/genital/belly/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_BELLY]
 
-GAME_VERB_DESC(/mob/living/carbon/human, toggle_genitals, "Expose/Hide genitals", "Change which genitals show through clothes and how they layer.", "IC")
+GAME_VERB_DESC(/mob/living/carbon/human, toggle_genitals, "显示/隐藏生殖器", "更改哪些生殖器会透过衣物显示，以及它们的图层顺序。", "IC")
 	if(IS_UNCONSCIOUS_OR_CRIT(src))
-		to_chat(usr, span_warning("You can't toggle genitals visibility right now..."))
+		to_chat(usr, span_warning("你现在无法切换生殖器可见性……"))
 		return
 
 	var/list/genital_list = list("all")
@@ -740,13 +740,13 @@ GAME_VERB_DESC(/mob/living/carbon/human, toggle_genitals, "Expose/Hide genitals"
 		return
 	//Full list of exposable genitals created
 	var/obj/item/organ/genital/picked_organ
-	picked_organ = input(src, "Choose which genitalia to expose/hide", "Expose/Hide genitals") as null|anything in genital_list
+	picked_organ = input(src, "选择要显示/隐藏的生殖器", "显示/隐藏生殖器") as null|anything in genital_list
 	if(picked_organ && ((picked_organ in organs) || picked_organ == "all"))
-		var/list/gen_vis_trans = list("Never show" = GENITAL_NEVER_SHOW,
-												"Hidden by clothes" = GENITAL_HIDDEN_BY_CLOTHES,
-												"Always show" = GENITAL_ALWAYS_SHOW
+		var/list/gen_vis_trans = list("从不显示" = GENITAL_NEVER_SHOW,
+												"被衣物遮挡" = GENITAL_HIDDEN_BY_CLOTHES,
+												"始终显示" = GENITAL_ALWAYS_SHOW
 												)
-		var/picked_visibility = input(src, "Choose visibility setting", "Expose/Hide genitals") as null|anything in gen_vis_trans
+		var/picked_visibility = input(src, "选择可见性设置", "显示/隐藏生殖器") as null|anything in gen_vis_trans
 		if(picked_visibility && picked_organ && (picked_organ in organs))
 			picked_organ.visibility_preference = gen_vis_trans[picked_visibility]
 			update_body()
@@ -766,12 +766,12 @@ GAME_VERB_DESC(/mob/living/carbon/human, toggle_genitals, "Expose/Hide genitals"
 		UNASSIGN_GAME_VERB(src, /mob/living/carbon/human, toggle_genitals)
 		UNASSIGN_GAME_VERB(src, /mob/living/carbon/human, toggle_arousal)
 
-GAME_VERB_DESC(/mob/living/carbon/human, toggle_arousal, "Toggle Arousal", "Allows you to toggle how aroused your private parts are.", "IC")
+GAME_VERB_DESC(/mob/living/carbon/human, toggle_arousal, "切换兴奋度", "允许你切换私密部位的兴奋程度。", "IC")
 	if(IS_UNCONSCIOUS_OR_CRIT(usr))
-		to_chat(usr, span_warning("You can't toggle arousal right now..."))
+		to_chat(usr, span_warning("你现在无法切换兴奋度……"))
 		return
 
-	var/arousal_target = tgui_input_number(src, "[AROUSAL_NONE]= No arousal, <[AROUSAL_LOW] Low/partial Arousal, [AROUSAL_LOW] - [AROUSAL_HIGH] Medium/full Arousal, >[AROUSAL_HIGH] Strong/full Arousal", "Set Arousal Amount", arousal, AROUSAL_LIMIT, AROUSAL_MINIMUM, 0)
+	var/arousal_target = tgui_input_number(src, "[AROUSAL_NONE]= 无兴奋，<[AROUSAL_LOW] 低度/部分兴奋，[AROUSAL_LOW] - [AROUSAL_HIGH] 中度/完全兴奋，>[AROUSAL_HIGH] 强烈/完全兴奋", "设置兴奋程度", arousal, AROUSAL_LIMIT, AROUSAL_MINIMUM, 0)
 	if (!isnull(arousal_target))
 		var/datum/component/change_arousal_on_life/to_del = GetComponent(/datum/component/change_arousal_on_life/)
 		if (!isnull(to_del))

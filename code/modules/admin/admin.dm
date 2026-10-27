@@ -1,13 +1,13 @@
 ////////////////////////////////
 /proc/message_admins(msg)
-	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">管理员日志：</span> <span class=\"message\">[msg]</span></span>"
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
 		confidential = TRUE)
 
 /proc/relay_msg_admins(msg)
-	msg = "<span class=\"admin\"><span class=\"prefix\">RELAY:</span> <span class=\"message\">[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">转发：</span> <span class=\"message\">[msg]</span></span>"
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
@@ -21,22 +21,22 @@
 
 	var/dat
 
-	dat += "<a href='byond://?src=[REF(src)];[HrefToken()];gamemode_panel=1'>Storyteller Panel</a><BR>" // BUBBER EDIT CHANGE - Storyteller - Dynamic Panel -> Storyteller Panel
+	dat += "<a href='byond://?src=[REF(src)];[HrefToken()];gamemode_panel=1'>故事讲述者面板</a><BR>" // BUBBER EDIT CHANGE - Storyteller - Dynamic Panel -> Storyteller Panel
 	dat += "<hr/>"
 
-	dat += "<a href='byond://?src=[REF(src)];[HrefToken()];spawn_panel=1'>Spawn Panel</a><br>"
+	dat += "<a href='byond://?src=[REF(src)];[HrefToken()];spawn_panel=1'>生成面板</a><br>"
 
 	if(marked_datum && istype(marked_datum, /atom))
-		dat += "<a href='byond://?src=[REF(src)];[HrefToken()];dupe_marked_datum=1'>Duplicate Marked Datum</a><br>"
+		dat += "<a href='byond://?src=[REF(src)];[HrefToken()];dupe_marked_datum=1'>复制已标记数据对象</a><br>"
 
-	var/datum/browser/browser = new(usr, "admin2", "Game Panel", 240, 280)
+	var/datum/browser/browser = new(usr, "admin2", "游戏面板", 240, 280)
 	browser.set_content(dat)
 	browser.open()
 	return
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
-ADMIN_VERB(spawn_atom, R_SPAWN, "Spawn", "Spawn an atom.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(spawn_atom, R_SPAWN, "生成", "生成一个 atom。", ADMIN_CATEGORY_DEBUG)
 	VERB_ARG(object, VERB_ARG_TYPE_TYPEPATH, VERB_ARG_SOURCE_INPUT)
 	var/static/list/atom_types
 	if (isnull(atom_types))
@@ -72,11 +72,11 @@ ADMIN_VERB(spawn_atom, R_SPAWN, "Spawn", "Spawn an atom.", ADMIN_CATEGORY_DEBUG)
 			var/atom/spawned = new chosen_path(target_turf)
 			spawned.flags_1 |= ADMIN_SPAWNED_1
 
-	log_admin("[key_name(user.mob)] spawned [amount] x [chosen_path] at [AREACOORD(user.mob)]")
+	log_admin("[key_name(user.mob)] 在 [AREACOORD(user.mob)] 生成了 [amount] 个 [chosen_path]")
 	BLACKBOX_LOG_ADMIN_VERB("Spawn Atom")
 	return TRUE
 
-ADMIN_VERB(spawn_atom_pod, R_SPAWN, "PodSpawn", "Spawn an atom via supply drop.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(spawn_atom_pod, R_SPAWN, "空投生成", "通过补给空投生成一个 atom。", ADMIN_CATEGORY_DEBUG)
 	VERB_ARG(object, VERB_ARG_TYPE_TYPEPATH, VERB_ARG_SOURCE_INPUT)
 	var/chosen = pick_closest_path(object)
 	if(!chosen)
@@ -94,10 +94,10 @@ ADMIN_VERB(spawn_atom_pod, R_SPAWN, "PodSpawn", "Spawn an atom via supply drop."
 		var/atom/A = new chosen(pod)
 		A.flags_1 |= ADMIN_SPAWNED_1
 
-	log_admin("[key_name(user)] pod-spawned [chosen] at [AREACOORD(user.mob)]")
+	log_admin("[key_name(user)] 在 [AREACOORD(user.mob)] 通过空投生成了 [chosen]")
 	BLACKBOX_LOG_ADMIN_VERB("Podspawn Atom")
 
-ADMIN_VERB(spawn_cargo, R_SPAWN, "Spawn Cargo", "Spawn a cargo crate.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(spawn_cargo, R_SPAWN, "生成货运", "生成一个货运板条箱。", ADMIN_CATEGORY_DEBUG)
 	VERB_ARG(object, VERB_ARG_TYPE_TYPEPATH, VERB_ARG_SOURCE_INPUT)
 	var/chosen = pick_closest_path(object, make_types_fancy(subtypesof(/datum/supply_pack)))
 	if(!chosen)
@@ -106,10 +106,10 @@ ADMIN_VERB(spawn_cargo, R_SPAWN, "Spawn Cargo", "Spawn a cargo crate.", ADMIN_CA
 	S.order_flags |= ORDER_ADMIN_SPAWNED
 	S.generate(get_turf(user.mob))
 
-	log_admin("[key_name(user)] spawned cargo pack [chosen] at [AREACOORD(user.mob)]")
+	log_admin("[key_name(user)] 在 [AREACOORD(user.mob)] 生成了货运包 [chosen]")
 	BLACKBOX_LOG_ADMIN_VERB("Spawn Cargo")
 
-ADMIN_VERB(create_or_modify_area, R_DEBUG, "Create Or Modify Area", "Create of modify an area. wow.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(create_or_modify_area, R_DEBUG, "创建或修改区域", "创建或修改一个区域。哇。", ADMIN_CATEGORY_DEBUG)
 	create_area(user.mob)
 
 //Kicks all the clients currently in the lobby. The second parameter (kick_only_afk) determins if an is_afk() check is ran, or if all clients are kicked
@@ -140,10 +140,10 @@ ADMIN_VERB(create_or_modify_area, R_DEBUG, "Create Or Modify Area", "Create of m
 
 	var/question = ""
 	if (tomob.ckey)
-		question = "This mob already has a user ([tomob.key]) in control of it! "
-	question += "Are you sure you want to place [frommob.name]([frommob.key]) in control of [tomob.name]?"
+		question = "该生物已有一名用户（[tomob.key]）在控制它！"
+	question += "你确定要让 [frommob.name]（[frommob.key]）控制 [tomob.name] 吗？"
 
-	var/ask = tgui_alert(usr, question, "Place ghost in control of mob?", list("Yes", "No"))
+	var/ask = tgui_alert(usr, question, "让幽灵控制该生物？", list("Yes", "No"))
 	if (ask != "Yes")
 		return TRUE
 
@@ -158,8 +158,8 @@ ADMIN_VERB(create_or_modify_area, R_DEBUG, "Create Or Modify Area", "Create of m
 			if(tomob.mind == ghost.mind)
 				ghost.mind = null
 
-	message_admins(span_adminnotice("[key_name_admin(usr)] has put [frommob.key] in control of [tomob.name]."))
-	log_admin("[key_name(usr)] stuffed [frommob.key] into [tomob.name].")
+	message_admins(span_adminnotice("[key_name_admin(usr)] 已让 [frommob.key] 控制 [tomob.name]。"))
+	log_admin("[key_name(usr)] 把 [frommob.key] 塞进了 [tomob.name]。")
 	BLACKBOX_LOG_ADMIN_VERB("Ghost Drag Control")
 
 	tomob.PossessByPlayer(frommob.key)
@@ -175,9 +175,9 @@ ADMIN_VERB(create_or_modify_area, R_DEBUG, "Create Or Modify Area", "Create of m
 		return
 
 	if(logout && CONFIG_GET(flag/announce_admin_logout))
-		message_admins("Admin logout: [key_name(src)]")
+		message_admins("管理员登出：[key_name(src)]")
 		return
 
 	if(!logout && CONFIG_GET(flag/announce_admin_login) && (prefs.toggles & ANNOUNCE_LOGIN))
-		message_admins("Admin login: [key_name(src)]")
+		message_admins("管理员登录：[key_name(src)]")
 		return

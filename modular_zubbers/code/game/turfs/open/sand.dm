@@ -1,8 +1,8 @@
 //Sand
 /turf/open/misc/moonstation_sand
-	name = "lunar sand"
+	name = "月沙"
 	gender = PLURAL //fucking LIBERALS gendering my SAND oh my GOD *goes on an unhinged rant on reddit*
-	desc = "Not to be confused with the legally distinct children's toy, this lunar sand is coarse and rough and gets everywhere."
+	desc = "别把它和法律上毫无关联的同名儿童玩具混为一谈，这种月沙粗糙硌人，还会钻得到处都是。"
 	initial_gas_mix = MOONSTATION_ATMOS
 	icon = 'modular_zubbers/icons/turf/lunar_sand.dmi'
 	icon_state = "0,0"
@@ -30,9 +30,9 @@
 
 //Rock
 /turf/open/misc/moonstation_rock
-	name = "lunar rock"
+	name = "月岩"
 	gender = NEUTER
-	desc = "You've hit rock bottom, and now you're here."
+	desc = "你已经跌到谷底，脚下只剩岩石。"
 	initial_gas_mix = MOONSTATION_ATMOS
 	icon = 'modular_zubbers/icons/turf/lunar_rock.dmi'
 	icon_state = "0,0"

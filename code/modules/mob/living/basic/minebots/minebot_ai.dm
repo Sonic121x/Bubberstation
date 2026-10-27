@@ -11,11 +11,11 @@
 		BB_BLACKLIST_MINERAL_TURFS = list(/turf/closed/mineral/gibtonite),
 		BB_AUTOMATED_MINING = FALSE,
 		BB_OWNER_SELF_HARM_RESPONSES = list(
-			"Please stop hurting yourself.",
-			"There is no need to do that.",
-			"Your actions are illogical.",
-			"Please make better choices.",
-			"Remember, you have beaten your worst days before."
+			"请不要再伤害自己了。",
+			"你没必要这样做。",
+			"你的行为不合逻辑。",
+			"请做出更好的选择。",
+			"记住，你以前也熬过比这更糟的日子。"
 		)
 	)
 
@@ -82,7 +82,7 @@
 	var/obj/item/implant/radio/radio_implant = locate(/obj/item/implant/radio) in living_pawn.contents
 	if(!radio_implant)
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	var/message = "ALERT, [target] in need of help at coordinates: [target_turf.x], [target_turf.y], [target_turf.z]!"
+	var/message = "警报，[target] 需要帮助，坐标：[target_turf.x], [target_turf.y], [target_turf.z]！"
 	radio_implant.radio.talk_into(living_pawn, message, RADIO_CHANNEL_SUPPLY)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
@@ -107,7 +107,7 @@
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 	if(target.health >= target.maxHealth * repair_threshold)
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	INVOKE_ASYNC(living_pawn, TYPE_PROC_REF(/atom/movable, say), "REPAIRING [target]!")
+	INVOKE_ASYNC(living_pawn, TYPE_PROC_REF(/atom/movable, say), "正在修理 [target]！")
 	INVOKE_ASYNC(controller, TYPE_PROC_REF(/datum/ai_controller, ai_interact), target)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
@@ -174,8 +174,8 @@
 	return ..()
 
 /datum/pet_command/automate_mining
-	command_name = "Automate mining"
-	command_desc = "Make your minebot automatically mine!"
+	command_name = "自动采矿"
+	command_desc = "让你的采矿机器人自动采矿！"
 	radial_icon_state = "mine"
 	speech_commands = list("mine")
 	callout_type = /datum/callout_option/mine
@@ -184,15 +184,15 @@
 	return ismineralturf(target)
 
 /datum/pet_command/automate_mining/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to start mining!"
+	return "示意 [living_pet] 开始采矿！"
 
 /datum/pet_command/automate_mining/execute_action(datum/ai_controller/controller)
 	controller.set_blackboard_key(BB_AUTOMATED_MINING, TRUE)
 	controller.clear_blackboard_key(BB_ACTIVE_PET_COMMAND)
 
 /datum/pet_command/minebot_ability
-	command_name = "Minebot ability"
-	command_desc = "Make your minebot use one of its abilities."
+	command_name = "采矿机器人能力"
+	command_desc = "让你的采矿机器人使用一项能力。"
 	radial_icon = 'icons/mob/actions/actions_mecha.dmi'
 	///the ability we will use
 	var/ability_key
@@ -205,24 +205,24 @@
 	controller.clear_blackboard_key(BB_ACTIVE_PET_COMMAND)
 
 /datum/pet_command/minebot_ability/light
-	command_name = "Toggle lights"
-	command_desc = "Make your minebot toggle its lights."
+	command_name = "切换灯光"
+	command_desc = "让你的采矿机器人开关灯光。"
 	speech_commands = list("light")
 	radial_icon_state = "mech_lights_off"
 	ability_key = BB_MINEBOT_LIGHT_ABILITY
 
 /datum/pet_command/minebot_ability/light/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to toggle its lights!"
+	return "示意 [living_pet] 开关灯光！"
 
 /datum/pet_command/minebot_ability/dump
-	command_name = "Dump ore"
-	command_desc = "Make your minebot dump all its ore!"
+	command_name = "倒出矿石"
+	command_desc = "让你的采矿机器人倒出所有矿石！"
 	speech_commands = list("dump", "ore")
 	radial_icon_state = "mech_eject"
 	ability_key = BB_MINEBOT_DUMP_ABILITY
 
 /datum/pet_command/minebot_ability/dump/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to dump its ore!"
+	return "示意 [living_pet] 倒出矿石！"
 
 /datum/pet_command/minebot_ability/dump/execute_action(datum/ai_controller/controller)
 	controller.set_blackboard_key(BB_AUTOMATED_MINING, FALSE) //else bro will just pick it up

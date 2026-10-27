@@ -131,19 +131,19 @@
 				. += exit_overlay
 
 /turf/open/examine_descriptor(mob/user)
-	return "floor"
+	return "地板"
 
 /turf/open/examine(mob/user)
 	. = ..()
 	if(leave_footprints && (footprint_entrance_dirs || footprint_exit_dirs) && (LAZYLEN(footprint_shoe_types) || LAZYLEN(footprint_species_types)))
-		. += "You recognise the footprints as belonging to:"
+		. += "你辨认出这些脚印属于："
 		for(var/obj/item/clothing/shoes/sole as anything in footprint_shoe_types)
-			var/article = initial(sole.article) || (initial(sole.gender) == PLURAL ? "Some" : "A")
-			. += "[icon2html(initial(sole.icon), user, initial(sole.icon_state))] [article] <b>[initial(sole.name)]</b>."
+			var/article = initial(sole.article) || (initial(sole.gender) == PLURAL ? "一些" : "一个")
+			. += "[icon2html(initial(sole.icon), user, initial(sole.icon_state))] [article] <b>[initial(sole.name)]</b>。"
 
 		for(var/species in footprint_species_types)
 			var/datum/species/species_type = GLOB.species_list[species]
-			. += "&bull; Some <b>[species_type ? format_text(species_type::plural_form) : "unknown"] feet</b>."
+			. += "&bull; 一些<b>[species_type ? format_text(species_type::plural_form) : "未知"]的脚</b>。"
 
 //direction is direction of travel of A
 /turf/open/zPassIn(direction)
@@ -243,7 +243,7 @@
 	var/itercount = 0
 	while(DT.density || istype(DT.loc,/area/shuttle)) // Extend towards the center of the map, trying to look for a better place to arrive
 		if (itercount++ >= 100)
-			log_game("SPACE Z-TRANSIT ERROR: Could not find a safe place to land [arrived] within 100 iterations.")
+			log_game("太空 Z 轴传送错误：在 100 次迭代内找不到[arrived]的安全落点。")
 			break
 		if (tx < 128)
 			tx++
@@ -282,8 +282,8 @@
 	ChangeTurf(new_floor_path, flags = flags)
 
 /turf/open/indestructible
-	name = "floor"
-	desc = "The floor you walk on. It looks near-impervious to damage."
+	name = "地板"
+	desc = "你行走其上的地板。它看起来几乎不受任何损伤。"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "floor"
 	footstep = FOOTSTEP_FLOOR
@@ -338,7 +338,7 @@
 	AddComponent(/datum/component/wet_floor, TURF_WET_LUBE, INFINITY, 0, INFINITY, TRUE)
 
 /turf/open/indestructible/honk
-	name = "bananium floor"
+	name = "香蕉矿地板"
 	icon_state = "bananium"
 	footstep = null
 	barefootstep = null
@@ -356,8 +356,8 @@
 		playsound(src, sound, 50, TRUE)
 
 /turf/open/indestructible/necropolis
-	name = "necropolis floor"
-	desc = "It's regarding you suspiciously."
+	name = "死灵之都地板"
+	desc = "它正怀疑地打量着你。"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "necro1"
 	baseturfs = /turf/open/indestructible/necropolis
@@ -377,7 +377,7 @@
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 
 /turf/open/indestructible/boss //you put stone tiles on this and use it as a base
-	name = "necropolis floor"
+	name = "死灵之都地板"
 	icon = 'icons/turf/boss_floors.dmi'
 	icon_state = "boss"
 	baseturfs = /turf/open/indestructible/boss
@@ -388,8 +388,8 @@
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 
 /turf/open/indestructible/hierophant
-	name = "palestone floor"
-	desc = "A tiled floor made out of an odd pale stone."
+	name = "苍石地板"
+	desc = "由奇特的苍白石块铺成的瓷砖地板。"
 	icon = 'icons/turf/floors/hierophant_floor.dmi'
 	icon_state = "hierophant_floor-255"
 	base_icon_state = "hierophant_floor"
@@ -411,8 +411,8 @@
 	. += emissive_appearance(emissive_icon, icon_state, src)
 
 /turf/open/indestructible/hierophant/two
-	name = "runic palestone floor"
-	desc = "A tiled floor made out of an odd pale stone, inscribed with odd runes."
+	name = "符文苍石地板"
+	desc = "由奇特的苍白石块铺成的瓷砖地板，上面刻着古怪的符文。"
 	icon = 'icons/turf/floors/hierophant_floor_alt.dmi'
 	icon_state = "hierophant_floor_alt-255"
 	base_icon_state = "hierophant_floor_alt"
@@ -422,8 +422,8 @@
 	return FALSE
 
 /turf/open/indestructible/paper
-	name = "notebook floor"
-	desc = "A floor made of invulnerable notebook paper."
+	name = "笔记本纸地板"
+	desc = "由无法破坏的笔记本纸铺成的地板。"
 	icon_state = "paperfloor"
 	footstep = null
 	barefootstep = null
@@ -432,7 +432,7 @@
 	tiled_turf = FALSE
 
 /turf/open/indestructible/binary
-	name = "tear in the fabric of reality"
+	name = "现实结构的裂口"
 	can_atmos_pass = ATMOS_PASS_NO
 	baseturfs = /turf/open/indestructible/binary
 	icon_state = "binary"
@@ -463,9 +463,9 @@
 	icon_state = "rockvault"
 
 /turf/open/indestructible/plating
-	name = "plating"
+	name = "底板"
 	icon_state = "plating"
-	desc = "The attachment points are all bent to uselessness, looks nigh-impervious to damage."
+	desc = "所有安装点都已弯曲到无法使用，看起来几乎无法被破坏。"
 	overfloor_placed = FALSE
 	underfloor_accessibility = UNDERFLOOR_INTERACTABLE
 	footstep = FOOTSTEP_PLATING
@@ -563,7 +563,7 @@
 
 	if(!(lube & SLIDE_ICE))
 		// Ice slides are intended to be combo'd so don't give the feedback
-		to_chat(slipper, span_notice("You slipped[ slippable ? " on \the [slippable]" : ""]!"))
+		to_chat(slipper, span_notice("你滑倒了[ slippable ? "，踩在[slippable]上" : ""]！"))
 		playsound(slipper.loc, 'sound/misc/slip.ogg', 50, TRUE, -3)
 
 	SEND_SIGNAL(slipper, COMSIG_ON_CARBON_SLIP)
@@ -618,36 +618,36 @@
 	var/obj/structure/lattice/catwalk_bait = locate(/obj/structure/lattice, src)
 	var/obj/structure/lattice/catwalk/existing_catwalk = locate(/obj/structure/lattice/catwalk, src)
 	if(existing_catwalk)
-		to_chat(user, span_warning("There is already a catwalk here!"))
+		to_chat(user, span_warning("这里已经有栈道了！"))
 		return
 
 	if(catwalk_bait)
 		if(used_rods.use(1))
-			to_chat(user, span_notice("You construct a catwalk."))
+			to_chat(user, span_notice("你搭建了一条栈道。"))
 			playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
 			catwalk_bait.replace_with_catwalk()
 		else
-			to_chat(user, span_warning("You need two rods to build a catwalk!"))
+			to_chat(user, span_warning("你需要两根杆件才能搭建栈道！"))
 		return
 
 	if(used_rods.use(1))
-		to_chat(user, span_notice("You construct a lattice."))
+		to_chat(user, span_notice("你搭建了一个格栅。"))
 		playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
 		var/obj/structure/lattice/new_lattice = new (src)
 		if(istype(used_rods, /obj/item/stack/rods/shuttle) && !istype(loc, /area/shuttle))
 			new_lattice.AddElement(/datum/element/shuttle_construction_lattice)
 	else
-		to_chat(user, span_warning("You need one rod to build a lattice."))
+		to_chat(user, span_warning("你需要一根杆件才能搭建格栅。"))
 
 /// Very similar to build_with_rods, this exists to allow consistent behavior between different types in terms of how
 /// Building floors works
 /turf/open/proc/build_with_floor_tiles(obj/item/stack/tile/iron/used_tiles, user)
 	var/obj/structure/lattice/lattice = locate(/obj/structure/lattice, src)
 	if(!has_valid_support() && !lattice)
-		balloon_alert(user, "needs support, place rods!")
+		balloon_alert(user, "需要支撑，请放置杆件！")
 		return
 	if(!used_tiles.use(1))
-		balloon_alert(user, "need a floor tile to build!")
+		balloon_alert(user, "需要一块地砖才能建造！")
 		return
 
 	playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
@@ -670,10 +670,10 @@
 /turf/open/proc/build_with_transport_tiles(obj/item/stack/thermoplastic/used_tiles, user)
 	var/obj/structure/transport/linear/platform = locate(/obj/structure/transport/linear, src)
 	if(!platform)
-		balloon_alert(user, "no tram base!")
+		balloon_alert(user, "没有电车底座！")
 		return
 	if(!used_tiles.use(1))
-		balloon_alert(user, "no tile!")
+		balloon_alert(user, "没有地砖！")
 		return
 
 	playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
@@ -692,10 +692,10 @@
 /turf/open/proc/build_with_titanium(obj/item/stack/sheet/mineral/titanium/used_stack, user)
 	var/obj/structure/transport/linear/platform = locate(/obj/structure/transport/linear, src)
 	if(!platform)
-		to_chat(user, span_warning("There is no transport frame to attach the anchor!"))
+		to_chat(user, span_warning("没有可安装锚固件的运输框架！"))
 		return
 	if(!used_stack.use(2))
-		balloon_alert(user, "not enough titanium!")
+		balloon_alert(user, "钛不足！")
 		return
 
 	playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)

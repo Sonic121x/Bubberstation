@@ -3,7 +3,7 @@
 #define CONSOLE_ANNOUNCE_COOLDOWN 5 SECONDS
 
 /obj/docking_port/mobile/arrivals_skyrat
-	name = "NTV Relay"
+	name = "NTV 中继号"
 	shuttle_id = "arrivals_shuttle"
 	dir = WEST
 	port_direction = SOUTH
@@ -54,7 +54,7 @@
 		waiting = FALSE
 
 		if(console && console.last_cancel_announce + CONSOLE_ANNOUNCE_COOLDOWN <= world.time)
-			console.say("Lifesigns detected onboard, automatic return aborted.")
+			console.say("检测到舱内有生命体征，自动返航已中止。")
 			console.last_cancel_announce = world.time
 
 		return
@@ -66,7 +66,7 @@
 	waiting = TRUE
 
 	if(console && console.last_depart_announce + CONSOLE_ANNOUNCE_COOLDOWN <= world.time)
-		console.say("Commencing automatic return subroutine in [wait_time / 10] seconds.")
+		console.say("将在 [wait_time / 10] 秒后启动自动返航子程序。")
 		console.last_depart_announce = world.time
 
 /obj/docking_port/mobile/arrivals_skyrat/getModeStr()
@@ -84,8 +84,8 @@
 	return FALSE
 
 /obj/machinery/computer/shuttle/arrivals
-	name = "arrivals shuttle control"
-	desc = "The terminal used to control the arrivals interlink shuttle."
+	name = "抵达穿梭机控制台"
+	desc = "用于控制抵达接驳穿梭机的终端。"
 	shuttleId = "arrivals_shuttle"
 	possible_destinations = "arrivals_stationary;arrivals_shuttle"
 	icon = 'modular_skyrat/modules/advanced_shuttles/icons/computer.dmi'
@@ -103,8 +103,8 @@
 	var/last_cancel_announce
 
 /obj/machinery/computer/shuttle/arrivals/recall
-	name = "arrivals shuttle recall terminal"
-	desc = "Use this if your friends left you behind."
+	name = "抵达穿梭机召回终端"
+	desc = "如果你的朋友把你落下了，就用这个。"
 	possible_destinations = "arrivals_stationary;arrivals_shuttle"
 
 /*
@@ -129,7 +129,7 @@
 
 /datum/map_template/shuttle/whiteship/blueshift
 	name = "SFS Christian"
-	description = "A large corvette that seems to have come under attack by some kind of alien infestation. A true asset if it's cleared out and repaired."
+	description = "一艘大型轻型护卫舰，似乎遭到了某种外星生物侵染的攻击。若能清理干净并修复，将是一笔真正的财富。"
 	prefix = "_maps/shuttles/skyrat/"
 	port_id = "whiteship"
 	suffix = "blueshift"
@@ -139,7 +139,7 @@
 
 /datum/map_template/shuttle/whiteship/ouroboros
 	name = "JN Chasse-Galerie"
-	description = "A small Jim Nortons shuttle meant to be a mobile cafe. No hostiles onboard, but multiple corpses of Jim Nortons employees."
+	description = "一艘吉姆·诺顿的小型穿梭机，本打算用作移动咖啡馆。船上没有敌对生物，但有多具吉姆·诺顿员工的尸体。"
 	prefix = "_maps/shuttles/skyrat/"
 	port_id = "whiteship"
 	suffix = "ouroboros"
@@ -155,7 +155,7 @@
 	prefix = "_maps/shuttles/skyrat/"
 	suffix = "skyrat"
 	name = "Standard Emergency Shuttle"
-	description = "Nanotrasen's standard issue emergency shuttle."
+	description = "纳米传讯的标准配发紧急穿梭机。"
 	occupancy_limit = 60
 
 /datum/map_template/shuttle/labour/skyrat

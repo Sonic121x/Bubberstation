@@ -1,6 +1,6 @@
 import { Box, Dropdown, Stack } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
-
+import { chineseDisplay } from 'tgui/localization/zhDisplay';
 import {
   type FeatureChoiced,
   type FeatureChoicedServerData,
@@ -36,7 +36,7 @@ function UIStyleInput(
             />
           </Stack.Item>
 
-          <Stack.Item grow>{name}</Stack.Item>
+          <Stack.Item grow>{chineseDisplay(name)}</Stack.Item>
         </Stack>,
       ];
     }),
@@ -44,7 +44,7 @@ function UIStyleInput(
 
   return (
     <Dropdown
-      selected={value}
+      selected={value} displayText={chineseDisplay(value)}
       clipSelectedText={false}
       onSelected={props.handleSetValue}
       width="100%"

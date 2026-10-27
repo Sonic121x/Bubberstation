@@ -1,9 +1,9 @@
 //spider webs
 /datum/mutation/webbing
-	name = "Webbing Production"
-	desc = "The subject gains the ability to lay webbing, and travel through it."
+	name = "织网"
+	desc = "受试者能够编织蛛网，并在其中自由穿行。"
 	quality = POSITIVE
-	text_gain_indication = span_notice("Your skin feels webby.")
+	text_gain_indication = span_notice("你的皮肤感觉能吐出蛛丝。")
 	instability = POSITIVE_INSTABILITY_MODERATE // useful until you're lynched
 	power_path = /datum/action/cooldown/mob_cooldown/lay_web/genetic
 	energy_coeff = 1

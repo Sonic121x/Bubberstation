@@ -54,23 +54,23 @@
 /datum/component/spin2win/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice("Using [parent] in your hands will make you spin your weapon around for a few moments, attacking everyone near you repeatedly!")
+	examine_list += span_notice("手持[parent]并使用它，可旋转挥舞武器片刻，连续攻击周围的所有人！")
 	if(spinning)
-		examine_list += span_warning("...Of which you are currently doing right now!")
+		examine_list += span_warning("……而你现在正是这么做的！")
 		return
 	if(COOLDOWN_FINISHED(src, spin_cooldown))
-		examine_list += span_notice("It has a cooldown of [DisplayTimeText(spin_cooldown_time)].")
+		examine_list += span_notice("冷却时间为[DisplayTimeText(spin_cooldown_time)]。")
 	else
-		examine_list += span_notice("It will be ready to spin again in [DisplayTimeText(COOLDOWN_TIMELEFT(src, spin_cooldown))].")
+		examine_list += span_notice("还需[DisplayTimeText(COOLDOWN_TIMELEFT(src, spin_cooldown))]才能再次旋转攻击。")
 
 /datum/component/spin2win/proc/on_attack_self(datum/source, mob/user, location, direction)
 	SIGNAL_HANDLER
 
 	if(spinning)
-		user.balloon_alert(user, "already active!")
+		user.balloon_alert(user, "已经发动了！")
 		return
 	if(!COOLDOWN_FINISHED(src, spin_cooldown))
-		user.balloon_alert(user, "on cooldown!")
+		user.balloon_alert(user, "正在冷却！")
 		return
 
 	start_spinning(user)

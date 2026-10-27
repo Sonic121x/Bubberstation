@@ -1,6 +1,6 @@
 /datum/quirk/prosthetic_limb
 	name = "Prosthetic Limb"
-	desc = "An accident caused you to lose one of your limbs. Because of this, you now have a surplus prosthetic!"
+	desc = "一次事故让你失去了一条肢体。因此，你现在装着一条廉价库存义肢！"
 	icon = "tg-prosthetic-leg"
 	value = -3
 	hardcore_value = 3
@@ -26,12 +26,12 @@
 	var/obj/item/bodypart/surplus = new limb_type()
 	slot_string = "[surplus.plaintext_zone]"
 
-	medical_record_text = "Patient uses a low-budget prosthetic on the [slot_string]."
+	medical_record_text = "患者的[chinese_body_zone_display(slot_string)]使用廉价义肢。"
 	human_holder.del_and_replace_bodypart(surplus, special = TRUE)
 
 /datum/quirk/prosthetic_limb/post_add()
-	to_chat(quirk_holder, span_bolddanger("Your [slot_string] has been replaced with a surplus prosthetic. It has almost no muscle force, and makes you unhealthier by just having it. Additionally, \
-	you need to use a welding tool and cables to repair it, instead of sutures and regenerative meshes."))
+	to_chat(quirk_holder, span_bolddanger("你的[chinese_body_zone_display(slot_string)]被替换成了廉价库存义肢。它几乎没有肌力，光是装着它就会让你的身体状况变差。此外，\
+	你需要用焊接工具和电缆来修理它，而不是缝合线和再生网。"))
 
 /datum/quirk/prosthetic_limb/remove()
 	var/mob/living/carbon/human/human_holder = quirk_holder

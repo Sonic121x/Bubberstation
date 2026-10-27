@@ -1,8 +1,8 @@
 #define THERMOMACHINE_POWER_CONVERSION 0.01
 
 /obj/machinery/atmospherics/components/unary/thermomachine
-	name = "Temperature control unit"
-	desc = "Heats or cools gas in connected pipes."
+	name = "温控机组"
+	desc = "加热或冷却相连管道中的气体。"
 
 	icon = 'icons/map_icons/objects.dmi'
 	icon_state = "/obj/machinery/atmospherics/components/unary/thermomachine"
@@ -49,19 +49,19 @@
 
 /obj/machinery/atmospherics/components/unary/thermomachine/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_CTRL_LMB] = "Turn [on ? "off" : "on"]"
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "Cycle temperature"
+	context[SCREENTIP_CONTEXT_CTRL_LMB] = "[on ? "关闭" : "开启"]"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "循环切换温度档位"
 	if(!held_item)
 		return CONTEXTUAL_SCREENTIP_SET
 	switch(held_item.tool_behaviour)
 		if(TOOL_SCREWDRIVER)
-			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 		if(TOOL_WRENCH)
-			context[SCREENTIP_CONTEXT_LMB] = "Rotate"
-			context[SCREENTIP_CONTEXT_RMB] = "[anchored ? "Unan" : "An"]chor"
+			context[SCREENTIP_CONTEXT_LMB] = "旋转"
+			context[SCREENTIP_CONTEXT_RMB] = "[anchored ? "解除固定" : "固定"]"
 		if(TOOL_MULTITOOL)
-			context[SCREENTIP_CONTEXT_LMB] = "Change piping layer"
-			context[SCREENTIP_CONTEXT_RMB] = "Change piping color"
+			context[SCREENTIP_CONTEXT_LMB] = "更改管道层"
+			context[SCREENTIP_CONTEXT_RMB] = "更改管道颜色"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/atmospherics/components/unary/thermomachine/is_connectable()
@@ -80,7 +80,7 @@
 	if(check_pipe_on_turf())
 		set_anchored(FALSE)
 		set_panel_open(TRUE)
-		balloon_alert(user, "the port is already in use!")
+		balloon_alert(user, "该端口已被占用！")
 
 /obj/machinery/atmospherics/components/unary/thermomachine/RefreshParts()
 	. = ..()
@@ -133,20 +133,20 @@
 
 /obj/machinery/atmospherics/components/unary/thermomachine/examine(mob/user)
 	. = ..()
-	. += span_notice("With the panel open:")
-	. += span_notice(" -Use a wrench with left-click to rotate [src] and right-click to unanchor it.")
-	. += span_notice(" -Use a multitool with left-click to change the piping layer and right-click to change the piping color.")
-	. += span_notice(" -[EXAMINE_HINT("AltClick")] to cycle between temperaure ranges.")
-	. += span_notice(" -[EXAMINE_HINT("CtrlClick")] to toggle on/off.")
-	. += span_notice("The thermostat is set to [target_temperature]K ([(T0C-target_temperature)*-1]C).")
+	. += span_notice("打开面板后：")
+	. += span_notice(" - 用扳手左键点击可旋转 [src]，右键点击可解除固定。")
+	. += span_notice(" - 用多功能工具左键点击可更改管道层，右键点击可更改管道颜色。")
+	. += span_notice(" - [EXAMINE_HINT("AltClick")] 可在各温度区间之间循环切换。")
+	. += span_notice(" - [EXAMINE_HINT("CtrlClick")] 可开关机。")
+	. += span_notice("温控器设定为 [target_temperature]K（[(T0C-target_temperature)*-1]C）。")
 
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("Heat capacity at <b>[heat_capacity] Joules per Kelvin</b>.")
-		. += span_notice("Temperature range <b>[min_temperature]K - [max_temperature]K ([(T0C-min_temperature)*-1]C - [(T0C-max_temperature)*-1]C)</b>.")
+		. += span_notice("热容量为 <b>[heat_capacity] 焦耳每开尔文</b>。")
+		. += span_notice("温度范围为 <b>[min_temperature]K - [max_temperature]K（[(T0C-min_temperature)*-1]C - [(T0C-max_temperature)*-1]C）</b>。")
 
 /obj/machinery/atmospherics/components/unary/thermomachine/click_alt(mob/living/user)
 	if(panel_open)
-		balloon_alert(user, "close panel!")
+		balloon_alert(user, "请先关闭面板！")
 		return CLICK_ACTION_BLOCKING
 
 	if(target_temperature == T20C)
@@ -157,7 +157,7 @@
 		target_temperature = T20C
 
 	investigate_log("was set to [target_temperature] K by [key_name(user)]", INVESTIGATE_ATMOS)
-	balloon_alert(user, "temperature reset to [target_temperature] K")
+	balloon_alert(user, "温度已重置为 [target_temperature] K")
 	update_appearance(UPDATE_ICON)
 	return CLICK_ACTION_SUCCESS
 
@@ -199,10 +199,10 @@
 
 /obj/machinery/atmospherics/components/unary/thermomachine/screwdriver_act(mob/living/user, obj/item/tool)
 	if(on)
-		balloon_alert(user, "turn off!")
+		balloon_alert(user, "请先关机！")
 		return ITEM_INTERACT_SUCCESS
 	if(!anchored)
-		balloon_alert(user, "anchor!")
+		balloon_alert(user, "请先固定！")
 		return ITEM_INTERACT_SUCCESS
 
 	return default_deconstruction_screwdriver(user, tool)
@@ -215,10 +215,10 @@
 
 /obj/machinery/atmospherics/components/unary/thermomachine/multitool_act(mob/living/user, obj/item/multitool/multitool)
 	if(!panel_open)
-		balloon_alert(user, "open panel!")
+		balloon_alert(user, "请先打开面板！")
 		return ITEM_INTERACT_SUCCESS
 	piping_layer = (piping_layer >= PIPING_LAYER_MAX) ? PIPING_LAYER_MIN : (piping_layer + 1)
-	to_chat(user, span_notice("You change the circuitboard to layer [piping_layer]."))
+	to_chat(user, span_notice("你将电路板更改为管道层 [piping_layer]。"))
 	if(anchored)
 		reconnect_nodes()
 	update_appearance(UPDATE_ICON)
@@ -226,12 +226,12 @@
 
 /obj/machinery/atmospherics/components/unary/thermomachine/multitool_act_secondary(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, "open panel!")
+		balloon_alert(user, "请先打开面板！")
 		return ITEM_INTERACT_SUCCESS
 	color_index = (color_index >= GLOB.pipe_paint_colors.len) ? (color_index = 1) : (color_index = 1 + color_index)
 	set_pipe_color(GLOB.pipe_paint_colors[GLOB.pipe_paint_colors[color_index]])
-	visible_message(span_notice("[user] set [src]'s pipe color to [GLOB.pipe_color_name[pipe_color]]."), ignored_mobs = user)
-	to_chat(user, span_notice("You set [src]'s pipe color to [GLOB.pipe_color_name[pipe_color]]."))
+	visible_message(span_notice("[user] 将 [src] 的管道颜色设置为[GLOB.pipe_color_name[pipe_color]]。"), ignored_mobs = user)
+	to_chat(user, span_notice("你将 [src] 的管道颜色设置为[GLOB.pipe_color_name[pipe_color]]。"))
 	if(anchored)
 		reconnect_nodes()
 	update_appearance(UPDATE_ICON)
@@ -247,10 +247,10 @@
 
 /obj/machinery/atmospherics/components/unary/thermomachine/wrench_act_secondary(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, "open panel!")
+		balloon_alert(user, "请先打开面板！")
 		return ITEM_INTERACT_SUCCESS
 	if(!anchored && check_pipe_on_turf())
-		visible_message(span_warning("A pipe is hogging the port. Remove the obstruction or change the machine piping layer."))
+		visible_message(span_warning("有管道占用了接口。请移除障碍物或更改机器的管道层。"))
 		return ITEM_INTERACT_SUCCESS
 	if(default_unfasten_wrench(user, tool))
 		change_pipe_connection(!anchored)
@@ -299,7 +299,7 @@
 			var/target = params["target"]
 			var/adjust = text2num(params["adjust"])
 			if(target == "input")
-				target = input("Set new target ([min_temperature]-[max_temperature] K):", name, target_temperature) as num|null
+				target = input("设置新的目标温度（[min_temperature]-[max_temperature] K）：", name, target_temperature) as num|null
 				if(!isnull(target))
 					. = TRUE
 			else if(adjust)
@@ -318,13 +318,13 @@
 	if(!anchored)
 		return NONE
 	if(panel_open)
-		balloon_alert(user, "close panel!")
+		balloon_alert(user, "请先关闭面板！")
 		return CLICK_ACTION_BLOCKING
 	if(!is_operational)
 		return CLICK_ACTION_BLOCKING
 
 	set_on(!on)
-	balloon_alert(user, "turned [on ? "on" : "off"]")
+	balloon_alert(user, "[on ? "已开启" : "已关闭"]")
 	investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
 	return CLICK_ACTION_SUCCESS
 
@@ -358,7 +358,7 @@
 		target_temperature = min_temperature
 
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on/coldroom
-	name = "Cold room temperature control unit"
+	name = "冷库温控机组"
 	icon_state = "/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on/coldroom"
 	greyscale_colors = COLOR_CYAN
 

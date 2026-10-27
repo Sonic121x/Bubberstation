@@ -8,9 +8,9 @@
  * Requests an input from someone.
  */
 /obj/item/circuit_component/input_request
-	display_name = "Input Request"
-	desc = "Converts a string into a typepath. Useful for adding components."
-	category = "Admin"
+	display_name = "输入请求"
+	desc = "把字符串转换为类型路径。在添加元件时很有用。"
+	category = "管理员"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 
 	/// Options for input requests
@@ -59,12 +59,12 @@
 	var/new_option = input_options.value
 	switch(new_option)
 		if(COMP_INPUT_STRING)
-			var/player_input = tgui_input_text(player, "Input a value", "Input value", max_length = MAX_MESSAGE_LEN)
+			var/player_input = tgui_input_text(player, "输入一个值", "输入值", max_length = MAX_MESSAGE_LEN)
 			if(isnull(player_input))
 				return
 			input_response.set_output(player_input)
 		if(COMP_INPUT_NUMBER)
-			var/player_input = tgui_input_number(player, "Input a value", "Input value")
+			var/player_input = tgui_input_number(player, "输入一个值", "输入值")
 			if(isnull(player_input))
 				return
 			input_response.set_output(player_input)
@@ -72,7 +72,7 @@
 			var/list/data = parameter.value
 			if(!islist(data))
 				return
-			var/player_input = tgui_input_list(player, "Input a value", "Input value", data)
+			var/player_input = tgui_input_list(player, "输入一个值", "输入值", data)
 			if(isnull(player_input))
 				return
 			input_response.set_output(player_input)

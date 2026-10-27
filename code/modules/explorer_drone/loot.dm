@@ -110,15 +110,15 @@ GLOBAL_LIST_INIT(adventure_loot_generator_index,generate_generator_index())
 	return list(carrier)
 
 /obj/item/antique
-	name = "antique"
-	desc = "Valuable and completely incomprehensible."
+	name = "古董"
+	desc = "价值连城，且完全令人费解。"
 	icon = 'icons/obj/exploration.dmi'
 	icon_state = "antique"
 
 /// Supply pack unlocker chip
 /obj/item/trade_chip
-	name = "trade contract chip"
-	desc = "Uses the station's cargo network to contact a black market supplier, allowing the purchase of a new crate type at cargo console."
+	name = "贸易合同芯片"
+	desc = "利用空间站的货运网络联系黑市供应商，可在货运控制台购买一种新的板条箱类型。"
 	icon = 'icons/obj/exploration.dmi'
 	icon_state = "trade_chip"
 	/// Supply pack type enabled by this chip
@@ -134,17 +134,17 @@ GLOBAL_LIST_INIT(adventure_loot_generator_index,generate_generator_index())
 /obj/item/trade_chip/proc/try_to_unlock_contract(mob/user)
 	var/datum/supply_pack/pack_singleton = SSshuttle.supply_packs[unlocked_pack_type]
 	if(!unlocked_pack_type || !pack_singleton || !(pack_singleton.order_flags & ORDER_SPECIAL))
-		to_chat(user,span_danger("This chip is invalid!"))
+		to_chat(user,span_danger("此芯片无效！"))
 		return
 	pack_singleton.order_flags |= ORDER_SPECIAL_ENABLED
-	to_chat(user,span_notice("Contract accepted into nanotrasen supply database."))
+	to_chat(user,span_notice("合同已被录入纳米传讯后勤数据库。"))
 	qdel(src)
 
 
 /// Two handed fire lance. Melts wall after short windup.
 /obj/item/firelance
-	name = "fire lance"
-	desc = "Melts everything in front of you. Takes a while to start and operate."
+	name = "火焰枪"
+	desc = "熔化你面前的一切。启动和运行需要一些时间。"
 	icon = 'icons/obj/exploration.dmi'
 	icon_state = "firelance"
 	inhand_icon_state = "firelance"
@@ -170,15 +170,15 @@ GLOBAL_LIST_INIT(adventure_loot_generator_index,generate_generator_index())
 /obj/item/firelance/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	. = ITEM_INTERACT_BLOCKING
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))
-		to_chat(user, span_notice("You need to wield [src] in two hands before you can fire it."))
+		to_chat(user, span_notice("你需要双手握持 [src] 才能开火。"))
 		return .
 	if(LAZYACCESS(user.do_afters, "firelance"))
 		return .
 	if(!cell.use(0.2 * STANDARD_CELL_CHARGE))
-		to_chat(user,span_warning("[src]'s battery ran dry!"))
+		to_chat(user,span_warning("[src] 的电池耗尽了！"))
 		return .
 	ADD_TRAIT(user, TRAIT_IMMOBILIZED, REF(src))
-	to_chat(user,span_notice("You begin to charge [src]..."))
+	to_chat(user,span_notice("你开始为 [src] 充能……"))
 	inhand_icon_state = "firelance_charging"
 	user.update_held_items()
 	if(do_after(user,windup_time,interaction_key="firelance",extra_checks = CALLBACK(src, PROC_REF(windup_checks))))

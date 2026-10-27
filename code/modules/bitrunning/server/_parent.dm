@@ -2,11 +2,11 @@
  * The base object for the quantum server
  */
 /obj/machinery/quantum_server
-	name = "quantum server"
+	name = "量子服务器"
 
 	circuit = /obj/item/circuitboard/machine/quantum_server
 	density = TRUE
-	desc = "A hulking computational machine designed to fabricate virtual domains."
+	desc = "一台庞大的计算机械，用于制造虚拟领域。"
 	icon = 'icons/obj/machines/bitrunning.dmi'
 	base_icon_state = "qserver"
 	icon_state = "qserver"
@@ -79,39 +79,39 @@
 		return
 
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] Panel"
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 		return CONTEXTUAL_SCREENTIP_SET
 	else if(held_item.tool_behaviour == TOOL_CROWBAR && panel_open)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/quantum_server/examine(mob/user)
 	. = ..()
 
-	. += span_infoplain("Can be resource intensive to run. Ensure adequate power supply.")
+	. += span_infoplain("运行起来可能相当耗资源。请确保供电充足。")
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "close" : "open"].")
+	. += span_notice("它的维护面板可以[EXAMINE_HINT("用螺丝刀")][panel_open ? "关闭" : "打开"]。")
 	if(panel_open)
-		. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("它可以用[EXAMINE_HINT("撬棍")]撬开。")
 
 	var/upgraded = FALSE
 	if(capacitor_coefficient < 1)
-		. += span_infoplain("- Its coolant capacity reduces cooldown time by [(1 - capacitor_coefficient) * 100]%.")
+		. += span_infoplain("- 它的冷却能力使冷却时间缩短 [(1 - capacitor_coefficient) * 100]%。")
 		upgraded = TRUE
 
 	if(servo_bonus > 0.2)
-		. += span_infoplain("- Its manipulation potential is increasing rewards by [servo_bonus]x.")
-		. += span_infoplain("- Injury from unsafe ejection reduced [servo_bonus * 100]%.")
+		. += span_infoplain("- 它的操控潜力使奖励提高 [servo_bonus] 倍。")
+		. += span_infoplain("- 不安全弹出所造成的伤害降低 [servo_bonus * 100]%。")
 		upgraded = TRUE
 
 	if(!upgraded)
-		. += span_notice("Its output is suboptimal. Improved components will grant domain information, reduce cooldowns and increase rewards.")
+		. += span_notice("它的输出并不理想。升级组件可以获取领域信息、缩短冷却时间并提高奖励。")
 
 	if(!is_ready)
-		. += span_notice("It is currently cooling down. Give it a few moments.")
+		. += span_notice("它当前正在冷却。请稍等片刻。")
 
 	if(isobserver(user) && (obj_flags & EMAGGED))
-		. += span_notice("Ominous warning lights are blinking red. This server has been tampered with.")
+		. += span_notice("不祥的警告灯闪着红光。这台服务器已被人动过手脚。")
 
 
 /obj/machinery/quantum_server/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -125,7 +125,7 @@
 	threat_prob_max *= 2
 
 	add_overlay(mutable_appearance('icons/obj/machines/bitrunning.dmi', "emag_overlay"))
-	balloon_alert(user, "system jailbroken...")
+	balloon_alert(user, "系统已越狱……")
 	playsound(src, 'sound/effects/sparks/sparks1.ogg', 35, vary = TRUE)
 
 
@@ -154,7 +154,7 @@
 	if(!istype(tool, /obj/item/bitrunning_debug))
 		return NONE
 
-	balloon_alert(user, "*hacker voice* i'm in")
+	balloon_alert(user, "*黑客腔* 我进来了")
 	obj_flags |= EMAGGED
 	glitch_chance = 0.5
 	capacitor_coefficient = 0.1
@@ -163,16 +163,16 @@
 
 /obj/machinery/quantum_server/crowbar_act(mob/living/user, obj/item/crowbar)
 	if(!is_ready)
-		balloon_alert(user, "it's scalding hot!")
+		balloon_alert(user, "它烫得吓人！")
 		return ITEM_INTERACT_FAILURE
 	if(length(avatar_connection_refs))
-		balloon_alert(user, "all clients must disconnect!")
+		balloon_alert(user, "所有客户端都必须断开连接！")
 		return ITEM_INTERACT_FAILURE
 	return default_deconstruction_crowbar(user, crowbar)
 
 /obj/machinery/quantum_server/screwdriver_act(mob/living/user, obj/item/screwdriver)
 	if(!is_ready)
-		balloon_alert(user, "it's scalding hot!")
+		balloon_alert(user, "它烫得吓人！")
 		return ITEM_INTERACT_FAILURE
 	return default_deconstruction_screwdriver(user, screwdriver)
 
@@ -196,8 +196,8 @@
 	return ..()
 
 /datum/aas_config_entry/bitrunning_QS_ready_announcement
-	name = "Cargo Alert: Bitrunning QS Ready"
-	general_tooltip = "Announces when the quantum server is ready to be used. No variables provided"
+	name = "货运警报：比特潜行量子服务器就绪"
+	general_tooltip = "当量子服务器可供使用时发出公告。不提供任何变量"
 	announcement_lines_map = list(
-		"Message" = "Quantum Server report: Thermal systems within operational parameters. Proceeding to domain configuration."
+		"Message" = "量子服务器报告：热力系统处于运行参数范围内。正在进入领域配置。"
 	)

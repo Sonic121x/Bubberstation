@@ -2,13 +2,13 @@
 #define POWER_PER_PERSON 5
 
 /obj/structure/destructible/clockwork/gear_base/powered/interdiction_lens
-	name = "interdiction lens"
-	desc = "A mesmerizing light that flashes to a rhythm that you just can't stop tapping to."
-	clockwork_desc = "A small device which will slow down nearby attackers and projectiles at a large power cost, both active and passive."
+	name = "阻断透镜"
+	desc = "一道迷人的闪光，按着让你忍不住跟着打拍子的节奏明灭。"
+	clockwork_desc = "一台小型装置，能减缓附近的攻击者与投射物，但无论是主动还是被动都会消耗大量电力。"
 	icon_state = "interdiction_lens"
 	base_icon_state = "interdiction_lens"
 	anchored = TRUE
-	break_message = span_warning("The interdiction lens breaks into multiple fragments, which gently float to the ground.")
+	break_message = span_warning("阻断透镜碎成多块碎片，缓缓飘落地面。")
 	max_integrity = 150
 	minimum_power = POWER_PER_PERSON
 	passive_consumption = 25
@@ -107,7 +107,7 @@
 */
 
 /obj/item/borg/projectile_dampen/clockcult
-	name = "internal clockcult projectile dampener"
+	name = "发条教团内置投射物抑制器"
 	projectile_effects_datum = /datum/dampener_projectile_effects/peacekeeper
 
 /datum/dampener_projectile_effects/peacekeeper

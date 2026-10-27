@@ -1,7 +1,7 @@
 // Wire Priest Robes
 /obj/item/clothing/suit/hooded/techpriest/fleshmind
-	name = "wire priest's robes"
-	desc = "The flesh does not discriminate. Join the flesh."
+	name = "线缆祭司长袍"
+	desc = "血肉一视同仁。加入血肉。"
 	icon_state = "wirepriest"
 	icon = 'modular_zubbers/icons/fleshmind/fleshmind_clothing.dmi'
 	worn_icon = 'modular_zubbers/icons/fleshmind/fleshmind_clothing_onmob.dmi'
@@ -9,18 +9,18 @@
 	armor_type = /datum/armor/suit_armor
 
 /obj/item/clothing/head/hooded/techpriest/fleshmind
-	name = "wire priest's hood"
+	name = "线缆祭司兜帽"
 	icon = 'modular_zubbers/icons/fleshmind/fleshmind_clothing.dmi'
 	worn_icon = 'modular_zubbers/icons/fleshmind/fleshmind_clothing_onmob.dmi'
-	desc = "The flesh does not discriminate. Join the flesh."
+	desc = "血肉一视同仁。加入血肉。"
 	icon_state = "wirepriesthood"
 	armor_type = /datum/armor/head_helmet
 
 // Wire Priest's Staff
 /obj/item/wire_priest_staff
-	name = "wire priest's staff"
-	desc = "A large wooden staff wrapped in wires... The wires seem to be moving and coiling around the staff actively. \
-	Due to its size, it can reach opponents at a longer range than most weapons."
+	name = "线缆祭司法杖"
+	desc = "一根缠满线缆的大木杖……线缆似乎正主动沿着杖身游动盘绕。\
+	由于尺寸较大，它的攻击距离比大多数武器更远。"
 	force = 20
 	throwforce = 7
 	reach = 2

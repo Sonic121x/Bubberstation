@@ -1,11 +1,11 @@
 /mob/living/basic/pet/cat/clown
-	name = "clown cat"
-	desc = "A funny little creature imported to Clown Planet, beloved by millions."
+	name = "小丑猫"
+	desc = "一只被引入小丑星的有趣小生物，深受数百万人喜爱。"
 	icon = 'modular_skyrat/master_files/icons/mob/pets.dmi'
 	icon_state = "clowncat"
 	icon_living = "clowncat"
 	icon_dead = "clowncat_dead"
-	speak_emote = list("purrs", "honks", "meows")
+	speak_emote = list("呼噜", "鸣笛", "喵喵")
 	pass_flags = PASSTABLE
 	mob_size = MOB_SIZE_SMALL
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
@@ -17,19 +17,19 @@
 		/obj/item/clothing/mask/gas/clown_hat = 1,
 
 	)
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "asks to not joke about that"
-	response_disarm_simple = "ask not to joke about that"
-	response_harm_continuous = "throws tomatos"
-	response_harm_simple = "throws tomato"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "请求别拿这个开玩笑"
+	response_disarm_simple = "请求别拿这个开玩笑"
+	response_harm_continuous = "扔西红柿"
+	response_harm_simple = "扔西红柿"
 	mobility_flags = MOBILITY_FLAGS_REST_CAPABLE_DEFAULT
 	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_icon_state = "clowncat"
 	ai_controller = /datum/ai_controller/basic_controller/cat/clown
 	held_state = "cat2"
-	attack_verb_continuous = "honks"
-	attack_verb_simple = "honk"
+	attack_verb_continuous = "鸣笛"
+	attack_verb_simple = "鸣笛"
 	attack_sound = 'sound/items/bikehorn.ogg'
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 
@@ -37,8 +37,8 @@
 
 
 /mob/living/basic/pet/cat/mime
-	name = "mime cat"
-	desc = "Almost invisible, this little fella eats mice you can't even see!"
+	name = "默剧猫"
+	desc = "几乎完全隐形，这小家伙吃的老鼠你连看都看不见！"
 	icon = 'modular_skyrat/master_files/icons/mob/pets.dmi'
 	icon_state = "catmime"
 	icon_living = "catmime"
@@ -60,14 +60,14 @@
 
 
 /mob/living/basic/pet/cat/tiger
-	name = "tiger cat"
-	desc = "A tiger made of paper."
+	name = "老虎猫"
+	desc = "一只纸做成的老虎。"
 	icon = 'modular_skyrat/master_files/icons/mob/pets.dmi'
 	ai_controller = /datum/ai_controller/basic_controller/cat/tiger
 	icon_state = "tiger"
 	icon_living = "tiger"
 	icon_dead = "tiger_dead"
-	speak_emote = list("roar","roars", "purrs", "meows",)
+	speak_emote = list("咆哮","怒吼", "呼噜", "喵喵",)
 	pass_flags = PASSTABLE
 	mob_size = MOB_SIZE_SMALL
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
@@ -82,8 +82,8 @@
 /datum/ai_controller/basic_controller/cat/tiger
 
 /mob/living/basic/carp/clarp
-	name = "clarp"
-	desc = "A Space Dragon ate a Clown Station, it tasted funny. This was the result."
+	name = "小丑鲤鱼"
+	desc = "一条太空龙吞下了小丑空间站，味道挺滑稽。于是就有了它。"
 	faction = list(FACTION_NEUTRAL)
 	icon = 'modular_skyrat/master_files/icons/mob/pets.dmi'
 	icon_dead = "clarp_dead"
@@ -96,28 +96,28 @@
 	faction = list(FACTION_NEUTRAL)
 
 /mob/living/basic/pet/fox/redpanda
-	name = "red panda"
-	desc = "Wah't a dork."
+	name = "小熊猫"
+	desc = "真够傻的。"
 	icon = 'modular_skyrat/master_files/icons/mob/pets.dmi'
 	icon_state = "red_panda"
 	icon_living = "red_panda"
 	icon_dead = "dead_panda"
-	speak_emote = list("chirps", "huff-quacks")
+	speak_emote = list("啾啾", "吭嘎")
 	butcher_results = list(/obj/item/food/meat/slab = 3)
 	gold_core_spawnable = FRIENDLY_SPAWN
 	held_state = "fox"
 	melee_damage_lower = 5
 	melee_damage_upper = 5
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	ai_controller = /datum/ai_controller/basic_controller/fox/docile //he's a nice boy
 
 /mob/living/basic/pet/dog/corgi/robocorgo
-	name = "\improper robocorgi"
+	name = "\improper 机械柯基"
 	real_name = "corgi"
-	desc = "They're a corgi with various mechanical modifications. The first stage in an E-N's life cycle."
+	desc = "一只经过各种机械改造的柯基。也是 E-N 生命周期的第一阶段。"
 	icon = 'modular_skyrat/master_files/icons/mob/pets.dmi'
 	icon_state = "robocorgi"
 	icon_living = "robocorgi"

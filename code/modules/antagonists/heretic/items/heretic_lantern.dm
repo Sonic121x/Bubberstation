@@ -1,6 +1,6 @@
 /obj/item/flashlight/lantern/heretic
-	name = "burning lantern"
-	desc = "A strange lantern that hurts your eyes to look at, even when it's quelled."
+	name = "燃烧提灯"
+	desc = "一盏奇怪的提灯，即便在它平静时，直视也会让眼睛刺痛。"
 	light_power = 3
 	light_color = "#e8ff66"
 	heat = 2400
@@ -41,7 +41,7 @@
 		update_weight_class(WEIGHT_CLASS_BULKY)
 		var/atom/message_loc = isturf(loc) ? src : loc
 		message_loc.visible_message(
-			span_notice("[isturf(loc) ? src : "[loc]'s [src]"] flickers to life, casting eerie shadows around it.")
+			span_notice("[isturf(loc) ? src : "[loc]的[src]"]闪动起来，在周围投下诡异的阴影。")
 		)
 	else
 		STOP_PROCESSING(SSobj, src)
@@ -50,7 +50,7 @@
 		update_weight_class(WEIGHT_CLASS_NORMAL)
 		var/atom/message_loc = isturf(loc) ? src : loc
 		message_loc.visible_message(
-			span_notice("[isturf(loc) ? src : "[loc]'s [src]"] flickers out, the shadows retreating.")
+			span_notice("[isturf(loc) ? src : "[loc]的[src]"]闪动熄灭，阴影随之退去。")
 		)
 
 /obj/item/flashlight/lantern/heretic/equipped(mob/user, slot, initial)
@@ -129,15 +129,15 @@
 	var/seer_stam = seer.get_stamina_loss()
 	switch(seer_eye_prot)
 		if(FLASH_PROTECTION_WELDER_SENSITIVE to INFINITY)
-			to_chat(seer, span_notice("[(src == center) ? src : "[center]'s [src]"] emits a bright flash of light."))
+			to_chat(seer, span_notice("[(src == center) ? src : "[center]的[src]"]发出一道刺眼的闪光。"))
 			return
 
 		if(FLASH_PROTECTION_WELDER)
-			to_chat(seer, span_danger("[(src == center) ? src : "[center]'s [src]"] emits a bright flash of light, causing you to flinch."))
+			to_chat(seer, span_danger("[(src == center) ? src : "[center]的[src]"]发出一道刺眼的闪光，让你不由一缩。"))
 			seer.adjust_organ_loss(ORGAN_SLOT_EYES, 3, maximum = 30)
 
 		if(FLASH_PROTECTION_FLASH)
-			to_chat(seer, span_danger("[(src == center) ? src : "[center]'s [src]"] emits a bright flash of light, causing you to flinch."))
+			to_chat(seer, span_danger("[(src == center) ? src : "[center]的[src]"]发出一道刺眼的闪光，让你不由一缩。"))
 			seer.adjust_organ_loss(ORGAN_SLOT_EYES, 4, maximum = 40)
 			seer.adjust_eye_blur(2 SECONDS)
 			if(tick_count > 2 && (seer_stam < 60 || (tick_count > 8 && seer_stam < 100)))
@@ -146,7 +146,7 @@
 				seer.adjust_confusion(2 SECONDS)
 
 		if(FLASH_PROTECTION_NONE)
-			to_chat(seer, span_danger("A bright flash of light from [(src == center) ? src : "[center]'s [src]"] blinds you for a moment!"))
+			to_chat(seer, span_danger("[(src == center) ? src : "[center]的[src]"]发出的一道刺眼闪光让你短暂失明！"))
 			seer.adjust_organ_loss(ORGAN_SLOT_EYES, 5)
 			seer.adjust_temp_blindness(1 SECONDS)
 			seer.adjust_eye_blur(4 SECONDS)
@@ -156,7 +156,7 @@
 				seer.adjust_confusion(4 SECONDS)
 
 		if(FLASH_PROTECTION_SENSITIVE)
-			to_chat(seer, span_danger("A bright flash of light from [(src == center) ? src : "[center]'s [src]"] blinds you!"))
+			to_chat(seer, span_danger("[(src == center) ? src : "[center]的[src]"]发出的一道刺眼闪光让你失明！"))
 			seer.adjust_organ_loss(ORGAN_SLOT_EYES, 8)
 			seer.adjust_temp_blindness(2 SECONDS)
 			seer.adjust_eye_blur(8 SECONDS)
@@ -166,7 +166,7 @@
 				seer.adjust_confusion(tick_count > 3 ? 8 SECONDS : 4 SECONDS)
 
 		if(-INFINITY to FLASH_PROTECTION_HYPER_SENSITIVE)
-			to_chat(seer, span_danger("A bright flash of light from [(src == center) ? src : "[center]'s [src]"] blinds you!"))
+			to_chat(seer, span_danger("[(src == center) ? src : "[center]的[src]"]发出的一道刺眼闪光让你失明！"))
 			seer.adjust_organ_loss(ORGAN_SLOT_EYES, 15)
 			seer.adjust_temp_blindness(4 SECONDS)
 			seer.adjust_eye_blur(12 SECONDS)

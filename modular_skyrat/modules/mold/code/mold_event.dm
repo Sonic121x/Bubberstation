@@ -8,7 +8,7 @@
 
 /datum/round_event_control/mold
 	name = "Moldies"
-	description = "A mold outbreak on the station. The mold will spread across the station if not contained."
+	description = "空间站爆发霉菌灾害。若不加以控制，霉菌将蔓延全站。"
 	typepath = /datum/round_event/mold
 	max_occurrences = 1
 	earliest_start = 30 MINUTES
@@ -24,7 +24,7 @@
 	if(!fake)
 		INVOKE_ASYNC(SSsecurity_level, TYPE_PROC_REF(/datum/controller/subsystem/security_level, minimum_security_level), SEC_LEVEL_VIOLET, FALSE, FALSE)
 
-	priority_announce("Confirmed outbreak of level 6 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", ANNOUNCER_OUTBREAK6)
+	priority_announce("确认[station_name()]发生六级生物危害事件。全体人员必须控制其扩散。", "生物危害警报", ANNOUNCER_OUTBREAK6)
 
 /datum/round_event/mold/start()
 	var/list/turfs = list() //list of all the empty floor turfs in the hallway areas
@@ -77,8 +77,8 @@
 				possible_mold_types += mold_type
 
 		if(!possible_mold_types)
-			log_game("Event: Moldies failed to spawn due to lack of possible types.")
-			message_admins("Moldies failed to spawn due to lack of possible types.")
+			log_game("事件：霉菌灾害因无可用类型而未能生成。")
+			message_admins("霉菌灾害因无可用类型而未能生成。")
 			break
 
 		var/datum/mold_type/picked_type = pick(possible_mold_types)
@@ -98,8 +98,8 @@
 			turfs -= picked_turf
 			i++
 		else
-			log_game("Event: Moldies failed to spawn due to lack of available turfs.")
-			message_admins("Moldies failed to spawn due to lack of available turfs.")
+			log_game("事件：霉菌灾害因无可用地块而未能生成。")
+			message_admins("霉菌灾害因无可用地块而未能生成。")
 			break
 
 #undef MOLDIES_SPAWN_LOWPOP_MIN

@@ -2,19 +2,19 @@
 #define INSTANT_WOUND_HEAL_LIMB_DAMAGE 25
 
 /obj/item/stack/medical/wound_recovery
-	name = "subdermal splint applicator"
-	desc = "A roll of flexible material dotted with millions of micro-scale injectors on one side. \
-		On application to a body part with a damaged bone structure, nanomachines stored within those \
-		injectors will surround the wound and form a subdermal, self healing splint. While convenient \
-		for keeping appearances and rapid healing, the nanomachines tend to leave their host particularly \
-		vulnerable to new damage for several minutes after application."
+	name = "皮下夹板贴敷器"
+	desc = "一卷柔性材料，一侧密布着数百万个微型注射器。 \
+		将其贴敷到骨骼结构受损的身体部位时，储存在这些 \
+		注射器中的纳米机器人会包围伤口，形成一个皮下的自愈夹板。虽然这种方式 \
+		既便于保持外观又能快速愈合，但纳米机器人往往会让宿主在贴敷后的数分钟内 \
+		格外容易受到新的伤害。"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/stack_items.dmi'
 	icon_state = "subsplint"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	inhand_icon_state = "sampler"
 	gender = PLURAL
-	singular_name = "subdermal splint applicator"
+	singular_name = "皮下夹板贴敷器"
 	self_delay = 10 SECONDS
 	other_delay = 5 SECONDS
 	novariants = TRUE
@@ -42,26 +42,26 @@
 /obj/item/stack/medical/add_item_context(obj/item/source, list/context, atom/target, mob/living/user)
 	if(!iscarbon(target))
 		return NONE
-	context[SCREENTIP_CONTEXT_LMB] = "Heal"
+	context[SCREENTIP_CONTEXT_LMB] = "治疗"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/stack/medical/wound_recovery/try_heal_checks(mob/living/patient, mob/living/user, healed_zone, silent = FALSE)
 	var/obj/item/bodypart/limb = patient.get_bodypart(healed_zone)
 	if(isnull(limb))
 		if(!silent)
-			patient.balloon_alert(user, "no [parse_zone(healed_zone)]!")
+			patient.balloon_alert(user, "这里没有[parse_zone(healed_zone)]！")
 		return FALSE
 	if(!LAZYLEN(limb.wounds))
 		if(!silent)
-			patient.balloon_alert(user, "no wounds!") // good problem to have imo
+			patient.balloon_alert(user, "没有伤口！") // good problem to have imo
 		return FALSE
 	if(patient.has_status_effect(/datum/status_effect/vulnerable_to_damage))
 		if(!silent)
-			patient.balloon_alert(user, "still recovering from last use!")
+			patient.balloon_alert(user, "上次使用后仍在恢复中！")
 		return FALSE
 	if(!find_suitable_wound(limb))
 		if(!silent)
-			patient.balloon_alert(user, "can't heal those!")
+			patient.balloon_alert(user, "治不了这种伤！")
 		return FALSE
 	return TRUE
 
@@ -78,21 +78,21 @@
 	if(HAS_TRAIT(woundies, TRAIT_WOUND_SCANNED))
 		treatment_delay *= 0.5
 		if(user == patient)
-			to_chat(user, span_notice("You keep in mind the indications from the holo-image about your injury, and expertly begin applying [src]."))
+			to_chat(user, span_notice("你牢记全息影像上关于自身伤势的提示，熟练地开始贴敷 [src]。"))
 		else
-			user.visible_message(span_warning("[user] begins expertly treating the wounds on [patient]'s [limb.plaintext_zone] with [src]..."), span_warning("You begin quickly treating the wounds on [patient]'s [limb.plaintext_zone] with [src], keeping the holo-image indications in mind..."))
+			user.visible_message(span_warning("[user] 开始熟练地用 [src] 处理 [patient] 的[chinese_body_zone_display(limb.plaintext_zone)]上的伤口……"), span_warning("你牢记全息影像的提示，开始迅速用 [src] 处理 [patient] 的[chinese_body_zone_display(limb.plaintext_zone)]上的伤口……"))
 	else
-		user.visible_message(span_warning("[user] begins treating the wounds on [patient]'s [limb.plaintext_zone] with [src]..."), span_warning("You begin treating the wounds on [user == patient ? "your" : "[patient]'s"] [limb.plaintext_zone] with [src]..."))
+		user.visible_message(span_warning("[user] 开始用 [src] 处理 [patient] 的[chinese_body_zone_display(limb.plaintext_zone)]上的伤口……"), span_warning("你开始用 [src] 处理[chinese_body_zone_display(limb.plaintext_zone)]上的伤口……"))
 
 	if(!do_after(user, treatment_delay, target = patient))
 		return
 
-	user.visible_message(span_green("[user] applies [src] to [patient]'s [limb.plaintext_zone]."), span_green("You treat the wounds on [user == patient ? "your" : "[patient]'s"] [limb.plaintext_zone]."))
+	user.visible_message(span_green("[user] 将 [src] 贴敷到 [patient] 的[chinese_body_zone_display(limb.plaintext_zone)]上。"), span_green("你处理了[chinese_body_zone_display(limb.plaintext_zone)]上的伤口。"))
 	playsound(patient, treatment_sound, 50, TRUE)
 	woundies.remove_wound()
 	if(!HAS_TRAIT(patient, TRAIT_ANALGESIA) || !causes_pain)
 		patient.emote("scream")
-		to_chat(patient, span_userdanger("Your [limb.plaintext_zone] burns like hell as the wounds on it are rapidly healed, fuck!"))
+		to_chat(patient, span_userdanger("你的[chinese_body_zone_display(limb.plaintext_zone)]在伤口迅速愈合时痛得像火烧一样，操！"))
 		patient.add_mood_event("severe_surgery", /datum/mood_event/rapid_wound_healing)
 	limb.receive_damage(brute = INSTANT_WOUND_HEAL_LIMB_DAMAGE, wound_bonus = CANT_WOUND)
 	patient.adjust_stamina_loss(INSTANT_WOUND_HEAL_STAMINA_DAMAGE)
@@ -100,18 +100,18 @@
 	use(1)
 
 /datum/mood_event/rapid_wound_healing
-	description = "The wound is gone, but that pain was unbearable!\n"
+	description = "伤口是没了，可那疼痛实在无法忍受！\n"
 	mood_change = -3
 	timeout = 5 MINUTES
 
 // Helps recover bleeding
 /obj/item/stack/medical/wound_recovery/rapid_coagulant
-	name = "rapid coagulant applicator"
-	singular_name = "rapid coagulant applicator"
-	desc = "A small device filled with a fast acting coagulant of some type. \
-		When used on a bleeding area, will nearly instantly stop all bleeding. \
-		This rapid clotting action may result in temporary vulnerability to further \
-		damage after application."
+	name = "快速凝血剂涂抹器"
+	singular_name = "快速凝血剂涂抹器"
+	desc = "一个小装置，里面装着某种速效凝血剂。 \
+		用于出血部位时，几乎能瞬间止住所有出血。 \
+		这种快速凝血作用可能会使人在涂抹后暂时 \
+		更容易受到进一步的伤害。"
 	icon_state = "clotter"
 	inhand_icon_state = "implantcase"
 	applicable_wounds = list(
@@ -126,10 +126,10 @@
 
 // Helps recover burn wounds much faster, while not healing much damage directly
 /obj/item/stack/medical/ointment/red_sun
-	name = "red sun balm"
-	singular_name = "red sun balm"
-	desc = "A popular brand of ointment for handling anything under the red sun, which tends to be terrible burns. \
-		Which red sun may this be referencing? Not even the producers of the balm are sure."
+	name = "红日药膏"
+	singular_name = "红日药膏"
+	desc = "一款广受欢迎的药膏品牌，用来应付红日之下的一切——而那通常意味着严重的烧伤。 \
+		它指的究竟是哪一个红日？连药膏的生产者自己都不清楚。"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/stack_items.dmi'
 	icon_state = "balm"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -157,11 +157,11 @@
 
 // Gauze that are especially good at treating burns, but are terrible splints
 /obj/item/stack/medical/wrap/gauze/sterilized
-	name = "sealed aseptic gauze"
-	singular_name = "sealed aseptic gauze"
-	desc = "A small roll of elastic material specially treated to be entirely sterile, and sealed in plastic just to be sure. \
-		These make excellent treatment against burn wounds, but due to their small nature are sub-par for serving as \
-		bone wound wrapping."
+	name = "密封无菌纱布"
+	singular_name = "密封无菌纱布"
+	desc = "一小卷经过特殊处理而完全无菌的弹性材料，为保险起见还密封在塑料中。 \
+		它们在处理烧伤方面效果极佳，但受限于小巧的体积，作为 \
+		骨折包扎则相当一般。"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/stack_items.dmi'
 	icon_state = "burndaid"
 	inhand_icon_state = null
@@ -180,11 +180,11 @@
 
 // Works great at sealing bleed wounds, but does little to actually heal them
 /obj/item/stack/medical/suture/coagulant
-	name = "coagulant-F packet"
-	singular_name = "coagulant-F packet"
-	desc = "A small packet of fabricated coagulant for bleeding. Not as effective as some \
-		other methods of coagulating wounds, but is more effective than plain sutures. \
-		The downsides? It repairs less of the actual damage that's there."
+	name = "凝血剂-F 药包"
+	singular_name = "凝血剂-F 药包"
+	desc = "一小包用于止血的人造凝血剂。它的效果不如某些 \
+		其他的伤口凝血方法，但比普通缝合更有效。 \
+		缺点呢？它能修复的实际损伤更少。"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/stack_items.dmi'
 	icon_state = "clotter_slow"
 	inhand_icon_state = null

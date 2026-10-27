@@ -36,11 +36,11 @@
 /datum/request_message/proc/get_alert()
 	var/authenticated = ""
 	if(message_verified_by)
-		authenticated = ", Verified by [message_verified_by] (Authenticated)"
+		authenticated = "，由[message_verified_by]核验（已认证）"
 	else if (message_stamped_by)
-		authenticated = ", Stamped by [message_stamped_by] (Authenticated)"
+		authenticated = "，由[message_stamped_by]盖章（已认证）"
 
-	return "Message from [sender_department][authenticated]"
+	return "来自[sender_department]的消息[authenticated]"
 
 /// Converts the message into a format for the tgui ui_data json
 /datum/request_message/proc/message_ui_data()

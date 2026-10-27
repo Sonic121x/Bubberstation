@@ -1,8 +1,8 @@
 //screen alert
 
 /atom/movable/screen/alert/aroused
-	name = "Aroused"
-	desc = "It's a little hot in here"
+	name = "性兴奋"
+	desc = "这里似乎有些燥热"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_icons.dmi'
 	icon_state = "arousal_small"
 	var/mutable_appearance/pain_overlay

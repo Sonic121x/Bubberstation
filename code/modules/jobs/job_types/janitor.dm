@@ -1,6 +1,6 @@
 /datum/job/janitor
 	title = JOB_JANITOR
-	description = "Clean up trash and blood, replace broken lights, slip people over."
+	description = "清理垃圾和血迹，更换损坏的灯管，把路过的人滑一跤。"
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 1
@@ -26,7 +26,7 @@
 		/obj/item/storage/box/lights/mixed = 20,
 		/obj/item/lightreplacer = 10
 	)
-	rpg_title = "Groundskeeper"
+	rpg_title = "场地管理员"
 	job_flags = STATION_JOB_FLAGS
 
 	job_tone = "slip"

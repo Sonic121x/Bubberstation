@@ -1,6 +1,6 @@
 //12 Gauge
 /datum/design/shotgun_slug
-	name = "Shotgun Slug"
+	name = "霰弹枪独头弹"
 	id = "shotgun_slug"
 	build_type = AUTOLATHE
 	materials = AMMO_MATS_SHOTGUN
@@ -10,7 +10,7 @@
 	)
 
 /datum/design/buckshot_shell
-	name = "Buckshot Shell"
+	name = "鹿弹"
 	id = "buckshot_shell"
 	build_type = AUTOLATHE
 	materials = AMMO_MATS_SHOTGUN

@@ -1,5 +1,5 @@
 /datum/objective/prison_breakout
-	name = "prison breakout"
+	name = "越狱"
 	martyr_compatible = TRUE
 	admin_grantable = TRUE
 	count_space_areas = TRUE
@@ -7,9 +7,9 @@
 /datum/objective/prison_breakout/update_explanation_text()
 	. = ..()
 	if(target?.current)
-		explanation_text = "Break [target.name] out of prison and ensure they escape the station alive and out of custody."
+		explanation_text = "将[target.name]救出监狱，确保其活着逃离空间站且未被拘押。"
 	else
-		explanation_text = "Free objective"
+		explanation_text = "自由目标"
 
 /datum/objective/prison_breakout/is_valid_target(datum/mind/possible_target)
 	. = ..()

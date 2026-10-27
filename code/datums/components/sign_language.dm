@@ -77,14 +77,14 @@
 	var/mob/living/carbon/carbon_parent = parent
 	var/obj/item/organ/tongue/tongue = carbon_parent.get_organ_slot(ORGAN_SLOT_TONGUE)
 	if(tongue)
-		tongue.temp_say_mod = "signs"
+		tongue.temp_say_mod = "打手语"
 	//this speech relies on hands, which we have our own way of garbling speech when they're occupied, so we can have this always on
 	ADD_TRAIT(carbon_parent, TRAIT_SPEAKS_CLEARLY, SPEAKING_FROM_HANDS)
-	carbon_parent.verb_ask = "signs"
-	carbon_parent.verb_exclaim = "signs"
-	carbon_parent.verb_whisper = "subtly signs"
-	carbon_parent.verb_sing = "rythmically signs"
-	carbon_parent.verb_yell = "emphatically signs"
+	carbon_parent.verb_ask = "打手语"
+	carbon_parent.verb_exclaim = "打手语"
+	carbon_parent.verb_whisper = "轻微地打手语"
+	carbon_parent.verb_sing = "有节奏地打手语"
+	carbon_parent.verb_yell = "用力地打手语"
 	carbon_parent.bubble_icon = "signlang"
 	RegisterSignal(carbon_parent, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(on_added_organ))
 	RegisterSignal(carbon_parent, COMSIG_MOB_TRY_SPEECH, PROC_REF(on_try_speech))
@@ -131,7 +131,7 @@
 	if(!istype(new_organ, /obj/item/organ/tongue))
 		return
 	var/obj/item/organ/tongue/new_tongue = new_organ
-	new_tongue.temp_say_mod = "signs"
+	new_tongue.temp_say_mod = "打手语"
 
 /// Signal proc for [COMSIG_MOB_TRY_SPEECH]
 /// Sign languagers can always speak regardless of they're mute (as long as they're not mimes)
@@ -140,33 +140,33 @@
 
 	var/mob/living/carbon/carbon_parent = parent
 	if(HAS_MIND_TRAIT(carbon_parent, TRAIT_MIMING))
-		to_chat(carbon_parent, span_green("You stop yourself from signing in favor of the artform of mimery!"))
+		to_chat(carbon_parent, span_green("为了维护默剧艺术，你克制住了打手语的冲动！"))
 		return COMPONENT_CANNOT_SPEAK
 
 	switch(check_signables_state())
 		if(SIGN_HANDS_FULL) // Full hands
-			carbon_parent.visible_message("tries to sign, but can't with [carbon_parent.p_their()] hands full!", visible_message_flags = EMOTE_MESSAGE)
+			carbon_parent.visible_message("试图打手语，但双手拿满了东西，无法比划！", visible_message_flags = EMOTE_MESSAGE)
 			return COMPONENT_CANNOT_SPEAK
 
 		if(SIGN_HANDS_COMPLETELY_RESTRAINED) // Restrained
-			carbon_parent.visible_message("tries to sign, but can't with [carbon_parent.p_their()] hands bound!", visible_message_flags = EMOTE_MESSAGE)
+			carbon_parent.visible_message("试图打手语，但双手被绑住了，无法比划！", visible_message_flags = EMOTE_MESSAGE)
 			return COMPONENT_CANNOT_SPEAK
 
 		// If we're handcuffed, we can still sign, but it's slow
 		if(SIGN_SLOWLY_FROM_CUFFS)
-			carbon_parent.visible_message("struggles, signing slowly with [carbon_parent.p_their()] hands cuffed...", visible_message_flags = EMOTE_MESSAGE)
+			carbon_parent.visible_message("挣扎着，用铐住的双手缓缓打着手语……", visible_message_flags = EMOTE_MESSAGE)
 			return COMPONENT_IGNORE_CAN_SPEAK
 
 		if(SIGN_ARMLESS) // No arms
-			to_chat(carbon_parent, span_warning("You can't sign with no hands!"))
+			to_chat(carbon_parent, span_warning("你没有手，无法打手语！"))
 			return COMPONENT_CANNOT_SPEAK
 
 		if(SIGN_ARMS_DISABLED) // Arms but they're disabled
-			to_chat(carbon_parent, span_warning("You can't sign with your hands right now!"))
+			to_chat(carbon_parent, span_warning("你的手现在无法打手语！"))
 			return COMPONENT_CANNOT_SPEAK
 
 		if(SIGN_TRAIT_BLOCKED) // Hands blocked or emote mute
-			to_chat(carbon_parent, span_warning("You can't sign at the moment!"))
+			to_chat(carbon_parent, span_warning("你目前无法打手语！"))
 			return COMPONENT_CANNOT_SPEAK
 
 	// Assuming none of the above fail, sign language users can speak
@@ -232,7 +232,7 @@
 		return NONE // Run normal checks
 	else if(check_signables_state() != SIGN_OKAY || HAS_MIND_TRAIT(carbon_parent, TRAIT_MIMING)) // Cannot cast if miming or not SIGN_OKAY
 		if(feedback)
-			to_chat(carbon_parent, span_warning("You can't sign the words to invoke [spell]!"))
+			to_chat(carbon_parent, span_warning("你无法用手语念出施放[spell]的咒语！"))
 		return SPELL_INVOCATION_FAIL
 
 	return SPELL_INVOCATION_ALWAYS_SUCCEED
@@ -316,11 +316,11 @@
 			return // You can't see someone's expression if their face is obscured (or disfigured)
 	switch(emote_tone)
 		if(TONE_INQUISITIVE)
-			carbon_parent.visible_message(span_bold("quirks [carbon_parent.p_their()] brows quizzically."), visible_message_flags = EMOTE_MESSAGE|BLOCK_SELF_HIGHLIGHT_MESSAGE)
+			carbon_parent.visible_message(span_bold("疑惑地挑起眉毛。"), visible_message_flags = EMOTE_MESSAGE|BLOCK_SELF_HIGHLIGHT_MESSAGE)
 		if(TONE_EMPHATIC)
-			carbon_parent.visible_message(span_bold("widens [carbon_parent.p_their()] eyes emphatically!"), visible_message_flags = EMOTE_MESSAGE|BLOCK_SELF_HIGHLIGHT_MESSAGE)
+			carbon_parent.visible_message(span_bold("用力瞪大双眼！"), visible_message_flags = EMOTE_MESSAGE|BLOCK_SELF_HIGHLIGHT_MESSAGE)
 		if(TONE_INQUISITIVE_EMPHATIC)
-			carbon_parent.visible_message(span_bold("wears an intense, befuddled expression!"), visible_message_flags = EMOTE_MESSAGE|BLOCK_SELF_HIGHLIGHT_MESSAGE)
+			carbon_parent.visible_message(span_bold("露出强烈而困惑的神情！"), visible_message_flags = EMOTE_MESSAGE|BLOCK_SELF_HIGHLIGHT_MESSAGE)
 
 
 /// Removes the tonal indicator overlay completely

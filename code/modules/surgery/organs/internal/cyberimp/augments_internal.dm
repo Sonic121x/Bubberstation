@@ -1,10 +1,10 @@
 
 /obj/item/organ/cyberimp
-	name = "cybernetic implant"
-	desc = "A state-of-the-art implant that improves a baseline's functionality."
+	name = "赛博植入体"
+	desc = "一种最先进的植入体，可增强普通人的身体机能。"
 	abstract_type = /obj/item/organ/cyberimp
 	organ_flags = ORGAN_ROBOTIC
-	failing_desc = "seems to be broken."
+	failing_desc = "似乎已经损坏。"
 	visual = FALSE
 	/// icon of the bodypart overlay we're going to be applying to our owner
 	var/aug_icon = 'icons/mob/human/species/misc/bodypart_overlay_augmentations.dmi'
@@ -82,8 +82,8 @@
 //[[[[BRAIN]]]]
 
 /obj/item/organ/cyberimp/brain
-	name = "cybernetic brain implant"
-	desc = "Injectors of extra sub-routines for the brain."
+	name = "赛博脑部植入体"
+	desc = "为大脑注入额外子程序的植入体。"
 	zone = BODY_ZONE_HEAD
 	w_class = WEIGHT_CLASS_TINY
 	/// Duration of stun when hit with worst-case emp
@@ -99,11 +99,11 @@
 		owner.Immobilize(emp_immobilize_duration / severity)
 	if(emp_stun_duration > 0)
 		owner.Stun(emp_stun_duration / severity)
-		to_chat(owner, span_warning("Your body seizes up!"))
+		to_chat(owner, span_warning("你的身体猛地僵住！"))
 
 /obj/item/organ/cyberimp/brain/anti_drop
-	name = "anti-drop implant"
-	desc = "This cybernetic brain implant will allow you to force your hand muscles to contract, preventing item dropping. Twitch ear to toggle."
+	name = "防脱手植入体"
+	desc = "这种赛博脑部植入体可让你强制收紧手部肌肉，防止物品脱手。抖动耳朵即可切换。"
 	icon_state = "brain_implant_antidrop"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.6, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.6, /datum/material/silver = SMALL_MATERIAL_AMOUNT * 4, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 4)
 	var/active = FALSE
@@ -116,19 +116,19 @@
 	if(active)
 		var/list/hold_list = owner.get_empty_held_indexes()
 		if(LAZYLEN(hold_list) == owner.held_items.len)
-			to_chat(owner, span_notice("You are not holding any items, your hands relax..."))
+			to_chat(owner, span_notice("你手里没有拿任何物品，双手放松下来……"))
 			active = FALSE
 			return
 		for(var/obj/item/held_item as anything in owner.held_items)
 			if(!held_item)
 				continue
 			stored_items += held_item
-			to_chat(owner, span_notice("Your [owner.get_held_index_name(owner.get_held_index_of_item(held_item))]'s grip tightens."))
+			to_chat(owner, span_notice("你的 [owner.get_held_index_name(owner.get_held_index_of_item(held_item))] 握得更紧了。"))
 			ADD_TRAIT(held_item, TRAIT_NODROP, IMPLANT_TRAIT)
 			RegisterSignal(held_item, COMSIG_ITEM_DROPPED, PROC_REF(on_held_item_dropped))
 	else
 		release_items()
-		to_chat(owner, span_notice("Your hands relax..."))
+		to_chat(owner, span_notice("你的双手放松下来……"))
 
 
 /obj/item/organ/cyberimp/brain/anti_drop/emp_act(severity)
@@ -142,7 +142,7 @@
 	for(var/obj/item/stored_item as anything in stored_items)
 		throw_target = pick(oview(range))
 		stored_item.throw_at(throw_target, range, 2)
-		to_chat(owner, span_warning("Your [owner.get_held_index_name(owner.get_held_index_of_item(stored_item))] spasms and throws \the [stored_item]!"))
+		to_chat(owner, span_warning("你的 [owner.get_held_index_name(owner.get_held_index_of_item(stored_item))] 抽搐起来，把 \the [stored_item] 甩了出去！"))
 	stored_items = list()
 
 
@@ -165,8 +165,8 @@
 	stored_items -= source
 
 /obj/item/organ/cyberimp/brain/anti_stun
-	name = "CNS rebooter implant"
-	desc = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
+	name = "中枢神经重启植入体"
+	desc = "这种植入体会自动帮你重新掌控中枢神经系统，缩短被击晕后的失控时间。"
 	icon_state = "brain_implant_rebooter"
 	slot = ORGAN_SLOT_BRAIN_CNS
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.6, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.6, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
@@ -225,7 +225,7 @@
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/implant_ready()
 	if(owner)
-		to_chat(owner, span_purple("Your rebooter implant is ready."))
+		to_chat(owner, span_purple("你的重启植入体已就绪。"))
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/give_stun_buffs(mob/living/give_to = owner)
 	give_to.add_traits(list(TRAIT_STUNIMMUNE, TRAIT_BATON_RESISTANCE), REF(src))
@@ -247,8 +247,8 @@
 	implant_ready()
 
 /obj/item/organ/cyberimp/brain/connector
-	name = "CNS skillchip connector implant"
-	desc = "This cybernetic adds a port to the back of your head, where you can remove or add skillchips at will."
+	name = "中枢神经技能芯片接口植入体"
+	desc = "这种赛博植入体在你的后脑加装了一个接口，你可以随意取出或装入技能芯片。"
 	icon_state = "brain_implant_connector"
 	slot = ORGAN_SLOT_BRAIN_CNS
 	actions_types = list(/datum/action/item_action/organ_action/use)
@@ -256,17 +256,17 @@
 
 /obj/item/organ/cyberimp/brain/connector/ui_action_click()
 
-	to_chat(owner, span_warning("You start fiddling around with [src]..."))
+	to_chat(owner, span_warning("你开始摆弄 [src]……"))
 	playsound(owner, 'sound/items/taperecorder/tape_flip.ogg', 20, vary = TRUE) // asmr
 
 	if(!do_after(owner, 1.5 SECONDS, owner)) // othwerwise it doesnt appear
-		to_chat(owner, span_warning("You were interrupted!"))
+		to_chat(owner, span_warning("你被打断了！"))
 		return
 
 	if(organ_flags & ORGAN_FAILING)
 		var/holy_shit_my_brain = remove_brain(owner.get_organ_by_type(ORGAN_SLOT_BRAIN))
 		if(holy_shit_my_brain)
-			to_chat(owner, span_warning("You take [holy_shit_my_brain] out of [src]. You stare at it for a moment in confusion."))
+			to_chat(owner, span_warning("你从 [src] 中取出 [holy_shit_my_brain]。你困惑地盯了它一会儿。"))
 		return
 
 	var/obj/item/skillchip/skillchip = owner.get_active_held_item()
@@ -274,7 +274,7 @@
 		if(istype(skillchip, /obj/item/skillchip))
 			insert_skillchip(skillchip)
 		else
-			to_chat(owner, span_warning("You try to insert [owner.get_active_held_item()] into [src], but it won't fit!")) // make it kill you if you shove a crayon inside or something
+			to_chat(owner, span_warning("你试着把 [owner.get_active_held_item()] 插入 [src]，但它装不进去！")) // make it kill you if you shove a crayon inside or something
 	else // no inhand item, assume removal
 		var/obj/item/organ/brain/chippy_brain = owner.get_organ_by_type(/obj/item/organ/brain)
 		if(!chippy_brain)
@@ -304,10 +304,10 @@
 		skillchip.forceMove(owner.drop_location())
 		owner.put_in_hands(skillchip, del_on_fail = FALSE)
 		playsound(owner, 'sound/machines/click.ogg', 10, vary = TRUE)
-		to_chat(owner, span_warning("You take [skillchip] out of [src]."))
+		to_chat(owner, span_warning("你从 [src] 中取出 [skillchip]。"))
 		return
 
-	to_chat(owner, span_warning("Your brain is empty!")) // heh
+	to_chat(owner, span_warning("你的大脑是空的！")) // heh
 
 /obj/item/organ/cyberimp/brain/connector/emp_act(severity)
 	. = ..()
@@ -319,8 +319,8 @@
 		loops = 2
 	for(var/i in 1 to loops)
 		// you either lose a chip or a bit of your brain
-		owner.visible_message(span_warning("Something falls to the ground from behind [owner]'s head."),\
-			span_boldwarning("You feel something fall off from behind your head."))
+		owner.visible_message(span_warning("有什么东西从 [owner] 脑后掉到了地上。"),\
+			span_boldwarning("你感到有什么东西从脑后掉了下来。"))
 		var/obj/item/organ/brain/chippy_brain = owner.get_organ_by_type(ORGAN_SLOT_BRAIN)
 		var/obj/item/skillchip/skillchip = chippy_brain?.skillchips[1]
 		if(skillchip)
@@ -339,7 +339,7 @@
 	chippy_brain.maxHealth -= 15 * severity // a bit of your brain fell off. again.
 	if(chippy_brain.damage >= chippy_brain.maxHealth)
 		chippy_brain.forceMove(owner.drop_location())
-		owner.visible_message(span_userdanger("[owner]'s brain falls off the back of [owner.p_their()] head!!!"), span_boldwarning("You feel like you're missing something."))
+		owner.visible_message(span_userdanger("[owner] 的大脑从后脑掉了下来！！！"), span_boldwarning("你觉得自己似乎少了点什么。"))
 		return chippy_brain
 
 	var/gib_type = /obj/effect/decal/cleanable/blood/gibs/up
@@ -352,8 +352,8 @@
 	organ_flags &= ~ORGAN_FAILING
 
 /obj/item/organ/cyberimp/brain/surgical_processor
-	name = "surgical processor implant"
-	desc = "A cybernetic brain implant that allows you to perform advanced operations anywhere, anytime."
+	name = "外科处理器植入体"
+	desc = "一种赛博脑部植入体，可让你随时随地实施高级手术。"
 	icon_state = "brain_implant_antidrop"
 	slot = ORGAN_SLOT_BRAIN_HIPPOCAMPUS
 	emp_stun_duration = 0 SECONDS
@@ -365,7 +365,7 @@
 /obj/item/organ/cyberimp/brain/surgical_processor/examine(mob/user)
 	. = ..()
 	if(length(loaded_surgeries))
-		. += span_info("Load surgeries from an operating compuer or a disk containing surgery data. Loaded surgeries:")
+		. += span_info("从手术电脑或含有手术数据的磁盘中载入手术。已载入的手术：")
 		for(var/datum/surgery_operation/downloaded_surgery as anything in GLOB.operations.get_instances_from(loaded_surgeries))
 			if(!(downloaded_surgery.operation_flags & OPERATION_LOCKED))
 				continue
@@ -375,11 +375,11 @@
 			. += span_info("&bull; [capitalize(downloaded_surgery.rnd_name || downloaded_surgery.name)]")
 
 	else
-		. += span_info("Load surgeries from an operating compuer or a disk containing surgery data.")
-		. += span_info("No surgeries loaded. Surgeries must be loaded <i>before</i> installation.")
+		. += span_info("从手术电脑或含有手术数据的磁盘中载入手术。")
+		. += span_info("尚未载入任何手术。手术必须在安装<i>之前</i>载入。")
 
 /obj/item/organ/cyberimp/brain/surgical_processor/proc/load_surgeries(mob/living/user, obj/design_holder)
-	balloon_alert(user, "copying designs...")
+	balloon_alert(user, "正在复制设计……")
 	playsound(src, 'sound/machines/terminal/terminal_processing.ogg', 25, TRUE)
 	if(do_after(user, 1 SECONDS, target = design_holder))
 		if(istype(design_holder, /obj/item/disk/surgery))
@@ -438,16 +438,16 @@
 
 	// causes the surgeon to go crazy and start stabbing people
 	owner.apply_status_effect(/datum/status_effect/forced_combat, duration, (rand(8, 16) / severity))
-	to_chat(owner, span_boldwarning("Your surgical processor malfunctions, giving you an overwhelming urge to incise, saw, and stitch!"))
+	to_chat(owner, span_boldwarning("你的外科处理器发生故障，让你涌起一股无法抑制的冲动，想切开、锯开、再缝合！"))
 
 /datum/mood_event/surgery_emp_active
-	description = "THE PATIENT WILL NOT SURVIVE UNLESS THE OPERATION IS COMPLETE!"
+	description = "除非手术完成，否则病人活不下来！"
 	mood_change = -90
 	timeout = 1 MINUTES
 	special_screen_obj = "mood_despair"
 
 /datum/mood_event/surgery_emp_expired
-	description = "I lost control - Thankfully it's over now."
+	description = "我失控了——幸好现在已经结束了。"
 	timeout = 5 MINUTES
 
 /obj/item/organ/cyberimp/brain/surgical_processor/pre_loaded
@@ -480,8 +480,8 @@
 	zone = BODY_ZONE_PRECISE_MOUTH
 
 /obj/item/organ/cyberimp/mouth/breathing_tube
-	name = "breathing tube implant"
-	desc = "This simple implant adds an internals connector to your back, allowing you to use internals without a mask and protecting you from being choked."
+	name = "呼吸管植入体"
+	desc = "这种简易植入体在你的背部加装了一个呼吸器接口，让你无需面罩也能使用呼吸器，并能防止你被扼住咽喉。"
 	icon_state = "implant_mask"
 	slot = ORGAN_SLOT_BREATHING_TUBE
 	w_class = WEIGHT_CLASS_TINY
@@ -493,5 +493,5 @@
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
 	if(prob(60/severity))
-		to_chat(owner, span_warning("Your breathing tube suddenly closes!"))
+		to_chat(owner, span_warning("你的呼吸管突然闭合了！"))
 		owner.losebreath += 2

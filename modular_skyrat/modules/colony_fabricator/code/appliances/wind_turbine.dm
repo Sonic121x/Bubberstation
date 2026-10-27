@@ -1,9 +1,9 @@
 /obj/machinery/power/colony_wind_turbine
-	name = "miniature wind turbine"
-	desc = "A post with two special-designed vertical turbine blades attached to its sides. \
-		When placed outdoors in a planet with an atmosphere, will produce a small trickle of power \
-		for free. If there is a storm in the area the turbine is placed, the power production will \
-		multiply significantly."
+	name = "微型风力涡轮机"
+	desc = "一根立柱，两侧各装有一片特别设计的垂直涡轮叶片。\
+		放置在有大气的星球户外时，会免费产生一小股电力。\
+		若涡轮机所在区域正刮着风暴，发电量会\
+		成倍增长。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/wind_turbine.dmi'
 	icon_state = "turbine"
 	density = TRUE
@@ -35,9 +35,9 @@
 	. = ..()
 	var/area/turbine_area = get_area(src)
 	if(!turbine_area.outdoors)
-		. += span_notice("Its must be constructed <b>outdoors</b> to function.")
+		. += span_notice("它必须建造在<b>户外</b>才能运作。")
 	if(pressure_too_low)
-		. += span_notice("There must be enough atmospheric <b>pressure</b> for the turbine to spin.")
+		. += span_notice("必须有足够的大气<b>压力</b>，涡轮机才能转动。")
 
 
 /obj/machinery/power/colony_wind_turbine/process()
@@ -76,7 +76,7 @@
 
 // Item for deploying wind turbines
 /obj/item/flatpacked_machine/wind_turbine
-	name = "flat-packed miniature wind turbine"
+	name = "扁平包装微型风力涡轮机"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/wind_turbine.dmi'
 	icon_state = "turbine_packed"
 	type_to_deploy = /obj/machinery/power/colony_wind_turbine

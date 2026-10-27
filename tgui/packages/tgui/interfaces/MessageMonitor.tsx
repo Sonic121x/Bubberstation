@@ -9,10 +9,10 @@ import {
   Table,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
-
+import { areaDisplay, type BatchDisplayData } from '../localization/batchThreeDisplay';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { machineChoiceDisplay } from './common/machineChoiceDisplay';
 enum Screen {
   Main,
   MessageLogs,
@@ -20,7 +20,7 @@ enum Screen {
   Hacked,
 }
 
-type Data = {
+type Data = BatchDisplayData & {
   screen: Screen;
   status: BooleanLike;
   server_status: BooleanLike;
@@ -39,7 +39,7 @@ type Request = {
   ref: string;
   message: string;
   stamp: string;
-  sender_department: string;
+  departament: string;
   id_auth: string;
 };
 
@@ -59,10 +59,10 @@ const RequestLogsScreen = (props) => {
         <Section
           fill
           scrollable
-          title="Requests"
+          title="请求"
           buttons={
             <Button
-              content="Main Menu"
+              content="主菜单"
               icon="home"
               onClick={() => act('return_home')}
             />
@@ -70,11 +70,11 @@ const RequestLogsScreen = (props) => {
         >
           <Table>
             <Table.Row header>
-              <Table.Cell>Delete</Table.Cell>
-              <Table.Cell>Message</Table.Cell>
-              <Table.Cell>Stamp</Table.Cell>
-              <Table.Cell>Department</Table.Cell>
-              <Table.Cell>Authentication</Table.Cell>
+              <Table.Cell>删除</Table.Cell>
+              <Table.Cell>消息</Table.Cell>
+              <Table.Cell>印章</Table.Cell>
+              <Table.Cell>部门</Table.Cell>
+              <Table.Cell>身份认证</Table.Cell>
             </Table.Row>
             {requests?.map((request) => (
               <Table.Row key={request.ref} className="candystripe">
@@ -87,7 +87,7 @@ const RequestLogsScreen = (props) => {
                 </Table.Cell>
                 <Table.Cell>{request.message}</Table.Cell>
                 <Table.Cell>{request.stamp}</Table.Cell>
-                <Table.Cell>{request.sender_department}</Table.Cell>
+                <Table.Cell>{machineChoiceDisplay(areaDisplay(request.departament, data))}</Table.Cell>
                 <Table.Cell>{request.id_auth}</Table.Cell>
               </Table.Row>
             ))}
@@ -107,10 +107,10 @@ const MessageLogsScreen = (props) => {
         <Section
           fill
           scrollable
-          title="Stored Messages"
+          title="已存储消息"
           buttons={
             <Button
-              content="Main Menu"
+              content="主菜单"
               icon="home"
               onClick={() => act('return_home')}
             />
@@ -118,10 +118,10 @@ const MessageLogsScreen = (props) => {
         >
           <Table>
             <Table.Row header>
-              <Table.Cell>Delete</Table.Cell>
-              <Table.Cell>Sender</Table.Cell>
-              <Table.Cell>Recipient</Table.Cell>
-              <Table.Cell>Message</Table.Cell>
+              <Table.Cell>删除</Table.Cell>
+              <Table.Cell>发件人</Table.Cell>
+              <Table.Cell>收件人</Table.Cell>
+              <Table.Cell>消息</Table.Cell>
             </Table.Row>
             {messages?.map((message) => (
               <Table.Row key={message.ref} className="candystripe">
@@ -156,10 +156,10 @@ const HackedScreen = (props) => {
         <Stack.Item grow />
         <Stack.Item align="center" grow>
           <Box color="red" fontSize="18px" bold mt={5}>
-            E%*#OR: CRIT#%^CAL Ss&@STEM Fai++~|URE...
+            错%*#误：严#%^重系&@统故++~|障……
           </Box>
           <Box color="red" fontSize="18px" bold mt={5}>
-            EN*bLING u&*E REB-00T ProT/.\;L...
+            正*b在启&*动重-00启协/.\;议……
           </Box>
         </Stack.Item>
       </Stack>
@@ -180,22 +180,22 @@ const MainScreenAuth = (props: AuthScreenProps) => {
           <Input
             value={auth_password}
             onChange={setPassword}
-            placeholder="Password"
+            placeholder="密码"
           />
           <Button
-            content={'Logout'}
+            content={'退出登录'}
             onClick={() => act('auth', { auth_password: auth_password })}
           />
           <Button
             icon={status ? 'power-off' : 'times'}
-            content={status ? 'ON' : 'OFF'}
+            content={status ? '开启' : '关闭'}
             color={status ? 'green' : 'red'}
             onClick={() => act('turn_server')}
           />
           {is_malf === 1 && (
             <Button
               icon="terminal"
-              content="Hack"
+              content="入侵"
               color="red"
               disabled
               onClick={() => act('hack')}
@@ -205,66 +205,66 @@ const MainScreenAuth = (props: AuthScreenProps) => {
       </Stack.Item>
       <Table>
         <Table.Row header>
-          <Table.Cell>Option</Table.Cell>
-          <Table.Cell>Description</Table.Cell>
+          <Table.Cell>选项</Table.Cell>
+          <Table.Cell>说明</Table.Cell>
         </Table.Row>
         <Table.Row>
           <Table.Cell>
             <Button
-              content={'View Message Logs'}
+              content={'查看消息日志'}
               onClick={() => act('view_message_logs')}
             />
           </Table.Cell>
-          <Table.Cell>Shows all messages that have been sent</Table.Cell>
+          <Table.Cell>显示所有已发送的消息</Table.Cell>
         </Table.Row>
         <Table.Row>
           <Table.Cell>
             <Button
-              content={'View Request Console Logs'}
+              content={'查看请求控制台日志'}
               onClick={() => act('view_request_logs')}
             />
           </Table.Cell>
           <Table.Cell>
-            Shows all orders that were made in the cargo department
+            显示所有通过请求控制台发送的请求
           </Table.Cell>
         </Table.Row>
         <Table.Row>
           <Table.Cell>
             <Button.Confirm
-              content={'Clear Message Logs'}
+              content={'清除消息日志'}
               onClick={() => act('clear_message_logs')}
             />
           </Table.Cell>
-          <Table.Cell>Clears message logs</Table.Cell>
+          <Table.Cell>清除消息日志</Table.Cell>
         </Table.Row>
         <Table.Row>
           <Table.Cell>
             <Button.Confirm
-              content={'Clear Request Console Logs'}
+              content={'清除请求控制台日志'}
               onClick={() => act('clear_request_logs')}
             />
           </Table.Cell>
-          <Table.Cell>Clears request console logs</Table.Cell>
+          <Table.Cell>清除请求控制台日志</Table.Cell>
         </Table.Row>
         {!!is_on_station && (
           <Table.Row>
             <Table.Cell>
               <Button
-                content={'Set Custom Key'}
+                content={'设置自定义密钥'}
                 onClick={() => act('set_key')}
               />
             </Table.Cell>
-            <Table.Cell>Changes decryption key</Table.Cell>
+            <Table.Cell>更改解密密钥</Table.Cell>
           </Table.Row>
         )}
         <Table.Row>
           <Table.Cell>
             <Button
-              content={'Send Admin Message'}
+              content={'发送管理员消息'}
               onClick={() => act('send_fake_message')}
             />
           </Table.Cell>
-          <Table.Cell>Sends a custom message to the user&apos;s PDA</Table.Cell>
+          <Table.Cell>向用户的 PDA 发送自定义消息</Table.Cell>
         </Table.Row>
       </Table>
     </>
@@ -288,10 +288,10 @@ const MainScreenNotAuth = (props: AuthScreenProps) => {
           <Input
             value={auth_password}
             onChange={setPassword}
-            placeholder="Password"
+            placeholder="密码"
           />
           <Button onClick={() => act('auth', { auth_password: auth_password })}>
-            Auth
+            认证
           </Button>
           <Button
             icon={status ? 'power-off' : 'times'}
@@ -299,30 +299,30 @@ const MainScreenNotAuth = (props: AuthScreenProps) => {
             disabled
             onClick={() => act('turn_server')}
           >
-            {status ? 'ON' : 'OFF'}
+            {status ? '开启' : '关闭'}
           </Button>
           {!!is_malf && (
             <Button color="red" onClick={() => act('hack')}>
-              Hack
+              入侵
             </Button>
           )}
         </Section>
       </Stack.Item>
       <Stack.Item grow>
-        <Section fill scrollable title="Choose Option">
+        <Section fill scrollable title="选择选项">
           <Table>
             <Table.Row header>
-              <Table.Cell>Option</Table.Cell>
-              <Table.Cell>Description</Table.Cell>
+              <Table.Cell>选项</Table.Cell>
+              <Table.Cell>说明</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>
                 <Button
-                  content={'Link Server'}
+                  content={'连接服务器'}
                   onClick={() => act('link_server')}
                 />
               </Table.Cell>
-              <Table.Cell>Connects to the server</Table.Cell>
+              <Table.Cell>连接到服务器</Table.Cell>
             </Table.Row>
           </Table>
         </Section>
@@ -391,20 +391,20 @@ export const MessageMonitor = (props) => {
                 )}
               </Stack.Item>
               <label>
-                Reg. #514 forbids sending messages to a Head of Staff containing
-                Erotic Rendering Properties.
+                第 514 号规定禁止向部门主管发送包含
+                情色描绘内容的消息。
               </label>
             </>
           ) : (
             <>
               <Stack.Item>
                 <NoticeBox color="red">
-                  Server not found, click button to scan the network
+                  未找到服务器，点击按钮扫描网络
                 </NoticeBox>
               </Stack.Item>
               <Stack.Item>
                 <Button
-                  content="Connect to server"
+                  content="连接服务器"
                   onClick={() => act('connect_server')}
                 />
               </Stack.Item>

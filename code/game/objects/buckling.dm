@@ -23,7 +23,7 @@
 		return
 	if(can_buckle && has_buckled_mobs())
 		if(length(buckled_mobs) > 1)
-			var/mob/living/unbuckled = tgui_input_list(user, "Who do you wish to unbuckle?", "Unbuckle", sort_names(buckled_mobs))
+			var/mob/living/unbuckled = tgui_input_list(user, "你想为谁解开束缚？", "解开束缚", sort_names(buckled_mobs))
 			if(isnull(unbuckled))
 				return
 			if(user_unbuckle_mob(unbuckled,user))
@@ -39,7 +39,7 @@
 		return
 	if(Adjacent(user) && can_buckle && has_buckled_mobs())
 		if(length(buckled_mobs) > 1)
-			var/mob/living/unbuckled = tgui_input_list(user, "Who do you wish to unbuckle?", "Unbuckle", sort_names(buckled_mobs))
+			var/mob/living/unbuckled = tgui_input_list(user, "你想为谁解开束缚？", "解开束缚", sort_names(buckled_mobs))
 			if(isnull(unbuckled))
 				return
 			return user_unbuckle_mob(unbuckled,user)
@@ -273,7 +273,7 @@
 	//Bubber Addition
 	//If the target has the TRAIT_NO_BUCKLE, preventing buckling
 	if(HAS_TRAIT(target, TRAIT_NO_BUCKLE))
-		to_chat(target, span_danger("You are unable to do that."))
+		to_chat(target, span_danger("你无法这样做。"))
 		return FALSE
 	//Bubber Addition End
 	return TRUE
@@ -326,9 +326,9 @@
 	// If the mob we're attempting to buckle is not stood on this atom's turf and it isn't the user buckling themselves,
 	// we'll try it with a 2 second do_after delay.
 	if(M != user && (get_turf(M) != get_turf(src)))
-		M.visible_message(span_warning("[user] starts buckling [M] to [src]!"),\
-			span_userdanger("[user] starts buckling you to [src]!"),\
-			span_hear("You hear metal clanking."))
+		M.visible_message(span_warning("[user]开始把[M]固定在[src]上！"),\
+			span_userdanger("[user]开始把你固定在[src]上！"),\
+			span_hear("你听到金属碰撞声。"))
 		if(!do_after(user, buckle_delay, M))
 			return FALSE
 
@@ -345,15 +345,15 @@
 /atom/movable/proc/buckle_feedback(mob/living/being_buckled, mob/buckler)
 	if(being_buckled == buckler)
 		being_buckled.visible_message(
-			span_notice("[buckler] buckles [buckler.p_them()]self to [src]."),
-			span_notice("You buckle yourself to [src]."),
-			span_hear("You hear metal clanking."),
+			span_notice("[buckler]把自己固定在[src]上。"),
+			span_notice("你把自己固定在[src]上。"),
+			span_hear("你听到金属碰撞声。"),
 		)
 	else
 		being_buckled.visible_message(
-			span_warning("[buckler] buckles [being_buckled] to [src]!"),
-			span_warning("[buckler] buckles you to [src]!"),
-			span_hear("You hear metal clanking."),
+			span_warning("[buckler]把[being_buckled]固定在[src]上！"),
+			span_warning("[buckler]把你固定在[src]上！"),
+			span_hear("你听到金属碰撞声。"),
 		)
 
 /**
@@ -381,13 +381,13 @@
 /atom/movable/proc/unbuckle_feedback(mob/living/unbuckled_mob, mob/unbuckler)
 	if(unbuckled_mob == unbuckler)
 		unbuckled_mob.visible_message(
-			span_notice("[unbuckler] unbuckles [unbuckler.p_them()]self from [src]."),
-			span_notice("You unbuckle yourself from [src]."),
-			span_hear("You hear metal clanking."),
+			span_notice("[unbuckler]解开了自己在[src]上的束缚。"),
+			span_notice("你解开了自己在[src]上的束缚。"),
+			span_hear("你听到金属碰撞声。"),
 		)
 	else
 		unbuckled_mob.visible_message(
-			span_notice("[unbuckler] unbuckles [unbuckled_mob] from [src]."),
-			span_notice("[unbuckler] unbuckles you from [src]."),
-			span_hear("You hear metal clanking."),
+			span_notice("[unbuckler]解开了[unbuckled_mob]在[src]上的束缚。"),
+			span_notice("[unbuckler]解开了你在[src]上的束缚。"),
+			span_hear("你听到金属碰撞声。"),
 		)

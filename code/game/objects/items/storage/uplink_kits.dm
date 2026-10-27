@@ -334,14 +334,14 @@
 	new /obj/item/knife/combat(src) //comparable to the e-dagger, 2 TC
 
 /obj/item/storage/box/syndie_kit
-	name = "box"
-	desc = "A sleek, sturdy box."
+	name = "盒子"
+	desc = "一个光滑坚固的盒子。"
 	icon_state = "syndiebox"
 	illustration = "writing_syndie"
 
 /obj/item/storage/box/syndie_kit/rebarxbowsyndie
-	name = "Boxed Rebar Crossbow"
-	desc = "A scoped weapon with low armor penetration, but devastating against flesh. Features instruction manual for making specialty ammo."
+	name = "盒装钢筋弩"
+	desc = "一把带瞄具的武器，穿甲能力低，但对付血肉之躯极具破坏力。附带制作特种弹药的说明书。"
 
 /obj/item/storage/box/syndie_kit/rebarxbowsyndie/PopulateContents()
 	new /obj/item/book/granter/crafting_recipe/dusting/rebarxbowsyndie_ammo(src)
@@ -349,24 +349,24 @@
 	new /obj/item/storage/bag/rebar_quiver/syndicate(src)
 
 /obj/item/paper/syndicate_forensics_spoofer
-	name = "Forensics Spoofer Guide"
+	name = "取证欺骗器指南"
 	default_raw_text = {"
-		<b>Forensics Spoofer Info:</b><br>
-		The spoofer has two modes: <b>SCAN</b> which scans for fingerprints and fibers, and <b>APPLY</b> which applies the currently chosen fingerprint/fiber to your target.<br>
-		The spoofer can only store 5 fingerprints and 5 fibers, and may not store or report fibers/prints already stored. Additionally, it taps into the stations network to associate scanned fingerprints with names.<br>
-		The spoofer will make the same sounds and sights as a forensics scanner, when <b>silent mode</b> is <b>off</b>.<br>
+		<b>取证欺骗器说明：</b><br>
+		欺骗器有两种模式：<b>SCAN</b> 用于扫描指纹和纤维，<b>APPLY</b> 用于将当前选中的指纹/纤维应用到目标身上。<br>
+		欺骗器最多只能存储 5 个指纹和 5 种纤维，且不会存储或报告已存储的纤维/指纹。此外，它还会接入空间站网络，把扫描到的指纹与姓名关联起来。<br>
+		当<b>静音模式</b>为<b>关闭</b>时，欺骗器会发出与取证扫描仪相同的声音和视觉效果。<br>
 		"}
 
 /obj/item/storage/box/syndie_kit/forensics_spoofer
-	name = "forensics spoofing kit"
+	name = "取证欺骗套件"
 
 /obj/item/storage/box/syndie_kit/forensics_spoofer/PopulateContents()
 	new /obj/item/forensics_spoofer(src)
 	new /obj/item/paper/syndicate_forensics_spoofer(src)
 
 /obj/item/storage/box/syndie_kit/origami_bundle
-	name = "origami kit"
-	desc = "A box full of a number of rather masterfully engineered paper planes and a manual on \"The Art of Origami\"."
+	name = "折纸套件"
+	desc = "一盒装有许多工艺相当精湛的纸飞机，还有一本《折纸艺术》手册。"
 
 /obj/item/storage/box/syndie_kit/origami_bundle/PopulateContents()
 	new /obj/item/book/granter/action/origami(src)
@@ -374,69 +374,69 @@
 		new /obj/item/paper(src)
 
 /obj/item/storage/box/syndie_kit/imp_freedom
-	name = "freedom implant box"
+	name = "自由植入体盒"
 
 /obj/item/storage/box/syndie_kit/imp_freedom/PopulateContents()
 	new /obj/item/implanter/freedom(src)
 
 /obj/item/storage/box/syndie_kit/imp_microbomb
-	name = "microbomb implant box"
+	name = "微型炸弹植入体盒"
 
 /obj/item/storage/box/syndie_kit/imp_microbomb/PopulateContents()
 	new /obj/item/implanter/explosive(src)
 
 /obj/item/storage/box/syndie_kit/imp_macrobomb
-	name = "macrobomb implant box"
+	name = "大型炸弹植入体盒"
 
 /obj/item/storage/box/syndie_kit/imp_macrobomb/PopulateContents()
 	new /obj/item/implanter/explosive_macro(src)
 
 /obj/item/storage/box/syndie_kit/imp_deniability
-	name = "tactical deniability implant box"
+	name = "战术推责植入体盒"
 
 /obj/item/storage/box/syndie_kit/imp_deniability/PopulateContents()
 	new /obj/item/implanter/tactical_deniability(src)
 
 /obj/item/storage/box/syndie_kit/imp_uplink
-	name = "uplink implant box"
+	name = "上行链路植入体盒"
 
 /obj/item/storage/box/syndie_kit/imp_uplink/PopulateContents()
 	new /obj/item/implanter/uplink(src)
 
 /obj/item/storage/box/syndie_kit/bioterror
-	name = "bioterror syringe box"
+	name = "生物恐怖注射器盒"
 
 /obj/item/storage/box/syndie_kit/bioterror/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/syringe/bioterror(src)
 
 /obj/item/storage/box/syndie_kit/clownpins
-	name = "ultra hilarious firing pin box"
+	name = "超级搞笑击针盒"
 
 /obj/item/storage/box/syndie_kit/clownpins/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/firing_pin/clown/ultra(src)
 
 /obj/item/storage/box/syndie_kit/imp_storage
-	name = "storage implant box"
+	name = "储物植入体盒"
 
 /obj/item/storage/box/syndie_kit/imp_storage/PopulateContents()
 	new /obj/item/implanter/storage(src)
 
 /obj/item/storage/box/syndie_kit/imp_stealth
-	name = "stealth implant box"
+	name = "隐匿植入体盒"
 
 /obj/item/storage/box/syndie_kit/imp_stealth/PopulateContents()
 	new /obj/item/implanter/stealth(src)
 
 /obj/item/storage/box/syndie_kit/imp_radio
-	name = "syndicate radio implant box"
+	name = "辛迪加无线电植入体盒"
 
 /obj/item/storage/box/syndie_kit/imp_radio/PopulateContents()
 	new /obj/item/implanter/radio/syndicate(src)
 
 /obj/item/storage/box/syndie_kit/space
-	name = "boxed space suit and helmet"
+	name = "盒装太空服与头盔"
 	storage_type = /datum/storage/box/syndicate_space
 
 /obj/item/storage/box/syndie_kit/space/PopulateContents()
@@ -446,7 +446,7 @@
 	new spess_helmet(src) // 4 TC for the space gear
 
 /obj/item/storage/box/syndie_kit/emp
-	name = "EMP kit"
+	name = "EMP 套件"
 
 /obj/item/storage/box/syndie_kit/emp/PopulateContents()
 	for(var/i in 1 to 5)
@@ -454,7 +454,7 @@
 	new /obj/item/implanter/emp(src)
 
 /obj/item/storage/box/syndie_kit/smoke
-	name = "smoke kit"
+	name = "烟雾套件"
 
 /obj/item/storage/box/syndie_kit/smoke/PopulateContents()
 	for(var/i in 1 to 5)
@@ -463,15 +463,15 @@
 	new /obj/item/clothing/mask/gas(src)
 
 /obj/item/storage/box/syndie_kit/mail_counterfeit
-	name = "mail counterfeit kit"
-	desc = "A GLA Postal Service branded box. It's emblazoned with the motto: *Nothing stops the mail*."
+	name = "邮件伪造套件"
+	desc = "一个印有 GLA 邮政服务品牌的盒子。上面印着格言：*邮件无阻*。"
 
 /obj/item/storage/box/syndie_kit/mail_counterfeit/PopulateContents()
 	for(var/i in 1 to 6)
 		new /obj/item/storage/mail_counterfeit_device(src)
 
 /obj/item/storage/box/syndie_kit/chemical
-	name = "chemical kit"
+	name = "化学套件"
 	storage_type = /datum/storage/box/syndicate_chemical
 
 /obj/item/storage/box/syndie_kit/chemical/PopulateContents()
@@ -497,8 +497,8 @@
 	new /obj/item/food/meat/slab/human(src)
 
 /obj/item/storage/box/syndie_kit/nuke
-	name = "nuke core extraction kit"
-	desc = "A box containing the equipment and instructions for extracting the plutonium cores of most Nanotrasen nuclear explosives."
+	name = "核弹核心提取套件"
+	desc = "一盒装有提取大多数纳米传讯核弹钚核心所需的装备和说明书。"
 
 /obj/item/storage/box/syndie_kit/nuke/PopulateContents()
 	new /obj/item/screwdriver/nuke(src)
@@ -506,8 +506,8 @@
 	new /obj/item/paper/guides/antag/nuke_instructions(src)
 
 /obj/item/storage/box/syndie_kit/supermatter
-	name = "supermatter sliver extraction kit"
-	desc = "A box containing the equipment and instructions for extracting a sliver of supermatter."
+	name = "超物质碎片提取套件"
+	desc = "一盒装有提取超物质碎片所需的装备和说明书。"
 
 /obj/item/storage/box/syndie_kit/supermatter/PopulateContents()
 	new /obj/item/scalpel/supermatter(src)
@@ -516,7 +516,7 @@
 	new /obj/item/paper/guides/antag/supermatter_sliver(src)
 
 /obj/item/storage/box/syndie_kit/tuberculosisgrenade
-	name = "virus grenade kit"
+	name = "病毒手榴弹套件"
 
 /obj/item/storage/box/syndie_kit/tuberculosisgrenade/PopulateContents()
 	new /obj/item/grenade/chem_grenade/tuberculosis(src)
@@ -526,7 +526,7 @@
 	new /obj/item/reagent_containers/cup/bottle/tuberculosiscure(src)
 
 /obj/item/storage/box/syndie_kit/chameleon
-	name = "chameleon kit"
+	name = "变色龙套件"
 
 /obj/item/storage/box/syndie_kit/chameleon/PopulateContents()
 	new /obj/item/clothing/under/chameleon(src)
@@ -622,8 +622,8 @@
 	// No chameleon laser, they can't randomise for //REASONS//
 
 /obj/item/storage/box/syndie_kit/bee_grenades
-	name = "buzzkill grenade box"
-	desc = "A sleek, sturdy box with a buzzing noise coming from the inside. Uh oh."
+	name = "嗡嗡杀手手榴弹盒"
+	desc = "一个光滑坚固的盒子，里面传出嗡嗡声。哦不。"
 
 /obj/item/storage/box/syndie_kit/bee_grenades/PopulateContents()
 	for(var/i in 1 to 3)
@@ -654,8 +654,8 @@
 		new /obj/item/clothing/head/hats/hos/shako(src)
 
 /obj/item/storage/box/syndie_kit/core_gear
-	name = "core equipment box"
-	desc = "Contains all the necessary gear for success for any nuclear operative unsure of what is needed for success in the field. Everything here WILL help you."
+	name = "核心装备盒"
+	desc = "包含核爆特工在战场上获得成功所需的一切装备，无论他是否清楚自己需要什么。这里的每样东西都一定能帮到你。"
 
 /obj/item/storage/box/syndie_kit/core_gear/PopulateContents()
 	new /obj/item/implanter/freedom (src)
@@ -667,19 +667,19 @@
 /// Surplus Ammo Box
 
 /obj/item/storage/box/syndie_kit/sniper_surplus
-	name = "surplus .50 BMG magazine box"
-	desc = "A shoddy box full of surplus .50 BMG magazines. Not as strong, but good enough to keep lead in the air."
+	name = "剩余 .50 BMG 弹匣盒"
+	desc = "一个粗糙的盒子，装满了剩余的 .50 BMG 弹匣。威力不算强，但足以让子弹持续飞出去。"
 
 /obj/item/storage/box/syndie_kit/sniper_surplus/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/ammo_box/magazine/sniper_rounds/surplus(src)
 
 /obj/item/storage/box/syndie_kit/shotgun_surplus
-	name = "\improper Donk Co. 'Donk Spike' flechette 12g Bulldog magazine box"
-	desc = "A shoddy box full of Donk Co. 'Donk Spike' flechette 12g. It is debatable whether or not these are actually \
-		better or worse than standard flechette. Donk Co. did genuinely believe in this product being the future of military \
-		ammunition production. The only reason it didn't see wider adoption was a lack of faith in the product. Do you \
-		believe in Donk? Time to put that to the test."
+	name = "\improper 咚克公司“咚克尖刺”12 号飞镖弹斗牛犬弹匣盒"
+	desc = "一个粗糙的盒子，装满了咚克公司“咚克尖刺”12 号飞镖弹。它们到底\
+		比标准飞镖弹更好还是更差，实在有待商榷。咚克公司真心相信这款产品代表着军事\
+		弹药生产的未来。它没能获得更广泛采用的唯一原因，就是人们对它缺乏信心。你\
+		相信咚克吗？是时候检验一下了。"
 
 /obj/item/storage/box/syndie_kit/shotgun_surplus/PopulateContents()
 	for(var/i in 1 to 7)
@@ -697,16 +697,16 @@
 	new /obj/item/storage/box/syndie_kit/signaler(src)
 
 /obj/item/storage/box/syndie_kit/signaler
-	name = "signaler box"
-	desc = "Contains everything an agent would need to remotely detonate their bombs."
+	name = "信号器盒"
+	desc = "包含特工远程引爆炸弹所需的一切。"
 
 /obj/item/storage/box/syndie_kit/signaler/PopulateContents()
 	for(var/i in 1 to 6)
 		new /obj/item/assembly/signaler(src)
 
 /obj/item/storage/box/syndie_kit/imp_deathrattle
-	name = "deathrattle implant box"
-	desc = "Contains eight linked deathrattle implants."
+	name = "亡语植入体盒"
+	desc = "包含八个相互链接的亡语植入体。"
 
 /obj/item/storage/box/syndie_kit/imp_deathrattle/PopulateContents()
 	new /obj/item/implanter(src)
@@ -720,7 +720,7 @@
 
 	for(var/i in implants)
 		group.register(i)
-	desc += " The implants are registered to the \"[group.name]\" group."
+	desc += " 这些植入体已注册到“[group.name]”组。"
 
 /obj/item/storage/box/stickers/syndie_kit/PopulateContents()
 	var/list/types = subtypesof(/obj/item/sticker/syndicate)
@@ -730,8 +730,8 @@
 		new type(src)
 
 /obj/item/storage/box/syndie_kit/pinata
-	name = "weapons grade pinata kit"
-	desc = "Contains a weapons grade pinata and 2 belts for carrying its contents."
+	name = "武器级皮纳塔套件"
+	desc = "包含一个武器级皮纳塔和两条用于携带其内容的腰带。"
 
 /obj/item/storage/box/syndie_kit/pinata/PopulateContents()
 	new /obj/item/pinata/syndie(src)
@@ -739,8 +739,8 @@
 	new /obj/item/storage/belt/military/snack(src)
 
 /obj/item/storage/box/syndie_kit/induction_kit
-	name = "syndicate induction kit"
-	desc = "Contains all you need for introducing your newest comrade to the Syndicate and all its worker's benefits."
+	name = "辛迪加入门套件"
+	desc = "包含向你的新同志介绍辛迪加及其全部员工福利所需的一切。"
 
 /obj/item/storage/box/syndie_kit/induction_kit/PopulateContents()
 	// Basic weaponry, so they have something to use.
@@ -771,13 +771,13 @@
 	// Pretty much all of it is a bad deal for reinforcements or yourself as they already have similar or good-enough alternatives.
 
 /obj/item/implanter/induction_implant
-	name = "implanter (nuclear operative)"
-	desc = "A sterile automatic implant injector. You can see a tiny, somehow legible sticker on the side: 'NOT A BRAINWASH DEVICE'"
+	name = "植入器（核爆特工）"
+	desc = "一支无菌自动植入注射器。侧面可以看到一张极小但勉强能读的贴纸：“不是洗脑装置”。"
 	imp_type = /obj/item/implant/nuclear_operative
 
 /obj/item/implant/nuclear_operative
-	name = "nuclear operative implant"
-	desc = "Registers you as a member of a Syndicate nuclear operative team."
+	name = "核爆特工植入体"
+	desc = "将你登记为辛迪加核爆特工小队的一员。"
 	implant_color = "r"
 
 /obj/item/implant/nuclear_operative/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
@@ -788,18 +788,18 @@
 
 	if(IS_NUKE_OP(human_target)) // this wont proc due to ..() but i guess its good as a just-in-case?
 		if(human_target == user)
-			to_chat(user, span_userdanger("You're already a nuclear operative, dumbass! The implant disintegrates within you! You feel sick..."))
+			to_chat(user, span_userdanger("你已经是核爆特工了，蠢货！植入体在你体内分解了！你感觉恶心……"))
 			human_target.Stun(10 SECONDS)
 			human_target.reagents.add_reagent(/datum/reagent/toxin, 10)
 			return FALSE
 		else
-			to_chat(user, span_notice("You finish implanting [human_target], but you don't really notice a difference. Huh."))
-			to_chat(human_target, span_userdanger("Nothing seems to really happen, but you start to feel a little ill.."))
+			to_chat(user, span_notice("你为[human_target]完成了植入，但并没有感觉到什么不同。嗯。"))
+			to_chat(human_target, span_userdanger("似乎什么都没发生，但你开始觉得有点不舒服……"))
 			human_target.reagents.add_reagent(/datum/reagent/toxin, 2)
 			return FALSE
 
 	if(!human_target.is_antag()) // GTFO. Technically not foolproof but making a heartbreaker or a paradox clone a nuke op sounds hilarious
-		to_chat(human_target, span_notice("Huh? Nothing happened? But you're starting to feel a little ill..."))
+		to_chat(human_target, span_notice("咦？什么都没发生？但你开始觉得有点不舒服……"))
 		human_target.reagents.add_reagent(/datum/reagent/toxin, 15)
 		return FALSE
 
@@ -809,8 +809,8 @@
 	nuke_datum.nukeop_outfit = null
 	human_target.mind?.add_antag_datum(nuke_datum)
 	human_target.add_faction(ROLE_SYNDICATE)
-	to_chat(human_target, span_warning("You are now a nuclear operative. Your main objective, if you were an antagonist and willing, is presumably to assist the nuclear operative team and secure the disk."))
-	to_chat(human_target, span_userdanger("This implant does NOT, in any way, brainwash you. If you were a normal crew member beforehand, forcibly implanted or otherwise, you are still one and cannot assist the nuclear operatives."))
+	to_chat(human_target, span_warning("你现在是一名核爆特工。如果你本来就是反派且愿意，你的主要目标大概就是协助核爆特工小队并夺取磁盘。"))
+	to_chat(human_target, span_userdanger("这个植入体绝不会以任何方式洗脑你。如果你原本就是普通船员，无论是否被强行植入，你依然是普通船员，不能协助核爆特工。"))
 	return TRUE
 
 /obj/item/implant/nuclear_operative/removed(mob/target, silent = FALSE, special = FALSE)
@@ -820,13 +820,13 @@
 	var/mob/living/living_target = target
 	living_target.mind.remove_antag_datum(/datum/antagonist/nukeop)
 	living_target.remove_faction(ROLE_SYNDICATE)
-	to_chat(target, span_notice("You feel a little less nuclear."))
-	to_chat(target, span_userdanger("You're no longer identified as a nuclear operative! You are free to follow any valid goals you wish, even continuing to secure the disk. Just make sure neither any turrets nor operatives kill you on sight."))
+	to_chat(target, span_notice("你感觉自己没那么“核”了。"))
+	to_chat(target, span_userdanger("你不再被认定为核爆特工！你可以自由追求任何正当目标，甚至继续夺取磁盘。只是要确保炮塔和特工都不会一见到你就开枪。"))
 	return TRUE
 
 /obj/item/storage/box/syndie_kit/poster_box
-	name = "syndicate poster pack"
-	desc = "Contains a variety of demotivational posters to ensure minimum productivity for the crew of any Nanotrasen station."
+	name = "辛迪加海报包"
+	desc = "包含各种打击士气的海报，确保任何纳米传讯空间站船员的效率降到最低。"
 
 	/// Number of posters this box contains when spawning.
 	var/poster_count = 3
@@ -836,8 +836,8 @@
 		new /obj/item/poster/traitor(src)
 
 /obj/item/storage/box/syndie_kit/cowboy
-	name = "western outlaw pack"
-	desc = "Contains everything you'll need to be the rootin' tootin' cowboy you always wanted. Either play the Lone Ranger or go in with your posse of outlaws."
+	name = "西部亡命徒包"
+	desc = "包含你成为梦想中那个威风凛凛的牛仔所需的一切。你可以扮演孤胆游侠，也可以带着你的亡命徒帮派一起行动。"
 
 /obj/item/storage/box/syndie_kit/cowboy/PopulateContents()
 	generate_items_inside(list(
@@ -851,8 +851,8 @@
 	), src)
 
 /obj/item/storage/box/syndicate/contract_kit
-	name = "Contract Kit"
-	desc = "Supplied to Syndicate contractors."
+	name = "合同套件"
+	desc = "配发给辛迪加承包商。"
 	icon_state = "syndiebox"
 	illustration = "writing_syndie"
 
@@ -864,8 +864,8 @@
 	new /obj/item/paper/contractor_guide(src)
 
 /obj/item/storage/box/syndicate/contractor_loadout
-	name = "Standard Loadout"
-	desc = "Supplied to Syndicate contractors, providing their specialised space suit and chameleon uniform."
+	name = "标准装备"
+	desc = "配发给辛迪加承包商，提供其专用太空服和变色龙制服。"
 	icon_state = "syndiebox"
 	illustration = "writing_syndie"
 
@@ -883,8 +883,8 @@
 	new /obj/item/lighter(src)
 
 /obj/item/storage/box/syndicate/horse_box
-	name = "A pony box"
-	desc = "This is a set containing a syndicate pony cube and an apple, for the best cowboys in the wild station! Don't make an apple pie!"
+	name = "小马盒"
+	desc = "一套包含辛迪加小马方块和一个苹果的套装，献给野外空间站上最好的牛仔！千万别做苹果派！"
 	icon_state = "syndiebox"
 	illustration = "writing_syndie"
 

@@ -22,12 +22,12 @@
 
 /datum/map_generator/lavaland/ground_only
 	modules = list(/datum/map_generator_module/bottom_layer/lavaland_default)
-	buildmode_name = "Block: Lavaland Floor"
+	buildmode_name = "区块：熔岩地带地面"
 
 /datum/map_generator/lavaland/dense_ores
 	modules = list(/datum/map_generator_module/bottom_layer/lavaland_mineral/dense)
-	buildmode_name = "Block: Lavaland Ores: Dense"
+	buildmode_name = "区块：熔岩地带矿石：密集"
 
 /datum/map_generator/lavaland/normal_ores
 	modules = list(/datum/map_generator_module/bottom_layer/lavaland_mineral)
-	buildmode_name = "Block: Lavaland Ores"
+	buildmode_name = "区块：熔岩地带矿石"

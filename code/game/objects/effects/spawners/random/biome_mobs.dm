@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/biome_mob
 	name = "random biome mob"
-	desc = "Spawns a random mob from a biome"
+	desc = "生成某个生态群落中的随机生物。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "large_egg"
 	spawn_scatter_radius = 1

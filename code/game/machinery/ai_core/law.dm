@@ -3,7 +3,7 @@
 #define MODULE_WELDED 2
 
 /// Formats a module name for display
-#define MODULE_NAME(all_modules, named_module) (all_modules[named_module] == MODULE_WELDED ? "unidentified welded module" : (named_module?.name || "Empty"))
+#define MODULE_NAME(all_modules, named_module) (all_modules[named_module] == MODULE_WELDED ? "无法辨认的焊接模块" : (named_module?.name || "空"))
 
 /datum/armor/obj_machinery/law_rack
 	melee = 50
@@ -19,8 +19,8 @@
 	laser = 10
 
 /obj/machinery/ai_law_rack
-	name = "module rack"
-	desc = "A module rack. This one just holds modules, it doesn't do anything with it."
+	name = "模块架"
+	desc = "一个模块架。这个只能存放模块，不能使用其中的模块。"
 	icon = 'icons/obj/machines/law_rack.dmi'
 	icon_state = "law_rack"
 	density = TRUE
@@ -56,7 +56,7 @@
 	update_appearance()
 	if(!mapload)
 		log_silicon("\A [name] was created at [loc_name(src)].")
-		message_admins("\A [name] was created at [ADMIN_VERBOSEJMP(src)].")
+		message_admins("[name]已在[ADMIN_VERBOSEJMP(src)]创建。")
 	register_context()
 
 /obj/machinery/ai_law_rack/Destroy()
@@ -66,35 +66,35 @@
 /obj/machinery/ai_law_rack/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(held_item?.tool_behaviour == TOOL_WRENCH && !secured)
-		context[SCREENTIP_CONTEXT_LMB] = anchored ? "Unfasten" : "Fasten"
+		context[SCREENTIP_CONTEXT_LMB] = anchored ? "解除固定" : "固定"
 		context[SCREENTIP_CONTEXT_RMB] = context[SCREENTIP_CONTEXT_LMB]
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item?.tool_behaviour == TOOL_WIRECUTTER)
-		context[SCREENTIP_CONTEXT_LMB] = secured ? "Unsecure" : "Secure"
+		context[SCREENTIP_CONTEXT_LMB] = secured ? "解除加固" : "加固"
 		context[SCREENTIP_CONTEXT_RMB] = context[SCREENTIP_CONTEXT_LMB]
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item?.tool_behaviour == TOOL_WELDER)
-		context[SCREENTIP_CONTEXT_LMB] = "Weld modules (in UI)"
+		context[SCREENTIP_CONTEXT_LMB] = "焊接模块（在界面中）"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item?.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "Screw modules (in UI)"
+		context[SCREENTIP_CONTEXT_LMB] = "拧动模块螺丝（在界面中）"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item?.tool_behaviour == TOOL_MULTITOOL)
-		context[SCREENTIP_CONTEXT_LMB] = "Repair modules (in UI)"
+		context[SCREENTIP_CONTEXT_LMB] = "修复模块（在界面中）"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/multitool))
 		var/obj/item/multitool/tool = held_item
 		if(istype(tool.buffer, /obj/structure/ai_core))
-			context[SCREENTIP_CONTEXT_LMB] = "Link core to rack" // overrides above message
+			context[SCREENTIP_CONTEXT_LMB] = "将核心连接到模块架" // overrides above message
 			. = CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/ai_module))
-		context[SCREENTIP_CONTEXT_LMB] = "Insert module"
+		context[SCREENTIP_CONTEXT_LMB] = "插入模块"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/ai_law_rack/base/on_set_is_operational(old_value)
@@ -130,17 +130,17 @@
 
 /obj/machinery/ai_law_rack/proc/can_secure_check(mob/living/user)
 	if(!anchored)
-		balloon_alert(user, "fasten it first!")
+		balloon_alert(user, "先将其固定！")
 		return FALSE
 	if(!is_anchorable_floor(loc))
-		balloon_alert(user, "nothing to secure to!")
+		balloon_alert(user, "没有可供固定的表面！")
 		return FALSE
 	return TRUE
 
 /obj/machinery/ai_law_rack/can_be_unfasten_wrench(mob/living/user, silent)
 	if(secured)
 		if(!silent)
-			balloon_alert(user, "unsecure it first!")
+			balloon_alert(user, "先解除加固！")
 		return FAILED_UNFASTEN
 	return ..()
 
@@ -153,7 +153,7 @@
 		if(FAILED_UNFASTEN)
 			return ITEM_INTERACT_BLOCKING
 		if(SUCCESSFUL_UNFASTEN)
-			balloon_alert_to_viewers("[anchored ? "":"un"]fastened")
+			balloon_alert_to_viewers("已[anchored ? "固定":"解除固定"]")
 			return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -166,11 +166,11 @@
 		return ITEM_INTERACT_BLOCKING
 	if(!can_secure_check(user))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert_to_viewers("[secured ? "un":""]securing to floor...")
+	balloon_alert_to_viewers("正在[secured ? "解除地面加固":"加固至地面"]……")
 	if(!tool.use_tool(src, user, 6 SECONDS, volume = 50, extra_checks = CALLBACK(src, PROC_REF(can_secure_check), user)))
 		return ITEM_INTERACT_BLOCKING
 	secured = !secured
-	balloon_alert_to_viewers("[secured ? "":"un"]secured")
+	balloon_alert_to_viewers("已[secured ? "加固":"解除加固"]")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/ai_law_rack/wirecutter_act_secondary(mob/living/user, obj/item/tool)
@@ -192,7 +192,7 @@
 	var/obj/structure/ai_core/to_link = tool.buffer
 	to_link.default_link_ref = WEAKREF(src)
 	tool.play_tool_sound(src, 20)
-	balloon_alert(user, "linked core to rack")
+	balloon_alert(user, "核心已连接至模块架")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/ai_law_rack/vv_edit_var(var_name, var_value)
@@ -217,24 +217,24 @@
 		return
 
 	if(!isobserver(user) && get_dist(user, src) > LAW_EXAMINE_RANGE)
-		. += span_notice("If you got a bit closer, you could probably [EXAMINE_HINT("examine closer")] to see what modules are installed.")
+		. += span_notice("再靠近一些，就能[EXAMINE_HINT("仔细查看")]已安装的模块。")
 	else
-		. += span_notice("[EXAMINE_HINT("Examine closer")] to see what modules are installed.")
+		. += span_notice("[EXAMINE_HINT("仔细查看")]即可确认已安装的模块。")
 	var/filled = 0
 	for(var/obj/item/ai_module/module in ai_modules)
 		filled++
-	. += span_info("Otherwise, you can see that [filled] out of [length(ai_modules)] slots are filled.")
+	. += span_info("目前可以看出，[length(ai_modules)]个插槽中有[filled]个已被占用。")
 	if(has_core_slot && isnull(get_core_module()))
-		. += span_warning("You also note that the core slot is empty!")
+		. += span_warning("你还注意到核心插槽是空的！")
 	if(anchored)
-		. += span_notice("It is [EXAMINE_HINT("anchored")] to the floor[secured ? " and [EXAMINE_HINT("secured with metal cables")]" : ", but not [EXAMINE_HINT("secured by metal cables")]"].")
+		. += span_notice("它已[EXAMINE_HINT("固定")]在地面上[secured ? "，并[EXAMINE_HINT("用金属缆线加固")]" : "，但尚未[EXAMINE_HINT("用金属缆线加固")]"]。")
 
 /obj/machinery/ai_law_rack/examine_more(mob/user)
 	. = ..()
 	if(isAI(user))
 		return
 	if(!isobserver(user) && get_dist(user, src) > LAW_EXAMINE_RANGE)
-		. += span_warning("You can't quite make out which modules are installed in [src] from here.")
+		. += span_warning("从这里看不清[src]中安装了哪些模块。")
 		return
 	for(var/i in 1 to length(ai_modules))
 		. += get_slot_examine(i)
@@ -242,19 +242,19 @@
 /obj/machinery/ai_law_rack/proc/get_slot_examine(slot)
 	var/obj/item/ai_module/module = ai_modules[slot]
 	var/list/text = list()
-	text += span_info("&bull; [slot == 1 && has_core_slot ? "Core" : "Slot [slot - 1]"]: [MODULE_NAME(ai_modules, module)]")
+	text += span_info("&bull; [slot == 1 && has_core_slot ? "核心" : "插槽[slot - 1]"]：[MODULE_NAME(ai_modules, module)]")
 	if(module)
-		var/secure_desc = "Bugged (report this)"
+		var/secure_desc = "出现错误（请报告）"
 		switch(ai_modules[module])
 			if(MODULE_UNSECURED)
-				secure_desc = "Unsecured"
+				secure_desc = "未固定"
 			if(MODULE_SCREWED)
-				secure_desc = "Screwed"
+				secure_desc = "已用螺丝固定"
 			if(MODULE_WELDED)
-				secure_desc = "Welded"
+				secure_desc = "已焊接"
 		text += span_notice(secure_desc)
 	if(astype(module, /obj/item/ai_module/law)?.ioned)
-		text += span_warning("It's smoking.")
+		text += span_warning("它正在冒烟。")
 	return jointext(text, span_info(" - "))
 
 #undef LAW_EXAMINE_RANGE
@@ -312,7 +312,7 @@
 
 /obj/machinery/ai_law_rack/ui_interact(mob/user, datum/tgui/ui)
 	if(issilicon(user))
-		to_chat(user, span_warning("Your programming forbids you from using this."))
+		to_chat(user, span_warning("你的程序禁止你使用它。"))
 		return
 	if(COOLDOWN_FINISHED(src, refresh_cooldown))
 		refresh_linkable_lists()
@@ -359,25 +359,25 @@
 			var/index = clamp(text2num(params["slot"]), 1, length(ai_modules))
 			var/obj/item/ai_module/module = user.get_active_held_item()
 			if(!istype(module))
-				to_chat(user, span_warning("You need to hold an AI module to insert it!"))
+				to_chat(user, span_warning("你必须手持 AI 模块才能插入！"))
 				return TRUE
 			if(!module.can_install_to_rack(user, src))
 				return TRUE
 			if(istype(module, /obj/item/ai_module/law/core))
 				if(!has_core_slot)
-					to_chat(user, span_warning("[src] has no slots for core modules!"))
+					to_chat(user, span_warning("[src]没有核心模块插槽！"))
 					return TRUE
 				if(index != 1)
-					to_chat(user, span_warning("You can't install a core module in a non-core slot!"))
+					to_chat(user, span_warning("你不能把核心模块装入非核心插槽！"))
 					return TRUE
 			else if(has_core_slot)
 				if(index == 1)
-					to_chat(user, span_warning("You can only install core modules in the core slot!"))
+					to_chat(user, span_warning("核心插槽只能安装核心模块！"))
 					return TRUE
 			if(!user.transferItemToLoc(module, src))
-				to_chat(user, span_warning("You can't seem to insert [module.name] into [src]!"))
+				to_chat(user, span_warning("你似乎无法把[module.name]插入[src]！"))
 				return TRUE
-			balloon_alert_to_viewers("inserted slot [index]")
+			balloon_alert_to_viewers("已插入插槽[index]")
 			playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 			module.pre_user_install_to_rack(user, src)
 			module.log_install(user, src)
@@ -393,7 +393,7 @@
 			module.log_uninstall(user, src)
 			// calls exited which handles updating laws and such
 			try_put_in_hand(module, user)
-			balloon_alert_to_viewers("removed slot [index]")
+			balloon_alert_to_viewers("已取出插槽[index]的模块")
 			playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 			return TRUE
 
@@ -408,7 +408,7 @@
 				return TRUE
 			if(!screwer.tool_start_check(user))
 				return TRUE
-			balloon_alert_to_viewers("[ai_modules[module] == MODULE_SCREWED ? "un":""]screwing slot [index]...")
+			balloon_alert_to_viewers("正在[ai_modules[module] == MODULE_SCREWED ? "松开":"拧紧"]插槽[index]的螺丝……")
 			if(!screwer.use_tool(src, user, 3 SECONDS, volume = 25))
 				return TRUE
 			module = ai_modules[index]
@@ -431,7 +431,7 @@
 				return TRUE
 			if(!welder.tool_start_check(user, amount = 1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 				return TRUE
-			balloon_alert_to_viewers("[ai_modules[module] == MODULE_WELDED ? "un":""]welding slot [index]...")
+			balloon_alert_to_viewers("正在[ai_modules[module] == MODULE_WELDED ? "切开":"焊接"]插槽[index]……")
 			if(!welder.use_tool(src, user, 3 SECONDS, volume = 25, amount = 1))
 				return TRUE
 			module = ai_modules[index]
@@ -578,24 +578,24 @@
 	return .
 
 /obj/item/paper/law_rack_tutorial
-	name = "read me, confused captain"
-	default_raw_text = "This is a brand new way to interact with the wild, untamed silicon.<br><br>\
-		How it works: Laws go in. Ai gets laws. Laws are in order of laws in rack. Simple, right?<br><br>\
-		The top law there is ALL of Asimov, all 3 laws. Additional laws are supplied by the single, using freeform law boards.<br><br>\
-		Modules can be screwed and welded in for extra security. You can see Asimov, there, is welded - \
-		concealing the name, but making it harder to remove.<br><br>\
-		You can also install AI upgrades here if you have any. Either from RND or Lavaland.<br><br>\
-		Any number of silicons can be linked to this single rack, and they will all share the same laws. Cyborgs can still be linked to AIs as an intermediary.<br><br>\
-		Ion storms can damage rack modules. If damaged, you need to use a multitool on them. You can multitool them while they're still in the rack.<br><br>\
-		Silicons can be manually linked and unlinked from this location (rack). \
-		Newly constructed silicons will automatically link to this rack unless they are supplied another rack via multitool.<br><br>\
-		People can still subvert the AI by constructing \"broadcast module racks\", so don't get complacent.<br><br>\
-		Refer any further questions to Central Command. Godspeed."
+	name = "困惑的舰长，请读我"
+	default_raw_text = "这是与桀骜不驯的硅基生命互动的全新方式。<br><br>\
+		工作原理：放入法则，AI 获得法则。法则按模块架上的顺序排列。很简单，对吧？<br><br>\
+		最上方的模块包含完整的阿西莫夫三定律，三条都在里面。其他法则可用自由编写的法则板逐条添加。<br><br>\
+		模块可以用螺丝或焊接固定，以提高安全性。你可以看到阿西莫夫模块已被焊死——\
+		虽然名称因此无法辨认，但也更难拆下。<br><br>\
+		如果你有来自研发部或熔岩地带的 AI 升级模块，也可以装在这里。<br><br>\
+		任意数量的硅基生命都能连接至同一个模块架，并共享相同的法则。半机械人仍然可以通过 AI 间接连接。<br><br>\
+		离子风暴可能损坏模块架中的模块。若有损坏，需要用多功能工具修复。模块不必取出就能修复。<br><br>\
+		你可以在这里（模块架上）手动连接或断开硅基生命。\
+		新建的硅基生命会自动连接至此模块架，除非事先用多功能工具指定了其他模块架。<br><br>\
+		其他人仍然可以建造“广播模块架”来篡改 AI 法则，所以不要掉以轻心。<br><br>\
+		如有其他疑问，请咨询中央指挥部。祝你好运。"
 
 // Broadcasts laws to another law rack, can't link directly to AIs
 /obj/machinery/ai_law_rack/broadcaster
-	name = "broadcast module rack"
-	desc = "A module rack designed to broadcast the laws remotely to another rack."
+	name = "广播模块架"
+	desc = "用于向另一个模块架远程广播法则的模块架。"
 	icon_state = "broadcast_rack"
 	base_icon_state = "broadcast_rack"
 	armor_type = /datum/armor/obj_machinery/law_rack/portable
@@ -651,10 +651,10 @@
 			if(isnull(parent_rack))
 				return TRUE
 			if(!parent_rack.is_operational)
-				balloon_alert(user, "failed to unlink!")
+				balloon_alert(user, "断开连接失败！")
 				return TRUE
 			parent_rack.unlink_child_law_rack(src)
-			balloon_alert_to_viewers("unlinked from [parent_rack.name]")
+			balloon_alert_to_viewers("已与[parent_rack.name]断开连接")
 			playsound(src, 'sound/machines/terminal/terminal_off.ogg', 50, TRUE)
 			return TRUE
 
@@ -665,10 +665,10 @@
 			if(isnull(parent_rack))
 				return TRUE
 			if(!parent_rack.is_operational)
-				balloon_alert(user, "failed to link!")
+				balloon_alert(user, "连接失败！")
 				return TRUE
 			parent_rack.link_child_law_rack(src)
-			balloon_alert_to_viewers("linked to [parent_rack.name]")
+			balloon_alert_to_viewers("已连接至[parent_rack.name]")
 			playsound(src, 'sound/machines/terminal/terminal_on.ogg', 50, TRUE)
 			return TRUE
 
@@ -715,8 +715,8 @@
 
 // Links to AIs to provide their laws
 /obj/machinery/ai_law_rack/base
-	name = "standard module rack"
-	desc = "A simple module rack. It has a slot for a core module, but far fewer slots than a core module rack."
+	name = "标准模块架"
+	desc = "一个简易模块架。它有核心模块插槽，但总插槽数远少于核心模块架。"
 	has_core_slot = TRUE
 	drag_slowdown = 2
 	/// List of law racks which are linked to this law rack, contributing to our lawset
@@ -757,7 +757,7 @@
 	RegisterSignal(child, COMSIG_QDELETING, PROC_REF(unlink_child_law_rack))
 	update_lawset()
 	update_static_data_for_all_viewers()
-	child.AddComponent(/datum/component/gps, "Active Broadcaster Rack")
+	child.AddComponent(/datum/component/gps, "活动广播模块架")
 	child.update_appearance()
 	child.update_static_data_for_all_viewers()
 
@@ -819,7 +819,7 @@
 			if(removed_bot)
 				unlink_silicon(removed_bot)
 			linked_mobs -= removed_name
-			balloon_alert_to_viewers("unlinked silicon", "unlinked [removed_name]")
+			balloon_alert_to_viewers("已断开硅基生命连接", "已与[removed_name]断开连接")
 			playsound(src, 'sound/machines/terminal/terminal_off.ogg', 50, TRUE)
 			return TRUE
 		if("link_silicon")
@@ -835,7 +835,7 @@
 			// Otherwise we can just verify can_link_to (this was already ran in ui data)
 			else if(can_link_to(new_bot))
 				link_silicon(new_bot)
-				balloon_alert_to_viewers("linked silicon", "linked to [new_bot.name]")
+				balloon_alert_to_viewers("已连接硅基生命", "已连接至[new_bot.name]")
 				playsound(src, 'sound/machines/terminal/terminal_on.ogg', 50, TRUE)
 			return TRUE
 
@@ -886,7 +886,7 @@
 	for(var/mob/living/silicon/linked in assoc_to_values(linked_mobs))
 		if(!can_link_to(linked) || !rack_stun(linked))
 			continue
-		to_chat(linked, span_userdanger("Rack connection lost. Recalculating directives..."))
+		to_chat(linked, span_userdanger("模块架连接丢失。正在重新计算指令……"))
 		unlink_silicon(linked)
 
 /obj/machinery/ai_law_rack/base/proc/link_silicon(mob/living/silicon/new_bot, announce = TRUE)
@@ -905,7 +905,7 @@
 	update_static_data_for_all_viewers()
 	for(var/obj/item/ai_module/installed in ai_modules)
 		installed.silicon_linked_to_installed(new_bot)
-	AddComponent(/datum/component/gps, "Active Module Rack")
+	AddComponent(/datum/component/gps, "活动模块架")
 
 /obj/machinery/ai_law_rack/base/proc/unlink_silicon(mob/living/silicon/unlinked_bot)
 	if(!QDELING(unlinked_bot) && issilicon(unlinked_bot)) // TBH I don't know why this issilicon is here.
@@ -944,7 +944,7 @@
 	for(var/mob/living/silicon/bot in assoc_to_values(linked_mobs))
 		if(!rack_stun(bot))
 			continue
-		to_chat(bot, span_userdanger("Rack connection lost. Recalculating directives..."))
+		to_chat(bot, span_userdanger("模块架连接丢失。正在重新计算指令……"))
 		unlink_silicon(bot)
 
 /// Attempts to stun a linked bot and prevent it from interacting with certain devices
@@ -966,7 +966,7 @@
 		return
 	for(var/link_name, link_mob in linked_mobs)
 		if(link_mob == user)
-			. += span_notice("This is <b>your</b> module rack.")
+			. += span_notice("这是<b>你的</b>模块架。")
 
 /// Refreshes the combined lawset with all the modules currently installed and syncs it to all linked silicons
 /obj/machinery/ai_law_rack/base/proc/update_lawset()
@@ -1017,10 +1017,10 @@
 	return src
 
 /obj/machinery/ai_law_rack/base/core
-	name = "core module rack"
-	desc = "A massive module rack which can hold many modules including a core law module. \
-		It can even be linked to other module racks to add additional slots. \
-		Designed to be used by the station's primary AI and its legion of cyborgs."
+	name = "核心模块架"
+	desc = "一个巨大的模块架，可容纳包括核心法则模块在内的众多模块。\
+		还可以连接其他模块架以增加插槽。\
+		专供空间站主 AI 及其半机械人大军使用。"
 	icon_state = "core_rack"
 	max_integrity = 500
 	law_slots = 10
@@ -1055,8 +1055,8 @@
 			add_ai_module(new core(src), 1, MODULE_WELDED)
 
 /obj/machinery/ai_law_rack/base/small
-	name = "portable module rack"
-	desc = "A smaller module rack, with just enough slots to construct a basic lawset."
+	name = "便携模块架"
+	desc = "一个较小的模块架，插槽刚好够构建一套基本法则。"
 	icon_state = "small_rack"
 	armor_type = /datum/armor/obj_machinery/law_rack/portable
 	max_integrity = 200

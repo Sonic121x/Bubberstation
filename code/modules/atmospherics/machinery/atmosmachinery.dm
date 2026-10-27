@@ -120,11 +120,11 @@
 
 /obj/machinery/atmospherics/examine(mob/user)
 	. = ..()
-	. += span_notice("[src] is on layer [piping_layer].")
+	. += span_notice("[src] 位于第 [piping_layer] 层。")
 	if((vent_movement & VENTCRAWL_ENTRANCE_ALLOWED) && isliving(user))
 		var/mob/living/L = user
 		if(HAS_TRAIT(L, TRAIT_VENTCRAWLER_NUDE) || HAS_TRAIT(L, TRAIT_VENTCRAWLER_ALWAYS))
-			. += span_notice("Alt-click to crawl through it.")
+			. += span_notice("按住 Alt 点击可从其中爬过。")
 
 /**
  * Sets up our pipe hiding logic, consolidated in one place so subtypes may override it.
@@ -447,17 +447,17 @@
 		empty_pipe = TRUE
 
 	if(!empty_pipe)
-		to_chat(user, span_notice("You begin to unfasten \the [src]..."))
+		to_chat(user, span_notice("你开始拧松 [src]……"))
 
 	if (internal_pressure > 2 * ONE_ATMOSPHERE)
-		to_chat(user, span_warning("As you begin unwrenching \the [src] a gush of air blows in your face... maybe you should reconsider?"))
+		to_chat(user, span_warning("当你开始拧松 [src] 时，一股气流扑面而来……也许你该重新考虑？"))
 		unsafe_wrenching = TRUE //Oh dear oh dear
 
 	if(I.use_tool(src, user, empty_pipe ? 0 : 2 SECONDS, volume = 50))
 		user.visible_message( \
-			"[user] unfastens \the [src].", \
-			span_notice("You unfasten \the [src]."), \
-			span_hear("You hear ratchet."))
+			"[user] 拧松了 [src]。", \
+			span_notice("你拧松了 [src]。"), \
+			span_hear("你听到棘轮声。"))
 		investigate_log("was [span_warning("REMOVED")] by [key_name(usr)]", INVESTIGATE_ATMOS)
 
 		//You unwrenched a pipe full of pressure? Let's splat you into the wall, silly.
@@ -495,7 +495,7 @@
 		var/datum/gas_mixture/env_air = loc.return_air()
 		pressures = int_air.return_pressure() - env_air.return_pressure()
 
-	user.visible_message(span_danger("[user] is sent flying by pressure!"),span_userdanger("The pressure sends you flying!"))
+	user.visible_message(span_danger("[user] 被气压弹飞了！"),span_userdanger("气压把你弹飞了！"))
 
 	// if get_dir(src, user) is not 0, target is the edge_target_turf on that dir
 	// otherwise, edge_target_turf uses a random cardinal direction

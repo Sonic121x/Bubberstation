@@ -4,8 +4,8 @@
 
 /// Holymelon's anti-magic trait. Charges based on potency.
 /datum/plant_gene/trait/anti_magic
-	name = "Anti-Magic Vacuoles"
-	description = "You can hide behind it from a fireball!"
+	name = "反魔法液泡"
+	description = "你可以躲在它后面，挡下火球！"
 	icon = FA_ICON_HAND_SPARKLES
 	/// The amount of anti-magic blocking uses we have.
 	var/shield_uses = 1
@@ -27,25 +27,25 @@
 
 /// When the plant our gene is hosted in is drained of an anti-magic charge.
 /datum/plant_gene/trait/anti_magic/proc/drain_antimagic(mob/user, obj/item/our_plant)
-	to_chat(user, span_warning("[our_plant] hums slightly, and seems to decay a bit."))
+	to_chat(user, span_warning("[our_plant] 微微嗡鸣，似乎衰减了一些。"))
 
 /// When the plant our gene is hosted in is drained of all of its anti-magic charges.
 /datum/plant_gene/trait/anti_magic/proc/expire(mob/user, obj/item/our_plant)
-	to_chat(user, span_warning("[our_plant] rapidly turns into ash!"))
+	to_chat(user, span_warning("[our_plant] 迅速化为灰烬！"))
 	new /obj/effect/decal/cleanable/ash(our_plant.drop_location())
 	qdel(our_plant)
 
 /// Traits that turn a plant into a weapon, giving them force and effects on attack.
 /datum/plant_gene/trait/attack
-	name = "On Attack Trait"
-	description = "It is a very dangerous weapon."
+	name = "攻击时特性"
+	description = "它是一件非常危险的武器。"
 	icon = FA_ICON_HAND_FIST
 	/// The multiplier we apply to the potency to calculate force. Set to 0 to not affect the force.
 	var/force_multiplier = 0
 	/// If TRUE, our plant will degrade in force every hit until diappearing.
 	var/degrades_after_hit = FALSE
 	/// When we fully degrade, what degraded off of us?
-	var/degradation_noun = "leaves"
+	var/degradation_noun = "叶片"
 
 /datum/plant_gene/trait/attack/on_new_plant(obj/item/our_plant, newloc)
 	. = ..()
@@ -100,16 +100,16 @@
 		return
 
 	// When our force degrades to zero or below, we're all done
-	to_chat(user, span_warning("All the [degradation_noun] have fallen off [our_plant] from violent whacking!"))
+	to_chat(user, span_warning("猛烈的敲击下，[our_plant] 上的[degradation_noun]全都掉光了！"))
 	qdel(our_plant)
 
 /// Novaflower's attack effects (sets people on fire) + degradation on attack
 /datum/plant_gene/trait/attack/novaflower_attack
-	name = "Heated Petals"
-	description = "Hitting with it may cause things to combust."
+	name = "炽热花瓣"
+	description = "用它击打可能使目标燃烧。"
 	force_multiplier = 0.2
 	degrades_after_hit = TRUE
-	degradation_noun = "petals"
+	degradation_noun = "花瓣"
 	trait_flags = TRAIT_SHOW_EXAMINE
 
 /datum/plant_gene/trait/attack/novaflower_attack/attack_effect(obj/item/our_plant, mob/living/target, mob/living/user)
@@ -117,45 +117,45 @@
 		return
 
 	var/obj/item/seeds/our_seed = our_plant.get_plant_seed()
-	to_chat(target, span_danger("You are lit on fire from the intense heat of [our_plant]!"))
+	to_chat(target, span_danger("你被 [our_plant] 的炽热火焰点燃了！"))
 	target.adjust_fire_stacks(round(our_seed.potency / 20))
 	if(target.ignite_mob())
-		message_admins("[ADMIN_LOOKUPFLW(user)] set [ADMIN_LOOKUPFLW(target)] on fire with [our_plant] at [AREACOORD(user)]")
-		user.log_message("set [key_name(target)] on fire with [our_plant]", LOG_ATTACK)
-		target.log_message("was set on fire by [key_name(user)] with [our_plant].", LOG_VICTIM, log_globally = FALSE)
-	our_plant.investigate_log("was used by [key_name(user)] to burn [key_name(target)] at [AREACOORD(user)]", INVESTIGATE_BOTANY)
+		message_admins("[ADMIN_LOOKUPFLW(user)] 在 [AREACOORD(user)] 用 [our_plant] 点燃了 [ADMIN_LOOKUPFLW(target)]")
+		user.log_message("用 [our_plant] 点燃了 [key_name(target)]", LOG_ATTACK)
+		target.log_message("被 [key_name(user)] 用 [our_plant] 点燃了。", LOG_VICTIM, log_globally = FALSE)
+	our_plant.investigate_log("被 [key_name(user)] 用来在 [AREACOORD(user)] 烧灼 [key_name(target)]", INVESTIGATE_BOTANY)
 
 /// Sunflower's attack effect (shows cute text)
 /datum/plant_gene/trait/attack/sunflower_attack
-	name = "Bright Petals"
-	description = "Makes others feel the power on hit."
+	name = "明亮花瓣"
+	description = "击中时让对手感受力量。"
 
 /datum/plant_gene/trait/attack/sunflower_attack/after_attack_effect(obj/item/our_plant, atom/target, mob/user, list/modifiers)
 	if(ismob(target))
 		var/mob/target_mob = target
-		user.visible_message("<font color='green'>[user] smacks [target_mob] with [user.p_their()] [our_plant.name]! <font color='orange'><b>FLOWER POWER!</b></font></font>", ignored_mobs = list(target_mob, user))
+		user.visible_message("<font color='green'>[user] 用其 [our_plant.name] 拍向 [target_mob]！<font color='orange'><b>花朵之力！</b></font></font>", ignored_mobs = list(target_mob, user))
 		if(target_mob != user)
-			to_chat(target_mob, "<font color='green'>[user] smacks you with [our_plant]!<font color='orange'><b>FLOWER POWER!</b></font></font>")
-		to_chat(user, "<font color='green'>Your [our_plant.name]'s <font color='orange'><b>FLOWER POWER</b></font> strikes [target_mob]!</font>")
+			to_chat(target_mob, "<font color='green'>[user] 用 [our_plant] 拍中了你！<font color='orange'><b>花朵之力！</b></font></font>")
+		to_chat(user, "<font color='green'>你的 [our_plant.name] 的 <font color='orange'><b>花朵之力</b></font> 击中了 [target_mob]！</font>")
 
 	return ..()
 
 /// Normal nettle's force + degradation on attack
 /datum/plant_gene/trait/attack/nettle_attack
-	name = "Sharpened Leaves"
+	name = "锋利叶片"
 	force_multiplier = 0.2
 	degrades_after_hit = TRUE
 
 /// Deathnettle force + degradation on attack
 /datum/plant_gene/trait/attack/nettle_attack/death
-	name = "Aggressive Sharpened Leaves"
+	name = "凶暴锋利叶片"
 	force_multiplier = 0.4
 
 /// Traits for plants with backfire effects. These are negative effects that occur when a plant is handled without gloves/unsafely.
 /datum/plant_gene/trait/backfire
-	name = "Backfire Trait"
+	name = "反噬特性"
 	icon = FA_ICON_MITTEN
-	description = "Be careful when holding it without protection."
+	description = "徒手拿取时务必小心。"
 	/// Whether our actions are cancelled when the backfire triggers.
 	var/cancel_action_on_backfire = FALSE
 	/// A list of extra traits to check to be considered safe.
@@ -189,47 +189,47 @@
 
 /// Rose's prick on backfire
 /datum/plant_gene/trait/backfire/rose_thorns
-	name = "Rose Thorns"
-	description = "The stem has a lot of thorns."
+	name = "玫瑰刺"
+	description = "茎上长满尖刺。"
 	traits_to_check = list(TRAIT_PIERCEIMMUNE)
 	trait_flags = TRAIT_SHOW_EXAMINE
 
 /datum/plant_gene/trait/backfire/rose_thorns/backfire_effect(obj/item/our_plant, mob/living/carbon/user)
 	var/obj/item/seeds/our_seed = our_plant.get_plant_seed()
 	if(!our_seed.get_gene(/datum/plant_gene/trait/sticky) && prob(66))
-		to_chat(user, span_danger("[our_plant]'s thorns nearly prick your hand. Best be careful."))
+		to_chat(user, span_danger("[our_plant] 的尖刺险些扎到你的手。最好小心点。"))
 		return
 
-	to_chat(user, span_danger("[our_plant]'s thorns prick your hand. Ouch."))
-	our_plant.investigate_log("rose-pricked [key_name(user)] at [AREACOORD(user)]", INVESTIGATE_BOTANY)
+	to_chat(user, span_danger("[our_plant] 的尖刺扎进了你的手。好痛。"))
+	our_plant.investigate_log("在 [AREACOORD(user)] 用玫瑰刺扎了 [key_name(user)]", INVESTIGATE_BOTANY)
 	user.apply_damage(2, BRUTE, user.get_active_hand())
 
 /// Novaflower's hand burn on backfire
 /datum/plant_gene/trait/backfire/novaflower_heat
-	name = "Burning Stem"
-	description = "The stem may burn your hand."
+	name = "灼热茎秆"
+	description = "茎秆可能会烫伤你的手。"
 	cancel_action_on_backfire = TRUE
 	trait_flags = TRAIT_SHOW_EXAMINE
 
 /datum/plant_gene/trait/backfire/novaflower_heat/backfire_effect(obj/item/our_plant, mob/living/carbon/user)
-	to_chat(user, span_danger("[our_plant] singes your bare hand!"))
-	our_plant.investigate_log("self-burned [key_name(user)] for [our_plant.force] at [AREACOORD(user)]", INVESTIGATE_BOTANY)
+	to_chat(user, span_danger("[our_plant] 灼伤了你的手！"))
+	our_plant.investigate_log("在 [AREACOORD(user)] 使 [key_name(user)] 自伤 [our_plant.force] 点", INVESTIGATE_BOTANY)
 	user.apply_damage(our_plant.force, our_plant.damtype, user.get_active_hand(), wound_bonus = CANT_WOUND)
 
 /// Normal Nettle hannd burn on backfire
 /datum/plant_gene/trait/backfire/nettle_burn
-	name = "Stinging Stem"
-	description = "The stem may sting your hand."
+	name = "蜇人茎秆"
+	description = "茎秆可能会蜇伤你的手。"
 	trait_flags = TRAIT_SHOW_EXAMINE
 
 /datum/plant_gene/trait/backfire/nettle_burn/backfire_effect(obj/item/our_plant, mob/living/carbon/user)
-	to_chat(user, span_danger("[our_plant] burns your bare hand!"))
-	our_plant.investigate_log("self-burned [key_name(user)] for [our_plant.force] at [AREACOORD(user)]", INVESTIGATE_BOTANY)
+	to_chat(user, span_danger("[our_plant] 灼痛了你的手！"))
+	our_plant.investigate_log("在 [AREACOORD(user)] 使 [key_name(user)] 自伤 [our_plant.force] 点", INVESTIGATE_BOTANY)
 	user.apply_damage(our_plant.force, our_plant.damtype, user.get_active_hand(), wound_bonus = CANT_WOUND)
 
 /// Deathnettle hand burn + stun on backfire
 /datum/plant_gene/trait/backfire/nettle_burn/death
-	name = "Aggressive Stinging Stem"
+	name = "凶暴蜇人茎秆"
 	cancel_action_on_backfire = TRUE
 
 /datum/plant_gene/trait/backfire/nettle_burn/death/backfire_effect(obj/item/our_plant, mob/living/carbon/user)
@@ -238,12 +238,12 @@
 		return
 
 	user.Paralyze(10 SECONDS)
-	to_chat(user, span_userdanger("You are stunned by the powerful acids of [our_plant]!"))
+	to_chat(user, span_userdanger("你被 [our_plant] 的强酸麻痹了！"))
 
 /// Ghost-Chili heating up on backfire
 /datum/plant_gene/trait/backfire/chili_heat
-	name = "Active Capsicum Glands"
-	description = "It emits a strong heat when handled."
+	name = "活性辣椒腺"
+	description = "拿取时会散发强烈热量。"
 	trait_flags = TRAIT_SHOW_EXAMINE
 	genes_to_check = list(/datum/plant_gene/trait/chem_heating)
 	/// The mob currently holding the chili.
@@ -295,12 +295,12 @@
 
 	our_mob.adjust_bodytemperature(7.5 * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick)
 	if(SPT_PROB(5, seconds_per_tick))
-		to_chat(our_mob, span_warning("Your hand holding [our_plant] burns!"))
+		to_chat(our_mob, span_warning("你握着 [our_plant] 的手被烫伤了！"))
 
 /// Bluespace Tomato squashing on the user on backfire
 /datum/plant_gene/trait/backfire/bluespace
-	name = "Bluespace Volatility"
-	description = "You may be spaced out if you hold this unprotected."
+	name = "蓝空间不稳定性"
+	description = "徒手拿着它，你可能会被传送到太空。"
 	cancel_action_on_backfire = TRUE
 	genes_to_check = list(/datum/plant_gene/trait/squash)
 
@@ -308,7 +308,7 @@
 	if(prob(50))
 		return
 
-	to_chat(user, span_danger("[our_plant] slips out of your hand!"))
+	to_chat(user, span_danger("[our_plant] 从你手中滑脱了！"))
 
 	var/obj/item/seeds/our_seed = our_plant.get_plant_seed()
 	var/datum/plant_gene/trait/squash/squash_gene = our_seed.get_gene(/datum/plant_gene/trait/squash)
@@ -316,8 +316,8 @@
 
 /// Traits for plants that can be activated to turn into a mob.
 /datum/plant_gene/trait/mob_transformation
-	name = "Dormant Ferocity"
-	description = "It comes to life when shaken in hand."
+	name = "蛰伏凶性"
+	description = "在手中摇晃时它会活过来。"
 	icon = FA_ICON_HEART_PULSE
 	trait_ids = ATTACK_SELF_ID
 	/// Whether mobs spawned by this trait are dangerous or not.
@@ -361,8 +361,8 @@
 		return
 
 	if(target != user)
-		to_chat(user, span_warning("[our_plant] is twitching and shaking, preventing you from feeding it to [target]."))
-	to_chat(target, span_warning("[our_plant] is twitching and shaking, preventing you from eating it."))
+		to_chat(user, span_warning("[our_plant] 正在抽搐颤抖，让你没法把它喂给 [target]。"))
+	to_chat(target, span_warning("[our_plant] 正在抽搐颤抖，让你没法吃掉它。"))
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /*
@@ -379,12 +379,12 @@
 		return
 
 	if(dangerous && HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_notice("You decide not to awaken [our_plant]. It may be very dangerous!"))
+		to_chat(user, span_notice("你决定不唤醒 [our_plant]。它可能非常危险！"))
 		return
 
-	to_chat(user, span_notice("You begin to awaken [our_plant]..."))
+	to_chat(user, span_notice("你开始唤醒 [our_plant]……"))
 	begin_awaken(our_plant, 3 SECONDS)
-	our_plant.investigate_log("was awakened by [key_name(user)] at [AREACOORD(user)].", INVESTIGATE_BOTANY)
+	our_plant.investigate_log("被 [key_name(user)] 在 [AREACOORD(user)] 唤醒。", INVESTIGATE_BOTANY)
 
 /*
  * Called when a user accidentally activates the plant via backfire effect.
@@ -396,9 +396,9 @@
 	SIGNAL_HANDLER
 
 	if(!awakening && !isspaceturf(user.loc) && prob(25))
-		our_plant.visible_message(span_danger("[our_plant] begins to growl and shake!"))
+		our_plant.visible_message(span_danger("[our_plant] 开始低吼颤抖！"))
 		begin_awaken(our_plant, 1 SECONDS)
-		our_plant.investigate_log("was awakened (via plant backfire) by [key_name(user)] at [AREACOORD(user)].", INVESTIGATE_BOTANY)
+		our_plant.investigate_log("被 [key_name(user)] 在 [AREACOORD(user)] 唤醒（因植物反噬）。", INVESTIGATE_BOTANY)
 
 /*
  * Actually begin the process of awakening the plant.
@@ -439,7 +439,7 @@
 		spawned_basicmob.set_varspeed(calculated_speed)
 
 	our_plant.forceMove(our_plant.drop_location())
-	spawned_mob.visible_message(span_notice("[our_plant] growls as it suddenly awakens!"))
+	spawned_mob.visible_message(span_notice("[our_plant] 低吼着猛然苏醒！"))
 	qdel(our_plant)
 
 /// Killer Tomato's transformation gene.
@@ -459,8 +459,8 @@
 
 /// Traiit for plants eaten in 1 bite.
 /datum/plant_gene/trait/one_bite
-	name = "Large Bites"
-	description = "You can't hold off from eating this in one bite!"
+	name = "大块咬食"
+	description = "你忍不住想一口把它吞掉！"
 	icon = FA_ICON_DRUMSTICK_BITE
 	trait_flags = TRAIT_SHOW_EXAMINE
 
@@ -475,8 +475,8 @@
 
 /// Traits for plants with a different base max_volume.
 /datum/plant_gene/trait/modified_volume
-	name = "Deep Vesicles"
-	description = "It has extra reagent volume."
+	name = "深层囊泡"
+	description = "它拥有额外的试剂容量。"
 	icon = FA_ICON_VIALS
 	/// The new number we set the plant's max_volume to.
 	var/new_capacity = 100
@@ -492,21 +492,21 @@
 
 /// Omegaweed's funny 420 max volume gene
 /datum/plant_gene/trait/modified_volume/omega_weed
-	name = "Dank Vesicles"
-	description = "It can hold up to 420 units of reagents."
+	name = "浓郁囊泡"
+	description = "它最多可容纳 420 单位试剂。"
 	icon = FA_ICON_CANNABIS
 	new_capacity = 420
 
 /// Cherry Bomb's increased max volume gene
 /datum/plant_gene/trait/modified_volume/cherry_bomb
-	name = "Powder-Filled Bulbs"
-	description = "It can hold up to 125 units of reagents."
+	name = "装满粉末的球茎"
+	description = "它最多可容纳 125 单位试剂。"
 	new_capacity = 125
 
 /// Plants that explode when used (based on their reagent contents)
 /datum/plant_gene/trait/bomb_plant
-	name = "Explosive Contents"
-	description = "Don't shake it, the contents may explode."
+	name = "爆炸性内容物"
+	description = "别摇晃它，里面的东西可能会爆炸。"
 	icon = FA_ICON_BOMB
 	trait_ids = ATTACK_SELF_ID
 
@@ -539,10 +539,10 @@
 
 	playsound(our_plant, 'sound/effects/fuse.ogg', our_seed.potency, FALSE)
 	user.visible_message(
-		span_warning("[user] plucks the stem from [our_plant]!"),
-		span_userdanger("You pluck the stem from [our_plant], which begins to hiss loudly!"),
+		span_warning("[user] 扯下了 [our_plant] 的茎！"),
+		span_userdanger("你扯下了 [our_plant] 的茎，它开始嘶嘶作响！"),
 	)
-	log_bomber(user, "primed a", our_plant, "for detonation")
+	log_bomber(user, "已给", our_plant, "装上了引信")
 	detonate(our_plant)
 
 /*
@@ -584,14 +584,14 @@
 
 /// A subtype of bomb plants that have their boom sized based on potency instead of reagent contents.
 /datum/plant_gene/trait/bomb_plant/potency_based
-	name = "Explosive Nature"
+	name = "爆炸天性"
 
 /datum/plant_gene/trait/bomb_plant/potency_based/trigger_detonation(obj/item/our_plant, mob/living/user)
 	user.visible_message(
-		span_warning("[user] primes [our_plant]!"),
-		span_userdanger("You prime [our_plant]!"),
+		span_warning("[user] 给 [our_plant] 装上了引信！"),
+		span_userdanger("你给 [our_plant] 装上了引信！"),
 	)
-	log_bomber(user, "primed a", our_plant, "for detonation")
+	log_bomber(user, "已给", our_plant, "装上了引信")
 
 	var/obj/item/food/grown/grown_plant = our_plant
 	if(istype(our_plant) && grown_plant.alt_icon)
@@ -613,8 +613,8 @@
 /// Corpseflower's miasma production.
 /// Can be generalized in the future to spawn any gas, but I don't think that's necessarily a good idea.
 /datum/plant_gene/trait/gas_production
-	name = "Miasma Gas Production"
-	description = "This plant stinks when grown."
+	name = "瘴气产生"
+	description = "这种植物成熟时会散发恶臭。"
 	icon = FA_ICON_WIND
 	/// The location of our tray, if we have one.
 	var/datum/weakref/home_tray
@@ -688,16 +688,16 @@
 
 /// Hard caps the yield at 5 (effectively)
 /datum/plant_gene/trait/complex_harvest
-	name = "Complex Harvest"
-	description = "Halves the maximum yield of the plant, and prevents it from benefiting from pollination's yield bonus."
+	name = "复杂收获"
+	description = "使植物的最大产量减半，且无法享受授粉带来的产量加成。"
 	icon = FA_ICON_SLASH
 	trait_flags = TRAIT_HALVES_YIELD|TRAIT_NO_POLLINATION
 	mutability_flags = NONE
 
 /// Poppy's unique trait that allows slicing for sap
 /datum/plant_gene/trait/opium_production
-	name = "Sap Buds"
-	description = "Using a knife or other sharp object on the plant between ages 200 seconds to 400 seconds will yield a sap."
+	name = "树液芽"
+	description = "在植物生长 200 至 400 秒之间，用刀或其他锋利物品划开它，可以采集树液。"
 	icon = FA_ICON_PILLS
 	/// Has parent plant been harvested for sap already?
 	var/extracted = FALSE
@@ -717,13 +717,13 @@
 		return NONE
 
 	if(source.age < 10)
-		to_chat(user, span_warning("The [LOWER_TEXT(source.myseed.plantname)] are too young to extract sap from!"))
+		to_chat(user, span_warning("[LOWER_TEXT(source.myseed.plantname)]还太年轻，无法采集树液！"))
 		return ITEM_INTERACT_FAILURE
 	if(source.age > 19)
-		to_chat(user, span_warning("The [LOWER_TEXT(source.myseed.plantname)] are too old to extract sap from!"))
+		to_chat(user, span_warning("[LOWER_TEXT(source.myseed.plantname)]已经太老，无法采集树液！"))
 		return ITEM_INTERACT_FAILURE
 	if(extracted)
-		to_chat(user, span_warning("The [LOWER_TEXT(source.myseed.plantname)] have already been harvested for sap!"))
+		to_chat(user, span_warning("[LOWER_TEXT(source.myseed.plantname)]已经采集过树液了！"))
 		return ITEM_INTERACT_FAILURE
 
 	extracted = TRUE
@@ -731,8 +731,8 @@
 	playsound(src, 'sound/effects/bubbles/bubbles.ogg', 30, TRUE)
 	playsound(tool, 'sound/items/weapons/bladeslice.ogg', 30, TRUE)
 	user.visible_message(
-		span_notice("[user] carefully slices open a [source.myseed.species] pod, extracting a sap."),
-		span_notice("You carefully slice the [source.myseed.species]'s pod, collecting the fragrant, alluring sap."),
+		span_notice("[user] 小心地划开一个种荚，取出树液。"),
+		span_notice("你小心地划开种荚，收集芬芳诱人的树液。"),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	return ITEM_INTERACT_SUCCESS

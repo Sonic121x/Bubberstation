@@ -1,6 +1,6 @@
 import type { BooleanLike } from 'tgui-core/react';
-
-export type RequestsData = {
+import type { BatchDisplayData } from '../../localization/batchThreeDisplay';
+export type RequestsData = BatchDisplayData & {
   authentication_data: AuthenticationData;
   can_send_announcements: string;
   department: string;

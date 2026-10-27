@@ -18,14 +18,14 @@
 
 /obj/item/tank/internals/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click the tank to toggle the valve.")
+	. += span_notice("Alt 点击气罐可切换阀门。")
 
 /*
  * Oxygen
  */
 /obj/item/tank/internals/oxygen
-	name = "oxygen tank"
-	desc = "A tank of oxygen, this one is blue."
+	name = "氧气罐"
+	desc = "一罐氧气，这罐是蓝色的。"
 	icon_state = "oxygen"
 	inhand_icon_state = "oxygen_tank"
 	tank_holder_icon_state = "holder_oxygen"
@@ -39,14 +39,14 @@
 
 
 /obj/item/tank/internals/oxygen/yellow
-	desc = "A tank of oxygen, this one is yellow."
+	desc = "一罐氧气，这罐是黄色的。"
 	icon_state = "oxygen_f"
 	inhand_icon_state = "oxygen_f_tank"
 	tank_holder_icon_state = "holder_oxygen_f"
 	dog_fashion = null
 
 /obj/item/tank/internals/oxygen/red
-	desc = "A tank of oxygen, this one is red."
+	desc = "一罐氧气，这罐是红色的。"
 	icon_state = "oxygen_fr"
 	inhand_icon_state = "oxygen_fr_tank"
 	tank_holder_icon_state = "holder_oxygen_fr"
@@ -59,8 +59,8 @@
  * Anesthetic
  */
 /obj/item/tank/internals/anesthetic
-	name = "anesthetic tank"
-	desc = "A tank with an N2O/O2 gas mix."
+	name = "麻醉气体罐"
+	desc = "一罐 N2O/O2 混合气体。"
 	icon_state = "anesthetic"
 	inhand_icon_state = "an_tank"
 	tank_holder_icon_state = "holder_anesthetic"
@@ -73,11 +73,11 @@
 
 /obj/item/tank/internals/anesthetic/examine(mob/user)
 	. = ..()
-	. += span_notice("A warning is etched into [src]...")
-	. += span_warning("There is no process in the body that uses N2O, so patients will exhale the N2O... exposing you to it. Make sure to work in a well-ventilated space to avoid sleepy mishaps.")
+	. += span_notice("[src]上刻着一行警告……")
+	. += span_warning("人体没有任何过程会消耗 N2O，所以患者会把 N2O 呼出来……让你也暴露其中。务必在通风良好的地方操作，以免发生犯困的意外。")
 
 /obj/item/tank/internals/anesthetic/pure
-	desc = "A tank with pure N2O. There is a warning sticker crudely slapped onto the tank."
+	desc = "一罐纯 N2O。罐身上草草地贴了一张警告贴纸。"
 	icon_state = "anesthetic_warning"
 
 /obj/item/tank/internals/anesthetic/pure/populate_gas()
@@ -87,8 +87,8 @@
  * Plasma
  */
 /obj/item/tank/internals/plasma
-	name = "plasma tank"
-	desc = "Contains dangerous plasma. Do not inhale. Warning: extremely flammable."
+	name = "等离子气罐"
+	desc = "内装危险的等离子体。请勿吸入。警告：极易燃。"
 	icon_state = "plasma"
 	inhand_icon_state = "plasma_tank"
 	worn_icon_state = "plasmatank"
@@ -125,8 +125,8 @@
  */
 
 /obj/item/tank/internals/plasmaman
-	name = "plasma internals tank"
-	desc = "A tank of plasma gas designed specifically for use as internals, particularly for plasma-based lifeforms. If you're not a Plasmaman, you probably shouldn't use this."
+	name = "等离子供气罐"
+	desc = "一罐专为内部供气设计的等离子气体，尤其适合以等离子为生的生命体。如果你不是等离子人，大概不该用它。"
 	icon_state = "plasmaman_tank"
 	inhand_icon_state = "plasmaman_tank"
 	tank_holder_icon_state = null
@@ -164,8 +164,8 @@
  * Emergency Oxygen
  */
 /obj/item/tank/internals/emergency_oxygen
-	name = "emergency oxygen tank"
-	desc = "Used for emergencies. Contains very little oxygen, so try to conserve it until you actually need it."
+	name = "应急氧气罐"
+	desc = "用于紧急情况。含氧量非常少，所以尽量省着用，留到真正需要的时候。"
 	icon_state = "emergency"
 	inhand_icon_state = "emergency_tank"
 	worn_icon_state = "emergency"
@@ -187,7 +187,7 @@
 	return
 
 /obj/item/tank/internals/emergency_oxygen/engi
-	name = "extended-capacity emergency oxygen tank"
+	name = "扩容应急氧气罐"
 	icon_state = "emergency_engi"
 	inhand_icon_state = "emergency_engi_tank"
 	worn_icon_state = "emergency_engi"
@@ -200,7 +200,7 @@
 	return
 
 /obj/item/tank/internals/emergency_oxygen/double
-	name = "double emergency oxygen tank"
+	name = "双联应急氧气罐"
 	icon_state = "emergency_double"
 	worn_icon_state = "emergency_engi"
 	tank_holder_icon_state = "holder_emergency_engi"
@@ -215,8 +215,8 @@
 // *
 
 /obj/item/tank/internals/generic
-	name = "gas tank"
-	desc = "A generic tank used for storing and transporting gasses. Can be used for internals."
+	name = "气罐"
+	desc = "用于储存和运输气体的通用气罐。可作内部供气使用。"
 	icon_state = "generic"
 	inhand_icon_state = "generic_tank"
 	distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
@@ -231,8 +231,8 @@
  * Funny internals
  */
 /obj/item/tank/internals/emergency_oxygen/engi/clown
-	name = "funny emergency oxygen tank"
-	desc = "Used for emergencies. Contains very little oxygen with an extra of a funny gas, so try to conserve it until you actually need it."
+	name = "搞怪应急氧气罐"
+	desc = "用于紧急情况。含氧量非常少，还额外掺了一种搞怪气体，所以尽量省着用，留到真正需要的时候。"
 	icon_state = "emergency_clown"
 	inhand_icon_state = "emergency_clown"
 	worn_icon_state = "emergency_clown"

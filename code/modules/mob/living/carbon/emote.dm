@@ -4,7 +4,7 @@
 
 /datum/emote/living/carbon/airguitar
 	key = "airguitar"
-	message = "is strumming the air and headbanging like a safari chimp."
+	message = "在空中弹着吉他，还像野生动物园里的黑猩猩一样疯狂甩头。"
 	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
 
 //SKYRAT EDIT REMOVAL BEGIN - EMOTES - (Moved to modular_skyrat/modules/emotes/code/emotes.dm as /datum/emote/living/clap)
@@ -36,7 +36,7 @@
 /datum/emote/living/carbon/crack
 	key = "crack"
 	key_third_person = "cracks"
-	message = "cracks their knuckles."
+	message = "掰响了指关节。"
 	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
 	cooldown = 6 SECONDS
 	sound = 'sound/mobs/humanoids/human/knuckle_crack/knuckles.ogg'
@@ -49,8 +49,8 @@
 /datum/emote/living/carbon/cry
 	key = "cry"
 	key_third_person = "cries"
-	message = "cries."
-	message_mime = "sobs silently."
+	message = "哭了起来。"
+	message_mime = "无声地抽泣。"
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	vary = TRUE
 	can_use_flags = EMOTE_CANUSE_SOFTCRIT
@@ -83,11 +83,11 @@
 /datum/emote/living/carbon/circle/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
 	if(!length(user.get_empty_held_indexes()))
-		to_chat(user, span_warning("You don't have any free hands to make a circle with."))
+		to_chat(user, span_warning("你没有空着的手来比圈。"))
 		return
 	var/obj/item/hand_item/circlegame/N = new(user)
 	if(user.put_in_hands(N))
-		to_chat(user, span_notice("You make a circle with your hand."))
+		to_chat(user, span_notice("你用手比了一个圈。"))
 
 /* BUBBER EDIT REMOVE - moved to modular_skyrat/modules/emotes/code/emotes.dm
 /datum/emote/living/carbon/meow
@@ -121,14 +121,14 @@
 /datum/emote/living/carbon/mchitter
 	key = "chitter"
 	key_third_person = "chitters"
-	message = "chitters!"
-	message_mime = "chitters silently?"
+	message = "发出啁啾声！"
+	message_mime = "无声地啁啾？"
 	sound = 'sound/mobs/humanoids/moth/moth_chitter.ogg'
 /datum/emote/living/carbon/whistle
 	key = "whistle"
 	key_third_person = "whistles"
-	message = "whistles."
-	message_mime = "whistles silently!"
+	message = "吹了声口哨。"
+	message_mime = "无声地吹着口哨！"
 	vary = TRUE
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	sound = 'sound/mobs/humanoids/human/whistle/whistle1.ogg'
@@ -136,8 +136,8 @@
 /datum/emote/living/carbon/moan
 	key = "moan"
 	key_third_person = "moans"
-	message = "moans!"
-	message_mime = "appears to moan!"
+	message = "呻吟起来！"
+	message_mime = "看起来像是在呻吟！"
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 
 /datum/emote/living/carbon/noogie
@@ -149,29 +149,29 @@
 	. = ..()
 	var/obj/item/hand_item/noogie/noogie = new(user)
 	if(user.put_in_hands(noogie))
-		to_chat(user, span_notice("You ready your noogie'ing hand."))
+		to_chat(user, span_notice("你准备好了搓人脑袋的手。"))
 	else
 		qdel(noogie)
-		to_chat(user, span_warning("You're incapable of noogie'ing in your current state."))
+		to_chat(user, span_warning("以你现在的状态，没法给人家来一记搓头。"))
 
 /datum/emote/living/carbon/roll
 	key = "roll"
 	key_third_person = "rolls"
-	message = "rolls."
+	message = "打了个滚。"
 	mob_type_allowed_typecache = list(/mob/living/carbon/alien)
 	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
 
 /datum/emote/living/carbon/scratch
 	key = "scratch"
 	key_third_person = "scratches"
-	message = "scratches."
+	message = "挠了挠。"
 	mob_type_allowed_typecache = list(/mob/living/carbon/alien)
 	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
 
 /datum/emote/living/carbon/sign
 	key = "sign"
 	key_third_person = "signs"
-	message_param = "signs the number %t."
+	message_param = "用手语比出数字 %t。"
 	mob_type_allowed_typecache = list(/mob/living/carbon/alien)
 	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
 
@@ -183,7 +183,7 @@
 /datum/emote/living/carbon/sign/signal
 	key = "signal"
 	key_third_person = "signals"
-	message_param = "raises %t fingers."
+	message_param = "举起 %t 根手指。"
 	mob_type_allowed_typecache = list(/mob/living/carbon/human)
 	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
 
@@ -197,10 +197,10 @@
 	. = ..()
 	var/obj/item/hand_item/slapper/N = new(user)
 	if(user.put_in_hands(N))
-		to_chat(user, span_notice("You ready your slapping hand."))
+		to_chat(user, span_notice("你准备好了扇人的手。"))
 	else
 		qdel(N)
-		to_chat(user, span_warning("You're incapable of slapping in your current state."))
+		to_chat(user, span_warning("以你现在的状态，没法扇人巴掌。"))
 
 
 /datum/emote/living/carbon/hand
@@ -213,10 +213,10 @@
 	. = ..()
 	var/obj/item/hand_item/hand/hand = new(user)
 	if(user.put_in_hands(hand))
-		to_chat(user, span_notice("You ready your hand."))
+		to_chat(user, span_notice("你准备好了手。"))
 	else
 		qdel(hand)
-		to_chat(user, span_warning("You're incapable of using your hand in your current state."))
+		to_chat(user, span_warning("以你现在的状态，没法使用你的手。"))
 
 /* Bubber removal begin - moved to modular_zubbers\code\modules\emotes\emotes.dm - /datum/emote/living/snap
 /datum/emote/living/carbon/snap
@@ -245,26 +245,26 @@ Bubber removal end */
 	. = ..()
 	var/obj/item/hand_item/stealer/stealing_hand = new(user)
 	if (user.put_in_hands(stealing_hand))
-		user.balloon_alert(user, "preparing to steal shoes...")
+		user.balloon_alert(user, "准备偷鞋……")
 	else
 		qdel(stealing_hand)
-		user.balloon_alert(user, "you can't steal shoes!")
+		user.balloon_alert(user, "你偷不了鞋！")
 
 /datum/emote/living/carbon/tail
 	key = "tail"
-	message = "waves their tail."
+	message = "挥了挥尾巴。"
 	mob_type_allowed_typecache = list(/mob/living/carbon/alien)
 
 /datum/emote/living/carbon/wink
 	key = "wink"
 	key_third_person = "winks"
-	message = "winks."
+	message = "抛了个媚眼。"
 	sound = 'sound/mobs/humanoids/human/wink/wink.ogg'
 
 /datum/emote/living/carbon/hiss
 	key = "hiss"
 	key_third_person = "hisses"
-	message = "hisses!"
+	message = "发出嘶嘶声！"
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	vary = TRUE
 	sounds_by_mobtype = list(

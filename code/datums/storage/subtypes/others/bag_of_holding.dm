@@ -26,8 +26,8 @@
 
 /datum/storage/bag_of_holding/proc/confirm_recursive_insertion(obj/item/to_insert, mob/living/user)
 	var/area/bag_area = get_area(user)
-	var/safety = tgui_alert(user, "Doing this will have extremely dire consequences for the station and its crew. Be sure you know what you're doing.", "Put in [to_insert.name]?", list("Proceed", "Abort"))
-	return safety == "Proceed" \
+	var/safety = tgui_alert(user, "这样做会给空间站及其船员带来极其严重的后果。请确保你清楚自己在做什么。", "放入[to_insert.name]？", list("继续", "中止"))
+	return safety == "继续" \
 		&& !QDELETED(to_insert) \
 		&& !QDELETED(parent) \
 		&& !QDELETED(real_location) \
@@ -39,11 +39,11 @@
 /datum/storage/bag_of_holding/proc/create_rift(obj/item/inserted, mob/living/user)
 	var/turf/rift_loc = get_turf(parent)
 	user.visible_message(
-		span_userdanger("The Bluespace interfaces of the two devices catastrophically malfunction!"),
-		span_danger("The Bluespace interfaces of the two devices catastrophically malfunction!"),
+		span_userdanger("两台装置的蓝空间接口发生了灾难性故障！"),
+		span_danger("两台装置的蓝空间接口发生了灾难性故障！"),
 	)
 
-	message_admins("[ADMIN_LOOKUPFLW(user)] detonated a bag of holding at [ADMIN_VERBOSEJMP(rift_loc)].")
+	message_admins("[ADMIN_LOOKUPFLW(user)]在[ADMIN_VERBOSEJMP(rift_loc)]引爆了次元背包。")
 	user.log_message("detonated a bag of holding at [loc_name(rift_loc)].", LOG_ATTACK, color = "red")
 
 	user.investigate_log("has been gibbed by a bag of holding recursive insertion.", INVESTIGATE_DEATHS)

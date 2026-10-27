@@ -11,7 +11,7 @@
 #define MESMERIZE_GLASSES_LEVEL 3
 #define MESMERIZE_FACING_LEVEL 5
 /datum/action/cooldown/bloodsucker/targeted/mesmerize
-	name = "Mesmerize"
+	name = "摄魂"
 	button_icon_state = "power_mez"
 	power_flags = NONE
 	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
@@ -20,7 +20,7 @@
 	target_range = 4
 	power_activates_immediately = FALSE
 	unset_after_click = FALSE
-	prefire_message = "Whom will you subvert to your will?"
+	prefire_message = "你要让谁屈服于你的意志？"
 	///Our mesmerized target - Prevents several mesmerizes.
 	var/datum/weakref/target_ref
 	/// How long it takes us to mesmerize our target.
@@ -39,30 +39,30 @@
 	COOLDOWN_DECLARE(mesmerize_cooldown)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_desc_extended()
-	. += "[src] a target, locking them in place for a short time[level_current >= MESMERIZE_MUTE_LEVEL ? " and muting them" : ""].<br>"
+	. += "对目标施展[src]，使其短时间无法移动[level_current >= MESMERIZE_MUTE_LEVEL ? "并禁言" : ""]。<br>"
 	if(knockdown_on_secondary)
-		. += "Right clicking on your victim will apply a knockdown for [DisplayTimeText(combat_mesmerize_time())].<br>"
+		. += "右键点击受害者会将其击倒[DisplayTimeText(combat_mesmerize_time())]。<br>"
 	else
-		. += "Right clicking on your victim will confuse them for [DisplayTimeText(combat_mesmerize_time())]."
+		. += "右键点击受害者会使其混乱[DisplayTimeText(combat_mesmerize_time())]。"
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_explanation_extended()
 	. = list()
-	. += "Click any player to attempt to mesmerize them. This will stun the victim."
-	. += "The victim will realize they are being mesmerized, but will be unable to talk, but at level [MESMERIZE_MUTE_LEVEL] they will be also muted."
+	. += "点击任意玩家尝试摄魂，使受害者眩晕。"
+	. += "受害者会意识到自己正在被摄魂，但无法说话；达到[MESMERIZE_MUTE_LEVEL]级后，还会被施加禁言。"
 	if(blocked_by_glasses && requires_facing_target)
-		. += "[src] requires you to not be wearing glasses and to be facing your target."
+		. += "[src]要求你不戴眼镜，并面朝目标。"
 	else if(blocked_by_glasses)
-		. += "[src] requires you to not be wearing glasses."
+		. += "[src]要求你不戴眼镜。"
 	else if(requires_facing_target)
-		. += "[src] requires you to be facing your target."
-	. += "You cannot wear anything covering your face, and both parties must be facing eachother."
-	. += "Obviously, both parties need to not be blind."
-	. += "Right clicking with the ability will apply a knockdown for [DisplayTimeText(combat_mesmerize_time())], but will also confuse your victim for [DisplayTimeText(get_power_time())]."
-	. += "If your target is already mesmerized or a bloodsucker, the Power will fail."
-	. += "Once mesmerized, the target will be unable to move for [DisplayTimeText(get_power_time())] and muted for [DisplayTimeText(get_mute_time())], scaling with level."
-	. += "At level [MESMERIZE_GLASSES_LEVEL], you will be able to use the power through items covering your face."
-	. += "At level [MESMERIZE_FACING_LEVEL], you will be able to mesmerize regardless of your target's direction."
-	. += "Additionally it works on silicon lifeforms, causing a EMP effect instead of a freeze."
+		. += "[src]要求你面朝目标。"
+	. += "你不能穿戴任何遮脸物品，双方必须彼此面对。"
+	. += "显然，双方都不能失明。"
+	. += "右键使用该能力会击倒目标[DisplayTimeText(combat_mesmerize_time())]，同时使其混乱[DisplayTimeText(get_power_time())]。"
+	. += "若目标已被摄魂或是吸血鬼，能力会失败。"
+	. += "摄魂后，目标会无法移动[DisplayTimeText(get_power_time())]，并被禁言[DisplayTimeText(get_mute_time())]，时长随等级增长。"
+	. += "达到[MESMERIZE_GLASSES_LEVEL]级后，可以穿过遮脸物品使用此能力。"
+	. += "达到[MESMERIZE_FACING_LEVEL]级后，无论目标朝向何处都能摄魂。"
+	. += "它也能作用于硅基生命，但会造成电磁脉冲而非定身。"
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
@@ -70,11 +70,11 @@
 		return FALSE
 	if(!user.get_organ_slot(ORGAN_SLOT_EYES))
 		// Cant use balloon alert, they've got no eyes!
-		to_chat(user, span_warning("You have no eyes with which to mesmerize."))
+		to_chat(user, span_warning("你没有可用于摄魂的眼睛。"))
 		return FALSE
 	// Check: Eyes covered?
 	if(blocked_by_glasses && istype(user) && (user.is_eyes_covered() && level_current <= 2) || !isturf(user.loc))
-		user.balloon_alert(user, "your eyes are concealed from sight.")
+		user.balloon_alert(user, "你的眼睛被遮住了")
 		return FALSE
 	return TRUE
 
@@ -92,32 +92,32 @@
 	// No mind
 #ifndef BLOODSUCKER_TESTING
 	if(!current_target.mind)
-		owner.balloon_alert(owner, "[current_target] is mindless.")
+		owner.balloon_alert(owner, "[current_target]没有心智")
 		return FALSE
 #endif
 	// Bloodsucker
 	if(IS_BLOODSUCKER(current_target))
-		owner.balloon_alert(owner, "bloodsuckers are immune to [src].")
+		owner.balloon_alert(owner, "吸血鬼免疫[src]")
 		return FALSE
 	// Dead/Unconscious
 	if(IS_UNCONSCIOUS_OR_CRIT(current_target))
-		owner.balloon_alert(owner, "[current_target] is not [(current_target.stat == DEAD || HAS_TRAIT(current_target, TRAIT_FAKEDEATH)) ? "alive" : "conscious"].")
+		owner.balloon_alert(owner, "[current_target][(current_target.stat == DEAD || HAS_TRAIT(current_target, TRAIT_FAKEDEATH)) ? "已无生命迹象" : "没有意识"]")
 		return FALSE
 	// Target has eyes?
 	if(!current_target.get_organ_slot(ORGAN_SLOT_EYES) && !issilicon(current_target))
-		owner.balloon_alert(owner, "[current_target] has no eyes.")
+		owner.balloon_alert(owner, "[current_target]没有眼睛")
 		return FALSE
 	// Target blind?
 	if(current_target.is_blind() && !issilicon(current_target))
-		owner.balloon_alert(owner, "[current_target] is blind.")
+		owner.balloon_alert(owner, "[current_target]失明了")
 		return FALSE
 	// Facing target?
 	if(requires_facing_target && !is_source_facing_target(owner, current_target)) // in unsorted.dm
-		owner.balloon_alert(owner, "you must be facing [current_target].")
+		owner.balloon_alert(owner, "你必须面朝[current_target]")
 		return FALSE
 	// Target facing me? (On the floor, they're facing everyone)
 	if(((current_target.mobility_flags & MOBILITY_STAND) && requires_facing_target && !is_source_facing_target(current_target, owner) && level_current <= MESMERIZE_FACING_LEVEL))
-		owner.balloon_alert(owner, "[current_target] must be facing you.")
+		owner.balloon_alert(owner, "[current_target]必须面朝你")
 		return FALSE
 
 	// Gone through our checks, let's mark our guy.
@@ -137,7 +137,7 @@
 	if(issilicon(mesmerized_target))
 		var/mob/living/silicon/mesmerized = mesmerized_target
 		mesmerized.emp_act(EMP_HEAVY)
-		owner.balloon_alert(owner, "temporarily shut [mesmerized] down.")
+		owner.balloon_alert(owner, "暂时关闭了[mesmerized]")
 		PowerActivatedSuccesfully() // PAY COST! BEGIN COOLDOWN!
 		return
 	// slow them down during the mesmerize
@@ -148,14 +148,14 @@
 		StartCooldown(cooldown_time * 0.5)
 		return
 	// Can't quite time it here, but oh well
-	to_chat(mesmerized_target, "[user]'s eyes look into yours, and [span_hypnophrase("you feel your mind slipping away")]...")
+	to_chat(mesmerized_target, "[user]凝视着你的双眼，[span_hypnophrase("你感觉心智正逐渐离你而去")]……")
 	/*if(IS_MONSTERHUNTER(mesmerized_target))
-		to_chat(mesmerized_target, span_notice("You feel your eyes burn for a while, but it passes."))
+		to_chat(mesmerized_target, span_notice("你的眼睛灼痛了一会儿，随后恢复正常。"))
 		return*/
 	if(HAS_TRAIT_FROM_ONLY(mesmerized_target, TRAIT_NO_TRANSFORM, MESMERIZE_TRAIT))
-		owner.balloon_alert(owner, "[mesmerized_target] is already in a hypnotic gaze.")
+		owner.balloon_alert(owner, "[mesmerized_target]已陷入催眠凝视")
 		return
-	owner.balloon_alert(owner, "successfully mesmerized [mesmerized_target].")
+	owner.balloon_alert(owner, "成功摄魂[mesmerized_target]")
 	mesmerize_effects(user, mesmerized_target)
 	PowerActivatedSuccesfully() // PAY COST! BEGIN COOLDOWN!
 
@@ -166,7 +166,7 @@
 		return
 	COOLDOWN_START(src, mesmerize_cooldown, 2 SECONDS)
 	var/mob/living/mesmerized_target = target
-	owner.balloon_alert(owner, "gazing [mesmerized_target]...")
+	owner.balloon_alert(owner, "正在凝视[mesmerized_target]……")
 	perform_indicators(mesmerized_target, 3 SECONDS)
 	timer = addtimer(CALLBACK(src, PROC_REF(combat_mesmerize_effects), owner, mesmerized_target), 2 SECONDS)
 
@@ -181,9 +181,9 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/combat_mesmerize_effects(mob/living/user, mob/living/mesmerized_target)
 	if(!ContinueActive(user, mesmerized_target))
 		StartCooldown(cooldown_time * 0.5)
-		owner.balloon_alert(owner, "failed!")
+		owner.balloon_alert(owner, "失败了！")
 		return
-	to_chat(mesmerized_target, "[src]'s eyes look into yours, and [span_hypnophrase("your head becomes fuzzy for a moment")]...")
+	to_chat(mesmerized_target, "[src]凝视着你的双眼，[span_hypnophrase("你的头脑一时变得模糊")]……")
 	var/effect_time = combat_mesmerize_time()
 	mute_target(mesmerized_target)
 	if(knockdown_on_secondary)
@@ -220,7 +220,7 @@
 	target.cure_blind(MESMERIZE_TRAIT)
 	// They Woke Up! (Notice if within view)
 	if(istype(user) && !IS_UNCONSCIOUS_OR_CRIT(target) && (target in view(target_range, get_turf(user))))
-		target.balloon_alert(owner, "[target] snapped out of their trance.")
+		target.balloon_alert(owner, "[target]摆脱了恍惚状态")
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/ContinueActive(mob/living/user, mob/living/target)
 	return ..() && can_use(user) && CheckCanTarget(target)

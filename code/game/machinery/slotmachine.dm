@@ -20,8 +20,8 @@
 #define COIN 2
 
 /obj/machinery/computer/slot_machine
-	name = "slot machine"
-	desc = "Gambling for the antisocial."
+	name = "老虎机"
+	desc = "不爱社交的赌客之选。"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "slots"
 	icon_keyboard = null
@@ -54,9 +54,9 @@
 	)
 
 	/// Used to determine the 1st name of the slot machine. Name = "[adjective] [noun]"
-	var/list/slot_adjectives = list("Blazing", "Bonus", "Grand", "Greedy", "Jumbo", "Platinum", "Lucky", "Mega", "Robust", "Super", "Turbo", "Wild")
+	var/list/slot_adjectives = list("烈焰", "加奖", "豪华", "贪婪", "巨型", "铂金", "幸运", "超级", "强悍", "超凡", "涡轮", "狂野")
 	/// Used to determine the 2nd name of the slot machine. Name = "[adjective] [noun]"
-	var/list/slot_nouns = list("Bankroll", "Cashout", "Fortune", "Jackpot", "Luck", "Money", "Payday", "Reels", "Riches", "Spinner", "Spins", "Strike", "Treasure", "Spess")
+	var/list/slot_nouns = list("赌本", "兑金", "财富", "头奖", "好运", "金钱", "发薪日", "滚轴", "财宝", "转盘", "旋转", "出击", "宝藏", "太空")
 
 	/// The symbol typepath that pays out the jackpot when it lines up five wide
 	var/jackpot_path = /obj/item/food/grown/cherry_bomb
@@ -157,17 +157,17 @@
 				inserted_coin.throw_at(user, 3, 10)
 				if(prob(10))
 					balance = max(balance - SPIN_PRICE, 0)
-				to_chat(user, span_warning("[src] spits your coin back out!"))
+				to_chat(user, span_warning("[src]把你的硬币吐了出来！"))
 				return ITEM_INTERACT_BLOCKING
 			else
 				if(!user.temporarilyRemoveItemFromInventory(inserted_coin))
 					return ITEM_INTERACT_BLOCKING
-				balloon_alert(user, "coin inserted")
+				balloon_alert(user, "已投入硬币")
 				balance += inserted_coin.value
 				qdel(inserted_coin)
 				return ITEM_INTERACT_SUCCESS
 		else
-			balloon_alert(user, "holochips only!")
+			balloon_alert(user, "仅接受全息信用芯片！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(inserted, /obj/item/holochip))
@@ -175,56 +175,56 @@
 			var/obj/item/holochip/inserted_chip = inserted
 			if(!user.temporarilyRemoveItemFromInventory(inserted_chip))
 				return ITEM_INTERACT_BLOCKING
-			balloon_alert(user, "[inserted_chip.credits] [MONEY_NAME_AUTOPURAL(inserted_chip.credits)] inserted")
+			balloon_alert(user, "已投入[inserted_chip.credits][MONEY_NAME_AUTOPURAL(inserted_chip.credits)]")
 			balance += inserted_chip.credits
 			qdel(inserted_chip)
 			return ITEM_INTERACT_SUCCESS
 		else
-			balloon_alert(user, "coins only!")
+			balloon_alert(user, "仅接受硬币！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/card/id/id_card = inserted.GetID()
 	if(isidcard(id_card))
 		if(house_bank_account)
-			say("Already linked to [house_bank_account.account_holder]!")
+			say("已关联[house_bank_account.account_holder]的账户！")
 			playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 			return ITEM_INTERACT_BLOCKING
 
 		var/datum/bank_account/id_bank_account = id_card.registered_account
 
 		if(!id_bank_account)
-			say("No bank account detected on id card!")
+			say("身份证上未检测到银行账户！")
 			playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 			return ITEM_INTERACT_BLOCKING
 
 		if(!id_bank_account.has_money(PRIZE_SMALL))
-			say("Insufficent funds for potential payout. Minimum of [PRIZE_SMALL] credits needed!")
+			say("资金不足以支付可能产生的奖金，至少需要[PRIZE_SMALL]信用点！")
 			playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 			return ITEM_INTERACT_BLOCKING
 
-		var/msg = tgui_input_text(user, "Name of your slot machine (optional)", "Slot Customization", "Slot Machine", max_length = MAX_NAME_LEN)
+		var/msg = tgui_input_text(user, "输入老虎机名称（可选）", "老虎机定制", "老虎机", max_length = MAX_NAME_LEN)
 		if(msg)
 			name = msg
 
 		playsound(src, 'sound/machines/terminal/terminal_success.ogg', 50, TRUE)
-		desc = "Owned by [id_bank_account.account_holder], draws directly from [user.p_their()] account."
+		desc = "归[id_bank_account.account_holder]所有，直接从其账户支取奖金。"
 		house_bank_account = id_bank_account
-		to_chat(user, span_notice("You link the slot machine to [id_bank_account.account_holder]'s account."))
+		to_chat(user, span_notice("你将老虎机关联到了[id_bank_account.account_holder]的账户。"))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
 
 /obj/machinery/computer/slot_machine/multitool_act(mob/living/user, obj/item/tool)
 	if(balance > 0)
-		say("ERROR! Please empty the machine balance before altering paymode.") //Prevents converting coins into holocredits and vice versa
+		say("错误！更改支付方式前，请先清空机器余额。") //Prevents converting coins into holocredits and vice versa
 		return ITEM_INTERACT_BLOCKING
 
 	if(paymode == HOLOCHIP)
 		paymode = COIN
-		balloon_alert(user, "now using coins")
+		balloon_alert(user, "已切换为硬币支付")
 	else
 		paymode = HOLOCHIP
-		balloon_alert(user, "now using holochips")
+		balloon_alert(user, "已切换为全息信用芯片支付")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/computer/slot_machine/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -234,7 +234,7 @@
 	var/datum/effect_system/basic/spark_spread/spark_system = new(src.loc, 4, 0)
 	spark_system.start()
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, "machine rigged")
+	balloon_alert(user, "机器已被做手脚")
 	return TRUE
 
 /obj/machinery/computer/slot_machine/ui_assets(mob/user)
@@ -314,7 +314,7 @@
 	if(house_bank_account.has_money(payout))
 		return TRUE
 
-	say("The bank account of [house_bank_account.account_holder] does not have enough funds to pay out the potential prize, contact them to fill up their account or lower your bet!")
+	say("[house_bank_account.account_holder]的银行账户余额不足以支付可能产生的奖金，请联系账户持有人补充资金，或降低赌注！")
 	playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 	return FALSE
 
@@ -326,18 +326,18 @@
 		return
 
 	if(!use_energy(active_power_usage, force = FALSE))
-		say("Not enough energy!")
+		say("电量不足！")
 		return
 
 	var/the_name
 	if(user)
 		the_name = user.real_name
-		visible_message(span_notice("[user] pulls the lever and the slot machine starts spinning!"))
+		visible_message(span_notice("[user]拉下了拉杆，老虎机开始转动！"))
 		if(isliving(user))
 			var/mob/living/living_user = user
 			living_user.add_mood_event("slots_spin", /datum/mood_event/slots)
 	else
-		the_name = "Exaybachay"
+		the_name = "埃克赛巴凯"
 
 	balance -= SPIN_PRICE
 	money += SPIN_PRICE
@@ -345,7 +345,7 @@
 	if(house_bank_account)
 		// Since big jackpots & free games aren't deducted directly from the account holder NT takes a 40% cut of profit
 		// Also discourages infinite money exploits since people playing slot machines they own will cause them to slowly lose money
-		house_bank_account.adjust_money(SPIN_PRICE * 0.60, "Slot Machine: Spin")
+		house_bank_account.adjust_money(SPIN_PRICE * 0.60, "老虎机：投注")
 
 	plays += 1
 	working = TRUE
@@ -372,16 +372,16 @@
 /// Check if the machine can be spun
 /obj/machinery/computer/slot_machine/proc/can_spin(mob/user)
 	if(machine_stat & NOPOWER)
-		balloon_alert(user, "no power!")
+		balloon_alert(user, "没有电力！")
 		return FALSE
 	if(machine_stat & BROKEN)
-		balloon_alert(user, "machine broken!")
+		balloon_alert(user, "机器已损坏！")
 		return FALSE
 	if(working)
-		balloon_alert(user, "already spinning!")
+		balloon_alert(user, "已经在转动了！")
 		return FALSE
 	if(balance < SPIN_PRICE)
-		balloon_alert(user, "insufficient balance!")
+		balloon_alert(user, "余额不足！")
 		return FALSE
 	return TRUE
 
@@ -394,7 +394,7 @@
 
 /// Triggers a negative effect for a slot machine if all trap icons are lined up in the middle
 /obj/machinery/computer/slot_machine/proc/activate_trap(mob/living/user)
-	say("Big Loser! Prepare for your special prize!")
+	say("超级大输家！准备领取你的特别奖品吧！")
 
 	switch(trap_path)
 		if(/obj/item/restraints/handcuffs)
@@ -422,8 +422,8 @@
 	else if(check_middle_row_all(jackpot_path))
 		winning = WINNING_JACKPOT
 		var/prize = money + PRIZE_JACKPOT
-		say("JACKPOT! You win [prize] [MONEY_NAME]!")
-		priority_announce("Congratulations to [user ? user.real_name : usrname] for winning the jackpot at the slot machine in [get_area(src)]!")
+		say("头奖！你赢得了[prize][MONEY_NAME]！")
+		priority_announce("恭喜[user ? user.real_name : usrname]在[chinese_area_display(get_area_name(src))]的老虎机上赢得头奖！")
 		user.add_mood_event(SLOTS_MOOD_CATEGORY, /datum/mood_event/slots/win/jackpot)
 		add_memory_in_range(user, 7, /datum/memory/won_jackpot, protagonist = user, deuteragonist = src)
 		jackpots += 1
@@ -440,25 +440,25 @@
 
 	else if(linelength == 5)
 		winning = WINNING_BIG
-		say("Big Winner! You win a thousand [MONEY_NAME]!")
+		say("大赢家！你赢得了一千[MONEY_NAME]！")
 		give_money(PRIZE_BIG)
 		user.add_mood_event(SLOTS_MOOD_CATEGORY, /datum/mood_event/slots/win/big)
 
 	else if(linelength == 4)
 		winning = WINNING_SMALL
-		say("Winner! You win four hundred [MONEY_NAME]!")
+		say("获胜！你赢得了四百[MONEY_NAME]！")
 		give_money(PRIZE_SMALL)
 		user.add_mood_event(SLOTS_MOOD_CATEGORY, /datum/mood_event/slots/win)
 
 	else if(linelength == 3)
 		winning = WINNING_FREESPIN
-		balloon_alert(user, "won 3 free games!")
+		balloon_alert(user, "赢得3次免费游玩！")
 		balance += SPIN_PRICE * 4
 		money = max(money - SPIN_PRICE * 4, money)
 
 	else
 		winning = WINNING_NOTHING
-		balloon_alert(user, "no luck!")
+		balloon_alert(user, "运气欠佳！")
 		did_player_win = FALSE
 		user.add_mood_event(SLOTS_MOOD_CATEGORY, /datum/mood_event/slots/loss)
 
@@ -512,7 +512,7 @@
 	balance += surplus
 
 	if(house_bank_account)
-		house_bank_account.adjust_money(-amount_to_give, "Slot Machine: Payout")
+		house_bank_account.adjust_money(-amount_to_give, "老虎机：派彩")
 
 /// Pay out the specified amount in either coins or holochips
 /obj/machinery/computer/slot_machine/proc/give_payout(amount)
@@ -555,8 +555,8 @@
 	return amount
 
 /obj/machinery/computer/slot_machine/command
-	name = "command slot machine"
-	desc = "The handle is made of solid gold, and the screen is polished with the tears of overworked assistants."
+	name = "指挥部老虎机"
+	desc = "拉杆由纯金制成，屏幕则用劳累过度的助理们的眼泪擦得锃亮。"
 	symbol_paths = list(
 		/obj/item/disk/nuclear,
 		/obj/item/clothing/accessory/medal/gold,
@@ -570,13 +570,13 @@
 	trap_path = /obj/item/grenade/syndieminibomb
 
 /obj/machinery/computer/slot_machine/command/Initialize(mapload)
-	slot_adjectives += list("Royal", "Regal", "Golden", "Captain's", "Glorious")
-	slot_nouns += list("Medal", "Ransom", "Authority", "Command")
+	slot_adjectives += list("皇家", "帝王", "黄金", "舰长的", "荣耀")
+	slot_nouns += list("勋章", "赎金", "权威", "指挥")
 	. = ..()
 
 /obj/machinery/computer/slot_machine/security
-	name = "security slot machine"
-	desc = "Repurposed from a confiscated syndicate gambling ring. Losing is a crime. Winning is also a crime."
+	name = "安保老虎机"
+	desc = "从查获的辛迪加赌窝中没收后改装而来。输钱是犯罪，赢钱也是犯罪。"
 	symbol_paths = list(
 		/obj/item/food/donut/berry,
 		/mob/living/basic/bot/secbot/beepsky,
@@ -590,13 +590,13 @@
 	trap_path = /obj/item/grown/bananapeel
 
 /obj/machinery/computer/slot_machine/security/Initialize(mapload)
-	slot_adjectives += list("Stunned", "Flashed", "Confiscated", "Loyal", "Arrested")
-	slot_nouns += list("Baton", "Donut", "Contraband", "Brig", "Security")
+	slot_adjectives += list("眩晕", "闪光", "没收", "忠诚", "逮捕")
+	slot_nouns += list("警棍", "甜甜圈", "违禁品", "禁闭室", "安保")
 	. = ..()
 
 /obj/machinery/computer/slot_machine/medical
-	name = "medical slot machine"
-	desc = "A miracle of modern medicine! It cures boredom, but causes acute financial necrosis."
+	name = "医疗老虎机"
+	desc = "现代医学的奇迹！能治愈无聊，却会引发急性财务坏死。"
 	symbol_paths = list(
 		/obj/item/storage/medkit/brute,
 		/obj/vehicle/sealed/mecha/odysseus,
@@ -610,13 +610,13 @@
 	trap_path = /obj/machinery/syndicatebomb
 
 /obj/machinery/computer/slot_machine/medical/Initialize(mapload)
-	slot_adjectives += list("Mutated", "Overdosed", "Infectious", "Healing", "Husked")
-	slot_nouns += list("Medkit", "Defib", "Patient", "Doctor", "Cure")
+	slot_adjectives += list("突变", "过量", "传染", "治愈", "焦尸")
+	slot_nouns += list("急救箱", "除颤器", "病人", "医生", "疗法")
 	. = ..()
 
 /obj/machinery/computer/slot_machine/engineering
-	name = "engineering slot machine"
-	desc = "Gambling for those who think wearing insulated gloves makes them invincible. Ground yourself before playing."
+	name = "工程老虎机"
+	desc = "专供那些以为戴上绝缘手套就天下无敌的人赌博。游玩前请先接地。"
 	symbol_paths = list(
 		/obj/item/storage/toolbox/mechanical,
 		/obj/item/blueprints,
@@ -630,13 +630,13 @@
 	trap_path = /obj/singularity
 
 /obj/machinery/computer/slot_machine/engineering/Initialize(mapload)
-	slot_adjectives += list("Supercharged", "Pressurized", "Radioactive", "Overloaded", "Delaminating", "Insulated")
-	slot_nouns += list("Toolbox", "Emitter", "Supermatter")
+	slot_adjectives += list("超级充能", "加压", "放射性", "过载", "崩解", "绝缘")
+	slot_nouns += list("工具箱", "发射器", "超物质")
 	. = ..()
 
 /obj/machinery/computer/slot_machine/cargo
-	name = "cargo slot machine"
-	desc = "Every credit spent here is a credit that won't be spent on 'useless' things, like food or medicine."
+	name = "货运老虎机"
+	desc = "每在这里花掉一个信用点，就少一个信用点浪费在食物或药品之类的“无用”东西上。"
 	symbol_paths = list(
 		/obj/item/bounty_cube,
 		/obj/item/clipboard,
@@ -650,13 +650,13 @@
 	trap_path = /obj/item/suspiciousphone
 
 /obj/machinery/computer/slot_machine/cargo/Initialize(mapload)
-	slot_adjectives += list("Express", "Smuggled", "Stolen", "Overdue", "Subsidized", "Manifested")
-	slot_nouns += list("Bounty", "Crate", "Manifest", "MULE", "Profit")
+	slot_adjectives += list("速递", "走私", "赃物", "逾期", "补贴", "列单")
+	slot_nouns += list("赏金", "货箱", "清单", "骡子机器人", "利润")
 	. = ..()
 
 /obj/machinery/computer/slot_machine/service
-	name = "service slot machine"
-	desc = "The handle is a repurposed rolling pin. Every loss is just another ingredient for the daily special."
+	name = "服务老虎机"
+	desc = "拉杆由擀面杖改装而成。每一次输局都是今日特餐的又一份食材。"
 	symbol_paths = list(
 		/obj/item/clothing/head/hats/tophat,
 		/obj/item/reagent_containers/cup/watering_can,
@@ -670,13 +670,13 @@
 	trap_path = /mob/living/basic/goat/pete
 
 /obj/machinery/computer/slot_machine/service/Initialize(mapload)
-	slot_adjectives += list("Fermented", "Seasoned", "Tipsy", "Cleaned", "Organic", "Culinary", "Refreshing", "Divine", "Holy")
-	slot_nouns += list("Recipe", "Cocktail", "Harvest", "Scrubber")
+	slot_adjectives += list("发酵", "调味", "微醺", "洁净", "有机", "烹饪", "清爽", "神赐", "神圣")
+	slot_nouns += list("食谱", "鸡尾酒", "丰收", "洗涤器")
 	. = ..()
 
 /obj/machinery/computer/slot_machine/science
-	name = "research slot machine"
-	desc = "The reels seem to exist in multiple dimensions at once. It still takes your money in all of them."
+	name = "科研老虎机"
+	desc = "滚轴似乎同时存在于多个维度中。每个维度里的它都照样会吞掉你的钱。"
 	symbol_paths = list(
 		/obj/item/stack/sheet/mineral/gold,
 		/obj/item/stack/sheet/mineral/silver,
@@ -690,12 +690,12 @@
 	trap_path = /obj/item/gibtonite
 
 /obj/machinery/computer/slot_machine/science/Initialize(mapload)
-	slot_adjectives += list("Atomic", "Bluespace", "Cosmic", "Golden", "Diamond", "Silver", "Uranium", "Quantum", "Anomalous", "Plasma", "Experimental", "Robotic")
-	slot_nouns += list("Anomaly", "Artifact", "Slime", "Extract", "Circuit", "Discovery", "Explosion")
+	slot_adjectives += list("原子", "蓝空间", "宇宙", "黄金", "钻石", "白银", "铀", "量子", "异常", "等离子", "实验", "机械")
+	slot_nouns += list("异常", "遗物", "史莱姆", "提取物", "电路", "发现", "爆炸")
 	. = ..()
 
 /obj/machinery/computer/slot_machine/clown
-	desc = "Gambling is fun! Smells like bananas, wet shoes, and regret. HONK!"
+	desc = "赌博真有趣！散发着香蕉、湿鞋和悔恨的气味。HONK！"
 	symbol_paths = list(
 		/obj/item/food/grown/banana,
 		/obj/item/toy/crayon/spraycan/lubecan,
@@ -709,12 +709,12 @@
 	trap_path = /obj/item/restraints/handcuffs
 
 /obj/machinery/computer/slot_machine/clown/Initialize(mapload)
-	slot_adjectives += list("Honking", "Slippery", "Pranked", "Squeaky", "Hilarious", "Giggling")
-	slot_nouns += list("Banana", "Peel", "Prank", "Joke", "Punchline", "Candy", "Honk")
+	slot_adjectives += list("喇叭", "滑溜", "恶作剧", "吱呀", "爆笑", "窃笑")
+	slot_nouns += list("香蕉", "果皮", "整蛊", "笑话", "笑点", "糖果", "HONK")
 	. = ..()
 
 /obj/machinery/computer/slot_machine/mime
-	desc = "Gambling is a silent tragedy. The machine stares back at you with a cold indifference."
+	desc = "赌博是一场无声的悲剧。这台机器冷漠地回望着你。"
 	symbol_paths = list(
 		/obj/item/book/granter/action/spell/mime/mimery,
 		/obj/item/clothing/mask/gas/mime,
@@ -728,13 +728,13 @@
 	trap_path = /obj/item/restraints/handcuffs
 
 /obj/machinery/computer/slot_machine/mime/Initialize(mapload)
-	slot_adjectives += list("Silent", "Transparent", "Unspeakable", "Voiceless", "Quiet", "Hushed", "Invisible", "Imaginary", "Empty")
-	slot_nouns += list("Silence", "Mute", "Introvert", "Nothing", "Baguette")
+	slot_adjectives += list("无声", "透明", "不可言说", "失语", "安静", "寂静", "隐形", "想象", "空虚")
+	slot_nouns += list("沉默", "哑剧", "内向者", "虚无", "法棍")
 	. = ..()
 
 /obj/machinery/computer/slot_machine/syndicate
-	name = "syndicate slot machine"
-	desc = "Gambling for the operative who's already lost everything. Death to Nanotrasen, and death to your wallet."
+	name = "辛迪加老虎机"
+	desc = "专供已经输掉一切的特工赌博。纳米传讯去死，你的钱包也去死。"
 	symbol_paths = list(
 		/obj/machinery/nuclearbomb,
 		/obj/item/card/emag,
@@ -748,8 +748,8 @@
 	trap_path = /obj/item/restraints/handcuffs
 
 /obj/machinery/computer/slot_machine/syndicate/Initialize(mapload)
-	slot_adjectives += list("Covert", "Nuclear", "Suspicious", "Bloody", "Syndie", "Sabotaged", "Clandestine", "Illicit", "Traitorous")
-	slot_nouns += list("Telecrystal", "Uplink", "Bomb", "Operative", "Disk", "Nuke", "Syndicate", "Traitor")
+	slot_adjectives += list("隐秘", "核能", "可疑", "血腥", "辛迪", "破坏", "秘密", "非法", "叛逆")
+	slot_nouns += list("传送水晶", "上行链路", "炸弹", "特工", "磁盘", "核弹", "辛迪加", "叛徒")
 	. = ..()
 
 #undef SPIN_PRICE

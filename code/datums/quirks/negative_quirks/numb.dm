@@ -1,12 +1,12 @@
 /datum/quirk/numb
 	name = "Numb"
-	desc = "You can't feel pain at all."
+	desc = "你完全感觉不到疼痛。"
 	icon = FA_ICON_STAR_OF_LIFE
 	value = -4
-	gain_text = "You feel your body becoming numb."
-	lose_text = "The numbness subsides."
-	medical_record_text = "The patient exhibits congenital hypoesthesia, making them insensitive to pain stimuli."
-	medical_symptom_text = "Exhibits an inability to perceive pain, which may lead to unintentional self-injury and delayed response to harmful stimuli."
+	gain_text = "你感觉身体变得麻木。"
+	lose_text = "麻木感消退了。"
+	medical_record_text = "患者存在先天性感觉减退，对疼痛刺激不敏感。"
+	medical_symptom_text = "无法感知疼痛，可能导致意外自伤及对有害刺激反应迟缓。"
 	hardcore_value = 4
 	quirk_flags = QUIRK_TRAUMALIKE
 

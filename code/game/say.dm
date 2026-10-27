@@ -169,7 +169,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	//Start name span.
 	var/spanpart2 = "<span class='name'>"
 	//Radio freq/name display
-	var/freqpart = radio_freq ? "\[[get_radio_name(radio_freq, radio_freq_name)]\] " : ""
+	var/freqpart = radio_freq ? "\[[chinese_radio_channel_display(get_radio_name(radio_freq, radio_freq_name))]\] " : "" // BUBBER EDIT: Chinese channel display
 	//Speaker name
 	var/namepart = message_mods[MODE_SPEAKER_NAME_OVERRIDE] || speaker.get_message_voice(visible_name)
 
@@ -242,7 +242,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 	// Otherwise, we format our full quoted message.
 	if(!input)
-		input = "..."
+		input = "……"
 
 	var/say_mod = message_mods[MODE_CUSTOM_SAY_EMOTE] || message_mods[SAY_MOD_VERB] || say_mod(input, message_mods)
 
@@ -280,7 +280,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 /// Modifies the message by comparing the languages of the speaker with the languages of the hearer. Called on the hearer.
 /atom/movable/proc/translate_language(atom/movable/speaker, datum/language/language, raw_message, list/spans, list/message_mods)
 	if(!language)
-		return "makes a strange sound."
+		return "发出奇怪的声音。"
 
 	if(!has_language(language))
 		var/list/mutual_languages
@@ -381,7 +381,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 	radio = _radio
 	source = M
 	if(istype(M))
-		name = radio?.anonymize ? "Unknown" : M.get_voice(add_id_name = TRUE)
+		name = radio?.anonymize ? "未知" : M.get_voice(add_id_name = TRUE)
 		verb_say = M.get_default_say_verb()
 		verb_ask = M.verb_ask
 		verb_exclaim = M.verb_exclaim
@@ -395,20 +395,20 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 		if(found_record)
 			job = found_record.rank
 		else
-			job = "Unknown"
+			job = "未知"
 	else if(iscarbon(M))  // Carbon nonhuman
-		job = "No ID"
+		job = "无 ID"
 	else if(isAI(M))  // AI
 		job = "AI"
 	else if(iscyborg(M))  // Cyborg
 		var/mob/living/silicon/robot/B = M
-		job = "[B.designation] Cyborg"
+		job = "[B.designation] 半机械人"
 	else if(ispAI(M))  // Personal AI (pAI)
 		job = JOB_PERSONAL_AI
 	else if(isobj(M))  // Cold, emotionless machines
-		job = "Machine"
+		job = "机器"
 	else  // Unidentifiable mob
-		job = "Unknown"
+		job = "未知"
 
 /atom/movable/virtualspeaker/GetJob()
 	return job

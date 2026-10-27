@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 	/// Color name used for raptor name and icon
 	var/color = "error"
 	/// RaptorDex description for the raptor
-	var/description = "Report this!"
+	var/description = "请上报此问题！"
 	/// Raptor's health
 	var/health = 220
 	/// Raptor's speed
@@ -82,8 +82,8 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 
 /datum/raptor_color/red
 	color = "red"
-	description = "A resilient breed of raptors, battle-tested and bred for the purpose of humbling its foes in combat, \
-		This breed demonstrates higher combat capabilities than its peers and oozes ruthless aggression."
+	description = "一种坚韧的迅猛龙品种，历经战斗考验，专为在战斗中挫败对手而培育， \
+		该品种的战斗力高于同类，浑身散发着冷酷的侵略性。"
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	health = 300
@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 
 /datum/raptor_color/purple
 	color = "purple"
-	description = "A small, nimble breed, these raptors have been bred as travel companions rather than mounts, capable of storing the owner's possessions and helping them escape from danger unscathed."
+	description = "体型小巧、行动灵便的品种，这些迅猛龙被培育成旅行伙伴而非坐骑，能收纳主人的物品，并帮助主人毫发无伤地逃离险境。"
 	health = 140 // smol
 	rideable_component = /datum/component/riding/creature/raptor/small
 	guaranteed_crossbreeds = list(
@@ -123,7 +123,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 
 	var/mob/living/carbon/human/rider = potential_rider
 	if (rider.mob_height > HUMAN_HEIGHT_SHORTEST)
-		to_chat(rider, span_warning("Your tall stature will crush [source] were you attempt to ride [source.p_them()]!"))
+		to_chat(rider, span_warning("你若试图骑上 [source]，以你这般高大的身材会把它压垮的！"))
 		return COMPONENT_BLOCK_BUCKLE
 
 // Purple raptors never "fully" grow up, and remain usable as backpacks
@@ -246,7 +246,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 		return TRUE
 
 	if (!silent)
-		to_chat(user, span_warning("The atmosphere is too thin for you to fly!"))
+		to_chat(user, span_warning("这里的空气太稀薄，你无法飞行！"))
 	return FALSE
 
 /obj/item/mob_holder/purple_raptor/proc/check_flight()
@@ -282,7 +282,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 			user.add_movespeed_modifier(/datum/movespeed_modifier/jetpack/raptor)
 		user.AddElement(/datum/element/forced_gravity, 0)
 		ADD_TRAIT(user, TRAIT_PASSTABLE, REF(src))
-		to_chat(user, span_notice("You begin gently hovering above ground as [held_mob] on your back starts furiously flapping [held_mob.p_their()] wings[struggling ? ", struggling to keep you up in the air" : ""]!"))
+		to_chat(user, span_notice("随着你背上的 [held_mob] 开始拼命扇动翅膀，你开始缓缓悬浮在地面上方[struggling ? "，它正努力让你保持在空中" : ""]！"))
 		user.set_resting(FALSE, TRUE)
 		user.refresh_gravity()
 		START_PROCESSING(SSprocessing, src)
@@ -298,7 +298,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 	user.remove_movespeed_modifier(/datum/movespeed_modifier/jetpack/raptor)
 	user.RemoveElement(/datum/element/forced_gravity, 0)
 	REMOVE_TRAIT(user, TRAIT_PASSTABLE, REF(src))
-	to_chat(user, span_notice("You settle gently back onto the ground[struggling ? ", [held_mob] on your back breathing out a sigh of releif" : ""]..."))
+	to_chat(user, span_notice("你缓缓地落回地面[struggling ? "，背上的 [held_mob] 松了一口气" : ""]……"))
 	user.refresh_gravity()
 	STOP_PROCESSING(SSprocessing, src)
 	UnregisterSignal(user, list(COMSIG_HUMAN_HEIGHT_UPDATED, SIGNAL_ADDTRAIT(TRAIT_FAT), SIGNAL_REMOVETRAIT(TRAIT_FAT)))
@@ -327,7 +327,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 	return NONE
 
 /datum/action/innate/raptor_wings
-	name = "Toggle Flight"
+	name = "切换飞行"
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_IMMOBILE | AB_CHECK_INCAPACITATED
 	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	button_icon_state = "raptor_wings"
@@ -345,8 +345,8 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 
 /datum/raptor_color/green
 	color = "green"
-	description = "A tough breed of raptor, made to withstand the harshest of punishment and to laugh in the face of pain, \
-		this breed is able to withstand more punishment than its peers."
+	description = "一种强韧的迅猛龙品种，专为承受最严酷的打击、笑对痛苦而生， \
+		该品种比同类更能忍受伤害。"
 	health = 400
 	// redirect_shots = FALSE // Need to figure out if I want this or not here
 	guaranteed_crossbreeds = list(
@@ -364,7 +364,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 
 /datum/raptor_color/white
 	color = "white"
-	description = "A loving sort, it cares for it peers and rushes to their aid with reckless abandon. It is able to heal any raptors' ailments, and rescue its owner in case of an emergency."
+	description = "性情亲昵的品种，它关爱同伴，会不顾一切地冲去援助它们。它能治愈任何迅猛龙的病痛，并在紧急情况下营救自己的主人。"
 	rideable_component = /datum/component/riding/creature/raptor/healer
 	guaranteed_crossbreeds = list(
 		/datum/raptor_color/blue = /datum/raptor_color/green,
@@ -410,8 +410,8 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 
 /datum/raptor_color/yellow
 	color = "yellow"
-	description = "This breed possesses greasy fast speed, DEMON speed, making light work of long pilgrimages. \
-		It's said that a thunderclap could be heard when this breed reaches its maximum speed."
+	description = "这一品种拥有快如抹油的速度，恶魔般的速度，长途跋涉对它来说轻而易举。 \
+		据说当这一品种达到最高速度时，能听到一声雷鸣。"
 	speed = 0
 	guaranteed_crossbreeds = list(
 		/datum/raptor_color/purple = /datum/raptor_color/blue,
@@ -420,7 +420,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 
 /datum/raptor_color/blue
 	color = "blue"
-	description = "Covered in tough, lava-resistant feathers with thick insulated fur underneath, this breed is capable of marching through lava and fire alike."
+	description = "全身覆盖着坚韧的抗熔岩羽毛，下层是厚实的保温绒毛，这一品种能够穿行于熔岩与火焰之中。"
 	health = 300
 	guaranteed_crossbreeds = list(
 		/datum/raptor_color/red = /datum/raptor_color/purple,
@@ -433,7 +433,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 
 /datum/raptor_color/black
 	color = "black"
-	description = "An ultra rare breed. Due to its sparse nature, not much is known about this sort. However it is said to possess many of its peers' abilities."
+	description = "极其罕见的品种。由于数量稀少，人们对它知之甚少。但据说它拥有许多同类的本领。"
 	health = 400
 	speed = 0
 	melee_damage_lower = 20

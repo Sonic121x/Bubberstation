@@ -8,7 +8,7 @@
 /datum/emote/living/taunt
 	key = "taunt"
 	key_third_person = "taunts"
-	message = "taunts!"
+	message = "出言嘲讽！"
 	cooldown = 1.6 SECONDS //note when changing this- this is used by the matrix taunt to block projectiles.
 
 /datum/emote/living/taunt/run_emote(mob/living/user, params, type_override, intentional)
@@ -18,12 +18,12 @@
 /datum/emote/living/tongue
 	key = "tongue"
 	key_third_person = "tongues"
-	message = "sticks their tongue out."
+	message = "吐出了舌头。"
 
 /datum/emote/living/tongue/run_emote(mob/user, params, type_override, intentional)
 	var/mob/living/carbon/human/human_user = user
 	if(istype(human_user) && !human_user.get_organ_slot(ORGAN_SLOT_TONGUE))
-		to_chat(human_user, span_warning("You don't have a tongue!"))
+		to_chat(human_user, span_warning("你没有舌头！"))
 		return
 	. = ..()
 	QDEL_IN(human_user.give_emote_overlay(/datum/bodypart_overlay/simple/emote/tongue), 5.2 SECONDS)
@@ -31,7 +31,7 @@
 /datum/emote/living/blush
 	key = "blush"
 	key_third_person = "blushes"
-	message = "blushes."
+	message = "脸红了。"
 
 /datum/emote/living/blush/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
@@ -43,46 +43,46 @@
 /datum/emote/living/sing_tune
 	key = "tunesing"
 	key_third_person = "sings a tune"
-	message = "sings a tune."
+	message = "哼起了一段旋律。"
 
 /datum/emote/living/bow
 	key = "bow"
 	key_third_person = "bows"
-	message = "bows."
-	message_param = "bows to %t."
+	message = "鞠了一躬。"
+	message_param = "向 %t 鞠了一躬。"
 	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
 
 /datum/emote/living/burp
 	key = "burp"
 	key_third_person = "burps"
-	message = "burps."
-	message_mime = "acts out a burp."
+	message = "打了个嗝。"
+	message_mime = "无声地模仿打嗝。"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/choke
 	key = "choke"
 	key_third_person = "chokes"
-	message = "chokes!"
-	message_mime = "chokes silently!"
+	message = "噎住了！"
+	message_mime = "无声地噎住了！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/cross
 	key = "cross"
 	key_third_person = "crosses"
-	message = "crosses their arms."
+	message = "抱起了双臂。"
 	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
 
 /datum/emote/living/chuckle
 	key = "chuckle"
 	key_third_person = "chuckles"
-	message = "chuckles."
-	message_mime = "acts out chuckling."
+	message = "轻笑了一声。"
+	message_mime = "无声地模仿轻笑。"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/collapse
 	key = "collapse"
 	key_third_person = "collapses"
-	message = "collapses!"
+	message = "瘫倒下去！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/collapse/run_emote(mob/user, params, type_override, intentional)
@@ -94,19 +94,19 @@
 /datum/emote/living/dance
 	key = "dance"
 	key_third_person = "dances"
-	message = "dances around happily."
+	message = "开心地跳起舞来。"
 	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
 
 /datum/emote/living/deathgasp
 	key = "deathgasp"
 	key_third_person = "deathgasps"
-	message = "seizes up and falls limp, their eyes dead and lifeless..."
-	message_robot = "shudders violently for a moment before falling still, its eyes slowly darkening."
-	message_AI = "screeches, its screen flickering as its systems slowly halt."
-	message_alien = "lets out a waning guttural screech, and collapses onto the floor..."
-	message_larva = "lets out a sickly hiss of air and falls limply to the floor..."
-	message_monkey = "lets out a faint chimper as it collapses and stops moving..."
-	message_animal_or_basic = "stops moving..."
+	message = "身体一僵，软软倒下，双眼失去光彩……"
+	message_robot = "剧烈颤抖了一阵，随后静止不动，双眼缓缓变暗。"
+	message_AI = "发出刺耳的尖鸣，屏幕闪烁，系统缓缓停止运转。"
+	message_alien = "发出一声渐渐微弱的喉音尖啸，瘫倒在地……"
+	message_larva = "发出一声病态的嘶嘶气声，软绵绵地倒在地上……"
+	message_monkey = "虚弱地吱了一声，随即倒下不再动弹……"
+	message_animal_or_basic = "停止了动弹……"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE | EMOTE_IMPORTANT
 	cooldown = (15 SECONDS)
 	can_use_flags = EMOTE_CANUSE_UNCONSCIOUS | EMOTE_CANUSE_HARDCRIT | EMOTE_CANUSE_SOFTCRIT
@@ -136,12 +136,12 @@
 /datum/emote/living/drool
 	key = "drool"
 	key_third_person = "drools"
-	message = "drools."
+	message = "流着口水。"
 
 /datum/emote/living/faint
 	key = "faint"
 	key_third_person = "faints"
-	message = "faints."
+	message = "昏了过去。"
 
 /datum/emote/living/faint/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
@@ -152,7 +152,7 @@
 /datum/emote/living/flap
 	key = "flap"
 	key_third_person = "flaps"
-	message = "flaps their wings."
+	message = "扇动着翅膀。"
 	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
 	var/wing_time = 0.35 SECONDS
 
@@ -183,28 +183,28 @@
 /datum/emote/living/flap/aflap
 	key = "aflap"
 	key_third_person = "aflaps"
-	name = "flap (Angry)"
-	message = "flaps their wings ANGRILY!"
+	name = "扇动翅膀（愤怒）"
+	message = "愤怒地扇动着翅膀！"
 	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
 	wing_time = 10
 
 /datum/emote/living/frown
 	key = "frown"
 	key_third_person = "frowns"
-	message = "frowns."
+	message = "皱起了眉头。"
 
 /datum/emote/living/gag
 	key = "gag"
 	key_third_person = "gags"
-	message = "gags."
-	message_mime = "gags silently."
+	message = "干呕起来。"
+	message_mime = "无声地干呕。"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/gasp
 	key = "gasp"
 	key_third_person = "gasps"
-	message = "gasps!"
-	message_mime = "gasps silently!"
+	message = "倒吸一口气！"
+	message_mime = "无声地倒吸一口气！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	can_use_flags = EMOTE_CANUSE_UNCONSCIOUS | EMOTE_CANUSE_HARDCRIT | EMOTE_CANUSE_SOFTCRIT
 	sounds_by_mobtype = list(
@@ -224,41 +224,41 @@
 /datum/emote/living/gasp/shock
 	key = "gaspshock"
 	key_third_person = "gaspsshock"
-	name = "gasp (Shock)"
-	message = "gasps in shock!"
-	message_mime = "gasps in silent shock!"
+	name = "倒吸一口气（震惊）"
+	message = "震惊地倒吸一口气！"
+	message_mime = "无声地倒吸一口气，震惊不已！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	can_use_flags = EMOTE_CANUSE_SOFTCRIT
 
 /datum/emote/living/giggle
 	key = "giggle"
 	key_third_person = "giggles"
-	message = "giggles."
-	message_mime = "giggles silently!"
+	message = "咯咯地笑了起来。"
+	message_mime = "无声地咯咯笑！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/glare
 	key = "glare"
 	key_third_person = "glares"
-	message = "glares."
-	message_param = "glares at %t."
+	message = "瞪着眼。"
+	message_param = "瞪了 %t 一眼。"
 
 /datum/emote/living/grin
 	key = "grin"
 	key_third_person = "grins"
-	message = "grins."
+	message = "咧嘴一笑。"
 
 /datum/emote/living/groan
 	key = "groan"
 	key_third_person = "groans"
-	message = "groans!"
-	message_mime = "appears to groan!"
+	message = "呻吟起来！"
+	message_mime = "看起来在呻吟！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/grimace
 	key = "grimace"
 	key_third_person = "grimaces"
-	message = "grimaces."
+	message = "做出痛苦的表情。"
 
 /datum/emote/living/kiss
 	key = "kiss"
@@ -289,18 +289,18 @@
 
 	var/obj/item/kiss_blower = new kiss_type(user)
 	if(user.put_in_hands(kiss_blower))
-		to_chat(user, span_notice("You ready your kiss-blowing hand."))
+		to_chat(user, span_notice("你准备好送出一个飞吻。"))
 		ink_action?.StartCooldown()
 		return
 
 	qdel(kiss_blower)
-	to_chat(user, span_warning("You're incapable of blowing a kiss in your current state."))
+	to_chat(user, span_warning("你现在这个状态没法送出飞吻。"))
 
 /datum/emote/living/laugh
 	key = "laugh"
 	key_third_person = "laughs"
-	message = "laughs."
-	message_mime = "laughs silently!"
+	message = "大笑起来。"
+	message_mime = "无声地大笑！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	manual_specific_emote_audio_cooldown = 8 SECONDS
 	vary = TRUE
@@ -320,20 +320,20 @@
 /datum/emote/living/look
 	key = "look"
 	key_third_person = "looks"
-	message = "looks."
-	message_param = "looks at %t."
+	message = "看了看。"
+	message_param = "看了看 %t。"
 
 /datum/emote/living/nod
 	key = "nod"
 	key_third_person = "nods"
-	message = "nods."
-	message_param = "nods at %t."
+	message = "点了点头。"
+	message_param = "向 %t 点了点头。"
 
 /datum/emote/living/point
 	key = "point"
 	key_third_person = "points"
-	message = "points."
-	message_param = "points at %t."
+	message = "指了指。"
+	message_param = "指了指 %t。"
 	cooldown = 1 SECONDS
 	// don't put hands use check here, everything is handled in run_emote
 
@@ -353,21 +353,21 @@
 				if(one_leg)
 					success_prob -= 40
 				if(prob(success_prob))
-					message_param = "[one_leg ? "jumps into the air and " : ""]points at %t with their [has_shoes ? "leg" : "toes"]!"
+					message_param = "[one_leg ? "跳起来，然后" : ""]用[has_shoes ? "脚" : "脚趾"]指了指 %t！"
 				else
-					message_param = "[one_leg ? "jumps into the air and " : ""]tries to point at %t with their [has_shoes ? "leg" : "toes"], falling down in the process!"
+					message_param = "[one_leg ? "跳起来，然后" : ""]想用[has_shoes ? "脚" : "脚趾"]指向 %t，结果摔倒在地！"
 					our_carbon.Paralyze(2 SECONDS)
 				TIMER_COOLDOWN_START(user, "point_verb_emote_cooldown", 1 SECONDS)
 			else
 				if(our_carbon.get_organ_slot(ORGAN_SLOT_EYES))
-					message_param = "gives a meaningful glance at %t!"
+					message_param = "意味深长地瞥了 %t 一眼！"
 					TIMER_COOLDOWN_START(src, "point_verb_emote_cooldown", 1.5 SECONDS)
 				else
 					if(our_carbon.get_organ_slot(ORGAN_SLOT_TONGUE))
-						message_param = "motions their tongue towards %t!"
+						message_param = "朝 %t 动了动舌头！"
 						TIMER_COOLDOWN_START(src, "point_verb_emote_cooldown", 2 SECONDS)
 					else
-						message_param = "[span_userdanger("bumps [user.p_their()] head on the ground")] trying to motion towards %t."
+						message_param = "[span_userdanger("脑袋在地上磕了一下")]，想要朝 %t 示意。"
 						our_carbon.adjust_organ_loss(ORGAN_SLOT_BRAIN, 5)
 						playsound(user, 'sound/effects/glass/glassbash.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 						TIMER_COOLDOWN_START(src, "point_verb_emote_cooldown", 2.5 SECONDS)
@@ -376,8 +376,8 @@
 /datum/emote/living/sneeze
 	key = "sneeze"
 	key_third_person = "sneezes"
-	message = "sneezes."
-	message_mime = "acts out an exaggerated silent sneeze."
+	message = "打了个喷嚏。"
+	message_mime = "夸张地无声模仿打喷嚏。"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sounds_by_mobtype = list(
@@ -390,8 +390,8 @@
 /datum/emote/living/cough
 	key = "cough"
 	key_third_person = "coughs"
-	message = "coughs!"
-	message_mime = "acts out an exaggerated cough!"
+	message = "咳嗽起来！"
+	message_mime = "夸张地模仿咳嗽！"
 	vary = TRUE
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE | EMOTE_RUNECHAT
 	sounds_by_mobtype = list(
@@ -421,20 +421,20 @@
 /datum/emote/living/wheeze
 	key = "wheeze"
 	key_third_person = "wheezes"
-	message = "wheezes!"
+	message = "喘息起来！"
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/pout
 	key = "pout"
 	key_third_person = "pouts"
-	message = "pouts."
-	message_mime = "pouts silently."
+	message = "噘起了嘴。"
+	message_mime = "无声地噘起了嘴。"
 
 /datum/emote/living/scream
 	key = "scream"
 	key_third_person = "screams"
-	message = "screams!"
-	message_mime = "acts out a scream!"
+	message = "尖叫起来！"
+	message_mime = "无声地模仿尖叫！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	mob_type_blacklist_typecache = list(/mob/living/brain)
 	sound_wall_ignore = TRUE
@@ -470,7 +470,7 @@
 /datum/emote/living/scream/select_message_type(mob/user, message, intentional)
 	. = ..()
 	if(!intentional && isanimal_or_basicmob(user))
-		return "makes a loud and pained whimper."
+		return "发出一声痛苦而响亮的呜咽。"
 
 /datum/emote/living/scream/get_sound(mob/living/user)
 	. = ..()
@@ -484,17 +484,17 @@
 /datum/emote/living/scowl
 	key = "scowl"
 	key_third_person = "scowls"
-	message = "scowls."
+	message = "沉下脸来。"
 
 /datum/emote/living/shake
 	key = "shake"
 	key_third_person = "shakes"
-	message = "shakes their head."
+	message = "摇了摇头。"
 
 /datum/emote/living/shiver
 	key = "shiver"
 	key_third_person = "shiver"
-	message = "shivers."
+	message = "打了个寒颤。"
 
 #define SHIVER_LOOP_DURATION (1 SECONDS)
 /datum/emote/living/shiver/run_emote(mob/living/user, params, type_override, intentional)
@@ -510,8 +510,8 @@
 /datum/emote/living/sigh
 	key = "sigh"
 	key_third_person = "sighs"
-	message = "sighs."
-	message_mime = "acts out an exaggerated silent sigh."
+	message = "叹了口气。"
+	message_mime = "夸张地无声模仿叹气。"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sounds_by_mobtype = list(
@@ -531,23 +531,23 @@
 /datum/emote/living/sit
 	key = "sit"
 	key_third_person = "sits"
-	message = "sits down."
+	message = "坐了下来。"
 
 /datum/emote/living/smile
 	key = "smile"
 	key_third_person = "smiles"
-	message = "smiles."
+	message = "微微一笑。"
 
 /datum/emote/living/smug
 	key = "smug"
 	key_third_person = "smugs"
-	message = "grins smugly."
+	message = "得意地笑了。"
 
 /datum/emote/living/sniff
 	key = "sniff"
 	key_third_person = "sniffs"
-	message = "sniffs."
-	message_mime = "sniffs silently."
+	message = "抽了抽鼻子。"
+	message_mime = "无声地抽了抽鼻子。"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sounds_by_mobtype = list(
@@ -560,8 +560,8 @@
 /datum/emote/living/snore
 	key = "snore"
 	key_third_person = "snores"
-	message = "snores."
-	message_mime = "sleeps soundly."
+	message = "打着呼噜。"
+	message_mime = "睡得很香。"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	can_use_flags = EMOTE_CANUSE_UNCONSCIOUS
 	sounds_by_mobtype = list(
@@ -574,23 +574,23 @@
 /datum/emote/living/stare
 	key = "stare"
 	key_third_person = "stares"
-	message = "stares."
-	message_param = "stares at %t."
+	message = "盯着看。"
+	message_param = "盯着 %t 看。"
 
 /datum/emote/living/strech
 	key = "stretch"
 	key_third_person = "stretches"
-	message = "stretches their arms."
+	message = "伸展双臂。"
 
 /datum/emote/living/sulk
 	key = "sulk"
 	key_third_person = "sulks"
-	message = "sulks down sadly."
+	message = "难过地闷闷不乐。"
 
 /datum/emote/living/surrender
 	key = "surrender"
 	key_third_person = "surrenders"
-	message = "puts their hands on their head and falls to the ground, they surrender%s!"
+	message = "双手抱头，跪倒在地，投降了！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/surrender/run_emote(mob/user, params, type_override, intentional)
@@ -603,7 +603,7 @@
 /datum/emote/living/sway
 	key = "sway"
 	key_third_person = "sways"
-	message = "sways around dizzily."
+	message = "头晕目眩地摇晃着。"
 
 /datum/emote/living/sway/run_emote(mob/living/user, params, type_override, intentional)
 	. = ..()
@@ -617,12 +617,12 @@
 /datum/emote/living/tilt
 	key = "tilt"
 	key_third_person = "tilts"
-	message = "tilts their head to the side."
+	message = "把头歪向一边。"
 
 /datum/emote/living/tremble
 	key = "tremble"
 	key_third_person = "trembles"
-	message = "trembles!"
+	message = "浑身发抖！"
 
 #define TREMBLE_LOOP_DURATION (4.4 SECONDS)
 /datum/emote/living/tremble/run_emote(mob/living/user, params, type_override, intentional)
@@ -638,7 +638,7 @@
 /datum/emote/living/twitch
 	key = "twitch"
 	key_third_person = "twitches"
-	message = "twitches violently."
+	message = "剧烈地抽搐。"
 
 /datum/emote/living/twitch/run_emote(mob/living/user, params, type_override, intentional)
 	. = ..()
@@ -651,8 +651,8 @@
 
 /datum/emote/living/twitch_s
 	key = "twitch_s"
-	name = "twitch (Slight)"
-	message = "twitches."
+	name = "抽搐（轻微）"
+	message = "抽搐了一下。"
 
 /datum/emote/living/twitch_s/run_emote(mob/living/user, params, type_override, intentional)
 	. = ..()
@@ -663,20 +663,20 @@
 /datum/emote/living/wave
 	key = "wave"
 	key_third_person = "waves"
-	message = "waves."
+	message = "挥了挥手。"
 
 /datum/emote/living/whimper
 	key = "whimper"
 	key_third_person = "whimpers"
-	message = "whimpers."
-	message_mime = "appears hurt."
+	message = "小声呜咽。"
+	message_mime = "看起来受伤了。"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/wsmile
 	key = "wsmile"
 	key_third_person = "wsmiles"
-	name = "smile (Weak)"
-	message = "smiles weakly."
+	name = "微笑（勉强）"
+	message = "勉强笑了笑。"
 
 /// The base chance for your yawn to propagate to someone else if they're on the same tile as you
 #define YAWN_PROPAGATE_CHANCE_BASE 20
@@ -686,10 +686,10 @@
 /datum/emote/living/yawn
 	key = "yawn"
 	key_third_person = "yawns"
-	message = "yawns."
-	message_mime = "acts out an exaggerated silent yawn."
-	message_robot = "symphathetically yawns."
-	message_AI = "symphathetically yawns."
+	message = "打了个哈欠。"
+	message_mime = "夸张地无声模仿打哈欠。"
+	message_robot = "受到感染也打了个哈欠。"
+	message_AI = "受到感染也打了个哈欠。"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	cooldown = 5 SECONDS
 
@@ -736,8 +736,8 @@
 /datum/emote/living/gurgle
 	key = "gurgle"
 	key_third_person = "gurgles"
-	message = "makes an uncomfortable gurgle."
-	message_mime = "gurgles silently and uncomfortably."
+	message = "发出不舒服的咕噜声。"
+	message_mime = "无声而不舒服地咕噜着。"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/custom
@@ -752,14 +752,14 @@
 		return FALSE
 
 	if(!isnull(user.ckey) && is_banned_from(user.ckey, "Emote"))
-		to_chat(user, span_boldwarning("You cannot send custom emotes (banned)."))
+		to_chat(user, span_boldwarning("你无法发送自定义表情（已被封禁）。"))
 		return FALSE
 
 	if(QDELETED(user))
 		return FALSE
 
 	if(user.client && user.client.prefs.muted & MUTE_IC)
-		to_chat(user, span_boldwarning("You cannot send IC messages (muted)."))
+		to_chat(user, span_boldwarning("你无法发送 IC 消息（已被禁言）。"))
 		return FALSE
 
 /datum/emote/living/custom/proc/emote_is_valid(mob/user, input)
@@ -773,14 +773,14 @@
 
 	var/static/regex/stop_bad_mime = regex(@"says|exclaims|yells|asks")
 	if(stop_bad_mime.Find(input, 1, 1))
-		to_chat(user, span_danger("Invalid emote."))
+		to_chat(user, span_danger("无效的表情。"))
 		return FALSE
 
 	var/list/filter_result = is_ic_filtered(input)
 
 	if(filter_result)
-		to_chat(user, span_warning("That emote contained a word prohibited in IC emotes! Consider reviewing the server rules."))
-		to_chat(user, span_warning("\"[input]\""))
+		to_chat(user, span_warning("该表情包含 IC 表情中禁止使用的词语！建议复习一下服务器规则。"))
+		to_chat(user, span_warning("“[input]”"))
 		REPORT_CHAT_FILTER_TO_USER(user, filter_result)
 		log_filter("IC Emote", input, filter_result)
 		SSblackbox.record_feedback("tally", "ic_blocked_words", 1, LOWER_TEXT(config.ic_filter_regex.match))
@@ -789,13 +789,13 @@
 	filter_result = is_soft_ic_filtered(input)
 
 	if(filter_result)
-		if(tgui_alert(user,"Your emote contains \"[filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to emote it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+		if(tgui_alert(user,"你的表情包含“[filter_result[CHAT_FILTER_INDEX_WORD]]”。“[filter_result[CHAT_FILTER_INDEX_REASON]]”，你确定还要发送吗？", "软屏蔽词", list("Yes", "No")) != "Yes")
 			SSblackbox.record_feedback("tally", "soft_ic_blocked_words", 1, LOWER_TEXT(config.soft_ic_filter_regex.match))
 			log_filter("Soft IC Emote", input, filter_result)
 			return FALSE
 
-		message_admins("[ADMIN_LOOKUPFLW(user)] has passed the soft filter for emote \"[filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Emote: \"[html_encode(input)]\"")
-		log_admin_private("[key_name(user)] has passed the soft filter for emote \"[filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Emote: \"[input]\"")
+		message_admins("[ADMIN_LOOKUPFLW(user)] 的表情通过了软过滤词“[filter_result[CHAT_FILTER_INDEX_WORD]]”，可能使用了不被允许的词语。表情：“[html_encode(input)]”")
+		log_admin_private("[key_name(user)] 的表情通过了软过滤词“[filter_result[CHAT_FILTER_INDEX_WORD]]”，可能使用了不被允许的词语。表情：“[input]”")
 		SSblackbox.record_feedback("tally", "passed_soft_ic_blocked_words", 1, LOWER_TEXT(config.soft_ic_filter_regex.match))
 		log_filter("Soft IC Emote (Passed)", input, filter_result)
 
@@ -806,20 +806,20 @@
 	return .|WITH_EMPHASIS_MESSAGE
 
 /datum/emote/living/custom/proc/get_custom_emote_from_user()
-	return stripped_multiline_input(usr, "Choose an emote to display.", "Me" , null, MAX_MESSAGE_LEN) // SKYRAT EDIT CHANGE - ORIGINAL : return copytext(sanitize(input("Choose an emote to display.") as text|null), 1, MAX_MESSAGE_LEN)
+	return stripped_multiline_input(usr, "选择要显示的表情。", "我" , null, MAX_MESSAGE_LEN) // SKYRAT EDIT CHANGE - ORIGINAL : return copytext(sanitize(input("Choose an emote to display.") as text|null), 1, MAX_MESSAGE_LEN)
 
 /datum/emote/living/custom/proc/get_custom_emote_type_from_user()
-	var/type = input("Is this a visible or hearable emote?") as null|anything in list("Visible", "Hearable", "Both")
+	var/type = input("这是可见表情还是可听表情？") as null|anything in list("可见", "可听", "两者")
 
 	switch(type)
-		if("Visible")
+		if("可见")
 			return EMOTE_VISIBLE
-		if("Hearable")
+		if("可听")
 			return EMOTE_AUDIBLE
-		if("Both")
+		if("两者")
 			return EMOTE_VISIBLE | EMOTE_AUDIBLE
 		else
-			tgui_alert(usr,"Unable to use this emote, must be either hearable or visible.")
+			tgui_alert(usr,"无法使用该表情，必须选择可听或可见。")
 			return FALSE
 
 /datum/emote/living/custom/run_emote(mob/user, params, type_override = null, intentional = FALSE)
@@ -844,20 +844,20 @@
 /datum/emote/living/inhale
 	key = "inhale"
 	key_third_person = "inhales"
-	message = "breathes in."
+	message = "吸了口气。"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/exhale
 	key = "exhale"
 	key_third_person = "exhales"
-	message = "breathes out."
+	message = "呼了口气。"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/swear
 	key = "swear"
 	key_third_person = "swears"
-	message = "says a swear word!"
-	message_mime = "makes a rude gesture!"
+	message = "骂了句脏话！"
+	message_mime = "做了个粗鲁的手势！"
 	emote_type = EMOTE_AUDIBLE
 
 ///Abstract type for emotes that can be run by cats and those with a felinid tongue
@@ -871,8 +871,8 @@
 /datum/emote/living/gulp
 	key = "gulp"
 	key_third_person = "gulps"
-	message = "gulps nervously."
-	message_mime = "gulps silently!"
+	message = "紧张地咽了口口水。"
+	message_mime = "无声地咽了口口水！"
 	vary = TRUE
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 
@@ -883,8 +883,8 @@
 	key = "meow"
 	key_third_person = "meows"
 	vary = TRUE
-	message = "meows!"
-	message_mime = "meows silently."
+	message = "喵了一声！"
+	message_mime = "无声地喵了一声。"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	sound = SFX_CAT_MEOW
 
@@ -892,7 +892,7 @@
 	key = "purr"
 	key_third_person = "purrs"
 	vary = TRUE
-	message = "purrs."
+	message = "发出呼噜声。"
 	emote_type = EMOTE_AUDIBLE
 	sound = SFX_CAT_PURR
 
@@ -904,15 +904,15 @@
 /datum/emote/living/moth/mchitter
 	key = "chitter"
 	key_third_person = "chitters"
-	message = "chitters!"
-	message_mime = "chitters silently?"
+	message = "发出咔嗒声！"
+	message_mime = "无声地咔嗒了两下？"
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	sound = 'sound/mobs/humanoids/moth/moth_chitter.ogg'
 
 /datum/emote/living/moth/msqueak
 	key = "squeak"
 	key_third_person = "squeaks"
-	message = "squeaks!"
-	message_mime = "squeaks silently?"
+	message = "吱吱叫了一声！"
+	message_mime = "无声地吱了一声？"
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	sound = 'sound/mobs/humanoids/moth/moth_squeak.ogg'

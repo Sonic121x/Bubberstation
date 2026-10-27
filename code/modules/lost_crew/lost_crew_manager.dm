@@ -39,7 +39,7 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 	new_body.living_flags |= STOP_OVERLAY_UPDATE_BODY_PARTS
 	scenario.apply_character(new_body, protected_items, recovered_items, on_revive_and_player_occupancy, body_data)
 	scenario.apply_injuries(new_body, recovered_items, on_revive_and_player_occupancy, body_data)
-	scenario.death_lore += "I should get a formalized assignment!"
+	scenario.death_lore += "我真该被分配个正式的岗位！"
 	new_body.living_flags &= ~STOP_OVERLAY_UPDATE_BODY_PARTS
 	new_body.update_body_parts()
 
@@ -58,8 +58,8 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 	recovered_items += paper
 
 	if(!HAS_TRAIT(new_body, TRAIT_HUSK))
-		paper.name = "DO NOT REMOVE BRAIN"
-		paper.add_raw_text("Body swapping is not covered by medical insurance for unhusked bodies. Chemical brain explosives have been administered to enforce stipend.")
+		paper.name = "请勿取出大脑"
+		paper.add_raw_text("对于未焦化的尸体，更换身体不在医疗保险承保范围内。为确保津贴落实，已注入化学脑部炸药。")
 		var/obj/item/organ/brain/boombrain = new_body.get_organ_by_type(/obj/item/organ/brain)
 		//I swear to fuck I will explode you. you're not clever
 		//everyone thought of this, but I am the fool for having any faith
@@ -68,8 +68,8 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 		//(no one abused it yet but I am already getting pinged by people who think they've broken the system when really I just expected better of them)
 		boombrain.AddElement(/datum/element/dangerous_organ_removal)
 	else
-		paper.name = "BODYSWAPPING PERMITTED"
-		paper.add_raw_text("Body swapping is covered by medical insurance in case of husking and a lack of skill in the practictioner.")
+		paper.name = "允许更换身体"
+		paper.add_raw_text("若尸体已焦化，或施术者技艺不精，更换身体由医疗保险承保。")
 
 	var/obj/item/organ/brain/hersens = new_body.get_organ_by_type(/obj/item/organ/brain)
 	hersens.AddComponent(
@@ -85,13 +85,13 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 	owner.mind.add_antag_datum(/datum/antagonist/recovered_crew) //for tracking mostly
 
 	var/datum/bank_account/bank_account = new(owner.real_name, owner.mind.assigned_role, owner.dna.species.payday_modifier)
-	bank_account.adjust_money(starting_funds, "[starting_funds][MONEY_SYMBOL] given to [owner.name] as starting fund.")
+	bank_account.adjust_money(starting_funds, "[starting_funds][MONEY_SYMBOL] 已作为启动资金发放给 [owner.name]。")
 	owner.account_id = bank_account.account_id
 	bank_account.replaceable = FALSE
 
 	owner.add_mob_memory(/datum/memory/key/account, remembered_id = owner.account_id)
 
-	death_lore += "My account number was [owner.account_id]."
+	death_lore += "我的账户号码是 [owner.account_id]。"
 
 	brain.RemoveElement(/datum/element/dangerous_organ_removal)
 
@@ -120,8 +120,8 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 
 /// A box for recovered items that can only be opened by the new crewmember
 /obj/item/storage/lockbox/mind
-	name = "mind lockbox"
-	desc = "A locked box, openable only by one mind."
+	name = "心灵锁箱"
+	desc = "一只上锁的箱子，只有与之相连的那个心灵才能打开。"
 
 	/// The mind needed to unlock the box
 	var/datum/mind/mind
@@ -144,7 +144,7 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 	if (user.mind == mind)
 		return TRUE
 	if (!silent)
-		balloon_alert(user, "access denied!")
+		balloon_alert(user, "拒绝访问！")
 	return FALSE
 
 /obj/item/storage/lockbox/mind/toggle_locked(mob/living/user)
@@ -152,22 +152,22 @@ GLOBAL_DATUM_INIT(lost_crew_manager, /datum/lost_crew_manager, new)
 		return
 
 	atom_storage.set_locked(STORAGE_NOT_LOCKED)
-	balloon_alert(user, "unlocked")
+	balloon_alert(user, "已解锁")
 
 /obj/item/storage/lockbox/mind/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(broken || user.mind != mind)
 		return NONE
-	context[SCREENTIP_CONTEXT_LMB] = "Use in-hand to unlock"
+	context[SCREENTIP_CONTEXT_LMB] = "在手中使用以解锁"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /datum/aas_config_entry/medical_lost_crew_reward
-	name = "Medical Alert: Lost Crew Revival Program"
+	name = "医疗警报：失联船员复苏计划"
 	announcement_lines_map = list(
-		"Deceased" = "Sensors indicate lifesigns of %PERSON have seized. Please inform their family of your failure.",
-		"Revived" = "Sensors indicate continued survival of %PERSON. Well done, %AWARDcr has been transferred to the medical budget."
+		"Deceased" = "传感器显示 %PERSON 的生命体征已经停止。请向其家属通报你的失败。",
+		"Revived" = "传感器显示 %PERSON 持续存活。干得好，%AWARDcr 已划入医疗部预算。"
 	)
 	vars_and_tooltips_map = list(
-		"PERSON" = "will be replaced with body's name",
-		"AWARD" = "with money that medical department receive, if any"
+		"PERSON" = "将替换为尸体的名字",
+		"AWARD" = "将替换为医疗部获得的金额（如果有）"
 	)
 	modifiable = FALSE

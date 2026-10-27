@@ -7,8 +7,8 @@
 	)
 
 /mob/living/basic/living_floor
-	name = "floor"
-	desc = "The floor you walk on. It looks near-impervious to damage."
+	name = "地板"
+	desc = "你踩在脚下的地板。它看起来几乎无法被破坏。"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "floor"
 	icon_living = "floor"
@@ -30,14 +30,14 @@
 	melee_damage_upper = 40 //pranked.....
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "撕咬"
+	attack_verb_simple = "撕咬"
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1)
 	ai_controller = /datum/ai_controller/basic_controller/living_floor
 	melee_attack_cooldown = 0.5 SECONDS // get real
 
 	var/icon_aggro = "floor-hostile"
-	var/desc_aggro = "This flooring is alive and filled with teeth, better not step on that. Being covered in plating, it is immune to damage. Seems vulnerable to prying though."
+	var/desc_aggro = "这块地板是活的，长满了牙齿，最好别踩上去。表面覆有装甲板，因此免疫伤害。不过似乎很怕被撬开。"
 
 /mob/living/basic/living_floor/Initialize(mapload)
 	. = ..()
@@ -70,7 +70,7 @@
 	return
 
 /mob/living/basic/living_floor/crowbar_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, "prying...")
+	balloon_alert(user, "撬开中……")
 	playsound(src, 'sound/items/tools/crowbar.ogg', 45, TRUE)
 	if(!do_after(user, 5 SECONDS, src))
 		return ITEM_INTERACT_BLOCKING

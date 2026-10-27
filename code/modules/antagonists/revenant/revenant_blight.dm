@@ -1,15 +1,15 @@
 /datum/disease/revblight
-	name = "Unnatural Wasting"
-	desc = "A strange condition which causes the victim to feel as if they were wasting away, despite being otherwise (almost) perfectly healthy."
-	form = "Condition"
+	name = "非自然消瘦"
+	desc = "一种奇怪的病症，会让患者感觉自己正在消瘦，尽管其身体其他方面（几乎）完全健康。"
+	form = "病症"
 	max_stages = 5
 	stage_prob = 5
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
-	cure_text = /datum/reagent/water/holywater::name + " or rest"
-	spread_text = "None"
+	cure_text = /datum/reagent/water/holywater::name + " 或休息"
+	spread_text = "无"
 	cures = list(/datum/reagent/water/holywater)
 	cure_chance = 30 //higher chance to cure, because revenants are assholes
-	agent = "Unholy Forces"
+	agent = "邪恶力量"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	disease_flags = CURABLE
 	spreading_modifier = 1
@@ -22,7 +22,7 @@
 		affected_mob.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, "#1d2953")
 		if(affected_mob.dna && affected_mob.dna.species)
 			affected_mob.set_haircolor(null, override = TRUE)
-		to_chat(affected_mob, span_notice("You feel better."))
+		to_chat(affected_mob, span_notice("你感觉好多了。"))
 	..()
 
 
@@ -37,7 +37,7 @@
 			cure()
 			return FALSE
 		if(SPT_PROB(1.5 * stage, seconds_per_tick))
-			to_chat(affected_mob, span_revennotice("You suddenly feel [pick("sick and tired", "disoriented", "tired and confused", "nauseated", "faint", "dizzy")]..."))
+			to_chat(affected_mob, span_revennotice("你突然感到[pick("又病又累", "分不清方向", "又累又困惑", "恶心", "虚弱", "头晕")]……"))
 			affected_mob.adjust_confusion(8 SECONDS)
 			need_mob_update += affected_mob.adjust_stamina_loss(20, updating_stamina = FALSE)
 			new /obj/effect/temp_visual/revenant(affected_mob.loc)
@@ -63,11 +63,11 @@
 		if(5)
 			if(!finalstage)
 				finalstage = TRUE
-				to_chat(affected_mob, span_revenbignotice("You feel like [pick("nothing's worth it anymore", "nobody ever needed your help", "nothing you did mattered", "everything you tried to do was worthless")]."))
+				to_chat(affected_mob, span_revenbignotice("你觉得[pick("一切都不再值得", "从来没人需要过你的帮助", "你所做的一切都无关紧要", "你尝试做的一切都毫无价值")]。"))
 				affected_mob.adjust_stamina_loss(22.5 * seconds_per_tick, updating_stamina = FALSE)
 				new /obj/effect/temp_visual/revenant(affected_mob.loc)
 				if(affected_mob.dna && affected_mob.dna.species)
 					affected_mob.set_haircolor("#1d2953", override = TRUE)
-				affected_mob.visible_message(span_warning("[affected_mob] looks terrifyingly gaunt..."), span_revennotice("You suddenly feel like your skin is <i>wrong</i>..."))
+				affected_mob.visible_message(span_warning("[affected_mob]看起来消瘦得可怕……"), span_revennotice("你突然觉得自己的皮肤<i>不对劲</i>……"))
 				affected_mob.add_atom_colour("#1d2953", TEMPORARY_COLOUR_PRIORITY)
 				addtimer(CALLBACK(src, PROC_REF(cure)), 10 SECONDS)

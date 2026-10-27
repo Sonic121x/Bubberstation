@@ -8,129 +8,129 @@
 	inhand_icon_state = null
 
 /obj/item/toy/plush/skyrat/borbplushie
-	name = "borb plushie"
-	desc = "An adorable stuffed toy that resembles a round, fluffy looking bird. Not to be mistaken for his friend, the birb plushie."
+	name = "圆鸟玩偶"
+	desc = "一只可爱的毛绒玩具，长得像一只圆滚滚、毛茸茸的鸟。别把它和它的朋友“birb 玩偶”搞混了。"
 	icon_state = "plushie_borb"
-	attack_verb_continuous = list("pecks", "peeps")
-	attack_verb_simple = list("peck", "peep")
+	attack_verb_continuous = list("啄", "啾啾叫")
+	attack_verb_simple = list("啄", "啾啾叫")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/peep_once.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/deer
-	name = "deer plushie"
-	desc = "An adorable stuffed toy that resembles a deer."
+	name = "小鹿玩偶"
+	desc = "一只可爱的毛绒玩具，长得像一只小鹿。"
 	icon_state = "plushie_deer"
-	attack_verb_continuous = list("headbutts", "boops", "bapps", "bumps")
-	attack_verb_simple = list("headbutt", "boop", "bap", "bump")
+	attack_verb_continuous = list("顶撞", "轻戳", "轻拍", "拱蹭")
+	attack_verb_simple = list("顶撞", "轻戳", "轻拍", "拱蹭")
 	squeak_override = list('modular_skyrat/modules/customization/game/objects/items/sound/deerplush.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/fermis
-	name = "medcat plushie"
-	desc = "An affectionate stuffed toy that resembles a certain medcat, comes complete with battery operated wagging tail!! You get the impression she's cheering you on to find happiness and be kind to people."
+	name = "医疗猫玩偶"
+	desc = "一只亲人的毛绒玩具，长得像某只医疗猫，还配有电池驱动的摇尾巴功能！！你总觉得她在鼓励你去寻找幸福、善待他人。"
 	icon_state = "plushie_fermis"
-	attack_verb_continuous = list("cuddles", "petpatts", "wigglepurrs")
-	attack_verb_simple = list("cuddle", "petpatt", "wigglepurr")
+	attack_verb_continuous = list("拥抱", "轻抚", "摇着尾巴呼噜")
+	attack_verb_simple = list("拥抱", "轻抚", "摇着尾巴呼噜")
 	squeak_override = list('modular_zubbers/sound/voice/merowr.ogg' = 1)
 	gender = FEMALE
 
 /obj/item/toy/plush/skyrat/fermis/chen
-	name = "securicat plushie"
-	desc = "The official stuffed companion to the medcat plushie!! It resembles a certain securicat. You get the impression she's encouraging you to be brave and protect those you care for."
+	name = "安保猫玩偶"
+	desc = "医疗猫玩偶的官方毛绒伙伴！！它长得像某只安保猫。你总觉得她在鼓励你勇敢起来，保护你在乎的人。"
 	icon_state = "plushie_chen"
-	attack_verb_continuous = list("snuggles", "meowhuggies", "wigglepurrs")
-	attack_verb_simple = list("snuggle", "meowhuggie", "wigglepurr")
+	attack_verb_continuous = list("依偎", "喵抱", "摇着尾巴呼噜")
+	attack_verb_simple = list("依偎", "喵抱", "摇着尾巴呼噜")
 	special_desc_requirement = EXAMINE_CHECK_JOB
 	special_desc_jobs = list(JOB_ASSISTANT, JOB_HEAD_OF_SECURITY)
-	special_desc = "There's a pocket under the coat hiding a tiny picture of the medcat plushie and a tinier ribbon diamond ring. D'awww."
+	special_desc = "外套下面有个口袋，里面藏着一张小号的医疗猫玩偶照片，还有一枚更小的缎带钻石戒指。真可爱。"
 
 /obj/item/toy/plush/skyrat/sechound
-	name = "sec-hound plushie"
-	desc = "An adorable stuffed toy of a SecHound, the trusty Nanotrasen sponsored security borg!"
+	name = "安保犬玩偶"
+	desc = "一只可爱的毛绒玩具，造型是安保犬——纳米传讯赞助的可靠安保半机械人！"
 	icon_state = "plushie_securityk9"
-	attack_verb_continuous = list("beeps", "boops", "pings")
-	attack_verb_simple = list("beep", "boop", "ping")
+	attack_verb_continuous = list("哔哔叫", "轻戳", "叮叮叫")
+	attack_verb_simple = list("哔哔叫", "轻戳", "叮叮叫")
 	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/medihound
-	name = "medi-hound plushie"
-	desc = "An adorable stuffed toy of a medihound."
+	name = "医疗犬玩偶"
+	desc = "一只可爱的毛绒玩具，造型是医疗犬。"
 	icon_state = "plushie_medihound"
-	attack_verb_continuous = list("beeps", "boops", "pings")
-	attack_verb_simple = list("beep", "boop", "ping")
+	attack_verb_continuous = list("哔哔叫", "轻戳", "叮叮叫")
+	attack_verb_simple = list("哔哔叫", "轻戳", "叮叮叫")
 	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/engihound
-	name = "engi-hound plushie"
-	desc = "An adorable stuffed toy of a engihound."
+	name = "工程犬玩偶"
+	desc = "一只可爱的毛绒玩具，造型是工程犬。"
 	icon_state = "plushie_engihound"
-	attack_verb_continuous = list("beeps", "boops", "pings")
-	attack_verb_simple = list("beep", "boop", "ping")
+	attack_verb_continuous = list("哔哔叫", "轻戳", "叮叮叫")
+	attack_verb_simple = list("哔哔叫", "轻戳", "叮叮叫")
 	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/scrubpuppy
-	name = "scrub-puppy plushie"
-	desc = "An adorable stuffed toy of a Scrubpuppy, the hard-working pup who keeps the station clean!"
+	name = "清洁犬玩偶"
+	desc = "一只可爱的毛绒玩具，造型是清洁犬——让空间站保持洁净的勤劳小狗！"
 	icon_state = "plushie_scrubpuppy"
-	attack_verb_continuous = list("beeps", "boops", "pings")
-	attack_verb_simple = list("beep", "boop", "ping")
+	attack_verb_continuous = list("哔哔叫", "轻戳", "叮叮叫")
+	attack_verb_simple = list("哔哔叫", "轻戳", "叮叮叫")
 	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/meddrake
-	name = "medi-drake plushie"
-	desc = "An adorable stuffed toy of a Medidrake."
+	name = "医疗龙玩偶"
+	desc = "一只可爱的毛绒玩具，造型是医疗龙。"
 	icon_state = "plushie_meddrake"
-	attack_verb_continuous = list("beeps", "boops", "pings")
-	attack_verb_simple = list("beep", "boop", "ping")
+	attack_verb_continuous = list("哔哔叫", "轻戳", "叮叮叫")
+	attack_verb_simple = list("哔哔叫", "轻戳", "叮叮叫")
 	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/secdrake
-	name = "sec-drake plushie"
-	desc = "An adorable stuffed toy of a Secdrake."
+	name = "安保龙玩偶"
+	desc = "一只可爱的毛绒玩具，造型是安保龙。"
 	icon_state = "plushie_secdrake"
-	attack_verb_continuous = list("beeps", "boops", "pings")
-	attack_verb_simple = list("beep", "boop", "ping")
+	attack_verb_continuous = list("哔哔叫", "轻戳", "叮叮叫")
+	attack_verb_simple = list("哔哔叫", "轻戳", "叮叮叫")
 	squeak_override = list('sound/machines/beep/beep.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/fox
-	name = "fox plushie"
-	desc = "An adorable stuffed toy of a Fox."
+	name = "狐狸玩偶"
+	desc = "一只可爱的毛绒玩具，造型是狐狸。"
 	icon_state = "plushie_fox"
-	attack_verb_continuous = list("geckers", "boops", "nuzzles")
-	attack_verb_simple = list("gecker", "boop", "nuzzle")
+	attack_verb_continuous = list("咯咯叫", "轻戳", "蹭蹭")
+	attack_verb_simple = list("咯咯叫", "轻戳", "蹭蹭")
 	squeak_override = list('modular_skyrat/modules/customization/game/objects/items/sound/deerplush.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/duffmoth
-	name = "suspicious moth plushie"
-	desc = "A plushie depicting a certain moth. He probably got turned into a marketable plushie."
+	name = "可疑的蛾子玩偶"
+	desc = "一只玩偶，描绘着某只蛾子。他大概是被做成了可以拿去卖的玩偶。"
 	icon_state = "plushie_duffy"
-	attack_verb_continuous = list("flutters", "flaps", "squeaks")
-	attack_verb_simple = list("flutter", "flap", "squeak")
+	attack_verb_continuous = list("扑扇", "拍打", "吱吱叫")
+	attack_verb_simple = list("扑扇", "拍打", "吱吱叫")
 	squeak_override = list('modular_zubbers/sound/emotes/mothsqueak.ogg' = 1)
 	gender = MALE
 
 /obj/item/toy/plush/skyrat/leaplush
-	name = "suspicious deer plushie"
-	desc = "A cute and all too familiar deer."
+	name = "可疑的小鹿玩偶"
+	desc = "一只可爱又眼熟得过分的小鹿。"
 	icon_state = "plushie_lea"
-	attack_verb_continuous = list("headbutts", "plaps")
-	attack_verb_simple = list("headbutt", "plap")
+	attack_verb_continuous = list("顶撞", "啪叽")
+	attack_verb_simple = list("顶撞", "啪叽")
 	squeak_override = list('modular_skyrat/modules/customization/game/objects/items/sound/leaplush.ogg' = 1)
 	gender = FEMALE
 
 /obj/item/toy/plush/skyrat/sarmieplush
-	name = "cosplayer plushie"
-	desc = "A stuffed toy who look like a familiar cosplayer, <b>he looks sad.</b>"
+	name = "角色扮演者玩偶"
+	desc = "一只毛绒玩具，长得像某个眼熟的角色扮演者，<b>他看起来很伤心。</b>"
 	icon_state = "plushie_sarmie"
-	attack_verb_continuous = list("baps")
-	attack_verb_simple = list("bap")
+	attack_verb_continuous = list("轻拍")
+	attack_verb_simple = list("轻拍")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/weh.ogg' = 1)
 	gender = MALE
 
 /obj/item/toy/plush/skyrat/sharknet
-	name = "gluttonous shark plushie"
-	desc = "A heavy plushie of a rather large and hungry shark"
+	name = "贪吃鲨鱼玩偶"
+	desc = "一只沉甸甸的玩偶，造型是条相当大的饿鲨鱼"
 	icon_state = "plushie_sharknet"
-	attack_verb_continuous = list("cuddles", "squishes", "wehs")
-	attack_verb_simple = list("cuddle", "squish", "weh")
+	attack_verb_continuous = list("拥抱", "挤压", "呜咽")
+	attack_verb_simple = list("拥抱", "挤压", "呜咽")
 	w_class = WEIGHT_CLASS_NORMAL
 	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/slime_squish.ogg' = 1)
 	young = TRUE //No.
@@ -140,230 +140,230 @@
 	create_storage(max_slots = 2, max_specific_storage = WEIGHT_CLASS_SMALL, canhold = list(/obj/item/toy/plush/skyrat/pintaplush))
 
 /obj/item/toy/plush/skyrat/pintaplush
-	name = "smaller deer plushie"
-	desc = "A pint-sized cervine with a vacant look."
+	name = "小号小鹿玩偶"
+	desc = "一只迷你鹿，眼神空空洞洞。"
 	icon_state = "plushie_pinta"
-	attack_verb_continuous = list("bonks", "snugs")
-	attack_verb_simple = list("bonk", "snug")
+	attack_verb_continuous = list("敲头", "贴贴")
+	attack_verb_simple = list("敲头", "贴贴")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/slime_squish.ogg' = 1)
 	young = TRUE //No.
 
 /obj/item/toy/plush/skyrat/szaplush
-	name = "suspicious spider"
-	desc = "A plushie of a shy looking drider, colored in floortile gray."
+	name = "可疑的蜘蛛"
+	desc = "一只玩偶，造型是位看起来很害羞的蛛身人，颜色是地板砖灰。"
 	icon_state = "plushie_sza"
-	attack_verb_continuous = list("scuttles", "chitters", "bites")
-	attack_verb_simple = list("scuttle", "chitter", "bite")
+	attack_verb_continuous = list("爬窜", "吱嘎叫", "啃咬")
+	attack_verb_simple = list("爬窜", "吱嘎叫", "啃咬")
 	squeak_override = list('modular_skyrat/modules/customization/game/objects/items/sound/spiderplush.ogg' = 1)
 	young = TRUE //No.
 
 /obj/item/toy/plush/skyrat/riffplush
-	name = "valid plushie"
-	desc = "A stuffed toy in the likeness of a peculiar demonic one. Likely turned into a plushie to sell such. They look quite alright about it."
+	name = "合法目标玩偶"
+	desc = "一只毛绒玩具，造型是某个古怪的恶魔形象。多半是为了卖钱才被做成了玩偶。它看起来对此还挺满意。"
 	icon_state = "plushie_riffy"
-	attack_verb_continuous = list("slaps", "challenges")
-	attack_verb_simple = list("slap", "challenge")
+	attack_verb_continuous = list("扇巴掌", "发起挑战")
+	attack_verb_simple = list("扇巴掌", "发起挑战")
 	squeak_override = list('sound/items/weapons/slap.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/ian
-	name = "plush corgi"
-	desc = "A plushie of an adorable corgi! Don't you just want to hug it and squeeze it and call it \"Ian\"?"
+	name = "柯基玩偶"
+	desc = "一只可爱的柯基玩偶！你是不是也忍不住想抱抱它、揉揉它，然后叫它“伊恩”？"
 	icon_state = "ianplushie"
-	attack_verb_continuous = list("barks", "woofs", "wags his tail at")
-	attack_verb_simple = list("lick", "nuzzle", "bite")
+	attack_verb_continuous = list("汪汪叫", "嗷嗷叫", "对着……摇尾巴")
+	attack_verb_simple = list("舔", "蹭蹭", "啃咬")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/bark2.ogg' = 1)
 	young = TRUE //No.
 
 /obj/item/toy/plush/skyrat/ian/small
-	name = "small plush corgi"
-	desc = "A plushie of an adorable corgi! Don't you just want to hug it and squeeze it and call it \"Ian\"?"
+	name = "小号柯基玩偶"
+	desc = "一只可爱的柯基玩偶！你是不是也忍不住想抱抱它、揉揉它，然后叫它“伊恩”？"
 	icon_state = "corgi"
 
 /obj/item/toy/plush/skyrat/ian/lisa
-	name = "plush girly corgi"
-	desc = "A plushie of an adorable corgi! Don't you just want to hug it and squeeze it and call it \"Lisa\"?"
+	name = "女郎柯基玩偶"
+	desc = "一只可爱的柯基玩偶！你是不是也忍不住想抱抱它、揉揉它，然后叫它“丽莎”？"
 	icon_state = "girlycorgi"
-	attack_verb_continuous = list("barks", "woofs", "wags her tail at")
+	attack_verb_continuous = list("汪汪叫", "嗷嗷叫", "对着……摇尾巴")
 	gender = FEMALE
 
 /obj/item/toy/plush/skyrat/cat
-	name = "cat plushie"
-	desc = "A small cat plushie with black beady eyes."
+	name = "猫咪玩偶"
+	desc = "一只小黑豆眼睛的猫咪玩偶。"
 	icon_state = "blackcat"
-	attack_verb_continuous = list("cuddles", "meows", "hisses")
-	attack_verb_simple = list("cuddle", "meow", "hiss")
+	attack_verb_continuous = list("拥抱", "喵喵叫", "嘶叫")
+	attack_verb_simple = list("拥抱", "喵喵叫", "嘶叫")
 	squeak_override = list('modular_zubbers/sound/voice/merowr.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/cat/tux
-	name = "tux cat plushie"
+	name = "燕尾服猫玩偶"
 	icon_state = "tuxedocat"
 
 /obj/item/toy/plush/skyrat/cat/white
-	name = "white cat plushie"
+	name = "白猫玩偶"
 	icon_state = "whitecat"
 
 /obj/item/toy/plush/skyrat/seaduplush
-	name = "sneed plushie"
-	desc = "A plushie of a particular, bundled up IPC. Underneath the cloak, you can see a plush recreation of the captain's sabre."
+	name = "斯尼德玩偶"
+	desc = "一只玩偶，造型是某个裹得严严实实的 IPC。斗篷下面能看见一把玩偶版的舰长军刀。"
 	icon_state = "plushie_seadu"
-	attack_verb_continuous = list("beeps", "sneeds", "swords")
-	attack_verb_simple = list("beep", "sneed", "sword")
+	attack_verb_continuous = list("哔哔叫", "斯尼德", "挥剑")
+	attack_verb_simple = list("哔哔叫", "斯尼德", "挥剑")
 	squeak_override = list('sound/machines/synth/synth_no.ogg' = 1,'sound/machines/synth/synth_yes.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/lizzyplush
-	name = "odd yoga lizzy plushie"
-	desc = "Brought to you by Nanotrasen Wellness Program is the Yoga Odd Lizzy! He smells vaguely of blueberries, and likely resembles a horrible lover."
+	name = "古怪瑜伽蜥蜴玩偶"
+	desc = "纳米传讯健康计划为你带来——瑜伽古怪蜥蜴！它隐约散发着蓝莓味，而且很可能长得像某位糟糕的情人。"
 	icon_state = "plushie_lizzy"
-	attack_verb_continuous = list("wehs")
-	attack_verb_simple = list("weh")
+	attack_verb_continuous = list("呜咽")
+	attack_verb_simple = list("呜咽")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/weh.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/mechanic_fox
-	name = "mechanist fox plushie"
-	desc = "A fox with fabulous hair! It has a tendency to make synth plushies look good as new when placed next to them."
+	name = "机械师狐狸玩偶"
+	desc = "一只发型华丽的狐狸！把它放在合成人玩偶旁边时，它总能让后者看起来崭新如初。"
 	icon_state = "plushie_cali"
-	attack_verb_continuous = list("fixes", "updates", "hugs")
-	attack_verb_simple = list("fix", "update", "hug")
+	attack_verb_continuous = list("修理", "更新", "拥抱")
+	attack_verb_simple = list("修理", "更新", "拥抱")
 	squeak_override = list('modular_skyrat/modules/customization/game/objects/items/sound/deerplush.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/tribal_salamander
-	name = "tribal salamander plushie"
-	desc = "A water-safe plushie that always seems to lose any clothes you try to put on it."
+	name = "部落蝾螈玩偶"
+	desc = "一只不怕水的玩偶，但你想给它穿上的任何衣服似乎都会不翼而飞。"
 	icon_state = "plushie_azu"
-	attack_verb_continuous = list("wurbles at", "warbles at")
-	attack_verb_simple = list("wurbles at", "warbles at")
+	attack_verb_continuous = list("对着……咕噜叫", "对着……鸣叫")
+	attack_verb_simple = list("对着……咕噜叫", "对着……鸣叫")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/wurble.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/commanding_teshari
-	name = "commanding teshari plushy"
-	desc = "A very soft plush resembling a certain science-loving, command inclined Teshari. Just holding it makes you feel cared for."
+	name = "指挥若定的特沙利玩偶"
+	desc = "一只非常柔软的玩偶，像某位热爱科学、颇有指挥风范的特沙利。光是抱着它，就让你觉得自己被人关心着。"
 	icon_state = "plushie_alara"
-	attack_verb_continuous = list("peeps", "wurbles", "hugs")
-	attack_verb_simple = list("peeps", "wurbles", "hugs")
+	attack_verb_continuous = list("啾啾叫", "咕噜叫", "拥抱")
+	attack_verb_simple = list("啾啾叫", "咕噜叫", "拥抱")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/peep_once.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/breakdancing_bird
-	name = "breakdancing bird plushie"
-	desc = "This little robotic bird plushie loves to give you a little dance in celebration of your achievements, no matter how mundane."
+	name = "跳街舞的小鸟玩偶"
+	desc = "这只小型机械鸟玩偶很乐意为你取得的任何成就——无论多么平凡——跳上一小段舞。"
 	icon_state = "plushie_cadicus"
-	attack_verb_continuous = list("boops", "dances next to")
-	attack_verb_simple = list("boop", "dance next to")
+	attack_verb_continuous = list("轻戳", "在……旁边跳舞")
+	attack_verb_simple = list("轻戳", "在……旁边跳舞")
 	squeak_override = list('sound/machines/ping.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/skreking_vox
-	name = "skreking vox plushie"
-	desc = "A vox plushie that seems ready to pull a gun on you and demand your money! Rumor has it that if you poke it in a particular way, it will show you its skrektual technique."
+	name = "尖叫沃克斯玩偶"
+	desc = "一只沃克斯玩偶，看起来随时会掏枪向你要钱！有传言说，如果你用某种特定的方式戳它，它就会向你展示它的“skrektual”绝技。"
 	icon_state = "plushie_toko"
-	attack_verb_continuous = list("rustles at", "threatens", "skreks at")
-	attack_verb_simple = list("rustle at", "threaten", "skrek at")
+	attack_verb_continuous = list("对着……窸窣作响", "威胁", "对着……尖叫")
+	attack_verb_simple = list("对着……窸窣作响", "威胁", "对着……尖叫")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/voxrustle.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/blue_dog
-	name = "blue dog plushie"
-	desc = "A devious looking husky that seems to be begging for headpats. It smells faintly of blueberries."
+	name = "蓝色狗狗玩偶"
+	desc = "一只看起来鬼头鬼脑的哈士奇，似乎在讨要摸摸头。它身上有淡淡的蓝莓味。"
 	icon_state = "plushie_cobalt"
-	attack_verb_continuous = list("barks at", "borks at", "woofs at")
-	attack_verb_simple = list("bark at", "bork at", "woof at")
+	attack_verb_continuous = list("对着……吠叫", "对着……汪汪叫", "对着……嗷叫")
+	attack_verb_simple = list("对着……吠叫", "对着……汪汪叫", "对着……嗷叫")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/bark1.ogg'=1, 'modular_skyrat/modules/emotes/sound/voice/bark2.ogg'=1)
 
 /obj/item/toy/plush/skyrat/engi_snek
-	name = "engineering snek plushie"
-	desc = "This plush looks like it knows the difference between pumps and pipes! The arm is detachable, so don't lose it!"
+	name = "工程蛇玩偶"
+	desc = "这只玩偶看起来分得清泵和管道！它的手臂可以拆下来，可别弄丢了！"
 	icon_state = "plushie_tyri"
-	attack_verb_continuous = list("fixes", "unbolts", "welds")
-	attack_verb_simple = list("fix", "unbolt", "weld")
+	attack_verb_continuous = list("修理", "拧松", "焊接")
+	attack_verb_simple = list("修理", "拧松", "焊接")
 	squeak_override = list('sound/items/tools/screwdriver.ogg' = 1, 'sound/items/tools/drill_use.ogg' = 1, 'sound/items/tools/welder.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/glitch_synth
-	name = "glitching synthetic plushie"
-	desc = "A synthetic plush, the interface seems to glitch out every time you give it a hug or call it cute!"
+	name = "故障合成人玩偶"
+	desc = "一只合成人玩偶，每当你抱抱它或夸它可爱，它的界面似乎就会出故障！"
 	icon_state = "plushie_rex"
-	attack_verb_continuous = list("beeps", "hugs", "health analyzes")
-	attack_verb_simple = list("beep", "hug", "health analyze")
+	attack_verb_continuous = list("哔哔叫", "拥抱", "做健康分析")
+	attack_verb_simple = list("哔哔叫", "拥抱", "做健康分析")
 	squeak_override = list('sound/machines/beep/twobeep_high.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/boom_bird
-	name = "boom bird plushie"
-	desc = "This little bird plushie may look like a nerd, but you have the sneaking suspicion it might be valid! Why does your skin start to glow when you hug it?"
+	name = "爆炸鸟玩偶"
+	desc = "这只小鸟玩偶看起来像个书呆子，但你隐约觉得它可能“该杀”！为什么你一抱它，皮肤就开始发光？"
 	icon_state = "plushie_dima"
-	attack_verb_continuous = list("punches", "explodes on", "peeps")
-	attack_verb_simple = list("punch", "explode on", "peep")
+	attack_verb_continuous = list("出拳", "在……身上爆炸", "啾啾叫")
+	attack_verb_simple = list("出拳", "在……身上爆炸", "啾啾叫")
 	squeak_override = list('sound/machines/sm/accent/delam/1.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/blue_cat
-	name = "blue cat plushie"
-	desc = "A bright blue cat plush with neon pink hair, here to hand out kisses wherever kisses need be. Usually found near its home habitat, the tram."
+	name = "蓝猫玩偶"
+	desc = "一只鲜蓝色的猫咪玩偶，配着霓虹粉的头发，哪里需要亲吻它就去哪里。通常出没在它的栖息地——电车附近。"
 	icon_state = "plushie_skyy"
-	attack_verb_continuous = list("kisses", "nuzzles", "cuddles", "purrs against")
-	attack_verb_simple = list("kiss", "nuzzle", "cuddle", "purr against")
+	attack_verb_continuous = list("亲吻", "蹭蹭", "拥抱", "对着……呼噜")
+	attack_verb_simple = list("亲吻", "蹭蹭", "拥抱", "对着……呼噜")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/nya.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/igneous_synth
-	name = "igneous synth plushie"
-	desc = "Not actually made of igneous rock, giving this plush a hug will let you feel like you're being squeezed by the jaws of life!"
+	name = "火成岩合成人玩偶"
+	desc = "它其实不是火成岩做的，但抱住这只玩偶，你会感觉自己正被救生钳夹住！"
 	icon_state = "plushie_granite"
-	attack_verb_continuous = list("bleps", "SQUEEZES", "pies")
-	attack_verb_simple = list("blep", "SQUEEZE", "pie")
+	attack_verb_continuous = list("吐舌", "用力挤压", "糊脸")
+	attack_verb_simple = list("吐舌", "用力挤压", "糊脸")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/twobeep.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/edgy_bird
-	name = "edgy birb plushie"
-	desc = "An edgy plush of an edgy bird. You could swear it's teleporting to a different spot every time you look away..."
+	name = "中二小鸟玩偶"
+	desc = "一只中二的小鸟玩偶。你发誓每次你移开视线，它都会瞬移到别的地方……"
 	icon_state = "plushie_koto"
-	attack_verb_continuous = list("pecks", "teleports behind", "caws at")
-	attack_verb_simple = list("peck", "teleport behind", "caw at")
+	attack_verb_continuous = list("啄", "瞬移到……身后", "对着……嘎叫")
+	attack_verb_simple = list("啄", "瞬移到……身后", "对着……嘎叫")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/caw.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/fox/mia
-	name = "silver fox plushie"
-	desc = "A small stuffed silver fox with a collar tag that says “Eavy” and a tiny bell in its fluffy tail."
+	name = "银狐玩偶"
+	desc = "一只小小的银狐毛绒玩具，项圈牌上写着“Eavy”，蓬松的尾巴里还挂着一个小铃铛。"
 	icon_state = "miafox"
 
 /obj/item/toy/plush/skyrat/fox/kailyn
-	name = "teasable fox plushie"
-	desc = "A familiar looking vixen in a peacekeeper attire, perfect for everyone who intends on venturing in the dark alone! There's a little tag which tells you to not boop its nose."
+	name = "爱撩人的狐狸玩偶"
+	desc = "一只眼熟的雌狐，穿着维和人员的服装，非常适合所有打算独自闯入黑暗的人！上面有个小标签，提醒你不要戳它的鼻子。"
 	icon_state = "teasefox"
-	attack_verb_continuous = list("sneezes on", "detains", "tazes")
-	attack_verb_simple = list("sneeze on", "detain", "taze")
+	attack_verb_continuous = list("对着……打喷嚏", "拘留", "电击")
+	attack_verb_simple = list("对着……打喷嚏", "拘留", "电击")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/female/female_sneeze.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/xixi
-	name = "familiar looking harpy plushie"
-	desc = "A plushie depicting a bright-red and oddly familiar looking harpy! The tag on the back lists distributor information and a tagline telling you how it'll add a little 'skree' to your daily grind."
+	name = "眼熟的鹰身女妖玩偶"
+	desc = "一只玩偶，描绘着某只鲜红色、看着莫名其妙眼熟的鹰身女妖！背面的标签列着经销商信息，还有一句标语，说它会为你的日常刷怪增添一点“skree”的乐趣。"
 	icon_state = "plushie_xixi"
-	attack_verb_continuous = list("caws", "skrees", "pecks")
-	attack_verb_simple = list("caw", "skree", "peck")
+	attack_verb_continuous = list("嘎叫", "尖啸", "啄")
+	attack_verb_simple = list("嘎叫", "尖啸", "啄")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/peep_once.ogg' = 1,'modular_skyrat/modules/emotes/sound/voice/caw.ogg' = 1,'modular_skyrat/modules/emotes/sound/voice/bawk.ogg' = 1,'modular_skyrat/modules/emotes/sound/emotes/voxscream.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/zapp
-	name = "Lil' Zapp"
-	desc = "An authentic piece of primo Pwr Game merchandise! \
-			This cuddly companion is the perfect ornament to decorate your battlestation. \
-			He sits upright unassisted, and can hold your headset, webcam, or keep your Pwr Game safe and secure. \
-			This one is outfitted with a state-of-the-art skill reader; \
-			just squeeze him tight and Zapp will tell you if you're ready for the next big game!"
+	name = "小扎普"
+	desc = "正宗的电玩能量顶级周边！ \
+			这个抱起来软乎乎的伙伴，是装点你战斗工位的最佳摆件。 \
+			它能自己直挺挺地坐住，可以帮你架耳机、摄像头，或替你把电玩能量看管得妥妥当当。 \
+			这一只还配备了最先进的技能读取器； \
+			只要紧紧一挤，扎普就会告诉你，你是否准备好迎接下一场大赛！"
 	icon_state = "plushie_zapp"
-	attack_verb_continuous = list("boops", "nuzzles")
-	attack_verb_simple = list("boop", "nuzzle")
+	attack_verb_continuous = list("轻戳", "蹭蹭")
+	attack_verb_simple = list("轻戳", "蹭蹭")
 	squeak_override = list('sound/items/can/can_open1.ogg' = 1, 'sound/items/can/can_open2.ogg' = 1, 'sound/items/can/can_open3.ogg' = 1)
 	///the list that is chosen from depending on gaming skill
 	var/static/list/skill_response = list(
-		"Weak! What are you, a mobile gamer?",
-		"Come on, you can do better than that! Play some Orion Trial and try again.",
-		"Hey, not bad! Try and work on your APM.",
-		"Nice! You should see about competing in some local tournaments, gamer!",
-		"Now that's real skill! I think you deserve some Pwr Game.",
-		"Gamer God in the house! Look upon them and weep, console peasants!",
-		"Whoa! Gamer overload! Stand clear!!",
+		"太弱了！你算什么，手游玩家吗？",
+		"得了吧，你能做得更好！去玩玩《猎户座之路》再回来试试。",
+		"嘿，还不错！试着练练你的 APM 吧。",
+		"很好！你该考虑去参加几场本地比赛了，玩家！",
+		"这才叫真本事！我觉得你该喝点电玩能量了。",
+		"玩家之神驾到！仰望吧，痛哭吧，主机农民们！",
+		"哇！玩家过载！请勿靠近！！",
 	)
 	///the list that is chosen from when it hits a human or is hit by something
 	var/static/list/hit_response = list(
-		"Hey, watch the mohawk!",
-		"Easy, I earn my livin' with this face!",
-		"Oof, I think my resale value just went down...",
-		"This jacket isn't armored, you know!",
-		"I'm a collectible! You can't treat me like this!",
-		"Cut it out, or I'm telling chat!",
+		"嘿，小心我的莫西干头！",
+		"轻点，我可是靠这张脸吃饭的！",
+		"哎哟，我感觉我的转售价刚刚跌了……",
+		"你知道这件夹克可没有装甲吧！",
+		"我可是收藏品！你不能这么对我！",
+		"别闹了，不然我就去告诉聊天室！",
 	)
 
 /obj/item/toy/plush/skyrat/zapp/attackby(obj/item/attacking_item, mob/living/user, params)
@@ -405,13 +405,13 @@
 	set_reagent_color_for_liquid()
 
 /obj/item/toy/plush/skyrat/rubi
-	name = "huggable bee plushie"
-	desc = "It reminds you of a very, very, very huggable bee."
+	name = "抱抱蜜蜂玩偶"
+	desc = "它让你想起一只非常、非常、非常好抱的蜜蜂。"
 	icon_state = "plushie_rubi"
 	gender = FEMALE
 	squeak_override = list('sound/items/weapons/thudswoosh.ogg' = 1)
-	attack_verb_continuous = list("hugs")
-	attack_verb_simple = list("hug")
+	attack_verb_continuous = list("拥抱")
+	attack_verb_simple = list("拥抱")
 
 /obj/item/toy/plush/skyrat/rubi/attack_self(mob/user)
 	. = ..()
@@ -419,27 +419,27 @@
 	var/mob/living/living_user = user
 	if(istype(living_user))
 		living_user.add_mood_event("hug", /datum/mood_event/warmhug/rubi, src)
-	user.visible_message(span_notice("[user] hugs \the [src]."), span_notice("You hug \the [src]."))
+	user.visible_message(span_notice("[user] 抱住了 \the [src]。"), span_notice("你抱住了 \the [src]。"))
 
 /datum/mood_event/warmhug/rubi
-	description = span_nicegreen("Warm cozy bee hugs are the best!")
+	description = span_nicegreen("温暖舒适的蜜蜂抱抱最棒了！")
 	mood_change = 0
 	timeout = 2 MINUTES
 
 /obj/item/toy/plush/skyrat/roselia
-	name = "obscene sergal plushie"
-	desc = "A plush recreation of a pink sergal. The chest is extremely padded and the small plush clothes are barely holding themselves together."
+	name = "下流的瑟格尔玩偶"
+	desc = "一只粉色瑟格尔的玩偶复刻版。胸部垫得极其夸张，那身小号玩偶衣服几乎快要撑不住了。"
 	icon_state = "plushie_roselia"
-	attack_verb_continuous = list("hugs")
-	attack_verb_simple = list("hug")
+	attack_verb_continuous = list("拥抱")
+	attack_verb_simple = list("拥抱")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/merp.ogg' = 1)
 	young = FALSE
 
 /obj/item/toy/plush/skyrat/chunko
-	name = "chunko fop"
-	desc = "A soulless creature that haunts your dreams."
+	name = "胖胖人偶"
+	desc = "一个萦绕在你梦中的没有灵魂的生物。"
 	icon_state = "plushie_pfbonnie"
-	var/responses = list("Do you fear death? Do you fear the world you live in? What 'God's so called infinite mercy is? A neverending life of constant and unending misery. Being forced to work and go on as millions, trillions suffer around you as you are either too powerless or too lazy to do anything? Is this worth living? Capitalism in overdrive, life in hell. Why?", "Hi!!", )
+	var/responses = list("你害怕死亡吗？你害怕你所生活的这个世界吗？所谓的‘上帝’那无限慈悲究竟是什么？是永无止境、连绵不绝的痛苦人生。被迫工作、被迫活下去，身边成千上万、数以兆计的人在受苦，而你却要么太无力、要么太懒惰，什么都做不了？这样的人生值得过吗？资本主义开到爆缸，生活就是地狱。为什么？", "嗨！！", )
 	COOLDOWN_DECLARE(chunko_cooldown)
 
 /obj/item/toy/plush/skyrat/chunko/attackby()
@@ -457,56 +457,56 @@
 	COOLDOWN_START(src, chunko_cooldown, 2 SECONDS)
 
 /obj/item/toy/plush/skyrat/chunko/bonnie
-	name = "chunko fop blue bunny"
-	desc = "An 'adorable', if big eyed rabbit girl. This one is blue. Produced by the Chunko Fop Company <b><i>TM</i></b>. Spits out various Rabbit facts of dubious validity."
+	name = "胖胖人偶蓝兔"
+	desc = "一个“可爱”的大眼睛兔女孩。这只是蓝色的。由胖胖人偶公司 <b><i>TM</i></b> 出品。会随机吐出各种真伪存疑的兔子冷知识。"
 	icon_state = "plushie_pfbonnie"
 	gender = FEMALE
-	attack_verb_continuous = list("pats", "hugs", "scolds", "pets")
-	attack_verb_simple = list("pat", "hug", "scold", "pet")
+	attack_verb_continuous = list("摸摸", "拥抱", "训斥", "顺毛")
+	attack_verb_simple = list("摸摸", "拥抱", "训斥", "顺毛")
 	squeak_override = list('sound/mobs/non-humanoids/mouse/mousesqueek.ogg' = 1, 'modular_zubbers/sound/emotes/mothsqueak.ogg' = 1,)
-	responses = list("Rabbits are prey animals and are therefore constantly aware of their surroundings.", "Things to jump up on (they like to be in high places)", "become a rabbit today!", "Be cunning and full of tricks...", "Subscription confirmed! Thank you for choosing RABBITFACTS +TM+!", "Holland Lops are a breed of rabbit originating in the Netherlands.", "Rabbits may need medication to keep themselves healthy, and that's ok! Make sure to take yours too!", "rabbits really liked this product", "A healthy rabbit diet includes fresh vegetables.", "Rabbits do not hibernate. Their schedules are much too busy.", "the rate of bunnies is measured by RPB (rabbits per bunny)", )
+	responses = list("兔子是猎物动物，因此它们时刻都在留意周围的环境。", "适合往上跳的东西（它们喜欢待在高处）", "今天就变成一只兔子吧！", "要机灵，满肚子诡计……", "订阅成功！感谢你选择“兔子冷知识”+TM+！", "荷兰垂耳兔是起源于荷兰的一个兔子品种。", "兔子可能需要药物来保持健康，这没什么大不了的！你也记得按时吃药！", "兔子真的很喜欢这款产品", "健康的兔子饮食包括新鲜蔬菜。", "兔子不会冬眠。它们的日程实在太忙了。", "兔子的密度以 RPB（每兔兔子数）计量", )
 
 /obj/item/toy/plush/skyrat/chunko/andrew
-	name = "chunko fop green and orange bunny"
-	desc = "An 'adorable', if big eyed rabbit girl(?). This one is green and orange. Produced by the Chunko Fop Company <b><i>TM</i></b>. Spits out various Bunnies of dubious existance."
+	name = "胖胖人偶橙绿兔"
+	desc = "一个“可爱”的大眼睛兔女孩（？）。这只是橙绿色的。由胖胖人偶公司 <b><i>TM</i></b> 出品。会随机吐出各种存在性存疑的兔子。"
 	icon_state = "plushie_pfandrew"
 	gender = MALE
-	attack_verb_continuous = list("pats", "hugs", "scolds", "pets")
-	attack_verb_simple = list("pat", "hug", "scold", "pet")
+	attack_verb_continuous = list("摸摸", "拥抱", "训斥", "顺毛")
+	attack_verb_simple = list("摸摸", "拥抱", "训斥", "顺毛")
 	squeak_override = list('sound/mobs/non-humanoids/mouse/mousesqueek.ogg' = 1, 'modular_zubbers/sound/emotes/mothsqueak.ogg' = 1,)
 	// All lowercase messages are intentional
-	responses = list("bunny who you best pray you never encounter, lest you suffer a fate worse than death.", "this is a bunny!", "I wonder what would happen if you took bunnies, and combined them with rabbits, and merged their properties and characteristics. It's something to think about.", "If you're cold, they're cold. Give them the deed to your house.", "bunny that goes yeah! woo! yeah! woo! yeah! woo! yeah! woo! yeah! woo! yeah!", "the bunnies are beyond my comprehension", "it's a bunny thing, you wouldn't get it", "this bunny has an unfathomable power level", "%pull the string and I'll bink at you...I'm your bunny.", "Bunny (1954)", "the bunny that pulls the strings....", )
+	responses = list("你最好祈祷永远别遇到的兔子，否则你会遭受比死亡更惨的命运。", "这是一只兔子！", "我在想，如果把小兔子和兔子拿来，把它们的属性与特征合并起来，会发生什么。值得深思。", "如果你觉得冷，它们也觉得冷。把你的房产证给它们。", "会喊“耶！呜！耶！呜！”的兔子！耶！呜！耶！呜！耶！呜！耶！", "兔子的存在超出了我的理解", "这是兔子的事，你不会懂的", "这只兔子的战斗力深不可测", "%拉一下线，我就对你眨眼……我是你的兔子。", "兔子（1954）", "牵引着丝线的兔子……", )
 
 /obj/item/toy/plush/skyrat/chunko/inessa
-	name = "chunko fop medical bear"
-	desc = "An 'adorable', tired looking bear woman. This one produces fake smoke! Produced by the Chunko Fop Company <b><i>TM</i></b>. Spits out various Medical facts with a broken voicebox."
+	name = "胖胖人偶医疗熊"
+	desc = "一个“可爱”的、看起来很疲惫的熊女人。这只还会吐出假烟！由胖胖人偶公司 <b><i>TM</i></b> 出品。会用坏掉的发声盒吐出各种医疗冷知识。"
 	icon_state = "plushie_pfinessa"
 	gender = FEMALE
-	attack_verb_continuous = list("slashes", "dissects", "yawns", "smokes")
-	attack_verb_simple = list("slash", "dissect", "yawn", "smoke")
+	attack_verb_continuous = list("切割", "解剖", "打哈欠", "抽烟")
+	attack_verb_simple = list("切割", "解剖", "打哈欠", "抽烟")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/female/female_cough_3.ogg' = 1, 'modular_skyrat/modules/emotes/sound/emotes/female/female_cough_2.ogg' = 1, 'modular_skyrat/modules/emotes/sound/emotes/female/female_cough_1.ogg' = 1)
-	responses = list("The human body can survive three weeks without skiiiiiiiiiiin.", "The thigh bone is connected to the hip boooooooooone.", "Yeeeessss?", "Helloooooo.", "Don't be such a baby, ribs grow baaaaaaaaaack.",)
+	responses = list("人体在没有皮皮皮皮皮皮皮皮皮皮肤的情况下能存活三周。", "大腿骨连着髋髋髋髋髋髋髋髋骨。", "怎怎怎怎怎么了？", "你你你好好好好。", "别这么孩子气，肋骨会重生生生生生生的。",)
 
 // Donation reward for shyshadow
 /obj/item/toy/plush/skyrat/chunko/plushie_winrow
-	name = "dark and brooding lizard plush"
-	desc = "An almost intimidating black lizard plush, this one's got a little beret to come with it! Best not to separate the two. Its eyes shine with suggestion, no maidens?"
+	name = "阴郁深沉的蜥蜴玩偶"
+	desc = "一只几乎有点吓人的黑色蜥蜴玩偶，这只还配了一顶小小的贝雷帽！最好别把这两样分开。它的眼睛闪着暗示的光——不来点少女吗？"
 	icon_state = "plushie_shyshadow"
 	gender = MALE
-	attack_verb_continuous = list("slashes", "bites", "rizzes")
-	attack_verb_simple = list("slash", "bite", "rizz")
-	responses = list("Am I looking in a mirror? Because what I see is beautiful.", "I'm not just a toy. I'm a romantic.", "I'm the diamond, and you're the rough because sooner or later...", "Is that mouth just for talking?", "Come on, don't be so hard on me. I'm so soft!", "Is that a glass of scotch? Because I've been thinking about buttering you up.", "Don't look stare for too long. You might get lost in my eyes.", "Oh wow! Looks like I'm not the only handsome thing around these parts.", "Do NOT the plushie. I am not a voodoo doll.",)
+	attack_verb_continuous = list("切割", "啃咬", "放电")
+	attack_verb_simple = list("切割", "啃咬", "放电")
+	responses = list("我是在照镜子吗？因为我看到的东西很美。", "我不只是个玩具。我是浪漫本身。", "我是钻石，而你是粗糙的原石，因为迟早……", "那张嘴就只是为了说话用的吗？", "来吧，别对我这么苛刻。我可是很软的！", "那是一杯苏格兰威士忌吗？因为我一直想着怎么把你灌醉。", "别盯着看太久。你可能会迷失在我的眼睛里。", "哇哦！看来这一带不止我一个帅哥。", "别对玩偶做那种事。我可不是巫毒娃娃。",)
 
 // Donation reward for tobjv
 /obj/item/toy/plush/skyrat/tesh
-	name = "Squish-Me-Tesh"
-	desc = "Winner of Be Made Into A Plushy by ClownCo!"
+	name = "捏我特沙利"
+	desc = "小丑公司“把我做成玩偶”活动优胜者！"
 	icon_state = "plushie_tobjv2"
 
 // Donation reward for tobjv
 /obj/item/toy/plush/skyrat/immovable_rod
-	name = "immovable rod"
-	desc = "Realistic! But also squishy and certainly not as dangerous as its real counterpart."
+	name = "不可移动之杆"
+	desc = "很逼真！但又软又弹，而且绝对不像它的正版那样危险。"
 	icon_state = "plushie_tobjv"
 
 /obj/item/toy/plush/skyrat/immovable_rod/Bump(atom/clong)
@@ -517,139 +517,139 @@
 
 // Donation reward for gamerguy14948
 /obj/item/toy/plush/skyrat/voodoo
-	name = "voodoo doll"
-	desc = "A not so small voodoo doll made out of cut and sewn potato bags. It almost looks cute."
+	name = "伏都娃娃"
+	desc = "一只不算小的伏都娃娃，是用剪开又缝起来的土豆袋做的。它几乎有点可爱。"
 	icon_state = "plushie_gamerguy"
 
 // Donation reward for Dudewithatude
 /obj/item/toy/plush/skyrat/plushie_star
-	name = "star angel plush"
-	desc = "The plushie of a celestial in the known universe."
+	name = "星星天使玩偶"
+	desc = "已知宇宙中某位天界存在的玩偶。"
 	icon_state = "plushie_star"
 	gender = FEMALE
 	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/trills.ogg' = 1)
 
 // Donation reward for SRQ
 /obj/item/toy/plush/skyrat/plushie_chiara
-	name = "commanding fox plush"
-	desc = "A large stuffed fox which radiates confidence and vigor from their emerald eyes."
+	name = "有威严的狐狸玩偶"
+	desc = "一只大号狐狸玩偶，翠绿的眼睛里散发着自信与活力。"
 	icon_state = "plushie_chiara"
 
 // Donation reward for Superlagg
 /obj/item/toy/plush/skyrat/plushie_dan
-	name = "comfy fox plush"
-	desc = "A stuffed fox with an aura of endearment leaking from their soft exterior."
+	name = "舒适狐狸玩偶"
+	desc = "一只毛绒狐狸，柔软的外表里不断渗出让人喜爱的气息。"
 	icon_state = "plushie_dan"
 
 //Donation reward for KLB100
 /obj/item/toy/plush/skyrat/fox/plushie_jeanne
-	name = "masked roboticist plushie"
-	desc = "A familiar snow white Vulpkanin plushie. This one appears to be wearing a mask obscuring their face."
+	name = "蒙面机器人专家玩偶"
+	desc = "一只眼熟的雪白沃尔普卡宁玩偶。这只似乎戴着遮住面孔的面具。"
 	icon_state = "plushie_jeanne"
-	attack_verb_continuous = list("cuddles", "squishes", "blushes")
-	attack_verb_simple = list("cuddle", "squish", "blush")
+	attack_verb_continuous = list("拥抱", "挤压", "脸红")
+	attack_verb_simple = list("拥抱", "挤压", "脸红")
 
 //Donation reward for Dalao Azure
 /obj/item/toy/plush/skyrat/plushie_azyre
-	name = "handsome chef plushie"
-	desc = "A need to cook only rivaled by a hunger for fox tail."
+	name = "帅气厨师玩偶"
+	desc = "它对烹饪的渴望，只有对狐狸尾巴的饥渴能与之相比。"
 	icon_state = "plushie_azyre"
 
 //Donation reward for Razurath
 /obj/item/toy/plush/skyrat/plushie_razurath
-	name = "science shark plushie"
-	desc = "A determined scientist with a hint of mischief in her smile."
+	name = "科学鲨鱼玩偶"
+	desc = "一位意志坚定的科学家，笑容里带着一丝狡黠。"
 	icon_state = "plush_scishark"
-	attack_verb_continuous = list("bites", "eats", "fin slaps")
-	attack_verb_simple = list("bite", "eat", "fin slap")
+	attack_verb_continuous = list("啃咬", "吞吃", "鳍拍")
+	attack_verb_simple = list("啃咬", "吞吃", "鳍拍")
 	squeak_override = list('sound/items/weapons/bite.ogg'=1)
 
 //Other donation reward for Razurath
 /obj/item/toy/plush/skyrat/plushie_razurath/second
-	name = "dwarf shark plushie"
-	desc = "Despite her height, the plushie regards you with keen and frankly unamused eyes; the look on her face, and the elegance of her little tiny coat tell you that she knows something you don't."
+	name = "矮个鲨鱼玩偶"
+	desc = "尽管她个子不高，玩偶却用锐利而毫不领情的眼神打量着你；她脸上的神情，加上那件小小外套的优雅，告诉你她知道一些你不知道的事。"
 	icon_state = "plushie_nedilla"
 
 //Donation reward for October23
 /obj/item/toy/plush/skyrat/plushie_elofy
-	name = "bumbling wolfgirl plushie"
-	desc = "A white-haired wolfgirl in a stylish red security skirt. Despite her scary cybernetic arm, she is soft to hug and only wishes to be praised and comforted."
+	name = "笨手笨脚的狼女孩玩偶"
+	desc = "一位白发狼女孩，穿着时髦的红色安保短裙。尽管那条赛博义肢看着吓人，她抱起来很软，只希望能被夸奖和安慰。"
 	icon_state = "plush_lonie"
-	attack_verb_continuous = list("snuggles", "nibbles", "awoos", "tail whaps")
-	attack_verb_simple = list("snuggle", "nibble", "awoo", "tail whap")
+	attack_verb_continuous = list("依偎", "轻咬", "嗷呜", "甩尾拍打")
+	attack_verb_simple = list("依偎", "轻咬", "嗷呜", "甩尾拍打")
 	squeak_override = list('modular_zubbers/sound/voice/merowr.ogg' = 1)
 
 //Donation reward for syntax1112
 /obj/item/toy/plush/skyrat/plushie_syntax1112
-	name = "lop bunny plushie"
-	desc = "A floppy-eared rabbit in marketable plushie form. Complete with an internal self-inflating squeaker device!"
+	name = "垂耳兔玩偶"
+	desc = "一只耷拉着耳朵的兔子，做成了人人可买的玩偶。内部还配有一个自动充气的吱吱响装置！"
 	icon_state = "fuzz_bunny"
-	attack_verb_continuous = list("nibbles", "squeaks", "nose twitches", "thumps", "whops")
-	attack_verb_simple = list("nibble", "squeak", "nose twitch", "thump", "whop")
+	attack_verb_continuous = list("轻咬", "吱吱叫", "抽鼻子", "蹬脚", "拍打")
+	attack_verb_simple = list("轻咬", "吱吱叫", "抽鼻子", "蹬脚", "拍打")
 	squeak_override = list('modular_skyrat/modules/customization/game/objects/items/sound/deerplush.ogg' = 1)
 
 // Donation reward for SomeRandomOwl
 /obj/item/toy/plush/skyrat/snow_owl
-	name = "snowy owl plush"
-	desc = "A very soft plush resembling a feathery and witch like owl who is known to frequent science and medical."
+	name = "雪鸮玩偶"
+	desc = "一只非常柔软的玩偶，长得像一只羽毛蓬松、女巫似的猫头鹰，据说常出没于科研部和医疗部。"
 	icon_state = "plushie_owl"
-	attack_verb_continuous = list("hoots", "screms", "hugs")
-	attack_verb_simple = list("hoot", "screm", "hug")
+	attack_verb_continuous = list("呜呜叫", "尖叫", "拥抱")
+	attack_verb_simple = list("呜呜叫", "尖叫", "拥抱")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/hoot.ogg' = 1)
 
 // Donation reward for Jolly66
 /obj/item/toy/plush/skyrat/derg_plushie
-	name = "wingless dragon plush"
-	desc = "A cute green-and-yellow wingless dragon plushie! For what its worth, it does have a comically large tail. \
-		Comes with an additional paramedic cap."
+	name = "无翼龙玩偶"
+	desc = "一只可爱的黄绿色无翼龙玩偶！值得一提的是，它确实有一条夸张的大尾巴。 \
+		还附带一顶急救员帽。"
 	icon_state = "plushie_derg"
-	attack_verb_continuous = list("wehs", "wehs softly", "stutters")
-	attack_verb_simple = list("weh", "weh softly", "stutter")
+	attack_verb_continuous = list("呜咽", "轻声呜咽", "结巴")
+	attack_verb_simple = list("呜咽", "轻声呜咽", "结巴")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/weh.ogg' = 1)
 
 // Donation reward for Gofawful5
 /obj/item/toy/plush/skyrat/tracy
-	name = "creature plushie"
-	desc = "An astonishingly well-endowed catfox plushie... It seems content."
+	name = "生物玩偶"
+	desc = "一只身材惊人地丰满的猫狐玩偶……它看起来很满足。"
 	icon_state = "plush_tracy"
-	attack_verb_continuous = list("expands")
-	attack_verb_simple = list("expand")
+	attack_verb_continuous = list("膨胀")
+	attack_verb_simple = list("膨胀")
 	squeak_override = list('modular_skyrat/modules/customization/game/objects/items/sound/tracymrowr.ogg' = 1)
 	gender = FEMALE
 
 //Donation reward for Frixit
 /obj/item/toy/plush/skyrat/plushie_synthia
-	name = "adventurous synth plushie"
-	desc = "This plush is perfect For adventures in space and in bed, a cuddly purple Synth, their scarf is extra soft!"
+	name = "爱冒险的合成人玩偶"
+	desc = "这只玩偶非常适合在太空里和床上冒险，一只软乎乎的紫色合成人，它的围巾格外柔软！"
 	icon_state = "plushie_synthia"
-	attack_verb_continuous = list("blushes", "hugs", "whips")
-	attack_verb_simple = list("blush", "hug", "whip")
+	attack_verb_continuous = list("脸红", "拥抱", "鞭打")
+	attack_verb_simple = list("脸红", "拥抱", "鞭打")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/twobeep.ogg' = 1)
 
 //Donation reward for Kitsun
 /obj/item/toy/plush/skyrat/jecca
-	name = "sexy snoodle plushie"
-	desc = "For some reason, this plushie is rather shiny, with glistening, glittering scales, and its ruby colored eyes seem to be rather enticing and full of mischievous, lewd thoughts behind them."
+	name = "性感斯努德玩偶"
+	desc = "不知为何，这只玩偶相当光亮，鳞片闪闪发亮，那双红宝石色的眼睛颇为诱人，眼底藏着顽皮又下流的念头。"
 	icon_state = "plushie_jecca"
-	attack_verb_continuous = list("sighs")
-	attack_verb_simple = list("sigh")
+	attack_verb_continuous = list("叹气")
+	attack_verb_simple = list("叹气")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/female/female_sigh.ogg' = 1)
 	gender = FEMALE
 
 //Donation reward for BriareosBlue
 /obj/item/toy/plush/skyrat/courier_synth
-	name = "courier synth plushie"
-	desc = "This synth plushie looks about ready to deliver hugs and beeps straight to the heart! The tag seems to have an advertisement for a delivery company on it..."
+	name = "信使合成人玩偶"
+	desc = "这只合成人玩偶看起来随时准备把拥抱和哔声直送到你心里！标签上似乎印着一家快递公司的广告……"
 	icon_state = "plushie_courier"
-	attack_verb_continuous = list("delivers", "export scans", "dwoops", "bwuhs", "stamps")
-	attack_verb_simple = list("deliver", "export scan", "dwoop", "bwuh", "stamp")
+	attack_verb_continuous = list("投递", "做出口扫描", "嘟呜", "噗噜", "盖章")
+	attack_verb_simple = list("投递", "做出口扫描", "嘟呜", "噗噜", "盖章")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/twobeep.ogg' = 1)
 
 //Donation reward for olirant
 /obj/item/toy/plush/skyrat/plush_janiborg
-	name = "Friendly Janiborg Plush"
-	desc = "A miniature omnidroid toy straight from the Lockstep Enterprises Corporation marketing department in handsome janitorial purple. Now with real squirting action!"
+	name = "友好清洁半机械人玩偶"
+	desc = "一款迷你全能机器人玩具，直接来自洛克斯特普企业公司市场部，采用帅气的清洁紫配色。现在还有真的喷水功能！"
 	icon_state = "plush_janiborg"
-	attack_verb_continuous = list("beeps", "washes", "mops", "squirts", "soaps")
-	attack_verb_simple = list("beep", "wash", "mop", "squirt", "soap")
+	attack_verb_continuous = list("哔哔叫", "刷洗", "拖地", "喷水", "打皂")
+	attack_verb_simple = list("哔哔叫", "刷洗", "拖地", "喷水", "打皂")
 	squeak_override = list('sound/machines/beep/twobeep.ogg' = 1)

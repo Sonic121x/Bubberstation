@@ -1,26 +1,26 @@
 GLOBAL_DATUM(cargo_sloth, /mob/living/basic/sloth)
 
 /mob/living/basic/sloth
-	name = "sloth"
-	desc = "An adorable, sleepy creature."
+	name = "树懒"
+	desc = "一只可爱又嗜睡的生物。"
 	icon = 'icons/mob/simple/pets.dmi'
 	icon_state = "sloth"
 	icon_living = "sloth"
 	icon_dead = "sloth_dead"
 
-	speak_emote = list("yawns")
+	speak_emote = list("打了个哈欠")
 
 	held_state = "sloth"
 
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "kicks"
-	response_harm_simple = "kick"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "踢"
+	response_harm_simple = "踢"
 
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 
@@ -44,7 +44,7 @@ GLOBAL_DATUM(cargo_sloth, /mob/living/basic/sloth)
 /datum/emote/sloth/smile_slow
 	key = "ssmile"
 	key_third_person = "slowlysmiles"
-	message = "slowly smiles!"
+	message = "缓缓露出微笑！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /mob/living/basic/sloth/Initialize(mapload)
@@ -69,14 +69,14 @@ GLOBAL_DATUM(cargo_sloth, /mob/living/basic/sloth)
 	return ..()
 
 /mob/living/basic/sloth/paperwork
-	name = "Paperwork"
-	desc = "Cargo's pet sloth. About as useful as the rest of the techs."
+	name = "文书"
+	desc = "货运部的宠物树懒。和其余技术员一样没什么用。"
 	gender = MALE
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/sloth/citrus
-	name = "Citrus"
-	desc = "Cargo's pet sloth. She's dressed in a horrible sweater."
+	name = "柑橘"
+	desc = "货运部的宠物树懒。她穿着一件难看得要命的毛衣。"
 	icon_state = "cool_sloth"
 	icon_living = "cool_sloth"
 	icon_dead = "cool_sloth_dead"
@@ -91,8 +91,8 @@ GLOBAL_DATUM(cargo_sloth, /mob/living/basic/sloth)
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_FLEE_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_HEAR = list("snores.", "yawns."),
-			BB_EMOTE_SEE = list("dozes off.", "looks around sleepily."),
+			BB_EMOTE_HEAR = list("打着呼噜。", "打了个哈欠。"),
+			BB_EMOTE_SEE = list("打起了瞌睡。", "睡眼惺忪地四处张望。"),
 			BB_SPEAK_CHANCE = 1,
 		),
 	)

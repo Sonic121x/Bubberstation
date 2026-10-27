@@ -1,7 +1,7 @@
 #define MONKEY_SPEC_ATTACK_BITE_MISS_CHANCE 25
 
 /datum/species/monkey
-	name = "\improper Monkey"
+	name = "\improper 猴子"
 	id = SPECIES_MONKEY
 	mutant_organs = list(
 		/obj/item/organ/tail/monkey = "Monkey",
@@ -55,19 +55,19 @@
 	return ..()
 
 /datum/species/monkey/get_physical_attributes()
-	return "Monkeys are slippery, can crawl into vents, and are more dextrous than humans.. but only when stealing things. \
-		Natural monkeys cannot operate machinery or most tools with their paws, but unusually clever monkeys or those that were once something else can."
+	return "猴子身形灵活，能爬进通风管道，而且比人类更灵巧……但仅限于偷东西的时候。\
+		天生的猴子无法用爪子操作机械或大多数工具，但异常聪明的猴子，或是曾经是其他东西的猴子则可以。"
 
 /datum/species/monkey/get_species_description()
-	return "Monkeys are a type of primate that exist between humans and animals on the evolutionary chain. \
-		Every year, on Monkey Day, Nanotrasen shows their respect for the little guys by allowing them to roam the station freely."
+	return "猴子是灵长类动物，在进化链上介于人类与动物之间。\
+		每年猴子日，纳米传讯都会允许这些小家伙在站内自由活动，以此表达对他们的尊重。"
 
 /datum/species/monkey/get_species_lore()
 	return list(
-		"Monkeys are commonly used as test subjects on board Space Station Thirteen. \
-		But what if... for one day... the Monkeys were allowed to be the scientists? \
-		What experiments would they come up it? Would they (stereotypically) be related to bananas somehow? \
-		There's only one way to find out.",
+		"在十三号空间站上，猴子常被用作实验对象。\
+		可要是……有那么一天……猴子被允许来当科学家呢？\
+		他们会想出什么实验？会不会（按刻板印象）在某种程度上与香蕉有关？\
+		唯一的办法就是亲眼看看。",
 	)
 
 /datum/species/monkey/create_pref_unique_perks()
@@ -77,16 +77,16 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "spider",
-			SPECIES_PERK_NAME = "Vent Crawling",
-			SPECIES_PERK_DESC = "Monkeys can crawl through the vent and scrubber networks while wearing no clothing. \
-				Stay out of the kitchen!",
+			SPECIES_PERK_NAME = "管道爬行",
+			SPECIES_PERK_DESC = "猴子可以不穿任何衣物爬过通风管道与洗涤器管网。\
+				别靠近厨房！",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "paw",
-			SPECIES_PERK_NAME = "Primal Primate",
-			SPECIES_PERK_DESC = "Monkeys are primitive humans, and can't do most things a human can do. Computers are impossible, \
-				complex machines are right out, and most clothes don't fit your smaller form.",
+			SPECIES_PERK_NAME = "原始灵长类",
+			SPECIES_PERK_DESC = "猴子是原始的人类，大多数人类能做的事他们都做不到。计算机对他们来说绝无可能，\
+				复杂机械更是免谈，而且大多数衣服都穿不进你较小的身躯。",
 		),
 	)
 
@@ -101,16 +101,16 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "comment",
-		SPECIES_PERK_NAME = "Primitive Tongue",
-		SPECIES_PERK_DESC = "You may be able to understand [initial(common_language.name)], but you can't speak it. \
-			You can only speak [initial(monkey_language.name)].",
+		SPECIES_PERK_NAME = "原始语言",
+		SPECIES_PERK_DESC = "你或许能听懂 [initial(common_language.name)]，但无法说出它。 \
+			你只能说 [initial(monkey_language.name)]。",
 	))
 
 	return to_add
 
 /obj/item/organ/brain/primate //Ook Ook
-	name = "Primate Brain"
-	desc = "This wad of meat is small, but has enlarged occipital lobes for spotting bananas."
+	name = "灵长类大脑"
+	desc = "这块肉很小，但枕叶发达，便于发现香蕉。"
 	organ_traits = list(TRAIT_CAN_STRIP, TRAIT_PRIMITIVE, TRAIT_GUN_NATURAL, TRAIT_WEAK_SOUL) // No literacy or advanced tool usage.
 	actions_types = list(/datum/action/item_action/organ_action/toggle_trip)
 	/// Will this monkey stumble if they are crossed by a simple mob or a carbon in combat mode? Toggable by monkeys with clients, and is messed automatically set to true by monkey AI.
@@ -123,7 +123,7 @@
 	return ..()
 
 /datum/action/item_action/organ_action/toggle_trip
-	name = "Toggle Tripping"
+	name = "切换绊倒"
 	button_icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "lesser_form"
 	background_icon_state = "bg_default_on"
@@ -134,11 +134,11 @@
 	if(monkey_brain.tripping)
 		monkey_brain.tripping = FALSE
 		background_icon_state = "bg_default"
-		to_chat(monkey_brain.owner, span_notice("You will now avoid stumbling while colliding with people who are in combat mode."))
+		to_chat(monkey_brain.owner, span_notice("你与处于战斗模式的人相撞时将不会再绊倒。"))
 	else
 		monkey_brain.tripping = TRUE
 		background_icon_state = "bg_default_on"
-		to_chat(monkey_brain.owner, span_notice("You will now stumble while colliding with people who are in combat mode."))
+		to_chat(monkey_brain.owner, span_notice("你与处于战斗模式的人相撞时将会绊倒。"))
 	build_all_button_icons()
 	return TRUE
 

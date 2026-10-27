@@ -1,6 +1,6 @@
 /atom/movable/screen/alert/status_effect/slime_leech
-	name = "Covered in Slime"
-	desc = "A slime is draining your very lifeforce! Remove it by hand, by hitting it, or by water."
+	name = "被史莱姆缠住"
+	desc = "一只史莱姆正在吸取你的生命力！用手扯开、击打它，或用水把它赶走。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "slime_leech"
 
@@ -50,7 +50,7 @@
 
 	if(owner.stat == DEAD) // our victim died
 		if(our_slime.client)
-			to_chat(our_slime, span_info("This subject does not have a strong enough life energy anymore..."))
+			to_chat(our_slime, span_info("这个目标的生命能量已经不够充足了……"))
 
 		SEND_SIGNAL(owner, COMSIG_SLIME_DRAINED, our_slime)
 
@@ -76,7 +76,7 @@
 			owner.updatehealth()
 
 	if(totaldamage >= 0) // adjust_brute_loss() returns a negative value on successful damage adjustment
-		our_slime.balloon_alert(our_slime, "not food!")
+		our_slime.balloon_alert(our_slime, "这不是食物！")
 		our_slime.stop_feeding()
 		return
 
@@ -85,13 +85,13 @@
 		var/static/list/pain_lines
 		if(isnull(pain_lines))
 			pain_lines = list(
-				"You can feel your body becoming weak!",
-				"You feel like you're about to die!",
-				"You feel every part of your body screaming in agony!",
-				"A low, rolling pain passes through your body!",
-				"Your body feels as if it's falling apart!",
-				"You feel extremely weak!",
-				"A sharp, deep pain bathes every inch of your body!",
+				"你感到身体逐渐虚弱！",
+				"你感觉自己快要死了！",
+				"你身体的每一处都在痛苦地尖叫！",
+				"一阵绵延的闷痛传遍全身！",
+				"你的身体仿佛正在散架！",
+				"你感到极度虚弱！",
+				"尖锐而深入的痛楚浸透了你身体的每一寸！",
 			)
 
 		to_chat(owner, span_userdanger(pick(pain_lines)))

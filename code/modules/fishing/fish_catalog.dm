@@ -1,7 +1,7 @@
 ///Book detailing where to get the fish and their properties.
 /obj/item/book/manual/fish_catalog
-	name = "Fish Encyclopedia"
-	desc = "Indexes all fish known to mankind (and related species)."
+	name = "鱼类百科"
+	desc = "收录了人类（以及相关物种）已知的所有鱼类。"
 	icon_state = "fishbook"
 	custom_price = PAYCHECK_CREW * 2
 	starting_content = "Lot of fish stuff" //book wrappers could use cleaning so this is not necessary
@@ -32,14 +32,14 @@
 			fish_data["temp_max"] = initial(fish.required_temperature_max)
 			fish_data["icon"] = sanitize_css_class_name("[initial(fish.icon)][initial(fish.icon_state)]")
 			fish_data["color"] = initial(fish.color)
-			fish_data["source"] = initial(fish.random_case_rarity) ? "[AQUARIUM_COMPANY] Fish Packs" : "Unknown"
+			fish_data["source"] = initial(fish.random_case_rarity) ? "[AQUARIUM_COMPANY] 鱼类套装" : "未知"
 			fish_data["size"] = initial(fish.average_size)
 			fish_data["weight"] = initial(fish.average_weight)
 			var/datum/reagent/food_type = initial(fish.food)
 			if(food_type != /datum/reagent/consumable/nutriment)
 				fish_data["feed"] = initial(food_type.name)
 			else
-				fish_data["feed"] = "[AQUARIUM_COMPANY] Fish Feed"
+				fish_data["feed"] = "[AQUARIUM_COMPANY] 鱼饲料"
 			fish_data["fishing_tips"] = build_fishing_tips(fish)
 			fish_data["beauty"] = SSfishing.fish_properties[fish][FISH_PROPERTIES_BEAUTY_SCORE]
 
@@ -59,13 +59,13 @@
 				return jointext(bitfield_to_list(special_identifier[FISH_BAIT_VALUE], FOOD_FLAGS_IC),",")
 			if(FISH_BAIT_REAGENT)
 				var/datum/reagent/prototype = special_identifier[FISH_BAIT_VALUE]
-				return "[initial(prototype.name)] (at least [special_identifier[FISH_BAIT_AMOUNT]]u)"
+				return "[initial(prototype.name)]（至少 [special_identifier[FISH_BAIT_AMOUNT]]u）"
 			else
 				stack_trace("Unknown bait identifier in fish favourite/disliked list")
-				return "SOMETHING VERY WEIRD"
+				return "非常奇怪的东西"
 	else
 		//Here we handle descriptions of traits fish use as qualifiers
-		return "something special"
+		return "某种特别的东西"
 
 /obj/item/book/manual/fish_catalog/proc/build_fishing_tips(fish_type)
 	var/obj/item/fish/fishy = fish_type
@@ -75,7 +75,7 @@
 	for(var/datum/fish_source/source as anything in GLOB.preset_fish_sources)
 		if(source.catalog_description && (fish_type in source.fish_table))
 			spot_descriptions += source.catalog_description
-	.["spots"] = english_list(spot_descriptions, nothing_text = "Unknown")
+	.["spots"] = english_list(spot_descriptions, nothing_text = "未知")
 	var/list/fish_list_properties = SSfishing.fish_properties
 	var/list/fav_bait = fish_list_properties[fishy][FISH_PROPERTIES_FAV_BAIT]
 	var/list/disliked_bait = fish_list_properties[fishy][FISH_PROPERTIES_BAD_BAIT]
@@ -83,11 +83,11 @@
 	// Favourite/Disliked bait
 	for(var/bait_type_or_trait in fav_bait)
 		bait_list += bait_description(bait_type_or_trait)
-	.["favorite_bait"] = english_list(bait_list, nothing_text = "None")
+	.["favorite_bait"] = english_list(bait_list, nothing_text = "无")
 	bait_list.Cut()
 	for(var/bait_type_or_trait in disliked_bait)
 		bait_list += bait_description(bait_type_or_trait)
-	.["disliked_bait"] = english_list(bait_list, nothing_text = "None")
+	.["disliked_bait"] = english_list(bait_list, nothing_text = "无")
 	// Fish traits description
 	var/list/trait_descriptions = list()
 	var/list/fish_traits = fish_list_properties[fishy][FISH_PROPERTIES_TRAITS]
@@ -97,7 +97,7 @@
 		trait_descriptions += trait.catalog_description
 		fish_difficulty += trait.added_difficulty
 	if(!length(trait_descriptions))
-		trait_descriptions += "This fish exhibits no special behavior."
+		trait_descriptions += "这种鱼没有特殊表现。"
 	.["traits"] = trait_descriptions
 	///Difficulty descriptor
 	switch(fish_difficulty)

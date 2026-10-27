@@ -2,7 +2,7 @@
 
 ///Wizard tower item
 /obj/item/disk/design_disk/knight_gear
-	name = "Magic Disk of Smithing"
+	name = "锻造魔法磁盘"
 
 /obj/item/disk/design_disk/knight_gear/Initialize(mapload)
 	. = ..()
@@ -12,8 +12,8 @@
 //Free Golems
 
 /obj/item/disk/design_disk/golem_shell
-	name = "Golem Creation Disk"
-	desc = "A gift from the Liberator."
+	name = "魔像制造磁盘"
+	desc = "来自解放者的礼物。"
 	icon_state = "datadisk1"
 
 /obj/item/disk/design_disk/golem_shell/Initialize(mapload)
@@ -21,8 +21,8 @@
 	blueprints += new /datum/design/golem_shell
 
 /datum/design/golem_shell
-	name = "Golem Shell Construction"
-	desc = "Allows for the construction of a Golem Shell."
+	name = "魔像外壳建造"
+	desc = "允许建造魔像外壳。"
 	id = "golem"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*20)
@@ -30,10 +30,10 @@
 	category = list(RND_CATEGORY_IMPORTED)
 
 /obj/item/golem_shell
-	name = "incomplete free golem shell"
+	name = "未完成的自由魔像外壳"
 	icon = 'icons/mob/shells.dmi'
 	icon_state = "shell_unfinished"
-	desc = "The incomplete body of a golem. Add ten sheets of certain minerals to finish."
+	desc = "一具未完成的魔像躯体。加入十张特定矿物板材即可完成。"
 	w_class = WEIGHT_CLASS_BULKY
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20)
 	/// Amount of minerals you need to feed the shell to wake it up
@@ -48,18 +48,18 @@
 	var/obj/item/stack/stack_food = tool
 	var/stack_type = stack_food.merge_type
 	if (!is_path_in_list(stack_type, GLOB.golem_stack_food_directory))
-		balloon_alert(user, "incompatible mineral!")
+		balloon_alert(user, "矿物不兼容！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(stack_food.amount < required_stacks)
-		balloon_alert(user, "not enough minerals!")
+		balloon_alert(user, "矿物不足！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!do_after(user, delay = 4 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!stack_food.use(required_stacks))
-		balloon_alert(user, "not enough minerals!")
+		balloon_alert(user, "矿物不足！")
 		return ITEM_INTERACT_BLOCKING
 
 	new shell_type(get_turf(src), /* creator = */ user, /* made_of = */ stack_type)
@@ -69,20 +69,20 @@
 /obj/item/golem_shell/crowbar_act(mob/living/user, obj/item/tool)
 	. = ..()
 
-	to_chat(user, span_notice("You begin dislodging structurally integral chunks."))
+	to_chat(user, span_notice("你开始撬下结构关键的碎块。"))
 	playsound(src, 'sound/items/tools/crowbar.ogg',  70)
 	if(!do_after(user, delay = 1 SECONDS, target = src))
 		return
 	if(QDELETED(src))
 		return
 	new /obj/item/stack/sheet/mineral/adamantine(get_turf(src), 1) //Return less than was used to construct the shell
-	to_chat(user, span_notice("The shell collapses in on itself!"))
+	to_chat(user, span_notice("外壳向内塌陷了！"))
 	playsound(src, 'sound/effects/rock/rock_break.ogg', 40)
 	qdel(src)
 	return
 
 ///made with xenobiology, the golem obeys its creator
 /obj/item/golem_shell/servant
-	name = "incomplete servant golem shell"
+	name = "未完成的仆从魔像外壳"
 	shell_type = /obj/effect/mob_spawn/ghost_role/human/golem/servant
 	custom_materials = list(/datum/material/adamantine = SHEET_MATERIAL_AMOUNT * 3)

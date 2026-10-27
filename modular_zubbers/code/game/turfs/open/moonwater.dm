@@ -1,8 +1,8 @@
 /turf/open/water/moonstation
 
-	name = "lunar water"
+	name = "月球水域"
 	gender = PLURAL
-	desc = "Semi-shallow water containing a variety of natural and invasive fish species."
+	desc = "半浅水域，栖息着多种本土与入侵鱼类。"
 
 	icon = 'icons/turf/floors/moonwater.dmi'
 	base_icon_state = "moonwater"
@@ -25,8 +25,8 @@
 
 /turf/open/water/moonstation/infested
 
-	name = "carp-infested deep treacherous lunar water"
-	desc = "Very dangerous lunar water. You feel like it would be a very bad idea to enter this water unprepared."
+	name = "太空鲤鱼出没的危险月球深水区"
+	desc = "极其危险的月球水域。你觉得毫无准备就进入这里绝非明智之举。"
 
 	immerse_overlay = "immerse_deep"
 	is_swimming_tile = TRUE
@@ -38,7 +38,7 @@
 
 /turf/open/water/moonstation/surface
 
-	name = "lunar surface water"
+	name = "月球地表水域"
 
 	icon = 'icons/turf/floors/moonwater_surface.dmi'
 	base_icon_state = "moonwater_surface"
@@ -52,7 +52,7 @@
 #define MOON_FISH_COMMON 8
 
 /datum/fish_source/lunar
-	catalog_description = "Lunar Waters"
+	catalog_description = "月球水域"
 	radial_state = "fryer"
 	overlay_state = "portal_ocean"
 	fish_table = list(
@@ -73,7 +73,7 @@
 
 
 /datum/fish_source/lunar/surface
-	catalog_description = "Lunar Waters"
+	catalog_description = "月球水域"
 	radial_state = "fryer"
 	overlay_state = "portal_ocean"
 	fish_table = list(

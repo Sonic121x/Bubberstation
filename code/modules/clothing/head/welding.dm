@@ -1,6 +1,6 @@
 /obj/item/clothing/head/utility/welding
-	name = "welding helmet"
-	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
+	name = "焊接头盔"
+	desc = "一种佩戴在头部的面罩，旨在完全保护佩戴者免受太空弧光眼炎的伤害。"
 	icon_state = "welding"
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	inhand_icon_state = "welding"

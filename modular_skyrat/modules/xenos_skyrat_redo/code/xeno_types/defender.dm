@@ -1,8 +1,8 @@
 /// SKYRAT MODULE SKYRAT_XENO_REDO
 
 /mob/living/carbon/alien/adult/skyrat/defender
-	name = "alien defender"
-	desc = "A heavy looking alien with a wrecking ball-like tail that'd probably hurt to get hit by."
+	name = "异形守卫"
+	desc = "看起来十分沉重的异形，尾巴像拆楼用的铁球，被砸中想必很疼。"
 	caste = "defender"
 	maxHealth = 300
 	health = 300
@@ -34,8 +34,8 @@
 	add_movespeed_modifier(/datum/movespeed_modifier/alien_heavy)
 
 /datum/action/cooldown/spell/aoe/repulse/xeno/skyrat_tailsweep
-	name = "Crushing Tail Sweep"
-	desc = "Throw back attackers with a sweep of your tail, likely breaking some bones in the process."
+	name = "碎骨扫尾"
+	desc = "挥动尾巴击退攻击者，很可能顺带打断几根骨头。"
 
 	cooldown_time = 60 SECONDS
 
@@ -90,7 +90,7 @@
 	victim_living.apply_damage(impact_damage, impact_damage_type, BODY_ZONE_CHEST, wound_bonus = impact_wound_bonus, sharpness = impact_sharpness)
 	shake_camera(victim_living, 4, 3)
 	playsound(victim_living, impact_sound, 100, TRUE, 8, 0.9)
-	to_chat(victim_living, span_userdanger("[caster]'s tail slams into you, throwing you back!"))
+	to_chat(victim_living, span_userdanger("[caster]的尾巴狠狠砸中你，将你击飞！"))
 
 	victim_living.safe_throw_at(throwtarget, ((clamp((max_throw - (clamp(dist_from_caster - 2, 0, dist_from_caster))), 3, max_throw))), 1, caster, force = repulse_force)
 
@@ -99,8 +99,8 @@
 	icon_state = "crush_tail_anim"
 
 /datum/action/cooldown/mob_cooldown/charge/basic_charge/defender
-	name = "Charge Attack"
-	desc = "Allows you to charge at a position, trampling anything in your path."
+	name = "冲锋攻击"
+	desc = "向指定位置冲锋，践踏沿途的一切。"
 	cooldown_time = 15 SECONDS
 	charge_delay = 0.3 SECONDS
 	charge_distance = 5

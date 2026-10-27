@@ -353,13 +353,13 @@ GLOBAL_VAR_INIT(all_autodrobe_items, (autodrobe_costumes_items +\
 ))
 
 /obj/machinery/vending/autodrobe
-	name = "\improper AutoDrobe"
-	desc = "A vending machine for costumes."
+	name = "\improper 自动衣柜"
+	desc = "一台出售服装的售货机。"
 	icon_state = "theater"
 	icon_deny = "theater-deny"
 	panel_type = "panel16"
-	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use AutoDrobe!"
-	vend_reply = "Thank you for using AutoDrobe!"
+	product_slogans = "为成功而穿！;整装待发！;演出开始了！;何必把造型交给命运？就用自动衣柜！"
+	vend_reply = "感谢使用自动衣柜！"
 
 	/**
 	 * Categories are filled in Initialize!
@@ -374,37 +374,37 @@ GLOBAL_VAR_INIT(all_autodrobe_items, (autodrobe_costumes_items +\
 /obj/machinery/vending/autodrobe/Initialize(mapload)
 	product_categories = list(
 		list(
-			"name" = "Costumes",
+			"name" = "戏服",
 			"icon" = "mask",
 			"products" = GLOB.autodrobe_costumes_items
 		),
 		list(
-			"name" = "Supernatural",
+			"name" = "超自然",
 			"icon" = "hand-sparkles",
 			"products" = GLOB.autodrobe_supernatural_items
 		),
 		list(
-			"name" = "Entertainers",
+			"name" = "艺人",
 			"icon" = "masks-theater",
 			"products" = GLOB.autodrobe_entretainers_items
 		),
 		list(
-			"name" = "Fancy",
+			"name" = "华丽",
 			"icon" = "user-tie",
 			"products" = GLOB.autodrobe_fancy_items
 		),
 		list(
-			"name" = "Animals",
+			"name" = "动物",
 			"icon" = "paw",
 			"products" = GLOB.autodrobe_animal_items
 		),
 		list(
-			"name" = "Service",
+			"name" = "服务",
 			"icon" = "kitchen-set",
 			"products" = GLOB.autodrobe_service_items
 		),
 		list(
-			"name" = "Other",
+			"name" = "其他",
 			"icon" = "star",
 			"products" = GLOB.autodrobe_other_items
 		),
@@ -415,5 +415,5 @@ GLOBAL_VAR_INIT(all_autodrobe_items, (autodrobe_costumes_items +\
 	. = ..()
 
 /obj/item/vending_refill/autodrobe
-	machine_name = "AutoDrobe"
+	machine_name = "自动衣柜"
 	icon_state = "refill_costume"

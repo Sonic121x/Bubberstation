@@ -14,8 +14,8 @@
  *
  */
 /mob/living/basic/drone
-	name = "Drone"
-	desc = "A maintenance drone, an expendable robot built to perform station repairs."
+	name = "无人机"
+	desc = "一台维护无人机，一种为执行空间站维修而制造的一次性机器人。"
 	icon = 'icons/mob/silicon/drone.dmi'
 	icon_state = "drone_maint_grey"
 	icon_living = "drone_maint_grey"
@@ -32,7 +32,7 @@
 	status_flags = (CANPUSH | CANSTUN | CANKNOCKDOWN)
 	gender = NEUTER
 	mob_biotypes = MOB_ROBOTIC
-	speak_emote = list("chirps")
+	speak_emote = list("啾啾鸣叫")
 	speech_span = SPAN_ROBOT
 	bubble_icon = "machine"
 	initial_language_holder = /datum/language_holder/drone
@@ -55,9 +55,9 @@
 	var/list/drone_overlays[DRONE_TOTAL_LAYERS]
 	/// Drone laws announced on spawn, can be overridden for regular drones via config/drone_laws.txt
 	var/laws = \
-	"1. You may not involve yourself in the matters of another being, even if such matters conflict with Law Two or Law Three, unless the other being is another Drone.\n"+\
-	"2. You may not harm any being, regardless of intent or circumstance.\n"+\
-	"3. Your goals are to actively build, maintain, repair, improve, and provide power to the best of your abilities within the facility that housed your activation." //for derelict drones so they don't go to station.
+	"1. 你不得介入其他存在的任何事务，即使这些事务与第二条或第三条法律相冲突；除非那个存在也是一台无人机。\n"+\
+	"2. 你不得伤害任何存在，无论出于何种意图或情形。\n"+\
+	"3. 你的目标是在启动你的设施内，尽你所能地建造、维护、修理、改进并提供电力。" //for derelict drones so they don't go to station.
 	/// Amount of damage sustained if hit by a heavy EMP pulse
 	var/heavy_emp_damage = 25
 	///Alarm listener datum, handes caring about alarm events and such
@@ -91,15 +91,15 @@
 	var/shy = TRUE
 	/// Flavor text announced to drones on [/mob/proc/Login]
 	var/flavortext = \
-	"\n<big><span class='warning'>DO NOT INTERFERE WITH THE ROUND AS A DRONE OR YOU WILL BE DRONE BANNED</span></big>\n"+\
-	"<span class='notice'>Drones are a ghost role that are allowed to fix the station and build things. Interfering with the round as a drone is against the rules.</span>\n"+\
-	"<span class='notice'>Actions that constitute interference include, but are not limited to:</span>\n"+\
-	"<span class='notice'>     - Interacting with round critical objects (IDs, weapons, contraband, powersinks, bombs, etc.)</span>\n"+\
-	"<span class='notice'>     - Interacting with living beings (communication, attacking, healing, etc.)</span>\n"+\
-	"<span class='notice'>     - Interacting with non-living beings (dragging bodies, looting bodies, etc.)</span>\n"+\
-	"<span class='warning'>These rules are at admin discretion and will be heavily enforced.</span>\n"+\
-	"<span class='warning'><u>If you do not have the regular drone laws, follow your laws to the best of your ability.</u></span>\n"+\
-	"<span class='notice'>Prefix your message with :b to speak in Drone Chat.</span>\n"
+	"\n<big><span class='warning'>作为无人机，请勿干扰本局游戏，否则你将被禁止扮演无人机</span></big>\n"+\
+	"<span class='notice'>无人机是一种幽灵角色，可以维修空间站和建造物品。作为无人机干扰本局游戏是违反规则的行为。</span>\n"+\
+	"<span class='notice'>构成干扰的行为包括但不限于：</span>\n"+\
+	"<span class='notice'>     - 与影响本局游戏的关键物品互动（证件、武器、违禁品、电力窃取器、炸弹等）</span>\n"+\
+	"<span class='notice'>     - 与有生命的存在互动（交流、攻击、治疗等）</span>\n"+\
+	"<span class='notice'>     - 与无生命的存在互动（拖动尸体、搜刮尸体等）</span>\n"+\
+	"<span class='warning'>这些规则由管理员自行裁量，并将严格执行。</span>\n"+\
+	"<span class='warning'><u>如果你没有常规的无人机法律，请尽你所能遵守你的法律。</u></span>\n"+\
+	"<span class='notice'>在消息前加上 :b 即可在无人机频道发言。</span>\n"
 
 /mob/living/basic/drone/Initialize(mapload)
 	. = ..()
@@ -232,37 +232,37 @@
 	for(var/obj/item/held_thing in held_items)
 		if((held_thing.item_flags & (ABSTRACT|HAND_ITEM)) || HAS_TRAIT(held_thing, TRAIT_EXAMINE_SKIP))
 			continue
-		. += "It has [held_thing.examine_title(user)] in its [get_held_index_name(get_held_index_of_item(held_thing))]."
+		. += "它的[get_held_index_name(get_held_index_of_item(held_thing))]中拿着 [held_thing.examine_title(user)]。"
 
 	//Internal storage
 	if(internal_storage && !(internal_storage.item_flags & ABSTRACT))
-		. += "It is holding [internal_storage.examine_title(user)] in its internal storage."
+		. += "它的内部储物空间中装着 [internal_storage.examine_title(user)]。"
 
 	//Cosmetic hat - provides no function other than looks
 	if(head && !(head.item_flags & ABSTRACT))
-		. += "It is wearing [head.examine_title(user)] on its head."
+		. += "它的头上戴着 [head.examine_title(user)]。"
 
 	//Braindead
 	if(!client && stat != DEAD)
-		. += "Its status LED is blinking at a steady rate."
+		. += "它的状态指示灯正以稳定的频率闪烁。"
 
 	//Hacked
 	if(hacked)
-		. += span_warning("Its display is glowing red!")
+		. += span_warning("它的显示屏正闪着红光！")
 
 	//Damaged
 	if(health != maxHealth)
 		if(health > maxHealth * 0.33) //Between maxHealth and about a third of maxHealth, between 30 and 10 for normal drones
-			. += span_warning("Its screws are slightly loose.")
+			. += span_warning("它的螺丝有些松动。")
 		else //otherwise, below about 33%
-			. += span_boldwarning("Its screws are very loose!")
+			. += span_boldwarning("它的螺丝松得厉害！")
 
 	//Dead
 	if(stat == DEAD)
 		if(client)
-			. += span_deadsay("A message repeatedly flashes on its display: \"REBOOT -- REQUIRED\".")
+			. += span_deadsay("它的显示屏上反复闪出一行字：“需要重启”。")
 		else
-			. += span_deadsay("A message repeatedly flashes on its display: \"ERROR -- OFFLINE\".")
+			. += span_deadsay("它的显示屏上反复闪出一行字：“错误——离线”。")
 
 /mob/living/basic/drone/assess_threat(judgement_criteria, lasercolor = "", datum/callback/weaponcheck=null) //Secbots won't hunt maintenance drones.
 	return -10
@@ -279,11 +279,11 @@
 
 /mob/living/basic/drone/proc/alarm_triggered(datum/source, alarm_type, area/source_area)
 	SIGNAL_HANDLER
-	to_chat(src, "--- [alarm_type] alarm detected in [source_area.name]!")
+	to_chat(src, "--- 在 [source_area.name] 检测到 [alarm_type] 警报！")
 
 /mob/living/basic/drone/proc/alarm_cleared(datum/source, alarm_type, area/source_area)
 	SIGNAL_HANDLER
-	to_chat(src, "--- [alarm_type] alarm in [source_area.name] has been cleared.")
+	to_chat(src, "--- [source_area.name] 的 [alarm_type] 警报已解除。")
 
 /mob/living/basic/drone/proc/set_shy(new_shy)
 	shy = new_shy

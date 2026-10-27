@@ -25,12 +25,12 @@
 			LAZYADD(incompatible_quirks, quirk_name)
 	if(!LAZYLEN(incompatible_quirks))
 		return
-	var/list/message = list("The following quirks are incompatible with your selected species and will be removed: [incompatible_quirks.Join(", ")].")
+	var/list/message = list("以下特质与你选择的物种不兼容，将被移除：[incompatible_quirks.Join(", ")]。")
 	if(!SSquirks.points_enabled)
-		message += "Would you like to continue?"
+		message += "是否继续？"
 	else
-		message += "If you do not have enough points to cover the removed quirks, your quirks will be reset. Would you like to continue?"
-	var/response = tgui_alert(user, message.Join(" "), "Quirks Incompatible", list("Yes", "No"))
+		message += "如果你的点数不足以支付被移除的特质，你的特质将被重置。是否继续？"
+	var/response = tgui_alert(user, message.Join(" "), "特质不兼容", list("Yes", "No"))
 	if(response != "Yes")
 		return TRUE
 
@@ -91,7 +91,7 @@
 		quirk_info[sanitize_css_class_name(quirk_name)] = list(
 			"description" = initial(quirk.desc),
 			"icon" = initial(quirk.icon),
-			"name" = quirk_name,
+			"name" = quirk_name, "display_name" = chinese_quirk_display(quirk_name),
 			"value" = initial(quirk.value),
 			"customizable" = constant_data?.is_customizable(),
 			"customization_options" = customization_options,

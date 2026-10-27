@@ -3,8 +3,8 @@
 
 //Used by engineering cyborgs in place of generic circuits.
 /obj/item/electroadaptive_pseudocircuit
-	name = "electroadaptive pseudocircuit"
-	desc = "An all-in-one circuit imprinter, designer, synthesizer, outfitter, creator, and chef. It can be used in place of any generic circuit board during construction."
+	name = "电适应伪电路"
+	desc = "集电路印刷机、设计师、合成器、装备员、创造者和厨师于一身。建造时可替代任何通用电路板。"
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "boris"
 	w_class = WEIGHT_CLASS_TINY
@@ -25,24 +25,24 @@
 /obj/item/electroadaptive_pseudocircuit/examine(mob/user)
 	. = ..()
 	if(iscyborg(user))
-		. += "[span_notice("It has material for <b>[circuits]</b> circuit[circuits == 1 ? "" : "s"]. Use the pseudocircuit on existing circuits to gain material.")]\n"+\
-		"[span_notice("Serves as a substitute for <b>fire/air alarm</b>, <b>firelock</b>, and <b>APC</b> electronics.")]\n"+\
-		span_notice("It can also be used on an APC with no power cell to <b>fabricate a low-capacity cell</b> at a high power cost.")
+		. += "[span_notice("材料足以制造<b>[circuits]</b>块电路板。对现有电路使用伪电路可获取材料。")]\n"+\
+		"[span_notice("可替代<b>火灾/空气警报器</b>、<b>防火门</b>和<b>区域电力控制器</b>的电子元件。")]\n"+\
+		span_notice("也可以对未安装电池的区域电力控制器使用，以高额能耗<b>制造低容量电池</b>。")
 
 /obj/item/electroadaptive_pseudocircuit/proc/adapt_circuit(mob/living/silicon/robot/R, circuit_cost = 0)
 	if(QDELETED(R) || !istype(R))
 		return
 	if(!R.cell)
-		to_chat(R, span_warning("You need a power cell installed for that."))
+		to_chat(R, span_warning("你需要安装电池才能这样做。"))
 		return
 	if(recharging)
-		to_chat(R, span_warning("[src] needs some time to recharge first."))
+		to_chat(R, span_warning("[src]需要先充能一段时间。"))
 		return
 	if(!R.cell.use(circuit_cost))
-		to_chat(R, span_warning("You don't have the energy for that (you need [display_energy(circuit_cost)].)"))
+		to_chat(R, span_warning("你的能量不足（需要[display_energy(circuit_cost)]）。"))
 		return
 	if(!circuits)
-		to_chat(R, span_warning("You need more material. Use [src] on existing simple circuits to break them down."))
+		to_chat(R, span_warning("你需要更多材料。对现有的简单电路使用[src]可将其分解。"))
 		return
 	playsound(R, 'sound/items/tools/rped.ogg', 50, TRUE)
 	recharging = TRUE
@@ -61,8 +61,8 @@
 	circuits++
 	maptext = MAPTEXT(circuits)
 	user.visible_message(
-		span_notice("User breaks down [interacting_with] with [src]."),
-		span_notice("You recycle [interacting_with] into [src]. It now has material for <b>[circuits]</b> circuits.")
+		span_notice("[user]用[src]分解了[interacting_with]。"),
+		span_notice("你将[interacting_with]回收进[src]，现有材料足以制造<b>[circuits]</b>块电路板。")
 	)
 	playsound(user, 'sound/items/deconstruct.ogg', 50, TRUE)
 	qdel(interacting_with)

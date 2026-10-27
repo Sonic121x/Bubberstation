@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(digest_modes, init_digest_modes())
 	return vore_can_negatively_affect()
 
 /obj/machinery/cryopod/quiet/vore
-	name = "vore cryopod"
+	name = "吞食休眠舱"
 
 /obj/machinery/cryopod/quiet/vore/process()
 	return

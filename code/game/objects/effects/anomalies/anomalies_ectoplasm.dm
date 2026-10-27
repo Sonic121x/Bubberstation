@@ -1,6 +1,6 @@
 /obj/effect/anomaly/ectoplasm
-	name = "ectoplasm anomaly"
-	desc = "It looks like the souls of the damned are trying to break into the realm of the living again. How upsetting."
+	name = "灵质异常体"
+	desc = "看来那些受诅咒的灵魂又想闯入生者的世界了。真令人不安。"
 	icon_state = "ectoplasm"
 	anomaly_core = /obj/item/assembly/signaler/anomaly/ectoplasm
 	lifespan = ANOMALY_COUNTDOWN_TIMER + 2 SECONDS //This one takes slightly longer, because it can run away.
@@ -22,18 +22,18 @@
 	. = ..()
 
 	if(isobserver(user))
-		. += span_info("Orbiting this anomaly will increase the size and intensity of its effects.")
+		. += span_info("环绕此异常体会增强其效果的范围和强度。")
 
 /obj/effect/anomaly/ectoplasm/examine_more(mob/user)
 	. = ..()
 
 	switch(effect_power)
 		if(0 to 25)
-			. += span_notice("The space around the anomaly faintly resonates. It doesn't seem very powerful at the moment.")
+			. += span_notice("异常体周围的空间轻微共振。目前看起来并不强大。")
 		if(26 to 49)
-			. += span_notice("The space around the anomaly seems to vibrate, letting out a noise that sounds like ghastly moaning. Someone should probably do something about that.")
+			. += span_notice("异常体周围的空间似乎在振动，发出鬼魂呻吟般的声音。恐怕该有人处理一下了。")
 		if(50 to 100)
-			. += span_alert("The anomaly pulsates heavily, about to burst with unearthly energy. This can't be good.")
+			. += span_alert("异常体剧烈脉动，即将爆发出异界能量。这可不是什么好兆头。")
 
 /obj/effect/anomaly/ectoplasm/anomalyEffect(seconds_per_tick)
 	. = ..()
@@ -83,7 +83,7 @@
 				var/mob/living/carbon/human/mob_to_infect = impacted_thing
 				mob_to_infect.ForceContractDisease(new /datum/disease/revblight(), FALSE, TRUE)
 				new /obj/effect/temp_visual/revenant(get_turf(mob_to_infect))
-				to_chat(mob_to_infect, span_revenminor("A cacophony of ghostly wailing floods your ears for a moment. The noise subsides, but a distant whispering continues echoing inside of your head..."))
+				to_chat(mob_to_infect, span_revenminor("一阵杂乱的鬼魂哀嚎声突然灌入你的耳中。喧嚣渐渐消散，但遥远的低语仍在你的脑海中回荡……"))
 
 			if(istype(impacted_thing, /obj/structure/window))
 				var/obj/structure/window/window_to_damage = impacted_thing
@@ -102,7 +102,7 @@
 
 		new /obj/structure/ghost_portal(get_turf(src), candidate_list)
 
-		priority_announce("Anomaly has reached critical mass. Ectoplasmic outburst detected.", "Anomaly Alert")
+		priority_announce("异常体已达到临界质量。检测到灵质喷发。", "异常警报")
 
 /**
  * Manages updating the sprite for the anomaly based on how many orbiters it has.
@@ -126,8 +126,8 @@
 // Can be destroyed early to the same effect.
 
 /obj/structure/ghost_portal
-	name = "Spooky Portal"
-	desc = "A portal between our dimension and who-knows-where? It's emitting an absolutely ungodly wailing sound."
+	name = "幽灵传送门"
+	desc = "一扇连接我们所在维度与某个未知地方的传送门。里面传来极其瘆人的哀嚎声。"
 	icon = 'icons/obj/anomaly.dmi'
 	icon_state = "anom"
 	anchored = TRUE
@@ -178,7 +178,7 @@
 		candidate_list += GLOB.current_observers_list
 		candidate_list += GLOB.dead_player_list
 
-	var/list/candidates = SSpolling.poll_candidates("Would you like to participate in a spooky ghost swarm? (Warning: you will not be able to return to your body!)", check_jobban = ROLE_SENTIENCE, poll_time = 10 SECONDS, group = candidate_list, alert_pic = src, role_name_text = "ghost swarm")
+	var/list/candidates = SSpolling.poll_candidates("你想加入恐怖的幽灵群吗？（警告：你将无法返回自己的身体！）", check_jobban = ROLE_SENTIENCE, poll_time = 10 SECONDS, group = candidate_list, alert_pic = src, role_name_text = "幽灵群")
 	for(var/mob/dead/observer/candidate_ghost as anything in candidates)
 		var/mob/living/basic/ghost/swarm/new_ghost = new(get_turf(src))
 		ghosts_spawned += new_ghost
@@ -188,7 +188,7 @@
 		if(policy)
 			to_chat(new_ghost, policy)
 		else
-			to_chat(new_ghost, span_revenboldnotice("You are a lost soul, brought back to the realm of the living. Your time on this plane is limited, and you will soon be dragged back into the void!"))
+			to_chat(new_ghost, span_revenboldnotice("你是一个被带回生者世界的迷失灵魂。你在这个位面的时间有限，很快就会被拖回虚空！"))
 		new_ghost.log_message("was returned to the living world as a ghost by an ectoplasmic anomaly.", LOG_GAME)
 
 /**
@@ -203,7 +203,7 @@
 
 /proc/cleanup_ghosts(list/delete_list)
 	for(var/mob/living/mob_to_delete as anything in delete_list)
-		mob_to_delete.visible_message(span_alert("The [mob_to_delete] wails as it is torn back into the void!"), span_alert("You let out one last wail as you are sucked back into the realm of the dead. Then suddenly, you're back in the comforting embrace of the afterlife."), span_hear("You hear ethereal wailing."))
+		mob_to_delete.visible_message(span_alert("[mob_to_delete]哀嚎着被拖回了虚空！"), span_alert("你被吸回死者的领域，发出了最后一声哀嚎。随后，你突然又回到了来世令人安心的怀抱中。"), span_hear("你听见空灵的哀嚎声。"))
 		playsound(mob_to_delete, pick(delete_list), 50)
 		new /obj/effect/temp_visual/revenant/cracks(get_turf(mob_to_delete))
 		new /obj/effect/decal/cleanable/greenglow/ecto(get_turf(mob_to_delete))

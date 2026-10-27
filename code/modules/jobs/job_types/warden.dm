@@ -1,8 +1,8 @@
 /datum/job/warden
 	title = JOB_WARDEN
-	description = "Watch over the Brig and Prison Wing, release prisoners when \
-		their time is up, issue equipment to security, be a security officer when \
-		they all eventually die."
+	description = "看守禁闭室与监狱翼，在囚犯刑满时将其释放， \
+		向安保人员发放装备， \
+		并在他们最终全部阵亡时充当安保官。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	faction = FACTION_STATION
 	total_positions = 1
@@ -39,7 +39,7 @@
 		/obj/item/storage/box/rubbershot = 10,
 		/obj/item/storage/box/lethalshot = 5
 	)
-	rpg_title = "Jailor"
+	rpg_title = "狱卒"
 	job_flags = STATION_JOB_FLAGS | JOB_BOLD_SELECT_TEXT | JOB_ANTAG_PROTECTED
 
 /datum/job/warden/after_spawn(mob/living/spawned, client/player_client)

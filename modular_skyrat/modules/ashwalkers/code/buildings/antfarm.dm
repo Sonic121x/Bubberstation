@@ -1,6 +1,6 @@
 /obj/structure/antfarm
-	name = "ant farm"
-	desc = "Though it may look natural, this was not made by ants."
+	name = "蚂蚁农场"
+	desc = "虽然看起来浑然天成，但这并非蚂蚁自己筑成的。"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/structures.dmi'
 	icon_state = "anthill"
 	density = TRUE
@@ -31,14 +31,14 @@
 	if(!mapload)
 		var/turf/src_turf = get_turf(src)
 		if(!src_turf.GetComponent(/datum/component/simple_farm))
-			src_turf.balloon_alert_to_viewers("must be on farmable surface")
+			src_turf.balloon_alert_to_viewers("必须建在可耕种表面上")
 			return INITIALIZE_HINT_QDEL
 
 		for(var/obj/structure/antfarm/found_farm in range(2, get_turf(src)))
 			if(found_farm == src)
 				continue
 
-			src_turf.balloon_alert_to_viewers("too close to another farm")
+			src_turf.balloon_alert_to_viewers("离另一个农场太近了")
 			return INITIALIZE_HINT_QDEL
 
 	START_PROCESSING(SSobj, src)
@@ -57,7 +57,7 @@
 
 	if(!has_ants)
 		if(prob(ant_chance))
-			balloon_alert_to_viewers("ants have appeared!")
+			balloon_alert_to_viewers("蚂蚁出现了！")
 			has_ants = TRUE
 
 		return
@@ -67,13 +67,13 @@
 
 /obj/structure/antfarm/examine(mob/user)
 	. = ..()
-	. += span_notice("<br>There are currently [has_ants ? "" : "no "]ants in the farm.")
-	. += span_notice("To add ants, feed the farm some food.")
+	. += span_notice("<br>农场里目前[has_ants ? "有" : "没有"]蚂蚁。")
+	. += span_notice("要引入蚂蚁，请给农场喂一些食物。")
 
 /obj/structure/antfarm/attackby(obj/item/attacking_item, mob/user, params)
 	if(istype(attacking_item, /obj/item/food))
 		qdel(attacking_item)
-		balloon_alert(user, "food has been placed")
+		balloon_alert(user, "食物已放入")
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		ant_chance++
 		if(prob(user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_PROBS_MODIFIER)))
@@ -81,7 +81,7 @@
 		return
 
 	if(istype(attacking_item, /obj/item/storage/bag/plants))
-		balloon_alert(user, "feeding the ants")
+		balloon_alert(user, "正在喂蚂蚁")
 		var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		for(var/obj/item/food/selected_food in attacking_item.contents)
 			if(!do_after(user, 1 SECONDS * skill_modifier, src))
@@ -101,5 +101,5 @@
 	amount = 10
 
 /obj/structure/antfarm/natural
-	name = "ant farm"
-	desc = "A natural ant farm."
+	name = "蚂蚁农场"
+	desc = "一个天然的蚂蚁农场。"

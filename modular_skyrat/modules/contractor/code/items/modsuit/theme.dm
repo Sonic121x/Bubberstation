@@ -1,14 +1,14 @@
 /datum/mod_theme/contractor
-	name = "contractor"
-	desc = "A top-tier MODSuit developed with cooperation of Cybersun Industries and the Gorlex Marauders, a favorite of Syndicate Contractors."
-	extended_desc = "A rare depart from the Syndicate's usual color scheme, the Contractor MODsuit is produced and manufactured \
-		for specialty contractors. The build is a streamlined layering consisting of shaped Plastitanium, \
-		and composite ceramic, while the under suit is lined with a lightweight Kevlar and durathread hybrid weave \
-		to provide ample protection to the user where the plating doesn't, with an illegal onboard electric powered \
-		ablative shield module to provide resistance against conventional energy firearms. \
-		In addition, it has an in-built chameleon system, allowing you to disguise the suit while undeployed. \
-		A small tag hangs off of it reading; 'Property of the Gorlex Marauders, with assistance from Cybersun Industries. \
-		All rights reserved, tampering with suit will void warranty."
+	name = "承包商"
+	desc = "由赛博太阳工业与戈尔莱克斯掠夺者合作开发的顶级 MOD 外骨骼，辛迪加承包商的最爱。"
+	extended_desc = "承包商 MOD 外骨骼一改辛迪加惯用的配色方案，专为\
+		特色承包商生产制造。其结构是流线型分层，由成型塑钛\
+		与复合陶瓷组成，内衬则采用轻质凯夫拉与耐久纤维混纺织物，\
+		在装甲板覆盖不到的地方为使用者提供充分防护，并配有非法的机载电动\
+		烧蚀护盾模块，可抵御常规能量枪械。\
+		此外，它还内置变色龙系统，可在未展开状态下伪装整套外骨骼。\
+		上面挂着一张小标签，写着：“戈尔莱克斯掠夺者财产，由赛博太阳工业协助制造。\
+		保留所有权利，擅自拆改套装将导致保修失效。”"
 	default_skin = "contractor"
 	armor_type = /datum/armor/mod_theme_contractor
 	resistance_flags = FIRE_PROOF

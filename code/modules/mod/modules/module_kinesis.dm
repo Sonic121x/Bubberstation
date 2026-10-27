@@ -1,11 +1,11 @@
 ///Kinesis - Gives you the ability to move and launch objects.
 /obj/item/mod/module/anomaly_locked/kinesis
-	name = "MOD kinesis module"
-	desc = "A modular plug-in to the forearm, this module was presumed lost for many years, \
-		despite the suits it used to be mounted on still seeing some circulation. \
-		This piece of technology allows the user to generate precise anti-gravity fields, \
-		letting them move objects as small as a titanium rod to as large as industrial machinery. \
-		Oddly enough, it doesn't seem to work on living creatures."
+	name = "MOD 念力模块"
+	desc = "这种模块是安装在小臂上的插件，多年来一直被认定已经失传，\
+		尽管它曾搭载的那些套装仍在少量流通。\
+		这项技术能让使用者生成精确的反重力场，\
+		从而移动从钛棒到大块工业机械等各种物体。\
+		奇怪的是，它似乎对活物无效。"
 	icon_state = "kinesis"
 	module_type = MODULE_ACTIVE
 	complexity = 3
@@ -56,10 +56,10 @@
 		launch(launched_object)
 		return
 	if(!range_check(target))
-		balloon_alert(mod.wearer, "too far!")
+		balloon_alert(mod.wearer, "距离太远！")
 		return
 	if(!can_grab(target))
-		balloon_alert(mod.wearer, "can't grab!")
+		balloon_alert(mod.wearer, "无法抓取！")
 		return
 	drain_power(use_energy_cost)
 	grab_atom(target)
@@ -72,7 +72,7 @@
 		clear_grab()
 		return
 	if(!range_check(grabbed_atom))
-		balloon_alert(mod.wearer, "out of range!")
+		balloon_alert(mod.wearer, "超出范围！")
 		clear_grab()
 		return
 	drain_power(use_energy_cost/10)
@@ -255,7 +255,7 @@
 	core_removable = FALSE
 
 /obj/item/mod/module/anomaly_locked/kinesis/prototype
-	name = "MOD prototype kinesis module"
+	name = "MOD 原型念力模块"
 	prebuilt = TRUE
 	complexity = 0
 	use_energy_cost = DEFAULT_CHARGE_DRAIN * 5
@@ -263,20 +263,20 @@
 	core_removable = FALSE
 
 /obj/item/mod/module/anomaly_locked/kinesis/plus
-	name = "MOD kinesis+ module"
-	desc = "A modular plug-in to the forearm, this module was recently redeveloped in secret. \
-		The bane of all ne'er-do-wells, the kinesis+ module is a powerful tool that allows the user \
-		to manipulate the world around them. Like its older counterpart, it's capable of manipulating \
-		structures, machinery, vehicles, and, thanks to the fruitful efforts of its creators - living beings."
+	name = "MOD 念力+ 模块"
+	desc = "这种模块是安装在小臂上的插件，最近才在秘密中重新研制出来。\
+		念力+ 模块是所有恶徒的克星，它是一件强大的工具，能让使用者\
+		随意操纵周围的世界。与旧型号一样，它能操纵\
+		结构、机械和载具，而且多亏了创造者卓有成效的努力——活物也不例外。"
 	complexity = 0
 	prebuilt = TRUE
 	stat_required = STABLE
 
 /// Admin suit version of kinesis. Can grab anything at any range, may enable phasing through walls.
 /obj/item/mod/module/anomaly_locked/kinesis/admin
-	name = "MOD kinesis++ module"
-	desc = "A modular plug-in to the forearm, this module was recently reredeveloped in super secret. \
-		This one can force some of the grasped objects to phase through walls. Oh no."
+	name = "MOD 念力++ 模块"
+	desc = "这种模块是安装在小臂上的插件，最近才在超级秘密中重新重新研制出来。\
+		这一款能强行让部分被抓取的物体穿墙而过。哦不。"
 	complexity = 0
 	grab_range = INFINITY
 	use_energy_cost = DEFAULT_CHARGE_DRAIN * 0
@@ -322,7 +322,7 @@
 
 /obj/item/mod/module/anomaly_locked/kinesis/admin/get_configuration()
 	. = ..()
-	.["phasing"] = add_ui_configuration("Phasing", "bool", phasing)
+	.["phasing"] = add_ui_configuration("相位穿墙", "bool", phasing)
 
 /obj/item/mod/module/anomaly_locked/kinesis/admin/configure_edit(key, value)
 	switch(key)

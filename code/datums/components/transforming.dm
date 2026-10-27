@@ -166,7 +166,7 @@
 /datum/component/transforming/proc/on_scan(datum/source, mob/user, datum/detective_scanner_log/entry)
 	SIGNAL_HANDLER
 
-	entry.add_data_entry(DETSCAN_CATEGORY_NOTES, "Readings suggest some form of state changing.")
+	entry.add_data_entry(DETSCAN_CATEGORY_NOTES, "读数表明它能够以某种方式改变形态。")
 
 /*
  * Called on [COMSIG_ITEM_ATTACK_SELF].
@@ -182,7 +182,7 @@
 	SIGNAL_HANDLER
 
 	if(!COOLDOWN_FINISHED(src, transform_cooldown))
-		to_chat(user, span_warning("Wait a bit before trying to use [source] again!"))
+		to_chat(user, span_warning("请稍等片刻再使用[source]！"))
 		return
 
 	if(SEND_SIGNAL(source, COMSIG_TRANSFORMING_PRE_TRANSFORM, user, active) & COMPONENT_BLOCK_TRANSFORM)
@@ -223,7 +223,7 @@
  */
 /datum/component/transforming/proc/default_transform_message(obj/item/source, mob/user)
 	if(user)
-		source.balloon_alert(user, "[active ? "enabled" : "disabled"] [source]")
+		source.balloon_alert(user, "已[active ? "启用" : "停用"][source]")
 	playsound(source, 'sound/items/weapons/batonextend.ogg', 50, TRUE)
 
 /*
@@ -319,11 +319,11 @@
 		return FALSE
 
 	if(active && prob(50))
-		var/hurt_self_verb_simple = LAZYLEN(attack_verb_simple_on) ? pick(attack_verb_simple_on) : "hit"
-		var/hurt_self_verb_continuous = LAZYLEN(attack_verb_continuous_on) ? pick(attack_verb_continuous_on) : "hits"
+		var/hurt_self_verb_simple = LAZYLEN(attack_verb_simple_on) ? pick(attack_verb_simple_on) : "击中"
+		var/hurt_self_verb_continuous = LAZYLEN(attack_verb_continuous_on) ? pick(attack_verb_continuous_on) : "击中"
 		user.visible_message(
-			span_warning("[user] triggers [parent] while holding it backwards and [hurt_self_verb_continuous] themself, like a doofus!"),
-			span_warning("You trigger [parent] while holding it backwards and [hurt_self_verb_simple] yourself, like a doofus!"),
+			span_warning("[user]拿反了[parent]却仍将其启动，像个傻瓜一样[hurt_self_verb_continuous]了自己！"),
+			span_warning("你拿反了[parent]却仍将其启动，像个傻瓜一样[hurt_self_verb_simple]了自己！"),
 		)
 		var/obj/item/item_parent = parent
 		switch(item_parent.damtype)

@@ -1,16 +1,16 @@
 /obj/item/book/granter/action/spell/fireball
 	granted_action = /datum/action/cooldown/spell/pointed/projectile/fireball
-	action_name = "fireball"
+	action_name = "火球术"
 	icon_state ="bookfireball"
-	desc = "This book feels warm to the touch."
+	desc = "这本书摸起来暖暖的。"
 	remarks = list(
-		"Aim...AIM, FOOL!",
-		"Just catching them on fire won't do...",
-		"Accounting for crosswinds... really?",
-		"I think I just burned my hand...",
-		"Why the dumb stance? It's just a flick of the hand...",
-		"OMEE... ONI... Ugh...",
-		"What's the difference between a fireball and a pyroblast...",
+		"瞄准……瞄准啊，笨蛋！",
+		"光把他们点着可不够……",
+		"还要考虑侧风……认真的？",
+		"我好像刚把手烧伤了……",
+		"为什么要摆这么蠢的姿势？不就是挥一下手……",
+		"欧米……欧尼……呃……",
+		"火球术和炎爆术到底有什么区别……",
 	)
 
 /obj/item/book/granter/action/spell/fireball/recoil(mob/living/user)

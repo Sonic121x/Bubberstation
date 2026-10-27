@@ -16,8 +16,8 @@ effective or pretty fucking useless.
 */
 
 /obj/item/batterer
-	name = "mind batterer"
-	desc = "A strange device with twin antennas."
+	name = "心智冲击器"
+	desc = "带有双天线的奇怪装置。"
 	icon = 'icons/obj/devices/syndie_gadget.dmi'
 	icon_state = "batterer"
 	throwforce = 5
@@ -37,7 +37,7 @@ effective or pretty fucking useless.
 	if(!user) return
 
 	if(times_used >= max_uses)
-		to_chat(user, span_danger("The mind batterer has been burnt out!"))
+		to_chat(user, span_danger("心智冲击器已烧毁！"))
 		return
 
 	log_combat(user, null, "knocked down people in the area", src)
@@ -46,13 +46,13 @@ effective or pretty fucking useless.
 		if(prob(50))
 
 			M.Paralyze(rand(200,400))
-			to_chat(M, span_userdanger("You feel a tremendous, paralyzing wave flood your mind."))
+			to_chat(M, span_userdanger("你感到一股强烈的麻痹波动涌入脑海。"))
 
 		else
-			to_chat(M, span_userdanger("You feel a sudden, electric jolt travel through your head."))
+			to_chat(M, span_userdanger("你感到一阵突如其来的电流穿过头部。"))
 
 	playsound(src.loc, 'sound/misc/interference.ogg', 50, TRUE)
-	to_chat(user, span_notice("You trigger [src]."))
+	to_chat(user, span_notice("你触发了[src]。"))
 	times_used += 1
 	if(times_used >= max_uses)
 		icon_state = "battererburnt"
@@ -85,7 +85,7 @@ effective or pretty fucking useless.
 
 	var/mob/living/carbon/human/human_target = interacting_with
 	if(istype(human_target) && !used && SSradiation.wearing_rad_protected_clothing(human_target)) //intentionally not checking for TRAIT_RADIMMUNE here so that tatortot can still fuck up and waste their cooldown.
-		to_chat(user, span_warning("[interacting_with]'s clothing is fully protecting [interacting_with.p_them()] from irradiation!"))
+		to_chat(user, span_warning("[interacting_with]的衣物提供了完整的辐射防护！"))
 		return . | ITEM_INTERACT_BLOCKING
 
 	if(!used)
@@ -95,11 +95,11 @@ effective or pretty fucking useless.
 		icon_state = "health1"
 		addtimer(VARSET_CALLBACK(src, used, FALSE), cooldown)
 		addtimer(VARSET_CALLBACK(src, icon_state, "health"), cooldown)
-		to_chat(user, span_warning("Successfully irradiated [interacting_with]."))
+		to_chat(user, span_warning("成功照射了[interacting_with]。"))
 		addtimer(CALLBACK(src, PROC_REF(radiation_aftereffect), interacting_with, intensity), (intensity+(wavelength*4))*5)
 		return . | ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_warning("The radioactive microlaser is still recharging."))
+	to_chat(user, span_warning("放射性微型激光器仍在充能。"))
 	return . | ITEM_INTERACT_BLOCKING
 
 /obj/item/healthanalyzer/rad_laser/proc/radiation_aftereffect(mob/living/M, passed_intensity)
@@ -203,8 +203,8 @@ effective or pretty fucking useless.
 				wavelength = clamp(target, 0, 120)
 
 /datum/action/item_action/stealth_mode
-	name = "Toggle Stealth"
-	desc = "Makes you invisible to the naked eye."
+	name = "切换隐身"
+	desc = "让你无法被肉眼看见。"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "ninja_cloak"
 	/// Whether stealth is active or not
@@ -246,14 +246,14 @@ effective or pretty fucking useless.
 	apply_wibbly_filters(owner)
 	stealth_engaged = TRUE
 	build_all_button_icons(UPDATE_BUTTON_STATUS|UPDATE_BUTTON_BACKGROUND)
-	owner.balloon_alert(owner, "stealth mode engaged")
+	owner.balloon_alert(owner, "隐身模式已开启")
 
 /datum/action/item_action/stealth_mode/proc/stealth_off()
 	owner.alpha = initial(owner.alpha)
 	remove_wibbly_filters(owner)
 	stealth_engaged = FALSE
 	build_all_button_icons(UPDATE_BUTTON_STATUS|UPDATE_BUTTON_BACKGROUND)
-	owner.balloon_alert(owner, "stealth mode disengaged")
+	owner.balloon_alert(owner, "隐身模式已关闭")
 
 /datum/action/item_action/stealth_mode/proc/get_alpha()
 	return clamp(255 - (255 * charge / max_charge), min_alpha, 255)
@@ -294,8 +294,8 @@ effective or pretty fucking useless.
 	recharge_while_active = FALSE
 
 /obj/item/shadowcloak
-	name = "cloaker belt"
-	desc = "Makes you invisible for short periods of time. Recharges in darkness, even while active."
+	name = "隐形腰带"
+	desc = "让你短暂隐形。在黑暗中充能，即使启用时也不例外。"
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utility"
 	inhand_icon_state = "utility"
@@ -303,14 +303,14 @@ effective or pretty fucking useless.
 	righthand_file = 'icons/mob/inhands/equipment/belt_righthand.dmi'
 	worn_icon_state = "utility"
 	slot_flags = ITEM_SLOT_BELT
-	attack_verb_continuous = list("whips", "lashes", "disciplines")
-	attack_verb_simple = list("whip", "lash", "discipline")
+	attack_verb_continuous = list("抽打", "鞭打", "惩戒")
+	attack_verb_simple = list("抽打", "鞭打", "惩戒")
 	actions_types = list(/datum/action/item_action/stealth_mode)
 
 /obj/item/shadowcloak/weaker
-	name = "stealth belt"
-	desc = "Makes you nigh-invisible to the naked eye for a short period of time. \
-		Lasts indefinitely in darkness, but will not recharge unless inactive."
+	name = "潜行腰带"
+	desc = "使你短时间内几乎无法被肉眼看见。 \
+		在黑暗中可无限维持，但只有关闭后才会充能。"
 	actions_types = list(/datum/action/item_action/stealth_mode/weaker)
 
 /// Checks if a given atom is in range of a radio jammer, returns TRUE if it is.
@@ -321,8 +321,8 @@ effective or pretty fucking useless.
 	return FALSE
 
 /obj/item/jammer
-	name = "radio jammer"
-	desc = "Device used to disrupt nearby radio communication. Alternate function creates a powerful disruptor wave which disables all nearby listening devices."
+	name = "无线电干扰器"
+	desc = "用于干扰附近无线电通信的设备。另一功能可发出强力干扰波，禁用附近所有监听设备。"
 	icon = 'icons/obj/devices/syndie_gadget.dmi'
 	icon_state = "jammer"
 	var/active = FALSE
@@ -342,18 +342,18 @@ effective or pretty fucking useless.
 	register_context()
 
 /obj/item/jammer/add_context(atom/source, list/context, obj/item/held_item, mob/user)
-	context[SCREENTIP_CONTEXT_LMB] = "Release disruptor wave"
-	context[SCREENTIP_CONTEXT_RMB] = "Toggle"
+	context[SCREENTIP_CONTEXT_LMB] = "释放干扰波"
+	context[SCREENTIP_CONTEXT_RMB] = "切换开关"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/jammer/attack_self(mob/user, modifiers)
 	. = ..()
 	if (!COOLDOWN_FINISHED(src, jam_cooldown))
-		user.balloon_alert(user, "on cooldown!")
+		user.balloon_alert(user, "冷却中！")
 		return
 
-	user.balloon_alert(user, "disruptor wave released!")
-	to_chat(user, span_notice("You release a disruptor wave, disabling all nearby radio devices."))
+	user.balloon_alert(user, "已释放干扰波！")
+	to_chat(user, span_notice("你释放了干扰波，禁用了附近所有无线电设备。"))
 	for (var/atom/potential_owner in view(disruptor_range, user))
 		disable_radios_on(potential_owner, ignore_syndie = TRUE)
 	COOLDOWN_START(src, jam_cooldown, jam_cooldown_duration)
@@ -362,8 +362,8 @@ effective or pretty fucking useless.
 	. = ..()
 	if(.)
 		return
-	to_chat(user, span_notice("You [active ? "deactivate" : "activate"] [src]."))
-	user.balloon_alert(user, "[active ? "deactivated" : "activated"] the jammer")
+	to_chat(user, span_notice("你[active ? "关闭" : "开启"]了[src]。"))
+	user.balloon_alert(user, "已[active ? "关闭" : "开启"]干扰器")
 	active = !active
 	if(active)
 		GLOB.active_jammers |= src
@@ -379,11 +379,11 @@ effective or pretty fucking useless.
 		return
 
 	if (!(interacting_with in view(disruptor_range, user)))
-		user.balloon_alert(user, "out of reach!")
+		user.balloon_alert(user, "距离太远！")
 		return
 
-	interacting_with.balloon_alert(user, "radio disrupted!")
-	to_chat(user, span_notice("You release a directed disruptor wave, disabling all radio devices on [interacting_with]."))
+	interacting_with.balloon_alert(user, "无线电已受干扰！")
+	to_chat(user, span_notice("你释放了一束定向干扰波，禁用了[interacting_with]上的所有无线电设备。"))
 	disable_radios_on(interacting_with)
 
 	return ITEM_INTERACT_SUCCESS
@@ -399,8 +399,8 @@ effective or pretty fucking useless.
 	return ..()
 
 /obj/item/jammer/makeshift
-	name = "makeshift radio jammer"
-	desc = "A jury-rigged device that disrupts nearby radio communication. Its crude construction provides a significantly smaller area of effect compared to its Syndicate counterpart."
+	name = "简易无线电干扰器"
+	desc = "临时拼装、用于干扰附近无线电通信的设备。其粗糙结构使作用范围远小于辛迪加版本。"
 	range = 5
 	disruptor_range = 3
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.8, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.55)
@@ -429,8 +429,8 @@ effective or pretty fucking useless.
 /obj/machinery/porta_turret/syndicate/toolbox/examine(mob/user)
 	. = ..()
 	if(faction_check_atom(user))
-		. += span_notice("You can repair it by <b>left-clicking</b> with a combat wrench.")
-		. += span_notice("You can fold it by <b>right-clicking</b> with a combat wrench.")
+		. += span_notice("用战斗扳手<b>左键点击</b>可修理。")
+		. += span_notice("用战斗扳手<b>右键点击</b>可折叠。")
 
 /obj/machinery/porta_turret/syndicate/toolbox/target(atom/movable/target)
 	if(!target)
@@ -449,21 +449,21 @@ effective or pretty fucking useless.
 		return ITEM_INTERACT_BLOCKING
 
 	if(user.combat_mode)
-		balloon_alert(user, "deconstructing...")
+		balloon_alert(user, "正在拆解……")
 		if(!tool.use_tool(src, user, 5 SECONDS, volume = 20))
 			return ITEM_INTERACT_BLOCKING
 
 		deconstruct(TRUE)
 		tool.play_tool_sound(src, 50)
-		balloon_alert(user, "deconstructed!")
+		balloon_alert(user, "已拆解！")
 		return ITEM_INTERACT_SUCCESS
 
 
 	if(atom_integrity == max_integrity)
-		balloon_alert(user, "already repaired!")
+		balloon_alert(user, "已经修好！")
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "repairing...")
+	balloon_alert(user, "正在修理……")
 	. = ITEM_INTERACT_BLOCKING // I'm doing this such that at least one successful repair considers the interaction a success
 	while(atom_integrity != max_integrity)
 		if(!tool.use_tool(src, user, 2 SECONDS, volume = 20))
@@ -472,7 +472,7 @@ effective or pretty fucking useless.
 		repair_damage(10)
 		. = ITEM_INTERACT_SUCCESS
 
-	balloon_alert(user, "repaired!")
+	balloon_alert(user, "已修复！")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/porta_turret/syndicate/toolbox/on_deconstruction(disassembled)
@@ -514,7 +514,7 @@ effective or pretty fucking useless.
 	. = ..()
 	var/det_time = 1 SECONDS + (4 SECONDS * (degrees / 90))
 	if(user)
-		to_chat(user, span_warning("You prime the penbang! [capitalize(DisplayTimeText(det_time))]!"))
+		to_chat(user, span_warning("你启动了闪光笔！[capitalize(DisplayTimeText(det_time))]后引爆！"))
 		log_bomber(user, "has primed a", src, "(penbang) for detonation")
 	addtimer(CALLBACK(src, PROC_REF(detonate), user), det_time)
 
@@ -602,4 +602,4 @@ effective or pretty fucking useless.
 /obj/item/clothing/shoes/jackboots/dagger/examine_more(mob/user)
 	. = ..()
 	if(user.is_holding(src))
-		. += span_notice("Upon closer inspection, you notice a dagger embedded into the sole.")
+		. += span_notice("仔细检查后，你发现鞋底嵌着一把匕首。")

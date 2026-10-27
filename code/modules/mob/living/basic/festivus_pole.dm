@@ -2,8 +2,8 @@
 #define FESTIVUS_RECHARGE_VALUE (0.075 * STANDARD_CELL_CHARGE)
 
 /mob/living/basic/festivus
-	name = "festivus pole"
-	desc = "Serenity now... SERENITY NOW!"
+	name = "费斯图斯竿"
+	desc = "宁静……我要宁静！"
 	icon = 'icons/obj/fluff/flora/pinetrees.dmi'
 	icon_state = "festivus_pole"
 	icon_living = "festivus_pole"
@@ -16,10 +16,10 @@
 	status_flags = CANPUSH
 	mob_biotypes = MOB_MINERAL
 
-	response_help_continuous = "rubs"
-	response_help_simple = "rub"
-	response_disarm_continuous = "pushes"
-	response_disarm_simple = "push"
+	response_help_continuous = "摩擦"
+	response_help_simple = "摩擦"
+	response_disarm_continuous = "推"
+	response_disarm_simple = "推"
 
 	mob_size = MOB_SIZE_LARGE
 	pixel_x = -16
@@ -30,15 +30,15 @@
 	health = 200
 	melee_damage_lower = 8
 	melee_damage_upper = 12
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 
 	faction = list(FACTION_HOSTILE)
-	speak_emote = list("polls")
+	speak_emote = list("嗡嗡作响")
 
-	death_message = "is hacked into pieces!"
+	death_message = "被砍成了碎片！"
 
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1)
 	ai_controller = /datum/ai_controller/basic_controller/festivus_pole
@@ -47,7 +47,7 @@
 	. = ..()
 	AddComponent(/datum/component/seethrough_mob)
 	AddElement(/datum/element/death_drops, /obj/item/stack/rods)
-	AddComponent(/datum/component/aggro_emote, emote_list = string_list(list("growls")), emote_chance = 20)
+	AddComponent(/datum/component/aggro_emote, emote_list = string_list(list("低吼")), emote_chance = 20)
 	grant_actions_by_list(list(/datum/action/cooldown/mob_cooldown/charge_apc = BB_FESTIVE_APC))
 
 /datum/ai_controller/basic_controller/festivus_pole
@@ -63,7 +63,7 @@
 	. = ..()
 	if(user.combat_mode)
 		return
-	visible_message(span_warning("[src] crackles with static electricity!"))
+	visible_message(span_warning("[src] 噼啪作响，泛起静电！"))
 	for(var/atom/affected in range(2, get_turf(src)))
 		if(istype(affected, /obj/item/stock_parts/power_store/cell))
 			var/obj/item/stock_parts/power_store/cell/cell = affected

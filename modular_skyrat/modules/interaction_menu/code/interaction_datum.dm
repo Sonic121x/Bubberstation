@@ -3,9 +3,9 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 
 /datum/interaction
 	/// The name to be displayed in the interaction menu for this interaction
-	var/name = "broken interaction"
+	var/name = "损坏的互动"
 	/// The description of the interacton.
-	var/description = "broken"
+	var/description = "损坏"
 	/// If it can be done at a distance.
 	var/distance_allowed = FALSE
 	/// A list of possible messages displayed loaded by the JSON.
@@ -87,10 +87,10 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 	if(!allow_act(user, target))
 		return
 	if(!message)
-		message_admins("Interaction had a null message list. '[name]'")
+		message_admins("互动的消息列表为 null。“[name]”")
 		return
 	if(!islist(message) && istext(message))
-		message_admins("Deprecated message handling for '[name]'. Correct format is a list with one entry. This message will only show once.")
+		message_admins("“[name]”的消息处理方式已弃用。正确格式是只含一个条目的列表。此消息只会显示一次。")
 		message = list(message)
 	var/msg = pick(message)
 	if(!isnull(body_relay))
@@ -110,15 +110,15 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 	if(target_messages.len)
 		var/target_msg = pick(target_messages)
 		if(!isnull(body_relay))
-			target_msg = replacetext(target_msg, "%USER%", "Unknown")
+			target_msg = replacetext(target_msg, "%USER%", "未知")
 		target_msg = replacetext(replacetext(target_msg, "%TARGET%", "[target]"), "%USER%", "[user]")
 		to_chat(target, target_msg)
 	if(sound_use)
 		if(!sound_possible)
-			message_admins("Interaction has sound_use set to TRUE but does not set sound! '[name]'")
+			message_admins("互动设置了 sound_use 为 TRUE，但没有设置声音！“[name]”")
 			return
 		if(!islist(sound_possible) && istext(sound_possible))
-			message_admins("Deprecated sound handling for '[name]'. Correct format is a list with one entry. This message will only show once.")
+			message_admins("“[name]”的声音处理方式已弃用。正确格式是只含一个条目的列表。此消息只会显示一次。")
 			sound_possible = list(sound_possible)
 		sound_cache = pick(sound_possible)
 		// playsound()'s range is always SOUND_RANGE (15) + extrarange, so we offset by -SOUND_RANGE to make
@@ -139,7 +139,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 /datum/interaction/proc/load_from_json(path)
 	var/fpath = path
 	if(!fexists(fpath))
-		message_admins("Attempted to load an interaction from json and the file does not exist")
+		message_admins("尝试从 json 加载互动，但文件不存在")
 		qdel(src)
 		return FALSE
 	var/file = file(fpath)
@@ -147,7 +147,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 	name = sanitize_text(json["name"])
 	description = sanitize_text(json["description"])
 	distance_allowed = sanitize_integer(json["distance_allowed"], 0, 1, 0)
-	message = sanitize_islist(json["message"], list("json error"))
+	message = sanitize_islist(json["message"], list("json 错误"))
 	category = sanitize_text(json["category"])
 	usage = sanitize_text(json["usage"])
 	sound_use = sanitize_integer(json["sound_use"], 0, 1, 0)
@@ -225,23 +225,23 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 		var/datum/interaction/interaction = new()
 		if(interaction.load_from_json(directory + file))
 			GLOB.interaction_instances[interaction.name] = interaction
-		else message_admins("Error loading interaction from file: '[directory + file]'. Inform coders.")
+		else message_admins("从文件加载互动时出错：“[directory + file]”。请通知程序员。")
 
 /proc/populate_interaction_jsons_master(path)
 	if(!fexists(path))
-		message_admins("We are attempting to load an interaction master without the file existing! '[path]'")
+		message_admins("我们正试着加载一个并不存在的互动主文件！“[path]”")
 		return
 	var/file = file(path)
 	var/list/json = json_load(file)
 
 	for(var/iname in json)
 		if(GLOB.interaction_instances[iname])
-			message_admins("Interaction Master '[path]' contained a duplicate interaction! '[iname]'")
+			message_admins("互动主文件“[path]”包含重复的互动！“[iname]”")
 			continue
 
 		var/list/ijson = json[iname]
 		if(ijson["name"] != iname)
-			message_admins("Interaction Master '[path]' contained an invalid interaction! '[iname]'")
+			message_admins("互动主文件“[path]”包含无效的互动！“[iname]”")
 			continue
 
 		var/datum/interaction/interaction = new()
@@ -271,5 +271,5 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 
 		GLOB.interaction_instances[iname] = interaction
 
-ADMIN_VERB(reload_interactions, R_DEBUG, "Reload Interactions", "Force reload interactions.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(reload_interactions, R_DEBUG, "重新加载互动", "强制重新加载互动。", ADMIN_CATEGORY_DEBUG)
 	populate_interaction_instances()

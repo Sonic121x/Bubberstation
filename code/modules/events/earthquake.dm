@@ -3,8 +3,8 @@
 ///Much of the actual structural damage is done through the explosions subsystem. Objects, machines, and especially people
 ///that aren't moved out of the epicenter area (indicated by the wobbly tiles) will not just be thrown down a z-level, but also be destroyed/maimed in the process.
 /datum/round_event_control/earthquake
-	name = "Chasmic Earthquake"
-	description = "Causes an earthquake, demolishing anything caught in the fault."
+	name = "裂谷地震"
+	description = "引发一场地震，摧毁断层内的一切。"
 	typepath = /datum/round_event/earthquake
 	category = EVENT_CATEGORY_ENGINEERING
 	min_players = 20
@@ -48,10 +48,10 @@
 		// Give a bit of variance so our epicenter isn't always on the landmark.
 		epicenter = locate(epicenter.x + rand(-10, 10), epicenter.y + rand(-10, 10), epicenter.z)
 	if(!epicenter)
-		message_admins("Earthquake event failed to find a turf! generic_event_spawn landmarks may be absent or bugged. Aborting...")
+		message_admins("地震事件未能找到地块！generic_event_spawn 地标可能缺失或出了故障。正在中止……")
 		return
 
-	message_admins("An earthquake event is about to strike the [get_area_name(epicenter)][ADMIN_JMP(epicenter)].")
+	message_admins("一场地震事件即将袭击 [get_area_name(epicenter)][ADMIN_JMP(epicenter)]。")
 
 	// Picks two points generally opposite from each other
 	var/turf/fracture_point_high = locate(epicenter.x + rand(4, 10), epicenter.y + rand(4, 8), epicenter.z)
@@ -95,13 +95,13 @@
 		underbelly += GET_TURF_BELOW(turf_to_quake)
 
 /datum/round_event/earthquake/announce(fake)
-	priority_announce("Planetary monitoring systems indicate a devastating seismic event in the near future.", "Seismic Report")
+	priority_announce("行星监测系统显示，近期将发生一场毁灭性的地震事件。", "地震报告")
 
 /datum/round_event/earthquake/start()
 	notify_ghosts(
-		"The earthquake's epicenter has been located: [get_area_name(epicenter)]!",
+		"地震的震中已定位：[get_area_name(epicenter)]！",
 		source = epicenter,
-		header = "Rumble Rumble Rumble!",
+		header = "轰隆轰隆轰隆！",
 	)
 
 /datum/round_event/earthquake/tick()
@@ -134,12 +134,12 @@
 			for(var/mob/living/quake_victim in turf_to_quake)
 				quake_victim.Knockdown(7 SECONDS)
 				quake_victim.Paralyze(5 SECONDS)
-				to_chat(quake_victim, span_warning("The ground quakes violently beneath you, throwing you off your feet!"))
+				to_chat(quake_victim, span_warning("你脚下的地面剧烈震动，把你掀翻在地！"))
 
 		for(var/turf/turf_to_quake in underbelly)
 			turf_to_quake.Shake(pixelshiftx = 0.5, pixelshifty = 0.5, duration = 1 SECONDS)
 			for(var/mob/living/carbon/quake_victim in turf_to_quake)
-				to_chat(quake_victim, span_warning("Damn, I wonder what that rumbling noise is?")) ///You're about to find out
+				to_chat(quake_victim, span_warning("该死，这轰隆隆的声音到底是什么？")) ///You're about to find out
 
 	// Step one of the destruction, which clears natural tiles out from the underbelly and does a bit of initial damage to the topside.
 	if(activeFor == end_when - 1)
@@ -186,10 +186,10 @@
 
 /// Admins can also pick the epicenter of the earthquake
 /datum/event_admin_setup/set_location/earthquake
-	input_text = "Have the epicenter be at the current location?"
+	input_text = "让震中位于当前位置？"
 
 /datum/event_admin_setup/set_location/earthquake/apply_to_event(datum/round_event/earthquake/event)
 	event.special_spot = chosen_turf
-	var/log_message = "[key_name_admin(usr)] triggered an earthquake at [event.special_spot ? AREACOORD(event.special_spot) : "a random location"]."
+	var/log_message = "[key_name_admin(usr)] 在 [event.special_spot ? AREACOORD(event.special_spot) : "随机地点"] 触发了一场地震。"
 	message_admins(log_message)
 	log_admin(log_message)

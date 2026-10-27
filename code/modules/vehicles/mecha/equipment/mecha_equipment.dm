@@ -3,7 +3,7 @@
  * All mech equippables are currently childs of this
  */
 /obj/item/mecha_parts/mecha_equipment
-	name = "mecha equipment"
+	name = "机甲装备"
 	icon = 'icons/obj/devices/mecha_equipment.dmi'
 	abstract_type = /obj/item/mecha_parts/mecha_equipment
 	icon_state = "mecha_equip"
@@ -22,7 +22,7 @@
 	///Can we stack multiple types of the same item?
 	var/unstackable = FALSE
 	///Label used in the ui next to the Activate/Enable/Disable buttons
-	var/active_label = "Status"
+	var/active_label = "状态"
 	///Chassis power cell quantity used on activation
 	var/energy_drain = 0
 	///Reference to mecha that this equipment is currently attached to
@@ -43,10 +43,10 @@
 /obj/item/mecha_parts/mecha_equipment/Destroy()
 	if(chassis)
 		if(LAZYLEN(chassis.occupants))
-			to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_danger("[src] is destroyed!")]")
+			to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_danger("[src] 被摧毁了！")]")
 			playsound(chassis, destroy_sound, 50)
 		detach(get_turf(src))
-		log_message("[src] is destroyed.", LOG_MECHA)
+		log_message("[src] 被摧毁了。", LOG_MECHA)
 		chassis = null
 	return ..()
 
@@ -57,7 +57,7 @@
 		if(special_attaching_interaction(attach_right, M, user))
 			return ITEM_INTERACT_SUCCESS //The rest is handled in the special interactions proc
 		attach(M, attach_right)
-		user.visible_message(span_notice("[user] attaches [src] to [M]."), span_notice("You attach [src] to [M]."))
+		user.visible_message(span_notice("[user] 将 [src] 安装到了 [M] 上。"), span_notice("你将 [src] 安装到了 [M] 上。"))
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
 
@@ -77,11 +77,11 @@
 			. = TRUE
 		if("repair")
 			ui.close() // allow watching for baddies and the ingame effects
-			chassis.balloon_alert(usr, "starting repair")
+			chassis.balloon_alert(usr, "开始维修")
 			while(do_after(usr, 1 SECONDS, chassis) && get_integrity() < max_integrity)
 				repair_damage(30)
 			if(get_integrity() == max_integrity)
-				balloon_alert(usr, "repair complete")
+				balloon_alert(usr, "维修完成")
 			. = FALSE
 	var/result = handle_ui_act(action,params,ui,state)
 	if(result) //if handle_ui_act returned anything at all lets just return that instead
@@ -113,10 +113,10 @@
 	if(chassis.is_currently_ejecting)
 		return FALSE
 	if(chassis.equipment_disabled)
-		to_chat(chassis.occupants, span_warning("Error -- Equipment control unit is unresponsive."))
+		to_chat(chassis.occupants, span_warning("错误——装备控制单元无响应。"))
 		return FALSE
 	if(get_integrity() <= 1)
-		to_chat(chassis.occupants, span_warning("Error -- Equipment critically damaged."))
+		to_chat(chassis.occupants, span_warning("错误——装备严重受损。"))
 		return FALSE
 	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		return FALSE
@@ -165,28 +165,28 @@
 
 /obj/item/mecha_parts/mecha_equipment/proc/default_can_attach(obj/vehicle/sealed/mecha/mech, attach_right = FALSE, mob/user)
 	if(!(mech_flags & mech.mech_type))
-		to_chat(user, span_warning("\The [src] is incompatible with [mech]!"))
+		to_chat(user, span_warning("[src] 与 [mech] 不兼容！"))
 		return FALSE
 	if(equipment_slot == MECHA_WEAPON)
 		if(attach_right)
 			// We need to check for length in case a mech doesn't support any arm attachments at all
 			if((!isnull(mech.equip_by_category[MECHA_R_ARM]) || !mech.max_equip_by_category[MECHA_R_ARM]) && (!special_attaching_interaction(attach_right, mech, user, checkonly = TRUE)))
-				to_chat(user, span_warning("\The [mech]'s right arm is full![mech.equip_by_category[MECHA_L_ARM] || !mech.max_equip_by_category[MECHA_L_ARM] ? "" : " Try left arm!"]"))
+				to_chat(user, span_warning("[mech] 的右臂已满载！[mech.equip_by_category[MECHA_L_ARM] || !mech.max_equip_by_category[MECHA_L_ARM] ? "" : " 试试左臂！"]"))
 				return FALSE
 		else
 			if((!isnull(mech.equip_by_category[MECHA_L_ARM]) || !mech.max_equip_by_category[MECHA_L_ARM]) && (!special_attaching_interaction(attach_right, mech, user, checkonly = TRUE)))
-				to_chat(user, span_warning("\The [mech]'s left arm is full![mech.equip_by_category[MECHA_R_ARM] || !mech.max_equip_by_category[MECHA_R_ARM] ? "" : " Try right arm!"]"))
+				to_chat(user, span_warning("[mech] 的左臂已满载！[mech.equip_by_category[MECHA_R_ARM] || !mech.max_equip_by_category[MECHA_R_ARM] ? "" : " 试试右臂！"]"))
 				return FALSE
 		return TRUE
 	if(unstackable)
 		var/list/obj/item/mecha_parts/mecha_equipment/contents = mech.equip_by_category[equipment_slot]
 		for(var/obj/equipment as anything in contents)
 			if(src.type == equipment.type)
-				to_chat(user, span_warning("You can't stack more of this item ontop itself!"))
+				to_chat(user, span_warning("你不能在同一位置叠加更多该物品！"))
 				return FALSE
 
 	if(length(mech.equip_by_category[equipment_slot]) == mech.max_equip_by_category[equipment_slot])
-		to_chat(user, span_warning("This equipment slot is already full!"))
+		to_chat(user, span_warning("该装备槽位已满！"))
 		return FALSE
 	return TRUE
 
@@ -219,7 +219,7 @@
 	chassis = new_mecha
 	SEND_SIGNAL(src, COMSIG_MECHA_EQUIPMENT_ATTACHED)
 	forceMove(new_mecha)
-	log_message("[src] initialized.", LOG_MECHA)
+	log_message("[src] 已初始化。", LOG_MECHA)
 	chassis.on_equipment_attach(src)
 
 /**
@@ -244,7 +244,7 @@
 	else
 		chassis.equip_by_category[to_unequip_slot] = null
 	SEND_SIGNAL(src, COMSIG_MECHA_EQUIPMENT_DETACHED)
-	log_message("[src] removed from equipment.", LOG_MECHA)
+	log_message("[src] 已从装备中移除。", LOG_MECHA)
 	chassis = null
 
 /obj/item/mecha_parts/mecha_equipment/proc/set_active(active)
@@ -252,7 +252,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/log_message(message, message_type=LOG_GAME, color=null, log_globally, list/data)
 	if(chassis)
-		return chassis.log_message("ATTACHMENT: [src] [message]", message_type, color)
+		return chassis.log_message("附件：[src] [message]", message_type, color)
 	return ..()
 
 /**

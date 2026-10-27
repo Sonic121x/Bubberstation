@@ -1,6 +1,6 @@
 /obj/item/quantum_keycard
-	name = "quantum keycard"
-	desc = "A keycard able to link to a quantum pad's particle signature, allowing other quantum pads to travel there instead of their linked pad."
+	name = "量子钥匙卡"
+	desc = "能绑定量子传送平台粒子特征的钥匙卡，使其他量子传送平台可以传送到此处，而非原先绑定的平台。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/quantum_keycard"
 	post_init_icon_state = "quantum_keycard_gags"
@@ -34,21 +34,21 @@
 /obj/item/quantum_keycard/examine(mob/user)
 	. = ..()
 	if(qpad)
-		. += "It's currently linked to a quantum pad."
+		. += "目前已绑定一个量子传送平台。"
 
 		var/area_name = get_area_name(qpad)
 		if(area_name)
-			. += span_notice("The pad is located in \the [area_name]")
+			. += span_notice("平台位于[chinese_area_display(area_name)]。")
 
-		. += span_notice("Alt-click to unlink the keycard.")
+		. += span_notice("按住Alt点击可解除钥匙卡绑定。")
 	else
-		. += span_notice("Insert [src] into an active quantum pad to link it.")
+		. += span_notice("将[src]插入运作中的量子传送平台即可绑定。")
 
 /obj/item/quantum_keycard/click_alt(mob/living/user)
-	to_chat(user, span_notice("You start pressing [src]'s unlink button..."))
+	to_chat(user, span_notice("你开始按住[src]的解除绑定按钮……"))
 	if(!do_after(user, 4 SECONDS, target = src))
 		return CLICK_ACTION_BLOCKING
-	to_chat(user, span_notice("The keycard beeps twice and disconnects the quantum link."))
+	to_chat(user, span_notice("钥匙卡响了两声，断开了量子连接。"))
 	set_pad()
 	return CLICK_ACTION_SUCCESS
 

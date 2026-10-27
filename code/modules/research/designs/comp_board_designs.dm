@@ -1,14 +1,14 @@
 ///////////////////Computer Boards///////////////////////////////////
 
 /datum/design/board
-	name = "NULL ENTRY Board"
-	desc = "I promise this doesn't give you syndicate goodies!"
+	name = "空条目电路板"
+	desc = "我保证它不会给你辛迪加的好东西！"
 	build_type = IMPRINTER | AWAY_IMPRINTER
 	materials = list(/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
 
 /datum/design/board/arcade_battle
-	name = "Battle Arcade Machine Board"
-	desc = "Allows for the construction of circuit boards used to build a new arcade machine."
+	name = "对战街机电路板"
+	desc = "可用于建造新街机的电路板。"
 	id = "arcade_battle"
 	build_path = /obj/item/circuitboard/computer/arcade/battle
 	category = list(
@@ -17,8 +17,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/orion_trail
-	name = "Orion Trail Arcade Machine Board"
-	desc = "Allows for the construction of circuit boards used to build a new Orion Trail machine."
+	name = "《猎户座之路》街机电路板"
+	desc = "可用于建造新《猎户座之路》街机的电路板。"
 	id = "arcade_orion"
 	build_path = /obj/item/circuitboard/computer/arcade/orion_trail
 	category = list(
@@ -27,8 +27,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/seccamera
-	name = "Security Camera Board"
-	desc = "Allows for the construction of circuit boards used to build security camera computers."
+	name = "安保摄像头电路板"
+	desc = "可用于建造安保摄像头电脑的电路板。"
 	id = "seccamera"
 	build_path = /obj/item/circuitboard/computer/security
 	category = list(
@@ -37,8 +37,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/board/rdcamera
-	name = "Research Monitor Board"
-	desc = "Allows for the construction of circuit boards used to build research camera computers."
+	name = "研究监控电路板"
+	desc = "可用于建造研究摄像头电脑的电路板。"
 	id = "rdcamera"
 	build_path = /obj/item/circuitboard/computer/research
 	category = list(
@@ -47,8 +47,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/xenobiocamera
-	name = "Xenobiology Console Board"
-	desc = "Allows for the construction of circuit boards used to build xenobiology camera computers."
+	name = "异种生物学控制台电路板"
+	desc = "可用于建造异种生物学摄像头电脑的电路板。"
 	id = "xenobioconsole"
 	build_path = /obj/item/circuitboard/computer/xenobiology
 	category = list(
@@ -57,8 +57,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/med_data
-	name = "Medical Records Board"
-	desc = "Allows for the construction of circuit boards used to build a medical records console."
+	name = "医疗记录电路板"
+	desc = "可用于建造医疗记录控制台的电路板。"
 	id = "med_data"
 	build_path = /obj/item/circuitboard/computer/med_data
 	category = list(
@@ -67,8 +67,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/board/operating
-	name = "Operating Computer Board"
-	desc = "Allows for the construction of circuit boards used to build an operating computer console."
+	name = "手术电脑电路板"
+	desc = "可用于建造手术电脑控制台的电路板。"
 	id = "operating"
 	build_path = /obj/item/circuitboard/computer/operating
 	category = list(
@@ -77,8 +77,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/pandemic
-	name = "PanD.E.M.I.C. 2200 Board"
-	desc = "Allows for the construction of circuit boards used to build a PanD.E.M.I.C. 2200 console."
+	name = "泛流行病分析仪 2200 电路板"
+	desc = "可用于建造泛流行病分析仪 2200 控制台的电路板。"
 	id = "pandemic"
 	build_path = /obj/item/circuitboard/computer/pandemic
 	category = list(
@@ -87,8 +87,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/board/comconsole
-	name = "Communications Board"
-	desc = "Allows for the construction of circuit boards used to build a communications console."
+	name = "通讯电路板"
+	desc = "可用于建造通讯控制台的电路板。"
 	id = "comconsole"
 	build_path = /obj/item/circuitboard/computer/communications
 	category = list(
@@ -97,8 +97,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SECURITY //Honestly should have a bridge techfab for this sometime.
 
 /datum/design/board/bankmachine
-	name = "Bank Machine Board"
-	desc = "Allows for the construction of circuit boards used to build a Bank Machine."
+	name = "银行机电路板"
+	desc = "可用于建造银行机的电路板。"
 	id = "bankmachine"
 	build_path = /obj/item/circuitboard/computer/bankmachine
 	category = list(
@@ -107,8 +107,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/board/crewconsole
-	name = "Crew Monitoring Computer Board"
-	desc = "Allows for the construction of circuit boards used to build a Crew monitoring computer."
+	name = "船员监控电脑电路板"
+	desc = "可用于建造船员监控电脑的电路板。"
 	id = "crewconsole"
 	build_type = IMPRINTER
 	build_path = /obj/item/circuitboard/computer/crew
@@ -118,8 +118,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/board/secdata
-	name = "Security Records Console Board"
-	desc = "Allows for the construction of circuit boards used to build a security records console."
+	name = "安保记录控制台电路板"
+	desc = "可用于建造安保记录控制台的电路板。"
 	id = "secdata"
 	build_path = /obj/item/circuitboard/computer/secure_data
 	category = list(
@@ -128,8 +128,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/board/atmosalerts
-	name = "Atmosphere Alert Board"
-	desc = "Allows for the construction of circuit boards used to build an atmosphere alert console."
+	name = "大气警报电路板"
+	desc = "可用于建造大气警报控制台的电路板。"
 	id = "atmosalerts"
 	build_path = /obj/item/circuitboard/computer/atmos_alert
 	category = list(
@@ -138,8 +138,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/atmos_control
-	name = "Atmospheric Monitor Board"
-	desc = "Allows for the construction of circuit boards used to build an Atmospheric Monitor."
+	name = "大气监控电路板"
+	desc = "可用于建造大气监控器的电路板。"
 	id = "atmos_control"
 	build_path = /obj/item/circuitboard/computer/atmos_control
 	category = list(
@@ -148,8 +148,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/robocontrol
-	name = "Robotics Control Console Board"
-	desc = "Allows for the construction of circuit boards used to build a Robotics Control console."
+	name = "机器人控制台电路板"
+	desc = "可用于建造机器人控制台的电路板。"
 	id = "robocontrol"
 	materials = list(/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace =SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/circuitboard/computer/robotics
@@ -159,8 +159,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/slot_machine
-	name = "Slot Machine Board"
-	desc = "Allows for the construction of circuit boards used to build a new slot machine."
+	name = "老虎机电路板"
+	desc = "可用于建造新老虎机的电路板。"
 	id = "slotmachine"
 	build_path = /obj/item/circuitboard/computer/slot_machine
 	category = list(
@@ -170,8 +170,8 @@
 
 
 /datum/design/board/powermonitor
-	name = "Power Monitor Board"
-	desc = "Allows for the construction of circuit boards used to build a new power monitor."
+	name = "电力监控电路板"
+	desc = "可用于建造新电力监控器的电路板。"
 	id = "powermonitor"
 	build_path = /obj/item/circuitboard/computer/powermonitor
 	category = list(
@@ -180,8 +180,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/solarcontrol
-	name = "Solar Control Board"
-	desc = "Allows for the construction of circuit boards used to build a solar control console."
+	name = "太阳能控制电路板"
+	desc = "可用于建造太阳能控制台的电路板。"
 	id = "solarcontrol"
 	build_path = /obj/item/circuitboard/computer/solar_control
 	category = list(
@@ -190,8 +190,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/prisonmanage
-	name = "Prisoner Management Console Board"
-	desc = "Allows for the construction of circuit boards used to build a prisoner management console."
+	name = "囚犯管理控制台电路板"
+	desc = "可用于建造囚犯管理控制台的电路板。"
 	id = "prisonmanage"
 	build_path = /obj/item/circuitboard/computer/prisoner
 	category = list(
@@ -200,8 +200,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/board/mechacontrol
-	name = "Exosuit Control Console Board"
-	desc = "Allows for the construction of circuit boards used to build an exosuit control console."
+	name = "外骨骼控制台电路板"
+	desc = "可用于建造外骨骼控制台的电路板。"
 	id = "mechacontrol"
 	build_path = /obj/item/circuitboard/computer/mecha_control
 	category = list(
@@ -210,8 +210,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/mechapower
-	name = "Mech Bay Power Control Console Board"
-	desc = "Allows for the construction of circuit boards used to build a mech bay power control console."
+	name = "机甲舱电力控制台电路板"
+	desc = "可用于建造机甲舱电力控制台的电路板。"
 	id = "mechapower"
 	build_path = /obj/item/circuitboard/computer/mech_bay_power_console
 	category = list(
@@ -220,8 +220,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/rdconsole
-	name = "R&D Console Board"
-	desc = "Allows for the construction of circuit boards used to build a new R&D console."
+	name = "研发控制台电路板"
+	desc = "可用于建造新研发控制台的电路板。"
 	id = "rdconsole"
 	build_path = /obj/item/circuitboard/computer/rdconsole
 	category = list(
@@ -230,8 +230,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/cargo
-	name = "Supply Console Board"
-	desc = "Allows for the construction of circuit boards used to build a Supply Console."
+	name = "补给控制台电路板"
+	desc = "可用于建造补给控制台的电路板。"
 	id = "cargo"
 	build_type = IMPRINTER
 	build_path = /obj/item/circuitboard/computer/cargo
@@ -241,8 +241,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/board/cargorequest
-	name = "Supply Request Console Board"
-	desc = "Allows for the construction of circuit boards used to build a Supply Request Console."
+	name = "补给申请控制台电路板"
+	desc = "可用于建造补给申请控制台的电路板。"
 	id = "cargorequest"
 	build_type = IMPRINTER
 	build_path = /obj/item/circuitboard/computer/cargo/request
@@ -252,8 +252,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/board/mining
-	name = "Outpost Status Display Board"
-	desc = "Allows for the construction of circuit boards used to build an outpost status display console."
+	name = "前哨状态显示电路板"
+	desc = "可用于建造前哨状态显示控制台的电路板。"
 	id = "mining"
 	build_path = /obj/item/circuitboard/computer/mining
 	category = list(
@@ -262,8 +262,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/board/comm_monitor
-	name = "Telecommunications Monitoring Console Board"
-	desc = "Allows for the construction of circuit boards used to build a telecommunications monitor."
+	name = "电信监控控制台电路板"
+	desc = "可用于建造电信监控器的电路板。"
 	id = "comm_monitor"
 	build_path = /obj/item/circuitboard/computer/comm_monitor
 	category = list(
@@ -272,8 +272,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/comm_server
-	name = "Telecommunications Server Monitoring Console Board"
-	desc = "Allows for the construction of circuit boards used to build a telecommunication server browser and monitor."
+	name = "电信服务器监控控制台电路板"
+	desc = "可用于建造电信服务器浏览与监控器的电路板。"
 	id = "comm_server"
 	build_path = /obj/item/circuitboard/computer/comm_server
 	category = list(
@@ -282,8 +282,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/message_monitor
-	name = "Messaging Monitor Console Board"
-	desc = "Allows for the construction of circuit boards used to build a messaging monitor console."
+	name = "消息监控控制台电路板"
+	desc = "可用于建造消息监控控制台的电路板。"
 	id = "message_monitor"
 	build_path = /obj/item/circuitboard/computer/message_monitor
 	category = list(
@@ -292,8 +292,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/aifixer
-	name = "AI Integrity Restorer Board"
-	desc = "Allows for the construction of circuit boards used to build an AI Integrity Restorer."
+	name = "AI 完整性修复器电路板"
+	desc = "可用于建造 AI 完整性修复器的电路板。"
 	id = "aifixer"
 	build_path = /obj/item/circuitboard/computer/aifixer
 	category = list(
@@ -302,8 +302,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/libraryconsole
-	name = "Library Console Board"
-	desc = "Allows for the construction of circuit boards used to build a new library console."
+	name = "图书馆控制台电路板"
+	desc = "可用于建造新图书馆控制台的电路板。"
 	id = "libraryconsole"
 	build_path = /obj/item/circuitboard/computer/libraryconsole
 	category = list(
@@ -312,8 +312,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/apc_control
-	name = "APC Control Board"
-	desc = "Allows for the construction of circuit boards used to build a new APC control console."
+	name = "电力流向控制台电路板"
+	desc = "可用于建造新电力流向控制台的电路板。"
 	id = "apc_control"
 	build_path = /obj/item/circuitboard/computer/apc_control
 	category = list(
@@ -322,8 +322,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/advanced_camera
-	name = "Advanced Camera Console Board"
-	desc = "Allows for the construction of circuit boards used to build advanced camera consoles."
+	name = "高级摄像头控制台电路板"
+	desc = "可用于建造高级摄像头控制台的电路板。"
 	id = "advanced_camera"
 	build_path = /obj/item/circuitboard/computer/advanced_camera
 	category = list(
@@ -332,8 +332,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/board/bountypad_control
-	name = "Civilian Bounty Pad Control Board"
-	desc = "Allows for the construction of circuit boards used to build a new civilian bounty pad console."
+	name = "民用赏金平台控制电路板"
+	desc = "可用于建造新民用赏金平台控制台的电路板。"
 	id = "bounty_pad_control"
 	build_path = /obj/item/circuitboard/computer/bountypad
 	category = list(
@@ -342,8 +342,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/board/exoscanner_console
-	name = "Scanner Array Control Console Board"
-	desc = "Allows for the construction of circuit boards used to build a new scanner array control console."
+	name = "扫描阵列控制台电路板"
+	desc = "可用于建造新扫描阵列控制台的电路板。"
 	id = "exoscanner_console"
 	build_type = IMPRINTER
 	build_path = /obj/item/circuitboard/computer/exoscanner_console
@@ -353,8 +353,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/exodrone_console
-	name = "Exploration Drone Control Console Board"
-	desc = "Allows for the construction of circuit boards used to build a new exploration drone control console."
+	name = "探测无人机控制台电路板"
+	desc = "可用于建造新探测无人机控制台的电路板。"
 	id = "exodrone_console"
 	build_type = IMPRINTER
 	build_path = /obj/item/circuitboard/computer/exodrone_console
@@ -364,8 +364,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/accounting_console
-	name = "Account Lookup Console Board"
-	desc = "Allows for the construction of circuit boards used to assess the wealth of crewmates on station."
+	name = "账户查询控制台电路板"
+	desc = "可用于建造查看站内船员财富状况的控制台的电路板。"
 	id = "account_console"
 	build_type = IMPRINTER
 	build_path = /obj/item/circuitboard/computer/accounting
@@ -382,20 +382,20 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/board/shuttle/flight_control
-	name = "Computer Design (Shuttle Flight Controls)"
-	desc = "Allows for the construction of circuit boards used to build a console that enables shuttle flight"
+	name = "电脑设计（穿梭机飞行控制）"
+	desc = "可用于建造操控穿梭机飞行的控制台的电路板。"
 	id = "shuttle_control"
 	build_path = /obj/item/circuitboard/computer/shuttle/flight_control
 
 /datum/design/board/shuttle/shuttle_docker
-	name = "Computer Design (Shuttle Navigation Computer)"
-	desc = "Allows for the construction of circuit boards used to build a console that enables the targetting of custom flight locations"
+	name = "电脑设计（穿梭机导航电脑）"
+	desc = "可用于建造设定自定义飞行目标位置的控制台的电路板。"
 	id = "shuttle_docker"
 	build_path = /obj/item/circuitboard/computer/shuttle/docker
 
 /datum/design/board/quantum_console
-	name = "Quantum Console Board"
-	desc = "Allows for the construction of circuit boards used to build a Quantum Console."
+	name = "量子控制台电路板"
+	desc = "可用于建造量子控制台的电路板。"
 	id = "quantum_console"
 	build_path = /obj/item/circuitboard/computer/quantum_console
 	category = list(

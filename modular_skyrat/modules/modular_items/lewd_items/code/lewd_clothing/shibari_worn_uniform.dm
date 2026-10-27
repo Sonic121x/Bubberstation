@@ -113,8 +113,8 @@
 	return..()
 
 /obj/item/clothing/under/shibari/torso
-	name = "shibari ropes"
-	desc = "Nice looking rope bondage."
+	name = "绳缚胸背"
+	desc = "好看的绳缚装束。"
 
 	icon_state = "/obj/item/clothing/under/shibari/torso"
 	post_init_icon_state = "shibari_body"
@@ -138,8 +138,8 @@
 		hooman.adjust_pain(0.6 * seconds_per_tick)
 
 /obj/item/clothing/under/shibari/groin
-	name = "crotch rope shibari"
-	desc = "A rope that teases the wearer's genitals."
+	name = "绳缚裆绳"
+	desc = "一根挑逗佩戴者性器的绳索。"
 	icon_state = "/obj/item/clothing/under/shibari/groin"
 	post_init_icon_state = "shibari_groin"
 
@@ -172,8 +172,8 @@
 		hooman.adjust_pleasure(0.6 * seconds_per_tick)
 
 /obj/item/clothing/under/shibari/full
-	name = "shibari fullbody ropes"
-	desc = "Bondage ropes that cover the whole body."
+	name = "全身绳缚"
+	desc = "覆盖全身的束缚绳索。"
 	icon_state = "/obj/item/clothing/under/shibari/full"
 	post_init_icon_state = "shibari_fullbody"
 

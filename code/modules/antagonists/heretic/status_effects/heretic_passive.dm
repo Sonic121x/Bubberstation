@@ -13,14 +13,14 @@
 	///What level is our passive currently on
 	var/passive_level = HERETIC_LEVEL_START
 	/// Name of the passive, used by the UI
-	var/name = "Heretic Passive"
+	var/name = "异教徒被动"
 	/// Describes how users of this path recharge their spells
-	var/recharge_description = "Recharge spells by doing things."
+	var/recharge_description = "通过做各种事情来为法术充能。"
 	/// Describes the various levels of the passive
 	var/list/passive_descriptions = list(
-		"Grants you a passive ability based on your heretic type. This ability will upgrade as you gain more power.",
-		"Your passive ability has been upgraded, doing something else.",
-		"Your passive ability has been upgraded to its final form, granting you a powerful new ability.",
+		"根据你的异教徒类型赋予你一项被动能力。随着你获得更多力量，这项能力会升级。",
+		"你的被动能力已升级，现在能做别的事情了。",
+		"你的被动能力已升级至最终形态，赋予你一项强大的新能力。",
 	)
 
 /datum/status_effect/heretic_passive/on_apply()
@@ -68,7 +68,7 @@
 	heretic_datum.update_data_for_all_viewers()
 
 /datum/status_effect/heretic_passive/proc/recharge_spells()
-	owner.balloon_alert(owner, "spells recharged")
+	owner.balloon_alert(owner, "法术已充能")
 	var/list/main_path_knowledge = heretic_datum.get_researched_knowledge_by_category(HERETIC_KNOWLEDGE_TREE) \
 		+ heretic_datum.get_researched_knowledge_by_category(HERETIC_KNOWLEDGE_START)
 	var/list/side_path_knowledge = heretic_datum.get_researched_knowledge_by_category(HERETIC_KNOWLEDGE_DRAFT) \
@@ -84,12 +84,12 @@
 // Level 2 grants lava immunity
 // Level 3 grants resistance to high pressure
 /datum/status_effect/heretic_passive/ash
-	name = "Vow of Destruction"
-	recharge_description = "Recharge spells by standing near living, burning foes."
+	name = "毁灭誓言"
+	recharge_description = "通过靠近正在燃烧的活物敌人来为法术充能。"
 	passive_descriptions = list(
-		"Heat and ash storm immunity.",
-		"Lava immunity.",
-		"Resistance to high and low pressure."
+		"免疫高温与灰烬风暴。",
+		"免疫熔岩。",
+		"抵抗高压与低压。"
 	)
 	/// Tracks total seconds nearby mobs are on fire, used to determine when to recharge spells
 	var/seconds_of_fire = 0
@@ -137,14 +137,14 @@
 // Level 2 Makes you immune to fall damage/stun from falling
 // Level 3 only has the cooldown reduction (nothing else added)
 /datum/status_effect/heretic_passive/blade
-	name = "Dance of the Brand"
+	name = "烙印之舞"
 	id = "blade_passive"
-	recharge_description = "Recharge spells by knocking brave foes into critical condition. \
-		(Brave foes are anyone who struck you first.)"
+	recharge_description = "通过将勇敢的敌人打入濒危状态来为法术充能。\
+		（勇敢的敌人指任何先攻击你的人。）"
 	passive_descriptions = list(
-		"Being attacked while wielding a Heretic Blade in either hand will deliver a free, instant counterattack to the attacker. This effect can only trigger once every 20 seconds.",
-		"Immunity to fall damage.",
-		"Cooldown of the riposte reduced to 10 seconds."
+		"任一只手握着异教徒之刃时遭到攻击，会立即对攻击者发动一次免费的反击。此效果每 20 秒只能触发一次。",
+		"免疫坠落伤害。",
+		"反击的冷却时间缩短至 10 秒。"
 	)
 	/// The cooldown before we can riposte again
 	var/base_cooldown = 20 SECONDS
@@ -200,7 +200,7 @@
 /datum/status_effect/heretic_passive/blade/proc/z_impact_react(datum/source, levels, turf/fell_on)
 	SIGNAL_HANDLER
 	new /obj/effect/temp_visual/mook_dust(fell_on)
-	owner.visible_message(span_notice("[owner] lands on [fell_on] safely, and quite stylishly on [p_their()] feet!"))
+	owner.visible_message(span_notice("[owner]稳稳地落在[fell_on]上，姿势还相当潇洒地双脚着地！"))
 	INVOKE_ASYNC(owner, TYPE_PROC_REF(/atom, SpinAnimation), 0.5 SECONDS, 0)
 	INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob/, emote), "flip")
 	return ZIMPACT_CANCEL_DAMAGE | ZIMPACT_NO_MESSAGE | ZIMPACT_NO_SPIN
@@ -210,7 +210,7 @@
 	mob/living/carbon/human/source,
 	atom/movable/hitby,
 	damage = 0,
-	attack_text = "the attack",
+	attack_text = "这次攻击",
 	attack_type = MELEE_ATTACK,
 	armour_penetration = 0,
 	damage_type = BRUTE,
@@ -271,31 +271,31 @@
 /// Does the actual counter-attack
 /datum/status_effect/heretic_passive/blade/proc/counter_attack(mob/living/carbon/human/source, mob/living/target, obj/item/melee/sickly_blade/weapon, attack_text)
 	playsound(get_turf(source), 'sound/items/weapons/parry.ogg', 100, TRUE)
-	source.balloon_alert(source, "riposte used")
+	source.balloon_alert(source, "已使用反击")
 	source.visible_message(
-		span_warning("[source] leans into [attack_text] and delivers a sudden riposte back at [target]!"),
-		span_warning("You lean into [attack_text] and deliver a sudden riposte back at [target]!"),
-		span_hear("You hear a clink, followed by a stab."),
+		span_warning("[source]迎着[attack_text]侧身而上，向[target]猛然回以一记反击！"),
+		span_warning("你迎着[attack_text]侧身而上，向[target]猛然回以一记反击！"),
+		span_hear("你听见一声金属碰撞，紧接着是一记刺击。"),
 	)
 	weapon.melee_attack_chain(source, target)
 
 /// Gives feedback to the user
 /datum/status_effect/heretic_passive/blade/proc/reset_riposte(mob/living/carbon/human/source)
 	riposte_ready = TRUE
-	source.balloon_alert(source, "riposte ready")
+	source.balloon_alert(source, "反击已就绪")
 
 //---- Cosmic Passive
 // Level 1 Cosmic fields will speed up the caster and provide stamina regen
 // Level 2 Cosmic fields will disable any nearby bombs/TTVs/Syndicate Bombs
 // Level 3 Cosmic fields will temporarily slow down bullets that pass through them
 /datum/status_effect/heretic_passive/cosmic
-	name = "Chosen of the Stars"
+	name = "群星选民"
 	id = "cosmic_passive"
-	recharge_description = "Recharge spells by knocking foes standing in cosmic fields into critical condition."
+	recharge_description = "通过将站在宇宙场中的敌人打入濒危状态来为法术充能。"
 	passive_descriptions = list(
-		"Cosmic fields speed you up and regenerate stamina.",
-		"Cosmic fields disrupt grenades or signalers from being activated and turn off already primed grenades.",
-		"Cosmic fields slow projectiles down."
+		"宇宙场会加速你并恢复体力。",
+		"宇宙场会干扰手榴弹或信号器使其无法被激活，并关闭已经激活的手榴弹。",
+		"宇宙场会减缓弹丸。"
 	)
 
 /datum/status_effect/heretic_passive/cosmic/tick(seconds_between_ticks)
@@ -357,13 +357,13 @@
 // Level 2, organs and raw meat heals you. You also become a voracious glutton who likes all food. No slowdown from being fat
 // Level 3, being fat gives damage resistance
 /datum/status_effect/heretic_passive/flesh
-	name = "Ravenous Hunger"
+	name = "贪婪饥饿"
 	id = "flesh_passive"
-	recharge_description = "Recharge spells by summoning monsters into reality."
+	recharge_description = "通过将怪物召唤到现实中来为法术充能。"
 	passive_descriptions = list(
-		"Immunity to Diseases, Disgust and space ants.",
-		"Eating organs or meat now heals you, gain the voracious and gluttonous trait and being fat doesn't slow you down.",
-		"Gain a flat 25% damage and stamina damage reduction when fat as well as baton resistance."
+		"免疫疾病、厌恶与太空蚂蚁。",
+		"食用器官或肉类现在会治疗你，获得贪食与暴食特质，且肥胖不再使你减速。",
+		"肥胖时获得固定 25% 的伤害与体力伤害减免，以及电击棍抗性。"
 	)
 
 /datum/status_effect/heretic_passive/flesh/on_apply()
@@ -458,13 +458,13 @@
 // Level 2 Gains X-ray Vision
 // Level 3 your grasp no longer goes on cooldown when opening things
 /datum/status_effect/heretic_passive/lock
-	name = "Open Invitation"
+	name = "敞开邀请"
 	id = "lock_passive"
-	recharge_description = "Recharge spells by researching knowledge."
+	recharge_description = "通过研究知识来为法术充能。"
 	passive_descriptions = list(
-		"Shock insulation, all knowledges researched from the shop are cheaper",
-		"X-ray vision, you can see through walls and objects.",
-		"Grasp now has a reduced cooldown when used on a door/locker." // BUBBER EDIT CHANGE - now only reduced CD
+		"电击绝缘，从商店研究的所有知识都更便宜",
+		"X 光视觉，你可以看穿墙壁和物体。",
+		"对门或储物柜使用抓取时，冷却时间减少。" // BUBBER EDIT CHANGE - now only reduced CD
 	)
 	/// Tracks points needed to be spent to recharge
 	var/points_to_recharge = 2
@@ -513,13 +513,13 @@
 // Level 2 grants sleep immunity
 // Level 3, Mind gate + Ringleader's rise will channel the moon amulet effects
 /datum/status_effect/heretic_passive/moon
-	name = "Do You Hear The Voices Too?"
+	name = "你也听见那些声音了吗？"
 	id = "moon_passive"
-	recharge_description = "Recharge spells by applying Moonlight Amulets to heathens."
+	recharge_description = "通过向异端施加月光护符来为法术充能。"
 	passive_descriptions = list(
-		"Can no longer develop brain traumas, passively regenerates brain health, (this bonus is halved in combat).",
-		"Sleep immunity, increases the ratio at which your brain damage regenerates.",
-		"Mind gate and Ringleader's rise will channel the moon amulet effects, further inreases brain regeneration."
+		"不再会产生脑创伤，被动恢复脑部健康（战斗中此加成减半）。",
+		"免疫睡眠，提高脑损伤的恢复速率。",
+		"心灵之门与头目崛起将会引导月光护符的效果，进一步提升脑部恢复。"
 	)
 	/// Built-in moon amulet which channels through your spells
 	var/obj/item/clothing/neck/moon_amulet/amulet
@@ -591,14 +591,14 @@
 // Level 2 will heal wounds when standing on rust
 // Level 3 will restore lost limbs when standing on rust
 /datum/status_effect/heretic_passive/rust
-	name = "Leeching Walk"
+	name = "汲取之步"
 	id = "rust_passive"
-	recharge_description = "Recharge spells by a rusting a large number of tiles. \
-		(Rusting from items and summons are not counted.)"
+	recharge_description = "通过锈蚀大量地砖来为法术充能。\
+		（由物品和召唤物造成的锈蚀不计入其中。）"
 	passive_descriptions = list(
-		"Standing on Rusted tiles heals and purge chems off your body.",
-		"Standing on Rusted tiles closes up your wounds and heals your organs, you may now rust reinforced floors and walls, healing effect increased.",
-		"Standing on Rusted tiles regenerates your limbs, you may now rust titanium and plastitanium walls, healing effect increased."
+		"站在锈蚀地砖上会治疗你并清除体内的化学物质。",
+		"站在锈蚀地砖上会愈合你的伤口并治疗你的器官，你现在能锈蚀强化地板与墙壁，治疗效果提升。",
+		"站在锈蚀地砖上会再生你的肢体，你现在能锈蚀钛与塑钛墙壁，治疗效果提升。"
 	)
 	/// Counts tiles rusted, total
 	var/rust_counter = 0
@@ -703,13 +703,13 @@
 // Level 2 No breathe
 // Level 3 No slip on water/ice
 /datum/status_effect/heretic_passive/void
-	name = "Aristocrat's Way"
+	name = "贵族之道"
 	id = "void_passive"
-	recharge_description = "Recharge spells by knocking foes who are exposed to sub-zero temperature into critical condition."
+	recharge_description = "通过将处于零下温度环境中的敌人打入濒危状态来为法术充能。"
 	passive_descriptions = list(
-		"Cold and low pressure immunity.",
-		"You no longer need to breathe.",
-		"Water, ice and slippery surfaces no slip you."
+		"免疫低温与低压。",
+		"你不再需要呼吸。",
+		"水、冰与湿滑表面不再使你滑倒。"
 	)
 
 	var/list/gained_charges_from

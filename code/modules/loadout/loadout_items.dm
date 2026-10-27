@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	if(!loadout?[item_path])
 		return FALSE
 
-	var/chosen_color = tgui_color_picker(user, "Pick new color. Setting color to pitch black will remove the existing color.", "Repaint item", "#000000")
+	var/chosen_color = tgui_color_picker(user, "选择新颜色。设为纯黑将移除当前颜色。", "给物品喷漆", "#000000")
 	if(isnull(chosen_color))
 		return FALSE
 
@@ -251,8 +251,8 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	var/list/loadout = manager.get_current_loadout() // BUBBER EDIT: Multiple loadout presets: ORIGINAL: var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
 	var/input_name = tgui_input_text(
 		user = user,
-		message = "What [isname ? "name" : "description"] do you want to give the [name]? Leave blank to clear.",
-		title = "[name] [isname ? "name" : "description"]",
+		message = "你想给 [name] 取什么[isname ? "名字" : "描述"]？留空以清除。",
+		title = "[name] [isname ? "名字" : "描述"]",
 		default = loadout?[item_path]?[name_slot], // plop in existing name (if any)
 		max_length = isname ? MAX_NAME_LEN : MAX_DESC_LEN,
 	)
@@ -501,31 +501,31 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	// Mothblocks is hellbent on recolorable and reskinnable being only tooltips for items for visual clarity, so ask her before changing these
 	var/list/displayed_text = list()
 	if((loadout_flags & LOADOUT_FLAG_GREYSCALING_ALLOWED) && !(loadout_flags & LOADOUT_FLAG_JOB_GREYSCALING))
-		displayed_text[FA_ICON_PALETTE] = "Recolorable"
+		displayed_text[FA_ICON_PALETTE] = "可染色"
 
 	if(reskin_datum)
-		displayed_text[FA_ICON_SWATCHBOOK] = "Reskinnable"
+		displayed_text[FA_ICON_SWATCHBOOK] = "可换肤"
 
 	if(required_holiday)
-		displayed_text[FA_ICON_CALENDAR_CHECK] = "Only available: [required_holiday]"
+		displayed_text[FA_ICON_CALENDAR_CHECK] = "仅在 [required_holiday] 可用"
 
 	// SKYRAT EDIT ADDITION
 	if(donator_only)
-		displayed_text[FA_ICON_MONEY_BILL] = "Donator only"
+		displayed_text[FA_ICON_MONEY_BILL] = "仅限捐赠者"
 
 	if(ckeywhitelist)
-		displayed_text[FA_ICON_LOCK] = "Player Whitelist: [ckeywhitelist.Join(", ")]"
+		displayed_text[FA_ICON_LOCK] = "玩家白名单：[ckeywhitelist.Join(", ")]"
 
 	if(restricted_roles || blacklisted_roles)
 		var/list/tooltip_text = list()
 		if(restricted_roles)
-			tooltip_text += "Job Whitelist: [restricted_roles.Join(", ")]"
+			tooltip_text += "职业白名单：[restricted_roles.Join(", ")]"
 		if(blacklisted_roles)
-			tooltip_text += "Job Blacklist: [blacklisted_roles.Join(", ")]"
+			tooltip_text += "职业黑名单：[blacklisted_roles.Join(", ")]"
 		displayed_text[FA_ICON_TOOLBOX] = tooltip_text.Join("\n")
 
 	if(restricted_species)
-		displayed_text[FA_ICON_DNA] = "Species Whitelist: [restricted_species.Join(", ")]"
+		displayed_text[FA_ICON_DNA] = "种族白名单：[restricted_species.Join(", ")]"
 	// SKYRAT EDIT ADDITION
 	return displayed_text
 
@@ -549,36 +549,36 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 
 	if((loadout_flags & LOADOUT_FLAG_GREYSCALING_ALLOWED) && !(loadout_flags & LOADOUT_FLAG_JOB_GREYSCALING))
 		UNTYPED_LIST_ADD(button_list, list(
-			"label" = "Recolor",
+			"label" = "重新着色",
 			"act_key" = "select_color",
 			"button_icon" = FA_ICON_PALETTE,
 			"active_key" = INFO_GREYSCALE,
 		))
 	else
 		UNTYPED_LIST_ADD(button_list, list(
-			"label" = "Repaint",
+			"label" = "喷漆",
 			"act_key" = "select_color_simple",
 			"button_icon" = FA_ICON_PALETTE,
 			"active_key" = INFO_CUSTOM_COLOR,
 		))
 		UNTYPED_LIST_ADD(button_list, list(
-			"label" = "Repainting mode",
+			"label" = "喷漆模式",
 			"act_key" = "set_color_mode",
 			"active_key" = INFO_COLOR_MODE,
-			"active_text" = "Override Color",
-			"inactive_text" = "Multiply Color",
+			"active_text" = "覆盖颜色",
+			"inactive_text" = "颜色相乘",
 		))
 
 	if(loadout_flags & LOADOUT_FLAG_ALLOW_NAMING)
 		UNTYPED_LIST_ADD(button_list, list(
-			"label" = "Rename",
+			"label" = "重命名",
 			"act_key" = "set_name",
 			"button_icon" = FA_ICON_PEN,
 			"active_key" = INFO_NAMED,
 		))
 		// SKYRAT EDIT BEGIN - Descriptions
 		UNTYPED_LIST_ADD(button_list, list(
-			"label" = "Change description",
+			"label" = "修改描述",
 			"act_key" = "set_desc",
 			"button_icon" = FA_ICON_PEN,
 			"active_key" = INFO_NAMED,

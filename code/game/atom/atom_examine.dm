@@ -2,7 +2,7 @@
 	/// If non-null, overrides a/an/some in all cases
 	var/article
 	/// Text that appears preceding the name in [/atom/proc/examine_title]
-	var/examine_thats = "That's"
+	var/examine_thats = "这是"
 
 /**
  * Called when a mob examines this atom: [/mob/verb/examinate]
@@ -24,12 +24,12 @@
 	if (length(tags_list))
 		var/tag_string = list()
 		for (var/atom_tag in tags_list)
-			tag_string += (isnull(tags_list[atom_tag]) ? atom_tag : span_tooltip(tags_list[atom_tag], atom_tag))
+			tag_string += (isnull(tags_list[atom_tag]) ? chinese_atom_tag_display(atom_tag) : span_tooltip(tags_list[atom_tag], chinese_atom_tag_display(atom_tag)))
 		// some regex to ensure that we don't add another "and" if the final element's main text (not tooltip) has one
-		tag_string = english_list(tag_string, and_text = (findtext(tag_string[length(tag_string)], regex(@">.*?and .*?<"))) ? " " : " and ")
-		. += "[p_They()] [p_are()] a [tag_string] [examine_descriptor(user)][post_desc_string]."
+		tag_string = english_list(tag_string, and_text = (findtext(tag_string[length(tag_string)], regex(@">.*?and .*?<"))) ? " " : "和")
+		. += "这是一件[tag_string]的[chinese_atom_tag_display(examine_descriptor(user))][post_desc_string]。"
 	else if(post_desc_string)
-		. += "[p_They()] [p_are()] a [examine_descriptor(user)][post_desc_string]."
+		. += "这是一件[chinese_atom_tag_display(examine_descriptor(user))][post_desc_string]。"
 
 	if(reagents)
 		var/user_sees_reagents = user.can_see_reagents()
@@ -37,20 +37,20 @@
 		if(!(reagent_sigreturn & STOP_GENERIC_REAGENT_EXAMINE))
 			if(reagents.flags & TRANSPARENT)
 				if(reagents.total_volume)
-					. += "It contains <b>[reagents.total_volume]</b> units of various reagents[user_sees_reagents ? ":" : "."]"
+					. += "其中装有<b>[reagents.total_volume]</b>单位的各类试剂[user_sees_reagents ? "：" : "。"]"
 					if(user_sees_reagents || (reagent_sigreturn & ALLOW_GENERIC_REAGENT_EXAMINE)) //Show each individual reagent for detailed examination
 						for(var/datum/reagent/current_reagent as anything in reagents.reagent_list)
-							. += "&bull; [round(current_reagent.volume, CHEMICAL_VOLUME_ROUNDING)] units of [current_reagent.name]"
+							. += "&bull; [round(current_reagent.volume, CHEMICAL_VOLUME_ROUNDING)]单位[current_reagent.name]"
 						if(reagents.is_reacting)
-							. += span_warning("It is currently reacting!")
-						. += span_notice("The solution's pH is [round(reagents.ph, 0.01)] and has a temperature of [reagents.chem_temp]K.")
+							. += span_warning("其中正在发生反应！")
+						. += span_notice("溶液的 pH 值为[round(reagents.ph, 0.01)]，温度为[reagents.chem_temp] K。")
 				else
-					. += "It contains:<br>Nothing."
+					. += "其中装有：<br>无。"
 			else if(reagents.flags & AMOUNT_VISIBLE)
 				if(reagents.total_volume)
-					. += span_notice("It has [reagents.total_volume] unit\s left.")
+					. += span_notice("其中还剩[reagents.total_volume]单位。")
 				else
-					. += span_danger("It's empty.")
+					. += span_danger("它是空的。")
 
 		if(HAS_TRAIT(user, TRAIT_KEEN_NOSE))
 			var/sniff_text = get_sniff_examine(user)
@@ -70,10 +70,10 @@
 	if(!sniffer.get_bodypart(BODY_ZONE_HEAD)) // Need a nose to smell
 		return
 	if(sniffer.is_mouth_covered())
-		return span_warning("You can't get a whiff of [src] with your face covered.")
+		return span_warning("脸被遮住时，你无法闻到[src]的气味。")
 
 	var/smell_message = generate_reagents_taste_message(reagents.reagent_list, sniffer, 10)
-	return span_notice("You catch a whiff of [src]. It smells like [smell_message].")
+	return span_notice("你闻了闻[src]，气味像[smell_message]。")
 
 /**
  * A list of "tags" displayed after atom's description in examine.
@@ -98,34 +98,34 @@
 /atom/proc/examine_tags(mob/user)
 	. = list()
 	if(abstract_type == type)
-		.[span_hypnophrase("abstract")] = "This is an abstract concept, you should report this to a strange entity called GITHUB!"
+		.[span_hypnophrase("abstract")] = "这是一个抽象概念，你应该向名叫 GITHUB 的神秘存在报告此事！"
 
 	if(resistance_flags & INDESTRUCTIBLE)
-		.["indestructible"] = "It is extremely robust! It'll probably withstand anything that could happen to it!"
+		.["indestructible"] = "它极其坚固！大概能承受任何打击！"
 	else
 		if(resistance_flags & LAVA_PROOF)
-			.["lava-proof"] = "It is made of an extremely heat-resistant material, it'd probably be able to withstand lava!"
+			.["lava-proof"] = "它由极其耐热的材料制成，大概能抵御熔岩！"
 		if(resistance_flags & (ACID_PROOF | UNACIDABLE))
-			.["acid-proof"] = "It looks pretty robust! It'd probably be able to withstand acid!"
+			.["acid-proof"] = "它看起来相当坚固！大概能抵御酸液！"
 		if(resistance_flags & FREEZE_PROOF)
-			.["freeze-proof"] = "It is made of cold-resistant materials."
+			.["freeze-proof"] = "它由耐寒材料制成。"
 		if(resistance_flags & FIRE_PROOF)
-			.["fire-proof"] = "It is made of fire-retardant materials."
+			.["fire-proof"] = "它由阻燃材料制成。"
 		if(resistance_flags & SHUTTLE_CRUSH_PROOF)
-			.["crush-proof"] = "It is extremely solid. It should be able to withstand being run over by a shuttle!"
+			.["crush-proof"] = "它极其结实，应该能承受穿梭机的碾压！"
 		if(resistance_flags & BOMB_PROOF)
-			.["bomb-proof"] = "It looks like it could survive an explosion!"
+			.["bomb-proof"] = "它看起来能经受住爆炸！"
 		if(resistance_flags & FLAMMABLE)
-			.["flammable"] = "It looks like it could easily catch on fire."
+			.["flammable"] = "它看起来很容易着火。"
 
 	if(flags_1 & HOLOGRAM_1)
-		.["holographic"] = "It looks like a hologram."
+		.["holographic"] = "它看起来是个全息影像。"
 
 	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE_TAGS, user, .)
 
 /// What this atom should be called in examine tags
 /atom/proc/examine_descriptor(mob/user)
-	return "object"
+	return "物体"
 
 /// Returns a list of strings to be displayed after the descriptor
 /atom/proc/examine_post_descriptor(mob/user)
@@ -135,8 +135,8 @@
 	var/mats_list = list()
 	for(var/custom_material in custom_materials)
 		var/datum/material/current_material = SSmaterials.get_material(custom_material)
-		mats_list += span_tooltip("It is made out of [current_material.name].", current_material.name)
-	. += "made of [english_list(mats_list)]"
+		mats_list += span_tooltip("它由[chinese_material_display(current_material.name)]制成。", chinese_material_display(current_material.name))
+	. += "，由[english_list(mats_list)]制成"
 
 /**
  * Called when a mob examines (shift click or verb) this atom twice (or more) within EXAMINE_MORE_WINDOW (default 1 second)
@@ -170,7 +170,7 @@
 				material_string += span_tooltip("[property]: [tooltip_hint]", descriptor)
 
 		if (length(material_string))
-			. += span_info("[capitalize(material.name)] is [english_list(material_string)].")
+			. += span_info("[chinese_material_display(material.name)]具有以下特性：[english_list(material_string)]。")
 
 /**
  * Get the name of this object for examine

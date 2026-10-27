@@ -5,8 +5,8 @@
 */
 
 /obj/item/fancy_pillow
-	name = "pillow"
-	desc = "A big, soft pillow."
+	name = "枕头"
+	desc = "一个又大又软的枕头。"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
 	lefthand_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_left.dmi'
 	righthand_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_right.dmi'
@@ -36,7 +36,7 @@
 
 /obj/item/fancy_pillow/click_alt(mob/user)
 	if(!color_changed)
-		var/choice = show_radial_menu(user, src, pillow_colors, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
+		var/choice = chinese_skyrat_item_radial(user, src, pillow_colors, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 		if(!choice)
 			return CLICK_ACTION_BLOCKING
 		current_color = choice
@@ -47,7 +47,7 @@
 	else
 		if(form_changed)
 			return CLICK_ACTION_BLOCKING
-		var/choice = show_radial_menu(user, src, pillow_forms, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
+		var/choice = chinese_skyrat_item_radial(user, src, pillow_forms, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 		if(!choice)
 			return CLICK_ACTION_BLOCKING
 		current_form = choice
@@ -91,7 +91,7 @@
 //feathers effect on hit
 
 /obj/effect/temp_visual/feathers
-	name = "feathers"
+	name = "羽毛"
 	icon_state = "feathers"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_decals/lewd_decals.dmi'
 	duration = 14
@@ -113,7 +113,7 @@
 
 		if(BODY_ZONE_HEAD)
 			var/message = ""
-			message = (user == affected_mob) ? pick("hits [affected_mob.p_them()]self with [src]", "hits [affected_mob.p_their()] head with [src]") : pick("hits [affected_mob] with [src]", "hits [affected_mob] over the head with [src]! Luckily, [src] is soft.")
+			message = (user == affected_mob) ? pick("用[src]拍打自己", "用[src]拍打自己的头") : pick("用[src]拍打[affected_mob]", "用[src]拍打[affected_mob]的头！幸好[src]很柔软")
 			if(prob(30))
 				affected_mob.emote(pick("laugh", "giggle"))
 			user.visible_message(span_notice("[user] [message]!"))
@@ -121,7 +121,7 @@
 
 		if(BODY_ZONE_CHEST)
 			var/message = ""
-			message = (user == affected_mob) ? pick("has a solo pillow fight, hitting [affected_mob.p_them()]self with [src]", "hits [affected_mob.p_them()]self with [src]") : pick("hits [affected_mob] in the chest with [src]", "playfully hits [affected_mob]'s chest with [src]")
+			message = (user == affected_mob) ? pick("独自玩起枕头大战，用[src]拍打自己", "用[src]拍打自己") : pick("用[src]拍打[affected_mob]的胸口", "嬉闹着用[src]拍打[affected_mob]的胸口")
 			if(prob(30))
 				affected_mob.emote(pick("laugh", "giggle"))
 			user.visible_message(span_notice("[user] [message]!"))
@@ -129,7 +129,7 @@
 
 		else
 			var/message = ""
-			message = (user == affected_mob) ? pick("hits [affected_mob.p_them()]self with [src]", "playfully hits [affected_mob.p_them()]self with a [src]", "grabs [src], hitting [affected_mob.p_them()]self with it") : pick("hits [affected_mob] with [src]", "playfully hits [affected_mob] with [src].", "hits [affected_mob] with [src]. Looks like fun")
+			message = (user == affected_mob) ? pick("用[src]拍打自己", "嬉闹着用[src]拍打自己", "抓起[src]拍打自己") : pick("用[src]拍打[affected_mob]", "嬉闹着用[src]拍打[affected_mob]", "用[src]拍打[affected_mob]，看起来很好玩")
 			if(prob(30))
 				affected_mob.emote(pick("laugh", "giggle"))
 			user.visible_message(span_notice("[user] [message]!"))
@@ -139,7 +139,7 @@
 
 /obj/item/fancy_pillow/attack_self(mob/user)
 	if(IN_INVENTORY)
-		to_chat(user, span_notice("You set [src] down on the floor."))
+		to_chat(user, span_notice("你把[src]放在地板上。"))
 		var/obj/structure/bed/pillow_tiny/pillow_pile = new(get_turf(src))
 		pillow_pile.current_color = current_color
 		pillow_pile.current_form = current_form
@@ -155,8 +155,8 @@
 */
 
 /obj/structure/bed/pillow_tiny
-	name = "pillow"
-	desc = "A tiny pillow, for tiny heads."
+	name = "枕头"
+	desc = "小脑袋专用的小枕头。"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/pillows.dmi'
 	icon_state = "pillow_pink_round"
 	base_icon_state = "pillow"
@@ -180,7 +180,7 @@
 //picking up the pillow
 
 /obj/structure/bed/pillow_tiny/click_alt(mob/user)
-	to_chat(user, span_notice("You pick up [src]."))
+	to_chat(user, span_notice("你拿起了[src]。"))
 	var/obj/item/fancy_pillow/taken_pillow = new()
 	user.put_in_hands(taken_pillow)
 
@@ -214,7 +214,7 @@
 		var/obj/item/fancy_pillow/used_pillow = used_item
 		var/obj/structure/chair/pillow_small/pillow_pile
 		if(used_pillow.current_color == current_color)
-			to_chat(user, span_notice("You add [src] to a pile."))
+			to_chat(user, span_notice("你把[src]叠成了一堆。"))
 			pillow_pile = new(get_turf(src))
 			pillow_pile.current_color = current_color
 			pillow_pile.pillow2_color = used_pillow.current_color
@@ -232,7 +232,7 @@
 			qdel(src)
 			qdel(used_pillow)
 		else
-			to_chat(user, span_notice("You feel that those colours would clash...")) //Too lazy to add multicolor pillow pile sprites.
+			to_chat(user, span_notice("你觉得这些颜色不太搭……")) //Too lazy to add multicolor pillow pile sprites.
 			return
 	else
 		return ..()
@@ -242,8 +242,8 @@
 */
 
 /obj/structure/chair/pillow_small
-	name = "small pillow pile"
-	desc = "A small pile of pillows. A comfortable seat, especially for taurs or nagas."
+	name = "小枕头堆"
+	desc = "一小堆枕头。坐起来很舒服，尤其适合半人兽或娜迦。"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/pillows.dmi'
 	icon_state = "pillowpile_small_pink"
 	base_icon_state = "pillowpile_small"
@@ -288,7 +288,7 @@
 
 //Removing pillow from a pile
 /obj/structure/chair/pillow_small/click_alt(mob/user)
-	to_chat(user, span_notice("You take [src] from the pile."))
+	to_chat(user, span_notice("你从枕头堆中拿出了一个枕头。"))
 	var/obj/item/fancy_pillow/taken_pillow = new()
 	var/obj/structure/bed/pillow_tiny/pillow_pile = new(get_turf(src))
 	user.put_in_hands(taken_pillow)
@@ -317,7 +317,7 @@
 		var/obj/item/fancy_pillow/used_pillow = used_item
 		var/obj/structure/bed/pillow_large/pillow_pile
 		if(used_pillow.current_color == current_color)
-			to_chat(user, span_notice("You add [src] to the pile."))
+			to_chat(user, span_notice("你把[src]叠进枕头堆。"))
 			pillow_pile = new(get_turf(src))
 			pillow_pile.current_color = current_color
 			pillow_pile.pillow3_color = used_pillow.current_color
@@ -339,7 +339,7 @@
 			qdel(src)
 			qdel(used_pillow)
 		else
-			to_chat(user, span_notice("You feel that those colours would clash...")) //Too lazy to add multicolor pillow pile sprites.
+			to_chat(user, span_notice("你觉得这些颜色不太搭……")) //Too lazy to add multicolor pillow pile sprites.
 			return
 	else
 		return ..()
@@ -353,8 +353,8 @@
 */
 
 /obj/structure/bed/pillow_large
-	name = "large pillow pile"
-	desc = "A large pile of pillows. Jump on it!"
+	name = "大枕头堆"
+	desc = "一大堆枕头。跳上去吧！"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/pillows.dmi'
 	icon_state = "pillowpile_large_pink"
 	base_icon_state = "pillowpile_large"
@@ -408,7 +408,7 @@
 
 //Removing pillow from a pile
 /obj/structure/bed/pillow_large/click_alt(mob/user)
-	to_chat(user, span_notice("You take [src] from the pile."))
+	to_chat(user, span_notice("你从枕头堆中拿出了一个枕头。"))
 	var/obj/item/fancy_pillow/taken_pillow = new()
 	var/obj/structure/chair/pillow_small/pillow_pile = new(get_turf(src))
 	user.put_in_hands(taken_pillow)

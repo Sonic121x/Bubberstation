@@ -9,8 +9,8 @@
  * Makes them drop everything if someone witnesses the act.
  */
 /datum/action/cooldown/bloodsucker/gohome
-	name = "Vanishing Act"
-	desc = "As dawn aproaches, disperse into mist and return directly to your Haven.<br><b>WARNING:</b> You will drop <b>ALL</b> of your possessions if observed by mortals."
+	name = "消失戏法"
+	desc = "黎明将至时，化作迷雾直接返回避难所。<br><b>警告：</b>若被凡人看见，你会丢下<b>全部</b>随身物品。"
 	button_icon_state = "power_gohome"
 	active_background_icon_state = "vamp_power_off_oneshot"
 	base_background_icon_state = "vamp_power_off_oneshot"
@@ -33,11 +33,11 @@
 
 /datum/action/cooldown/bloodsucker/gohome/get_power_explanation_extended()
 	. = list()
-	. += "Vanishing Act will, after a short delay, teleport the user to their Claimed Coffin."
-	. += "The user will drop all belongings if seen by a mortal."
-	. += "The power will cancel out if the Claimed Coffin is somehow destroyed."
-	. += "Immediately after activating, lights around the user will begin to flicker."
-	. += "Once the user teleports to their coffin, in their place will be a Rat or Bat."
+	. += "消失戏法会在短暂延迟后，将使用者传送至其认领的棺材。"
+	. += "若被凡人看见，使用者会丢下全部物品。"
+	. += "若认领的棺材被摧毁，能力将被取消。"
+	. += "启用后，使用者周围的灯光会立刻开始闪烁。"
+	. += "使用者传送回棺材后，原地会留下一只老鼠或蝙蝠。"
 
 /datum/action/cooldown/bloodsucker/gohome/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
@@ -45,17 +45,17 @@
 		return FALSE
 	/// Have No Haven (NOTE: You only got this power if you had a haven, so this means it's destroyed)
 	if(!istype(bloodsuckerdatum_power) || !bloodsuckerdatum_power.coffin)
-		owner.balloon_alert(owner, "coffin was destroyed!")
+		owner.balloon_alert(owner, "棺材已被摧毁！")
 		return FALSE
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/gohome/ActivatePower(atom/target)
-	owner.balloon_alert(owner, "preparing to teleport...")
+	owner.balloon_alert(owner, "正在准备传送……")
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/gohome/DeactivatePower(deactivate_flags)
 	if(active && teleporting_stage != GOHOME_TELEPORT)
-		owner.balloon_alert(owner, "teleportation cancelled.")
+		owner.balloon_alert(owner, "传送已取消")
 		teleporting_stage = GOHOME_START
 		return . = ..(DEACTIVATE_POWER_DO_NOT_REMOVE)
 	. = ..()
@@ -83,8 +83,8 @@
 	if(!isturf(owner.loc))
 		return FALSE
 	if(!bloodsuckerdatum_power.coffin)
-		user.balloon_alert(user, "coffin destroyed!")
-		to_chat(owner, span_warning("Your coffin has been destroyed! You no longer have a destination."))
+		user.balloon_alert(user, "棺材已被摧毁！")
+		to_chat(owner, span_warning("你的棺材已被摧毁！你已无处可归。"))
 		return FALSE
 	return TRUE
 

@@ -13,8 +13,8 @@
 //Console
 
 /obj/machinery/abductor/console
-	name = "abductor console"
-	desc = "Ship command center."
+	name = "绑架者控制台"
+	desc = "飞船指挥中心。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "console"
 	density = TRUE
@@ -67,7 +67,7 @@
 	if(.)
 		return
 	if(!HAS_MIND_TRAIT(user, TRAIT_ABDUCTOR_TRAINING))
-		to_chat(user, span_warning("You start mashing alien buttons at random!"))
+		to_chat(user, span_warning("你开始胡乱猛按外星按钮！"))
 		if(do_after(user,100, target = src))
 			TeleporterSend()
 
@@ -200,12 +200,12 @@
 
 /obj/machinery/abductor/console/proc/SetDroppoint(turf/open/location,user)
 	if(!istype(location))
-		to_chat(user, span_warning("That place is not safe for the specimen."))
+		to_chat(user, span_warning("那个地方对样本来说不安全。"))
 		return
 
 	if(pad)
 		pad.teleport_target = location
-		to_chat(user, span_notice("Location marked as test subject release point."))
+		to_chat(user, span_notice("该地点已标记为测试对象释放点。"))
 
 /obj/machinery/abductor/console/post_machine_initialize()
 	. = ..()
@@ -230,7 +230,7 @@
 
 /obj/machinery/abductor/console/proc/AddSnapshot(mob/living/carbon/human/target)
 	if(target.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
-		say("Unable to get a proper scan of subject! Something is shielding [target]'s mind!")
+		say("无法对目标进行有效扫描！有东西在遮蔽[target]的心智！")
 		return
 	var/datum/icon_snapshot/entry = new
 	entry.name = target.name
@@ -268,11 +268,11 @@
 
 /obj/machinery/abductor/console/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/abductor/gizmo) && AddGizmo(tool))
-		to_chat(user, span_notice("You link the tool to the console."))
+		to_chat(user, span_notice("你把工具连接到了控制台。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/clothing/suit/armor/abductor/vest) && AddVest(tool))
-		to_chat(user, span_notice("You link the vest to the console."))
+		to_chat(user, span_notice("你把背心连接到了控制台。"))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -280,7 +280,7 @@
 /obj/machinery/abductor/console/proc/Dispense(items_list, cost=1)
 	if(experiment && experiment.credits >= cost)
 		experiment.credits -=cost
-		say("Incoming supply!")
+		say("补给即将送达！")
 		var/drop_location = loc
 		if(pad)
 			flick("alien-pad", pad)
@@ -289,4 +289,4 @@
 			for(var/i in 1 to items_list[each_item])
 				new each_item(drop_location)
 	else
-		say("Insufficent data!")
+		say("数据不足！")

@@ -71,18 +71,18 @@
 /datum/map_generator/repair
 	modules = list(/datum/map_generator_module/bottom_layer/repair_floor_plasteel,
 	/datum/map_generator_module/bottom_layer/repressurize)
-	buildmode_name = "Repair: Floor"
+	buildmode_name = "修复：地面"
 
 /datum/map_generator/repair/delete_walls
 	modules = list(/datum/map_generator_module/bottom_layer/repair_floor_plasteel/flatten,
 	/datum/map_generator_module/bottom_layer/repressurize)
-	buildmode_name = "Repair: Floor: Flatten Walls"
+	buildmode_name = "修复：地面：压平墙壁"
 
 /datum/map_generator/repair/enclose_room
 	modules = list(/datum/map_generator_module/bottom_layer/repair_floor_plasteel/flatten,
 	/datum/map_generator_module/border/normal_walls,
 	/datum/map_generator_module/bottom_layer/repressurize)
-	buildmode_name = "Repair: Generate Aired Room"
+	buildmode_name = "修复：生成通风房间"
 
 /datum/map_generator/repair/reload_station_map
 	modules = list(/datum/map_generator_module/bottom_layer/massdelete/no_delete_mobs)
@@ -93,15 +93,15 @@
 	var/z = 0
 	var/cleanload = FALSE
 	var/datum/map_generator_module/reload_station_map/loader
-	buildmode_name = "Repair: Reload Block \[DO NOT USE\]"
+	buildmode_name = "修复：重载区块 \[请勿使用\]"
 
 /datum/map_generator/repair/reload_station_map/clean
-	buildmode_name = "Repair: Reload Block - Mass Delete"
+	buildmode_name = "修复：重载区块——批量删除"
 	cleanload = TRUE
 
 /datum/map_generator/repair/reload_station_map/clean/in_place
 	modules = list(/datum/map_generator_module/bottom_layer/massdelete/regeneration_delete)
-	buildmode_name = "Repair: Reload Block - Mass Delete - In Place"
+	buildmode_name = "修复：重载区块——批量删除——原地进行"
 
 /datum/map_generator/repair/reload_station_map/defineRegion(turf/start, turf/end)
 	. = ..()

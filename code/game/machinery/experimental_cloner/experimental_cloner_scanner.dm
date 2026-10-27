@@ -1,7 +1,7 @@
 /// Machine that you put someone in to scan them for the experimental cloner
 /obj/machinery/experimental_cloner_scanner
-	name = "experimental cloning scanner"
-	desc = "An old prototype DNA scanner, compatible with an experimental cloning setup."
+	name = "实验性克隆扫描仪"
+	desc = "老式原型 DNA 扫描仪，可与实验性克隆设备配套使用。"
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "scanner"
 	base_icon_state = "scanner"
@@ -107,26 +107,26 @@
 
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
-		span_notice("You lean on the back of [src] and start pushing the door open..."), \
-		span_hear("You hear a metallic creaking from [src]."))
+	user.visible_message(span_notice("你看见[user]正踢打[src]的舱门！"), \
+		span_notice("你背靠[src]的后壁，开始用力推门……"), \
+		span_hear("你听见[src]发出金属吱嘎声。"))
 
-	balloon_alert(user, "breaking out...")
+	balloon_alert(user, "正在挣脱……")
 	if (!do_after(user,(breakout_time), target = src))
 		return
 	if (!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src || state_open || !locked)
 		return
 
 	locked = FALSE
-	user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
-		span_notice("You successfully break out of [src]!"))
+	user.visible_message(span_warning("[user]成功挣脱了[src]！"), \
+		span_notice("你成功挣脱了[src]！"))
 	open_machine()
 
 /obj/machinery/experimental_cloner_scanner/relaymove(mob/living/user, direction)
 	if (IS_UNCONSCIOUS_OR_CRIT(user) || locked)
 		if (COOLDOWN_FINISHED(src, message_cooldown))
 			COOLDOWN_START(src, message_cooldown, breakout_time)
-			balloon_alert(user, "door locked!")
+			balloon_alert(user, "舱门已锁定！")
 			container_resist_act(user)
 		return
 	open_machine()
@@ -146,7 +146,7 @@
 		return
 
 	if (locked)
-		balloon_alert(user, "it's locked!")
+		balloon_alert(user, "已锁定！")
 		return
 
 	open_machine()
@@ -157,14 +157,14 @@
 
 	if (!tool.tool_start_check(user, amount = 5))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You start slicing \the [src] apart."))
+	to_chat(user, span_notice("你开始切开[src]。"))
 	if(!tool.use_tool(src, user, 6 SECONDS, amount = 5, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 	deconstruct(disassembled = TRUE)
-	to_chat(user, span_notice("You slice \the [src] apart."))
+	to_chat(user, span_notice("你切开了[src]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/experimental_cloner_scanner/multitool_act(mob/living/user, obj/item/multitool/tool)
 	tool.set_buffer(src)
-	balloon_alert(user, "frequency stored")
+	balloon_alert(user, "频率已保存")
 	return ITEM_INTERACT_SUCCESS

@@ -1,41 +1,41 @@
 
 /*Cabin areas*/
 /area/awaymission/cabin
-	name = "Cabin"
+	name = "木屋"
 	icon_state = "away2"
 	requires_power = TRUE
 	static_lighting = TRUE
 
 /area/awaymission/cabin/snowforest
-	name = "Snow Forest"
+	name = "雪林"
 	icon_state = "away"
 
 /area/awaymission/cabin/snowforest/sovietsurface
-	name = "Snow Forest"
+	name = "雪林"
 	icon_state = "awaycontent29"
 	requires_power = FALSE
 
 /area/awaymission/cabin/lumbermill
-	name = "Lumbermill"
+	name = "锯木厂"
 	icon_state = "away3"
 	requires_power = FALSE
 
 /area/awaymission/cabin/caves/sovietcave
-	name = "Soviet Bunker"
+	name = "苏联地堡"
 	icon_state = "awaycontent4"
 
 /area/awaymission/cabin/caves
-	name = "North Snowdin Caves"
+	name = "北雪镇洞穴"
 	icon_state = "awaycontent15"
 	static_lighting = TRUE
 
 /area/awaymission/cabin/caves/mountain
-	name = "North Snowdin Mountains"
+	name = "北雪镇山脉"
 	icon_state = "awaycontent24"
 
 /obj/structure/firepit
-	name = "firepit"
-	desc = "Warm and toasty."
+	name = "火坑"
+	desc = "温暖舒适。"
 	icon = 'icons/obj/fluff/fireplace.dmi'
 	icon_state = "firepit-active"
 	density = FALSE
@@ -89,8 +89,8 @@
 //other Cabin Stuff//
 
 /obj/machinery/recycler/lumbermill
-	name = "lumbermill saw"
-	desc = "Faster then the cartoons!"
+	name = "锯木厂锯片"
+	desc = "比动画片里还快！"
 	obj_flags = CAN_BE_HIT | EMAGGED
 	item_recycle_sound = 'sound/items/weapons/chainsawhit.ogg'
 
@@ -103,8 +103,8 @@
 		new L.plank_type(src.loc, 1 + round(potency / 25))
 
 /obj/structure/ladder/unbreakable/rune
-	name = "\improper Teleportation Rune"
-	desc = "Could lead anywhere."
+	name = "\improper 传送符文"
+	desc = "可能通往任何地方。"
 	icon = 'icons/obj/antags/cult/rune.dmi'
 	icon_state = "1"
 	color = rgb(0,0,255)
@@ -115,17 +115,17 @@
 
 /obj/structure/ladder/unbreakable/rune/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(up)
-		context[SCREENTIP_CONTEXT_LMB] = "Warp up"
+		context[SCREENTIP_CONTEXT_LMB] = "向上传送"
 	if(down)
-		context[SCREENTIP_CONTEXT_RMB] = "Warp down"
+		context[SCREENTIP_CONTEXT_RMB] = "向下传送"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/ladder/unbreakable/rune/show_initial_fluff_message(mob/user, going_up)
-	user.balloon_alert_to_viewers("activating...")
+	user.balloon_alert_to_viewers("启动中……")
 
 /obj/structure/ladder/unbreakable/rune/show_final_fluff_message(mob/user, going_up)
-	visible_message(span_notice("[user] activates [src] and teleports away."))
-	user.balloon_alert_to_viewers("warped in")
+	visible_message(span_notice("[user] 激活了 [src] 并传送离开了。"))
+	user.balloon_alert_to_viewers("已传送抵达")
 
 /obj/structure/ladder/unbreakable/rune/use(mob/user, going_up = TRUE)
 	if(!IS_WIZARD(user))

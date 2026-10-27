@@ -1,8 +1,8 @@
 // A mob which only moves when it isn't being watched by living beings.
 
 /mob/living/basic/statue
-	name = "statue" // matches the name of the statue with the flesh-to-stone spell
-	desc = "An incredibly lifelike marble carving. Its eyes seem to follow you..." // same as an ordinary statue with the added "eye following you" description
+	name = "雕像" // matches the name of the statue with the flesh-to-stone spell
+	desc = "一尊栩栩如生的大理石雕像。它的眼睛似乎在跟着你转……" // same as an ordinary statue with the added "eye following you" description
 	icon = 'icons/obj/art/statue.dmi'
 	icon_state = "human_male"
 	icon_living = "human_male"
@@ -12,10 +12,10 @@
 	mob_biotypes = MOB_HUMANOID|MOB_MINERAL
 	gold_core_spawnable = NO_SPAWN
 
-	response_help_continuous = "touches"
-	response_help_simple = "touch"
-	response_disarm_continuous = "pushes"
-	response_disarm_simple = "push"
+	response_help_continuous = "触摸"
+	response_help_simple = "触摸"
+	response_disarm_continuous = "推搡"
+	response_disarm_simple = "推搡"
 
 	speed = -1
 	maxHealth = 50000
@@ -23,16 +23,16 @@
 	obj_damage = 100
 	melee_damage_lower = 68
 	melee_damage_upper = 83
-	attack_verb_continuous = "claws"
-	attack_verb_simple = "claw"
+	attack_verb_continuous = "抓挠"
+	attack_verb_simple = "抓挠"
 	attack_sound = 'sound/effects/hallucinations/growl1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 	melee_attack_cooldown = 1 SECONDS
 
 	status_flags = CANPUSH
 	faction = list(FACTION_STATUE)
-	speak_emote = list("screams")
-	death_message = "falls apart into a fine dust."
+	speak_emote = list("尖叫")
+	death_message = "崩解成一堆细尘。"
 	unsuitable_atmos_damage = 0
 	unsuitable_cold_damage = 0
 	unsuitable_heat_damage = 0
@@ -83,8 +83,8 @@
 
 // Flicker lights
 /datum/action/cooldown/spell/aoe/flicker_lights
-	name = "Flicker Lights"
-	desc = "You will trigger a large amount of lights around you to flicker."
+	name = "灯光闪烁"
+	desc = "让周围大量灯光一齐闪烁。"
 	button_icon = 'icons/mob/actions/actions_AI.dmi'
 	button_icon_state = "blackout"
 	cooldown_time = 30 SECONDS
@@ -106,15 +106,15 @@
 
 //Blind AOE
 /datum/action/cooldown/spell/aoe/blindness
-	name = "Blindness"
-	desc = "Your prey will be momentarily blind for you to advance on them."
+	name = "致盲"
+	desc = "让你的猎物短暂失明，好让你趁机逼近。"
 	button_icon_state = "blind"
 	cooldown_time = 1 MINUTES
 	spell_requirements = NONE
 	aoe_radius = 14
 
 /datum/action/cooldown/spell/aoe/blindness/cast(atom/cast_on)
-	cast_on.visible_message(span_danger("[cast_on] glares their eyes."))
+	cast_on.visible_message(span_danger("[cast_on] 怒目而视。"))
 	return ..()
 
 /datum/action/cooldown/spell/aoe/blindness/get_things_to_cast_on(atom/center)
@@ -139,8 +139,8 @@
 	ai_movement = /datum/ai_movement/jps
 
 /mob/living/basic/statue/frosty
-	name = "Frosty"
-	desc = "Just a snowman. Just a snowman. Oh god, it's just a snowman."
+	name = "霜霜"
+	desc = "只是个雪人。只是个雪人。天啊，它只是个雪人。"
 	icon_dead = "snowman"
 	icon_living = "snowman"
 	icon_state = "snowman"

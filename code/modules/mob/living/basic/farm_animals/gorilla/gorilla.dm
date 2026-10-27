@@ -12,8 +12,8 @@ GLOBAL_LIST_INIT(strippable_gorilla_items, create_strippable_list(list(
  * They make a lot of noise and punch limbs off unconscious folks
  */
 /mob/living/basic/gorilla
-	name = "Gorilla"
-	desc = "A ground-dwelling, predominantly herbivorous ape which usually inhabits the forests of central Africa but today is quite far away from there."
+	name = "大猩猩"
+	desc = "一种地栖的、以草食为主的大型猿类，通常栖息在非洲中部的森林中，但如今已远离故土。"
 	icon = 'icons/mob/simple/gorilla.dmi'
 	icon_state = "crawling"
 	icon_living = "crawling"
@@ -23,20 +23,20 @@ GLOBAL_LIST_INIT(strippable_gorilla_items, create_strippable_list(list(
 	maxHealth = 220
 	health = 220
 	initial_language_holder = /datum/language_holder/monkey
-	response_help_continuous = "prods"
-	response_help_simple = "prod"
-	response_disarm_continuous = "challenges"
-	response_disarm_simple = "challenge"
-	response_harm_continuous = "thumps"
-	response_harm_simple = "thump"
+	response_help_continuous = "戳了戳"
+	response_help_simple = "戳了戳"
+	response_disarm_continuous = "挑衅"
+	response_disarm_simple = "挑衅"
+	response_harm_continuous = "捶"
+	response_harm_simple = "捶"
 	speed = -0.1
 	melee_attack_cooldown = CLICK_CD_MELEE
 	melee_damage_lower = 25
 	melee_damage_upper = 30
 	damage_coeff = list(BRUTE = 1, BURN = 1.5, TOX = 1.5, STAMINA = 1, OXY = 1.5)
 	obj_damage = 40
-	attack_verb_continuous = "pummels"
-	attack_verb_simple = "pummel"
+	attack_verb_continuous = "猛捶"
+	attack_verb_simple = "猛捶"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	unique_name = TRUE
 	ai_controller = /datum/ai_controller/basic_controller/gorilla
@@ -69,7 +69,7 @@ GLOBAL_LIST_INIT(strippable_gorilla_items, create_strippable_list(list(
 	AddComponent(
 		/datum/component/amputating_limbs, \
 		surgery_time = 0 SECONDS, \
-		surgery_verb = "punches",\
+		surgery_verb = "捶下",\
 	)
 	AddComponent(/datum/component/personal_crafting)
 	AddComponent(/datum/component/basic_inhands, y_offset = -1)
@@ -81,8 +81,8 @@ GLOBAL_LIST_INIT(strippable_gorilla_items, create_strippable_list(list(
 	. = ..()
 	if (!HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FITNESS))
 		return
-	. += span_notice("This animal appears to be in peak physical condition and yet it has probably never worked out a day in its life. \
-		The untapped potential is almost frightening.")
+	. += span_notice("这只动物看起来体格处于巅峰状态，可它这辈子大概一天都没锻炼过。 \
+		那未被开发的潜力几乎令人恐惧。")
 
 /mob/living/basic/gorilla/update_overlays()
 	. = ..()
@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(strippable_gorilla_items, create_strippable_list(list(
 	ooga_ooga()
 	if (prob(paralyze_chance))
 		target.Paralyze(2 SECONDS)
-		visible_message(span_danger("[src] knocks [target] down!"))
+		visible_message(span_danger("[src] 把 [target] 撞倒了！"))
 	else
 		target.throw_at(get_edge_target_turf(target, dir), range = rand(1, 2), speed = 7, thrower = src)
 
@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(strippable_gorilla_items, create_strippable_list(list(
 	return ..()
 
 /mob/living/basic/gorilla/can_use_guns(obj/item/gun)
-	to_chat(src, span_warning("Your meaty finger is much too large for the trigger guard!"))
+	to_chat(src, span_warning("你这粗壮的手指实在太大了，根本扣不进扳机护圈！"))
 	return FALSE
 
 /// Assert your dominance with audio cues
@@ -144,8 +144,8 @@ GLOBAL_LIST_INIT(strippable_gorilla_items, create_strippable_list(list(
 
 /// A smaller gorilla summoned via magic
 /mob/living/basic/gorilla/lesser
-	name = "lesser Gorilla"
-	desc = "An adolescent Gorilla. It may not be fully grown but, much like a banana, that just means it's sturdier and harder to chew!"
+	name = "小型大猩猩"
+	desc = "一只青春期的大猩猩。它也许尚未成年，但就像香蕉一样，这意味着它更结实、更难嚼！"
 	maxHealth = 120
 	health = 120
 	speed = 0.35
@@ -158,9 +158,9 @@ GLOBAL_LIST_INIT(strippable_gorilla_items, create_strippable_list(list(
 
 /// Cargo's wonderful mascot, the tranquil box-carrying ape
 /mob/living/basic/gorilla/cargorilla
-	name = "Cargorilla" // Overriden, normally
+	name = "货运大猩猩" // Overriden, normally
 	icon = 'icons/mob/simple/cargorillia.dmi'
-	desc = "Cargo's pet gorilla. They seem to have an 'I love Mom' tattoo."
+	desc = "货运部的宠物大猩猩。它身上似乎还纹着“我爱妈妈”的纹身。"
 	maxHealth = 200
 	health = 200
 	faction = list(FACTION_NEUTRAL, FACTION_MONKEY, FACTION_JUNGLE)
@@ -174,8 +174,8 @@ GLOBAL_LIST_INIT(strippable_gorilla_items, create_strippable_list(list(
 
 /// big fucking gorilla version of pun pun. be afraid.
 /mob/living/basic/gorilla/bar
-	name = "Pun Pun" //C A N O N, allegedly
-	desc = "The bar's monkey. Something has gone horribly right."
+	name = "潘潘" //C A N O N, allegedly
+	desc = "酒吧的猴子。有件事发展得可怕地顺利。"
 	icon = 'icons/mob/simple/bargorilla.dmi'
 	faction = list(FACTION_NEUTRAL, FACTION_MONKEY, FACTION_JUNGLE)
 	unique_name = FALSE
@@ -211,10 +211,10 @@ GLOBAL_LIST_INIT(strippable_gorilla_items, create_strippable_list(list(
 
 /// A version of the gorilla achieved by reaching enough genetic damage as a monkey
 /mob/living/basic/gorilla/genetics
-	name = "Lab Gorilla"
+	name = "实验大猩猩"
 	maxHealth = 180
 	health = 180
-	desc = "A gorilla created via \"advanced genetic science\". While not quite as strong as their wildborne brethren, this simian still packs a punch."
+	desc = "一只经由“先进基因科学”创造的大猩猩。虽然不如野生同类那般强壮，这只猿类依然相当能打。"
 	melee_damage_lower = 15
 	melee_damage_upper = 18
 	obj_damage = 25
@@ -223,10 +223,10 @@ GLOBAL_LIST_INIT(strippable_gorilla_items, create_strippable_list(list(
 	initial_size = 0.9
 
 /mob/living/basic/gorilla/hostile
-	name = "Feral Gorilla"
+	name = "野生大猩猩"
 	maxHealth = 180
 	health = 180
-	desc = "A gorilla created via \"advanced genetic science\". While not quite as strong as their wildborne brethren, this simian still packs a punch."
+	desc = "一只经由“先进基因科学”创造的大猩猩。虽然不如野生同类那般强壮，这只猿类依然相当能打。"
 	melee_damage_lower = 15
 	melee_damage_upper = 18
 	obj_damage = 25

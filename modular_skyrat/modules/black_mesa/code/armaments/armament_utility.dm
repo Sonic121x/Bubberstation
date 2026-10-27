@@ -1,4 +1,4 @@
-#define ARMAMENT_CATEGORY_UTILITY "Utility"
+#define ARMAMENT_CATEGORY_UTILITY "实用装备"
 
 /datum/armament_entry/hecu/utility
 	category = ARMAMENT_CATEGORY_UTILITY
@@ -25,8 +25,8 @@
 	cost = 1
 
 /datum/armament_entry/hecu/utility/advanced_tools
-	name = "Powertoolbelt"
-	description = "Tool belt full of power-ful tools."
+	name = "动力工具腰带"
+	description = "一条装满动力工具的腰带，真是动力十足。"
 	item_type = /obj/item/storage/belt/utility/full/powertools
 	max_purchase = 1
 	cost = 4

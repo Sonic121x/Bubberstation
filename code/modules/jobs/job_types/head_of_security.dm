@@ -1,7 +1,7 @@
 /datum/job/head_of_security
 	title = JOB_HEAD_OF_SECURITY
-	description = "Coordinate security personnel, ensure they are not corrupt, \
-		make sure every department is protected."
+	description = "协调安保人员，确保他们不腐败，\
+		保证每个部门都受到保护。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY
 	head_announce = RADIO_CHANNEL_SECURITY
 	faction = FACTION_STATION
@@ -34,7 +34,7 @@
 	bounty_types = CIV_JOB_SEC
 
 	family_heirlooms = list(/obj/item/book/manual/wiki/security_space_law)
-	rpg_title = "Guard Leader"
+	rpg_title = "卫队长"
 	job_flags = STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS | JOB_ANTAG_PROTECTED
 
 	human_authority = JOB_AUTHORITY_HUMANS_ONLY
@@ -42,7 +42,7 @@
 	voice_of_god_power = 1.4 //Command staff has authority
 
 /datum/job/head_of_security/get_captaincy_announcement(mob/living/captain)
-	return "Due to staffing shortages, newly promoted Acting Captain [captain.real_name] on deck!"
+	return "由于人手不足，新晋代理舰长 [captain.real_name] 已到任！"
 
 /datum/job/head_of_security/after_spawn(mob/living/spawned, client/player_client)
 	. = ..()

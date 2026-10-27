@@ -1,6 +1,6 @@
 /mob/living/basic/pet/chinchilla
-	name = "chinchilla"
-	desc = "They're like a mouse, but Australian."
+	name = "龙猫"
+	desc = "它们像老鼠，但来自澳大利亚。"
 
 	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
 	held_lh = 'modular_skyrat/master_files/icons/mob/inhands/pets_held_lh.dmi'
@@ -18,12 +18,12 @@
 
 	butcher_results = list(/obj/item/food/meat/slab = 1)
 
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "kick"
-	response_harm_simple = "kicks"
+	response_help_continuous = "摸了摸"
+	response_help_simple = "摸一摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "踢了"
+	response_harm_simple = "踢"
 
 	gold_core_spawnable = FRIENDLY_SPAWN
 
@@ -31,8 +31,8 @@
 	held_state = "chinchilla_white"
 
 	///In the case 'melee_damage_upper' is somehow raised above 0
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 
@@ -45,7 +45,7 @@
 
 /mob/living/basic/pet/chinchilla/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/pet_bonus, "squeaks happily!")
+	AddElement(/datum/element/pet_bonus, "开心地吱吱叫！")
 
 	if(isnull(body_color))
 		body_color = pick("black", "white")
@@ -77,19 +77,19 @@
 	hunt_cooldown = 20 SECONDS
 
 /datum/bt_node/ai_behavior/hunt_target/dust_roll/target_caught(mob/living/basic/pet/hunter, obj/effect/decal/cleanable/dust)
-	hunter.balloon_alert_to_viewers("rolls in dust", null, 5)
+	hunter.balloon_alert_to_viewers("在尘土里打滚", null, 5)
 	hunter.spin(10, 1)
 	qdel(dust)
 
 /datum/bt_node/ai_behavior/random_speech/chinchilla
 	speech_chance = 5
 	emote_hear = list(
-		"squeaks.",
-		"chirps.",
+		"吱吱叫着。",
+		"唧唧叫着。",
 	)
 	emote_see = list(
-		"sniffs around.",
-		"jumps around.",
+		"四处嗅闻。",
+		"四处蹦跳。",
 	)
 
 //subtypes

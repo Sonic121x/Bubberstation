@@ -1,7 +1,7 @@
 /obj/item/stack/rail_track
-	name = "railroad tracks"
-	singular_name = "railroad track"
-	desc = "A primitive form of transportation. Place on any floor to start building a railroad."
+	name = "铁轨"
+	singular_name = "铁轨"
+	desc = "一种原始的运输方式。放在任意地板上即可开始铺设铁路。"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/railroad.dmi'
 	icon_state = "rail_item"
 	merge_type = /obj/item/stack/rail_track
@@ -19,13 +19,13 @@
 	var/obj/structure/railroad/check_rail = locate() in target_turf
 	if(check_rail || !use(1))
 		return NONE
-	to_chat(user, span_notice("You place [src] on [target_turf]."))
+	to_chat(user, span_notice("你把 [src] 铺在了 [target_turf] 上。"))
 	new /obj/structure/railroad(target_turf)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/railroad
-	name = "railroad track"
-	desc = "A primitive form of transportation. You may see some rail carts on it."
+	name = "铁轨"
+	desc = "一种原始的运输方式。你也许能在上面看到几辆轨道车。"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/railroad.dmi'
 	icon_state = "rail"
 	anchored = TRUE
@@ -57,8 +57,8 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/vehicle/ridden/rail_cart
-	name = "rail cart"
-	desc = "A wonderful form of locomotion. It will only ride while on tracks. It does have storage"
+	name = "轨道车"
+	desc = "一种绝妙的代步方式。它只能在轨道上行驶。它还带有储物空间。"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/railroad.dmi'
 	icon_state = "railcart"
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE | MATERIAL_COLOR
@@ -69,8 +69,8 @@
 
 /obj/vehicle/ridden/rail_cart/examine(mob/user)
 	. = ..()
-	. += span_notice("<br><b>Alt-Click</b> to attach a rail cart to this cart.")
-	. += span_notice("<br>Filling it with <b>10 sand</b> will allow it to be used as a planter!")
+	. += span_notice("<br><b>Alt 点击</b>可将一辆轨道车挂接到这辆车上。")
+	. += span_notice("<br>填入<b>10 份沙子</b>后，它就能当作种植箱使用！")
 
 /obj/vehicle/ridden/rail_cart/Initialize(mapload)
 	. = ..()

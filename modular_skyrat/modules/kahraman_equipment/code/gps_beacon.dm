@@ -1,6 +1,6 @@
 /obj/item/gps/computer/beacon
-	name = "\improper GPS beacon"
-	desc = "A GPS beacon, anchored to the ground to prevent loss or accidental movement."
+	name = "\improper GPS 信标"
+	desc = "一台 GPS 信标，固定在地面上以防丢失或被意外移动。"
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/gps_beacon.dmi'
 	icon_state = "gps_beacon"
 	pixel_y = 0
@@ -13,7 +13,7 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
 
 /obj/item/flatpacked_machine/gps_beacon
-	name = "packed GPS beacon"
+	name = "打包的 GPS 信标"
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/gps_beacon.dmi'
 	icon_state = "beacon_folded"
 	w_class = WEIGHT_CLASS_SMALL

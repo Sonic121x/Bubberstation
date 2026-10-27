@@ -1,7 +1,7 @@
 ///Wing base type. doesn't really do anything
 /obj/item/organ/wings
-	name = "wings"
-	desc = "Spread your wings and FLLLLLLLLYYYYY!"
+	name = "翅膀"
+	desc = "展开你的翅膀，让我们一起飞飞飞飞飞飞吧！"
 
 	gender = PLURAL
 	zone = BODY_ZONE_CHEST

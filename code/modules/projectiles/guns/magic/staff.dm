@@ -37,8 +37,8 @@
 
 /// Turns mobs into other mobs
 /obj/item/gun/magic/staff/change
-	name = "staff of change"
-	desc = "An artefact that spits bolts of coruscating energy which cause the target's very form to reshape itself."
+	name = "变化之杖"
+	desc = "一件神器，可射出闪耀的能量弹，使目标的形体本身发生重塑。"
 	fire_sound = 'sound/effects/magic/staff_change.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/change
 	icon_state = "staffofchange"
@@ -55,8 +55,8 @@
 /obj/item/gun/magic/staff/change/pickup(mob/user)
 	. = ..()
 	if(!is_wizard_or_friend(user))
-		to_chat(user, span_hypnophrase("<span style='font-size: 24px'>You don't feel strong enough to properly wield this staff!</span>"))
-		balloon_alert(user, "you feel weak holding this staff")
+		to_chat(user, span_hypnophrase("<span style='font-size: 24px'>你觉得自己不够强大，无法正确挥舞这根法杖！</span>"))
+		balloon_alert(user, "握着这根法杖让你感到虚弱")
 
 /// Transforms the user
 /obj/item/gun/magic/staff/change/proc/transform_self(mob/living/user)
@@ -65,7 +65,7 @@
 	var/mob/living/new_body = user.wabbajack(wabbajack_into, preset_wabbajack_changeflag)
 	if(!new_body)
 		return
-	balloon_alert(new_body, "wabbajack, wabbajack!")
+	balloon_alert(new_body, "瓦巴杰克，瓦巴杰克！")
 	return new_body
 
 /obj/item/gun/magic/staff/change/on_intruder_use(mob/living/user, atom/target)
@@ -80,8 +80,8 @@
 
 /// Brings objects to life
 /obj/item/gun/magic/staff/animate
-	name = "staff of animation"
-	desc = "An artefact that spits bolts of life-force which causes objects which are hit by it to animate and come to life! This magic doesn't affect machines."
+	name = "活化之杖"
+	desc = "一件神器，可射出生命之力弹，被击中的物体会活化并获得生命！这种魔法对机器无效。"
 	fire_sound = 'sound/effects/magic/staff_animation.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/animate
 	icon_state = "staffofanimation"
@@ -125,8 +125,8 @@
 
 /// Heals people and even raises the dead
 /obj/item/gun/magic/staff/healing
-	name = "staff of healing"
-	desc = "An artefact that spits bolts of restoring magic which can remove ailments of all kinds and even raise the dead."
+	name = "治愈之杖"
+	desc = "一件神器，可射出恢复魔法弹，能祛除各种疾病，甚至让死者复活。"
 	fire_sound = 'sound/effects/magic/staff_healing.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/heal
 	icon_state = "staffofhealing"
@@ -138,13 +138,13 @@
 /obj/item/gun/magic/staff/healing/pickup(mob/user)
 	. = ..()
 	if(!is_wizard_or_friend(user))
-		to_chat(user, span_hypnophrase("<span style='font-size: 24px'>The staff feels weaker as you touch it</span>"))
-		user.balloon_alert(user, "the staff feels weaker as you touch it")
+		to_chat(user, span_hypnophrase("<span style='font-size: 24px'>你一碰这根法杖，它就变得虚弱了</span>"))
+		user.balloon_alert(user, "你一碰这根法杖，它就变得虚弱了")
 
 /obj/item/gun/magic/staff/healing/examine(mob/user)
 	. = ..()
 	if(!is_wizard_or_friend(user))
-		. += span_notice("On the handle you notice a beautiful engraving in High Spaceman, \"Thou shalt not crosseth thy beams.\"")
+		. += span_notice("你在杖柄上注意到一段用高等太空人语刻下的精美铭文：“不可交叉光芒。”")
 
 /obj/item/gun/magic/staff/healing/Initialize(mapload)
 	. = ..()
@@ -176,13 +176,13 @@
 	if(user.mob_biotypes & MOB_UNDEAD)
 		user.dust(drop_items = TRUE)
 		return MANUAL_SUICIDE
-	user.visible_message(span_suicide("...but nothing happens."))
+	user.visible_message(span_suicide("……但什么也没发生。"))
 	return SHAME
 
 /// Does random shit when fired
 /obj/item/gun/magic/staff/chaos
-	name = "staff of chaos"
-	desc = "An artefact that spits bolts of chaotic magic that can potentially do anything."
+	name = "混沌之杖"
+	desc = "一件神器，可射出混沌魔法弹，几乎什么都有可能发生。"
 	fire_sound = 'sound/effects/magic/staff_chaos.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/chaos
 	icon_state = "staffofchaos"
@@ -231,12 +231,12 @@
 
 /obj/item/gun/magic/staff/chaos/on_intruder_use(mob/living/user)
 	if(!user.can_cast_magic()) // Don't let people with antimagic use the staff of chaos.
-		balloon_alert(user, "the staff refuses to fire!")
+		balloon_alert(user, "法杖拒绝开火！")
 		return FALSE
 
 	if(prob(95)) // You have a 5% chance of hitting yourself when using the staff of chaos.
 		return TRUE
-	balloon_alert(user, "chaos!")
+	balloon_alert(user, "混沌！")
 	user.dropItemToGround(src, TRUE)
 	process_fire(user, user, FALSE)
 	return FALSE
@@ -259,8 +259,8 @@
  * Also can be used by everyone, because why not.
  */
 /obj/item/gun/magic/staff/chaos/true_wabbajack
-	name = "\proper Wabbajack"
-	desc = "If there is some deity out there, they've definitely skipped their psych appointment before creating this."
+	name = "\proper 瓦巴杰克"
+	desc = "如果世上真有什么神明，那它在造出这东西之前肯定翘掉了心理医生的预约。"
 	icon_state = "the_wabbajack"
 	inhand_icon_state = "the_wabbajack"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF //fuck you
@@ -294,8 +294,8 @@
 
 /// Creates and opens doors
 /obj/item/gun/magic/staff/door
-	name = "staff of door creation"
-	desc = "An artefact that spits bolts of transformative magic that can create doors in walls."
+	name = "开门之杖"
+	desc = "一件神器，可射出转化魔法弹，能在墙上创造门。"
 	fire_sound = 'sound/effects/magic/staff_door.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/door
 	icon_state = "staffofdoor"
@@ -319,8 +319,8 @@
 
 /// Makes people slip really hard
 /obj/item/gun/magic/staff/honk
-	name = "staff of the honkmother"
-	desc = "Honk."
+	name = "洪克之母之杖"
+	desc = "洪克。"
 	fire_sound = 'sound/items/airhorn/airhorn.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/honk
 	icon_state = "honker"
@@ -341,8 +341,8 @@
 
 /// Dismembers people, and is a passable melee weapon
 /obj/item/gun/magic/staff/spellblade
-	name = "spellblade"
-	desc = "A deadly combination of laziness and bloodlust, this blade allows the user to dismember their enemies without all the hard work of actually swinging the sword."
+	name = "法术之刃"
+	desc = "懒惰与嗜血的致命结合，这把刃能让使用者肢解敌人，而无需费劲真正挥剑。"
 	fire_sound = 'sound/effects/magic/fireball.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/spellblade
 	icon_state = "spellblade"
@@ -386,8 +386,8 @@
 
 /// Welds people into flying lockers
 /obj/item/gun/magic/staff/locker
-	name = "staff of the locker"
-	desc = "An artefact that expels encapsulating bolts, for incapacitating thy enemy."
+	name = "储物柜之杖"
+	desc = "一件神器，可射出封装弹，用于制服你的敌人。"
 	fire_sound = 'sound/effects/magic/staff_change.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/locker
 	icon_state = "locker"
@@ -407,8 +407,8 @@
 
 /// Makes targets "fly" by throwing them away
 /obj/item/gun/magic/staff/flying
-	name = "staff of flying"
-	desc = "An artefact that spits bolts of graceful magic that can make something fly."
+	name = "飞行之杖"
+	desc = "一件神器，可射出优雅魔法弹，能让某物飞起来。"
 	fire_sound = 'sound/effects/magic/staff_healing.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/flying
 	icon_state = "staffofflight"
@@ -424,8 +424,8 @@
 
 /// Scrambles languages
 /obj/item/gun/magic/staff/babel
-	name = "staff of babel"
-	desc = "An artefact that spits bolts of confusion magic that can make something depressed and incoherent."
+	name = "巴别之杖"
+	desc = "一件神器，可射出混乱魔法弹，能让目标变得沮丧且语无伦次。"
 	fire_sound = 'sound/effects/magic/staff_change.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/babel
 	icon_state = "staffofbabel"
@@ -436,13 +436,13 @@
 /obj/item/gun/magic/staff/babel/do_suicide(mob/living/user)
 	. = ..()
 	process_fire(user, user, FALSE)
-	user.say("I wish I was dead.", forced = "failed babel staff suicide")
+	user.say("我真希望自己死了。", forced = "failed babel staff suicide")
 	return SHAME
 
 /// Deals damage to the target and recharges their spells if they have any
 /obj/item/gun/magic/staff/necropotence
-	name = "staff of necropotence"
-	desc = "An artefact that spits bolts of death magic that can repurpose the soul."
+	name = "死灵术之杖"
+	desc = "一件神器，可射出死亡魔法弹，能重新利用灵魂。"
 	fire_sound = 'sound/effects/magic/staff_change.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/necropotence
 	icon_state = "staffofnecropotence"
@@ -460,8 +460,8 @@
 
 /// Asks a ghost to start playing as the poor victim
 /obj/item/gun/magic/staff/wipe
-	name = "staff of possession"
-	desc = "An artefact that spits bolts of mind-unlocking magic that can let ghosts invade the victim's mind."
+	name = "附身之杖"
+	desc = "一件神器，可射出解锁心智的魔法弹，能让幽灵侵入受害者的意识。"
 	fire_sound = 'sound/effects/magic/staff_change.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/wipe
 	icon_state = "staffofwipe"
@@ -476,8 +476,8 @@
 
 /// Makes the target really small
 /obj/item/gun/magic/staff/shrink
-	name = "staff of shrinking"
-	desc = "An artefact that spits bolts of tiny magic that makes things small. It's easily mistaken for a wand."
+	name = "缩小之杖"
+	desc = "一件神器，可射出微缩魔法弹，能把东西变小。很容易被误认成短杖。"
 	fire_sound = 'sound/effects/magic/staff_shrink.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/shrink
 	icon_state = "shrinkstaff"
@@ -493,7 +493,7 @@
 	. = ..()
 	playsound(user, fire_sound, 50, TRUE)
 	user.unequip_everything()
-	user.visible_message(span_suicide("[user] shrinks into nothing!"), span_suicide("You shrink into nothing!"))
+	user.visible_message(span_suicide("[user] 缩小至虚无！"), span_suicide("你缩小至虚无！"))
 	user.Stun(20 SECONDS, ignore_canstun = TRUE)
 	user.set_suicide(TRUE)
 	user.ghostize()

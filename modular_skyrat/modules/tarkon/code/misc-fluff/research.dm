@@ -1,7 +1,7 @@
 ///// First we enstate a techweb so we can add the node. /////
 /datum/techweb/tarkon
 	id = "TARKON"
-	organization = "Tarkon Industries"
+	organization = "塔肯工业"
 	should_generate_points = TRUE
 
 /datum/techweb/tarkon/New()
@@ -13,8 +13,8 @@
 
 /datum/techweb_node/tarkon
 	id = "tarkontech"
-	display_name = "Tarkon Industries Technology"
-	description = "Tools used by Tarkon Industries."
+	display_name = "塔肯工业技术"
+	description = "塔肯工业使用的工具。"
 	required_items_to_unlock = list(
 		/obj/item/mod/construction/plating/tarkon,
 		/obj/item/construction/rcd/arcd/tarkon,
@@ -35,8 +35,8 @@
 
 /datum/techweb_node/tarkonturret
 	id = "tarkondefence"
-	display_name = "Tarkon Industries Defensive Technology"
-	description = "Tarkon Industries Blackrust Salvage division's defense designs."
+	display_name = "塔肯工业防御技术"
+	description = "塔肯工业黑锈打捞部门的防御设计。"
 	prereq_ids = list(TECHWEB_NODE_TARKON, TECHWEB_NODE_BASIC_ARMS, TECHWEB_NODE_AI)
 	required_items_to_unlock = list(
 		/obj/item/mod/construction/plating/tarkon,
@@ -53,8 +53,8 @@
 
 /datum/techweb_node/tarkon_borgs //Nor this, suprisingly
 	id = "tarkon_borgs"
-	display_name = "Tarkon Industries Robotics Technology"
-	description = "Tarkon Industries Experimental Cyborg Prototypes. Not for public use."
+	display_name = "塔肯工业机器人技术"
+	description = "塔肯工业实验性半机械人原型，禁止公众使用。"
 	prereq_ids = list(TECHWEB_NODE_TARKON, TECHWEB_NODE_BORG_ENGI, TECHWEB_NODE_AI, TECHWEB_NODE_BORG_UTILITY) // Should hold it back long enough
 	required_items_to_unlock = list(
 		/obj/item/mod/construction/plating/tarkon,
@@ -75,8 +75,8 @@
 	hidden = TRUE
 
 /datum/design/hoplite_assembly
-	name = "Hoplite Turret Assembly"
-	desc = "A deployable turret kit designed for basic construct defense. This one makes the \"Hoplite\" model."
+	name = "重装步兵炮塔组件"
+	desc = "用于基础设施防御的可部署炮塔套件，可组装成“重装步兵”型号。"
 	id = "hoplite_assembly"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -92,8 +92,8 @@
 	)
 
 /datum/design/cerberus_assembly
-	name = "Cerberus Turret Assembly"
-	desc = "A deployable turret kit designed for basic construct defense. This one makes the \"Cerberus\" model."
+	name = "地狱三头犬炮塔组件"
+	desc = "用于基础设施防御的可部署炮塔套件，可组装成“地狱三头犬”型号。"
 	id = "cerberus_assembly"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -109,8 +109,8 @@
 	)
 
 /datum/design/target_designator
-	name = "Turret Target Designator"
-	desc = "A basic target designator designed to control magazine-fed turrets."
+	name = "炮塔目标指示器"
+	desc = "用于控制弹匣供弹炮塔的基础目标指示器。"
 	id = "target_designator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -127,7 +127,7 @@
 	)
 
 /datum/design/mod_plating/tarkon
-	name = "MOD Tarkon Plating"
+	name = "MOD塔肯装甲板"
 	id = "mod_plating_tarkon"
 	build_path = /obj/item/mod/construction/plating/tarkon
 	materials = list(
@@ -141,7 +141,7 @@
 	research_icon = 'modular_skyrat/modules/tarkon/icons/obj/mod_construct.dmi'
 
 /datum/design/arcs
-	name = "A.R.C.S Resonator"
+	name = "A.R.C.S共振器"
 	id = "arcs"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(
@@ -158,8 +158,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/tarkonrcd
-	name = "Tarkon R.C.D"
-	desc = "A Rapid Construction Device made by Tarkon Industries. Capable of ranged construction."
+	name = "塔肯快速建造装置"
+	desc = "塔肯工业制造的快速建造装置，能够进行远程建造。"
 	id = "rcd_tarkon"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -179,8 +179,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/tarkonhackc
-	name = "Tarkon Hack-C Signaller"
-	desc = "A small device that signals a 'Hack-C' drone to repair specialized machinery."
+	name = "塔肯Hack-C信号器"
+	desc = "向Hack-C无人机发送信号、让其维修专用机器的小型装置。"
 	id = "hackc"
 	build_path = /obj/item/hackc
 	category = list(
@@ -195,11 +195,11 @@
 ///// Now we make the physical server /////
 
 /obj/item/circuitboard/machine/rdserver/tarkon
-	name = "Tarkon Industries R&D Server"
+	name = "塔肯工业研发服务器"
 	build_path = /obj/machinery/rnd/server/tarkon
 
 /obj/machinery/rnd/server/tarkon
-	name = "\improper Tarkon Industries R&D Server"
+	name = "\improper 塔肯工业研发服务器"
 	circuit = /obj/item/circuitboard/machine/rdserver/tarkon
 	req_access = list(ACCESS_AWAY_SCIENCE)
 
@@ -211,14 +211,14 @@
 /obj/machinery/rnd/server/tarkon/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(held_item && istype(held_item, /obj/item/research_notes))
-		context[SCREENTIP_CONTEXT_LMB] = "Generate research points"
+		context[SCREENTIP_CONTEXT_LMB] = "生成研究点数"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/rnd/server/tarkon/examine(mob/user)
 	. = ..()
 	if(!in_range(user, src) && !isobserver(user))
 		return
-	. += span_notice("Insert [EXAMINE_HINT("Research Notes")] to generate points.")
+	. += span_notice("插入[EXAMINE_HINT("研究笔记")]以生成点数。")
 
 /obj/machinery/rnd/server/tarkon/attackby(obj/item/attacking_item, mob/user, params)
 	if(istype(attacking_item, /obj/item/research_notes) && stored_research)
@@ -230,12 +230,12 @@
 	return ..()
 
 /obj/machinery/rnd/production/protolathe/tarkon
-	name = "Tarkon Industries Protolathe"
-	desc = "Converts raw materials into useful objects. Refurbished and updated from its previous, limited capabilities."
+	name = "塔肯工业原型制造机"
+	desc = "将原材料转化为实用物品的机器，经过翻新升级，突破了原先有限的能力。"
 	circuit = /obj/item/circuitboard/machine/protolathe/tarkon
 	stripe_color = "#350f04"
 
 /obj/item/circuitboard/machine/protolathe/tarkon
-	name = "Tarkon Industries Protolathe"
+	name = "塔肯工业原型制造机"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/rnd/production/protolathe/tarkon

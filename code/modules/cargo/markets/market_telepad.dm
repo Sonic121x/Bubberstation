@@ -2,7 +2,7 @@
 #define PLACE_ON_MARKET_COST PAYCHECK_LOWER * 1.2
 
 /obj/item/circuitboard/machine/ltsrbt
-	name = "Long-To-Short-Range Bluespace Transceiver"
+	name = "长距转短距蓝空间收发器"
 	icon_state = "bluespacearray"
 	build_path = /obj/machinery/ltsrbt
 	req_components = list(
@@ -13,8 +13,8 @@
 	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
 
 /obj/machinery/ltsrbt
-	name = "Long-To-Short-Range Bluespace Transceiver"
-	desc = "The LTSRBT is a compact teleportation machine for sending and receiving items both inside and outside the station.\nUsing teleportation frequencies stolen from NT, it is near undetectable.\nEssential for any illegal market operations on NT stations."
+	name = "长距转短距蓝空间收发器"
+	desc = "LTSRBT 是一台紧凑型传送设备，可在空间站内外收发物品。\n使用从 NT 窃取的传送频率，几乎无法被侦测到。\n对 NT 空间站上任何非法市场经营都必不可少。"
 	icon = 'icons/obj/machines/ltsrbt.dmi'
 	icon_state = "ltsrbt_idle"
 	base_icon_state = "ltsrbt"
@@ -75,27 +75,27 @@
 /obj/machinery/ltsrbt/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(held_item)
 		if(state_open)
-			context[SCREENTIP_CONTEXT_LMB] = "Insert"
+			context[SCREENTIP_CONTEXT_LMB] = "插入"
 			return CONTEXTUAL_SCREENTIP_SET
 		if(held_item.get_item_credit_value() && !(machine_stat & NOPOWER))
-			context[SCREENTIP_CONTEXT_LMB] = "Restock"
+			context[SCREENTIP_CONTEXT_LMB] = "补货"
 			return CONTEXTUAL_SCREENTIP_SET
 		return NONE
 	if(state_open)
-		context[SCREENTIP_CONTEXT_LMB] = "Close"
+		context[SCREENTIP_CONTEXT_LMB] = "关闭"
 		return CONTEXTUAL_SCREENTIP_SET
-	context[SCREENTIP_CONTEXT_LMB] = "Open"
+	context[SCREENTIP_CONTEXT_LMB] = "打开"
 	if(occupant && !(machine_stat & NOPOWER))
-		context[SCREENTIP_CONTEXT_RMB] = "Place on market"
+		context[SCREENTIP_CONTEXT_RMB] = "上架出售"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/ltsrbt/examine(mob/user)
 	. = ..()
 	if(!(machine_stat & NOPOWER))
-		. += span_info("A small display reads:")
-		. += span_tinynoticeital("Current market restock price: [EXAMINE_HINT("[restock_cost] [MONEY_SYMBOL]")].")
-		. += span_tinynoticeital("Market placement fee: [EXAMINE_HINT("[PLACE_ON_MARKET_COST] [MONEY_SYMBOL]")].")
-		. += span_tinynoticeital("Withholding tax on local items: [EXAMINE_HINT("[MARKET_WITHHOLDING_TAX * 100]%")].")
+		. += span_info("一个小显示屏上写着：")
+		. += span_tinynoticeital("当前市场补货价格：[EXAMINE_HINT("[restock_cost] [MONEY_SYMBOL]")]。")
+		. += span_tinynoticeital("市场上架费用：[EXAMINE_HINT("[PLACE_ON_MARKET_COST] [MONEY_SYMBOL]")]。")
+		. += span_tinynoticeital("本地物品预扣税：[EXAMINE_HINT("[MARKET_WITHHOLDING_TAX * 100]%")]。")
 
 /obj/machinery/ltsrbt/update_icon_state()
 	. = ..()
@@ -153,16 +153,16 @@
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
 	if(state_open)
-		balloon_alert(user, "close it first!")
+		balloon_alert(user, "请先关闭它！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!occupant)
-		balloon_alert(user, "nothing loaded!")
+		balloon_alert(user, "未装载任何物品！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(machine_stat & NOPOWER)
-		balloon_alert(user, "machine unpowered!")
+		balloon_alert(user, "机器未通电！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!COOLDOWN_FINISHED(src, recharge_cooldown))
-		balloon_alert(user, "on cooldown!")
+		balloon_alert(user, "正在冷却！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	ui_interact(user)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -175,24 +175,24 @@
 
 	if(state_open)
 		if(locate(/mob/living) in tool.get_all_contents())
-			say("Living being detected, cannot sell!")
+			say("检测到活体，无法出售！")
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, FALSE)
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
-			balloon_alert(user, "stuck to your hands!")
+			balloon_alert(user, "卡在手里了！")
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, "item loaded")
+		balloon_alert(user, "物品已装载")
 		close_machine(tool)
 		return ITEM_INTERACT_SUCCESS
 	else if(!creds_value)
-		balloon_alert(user, "open the machine!")
+		balloon_alert(user, "请先打开机器！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(machine_stat & NOPOWER)
 		return
 
 	if(creds_value < restock_cost)
-		say("Insufficient [MONEY_NAME]!")
+		say("[MONEY_NAME]不足！")
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, FALSE)
 		return ITEM_INTERACT_BLOCKING
 
@@ -270,7 +270,7 @@
 	if(QDELETED(occupant))
 		return
 	if(locate(/mob/living) in occupant.get_all_contents())
-		say("Living being detected, cannot sell!")
+		say("检测到活体，无法出售！")
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, FALSE)
 		return
 	var/datum/bank_account/account
@@ -279,17 +279,17 @@
 		if(!isliving(user))
 			return
 		if(length(our_market.available_items[/datum/market_item/local_good::category]) >= LTSRBT_MAX_MARKET_ITEMS)
-			say("Local market saturated, buy some goods first!")
+			say("本地市场已饱和，先买点货物吧！")
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, FALSE)
 			return
 		var/mob/living/living_user = user
 		var/obj/item/card/id/card = living_user.get_idcard(TRUE)
 		if(!(card?.registered_account))
-			say("No bank account to charge market fees detected!")
+			say("未检测到可用于扣除市场费用的银行账户！")
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, FALSE)
 			return
 		if(!card.registered_account.adjust_money(-PLACE_ON_MARKET_COST, "Market: Placement Fee"))
-			say("Insufficient [MONEY_NAME]!")
+			say("[MONEY_NAME]不足！")
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, FALSE)
 			return
 		account = card.registered_account
@@ -298,12 +298,12 @@
 	var/name_to_use = current_name || item.name
 	var/desc_to_use = current_desc
 	if(account)
-		desc_to_use += "[current_desc ? " - " : ""]Seller: [account.account_holder]"
+		desc_to_use += "[current_desc ? " - " : ""]卖家：[account.account_holder]"
 	var/price_to_use = current_price
 	item.moveToNullspace()
 	//Something happened and the item was deleted or relocated as soon as it was moved to nullspace.
 	if(QDELETED(item) || item.loc != null)
-		say("Runtime at market_placement.dm, line 153: item gone!") //metajoke
+		say("market_placement.dm 第 153 行运行时错误：物品不见了！") //metajoke
 		return
 	var/datum/market_item/local_good/new_item = new(item, account)
 	new_item.name = name_to_use
@@ -312,7 +312,7 @@
 
 	our_market.add_item(new_item)
 
-	say("Item placed on the market!")
+	say("物品已上架市场！")
 	playsound(src, 'sound/effects/cashregister.ogg', 40, FALSE)
 	COOLDOWN_START(src, recharge_cooldown, recharge_time * 3)
 

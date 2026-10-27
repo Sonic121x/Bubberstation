@@ -1,6 +1,6 @@
 /obj/item/melee/supermatter_sword
-	name = "supermatter sword"
-	desc = "In a station full of bad ideas, this might just be the worst."
+	name = "超物质剑"
+	desc = "在一座充满烂点子的空间站里，这大概还算最烂的那个。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "supermatter_sword_balanced"
 	inhand_icon_state = "supermatter_sword"
@@ -11,7 +11,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 0.001
 	armour_penetration = 1000
-	force_string = "INFINITE"
+	force_string = "无限"
 	item_flags = NEEDS_PERMIT|NO_BLOOD_ON_ITEM
 	custom_materials = list(/datum/material/adamantine = SHEET_MATERIAL_AMOUNT * 20, /datum/material/iron = SHEET_MATERIAL_AMOUNT)
 	var/obj/machinery/power/supermatter_crystal/shard
@@ -23,7 +23,7 @@
 	qdel(shard.countdown)
 	shard.countdown = null
 	START_PROCESSING(SSobj, src)
-	visible_message(span_warning("[src] appears, balanced ever so perfectly on its hilt. This isn't ominous at all."))
+	visible_message(span_warning("[src]现身了，完美无瑕地平衡在剑柄之上。这一点也不令人不安。"))
 	RegisterSignal(src, COMSIG_ATOM_PRE_BULLET_ACT, PROC_REF(eat_bullets))
 
 /obj/item/melee/supermatter_sword/process()
@@ -66,15 +66,15 @@
 
 /obj/item/melee/supermatter_sword/ex_act(severity, target)
 	visible_message(
-		span_danger("The blast wave smacks into [src] and rapidly flashes to ash."),
-		span_hear("You hear a loud crack as you are washed with a wave of heat.")
+		span_danger("冲击波撞上[src]，瞬间将其化为灰烬。"),
+		span_hear("你听到一声巨响，一股热浪扑面而来。")
 	)
 	consume_everything()
 	return TRUE
 
 /obj/item/melee/supermatter_sword/acid_act()
-	visible_message(span_danger("The acid smacks into [src] and rapidly flashes to ash."),\
-	span_hear("You hear a loud crack as you are washed with a wave of heat."))
+	visible_message(span_danger("酸液撞上[src]，瞬间将其化为灰烬。"),\
+	span_hear("你听到一声巨响，一股热浪扑面而来。"))
 	consume_everything()
 	return TRUE
 
@@ -82,15 +82,15 @@
 	SIGNAL_HANDLER
 
 	visible_message(
-		span_danger("[hitting_projectile] smacks into [source] and rapidly flashes to ash."),
+		span_danger("[hitting_projectile]撞上[source]，瞬间化为灰烬。"),
 		null,
-		span_hear("You hear a loud crack as you are washed with a wave of heat."),
+		span_hear("你听到一声巨响，一股热浪扑面而来。"),
 	)
 	consume_everything(hitting_projectile)
 	return COMPONENT_BULLET_BLOCKED
 
 /obj/item/melee/supermatter_sword/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] touches [src]'s blade. It looks like [user.p_theyre()] tired of waiting for the radiation to kill [user.p_them()]!"))
+	user.visible_message(span_suicide("[user]触碰了[src]的剑刃。看来是等不及让辐射来杀死自己了！"))
 	user.dropItemToGround(src, TRUE)
 	shard.Bumped(user)
 
@@ -109,7 +109,7 @@
 		return
 	playsound(turf, 'sound/effects/supermatter.ogg', 50, TRUE)
 	turf.visible_message(
-		span_danger("[turf] smacks into [src] and rapidly flashes to ash."),
-		span_hear("You hear a loud crack as you are washed with a wave of heat."),
+		span_danger("[turf]撞上[src]，瞬间化为灰烬。"),
+		span_hear("你听到一声巨响，一股热浪扑面而来。"),
 	)
 	shard.Bump(turf)

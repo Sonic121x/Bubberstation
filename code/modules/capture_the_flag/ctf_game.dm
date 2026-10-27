@@ -7,8 +7,8 @@
 
 ///Base CTF machines, if spawned in creates a CTF game with the provided game_id unless one already exists. If one exists associates itself with it.
 /obj/machinery/ctf
-	name = "CTF Controller"
-	desc = "Used for running friendly games of capture the flag."
+	name = "CTF 控制器"
+	desc = "用于举办友谊性的夺旗对战。"
 	icon = 'icons/obj/machines/beacon.dmi'
 	icon_state = "syndbeacon"
 	density = TRUE
@@ -49,7 +49,7 @@
 	return ..()
 
 /obj/machinery/ctf/spawner/red
-	name = "Red CTF Controller"
+	name = "红色 CTF 控制器"
 	icon_state = "syndbeacon"
 	team = RED_TEAM
 	team_span = "redteamradio"
@@ -57,7 +57,7 @@
 	instagib_gear = list("Instagib" = /datum/outfit/ctf/red/instagib)
 
 /obj/machinery/ctf/spawner/blue
-	name = "Blue CTF Controller"
+	name = "蓝色 CTF 控制器"
 	icon_state = "bluebeacon"
 	team = BLUE_TEAM
 	team_span = "blueteamradio"
@@ -65,7 +65,7 @@
 	instagib_gear = list("Instagib" = /datum/outfit/ctf/blue/instagib)
 
 /obj/machinery/ctf/spawner/green
-	name = "Green CTF Controller"
+	name = "绿色 CTF 控制器"
 	icon_state = "greenbeacon"
 	team = GREEN_TEAM
 	team_span = "greenteamradio"
@@ -73,7 +73,7 @@
 	instagib_gear = list("Instagib" = /datum/outfit/ctf/green/instagib)
 
 /obj/machinery/ctf/spawner/yellow
-	name = "Yellow CTF Controller"
+	name = "黄色 CTF 控制器"
 	icon_state = "yellowbeacon"
 	team = YELLOW_TEAM
 	team_span = "yellowteamradio"
@@ -83,18 +83,18 @@
 /obj/machinery/ctf/spawner/attack_ghost(mob/user)
 	if(ctf_game.ctf_enabled == FALSE)
 		if(user.client && user.client.holder)
-			var/response = tgui_alert(user, "Enable this CTF game?", "CTF", list("Yes", "No"))
+			var/response = tgui_alert(user, "启用此 CTF 对局？", "CTF", list("Yes", "No"))
 			if(response == "Yes")
 				toggle_id_ctf(user, game_id)
 			return
 
 		if(!(GLOB.ghost_role_flags & GHOSTROLE_MINIGAME))
-			to_chat(user, span_warning("CTF has been temporarily disabled by admins."))
+			to_chat(user, span_warning("CTF 已被管理员暂时禁用。"))
 			return
 		get_ctf_voting_controller(game_id).vote(user)
 		return
 	if(!SSticker.HasRoundStarted())
-		to_chat(user, span_warning("Please wait until the round has started."))
+		to_chat(user, span_warning("请等待回合开始。"))
 		return
 	if(user.ckey in ctf_game.get_players(team))
 		var/datum/component/ctf_player/ctf_player_component = ctf_game.get_player_component(team, user.ckey)
@@ -105,10 +105,10 @@
 			if(ctf_player_component.can_respawn)
 				spawn_team_member(new_team_member, ctf_player_component)
 			else
-				to_chat(user, span_warning("You cannot respawn yet!"))
+				to_chat(user, span_warning("你此刻还不能重生！"))
 		return
 	if(ctf_game.team_valid_to_join(team, user))
-		to_chat(user, span_userdanger("You are now a member of [src.team]. Get the enemy flag and bring it back to your team's controller!"))
+		to_chat(user, span_userdanger("你现在是 [src.team] 队的成员。夺取敌方旗帜，并把它带回你方队伍的控制台！"))
 		ctf_game.add_player(team, user.ckey)
 		var/client/new_team_member = user.client
 		spawn_team_member(new_team_member)
@@ -182,13 +182,13 @@
 
 ///A flag used for the CTF minigame.
 /obj/item/ctf_flag
-	name = "banner"
+	name = "旗帜"
 	icon = 'icons/obj/banner.dmi'
 	icon_state = "banner"
 	inhand_icon_state = "banner"
 	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/banners_righthand.dmi'
-	desc = "A banner with Nanotrasen's logo on it."
+	desc = "一面印有纳米传讯标志的旗帜。"
 	slowdown = 2
 	throw_speed = 0
 	throw_range = 1
@@ -218,8 +218,8 @@
 		reset = new(get_turf(src))
 		reset.flag = src
 		reset.icon_state = icon_state
-		reset.name = "[name] landmark"
-		reset.desc = "This is where \the [name] will respawn in a game of CTF"
+		reset.name = "[name] 地标"
+		reset.desc = "在 CTF 对局中，[name] 会在此处重生"
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/ctf_flag/LateInitialize()
@@ -243,22 +243,22 @@
 		return TRUE
 	forceMove(our_turf)
 	if(!capture && !isnull(ctf_game))
-		ctf_game.message_all_teams("[src] has been returned to the base!")
+		ctf_game.message_all_teams("[src] 已被送返基地！")
 
 //working with attack hand feels like taking my brain and putting it through an industrial pill press so i'm gonna be a bit liberal with the comments //Mood
 /obj/item/ctf_flag/attack_hand(mob/living/user, list/modifiers)
 	//pre normal check item stuff, this is for our special flag checks
 	if(!is_ctf_target(user) && !anyonecanpickup)
-		to_chat(user, span_warning("Non-players shouldn't be moving the flag!"))
+		to_chat(user, span_warning("非玩家不应该移动旗帜！"))
 		return
 	if(user.has_faction(team))
-		to_chat(user, span_warning("You can't move your own flag!"))
+		to_chat(user, span_warning("你不能移动自己队伍的旗帜！"))
 		return
 	if(loc == user)
 		if(!user.dropItemToGround(src))
 			return
 	if(!isnull(ctf_game))
-		ctf_game.message_all_teams(span_userdanger("\The [initial(name)] has been taken!"))
+		ctf_game.message_all_teams(span_userdanger("[initial(name)] 已被夺走！"))
 	STOP_PROCESSING(SSobj, src)
 	anchored = FALSE // Hacky usage that bypasses set_anchored(), because normal checks need this to be FALSE to pass
 	. = ..() //this is the actual normal item checks
@@ -266,7 +266,7 @@
 		anchored = TRUE // Avoid directly assigning to anchored and prefer to use set_anchored() on normal circumstances.
 		return
 	//passing means the user picked up the flag so we can now apply this
-	to_chat(user, span_userdanger("Take \the [initial(name)] to your team's controller!"))
+	to_chat(user, span_userdanger("把 [initial(name)] 带回你方队伍的控制台！"))
 	user.set_anchored(TRUE)
 	user.status_flags &= ~CANPUSH
 
@@ -278,7 +278,7 @@
 	if(flag.team == team)
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_userdanger("Take \the [initial(flag.name)] to your team's controller!"))
+	to_chat(user, span_userdanger("把 [initial(flag.name)] 带回你方队伍的控制台！"))
 	user.playsound_local(get_turf(user), 'sound/machines/buzz/buzz-sigh.ogg', 100, vary = FALSE, use_reverb = FALSE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -289,35 +289,35 @@
 	reset_cooldown = world.time + 20 SECONDS
 	START_PROCESSING(SSobj, src)
 	if(!isnull(ctf_game))
-		ctf_game.message_all_teams(span_userdanger("\The [initial(name)] has been dropped!"))
+		ctf_game.message_all_teams(span_userdanger("[initial(name)] 已被丢弃！"))
 	anchored = TRUE // Avoid directly assigning to anchored and prefer to use set_anchored() on normal circumstances.
 
 /obj/item/ctf_flag/red
-	name = "red flag"
+	name = "红色旗帜"
 	icon_state = "banner-red"
 	inhand_icon_state = "banner-red"
-	desc = "A red banner used to play capture the flag."
+	desc = "一面用于夺旗对战的红色旗帜。"
 	team = RED_TEAM
 
 /obj/item/ctf_flag/blue
-	name = "blue flag"
+	name = "蓝色旗帜"
 	icon_state = "banner-blue"
 	inhand_icon_state = "banner-blue"
-	desc = "A blue banner used to play capture the flag."
+	desc = "一面用于夺旗对战的蓝色旗帜。"
 	team = BLUE_TEAM
 
 /obj/item/ctf_flag/green
-	name = "green flag"
+	name = "绿色旗帜"
 	icon_state = "banner-green"
 	inhand_icon_state = "banner-green"
-	desc = "A green banner used to play capture the flag."
+	desc = "一面用于夺旗对战的绿色旗帜。"
 	team = GREEN_TEAM
 
 /obj/item/ctf_flag/yellow
-	name = "yellow flag"
+	name = "黄色旗帜"
 	icon_state = "banner-yellow"
 	inhand_icon_state = "banner-yellow"
-	desc = "A yellow banner used to play capture the flag."
+	desc = "一面用于夺旗对战的黄色旗帜。"
 	team = YELLOW_TEAM
 
 /obj/effect/ctf
@@ -328,10 +328,10 @@
 	resistance_flags = INDESTRUCTIBLE
 
 /obj/effect/ctf/flag_reset
-	name = "banner landmark"
+	name = "旗帜地标"
 	icon = 'icons/obj/banner.dmi'
 	icon_state = "banner"
-	desc = "This is where a CTF flag will respawn."
+	desc = "这是 CTF 旗帜重生之处。"
 	layer = LOW_ITEM_LAYER
 	var/obj/item/ctf_flag/flag
 
@@ -343,8 +343,8 @@
 
 ///Control point used for CTF for king of the hill or control point game modes. Teams need to maintain control of the point for a set time to win.
 /obj/machinery/ctf/control_point
-	name = "control point"
-	desc = "You should capture this"
+	name = "控制点"
+	desc = "你应该占领这里"
 	icon = 'icons/obj/machines/dominator.dmi'
 	icon_state = "dominator"
 	///Team that is currently controlling this point.
@@ -387,11 +387,11 @@
 	if(do_after(user, 3 SECONDS, target = src))
 		var/datum/component/ctf_player/ctf_player = user.mind.GetComponent(/datum/component/ctf_player)
 		if(isnull(ctf_player))
-			to_chat(user, span_warning("Non-players shouldn't be capturing control points"))
+			to_chat(user, span_warning("非玩家不应该占领控制点"))
 			return
 		controlling_team = ctf_player.team
 		icon_state = "dominator-[controlling_team]"
-		ctf_game.message_all_teams("<span class='userdanger [ctf_game.teams[controlling_team].team_span]'>[user.real_name] has captured \the [src], claiming it for [controlling_team]! Go take it back!</span>")
+		ctf_game.message_all_teams("<span class='userdanger [ctf_game.teams[controlling_team].team_span]'>[user.real_name] 占领了 [src]，为 [controlling_team] 夺下了它！快去夺回来！</span>")
 
 /obj/machinery/ctf/control_point/proc/clear_point()
 	controlling_team = null
@@ -399,8 +399,8 @@
 
 ///A trap that when stepped on kills anyone who is not part of the associated CTF team.
 /obj/structure/trap/ctf
-	name = "Spawn protection"
-	desc = "Stay outta the enemy spawn!"
+	name = "出生点保护"
+	desc = "别踏进敌方出生点！"
 	icon_state = "trap"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/team = WHITE_TEAM
@@ -415,8 +415,8 @@
 	if(!is_ctf_target(living))
 		return
 	if(!living.has_faction(team))
-		to_chat(living, span_bolddanger("Stay out of the enemy spawn!"))
-		living.investigate_log("has died from entering the enemy spawn in CTF.", INVESTIGATE_DEATHS)
+		to_chat(living, span_bolddanger("远离敌方出生点！"))
+		living.investigate_log("在 CTF 中因进入敌方出生点而死亡。", INVESTIGATE_DEATHS)
 		living.apply_damage(200) //Damage instead of instant death so we trigger the damage signal.
 
 /obj/structure/trap/ctf/red
@@ -437,15 +437,15 @@
 
 ///A type of barricade that can be destroyed by CTF weapons and respawns at the end of CTF matches.
 /obj/structure/barricade/security/ctf
-	name = "barrier"
-	desc = "A barrier. Provides cover in fire fights."
+	name = "屏障"
+	desc = "一道屏障。能在交火中提供掩体。"
 
 /obj/structure/barricade/security/ctf/make_debris()
 	new /obj/effect/ctf/dead_barricade(get_turf(src))
 
 /obj/effect/ctf/dead_barricade
-	name = "dead barrier"
-	desc = "It provided cover in fire fights. And now it's gone."
+	name = "损毁的屏障"
+	desc = "它曾在交火中提供掩体。如今已不复存在。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "barrier0"
 	var/game_id = CTF_GHOST_CTF_GAME_ID
@@ -482,34 +482,34 @@
 	var/static/loading = CTF_LOADING_UNLOADED
 	var/datum/ctf_controller/ctf_controller = create_ctf_game(activated_id)
 	if(unload)
-		log_admin("[key_name_admin(user)] is attempting to unload CTF.")
-		message_admins("[key_name_admin(user)] is attempting to unload CTF.")
+		log_admin("[key_name_admin(user)] 正试图卸载 CTF。")
+		message_admins("[key_name_admin(user)] 正试图卸载 CTF。")
 		if(loading == CTF_LOADING_UNLOADED)
-			to_chat(user, span_warning("CTF cannot be unloaded if it was not loaded in the first place"))
+			to_chat(user, span_warning("CTF 尚未加载，无法卸载"))
 			return
-		to_chat(user, span_warning("CTF is being unloaded"))
+		to_chat(user, span_warning("正在卸载 CTF"))
 		ctf_controller.unload_ctf()
-		log_admin("[key_name_admin(user)] has unloaded CTF.")
-		message_admins("[key_name_admin(user)] has unloaded CTF.")
+		log_admin("[key_name_admin(user)] 已卸载 CTF。")
+		message_admins("[key_name_admin(user)] 已卸载 CTF。")
 		loading = CTF_LOADING_UNLOADED
 		return
 	switch (loading)
 		if (CTF_LOADING_UNLOADED)
 			if (isnull(GLOB.ctf_spawner))
-				to_chat(user, span_boldwarning("Couldn't find a CTF spawner. Call a maintainer!"))
+				to_chat(user, span_boldwarning("找不到 CTF 生成点。请联系维护者！"))
 				return
 
-			to_chat(user, span_notice("Loading CTF..."))
+			to_chat(user, span_notice("正在加载 CTF……"))
 
 			loading = CTF_LOADING_LOADING
 			if(activated_id == CTF_GHOST_CTF_GAME_ID) //Only ghost CTF supports map loading, if CTF is started by an admin elsewhere the map loader should not be used.
 				if(!GLOB.ctf_spawner.load_map(user))
-					to_chat(user, span_warning("CTF loading was cancelled"))
+					to_chat(user, span_warning("CTF 加载已取消"))
 					loading = CTF_LOADING_UNLOADED
 					return
 			loading = CTF_LOADING_LOADED
 		if (CTF_LOADING_LOADING)
-			to_chat(user, span_warning("CTF is loading!"))
+			to_chat(user, span_warning("CTF 正在加载！"))
 
 			return
 
@@ -519,21 +519,21 @@
 		for(var/obj/machinery/power/emitter/emitter in ctf_turf)
 			emitter.active = ctf_enabled
 	if(user)
-		message_admins("[key_name_admin(user)] has [ctf_enabled ? "enabled" : "disabled"] CTF!")
+		message_admins("[key_name_admin(user)] 已[ctf_enabled ? "启用" : "禁用"] CTF！")
 	else if(automated)
-		message_admins("CTF has finished a round and automatically restarted.")
+		message_admins("CTF 已完成一局并自动重新开始。")
 		notify_ghosts(
-			"CTF has automatically restarted after a round finished in [initial(ctf_area.name)]!",
+			"[initial(ctf_area.name)] 中的一局结束后，CTF 已自动重新开始！",
 			ghost_sound = 'sound/effects/ghost2.ogg',
-			header = "CTF Restarted"
+			header = "CTF 已重新开始"
 		)
 	else
-		message_admins("The players have spoken! Voting has enabled CTF!")
+		message_admins("玩家们已作出选择！投票已启用 CTF！")
 	if(!automated)
 		notify_ghosts(
-			"CTF has been [ctf_enabled? "enabled" : "disabled"] in [initial(ctf_area.name)]!",
+			"CTF 已在 [initial(ctf_area.name)] 中被[ctf_enabled? "启用" : "禁用"]！",
 			ghost_sound = 'sound/effects/ghost2.ogg',
-			header = "CTF [ctf_enabled? "Enabled" : "Disabled"]"
+			header = "CTF [ctf_enabled? "已启用" : "已禁用"]"
 		)
 
 #undef CTF_LOADING_UNLOADED

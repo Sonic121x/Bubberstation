@@ -6,7 +6,7 @@
 /datum/emote/gorilla/ooga
 	key = "ooga"
 	key_third_person = "oogas"
-	message = "oogas."
-	message_param = "oogas at %t."
+	message = "嗷嗷叫着。"
+	message_param = "冲着 %t 嗷嗷叫。"
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	sound = 'sound/mobs/non-humanoids/gorilla/gorilla.ogg'

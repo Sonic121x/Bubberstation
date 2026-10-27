@@ -11,28 +11,28 @@
 		"moving" = FALSE,
 	)
 	description = list(
-		"The Path of Void focuses on stealth, freezing cold, mobility and depressurization.",
-		"Pick this path if you enjoy being a highly mobile assassin who leaves their foes struggling to catch up.",
+		"虚空之道专注于潜行、极寒、机动性与减压。",
+		"如果你喜欢扮演一名高机动性的刺客，让敌人只能苦苦追赶，就选这条道路。",
 	)
 	pros = list(
-		"Protection from the hazards of space.",
-		"Your spells apply a stacking debuff that chills and slows targets.",
-		"High amount of mobility spells.",
-		"Highly stealthy.",
+		"免受太空环境危害。",
+		"你的法术会施加可叠加的减益，使目标寒冷并减速。",
+		"拥有大量机动性法术。",
+		"极强的潜行能力。",
 	)
 	cons = list(
-		"Though protected from space, you are not nearly as mobile in it as you are on foot.",
-		"Has a difficult time fighting opponents immune to cold effects.",
-		"Has a difficult time with silicon-based lifeforms.",
+		"虽然你受到太空保护，但在太空中远不如步行时灵活。",
+		"面对免疫寒冷效果的对手时较为吃力。",
+		"对付硅基生命体时较为吃力。",
 	)
 	tips = list(
-		"Your Mansus Grasp allows you to mute your targets, making it ideal for silent assassinations (keep in mind that it won't short circuit their suit sensors, make sure you turn them off after you kill them). Yhe grasp also applies a mark that when triggered by the void blade will apply the maximum amount of stacks of void chill to your target, slowing them down to a crawl.",
-		"Void Cloak can be used to hide one of your blades and a Codex Cicatrix.",
-		"Void chill is a debuff applied by your spells, your grasp, your mark and your blade once you unlock the upgrade. Each stack slows your target movement speed by 10% and make them gradually colder, up to a maximum of 5 stacks.",
-		"At 5 stacks void chill will also prevent your target from heating up.",
-		"You are immune to low pressure and cold damage at the start of the shift. Upgrade your passive to level 2 to no longer need to breathe. Use this to your advantage.",
-		"Void prison can put a target in stasis for 10 seconds. Ideal if you are fighting multiple opponents and need to isolate one target at a time.",
-		"Void Conduit is your signature ability. It slowly destroys windows and airlocks around its area of effect. Use it to depressurize the station and expand your domain.",
+		"你的漫宿之握能使目标无法发声，非常适合无声刺杀（注意它不会让对方的宇航服传感器短路，杀掉对方后记得把传感器关掉）。该握击还会施加印记，当印记被虚空之刃触发时，会对目标施加最大层数的虚空寒冷，使其慢如龟爬。",
+		"虚空斗篷可以用来藏起你的一把刀刃和一本《疤痕法典》。",
+		"虚空寒冷是由你的法术、握击、印记以及升级后的刀刃施加的减益。每层使目标移动速度降低 10%，并使其逐渐变冷，最多叠加 5 层。",
+		"达到 5 层时，虚空寒冷还会阻止目标升温。",
+		"回合开始时你就免疫低压与寒冷伤害。将你的被动升级到 2 级后便不再需要呼吸。善加利用这一点。",
+		"虚空牢笼可使目标停滞 10 秒。当你面对多个对手、需要逐个隔离时非常理想。",
+		"虚空导流是你的招牌能力。它会缓慢摧毁影响范围内的窗户与气闸。用它让空间站失压，扩张你的领域。",
 	)
 
 	start = /datum/heretic_knowledge/limited_amount/starting/base_void
@@ -48,13 +48,13 @@
 	ascension = /datum/heretic_knowledge/ultimate/void_final
 
 /datum/heretic_knowledge/limited_amount/starting/base_void
-	name = "Glimmer of Winter"
-	desc = "Opens up the Path of Void to you.<br>\
-		Allows you to create Void Blades. \
-		You can only create two at a time."
-	transmute_text = "Transmute a knife in sub-zero temperatures."
-	gain_text = "I feel a shimmer in the air, the air around me gets colder. \
-		I start to realize the emptiness of existence. Something's watching me."
+	name = "凛冬微光"
+	desc = "为你开启虚空之道。<br>\
+		使你能制造虚空之刃。 \
+		同时最多只能存在两把。"
+	transmute_text = "在零下温度中转化一把刀。"
+	gain_text = "我感到空气中有一丝微光，周围的空气变得更冷。 \
+		我开始意识到存在的虚无。有什么东西在注视着我。"
 	required_atoms = list(/obj/item/knife = 1)
 	result_atoms = list(/obj/item/melee/sickly_blade/void)
 	research_tree_icon_path = 'icons/obj/weapons/khopesh.dmi'
@@ -64,12 +64,12 @@
 
 /datum/heretic_knowledge/limited_amount/starting/base_void/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
 	if(!isopenturf(loc))
-		loc.balloon_alert(user, "ritual failed, invalid location!")
+		loc.balloon_alert(user, "仪式失败，位置无效！")
 		return FALSE
 
 	var/turf/open/our_turf = loc
 	if(our_turf.GetTemperature() > T0C)
-		loc.balloon_alert(user, "ritual failed, not cold enough!")
+		loc.balloon_alert(user, "仪式失败，温度不够低！")
 		return FALSE
 
 	return ..()
@@ -85,11 +85,11 @@
 	carbon_target.apply_status_effect(/datum/status_effect/void_chill, 2)
 
 /datum/heretic_knowledge/spell/void_phase
-	name = "Void Phase"
-	desc = "Grants you Void Phase, a long range targeted teleport spell.<br>\
-		Causes damage to heathens around your original and target destination."
-	gain_text = "The entity calls themself the Aristocrat. They effortlessly walk through air like \
-		nothing - leaving a harsh, cold breeze in their wake. They disappear, and I am left in the blizzard."
+	name = "虚空相位"
+	desc = "授予你虚空相位，一种远程指定目标的传送法术。<br>\
+		对起点与终点周围的异端造成伤害。"
+	gain_text = "那个实体自称“贵族”。它毫不费力地踏空而行，仿佛空无一物——身后只留下刺骨的寒风。 \
+		它消失了，只余我一人留在暴雪之中。"
 	action_to_add = /datum/action/cooldown/spell/pointed/void_phase
 	cost = 2
 	research_tree_icon_frame = 7
@@ -99,15 +99,15 @@
 	holywater_drain_amount = 0.25
 
 /datum/heretic_knowledge/void_prison
-	name = "Void Prison"
-	desc = "Transmute a set of handcuffs, a stun baton, and a closet in sub-zero temperatures to gain a Void Prison.<br>\
-		A Void Prison is an orb that, when used, traps all nearby unmarked heathens into a stasis ball for 10 seconds. \
-		While in the ball, they are unable to speak, act, or be harmed. The Void Prison is consumed after one use."
-	transmute_text = "Transmute a set of handcuffs, a stun baton, and a closet in sub-zero temperatures."
-	gain_text = "At first, I see myself, waltzing along a snow-laden street. \
-		I try to yell, grab hold of this fool and tell them to run. \
-		But the only welts made are on my own beating fist. \
-		My smiling face turns to regard me, reflecting back in glassy eyes the empty path I have been lead down."
+	name = "虚空牢笼"
+	desc = "在零下温度中转化一副手铐、一根电击棍和一个储物柜，以获得虚空牢笼。<br>\
+		虚空牢笼是一个球体，使用后会将附近所有未被标记的异端困入停滞球中 10 秒。 \
+		被困在球中时，他们无法说话、行动，也不会受到伤害。虚空牢笼使用一次后即被消耗。"
+	transmute_text = "在零下温度中转化一副手铐、一根电击棍和一个储物柜。"
+	gain_text = "起初，我看见自己沿着积雪的街道跳着华尔兹。 \
+		我试图大喊，抓住这个傻瓜让他快跑。 \
+		但留下的只有我自己捶打出的伤痕。 \
+		我微笑的面孔转过来看着我，玻璃般的眼睛映出我被引向的那条空无一物的路。"
 	required_atoms = list(
 		/obj/item/restraints/handcuffs = 1,
 		/obj/structure/closet = 1,
@@ -139,13 +139,13 @@
 	return ..()
 
 /datum/heretic_knowledge/armor/void
-	desc = "Create a Hollow Weave.<br>\
-		This armor will periodically nullify attacks and grant you a short stealth camouflage to reposition yourself."
-	transmute_text = "Transmute a table (or a suit) and a mask in sub-zero temperatures."
-	gain_text = "Stepping through the cold air, I am shocked by a new sensation. \
-		Thousands of almost imperceivable threads cling to my form. \
-		I am left adrift with every step. \
-		Even as I hear the crunch of snow as I plant my foot to the ground, I feel nothing."
+	desc = "制造一件空洞织物。<br>\
+		这件护甲会周期性抵消攻击，并赋予你短暂的潜行伪装，以便重新调整位置。"
+	transmute_text = "在零下温度中转化一张桌子（或一件套装）和一个面具。"
+	gain_text = "穿行于冷空气中，我被一种全新的感觉惊住了。 \
+		成千上万几乎无法察觉的丝线附着在我身上。 \
+		每走一步，我都仿佛漂浮无依。 \
+		即使我把脚踏在地上、听见积雪的咯吱声，我也毫无感觉。"
 	result_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch/void)
 	research_tree_icon_state = "void_armor"
 	required_atoms = list(
@@ -155,21 +155,21 @@
 
 /datum/heretic_knowledge/armor/void/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
 	if(!isopenturf(loc))
-		loc.balloon_alert(user, "ritual failed, invalid location!")
+		loc.balloon_alert(user, "仪式失败，位置无效！")
 		return FALSE
 
 	var/turf/open/our_turf = loc
 	if(our_turf.GetTemperature() > T0C)
-		loc.balloon_alert(user, "ritual failed, not cold enough!")
+		loc.balloon_alert(user, "仪式失败，温度不够低！")
 		return FALSE
 
 	return ..()
 
 /datum/heretic_knowledge/spell/void_pull
-	name = "Void Pull"
-	desc = "Grants you Void Pull, a spell that pulls all nearby heathens towards you, stunning them briefly."
-	gain_text = "All is fleeting, but what else stays? I'm close to ending what was started. \
-		The Aristocrat reveals themselves to me again. They tell me I am late. Their pull is immense, I cannot turn back."
+	name = "虚空牵引"
+	desc = "授予你虚空牵引，一种将所有附近异端拉向你并短暂使其眩晕的法术。"
+	gain_text = "一切都在消逝，但还有什么能留下？我即将终结那早已开始的一切。 \
+		“贵族”再次向我显现。它说我迟到了。它的牵引无比巨大，我无法回头。"
 
 	action_to_add = /datum/action/cooldown/spell/aoe/void_pull
 	cost = 2
@@ -180,10 +180,10 @@
 	holywater_drain_amount = 0.25
 
 /datum/heretic_knowledge/blade_upgrade/void
-	name = "Seeking Blade"
-	desc = "Your blade now freezes enemies.<br>\
-		Additionally, you can now attack distant marked targets with your Void Blade, teleporting directly next to them."
-	gain_text = "Fleeting memories, fleeting feet. I mark my way with frozen blood upon the snow. Covered and forgotten."
+	name = "寻踪之刃"
+	desc = "你的刀刃现在能冻结敌人。<br>\
+		此外，你现在可以用虚空之刃攻击远处被标记的目标，并直接传送到其身旁。"
+	gain_text = "记忆短暂，脚步短暂。我用雪上冻结的鲜血标记我的去路。被掩埋，被遗忘。"
 
 	research_tree_icon_path = 'icons/ui_icons/antags/heretic/knowledge.dmi'
 	research_tree_icon_state = "blade_upgrade_void"
@@ -210,14 +210,14 @@
 	blade.melee_attack_chain(user, target)
 
 /datum/heretic_knowledge/void_conduit
-	name = "Void Conduit"
-	desc = "Empowers your blade, allowing you to rip a hole through space itself.<br>\
-		Attacking space with one of your void blades will create conduit to the void, \
-		damaging and chilling nearby heathens, and destroying windows and airlocks in the area."
-	notice = "The blade is consumed in the process. You can also use this ability on snow, or any tile in a complete vacuum."
-	gain_text = "The hum in the still, cold air turns to a cacophonous rattle. \
-		Over the noise, there is no distinction to the clattering of window panes and the yawning knowledge that ricochets through my skull. \
-		The doors won't close. I can't keep the cold out now."
+	name = "虚空导流"
+	desc = "强化你的刀刃，使你能够撕开空间本身。<br>\
+		用你的虚空之刃攻击空间，会撕开通往虚空的导流， \
+		伤害并冻结附近的异端，同时摧毁该区域的窗户与气闸。"
+	notice = "刀刃会在此过程中被消耗。你也可以在积雪上，或在完全真空中任意地砖上使用此能力。"
+	gain_text = "静止冷空气中的嗡鸣变成了刺耳的咔嗒声。 \
+		在这噪音之上，窗玻璃的撞击声与在我颅腔中回荡的、令人豁然开朗的认知已无从分辨。 \
+		门关不上了。如今我再也挡不住寒冷。"
 	cost = 2
 	is_final_knowledge = TRUE
 	research_tree_icon_path = 'icons/mob/actions/actions_ecult.dmi'
@@ -264,15 +264,15 @@
 		INVOKE_ASYNC(src, PROC_REF(create_conduit), affected_turf, source, sword)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
-	to_chat(source, span_mansus("[sword] hums with power, but [target] is not cold enough to create a conduit!"))
+	to_chat(source, span_mansus("[sword]嗡鸣着充满力量，但[target]不够寒冷，无法撕开导流！"))
 	return NONE
 
 /datum/heretic_knowledge/void_conduit/proc/create_conduit(turf/open/affected_turf, mob/living/source, obj/item/sword)
 	playsound(source, 'sound/effects/cloth_rip.ogg', 50, TRUE) // funny thing is, can't hear sound in a vacuum
-	to_chat(source, span_mansus("You plunge [sword] deep into [affected_turf], trying to rip open a conduit to the void!"))
+	to_chat(source, span_mansus("你将[sword]深深刺入[affected_turf]，试图撕开通往虚空的导流！"))
 	source.visible_message(
-		span_hypnophrase("[source] plunges [source.p_their()] [sword.name] into [affected_turf] - \
-			[isspaceturf(affected_turf) ? "but instead of nothing happening" : "contrary to what you expected"], a dark energy begins to flow from the site!"),
+		span_hypnophrase("[source]将自己的[sword.name]深深刺入[affected_turf] - \
+			[isspaceturf(affected_turf) ? "但这次并非毫无动静" : "与你预料的相反"]，一股黑暗能量开始从该处涌出！"),
 		ignored_mobs = source,
 	)
 	var/obj/effect/temp_visual/void_conduit_opening/animation = new(affected_turf)
@@ -280,9 +280,9 @@
 		animate(animation, alpha = 0, time = 1 SECONDS)
 		QDEL_IN(animation, 1 SECONDS)
 		return
-	to_chat(source, span_mansus("The conduit opens, releasing a storm of void energy! [sword] shatters into a million tiny shards!"))
+	to_chat(source, span_mansus("导流开启了，释放出虚空能量的风暴！[sword]碎裂成百万细小的碎片！"))
 	source.visible_message(
-		span_hypnophrase("A conduit to the void opens, releasing a storm of void energy!"),
+		span_hypnophrase("通往虚空的导流开启，释放出虚空能量的风暴！"),
 		ignored_mobs = source,
 	)
 	new /obj/structure/void_conduit(affected_turf)
@@ -291,18 +291,18 @@
 	playsound(source, SFX_SHATTER, 50, FALSE)
 
 /datum/heretic_knowledge/ultimate/void_final
-	name = "Waltz at the End of Time"
-	desc = "The ascension ritual of the Path of Void.<br>\
-		When completed, causes a violent storm of void snow \
-		to assault the station, freezing and damaging heathens. Those nearby will be silenced and frozen even quicker.<br>\
-		Additionally, you will become immune to the effects of space."
-	transmute_text = "Transmute three corpses in sub-zero temperatures."
-	gain_text = "The world falls into darkness. I stand in an empty plane, small flakes of ice fall from the sky. \
-		The Aristocrat stands before me, beckoning. We will play a waltz to the whispers of dying reality, \
-		as the world is destroyed before our eyes. The void will return all to nothing, WITNESS MY ASCENSION!"
+	name = "时间尽头的华尔兹"
+	desc = "虚空之道的登神仪式。<br>\
+		完成后，会引发一场猛烈的虚空之雪风暴 \
+		袭击空间站，冻结并伤害异端。附近的异端会被更快地噤声与冻结。<br>\
+		此外，你将对太空的效果免疫。"
+	transmute_text = "在零下温度中转化三具尸体。"
+	gain_text = "世界陷入黑暗。我站在一片空旷的平面上，细小的冰片自天空落下。 \
+		“贵族”站在我面前，向我招手。我们将伴随着濒死现实的低语共舞一曲华尔兹， \
+		而世界将在我们眼前毁灭。虚空将把一切归于虚无，见证我的登神！"
 
 	ascension_achievement = /datum/award/achievement/misc/void_ascension
-	announcement_text = "%SPOOKY% The nobleman of void %NAME% has arrived, stepping along the Waltz that ends worlds! %SPOOKY%"
+	announcement_text = "%SPOOKY% 虚空贵族 %NAME% 已经降临，踏着终结世界的华尔兹而来！%SPOOKY%"
 	announcement_sound = 'sound/music/antag/heretic/ascend_void.ogg'
 	///soundloop for the void theme
 	var/datum/looping_sound/void_loop/sound_loop
@@ -313,12 +313,12 @@
 
 /datum/heretic_knowledge/ultimate/void_final/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
 	if(!isopenturf(loc))
-		loc.balloon_alert(user, "ritual failed, invalid location!")
+		loc.balloon_alert(user, "仪式失败，位置无效！")
 		return FALSE
 
 	var/turf/open/our_turf = loc
 	if(our_turf.GetTemperature() > T0C)
-		loc.balloon_alert(user, "ritual failed, not cold enough!")
+		loc.balloon_alert(user, "仪式失败，温度不够低！")
 		return FALSE
 
 	return ..()
@@ -417,8 +417,8 @@
 		return NONE
 
 	ascended_heretic.visible_message(
-		span_danger("The void storm surrounding [ascended_heretic] deflects [hitting_projectile]!"),
-		span_userdanger("The void storm protects you from [hitting_projectile]!"),
+		span_danger("围绕[ascended_heretic]的虚空风暴弹开了[hitting_projectile]！"),
+		span_userdanger("虚空风暴保护你免受[hitting_projectile]的伤害！"),
 	)
 	playsound(ascended_heretic, SFX_VOID_DEFLECT, 75, TRUE)
 	hitting_projectile.firer = ascended_heretic

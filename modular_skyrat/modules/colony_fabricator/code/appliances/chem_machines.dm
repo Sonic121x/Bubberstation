@@ -1,10 +1,10 @@
 // Machine that makes water and nothing else
 
 /obj/machinery/plumbing/synthesizer/water_synth
-	name = "water synthesizer"
-	desc = "An infinitely useful device for those finding themselves in a frontier without a stable source of water. \
-		Using a simplified version of the chemistry dispenser's synthesizer process, it can create water out of nothing \
-		but good old electricity."
+	name = "水合成器"
+	desc = "对于身处边疆、找不到稳定水源的人来说，这是一台用处无穷的装置。\
+		它采用化学分配器合成工艺的简化版本，只靠老一套的电力\
+		就能凭空造出水来。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/chemistry_machines.dmi'
 	icon_state = "water_synth"
 	anchored = FALSE
@@ -24,7 +24,7 @@
 // Deployable item for cargo for the water synth
 
 /obj/item/flatpacked_machine/water_synth
-	name = "water synthesizer parts kit"
+	name = "水合成器零件包"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/chemistry_machines.dmi'
 	icon_state = "water_synth_parts"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -38,10 +38,10 @@
 // Machine that makes botany nutrients for hydroponics farming
 
 /obj/machinery/plumbing/synthesizer/colony_hydroponics
-	name = "hydroponics chemical synthesizer"
-	desc = "An infinitely useful device for those finding themselves in a frontier without a stable source of nutrients for crops. \
-		Using a simplified version of the chemistry dispenser's synthesizer process, it can create hydroponics nutrients out of nothing \
-		but good old electricity."
+	name = "水培化学品合成器"
+	desc = "对于身处边疆、作物缺少稳定营养来源的人来说，这是一台用处无穷的装置。\
+		它采用化学分配器合成工艺的简化版本，只靠老一套的电力\
+		就能凭空造出水培营养液。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/chemistry_machines.dmi'
 	icon_state = "hydro_synth"
 	anchored = FALSE
@@ -67,7 +67,7 @@
 // Deployable item for cargo for the hydro synth
 
 /obj/item/flatpacked_machine/hydro_synth
-	name = "hydroponics chemical synthesizer parts kit"
+	name = "水培化学品合成器零件包"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/chemistry_machines.dmi'
 	icon_state = "hydro_synth_parts"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -81,9 +81,9 @@
 // Chem dispenser with a limited range of thematic reagents to dispense
 
 /obj/machinery/chem_dispenser/frontier_appliance
-	name = "sustenance dispenser"
-	desc = "Creates and dispenses a small pre-defined set of chemicals and other liquids for the convenience of those typically on the frontier. \
-		While the machine is loved by many, it also has a reputation for making some of the worst coffees this side of the galaxy. Use at your own risk."
+	name = "饮食分配器"
+	desc = "为方便常驻边疆的人们，它可以制造并分配一小套预先设定的化学品与其他液体。\
+		虽然这台机器深受许多人喜爱，但它也以能冲出银河这一侧最难喝的咖啡而闻名。使用时请自担风险。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/chemistry_machines.dmi'
 	icon_state = "dispenser"
 	base_icon_state = "dispenser"
@@ -129,12 +129,12 @@
 
 /obj/machinery/chem_dispenser/frontier_appliance/examine(mob/user)
 	. = ..()
-	. += span_notice("It cannot be repacked, but can be deconstructed normally.")
+	. += span_notice("它无法被重新打包，但可以正常拆解。")
 
 // Deployable item for cargo for the sustenance machine
 
 /obj/item/flatpacked_machine/sustenance_machine
-	name = "sustenance dispenser parts kit"
+	name = "饮食分配器零件包"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/chemistry_machines.dmi'
 	icon_state = "dispenser_parts"
 	w_class = WEIGHT_CLASS_NORMAL

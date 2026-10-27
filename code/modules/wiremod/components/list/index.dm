@@ -4,9 +4,9 @@
  * Return the index of a list
  */
 /obj/item/circuit_component/index
-	display_name = "Index List"
-	desc = "A component that returns the value of a list at a given index."
-	category = "List"
+	display_name = "索引"
+	desc = "返回列表在指定索引处值的元件。"
+	category = "列表"
 
 	/// The list type
 	var/datum/port/input/option/list_options
@@ -55,8 +55,8 @@
 	output.set_output(list_input[index])
 
 /obj/item/circuit_component/index/assoc_string
-	display_name = "Index Associative List"
-	desc = "A component that is commonly used to access a row from a table. Accesses data from a key, value list."
+	display_name = "关联列表索引"
+	desc = "常用于从表格中读取一行的元件，按键值对列表中的键读取数据。"
 
 	index_type = PORT_TYPE_STRING
 

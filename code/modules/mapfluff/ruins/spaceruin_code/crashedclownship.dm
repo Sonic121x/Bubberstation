@@ -1,4 +1,4 @@
 /////////// crashedclownship items
 
 /obj/item/paper/fluff/ruins/crashedclownship/true_nation
-	default_raw_text = "The call has gone out! Our ancestral home has been rediscovered! Not a small patch of land, but a true clown nation, a true Clown Planet! We're on our way home at last!"
+	default_raw_text = "召唤已经发出！我们祖先的家园被重新发现了！不是什么小块土地，而是一个真正的小丑国度，一颗真正的小丑星球！我们终于要回家了！"

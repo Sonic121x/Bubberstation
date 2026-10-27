@@ -1,9 +1,9 @@
 /datum/computer_file/program/maintenance/modsuit_control
 	filename = "modsuit_control"
-	filedesc = "MODsuit Control"
+	filedesc = "MOD 外骨骼控制"
 	program_open_overlay = "modsuit_control"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
-	extended_desc = "This program allows people to connect a MODsuit to it, allowing remote control."
+	extended_desc = "该程序可让人连接一台 MOD 外骨骼，从而实现远程控制。"
 	size = 2
 	tgui_id = "NtosMODsuit"
 	program_icon = "user-astronaut"
@@ -27,7 +27,7 @@
 		unsync_modsuit()
 	controlled_suit = new_modsuit
 	RegisterSignal(controlled_suit, COMSIG_QDELETING, PROC_REF(unsync_modsuit))
-	user?.balloon_alert(user, "suit updated")
+	user?.balloon_alert(user, "外骨骼已更新")
 
 /datum/computer_file/program/maintenance/modsuit_control/proc/unsync_modsuit(atom/source)
 	SIGNAL_HANDLER

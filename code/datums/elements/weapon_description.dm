@@ -39,7 +39,7 @@
 	SIGNAL_HANDLER
 
 	if(item.force >= 5 || item.throwforce >= 5 || item.override_notes || item.offensive_notes || attached_proc) /// Only show this tag for items that could feasibly be weapons, shields, or those that have special notes
-		examine_texts += span_notice("<a href='byond://?src=[REF(item)];examine=1'>See combat information.</a>")
+		examine_texts += span_notice("<a href='byond://?src=[REF(item)];examine=1'>查看战斗信息。</a>")
 
 /**
  *
@@ -74,21 +74,21 @@
 	// Doesn't show the base notes for items that have the override notes variable set to true
 	if(!source.override_notes)
 		if (source.get_sharpness() & SHARP_EDGED)
-			readout += "It's sharp and could cause bleeding wounds."
+			readout += "它很锋利，能够造成出血伤口。"
 		if (source.get_sharpness() & SHARP_POINTY)
-			readout += "It's pointy and could cause piercing wounds."
+			readout += "它有尖端，能够造成穿刺伤。"
 		// Make sure not to divide by 0 on accident
 		if(source.force > 0)
-			readout += "It takes about [span_warning("[HITS_TO_CRIT(source.force)] melee hit\s")] to take down an enemy."
+			readout += "大约需要[span_warning("[HITS_TO_CRIT(source.force)]次近战命中")]才能击倒一名敌人。"
 		else
-			readout += "It does not deal noticeable melee damage."
+			readout += "它无法造成明显的近战伤害。"
 
 		if(source.throwforce > 0)
-			readout += "It takes about [span_warning("[HITS_TO_CRIT(source.throwforce)] throwing hit\s")] to take down an enemy."
+			readout += "大约需要[span_warning("[HITS_TO_CRIT(source.throwforce)]次投掷命中")]才能击倒一名敌人。"
 		else
-			readout += "It does not deal noticeable throwing damage."
+			readout += "它无法造成明显的投掷伤害。"
 		if(source.armour_penetration > 0 || source.block_chance > 0)
-			readout += "It has [span_warning("[weapon_tag_convert(source.armour_penetration)]")] armor-piercing capability and [span_warning("[weapon_tag_convert(source.block_chance)]")] blocking capability."
+			readout += "其穿甲能力为[span_warning("[weapon_tag_convert(source.armour_penetration)]")]，格挡能力为[span_warning("[weapon_tag_convert(source.block_chance)]")]。"
 	// Custom manual notes
 	if(source.offensive_notes)
 		readout += source.offensive_notes
@@ -113,14 +113,14 @@
 /datum/element/weapon_description/proc/weapon_tag_convert(tag_val)
 	switch(tag_val)
 		if(0)
-			return "NO"
+			return "无"
 		if(1 to 25)
-			return "LITTLE"
+			return "低"
 		if(26 to 50)
-			return "AVERAGE"
+			return "一般"
 		if(51 to 75)
-			return "ABOVE-AVERAGE"
+			return "高于平均"
 		if(76 to INFINITY)
-			return "EXCELLENT"
+			return "优秀"
 		else
-			return "WEIRD"
+			return "异常"

@@ -2,7 +2,7 @@
 
 /// Adding or removing specific organs
 /datum/surgery_operation/limb/organ_manipulation
-	name = "organ manipulation"
+	name = "器官操控"
 	abstract_type = /datum/surgery_operation/limb/organ_manipulation
 	operation_flags = OPERATION_MORBID | OPERATION_NOTABLE | OPERATION_NO_PATIENT_REQUIRED
 	required_bodytype = (~BODYTYPE_ROBOTIC & ~BODYTYPE_SYNTHETIC) // BUBBER EDIT CHANGE - SYNTH FLAGS  -Original: required_bodytype = ~BODYTYPE_ROBOTIC
@@ -34,7 +34,7 @@
 	implements = remove_implements + insert_implements
 
 /datum/surgery_operation/limb/organ_manipulation/get_recommended_tool()
-	return "[..()] / organ"
+	return "[..()] / 器官"
 
 /datum/surgery_operation/limb/organ_manipulation/get_default_radial_image()
 	return image('icons/obj/medical/surgery_ui.dmi', "surgery_any")
@@ -112,8 +112,8 @@
 			option = new()
 			option.image = image('icons/hud/surgery_radial.dmi', "base")
 			option.image.overlays += add_radial_overlays(organ.type)
-			option.name = "remove [initial(organ.name)]"
-			option.info = "Remove [initial(organ.name)] from the [limb.owner ? "patient" : "limb"]."
+			option.name = "取出 [initial(organ.name)]"
+			option.info = "从[limb.owner ? "病人" : "断肢"]中取出 [initial(organ.name)]。"
 			LAZYSET(cached_organ_manipulation_options, "[organ.type]_remove", option)
 
 		options[option] = list("[OPERATION_ACTION]" = "remove", "[OPERATION_REMOVED_ORGAN]" = organ)
@@ -126,8 +126,8 @@
 		option = new()
 		option.image = image('icons/hud/surgery_radial.dmi', "base")
 		option.image.overlays += add_radial_overlays(list(image('icons/hud/screen_gen.dmi', "arrow_large_still"), organ.type))
-		option.name = "insert [initial(organ.name)]"
-		option.info = "insert [initial(organ.name)] into the [limb.owner ? "patient" : "limb"]."
+		option.name = "植入 [initial(organ.name)]"
+		option.info = "把 [initial(organ.name)] 植入[limb.owner ? "病人" : "断肢"]。"
 		LAZYSET(cached_organ_manipulation_options, "[organ.type]_insert", option)
 
 	var/list/result = list()
@@ -159,21 +159,21 @@
 			display_results(
 				surgeon,
 				limb.owner,
-				span_notice("You begin to remove [organ.name] from [FORMAT_LIMB_OWNER(limb)]..."),
-				span_notice("[surgeon] begins to remove [organ.name] from [limb.owner || limb]."),
-				span_notice("[surgeon] begins to remove something from [limb.owner || limb]."),
+				span_notice("你开始从 [FORMAT_LIMB_OWNER(limb)] 中取出 [organ.name]……"),
+				span_notice("[surgeon] 开始从 [limb.owner || limb] 中取出 [organ.name]。"),
+				span_notice("[surgeon] 开始从 [limb.owner || limb] 中取出什么东西。"),
 			)
-			display_pain(limb.owner, "You feel a tugging sensation in your [limb.plaintext_zone]!")
+			display_pain(limb.owner, "你感觉[chinese_body_zone_display(limb.plaintext_zone)]里传来一阵拉扯感！")
 		if("insert")
 			play_operation_sound(limb, surgeon, tool, insert_preop_sound)
 			display_results(
 				surgeon,
 				limb.owner,
-				span_notice("You begin to insert [tool.name] into [FORMAT_LIMB_OWNER(limb)]..."),
-				span_notice("[surgeon] begins to insert [tool.name] into [limb.owner || limb]."),
-				span_notice("[surgeon] begins to insert something into [limb.owner || limb]."),
+				span_notice("你开始把 [tool.name] 植入 [FORMAT_LIMB_OWNER(limb)]……"),
+				span_notice("[surgeon] 开始把 [tool.name] 植入 [limb.owner || limb]。"),
+				span_notice("[surgeon] 开始把什么东西植入 [limb.owner || limb]。"),
 			)
-			display_pain(limb.owner, "You can feel something being placed in your [limb.plaintext_zone]!")
+			display_pain(limb.owner, "你能感觉到有什么东西被放进了你的[chinese_body_zone_display(limb.plaintext_zone)]！")
 
 /datum/surgery_operation/limb/organ_manipulation/on_success(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	switch(operation_args[OPERATION_ACTION])
@@ -190,12 +190,12 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You successfully extract [organ.name] from [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] successfully extracts [organ.name] from [FORMAT_LIMB_OWNER(limb)]!"),
-		span_notice("[surgeon] successfully extracts something from [FORMAT_LIMB_OWNER(limb)]!"),
+		span_notice("你成功从 [FORMAT_LIMB_OWNER(limb)] 中取出了 [organ.name]。"),
+		span_notice("[surgeon] 成功从 [FORMAT_LIMB_OWNER(limb)] 中取出了 [organ.name]！"),
+		span_notice("[surgeon] 成功从 [FORMAT_LIMB_OWNER(limb)] 中取出了什么东西！"),
 	)
-	display_pain(limb.owner, "Your [limb.plaintext_zone] throbs with pain, you can't feel your [organ.name] anymore!")
-	log_combat(surgeon, limb.owner || limb, "surgically removed [organ.name] from")
+	display_pain(limb.owner, "你的[chinese_body_zone_display(limb.plaintext_zone)]阵阵作痛，你已经感觉不到自己的 [organ.name] 了！")
+	log_combat(surgeon, limb.owner || limb, "通过手术取出了 [organ.name]，对象为")
 	if (limb.owner)
 		organ.Remove(limb.owner)
 	else
@@ -222,19 +222,19 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You successfully insert [organ.name] into [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] successfully inserts [organ.name] into [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] successfully inserts something into [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你成功把 [organ.name] 植入了 [FORMAT_LIMB_OWNER(limb)]。"),
+		span_notice("[surgeon] 成功把 [organ.name] 植入了 [FORMAT_LIMB_OWNER(limb)]。"),
+		span_notice("[surgeon] 成功把什么东西植入了 [FORMAT_LIMB_OWNER(limb)]。"),
 	)
-	display_pain(limb.owner, "Your [limb.plaintext_zone] throbs with pain as your new [organ.name] comes to life!")
+	display_pain(limb.owner, "你的[chinese_body_zone_display(limb.plaintext_zone)]阵阵作痛，而你新的 [organ.name] 开始运转起来！")
 
 /datum/surgery_operation/limb/organ_manipulation/internal
-	name = "internal organ manipulation"
-	desc = "Manipulate a patient's internal organs."
+	name = "内部器官操控"
+	desc = "操控病人的内部器官。"
 	replaced_by = /datum/surgery_operation/limb/organ_manipulation/internal/abductor
 	all_surgery_states_required = SURGERY_SKIN_OPEN|SURGERY_ORGANS_CUT
 
-	var/bone_locked_organs = "the brain or any chest organs"
+	var/bone_locked_organs = "大脑或任何胸部器官"
 
 /datum/surgery_operation/limb/organ_manipulation/internal/organ_check(obj/item/bodypart/limb, obj/item/organ/organ)
 	if(organ.organ_flags & ORGAN_EXTERNAL)
@@ -246,12 +246,12 @@
 
 /datum/surgery_operation/limb/organ_manipulation/internal/any_required_strings()
 	return ..() + list(
-		"if operating on [bone_locked_organs], the bone MUST be sawed",
-		"otherwise, the state of the bone doesn't matter",
+		"若对[bone_locked_organs]进行手术，骨骼必须已被锯开",
+		"否则，骨骼的状态无关紧要",
 	)
 
 /datum/surgery_operation/limb/organ_manipulation/internal/mechanic
-	name = "prosthetic organ manipulation"
+	name = "义体器官操控"
 	required_bodytype = (BODYTYPE_ROBOTIC | BODYTYPE_SYNTHETIC | BODYTYPE_NANO) // NOVA EDIT CHANGE - SYNTH FLAGS  -Original: required_bodytype = BODYTYPE_ROBOTIC // BUBBER EDIT CHANGE - NANO FLAGS  -Original: required_bodytype = (BODYTYPE_ROBOTIC | BODYTYPE_SYNTHETIC)
 	remove_implements = list(
 		TOOL_CROWBAR = 1,
@@ -262,19 +262,19 @@
 
 /// Abductor subtype that works through clothes and lets you extract the heart without sawing bones
 /datum/surgery_operation/limb/organ_manipulation/internal/abductor
-	name = "experimental organ manipulation"
+	name = "实验性器官操控"
 	operation_flags = parent_type::operation_flags | OPERATION_IGNORE_CLOTHES | OPERATION_LOCKED | OPERATION_NO_WIKI
 	all_surgery_states_required = SURGERY_SKIN_OPEN
 	any_surgery_states_blocked = SURGERY_VESSELS_UNCLAMPED
-	bone_locked_organs = "the brain or any chest organs EXCLUDING the heart"
+	bone_locked_organs = "大脑或除心脏外的任何胸部器官"
 
 /datum/surgery_operation/limb/organ_manipulation/internal/abductor/organ_check(obj/item/bodypart/limb, obj/item/organ/organ)
 	return (organ.slot == ORGAN_SLOT_HEART) || ..() // Hearts can always be removed, it doesn't check for bone state
 
 // All external organ manipulation requires bones sawed
 /datum/surgery_operation/limb/organ_manipulation/external
-	name = "feature manipulation"
-	desc = "Manipulate features of the patient, such as a moth's wings or a lizard's tail."
+	name = "体貌特征操控"
+	desc = "操控病人的体貌特征，例如蛾人的翅膀或蜥蜴的尾巴。"
 	replaced_by = /datum/surgery_operation/limb/organ_manipulation/external/abductor
 	all_surgery_states_required = SURGERY_SKIN_OPEN|SURGERY_BONE_SAWED
 	any_surgery_states_blocked = SURGERY_VESSELS_UNCLAMPED
@@ -283,7 +283,7 @@
 	return (organ.organ_flags & ORGAN_EXTERNAL)
 
 /datum/surgery_operation/limb/organ_manipulation/external/mechanic
-	name = "prosthetic feature manipulation"
+	name = "义体特征操控"
 	required_bodytype = (BODYTYPE_ROBOTIC | BODYTYPE_SYNTHETIC | BODYTYPE_NANO) // NOVA EDIT CHANGE - SYNTH FLAGS  -Original: required_bodytype = BODYTYPE_ROBOTIC // BUBBER EDIT CHANGE - NANO FLAGS  -Original: required_bodytype = (BODYTYPE_ROBOTIC | BODYTYPE_SYNTHETIC)
 	remove_implements = list(
 		TOOL_CROWBAR = 1,
@@ -299,7 +299,7 @@
 
 /// Abductor subtype that works through clothes
 /datum/surgery_operation/limb/organ_manipulation/external/abductor
-	name = "experimental feature manipulation"
+	name = "实验性特征操控"
 	operation_flags = parent_type::operation_flags | OPERATION_IGNORE_CLOTHES | OPERATION_LOCKED | OPERATION_NO_WIKI
 	all_surgery_states_required = SURGERY_SKIN_OPEN
 	any_surgery_states_blocked = SURGERY_VESSELS_UNCLAMPED

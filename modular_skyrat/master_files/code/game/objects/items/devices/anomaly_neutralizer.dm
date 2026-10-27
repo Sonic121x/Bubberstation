@@ -1,7 +1,7 @@
 /obj/item/anomaly_neutralizer/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/effect_remover, \
-		success_feedback = "You neutralize %THEEFFECT with %THEWEAPON, frying its circuitry in the process.", \
+		success_feedback = "你用%THEWEAPON中和了%THEEFFECT，同时烧毁了装置的电路。", \
 		on_clear_callback = CALLBACK(src, PROC_REF(on_use_cme)), \
 		effects_we_clear = list(/obj/effect/cme))
 

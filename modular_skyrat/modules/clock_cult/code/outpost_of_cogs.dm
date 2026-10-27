@@ -20,7 +20,7 @@
 
 	sleep(2 SECONDS)
 
-	send_clock_message(null, "<b>With the draining of one of Nar'sie's heretics, we can now open a portal to the City of Cogs, the blessed sanctuary of Reebe! It shall only be a little longer...</b>", "<span class='brass'>")
+	send_clock_message(null, "<b>随着纳尔西的一名异教徒被汲取殆尽，我们现在可以开启通往齿轮之城——受祝福的里比圣所——的传送门了！只需再等一小会儿……</b>", "<span class='brass'>")
 
 	sleep(5 SECONDS)
 
@@ -28,7 +28,7 @@
 
 	for(var/mob/target as anything in GLOB.player_list)
 		if(!isnewplayer(target) && !HAS_TRAIT(target, TRAIT_DEAF) && is_station_level(target.z))
-			to_chat(target, span_brass("You hear a distant, faint clanking of cogs..."))
+			to_chat(target, span_brass("你听到远处传来模糊的齿轮碰撞声……"))
 
 	sleep(7 SECONDS)
 
@@ -42,11 +42,11 @@
 	if(!atom_area)
 		atom_area = get_area(atom_turf)
 
-	send_clock_message(null, "A portal has been opened at [atom_area] to our holy city, it is a glorious day in the name of Ratvar.", "<span class='bigbrass'>", msg_ghosts = FALSE)
-	notify_ghosts("A portal has been opened at [atom_area] to our holy city, it is a glorious day in the name of Ratvar.",
+	send_clock_message(null, "[atom_area] 处已开启一道通往我们圣城的传送门，这是以拉特瓦之名值得荣耀的一天。", "<span class='bigbrass'>", msg_ghosts = FALSE)
+	notify_ghosts("[atom_area] 处已开启一道通往我们圣城的传送门，这是以拉特瓦之名值得荣耀的一天。",
 		source = atom_area,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
-		header = "Portal to Reebe",
+		header = "通往里比的传送门",
 	)
 
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(reebe_station_warning), atom_area, portal), 5 MINUTES)
@@ -57,7 +57,7 @@
 	if(!portal)
 		return
 
-	send_clock_message(null, "The portal's stability is decreasing! Shortly, those not loyal to Ratvar will be able to enter, and more rifts will open!", "<span class='brass'>")
+	send_clock_message(null, "传送门的稳定性正在下降！很快，不忠于拉特瓦的人也能进入，并会有更多裂隙开启！", "<span class='brass'>")
 
 	sleep(15 SECONDS)
 
@@ -67,15 +67,15 @@
 	if(!atom_area)
 		atom_area = get_area(portal)
 
-	priority_announce("An anomalous reading has been picked up at [atom_area], please ensure the safety of the crew in the vicinity.")
+	priority_announce("[atom_area] 处检测到异常读数，请确保附近船员的安全。")
 
 	for(var/obj/effect/landmark/late_cog_portals/late_portal in GLOB.landmarks_list)
 		var/obj/effect/landmark/portal_exit/new_exit = new(get_turf(late_portal))
 		new_exit.id = "reebe_entry"
 		qdel(late_portal)
 
-	portal.visible_message("[portal] lets out a hiss of steam as it becomes a more blue color. You feel like it's safer to enter, now.")
-	portal.desc += " It feels easier to enter, now."
+	portal.visible_message("[portal] 喷出一阵蒸汽，颜色变得更蓝了。你觉得现在进去更安全了。")
+	portal.desc += " 现在似乎更容易进去了。"
 	new /obj/effect/temp_visual/steam_release(get_turf(portal))
 	animate(portal, 3 SECONDS, color = "#326de3")
 	portal.clock_only = FALSE
@@ -83,21 +83,21 @@
 
 
 /obj/item/paper/crumpled/ruins/reebe1
-	name = "scribbled note"
-	default_raw_text = {"The Justicar was wrong.<br>
-	This isn't Reebe. I held out hope, hope that some part of Ratvar was still alive on the holy city.<br>
-	But there's nothing here, just some... forward outpost. And damn those Nar'sian dogs! I can feel them trying to enter the portal!"}
+	name = "潦草的便条"
+	default_raw_text = {"司法官错了。<br>
+	这里不是里比。我曾抱有希望，希望拉特瓦的某一部分仍活在这座圣城之中。<br>
+	但这里什么都没有，只有一座……前方前哨。还有那些该死的纳尔西走狗！我能感觉到他们正试图进入传送门！"}
 
 
 /obj/item/paper/crumpled/bloody/reebe2
-	name = "scribbled note"
-	default_raw_text = {"The heretics made it into this holy ground.<br>
-	Many of our brothers and sisters fell in this fight, I am the only one left. It is with pleasure that I can die knowing of the deaths of another group of Nar'sians.<br>
-	If only that damnable portal could've opened in time..."}
+	name = "潦草的便条"
+	default_raw_text = {"异教徒们闯入了这片圣地。<br>
+	我们的许多兄弟姐妹在这场战斗中倒下了，只剩我一个。能知道自己又带走了一群纳尔西信徒，我死也甘愿。<br>
+	要是那该死的传送门能及时打开就好了……"}
 
 
 /obj/effect/mob_spawn/corpse/human/blood_cultist
-	name = "Blood Cultist"
+	name = "血教徒"
 	outfit = /datum/outfit/blood_cultist
 
 
@@ -120,16 +120,16 @@
 
 
 /obj/effect/mob_spawn/corpse/human/clock_cultist
-	name = "Clock Cultist"
+	name = "发条教徒"
 	outfit = /datum/outfit/clock
 
 /obj/effect/mob_spawn/corpse/human/clock_cultist/armored
-	name = "Armored Clock Cultist"
+	name = "披甲发条教徒"
 	outfit = /datum/outfit/clock/armor
 
 /obj/effect/mob_spawn/corpse/human/clock_cultist/support
-	name = "Support Clock Cultist"
+	name = "支援型发条教徒"
 	outfit = /datum/outfit/clock/support
 
 /obj/effect/landmark/late_cog_portals
-	name = "late cog portal spawn"
+	name = "后期齿轮传送门生成点"

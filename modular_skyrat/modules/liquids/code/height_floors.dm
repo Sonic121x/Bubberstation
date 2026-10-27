@@ -1,20 +1,20 @@
 /obj/item/stack/tile/iron/elevated
-	name = "elevated floor tile"
-	singular_name = "elevated floor tile"
+	name = "抬高地板砖"
+	singular_name = "抬高地板砖"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "elevated_plasteel"
 	turf_type = /turf/open/floor/iron/elevated
 
 /obj/item/stack/tile/iron/lowered
-	name = "lowered floor tile"
-	singular_name = "lowered floor tile"
+	name = "降低地板砖"
+	singular_name = "降低地板砖"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "lowered_plasteel"
 	turf_type = /turf/open/floor/iron/lowered
 
 /obj/item/stack/tile/iron/pool
-	name = "pool floor tile"
-	singular_name = "pool floor tile"
+	name = "泳池地板砖"
+	singular_name = "泳池地板砖"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "pool"
 	turf_type = /turf/open/floor/iron/pool
@@ -26,27 +26,27 @@
 	)
 
 /obj/item/stack/tile/iron/pool/cobble
-	name = "cobblestone pool floor tile"
-	singular_name = "cobblestone pool floor tile"
+	name = "鹅卵石泳池地板砖"
+	singular_name = "鹅卵石泳池地板砖"
 	icon_state = "cobble"
 	turf_type = /turf/open/floor/iron/pool/cobble
 
 /obj/item/stack/tile/iron/pool/cobble/side
-	name = "cobblestone side pool floor tile"
-	singular_name = "cobblestone side pool floor tile"
+	name = "鹅卵石侧边泳池地板砖"
+	singular_name = "鹅卵石侧边泳池地板砖"
 	icon_state = "cobble_side"
 	turf_type = /turf/open/floor/iron/pool/cobble/side
 	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST)
 
 /obj/item/stack/tile/iron/pool/cobble/corner
-	name = "cobblestone corner pool floor tile"
-	singular_name = "cobblestone corner pool floor tile"
+	name = "鹅卵石转角泳池地板砖"
+	singular_name = "鹅卵石转角泳池地板砖"
 	icon_state = "cobble_corner"
 	turf_type = /turf/open/floor/iron/pool/cobble/corner
 	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST, SOUTHEAST, SOUTHWEST, NORTHEAST, NORTHWEST)
 
 /turf/open/floor/iron/pool
-	name = "pool floor"
+	name = "泳池地板"
 	floor_tile = /obj/item/stack/tile/iron/pool
 	icon = 'modular_skyrat/modules/liquids/icons/turf/pool_tile.dmi'
 	base_icon_state = "pool_tile"
@@ -58,7 +58,7 @@
 	return
 
 /turf/open/floor/iron/pool/cobble
-	name = "cobblestone pool floor"
+	name = "鹅卵石泳池地板"
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
 	base_icon_state = "cobble"
 	icon_state = "cobble"
@@ -76,7 +76,7 @@
 	icon_state = "cobble_corner"
 
 /turf/open/floor/iron/elevated
-	name = "elevated floor"
+	name = "抬高地板"
 	floor_tile = /obj/item/stack/tile/iron/elevated
 	icon = 'modular_zubbers/icons/turf/floors/elevated_plasteel.dmi'
 	icon_state = "elevated_plasteel-0"
@@ -92,7 +92,7 @@
 	return
 
 /turf/open/floor/iron/lowered
-	name = "lowered floor"
+	name = "降低地板"
 	floor_tile = /obj/item/stack/tile/iron/lowered
 	icon = 'modular_zubbers/icons/turf/floors/lowered_plasteel.dmi'
 	icon_state = "lowered_plasteel-0"

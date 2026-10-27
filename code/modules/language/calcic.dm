@@ -1,6 +1,6 @@
 /datum/language/calcic
 	name = "Calcic"
-	desc = "The disjointed and staccato language of plasmamen. Also understood by skeletons."
+	desc = "等离子人那种断续而顿挫的语言，骷髅也能听懂。"
 	key = "b"
 	space_chance = 10
 	sentence_chance = 2

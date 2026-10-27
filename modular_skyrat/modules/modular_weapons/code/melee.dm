@@ -1,8 +1,8 @@
 // Sabres, including the cargo variety
 
 /obj/item/storage/belt/sheath/sabre/cargo
-	name = "authentic shamshir leather sheath"
-	desc = "A good-looking sheath that is advertised as being made of real Venusian black leather. It feels rather plastic-like to the touch, and it looks like it's made to fit a British cavalry sabre."
+	name = "正宗波斯弯刀皮鞘"
+	desc = "一个漂亮的刀鞘，广告称采用正宗金星黑色皮革制成。摸起来却很像塑料，而且看着像是给英国骑兵军刀用的。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
 	stored_blade = /obj/item/melee/sabre/cargo
@@ -13,8 +13,8 @@
 	exposed_wound_bonus = 20 // Original: 25 Both down slightly, to make up for the damage buff, since it'd get a bit wacky ontop of the armor pen.
 
 /obj/item/melee/sabre/cargo
-	name = "authentic shamshir sabre"
-	desc = "An expertly crafted historical human sword once used by the Persians which has recently gained traction due to Venusian historal recreation sports. One small flaw, the Taj-based company who produces these has mistaken them for British cavalry sabres akin to those used by high ranking Nanotrasen officials. Atleast it cuts the same way!"
+	name = "正宗波斯弯刀"
+	desc = "一把精工制作的人类古代刀剑，曾由波斯人使用，最近因金星的历史重演运动而流行起来。不过有个小问题：位于塔吉的生产商把它误认成了纳米传讯高官所用的那种英国骑兵军刀。至少砍起来一样！"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/melee.dmi'
 	lefthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/inhands/weapons/swords_righthand.dmi'
@@ -25,8 +25,8 @@
 // NTC sabre
 
 /obj/item/storage/belt/sheath/sabre/ntc_commander
-	name = "consultant's commander sabre sheath"
-	desc = "An ornate sheathe bestowed to Nanotrasen officials, decorated in fine green-dyed leather, with ornate gold plating, engraved with the Nanotrasen logo. A weapon from a more elegant age, but no less deadly. While it may not have the same cutting power as the Captain's own sabre, this one practically exudes an aura of authority in and of itself. To wield this is to understand your role as an intimidating presence, but not a casual combatant."
+	name = "顾问指挥官军刀鞘"
+	desc = "授予纳米传讯官员的华丽刀鞘，以精致的绿色染色皮革和镀金装饰制成，刻有纳米传讯标志。它属于一个更优雅的时代，却依然致命。虽然不及舰长本人的军刀锋利，但它本身便散发着威严。持有它，就该明白自己的职责是震慑他人，而非随意参战。"
 	icon = 'modular_zubbers/icons/obj/weapons/melee.dmi'
 	icon_state = "cc-sheath"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
@@ -34,8 +34,8 @@
 	stored_blade = /obj/item/melee/sabre/ntc
 
 /obj/item/storage/belt/sheath/sabre/ntc_admiral
-	name = "consultant admiral's sabre sheath"
-	desc = "An ornate sheathe bestowed to Nanotrasen officials, decorated in fine black-dyed leather, with ornate gold plating, engraved with the Nanotrasen logo. A weapon from a more elegant age, but no less deadly. While it may not have the same cutting power as the Captain's own sabre, this one practically exudes an aura of authority in and of itself. To wield this is to understand your role as an intimidating presence, but not a casual combatant."
+	name = "顾问上将军刀鞘"
+	desc = "授予纳米传讯官员的华丽刀鞘，以精致的黑色染色皮革和镀金装饰制成，刻有纳米传讯标志。它属于一个更优雅的时代，却依然致命。虽然不及舰长本人的军刀锋利，但它本身便散发着威严。持有它，就该明白自己的职责是震慑他人，而非随意参战。"
 	icon = 'modular_zubbers/icons/obj/weapons/melee.dmi'
 	icon_state = "admiral-sheath"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
@@ -43,8 +43,8 @@
 	stored_blade = /obj/item/melee/sabre/ntc
 
 /obj/item/melee/sabre/ntc
-	name = "\improper consultant's sabre"
-	desc = "An elegant sabre, similar to those bestowed upon captains. The hilt is plated in gold with a Nanotrasen logo carved into it, the grip wrapped neatly in real leather. The blade shimmers with ripples in the light, polished almost to a gleam. It would seem a shame to sully such a beautiful blade, but that's part of the point. This is a weapon of intimidation, not a weapon of true combat. Despite that, it's still a formidable weapon in close-quarters, though not quite as deadly as the sabre bestowed to the Captain themselves."
+	name = "\improper 顾问军刀"
+	desc = "一把优雅的军刀，与授予舰长的款式相似。镀金刀柄刻有纳米传讯标志，握柄整齐地裹着真皮。刀身在光下泛起波纹，抛光得近乎闪亮。弄脏如此美丽的刀刃似乎可惜，但这正是其用意之一。它用于威慑，而非真正的战斗。即便如此，它在近战中仍然相当可怕，只是不及授予舰长本人的军刀致命。"
 	block_chance = 30
 	armour_penetration = 25
 	force = 20
@@ -52,20 +52,20 @@
 /obj/item/melee/sabre/ntc/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can " + EXAMINE_HINT("look closer") + " to learn a little more about [src]."), \
-			lore = "Nanotrasen's earliest trade envoys carried nothing but a briefcase and a contract, and lost far more negotiations than the Board was willing to tolerate. The Nanotrasen diplomats were outwardly indistinguishable from any regular accountant, dispatched to sit on a table across rival corporations, governors and brokers alike. Many returned from negotiations having conceded terms no sober board member would have accepted, simply for the lack of anything to suggest Nanotrasen was not a force to be trifled with.<br>\
-The envoys and diplomats required a symbol, a heirloom of their status as dignitaries, which is when the board commissioned Nanotrasen Armories to draft up a tool that carried both the authority and strength necessary.<br>\
+		lore_hint = span_notice("你可以" + EXAMINE_HINT("仔细查看") + "以进一步了解[src]。"), \
+			lore = "纳米传讯最早的贸易使节只携带公文包和合同，谈判失利的次数远超董事会所能容忍的程度。这些外交官外表与普通会计无异，却被派去和竞争企业、总督及经纪人同桌交涉。许多人归来时，已经接受了任何清醒的董事都不会同意的条款，原因仅仅是缺少一种能表明纳米传讯不可轻侮的东西。<br>\
+使节和外交官需要一个象征，一件彰显其显贵身份的传承之物。因此，董事会委托纳米传讯兵工厂设计一件兼具必要威严与力量的器物。<br>\
 <br>\
-What followed was months of revision, with Nanotrasen combing through ancient Terran sword-making traditions long-since abandoned in favour of mass production, before settling on a design worth producing, inspired by the ancient napoleonic sabres used by the cavalry and the officers. The blade itself is forged from a high-carbon steel alloyed with vanadium and nickel, folded and layered to produce what the Venusians describe as 'Damascus' steel. The hilt is plated in gold and cast with the Nanotrasen logo in sharp relief, with a grip made of real leather.<br>\
+接下来是数月的反复修改。纳米传讯遍查早已让位于大规模生产的古老地球铸剑传统，最终选定了一种值得量产的设计，其灵感来自拿破仑时代骑兵和军官使用的军刀。刀身采用掺入钒和镍的高碳钢锻造，反复折叠层叠，形成金星人所谓的“大马士革钢”。镀金刀柄铸有轮廓鲜明的纳米传讯浮雕标志，并配以真皮握柄。<br>\
 <br>\
-Such a weapon is distributed exclusively to Nanotrasen Officers who have shown distinguished conduct, appointed by the board of Central Command. Engraved upon its pommel is the bearer's Employee Identification Number, fixed at time of issuance and, per Corporate Regulations, not removable without voiding the bearer's pension. This one has yet to be assigned a number, but perhaps you'll be the one to earn it..."\
+这种武器仅授予表现卓著、由中央指挥部董事会任命的纳米传讯官员。刀柄尾端刻着持有者的员工识别号，在颁发时确定；根据公司规定，移除编号将导致持有者失去退休金。这一把尚未分配编号，也许你会成为赢得它的人……"\
 	)
 
 // Centcom sabre. This one is unimplemented, it only exists for fun. It's a Centcom Commander sword, so it's effectively admin-only, hence why it's so powerful.
 
 /obj/item/storage/belt/sheath/sabre/centcom
-	name = "\improper commander sabre's leather sheath"
-	desc = "A beautiful sheath made of green leather, bearing Nanotrasen's symbol. It is said that only the highest ranking officers of Central Command are bestowed this weapon."
+	name = "\improper 指挥官军刀皮鞘"
+	desc = "一个漂亮的绿色皮革刀鞘，带有纳米传讯标志。据说只有中央指挥部最高级别的官员才会获授这件武器。"
 	icon = 'modular_zubbers/icons/obj/weapons/melee.dmi'
 	icon_state = "cc-sheath"
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
@@ -73,8 +73,8 @@ Such a weapon is distributed exclusively to Nanotrasen Officers who have shown d
 
 
 /obj/item/melee/sabre/centcom
-	name = "\improper commander's sabre"
-	desc = "A beautiful masterwork of a sword, granted only to the highest ranking officers of Central Command. Its blade is sharp and lightweight, and the hilt is engraved with the symbol of Nanotrasen. It is a symbol of authority and power, and it is said that those who wield it are to be respected and feared."
+	name = "\improper 指挥官军刀"
+	desc = "一把精美绝伦的刀剑，只授予中央指挥部最高级别的官员。刀身锋利轻巧，刀柄刻有纳米传讯标志。它象征着权威与力量，据说持有它的人既受尊敬，也令人畏惧。"
 	block_chance = 75
 	armour_penetration = 75
 	force = 30

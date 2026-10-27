@@ -2,8 +2,8 @@
 
 ///Moth wings! They can flutter in low-grav and burn off in heat
 /obj/item/organ/wings/moth
-	name = "moth wings"
-	desc = "Spread your wings and FLOOOOAAAAAT!"
+	name = "蛾翅"
+	desc = "展开你的翅膀，飘——起——来——吧！"
 
 	//dna_block = /datum/dna_block/feature/accessory/moth_wing // BUBBER EDIT REMOVAL
 
@@ -62,7 +62,7 @@
 	SIGNAL_HANDLER
 
 	if(!burnt && human.bodytemperature >= 800 && human.fire_stacks > 0) //do not go into the extremely hot light. you will not survive
-		to_chat(human, span_danger("Your precious wings burn to a crisp!"))
+		to_chat(human, span_danger("你宝贵的翅膀被烧焦了！"))
 		human.add_mood_event("burnt_wings", /datum/mood_event/burnt_wings)
 
 		burn_wings()
@@ -88,7 +88,7 @@
 
 /obj/item/organ/wings/moth/feel_for_damage(self_aware)
 	if(burnt)
-		return "Your wings are all burnt up!"
+		return "你的翅膀全都烧焦了！"
 	return ..()
 
 ///Moth wing bodypart overlay, including burn functionality!

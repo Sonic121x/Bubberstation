@@ -1,8 +1,8 @@
 /datum/action/cooldown/spell/shadow_cloak
-	name = "Cloak of Shadow"
-	desc = "Completely conceals your identity, but does not make you invisible.  Can be activated early to disable it. \
-		While cloaked, you move faster, but undergo actions much slower. \
-		Taking damage while cloaked may cause it to lift suddenly, causing negative effects. "
+	name = "暗影斗篷"
+	desc = "完全遮蔽你的身份，但不会使你隐形。可以提前激活以解除效果。\
+		披着斗篷时，你移动得更快，但执行动作要慢得多。\
+		披着斗篷时受到伤害可能导致它突然散去，并带来负面效果。 "
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
@@ -29,7 +29,7 @@
 
 /datum/action/cooldown/spell/shadow_cloak/is_valid_target(atom/cast_on)
 	if(HAS_TRAIT(cast_on, TRAIT_HULK)) // Hulks are not stealthy. Need not apply
-		cast_on.balloon_alert(cast_on, "cannot cast while hulk!")
+		cast_on.balloon_alert(cast_on, "绿巨人形态下无法施法！")
 		return FALSE
 	return isliving(cast_on)
 
@@ -71,8 +71,8 @@
 /datum/action/cooldown/spell/shadow_cloak/proc/cloak_mob(mob/living/cast_on)
 	playsound(cast_on, 'sound/effects/chemistry/ahaha.ogg', 50, TRUE, -1, extrarange = SILENCED_SOUND_EXTRARANGE, frequency = 0.5)
 	cast_on.visible_message(
-		span_warning("[cast_on] disappears into the shadows!"),
-		span_notice("You disappear into the shadows, becoming unidentifiable."),
+		span_warning("[cast_on]消失在阴影之中！"),
+		span_notice("你消失在阴影之中，变得无法辨别。"),
 	)
 
 	active_cloak = cast_on.apply_status_effect(/datum/status_effect/shadow_cloak)
@@ -87,8 +87,8 @@
 	playsound(cast_on, 'sound/effects/curse/curseattack.ogg', 50)
 	if(show_message)
 		cast_on.visible_message(
-			span_warning("[cast_on] appears from the shadows!"),
-			span_notice("You appear from the shadows, identifiable once more."),
+			span_warning("[cast_on]从阴影中现身！"),
+			span_notice("你从阴影中现身，再次可以被辨认。"),
 		)
 
 	// Clear up the timer
@@ -102,8 +102,8 @@
 	var/mob/living/removed = source.owner
 	uncloak_mob(removed, show_message = FALSE)
 	removed.visible_message(
-		span_warning("[removed] is pulled from the shadows!"),
-		span_userdanger("You are pulled out of the shadows!"),
+		span_warning("[removed]被从阴影中拽了出来！"),
+		span_userdanger("你被从阴影中拽了出来！"),
 	)
 
 	removed.Knockdown(0.5 SECONDS)

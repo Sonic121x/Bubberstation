@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/bin
-	desc = "A trash bin, place your trash here for the janitor to collect."
-	name = "trash bin"
+	desc = "一个垃圾桶，把垃圾丢在这里等清洁工来收。"
+	name = "垃圾桶"
 	icon_state = "trashbin"
 	base_icon_state = "trashbin"
 	open_sound = 'sound/effects/bin/bin_open.ogg'
@@ -37,7 +37,7 @@
 	if(!istype(tool, /obj/item/storage/bag/trash) || !opened)
 		return ..()
 	var/obj/item/storage/bag/trash/garbage_bag = tool
-	to_chat(user, span_notice("You fill the bag."))
+	to_chat(user, span_notice("你把袋子装满了。"))
 	for(var/obj/item/garbage in src)
 		garbage_bag.atom_storage?.attempt_insert(garbage, user, TRUE)
 	do_animate()
@@ -64,5 +64,5 @@
 
 	items_to_sweep.Cut()
 
-	to_chat(user, span_notice("You sweep the pile of garbage into [src]."))
+	to_chat(user, span_notice("你把那堆垃圾扫进了[src]。"))
 	playsound(broom.loc, 'sound/items/weapons/thudswoosh.ogg', 30, TRUE, -1)

@@ -3,7 +3,7 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_FEATURES
 	priority = PREFERENCE_PRIORITY_NAME_MODIFICATIONS //this will be overwritten by names otherwise
-	main_feature_name = "Vampire status"
+	main_feature_name = "吸血鬼身份"
 	should_generate_icons = TRUE
 	relevant_inherent_trait = TRAIT_BLOOD_CLANS
 	should_update_preview = FALSE

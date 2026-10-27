@@ -9,8 +9,8 @@
 
 // Relays don't handle any actual communication. Global NTNet datum does that, relays only tell the datum if it should or shouldn't work.
 /obj/machinery/ntnet_relay
-	name = "NTNet Quantum Relay"
-	desc = "A very complex router and transmitter capable of connecting electronic devices together. Looks fragile."
+	name = "NTNet 量子中继器"
+	desc = "一种极为复杂的路由与发射装置，可将电子设备相互连接。看起来很脆弱。"
 	use_power = ACTIVE_POWER_USE
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 10 //10kW, apropriate for machine that keeps massive cross-Zlevel wireless network operational. Used to be 20 but that actually drained the smes one round
 	icon = 'icons/obj/machines/telecomms.dmi'
@@ -35,15 +35,15 @@
 	. = ..()
 	uid = gl_uid++
 	var/list/current_machines = SSmachines.get_machines_by_type(/obj/machinery/ntnet_relay)
-	SSmodular_computers.add_log("New quantum relay activated. Current amount of linked relays: [current_machines.len]")
+	SSmodular_computers.add_log("新的量子中继器已激活。当前已连接的中继器数量：[current_machines.len]")
 
 /obj/machinery/ntnet_relay/Destroy()
 	. = ..()
 	var/list/machines_left = SSmachines.get_machines_by_type(/obj/machinery/ntnet_relay)
-	SSmodular_computers.add_log("Quantum relay connection severed. Current amount of linked relays: [machines_left.len]")
+	SSmodular_computers.add_log("量子中继器连接已断开。当前已连接的中继器数量：[machines_left.len]")
 	for(var/datum/computer_file/program/ntnet_dos/D in dos_sources)
 		D.target = null
-		D.error = "Connection to quantum relay severed"
+		D.error = "与量子中继器的连接已断开"
 
 ///Proc called to change the value of the `relay_enabled` variable and append behavior related to its change.
 /obj/machinery/ntnet_relay/proc/set_relay_enabled(new_value)
@@ -91,12 +91,12 @@
 	if((dos_overload > dos_capacity) && !dos_failure)
 		set_dos_failure(TRUE)
 		update_appearance()
-		SSmodular_computers.add_log("Quantum relay switched from normal operation mode to overload recovery mode.")
+		SSmodular_computers.add_log("量子中继器已从正常运行模式切换至过载恢复模式。")
 	// If the DoS buffer reaches 0 again, restart.
 	if((dos_overload == 0) && dos_failure)
 		set_dos_failure(FALSE)
 		update_appearance()
-		SSmodular_computers.add_log("Quantum relay switched from overload recovery mode to normal operation mode.")
+		SSmodular_computers.add_log("量子中继器已从过载恢复模式切换回正常运行模式。")
 	return TRUE
 
 /obj/machinery/ntnet_relay/ui_interact(mob/user, datum/tgui/ui)
@@ -122,10 +122,10 @@
 			dos_overload = 0
 			set_dos_failure(FALSE)
 			update_appearance()
-			SSmodular_computers.add_log("Quantum relay manually restarted from overload recovery mode to normal operation mode.")
+			SSmodular_computers.add_log("量子中继器已从过载恢复模式手动重启至正常运行模式。")
 			return TRUE
 		if("toggle")
 			set_relay_enabled(!relay_enabled)
-			SSmodular_computers.add_log("Quantum relay manually [relay_enabled ? "enabled" : "disabled"].")
+			SSmodular_computers.add_log("量子中继器已手动[relay_enabled ? "启用" : "禁用"]。")
 			update_appearance()
 			return TRUE

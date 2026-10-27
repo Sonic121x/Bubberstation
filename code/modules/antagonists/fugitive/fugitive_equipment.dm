@@ -1,19 +1,19 @@
 /obj/item/implant/camouflage
-	name = "experimental camouflage implant"
-	desc = "Allows its owner to blend in with their surroundings. Cool!"
+	name = "实验性迷彩植入体"
+	desc = "能让使用者融入周围环境。酷！"
 	actions_types = list(/datum/action/item_action/camouflage)
 
 /obj/item/implant/camouflage/emp_act(severity)
 	. = ..()
 
 	if(prob(15 * severity))
-		visible_message(span_warning("The cloaking systems inside your implant begin to overload!"), blind_message = span_hear("You hear a fizzle, and the snapping of sparks."))
+		visible_message(span_warning("你植入体内部的隐形系统开始过载！"), blind_message = span_hear("你听到一声嗤响，还有火花的噼啪声。"))
 		for(var/datum/action/item_action/camouflage/cloaking_ability in actions)
 			cloaking_ability.remove_cloaking()
 
 /datum/action/item_action/camouflage
-	name = "Activate Camouflage"
-	desc = "Activate your camouflage implant, and blend into your surroundings..."
+	name = "启动迷彩"
+	desc = "启动你的迷彩植入体，融入周围环境……"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "deploy_box"
 	/// The alpha we move to when activating this action.
@@ -36,7 +36,7 @@
 		remove_cloaking()
 	else
 		owner.alpha = camouflage_alpha
-		to_chat(owner, span_notice("You activate your camouflage and blend into your surroundings..."))
+		to_chat(owner, span_notice("你启动了迷彩，融入周围环境……"))
 		cloaking = TRUE
 
 /**
@@ -49,12 +49,12 @@
 /datum/action/item_action/camouflage/proc/remove_cloaking()
 	do_sparks(2, FALSE, owner)
 	owner.alpha = initial(owner.alpha)
-	to_chat(owner, span_notice("You disable your camouflage, and become visible once again."))
+	to_chat(owner, span_notice("你关闭了迷彩，重新显形。"))
 	cloaking = FALSE
 
 /obj/item/reagent_containers/hypospray/medipen/invisibility
-	name = "invisibility autoinjector"
-	desc = "An autoinjector containing a stabilized Saturn-X compound. Produced for use in tactical stealth operations, by operatives who were presumably comfortable with nudity."
+	name = "隐形自动注射器"
+	desc = "一支装有稳定化土星X化合物的自动注射器。为战术潜行行动而生产，使用者想必都不介意光着身子。"
 	icon_state = "invispen"
 	base_icon_state = "invispen"
 	volume = 20 //By my estimate this will last you about 10-ish mintues

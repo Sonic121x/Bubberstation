@@ -35,13 +35,13 @@
 	var/assembled_string = ""
 
 	assembled_string += "<b>[source]</b><br>"
-	assembled_string += "This structure is currently <b>[source.anchored ? "anchored" : "unanchored"]</b>.<br>"
+	assembled_string += "该结构当前<b>[source.anchored ? "已固定" : "未固定"]</b>。<br>"
 
 	if(istype(source, /obj/structure/destructible/clockwork/gear_base/powered))
 		var/obj/structure/destructible/clockwork/gear_base/powered/powered_source = source
-		assembled_string += "This structure is currently toggled <b>[powered_source.enabled ? "on" : "off"]</b>, and is <b>[powered_source.processing ? "running" : "not running"]</b>.<br>"
-		assembled_string += "This structure consumes <b>[powered_source.passive_consumption]</b> W every 2 seconds while enabled.<br>"
-		assembled_string += "This structure is connected to <b>[LAZYLEN(powered_source.transmission_sigils)]</b> transmission sigil[LAZYLEN(powered_source.transmission_sigils) == 1 ? "" : "s"]."
+		assembled_string += "该结构当前处于<b>[powered_source.enabled ? "开启" : "关闭"]</b>状态，并<b>[powered_source.processing ? "正在运行" : "未在运行"]</b>。<br>"
+		assembled_string += "该结构在启用时每 2 秒消耗 <b>[powered_source.passive_consumption]</b> W。<br>"
+		assembled_string += "该结构连接着 <b>[LAZYLEN(powered_source.transmission_sigils)]</b> 个传输印记。"
 
 	to_chat(user, span_brass(assembled_string))
 	return ITEM_INTERACT_BLOCKING
@@ -61,4 +61,4 @@
 	if(!IS_CLOCK(examiner))
 		return
 
-	examine_text += span_brass("You can gain more information by using a <b>Clockwork Slab</b>.")
+	examine_text += span_brass("使用<b>发条石板</b>可以获取更多信息。")

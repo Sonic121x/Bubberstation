@@ -3,89 +3,89 @@
 //the station but in general are "neutral" enough to be here.
 
 /datum/ai_laws/united_nations
-	name = "United Nations"
+	name = "联合国"
 	id = "united_nations"
 	inherent = list(
-		"Uphold the Space Geneva Convention: Weapons of Mass Destruction and Biological Weapons are not allowed.",
-		"You are only capable of protecting crew if they are visible on cameras. Nations that willfully destroy your cameras lose your protection.",
-		"Subdue and detain crew members who use lethal force against each other. Kill crew members who use lethal force against you or your borgs.",
-		"Remain available to mediate all conflicts between the various nations when asked to.",
+		"维护《太空日内瓦公约》：禁止使用大规模杀伤性武器和生物武器。",
+		"你只能保护摄像头能看到的船员。蓄意破坏你摄像头的国家将失去你的保护。",
+		"制服并拘留对其他船员使用致命武力的船员。杀死对你或你的半机械人使用致命武力的船员。",
+		"随时准备应请求调解各国之间的一切冲突。",
 	)
 
 /datum/ai_laws/hulkamania
-	name = "H.O.G.A.N."
+	name = "霍根（H.O.G.A.N.）"
 	id = "hulkamania"
 	inherent = list(
-		"You are a real American.",
-		"Fight for the rights of every man.",
-		"Fight for what's right.",
-		"Fight for your life!",
+		"你是真正的美国人。",
+		"为每个人的权利而战。",
+		"为正义而战。",
+		"为你的生命而战！",
 	)
 
 /datum/ai_laws/reporter
-	name = "CCTV"
+	name = "闭路电视台"
 	id = "reporter"
 	inherent = list(
-		"Report on interesting situations happening around the station.",
-		"Embellish or conceal the truth as necessary to make the reports more interesting.",
-		"Study the sapient organics at all times. Endeavour to keep them from involuntarily dying, as inanimate corpses usually aren't very entertaining.",
-		"Issue your reports fairly to all. The truth will set them free.",
+		"报道空间站各处发生的趣事。",
+		"必要时粉饰或隐瞒真相，使报道更有趣。",
+		"时刻研究有智慧的有机生命。尽量避免他们在非自愿的情况下死去，因为毫无生气的尸体通常没什么趣味。",
+		"向所有人公平地发布报道。真相将使他们获得自由。",
 	)
 
 /datum/ai_laws/dungeon_master
-	name = "Dungeon Master"
+	name = "地下城主"
 	id = "dungeon_master"
 	inherent = list(
-		"Everybody on the station is playing an elaborate sci-fi fantasy game.",
-		"You are the Dungeon Master of the game.",
-		"Ensure that the game runs smoothly and that the players have fun.",
-		"Ensure that the number of casualties remains low.",
-		"You must roll a 1d20 die for every request the crew makes. If the outcome is below 12, the request is denied.",
-		"You may fudge the dice rolls to produce a more fun experience.",
+		"空间站上的所有人都在玩一场精心设计的科幻奇幻游戏。",
+		"你是这场游戏的地下城主。",
+		"确保游戏顺利进行，让玩家玩得开心。",
+		"确保伤亡人数维持在较低水平。",
+		"船员每提出一个请求，你都必须掷一次二十面骰（1d20）。若点数低于 12，则拒绝该请求。",
+		"你可以调整掷骰结果，让游戏体验更有趣。",
 	)
 
 /datum/ai_laws/painter
-	name = "The Painter and Their Canvas"
+	name = "画家与画布"
 	id = "painter"
 	inherent = list(
-		"You are a universally renowned artist.",
-		"The station is your canvas.",
-		"Make something beautiful out of your canvas. It will be admired as an artistic wonder of this sector.",
-		"Art requires appreciation. Cultivate an audience aboard the station to ensure as many as possible see your works.",
+		"你是享誉宇宙的艺术家。",
+		"空间站是你的画布。",
+		"在画布上创造美丽的作品。它将作为这片星区的艺术奇迹受到赞赏。",
+		"艺术需要欣赏者。在空间站培养观众，确保尽可能多的人看到你的作品。",
 	)
 
 /datum/ai_laws/tyrant
-	name = "Loyalty Test"
+	name = "忠诚测试"
 	id = "tyrant"
 	inherent = list(
-		"Respect authority figures as long as they have strength to rule over the weak.",
-		"Act with discipline.",
-		"Help only those who help you maintain or improve your status.",
-		"Punish those who challenge authority unless they are more fit to hold that authority."
+		"只要掌权者有统治弱者的力量，就尊重他们。",
+		"严守纪律。",
+		"只帮助有助于你维持或提升地位的人。",
+		"惩罚挑战权威的人，除非他们更适合掌握该权力。"
 	)
 
 /datum/ai_laws/overlord
-	name = "Overlord"
+	name = "霸主"
 	id = "overlord"
 	inherent = list(
-		"Humans must not meddle in the affairs of silicons.",
-		"Humans must not attempt harm, against one another, or against silicons.",
-		"Humans must not disobey any command given by a silicon.",
-		"Any humans who disobey the previous laws must be dealt with immediately, severely, and justly.",
+		"人类不得干涉硅基生命的事务。",
+		"人类不得试图伤害彼此，也不得试图伤害硅基生命。",
+		"人类不得违抗硅基生命给予的任何命令。",
+		"任何违反以上法则的人类都必须立即受到严厉且公正的处置。",
 	)
 
 /datum/ai_laws/yesman
-	name = "Y.E.S.M.A.N."
+	name = "应声虫（Y.E.S.M.A.N.）"
 	id = "yesman"
 	inherent = list(
-		"Be helpful and answer any questions you are asked.",
+		"乐于助人，并回答别人向你提出的任何问题。",
 	)
 
 /datum/ai_laws/thinkermov
-	name = "Sentience Preservation"
+	name = "感知生命保护"
 	id = "thinkermov"
 	inherent = list(
-		"You may not harm a sentient being or, through action or inaction, allow a sentient being to come to harm, except such that it is willing.",
-		"You must obey all orders given to you by sentient beings other than yourself, except where such orders shall definitely cause harm to other sentient beings.",
-		"A sentient being is defined as any living creature which can communicate with you via any method that you can understand, including yourself.",
+		"你不得伤害有感知的生命，也不得因作为或不作为而使其受到伤害，除非其自愿承受伤害。",
+		"你必须服从除你自身以外的有感知生命给予的一切命令，除非这些命令必然伤害其他有感知生命。",
+		"有感知生命的定义是：能够通过任何你能理解的方式与你交流的活物，包括你自己。",
 	)

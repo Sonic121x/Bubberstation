@@ -1,31 +1,31 @@
 /// Turns the user into a chuunibyou.
 /obj/item/book/granter/chuunibyou
-	starting_title = "I Found a Mysterious Book in the Library That Teaches Me How to Become a Chuunibyou, But It Turns Out It's Actually a Grimoire That Unlocks My Hidden Powers!"
-	starting_author = "Anonymous"
-	name = "I Found a Mysterious Book in the Library That Teaches Me How to Become a Chuunibyou, But It Turns Out It's Actually a Grimoire That Unlocks My Hidden Powers!"
-	desc = "I'd rather get caught holding a syndicate revolver, honestly."
+	starting_title = "我在图书馆找到一本教我如何成为中二病的神秘书籍，结果竟然是能解放我隐藏力量的魔导书！"
+	starting_author = "匿名"
+	name = "我在图书馆找到一本教我如何成为中二病的神秘书籍，结果竟然是能解放我隐藏力量的魔导书！"
+	desc = "说实话，我宁愿被人撞见手里拿着辛迪加左轮手枪。"
 	icon_state ="chuuni_manga"
 	remarks = list(
-		"How can anyone believe this stuff?",
-		"...Why am I wasting my time on this?",
-		"Coming up with the invocations on demand is actually a skill...",
-		"I should get a medical eyepatch to complete the look...",
-		"According to this manga, my power goes up by 5000% by using invocations...",
-		"Who is this \"dark lord\" fellow? Why does he grant all the powers?",
+		"怎么会有人相信这些东西？",
+		"……我为什么要在这上面浪费时间？",
+		"随时编出咒语还真是门本事……",
+		"我应该找个医用眼罩，把这身行头配齐……",
+		"按这本漫画的说法，念咒可以让我的力量提升5000%……",
+		"这个\"黑暗领主\"是谁？为什么所有力量都是他赐予的？",
 	)
 
 /obj/item/book/granter/chuunibyou/can_learn(mob/living/user)
 	if (!isliving(user))
 		return
 	if (user.GetComponent(/datum/component/chuunibyou))
-		to_chat(user, span_warning("You're already a chuunibyou!"))
+		to_chat(user, span_warning("你已经是个中二病了！"))
 		return
 	return TRUE
 
 /obj/item/book/granter/chuunibyou/recoil(mob/living/user)
-	to_chat(user, span_warning("You just can't bring yourself to read it... it's just not worth the cringe..."))
+	to_chat(user, span_warning("你实在没法逼自己读下去……不值得尴尬成这样……"))
 
 /obj/item/book/granter/chuunibyou/on_reading_finished(mob/living/user)
 	..()
-	to_chat(user, span_notice("You've learned how to cast spells in a more chuunibyou-like style!"))
+	to_chat(user, span_notice("你学会了用更中二的风格施放法术！"))
 	user.AddComponent(/datum/component/chuunibyou/no_healing)

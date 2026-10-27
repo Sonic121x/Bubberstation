@@ -33,7 +33,7 @@
 		return
 	living_pawn.do_attack_animation(target, ATTACK_EFFECT_DISARM)
 	playsound(target, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
-	target.visible_message(span_danger("[living_pawn] paws ineffectually at [target]!"), span_danger("[living_pawn] paws ineffectually at you!"))
+	target.visible_message(span_danger("[living_pawn]徒劳地用爪子扒拉[target]！"), span_danger("[living_pawn]徒劳地用爪子扒拉你！"))
 
 
 /**
@@ -60,11 +60,11 @@
 		if(IS_UNCONSCIOUS_OR_CRIT(iter_living) || !HAS_TRAIT(iter_living, TRAIT_HATED_BY_DOGS))
 			continue
 		if(!isnull(dog.buckled))
-			dog.audible_message(span_notice("[dog] growls at [iter_living], yet [dog.p_they()] [dog.p_are()] much too comfy to move."), hearing_distance = COMBAT_MESSAGE_RANGE)
+			dog.audible_message(span_notice("[dog]朝[iter_living]低吼，但实在太舒服了，懒得挪动。"), hearing_distance = COMBAT_MESSAGE_RANGE)
 			continue
 		if(!strategy?.is_valid_target(dog, iter_living))
 			continue
-		dog.audible_message(span_warning("[dog] growls at [iter_living], seemingly annoyed by [iter_living.p_their()] presence."), hearing_distance = COMBAT_MESSAGE_RANGE)
+		dog.audible_message(span_warning("[dog]朝[iter_living]低吼，似乎很不满对方出现在这里。"), hearing_distance = COMBAT_MESSAGE_RANGE)
 		controller.set_blackboard_key(target_key, iter_living)
 		controller.set_blackboard_key(BB_DOG_HARASS_HARM, FALSE)
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
@@ -84,7 +84,7 @@
 
 	var/obj/item/carry_item = controller.blackboard[BB_SIMPLE_CARRY_ITEM]
 	if(carry_item && SPT_PROB(5, seconds_per_tick))
-		living_pawn.visible_message(span_notice("[living_pawn] gently teethes on \the [carry_item] in [living_pawn.p_their()] mouth."), vision_distance = COMBAT_MESSAGE_RANGE)
+		living_pawn.visible_message(span_notice("[living_pawn]轻轻啃咬着嘴里叼着的[carry_item]。"), vision_distance = COMBAT_MESSAGE_RANGE)
 
 	var/move_chance = controller.blackboard[BB_DOG_IS_SLOW] ? 2.5 : 5
 	if(isturf(living_pawn.loc) && !living_pawn.pulledby)
@@ -92,7 +92,7 @@
 			var/move_dir = pick(GLOB.alldirs)
 			living_pawn.Move(get_step(living_pawn, move_dir), move_dir)
 		else if(SPT_PROB(2, seconds_per_tick))
-			living_pawn.manual_emote(pick("dances around.", "chases [living_pawn.p_their()] tail!"))
+			living_pawn.manual_emote(pick("欢快地蹦跳。", "追着自己的尾巴转圈！"))
 			living_pawn.AddComponent(/datum/component/spinny)
 
 	return AI_BEHAVIOR_DELAY

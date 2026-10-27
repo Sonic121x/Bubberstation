@@ -1,7 +1,7 @@
 /// Singleton datums used to hold material property info
 /datum/material_property
 	abstract_type = /datum/material_property
-	var/name = "Error"
+	var/name = "错误"
 	/// Associated property ID
 	var/id = null
 	/// Should this property be inherited by child materials?
@@ -21,7 +21,7 @@
 
 /// How dense a material is
 /datum/material_property/density
-	name = "Density"
+	name = "密度"
 	id = MATERIAL_DENSITY
 
 /datum/material_property/density/get_descriptor(value)
@@ -29,150 +29,150 @@
 	// So 0 ~ 1 would be paper/cardboard, then wood at 2, plastic at 3, glass at 4, iron at 6 and lead at 8 ~ 9
 	switch(value)
 		if (0 to 1)
-			return "extremely light"
+			return "极为轻盈"
 		if (1 to 2)
-			return "very light"
+			return "非常轻盈"
 		if (2 to 3)
-			return "light"
+			return "轻盈"
 		if (3 to 4)
-			return "slightly dense"
+			return "略微致密"
 		if (4 to 6)
-			return "dense"
+			return "致密"
 		if (6 to 8)
-			return "very dense"
+			return "非常致密"
 		if (8 to INFINITY)
-			return "extremely dense"
+			return "极为致密"
 
 /// How hard to deformation a material is, pierce/slashing impacts
 /datum/material_property/hardness
-	name = "Hardness"
+	name = "硬度"
 	id = MATERIAL_HARDNESS
 
 /datum/material_property/hardness/get_descriptor(value)
 	switch(value)
 		if (0 to 1)
-			return "extremely soft"
+			return "极为柔软"
 		if (1 to 2)
-			return "very soft"
+			return "非常柔软"
 		if (2 to 3)
-			return "soft"
+			return "柔软"
 		if (3 to 4)
-			return "slightly hard"
+			return "略硬"
 		if (4 to 6)
-			return "hard"
+			return "坚硬"
 		if (6 to 8)
-			return "very hard"
+			return "非常坚硬"
 		if (8 to INFINITY)
-			return "extremely hard"
+			return "极为坚硬"
 
 /// How well a material bends and sustains deformation
 /datum/material_property/flexibility
-	name = "Flexibility"
+	name = "柔韧性"
 	id = MATERIAL_FLEXIBILITY
 
 /datum/material_property/flexibility/get_descriptor(value)
 	switch(value)
 		if (0 to 1)
-			return "extremely rigid"
+			return "极难弯曲"
 		if (1 to 2)
-			return "very rigid"
+			return "很难弯曲"
 		if (2 to 3)
-			return "rigid"
+			return "不易弯曲"
 		if (3 to 4)
-			return "slightly flexible"
+			return "略有柔韧性"
 		if (4 to 6)
-			return "flexible"
+			return "柔韧"
 		if (6 to 8)
-			return "very flexible"
+			return "非常柔韧"
 		if (8 to INFINITY)
-			return "extremely flexible"
+			return "极为柔韧"
 
 /// How shiny a material is
 /datum/material_property/reflectivity
-	name = "Reflectivity"
+	name = "反射率"
 	id = MATERIAL_REFLECTIVITY
 
 /datum/material_property/reflectivity/get_descriptor(value)
 	switch(value)
 		if (0 to 1)
-			return "extremely dull"
+			return "极为暗淡"
 		if (1 to 2)
-			return "very dull"
+			return "非常暗淡"
 		if (2 to 3)
-			return "dull"
+			return "暗淡"
 		if (3 to 4)
-			return "matte"
+			return "哑光"
 		if (4 to 6)
-			return "reflective"
+			return "反光"
 		if (6 to 8)
-			return "very reflective"
+			return "高度反光"
 		if (8 to INFINITY)
-			return "extremely reflective"
+			return "极度反光"
 
 /// How electrically conductive a material is (siemens coeff)
 /datum/material_property/electric_conductivity
-	name = "Electric Conductivity"
+	name = "导电性"
 	id = MATERIAL_ELECTRICAL
 
 /datum/material_property/electric_conductivity/get_descriptor(value)
 	switch(value)
 		if (0)
-			return "perfectly insulating"
+			return "完全绝缘"
 		if (0 to 1)
-			return "highly insulating"
+			return "高度绝缘"
 		if (1 to 2)
-			return "insulating"
+			return "绝缘"
 		if (2 to 3)
-			return "poorly insulating"
+			return "绝缘性较差"
 		if (3 to 4)
-			return "mildly conductive"
+			return "略微导电"
 		if (4 to 6)
-			return "conductive"
+			return "导电"
 		if (6 to 8)
-			return "highly conductive"
+			return "高度导电"
 		if (8 to INFINITY)
-			return "extremely conductive"
+			return "极度导电"
 
 /// How well a material conducts heat
 /datum/material_property/thermal_conductivity
-	name = "Thermal Conductivity"
+	name = "导热性"
 	id = MATERIAL_THERMAL
 
 /datum/material_property/thermal_conductivity/get_descriptor(value)
 	switch(value)
 		if (0 to 1)
-			return "extremely temperature-resistant"
+			return "极强隔热性"
 		if (1 to 2)
-			return "very temperature-resistant"
+			return "很强隔热性"
 		if (2 to 3)
-			return "temperature-resistant"
+			return "隔热"
 		if (3 to 4)
-			return "slightly thermally conductive"
+			return "略微导热"
 		if (4 to 6)
-			return "thermally conductive"
+			return "导热"
 		if (6 to 8)
-			return "very thermally conductive"
+			return "高度导热"
 		if (8 to INFINITY)
-			return "extremely thermally conductive"
+			return "极度导热"
 
 /// How well the material resists acids and other similar chemicals
 /datum/material_property/chemical_resistance
-	name = "Chemical Resistance"
+	name = "耐化学性"
 	id = MATERIAL_CHEMICAL
 
 /datum/material_property/chemical_resistance/get_descriptor(value)
 	switch(value)
 		if (0 to 1)
-			return "extremely reactive"
+			return "极易发生化学反应"
 		if (1 to 2)
-			return "reactive"
+			return "易发生化学反应"
 		if (2 to 3)
-			return "slightly reactive"
+			return "略易发生化学反应"
 		if (3 to 4)
-			return "mildly chemically resistant"
+			return "略有耐化学性"
 		if (4 to 6)
-			return "chemically resistant"
+			return "耐化学性良好"
 		if (6 to 8)
-			return "highly chemically resistant"
+			return "耐化学性很强"
 		if (8 to INFINITY)
-			return "extremely chemically resistant"
+			return "耐化学性极强"

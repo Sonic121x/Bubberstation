@@ -6,8 +6,8 @@
  * All spiders can produce webbing.
  */
 /mob/living/basic/spider/growing/young
-	name = "young spider"
-	desc = "Furry and black, it makes you shudder to look at it. This one has deep red eyes."
+	name = "幼年蜘蛛"
+	desc = "身披黑毛，光是看着它就让人发抖。这一只长着深红色的眼睛。"
 	icon_state = "young_guard"
 	icon_living = "young_guard"
 	icon_dead = "young_guard_dead"
@@ -33,7 +33,7 @@
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_FLEE_DISTANCE = 6,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_HEAR = list("chitters."),
+			BB_EMOTE_HEAR = list("发出吱吱声。"),
 			BB_EMOTE_SOUND = list('sound/mobs/non-humanoids/insect/chitter.ogg'),
 			BB_SPEAK_CHANCE = 5,
 		),

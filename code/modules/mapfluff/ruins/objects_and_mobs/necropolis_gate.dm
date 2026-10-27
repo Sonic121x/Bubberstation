@@ -1,7 +1,7 @@
 //The necropolis gate is used to call forth Legion from the Necropolis.
 /obj/structure/necropolis_gate
-	name = "necropolis gate"
-	desc = "A massive stone gateway."
+	name = "死灵之都之门"
+	desc = "一座巨大的石门。"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "gate_full"
 	flags_1 = ON_BORDER_1
@@ -95,7 +95,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/necropolis_gate/attack_hand(mob/user, list/modifiers)
 	if(locked)
-		to_chat(user, span_bolddanger("It's [open ? "stuck open":"locked"]."))
+		to_chat(user, span_bolddanger("它[open ? "卡在敞开状态" : "锁着"]。"))
 		return
 	toggle_the_gate(user)
 	return ..()
@@ -107,7 +107,7 @@
 	var/turf/T = get_turf(src)
 	if(open)
 		new /obj/effect/temp_visual/necropolis(T)
-		visible_message(span_boldwarning("The door slams closed!"))
+		visible_message(span_boldwarning("石门砰然关闭！"))
 		sleep(0.1 SECONDS)
 		playsound(T, 'sound/effects/stonedoor_openclose.ogg', 300, TRUE, frequency = 80000)
 		sleep(0.1 SECONDS)
@@ -130,7 +130,7 @@
 		cut_overlay(door_overlay)
 		new /obj/effect/temp_visual/necropolis/open(T)
 		sleep(0.2 SECONDS)
-		visible_message(span_warning("The door starts to grind open..."))
+		visible_message(span_warning("石门开始嘎吱嘎吱地开启……"))
 		playsound(T, 'sound/effects/stonedoor_openclose.ogg', 300, TRUE, frequency = 20000)
 		sleep(2.2 SECONDS)
 		sight_blocker.forceMove(src)
@@ -146,7 +146,7 @@
 
 GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 /obj/structure/necropolis_gate/legion_gate
-	desc = "A tremendous, impossibly large gateway, set into a massive tower of stone."
+	desc = "一座巨大得不可思议的门户，嵌在一座庞大的石塔之中。"
 	sight_blocker_distance = 2
 
 /obj/structure/necropolis_gate/legion_gate/Initialize(mapload)
@@ -161,10 +161,10 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/necropolis_gate/legion_gate/attack_hand(mob/user, list/modifiers)
 	if(!open && !changing_openness)
-		var/safety = tgui_alert(user, "You think this might be a bad idea...", "Knock on the door?", list("Proceed", "Abort"))
-		if(safety == "Abort" || !in_range(src, user) || !src || open || changing_openness || user.incapacitated)
+		var/safety = tgui_alert(user, "你觉得这可能不是个好主意……", "敲门？", list("继续", "放弃"))
+		if(safety == "放弃" || !in_range(src, user) || !src || open || changing_openness || user.incapacitated)
 			return
-		user.visible_message(span_warning("[user] knocks on [src]..."), span_bolddanger("You tentatively knock on [src]..."))
+		user.visible_message(span_warning("[user] 敲了敲 [src]……"), span_bolddanger("你试探性地敲了敲 [src]……"))
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 100, TRUE)
 		sleep(5 SECONDS)
 	return ..()
@@ -176,23 +176,23 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 	if(.)
 		locked = TRUE
 		var/turf/T = get_turf(src)
-		visible_message(span_userdanger("Something horrible emerges from the Necropolis!"))
+		visible_message(span_userdanger("某种可怕的东西正从死灵之都中涌出！"))
 		if(legion_damaged)
-			message_admins("Legion took damage while the necropolis gate was closed, and has released itself!")
-			log_game("Legion took damage while the necropolis gate was closed and released itself.")
+			message_admins("死灵之都之门关闭期间，军团受到伤害，并将其自身释放了出来！")
+			log_game("死灵之都之门关闭期间，军团受到伤害并将其自身释放了出来。")
 		else
-			message_admins("[user ? ADMIN_LOOKUPFLW(user):"Unknown"] has released Legion!")
-			user.log_message("released Legion.", LOG_GAME)
+			message_admins("[user ? ADMIN_LOOKUPFLW(user):"未知"] 释放了军团！")
+			user.log_message("释放了军团。", LOG_GAME)
 
 		var/sound/legion_sound = sound('sound/mobs/non-humanoids/legion/legion_spawn.ogg')
 		for(var/mob/M in GLOB.player_list)
 			if(is_valid_z_level(get_turf(M), T))
-				to_chat(M, span_userdanger("Discordant whispers flood your mind in a thousand voices. Each one speaks your name, over and over. Something horrible has been released."))
+				to_chat(M, span_userdanger("不和谐的耳语以千百种声音涌入你的脑海。每一个声音都在一遍又一遍地念着你的名字。某种可怕的东西被释放了。"))
 				M.playsound_local(T, null, 100, FALSE, 0, FALSE, pressure_affected = FALSE, sound_to_use = legion_sound)
 				flash_color(M, flash_color = "#FF0000", flash_time = 50)
 		var/mutable_appearance/release_overlay = mutable_appearance('icons/effects/effects.dmi', "legiondoor")
 		notify_ghosts(
-			"Legion has been released in the [get_area(src)]!",
+			"军团已在 [get_area(src)] 被释放！",
 			source = src,
 			alert_overlay = release_overlay,
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
@@ -220,8 +220,8 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 	duration = 38
 
 /obj/structure/necropolis_arch
-	name = "necropolis arch"
-	desc = "A massive arch over the necropolis gate, set into a massive tower of stone."
+	name = "死灵之都拱门"
+	desc = "一道横跨死灵之都之门的巨大拱门，嵌在一座庞大的石塔之中。"
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "arch_full"
 	appearance_flags = 0
@@ -248,7 +248,7 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 
 //stone tiles for boss arenas
 /obj/structure/stone_tile
-	name = "stone tile"
+	name = "石砖"
 	icon = 'icons/turf/boss_floors.dmi'
 	icon_state = "pristine_tile1"
 	plane = FLOOR_PLANE
@@ -272,95 +272,95 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 	return
 
 /obj/structure/stone_tile/block
-	name = "stone block"
+	name = "石块"
 	icon_state = "pristine_block1"
 	tile_key = "pristine_block"
 	tile_random_sprite_max = 4
 
 /obj/structure/stone_tile/slab
-	name = "stone slab"
+	name = "石板"
 	icon_state = "pristine_slab1"
 	tile_key = "pristine_slab"
 	tile_random_sprite_max = 4
 
 /obj/structure/stone_tile/center
-	name = "stone center tile"
+	name = "中央石砖"
 	icon_state = "pristine_center1"
 	tile_key = "pristine_center"
 	tile_random_sprite_max = 4
 
 /obj/structure/stone_tile/surrounding
-	name = "stone surrounding slab"
+	name = "外围石板"
 	icon_state = "pristine_surrounding1"
 	tile_key = "pristine_surrounding"
 	tile_random_sprite_max = 2
 
 /obj/structure/stone_tile/surrounding_tile
-	name = "stone surrounding tile"
+	name = "外围石砖"
 	icon_state = "pristine_surrounding_tile1"
 	tile_key = "pristine_surrounding_tile"
 	tile_random_sprite_max = 2
 
 //cracked stone tiles
 /obj/structure/stone_tile/cracked
-	name = "cracked stone tile"
+	name = "开裂的石砖"
 	icon_state = "cracked_tile1"
 	tile_key = "cracked_tile"
 
 /obj/structure/stone_tile/block/cracked
-	name = "cracked stone block"
+	name = "开裂的石块"
 	icon_state = "cracked_block1"
 	tile_key = "cracked_block"
 
 /obj/structure/stone_tile/slab/cracked
-	name = "cracked stone slab"
+	name = "开裂的石板"
 	icon_state = "cracked_slab1"
 	tile_key = "cracked_slab"
 	tile_random_sprite_max = 1
 
 /obj/structure/stone_tile/center/cracked
-	name = "cracked stone center tile"
+	name = "开裂的中央石砖"
 	icon_state = "cracked_center1"
 	tile_key = "cracked_center"
 
 /obj/structure/stone_tile/surrounding/cracked
-	name = "cracked stone surrounding slab"
+	name = "开裂的外围石板"
 	icon_state = "cracked_surrounding1"
 	tile_key = "cracked_surrounding"
 	tile_random_sprite_max = 1
 
 /obj/structure/stone_tile/surrounding_tile/cracked
-	name = "cracked stone surrounding tile"
+	name = "开裂的外围石砖"
 	icon_state = "cracked_surrounding_tile1"
 	tile_key = "cracked_surrounding_tile"
 
 //burnt stone tiles
 /obj/structure/stone_tile/burnt
-	name = "burnt stone tile"
+	name = "烧焦的石砖"
 	icon_state = "burnt_tile1"
 	tile_key = "burnt_tile"
 
 /obj/structure/stone_tile/block/burnt
-	name = "burnt stone block"
+	name = "烧焦的石块"
 	icon_state = "burnt_block1"
 	tile_key = "burnt_block"
 
 /obj/structure/stone_tile/slab/burnt
-	name = "burnt stone slab"
+	name = "烧焦的石板"
 	icon_state = "burnt_slab1"
 	tile_key = "burnt_slab"
 
 /obj/structure/stone_tile/center/burnt
-	name = "burnt stone center tile"
+	name = "烧焦的中央石砖"
 	icon_state = "burnt_center1"
 	tile_key = "burnt_center"
 
 /obj/structure/stone_tile/surrounding/burnt
-	name = "burnt stone surrounding slab"
+	name = "烧焦的外围石板"
 	icon_state = "burnt_surrounding1"
 	tile_key = "burnt_surrounding"
 
 /obj/structure/stone_tile/surrounding_tile/burnt
-	name = "burnt stone surrounding tile"
+	name = "烧焦的外围石砖"
 	icon_state = "burnt_surrounding_tile1"
 	tile_key = "burnt_surrounding_tile"

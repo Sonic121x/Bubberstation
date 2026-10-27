@@ -39,36 +39,36 @@
 
 	var/growth_string = ""
 	if (HAS_TRAIT(bloodbag, TRAIT_BLOOD_WORM_HOST))
-		growth_string = ", but consuming it is impossible, as they are a host"
+		growth_string = "，但无法吸取，因为其是宿主"
 	else if (total_blood_now < cocoon_action?.total_blood_required)
 		var/rounded_growth = CEILING(potential_gain / cocoon_action.total_blood_required * 100, 1)
 		if (rounded_growth > 0)
-			growth_string = ", consuming it would contribute <b>[rounded_growth]%</b> to your growth"
+			growth_string = "，吸取它可为你的成长贡献 <b>[rounded_growth]%</b>"
 		else
-			growth_string = ", but consuming it wouldn't contribute to your growth"
+			growth_string = "，但吸取它不会对你的成长有所贡献"
 	else
 		if (!istype(src, /mob/living/basic/blood_worm/adult))
-			growth_string = ". You are already ready to mature"
+			growth_string = "。你已经准备好成熟了"
 		else
-			growth_string = ". You are already fully grown"
+			growth_string = "。你已经完全成长"
 
 	var/synth_string = "[ceil(synth_content * 100)]%"
 	switch(synth_content)
 		if (-INFINITY to 0)
-			synth_string = "not"
+			synth_string = "非"
 		if (1 to INFINITY)
-			synth_string = "fully"
+			synth_string = "完全"
 		if (0 to 1)
 			synth_string = "[ceil(synth_content * 100)]%"
 
-	result += span_notice("[target.p_They()] [target.p_have()] [rounded_volume] unit[rounded_volume == 1 ? "" : "s"] of blood[growth_string]. [target.p_Their()] blood is <b>[synth_string]</b> synthetic.")
+	result += span_notice("[target]体内有 [rounded_volume] 单位血液[growth_string]。其血液为<b>[synth_string]合成血液</b>。")
 
 /mob/living/basic/blood_worm/get_status_tab_items()
 	return ..() + get_special_status_tab_items()
 
 /mob/living/basic/blood_worm/proc/on_host_get_status_tab_items(datum/source, list/items)
 	SIGNAL_HANDLER
-	items += "Worm Health: [round((health / maxHealth) * 100)]%"
+	items += "血虫生命值：[round((health / maxHealth) * 100)]%"
 	items += get_special_status_tab_items()
 
 /mob/living/basic/blood_worm/proc/get_special_status_tab_items()
@@ -81,11 +81,11 @@
 	var/total_required = cocoon_action?.total_blood_required
 
 	if (total_required > 0)
-		. += "Growth: [FLOOR(total / total_required * 100, 1)]%"
-	. += "Blood Consumed"
-	. += "- Normal: [ceil(normal)]u"
-	. += "- Synthetic: [ceil(synth)]u (MAX: [maximum_synth_blood]u)"
-	. += "- Total: [ceil(total)]u (REQ: [total_required]u)"
+		. += "成长：[FLOOR(total / total_required * 100, 1)]%"
+	. += "已吸取血液"
+	. += "- 普通：[ceil(normal)]u"
+	. += "- 合成：[ceil(synth)]u（上限：[maximum_synth_blood]u）"
+	. += "- 总计：[ceil(total)]u（需求：[total_required]u）"
 
 /// Sends text to the blood worm, whether they are possessing a host or not.
 /mob/living/basic/blood_worm/proc/to_chat_self(text)

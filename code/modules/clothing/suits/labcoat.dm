@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/toggle/labcoat
-	name = "labcoat"
-	desc = "A suit that protects against minor chemical spills."
+	name = "实验服"
+	desc = "一件能防护轻微化学品泼溅的外衣。"
 	icon_state = "labcoat"
 	icon = 'icons/obj/clothing/suits/labcoat.dmi'
 	worn_icon = 'icons/mob/clothing/suits/labcoat.dmi'
@@ -34,8 +34,8 @@
 	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/toggle/labcoat/cmo
-	name = "chief medical officer's labcoat"
-	desc = "Bluer than the standard model."
+	name = "首席医疗官实验服"
+	desc = "比标准款更蓝。"
 	icon_state = "labcoat_cmo"
 	inhand_icon_state = null
 
@@ -57,8 +57,8 @@
 	)
 
 /obj/item/clothing/suit/toggle/labcoat/paramedic
-	name = "paramedic's jacket"
-	desc = "A dark blue jacket for paramedics with reflective stripes."
+	name = "急救员夹克"
+	desc = "一件深蓝色的急救员夹克，带有反光条纹。"
 	icon_state = "labcoat_paramedic"
 	inhand_icon_state = null
 
@@ -71,14 +71,14 @@
 	//END SKYRAT EDIT
 
 /obj/item/clothing/suit/toggle/labcoat/mad
-	name = "\proper The Mad's labcoat"
-	desc = "It makes you look capable of konking someone on the noggin and shooting them into space."
+	name = "\proper 疯子的实验服"
+	desc = "穿上它，你看起来就像是能一棍子敲在别人脑袋上，再把人射进太空。"
 	icon_state = "labgreen"
 	inhand_icon_state = null
 
 /obj/item/clothing/suit/toggle/labcoat/genetics
-	name = "geneticist labcoat"
-	desc = "A suit that protects against minor chemical spills. Has a blue stripe on the shoulder."
+	name = "基因学家实验服"
+	desc = "一件能防护轻微化学品泼溅的外衣。肩部有蓝色条纹。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/toggle/labcoat/genetics"
 	post_init_icon_state = "labcoat_job"
@@ -91,8 +91,8 @@
 	allowed += /obj/item/sequence_scanner
 
 /obj/item/clothing/suit/toggle/labcoat/chemist
-	name = "chemist labcoat"
-	desc = "A suit that protects against minor chemical spills. Has an orange stripe on the shoulder."
+	name = "化学家实验服"
+	desc = "一件能防护轻微化学品泼溅的外衣。肩部有橙色条纹。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/toggle/labcoat/chemist"
 	post_init_icon_state = "labcoat_job"
@@ -105,8 +105,8 @@
 	allowed += /obj/item/storage/bag/chemistry
 
 /obj/item/clothing/suit/toggle/labcoat/virologist
-	name = "virologist labcoat"
-	desc = "A suit that protects against minor chemical spills. Has a green stripe on the shoulder."
+	name = "病毒学家实验服"
+	desc = "一件能防护轻微化学品泼溅的外衣。肩部有绿色条纹。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/toggle/labcoat/virologist"
 	post_init_icon_state = "labcoat_job"
@@ -119,8 +119,8 @@
 	allowed += /obj/item/storage/bag/bio
 
 /obj/item/clothing/suit/toggle/labcoat/coroner
-	name = "coroner labcoat"
-	desc = "A suit that protects against minor chemical spills. Has a black stripe on the shoulder."
+	name = "验尸官实验服"
+	desc = "一件能防护轻微化学品泼溅的外衣。肩部有黑色条纹。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/toggle/labcoat/coroner"
 	post_init_icon_state = "labcoat_job"
@@ -139,8 +139,8 @@
 	)
 
 /obj/item/clothing/suit/toggle/labcoat/science
-	name = "scientist labcoat"
-	desc = "A suit that protects against minor chemical spills. Has a purple stripe on the shoulder."
+	name = "科学家实验服"
+	desc = "一件能防护轻微化学品泼溅的外衣。肩部有紫色条纹。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/toggle/labcoat/science"
 	post_init_icon_state = "labcoat_job"
@@ -153,8 +153,8 @@
 	allowed += /obj/item/storage/bag/xeno
 
 /obj/item/clothing/suit/toggle/labcoat/roboticist
-	name = "roboticist labcoat"
-	desc = "More like an eccentric coat than a labcoat. Helps pass off bloodstains as part of the aesthetic. Comes with red shoulder pads."
+	name = "机器人学家实验服"
+	desc = "与其说是实验服，不如说是一件古怪的大衣。有助于把血迹当作造型的一部分糊弄过去。配有红色肩垫。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/toggle/labcoat/roboticist"
 	post_init_icon_state = "labcoat_job"
@@ -163,8 +163,8 @@
 	greyscale_colors = "#EEEEEE#88242D#88242D#39393F"
 
 /obj/item/clothing/suit/toggle/labcoat/interdyne
-	name = "interdyne labcoat"
-	desc = "More like an eccentric coat than a labcoat. Helps pass off bloodstains as part of the aesthetic. Comes with red shoulder pads."
+	name = "英特戴恩实验服"
+	desc = "与其说是实验服，不如说是一件古怪的大衣。有助于把血迹当作造型的一部分糊弄过去。配有红色肩垫。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/toggle/labcoat/interdyne"
 	post_init_icon_state = "labcoat_job"
@@ -175,8 +175,8 @@
 // Research Director
 
 /obj/item/clothing/suit/toggle/labcoat/research_director
-	name = "research director's coat"
-	desc = "A mix between a labcoat and just a regular coat. It's made out of a special antibacterial, anti-acidic, and anti-biohazardous synthetic fabric."
+	name = "科研主管外套"
+	desc = "介于实验服与普通外套之间的款式。由一种特殊的抗菌、耐酸、防生物危害的合成面料制成。"
 	icon_state = "labcoat_rd"
 	armor_type = /datum/armor/jacket_research_director
 	body_parts_covered = CHEST|GROIN|ARMS

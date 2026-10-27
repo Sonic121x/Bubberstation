@@ -11,7 +11,7 @@
 	// Bloodsuckers above BLOODSUCKER_HIGH_LEVEL must drink blood to level up.
 	if(sol_levels == 1) // just in case a bloodsucker is stuck at this level
 		// very important info here, so we use span_danger
-		to_chat(owner.current, span_danger("Sol's foul gaze no longer grants you power. You must drink blood to advance further."))
+		to_chat(owner.current, span_danger("太阳可憎的凝视不再赋予你力量。你必须吸血才能继续提升。"))
 	if(sol_levels <= 0)
 		return
 	sol_levels--
@@ -42,9 +42,9 @@
 	if(!istype(owner.current.loc, /obj/structure))
 		if(COOLDOWN_FINISHED(src, bloodsucker_spam_sol_burn))
 			if(bloodsucker_level > 0)
-				to_chat(owner, span_userdanger("The solar flare sets your skin ablaze!"))
+				to_chat(owner, span_userdanger("太阳耀斑点燃了你的皮肤！"))
 			else
-				to_chat(owner, span_userdanger("The solar flare scalds your neophyte skin!"))
+				to_chat(owner, span_userdanger("太阳耀斑灼伤了你初生的皮肤！"))
 			COOLDOWN_START(src, bloodsucker_spam_sol_burn, BLOODSUCKER_SPAM_SOL) //This should happen twice per Sol
 
 		if(owner.current.fire_stacks <= 0)
@@ -59,7 +59,7 @@
 
 	if(is_valid_coffin()) // Coffins offer the BEST protection
 		if(owner.current.am_staked() && COOLDOWN_FINISHED(src, bloodsucker_spam_sol_burn))
-			to_chat(owner.current, span_userdanger("You are staked you will keep burning until it is removed! Remove the offending weapon from your heart before sleeping."))
+			to_chat(owner.current, span_userdanger("你的心脏被桩刺穿了，拔掉之前会一直燃烧！休眠前先从心脏中拔出那件可恶的武器。"))
 			COOLDOWN_START(src, bloodsucker_spam_sol_burn, BLOODSUCKER_SPAM_SOL) //This should happen twice per Sol
 		if(!is_in_torpor())
 			check_begin_torpor(TORPOR_SKIP_CHECK_ALL)
@@ -67,7 +67,7 @@
 		return
 
 	if(COOLDOWN_FINISHED(src, bloodsucker_spam_sol_burn)) // Closets offer SOME protection
-		to_chat(owner, span_warning("Your skin sizzles. [owner.current.loc] doesn't protect well against UV bombardment."))
+		to_chat(owner, span_warning("你的皮肤滋滋作响。[owner.current.loc]无法有效抵御紫外线轰击。"))
 		COOLDOWN_START(src, bloodsucker_spam_sol_burn, BLOODSUCKER_SPAM_SOL) //This should happen twice per Sol
 	owner.current.adjust_fire_loss(0.5 + (bloodsucker_level / 4))
 	owner.current.updatehealth()
@@ -103,12 +103,12 @@
 			return FALSE
 	if(SkipChecks & TORPOR_SKIP_CHECK_ALL)
 		if(COOLDOWN_FINISHED(src, bloodsucker_spam_torpor))
-			to_chat(user, span_danger("Your immortal body will not yet relinquish your soul to the abyss. You enter Torpor."))
+			to_chat(user, span_danger("你的不死之躯尚不愿将灵魂交给深渊。你进入了蛰眠。"))
 		torpor_begin(TRUE)
 		return TRUE
 	/// Prevent Torpor whilst frenzied.
 	if(!(SkipChecks & TORPOR_SKIP_CHECK_FRENZY) && (is_frenzied() || user.incapacitated && bloodsucker_blood_volume == 0))
-		to_chat(user, span_userdanger("Your frenzy prevents you from entering torpor!"))
+		to_chat(user, span_userdanger("狂暴使你无法进入蛰眠！"))
 		return FALSE
 	// sometimes you might incur these damage types when you really, should not, important to check for it here so we can heal it later
 	var/total_damage = get_brute_loss() + get_fire_loss() + user.get_tox_loss() + user.get_oxy_loss()
@@ -152,7 +152,7 @@
 	if(!COOLDOWN_FINISHED(src, bloodsucker_spam_torpor))
 		return
 	if(!silent)
-		to_chat(owner.current, span_notice("You enter the horrible slumber of deathless Torpor. You will heal until you are renewed."))
+		to_chat(owner.current, span_notice("你进入了不死者可怖的蛰眠。你将持续恢复，直至重获完好之躯。"))
 	// Force them to go to "sleep"
 	if(!is_valid_coffin())
 		owner.current.death()
@@ -171,5 +171,5 @@
 	owner.current.remove_traits(list(TRAIT_TORPOR, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE, TRAIT_FAKEDEATH, TRAIT_DEATHCOMA), BLOODSUCKER_TRAIT)
 	heal_vampire_organs()
 	if(message)
-		to_chat(owner.current, span_warning("You have recovered from Torpor."))
+		to_chat(owner.current, span_warning("你已从蛰眠中苏醒。"))
 	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_EXIT_TORPOR)

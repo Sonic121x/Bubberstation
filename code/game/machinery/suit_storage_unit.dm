@@ -1,8 +1,8 @@
 
 // SUIT STORAGE UNIT /////////////////
 /obj/machinery/suit_storage_unit
-	name = "suit storage unit"
-	desc = "An industrial unit made to hold, charge, and decontaminate equipment. It comes with a built-in UV cauterization mechanism. A small warning label advises that organic matter should not be placed into the unit."
+	name = "服装储存柜"
+	desc = "用于存放、充电和净化装备的工业装置，内置紫外线烧灼机构。小小的警告标签提醒使用者切勿将有机物放入其中。"
 	icon = 'icons/obj/machines/suit_storage.dmi'
 	icon_state = "classic"
 	base_icon_state = "classic"
@@ -157,7 +157,7 @@
 	storage_type = /obj/item/tank/jetpack/void
 
 /obj/machinery/suit_storage_unit/radsuit
-	name = "radiation suit storage unit"
+	name = "防辐射服储存柜"
 	suit_type = /obj/item/clothing/suit/utility/radiation
 	helmet_type = /obj/item/clothing/head/utility/radiation
 	storage_type = /obj/item/geiger_counter
@@ -171,7 +171,7 @@
 	density = FALSE
 
 /obj/machinery/suit_storage_unit/industrial
-	name = "industrial suit storage unit"
+	name = "工业服装储存柜"
 	icon_state = "industrial"
 	base_icon_state = "industrial"
 
@@ -214,15 +214,15 @@
 
 	var/screentip_change = FALSE
 	if(istype(held_item, /obj/item/stock_parts/card_reader) && !locked && can_install_card_reader(user))
-		context[SCREENTIP_CONTEXT_LMB] ="Install Reader"
+		context[SCREENTIP_CONTEXT_LMB] ="安装读卡器"
 		screentip_change = TRUE
 
 	if(held_item.tool_behaviour == TOOL_MULTITOOL && !locked && !panel_open && !state_open && card_reader_installed)
-		context[SCREENTIP_CONTEXT_LMB] ="[access_locked ? "Unlock" : "Lock"] Access Panel"
+		context[SCREENTIP_CONTEXT_LMB] ="[access_locked ? "解锁" : "锁定"]权限面板"
 		screentip_change = TRUE
 
 	if(!state_open && is_operational && card_reader_installed && !isnull((held_item.GetID())))
-		context[SCREENTIP_CONTEXT_LMB] ="Change Access"
+		context[SCREENTIP_CONTEXT_LMB] ="更改权限"
 		screentip_change = TRUE
 
 	return screentip_change ? CONTEXTUAL_SCREENTIP_SET : NONE
@@ -265,10 +265,10 @@
 /obj/machinery/suit_storage_unit/examine(mob/user)
 	. = ..()
 	if(card_reader_installed)
-		. += span_notice("Swipe your ID to change access levels.")
-		. += span_notice("Use a multitool to [access_locked ? "unlock" : "lock"] access panel after opening panel.")
+		. += span_notice("刷身份证即可更改权限等级。")
+		. += span_notice("打开面板后，使用多功能工具[access_locked ? "解锁" : "锁定"]权限面板。")
 	else
-		. += span_notice("A card reader can be installed for further control access after opening its panel.")
+		. += span_notice("打开面板后可安装读卡器，以进一步控制使用权限。")
 
 /// copy over access of electronics
 /obj/machinery/suit_storage_unit/proc/set_access(list/accesses)
@@ -325,11 +325,11 @@
 			set_access(list())
 			return TRUE
 		if(user.get_idcard() != id)
-			balloon_alert(user, "not your unit!")
+			balloon_alert(user, "这不是你的储存柜！")
 			return FALSE
 
 	if(!allowed(user))
-		balloon_alert(user, "access denied!")
+		balloon_alert(user, "权限不足！")
 		return FALSE
 
 	return TRUE
@@ -372,7 +372,7 @@
 		choices["disinfect"] = icon('icons/hud/radial.dmi', "radial_disinfect")
 		choices["lock"] = icon('icons/hud/radial.dmi', "radial_lock")
 
-	var/choice = show_radial_menu(
+	var/choice = chinese_suit_storage_menu(
 		user,
 		src,
 		choices,
@@ -399,15 +399,15 @@
 			if(!access_check(user))
 				return
 			if (occupant && safeties)
-				say("Alert: safeties triggered, occupant detected!")
+				say("警报：安全保护已触发，检测到柜内有人！")
 				return
 			else if (!helmet && !mask && !suit && !mod && !storage && !occupant)
-				to_chat(user, "There's nothing inside [src] to disinfect!")
+				to_chat(user, "[src]里面没有需要消毒的东西！")
 				return
 			else
 				if (occupant)
 					var/mob/living/mob_occupant = occupant
-					to_chat(mob_occupant, span_userdanger("[src]'s confines grow warm, then hot, then scorching. You're being burned [mob_occupant.stat == DEAD ? "away" : "alive"]!"))
+					to_chat(mob_occupant, span_userdanger("[src]内部越来越热，最终变得灼烫。[mob_occupant.stat == DEAD ? "你的遗体正在被烧毁" : "你正在被活活烧死"]！"))
 				cook()
 		if ("lock", "unlock")
 			if(locked && !access_check(user))
@@ -452,27 +452,27 @@
 		return
 	var/mob/living/target = A
 	if(!state_open)
-		to_chat(user, span_warning("The unit's doors are shut!"))
+		to_chat(user, span_warning("储存柜的门关着！"))
 		return
 	if(!is_operational)
-		to_chat(user, span_warning("The unit is not operational!"))
+		to_chat(user, span_warning("储存柜无法运行！"))
 		return
 	if(occupant || helmet || suit || storage)
-		to_chat(user, span_warning("It's too cluttered inside to fit in!"))
+		to_chat(user, span_warning("里面太拥挤，挤不进去！"))
 		return
 
 	if(target == user)
-		user.visible_message(span_warning("[user] starts squeezing into [src]!"), span_notice("You start working your way into [src]..."))
+		user.visible_message(span_warning("[user]开始往[src]里挤！"), span_notice("你开始往[src]里挤……"))
 	else
-		target.visible_message(span_warning("[user] starts shoving [target] into [src]!"), span_userdanger("[user] starts shoving you into [src]!"))
+		target.visible_message(span_warning("[user]开始把[target]塞进[src]！"), span_userdanger("[user]开始把你塞进[src]！"))
 
 	if(do_after(user, 3 SECONDS, target))
 		if(occupant || helmet || suit || storage)
 			return
 		if(target == user)
-			user.visible_message(span_warning("[user] slips into [src] and closes the door behind [user.p_them()]!"), span_notice("You slip into [src]'s cramped space and shut its door."))
+			user.visible_message(span_warning("[user]钻进[src]，关上了身后的门！"), span_notice("你钻进[src]狭窄的空间里，关上了门。"))
 		else
-			target.visible_message(span_warning("[user] pushes [target] into [src] and shuts its door!"), span_userdanger("[user] shoves you into [src] and shuts the door!"))
+			target.visible_message(span_warning("[user]把[target]推进[src]，关上了门！"), span_userdanger("[user]把你塞进[src]，关上了门！"))
 		close_machine(target)
 		add_fingerprint(user)
 
@@ -505,7 +505,7 @@
 		uv = FALSE
 		locked = FALSE
 		if(uv_super)
-			visible_message(span_warning("[src]'s door creaks open with a loud whining noise. A cloud of foul black smoke escapes from its chamber."))
+			visible_message(span_warning("[src]的门伴着刺耳的嘎吱声打开，一团恶臭的黑烟从柜内涌出。"))
 			playsound(src, 'sound/machines/airlock/airlock_alien_prying.ogg', 50, TRUE)
 			do_smoke(0, src, src, smoke_type = /datum/effect_system/fluid_spread/smoke/bad/black)
 			QDEL_NULL(helmet)
@@ -517,9 +517,9 @@
 			wires.cut_all()
 		else
 			if(!mob_occupant)
-				visible_message(span_notice("[src]'s door slides open. The glowing yellow lights dim to a gentle green."))
+				visible_message(span_notice("[src]的门滑开了，明亮的黄灯转为柔和的绿光。"))
 			else
-				visible_message(span_warning("[src]'s door slides open, barraging you with the nauseating smell of charred flesh."))
+				visible_message(span_warning("[src]的门滑开了，令人作呕的焦肉味扑面而来。"))
 				qdel(mob_occupant.GetComponent(/datum/component/irradiated))
 			playsound(src, 'sound/machines/airlock/airlockclose.ogg', 25, TRUE)
 			var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
@@ -569,7 +569,7 @@
 	if(locked)
 		if(message_cooldown <= world.time)
 			message_cooldown = world.time + 50
-			to_chat(user, span_warning("[src]'s door won't budge!"))
+			to_chat(user, span_warning("[src]的门纹丝不动！"))
 		return
 	open_machine()
 	dump_inventory_contents()
@@ -581,21 +581,21 @@
 		return
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_notice("You see [user] kicking against the doors of [src]!"), \
-		span_notice("You start kicking against the doors... (this will take about [DisplayTimeText(breakout_time)].)"), \
-		span_hear("You hear a thump from [src]."))
+	user.visible_message(span_notice("你看到[user]正在踹[src]的门！"), \
+		span_notice("你开始踹门……（这大约需要[DisplayTimeText(breakout_time)]。）"), \
+		span_hear("你听到[src]里传来一声闷响。"))
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src )
 			return
-		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
-			span_notice("You successfully break out of [src]!"))
+		user.visible_message(span_warning("[user]成功从[src]里挣脱了出来！"), \
+			span_notice("你成功从[src]里挣脱了出来！"))
 		open_machine()
 		dump_inventory_contents()
 
 	add_fingerprint(user)
 	if(locked)
-		visible_message(span_notice("You see [user] kicking against the doors of [src]!"), \
-			span_notice("You start kicking against the doors..."))
+		visible_message(span_notice("你看到[user]正在踹[src]的门！"), \
+			span_notice("你开始踹门……"))
 		addtimer(CALLBACK(src, PROC_REF(resist_open), user), 30 SECONDS)
 	else
 		open_machine()
@@ -603,8 +603,8 @@
 
 /obj/machinery/suit_storage_unit/proc/resist_open(mob/user)
 	if(!state_open && occupant && (user in src) && !IS_UNCONSCIOUS_OR_CRIT(user)) // Check they're still here.
-		visible_message(span_notice("You see [user] burst out of [src]!"), \
-			span_notice("You escape the cramped confines of [src]!"))
+		visible_message(span_notice("你看到[user]从[src]里冲了出来！"), \
+			span_notice("你逃出了[src]狭窄的内部空间！"))
 		open_machine()
 
 /obj/machinery/suit_storage_unit/multitool_act(mob/living/user, obj/item/tool)
@@ -612,11 +612,11 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(locked)
-		balloon_alert(user, "unlock first!")
+		balloon_alert(user, "请先解锁！")
 		return ITEM_INTERACT_BLOCKING
 
 	access_locked = !access_locked
-	balloon_alert(user, "access panel [access_locked ? "locked" : "unlocked"]")
+	balloon_alert(user, "权限面板已[access_locked ? "锁定" : "解锁"]")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/suit_storage_unit/proc/can_install_card_reader(mob/user)
@@ -624,7 +624,7 @@
 		return FALSE
 
 	if(locked)
-		balloon_alert(user, "unlock first!")
+		balloon_alert(user, "请先解锁！")
 		return FALSE
 
 	return TRUE
@@ -635,56 +635,56 @@
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 
 	if(istype(tool, /obj/item/stock_parts/card_reader) && can_install_card_reader(user))
-		user.visible_message(span_notice("[user] is installing a card reader."),
-					span_notice("You begin installing the card reader."))
+		user.visible_message(span_notice("[user]正在安装读卡器。"),
+					span_notice("你开始安装读卡器。"))
 		if(!do_after(user, 4 SECONDS, target = src, extra_checks = CALLBACK(src, PROC_REF(can_install_card_reader), user)))
 			return ITEM_INTERACT_BLOCKING
 		qdel(tool)
 		card_reader_installed = TRUE
-		balloon_alert(user, "card reader installed")
+		balloon_alert(user, "已安装读卡器")
 		return ITEM_INTERACT_SUCCESS
 
 	var/obj/item/card/id/id = null
 	if(!state_open && is_operational && card_reader_installed && !isnull((id = tool.GetID())))
 		if(panel_open)
-			balloon_alert(user, "close panel!")
+			balloon_alert(user, "请关闭面板！")
 			return ITEM_INTERACT_BLOCKING
 		if(locked)
-			balloon_alert(user, "unlock first!")
+			balloon_alert(user, "请先解锁！")
 			return ITEM_INTERACT_BLOCKING
 		if(access_locked)
-			balloon_alert(user, "access panel locked!")
+			balloon_alert(user, "权限面板已锁定！")
 			return ITEM_INTERACT_BLOCKING
 
 		// change the access type
 		var/static/list/choices = list(
-			"Personal",
-			"Departmental",
-			"None",
+			"个人专属",
+			"部门共用",
+			"不设限制",
 		)
-		var/choice = tgui_input_list(user, "Set Access Type", "Access Type", choices)
+		var/choice = tgui_input_list(user, "设置权限类型", "权限类型", choices)
 		if(isnull(choice))
 			return ITEM_INTERACT_BLOCKING
 		id_card = null
 		switch(choice)
-			if("Personal") // only the player who swiped their id has access
+			if("个人专属") // only the player who swiped their id has access
 				id_card = WEAKREF(id)
-				name = "[id.registered_name] suit storage unit"
-				desc = "Owned by [id.registered_name]. [initial(desc)]"
-			if("Departmental") // anyone who has the same access permissions as this id has access
-				name = "[id.assignment] suit storage unit"
-				desc = "Its a [id.assignment] suit storage unit. [initial(desc)]"
+				name = "[id.registered_name]的服装储存柜"
+				desc = "归[id.registered_name]所有。[initial(desc)]"
+			if("部门共用") // anyone who has the same access permissions as this id has access
+				name = "[chinese_job_display(id.assignment)]服装储存柜"
+				desc = "这是[chinese_job_display(id.assignment)]的服装储存柜。[initial(desc)]"
 				set_access(id.GetAccess())
-			if("None") // free for all
+			if("不设限制") // free for all
 				name = initial(name)
 				desc = initial(desc)
 				req_access = list()
 				req_one_access = null
 				set_access(list())
 		if(!isnull(id_card))
-			balloon_alert(user, "now owned by [id.registered_name]")
+			balloon_alert(user, "现在归[id.registered_name]所有")
 		else
-			balloon_alert(user, "set to [choice]")
+			balloon_alert(user, "已设为[choice]")
 		return ITEM_INTERACT_SUCCESS
 
 	if(state_open && is_operational)
@@ -709,7 +709,7 @@
 	if(state_open)
 		return NONE
 	if(uv || locked)
-		to_chat(user, span_warning("You can't open the panel while its [locked ? "locked" : "decontaminating"]"))
+		to_chat(user, span_warning("[locked ? "锁定" : "正在净化"]时无法打开面板。"))
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_screwdriver(user, tool)
@@ -723,10 +723,10 @@
 /obj/machinery/suit_storage_unit/rename_checks(mob/living/user)
 	. = TRUE
 	if(locked)
-		balloon_alert(user, "unlock first!")
+		balloon_alert(user, "请先解锁！")
 		return FALSE
 	if(!access_check(user))
-		balloon_alert(user, "not yours to rename!")
+		balloon_alert(user, "这不是你的，不能改名！")
 		return FALSE
 
 /// If the SSU needs to have any communications wires cut.
@@ -739,7 +739,7 @@
 /obj/machinery/suit_storage_unit/proc/try_insert_item(mob/living/user, obj/item/to_insert)
 	if(istype(to_insert, /obj/item/clothing/suit))
 		if(suit)
-			to_chat(user, span_warning("The unit already contains a suit!"))
+			to_chat(user, span_warning("储存柜里已经有一套服装了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(to_insert, src))
@@ -748,7 +748,7 @@
 		suit = to_insert
 	else if(istype(to_insert, /obj/item/clothing/head))
 		if(helmet)
-			to_chat(user, span_warning("The unit already contains a helmet!"))
+			to_chat(user, span_warning("储存柜里已经有一个头盔了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(to_insert, src))
@@ -757,7 +757,7 @@
 		helmet = to_insert
 	else if(istype(to_insert, /obj/item/clothing/mask))
 		if(mask)
-			to_chat(user, span_warning("The unit already contains a mask!"))
+			to_chat(user, span_warning("储存柜里已经有一个面罩了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(to_insert, src))
@@ -766,7 +766,7 @@
 		mask = to_insert
 	else if(istype(to_insert, /obj/item/storage/backpack) || istype(to_insert, /obj/item/mod/control))
 		if(mod)
-			to_chat(user, span_warning("The unit already contains a backpack or MOD!"))
+			to_chat(user, span_warning("储存柜里已经有一个背包或 MOD 模块化外骨骼了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(to_insert, src))
@@ -775,13 +775,13 @@
 		mod = to_insert
 	else
 		if(storage)
-			to_chat(user, span_warning("The auxiliary storage compartment is full!"))
+			to_chat(user, span_warning("辅助储物隔间已满！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(to_insert, src))
 			return ITEM_INTERACT_BLOCKING
 
 		storage = to_insert
-	visible_message(span_notice("[user] inserts [to_insert] into [src]"), span_notice("You load [to_insert] into [src]."))
+	visible_message(span_notice("[user]将[to_insert]放入了[src]。"), span_notice("你将[to_insert]放入了[src]。"))
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS

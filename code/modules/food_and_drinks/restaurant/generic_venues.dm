@@ -40,7 +40,7 @@
 
 /datum/venue/restaurant/order_food_line(order)
 	var/obj/item/object_to_order = order
-	return "I'll take \a [initial(object_to_order.name)]"
+	return "我要来一份 [initial(object_to_order.name)]"
 
 /datum/venue/restaurant/on_get_order(mob/living/basic/robot_customer/customer_pawn, obj/item/order_item)
 	var/transaction_result = ..()
@@ -48,8 +48,8 @@
 		return
 
 	customer_pawn.visible_message(
-		span_danger("[customer_pawn] pushes [order_item] into their mouth-shaped hole!"),
-		span_danger("You push [order_item] into your mouth-shaped hole."),
+		span_danger("[customer_pawn] 把 [order_item] 塞进了自己嘴形的洞里！"),
+		span_danger("你把 [order_item] 塞进了自己嘴形的洞里。"),
 	)
 	playsound(customer_pawn, 'sound/items/eatfood.ogg', rand(10,50), TRUE)
 	qdel(order_item)
@@ -58,12 +58,12 @@
 	linked_venue = /datum/venue/restaurant
 
 /obj/item/holosign_creator/robot_seat/restaurant
-	name = "restaurant seating indicator placer"
+	name = "餐厅座位指示器生成器"
 	holosign_type = /obj/structure/holosign/robot_seat/restaurant
 
 /obj/structure/holosign/robot_seat/restaurant
 	gender = PLURAL
-	name = "restaurant seating"
+	name = "餐厅座位"
 	linked_venue = /datum/venue/restaurant
 
 
@@ -87,14 +87,14 @@
 	)
 
 /obj/machinery/restaurant_portal/bar
-	name = "bar portal"
+	name = "酒吧传送门"
 	linked_venue = /datum/venue/bar
 
 /obj/item/holosign_creator/robot_seat/bar
-	name = "bar seating indicator placer"
+	name = "酒吧座位指示器生成器"
 	holosign_type = /obj/structure/holosign/robot_seat/bar
 
 /obj/structure/holosign/robot_seat/bar
 	gender = PLURAL
-	name = "bar seating"
+	name = "酒吧座位"
 	linked_venue = /datum/venue/bar

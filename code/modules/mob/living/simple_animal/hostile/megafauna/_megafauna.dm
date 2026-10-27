@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/megafauna
-	name = "boss of this gym"
-	desc = "Attack the weak point for massive damage."
+	name = "本健身房的老板"
+	desc = "攻击弱点，造成巨额伤害。"
 	abstract_type = /mob/living/simple_animal/hostile/megafauna
 	health = 1000
 	maxHealth = 1000
@@ -56,7 +56,7 @@
 	/// Attack actions, sets chosen_attack to the number in the action
 	var/list/attack_action_types = list()
 	/// Summoning line, said when summoned via megafauna vents.
-	var/summon_line = "I'll kick your ass!"
+	var/summon_line = "我要把你揍得屁滚尿流！"
 	///any delay before we start attacking something near us
 	var/attack_delay = 0.25 SECONDS
 
@@ -142,7 +142,7 @@
 	celebrate_kill(victim)
 	if(!is_station_level(z) || client) //NPC monsters won't heal while on station
 		heal_overall_damage(victim.maxHealth * 0.5)
-	victim.investigate_log("has been devoured by [src].", INVESTIGATE_DEATHS)
+	victim.investigate_log("被 [src] 吞噬了。", INVESTIGATE_DEATHS)
 	if(iscarbon(victim))
 		qdel(victim.get_organ_slot(ORGAN_SLOT_LUNGS))
 		qdel(victim.get_organ_slot(ORGAN_SLOT_HEART))
@@ -155,8 +155,8 @@
 
 /mob/living/simple_animal/hostile/megafauna/proc/celebrate_kill(mob/living/L)
 	visible_message(
-		span_danger("[src] disembowels [L]!"),
-		span_userdanger("You feast on [L]'s organs, restoring your health!"))
+		span_danger("[src] 剖开了 [L] 的肚子！"),
+		span_userdanger("你吞食 [L] 的内脏，恢复了生命值！"))
 
 /mob/living/simple_animal/hostile/megafauna/CanAttack(atom/the_target)
 	. = ..()
@@ -195,7 +195,7 @@
 		ranged_cooldown += cooldown_updates[COOLDOWN_UPDATE_ADD_RANGED]
 
 /datum/action/innate/megafauna_attack
-	name = "Megafauna Attack"
+	name = "巨兽攻击"
 	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	button_icon_state = ""
 	var/chosen_message

@@ -5,11 +5,11 @@ Assistant
 */
 /datum/job/assistant
 	title = JOB_ASSISTANT
-	description = "Get your space legs, assist people, ask the HoP to give you a job."
+	description = "先适应太空生活，帮助他人，再找人事主管要一份正式工作。"
 	faction = FACTION_STATION
 	total_positions = 5
 	spawn_positions = 5
-	supervisors = "absolutely everyone"
+	supervisors = "所有人，无一例外"
 	exp_granted_type = EXP_TYPE_CREW
 	outfit = /datum/outfit/job/assistant
 	plasmaman_outfit = /datum/outfit/plasmaman
@@ -34,7 +34,7 @@ Assistant
 	)
 
 	job_flags = STATION_JOB_FLAGS
-	rpg_title = "Lout"
+	rpg_title = "粗野之徒"
 	config_tag = "ASSISTANT"
 
 /datum/job/assistant/get_outfit(consistent)

@@ -1,7 +1,7 @@
 /obj/item/gun/ballistic/automatic/pistol
-	name = "\improper Makarov pistol"
+	name = "\improper 马卡洛夫手枪"
 //	desc = "A small, easily concealable 9mm handgun. Has a threaded barrel for suppressors."	// SKYRAT EDIT: Original
-	desc = "A small, easily concealable 9x25mm Mk.12 handgun. Has a threaded barrel for suppressors."	// SKYRAT EDIT: Calibre rename
+	desc = "一款小巧、易于隐蔽携带的 9x25mm Mk.12 手枪。枪管带螺纹，可安装消音器。"	// SKYRAT EDIT: Calibre rename
 	icon_state = "pistol"
 	w_class = WEIGHT_CLASS_SMALL
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m9mm
@@ -23,7 +23,7 @@
 	drop_sound = 'sound/items/handling/gun/ballistics/pistol/pistol_drop1.ogg'
 	pickup_sound = 'sound/items/handling/gun/ballistics/pistol/pistol_pickup1.ogg'
 	fire_sound_volume = 90
-	bolt_wording = "slide"
+	bolt_wording = "套筒"
 	suppressor_x_offset = 10
 	suppressor_y_offset = -1
 	recoil_backtime_multiplier = 1
@@ -54,8 +54,8 @@
 	install_suppressor(S)
 
 /obj/item/gun/ballistic/automatic/pistol/clandestine
-	name = "\improper Ansem pistol"
-	desc = "The spiritual successor of the Makarov, or maybe someone just dropped their gun in a bucket of paint. The gun is chambered in 10mm."
+	name = "\improper 安瑟姆手枪"
+	desc = "马卡洛夫的精神续作，也可能只是有人把枪掉进了一桶油漆里。该枪口径为 10mm。"
 	icon_state = "pistol_evil"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m10mm
 	empty_indicator = TRUE
@@ -63,20 +63,20 @@
 
 /obj/item/gun/ballistic/automatic/pistol/clandestine/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore = "Manufactured by Scarborough Arms, the Ansem is regarded as one of the best sidearms on the market. Minimal recoil combined with \
-		high stopping power makes it a favourite amongst soldiers of fortune across known space.<br> \
+		lore = "安瑟姆由斯卡伯勒军火公司制造，被视为市面上最好的副武器之一。后坐力极小 \
+		而停止作用强大，让它成为已知空间各地雇佣兵的钟爱之物。<br> \
 		<br>\
-		The ease of concealment due to the weapon's sleek profile has given it a well-earned reputation as the 'smuggler's gun of course'. While \
-		space pirate bands tend to favour the HDS-1 created by Nanotrasen due to their low maintenance cost, the Ansem has seen plenty of use by \
-		mercernaries, hitmen and espionage agents. Dozens of seized Ansem pistols line evidence lockups across the Spinward. Many with extremely \
-		long and bloodied histories from years of service amongst underground criminal elements." \
+		得益于流线型外形带来的隐蔽便利，它理所当然地赢得了“走私客首选之枪”的名号。尽管 \
+		太空海盗团体往往更青睐纳米传讯制造的 HDS-1，因为维护成本低，但安瑟姆在 \
+		雇佣兵、杀手与谍报人员中仍有大量使用。顺旋星区各地的证物柜里堆着几十支缴获的安瑟姆手枪。其中许多都有着 \
+		漫长而血腥的经历，来自在地下犯罪圈子里服役的岁月。" \
 	)
 
 /obj/item/gun/ballistic/automatic/pistol/clandestine/fisher
-	name = "\improper Ansem/SC pistol"
-	desc = "A modified variant of the Ansem, spiritual successor to the Makarov, featuring an integral suppressor and push-button trigger on the grip \
-	for an underbarrel-mounted disruptor, similar in operation to the standalone SC/FISHER. Chambered in 10mm."
-	desc_controls = "Right-click to use the underbarrel disruptor. Two shots maximum between self-charges."
+	name = "\improper 安瑟姆/SC 手枪"
+	desc = "安瑟姆的改装型号，也是马卡洛夫的精神续作，配有一体式消音器，握把上另有一个按钮式扳机， \
+	用于击发下挂式干扰器，操作方式与独立的 SC/FISHER 类似。口径为 10mm。"
+	desc_controls = "右键使用下挂干扰器。每次自行充能之间最多可射击两发。"
 	icon_state = "pistol_evil_fisher"
 	suppressed = SUPPRESSED_QUIET
 	can_suppress = FALSE
@@ -89,17 +89,17 @@
 
 /obj/item/gun/ballistic/automatic/pistol/clandestine/fisher/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore = "The Ansem/SC is a Scarborough Arms overhaul suite for their own Ansem handgun, designed for special operators who operate operationally, \
-		especially against people who like using lightbulbs.<br>\
+		lore = "安瑟姆/SC 是斯卡伯勒军火公司为自己出品的安瑟姆手枪打造的整套改装方案，专为那些“执行行动的”特勤人员设计， \
+		尤其适合用来对付喜欢玩灯泡的人。<br>\
 		<br>\
-		The slide is chopped down, with the front half of the handgun featuring a monolithic integral suppressor built around the barrel, \
-		and a compact kinetic light disruptor mounted underneath the barrel assembly. The integral suppressor is engineered to not affect \
-		ballistic performance nor affect the concealability of the handgun, leading to a surprisingly robust firearm.<br>\
+		套筒被截短，手枪前半部围绕枪管集成了一只整体式消音器， \
+		枪管组件下方则装有一台紧凑型动能光干扰器。一体式消音器的设计既不影响 \
+		弹道性能，也不影响手枪的隐蔽性，最终造就了一把出人意料地坚固可靠的枪械。<br>\
 		<br>\
-		Scarborough Arms has never actually addressed allegations of their involvement with the modification and/or manufacture \
-		of the SC/FISHER or similar disruptor weapons. Prospective operators are reminded that kinetic light disruptors do not actually physically harm targets.<br>\
+		斯卡伯勒军火公司从未真正回应过有关其参与改装和/或制造 \
+		SC/FISHER 或类似干扰武器一事的指控。特此提醒有意向的行动人员：动能光干扰器并不会对目标造成实体伤害。<br>\
 		<br>\
-		Caveat emptor." \
+		买家自慎。" \
 	)
 
 /obj/item/gun/ballistic/automatic/pistol/clandestine/fisher/Destroy()
@@ -129,7 +129,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/m1911 //ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 	name = "\improper M1911"
-	desc = "A classic .45 handgun with a small magazine capacity."
+	desc = "一款经典的 .45 手枪，弹匣容量较小。"
 	icon_state = "m1911"
 	w_class = WEIGHT_CLASS_NORMAL
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m45
@@ -141,14 +141,14 @@
 
 /obj/item/gun/ballistic/automatic/pistol/m1911/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore = "The Colt M1911, created by John Moses Browning centuries ago, is the primordial ancestor of modern automatic firearms. \
-		Somehow, to this day, there are still officers who refuse to utilize anything that isn't chambered in 'God's Caliber'.<br>\
+		lore = "柯尔特 M1911 由约翰·摩西·勃朗宁在几个世纪前创造，是现代自动火器的鼻祖。 \
+		不知为何，直到今天仍有军官拒绝使用任何非“上帝口径”的枪械。<br>\
 		<br>\
-		Few want to tell any of these people that .45 ACP has struggled to puncture modern ballistic plating for almost five centuries.<br>\
+		却没什么人愿意告诉这些人：.45 ACP 已经快五个世纪都无法击穿现代弹道防板了。<br>\
 		<br>\
-		You are VERY confident that this particular example was lathed this decade. Most M1911's seen in the wild today are recreations of the weapon \
-		made with modern alloyed metals and manufactoring techniques, mass produced for the consumer market. This does not stop fraudsters from \
-		claiming that their weapon is a 'family heirloom' that has saved them from various conflicts that they insist they participated in." \
+		你非常确信眼前这一把是本十年内车出来的。如今野外见到的大多数 M1911 都是用现代合金与制造工艺 \
+		仿制、面向消费市场量产的产品。但这并不妨碍骗子们 \
+		声称自己的枪是“传家宝”，曾让他们在各种他们坚称自己参加过的冲突中活下来。" \
 	)
 
 /**
@@ -157,7 +157,7 @@
  */
 /obj/item/gun/ballistic/automatic/pistol/m1911/chimpgun
 	name = "\improper CH1M911"
-	desc = "For the monkey mafioso on-the-go. Uses .45 rounds and has the distinct smell of bananas."
+	desc = "献给四处奔波的黑帮猴子。使用 .45 弹药，还带着一股明显的香蕉味。"
 	projectile_damage_multiplier = 0.5
 	projectile_wound_bonus = -12
 	pin = /obj/item/firing_pin/monkey
@@ -169,8 +169,8 @@
 	spawnwithmagazine = FALSE
 
 /obj/item/gun/ballistic/automatic/pistol/deagle
-	name = "\improper Desert Eagle"
-	desc = "A robust .50 AE handgun."
+	name = "\improper 沙漠之鹰"
+	desc = "一款坚固耐用的 .50 AE 手枪。"
 	icon_state = "deagle"
 	force = 14
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m50
@@ -195,12 +195,12 @@
 	pin.pin_removable = FALSE
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/gold
-	desc = "A gold plated Desert Eagle folded over a million times by superior martian gunsmiths. Uses .50 AE ammo."
+	desc = "一支由火星高级枪匠反复折叠一百万次制成的镀金沙漠之鹰。使用 .50 AE 弹药。"
 	icon_state = "deagleg"
 	inhand_icon_state = "deagleg"
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/camo
-	desc = "A Deagle brand Deagle for operators operating operationally. Uses .50 AE ammo."
+	desc = "为“执行行动的”行动人员打造的沙鹰牌沙鹰。使用 .50 AE 弹药。"
 	icon_state = "deaglecamo"
 	inhand_icon_state = "deagleg"
 	// SKYRAT EDIT - We don't actually have the right icons for this. When you add the icons you can remove this line!
@@ -208,10 +208,10 @@
 	// SKYRAT EDIT END
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/regal
-	name = "\improper Regal Condor"
-	desc = "Unlike the Desert Eagle, this weapon seems to utilize some kind of advanced internal stabilization system to significantly \
-		reduce felt recoil and increase overall accuracy, at the cost of using a smaller caliber. \
-		This allows it to fire a very quick 2-round burst. Chambered in .45."
+	name = "\improper 皇家秃鹫"
+	desc = "与沙漠之鹰不同，这把武器似乎采用了某种先进的内部稳定系统，能显著 \
+		降低后坐感并提升整体精度，代价是使用更小的口径。 \
+		这让它能打出非常迅速的两发点射。口径为 .45。"
 	icon_state = "reagle"
 	inhand_icon_state = "deagleg"
 	burst_size = 2
@@ -227,20 +227,20 @@
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/regal/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore = "One of the Culling Arms of the Tiger Cooperative, a collection of relic weapons said to have come to Martinson in a frenzied vision from \
-		God to enact holy retribution upon the enemies of the faith. Almost all examples of these guns are replicas of the original pattern. This one is no \
-		different. However, it carries some of the gravitus of the original firearm. And, some say, the holy might that it wielded against the enemies of the cult.<br>\
+		lore = "虎爪会是猛虎合作社的“屠戮武装”之一，据说这批遗物武器是在一场狂乱的异象中由 \
+		上帝交予马丁森的，用以对信仰的敌人施以神圣报应。这些枪几乎全是原始样式的复制品。这一把也不 \
+		例外。然而，它仍带着原版火器的一部分庄重气息。还有人说，也带着它当年屠戮邪教敌人时所施的神圣威能。<br>\
 		<br>\
-		The fact that you are looking at this relic weapon means one of two things.<br>\
+		你正看着这件遗物武器，这意味着两种情况之一。<br>\
 		<br>\
-		A) A Tiger Cooperative evangelist has died during or before they could commit a bloody massacre in the name of God. Or <br>\
+		A) 一位猛虎合作社的传道者已经死了，死在他们以上帝之名发动血腥屠杀之前或之中。或者 <br>\
 		<br>\
-		B) You are that evangelist, and will soon be adding another chapter to this gun's dark history." \
+		B) 你就是那位传道者，而且很快就要给这把枪的黑暗历史再添一章。" \
 	)
 
 /obj/item/gun/ballistic/automatic/pistol/aps
-	name = "\improper Stechkin APS machine pistol"
-	desc = "A modernized reproduction of an old Soviet machine pistol. It fires quickly, but kicks like a mule. Uses 9mm ammo. Has a threaded barrel for suppressors." //SKYRAT EDIT
+	name = "\improper 斯捷奇金 APS 全自动手枪"
+	desc = "一款老式苏联全自动手枪的现代化复刻品。射速很快，但后坐力大得像被骡子踢。使用 9mm 弹药。枪管带螺纹，可安装消音器。" //SKYRAT EDIT
 	icon_state = "aps"
 	w_class = WEIGHT_CLASS_NORMAL
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m9mm_aps
@@ -252,29 +252,29 @@
 	suppressor_x_offset = 6
 
 /obj/item/gun/ballistic/automatic/pistol/stickman
-	name = "flat gun"
-	desc = "A 2 dimensional gun.. what?"
+	name = "平面枪"
+	desc = "一把二维的枪……什么？"
 	icon_state = "flatgun"
 	mag_display = FALSE
 	show_bolt_icon = FALSE
 
 /obj/item/gun/ballistic/automatic/pistol/stickman/equipped(mob/user, slot)
 	..()
-	to_chat(user, span_notice("As you try to manipulate [src], it slips out of your possession.."))
+	to_chat(user, span_notice("你正想摆弄 [src]，它却从你手中滑了出去……"))
 	if(prob(50))
-		to_chat(user, span_notice("..and vanishes from your vision! Where the hell did it go?"))
+		to_chat(user, span_notice("……然后从你视野中消失了！它到底跑哪去了？"))
 		qdel(src)
 		user.update_icons()
 	else
-		to_chat(user, span_notice("..and falls into view. Whew, that was a close one."))
+		to_chat(user, span_notice("……然后掉回视野里。呼，好险。"))
 		user.dropItemToGround(src)
 
 #define DOORHICKEY_GUN_MIN_DAMAGE 70
 #define DOORHICKEY_GUN_MAX_DAMAGE 140
 
 /obj/item/gun/ballistic/automatic/pistol/doohickey
-	name = "\improper Liberator"
-	desc = "A poorly made 3D printed \"gun\", only capable of firing a single shot."
+	name = "\improper 解放者"
+	desc = "一把粗制滥造的 3D 打印“枪”，只能发射一发。"
 	icon_state = "doorhickey"
 	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 2, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5)
 	bolt_type = BOLT_TYPE_NO_BOLT
@@ -293,10 +293,10 @@
 	if (forced)
 		return ..()
 
-	balloon_alert(user, "unscrewing the barrel...")
+	balloon_alert(user, "正在拧下枪管……")
 	playsound(user, 'sound/items/tools/screwdriver_operating.ogg', 75, FALSE, MEDIUM_RANGE_SOUND_EXTRARANGE)
 	if (!do_after(user, 2 SECONDS, src))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return
 	. = ..()
 
@@ -305,12 +305,12 @@
 	if (!.)
 		return
 
-	balloon_alert(user, "screwing the barrel on...")
+	balloon_alert(user, "正在拧上枪管……")
 	playsound(user, 'sound/items/tools/screwdriver_operating.ogg', 75, FALSE, MEDIUM_RANGE_SOUND_EXTRARANGE)
 	if (do_after(user, 2 SECONDS, src))
 		return TRUE
 
-	balloon_alert(user, "interrupted!")
+	balloon_alert(user, "被打断了！")
 	unload_ammo(user, forced = TRUE)
 	return FALSE
 
@@ -353,9 +353,9 @@
 	if (prob(damage_to_take - atom_integrity) && poor_sod)
 		shrapnel_bomb = TRUE
 
-	user.visible_message(span_danger("[src] explodes into small pieces[shrapnel_bomb ? ", chunk of it embedding in [user]'s [user.parse_zone_with_bodypart(poor_sod.body_zone)]" : ""]!"),
-		span_userdanger("[src] explodes into small pieces[shrapnel_bomb ? ", chunk of it embedding in your [poor_sod]!" : ""]!"),
-		span_hear("You can hear sound of plastic shattering."))
+	user.visible_message(span_danger("[src] 炸成了碎片[shrapnel_bomb ? "，其中一块扎进了 [user] 的[user.parse_zone_with_bodypart(poor_sod.body_zone)]" : ""]！"),
+		span_userdanger("[src] 炸成了碎片[shrapnel_bomb ? "，其中一块扎进了你的[poor_sod]！" : ""]！"),
+		span_hear("你能听到塑料碎裂的声音。"))
 
 	if (poor_sod)
 		poor_sod.receive_damage((damage_to_take - atom_integrity) * 0.5, wound_bonus = -10, exposed_wound_bonus = 20, sharpness = SHARP_EDGED, damage_source = src)
@@ -374,26 +374,26 @@
 
 /obj/item/gun/ballistic/automatic/pistol/doohickey/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore = "The Liberator pattern, according to digital historians, was first posted to a fringe imageboard on the NTNet. The post included a now dead \
-		link to a defuncting hosting service through which board members were encouraged to download and 'admire' the design. The thread's author began their \
-		post by describing their extreme vitriolic hatred of so-called 'moon men' amongst the Nanotrasen 'elites'. And that, through 'the sauce', they had \
-		been shown a means to 'end the oppression of Luna's Tormentors'. They called it the 'Liberator' as a result.<br>\
+		lore = "据数字史学家称，“解放者”图纸最早被发到 NTNet 上一个边缘图像论坛上。帖子里附着一个如今已失效的 \
+		托管服务链接，发帖者鼓动论坛成员去下载并“欣赏”这个设计。线程作者在帖中 \
+		首先描述了自己对纳米传讯“精英”中所谓“月人”的刻骨仇恨，并称借助“那酱料”，他们 \
+		看到了一个“终结露娜折磨者压迫”的办法。于是他们把它称作“解放者”。<br>\
 		<br>\
-		Response to this thread began as skeptism amongst posters regarding the 3D pattern. Many highlighted the dubious functionality, let alone safe operation \
-		of a gun created using cheap plastic and minimal machined parts firing a high pressure round through an unrifled barrel. But the thread suddenly began to \
-		gain traction immediately following a particular news article published by the Spinward Dove, a respected editorial in the Spinward Sector. The author of this \
-		article recounts that, during a particularly brisk day in New Moscow, they observed three off-duty Nanotrasen assistants attempting to use what the author \
-		described as a 'bizarre plastic doohickey' to shoot a mouse at point blank. The horrific aftermath, and images of the rattled but otherwise unscathed mouse, lead many \
-		to try and find from where these now crippled assistants had come across such an absurd device. Word spread of the post, and its author's continuously nonsensical \
-		rants regarding their hated foe in other areas of the imageboard.<br>\
+		起初，帖子里的回应多是坛友对这种 3D 图纸的怀疑。许多人指出，这样一把枪用廉价塑料和 \
+		极少的机加工零件、经无膛线枪管发射高压弹药，功能本身就存疑，更别提安全操作。但紧接着， \
+		一篇由《顺旋鸽报》——顺旋星区一家颇受尊敬的评论刊物——发表的文章让这个帖子突然 \
+		热度飙升。文章作者回忆说，在新莫斯科一个格外清冷的日子里，他们看到三名下班的纳米传讯助手 \
+		正试图用作者形容为“古怪塑料小玩意儿”的东西近距离射一只老鼠。那骇人的后果，以及那只受惊却安然 \
+		无恙的老鼠的照片，让许多人试图查明这几名如今落下残疾的助手是从哪儿弄到这种荒唐玩意儿的。帖子由此传开，作者 \
+		在论坛其他版块对自己痛恨之敌的持续荒诞咆哮也随之传开。<br>\
 		<br>\
-		The author of the thread returned immediately following the news, claiming that those who frequented the imageboard had 'stolen' their 'dreams of freedom', and \
-		that clearly the moon men were attempting to discredit their invention through this publicity stunt. A slur-laiden rant from the thread author followed this declaration, \
-		leading to the the moderators of the imageboard to step in and close the thread for good." \
+		消息传开后，线程作者立刻回归，声称常逛这个图像论坛的人“偷走”了他们的“自由之梦”， \
+		并称月人显然是想借这场公关闹剧来抹黑他们的发明。这番声明之后，作者又发表了一通满是污言秽语的谩骂， \
+		最终导致论坛管理员介入，永久关闭了该线程。" \
 	)
 
 /obj/item/disk/design_disk/liberator
-	name = "illegal 3D printer design disk"
+	name = "非法 3D 打印机设计磁盘"
 
 /obj/item/disk/design_disk/liberator/Initialize(mapload)
 	. = ..()

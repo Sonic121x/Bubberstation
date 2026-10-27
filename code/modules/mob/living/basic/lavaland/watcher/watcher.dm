@@ -1,7 +1,7 @@
 /// A floating eyeball which keeps its distance and sometimes make you look away.
 /mob/living/basic/mining/watcher
-	name = "watcher"
-	desc = "A levitating, monocular creature held aloft by wing-like veins. A sharp spine of crystal protrudes from its body."
+	name = "守望者"
+	desc = "一种漂浮着的单眼生物，靠翼状的脉络悬在空中。它身上凸出一根尖锐的水晶脊刺。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters_wide.dmi'
 	icon_state = "watcher"
 	icon_living = "watcher"
@@ -9,15 +9,15 @@
 	health_doll_icon = "watcher"
 	pixel_x = -12
 	base_pixel_x = -12
-	speak_emote = list("chimes")
+	speak_emote = list("叮当作响")
 	speed = 3
 	maxHealth = 160
 	health = 160
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
-	attack_verb_continuous = "buffets"
-	attack_verb_simple = "buffet"
+	attack_verb_continuous = "拍打"
+	attack_verb_simple = "拍打"
 	ai_controller = /datum/ai_controller/basic_controller/watcher
 	butcher_results = list(
 		/obj/item/stack/sheet/bone = 1,
@@ -74,13 +74,13 @@
 
 /// I love eating diamonds yum
 /mob/living/basic/mining/watcher/proc/consume(atom/movable/thing)
-	visible_message(span_warning("[thing] seems to vanish into [src]'s body!"))
+	visible_message(span_warning("[thing] 似乎消失在了 [src] 的体内！"))
 	thing.forceMove(src)
 
 /// More durable, burning projectiles
 /mob/living/basic/mining/watcher/magmawing
-	name = "magmawing watcher"
-	desc = "Presented with extreme temperatures, adaptive watchers absorb heat through their circulatory wings and repurpose it as a weapon."
+	name = "熔岩翼守望者"
+	desc = "面对极端温度，适应性强的守望者会通过循环翼吸收热量，并将其改造成武器。"
 	icon_state = "watcher_magmawing"
 	icon_living = "watcher_magmawing"
 	icon_dead = "watcher_magmawing_dead"
@@ -97,8 +97,8 @@
 
 /// Less durable, freezing projectiles
 /mob/living/basic/mining/watcher/icewing
-	name = "icewing watcher"
-	desc = "Watchers which fail to absorb enough heat during their development become fragile, but share their internal chill with their enemies."
+	name = "冰翼守望者"
+	desc = "发育过程中未能吸收足够热量的守望者会变得脆弱，但会把自己的体内寒气分享给敌人。"
 	icon_state = "watcher_icewing"
 	icon_living = "watcher_icewing"
 	icon_dead = "watcher_icewing_dead"

@@ -1,5 +1,5 @@
 //GAME_VERB(/client, mentorhelp, "Mentorhelp", "Mentor", msg as text)
-GAME_VERB(/client, mentorhelp, "Mentorhelp", "Mentor")
+GAME_VERB(/client, mentorhelp, "导师求助", "Mentor")
 	VERB_ARG(msg, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	//clean the input msg
 	if(!msg)
@@ -24,7 +24,7 @@ GAME_VERB(/client, mentorhelp, "Mentorhelp", "Mentor")
 			SEND_SOUND(mentor_client, 'sound/items/bikehorn.ogg')
 			to_chat(mentor_client, mentor_msg)
 
-	to_chat(src, span_mentor("PM to-<b>Mentors</b>: [msg]"))
+	to_chat(src, span_mentor("发给<b>导师</b>的私信：[msg]"))
 	return
 
 /proc/get_mentor_counts()
@@ -44,7 +44,7 @@ GAME_VERB(/client, mentorhelp, "Mentorhelp", "Mentor")
 	var/ckey
 
 	if(!whom)
-		return "*null*"
+		return "*空*"
 	if(istype(whom, /client))
 		target_client = whom
 		target_mob = target_client?.mob
@@ -62,7 +62,7 @@ GAME_VERB(/client, mentorhelp, "Mentorhelp", "Mentor")
 		if(target_client)
 			target_mob = target_client?.mob
 	else
-		return "*invalid*"
+		return "*无效*"
 
 	. = ""
 
@@ -77,7 +77,7 @@ GAME_VERB(/client, mentorhelp, "Mentorhelp", "Mentor")
 				. += "<a href='byond://?_src_=mentor;mentor_msg=[ckey];[MentorHrefToken(TRUE)]'>"
 
 		if(target_client && target_client?.holder && target_client?.holder.fakekey)
-			. += "Administrator"
+			. += "管理员"
 		else if (char_name_only && CONFIG_GET(flag/mentors_mobname_only))
 			if(istype(target_client?.mob,/mob/dead/new_player) || istype(target_client?.mob, /mob/dead/observer)) //If they're in the lobby or observing, display their ckey
 				. += key
@@ -93,7 +93,7 @@ GAME_VERB(/client, mentorhelp, "Mentorhelp", "Mentor")
 		if(include_link)
 			. += "</a>"
 	else
-		. += "*no key*"
+		. += "*无密钥*"
 
 	if(include_follow)
 		. += " (<a href='byond://?_src_=mentor;mentor_follow=[REF(target_mob)];[MentorHrefToken(TRUE)]'>F</a>)"

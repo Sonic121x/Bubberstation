@@ -3,7 +3,7 @@
 
 /datum/loadout_category/accessories/New()
 	. = ..()
-	category_info = "([max_allowed] allowed)"
+	category_info = "（最多 [max_allowed] 个）"
 
 /datum/loadout_category/accessories/handle_duplicate_entires(
 	datum/preference_middleware/loadout/manager,
@@ -27,7 +27,7 @@
 
 /datum/loadout_category/toys/New()
 	. = ..()
-	category_info = "([max_allowed] allowed)"
+	category_info = "（最多 [max_allowed] 个）"
 
 /datum/loadout_category/toys/handle_duplicate_entires(
 	datum/preference_middleware/loadout/manager,

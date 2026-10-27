@@ -1,6 +1,6 @@
 /datum/action/cooldown/mob_cooldown/ed209_charge
-	name = "Bot Tackle"
-	desc = "Not even God's mightiest Quarterback can withstand this."
+	name = "机器人擒抱"
+	desc = "就连上帝最强的四分卫也扛不住这一下。"
 	cooldown_time = 10 SECONDS
 	background_icon_state = "bg_revenant"
 	overlay_icon_state = "bg_revenant_border"
@@ -13,7 +13,7 @@
 /datum/action/cooldown/mob_cooldown/ed209_charge/Activate(atom/target)
 	var/turf/target_turf = get_turf(target)
 	if(isclosedturf(target_turf) || isspaceturf(target_turf))
-		owner.balloon_alert(owner, "base not suitable!")
+		owner.balloon_alert(owner, "落脚点不合适！")
 		return FALSE
 	addtimer(CALLBACK(src, PROC_REF(commence_launch), target), telegraph_duration)
 	owner.Shake(duration = telegraph_duration)
@@ -37,4 +37,4 @@
 		var/throw_dir = victim.loc == owner.loc ? get_dir(owner, victim) : pick(GLOB.alldirs)
 		var/throwtarget = get_edge_target_turf(victim, throw_dir)
 		victim.throw_at(target = throwtarget, range = 3, speed = 1)
-		victim.visible_message(span_warning("[victim] eats steel!"))
+		victim.visible_message(span_warning("[victim] 硬生生吃了一记钢铁冲撞！"))

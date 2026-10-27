@@ -1,7 +1,7 @@
 /// The heretic's rune, which they use to complete transmutation rituals.
 /obj/effect/heretic_rune
-	name = "transmutation rune"
-	desc = "A flowing circle of shapes and runes is etched into the floor, filled with a thick black tar-like fluid. This one looks pretty small."
+	name = "转化符文"
+	desc = "一个由图形与符文组成的流动圆环刻在地面上，其中填满了浓稠的黑色焦油状液体。这一个看起来相当小。"
 	icon = 'icons/obj/antags/cult/rune.dmi'
 	icon_state = "main1"
 	anchored = TRUE
@@ -24,8 +24,8 @@
 	if(!IS_HERETIC(user))
 		return
 
-	. += span_notice("Allows you to transmute objects by invoking the rune after collecting the prerequisites overhead.")
-	. += span_notice("You can use your <i>Mansus Grasp</i> on the rune to remove it.")
+	. += span_notice("在头顶集齐所需材料后呼唤符文，即可转化物品。")
+	. += span_notice("你可以对符文使用<i>漫宿之握</i>来将其移除。")
 
 /obj/effect/heretic_rune/attack_paw(mob/living/user, list/modifiers)
 	return attack_hand(user, modifiers)
@@ -55,7 +55,7 @@
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
 	var/list/rituals = heretic_datum.get_rituals()
 	if(!length(rituals))
-		loc.balloon_alert(user, "no rituals available!")
+		loc.balloon_alert(user, "没有可用的仪式！")
 		is_in_use = FALSE
 		return
 
@@ -70,13 +70,13 @@
 				var/list/req_text_list = list()
 				for(var/atom/possible_type as anything in req_type_list)
 					req_text_list += ritual.parse_required_item(possible_type)
-				ritual_requirements += english_list(req_text_list, and_text = "or")
+				ritual_requirements += english_list(req_text_list, and_text = "或")
 
 			else
 				ritual_requirements += ritual.parse_required_item(req_type)
 
 		if(length(ritual_requirements))
-			ritual_info = "Requires: [english_list(ritual_requirements)]"
+			ritual_info = "需要：[english_list(ritual_requirements)]"
 
 		var/list/ritual_icon_info = heretic_datum.get_icon_of_knowledge(ritual.type)
 		var/icon/ritual_icon = icon(ritual_icon_info["icon"], ritual_icon_info["state"], ritual_icon_info["dir"], ritual_icon_info["frame"])
@@ -158,7 +158,7 @@
 			if (istype(nearby_atom, /obj/item/organ))
 				var/obj/item/organ/organ = nearby_atom
 				if (organ.organ_flags & ORGAN_ROBOTIC)
-					to_chat(user, span_warning("Cannot transmute robotic organs!"))
+					to_chat(user, span_warning("无法转化机械器官！"))
 					continue
 			// BUBBER EDIT ADDITION END
 			// if list has items, check if the strict type is banned.
@@ -194,16 +194,16 @@
 			var/list/req_text_list = list()
 			for(var/possible_type, needed_amount in req_type)
 				req_text_list += ritual.parse_required_item(possible_type, fulfilled_amount)
-			what_are_we_missing += english_list(req_text_list, and_text = " or ")
+			what_are_we_missing += english_list(req_text_list, and_text = " 或 ")
 
 		else
 			what_are_we_missing += ritual.parse_required_item(req_type, fulfilled_amount)
 
 	if(length(what_are_we_missing))
 		// Let them know it screwed up
-		loc.balloon_alert(user, "ritual failed, missing components!")
+		loc.balloon_alert(user, "仪式失败，缺少材料！")
 		// Then let them know what they're missing
-		to_chat(user, span_mansus("You are missing [english_list(what_are_we_missing)] in order to complete the ritual \"[ritual.name]\"."))
+		to_chat(user, span_mansus("你缺少[english_list(what_are_we_missing)]，无法完成仪式“[ritual.name]”。"))
 		return FALSE
 
 	//Everything's good, proceed and collect from the available stacks what's needed if needed.
@@ -257,7 +257,7 @@
 	// No feedback is given on failure here -
 	// the ritual itself should handle it (providing specifics as to why it failed)
 	if(ritual_result)
-		loc.balloon_alert(user, "ritual complete")
+		loc.balloon_alert(user, "仪式完成")
 
 	return ritual_result
 

@@ -1,6 +1,6 @@
 /datum/job/bartender
 	title = JOB_BARTENDER
-	description = "Serve booze, mix drinks, keep the crew drunk."
+	description = "供应酒水，调制饮品，让船员们始终醉醺醺的。"
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -32,7 +32,7 @@
 	)
 
 	job_flags = STATION_JOB_FLAGS
-	rpg_title = "Tavernkeeper"
+	rpg_title = "酒馆老板"
 
 /datum/job/bartender/award_service(client/winner, award)
 	winner.give_award(award, winner.mob)
@@ -69,4 +69,4 @@
 	var/obj/item/card/id/W = H.wear_id
 	if(H.age < AGE_MINOR)
 		W.registered_age = AGE_MINOR
-		to_chat(H, span_notice("You're not technically old enough to access or serve alcohol, but your ID has been discreetly modified to display your age as [AGE_MINOR]. Try to keep that a secret!"))
+		to_chat(H, span_notice("严格来说，你的年龄还不足以获取或供应酒精饮料，但你的身份卡已被悄悄改动，将年龄显示为 [AGE_MINOR]。请务必保守这个秘密！"))

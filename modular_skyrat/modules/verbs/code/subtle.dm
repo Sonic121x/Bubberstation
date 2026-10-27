@@ -3,11 +3,11 @@
 #define SUBTLE_SAME_TILE_DISTANCE 0
 #define SUBTLER_TELEKINESIS_DISTANCE 7
 
-#define SUBTLE_ONE_TILE_TEXT "1-Tile Range"
-#define SUBTLE_SAME_TILE_TEXT "Same Tile"
+#define SUBTLE_ONE_TILE_TEXT "一格范围"
+#define SUBTLE_SAME_TILE_TEXT "同一格内"
 
-#define PORTAL_ONE_TILE_TEXT "Portal 1-Tile Range"
-#define PORTAL_SAME_TILE_TEXT "Portal Tile"
+#define PORTAL_ONE_TILE_TEXT "传送门一格范围"
+#define PORTAL_SAME_TILE_TEXT "传送门所在格"
 
 /datum/emote/living/subtle
 	key = "subtle"
@@ -16,18 +16,18 @@
 
 /datum/emote/living/subtle/run_emote(mob/user, params, type_override = null)
 	if(!can_run_emote(user))
-		to_chat(user, span_warning("You can't emote at this time."))
+		to_chat(user, span_warning("你现在无法使用表情动作。"))
 		return FALSE
 	var/subtle_message
 	var/subtle_emote = params
 	if(SSdbcore.IsConnected() && is_banned_from(user, "emote"))
-		to_chat(user, "You cannot send subtle emotes (banned).")
+		to_chat(user, "你无法发送细微动作（已被封禁）。")
 		return FALSE
 	else if(user.client?.prefs.muted & MUTE_IC)
-		to_chat(user, "You cannot send IC messages (muted).")
+		to_chat(user, "你无法发送角色内消息（已被禁言）。")
 		return FALSE
 	else if(!params)
-		subtle_emote = tgui_input_text(user, "Choose an emote to display.", "Subtle", null, MAX_MESSAGE_LEN, TRUE)
+		subtle_emote = tgui_input_text(user, "输入要展示的表情动作。", "细微动作", null, MAX_MESSAGE_LEN, TRUE)
 		if(!subtle_emote)
 			return FALSE
 		subtle_message = subtle_emote
@@ -37,7 +37,7 @@
 			emote_type = type_override
 
 	if(!can_run_emote(user))
-		to_chat(user, span_warning("You can't emote at this time."))
+		to_chat(user, span_warning("你现在无法使用表情动作。"))
 		return FALSE
 
 	user.log_message(subtle_message, LOG_SUBTLE)
@@ -81,7 +81,7 @@
 
 /datum/emote/living/subtler/run_emote(mob/user, params, type_override = null)
 	if(!can_run_emote(user))
-		to_chat(user, span_warning("You can't emote at this time."))
+		to_chat(user, span_warning("你现在无法使用表情动作。"))
 		return FALSE
 	var/subtler_message
 	var/subtler_emote = params
@@ -89,13 +89,13 @@
 	var/subtler_range = SUBTLE_DEFAULT_DISTANCE
 
 	if(SSdbcore.IsConnected() && is_banned_from(user, "emote"))
-		to_chat(user, span_warning("You cannot send subtle emotes (banned)."))
+		to_chat(user, span_warning("你无法发送细微动作（已被封禁）。"))
 		return FALSE
 	else if(user.client?.prefs.muted & MUTE_IC)
-		to_chat(user, span_warning("You cannot send IC messages (muted)."))
+		to_chat(user, span_warning("你无法发送角色内消息（已被禁言）。"))
 		return FALSE
 	else if(!subtler_emote)
-		subtler_emote = tgui_input_text(user, "Choose an emote to display.", "Subtler Anti-Ghost" , null, MAX_MESSAGE_LEN, TRUE)
+		subtler_emote = tgui_input_text(user, "输入要展示的表情动作。", "隐秘动作（幽灵不可见）" , null, MAX_MESSAGE_LEN, TRUE)
 		if(!subtler_emote)
 			return FALSE
 
@@ -119,7 +119,7 @@
 		var/obj/structure/lewd_portal/portal = user?.buckled
 		if(istype(portal, /obj/structure/lewd_portal))
 			targets.Insert(1, PORTAL_ONE_TILE_TEXT, PORTAL_SAME_TILE_TEXT)
-		target = tgui_input_list(user, "Pick a target", "Target Selection", targets)
+		target = tgui_input_list(user, "选择目标", "目标选择", targets)
 		if(!target)
 			return FALSE
 
@@ -136,7 +136,7 @@
 			emote_type = type_override
 
 	if(!can_run_emote(user))
-		to_chat(user, span_warning("You can't emote at this time."))
+		to_chat(user, span_warning("你现在无法使用表情动作。"))
 		return FALSE
 
 	user.log_message(subtler_message, LOG_SUBTLER)
@@ -153,7 +153,7 @@
 			target_mob.show_message(subtler_message, alt_msg = subtler_message)
 			subtler_sound(target_mob)
 		else
-			to_chat(user, span_warning("Your emote was unable to be sent to your target: Too far away."))
+			to_chat(user, span_warning("无法向目标发送你的表情动作：距离太远。"))
 	else if(istype(target, /obj/effect/overlay/holo_pad_hologram))
 		var/obj/effect/overlay/holo_pad_hologram/hologram = target
 		if(hologram.Impersonation?.client)
@@ -163,7 +163,7 @@
 		var/obj/lewd_portal_relay/portal_relay = target
 		user.show_message(subtler_message, alt_msg = subtler_message)
 		if(portal_relay.owner?.client)
-			subtler_message = span_subtler("<b>Unknown</b>[space]<i>[user.apply_message_emphasis(subtler_emote)]</i>")
+			subtler_message = span_subtler("<b>未知</b>[space]<i>[user.apply_message_emphasis(subtler_emote)]</i>")
 			portal_relay.owner.show_message(subtler_message, alt_msg = subtler_message)
 			subtler_sound(portal_relay.owner)
 	else
@@ -197,7 +197,7 @@
 
 		for(var/obj/lewd_portal_relay/portal in ghostless) //Message portal owners caught in range
 			if(portal?.owner?.client && portal.owner != user)
-				subtler_message = span_subtler("<b>Unknown</b>[space]<i>[user.apply_message_emphasis(subtler_emote)]</i>")
+				subtler_message = span_subtler("<b>未知</b>[space]<i>[user.apply_message_emphasis(subtler_emote)]</i>")
 				portal.owner.show_message(subtler_message, alt_msg = subtler_message)
 			subtler_sound(portal.owner)
 
@@ -214,14 +214,14 @@
 */
 
 /mob/living/proc/subtle_keybind()
-	var/message = input(src, "", "subtle") as text|null
+	var/message = input(src, "", "细微动作") as text|null
 	if(!length(message))
 		return
 	return subtle(message)
 
-GAME_VERB(/mob/living, subtle, "Subtle", "IC")
+GAME_VERB(/mob/living, subtle, "细微动作", "IC")
 	if(GLOB.say_disabled) // This is here to try to identify lag problems
-		to_chat(usr, span_danger("Speech is currently admin-disabled."))
+		to_chat(usr, span_danger("管理员目前已禁用发言。"))
 		return
 	usr.emote("subtle")
 
@@ -229,9 +229,9 @@ GAME_VERB(/mob/living, subtle, "Subtle", "IC")
 *	VERB CODE 2
 */
 
-GAME_VERB(/mob/living, subtler, "Subtler Anti-Ghost", "IC")
+GAME_VERB(/mob/living, subtler, "隐秘动作（幽灵不可见）", "IC")
 	if(GLOB.say_disabled) // This is here to try to identify lag problems
-		to_chat(usr, span_danger("Speech is currently admin-disabled."))
+		to_chat(usr, span_danger("管理员目前已禁用发言。"))
 		return
 	usr.emote("subtler")
 

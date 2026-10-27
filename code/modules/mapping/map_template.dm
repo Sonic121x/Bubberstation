@@ -128,7 +128,7 @@
 	//initialize things that are normally initialized after map load
 	initTemplateBounds(bounds)
 	smooth_zlevel(world.maxz)
-	log_game("Z-level [name] loaded at [x],[y],[world.maxz]")
+	log_game("Z 级 [name] 已加载于 [x],[y],[world.maxz]")
 
 	return level
 
@@ -186,7 +186,7 @@
 		var/affected_turfs = get_affected_turfs(T, FALSE)
 		generate_ceiling(affected_turfs)
 
-	log_game("[name] loaded at [T.x],[T.y],[T.z]")
+	log_game("[name] 已加载于 [T.x],[T.y],[T.z]")
 	return bounds
 
 /datum/map_template/proc/generate_ceiling(affected_turfs)

@@ -5,8 +5,8 @@
  * Uses powerful ranged attacks and becomes more desperate as its health decreases.
  */
 /mob/living/basic/blackmesa/xen/nihilanth
-	name = "nihilanth"
-	desc = "Holy shit."
+	name = "尼赫兰斯"
+	desc = "我靠。"
 	COOLDOWN_DECLARE(voice_cooldown)
 	icon = 'modular_skyrat/modules/black_mesa/icons/nihilanth.dmi'
 	icon_state = "nihilanth"
@@ -32,8 +32,8 @@
 	melee_damage_lower = 30
 	melee_damage_upper = 40
 	armour_penetration = 40
-	attack_verb_continuous = "lathes"
-	attack_verb_simple = "lathe"
+	attack_verb_continuous = "碾磨"
+	attack_verb_simple = "碾磨"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	status_flags = NONE
 	lighting_cutoff_red = 25
@@ -56,7 +56,7 @@
 	amount = 50
 
 /obj/projectile/nihilanth
-	name = "portal energy"
+	name = "传送门能量"
 	icon_state = "seedling"
 	damage = 20
 	damage_type = BURN

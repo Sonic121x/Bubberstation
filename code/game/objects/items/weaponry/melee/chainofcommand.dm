@@ -1,6 +1,6 @@
 /obj/item/melee/chainofcommand
-	name = "chain of command"
-	desc = "A tool used by great men to placate the frothing masses. Can be used to hasten allies with right-click."
+	name = "指挥之链"
+	desc = "伟人们用来安抚沸腾民众的工具。右键点击可催促盟友加快行动。"
 	icon = 'icons/obj/weapons/whip.dmi'
 	icon_state = "chain"
 	inhand_icon_state = "chain"
@@ -28,11 +28,11 @@
 /obj/item/melee/chainofcommand/add_item_context(obj/item/source, list/context, atom/target, mob/living/user)
 	. = NONE
 	if(isliving(target))
-		context[SCREENTIP_CONTEXT_RMB] = "Hasten"
+		context[SCREENTIP_CONTEXT_RMB] = "催促"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/melee/chainofcommand/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is strangling [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正用[src]勒住自己的脖子！看起来是想自杀！"))
 	return OXYLOSS
 
 /obj/item/melee/chainofcommand/attack_secondary(mob/living/victim, mob/living/user, list/modifiers, list/attack_modifiers)
@@ -42,7 +42,7 @@
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(victim == user)
-		to_chat(user, span_warning("You consider lashing yourself, but hesitate at the thought of how much it would hurt."))
+		to_chat(user, span_warning("你考虑抽自己一鞭，但一想到会有多疼就犹豫了。"))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	user.do_attack_animation(victim)
@@ -64,21 +64,21 @@
 	multiplicative_slowdown = -0.65
 
 /atom/movable/screen/alert/status_effect/commanded
-	name = "Commanded"
-	desc = "You are inspired to do things faster!"
+	name = "受催促"
+	desc = "你受到鼓舞，做事更快了！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "commanded"
 
 /obj/item/melee/chainofcommand/tailwhip
-	name = "liz o' nine tails"
-	desc = "A whip fashioned from the severed tails of lizards."
+	name = "蜥尾九鞭"
+	desc = "用割下的蜥蜴尾巴制成的鞭子。"
 	icon_state = "tailwhip"
 	inhand_icon_state = "tailwhip"
 	item_flags = NONE
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.1, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.1)
 
 /obj/item/melee/chainofcommand/tailwhip/kitty
-	name = "cat o' nine tails"
-	desc = "A whip fashioned from the severed tails of cats."
+	name = "猫尾九鞭"
+	desc = "用割下的猫尾巴制成的鞭子。"
 	icon_state = "catwhip"
 	inhand_icon_state = "catwhip"

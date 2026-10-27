@@ -2,7 +2,7 @@
 #define TTS_REQUEST_EXPIRE "expiry_time"
 
 SUBSYSTEM_DEF(tts)
-	name = "Text To Speech"
+	name = "文字转语音"
 	wait = 0.05 SECONDS
 	priority = FIRE_PRIORITY_TTS
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME
@@ -61,7 +61,7 @@ SUBSYSTEM_DEF(tts)
 	return ..()
 
 /datum/controller/subsystem/tts/stat_entry(msg)
-	msg = "\n  Active:[length(in_process_http_messages)]|Standby:[length(queued_http_messages?.L)]|Avg:[average_tts_messages_time]"
+	msg = "\n  处理中：[length(in_process_http_messages)]|等待中：[length(queued_http_messages?.L)]|平均：[average_tts_messages_time]"
 	return ..()
 
 /proc/cmp_word_length_asc(datum/tts_request/a, datum/tts_request/b)

@@ -1,6 +1,6 @@
 /obj/item/crowbar/large/heavy/science
-	name = "physicist's crowbar"
-	desc = "It's a big crowbar for a scientist who is clearly compensating for something. It doesn't fit in your pockets, because it's big. Feels oddly light..."
+	name = "物理学家的撬棍"
+	desc = "一根巨大的撬棍，属于某个显然想弥补什么的科学家。因为太大，所以放不进口袋。拿起来却出奇地轻……"
 	force = 4 // ~3 times less
 	throwforce = 12
 	attack_speed = CLICK_CD_RAPID //4 times faster.

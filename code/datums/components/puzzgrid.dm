@@ -145,14 +145,14 @@
 /datum/component/puzzgrid/proc/out_of_lives()
 	var/atom/movable/movable_parent = parent
 	if (istype(movable_parent))
-		movable_parent.say("Ran out of lives!", forced = "puzzgrid component")
+		movable_parent.say("尝试次数耗尽！", forced = "puzzgrid component")
 
 	fail()
 
 /datum/component/puzzgrid/proc/out_of_time()
 	var/atom/movable/movable_parent = parent
 	if (istype(movable_parent))
-		movable_parent.say("Ran out of time!", forced = "puzzgrid component")
+		movable_parent.say("时间到了！", forced = "puzzgrid component")
 
 	fail()
 
@@ -247,20 +247,20 @@
 /// Will return TRUE if the populate succeeded, or a string denoting the error otherwise.
 /datum/puzzgrid/proc/populate(list/from_json)
 	if (!islist(from_json))
-		return "Puzzgrid was not a list"
+		return "谜题网格不是列表"
 
 	var/list/answers = list()
 	var/list/groups = list()
 
 	for (var/group_json in from_json)
 		if (!islist(group_json))
-			return "Group was not a list (received [json_encode(group_json)])"
+			return "分组不是列表（收到 [json_encode(group_json)]）"
 
 		if (!("cells" in group_json))
-			return "Group did not have a 'cells' field (received [json_encode(group_json)])"
+			return "分组缺少 'cells' 字段（收到 [json_encode(group_json)]）"
 
 		if (!("description" in group_json))
-			return "Group did not have a 'description' field (received [json_encode(group_json)])"
+			return "分组缺少 'description' 字段（收到 [json_encode(group_json)]）"
 
 		var/datum/puzzgrid_group/group = new
 		group.answers = group_json["cells"]
@@ -280,7 +280,7 @@
 	var/list/answers = list()
 	var/description
 
-ADMIN_VERB(validate_puzzgrids, R_DEBUG, "Validate Puzzgrid Config", "Validate the puzzgrid config to ensure it's set up correctly.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(validate_puzzgrids, R_DEBUG, "验证谜题网格配置", "验证谜题网格的配置是否正确。", ADMIN_CATEGORY_DEBUG)
 	var/line_number = 0
 
 	for (var/line in world.file2list(PUZZGRID_CONFIG))
@@ -291,16 +291,16 @@ ADMIN_VERB(validate_puzzgrids, R_DEBUG, "Validate Puzzgrid Config", "Validate th
 
 		var/line_json_decoded = safe_json_decode(line)
 		if (isnull(line_json_decoded))
-			to_chat(user, span_warning("Line [line_number] in puzzgrids.txt is not a JSON: [line]"))
+			to_chat(user, span_warning("puzzgrids.txt 的第[line_number]行不是 JSON：[line]"))
 			continue
 
 		var/datum/puzzgrid/puzzgrid = new
 		var/populate_result = puzzgrid.populate(line_json_decoded)
 
 		if (populate_result != TRUE)
-			to_chat(user, span_warning("Line [line_number] in puzzgrids.txt is not formatted correctly: [populate_result]"))
+			to_chat(user, span_warning("puzzgrids.txt 的第[line_number]行格式不正确：[populate_result]"))
 
-	to_chat(user, span_notice("Validated. If you did not see any errors, you're in the clear."))
+	to_chat(user, span_notice("验证完成。若未出现任何错误，则配置正常。"))
 
 #undef PUZZGRID_CONFIG
 #undef PUZZGRID_GROUP_COUNT

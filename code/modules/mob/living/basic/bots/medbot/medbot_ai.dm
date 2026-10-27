@@ -171,7 +171,7 @@
 	var/datum/action/cooldown/bot_announcement/announcement = controller.blackboard[BB_ANNOUNCE_ABILITY]
 	if(QDELETED(announcement))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	var/text_to_announce = "Medical emergency! [living_target] is in critical condition at [get_area(living_target)]!"
+	var/text_to_announce = "医疗紧急情况！[living_target] 在 [get_area(living_target)] 处于危急状态！"
 	announcement.announce(text_to_announce, controller.blackboard[BB_RADIO_CHANNEL])
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 

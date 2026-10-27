@@ -1,6 +1,6 @@
 /obj/item/stamp/cat
-	name = "\improper Official Cat Stamp"
-	desc = "A rubber stamp for stamping documents of questionable importance."
+	name = "\improper 官方猫咪橡皮图章"
+	desc = "用来在重要性存疑的文件上盖章的橡皮图章。"
 	icon = 'modular_skyrat/master_files/icons/obj/bureaucracy.dmi'
 	icon_state = "stamp-cat_blue"
 	inhand_icon_state = "stamp"
@@ -32,51 +32,51 @@
 		if("cat_blue")
 			icon_state = "stamp-cat_blue"
 			dye_color = DYE_HOP
-			name = "\improper Official Cat Stamp"
+			name = "\improper 官方猫咪橡皮图章"
 		if("paw_blue")
 			icon_state = "stamp-paw_blue"
 			dye_color = DYE_HOP
-			name = "\improper Paw Stamp"
+			name = "\improper 爪印橡皮图章"
 
 		if("cat_red")
 			icon_state = "stamp-cat_red"
 			dye_color = DYE_HOS
-			name = "\improper Official Cat Stamp"
+			name = "\improper 官方猫咪橡皮图章"
 		if("paw_red")
 			icon_state = "stamp-paw_red"
 			dye_color = DYE_HOS
-			name = "\improper Paw Stamp"
+			name = "\improper 爪印橡皮图章"
 
 		if("cat_orange")
 			icon_state = "stamp-cat_orange"
 			dye_color = DYE_QM
-			name = "\improper Official Cat Stamp"
+			name = "\improper 官方猫咪橡皮图章"
 		if("paw_orange")
 			icon_state = "stamp-paw_orange"
 			dye_color = DYE_QM
-			name = "\improper Paw Stamp"
+			name = "\improper 爪印橡皮图章"
 
 		if("cat_green")
 			icon_state = "stamp-cat_green"
 			dye_color = DYE_CENTCOM
-			name = "\improper Official Cat Stamp"
+			name = "\improper 官方猫咪橡皮图章"
 		if("paw_green")
 			icon_state = "stamp-paw_green"
 			dye_color = DYE_CENTCOM
-			name = "\improper Paw Stamp"
+			name = "\improper 爪印橡皮图章"
 
 		else
 			return
 
 /obj/item/stamp/nri
-	name = "\improper Pan-Slavic Commonwealth stamp"
-	desc = "A rubber stamp for stamping important documents. Used in various Commonwealth documents."
+	name = "\improper 泛斯拉夫联邦橡皮图章"
+	desc = "用来在重要文件上盖章的橡皮图章。各类联邦文件都会用到。"
 	icon = 'modular_skyrat/master_files/icons/obj/bureaucracy.dmi'
 	icon_state = "stamp-nri"
 	dye_color = DYE_CENTCOM
 
 /obj/item/stamp/solfed
-	name = "\improper Solar Federation stamp"
+	name = "\improper 太阳联邦橡皮图章"
 	icon = 'modular_skyrat/master_files/icons/obj/bureaucracy.dmi'
 	icon_state = "stamp-solfed"
 	dye_color = DYE_CE

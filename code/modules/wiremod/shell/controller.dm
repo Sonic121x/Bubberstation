@@ -5,7 +5,7 @@
  * In game, this translates to having different signals for normal usage, alt-clicking, and ctrl-clicking when in your hand.
  */
 /obj/item/controller
-	name = "controller"
+	name = "控制器"
 	icon = 'icons/obj/science/circuits.dmi'
 	icon_state = "setup_small_calc"
 	inhand_icon_state = "electronic"
@@ -24,9 +24,9 @@
 	), SHELL_CAPACITY_MEDIUM)
 
 /obj/item/circuit_component/controller
-	display_name = "Controller"
-	desc = "Used to receive inputs from the controller shell. Use the shell in hand to trigger the output signal."
-	desc_controls = "Alt-click for the alternate signal. Right click for the extra signal."
+	display_name = "控制器"
+	desc = "用于接收控制器外壳传来的输入。手持外壳使用即可触发输出信号。"
+	desc_controls = "Alt 点击可发出备用信号。右键点击可发出额外信号。"
 	/// The three separate buttons that are called in attack_hand on the shell.
 	var/datum/port/output/signal
 	var/datum/port/output/alt
@@ -54,7 +54,7 @@
 	))
 
 /obj/item/circuit_component/controller/proc/handle_trigger(atom/source, user, port_name, datum/port/output/port_signal)
-	source.balloon_alert(user, "clicked [port_name] button")
+	source.balloon_alert(user, "按下了[port_name]按钮")
 	playsound(source, SFX_KEYBOARD_CLICKS, 25, FALSE)
 	entity.set_output(user)
 	port_signal.set_output(COMPONENT_SIGNAL)
@@ -66,7 +66,7 @@
 	SIGNAL_HANDLER
 	if(!user.Adjacent(source))
 		return
-	handle_trigger(source, user, "primary", signal)
+	handle_trigger(source, user, "主", signal)
 
 /**
  * Called when the shell item is alt-clicked
@@ -74,7 +74,7 @@
 /obj/item/circuit_component/controller/proc/send_alternate_signal(atom/source, mob/user)
 	SIGNAL_HANDLER
 
-	handle_trigger(source, user, "alternate", alt)
+	handle_trigger(source, user, "备用", alt)
 	return CLICK_ACTION_SUCCESS
 
 
@@ -87,5 +87,5 @@
 	if(!user.can_perform_action(source))
 		return
 
-	handle_trigger(source, user, "extra", right)
+	handle_trigger(source, user, "额外", right)
 	return CLICK_ACTION_SUCCESS

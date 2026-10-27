@@ -11,8 +11,8 @@
  */
 
 /datum/action/cooldown/bloodsucker/masquerade
-	name = "Masquerade"
-	desc = "Feign the vital signs of a mortal, and escape both casual and medical notice as the monster you truly are."
+	name = "避世伪装"
+	desc = "伪造凡人的生命体征，使日常观察和医学检查都无法识破你的怪物本质。"
 	button_icon_state = "power_human"
 	power_flags = BP_CONTINUOUS_EFFECT|BP_AM_STATIC_COOLDOWN|BP_AM_COSTLESS_UNCONSCIOUS
 	check_flags = NONE
@@ -25,18 +25,18 @@
 
 /datum/action/cooldown/bloodsucker/masquerade/get_power_explanation_extended()
 	. = list()
-	. += "Masquerade will forge your identity to be practically identical to that of a human."
-	. += "- You lose nearly all Bloodsucker benefits, including healing, sleep, radiation, crit, virus, gutting and cold immunity."
-	. += "- Your eyes turn to that of a regular human as your heart begins to beat."
-	. += "- You gain a Genetic sequence, and appear to have 100% blood when scanned by a Health Analyzer."
-	. += "- You will not appear as Pale when examined. Anything further than Pale, however, will not be hidden."
-	. += "At the end of a Masquerade, you will re-gain your Vampiric abilities, as well as lose any diseases you might have."
+	. += "避世伪装会让你的身份特征与人类几乎完全一致。"
+	. += "- 你会失去几乎全部吸血鬼优势，包括自愈，以及睡眠、辐射、濒死、疾病、开膛和寒冷免疫。"
+	. += "- 你的眼睛变得与普通人类一样，心脏开始跳动。"
+	. += "- 你会获得基因序列，健康分析仪扫描时显示血量为100%。"
+	. += "- 被查看时不会显得苍白，但比苍白更严重的外貌特征无法隐藏。"
+	. += "结束避世伪装后，你会恢复吸血鬼能力，并清除可能患有的疾病。"
 
 /datum/action/cooldown/bloodsucker/masquerade/ActivatePower(atom/target)
 	var/mob/living/carbon/user = owner
-	owner.balloon_alert(owner, "masquerade turned on.")
-	to_chat(user, span_notice("Your heart beats falsely within your lifeless chest, and your eyes are no longer sensitive to the light. You may yet pass for a mortal."))
-	to_chat(user, span_warning("Your vampiric healing is halted while imitating life."))
+	owner.balloon_alert(owner, "避世伪装已启用")
+	to_chat(user, span_notice("你的心脏在死寂的胸腔中伪装着跳动，双眼也不再畏光。你或许还能冒充凡人。"))
+	to_chat(user, span_warning("模仿生命时，吸血鬼的自愈能力会停止。"))
 
 	// Give status effect
 	user.apply_status_effect(/datum/status_effect/masquerade)
@@ -66,7 +66,7 @@
 	if(!.)
 		return
 	var/mob/living/carbon/user = owner
-	owner.balloon_alert(owner, "masquerade turned off.")
+	owner.balloon_alert(owner, "避世伪装已关闭")
 
 	// Remove status effect, mutations & diseases that you got while on masq.
 	user.remove_status_effect(/datum/status_effect/masquerade)
@@ -89,7 +89,7 @@
 		eyes.color_cutoffs = BLOODSUCKER_SIGHT_COLOR_CUTOFF
 		eyes.sight_flags = SEE_MOBS
 		user.update_sight()
-	to_chat(user, span_notice("Your heart beats one final time, while your skin dries out and your icy pallor returns."))
+	to_chat(user, span_notice("你的心脏最后一次跳动，皮肤逐渐干枯，冰冷的苍白重新浮现。"))
 
 /**
  * # Status effect
@@ -104,8 +104,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/masquerade
 
 /atom/movable/screen/alert/status_effect/masquerade
-	name = "Masquerade"
-	desc = "You are currently hiding your identity using the Masquerade power. This halts Vampiric healing."
+	name = "避世伪装"
+	desc = "你正通过避世伪装能力隐藏身份，这会暂停吸血鬼的自愈。"
 	icon = 'modular_zubbers/icons/mob/actions/bloodsucker.dmi'
 	icon_state = "power_human"
 	alerttooltipstyle = "cult"

@@ -1,7 +1,7 @@
 // Alters nicotine withdrawal
 /datum/addiction/nicotine
-	name = "nicotine"
-	withdrawal_stage_messages = list("Feel like having a smoke...", "I really need a smoke now...", "I can't take it, I really need a smoke now!")
+	name = "尼古丁"
+	withdrawal_stage_messages = list("想抽根烟……", "我现在真的很需要抽根烟……", "我受不了了，我现在就要抽根烟！")
 
 	addiction_relief_treshold = MIN_NICOTINE_ADDICTION_REAGENT_AMOUNT
 	medium_withdrawal_moodlet = /datum/mood_event/nicotine_withdrawal_moderate
@@ -13,15 +13,15 @@
 			if(!HAS_TRAIT(affected_carbon, TRAIT_NOHUNGER))
 				affected_carbon.adjust_nutrition(-10 * REM * seconds_per_tick)
 		if(2)
-			to_chat(affected_carbon, span_warning("Your head hurts."))
+			to_chat(affected_carbon, span_warning("你的头很痛。"))
 			affected_carbon.adjust_stamina_loss(50 * REM * seconds_per_tick)
 		if(3)
 			if(strength >= 2)
-				to_chat(affected_carbon, span_warning("You feel a little dizzy."))
+				to_chat(affected_carbon, span_warning("你感到有点头晕。"))
 				affected_carbon.set_dizzy(strength * 6 SECONDS)
 		if(4)
 			if(strength >= 2)
-				to_chat(affected_carbon, span_warning("You feel tired."))
+				to_chat(affected_carbon, span_warning("你感到疲惫。"))
 				affected_carbon.adjust_stamina_loss(75 * REM * seconds_per_tick)
 
 /datum/addiction/nicotine/withdrawal_enters_stage_1(mob/living/carbon/affected_carbon, seconds_per_tick)

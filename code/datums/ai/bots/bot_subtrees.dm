@@ -46,7 +46,7 @@
 		candidates += potential_target
 
 	if(!length(candidates))
-		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[living_pawn] bot_search ([type]): no valid target found in radius [radius]")
+		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[living_pawn] bot_search ([type])：半径 [radius] 内未找到有效目标")
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
 	candidate_stash = candidates
@@ -64,7 +64,7 @@
 	if(!async_still_valid())
 		return
 	if(!found)
-		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[living_pawn] bot_search ([type]): no reachable target found")
+		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[living_pawn] bot_search ([type])：未找到可到达的目标")
 	finish_async(found ? AI_BEHAVIOR_SUCCEEDED : AI_BEHAVIOR_FAILED)
 
 /datum/bt_node/ai_behavior/bot_search/finish_action(datum/ai_controller/controller, succeeded)
@@ -157,10 +157,10 @@
 		final_target = beacon
 
 	if(isnull(final_target))
-		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[bot_pawn] find_first_beacon_target: no beacon found on z=[bot_pawn.z] (previous=[previous_target])")
+		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[bot_pawn] find_first_beacon_target：在 z=[bot_pawn.z] 未找到信标（前一目标=[previous_target]）")
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	EVLOG_MAPTEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[bot_pawn] first beacon target: [final_target]", get_turf(final_target), "Beacon")
-	EVLOG_LINES(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "Beacon path", get_turf(bot_pawn), get_turf(final_target))
+	EVLOG_MAPTEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[bot_pawn] 首个信标目标：[final_target]", get_turf(final_target), "信标")
+	EVLOG_LINES(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "信标路径", get_turf(bot_pawn), get_turf(final_target))
 	controller.set_blackboard_key(target_key, final_target)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
@@ -174,7 +174,7 @@
 	var/mob/living/basic/bot/bot_pawn = controller.pawn
 	var/obj/machinery/navbeacon/prev_beacon = controller.blackboard[BB_PREVIOUS_BEACON_TARGET]
 	if(QDELETED(prev_beacon))
-		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[bot_pawn] find_next_beacon_target: previous beacon is deleted")
+		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[bot_pawn] find_next_beacon_target：前一个信标已删除")
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
 	var/atom/final_target
@@ -184,7 +184,7 @@
 			break
 
 	if(isnull(final_target))
-		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[bot_pawn] find_next_beacon_target: no beacon with location=[prev_beacon.codes[NAVBEACON_PATROL_NEXT]] (prev=[prev_beacon])")
+		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[bot_pawn] find_next_beacon_target：未找到 location=[prev_beacon.codes[NAVBEACON_PATROL_NEXT]] 的信标（前一个=[prev_beacon]）")
 		controller.clear_blackboard_key(BB_PREVIOUS_BEACON_TARGET)
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
@@ -253,7 +253,7 @@
 	var/mob/living/basic/bot/bot_pawn = controller.pawn
 	var/obj/item/our_hat = (locate(/obj/item/clothing/head) in bot_pawn)
 	if(our_hat)
-		salute_list += "tips [our_hat] at "
+		salute_list += "轻抬[our_hat]，致意的对象是"
 	bot_pawn.manual_emote(pick(salute_list) + " [controller.blackboard[target_key]]!")
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 

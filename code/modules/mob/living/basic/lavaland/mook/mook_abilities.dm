@@ -20,13 +20,13 @@
 	var/mob/living/basic/mining/mook/mook_owner = owner
 	if(mook_owner.attack_state != MOOK_ATTACK_NEUTRAL)
 		if(feedback)
-			mook_owner.balloon_alert(mook_owner, "still recovering!")
+			mook_owner.balloon_alert(mook_owner, "还在恢复中！")
 		return FALSE
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/mook_ability/mook_leap
-	name = "Mook leap"
-	desc = "Leap towards the enemy!"
+	name = "穆克跃击"
+	desc = "朝敌人扑跃过去！"
 	cooldown_time = 7 SECONDS
 	shared_cooldown = NONE
 	///telegraph time before jumping
@@ -91,8 +91,8 @@
 	basic_owner.melee_attack(target, ignore_cooldown = TRUE)
 
 /datum/action/cooldown/mob_cooldown/mook_ability/mook_jump
-	name = "Mook Jump"
-	desc = "Soar high in the air!"
+	name = "穆克跳跃"
+	desc = "高高地跃向空中！"
 	cooldown_time = 14 SECONDS
 	shared_cooldown = NONE
 	click_to_activate = FALSE
@@ -131,8 +131,8 @@
 		addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob/living/basic/mining/mook, change_combatant_state), MOOK_ATTACK_NEUTRAL), 0.5 SECONDS)
 
 /obj/effect/temp_visual/mook_dust
-	name = "dust"
-	desc = "It's just a dust cloud!"
+	name = "尘土"
+	desc = "只是一团扬尘！"
 	icon = 'icons/mob/simple/jungle/mook.dmi'
 	icon_state = "mook_leap_cloud"
 	layer = BELOW_MOB_LAYER

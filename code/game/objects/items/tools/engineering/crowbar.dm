@@ -1,6 +1,6 @@
 /obj/item/crowbar
-	name = "pocket crowbar"
-	desc = "A small crowbar. This handy tool is useful for lots of things, such as prying floor tiles or opening unpowered doors."
+	name = "口袋撬棍"
+	desc = "一把小撬棍。这件趁手的工具用途广泛，比如撬起地砖或打开未通电的门。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "crowbar"
 	inhand_icon_state = "crowbar"
@@ -19,8 +19,8 @@
 	drop_sound = 'sound/items/handling/tools/crowbar_drop.ogg'
 	pickup_sound = 'sound/items/handling/tools/crowbar_pickup.ogg'
 
-	attack_verb_continuous = list("attacks", "bashes", "batters", "bludgeons", "whacks")
-	attack_verb_simple = list("attack", "bash", "batter", "bludgeon", "whack")
+	attack_verb_continuous = list("攻击", "猛击", "重击", "殴打", "拍打")
+	attack_verb_simple = list("攻击", "猛击", "重击", "殴打", "拍打")
 	tool_behaviour = TOOL_CROWBAR
 	toolspeed = 1
 	armor_type = /datum/armor/item_crowbar
@@ -35,7 +35,7 @@
 	AddElement(/datum/element/falling_hazard, damage = force, wound_bonus = wound_bonus, hardhat_safety = TRUE, crushes = FALSE, impact_sound = hitsound)
 
 /obj/item/crowbar/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is beating [user.p_them()]self to death with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正用[src]把自己往死里砸！看起来就是想自杀！"))
 	playsound(loc, 'sound/items/weapons/genhit.ogg', 50, TRUE, -1)
 	return BRUTELOSS
 
@@ -45,8 +45,8 @@
 	force = 8
 
 /obj/item/crowbar/abductor
-	name = "alien crowbar"
-	desc = "A hard-light crowbar. It appears to pry by itself, without any effort required."
+	name = "外星撬棍"
+	desc = "一把硬光撬棍。它似乎能自行撬动，无需任何力气。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	usesound = 'sound/items/weapons/sonic_jackhammer.ogg'
 	custom_materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/titanium =SHEET_MATERIAL_AMOUNT, /datum/material/diamond =SHEET_MATERIAL_AMOUNT)
@@ -55,8 +55,8 @@
 	toolspeed = 0.1
 
 /obj/item/crowbar/large
-	name = "large crowbar"
-	desc = "It's a big crowbar. It doesn't fit in your pockets, because it's big."
+	name = "大型撬棍"
+	desc = "一把大撬棍。因为太大，所以装不进口袋。"
 	force = 12
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
@@ -67,13 +67,13 @@
 	toolspeed = 0.7
 
 /obj/item/crowbar/large/emergency
-	name = "emergency crowbar"
-	desc = "It's a bulky crowbar. It almost seems deliberately designed to not be able to fit inside of a backpack."
+	name = "应急撬棍"
+	desc = "一把笨重的撬棍。它几乎像是故意设计成装不进背包的样子。"
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/crowbar/hammer
-	name = "claw hammer"
-	desc = "It's a heavy hammer with a pry bar on the back of its head. Nails aren't common in space, but this tool can still be used as a weapon or a crowbar."
+	name = "羊角锤"
+	desc = "一把沉重的锤子，锤头背面带有撬杆。太空中钉子并不常见，但这件工具仍可作为武器或撬棍使用。"
 	force = 11
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/obj/weapons/hammer.dmi'
@@ -95,15 +95,15 @@
 	AddElement(/datum/element/kneejerk)
 
 /obj/item/crowbar/large/twenty_force //from space ruin
-	name = "heavy crowbar"
-	desc = "It's a big crowbar. It doesn't fit in your pockets, because it's big. It feels oddly heavy.."
+	name = "重型撬棍"
+	desc = "一把大撬棍。因为太大，所以装不进口袋。它摸起来重得有些古怪……"
 	force = 20
 	icon_state = "crowbar_powergame"
 	inhand_icon_state = "crowbar_red"
 
 /obj/item/crowbar/large/old
-	name = "old crowbar"
-	desc = "It's an old crowbar. Much larger than the pocket sized ones, carrying a lot more heft. They don't make 'em like they used to."
+	name = "旧撬棍"
+	desc = "一把旧撬棍。比口袋尺寸的那种大得多，也沉得多。如今可没人做这种东西了。"
 	throwforce = 10
 	throw_speed = 2
 
@@ -113,8 +113,8 @@
 		icon_state = "crowbar_powergame"
 
 /obj/item/crowbar/power
-	name = "jaws of life"
-	desc = "A set of jaws of life, compressed through the magic of science."
+	name = "救生钳"
+	desc = "一套救生钳，经由科学的魔法压缩而成。"
 	icon_state = "jaws"
 	inhand_icon_state = "jawsoflife"
 	worn_icon_state = "jawsoflife"
@@ -133,9 +133,9 @@
 	/// Used on Initialize, how much time to cut real handcuffs. Null means it can't.
 	var/snap_time_strong_handcuffs = 0 SECONDS
 	/// The text used for our jaws tool description while active
-	var/active_text = "cutting"
+	var/active_text = "剪切"
 	/// The text used for our jaws tool description while inactive
-	var/inactive_text = "prying"
+	var/inactive_text = "撬动"
 	/// The default tool behavior. This should match tool_behavior
 	var/first_tool_behavior = TOOL_CROWBAR
 	/// The active tool behavior. This should not match tool_behavior on init.
@@ -175,7 +175,7 @@
 
 /obj/item/crowbar/power/examine()
 	. = ..()
-	. += "It's fitted with a [tool_behaviour == first_tool_behavior ? inactive_text : active_text] head."
+	. += "它装有一个用于[tool_behaviour == first_tool_behavior ? inactive_text : active_text]的钳头。"
 
 /*
  * Signal proc for [COMSIG_TRANSFORMING_ON_TRANSFORM].
@@ -187,7 +187,7 @@
 
 	tool_behaviour = (active ? second_tool_behavior : first_tool_behavior)
 	if(user)
-		balloon_alert(user, "attached [tool_behaviour == first_tool_behavior ? inactive_text : active_text]")
+		balloon_alert(user, "已换上[tool_behaviour == first_tool_behavior ? inactive_text : active_text]钳头")
 	playsound(src, 'sound/items/tools/change_jaws.ogg', 50, TRUE)
 	if(tool_behaviour != TOOL_WIRECUTTER)
 		RemoveElement(/datum/element/cuffsnapping, snap_time_weak_handcuffs, snap_time_strong_handcuffs)
@@ -213,7 +213,7 @@
 		for(var/possible_blacklisted_access in collective_access)
 			if(possible_blacklisted_access in blacklisted_access)
 				playsound(src.loc, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-				user.balloon_alert(user, "cannot pry open!")
+				user.balloon_alert(user, "无法撬开！")
 				return COMPONENT_TOOL_DO_NOT_ALLOW_FORCE_OPEN
 
 	if(radio_alert && COOLDOWN_FINISHED(src, alert_cooldown))
@@ -238,22 +238,22 @@
 
 /datum/aas_config_entry/jaws_entry_alert
 	// This tool screams into the radio whenever the user successfully pries open an airlock.
-	name = "Door Forced Entry Alert"
+	name = "强行开门警报"
 	announcement_lines_map = list(
-		RADIO_CHANNEL_SECURITY = "SECURITY ALERT: %PERSON has forced open a door at %LOCATION using %TOOL. Confirm that this was done during an emergency by authorized staff.",
+		RADIO_CHANNEL_SECURITY = "安保警报：%PERSON 在 %LOCATION 使用 %TOOL 强行打开了一扇门。请确认此举是授权人员于紧急情况下所为。",
 	)
 	vars_and_tooltips_map = list(
-		"PERSON" = "will be replaced with the name of the user",
-		"LOCATION" = "with the area of the door",
-		"TOOL" = "replaced with the tool used",
+		"PERSON" = "将替换为使用者的姓名",
+		"LOCATION" = "替换为门所在的区域",
+		"TOOL" = "替换为所使用的工具",
 	)
 
 /obj/item/crowbar/power/suicide_act(mob/living/user)
 	if(tool_behaviour == TOOL_CROWBAR)
-		user.visible_message(span_suicide("[user] is putting [user.p_their()] head in [src], it looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]正把自己的头塞进[src]，看起来就是想自杀！"))
 		playsound(loc, 'sound/items/tools/jaws_pry.ogg', 50, TRUE, -1)
 	else
-		user.visible_message(span_suicide("[user] is wrapping \the [src] around [user.p_their()] neck. It looks like [user.p_theyre()] trying to rip [user.p_their()] head off!"))
+		user.visible_message(span_suicide("[user]正把[src]缠在自己的脖子上。看起来是想把自己的脑袋扯下来！"))
 		playsound(loc, 'sound/items/tools/jaws_cut.ogg', 50, TRUE, -1)
 		if(iscarbon(user))
 			var/mob/living/carbon/suicide_victim = user
@@ -264,23 +264,23 @@
 	return BRUTELOSS
 
 /obj/item/crowbar/power/syndicate
-	name = "jaws of death"
-	desc = "An improved, faster, and smaller copy of Nanotrasen's standard jaws of life. Can be used to force open airlocks in its crowbar configuration."
+	name = "死亡之钳"
+	desc = "纳米传讯标准救生钳的改进型，更快、更小。在撬棍形态下可用于强行打开气闸。"
 	icon_state = "jaws_syndie"
 	w_class = WEIGHT_CLASS_SMALL
 	toolspeed = 0.5
 
 /obj/item/crowbar/power/paramedic
-	name = "jaws of recovery"
-	desc = "A specialized version of the jaws of life, primarily to be used by paramedics to recover the injured and the recently deceased. Rather than a cutting arm, this tool has a bonesetting apparatus. \
-		Cannot access certain high security areas due to safety concerns."
+	name = "复苏钳"
+	desc = "救生钳的特化版本，主要由急救员用于救回伤员和刚刚死亡者。它没有剪切臂，而是配有接骨装置。\
+		出于安全考虑，无法进入某些高安保区域。"
 	icon_state = "jaws_paramedic"
 	inhand_icon_state = "jawsparamedic"
 	worn_icon_state = "jawsparamedic"
 	w_class = WEIGHT_CLASS_BULKY
 	toolspeed = 1
 	slot_flags = null
-	active_text = "bonesetting"
+	active_text = "接骨"
 	second_tool_behavior = TOOL_BONESET
 	limit_jaws_access = TRUE
 	blacklisted_access = list(
@@ -321,27 +321,27 @@
 
 /datum/aas_config_entry/jaws_entry_alert_paramedic
 	// This tool screams into the radio whenever the user successfully pries open an airlock.
-	name = "Door Forced Entry Medical Alert"
+	name = "强行开门医疗警报"
 	announcement_lines_map = list(
-		RADIO_CHANNEL_SECURITY = "SECURITY ALERT: %PERSON has forced open a door at %LOCATION using %TOOL. Confirm that this was done during an emergency by authorized staff.",
-		RADIO_CHANNEL_MEDICAL = "MEDICAL ALERT: %PERSON has forced open a door at %LOCATION using %TOOL. Confirm that this was done during an emergency by authorized staff.",
+		RADIO_CHANNEL_SECURITY = "安保警报：%PERSON 在 %LOCATION 使用 %TOOL 强行打开了一扇门。请确认此举是授权人员于紧急情况下所为。",
+		RADIO_CHANNEL_MEDICAL = "医疗警报：%PERSON 在 %LOCATION 使用 %TOOL 强行打开了一扇门。请确认此举是授权人员于紧急情况下所为。",
 	)
 	vars_and_tooltips_map = list(
-		"PERSON" = "will be replaced with the name of the user",
-		"LOCATION" = "with the area of the door",
-		"TOOL" = "replaced with the tool used",
+		"PERSON" = "将替换为使用者的姓名",
+		"LOCATION" = "替换为门所在的区域",
+		"TOOL" = "替换为所使用的工具",
 	)
 
 /obj/item/crowbar/power/paramedic/silent
-	desc = "A specialized version of the jaws of life, primarily to be used by paramedics to recover the injured and the recently deceased. Rather than a cutting arm, this tool has a bonesetting apparatus. \
-		This one looks upgraded."
+	desc = "救生钳的特化版本，主要由急救员用于救回伤员和刚刚死亡者。它没有剪切臂，而是配有接骨装置。\
+		这一把看起来经过了升级。"
 	w_class = WEIGHT_CLASS_NORMAL // it's a modified, normal jaws
 	limit_jaws_access = FALSE
 	radio_alert = FALSE
 
 /obj/item/crowbar/cyborg
-	name = "hydraulic crowbar"
-	desc = "A hydraulic prying tool, simple but powerful."
+	name = "液压撬棍"
+	desc = "一把液压撬具，简单而有力。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_crowbar"
 	worn_icon_state = "toolkit_engiborg_crowbar" //error sprite - this shouldn't have been dropped
@@ -351,8 +351,8 @@
 	toolspeed = 0.5
 
 /obj/item/crowbar/mechremoval
-	name = "mech removal tool"
-	desc = "A... really big crowbar. You're pretty sure it could pry open a mech, but it seems unwieldy otherwise."
+	name = "机甲拆卸工具"
+	desc = "一把……真正的大撬棍。你相当确定它能撬开机甲，但除此之外似乎很笨拙。"
 	icon_state = "mechremoval0"
 	base_icon_state = "mechremoval"
 	inhand_icon_state = null
@@ -381,27 +381,27 @@
 
 /obj/item/crowbar/mechremoval/proc/empty_mech(obj/vehicle/sealed/mecha/mech, mob/user)
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))
-		mech.balloon_alert(user, "not wielded!")
+		mech.balloon_alert(user, "未双手持握！")
 		return
 	var/obj/item/mecha_parts/mecha_equipment/sleeper/mech_sleeper = locate() in mech
 	if((!LAZYLEN(mech.occupants) || (LAZYLEN(mech.occupants) == 1 && mech.mecha_flags & SILICON_PILOT)) && (!mech_sleeper || !mech_sleeper.patient)) //if no occupants, or only an ai
-		mech.balloon_alert(user, "it's empty!")
+		mech.balloon_alert(user, "里面是空的！")
 		return
 	var/list/log_list_before = LAZYCOPY(mech.occupants)
 	if(mech_sleeper?.patient)
 		log_list_before += mech_sleeper.patient
-	user.log_message("tried to pry open [mech], located at [loc_name(mech)], which is occupied by [log_list_before.Join(", ")].", LOG_ATTACK)
+	user.log_message("试图撬开位于 [loc_name(mech)] 的 [mech]，其中载有 [log_list_before.Join(", ")]。", LOG_ATTACK)
 	var/mech_dir = mech.dir
-	mech.balloon_alert(user, "prying open...")
+	mech.balloon_alert(user, "正在撬开……")
 	playsound(mech, 'sound/machines/airlock/airlock_alien_prying.ogg', 100, TRUE)
 	if(!use_tool(mech, user, (mech.mecha_flags & IS_ENCLOSED) ? 5 SECONDS : 3 SECONDS, volume = 0, extra_checks = CALLBACK(src, PROC_REF(extra_checks), mech, mech_dir, mech_sleeper)))
-		mech.balloon_alert(user, "interrupted!")
+		mech.balloon_alert(user, "被打断！")
 		return
 	var/list/log_list_after = LAZYCOPY(mech.occupants)
 	if(mech_sleeper?.patient)
 		log_list_after += mech_sleeper.patient
 		mech_sleeper.go_out()
-	user.log_message("pried open [mech], located at [loc_name(mech)], which was occupied by [log_list_after.Join(", ")].", LOG_ATTACK)
+	user.log_message("撬开了位于 [loc_name(mech)] 的 [mech]，其中原本载有 [log_list_after.Join(", ")]。", LOG_ATTACK)
 	for(var/mob/living/occupant as anything in SANITIZE_LIST(mech.occupants))
 		if(isAI(occupant) || isbrain(occupant))
 			continue

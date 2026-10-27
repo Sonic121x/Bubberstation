@@ -1,7 +1,7 @@
 import { Button, Section, Stack } from 'tgui-core/components';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { chineseDisplay } from '../localization/zhDisplay';
 type EchoData = {
   selected_options: string[];
   all_options: string[];
@@ -15,12 +15,12 @@ export const EcholocationFocus = () => {
     <Window width={250} height={300}>
       <Window.Content>
         <Section
-          title="Echolocation Settings"
+          title="回声定位设置"
           buttons={
             <Button
               icon="info"
               disabled
-              tooltip="Determines what objects you see or ignore with your echolocation."
+              tooltip="设置回声定位所感知或忽略的物体。"
             />
           }
         >
@@ -31,7 +31,7 @@ export const EcholocationFocus = () => {
                   checked={selected_options.includes(option)}
                   onClick={() => act('toggle', { option: option })}
                 >
-                  {option}
+                  {chineseDisplay(option)}
                 </Button.Checkbox>
               </Stack.Item>
             ))}

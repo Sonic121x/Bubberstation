@@ -1,10 +1,10 @@
 // Corn
 /obj/item/seeds/corn
-	name = "corn seed pack"
-	desc = "I don't mean to sound corny..."
+	name = "玉米种子包"
+	desc = "我不想说得太俗套……"
 	icon_state = "seed-corn"
 	species = "corn"
-	plantname = "Corn Stalks"
+	plantname = "玉米秆"
 	product = /obj/item/food/grown/corn
 	maturation = 8
 	potency = 20
@@ -18,8 +18,8 @@
 
 /obj/item/food/grown/corn
 	seed = /obj/item/seeds/corn
-	name = "ear of corn"
-	desc = "Needs some butter!"
+	name = "玉米棒"
+	desc = "需要加点黄油！"
 	icon_state = "corn"
 	trash_type = /obj/item/grown/corncob
 	bite_consumption_mod = 2
@@ -41,8 +41,8 @@
 
 /obj/item/grown/corncob
 	seed = /obj/item/seeds/corn
-	name = "corn cob"
-	desc = "A reminder of meals gone by."
+	name = "玉米芯"
+	desc = "让人想起逝去的餐食。"
 	icon_state = "corncob"
 	inhand_icon_state = null
 	w_class = WEIGHT_CLASS_TINY
@@ -57,26 +57,26 @@
 	if(!tool.get_sharpness())
 		return NONE
 
-	to_chat(user, span_notice("You use [tool] to fashion a pipe out of the corn cob!"))
+	to_chat(user, span_notice("你用 [tool] 把玉米芯做成了一个烟斗！"))
 	new /obj/item/cigarette/pipe/cobpipe (user.loc)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
 // Snapcorn
 /obj/item/seeds/corn/snapcorn
-	name = "snapcorn seed pack"
-	desc = "Oh snap!"
+	name = "响爆玉米种子包"
+	desc = "哎呀！"
 	icon_state = "seed-snapcorn"
 	species = "snapcorn"
-	plantname = "Snapcorn Stalks"
+	plantname = "响爆玉米秆"
 	product = /obj/item/grown/snapcorn
 	mutatelist = null
 	rarity = 10
 
 /obj/item/grown/snapcorn
 	seed = /obj/item/seeds/corn/snapcorn
-	name = "snap corn"
-	desc = "A cob with snap pops."
+	name = "响爆玉米"
+	desc = "一根带着响炮的玉米棒。"
 	icon_state = "snapcorn"
 	inhand_icon_state = null
 	w_class = WEIGHT_CLASS_TINY
@@ -91,7 +91,7 @@
 
 /obj/item/grown/snapcorn/attack_self(mob/user)
 	..()
-	to_chat(user, span_notice("You pick a snap pop from the cob."))
+	to_chat(user, span_notice("你从玉米棒上摘下一颗响炮。"))
 	var/obj/item/toy/snappop/S = new /obj/item/toy/snappop(user.loc)
 	if(ishuman(user))
 		user.put_in_hands(S)
@@ -102,24 +102,24 @@
 
 /obj/item/grown/corncob/snap
 	seed = /obj/item/seeds/corn/snapcorn
-	name = "snap corn cob"
-	desc = "A reminder of pranks gone by."
+	name = "响爆玉米芯"
+	desc = "让人想起逝去的恶作剧。"
 
 //Pepper-corn - Heh funny.
 /obj/item/seeds/corn/pepper
-	name = "pepper-corn seed pack"
-	desc = "If Peter picked a pack of pepper-corn..."
+	name = "胡椒玉米种子包"
+	desc = "如果彼得挑了一包胡椒玉米……"
 	icon_state = "seed-peppercorn"
 	species = "peppercorn"
-	plantname = "Pepper-Corn Stalks"
+	plantname = "胡椒玉米秆"
 	product = /obj/item/food/grown/peppercorn
 	mutatelist = null
 	reagents_add = list(/datum/reagent/consumable/blackpepper = 0.2, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/food/grown/peppercorn
 	seed = /obj/item/seeds/corn/pepper
-	name = "ear of pepper-peppercorn"
-	desc = "This dusty monster needs god..."
+	name = "胡椒玉米棒"
+	desc = "这个满是灰尘的怪物需要上帝……"
 	icon_state = "peppercorn"
 	trash_type = /obj/item/grown/corncob/pepper
 	foodtypes = VEGETABLES
@@ -130,5 +130,5 @@
 
 /obj/item/grown/corncob/pepper
 	seed = /obj/item/seeds/corn/pepper
-	name = "pepper corn cob"
-	desc = "A reminder of genetic abominations gone by."
+	name = "胡椒玉米芯"
+	desc = "让人想起逝去的基因怪物。"

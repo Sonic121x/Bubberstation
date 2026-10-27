@@ -1,7 +1,7 @@
 /obj/machinery/colony_recycler
-	name = "materials recycler"
-	desc = "A large crushing machine used to recycle small items inefficiently. Items are inserted by hand, rather than by belt. \
-		Mind your fingers."
+	name = "材料回收机"
+	desc = "一台大型破碎机，用于低效率地回收小型物品。物品需要手动放入，而不是通过传送带。 \
+		小心你的手指。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/portable_machines.dmi'
 	icon_state = "recycler"
 	anchored = FALSE
@@ -48,8 +48,8 @@
 
 /obj/machinery/colony_recycler/examine(mob/user)
 	. = ..()
-	. += span_notice("Reclaiming <b>[amount_produced]%</b> of materials salvaged.")
-	. += span_notice("Can be <b>secured</b> with a <b>wrench</b> using <b>Right-Click</b>.")
+	. += span_notice("可回收 <b>[amount_produced]%</b> 的材料。")
+	. += span_notice("可用<b>扳手</b>通过<b>右键</b><b>固定</b>。")
 
 /obj/machinery/colony_recycler/wrench_act_secondary(mob/living/user, obj/item/tool)
 	default_unfasten_wrench(user, tool)
@@ -69,7 +69,7 @@
 // "parts kit" for buying these from cargo
 
 /obj/item/flatpacked_machine/recycler
-	name = "recycler parts kit"
+	name = "回收机零件包"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/parts_kits.dmi'
 	icon_state = "recycler"
 	type_to_deploy = /obj/machinery/colony_recycler

@@ -10,9 +10,9 @@
  * - I don't recommend using both methods on the same elevator, as it might result in some jank, but it's functional.
  */
 /obj/machinery/elevator_control_panel
-	name = "elevator panel"
+	name = "电梯控制面板"
 	// Fire alarm reference.
-	desc = "<i>\"In case of emergency, please use the stairs.\"</i> Thus, always use the stairs."
+	desc = "<i>“如遇紧急情况，请使用楼梯。”</i> 所以，永远走楼梯吧。"
 	density = FALSE
 
 	icon = 'icons/obj/wallmounts.dmi'
@@ -56,10 +56,10 @@
 	. = ..()
 
 	var/static/list/tool_behaviors = list(
-		TOOL_MULTITOOL = list(SCREENTIP_CONTEXT_LMB = "Reset Panel"),
+		TOOL_MULTITOOL = list(SCREENTIP_CONTEXT_LMB = "重置面板"),
 	)
 	AddElement(/datum/element/contextual_screentip_tools, tool_behaviors)
-	AddElement(/datum/element/contextual_screentip_bare_hands, lmb_text = "Send Elevator")
+	AddElement(/datum/element/contextual_screentip_bare_hands, lmb_text = "呼叫电梯")
 
 	maploaded = mapload
 	// Maploaded panels link in post_machine_initialize...
@@ -118,7 +118,7 @@
 		elevator_door.obj_flags |= EMAGGED
 
 	playsound(src, SFX_SPARKS, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(user, "safeties overridden")
+	balloon_alert(user, "安全装置已失效")
 	return TRUE
 
 /obj/machinery/elevator_control_panel/multitool_act(mob/living/user)
@@ -126,10 +126,10 @@
 	if(!lift)
 		return
 
-	balloon_alert(user, "resetting panel...")
+	balloon_alert(user, "正在重置面板……")
 	playsound(src, 'sound/machines/locktoggle.ogg', 50, TRUE)
 	if(!do_after(user, 6 SECONDS, src))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return TRUE
 
 	if(QDELETED(lift) || !length(lift.transport_modules))
@@ -158,7 +158,7 @@
 	reset_doors()
 
 	// Be vague about whether something was accomplished or not
-	balloon_alert(user, "panel reset")
+	balloon_alert(user, "面板已重置")
 	playsound(src, 'sound/machines/locktoggle.ogg', 50, TRUE)
 
 	return TRUE
@@ -196,7 +196,7 @@
 		var/preset_name = preset_destination_names?[num2text(z_level)]
 		// If we don't have a preset name, use Floor z-1 for the title.
 		// z - 1 is used because the station z-level is 2, and goes up.
-		linked_elevator_destination["[z_level]"] = preset_name || "Floor [z_level - 1]"
+		linked_elevator_destination["[z_level]"] = preset_name || "楼层 [z_level - 1]"
 
 	// Reverse the destination list.
 	// By this point the list will go from bottom floor to top floor,
@@ -311,7 +311,7 @@
 	switch(action)
 		if("move_lift")
 			if(!allowed(usr))
-				balloon_alert(usr, "access denied!")
+				balloon_alert(usr, "拒绝访问！")
 				return
 
 			var/desired_z = params["z"]

@@ -105,8 +105,8 @@
 /datum/status_effect/cuffed_item/proc/on_examine_more(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_warning("There's [cuffed.examine_title(user)] bound to [owner.p_their()] \
-		[cuffed_to.plaintext_zone] by [cuffs.examine_title(user)].")
+	examine_list += span_warning("[cuffed.examine_title(user)]被[cuffs.examine_title(user)]绑在[owner]的\
+		[chinese_body_zone_display(cuffed_to.plaintext_zone)]上。")
 
 /// What happens if the limb we're cuffed to is removed?
 /datum/status_effect/cuffed_item/proc/cuffed_to_removed(datum/source, mob/living/carbon/owner, special)
@@ -190,19 +190,19 @@
 	if(!leash_to_mob.dropItemToGround(cuffed))
 		qdel(src)
 		return
-	to_chat(leash_to_mob, span_warning("[cuffs] binding [cuffed] to [owner] tugs it out of your grasp!"))
+	to_chat(leash_to_mob, span_warning("将[cuffed]绑在[owner]身上的[cuffs]把它从你手中扯走了！"))
 
 /// Stops it from being stored anywhere
 /datum/status_effect/cuffed_item/proc/block_storage_insert(obj/item/source, atom/target_storage, mob/user, force, messages)
 	SIGNAL_HANDLER
 	if(messages)
-		target_storage.balloon_alert(user, "can't store [source.name] while cuffed!")
+		target_storage.balloon_alert(user, "[source.name]被铐住，无法收纳！")
 	return BLOCK_STORAGE_INSERT
 
 /// Stops double cuff
 /datum/status_effect/cuffed_item/proc/block_item_cuff(obj/item/source, mob/cuffer, obj/item/cuffs)
 	SIGNAL_HANDLER
-	source.balloon_alert(cuffer, "cuffed to someone else!")
+	source.balloon_alert(cuffer, "铐在别人身上了！")
 	return BLOCK_ITEM_CUFF
 
 ///What happens if one of the items is moved away from the mob
@@ -215,7 +215,7 @@
 	SIGNAL_HANDLER
 
 	if(user == owner)
-		examine_texts += span_notice("[item.p_Theyre()] cuffed to you by \a [cuffs]. You can <a href='byond://?src=[REF(item)];remove_cuffs_item=1'>remove them</a>.")
+		examine_texts += span_notice("[item]被[cuffs]铐在你身上。你可以<a href='byond://?src=[REF(item)];remove_cuffs_item=1'>将其解开</a>。")
 
 /// This mainly exists as a fallback in the rare case the alert icon is not reachable (too many alerts?). You should be somewhat able to examine items while blind so all good.
 /datum/status_effect/cuffed_item/proc/topic_handler(atom/source, user, href_list)
@@ -246,20 +246,20 @@
 		return FALSE
 
 	if(!(user.mobility_flags & MOBILITY_USE) || (user != owner && !owner.IsReachableBy(user)))
-		owner.balloon_alert(user, "can't do it right now!")
+		owner.balloon_alert(user, "现在无法这么做！")
 		return FALSE
 
 	if(user != owner)
-		owner.visible_message(span_notice("[user] tries to remove [cuffs] binding [cuffed] to [owner]"), span_warning("[user] is trying to remove [cuffs] binding [cuffed] to you."))
+		owner.visible_message(span_notice("[user]试图解开将[cuffed]绑在[owner]身上的[cuffs]。"), span_warning("[user]正试图解开将[cuffed]绑在你身上的[cuffs]。"))
 
-	owner.balloon_alert(user, "removing cuffs...")
+	owner.balloon_alert(user, "正在解铐……")
 	playsound(owner, cuffs.cuffsound, 30, TRUE, -2)
 	if(!do_after(user, cuffs.get_handcuff_time(user) * 1.5, owner, interaction_key = interaction_key) || QDELETED(src))
-		owner.balloon_alert(user, "interrupted!")
+		owner.balloon_alert(user, "被打断了！")
 		return FALSE
 
 	if(user != owner)
-		owner.visible_message(span_notice("[user] removes [cuffs] binding [cuffed] to [owner]"), span_warning("[user] removes [cuffs] binding [cuffed] to you."))
+		owner.visible_message(span_notice("[user]解开了将[cuffed]绑在[owner]身上的[cuffs]。"), span_warning("[user]解开了将[cuffed]绑在你身上的[cuffs]。"))
 
 	log_combat(user, owner, "removed restraints binding [cuffed] to")
 
@@ -267,7 +267,7 @@
 	var/mob/living/ref_owner = owner
 	ref_cuffs.forceMove(owner.drop_location()) //This will cause the status effect to delete itself, which unsets the 'cuffs' var
 	user.put_in_hands(ref_cuffs)
-	ref_owner.balloon_alert(user, "cuffs removed from item")
+	ref_owner.balloon_alert(user, "已解开物品上的束缚")
 
 	return TRUE
 
@@ -278,8 +278,8 @@
 
 ///The status alert linked to the cuffed_item status effect
 /atom/movable/screen/alert/status_effect/cuffed_item
-	name = "Cuffed Item"
-	desc = "You've an item firmly cuffed to your arm. You probably won't be accidentally dropping it somewhere anytime soon."
+	name = "物品束缚"
+	desc = "一件物品被牢牢铐在你的手臂上。短时间内你大概不会意外把它弄掉了。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	clickable_glow = TRUE
 	click_master = FALSE

@@ -1,8 +1,8 @@
 /datum/pet_command/attack/slime
 	speech_commands = list("attack", "sic", "kill", "eat", "feed")
-	command_feedback = "blorbles"
-	pointed_reaction = "and blorbles"
-	refuse_reaction = "jiggles sadly"
+	command_feedback = "咕噜作响"
+	pointed_reaction = "并咕噜作响"
+	refuse_reaction = "伤心地颤动着"
 
 /datum/pet_command/attack/slime/execute_action(datum/ai_controller/controller)
 	var/mob/living/basic/slime/slime_pawn = controller.pawn

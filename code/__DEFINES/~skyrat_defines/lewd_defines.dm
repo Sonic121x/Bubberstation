@@ -32,7 +32,7 @@
 #define BREAST_SIZE_Q "Q"
 #define BREAST_SIZE_R "R"
 #define BREAST_SIZE_S "S"
-#define BREAST_SIZE_BEYOND_MEASUREMENT "beyond measurement"
+#define BREAST_SIZE_BEYOND_MEASUREMENT "超出测量范围"
 
 //ERP Size Areas
 #define SIZE_WHITELISTED_AREAS list(\

@@ -1,29 +1,29 @@
 /obj/effect/landmark/basketball
-	name = "Basketball Map Spawner"
+	name = "篮球地图生成点"
 
 /obj/effect/landmark/basketball/team_spawn
-	name = "Basketball Team Spawner"
+	name = "篮球队生成点"
 	var/game_id = "basketball"
 
 // locations where players for the home team will spawn
 /obj/effect/landmark/basketball/team_spawn/home
-	name = "Home Team Spawn"
+	name = "主队生成点"
 
 /obj/effect/landmark/basketball/team_spawn/home_hoop
-	name = "Basketball Home Hoop Spawner"
+	name = "篮球主队篮筐生成点"
 
 // locations where players for the away team will spawn
 /obj/effect/landmark/basketball/team_spawn/away
-	name = "Away Team Spawn"
+	name = "客队生成点"
 
 /obj/effect/landmark/basketball/team_spawn/away_hoop
-	name = "Basketball Away Hoop Spawner"
+	name = "篮球客队篮筐生成点"
 
 /obj/effect/landmark/basketball/team_spawn/referee
-	name = "Referee Spawn"
+	name = "裁判生成点"
 
 /area/centcom/basketball
-	name = "Basketball Minigame"
+	name = "篮球小游戏"
 	icon_state = "b_ball"
 	requires_power = FALSE
 	static_lighting = FALSE
@@ -46,65 +46,65 @@
 	var/home_team_uniform
 
 /datum/lazy_template/basketball/stadium
-	name = "Stadium"
-	description = "The homecourt for the Nanotrasen Basketball Department."
+	name = "体育馆"
+	description = "纳米传讯篮球部的主场。"
 	map_name = "stadium"
 	key = "stadium"
-	team_name = "Nanotrasen Basketball Department"
+	team_name = "纳米传讯篮球"
 	home_team_uniform = /datum/outfit/basketball/nanotrasen
 
 /datum/lazy_template/basketball/lusty_xenomorphs
-	name = "Lusty Xenomorphs Stadium"
-	description = "The homecourt of the Lusty Xenomorphs."
+	name = "饥渴异形队体育馆"
+	description = "饥渴异形队的主场。"
 	map_name = "lusty_xenomorphs"
 	key = "lusty_xenomorphs"
-	team_name = "Lusty Xenomorphs"
+	team_name = "饥渴异形"
 	home_team_uniform = /datum/outfit/basketball/lusty_xenomorphs
 
 /datum/lazy_template/basketball/space_surfers
-	name = "Space Surfers Stadium"
-	description = "The homecourt of the Space Surfers."
+	name = "太空冲浪者队体育馆"
+	description = "太空冲浪者队的主场。"
 	map_name = "space_surfers"
 	key = "space_surfers"
-	team_name = "Space Surfers"
+	team_name = "太空冲浪者"
 	home_team_uniform = /datum/outfit/basketball/space_surfers
 
 /datum/lazy_template/basketball/greytide_worldwide
-	name = "Greytide Worldwide Stadium"
-	description = "The homecourt of the Greytide Worldwide."
+	name = "灰潮全球队体育馆"
+	description = "灰潮全球队的主场。"
 	map_name = "greytide_worldwide"
 	key = "greytide_worldwide"
-	team_name = "Greytide Worldwide"
+	team_name = "灰潮全球"
 	home_team_uniform = /datum/outfit/basketball/greytide_worldwide
 
 /datum/lazy_template/basketball/ass_blast_usa
-	name = "Ass Blast USA Stadium"
-	description = "The homecourt of the Ass Blast USA."
+	name = "美国屁爆队体育馆"
+	description = "美国屁爆队的主场。"
 	map_name = "ass_blast_usa"
 	key = "ass_blast_usa"
-	team_name = "Ass Blast USA"
+	team_name = "美国屁爆"
 	home_team_uniform = /datum/outfit/basketball/ass_blast_usa
 
 /datum/lazy_template/basketball/soviet_bears
-	name = "Soviet Bears Stadium"
-	description = "The homecourt of the Soviet Bears."
+	name = "苏联熊队体育馆"
+	description = "苏联熊队的主场。"
 	map_name = "soviet_bear"
 	key = "soviet_bear"
-	team_name = "Soviet Bears"
+	team_name = "苏联熊"
 	home_team_uniform = /datum/outfit/basketball/soviet_bears
 
 /datum/lazy_template/basketball/ash_gladiators
-	name = "Ash Gladiators Stadium"
-	description = "The homecourt of the Ash Gladiators."
+	name = "灰烬角斗士队体育馆"
+	description = "灰烬角斗士队的主场。"
 	map_name = "ash_gladiators"
 	key = "ash_gladiators"
-	team_name = "Ash Gladiators"
+	team_name = "灰烬角斗士"
 	home_team_uniform = /datum/outfit/basketball/ash_gladiators
 
 /datum/lazy_template/basketball/beach_bums
-	name = "Beach Bums Stadium"
-	description = "The homecourt of the Beach Bums."
+	name = "沙滩流浪汉队体育馆"
+	description = "沙滩流浪汉队的主场。"
 	map_name = "beach_bums"
 	key = "beach_bums"
-	team_name = "Beach Bums"
+	team_name = "沙滩流浪汉"
 	home_team_uniform = /datum/outfit/basketball/beach_bums

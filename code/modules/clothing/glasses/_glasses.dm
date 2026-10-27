@@ -1,6 +1,6 @@
 //Glasses
 /obj/item/clothing/glasses
-	name = "glasses"
+	name = "眼镜"
 	icon = 'icons/obj/clothing/glasses.dmi'
 	lefthand_file = 'icons/mob/inhands/clothing/glasses_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/clothing/glasses_righthand.dmi'
@@ -38,7 +38,7 @@
 		AddElement(/datum/element/wearable_client_colour, glass_colour_type, ITEM_SLOT_EYES, GLASSES_TRAIT, forced = forced_glass_color, comsig_toggle = COMSIG_CLICK_ALT_SECONDARY)
 
 /obj/item/clothing/glasses/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is stabbing \the [src] into [user.p_their()] eyes! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正把 [src] 刺进自己的眼睛！看起来是想自杀！"))
 	return BRUTELOSS
 
 /obj/item/clothing/glasses/visor_toggling()
@@ -88,7 +88,7 @@
 		var/obj/item/organ/eyes/eyes = H.get_organ_slot(ORGAN_SLOT_EYES)
 		if(!H.is_blind())
 			if(H.glasses == src)
-				to_chat(H, span_danger("[src] overloads and blinds you!"))
+				to_chat(H, span_danger("[src] 过载，使你失明！"))
 				H.flash_act(visual = 1)
 				H.adjust_temp_blindness(6 SECONDS)
 				H.set_eye_blur_if_lower(10 SECONDS)
@@ -102,8 +102,8 @@
 		AddElement(/datum/element/wearable_client_colour, glass_colour_type, ITEM_SLOT_EYES, GLASSES_TRAIT, forced = forced_glass_color)
 
 /obj/item/clothing/glasses/meson
-	name = "optical meson scanner"
-	desc = "Used by engineering and mining staff to see basic structural and terrain layouts through walls, regardless of lighting conditions."
+	name = "光学介子扫描仪"
+	desc = "供工程与采矿人员使用，可透过墙壁看到基础结构与地形布局，不受光照条件影响。"
 	icon_state = "meson"
 	inhand_icon_state = "meson"
 	clothing_traits = list(TRAIT_MADNESS_IMMUNE)
@@ -118,12 +118,12 @@
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/clothing/glasses/meson/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is putting \the [src] to [user.p_their()] eyes and overloading the brightness! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正把 [src] 贴到自己眼前并让亮度过载！看起来是想自杀！"))
 	return BRUTELOSS
 
 /obj/item/clothing/glasses/meson/night
-	name = "night vision meson scanner"
-	desc = "An optical meson scanner fitted with an amplified visible light spectrum overlay, providing greater visual clarity in darkness."
+	name = "夜视介子扫描仪"
+	desc = "装有增强可见光谱叠加层的光学介子扫描仪，在黑暗中提供更清晰的视觉。"
 	icon_state = "nvgmeson"
 	inhand_icon_state = "nvgmeson"
 	flash_protect = FLASH_PROTECTION_SENSITIVE
@@ -138,8 +138,8 @@
 	icon_state = length(color_cutoffs) ? initial(icon_state) : "nvgmeson_off"
 
 /obj/item/clothing/glasses/meson/gar
-	name = "gar mesons"
-	desc = "Do the impossible, see the invisible!"
+	name = "GAR 介子镜"
+	desc = "做不可能的事，看见看不见的东西！"
 	icon_state = "gar_meson"
 	inhand_icon_state = "gar_meson"
 	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER
@@ -152,8 +152,8 @@
 	sharpness = SHARP_EDGED
 
 /obj/item/clothing/glasses/science
-	name = "science goggles"
-	desc = "A pair of snazzy goggles used to protect against chemical spills. Fitted with an analyzer for scanning items and reagents."
+	name = "科研护目镜"
+	desc = "一副时髦的护目镜，可防止化学溅射。配有分析仪，可扫描物品与试剂。"
 	icon_state = "purple"
 	inhand_icon_state = "glasses"
 	glass_colour_type = /datum/client_colour/glass_colour/purple
@@ -171,12 +171,12 @@
 	acid = 100
 
 /obj/item/clothing/glasses/science/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is tightening \the [src]'s straps around [user.p_their()] neck! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正把 [src] 的带子勒紧在自己脖子上！看起来是想自杀！"))
 	return OXYLOSS
 
 /obj/item/clothing/glasses/science/night
-	name = "night vision science goggles"
-	desc = "Lets the user see in the dark and recognize chemical compounds at a glance."
+	name = "夜视科研护目镜"
+	desc = "让佩戴者能在黑暗中视物，并一眼辨别化合物。"
 	icon_state = "scihudnight"
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	// Real vivid purple
@@ -190,8 +190,8 @@
 	icon_state = length(color_cutoffs) ? initial(icon_state) : "night_off"
 
 /obj/item/clothing/glasses/night
-	name = "night vision goggles"
-	desc = "You can totally see in the dark now!"
+	name = "夜视护目镜"
+	desc = "你现在完全能在黑暗中看见了！"
 	icon_state = "night"
 	inhand_icon_state = "glasses"
 	flags_cover = GLASSESCOVERSEYES
@@ -210,8 +210,8 @@
 	icon_state = length(color_cutoffs) ? initial(icon_state) : "night_off"
 
 /obj/item/clothing/glasses/eyepatch
-	name = "eyepatch"
-	desc = "Yarr."
+	name = "眼罩"
+	desc = "呀哈。"
 	icon_state = "eyepatch"
 	base_icon_state = "eyepatch"
 	inhand_icon_state = null
@@ -263,8 +263,8 @@
 	tint = initial(tint)
 
 /obj/item/clothing/glasses/eyepatch/medical
-	name = "medical eyepatch"
-	desc = "Used by space weeaboos to pretend their eye isn't there, and crewmembers who actually lost their eye to pretend their eye is there."
+	name = "医疗眼罩"
+	desc = "供太空二次元爱好者假装自己那只眼睛还在，也供真正失去眼睛的船员假装眼睛还在。"
 	icon_state = "eyepatch_medical"
 	base_icon_state = "eyepatch_medical"
 	inhand_icon_state = null
@@ -287,16 +287,16 @@
 	var/static/list/chuuni_backstories
 	if(!chuuni_backstories)
 		chuuni_backstories = list(
-			"This eyepatch is a seal that contains the power of the demon king. If I remove it, I will unleash a cataclysmic destruction upon the world.",
-			"This eyepatch is a gift from the angel of light. It allows me to see the true nature of things and protect the innocent from harm.",
-			"This eyepatch is a mark of my contract with the dragon god. It grants me access to his ancient wisdom and fiery breath.",
-			"This eyepatch is a symbol of my sacrifice for the sake of love. It hides the scar that I received from saving my beloved from a fatal attack.",
+			"这副眼罩是封印魔王力量的印记。一旦我摘下它，就会给世界带来灭顶之灾。",
+			"这副眼罩是光之天使的赠礼。它让我得以看清万物的本质，守护无辜者免受伤害。",
+			"这副眼罩是我与龙神契约的凭证。它赐予我他古老的智慧与炽热的吐息。",
+			"这副眼罩是我为爱牺牲的象征。它遮住了我为拯救挚爱免遭致命一击而留下的伤疤。",
 		)
 	desc = pick(chuuni_backstories)
 
 /obj/item/clothing/glasses/monocle
-	name = "monocle"
-	desc = "Such a dapper eyepiece!"
+	name = "单边眼镜"
+	desc = "多么潇洒的镜片！"
 	icon_state = "monocle"
 	inhand_icon_state = "headset" // lol
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
@@ -304,8 +304,8 @@
 	clothing_traits = list(TRAIT_NEARSIGHTED_CORRECTED)
 
 /obj/item/clothing/glasses/material
-	name = "optical material scanner"
-	desc = "Very confusing glasses."
+	name = "光学材料扫描仪"
+	desc = "非常令人困惑的眼镜。"
 	icon_state = "material"
 	inhand_icon_state = "glasses"
 	flags_cover = GLASSESCOVERSEYES
@@ -316,14 +316,14 @@
 	equip_sound = SFX_GOGGLES_EQUIP
 
 /obj/item/clothing/glasses/material/mining
-	name = "optical material scanner"
-	desc = "Used by miners to detect ores deep within the rock."
+	name = "光学材料扫描仪"
+	desc = "供矿工探测岩层深处的矿石。"
 	icon_state = "material"
 	inhand_icon_state = "glasses"
 
 /obj/item/clothing/glasses/material/mining/gar
-	name = "gar material scanner"
-	desc = "Do the impossible, see the invisible!"
+	name = "GAR 材料扫描仪"
+	desc = "做不可能的事，看见看不见的东西！"
 	icon_state = "gar_meson"
 	inhand_icon_state = "gar_meson"
 	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER
@@ -337,8 +337,8 @@
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
 
 /obj/item/clothing/glasses/regular
-	name = "prescription glasses"
-	desc = "Made by Nerd. Co."
+	name = "处方眼镜"
+	desc = "由书呆子公司制造。"
 	icon_state = "glasses_regular"
 	inhand_icon_state = "glasses"
 	flags_cover = GLASSESCOVERSEYES
@@ -363,7 +363,7 @@
 		var/mob/living/crusher = movable
 		if(crusher.move_intent != MOVE_INTENT_WALK && (!(crusher.movement_type & MOVETYPES_NOT_TOUCHING_GROUND) || crusher.buckled))
 			playsound(src, 'sound/effects/footstep/glass_step.ogg', 30, TRUE)
-			visible_message(span_warning("[crusher] steps on [src], damaging it!"))
+			visible_message(span_warning("[crusher] 踩到了 [src]，把它弄坏了！"))
 			take_damage(100, sound_effect = FALSE)
 
 /obj/item/clothing/glasses/regular/atom_destruction(damage_flag)
@@ -377,8 +377,8 @@
 	if(!I.tool_start_check(user, amount=1))
 		return
 	if(I.use_tool(src, user, 10, volume=30))
-		user.visible_message(span_notice("[user] welds [src] back together."),\
-					span_notice("You weld [src] back together."))
+		user.visible_message(span_notice("[user] 把 [src] 焊回原样。"),\
+					span_notice("你把 [src] 焊回原样。"))
 		repair()
 		return TRUE
 
@@ -387,33 +387,33 @@
 	attach_clothing_traits(TRAIT_NEARSIGHTED_CORRECTED)
 
 /obj/item/clothing/glasses/regular/thin
-	name = "thin prescription glasses"
-	desc = "More expensive, more fragile and much less practical, but oh so fashionable."
+	name = "细框处方眼镜"
+	desc = "更贵、更脆弱、也更不实用，但就是那么时髦。"
 	icon_state = "glasses_thin"
 
 /obj/item/clothing/glasses/regular/jamjar
-	name = "jamjar glasses"
-	desc = "Also known as Virginity Protectors."
+	name = "果酱罐眼镜"
+	desc = "又名“童贞守护者”。"
 	icon_state = "glasses_jamjar"
 	inhand_icon_state = "glasses_jamjar"
 
 /obj/item/clothing/glasses/regular/hipster
-	name = "prescription glasses"
-	desc = "Made by Uncool. Co."
+	name = "处方眼镜"
+	desc = "由不酷公司制造。"
 	icon_state = "glasses_hipster"
 	inhand_icon_state = null
 
 /obj/item/clothing/glasses/regular/circle
-	name = "circle glasses"
-	desc = "Why would you wear something so controversial yet so brave?"
+	name = "圆框眼镜"
+	desc = "为什么要戴这么有争议却又这么勇敢的东西？"
 	icon_state = "glasses_circle"
 	inhand_icon_state = null
 
 //Here lies green glasses, so ugly they died. RIP
 
 /obj/item/clothing/glasses/sunglasses
-	name = "sunglasses"
-	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks flashes."
+	name = "太阳镜"
+	desc = "奇怪地古老的科技，用于提供基本的眼部遮蔽。强化屏蔽可阻挡闪光。"
 	icon_state = "sun"
 	inhand_icon_state = "sunglasses"
 	flags_cover = GLASSESCOVERSEYES
@@ -435,15 +435,15 @@
 	)
 
 /obj/item/clothing/glasses/sunglasses/reagent
-	name = "beer goggles"
+	name = "啤酒护目镜"
 	icon_state = "sunhudbeer"
-	desc = "A pair of sunglasses outfitted with apparatus to scan reagents, as well as providing an innate understanding of liquid viscosity while in motion."
+	desc = "一副装有试剂扫描装置的太阳镜，还能让佩戴者在移动时本能地理解液体黏度。"
 	clothing_traits = list(TRAIT_BOOZE_SLIDER, TRAIT_REAGENT_SCANNER)
 
 /obj/item/clothing/glasses/sunglasses/chemical
-	name = "science glasses"
+	name = "科研眼镜"
 	icon_state = "sunhudsci"
-	desc = "A pair of tacky purple sunglasses that allow the wearer to recognize various chemical compounds with only a glance."
+	desc = "一副俗气的紫色太阳镜，佩戴者只需一瞥就能辨认各种化合物。"
 	clothing_traits = list(TRAIT_REAGENT_SCANNER, TRAIT_RESEARCH_SCANNER)
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.8, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.55)
 
@@ -456,8 +456,8 @@
 	)
 
 /obj/item/clothing/glasses/sunglasses/gar
-	name = "black gar glasses"
-	desc = "Go beyond impossible and kick reason to the curb!"
+	name = "黑色 GAR 眼镜"
+	desc = "超越不可能，把理性踢到一边！"
 	icon_state = "gar_black"
 	inhand_icon_state = "gar_black"
 	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER
@@ -470,36 +470,36 @@
 	sharpness = SHARP_EDGED
 
 /obj/item/clothing/glasses/sunglasses/gar/orange
-	name = "gar glasses"
-	desc = "Just who the hell do you think I am?!"
+	name = "GAR 眼镜"
+	desc = "你以为老子是谁？！"
 	icon_state = "gar"
 	inhand_icon_state = "gar"
 	glass_colour_type = /datum/client_colour/glass_colour/orange
 
 /obj/item/clothing/glasses/sunglasses/gar/giga
-	name = "black giga gar glasses"
-	desc = "Believe in us humans."
+	name = "黑色究极 GAR 眼镜"
+	desc = "相信我们人类吧。"
 	icon_state = "gigagar_black"
 	force = 12
 	throwforce = 12
 
 /obj/item/clothing/glasses/sunglasses/gar/giga/red
-	name = "giga gar glasses"
-	desc = "We evolve past the person we were a minute before. Little by little we advance with each turn. That's how a drill works!"
+	name = "究极 GAR 眼镜"
+	desc = "我们超越一分钟前的自己。一点一点，每一回合都在前进。钻头就是这么运作的！"
 	icon_state = "gigagar_red"
 	inhand_icon_state = "gar"
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
 /obj/item/clothing/glasses/sunglasses/noir
-	name = "noir glasses"
-	desc = "A pair of sleek, futuristic glasses that allow the wearer to see the world in a different light."
+	name = "黑色电影眼镜"
+	desc = "一副时髦的未来主义眼镜，让佩戴者以不同的眼光看世界。"
 	glass_colour_type = /datum/client_colour/monochrome/glasses
 	forced_glass_color =  TRUE
 
 ///Syndicate item that upgrades the flash protection of your eyes.
 /obj/item/syndicate_contacts
-	name = "suspicious contact lens case"
-	desc = "A sinister red case that contains two shiny black contact lenses."
+	name = "可疑的隐形眼镜盒"
+	desc = "一个阴森的红色盒子，里面有两片闪闪发亮的黑色隐形眼镜。"
 	w_class = WEIGHT_CLASS_TINY
 	icon = 'icons/obj/devices/syndie_gadget.dmi'
 	icon_state = "contacts"
@@ -507,21 +507,21 @@
 /obj/item/syndicate_contacts/attack_self(mob/user, modifiers)
 	. = ..()
 	if(!user.get_organ_slot(ORGAN_SLOT_EYES))
-		to_chat(user, span_warning("You have no eyes to apply the contacts to!"))
+		to_chat(user, span_warning("你没有眼睛可以佩戴隐形眼镜！"))
 		return
 	var/obj/item/organ/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 
-	to_chat(user, span_notice("You begin applying the contact lenses to your eyes..."))
+	to_chat(user, span_notice("你开始把隐形眼镜戴到眼睛上……"))
 	if(!do_after(user, 3 SECONDS, src))
 		return
-	to_chat(user, span_notice("The contacts seamlessly merge with your iris."))
+	to_chat(user, span_notice("镜片与你的虹膜无缝融合。"))
 	eyes.flash_protect += FLASH_PROTECTION_WELDER
-	to_chat(user, span_warning("\The [src] disintegrates into nothing."))
+	to_chat(user, span_warning("[src] 化为一缕虚无。"))
 	qdel(src)
 
 /obj/item/clothing/glasses/welding
-	name = "welding goggles"
-	desc = "Protects the eyes from bright flashes; approved by the mad scientist association."
+	name = "焊接护目镜"
+	desc = "保护眼睛免受强光闪烁伤害；经疯狂科学家协会认证。"
 	icon_state = "welding-g"
 	inhand_icon_state = "welding-g"
 	actions_types = list(/datum/action/item_action/toggle)
@@ -560,8 +560,8 @@
 	visor_toggling()
 
 /obj/item/clothing/glasses/blindfold
-	name = "blindfold"
-	desc = "Covers the eyes, preventing sight."
+	name = "眼罩布"
+	desc = "遮住眼睛，阻止视物。"
 	icon_state = "blindfold"
 	inhand_icon_state = "blindfold"
 	flash_protect = FLASH_PROTECTION_WELDER
@@ -575,16 +575,16 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, 8)
 
 /obj/item/clothing/glasses/trickblindfold
-	name = "blindfold"
-	desc = "A see-through blindfold perfect for cheating at games like pin the stun baton on the clown."
+	name = "眼罩布"
+	desc = "一条透明眼罩布，非常适合在“把电击棍贴在小丑身上”之类的游戏中作弊。"
 	icon_state = "trickblindfold"
 	inhand_icon_state = "blindfold"
 	flags_cover = GLASSESCOVERSEYES
 	custom_materials = null
 
 /obj/item/clothing/glasses/blindfold/white
-	name = "blind personnel blindfold"
-	desc = "Indicates that the wearer suffers from blindness."
+	name = "盲人眼罩布"
+	desc = "表示佩戴者患有失明。"
 	icon_state = "blindfoldwhite"
 	inhand_icon_state = null
 	var/colored_before = FALSE
@@ -596,13 +596,13 @@
 	return ..()
 
 /obj/item/clothing/glasses/sunglasses/big
-	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks flashes."
+	desc = "奇怪地古老的科技，用于提供基本的眼部遮蔽。比普通款更大，强化屏蔽可阻挡闪光。"
 	icon_state = "bigsunglasses"
 	inhand_icon_state = null
 
 /obj/item/clothing/glasses/thermal
-	name = "optical thermal scanner"
-	desc = "Thermals in the shape of glasses."
+	name = "光学热成像扫描仪"
+	desc = "眼镜形态的热成像仪。"
 	icon_state = "thermal"
 	inhand_icon_state = "glasses"
 	vision_flags = SEE_MOBS
@@ -622,8 +622,8 @@
 	thermal_overload()
 
 /obj/item/clothing/glasses/thermal/xray
-	name = "syndicate xray goggles"
-	desc = "A pair of xray goggles manufactured by the Syndicate."
+	name = "辛迪加 X 射线护目镜"
+	desc = "一副由辛迪加制造的 X 射线护目镜。"
 	icon_state = "material"
 	color_cutoffs = null
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
@@ -631,29 +631,29 @@
 	clothing_traits = list(TRAIT_XRAY_VISION)
 
 /obj/item/clothing/glasses/thermal/syndi
-	name = "chameleon thermals"
-	desc = "A pair of thermal optic goggles with an onboard chameleon generator."
+	name = "变色龙热成像镜"
+	desc = "一副装有内置变色龙发生器的热成像护目镜。"
 	actions_types = list(/datum/action/item_action/chameleon/change/glasses/no_preset)
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // SKYRAT EDIT ADDITION
-	special_desc = "Chameleon thermal goggles employed by the Syndicate in infiltration operations." //SKYRAT EDIT ADDITION, I don't think the regular description persists through chameleon changes.
+	special_desc = "辛迪加用于渗透行动的变色龙热成像护目镜。" //SKYRAT EDIT ADDITION, I don't think the regular description persists through chameleon changes.
 
 /obj/item/clothing/glasses/thermal/monocle
-	name = "thermoncle"
-	desc = "Never before has seeing through walls felt so gentlepersonly."
+	name = "热成像单边镜"
+	desc = "穿墙视物从未如此适合一位绅士。"
 	icon_state = "thermoncle"
 	flags_1 = null //doesn't protect eyes because it's a monocle, duh
 
 /obj/item/clothing/glasses/thermal/monocle/examine(mob/user) //Different examiners see a different description!
 	if(user.gender == MALE)
-		desc = replacetext(desc, "person", "man")
+		desc = replacetext(desc, "绅士", "先生")
 	else if(user.gender == FEMALE)
-		desc = replacetext(desc, "person", "woman")
+		desc = replacetext(desc, "绅士", "女士")
 	. = ..()
 	desc = initial(desc)
 
 /obj/item/clothing/glasses/thermal/eyepatch
-	name = "optical thermal eyepatch"
-	desc = "An eyepatch with built-in thermal optics."
+	name = "光学热成像眼罩"
+	desc = "一副内置热成像光学器件的眼罩。"
 	icon_state = "eyepatch"
 	base_icon_state = "eyepatch"
 	inhand_icon_state = null
@@ -665,8 +665,8 @@
 	user.update_worn_glasses()
 
 /obj/item/clothing/glasses/cold
-	name = "cold goggles"
-	desc = "A pair of goggles meant for low temperatures."
+	name = "防寒护目镜"
+	desc = "一副适用于低温环境的护目镜。"
 	icon_state = "cold"
 	inhand_icon_state = null
 	flags_cover = GLASSESCOVERSEYES
@@ -675,8 +675,8 @@
 	equip_sound = SFX_GOGGLES_EQUIP
 
 /obj/item/clothing/glasses/heat
-	name = "heat goggles"
-	desc = "A pair of goggles meant for high temperatures."
+	name = "耐热护目镜"
+	desc = "一副适用于高温环境的护目镜。"
 	icon_state = "heat"
 	inhand_icon_state = null
 	flags_cover = GLASSESCOVERSEYES
@@ -685,23 +685,23 @@
 	equip_sound = SFX_GOGGLES_EQUIP
 
 /obj/item/clothing/glasses/orange
-	name = "orange glasses"
-	desc = "A sweet pair of orange shades."
+	name = "橙色眼镜"
+	desc = "一副好看的橙色墨镜。"
 	icon_state = "orangeglasses"
 	inhand_icon_state = null
 	flags_cover = GLASSESCOVERSEYES
 	glass_colour_type = /datum/client_colour/glass_colour/lightorange
 
 /obj/item/clothing/glasses/red
-	name = "red glasses"
-	desc = "Hey, you're looking good, senpai!"
+	name = "红色眼镜"
+	desc = "嘿，前辈，你看起来真不错！"
 	icon_state = "redglasses"
 	inhand_icon_state = null
 	flags_cover = GLASSESCOVERSEYES
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
 /obj/item/clothing/glasses/geist_gazers
-	name = "geist gazers"
+	name = "幽灵注视者"
 	icon_state = "geist_gazers"
 	worn_icon_state = "geist_gazers"
 	glass_colour_type = /datum/client_colour/glass_colour/green
@@ -711,16 +711,16 @@
 	equip_sound = SFX_GOGGLES_EQUIP
 
 /obj/item/clothing/glasses/psych
-	name = "psych glasses"
+	name = "精神眼镜"
 	icon_state = "psych_glasses"
 	worn_icon_state = "psych_glasses"
 	glass_colour_type = /datum/client_colour/glass_colour/red
 	flags_cover = GLASSESCOVERSEYES
 
 /obj/item/clothing/glasses/debug
-	name = "debug glasses"
-	desc = "Medical, security and diagnostic hud."
-	desc_controls = "Alt click to toggle xray."
+	name = "调试眼镜"
+	desc = "医疗、安保与诊断 HUD。"
+	desc_controls = "按住 Alt 点击可切换 X 射线。"
 	icon_state = "nvgmeson"
 	inhand_icon_state = "nvgmeson"
 	flags_cover = GLASSESCOVERSEYES
@@ -760,14 +760,14 @@
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/clothing/glasses/regular/kim
-	name = "binoclard lenses"
-	desc = "Shows you know how to sew a lapel and center a back vent."
+	name = "书呆子镜片"
+	desc = "表明你知道如何缝好翻领，并把后开衩居中对齐。"
 	icon_state = "glasses_binoclard"
 	inhand_icon_state = null
 
 /obj/item/clothing/glasses/salesman
-	name = "colored glasses"
-	desc = "A pair of glasses with uniquely colored lenses. The frame is inscribed with 'Best Salesman 1997'."
+	name = "彩色眼镜"
+	desc = "一副镜片颜色独特的眼镜。镜框上刻着“1997 年度最佳销售员”。"
 	icon_state = "salesman"
 	inhand_icon_state = "salesman"
 	flags_cover = GLASSESCOVERSEYES
@@ -792,7 +792,7 @@
 	SIGNAL_HANDLER
 	if(amount < SANITY_UNSTABLE)
 		icon_state = "salesman_fzz"
-		desc = "A pair of glasses, the lenses are full of TV static. They've certainly seen better days..."
+		desc = "一副眼镜，镜片里全是电视雪花。它们显然风光不再了……"
 		bigshot.update_worn_glasses()
 	else
 		icon_state = initial(icon_state)
@@ -800,8 +800,8 @@
 		bigshot.update_worn_glasses()
 
 /obj/item/clothing/glasses/nightmare_vision
-	name = "nightmare vision goggles"
-	desc = "They give off a putrid stench. Seemingly no effect on anything."
+	name = "噩梦视觉护目镜"
+	desc = "它们散发着腐臭。似乎对任何东西都没有作用。"
 	icon_state = "nightmare"
 	inhand_icon_state = "glasses"
 	glass_colour_type = /datum/client_colour/glass_colour/nightmare
@@ -843,15 +843,15 @@
 	QDEL_NULL(stored_hallucination)
 
 /obj/item/clothing/glasses/osi
-	name = "O.S.I. Sunglasses"
-	desc = "There's no such thing as good news! Just bad news and... weird news.."
+	name = "O.S.I. 太阳镜"
+	desc = "根本没有所谓的好消息！只有坏消息和……怪消息……"
 	icon_state = "osi_glasses"
 	inhand_icon_state = null
 	flags_cover = GLASSESCOVERSEYES
 
 /obj/item/clothing/glasses/phantom
-	name = "Phantom Thief Mask"
-	desc = "Lookin' cool."
+	name = "怪盗面具"
+	desc = "看起来挺酷。"
 	icon_state = "phantom_glasses"
 	inhand_icon_state = null
 	flags_cover = GLASSESCOVERSEYES

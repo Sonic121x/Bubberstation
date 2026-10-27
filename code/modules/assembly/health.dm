@@ -1,6 +1,6 @@
 /obj/item/assembly/health
-	name = "health sensor"
-	desc = "Used for scanning and monitoring health."
+	name = "健康传感器"
+	desc = "用于扫描和监测健康状况。"
 	icon_state = "health"
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*8, /datum/material/glass=SMALL_MATERIAL_AMOUNT * 2)
 	assembly_behavior = ASSEMBLY_TOGGLEABLE_INPUT
@@ -13,7 +13,7 @@
 
 /obj/item/assembly/health/examine(mob/user)
 	. = ..()
-	. += "[src.scanning ? "The sensor is on and you can see [health_scan] displayed on the screen" : "The sensor is off"]."
+	. += "[src.scanning ? "传感器已开启，你可以看到屏幕上显示着 [health_scan]" : "传感器已关闭"]。"
 
 /obj/item/assembly/health/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	. = ..()

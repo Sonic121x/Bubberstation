@@ -2,8 +2,8 @@
 #define CREATE_AND_INCREMENT(L, I, increment) if(!(I in L)) { L[I] = 0; } L[I] += increment;
 
 /obj/machinery/flatpacker
-	name = "flatpacker"
-	desc = "It produces items using iron, glass, plastic and maybe some more."
+	name = "平装打包机"
+	desc = "使用铁、玻璃、塑料以及其他可能需要的材料生产物品。"
 	icon = 'icons/obj/machines/lathes.dmi'
 	base_icon_state = "flatpacker"
 	icon_state = "flatpacker"
@@ -52,23 +52,23 @@
 /obj/machinery/flatpacker/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = NONE
 	if(!QDELETED(inserted_board))
-		context[SCREENTIP_CONTEXT_CTRL_LMB] = "Eject board"
+		context[SCREENTIP_CONTEXT_CTRL_LMB] = "弹出电路板"
 
 		if(!isnull(held_item) && (held_item.type in inserted_board.flatpack_components))
-			context[SCREENTIP_CONTEXT_LMB] = "Insert flatpack component"
+			context[SCREENTIP_CONTEXT_LMB] = "插入平装包组件"
 			return CONTEXTUAL_SCREENTIP_SET
 
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	if(!isnull(held_item))
 		if(istype(held_item, /obj/item/circuitboard/machine))
-			context[SCREENTIP_CONTEXT_LMB] = "Insert board"
+			context[SCREENTIP_CONTEXT_LMB] = "插入电路板"
 			return CONTEXTUAL_SCREENTIP_SET
 		else if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 			return CONTEXTUAL_SCREENTIP_SET
 		else if(held_item.tool_behaviour == TOOL_CROWBAR && panel_open)
-			context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+			context[SCREENTIP_CONTEXT_LMB] = "拆解"
 			return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/flatpacker/examine(mob/user)
@@ -76,16 +76,16 @@
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
-	. += span_notice("The status display reads:")
-	. += span_notice("Capable of packing up to <b>Tier [max_part_tier]</b>.")
-	. += span_notice("Storing up to <b>[materials.max_amount]</b> material units.")
-	. += span_notice("Material consumption at <b>[creation_efficiency * 100]%</b>.")
+	. += span_notice("状态显示屏显示：")
+	. += span_notice("最高可打包 <b>[max_part_tier] 级</b>设备。")
+	. += span_notice("最多储存 <b>[materials.max_amount]</b> 单位材料。")
+	. += span_notice("材料消耗为 <b>[creation_efficiency * 100]%</b>。")
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "close" : "open"].")
+	. += span_notice("可以用[EXAMINE_HINT("螺丝刀")][panel_open ? "关闭" : "打开"]维护面板。")
 	if(panel_open)
-		. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("可以用[EXAMINE_HINT("撬棍")]拆开它。")
 	if(!QDELETED(inserted_board))
-		. += span_notice("The board can be ejected via [EXAMINE_HINT("Ctrl Click")].")
+		. += span_notice("[EXAMINE_HINT("按住 Ctrl 点击")]可弹出电路板。")
 		if(length(inserted_board.flatpack_components))
 			var/list/obj/item/to_insert
 			for(var/obj/item/component as anything in inserted_board.flatpack_components)
@@ -95,7 +95,7 @@
 					continue
 				LAZYADDASSOC(to_insert, get_flatpack_component_name(component), "[inserted]/[required]")
 			if(length(to_insert))
-				. += span_warning("The following components must be inserted by hand before packaging:")
+				. += span_warning("打包前必须手动放入以下组件：")
 				for(var/component_name in to_insert)
 					. += span_warning("[component_name]: [to_insert[component_name]].")
 
@@ -117,7 +117,7 @@
 	if(ispath(component, /obj/item/vending_refill))
 		var/obj/item/vending_refill/canister = component
 
-		return "\improper [canister::machine_name] restocking unit"
+		return "\improper [canister::machine_name]补货罐"
 
 	return component::name
 
@@ -224,7 +224,7 @@
 
 	if(istype(attacking_item, /obj/item/circuitboard/machine))
 		if(busy)
-			balloon_alert(user, "busy!")
+			balloon_alert(user, "忙碌中！")
 			return ITEM_INTERACT_BLOCKING
 		if (!user.transferItemToLoc(attacking_item, src))
 			return ITEM_INTERACT_BLOCKING
@@ -249,11 +249,11 @@
 		return ITEM_INTERACT_SUCCESS
 	else if(!QDELETED(inserted_board) && (attacking_item.type in inserted_board.flatpack_components))
 		if(get_flatpack_component_count(attacking_item.type) == inserted_board.req_components[attacking_item.type])
-			balloon_alert(user, "max count reached!")
+			balloon_alert(user, "已达到数量上限！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(attacking_item, src))
-			to_chat(user, span_warning("[attacking_item] is stuck in hand!"))
+			to_chat(user, span_warning("[attacking_item]卡在手上了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		LAZYADD(flatpacked_components, attacking_item)
@@ -305,14 +305,14 @@
 
 		var/disableReason = ""
 		if(print_tier > max_part_tier)
-			disableReason = "This design is too advanced for this machine. "
+			disableReason = "这台机器无法处理如此先进的设计。"
 		else if(!materials.has_materials(needed_mats, creation_efficiency))
-			disableReason = "Not enough materials. "
+			disableReason = "材料不足。"
 		else
 			for(var/obj/item/component as anything in inserted_board.flatpack_components)
 				var/diff = inserted_board.req_components[component] - get_flatpack_component_count(component)
 				if(diff)
-					disableReason = "Please insert [diff] [get_flatpack_component_name(component)]"
+					disableReason = "请放入 [diff] 个[get_flatpack_component_name(component)]"
 					break
 		design = list(
 			"name" = initial(build.name),
@@ -335,14 +335,14 @@
 			if(QDELETED(inserted_board))
 				return
 			if(print_tier > max_part_tier)
-				say("Design too complex.")
+				say("设计过于复杂。")
 				return
 			for(var/obj/item/component as anything in inserted_board.flatpack_components)
 				if(inserted_board.req_components[component] != get_flatpack_component_count(component))
-					say("Not enough [get_flatpack_component_name(component)].")
+					say("[get_flatpack_component_name(component)]不足。")
 					return
 			if(!materials.has_materials(needed_mats, creation_efficiency))
-				say("Not enough materials to begin production.")
+				say("材料不足，无法开始生产。")
 				return
 			playsound(src, 'sound/items/tools/rped.ogg', 50, TRUE)
 
@@ -370,7 +370,7 @@
 
 			//we use initial(active_power_usage) because higher tier parts will have higher active usage but we have no benefit from it
 			if(!directly_use_energy(ROUND_UP((amount / MAX_STACK_SIZE) * 0.4 * initial(active_power_usage))))
-				say("No power to dispense sheets")
+				say("电力不足，无法输出板材")
 				return
 
 			materials.retrieve_stack(amount, material)

@@ -3,8 +3,8 @@
 */
 
 /datum/design/health_hud_aviator
-	name = "Medical HUD Aviators"
-	desc = "A heads-up display that scans the humanoids in view and provides accurate data about their health status. This HUD has been fitted inside of a pair of sunglasses."
+	name = "医疗 HUD 飞行员眼镜"
+	desc = "一种头戴式显示器，可扫描视野中的人形生物，并提供其健康状况的准确数据。这款 HUD 被装进了一副太阳镜里。"
 	id = "health_hud_aviator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -19,8 +19,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/security_hud_aviator
-	name = "Security HUD Aviators"
-	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status. This HUD has been fitted inside of a pair of sunglasses."
+	name = "安保 HUD 飞行员眼镜"
+	desc = "一种头戴式显示器，可扫描视野中的人类，并提供其证件状态的准确数据。这款 HUD 被装进了一副太阳镜里。"
 	id = "security_hud_aviator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -36,8 +36,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/diagnostic_hud_aviator
-	name = "Diagnostic HUD Aviators"
-	desc = "A heads-up display used to analyze and determine faults within robotic machinery. This HUD has been fitted inside of a pair of sunglasses."
+	name = "诊断 HUD 飞行员眼镜"
+	desc = "一种用于分析并判定机械装置故障的头戴式显示器。这款 HUD 被装进了一副太阳镜里。"
 	id = "diagnostic_hud_aviator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -52,8 +52,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/meson_hud_aviator
-	name = "Meson HUD Aviators"
-	desc = "A heads-up display used by engineering and mining staff to see basic structural and terrain layouts through walls, regardless of lighting condition. This HUD has been fitted inside of a pair of sunglasses."
+	name = "介子 HUD 飞行员眼镜"
+	desc = "工程与采矿人员使用的头戴式显示器，可不受光照条件影响，隔着墙壁看到基础结构与地形布局。这款 HUD 被装进了一副太阳镜里。"
 	id = "meson_hud_aviator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -68,8 +68,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/science_hud_aviator
-	name = "Science Aviators"
-	desc = "A pair of tacky purple aviator sunglasses that allow the wearer to recognize various chemical compounds with only a glance."
+	name = "科学飞行员眼镜"
+	desc = "一副俗气的紫色飞行员太阳镜，佩戴者只需一瞥就能辨认各种化合物。"
 	id = "science_hud_aviator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -84,8 +84,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/health_hud_projector
-	name = "Retinal Projector Medical HUD"
-	desc = "A headset equipped with a scanning lens and mounted retinal projector. It doesn't provide any eye protection, but it's less obtrusive than goggles."
+	name = "视网膜投影医疗 HUD"
+	desc = "一副配有扫描镜片和内置视网膜投影器的头戴式设备。它不提供任何眼部防护，但比护目镜更不显眼。"
 	id = "health_hud_projector"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -100,8 +100,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/security_hud_projector
-	name = "Retinal Projector Security HUD"
-	desc = "A headset equipped with a scanning lens and mounted retinal projector. It doesn't provide any eye protection, but it's less obtrusive than goggles."
+	name = "视网膜投影安保 HUD"
+	desc = "一副配有扫描镜片和内置视网膜投影器的头戴式设备。它不提供任何眼部防护，但比护目镜更不显眼。"
 	id = "security_hud_projector"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -117,8 +117,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/diagnostic_hud_projector
-	name = "Retinal Projector Diagnostic HUD"
-	desc = "A headset equipped with a scanning lens and mounted retinal projector. It doesn't provide any eye protection, but it's less obtrusive than goggles."
+	name = "视网膜投影诊断 HUD"
+	desc = "一副配有扫描镜片和内置视网膜投影器的头戴式设备。它不提供任何眼部防护，但比护目镜更不显眼。"
 	id = "diagnostic_hud_projector"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -133,8 +133,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/meson_hud_projector
-	name = "Retinal Projector Meson HUD"
-	desc = "A headset equipped with a scanning lens and mounted retinal projector. It doesn't provide any eye protection, but it's less obtrusive than goggles."
+	name = "视网膜投影介子 HUD"
+	desc = "一副配有扫描镜片和内置视网膜投影器的头戴式设备。它不提供任何眼部防护，但比护目镜更不显眼。"
 	id = "meson_hud_projector"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -149,8 +149,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/science_hud_projector
-	name = "Science Retinal Projector"
-	desc = "A headset equipped with a scanning lens and mounted retinal projector. It doesn't provide any eye protection, but it's less obtrusive than goggles."
+	name = "科学视网膜投影器"
+	desc = "一副配有扫描镜片和内置视网膜投影器的头戴式设备。它不提供任何眼部防护，但比护目镜更不显眼。"
 	id = "science_hud_projector"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(

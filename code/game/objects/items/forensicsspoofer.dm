@@ -1,6 +1,6 @@
 /obj/item/forensics_spoofer
 	name = /obj/item/detective_scanner::name
-	desc = "Used to adjacently scan objects and biomass for fibers and fingerprints. Can replicate the findings."
+	desc = "近距离扫描物体与生物质，查找纤维和指纹。能够复制扫描结果。"
 	icon = /obj/item/detective_scanner::icon
 	icon_state = /obj/item/detective_scanner::icon_state
 	w_class = WEIGHT_CLASS_SMALL
@@ -40,7 +40,7 @@
 	if(.)
 		return
 	scan_mode = !scan_mode
-	balloon_alert(user, "now [scan_mode ? "scanning" : "applying"]")
+	balloon_alert(user, "已切换为[scan_mode ? "扫描" : "附加"]模式")
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 // ok due to shenanigans basically every item interact adds your fingerprints to it which isnt ideal so we have this
@@ -57,7 +57,7 @@
 		return
 	playsound(src, SFX_INDUSTRIAL_SCAN, 20, TRUE, -2, TRUE, FALSE)
 	user.visible_message(
-		span_notice("\The [user] points \the [src] at \the [target] and performs a forensic scan.")
+		span_notice("[user]将[src]对准[target]，进行取证扫描。")
 	)
 
 /obj/item/forensics_spoofer/proc/clear_values(list/the_list)
@@ -67,26 +67,26 @@
 /obj/item/forensics_spoofer/proc/scan(atom/target, mob/living/user)
 	do_fake_scan(target, user)
 	if(isnull(target.forensics))
-		target.balloon_alert(user, "nothing!")
+		target.balloon_alert(user, "什么也没有！")
 		return ITEM_INTERACT_FAILURE
 	var/list/new_fibers = LAZYCOPY(target.forensics.fibers) - fibers
 	var/list/new_prints = LAZYCOPY(target.forensics.fingerprints) - fingerprints
 	var/new_len = length(new_fibers) + length(new_prints)
-	balloon_alert(user, "[new_len ? new_len : "no"] new prints/fibers")
+	balloon_alert(user, "发现[new_len]条新指纹或纤维")
 	if(new_len)
-		var/list/message = list(span_bold("Scan results (Unstored Only):"))
+		var/list/message = list(span_bold("扫描结果（仅未存储项）："))
 		for(var/text in new_fibers)
-			message += span_notice("Fiber: [text]")
+			message += span_notice("纤维：[text]")
 		if(length(fibers) > max_storage)
-			message += span_boldwarning("Fiber storage full.")
+			message += span_boldwarning("纤维存储已满。")
 		for(var/text in new_prints)
-			message += span_notice("Fingerprint: [text]")
+			message += span_notice("指纹：[text]")
 		if(length(fingerprints) > max_storage)
-			message += span_boldwarning("Fingerprint storage full.")
+			message += span_boldwarning("指纹存储已满。")
 		to_chat(user, boxed_message(jointext(message, "\n")), type = MESSAGE_TYPE_INFO)
 	if(length(fingerprints) < max_storage)
 		while(length(fingerprints) + length(new_prints) > max_storage)
-			var/to_remove = tgui_input_list(user, "Too many prints, cancel to discard all", "What to discard", new_fibers)
+			var/to_remove = tgui_input_list(user, "痕迹过多，取消将丢弃全部", "选择丢弃项", new_fibers)
 			if(isnull(to_remove))
 				return ITEM_INTERACT_FAILURE
 			new_prints -= to_remove
@@ -96,7 +96,7 @@
 			fingerprints[fingerprint] = get_name_from_fingerprint(fingerprint)
 	if(length(fibers) < max_storage)
 		while(length(fibers) + length(new_fibers) > max_storage)
-			var/to_remove = tgui_input_list(user, "Too many prints, cancel to discard all", "What to discard", new_fibers)
+			var/to_remove = tgui_input_list(user, "痕迹过多，取消将丢弃全部", "选择丢弃项", new_fibers)
 			if(isnull(to_remove))
 				return ITEM_INTERACT_FAILURE
 			new_fibers -= to_remove
@@ -107,13 +107,13 @@
 /obj/item/forensics_spoofer/proc/tamper(atom/target, mob/living/user, do_fibers = FALSE)
 	do_fake_scan(target, user)
 	if((!do_fibers && isnull(chosen_fingerprint)) || (do_fibers && isnull(chosen_fiber)))
-		balloon_alert(user, "no [do_fibers ? "fiber" : "fingerprint"] selected!") // we CAN automatically select it but if they dont have it selected then they likely didnt know of it in the first place so they learn it now
+		balloon_alert(user, "未选择[do_fibers ? "纤维" : "指纹"]！") // we CAN automatically select it but if they dont have it selected then they likely didnt know of it in the first place so they learn it now
 		return ITEM_INTERACT_FAILURE
 	if(!COOLDOWN_FINISHED(src, tamper_cooldown))
-		balloon_alert(user, "please wait!")
+		balloon_alert(user, "请稍候！")
 		return ITEM_INTERACT_FAILURE
 	if(!isnull(target.forensics) && LAZYFIND(do_fibers ? target.forensics.fibers : target.forensics.fingerprints, do_fibers ? chosen_fiber : chosen_fingerprint))
-		balloon_alert(user, "already present!")
+		balloon_alert(user, "已经存在！")
 		return ITEM_INTERACT_FAILURE
 
 	if(do_fibers)
@@ -123,14 +123,14 @@
 		target.add_fingerprint_list(list(chosen_fingerprint))
 		user.log_message("has tampered with the fingerprints/fibers of [src]. Added [chosen_fingerprint]", LOG_ATTACK)
 
-	target.balloon_alert(user, "[do_fibers ? "fiber" : "fingerprint"] added")
+	target.balloon_alert(user, "已添加[do_fibers ? "纤维" : "指纹"]")
 	target.add_hiddenprint(user)
 	COOLDOWN_START(src, tamper_cooldown, tamper_cooldown_time)
 
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/forensics_spoofer/proc/get_name_from_fingerprint(fingerprint)
-	. = "Unknown"
+	. = "未知"
 	for(var/datum/record/crew/player_record as anything in GLOB.manifest.general)
 		if(player_record.fingerprint != fingerprint)
 			continue

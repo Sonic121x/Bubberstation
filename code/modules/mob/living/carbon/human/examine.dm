@@ -6,4 +6,4 @@
 		var/obj/item/clothing/under/undershirt = w_uniform
 		var/sensor_text = undershirt.get_sensor_text()
 		if(sensor_text)
-			. += "Sensor Status: [sensor_text]"
+			. += "传感器状态：[sensor_text]"

@@ -6,8 +6,8 @@
 #define MAX_MINERAL_PICK_ATTEMPTS 10
 
 /obj/structure/ore_vent
-	name = "ore vent"
-	desc = "An ore vent, brimming with underground ore. Scan with an advanced mining scanner to start extracting ore from it."
+	name = "矿脉喷口"
+	desc = "一处矿脉喷口，蕴藏着丰富的地下矿石。用高级采矿扫描仪扫描即可开始从中开采矿石。"
 	icon = 'icons/obj/mining_zones/terrain.dmi'
 	icon_state = "ore_vent"
 	base_icon_state = "ore_vent"
@@ -44,7 +44,7 @@
 	var/wave_timer = WAVE_DURATION_SMALL
 
 	/// What string do we use to warn the player about the excavation event?
-	var/excavation_warning = "Are you ready to excavate this ore vent?"
+	var/excavation_warning = "你准备好开采这处矿脉喷口了吗？"
 	/// A list of mobs that can be spawned by this vent during a wave defense event.
 	var/list/defending_mobs = list(
 		/mob/living/basic/mining/goliath,
@@ -112,7 +112,7 @@
 		return NONE
 
 	if(tapped)
-		balloon_alert_to_viewers("vent tapped!")
+		balloon_alert_to_viewers("喷口已开启！")
 		return ITEM_INTERACT_BLOCKING
 
 	scan_and_confirm(user)
@@ -125,15 +125,15 @@
 	if(!HAS_TRAIT(user, TRAIT_BOULDER_BREAKER))
 		return
 	if(!discovered)
-		to_chat(user, span_notice("You can't quite find the weakpoint of [src]... Perhaps it needs to be scanned first?"))
+		to_chat(user, span_notice("你找不到[src]的弱点……也许得先扫描一下？"))
 		return
-	to_chat(user, span_notice("You start striking [src] with your golem's fist, attempting to dredge up a boulder..."))
+	to_chat(user, span_notice("你开始用魔像的拳头猛砸[src]，试图挖出一块巨石……"))
 	for(var/i in 1 to 3)
 		if(do_after(user, boulder_size * 1 SECONDS, src))
 			user.apply_damage(20, STAMINA)
 			playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
 	produce_boulder(TRUE)
-	visible_message(span_notice("You've successfully produced a boulder! Boy are your arms tired."))
+	visible_message(span_notice("你成功挖出了一块巨石！手臂可真酸。"))
 
 /obj/structure/ore_vent/attack_basic_mob(mob/user, list/modifiers)
 	. = ..()
@@ -153,19 +153,19 @@
 	if(discovered)
 		switch(boulder_size)
 			if(BOULDER_SIZE_SMALL)
-				. += span_notice("This vent produces [span_bold("small")] boulders containing [ore_string]")
+				. += span_notice("这处喷口产出[span_bold("小型")]巨石，含有 [ore_string]")
 			if(BOULDER_SIZE_MEDIUM)
-				. += span_notice("This vent produces [span_bold("medium")] boulders containing [ore_string]")
+				. += span_notice("这处喷口产出[span_bold("中型")]巨石，含有 [ore_string]")
 			if(BOULDER_SIZE_LARGE)
-				. += span_notice("This vent produces [span_bold("large")] boulders containing [ore_string]")
+				. += span_notice("这处喷口产出[span_bold("大型")]巨石，含有 [ore_string]")
 	else
-		. += span_notice("This vent can be scanned with a [span_bold("Mining Scanner")].")
+		. += span_notice("这处喷口可以用[span_bold("采矿扫描仪")]扫描。")
 	if(artifact_chance)
-		. += span_notice("This vent has a low chance to produce an [span_bold("artifact boulder.")] These may contain rare minerals or strange artifacts.")
+		. += span_notice("这处喷口有很小的概率产出[span_bold("秘藏巨石。")]其中可能含有稀有矿物或奇异造物。")
 
 /obj/structure/ore_vent/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(is_type_in_list(held_item, scanning_equipment))
-		context[SCREENTIP_CONTEXT_LMB] = "Scan vent"
+		context[SCREENTIP_CONTEXT_LMB] = "扫描喷口"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /**
@@ -230,7 +230,7 @@
  * This confirms that the user wants to start the wave defense event, and that they can start it.
  */
 /obj/structure/ore_vent/proc/pre_wave_defense(mob/user, spawn_drone = TRUE, mech_scan = FALSE)
-	if(tgui_alert(user, excavation_warning, "Begin defending ore vent?", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, excavation_warning, "开始守卫矿脉喷口？", list("Yes", "No")) != "Yes")
 		return FALSE
 	if(!can_interact(user) && !mech_scan)
 		return FALSE
@@ -291,7 +291,7 @@
 		spawn_time = (10 SECONDS + (5 SECONDS * (boulder_size/5))), \
 		max_spawned = 10, \
 		max_spawn_per_attempt = (1 + (boulder_size/5)), \
-		spawn_text = "emerges to assault", \
+		spawn_text = "现身发动袭击", \
 		spawn_distance = 4, \
 		spawn_distance_exclude = 3, \
 	)
@@ -316,12 +316,12 @@
 
 	//happens in COMSIG_QDELETING
 	if(QDELETED(node))
-		initiate_wave_loss(loss_message = "\the [src] creaks and groans as the mining attempt fails, and the vent closes back up.")
+		initiate_wave_loss(loss_message = "[src]发出嘎吱呻吟声，开采尝试失败了，喷口重新闭合。")
 		return
 
 	//happens in COMSIG_MOVABLE_MOVED
 	if(get_turf(node) != get_turf(src))
-		initiate_wave_loss(loss_message = "The [node] detaches from the [src], and the vent closes back up!")
+		initiate_wave_loss(loss_message = "[node]从[src]上脱离，喷口重新闭合了！")
 		return //Start over!
 
 	initiate_wave_win()
@@ -341,9 +341,9 @@
 	tapped = TRUE //The Node Drone has survived the wave defense, and the ore vent is tapped.
 	SSore_generation.processed_vents += src
 	if(!forced)
-		log_game("Ore vent [key_name_and_tag(src)] was tapped")
+		log_game("矿脉喷口 [key_name_and_tag(src)] 已被开启")
 		SSblackbox.record_feedback("tally", "ore_vent_completed", 1, type)
-		balloon_alert_to_viewers("vent tapped!")
+		balloon_alert_to_viewers("喷口已开启！")
 
 	update_appearance(UPDATE_ICON_STATE)
 	add_tapped_visual()
@@ -363,7 +363,7 @@
 		var/point_reward_val = (MINER_POINT_MULTIPLIER * (boulder_size + 2)) - MINER_POINT_MULTIPLIER // We remove the base value of discovering the vent
 		if(user_id_card.registered_account)
 			user_id_card.registered_account.mining_points += point_reward_val
-			user_id_card.registered_account.bank_card_talk("You have been awarded [point_reward_val] mining points for your efforts.")
+			user_id_card.registered_account.bank_card_talk("你因努力获得了 [point_reward_val] 点采矿点数。")
 
 /obj/structure/ore_vent/proc/add_tapped_visual()
 	if (vent_visual)
@@ -471,22 +471,22 @@
  */
 /obj/structure/ore_vent/proc/scan_and_confirm(mob/living/user, mech_scan = FALSE)
 	if(tapped)
-		balloon_alert_to_viewers("vent tapped!")
+		balloon_alert_to_viewers("喷口已开启！")
 		return
 	if(!COOLDOWN_FINISHED(src, wave_cooldown) || node) //We're already defending the vent, so don't scan it again.
-		balloon_alert_to_viewers("protect the node drone!")
+		balloon_alert_to_viewers("保护节点无人机！")
 		return
 	if(!discovered)
 		if(DOING_INTERACTION_WITH_TARGET(user, src))
-			balloon_alert(user, "already scanning!")
+			balloon_alert(user, "已在扫描中！")
 			return
-		balloon_alert(user, "scanning...")
+		balloon_alert(user, "扫描中……")
 		playsound(src, 'sound/items/timer.ogg', 30, TRUE)
 		if(!do_after(user, 4 SECONDS, src))
 			return
 
 		discovered = TRUE
-		balloon_alert(user, "vent scanned!")
+		balloon_alert(user, "喷口已扫描！")
 		generate_description(user)
 		AddComponent(/datum/component/gps, name)
 		var/obj/item/card/id/user_id_card = user.get_idcard(TRUE)
@@ -494,7 +494,7 @@
 			return
 		if(user_id_card.registered_account)
 			user_id_card.registered_account.mining_points += (MINER_POINT_MULTIPLIER)
-			user_id_card.registered_account.bank_card_talk("You've been awarded [MINER_POINT_MULTIPLIER] mining points for discovery of an ore vent.")
+			user_id_card.registered_account.bank_card_talk("你因发现矿脉喷口获得了 [MINER_POINT_MULTIPLIER] 点采矿点数。")
 		return
 
 	if(!pre_wave_defense(user, spawn_drone_on_tap, mech_scan))
@@ -513,7 +513,7 @@
 
 	ore_string = "[english_list(mineral_names)]."
 	if(user)
-		ore_string += "\nThis vent was first discovered by [user]."
+		ore_string += "\n这处喷口最早由 [user] 发现。"
 /**
  * Adds floating temp_visual overlays to the vent, showcasing what minerals are contained within it.
  * If undiscovered, adds a single overlay with the icon_state "unknown".
@@ -593,7 +593,7 @@
  */
 /obj/structure/ore_vent/proc/log_mob_spawned(datum/source, mob/living/created)
 	SIGNAL_HANDLER
-	log_game("Ore vent [key_name_and_tag(src)] spawned the following mob: [key_name_and_tag(created)]")
+	log_game("矿脉喷口 [key_name_and_tag(src)] 生成了以下生物：[key_name_and_tag(created)]")
 	SSblackbox.record_feedback("tally", "ore_vent_mobs_spawned", 1, created.type)
 	RegisterSignal(created, COMSIG_LIVING_DEATH, PROC_REF(log_mob_killed))
 
@@ -602,7 +602,7 @@
  */
 /obj/structure/ore_vent/proc/log_mob_killed(datum/source, mob/living/killed)
 	SIGNAL_HANDLER
-	log_game("Vent-spawned mob [key_name_and_tag(killed)] was killed")
+	log_game("喷口生成的生物 [key_name_and_tag(killed)] 已被击杀")
 	SSblackbox.record_feedback("tally", "ore_vent_mobs_killed", 1, killed.type)
 
 /**
@@ -619,7 +619,7 @@
 	else if(random)
 		string_boulder_size = pick_weight(ore_vent_options)
 
-	name = "[string_boulder_size] ore vent"
+	name = "[string_boulder_size] 矿脉喷口"
 	switch(string_boulder_size)
 		if(LARGE_VENT_TYPE)
 			boulder_size = BOULDER_SIZE_LARGE
@@ -643,8 +643,8 @@
 
 //comes with the station, and is already tapped.
 /obj/structure/ore_vent/starter_resources
-	name = "active ore vent"
-	desc = "An ore vent, brimming with underground ore. It's already supplying the station with iron and glass."
+	name = "活跃矿脉喷口"
+	desc = "一处矿脉喷口，蕴藏着丰富的地下矿石。它已经在为空间站供应铁和玻璃。"
 	tapped = TRUE
 	discovered = TRUE
 	unique_vent = TRUE
@@ -703,8 +703,8 @@
 	)
 
 /obj/structure/ore_vent/boss
-	name = "menacing ore vent"
-	desc = "An ore vent, brimming with underground ore. This one has an evil aura about it. Better be careful."
+	name = "险恶的矿脉喷口"
+	desc = "一处矿脉喷口，蕴藏着丰富的地下矿石。这一处散发着邪恶的气息。最好小心点为妙。"
 	unique_vent = TRUE
 	spawn_drone_on_tap = FALSE
 	boulder_size = BOULDER_SIZE_LARGE
@@ -725,7 +725,7 @@
 		/mob/living/simple_animal/hostile/megafauna/dragon,
 		/mob/living/simple_animal/hostile/megafauna/colossus,
 	)
-	excavation_warning = "Something big is nearby. Are you ABSOLUTELY ready to excavate this ore vent? A NODE drone will be deployed after threat is neutralized."
+	excavation_warning = "附近有个大家伙。你百分之百确定准备好开采这处矿脉喷口了吗？威胁被清除后将部署一架 NODE 节点无人机。"
 	///What boss do we want to spawn?
 	var/summoned_boss = null
 
@@ -738,16 +738,16 @@
 	var/boss_string = ""
 	switch(summoned_boss)
 		if(/mob/living/simple_animal/hostile/megafauna/bubblegum)
-			boss_string = "A giant fleshbound beast"
+			boss_string = "一头巨大的血肉巨兽"
 		if(/mob/living/simple_animal/hostile/megafauna/dragon)
-			boss_string = "Sharp teeth and scales"
+			boss_string = "利齿与鳞甲"
 		if(/mob/living/simple_animal/hostile/megafauna/colossus)
-			boss_string = "A giant, armored behemoth"
+			boss_string = "一头披甲的巨型庞然大物"
 		if(/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner)
-			boss_string = "A bloody drillmark"
+			boss_string = "一道血淋淋的钻痕"
 		if(/mob/living/simple_animal/hostile/megafauna/wendigo/noportal)
-			boss_string = "A chilling skull"
-	. += span_notice("[boss_string] is etched onto the side of the vent.")
+			boss_string = "一颗令人胆寒的颅骨"
+	. += span_notice("[boss_string]被刻在喷口的侧面。")
 
 /obj/structure/ore_vent/boss/start_wave_defense()
 	if(!COOLDOWN_FINISHED(src, wave_cooldown))
@@ -775,8 +775,8 @@
 	)
 
 /obj/structure/ore_vent/debug
-	name = "debug ore vent"
-	desc = "How the hell did you get this?."
+	name = "调试矿脉喷口"
+	desc = "你到底是怎么搞到这玩意儿的？"
 	tapped = TRUE
 	discovered = TRUE
 	unique_vent = TRUE
@@ -788,29 +788,29 @@
 
 /obj/structure/ore_vent/debug/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	var/datum/material/choice = tgui_input_list(user, "Choose a material to add/remove.", "New material", subtypesof(/datum/material))
+	var/datum/material/choice = tgui_input_list(user, "选择要添加或移除的材料。", "新材料", subtypesof(/datum/material))
 	if(!choice)
 		return
 	if(mineral_breakdown[choice])
 		mineral_breakdown -= choice
-		balloon_alert_to_viewers("removed [choice::name]")
+		balloon_alert_to_viewers("已移除[choice::name]")
 		return
 	mineral_breakdown += choice
-	balloon_alert_to_viewers("added [choice::name]")
-	var/value = tgui_input_number(user, "What weight should it have?", "ore pickweight", 1, 100, 1)
+	balloon_alert_to_viewers("已添加[choice::name]")
+	var/value = tgui_input_number(user, "它的权重应该是多少？", "矿石权重", 1, 100, 1)
 	mineral_breakdown[choice] = value
-	balloon_alert_to_viewers("weighting of [value] added")
+	balloon_alert_to_viewers("已添加 [value] 的权重")
 	generate_description()
 
 /obj/structure/ore_vent/debug/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
-	var/choice = tgui_input_list(user, "Choose a vent size.", "New size", list(SMALL_VENT_TYPE, MEDIUM_VENT_TYPE, LARGE_VENT_TYPE))
+	var/choice = tgui_input_list(user, "选择一处喷口尺寸。", "新尺寸", list(SMALL_VENT_TYPE, MEDIUM_VENT_TYPE, LARGE_VENT_TYPE))
 	if(!choice)
 		return
 	vent_size_setup(random = FALSE, force_size = choice, map_loading = FALSE)
 
 /obj/effect/landmark/mining_center
-	name = "Mining Epicenter"
+	name = "采矿中心"
 	icon_state = "mining_epicenter"
 
 /obj/effect/landmark/mining_center/Initialize(mapload)

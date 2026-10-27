@@ -1,7 +1,7 @@
 /datum/crafting_recipe/food/haggis
 	added_foodtypes = MEAT
 	removed_foodtypes = VEGETABLES
-	name = "Haggis"
+	name = "哈吉斯"
 	reqs = list(
 		/obj/item/organ/heart = 1,
 		/obj/item/organ/liver = 1,
@@ -15,7 +15,7 @@
 	dish_category = DISH_UNCATEGORIZED
 
 /datum/crafting_recipe/food/neep_tatty_haggis
-	name = "Haggis With Neeps and Tatties"
+	name = "哈吉斯配芜菁与土豆"
 	reqs = list(
 		/obj/item/food/snacks/breadslice/haggis = 1,
 		/obj/item/food/grown/potato = 1,
@@ -26,7 +26,7 @@
 	dish_category = DISH_UNCATEGORIZED
 
 /datum/crafting_recipe/food/raw_battered_sausage
-	name = "Raw Battered Sausage"
+	name = "生裹糊香肠"
 	reqs = list(
 		/datum/reagent/consumable/ethanol/beerbatter = 5,
 		/obj/item/food/raw_meatball = 1,
@@ -38,7 +38,7 @@
 /datum/crafting_recipe/food/shortbread
 	added_foodtypes = JUNKFOOD | SUGAR
 	removed_foodtypes = DAIRY
-	name = "Shortbread"
+	name = "黄油酥饼"
 	time = 5
 	reqs = list(
 		/datum/reagent/consumable/sugar = 5,
@@ -49,7 +49,7 @@
 	dish_category = DISH_PASTRY
 
 /datum/crafting_recipe/food/tuna
-	name = "Can of Tuna"
+	name = "金枪鱼罐头"
 	time = 40
 	reqs = list(/obj/item/stack/sheet/iron = 1,
 		/obj/item/food/fishmeat = 2

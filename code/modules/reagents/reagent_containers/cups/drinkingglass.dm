@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/cup/glass/drinkingglass
-	name = "drinking glass"
-	desc = "Your standard drinking glass."
+	name = "玻璃杯"
+	desc = "标准的饮水玻璃杯。"
 	icon_state = "glass_empty"
 	worn_icon_state = "bottle"
 	base_icon_state = "glass_empty"
@@ -52,7 +52,7 @@
 /obj/item/reagent_containers/cup/glass/drinkingglass/examine(mob/user)
 	. = ..()
 	if(HAS_TRAIT(src, TRAIT_WAS_RENAMED))
-		. += span_notice("This glass has been given a custom name. It can be removed by washing it.")
+		. += span_notice("这只杯子被起了自定义名称。清洗后即可移除。")
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/proc/on_cleaned(obj/source_component, obj/source)
 	SIGNAL_HANDLER
@@ -74,8 +74,8 @@
 //  This is on a case-by-case basis, and you can even make a separate sprite for shot glasses if you want. //
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/shotglass
-	name = "shot glass"
-	desc = "A shot glass - the universal symbol for bad decisions."
+	name = "小酒杯"
+	desc = "一只小酒杯——糟糕决定的通用象征。"
 	icon = 'icons/obj/drinks/shot_glasses.dmi'
 	icon_state = "shotglass"
 	base_icon_state = "shotglass"
@@ -91,16 +91,16 @@
 	if(HAS_TRAIT(src, TRAIT_WAS_RENAMED))
 		return
 	. = ..()
-	name = "[length(reagents.reagent_list) ? "filled " : ""]shot glass"
+	name = "[length(reagents.reagent_list) ? "盛满的" : ""]小酒杯"
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/shotglass/update_desc(updates)
 	if(HAS_TRAIT(src, TRAIT_WAS_RENAMED))
 		return
 	. = ..()
 	if(length(reagents.reagent_list))
-		desc = "The challenge is not taking as many as you can, but guessing what it is before you pass out."
+		desc = "挑战不在于你能喝下多少杯，而在于昏倒前猜出它是什么。"
 	else
-		desc = "A shot glass - the universal symbol for bad decisions."
+		desc = "一只小酒杯——糟糕决定的通用象征。"
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled
 	base_container_type = /obj/item/reagent_containers/cup/glass/drinkingglass
@@ -110,30 +110,30 @@
 	update_appearance()
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/soda
-	name = "Soda Water"
+	name = "苏打水"
 	list_reagents = list(/datum/reagent/consumable/sodawater = 50)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/cola
-	name = "Space Cola"
+	name = "太空可乐"
 	list_reagents = list(/datum/reagent/consumable/space_cola = 50)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/nuka_cola
-	name = "Nuka Cola"
+	name = "核子可乐"
 	list_reagents = list(/datum/reagent/consumable/nuka_cola = 50)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/pina_colada
-	name = "Pina Colada"
+	name = "椰林飘香"
 	list_reagents = list(/datum/reagent/consumable/ethanol/pina_colada = 50)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/half_full
-	name = "half full glass of water"
-	desc  = "It's a glass of water. It seems half full. Or is it half empty? You're pretty sure it's full of shit."
+	name = "半杯水"
+	desc  = "一杯水。看起来是半满的。还是半空的？你相当确定它满是废话。"
 	list_reagents = list(/datum/reagent/water = 25)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/half_full/Initialize(mapload, vol)
 	. = ..()
-	name = "[pick("half full", "half empty")] glass of water"
+	name = "[pick("半满", "半空")]的水杯"
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/irish_cream
-	name = "Irish Cream"
+	name = "爱尔兰奶油"
 	list_reagents = list(/datum/reagent/consumable/ethanol/irish_cream = 50)

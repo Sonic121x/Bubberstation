@@ -14,8 +14,8 @@
  * has a popup window when used, allowing to set the timer.
  */
 /obj/machinery/status_display/door_timer
-	name = "door timer"
-	desc = "A remote control for a door."
+	name = "门计时器"
+	desc = "用于遥控门的控制器。"
 	current_mode = SD_MESSAGE
 	req_access = list(ACCESS_SECURITY)
 	text_color = "#F44"
@@ -224,7 +224,7 @@
 	var/mob/user = usr
 
 	if(!allowed(usr))
-		to_chat(usr, span_warning("Access denied."))
+		to_chat(usr, span_warning("访问被拒绝。"))
 		return FALSE
 
 	switch(action)
@@ -281,12 +281,12 @@
 		timer_end(forced = TRUE)
 
 /datum/aas_config_entry/brig_cell_release_announcement
-	name = "Security Alert: Cell Timer Expired"
+	name = "安保警报：牢房计时结束"
 	announcement_lines_map = list(
-		"Message" = "Timer for %CELL has expired. Releasing prisoner.",
+		"Message" = "%CELL 的计时已结束。正在释放囚犯。",
 	)
 	vars_and_tooltips_map = list(
-		"CELL" = "will be replaced with the cell name.",
+		"CELL" = "将替换为牢房名称。",
 	)
 
 #undef PRESET_SHORT

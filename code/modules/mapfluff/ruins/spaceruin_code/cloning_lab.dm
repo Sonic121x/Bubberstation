@@ -1,35 +1,35 @@
 /obj/item/paper/fluff/ruins/exp_cloning/manual
-	name = "paper - 'H-11 Cloning Apparatus Manual"
-	default_raw_text = "<h4>Getting Started</h4> \
-		Congratulations, you are testing the H-11 experimental cloning device!<br> \
-		Using the H-11 is almost as simple as brain surgery! Simply insert the target humanoid into the scanning chamber and create a copy of their DNA, then select the clone option to initiate cloning!<br> \
-		<b>That's all there is to it!</b><br> \
-		<i>Notice, cloning system cannot scan inorganic life or small primates.  Scan may fail if subject has suffered extreme brain damage.</i><br> \
-		<p>The provided CLONEPOD SYSTEM will produce the desired clone.  Standard clone maturation times are roughly 120 seconds. \
-		The cloning pod will automatically dispose of subjects whose brains fail to develop properly.</p><br> \
-		<i>Please note that resulting clones may have DEVELOPMENTAL DEFECTS as a result of genetic drift. We hope to reduce this through further testing.<br> \
-		Clones may also experience memory loss and radical changes in personality as a result of the cloning process.</i><br> \
+	name = "纸条——‘H-11 克隆装置手册"
+	default_raw_text = "<h4>新手上路</h4> \
+		恭喜你，你正在测试 H-11 实验性克隆装置！<br> \
+		使用 H-11 几乎和做脑部手术一样简单！只需将目标人形生物送入扫描舱，复制其 DNA，然后选择克隆选项即可开始克隆！<br> \
+		<b>就这么简单！</b><br> \
+		<i>注意，克隆系统无法扫描无机生命或小型灵长类。若受试者遭受过严重的脑损伤，扫描可能失败。</i><br> \
+		<p>随附的克隆舱系统将产出所需的克隆体。标准克隆成熟时间约为 120 秒。 \
+		对于大脑未能正常发育的受试者，克隆舱会自动将其处理掉。</p><br> \
+		<i>请注意，由于基因漂移，产生的克隆体可能存在发育缺陷。我们希望通过进一步测试来减少这种情况。<br> \
+		克隆体也可能因克隆过程而出现记忆丧失和性格剧变。</i><br> \
 		<br> \
-		<font size=1>This technology produced under license from Thinktronic Systems, LTD.</font>"
+		<font size=1>本技术经 Thinktronic Systems, LTD. 授权生产。</font>"
 
 /obj/item/paper/fluff/ruins/exp_cloning/log
-	name = "experiment log"
-	default_raw_text = "<h4>Day 1</h4> \
-		We are very excited to be part of the first crew of the SC Irmanda!<br> \
-		This ship is made to test an innovative FTL technology. I had some concerns at first, \
-		but the engineers assure me that it is safe and there is absolutely no risk of the external wings breaking off from the acceleration.<br> \
-		We've been tasked with testing the latest model of the Thinktronic Cloning Pod. We'll stay in dock for a week before launching, but we're going to get started right away. \
-		If the engine is as fast as they say, we might not have the time to run all the routine tests on the cloned subject!<br> \
+	name = "实验日志"
+	default_raw_text = "<h4>第 1 天</h4> \
+		能成为 SC 伊尔曼达号首批船员，我们非常兴奋！<br> \
+		这艘船用于测试一项创新的超光速技术。一开始我还有些担心， \
+		但工程师们向我保证它很安全，外翼绝不会因加速而断裂。<br> \
+		我们的任务是测试最新型号的 Thinktronic 克隆舱。发射前我们会在船坞停留一周，但我们打算马上就开始。 \
+		如果引擎真像他们说的那么快，我们也许没时间对克隆受试者跑完全部例行测试！<br> \
 		<br> \
-		<h4>Day 2</h4> \
-		We cloned an unknown corpse that was given to us by the medical crew. The genetic replication is good enough to let the subject survive outside of the pod, \
-		but the cellular damage remains a concern for his long-term survival. For safety we will be keeping him in quarantine.<br> \
-		We left him some books, but clearly we were too optimistic about his mental faculties. His brain seems to suffer from the same cloning decay that was caused by \
-		the previous models. We will run further tests to see if there are improvements.<br> \
-		<h4>Day 4</h4> \
-		It seems we'll be launching even sooner than expected! Apparently the press is starting to lose interest, so we have to cut short the pre-flight checks \
-		and give them something to talk about. Hopefully this will end up with increased funding...<br> \
-		The crew has all been invited to the main hall, where we have seats for the initial FTL acceleration. Unfortunately the clone cannot leave the quarantine room \
-		without risking infection, so we will strap him into the bed and hope for the best. We can grow another clone if anything goes wrong, anyway. \
+		<h4>第 2 天</h4> \
+		我们克隆了一具医疗组交给我们的无名尸体。基因复制效果不错，足以让受试者在克隆舱外存活， \
+		但细胞损伤仍然是他长期存活的隐患。为安全起见，我们会把他隔离起来。<br> \
+		我们给他留了几本书，但显然我们对他的心智能力过于乐观了。他的大脑似乎也受到了 \
+		与前几代型号相同的克隆衰退影响。我们会做进一步测试，看看是否有改善。<br> \
+		<h4>第 4 天</h4> \
+		看来我们比预期更早就要发射了！显然媒体开始失去兴趣，所以我们不得不缩短飞行前检查， \
+		好给他们点话题聊聊。希望这最终能带来更多经费……<br> \
+		全体船员都被邀请到主厅，那里有座位供我们观看首次超光速加速。不幸的是，克隆体不能离开隔离室， \
+		否则有感染风险，所以我们只能把他绑在床上，祈求一切顺利。反正真出了岔子，我们还能再培养一个克隆体。 \
 		<br> \
-		<i>Professor Galen Linkovich</i>"
+		<i>加伦·林科维奇教授</i>"

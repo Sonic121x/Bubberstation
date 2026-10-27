@@ -1,7 +1,7 @@
 /// Computer which starts the experimental cloning process
 /obj/machinery/computer/experimental_cloner
-	name = "experimental cloner control console"
-	desc = "It scans DNA structures."
+	name = "实验性克隆机控制台"
+	desc = "用于扫描 DNA 结构。"
 	circuit = /obj/item/circuitboard/computer/experimental_cloner
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/crew")
 	icon_screen = "crew"
@@ -49,14 +49,14 @@
 	if (istype(multi_tool.buffer, /obj/machinery/experimental_cloner_scanner))
 		unlink_scanner()
 		link_scanner(multi_tool.buffer)
-		balloon_alert(user, "scanner linked")
-		to_chat(user, span_notice("You link \the [multi_tool.buffer] with \the [src]."))
+		balloon_alert(user, "扫描仪已连接")
+		to_chat(user, span_notice("你将[multi_tool.buffer]与[src]连接起来。"))
 		return ITEM_INTERACT_SUCCESS
 	if (istype(multi_tool.buffer, /obj/machinery/experimental_cloner))
 		unlink_pod()
 		link_pod(multi_tool.buffer)
-		balloon_alert(user, "pod linked")
-		to_chat(user, span_notice("You link \the [multi_tool.buffer] with \the [src]."))
+		balloon_alert(user, "克隆舱已连接")
+		to_chat(user, span_notice("你将[multi_tool.buffer]与[src]连接起来。"))
 		return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/computer/experimental_cloner/ui_interact(mob/user, datum/tgui/ui)
@@ -104,7 +104,7 @@
 	var/mob/living/carbon/human/scanner_occupant = input?.occupant
 	var/cloning_time_left = !output || output.awaiting_ghost ? 0 : timeleft(output.running_timer)
 
-	data["record_name"] = stored_record?.name
+	data["record_name"] = stored_record?.name; data["speciesDisplay"] = chinese_footprint_species_display(return_mapping = TRUE)
 	data["record_species"] = stored_record?.dna.species?.name
 	data["linked_scanner"] = !!input
 	data["scanner_occupant"] = scanner_occupant?.name
@@ -132,24 +132,24 @@
 			return TRUE
 		if ("start_scan")
 			if (isnull(input))
-				balloon_alert(ui.user, "no linked scanner!")
+				balloon_alert(ui.user, "未连接扫描仪！")
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 				return TRUE
 			if (isnull(input.occupant))
-				balloon_alert(ui.user, "scanner empty!")
+				balloon_alert(ui.user, "扫描仪内无人！")
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 				return TRUE
 			if (!iscarbon(input.occupant))
-				balloon_alert(ui.user, "invalid subject!")
+				balloon_alert(ui.user, "目标不符合要求！")
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 				return TRUE
 			var/mob/living/carbon/carbon_occupant = input.occupant
 			if (!carbon_occupant.has_dna())
-				balloon_alert(ui.user, "invalid subject!")
+				balloon_alert(ui.user, "目标不符合要求！")
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 				return TRUE
 			if (input.scanning)
-				balloon_alert(ui.user, "scanner busy!")
+				balloon_alert(ui.user, "扫描仪忙碌中！")
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 				return TRUE
 
@@ -158,15 +158,15 @@
 			return TRUE
 		if ("start_clone")
 			if (isnull(output))
-				balloon_alert(ui.user, "no linked pod!")
+				balloon_alert(ui.user, "未连接克隆舱！")
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 				return TRUE
 			if (output.running)
-				balloon_alert(ui.user, "pod busy!")
+				balloon_alert(ui.user, "克隆舱忙碌中！")
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 				return TRUE
 			if (isnull(stored_record))
-				balloon_alert(ui.user, "no stored DNA!")
+				balloon_alert(ui.user, "未保存 DNA！")
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 				return TRUE
 

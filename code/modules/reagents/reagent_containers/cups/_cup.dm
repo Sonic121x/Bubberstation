@@ -1,5 +1,5 @@
 /obj/item/reagent_containers/cup
-	name = "open container"
+	name = "敞口容器"
 	abstract_type = /obj/item/reagent_containers/cup
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 20, 25, 30, 50)
@@ -54,31 +54,31 @@
 /obj/item/reagent_containers/cup/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(cell_wired && held_item.tool_behaviour == TOOL_WIRECUTTER)
-		context[SCREENTIP_CONTEXT_LMB] = "Cut wires"
+		context[SCREENTIP_CONTEXT_LMB] = "剪断线路"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(!can_lid)
 		return
 	if(isnull(held_item))
-		context[SCREENTIP_CONTEXT_ALT_LMB] = lid_assembly ? "Detach assembly" : "Toggle lid"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = lid_assembly ? "卸下组件" : "开合盖子"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(isnull(lid_assembly) && istype(held_item, /obj/item/assembly_holder))
-		context[SCREENTIP_CONTEXT_LMB] = "Attach assembly"
+		context[SCREENTIP_CONTEXT_LMB] = "安装组件"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(isnull(attached_cell) && !isnull(lid_assembly) && istype(held_item, /obj/item/stock_parts/power_store/cell))
-		context[SCREENTIP_CONTEXT_LMB] = "Attach cell"
+		context[SCREENTIP_CONTEXT_LMB] = "安装电池"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/reagent_containers/cup/examine(mob/user)
 	. = ..()
 	if(drink_type)
 		var/list/types = bitfield_to_list(drink_type, FOOD_FLAGS)
-		. += span_notice("The label says it contains [LOWER_TEXT(english_list(types))] ingredients.")
+		. += span_notice("标签上写着它含有 [LOWER_TEXT(english_list(types))] 成分。")
 	if(can_lid)
 		if(has_lid)
-			. += span_notice("Its sealed with a bright orange rubber lid[!isnull(lid_assembly) ? "with an assembly attached ontop of it" : ""].")
+			. += span_notice("它用一只亮橙色的橡胶盖密封着[!isnull(lid_assembly) ? "，盖子上还装着一个组件" : ""]。")
 		else
-			. += span_notice("It can be sealed with a lid using [EXAMINE_HINT("Alt-Click")].")
+			. += span_notice("可以用[EXAMINE_HINT("Alt 点击")]给它盖上盖子密封。")
 
 /**
  * Checks if the mob actually liked drinking this cup.
@@ -99,15 +99,15 @@
 	var/food_taste_reaction = gourmand.get_food_taste_reaction(src, drink_type)
 	switch(food_taste_reaction)
 		if(FOOD_TOXIC)
-			to_chat(gourmand,span_warning("What the hell was that thing?!"))
+			to_chat(gourmand,span_warning("刚才那玩意儿到底是什么鬼？！"))
 			gourmand.adjust_disgust(25 + 30 * fraction)
 			gourmand.add_mood_event("toxic_food", /datum/mood_event/disgusting_food)
 		if(FOOD_DISLIKED)
-			to_chat(gourmand,span_notice("That didn't taste very good..."))
+			to_chat(gourmand,span_notice("那玩意儿味道不太好……"))
 			gourmand.adjust_disgust(11 + 15 * fraction)
 			gourmand.add_mood_event("gross_food", /datum/mood_event/gross_food)
 		if(FOOD_LIKED)
-			to_chat(gourmand,span_notice("I love this taste!"))
+			to_chat(gourmand,span_notice("我爱死这个味道了！"))
 			gourmand.adjust_disgust(-5 + -2.5 * fraction)
 			gourmand.add_mood_event("fav_food", /datum/mood_event/favorite_food)
 
@@ -120,39 +120,39 @@
 		if(DOING_INTERACTION_WITH_TARGET(user, target_mob))
 			return ITEM_INTERACT_BLOCKING
 		target_mob.visible_message(
-			span_danger("[user] attempts to feed [target_mob] something from [src]."),
-			span_userdanger("[user] attempts to feed you something from [src]."),
+			span_danger("[user] 想用 [src] 喂 [target_mob] 一些东西。"),
+			span_userdanger("[user] 想用 [src] 喂你一些东西。"),
 		)
 		if(!do_after(user, 3 SECONDS, target_mob))
 			return ITEM_INTERACT_BLOCKING
 		if(!reagents || !reagents.total_volume)
 			return ITEM_INTERACT_BLOCKING // The drink might be empty after the delay, such as by spam-feeding
 		target_mob.visible_message(
-			span_danger("[user] feeds [target_mob] something from [src]."),
-			span_userdanger("[user] feeds you something from [src]."),
+			span_danger("[user] 用 [src] 喂了 [target_mob] 一些东西。"),
+			span_userdanger("[user] 用 [src] 喂了你一些东西。"),
 		)
 		if(target_mob.is_blind())
-			to_chat(target_mob, span_notice("You feel someone feed you something."))
-		log_combat(user, target_mob, "fed", reagents.get_reagent_log_string())
+			to_chat(target_mob, span_notice("你感觉有人喂了你一些东西。"))
+		log_combat(user, target_mob, "喂食了", reagents.get_reagent_log_string())
 
 	else
 		if(loop_drink)
 			if(DOING_INTERACTION_WITH_TARGET(user, user))
 				return ITEM_INTERACT_BLOCKING
 			user.visible_message(
-				span_notice("[user] attempts to drink from [src]."),
+				span_notice("[user] 想从 [src] 里喝一口。"),
 				ignored_mobs = list(user),
 			)
-			to_chat(user, span_notice("You attempt to drink from [src]."))
+			to_chat(user, span_notice("你想从 [src] 里喝一口。"))
 			if(!do_after(user, 1.25 SECONDS, user))
 				return ITEM_INTERACT_BLOCKING
 			if(!reagents || !reagents.total_volume)
 				return ITEM_INTERACT_BLOCKING
 			user.visible_message(
-				span_notice("[user] drinks from [src]."),
+				span_notice("[user] 从 [src] 里喝了一口。"),
 				ignored_mobs = list(user),
 			)
-		to_chat(user, span_notice("You swallow a gulp of [src]."))
+		to_chat(user, span_notice("你咽下一大口 [src]。"))
 
 	SEND_SIGNAL(src, COMSIG_GLASS_DRANK, target_mob, user)
 	SEND_SIGNAL(target_mob, COMSIG_GLASS_DRANK, src, user) // SKYRAT EDIT ADDITION - Hemophages can't casually drink what's not going to regenerate their blood
@@ -205,18 +205,18 @@
 	if (!pour_amount)
 		return NONE
 	if (concrete.volume < pour_amount)
-		user.balloon_alert(user, "not enough to pour")
+		user.balloon_alert(user, "量不足以倾倒")
 		return ITEM_INTERACT_FAILURE
-	user.balloon_alert(user, "pouring...")
+	user.balloon_alert(user, "正在倾倒……")
 	user.visible_message(
-		span_notice("[user] starts pouring concrete onto \a [target]."),
-		span_notice("You start pouring concrete onto \a [target]..."),
+		span_notice("[user] 开始把混凝土浇到 \a [target] 上。"),
+		span_notice("你开始把混凝土浇到 \a [target] 上……"),
 	)
 	if (!do_after(user, 1 SECONDS, target=target))
-		user.balloon_alert(user, "interrupted")
+		user.balloon_alert(user, "被打断")
 		return ITEM_INTERACT_FAILURE
 	if(concrete.volume < pour_amount) // check if volume has changed during do_after
-		user.balloon_alert(user, "not enough to pour")
+		user.balloon_alert(user, "量不足以倾倒")
 		return ITEM_INTERACT_FAILURE
 	playsound(src, 'sound/effects/slosh.ogg', 25, TRUE)
 	concrete.expose_atom(target, pour_amount, TOUCH)
@@ -238,7 +238,7 @@
 /obj/item/reagent_containers/cup/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(has_lid && istype(tool, /obj/item/assembly_holder))
 		if (lid_assembly)
-			to_chat(user, span_warning("[src]'s lid already has an assembly attached to it!"))
+			to_chat(user, span_warning("[src] 的盖子上已经装了一个组件！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if (attach_assembly(tool, user))
@@ -248,20 +248,20 @@
 
 	if (lid_assembly && istype(tool, /obj/item/stock_parts/power_store/cell))
 		if (attached_cell)
-			to_chat(user, span_warning("[src] already has \a [attached_cell] attached to it!"))
+			to_chat(user, span_warning("[src] 上已经接了 \a [attached_cell]！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if (isnull(locate(/obj/item/assembly/igniter) in lid_assembly))
-			to_chat(user, span_warning("[lid_assembly] doesn't have an igniter to connect [src] to!"))
+			to_chat(user, span_warning("[lid_assembly] 上没有点火器可以连接 [src]！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if (!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning("[tool] is stuck to your hand!"))
+			to_chat(user, span_warning("[tool] 粘在你手上了！"))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You attach [tool] underneath [src]'s lid."))
+		to_chat(user, span_notice("你把 [tool] 装在 [src] 的盖子下方。"))
 		add_fingerprint(user)
-		log_bomber(user, "attached [tool.name] to", src)
+		log_bomber(user, "把 [tool.name] 安装到了", src)
 		attached_cell = tool
 		attached_cell.pixel_y = 0
 		attached_cell.pixel_z = -4
@@ -271,15 +271,15 @@
 
 	if (attached_cell && istype(tool, /obj/item/stack/cable_coil))
 		if (cell_wired)
-			to_chat(user, span_warning("[attached_cell] is already wired to [lid_assembly]!"))
+			to_chat(user, span_warning("[attached_cell] 已经接到 [lid_assembly] 上了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/stack/cable_coil/cable = tool
 		if (!cable.use(5))
-			to_chat(user, span_warning("You need at least 5 cable pieces to wire [attached_cell]!"))
+			to_chat(user, span_warning("至少需要 5 段线缆才能给 [attached_cell] 接线！"))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You wire [attached_cell] to [lid_assembly]."))
+		to_chat(user, span_notice("你把 [attached_cell] 接到了 [lid_assembly] 上。"))
 		add_fingerprint(user)
 		cell_wired = TRUE
 		update_appearance()
@@ -290,9 +290,9 @@
 
 	if(istype(tool, /obj/item/food/egg)) //breaking eggs
 		if(reagents.holder_full())
-			to_chat(user, span_notice("[src] is full."))
+			to_chat(user, span_notice("[src] 是满的。"))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice("You break [tool] in [src]."))
+		to_chat(user, span_notice("你在 [src] 里打碎了 [tool]。"))
 		tool.reagents.trans_to(src, tool.reagents.total_volume, transferred_by = user)
 		qdel(tool)
 		return ITEM_INTERACT_SUCCESS
@@ -349,7 +349,7 @@
 		return NONE
 
 	if (cell_wired)
-		balloon_alert(user, "cut the wiring first!")
+		balloon_alert(user, "请先剪断线路！")
 		return CLICK_ACTION_BLOCKING
 
 	if (attached_cell)
@@ -357,7 +357,7 @@
 		// Exited() automatically clears it
 		our_cell.forceMove(drop_location())
 		user.put_in_hands(our_cell)
-		balloon_alert(user, "cell detached")
+		balloon_alert(user, "电池已卸下")
 		update_appearance()
 		return CLICK_ACTION_SUCCESS
 
@@ -365,13 +365,13 @@
 		var/obj/item/our_assembly = lid_assembly
 		our_assembly.forceMove(drop_location())
 		user.put_in_hands(our_assembly)
-		balloon_alert(user, "assembly detached")
+		balloon_alert(user, "组件已卸下")
 		update_appearance()
 		return CLICK_ACTION_SUCCESS
 
 	has_lid = !has_lid
 	update_appearance()
-	balloon_alert(user, "lid [has_lid ? "sealed" : "unsealed"]")
+	balloon_alert(user, "盖子已[has_lid ? "密封" : "打开"]")
 	if (has_lid)
 		add_container_flags(SEALED_CONTAINER)
 	else
@@ -385,16 +385,16 @@
 	new /obj/item/stack/cable_coil(drop_location(), 5)
 	cell_wired = FALSE
 	update_appearance()
-	balloon_alert(user, "wiring cut")
+	balloon_alert(user, "线路已剪断")
 	tool.play_tool_sound(src, 50)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/cup/proc/attach_assembly(obj/item/assembly_holder/assembly, mob/living/user)
 	if (!user.transferItemToLoc(assembly, src))
-		to_chat(user, span_warning("[assembly] is stuck to your hand!"))
+		to_chat(user, span_warning("[assembly] 粘在你手上了！"))
 		return FALSE
 
-	to_chat(user, span_notice("You attach [assembly] to [src]'s lid."))
+	to_chat(user, span_notice("你把 [assembly] 装到了 [src] 的盖子上。"))
 	add_fingerprint(user)
 	lid_assembly = assembly
 	lid_assembly.master = src
@@ -402,7 +402,7 @@
 	lid_assembly.pixel_z = assembly_pixel_y
 	lid_assembly.on_attach()
 	RegisterSignal(src, COMSIG_IGNITER_ACTIVATE, PROC_REF(on_igniter_activate))
-	log_bomber(user, "attached [lid_assembly.name] to", src)
+	log_bomber(user, "把 [lid_assembly.name] 安装到了", src)
 	update_appearance()
 	return TRUE
 
@@ -441,8 +441,8 @@
 		reagents.expose_temperature(igniter_temp)
 
 /obj/item/reagent_containers/cup/beaker
-	name = "beaker"
-	desc = "A beaker. It can hold up to 50 units."
+	name = "烧杯"
+	desc = "一个烧杯。最多可容纳 50 单位。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "beaker"
 	inhand_icon_state = "beaker"
@@ -465,15 +465,15 @@
 	return reagents.maximum_volume
 
 /obj/item/reagent_containers/cup/beaker/jar
-	name = "honey jar"
-	desc = "A jar for honey. It can hold up to 50 units of sweet delight."
+	name = "蜂蜜罐"
+	desc = "用来装蜂蜜的罐子。最多可容纳 50 单位的甜蜜享受。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "vapour"
 	can_lid = FALSE
 
 /obj/item/reagent_containers/cup/beaker/large
-	name = "large beaker"
-	desc = "A large beaker. Can hold up to 100 units."
+	name = "大烧杯"
+	desc = "一个大烧杯。最多可容纳 100 单位。"
 	icon_state = "beakerlarge"
 	custom_materials = list(/datum/material/glass= SHEET_MATERIAL_AMOUNT*1.25)
 	volume = 100
@@ -483,8 +483,8 @@
 	assembly_pixel_y = 8
 
 /obj/item/reagent_containers/cup/beaker/plastic
-	name = "x-large beaker"
-	desc = "An extra-large beaker. Can hold up to 120 units."
+	name = "特大烧杯"
+	desc = "一个特大号烧杯。最多可容纳 120 单位。"
 	icon_state = "beakerwhite"
 	inhand_icon_state = "beaker_white"
 	custom_materials = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT*1.25, /datum/material/plastic=SHEET_MATERIAL_AMOUNT * 1.5)
@@ -495,8 +495,8 @@
 	assembly_pixel_y = 8
 
 /obj/item/reagent_containers/cup/beaker/meta
-	name = "metamaterial beaker"
-	desc = "A large beaker. Can hold up to 180 units."
+	name = "超材料烧杯"
+	desc = "一个大烧杯。最多可容纳 180 单位。"
 	icon_state = "beakergold"
 	inhand_icon_state = "beaker_gold"
 	custom_materials = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT*1.25, /datum/material/plastic=SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/gold=HALF_SHEET_MATERIAL_AMOUNT, /datum/material/titanium=HALF_SHEET_MATERIAL_AMOUNT)
@@ -507,9 +507,9 @@
 	assembly_pixel_y = 10
 
 /obj/item/reagent_containers/cup/beaker/noreact
-	name = "cryostasis beaker"
-	desc = "A cryostasis beaker that allows for chemical storage without \
-		reactions. Can hold up to 50 units."
+	name = "低温休眠烧杯"
+	desc = "一个低温休眠烧杯，可储存化学品而不发生 \
+		反应。最多可容纳 50 单位。"
 	icon_state = "beakernoreact"
 	inhand_icon_state = "beaker_cryo"
 	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 1.5)
@@ -519,10 +519,10 @@
 	can_lid = FALSE
 
 /obj/item/reagent_containers/cup/beaker/bluespace
-	name = "bluespace beaker"
-	desc = "A bluespace beaker, powered by experimental bluespace technology \
-		and Element Cuban combined with the Compound Pete. Can hold up to \
-		300 units."
+	name = "蓝空间烧杯"
+	desc = "一个蓝空间烧杯，由实验性蓝空间技术驱动，\
+		结合了古巴元素与皮特化合物。最多可容纳 \
+		300 单位。"
 	icon_state = "beakerbluespace"
 	inhand_icon_state = "beaker_bluespace"
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT)
@@ -562,30 +562,30 @@
 	list_reagents = list(/datum/reagent/toxin/slimejelly = 50)
 
 /obj/item/reagent_containers/cup/beaker/large/libital
-	name = "libital reserve tank (diluted)"
+	name = "利比妥储备罐（稀释）"
 	list_reagents = list(/datum/reagent/medicine/c2/libital = 10,/datum/reagent/medicine/granibitaluri = 40)
 
 /obj/item/reagent_containers/cup/beaker/large/aiuri
-	name = "aiuri reserve tank (diluted)"
+	name = "艾尤里储备罐（稀释）"
 	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 10, /datum/reagent/medicine/granibitaluri = 40)
 
 /obj/item/reagent_containers/cup/beaker/large/multiver
-	name = "multiver reserve tank (diluted)"
+	name = "穆尔提弗储备罐（稀释）"
 	list_reagents = list(/datum/reagent/medicine/c2/multiver = 10, /datum/reagent/medicine/granibitaluri = 40)
 
 /obj/item/reagent_containers/cup/beaker/large/epinephrine
-	name = "epinephrine reserve tank (diluted)"
+	name = "肾上腺素储备罐（稀释）"
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 50)
 
 /obj/item/reagent_containers/cup/beaker/synthflesh
 	list_reagents = list(/datum/reagent/medicine/c2/synthflesh = 50)
 
 /obj/item/reagent_containers/cup/beaker/synthflesh/named
-	name = "synthflesh beaker"
+	name = "合成肉液烧杯"
 
 /obj/item/reagent_containers/cup/bucket
-	name = "bucket"
-	desc = "It's a bucket. You can squeeze a mop's contents into it by using right-click." //SKYRAT EDIT CHANGE - ORIGINAL: desc = "It's a bucket."
+	name = "水桶"
+	desc = "是个水桶。右键点击可以把拖把里的东西挤进去。" //SKYRAT EDIT CHANGE - ORIGINAL: desc = "It's a bucket."
 	icon = 'icons/obj/service/janitor.dmi'
 	worn_icon = 'icons/mob/clothing/head/utility.dmi'
 	icon_state = "bucket"
@@ -624,7 +624,7 @@
 	acid = 50
 
 /obj/item/reagent_containers/cup/bucket/wooden
-	name = "wooden bucket"
+	name = "木桶"
 	icon_state = "woodbucket"
 	inhand_icon_state = "woodbucket"
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 3)
@@ -638,14 +638,14 @@
 /obj/item/reagent_containers/cup/bucket/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/mop))
 		if(reagents.total_volume < 1)
-			user.balloon_alert(user, "empty!")
+			user.balloon_alert(user, "是空的！")
 			return ITEM_INTERACT_BLOCKING
 		reagents.trans_to(tool, 5, transferred_by = user)
-		user.balloon_alert(user, "doused [tool]")
+		user.balloon_alert(user, "浸湿了 [tool]")
 		playsound(src, 'sound/effects/slosh.ogg', 25, TRUE)
 		return ITEM_INTERACT_SUCCESS
 	if(isprox(tool)) //This works with wooden buckets for now. Somewhat unintended, but maybe someone will add sprites for it soon(TM)
-		to_chat(user, span_notice("You add [tool] to [src]."))
+		to_chat(user, span_notice("你把 [tool] 放进了 [src]。"))
 		qdel(tool)
 		var/obj/item/bot_assembly/cleanbot/new_cleanbot_ass = new(null, src)
 		user.put_in_hands(new_cleanbot_ass)
@@ -657,14 +657,14 @@
 /obj/item/reagent_containers/cup/bucket/item_interaction_secondary(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/mop))
 		if(tool.reagents.total_volume == 0)
-			user.balloon_alert(user, "mop is dry!")
+			user.balloon_alert(user, "拖把是干的！")
 			return ITEM_INTERACT_BLOCKING
 		if(reagents.total_volume == reagents.maximum_volume)
-			user.balloon_alert(user, "container is full!")
+			user.balloon_alert(user, "容器已满！")
 			return ITEM_INTERACT_BLOCKING
 		tool.reagents.remove_all(tool.reagents.total_volume * SQUEEZING_DISPERSAL_RATIO)
 		tool.reagents.trans_to(src, tool.reagents.total_volume, transferred_by = user)
-		user.balloon_alert(user, "mop squeezed")
+		user.balloon_alert(user, "已挤干拖把")
 		return ITEM_INTERACT_SUCCESS
 
 	. = ..()
@@ -674,7 +674,7 @@
 	. = ..()
 	if (slot & ITEM_SLOT_HEAD)
 		if(reagents.total_volume)
-			to_chat(user, span_userdanger("[src]'s contents spill all over you!"))
+			to_chat(user, span_userdanger("[src] 里的东西洒了你一身！"))
 			reagents.expose(user, TOUCH)
 			reagents.clear_reagents()
 		update_container_flags(NONE)
@@ -693,8 +693,8 @@
 	return ..()
 
 /obj/item/pestle
-	name = "pestle"
-	desc = "An ancient, simple tool used in conjunction with a mortar to grind or juice items."
+	name = "研杵"
+	desc = "一件古老的简易工具，配合研钵用来研磨或榨取物品。"
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "pestle"
@@ -702,9 +702,9 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/reagent_containers/cup/mortar
-	name = "mortar"
-	desc = "A specially formed bowl of ancient design. It is possible to crush or juice items placed in it using a pestle; however the process, unlike modern methods, is slow and physically exhausting."
-	desc_controls = "Alt click to eject the item."
+	name = "研钵"
+	desc = "一只造型特殊、源自古代设计的碗。可以用研杵把放入其中的物品捣碎或榨汁；不过与现代方法不同，这个过程缓慢又耗费体力。"
+	desc_controls = "按住 Alt 点击可取出物品。"
 	icon_state = "mortar"
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 20, 25, 30, 50, 100)
@@ -719,7 +719,7 @@
 		return CLICK_ACTION_BLOCKING
 	grinded.forceMove(drop_location())
 	grinded = null
-	balloon_alert(user, "ejected")
+	balloon_alert(user, "已取出")
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/reagent_containers/cup/mortar/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -728,31 +728,31 @@
 		return .
 	if(istype(tool, /obj/item/pestle))
 		if(!grinded)
-			to_chat(user, span_warning("There is nothing to grind!"))
+			to_chat(user, span_warning("没有东西可以研磨！"))
 			return ITEM_INTERACT_BLOCKING
 		if(user.get_stamina_loss() > 50)
-			to_chat(user, span_warning("You are too tired to work!"))
+			to_chat(user, span_warning("你太累了，干不动了！"))
 			return ITEM_INTERACT_BLOCKING
 		var/list/choose_options = list(
-			"Grind" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_grind"),
-			"Juice" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_juice")
+			"研磨" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_grind"),
+			"榨汁" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_juice")
 		)
 		var/picked_option = show_radial_menu(user, src, choose_options, radius = 38, require_near = TRUE)
 		if(!grinded || !in_range(src, user) || !user.is_holding(tool) || !picked_option)
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice("You start grinding..."))
+		to_chat(user, span_notice("你开始研磨……"))
 		if(!do_after(user, 2.5 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 		user.adjust_stamina_loss(40)
 		switch(picked_option)
-			if("Juice")
+			if("榨汁")
 				return juice_item(grinded, user) ? ITEM_INTERACT_BLOCKING : ITEM_INTERACT_SUCCESS
-			if("Grind")
+			if("研磨")
 				return grind_item(grinded, user) ? ITEM_INTERACT_SUCCESS : ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice("You try to grind the mortar itself instead of [grinded]. You failed."))
+		to_chat(user, span_notice("你试图研磨研钵本身，而不是 [grinded]。你失败了。"))
 		return ITEM_INTERACT_BLOCKING
 	if(grinded)
-		to_chat(user, span_warning("There is something inside already!"))
+		to_chat(user, span_warning("里面已经有东西了！"))
 		return ITEM_INTERACT_BLOCKING
 	if(!tool.blend_requirements(src, user))
 		return ITEM_INTERACT_BLOCKING
@@ -768,35 +768,35 @@
 
 /obj/item/reagent_containers/cup/mortar/proc/grind_item(obj/item/item, mob/living/carbon/human/user)
 	if(item.flags_1 & HOLOGRAM_1)
-		to_chat(user, span_notice("You try to grind [item], but it fades away!"))
+		to_chat(user, span_notice("你试着研磨 [item]，但它消散了！"))
 		qdel(item)
 		return
 
 	if(!item.grind(reagents, user))
 		if(isstack(item))
-			to_chat(user, span_notice("[src] attempts to grind as many pieces of [item] as possible."))
+			to_chat(user, span_notice("[src] 试着尽可能多地研磨 [item]。"))
 		else
-			to_chat(user, span_danger("You fail to grind [item]."))
+			to_chat(user, span_danger("你没能把 [item] 研磨成功。"))
 		return
 
-	to_chat(user, span_notice("You grind [item] into a nice powder."))
+	to_chat(user, span_notice("你把 [item] 研磨成了细腻的粉末。"))
 
 /obj/item/reagent_containers/cup/mortar/proc/juice_item(obj/item/item, mob/living/carbon/human/user)
 	if(item.flags_1 & HOLOGRAM_1)
-		to_chat(user, span_notice("You try to juice [item], but it fades away!"))
+		to_chat(user, span_notice("你试着榨取 [item]，但它消散了！"))
 		qdel(item)
 		return
 
 	if(!item.juice(reagents, user))
-		to_chat(user, span_notice("You fail to juice [item]."))
+		to_chat(user, span_notice("你没能把 [item] 榨出汁来。"))
 		return
 
-	to_chat(user, span_notice("You juice [item] into a fine liquid."))
+	to_chat(user, span_notice("你把 [item] 榨成了细腻的液体。"))
 
 //Coffeepots: for reference, a standard cup is 30u, to allow 20u for sugar/sweetener/milk/creamer
 /obj/item/reagent_containers/cup/coffeepot
-	name = "coffeepot"
-	desc = "A large pot for dispensing that ambrosia of corporate life known to mortals only as coffee. Contains 4 standard cups."
+	name = "咖啡壶"
+	desc = "一把大壶，用来倒出那种凡人只知其名为“咖啡”的职场生活甘露。可装 4 标准杯。"
 	volume = 120
 	icon_state = "coffeepot"
 	fill_icon_state = "coffeepot"
@@ -804,8 +804,8 @@
 	custom_materials = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/reagent_containers/cup/coffeepot/bluespace
-	name = "bluespace coffeepot"
-	desc = "The most advanced coffeepot the eggheads could cook up: sleek design; graduated lines; connection to a pocket dimension for coffee containment; yep, it's got it all. Contains 8 standard cups."
+	name = "蓝空间咖啡壶"
+	desc = "书呆子们能折腾出的最先进咖啡壶：流线造型；刻度线；连接着一个用于储存咖啡的口袋维度；没错，它样样齐全。可装 8 标准杯。"
 	volume = 240
 	icon_state = "coffeepot_bluespace"
 	fill_icon_thresholds = null
@@ -813,8 +813,8 @@
 
 ///Test tubes created by chem master and pandemic and placed in racks
 /obj/item/reagent_containers/cup/tube
-	name = "tube"
-	desc = "A small test tube."
+	name = "试管"
+	desc = "一支小试管。"
 	icon_state = "test_tube"
 	fill_icon_state = "tube"
 	inhand_icon_state = "atoxinbottle"
@@ -825,5 +825,5 @@
 	can_lid = TRUE
 
 /obj/item/reagent_containers/cup/tube/attach_assembly(obj/item/assembly_holder/assembly, mob/living/user)
-	to_chat(user, span_warning("[src]'s lid is too small to fit [assembly]!"))
+	to_chat(user, span_warning("[src] 的盖子太小，装不下 [assembly]！"))
 	return FALSE

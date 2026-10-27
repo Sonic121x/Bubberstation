@@ -1,7 +1,7 @@
 /// Voidwalker murderbone variant focused around the sun (wow yet another fire element antag!!)
 /mob/living/basic/voidwalker/sunwalker
-	name = "Heliarch"
-	desc = "A cosmic entity covered in stellar corona. You DEFINITELY shouldn't stare."
+	name = "太阳执政官"
+	desc = "一团被星冕包裹的宇宙实体。你绝对不该盯着它看。"
 
 	icon_state = "sunwalker"
 

@@ -1,13 +1,13 @@
 /datum/bloodsucker_clan/tremere
 	name = CLAN_TREMERE
-	description = "The Tremere Clan is extremely weak to True Faith, and will burn when entering areas considered such, like the Chapel. \n\
-		Additionally, a whole new moveset is learned, built on Blood magic rather than Blood abilities, which are upgraded overtime. \n\
-		More ranks can be gained by Ghoulizing crewmembers. \n\
-		The Favorite Ghoul gains the Batform spell, being able to morph themselves at will."
+	description = "特雷默氏族极度畏惧真信仰，进入教堂等神圣区域就会燃烧。\n\
+		此外，他们会学习一套全新的技能，以可逐步升级的血魔法取代血液能力。\n\
+		将船员转化为血仆可以获得更多等级。\n\
+		宠爱血仆会获得蝙蝠形态法术，可以随意变身。"
 	clan_objective = /datum/objective/bloodsucker/tremere_power
 	join_icon_state = "tremere"
-	join_description = "You will burn if you enter the Chapel, lose all default powers, \
-		but gain Blood Magic instead, stronger powers you level up overtime."
+	join_description = "进入教堂会使你燃烧，你会失去所有默认能力，\
+		转而获得能逐步升级、威力更强的血魔法。"
 	buy_power_flags = TREMERE_CAN_BUY|CAN_BUY_OWNED
 
 /datum/bloodsucker_clan/tremere/New(mob/living/carbon/user)
@@ -27,7 +27,7 @@
 	. = ..()
 	var/area/current_area = get_area(bloodsuckerdatum.owner.current)
 	if(istype(current_area, /area/station/service/chapel))
-		to_chat(bloodsuckerdatum.owner.current, span_warning("You don't belong in holy areas! The Faith burns you!"))
+		to_chat(bloodsuckerdatum.owner.current, span_warning("你不属于神圣之地！信仰正在灼烧你！"))
 		bloodsuckerdatum.owner.current.adjust_fire_loss(10)
 		bloodsuckerdatum.owner.current.adjust_fire_stacks(2)
 		bloodsuckerdatum.owner.current.ignite_mob()
@@ -37,8 +37,8 @@
 
 /datum/bloodsucker_clan/tremere/level_message(power_name)
 	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
-	human_user.balloon_alert(human_user, "upgraded [power_name]!")
-	to_chat(human_user, span_notice("You have upgraded [power_name]!"))
+	human_user.balloon_alert(human_user, "已升级[power_name]！")
+	to_chat(human_user, span_notice("你升级了[power_name]！"))
 
 // redefine the default args
 /datum/bloodsucker_clan/tremere/list_available_powers(already_known, powers_list)
@@ -59,5 +59,5 @@
 
 /datum/bloodsucker_clan/tremere/on_ghoul_made(datum/antagonist/bloodsucker/source, mob/living/user, mob/living/target)
 	. = ..()
-	to_chat(bloodsuckerdatum.owner.current, span_danger("You have now gained an additional Rank to spend!"))
+	to_chat(bloodsuckerdatum.owner.current, span_danger("你又获得了一个可使用的额外等级！"))
 	bloodsuckerdatum.AdjustUnspentRank(1)

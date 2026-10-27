@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/aoe/rust_conversion
-	name = "Aggressive Spread"
-	desc = "Spreads rust onto nearby surfaces."
+	name = "侵略蔓延"
+	desc = "将锈蚀蔓延到附近的表面。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -10,7 +10,7 @@
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 30 SECONDS
 
-	invocation = "A'GRSV SPR'D."
+	invocation = "侵'略'蔓'延"
 	invocation_type = INVOCATION_WHISPER
 	spell_requirements = NONE
 
@@ -59,5 +59,5 @@
 		victim.rust_heretic_act()
 
 /datum/action/cooldown/spell/aoe/rust_conversion/construct
-	name = "Construct Spread"
+	name = "构装体蔓延"
 	cooldown_time = 15 SECONDS

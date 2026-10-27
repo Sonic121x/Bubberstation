@@ -1,8 +1,8 @@
 /obj/item/storage/belt/medbandolier
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
-	name = "medical bandolier"
-	desc = "A pocketed, pine green belt slung like a sash over the shoulder. Features numerous pockets for medicines and poisons alike. Now is coward healing time."
+	name = "医疗弹药带"
+	desc = "一条带多个口袋的松绿色腰带，像绶带一样斜挎在肩上。设有大量口袋，药品和毒药都能装。现在轮到懦夫治疗时间了。"
 	icon_state = "med_bandolier"
 	worn_icon_state = "med_bandolier"
 

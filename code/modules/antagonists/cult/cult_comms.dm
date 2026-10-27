@@ -15,8 +15,8 @@
 	return ..()
 
 /datum/action/innate/cult/comm
-	name = "Communion"
-	desc = "Whispered words that all cultists can hear.<br><b>Warning:</b>Nearby non-cultists can still hear you."
+	name = "共融"
+	desc = "只有血教徒能听见的低语。<br><b>警告：</b>附近的非教徒仍然能听见你的话。"
 	button_icon_state = "cult_comms"
 	// Unholy words dont require hands or mobility
 	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
@@ -27,7 +27,7 @@
 	return ..()
 
 /datum/action/innate/cult/comm/Activate()
-	var/input = tgui_input_text(usr, "Message to tell to the other acolytes", "Voice of Blood", max_length = MAX_MESSAGE_LEN)
+	var/input = tgui_input_text(usr, "要传达给其他信徒的信息", "鲜血之声", max_length = MAX_MESSAGE_LEN)
 	if(!input || !IsAvailable(feedback = TRUE))
 		return
 
@@ -38,10 +38,10 @@
 
 	var/list/soft_filter_result = CAN_BYPASS_FILTER(usr) ? null : is_soft_ic_filtered(input)
 	if(soft_filter_result)
-		if(tgui_alert(usr,"Your message contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to say it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr,"你的消息包含\"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\"。\"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\"，你确定要说出来吗？", "软屏蔽词", list("Yes", "No")) != "Yes")
 			return
-		message_admins("[ADMIN_LOOKUPFLW(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[html_encode(input)]\"")
-		log_admin_private("[key_name(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[input]\"")
+		message_admins("[ADMIN_LOOKUPFLW(usr)] 通过了\"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\"的软过滤，可能正在使用不被允许的用语。消息：\"[html_encode(input)]\"")
+		log_admin_private("[key_name(usr)] 通过了\"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\"的软过滤，可能正在使用不被允许的用语。消息：\"[input]\"")
 	cultist_commune(usr, input)
 
 /datum/action/innate/cult/comm/proc/cultist_commune(mob/living/user, message)
@@ -50,15 +50,15 @@
 		return
 	user.whisper("O bidai nabora se[pick("'","`")]sma!", language = /datum/language/common, forced = "cult invocation")
 	user.whisper(html_decode(message), filterproof = TRUE)
-	var/title = "Acolyte"
+	var/title = "信徒"
 	var/span = "cult italic"
 	var/datum/antagonist/cult/cult_datum = user.mind.has_antag_datum(/datum/antagonist/cult)
 	if(cult_datum.is_cult_leader())
 		span = "cult_large"
-		title = "Master"
+		title = "教主"
 	else if(!ishuman(user))
-		title = "Construct"
-	my_message = "<span class='[span]'><b>[title] [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]</span>"
+		title = "构装体"
+	my_message = "<span class='[span]'><b>[title] [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name]（化名 [user.name]）"]:</b> [message]</span>"
 	for(var/mob/listener as anything in GLOB.player_list)
 		if(IS_CULTIST(listener))
 			to_chat(listener, my_message, type = MESSAGE_TYPE_RADIO, avoid_highlighting = listener == user)
@@ -69,8 +69,8 @@
 	user.log_talk(message, LOG_SAY, tag="cult")
 
 /datum/action/innate/cult/comm/spirit
-	name = "Spiritual Communion"
-	desc = "Conveys a message from the spirit realm that all cultists can hear."
+	name = "灵魂共融"
+	desc = "传达来自灵魂领域的消息，所有血教徒都能听见。"
 
 /datum/action/innate/cult/comm/spirit/IsAvailable(feedback = FALSE)
 	if(IS_CULTIST(owner.mind.current))
@@ -81,7 +81,7 @@
 	var/my_message
 	if(!message)
 		return
-	my_message = span_cult_bold_italic("\The [user]: [message]")
+	my_message = span_cult_bold_italic("[user]：[message]")
 	for(var/mob/player_list as anything in GLOB.player_list)
 		if(IS_CULTIST(player_list))
 			to_chat(player_list, my_message)
@@ -98,8 +98,8 @@
 	return ..()
 
 /datum/action/innate/cult/master/pass_role
-	name = "Pass the Mantle"
-	desc = "Pass the Master role onto another willing cultist. This can only be done once!"
+	name = "传承衣钵"
+	desc = "将教主身份传给另一位自愿的血教徒。此操作只能进行一次！"
 	button_icon_state = "cultvote"
 	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED
 
@@ -120,34 +120,34 @@
 
 		choices[team_member.current.real_name] = team_member
 
-	var/new_master = tgui_input_list(owner, "Select another cult member to pass the cult's Master role onto.", "Pass the Mantle", choices)
+	var/new_master = tgui_input_list(owner, "选择另一名血教徒，将血教的教主身份传给他。", "传承衣钵", choices)
 	if (!new_master || !IsAvailable())
 		return
 
-	var/confirmation = tgui_alert(owner, "Are you sure that you want to make [new_master] the new Master? This can only be done once!", "Pass the Mantle", list("Yes", "No"))
+	var/confirmation = tgui_alert(owner, "你确定要让 [new_master] 成为新的教主吗？此操作只能进行一次！", "传承衣钵", list("Yes", "No"))
 	if (confirmation != "Yes" || !IsAvailable())
 		return
 
 	var/datum/mind/master_mind = choices[new_master]
 	var/mob/living/carbon/human/master = master_mind.current
 	if (!master || master.stat == DEAD || !master.client)
-		to_chat(owner, span_cult("[new_master] can no longer take on the role of a Master."))
+		to_chat(owner, span_cult("[new_master] 已无法再担任教主。"))
 		return
 
 	var/datum/antagonist/cult/target_datum = master_mind.has_antag_datum(/datum/antagonist/cult)
 	if(!target_datum || owner_datum.cult_team != target_datum?.cult_team)
-		to_chat(owner, span_cult("[new_master] can no longer take on the role of a Master."))
+		to_chat(owner, span_cult("[new_master] 已无法再担任教主。"))
 		return
 
 	SEND_SOUND(master, sound('sound/effects/magic.ogg', volume = 33))
-	confirmation = tgui_alert(master, "[owner.real_name] is offering their role as the cult's Master to you! Do you wish to accept it?", "Take the Mantle", list("Yes", "No"))
+	confirmation = tgui_alert(master, "[owner.real_name] 想把血教教主之位传给你！你愿意接受吗？", "接受衣钵", list("Yes", "No"))
 
 	if (confirmation != "Yes")
-		to_chat(owner, span_cult("[new_master] has declined your offer."))
+		to_chat(owner, span_cult("[new_master] 拒绝了你的提议。"))
 		return
 
 	if (!IsAvailable() || !master_mind.has_antag_datum(/datum/antagonist/cult) || !master.client)
-		to_chat(owner, span_cult("[new_master] can no longer take on the role of a Master."))
+		to_chat(owner, span_cult("[new_master] 已无法再担任教主。"))
 		return
 
 	target_datum.cult_team.leader_passed_on = TRUE
@@ -155,8 +155,8 @@
 	target_datum.make_cult_leader()
 
 /datum/action/innate/cult/master/finalreck
-	name = "Final Reckoning"
-	desc = "A single-use spell that brings the entire cult to the master's location."
+	name = "最终清算"
+	desc = "一次性法术，可将整个血教召唤到教主所在之处。"
 	button_icon_state = "sintouch"
 
 /datum/action/innate/cult/master/finalreck/Activate()
@@ -166,7 +166,7 @@
 	var/place = get_area(owner)
 	var/datum/objective/eldergod/summon_objective = locate() in antag.cult_team.objectives
 	if(place in summon_objective.summon_spots)//cant do final reckoning in the summon area to prevent abuse, you'll need to get everyone to stand on the circle!
-		to_chat(owner, span_cult_large("The veil is too weak here! Move to an area where it is strong enough to support this magic."))
+		to_chat(owner, span_cult_large("这里的帷幕太薄弱了！请移动到帷幕足够强大、能够支撑此魔法的区域。"))
 		return
 	for(var/i in 1 to 4)
 		chant(i)
@@ -175,7 +175,7 @@
 			if(!T.is_blocked_turf(TRUE))
 				destinations += T
 		if(!LAZYLEN(destinations))
-			to_chat(owner, span_warning("You need more space to summon your cult!"))
+			to_chat(owner, span_warning("你需要更多空间来召唤你的血教！"))
 			return
 		if(do_after(owner, 3 SECONDS, target = owner))
 			for(var/datum/mind/B in antag.cult_team.members)
@@ -225,12 +225,12 @@
 			playsound(get_turf(owner),'sound/effects/magic/clockwork/narsie_attack.ogg', 100, TRUE)
 
 /datum/action/innate/cult/master/cultmark
-	name = "Mark Target"
-	desc = "Marks a target for the cult."
+	name = "标记目标"
+	desc = "为血教标记一个目标。"
 	button_icon_state = "cult_mark"
 	click_action = TRUE
-	enable_text = span_cult("You prepare to mark a target for your cult. <b>Click a target to mark them!</b>")
-	disable_text = span_cult("You cease the marking ritual.")
+	enable_text = span_cult("你准备为血教标记一个目标。<b>点击目标即可标记！</b>")
+	disable_text = span_cult("你停止了标记仪式。")
 	/// The duration of the mark itself
 	var/cult_mark_duration = 90 SECONDS
 	/// The duration of the cooldown for cult marks
@@ -261,22 +261,22 @@
 		CRASH("[type] was casted by a cultist without a cult team datum.")
 
 	if(cult_team.blood_target)
-		to_chat(clicker, span_cult("The cult has already designated a target!"))
+		to_chat(clicker, span_cult("血教已经指定了目标！"))
 		return FALSE
 
 	if(cult_team.set_blood_target(clicked_on, clicker, cult_mark_duration))
-		unset_ranged_ability(clicker, span_cult("The marking rite is complete! It will last for [DisplayTimeText(cult_mark_duration)] seconds."))
+		unset_ranged_ability(clicker, span_cult("标记仪式完成！将持续 [DisplayTimeText(cult_mark_duration)]。"))
 		COOLDOWN_START(src, cult_mark_cooldown, cult_mark_cooldown_duration)
 		build_all_button_icons()
 		addtimer(CALLBACK(src, PROC_REF(build_all_button_icons)), cult_mark_cooldown_duration + 1)
 		return TRUE
 
-	unset_ranged_ability(clicker, span_cult("The marking rite failed!"))
+	unset_ranged_ability(clicker, span_cult("标记仪式失败了！"))
 	return TRUE
 
 /datum/action/innate/cult/ghostmark //Ghost version
-	name = "Blood Mark your Target"
-	desc = "Marks whatever you are orbiting for the entire cult to track."
+	name = "为你的目标施加鲜血标记"
+	desc = "为你正在环绕观察的目标施加标记，供整个血教追踪。"
 	button_icon_state = "cult_mark"
 	check_flags = NONE
 	/// The duration of the mark on the target
@@ -301,14 +301,14 @@
 	if(cult_team.blood_target)
 		if(!COOLDOWN_FINISHED(src, cult_mark_cooldown))
 			cult_team.unset_blood_target_and_timer()
-			to_chat(owner, span_cult_bold("You have cleared the cult's blood target!"))
+			to_chat(owner, span_cult_bold("你已清除血教的鲜血目标！"))
 			return TRUE
 
-		to_chat(owner, span_cult_bold("The cult has already designated a target!"))
+		to_chat(owner, span_cult_bold("血教已经指定了目标！"))
 		return FALSE
 
 	if(!COOLDOWN_FINISHED(src, cult_mark_cooldown))
-		to_chat(owner, span_cult_bold("You aren't ready to place another blood mark yet!"))
+		to_chat(owner, span_cult_bold("你还不能再次施加鲜血标记！"))
 		return FALSE
 
 	var/atom/mark_target = owner.orbiting?.parent || get_turf(owner)
@@ -316,13 +316,13 @@
 		return FALSE
 
 	if(cult_team.set_blood_target(mark_target, owner, 60 SECONDS))
-		to_chat(owner, span_cult_bold("You have marked [mark_target] for the cult! It will last for [DisplayTimeText(cult_mark_duration)]."))
+		to_chat(owner, span_cult_bold("你已为血教标记了[mark_target]！标记将持续 [DisplayTimeText(cult_mark_duration)]。"))
 		COOLDOWN_START(src, cult_mark_cooldown, cult_mark_cooldown_duration)
 		build_all_button_icons(UPDATE_BUTTON_NAME|UPDATE_BUTTON_ICON)
 		addtimer(CALLBACK(src, PROC_REF(reset_button)), cult_mark_cooldown_duration + 1)
 		return TRUE
 
-	to_chat(owner, span_cult("The marking failed!"))
+	to_chat(owner, span_cult("标记失败！"))
 	return FALSE
 
 /datum/action/innate/cult/ghostmark/update_button_name(atom/movable/screen/movable/action_button/current_button, force = FALSE)
@@ -330,8 +330,8 @@
 		name = initial(name)
 		desc = initial(desc)
 	else
-		name = "Clear the Blood Mark"
-		desc = "Remove the Blood Mark you previously set."
+		name = "清除鲜血标记"
+		desc = "移除你先前施加的鲜血标记。"
 
 	return ..()
 
@@ -348,19 +348,19 @@
 		return
 
 	SEND_SOUND(owner, 'sound/effects/magic/enter_blood.ogg')
-	to_chat(owner, span_cult_bold("Your previous mark is gone - you are now ready to create a new blood mark."))
+	to_chat(owner, span_cult_bold("你先前的标记已消失——现在可以施加新的鲜血标记了。"))
 	build_all_button_icons(UPDATE_BUTTON_NAME|UPDATE_BUTTON_ICON)
 
 //////// ELDRITCH PULSE /////////
 
 /datum/action/innate/cult/master/pulse
-	name = "Eldritch Pulse"
-	desc = "Seize upon a fellow cultist or cult structure and teleport it to a nearby location."
+	name = "邪异脉冲"
+	desc = "抓住一名血教徒或血教建筑，将其传送到附近的位置。"
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "arcane_barrage"
 	click_action = TRUE
-	enable_text = span_cult("You prepare to tear through the fabric of reality... <b>Click a target to sieze them!</b>")
-	disable_text = span_cult("You cease your preparations.")
+	enable_text = span_cult("你准备撕裂现实的织物……<b>点击目标即可抓住它！</b>")
+	disable_text = span_cult("你停止了准备。")
 	/// Weakref to whoever we're currently about to toss
 	var/datum/weakref/throwee_ref
 	/// Cooldown of the ability
@@ -387,14 +387,14 @@
 /datum/action/innate/cult/master/pulse/do_ability(mob/living/clicker, atom/clicked_on)
 	var/atom/throwee = throwee_ref?.resolve()
 	if(throwee && QDELING(throwee))
-		to_chat(clicker, span_cult("You lost your target!"))
+		to_chat(clicker, span_cult("你失去了目标！"))
 		throwee = null
 		throwee_ref = null
 		return FALSE
 
 	if(throwee)
 		if(get_dist(throwee, clicked_on) >= 16)
-			to_chat(clicker, span_cult("You can't teleport [clicked_on.p_them()] that far!"))
+			to_chat(clicker, span_cult("你无法将其传送到那么远的地方！"))
 			return FALSE
 
 		var/turf/throwee_turf = get_turf(throwee)
@@ -402,27 +402,27 @@
 		playsound(throwee_turf, 'sound/effects/magic/exit_blood.ogg', 50)
 		new /obj/effect/temp_visual/cult/sparks(throwee_turf, clicker.dir)
 		throwee.visible_message(
-			span_warning("A pulse of magic whisks [throwee] away!"),
-			span_cult("A pulse of blood magic whisks you away..."),
+			span_warning("一道魔法脉冲将[throwee]卷走了！"),
+			span_cult("一道鲜血魔法脉冲将你卷走了……"),
 		)
 
 		if(!do_teleport(throwee, clicked_on, channel = TELEPORT_CHANNEL_CULT))
-			to_chat(clicker, span_cult("The teleport fails!"))
+			to_chat(clicker, span_cult("传送失败了！"))
 			throwee.visible_message(
-				span_warning("...Except they don't go very far"),
-				span_cult("...Except you don't appear to have moved very far."),
+				span_warning("……不过它并没有移动多远"),
+				span_cult("……不过你似乎并没有移动多远。"),
 			)
 			return FALSE
 
 		throwee_turf.Beam(clicked_on, icon_state = "sendbeam", time = 0.4 SECONDS)
 		new /obj/effect/temp_visual/cult/sparks(get_turf(clicked_on), clicker.dir)
 		throwee.visible_message(
-			span_warning("[throwee] appears suddenly in a pulse of magic!"),
-			span_cult("...And you appear elsewhere."),
+			span_warning("[throwee]在一阵魔法脉冲中骤然出现！"),
+			span_cult("……而你出现在了别处。"),
 		)
 
 		COOLDOWN_START(src, pulse_cooldown, pulse_cooldown_duration)
-		to_chat(clicker, span_cult("A pulse of blood magic surges through you as you shift [throwee] through time and space."))
+		to_chat(clicker, span_cult("一股鲜血魔法脉冲涌过你的身体，你将[throwee]穿越时空挪移而去。"))
 		clicker.click_intercept = null
 		throwee_ref = null
 		build_all_button_icons()
@@ -435,12 +435,12 @@
 		if(!IS_CULTIST(living_clicked))
 			return FALSE
 		SEND_SOUND(clicker, sound('sound/items/weapons/thudswoosh.ogg'))
-		to_chat(clicker, span_cult_bold("You reach through the veil with your mind's eye and seize [clicked_on]! <b>Click anywhere nearby to teleport [clicked_on.p_them()]!</b>"))
+		to_chat(clicker, span_cult_bold("你以心灵之眼穿透帷幕，抓住了[clicked_on]！<b>点击附近任意位置即可将其传送！</b>"))
 		throwee_ref = WEAKREF(clicked_on)
 		return TRUE
 
 	if(istype(clicked_on, /obj/structure/destructible/cult))
-		to_chat(clicker, span_cult_bold("You reach through the veil with your mind's eye and lift [clicked_on]! <b>Click anywhere nearby to teleport it!</b>"))
+		to_chat(clicker, span_cult_bold("你以心灵之眼穿透帷幕，举起了[clicked_on]！<b>点击附近任意位置即可将其传送！</b>"))
 		throwee_ref = WEAKREF(clicked_on)
 		return TRUE
 	return FALSE

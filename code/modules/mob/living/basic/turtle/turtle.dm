@@ -6,8 +6,8 @@
 #define LOWER_BOUND_VOLUME 10
 
 /mob/living/basic/turtle
-	name = "turtle"
-	desc = "Dog."
+	name = "乌龟"
+	desc = "狗。"
 	icon_state = "turtle"
 	icon_living = "turtle"
 	icon_dead = "turtle_dead"
@@ -19,10 +19,10 @@
 	health = 100
 	maxHealth = 100
 	speed = 5
-	verb_say = "snaps"
-	verb_ask = "snaps curiously"
-	verb_exclaim = "snaps loudly"
-	verb_yell = "snaps loudly"
+	verb_say = "咔哒作响"
+	verb_ask = "好奇地咔哒作响"
+	verb_exclaim = "大声咔哒作响"
+	verb_yell = "大声咔哒作响"
 	faction = list(FACTION_NEUTRAL)
 	ai_controller = /datum/ai_controller/basic_controller/turtle
 	///our displayed tree
@@ -66,10 +66,10 @@
 	. = ..()
 
 	desc = pick(
-		"Likely Dog...",
-		"Praise the Dog!",
-		"Dog ahead.",
-		"Could this be a Dog?",
+		"很可能是狗……",
+		"赞美狗！",
+		"前方有狗。",
+		"这难道是狗？",
 	)
 
 	add_traits(list(TRAIT_NODROWN, TRAIT_SWIMMER), INNATE_TRAIT)
@@ -132,22 +132,22 @@
 	. = ..()
 
 	if(stat == DEAD)
-		. += span_notice("Its tree seems to be all withered...")
+		. += span_notice("它的树似乎完全枯萎了……")
 		return
 
 	var/destined_path = retrieve_destined_path()
 	var/current_max_growth = path_growth_progress[destined_path]
 
-	var/text_to_display = "Its tree seems to be exuding "
+	var/text_to_display = "它的树似乎正在散发"
 	switch(destined_path)
 		if(PATH_PEST_KILLER)
-			text_to_display += "pest killing"
+			text_to_display += "杀虫"
 		if(PATH_PLANT_HEALER)
-			text_to_display += "plant healing"
+			text_to_display += "植物治疗"
 		if(PATH_PLANT_MUTATOR)
-			text_to_display += "plant mutating"
+			text_to_display += "植物突变"
 
-	text_to_display += " properties... which [current_max_growth >= REQUIRED_TREE_GROWTH ? "seems to be fully grown" : "is yet to develop"]."
+	text_to_display += "的气息……[current_max_growth >= REQUIRED_TREE_GROWTH ? "看来已经完全长成" : "看来尚未发育完全"]。"
 	. += span_notice(text_to_display)
 
 
@@ -207,11 +207,11 @@
 		return NONE
 
 	if(isnull(used_item.reagents))
-		balloon_alert(user, "empty!")
+		balloon_alert(user, "空的！")
 		return ITEM_INTERACT_SUCCESS
 
 	if(stat == DEAD)
-		balloon_alert(user, "its dead!")
+		balloon_alert(user, "它死了！")
 		return ITEM_INTERACT_SUCCESS
 
 	var/should_transfer = FALSE
@@ -221,14 +221,14 @@
 			break
 
 	if(!should_transfer)
-		balloon_alert(user, "refuses to drink!")
+		balloon_alert(user, "拒绝饮用！")
 		return ITEM_INTERACT_SUCCESS
 
 	if(!do_after(user, 1.5 SECONDS, target = src))
 		return ITEM_INTERACT_SUCCESS
 
 	used_item.reagents.trans_to(reagents, 5)
-	balloon_alert(user, "drinks happily")
+	balloon_alert(user, "开心地喝着")
 	playsound(src, 'sound/items/drink.ogg', vol = 25, vary = TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -261,7 +261,7 @@
 		var/atom/movable/movable_food = potential_food
 		movable_food.forceMove(drop_location())
 
-	balloon_alert_to_viewers("spits out some food")
+	balloon_alert_to_viewers("吐出了一些食物")
 
 /mob/living/basic/turtle/death(gibbed)
 	. = ..()

@@ -4,8 +4,8 @@ GLOBAL_VAR_INIT(station_was_nuked, FALSE)
 GLOBAL_VAR(station_nuke_source)
 
 /obj/machinery/nuclearbomb
-	name = "nuclear fission explosive"
-	desc = "You probably shouldn't stick around to see if this is armed."
+	name = "核裂变炸弹"
+	desc = "你大概不该留在这里看它到底有没有被启动。"
 	icon = 'icons/obj/machines/nuke.dmi'
 	icon_state = "nuclearbomb_base"
 	anchored = FALSE
@@ -79,34 +79,34 @@ GLOBAL_VAR(station_nuke_source)
 	. = ..()
 	switch(deconstruction_state)
 		if(NUKESTATE_UNSCREWED)
-			. += span_notice("The front panel has been unscrewed and can be <b>pried open</b>.")
+			. += span_notice("前面板已被拧下螺丝，可以<b>撬开</b>。")
 		if(NUKESTATE_PANEL_REMOVED)
-			. += span_notice("The inner plate is exposed and can be cut with a <b>welding tool</b>.")
+			. += span_notice("内层板已露出，可以用<b>焊接工具</b>切割。")
 		if(NUKESTATE_WELDED)
-			. += span_notice("The inner plate has been cut through and can be <b>pried off</b>.")
+			. += span_notice("内层板已被切开，可以<b>撬掉</b>。")
 		if(NUKESTATE_CORE_EXPOSED)
-			. += span_danger("The inner chamber is exposed, revealing [core] to the outside!")
-			. += span_notice("The damaged inner plate covering the inner chamber can be replaced with some <b>iron</b>.")
+			. += span_danger("内腔已暴露，[core]露在外面！")
+			. += span_notice("覆盖内腔的受损内层板可以用一些<b>铁</b>更换。")
 		if(NUKESTATE_CORE_REMOVED)
-			. += span_notice("The inner chamber is exposed, but is empty.")
+			. += span_notice("内腔已暴露，但里面是空的。")
 		if(NUKESTATE_INTACT)
-			. += span_notice("The front panel is secured.")
+			. += span_notice("前面板已固定。")
 
 	switch(get_nuke_state())
 		if(NUKE_OFF_LOCKED)
-			. += span_notice("The device is awaiting activation codes.")
+			. += span_notice("装置正在等待激活码。")
 		if(NUKE_OFF_UNLOCKED)
-			. += span_notice("The device is set and is ready for arming the detonation countdown.")
+			. += span_notice("装置已设定，可以启动引爆倒计时。")
 		if(NUKE_ON_TIMING)
-			. += span_danger("There are [get_time_left()] seconds until detonation.")
+			. += span_danger("距离引爆还有 [get_time_left()] 秒。")
 		if(NUKE_ON_EXPLODING)
-			. += span_bolddanger("It is in the process of exploding. Perhaps reviewing your affairs is in order.")
+			. += span_bolddanger("它正在爆炸。也许该趁现在回顾一下你的人生了。")
 
 
 /// Checks if the disk inserted is a real nuke disk or not.
 /obj/machinery/nuclearbomb/proc/disk_check(obj/item/disk/nuclear/inserted_disk)
 	if(inserted_disk.fake)
-		say("Authentication failure; disk not recognised.")
+		say("认证失败；无法识别该磁盘。")
 		return FALSE
 
 	return TRUE
@@ -129,15 +129,15 @@ GLOBAL_VAR(station_nuke_source)
 		if(NUKESTATE_CORE_EXPOSED)
 			if(istype(tool, /obj/item/nuke_core_container))
 				var/obj/item/nuke_core_container/core_box = tool
-				to_chat(user, span_notice("You start loading the plutonium core into [core_box]..."))
+				to_chat(user, span_notice("你开始把钚核心装入[core_box]……"))
 				if(!do_after(user, 5 SECONDS, target = src, cog_icon = null))
 					return ITEM_INTERACT_BLOCKING
 
 				if(!core_box.load(core, user))
-					to_chat(user, span_warning("You fail to load the plutonium core into [core_box]. [core_box] has already been used!"))
+					to_chat(user, span_warning("你没能把钚核心装入[core_box]。[core_box]已经被使用过了！"))
 					return ITEM_INTERACT_BLOCKING
 
-				to_chat(user, span_notice("You load the plutonium core into [core_box]."))
+				to_chat(user, span_notice("你把钚核心装入了[core_box]。"))
 				deconstruction_state = NUKESTATE_CORE_REMOVED
 				update_appearance()
 				core = null
@@ -147,11 +147,11 @@ GLOBAL_VAR(station_nuke_source)
 				if(!tool.tool_start_check(user, amount = 20))
 					return ITEM_INTERACT_BLOCKING
 
-				to_chat(user, span_notice("You begin repairing [src]'s inner metal plate..."))
+				to_chat(user, span_notice("你开始修复[src]的内层金属板……"))
 				if(!tool.use_tool(src, user, 10 SECONDS, amount = 20))
 					return ITEM_INTERACT_BLOCKING
 
-				to_chat(user, span_notice("You repair [src]'s inner metal plate. The radiation is contained."))
+				to_chat(user, span_notice("你修好了[src]的内层金属板。辐射已被封闭。"))
 				deconstruction_state = NUKESTATE_PANEL_REMOVED
 				STOP_PROCESSING(SSobj, core)
 				update_appearance()
@@ -160,13 +160,13 @@ GLOBAL_VAR(station_nuke_source)
 		if(NUKESTATE_CORE_REMOVED)
 			if(astype(tool, /obj/item/nuke_core_container)?.core && !istype(tool, /obj/item/nuke_core_container/supermatter))
 				var/obj/item/nuke_core_container/core_box = tool
-				to_chat(user, span_notice("You pry open [core_box] and begin placing [core_box.core] into [src]'s inner chamber..."))
+				to_chat(user, span_notice("你撬开[core_box]，开始把[core_box.core]放入[src]的内腔……"))
 				if(!do_after(user, 15 SECONDS, src))
 					return ITEM_INTERACT_BLOCKING
 
 				core_box.core.forceMove(src)
 				core = core_box.core
-				to_chat(user, span_notice("You place [core_box.core] into [src]'s inner chamber."))
+				to_chat(user, span_notice("你把[core_box.core]放入了[src]的内腔。"))
 				deconstruction_state = NUKESTATE_CORE_EXPOSED
 				update_appearance()
 				core_box.icon_state = core_box::icon_state
@@ -174,13 +174,13 @@ GLOBAL_VAR(station_nuke_source)
 				return ITEM_INTERACT_SUCCESS
 
 			if(istype(tool, /obj/item/nuke_core) && !istype(tool, /obj/item/nuke_core/supermatter_sliver))
-				to_chat(user, span_notice("You begin placing [tool] into [src]'s inner chamber..."))
+				to_chat(user, span_notice("你开始把[tool]放入[src]的内腔……"))
 				if(!do_after(user, 6 SECONDS, src))
 					return ITEM_INTERACT_BLOCKING
 
 				tool.forceMove(src)
 				core = tool
-				to_chat(user, span_notice("You place [tool] into [src]'s inner chamber."))
+				to_chat(user, span_notice("你把[tool]放入了[src]的内腔。"))
 				deconstruction_state = NUKESTATE_CORE_EXPOSED
 				update_appearance()
 				return ITEM_INTERACT_SUCCESS
@@ -190,37 +190,37 @@ GLOBAL_VAR(station_nuke_source)
 /obj/machinery/nuclearbomb/crowbar_act(mob/user, obj/item/tool)
 	switch(deconstruction_state)
 		if(NUKESTATE_UNSCREWED)
-			to_chat(user, span_notice("You start removing [src]'s front panel..."))
+			to_chat(user, span_notice("你开始拆下[src]的前面板……"))
 			if(!tool.use_tool(src, user, 3 SECONDS, volume = 100))
 				return ITEM_INTERACT_BLOCKING
 
-			to_chat(user, span_notice("You remove [src]'s front panel."))
+			to_chat(user, span_notice("你拆下了[src]的前面板。"))
 			deconstruction_state = NUKESTATE_PANEL_REMOVED
 			update_appearance()
 			return ITEM_INTERACT_SUCCESS
 
 		if(NUKESTATE_WELDED)
-			to_chat(user, span_notice("You start prying off [src]'s inner plate..."))
+			to_chat(user, span_notice("你开始撬掉[src]的内层板……"))
 			if(!tool.use_tool(src, user, 3 SECONDS, volume = 100))
 				return ITEM_INTERACT_BLOCKING
 
 			if(core)
-				to_chat(user, span_notice("You pry off [src]'s inner plate. You can see the core's green glow!"))
+				to_chat(user, span_notice("你撬掉了[src]的内层板。你能看到核心发出绿光！"))
 				START_PROCESSING(SSobj, core)
 				deconstruction_state = NUKESTATE_CORE_EXPOSED
 			else
-				to_chat(user, span_notice("You pry off [src]'s inner plate. The inner chamber is empty, save for some beer stains."))
+				to_chat(user, span_notice("你撬掉了[src]的内层板。内腔是空的，只留下一些啤酒渍。"))
 				deconstruction_state = NUKESTATE_CORE_REMOVED
 			update_appearance()
 			new /obj/item/stack/sheet/iron(loc, 15)
 			return ITEM_INTERACT_SUCCESS
 
 		if(NUKESTATE_PANEL_REMOVED)
-			to_chat(user, span_notice("You start levering [src]'s inner panel back into place..."))
+			to_chat(user, span_notice("你开始把[src]的内层板撬回原位……"))
 			if(!tool.use_tool(src, user, 3 SECONDS, volume = 100))
 				return ITEM_INTERACT_BLOCKING
 
-			to_chat(user, span_notice("You lever [src]'s inner panel back into place."))
+			to_chat(user, span_notice("你把[src]的内层板撬回了原位。"))
 			deconstruction_state = NUKESTATE_UNSCREWED
 			update_appearance()
 			return ITEM_INTERACT_SUCCESS
@@ -234,23 +234,23 @@ GLOBAL_VAR(station_nuke_source)
 	switch(deconstruction_state)
 		if(NUKESTATE_INTACT)
 			if(istype(tool, /obj/item/screwdriver/nuke))
-				to_chat(user, span_notice("You start removing [src]'s front panel's screws..."))
+				to_chat(user, span_notice("你开始拆下[src]前面板的螺丝……"))
 				if(!tool.use_tool(src, user, 6 SECONDS, volume = 100))
 					return ITEM_INTERACT_BLOCKING
 
 				deconstruction_state = NUKESTATE_UNSCREWED
-				to_chat(user, span_notice("You remove the screws from [src]'s front panel."))
+				to_chat(user, span_notice("你拆下了[src]前面板的螺丝。"))
 				update_appearance()
 				return ITEM_INTERACT_SUCCESS
 
 		if(NUKESTATE_UNSCREWED)
 			if(istype(tool, /obj/item/screwdriver/nuke))
-				to_chat(user, span_notice("You start screwing [src]'s front panel back in..."))
+				to_chat(user, span_notice("你开始把[src]的前面板拧回原位……"))
 				if(!tool.use_tool(src, user, 8 SECONDS, volume = 100))
 					return ITEM_INTERACT_BLOCKING
 
 				deconstruction_state = NUKESTATE_INTACT
-				to_chat(user, span_notice("You screw [src]'s front panel back into place."))
+				to_chat(user, span_notice("你把[src]的前面板拧回了原位。"))
 				deconstruction_state = NUKESTATE_INTACT
 				update_appearance()
 				return ITEM_INTERACT_SUCCESS
@@ -264,11 +264,11 @@ GLOBAL_VAR(station_nuke_source)
 	if(!tool.tool_start_check(user, amount = 1))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You start cutting [src]'s inner plate..."))
+	to_chat(user, span_notice("你开始切割[src]的内层板……"))
 	if(!tool.use_tool(src, user, 8 SECONDS, volume=100))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You cut [src]'s inner plate."))
+	to_chat(user, span_notice("你切开了[src]的内层板。"))
 	deconstruction_state = NUKESTATE_WELDED
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -277,7 +277,7 @@ GLOBAL_VAR(station_nuke_source)
 /obj/machinery/nuclearbomb/attack_hand_secondary(mob/user, list/modifiers)
 	if(deconstruction_state != NUKESTATE_CORE_EXPOSED)
 		return ..()
-	to_chat(user, span_danger("You can't hold [core] with your bare hands!"))
+	to_chat(user, span_danger("你不能徒手拿[core]！"))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/nuclearbomb/can_interact(mob/user)
@@ -412,26 +412,26 @@ GLOBAL_VAR(station_nuke_source)
 	var/second_status
 	switch(ui_mode)
 		if(NUKEUI_AWAIT_DISK)
-			first_status = "DEVICE LOCKED"
+			first_status = "装置已锁定"
 			if(timing)
-				second_status = "TIME: [get_time_left()]"
+				second_status = "时间：[get_time_left()]"
 			else
-				second_status = "AWAIT DISK"
+				second_status = "等待磁盘"
 		if(NUKEUI_AWAIT_CODE)
-			first_status = "INPUT CODE"
-			second_status = "CODE: [current_code]"
+			first_status = "输入密码"
+			second_status = "密码：[current_code]"
 		if(NUKEUI_AWAIT_TIMER)
-			first_status = "INPUT TIME"
-			second_status = "TIME: [current_code]"
+			first_status = "输入时间"
+			second_status = "时间：[current_code]"
 		if(NUKEUI_AWAIT_ARM)
-			first_status = "DEVICE READY"
-			second_status = "TIME: [get_time_left()]"
+			first_status = "装置就绪"
+			second_status = "时间：[get_time_left()]"
 		if(NUKEUI_TIMING)
-			first_status = "DEVICE ARMED"
-			second_status = "TIME: [get_time_left()]"
+			first_status = "装置已启动"
+			second_status = "时间：[get_time_left()]"
 		if(NUKEUI_EXPLODED)
-			first_status = "DEVICE DEPLOYED"
-			second_status = "THANK YOU"
+			first_status = "装置已引爆"
+			second_status = "谢谢"
 
 	data["status1"] = first_status
 	data["status2"] = second_status
@@ -524,7 +524,7 @@ GLOBAL_VAR(station_nuke_source)
 /obj/machinery/nuclearbomb/proc/set_anchor(mob/anchorer)
 	if(isinspace() && !anchored)
 		if(anchorer)
-			to_chat(anchorer, span_warning("There is nothing to anchor to!"))
+			to_chat(anchorer, span_warning("这里没有可以固定的东西！"))
 		return
 
 	set_anchored(!anchored)
@@ -546,7 +546,7 @@ GLOBAL_VAR(station_nuke_source)
 /// Arms the nuke, or disarms it if it's already active.
 /obj/machinery/nuclearbomb/proc/toggle_nuke_armed()
 	if(safety)
-		to_chat(usr, span_danger("The safety is still on."))
+		to_chat(usr, span_danger("保险仍然开启。"))
 		return
 
 	timing = !timing
@@ -559,8 +559,8 @@ GLOBAL_VAR(station_nuke_source)
 /// Arms the nuke, making it active and triggering all pinpointers to start counting down (+delta alert)
 /obj/machinery/nuclearbomb/proc/arm_nuke(mob/armer)
 	var/turf/our_turf = get_turf(src)
-	message_admins("\The [src] was armed at [ADMIN_VERBOSEJMP(our_turf)] by [armer ? ADMIN_LOOKUPFLW(armer) : "an unknown user"].")
-	armer.log_message("armed \the [src].", LOG_GAME)
+	message_admins("[src]在 [ADMIN_VERBOSEJMP(our_turf)] 被 [armer ? ADMIN_LOOKUPFLW(armer) : "未知用户"] 启动了。")
+	armer.log_message("启动了[src]。", LOG_GAME)
 	armer.add_mob_memory(/datum/memory/bomb_planted/nuke, antagonist = src)
 
 	previous_level = SSsecurity_level.get_current_level_as_number()
@@ -573,18 +573,18 @@ GLOBAL_VAR(station_nuke_source)
 	countdown.start()
 	SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 	notify_ghosts(
-		"A nuclear device has been armed in [get_area_name(src)]!",
+		"一件核装置已在[get_area_name(src)]被启动！",
 		source = src,
-		header = "Nuke Armed",
+		header = "核弹已启动",
 	)
 	update_appearance()
 
 /// Disarms the nuke, reverting all pinpointers and the security level
 /obj/machinery/nuclearbomb/proc/disarm_nuke(mob/disarmer)
 	var/turf/our_turf = get_turf(src)
-	message_admins("\The [src] at [ADMIN_VERBOSEJMP(our_turf)] was disarmed by [disarmer ? ADMIN_LOOKUPFLW(disarmer) : "an unknown user"].")
+	message_admins("[src]在 [ADMIN_VERBOSEJMP(our_turf)] 被 [disarmer ? ADMIN_LOOKUPFLW(disarmer) : "未知用户"] 解除了。")
 	if(disarmer)
-		disarmer.log_message("disarmed [src].", LOG_GAME)
+		disarmer.log_message("解除了[src]。", LOG_GAME)
 
 	detonation_timer = null
 	SSsecurity_level.set_level(previous_level)
@@ -706,9 +706,9 @@ GLOBAL_VAR(station_nuke_source)
 
 		if(DETONATION_HIT_SYNDIE_BASE)
 			priority_announce(
-				"Long Range Scanners indicate that the nuclear device has detonated on a previously unknown base, we assume \
-				the base to be of Syndicate Origin. Good work crew.",
-				"Nuclear Operations Command",
+				"远程扫描显示该核装置在一处此前未知的基地上引爆，我们推测 \
+				该基地属于辛迪加。干得好，全体船员。",
+				"核作战指挥部",
 			)
 
 			var/datum/turf_reservation/syndicate_base = SSmapping.lazy_load_template(LAZY_TEMPLATE_KEY_NUKIEBASE)
@@ -720,9 +720,9 @@ GLOBAL_VAR(station_nuke_source)
 
 		else
 			priority_announce(
-				"Long Range Scanners indicate that the nuclear device has detonated; however seismic activity on the station \
-				is minimal. We anticipate that the device has not detonated on the station itself.",
-				"Nuclear Operations Command",
+				"远程扫描显示该核装置已经引爆；不过空间站上的 \
+				地震活动极小。我们推测该装置并非在空间站本体上引爆。",
+				"核作战指挥部",
 			)
 
 	if(drop_level)
@@ -753,16 +753,16 @@ GLOBAL_VAR(station_nuke_source)
 	if(istype(gibbed.loc, /obj/structure/closet/secure_closet/freezer))
 		var/obj/structure/closet/secure_closet/freezer/freezer = gibbed.loc
 		if(!freezer.jones)
-			to_chat(gibbed, span_bolddanger("You hold onto [freezer] as [source] goes off. \
-				Luckily, as [freezer] is lead-lined, you survive."))
+			to_chat(gibbed, span_bolddanger("当[source]引爆时，你紧紧抓住[freezer]。\
+				幸运的是，[freezer]内衬有铅，你活了下来。"))
 			freezer.jones = TRUE
 			return FALSE
 
 	if(gibbed.stat == DEAD)
 		return FALSE
 
-	to_chat(gibbed, span_userdanger("You are shredded to atoms by [source]!"))
-	gibbed.investigate_log("has been gibbed by a nuclear blast.", INVESTIGATE_DEATHS)
+	to_chat(gibbed, span_userdanger("你被[source]撕成了原子！"))
+	gibbed.investigate_log("被核爆炸炸成了碎片。", INVESTIGATE_DEATHS)
 	gibbed.gib(DROP_ALL_REMAINS)
 	return TRUE
 

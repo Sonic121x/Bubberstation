@@ -23,10 +23,10 @@
 			break
 		if(try_to_mutant_infect(iterating_human, TRUE))
 			infectees++
-			notify_ghosts("[iterating_human] has been infected by the HNZ-1 pathogen!",
+			notify_ghosts("[iterating_human]感染了HNZ-1病原体！",
 				source = iterating_human,
 			)
 
 /datum/round_event/mutant_infestation/announce(fake)
 	alert_sound_to_playing(sound('modular_skyrat/modules/alerts/sound/alerts/alert2.ogg'), override_volume = TRUE)
-	priority_announce("Automated air filtration screeing systems have flagged an unknown pathogen in the ventilation systems, quarantine is in effect.", "Level-1 Viral Biohazard Alert", ANNOUNCER_MUTANTS)
+	priority_announce("自动空气过滤筛查系统在通风系统中检测到未知病原体，现已实施隔离。", "一级病毒生物危害警报", ANNOUNCER_MUTANTS)

@@ -5,9 +5,9 @@
  * Alternative to the Concatenate component.
  */
 /obj/item/circuit_component/format
-	display_name = "Format List"
-	desc = "A component that formats lists, replacing %n in the format string with corresponding nth list item."
-	category = "List"
+	display_name = "格式化列表"
+	desc = "格式化列表的元件：把格式字符串中的 %n 替换为列表中对应的第 n 项。"
+	category = "列表"
 
 	var/static/regex/format_component/list_param_regex = new(@"%([0-9]+)", "g")
 
@@ -66,8 +66,8 @@
  * Alternative to the Concatenate component.
  */
 /obj/item/circuit_component/format/assoc
-	display_name = "Format Associative List"
-	desc = "A component that formats associative lists, replacing %key in the format string with corresponding list\[key] item."
+	display_name = "格式化关联列表"
+	desc = "格式化关联列表的元件：把格式字符串中的 %key 替换为列表中对应的 list\[key] 项。"
 
 	var/static/regex/format_component/assoc_param_regex = new(@"%([a-zA-Z0-9_]+)", "g")
 
@@ -98,11 +98,11 @@
 	// The static regex_context var is what you'd expect src to be, but src is actually the regex instance.
 	var/list/param_list = context.param_list_port.value
 	if(!islist(param_list))
-		return @"[NO LIST]"
+		return @"[无列表]"
 
 	var/value = context.get_list_item(param_list, index_string)
 	if(value == null)
-		return @"[BAD INDEX]"
+		return @"[索引无效]"
 
 	// If this is a datum or atom, it's likely wrapped in a weakref.
 	if(isweakref(value))
@@ -114,6 +114,6 @@
 		var/turf/location = context.get_location()
 		var/turf/target_location = get_turf(value)
 		if(target_location.z != location.z || get_dist(location, target_location) > context.max_range)
-			return @"[OUT OF RANGE]"
+			return @"[超出范围]"
 
 	return "[value]"

@@ -6,7 +6,7 @@
 	var/atom/movable/screen/map_view/char_preview/character_preview_view
 
 /obj/machinery/computer/records/ui_data(mob/user)
-	var/list/data = list()
+	var/list/data = list("jobDisplay" = chinese_job_display(return_mapping = TRUE), "speciesDisplay" = chinese_footprint_species_display(return_mapping = TRUE), "recordDisplay" = chinese_record_value_display(return_mapping = TRUE))
 
 	var/has_access = (authenticated && isliving(user)) || isAdminGhostAI(user)
 	data["authenticated"] = has_access
@@ -52,11 +52,11 @@
 				return FALSE
 			// Don't let people off station futz with the station network.
 			if(!is_station_level(z))
-				balloon_alert(user, "out of range!")
+				balloon_alert(user, "距离太远！")
 				return TRUE
 
 			expunge_record_info(target)
-			balloon_alert(user, "record expunged")
+			balloon_alert(user, "记录已清除")
 			playsound(src, 'sound/machines/terminal/terminal_eject.ogg', 70, TRUE)
 			investigate_log("[key_name(user)] expunged the record of [target.name].", INVESTIGATE_RECORDS)
 
@@ -68,7 +68,7 @@
 			return TRUE
 
 		if("logout")
-			balloon_alert(user, "logged out")
+			balloon_alert(user, "已注销")
 			playsound(src, 'sound/machines/terminal/terminal_off.ogg', 70, TRUE)
 			authenticated = FALSE
 
@@ -77,22 +77,22 @@
 		if("purge_records")
 			// Don't let people off station futz with the station network.
 			if(!is_station_level(z))
-				balloon_alert(user, "out of range!")
+				balloon_alert(user, "距离太远！")
 				return TRUE
 
 			ui.close()
-			balloon_alert(user, "purging records...")
+			balloon_alert(user, "正在清空记录……")
 			playsound(src, 'sound/machines/terminal/terminal_alert.ogg', 70, TRUE)
 
 			if(do_after(user, 5 SECONDS))
 				for(var/datum/record/crew/entry in GLOB.manifest.general)
 					expunge_record_info(entry)
 
-				balloon_alert(user, "records purged")
+				balloon_alert(user, "记录已清空")
 				playsound(src, 'sound/machines/terminal/terminal_off.ogg', 70, TRUE)
 				investigate_log("[key_name(user)] purged all records.", INVESTIGATE_RECORDS)
 			else
-				balloon_alert(user, "interrupted!")
+				balloon_alert(user, "已中断！")
 
 			return TRUE
 
@@ -139,23 +139,23 @@
 		return FALSE
 
 	if(!authenticated && !allowed(user))
-		balloon_alert(user, "access denied")
+		balloon_alert(user, "访问被拒绝")
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 70, TRUE)
 		return FALSE
 
 	if(mugshot.picture.psize_x > ICON_SIZE_X || mugshot.picture.psize_y > ICON_SIZE_Y)
-		balloon_alert(user, "photo too large!")
+		balloon_alert(user, "照片过大！")
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 70, TRUE)
 		return FALSE
 
 	var/trimmed = copytext(mugshot.name, 9, MAX_NAME_LEN) // Remove "photo - "
-	var/name = tgui_input_text(user, "Enter the name of the new record.", "New Record", trimmed, max_length = MAX_NAME_LEN)
+	var/name = tgui_input_text(user, "输入新记录的姓名。", "新建记录", trimmed, max_length = MAX_NAME_LEN)
 	if(!name || !is_operational || !user.can_perform_action(src, ALLOW_SILICON_REACH) || !mugshot || QDELETED(mugshot) || QDELETED(src))
 		return FALSE
 
 	new /datum/record/crew(name = name, character_appearance = mugshot.picture.picture_image)
 
-	balloon_alert(user, "record created")
+	balloon_alert(user, "记录已创建")
 	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 70, TRUE)
 
 	qdel(mugshot)
@@ -168,11 +168,11 @@
 		return FALSE
 
 	if(!allowed(user))
-		balloon_alert(user, "access denied")
+		balloon_alert(user, "访问被拒绝")
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 70, TRUE)
 		return FALSE
 
-	balloon_alert(user, "logged in")
+	balloon_alert(user, "已登录")
 	playsound(src, 'sound/machines/terminal/terminal_on.ogg', 70, TRUE)
 
 	return TRUE

@@ -1,6 +1,6 @@
 /obj/machinery/power/manufacturing/smelter
-	name = "manufacturing smelter"
-	desc = "Pretty much incinerates whatever is put into it. Refines ore (not boulders)."
+	name = "制造冶炼炉"
+	desc = "几乎会焚化放入其中的任何东西。可精炼矿石（不包括矿石块）。"
 	icon_state = "smelter"
 	circuit = /obj/item/circuitboard/machine/manusmelter
 	/// power used to smelt

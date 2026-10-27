@@ -21,19 +21,19 @@
 		return FALSE
 	// Am I Viewer's Ghoul?
 	if(master.owner == viewer.mind)
-		returnString += "This [carbon_current.dna.species.name] bears YOUR mark!"
+		returnString += "这名[chinese_footprint_species_display(carbon_current.dna.species.name)]身上带有你的印记！"
 		returnIcon = "[icon2html('modular_zubbers/icons/misc/language.dmi', world, "ghoul")]"
 	// Am I someone ELSE'S Ghoul?
 	else if(IS_BLOODSUCKER(viewer) || IS_MONSTERHUNTER(viewer) || isobserver(viewer))
-		returnString += "This [carbon_current.dna.species.name] bears the mark of <span class='boldwarning'>[master.return_full_name()][master.broke_masquerade ? " who has broken the Masquerade" : ""]</span>"
+		returnString += "这名[chinese_footprint_species_display(carbon_current.dna.species.name)]身上带有<span class='boldwarning'>[master.return_full_name()][master.broke_masquerade ? "（已违背避世戒律）" : ""]</span>的印记。"
 		returnIcon = "[icon2html('modular_zubbers/icons/misc/language.dmi', world, "ghoul_grey")]"
 	// Are you serving the same master as I am?
 	else if(viewer.mind.has_antag_datum(/datum/antagonist/ghoul) in master.ghouls)
-		returnString += "[p_they(TRUE)] bears the mark of your Master"
+		returnString += "对方身上带有你主人的印记。"
 		returnIcon = "[icon2html('modular_zubbers/icons/misc/language.dmi', world, "ghoul")]"
 	// You serve a different Master than I do.
 	else
-		returnString += "[p_they(TRUE)] bears the mark of another Bloodsucker"
+		returnString += "对方身上带有另一位吸血鬼的印记。"
 		returnIcon = "[icon2html('modular_zubbers/icons/misc/language.dmi', world, "ghoul_grey")]"
 
 	returnString += "</span>\]" // \n"  Don't need spacers. Using . += "" in examine.dm does this on its own.
@@ -47,7 +47,7 @@
 	power = new power()
 	list_to_add_to += power
 	power.Grant(owner.current)
-	log_uplink("[key_name(owner.current)] purchased [power].")
+	log_uplink("[key_name(owner.current)] 购买了 [power]。")
 	return TRUE
 
 /datum/antagonist/ghoul/proc/LevelUpPowers()
@@ -72,6 +72,6 @@
 	ghouldatum.silent = FALSE
 
 	//send alerts of completion
-	to_chat(master, span_danger("You have turned [ghoul_owner.current] into your [ghouldatum.name]! They will no longer be deconverted upon Mindshielding!"))
-	to_chat(ghoul_owner, span_notice("As Blood drips over your body, you feel closer to your Master... You are now the [ghouldatum.name]!"))
+	to_chat(master, span_danger("你已将 [ghoul_owner.current] 转化为你的[ghouldatum.name]！心灵护盾将无法再解除对方的血仆身份！"))
+	to_chat(ghoul_owner, span_notice("鲜血滴落在你的身上，你感觉与主人的联系更加紧密……你现在是[ghouldatum.name]了！"))
 	ghoul_owner.current.playsound_local(null, 'sound/effects/magic/mutate.ogg', 75, FALSE, pressure_affected = FALSE)

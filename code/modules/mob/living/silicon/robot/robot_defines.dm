@@ -5,20 +5,20 @@
  *
  */
 /mob/living/silicon/robot
-	name = "Cyborg"
-	real_name = "Cyborg"
+	name = "半机械人"
+	real_name = "半机械人"
 	icon = 'icons/mob/silicon/robots.dmi' //SKYRAT EDIT - Modified in modular_skyrat\modules\altborgs\code\robot_defines.dm (to allow for custom transformation animations)
 	icon_state = "robot"
 	maxHealth = 100
 	health = 100
 	bubble_icon = "robot"
-	designation = "Default" //used for displaying the prefix & getting the current model of cyborg
+	designation = "默认" //used for displaying the prefix & getting the current model of cyborg
 	hud_type = /datum/hud/robot
 	unique_name = TRUE
 	mouse_drop_zone = TRUE
 	held_items = list(null, null, null) //we use held_items for the module holding, because that makes sense to do!
 	default_hand_amount = 3
-	examine_thats = "This is"
+	examine_thats = "这是"
 
 	///Represents the cyborg's model (engineering, medical, etc.)
 	var/obj/item/robot_model/model = null
@@ -188,10 +188,10 @@
 	lawupdate = FALSE
 	scrambledcodes = TRUE // These are rogue borgs.
 	ionpulse = TRUE
-	var/playstyle_string = "<span class='big bold'>You are a Syndicate assault cyborg!</span><br>\
-		<b>You are armed with powerful offensive tools to aid you in your mission: help the operatives secure the nuclear authentication disk. \
-		Your cyborg LMG will slowly produce ammunition from your power supply, and your operative pinpointer will find and locate fellow nuclear operatives. \
-		<i>Help the operatives secure the disk at all costs!</i></b>"
+	var/playstyle_string = "<span class='big bold'>你是一名辛迪加突击半机械人！</span><br>\
+		<b>你配备了强大的攻击工具来协助完成任务：帮助特工们取得核认证磁盘。\
+		你的半机械人轻机枪会以电力缓慢生成弹药，你的特工指针会找到并定位其他核爆特工。\
+		<i>不惜一切代价帮助特工们取得磁盘！</i></b>"
 	set_model = /obj/item/robot_model/syndicate
 	cell = /obj/item/stock_parts/power_store/cell/hyper
 	radio = /obj/item/radio/borg/syndicate
@@ -219,23 +219,23 @@
 
 /mob/living/silicon/robot/model/syndicate/medical
 	icon_state = "synd_medical"
-	playstyle_string = "<span class='big bold'>You are a Syndicate medical cyborg!</span><br>\
-		<b>You are armed with powerful medical tools to aid you in your mission: help the operatives secure the nuclear authentication disk. \
-		Your hypospray will produce Restorative Nanites, a wonder-drug that will heal most types of bodily damages, including brain damage. It also produces morphine for offense. \
-		Your defibrillator paddles can revive operatives through their suits, or can be used on harm intent to shock enemies! \
-		Your energy saw functions as a circular saw, but can be activated to deal more damage, and your operative pinpointer will find and locate fellow nuclear operatives. \
-		<i>Help the operatives secure the disk at all costs!</i></b>"
+	playstyle_string = "<span class='big bold'>你是一名辛迪加医疗半机械人！</span><br>\
+		<b>你配备了强大的医疗工具来协助完成任务：帮助特工们取得核认证磁盘。\
+		你的催眠喷雾会生成修复纳米机器人，这种神奇药物能治愈大多数身体损伤，包括脑损伤；它还能生成吗啡用于进攻。\
+		你的除颤电极可以隔着特工服将他们救活，也可以在伤害意图下用来电击敌人！\
+		你的能量锯可当作圆锯使用，但启动后能造成更高伤害；你的特工指针会找到并定位其他核爆特工。\
+		<i>不惜一切代价帮助特工们取得磁盘！</i></b>"
 	set_model = /obj/item/robot_model/syndicate_medical
 
 /mob/living/silicon/robot/model/syndicate/saboteur
 	icon_state = "synd_engi"
-	playstyle_string = "<span class='big bold'>You are a Syndicate saboteur cyborg!</span><br>\
-		<b>You are armed with robust engineering tools to aid you in your mission: help the operatives secure the nuclear authentication disk. \
-		Your destination tagger will allow you to stealthily traverse the disposal network across the station \
-		Your welder will allow you to repair the operatives' exosuits, but also yourself and your fellow cyborgs \
-		Your cyborg chameleon projector allows you to assume the appearance and registered name of a Nanotrasen engineering borg, and undertake covert actions on the station \
-		Be aware that almost any physical contact or incidental damage will break your camouflage \
-		<i>Help the operatives secure the disk at all costs!</i></b>"
+	playstyle_string = "<span class='big bold'>你是一名辛迪加破坏半机械人！</span><br>\
+		<b>你配备了坚固的工程工具来协助完成任务：帮助特工们取得核认证磁盘。\
+		你的目的地标签器能让你隐秘地穿越空间站的垃圾处理管网。\
+		你的焊接工具可以修理特工的外骨骼，也能修理你自己和其他半机械人。\
+		你的半机械人变色投影器能让你呈现出纳米传讯工程半机械人的外观与注册名，并在空间站上开展秘密行动。\
+		请注意，几乎任何身体接触或附带损伤都会破坏你的伪装。\
+		<i>不惜一切代价帮助特工们取得磁盘！</i></b>"
 	set_model = /obj/item/robot_model/saboteur
 
 /mob/living/silicon/robot/model/syndicate/kiltborg

@@ -65,7 +65,7 @@
 		liver.apply_organ_damage(min(liver_damage * seconds_per_tick , MAX_TOXIN_LIVER_DAMAGE * seconds_per_tick))
 
 	if(provide_pain_message && liver.damage > 10 && SPT_PROB(liver.damage/6, seconds_per_tick)) //the higher the damage the higher the probability
-		to_chat(owner, span_warning("You feel a dull pain in your abdomen."))
+		to_chat(owner, span_warning("你感到腹部传来一阵钝痛。"))
 
 	if(owner)
 		//apply side effects based on reagents metabolized
@@ -127,7 +127,7 @@
 		if(reagent.overdose_threshold && reagent.volume >= reagent.overdose_threshold && !reagent.overdosed)
 			reagent.overdosed = TRUE
 			need_mob_update += reagent.overdose_start(owner, metabolization_ratio)
-			owner.log_message("has started overdosing on [reagent.name] at [reagent.volume] units.", LOG_GAME)
+			owner.log_message("开始过量摄入 [reagent.name]，当前 [reagent.volume] 单位。", LOG_GAME)
 
 		for(var/addiction, threshold in reagent.addiction_types)
 			var/datum/addiction/addiction_type = addiction

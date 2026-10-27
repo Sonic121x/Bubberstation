@@ -10,7 +10,7 @@
 	///The id/name of the whole Techweb viewable to players.
 	var/id = "Generic"
 	/// Organization name, used for display
-	var/organization = "Third-Party"
+	var/organization = "第三方"
 
 	/// Already unlocked and all designs are now available. Assoc list, id = TRUE
 	var/list/researched_nodes = list()
@@ -305,22 +305,22 @@
 	available_experiments -= completed_experiment
 	completed_experiments[completed_experiment.type] = completed_experiment
 
-	var/result_text = "[completed_experiment] has been completed"
+	var/result_text = "[completed_experiment] 已完成"
 	var/refund = skipped_experiment_types[completed_experiment.type] || 0
 	if(refund > 0)
 		add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = refund))
-		result_text += ", refunding [refund] points"
+		result_text += "，返还 [refund] 点"
 		// Nothing more to gain here, but we keep it in the list to prevent double dipping
 		skipped_experiment_types[completed_experiment.type] = -1
 	var/points_rewarded
 	if(completed_experiment.points_reward)
 		add_point_list(completed_experiment.points_reward)
-		points_rewarded = ",[refund > 0 ? " and" : ""] rewarding [completed_experiment.get_points_reward_text()]"
+		points_rewarded = "，[refund > 0 ? "并" : ""]奖励 [completed_experiment.get_points_reward_text()]"
 		result_text += points_rewarded
 	result_text += "!"
 
 	SEND_SIGNAL(src, COMSIG_TECHWEB_EXPERIMENT_COMPLETED, completed_experiment)
-	log_research("[completed_experiment.name] ([completed_experiment.type]) has been completed on techweb [id]/[organization][refund ? ", refunding [refund] points" : ""][points_rewarded].")
+	log_research("[completed_experiment.name]（[completed_experiment.type]）已在科技网络 [id]/[organization] 上完成[refund ? "，返还 [refund] 点" : ""][points_rewarded]。")
 	return result_text
 
 /datum/techweb/proc/printout_points()
@@ -370,11 +370,11 @@
 	if(!force)
 		if(!available_nodes[node.id] || (auto_adjust_cost && (!can_afford(node.get_price(src)))) || !have_experiments_for_node(node))
 			return FALSE
-	var/log_message = "[id]/[organization] researched node [node.id]"
+	var/log_message = "[id]/[organization] 研究了节点 [node.id]"
 	if(auto_adjust_cost)
 		var/list/node_cost = node.get_price(src)
 		remove_point_list(node_cost)
-		log_message += " at the cost of [json_encode(node_cost)]"
+		log_message += "，耗费 [json_encode(node_cost)]"
 
 	//Add to our researched list
 	researched_nodes[node.id] = TRUE
@@ -406,7 +406,7 @@
 	if(get_that_dosh)
 		var/datum/bank_account/science_department_bank_account = SSeconomy.get_dep_account(ACCOUNT_SCI)
 		science_department_bank_account?.adjust_money(SSeconomy.techweb_bounty)
-		log_message += ", gaining [SSeconomy.techweb_bounty] to [science_department_bank_account] for it."
+		log_message += "，为此获得 [SSeconomy.techweb_bounty] 给 [science_department_bank_account]。"
 
 	// Avoid logging the same 300+ lines at the beginning of every round
 	if (MC_RUNNING())

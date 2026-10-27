@@ -162,7 +162,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 	if(client && SSlag_switch.measures[SLOWMODE_SAY] && !HAS_TRAIT(src, TRAIT_BYPASS_MEASURES) && !forced && src == usr)
 		if(!COOLDOWN_FINISHED(client, say_slowmode))
-			to_chat(src, span_warning("Message not sent due to slowmode. Please wait [SSlag_switch.slowmode_cooldown/10] seconds between messages.\n\"[message]\""))
+			to_chat(src, span_warning("由于慢速模式，消息未发送。请在两条消息之间等待 [SSlag_switch.slowmode_cooldown/10] 秒。\n“[message]”"))
 			return
 		COOLDOWN_START(client, say_slowmode, SSlag_switch.slowmode_cooldown)
 
@@ -339,7 +339,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 			// But we can still see them speak
 			if(speaker_is_signing)
-				deaf_message = "[speaker_name] [speaker.get_default_say_verb()] something, but the motions are too subtle to make out from afar."
+				deaf_message = "[speaker_name] [speaker.get_default_say_verb()]着什么，但动作太细微，从远处看不清。"
 			// If we can't hear we want to continue to the default deaf message
 			else if(!HAS_TRAIT(src, TRAIT_DEAF))
 				if(isliving(speaker))
@@ -348,7 +348,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 					if(mouth_hidden && !HAS_TRAIT(src, TRAIT_SEE_MASK_WHISPER)) // Can't see them speak if their mouth is covered or hidden, unless we're an empath
 						return FALSE
 
-				deaf_message = "[speaker_name] [speaker.verb_whisper] something, but you are too far away to hear [speaker.p_them()]."
+				deaf_message = "[speaker_name] [speaker.verb_whisper]着什么，但你离得太远，听不到在说什么。"
 
 			if(deaf_message)
 				deaf_type = MSG_VISUAL
@@ -394,10 +394,10 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 	if(speaker != src)
 		if(!radio_freq) //These checks have to be separate, else people talking on the radio will make "You can't hear yourself!" appear when hearing people over the radio while deaf.
-			deaf_message = "[speaker_name] [speaker.get_default_say_verb()] something but you cannot hear [speaker.p_them()]."
+			deaf_message = "[speaker_name] [speaker.get_default_say_verb()]着什么，但你听不见。"
 			deaf_type = MSG_VISUAL
 	else
-		deaf_message = span_notice("You can't hear yourself!")
+		deaf_message = span_notice("你听不见自己的声音！")
 		deaf_type = MSG_AUDIBLE // Since you should be able to hear yourself without looking
 
 	// Create map text prior to modifying message for goonchat
@@ -543,7 +543,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 /mob/living/proc/radio(message, list/message_mods = list(), list/spans, language)
 	//SKYRAT EDIT ADDITION BEGIN
 	if((message_mods[MODE_HEADSET] || message_mods[RADIO_EXTENSION]) && !(mobility_flags & MOBILITY_USE) && !isAI(src) && !ispAI(src) && !ismecha(loc)) // If can't use items, you can't press the button
-		to_chat(src, span_warning("You can't use the radio right now as you can't reach the button!"))
+		to_chat(src, span_warning("你现在没法使用无线电，因为你够不到按钮！"))
 		return ITALICS | REDUCE_RANGE
 	//SKYRAT EDIT END
 	var/obj/item/implant/radio/imp = locate() in src
@@ -577,25 +577,25 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	if(message_mods[WHISPER_MODE] == MODE_WHISPER)
 		. = verb_whisper
 	else if(message_mods[WHISPER_MODE] == MODE_WHISPER_CRIT && !HAS_TRAIT(src, TRAIT_SUCCUMB_OVERRIDE))
-		. = "[verb_whisper] in [p_their()] last breath"
+		. = "[verb_whisper]，用尽最后一口气"
 	else if(message_mods[MODE_SING])
 		. = verb_sing
 	// Any subtype of slurring in our status effects make us "slur"
 	else if(locate(/datum/status_effect/speech/slurring) in status_effects)
 		if (HAS_TRAIT(src, TRAIT_SIGN_LANG))
-			. = "loosely signs"
+			. = "随意地打着手语"
 		else
-			. = "slurs"
+			. = "含糊不清地说"
 	else if(has_status_effect(/datum/status_effect/speech/stutter))
 		if(HAS_TRAIT(src, TRAIT_SIGN_LANG))
-			. = "shakily signs"
+			. = "颤抖地打着手语"
 		else
-			. = "stammers"
+			. = "结结巴巴地说"
 	else if(has_status_effect(/datum/status_effect/speech/stutter/derpspeech))
 		if(HAS_TRAIT(src, TRAIT_SIGN_LANG))
-			. = "incoherently signs"
+			. = "语无伦次地打着手语"
 		else
-			. = "gibbers"
+			. = "叽里咕噜地说"
 	else
 		. = ..()
 

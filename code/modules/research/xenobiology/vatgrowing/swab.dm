@@ -1,7 +1,7 @@
 ///Tool capable of taking biological samples from mobs
 /obj/item/swab
-	name = "swab"
-	desc = "Some men use these for different reasons."
+	name = "拭子"
+	desc = "有些人拿它作别的用途。"
 	icon = 'icons/obj/science/vatgrowing.dmi'
 	icon_state = "swab"
 	w_class = WEIGHT_CLASS_TINY

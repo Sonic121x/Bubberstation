@@ -1,6 +1,6 @@
 /mob/living/basic/mining/bileworm
-	name = "bileworm"
-	desc = "Bileworms are dangerous detritivores that attack with the highly acidic bile they produce from consuming detritus."
+	name = "胆汁虫"
+	desc = "胆汁虫是危险的食碎屑动物，会用吞食腐屑后产生的高腐蚀性胆汁发起攻击。"
 	icon = 'icons/mob/simple/lavaland/bileworm.dmi'
 	icon_state = "bileworm"
 	icon_living = "bileworm"
@@ -8,18 +8,18 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BUG|MOB_MINING
 	maxHealth = 110
 	health = 110
-	verb_say = "spittles"
-	verb_ask = "spittles questioningly"
-	verb_exclaim = "splutters and gurgles"
-	verb_yell = "splutters and gurgles"
+	verb_say = "喷着唾沫道"
+	verb_ask = "疑惑地喷着唾沫道"
+	verb_exclaim = "噗噗作响地咕噜道"
+	verb_yell = "噗噗作响地咕噜道"
 	butcher_results = list(/obj/item/food/meat/slab/bugmeat = 4)
 	guaranteed_butcher_results = list(
 		/obj/effect/gibspawner/generic = 1,
 		/obj/item/stack/sheet/animalhide/bileworm = 1,
 		/obj/item/stack/ore/gold = 2,
 	)
-	death_message = "seizes up and falls limp, slowly receeding into its burrow with a dying gurgle..."
-	throw_blocked_message = "is absorbed by the spongy hide of"
+	death_message = "抽搐着瘫软下来，伴着临死的咕噜声缓缓缩回自己的洞穴……"
+	throw_blocked_message = "被吸收进海绵质外皮，无法伤及"
 
 	//it can't be dragged, just butcher it
 	move_resist = INFINITY

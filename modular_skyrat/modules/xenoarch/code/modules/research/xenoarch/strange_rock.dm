@@ -11,8 +11,8 @@
 #define REWARD_THREE 3
 
 /obj/item/xenoarch/strange_rock
-	name = "strange rock"
-	desc = "A mysterious, strange rock that has the potential to have a wonderful item. Also possible for it to have our disposed garbage."
+	name = "奇异岩石"
+	desc = "一块神秘奇异的岩石，里面可能藏着奇妙的物品，也可能只是我们扔掉的垃圾。"
 	icon_state = "rock"
 
 	///The max depth a strange rock can be
@@ -43,13 +43,13 @@
 
 /obj/item/xenoarch/strange_rock/examine(mob/user)
 	. = ..()
-	. += span_notice("[scanned ? "This item has been scanned. Max Depth: [max_depth] cm. Safe Depth: [safe_depth] cm." : "This item has not been scanned."]")
+	. += span_notice("[scanned ? "此物品已扫描。最大深度：[max_depth] 厘米。安全深度：[safe_depth] 厘米。" : "此物品尚未扫描。"]")
 	if(adv_scanned)
-		. += span_notice("The item depth is [item_depth] cm.")
+		. += span_notice("物品深度为 [item_depth] 厘米。")
 
-	. += span_notice("[measured ? "This item has been measured. Dug Depth: [dug_depth]." : "This item has not been measured."]")
+	. += span_notice("[measured ? "此物品已测量。已挖掘深度：[dug_depth]。" : "此物品尚未测量。"]")
 	if(measured && dug_depth > item_depth)
-		. += span_warning("The rock is crumbling, even just brushing it will destroy it!")
+		. += span_warning("岩石已经松散，哪怕轻轻刷一下也会碎掉！")
 
 /obj/item/xenoarch/strange_rock/proc/create_item()
 	choose_tier = rand(1,100)
@@ -123,77 +123,77 @@
 	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/research, SKILL_SPEED_MODIFIER)
 	if(istype(attacking_item, /obj/item/xenoarch/hammer))
 		var/obj/item/xenoarch/hammer/xeno_hammer = attacking_item
-		to_chat(user, span_notice("You begin carefully using your hammer."))
+		to_chat(user, span_notice("你开始小心地用锤子挖掘。"))
 		if(!do_after(user, xeno_hammer.dig_speed * skill_modifier, target = src))
-			to_chat(user, span_warning("You interrupt your careful planning, damaging the rock in the process!"))
+			to_chat(user, span_warning("你打断了精细的操作，损坏了岩石！"))
 			dug_depth += rand(1,5)
 			return
 
 		switch(try_dig(xeno_hammer.dig_amount))
 			if(DIG_UNDEFINED)
-				message_admins("Tell coders something broke with xenoarch hammers and dig amount.")
+				message_admins("请通知开发者：异星考古锤子及其挖掘量出现故障。")
 				return
 
 			if(DIG_DELETE)
-				to_chat(user, span_warning("The rock crumbles, leaving nothing behind."))
+				to_chat(user, span_warning("岩石碎裂了，什么也没留下。"))
 				return
 
 			if(DIG_ROCK)
-				to_chat(user, span_notice("You successfully dig around the item."))
+				to_chat(user, span_notice("你成功挖开了物品周围的岩石。"))
 				user.mind?.adjust_experience(/datum/skill/research, xeno_hammer.dig_amount)
 
 	if(istype(attacking_item, /obj/item/xenoarch/brush))
 		var/obj/item/xenoarch/brush/xeno_brush = attacking_item
-		to_chat(user, span_notice("You begin carefully using your brush."))
+		to_chat(user, span_notice("你开始小心地用刷子清理。"))
 		if(!do_after(user, xeno_brush.dig_speed * skill_modifier, target = src))
-			to_chat(user, span_warning("You interrupt your careful planning, damaging the rock in the process!"))
+			to_chat(user, span_warning("你打断了精细的操作，损坏了岩石！"))
 			dug_depth += rand(1,5)
 			return
 
 		switch(try_uncover())
 			if(BRUSH_DELETE)
-				to_chat(user, span_warning("The rock crumbles, leaving nothing behind."))
+				to_chat(user, span_warning("岩石碎裂了，什么也没留下。"))
 				return
 
 			if(BRUSH_UNCOVER)
-				to_chat(user, span_notice("You successfully brush around the item, fully revealing the item!"))
+				to_chat(user, span_notice("你成功刷净物品周围的碎屑，让它完整显露出来！"))
 				user.mind?.adjust_experience(/datum/skill/research, 20)
 				return
 
 			if(BRUSH_NONE)
-				to_chat(user, span_notice("You brush around the item, but it wasn't revealed... hammer some more."))
+				to_chat(user, span_notice("你刷了刷物品周围，但还没露出来……再用锤子挖一些。"))
 
 	if(istype(attacking_item, /obj/item/xenoarch/tape_measure))
-		to_chat(user, span_notice("You begin carefully using your measuring tape."))
+		to_chat(user, span_notice("你开始小心地用卷尺测量。"))
 		if(!do_after(user, 4 SECONDS * skill_modifier, target = src))
-			to_chat(user, span_warning("You interrupt your careful planning, damaging the rock in the process!"))
+			to_chat(user, span_warning("你打断了精细的操作，损坏了岩石！"))
 			dug_depth += rand(1,5)
 			return
 
 		if(get_measured())
-			to_chat(user, span_notice("You successfully attach a holo measuring tape to the strange rock; the strange rock will now report its dug depth always!"))
+			to_chat(user, span_notice("你成功在奇异岩石上附上全息卷尺，现在它会持续显示已挖掘的深度！"))
 			user.mind?.adjust_experience(/datum/skill/research, 5)
 			return
 
-		to_chat(user, span_warning("The strange rock was already marked with a holo measuring tape."))
+		to_chat(user, span_warning("这块奇异岩石已经有全息卷尺标记了。"))
 
 	if(istype(attacking_item, /obj/item/xenoarch/handheld_scanner))
 		var/obj/item/xenoarch/handheld_scanner/item_scanner = attacking_item
-		to_chat(user, span_notice("You begin to scan [src] using [item_scanner]."))
+		to_chat(user, span_notice("你开始用[item_scanner]扫描[src]。"))
 		if(!do_after(user, item_scanner.scanning_speed * skill_modifier, target = src))
-			to_chat(user, span_warning("You interrupt your scanning, damaging the rock in the process!"))
+			to_chat(user, span_warning("你中断了扫描，损坏了岩石！"))
 			dug_depth += rand(1,5)
 			return
 
 		if(get_scanned(item_scanner.scan_advanced))
-			to_chat(user, span_notice("You successfully attach a holo scanning module to the strange rock; the strange rock will now report its depth information always!"))
+			to_chat(user, span_notice("你成功在奇异岩石上附上全息扫描模块，现在它会持续显示深度信息！"))
 			user.mind?.adjust_experience(/datum/skill/research, 5)
 			if(adv_scanned)
-				to_chat(user, span_notice("The rock's item depth is being reported!"))
+				to_chat(user, span_notice("现在会显示岩石内物品的准确深度！"))
 
 			return
 
-		to_chat(user, span_warning("The strange rock was already marked with a holo scanning module."))
+		to_chat(user, span_warning("这块奇异岩石已经有全息扫描模块标记了。"))
 
 //turfs
 /turf/closed/mineral/strange_rock

@@ -1,7 +1,7 @@
 /obj/structure/destructible/clockwork/sigil/vitality
-	name = "vitality matrix"
-	desc = "A twisting, confusing artifact that drains the unenlightended on contact."
-	clockwork_desc = "A beautiful artifact that will drain the life of heretics placed on top of it."
+	name = "活力矩阵"
+	desc = "一件扭曲而令人困惑的神器，接触时会汲取未开化者的生命。"
+	clockwork_desc = "一件美丽的神器，会汲取被放置在它上面的异教徒的生命。"
 	icon_state = "sigilvitality"
 	effect_stand_time = 2.5 SECONDS // You can't permastun someone with this, so you'll need to keep them grabbed + cuffed
 	idle_color = "#5e87c4"
@@ -41,7 +41,7 @@
 	affected_mob.Paralyze(1 SECONDS)
 
 	if(!affected_mob.adjust_brute_loss(20, updating_health = TRUE, forced = TRUE))
-		visible_message(span_clockred("[src] fails to siphon [affected_mob]'s spirit!"))
+		visible_message(span_clockred("[src] 未能汲取 [affected_mob] 的灵魂！"))
 		return
 
 	playsound(loc, 'modular_skyrat/modules/clock_cult/sound/magic/ratvar_attack.ogg', 40)
@@ -49,20 +49,20 @@
 		affected_mob.do_jitter_animation()
 		affected_mob.death()
 		playsound(loc, 'sound/effects/magic/exit_blood.ogg', 60)
-		to_chat(affected_mob, span_clockred("The last of your life is drained away..."))
+		to_chat(affected_mob, span_clockred("你最后的生命被抽走了……"))
 		check_special_role(affected_mob)
 		GLOB.clock_vitality += (affected_mob.client ? 30 : 10) // 100 (for clients) total in the ideal situation, since it'll take 7 pulses to go from full to crit
 		return
 
-	affected_mob.visible_message(span_clockred("[affected_mob] looks weak as the color fades from their body."), span_clockred("You feel your soul faltering..."))
+	affected_mob.visible_message(span_clockred("[affected_mob] 面色褪去，看起来十分虚弱。"), span_clockred("你感到自己的灵魂正在动摇……"))
 	GLOB.clock_vitality += (affected_mob.client ? 10 : 0) // Monkey or whatever? You get jackshit
 
 
 /// Checks the role of whoever was killed by the vitality sigil, and does any special code if needed.
 /obj/structure/destructible/clockwork/sigil/vitality/proc/check_special_role(mob/living/affected_mob)
 	if(IS_CULTIST(affected_mob))
-		send_clock_message(null, "The dog of Nar'sie, [affected_mob] has had their vitality drained, rejoice!", "<span class='clockred'>")
+		send_clock_message(null, "纳尔西的走狗 [affected_mob] 的活力已被汲取，欢呼吧！", "<span class='clockred'>")
 		spawn_reebe(src)
 	else
-		send_clock_message(null, "[affected_mob] has had their vitality drained by [src], rejoice!", "<span class='clockred'>")
+		send_clock_message(null, "[affected_mob] 的活力已被 [src] 汲取，欢呼吧！", "<span class='clockred'>")
 

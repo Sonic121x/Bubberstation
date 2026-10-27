@@ -392,7 +392,7 @@ GLOBAL_DATUM_INIT(event_logger, /datum/event_logger, new())
 /datum/event_logger/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "EventLogger", "Event Logger")
+		ui = new(user, src, "EventLogger", "事件记录器")
 		ui.open()
 
 /datum/event_logger/ui_close(mob/user)
@@ -492,7 +492,7 @@ GLOBAL_DATUM_INIT(event_logger, /datum/event_logger, new())
 			var/datum/target = locate(track_ref)
 			if(!target)
 				return FALSE
-			if(tgui_alert(user, "Stop tracking [target]?", "Confirm", list("Stop Tracking", "Cancel")) != "Stop Tracking")
+			if(tgui_alert(user, "停止追踪 [target]？", "确认", list("Stop Tracking", "Cancel")) != "Stop Tracking")
 				return FALSE
 			target.disable_evlogging()
 			return TRUE

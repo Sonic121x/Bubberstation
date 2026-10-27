@@ -10,17 +10,17 @@
 
 	var/obj/machinery/door/target_door = interacting_with
 	if (!target_door.panel_open)
-		balloon_alert(user, "open the panel!")
+		balloon_alert(user, "先打开面板！")
 		return ITEM_INTERACT_BLOCKING
 
-	user.balloon_alert_to_viewers("finding coin slot...")
+	user.balloon_alert_to_viewers("正在寻找投币口……")
 	if (!do_after(user, 3 SECONDS, target_door))
-		balloon_alert(user, "couldn't find the slot!")
+		balloon_alert(user, "没找到投币口！")
 		return ITEM_INTERACT_BLOCKING
 
 	if (!target_door.emag_act(user))
 		return ITEM_INTERACT_BLOCKING
 
-	user.balloon_alert_to_viewers("inserted coin")
+	user.balloon_alert_to_viewers("已投入硬币")
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS

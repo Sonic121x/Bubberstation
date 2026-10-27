@@ -12,7 +12,7 @@
 /datum/orderable_item/bepis/party_sleeper
 	purchase_path = /obj/item/circuitboard/machine/sleeper/party
 	cost_per_order = 750
-	desc = "A decommissioned sleeper circuitboard, repurposed for recreational purposes."
+	desc = "一块已退役的睡眠舱电路板，被改用于娱乐用途。"
 
 /datum/orderable_item/bepis/sprayoncan
 	purchase_path = /obj/item/toy/sprayoncan

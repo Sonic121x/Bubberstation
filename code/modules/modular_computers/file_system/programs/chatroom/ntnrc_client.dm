@@ -10,10 +10,10 @@
 
 /datum/computer_file/program/chatclient
 	filename = "ntnrc_client"
-	filedesc = "Chat Client"
+	filedesc = "聊天客户端"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	program_open_overlay = "text"
-	extended_desc = "This program allows communication over NTNRC network."
+	extended_desc = "该程序可通过 NTNRC 网络进行通讯。"
 	size = 8
 	ui_header = "ntnrc_idle.gif"
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
@@ -37,7 +37,7 @@
 /datum/computer_file/program/chatclient/on_install(datum/computer_file/source, obj/item/modular_computer/computer_installing, mob/user)
 	. = ..()
 	if(!username)
-		username = "DefaultUser[rand(100, 999)]"
+		username = "默认用户[rand(100, 999)]"
 
 /datum/computer_file/program/chatclient/Destroy()
 	for(var/datum/ntnet_conversation/discussion as anything in conversations)
@@ -75,7 +75,7 @@
 
 			channel.add_message(message, username)
 			var/mob/living/user = usr
-			user.log_talk(message, LOG_CHAT, tag = "as [username] to channel [channel.title]")
+			user.log_talk(message, LOG_CHAT, tag = "以 [username] 的身份在频道 [channel.title] 中")
 			return TRUE
 		if("PRG_joinchannel")
 			var/new_target = text2num(params["id"])
@@ -120,7 +120,7 @@
 				return
 			for(var/datum/ntnet_conversation/anychannel as anything in SSmodular_computers.chat_channels)
 				if(src in anychannel.active_clients)
-					anychannel.add_status_message("[username] is now known as [newname].")
+					anychannel.add_status_message("[username] 现在改名为 [newname]。")
 			username = newname
 			return TRUE
 		if("PRG_savelog")
@@ -132,16 +132,16 @@
 			var/datum/computer_file/data/text/logfile = new()
 			// Now we will generate HTML-compliant file that can actually be viewed/printed.
 			logfile.filename = logname
-			logfile.stored_text = "\[b\]Logfile dump from NTNRC channel [channel.title]\[/b\]\[BR\]"
+			logfile.stored_text = "\[b\]NTNRC 频道 [channel.title] 的日志导出文件\[/b\]\[BR\]"
 			for(var/message_id in channel.messages)
 				logfile.stored_text = "[logfile.stored_text][channel.messages[message_id]]\[BR\]"
-			logfile.stored_text = "[logfile.stored_text]\[b\]Logfile dump completed.\[/b\]"
+			logfile.stored_text = "[logfile.stored_text]\[b\]日志导出完成。\[/b\]"
 			logfile.calculate_size()
 			if(!computer || !computer.store_file(logfile))
 				if(!computer)
 					// This program shouldn't even be runnable without computer.
 					CRASH("Var computer is null!")
-				computer.visible_message(span_warning("\The [computer] shows an \"I/O Error - Hard drive may be full. Please free some space and try again. Required space: [logfile.size]GQ\" warning."))
+				computer.visible_message(span_warning("[computer] 显示出一条警告：“I/O 错误——硬盘可能已满。请释放一些空间后重试。所需空间：[logfile.size]GQ”。"))
 			return TRUE
 		if("PRG_renamechannel")
 			if(!authed)
@@ -149,7 +149,7 @@
 			var/newname = reject_bad_chattext(params["new_name"], CHANNELNAME_SIZE)
 			if(!newname || !channel)
 				return
-			channel.add_status_message("Channel renamed from [channel.title] to [newname] by operator.")
+			channel.add_status_message("频道管理员已将频道名从 [channel.title] 改为 [newname]。")
 			channel.title = newname
 			return TRUE
 		if("PRG_deletechannel")

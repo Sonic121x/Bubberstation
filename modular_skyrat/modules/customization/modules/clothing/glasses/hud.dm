@@ -1,6 +1,6 @@
 /obj/item/clothing/glasses/hud/eyepatch
-	name = "eyepatch HUD"
-	desc = "A simple HUD designed to interface with optical nerves of a lost eye. This one seems busted."
+	name = "眼罩 HUD"
+	desc = "一副简单的 HUD，设计用于与失去的那只眼睛的视神经对接。这一副似乎已经坏了。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
 	icon_state = "hudpatch"
@@ -16,8 +16,8 @@
 	user.update_worn_glasses()
 
 /obj/item/clothing/glasses/hud/eyepatch/med
-	name = "medical eyepatch HUD"
-	desc = "Do no harm, maybe harm has befell to you, or your poor eyeball, thankfully there's a way to continue your oath, thankfully it didn't mention sleepdarts or monkey men."
+	name = "医疗眼罩 HUD"
+	desc = "勿伤害他人——也许伤害已经降临到你、或你那只可怜的眼球上，所幸还有办法继续践行你的誓言；幸好誓言里没提睡眠飞镖或猴子人。"
 	icon_state = "medpatch"
 	base_icon_state = "medpatch"
 	clothing_traits = list(TRAIT_MEDICAL_HUD)
@@ -31,16 +31,16 @@
 	abstract_type = /datum/atom_skin/medpatch
 
 /datum/atom_skin/medpatch/eyepatch
-	preview_name = "Eyepatch"
+	preview_name = "眼罩"
 	new_icon_state = "medpatch"
 
 /datum/atom_skin/medpatch/fake_blindfold
-	preview_name = "Fake Blindfold"
+	preview_name = "假蒙眼布"
 	new_icon_state = "medfold"
 
 /obj/item/clothing/glasses/hud/eyepatch/meson
-	name = "mesons eyepatch HUD"
-	desc = "For those that only want to go half insane when staring at the supermatter."
+	name = "介子眼罩 HUD"
+	desc = "献给那些盯着超物质时只想疯一半的人。"
 	icon_state = "mesonpatch"
 	base_icon_state = "mesonpatch"
 	clothing_traits = list(TRAIT_MADNESS_IMMUNE)
@@ -57,16 +57,16 @@
 	abstract_type = /datum/atom_skin/mesonpatch
 
 /datum/atom_skin/mesonpatch/eyepatch
-	preview_name = "Eyepatch"
+	preview_name = "眼罩"
 	new_icon_state = "mesonpatch"
 
 /datum/atom_skin/mesonpatch/fake_blindfold
-	preview_name = "Fake Blindfold"
+	preview_name = "假蒙眼布"
 	new_icon_state = "mesonfold"
 
 /obj/item/clothing/glasses/hud/eyepatch/diagnostic
-	name = "diagnostic eyepatch HUD"
-	desc = "Lost your eyeball to a rogue borg? Dare to tell a Dogborg to do it's job? Got bored? Whatever the reason, this bit of tech will help you still repair borgs, they'll never need it since they usually do it themselves, but its the thought that counts."
+	name = "诊断眼罩 HUD"
+	desc = "眼球被失控的半机械人弄没了？敢不敢叫机器狗干它的活？还是单纯觉得腻了？不管什么原因，这一小块科技都能帮你继续修理半机械人——它们通常自己就修了，永远用不上你，但心意最重要。"
 	icon_state = "robopatch"
 	base_icon_state = "robopatch"
 	clothing_traits = list(TRAIT_DIAGNOSTIC_HUD)
@@ -80,16 +80,16 @@
 	abstract_type = /datum/atom_skin/robopatch
 
 /datum/atom_skin/robopatch/eyepatch
-	preview_name = "Eyepatch"
+	preview_name = "眼罩"
 	new_icon_state = "robopatch"
 
 /datum/atom_skin/robopatch/fake_blindfold
-	preview_name = "Fake Blindfold"
+	preview_name = "假蒙眼布"
 	new_icon_state = "robofold"
 
 /obj/item/clothing/glasses/hud/eyepatch/sci
-	name = "science eyepatch HUD"
-	desc = "Every few years, the aspiring mad scientist says to themselves 'I've got the castle, the evil laugh and equipment, but what I need is a look', thankfully, Dr. Galox has already covered that for you dear friend - while it doesn't do much beyond scan chemicals, what it lacks in use it makes up for in style."
+	name = "科研眼罩 HUD"
+	desc = "每隔几年，那些立志成为疯狂科学家的人就会对自己说：“城堡、邪恶的笑声和装备我都齐了，就缺一副好眼神。”所幸，亲爱的朋友，Galox 博士已经为你解决了这件事——除了扫描化学物质之外它做不了什么，但它用造型弥补了实用性的不足。"
 	icon_state = "scipatch"
 	base_icon_state = "scipatch"
 	clothing_traits = list(TRAIT_REAGENT_SCANNER, TRAIT_RESEARCH_SCANNER)
@@ -102,17 +102,17 @@
 	abstract_type = /datum/atom_skin/scipatch
 
 /datum/atom_skin/scipatch/eyepatch
-	preview_name = "Eyepatch"
+	preview_name = "眼罩"
 	new_icon_state = "scipatch"
 
 /datum/atom_skin/scipatch/fake_blindfold
-	preview_name = "Fake Blindfold"
+	preview_name = "假蒙眼布"
 	new_icon_state = "scifold"
 
 /// BLINDFOLD HUDS ///
 /obj/item/clothing/glasses/trickblindfold/obsolete
-	name = "obsolete fake blindfold"
-	desc = "An ornate fake blindfold, devoid of any electronics. It's belived to be originally worn by members of bygone military force that sought to protect humanity."
+	name = "老旧假眼罩"
+	desc = "一副华丽却没有半点电子元件的假眼罩。据信最初由某个致力于保护人类的已消亡军事组织成员佩戴。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
 	icon_state = "obsoletefold"
@@ -120,25 +120,25 @@
 	can_switch_eye = TRUE
 
 /obj/item/clothing/glasses/hud/eyepatch/med/blindfold
-	name = "medical blindfold HUD"
-	desc = "a fake blindfold with a medical HUD inside, great for helping keep a poker face when dealing with patients."
+	name = "医疗蒙眼布 HUD"
+	desc = "一条内部装有医疗 HUD 的假蒙眼布，很适合在面对病人时保持面无表情。"
 	icon_state =  "medfold"
 	base_icon_state =  "medfold"
 
 /obj/item/clothing/glasses/hud/eyepatch/meson/blindfold
-	name = "meson blindfold HUD"
-	desc = "a fake blindfold with meson lenses inside. Doesn't shield against welding."
+	name = "介子蒙眼布 HUD"
+	desc = "一条内部装有介子镜片的假蒙眼布。不能防护焊接。"
 	icon_state =  "mesonfold"
 	base_icon_state =  "mesonfold"
 
 /obj/item/clothing/glasses/hud/eyepatch/diagnostic/blindfold
-	name = "diagnostic blindfold HUD"
-	desc = "a fake blindfold with a diagnostic HUD inside, excellent for working on androids."
+	name = "诊断蒙眼布 HUD"
+	desc = "一条内部装有诊断 HUD 的假蒙眼布，非常适合在仿生人身上作业。"
 	icon_state =  "robofold"
 	base_icon_state =  "robofold"
 
 /obj/item/clothing/glasses/hud/eyepatch/sci/blindfold
-	name = "science blindfold HUD"
-	desc = "a fake blindfold with a science HUD inside, provides a way to get used to blindfolds before you eventually end up needing the real thing."
+	name = "科研蒙眼布 HUD"
+	desc = "一条内部装有科研 HUD 的假蒙眼布，让你在最终真的需要蒙眼之前先习惯一下。"
 	icon_state =  "scifold"
 	base_icon_state =  "scifold"

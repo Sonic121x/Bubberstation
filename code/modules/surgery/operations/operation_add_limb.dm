@@ -2,8 +2,8 @@
 
 // This surgery is so snowflake that it doesn't use any of the operation subtypes, it forges its own path
 /datum/surgery_operation/limb/prosthetic_replacement
-	name = "prosthetic replacement"
-	desc = "Replace a missing limb with a prosthetic (or arbitrary) item."
+	name = "义肢替换"
+	desc = "用义肢（或任意物品）替换缺失的肢体。"
 	implements = list(
 		/obj/item/bodypart = 1,
 		/obj/item = 1,
@@ -23,24 +23,24 @@
 	VAR_PRIVATE/list/cached_prosthetic_options
 
 /datum/surgery_operation/limb/prosthetic_replacement/get_recommended_tool()
-	return "any limb / any item"
+	return "任意肢体 / 任意物品"
 
 /datum/surgery_operation/limb/prosthetic_replacement/get_any_tool()
-	return "Any suitable arm replacement"
+	return "任何合适的替代手臂"
 
 /datum/surgery_operation/limb/prosthetic_replacement/all_required_strings()
 	. = ..()
-	. += "the limb must be missing / a stump"
+	. += "肢体必须已缺失 / 为残肢"
 
 /datum/surgery_operation/limb/prosthetic_replacement/any_required_strings()
-	return list("arms may receive any suitable item in lieu of a replacement limb") + ..()
+	return list("手臂可以用任何合适的物品代替义肢") + ..()
 
 /datum/surgery_operation/limb/prosthetic_replacement/get_radial_options(obj/item/bodypart/chest/chest, obj/item/tool, operating_zone)
 	var/datum/radial_menu_choice/option = LAZYACCESS(cached_prosthetic_options, tool.type)
 	if(!option)
 		option = new()
-		option.name = "attach [initial(tool.name)]"
-		option.info = "Replace the patient's missing limb with [initial(tool.name)]."
+		option.name = "安装 [initial(tool.name)]"
+		option.info = "用 [initial(tool.name)] 替换病人缺失的肢体。"
 		option.image = image(tool.type)
 		LAZYSET(cached_prosthetic_options, tool.type, option)
 
@@ -88,11 +88,11 @@
 		surgeon,
 		limb.owner,
 		// "You begin to attach the right arm to john doe's right arm stump"
-		span_notice("You begin to attach [tool]'s to [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to attach [tool]'s to [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] begins to attach [tool]'s to [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始把 [tool] 接到[FORMAT_LIMB_OWNER(limb)]上……"),
+		span_notice("[surgeon] 开始把 [tool] 接到[FORMAT_LIMB_OWNER(limb)]上。"),
+		span_notice("[surgeon] 开始把 [tool] 接到[FORMAT_LIMB_OWNER(limb)]上。"),
 	)
-	display_pain(limb.owner, "You feel an uncomfortable sensation where your [parse_zone(limb.body_zone)] should be!")
+	display_pain(limb.owner, "你本该长着[chinese_body_zone_display(parse_zone(limb.body_zone))]的地方传来一阵不适感！")
 
 	operation_args[OPERATION_REJECTION_DAMAGE] = 10
 	if(isbodypart(tool))
@@ -118,11 +118,11 @@
 		bodypart_to_attach.bodypart_flags |= BODYPART_IMPLANTED
 	display_results(
 		surgeon, patient,
-		span_notice("You succeed in replacing [patient]'s [bodypart_to_attach.plaintext_zone]."),
-		span_notice("[surgeon] successfully replaces [patient]'s [bodypart_to_attach.plaintext_zone] with [bodypart_to_attach]!"),
-		span_notice("[surgeon] successfully replaces [patient]'s [bodypart_to_attach.plaintext_zone]!"),
+		span_notice("你成功替换了[patient]的[chinese_body_zone_display(bodypart_to_attach.plaintext_zone)]。"),
+		span_notice("[surgeon] 成功用 [bodypart_to_attach] 替换了[patient]的[chinese_body_zone_display(bodypart_to_attach.plaintext_zone)]！"),
+		span_notice("[surgeon] 成功替换了[patient]的[chinese_body_zone_display(bodypart_to_attach.plaintext_zone)]！"),
 	)
-	display_pain(patient, "You feel synthetic sensation wash from your [bodypart_to_attach.plaintext_zone], which you can feel again!", TRUE)
+	display_pain(patient, "你感到[chinese_body_zone_display(bodypart_to_attach.plaintext_zone)]传来合成的触感，你又能感觉到它了！", TRUE)
 
 /datum/surgery_operation/limb/prosthetic_replacement/proc/handle_arbitrary_prosthetic(mob/living/carbon/patient, mob/living/surgeon, obj/item/thing_to_attach, target_zone)
 	SSblackbox.record_feedback("tally", "arbitrary_prosthetic", 1, initial(thing_to_attach.name))
@@ -130,17 +130,17 @@
 	new_limb.add_surgical_state(SURGERY_PROSTHETIC_UNSECURED)
 	display_results(
 		surgeon, patient,
-		span_notice("You attach [thing_to_attach]."),
-		span_notice("[surgeon] finishes attaching [thing_to_attach]!"),
-		span_notice("[surgeon] finishes the attachment procedure!"),
+		span_notice("你装上了 [thing_to_attach]。"),
+		span_notice("[surgeon] 完成了 [thing_to_attach] 的安装！"),
+		span_notice("[surgeon] 完成了安装程序！"),
 	)
-	display_pain(patient, "You feel a strange sensation as [thing_to_attach] takes the place of your arm!", TRUE)
+	display_pain(patient, "当 [thing_to_attach] 取代你的手臂时，你感到一阵怪异的感觉！", TRUE)
 
 #undef OPERATION_REJECTION_DAMAGE
 
 /datum/surgery_operation/limb/secure_arbitrary_prosthetic
-	name = "secure prosthetic"
-	desc = "Ensure that an arbitrary prosthetic is properly attached to a patient's body."
+	name = "固定义肢"
+	desc = "确保任意义肢已正确固定在病人身体上。"
 	implements = list(
 		/obj/item/stack/medical/suture = 1,
 		/obj/item/stack/medical/wrap/sticky_tape/surgical = 1.25,
@@ -157,21 +157,21 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to [tool.singular_name] [limb] to [limb.owner]'s body."),
-		span_notice("[surgeon] begins to [tool.singular_name] [limb] to [limb.owner]'s body."),
-		span_notice("[surgeon] begins to [tool.singular_name] something to [limb.owner]'s body."),
+		span_notice("你开始用 [tool.singular_name] 把 [limb] 固定到[limb.owner]的身体上。"),
+		span_notice("[surgeon] 开始用 [tool.singular_name] 把 [limb] 固定到[limb.owner]的身体上。"),
+		span_notice("[surgeon] 开始用 [tool.singular_name] 把某样东西固定到[limb.owner]的身体上。"),
 	)
-	display_pain(limb.owner, "[surgeon] begins to [tool.singular_name] [limb] to your body!", IS_ROBOTIC_LIMB(limb))
+	display_pain(limb.owner, "[surgeon] 开始用 [tool.singular_name] 把 [limb] 固定到你身上！", IS_ROBOTIC_LIMB(limb))
 
 /datum/surgery_operation/limb/secure_arbitrary_prosthetic/on_success(obj/item/bodypart/limb, mob/living/surgeon, obj/item/stack/medical/tool, list/operation_args)
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You finish [tool.apply_verb] [limb] to [limb.owner]'s body."),
-		span_notice("[surgeon] finishes [tool.apply_verb] [limb] to [limb.owner]'s body."),
-		span_notice("[surgeon] finishes the [tool.apply_verb] procedure!"),
+		span_notice("你完成了把 [limb] 固定到[limb.owner]身体上的操作。"),
+		span_notice("[surgeon] 完成了把 [limb] 固定到[limb.owner]身体上的操作。"),
+		span_notice("[surgeon] 完成了固定程序！"),
 	)
-	display_pain(limb.owner, "You feel more secure as your prosthetic is firmly attached to your body!", IS_ROBOTIC_LIMB(limb))
+	display_pain(limb.owner, "义肢牢牢固定在身上，你感到安心多了！", IS_ROBOTIC_LIMB(limb))
 	limb.remove_surgical_state(SURGERY_PROSTHETIC_UNSECURED)
 	limb.AddComponent(/datum/component/item_as_prosthetic_limb, null, 0) // updates drop probability to zero
 	tool.use(1)

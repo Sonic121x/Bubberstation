@@ -6,7 +6,7 @@
  */
 
 /datum/action/cooldown/bloodsucker/targeted/tremere
-	name = "Tremere Gift"
+	name = "特雷默恩赐"
 	desc = ""
 	power_explanation = ""
 	active_background_icon_state = "tremere_power_on"

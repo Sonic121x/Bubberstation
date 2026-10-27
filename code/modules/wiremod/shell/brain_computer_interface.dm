@@ -1,6 +1,6 @@
 /obj/item/organ/cyberimp/bci
-	name = "brain-computer interface"
-	desc = "An implant that can be placed in a user's head to control circuits using their brain."
+	name = "脑机接口"
+	desc = "一种可植入使用者头部、让其用大脑控制电路的植入体。"
 	icon = 'icons/obj/science/circuits.dmi'
 	icon_state = "bci"
 	zone = BODY_ZONE_HEAD
@@ -56,8 +56,8 @@
 	QDEL_LIST_ASSOC_VAL(action_comp.granted_to)
 
 /obj/item/circuit_component/bci_core
-	display_name = "BCI Core"
-	desc = "Controls the core operations of the BCI."
+	display_name = "脑机接口核心"
+	desc = "控制脑机接口的核心操作。"
 
 	/// A reference to the action button to look at charge/get info
 	var/datum/action/innate/bci_charge_action/charge_action
@@ -139,7 +139,7 @@
 	if (bci.owner.stat == DEAD)
 		return
 
-	to_chat(bci.owner, "<i>You hear a strange, robotic voice in your head...</i> \"<span class='[GLOB.component_span_color_list[color_input.value]]'>[span_robot("[html_encode(sent_message)]")]</span>\"") // BUBBER EDIT
+	to_chat(bci.owner, "<i>你脑海中响起一个陌生而机械的声音……</i>“<span class='[GLOB.component_span_color_list[color_input.value]]'>[span_robot("[html_encode(sent_message)]")]</span>”") // BUBBER EDIT
 
 /obj/item/circuit_component/bci_core/proc/on_organ_implanted(datum/source, mob/living/carbon/owner)
 	SIGNAL_HANDLER
@@ -181,13 +181,13 @@
 		return
 
 	parent.cell.give(shock_damage * 2)
-	to_chat(source, span_notice("You absorb some of the shock into your [parent.name]!"))
+	to_chat(source, span_notice("你吸收了一部分电击，为你的 [parent.name] 补充了电量！"))
 
 /obj/item/circuit_component/bci_core/proc/on_examine(datum/source, mob/mob, list/examine_text)
 	SIGNAL_HANDLER
 
 	if (isobserver(mob))
-		examine_text += span_notice("[source.p_They()] [source.p_have()] <a href='byond://?src=[REF(src)];open_bci=1'>\a [parent] implanted in [source.p_them()]</a>.")
+		examine_text += span_notice("其体内植入了<a href='byond://?src=[REF(src)];open_bci=1'>\a [parent]</a>。")
 
 /obj/item/circuit_component/bci_core/Topic(href, list/href_list)
 	..()
@@ -199,7 +199,7 @@
 		parent.attack_ghost(usr)
 
 /datum/action/innate/bci_charge_action
-	name = "Check BCI Charge"
+	name = "查看脑机接口电量"
 	check_flags = NONE
 	button_icon = 'icons/obj/machines/cell_charger.dmi'
 	button_icon_state = "cell"
@@ -235,10 +235,10 @@
 	var/obj/item/stock_parts/power_store/cell/cell = circuit_component.parent.cell
 
 	if (isnull(cell))
-		to_chat(owner, span_boldwarning("[circuit_component.parent] has no power cell."))
+		to_chat(owner, span_boldwarning("[circuit_component.parent] 没有电池。"))
 	else
-		to_chat(owner, span_info("[circuit_component.parent]'s [cell.name] has <b>[cell.percent()]%</b> charge left."))
-		to_chat(owner, span_info("You can recharge it by using a cyborg recharging station."))
+		to_chat(owner, span_info("[circuit_component.parent] 的 [cell.name] 剩余 <b>[cell.percent()]%</b> 电量。"))
+		to_chat(owner, span_info("你可以使用半机械人充电站为其充电。"))
 
 /datum/action/innate/bci_charge_action/process(seconds_per_tick)
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
@@ -249,8 +249,8 @@
 	button.maptext = cell ? MAPTEXT("[cell.percent()]%") : ""
 
 /obj/machinery/bci_implanter
-	name = "brain-computer interface manipulation chamber"
-	desc = "A machine that, when given a brain-computer interface, will implant it into an occupant. Otherwise, will remove any brain-computer interfaces they already have."
+	name = "脑机接口操作舱"
+	desc = "一种机器，装入脑机接口后可将其植入舱内人员体内；若没有，则会取出其已有的脑机接口。"
 	circuit = /obj/item/circuitboard/machine/bci_implanter
 	icon = 'icons/obj/machines/bci_implanter.dmi'
 	icon_state = "bci_implanter"
@@ -282,9 +282,9 @@
 /obj/machinery/bci_implanter/examine(mob/user)
 	. = ..()
 	if (isnull(bci_to_implant))
-		. += span_notice("There is no BCI inserted.")
+		. += span_notice("未装入脑机接口。")
 	else
-		. += span_notice("Right-click to remove current BCI.")
+		. += span_notice("右键点击可取出当前的脑机接口。")
 
 /obj/machinery/bci_implanter/proc/set_busy(status, working_icon)
 	busy = status
@@ -327,14 +327,14 @@
 		return
 
 	if (locked)
-		balloon_alert(user, "it's locked!")
+		balloon_alert(user, "已锁定！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if (isnull(bci_to_implant))
-		balloon_alert(user, "no bci inserted!")
+		balloon_alert(user, "未装入脑机接口！")
 	else
 		user.put_in_hands(bci_to_implant)
-		balloon_alert(user, "ejected bci")
+		balloon_alert(user, "已弹出脑机接口")
 
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -344,16 +344,16 @@
 
 	var/obj/item/organ/cyberimp/bci/new_bci = tool
 	if (!(locate(/obj/item/integrated_circuit) in new_bci))
-		balloon_alert(user, "bci has no circuit!")
+		balloon_alert(user, "脑机接口中没有电路！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/organ/cyberimp/bci/previous_bci_to_implant = bci_to_implant
 	user.transferItemToLoc(new_bci, src)
 	bci_to_implant = new_bci
 	if (isnull(previous_bci_to_implant))
-		balloon_alert(user, "inserted bci")
+		balloon_alert(user, "已装入脑机接口")
 	else
-		balloon_alert(user, "swapped bci")
+		balloon_alert(user, "已更换脑机接口")
 		user.put_in_hands(previous_bci_to_implant)
 	return ITEM_INTERACT_SUCCESS
 
@@ -398,14 +398,14 @@
 		bci_organ.Remove(carbon_occupant)
 
 		if (isnull(bci_to_implant))
-			say("Occupant's previous brain-computer interface has been transferred to internal storage unit.")
+			say("已将舱内人员原有的脑机接口转移至内部储存单元。")
 			carbon_occupant.transferItemToLoc(bci_organ, src)
 			bci_to_implant = bci_organ
 		else
-			say("Occupant's previous brain-computer interface has been ejected.")
+			say("舱内人员原有的脑机接口已被弹出。")
 			bci_organ.forceMove(drop_location())
 	else if (!isnull(bci_to_implant))
-		say("Occupant has been injected with [bci_to_implant].")
+		say("已为舱内人员注入 [bci_to_implant]。")
 		bci_to_implant.Insert(carbon_occupant)
 
 /obj/machinery/bci_implanter/open_machine(drop = TRUE, density_to_set = FALSE)
@@ -426,7 +426,7 @@
 	if (istype(occupant))
 		var/obj/item/organ/cyberimp/bci/bci_organ = carbon_occupant.get_organ_by_type(/obj/item/organ/cyberimp/bci)
 		if (isnull(bci_organ) && isnull(bci_to_implant))
-			say("No brain-computer interface inserted, and occupant does not have one. Insert a BCI to implant one.")
+			say("未装入脑机接口，且舱内人员本身也没有。请装入一个脑机接口以进行植入。")
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 			return FALSE
 
@@ -437,9 +437,9 @@
 	var/message
 
 	if (locked)
-		message = "it won't budge!"
+		message = "纹丝不动！"
 	else if (IS_UNCONSCIOUS_OR_CRIT(user))
-		message = "you don't have the energy!"
+		message = "你没有力气了！"
 
 	if (!isnull(message))
 		if (COOLDOWN_FINISHED(src, message_cooldown))
@@ -455,7 +455,7 @@
 		close_machine(null, user)
 		return
 	else if (locked)
-		balloon_alert(user, "it's locked!")
+		balloon_alert(user, "已锁定！")
 		return
 
 	open_machine()
@@ -476,7 +476,7 @@
 	return ..()
 
 /obj/item/circuitboard/machine/bci_implanter
-	name = "Brain-Computer Interface Manipulation Chamber"
+	name = "脑机接口操作舱"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/bci_implanter
 	req_components = list(

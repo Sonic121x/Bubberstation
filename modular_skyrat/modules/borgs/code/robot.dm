@@ -48,36 +48,36 @@
 	if(model && model.model_features && (TRAIT_R_BIG in model.model_features))
 		maptext_height = 64
 
-GAME_VERB_PROC_DESC(/mob/living/silicon/robot, rest_style, "Switch Rest Style", "Select your resting pose.", "AI Commands")
+GAME_VERB_PROC_DESC(/mob/living/silicon/robot, rest_style, "切换休息姿势", "选择你的休息姿势。", "AI Commands")
 	if(!can_rest())
-		to_chat(src, span_warning("You can't do that!"))
+		to_chat(src, span_warning("你不能这么做！"))
 		return
-	var/choice = tgui_alert(src, "Select resting pose", "", list("Resting", "Sitting", "Belly up"))
+	var/choice = tgui_alert(src, "选择休息姿势", "", list("躺卧", "坐下", "仰面朝天"))
 	switch(choice)
-		if("Resting")
+		if("躺卧")
 			robot_rest_style = ROBOT_REST_NORMAL
-		if("Sitting")
+		if("坐下")
 			robot_rest_style = ROBOT_REST_SITTING
-		if("Belly up")
+		if("仰面朝天")
 			robot_rest_style = ROBOT_REST_BELLY_UP
 	robot_resting = robot_rest_style
 	if (robot_resting)
 		on_lying_down()
 	update_icons()
 
-GAME_VERB_PROC(/mob/living/silicon/robot, robot_lay_down, "Lay down", "AI Commands")
+GAME_VERB_PROC(/mob/living/silicon/robot, robot_lay_down, "躺下", "AI Commands")
 	if(!can_rest())
-		to_chat(src, span_warning("You can't do that!"))
+		to_chat(src, span_warning("你不能这么做！"))
 		return
 	if(IS_UNCONSCIOUS_OR_CRIT(src)) //Make sure we don't enable movement when not concious
 		return
 	if(robot_resting)
-		to_chat(src, span_notice("You are now getting up."))
+		to_chat(src, span_notice("你现在起身了。"))
 		robot_resting = FALSE
 		mobility_flags = MOBILITY_FLAGS_DEFAULT
 		on_standing_up()
 	else
-		to_chat(src, span_notice("You are now laying down."))
+		to_chat(src, span_notice("你现在躺下了。"))
 		robot_resting = robot_rest_style
 		on_lying_down()
 	update_icons()

@@ -1,8 +1,8 @@
 //works similar to the experiment machine (experiment.dm) except it just holds more and more prisoners
 
 /obj/machinery/fugitive_capture
-	name = "bluespace capture machine"
-	desc = "Much, MUCH bigger on the inside to transport prisoners safely."
+	name = "蓝空间捕获机"
+	desc = "内部空间比外面大得多得多，可安全运输囚犯。"
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "bluespace-prison"
 	density = TRUE
@@ -11,7 +11,7 @@
 
 /obj/machinery/fugitive_capture/examine(mob/user)
 	. = ..()
-	. += span_notice("Add a prisoner by dragging them into the machine.")
+	. += span_notice("将囚犯拖入机器即可将其收押。")
 
 /obj/machinery/fugitive_capture/mouse_drop_receive(mob/target, mob/user, params)
 	var/mob/living/fugitive_hunter = user
@@ -20,7 +20,7 @@
 	var/mob/living/carbon/human/fugitive = target
 	var/datum/antagonist/fugitive/fug_antag = fugitive.mind.has_antag_datum(/datum/antagonist/fugitive)
 	if(!fug_antag)
-		to_chat(fugitive_hunter, span_warning("This is not a wanted fugitive!"))
+		to_chat(fugitive_hunter, span_warning("这不是通缉逃犯！"))
 		return
 	if(do_after(fugitive_hunter, 5 SECONDS, target = fugitive))
 		add_prisoner(fugitive, fug_antag)
@@ -28,19 +28,19 @@
 /obj/machinery/fugitive_capture/proc/add_prisoner(mob/living/carbon/human/fugitive, datum/antagonist/fugitive/antag)
 	fugitive.forceMove(src)
 	antag.is_captured = TRUE
-	to_chat(fugitive, span_userdanger("You are thrown into a vast void of bluespace, and as you fall further into oblivion the comparatively small entrance to reality gets smaller and smaller until you cannot see it anymore. You have failed to avoid capture."))
+	to_chat(fugitive, span_userdanger("你被抛入一片广袤的蓝空间虚空，随着你不断坠入更深的湮灭，那个相对渺小的现实入口越来越小，直到你再也看不见它。你未能逃脱抓捕。"))
 	fugitive.ghostize(TRUE) //so they cannot suicide, round end stuff.
 	use_energy(active_power_usage)
 
 /obj/machinery/computer/shuttle/hunter
-	name = "shuttle console"
+	name = "穿梭机控制台"
 	shuttleId = "huntership"
 	possible_destinations = "huntership_home;huntership_custom;whiteship_home;syndicate_nw"
 	req_access = list(ACCESS_HUNTER)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/hunter
-	name = "shuttle navigation computer"
-	desc = "Used to designate a precise transit location to travel to."
+	name = "穿梭机导航计算机"
+	desc = "用于指定精确的目的地位置。"
 	shuttleId = "huntership"
 	lock_override = CAMERA_LOCK_STATION
 	shuttlePortId = "huntership_custom"
@@ -49,7 +49,7 @@
 	view_range = 4.5
 
 /obj/structure/closet/crate/eva
-	name = "EVA crate"
+	name = "EVA 板条箱"
 	icon_state = "o2crate"
 	base_icon_state = "o2crate"
 
@@ -67,8 +67,8 @@
 ///Psyker-friendly shuttle gear!
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/hunter/psyker
-	name = "psyker navigation warper"
-	desc = "Uses amplified brainwaves to designate and map a precise transit location for the psyker shuttle."
+	name = "灵能者导航扭曲器"
+	desc = "利用放大的脑波为灵能者穿梭机指定并测绘精确的目的地位置。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/hunter/psyker")
 	icon_screen = "recharge_comp_on"
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON //blind friendly
@@ -76,20 +76,20 @@
 	y_offset = 11
 
 /obj/machinery/fugitive_capture/psyker
-	name = "psyker recreation cell"
-	desc = "A repurposed recreation chamber frequently used by psykers, which soothes its user by bombarding them with loud noises and painful stimuli. Repurposed for the storage of prisoners, and should have no (lasting) side effects on non-psykers forced into it."
+	name = "灵能者娱乐舱"
+	desc = "一个被改造的娱乐舱，灵能者常使用它，通过响亮的噪音和痛苦的刺激来“安抚”使用者。现被改作关押囚犯之用，对被迫进入其中的非灵能者应该没有（持久）副作用。"
 
 /obj/machinery/fugitive_capture/psyker/process() //I have no fucking idea how to make click-dragging work for psykers so this one just sucks them in.
 	for(var/mob/living/carbon/human/potential_victim in range(1, get_turf(src)))
 		var/datum/antagonist/fugitive/fug_antag = potential_victim.mind.has_antag_datum(/datum/antagonist/fugitive)
 		if(fug_antag)
-			potential_victim.visible_message(span_alert("[potential_victim] is violently sucked into the [src]!"))
+			potential_victim.visible_message(span_alert("[potential_victim]被猛烈地吸进了[src]！"))
 			add_prisoner(potential_victim, fug_antag)
 
 /// Psyker gear
 /obj/item/reagent_containers/hypospray/medipen/gore
-	name = "gore autoinjector"
-	desc = "A ghetto-looking autoinjector filled with gore, aka dirty kronkaine. You probably shouldn't take this while on the job, but it is a super-stimulant. Don't take two at once."
+	name = "血污自动注射器"
+	desc = "自制外观的自动注射器，里面装满了“血污”，也就是劣质克隆卡因。你大概不该在上班时用它，但它是种超级兴奋剂。别一次打两支。"
 	volume = 15
 	amount_per_transfer_from_this = 15
 	list_reagents = list(/datum/reagent/drug/kronkaine/gore = 15)
@@ -100,26 +100,26 @@
 //Captain's special mental recharge gear
 
 /obj/item/clothing/suit/armor/reactive/psykerboost
-	name = "reactive psykerboost armor"
-	desc = "An experimental suit of armor psykers use to push their mind further. Reacts to hostiles by powering up the wearer's psychic abilities."
-	cooldown_message = span_danger("The psykerboost armor's mental coils are still cooling down!")
-	emp_message = span_danger("The psykerboost armor's mental coils recalibrate for a moment with a soft whine.")
+	name = "反应式灵能增幅装甲"
+	desc = "灵能者用来进一步拓展心智的实验性装甲。遇到敌意目标时会强化穿戴者的灵能能力。"
+	cooldown_message = span_danger("灵能增幅装甲的心智线圈仍在冷却中！")
+	emp_message = span_danger("灵能增幅装甲的心智线圈伴随一声轻响重新校准了片刻。")
 	color = "#d6ad8b"
 
 /obj/item/clothing/suit/armor/reactive/psykerboost/cooldown_activation(mob/living/carbon/human/owner)
 	do_sparks(1, TRUE, src)
 	return ..()
 
-/obj/item/clothing/suit/armor/reactive/psykerboost/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	owner.visible_message(span_danger("[src] blocks [attack_text], psykerboosting [owner]'s mental powers!"))
+/obj/item/clothing/suit/armor/reactive/psykerboost/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "这次攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	owner.visible_message(span_danger("[src]挡下了[attack_text]，灵能增幅了[owner]的心智力量！"))
 	for(var/datum/action/cooldown/spell/psychic_ability in owner.actions)
 		if(psychic_ability.school == SCHOOL_PSYCHIC)
 			psychic_ability.reset_spell_cooldown()
 	reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
 	return TRUE
 
-/obj/item/clothing/suit/armor/reactive/psykerboost/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	owner.visible_message(span_danger("[src] blocks [attack_text], draining [owner]'s mental powers!"))
+/obj/item/clothing/suit/armor/reactive/psykerboost/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "这次攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	owner.visible_message(span_danger("[src]挡下了[attack_text]，汲取了[owner]的心智力量！"))
 	for(var/datum/action/cooldown/spell/psychic_ability in owner.actions)
 		if(psychic_ability.school == SCHOOL_PSYCHIC)
 			psychic_ability.StartCooldown()
@@ -127,8 +127,8 @@
 	return TRUE
 
 /obj/structure/bouncy_castle
-	name = "bouncy castle"
-	desc = "And if you do drugs, you go to hell before you die. Please."
+	name = "充气城堡"
+	desc = "如果你吸毒，你会在死之前先下地狱。拜托了。"
 	icon = 'icons/obj/toys/bouncy_castle.dmi'
 	icon_state = "bouncy_castle"
 	anchored = TRUE
@@ -160,9 +160,9 @@
 			playsound(src, 'sound/items/tools/welder.ogg', 100, TRUE)
 
 /obj/item/paper/crumpled/fluff/fortune_teller
-	name = "scribbled note"
-	default_raw_text = "<b>Remember!</b> The customers love that gumball we have as a crystal ball. \
-		Even if it's completely useless to us, resist the urge to chew it."
+	name = "潦草的字条"
+	default_raw_text = "<b>记住！</b>顾客们特别喜欢我们当水晶球用的那颗口香糖球。\
+		即使它对我们完全没用，也要忍住别去嚼它。"
 
 /**
  * # Bounty Locator
@@ -173,9 +173,9 @@
  * Captured or dead fugitives are not reported.
  */
 /obj/machinery/fugitive_locator
-	name = "Bounty Locator"
-	desc = "Tracks the signatures of bounty targets in your sector. Nobody actually knows what mechanism this thing uses to track its targets. \
-		Whether it be bluespace entanglement or a simple RFID implant, this machine will find you who you're looking for no matter where they're hiding."
+	name = "赏金定位器"
+	desc = "追踪你所在星区内赏金目标的信号。没人真正知道这台机器用什么原理追踪目标。\
+		无论是蓝空间纠缠还是简单的 RFID 植入体，这台机器都能帮你找到你要找的人，无论他们藏在哪。"
 	icon = 'icons/obj/machines/dominator.dmi'
 	icon_state = "dominator-Purple"
 	density = TRUE
@@ -184,13 +184,13 @@
 
 /obj/machinery/fugitive_locator/interact(mob/user)
 	if(!COOLDOWN_FINISHED(src, locate_cooldown))
-		balloon_alert_to_viewers("locator recharging!", vision_distance = 3)
+		balloon_alert_to_viewers("定位器正在充能！", vision_distance = 3)
 		return
 	var/mob/living/bounty = locate_fugitive()
 	if(!bounty)
-		say("No bounty targets detected.")
+		say("未检测到赏金目标。")
 	else
-		say("Bounty Target Located. Bounty ID: [bounty.real_name]. Location: [get_area_name(bounty)]")
+		say("已定位赏金目标。赏金 ID：[bounty.real_name]。位置：[get_area_name(bounty)]")
 
 	COOLDOWN_START(src, locate_cooldown, 40 SECONDS)
 
@@ -210,8 +210,8 @@
 		return found_fugitive
 
 /obj/item/radio/headset/psyker
-	name = "psychic headset"
-	desc = "A headset designed to boost psychic waves. Protects ears from flashbangs."
+	name = "灵能耳机"
+	desc = "一款用于增强灵能波动的耳机。可保护耳朵免受闪光弹伤害。"
 	icon_state = "psyker_headset"
 	worn_icon_state = "syndie_headset"
 	freerange = TRUE
@@ -233,8 +233,8 @@
 	REMOVE_TRAIT(user, TRAIT_SIGHT_BYPASS, REF(src))
 
 /obj/item/radio/headset/psyker_seer
-	name = "psychic seer headset"
-	desc = "A psychic headset designed for the elite psyker seers."
+	name = "灵能先知耳机"
+	desc = "为精英灵能先知设计的灵能耳机。"
 	icon_state = "med_headset_alt"
 	worn_icon_state = "med_headset_alt"
 	freerange = TRUE

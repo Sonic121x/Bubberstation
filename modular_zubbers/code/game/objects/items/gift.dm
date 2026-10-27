@@ -1,7 +1,7 @@
 /// Gifts that typically contain pretty much any item in the game, except with all of the admin/debug gear filtered out.
 /obj/item/gift/mostly_anything
-	name = "christmas gift"
-	desc = "It could be pretty much anything!"
+	name = "圣诞礼物"
+	desc = "里面几乎可能是任何东西！"
 
 /obj/item/gift/mostly_anything/get_gift_type(obj/item/gift/mostly_anything/present)
 	var/static/list/obj/item/possible_gifts = null

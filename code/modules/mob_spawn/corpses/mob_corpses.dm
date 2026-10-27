@@ -2,7 +2,7 @@
 ///all the corpses meant as mob drops yes, these definitely could be sorted properly. i invite (you) to do it!!
 
 /obj/effect/mob_spawn/corpse/human/syndicatesoldier
-	name = "Syndicate Operative"
+	name = "辛迪加特工"
 	hairstyle = "Bald"
 	facial_hairstyle = "Shaved"
 	outfit = /datum/outfit/syndicatesoldiercorpse
@@ -21,7 +21,7 @@
 	id_trim = /datum/id_trim/chameleon/operative
 
 /obj/effect/mob_spawn/corpse/human/syndicatecommando
-	name = "Syndicate Commando"
+	name = "辛迪加突击队"
 	hairstyle = "Bald"
 	facial_hairstyle = "Shaved"
 	outfit = /datum/outfit/syndicatecommandocorpse
@@ -61,7 +61,7 @@
 	id_trim = null
 
 /obj/effect/mob_spawn/corpse/human/syndicatestormtrooper
-	name = "Syndicate Stormtrooper"
+	name = "辛迪加风暴兵"
 	hairstyle = "Bald"
 	facial_hairstyle = "Shaved"
 	outfit = /datum/outfit/syndicatestormtroopercorpse
@@ -78,7 +78,7 @@
 	id_trim = /datum/id_trim/chameleon/operative
 
 /obj/effect/mob_spawn/corpse/human/syndicatepilot
-	name = "Syndicate Pilot"
+	name = "辛迪加飞行员"
 	hairstyle = "Bald"
 	facial_hairstyle = "Shaved"
 	outfit = /datum/outfit/syndicatepilotcorpse
@@ -108,7 +108,7 @@
 	id_trim = /datum/id_trim/syndicom
 
 /obj/effect/mob_spawn/corpse/human/tigercultist
-	name = "Tiger Cooperative Cultist"
+	name = "猛虎合作社教徒"
 	outfit = /datum/outfit/tigercultcorpse
 
 /datum/outfit/tigercultcorpse
@@ -121,7 +121,7 @@
 	back = /obj/item/storage/backpack/cultpack
 
 /obj/effect/mob_spawn/corpse/human/pirate
-	name = "Pirate"
+	name = "海盗"
 	skin_tone = "caucasian1" //all pirates are white because it's easier that way
 	outfit = /datum/outfit/piratecorpse
 	hairstyle = "Bald"
@@ -133,7 +133,7 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 
 /obj/effect/mob_spawn/corpse/human/pirate/melee
-	name = "Pirate Swashbuckler"
+	name = "海盗剑客"
 	outfit = /datum/outfit/piratecorpse/melee
 
 /datum/outfit/piratecorpse/melee
@@ -142,7 +142,7 @@
 	head = /obj/item/clothing/head/costume/pirate/bandana/armored
 
 /obj/effect/mob_spawn/corpse/human/pirate/melee/space
-	name = "Pirate Swashbuckler - Space"
+	name = "海盗剑客——太空"
 	outfit = /datum/outfit/piratecorpse/melee/space
 
 /datum/outfit/piratecorpse/melee/space
@@ -152,7 +152,7 @@
 	back = /obj/item/tank/jetpack/carbondioxide
 
 /obj/effect/mob_spawn/corpse/human/pirate/ranged
-	name = "Pirate Gunner"
+	name = "海盗炮手"
 	outfit = /datum/outfit/piratecorpse/ranged
 
 /datum/outfit/piratecorpse/ranged
@@ -162,7 +162,7 @@
 	head = /obj/item/clothing/head/costume/pirate/armored
 
 /obj/effect/mob_spawn/corpse/human/pirate/ranged/space
-	name = "Pirate Gunner - Space"
+	name = "海盗炮手——太空"
 	outfit = /datum/outfit/piratecorpse/ranged/space
 
 /datum/outfit/piratecorpse/ranged/space
@@ -172,7 +172,7 @@
 	back = /obj/item/tank/jetpack/carbondioxide
 
 /obj/effect/mob_spawn/corpse/human/old_pirate_captain
-	name = "Pirate Captain Skeleton"
+	name = "海盗船长骷髅"
 	outfit = /datum/outfit/piratecorpse/captain
 	mob_species = /datum/species/skeleton
 
@@ -182,7 +182,7 @@
 	suit = /obj/item/clothing/suit/costume/pirate
 
 /obj/effect/mob_spawn/corpse/human/russian
-	name = "Russian"
+	name = "俄罗斯人"
 	outfit = /datum/outfit/russiancorpse
 	hairstyle = "Bald"
 	facial_hairstyle = "Shaved"
@@ -220,7 +220,7 @@
 
 
 /obj/effect/mob_spawn/corpse/human/russian/ranged/officer
-	name = "Russian Officer"
+	name = "俄罗斯军官"
 	outfit = /datum/outfit/russiancorpse/officer
 
 /datum/outfit/russiancorpse/officer
@@ -233,7 +233,7 @@
 
 
 /obj/effect/mob_spawn/corpse/human/wizard
-	name = "Space Wizard Corpse"
+	name = "太空巫师尸体"
 	outfit = /datum/outfit/wizardcorpse
 	hairstyle = "Bald"
 	facial_hairstyle = "Beard (Very Long)"
@@ -284,14 +284,14 @@
 	head = /obj/item/clothing/head/wizard/tape
 
 /obj/effect/mob_spawn/corpse/human/wizard/dark
-	name = "Dark Wizard Corpse"
+	name = "黑暗巫师尸体"
 	outfit = /datum/outfit/wizardcorpse/dark
 
 /datum/outfit/wizardcorpse/dark
 	head = /obj/item/clothing/head/wizard/hood
 
 /obj/effect/mob_spawn/corpse/human/wizard/paper
-	name = "Paper Wizard Corpse"
+	name = "纸巫师尸体"
 	outfit = /datum/outfit/paper_wizard
 
 /datum/outfit/paper_wizard
@@ -302,7 +302,7 @@
 	head = /obj/item/clothing/head/collectable/paper
 
 /obj/effect/mob_spawn/corpse/human/nanotrasensoldier
-	name = "\improper Nanotrasen Private Security Officer"
+	name = "\improper 纳米传讯私人安保官"
 	outfit = /datum/outfit/nanotrasensoldiercorpse
 	hairstyle = "Bald"
 	facial_hairstyle = "Shaved"
@@ -321,7 +321,7 @@
 	id_trim = /datum/id_trim/centcom/corpse/private_security/tradepost_officer
 
 /obj/effect/mob_spawn/corpse/human/nanotrasenassaultsoldier
-	name = "\improper Nanotrasen Assault Officer Corpse"
+	name = "\improper 纳米传讯突击军官尸体"
 	outfit = /datum/outfit/nanotrasenassaultsoldiercorpse
 	hairstyle = "Bald"
 	facial_hairstyle = "Shaved"
@@ -340,7 +340,7 @@
 	id_trim = /datum/id_trim/centcom/corpse/assault
 
 /obj/effect/mob_spawn/corpse/human/nanotrasenelitesoldier
-	name = "\improper Nanotrasen Elite Assault Officer Corpse"
+	name = "\improper 纳米传讯精英突击军官尸体"
 	outfit = /datum/outfit/nanotrasenelitesoldiercorpse
 	hairstyle = "Bald"
 	facial_hairstyle = "Shaved"
@@ -356,7 +356,7 @@
 	id_trim = /datum/id_trim/centcom/ert/security
 
 /obj/effect/mob_spawn/corpse/human/cat_butcher
-	name = "The Cat Surgeon"
+	name = "猫外科医生"
 	hairstyle = "Cut Hair"
 	facial_hairstyle = "Watson Mustache"
 	skin_tone = "caucasian1"
@@ -375,7 +375,7 @@
 	id_trim = /datum/id_trim/away/cat_surgeon
 
 /obj/effect/mob_spawn/corpse/human/bee_terrorist
-	name = "BLF Operative"
+	name = "BLF 特工"
 	outfit = /datum/outfit/bee_terrorist
 
 /datum/outfit/bee_terrorist
@@ -391,7 +391,7 @@
 	mask = /obj/item/clothing/mask/animal/small/bee
 
 /obj/effect/mob_spawn/corpse/human/generic_assistant
-	name = "Generic Assistant"
+	name = "普通助理"
 	hairstyle = "Short Hair"
 	haircolor = COLOR_BLACK
 	facial_hairstyle = "Shaved"
@@ -407,5 +407,5 @@
 	uniform = /obj/item/clothing/under/rank/rnd/roboticist
 
 /obj/effect/mob_spawn/corpse/human/cyber_police
-	name = "Dead Cyber Police"
+	name = "死亡的赛博警察"
 	outfit = /datum/outfit/cyber_police

@@ -1,6 +1,6 @@
 /obj/item/door_seal
-	name = "pneumatic airlock seal"
-	desc = "A brace used to seal and reinforce an airlock. Useful for making areas inaccessible to those without opposable thumbs."
+	name = "气动气闸密封器"
+	desc = "用于封闭并加固气闸的支架。能有效阻止没有对握拇指的生物进入。"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "pneumatic_seal"
 	inhand_icon_state = "pneumatic_seal"
@@ -20,7 +20,7 @@
 	var/unseal_time = 2 SECONDS
 
 /obj/item/door_seal/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is sealing [user.p_them()]self off from the world with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正用[src]将自己与世界彻底隔绝！看起来是想自杀！"))
 	playsound(src, 'sound/items/tools/jaws_pry.ogg', 30, TRUE)
 	return BRUTELOSS
 

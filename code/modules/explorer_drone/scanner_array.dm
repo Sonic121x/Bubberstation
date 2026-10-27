@@ -49,11 +49,11 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 /datum/exoscan/proc/ui_description()
 	switch(scan_type)
 		if(EXOSCAN_WIDE)
-			return "Wide: Scanning sphere starting 1 AU from the station."
+			return "广域：从距空间站 1 AU 处开始的球形扫描。"
 		if(EXOSCAN_POINT)
-			return "Point scan of [target.display_name()]"
+			return "对 [target.display_name()] 的点扫描"
 		if(EXOSCAN_DEEP)
-			return "Deep scan of [target.display_name()]"
+			return "对 [target.display_name()] 的深度扫描"
 
 /datum/exoscan/proc/resolve_scan()
 	switch(scan_type)
@@ -76,8 +76,8 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	deltimer(scan_timer)
 
 /obj/machinery/computer/exoscanner_control
-	name = "scanner array control console"
-	desc = "Controls scanner arrays to initiate scans for exodrones."
+	name = "扫描阵列控制台"
+	desc = "控制扫描阵列，为外太空无人机发起扫描。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/piratepad_control")
 	circuit = /obj/item/circuitboard/computer/exoscanner_console
 	/// If scan was interrupted show a popup until dismissed.
@@ -191,11 +191,11 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 		config_flags = EXPERIMENT_CONFIG_ALWAYS_ACTIVE)
 
 /obj/machinery/exoscanner
-	name = "scanner array"
+	name = "扫描阵列"
 	icon = 'icons/obj/exploration.dmi'
 	icon_state = "scanner_off"
 	base_icon_state = "scanner"
-	desc = "A sophisticated scanning array. Easily influenced by its environment."
+	desc = "一套精密的扫描阵列。很容易受周边环境影响。"
 	circuit = /obj/item/circuitboard/machine/exoscanner
 	///the scan power of this array to supply to scanner_controller
 	var/scan_power = 1
@@ -328,7 +328,7 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 		if(current_scan.target)
 			current_power = get_scan_power(current_scan.target)
 		if(current_scan.scan_power > current_power)
-			current_scan.stop("Scan swarm power reduced")
+			current_scan.stop("扫描阵列功率下降")
 
 /datum/scanner_controller/proc/get_scan_power(datum/exploration_site/target)
 	if(!scan_power_cache[target])
@@ -355,8 +355,8 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	return 1
 
 /datum/scan_condition/nebula
-	name = "Nebula"
-	description = "Site is within an unusually dense nebula. To reduce scanner noise, position dishes at least 15 tiles apart."
+	name = "星云"
+	description = "目标地点位于一片异常致密的星云中。为降低扫描噪声，请让各天线盘至少相隔 15 格。"
 	var/distance = 15
 
 /datum/scan_condition/nebula/check_dish(obj/machinery/exoscanner/dish)
@@ -366,8 +366,8 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	return 1
 
 /datum/scan_condition/pulsar
-	name = "Pulsar"
-	description = "A pulsar near the site requires dishes to be shielded from electomagnetic noise. Ensure no other machines are working near the dish."
+	name = "脉冲星"
+	description = "目标地点附近有一颗脉冲星，天线盘必须屏蔽电磁噪声。请确保天线盘附近没有其他机器正在运行。"
 	var/distance = 2
 
 /datum/scan_condition/pulsar/check_dish(obj/machinery/exoscanner/dish)
@@ -377,16 +377,16 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	return 1
 
 /datum/scan_condition/asteroid_belt
-	name = "Asteroid Belt"
-	description = "An asteroid belt is obscuring the direct line of sight from the station to the site. Ensure the dishes are placed outside of the station z level."
+	name = "小行星带"
+	description = "小行星带遮挡了空间站与目标地点之间的直线视野。请确保天线盘放置在空间站所在 z 层之外。"
 
 /datum/scan_condition/asteroid_belt/check_dish(obj/machinery/exoscanner/dish)
 	var/turf/dish_turf = get_turf(dish)
 	return is_station_level(dish_turf.z) ? 0 : 1
 
 /datum/scan_condition/black_hole
-	name = "Black Hole"
-	description = "A background black hole requires you to focus the scan point precisely. Ensure the dishes are isolated from rest of the station with at least 6 walls around them."
+	name = "黑洞"
+	description = "背景中的黑洞要求你精确聚焦扫描点。请确保天线盘与空间站其余部分隔离，周围至少有 6 面墙。"
 
 /datum/scan_condition/black_hole/check_dish(obj/machinery/exoscanner/dish)
 	var/wall_count = 0
@@ -396,8 +396,8 @@ GLOBAL_LIST_INIT(scan_conditions,init_scan_conditions())
 	return wall_count > 6 ? 1 : 0
 
 /datum/scan_condition/easy
-	name = "Easy Scan"
-	description = "This site is very easy to scan, all dish power is doubled."
+	name = "简易扫描"
+	description = "该地点非常容易扫描，所有天线盘的功率翻倍。"
 
 /datum/scan_condition/easy/check_dish(obj/machinery/exoscanner/dish)
 	return 2

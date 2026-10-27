@@ -10,8 +10,8 @@
  */
 
 /obj/structure/table_frame
-	name = "table frame"
-	desc = "Four metal legs with four framing rods for a table. You could easily pass through this."
+	name = "桌架"
+	desc = "四条金属桌腿，外加四根桌架横杆。你可以轻松穿过它。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "table_frame"
 	density = FALSE
@@ -31,16 +31,16 @@
 		return NONE
 
 	if(held_item.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
-		context[SCREENTIP_CONTEXT_RMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
+		context[SCREENTIP_CONTEXT_RMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(isstack(held_item) && get_table_type(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "Construct table"
+		context[SCREENTIP_CONTEXT_LMB] = "建造桌子"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/table_frame/wrench_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, "deconstructing...")
+	balloon_alert(user, "正在拆解……")
 	tool.play_tool_sound(src)
 	if(!tool.use_tool(src, user, 3 SECONDS))
 		return ITEM_INTERACT_BLOCKING
@@ -60,7 +60,7 @@
 		return NONE
 
 	if(our_stack.get_amount() < 1)
-		balloon_alert(user, "need more material!")
+		balloon_alert(user, "需要更多材料！")
 		return ITEM_INTERACT_BLOCKING
 
 	// Check if the turf is blocked by dense objects or objects that block construction
@@ -71,7 +71,7 @@
 //			balloon_alert(user, "[object.name] is in the way!")
 //			return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "constructing table...")
+	balloon_alert(user, "正在建造桌子……")
 	if(!do_after(user, 2 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 
@@ -106,8 +106,8 @@
  */
 
 /obj/structure/table_frame/wood
-	name = "wooden table frame"
-	desc = "Four wooden legs with four framing wooden rods for a wooden table. You could easily pass through this."
+	name = "木制桌架"
+	desc = "四条木制桌腿，外加四根木制桌架横杆，用来做木桌。你可以轻松穿过它。"
 	icon_state = "wood_frame"
 	framestack = /obj/item/stack/sheet/mineral/wood
 	framestackamount = 2

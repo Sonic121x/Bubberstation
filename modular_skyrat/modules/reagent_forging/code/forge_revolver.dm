@@ -1,8 +1,8 @@
 // COMSIG_ATOM_WAS_ATTACKED check out this signal's implementation
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action
-	name = "\improper handcrafted revolver"
-	desc = "A traditional-style cowboy revolver. It's single-action, so <b>the hammer must be manually cocked back to cycle the round.</b>"
+	name = "\improper 手工左轮手枪"
+	desc = "一把传统风格的牛仔左轮手枪。采用单动式结构，因此<b>每次射击前都必须手动扳下击锤。</b>"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'
 	icon_state = "revolver_preview"
 	icon_preview = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'
@@ -13,7 +13,7 @@
 	bolt_type = BOLT_TYPE_NO_BOLT
 	semi_auto = FALSE
 	mag_display = FALSE
-	bolt_wording = "hammer"
+	bolt_wording = "击锤"
 	rack_delay = 1
 	fire_delay = 1
 	//just a little extra damage as a treat
@@ -117,7 +117,7 @@
 
 	if(!hammer_is_primed)
 		set_hammer_cock(TRUE)
-		balloon_alert(user, "cocked the hammer")
+		balloon_alert(user, "已扳下击锤")
 		playsound(src, 'sound/items/weapons/gun_mode_switch1.ogg', vol = 35, vary = TRUE, frequency = 1.8, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 		if(!istype(magazine,/obj/item/ammo_box/magazine/internal/cylinder))
 			stack_trace("[usr] has a magazine that isn't a revolver cylinder!")
@@ -126,7 +126,7 @@
 		chamber_round()
 	else
 		set_hammer_cock(FALSE)
-		balloon_alert(user, "decocked the hammer")
+		balloon_alert(user, "已释放击锤")
 		playsound(src, 'sound/items/weapons/gun_mode_switch1.ogg', vol = 35, vary = TRUE, frequency = 1.6, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/proc/set_hammer_cock(cock)
@@ -137,7 +137,7 @@
 	if(hammer_is_primed)
 		return ..()
 	else
-		balloon_alert(user, "hammer isn't cocked!")
+		balloon_alert(user, "击锤尚未扳下！")
 		return FALSE
 
 ////////////////////////// MISFIRE WHEN SHOVED OR ATTACKED ///////////////////////////////////////
@@ -164,8 +164,8 @@
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/proc/try_attack_misfire(mob/victim, mob/attacker, attack_flags)
 	if(attack_flags & ATTACKER_SHOVING && prob(50))
 		if(holster_misfire(victim, attacker) == TRUE)
-			victim.visible_message(span_warning("[victim]'s [src] goes off from [attacker]'s attack!"),
-				span_danger("Your primed [src] triggers from [attacker]'s strike! "), ignored_mobs = victim)
+			victim.visible_message(span_warning("[victim] 的 [src] 因 [attacker] 的攻击而走火了！"),
+				span_danger("你的 [src] 已待击，因 [attacker] 的打击而走火了！"), ignored_mobs = victim)
 
 /*
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/proc/try_hug_misfire(mob/living/source)
@@ -193,7 +193,7 @@
 ////////////////////////////////////// MISC RELATED STUFF //////////////////////////////////////
 
 /obj/item/ammo_box/magazine/internal/cylinder/handcrafted_single_action
-	name = "handcrafted revolver cylinder"
+	name = "手工左轮弹巢"
 	start_empty = TRUE
 	ammo_type = /obj/item/ammo_casing/c38
 	caliber = CALIBER_38
@@ -219,9 +219,9 @@
 	. = ..()
 
 /datum/material_slot/revolver/frame
-	name = "frame"
+	name = "枪架"
 	material_amount = 1
 
 /datum/material_slot/revolver/cylinder
-	name = "frame"
+	name = "枪架"
 	material_amount = 0.9

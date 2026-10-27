@@ -14,7 +14,7 @@
 /mob/living/basic/pet/dog/corgi/ian/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(resting_state)
-		manual_emote(pick("gets up and barks.", "walks around.", "stops resting."))
+		manual_emote(pick("站起身来吠叫。", "四处走动。", "停止休息。"))
 		set_rest_state(RESTING_STATE_NONE)
 
 /mob/living/basic/pet/dog/corgi/ian/proc/set_rest_state(state)

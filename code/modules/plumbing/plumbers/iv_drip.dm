@@ -1,7 +1,7 @@
 ///modified IV that can be anchored and takes plumbing in- and output
 /obj/machinery/iv_drip/plumbing
-	name = "automated IV drip"
-	desc = "A modified IV drip with plumbing connects. Reagents received from the connect are injected directly into their bloodstream, blood that is drawn goes to the internal storage and then into the ducting."
+	name = "自动静脉输液架"
+	desc = "经过改装的静脉输液架，带有管道接口。从接口接收的试剂会被直接注入患者血流，抽出的血液则先进入内部储罐，再流入管道。"
 	icon_state = "plumb"
 	base_icon_state = "plumb"
 	density = TRUE
@@ -26,14 +26,14 @@
 	. = ..()
 	if(isnull(held_item) || held_item.tool_behaviour != TOOL_WRENCH)
 		return
-	context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Una" : "A"]nchor"
+	context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "解除" : ""]固定"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/iv_drip/plumbing/plunger_act(obj/item/plunger/attacking_plunger, mob/living/user, reinforced)
-	user.balloon_alert_to_viewers("furiously plunging...", "plunging iv drip...")
+	user.balloon_alert_to_viewers("正在拼命搋……", "正在搋输液架……")
 	if(!do_after(user, 3 SECONDS, target = src))
 		return TRUE
-	user.balloon_alert_to_viewers("finished plunging")
+	user.balloon_alert_to_viewers("搋完了")
 	reagents.expose(get_turf(src), TOUCH) //splash on the floor
 	reagents.clear_reagents()
 	return TRUE

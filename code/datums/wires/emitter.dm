@@ -1,7 +1,7 @@
 
 /datum/wires/emitter
 	holder_type = /obj/machinery/power/emitter
-	proper_name = "Emitter"
+	proper_name = "发射器"
 
 /datum/wires/emitter/New(atom/holder)
 	wires = list(WIRE_ZAP,WIRE_HACK)

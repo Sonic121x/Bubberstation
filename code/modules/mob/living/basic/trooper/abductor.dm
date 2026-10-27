@@ -1,6 +1,6 @@
 /// Abductor troopers
 /mob/living/basic/trooper/abductor
-	name = "Abductor Agent"
+	name = "绑架者特工"
 	desc = "Mezaflorp?"
 	faction = list(ROLE_SYNDICATE)
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/abductor
@@ -10,8 +10,8 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	corpse = /obj/effect/gibspawner/human
-	attack_verb_continuous = "beats"
-	attack_verb_simple = "beat"
+	attack_verb_continuous = "痛击"
+	attack_verb_simple = "痛击"
 	attack_sound = 'sound/items/weapons/egloves.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	r_hand = /obj/item/melee/baton/abductor

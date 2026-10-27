@@ -1,6 +1,6 @@
 /obj/item/implantpad//SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
-	name = "implant pad"
-	desc = "Used to modify implants."
+	name = "植入体面板"
+	desc = "用于修改植入体。"
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "implantpad-0"
 	base_icon_state = "implantpad"
@@ -25,14 +25,14 @@
 /obj/item/implantpad/examine(mob/user)
 	. = ..()
 	if(!inserted_case)
-		. += span_info("It is currently empty.")
+		. += span_info("目前是空的。")
 		return
 
 	if(Adjacent(user))
-		. += span_info("It contains \a [inserted_case].")
+		. += span_info("里面装有[inserted_case]。")
 	else
-		. += span_warning("There seems to be something inside it, but you can't quite tell what from here...")
-	. += span_info("Alt-click to remove [inserted_case].")
+		. += span_warning("里面似乎有什么东西，但你在这么远的地方看不清是什么……")
+	. += span_info("Alt 点击以取出[inserted_case]。")
 
 /obj/item/implantpad/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -45,7 +45,7 @@
 		return NONE
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
-	user.balloon_alert(user, "case inserted")
+	user.balloon_alert(user, "已插入植入体盒")
 	inserted_case = tool
 	update_static_data_for_all_viewers()
 	update_appearance(UPDATE_ICON)
@@ -94,12 +94,12 @@
 ///Removes the implant from the pad and puts it in the user's hands if possible.
 /obj/item/implantpad/proc/remove_implant(mob/user)
 	if(!inserted_case)
-		user.balloon_alert(user, "no case inside!")
+		user.balloon_alert(user, "里面没有植入体盒！")
 		return FALSE
 	add_fingerprint(user)
 	inserted_case.add_fingerprint(user)
 	user.put_in_hands(inserted_case)
-	user.balloon_alert(user, "case removed")
+	user.balloon_alert(user, "已取出植入体盒")
 	update_appearance(UPDATE_ICON)
 	update_static_data_for_all_viewers()
 	return TRUE
@@ -107,38 +107,38 @@
 /// Saves the currently inserted implant's deathrattle group.
 /obj/item/implantpad/proc/save_deathrattle_group(mob/user)
 	if(!inserted_case)
-		user.balloon_alert(user, "no case inside!")
+		user.balloon_alert(user, "里面没有植入体盒！")
 		return FALSE
 	if(!istype(inserted_case.imp, /obj/item/implant/deathrattle))
-		user.balloon_alert(user, "incompatible implant!")
+		user.balloon_alert(user, "植入体不兼容！")
 		return FALSE
 	var/obj/item/implant/deathrattle/inserted_implant = inserted_case.imp
 	var/datum/deathrattle_group/current_group = inserted_implant.current_group
 	if(!current_group)
-		user.balloon_alert(user, "no active group!")
+		user.balloon_alert(user, "没有激活的亡语组！")
 		return FALSE
 	saved_deathrattle_group = current_group
-	user.balloon_alert(user, "saved group [current_group.name]")
+	user.balloon_alert(user, "已保存亡语组[current_group.name]")
 	update_static_data_for_all_viewers()
 	return TRUE
 
 /// Sets the currently inserted implant's deathrattle group to saved.
 /obj/item/implantpad/proc/set_deathrattle_group(mob/user)
 	if(!inserted_case)
-		user.balloon_alert(user, "no case inside!")
+		user.balloon_alert(user, "里面没有植入体盒！")
 		return FALSE
 	if(!saved_deathrattle_group)
-		user.balloon_alert(user, "no saved deathrattle group!")
+		user.balloon_alert(user, "没有已保存的亡语组！")
 		return FALSE
 	if(!istype(inserted_case.imp, /obj/item/implant/deathrattle))
-		user.balloon_alert(user, "incompatible implant!")
+		user.balloon_alert(user, "植入体不兼容！")
 		return FALSE
 	var/obj/item/implant/deathrattle/inserted_implant = inserted_case.imp
 	if(!istype(saved_deathrattle_group, inserted_implant.deathrattle_group_type))
-		user.balloon_alert(user, "incompatible deathrattle group!")
+		user.balloon_alert(user, "亡语组不兼容！")
 		return FALSE
 	saved_deathrattle_group.register(inserted_implant)
-	user.balloon_alert(user, "registered to group [saved_deathrattle_group.name]")
+	user.balloon_alert(user, "已注册到亡语组[saved_deathrattle_group.name]")
 	inserted_case.name = "[initial(inserted_case.name)] - [saved_deathrattle_group.name]"
 	update_static_data_for_all_viewers()
 	return TRUE
@@ -146,20 +146,20 @@
 /// Initializes and saves a new deathrattle group, then registers the current implant to it.
 /obj/item/implantpad/proc/init_deathrattle_group(mob/user)
 	if(!inserted_case)
-		user.balloon_alert(user, "no case inside!")
+		user.balloon_alert(user, "里面没有植入体盒！")
 		return FALSE
 	if(!istype(inserted_case.imp, /obj/item/implant/deathrattle))
-		user.balloon_alert(user, "incompatible implant!")
+		user.balloon_alert(user, "植入体不兼容！")
 		return FALSE
 	var/obj/item/implant/deathrattle/inserted_implant = inserted_case.imp
 	if(inserted_implant.current_group)
-		user.balloon_alert(user, "group already set!")
+		user.balloon_alert(user, "已设置亡语组！")
 		return FALSE
 	// init and save new group
 	saved_deathrattle_group = new inserted_implant.deathrattle_group_type
 	// register current implant
 	saved_deathrattle_group.register(inserted_implant)
-	user.balloon_alert(user, "registered to new group [saved_deathrattle_group.name]")
+	user.balloon_alert(user, "已注册到新亡语组[saved_deathrattle_group.name]")
 	inserted_case.name += " - [saved_deathrattle_group.name]"
 	update_static_data_for_all_viewers()
 	return TRUE

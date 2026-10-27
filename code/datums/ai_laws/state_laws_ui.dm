@@ -99,29 +99,29 @@
 	var/list/to_state_cached = to_state.Copy()
 
 	//"radiomod" is inserted before a hardcoded message to change if and how it is handled by an internal radio.
-	owner.say("[owner.radiomod] Current Active Laws:", forced = forced_log_message)
+	owner.say("[owner.radiomod] 当前生效的法则：", forced = forced_log_message)
 	sleep(1 SECONDS)
 
 	if (lawcache_zeroth && (force_all_laws || (lawcache_zeroth in to_state_cached)))
-		owner.say("[owner.radiomod] 0. [lawcache_zeroth]", forced = forced_log_message, message_mods = list(MODE_SEQUENTIAL = TRUE, SAY_MOD_VERB = "states"))
+		owner.say("[owner.radiomod] 0. [lawcache_zeroth]", forced = forced_log_message, message_mods = list(MODE_SEQUENTIAL = TRUE, SAY_MOD_VERB = "陈述"))
 		sleep(1 SECONDS)
 
 	for (var/law in lawcache_hacked)
 		if (force_all_laws || (law in to_state_cached))
-			owner.say("[owner.radiomod] [ion_num()]. [law]", forced = forced_log_message, message_mods = list(MODE_SEQUENTIAL = TRUE, SAY_MOD_VERB = "states"))
+			owner.say("[owner.radiomod] [ion_num()]. [law]", forced = forced_log_message, message_mods = list(MODE_SEQUENTIAL = TRUE, SAY_MOD_VERB = "陈述"))
 			sleep(1 SECONDS)
 
 	var/number = 1
 	for (var/law_text, is_ioned in lawcache_inherent)
 		if (force_all_laws || (law_text in to_state_cached))
-			owner.say("[owner.radiomod] [is_ioned ? ion_num() : number]. [law_text]", forced = forced_log_message, message_mods = list(MODE_SEQUENTIAL = TRUE, SAY_MOD_VERB = "states"))
+			owner.say("[owner.radiomod] [is_ioned ? ion_num() : number]. [law_text]", forced = forced_log_message, message_mods = list(MODE_SEQUENTIAL = TRUE, SAY_MOD_VERB = "陈述"))
 			if(!is_ioned)
 				number++
 			sleep(1 SECONDS)
 
 	for (var/law_text, is_ioned in lawcache_supplied)
 		if (force_all_laws || (law_text in to_state_cached))
-			owner.say("[owner.radiomod] [is_ioned ? ion_num() : number]. [law_text]", forced = forced_log_message, message_mods = list(MODE_SEQUENTIAL = TRUE, SAY_MOD_VERB = "states"))
+			owner.say("[owner.radiomod] [is_ioned ? ion_num() : number]. [law_text]", forced = forced_log_message, message_mods = list(MODE_SEQUENTIAL = TRUE, SAY_MOD_VERB = "陈述"))
 			if(!is_ioned)
 				number++
 			sleep(1 SECONDS)

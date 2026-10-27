@@ -1,5 +1,5 @@
 PROCESSING_SUBSYSTEM_DEF(station)
-	name = "Station"
+	name = "空间站"
 	ss_flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME
 	wait = 5 SECONDS
@@ -85,7 +85,7 @@ PROCESSING_SUBSYSTEM_DEF(station)
 		for (var/trait_text_path in forced_traits_text_paths)
 			var/station_trait_path = text2path(trait_text_path)
 			if (!ispath(station_trait_path, /datum/station_trait) || station_trait_path == /datum/station_trait)
-				var/message = "Invalid station trait path [station_trait_path] was requested in the future station traits!"
+				var/message = "后续空间站特性设置请求了无效的特性路径[station_trait_path]！"
 				log_game(message)
 				message_admins(message)
 				continue

@@ -15,7 +15,7 @@
  * Initial check if manually unwrapping
  */
 /obj/item/delivery/proc/attempt_pre_unwrap_contents(mob/user, time = 1.5 SECONDS)
-	to_chat(user, span_notice("You start to unwrap the package..."))
+	to_chat(user, span_notice("你开始拆开包裹……"))
 	return do_after(user, time, target = user)
 
 /**
@@ -60,14 +60,14 @@
 	. = ..()
 	if(note)
 		if(!in_range(user, src))
-			. += span_info("There's a [EXAMINE_HINT(note.name)] attached to it. You can't read it from here.")
+			. += span_info("上面附着 [EXAMINE_HINT(note.name)]。你在这里读不到内容。")
 		else
-			. += span_info("There's a [EXAMINE_HINT(note.name)] attached to it...")
+			. += span_info("上面附着 [EXAMINE_HINT(note.name)]……")
 			. += note.examine(user)
 	if(sticker)
-		. += span_notice("There's a [EXAMINE_HINT("barcode")] attached to the side. The package is marked for [EXAMINE_HINT("export.")]")
+		. += span_notice("侧面贴着一张 [EXAMINE_HINT("条形码")]，包裹已被标记为 [EXAMINE_HINT("出口货物")]。")
 	if(sort_tag)
-		. += span_notice("There's a [EXAMINE_HINT("sorting tag")] with the destination set to [EXAMINE_HINT("[GLOB.TAGGERLOCATIONS[sort_tag]].")]")
+		. += span_notice("上面贴着一张 [EXAMINE_HINT("分拣标签")]，目的地设为 [EXAMINE_HINT("[GLOB.TAGGERLOCATIONS[sort_tag]]。")]")
 
 /obj/item/delivery/proc/disposal_handling(disposal_source, obj/structure/disposalholder/disposal_holder, obj/machinery/disposal/disposal_machine, hasmob)
 	SIGNAL_HANDLER
@@ -79,17 +79,17 @@
 		var/atom/movable/movable_loc = loc //can't unwrap the wrapped container if it's inside something.
 		movable_loc.relay_container_resist_act(user, container)
 		return
-	to_chat(user, span_notice("You lean on the back of [container] and start pushing to rip the wrapping around it."))
+	to_chat(user, span_notice("你抵住 [container] 的背面，开始用力推，想撕开外面的包装。"))
 	if(do_after(user, 5 SECONDS, target = container))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != container || container.loc != src)
 			return
-		to_chat(user, span_notice("You successfully removed [container]'s wrapping!"))
+		to_chat(user, span_notice("你成功拆掉了 [container] 的包装！"))
 		container.forceMove(loc)
 		unwrap_contents()
 		post_unwrap_contents(user)
 	else
 		if(user.loc == src) //so we don't get the message if we resisted multiple times and succeeded.
-			to_chat(user, span_warning("You fail to remove [container]'s wrapping!"))
+			to_chat(user, span_warning("你没能拆掉 [container] 的包装！"))
 
 /obj/item/delivery/update_icon_state()
 	. = ..()
@@ -121,9 +121,9 @@
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/stack/wrapping_paper/wrapping_paper = tool
 		if(!wrapping_paper.use(3))
-			to_chat(user, span_warning("You need more paper!"))
+			to_chat(user, span_warning("你需要更多纸！"))
 			return ITEM_INTERACT_BLOCKING
-		user.visible_message(span_notice("[user] wraps the package in festive paper!"))
+		user.visible_message(span_notice("[user] 用节日包装纸把包裹包了起来！"))
 		giftwrapped = TRUE
 		greyscale_config = text2path("/datum/greyscale_config/gift[icon_state]")
 		set_greyscale(colors = wrapping_paper.greyscale_colors)
@@ -132,12 +132,12 @@
 
 	if(istype(tool, /obj/item/paper))
 		if(note)
-			to_chat(user, span_warning("This package already has a note attached!"))
+			to_chat(user, span_warning("这个包裹已经附有一张便条了！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning("For some reason, you can't attach [tool]!"))
+			to_chat(user, span_warning("不知为何，你无法附上 [tool]！"))
 			return ITEM_INTERACT_BLOCKING
-		user.visible_message(span_notice("[user] attaches [tool] to [src]."), span_notice("You attach [tool] to [src]."))
+		user.visible_message(span_notice("[user] 把 [tool] 附到了 [src] 上。"), span_notice("你把 [tool] 附到了 [src] 上。"))
 		note = tool
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
@@ -147,15 +147,15 @@
 		if(sales_tagger.scanning_mode != SCAN_SALES_TAG)
 			return ITEM_INTERACT_BLOCKING
 		if(sticker)
-			to_chat(user, span_warning("This package already has a barcode attached!"))
+			to_chat(user, span_warning("这个包裹已经贴有条形码了！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!(sales_tagger.payments_acc))
-			to_chat(user, span_warning("Swipe an ID on [sales_tagger] first!"))
+			to_chat(user, span_warning("请先用 ID 卡刷一下 [sales_tagger]！"))
 			return ITEM_INTERACT_BLOCKING
 		if(sales_tagger.paper_count <= 0)
-			to_chat(user, span_warning("[sales_tagger] is out of paper!"))
+			to_chat(user, span_warning("[sales_tagger] 没纸了！"))
 			return ITEM_INTERACT_BLOCKING
-		user.visible_message(span_notice("[user] attaches a barcode to [src]."), span_notice("You attach a barcode to [src]."))
+		user.visible_message(span_notice("[user] 给 [src] 贴上了一张条形码。"), span_notice("你给 [src] 贴上了一张条形码。"))
 		sales_tagger.paper_count -= 1
 		sticker = new /obj/item/barcode(src)
 		sticker.payments_acc = sales_tagger.payments_acc	//new tag gets the tagger's current account.
@@ -171,13 +171,13 @@
 	if(istype(tool, /obj/item/barcode))
 		var/obj/item/barcode/stickerA = tool
 		if(sticker)
-			to_chat(user, span_warning("This package already has a barcode attached!"))
+			to_chat(user, span_warning("这个包裹已经贴有条形码了！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!(stickerA.payments_acc))
-			to_chat(user, span_warning("This barcode seems to be invalid. Guess it's trash now."))
+			to_chat(user, span_warning("这张条形码似乎无效。看来只能当垃圾了。"))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning("For some reason, you can't attach [tool]!"))
+			to_chat(user, span_warning("不知为何，你无法附上 [tool]！"))
 			return ITEM_INTERACT_BLOCKING
 		sticker = stickerA
 		for(var/obj/wrapped_item in get_all_contents())
@@ -190,7 +190,7 @@
 	if(istype(tool, /obj/item/boxcutter))
 		var/obj/item/boxcutter/boxcutter_item = tool
 		if(!HAS_TRAIT(boxcutter_item, TRAIT_TRANSFORM_ACTIVE))
-			balloon_alert(user, "prime the boxcutter!")
+			balloon_alert(user, "先推出开箱刀的刀片！")
 			return ITEM_INTERACT_BLOCKING
 		if(!attempt_pre_unwrap_contents(user, time = 0.5 SECONDS))
 			return ITEM_INTERACT_BLOCKING
@@ -208,8 +208,8 @@
  * # Wrapped up crates and lockers - too big to carry.
  */
 /obj/item/delivery/big
-	name = "large parcel"
-	desc = "A large delivery parcel."
+	name = "大包裹"
+	desc = "一个大型投递包裹。"
 	icon_state = "deliverycloset"
 	density = TRUE
 	interaction_flags_item = 0 // Disable the ability to pick it up. Wow!
@@ -228,8 +228,8 @@
  * # Wrapped up items small enough to carry.
  */
 /obj/item/delivery/small
-	name = "parcel"
-	desc = "A brown paper delivery parcel."
+	name = "包裹"
+	desc = "一个棕色纸包装的投递包裹。"
 	icon_state = "deliverypackage3"
 
 /obj/item/delivery/small/attack_self(mob/user)
@@ -256,8 +256,8 @@
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/dest_tagger
-	name = "destination tagger"
-	desc = "Used to set the destination of properly wrapped packages."
+	name = "目的地标签器"
+	desc = "用于设置已妥善包装包裹的目的地。"
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "cargo tagger"
 	worn_icon_state = "cargotagger"
@@ -275,15 +275,15 @@
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2.5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 1.5)
 
 /obj/item/dest_tagger/borg
-	name = "cyborg destination tagger"
-	desc = "Used to fool the disposal mail network into thinking that you're a harmless parcel. Does actually work as a regular destination tagger as well."
+	name = "半机械人目的地标签器"
+	desc = "用于骗过垃圾邮件网络，让它以为你是一个无害的包裹。它也能当作普通目的地标签器使用。"
 
 /obj/item/dest_tagger/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins tagging [user.p_their()] final destination! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 开始给自己标记最终目的地！看起来是想自杀！"))
 	if (islizard(user))
-		to_chat(user, span_notice("*HELL*"))//lizard nerf
+		to_chat(user, span_notice("*地狱*"))//lizard nerf
 	else
-		to_chat(user, span_notice("*HEAVEN*"))
+		to_chat(user, span_notice("*天堂*"))
 	playsound(src, 'sound/machines/beep/twobeep_high.ogg', 100, TRUE)
 	return BRUTELOSS
 
@@ -327,8 +327,8 @@
 	return TRUE
 
 /obj/item/sales_tagger
-	name = "sales tagger"
-	desc = "A scanner that lets you tag wrapped items for sale, splitting the profit between you and cargo."
+	name = "销售标签器"
+	desc = "一台扫描器，可以给包装好的物品贴上出售标签，并将利润分给你和货运部。"
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "sales tagger"
 	worn_icon_state = "salestagger"
@@ -350,36 +350,36 @@
 
 /obj/item/sales_tagger/examine(mob/user)
 	. = ..()
-	. += span_notice("[src] has [paper_count]/[max_paper_count] available barcodes. Refill with paper.")
-	. += span_notice("Profit split on sale is currently set to [round(cut_multiplier*100)]%. <b>Alt-click</b> to change.")
+	. += span_notice("[src] 还有 [paper_count]/[max_paper_count] 张可用条形码。可用纸张补充。")
+	. += span_notice("售出后的利润分成目前设为 [round(cut_multiplier*100)]%。<b>Alt 点击</b>可更改。")
 	if(payments_acc)
-		. += span_notice("<b>Ctrl-click</b> to clear the registered account.")
+		. += span_notice("<b>Ctrl 点击</b>可清除已注册账户。")
 
 /obj/item/sales_tagger/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(isidcard(tool))
 		var/obj/item/card/id/potential_acc = tool
 		if(!potential_acc.registered_account)
-			to_chat(user, span_warning("This ID card has no account registered!"))
+			to_chat(user, span_warning("这张 ID 卡没有注册账户！"))
 			return ITEM_INTERACT_BLOCKING
 		if(payments_acc == potential_acc.registered_account)
-			to_chat(user, span_notice("ID card already registered."))
+			to_chat(user, span_notice("ID 卡已注册。"))
 			return ITEM_INTERACT_BLOCKING
 		payments_acc = potential_acc.registered_account
 		playsound(src, 'sound/machines/ping.ogg', 40, TRUE)
-		to_chat(user, span_notice("[src] registers the ID card. Tag a wrapped item to create a barcode."))
+		to_chat(user, span_notice("[src] 登记了这张 ID 卡。给包装好的物品贴标签即可生成条形码。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/paper))
 		if ((paper_count >= max_paper_count))
-			to_chat(user, span_notice("[src]'s paper supply is full."))
+			to_chat(user, span_notice("[src] 的纸张储备已满。"))
 			return ITEM_INTERACT_BLOCKING
 		paper_count += 10
 		qdel(tool)
 		if (paper_count >= max_paper_count)
 			paper_count = max_paper_count
-			to_chat(user, span_notice("[src]'s paper supply is now full."))
+			to_chat(user, span_notice("[src] 的纸张储备现在已满。"))
 			return ITEM_INTERACT_SUCCESS
-		to_chat(user, span_notice("You refill [src]'s paper supply, you have [paper_count] left."))
+		to_chat(user, span_notice("你补充了 [src] 的纸张储备，还剩 [paper_count] 张。"))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -387,14 +387,14 @@
 /obj/item/sales_tagger/attack_self(mob/user)
 	. = ..()
 	if(paper_count <= 0)
-		to_chat(user, span_warning("You're out of paper!'."))
+		to_chat(user, span_warning("你没纸了！"))
 		return
 	if(!payments_acc)
-		to_chat(user, span_warning("You need to swipe [src] with an ID card first."))
+		to_chat(user, span_warning("你需要先用 ID 卡刷一下 [src]。"))
 		return
 	paper_count -= 1
 	playsound(src, 'sound/machines/click.ogg', 40, TRUE)
-	to_chat(user, span_notice("You print a new barcode."))
+	to_chat(user, span_notice("你打印了一张新条形码。"))
 	var/obj/item/barcode/new_barcode = new /obj/item/barcode(src)
 	new_barcode.payments_acc = payments_acc		// The sticker gets the scanner's registered account.
 	new_barcode.cut_multiplier = cut_multiplier		// Also the registered percent cut.
@@ -402,13 +402,13 @@
 
 /obj/item/sales_tagger/item_ctrl_click(mob/user)
 	payments_acc = null
-	to_chat(user, span_notice("You clear the registered account."))
+	to_chat(user, span_notice("你清除了已注册账户。"))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/sales_tagger/click_alt(mob/user)
-	var/potential_cut = input("How much would you like to pay out to the registered card?","Percentage Profit ([round(cut_min*100)]% - [round(cut_max*100)]%)") as num|null
+	var/potential_cut = input("你想向已注册的卡片支付多少？","利润分成比例（[round(cut_min*100)]% - [round(cut_max*100)]%）") as num|null
 	if(!potential_cut)
 		cut_multiplier = initial(cut_multiplier)
 	cut_multiplier = clamp(round(potential_cut/100, cut_min), cut_min, cut_max)
-	to_chat(user, span_notice("[round(cut_multiplier*100)]% profit will be received if a package with a barcode is sold."))
+	to_chat(user, span_notice("[round(cut_multiplier*100)]% 的利润将在带条形码的包裹售出后发放。"))
 	return CLICK_ACTION_SUCCESS

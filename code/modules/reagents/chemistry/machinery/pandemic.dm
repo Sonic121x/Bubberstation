@@ -1,7 +1,7 @@
 
 /obj/machinery/computer/pandemic
-	name = "PanD.E.M.I.C 2200"
-	desc = "Used to work with viruses."
+	name = "泛流行病分析仪 2200"
+	desc = "用于处理病毒。"
 	density = TRUE
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "pandemic0"
@@ -26,12 +26,12 @@
 
 	var/static/list/hovering_item_typechecks = list(
 		/obj/item/reagent_containers/dropper = list(
-			SCREENTIP_CONTEXT_LMB = "Use dropper",
+			SCREENTIP_CONTEXT_LMB = "使用滴管",
 		),
 
 		/obj/item/reagent_containers/syringe = list(
-			SCREENTIP_CONTEXT_LMB = "Inject sample",
-			SCREENTIP_CONTEXT_RMB = "Draw sample"
+			SCREENTIP_CONTEXT_LMB = "注入样本",
+			SCREENTIP_CONTEXT_RMB = "抽取样本"
 		),
 	)
 
@@ -39,8 +39,8 @@
 
 	AddElement( \
 		/datum/element/contextual_screentip_bare_hands, \
-		lmb_text = "Open interface", \
-		rmb_text = "Remove beaker", \
+		lmb_text = "打开界面", \
+		rmb_text = "取出烧杯", \
 	)
 
 
@@ -53,11 +53,11 @@
 	if(beaker)
 		var/is_close
 		if(Adjacent(user)) //don't reveal exactly what's inside unless they're close enough to see the UI anyway.
-			. += "It contains \a [beaker]."
+			. += "它里面装有 \a [beaker]。"
 			is_close = TRUE
 		else
-			. += "It has a beaker inside it."
-		. += span_info("Alt-click to eject [is_close ? beaker : "the beaker"].")
+			. += "它里面装着一个烧杯。"
+		. += span_info("按住 Alt 点击可取出 [is_close ? beaker : "烧杯"]。")
 
 /obj/machinery/computer/pandemic/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
@@ -85,7 +85,7 @@
 	//Advanced science! Precision instruments (eg droppers and syringes) are precise enough to modify the loaded sample!
 	if(istype(tool, /obj/item/reagent_containers/dropper) || istype(tool, /obj/item/reagent_containers/syringe))
 		if(!beaker)
-			balloon_alert(user, "no beaker!")
+			balloon_alert(user, "没有烧杯！")
 			return ITEM_INTERACT_BLOCKING
 		if(istype(tool, /obj/item/reagent_containers/syringe) && LAZYACCESS(modifiers, RIGHT_CLICK))
 			tool.interact_with_atom_secondary(beaker, user)
@@ -99,10 +99,10 @@
 	if(machine_stat & (NOPOWER|BROKEN))
 		return ITEM_INTERACT_BLOCKING
 	if(beaker)
-		balloon_alert(user, "beaker swapped")
+		balloon_alert(user, "已更换烧杯")
 		try_put_in_hand(beaker, usr)
 	else
-		balloon_alert(user, "beaker loaded")
+		balloon_alert(user, "已装入烧杯")
 	user.transferItemToLoc(tool, src)
 	beaker = tool
 	update_appearance()
@@ -148,8 +148,8 @@
 		return data
 	data["has_blood"] = TRUE
 	data["blood"] = list()
-	data["blood"]["dna"] = blood.data[BLOOD_DATA_DNA] || "none"
-	data["blood"]["type"] = blood.data[BLOOD_DATA_TYPE] || "none"
+	data["blood"]["dna"] = blood.data[BLOOD_DATA_DNA] || "无"
+	data["blood"]["type"] = blood.data[BLOOD_DATA_TYPE] || "无"
 	data["viruses"] = get_viruses_data(blood)
 	data["resistances"] = get_resistance_data(blood)
 	return data
@@ -198,15 +198,15 @@
 	var/datum/disease/advance/adv_disease = SSdisease.archive_diseases[id]
 
 	if(!istype(adv_disease) || !adv_disease.mutable)
-		to_chat(usr, span_warning("ERROR: Cannot replicate virus strain."))
+		to_chat(usr, span_warning("错误：无法复制病毒毒株。"))
 		return FALSE
 	use_energy(active_power_usage)
 	adv_disease = adv_disease.Copy()
 	var/list/data = list("viruses" = list(adv_disease))
 
 	var/obj/item/reagent_containers/cup/tube/bottle = new(drop_location())
-	bottle.name = "[adv_disease.name] culture tube"
-	bottle.desc = "A small test tube containing [adv_disease.agent] culture in synthblood medium."
+	bottle.name = "[adv_disease.name] 培养管"
+	bottle.desc = "一支小试管，内含培养在合成血液培养基中的 [adv_disease.agent] 培养物。"
 	bottle.reagents.add_reagent(/datum/reagent/blood, 20, data)
 	wait = TRUE
 	update_appearance()
@@ -233,7 +233,7 @@
 	var/id = index
 	var/datum/disease/disease = SSdisease.archive_diseases[id]
 	var/obj/item/reagent_containers/cup/tube/bottle = new(drop_location())
-	bottle.name = "[disease.name] vaccine tube"
+	bottle.name = "[disease.name] 疫苗管"
 	bottle.reagents.add_reagent(/datum/reagent/vaccine, 15, list(id))
 	wait = TRUE
 	update_appearance()
@@ -313,11 +313,11 @@
 			continue
 		var/list/traits = list()
 		traits["agent"] = disease.agent
-		traits["cure"] = disease.cure_text || "none"
-		traits["description"] = disease.desc || "none"
+		traits["cure"] = disease.cure_text || "无"
+		traits["description"] = disease.desc || "无"
 		traits["index"] = index++
 		traits["name"] = disease.name
-		traits["spread"] = disease.spread_text || "none"
+		traits["spread"] = disease.spread_text || "无"
 		if(istype(disease, /datum/disease/advance)) // Advanced diseases get more info
 			var/datum/disease/advance/adv_disease = disease
 			var/disease_name = SSdisease.get_disease_name(adv_disease.GetDiseaseID())

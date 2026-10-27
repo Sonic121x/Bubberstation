@@ -15,7 +15,7 @@
 	add_screen_object(/atom/movable/screen/healths/guardian, HUD_MOB_HEALTH, HUD_GROUP_INFO)
 
 /datum/inventory_slot/guardian_storage
-	name = "internal storage"
+	name = "内部储物槽"
 	icon_state = "suit_storage"
 	slot_id = ITEM_SLOT_DEX_STORAGE
 	screen_loc = ui_back

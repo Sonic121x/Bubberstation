@@ -89,7 +89,7 @@
 		source.manual_emote("[pick(audible_emote_list)]")
 		playsound(source, sound_to_play, 80, vary = TRUE)
 	else if(random_number_in_range <= (audible_emote_length + emotes_length))
-		source.manual_emote("[pick(emote_list)] at [new_target].")
+		source.manual_emote("朝着[new_target][pick(emote_list)]。")
 	else
 		INVOKE_ASYNC(mob, TYPE_PROC_REF(/atom/movable, say), pick(speak_list), forced = "AI Controller")
 		playsound(source, sound_to_play, 80, vary = TRUE)

@@ -1,10 +1,10 @@
 /datum/instrument/brass
-	name = "Generic brass instrument"
-	category = "Brass"
+	name = "通用铜管乐器"
+	category = "铜管"
 	abstract_type = /datum/instrument/brass
 
 /datum/instrument/brass/crisis_section
-	name = "Crisis Brass Section"
+	name = "Crisis 铜管乐组"
 	id = "crbrass"
 	real_samples = list("36"='sound/runtime/instruments/synthesis_samples/brass/crisis_brass/c2.ogg',
 				   "48"='sound/runtime/instruments/synthesis_samples/brass/crisis_brass/c3.ogg',
@@ -12,7 +12,7 @@
 				   "72"='sound/runtime/instruments/synthesis_samples/brass/crisis_brass/c5.ogg')
 
 /datum/instrument/brass/crisis_trombone
-	name = "Crisis Trombone"
+	name = "Crisis 长号"
 	id = "crtrombone"
 	real_samples = list("36"='sound/runtime/instruments/synthesis_samples/brass/crisis_trombone/c2.ogg',
 				   "48"='sound/runtime/instruments/synthesis_samples/brass/crisis_trombone/c3.ogg',
@@ -20,7 +20,7 @@
 				   "72"='sound/runtime/instruments/synthesis_samples/brass/crisis_trombone/c5.ogg')
 
 /datum/instrument/brass/crisis_trumpet
-	name = "Crisis Trumpet"
+	name = "Crisis 小号"
 	id = "crtrumpet"
 	real_samples = list("60"='sound/runtime/instruments/synthesis_samples/brass/crisis_trumpet/c4.ogg',
 				   "72"='sound/runtime/instruments/synthesis_samples/brass/crisis_trumpet/c5.ogg')

@@ -1,7 +1,7 @@
 /datum/job/corrections_officer
 	title = JOB_CORRECTIONS_OFFICER
-	rpg_title = "Beefeater"
-	description = "Guard the permabrig, stand around looking imposing, get fired for abusing the prisoners"
+	rpg_title = "御林卫士"
+	description = "看守永久监牢，威风凛凛地站岗，因虐待囚犯而被解雇。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	faction = FACTION_STATION
 	total_positions = 1
@@ -48,7 +48,7 @@
 
 // OUTFIT
 /datum/outfit/job/corrections_officer
-	name = "Corrections Officer"
+	name = "惩教官"
 	jobtype = /datum/job/corrections_officer
 	uniform = /obj/item/clothing/under/rank/security/corrections_officer/sweater
 	suit = /obj/item/clothing/suit/toggle/jacket/corrections_officer

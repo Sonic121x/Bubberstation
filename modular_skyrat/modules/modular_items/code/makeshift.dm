@@ -1,8 +1,8 @@
 //Tools that are made using makeshift item crafting
 
 /obj/item/crowbar/makeshift
-	name = "makeshift crowbar"
-	desc = "A makeshift crowbar, flimsily constructed with miscellaneous parts. It's got a strong head that looks like it could be used for hammering."
+	name = "简易撬棍"
+	desc = "一把用各种杂七杂八的零件草草拼凑而成的简易撬棍。它的头部很结实，看上去还能拿来当锤子用。"
 	icon = 'modular_skyrat/modules/modular_items/icons/tools.dmi'
 	icon_state = "makeshift_crowbar"
 	worn_icon_state = "crowbar"
@@ -13,8 +13,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 4)
 
 /obj/item/screwdriver/makeshift
-	name = "makeshift screwdriver"
-	desc = "A makeshift screwdriver, flimsily made using cloth and some metal."
+	name = "简易螺丝刀"
+	desc = "一把用布料和少量金属草草制成的简易螺丝刀。"
 	icon = 'modular_skyrat/modules/modular_items/icons/tools.dmi'
 	icon_state = "makeshift_screwdriver"
 	post_init_icon_state = null
@@ -32,8 +32,8 @@
 	greyscale_colors = null
 
 /obj/item/weldingtool/makeshift
-	name = "makeshift welder"
-	desc = "A makeshift welder, flimsily constructed with miscellaneous parts."
+	name = "简易焊接工具"
+	desc = "一把用各种杂七杂八的零件草草拼凑而成的简易焊接工具。"
 	icon = 'modular_skyrat/modules/modular_items/icons/tools.dmi'
 	icon_state = "makeshift_welder"
 	force = 1
@@ -45,8 +45,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/wirecutters/makeshift
-	name = "makeshift wirecutters"
-	desc = "Makeshift wire cutters, flimsily constructed with miscellaneous parts."
+	name = "简易剪线钳"
+	desc = "一把用各种杂七杂八的零件草草拼凑而成的简易剪线钳。"
 	icon = 'modular_skyrat/modules/modular_items/icons/tools.dmi'
 	icon_state = "makeshift_cutters"
 	random_color = FALSE
@@ -62,8 +62,8 @@
 	greyscale_config_inhand_right = null
 
 /obj/item/wrench/makeshift
-	name = "makeshift wrench"
-	desc = "A makeshift wrench, flimsily constructed with miscellaneous parts."
+	name = "简易扳手"
+	desc = "一把用各种杂七杂八的零件草草拼凑而成的简易扳手。"
 	icon = 'modular_skyrat/modules/modular_items/icons/tools.dmi'
 	icon_state = "makeshift_wrench"
 	force = 2

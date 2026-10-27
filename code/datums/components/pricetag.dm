@@ -106,8 +106,8 @@
 		// And of course, the cut is removed from what cargo gets. (But not below zero, just in case)
 		overall_item_price = max(0, overall_item_price - payee_cut)
 
-		payee.adjust_money(payee_cut, "Pricetag: [capitalize(format_text(source.name))] Sale")
-		payee.bank_card_talk("Sale of [source] recorded. [payee_cut] [MONEY_NAME] added to account.")
+		payee.adjust_money(payee_cut, "价签：[capitalize(format_text(source.name))]出售收入")
+		payee.bank_card_talk("已记录[source]的销售。账户已存入[payee_cut][MONEY_NAME]。")
 		running_tally += payee_cut
 	// Update the report with the modified final price
 	report.total_value[export] += overall_item_price

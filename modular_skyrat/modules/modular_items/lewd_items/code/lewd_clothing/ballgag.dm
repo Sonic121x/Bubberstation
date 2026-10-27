@@ -1,7 +1,7 @@
 // Basic ball gag
 /obj/item/clothing/mask/ballgag
-	name = "ball gag"
-	desc = "Prevents the wearer from speaking."
+	name = "口球"
+	desc = "阻止佩戴者说话。"
 	icon = 'icons/map_icons/clothing/mask.dmi'
 	icon_state = "/obj/item/clothing/mask/ballgag"
 	post_init_icon_state = "ballgag"
@@ -27,9 +27,9 @@
 	var/choke_timer
 
 	/// Phrases when the gag modifies the player's speech.
-	var/list/moans = list("Mmmph...", "Hmmphh", "Mmmfhg", "Gmmmh...")
+	var/list/moans = list("唔姆……", "嗯呜……", "唔嗯……", "咕呜……")
 	/// Lower probability phrases to be used when speech is modified.
-	var/list/moans_alt = list("Mhgm...", "Hmmmp!...", "GMmmhp!")
+	var/list/moans_alt = list("唔！……", "姆嗯！……", "咕唔姆！")
 	/// Probability for alternative phrases to be used when speech is modified.
 	var/moans_alt_probability = 5
 
@@ -85,12 +85,12 @@
 		return
 	size_list_position = ((size_list_position + 1) % list_len) + 1
 	gag_size = possible_gag_sizes[size_list_position]
-	balloon_alert(user, "size set to [gag_size]")
+	balloon_alert(user, "尺寸设为 [gag_size]")
 
 // A ballgag that can choke the wearer
 /obj/item/clothing/mask/ballgag/choking
-	name = "phallic ball gag"
-	desc = "Prevents the wearer from speaking, as well as making breathing harder."
+	name = "阳具口球"
+	desc = "阻止佩戴者说话，并让呼吸变得更加困难。"
 	icon_state = "/obj/item/clothing/mask/ballgag/choking"
 	post_init_icon_state = "chokegag"
 	moan_volume = 40

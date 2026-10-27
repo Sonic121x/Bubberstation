@@ -1,11 +1,11 @@
 /datum/lazy_template/virtual_domain/island_brawl
-	name = "Island Brawl"
+	name = "岛屿乱斗"
 	announce_to_ghosts = TRUE
 	cost = BITRUNNER_COST_HIGH
-	desc = "A 'peaceful' island tucked away in the middle of nowhere. This map will auto-complete after a number of deaths have occurred."
+	desc = "一座“和平”的小岛，藏在荒无人烟的地方。死亡次数达到一定数量后，此地图将自动完成。"
 	difficulty = BITRUNNER_DIFFICULTY_HIGH
 	forced_outfit = /datum/outfit/beachbum_combat
-	help_text = "There may be bounties laid out across the island, but the primary objective is to survive. Deaths on the island will count towards the final score."
+	help_text = "岛上可能散布着悬赏任务，但首要目标是活下来。岛上的死亡次数将计入最终得分。"
 	key = "island_brawl"
 	map_name = "island_brawl"
 	reward_points = BITRUNNER_REWARD_HIGH
@@ -47,8 +47,8 @@
 
 
 /obj/effect/mob_spawn/ghost_role/human/virtual_domain/islander
-	name = "Islander"
+	name = "岛民"
 	outfit = /datum/outfit/beachbum_combat
-	prompt_name = "a combat beach bum"
-	you_are_text = "You are a virtual islander."
-	flavour_text = "Don't let anyone ruin your idyllic vacation spot. Coordinate with others- or don't!"
+	prompt_name = "一名战斗沙滩流浪汉"
+	you_are_text = "你是一名虚拟岛民。"
+	flavour_text = "别让任何人破坏你田园诗般的度假胜地。与他人协作——或者不协作！"

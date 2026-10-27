@@ -12,7 +12,7 @@
 	wound_series = WOUND_SERIES_BONE_BLUNT_BASIC
 
 /datum/wound/blunt/bone
-	name = "Blunt (Bone) Wound"
+	name = "骨骼钝击伤"
 	wound_flags = (ACCEPTS_GAUZE | SPLINT_OVERLAY) // SKYRAT EDIT: MEDICAL -- Makes bone wounds have a splint overlay
 
 	default_scar_file = BONE_SCAR_FILE
@@ -53,7 +53,7 @@
 			I = victim.get_inactive_held_item()
 
 		if(I && victim.dropItemToGround(I))
-			victim.visible_message(span_danger("[victim] drops [I] in shock!"), span_warning("<b>The force on your [limb.plaintext_zone] causes you to drop [I]!</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
+			victim.visible_message(span_danger("[victim]猛然松手，丢下了[I]！"), span_warning("<b>你的[chinese_body_zone_display(limb.plaintext_zone)]受到冲击，使你丢下了[I]！</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
 
 	update_inefficiencies()
 	return ..()
@@ -102,13 +102,13 @@
 		victim.take_bodypart_damage(rand(1, severity * 2), wound_bonus=CANT_WOUND)
 		victim.adjust_stamina_loss(rand(2, severity * 2.5))
 		if(prob(33))
-			to_chat(victim, span_danger("You feel a sharp pain in your body as your bones are reforming!"))
+			to_chat(victim, span_danger("骨骼正在重新成形，你感到体内传来一阵剧痛！"))
 
 	if(regen_ticks_current > regen_ticks_needed)
 		if(!victim || !limb)
 			qdel(src)
 			return
-		to_chat(victim, span_green("Your [limb.plaintext_zone] has recovered from its [LOWER_TEXT(undiagnosed_name || name)]!"))
+		to_chat(victim, span_green("你的[chinese_body_zone_display(limb.plaintext_zone)]已从[undiagnosed_name || name]中恢复！"))
 		remove_wound()
 
 /// If we're a human who's punching something with a broken arm, we might hurt ourselves doing so
@@ -123,11 +123,11 @@
 		// And you have a 70% or 50% chance to actually land the blow, respectively
 		if(HAS_TRAIT(victim, TRAIT_ANALGESIA) || prob(70 - 20 * (severity - 1)))
 			if(!HAS_TRAIT(victim, TRAIT_ANALGESIA))
-				to_chat(victim, span_danger("The fracture in your [limb.plaintext_zone] shoots with pain as you strike [target]!"))
+				to_chat(victim, span_danger("你击打[target]时，[chinese_body_zone_display(limb.plaintext_zone)]的骨折处传来剧痛！"))
 			victim.apply_damage(rand(1, 5), BRUTE, limb, wound_bonus = CANT_WOUND, wound_clothing = FALSE)
 		else
-			victim.visible_message(span_danger("[victim] weakly strikes [target] with [victim.p_their()] broken [limb.plaintext_zone], recoiling from pain!"), \
-			span_userdanger("You fail to strike [target] as the fracture in your [limb.plaintext_zone] lights up in unbearable pain!"), vision_distance=COMBAT_MESSAGE_RANGE)
+			victim.visible_message(span_danger("[victim]用骨折的[chinese_body_zone_display(limb.plaintext_zone)]无力地击向[target]，却痛得缩了回来！"), \
+			span_userdanger("你[chinese_body_zone_display(limb.plaintext_zone)]的骨折处痛得难以忍受，没能击中[target]！"), vision_distance=COMBAT_MESSAGE_RANGE)
 			INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob, emote), "scream")
 			victim.Stun(0.5 SECONDS)
 			victim.apply_damage(rand(3, 7), BRUTE, limb, wound_bonus = CANT_WOUND, wound_clothing = FALSE)
@@ -158,7 +158,7 @@
 
 	if(gun.recoil > 0 && severity >= WOUND_SEVERITY_SEVERE && prob(25 * (severity - 1)))
 		if(!HAS_TRAIT(victim, TRAIT_ANALGESIA))
-			to_chat(victim, span_danger("The fracture in your [limb.plaintext_zone] explodes with pain as [gun] kicks back!"))
+			to_chat(victim, span_danger("[gun]的后坐力使你[chinese_body_zone_display(limb.plaintext_zone)]的骨折处爆发出剧痛！"))
 		victim.apply_damage(rand(1, 3) * (severity - 1) * gun.weapon_weight, BRUTE, limb, wound_bonus = CANT_WOUND, wound_clothing = FALSE)
 
 	if(!HAS_TRAIT(victim, TRAIT_ANALGESIA))
@@ -175,23 +175,23 @@
 				victim.bleed(blood_bled, TRUE)
 			if(7 to 13)
 				victim.visible_message(
-					span_smalldanger("A thin stream of blood drips from [victim]'s mouth from the blow to [victim.p_their()] chest."),
-					span_danger("You cough up a bit of blood from the blow to your chest."),
+					span_smalldanger("胸口受到打击后，一缕鲜血从[victim]嘴角流下。"),
+					span_danger("胸口的打击使你咳出了一点血。"),
 					vision_distance = COMBAT_MESSAGE_RANGE,
 				)
 				victim.bleed(blood_bled, TRUE)
 			if(14 to 19)
 				victim.visible_message(
-					span_smalldanger("Blood spews out of [victim]'s mouth from the blow to [victim.p_their()] chest!"),
-					span_danger("You spit out a string of blood from the blow to your chest!"),
+					span_smalldanger("胸口受到打击后，鲜血从[victim]口中涌出！"),
+					span_danger("胸口的打击使你吐出了一口血！"),
 					vision_distance = COMBAT_MESSAGE_RANGE,
 				)
 				victim.create_splatter(victim.dir)
 				victim.bleed(blood_bled)
 			if(20 to INFINITY)
 				victim.visible_message(
-					span_danger("Blood spurts out of [victim]'s mouth from the blow to [victim.p_their()] chest!"),
-					span_bolddanger("You choke up on a spray of blood from the blow to your chest!"),
+					span_danger("胸口受到打击后，鲜血从[victim]口中喷出！"),
+					span_bolddanger("胸口的打击使你呛咳着喷出一片血雾！"),
 					vision_distance = COMBAT_MESSAGE_RANGE,
 				)
 				victim.bleed(blood_bled)
@@ -204,12 +204,12 @@
 	var/obj/item/stack/medical/wrap/current_gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
 	if (!current_gauze)
 		if(taped)
-			. += ", [span_notice("and appears to be reforming itself under some surgical tape!")]"
+			. += "，[span_notice("似乎正在外科胶带下重新成形！")]"
 		else if(gelled)
-			. += ", [span_notice("with fizzing flecks of blue bone gel sparking off the bone!")]"
+			. += "，[span_notice("骨头上冒着气泡的蓝色骨胶正四处飞溅！")]"
 
 /datum/wound/blunt/get_limb_examine_description()
-	return span_warning("The bones in this limb appear badly cracked.")
+	return span_warning("这条肢体中的骨头似乎已严重断裂。")
 
 /*
 	New common procs for /datum/wound/blunt/bone/
@@ -225,15 +225,15 @@
 
 /// Joint Dislocation (Moderate Blunt)
 /datum/wound/blunt/bone/moderate
-	name = "Joint Dislocation"
-	undiagnosed_name = "Dislocation"
+	name = "关节脱位"
+	undiagnosed_name = "脱臼"
 	a_or_from = "a"
-	desc = "Patient's limb has been unset from socket, causing pain and reduced motor function."
-	treat_text = "Apply Bonesetter to the affected limb. \
-		Manual relocation by via an aggressive grab and a tight hug to the affected limb may also suffice."
-	treat_text_short = "Apply Bonesetter, or manually relocate the limb."
-	examine_desc = "is awkwardly janked out of place"
-	occur_text = "janks violently and becomes unseated"
+	desc = "患者的肢体脱离关节窝，造成疼痛和运动功能下降。"
+	treat_text = "对患肢使用正骨器。\
+		也可通过强力抓取患者，再以帮助意图紧抱患肢来手动复位。"
+	treat_text_short = "使用正骨器，或手动将肢体复位。"
+	examine_desc = "以别扭的姿态错位了"
+	occur_text = "猛烈扭曲，发生了脱位"
 	severity = WOUND_SEVERITY_MODERATE
 	interaction_efficiency_penalty = 1.3
 	limp_slowdown = 3
@@ -243,9 +243,9 @@
 	status_effect_type = /datum/status_effect/wound/blunt/bone/moderate
 	scar_keyword = "dislocate"
 
-	simple_desc = "Patient's bone has been dislocated, causing limping or reduced dexterity."
-	simple_treat_text = "<b>Bandaging</b> the wound will reduce its impact until treated with a bonesetter. Most commonly, it is treated by aggressively grabbing someone and helpfully wrenching the limb in place, though there's room for malfeasance when doing this."
-	homemade_treat_text = "Besides bandaging and wrenching, <b>bone setters</b> can be printed in lathes and utilized on oneself at the cost of great pain. As a last resort, <b>crushing</b> the patient with a <b>firelock</b> has sometimes been noted to fix their dislocated limb."
+	simple_desc = "患者的骨骼脱位，造成跛行或灵活度下降。"
+	simple_treat_text = "在使用正骨器治疗前，<b>包扎</b>伤处可减轻影响。最常见的治疗方法是强力抓取患者，再以帮助意图将肢体扳回原位，不过这一过程也可能被用于伤害患者。"
+	homemade_treat_text = "除包扎和手动复位外，还可用车床制造<b>正骨器</b>，忍受剧痛为自己治疗。万不得已时，用<b>防火门挤压</b>患者，有时也能使脱臼的肢体复位。"
 
 /datum/wound_pregen_data/bone/dislocate
 	abstract = FALSE
@@ -271,13 +271,13 @@
 	return ..()
 
 /datum/wound/blunt/bone/moderate/get_self_check_description(self_aware)
-	return span_warning("It feels dislocated!")
+	return span_warning("感觉脱臼了！")
 
 /// Getting smushed in an airlock/firelock is a last-ditch attempt to try relocating your limb
 /datum/wound/blunt/bone/moderate/proc/door_crush()
 	SIGNAL_HANDLER
 	if(prob(40))
-		victim.visible_message(span_danger("[victim]'s dislocated [limb.plaintext_zone] pops back into place!"), span_userdanger("Your dislocated [limb.plaintext_zone] pops back into place! Ow!"))
+		victim.visible_message(span_danger("[victim]脱臼的[chinese_body_zone_display(limb.plaintext_zone)]咔嗒一声回到了原位！"), span_userdanger("你脱臼的[chinese_body_zone_display(limb.plaintext_zone)]咔嗒一声回到了原位！好痛！"))
 		remove_wound()
 		return DOORCRUSH_NO_WOUND
 	return NONE
@@ -289,12 +289,12 @@
 		return FALSE
 
 	if(user.grab_state == GRAB_PASSIVE)
-		to_chat(user, span_warning("You must have [victim] in an aggressive grab to manipulate [victim.p_their()] [LOWER_TEXT(undiagnosed_name || name)]!"))
+		to_chat(user, span_warning("必须先强力抓住[victim]，才能处理其[undiagnosed_name || name]！"))
 		return TRUE
 
 	if(user.grab_state >= GRAB_AGGRESSIVE)
-		user.visible_message(span_danger("[user] begins twisting and straining [victim]'s dislocated [limb.plaintext_zone]!"), span_notice("You begin twisting and straining [victim]'s dislocated [limb.plaintext_zone]..."), ignored_mobs=victim)
-		to_chat(victim, span_userdanger("[user] begins twisting and straining your dislocated [limb.plaintext_zone]!"))
+		user.visible_message(span_danger("[user]开始用力扭动[victim]脱臼的[chinese_body_zone_display(limb.plaintext_zone)]！"), span_notice("你开始用力扭动[victim]脱臼的[chinese_body_zone_display(limb.plaintext_zone)]……"), ignored_mobs=victim)
+		to_chat(victim, span_userdanger("[user]开始用力扭动你脱臼的[chinese_body_zone_display(limb.plaintext_zone)]！"))
 		if(!user.combat_mode)
 			chiropractice(user)
 		else
@@ -309,14 +309,14 @@
 		return
 
 	if(prob(65))
-		user.visible_message(span_danger("[user] snaps [victim]'s dislocated [limb.plaintext_zone] back into place!"), span_notice("You snap [victim]'s dislocated [limb.plaintext_zone] back into place!"), ignored_mobs=victim)
-		to_chat(victim, span_userdanger("[user] snaps your dislocated [limb.plaintext_zone] back into place!"))
+		user.visible_message(span_danger("[user]将[victim]脱臼的[chinese_body_zone_display(limb.plaintext_zone)]猛地扳回了原位！"), span_notice("你将[victim]脱臼的[chinese_body_zone_display(limb.plaintext_zone)]猛地扳回了原位！"), ignored_mobs=victim)
+		to_chat(victim, span_userdanger("[user]将你脱臼的[chinese_body_zone_display(limb.plaintext_zone)]猛地扳回了原位！"))
 		victim.emote("scream")
 		victim.apply_damage(20, BRUTE, limb, wound_bonus = CANT_WOUND)
 		qdel(src)
 	else
-		user.visible_message(span_danger("[user] wrenches [victim]'s dislocated [limb.plaintext_zone] around painfully!"), span_danger("You wrench [victim]'s dislocated [limb.plaintext_zone] around painfully!"), ignored_mobs=victim)
-		to_chat(victim, span_userdanger("[user] wrenches your dislocated [limb.plaintext_zone] around painfully!"))
+		user.visible_message(span_danger("[user]用力扭动[victim]脱臼的[chinese_body_zone_display(limb.plaintext_zone)]，使其痛苦不堪！"), span_danger("你用力扭动[victim]脱臼的[chinese_body_zone_display(limb.plaintext_zone)]，使其痛苦不堪！"), ignored_mobs=victim)
+		to_chat(victim, span_userdanger("[user]用力扭动你脱臼的[chinese_body_zone_display(limb.plaintext_zone)]，痛得你难以忍受！"))
 		victim.apply_damage(10, BRUTE, limb, wound_bonus = CANT_WOUND)
 		chiropractice(user)
 
@@ -328,13 +328,13 @@
 		return
 
 	if(prob(65))
-		user.visible_message(span_danger("[user] snaps [victim]'s dislocated [limb.plaintext_zone] with a sickening crack!"), span_danger("You snap [victim]'s dislocated [limb.plaintext_zone] with a sickening crack!"), ignored_mobs=victim)
-		to_chat(victim, span_userdanger("[user] snaps your dislocated [limb.plaintext_zone] with a sickening crack!"))
+		user.visible_message(span_danger("[user]折断了[victim]脱臼的[chinese_body_zone_display(limb.plaintext_zone)]，发出令人作呕的断裂声！"), span_danger("你折断了[victim]脱臼的[chinese_body_zone_display(limb.plaintext_zone)]，发出令人作呕的断裂声！"), ignored_mobs=victim)
+		to_chat(victim, span_userdanger("[user]折断了你脱臼的[chinese_body_zone_display(limb.plaintext_zone)]，发出令人作呕的断裂声！"))
 		victim.emote("scream")
 		victim.apply_damage(25, BRUTE, limb, wound_bonus = 30)
 	else
-		user.visible_message(span_danger("[user] wrenches [victim]'s dislocated [limb.plaintext_zone] around painfully!"), span_danger("You wrench [victim]'s dislocated [limb.plaintext_zone] around painfully!"), ignored_mobs=victim)
-		to_chat(victim, span_userdanger("[user] wrenches your dislocated [limb.plaintext_zone] around painfully!"))
+		user.visible_message(span_danger("[user]用力扭动着[victim]脱臼的[chinese_body_zone_display(limb.plaintext_zone)]，使其痛苦不堪！"), span_danger("你用力扭动[victim]脱臼的[chinese_body_zone_display(limb.plaintext_zone)]，使其痛苦不堪！"), ignored_mobs=victim)
+		to_chat(victim, span_userdanger("[user]用力扭动你脱臼的[chinese_body_zone_display(limb.plaintext_zone)]，痛得你难以忍受！"))
 		victim.apply_damage(10, BRUTE, limb, wound_bonus = CANT_WOUND)
 		malpractice(user)
 
@@ -345,20 +345,20 @@
 	var/treatment_delay = base_treat_time * self_penalty_mult * scanned_mult
 
 	if(victim == user)
-		victim.visible_message(span_danger("[user] begins [scanned ? "expertly" : ""] resetting [victim.p_their()] [limb.plaintext_zone] with [tool]."), span_warning("You begin resetting your [limb.plaintext_zone] with [tool][scanned ? ", keeping the holo-image's indications in mind" : ""]..."))
+		victim.visible_message(span_danger("[user]开始用[tool][scanned ? "熟练地" : ""]将自己的[chinese_body_zone_display(limb.plaintext_zone)]复位。"), span_warning("你开始[scanned ? "按照全息影像的指引，" : ""]用[tool]将自己的[chinese_body_zone_display(limb.plaintext_zone)]复位……"))
 	else
-		user.visible_message(span_danger("[user] begins [scanned ? "expertly" : ""] resetting [victim]'s [limb.plaintext_zone] with [tool]."), span_notice("You begin resetting [victim]'s [limb.plaintext_zone] with [tool][scanned ? ", keeping the holo-image's indications in mind" : ""]..."))
+		user.visible_message(span_danger("[user]开始用[tool][scanned ? "熟练地" : ""]将[victim]的[chinese_body_zone_display(limb.plaintext_zone)]复位。"), span_notice("你开始[scanned ? "按照全息影像的指引，" : ""]用[tool]将[victim]的[chinese_body_zone_display(limb.plaintext_zone)]复位……"))
 
 	if(!do_after(user, treatment_delay, target = victim, extra_checks=CALLBACK(src, PROC_REF(still_exists))))
 		return
 
 	if(victim == user)
 		victim.apply_damage(15, BRUTE, limb, wound_bonus = CANT_WOUND)
-		victim.visible_message(span_danger("[user] finishes resetting [victim.p_their()] [limb.plaintext_zone]!"), span_userdanger("You reset your [limb.plaintext_zone]!"))
+		victim.visible_message(span_danger("[user]将自己的[chinese_body_zone_display(limb.plaintext_zone)]复位了！"), span_userdanger("你将自己的[chinese_body_zone_display(limb.plaintext_zone)]复位了！"))
 	else
 		victim.apply_damage(10, BRUTE, limb, wound_bonus = CANT_WOUND)
-		user.visible_message(span_danger("[user] finishes resetting [victim]'s [limb.plaintext_zone]!"), span_nicegreen("You finish resetting [victim]'s [limb.plaintext_zone]!"), ignored_mobs=victim)
-		to_chat(victim, span_userdanger("[user] resets your [limb.plaintext_zone]!"))
+		user.visible_message(span_danger("[user]将[victim]的[chinese_body_zone_display(limb.plaintext_zone)]复位了！"), span_nicegreen("你将[victim]的[chinese_body_zone_display(limb.plaintext_zone)]复位了！"), ignored_mobs=victim)
+		to_chat(victim, span_userdanger("[user]将你的[chinese_body_zone_display(limb.plaintext_zone)]复位了！"))
 
 	victim.emote("scream")
 	qdel(src)
@@ -368,13 +368,13 @@
 */
 
 /datum/wound/blunt/bone/severe
-	name = "Hairline Fracture"
-	desc = "Patient's bone has suffered a crack in the foundation, causing serious pain and reduced limb functionality."
-	treat_text = "Repair surgically. In the event of an emergency, an application of bone gel over the affected area will fix over time. \
-		A splint or sling of medical gauze can also be used to prevent the fracture from worsening."
-	treat_text_short = "Repair surgically, or apply bone gel. A splint or gauze sling can also be used."
-	examine_desc = "appears grotesquely swollen, jagged bumps hinting at chips in the bone"
-	occur_text = "sprays chips of bone and develops a nasty looking bruise"
+	name = "骨裂"
+	desc = "患者的骨骼出现裂纹，造成严重疼痛和肢体功能下降。"
+	treat_text = "进行手术修复。紧急情况下可在患处涂抹骨胶，使其逐渐恢复。\
+		也可使用夹板或医用纱布吊带，防止骨折恶化。"
+	treat_text_short = "手术修复，或涂抹骨胶。也可使用夹板或纱布吊带。"
+	examine_desc = "肿胀得骇人，参差的凸起暗示着骨骼碎裂"
+	occur_text = "飞溅出骨屑，并出现了骇人的淤伤"
 
 	severity = WOUND_SEVERITY_SEVERE
 	interaction_efficiency_penalty = 2
@@ -390,9 +390,9 @@
 	wound_flags = (ACCEPTS_GAUZE | MANGLES_INTERIOR | SPLINT_OVERLAY) // SKYRAT EDIT - MEDICAL (SPLINT_OVERLAY)
 	regen_ticks_needed = 120 // ticks every 2 seconds, 240 seconds, so roughly 4 minutes default
 
-	simple_desc = "Patient's bone has cracked in the middle, drastically reducing limb functionality."
-	simple_treat_text = "<b>Bandaging</b> the wound will reduce its impact until <b>surgically treated</b> with bone gel and surgical tape."
-	homemade_treat_text = "<b>Bone gel and surgical tape</b> may be applied directly to the wound, though this is quite difficult for most people to do so individually unless they've dosed themselves with one or more <b>painkillers</b> (Morphine and Miner's Salve have been known to help)"
+	simple_desc = "患者的骨骼中部出现裂纹，肢体功能严重下降。"
+	simple_treat_text = "在使用骨胶和外科胶带进行<b>手术治疗</b>前，<b>包扎</b>伤处可减轻影响。"
+	homemade_treat_text = "可直接对伤处使用<b>骨胶和外科胶带</b>，但大多数人很难自行完成，除非先使用一种或多种<b>止痛药</b>（吗啡和矿工药膏已知有效）。"
 
 
 /datum/wound_pregen_data/bone/hairline
@@ -404,16 +404,16 @@
 
 /// Compound Fracture (Critical Blunt)
 /datum/wound/blunt/bone/critical
-	name = "Compound Fracture"
+	name = "开放性骨折"
 	undiagnosed_name = null // you can tell it's a compound fracture at a glance because of a skin breakage
 	a_or_from = "a"
-	desc = "Patient's bones have suffered multiple fractures, \
-		couped with a break in the skin, causing significant pain and near uselessness of limb."
-	treat_text = "Immediately bind the affected limb with gauze or a splint. Repair surgically. \
-		In the event of an emergency, bone gel and surgical tape can be applied to the affected area to fix over a long period of time."
-	treat_text_short = "Repair surgically, or apply bone gel and surgical tape. A splint or gauze sling should also be used."
-	examine_desc = "is thoroughly pulped and cracked, exposing shards of bone to open air"
-	occur_text = "cracks apart, exposing broken bones to open air"
+	desc = "患者的骨骼多处断裂，\
+		伴有皮肤破裂，造成剧烈疼痛，肢体几乎无法使用。"
+	treat_text = "立即用纱布或夹板固定患肢，并进行手术修复。\
+		紧急情况下可对患处使用骨胶和外科胶带，使其经过较长时间后恢复。"
+	treat_text_short = "手术修复，或使用骨胶和外科胶带。还应使用夹板或纱布吊带。"
+	examine_desc = "血肉模糊、支离破碎，碎骨暴露在空气中"
+	occur_text = "裂开了，断骨暴露在空气中"
 
 	severity = WOUND_SEVERITY_CRITICAL
 	interaction_efficiency_penalty = 2.5
@@ -432,9 +432,9 @@
 	regen_ticks_needed = 240 // ticks every 2 seconds, 480 seconds, so roughly 8 minutes default
 	surgery_states = SURGERY_SKIN_CUT | SURGERY_BONE_SAWED // Bad enough to count as a busted skull/ribcage
 
-	simple_desc = "Patient's bones have effectively shattered completely, causing total immobilization of the limb."
-	simple_treat_text = "<b>Bandaging</b> the wound will slightly reduce its impact until <b>surgically treated</b> with bone gel and surgical tape."
-	homemade_treat_text = "Although this is extremely difficult and slow to function, <b>Bone gel and surgical tape</b> may be applied directly to the wound, though this is nigh-impossible for most people to do so individually unless they've dosed themselves with one or more <b>painkillers</b> (Morphine and Miner's Salve have been known to help)"
+	simple_desc = "患者的骨骼几乎完全粉碎，肢体彻底无法活动。"
+	simple_treat_text = "在使用骨胶和外科胶带进行<b>手术治疗</b>前，<b>包扎</b>伤处可略微减轻影响。"
+	homemade_treat_text = "虽然极其困难且见效缓慢，仍可直接对伤处使用<b>骨胶和外科胶带</b>。大多数人几乎无法自行完成，除非先使用一种或多种<b>止痛药</b>（吗啡和矿工药膏已知有效）。"
 
 	/// Tracks if a surgeon has reset the bone (part one of the surgical treatment process)
 	VAR_FINAL/reset = FALSE
@@ -449,8 +449,8 @@
 // doesn't make much sense for "a" bone to stick out of your head
 /datum/wound/blunt/bone/critical/apply_wound(obj/item/bodypart/L, silent = FALSE, datum/wound/old_wound = null, smited = FALSE, attack_direction = null, wound_source = "Unknown", replacing = FALSE)
 	if(L.body_zone == BODY_ZONE_HEAD)
-		occur_text = "splits open, exposing a bare, cracked skull through the flesh and blood"
-		examine_desc = "has an unsettling indent, with bits of skull poking out"
+		occur_text = "裂开了，血肉间露出破裂的颅骨"
+		examine_desc = "有一处骇人的凹陷，颅骨碎片从中刺出"
 	. = ..()
 
 /// if someone is using bone gel on our wound
@@ -460,10 +460,10 @@
 		return skelly_gel(I, user)
 
 	if(gelled)
-		to_chat(user, span_warning("[user == victim ? "Your" : "[victim]'s"] [limb.plaintext_zone] is already coated with bone gel!"))
+		to_chat(user, span_warning("[user == victim ? "你" : "[victim]"]的[chinese_body_zone_display(limb.plaintext_zone)]已经涂过骨胶了！"))
 		return TRUE
 
-	user.visible_message(span_danger("[user] begins hastily applying [I] to [victim]'s' [limb.plaintext_zone]..."), span_warning("You begin hastily applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.plaintext_zone], disregarding the warning label..."))
+	user.visible_message(span_danger("[user]开始匆忙将[I]涂在[victim]的[chinese_body_zone_display(limb.plaintext_zone)]上……"), span_warning("你无视警告标签，开始匆忙将[I]涂在[user == victim ? "自己" : "[victim]"]的[chinese_body_zone_display(limb.plaintext_zone)]上……"))
 
 	if(!do_after(user, base_treat_time * 1.5 * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, PROC_REF(still_exists))))
 		return TRUE
@@ -471,15 +471,15 @@
 	I.use(1)
 	victim.emote("scream")
 	if(user != victim)
-		user.visible_message(span_notice("[user] finishes applying [I] to [victim]'s [limb.plaintext_zone], emitting a fizzing noise!"), span_notice("You finish applying [I] to [victim]'s [limb.plaintext_zone]!"), ignored_mobs=victim)
-		to_chat(victim, span_userdanger("[user] finishes applying [I] to your [limb.plaintext_zone], and you can feel the bones exploding with pain as they begin melting and reforming!"))
+		user.visible_message(span_notice("[user]将[I]涂在[victim]的[chinese_body_zone_display(limb.plaintext_zone)]上，发出嘶嘶的气泡声！"), span_notice("你将[I]涂在了[victim]的[chinese_body_zone_display(limb.plaintext_zone)]上！"), ignored_mobs=victim)
+		to_chat(victim, span_userdanger("[user]将[I]涂在了你的[chinese_body_zone_display(limb.plaintext_zone)]上。骨骼开始溶解、重新成形，剧痛随之爆发！"))
 	else
 		if(!HAS_TRAIT(victim, TRAIT_ANALGESIA))
 			if(prob(25 + (20 * (severity - 2)) - min(victim.get_drunk_amount(), 10))) // 25%/45% chance to fail self-applying with severe and critical wounds, modded by drunkenness
-				victim.visible_message(span_danger("[victim] fails to finish applying [I] to [victim.p_their()] [limb.plaintext_zone], passing out from the pain!"), span_notice("You pass out from the pain of applying [I] to your [limb.plaintext_zone] before you can finish!"))
+				victim.visible_message(span_danger("[victim]还没将[I]涂完在自己的[chinese_body_zone_display(limb.plaintext_zone)]上，就痛得昏了过去！"), span_notice("你还没将[I]涂完在自己的[chinese_body_zone_display(limb.plaintext_zone)]上，就痛得昏了过去！"))
 				victim.AdjustUnconscious(5 SECONDS)
 				return TRUE
-		victim.visible_message(span_notice("[victim] finishes applying [I] to [victim.p_their()] [limb.plaintext_zone], grimacing from the pain!"), span_notice("You finish applying [I] to your [limb.plaintext_zone], and your bones explode in pain!"))
+		victim.visible_message(span_notice("[victim]将[I]涂在自己的[chinese_body_zone_display(limb.plaintext_zone)]上，痛得龇牙咧嘴！"), span_notice("你将[I]涂在了自己的[chinese_body_zone_display(limb.plaintext_zone)]上，骨骼顿时剧痛无比！"))
 
 	victim.apply_damage(25, BRUTE, limb, wound_bonus = CANT_WOUND)
 	victim.apply_damage(100, STAMINA)
@@ -489,20 +489,20 @@
 /// skellies are less averse to bone gel, since they're literally all bone
 /datum/wound/blunt/bone/proc/skelly_gel(obj/item/stack/medical/bone_gel/I, mob/user)
 	if(gelled)
-		to_chat(user, span_warning("[user == victim ? "Your" : "[victim]'s"] [limb.plaintext_zone] is already coated with bone gel!"))
+		to_chat(user, span_warning("[user == victim ? "你" : "[victim]"]的[chinese_body_zone_display(limb.plaintext_zone)]已经涂过骨胶了！"))
 		return
 
-	user.visible_message(span_danger("[user] begins applying [I] to [victim]'s' [limb.plaintext_zone]..."), span_warning("You begin applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.plaintext_zone]..."))
+	user.visible_message(span_danger("[user]开始将[I]涂在[victim]的[chinese_body_zone_display(limb.plaintext_zone)]上……"), span_warning("你开始将[I]涂在[user == victim ? "自己" : "[victim]"]的[chinese_body_zone_display(limb.plaintext_zone)]上……"))
 
 	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, PROC_REF(still_exists))))
 		return
 
 	I.use(1)
 	if(user != victim)
-		user.visible_message(span_notice("[user] finishes applying [I] to [victim]'s [limb.plaintext_zone], emitting a fizzing noise!"), span_notice("You finish applying [I] to [victim]'s [limb.plaintext_zone]!"), ignored_mobs=victim)
-		to_chat(victim, span_userdanger("[user] finishes applying [I] to your [limb.plaintext_zone], and you feel a funny fizzy tickling as they begin to reform!"))
+		user.visible_message(span_notice("[user]将[I]涂在[victim]的[chinese_body_zone_display(limb.plaintext_zone)]上，发出嘶嘶的气泡声！"), span_notice("你将[I]涂在了[victim]的[chinese_body_zone_display(limb.plaintext_zone)]上！"), ignored_mobs=victim)
+		to_chat(victim, span_userdanger("[user]将[I]涂在了你的[chinese_body_zone_display(limb.plaintext_zone)]上。骨骼开始重新成形，你感到一种奇怪的、冒泡似的痒感！"))
 	else
-		victim.visible_message(span_notice("[victim] finishes applying [I] to [victim.p_their()] [limb.plaintext_zone], emitting a funny fizzing sound!"), span_notice("You finish applying [I] to your [limb.plaintext_zone], and feel a funny fizzy tickling as the bone begins to reform!"))
+		victim.visible_message(span_notice("[victim]将[I]涂在自己的[chinese_body_zone_display(limb.plaintext_zone)]上，发出奇怪的气泡声！"), span_notice("你将[I]涂在了自己的[chinese_body_zone_display(limb.plaintext_zone)]上。骨骼开始重新成形，你感到一种奇怪的、冒泡似的痒感！"))
 
 	gelled = TRUE
 	processes = TRUE
@@ -511,13 +511,13 @@
 /// if someone is using surgical tape on our wound
 /datum/wound/blunt/bone/proc/tape(obj/item/stack/medical/wrap/sticky_tape/surgical/I, mob/user)
 	if(!gelled)
-		to_chat(user, span_warning("[user == victim ? "Your" : "[victim]'s"] [limb.plaintext_zone] must be coated with bone gel to perform this emergency operation!"))
+		to_chat(user, span_warning("必须先在[user == victim ? "你" : "[victim]"]的[chinese_body_zone_display(limb.plaintext_zone)]上涂抹骨胶，才能进行这项紧急操作！"))
 		return TRUE
 	if(taped)
-		to_chat(user, span_warning("[user == victim ? "Your" : "[victim]'s"] [limb.plaintext_zone] is already wrapped in [I.name] and reforming!"))
+		to_chat(user, span_warning("[user == victim ? "你" : "[victim]"]的[chinese_body_zone_display(limb.plaintext_zone)]已经缠好[I.name]，正在重新成形！"))
 		return TRUE
 
-	user.visible_message(span_danger("[user] begins applying [I] to [victim]'s' [limb.plaintext_zone]..."), span_warning("You begin applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.plaintext_zone]..."))
+	user.visible_message(span_danger("[user]开始将[I]缠在[victim]的[chinese_body_zone_display(limb.plaintext_zone)]上……"), span_warning("你开始将[I]缠在[user == victim ? "自己" : "[victim]"]的[chinese_body_zone_display(limb.plaintext_zone)]上……"))
 
 	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, PROC_REF(still_exists))))
 		return TRUE
@@ -527,10 +527,10 @@
 
 	I.use(1)
 	if(user != victim)
-		user.visible_message(span_notice("[user] finishes applying [I] to [victim]'s [limb.plaintext_zone], emitting a fizzing noise!"), span_notice("You finish applying [I] to [victim]'s [limb.plaintext_zone]!"), ignored_mobs=victim)
-		to_chat(victim, span_green("[user] finishes applying [I] to your [limb.plaintext_zone], you immediately begin to feel your bones start to reform!"))
+		user.visible_message(span_notice("[user]将[I]缠在[victim]的[chinese_body_zone_display(limb.plaintext_zone)]上，发出嘶嘶的气泡声！"), span_notice("你将[I]缠在了[victim]的[chinese_body_zone_display(limb.plaintext_zone)]上！"), ignored_mobs=victim)
+		to_chat(victim, span_green("[user]将[I]缠在了你的[chinese_body_zone_display(limb.plaintext_zone)]上，你立刻感到骨骼开始重新成形！"))
 	else
-		victim.visible_message(span_notice("[victim] finishes applying [I] to [victim.p_their()] [limb.plaintext_zone], !"), span_green("You finish applying [I] to your [limb.plaintext_zone], and you immediately begin to feel your bones start to reform!"))
+		victim.visible_message(span_notice("[victim]将[I]缠在了自己的[chinese_body_zone_display(limb.plaintext_zone)]上！"), span_green("你将[I]缠在了自己的[chinese_body_zone_display(limb.plaintext_zone)]上，立刻感到骨骼开始重新成形！"))
 
 	taped = TRUE
 	processes = TRUE
@@ -554,19 +554,19 @@
 	if(severity > WOUND_SEVERITY_MODERATE)
 		if((limb.biological_state & BIO_BONE) && !(limb.biological_state & (BIO_FLESH|BIO_CHITIN)))
 			if(!gelled)
-				. += "Recommended Treatment: Apply bone gel directly to injured limb. Creatures of pure bone don't seem to mind bone gel application nearly as much as fleshed individuals. Surgical tape will also be unnecessary.\n"
+				. += "建议治疗：直接对患肢涂抹骨胶。纯骨骼生物对骨胶的耐受性似乎远高于血肉生物，也不需要外科胶带。\n"
 			else
-				. += "[span_notice("Note: Bone regeneration in effect. Bone is [round(regen_ticks_current*100/regen_ticks_needed)]% regenerated.")]\n"
+				. += "[span_notice("注意：骨骼正在再生，已恢复[round(regen_ticks_current*100/regen_ticks_needed)]%。")]\n"
 		else
 			if(!gelled)
-				. += "Alternative Treatment: Apply bone gel directly to injured limb, then apply surgical tape to begin bone regeneration. This is both excruciatingly painful and slow, and only recommended in dire circumstances.\n"
+				. += "替代治疗：直接在患肢上涂抹骨胶，再缠上外科胶带以开始骨骼再生。此法既痛苦又缓慢，仅建议在危急情况下采用。\n"
 			else if(!taped)
-				. += "[span_notice("Continue Alternative Treatment: Apply surgical tape directly to injured limb to begin bone regeneration. Note, this is both excruciatingly painful and slow, though sleep or laying down will speed recovery.")]\n"
+				. += "[span_notice("继续替代治疗：直接在患肢上缠上外科胶带，开始骨骼再生。注意，此法既痛苦又缓慢，但睡眠或躺下可加快恢复。")]\n"
 			else
-				. += "[span_notice("Note: Bone regeneration in effect. Bone is [round(regen_ticks_current*100/regen_ticks_needed)]% regenerated.")]\n"
+				. += "[span_notice("注意：骨骼正在再生，已恢复[round(regen_ticks_current*100/regen_ticks_needed)]%。")]\n"
 
 	if(limb.body_zone == BODY_ZONE_HEAD)
-		. += "Cranial Trauma Detected: Patient will suffer random bouts of [severity == WOUND_SEVERITY_SEVERE ? "mild" : "severe"] brain traumas until bone is repaired."
+		. += "检测到颅骨创伤：骨骼修复前，患者会随机发作[severity == WOUND_SEVERITY_SEVERE ? "轻度" : "重度"]脑创伤。"
 	else if(limb.body_zone == BODY_ZONE_CHEST && CAN_HAVE_BLOOD(victim))
-		. += "Ribcage Trauma Detected: Further trauma to chest is likely to worsen internal bleeding until bone is repaired."
+		. += "检测到胸廓创伤：骨骼修复前，胸部再次受伤很可能加重内出血。"
 	. += "</div>"

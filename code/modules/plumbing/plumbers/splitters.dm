@@ -2,8 +2,8 @@
 
 ///it splits the reagents however you want. So you can "every 60 units, 45 goes left and 15 goes straight". The side direction is EAST, you can change this in the component
 /obj/machinery/plumbing/splitter
-	name = "chemical splitter"
-	desc = "A chemical splitter for smart chemical factorization. Waits till a set of conditions is met and then stops all input and splits the buffer evenly or other in two ducts."
+	name = "化学分流器"
+	desc = "用于智能化学配比的分流器。它会等到满足一组设定条件后才停止所有输入，并把缓冲内容均分或以其他比例送往两条管道。"
 	icon_state = "splitter"
 	buffer = 100
 	density = FALSE

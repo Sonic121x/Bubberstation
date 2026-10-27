@@ -1,7 +1,7 @@
 /// Fires out two cross patterns of damaging tentacles which reel in anything they hit, then causes a followup attack
 /datum/action/cooldown/mob_cooldown/projectile_attack/tendril_lash
-	name = "Tentacle Lash"
-	desc = "Lash out with your tentacles in 8 directions, reeling in whatever you hit and unleashing a deadly followup attack afterwards."
+	name = "触手鞭击"
+	desc = "向八个方向甩出触手，把命中的一切卷拉回来，随后再发动一次致命的追加攻击。"
 	button_icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	button_icon_state = "goliath_tentacle_wiggle"
 	background_icon_state = "bg_demon"
@@ -52,7 +52,7 @@
 	return TRUE
 
 /obj/projectile/tentacle_lash
-	name = "tentacle spike"
+	name = "触手尖刺"
 	icon_state = "tentacle_spike"
 	pass_flags = PASSTABLE
 	damage = 10 // +10 from the grab
@@ -140,7 +140,7 @@
 	if (HAS_TRAIT(victim, TRAIT_TENTACLE_IMMUNE) || SEND_SIGNAL(victim, COMSIG_TENDRIL_TENTACLED_GRABBED) & COMPONENT_TENDRIL_CANCEL_TENTACLE_GRAB)
 		return
 
-	to_chat(victim, span_userdanger("You're snatched by [firer]'s tentacles!"))
+	to_chat(victim, span_userdanger("你被 [firer] 的触手卷住了！"))
 	victim.apply_damage(snatch_damage, BRUTE, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	if (QDELETED(victim))
 		qdel(src)
@@ -155,8 +155,8 @@
 
 /// An ability which makes spikes come out of the ground towards your target
 /datum/action/cooldown/mob_cooldown/tendril_chaser
-	name = "Impaling Spikes"
-	desc = "Send a spiked subterranean tendril chasing after your target."
+	name = "穿刺尖刺"
+	desc = "派出一根带刺的地下触手，追击你的目标。"
 	button_icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	button_icon_state = "spikes_stabbing"
 	background_icon_state = "bg_demon"
@@ -310,8 +310,8 @@
 		qdel(spawner)
 
 /datum/action/cooldown/mob_cooldown/tendril_cross_spikes
-	name = "Cross Spikes"
-	desc = "Create a wave of spikes around yourself, impaling anyone caught in it."
+	name = "交叉尖刺"
+	desc = "在你周围掀起一阵尖刺波，刺穿所有落入其中的目标。"
 	button_icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	button_icon_state = "spike"
 	background_icon_state = "bg_demon"
@@ -383,8 +383,8 @@
 	SLEEP_CHECK_DEATH(0.8 SECONDS, owner)
 
 /datum/action/cooldown/mob_cooldown/projectile_attack/tendril_melee
-	name = "Tentacle Stab"
-	desc = "Stab nearby hostiles with long tentacles."
+	name = "触手突刺"
+	desc = "用长触手刺击附近的敌对目标。"
 	button_icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	button_icon_state = "goliath_tentacle_wiggle"
 	background_icon_state = "bg_demon"

@@ -1,5 +1,5 @@
 /obj/item/clothing/gloves
-	name = "gloves"
+	name = "手套"
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/clothing/gloves.dmi'
@@ -15,11 +15,11 @@
 	slot_flags = ITEM_SLOT_GLOVES
 	drop_sound = 'sound/items/handling/glove_drop.ogg'
 	pickup_sound = 'sound/items/handling/glove_pick_up.ogg'
-	attack_verb_continuous = list("challenges")
-	attack_verb_simple = list("challenge")
+	attack_verb_continuous = list("挑战")
+	attack_verb_simple = list("挑战")
 	strip_delay = 2 SECONDS
 	equip_delay_other = 4 SECONDS
-	article = "a pair of"
+	article = "一副"
 
 	// Path variable. If defined, will produced the type through interaction with wirecutters.
 	var/cut_type = null
@@ -41,7 +41,7 @@
 		. |= COMPONENT_CLEANED|COMPONENT_CLEANED_GAIN_XP
 
 /obj/item/clothing/gloves/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("\the [src] are forcing [user]'s hands around [user.p_their()] neck! It looks like the gloves are possessed!"))
+	user.visible_message(span_suicide("[src] 正把 [user] 的双手死死按在其脖子上！这副手套看起来被附身了！"))
 	return OXYLOSS
 
 /obj/item/clothing/gloves/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file, bodyshape = NONE)
@@ -90,12 +90,12 @@
 	if (!can_cut_with(tool))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "cutting off fingertips...")
+	balloon_alert(user, "正在切掉指尖……")
 
 	if(!do_after(user, 3 SECONDS, target=src, extra_checks = CALLBACK(src, PROC_REF(can_cut_with), tool)))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "cut fingertips off")
+	balloon_alert(user, "已切掉指尖")
 	qdel(src)
 	user.put_in_hands(new cut_type)
 	return ITEM_INTERACT_SUCCESS

@@ -5,8 +5,8 @@
 */
 
 /obj/item/clothing/suit/toggle/jacket/hoodie
-	name = "hoodie"
-	desc = "A warm hoodie. you cant help but mess with the zipper..."
+	name = "连帽衫"
+	desc = "一件暖和的连帽衫。你忍不住总想摆弄拉链……"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/hoodie"
 	post_init_icon_state = "hoodie"
@@ -65,8 +65,8 @@
 	greyscale_colors = "#F0D655"
 
 /obj/item/clothing/suit/toggle/jacket/hoodie/branded
-	name = "NT hoodie"
-	desc = "A warm, blue sweatshirt.  It proudly bears the silver Nanotrasen insignia lettering on the back.  The edges are trimmed with silver."
+	name = "纳米传讯连帽衫"
+	desc = "一件暖和的蓝色卫衣。背后自豪地印着银色的纳米传讯徽标字样。边缘饰有银色滚边。"
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/hoodie/branded"
 	post_init_icon_state = "hoodie_NT"
 	greyscale_config = /datum/greyscale_config/hoodie_branded
@@ -75,30 +75,30 @@
 	flags_1 = NONE
 
 /obj/item/clothing/suit/toggle/jacket/hoodie/branded/nrti
-	name = "New Reykjavik Technical Institute hoodie"
-	desc = "A warm, gray sweatshirt. It bears the letters NRT on the back, in reference to Sif's premiere technical institute."
+	name = "新雷克雅未克理工学院连帽衫"
+	desc = "一件暖和的灰色卫衣。背后印有“NRT”字样，指的是西芙星首屈一指的理工学院。"
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/hoodie/branded/nrti"
 	post_init_icon_state = "hoodie_NRTI"
 	greyscale_colors = "#747474#a83232"
 
 /obj/item/clothing/suit/toggle/jacket/hoodie/branded/mu
-	name = "mojave university hoodie"
-	desc = "A warm, gray sweatshirt.  It bears the letters MU on the front, a lettering to the well-known public college, Mojave University."
+	name = "莫哈韦大学连帽衫"
+	desc = "一件暖和的灰色卫衣。正面印有“MU”字样，指的是那所著名的公立学院——莫哈韦大学。"
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/hoodie/branded/mu"
 	post_init_icon_state = "hoodie_MU"
 	greyscale_colors = "#747474#ffffff"
 
 
 /obj/item/clothing/suit/toggle/jacket/hoodie/branded/cti
-	name = "CTI hoodie"
-	desc = "A warm, black sweatshirt.  It bears the letters CTI on the back, a lettering to the prestigious university in Tau Ceti, Ceti Technical Institute.  There is a blue supernova embroidered on the front, the emblem of CTI."
+	name = "CTI 连帽衫"
+	desc = "一件暖和的黑色卫衣。背后印有“CTI”字样，指的是位于天仓五的著名学府——天仓技术学院。正面绣着一颗蓝色超新星，那是 CTI 的校徽。"
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/hoodie/branded/cti"
 	post_init_icon_state = "hoodie_CTI"
 	greyscale_colors = "#313131#ffffff"
 
 /obj/item/clothing/suit/toggle/jacket/hoodie/branded/smw
-	name = "Space Mountain Wind hoodie"
-	desc = "A warm, black sweatshirt.  It has the logo for the popular softdrink Space Mountain Wind on both the front and the back."
+	name = "太空山风连帽衫"
+	desc = "一件暖和的黑色卫衣。正面和背面都印有流行汽水“太空山风”的标志。"
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/hoodie/branded/smw"
 	post_init_icon_state = "hoodie_SMW"
 	greyscale_colors = "#313131#ffffff"

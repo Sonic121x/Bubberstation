@@ -227,7 +227,7 @@ GAME_VERB_NATIVE(/client, uiclose, "uiclose", null, window_id as text)
 		window = usr.client.tgui_windows[window_id]
 		if(!window)
 			log_tgui(usr,
-				"Error: Couldn't find the window datum, force closing.",
+				"错误：找不到窗口数据，正在强制关闭。",
 				context = window_id)
 			SStgui.force_close_window(usr, window_id)
 			return TRUE
@@ -238,7 +238,7 @@ GAME_VERB_NATIVE(/client, uiclose, "uiclose", null, window_id as text)
 		var/payload_text = href_list["payload"]
 
 		if (!rustg_json_is_valid(payload_text))
-			log_tgui(usr, "Error: Invalid JSON")
+			log_tgui(usr, "错误：JSON 无效")
 			return TRUE
 
 		payload = json_decode(payload_text)

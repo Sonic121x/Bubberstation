@@ -1,5 +1,5 @@
 /obj/machinery/rnd/server/oldstation
-	name = "\improper Ancient R&D Server"
+	name = "\improper 古老的研究开发服务器"
 	circuit = /obj/item/circuitboard/machine/rdserver/oldstation
 	req_access = list(ACCESS_AWAY_SCIENCE)
 
@@ -12,7 +12,7 @@
 	. = ..()
 
 	if(istype(held_item, /obj/item/research_notes))
-		context[SCREENTIP_CONTEXT_LMB] = "Generate research points"
+		context[SCREENTIP_CONTEXT_LMB] = "生成研究点数"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/rnd/server/oldstation/examine(mob/user)
@@ -21,7 +21,7 @@
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
-	. += span_notice("Insert [EXAMINE_HINT("Research Notes")] to generate points.")
+	. += span_notice("插入 [EXAMINE_HINT("研究笔记")] 以生成点数。")
 
 /obj/machinery/rnd/server/oldstation/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/research_notes) && stored_research)
@@ -35,5 +35,5 @@
 
 ///Ancient computer that starts with dissection to tell players they have it.
 /obj/machinery/computer/operating/oldstation
-	name = "ancient operating computer"
+	name = "古老的手术计算机"
 	advanced_surgeries = list(/datum/surgery_operation/basic/dissection)

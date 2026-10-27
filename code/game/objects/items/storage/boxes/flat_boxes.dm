@@ -1,6 +1,6 @@
 /obj/item/storage/box/flat
-	name = "flat box"
-	desc = "A cardboard box folded in a manner that is optimal for concealment, rather than for stowing your belongings."
+	name = "扁平盒"
+	desc = "一个折叠方式最适合藏匿、而不是存放私人物品的纸板箱。"
 	icon_state = "flat"
 	illustration = null
 	storage_type = /datum/storage/box/flat
@@ -22,8 +22,8 @@
 	qdel(src)
 
 /obj/item/storage/box/flat/fentanylpatches
-	name = "discrete box"
-	desc = "A small box containing a set of unmarked transdermal patches."
+	name = "隐秘盒"
+	desc = "一个小盒子，里面装有一组无标记的透皮贴片。"
 	icon_state = "flat"
 
 /obj/item/storage/box/flat/fentanylpatches/Initialize(mapload)

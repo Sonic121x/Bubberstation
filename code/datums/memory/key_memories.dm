@@ -23,12 +23,12 @@
 	return ..()
 
 /datum/memory/key/account/get_names()
-	return list("The bank ID of [protagonist_name], [remembered_id].")
+	return list("[protagonist_name]的银行账户号码：[remembered_id]。")
 
 /datum/memory/key/account/get_starts()
 	return list(
-		"[protagonist_name] flexing their last brain cells, proudly showing their lucky numbers [remembered_id].",
-		"[remembered_id]. The numbers mason, what do they mean!?",
+		"[protagonist_name]绞尽最后一点脑汁，骄傲地展示着幸运数字[remembered_id]。",
+		"[remembered_id]。梅森，这些数字到底是什么意思！？",
 	)
 
 /// The code to the captain's spare ID, ONLY give to the real captain.
@@ -46,12 +46,12 @@
 	return ..()
 
 /datum/memory/key/captains_spare_code/get_names()
-	return list("The code to the golden safe on the bridge, [safe_code].")
+	return list("舰桥金色保险箱的密码：[safe_code]。")
 
 /datum/memory/key/captains_spare_code/get_starts()
 	return list(
-		"[protagonist_name] struggling at a wall safe, until finally entering [safe_code].",
-		"[safe_code][rand(0,9)]. The numbers mason, what do they mean!?", // Same as the account code
+		"[protagonist_name]在壁式保险箱前折腾了半天，终于输入了[safe_code]。",
+		"[safe_code][rand(0,9)]。梅森，这些数字到底是什么意思！？", // Same as the account code
 	)
 
 
@@ -70,12 +70,12 @@
 	return ..()
 
 /datum/memory/key/nuke_code/get_names()
-	return list("[protagonist_name] learns the detonation codes for a nuclear weapon, [nuclear_code].")
+	return list("[protagonist_name]得知了核武器的引爆密码：[nuclear_code]。")
 
 /datum/memory/key/nuke_code/get_starts()
 	return list(
-		"The number [nuclear_code] written on a sticky note with the words \"FOR SYNDICATE EYES ONLY\" scrawled next to it.",
-		"A piece of paper with the number [nuclear_code] being handed to [protagonist_name] from a figure in a blood-red MODsuit.",
+		"便利贴上写着数字[nuclear_code]，旁边潦草地标注着\"仅限辛迪加成员查阅\"。",
+		"一个身穿血红色 MOD 外骨骼的人，将写有数字[nuclear_code]的纸条交给了[protagonist_name]。",
 	)
 
 /// Tracks what medicines someone with the "allergies" quirk is allergic to
@@ -94,10 +94,10 @@
 	return ..()
 
 /datum/memory/key/quirk_allergy/get_names()
-	return list("The [allergy_string] allergy of [protagonist_name].")
+	return list("[protagonist_name]对[allergy_string]过敏。")
 
 /datum/memory/key/quirk_allergy/get_starts()
-	return list("[protagonist_name] sneezing after coming into contact with [allergy_string].")
+	return list("[protagonist_name]接触[allergy_string]后打起了喷嚏。")
 
 /// Tracks what kind of item the quirk user's heirloom is
 /datum/memory/key/quirk_heirloom
@@ -114,13 +114,13 @@
 	return ..()
 
 /datum/memory/key/quirk_heirloom/get_names()
-	return list("[protagonist_name]'s heirloom [heirloom_name].")
+	return list("[protagonist_name]的传家宝：[heirloom_name]。")
 
 /datum/memory/key/quirk_heirloom/get_starts()
 	return list(
-		"[protagonist_name] being bequeathed the heirloom [heirloom_name] by a dear relative.",
-		"[protagonist_name] discovering the heirloom [heirloom_name] in some long-forgotten boxes.",
-		"[protagonist_name] stealing the heirloom [heirloom_name] from an undeserving family member.",
+		"[protagonist_name]从一位亲爱的亲人那里继承了传家宝[heirloom_name]。",
+		"[protagonist_name]在遗忘已久的箱子中发现了传家宝[heirloom_name]。",
+		"[protagonist_name]从一个不配拥有传家宝的亲属那里偷走了[heirloom_name]。",
 	)
 
 /// Tracks what brand a smoker quirk user likes
@@ -139,17 +139,17 @@
 	return ..()
 
 /datum/memory/key/quirk_smoker/get_names()
-	return list("[protagonist_name]'s addiction to [preferred_brand] cigarettes.")
+	return list("[protagonist_name]对[preferred_brand]香烟的烟瘾。")
 
 /datum/memory/key/quirk_smoker/get_starts()
 	return list(
-		"[preferred_brand] cigarettes being plundered by [protagonist_name].",
-		"[protagonist_name] buying a box of [preferred_brand] nicotine sticks.",
-		"[protagonist_name] fiending for some [preferred_brand] ciggies.",
+		"[protagonist_name]抢走了一批[preferred_brand]香烟。",
+		"[protagonist_name]买了一盒[preferred_brand]尼古丁棒。",
+		"[protagonist_name]烟瘾难耐，渴望来几根[preferred_brand]香烟。",
 	)
 
 /datum/memory/key/quirk_smoker/get_moods()
-	return list("[memorizer] [mood_verb] as they light another up.")
+	return list("[memorizer]又点燃了一根烟，[mood_verb]。")
 
 /// Tracks what beverage an alcoholic quirk user likes
 /datum/memory/key/quirk_alcoholic
@@ -167,17 +167,17 @@
 	return ..()
 
 /datum/memory/key/quirk_alcoholic/get_names()
-	return list("[protagonist_name]'s addiction to [preferred_brandy] alcohol.")
+	return list("[protagonist_name]对[preferred_brandy]的酒瘾。")
 
 /datum/memory/key/quirk_alcoholic/get_starts()
 	return list(
-		"[preferred_brandy] being downed by [protagonist_name].",
-		"[protagonist_name] buying a box of [preferred_brandy] bottles.",
-		"[protagonist_name] fiending for some [preferred_brandy].",
+		"[protagonist_name]将[preferred_brandy]一饮而尽。",
+		"[protagonist_name]买了一箱瓶装[preferred_brandy]。",
+		"[protagonist_name]酒瘾难耐，渴望喝上几口[preferred_brandy]。",
 	)
 
 /datum/memory/key/quirk_alcoholic/get_moods()
-	return list("[memorizer] [mood_verb] as they drink some [preferred_brandy].")
+	return list("[memorizer]喝着[preferred_brandy]，[mood_verb]。")
 
 /// Where our traitor uplink is, and what is its code
 /datum/memory/key/traitor_uplink
@@ -197,23 +197,23 @@
 	return ..()
 
 /datum/memory/key/traitor_uplink/get_names()
-	return list("[protagonist_name]'s equipment uplink in their [uplink_loc], opened via [uplink_code].")
+	return list("[protagonist_name]的装备上行链路藏在[uplink_loc]中，使用[uplink_code]开启。")
 
 /datum/memory/key/traitor_uplink/get_starts()
 	return list(
-		"[protagonist_name] punching in [uplink_code] into their [uplink_loc].",
-		"[protagonist_name] writing down [uplink_code] with their [uplink_loc] besides them, so as to not forget it.",
+		"[protagonist_name]在[uplink_loc]上输入了[uplink_code]。",
+		"[protagonist_name]把[uplink_loc]放在身旁，并记下[uplink_code]，以免忘记。",
 	)
 
 /datum/memory/key/traitor_uplink/implant
 
 /datum/memory/key/traitor_uplink/implant/get_names()
-	return list("[protagonist_name]'s equipment uplink implanted into their body.")
+	return list("[protagonist_name]体内植入的装备上行链路。")
 
 /datum/memory/key/traitor_uplink/implant/get_starts()
 	return list(
-		"[protagonist_name] being implanted by a scientist.",
-		"[protagonist_name] having surgery done on them by a scientist.",
+		"一名科学家正在给[protagonist_name]安装植入物。",
+		"一名科学家正在为[protagonist_name]进行手术。",
 	)
 
 /datum/memory/key/permabrig_crimes
@@ -230,12 +230,12 @@
 	return ..()
 
 /datum/memory/key/permabrig_crimes/get_names()
-	return list("[protagonist_name]'s crime of \"[crimes]\".")
+	return list("[protagonist_name]所犯的\"[crimes]\"罪行。")
 
 /datum/memory/key/permabrig_crimes/get_starts()
 	return list(
-		"[protagonist_name] being arrested by security for [crimes].",
-		"[protagonist_name] committing the crimes of [crimes].",
+		"[protagonist_name]因[crimes]被安保逮捕。",
+		"[protagonist_name]犯下了[crimes]的罪行。",
 	)
 
 /datum/memory/key/message_server_key
@@ -252,11 +252,11 @@
 	return ..()
 
 /datum/memory/key/message_server_key/get_names()
-	return list("The daily message server key is [decrypt_key]. Keep it a secret from the clown.")
+	return list("今天的消息服务器密钥是[decrypt_key]。别让小丑知道。")
 
 /datum/memory/key/message_server_key/get_starts()
 	return list(
-		"A sticky note attached to a monitor with [decrypt_key] written on it.",
-		"Poly the parrot screaming \"[decrypt_key]!\" over and over again.",
-		"[protagonist_name] spilling coffee over the message monitor while typing [decrypt_key].",
+		"显示器上贴着一张便利贴，上面写着[decrypt_key]。",
+		"鹦鹉波莉一遍又一遍地尖叫着\"[decrypt_key]！\"。",
+		"[protagonist_name]输入[decrypt_key]时，把咖啡洒在了消息监控器上。",
 	)

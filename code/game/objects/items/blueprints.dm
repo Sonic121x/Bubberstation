@@ -17,19 +17,19 @@
  * Used by the station, cyborgs, and golems.
  */
 /obj/item/blueprints
-	name = "station blueprints"
-	desc = "Blueprints of the station. There is a \"Classified\" stamp and several coffee stains on it."
+	name = "空间站蓝图"
+	desc = "空间站的蓝图，上面盖着“机密”印章，还有几处咖啡渍。"
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state = "blueprints"
 	inhand_icon_state = "blueprints"
-	attack_verb_continuous = list("attacks", "baps", "hits")
-	attack_verb_simple = list("attack", "bap", "hit")
+	attack_verb_continuous = list("攻击", "拍打", "击打")
+	attack_verb_simple = list("攻击", "拍打", "击打")
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	interaction_flags_atom = parent_type::interaction_flags_atom | INTERACT_ATOM_ALLOW_USER_LOCATION | INTERACT_ATOM_IGNORE_MOBILITY
 	custom_materials = list(/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 	///A string of flavortext to be displayed at the top of the UI, related to the type of blueprints we are.
-	var/fluffnotice = "Property of Nanotrasen. For heads of staff only. Store in high-secure storage."
+	var/fluffnotice = "纳米传讯财产，仅供部门主管使用。请存放于高安全等级储藏处。"
 	///Boolean on whether the blueprints are currently being used, which prevents double-using them to rename/create areas.
 	var/in_use = FALSE
 	///The type of area we'll create when we make a new area. This is a typepath.
@@ -65,14 +65,14 @@
 	var/list/data = list()
 	switch(get_area_type(user))
 		if(AREA_OUTDOORS)
-			data["area_notice"] = "You are in unclaimed territory."
+			data["area_notice"] = "你正处于无主之地。"
 		if(AREA_SPECIAL)
-			data["area_notice"] = "This area has no notes."
+			data["area_notice"] = "此区域没有备注。"
 		else
 			var/area/current_area = get_area(user)
-			data["area_notice"] = "You are now in \the [current_area.name]"
+			data["area_notice"] = "你现在位于[chinese_area_display(current_area.name)]"
 	var/area/area_inside_of = get_area(user)
-	data["area_name"] = html_encode(area_inside_of.name)
+	data["area_name"] = html_encode(chinese_area_display(area_inside_of.name))
 	data["area_allows_shuttle_docking"] = area_inside_of.allow_shuttle_docking
 	data["legend"] = legend_viewing
 	data["viewing"] = !!viewing
@@ -88,7 +88,7 @@
 					continue
 				data["wire_data"] += list(list(
 					"color" = individual_color,
-					"message" = wire_name,
+					"message" = chinese_wire_display(wire_name),
 				))
 	return data
 
@@ -147,11 +147,11 @@
 					return TRUE
 		if("view_blueprints")
 			playsound(src, 'sound/items/paper_flip.ogg', 40, TRUE)
-			user.balloon_alert_to_viewers("flips blueprints over")
+			user.balloon_alert_to_viewers("翻转了蓝图")
 			set_viewer(user)
 		if("hide_blueprints")
 			playsound(src, 'sound/items/paper_flip.ogg', 40, TRUE)
-			user.balloon_alert_to_viewers("flips blueprints over")
+			user.balloon_alert_to_viewers("翻转了蓝图")
 			clear_viewer()
 		if("refresh")
 			playsound(src, 'sound/items/paper_flip.ogg', 40, TRUE)
@@ -215,33 +215,33 @@
 /obj/item/blueprints/proc/edit_area(mob/user)
 	var/area/area_editing = get_area(src)
 	var/prevname = "[area_editing.name]"
-	var/new_name = tgui_input_text(user, "New area name", "Area Creation", max_length = MAX_NAME_LEN)
+	var/new_name = tgui_input_text(user, "新的区域名称", "创建区域", max_length = MAX_NAME_LEN)
 	if(isnull(new_name) || !length(new_name) || new_name == prevname)
 		return
 
 	rename_area(area_editing, new_name)
-	user.balloon_alert(user, "area renamed to [new_name]")
+	user.balloon_alert(user, "区域已更名为[new_name]")
 	user.log_message("has renamed [prevname] to [new_name]", LOG_GAME)
 	return TRUE
 
 ///Cyborg blueprints - The same as regular but with a different fluff text.
 /obj/item/blueprints/cyborg
-	name = "station schematics"
-	desc = "A digital copy of the station blueprints stored in your memory."
-	fluffnotice = "Intellectual Property of Nanotrasen. For use in engineering cyborgs only. Wipe from memory upon departure from the station."
+	name = "空间站设计图"
+	desc = "存储在你内存中的空间站蓝图电子副本。"
+	fluffnotice = "纳米传讯知识产权，仅供工程半机械人使用。离开空间站时须从内存中清除。"
 
 ///Golem blueprints - Used to make golem areas that won't give the hazardous area debuffs.
 /obj/item/blueprints/golem
-	name = "land claim"
-	desc = "Use it to build new structures in the wastes."
-	fluffnotice = "In memory of the Liberator's brother, Delaminator, and his Scarlet Macaw-iathan, from which this artifact was stolen."
+	name = "土地所有权凭证"
+	desc = "用它在荒原中建造新的建筑。"
+	fluffnotice = "纪念解放者的兄弟剥离者，以及他的绯红金刚鹦鹉利维坦——这件文物就是从它那里偷来的。"
 	new_area_type = /area/golem
 
 ///Slime blueprints - Makes areas colored and compatible with xenobiology camera consoles, one time use.
 /obj/item/blueprints/slime
-	name = "cerulean prints"
-	desc = "A one use yet of blueprints made of jelly like organic material. Extends the reach of the management console."
-	fluffnotice = "Copyright by Science Inc. Renaming areas will allow for management consoles to traverse them."
+	name = "蔚蓝图纸"
+	desc = "由果冻状有机物制成的一次性蓝图，可扩大管理控制台的覆盖范围。"
+	fluffnotice = "科学公司版权所有。重命名区域可让管理控制台在其中通行。"
 	color = "#2956B2"
 
 /obj/item/blueprints/slime/edit_area(mob/user)

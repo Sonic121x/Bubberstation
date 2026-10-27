@@ -2,8 +2,8 @@
 //Turns all the various mining machines into a single unit to speed up mining and establish a point system
 
 /obj/machinery/mineral/ore_redemption
-	name = "ore redemption machine"
-	desc = "A machine that accepts ore and instantly transforms it into workable material sheets. Points for ore are generated based on type and can be redeemed at a mining equipment vendor."
+	name = "矿石兑换机"
+	desc = "一台接收矿石并立刻将其转化为可用材料板的机器。矿石会根据种类产生采矿点数，可在采矿装备供应商处兑换。"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "ore_redemption"
 	base_icon_state = "ore_redemption"
@@ -77,7 +77,7 @@
 /obj/machinery/mineral/ore_redemption/examine(mob/user)
 	. = ..()
 	if(panel_open)
-		. += span_notice("Alt-click to rotate the input and output direction.")
+		. += span_notice("按住 Alt 点击可旋转输入与输出方向。")
 
 
 /obj/machinery/mineral/ore_redemption/proc/silo_redeem_points(obj/machinery/mineral/ore_redemption/machine, container, obj/item/stack/ore/gathered_ore)
@@ -126,7 +126,7 @@
 	console_notify_timer = null
 
 	var/area/our_area = get_area(src)
-	var/message = "Now available in [our_area]:"
+	var/message = "[our_area] 现有可用材料："
 
 	var/has_minerals = FALSE
 	var/list/appended_list = list()
@@ -136,16 +136,16 @@
 		var/mineral_amount = mat_container.materials[current_material] / SHEET_MATERIAL_AMOUNT
 		if(mineral_amount)
 			has_minerals = TRUE
-		appended_list["[capitalize(material_datum.name)]"] = "[mineral_amount] sheets"
+		appended_list["[chinese_material_display(material_datum.name)]"] = "[mineral_amount] 张板材"
 
 	if(!has_minerals)
 		return
 
 	var/datum/signal/subspace/messaging/rc/signal = new(src, list(
 		"ore_update" = TRUE,
-		"sender_department" = "Ore Redemption Machine",
+		"sender_department" = "矿石兑换机",
 		"message" = message,
-		"verified" = "Ore Redemption Machine",
+		"verified" = "矿石兑换机",
 		"priority" = REQ_NORMAL_MESSAGE_PRIORITY,
 		"appended_list" = appended_list,
 	))
@@ -232,7 +232,7 @@
 		return CLICK_ACTION_BLOCKING
 	input_dir = turn(input_dir, -90)
 	output_dir = turn(output_dir, -90)
-	to_chat(user, span_notice("You change [src]'s I/O settings, setting the input to [dir2text(input_dir)] and the output to [dir2text(output_dir)]."))
+	to_chat(user, span_notice("你更改了 [src] 的输入/输出设置，将输入方向设为 [chinese_direction_display(dir2text(input_dir))]，输出方向设为 [chinese_direction_display(dir2text(output_dir))]。"))
 	unregister_input_turf() // someone just rotated the input and output directions, unregister the old turf
 	register_input_turf() // register the new one
 	update_appearance(UPDATE_OVERLAYS)
@@ -255,7 +255,7 @@
 			var/sheet_amount = amount / SHEET_MATERIAL_AMOUNT
 			var/obj/sheet_type = material.sheet_type
 			data["materials"] += list(list(
-				"name" = material.name,
+				"name" = chinese_material_display(material.name),
 				"id" = REF(material),
 				"amount" = sheet_amount,
 				"category" = "material",
@@ -278,13 +278,13 @@
 
 	data["disconnected"] = null
 	if (!mat_container)
-		data["disconnected"] = "Local mineral storage is unavailable"
+		data["disconnected"] = "本地矿物储存不可用"
 	else if (!materials.silo && requires_silo)
-		data["disconnected"] = "No ore silo connection is available; storing locally"
+		data["disconnected"] = "没有可用的矿石筒仓连接，正在本地储存"
 	else if (!materials.check_z_level() && requires_silo)
-		data["disconnected"] = "Unable to connect to ore silo, too far away"
+		data["disconnected"] = "无法连接矿石筒仓，距离过远"
 	else if (materials.on_hold())
-		data["disconnected"] = "Mineral withdrawal is on hold"
+		data["disconnected"] = "矿物提取已暂停"
 
 	var/obj/item/card/id/card
 	if(isliving(user))
@@ -300,7 +300,7 @@
 			var/mob/living/silicon/silicon_player = user
 			data["user"] = list(
 				"name" = silicon_player.name,
-				"cash" = "No valid account",
+				"cash" = "无有效账户",
 			)
 	return data
 
@@ -321,7 +321,7 @@
 				var/mob/living/user = usr
 				user_id_card = user.get_idcard(TRUE)
 			if(isnull(user_id_card))
-				say("No ID card found.")
+				say("未找到 ID 卡。")
 				return FALSE
 
 			//we have points
@@ -337,7 +337,7 @@
 			if(!materials.can_use_resource(user_data = ID_DATA(usr)))
 				return
 			else if(!allowed(usr)) //Check the ID inside, otherwise check the user
-				to_chat(usr, span_warning("Required access not found."))
+				to_chat(usr, span_warning("未找到所需权限。"))
 			else
 				var/datum/material/mat = locate(params["id"])
 
@@ -376,7 +376,7 @@
 					output = alloy.create_result(src)
 				unload_mineral(output)
 			else
-				to_chat(usr, span_warning("Required access not found."))
+				to_chat(usr, span_warning("未找到所需权限。"))
 			return TRUE
 
 /obj/machinery/mineral/ore_redemption/ex_act(severity, target)

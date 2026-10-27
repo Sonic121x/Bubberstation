@@ -17,24 +17,24 @@
 
 ///pet commands
 /datum/pet_command/use_ability/solarbeam
-	command_name = "Launch solarbeam"
-	command_desc = "Command your pet to launch a solarbeam at your target!"
+	command_name = "发射日光束"
+	command_desc = "命令你的宠物朝目标发射日光束！"
 	radial_icon = 'icons/effects/beam.dmi'
 	radial_icon_state = "solar_beam"
 	speech_commands = list("beam", "solar")
 	pet_ability_key = BB_SOLARBEAM_ABILITY
 
 /datum/pet_command/use_ability/solarbeam/retrieve_command_text(atom/living_pet, atom/target)
-	return isnull(target) ? null : "signals [living_pet] to use a solar beam on [target]!"
+	return isnull(target) ? null : "示意 [living_pet] 对 [target] 使用日光束！"
 
 
 /datum/pet_command/use_ability/rapidseeds
-	command_name = "Rapid seeds"
-	command_desc = "Command your pet to launch a volley of seeds at your target!"
+	command_name = "速射种子"
+	command_desc = "命令你的宠物朝目标发射一阵种子！"
 	radial_icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	radial_icon_state = "seedling"
 	speech_commands = list("rapid", "seeds", "volley")
 	pet_ability_key = BB_RAPIDSEEDS_ABILITY
 
 /datum/pet_command/use_ability/rapidseeds/retrieve_command_text(atom/living_pet, atom/target)
-	return isnull(target) ? null : "signals [living_pet] to unleash a volley of seeds on [target]!"
+	return isnull(target) ? null : "示意 [living_pet] 朝 [target] 倾泻一阵种子！"

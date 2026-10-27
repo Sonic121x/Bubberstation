@@ -1,13 +1,13 @@
 /datum/quirk/social_anxiety
 	name = "Social Anxiety"
-	desc = "Talking to people is very difficult for you, and you often stutter or even lock up."
+	desc = "与人交谈对你来说很困难，你常常口吃，甚至完全说不出话。"
 	icon = FA_ICON_COMMENT_SLASH
 	value = -3
-	gain_text = span_danger("You start worrying about what you're saying.")
-	lose_text = span_notice("You feel easier about talking again.") //if only it were that easy!
-	medical_record_text = "Patient is usually anxious in social encounters and prefers to avoid them."
-	medical_symptom_text = "Experiences intense anxiety and discomfort in social situations, \
-		leading to avoidance of social interactions and difficulty in communication."
+	gain_text = span_danger("你开始担心自己说的话。")
+	lose_text = span_notice("你又觉得说话轻松些了。") //if only it were that easy!
+	medical_record_text = "患者在社交场合通常感到焦虑，并倾向于回避。"
+	medical_symptom_text = "在社交场合感到强烈的焦虑与不适，\
+		导致回避社交互动及沟通困难。"
 	hardcore_value = 4
 	mob_trait = TRAIT_ANXIOUS
 	mail_goodies = list(/obj/item/storage/pill_bottle/psicodine)
@@ -54,10 +54,10 @@
 		var/list/new_message = list()
 		for(var/word in message_split)
 			if(prob(max(5, moodmod)) && word != message_split[1]) //Minimum 1/20 chance of filler
-				new_message += pick("uh,","erm,","um,")
+				new_message += pick("呃，","那个，","嗯，")
 				if(prob(min(5, moodmod))) //Max 1 in 20 chance of cutoff after a successful filler roll, for 50% odds in a 15 word sentence
 					quirk_holder.set_silence_if_lower(6 SECONDS)
-					to_chat(quirk_holder, span_danger("You feel self-conscious and stop talking. You need a moment to recover!"))
+					to_chat(quirk_holder, span_danger("你感到局促不安，停止了说话。你需要缓一缓！"))
 					break
 			new_message += word
 
@@ -65,17 +65,17 @@
 
 	if(prob(min(50, (0.50 * moodmod)))) //Max 50% chance of not talking
 		if(dumb_thing)
-			to_chat(quirk_holder, span_userdanger("You think of a dumb thing you said a long time ago and scream internally."))
+			to_chat(quirk_holder, span_userdanger("你想起很久以前说过的一句蠢话，在心里尖叫起来。"))
 			dumb_thing = FALSE //only once per life
 			if(prob(1))
 				new/obj/item/food/spaghetti/pastatomato(get_turf(quirk_holder)) //now that's what I call spaghetti code
 		else
-			to_chat(quirk_holder, span_warning("You think that wouldn't add much to the conversation and decide not to say it."))
+			to_chat(quirk_holder, span_warning("你觉得这句话对谈话没什么帮助，于是决定不说。"))
 			if(prob(min(25, (0.25 * moodmod)))) //Max 25% chance of silence stacks after successful not talking roll
-				to_chat(quirk_holder, span_danger("You retreat into yourself. You <i>really</i> don't feel up to talking."))
+				to_chat(quirk_holder, span_danger("你缩回了自己的世界。你<i>真的</i>不想开口说话。"))
 				quirk_holder.set_silence_if_lower(10 SECONDS)
 
-		speech_args[SPEECH_MESSAGE] = pick("Uh.","Erm.","Um.")
+		speech_args[SPEECH_MESSAGE] = pick("呃。","那个。","嗯。")
 	else
 		speech_args[SPEECH_MESSAGE] = message
 
@@ -87,7 +87,7 @@
 	if(prob(85) || (istype(mind_check) && mind_check.mind))
 		return
 
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), quirk_holder, span_smallnotice("You make eye contact with [A].")), 0.3 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), quirk_holder, span_smallnotice("你与[A]对上了视线。")), 0.3 SECONDS)
 
 /datum/quirk/social_anxiety/proc/eye_contact(datum/source, mob/living/other_mob, triggering_examiner)
 	SIGNAL_HANDLER
@@ -96,26 +96,26 @@
 		return
 	var/msg
 	if(triggering_examiner)
-		msg = "You make eye contact with [other_mob], "
+		msg = "你与[other_mob]对上了视线，"
 	else
-		msg = "[other_mob] makes eye contact with you, "
+		msg = "[other_mob]与你对上了视线，"
 
 	switch(rand(1,3))
 		if(1)
 			quirk_holder.set_jitter_if_lower(20 SECONDS)
-			msg += "causing you to start fidgeting!"
+			msg += "让你开始坐立不安！"
 		if(2)
 			quirk_holder.set_stutter_if_lower(6 SECONDS)
-			msg += "causing you to start stuttering!"
+			msg += "让你开始结巴！"
 		if(3)
 			quirk_holder.Stun(2 SECONDS)
-			msg += "causing you to freeze up!"
+			msg += "让你僵住了！"
 
 	quirk_holder.add_mood_event("anxiety_eyecontact", /datum/mood_event/anxiety_eyecontact)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), quirk_holder, span_userdanger("[msg]")), 3) // so the examine signal has time to fire and this will print after
 	return COMSIG_BLOCK_EYECONTACT
 
 /datum/mood_event/anxiety_eyecontact
-	description = "Sometimes eye contact makes me so nervous..."
+	description = "有时眼神接触会让我紧张得不行……"
 	mood_change = -5
 	timeout = 3 MINUTES

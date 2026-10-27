@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/aoe/wave_of_desperation
-	name = "Wave Of Desperation"
-	desc = "Removes your restraints, repels and knocks down adjacent people, and applies certain effects of the Mansus Grasp upon everything nearby. \
-		Cannot be cast unless you are restrained. (Can be casted without a focus)"
+	name = "绝望之潮"
+	desc = "解除你的束缚，推开并击倒附近的人，并对周围的一切施加漫宿之握的某些效果。\
+		只能在被束缚时施放。（无需法器即可施放）"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -27,10 +27,10 @@
 		return
 
 	if(cast_on.handcuffed)
-		cast_on.visible_message(span_danger("[cast_on.handcuffed] on [cast_on] shatter!"))
+		cast_on.visible_message(span_danger("[cast_on]身上的[cast_on.handcuffed]碎裂了！"))
 		QDEL_NULL(cast_on.handcuffed)
 	if(cast_on.legcuffed)
-		cast_on.visible_message(span_danger("[cast_on.legcuffed] on [cast_on] shatters!"))
+		cast_on.visible_message(span_danger("[cast_on]腿上的[cast_on.legcuffed]碎裂了！"))
 		QDEL_NULL(cast_on.legcuffed)
 
 	cast_on.apply_status_effect(/datum/status_effect/heretic_lastresort)

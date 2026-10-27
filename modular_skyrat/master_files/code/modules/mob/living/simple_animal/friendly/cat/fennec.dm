@@ -1,6 +1,6 @@
 /mob/living/basic/pet/cat/fennec
-	name = "fennec fox"
-	desc = "Vulpes Zerda. Also known as a Goob or a Dingler."
+	name = "耳廓狐"
+	desc = "Vulpes zerda，也就是耳廓狐。也被人称作“古布”或“丁格勒”。"
 	icon = 'modular_skyrat/master_files/icons/mob/pets.dmi'
 	icon_state = "fennec"
 	icon_living = "fennec"
@@ -8,7 +8,7 @@
 	held_lh = 'modular_skyrat/master_files/icons/mob/inhands/pets_held_lh.dmi'
 	held_rh = 'modular_skyrat/master_files/icons/mob/inhands/pets_held_rh.dmi'
 	head_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/pets_head.dmi'
-	speak_emote = list("screms", "squeaks", "rrrfs")
+	speak_emote = list("尖叫", "吱吱叫", "呜呜叫")
 	butcher_results = list(
 		/obj/item/food/meat/slab = 1,
 	)

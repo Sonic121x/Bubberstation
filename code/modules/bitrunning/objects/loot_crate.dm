@@ -9,15 +9,15 @@
 #define ORE_MULTIPLIER_BLUESPACE_CRYSTAL 0.2
 
 /obj/structure/closet/crate/secure/bitrunning // Base class. Do not spawn this.
-	name = "base class cache"
-	desc = "Talk to a coder."
+	name = "基类板条箱"
+	desc = "去跟程序员聊聊。"
 	icon_state = "bitrunning"
 	base_icon_state = "bitrunning"
 
 /// The virtual domain - side of the bitrunning crate. Deliver to the send location.
 /obj/structure/closet/crate/secure/bitrunning/encrypted
-	name = "encrypted cache"
-	desc = "Needs to be decrypted at the safehouse to be opened."
+	name = "加密板条箱"
+	desc = "需要在安全屋解密后才能打开。"
 	locked = TRUE
 	damage_deflection = 30
 	resistance_flags =  INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -27,8 +27,8 @@
 
 /// The bitrunner den - side of the bitrunning crate. Appears in the receive location.
 /obj/structure/closet/crate/secure/bitrunning/decrypted
-	name = "decrypted cache"
-	desc = "Compiled from the virtual domain. The reward of a successful bitrunner."
+	name = "解密板条箱"
+	desc = "由虚拟域编译而来。成功比特潜行者的奖励。"
 	locked = FALSE
 
 /obj/structure/closet/crate/secure/bitrunning/decrypted/Initialize(

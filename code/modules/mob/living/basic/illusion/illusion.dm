@@ -1,8 +1,8 @@
 /// Pretty genericky mob that just manifests itself as any sort of input living mob, used in several ways
 /// Has a basic AI that helps it attack targets that are assigned to it, but there's more flavor in the subtypes.
 /mob/living/basic/illusion
-	name = "illusion"
-	desc = "It's a fake!"
+	name = "幻象"
+	desc = "这是假的！"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "static"
 	icon_living = "static"
@@ -12,14 +12,14 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 5
 	combat_mode = TRUE
-	attack_verb_continuous = "gores"
-	attack_verb_simple = "gore"
+	attack_verb_continuous = "用角抵刺"
+	attack_verb_simple = "用角抵刺"
 	maxHealth = 100
 	health = 100
 	speed = 0
 	faction = list(FACTION_ILLUSION)
 	basic_mob_flags = DEL_ON_DEATH
-	death_message = "vanishes into thin air! It was a fake!"
+	death_message = "凭空消失了！原来是假的！"
 	ai_controller = /datum/ai_controller/basic_controller/illusion
 	/// Weakref to what we're copying
 	var/datum/weakref/parent_mob_ref

@@ -3,9 +3,9 @@
  *
  * See [/mob/living/basic/drone/var/laws]
  */
-GAME_VERB(/mob/living/basic/drone, check_laws, "Check Laws", "Drone")
+GAME_VERB(/mob/living/basic/drone, check_laws, "查看法则", "无人机")
 
-	to_chat(src, "<b>Drone Laws</b>")
+	to_chat(src, "<b>无人机法则</b>")
 	to_chat(src, laws)
 
 /**
@@ -19,12 +19,12 @@ GAME_VERB(/mob/living/basic/drone, check_laws, "Check Laws", "Drone")
  *
  * Attaches area name to message
  */
-GAME_VERB(/mob/living/basic/drone, drone_ping, "Drone ping", "Drone")
+GAME_VERB(/mob/living/basic/drone, drone_ping, "无人机警报", "无人机")
 
-	var/alert_s = input(src,"Alert severity level","Drone ping",null) as null|anything in list("Low","Medium","High","Critical")
+	var/alert_s = input(src,"警报严重等级","无人机警报",null) as null|anything in list("低","中","高","危急")
 
 	var/area/A = get_area(loc)
 
 	if(alert_s && A && stat != DEAD)
-		var/msg = span_big("DRONE PING: [name]: [alert_s] priority alert in [A.name]!")
+		var/msg = span_big("无人机警报：[name]：[alert_s] 优先级警报，位于 [A.name]！")
 		alert_drones(msg)

@@ -1,15 +1,15 @@
 /// One of the potential shuttle loans you might receive.
 /datum/shuttle_loan_situation
 	/// Who sent the shuttle
-	var/sender = "Centcom"
+	var/sender = "中央指挥部"
 	/// What they said about it.
-	var/announcement_text = "Unset announcement text"
+	var/announcement_text = "未设置的公告文本"
 	/// What the shuttle says about it.
-	var/shuttle_transit_text = "Unset transit text"
+	var/shuttle_transit_text = "未设置的运输文本"
 	/// Supply points earned for taking the deal.
 	var/bonus_points = CARGO_CRATE_VALUE * 50
 	/// Response for taking the deal.
-	var/thanks_msg = "The cargo shuttle should return in five minutes. Have some supply points for your trouble."
+	var/thanks_msg = "货运穿梭机应在五分钟后返回。这些补给点数算是对你辛苦的补偿。"
 	/// Small description of the loan for easier log reading.
 	var/logging_desc
 
@@ -26,10 +26,10 @@
 	CRASH("Unimplemented get_spawned_items() on [src.type].")
 
 /datum/shuttle_loan_situation/antidote
-	sender = "CentCom Research Initiatives"
-	announcement_text = "Your station has been chosen for an epidemiological research project. Send us your cargo shuttle to receive your research samples."
-	shuttle_transit_text = "Virus samples incoming."
-	logging_desc = "Virus shuttle"
+	sender = "中央指挥部科研计划处"
+	announcement_text = "您的空间站被选中参与一项流行病学研究项目。请派出您的货运穿梭机来接收研究样本。"
+	shuttle_transit_text = "病毒样本即将到达。"
+	logging_desc = "病毒穿梭机"
 
 /datum/shuttle_loan_situation/antidote/spawn_items(list/spawn_list, list/empty_shuttle_turfs, list/blocked_shutte_turfs)
 	var/obj/effect/mob_spawn/corpse/human/assistant/infected_assistant = pick(list(
@@ -51,12 +51,12 @@
 	spawn_list.Add(/obj/item/reagent_containers/cup/bottle/magnitis)
 
 /datum/shuttle_loan_situation/department_resupply
-	sender = "CentCom Supply Department"
-	announcement_text = "Seems we've ordered doubles of our department resupply packages this month. Can we send them to you?"
-	shuttle_transit_text = "Department resupply incoming."
-	thanks_msg = "The cargo shuttle should return in five minutes."
+	sender = "中央指挥部后勤部"
+	announcement_text = "看来我们本月订了双份的部门补给包。我们能把它送到您那里吗？"
+	shuttle_transit_text = "部门补给即将到达。"
+	thanks_msg = "货运穿梭机应在五分钟后返回。"
 	bonus_points = 0
-	logging_desc = "Resupply packages"
+	logging_desc = "补给包"
 
 /datum/shuttle_loan_situation/department_resupply/spawn_items(list/spawn_list, list/empty_shuttle_turfs, list/blocked_shutte_turfs)
 	var/list/crate_types = list(
@@ -79,10 +79,10 @@
 		new decal(pick_n_take(empty_shuttle_turfs))
 
 /datum/shuttle_loan_situation/syndiehijacking
-	sender = "CentCom Counterintelligence"
-	announcement_text = "The syndicate are trying to infiltrate your station. If you let them hijack your cargo shuttle, you'll save us a headache."
-	shuttle_transit_text = "Syndicate hijack team incoming."
-	logging_desc = "Syndicate boarding party"
+	sender = "中央指挥部反情报处"
+	announcement_text = "辛迪加正试图渗透您的空间站。如果您让他们劫持您的货运穿梭机，就能省去我们一番麻烦。"
+	shuttle_transit_text = "辛迪加劫持小队即将到达。"
+	logging_desc = "辛迪加登舰小队"
 
 /datum/shuttle_loan_situation/syndiehijacking/spawn_items(list/spawn_list, list/empty_shuttle_turfs, list/blocked_shutte_turfs)
 	var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/imports/specialops]
@@ -96,11 +96,11 @@
 		spawn_list.Add(/mob/living/basic/trooper/syndicate/ranged/infiltrator)
 
 /datum/shuttle_loan_situation/lots_of_bees
-	sender = "CentCom Janitorial Division"
-	announcement_text = "One of our freighters carrying a bee shipment has been attacked by eco-terrorists. Can you clean up the mess for us?"
-	shuttle_transit_text = "Biohazard cleanup incoming."
+	sender = "中央指挥部清洁部"
+	announcement_text = "我们一艘运送蜜蜂的货船遭到生态恐怖分子袭击。您能帮我们收拾残局吗？"
+	shuttle_transit_text = "生物危害清理作业即将到达。"
 	bonus_points = CARGO_CRATE_VALUE * 100 //Toxin bees can be unbeelievably lethal
-	logging_desc = "Shuttle full of bees"
+	logging_desc = "满载蜜蜂的穿梭机"
 
 /datum/shuttle_loan_situation/lots_of_bees/spawn_items(list/spawn_list, list/empty_shuttle_turfs, list/blocked_shutte_turfs)
 	var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/organic/hydroponics/beekeeping_fullkit]
@@ -131,12 +131,12 @@
 		new casing(pick_n_take(empty_shuttle_turfs))
 
 /datum/shuttle_loan_situation/jc_a_bomb
-	sender = "CentCom Security Division"
-	announcement_text = "We have discovered an active Syndicate bomb near our VIP shuttle's fuel lines. If you feel up to the task, we will pay you for defusing it."
-	shuttle_transit_text = "Live explosive ordnance incoming. Exercise extreme caution."
-	thanks_msg = "Live explosive ordnance incoming via supply shuttle. Evacuating cargo bay is recommended."
+	sender = "中央指挥部安保部"
+	announcement_text = "我们在贵宾穿梭机的燃料管线附近发现了一枚已激活的辛迪加炸弹。如果您愿意接手，我们会为拆除它向您付酬。"
+	shuttle_transit_text = "实弹爆炸物即将到达。请极度小心。"
+	thanks_msg = "实弹爆炸物即将由补给穿梭机送达。建议疏散货舱。"
 	bonus_points = CARGO_CRATE_VALUE * 225 //If you mess up, people die and the shuttle gets turned into swiss cheese
-	logging_desc = "Shuttle with a ticking bomb"
+	logging_desc = "载有定时炸弹的穿梭机"
 
 /datum/shuttle_loan_situation/jc_a_bomb/spawn_items(list/spawn_list, list/empty_shuttle_turfs, list/blocked_shutte_turfs)
 	spawn_list.Add(/obj/machinery/syndicatebomb/shuttle_loan)
@@ -146,23 +146,23 @@
 		spawn_list.Add(/obj/item/paper/fluff/cargo/bomb/allyourbase)
 
 /datum/shuttle_loan_situation/papers_please
-	sender = "CentCom Paperwork Division"
-	announcement_text = "A neighboring station needs some help handling some paperwork. Could you help process it for us?"
-	shuttle_transit_text = "Paperwork incoming."
-	thanks_msg = "The cargo shuttle should return in five minutes. Payment will be rendered when the paperwork is processed and returned."
+	sender = "中央指挥部文书部"
+	announcement_text = "邻近的空间站需要人帮忙处理一些文书。您能帮我们处理吗？"
+	shuttle_transit_text = "文书即将到达。"
+	thanks_msg = "货运穿梭机应在五分钟后返回。文书处理完毕并送回后即会支付报酬。"
 	bonus_points = 0 //Payout is made when the stamped papers are returned
-	logging_desc = "Paperwork shipment"
+	logging_desc = "文书运送"
 
 /datum/shuttle_loan_situation/papers_please/spawn_items(list/spawn_list, list/empty_shuttle_turfs, list/blocked_shutte_turfs)
 	spawn_list += subtypesof(/obj/item/paperwork) - typesof(/obj/item/paperwork/photocopy) - typesof(/obj/item/paperwork/ancient)
 
 /datum/shuttle_loan_situation/pizza_delivery
-	sender = "CentCom Spacepizza Division"
-	announcement_text = "It looks like a neighbouring station accidentally delivered their pizza to you instead."
-	shuttle_transit_text = "Pizza delivery!"
-	thanks_msg = "The cargo shuttle should return in five minutes."
+	sender = "中央指挥部太空披萨部"
+	announcement_text = "看起来邻近的空间站不小心把他们的披萨送到了您那里。"
+	shuttle_transit_text = "披萨外卖到！"
+	thanks_msg = "货运穿梭机应在五分钟后返回。"
 	bonus_points = 0
-	logging_desc = "Pizza delivery"
+	logging_desc = "披萨外卖"
 
 /datum/shuttle_loan_situation/pizza_delivery/spawn_items(list/spawn_list, list/empty_shuttle_turfs, list/blocked_shutte_turfs)
 	var/naughtypizza = list(/obj/item/pizzabox/bomb, /obj/item/pizzabox/margherita/robo) //oh look another blacklist, for pizza nonetheless!
@@ -171,10 +171,10 @@
 		spawn_list.Add(pick(prob(5) ? naughtypizza : nicepizza))
 
 /datum/shuttle_loan_situation/russian_party
-	sender = "CentCom Russian Outreach Program"
-	announcement_text = "A group of angry Russians want to have a party. Can you send them your cargo shuttle then make them disappear?"
-	shuttle_transit_text = "Partying Russians incoming."
-	logging_desc = "Russian party squad"
+	sender = "中央指挥部俄罗斯外联项目"
+	announcement_text = "一群愤怒的俄罗斯人想开个派对。您能把货运穿梭机送过去，再让他们消失吗？"
+	shuttle_transit_text = "开派对的俄罗斯人即将到达。"
+	logging_desc = "俄罗斯派对小队"
 
 /datum/shuttle_loan_situation/russian_party/spawn_items(list/spawn_list, list/empty_shuttle_turfs, list/blocked_shutte_turfs)
 	var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/service/party]
@@ -189,10 +189,10 @@
 		spawn_list.Add(/mob/living/basic/bear/russian)
 
 /datum/shuttle_loan_situation/spider_gift
-	sender = "CentCom Diplomatic Corps"
-	announcement_text = "The Spider Clan has sent us a mysterious gift. Can we ship it to you to see what's inside?"
-	shuttle_transit_text = "Spider Clan gift incoming."
-	logging_desc = "Shuttle full of spiders"
+	sender = "中央指挥部外交使团"
+	announcement_text = "蜘蛛氏族给我们送来了一份神秘礼物。我们能把它运到您那里看看里面是什么吗？"
+	shuttle_transit_text = "蜘蛛氏族的礼物即将到达。"
+	logging_desc = "满载蜘蛛的穿梭机"
 
 /datum/shuttle_loan_situation/spider_gift/spawn_items(list/spawn_list, list/empty_shuttle_turfs, list/blocked_shutte_turfs)
 	var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/imports/specialops]
@@ -227,12 +227,12 @@
  * It sends back a lot of mail to the station, at the cost of wrecking the cargo shuttle a little.
  */
 /datum/shuttle_loan_situation/mail_strike
-	sender = "Spinward Mail Workers Union"
-	announcement_text = "The Mail Workers Union wants to borrow your cargo shuttle to employ \"advanced union strike tactics\" with. Payment is strictly in mails."
+	sender = "顺旋邮政工人工会"
+	announcement_text = "邮政工人工会想借用您的货运穿梭机来实施“先进工会罢工战术”。报酬严格以邮件支付。"
 	bonus_points = 0
-	thanks_msg = "The cargo shuttle should return in five minutes."
-	shuttle_transit_text = "Nothing stops the mail."
-	logging_desc = "Shuttle full of shady mail"
+	thanks_msg = "货运穿梭机应在五分钟后返回。"
+	shuttle_transit_text = "什么都阻挡不了邮件。"
+	logging_desc = "满载可疑邮件的穿梭机"
 
 /datum/shuttle_loan_situation/mail_strike/spawn_items(list/spawn_list, list/empty_shuttle_turfs, list/blocked_shutte_turfs)
 	for(var/i in 1 to rand(7, 12))

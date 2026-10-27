@@ -283,8 +283,8 @@
 
 
 /datum/action/echolocation_focus
-	name = "Echolocation Focus"
-	desc = "Focus your echolocation to reveal more details or ignore certain objects."
+	name = "回声定位聚焦"
+	desc = "集中回声定位感知，以辨明更多细节或忽略某些物体。"
 
 	/// Assoc list of option name to typecache list
 	var/static/list/options

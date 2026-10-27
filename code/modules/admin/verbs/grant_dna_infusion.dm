@@ -3,7 +3,7 @@
  * Returns the entry if all organs were successfully replaced.
  * If no infusion was picked, the infusion had no organs, or if one or more organs could not be granted, returns FALSE
 */
-GAME_VERB_PROC(/client, grant_dna_infusion, "Apply DNA Infusion", "Debug")
+GAME_VERB_PROC(/client, grant_dna_infusion, "施加 DNA 注入", "Debug")
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob/living/carbon/human)
 
 	var/list/infusions = list()
@@ -11,7 +11,7 @@ GAME_VERB_PROC(/client, grant_dna_infusion, "Apply DNA Infusion", "Debug")
 		var/str = "[initial(path.name)] ([path])"
 		infusions[str] = path
 
-	var/datum/infuser_entry/picked_infusion = tgui_input_list(usr, "Select infusion", "Apply DNA Infusion", infusions)
+	var/datum/infuser_entry/picked_infusion = tgui_input_list(usr, "选择注入", "施加 DNA 注入", infusions)
 
 	if(isnull(picked_infusion))
 		return FALSE
@@ -28,9 +28,9 @@ GAME_VERB_PROC(/client, grant_dna_infusion, "Apply DNA Infusion", "Debug")
 		var/obj/item/organ/new_organ = new infusion_organ()
 		new_organ.replace_into(target)
 		if(new_organ.owner != target)
-			to_chat(usr, span_notice("[target] is unable to carry [new_organ]!"))
+			to_chat(usr, span_notice("[target] 无法承载 [new_organ]！"))
 			qdel(new_organ)
 			. = FALSE
 			continue
-		log_admin("[key_name(usr)] has added organ [new_organ.type] to [key_name(target)]")
-		message_admins("[key_name_admin(usr)] has added organ [new_organ.type] to [ADMIN_LOOKUPFLW(target)]")
+		log_admin("[key_name(usr)] 向 [key_name(target)] 添加了器官 [new_organ.type]")
+		message_admins("[key_name_admin(usr)] 向 [ADMIN_LOOKUPFLW(target)] 添加了器官 [new_organ.type]")

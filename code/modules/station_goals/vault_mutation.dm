@@ -1,9 +1,9 @@
 
 /datum/mutation/breathless
-	name = "Breathless"
-	desc = "The subject's skin filters and absorbs oxygen from the air, removing the need to breathe."
-	text_gain_indication = span_notice("Your lungs feel great.")
-	text_lose_indication = span_warning("Your lungs feel normal again.")
+	name = "无需呼吸"
+	desc = "受试者的皮肤会过滤并吸收空气中的氧气，从而无需呼吸。"
+	text_gain_indication = span_notice("你的肺感觉棒极了。")
+	text_lose_indication = span_warning("你的肺又恢复了正常。")
 	locked = TRUE
 
 /datum/mutation/breathless/on_acquiring(mob/living/carbon/human/acquirer)
@@ -15,10 +15,10 @@
 	REMOVE_TRAIT(owner, TRAIT_NOBREATH, GENETIC_MUTATION)
 
 /datum/mutation/quick
-	name = "Quick"
-	desc = "The subject's leg muscles strengthen, allowing for faster movement."
-	text_gain_indication = span_notice("Your legs feel faster and stronger.")
-	text_lose_indication = span_warning("Your legs feel weaker and slower.")
+	name = "迅捷"
+	desc = "受试者的腿部肌肉增强，行动更为迅速。"
+	text_gain_indication = span_notice("你的双腿感觉更快、更强壮。")
+	text_lose_indication = span_warning("你的双腿感觉更弱、更迟缓。")
 	locked = TRUE
 
 /datum/mutation/quick/on_acquiring(mob/living/carbon/human/acquirer)
@@ -30,10 +30,10 @@
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/dna_vault_speedup)
 
 /datum/mutation/tough
-	name = "Tough"
-	desc = "The subject gains another layer of epidermis which is more resistant to bruise, cut, or tear."
-	text_gain_indication = span_notice("Your skin feels tougher.")
-	text_lose_indication = span_warning("Your skin feels weaker.")
+	name = "坚韧"
+	desc = "受试者长出另一层表皮，更能抵抗淤伤、割伤或撕裂。"
+	text_gain_indication = span_notice("你的皮肤感觉更坚韧了。")
+	text_lose_indication = span_warning("你的皮肤感觉变弱了。")
 	locked = TRUE
 
 /datum/mutation/tough/on_acquiring(mob/living/carbon/human/acquirer)
@@ -47,10 +47,10 @@
 	REMOVE_TRAIT(owner, TRAIT_PIERCEIMMUNE, GENETIC_MUTATION)
 
 /datum/mutation/dextrous
-	name = "Dextrous"
-	desc = "The subject's neurons move faster, allowing for more responsive and quicker action."
-	text_gain_indication = span_notice("Your limbs feel more dextrous and responsive.")
-	text_lose_indication = span_warning("Your limbs feel less dextrous and responsive.")
+	name = "灵巧"
+	desc = "受试者的神经元运转更快，反应与行动更为敏捷。"
+	text_gain_indication = span_notice("你的四肢感觉更灵巧、反应更敏捷。")
+	text_lose_indication = span_warning("你的四肢感觉不那么灵巧敏捷了。")
 	locked = TRUE
 
 /datum/mutation/dextrous/on_acquiring(mob/living/carbon/human/acquirer)
@@ -62,10 +62,10 @@
 	owner.next_move_modifier /= 0.5
 
 /datum/mutation/fire_immunity
-	name = "Fire Immunity"
-	desc = "The subject becomes completely nonflammable and can withstand higher temperatures."
-	text_gain_indication = span_notice("Your body feels like it can withstand fire.")
-	text_lose_indication = span_warning("Your body feels vulnerable to fire again.")
+	name = "火焰免疫"
+	desc = "受试者变得完全不可燃，并能承受更高的温度。"
+	text_gain_indication = span_notice("你的身体感觉能够抵御火焰。")
+	text_lose_indication = span_warning("你的身体又感觉怕火了。")
 	locked = TRUE
 
 /datum/mutation/fire_immunity/on_acquiring(mob/living/carbon/human/acquirer)
@@ -79,10 +79,10 @@
 	owner.remove_traits(list(TRAIT_RESISTHEAT, TRAIT_NOFIRE), GENETIC_MUTATION)
 
 /datum/mutation/quick_recovery
-	name = "Quick Recovery"
-	desc = "The subject has fewer nerve endings, allowing them to recover from incapacitation faster."
-	text_gain_indication = span_notice("You feel like you can recover from a fall easier.")
-	text_lose_indication = span_warning("You feel like recovering from a fall is a challenge again.")
+	name = "快速恢复"
+	desc = "受试者的神经末梢较少，因此能更快地从失去行动能力中恢复。"
+	text_gain_indication = span_notice("你感觉自己更容易从摔倒中恢复。")
+	text_lose_indication = span_warning("你又觉得从摔倒中恢复是件难事了。")
 	locked = TRUE
 
 /datum/mutation/quick_recovery/on_acquiring(mob/living/carbon/human/acquirer)
@@ -94,10 +94,10 @@
 	owner.physiology.stun_mod /= 0.5
 
 /datum/mutation/plasmocile
-	name = "Plasmocile"
-	desc = "The subject's lungs mutate, gaining immunity to viral agents and the toxic nature of plasma."
-	text_gain_indication = span_notice("Your lungs feel resistant to airborne contaminant.")
-	text_lose_indication = span_warning("Your lungs feel vulnerable to airborne contaminant again.")
+	name = "等离子耐受"
+	desc = "受试者的肺部发生突变，获得对病毒与等离子体毒性的免疫。"
+	text_gain_indication = span_notice("你的肺部感觉能抵抗空气中的污染物。")
+	text_lose_indication = span_warning("你的肺部又感觉容易受空气污染物侵害了。")
 	locked = TRUE
 
 /datum/mutation/plasmocile/on_acquiring(mob/living/carbon/human/acquirer)

@@ -38,8 +38,8 @@
 
 	var/mob/living/carbon/human/infected_human = parent
 
-	to_chat(infected_human, span_hypnophrase("Your mind feels at ease, your mind feels one with the flesh."))
-	to_chat(infected_human, span_userdanger("IMPORTANT INFO, MUST READ: [CONTROLLED_MOB_POLICY]"))
+	to_chat(infected_human, span_hypnophrase("你的心智感到安宁，与血肉融为一体。"))
+	to_chat(infected_human, span_userdanger("重要信息，请务必阅读：[CONTROLLED_MOB_POLICY]"))
 
 	RegisterSignal(infected_human, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_parent_overlays))
 	RegisterSignal(infected_human, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
@@ -108,17 +108,17 @@
 /datum/component/human_corruption/proc/on_examine(atom/examined, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += "<b>[p_They()] have strange wires wrappped around [p_them()]!</b>"
+	examine_list += "<b>身上缠绕着奇怪的线缆！</b>"
 
 /datum/component/human_corruption/proc/core_death(obj/structure/fleshmind/structure/core/deleting_core, force)
 	SIGNAL_HANDLER
 
-	to_chat(parent, span_userdanger("Your mind screams as you feel a processor core dying!"))
+	to_chat(parent, span_userdanger("你感受到一颗处理器核心正在死去，心智随之尖叫！"))
 
 /datum/component/human_corruption/proc/component_death(obj/structure/fleshmind/structure/core/deleting_core, force)
 	SIGNAL_HANDLER
 
-	to_chat(parent, span_userdanger("Your mechanical implants fail catastrophically as your link to the hive is cut off!"))
+	to_chat(parent, span_userdanger("你与集群的连接被切断，机械植入物发生灾难性故障！"))
 
 	var/mob/living/carbon/human/parent_human = parent
 	INVOKE_ASYNC(parent_human, TYPE_PROC_REF(/mob, emote), "scream")
@@ -144,7 +144,7 @@
 	INVOKE_ASYNC(parent_human, TYPE_PROC_REF(/mob, emote), "scream")
 	parent_human.apply_status_effect(/datum/status_effect/jitter, 20 SECONDS)
 	parent_human.Knockdown(10)
-	to_chat(parent_human, span_userdanger("You feel your implants freeze up!"))
+	to_chat(parent_human, span_userdanger("你感觉植入物全都僵住了！"))
 
 /datum/component/human_corruption/proc/host_death()
 	SIGNAL_HANDLER

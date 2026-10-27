@@ -1,14 +1,14 @@
 /obj/structure/closet/secure_closet/interdynefob/science_gear
 	icon_state = "science"
-	name = "scientist gear locker"
+	name = "科学家装备储物柜"
 
 /obj/item/clothing/accessory/armband/science/syndicate
-	name = "researcher armband"
-	desc = "An armband, worn by the FOB's operatives to display which department they're assigned to."
+	name = "研究员臂章"
+	desc = "一条臂章，由前进基地的特工佩戴，以显示其所属部门。"
 
 /obj/item/storage/bag/garment/syndicate_scientist
-	name = "scientist's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to a scientist."
+	name = "科学家的衣物袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个是科学家的。"
 
 /obj/item/storage/bag/garment/syndicate_scientist/PopulateContents()
 	new /obj/item/clothing/suit/hooded/wintercoat/science(src)
@@ -26,11 +26,11 @@
 
 /obj/structure/closet/secure_closet/interdynefob/robotics
 	icon_state = "science"
-	name = "roboticist gear locker"
+	name = "机器人专家装备储物柜"
 
 /obj/item/storage/bag/garment/syndicate_roboticist
-	name = "roboticist's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to a roboticist."
+	name = "机器人专家的衣物袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个是机器人专家的。"
 
 /obj/item/storage/bag/garment/syndicate_roboticist/PopulateContents()
 	new /obj/item/clothing/suit/hooded/techpriest(src)

@@ -4,7 +4,7 @@
 // MEXICAN
 
 /datum/crafting_recipe/food/burrito
-	name ="Burrito"
+	name ="墨西哥卷饼"
 	reqs = list(
 		/obj/item/food/tortilla = 1,
 		/obj/item/food/grown/soybeans = 2
@@ -14,7 +14,7 @@
 	dish_category = DISH_BURRITO
 
 /datum/crafting_recipe/food/cheesyburrito
-	name ="Cheesy burrito"
+	name ="芝士卷饼"
 	reqs = list(
 		/obj/item/food/cheese/wedge = 2,
 		/obj/item/food/tortilla = 1,
@@ -25,7 +25,7 @@
 	dish_category = DISH_BURRITO
 
 /datum/crafting_recipe/food/carneburrito
-	name = "Carne de asada burrito"
+	name = "烤牛肉卷饼"
 	reqs = list(
 		/obj/item/food/tortilla = 1,
 		/obj/item/food/meat/cutlet = 2,
@@ -36,7 +36,7 @@
 	dish_category = DISH_BURRITO
 
 /datum/crafting_recipe/food/fuegoburrito
-	name = "Fuego plasma burrito"
+	name = "火焰等离子卷饼"
 	reqs = list(
 		/obj/item/food/tortilla = 1,
 		/obj/item/food/grown/ghost_chili = 2,
@@ -47,7 +47,7 @@
 	dish_category = DISH_BURRITO
 
 /datum/crafting_recipe/food/nachos
-	name = "Nachos"
+	name = "玉米片"
 	reqs = list(
 		/datum/reagent/consumable/salt = 1,
 		/obj/item/food/tortilla = 1
@@ -58,7 +58,7 @@
 	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/cheesynachos
-	name = "Cheesy nachos"
+	name = "芝士玉米片"
 	reqs = list(
 		/datum/reagent/consumable/salt = 1,
 		/obj/item/food/cheese/wedge = 1,
@@ -70,7 +70,7 @@
 	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/cubannachos
-	name = "Cuban nachos"
+	name = "古巴玉米片"
 	reqs = list(
 		/datum/reagent/consumable/ketchup = 5,
 		/obj/item/food/grown/chili = 2,
@@ -82,7 +82,7 @@
 	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/taco
-	name ="Classic Taco"
+	name ="经典墨西哥夹饼"
 	reqs = list(
 		/obj/item/food/tortilla = 1,
 		/obj/item/food/cheese/wedge = 1,
@@ -94,7 +94,7 @@
 	dish_category = DISH_TACO
 
 /datum/crafting_recipe/food/tacoplain
-	name ="Plain Taco"
+	name ="原味墨西哥夹饼"
 	reqs = list(
 		/obj/item/food/tortilla = 1,
 		/obj/item/food/cheese/wedge = 1,
@@ -105,7 +105,7 @@
 	dish_category = DISH_TACO
 
 /datum/crafting_recipe/food/enchiladas
-	name = "Enchiladas"
+	name = "辣酱卷饼"
 	reqs = list(
 		/obj/item/food/meat/cutlet = 2,
 		/obj/item/food/grown/chili = 2,
@@ -116,7 +116,7 @@
 	dish_category = DISH_BURRITO
 
 /datum/crafting_recipe/food/stuffedlegion
-	name = "Stuffed legion"
+	name = "酿军团"
 	time = 4 SECONDS
 	reqs = list(
 		/obj/item/food/meat/steak/goliath = 1,
@@ -128,7 +128,7 @@
 	cuisine_category = CUISINE_MEXICAN
 
 /datum/crafting_recipe/food/chipsandsalsa
-	name = "Chips and salsa"
+	name = "玉米片配莎莎酱"
 	reqs = list(
 		/obj/item/food/cornchips = 1,
 		/obj/item/food/grown/chili = 1,
@@ -143,7 +143,7 @@
 	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/classic_chimichanga
-	name = "Classic Chimichanga"
+	name = "经典炸卷饼"
 	reqs = list(
 		/obj/item/food/tortilla = 1,
 		/obj/item/food/meat/cutlet = 2,
@@ -156,7 +156,7 @@
 	dish_category = DISH_BURRITO
 
 /datum/crafting_recipe/food/vegetarian_chimichanga
-	name = "Vegetarian Chimichanga"
+	name = "素食炸卷饼"
 	reqs = list(
 		/obj/item/food/tortilla = 1,
 		/obj/item/food/grown/cabbage = 1,
@@ -169,7 +169,7 @@
 	dish_category = DISH_BURRITO
 
 /datum/crafting_recipe/food/classic_hard_shell_taco
-	name = "Classic Hard-Shell Taco"
+	name = "经典硬壳夹饼"
 	reqs = list(
 		/obj/item/food/hard_taco_shell = 1,
 		/obj/item/food/meat/cutlet = 1,
@@ -182,7 +182,7 @@
 	dish_category = DISH_TACO
 
 /datum/crafting_recipe/food/plain_hard_shell_taco
-	name = "Plain Hard-Shell Taco"
+	name = "原味硬壳夹饼"
 	reqs = list(
 		/obj/item/food/hard_taco_shell = 1,
 		/obj/item/food/meat/cutlet = 1,
@@ -192,7 +192,7 @@
 	dish_category = DISH_TACO
 
 /datum/crafting_recipe/food/refried_beans
-	name = "Refried Beans"
+	name = "炒豆泥"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/grown/soybeans = 2,
@@ -204,7 +204,7 @@
 	cuisine_category = CUISINE_MEXICAN
 
 /datum/crafting_recipe/food/spanish_rice
-	name = "Spanish Rice"
+	name = "西班牙米饭"
 	reqs = list(
 		/obj/item/reagent_containers/cup/bowl = 1,
 		/obj/item/food/boiledrice = 1,
@@ -218,7 +218,7 @@
 	dish_category = DISH_RICE
 
 /datum/crafting_recipe/food/pineapple_salsa
-	name = "Pineapple salsa"
+	name = "菠萝莎莎酱"
 	reqs = list(
 		/obj/item/food/pineappleslice = 2,
 		/obj/item/food/grown/tomato = 1,

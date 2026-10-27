@@ -7,8 +7,8 @@ The console is located at computer/gulag_teleporter.dm
 
 //Gulag teleporter
 /obj/machinery/gulag_teleporter
-	name = "labor camp teleporter"
-	desc = "A bluespace teleporter used for teleporting prisoners to the labor camp."
+	name = "劳改营传送机"
+	desc = "用于将囚犯传送至劳改营的蓝空间传送机。"
 	icon = 'icons/obj/machines/implant_chair.dmi'
 	icon_state = "implantchair"
 	base_icon_state = "implantchair"
@@ -50,7 +50,7 @@ The console is located at computer/gulag_teleporter.dm
 /obj/machinery/gulag_teleporter/interact(mob/user)
 	. = ..()
 	if(locked)
-		to_chat(user, span_warning("[src] is locked!"))
+		to_chat(user, span_warning("[src]已锁定！"))
 		return
 	toggle_open()
 
@@ -85,7 +85,7 @@ The console is located at computer/gulag_teleporter.dm
 	if(locked)
 		if(message_cooldown <= world.time)
 			message_cooldown = world.time + 50
-			to_chat(user, span_warning("[src]'s door won't budge!"))
+			to_chat(user, span_warning("[src]的舱门纹丝不动！"))
 		return
 	open_machine()
 
@@ -100,17 +100,17 @@ The console is located at computer/gulag_teleporter.dm
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
 	user.visible_message(
-		span_notice("You see [user] kicking against the door of [src]!"),
-		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(resist_time)].)"),
-		span_hear("You hear a metallic creaking from [src]."),
+		span_notice("你看见[user]正踢打[src]的舱门！"),
+		span_notice("你背靠[src]的后壁，开始用力推门……（大约需要[DisplayTimeText(resist_time)]。）"),
+		span_hear("你听见[src]发出金属吱嘎声。"),
 	)
 
 	if(do_after(user, resist_time, target = src))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src || state_open || !locked)
 			return
 		locked = FALSE
-		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
-			span_notice("You successfully break out of [src]!"))
+		user.visible_message(span_warning("[user]成功挣脱了[src]！"), \
+			span_notice("你成功挣脱了[src]！"))
 		open_machine()
 
 /obj/machinery/gulag_teleporter/proc/locate_reclaimer()
@@ -120,7 +120,7 @@ The console is located at computer/gulag_teleporter.dm
 
 /obj/machinery/gulag_teleporter/proc/toggle_open()
 	if(panel_open)
-		to_chat(usr, span_notice("Close the maintenance panel first."))
+		to_chat(usr, span_notice("请先关闭维护面板。"))
 		return
 
 	if(state_open)
@@ -169,7 +169,7 @@ The console is located at computer/gulag_teleporter.dm
 	use_energy(active_power_usage)
 
 /obj/item/circuitboard/machine/gulag_teleporter
-	name = "Labor Camp Teleporter"
+	name = "劳改营传送机"
 	build_path = /obj/machinery/gulag_teleporter
 	req_components = list(
 		/obj/item/stack/ore/bluespace_crystal = 2,
@@ -180,8 +180,8 @@ The console is located at computer/gulag_teleporter.dm
 
 /*  beacon that receives the teleported prisoner */
 /obj/structure/gulag_beacon
-	name = "labor camp bluespace beacon"
-	desc = "A receiving beacon for bluespace teleportations."
+	name = "劳改营蓝空间信标"
+	desc = "用于蓝空间传送的接收信标。"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "light_on-8"
 	resistance_flags = INDESTRUCTIBLE

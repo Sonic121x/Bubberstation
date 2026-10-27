@@ -1,7 +1,7 @@
 #define MAP_VOTE_CACHE_LOCATION "data/map_vote_cache.json"
 
 SUBSYSTEM_DEF(map_vote)
-	name = "Map Vote"
+	name = "地图投票"
 	ss_flags = SS_NO_FIRE
 
 	/// Has an admin specifically set a map.
@@ -26,7 +26,7 @@ SUBSYSTEM_DEF(map_vote)
 	var/list/votable_map_cache
 
 	/// Stores a formatted html string of the tally counts
-	var/tally_printout = span_red("Loading...")
+	var/tally_printout = span_red("加载中……")
 
 /datum/controller/subsystem/map_vote/Initialize()
 	if(rustg_file_exists(MAP_VOTE_CACHE_LOCATION))
@@ -55,15 +55,15 @@ SUBSYSTEM_DEF(map_vote)
 /datum/controller/subsystem/map_vote/proc/send_map_vote_notice(...)
 	var/static/last_message_at
 	if(last_message_at == world.time)
-		message_admins("Call to send_map_vote_notice twice in one game tick. Yell at someone to condense messages.")
+		message_admins("同一个游戏 tick 内调用了两次 send_map_vote_notice。请联系开发人员合并消息。")
 	last_message_at = world.time
 
 	var/list/messages = args.Copy()
-	to_chat(world, span_purple(boxed_message("Map Vote<br><hr>[jointext(messages, "<br>")]")))
+	to_chat(world, span_purple(boxed_message("地图投票<br><hr>[jointext(messages, "<br>")]")))
 
 /datum/controller/subsystem/map_vote/proc/finalize_map_vote(datum/vote/map_vote/map_vote)
 	if(already_voted)
-		message_admins("Attempted to finalize a map vote after a map vote has already been finalized.")
+		message_admins("地图投票已经结算，但系统再次尝试结算。")
 		return
 	already_voted = TRUE
 
@@ -77,7 +77,7 @@ SUBSYSTEM_DEF(map_vote)
 	update_tally_printout()
 
 	if(admin_override)
-		send_map_vote_notice("Admin Override is in effect. Map will not be changed.", "Tallies are recorded and saved.")
+		send_map_vote_notice("管理员指定的地图已生效，不会更换地图。", "票数已记录并保存。")
 		return
 
 	var/winner
@@ -94,8 +94,8 @@ SUBSYSTEM_DEF(map_vote)
 
 	ASSERT(winner, "No winner found in map vote.")
 	set_next_map(config.maplist[winner])
-	var/list/messages = list("Map Selected - [span_bold(next_map_config.map_name)]")
-	messages += "Tallies at the time of selection:"
+	var/list/messages = list("已选地图 - [span_bold(next_map_config.map_name)]")
+	messages += "选定时的累计票数："
 	messages += tally_printout
 
 	// do not reset tallies if only one map is even possible
@@ -104,7 +104,7 @@ SUBSYSTEM_DEF(map_vote)
 		write_cache()
 		update_tally_printout()
 	else
-		messages += "Only one map was possible, tallies were not reset."
+		messages += "只有一张地图可选，累计票数未重置。"
 
 	send_map_vote_notice(arglist(messages))
 
@@ -165,7 +165,7 @@ SUBSYSTEM_DEF(map_vote)
 
 /datum/controller/subsystem/map_vote/proc/set_next_map(datum/map_config/change_to)
 	if(!change_to.MakeNextMap())
-		message_admins("Failed to set new map with next_map.json for [change_to.map_name]!")
+		message_admins("无法通过 next_map.json 将新地图设为 [change_to.map_name]！")
 		return FALSE
 
 	next_map_config = change_to
@@ -183,9 +183,9 @@ SUBSYSTEM_DEF(map_vote)
 	next_map_config = null
 
 	if(!isnull(user))
-		message_admins("[key_name_admin(user)] has reverted the next map selection. Voting re-enabled.")
-		log_admin("[key_name_admin(user)] reverted the next map selection.")
-	send_map_vote_notice("Next map reverted. Voting re-enabled.")
+		message_admins("[key_name_admin(user)] 撤销了下一张地图的选择。投票已重新开放。")
+		log_admin("[key_name_admin(user)] 撤销了下一张地图的选择。")
+	send_map_vote_notice("已撤销下一张地图的选择。投票已重新开放。")
 
 #undef MAP_VOTE_CACHE_LOCATION
 
@@ -194,7 +194,7 @@ SUBSYSTEM_DEF(map_vote)
 	for(var/map_id in map_vote_cache)
 		var/datum/map_config/map = config.maplist[map_id]
 		data += "[map.map_name] - [map_vote_cache[map_id]]"
-	var/tally_msg = span_tooltip("A map's tallies are reset after it wins a vote. \
-		Otherwise, they are carried over and added onto from the next vote on the next round, \
-		until it eventually wins and is reset.", "Current Tallies")
+	var/tally_msg = span_tooltip("地图赢得投票后，其累计票数会被重置。\
+		否则，票数将保留到下一回合，并与下一次投票的票数相加，\
+		直到该地图最终胜出后重置。", "当前累计票数")
 	tally_printout = boxed_message("[tally_msg]<br><hr>[jointext(data, "<br>")]")

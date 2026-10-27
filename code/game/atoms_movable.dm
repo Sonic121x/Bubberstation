@@ -27,12 +27,12 @@
 	var/list/allies
 
 	/// Use get_default_say_verb() in say.dm instead of reading verb_say.
-	var/verb_say = "says"
-	var/verb_ask = "asks"
-	var/verb_exclaim = "exclaims"
-	var/verb_whisper = "whispers"
-	var/verb_sing = "sings"
-	var/verb_yell = "yells"
+	var/verb_say = "说"
+	var/verb_ask = "问"
+	var/verb_exclaim = "惊呼"
+	var/verb_whisper = "低语"
+	var/verb_sing = "唱道"
+	var/verb_yell = "大喊"
 	var/speech_span
 	///Are we moving with inertia? Mostly used as an optimization
 	var/inertia_moving = FALSE
@@ -363,8 +363,8 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(!(impact_flags & ZIMPACT_NO_MESSAGE))
 		visible_message(
-			span_danger("[src] crashes into [impacted_turf]!"),
-			span_userdanger("You crash into [impacted_turf]!"),
+			span_danger("[src]撞上了[impacted_turf]！"),
+			span_userdanger("你撞上了[impacted_turf]！"),
 		)
 	if(!(impact_flags & ZIMPACT_NO_SPIN))
 		INVOKE_ASYNC(src, PROC_REF(SpinAnimation), 5, 2)
@@ -459,7 +459,7 @@
 		destination = get_step_multiz(start, direction)
 		if(!destination)
 			if(z_move_flags & ZMOVE_FEEDBACK)
-				to_chat(rider || src, span_warning("There's nowhere to go in that direction!"))
+				to_chat(rider || src, span_warning("那个方向无路可走！"))
 			return FALSE
 	if(SEND_SIGNAL(src, COMSIG_CAN_Z_MOVE, start, destination) & COMPONENT_CANT_Z_MOVE)
 		return FALSE
@@ -468,13 +468,13 @@
 	if(z_move_flags & ZMOVE_CAN_FLY_CHECKS && !(movement_type & (FLYING|FLOATING)) && has_gravity(start))
 		if(z_move_flags & ZMOVE_FEEDBACK)
 			if(rider)
-				to_chat(rider, span_warning("[src] [p_are()] incapable of flight."))
+				to_chat(rider, span_warning("[src]无法飞行。"))
 			else
-				to_chat(src, span_warning("You are not Superman."))
+				to_chat(src, span_warning("你又不是超人。"))
 		return FALSE
 	if((!(z_move_flags & ZMOVE_IGNORE_OBSTACLES) && !(start.zPassOut(direction) && destination.zPassIn(direction))) || (!(z_move_flags & ZMOVE_ALLOW_ANCHORED) && anchored))
 		if(z_move_flags & ZMOVE_FEEDBACK)
-			to_chat(rider || src, span_warning("You can't move there!"))
+			to_chat(rider || src, span_warning("你无法移动到那里！"))
 		return FALSE
 	return destination //used by some child types checks and zMove()
 
@@ -560,8 +560,8 @@
 		log_combat(src, pulled_mob, "grabbed", addition = "passive grab")
 		if(!supress_message)
 			pulled_mob.visible_message(
-				span_warning("[src] grabs [pulled_mob] passively."),
-				span_danger("[src] grabs you passively."),
+				span_warning("[src]轻轻抓住了[pulled_mob]。"),
+				span_danger("[src]轻轻抓住了你。"),
 			)
 
 
@@ -1495,12 +1495,12 @@
 /atom/movable/proc/force_push(atom/movable/pushed_atom, force = move_force, direction, silent = FALSE)
 	. = pushed_atom.force_pushed(src, force, direction)
 	if(!silent && .)
-		visible_message(span_warning("[src] forcefully pushes against [pushed_atom]!"), span_warning("You forcefully push against [pushed_atom]!"))
+		visible_message(span_warning("[src]用力推挤[pushed_atom]！"), span_warning("你用力推挤[pushed_atom]！"))
 
 /atom/movable/proc/move_crush(atom/movable/crushed_atom, force = move_force, direction, silent = FALSE)
 	. = crushed_atom.move_crushed(src, force, direction)
 	if(!silent && .)
-		visible_message(span_danger("[src] crushes past [crushed_atom]!"), span_danger("You crush [crushed_atom]!"))
+		visible_message(span_danger("[src]碾过了[crushed_atom]！"), span_danger("你碾压了[crushed_atom]！"))
 
 /atom/movable/proc/move_crushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
 	return FALSE
@@ -1787,15 +1787,15 @@
 /atom/movable/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "--- /movable ---")
-	VV_DROPDOWN_OPTION(VV_HK_OBSERVE_FOLLOW, "Observe Follow")
-	VV_DROPDOWN_OPTION(VV_HK_GET_MOVABLE, "Get Movable")
-	VV_DROPDOWN_OPTION(VV_HK_GET_FACTIONS, "Get Factions")
-	VV_DROPDOWN_OPTION(VV_HK_ADD_REMOVE_FACTION, "Add/Remove Faction")
-	VV_DROPDOWN_OPTION(VV_HK_EDIT_PARTICLES, "Edit Particles")
-	VV_DROPDOWN_OPTION(VV_HK_DEADCHAT_PLAYS, "Start/Stop Deadchat Plays")
-	VV_DROPDOWN_OPTION(VV_HK_ADD_FANTASY_AFFIX, "Add Fantasy Affix")
+	VV_DROPDOWN_OPTION(VV_HK_OBSERVE_FOLLOW, "观察跟随")
+	VV_DROPDOWN_OPTION(VV_HK_GET_MOVABLE, "传送此物体到身边")
+	VV_DROPDOWN_OPTION(VV_HK_GET_FACTIONS, "查看阵营")
+	VV_DROPDOWN_OPTION(VV_HK_ADD_REMOVE_FACTION, "添加/移除阵营")
+	VV_DROPDOWN_OPTION(VV_HK_EDIT_PARTICLES, "编辑粒子")
+	VV_DROPDOWN_OPTION(VV_HK_DEADCHAT_PLAYS, "开启/关闭亡者聊天操控")
+	VV_DROPDOWN_OPTION(VV_HK_ADD_FANTASY_AFFIX, "添加奇幻词缀")
 	if(SStts.tts_enabled)
-		VV_DROPDOWN_OPTION(VV_HK_SET_TTS_VOICE, "Modify TTS Voice")
+		VV_DROPDOWN_OPTION(VV_HK_SET_TTS_VOICE, "修改语音合成声线")
 
 /atom/movable/vv_do_topic(list/href_list)
 	. = ..()
@@ -1822,7 +1822,7 @@
 			return
 		if(edit_faction(usr))
 			var/list/factions_printout = faction_to_text()
-			to_chat(usr, span_notice("Factions updated for [src]:[factions_printout]"))
+			to_chat(usr, span_notice("[src]的阵营已更新：[factions_printout]"))
 
 	if(href_list[VV_HK_GET_FACTIONS])
 		if(!check_rights(R_ADMIN))
@@ -1830,7 +1830,7 @@
 		if(QDELETED(src))
 			return
 		var/list/factions_printout = faction_to_text()
-		to_chat(usr, span_notice(span_notice("Factions for [src]:[factions_printout]")))
+		to_chat(usr, span_notice(span_notice("[src]的阵营：[factions_printout]")))
 
 	if(href_list[VV_HK_EDIT_PARTICLES])
 		var/client/C = usr.client
@@ -1839,26 +1839,26 @@
 	if(href_list[VV_HK_DEADCHAT_PLAYS])
 		if(!check_rights(R_FUN))
 			return
-		if(tgui_alert(usr, "Allow deadchat to control [src] via chat commands?", "Deadchat Plays [src]", list("Allow", "Cancel")) != "Allow")
+		if(tgui_alert(usr, "允许亡者通过聊天指令操控[src]吗？", "亡者聊天操控[src]", list("允许", "取消")) != "允许")
 			return
 		// Alert is async, so quick sanity check to make sure we should still be doing this.
 		if(QDELETED(src))
 			return
 		// This should never happen, but if it does it should not be silent.
 		if(deadchat_plays() == COMPONENT_INCOMPATIBLE)
-			to_chat(usr, span_warning("Deadchat control not compatible with [src]."))
+			to_chat(usr, span_warning("[src]不兼容亡者聊天操控。"))
 			CRASH("deadchat_control component incompatible with object of type: [type]")
-		to_chat(usr, span_notice("Deadchat now control [src]."))
+		to_chat(usr, span_notice("亡者现在可以通过聊天操控[src]。"))
 		log_admin("[key_name(usr)] has added deadchat control to [src]")
-		message_admins(span_notice("[key_name(usr)] has added deadchat control to [src]"))
+		message_admins(span_notice("[key_name(usr)]为[src]添加了亡者聊天操控。"))
 
 	if(href_list[VV_HK_SET_TTS_VOICE])
-		var/chosen_voice = tgui_input_list(usr, "Choose a voice to use.", "Choose a voice.", SStts.available_speakers)
+		var/chosen_voice = tgui_input_list(usr, "选择要使用的声线。", "选择声线", SStts.available_speakers)
 		if(!chosen_voice)
 			return
 		voice = chosen_voice
 		log_admin("[key_name(usr)] has set [src]'s voice as [chosen_voice].")
-		message_admins(span_notice("[key_name(usr)] has set [src]'s voice as [chosen_voice]."))
+		message_admins(span_notice("[key_name(usr)]将[src]的声线设为了[chosen_voice]。"))
 
 /**
 * A wrapper for setDir that should only be able to fail by living mobs.
@@ -2068,26 +2068,26 @@
  * Opens the modify faction ui.
  */
 /atom/movable/proc/edit_faction(mob/user)
-	var/prompt = tgui_alert(usr, "Would you like to Add or Remove faction?", "Add/Remove?", list("Add", "Remove"))
+	var/prompt = tgui_alert(usr, "要添加还是移除阵营？", "添加/移除阵营", list("添加", "移除"))
 	if (isnull(prompt))
 		return FALSE
 
-	if (prompt == "Add")
-		var/faction_to_add = tgui_input_text(user, "Enter a faction name to add.", "Add Faction", max_length = MAX_NAME_LEN)
+	if (prompt == "添加")
+		var/faction_to_add = tgui_input_text(user, "输入要添加的阵营名称。", "添加阵营", max_length = MAX_NAME_LEN)
 		if(isnull(faction_to_add))
 			return FALSE
 
 		return add_faction(faction_to_add)
 
-	else if (prompt == "Remove")
+	else if (prompt == "移除")
 		var/list/current_factions = LAZYLISTDUPLICATE(faction)
 		if(!LAZYLEN(current_factions))
-			to_chat(user, span_warning("[src] has no factions left to remove!"))
+			to_chat(user, span_warning("[src]没有可移除的阵营！"))
 			return FALSE
 
 		current_factions = sort_list(current_factions, GLOBAL_PROC_REF(cmp_text_asc)) // sort alphabetically
 
-		var/faction_to_remove = tgui_input_list(user, "Select a faction to remove.", "Remove faction", current_factions)
+		var/faction_to_remove = tgui_input_list(user, "选择要移除的阵营。", "移除阵营", current_factions)
 		if(isnull(faction_to_remove))
 			return FALSE
 

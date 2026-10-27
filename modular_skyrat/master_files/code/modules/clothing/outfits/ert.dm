@@ -35,7 +35,7 @@
 	Radio.set_frequency(FREQ_CENTCOM)
 	Radio.freqlock = TRUE
 	var/obj/item/card/id/ID = person.wear_id
-	ID.assignment = "Asset Protection"
+	ID.assignment = "资产保护"
 	ID.registered_name = person.real_name
 	ID.update_label()
 	..()

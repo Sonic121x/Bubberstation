@@ -1,7 +1,7 @@
 /// Ash storms happen frequently on lavaland. They heavily obscure vision, and cause high fire damage to anyone caught outside.
 /datum/weather/particle/ash_storm
 	name = "ash storm"
-	desc = "An intense atmospheric storm lifts ash off of the planet's surface and billows it down across the area, dealing intense fire damage to the unprotected."
+	desc = "猛烈的大气风暴卷起行星表面的灰烬，再将其倾泻各处，对毫无防护者造成严重烧伤。"
 
 	particle_type = /particles/weather/ash_storm
 	emissive_type = /particles/weather/ash_storm/embers
@@ -10,16 +10,16 @@
 	particle_weather_alpha = 100
 	wind_sign = -1 // Always blows left to sync with the animated overlays
 
-	telegraph_message = span_boldwarning("An eerie moan rises on the wind. Sheets of burning ash blacken the horizon. Seek shelter.")
+	telegraph_message = span_boldwarning("风中响起诡异的呜咽。成片燃烧的灰烬遮黑了地平线。快寻找掩蔽。")
 	telegraph_duration = 30 SECONDS
 	telegraph_overlay = "light_ash"
 
-	weather_message = span_userdanger("<i>Smoldering clouds of scorching ash billow down around you! Get inside!</i>")
+	weather_message = span_userdanger("<i>滚烫的余烬灰云向你倾泻而下！快进室内！</i>")
 	weather_duration_lower = 1 MINUTES
 	weather_duration_upper = 2 MINUTES
 	weather_overlay = "ash_storm"
 
-	end_message = span_bolddanger("The shrieking wind whips away the last of the ash and falls to its usual murmur. It should be safe to go outside now.")
+	end_message = span_bolddanger("呼啸的狂风卷走了最后的灰烬，恢复了平日的低吟。现在外面应该安全了。")
 	end_duration = 30 SECONDS
 	end_overlay = "light_ash"
 
@@ -131,12 +131,12 @@
 //Emberfalls are the result of an ash storm passing by close to the playable area of lavaland. They have a 10% chance to trigger in place of an ash storm.
 /datum/weather/particle/ash_storm/emberfall
 	name = "emberfall"
-	desc = "A passing ash storm blankets the area in harmless embers."
+	desc = "掠过的灰烬风暴向此地洒下了无害的余烬。"
 
-	weather_message = span_notice("Gentle embers waft down around you like grotesque snow. The storm seems to have passed you by...")
+	weather_message = span_notice("轻盈的余烬像怪异的雪花般飘落在你周围。风暴似乎与你擦肩而过……")
 	weather_overlay = "light_ash"
 
-	end_message = span_notice("The emberfall slows, stops. Another layer of hardened soot to the basalt beneath your feet.")
+	end_message = span_notice("余烬逐渐减少，终于停止飘落。你脚下的玄武岩又多了一层硬化的烟灰。")
 	end_sound = null
 
 	weather_flags = parent_type::weather_flags & ~(WEATHER_MOBS|WEATHER_THUNDER)

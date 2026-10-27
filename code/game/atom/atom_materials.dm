@@ -321,14 +321,14 @@
 /atom/proc/get_material_prefixes(list/materials)
 	var/list/mat_names = list()
 	for(var/datum/material/material as anything in materials)
-		mat_names |= material.name
+		mat_names |= chinese_material_display(material.name)
 	return mat_names.Join("-")
 
 ///Returns a string like "plasma, paper and glass" from a list of materials
 /atom/proc/get_material_english_list(list/materials)
 	var/list/mat_names = list()
 	for(var/datum/material/material as anything in materials)
-		mat_names += material.name
+		mat_names += chinese_material_display(material.name)
 	return english_list(mat_names)
 
 ///Searches for a subtype of config_type that is to be used in its place for specific materials (like shimmering gold for cleric maces)

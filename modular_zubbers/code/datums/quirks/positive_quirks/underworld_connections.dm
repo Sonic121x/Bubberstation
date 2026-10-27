@@ -1,8 +1,8 @@
 /datum/quirk/item_quirk/underworld_connections
 	name = "Underworld Connections"
-	desc = "You have made connections with the underbelly of crime and black markets. You carry a black market uplink."
+	desc = "你与犯罪地下世界及黑市建立了联系。你携带着一台黑市上行终端。"
 	value = 2
-	medical_record_text = "Subject has been known to harbour black market uplinks..."
+	medical_record_text = "已知该人员藏有黑市上行终端……"
 	icon = FA_ICON_UPLOAD
 
 /datum/quirk/item_quirk/underworld_connections/add_unique(client/client_source)

@@ -6,9 +6,9 @@
 #define COMBO_SURGERY (1<<2)
 
 /datum/surgery_operation/basic/repair_synth
-	name = "structural repairs"
-	rnd_name = "Structural Repairs (Tend Wounds)"
-	desc = "Perform superficial repairs that focuses on fixing the patients chassis and physical frame."
+	name = "结构修复"
+	rnd_name = "结构修复（处理损伤）"
+	desc = "进行表层维修，重点修复患者的机体和实体框架。"
 	implements = list(
 		TOOL_WELDER = 1,
 		/obj/item/stack/cable_coil = 1,
@@ -33,7 +33,7 @@
 	var/healing_multiplier = 0.07
 
 /datum/surgery_operation/basic/repair_synth/all_required_strings()
-	return ..() + list("the patient must have denting or heat damage")
+	return ..() + list("患者必须存在凹陷或热损伤")
 
 /datum/surgery_operation/basic/repair_synth/state_check(mob/living/patient)
 	return patient.get_brute_loss() > 0 || patient.get_fire_loss() > 0
@@ -49,8 +49,8 @@
 		if(!all_healing)
 			all_healing = new()
 			all_healing.image = image(/obj/item/storage/medkit/tactical/premium)
-			all_healing.name = "tend dents and charring"
-			all_healing.info = "Heal a patient's superficial dents, scuffs, and warped heat damage."
+			all_healing.name = "修复凹陷与焦痕"
+			all_healing.info = "修复患者表面的凹陷、擦痕以及热损伤造成的变形。"
 			LAZYSET(cached_healing_options, "[COMBO_SURGERY]", all_healing)
 
 		options[all_healing] = list(
@@ -66,8 +66,8 @@
 		if(!brute_healing)
 			brute_healing = new()
 			brute_healing.image = image(/obj/item/storage/medkit/robotic_repair)
-			brute_healing.name = "repair blunt damage"
-			brute_healing.info = "Heal a patient's superficial bruises and cuts."
+			brute_healing.name = "修复钝击损伤"
+			brute_healing.info = "修复患者表面的撞伤与划痕。"
 			LAZYSET(cached_healing_options, "[BRUTE_SURGERY]", brute_healing)
 
 		options[brute_healing] = list(
@@ -81,8 +81,8 @@
 		if(!burn_healing)
 			burn_healing = new()
 			burn_healing.image = image(/obj/item/reagent_containers/spray/dinitrogen_plasmide)
-			burn_healing.name = "repair heat damage"
-			burn_healing.info = "Heal a patient's superficial charring and warping damage."
+			burn_healing.name = "修复热损伤"
+			burn_healing.info = "修复患者表面的焦痕与变形损伤。"
 			LAZYSET(cached_healing_options, "[BURN_SURGERY]", burn_healing)
 
 		options[burn_healing] = list(
@@ -112,19 +112,19 @@
 	var/brute_heal = operation_args[OPERATION_BRUTE_HEAL] > 0
 	var/burn_heal = operation_args[OPERATION_BURN_HEAL] > 0
 	if(brute_heal && burn_heal)
-		woundtype = "damages"
+		woundtype = "损伤"
 	else if(brute_heal)
-		woundtype = "dents"
+		woundtype = "凹陷"
 	else //why are you trying to 0,0...?
-		woundtype = "burns"
+		woundtype = "烧伤"
 	display_results(
 		surgeon,
 		patient,
-		span_notice("You attempt to patch some of [patient]'s [woundtype]."),
-		span_notice("[surgeon] attempts to patch some of [patient]'s [woundtype]."),
-		span_notice("[surgeon] attempts to patch some of [patient]'s [woundtype]."),
+		span_notice("你尝试修补[patient]的部分[woundtype]。"),
+		span_notice("[surgeon]尝试修补[patient]的部分[woundtype]。"),
+		span_notice("[surgeon]尝试修补[patient]的部分[woundtype]。"),
 	)
-	display_pain(patient, "Your [woundtype] sting like hell!")
+	display_pain(patient, "你的[woundtype]处痛得要命！")
 
 #define CONDITIONAL_DAMAGE_MESSAGE(brute, burn, combo_msg, brute_msg, burn_msg) "[(brute > 0 && burn > 0) ? combo_msg : (brute > 0 ? brute_msg : burn_msg)]"
 
@@ -140,34 +140,34 @@
 
 	if(surgeon.is_holding_item_of_type(/obj/item/healthanalyzer))
 		if(brute_healed > 0 && patient.get_brute_loss() > 0)
-			progress_text += ". Remaining brute: <font color='#ff3333'>[patient.get_brute_loss()]</font>"
+			progress_text += "。剩余物理损伤：<font color='#ff3333'>[patient.get_brute_loss()]</font>"
 		if(burn_healed > 0 && patient.get_fire_loss() > 0)
-			progress_text += ". Remaining burn: <font color='#ff9933'>[patient.get_fire_loss()]</font>"
+			progress_text += "。剩余烧伤：<font color='#ff9933'>[patient.get_fire_loss()]</font>"
 		return progress_text
 
 	switch(estimated_remaining_steps)
 		if(-INFINITY to 1)
 			return
 		if(1 to 3)
-			progress_text += ", finishing up the last few [CONDITIONAL_DAMAGE_MESSAGE(brute_healed, burn_healed, "scuffs", "scratches", "char marks")]"
+			progress_text += "，正在修复最后几处[CONDITIONAL_DAMAGE_MESSAGE(brute_healed, burn_healed, "擦伤", "刮痕", "焦痕")]"
 		if(3 to 6)
-			progress_text += ", counting down the last few [CONDITIONAL_DAMAGE_MESSAGE(brute_healed, burn_healed, "dimples of impacts", "dents", "patches of burnt plating")] left to treat"
+			progress_text += "，逐一处理剩下的几处[CONDITIONAL_DAMAGE_MESSAGE(brute_healed, burn_healed, "撞击痕迹", "凹陷", "烧焦的装甲板")]"
 		if(6 to 9)
-			progress_text += ", continuing to plug away at [patient.p_their()] extensive [CONDITIONAL_DAMAGE_MESSAGE(brute_healed, burn_healed, "injuries", "rupturing", "roasting")]"
+			progress_text += "，继续埋头修复大面积的[CONDITIONAL_DAMAGE_MESSAGE(brute_healed, burn_healed, "损伤", "破裂", "烧伤")]"
 		if(9 to 12)
-			progress_text += ", steadying yourself for the long surgery ahead"
+			progress_text += "，做好继续漫长手术的准备"
 		if(12 to 15)
-			progress_text += ", though [patient.p_they()] still look[patient.p_s()] more like [CONDITIONAL_DAMAGE_MESSAGE(brute_healed, burn_healed, "crushed debri", "shattered window", "charred computer")] than a person"
+			progress_text += "，不过患者看起来仍然更像[CONDITIONAL_DAMAGE_MESSAGE(brute_healed, burn_healed, "压碎的残骸", "破碎的窗户", "烧焦的电脑")]，而不是一个人"
 		if(15 to INFINITY)
-			progress_text += ", though you feel like you're barely making a dent in treating [patient.p_their()] [CONDITIONAL_DAMAGE_MESSAGE(brute_healed, burn_healed, "broken", "dented", "charred")] body"
+			progress_text += "，但你觉得对这具[CONDITIONAL_DAMAGE_MESSAGE(brute_healed, burn_healed, "破碎", "凹陷", "烧焦")]躯体的维修几乎毫无进展"
 
 	return progress_text
 
 #undef CONDITIONAL_DAMAGE_MESSAGE
 
 /datum/surgery_operation/basic/repair_synth/on_success(mob/living/patient, mob/living/surgeon, tool, list/operation_args)
-	var/user_msg = "You succeed in repairing some of [patient]'s defects" //no period, add initial space to "addons"
-	var/target_msg = "[surgeon] fixes some of [patient]'s injuries" //see above
+	var/user_msg = "你成功修复了[patient]的部分故障" //no period, add initial space to "addons"
+	var/target_msg = "[surgeon]修复了[patient]的部分损伤" //see above
 
 	var/brute_healed = operation_args[OPERATION_BRUTE_HEAL]
 	var/burn_healed = operation_args[OPERATION_BURN_HEAL]
@@ -176,8 +176,8 @@
 	var/accessibility_modifier = 1.0
 	if(!patient.is_location_accessible(BODY_ZONE_CHEST, IGNORED_OPERATION_CLOTHING_SLOTS))
 		accessibility_modifier = 0.55
-		user_msg += " as best as you can while [patient.p_they()] [patient.p_have()] clothing on"
-		target_msg += " as best as [surgeon.p_they()] can while [patient.p_they()] [patient.p_have()] clothing on"
+		user_msg += "，在患者仍穿着衣物的情况下已尽了最大努力"
+		target_msg += "，在患者仍穿着衣物的情况下已尽了最大努力"
 
 	var/brute_multiplier = operation_args[OPERATION_BRUTE_MULTIPLIER] * dead_multiplier * accessibility_modifier
 	var/burn_multiplier = operation_args[OPERATION_BURN_MULTIPLIER] * dead_multiplier * accessibility_modifier
@@ -204,9 +204,9 @@
 	display_results(
 		surgeon,
 		patient,
-		span_warning("You screwed up!"),
-		span_warning("[surgeon] screws up!"),
-		span_notice("[surgeon] repairs some of [patient]'s wounds."),
+		span_warning("你搞砸了！"),
+		span_warning("[surgeon]搞砸了！"),
+		span_notice("[surgeon]修复了[patient]的部分损伤。"),
 		target_detailed = TRUE,
 	)
 	var/brute_dealt = operation_args[OPERATION_BRUTE_HEAL] * 0.8
@@ -231,7 +231,7 @@
 	healing_multiplier = 0.2
 
 /datum/surgery_operation/basic/repair_synth/combo
-	rnd_name = "Advanced Structural Repair"
+	rnd_name = "高级结构修复"
 	operation_flags = parent_type::operation_flags | OPERATION_LOCKED
 	replaced_by = /datum/surgery_operation/basic/repair_synth/combo/upgraded
 	can_heal = COMBO_SURGERY

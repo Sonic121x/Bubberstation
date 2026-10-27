@@ -129,7 +129,7 @@
 	if(key_name in GLOB.species_list)
 		return TRUE
 
-	log_config("ERROR: [key_name] is not a valid race ID.")
+	log_config("错误：[key_name]不是有效的种族 ID。")
 	return FALSE
 
 /datum/config_entry/keyed_list/roundstart_no_hard_check // Species contained in this list will not cause existing characters with no-longer-roundstart species set to be resetted to the human race.
@@ -140,7 +140,7 @@
 	if(key_name in GLOB.species_list)
 		return TRUE
 
-	log_config("ERROR: [key_name] is not a valid race ID.")
+	log_config("错误：[key_name]不是有效的种族 ID。")
 	return FALSE
 
 /datum/config_entry/flag/no_summon_guns //No
@@ -167,22 +167,22 @@
 /datum/config_entry/flag/arrivals_shuttle_require_safe_latejoin //Require the arrivals shuttle to be operational in order for latejoiners to join
 
 /datum/config_entry/string/alert_green
-	default = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
+	default = "空间站面临的所有威胁均已解除。安保人员不得公开携带武器，隐私保护规定恢复全面执行。"
 
 /datum/config_entry/string/alert_blue_upto
-	default = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
+	default = "空间站已收到可靠情报，站内可能存在敌对活动。安保人员可公开携带武器，并获准进行随机搜查。"
 
 /datum/config_entry/string/alert_blue_downto
-	default = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
+	default = "当前的紧迫威胁已解除。安保人员不得再随时将武器持于手中，但仍可公开携带武器。随机搜查仍获准进行。"
 
 /datum/config_entry/string/alert_red_upto
-	default = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
+	default = "空间站正面临迫在眉睫的严重威胁。安保人员可随时将武器持于手中。允许并建议进行随机搜查。"
 
 /datum/config_entry/string/alert_red_downto
-	default = "The station's destruction has been averted. There is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
+	default = "空间站的毁灭危机已被化解，但仍面临迫在眉睫的严重威胁。安保人员可随时将武器持于手中，允许并建议进行随机搜查。"
 
 /datum/config_entry/string/alert_delta
-	default = "Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
+	default = "空间站即将毁灭。全体船员必须遵从各部门主管下达的一切命令。违令者可被处以死刑。这不是演习。"
 
 /datum/config_entry/flag/roundstart_blue_alert
 	default = TRUE

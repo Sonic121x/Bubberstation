@@ -205,11 +205,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		addtimer(CALLBACK(src, PROC_REF(announce_conflict), notadded), 5 SECONDS)
 
 /datum/preferences/proc/announce_conflict(list/notadded)
-	to_chat(parent, "<span class='warningplain'><b><u>Keybinding Conflict</u></b></span>\n\
-					<span class='warningplain'><b>There are new <a href='byond://?src=[REF(src)];open_keybindings=1'>keybindings</a> that default to keys you've already bound. The new ones will be unbound.</b></span>")
+	to_chat(parent, "<span class='warningplain'><b><u>按键绑定冲突</u></b></span>\n\
+					<span class='warningplain'><b>有新的 <a href='byond://?src=[REF(src)];open_keybindings=1'>按键绑定</a> 默认使用你已绑定的按键。这些新绑定将处于未绑定状态。</b></span>")
 	for(var/item in notadded)
 		var/datum/keybinding/conflicted = item
-		to_chat(parent, span_danger("[conflicted.category]: [conflicted.full_name] needs updating"))
+		to_chat(parent, span_danger("[conflicted.category]：[conflicted.full_name] 需要更新"))
 
 /datum/preferences/proc/load_path(ckey, filename="preferences.json")
 	if(!ckey || !load_and_save)

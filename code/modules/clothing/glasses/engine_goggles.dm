@@ -13,8 +13,8 @@
 #define TEMP_SHADE_RED 500
 
 /obj/item/clothing/glasses/meson/engine
-	name = "engineering scanner goggles"
-	desc = "Goggles used by engineers. The Meson Scanner mode lets you see basic structural and terrain layouts through walls and the T-ray Scanner mode lets you see underfloor objects such as cables and pipes."
+	name = "工程扫描眼镜"
+	desc = "工程师使用的眼镜。介子扫描模式可让你隔着墙壁看到基础结构与地形布局，T 射线扫描模式可让你看到地板下的物体，如电缆和管道。"
 	icon_state = "trayson-meson"
 	inhand_icon_state = "trayson-meson"
 	actions_types = list(/datum/action/item_action/toggle_mode)
@@ -47,7 +47,7 @@
 /obj/item/clothing/glasses/meson/engine/proc/toggle_mode(mob/user, voluntary)
 	mode_index = WRAP_UP(mode_index, modes.len)
 	mode = modes[mode_index]
-	to_chat(user, "<span class='[voluntary ? "notice":"warning"]'>[voluntary ? "You turn the goggles":"The goggles turn"] [mode ? "to [mode] mode":"off"][voluntary ? ".":"!"]</span>")
+	to_chat(user, "<span class='[voluntary ? "notice":"warning"]'>[voluntary ? "你把眼镜切换" : "眼镜自动切换"] [mode ? "到 [mode] 模式":"关闭"][voluntary ? "。":"！"]</span>")
 	if(connection_images.len)
 		connection_images.Cut()
 	switch(mode)
@@ -149,10 +149,10 @@
 	return ..()
 
 /obj/item/clothing/glasses/meson/engine/tray //atmos techs have lived far too long without tray goggles while those damned engineers get their dual-purpose gogles all to themselves
-	name = "optical t-ray scanner"
+	name = "光学 T 射线扫描仪"
 	icon_state = "trayson-t-ray"
 	inhand_icon_state = "trayson-t-ray"
-	desc = "Used by engineering staff to see underfloor objects such as cables and pipes."
+	desc = "工程人员用来观察地板下物体（如电缆和管道）的仪器。"
 	range = 2
 	modes = list(MODE_NONE, MODE_TRAY, MODE_PIPE_CONNECTABLE, MODE_ATMOS_THERMAL) // atmos techs now finally have 3 modes on their  goggles!
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT)
@@ -163,15 +163,15 @@
 		connection_images.Cut()
 
 /obj/item/clothing/glasses/meson/engine/shuttle
-	name = "shuttle region scanner"
+	name = "穿梭机区域扫描仪"
 	icon_state = "trayson-shuttle"
 	inhand_icon_state = "trayson-shuttle"
-	desc = "Used to see the boundaries of shuttle regions."
+	desc = "用于查看穿梭机区域的边界。"
 	modes = list(MODE_NONE, MODE_SHUTTLE)
 
 /obj/item/clothing/glasses/meson/engine/atmos_imaging
-	name = "atmospheric thermal imaging goggles"
-	desc = "Goggles used by Atmospheric Technicians to see the thermal energy of gasses in open areas."
+	name = "大气热成像眼镜"
+	desc = "大气技术员用来观察开阔区域气体热能的眼镜。"
 	icon_state = "trayson-atmospheric-thermal"
 	inhand_icon_state = "trayson-meson"
 	glass_colour_type = /datum/client_colour/glass_colour/gray
@@ -182,8 +182,8 @@
 	return ..()
 
 /obj/item/clothing/glasses/meson/engine/admin
-	name = "admin imaging goggles"
-	desc = "Used by Nanotrasen admins to detect blueprint areas, pipes, thermal, wiring, and pipes."
+	name = "管理员成像眼镜"
+	desc = "纳米传讯管理员用来探测蓝图区域、管道、热能、线路和管道的眼镜。"
 	range = 7
 	modes = list(MODE_NONE, MODE_TRAY, MODE_PIPE_CONNECTABLE, MODE_ATMOS_THERMAL, MODE_AREA_BLUEPRINTS)
 

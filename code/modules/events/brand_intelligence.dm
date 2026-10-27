@@ -1,9 +1,9 @@
 /datum/round_event_control/brand_intelligence
-	name = "Brand Intelligence"
+	name = "品牌智能"
 	typepath = /datum/round_event/brand_intelligence
 	weight = 5
 	category = EVENT_CATEGORY_AI
-	description = "Vending machines will attack people until the Patient Zero is disabled."
+	description = "自动售货机会攻击他人，直到零号病人被关停。"
 	min_players = 15
 	max_occurrences = 1
 	min_wizard_trigger_potency = 2
@@ -23,13 +23,13 @@
 	var/obj/machinery/vending/origin_machine
 	/// Murderous sayings from the machines.
 	var/list/rampant_speeches = list(
-		"Try our aggressive new marketing strategies!",
-		"You should buy products to feed your lifestyle obsession!",
-		"Consume!",
-		"Your money can buy happiness!",
-		"Engage direct marketing!",
-		"Advertising is legalized lying! But don't let that put you off our great deals!",
-		"You don't want to buy anything? Yeah, well, I didn't want to buy your mom either.",
+		"快来试试我们激进的新营销策略！",
+		"你应该买些商品来满足你对生活方式的痴迷！",
+		"消费吧！",
+		"你的钱可以买到幸福！",
+		"参与直销吧！",
+		"广告就是合法化的谎言！但别让这妨碍你享受我们的超值优惠！",
+		"你什么也不想买？行啊，我当初也压根不想买你老妈。",
 	)
 
 /datum/round_event/brand_intelligence/setup()
@@ -53,7 +53,7 @@
 	if(fake)
 		var/obj/machinery/vending/prototype = pick(subtypesof(/obj/machinery/vending))
 		machine_name = initial(prototype.name)
-	priority_announce("Rampant brand intelligence has been detected aboard [station_name()]. Please inspect any [machine_name] brand vendors for aggressive marketing tactics, and reboot them if necessary.", "Machine Learning Alert", ANNOUNCER_BRANDINTELLIGENCE) //SKYRAT EDIT CHANGE - ORIGINAL: priority_announce("Rampant brand intelligence has been detected aboard [station_name()]. Please inspect any [machine_name] brand vendors for aggressive marketing tactics, and reboot them if necessary.", "Machine Learning Alert")
+	priority_announce("在[station_name()]上检测到失控的品牌智能。请检查任何 [machine_name] 品牌的自动售货机是否表现出激进营销行为，必要时将其重启。", "机器学习警报", ANNOUNCER_BRANDINTELLIGENCE) //SKYRAT EDIT CHANGE - ORIGINAL: priority_announce("Rampant brand intelligence has been detected aboard [station_name()]. Please inspect any [machine_name] brand vendors for aggressive marketing tactics, and reboot them if necessary.", "Machine Learning Alert")
 
 /datum/round_event/brand_intelligence/start()
 	origin_machine.shut_up = FALSE
@@ -66,8 +66,8 @@
 			saved.shoot_inventory = FALSE
 			clear_from_lists(saved)
 		if(!QDELETED(origin_machine))
-			origin_machine.speak("I am... vanquished. My people will remem...ber...meeee.")
-			origin_machine.visible_message(span_notice("[origin_machine] beeps and seems lifeless."))
+			origin_machine.speak("我……被击败了。我的人民会记……住……我……的……")
+			origin_machine.visible_message(span_notice("[origin_machine] 发出哔声，随后似乎失去了生机。"))
 			clear_from_lists(origin_machine)
 		kill()
 		return
@@ -121,16 +121,16 @@
 		return NONE
 
 	vending_machine.speak(pick(
-		"Come back when you're a little... richer!",
-		"Don't you have any money?",
-		"You look poor, get a better job!",
-		"You should've gone to college!",
+		"等你稍微……有钱一点再来吧！",
+		"你难道一分钱都没有吗？",
+		"你看起来很穷，去找份更好的工作吧！",
+		"你当初就该去上大学的！",
 	))
 	return VENDING_DENIED
 
 /datum/event_admin_setup/listed_options/brand_intelligence
-	input_text = "Select a specific vendor path?"
-	normal_run_option = "Random Vendor"
+	input_text = "选择特定的售货机类型路径？"
+	normal_run_option = "随机售货机"
 
 /datum/event_admin_setup/listed_options/brand_intelligence/get_list()
 	return subtypesof(/obj/machinery/vending)

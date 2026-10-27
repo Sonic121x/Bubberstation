@@ -1,6 +1,6 @@
 /obj/machinery/computer/shuttle/goldeneye_cruiser
-	name = "goldeneye cruiser helm"
-	desc = "The terminal used to control the goldeneye cruiser."
+	name = "黄金眼巡洋舰驾驶台"
+	desc = "用于控制黄金眼巡洋舰的终端。"
 	shuttleId = "goldeneye_cruiser"
 	possible_destinations = "goldeneye_cruiser_custom;goldeneye_cruiser_dock;syndicate_away;syndicate_z5;syndicate_ne;syndicate_nw;syndicate_n;syndicate_se;syndicate_sw;syndicate_s;syndicate_cruiser_dock;whiteship_away;whiteship_home;whiteship_z4;whiteship_lavaland;ferry_away"
 	circuit = /obj/item/circuitboard/computer/syndicate_shuttle
@@ -19,13 +19,13 @@
 	return ..()
 
 /obj/machinery/computer/shuttle/goldeneye_cruiser/recall
-	name = "goldeneye shuttle recall terminal"
-	desc = "Use this if your friends left you behind."
+	name = "黄金眼穿梭机召回终端"
+	desc = "如果你的朋友把你落下了，就用这个。"
 	possible_destinations = "goldeneye_cruiser_dock"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/goldeneye_cruiser
-	name = "goldeneye cruiser navigation computer"
-	desc = "Used to designate a precise transit location for the goldeneye cruiser."
+	name = "黄金眼巡洋舰导航计算机"
+	desc = "用于为黄金眼巡洋舰指定精确的通行位置。"
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
 	shuttlePortId = "goldeneye_cruiser_dock"
@@ -38,7 +38,7 @@
 	y_offset = 5
 
 /datum/map_template/shuttle/goldeneye_cruiser
-	name = "goldeneye cruiser"
+	name = "黄金眼巡洋舰"
 	prefix = "_maps/shuttles/skyrat/"
 	port_id = "goldeneye"
 	suffix = "cruiser"

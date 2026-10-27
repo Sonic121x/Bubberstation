@@ -4,8 +4,8 @@
 #define TAIL_OVERLAY_LAYER 5.9
 
 /obj/item/clothing/under/akula_wetsuit
-	name = "Shoredress wetsuit"
-	desc = "The 'Wetworks'-pattern Shoredress worn by most Akula, complete with water circulation systems and high-visibility luminescent panels for signalling. Comes in many variations."
+	name = "滨海潜水服"
+	desc = "大多数阿库拉成员穿着的“湿作业”式滨海潜水装，配备水循环系统和高可视度的发光面板用于发信号。有多种款式可选。"
 	icon_state = "default"
 	base_icon_state = "default"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/akula.dmi'
@@ -88,19 +88,19 @@
 
 /obj/item/clothing/under/akula_wetsuit/job
 	/// Our large examine text
-	var/extended_desc = "The 'Wetworks'-pattern Shoredress worn by most Akula, complete with water circulation systems and high-visibility luminescent panels for signalling. Comes in many variations."
+	var/extended_desc = "大多数阿库拉成员穿着的“湿作业”式滨海潜水装，配备水循环系统和高可视度的发光面板用于发信号。有多种款式可选。"
 
 /obj/item/clothing/under/akula_wetsuit/job/examine(mob/user)
 	. = ..()
-	. += span_notice("This item could be examined further...")
+	. += span_notice("这件物品可以进一步仔细查看……")
 
 /obj/item/clothing/under/akula_wetsuit/job/examine_more(mob/user)
 	. = ..()
 	. += extended_desc
 
 /obj/item/clothing/under/akula_wetsuit/job/engineering
-	name = "engineer Shoredress wetsuit"
-	desc = "The Engineering pattern of the Akula Shoredress wetsuit, altered to be more heat and chemical resistant. Will not protect you from most hazards by itself, however."
+	name = "工程师滨海潜水服"
+	desc = "阿库拉滨海潜水服的工程款，经过改造后更耐热、更耐化学腐蚀。不过单靠它并不能保护你免受大多数危险伤害。"
 	icon_state = "engi"
 	base_icon_state = "engi"
 	armor_type = /datum/armor/clothing_under/wetsuit/engineering
@@ -110,8 +110,8 @@
 	acid = 95
 
 /obj/item/clothing/under/akula_wetsuit/job/cargo
-	name = "cargo Shoredress wetsuit"
-	desc = "The Cargo pattern of the Akula Shoredress wetsuit. The design philosophy of this wetsuit seems to have included large amounts of padding for comfort."
+	name = "货运滨海潜水服"
+	desc = "阿库拉滨海潜水服的货运款。这件潜水服的设计理念似乎还包括了大量填充物，以提升舒适度。"
 	icon_state = "cargo"
 	base_icon_state = "cargo"
 	armor_type = /datum/armor/clothing_under/wetsuit/cargo
@@ -120,8 +120,8 @@
 	fire = 40
 
 /obj/item/clothing/under/akula_wetsuit/job/science
-	name = "science Shoredress wetsuit"
-	desc = "The Science pattern of the Akula Shoredress wetsuit, focused largely around environmental protections. Meant to be used in tangent with actual protections; it will not protect you alone."
+	name = "科研滨海潜水服"
+	desc = "阿库拉滨海潜水服的科研款，主要侧重于环境防护。设计上要求与真正的防护装备配合使用；单靠它无法保护你。"
 	icon_state = "sci"
 	base_icon_state = "sci"
 	armor_type = /datum/armor/clothing_under/wetsuit/science
@@ -131,8 +131,8 @@
 	acid = 95
 
 /obj/item/clothing/under/akula_wetsuit/job/medical
-	name = "medical Shoredress wetsuit"
-	desc = "The Medical pattern of the Akula Shoredress wetsuit. It incorporates rudimentary sterilization technology, to keep the wearer inside clean during those long hours in the surgery room."
+	name = "医疗滨海潜水服"
+	desc = "阿库拉滨海潜水服的医疗款。它内置了基础的消毒技术，好让穿着者在手术室里度过漫长时光时保持内部洁净。"
 	icon_state = "medical"
 	base_icon_state = "medical"
 	armor_type = /datum/armor/clothing_under/wetsuit/medical
@@ -142,23 +142,23 @@
 	bio = 95
 
 /obj/item/clothing/under/akula_wetsuit/job/security
-	name = "security Shoredress wetsuit"
-	desc = "The Security pattern of the Akula Shoredress wetsuit. Provides a level of comfort while dealing with threats to your duty post, best worn under armor."
+	name = "安保滨海潜水服"
+	desc = "阿库拉滨海潜水服的安保款。在处理威胁你岗位的敌人时能提供一定程度的舒适感，最好穿在护甲里面。"
 	icon_state = "sec"
 	base_icon_state = "sec"
 	armor_type = /datum/armor/clothing_under/rank_security
 
 /obj/item/clothing/under/akula_wetsuit/job/command
-	name = "command Shoredress wetsuit"
-	desc = "The Command pattern of the Akula Shoredress wetsuit. Peak comfort, peak aesthetic, for the stylish Akula commander. Comes with a dedicated pad for adding medals without piercing the wetsuit."
+	name = "指挥滨海潜水服"
+	desc = "阿库拉滨海潜水服的指挥款。极致的舒适，极致的美感，专为有格调的阿库拉指挥官打造。附有一块专用挂垫，佩戴勋章时无需刺穿潜水服。"
 	icon_state = "command"
 	base_icon_state = "command"
 	armor_type = /datum/armor/clothing_under/rank_security
 
 
 /obj/item/clothing/head/helmet/space/akula_wetsuit
-	name = "\improper Shoredress helm"
-	desc = "The helmet on an Akula Shoredress wetsuit, often called a 'glass'. Full of water, comes in many colors, none of which you have access to. Often insultingly called a 'fishbowl'."
+	name = "\improper 滨海潜水盔"
+	desc = "阿库拉滨海潜水服的头盔，常被称作“玻璃罩”。里面灌满了水，有多种颜色，而你一种都无权使用。还常被人带着侮辱意味地叫作“鱼缸”。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/akula.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/akula.dmi'
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SNUG_FIT | STACKABLE_HELMET_EXEMPT | HEADINTERNALS
@@ -197,10 +197,10 @@
 /obj/item/clothing/head/helmet/space/akula_wetsuit/examine()
 	. = ..()
 	if(attached_hat)
-		. += span_notice("There's [attached_hat] placed in the helmet.")
-		. += span_bold("Right-click to remove it.")
+		. += span_notice("头盔里放着 [attached_hat]。")
+		. += span_bold("右键点击可将其取出。")
 	else
-		. += span_notice("There's nothing placed in the helmet.")
+		. += span_notice("头盔里没有放任何东西。")
 
 /obj/item/clothing/head/helmet/space/akula_wetsuit/attackby(obj/item/hitting_item, mob/living/user)
 	. = ..()
@@ -208,14 +208,14 @@
 		return
 	var/obj/item/clothing/hitting_hat = hitting_item
 	if(hitting_hat.clothing_flags & STACKABLE_HELMET_EXEMPT)
-		balloon_alert(user, "doesn't fit!")
+		balloon_alert(user, "戴不进去！")
 		return
 	if(attached_hat)
-		balloon_alert(user, "already something inside!")
+		balloon_alert(user, "里面已经有东西了！")
 		return
 
 	attached_hat = hitting_hat
-	balloon_alert(user, "[hitting_hat] put inside")
+	balloon_alert(user, "已放入 [hitting_hat]")
 	hitting_hat.forceMove(src)
 	icon_state = "empty"
 	update_appearance()
@@ -238,7 +238,7 @@
 		return
 
 	user.put_in_active_hand(attached_hat)
-	balloon_alert(user, "[attached_hat] removed")
+	balloon_alert(user, "已取出 [attached_hat]")
 	attached_hat = null
 	icon_state = "helmet"
 	update_appearance()

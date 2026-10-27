@@ -1,118 +1,118 @@
 ///Papers used in The Listening Station ruin.
 
 /obj/item/paper/fluff/ruins/listeningstation/reports
-	default_raw_text = "Nothing of interest to report."
+	default_raw_text = "无可报告之事。"
 
 // Original "background" tone.
 /obj/item/paper/fluff/ruins/listeningstation/reports/march
-	name = "march report"
-	default_raw_text = {"Accepted new assignment from liaison at MI13. Mission: Report on all Nanotrasen activities in this sector.
-	<br> Secondary Mission is to ensure survival of the person in the sleeper. This should not be hard, I have had personal experience with
-	<br> this model of sleeper, and I know it to be of good quality.
+	name = "三月报告"
+	default_raw_text = {"已接受军情十三处联络人派发的新任务。任务：报告本星区内所有纳米传讯活动。
+	<br> 次要任务是确保休眠舱中那人的存活。这应该不难，我对
+	<br> 这款休眠舱有亲身体验，知道它质量很好。
 	"}
 
 /obj/item/paper/fluff/ruins/listeningstation/reports/april
-	name = "april report"
-	default_raw_text = {"A good start to the operation: intercepted Nanotrasen military communications. A convoy is scheduled to transfer nuclear warheads to a new military base.
-	<br> This is as good a chance as any to get our hands on some heavy weaponry, I suggest we take it.
-	<br> As far as base work goes, I have begun a refurnishing of the base using the supplies I received during my shipment. It takes the mind off for whenever the station goes... "dark".
+	name = "四月报告"
+	default_raw_text = {"行动开局顺利：截获了纳米传讯的军事通讯。一支车队预定将核弹头运往一处新的军事基地。
+	<br> 这是我们弄到重型武器的大好机会，我建议动手。
+	<br> 至于基地建设，我已经用随船运来的物资开始翻新基地。每当空间站变得……“沉寂”时，这能让我的脑子歇一歇。
 	<br>
-	<br> I suppose I shall await further commands.
+	<br> 我想我会等待进一步的命令。
 	"}
 
 /obj/item/paper/fluff/ruins/listeningstation/reports/may
-	name = "may report"
-	default_raw_text = {"Nothing of real interest to report this month. I have intercepted faint transmissions from what appears to be some sort of pirate radio station. They do not appear to be relevant to my assignment.
-	<br> Using my connections, I was able to procure some signs and posters from Nanotrasen ships. I have a bundle of markers, so I spent today "disguising" the asteroid. Sloppy work, but I think it fits well.
-	<br> It's a nice base, this. I have certainly served in worse conditions.
-	<br> I have not heard anything about the mission on the new military base. I will press the matter later today.
+	name = "五月报告"
+	default_raw_text = {"这个月没什么真正值得报告的事。我截获了一些微弱的信号，似乎来自某种海盗电台。它们似乎与我的任务无关。
+	<br> 利用我的人脉，我弄到了一些从纳米传讯飞船上取来的标牌和海报。我有一捆记号笔，所以今天我都在给这颗小行星“伪装”。活干得马虎，但我觉得挺合适。
+	<br> 这是个不错的基地。我肯定在更糟的条件下服役过。
+	<br> 关于新军事基地的那次行动，我什么也没听说。今天晚些时候我会去催一催。
 	"}
 
 /obj/item/paper/fluff/ruins/listeningstation/reports/june
-	name = "june report"
-	default_raw_text = {"Nanotrasen communications have been noticeably less frequent recently.  The pirate radio station I found last month has been transmitting pro-Nanotrasen propaganda. I will continue to monitor it.
-	<br> While I pressed the matter on looting the nuclear warheads, they advised me that it was "above my paygrade". However, I slipped a bug I had lying around the satellite into the pockets of one of my
-	<br> superiors into the coat pocket. They were saying it was useless without some sort of authentication device.
+	name = "六月报告"
+	default_raw_text = {"纳米传讯的通讯近期明显减少了。我上个月发现的海盗电台一直在播送亲纳米传讯的宣传。我会继续监听。
+	<br> 我追问了夺取核弹头的事，他们告诉我这“超出了我的薪资级别”。不过，我把我手头一个闲置的窃听器塞进了卫星上我某位
+	<br> 上级的大衣口袋。他们当时说，没有某种认证装置，那东西就没用。
 	<br>
-	<br> It's not like anyone but me reads these, why else should I talk about my base upkeep? Today: the "lobby".
+	<br> 反正除了我没人会看这些，不然我为什么要聊我的基地维护？今天：聊聊“门厅”。
 "}
 
 // "Anderson" starts writing here
 /obj/item/paper/fluff/ruins/listeningstation/reports/july
-	name = "july report"
-	default_raw_text = {"Hey, old guy got a transfer, and I was next in line. I'll show them how we do it over at the Gorlex Marauders! Let's monitor some stuff. This will be fun.
-	<br> It seems "old guy" did some upkeep around the base, and I will admit: it's nice. The lobby is shoddy for some reason. Not sure why that is.
-	<br> I read some of the older reports, and it seems like interesting stuff. No idea where June is. Ah well, maybe he got out in May?
-	<br> Odd sleeper, the frost covered it up. They were telling me about this on the way here, that it's meant to be a replacement to ensure "seamless" operation of this base. Okay?
-	<br> I have enough supplies to last me until November, and then I get picked up. Let's get this money!
+	name = "七月报告"
+	default_raw_text = {"嘿，老家伙调走了，轮到我接班。我会让他们看看我们戈尔莱克斯掠夺者是怎么干活的！来监听点东西吧。这会很有趣。
+	<br> 看来“老家伙”把基地收拾了一番，我得承认：挺不错。门厅不知为何做得马虎。不清楚是怎么回事。
+	<br> 我读了一些旧报告，内容挺有意思。不知道六月去哪儿了。唉，说不定他五月就出去了？
+	<br> 休眠舱真怪，霜把它盖住了。他们来的路上跟我讲过，说这是个替代品，用来确保基地“无缝”运转。行吧？
+	<br> 我的补给够撑到十一月，然后就会有人来接我。让我们赚这笔钱吧！
 	"}
 
 // Shift in tone here, i may have gone too edgelord
 /obj/item/paper/fluff/ruins/listeningstation/reports/august
-	name = "august report"
-	default_raw_text = {"holy shit i am so bored. does this even matter? i'm stranded here. they said they'd come for me after a few months and i have plenty of stores. i tried listening to station stuff... but-
-	<br> ugh. i caught some chatter about some sort of disk, but i think it was cross-ference with ourselves? some gas station jingle came on, some feedback from... not even sure what that is
-	<br> the "old guy" did a good job around this base. it's not finished in the lobby, but everything else is nice.
-	<br> they expressly told me to <i>never</i> leave this post, but i think "old guy" didn't listen for putting up those signs. i did a lap around with a spacewalk, that was fun.
-	<br> i'll stay tuned.
+	name = "八月报告"
+	default_raw_text = {"我操，我快无聊死了。这真的有所谓吗？我被困在这儿了。他们说过几个月就来接我，我的储备很充足。我试过监听空间站的东西……但是——
+	<br> 唉。我听到了一些关于某种磁盘的闲谈，但我觉得那是我们自己串线了？某个加油站的广告歌响了起来，还有些反馈音……我甚至不确定那是什么
+	<br> “老家伙”把这基地打理得不错。门厅还没弄完，但其他部分都很好。
+	<br> 他们明确告诉我<i>绝不</i>能离开这个岗位，但我觉得“老家伙”没听，所以才挂上了那些标牌。我穿着太空服出去绕了一圈，挺有意思。
+	<br> 我会继续守着频道。
 	"}
 
 /obj/item/paper/fluff/ruins/listeningstation/reports/september
-	name = "september report"
-	default_raw_text = {"i'm... not doing good. i'm doing so bad. the sleeper is still there. my friend died in a sleeper malfunction. it overheated.
-	<br> i don't want to unplug it, i don't want to wake them up. i don't go in the bedroom anymore, i have a small cot in the lobby area. i'm lonely.
-	<br> blowing myself up is out of the question. it'll kill them too. i've killed many people in my life, but i think ending another that way
-	<br> will probably send me to hell. if hell is anything like this, i'd rather try and salvage as much as i can before i pass. death awaits us all.
+	name = "九月报告"
+	default_raw_text = {"我……状态不太好。我糟透了。休眠舱还在那儿。我的朋友死于休眠舱故障。它过热了。
+	<br> 我不想拔掉它，我不想把他们唤醒。我再也不进卧室了，我在门厅区域搭了张小床。我很孤独。
+	<br> 把自己炸死是不可能的。那也会害死他们。我这辈子杀过很多人，但我觉得再用那种方式结果一条命
+	<br> 大概会让我下地狱。如果地狱就是这副样子，我宁愿在离开之前尽力抢救一些东西。死亡等待着我们所有人。
 	<br>
-	<br> i'm not even going to send this report off i just need to write. i've written a lot, but i burn it all. one a month stays.
-	<br> walks are the only thing that help. i breathe and breathe in those until the oxygen runs out. it makes me feel alive, when every part of me is dead.
+	<br> 这份报告我根本不打算寄出去，我只是需要写点什么。我写过很多，但全都烧了。每月留一份。
+	<br> 散步是唯一能帮到我的事。我在散步中一遍又一遍地呼吸，直到氧气耗尽。当我的每一部分都已死去时，这让我觉得自己还活着。
 	"}
 
 
 /obj/item/paper/fluff/ruins/listeningstation/reports/october
-	name = "october report"
-	default_raw_text = {"i am so fucking stupid. i ran out of tank oxygen, so i tried to jerry rig one of the auxiliary pressure tanks abroad the station to feed an eva tank.
-	<br> as i have just learned, that was very stupid. the oxygen was below zero degrees, and it sprayed right into my open eyes. i can make out blobs of shapes and colors, but not much more.
-	<br> i still know how to touch-type on this machine, it's second-nature to me. with the amount of painkillers i've used, my liver is also failing. i've had mood swings from the painkillers
-	<br> so i've destroyed a lot of this base with my rage. it's unsustainable. there is not enough money in the world to keep me here any longer.
-	<br> i've kept all of these reports on my person, the amount of times i've re-read them trying to think of "better" times gave it certain crinkles...
-	<br> i know june from september from august just based on the wrinkles alone. i can't read them, but i know them more than i know myself these days.
+	name = "十月报告"
+	default_raw_text = {"我真是蠢透了。我的氧气罐用完了，于是我试图把空间站上的一只备用压力罐胡乱改装来给一件 EVA 氧气罐供气。
+	<br> 我刚刚才知道，这非常愚蠢。氧气温度低于零度，直接喷进了我睁开的双眼里。我只能分辨出形状和颜色的模糊团块，别的就分辨不清了。
+	<br> 我仍然会在这台机器上盲打，这对我已是本能。加上我用了那么多止痛药，我的肝也在衰竭。止痛药让我情绪起伏不定，
+	<br> 所以我的怒火已经毁掉了这座基地的许多部分。这样下去不行。这世上再多的钱也不足以让我在这儿多待一刻。
+	<br> 我把这些报告全都带在身上，我反复重读它们、试图回想“更好的”时光，次数多到纸都起了皱……
+	<br> 光凭褶皱我就能分辨出六月、九月和八月。我读不了它们，但这些日子我熟悉它们甚于熟悉自己。
 	<br>
-	<br> my only concern is the person in the sleeper. i'm not going to bother them with anything. if i woke them up, maybe i wouldn't be blind and i would be happy. i couldn't see that.
-	<br> i fear they'll go insane reading these, so i'll make something up for november. i'll lie, effortfully lie. scatter the others, and this one. if you happen upon this note, i'm sorry. i ruined it for you.
+	<br> 我唯一牵挂的是休眠舱里的那个人。我不会拿任何事去烦他们。如果我唤醒了他们，也许我就不会失明，也会开心起来。我看不到那样的可能。
+	<br> 我怕他们读了这些会发疯，所以十一月的报告我会编点东西。我会撒谎，费尽心思地撒谎。把其他的都散开，连同这一份。如果你偶然看到这张便条，对不起。我把它毁给你了。
 	<br>
-	<br> as soon as i find where i dropped my keycard, i'm going to use one last emergency oxygen tank, and float. if i am gunned for being a deserter, so be it. if i am shot by terragov or nanotrasen, so be it.
-	<br> even if the pickup should come in a matter of weeks, i literally can not live with myself. a future in where i live in is completely unfeasible.
-	<br> i will die among the stars.
+	<br> 一等我找到把钥匙卡掉在哪儿，我就要用掉最后一罐应急氧气，然后飘走。如果我因为当逃兵而被枪毙，那就枪毙吧。如果被地球政府或纳米传讯击毙，那就击毙吧。
+	<br> 就算接应船几周内就到，我也真的没法再面对自己。有我在其中的未来是完全不可行的。
+	<br> 我将死于群星之间。
 	"}
 
 // Shift back in tone, the "lie".
 /obj/item/paper/fluff/ruins/listeningstation/reports/november
-	name = "november report"
-	default_raw_text = {"Hey, hey, what's up loser! It's me, your predecessor! I had a radical stint here, and you will too! There's not much supplies left, but I'm certain you'll manage by the time the re-supply ship comes back!
-	<br> I've made so much fucking dough just sitting on this ship and writing up reports, the content doesn't even matter! That's why I chose to use this one to shit on you! Look at your goofy face!
-	<br> Got a bit of frostbite on your widdle-diddle face? Ha, ha ha, ha ha ha. Anyways, you've probably only got a month left, while I toughed it all out! I even left this place in a shitty condition
-	<br> because I hated you so much! Fuck you! I'm off spending all of my dough, while you have to pick up the slack of my job! Anyways, don't get too bored now!
+	name = "十一月报告"
+	default_raw_text = {"嘿，嘿，你好啊废物！是我，你的前任！我在这儿干了一段超带劲的日子，你也会的！补给剩的不多了，但我相信等补给船回来时你肯定能应付！
+	<br> 我他妈就坐在这艘船上写写报告就赚了一大堆钱，内容根本不重要！所以我才选了这一份来喷你！看看你那傻乎乎的脸！
+	<br> 你那小脸蛋上是不是有点冻伤了？哈，哈哈，哈哈哈。总之，你大概只剩一个月了，而我可是硬扛完了全程！我甚至把这地方弄得一团糟
+	<br> 因为我太恨你了！去你的！我要去花光我的钱了，而你得替我收拾烂摊子！总之，现在别太无聊哦！
 	<br>
-	<br> - Your "Friend" - Anderson
+	<br> ——你的“朋友”——安德森
 	<br>
-	<br> P.S. GORLEX ROOLZ - "SAIBASAN" DROOLZ.
+	<br> 又及：戈尔莱克斯最牛——“SAIBASAN”最逊。
 	"}
 
 //Miscellaneous Papers
 
 /obj/item/paper/fluff/ruins/listeningstation/receipt
-	name = "receipt"
-	default_raw_text = "1 x Stechkin pistol - 600 cr<br>1 x silencer - 200 cr<br>shipping charge - 4360 cr<br>total - 5160 cr"
+	name = "收据"
+	default_raw_text = "1 x 斯捷奇金手枪 - 600 cr<br>1 x 消音器 - 200 cr<br>运费 - 4360 cr<br>总计 - 5160 cr"
 
 /obj/item/paper/fluff/ruins/listeningstation/briefing
-	name = "mission briefing"
-	default_raw_text = {"<b>Mission Details</b>:
+	name = "任务简报"
+	default_raw_text = {"<b>任务详情</b>：
 	<br>
-	<br>You have been assigned to a newly constructed listening post constructed within an asteroid in Nanotrasen space to monitor their plasma mining operations.
-	<br>Accurate intel is crucial to the success of our operatives onboard, do not fail us.
+	<br>你被派往纳米传讯太空中的一颗小行星内、一座新建成的监听站，监视他们的等离子开采作业。
+	<br>准确的情报对我们舰上特工的成功至关重要，不要让我们失望。
 	<br>
-	<br>You may view intelligence reports from your predecessors in the filing cabinet in your office.
+	<br>你可以在办公室的文件柜中查看前任们留下的情报报告。
 	"}
 
 

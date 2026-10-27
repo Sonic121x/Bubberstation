@@ -1,19 +1,19 @@
 /obj/structure/grandfatherclock
-	name = "grandfather clock"
+	name = "落地钟"
 	icon = 'modular_skyrat/modules/officestuff/icons/cowboyobh.dmi'
 	icon_state = "grandfather_clock"
-	desc = "Tick, tick, tick, tick. It stands tall and daunting, loudly and ominously ticking, yet the hands are stuck close to midnight, the closer you get, the louder a faint whisper becomes a scream, a plea, something, but whatever it is, it says 'I am the Master, and you will obey me.'"
+	desc = "滴答，滴答，滴答，滴答。它高耸而骇人，发出响亮不祥的滴答声，指针却停在午夜将至的位置。越是靠近，微弱的低语就越响，逐渐化为尖叫、恳求，或是别的什么。无论那是什么，它都在说：‘我是法师，你将服从于我。’"
 	var/datum/looping_sound/grandfatherclock/soundloop
 
 // stolen from the wall clock
 /obj/structure/grandfatherclock/examine(mob/user)
 	. = ..()
-	. += span_info("The current CST (local) time is: [round_timestamp()].")
-	. += span_info("The current TCT (galactic) time is: [time2text(world.realtime, "hh:mm:ss")].")
+	. += span_info("当前CST（本地）时间：[round_timestamp()]。")
+	. += span_info("当前TCT（银河）时间：[time2text(world.realtime, "hh:mm:ss")]。")
 	if(soundloop)
-		. += span_notice("The hands of the clock are freely ticking away. They could be <b>screwed</b> down.")
+		. += span_notice("钟的指针自由走动着。可以用<b>螺丝刀</b>将其固定。")
 	else
-		. += span_notice("The hands of the clock have been <b>screwed</b> tight.")
+		. += span_notice("钟的指针已用<b>螺丝</b>固定。")
 
 
 // . += span_notice("The <b>screws</b> on the clock hands are loose, freely ticking away.")
@@ -34,39 +34,39 @@
 
 /obj/structure/grandfatherclock/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!soundloop)
-		balloon_alert(user, "unscrewing the hands...")
+		balloon_alert(user, "正在松开指针……")
 		if(do_after(user, 2 SECONDS, src))
 			soundloop = new(src, TRUE)
-			balloon_alert(user, "hands unscrewed!")
+			balloon_alert(user, "指针已松开！")
 			return ITEM_INTERACT_SUCCESS
 		return ..()
 
-	balloon_alert(user, "screwing the hands...")
+	balloon_alert(user, "正在固定指针……")
 	if(do_after(user, 2 SECONDS, src))
 		QDEL_NULL(soundloop)
-		balloon_alert(user, "hands screwed tight!")
+		balloon_alert(user, "指针已固定！")
 		return ITEM_INTERACT_SUCCESS
 	return ..()
 /obj/structure/sign/painting/meat
-	name = "Figure With Meat"
-	desc = "A painting of a distorted figure, sitting between a cow cut in half."
+	name = "肉与人像"
+	desc = "一幅描绘扭曲人影的画作，画中人坐在剖成两半的牛胴体之间。"
 	icon = 'modular_skyrat/modules/officestuff/icons/cowboyobh.dmi'
 	icon_state = "meat"
-	sign_change_name = "Painting - Meat"
+	sign_change_name = "画作 - 肉"
 	is_editable = TRUE
 
 /obj/structure/sign/painting/parting
-	name = "Parting Waves"
-	desc = "A painting of a parting sea, the red sun washes over the blue ocean."
+	name = "分海"
+	desc = "一幅描绘大海分开的画作，红日映照着蔚蓝的海洋。"
 	icon = 'modular_skyrat/modules/officestuff/icons/cowboyobh.dmi'
 	icon_state = "jmwt4"
 	is_editable = TRUE
-	sign_change_name = "Painting - Waves"
+	sign_change_name = "画作 - 海浪"
 
 
 /obj/structure/sign/paint
-	name = "painting"
-	desc = "you shouldn't be seeing this."
+	name = "画作"
+	desc = "你不应该看到这个。"
 	icon = 'modular_skyrat/modules/officestuff/icons/cowboyobh.dmi'
 	icon_state = "gravestone"
 

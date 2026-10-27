@@ -3,8 +3,8 @@
  */
 
 /obj/item/tank/internals/nitrogen
-	name = "nitrogen tank"
-	desc = "A small tank of nitrogen, for crew who don't breathe the standard air mix."
+	name = "氮气罐"
+	desc = "一小罐氮气，供不呼吸标准空气混合气的船员使用。"
 	icon = 'modular_skyrat/master_files/icons/obj/tank.dmi'
 	icon_state = "nitrogen"
 	tank_holder_icon_state = "holder_nitrogen"
@@ -37,8 +37,8 @@
 	air_contents.moles[/datum/gas/nitrogen] = (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 
 /obj/item/tank/internals/nitrogen/belt/emergency
-	name = "emergency nitrogen tank"
-	desc = "Used for emergencies. Contains very little nitrogen, so try to conserve it until you actually need it."
+	name = "应急氮气罐"
+	desc = "用于紧急情况。里面只有极少量氮气，请尽量节省，留到真正需要时再用。"
 	icon_state = "nitrogen_emergency"
 	tank_holder_icon_state = "holder_nitrogen_emergency"
 	worn_icon_state = "nitrogen_extended"

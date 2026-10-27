@@ -5,8 +5,8 @@
 #define CRACK_LENGTH_DEFAULT 8
 
 /obj/effect/weakpoint
-	name = "weakpoint crack"
-	desc = "A suspicious crack runs along the ground."
+	name = "薄弱处裂缝"
+	desc = "一道可疑的裂缝沿着地面延伸。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "weakpoint"
 	base_icon_state = "weakpoint"
@@ -42,7 +42,7 @@
 /obj/effect/weakpoint/ex_act(severity, target)
 	. = ..()
 	if(severity < required_strength)
-		balloon_alert_to_hearers("*crack*")
+		balloon_alert_to_hearers("*咔嚓*")
 		playsound(source = src, soundin = SFX_HULL_CREAKING, vol = 50, vary = TRUE, pressure_affected = FALSE, ignore_walls = TRUE)
 		return //return ominous sounds when we're under the threshold.
 
@@ -65,10 +65,10 @@
 	qdel(src)
 
 /obj/effect/weakpoint/welder_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice("You begin to strengthen [src]..."))
+	to_chat(user, span_notice("你开始加固[src]……"))
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 1, volume=50))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("\The [src] is fully sealed, eliminating the risk of the weakpoint growing."))
+	to_chat(user, span_notice("[src]已完全封住，消除了裂缝扩大的风险。"))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -77,7 +77,7 @@
 		var/obj/item/stack/medical/wrap/sticky_tape/duct_tape = tool
 		if(!duct_tape.use(1))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice("\The [src] is sealed with a little elbow grease and a mound of [duct_tape]."))
+		to_chat(user, span_notice("你费了点力气，用一大堆[duct_tape]封住了[src]。"))
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
 	return ..()
@@ -85,14 +85,14 @@
 /obj/effect/weakpoint/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(held_item?.tool_behaviour == TOOL_WELDER)
-		context[SCREENTIP_CONTEXT_LMB] = "Repair weakpoint"
+		context[SCREENTIP_CONTEXT_LMB] = "修补薄弱处"
 		return CONTEXTUAL_SCREENTIP_SET
 	return .
 
 /obj/effect/weakpoint/examine(mob/user)
 	. = ..()
-	. += span_notice("\The [src] could be repaired with a welder.")
-	. += span_warning("A strong enough explosion will cause [src] to expand.")
+	. += span_notice("可以用焊接器修补[src]。")
+	. += span_warning("足够强烈的爆炸会使[src]扩大。")
 
 /**
  * Generates a list of turfs from the start location meandering along a randomized set of turns.
@@ -125,7 +125,7 @@
 		for(var/subcrack in 1 to crack_split_count)
 			cracked_turfs += get_crack_chain(pick(cracked_turfs), max(round(length/2 ), 1), FALSE) //Stop recursion here
 
-	message_admins("Station weakpoint triggered, affecting [length(cracked_turfs)] turfs in [loc_name(start_location)].")
+	message_admins("空间站薄弱处已被触发，影响了[loc_name(start_location)]的[length(cracked_turfs)]个地块。")
 	log_game("Station weakpoint triggered, affecting [length(cracked_turfs)] turfs in [loc_name(start_location)].")
 	return cracked_turfs
 
@@ -177,15 +177,15 @@
 		active_count++
 
 	notify_ghosts(
-		"A new crack has been spawned in [get_area(src)].",
+		"[get_area(src)]出现了一道新裂缝。",
 		source = pick(new_cracks),
-		header = "Weakpoint created",
+		header = "薄弱处已形成",
 		ghost_sound = 'sound/effects/hit_kick.ogg',
 	)
 
 /obj/effect/weakpoint/big
-	name = "dangerous weakpoint"
-	desc = "A suspicious crack runs along the ground. This one makes you feel particuarly uneasy."
+	name = "危险的薄弱处"
+	desc = "一道可疑的裂缝沿着地面延伸。这道裂缝让你格外不安。"
 	icon_state = "weakpoint"
 	crack_length = 15
 	crack_split_count = 6

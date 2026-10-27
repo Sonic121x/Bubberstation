@@ -1,7 +1,7 @@
 ///RPED. Allows installing & exchaging parts on machines
 /obj/item/storage/part_replacer
-	name = "rapid part exchange device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
+	name = "快速部件更换装置"
+	desc = "用于存放、分类并安装标准机器部件的特殊机械模块。"
 	icon_state = "RPED"
 	inhand_icon_state = "RPED"
 	worn_icon_state = "RPED"
@@ -53,8 +53,8 @@
 
 ///Bluespace RPED. Allows exchanging parts from a distance & through cameras
 /obj/item/storage/part_replacer/bluespace
-	name = "bluespace rapid part exchange device"
-	desc = "A version of the RPED that allows for replacement of parts and scanning from a distance, along with higher capacity for parts."
+	name = "蓝空间快速部件更换装置"
+	desc = "RPED 的一个版本，可从远处更换部件并进行扫描，且部件容量更大。"
 	icon_state = "BS_RPED"
 	inhand_icon_state = "BS_RPED"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -93,9 +93,9 @@
 	if(istype(inserted_component, /obj/item/stock_parts/power_store))
 		var/obj/item/stock_parts/power_store/inserted_cell = inserted_component
 		if(inserted_cell.corrupted)
-			message_admins("[ADMIN_LOOKUPFLW(usr)] has inserted corrupted [inserted_cell] into [src].")
-			usr.log_message("has inserted corrupted [inserted_cell] into [src].", LOG_GAME)
-			usr.log_message("inserted corrupted [inserted_cell] into [src]", LOG_ATTACK)
+			message_admins("[ADMIN_LOOKUPFLW(usr)] 将受污染的 [inserted_cell] 插入了 [src]。")
+			usr.log_message("将受污染的 [inserted_cell] 插入了 [src]。", LOG_GAME)
+			usr.log_message("将受污染的 [inserted_cell] 插入了 [src]", LOG_ATTACK)
 		return
 
 	var/datum/reagents/target_holder = inserted_component.reagents
@@ -103,7 +103,7 @@
 		if(target_holder.total_volume)
 			target_holder.force_stop_reacting()
 			target_holder.clear_reagents()
-			to_chat(usr, span_notice("[src] churns as [inserted_component] has its reagents emptied into bluespace."))
+			to_chat(usr, span_notice("[src] 发出搅动声，[inserted_component] 内的试剂已被排入蓝空间。"))
 		RegisterSignal(target_holder, COMSIG_REAGENTS_PRE_ADD_REAGENT, PROC_REF(on_insered_component_reagent_pre_add))
 
 /// Hooks [COMSIG_REAGENTS_PRE_ADD_REAGENT] to block adding any form of reagent to component beakers inside the RPED
@@ -186,8 +186,8 @@
 
 ///Cyborg variant
 /obj/item/storage/part_replacer/cyborg
-	name = "rapid part exchange device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts. This one has an extra large compartment for more parts."
+	name = "快速部件更换装置"
+	desc = "用于存放、分类并安装标准机器部件的特殊机械模块。这一台拥有超大隔间，可容纳更多部件。"
 	icon_state = "borgrped"
 	inhand_icon_state = "RPED"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
@@ -195,6 +195,6 @@
 	storage_type = /datum/storage/rped/bluespace
 
 /obj/item/storage/part_replacer/cyborg/small
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts. This one has as much space, as your regular RPED"
+	desc = "用于存放、分类并安装标准机器部件的特殊机械模块。这一台的空间与普通 RPED 相同"
 	icon_state = "RPED"
 	storage_type = /datum/storage/rped

@@ -1,5 +1,5 @@
 /datum/armament_entry/assault_operatives/utility
-	category = "Utility Items"
+	category = "实用物品"
 	category_item_limit = 8
 
 /datum/armament_entry/assault_operatives/utility/suppressor
@@ -16,14 +16,14 @@
 
 /datum/armament_entry/assault_operatives/utility/doorjack
 	item_type = /obj/item/card/emag/doorjack
-	name = "Doorjack"
-	description = "Hacks open doors permanently."
+	name = "破门卡"
+	description = "永久性地骇开门锁。"
 	cost = 3
 
 /datum/armament_entry/assault_operatives/utility/emag
 	item_type = /obj/item/card/emag
-	name = "Cryptographic Sequencer"
-	description = "Subverts electronics."
+	name = "密码序列器"
+	description = "颠覆电子设备。"
 	cost = 3
 
 /datum/armament_entry/assault_operatives/utility/pouch
@@ -31,27 +31,27 @@
 	cost = 1
 
 /datum/armament_entry/assault_operatives/utility/noslip
-	name = "Chameleon No-Slips"
+	name = "变色龙防滑鞋"
 	item_type = /obj/item/clothing/shoes/chameleon/noslip
-	description = "No-slip chameleon shoes, for when you plan on running through hell and back."
+	description = "防滑的变色龙鞋，适合你打算来回闯过地狱的时候。"
 	cost = 2
 
 /datum/armament_entry/assault_operatives/utility/cham_kit
-	name = "Chameleon Kit"
+	name = "变色龙套件"
 	item_type = /obj/item/storage/box/syndie_kit/chameleon
-	description = "A full set of clothing that is capable of taking the appearance of any other type of clothing, perfect for hiding in plain sight."
+	description = "一整套衣物，能呈现出任何其他类型衣物的外观，非常适合藏在明处。"
 	cost = 2
 
 /datum/armament_entry/assault_operatives/utility/syndiejaws
-	name = "Syndicate Jaws of Life"
+	name = "辛迪加死亡之钳"
 	item_type = /obj/item/crowbar/power/syndicate
-	description = "Based on a Nanotrasen model, this powerful tool can be used as both a crowbar and a pair of wirecutters. \
-	In its crowbar configuration, it can be used to force open airlocks. Very useful for entering the station or its departments."
+	description = "这款强力工具以纳米传讯的型号为基础，可用作撬棍和剪线钳。 \
+	在撬棍形态下，它可以强行撬开气闸。非常适合进入空间站或其各部门。"
 	cost = 3
 
 /datum/armament_entry/assault_operatives/utility/jammer
-	name = "Radio Jammer"
-	description = "When activated, this cell powered device will block all outgoing radio communication."
+	name = "无线电干扰器"
+	description = "激活后，这台电池供电的设备会阻断所有对外无线电通讯。"
 	item_type = /obj/item/jammer
 	cost = 4
 
@@ -64,7 +64,7 @@
 	cost = 1
 
 /datum/armament_entry/assault_operatives/utility/emp_flashlight
-	name = "EMP Flashlight"
-	description = "Flash this at someone to hit them with an electromagnetic pulse."
+	name = "EMP 手电筒"
+	description = "对着某人闪一下，就能用电磁脉冲击中对方。"
 	item_type = /obj/item/flashlight/emp
 	cost = 2

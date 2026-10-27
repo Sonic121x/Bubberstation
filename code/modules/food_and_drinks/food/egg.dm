@@ -2,8 +2,8 @@
 ////////////////////////////////////////////EGGS////////////////////////////////////////////
 
 /obj/item/food/chocolateegg
-	name = "chocolate egg"
-	desc = "Such, sweet, fattening food."
+	name = "巧克力蛋"
+	desc = "如此甜美、如此催肥的食物。"
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "chocolateegg"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/coco = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
@@ -17,8 +17,8 @@
 GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 
 /obj/item/food/egg
-	name = "egg"
-	desc = "An egg!"
+	name = "蛋"
+	desc = "一个蛋！"
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "egg"
 	inhand_icon_state = "egg"
@@ -39,8 +39,8 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	AddElement(/datum/element/microwavable, /obj/item/food/boiledegg)
 
 /obj/item/food/egg/organic
-	name = "organic egg"
-	desc = "A 100% natural egg from the best hens."
+	name = "有机蛋"
+	desc = "来自最优秀母鸡的 100% 天然蛋。"
 	starting_reagent_purity = 1
 
 /obj/item/food/egg/rotten
@@ -55,7 +55,7 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	AddElement(/datum/element/microwavable, /obj/item/food/boiledegg/rotten)
 
 /obj/item/food/egg/gland
-	desc = "An egg! It looks weird..."
+	desc = "一个蛋！看起来怪怪的……"
 
 /obj/item/food/egg/gland/Initialize(mapload)
 	. = ..()
@@ -82,9 +82,9 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 		return
 	var/spawned_chickens = prob(97) ? 1 : min(4, chickens_remaining) // We don't want to go over the limit
 	if (spawned_chickens > 1) // Chicken jackpot!
-		visible_message(span_notice("[spawned_chickens] chicks come out of the egg! Jackpot!"))
+		visible_message(span_notice("从蛋里钻出了 [spawned_chickens] 只小鸡！中大奖了！"))
 	else
-		visible_message(span_notice("A chick comes out of the cracked egg!"))
+		visible_message(span_notice("一只小鸡从裂开的蛋里钻了出来！"))
 	for(var/i in 1 to spawned_chickens)
 		new /mob/living/basic/chick(spawn_turf)
 		GLOB.chicks_from_eggs++
@@ -95,10 +95,10 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 		var/pigment = crayon.crayon_color
 
 		if(!(pigment in list("blue", "green", "mime", "orange", "purple", "rainbow", "red", "yellow")))
-			to_chat(usr, span_notice("[src] refuses to take on this colour!"))
+			to_chat(usr, span_notice("[src] 拒绝染上这种颜色！"))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(usr, span_notice("You colour [src] with [tool]."))
+		to_chat(usr, span_notice("你用[tool]给[src]上色。"))
 		icon_state = "egg-[pigment]"
 		return ITEM_INTERACT_SUCCESS
 
@@ -106,8 +106,8 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 		var/clowntype = pick("grock", "grimaldi", "rainbow", "chaos", "joker", "sexy", "standard", "bobble",
 			"krusty", "bozo", "pennywise", "ronald", "jacobs", "kelly", "popov", "cluwne")
 		icon_state = "egg-clown-[clowntype]"
-		desc = "An egg that has been decorated with the grotesque, robustable likeness of a clown's face. "
-		to_chat(usr, span_notice("You stamp [src] with [tool], creating an artistic and not remotely horrifying likeness of clown makeup."))
+		desc = "一个饰有怪诞小丑面孔的蛋，那面孔还挺经打。 "
+		to_chat(usr, span_notice("你用[tool]在[src]上盖了章，印出一幅颇具艺术感、一点也不吓人的小丑妆容。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(is_reagent_container(tool))
@@ -115,11 +115,11 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 		if (!dunk_test_container.is_drainable() || !dunk_test_container.reagents.has_reagent(/datum/reagent/water))
 			return NONE
 
-		to_chat(user, span_notice("You check if [src] is rotten."))
+		to_chat(user, span_notice("你检查[src]是否已经腐败。"))
 		if(istype(src, /obj/item/food/egg/rotten))
-			to_chat(user, span_warning("[src] floats in the [dunk_test_container]!"))
+			to_chat(user, span_warning("[src] 在[dunk_test_container]里浮了起来！"))
 		else
-			to_chat(user, span_notice("[src] sinks into the [dunk_test_container]!"))
+			to_chat(user, span_notice("[src] 沉入了[dunk_test_container]里！"))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -130,7 +130,7 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 
 	var/obj/machinery/griddle/hit_griddle = interacting_with
 	if(length(hit_griddle.griddled_objects) >= hit_griddle.max_items)
-		interacting_with.balloon_alert(user, "no room!")
+		interacting_with.balloon_alert(user, "没空间了！")
 		return ITEM_INTERACT_BLOCKING
 	var/atom/broken_egg = new /obj/item/food/rawegg(interacting_with.loc)
 	if(LAZYACCESS(modifiers, ICON_X))
@@ -141,7 +141,7 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	reagents.trans_to(broken_egg, reagents.total_volume, copy_only = TRUE)
 
 	hit_griddle.AddToGrill(broken_egg, user)
-	interacting_with.balloon_alert(user, "cracks [src] open")
+	interacting_with.balloon_alert(user, "敲开[src]")
 
 	qdel(src)
 	return ITEM_INTERACT_BLOCKING
@@ -183,8 +183,8 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	icon_state = "penguin_egg"
 
 /obj/item/food/egg/fertile
-	name = "fertile-looking egg"
-	desc = "An egg! It looks fertilized.\nQuite how you can tell this just by looking at it is a mystery."
+	name = "看似受精的蛋"
+	desc = "一个蛋！看起来已受精。\n光看外表就能分辨，真是个谜。"
 	chick_throw_prob = 100
 
 /obj/item/food/egg/fertile/Initialize(mapload, loc)
@@ -201,8 +201,8 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	)
 
 /obj/item/food/friedegg
-	name = "fried egg"
-	desc = "A fried egg. Would go well with a touch of salt and pepper."
+	name = "煎蛋"
+	desc = "一个煎蛋。撒点盐和胡椒会很不错。"
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "friedegg"
 	food_reagents = list(
@@ -217,8 +217,8 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/rawegg
-	name = "raw egg"
-	desc = "Supposedly good for you, if you can stomach it. Better fried."
+	name = "生蛋"
+	desc = "据说对你身体有益，前提是你咽得下去。煎熟了更好。"
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "rawegg"
 	food_reagents = list() // Receives all reagents from its whole egg counterpart
@@ -233,8 +233,8 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	AddComponent(/datum/component/grillable, /obj/item/food/friedegg, rand(20 SECONDS, 35 SECONDS), TRUE, FALSE)
 
 /obj/item/food/boiledegg
-	name = "boiled egg"
-	desc = "A hard boiled egg."
+	name = "水煮蛋"
+	desc = "一个煮得全熟的蛋。"
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "egg"
 	inhand_icon_state = "egg"
@@ -251,8 +251,8 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/eggsausage
-	name = "egg with sausage"
-	desc = "A good egg with a side of sausages."
+	name = "香肠配蛋"
+	desc = "一个好蛋，配上一份香肠。"
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "eggsausage"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 8, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/nutriment = 4)
@@ -269,8 +269,8 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	preserved_food = TRUE
 
 /obj/item/food/omelette //FUCK THIS
-	name = "omelette du fromage"
-	desc = "That's all you can say!"
+	name = "奶酪煎蛋卷"
+	desc = "你只会说这一句！"
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "omelette"
 	food_reagents = list(
@@ -294,12 +294,12 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 
 	var/obj/item/kitchen/fork/fork = tool
 	if(fork.forkload)
-		to_chat(user, span_warning("You already have omelette on your fork!"))
+		to_chat(user, span_warning("你的叉子上已经有煎蛋卷了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	fork.icon_state = "forkloaded"
-	user.visible_message(span_notice("[user] takes a piece of omelette with [user.p_their()] fork!"), \
-						span_notice("You take a piece of omelette with your fork."))
+	user.visible_message(span_notice("[user]用叉子叉走了一块煎蛋卷！"), \
+						span_notice("你用叉子叉走了一块煎蛋卷。"))
 
 	var/datum/reagent/reagent = pick(reagents.reagent_list)
 	reagents.remove_reagent(reagent.type, 1)
@@ -309,8 +309,8 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/food/benedict
-	name = "eggs benedict"
-	desc = "There is only one egg on this, how rude."
+	name = "班尼迪克蛋"
+	desc = "这上面只有一个蛋，太失礼了。"
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "benedict"
 	food_reagents = list(
@@ -326,8 +326,8 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT)
 
 /obj/item/food/eggwrap
-	name = "egg wrap"
-	desc = "The precursor to Pigs in a Blanket."
+	name = "蛋卷饼"
+	desc = "“毯中猪”的前身。"
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "eggwrap"
 	food_reagents = list(
@@ -341,8 +341,8 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/chawanmushi
-	name = "chawanmushi"
-	desc = "A legendary egg custard that makes friends out of enemies. Probably too hot for a cat to eat."
+	name = "茶碗蒸"
+	desc = "传说中能让敌人变朋友的蛋羹。对猫来说大概太烫了。"
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "chawanmushi"
 	food_reagents = list(
@@ -356,8 +356,8 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/spore_sack
-	name = "spore sack"
-	desc = "A spore sack. blobby and gooey!"
+	name = "孢子囊"
+	desc = "一个孢子囊。黏糊糊、软塌塌！"
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "spore_sack"
 	base_icon_state = "spore_sack"
@@ -382,7 +382,7 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 
 	var/obj/machinery/griddle/hit_griddle = interacting_with
 	if(length(hit_griddle.griddled_objects) >= hit_griddle.max_items)
-		interacting_with.balloon_alert(user, "no room!")
+		interacting_with.balloon_alert(user, "没空间了！")
 		return ITEM_INTERACT_BLOCKING
 	var/atom/broken_egg = new /obj/item/food/rawegg/spore(interacting_with.loc)
 	if(LAZYACCESS(modifiers, ICON_X))
@@ -393,7 +393,7 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	reagents.trans_to(broken_egg, reagents.total_volume, copy_only = TRUE)
 
 	hit_griddle.AddToGrill(broken_egg, user)
-	interacting_with.balloon_alert(user, "cracks [src] open")
+	interacting_with.balloon_alert(user, "敲开[src]")
 
 	qdel(src)
 	return ITEM_INTERACT_BLOCKING
@@ -403,8 +403,8 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	base_icon_state = "spore_sack_independent"
 
 /obj/item/food/friedegg/spore
-	name = "fried spore"
-	desc = "A fried blob spore. Would go well with a dab of cold sauce."
+	name = "煎孢子"
+	desc = "一颗煎过的变形菌孢子。配一点冷酱会很不错。"
 	icon_state = "friedspore"
 	//superior healing and cyto reagents to compensate for rarity and mild poison effect.
 	food_reagents = list(
@@ -414,8 +414,8 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	tastes = list("blob" = 4, "level 5 biohazard" = 2)
 
 /obj/item/food/rawegg/spore
-	name = "burst spore"
-	desc = "Is this the ant egg everyone is always talking about? Better fried."
+	name = "破裂孢子"
+	desc = "这就是大家常说的蚁蛋吗？煎熟了更好。"
 	icon_state = "burstspore"
 	tastes = list("sliminess" = 4, "blob" = 2)
 

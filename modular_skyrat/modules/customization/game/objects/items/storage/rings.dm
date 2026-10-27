@@ -3,8 +3,8 @@
  */
 
 /obj/item/storage/fancy/ringbox
-	name = "ring box"
-	desc = "A tiny box covered in soft red felt made for holding rings."
+	name = "戒指盒"
+	desc = "一只包着柔软红色绒布的小盒子，专门用来存放戒指。"
 	icon = 'modular_skyrat/master_files/icons/obj/ring.dmi'
 	icon_state = "gold ringbox"
 	base_icon_state = "gold ringbox"

@@ -1,6 +1,6 @@
 /obj/machinery/door/firedoor
-	name = "emergency shutter"
-	desc = "Emergency air-tight shutter, capable of sealing off breached areas. This one has a glass panel. It has a mechanism to open it with just your hands."
+	name = "紧急隔断门"
+	desc = "能够封闭破损区域的紧急气密隔断门。这扇装有玻璃面板，并配备了可徒手开启的机构。"
 	icon = 'modular_zubbers/icons/obj/doors/doorfireglass.dmi'
 
 /obj/machinery/door/firedoor/click_alt(mob/user)
@@ -9,7 +9,7 @@
 
 /obj/machinery/door/firedoor/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click the door to use the manual override.")
+	. += span_notice("按住 Alt 点击门即可手动开启。")
 
 /obj/machinery/door/firedoor/update_overlays()
 	. = ..()
@@ -21,7 +21,7 @@
 
 /obj/machinery/door/firedoor/proc/try_manual_override(mob/user)
 	if(density && !welded && !operating)
-		balloon_alert(user, "opening...")
+		balloon_alert(user, "正在开启……")
 		if(do_after(user, 5 SECONDS, target = src))
 			try_to_crowbar(null,user)
 			return TRUE
@@ -37,8 +37,8 @@
 	alarm_type = FIRELOCK_ALARM_TYPE_GENERIC
 
 /obj/machinery/door/firedoor/solid
-	name = "solid emergency shutter"
-	desc = "Emergency air-tight shutter, capable of sealing off breached areas. It has a mechanism to open it with just your hands."
+	name = "实心紧急隔断门"
+	desc = "能够封闭破损区域的紧急气密隔断门，配备了可徒手开启的机构。"
 	icon = 'modular_zubbers/icons/obj/doors/doorfire.dmi'
 	glass = FALSE
 
@@ -49,8 +49,8 @@
 	alarm_type = FIRELOCK_ALARM_TYPE_GENERIC
 
 /obj/machinery/door/firedoor/heavy
-	name = "heavy emergency shutter"
-	desc = "Emergency air-tight shutter, capable of sealing off breached areas. It has a mechanism to open it with just your hands."
+	name = "重型紧急隔断门"
+	desc = "能够封闭破损区域的紧急气密隔断门，配备了可徒手开启的机构。"
 	icon = 'modular_zubbers/icons/obj/doors/doorfire.dmi'
 
 /obj/machinery/door/firedoor/heavy/closed

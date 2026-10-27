@@ -4,9 +4,9 @@
  * Emits a light of a specific brightness and colour. Requires a shell.
  */
 /obj/item/circuit_component/light
-	display_name = "Light"
-	desc = "A component that emits a light of a specific brightness and colour. Requires a shell."
-	category = "Action"
+	display_name = "灯光"
+	desc = "发出指定亮度和颜色光线的元件。需要外壳。"
+	category = "动作"
 
 	/// The colours of the light
 	var/datum/port/input/red
@@ -25,7 +25,7 @@
 
 /obj/item/circuit_component/light/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Brightness: [max_power]", "orange", "lightbulb")
+	. += create_ui_notice("最大亮度：[max_power]", "orange", "lightbulb")
 
 /obj/item/circuit_component/light/populate_ports()
 	red = add_input_port("Red", PORT_TYPE_NUMBER)

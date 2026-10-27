@@ -1,7 +1,7 @@
 // Basic ladder. By default links to the z-level above/below.
 /obj/structure/ladder
-	name = "ladder"
-	desc = "A sturdy metal ladder."
+	name = "梯子"
+	desc = "一架结实的金属梯子。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "ladder11"
 	base_icon_state = "ladder"
@@ -30,14 +30,14 @@
 
 /obj/structure/ladder/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(up)
-		context[SCREENTIP_CONTEXT_LMB] = "Climb up"
+		context[SCREENTIP_CONTEXT_LMB] = "向上攀爬"
 	if(down)
-		context[SCREENTIP_CONTEXT_RMB] = "Climb down"
+		context[SCREENTIP_CONTEXT_RMB] = "向下攀爬"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/ladder/examine(mob/user)
 	. = ..()
-	. += span_info("[EXAMINE_HINT("Left-click")] it to start moving up; [EXAMINE_HINT("Right-click")] to start moving down.")
+	. += span_info("[EXAMINE_HINT("左键点击")]它可以开始向上移动；[EXAMINE_HINT("右键点击")]可以开始向下移动。")
 
 /obj/structure/ladder/Destroy(force)
 	GLOB.ladders -= src
@@ -228,7 +228,7 @@
 
 /obj/structure/ladder/singularity_pull(atom/singularity, current_size)
 	if (!(resistance_flags & INDESTRUCTIBLE))
-		visible_message(span_danger("[src] is torn to pieces by the gravitational pull!"))
+		visible_message(span_danger("[src]被引力撕成了碎片！"))
 		qdel(src)
 
 /obj/structure/ladder/proc/use(mob/user, going_up = TRUE)
@@ -236,13 +236,13 @@
 		return
 
 	if(!up && !down)
-		balloon_alert(user, "doesn't lead anywhere!")
+		balloon_alert(user, "不通向任何地方！")
 		return
 	if(going_up ? !up : !down)
-		balloon_alert(user, "can't go any further [going_up ? "up" : "down"]")
+		balloon_alert(user, "无法继续向[going_up ? "上" : "下"]了")
 		return
 	if(user.buckled && user.buckled.anchored)
-		balloon_alert(user, "buckled to something anchored!")
+		balloon_alert(user, "被固定在某个固定物体上了！")
 		return
 	if(travel_time)
 		INVOKE_ASYNC(src, PROC_REF(start_travelling), user, going_up)
@@ -270,13 +270,13 @@
 
 /// The message shown when the player starts climbing the ladder
 /obj/structure/ladder/proc/show_initial_fluff_message(mob/user, going_up)
-	var/up_down = going_up ? "up" : "down"
-	user.balloon_alert_to_viewers("climbing [up_down]...")
+	var/up_down = going_up ? "上" : "下"
+	user.balloon_alert_to_viewers("正在向[up_down]攀爬……")
 
 /obj/structure/ladder/proc/travel(mob/user, going_up = TRUE, is_ghost = FALSE, grant_exp = FALSE)
 	var/obj/structure/ladder/ladder = going_up ? up : down
 	if(!ladder)
-		balloon_alert(user, "there's nothing that way!")
+		balloon_alert(user, "那边什么都没有！")
 		return
 	var/response = SEND_SIGNAL(user, COMSIG_LADDER_TRAVEL, src, ladder, going_up)
 	if(response & LADDER_TRAVEL_BLOCK)
@@ -300,12 +300,12 @@
 
 /// The messages shown after the player has finished climbing. Players can see this happen from either src or the destination so we've 2 POVs here
 /obj/structure/ladder/proc/show_final_fluff_message(mob/user, obj/structure/ladder/destination, going_up)
-	var/up_down = going_up ? "up" : "down"
+	var/up_down = going_up ? "上" : "下"
 
 	//POV of players around the source
-	visible_message(span_notice("[user] climbs [up_down] [src]."))
+	visible_message(span_notice("[user]沿着[src]向[up_down]爬去。"))
 	//POV of players around the destination
-	user.balloon_alert_to_viewers("climbed [up_down]")
+	user.balloon_alert_to_viewers("已向[up_down]爬去")
 
 /// Shows a radial menu that players can use to climb up and down a stair.
 /obj/structure/ladder/proc/show_options(mob/user, is_ghost = FALSE)
@@ -431,7 +431,7 @@
 ///Ghosts use the byond default popup menu function on right click, so this is going to work a little differently for them.
 /obj/structure/ladder/proc/ghost_use(mob/user)
 	if (!up && !down)
-		balloon_alert(user, "doesn't lead anywhere!")
+		balloon_alert(user, "不通向任何地方！")
 		return
 	if(!up) //only goes down
 		travel(user, going_up = FALSE, is_ghost = TRUE)
@@ -442,8 +442,8 @@
 
 // Indestructible away mission ladders which link based on a mapped ID and height value rather than X/Y/Z.
 /obj/structure/ladder/unbreakable
-	name = "sturdy ladder"
-	desc = "An extremely sturdy metal ladder."
+	name = "结实的梯子"
+	desc = "一架极其结实的金属梯子。"
 	resistance_flags = INDESTRUCTIBLE
 	var/id
 	var/height = 0  // higher numbers are considered physically higher

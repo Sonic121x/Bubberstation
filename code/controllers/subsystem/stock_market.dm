@@ -1,6 +1,6 @@
 
 SUBSYSTEM_DEF(stock_market)
-	name = "Stock Market"
+	name = "股票市场"
 	wait = 60 SECONDS
 	runlevels = RUNLEVEL_GAME
 

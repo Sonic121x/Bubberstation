@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/trash
 	name = "trash spawner"
-	desc = "Ewwwwwww gross."
+	desc = "呕，真恶心。"
 	icon_state = "trash"
 
 /obj/effect/spawner/random/trash/garbage
@@ -281,7 +281,7 @@
 
 /obj/effect/spawner/random/frog
 	name = "random frog"
-	desc = "Spawns a frog, or sometimes a RARE frog."
+	desc = "生成一只青蛙，有时会是稀有青蛙。"
 	icon = 'icons/mob/simple/animal.dmi'
 	icon_state = "frog"
 	loot = list(

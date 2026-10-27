@@ -10,12 +10,12 @@
 		/obj/item/fish/goldfish/three_eyes = 3,
 		/obj/item/fish/plasmatetra = 3,
 	)
-	catalog_description = "Aquarium dimension (Fishing portal generator)"
+	catalog_description = "水族馆维度（钓鱼传送门生成器）"
 	radial_state = "fish_tank"
 	associated_safe_turfs = list(/turf/open/water)
 	safe_turfs_blacklist = list(/turf/open/water/hot_spring, /turf/open/water/beach)
 	///The name of this option shown in the radial menu on the fishing portal generator
-	var/radial_name = "Aquarium"
+	var/radial_name = "水族馆"
 
 /datum/fish_source/portal/beach
 	fish_table = list(
@@ -32,8 +32,8 @@
 	fish_counts = list(
 		/obj/item/survivalcapsule/fishing = 1,
 	)
-	catalog_description = "Beach dimension (Fishing portal generator)"
-	radial_name = "Beach"
+	catalog_description = "海滩维度（钓鱼传送门生成器）"
+	radial_name = "海滩"
 	radial_state = "palm_beach"
 	overlay_state = "portal_beach"
 	associated_safe_turfs = list(/turf/open/water/beach)
@@ -52,9 +52,9 @@
 		/obj/item/fish/boned = 5,
 		/obj/item/stack/sheet/bone = 5,
 	)
-	catalog_description = "Chasm dimension (Fishing portal generator)"
+	catalog_description = "裂隙维度（钓鱼传送门生成器）"
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 20
-	radial_name = "Chasm"
+	radial_name = "裂隙"
 	overlay_state = "portal_chasm"
 	radial_state = "ground_hole"
 
@@ -80,9 +80,9 @@
 	fish_count_regen = list(
 		/obj/item/fish/swordfish = 5 MINUTES,
 	)
-	catalog_description = "Ocean dimension (Fishing portal generator)"
+	catalog_description = "海洋维度（钓鱼传送门生成器）"
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 20
-	radial_name = "Ocean"
+	radial_name = "海洋"
 	overlay_state = "portal_ocean"
 	radial_state = "seaboat"
 	associated_safe_turfs = list(/turf/open/water/beach)
@@ -105,9 +105,9 @@
 	fish_counts = list(
 		/obj/item/stack/ore/bluespace_crystal = 10,
 	)
-	catalog_description = "Hyperspace dimension (Fishing portal generator)"
+	catalog_description = "超空间维度（钓鱼传送门生成器）"
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 20
-	radial_name = "Hyperspace"
+	radial_name = "超空间"
 	overlay_state = "portal_hyperspace"
 	radial_state = "space_rocket"
 	associated_safe_turfs = list(/turf/open/space)
@@ -131,8 +131,8 @@
 		/obj/item/fish/chainsawfish = 7 MINUTES,
 		/obj/item/fish/pike/armored = 7 MINUTES,
 	)
-	catalog_description = "Syndicate dimension (Fishing portal generator)"
-	radial_name = "Syndicate"
+	catalog_description = "辛迪加维度（钓鱼传送门生成器）"
+	radial_name = "辛迪加"
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 25
 	overlay_state = "portal_syndicate"
 	radial_state = "syndi_snake"
@@ -146,7 +146,7 @@
 /datum/fish_source/portal/random
 	fish_table = null //It's populated the first time the source is loaded on a fishing portal generator.
 	catalog_description = null // it'd make a bad entry in the catalog.
-	radial_name = "Randomizer"
+	radial_name = "随机化器"
 	overlay_state = "portal_randomizer"
 	radial_state = "misaligned_question_mark"
 	fish_source_flags = FISH_SOURCE_FLAG_NO_BLUESPACE_ROD

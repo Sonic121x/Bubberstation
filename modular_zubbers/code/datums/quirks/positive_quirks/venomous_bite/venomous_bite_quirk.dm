@@ -1,11 +1,11 @@
 /datum/quirk/venomous_bite
 	name = "Venomous Bite"
-	desc = "You have a venom gland, and can bite people to inject them with a toxin of your choosing."
+	desc = "你拥有毒腺，可以通过咬人注入你选择的毒素。"
 	icon = FA_ICON_TEETH_OPEN
 	value = 8
-	gain_text = span_notice("You feel a venom gland in the back of your throat.")
-	lose_text = span_warning("Your venom gland vanishes.")
-	medical_record_text = "Patient possesses a venom gland."
+	gain_text = span_notice("你感觉喉咙深处长出了毒腺。")
+	lose_text = span_warning("你的毒腺消失了。")
+	medical_record_text = "患者拥有毒腺。"
 
 /datum/quirk/venomous_bite/add(client/client_source)
 	var/datum/reagent/reagent = text2path(client_source?.prefs?.read_preference(/datum/preference/choiced/venomous_bite_venom))
@@ -66,7 +66,7 @@
 
 		var/name = entry::name
 
-		titles["[entry]"] = "[name] ([inject]u, [cooldown / 10] second cooldown)"
+		titles["[entry]"] = "[name]（[inject]单位，冷却[cooldown / 10]秒）"
 
 	data[CHOICED_PREFERENCE_DISPLAY_NAMES] = titles
 

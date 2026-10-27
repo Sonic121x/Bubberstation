@@ -1,9 +1,9 @@
 /obj/machinery/health_station
-	name = "\improper N-URSEI Automated Medical Suite"
-	desc = "The N-URSEI, better known as simply the 'Nurse,' is a well-known product of Medical technology in the CIN. The name is of disputed origin, \
-	but believed to be based off older, less portable models affectionately referred to as 'mother bears' which required specialized light trucks to carry to the field. \
-	These less unwieldy models are capable of diagnosis, treatment, arguably prevention, and prognosis; \
-	employing limited medicine synthesis to fill the proprietary and unbranded models of medipens."
+	name = "\improper N-URSEI 自动医疗套件"
+	desc = "N-URSEI，通常被简称为“护士”，是 CIN 医疗技术领域一款广为人知的产品。其名称来源尚有争议，\
+	但一般认为它源自更老旧、更不便携的型号，那些型号被亲切地称为“母熊”，需要用专门的轻型卡车运往战场。\
+	这些没那么笨重的型号能够进行诊断、治疗、勉强算得上的预防，以及预后判断；\
+	它们还能进行有限的药物合成，用来灌装各种专有且无品牌的医疗笔型号。"
 	icon = 'modular_skyrat/modules/bitrunning/icons/health_station.dmi'
 	icon_state = "health_station"
 	base_icon_state = "health_station"
@@ -11,7 +11,7 @@
 	interaction_flags_machine = INTERACT_MACHINE_REQUIRES_LITERACY
 	anchored = TRUE
 	///Options, obviously
-	var/static/list/radial_options = list("Health Scan" = radial_scan, "Heal Wounds" = radial_wound, "Treat Damage" = radial_damage)
+	var/static/list/radial_options = list("生命体征扫描" = radial_scan, "治愈创伤" = radial_wound, "治疗损伤" = radial_damage)
 	///Maximum amount of nondescript healing fluid
 	var/max_charge_amount = 100
 	///Current amount of nondescript healing fluid available
@@ -69,7 +69,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/health_station, 32)
 /obj/machinery/health_station/examine(mob/living/carbon/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: ბიომასის პროცენტული მაჩვენებელია [charge_amount]%.")
+		. += span_notice("状态显示屏显示：生物质百分比为 [charge_amount]%。")
 
 /obj/machinery/health_station/attack_ghost(mob/user)
 	examine(user)
@@ -99,15 +99,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/health_station, 32)
 	var/choice = show_radial_menu(user, src, radial_options, require_near = !issilicon(user), tooltips = TRUE)
 
 	switch(choice)
-		if("Health Scan")
+		if("生命体征扫描")
 			healthscan(user, user, scanpower = SCANPOWER_ADVANCED)
 			chemscan(user, user)
-			balloon_alert(user, "analyzing vitals")
+			balloon_alert(user, "正在分析生命体征")
 			playsound(user.loc, 'sound/items/healthanalyzer.ogg', 40, TRUE)
-		if("Heal Wounds")
+		if("治愈创伤")
 			playsound(user.loc, 'sound/machines/ping.ogg', 40, TRUE)
 			heal_wound(user)
-		if("Treat Damage")
+		if("治疗损伤")
 			playsound(user.loc, 'sound/machines/ping.ogg', 40, TRUE)
 			heal_damage(user)
 
@@ -120,37 +120,37 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/health_station, 32)
 	if(istype(attacking_item, /obj/item/reagent_containers/hypospray/medipen))
 		var/obj/item/reagent_containers/hypospray/medipen/medipen = attacking_item
 		if(!(LAZYFIND(refillable_pens, medipen.type)))
-			balloon_alert(user, "medipen incompatible!")
+			balloon_alert(user, "医疗笔不兼容！")
 			return
 		if(medipen.reagents?.reagent_list.len)
-			balloon_alert(user, "medipen full!")
+			balloon_alert(user, "医疗笔已满！")
 			return
 		var/charge_taken = is_type_in_list(medipen, refillable_pens, zebra = TRUE)
 		if(charge_amount < charge_taken)
-			balloon_alert(user, "no biomass!")
+			balloon_alert(user, "生物质不足！")
 			return
 		if(do_after(user, 2 SECONDS, src))
 			medipen.used_up = FALSE
 			medipen.add_initial_reagents()
 			charge_amount -= charge_taken
-		balloon_alert(user, "medipen refilled!")
+		balloon_alert(user, "医疗笔已补充！")
 		playsound(src, 'sound/items/hypospray.ogg', 40, TRUE)
 		update_appearance()
 	return TRUE
 
 /obj/machinery/health_station/proc/heal_wound(mob/living/carbon/user)
 	if(charge_amount < 20)
-		balloon_alert(user, "no biomass!")
+		balloon_alert(user, "生物质不足！")
 		return FALSE
 
 	if(!user.all_wounds)
-		balloon_alert(user, "no wounds!")
+		balloon_alert(user, "没有创伤！")
 		return FALSE
 
 	if(do_after(user, 5 SECONDS, src))
 		var/datum/wound/wound2fix = user.all_wounds[1]
 		wound2fix.remove_wound()
-		balloon_alert(user, "wound treated")
+		balloon_alert(user, "创伤已处理")
 		charge_amount -= 20
 		playsound(src, 'sound/items/handling/surgery/saw.ogg', 40, TRUE)
 		update_appearance()
@@ -159,7 +159,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/health_station, 32)
 /obj/machinery/health_station/proc/heal_damage(mob/living/carbon/user)
 	var/overall_damage = (user.get_tox_loss() + user.get_oxy_loss() + user.get_fire_loss() + user.get_brute_loss())
 	if(charge_amount < 15)
-		balloon_alert(user, "no biomass!")
+		balloon_alert(user, "生物质不足！")
 		return FALSE
 
 	if(overall_damage)
@@ -170,19 +170,19 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/health_station, 32)
 			need_mob_update += user.adjust_oxy_loss(-overall_damage/2, updating_health = FALSE)
 			if(need_mob_update)
 				user.updatehealth()
-			balloon_alert(user, "damage treated")
+			balloon_alert(user, "损伤已治疗")
 			charge_amount -= 15
 			playsound(src, 'sound/items/handling/surgery/retractor1.ogg', 40, TRUE)
 			update_appearance()
 	else
-		balloon_alert(user, "no damage!")
+		balloon_alert(user, "没有损伤！")
 		return FALSE
 
 	return TRUE
 
 /obj/item/wallframe/health_station
-	name = "detached N-URSEI Suite"
-	desc = "An unmounted health station. Attach it to a wall to use."
+	name = "拆下的 N-URSEI 套件"
+	desc = "一台未安装的医疗站。把它装到墙上即可使用。"
 	icon = 'modular_skyrat/modules/bitrunning/icons/health_station.dmi'
 	icon_state = "health_station_item"
 	w_class = WEIGHT_CLASS_HUGE

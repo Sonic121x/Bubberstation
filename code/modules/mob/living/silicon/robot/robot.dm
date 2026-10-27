@@ -53,7 +53,7 @@
 		var/datum/job/human_ai_job = SSjob.get_job(JOB_HUMAN_AI)
 		// we failed to connect to an ai, but that might be because there is a human ai. so we have to check for that
 		if(human_ai_job && human_ai_job.current_positions && !laws.zeroth_borg)
-			laws.zeroth_borg = "Follow the orders of Big Brother."
+			laws.zeroth_borg = "服从老大哥的命令。"
 			laws.protected_zeroth = TRUE
 		// however, if we found no ai and no human ai, we fall back to no law updates
 		// and link ourselves to the first law rack if possible
@@ -83,7 +83,7 @@
 			mmi = new (src)
 			mmi.brain = new /obj/item/organ/brain(mmi)
 			mmi.brain.organ_flags |= ORGAN_FROZEN
-			mmi.brain.name = "[real_name]'s brain"
+			mmi.brain.name = "[real_name]的大脑"
 			mmi.name = "[initial(mmi.name)]: [real_name]"
 			mmi.set_brainmob(new /mob/living/brain(mmi))
 			mmi.brainmob.name = src.real_name
@@ -98,9 +98,9 @@
 	aicamera = new/obj/item/camera/siliconcam/robot_camera(src)
 	toner = tonermax
 	diag_hud_set_borgcell()
-	logevent("System brought online.")
+	logevent("系统已上线。")
 
-	log_silicon("New cyborg [key_name(src)] created with [connected_ai ? "master AI: [key_name(connected_ai)]" : "no master AI"]")
+	log_silicon("新建半机械人 [key_name(src)]，[connected_ai ? "主控 AI：[key_name(connected_ai)]" : "无主控 AI"]")
 	log_current_laws()
 
 	var/static/list/alert_areas
@@ -178,11 +178,11 @@
 		return
 
 	if(wires.is_cut(WIRE_RESET_MODEL))
-		to_chat(src,span_userdanger("ERROR: Model installer reply timeout. Please check internal connections."))
+		to_chat(src,span_userdanger("错误：型号安装器响应超时。请检查内部连接。"))
 		return
 
 	if(lockcharge == TRUE)
-		to_chat(src,span_userdanger("ERROR: Lockdown is engaged. Please disengage lockdown to pick module."))
+		to_chat(src,span_userdanger("错误：锁定已启用。请先解除锁定再选择模块。"))
 		return
 
 	// SKYRAT EDIT START - Making the cyborg model list static to reduce how many times it's generated.
@@ -270,14 +270,14 @@
 
 /mob/living/silicon/robot/proc/toggle_ionpulse()
 	if(!ionpulse)
-		to_chat(src, span_notice("No thrusters are installed!"))
+		to_chat(src, span_notice("未安装推进器！"))
 		return
 
 	if(!ion_trail)
 		ion_trail = new(src)
 
 	ionpulse_on = !ionpulse_on
-	to_chat(src, span_notice("You [ionpulse_on ? null :"de"]activate your ion thrusters."))
+	to_chat(src, span_notice("你[ionpulse_on ? "启动" : "关闭"]了离子推进器。"))
 	if(ionpulse_on)
 		ion_trail.start()
 	else
@@ -286,20 +286,20 @@
 /mob/living/silicon/robot/get_status_tab_items()
 	. = ..()
 	if(cell)
-		. += "Charge Left: [display_energy(cell.charge)]/[display_energy(cell.maxcharge)]"
+		. += "剩余电量：[display_energy(cell.charge)]/[display_energy(cell.maxcharge)]"
 	else
-		. += "No Cell Inserted!"
+		. += "未插入电池！"
 
 	if(connected_ai)
-		. += "Master AI: [connected_ai.name]"
+		. += "主控 AI：[connected_ai.name]"
 
 /mob/living/silicon/robot/proc/alarm_triggered(datum/source, alarm_type, area/source_area)
 	SIGNAL_HANDLER
-	queueAlarm("--- [alarm_type] alarm detected in [source_area.name]!", alarm_type)
+	queueAlarm("--- 在 [source_area.name] 检测到 [alarm_type] 警报！", alarm_type)
 
 /mob/living/silicon/robot/proc/alarm_cleared(datum/source, alarm_type, area/source_area)
 	SIGNAL_HANDLER
-	queueAlarm("--- [alarm_type] alarm in [source_area.name] has been cleared.", alarm_type, FALSE)
+	queueAlarm("--- [source_area.name] 的 [alarm_type] 警报已解除。", alarm_type, FALSE)
 
 /mob/living/silicon/robot/can_interact_with(atom/A)
 	if (A == modularInterface)
@@ -396,21 +396,21 @@
 
 /mob/living/silicon/robot/proc/self_destruct(mob/user)
 	var/turf/groundzero = get_turf(src)
-	message_admins(span_notice("[ADMIN_LOOKUPFLW(user)] detonated [key_name_admin(src, client)] at [ADMIN_VERBOSEJMP(groundzero)]!"))
-	user.log_message("detonated [key_name(src)]!", LOG_ATTACK)
-	log_message("was detonated by [key_name(user)]!", LOG_ATTACK, log_globally = FALSE)
+	message_admins(span_notice("[ADMIN_LOOKUPFLW(user)] 在 [ADMIN_VERBOSEJMP(groundzero)] 引爆了 [key_name_admin(src, client)]！"))
+	user.log_message("引爆了 [key_name(src)]！", LOG_ATTACK)
+	log_message("被 [key_name(user)] 引爆了！", LOG_ATTACK, log_globally = FALSE)
 
-	log_combat(user, src, "detonated cyborg")
-	log_silicon("CYBORG: [key_name(src)] has been detonated by [key_name(user)].")
+	log_combat(user, src, "引爆了半机械人")
+	log_silicon("CYBORG：[key_name(src)] 被 [key_name(user)] 引爆了。")
 	if(connected_ai)
-		to_chat(connected_ai, "<br><br>[span_alert("ALERT - Cyborg detonation detected: [name]")]<br>")
+		to_chat(connected_ai, "<br><br>[span_alert("警报 - 检测到半机械人引爆：[name]")]<br>")
 
 	if(emagged)
 		QDEL_NULL(mmi)
 		explosion(src, devastation_range = 1, heavy_impact_range = 2, light_impact_range = 4, flame_range = 2)
 	else
 		explosion(src, devastation_range = -1, light_impact_range = 2)
-	investigate_log("has self-destructed.", INVESTIGATE_DEATHS)
+	investigate_log("已自毁。", INVESTIGATE_DEATHS)
 	gib(DROP_ALL_REMAINS)
 
 /mob/living/silicon/robot/proc/UnlinkSelf()
@@ -418,7 +418,7 @@
 	lawupdate = FALSE
 	set_lockcharge(FALSE)
 	scrambledcodes = TRUE
-	log_silicon("CYBORG: [key_name(src)] has been unlinked from an AI.")
+	log_silicon("CYBORG：[key_name(src)] 已与 AI 断开连接。")
 	//Disconnect its camera so it's not so easily tracked.
 	if(!QDELETED(builtInCamera))
 		QDEL_NULL(builtInCamera)
@@ -443,7 +443,7 @@
 		throw_alert(ALERT_HACKED, /atom/movable/screen/alert/locked)
 		if(!ai_lockdown)
 			lockdown_timer = addtimer(CALLBACK(src,PROC_REF(lockdown_override), FALSE), 10 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_DELETE_ME | TIMER_STOPPABLE)
-			to_chat(src, "<br><br>[span_alert("ALERT - Remote system lockdown engaged. Trying to hack the lockdown subsystem...")]<br>")
+			to_chat(src, "<br><br>[span_alert("警报 - 远程系统锁定已启用。正在尝试入侵锁定子系统……")]<br>")
 	else
 		deltimer(lockdown_timer)
 		clear_alert(ALERT_HACKED)
@@ -452,12 +452,12 @@
 /// Allows the borg to unlock themselves after a lenghty period of time.
 /mob/living/silicon/robot/proc/lockdown_override()
 	if(ai_lockdown)
-		to_chat(src, "<br><br>[span_alert("ALERT - Remote system lockdown override failed.")]<br>")
+		to_chat(src, "<br><br>[span_alert("警报 - 远程系统锁定破解失败。")]<br>")
 		return
 	set_lockcharge(FALSE)
-	to_chat(src, "<br><br>[span_notice("ALERT - Remote system lockdown override successful.")]<br>")
+	to_chat(src, "<br><br>[span_notice("警报 - 远程系统锁定破解成功。")]<br>")
 	if(connected_ai)
-		to_chat(connected_ai, "<br><br>[span_notice("ALERT - Cyborg [name] successfully overriden the lockdown system")]<br>")
+		to_chat(connected_ai, "<br><br>[span_notice("警报 - 半机械人 [name] 成功破解了锁定系统")]<br>")
 
 ///Reports the event of the change in value of the lockcharge variable.
 /mob/living/silicon/robot/proc/set_lockcharge(new_lockcharge)
@@ -470,7 +470,7 @@
 			ADD_TRAIT(src, TRAIT_IMMOBILIZED, LOCKED_BORG_TRAIT)
 	else if(.)
 		REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, LOCKED_BORG_TRAIT)
-	logevent("System lockdown [lockcharge?"triggered":"released"].")
+	logevent("系统锁定[lockcharge?"已启用":"已解除"]。")
 
 
 /mob/living/silicon/robot/proc/SetEmagged(new_state)
@@ -495,7 +495,7 @@
 	. = ..()
 	if(lamp_enabled)
 		toggle_headlamp(TRUE)
-		balloon_alert(src, "headlamp off!")
+		balloon_alert(src, "头灯已关闭！")
 	COOLDOWN_START(src, disabled_time, disrupt_duration)
 	return TRUE
 
@@ -512,7 +512,7 @@
 	lamp_functional = FALSE
 	playsound(src, 'sound/effects/footstep/glass_step.ogg', 50)
 	toggle_headlamp(TRUE)
-	to_chat(src, span_danger("Your headlamp is broken! You'll need a human to help replace it."))
+	to_chat(src, span_danger("你的头灯坏了！需要一名人类帮你更换。"))
 
 /**
  * Handles headlamp toggling, disabling, and color setting.
@@ -530,7 +530,7 @@
 /mob/living/silicon/robot/proc/toggle_headlamp(turn_off = FALSE, update_color = FALSE)
 	//if both lamp is enabled AND the update_color flag is on, keep the lamp on. Otherwise, if anything listed is true, disable the lamp.
 	if(!COOLDOWN_FINISHED(src, disabled_time))
-		balloon_alert(src, "disrupted!")
+		balloon_alert(src, "受到干扰！")
 		return FALSE
 
 	if(!(update_color && lamp_enabled) && (turn_off || lamp_enabled || update_color || !lamp_functional || IS_UNCONSCIOUS_OR_CRIT(src) || low_power_mode || istype(loc, /obj/item/mob_holder)))
@@ -603,8 +603,8 @@
 		removing.update_appearance()
 
 	else
-		to_chat(src, span_bolddanger("Oops! Something went very wrong, your MMI was unable to receive your mind. \
-			You have been ghosted. Please make a bug report so we can fix this bug."))
+		to_chat(src, span_bolddanger("糟糕！出了很严重的差错，你的人机接口无法接收你的意识。\
+			你已被转为幽灵。请提交一个错误报告，以便我们修复此问题。"))
 		ghostize()
 		stack_trace("Borg MMI lacked a brainmob")
 
@@ -615,19 +615,19 @@
 		return
 	switch(notifytype)
 		if(AI_NOTIFICATION_NEW_BORG) //New Cyborg
-			to_chat(connected_ai, "<br><br>[span_notice("NOTICE - New cyborg connection detected: <a href='byond://?src=[REF(connected_ai)];track=[html_encode(name)]'>[name]</a>")]<br>")
+			to_chat(connected_ai, "<br><br>[span_notice("通知 - 检测到新的半机械人连接：<a href='byond://?src=[REF(connected_ai)];track=[html_encode(name)]'>[name]</a>")]<br>")
 		if(AI_NOTIFICATION_NEW_MODEL) //New Model
-			to_chat(connected_ai, "<br><br>[span_notice("NOTICE - Cyborg model change detected: [name] has loaded the [designation] model.")]<br>")
+			to_chat(connected_ai, "<br><br>[span_notice("通知 - 检测到半机械人型号变更：[name] 已加载 [designation] 型号。")]<br>")
 		if(AI_NOTIFICATION_CYBORG_RENAMED) //New Name
-			to_chat(connected_ai, "<br><br>[span_notice("NOTICE - Cyborg reclassification detected: [oldname] is now designated as [newname].")]<br>")
+			to_chat(connected_ai, "<br><br>[span_notice("通知 - 检测到半机械人重新分类：[oldname] 现被命名为 [newname]。")]<br>")
 		if(AI_NOTIFICATION_AI_SHELL) //New Shell
-			to_chat(connected_ai, "<br><br>[span_notice("NOTICE - New cyborg shell detected: <a href='byond://?src=[REF(connected_ai)];track=[html_encode(name)]'>[name]</a>")]<br>")
+			to_chat(connected_ai, "<br><br>[span_notice("通知 - 检测到新的半机械人机体：<a href='byond://?src=[REF(connected_ai)];track=[html_encode(name)]'>[name]</a>")]<br>")
 		if(AI_NOTIFICATION_CYBORG_DISCONNECTED) //Tampering with the wires
-			to_chat(connected_ai, "<br><br>[span_notice("NOTICE - Remote telemetry lost with [name].")]<br>")
+			to_chat(connected_ai, "<br><br>[span_notice("通知 - 与 [name] 的远程遥测已丢失。")]<br>")
 
 /mob/living/silicon/robot/can_perform_action(atom/target, action_bitflags)
 	if(lockcharge || low_power_mode)
-		to_chat(src, span_warning("You can't do that right now!"))
+		to_chat(src, span_warning("你现在不能这么做！"))
 		return FALSE
 	return ..()
 
@@ -770,8 +770,8 @@
 		update_transform(4/3)
 	//SKYRAT EDIT ADDITION END
 
-	logevent("Chassis model has been reset.")
-	log_silicon("CYBORG: [key_name(src)] has reset their cyborg model.")
+	logevent("机壳型号已重置。")
+	log_silicon("CYBORG：[key_name(src)] 已重置其半机械人型号。")
 	model.transform_to(/obj/item/robot_model)
 
 	// Remove upgrades.
@@ -833,24 +833,24 @@
 	if(!user.temporarilyRemoveItemFromInventory(new_upgrade)) //calling the upgrade's dropped() proc /before/ we add action buttons
 		return FALSE
 	if(!new_upgrade.action(src, user))
-		to_chat(user, span_danger("Upgrade error."))
+		to_chat(user, span_danger("升级出错。"))
 		new_upgrade.forceMove(loc) //gets lost otherwise
 		return FALSE
-	to_chat(user, span_notice("You apply the upgrade to [src]."))
+	to_chat(user, span_notice("你将升级模块安装到了 [src] 上。"))
 	add_to_upgrades(new_upgrade)
 
 ///Moves the upgrade inside the robot and registers relevant signals.
 /mob/living/silicon/robot/proc/add_to_upgrades(obj/item/borg/upgrade/new_upgrade)
-	to_chat(src, "----------------\nNew hardware detected...Identified as \"<b>[new_upgrade]</b>\"...Setup complete.\n----------------")
+	to_chat(src, "----------------\n检测到新硬件……识别为“<b>[new_upgrade]</b>”……设置完成。\n----------------")
 	if(new_upgrade.one_use)
-		logevent("Firmware [new_upgrade] run successfully.")
+		logevent("固件 [new_upgrade] 运行成功。")
 		qdel(new_upgrade)
 		return FALSE
 	upgrades += new_upgrade
 	new_upgrade.forceMove(src)
 	RegisterSignal(new_upgrade, COMSIG_MOVABLE_MOVED, PROC_REF(remove_from_upgrades))
 	RegisterSignal(new_upgrade, COMSIG_QDELETING, PROC_REF(on_upgrade_deleted))
-	logevent("Hardware [new_upgrade] installed successfully.")
+	logevent("硬件 [new_upgrade] 安装成功。")
 
 ///Called when an upgrade is moved outside the robot. So don't call this directly, use forceMove etc.
 /mob/living/silicon/robot/proc/remove_from_upgrades(obj/item/borg/upgrade/old_upgrade)
@@ -882,7 +882,7 @@
 
 	shell = TRUE
 	braintype = "AI Shell"
-	name = "Empty AI Shell-[identifier]"
+	name = "空的 AI 机体-[identifier]"
 	real_name = name
 	GLOB.available_ai_shells |= src
 	if(!QDELETED(builtInCamera))
@@ -901,7 +901,7 @@
 		qdel(boris)
 	shell = FALSE
 	GLOB.available_ai_shells -= src
-	name = "Unformatted Cyborg-[identifier]"
+	name = "未格式化的半机械人-[identifier]"
 	real_name = name
 	if(!QDELETED(builtInCamera))
 		builtInCamera.c_tag = real_name
@@ -914,7 +914,7 @@
  * * AI - AI unit that initiated the deployment into the AI shell
  */
 /mob/living/silicon/robot/proc/deploy_init(mob/living/silicon/ai/AI)
-	real_name = "[AI.real_name] [designation] Shell-[identifier]"
+	real_name = "[AI.real_name] [designation] 机体-[identifier]"
 	name = real_name
 	if(!QDELETED(builtInCamera))
 		builtInCamera.c_tag = real_name //update the camera name too
@@ -939,8 +939,8 @@
 	undeployment_action.Grant(src)
 
 /datum/action/innate/undeployment
-	name = "Disconnect from shell"
-	desc = "Stop controlling your shell and resume normal core operations."
+	name = "断开与机体的连接"
+	desc = "停止操控你的机体，恢复核心的常规运作。"
 	button_icon = 'icons/mob/actions/actions_AI.dmi'
 	button_icon_state = "ai_core"
 
@@ -990,10 +990,10 @@
 	if(incapacitated)
 		return FALSE
 	if(!HAS_TRAIT(target, TRAIT_CAN_MOUNT_CYBORGS))
-		target.visible_message(span_warning("[target] really can't seem to mount [src]..."))
+		target.visible_message(span_warning("[target] 似乎怎么也骑不上 [src]……"))
 		return FALSE
 	if(model && !model.allow_riding)
-		target.visible_message(span_boldwarning("Unfortunately, [target] just can't seem to hold onto [src]!"))
+		target.visible_message(span_boldwarning("很遗憾，[target] 似乎怎么也抓不住 [src]！"))
 		return FALSE
 
 	return ..()
@@ -1008,7 +1008,7 @@
 
 /mob/living/silicon/robot/can_resist()
 	if(lockcharge)
-		balloon_alert(src, "locked down!")
+		balloon_alert(src, "已锁定！")
 		return FALSE
 	return ..()
 
@@ -1069,7 +1069,7 @@
 	.[/datum/job/cyborg::title] = minutes
 
 /mob/living/silicon/robot/proc/untip_roleplay()
-	to_chat(src, span_notice("Your frustration has empowered you! You can now right yourself faster!"))
+	to_chat(src, span_notice("你的烦躁化作了力量！现在你能更快地自己翻身了！"))
 
 /mob/living/silicon/robot/get_fire_overlay(stacks, on_fire)
 	return make_generic_fire_overlay()
@@ -1086,7 +1086,7 @@
 	if(!length(buckled_mobs))
 		return
 	for(var/mob/living/buckled_mob as anything in buckled_mobs)
-		buckled_mob.visible_message(span_warning("[buckled_mob] is knocked off of [src] by the charge in [src]'s chassis induced by the hyperkinetic dampener field!"))
+		buckled_mob.visible_message(span_warning("[buckled_mob] 被超动能抑制场在 [src] 机壳中激起的电荷从 [src] 上甩了下来！"))
 		buckled_mob.Paralyze(1 SECONDS)
 		unbuckle_mob(buckled_mob)
 	do_sparks(5, 0, src)
@@ -1105,6 +1105,6 @@
 	static_image.appearance_flags |= KEEP_TOGETHER
 	static_image.overlays += static_overlay
 	static_image.override = TRUE
-	static_image.name = "unknown cyborg"
+	static_image.name = "未知半机械人"
 
 	return static_image

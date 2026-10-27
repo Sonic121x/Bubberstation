@@ -17,14 +17,14 @@
 */
 
 /obj/item/clothing/under/rank/security/skyrat/utility
-	name = "security utility uniform"
-	desc = "A utility uniform worn by Lopland-certified Security officers."
+	name = "安保实用制服"
+	desc = "洛普兰认证的安保官穿着的实用制服。"
 	icon_state = "util_sec_old"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/skyrat/utility/redsec
-	desc = "A utility uniform worn by trained Security officers."
+	desc = "受过训练的安保官穿着的实用制服。"
 	icon_state = "util_sec_old"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
@@ -40,8 +40,8 @@
 	has_sensor = NO_SENSORS
 
 /obj/item/clothing/under/rank/security/peacekeeper/skirt
-	name = "security battle dress"
-	desc = "An asymmetrical, unisex uniform with the legs replaced by a utility skirt."
+	name = "安保战斗服"
+	desc = "一套不对称的男女通用制服，裤腿被换成了实用短裙。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	worn_icon_state = "security_skirt_redsec"
@@ -51,8 +51,8 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 
 /obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec
-	name = "security battle dress"
-	desc = "An asymmetrical, unisex uniform with the legs replaced by a utility skirt. Now in classic security red!"
+	name = "安保战斗服"
+	desc = "一套不对称的男女通用制服，裤腿被换成了实用短裙。如今换上了经典的安保红！"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	worn_icon_state = "security_skirt_redsec"
@@ -68,8 +68,8 @@
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/peacekeeper/trousers
-	name = "security trousers"
-	desc = "Some red security combat trousers. Probably should pair it with a vest for safety."
+	name = "安保长裤"
+	desc = "一条红色安保作战长裤。为了安全起见，大概该配上一件防弹背心。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "workpants_red"
@@ -79,8 +79,8 @@
 	female_sprite_flags = FEMALE_UNIFORM_NO_BREASTS
 
 /obj/item/clothing/under/rank/security/peacekeeper/trousers/shorts
-	name = "security shorts"
-	desc = "Some red security combat shorts. Definitely should pair it with a vest for safety."
+	name = "安保短裤"
+	desc = "一条红色安保作战短裤。为了安全起见，绝对该配上一件防弹背心。"
 	icon_state = "workshorts_red"
 
 /obj/item/clothing/under/rank/security/peacekeeper/trousers/shorts/Initialize(mapload)
@@ -91,16 +91,16 @@
 	abstract_type = /datum/atom_skin/security_peacekeeper_shorts
 
 /datum/atom_skin/security_peacekeeper_shorts/red_short
-	preview_name = "Red Variant, Short"
+	preview_name = "红色变体，短款"
 	new_icon_state = "workshorts_red"
 
 /datum/atom_skin/security_peacekeeper_shorts/red_short_short
-	preview_name = "Red Variant, Short Short"
+	preview_name = "红色变体，超短款"
 	new_icon_state = "workshorts_red_short"
 
 /obj/item/clothing/under/rank/security/peacekeeper/jumpsuit
-	name = "security jumpsuit"
-	desc = "Turtleneck sweater commonly worn by Peacekeepers, attached with pants."
+	name = "安保连体服"
+	desc = "维和者常穿的高领毛衣，下接一条长裤。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "jumpsuit_red"
@@ -109,15 +109,15 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 
 /obj/item/clothing/under/rank/security/officer/skirt
-	name = "security jumpskirt"
-	desc = "Turtleneck sweater commonly worn by Peacekeepers, attached with a skirt."
+	name = "安保连体裙"
+	desc = "维和者常穿的高领毛衣，下接一条短裙。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "secskirt"
 
 /obj/item/clothing/under/rank/security/peacekeeper/miniskirt
-	name = "security miniskirt"
-	desc = "This miniskirt was originally featured in a gag calendar, but entered official use once they realized its potential for arid climates."
+	name = "安保迷你裙"
+	desc = "这条迷你裙最初登上过一本恶搞日历，但当他们意识到它很适合干旱气候后，便被正式采用了。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "miniskirt_red"

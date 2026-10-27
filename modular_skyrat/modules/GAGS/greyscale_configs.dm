@@ -4,156 +4,156 @@
 
 // BERETS
 /datum/greyscale_config/beret
-	name = "Beret"
+	name = "贝雷帽"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/beret.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/beret/beret.json'
 
 /datum/greyscale_config/beret/worn
-	name = "Beret (Worn)"
+	name = "贝雷帽（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/beret/beret_worn.json'
 
 /datum/greyscale_config/beret/worn/vox
-	name = "Beret (Worn, Vox)"
+	name = "贝雷帽（穿戴，沃克斯）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/beret_vox.dmi'
 
 /datum/greyscale_config/beret/worn/teshari
-	name = "Beret (Worn, Teshari)"
+	name = "贝雷帽（穿戴，特沙利）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/beret_teshari.dmi'
 
 /datum/greyscale_config/beret_badge
-	name = "Badged Beret"
+	name = "带徽章贝雷帽"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/beret.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/beret/beret_badge.json'
 
 /datum/greyscale_config/beret_badge/worn
-	name = "Badged Beret (Worn)"
+	name = "带徽章贝雷帽（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/beret/beret_badge_worn.json'
 
 /datum/greyscale_config/beret_badge/worn/vox
-	name = "Badged Beret (Worn, Vox)"
+	name = "带徽章贝雷帽（穿戴，沃克斯）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/beret_vox.dmi'
 
 /datum/greyscale_config/beret_badge/worn/teshari
-	name = "Badged Beret (Worn, Teshari)"
+	name = "带徽章贝雷帽（穿戴，特沙利）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/beret_teshari.dmi'
 
 /datum/greyscale_config/beret_badge_fancy
-	name = "Beret With Fancy Badge"
+	name = "华丽徽章贝雷帽"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/beret.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/beret/beret_badge_fancy.json'
 
 /datum/greyscale_config/beret_badge_fancy/worn
-	name = "Beret With Fancy Badge (Worn)"
+	name = "华丽徽章贝雷帽（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/beret/beret_badge_fancy_worn.json'
 
 /datum/greyscale_config/beret_badge_fancy/worn/vox
-	name = "Beret With Fancy Badge (Worn, Vox)"
+	name = "华丽徽章贝雷帽（穿戴，沃克斯）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/beret_vox.dmi'
 
 /datum/greyscale_config/beret_badge_fancy/worn/teshari
-	name = "Beret With Fancy Badge (Worn, Teshari)"
+	name = "华丽徽章贝雷帽（穿戴，特沙利）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/beret_teshari.dmi'
 
 
 //COWBOY
 /datum/greyscale_config/cowboy_wide
-	name = "Wide Brimmed Hat"
+	name = "宽檐帽"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/head/cowboy.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/head/cowboy/two_layer_hats.json'
 
 /datum/greyscale_config/cowboy_wide/worn
-	name = "Wide Brimmed Hat (Worn)"
+	name = "宽檐帽（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/head/cowboy.dmi'
 
 /datum/greyscale_config/cowboy_wide_feathered
-	name = "Wide Brimmed Feathered Hat"
+	name = "带羽毛宽檐帽"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/head/cowboy.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/head/cowboy/three_layer_hats.json'
 
 /datum/greyscale_config/cowboy_wide_feathered/worn
-	name = "Wide Brimmed Feathered Hat (Worn)"
+	name = "带羽毛宽檐帽（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/head/cowboy.dmi'
 
 /datum/greyscale_config/cowboy_flat
-	name = "Flat Brimmed Hat"
+	name = "平檐帽"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/head/cowboy.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/head/cowboy/two_layer_hats.json'
 
 /datum/greyscale_config/cowboy_flat/worn
-	name = "Flat Brimmed Hat (Worn)"
+	name = "平檐帽（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/head/cowboy.dmi'
 
 /datum/greyscale_config/cowboy_flat_cowl
-	name = "Flat Brimmed Hat with Cowl"
+	name = "带兜帽的平檐帽"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/head/cowboy.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/head/cowboy/three_layer_hats.json'
 
 /datum/greyscale_config/cowboy_flat_cowl/worn
-	name = "Flat Brimmed Hat with Cowl (Worn)"
+	name = "带兜帽的平檐帽（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/head/cowboy.dmi'
 
 /datum/greyscale_config/cowboy_cattleman
-	name = "Cattleman Hat"
+	name = "牛仔帽"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/head/cowboy.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/head/cowboy/two_layer_hats.json'
 
 /datum/greyscale_config/cowboy_cattleman/worn
-	name = "Cattleman Hat (Worn)"
+	name = "牛仔帽（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/head/cowboy.dmi'
 
 /datum/greyscale_config/cowboy_cattleman_wide
-	name = "Wide Brimmed Cattleman Hat"
+	name = "宽檐牛仔帽"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/head/cowboy.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/head/cowboy/two_layer_hats.json'
 
 /datum/greyscale_config/cowboy_cattleman_wide/worn
-	name = "Wide Brimmed Cattleman Hat (Worn)"
+	name = "宽檐牛仔帽（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/head/cowboy.dmi'
 
 //MUSHROOM CAP
 
 /datum/greyscale_config/mushcap
-	name = "Mushroom Cap"
+	name = "蘑菇帽"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/mushcap.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/mush_cap/mushcap.json'
 
 /datum/greyscale_config/mushcap/worn
-	name = "Mushroom Cap Worn"
+	name = "蘑菇帽（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/mush_cap/mushcap_worn.json'
 
 // FLATCAP
 
 /datum/greyscale_config/flatcap
-	name = "Flat Cap"
+	name = "鸭舌帽"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/hats.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/flatcap/flatcap.json'
 
 /datum/greyscale_config/flatcap/worn
-	name = "Flat Cap (Worn)"
+	name = "鸭舌帽（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/hats.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/flatcap/flatcap_worn.json'
 
 // FLOWER PIN
 
 /datum/greyscale_config/flowerpin
-	name = "Flower Pin"
+	name = "花朵别针"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/hats.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/flowerpin/flowerpin.json'
 
 /datum/greyscale_config/flowerpin/worn
-	name = "Flower Pin (Worn)"
+	name = "花朵别针（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/hats.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/flowerpin/flowerpin_worn.json'
 
 // Hood
 
 /datum/greyscale_config/standalone_hood
-	name = "Hood"
+	name = "兜帽"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/head/head.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/head/hood/hood.json'
 
 /datum/greyscale_config/standalone_hood/worn
-	name = "Hood (Worn)"
+	name = "兜帽（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/head/hood/hood_worn.json'
 
 /datum/greyscale_config/standalone_hood/worn/teshari
@@ -168,60 +168,60 @@
 // CATEAR HEADPHONES
 
 /datum/greyscale_config/catear_headphone
-	name = "Cat-ear Headphones"
+	name = "猫耳耳机"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/head/catear_headphone.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/head/catear_headphone/catear_headphone.json'
 
 /datum/greyscale_config/catear_headphone/worn
-	name = "Cat-ear Headphones (Worn)"
+	name = "猫耳耳机（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/head/catear_headphone.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/head/catear_headphone/catear_headphone_worn.json'
 
 /datum/greyscale_config/catear_headphone_inhand_left
-	name = "Cat-ear Headphones (Inhand Left)"
+	name = "猫耳耳机（左手持握）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/head/catear_headphone_inhand.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/head/catear_headphone/catear_headphone_worn_inhand_left.json'
 
 /datum/greyscale_config/catear_headphone_inhand_right
-	name = "Cat-ear Headphones (Inhand Right)"
+	name = "猫耳耳机（右手持握）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/head/catear_headphone_inhand.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/head/catear_headphone/catear_headphone_worn_inhand_right.json'
 
 //BOWS
 /datum/greyscale_config/large_bow
-	name = "Large Bow"
+	name = "大蝴蝶结"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/bow.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/head/large_bow.json'
 
 /datum/greyscale_config/large_bow/worn
-	name = "Large Bow (Worn)"
+	name = "大蝴蝶结（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/bow_worn.dmi'
 
 /datum/greyscale_config/back_bow
-	name = "Back Bow"
+	name = "背后蝴蝶结"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/bow.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/head/back_bow.json'
 
 /datum/greyscale_config/back_bow/worn
-	name = "Back Bow (Worn)"
+	name = "背后蝴蝶结（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/bow_worn.dmi'
 
 /datum/greyscale_config/sweet_bow
-	name = "Sweet Bow"
+	name = "甜美蝴蝶结"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/bow.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/head/sweet_bow.json'
 
 /datum/greyscale_config/sweet_bow/worn
-	name = "Sweet Bow (Worn)"
+	name = "甜美蝴蝶结（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/bow_worn.dmi'
 
 /datum/greyscale_config/small_bow
-	name = "Small Bow"
+	name = "小蝴蝶结"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/bow.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/head/small_bow.json'
 
 /datum/greyscale_config/small_bow/worn
-	name = "Small Bow (Worn)"
+	name = "小蝴蝶结（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/bow_worn.dmi'
 
 /*
@@ -230,95 +230,95 @@
 
 // CLOWN
 /datum/greyscale_config/clown_mask
-	name = "Colourable Clown Mask"
+	name = "可染色小丑面具"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/clown_mask.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/clown_mask/clown_mask.json'
 
 /datum/greyscale_config/clown_mask/worn
-	name = "Colourable Clown Mask (Worn)"
+	name = "可染色小丑面具（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/clown_mask/clown_mask_worn.json'
 
 // VAPE
 /datum/greyscale_config/vape/worn/muzzled
-	name = "Vape (Worn, Muzzled)"
+	name = "电子烟（穿戴，戴口套）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/mask.dmi'
 
 // RESPIRATOR
 /datum/greyscale_config/respirator
-	name = "Colourable Respirator"
+	name = "可染色呼吸面罩"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/masks.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/respirator/respirator.json'
 
 /datum/greyscale_config/respirator/worn
-	name = "Colourable Respirator (Worn)"
+	name = "可染色呼吸面罩（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/respirator/respirator_worn.json'
 
 /datum/greyscale_config/respirator/worn/snouted
-	name = "Colourable Respirator (Worn) (Snouted)"
+	name = "可染色呼吸面罩（穿戴）（吻部型）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/masks_snout.dmi'
 
 /datum/greyscale_config/respirator/worn/better_vox
-	name = "Colourable Respirator (Worn) (Vox Primalis)"
+	name = "可染色呼吸面罩（穿戴）（原始沃克斯）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/masks_vox_better.dmi'
 
 /datum/greyscale_config/respirator/worn/vox
-	name = "Colourable Respirator (Worn) (Vox)"
+	name = "可染色呼吸面罩（穿戴）（沃克斯）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/masks_vox.dmi'
 
 /datum/greyscale_config/respirator/worn/teshari
-	name = "Colourable Respirator (Worn) (Teshari)"
+	name = "可染色呼吸面罩（穿戴）（特沙利）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/masks_teshari.dmi'
 
 // STERILE
 /datum/greyscale_config/sterile_mask
-	name = "Colourable Sterile Mask"
+	name = "可染色无菌口罩"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/masks.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/sterile_mask/sterile.json'
 
 /datum/greyscale_config/sterile_mask/worn
-	name = "Colourable Sterile Mask (Worn)"
+	name = "可染色无菌口罩（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/sterile_mask/sterile_worn.json'
 
 /datum/greyscale_config/sterile_mask/worn/snouted
-	name = "Colourable Sterile Mask (Worn) (Snouted)"
+	name = "可染色无菌口罩（穿戴）（吻部型）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/masks_snout.dmi'
 
 /datum/greyscale_config/sterile_mask/worn/better_vox
-	name = "Colourable Sterile Mask (Worn) (Vox Primalis)"
+	name = "可染色无菌口罩（穿戴）（原始沃克斯）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/masks_vox_better.dmi'
 
 /datum/greyscale_config/sterile_mask/worn/vox
-	name = "Colourable Sterile Mask (Worn) (Vox)"
+	name = "可染色无菌口罩（穿戴）（沃克斯）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/masks_vox.dmi'
 
 /datum/greyscale_config/sterile_mask/worn/teshari
-	name = "Colourable Sterile Mask (Worn) (Teshari)"
+	name = "可染色无菌口罩（穿戴）（特沙利）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/masks_teshari.dmi'
 
 // MASQUERADE MASKS
 /datum/greyscale_config/masquerade_mask
-	name = "Masquerade Mask"
+	name = "化装舞会面具"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/mask/masquerade_mask.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/masquerade_mask/masquerade_mask.json'
 
 /datum/greyscale_config/masquerade_mask/worn
-	name = "Masquerade Mask (Worn)"
+	name = "化装舞会面具（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/mask/masquerade_mask_worn.dmi'
 
 /datum/greyscale_config/masquerade_mask/worn/snouted
-	name = "Masquerade Mask (Worn) (Snouted)"
+	name = "化装舞会面具（穿戴）（吻部型）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/mask/masquerade_mask_worn_snouted.dmi'
 
 /datum/greyscale_config/masquerade_mask/worn/teshari
-	name = "Masquerade Mask (Worn) (Teshari)"
+	name = "化装舞会面具（穿戴）（特沙利）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/mask/masquerade_mask_worn_teshari.dmi'
 
 /datum/greyscale_config/masquerade_mask/worn/better_vox
-	name = "Masquerade Mask (Worn) (Vox Primalis)"
+	name = "化装舞会面具（穿戴）（原始沃克斯）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/mask/masquerade_mask_worn_better_vox.dmi'
 
 /datum/greyscale_config/masquerade_mask/worn/vox
-	name = "Masquerade Mask (Worn) (Vox)"
+	name = "化装舞会面具（穿戴）（沃克斯）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/mask/masquerade_mask_worn_vox.dmi'
 
 /*
@@ -327,61 +327,61 @@
 
 // RANGER PONCHO
 /datum/greyscale_config/ranger_poncho
-	name = "Ranger Poncho"
+	name = "游侠披风"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/ranger_poncho.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/ranger_poncho/ranger_poncho.json'
 
 /datum/greyscale_config/ranger_poncho/worn
-	name = "Ranger Poncho Worn"
+	name = "游侠披风（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/ranger_poncho/ranger_poncho_worn.json'
 
 /datum/greyscale_config/ranger_poncho/worn/teshari
-	name = "Ranger Poncho (Worn, Teshari)"
+	name = "游侠披风（穿戴，特沙利）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/ranger_poncho_teshari.dmi'
 
 // CLOAKS
 /datum/greyscale_config/cloak
-	name = "Cloak"
+	name = "斗篷"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/cloak.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/cloak/cloak.json'
 
 /datum/greyscale_config/cloak/worn
-	name = "Cloak (Worn)"
+	name = "斗篷（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/cloak/cloak_worn.json'
 
 /datum/greyscale_config/cloak/veil
-	name = "Veil"
+	name = "面纱"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/cloak/veil.json'
 
 /datum/greyscale_config/cloak/veil/worn
-	name = "Veil (Worn)"
+	name = "面纱（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/cloak/veil_worn.json'
 
 /datum/greyscale_config/cloak/boat
-	name = "Boatcloak"
+	name = "船用斗篷"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/cloak/boat.json'
 
 /datum/greyscale_config/cloak/boat/worn
-	name = "Boatcloak (Worn)"
+	name = "船用斗篷（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/cloak/boat_worn.json'
 
 /datum/greyscale_config/cloak/shroud
-	name = "Shroud"
+	name = "覆纱"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/cloak/shroud.json'
 
 /datum/greyscale_config/cloak/shroud/worn
-	name = "Shroud (Worn)"
+	name = "覆纱（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/cloak/shroud_worn.json'
 
 // Mantle
 
 /datum/greyscale_config/mantle
-	name = "Mantle"
+	name = "披肩"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/neck/neck.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/neck/mantle/mantle.json'
 
 /datum/greyscale_config/mantle/worn
-	name = "Mantle (Worn)"
+	name = "披肩（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/neck/mantle/mantle_worn.json'
 
 /datum/greyscale_config/mantle/worn/teshari
@@ -396,137 +396,137 @@
 //CAPES
 
 /datum/greyscale_config/robe_cape
-	name = "Robe Cape"
+	name = "长袍披风"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/cape.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/cloak/robe_cape.json'
 
 /datum/greyscale_config/robe_cape/worn
-	name = "Robe Cape (Worn)"
+	name = "长袍披风（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/cape_worn.dmi'
 
 /datum/greyscale_config/long_cape
-	name = "Long Cape"
+	name = "长披风"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/cape.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/cloak/long_cape.json'
 
 /datum/greyscale_config/long_cape/worn
-	name = "Long Cape (Worn)"
+	name = "长披风（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/cape_worn.dmi'
 
 /datum/greyscale_config/wide_cape
-	name = "Wide Cape"
+	name = "宽披风"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/cape.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/cloak/wide_cape.json'
 
 /datum/greyscale_config/wide_cape/worn
-	name = "Wide Cape (Worn)"
+	name = "宽披风（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/cape_worn.dmi'
 
 // COLLARS
 
 /datum/greyscale_config/collar
-	name = "Collar"
+	name = "项圈"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/collar.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/bell.json'
 
 // Bell
 /datum/greyscale_config/collar/bell
-	name = "Bell Collar"
+	name = "铃铛项圈"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/bell.json'
 
 /datum/greyscale_config/collar/bell/worn
-	name = "Bell Collar (Worn)"
+	name = "铃铛项圈（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/bell_worn.json'
 
 // Choker
 /datum/greyscale_config/collar/choker
-	name = "Choker"
+	name = "颈环"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/choker.json'
 
 /datum/greyscale_config/collar/choker/worn
-	name = "Choker (Worn)"
+	name = "颈环（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/choker_worn.json'
 
 // Thin Choker
 /datum/greyscale_config/collar/thinchoker
-	name = "Thin Choker"
+	name = "细颈环"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/thinchoker.json'
 
 /datum/greyscale_config/collar/thinchoker/worn
-	name = "Thin Choker (Worn)"
+	name = "细颈环（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/thinchoker_worn.json'
 
 // Cow
 /datum/greyscale_config/collar/cow
-	name = "Cowbell Collar"
+	name = "牛铃项圈"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/cow.json'
 
 /datum/greyscale_config/collar/cow/worn
-	name = "Cowbell Collar (Worn)"
+	name = "牛铃项圈（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/cow_worn.json'
 
 // Cross
 /datum/greyscale_config/collar/cross
-	name = "Cross Collar"
+	name = "十字项圈"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/cross.json'
 
 /datum/greyscale_config/collar/cross/worn
-	name = "Cross Collar (Worn)"
+	name = "十字项圈（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/cross_worn.json'
 
 // Holo
 /datum/greyscale_config/collar/holo
-	name = "Holo Collar"
+	name = "全息项圈"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/holo.json'
 
 /datum/greyscale_config/collar/holo/worn
-	name = "Holo Collar (Worn)"
+	name = "全息项圈（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/holo_worn.json'
 
 // Leather
 /datum/greyscale_config/collar/leather
-	name = "Leather Collar"
+	name = "皮革项圈"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/leather.json'
 
 /datum/greyscale_config/collar/leather/worn
-	name = "Leather Collar (Worn)"
+	name = "皮革项圈（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/leather_worn.json'
 
 // Pet
 /datum/greyscale_config/collar/pet
-	name = "Pet Collar"
+	name = "宠物项圈"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/pet.json'
 
 /datum/greyscale_config/collar/pet/worn
-	name = "Pet Collar (Worn)"
+	name = "宠物项圈（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/pet_worn.json'
 
 // Spiked
 /datum/greyscale_config/collar/spike
-	name = "Spiked Collar"
+	name = "尖刺项圈"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/spike.json'
 
 /datum/greyscale_config/collar/spike/worn
-	name = "Spiked Collar (Worn)"
+	name = "尖刺项圈（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/spike_worn.json'
 
 //FACE SCARF
 /datum/greyscale_config/face_scarf
-	name = "Face Scarf"
+	name = "面巾"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/neck/face_scarf/face_scarf.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/neck/face_scarf.json'
 
 /datum/greyscale_config/face_scarf/worn
-	name = "Face Scarf (Worn)"
+	name = "面巾（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/neck/face_scarf/face_scarf_worn.dmi'
 
 /datum/greyscale_config/face_scarf/worn/muzzled
-	name = "Face Scarf (Worn, Muzzled)"
+	name = "面巾（穿戴，戴口套）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/neck/face_scarf/face_scarf_worn_muzzled.dmi'
 
 //REGULAR SCARF
 /datum/greyscale_config/scarf/worn/teshari
-	name = "Scarf (Worn, Teshari)"
+	name = "围巾（穿戴，特沙利）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/neck/neck_teshari.dmi'
 
 
@@ -537,12 +537,12 @@
 // Apron
 
 /datum/greyscale_config/apron
-	name = "Apron"
+	name = "围裙"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/suit.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/apron/apron.json'
 
 /datum/greyscale_config/apron/worn
-	name = "Apron (Worn)"
+	name = "围裙（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/apron/apron_worn.json'
 
 /datum/greyscale_config/apron/worn/teshari
@@ -557,18 +557,18 @@
 // Labcoat
 
 /datum/greyscale_config/labcoat/worn/teshari
-	name = "Labcoat (Worn, Teshari)"
+	name = "实验服（穿戴，特沙利）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/labcoat_teshari.dmi'
 
 //Flannel Shirt
 
 /datum/greyscale_config/flannelgags
-	name = "Flannel Shirt"
+	name = "法兰绒衬衫"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/suit.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/flannel/flannel.json'
 
 /datum/greyscale_config/flannelgags/worn
-	name = "Flannel Shirt (Worn)"
+	name = "法兰绒衬衫（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/suit.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/flannel/flannel_worn.json'
 
@@ -589,12 +589,12 @@
 // Bathrobes
 
 /datum/greyscale_config/bathrobe
-	name = "Bathrobe"
+	name = "浴袍"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/suit.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/bathrobe/bathrobe.json'
 
 /datum/greyscale_config/bathrobe/worn
-	name = "Bathrobe (Worn)"
+	name = "浴袍（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/bathrobe/bathrobe_worn.json'
 
 /datum/greyscale_config/bathrobe/worn/teshari
@@ -608,143 +608,143 @@
 
 // FANCY SUITS
 /datum/greyscale_config/fancy_suit
-	name = "Fancy Suit"
+	name = "华丽西装"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/fancy_suits.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/fancy_suits/fancy_suit.json'
 
 /datum/greyscale_config/fancy_suit/worn
-	name = "Fancy Suit (Worn)"
+	name = "华丽西装（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/fancy_suits/fancy_suit_worn.json'
 
 /datum/greyscale_config/recolorable_suit
-	name = "Formal Suit"
+	name = "正式西装"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/suits.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/fancy_suits/recolorable_suit.json'
 
 /datum/greyscale_config/recolorable_suit/worn
-	name = "Formal Suit (Worn)"
+	name = "正式西装（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/suits.dmi'
 
 /datum/greyscale_config/recolorable_suit/worn/digi
-	name = "Formal Suit (Worn, Digi)"
+	name = "正式西装（穿戴，趾行）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/suits_digi.dmi'
 
 /datum/greyscale_config/recolorable_suitskirt
-	name = "Formal Suitskirt"
+	name = "正式西装裙"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/suits.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/fancy_suits/recolorable_suit.json'
 
 /datum/greyscale_config/recolorable_suitskirt/worn
-	name = "Formal Suitskirt (Worn)"
+	name = "正式西装裙（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/suits.dmi'
 
 /datum/greyscale_config/recolorable_suitskirt/worn/digi
-	name = "Formal Suitskirt (Worn, Digi)"
+	name = "正式西装裙（穿戴，趾行）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/suits_digi.dmi'
 
 // HOODIES
 /datum/greyscale_config/hoodie
-	name = "Hoodie"
+	name = "连帽衫"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/hoodie.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/hoodie/hoodie.json'
 
 /datum/greyscale_config/hoodie/worn
-	name = "Hoodie Worn"
+	name = "连帽衫（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/hoodie/hoodie_worn.json'
 
 /datum/greyscale_config/hoodie_trim
-	name = "Trimmed Hoodie"
+	name = "镶边连帽衫"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/hoodie.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/hoodie/hoodie_trim.json'
 
 /datum/greyscale_config/hoodie_trim/worn
-	name = "Trimmed Hoodie Worn"
+	name = "镶边连帽衫（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/hoodie/hoodie_trim_worn.json'
 
 /datum/greyscale_config/hoodie_branded
-	name = "Branded Hoodie"
+	name = "品牌连帽衫"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/hoodie.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/hoodie/hoodie_branded.json'
 
 /datum/greyscale_config/hoodie_branded/worn
-	name = "Branded Hoodie Worn"
+	name = "品牌连帽衫（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/hoodie/hoodie_branded_worn.json'
 
 
 //Doppler Hoodies.
 /datum/greyscale_config/big_hoodie
-	name = "Big Hoodie"
+	name = "宽大连帽衫"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/dopplerhoodieobj.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/hoodies/big_hoodie.json'
 
 /datum/greyscale_config/big_hoodie/worn
-	name = "Big Hoodie (Worn)"
+	name = "宽大连帽衫（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/dopplerhoodie.dmi'
 
 /datum/greyscale_config/big_hoodie_hood
-	name = "Big Hoodie Hood"
+	name = "宽大连帽衫兜帽"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/dopplerhoodie.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/hoodies/big_hoodie_hood.json'
 
 /datum/greyscale_config/big_hoodie_hood/worn
-	name = "Big Hoodie Hood (Worn)"
+	name = "宽大连帽衫兜帽（穿戴）"
 
 /datum/greyscale_config/twee_hoodie
-	name = "Twee Hoodie"
+	name = "别致连帽衫"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/dopplerhoodieobj.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/hoodies/twee_hoodie.json'
 
 /datum/greyscale_config/twee_hoodie/worn
-	name = "Twee Hoodie (Worn)"
+	name = "别致连帽衫（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/dopplerhoodie.dmi'
 
 /datum/greyscale_config/twee_hoodie_hood
-	name = "Twee Hoodie Hood"
+	name = "别致连帽衫兜帽"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/dopplerhoodie.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/hoodies/twee_hoodie_hood.json'
 
 /datum/greyscale_config/twee_hoodie_hood/worn
-	name = "Twee Hoodie Hood (Worn)"
+	name = "别致连帽衫兜帽（穿戴）"
 
 
 // CARDIGAN
 
 /datum/greyscale_config/cardigan
-	name = "Cardigan"
+	name = "开衫"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/suit.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/cardigan/cardigan.json'
 
 /datum/greyscale_config/cardigan/worn
-	name = "Cardigan (Worn)"
+	name = "开衫（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/cardigan/cardigan_worn.json'
 
 // SWEATERS
 
 /datum/greyscale_config/cableknit_sweater
-	name = "Cableknit Sweater"
+	name = "绞花针织毛衣"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/sweaters.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/sweater/sweater.json'
 
 /datum/greyscale_config/cableknit_sweater/worn
-	name = "Cableknit Sweater (Worn)"
+	name = "绞花针织毛衣（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/sweater/sweater_worn.json'
 
 /datum/greyscale_config/warm_sweater
-	name = "Warm Sweater"
+	name = "保暖毛衣"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/warm_sweater.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/sweater/warm_sweater.json'
 
 /datum/greyscale_config/warm_sweater/worn
-	name = "Warm Sweater (Worn)"
+	name = "保暖毛衣（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/warm_sweater_worn.dmi'
 
 /datum/greyscale_config/heart_sweater
-	name = "Heart Sweater"
+	name = "心形毛衣"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/warm_sweater.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/sweater/heart_sweater.json'
 
 /datum/greyscale_config/heart_sweater/worn
-	name = "Heart Sweater (Worn)"
+	name = "心形毛衣（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/warm_sweater_worn.dmi'
 
 //Keyhole uses the same configs!
@@ -752,132 +752,132 @@
 // OVERALLS
 
 /datum/greyscale_config/overalls/worn/digi
-	name = "Overalls (Worn, Digi)"
+	name = "工装背带裤（穿戴，趾行）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/suit_digi.dmi'
 
 /datum/greyscale_config/overalls/worn/vox
-	name = "Overalls (Worn, Vox)"
+	name = "工装背带裤（穿戴，沃克斯）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/species/vox/suit.dmi'
 
 /datum/greyscale_config/overalls/worn/better_vox
-	name = "Overalls (Worn, Better Vox)"
+	name = "工装背带裤（穿戴，改进沃克斯）"
 	icon_file = 'modular_skyrat/modules/better_vox/icons/clothing/suit.dmi'
 
 // URBAN COAT
 
 /datum/greyscale_config/urban_coat
-	name = "Urban Coat"
+	name = "都市大衣"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/urban_coat.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/urban_coat/urban_coat.json'
 
 /datum/greyscale_config/urban_coat/worn
-	name = "Urban Coat (Worn)"
+	name = "都市大衣（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/urban_coat/urban_coat_worn.json'
 
 // WINTER COAT
 
 /datum/greyscale_config/winter_coat
-	name = "Winter Coat"
+	name = "冬季外套"
 	icon_file = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/winter_coat/winter_coat.json'
 
 /datum/greyscale_config/winter_coat_worn
-	name = "Winter Coat (Worn)"
+	name = "冬季外套（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/winter_coat/winter_coat_worn.json'
 
 /datum/greyscale_config/winter_hood
-	name = "Winter Coat Hood"
+	name = "冬季外套兜帽"
 	icon_file = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/winter_coat/winter_hood.json'
 
 /datum/greyscale_config/winter_hood/worn
-	name = "Winter Coat Hood (Worn)"
+	name = "冬季外套兜帽（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 
 /datum/greyscale_config/warm_coat
-	name = "Warm Coat"
+	name = "保暖大衣"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/warm_coat.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/winter_coat/warm_coat.json'
 
 /datum/greyscale_config/warm_coat/worn
-	name = "Warm Coat (Worn)"
+	name = "保暖大衣（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/warm_coat_worn.dmi'
 
 // LEATHER JACKET
 
 /datum/greyscale_config/leather_jacket
-	name = "Leather Jacket"
+	name = "皮夹克"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/leather_jacket.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/leather_jacket/leather_jacket.json'
 
 /datum/greyscale_config/leather_jacket/worn
-	name = "Leather Jacket (Worn)"
+	name = "皮夹克（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/leather_jacket/leather_jacket_worn.json'
 
 // DUSTER
 
 /datum/greyscale_config/duster
-	name = "Duster"
+	name = "防尘大衣"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/duster.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/duster/duster.json'
 
 /datum/greyscale_config/duster/worn
-	name = "Duster (Worn)"
+	name = "防尘大衣（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/duster/duster_worn.json'
 
 // PEACOAT
 
 /datum/greyscale_config/peacoat
-	name = "Peacoat"
+	name = "海军呢大衣"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/peacoat.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/peacoat/peacoat.json'
 
 /datum/greyscale_config/peacoat/worn
-	name = "Peacoat (Worn)"
+	name = "海军呢大衣（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/peacoat/peacoat_worn.json'
 
 
 // VARSITY JACKET
 
 /datum/greyscale_config/varsity
-	name = "Varsity Jacket"
+	name = "学院夹克"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/suit.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/varsity/varsity.json'
 
 /datum/greyscale_config/varsity/worn
-	name = "Varsity Jacket (Worn)"
+	name = "学院夹克（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/varsity/varsity_worn.json'
 
 //CROPTOP SWEATER
 
 /datum/greyscale_config/croptop
-	name = "Croptop Sweater"
+	name = "短款毛衣"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/croptop/croptop.json'
 
 /datum/greyscale_config/croptop/worn
-	name = "Croptop Sweater (Worn)"
+	name = "短款毛衣（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/croptop/croptop_worn.json'
 
 // TAILORED JACKET
 
 /datum/greyscale_config/tailored_jacket
-	name = "Tailored Jacket"
+	name = "定制夹克"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/suit.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/tailored_jacket/tailored_jacket.json'
 
 /datum/greyscale_config/tailored_jacket/worn
-	name = "Tailored Jacket (Worn)"
+	name = "定制夹克（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/tailored_jacket/tailored_jacket_worn.json'
 
 /datum/greyscale_config/tailored_short_jacket
-	name = "Tailored Short Jacket"
+	name = "定制短夹克"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/suit.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/tailored_short_jacket/tailored_short_jacket.json'
 
 /datum/greyscale_config/tailored_short_jacket/worn
-	name = "Tailored Short Jacket (Worn)"
+	name = "定制短夹克（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/tailored_short_jacket/tailored_short_jacket_worn.json'
 
 
@@ -889,43 +889,43 @@
 // JUMPSUITS
 
 /datum/greyscale_config/jumpsuit/worn/digi
-	name = "Jumpsuit (Worn, Digi)"
+	name = "连体服（穿戴，趾行）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/color_digi.dmi'
 
 /datum/greyscale_config/jumpsuit/prison/worn/digi
-	name = "Prison Jumpsuit (Worn, Digi)"
+	name = "囚犯连体服（穿戴，趾行）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/color_digi.dmi'
 
 /datum/greyscale_config/jumpsuit/worn/vox
-	name = "Jumpsuit (Worn, Vox)"
+	name = "连体服（穿戴，沃克斯）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/jumpsuit_vox.dmi'
 
 /datum/greyscale_config/jumpsuit/prison/worn/vox
-	name = "Prison Jumpsuit (Worn, Vox)"
+	name = "囚犯连体服（穿戴，沃克斯）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/jumpsuit_vox.dmi'
 
 /datum/greyscale_config/jumpsuit/worn/better_vox
-	name = "Jumpsuit (Worn, Better Vox)"
+	name = "连体服（穿戴，改进沃克斯）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/jumpsuit_better_vox.dmi'
 
 /datum/greyscale_config/jumpsuit/prison/worn/better_vox
-	name = "Prison Jumpsuit (Worn, Better Vox)"
+	name = "囚犯连体服（穿戴，改进沃克斯）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/jumpsuit_better_vox.dmi'
 
 /datum/greyscale_config/jumpsuit/worn/taur_snake
-	name = "Jumpsuit (Worn) - Naga"
+	name = "连体服（穿戴）- 娜迦"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/jumpsuit_snake.dmi'
 
 /datum/greyscale_config/jumpsuit/prison/worn/taur_snake
-	name = "Prison Jumpsuit (Worn) - Naga"
+	name = "囚犯连体服（穿戴）- 娜迦"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/jumpsuit_snake.dmi'
 
 /datum/greyscale_config/jumpsuit/worn/teshari
-	name = "Jumpsuit (Worn, Teshari)"
+	name = "连体服（穿戴，特沙利）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/jumpsuit_teshari.dmi'
 
 /datum/greyscale_config/jumpsuit/prison/worn/teshari
-	name = "Prison Jumpsuit (Worn, Teshari)"
+	name = "囚犯连体服（穿戴，特沙利）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/jumpsuit_teshari.dmi'
 
 // PANTS / SHORTS
@@ -933,303 +933,303 @@
 //The rest will eventually join them - preferably with a cleaner method too instead of having to have unique configs for every single item's digi state.
 
 /datum/greyscale_config/slacks/worn/digi
-	name = "Slacks (Worn, Digi)"
+	name = "长裤（穿戴，趾行）"
 	icon_file = SHORTS_PANTS_SHIRTS_DIGIFILE
 
 /datum/greyscale_config/jeans/worn/digi
-	name = "Jeans (Worn, Digi)"
+	name = "牛仔裤（穿戴，趾行）"
 	icon_file = SHORTS_PANTS_SHIRTS_DIGIFILE
 
 /datum/greyscale_config/shorts/worn/digi
-	name = "Shorts (Worn, Digi)"
+	name = "短裤（穿戴，趾行）"
 	icon_file = SHORTS_PANTS_SHIRTS_DIGIFILE
 
 /datum/greyscale_config/jeanshorts/worn/digi
-	name = "Jean Shorts (Worn, Digi)"
+	name = "牛仔短裤（穿戴，趾行）"
 	icon_file = SHORTS_PANTS_SHIRTS_DIGIFILE
 
 /datum/greyscale_config/shortershorts
-	name = "Shorter Shorts"
+	name = "更短的短裤"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/shorts_pants.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/pants_shorts_skirts_dresses/shortershorts.json'
 
 /datum/greyscale_config/shortershorts/worn
-	name = "Shorter Shorts (Worn)"
+	name = "更短的短裤（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/shorts_pants.dmi'
 
 /datum/greyscale_config/shortershorts/worn/digi
-	name = "Ripped Shorts (Worn, Digi)"
+	name = "破洞短裤（穿戴，趾行）"
 	icon_file = SHORTS_PANTS_SHIRTS_DIGIFILE
 
 /datum/greyscale_config/shorts_ripped
-	name = "Ripped Shorts"
+	name = "破洞短裤"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/pants_shorts_skirts_dresses/shorts_ripped.json'
 
 /datum/greyscale_config/shorts_ripped/worn //TG will hopefully start having worn as a subtype, it means only needing 1 .json
-	name = "Ripped Shorts (Worn)"
+	name = "破洞短裤（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts.dmi'
 
 /datum/greyscale_config/shorts_ripped/worn/digi
-	name = "Ripped Shorts (Worn, Digi)"
+	name = "破洞短裤（穿戴，趾行）"
 	icon_file = SHORTS_PANTS_SHIRTS_DIGIFILE
 
 /datum/greyscale_config/shorts_ripped/worn/teshari
-	name = "Ripped Shorts (Worn, Teshari)"
+	name = "破洞短裤（穿戴，特沙利）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/teshari_uniform.dmi'
 
 /datum/greyscale_config/jeans_ripped
-	name = "Ripped Jeans"
+	name = "破洞牛仔裤"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/pants_shorts_skirts_dresses/jeans_ripped.json'
 
 /datum/greyscale_config/jeans_ripped/worn
-	name = "Ripped Jeans (Worn)"
+	name = "破洞牛仔裤（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts.dmi'
 
 /datum/greyscale_config/jeans_ripped/worn/digi
-	name = "Ripped Jeans (Worn, Digi)"
+	name = "破洞牛仔裤（穿戴，趾行）"
 	icon_file = SHORTS_PANTS_SHIRTS_DIGIFILE
 
 /datum/greyscale_config/yoga_pants
-	name = "Yoga Pants"
+	name = "瑜伽裤"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/pants_shorts_skirts_dresses/yoga_pants.json'
 
 /datum/greyscale_config/yoga_pants/worn
-	name = "Yoga Pants (Worn)"
+	name = "瑜伽裤（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts.dmi'
 
 /datum/greyscale_config/yoga_pants/worn/digi
-	name = "Yoga Pants (Worn, Digi)"
+	name = "瑜伽裤（穿戴，趾行）"
 	icon_file = SHORTS_PANTS_SHIRTS_DIGIFILE
 
 // DRESSES / SKIRTS
 
 /datum/greyscale_config/plaidskirt/worn/digi
-	name = "Plaid Skirt (Worn, Digi)"
+	name = "格纹短裙（穿戴，趾行）"
 	icon_file = SKIRTS_DRESSES_DIGIFILE
 
 /datum/greyscale_config/lone_skirt
-	name = "Skirt"
+	name = "短裙"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/skirts_dresses.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/pants_shorts_skirts_dresses/lone_skirt.json'
 
 /datum/greyscale_config/lone_skirt/worn
-	name = "Skirt (Worn)"
+	name = "短裙（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
 
 /datum/greyscale_config/turtleskirt_knit
-	name = "Cableknit Skirtleneck"
+	name = "绞花针织高领裙"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/skirts_dresses.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/pants_shorts_skirts_dresses/turtleskirt_knit.json'
 
 /datum/greyscale_config/turtleskirt_knit/worn
-	name = "Cableknit Skirtleneck (Worn)"
+	name = "绞花针织高领裙（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
 
 /datum/greyscale_config/jean_skirt
-	name = "Jean Skirt"
+	name = "牛仔短裙"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/skirts_dresses.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/pants_shorts_skirts_dresses/jean_skirt.json'
 
 /datum/greyscale_config/jean_skirt/worn
-	name = "Jean Skirt (Worn)"
+	name = "牛仔短裙（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
 
 /datum/greyscale_config/jean_skirt/worn/digi
-	name = "Jean Skirt (Worn, Digi)"
+	name = "牛仔短裙（穿戴，趾行）"
 	icon_file = SKIRTS_DRESSES_DIGIFILE
 
 /datum/greyscale_config/short_dress
-	name = "Short Dress"
+	name = "短连衣裙"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/skirts_dresses.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/pants_shorts_skirts_dresses/short_dress.json'
 
 /datum/greyscale_config/short_dress/worn
-	name = "Short Dress (Worn)"
+	name = "短连衣裙（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
 
 /datum/greyscale_config/short_dress/worn/digi
-	name = "Short Dress (Worn, Digi)"
+	name = "短连衣裙（穿戴，趾行）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses_digi.dmi'
 
 /datum/greyscale_config/short_dress/worn/teshari
-	name = "Short Dress (Worn, Teshari)"
+	name = "短连衣裙（穿戴，特沙利）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses_teshari.dmi'
 
 /datum/greyscale_config/strapless_dress
-	name = "Strapless Dress"
+	name = "无肩带连衣裙"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/skirts_dresses.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/pants_shorts_skirts_dresses/strapless_dress.json'
 
 /datum/greyscale_config/strapless_dress/worn
-	name = "Strapless Dress (Worn)"
+	name = "无肩带连衣裙（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
 
 /datum/greyscale_config/pentagram_dress
-	name = "Pentagram Strapped Dress"
+	name = "五芒星系带连衣裙"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/skirts_dresses.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/pants_shorts_skirts_dresses/pentagram_dress.json'
 
 /datum/greyscale_config/pentagram_dress/worn
-	name = "Pentagram Strapped Dress (Worn)"
+	name = "五芒星系带连衣裙（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
 
 /datum/greyscale_config/plaidskirt/worn/teshari
-	name = "Plaid Skirt (Worn, Teshari)"
+	name = "格纹短裙（穿戴，特沙利）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/dressteshari.dmi'
 
 /datum/greyscale_config/sundress/worn/teshari
-	name = "Sundress (Worn, Teshari)"
+	name = "太阳裙（穿戴，特沙利）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/dressteshari.dmi'
 
 /datum/greyscale_config/medium_skirt
-	name = "Medium Skirt"
+	name = "中长裙"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/skirts_dresses.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/pants_shorts_skirts_dresses/medium_skirt.json'
 
 /datum/greyscale_config/medium_skirt/worn
-	name = "Medium Skirt (Worn)"
+	name = "中长裙（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
 
 /datum/greyscale_config/long_skirt
-	name = "Long Skirt"
+	name = "长裙"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/skirts_dresses.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/pants_shorts_skirts_dresses/long_skirt.json'
 
 /datum/greyscale_config/long_skirt/worn
-	name = "Long Skirt (Worn)"
+	name = "长裙（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
 
 // KILT
 // COSTUMES
 
 /datum/greyscale_config/buttondown_slacks/worn/digi
-	name = "Buttondown with Slacks (Worn, Digi)"
+	name = "纽扣衬衫配长裤（穿戴，趾行）"
 	icon_file = SHORTS_PANTS_SHIRTS_DIGIFILE
 
 /datum/greyscale_config/buttondown_shorts/worn/digi
-	name = "Buttondown with Shorts (Worn, Digi)"
+	name = "纽扣衬衫配短裤（穿戴，趾行）"
 	icon_file = SHORTS_PANTS_SHIRTS_DIGIFILE
 
 /datum/greyscale_config/football_suit/worn/digi
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/costume_digi.dmi'
 
 /datum/greyscale_config/qipao
-	name = "Qipao"
+	name = "旗袍"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/costume.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/costumes/lunar_japanese.json'
 
 /datum/greyscale_config/qipao/worn
-	name = "Qipao (Worn)"
+	name = "旗袍（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/costume.dmi'
 
 /datum/greyscale_config/qipao/worn/digi
-	name = "Qipao (Worn, Digi)"
+	name = "旗袍（穿戴，趾行）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/costume_digi.dmi'
 
 /datum/greyscale_config/cheongsam
-	name = "Cheongsam"
+	name = "长衫"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/costume.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/costumes/lunar_japanese.json'
 
 /datum/greyscale_config/cheongsam/worn
-	name = "Cheongsam (Worn)"
+	name = "长衫（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/costume.dmi'
 
 /datum/greyscale_config/cheongsam/worn/digi
-	name = "Cheongsam (Worn, Digi)"
+	name = "长衫（穿戴，趾行）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/costume_digi.dmi'
 
 /datum/greyscale_config/yukata
-	name = "Yukata"
+	name = "浴衣"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/costume.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/costumes/lunar_japanese.json'
 
 /datum/greyscale_config/yukata/worn
-	name = "Yukata (Worn)"
+	name = "浴衣（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/costume.dmi'
 
 /datum/greyscale_config/yukata/worn/digi
-	name = "Yukata (Worn, Digi)"
+	name = "浴衣（穿戴，趾行）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/costume_digi.dmi'
 
 /datum/greyscale_config/kilt
-	name = "Kilt"
+	name = "苏格兰短裙"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/kilt/kilt.json'
 
 /datum/greyscale_config/kilt/worn
-	name = "Kilt (Worn)"
+	name = "苏格兰短裙（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts.dmi'
 
 /datum/greyscale_config/kilt/worn/digi
-	name = "Kilt (Worn, Digi)"
+	name = "苏格兰短裙（穿戴，趾行）"
 	icon_file = SHORTS_PANTS_SHIRTS_DIGIFILE
 
 /datum/greyscale_config/buttondown_vicvest
-	name = "Buttondown with Double-breasted Vest"
+	name = "纽扣衬衫配双排扣马甲"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/costumes/buttondown_vicvest.json'
 
 /datum/greyscale_config/buttondown_vicvest/worn
-	name = "Buttondown with Double-breasted Vest (Worn)"
+	name = "纽扣衬衫配双排扣马甲（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts.dmi'
 
 /datum/greyscale_config/buttondown_vicvest/worn/digi
-	name = "Buttondown with Double-breasted Vest (Worn, Digi)"
+	name = "纽扣衬衫配双排扣马甲（穿戴，趾行）"
 	icon_file = SHORTS_PANTS_SHIRTS_DIGIFILE
 
 /datum/greyscale_config/chrimbo
-	name = "christmas_male"
+	name = "圣诞男装"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/costume.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/costumes/chrimbo.json'
 
 /datum/greyscale_config/chrimbo/worn
-	name = "christmas_male (Worn)"
+	name = "圣诞男装（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/costume.dmi'
 
 /datum/greyscale_config/chrimbo/worn/digi
-	name = "christmas_male (Worn, Digi)"
+	name = "圣诞男装（穿戴，趾行）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/costume_digi.dmi'
 
 //GRAYSCALE MAID COSTUME
 
 /datum/greyscale_config/bubber_maid_neck_cover
-	name = "Maid Neck Cover"
+	name = "女仆颈饰"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/maid_costume.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/costumes/maid_neck_cover.json'
 
 /datum/greyscale_config/bubber_maid_neck_cover/worn
-	name = "Maid Neck Cover (Worn)"
+	name = "女仆颈饰（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/maid_costume_worn.dmi'
 
 /datum/greyscale_config/bubber_maid_arm_covers
-	name = "Maid Arm Covers"
+	name = "女仆臂套"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/maid_costume.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/costumes/maid_arm_covers.json'
 
 /datum/greyscale_config/bubber_maid_arm_covers/worn
-	name = "Maid Arm Covers (Worn)"
+	name = "女仆臂套（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/maid_costume_worn.dmi'
 
 /datum/greyscale_config/bubber_maid_costume
-	name = "Maid Costume"
+	name = "女仆制服"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/maid_costume.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/costumes/maid_costume.json'
 
 /datum/greyscale_config/bubber_maid_costume/worn
-	name = "Maid Costume (Worn)"
+	name = "女仆制服（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/maid_costume_worn.dmi'
 
 /datum/greyscale_config/bubber_maid_headband
-	name = "Maid Headband"
+	name = "女仆头饰"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/maid_costume.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/costumes/maid_headband.json'
 
 /datum/greyscale_config/bubber_maid_headband/worn
-	name = "Maid Headband (Worn)"
+	name = "女仆头饰（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/maid_costume_worn.dmi'
 
 /*
@@ -1237,7 +1237,7 @@ TREK
 */
 
 /datum/greyscale_config/trek/worn/digi
-	name = "Trek Uniform (Worn, Digi)"
+	name = "星际迷航制服（穿戴，趾行）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/trek_digi.dmi'
 
 /*
@@ -1247,38 +1247,38 @@ TREK
 // SNEAKERS
 
 /datum/greyscale_config/sneakers/worn/digi
-	name = "Sneakers (Worn, Digi)"
+	name = "运动鞋（穿戴，趾行）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/sneakers_digi.dmi'
 
 /datum/greyscale_config/sneakers_orange/worn/digi
-	name = "Orange Sneakers (Worn, Digi)"
+	name = "橙色运动鞋（穿戴，趾行）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/sneakers_digi.dmi'
 
 /datum/greyscale_config/sneakers/worn/vox
-	name = "Sneakers (Worn, Vox)"
+	name = "运动鞋（穿戴，沃克斯）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/sneakers_vox.dmi'
 
 /datum/greyscale_config/sneakers_orange/worn/vox
-	name = "Orange Sneakers (Worn, Vox)"
+	name = "橙色运动鞋（穿戴，沃克斯）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/sneakers_vox.dmi'
 
 /datum/greyscale_config/sneakers/worn/teshari
-	name = "Sneakers (Worn, Teshari)"
+	name = "运动鞋（穿戴，特沙利）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/sneakers_teshari.dmi'
 
 /datum/greyscale_config/sneakers_orange/worn/teshari
-	name = "Orange Sneakers (Worn, Teshari)"
+	name = "橙色运动鞋（穿戴，特沙利）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/sneakers_teshari.dmi'
 
 // Boots
 
 /datum/greyscale_config/boots
-	name = "Colorable Boots"
+	name = "可染色靴子"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/shoes/shoes.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/shoes/boots/boots.json'
 
 /datum/greyscale_config/boots/worn
-	name = "Colorable Boots (Worn)"
+	name = "可染色靴子（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/shoes/boots/boots_worn.json'
 
 /datum/greyscale_config/boots/worn/digi
@@ -1294,31 +1294,31 @@ TREK
 	icon_file = 'modular_skyrat/modules/GAGS/icons/shoes/shoes_oldvox.dmi'
 
 /datum/greyscale_config/boots/christmasboots
-	name = "christmas_boots"
+	name = "圣诞靴子"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/shoes/boots/christmas_boots.json'
 
 /datum/greyscale_config/boots/christmasboots/worn
-	name = "christmas_boots (Worn)"
+	name = "圣诞靴子（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
 
 /datum/greyscale_config/boots/christmasboots/worn/digi
-	name = "christmas_boots (Worn, Digi)"
+	name = "圣诞靴子（穿戴，趾行）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 
 /datum/greyscale_config/boots/christmasboots/worn/teshari
-	name = "christmas_boots (Worn, Teshari)"
+	name = "圣诞靴子（穿戴，特沙利）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
 
 // Laceups
 
 /datum/greyscale_config/laceup
-	name = "Colorable Laceups"
+	name = "可染色系带鞋"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/shoes/shoes.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/shoes/laceups/laceups.json'
 
 /datum/greyscale_config/laceup/worn
-	name = "Colorable Laceups (Worn)"
+	name = "可染色系带鞋（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/shoes/laceups/laceups_worn.json'
 
 /datum/greyscale_config/laceup/worn/digi
@@ -1336,12 +1336,12 @@ TREK
 // Sandals
 
 /datum/greyscale_config/sandals
-	name = "Colorable Sandals"
+	name = "可染色凉鞋"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/shoes/shoes.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/shoes/sandals/sandals.json'
 
 /datum/greyscale_config/sandals/worn
-	name = "Colorable Sandals (Worn)"
+	name = "可染色凉鞋（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/shoes/sandals/sandals_worn.json'
 
 /datum/greyscale_config/sandals/worn/digi
@@ -1359,58 +1359,58 @@ TREK
 // WRAPS AND GLOVES
 
 /datum/greyscale_config/clothwraps
-	name = "Cloth Wraps"
+	name = "布裹"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/shoes.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/wraps/wraps.json'
 
 /datum/greyscale_config/clothwraps/worn
-	name = "Cloth Wraps (Worn)"
+	name = "布裹（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/wraps/wraps_worn.json'
 
 /datum/greyscale_config/clothwraps/worn/digi
-	name = "Cloth Wraps (Worn, Digi)"
+	name = "布裹（穿戴，趾行）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/wraps/wraps_worn_digi.json'
 
 /datum/greyscale_config/legwraps
-	name = "Leg Wraps"
+	name = "裹腿"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/shoes.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/wraps/legwraps.json'
 
 /datum/greyscale_config/legwraps/worn
-	name = "Leg Wraps (Worn)"
+	name = "裹腿（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/wraps/legwraps_worn.json'
 
 /datum/greyscale_config/legwraps/worn/digi
-	name = "Leg Wraps (Worn, Digi)"
+	name = "裹腿（穿戴，趾行）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/wraps/legwraps_worn_digi.json'
 
 /datum/greyscale_config/armwraps
-	name = "Cloth Arm Wraps"
+	name = "布制臂套"
 	icon_file = 'modular_skyrat/master_files/icons/donator/obj/clothing/gloves.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/arm_wraps/arm_wraps.json'
 
 /datum/greyscale_config/armwraps/worn
-	name = "Cloth Arm Wraps (Worn)"
+	name = "布制臂套（穿戴）"
 	icon_file = 'modular_skyrat/master_files/icons/donator/mob/clothing/hands.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/arm_wraps/arm_wraps_worn.json'
 
 /datum/greyscale_config/catgloves
-	name = "Catgloves"
+	name = "猫爪手套"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/catglove.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/gloves/catgloves.json'
 
 /datum/greyscale_config/catgloves/worn
-	name = "Catgloves Worn"
+	name = "猫爪手套（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/catglove_worn.dmi'
 
 
 /datum/greyscale_config/magpaws
-	name = "Magpaws"
+	name = "磁力爪套"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/gloves/magpaws.json'
 
 /datum/greyscale_config/magpaws/worn
-	name = "Magpaws Worn"
+	name = "磁力爪套（穿戴）"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/gloves/magpaws_worn.json'
 
@@ -1418,112 +1418,112 @@ TREK
 // MISC SHOES
 
 /datum/greyscale_config/heels
-	name = "High Heels"
+	name = "高跟鞋"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/heels.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/shoes/heels/heels.json'
 
 /datum/greyscale_config/heels/worn
-	name = "High Heels (Worn)"
+	name = "高跟鞋（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/shoes/heels/heels_worn.json'
 
 /datum/greyscale_config/heels/worn/digi
-	name = "High Heels (Worn, Digi)"
+	name = "高跟鞋（穿戴，趾行）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/shoes/heels/heels_worn_digi.json'
 
 /datum/greyscale_config/fancyheels
-	name = "Fancy Heels"
+	name = "华丽高跟鞋"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/fancyheels.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/shoes/fancyheels/fancyheels.json'
 
 /datum/greyscale_config/fancyheels/worn
-	name = "Fancy Heels (Worn)"
+	name = "华丽高跟鞋（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/shoes/fancyheels/fancyheels_worn.json'
 
 /datum/greyscale_config/fancyheels/worn/digi
-	name = "Fancy Heels (Worn, Digi)"
+	name = "华丽高跟鞋（穿戴，趾行）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/shoes/fancyheels/fancyheels_worn_digi.json'
 
 // TESHARI FALLBACKS.
 
 /datum/greyscale_config/teshari
-	name = "Teshari Clothing"
+	name = "特沙利衣物"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/teshari_fallbacks.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/under.json'
 
 /datum/greyscale_config/teshari/under
-	name = "Teshari Under"
+	name = "特沙利内衬"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/under.json'
 
 /datum/greyscale_config/teshari/under_skirt
-	name = "Teshari Skirt"
+	name = "特沙利短裙"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/under_skirt.json'
 
 /datum/greyscale_config/teshari/shoes
-	name = "Teshari Shoes"
+	name = "特沙利鞋子"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/shoes.json'
 
 /datum/greyscale_config/teshari/gloves
-	name = "Teshari Gloves"
+	name = "特沙利手套"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/gloves.json'
 
 /datum/greyscale_config/teshari/glasses
-	name = "Teshari Glasses"
+	name = "特沙利眼镜"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/glasses.json'
 
 /datum/greyscale_config/teshari/coat
-	name = "Teshari Coat"
+	name = "特沙利大衣"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/coat.json'
 
 /datum/greyscale_config/teshari/thickrobe
-	name = "Teshari Thick Robe"
+	name = "特沙利厚袍"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/thickrobe.json'
 
 /datum/greyscale_config/teshari/thickrobe/wiz
-	name = "Teshari Wizard Robe"
+	name = "特沙利巫师袍"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/wizrobe.json'
 
 /datum/greyscale_config/teshari/thickrobe/jacket
-	name = "Teshari Jacket"
+	name = "特沙利夹克"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/jacket.json'
 
 /datum/greyscale_config/teshari/thickrobe/longcoat
-	name = "Teshari Longcoat"
+	name = "特沙利长外套"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/longcoat.json'
 
 /datum/greyscale_config/teshari/armor
-	name = "Teshari Armor"
+	name = "特沙利护甲"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/armor.json'
 
 /datum/greyscale_config/teshari/backpack
-	name = "Teshari Backpack"
+	name = "特沙利背包"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/backpack.json'
 
 /datum/greyscale_config/teshari/spacesuit
-	name = "Teshari Spacesuit"
+	name = "特沙利太空服"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/spacesuit.json'
 
 /datum/greyscale_config/teshari/cloak
-	name = "Teshari Cloak"
+	name = "特沙利斗篷"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/cloak.json'
 
 /datum/greyscale_config/teshari/mantle
-	name = "Teshari Mantle"
+	name = "特沙利披肩"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/mantle.json'
 
 /datum/greyscale_config/teshari/tie
-	name = "Teshari Tie"
+	name = "特沙利领带"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/tie.json'
 
 /datum/greyscale_config/teshari/scarf
-	name = "Teshari Scarf"
+	name = "特沙利围巾"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/scarf.json'
 
 /datum/greyscale_config/teshari/modcontrol
-	name = "Teshari Modsuit"
+	name = "特沙利 MOD 外骨骼"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/modcontrol.json'
 
 /datum/greyscale_config/teshari/hardsuit
-	name = "Teshari Hardsuit"
+	name = "特沙利硬质太空服"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/hardsuit.json'
 
 /**
@@ -1533,32 +1533,32 @@ TREK
  */
 
 /datum/greyscale_config/serpentid
-	name = "Serpentid clothing"
+	name = "蛇形气体人衣物"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/serpentid_fallbacks.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/serpentid_fallbacks/uniform.json'
 
 /datum/greyscale_config/serpentid/cloak
-	name = "Serpentid Poncho"
+	name = "蛇形气体人披风"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/serpentid_fallbacks/neck.json'
 
 /datum/greyscale_config/serpentid/tie
-	name = "Serpentid Tie"
+	name = "蛇形气体人领带"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/serpentid_fallbacks/neck.json'
 
 /datum/greyscale_config/serpentid/scarf
-	name = "Serpentid Scarf"
+	name = "蛇形气体人围巾"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/serpentid_fallbacks/neck.json'
 
 /datum/greyscale_config/serpentid/gloves
-	name = "Serpentid Gloves"
+	name = "蛇形气体人手套"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/serpentid_fallbacks/gloves.json'
 
 /datum/greyscale_config/serpentid/eyes
-	name = "Serpentid Eyes"
+	name = "蛇形气体人眼睛"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/serpentid_fallbacks/eyes.json'
 
 /datum/greyscale_config/serpentid/belt
-	name = "Serpentid Belt"
+	name = "蛇形气体人腰带"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/serpentid_fallbacks/belt.json'
 
 /*
@@ -1567,22 +1567,22 @@ TREK
 
 // Helmet
 /datum/greyscale_config/cin_surplus_helmet
-	name = "CIN Surplus Helmet"
+	name = "CIN 库存头盔"
 	icon_file = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/nri_surplus_equipment/helmet.json'
 
 /datum/greyscale_config/cin_surplus_helmet/object
-	name = "CIN Surplus Helmet (OBJ)"
+	name = "CIN 库存头盔（物品）"
 	icon_file = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'
 
 // Undersuit
 /datum/greyscale_config/cin_surplus_undersuit
-	name = "CIN Surplus Undersuit"
+	name = "CIN 库存内衬服"
 	icon_file = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/nri_surplus_equipment/undersuit.json'
 
 /datum/greyscale_config/cin_surplus_undersuit/object
-	name = "CIN Surplus Undersuit (OBJ)"
+	name = "CIN 库存内衬服（物品）"
 	icon_file = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'
 
 /datum/greyscale_config/cin_surplus_undersuit/digi
@@ -1590,22 +1590,22 @@ TREK
 
 // Backpack
 /datum/greyscale_config/cin_surplus_backpack
-	name = "CIN Surplus Backpack"
+	name = "CIN 库存背包"
 	icon_file = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/nri_surplus_equipment/backpack.json'
 
 /datum/greyscale_config/cin_surplus_backpack/object
-	name = "CIN Surplus Backpack (OBJ)"
+	name = "CIN 库存背包（物品）"
 	icon_file = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'
 
 // Chestrig
 /datum/greyscale_config/cin_surplus_chestrig
-	name = "CIN Surplus Chestrig"
+	name = "CIN 库存胸挂"
 	icon_file = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/nri_surplus_equipment/chestrig.json'
 
 /datum/greyscale_config/cin_surplus_chestrig/object
-	name = "CIN Surplus Chestrig (OBJ)"
+	name = "CIN 库存胸挂（物品）"
 	icon_file = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'
 
 /*
@@ -1613,84 +1613,84 @@ TREK
 */
 
 /datum/greyscale_config/id_card
-	name = "Colourable ID Card"
+	name = "可染色 ID 卡"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/id_card.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/items/id_card.json'
 
 /datum/greyscale_config/wargame_hologram_projector
-	name = "Wargame Hologram Projector"
+	name = "兵棋全息投影仪"
 	icon_file = 'modular_skyrat/modules/wargame_projectors/icons/projectors_and_holograms.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/wargame_holoprojector/projector.json'
 
 /datum/greyscale_config/hypokit
-	name = "Hypospray Kit"
+	name = "注射器套件"
 	icon_file = 'modular_skyrat/modules/hyposprays/icons/hypokits.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/items/hypokit.json'
 
 /datum/greyscale_config/hypospray_mkii
-	name = "Hypospray Mk. II"
+	name = "注射器 Mk. II"
 	icon_file = 'modular_skyrat/modules/hyposprays/icons/hyposprays.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/items/hypospray.json'
 
 /datum/greyscale_config/hypovial
-	name = "Hypovial"
+	name = "注射药瓶"
 	icon_file = 'modular_skyrat/modules/hyposprays/icons/vials.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/items/hypovial.json'
 
 // Evil primitive catgirl clothing
 
 /datum/greyscale_config/primitive_catgirl_wraps
-	name = "Primitive Body Wraps"
+	name = "原始裹身布"
 	icon_file = 'modular_skyrat/modules/primitive_catgirls/icons/clothing_greyscale.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/primitive_catgirl_clothing/body_wraps.json'
 
 /datum/greyscale_config/primitive_catgirl_wraps/worn
-	name = "Primitive Body Wraps (Worn)"
+	name = "原始裹身布（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/primitive_catgirl_clothing/body_wraps_worn.json'
 
 /datum/greyscale_config/primitive_catgirl_armwraps
-	name = "Arm Wraps"
+	name = "臂套"
 	icon_file = 'modular_skyrat/modules/primitive_catgirls/icons/clothing_greyscale.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/primitive_catgirl_clothing/armwraps.json'
 
 /datum/greyscale_config/primitive_catgirl_armwraps/worn
-	name = "Arm Wraps (Worn)"
+	name = "臂套（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/primitive_catgirl_clothing/armwraps_worn.json'
 
 /datum/greyscale_config/primitive_catgirl_coat
-	name = "Primitive Fur Coat"
+	name = "原始毛皮大衣"
 	icon_file = 'modular_skyrat/modules/primitive_catgirls/icons/clothing_greyscale.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/primitive_catgirl_clothing/coat.json'
 
 /datum/greyscale_config/primitive_catgirl_coat/worn
-	name = "Primitive Fur Coat (Worn)"
+	name = "原始毛皮大衣（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/primitive_catgirl_clothing/coat_worn.json'
 
 /datum/greyscale_config/primitive_catgirl_boots
-	name = "Primitive Winter Boots"
+	name = "原始冬靴"
 	icon_file = 'modular_skyrat/modules/primitive_catgirls/icons/clothing_greyscale.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/primitive_catgirl_clothing/boots.json'
 
 /datum/greyscale_config/primitive_catgirl_boots/worn
-	name = "Primitive Winter Boots (Worn)"
+	name = "原始冬靴（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/primitive_catgirl_clothing/boots_worn.json'
 
 /datum/greyscale_config/primitive_catgirl_gaiter
-	name = "Neck Gaiter"
+	name = "颈部护套"
 	icon_file = 'modular_skyrat/modules/primitive_catgirls/icons/clothing_greyscale.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/primitive_catgirl_clothing/gaiter.json'
 
 /datum/greyscale_config/primitive_catgirl_gaiter/worn
-	name = "Neck Gaiter (Worn)"
+	name = "颈部护套（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/primitive_catgirl_clothing/gaiter_worn.json'
 
 /datum/greyscale_config/primitive_catgirl_gauntlets
-	name = "Gauntlets"
+	name = "护手"
 	icon_file = 'modular_skyrat/modules/primitive_catgirls/icons/clothing_greyscale.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/primitive_catgirl_clothing/gauntlets.json'
 
 /datum/greyscale_config/primitive_catgirl_gauntlets/worn
-	name = "Gauntlets (Worn)"
+	name = "护手（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/primitive_catgirl_clothing/gauntlets_worn.json'
 
 /*
@@ -1698,11 +1698,11 @@ TREK
 */
 
 /datum/greyscale_config/turret
-	name = "Donksoft Turret (Deployed)"
+	name = "咚克软炮塔（已部署）"
 	icon_file = 'modular_skyrat/modules/magfed_turret/icons/turrets/cargo.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/turret/turret.json'
 
 /datum/greyscale_config/turret/toolbox
-	name = "Donksoft Turret"
+	name = "咚克软炮塔"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/turret/turret_toolbox.json'
 

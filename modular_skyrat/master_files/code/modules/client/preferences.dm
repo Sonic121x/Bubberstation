@@ -68,7 +68,7 @@
 	else if (SA.color_src == USE_ONE_COLOR)
 		shown_colors = 1
 	if((allow_advanced_colors || SA.always_color_customizable) && shown_colors)
-		dat += "<a href='byond://?src=[REF(src)];key=[key];preference=reset_color;task=change_bodypart'>R</a>"
+		dat += "<a href='byond://?src=[REF(src)];key=[key];preference=reset_color;task=change_bodypart'>重置</a>"
 	dat += "<a href='byond://?src=[REF(src)];key=[key];preference=change_name;task=change_bodypart'>[acc_name]</a>"
 	if(allow_advanced_colors || SA.always_color_customizable)
 		if(shown_colors)

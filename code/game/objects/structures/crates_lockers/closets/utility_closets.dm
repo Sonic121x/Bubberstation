@@ -13,8 +13,8 @@
  * Emergency Closet
  */
 /obj/structure/closet/emcloset
-	name = "emergency closet"
-	desc = "It's a storage unit for emergency breath masks and O2 tanks."
+	name = "应急储物柜"
+	desc = "用于存放应急呼吸面罩和氧气罐的储物柜。"
 	icon_state = "emergency"
 
 /obj/structure/closet/emcloset/anchored
@@ -76,8 +76,8 @@
  * Fire Closet
  */
 /obj/structure/closet/firecloset
-	name = "fire-safety closet"
-	desc = "It's a storage unit for fire-fighting supplies."
+	name = "消防安全柜"
+	desc = "用于存放消防用品的储物柜。"
 	icon_state = "fire"
 
 /obj/structure/closet/firecloset/PopulateContents()
@@ -103,8 +103,8 @@
  * Tool Closet
  */
 /obj/structure/closet/toolcloset
-	name = "tool closet"
-	desc = "It's a storage unit for tools."
+	name = "工具柜"
+	desc = "用于存放工具的储物柜。"
 	icon_state = "eng"
 	icon_door = "eng_tool"
 
@@ -152,8 +152,8 @@
  * Radiation Closet
  */
 /obj/structure/closet/radiation
-	name = "radiation suit closet"
-	desc = "It's a storage unit for rad-protective suits."
+	name = "防辐射服柜"
+	desc = "用于存放防辐射服的储物柜。"
 	icon_state = "eng"
 	icon_door = "eng_rad"
 
@@ -167,8 +167,8 @@
  * Bombsuit closet
  */
 /obj/structure/closet/bombcloset
-	name = "\improper EOD closet"
-	desc = "It's a storage unit for explosion-protective suits."
+	name = "\improper 排爆装备柜"
+	desc = "用于存放防爆服的储物柜。"
 	icon_state = "bomb"
 
 /obj/structure/closet/bombcloset/PopulateContents()

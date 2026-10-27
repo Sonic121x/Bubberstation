@@ -6,8 +6,8 @@
 	toolspeed = 1
 
 /obj/item/forging/tongs
-	name = "forging tongs"
-	desc = "A set of tongs specifically crafted for use in forging. A wise man once said 'I lift things up and put them down.'"
+	name = "锻造钳"
+	desc = "专为锻造制作的钳子。一位智者曾说：“我把东西拿起来，再放下去。”"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'
 	icon_state = "tong_empty"
 	tool_behaviour = TOOL_TONG
@@ -27,7 +27,7 @@
 	else
 		icon_state = initial(icon_state)
 /obj/item/forging/tongs/primitive
-	name = "primitive forging tongs"
+	name = "原始锻造钳"
 	toolspeed = 1.2
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
 
@@ -40,8 +40,8 @@
 		return
 
 /obj/item/forging/hammer
-	name = "forging mallet"
-	desc = "A mallet specifically crafted for use in forging. Used to slowly shape metal; careful, you could break something with it!"
+	name = "锻造锤"
+	desc = "专为锻造制作的锤子，用于慢慢塑造金属。小心，可别把东西砸坏了！"
 	icon_state = "hammer"
 	inhand_icon_state = "hammer"
 	worn_icon_state = "hammer_back"
@@ -54,12 +54,12 @@
 
 
 /obj/item/forging/hammer/primitive
-	name = "primitive forging hammer"
+	name = "原始锻造锤"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/forging/hammer/debug
-	name = "debugging fast forging hammer"
-	desc = "Use it inhand to set your skill level to 7."
+	name = "调试用快速锻造锤"
+	desc = "在手中使用即可将你的技能等级设为 7。"
 	toolspeed = 0.1
 
 /obj/item/forging/hammer/debug/attack_self(mob/user, modifiers)
@@ -67,13 +67,13 @@
 	user.mind.set_level(/datum/skill/smithing, 7)
 
 /obj/item/forging/billow
-	name = "forging billow"
-	desc = "A billow specifically crafted for use in forging. Used to stoke the flames and keep the forge lit."
+	name = "锻造风箱"
+	desc = "专为锻造制作的风箱，用于助燃并保持锻炉中的火焰。"
 	icon_state = "billow"
 	tool_behaviour = TOOL_BILLOW
 
 /obj/item/forging/billow/primitive
-	name = "primitive forging billow"
+	name = "原始锻造风箱"
 	toolspeed = 1.2
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 

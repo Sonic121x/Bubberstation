@@ -1,9 +1,9 @@
 /datum/computer_file/program/science
 	filename = "experi_track"
-	filedesc = "Nanotrasen Science Hub"
+	filedesc = "纳米传讯科研中心"
 	downloader_category = PROGRAM_CATEGORY_SCIENCE
 	program_open_overlay = "research"
-	extended_desc = "Connect to the internal science server in order to assist in station research efforts."
+	extended_desc = "连接内部科研服务器，以协助空间站的研究工作。"
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	size = 10
 	tgui_id = "NtosTechweb"
@@ -34,7 +34,7 @@
 	if(QDELETED(used_multitool.buffer) || !istype(used_multitool.buffer, /datum/techweb))
 		return ITEM_INTERACT_BLOCKING
 	stored_research = used_multitool.buffer
-	computer.balloon_alert(user, "buffer linked!")
+	computer.balloon_alert(user, "缓冲区已连接！")
 	return ITEM_INTERACT_SUCCESS
 
 /datum/computer_file/program/science/ui_assets(mob/user)
@@ -97,18 +97,18 @@
 	. = ..()
 	// Check if the console is locked to block any actions occuring
 	if (locked && action != "toggleLock")
-		computer.say("Console is locked, cannot perform further actions.")
+		computer.say("控制台已锁定，无法执行更多操作。")
 		return TRUE
 
 	switch (action)
 		if ("toggleLock")
 			if(computer.obj_flags & EMAGGED)
-				to_chat(usr, span_boldwarning("Security protocol error: Unable to access locking protocols."))
+				to_chat(usr, span_boldwarning("安全协议错误：无法访问锁定协议。"))
 				return TRUE
 			if(lock_access in computer?.stored_id?.access)
 				locked = !locked
 			else
-				to_chat(usr, span_boldwarning("Unauthorized Access. Please insert research ID card."))
+				to_chat(usr, span_boldwarning("未授权访问。请插入科研 ID 卡。"))
 			return TRUE
 		if ("researchNode")
 			research_node(params["node_id"], usr)
@@ -222,38 +222,38 @@
 
 /datum/computer_file/program/science/proc/enqueue_node(id, mob/user)
 	if(!stored_research || !stored_research.available_nodes[id] || stored_research.researched_nodes[id])
-		computer.say("Node enqueue failed: Either no techweb is found, node is already researched or is not available!")
+		computer.say("节点入队失败：未找到科技网络，或该节点已被研究，或该节点不可用！")
 		return FALSE
 	stored_research.enqueue_node(id, user)
 	return TRUE
 
 /datum/computer_file/program/science/proc/dequeue_node(id, mob/user)
 	if(!stored_research || !stored_research.available_nodes[id] || stored_research.researched_nodes[id])
-		computer.say("Node dequeue failed: Either no techweb is found, node is already researched or is not available!")
+		computer.say("节点出队失败：未找到科技网络，或该节点已被研究，或该节点不可用！")
 		return FALSE
 	stored_research.dequeue_node(id, user)
 	return TRUE
 
 /datum/computer_file/program/science/proc/research_node(id, mob/user)
 	if(!stored_research || !stored_research.available_nodes[id] || stored_research.researched_nodes[id])
-		computer.say("Node unlock failed: Either no techweb is found, node is already researched or is not available!")
+		computer.say("节点解锁失败：未找到科技网络，或该节点已被研究，或该节点不可用！")
 		return FALSE
 	var/datum/techweb_node/tech_node = SSresearch.techweb_node_by_id(id)
 	if(!istype(tech_node))
-		computer.say("Node unlock failed: Unknown error.")
+		computer.say("节点解锁失败：未知错误。")
 		return FALSE
 	var/list/price = tech_node.get_price(stored_research)
 	if(stored_research.can_afford(price))
-		user.investigate_log("researched [id]([json_encode(price)]) on techweb id [stored_research.id] via [computer].", INVESTIGATE_RESEARCH)
+		user.investigate_log("通过 [computer] 在科技网络 [stored_research.id] 上研究了 [id]（[json_encode(price)]）。", INVESTIGATE_RESEARCH)
 		if(istype(stored_research, /datum/techweb/science))
 			SSblackbox.record_feedback("associative", "science_techweb_unlock", 1, list("id" = "[id]", "name" = tech_node.display_name, "price" = "[json_encode(price)]", "time" = ISOtime()))
 		if(stored_research.research_node_id(id))
-			computer.say("Successfully researched [tech_node.display_name].")
-			var/logname = "Unknown"
+			computer.say("已成功研究 [tech_node.display_name]。")
+			var/logname = "未知"
 			if(HAS_AI_ACCESS(user))
 				logname = "AI [user.name]"
 			if(iscyborg(user))
-				logname = "CYBORG [user.name]"
+				logname = "半机械人 [user.name]"
 			if(iscarbon(user))
 				var/obj/item/card/id/idcard = user.get_active_held_item()
 				if(istype(idcard))
@@ -273,7 +273,7 @@
 			))
 			return TRUE
 		else
-			computer.say("Failed to research node: Internal database error!")
+			computer.say("研究节点失败：内部数据库错误！")
 			return FALSE
-	computer.say("Not enough research points...")
+	computer.say("研究点数不足……")
 	return FALSE

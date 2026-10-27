@@ -15,9 +15,9 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sort_list(list(
 "Fuchsia" = LIGHT_COLOR_PINK)))
 
 /obj/item/stack/marker_beacon
-	name = "marker beacon"
-	singular_name = "marker beacon"
-	desc = "Prism-brand path illumination devices. Used by miners to mark paths and warn of danger."
+	name = "标记信标"
+	singular_name = "标记信标"
+	desc = "Prism 品牌的路径照明设备。矿工用它们标记路线并警示危险。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "marker"
 	merge_type = /obj/item/stack/marker_beacon
@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sort_list(list(
 
 /obj/item/stack/marker_beacon/examine(mob/user)
 	. = ..()
-	. += span_notice("Use in-hand to place a [singular_name].\nAlt-click to select a color. Current color is [picked_color].")
+	. += span_notice("在手上使用以放置 [singular_name]。\n按住 Alt 点击可选择颜色。当前颜色为 [picked_color]。")
 
 /obj/item/stack/marker_beacon/update_icon_state()
 	icon_state = "[initial(icon_state)][LOWER_TEXT(picked_color)]"
@@ -47,19 +47,19 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sort_list(list(
 
 /obj/item/stack/marker_beacon/attack_self(mob/user)
 	if(!isturf(user.loc))
-		to_chat(user, span_warning("You need more space to place a [singular_name] here."))
+		to_chat(user, span_warning("这里需要更多空间才能放置 [singular_name]。"))
 		return
 	if(locate(/obj/structure/marker_beacon) in user.loc)
-		to_chat(user, span_warning("There is already a [singular_name] here."))
+		to_chat(user, span_warning("这里已经有一个 [singular_name] 了。"))
 		return
 	if(use(1))
-		to_chat(user, span_notice("You activate and anchor [amount ? "a":"the"] [singular_name] in place."))
+		to_chat(user, span_notice("你激活并固定了[amount ? "一个" : "该"] [singular_name]。"))
 		playsound(user, 'sound/machines/click.ogg', 50, TRUE)
 		var/obj/structure/marker_beacon/M = new(user.loc, picked_color)
 		transfer_fingerprints_to(M)
 
 /obj/item/stack/marker_beacon/click_alt(mob/living/user)
-	var/input_color = tgui_input_list(user, "Choose a color", "Beacon Color", GLOB.marker_beacon_colors)
+	var/input_color = tgui_input_list(user, "选择颜色", "信标颜色", GLOB.marker_beacon_colors)
 	if(isnull(input_color) || !user.can_perform_action(src))
 		return CLICK_ACTION_BLOCKING
 	picked_color = input_color
@@ -67,8 +67,8 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sort_list(list(
 	return CLICK_ACTION_SUCCESS
 
 /obj/structure/marker_beacon
-	name = "marker beacon"
-	desc = "A Prism-brand path illumination device. It is anchored in place and glowing steadily."
+	name = "标记信标"
+	desc = "Prism 品牌的路径照明设备。它已固定到位，稳定地发光。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "marker"
 	layer = BELOW_OPEN_DOOR_LAYER
@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sort_list(list(
 
 /obj/structure/marker_beacon/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click to select a color. Current color is [picked_color].")
+	. += span_notice("按住 Alt 点击可选择颜色。当前颜色为 [picked_color]。")
 
 /obj/structure/marker_beacon/update_appearance(updates)
 	while(!picked_color || !GLOB.marker_beacon_colors[picked_color])
@@ -119,7 +119,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sort_list(list(
 	. = ..()
 	if(.)
 		return
-	to_chat(user, span_notice("You start picking [src] up..."))
+	to_chat(user, span_notice("你开始捡起 [src]……"))
 	if(do_after(user, remove_speed, target = src))
 		var/obj/item/stack/marker_beacon/M = new(loc)
 		M.picked_color = picked_color
@@ -135,7 +135,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sort_list(list(
 /obj/structure/marker_beacon/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/stack/marker_beacon))
 		var/obj/item/stack/marker_beacon/collection = tool
-		to_chat(user, span_notice("You start picking [src] up..."))
+		to_chat(user, span_notice("你开始捡起 [src]……"))
 		if(!do_after(user, remove_speed, target = src) || collection.amount + 1 > collection.max_amount)
 			return ITEM_INTERACT_BLOCKING
 
@@ -146,8 +146,8 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sort_list(list(
 
 	if(istype(tool, /obj/item/light_eater))
 		var/obj/effect/decal/cleanable/ash/A = new /obj/effect/decal/cleanable/ash(drop_location())
-		A.desc += "\nLooks like this used to be \a [src] some time ago."
-		visible_message(span_danger("[src] is disintegrated by [tool]!"))
+		A.desc += "\n看起来这在一段时间以前曾是 \a [src]。"
+		visible_message(span_danger("[src] 被 [tool] 分解了！"))
 		playsound(src, 'sound/items/tools/welder.ogg', 50, TRUE)
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
@@ -155,7 +155,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sort_list(list(
 	return NONE
 
 /obj/structure/marker_beacon/click_alt(mob/living/user)
-	var/input_color = tgui_input_list(user, "Choose a color", "Beacon Color", GLOB.marker_beacon_colors)
+	var/input_color = tgui_input_list(user, "选择颜色", "信标颜色", GLOB.marker_beacon_colors)
 	if(isnull(input_color) || !user.can_perform_action(src))
 		return CLICK_ACTION_BLOCKING
 	picked_color = input_color

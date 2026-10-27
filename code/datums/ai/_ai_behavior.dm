@@ -49,9 +49,9 @@
 
 	if(!running)
 		if(!setup(controller))
-			EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[controller.pawn] [type]: setup() failed")
+			EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[controller.pawn] [type]：setup() 失败")
 			return BT_FAILURE
-		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[controller.pawn] starting [type]")
+		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[controller.pawn] 开始执行 [type]")
 		running = TRUE
 
 	var/process_flags = perform(seconds_per_tick, controller)
@@ -59,12 +59,12 @@
 	if(process_flags & AI_BEHAVIOR_DELAY)
 		next_perform_time = world.time + get_cooldown(controller)
 	if(process_flags & AI_BEHAVIOR_SUCCEEDED)
-		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[controller.pawn] [type]: succeeded")
+		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[controller.pawn] [type]：成功")
 		failed_last_perform = FALSE
 		finish_action(controller, TRUE)
 		return BT_SUCCESS
 	if(process_flags & AI_BEHAVIOR_FAILED)
-		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[controller.pawn] [type]: failed")
+		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[controller.pawn] [type]：失败")
 		failed_last_perform = TRUE
 		finish_action(controller, FALSE)
 		return BT_FAILURE

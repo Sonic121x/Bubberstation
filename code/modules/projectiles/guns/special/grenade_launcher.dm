@@ -1,6 +1,6 @@
 /obj/item/gun/grenadelauncher
-	name = "pneumatic grenade launcher"
-	desc = "A terrible, terrible thing. It's really awful!"
+	name = "气动榴弹发射器"
+	desc = "一件可怕、非常可怕的玩意。实在是太糟糕了！"
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "riotgun"
 	inhand_icon_state = "riotgun"
@@ -15,7 +15,7 @@
 
 /obj/item/gun/grenadelauncher/examine(mob/user)
 	. = ..()
-	. += "[grenades.len] / [max_grenades] grenades loaded."
+	. += "已装填 [grenades.len] / [max_grenades] 枚榴弹。"
 
 /obj/item/gun/grenadelauncher/apply_fantasy_bonuses(bonus)
 	. = ..()
@@ -31,27 +31,27 @@
 	if(istype(tool, /obj/item/grenade/c4))
 		return NONE
 	if(grenades.len == max_grenades)
-		balloon_alert(user, "it's already full!")
+		balloon_alert(user, "已经装满了！")
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 	grenades += tool
-	balloon_alert(user, "[grenades.len] / [max_grenades] grenades loaded")
+	balloon_alert(user, "已装填 [grenades.len] / [max_grenades] 枚榴弹")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/gun/grenadelauncher/can_shoot()
 	return grenades.len
 
 /obj/item/gun/grenadelauncher/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
-	user.visible_message(span_danger("[user] fired a grenade!"), \
-						span_danger("You fire the grenade launcher!"))
+	user.visible_message(span_danger("[user] 发射了一枚榴弹！"), \
+						span_danger("你扣动了榴弹发射器！"))
 	var/obj/item/grenade/F = grenades[1] //Now with less copypasta!
 	grenades -= F
 	F.forceMove(user.loc)
 	F.throw_at(target, 30, 2, user)
-	message_admins("[ADMIN_LOOKUPFLW(user)] fired a grenade ([F.name]) from a grenade launcher ([src]) from [AREACOORD(user)] at [target] [AREACOORD(target)].")
-	user.log_message("fired a grenade ([F.name]) with a grenade launcher ([src]) from [AREACOORD(user)] at [target] [AREACOORD(target)].", LOG_GAME)
-	user.log_message("fired a grenade ([F.name]) with a grenade launcher ([src]) from [AREACOORD(user)] at [target] [AREACOORD(target)].", LOG_ATTACK, log_globally = FALSE)
+	message_admins("[ADMIN_LOOKUPFLW(user)] 用榴弹发射器（[src]）从 [AREACOORD(user)] 朝 [target] [AREACOORD(target)] 发射了一枚榴弹（[F.name]）。")
+	user.log_message("用榴弹发射器（[src]）从 [AREACOORD(user)] 朝 [target] [AREACOORD(target)] 发射了一枚榴弹（[F.name]）。", LOG_GAME)
+	user.log_message("用榴弹发射器（[src]）从 [AREACOORD(user)] 朝 [target] [AREACOORD(target)] 发射了一枚榴弹（[F.name]）。", LOG_ATTACK, log_globally = FALSE)
 	F.active = 1
 	F.icon_state = initial(F.icon_state) + "_active"
 	playsound(user.loc, 'sound/items/weapons/armbomb.ogg', 75, TRUE, -3)

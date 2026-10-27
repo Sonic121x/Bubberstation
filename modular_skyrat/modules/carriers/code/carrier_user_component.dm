@@ -3,7 +3,7 @@
 	/// What is the name of our mob?
 	var/name
 	/// What does our mob look like?
-	var/desc = "It's a mob."
+	var/desc = "这是一个生物。"
 	/// What are the ooc notes for the mob?
 	var/ooc_notes = ""
 
@@ -99,7 +99,7 @@
 		return FALSE
 
 	if(!can_communicate())
-		to_chat(parent, span_warning("You are unable to speak!"))
+		to_chat(parent, span_warning("你无法说话！"))
 		return FALSE
 
 	if(!message_to_say)
@@ -120,7 +120,7 @@
 		return FALSE
 
 	if(!can_communicate(TRUE))
-		to_chat(parent, span_warning("You are unable to speak!"))
+		to_chat(parent, span_warning("你无法说话！"))
 		return FALSE
 
 	if(!message_to_say)
@@ -267,7 +267,7 @@
 	))
 
 /datum/action/innate/carrier_user
-	name = "carrier"
+	name = "灵魂捕手"
 	background_icon = 'modular_skyrat/master_files/icons/mob/actions/action_backgrounds.dmi'
 	background_icon_state = "android"
 	button_icon = 'modular_skyrat/master_files/icons/mob/actions/actions_nif.dmi'

@@ -90,8 +90,8 @@ HELPER(brown, COLOR_BROWN)
 HELPER(violet, COLOR_STRONG_VIOLET)
 HELPER(pink, COLOR_LIGHT_PINK)
 
-HELPER_NAMED(scrubbers, "scrubbers pipe", COLOR_RED)
-HELPER_NAMED(supply, "air supply pipe", COLOR_BLUE)
+HELPER_NAMED(scrubbers, "洗涤器管道", COLOR_RED)
+HELPER_NAMED(supply, "供气管道", COLOR_BLUE)
 
 #undef HELPER_NAMED
 #undef HELPER

@@ -1,10 +1,10 @@
 /obj/item/seeds/jurlmah
-	name = "jurlmah seed pack"
-	desc = "These seeds grow into jurlmah plants. Often used as makeshift cryo-treatment in areas where a dedicated cryotube setup is impossible."
+	name = "霜愈果种子包"
+	desc = "这些种子能长成霜愈果。在无法架设专用低温治疗舱的地方，它常被用作临时低温疗法。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "jurlmah"
 	species = "jurlmah"
-	plantname = "Jurlmah Plant"
+	plantname = "霜愈果植株"
 	product = /obj/item/food/grown/jurlmah
 	lifespan = 55
 	endurance = 35
@@ -17,14 +17,14 @@
 
 /obj/item/food/grown/jurlmah
 	seed = /obj/item/seeds/jurlmah
-	name = "jurlmah"
-	desc = "A frosty jurlmah fruit, it feels cold to the touch."
+	name = "霜愈果"
+	desc = "结着霜的霜愈果，摸起来冰冰凉凉。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "jurlmah"
 	filling_color = "#FF4500"
 	bite_consumption_mod = 0.5
 	foodtypes = FRUIT
-	tastes = list("snow" = 1)
+	tastes = list("雪" = 1)
 
 /obj/item/food/grown/jurlmah/juice_typepath()
 	return /datum/reagent/medicine/cryoxadone

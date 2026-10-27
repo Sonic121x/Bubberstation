@@ -14,7 +14,7 @@ import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { batchThreeDisplay as chineseDisplay } from '../localization/batchThreeDisplay';
 type AASConfigEntry = {
   name: string;
   entryRef: string;
@@ -42,7 +42,7 @@ export const AutomatedAnnouncement = (props) => {
     switch (true) {
       case name?.toLowerCase().includes(search?.toLowerCase()):
       case Object.keys(announcementLinesMap).some((lineKey) =>
-        lineKey.toLowerCase().includes(search?.toLowerCase()),
+        chineseDisplay(lineKey).toLowerCase().includes(search?.toLowerCase()),
       ):
       case Object.values(announcementLinesMap).some((line) =>
         line.toLowerCase().includes(search?.toLowerCase()),
@@ -57,21 +57,21 @@ export const AutomatedAnnouncement = (props) => {
   };
 
   const errorMessage = !config_entries.length
-    ? 'No configurable options detected! Please report this to Nanotrasen.'
-    : 'No match. Refine your search.';
+    ? '未检测到可配置选项！请向纳米传讯报告。'
+    : '没有匹配项，请调整搜索条件。';
 
   const sorted = sortBy(
     filter(config_entries, (entry) => isEntryMatch(entry, search)),
     [(entry) => entry.name],
   );
   return (
-    <Window title="Automated Announcement System" width={500} height={280}>
+    <Window title="自动公告系统" width={500} height={280}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>
             <LabeledList>
-              <LabeledList.Item label="Search">
-                <Input fluid placeholder="Name/Line/Var" onChange={setSearch} />
+              <LabeledList.Item label="搜索">
+                <Input fluid placeholder="名称/公告/变量" onChange={setSearch} />
               </LabeledList.Item>
             </LabeledList>
           </Stack.Item>
@@ -107,14 +107,14 @@ export const AutomatedAnnouncement = (props) => {
                           disabled={!entry.modifiable}
                           tooltip={
                             !entry.modifiable
-                              ? 'Editing disabled by CentCom!'
+                              ? '中央指挥部已禁止编辑！'
                               : undefined
                           }
                           onClick={() =>
                             act('Toggle', { entryRef: entry.entryRef })
                           }
                         >
-                          {entry.enabled ? 'On' : 'Off'}
+                          {entry.enabled ? '开启' : '关闭'}
                         </Button>
                       </>
                     }
@@ -124,7 +124,7 @@ export const AutomatedAnnouncement = (props) => {
                         ([lineKey, announcementLine]) => (
                           <Table.Row key={lineKey}>
                             <Table.Cell collapsing color="label">
-                              {lineKey}:
+                              {chineseDisplay(lineKey)}：
                             </Table.Cell>
                             <Table.Cell>
                               <Input

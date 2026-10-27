@@ -1,6 +1,6 @@
 /// Shoe Slot Items (Deletes overrided items)
 /datum/loadout_category/shoes
-	category_name = "Shoes"
+	category_name = "鞋类"
 	category_ui_icon = FA_ICON_SHOE_PRINTS
 	type_to_generate = /datum/loadout_item/shoes
 	tab_order = 1
@@ -12,37 +12,37 @@
 	outfit.shoes = item_path
 
 /datum/loadout_item/shoes/sneakers
-	name = "Sneakers"
+	name = "运动鞋"
 	item_path = /obj/item/clothing/shoes/sneakers
 
 /datum/loadout_item/shoes/sandals_laced
-	name = "Sandals (Velcro)"
+	name = "尼龙搭扣凉鞋"
 	item_path = /obj/item/clothing/shoes/sandal/velcro
 
 /datum/loadout_item/shoes/sandals_laced_black
-	name = "Sandals (Black, Velcro)"
+	name = "黑色尼龙搭扣凉鞋"
 	item_path = /obj/item/clothing/shoes/sandal/alt/velcro
 
 /datum/loadout_item/shoes/laceup
-	name = "Shoes (Laceup)"
+	name = "系带皮鞋"
 	item_path = /obj/item/clothing/shoes/laceup
 
 /datum/loadout_item/shoes/cowboy_brown
-	name = "Boots (Cowboy, Brown)"
+	name = "牛仔靴（棕色）"
 	item_path = /obj/item/clothing/shoes/cowboy/laced
 
 /datum/loadout_item/shoes/cowboy_white
-	name = "Boots (Cowboy, White)"
+	name = "白色牛仔靴"
 	item_path = /obj/item/clothing/shoes/cowboy/white/laced
 
 /datum/loadout_item/shoes/cowboy_black
-	name = "Boots (Cowboy, Black)"
+	name = "黑色牛仔靴"
 	item_path = /obj/item/clothing/shoes/cowboy/black/laced
 
 /datum/loadout_item/shoes/glow_shoes
-	name = "Shoes (Glowing, Colourable)"
+	name = "发光鞋（可染色）"
 	item_path = /obj/item/clothing/shoes/glow
 
 /datum/loadout_item/shoes/jackboots
-	name = "Workboots (Black)"
+	name = "战术工作靴"
 	item_path = /obj/item/clothing/shoes/workboots/black

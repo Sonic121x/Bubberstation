@@ -1,12 +1,12 @@
 /obj/item/soulstone
-	name = "soulstone shard"
+	name = "灵魂石碎片"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "soulstone"
 	inhand_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	layer = HIGH_OBJ_LAYER
-	desc = "A fragment of the legendary treasure known simply as the 'Soul Stone'. The shard still flickers with a fraction of the full artefact's power."
+	desc = "传说中被称为“灵魂石”的宝物的一块碎片。碎片仍闪烁着完整神器一小部分的力量。"
 	w_class = WEIGHT_CLASS_TINY
 	slot_flags = ITEM_SLOT_BELT
 	/// The base name of the soulstone, set to the initial name by default. Used in name updating
@@ -46,7 +46,7 @@
 	for(var/mob/living/basic/shade/sharded_shade in src)
 		switch(theme)
 			if(THEME_HOLY)
-				sharded_shade.name = "Purified [sharded_shade.real_name]"
+				sharded_shade.name = "净化后的[sharded_shade.real_name]"
 			else
 				sharded_shade.name = sharded_shade.real_name
 		sharded_shade.theme = theme
@@ -70,7 +70,7 @@
 	name = base_name
 	if(spent)
 		// "dull soulstone"
-		name = "dull [name]"
+		name = "黯淡的[name]"
 
 	var/mob/living/basic/shade/shade = locate() in src
 	if(shade)
@@ -80,9 +80,9 @@
 /obj/item/soulstone/update_desc(updates)
 	. = ..()
 	if(spent)
-		desc = "A fragment of the legendary treasure known simply as \
-			the 'Soul Stone'. The shard lies still, dull and lifeless; \
-			whatever spark it once held long extinguished."
+		desc = "传说中被称为“灵魂石”的宝物的一块碎片。\
+			碎片静止不动，黯淡无光、毫无生气；\
+			它曾拥有的火花早已熄灭。"
 
 ///signal called whenever a soulstone is smacked by a bible
 /obj/item/soulstone/proc/on_bible_smacked(datum/source, mob/living/user, ...)
@@ -99,7 +99,7 @@
 /obj/item/soulstone/proc/attempt_exorcism(mob/exorcist)
 	if(IS_CULTIST(exorcist) || theme == THEME_HOLY)
 		return
-	balloon_alert(exorcist, "exorcising...")
+	balloon_alert(exorcist, "正在驱邪……")
 	playsound(src, 'sound/effects/hallucinations/veryfar_noise.ogg', 40, TRUE)
 	if(!do_after(exorcist, 4 SECONDS, target = src))
 		return
@@ -111,7 +111,7 @@
 	for(var/mob/shade_to_deconvert in contents)
 		assign_master(shade_to_deconvert, exorcist)
 
-	exorcist.visible_message(span_notice("[exorcist] purifies [src]!"))
+	exorcist.visible_message(span_notice("[exorcist]净化了[src]！"))
 	UnregisterSignal(src, COMSIG_BIBLE_SMACKED)
 
 /**
@@ -147,18 +147,18 @@
 /obj/item/soulstone/pickup(mob/living/user)
 	..()
 	if(!role_check(user))
-		to_chat(user, span_danger("An overwhelming feeling of dread comes over you as you pick up [src]. It would be wise to be rid of this quickly."))
+		to_chat(user, span_danger("你拿起[src]时，一股压倒性的恐惧感涌上心头。最好快点把这东西处理掉。"))
 
 /obj/item/soulstone/examine(mob/user)
 	. = ..()
 	if(role_check(user) || isobserver(user))
 		if(!grab_sleeping)
-			. += span_cult("A soulstone, used to capture a soul, either from dead humans or from freed shades.")
+			. += span_cult("一块灵魂石，用于捕获灵魂——无论是死者的灵魂，还是被释放的暗影。")
 		else
-			. += span_cult("A soulstone, used to capture souls, either from unconscious or sleeping humans or from freed shades.")
-		. += span_cult("The captured soul can be placed into a construct shell to produce a construct, or released from the stone as a shade.")
+			. += span_cult("一块灵魂石，用于捕获灵魂——无论是昏迷或沉睡中的人，还是被释放的暗影。")
+		. += span_cult("被捕获的灵魂可以放入构装体外壳中制造构装体，也可以作为暗影从石中释放。")
 		if(spent)
-			. += span_cult("This shard is spent; it is now just a creepy rock.")
+			. += span_cult("这块碎片已耗尽力量，现在只是一块令人毛骨悚然的石头。")
 
 /obj/item/soulstone/examine_more(mob/user)
 	. = ..()
@@ -171,7 +171,7 @@
 	return ..()
 
 /obj/item/soulstone/proc/hot_potato(mob/living/user)
-	to_chat(user, span_userdanger("Holy magics residing in [src] burn your hand!"))
+	to_chat(user, span_userdanger("[src]中蕴含的神圣魔法灼烧着你的手！"))
 	user.apply_damage(10, BURN, user.get_active_hand())
 	user.emote("scream")
 	user.update_damage_overlays()
@@ -182,27 +182,27 @@
 /obj/item/soulstone/attack(mob/living/carbon/human/M, mob/living/user)
 	if(!role_check(user))
 		user.Unconscious(10 SECONDS)
-		to_chat(user, span_userdanger("Your body is wracked with debilitating pain!"))
+		to_chat(user, span_userdanger("你的身体被剧痛折磨得无法动弹！"))
 		return
 	if(spent)
-		to_chat(user, span_warning("There is no power left in [src]."))
+		to_chat(user, span_warning("[src]中已没有剩余力量。"))
 		return
 	if(!ishuman(M))//If target is not a human.
 		return ..()
 	if(M == user)
 		return
 	if(IS_CULTIST(M) && IS_CULTIST(user))
-		to_chat(user, span_cult_large("\"Come now, do not capture your bretheren's soul.\""))
+		to_chat(user, span_cult_large("“别这样，不要捕获同胞的灵魂。”"))
 		return
 	if(theme == THEME_HOLY && IS_CULTIST(user))
 		hot_potato(user)
 		return
 	if(HAS_TRAIT(M, TRAIT_NO_SOUL))
-		to_chat(user, span_warning("This body does not possess a soul to capture."))
+		to_chat(user, span_warning("这具身体没有可供捕获的灵魂。"))
 		return
 	// SKYRAT EDIT START
 	if(!do_after(user, 5 SECONDS, M))
-		to_chat(user, span_warning("You must stand still to capture their soul!"))
+		to_chat(user, span_warning("你必须站着不动才能捕获其灵魂！"))
 		return
 	// SKYRAT EDIT END
 	log_combat(user, M, "captured [M.name]'s soul", src)
@@ -210,7 +210,7 @@
 
 /obj/item/soulstone/suicide_act(mob/living/user)
 	. = ..()
-	user.visible_message(span_suicide("[user] is capturing [user.p_their()] own soul with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正用[src]捕获自己的灵魂！看起来是想自杀！"))
 	return capture_soul(user, null, TRUE) ? MANUAL_SUICIDE : BRUTELOSS
 
 ///////////////////Options for using captured souls///////////////////////////////////////
@@ -220,7 +220,7 @@
 		return
 	if(!role_check(user))
 		user.Unconscious(100)
-		to_chat(user, span_userdanger("Your body is wracked with debilitating pain!"))
+		to_chat(user, span_userdanger("你的身体被剧痛折磨得无法动弹！"))
 		return
 	if(theme == THEME_HOLY && IS_CULTIST(user))
 		hot_potato(user)
@@ -234,13 +234,13 @@
 		update_appearance()
 		if(!silent)
 			if(IS_CULTIST(user))
-				to_chat(captured_shade, span_bold("You have been released from your prison, \
-					but you are still bound to the cult's will. Help them succeed in their goals at all costs."))
+				to_chat(captured_shade, span_bold("你已从牢笼中释放，\
+					但你仍受缚于血教的意志。不惜一切代价帮助他们达成目标。"))
 
 			else if(role_check(user))
-				to_chat(captured_shade, span_bold("You have been released from your prison, \
-					but you are still bound to [user.real_name]'s will. Help [user.p_them()] succeed in \
-					[user.p_their()] goals at all costs."))
+				to_chat(captured_shade, span_bold("你已从牢笼中释放，\
+					但你仍受缚于[user.real_name]的意志。不惜一切代价帮助对方实现\
+					其目标。"))
 		var/datum/antagonist/cult/shade/shade_datum = captured_shade.mind?.has_antag_datum(/datum/antagonist/cult/shade)
 		if(shade_datum)
 			shade_datum.release_time = world.time
@@ -257,20 +257,20 @@
 		return ITEM_INTERACT_BLOCKING
 	if(!role_check(user))
 		user.Unconscious(10 SECONDS)
-		to_chat(user, span_userdanger("Your body is wracked with debilitating pain!"))
+		to_chat(user, span_userdanger("你的身体被剧痛折磨得无法动弹！"))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice("[user] holds [src] above [user.p_their()] head and forces it into [target_toolbox] with a flash of light!"), \
-		span_notice("You hold [src] above your head briefly, then force it into [target_toolbox], transferring the [occupant]'s soul!"), ignored_mobs = occupant)
-	to_chat(occupant, span_userdanger("[user] holds you up briefly, then forces you into [target_toolbox]!"))
-	to_chat(occupant, span_deadsay("<b>Your eternal soul has been sacrificed to restore the soul of a toolbox. Them's the breaks!</b>"))
+	user.visible_message(span_notice("[user]将[src]举过头顶，伴随一道闪光将其强行塞入[target_toolbox]！"), \
+		span_notice("你将[src]短暂举过头顶，然后把它强行塞入[target_toolbox]，转移了[occupant]的灵魂！"), ignored_mobs = occupant)
+	to_chat(occupant, span_userdanger("[user]短暂地将你举起，然后把你强行塞入[target_toolbox]！"))
+	to_chat(occupant, span_deadsay("<b>你永恒的灵魂已被献祭，只为恢复一个工具箱的灵魂。世事如此！</b>"))
 
 	occupant.client?.give_award(/datum/award/achievement/misc/toolbox_soul, occupant)
-	occupant.death_message = "shrieks out in unholy pain as [occupant.p_their()] soul is absorbed into [target_toolbox]!"
+	occupant.death_message = "在痛苦中发出不洁的尖啸，其灵魂被[target_toolbox]吸收！"
 	release_shades(user, TRUE)
 	occupant.death()
 
-	target_toolbox.name = "soulful toolbox"
+	target_toolbox.name = "有灵魂的工具箱"
 	target_toolbox.icon = 'icons/obj/storage/toolbox.dmi'
 	target_toolbox.icon_state = "toolbox_blue_old"
 	target_toolbox.has_soul = TRUE
@@ -279,15 +279,15 @@
 
 ///////////////////////////Transferring to constructs/////////////////////////////////////////////////////
 /obj/structure/constructshell
-	name = "empty shell"
+	name = "空壳"
 	icon = 'icons/mob/shells.dmi'
 	icon_state = "construct_cult"
-	desc = "A wicked machine used by those skilled in magical arts. It is inactive."
-	var/extra_desc = span_cult("A construct shell, used to house bound souls from a soulstone.\n\
-		Placing a soulstone with a soul into this shell allows you to produce your choice of the following:\n\
-		An <b>Artificer</b>, which can produce <b>more shells and soulstones</b>, as well as fortifications.\n\
-		A <b>Wraith</b>, which does high damage and can jaunt through walls, though it is quite fragile.\n\
-		A <b>Juggernaut</b>, which is very hard to kill and can produce temporary walls, but is slow.")
+	desc = "一台由精通魔法技艺者使用的邪恶机械。它处于未激活状态。"
+	var/extra_desc = span_cult("构装体外壳，用于容纳来自灵魂石的受缚灵魂。\n\
+		将装有灵魂的灵魂石放入此壳，即可按你的选择制造以下之一：\n\
+		<b>工匠</b>，可以制造<b>更多外壳与灵魂石</b>以及防御工事。\n\
+		<b>怨灵</b>，伤害高且能穿墙，但相当脆弱。\n\
+		<b>主宰</b>，极难被杀死且能制造临时墙壁，但行动缓慢。")
 
 /obj/structure/constructshell/examine(mob/user)
 	. = ..()
@@ -300,7 +300,7 @@
 
 	var/obj/item/soulstone/whispering_gem = tool
 	if(!IS_CULTIST(user) && !HAS_MIND_TRAIT(user, TRAIT_MAGICALLY_GIFTED) && whispering_gem.theme != THEME_HOLY)
-		to_chat(user, span_danger("An overwhelming feeling of dread comes over you as you attempt to place [whispering_gem] into the shell. It would be wise to be rid of this quickly."))
+		to_chat(user, span_danger("当你试图将[whispering_gem]放入外壳时，一股压倒性的恐惧感涌上心头。最好快点把这东西处理掉。"))
 		user.set_dizzy_if_lower(1 MINUTES)
 		return ITEM_INTERACT_BLOCKING
 
@@ -327,12 +327,12 @@
 		if(cultist)
 			var/datum/team/cult/cult_team = cultist.get_team()
 			if(victim.mind && cult_team.is_sacrifice_target(victim.mind))
-				to_chat(user, span_cult("<b>\"This soul is mine.</b></span> <span class='cultlarge'>SACRIFICE THEM!\""))
+				to_chat(user, span_cult("<b>“这个灵魂是我的。</b></span> <span class='cultlarge'>献祭他们！”"))
 				return FALSE
 
 		if(grab_sleeping ? !IS_UNCONSCIOUS_OR_CRIT(victim) : victim.stat != DEAD)
-			to_chat(user, span_userdanger("Capture failed!"))
-			to_chat(user, span_danger("Kill or maim the victim first!"))
+			to_chat(user, span_userdanger("捕获失败！"))
+			to_chat(user, span_danger("先把受害者杀死或致残！"))
 			return FALSE
 
 	victim.grab_ghost()
@@ -340,8 +340,8 @@
 		init_shade(victim, user)
 		return TRUE
 
-	to_chat(user, span_userdanger("Capture failed!"))
-	to_chat(user, span_warning("The soul has already fled its mortal frame. You attempt to bring it back..."))
+	to_chat(user, span_userdanger("捕获失败！"))
+	to_chat(user, span_warning("灵魂已逃离其凡躯。你尝试将它召回……"))
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
 		check_jobban = ROLE_CULTIST,
 		poll_time = 20 SECONDS,
@@ -349,7 +349,7 @@
 		ignore_category = POLL_IGNORE_SHADE,
 		alert_pic = /mob/living/basic/shade,
 		jump_target = src,
-		role_name_text = "a shade",
+		role_name_text = "一个暗影",
 		chat_text_border_icon = /mob/living/basic/shade,
 	)
 	// BUBBER EDIT CHANGE START - Original: on_poll_concluded(user, victim, chosen_one) / return TRUE //it'll probably get someone ;)
@@ -360,25 +360,25 @@
 /obj/item/soulstone/proc/capture_shade(mob/living/basic/shade/shade, mob/living/user)
 	if(isliving(user) && !role_check(user))
 		user.Unconscious(10 SECONDS)
-		to_chat(user, span_userdanger("Your body is wracked with debilitating pain!"))
+		to_chat(user, span_userdanger("你的身体被剧痛折磨得无法动弹！"))
 		return
 	if(contents.len)
-		to_chat(user, span_userdanger("Capture failed!"))
-		to_chat(user, span_danger("[src] is full! Free an existing soul to make room."))
+		to_chat(user, span_userdanger("捕获失败！"))
+		to_chat(user, span_danger("[src]已满！释放一个已有灵魂以腾出空间。"))
 		return FALSE
 	shade.AddComponent(/datum/component/soulstoned, src)
 	update_appearance()
 
-	to_chat(shade, span_notice("Your soul has been captured by [src]. \
-		Its arcane energies are reknitting your ethereal form."))
+	to_chat(shade, span_notice("你的灵魂已被[src]捕获。\
+		它的奥术能量正在重新编织你的以太形态。"))
 
 	var/datum/antagonist/cult/shade/shade_datum = shade.mind?.has_antag_datum(/datum/antagonist/cult/shade)
 	if(shade_datum)
 		shade_datum.release_time = null
 
 	if(user != shade)
-		to_chat(user, "[span_info("<b>Capture successful!</b>:")] [shade.real_name]'s soul \
-			has been captured and stored within [src].")
+		to_chat(user, "[span_info("<b>捕获成功！</b>：")] [shade.real_name]的灵魂\
+			已被捕获并储存在[src]中。")
 		assign_master(shade, user)
 
 	return TRUE
@@ -387,7 +387,7 @@
 /obj/item/soulstone/proc/transfer_to_construct(obj/structure/constructshell/shell, mob/user)
 	var/mob/living/basic/shade/shade = locate() in src
 	if(!shade)
-		to_chat(user, "[span_userdanger("Creation failed!")]: [src] is empty! Go kill someone!")
+		to_chat(user, "[span_userdanger("制造失败！")]：[src]是空的！去杀个人吧！")
 		return FALSE
 	var/construct_class = show_radial_menu(user, src, GLOB.construct_radial_images, custom_check = CALLBACK(src, PROC_REF(check_menu), user, shell), require_near = TRUE, tooltips = TRUE)
 	if(QDELETED(shell) || !construct_class)
@@ -419,8 +419,8 @@
 	victim.stop_sound_channel(CHANNEL_HEARTBEAT)
 	var/mob/living/basic/shade/soulstone_spirit = new /mob/living/basic/shade(src)
 	soulstone_spirit.AddComponent(/datum/component/soulstoned, src)
-	soulstone_spirit.name = "Shade of [victim.real_name]"
-	soulstone_spirit.real_name = "Shade of [victim.real_name]"
+	soulstone_spirit.name = "[victim.real_name]的暗影"
+	soulstone_spirit.real_name = "[victim.real_name]的暗影"
 	soulstone_spirit.PossessByPlayer(shade_controller.key)
 	soulstone_spirit.copy_languages(victim, LANGUAGE_MIND)//Copies the old mobs languages into the new mob holder.
 	if(user)
@@ -436,16 +436,16 @@
 	update_appearance()
 	if(user)
 		if(IS_CULTIST(user))
-			to_chat(soulstone_spirit, span_bold("Your soul has been captured! \
-				You are now bound to the cult's will. Help them succeed in their goals at all costs."))
+			to_chat(soulstone_spirit, span_bold("你的灵魂已被捕获！\
+				你现在受缚于血教的意志。不惜一切代价帮助他们达成目标。"))
 		else if(role_check(user))
-			to_chat(soulstone_spirit, span_bold("Your soul has been captured! You are now bound to [user.real_name]'s will. \
-				Help [user.p_them()] succeed in [user.p_their()] goals at all costs."))
+			to_chat(soulstone_spirit, span_bold("你的灵魂已被捕获！你现在受缚于[user.real_name]的意志。\
+				不惜一切代价帮助对方实现其目标。"))
 			assign_master(soulstone_spirit, user)
 
 		if(message_user)
-			to_chat(user, "[span_info("<b>Capture successful!</b>:")] [victim.real_name]'s soul has been ripped \
-				from [victim.p_their()] body and stored within [src].")
+			to_chat(user, "[span_info("<b>捕获成功！</b>：")] [victim.real_name]的灵魂已从其身体中\
+				被撕出，并储存在[src]中。")
 
 	victim.dust(drop_items = TRUE)
 
@@ -480,13 +480,13 @@
 		return FALSE
 	if(isnull(ghost?.client))
 		if(!isnull(master))
-			to_chat(master, span_danger("There were no spirits willing to become a shade."))
+			to_chat(master, span_danger("没有灵魂愿意成为暗影。"))
 		return FALSE
 	if(length(contents)) //If they used the soulstone on someone else in the meantime
 		return FALSE
 	if(!isnull(master))
-		to_chat(master, "[span_info("<b>Capture successful!</b>:")] A spirit has entered [src], \
-			taking upon the identity of [victim].")
+		to_chat(master, "[span_info("<b>捕获成功！</b>：")] 一个灵魂进入了[src]，\
+			并采用了[victim]的身份。")
 	// BUBBER EDIT CHANGE END
 	init_shade(victim, master, shade_controller = ghost)
 
@@ -557,16 +557,16 @@
 			target.mind.transfer_to(newstruct, force_key_move = TRUE)
 
 	else if (!target.ckey || isnull(target.mind) || is_banned_from(target.ckey, ROLE_CULTIST))
-		to_chat(stoner, span_userdanger("Shell imbuement failed!"))
-		to_chat(stoner, span_warning("The soul has already fled its mortal frame. You attempt to bring it back..."))
+		to_chat(stoner, span_userdanger("外壳灌注失败！"))
+		to_chat(stoner, span_warning("灵魂已逃离其凡躯。你尝试将它召回……"))
 		target = SSpolling.poll_ghosts_for_target(
-			"Do you want to play as [span_danger(newstruct.real_name)]?",
+			"你想扮演[span_danger(newstruct.real_name)]吗？",
 			check_jobban = ROLE_CULTIST,
 			role = ROLE_CULTIST,
 			poll_time = 10 SECONDS,
 			checked_target = newstruct,
 			alert_pic = newstruct,
-			role_name_text = "inactive construct",
+			role_name_text = "未激活的构装体",
 			ignore_category = POLL_IGNORE_SHADE
 		)
 
@@ -575,13 +575,13 @@
 
 		if (!target?.client)
 			if (!QDELETED(stoner))
-				to_chat(stoner, span_danger("There were no spirits willing to become a construct."))
+				to_chat(stoner, span_danger("没有灵魂愿意成为构装体。"))
 			new /obj/structure/constructshell(newstruct.drop_location())
 			qdel(newstruct)
 			return
 
 		if (!QDELETED(stoner))
-			to_chat(stoner, span_notice("A new soul has possessed [newstruct]!"))
+			to_chat(stoner, span_notice("一个新的灵魂附身了[newstruct]！"))
 		newstruct.PossessByPlayer(target.ckey)
 	else
 		target.mind.transfer_to(newstruct, force_key_move = TRUE)
@@ -590,9 +590,9 @@
 	if(newstruct.mind && !IS_CULTIST(newstruct) && ((stoner && IS_CULTIST(stoner)) || cultoverride) && SSticker.HasRoundStarted())
 		newstruct.mind.add_antag_datum(/datum/antagonist/cult/construct)
 	if(cultoverride || (stoner && IS_CULTIST(stoner)))
-		to_chat(newstruct, span_cult_bold("You are still bound to serve the cult[stoner ? " and [stoner]" : ""], follow [stoner?.p_their() || "their"] orders and help [stoner?.p_them() || "them"] complete [stoner?.p_their() || "their"] goals at all costs."))
+		to_chat(newstruct, span_cult_bold("你仍受缚于侍奉血教[stoner ? "与[stoner]" : ""]，听从其命令，并不惜一切代价协助其完成目标。"))
 	else if(stoner)
-		to_chat(newstruct, span_boldwarning("You are still bound to serve your creator, [stoner], follow [stoner.p_their()] orders and help [stoner.p_them()] complete [stoner.p_their()] goals at all costs."))
+		to_chat(newstruct, span_boldwarning("你仍受缚于侍奉你的创造者[stoner]，听从其命令，并不惜一切代价协助其完成目标。"))
 	newstruct.clear_alert("bloodsense")
 	sense_alert = newstruct.throw_alert("bloodsense", /atom/movable/screen/alert/bloodsense)
 	if(sense_alert)
@@ -603,8 +603,8 @@
 	required_role = null
 
 /obj/item/ectoplasm
-	name = "ectoplasm"
-	desc = "Spooky."
+	name = "灵质"
+	desc = "阴森森的。"
 	gender = PLURAL
 	icon = 'icons/effects/magic.dmi'
 	icon_state = "ectoplasm"
@@ -613,7 +613,7 @@
 	return list(/datum/reagent/hauntium = 25)
 
 /obj/item/ectoplasm/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is inhaling [src]! It looks like [user.p_theyre()] trying to visit the astral plane!"))
+	user.visible_message(span_suicide("[user]正在吸入[src]！看起来是想去星界逛逛！"))
 	return OXYLOSS
 
 /obj/item/soulstone/mystic
@@ -637,21 +637,21 @@
 	icon_state = "angelplasm"
 
 /obj/item/soulstone/anybody/chaplain
-	name = "mysterious old shard"
+	name = "神秘旧碎片"
 	one_use = TRUE
 	grab_sleeping = FALSE
 
 /obj/item/soulstone/anybody/chaplain/sparring
-	name = "divine punishment"
-	desc = "A prison for those who lost a divine game."
+	name = "神圣惩戒"
+	desc = "为那些输掉神圣游戏者准备的牢笼。"
 	icon_state = "purified_soulstone"
 	theme = THEME_HOLY
 
 /obj/item/soulstone/anybody/chaplain/sparring/Initialize(mapload)
 	. = ..()
-	name = "[GLOB.deity]'s punishment"
+	name = "[GLOB.deity]的惩戒"
 	base_name = name
-	desc = "A prison for those who lost [GLOB.deity]'s game."
+	desc = "为那些输掉[GLOB.deity]的游戏者准备的牢笼。"
 
 /obj/item/soulstone/anybody/mining
 	grab_sleeping = FALSE

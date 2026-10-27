@@ -6,8 +6,8 @@
 /obj/docking_port/mobile/arrivals
 
 /turf/closed/wall/mineral/titanium/shuttle_wall
-	name = "shuttle wall"
-	desc = "A light-weight titanium wall used in shuttles."
+	name = "穿梭机墙"
+	desc = "一种用于穿梭机的轻质钛墙。"
 	icon = 'modular_skyrat/modules/advanced_shuttles/icons/pod.dmi'
 	icon_state = ""
 	base_icon_state = ""
@@ -65,7 +65,7 @@
 	icon_state = "18,2"
 
 /turf/open/floor/iron/shuttle/ferry
-	name = "shuttle floor"
+	name = "穿梭机地板"
 	icon = 'modular_skyrat/modules/advanced_shuttles/icons/erokez.dmi'
 	icon_state = "floor1"
 
@@ -85,7 +85,7 @@
 	icon_state = "9,1"
 
 /turf/open/floor/iron/shuttle/evac
-	name = "shuttle floor"
+	name = "穿梭机地板"
 	floor_tile = /obj/item/stack/tile/mineral/titanium/shuttle_evac
 	icon = 'modular_skyrat/modules/advanced_shuttles/icons/evac_shuttle.dmi'
 	icon_state = "floor"
@@ -106,7 +106,7 @@
 	icon_state = "3,1"
 
 /turf/open/floor/iron/shuttle/arrivals
-	name = "shuttle floor"
+	name = "穿梭机地板"
 	floor_tile = /obj/item/stack/tile/mineral/titanium/shuttle_arrivals
 	icon = 'modular_skyrat/modules/advanced_shuttles/icons/wagon.dmi'
 	icon_state = "floor"
@@ -127,7 +127,7 @@
 	icon_state = "3,1"
 
 /turf/open/floor/iron/shuttle/cargo
-	name = "shuttle floor"
+	name = "穿梭机地板"
 	floor_tile = /obj/item/stack/tile/mineral/titanium/cargo
 	icon = 'modular_skyrat/modules/advanced_shuttles/icons/cargo.dmi'
 	icon_state = "floor"
@@ -186,7 +186,7 @@
 */
 
 /turf/open/floor/iron/shuttle/exploration
-	name = "shuttle floor"
+	name = "穿梭机地板"
 	floor_tile = /obj/item/stack/tile/mineral/titanium/exploration
 	icon = 'modular_skyrat/modules/advanced_shuttles/icons/exploration_floor.dmi'
 	icon_state = "oside"
@@ -271,7 +271,7 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/iron/shuttle/exploration/smooth
-	name = "shuttle floor"
+	name = "穿梭机地板"
 	icon = 'modular_zubbers/icons/turf/floors/exploration_floor.dmi'
 	icon_state = "exploration-0"
 	base_icon_state = "exploration"
@@ -285,9 +285,9 @@
 */
 
 /obj/item/stack/tile/mineral/titanium/cargo
-	name = "cargo shuttle tile"
-	singular_name = "cargo shuttle floor tile"
-	desc = "Utilitarian titanium floor tiles, used for cargo shuttles."
+	name = "货运穿梭机地板砖"
+	singular_name = "货运穿梭机地板砖"
+	desc = "实用的钛制地板砖，用于货运穿梭机。"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "cargo"
 	inhand_icon_state = "tile-shuttle"
@@ -296,33 +296,33 @@
 	merge_type = /obj/item/stack/tile/mineral/titanium/cargo
 
 /obj/item/stack/tile/mineral/titanium/cargo/mainta
-	name = "cargo shuttle charger A tile"
-	singular_name = "cargo shuttle charger A floor tile"
+	name = "货运穿梭机充电器 A 地板砖"
+	singular_name = "货运穿梭机充电器 A 地板砖"
 	icon_state = "cargo_mainta"
 	turf_type = /turf/open/floor/iron/shuttle/cargo/cargo_mainta
 	merge_type = /obj/item/stack/tile/mineral/titanium/cargo/mainta
 	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST)
 
 /obj/item/stack/tile/mineral/titanium/cargo/maintb
-	name = "cargo shuttle charger B tile"
-	singular_name = "cargo shuttle charger B floor tile"
+	name = "货运穿梭机充电器 B 地板砖"
+	singular_name = "货运穿梭机充电器 B 地板砖"
 	icon_state = "cargo_maintb"
 	turf_type = /turf/open/floor/iron/shuttle/cargo/cargo_maintb
 	merge_type = /obj/item/stack/tile/mineral/titanium/cargo/maintb
 	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST)
 
 /obj/item/stack/tile/mineral/titanium/cargo/maintc
-	name = "cargo shuttle edge tile"
-	singular_name = "cargo shuttle edge floor tile"
+	name = "货运穿梭机边缘地板砖"
+	singular_name = "货运穿梭机边缘地板砖"
 	icon_state = "cargo_maintc"
 	turf_type = /turf/open/floor/iron/shuttle/cargo/cargo_maintc
 	merge_type = /obj/item/stack/tile/mineral/titanium/cargo/maintc
 	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST, SOUTHEAST, SOUTHWEST, NORTHEAST, NORTHWEST)
 
 /obj/item/stack/tile/mineral/titanium/exploration
-	name = "mining shuttle tile"
-	singular_name = "mining shuttle floor tile"
-	desc = "rugged titanium floor tiles, used for mining shuttles."
+	name = "采矿穿梭机地板砖"
+	singular_name = "采矿穿梭机地板砖"
+	desc = "坚固耐用的钛制地板砖，用于采矿穿梭机。"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "exploration"
 	inhand_icon_state = "tile-shuttle"
@@ -331,30 +331,30 @@
 	merge_type = /obj/item/stack/tile/mineral/titanium/exploration
 
 /obj/item/stack/tile/mineral/titanium/exploration/flat
-	name = "flat mining shuttle tile"
-	singular_name = "flat mining shuttle floor tile"
+	name = "平面采矿穿梭机地板砖"
+	singular_name = "平面采矿穿梭机地板砖"
 	icon_state = "exploration_flat"
 	turf_type = /turf/open/floor/iron/shuttle/exploration/flat
 	merge_type = /obj/item/stack/tile/mineral/titanium/exploration/flat
 
 /obj/item/stack/tile/mineral/titanium/exploration/flat_textured
-	name = "textured mining shuttle tile"
-	singular_name = "textured mining shuttle floor tile"
+	name = "纹理采矿穿梭机地板砖"
+	singular_name = "纹理采矿穿梭机地板砖"
 	icon_state = "exploration_flat_textured"
 	turf_type = /turf/open/floor/iron/shuttle/exploration/textured_flat
 	merge_type = /obj/item/stack/tile/mineral/titanium/exploration/flat_textured
 
 /obj/item/stack/tile/mineral/titanium/exploration/hazard
-	name = "hazard mining shuttle tile"
-	singular_name = "hazard mining shuttle floor tile"
+	name = "危险标识采矿穿梭机地板砖"
+	singular_name = "危险标识采矿穿梭机地板砖"
 	icon_state = "exploration_flat_hazard"
 	turf_type = /turf/open/floor/iron/shuttle/exploration/hazard
 	merge_type = /obj/item/stack/tile/mineral/titanium/exploration/hazard
 
 /obj/item/stack/tile/mineral/titanium/shuttle_arrivals
-	name = "striped shuttle tile"
-	singular_name = "striped shuttle floor tile"
-	desc = "striped titanium floor tiles, used for shuttles."
+	name = "条纹穿梭机地板砖"
+	singular_name = "条纹穿梭机地板砖"
+	desc = "条纹钛制地板砖，用于穿梭机。"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "shuttle_arrivals"
 	inhand_icon_state = "tile-shuttle"
@@ -363,9 +363,9 @@
 	merge_type = /obj/item/stack/tile/mineral/titanium/shuttle_arrivals
 
 /obj/item/stack/tile/mineral/titanium/shuttle_evac
-	name = "shuttle tile"
-	singular_name = "shuttle floor tile"
-	desc = "striped titanium floor tiles, used for shuttles."
+	name = "穿梭机地板砖"
+	singular_name = "穿梭机地板砖"
+	desc = "条纹钛制地板砖，用于穿梭机。"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "shuttle_evac"
 	inhand_icon_state = "tile-shuttle"

@@ -237,7 +237,7 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 				oldTurf = current_location
 			M.forceMove(dropoff_turf) //Perform the actual teleport
 			log_admin("[key_name(usr)] jumped to [AREACOORD(dropoff_turf)]")
-			message_admins("[key_name_admin(usr)] jumped to [AREACOORD(dropoff_turf)]")
+			message_admins("[key_name_admin(usr)] 跳转到了 [AREACOORD(dropoff_turf)]")
 			. = TRUE
 		if("teleportCentcom") //Teleports the user to the centcom supply loading facility.
 			var/mob/holder_mob = holder.mob //We teleport whatever mob the client is attached to at the point of clicking
@@ -249,17 +249,17 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 			holder_mob.forceMove(teleport_turf) //Perform the actual teleport
 			if (holder.holder)
 				log_admin("[key_name(usr)] jumped to [AREACOORD(teleport_turf)]")
-				message_admins("[key_name_admin(usr)] jumped to [AREACOORD(teleport_turf)]")
+				message_admins("[key_name_admin(usr)] 跳转到了 [AREACOORD(teleport_turf)]")
 			. = TRUE
 		if("teleportBack") //After teleporting to centcom/dropoff, this button allows the user to teleport to the last spot they were at.
 			var/mob/M = holder.mob
 			if (!oldTurf) //If theres no turf to go back to, error and cancel
-				to_chat(M, "Nowhere to jump to!")
+				to_chat(M, "无处可跳回！")
 				return
 			M.forceMove(oldTurf) //Perform the actual teleport
 			if (holder.holder)
 				log_admin("[key_name(usr)] jumped to [AREACOORD(oldTurf)]")
-				message_admins("[key_name_admin(usr)] jumped to [AREACOORD(oldTurf)]")
+				message_admins("[key_name_admin(usr)] 跳转到了 [AREACOORD(oldTurf)]")
 			. = TRUE
 
 		////////////////////////////LAUNCH STYLE CHANGES//////////////////
@@ -291,14 +291,14 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 				explosionChoice = 0
 				temp_pod.explosionSize = list(0,0,0,0)
 				return
-			var/list/expNames = list("Devastation", "Heavy Damage", "Light Damage", "Flame", "Flash") //Explosions have a range of different types of damage
+			var/list/expNames = list("毁灭范围", "重伤范围", "轻伤范围", "火焰范围", "闪光范围") //Explosions have a range of different types of damage
 			var/list/boomInput = list()
 			for (var/i=1 to length(expNames)) //Gather input from the user for the value of each type of damage
-				boomInput.Add(input("Enter the [expNames[i]] range of the explosion. WARNING: This ignores the bomb cap!", "[expNames[i]] Range",  0) as null|num)
+				boomInput.Add(input("输入爆炸的[expNames[i]]。警告：这会无视炸弹上限！", "[expNames[i]]",  0) as null|num)
 				if (isnull(boomInput[i]))
 					return
 				if (!isnum(boomInput[i])) //If the user doesn't input a number, set that specific explosion value to zero
-					tgui_alert(usr, "That wasn't a number! Value set to default (zero) instead.")
+					tgui_alert(usr, "那不是一个数字！已改为默认值（零）。")
 					boomInput[i] = 0
 			explosionChoice = 1
 			temp_pod.explosionSize = boomInput
@@ -316,11 +316,11 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 				damageChoice = 0
 				temp_pod.damage = 0
 				return
-			var/damageInput = input("Enter the amount of brute damage dealt by getting hit","How much damage to deal",  0) as null|num
+			var/damageInput = input("输入被砸中时受到的钝击伤害量","要造成多少伤害",  0) as null|num
 			if (isnull(damageInput))
 				return
 			if (!isnum(damageInput)) //Sanitize the input for damage to deal.s
-				tgui_alert(usr, "That wasn't a number! Value set to default (zero) instead.")
+				tgui_alert(usr, "那不是一个数字！已改为默认值（零）。")
 				damageInput = 0
 			damageChoice = 1
 			temp_pod.damage = damageInput
@@ -340,10 +340,10 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 				temp_pod.adminNamed = FALSE
 				temp_pod.set_style(temp_pod.style) //This resets the name of the pod based on its current style (see supplypod/set_style() proc)
 				return
-			var/nameInput= tgui_input_text(usr, "Enter a custom name", "Custom name", temp_pod.style::name, max_length = MAX_NAME_LEN)
+			var/nameInput= tgui_input_text(usr, "输入自定义名称", "自定义名称", temp_pod.style::name, max_length = MAX_NAME_LEN)
 			if (isnull(nameInput))
 				return
-			var/descInput = tgui_input_text(usr, "Enter a custom desc", "Custom description", temp_pod.style::desc, max_length = MAX_DESC_LEN)
+			var/descInput = tgui_input_text(usr, "输入自定义描述", "自定义描述", temp_pod.style::desc, max_length = MAX_DESC_LEN)
 			if (isnull(descInput))
 				return
 			temp_pod.name = nameInput
@@ -354,14 +354,14 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 			if (temp_pod.effectShrapnel == TRUE) //If already doing custom damage, set back to default (no shrapnel)
 				temp_pod.effectShrapnel = FALSE
 				return
-			var/shrapnelInput = input("Please enter the type of pellet cloud you'd like to create on landing (Can be any projectile!)", "Projectile Typepath",  0) in sort_list(subtypesof(/obj/projectile), GLOBAL_PROC_REF(cmp_typepaths_asc))
+			var/shrapnelInput = input("请输入你希望在着陆时生成的弹丸云类型（可以是任何投射物！）", "投射物类型路径",  0) in sort_list(subtypesof(/obj/projectile), GLOBAL_PROC_REF(cmp_typepaths_asc))
 			if (isnull(shrapnelInput))
 				return
-			var/shrapnelMagnitude = input("Enter the magnitude of the pellet cloud. This is usually a value around 1-5. Please note that Ryll-Ryll has asked me to tell you that if you go too crazy with the projectiles you might crash the server. So uh, be gentle!", "Shrapnel Magnitude", 0) as null|num
+			var/shrapnelMagnitude = input("输入弹丸云的数量级。通常取 1-5 左右。请注意，Ryll-Ryll 让我转告你：投射物玩得太过火可能会导致服务器崩溃。所以……温柔一点儿！", "破片数量级", 0) as null|num
 			if (isnull(shrapnelMagnitude))
 				return
 			if (!isnum(shrapnelMagnitude))
-				tgui_alert(usr, "That wasn't a number! Value set to 3 instead.")
+				tgui_alert(usr, "那不是一个数字！已改为 3。")
 				shrapnelMagnitude = 3
 			temp_pod.shrapnel_type = shrapnelInput
 			temp_pod.shrapnel_magnitude = shrapnelMagnitude
@@ -417,7 +417,7 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 				return
 
 			var/list/possible_destinations = SSpoints_of_interest.get_mob_pois()
-			var/target = tgui_input_list(usr, "Select a mob! (Smiting does this automatically)", "Target", possible_destinations)
+			var/target = tgui_input_list(usr, "选择一个生物！（天罚会自动执行此操作）", "目标", possible_destinations)
 
 			if (isnull(target))
 				return
@@ -454,7 +454,7 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 				temp_pod.fallingSound = initial(temp_pod.fallingSound)
 				temp_pod.fallingSoundLength = initial(temp_pod.fallingSoundLength)
 				return
-			var/soundInput = input(holder, "Please pick a sound file to play when the pod lands! Sound will start playing and try to end when the pod lands.\nSound MUST be shorter then sum of FALL and PRE.", "Pick a Sound File") as null|sound
+			var/soundInput = input(holder, "请选择一个在补给舱着陆时播放的音频文件！音频会开始播放，并尽量在补给舱着陆时结束。\n音频长度必须短于下落与准备时间之和。", "选择音频文件") as null|sound
 			if (isnull(soundInput))
 				return
 			var/sound/tempSound = sound(soundInput)
@@ -469,11 +469,11 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 				if (found.file == tempSound.file)
 					soundLen = rustg_sound_length(found.file)
 			if (!soundLen)
-				soundLen = input(holder, "Couldn't auto-determine sound file length. What is the exact length of the sound file, in seconds. This number will be used to line the sound up so that it finishes right as the pod lands!", "Pick a Sound File", 0.3) as null|num
+				soundLen = input(holder, "无法自动判定音频文件的长度。该音频文件的确切长度是多少秒？这个数字将用于对齐音频，使其恰好在补给舱着陆时播放完毕！", "选择音频文件", 0.3) as null|num
 				if (isnull(soundLen))
 					return
 				if (!isnum(soundLen))
-					tgui_alert(usr, "That wasn't a number! Value set to default ([initial(temp_pod.fallingSoundLength)*0.1]) instead.")
+					tgui_alert(usr, "那不是一个数字！已改为默认值（[initial(temp_pod.fallingSoundLength)*0.1]）。")
 			temp_pod.fallingSound = soundInput
 			temp_pod.fallingSoundLength = soundLen
 			. = TRUE
@@ -481,7 +481,7 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 			if (!isnull(temp_pod.landingSound))
 				temp_pod.landingSound = null
 				return
-			var/soundInput = input(holder, "Please pick a sound file to play when the pod lands! I reccomend a nice \"oh shit, i'm sorry\", incase you hit someone with the pod.", "Pick a Sound File") as null|sound
+			var/soundInput = input(holder, "请选择一个在补给舱着陆时播放的音频文件！我推荐一句真诚的“啊，抱歉抱歉”，以防你不小心砸到了谁。", "选择音频文件") as null|sound
 			if (isnull(soundInput))
 				return
 			temp_pod.landingSound = soundInput
@@ -490,7 +490,7 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 			if (!isnull(temp_pod.openingSound))
 				temp_pod.openingSound = null
 				return
-			var/soundInput = input(holder, "Please pick a sound file to play when the pod opens! I reccomend a stock sound effect of kids cheering at a party, incase your pod is full of fun exciting stuff!", "Pick a Sound File") as null|sound
+			var/soundInput = input(holder, "请选择一个在补给舱开启时播放的音频文件！我推荐一段派对上孩子们欢呼的现成音效，以防你的补给舱里装满了又好玩又刺激的东西！", "选择音频文件") as null|sound
 			if (isnull(soundInput))
 				return
 			temp_pod.openingSound = soundInput
@@ -499,7 +499,7 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 			if (!isnull(temp_pod.leavingSound))
 				temp_pod.leavingSound = null
 				return
-			var/soundInput = input(holder, "Please pick a sound file to play when the pod leaves! I reccomend a nice slide whistle sound, especially if you're using the reverse pod effect.", "Pick a Sound File") as null|sound
+			var/soundInput = input(holder, "请选择一个在补给舱离开时播放的音频文件！我推荐一段悦耳的滑哨音效，尤其是在你使用逆向补给舱效果时。", "选择音频文件") as null|sound
 			if (isnull(soundInput))
 				return
 			temp_pod.leavingSound = soundInput
@@ -508,7 +508,7 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 			if (temp_pod.soundVolume != initial(temp_pod.soundVolume))
 				temp_pod.soundVolume = initial(temp_pod.soundVolume)
 				return
-			var/soundInput = input(holder, "Please pick a volume. Default is between 4 and 100 with 50 being average, but pick whatever. I'm a notification, not a cop. If you still cant hear your sound, consider turning on the Quiet effect. It will silence all pod sounds except for the custom admin ones set by the previous three buttons.", "Pick Admin Sound Volume") as null|num
+			var/soundInput = input(holder, "请选择一个音量。默认介于 4 到 100 之间，50 为平均值，不过随便你选。我只是个提示，不是警察。如果你仍然听不到声音，可以考虑开启静音效果。静音效果会让除上述三个按钮设置的自定义管理员音频外的所有补给舱音效静音。", "选择管理员音频音量") as null|num
 			if (isnull(soundInput))
 				return
 			temp_pod.soundVolume = soundInput
@@ -537,7 +537,7 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 			updateSelector()
 			. = TRUE
 		if("clearBay") //Delete all mobs and objs in the selected bay
-			if(tgui_alert(usr, "This will delete all objs and mobs in [bay]. Are you sure?", "Confirmation", list("Delete that shit", "No")) == "Delete that shit")
+			if(tgui_alert(usr, "这会删除 [bay] 中的所有物体和生物。你确定吗？", "确认", list("Delete that shit", "No")) == "Delete that shit")
 				clearBay()
 				refreshBay()
 			. = TRUE
@@ -609,7 +609,7 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 			else
 				return //if target is null and we don't have a specific target, cancel
 			if (effectAnnounce)
-				deadchat_broadcast("A special package is being launched at the station!", turf_target = target, message_type=DEADCHAT_ANNOUNCEMENT)
+				deadchat_broadcast("一个特殊包裹正被发射向空间站！", turf_target = target, message_type=DEADCHAT_ANNOUNCEMENT)
 			var/list/bouttaDie = list()
 			for (var/mob/living/target_mob in target)
 				bouttaDie.Add(target_mob)
@@ -638,7 +638,7 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 			var/turf/target_turf = get_turf(target)
 			setDropoff(target_turf)
 			customDropoff = TRUE
-			to_chat(user, span_notice("You've selected [target_turf] at [COORD(target_turf)] as your dropoff location."))
+			to_chat(user, span_notice("你已将 [COORD(target_turf)] 处的 [target_turf] 选为投放点。"))
 
 /datum/centcom_podlauncher/proc/refreshView()
 	switch(tabIndex)
@@ -657,7 +657,7 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 
 /datum/centcom_podlauncher/proc/createOrderedArea(area/area_to_order) //This assumes the area passed in is a continuous square
 	if (isnull(area_to_order)) //If theres no supplypod bay mapped into centcom, throw an error
-		to_chat(holder.mob, "No /area/centcom/central_command_areas/supplypod/loading/one (or /two or /three or /four) in the world! You can make one yourself (then refresh) for now, but yell at a mapper to fix this, today!")
+		to_chat(holder.mob, "世界上不存在 /area/centcom/central_command_areas/supplypod/loading/one（或 /two、/three、/four）！你可以暂时自己造一个（然后刷新），但今天就去吼地图制作者把它修好！")
 		CRASH("No /area/centcom/central_command_areas/supplypod/loading/one (or /two or /three or /four) has been mapped into the centcom z-level!")
 	orderedArea = list()
 	if (length(area_to_order.contents)) //Go through the area passed into the proc, and figure out the top left and bottom right corners by calculating max and min values
@@ -792,14 +792,14 @@ ADMIN_VERB(centcom_podlauncher, R_ADMIN, "Config/Launch Supplypod", "Configure a
 	return ..()
 
 /datum/centcom_podlauncher/proc/supplypod_punish_log(list/whoDyin)
-	var/podString = effectBurst ? "5 pods" : "a pod"
+	var/podString = effectBurst ? "5 个补给舱" : "一个补给舱"
 	var/whomString = ""
 	if (LAZYLEN(whoDyin))
 		for (var/mob/living/M in whoDyin)
 			whomString += "[key_name(M)], "
 
-	var/msg = "launched [podString] towards [whomString]"
-	message_admins("[key_name_admin(usr)] [msg] in [ADMIN_VERBOSEJMP(specificTarget)].")
+	var/msg = "向 [whomString] 发射了 [podString]"
+	message_admins("[key_name_admin(usr)] 在 [ADMIN_VERBOSEJMP(specificTarget)] 中[msg]。")
 	if (length(whoDyin))
 		for (var/mob/living/M in whoDyin)
 			admin_ticket_log(M, "[key_name_admin(usr)] [msg]")
@@ -863,7 +863,7 @@ GLOBAL_DATUM_INIT(podlauncher, /datum/centcom_podlauncher, new)
 	indicator.forceMove(target_turf)
 
 /obj/effect/client_image_holder/supplypod_selector // Shows which item will be taken next
-	name = "Supply Selector (Only you can see this)"
+	name = "补给选择器（仅你可见）"
 	image_icon = 'icons/obj/supplypods_32x32.dmi'
 	image_state = "selector"
 	image_layer = FLY_LAYER
@@ -872,7 +872,7 @@ GLOBAL_DATUM_INIT(podlauncher, /datum/centcom_podlauncher, new)
 	alpha = 150
 
 /obj/effect/client_image_holder/dropoff_location // Shows where revese pods lands
-	name = "Dropoff Location (Only you can see this)"
+	name = "投放点（仅你可见）"
 	image_icon = 'icons/obj/supplypods_32x32.dmi'
 	image_state = "dropoff_indicator"
 	image_layer = FLY_LAYER

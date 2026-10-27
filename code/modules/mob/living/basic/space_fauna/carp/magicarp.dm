@@ -1,31 +1,31 @@
 /// A list of spells magicarp can use and a corresponding name prefix to apply
 GLOBAL_LIST_INIT(magicarp_spell_types, list(
-	/obj/projectile/magic/animate = "dancing",
-	/obj/projectile/magic/arcane_barrage = "arcane",
-	/obj/projectile/magic/babel = "babbling",
-	/obj/projectile/magic/change = "transforming",
-	/obj/projectile/magic/death = "grim",
-	/obj/projectile/magic/door = "unbarred",
-	/obj/projectile/magic/fireball = "blazing",
-	/obj/projectile/magic/freeze = "frigid",
-	/obj/projectile/magic/levitate = "weightless",
-	/obj/projectile/magic/resurrection = "vital",
-	/obj/projectile/magic/spellblade = "vorpal",
-	/obj/projectile/magic/swap = "quantum",
-	/obj/projectile/magic/teleport = "warping",
+	/obj/projectile/magic/animate = "舞动",
+	/obj/projectile/magic/arcane_barrage = "奥术",
+	/obj/projectile/magic/babel = "胡言",
+	/obj/projectile/magic/change = "变形",
+	/obj/projectile/magic/death = "阴森",
+	/obj/projectile/magic/door = "无闩",
+	/obj/projectile/magic/fireball = "炽焰",
+	/obj/projectile/magic/freeze = "冰寒",
+	/obj/projectile/magic/levitate = "失重",
+	/obj/projectile/magic/resurrection = "活力",
+	/obj/projectile/magic/spellblade = "锋锐",
+	/obj/projectile/magic/swap = "量子",
+	/obj/projectile/magic/teleport = "跃迁",
 ))
 
 /// A reduced list of spells for magicarp spawned in xenobiology, less disruptive
 GLOBAL_LIST_INIT(xenobiology_magicarp_spell_types, list(
-	/obj/projectile/magic/animate = "dancing",
-	/obj/projectile/magic/arcane_barrage = "arcane",
-	/obj/projectile/magic/door = "unbarred",
-	/obj/projectile/magic/fireball = "blazing",
-	/obj/projectile/magic/freeze = "frigid",
-	/obj/projectile/magic/levitate = "weightless",
-	/obj/projectile/magic/spellblade = "vorpal",
-	/obj/projectile/magic/swap = "quantum",
-	/obj/projectile/magic/teleport = "warping",
+	/obj/projectile/magic/animate = "舞动",
+	/obj/projectile/magic/arcane_barrage = "奥术",
+	/obj/projectile/magic/door = "无闩",
+	/obj/projectile/magic/fireball = "炽焰",
+	/obj/projectile/magic/freeze = "冰寒",
+	/obj/projectile/magic/levitate = "失重",
+	/obj/projectile/magic/spellblade = "锋锐",
+	/obj/projectile/magic/swap = "量子",
+	/obj/projectile/magic/teleport = "跃迁",
 ))
 
 /// Associative list of magicarp spells to colours, expand this list if you expand the other lists
@@ -53,8 +53,8 @@ GLOBAL_LIST_INIT(magicarp_spell_colours, list(
  * Come in 'does one thing' and 'does random things' varieties.
  */
 /mob/living/basic/carp/magic
-	name = "magicarp"
-	desc = "50% magic, 50% carp, 100% horrible."
+	name = "魔法鲤鱼"
+	desc = "50% 魔法，50% 鲤鱼，100% 可怕。"
 	icon_gib = "magicarp_gib"
 	maxHealth = 50
 	health = 50
@@ -91,7 +91,7 @@ GLOBAL_LIST_INIT(magicarp_spell_colours, list(
 /// Updates name based on chosen spell
 /mob/living/basic/carp/magic/proc/assign_spell()
 	var/obj/projectile/spell_type = pick(allowed_projectile_types)
-	name = "[GLOB.magicarp_spell_types[spell_type]] [name]"
+	name = "[GLOB.magicarp_spell_types[spell_type]][name]"
 	set_greyscale(colors = list(GLOB.magicarp_spell_colours[spell_type]))
 
 	spell = new (src)
@@ -123,8 +123,8 @@ GLOBAL_LIST_INIT(magicarp_spell_colours, list(
  * They trade off for this with a tendency to fireball themselves.
  */
 /mob/living/basic/carp/magic/chaos
-	name = "chaos magicarp"
-	desc = "50% carp, 100% magic, 150% horrible."
+	name = "混沌魔法鲤鱼"
+	desc = "50% 鲤鱼，100% 魔法，150% 可怕。"
 	maxHealth = 75
 	health = 75
 

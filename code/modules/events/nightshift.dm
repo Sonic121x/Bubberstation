@@ -1,11 +1,11 @@
 /datum/round_event_control/nightshift
-	name = "Night Shift"
+	name = "夜班"
 	typepath = /datum/round_event/nightshift
 	weight = 2
 	max_occurrences = 1
 	earliest_start = 30 SECONDS
 	category = EVENT_CATEGORY_FRIENDLY
-	description = "Sets the station's lights to Night Shift mode for the next 20 minutes."
+	description = "在接下来的 20 分钟内将空间站灯光设为夜班模式。"
 
 /datum/round_event_control/nightshift/New()
 	. = ..()
@@ -47,15 +47,15 @@
 
 	if(announce)
 		if(active)
-			send_announcement("Good evening, crew. To reduce power consumption and stimulate the circadian rhythms of some species, all of the lights aboard the station have been dimmed for the night.")
+			send_announcement("晚上好，各位船员。为降低能耗并调节部分物种的昼夜节律，空间站上所有灯光已调暗，进入夜间模式。")
 		else
-			send_announcement("Good morning, crew. As it is now day time, all of the lights aboard the station have been restored to their former brightness.")
+			send_announcement("早上好，各位船员。现在已是白天，空间站上所有灯光已恢复原有亮度。")
 
 	if(resume)
 		if(active)
-			send_announcement("Restoring night lighting configuration to normal operation.")
+			send_announcement("正在将夜间照明配置恢复正常运行。")
 		else
-			send_announcement("Disabling night lighting: Station is in a state of emergency.")
+			send_announcement("正在禁用夜间照明：空间站处于紧急状态。")
 
 	update_machines()
 
@@ -73,6 +73,6 @@
 	priority_announce(
 		text = message,
 		sound = 'sound/announcer/notice/notice2.ogg',
-		sender_override = "Automated Lighting System Announcement",
+		sender_override = "自动照明系统公告",
 		color_override = "grey",
 	)

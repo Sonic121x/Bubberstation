@@ -8,21 +8,21 @@ Difficulty: Extremely Hard
 */
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner
-	name = "demonic-frost miner"
-	desc = "An extremely well-geared miner, driven crazy or possessed by the demonic forces here, either way a terrifying enemy."
+	name = "恶魔霜冻矿工"
+	desc = "一名装备极其精良的矿工，被此地的恶魔力量逼疯或附身；无论哪一种，都是个骇人的敌人。"
 	health = 1500
 	maxHealth = 1500
 	icon_state = "demonic_miner"
 	icon_living = "demonic_miner"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
-	attack_verb_continuous = "pummels"
-	attack_verb_simple = "pummel"
+	attack_verb_continuous = "猛锤"
+	attack_verb_simple = "猛锤"
 	attack_sound = 'sound/items/weapons/sonic_jackhammer.ogg'
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_SPECIAL|MOB_MINING
 	light_color = COLOR_LIGHT_GRAYISH_RED
 	movement_type = GROUND
 	weather_immunities = list(TRAIT_SNOWSTORM_IMMUNE)
-	speak_emote = list("roars")
+	speak_emote = list("咆哮")
 	armour_penetration = 100
 	melee_damage_lower = 10
 	melee_damage_upper = 10
@@ -30,7 +30,7 @@ Difficulty: Extremely Hard
 	rapid_melee = 4
 	speed = 20
 	move_to_delay = 20
-	gps_name = "Bloodchilling Signal"
+	gps_name = "血寒信号"
 	ranged = TRUE
 	crusher_loot = /obj/item/crusher_trophy/ice_block_talisman
 	loot = list(/obj/effect/decal/remains/plasma, /obj/item/ice_energy_crystal)
@@ -40,10 +40,10 @@ Difficulty: Extremely Hard
 	achievement_type = /datum/award/achievement/boss/demonic_miner_kill
 	crusher_achievement_type = /datum/award/achievement/boss/demonic_miner_crusher
 	score_achievement_type = /datum/award/score/demonic_miner_score
-	death_message = "falls to the ground, decaying into plasma particles."
+	death_message = "倒在地上，渐渐衰解为等离子粒子。"
 	death_sound = SFX_BODYFALL
 	footstep_type = FOOTSTEP_MOB_HEAVY
-	summon_line = "I'M WIDE AWAKE! AND YOU'RE WIIIIIIIDE OPEN!"
+	summon_line = "我清醒得很！而你全身上下都是破绽！"
 	/// If the demonic frost miner is in its enraged state
 	var/enraged = FALSE
 	/// If the demonic frost miner is currently transforming to its enraged state
@@ -159,7 +159,7 @@ Difficulty: Extremely Hard
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/ex_act(severity, target)
 	adjust_brute_loss(-30 * severity)
-	visible_message(span_danger("[src] absorbs the explosion!"), span_userdanger("You absorb the explosion!"))
+	visible_message(span_danger("[src] 吸收了这场爆炸！"), span_userdanger("你吸收了这场爆炸！"))
 	return TRUE
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/Goto(target, delay, minimum_distance)
@@ -194,7 +194,7 @@ Difficulty: Extremely Hard
 	return ..()
 
 /obj/projectile/colossus/frost_orb
-	name = "frost orb"
+	name = "霜冻光球"
 	icon_state = "ice_1"
 	damage = 20
 	armour_penetration = 100
@@ -209,7 +209,7 @@ Difficulty: Extremely Hard
 		EX_ACT(target, EXPLODE_HEAVY)
 
 /obj/projectile/colossus/snowball
-	name = "machine-gun snowball"
+	name = "机枪雪球"
 	icon_state = "nuclear_particle"
 	damage = 5
 	armour_penetration = 100
@@ -219,7 +219,7 @@ Difficulty: Extremely Hard
 	explode_hit_objects = FALSE
 
 /obj/projectile/colossus/ice_blast
-	name = "ice blast"
+	name = "寒冰爆发"
 	icon_state = "ice_2"
 	damage = 15
 	armour_penetration = 100
@@ -246,14 +246,14 @@ Difficulty: Extremely Hard
 	return ..()
 
 /atom/movable/screen/alert/status_effect/ice_block_talisman
-	name = "Frozen Solid"
-	desc = "You're frozen inside an ice cube, and cannot move!"
+	name = "冻成冰块"
+	desc = "你被冻在一块冰里，动弹不得！"
 	icon_state = "frozen"
 
 /datum/status_effect/ice_block_talisman/on_apply()
 	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(owner_moved))
 	if(!IS_UNCONSCIOUS_OR_CRIT(owner))
-		to_chat(owner, span_userdanger("You become frozen in a cube!"))
+		to_chat(owner, span_userdanger("你被冻在了一块冰里！"))
 	cube = icon('icons/effects/freeze.dmi', "ice_cube")
 	var/list/icon_dimensions = get_icon_dimensions(owner.icon)
 	cube.Scale(icon_dimensions["width"], icon_dimensions["height"])
@@ -272,13 +272,13 @@ Difficulty: Extremely Hard
 
 /datum/status_effect/ice_block_talisman/on_remove()
 	if(!IS_UNCONSCIOUS_OR_CRIT(owner))
-		to_chat(owner, span_notice("The cube melts!"))
+		to_chat(owner, span_notice("冰块融化了！"))
 	owner.cut_overlay(cube)
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 
 /obj/structure/frost_miner_prism
-	name = "frost miner light prism"
-	desc = "A magical crystal enhanced by a demonic presence."
+	name = "霜冻矿工光棱晶"
+	desc = "一枚被恶魔存在强化过的魔法水晶。"
 	icon = 'icons/obj/science/slimecrossing.dmi'
 	icon_state = "lightprism"
 	density = FALSE

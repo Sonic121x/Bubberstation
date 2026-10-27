@@ -1,5 +1,5 @@
 /turf/open/openspace/ocean
-	name = "ocean"
+	name = "海洋"
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/openspace/ocean
 	var/replacement_turf = /turf/open/misc/ocean
@@ -51,8 +51,8 @@
 
 
 /turf/open/misc/ocean/rock
-	name = "rock"
-	desc = "Polished over centuries of undersea weather conditions and a distinct lack of light."
+	name = "岩石"
+	desc = "经数百年的海底风化与长年的不见天日打磨得光滑。"
 	baseturfs = /turf/open/misc/ocean/rock
 	icon = 'modular_skyrat/modules/liquids/icons/turf/seafloor.dmi'
 	icon_state = "seafloor"
@@ -63,8 +63,8 @@
 	liquid_type = /obj/effect/abstract/liquid_turf/immutable/ocean/warm
 
 /turf/open/misc/ocean/rock/warm/fissure
-	name = "fissure"
-	desc = "A comfortable, warm tempature eminates from these - followed immediately after by toxic chemicals in liquid or gaseous forms; but warmth all the same!"
+	name = "裂隙"
+	desc = "这里散发着舒适温暖的热气——紧接着涌出的还有液态或气态的毒性化学品；但暖意倒是实打实的！"
 	icon = 'modular_skyrat/modules/liquids/icons/turf/fissure.dmi'
 	icon_state = "fissure-0"
 	base_icon_state = "fissure"
@@ -86,8 +86,8 @@
 
 /turf/open/misc/ocean
 	gender = PLURAL
-	name = "ocean sand"
-	desc = "If you can't escape sandstorms underwater, is anywhere safe?"
+	name = "海洋沙地"
+	desc = "如果在水下都躲不开沙尘暴，那还有哪里是安全的？"
 	baseturfs = /turf/open/misc/ocean
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "asteroid"
@@ -241,8 +241,8 @@
 
 /turf/open/misc/canal
 	gender = PLURAL
-	name = "canal"
-	desc = "A section of the earth given way to form a natural aqueduct."
+	name = "运河"
+	desc = "地壳下陷形成的一段天然水渠。"
 	baseturfs = /turf/open/misc/canal
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "asteroid"
@@ -266,8 +266,8 @@
 
 /turf/open/misc/canal_mutable
 	gender = PLURAL
-	name = "canal"
-	desc = "A section of the earth given way to form a natural aqueduct."
+	name = "运河"
+	desc = "地壳下陷形成的一段天然水渠。"
 	baseturfs = /turf/open/misc/canal_mutable
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "asteroid"
@@ -280,7 +280,7 @@
 	turf_height = -30
 
 /turf/open/floor/iron/submarine
-	name = "submarine floor"
+	name = "潜艇地板"
 	icon = 'modular_skyrat/modules/liquids/icons/turf/submarine.dmi'
 	base_icon_state = "submarine_floor"
 	icon_state = "submarine_floor"
@@ -291,7 +291,7 @@
 	return
 
 /turf/open/floor/iron/submarine_vents
-	name = "submarine floor"
+	name = "潜艇地板"
 	icon = 'modular_skyrat/modules/liquids/icons/turf/submarine.dmi'
 	base_icon_state = "submarine_vents"
 	icon_state = "submarine_vents"
@@ -302,7 +302,7 @@
 	return
 
 /turf/open/floor/iron/submarine_perf
-	name = "submarine floor"
+	name = "潜艇地板"
 	icon = 'modular_skyrat/modules/liquids/icons/turf/submarine.dmi'
 	base_icon_state = "submarine_perf"
 	icon_state = "submarine_perf"
@@ -317,4 +317,4 @@
 
 //For now just a titanium wall. I'll make sprites for it later
 /turf/closed/wall/mineral/titanium/submarine
-	name = "submarine wall"
+	name = "潜艇舱壁"

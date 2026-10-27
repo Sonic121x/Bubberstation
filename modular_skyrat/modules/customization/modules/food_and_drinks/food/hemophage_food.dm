@@ -1,31 +1,31 @@
 /obj/item/food/hemophage
-	name = "bloody food"
-	desc = "If you see this, then something's gone very wrong and you should report it whenever you get the chance."
+	name = "血腥食物"
+	desc = "如果你看到这个，说明出了很严重的问题，有机会的话请上报。"
 	icon = 'modular_skyrat/master_files/icons/obj/food/hemophage_food.dmi'
 	foodtypes = GORE | BLOODY
 
 /obj/item/food/hemophage/blood_rice_pearl
-	name = "kessen shinju"
-	desc = "A fun finger food. Little clumps of sticky rice with a bit of ground pork and green onion, all soaked and rolled in fresh blood; giving it a crimson hue. Recommended to serve hot!"
+	name = "血战珍珠"
+	desc = "有趣的手抓小食。一小团一小团的糯米，混着少许猪肉末和葱花，再浸透并裹上新鲜血液，呈现出绯红色泽。建议趁热享用！"
 	icon_state = "blood_rice_pearl"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
 		/datum/reagent/blood = 10,
 	)
-	tastes = list("rice" = 3, "blood" = 5)
+	tastes = list("米饭" = 3, "血" = 5)
 	foodtypes = GRAIN | GORE | BLOODY
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/hemophage/blood_rice_pearl/raw
-	name = "uncooked blood rice"
-	desc = "A clump of raw rice, drenched in blood."
+	name = "生血米"
+	desc = "一团浸透鲜血的生米。"
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = "uncooked_rice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
 		/datum/reagent/blood = 10,
 	)
-	tastes = list("raw rice" = 3, "blood" = 5)
+	tastes = list("生米" = 3, "血" = 5)
 	color = "#810000"
 	foodtypes = GRAIN | GORE | BLOODY | RAW
 	crafting_complexity = FOOD_COMPLEXITY_0
@@ -34,8 +34,8 @@
 	AddElement(/datum/element/microwavable, /obj/item/food/hemophage/blood_rice_pearl)
 
 /obj/item/food/hemophage/blood_noodles
-	name = "boiled blood noodles"
-	desc = "A plain dish of blood-soaked noodles, it would probably be better with more ingredients."
+	name = "水煮血面"
+	desc = "一盘简单的血浸面条，多加点配料大概会更好吃。"
 	icon = 'icons/obj/food/spaghetti.dmi'
 	icon_state = "spaghettiboiled"
 	color = "#810000"
@@ -43,19 +43,19 @@
 		/datum/reagent/consumable/nutriment = 6,
 		/datum/reagent/blood = 20,
 	)
-	tastes = list("blood" = 5, "pasta" = 1)
+	tastes = list("血" = 5, "意面" = 1)
 	foodtypes = GRAIN | GORE | BLOODY
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/hemophage/blood_noodles/raw
-	name = "raw blood noodles"
-	desc = "Noodles thoroughly soaked in blood. Eating them raw doesn't sound appetizing. Nor does eating them at all, really."
+	name = "生血面"
+	desc = "彻底浸透血液的面条。生吃听起来并不诱人。其实煮熟了吃也一样。"
 	color = "#ad0000"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
 		/datum/reagent/blood = 15, // You should really be cooking those if you want the full amount of blood out of them
 	)
-	tastes = list("blood" = 5, "raw pasta" = 1)
+	tastes = list("血" = 5, "生意面" = 1)
 	foodtypes = GRAIN | GORE | BLOODY | RAW
 	crafting_complexity = FOOD_COMPLEXITY_0
 
@@ -63,8 +63,8 @@
 	AddElement(/datum/element/microwavable, /obj/item/food/hemophage/blood_noodles)
 
 /obj/item/food/hemophage/blood_noodles/boat_noodles
-	name = "boat noodles"
-	desc = "A dish with normally made with a very strong combination of pork and beef; the main attraction in this meatless version being the combination of blood curds and curly noodles, seasoned and immersed in fresh blood to the point they've turned crimson. It reeks of iron."
+	name = "船面"
+	desc = "这道菜通常用猪肉和牛肉的浓烈组合制成；这个无肉版本的主角是血豆腐和卷曲面条，经过调味并浸在新鲜血液中，直至变成绯红色。散发着浓重的铁腥味。"
 	icon_state = "meatballspaghetti"
 	color = "#d10000"
 	max_volume = 70
@@ -73,38 +73,38 @@
 		/datum/reagent/consumable/nutriment/vitamin = 10,
 		/datum/reagent/blood = 50,
 	)
-	tastes = list("blood" = 5, "congealed blood" = 3, "pasta" = 1)
+	tastes = list("血" = 5, "凝固的血" = 3, "意面" = 1)
 	foodtypes = GRAIN | GORE | BLOODY
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/hemophage/blood_curd
-	name = "blood curd"
-	desc = "Also known as 'blood tofu' or 'blood pudding,' this Yangyu delicacy looks to be made of congealed and cooked blood. It's soft and smooth, slightly chewy, and rich in riboflavin."
+	name = "血豆腐"
+	desc = "又称“血凝块”或“血布丁”，这道洋语小吃看起来是用凝固后煮熟的血液制成。口感柔软顺滑，略带嚼劲，富含核黄素。"
 	icon_state = "blood_curd"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 5,
 		/datum/reagent/blood = 15,
 	)
-	tastes = list("congealed blood" = 1)
+	tastes = list("凝固的血" = 1)
 	foodtypes = GORE | BLOODY | RAW
 	crafting_complexity = FOOD_COMPLEXITY_0
 
 /obj/item/food/hemophage/blood_cake
-	name = "ti hoeh koe"
-	desc = "Also known as 'pig's blood cake' or 'black cake', this is a variant of blood pudding normally served as street food in night markets. Created from steamed blood and sticky rice, it's been coated in peanut powder and coriander, and can be served with some dipping sauces. It seems the amount of blood in this meal has been turned up a lot, giving the all-too-familiar twinge of iron when it's tasted."
+	name = "猪血粿"
+	desc = "又称“猪血糕”或“黑糕”，是血布丁的一种变体，通常在夜市作为街头小吃出售。由蒸熟的血液和糯米制成，外层裹上花生粉和香菜，还可以配些蘸酱食用。这道菜里的血量似乎被大幅提高，品尝时能感到那股再熟悉不过的铁腥味。"
 	icon_state = "blood_cake"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 10,
 		/datum/reagent/consumable/peanut_butter = 5,
 		/datum/reagent/blood = 25,
 	)
-	tastes = list("blood" = 5, "crunchy rice" = 2, "peanut butter" = 2)
+	tastes = list("血" = 5, "脆米" = 2, "花生酱" = 2)
 	foodtypes = GRAIN | GORE | BLOODY | SUGAR | NUTS
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/soup/hemophage/blood_soup
-	name = "dinuguan"
-	desc = "A savory stew normally made of offal or freshly-simmered meat. This version features blood curds instead, while also featuring a rich, spicy and dark gravy made of fresh blood and vinegar. Chili and garlic were also added to enhance the savory flavor of the broth."
+	name = "迪努关血汤"
+	desc = "一种咸香炖菜，通常用内脏或现炖肉制成。这个版本改用血豆腐，还加入了由新鲜血液和醋熬成的浓郁辛香深色肉汁。另外还加了辣椒和大蒜，以提升汤汁的鲜香风味。"
 	icon = 'modular_skyrat/master_files/icons/obj/food/hemophage_food.dmi'
 	icon_state = "blood_soup"
 	max_volume = 90
@@ -112,6 +112,6 @@
 		/datum/reagent/consumable/nutriment/protein = 10,
 		/datum/reagent/blood = 60,
 	)
-	tastes = list("blood" = 5, "congealed blood" = 2, "chili" = 3, "vinegar" = 1, "garlic" = 1)
+	tastes = list("血" = 5, "凝固的血" = 2, "辣椒" = 3, "醋" = 1, "大蒜" = 1)
 	foodtypes = GORE | BLOODY | VEGETABLES
 	crafting_complexity = FOOD_COMPLEXITY_4

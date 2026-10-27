@@ -5,8 +5,8 @@
 #define SPIKES_ABILITY_TYPEPATH /datum/action/cooldown/mob_cooldown/chasing_spikes
 
 /mob/living/basic/meteor_heart
-	name = "meteor heart"
-	desc = "A pulsing lump of flesh and bone growing directly out of the ground."
+	name = "陨石之心"
+	desc = "一块从地里直接长出来的、搏动着的血肉与骨骼。"
 	icon = 'icons/mob/simple/meteor_heart.dmi'
 	icon_state = "heart"
 	icon_living = "heart"
@@ -17,10 +17,10 @@
 	health = 600 // 15 PKA shots
 	maxHealth = 600
 	pressure_resistance = 200
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes"
-	response_disarm_simple = "gently push"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推"
+	response_disarm_simple = "轻轻推"
 	ai_controller = /datum/ai_controller/basic_controller/meteor_heart
 	habitable_atmos = null
 	minimum_survivable_temperature = 0
@@ -87,10 +87,10 @@
 
 /// Dramatic death animation for the meteor heart mob
 /obj/effect/temp_visual/meteor_heart_death
-	name = "meteor heart"
+	name = "陨石之心"
 	icon = 'icons/mob/simple/meteor_heart.dmi'
 	icon_state = "heart_dying"
-	desc = "You've killed this innocent asteroid, I hope you feel happy."
+	desc = "你杀死了这颗无辜的小行星，希望你感到开心。"
 	duration = 3 SECONDS
 	/// Looping heartbeat sound
 	var/datum/looping_sound/heartbeat/soundloop

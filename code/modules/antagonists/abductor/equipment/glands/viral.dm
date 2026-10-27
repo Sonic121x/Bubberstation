@@ -1,5 +1,5 @@
 /obj/item/organ/heart/gland/viral
-	abductor_hint = "contamination incubator. The abductee becomes a carrier of a random advanced disease - of which they are unaffected by."
+	abductor_hint = "污染物培养器。被绑架者会成为随机高级疾病的携带者，但其自身不受影响。"
 	cooldown_low = 1800
 	cooldown_high = 2400
 	uses = 1
@@ -8,7 +8,7 @@
 	mind_control_duration = 1800
 
 /obj/item/organ/heart/gland/viral/activate()
-	to_chat(owner, span_warning("You feel sick."))
+	to_chat(owner, span_warning("你感到恶心。"))
 	var/datum/disease/advance/A = random_virus(pick(2,6),6)
 	A.carrier = TRUE
 	owner.ForceContractDisease(A, FALSE, TRUE)

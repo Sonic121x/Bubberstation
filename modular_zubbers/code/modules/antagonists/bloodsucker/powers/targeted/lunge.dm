@@ -2,8 +2,8 @@
 #define LUNGE_INSTANT_LEVEL 4
 #define LUNGE_INSTANT_RANGE 6
 /datum/action/cooldown/bloodsucker/targeted/lunge
-	name = "Predatory Lunge"
-	desc = "Spring at your target to grapple them without warning, or tear the dead's heart out. Attacks from concealment or the rear may even knock them down if strong enough."
+	name = "捕食猛扑"
+	desc = "突然扑向目标将其擒住，或撕出死者的心脏。若力量足够，从隐蔽处或背后攻击还能将目标击倒。"
 	button_icon_state = "power_lunge"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED|AB_CHECK_LYING|AB_CHECK_PHASED|AB_CHECK_LYING
 	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
@@ -15,14 +15,14 @@
 
 /datum/action/cooldown/bloodsucker/targeted/lunge/get_power_explanation_extended()
 	. = list()
-	. += "Click any player to start spinning wildly and, after a short delay, dash at them."
-	. += "When lunging at someone, you will grab them, immediately starting off at aggressive."
-	. += "Riot gear and Monster Hunters are protected and will only be passively grabbed."
-	. += "You cannot use the Power if you are already grabbing someone, or are being grabbed."
-	. += "If you grab from behind, or while using cloak of darkness, you will knock the target down."
-	. += "If used on a dead body, will tear out a random organ from the zone you are targeting."
-	. += "Higher levels increase how long enemies are knocked down."
-	. += "At level [LUNGE_INSTANT_LEVEL], you will no longer spin, but you will be limited to tackling from only [LUNGE_INSTANT_RANGE] tiles away."
+	. += "点击任意玩家，开始猛烈旋转，短暂延迟后冲向目标。"
+	. += "扑向他人时，你会立即以强力抓握将其擒住。"
+	. += "防暴装备穿戴者和怪物猎人受到保护，只会被轻抓。"
+	. += "已经抓住别人或正被抓住时，无法使用此能力。"
+	. += "从背后抓住目标，或在黑暗斗篷生效时抓握，会将目标击倒。"
+	. += "对尸体使用时，会从瞄准部位撕出一个随机器官。"
+	. += "等级越高，击倒敌人的时间越长。"
+	. += "达到[LUNGE_INSTANT_LEVEL]级后不再需要旋转，但扑击距离会限制为[LUNGE_INSTANT_RANGE]格。"
 
 /datum/action/cooldown/bloodsucker/targeted/lunge/on_power_upgrade()
 	. = ..()
@@ -36,10 +36,10 @@
 		return FALSE
 	// Are we being grabbed?
 	if(user.pulledby && user.pulledby.grab_state >= GRAB_AGGRESSIVE)
-		owner.balloon_alert(user, "grabbed!")
+		owner.balloon_alert(user, "被抓住了！")
 		return FALSE
 	if(user.pulling)
-		owner.balloon_alert(user, "grabbing someone!")
+		owner.balloon_alert(user, "正在抓着别人！")
 		return FALSE
 	return TRUE
 
@@ -77,7 +77,7 @@
 ///Starts processing the power and prepares the lunge by spinning, calls lunge at the end of it.
 /datum/action/cooldown/bloodsucker/targeted/lunge/proc/prepare_target_lunge(atom/target_atom)
 	START_PROCESSING(SSprocessing, src)
-	owner.balloon_alert(owner, "lunge started!")
+	owner.balloon_alert(owner, "猛扑开始！")
 	//animate them shake
 	var/base_x = owner.base_pixel_x
 	var/base_y = owner.base_pixel_y
@@ -106,7 +106,7 @@
 		return ..() //Manage our cooldown timers
 	if(prob(75))
 		owner.spin(8, 1)
-		owner.balloon_alert_to_viewers("spins wildly!", "you spin!")
+		owner.balloon_alert_to_viewers("猛烈旋转！", "你旋转起来！")
 		return
 	do_smoke(0, owner.loc, smoke_type = /obj/effect/particle_effect/fluid/smoke/transparent)
 
@@ -140,23 +140,23 @@
 		return
 	// Is my target a Monster hunter?
 	if(HAS_TRAIT(target, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED))
-		user.balloon_alert(user, "pushed away!")
+		user.balloon_alert(user, "被推开了！")
 		target.grabbedby(user)
 		return
 
-	user.balloon_alert(user, "you lunge at [target]!")
+	user.balloon_alert(user, "你扑向[target]！")
 	user.changeNext_move(CLICK_CD_MELEE)
 	if(target.stat == DEAD)
 		var/obj/item/bodypart/bodypart = target.get_bodypart(check_zone(user.zone_selected))
 		if(!bodypart)
-			target.balloon_alert(user, "bodypart missing!")
+			target.balloon_alert(user, "缺少该身体部位！")
 			return
 		var/datum/wound/slash/flesh/moderate/crit_wound = new
 		crit_wound.sound_effect = null
 		crit_wound.apply_wound(bodypart)
 		user.visible_message(
-			span_warning("[user] tears into [target]'s [bodypart]!"),
-			span_warning("You tear into [target]'s [bodypart]!"))
+			span_warning("[user]撕开了[target]的[bodypart]！"),
+			span_warning("你撕开了[target]的[bodypart]！"))
 		playsound(target, 'sound/effects/wounds/crackandbleed.ogg', 100, TRUE, 5)
 		var/obj/item/organ/myheart_now
 		if(bodypart.body_zone == BODY_ZONE_CHEST)
@@ -164,8 +164,8 @@
 		if(!myheart_now)
 			var/list/organs = target.get_organs_for_zone(bodypart.body_zone)
 			if(!length(organs))
-				to_chat(user, span_warning("[target] has no organs in [bodypart]!"))
-				target.balloon_alert(user, "no organs!")
+				to_chat(user, span_warning("[target]的[bodypart]内没有器官！"))
+				target.balloon_alert(user, "没有器官！")
 				return
 			myheart_now = pick(organs)
 

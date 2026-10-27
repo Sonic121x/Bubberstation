@@ -6,8 +6,8 @@
 	suffix = "outpost"
 	prefix = "_maps/shuttles/skyrat/"
 	name = "Outpoststation Emergency Shuttle"
-	description = "The perfect shuttle for rectangle enthuasiasts, this long and slender shuttle has been known for it's incredible(Citation Needed) safety rating."
-	admin_notes = "Has airlocks on both sides of the shuttle and will probably ram deltastation's maint wing below medical. Oh well?"
+	description = "对于矩形爱好者来说，这是最完美的穿梭机；这艘细长的穿梭机以其令人难以置信（此处存疑）的安全评级而闻名。"
+	admin_notes = "穿梭机两侧都有气闸，而且很可能会撞上德尔塔站医疗部下方的维护区。那又怎样？"
 	credit_cost = CARGO_CRATE_VALUE * 4
 	occupancy_limit = 45
 
@@ -18,15 +18,15 @@
 	name = "Black Market Chevvy"
 
 /obj/machinery/computer/shuttle/caravan/blackmarket_chevvy
-	name = "Chevvy Shuttle Console"
-	desc = "Used to control the affectionately named 'Chevvy'."
+	name = "Chevvy 穿梭机控制台"
+	desc = "用于控制这艘被亲切地称为“Chevvy”的飞船。"
 	circuit = /obj/item/circuitboard/computer/blackmarket_chevvy
 	shuttleId = "blackmarket_chevvy"
 	possible_destinations = "blackmarket_chevvy_custom;blackmarket_chevvy_home;whiteship_home"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/blackmarket_chevvy
-	name = "Chevvy Navigation Computer"
-	desc = "Used to designate a precise transit location for the affectionately named 'Chevvy'."
+	name = "Chevvy 导航电脑"
+	desc = "用于为这艘被亲切地称为“Chevvy”的飞船指定精确的跃迁位置。"
 	shuttleId = "blackmarket_chevvy"
 	lock_override = NONE
 	shuttlePortId = "blackmarket_chevvy_custom"
@@ -36,7 +36,7 @@
 	y_offset = 0
 
 /obj/item/circuitboard/computer/blackmarket_chevvy
-	name = "Chevvy Control Console (Computer Board)"
+	name = "Chevvy 控制台"
 	build_path = /obj/machinery/computer/shuttle/caravan/blackmarket_chevvy
 /*----- End of Black Market Shuttle Code -----*/
 
@@ -48,8 +48,8 @@
 
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/slaver
-	name = "Ship Navigation Computer"
-	desc = "Used to designate a precise custom destination to land."
+	name = "飞船导航电脑"
+	desc = "用于指定精确的自定义降落地点。"
 	shuttleId = "slaver_syndie"
 	lock_override = NONE
 	shuttlePortId = "slaver"
@@ -60,8 +60,8 @@
 	designate_time = 30
 
 /obj/machinery/computer/shuttle/slaver
-	name = "Ship Travel Terminal"
-	desc = "Controls for moving the ship to a pre-programmed destination or a custom one marked out by the navigation computer."
+	name = "飞船航行终端"
+	desc = "用于将飞船驶向预先设定的目的地，或导航电脑标出的自定义目的地。"
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
 	light_color = COLOR_SOFT_RED
@@ -89,23 +89,23 @@
 	who_can_purchase = null
 
 /obj/effect/mob_spawn/ghost_role/human/guild
-	name = "Privateer Slaver"
-	prompt_name = "a privateer slaver"
-	you_are_text = "You're here to capture valuable hostages to sell into slavery."
-	flavour_text = "You're part of a privateer crew that sometimes takes contracts from the illusive Guild, which offers bounties and contracts to independent crews. Raiding colonies of the many less technologically advanced species in the area is much easier than this. You've been told that your mission is to capture as many valuable hostages from the station as possible. Your anonymous employer insists on the importance of humiliating TerraGov by snatching those under their protection from right under their noses."
+	name = "私掠奴贩"
+	prompt_name = "一名私掠奴贩"
+	you_are_text = "你在这里的任务是抓走有价值的人质，卖作奴隶。"
+	flavour_text = "你是一支私掠船员中的一员，这支船员有时会接取神秘的公会派发的合约，公社会向独立船员提供赏金与合约。比起这种活计，劫掠本地那些技术不那么发达的种族的殖民地要容易得多。有人告诉你，你的任务是从空间站上抓走尽可能多的有价值人质。你的匿名雇主坚持认为，要从地球政府的眼皮底下掳走受其保护的人，以此羞辱他们，这点至关重要。"
 	important_text = ""
 
 /obj/effect/mob_spawn/ghost_role/human/guild/slaver
-	name = "Privateer Slaver"
+	name = "私掠奴贩"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	outfit = /datum/outfit/guild/slaver
 
 /obj/effect/mob_spawn/ghost_role/human/guild/slaver/captain
-	name = "Privateer Slaver Captain"
-	you_are_text = "You lead a small team focused on capturing hostages."
-	flavour_text = "You're the captain of a privateer crew that sometimes takes contracts from the illusive Guild, which offers bounties and contracts to independent crews, like yours! Lead your crew to infiltrate the station and capture hostages and hold them till the station's emergency shuttle leaves. The higher ranking the hostages, the more you'll get paid out. You're free to (and encouraged to) beat and humiliate, but not kill. Your anonymous employer wants your victims as their personel slaves. They mentioned something about propaganda? Ah, who knows with the Guild... All sorts of types posts these bounties."
-	important_text = "You are expected to roleplay heavily and lead effectively in this role."
+	name = "私掠奴贩船长"
+	you_are_text = "你带领一支小队，专门负责抓捕人质。"
+	flavour_text = "你是一支私掠船员的船长，这支船员有时会接取神秘的公会派发的合约，公社会向像你这样的独立船员提供赏金与合约！带领你的船员潜入空间站，抓捕人质并控制住他们，直到空间站的紧急穿梭机离开。人质的级别越高，你能拿到的报酬就越多。你可以（并且也被鼓励）殴打和羞辱他们，但不要杀死他们。你的匿名雇主希望你的受害者成为他们的私人奴隶。他们提到了什么宣传之类的话？唉，公会那边，谁知道呢……各式各样的人都在发布这类赏金。"
+	important_text = "这个角色需要你大量进行角色扮演，并有效地带领队伍。"
 	outfit = /datum/outfit/guild/slaver/captain
 
 /obj/item/radio/headset/guild
@@ -175,15 +175,15 @@
 	name = "Tarkon Drill Driver"
 
 /obj/machinery/computer/shuttle/tarkon_driver
-	name = "Tarkon Driver Control"
-	desc = "Used to control the Tarkon Driver."
+	name = "塔肯钻探车控制台"
+	desc = "用于控制塔肯钻探车。"
 	circuit = /obj/item/circuitboard/computer/tarkon_driver
 	shuttleId = "tarkon_driver"
 	possible_destinations = "tarkon_driver_custom;port_tarkon;whiteship_home"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/tarkon_driver
-	name = "Tarkon Driver Navigation Computer"
-	desc = "The Navigation console for the Tarkon Driver. A broken \"Engage Drill\" button seems to dimly blink in a yellow colour"
+	name = "塔肯钻探车导航电脑"
+	desc = "塔肯钻探车的导航控制台。一个坏掉的“启动钻头”按钮正隐约闪着黄光"
 	shuttleId = "tarkon_driver"
 	lock_override = NONE
 	shuttlePortId = "tarkon_driver_custom"
@@ -191,7 +191,7 @@
 	view_range = 0
 
 /obj/item/circuitboard/computer/tarkon_driver
-	name = "Tarkon Driver Control Console (Computer Board)"
+	name = "塔肯钻探车控制台"
 	build_path = /obj/machinery/computer/shuttle/tarkon_driver
 
 /*----- End of Tarkon Shuttle Code -----*/

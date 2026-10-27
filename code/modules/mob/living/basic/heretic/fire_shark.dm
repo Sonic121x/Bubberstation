@@ -1,7 +1,7 @@
 /mob/living/basic/heretic_summon/fire_shark
-	name = "\improper Fire Shark"
-	real_name = "Fire Shark"
-	desc = "It is a eldritch dwarf space shark, also known as a fire shark."
+	name = "\improper 火焰鲨"
+	real_name = "火焰鲨"
+	desc = "它是一种邪异的矮小型太空鲨，也被称作火焰鲨。"
 	icon_state = "fire_shark"
 	icon_living = "fire_shark"
 	pass_flags = PASSTABLE | PASSMOB
@@ -14,12 +14,12 @@
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	obj_damage = 0
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "撕咬"
+	attack_verb_simple = "撕咬"
 	damage_coeff = list(BRUTE = 1, BURN = 0.25, TOX = 0, STAMINA = 0, OXY = 0)
 	faction = list(FACTION_HERETIC)
 	mob_size = MOB_SIZE_TINY
-	speak_emote = list("screams")
+	speak_emote = list("尖叫道")
 	basic_mob_flags = DEL_ON_DEATH
 	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
 	initial_language_holder = /datum/language_holder/carp/hear_common

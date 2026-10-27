@@ -1,8 +1,8 @@
 /////////// djstation items
 
 /obj/item/paper/fluff/ruins/djstation
-	name = "paper - 'DJ Listening Outpost'"
-	default_raw_text = "<B>Welcome new owner!</B><BR><BR>You have purchased the latest in listening equipment. The telecommunication setup we created is the best in listening to common and private radio frequencies. Here is a step by step guide to start listening in on those saucy radio channels:<br><ol><li>Equip yourself with a multitool</li><li>Use the multitool on the relay.</li><li>Turn it on. It has already been configured for you to listen on.</li></ol> Simple as that. Now to listen to the private channels, you'll have to configure the intercoms. They are located on the front desk. Here is a list of frequencies for you to listen on.<br><ul><li>145.9 - Common Channel</li><li>144.7 - Private AI Channel</li><li>135.9 - Security Channel</li><li>135.7 - Engineering Channel</li><li>135.5 - Medical Channel</li><li>135.3 - Command Channel</li><li>135.1 - Science Channel</li><li>134.9 - Service Channel</li><li>134.7 - Supply Channel</li>"
+	name = "纸条——‘DJ 监听前哨’"
+	default_raw_text = "<B>欢迎，新主人！</B><BR><BR>您已购得最新款监听设备。我们搭建的这套通讯装置是监听公共与私人无线电频率的绝佳之选。以下是开始监听那些香艳无线电频道的分步指南：<br><ol><li>装备一把多功能工具</li><li>将多功能工具用于中继器。</li><li>打开它。它已经为您配置好了监听功能。</li></ol> 就这么简单。现在若要监听私人频道，您得配置对讲机。它们位于前台。以下是可供您监听的频率列表。<br><ul><li>145.9 - 公共频道</li><li>144.7 - 私人 AI 频道</li><li>135.9 - 安保频道</li><li>135.7 - 工程频道</li><li>135.5 - 医疗频道</li><li>135.3 - 指挥频道</li><li>135.1 - 科研频道</li><li>134.9 - 服务频道</li><li>134.7 - 补给频道</li>"
 
 /////////// djstation module roots
 

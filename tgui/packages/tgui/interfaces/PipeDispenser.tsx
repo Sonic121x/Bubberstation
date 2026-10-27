@@ -7,7 +7,7 @@ import {
   Tabs,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
-
+import { chineseDisplay } from 'tgui/localization/zhDisplay';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import {
@@ -80,7 +80,7 @@ const PipeTypeSection = (props) => {
             selected={category.cat_name === shownCategory.cat_name}
             onClick={() => setCategoryName(category.cat_name)}
           >
-            {category.cat_name}
+            {chineseDisplay(category.cat_name)}
           </Tabs.Tab>
         ))}
       </Tabs>

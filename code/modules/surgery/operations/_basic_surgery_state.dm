@@ -20,7 +20,7 @@
 
 /datum/status_effect/basic_surgery_state/get_examine_text()
 	if(HAS_SURGERY_STATE(surgery_state, SURGERY_SKIN_OPEN))
-		return "[owner.p_Their()] skin is open[HAS_SURGERY_STATE(surgery_state, SURGERY_BONE_SAWED) ? " and bones are sawed opened" : ""]."
+		return "其皮肤已被切开[HAS_SURGERY_STATE(surgery_state, SURGERY_BONE_SAWED) ? "，骨头也已被锯开" : ""]。"
 	// other states are not yet supported
 	stack_trace("Surgery state holder had unsupported state(s): [jointext(bitfield_to_list(surgery_state, SURGERY_STATE_READABLE), ", ")]")
 	return null

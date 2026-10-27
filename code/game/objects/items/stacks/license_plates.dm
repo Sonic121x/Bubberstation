@@ -1,6 +1,6 @@
 /obj/item/stack/license_plates
-	name = "invalid plate"
-	desc = "someone fucked up"
+	name = "无效车牌"
+	desc = "有人搞砸了。"
 	icon = 'icons/obj/machines/prison.dmi'
 	icon_state = "empty_plate"
 	novariants = FALSE
@@ -8,18 +8,18 @@
 	abstract_type = /obj/item/stack/license_plates
 
 /obj/item/stack/license_plates/empty
-	name = "empty license plate"
-	singular_name = "empty license plate"
-	desc = "Instead of a license plate number, this could contain a quote like \"Live laugh love\"."
+	name = "空白车牌"
+	singular_name = "空白车牌"
+	desc = "这里本可以印上车牌号码，但也可以印上一句格言，比如\"笑口常开，热爱生活\"。"
 	merge_type = /obj/item/stack/license_plates/empty
 
 /obj/item/stack/license_plates/empty/fifty
 	amount = 50
 
 /obj/item/stack/license_plates/filled
-	name = "license plate"
-	singular_name = "license plate"
-	desc = "Prison labor paying off."
+	name = "车牌"
+	singular_name = "车牌"
+	desc = "监狱劳作的成果。"
 	icon_state = "filled_plate_1_1"
 	merge_type = /obj/item/stack/license_plates/filled
 

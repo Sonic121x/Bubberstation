@@ -1,6 +1,6 @@
 /obj/structure/spirit_board
-	name = "spirit board"
-	desc = "A wooden board with letters etched into it, used in seances."
+	name = "通灵板"
+	desc = "一块刻有字母的木板，用于降神会。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "spirit_board"
 	resistance_flags = FLAMMABLE
@@ -26,15 +26,15 @@
 /obj/structure/spirit_board/Initialize(mapload)
 	. = ..()
 	if(prob(1))
-		name = "luigi board"
+		name = "路易吉板"
 	planchette = ghosty_options[1]
 
 /obj/structure/spirit_board/examine()
 	. = ..()
 	if(planchette)
-		. += span_notice("The planchette is currently at the letter \"[planchette]\".")
+		. += span_notice("乩板目前停在“[planchette]”上。")
 	else
-		. += span_notice("The planchette is in the middle of the board on no particular letter.")
+		. += span_notice("乩板停在板子中央，没有指向任何字母。")
 
 /obj/structure/spirit_board/attack_hand(mob/user, list/modifiers)
 	. = ..()
@@ -57,12 +57,12 @@
 	if(virgin)
 		virgin = FALSE
 		notify_ghosts(
-			"Someone has begun playing with \a [src] in [get_area(src)]!",
+			"有人在[get_area(src)]开始玩[src]了！",
 			source = src,
-			header = "Spirit board",
+			header = "通灵板",
 		)
 
-	var/new_planchette = tgui_input_list(ghost, "Choose the letter.", "Seance!", ghosty_options)
+	var/new_planchette = tgui_input_list(ghost, "选择字母。", "降神会！", ghosty_options)
 	if(isnull(new_planchette))
 		return
 	if(!Adjacent(ghost) || !COOLDOWN_FINISHED(src, next_use))
@@ -72,8 +72,8 @@
 	COOLDOWN_START(src, next_use, rand(3 SECONDS, 5 SECONDS))
 	lastuser = ghost.ckey
 	visible_message(
-		message = span_notice("The planchette slowly moves... and stops at the letter \"[planchette]\"."),
-		blind_message = span_hear("You hear a scraping sound..."),
+		message = span_notice("乩板缓缓移动……停在了“[planchette]”上。"),
+		blind_message = span_hear("你听到刮擦声……"),
 		vision_distance = 2,
 	)
 
@@ -85,7 +85,7 @@
 
 	var/turf/play_turf = get_turf(src)
 	if(play_turf?.check_lumcount_above(0.2))
-		to_chat(ghost, span_warning("It's too bright here to use [src]!"))
+		to_chat(ghost, span_warning("这里太亮了，无法使用[src]！"))
 		return FALSE
 
 	if(required_user_count > 0)
@@ -95,13 +95,13 @@
 				continue
 
 			if(player.client?.is_afk() || HAS_TRAIT(player, TRAIT_HANDS_BLOCKED))//no playing with braindeads or corpses or handcuffed dudes.
-				to_chat(ghost, span_warning("[player] doesn't seem to be paying attention..."))
+				to_chat(ghost, span_warning("[player]似乎没有在注意……"))
 				continue
 
 			users_in_range++
 
 		if(users_in_range < required_user_count)
-			to_chat(ghost, span_warning("There aren't enough people around to use [src]!"))
+			to_chat(ghost, span_warning("周围的人不够，无法使用[src]！"))
 			return FALSE
 
 	return TRUE

@@ -3,7 +3,7 @@
 // Outfit Datum
 
 /datum/outfit/primitive_catgirl
-	name = "Icemoon Dweller"
+	name = "冰月居民"
 
 	uniform = /obj/item/clothing/under/dress/skirt/primitive_catgirl_body_wraps
 	shoes = /obj/item/clothing/shoes/winterboots/ice_boots/primitive_catgirl_boots
@@ -16,8 +16,8 @@
 // Under
 
 /obj/item/clothing/under/dress/skirt/primitive_catgirl_body_wraps
-	name = "body wraps"
-	desc = "Some pretty simple wraps to cover up your lower bits."
+	name = "裹身布"
+	desc = "一些用来遮住下身的简单布料。"
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
 	icon_state = "/obj/item/clothing/under/dress/skirt/primitive_catgirl_body_wraps"
 	post_init_icon_state = "wraps"
@@ -32,8 +32,8 @@
 // Hands
 
 /obj/item/clothing/gloves/fingerless/primitive_catgirl_armwraps
-	name = "arm wraps"
-	desc = "Simple cloth to wrap around one's arms."
+	name = "裹臂布"
+	desc = "用于包裹手臂的简单布料。"
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
 	icon_state = "/obj/item/clothing/gloves/fingerless/primitive_catgirl_armwraps"
 	post_init_icon_state = "armwraps"
@@ -44,8 +44,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/gloves/fingerless/primitive_catgirl_gauntlets
-	name = "gauntlets"
-	desc = "Simple cloth arm wraps with overlying metal protection."
+	name = "护手"
+	desc = "外覆金属防护的简易裹臂布。"
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
 	icon_state = "/obj/item/clothing/gloves/fingerless/primitive_catgirl_gauntlets"
 	worn_icon = 'modular_skyrat/modules/primitive_catgirls/icons/clothing_greyscale.dmi'
@@ -60,8 +60,8 @@
 // Suit
 
 /obj/item/clothing/suit/jacket/primitive_catgirl_coat
-	name = "primitive fur coat"
-	desc = "A large piece of animal hide stuffed with fur, likely from the same animal."
+	name = "原始毛皮大衣"
+	desc = "一大块填满兽毛的兽皮，毛和皮很可能来自同一只动物。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/jacket/primitive_catgirl_coat"
 	post_init_icon_state = "coat"
@@ -82,8 +82,8 @@
 // Shoes
 
 /obj/item/clothing/shoes/winterboots/ice_boots/primitive_catgirl_boots
-	name = "primitive hiking boots"
-	desc = "A pair of heavy boots lined with fur and with soles special built to prevent slipping on ice."
+	name = "原始登山靴"
+	desc = "一双厚重的靴子，内衬兽毛，鞋底经过特殊设计，能防止在冰面上滑倒。"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/winterboots/ice_boots/primitive_catgirl_boots"
 	post_init_icon_state = "boots"
@@ -118,8 +118,8 @@
 // Masks
 
 /obj/item/clothing/mask/primitive_catgirl_greyscale_gaiter
-	name = "neck gaiter"
-	desc = "A cloth for covering your neck, and usually part of your face too, but that part's optional."
+	name = "脖套"
+	desc = "用来遮住脖子的布套，通常也能遮住部分脸庞，不过这一点随你喜欢。"
 	icon = 'icons/map_icons/clothing/mask.dmi'
 	icon_state = "/obj/item/clothing/mask/primitive_catgirl_greyscale_gaiter"
 	post_init_icon_state = "gaiter"

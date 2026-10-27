@@ -1,6 +1,6 @@
 /obj/machinery/power/emitter
-	name = "emitter"
-	desc = "A heavy-duty industrial laser, often used in containment fields and power generation."
+	name = "发射器"
+	desc = "一台重型工业激光器，常用于约束力场和发电。"
 	icon = 'icons/obj/machines/engine/singularity.dmi' //SKYRAT EDIT CHANGE - ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 	icon_state = "emitter"
 	base_icon_state = "emitter"
@@ -88,7 +88,7 @@
 	if(panel_open)
 		return NONE
 	if(welded)
-		balloon_alert(user, "unweld first!")
+		balloon_alert(user, "先拆焊！")
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -117,22 +117,22 @@
 /obj/machinery/power/emitter/examine(mob/user)
 	. = ..()
 	if(welded)
-		. += span_info("It's moored firmly to the floor. You can unsecure its moorings with a <b>welder</b>.")
+		. += span_info("它被牢牢固定在地板上。你可以用<b>焊接工具</b>解开它的固定。")
 	else if(anchored)
-		. += span_info("It's currently anchored to the floor. You can secure its moorings with a <b>welder</b>, or remove it with a <b>wrench</b>.")
+		. += span_info("它目前固定在地板上。你可以用<b>焊接工具</b>加固它的固定，或用<b>扳手</b>将它拆除。")
 	else
-		. += span_info("It's not anchored to the floor. You can secure it in place with a <b>wrench</b>.")
+		. += span_info("它没有固定在地板上。你可以用<b>扳手</b>把它固定到位。")
 
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
 	if(!active)
-		. += span_notice("Its status display is currently turned off.")
+		. += span_notice("它的状态显示屏目前是关闭的。")
 	else if(!powered)
-		. += span_notice("Its status display is glowing faintly.")
+		. += span_notice("它的状态显示屏幽幽发亮。")
 	else
-		. += span_notice("Its status display reads: Emitting one beam between <b>[DisplayTimeText(minimum_fire_delay * fire_rate_mod)]</b> and <b>[DisplayTimeText(maximum_fire_delay * fire_rate_mod)]</b>.")
-		. += span_notice("Power consumption at <b>[display_power(active_power_usage, convert = FALSE)]</b>.")
+		. += span_notice("状态显示屏显示：每隔 <b>[DisplayTimeText(minimum_fire_delay * fire_rate_mod)]</b> 至 <b>[DisplayTimeText(maximum_fire_delay * fire_rate_mod)]</b> 发射一道光束。")
+		. += span_notice("功耗为 <b>[display_power(active_power_usage, convert = FALSE)]</b>。")
 
 /obj/machinery/power/emitter/should_have_node()
 	return welded
@@ -140,9 +140,9 @@
 /obj/machinery/power/emitter/Destroy()
 	if(SSticker.IsRoundInProgress())
 		var/turf/T = get_turf(src)
-		message_admins("[src] deleted at [ADMIN_VERBOSEJMP(T)].")
-		log_game("[src] deleted at [AREACOORD(T)].")
-		investigate_log("deleted at [AREACOORD(T)].", INVESTIGATE_ENGINE)
+		message_admins("[src] 已删除，位置 [ADMIN_VERBOSEJMP(T)]。")
+		log_game("[src] 已删除，位置 [AREACOORD(T)]。")
+		investigate_log("已在 [AREACOORD(T)] 被删除。", INVESTIGATE_ENGINE)
 	QDEL_NULL(sparks)
 	return ..()
 
@@ -170,13 +170,13 @@
 /obj/machinery/power/emitter/interact(mob/user)
 	add_fingerprint(user)
 	if(!welded)
-		to_chat(user, span_warning("[src] needs to be firmly secured to the floor first!"))
+		to_chat(user, span_warning("[src] 需要先牢牢固定在地板上！"))
 		return FALSE
 	if(!powernet)
-		to_chat(user, span_warning("\The [src] isn't connected to a wire!"))
+		to_chat(user, span_warning("\The [src] 没有连接到电线！"))
 		return FALSE
 	if(locked || !allow_switch_interact)
-		to_chat(user, span_warning("The controls are locked!"))
+		to_chat(user, span_warning("控制装置已锁定！"))
 		return FALSE
 
 	if(active)
@@ -186,17 +186,17 @@
 		shot_number = 0
 		fire_delay = maximum_fire_delay
 
-	to_chat(user, span_notice("You turn [active ? "on" : "off"] [src]."))
-	message_admins("[src] turned [active ? "ON" : "OFF"] by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(src)]")
-	log_game("[src] turned [active ? "ON" : "OFF"] by [key_name(user)] in [AREACOORD(src)]")
-	investigate_log("turned [active ? "ON" : "OFF"] by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_ENGINE)
+	to_chat(user, span_notice("你[active ? "打开" : "关闭"]了 [src]。"))
+	message_admins("[src] 于 [ADMIN_VERBOSEJMP(src)] 被 [ADMIN_LOOKUPFLW(user)] [active ? "开启" : "关闭"]")
+	log_game("[src] 于 [AREACOORD(src)] 被 [key_name(user)] [active ? "开启" : "关闭"]")
+	investigate_log("于 [AREACOORD(src)] 被 [key_name(user)] [active ? "开启" : "关闭"]", INVESTIGATE_ENGINE)
 	update_appearance()
 	SEND_SIGNAL(src, COMSIG_EMITTER_MACHINE_SET_ON, active ? TRUE : FALSE)
 
 /obj/machinery/power/emitter/attack_animal(mob/living/simple_animal/user, list/modifiers)
 	if(ismegafauna(user) && anchored)
 		set_anchored(FALSE)
-		user.visible_message(span_warning("[user] rips [src] free from its moorings!"))
+		user.visible_message(span_warning("[user] 把 [src] 从固定处硬生生拽了下来！"))
 	else
 		. = ..()
 	if(. && !anchored)
@@ -220,15 +220,15 @@
 		if(powered)
 			powered = FALSE
 			update_appearance()
-			investigate_log("lost power and turned OFF at [AREACOORD(src)]", INVESTIGATE_ENGINE)
-			log_game("[src] lost power in [AREACOORD(src)]")
+			investigate_log("于 [AREACOORD(src)] 失去电力并关闭", INVESTIGATE_ENGINE)
+			log_game("[src] 在 [AREACOORD(src)] 失去电力")
 		return
 
 	add_load(power_usage)
 	if(!powered)
 		powered = TRUE
 		update_appearance()
-		investigate_log("regained power and turned ON at [AREACOORD(src)]", INVESTIGATE_ENGINE)
+		investigate_log("于 [AREACOORD(src)] 恢复供电并开启", INVESTIGATE_ENGINE)
 	if(charge <= 80)
 		charge += 2.5 * seconds_per_tick
 	if(!check_delay() || manual == TRUE)
@@ -276,12 +276,12 @@
 /obj/machinery/power/emitter/can_be_unfasten_wrench(mob/user, silent)
 	if(active)
 		if(!silent)
-			to_chat(user, span_warning("Turn \the [src] off first!"))
+			to_chat(user, span_warning("请先关闭 \the [src]！"))
 		return FAILED_UNFASTEN
 
 	else if(welded)
 		if(!silent)
-			to_chat(user, span_warning("[src] is welded to the floor!"))
+			to_chat(user, span_warning("[src] 已被焊接在地板上！"))
 		return FAILED_UNFASTEN
 
 	return ..()
@@ -294,35 +294,35 @@
 /obj/machinery/power/emitter/welder_act(mob/living/user, obj/item/item)
 	..()
 	if(active)
-		to_chat(user, span_warning("Turn [src] off first!"))
+		to_chat(user, span_warning("请先关闭 [src]！"))
 		return TRUE
 
 	if(welded)
 		if(!item.tool_start_check(user, amount=1))
 			return TRUE
-		user.visible_message(span_notice("[user.name] starts to cut \the [src] free from the floor."), \
-			span_notice("You start to cut [src] free from the floor..."), \
-			span_hear("You hear welding."))
+		user.visible_message(span_notice("[user.name] 开始把 \the [src] 从地板上切割下来。"), \
+			span_notice("你开始把 [src] 从地板上切割下来……"), \
+			span_hear("你听到焊接声。"))
 		if(!item.use_tool(src, user, 20, 1, 50))
 			return FALSE
 		welded = FALSE
-		to_chat(user, span_notice("You cut [src] free from the floor."))
+		to_chat(user, span_notice("你把 [src] 从地板上切割了下来。"))
 		disconnect_from_network()
 		update_cable_icons_on_turf(get_turf(src))
 		return TRUE
 
 	if(!anchored)
-		to_chat(user, span_warning("[src] needs to be wrenched to the floor!"))
+		to_chat(user, span_warning("[src] 需要先用扳手固定到地板上！"))
 		return TRUE
 	if(!item.tool_start_check(user, amount=1))
 		return TRUE
-	user.visible_message(span_notice("[user.name] starts to weld \the [src] to the floor."), \
-		span_notice("You start to weld [src] to the floor..."), \
-		span_hear("You hear welding."))
+	user.visible_message(span_notice("[user.name] 开始把 \the [src] 焊接到地板上。"), \
+		span_notice("你开始把 [src] 焊接到地板上……"), \
+		span_hear("你听到焊接声。"))
 	if(!item.use_tool(src, user, 20, 1, 50))
 		return FALSE
 	welded = TRUE
-	to_chat(user, span_notice("You weld [src] to the floor."))
+	to_chat(user, span_notice("你把 [src] 焊接到地板上。"))
 	connect_to_network()
 	update_cable_icons_on_turf(get_turf(src))
 	return TRUE
@@ -340,16 +340,16 @@
 /// Attempt to toggle the controls lock of the emitter
 /obj/machinery/power/emitter/proc/togglelock(mob/user)
 	if(obj_flags & EMAGGED)
-		to_chat(user, span_warning("The lock seems to be broken!"))
+		to_chat(user, span_warning("锁似乎已经损坏了！"))
 		return
 	if(!allowed(user))
-		to_chat(user, span_danger("Access denied."))
+		to_chat(user, span_danger("拒绝访问。"))
 		return
 	if(!active)
-		to_chat(user, span_warning("The controls can only be locked when \the [src] is online!"))
+		to_chat(user, span_warning("只有在 \the [src] 在线时才能锁定控制装置！"))
 		return
 	locked = !locked
-	to_chat(user, span_notice("You [src.locked ? "lock" : "unlock"] the controls."))
+	to_chat(user, span_notice("你[src.locked ? "锁定" : "解锁"]了控制装置。"))
 
 /obj/machinery/power/emitter/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(tool.GetID())
@@ -368,7 +368,7 @@
 
 	if(istype(tool, /obj/item/gun/energy))
 		if(diskie)
-			to_chat(user, span_warning("Remove the Diode Disk before inserting a gun."))
+			to_chat(user, span_warning("插入枪械前请先取出二极管磁盘。"))
 			return ITEM_INTERACT_BLOCKING
 		if(!integrate(tool,user))
 			return ITEM_INTERACT_BLOCKING
@@ -377,20 +377,20 @@
 	if(istype(tool, /obj/item/emitter_disk))
 		var/obj/item/emitter_disk/config_disk = tool
 		if(!user.transferItemToLoc(config_disk, src))
-			balloon_alert(user, "stuck in hand!")
+			balloon_alert(user, "卡在手里了！")
 			return ITEM_INTERACT_BLOCKING
 		if(diskie)
 			user.put_in_hands(diskie)
-			balloon_alert(user, "disks swapped!")
+			balloon_alert(user, "磁盘已交换！")
 		else
-			balloon_alert(user, "disk inserted")
+			balloon_alert(user, "磁盘已插入")
 		diskie = config_disk
 		projectile_type = diskie.stored_proj
 		projectile_sound = diskie.stored_sound
 		fire_rate_mod = diskie.fire_rate_mod
 		no_shot_counter = diskie.no_shot_counter
 		playsound(src, 'sound/machines/card_slide.ogg', 50)
-		to_chat(user, span_notice("You update the [src]'s diode configuration with the [config_disk]."))
+		to_chat(user, span_notice("你用 [config_disk] 更新了 [src] 的二极管配置。"))
 		update_appearance()
 		if(diskie.consumable)
 			qdel(diskie)
@@ -407,7 +407,7 @@
 	if(!user.transferItemToLoc(energy_gun, src))
 		return
 	if(energy_gun.gun_flags & TURRET_INCOMPATIBLE)
-		user.balloon_alert(user, "[energy_gun] won't fit!")
+		user.balloon_alert(user, "[energy_gun] 装不进去！")
 		return
 	gun = energy_gun
 	gun_properties = gun.get_turret_properties()
@@ -457,12 +457,12 @@
 		return FALSE
 	locked = FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "id lock shorted out")
+	balloon_alert(user, "ID 锁已短路")
 	return TRUE
 
 
 /obj/machinery/power/emitter/prototype
-	name = "Prototype Emitter"
+	name = "原型发射器"
 	icon = 'icons/obj/weapons/turrets.dmi'
 	icon_state = "protoemitter"
 	base_icon_state = "protoemitter"
@@ -526,16 +526,16 @@
 	. = ..()
 
 /datum/action/innate/proto_emitter/firing
-	name = "Switch to Manual Firing"
-	desc = "The emitter will only fire on your command and at your designated target"
+	name = "切换为手动射击"
+	desc = "发射器只会按你的指令、朝你指定的目标射击"
 	button_icon_state = "mech_zoom_on"
 
 /datum/action/innate/proto_emitter/firing/Activate()
 	if(proto_emitter.manual)
 		playsound(proto_emitter,'sound/vehicles/mecha/mechmove01.ogg', 50, TRUE)
 		proto_emitter.manual = FALSE
-		name = "Switch to Manual Firing"
-		desc = "The emitter will only fire on your command and at your designated target"
+		name = "切换为手动射击"
+		desc = "发射器只会按你的指令、朝你指定的目标射击"
 		button_icon_state = "mech_zoom_on"
 		for(var/obj/item/item in buckled_mob.held_items)
 			if(istype(item, /obj/item/turret_control))
@@ -543,8 +543,8 @@
 		build_all_button_icons()
 		return
 	playsound(proto_emitter,'sound/vehicles/mecha/mechmove01.ogg', 50, TRUE)
-	name = "Switch to Automatic Firing"
-	desc = "Emitters will switch to periodic firing at your last target"
+	name = "切换为自动射击"
+	desc = "发射器将转为朝你最后的目标周期性射击"
 	button_icon_state = "mech_zoom_off"
 	proto_emitter.manual = TRUE
 	for(var/things in buckled_mob.held_items)
@@ -561,7 +561,7 @@
 
 
 /obj/item/turret_control
-	name = "turret controls"
+	name = "炮塔控制装置"
 	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE
@@ -628,7 +628,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/power/emitter/ctf
-	name = "Energy Cannon"
+	name = "能量炮"
 	active = TRUE
 	active_power_usage = 0
 	idle_power_usage = 0
@@ -638,8 +638,8 @@
 	use_power = NO_POWER_USE
 
 /obj/item/emitter_disk
-	name = "\improper Diode Disk: Debugger"
-	desc = "This disk can be used on an emitter with an open panel to reset its projectile. Unless this was handed to you by an admin, you should report this on github."
+	name = "\improper 二极管磁盘：调试器"
+	desc = "将这张磁盘用于面板打开的发射器，可重置其发射物。除非这是管理员交给你的，否则你应该在 github 上报告此事。"
 	icon = 'icons/obj/devices/floppy_disks.dmi'
 	icon_state = "datadisk6"
 	var/laser_color = COLOR_VIBRANT_LIME
@@ -651,8 +651,8 @@
 	var/no_shot_counter = FALSE
 
 /obj/item/emitter_disk/stamina
-	name = "\improper Diode Disk: Electrodisruptive"
-	desc = "This disk can be used on an emitter with an open panel to make it shoot lasers which will increase the integrity of supermatter crystals and exhaust living creatures. The disk will be consumed in the process."
+	name = "\improper 二极管磁盘：电击瓦解型"
+	desc = "将这张磁盘用于面板打开的发射器，可使其发射的激光提升超物质晶体的完整度，并让活体生物精疲力竭。使用过程中磁盘会被消耗。"
 	stored_proj = /obj/projectile/beam/emitter/hitscan/bluelens
 	consumed_on_removal = FALSE
 	consumable = FALSE
@@ -660,8 +660,8 @@
 	custom_materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT, /datum/material/gold = SMALL_MATERIAL_AMOUNT, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/emitter_disk/healing
-	name = "\improper Diode Disk: Bioregenerative"
-	desc = "This disk can be installed into an emitter with an open panel to make it shoot lasers which will heal the physical damages of living creatures."
+	name = "\improper 二极管磁盘：生物再生型"
+	desc = "将这张磁盘安装到面板打开的发射器中，可使其发射的激光治疗活体生物的身体损伤。"
 	stored_proj = /obj/projectile/beam/emitter/hitscan/bioregen
 	consumed_on_removal = FALSE
 	consumable = FALSE
@@ -669,8 +669,8 @@
 	custom_materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT, /datum/material/silver = SMALL_MATERIAL_AMOUNT, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/emitter_disk/incendiary
-	name = "\improper Diode Disk: Conflagratory"
-	desc = "This disk can be used on an emitter with an open panel to make it shoot lasers which will set living creatures ablaze."
+	name = "\improper 二极管磁盘：燃烧型"
+	desc = "将这张磁盘用于面板打开的发射器，可使其发射的激光点燃活体生物。"
 	stored_proj = /obj/projectile/beam/emitter/hitscan/incend
 	consumed_on_removal = FALSE
 	consumable = FALSE
@@ -678,8 +678,8 @@
 	custom_materials = list(/datum/material/plasma = SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass = SMALL_MATERIAL_AMOUNT, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5, /datum/material/diamond = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/emitter_disk/sanity
-	name = "\improper Diode Disk: Psychosiphoning"
-	desc = "This disk can be used on an emitter with an open panel to make it shoot lasers which will depress living creatures and calm supermatter crystals."
+	name = "\improper 二极管磁盘：心灵虹吸型"
+	desc = "将这张磁盘用于面板打开的发射器，可使其发射的激光令活体生物情绪低落，并让超物质晶体平静下来。"
 	stored_proj = /obj/projectile/beam/emitter/hitscan/psy
 	consumed_on_removal = FALSE
 	consumable = FALSE
@@ -687,8 +687,8 @@
 	custom_materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5, /datum/material/uranium = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/emitter_disk/magnetic
-	name = "\improper Diode Disk: Magnetogenerative"
-	desc = "This disk can be used on an emitter with an open panel to make it shoot lasers which will attract nearby objects."
+	name = "\improper 二极管磁盘：磁力生成型"
+	desc = "将这张磁盘用于面板打开的发射器，可使其发射的激光吸引附近的物体。"
 	stored_proj = /obj/projectile/beam/emitter/hitscan/magnetic
 	consumed_on_removal = FALSE
 	consumable = FALSE
@@ -696,8 +696,8 @@
 	custom_materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5, /datum/material/titanium = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/emitter_disk/blast
-	name = "\improper Diode Disk: Hyperconcussive"
-	desc = "This disk, loaded with proprietary syndicate firmware, can be used on an emitter with an open panel to make it shoot beams of concussive force which will cause small explosions."
+	name = "\improper 二极管磁盘：超震荡型"
+	desc = "这张磁盘载有辛迪加的专有固件，将其用于面板打开的发射器，可使其发射出会造成小型爆炸的震荡光束。"
 	stored_proj = /obj/projectile/beam/emitter/hitscan/blast
 	consumed_on_removal = FALSE
 	consumable = FALSE

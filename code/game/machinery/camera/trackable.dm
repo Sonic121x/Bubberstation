@@ -112,11 +112,11 @@
 
 	if(cameraticks < CAMERA_TICK_LIMIT)
 		if(!cameraticks)
-			to_chat(tracking_holder, span_warning("Target is not near any active cameras. Attempting to reacquire..."))
+			to_chat(tracking_holder, span_warning("目标不在任何正常工作的摄像头附近。正在尝试重新锁定……"))
 		cameraticks++
 		return
 
-	to_chat(tracking_holder, span_warning("Unable to reacquire, cancelling track..."))
+	to_chat(tracking_holder, span_warning("无法重新锁定，正在取消追踪……"))
 	reset_tracking()
 
 /// Tries to track onto our target mob. Returns true if it succeeds, false otherwise
@@ -155,12 +155,12 @@
 	if(!tracker || tracker.stat == DEAD)
 		return
 
-	var/target_name = tgui_input_list(tracker, "Select a target", "Tracking", find_trackable_mobs())
+	var/target_name = tgui_input_list(tracker, "选择目标", "追踪", find_trackable_mobs())
 	if(!target_name || isnull(target_name))
 		return
 	var/datum/weakref/mob_ref = isnull(humans[target_name]) ? others[target_name] : humans[target_name]
 	if(isnull(mob_ref))
-		to_chat(tracker, span_notice("Target is not on or near any active cameras. Tracking failed."))
+		to_chat(tracker, span_notice("目标不在任何正常工作的摄像头视野内或附近。追踪失败。"))
 		return
 	set_tracked_mob(mob_ref.resolve())
 
@@ -179,9 +179,9 @@
 	find_trackable_mobs() //this is in case the tracked mob is newly/no-longer in camera field of view.
 	var/datum/weakref/mob_ref = isnull(humans[tracked_mob_name]) ? others[tracked_mob_name] : humans[tracked_mob_name]
 	if(isnull(mob_ref))
-		to_chat(tracker, span_notice("Target is not on or near any active cameras. Tracking failed."))
+		to_chat(tracker, span_notice("目标不在任何正常工作的摄像头视野内或附近。追踪失败。"))
 		return
-	to_chat(tracker, span_notice("Now tracking [tracked_mob_name] on camera."))
+	to_chat(tracker, span_notice("现在正在通过摄像头追踪[tracked_mob_name]。"))
 	set_tracked_mob(mob_ref.resolve())
 
 /**

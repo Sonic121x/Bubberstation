@@ -24,8 +24,8 @@
 
 //---- Mecha sleeper, medical subtype has the chemical functionality
 /obj/item/mecha_parts/mecha_equipment/sleeper
-	name = "mounted sleeper"
-	desc = "A mounted sleeper that stabilizes patients."
+	name = "外挂休眠舱"
+	desc = "一台外挂式休眠舱，可稳定患者的状况。"
 	icon_state = "mecha_sleeper_miner"
 	energy_drain = 20
 	range = MECHA_MELEE
@@ -50,8 +50,8 @@
 	var/mob/living/carbon/target = atomtarget
 	if(!patient_insertion_check(target, source))
 		return
-	to_chat(source, "[icon2html(src, source)][span_notice("You start putting [target] into [src]...")]")
-	chassis.visible_message(span_warning("[chassis] starts putting [target] into \the [src]."))
+	to_chat(source, "[icon2html(src, source)][span_notice("你开始把 [target] 放入 [src]……")]")
+	chassis.visible_message(span_warning("[chassis] 开始把 [target] 放入 [src]。"))
 	if(!do_after(source, get_equip_cooldown(atomtarget), target, extra_checks=CALLBACK(src, PROC_REF(patient_insertion_check), target, source)))
 		return
 	if(!chassis || !(get_dir(chassis, target) & chassis.dir))
@@ -59,20 +59,20 @@
 	target.forceMove(src)
 	patient = target
 	START_PROCESSING(SSobj, src)
-	to_chat(source, "[icon2html(src, source)][span_notice("[target] successfully loaded into [src]. Life support functions engaged.")]")
-	chassis.visible_message(span_warning("[chassis] loads [target] into [src]."))
-	log_message("[target] loaded. Life support functions engaged.", LOG_MECHA)
+	to_chat(source, "[icon2html(src, source)][span_notice("[target] 已成功装入 [src]。生命维持功能已启用。")]")
+	chassis.visible_message(span_warning("[chassis] 把 [target] 装入了 [src]。"))
+	log_message("[target] 已装入。生命维持功能已启用。", LOG_MECHA)
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/sleeper/proc/patient_insertion_check(mob/living/carbon/target, mob/user)
 	if(!isnull(target.buckled))
-		to_chat(user, "[icon2html(src, user)][span_warning("[target] will not fit into the sleeper because [target.p_theyre()] buckled to [target.buckled]!")]")
+		to_chat(user, "[icon2html(src, user)][span_warning("[target] 无法装入休眠舱，因为其被固定在 [target.buckled] 上！")]")
 		return FALSE
 	if(target.has_buckled_mobs())
-		to_chat(user, "[icon2html(src, user)][span_warning("[target] will not fit into the sleeper because of the creatures attached to it!")]")
+		to_chat(user, "[icon2html(src, user)][span_warning("[target] 无法装入休眠舱，因为身上附着有生物！")]")
 		return FALSE
 	if(patient)
-		to_chat(user, "[icon2html(src, user)][span_warning("The sleeper is already occupied!")]")
+		to_chat(user, "[icon2html(src, user)][span_warning("休眠舱已被占用！")]")
 		return FALSE
 	return TRUE
 
@@ -80,14 +80,14 @@
 	if(!patient)
 		return
 	patient.forceMove(get_turf(src))
-	to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_notice("[patient] ejected. Life support functions disabled.")]")
-	log_message("[patient] ejected. Life support functions disabled.", LOG_MECHA)
+	to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_notice("[patient] 已被排出。生命维持功能已停用。")]")
+	log_message("[patient] 已被排出。生命维持功能已停用。", LOG_MECHA)
 	STOP_PROCESSING(SSobj, src)
 	patient = null
 
 /obj/item/mecha_parts/mecha_equipment/sleeper/detach()
 	if(patient)
-		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_warning("Unable to detach [src] - equipment occupied!")]")
+		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_warning("无法卸下 [src]——装备内仍有乘员！")]")
 		return
 	STOP_PROCESSING(SSobj, src)
 	return ..()
@@ -99,13 +99,13 @@
 	var/patient_state
 	switch(patient.stat)
 		if(STABLE)
-			patient_state = "Stable"
+			patient_state = "稳定"
 		if(DEAD)
-			patient_state = "*Dead*"
+			patient_state = "*死亡*"
 		if(SOFT_CRIT, HARD_CRIT)
-			patient_state = "Critical"
+			patient_state = "危重"
 		else
-			patient_state = "Unknown"
+			patient_state = "未知"
 	var/core_temp = ""
 	if(ishuman(patient))
 		var/mob/living/carbon/human/humi = patient
@@ -134,16 +134,16 @@
 
 /obj/item/mecha_parts/mecha_equipment/sleeper/process(seconds_per_tick)
 	if(!chassis.has_charge(energy_drain))
-		log_message("Deactivated.", LOG_MECHA)
-		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_warning("[src] deactivated - no power.")]")
+		log_message("已停用。", LOG_MECHA)
+		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_warning("[src] 已停用——没有电力。")]")
 		STOP_PROCESSING(SSobj, src)
 		return
 	var/mob/living/carbon/ex_patient = patient
 	if(!ex_patient)
 		return
 	if(ex_patient.loc != src)
-		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_notice("[patient] no longer detected. Life support functions diabled.")]")
-		log_message("[patient] no longer detected - Life support functions disabled.", LOG_MECHA)
+		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_notice("[patient] 已无法检测到。生命维持功能已停用。")]")
+		log_message("[patient] 已无法检测到——生命维持功能已停用。", LOG_MECHA)
 		STOP_PROCESSING(SSobj, src)
 		patient = null
 	ex_patient.adjust_oxy_loss(-2 * seconds_per_tick)
@@ -162,8 +162,8 @@
 
 //Medical subtype with the chems
 /obj/item/mecha_parts/mecha_equipment/sleeper/medical
-	name = "mounted sleeper"
-	desc = "Equipment for medical exosuits. A mounted sleeper that stabilizes patients and can inject reagents from a equipped exosuit syringe gun."
+	name = "外挂休眠舱"
+	desc = "医疗机甲装备。一台外挂式休眠舱，可稳定患者状况，并能从已装备的机甲注射枪中注入试剂。"
 	icon_state = "mecha_sleeper"
 	mech_flags = EXOSUIT_MODULE_MEDICAL
 	/// amount of chems to inject into patient from other hands syringe gun
@@ -194,8 +194,8 @@
 		return
 	var/to_inject = min(reagent_to_inject.volume, inject_amount)
 	if(to_inject && patient.reagents.get_reagent_amount(reagent_to_inject.type) + to_inject <= inject_amount*2)
-		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_notice("Injecting [patient] with [to_inject] units of [reagent_to_inject.name].")]")
-		log_message("Injecting [patient] with [to_inject] units of [reagent_to_inject.name].", LOG_MECHA)
+		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_notice("正在向 [patient] 注入 [to_inject] 单位 [reagent_to_inject.name]。")]")
+		log_message("正在向 [patient] 注入 [to_inject] 单位 [reagent_to_inject.name]。", LOG_MECHA)
 		for(var/driver in chassis.return_drivers())
 			log_combat(driver, patient, "injected", "[name] ([reagent_to_inject] - [to_inject] units)")
 		SG.reagents.trans_to(patient, to_inject, target_id = reagent_to_inject.type)
@@ -206,8 +206,8 @@
 #define ANALYZE_SYRINGE_MODE 1
 
 /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun
-	name = "exosuit syringe gun"
-	desc = "Equipment for medical exosuits. A chem synthesizer with syringe gun. Reagents inside are held in stasis, so no reactions will occur."
+	name = "外骨骼注射枪"
+	desc = "医疗机甲装备。带注射枪的化学合成器。内部试剂处于停滞状态，因此不会发生反应。"
 	icon_state = "mecha_syringegun"
 	range = MECHA_MELEE|MECHA_RANGED
 	equip_cooldown = 10
@@ -231,7 +231,7 @@
 /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun/Initialize(mapload)
 	. = ..()
 	create_reagents(max_volume, NO_REACT)
-	known_reagents = list(/datum/reagent/medicine/epinephrine="Epinephrine",/datum/reagent/medicine/c2/multiver="Multiver")
+	known_reagents = list(/datum/reagent/medicine/epinephrine="肾上腺素",/datum/reagent/medicine/c2/multiver="穆尔提弗")
 
 /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -250,8 +250,8 @@
 		analyzed_reagents += list((list("name" = known_reagents[i].name, "enabled" = enabled)))
 	var/list/data = list(
 		"snowflake_id" = MECHA_SNOWFLAKE_ID_SYRINGE,
-		"mode" = mode == FIRE_SYRINGE_MODE ? "Launch" : "Analyze",
-		"mode_label" = "Action",
+		"mode" = mode == FIRE_SYRINGE_MODE ? "发射" : "分析",
+		"mode_label" = "操作",
 		"syringe" = LAZYLEN(syringes),
 		"max_syringe" = max_syringes,
 		"reagents" = reagents.total_volume,
@@ -284,11 +284,11 @@
 	if(!LAZYLEN(processed_reagents))
 		return
 
-	message += " added to production"
+	message += " 已加入生产列表"
 	START_PROCESSING(SSobj, src)
 	to_chat(usr, message)
-	to_chat(usr, "[icon2html(src, usr)][span_notice("Reagent processing started.")]")
-	log_message("Reagent processing started.", LOG_MECHA)
+	to_chat(usr, "[icon2html(src, usr)][span_notice("试剂处理已开始。")]")
+	log_message("试剂处理已开始。", LOG_MECHA)
 
 /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
@@ -303,44 +303,44 @@
 		return analyze_reagents(target, source)
 	//we're in syringe mode so lets do syringe stuff
 	if(!LAZYLEN(syringes))
-		to_chat(source, "[icon2html(src, source)]<span class='alert'>No syringes loaded.</span>")
+		to_chat(source, "[icon2html(src, source)]<span class='alert'>未装填注射器。</span>")
 		return
 	if(reagents.total_volume <= 0)
-		to_chat(source, "[icon2html(src, source)]<span class='alert'>No available reagents to load syringe with.</span>")
+		to_chat(source, "[icon2html(src, source)]<span class='alert'>没有可用于装填注射器的试剂。</span>")
 		return
 	if(HAS_TRAIT(source, TRAIT_PACIFISM))
-		to_chat(source, span_alert("The [src] might be lethally chambered! You don't want to risk harming anyone..."))
+		to_chat(source, span_alert("[src] 内可能装有致命药剂！你不想冒险伤害任何人……"))
 		return
 	var/obj/item/ammo_casing/syringegun/chambered = new /obj/item/ammo_casing/syringegun(src)
-	log_message("Fired [chambered] from [src] by [source], targeting [target].", LOG_MECHA)
+	log_message("已由 [source] 从 [src] 向 [target] 发射了 [chambered]。", LOG_MECHA)
 	chambered.fire_casing(target, source, null, 0, 0, null, 0, src)
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun/proc/load_syringe(obj/item/reagent_containers/syringe/S, mob/user)
 	if(LAZYLEN(syringes) >= max_syringes)
-		to_chat(user, "[icon2html(src, user)][span_warning("[src]'s syringe chamber is full!")]")
+		to_chat(user, "[icon2html(src, user)][span_warning("[src] 的注射器仓已满！")]")
 		return FALSE
 	if(!chassis.Adjacent(S))
-		to_chat(user, "[icon2html(src, user)][span_warning("Unable to load syringe!")]")
+		to_chat(user, "[icon2html(src, user)][span_warning("无法装填注射器！")]")
 		return FALSE
 	S.reagents.trans_to(src, S.reagents.total_volume, transferred_by = user)
 	S.forceMove(src)
 	LAZYADD(syringes,S)
-	to_chat(user, "[icon2html(src, user)][span_notice("Syringe loaded.")]")
+	to_chat(user, "[icon2html(src, user)][span_notice("注射器已装填。")]")
 	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun/proc/analyze_reagents(atom/A, mob/user)
 	if(get_dist(src,A) >= 4)
-		to_chat(user, "[icon2html(src, user)][span_notice("The object is too far away!")]")
+		to_chat(user, "[icon2html(src, user)][span_notice("目标太远了！")]")
 		return FALSE
 	if(!A.reagents || ismob(A))
-		to_chat(user, "[icon2html(src, user)][span_warning("No reagent info gained from [A].")]")
+		to_chat(user, "[icon2html(src, user)][span_warning("未能从 [A] 获取试剂信息。")]")
 		return FALSE
-	to_chat(user, "[icon2html(src, user)][span_notice("Analyzing reagents...")]")
+	to_chat(user, "[icon2html(src, user)][span_notice("正在分析试剂……")]")
 	for(var/datum/reagent/R in A.reagents.reagent_list)
 		if((R.chemical_flags & REAGENT_CAN_BE_SYNTHESIZED) && add_known_reagent(R.type,R.name))
-			to_chat(user, "[icon2html(src, user)][span_notice("Reagent analyzed, identified as [R.name] and added to database.")]")
-	to_chat(user, "[icon2html(src, user)][span_notice("Analysis complete.")]")
+			to_chat(user, "[icon2html(src, user)][span_notice("试剂分析完成，鉴定为 [R.name]，已加入数据库。")]")
+	to_chat(user, "[icon2html(src, user)][span_notice("分析完成。")]")
 	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun/proc/add_known_reagent(r_id,r_name)
@@ -355,8 +355,8 @@
 	if(.)
 		return
 	if(!LAZYLEN(processed_reagents) || reagents.total_volume >= reagents.maximum_volume || !chassis.has_charge(energy_drain))
-		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_alert("Reagent processing stopped.")]")
-		log_message("Reagent processing stopped.", LOG_MECHA)
+		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_alert("试剂处理已停止。")]")
+		log_message("试剂处理已停止。", LOG_MECHA)
 		return PROCESS_KILL
 	var/amount = seconds_per_tick * synth_speed / LAZYLEN(processed_reagents)
 	for(var/reagent in processed_reagents)
@@ -369,8 +369,8 @@
 ///////////////////////////////// Medical Beam ///////////////////////////////////////////////////////////////
 
 /obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam
-	name = "exosuit medical beamgun"
-	desc = "Equipment for medical exosuits. Generates a focused beam of medical nanites."
+	name = "外骨骼医疗光束枪"
+	desc = "医疗机甲装备。生成一束聚焦的医疗纳米机器人光束。"
 	icon_state = "mecha_medigun"
 	energy_drain = 10
 	range = MECHA_MELEE|MECHA_RANGED

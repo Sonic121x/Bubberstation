@@ -2,7 +2,7 @@
 /obj/item/gun/energy/recharge
 	icon_state = "kineticgun"
 	base_icon_state = "kineticgun"
-	desc = "A self recharging gun. Holds one shot at a time."
+	desc = "一把自行充能的枪。每次只能装一发。"
 	automatic_charge_overlays = FALSE
 	cell_type = /obj/item/stock_parts/power_store/cell/emproof
 	/// If set to something, instead of an overlay, sets the icon_state directly.
@@ -84,7 +84,7 @@
 	if(!suppressed && recharge_sound)
 		playsound(src.loc, recharge_sound, 60, TRUE)
 	else
-		to_chat(loc, span_warning("[src] silently charges up."))
+		to_chat(loc, span_warning("[src] 悄无声息地充能完毕。"))
 	update_appearance()
 
 /obj/item/gun/energy/recharge/update_overlays()
@@ -101,8 +101,8 @@
 			icon_state = no_charge_state
 
 /obj/item/gun/energy/recharge/ebow
-	name = "mini energy crossbow"
-	desc = "A weapon favored by syndicate stealth specialists."
+	name = "迷你能量弩"
+	desc = "辛迪加潜行专家钟爱的武器。"
 	icon_state = "crossbow"
 	base_icon_state = "crossbow"
 	inhand_icon_state = "crossbow"
@@ -124,16 +124,16 @@
 	AddComponent(/datum/component/bayonet_attachable, offset_x = 20, offset_y = 12)
 
 /obj/item/gun/energy/recharge/ebow/halloween
-	name = "candy corn crossbow"
-	desc = "A weapon favored by Syndicate trick-or-treaters."
+	name = "玉米糖弩"
+	desc = "辛迪加“不给糖就捣蛋”爱好者钟爱的武器。"
 	icon_state = "crossbow_halloween"
 	base_icon_state = "crossbow_halloween"
 	no_charge_state = "crossbow_halloween_empty"
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/halloween)
 
 /obj/item/gun/energy/recharge/ebow/large
-	name = "energy crossbow"
-	desc = "A reverse engineered weapon using syndicate technology."
+	name = "能量弩"
+	desc = "逆向工程自辛迪加技术的武器。"
 	icon_state = "crossbowlarge"
 	base_icon_state = "crossbowlarge"
 	no_charge_state = "crossbowlarge_empty"
@@ -149,11 +149,11 @@
 
 /// A silly gun that does literally zero damage, but disrupts electrical sources of light, like flashlights.
 /obj/item/gun/energy/recharge/fisher
-	name = "\improper SC/FISHER disruptor"
-	desc = "A self-recharging, integrally suppressed, modified kinetic accelerator that does no damage, \
-		but disrupts electronics like lights, APCs, and security cameras. \
-		Can fire twice before requiring a recharge. \
-		Bolts can be fired around machinery, but the precise nature of shooting light fixtures demands a skillful hand."
+	name = "\improper SC/FISHER 干扰枪"
+	desc = "一把自行充能、一体式消音、经过改装的动能加速器，不造成任何伤害，\
+		但会干扰灯具、区域供电控制器和安保摄像头等电子设备。\
+		充能一次可射击两次。\
+		弹丸可以绕过机械射击，但精确射中灯具需要一双巧手。"
 	icon_state = "fisher"
 	base_icon_state = "fisher"
 	dry_fire_sound_volume = 10
@@ -166,19 +166,19 @@
 /obj/item/gun/energy/recharge/fisher/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/examine_lore, \
-		lore = "The SC/FISHER is an illegally-modified kinetic accelerator that's been cut down and refit into a miniature energy gun chassis, \
-			optimized for temporary, but effective, electronic warfare.<br>\
+		lore = "SC/FISHER 是一把非法改装的动能加速器，被截短并重新装配进一个微型能量枪\
+			机匣，专门用于实施短暂而有效的电子战。<br>\
 			<br>\
-			The reengineered kinetic accelerator central to the SC/FISHER's functionality has been modified for its kinetic bolts to \
-			<b>temporarily disrupt flashlights, cameras, APCs, and pAI speech modules</b>, in return for dealing no damage. \
-			This effect works longer against targets struck with the SC/FISHER either in melee or by having it thrown at them, but \
-			you probably shouldn't be throwing it at people.<br>\
+			SC/FISHER 功能的核心——经过重新设计的动能加速器——经过改装，使其动能弹丸能够\
+			<b>暂时干扰手电筒、摄像头、区域供电控制器和个人 AI 语音模块</b>，代价是不造成任何伤害。\
+			用 SC/FISHER 近身击打或投掷命中目标时，该效果持续时间更长，但\
+			你大概不该把它往人身上扔。<br>\
 			<br>\
-			While some would argue that sacrificing damage for a light-disrupting, fixture-breaking gimmick \
-			makes the SC/FISHER a dead-end in equipment development, others argue that it is both amusing and tactically sound \
-			to be able to shoot at light sources and pesky pAIs to disrupt their function.<br>\
+			有人会说，为了一招干扰灯光、打坏灯具的花哨功能而牺牲伤害，\
+			让 SC/FISHER 成了装备研发上的死胡同；但也有人认为，能对着光源和烦人的个人 AI\
+			射击以干扰其功能，既有趣又符合战术。<br>\
 			<br>\
-			Caveat emptor." \
+			买家自慎。" \
 	)
 
 /obj/item/gun/energy/recharge/fisher/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)

@@ -11,8 +11,8 @@
 	icon = 'icons/obj/pipes_n_cables/atmos.dmi' // SKYRAT EDIT CHANGE - ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 	icon_state = "sheater-off"
 	base_icon_state = "sheater"
-	name = "space heater"
-	desc = "Made by Space Amish using traditional space techniques, this heater/cooler is guaranteed not to set the station on fire. Warranty void if used in engines."
+	name = "便携式温控器"
+	desc = "由太空阿米什人采用传统太空工艺制造，这款冷暖两用温控器保证不会点燃空间站。用于引擎时保修失效。"
 	max_integrity = 250
 	armor_type = /datum/armor/machinery_space_heater
 	circuit = /obj/item/circuitboard/machine/space_heater
@@ -58,16 +58,16 @@
 
 	AddElement( \
 		/datum/element/contextual_screentip_bare_hands, \
-		rmb_text = "Toggle power", \
+		rmb_text = "切换电源", \
 	)
 
 	var/static/list/tool_behaviors = list(
 		TOOL_SCREWDRIVER = list(
-			SCREENTIP_CONTEXT_LMB = "Open hatch",
+			SCREENTIP_CONTEXT_LMB = "打开舱盖",
 		),
 
 		TOOL_WRENCH = list(
-			SCREENTIP_CONTEXT_LMB = "Anchor",
+			SCREENTIP_CONTEXT_LMB = "固定",
 		),
 	)
 	AddElement(/datum/element/contextual_screentip_tools, tool_behaviors)
@@ -96,21 +96,21 @@
 
 /obj/machinery/space_heater/examine(mob/user)
 	. = ..()
-	. += "\The [src] is [on ? "on" : "off"], and the hatch is [panel_open ? "open" : "closed"]."
+	. += "[src]已[on ? "开启" : "关闭"]，舱盖[panel_open ? "敞开" : "关闭"]。"
 	if(cell)
-		. += "The charge meter reads [cell ? round(cell.percent(), 1) : 0]%."
+		. += "电量表读数为[cell ? round(cell.percent(), 1) : 0]%。"
 	else
-		. += span_warning("There is no power cell installed.")
+		. += span_warning("未安装电池。")
 	if(in_range(user, src) || isobserver(user))
 		. += heating_examine()
-		. += span_notice("<b>Right-click</b> to toggle [on ? "off" : "on"].")
+		. += span_notice("<b>右键点击</b>即可[on ? "关闭" : "开启"]。")
 
 ///Returns the heating power of this machine as an examine
 /obj/machinery/space_heater/proc/heating_examine()
 	var/target_temp = round(target_temperature - T0C, 1)
 	var/min_temp = max(settable_temperature_median - settable_temperature_range, TCMB) - T0C
 	var/max_temp = settable_temperature_median + settable_temperature_range - T0C
-	return span_notice("The status display reads:<br>Heating power: <b>[display_power(heating_energy, convert = TRUE, scheduler = SSair)] at [(efficiency / 20) * 100]% efficiency.</b><br>Target temperature: <b>[target_temp]°C [min_temp]°C - [max_temp]°C]</b>\n")
+	return span_notice("状态显示屏读数：<br>加热功率：<b>[display_power(heating_energy, convert = TRUE, scheduler = SSair)]，效率为[(efficiency / 20) * 100]%。</b><br>目标温度：<b>[target_temp]°C（范围：[min_temp]°C - [max_temp]°C）</b>\n")
 
 /obj/machinery/space_heater/update_icon_state()
 	. = ..()
@@ -208,8 +208,8 @@
 /obj/machinery/space_heater/screwdriver_act(mob/living/user, obj/item/tool)
 	. = default_deconstruction_screwdriver(user, tool)
 	user.visible_message(
-		span_notice("[user] [panel_open ? "opens" : "closes"] the hatch on [src]."),
-		span_notice("You [panel_open ? "open" : "close"] the hatch on [src]."),
+		span_notice("[user][panel_open ? "打开" : "关闭"]了[src]的舱盖。"),
+		span_notice("你[panel_open ? "打开" : "关闭"]了[src]的舱盖。"),
 	)
 	return .
 
@@ -220,18 +220,18 @@
 	if(istype(tool, /obj/item/stock_parts/power_store/cell))
 		add_fingerprint(user)
 		if(!panel_open)
-			to_chat(user, span_warning("The hatch must be open to insert a power cell!"))
+			to_chat(user, span_warning("必须先打开舱盖才能装入电池！"))
 			return ITEM_INTERACT_BLOCKING
 		if(cell)
-			to_chat(user, span_warning("There is already a power cell inside!"))
+			to_chat(user, span_warning("里面已经有一块电池了！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		cell = tool
 		tool.add_fingerprint(usr)
 		user.visible_message(
-			span_notice("[user] inserts [tool] into [src]."),
-			span_notice("You insert [tool] into [src]."),
+			span_notice("[user]将[tool]装入了[src]。"),
+			span_notice("你将[tool]装入了[src]。"),
 		)
 		SStgui.update_uis(src)
 		return ITEM_INTERACT_SUCCESS
@@ -309,21 +309,21 @@
 	mode = HEATER_MODE_STANDBY
 	if(!isnull(user))
 		if(QDELETED(cell))
-			balloon_alert(user, "no cell!")
+			balloon_alert(user, "没有电池！")
 		else if(!cell.charge())
-			balloon_alert(user, "no charge!")
+			balloon_alert(user, "没有电量！")
 		else if(!is_operational)
-			balloon_alert(user, "not operational!")
+			balloon_alert(user, "无法运行！")
 		else
-			balloon_alert(user, "turned [on ? "on" : "off"]")
+			balloon_alert(user, "已[on ? "开启" : "关闭"]")
 	update_appearance()
 	if(on)
 		SSair.start_processing_machine(src)
 
 ///For use with heating reagents in a ghetto way
 /obj/machinery/space_heater/improvised_chem_heater
-	name = "improvised chem heater"
-	desc = "A space heater fashioned to reroute heating to a water bath on top."
+	name = "简易化学加热器"
+	desc = "由便携式温控器改装而成，将热量导向顶部的水浴槽。"
 	panel_open = TRUE //This is always open - since we've injected wires in the panel
 	//We inherit the cell from the heater prior
 	cell = null
@@ -362,7 +362,7 @@
 	// Conducted energy per joule of thermal energy difference in a tick.
 	var/conduction_energy = beaker_conduction_power * (set_mode == HEATER_MODE_AUTO ? 0.5 : 1) * our_subsystem.wait / (1 SECONDS)
 	// This accounts for the timestep inaccuracy.
-	. += span_notice("Reagent conduction power: <b>[conduction_energy < 1 ? display_power(-log(1 - conduction_energy) SECONDS / our_subsystem.wait, convert = FALSE) : "∞W"]/J</b>")
+	. += span_notice("试剂导热功率：<b>[conduction_energy < 1 ? display_power(-log(1 - conduction_energy) SECONDS / our_subsystem.wait, convert = FALSE) : "∞W"]/J</b>")
 
 /obj/machinery/space_heater/improvised_chem_heater/toggle_power(user)
 	. = ..()
@@ -432,7 +432,7 @@
 		if(!user.transferItemToLoc(container, src))
 			return ITEM_INTERACT_BLOCKING
 		replace_beaker(user, container)
-		to_chat(user, span_notice("You add [container] to [src]'s water bath."))
+		to_chat(user, span_notice("你将[container]放进了[src]的水浴槽。"))
 		ui_interact(user)
 		return ITEM_INTERACT_SUCCESS
 
@@ -444,7 +444,7 @@
 
 /obj/machinery/space_heater/improvised_chem_heater/proc/try_insert_cell(mob/living/user, obj/item/stock_parts/power_store/cell/battery, silent = FALSE)
 	if(cell)
-		to_chat(user, span_warning("There is already a power cell inside!"))
+		to_chat(user, span_warning("里面已经有一块电池了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(battery, src))
@@ -454,7 +454,7 @@
 	battery.add_fingerprint(user)
 
 	if(!silent)
-		user.visible_message(span_notice("\The [user] inserts a power cell into \the [src]."), span_notice("You insert the power cell into \the [src]."))
+		user.visible_message(span_notice("[user]将一块电池装入了[src]。"), span_notice("你将电池装入了[src]。"))
 	SStgui.update_uis(src)
 	return ITEM_INTERACT_SUCCESS
 

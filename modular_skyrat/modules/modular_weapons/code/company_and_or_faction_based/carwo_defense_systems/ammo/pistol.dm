@@ -2,8 +2,8 @@
 // Pistol caliber caseless round used almost exclusively by TerraGov weapons
 
 /obj/item/ammo_casing/c35sol
-	name = ".35 Sol Short lethal bullet casing"
-	desc = "A TerraGov standard caseless lethal pistol round."
+	name = ".35太阳短型致命弹"
+	desc = "一发地球政府制式无壳致命手枪弹。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "35sol"
@@ -19,7 +19,7 @@
 
 
 /obj/projectile/bullet/c35sol
-	name = ".35 Sol Short bullet"
+	name = ".35太阳短型子弹"
 	damage = 20
 
 	wound_bonus = 5 // Normal bullets are 20
@@ -27,8 +27,8 @@
 
 
 /obj/item/ammo_box/c35sol
-	name = "ammo box (.35 Sol Short lethal)"
-	desc = "A box of .35 Sol Short pistol rounds, holds twenty-four rounds."
+	name = "弹药盒（.35太阳短型致命弹）"
+	desc = "一盒.35太阳短型手枪弹，可容纳二十四发。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "35box"
@@ -45,8 +45,8 @@
 // .35 Sol's equivalent to a rubber bullet
 
 /obj/item/ammo_casing/c35sol/incapacitator
-	name = ".35 Sol Short incapacitator bullet casing"
-	desc = "A TerraGov standard caseless less-lethal pistol round. Exhausts targets on hit, has a tendency to bounce off walls at shallow angles."
+	name = ".35太阳短型失能弹"
+	desc = "一发地球政府制式无壳低致命性手枪弹。命中时使目标疲惫，浅角度撞墙时容易弹射。"
 
 	icon_state = "35sol_disabler"
 
@@ -55,7 +55,7 @@
 
 
 /obj/projectile/bullet/c35sol/incapacitator
-	name = ".35 Sol Short incapacitator bullet"
+	name = ".35太阳短型失能子弹"
 	damage = 8
 	stamina = 30
 
@@ -79,8 +79,8 @@
 
 
 /obj/item/ammo_box/c35sol/incapacitator
-	name = "ammo box (.35 Sol Short incapacitator)"
-	desc = "A box of .35 Sol Short pistol rounds, holds twenty-four rounds. The blue stripe indicates this should hold less-lethal ammunition."
+	name = "弹药盒（.35太阳短型失能弹）"
+	desc = "一盒.35太阳短型手枪弹，可容纳二十四发。蓝色条纹表示盒内应为低致命性弹药。"
 
 	icon_state = "35box_disabler"
 
@@ -90,8 +90,8 @@
 // .35 Sol ripper, similar to the detective revolver's dumdum rounds, causes slash wounds and is weak to armor
 
 /obj/item/ammo_casing/c35sol/ripper
-	name = ".35 Sol Short ripper bullet casing"
-	desc = "A TerraGov standard caseless ripper pistol round. Causes slashing wounds on targets, but is weak to armor."
+	name = ".35太阳短型撕裂弹"
+	desc = "一发地球政府制式无壳撕裂手枪弹。会对目标造成割伤，但对护甲效果不佳。"
 
 	icon_state = "35sol_shrapnel"
 	projectile_type = /obj/projectile/bullet/c35sol/ripper
@@ -101,7 +101,7 @@
 
 
 /obj/projectile/bullet/c35sol/ripper
-	name = ".35 Sol ripper bullet"
+	name = ".35太阳撕裂子弹"
 	damage = 15
 
 	weak_against_armour = TRUE
@@ -126,8 +126,8 @@
 	rip_time = 1 SECONDS
 
 /obj/item/ammo_box/c35sol/ripper
-	name = "ammo box (.35 Sol Short ripper)"
-	desc = "A box of .35 Sol Short pistol rounds, holds twenty-four rounds. The purple stripe indicates this should hold hollowpoint-like ammunition."
+	name = "弹药盒（.35太阳短型撕裂弹）"
+	desc = "一盒.35太阳短型手枪弹，可容纳二十四发。紫色条纹表示盒内应为类似空尖弹的弹药。"
 
 	icon_state = "35box_shrapnel"
 

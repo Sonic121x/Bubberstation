@@ -1,8 +1,8 @@
 /// SKYRAT MODULE SKYRAT_XENO_REDO
 
 /mob/living/carbon/alien/adult/skyrat/queen
-	name = "alien queen"
-	desc = "A hulking beast of an alien, for some reason this one seems more important than the others, you should probably quit staring at it and do something."
+	name = "异形女王"
+	desc = "体型庞大的异形巨兽，不知为何显得比其他异形更重要。你最好别再盯着看，赶紧采取行动。"
 	caste = "queen"
 	maxHealth = 500
 	status_flags = NONE //can't shove or KO the queen, kiddo.
@@ -40,7 +40,7 @@
 	..(message, shown_name, TRUE)
 
 /obj/item/organ/alien/neurotoxin/queen
-	name = "neurotoxin gland"
+	name = "神经毒素腺"
 	icon_state = "neurotox"
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = ORGAN_SLOT_XENO_NEUROTOXINGLAND
@@ -66,8 +66,8 @@
 	return ..()
 
 /datum/action/cooldown/alien/skyrat/queen_screech
-	name = "Deafening Screech"
-	desc = "Let out a screech so deafeningly loud that anything with the ability to hear around you will likely be incapacitated for a short time."
+	name = "震耳尖啸"
+	desc = "发出震耳欲聋的尖啸，使周围能听见的生物短暂失去行动能力。"
 	button_icon_state = "screech"
 	cooldown_time = 5 MINUTES
 
@@ -81,7 +81,7 @@
 	for(var/mob/living/carbon/human/screech_target in get_hearers_in_view(7, get_turf(queenie)))
 		screech_target.soundbang_act(intensity = 3, stun_pwr = 80, damage_pwr = 5, deafen_pwr = 10) // Only being deaf or in space with protection will save you
 		shake_camera(screech_target, 4, 3)
-		to_chat(screech_target, span_doyourjobidiot("[queenie] lets out a deafening screech!"))
+		to_chat(screech_target, span_doyourjobidiot("[queenie]发出震耳欲聋的尖啸！"))
 
 	return TRUE
 

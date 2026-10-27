@@ -2,8 +2,8 @@
 #define REAGENTS_BASE_VOLUME 100
 
 /obj/machinery/smoke_machine
-	name = "smoke machine"
-	desc = "A machine with a centrifuge installed into it. It produces smoke with any reagents you put into the machine."
+	name = "烟雾机"
+	desc = "一台内置离心机的机器。它会将你放入其中的任何试剂制成烟雾。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "smoke0"
 	base_icon_state = "smoke"
@@ -50,33 +50,33 @@
 		return
 
 	if(is_reagent_container(held_item) && held_item.is_open_container())
-		context[SCREENTIP_CONTEXT_LMB] = "Inject reagents"
+		context[SCREENTIP_CONTEXT_LMB] = "注入试剂"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 		return CONTEXTUAL_SCREENTIP_SET
 	else if(held_item.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Una" : "A"]nchor"
+		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "解除固定" : "固定"]"
 		return CONTEXTUAL_SCREENTIP_SET
 	else if(held_item.tool_behaviour == TOOL_CROWBAR && panel_open)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/smoke_machine/examine(mob/user)
 	. = ..()
 
-	. += span_notice("Reagent capacity <b>[reagents.total_volume]/[reagents.maximum_volume]</b>.")
-	. += span_notice("Operating at <b>[round((efficiency / 26) * 100)]%</b> efficiency.")
+	. += span_notice("试剂容量 <b>[reagents.total_volume]/[reagents.maximum_volume]</b>。")
+	. += span_notice("以 <b>[round((efficiency / 26) * 100)]%</b> 的效率运行。")
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+	. += span_notice("用螺丝刀[EXAMINE_HINT("拧")]可[panel_open ? "关闭" : "打开"]其维修面板。")
 	if(panel_open)
-		. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("可以[EXAMINE_HINT("撬开")]拆解。")
 
 	if(anchored)
-		. += span_notice("It can be [EXAMINE_HINT("wrenched")] loose.")
+		. += span_notice("可以用扳手[EXAMINE_HINT("拧")]松。")
 	else
-		. += span_warning("It needs to be [EXAMINE_HINT("anchored")] in place to work.")
+		. += span_warning("需要先用扳手[EXAMINE_HINT("固定")]到位才能工作。")
 
 /obj/machinery/smoke_machine/update_icon_state()
 	if(!is_operational || !on || !reagents.total_volume)
@@ -116,13 +116,13 @@
 		var/obj/item/reagent_containers/RC = tool
 		var/units = RC.reagents.trans_to(src, RC.amount_per_transfer_from_this, transferred_by = user)
 		if(units)
-			to_chat(user, span_notice("You transfer [units] units of the solution to [src]."))
+			to_chat(user, span_notice("你将 [units] 单位的溶液转移到 [src] 中。"))
 			return ITEM_INTERACT_SUCCESS
 		return ITEM_INTERACT_BLOCKING
 
 /obj/machinery/smoke_machine/wrench_act(mob/living/user, obj/item/tool)
 	if(on)
-		balloon_alert(user, "turn off first!")
+		balloon_alert(user, "请先关闭！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(default_unfasten_wrench(user, tool, time = 4 SECONDS) == SUCCESSFUL_UNFASTEN)
@@ -132,14 +132,14 @@
 
 /obj/machinery/smoke_machine/screwdriver_act(mob/living/user, obj/item/tool)
 	if(on)
-		balloon_alert(user, "turn off first!")
+		balloon_alert(user, "请先关闭！")
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/smoke_machine/crowbar_act(mob/living/user, obj/item/tool)
 	if(on)
-		balloon_alert(user, "turn off first!")
+		balloon_alert(user, "请先关闭！")
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_crowbar(user, tool)
@@ -211,9 +211,9 @@
 			if(on && reagents.total_volume)
 				var/mob/user = ui.user
 				var/list/english_list = english_list(reagents.reagent_list)
-				message_admins("[ADMIN_LOOKUPFLW(user)] activated a smoke machine that contains [english_list] at [ADMIN_VERBOSEJMP(src)].")
-				user.log_message("activated a smoke machine that contains [english_list]", LOG_GAME)
-				log_combat(user, src, "has activated [src] which contains [english_list] at [AREACOORD(src)].")
+				message_admins("[ADMIN_LOOKUPFLW(user)] 在 [ADMIN_VERBOSEJMP(src)] 启动了一台装有 [english_list] 的烟雾机。")
+				user.log_message("在 [ADMIN_VERBOSEJMP(src)] 启动了一台装有 [english_list] 的烟雾机", LOG_GAME)
+				log_combat(user, src, "在 [AREACOORD(src)] 启动了装有 [english_list] 的 [src]。")
 				begin_processing()
 			else
 				on = FALSE

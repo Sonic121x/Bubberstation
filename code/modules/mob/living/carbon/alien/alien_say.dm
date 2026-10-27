@@ -8,7 +8,7 @@
 	var/hivemind_spans = "alien"
 	if(big_voice)
 		hivemind_spans += " big"
-	var/rendered = "<i><span class='[hivemind_spans]'>Hivemind, [span_name("[shown_name]")] <span class='message'>[message_a]</span></span></i>"
+	var/rendered = "<i><span class='[hivemind_spans]'>虫巢意识，[span_name("[shown_name]")] <span class='message'>[message_a]</span></span></i>"
 	for(var/mob/player in GLOB.player_list)
 		if(!IS_UNCONSCIOUS_OR_CRIT(player) && player.hivecheck())
 			to_chat(player, rendered, type = MESSAGE_TYPE_RADIO, avoid_highlighting = player == src)

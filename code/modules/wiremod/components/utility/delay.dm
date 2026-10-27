@@ -7,9 +7,9 @@
  * Delays a signal by a specified duration.
  */
 /obj/item/circuit_component/delay
-	display_name = "Delay"
-	desc = "A component that delays a signal by a specified duration. Timer gets reset when triggered again."
-	category = "Utility"
+	display_name = "延迟"
+	desc = "把信号延迟指定时长的元件。再次触发时计时器会重置。"
+	category = "实用工具"
 
 	/// Amount to delay by
 	var/datum/port/input/delay_amount

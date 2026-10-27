@@ -1,5 +1,5 @@
 /datum/armament_entry/assault_operatives/modules
-	category = "MOD Modules"
+	category = "MOD 模块"
 	category_item_limit = 3
 
 /datum/armament_entry/assault_operatives/modules/noslip

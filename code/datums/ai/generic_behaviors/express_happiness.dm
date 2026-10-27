@@ -16,17 +16,17 @@
 	var/sad_key = BB_SAD_EMOTIONS
 
 	var/static/list/default_happy_emotions = list(
-		"celebrates happily!",
-		"dances around in excitement!",
+		"开心地庆祝！",
+		"兴奋地跳来跳去！",
 	)
 	var/static/list/default_moderate_emotions = list(
-		"looks satisfied.",
-		"trots around.",
+		"看起来很满足。",
+		"小跑着转悠。",
 	)
 	var/static/list/default_depressed_emotions = list(
-		"looks depressed...",
-		"turns its back and sulks...",
-		"looks towards the floor in dissapointment...",
+		"看起来很沮丧……",
+		"转过身去生闷气……",
+		"失望地低头看着地板……",
 	)
 
 /datum/bt_node/ai_behavior/express_happiness/perform(seconds_per_tick, datum/ai_controller/controller)

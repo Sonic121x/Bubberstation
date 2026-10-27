@@ -1,6 +1,6 @@
 // Hypovials
 /datum/design/hypovial
-	name = "Hypovial"
+	name = "无针药瓶"
 	id = "hypovial"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -15,7 +15,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/hypovial/large
-	name = "Large Hypovial"
+	name = "大型无针药瓶"
 	id = "large_hypovial"
 	materials = list(
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
@@ -26,7 +26,7 @@
 
 // Hypospray cases
 /datum/design/hypokit
-	name = "Hypospray Case"
+	name = "无针注射器箱"
 	id = "hypokit"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -41,7 +41,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/hypokit/deluxe
-	name = "Hypospray Case Deluxe"
+	name = "豪华无针注射器箱"
 	id = "hypokit_deluxe"
 	materials = list(
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 6,
@@ -53,7 +53,7 @@
 
 // Hyposprays
 /datum/design/hypomkii
-	name = "Hypospray Mk. II"
+	name = "无针注射器 Mk. II"
 	id = "hypomkii"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -69,7 +69,7 @@
 
 // Hypospray upgrade
 /datum/design/hypomkii/deluxe
-	name = "Hypospray Mk. II Deluxe Upgrade"
+	name = "无针注射器 Mk. II 豪华升级套件"
 	id = "hypomkii_deluxe"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(

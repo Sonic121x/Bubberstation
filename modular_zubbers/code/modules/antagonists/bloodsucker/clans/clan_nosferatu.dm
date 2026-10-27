@@ -1,14 +1,14 @@
 /datum/bloodsucker_clan/nosferatu
 	name = CLAN_NOSFERATU
-	description = "The Nosferatu Clan is unable to blend in with the crew, with no abilities such as Masquerade and Veil. \n\
-		Additionally, has a permanent bad back and looks like a Bloodsucker upon a simple examine, and their face is disfigured \n\
-		they can fit in the vents. \n\
-		The Favorite Ghoul is also permanently disfigured, and can also ventcrawl, but only while entirely nude. \n\
-		They also have night vision, know what each wire does, and have silent footsteps."
+	description = "诺斯费拉图氏族无法融入船员之中，也没有避世伪装和面纱等能力。\n\
+		此外，他们永远弯腰驼背、面容毁坏，稍加查看就能看出是吸血鬼，\n\
+		但他们能钻进通风管道。\n\
+		宠爱血仆也会永久毁容，并能钻通风管，不过必须全身赤裸。\n\
+		他们还具备夜视能力，知道每根电线的用途，且行走无声。"
 	clan_objective = /datum/objective/bloodsucker/kindred
 	join_icon_state = "nosferatu"
-	join_description = "You are permanetly disfigured, look like a Bloodsucker to all who examine you, \
-		lose your Masquerade ability, but gain the ability to Ventcrawl even while clothed."
+	join_description = "你将永久毁容，任何查看你的人都能认出你是吸血鬼，\
+		失去避世伪装能力，但获得穿着衣服也能钻通风管的能力。"
 	blood_drink_type = BLOODSUCKER_DRINK_INHUMANELY
 	var/ventcrawl_time = 10 SECONDS
 
@@ -39,7 +39,7 @@
 		if(isnull(item))
 			continue
 		if(provide_feedback)
-			to_chat(owner_mob, span_warning("You cannot ventcrawl while holding items!"))
+			to_chat(owner_mob, span_warning("手持物品时无法钻通风管！"))
 		return FALSE
 	return TRUE
 
@@ -77,8 +77,8 @@
 		ogler.add_mood_event("nosferatu_examine", /datum/mood_event/nosferatu_examined, ogled, owner_datum.GetRank())
 		ogler.adjust_disgust(owner_datum.GetRank() * 10)
 	// show that they are dangerous nosferatu, as if you're gazing upon them with fear, without mentioning the clan name/antagonist name, describe their appearance
-	examine_text += span_danger("[ogled.p_They()] look[ogled.p_s()] like a pale, grotesque hunchback, with a mouth full of jagged yellowy teeth, and breath that reeks of fresh blood. You feel both afraid and disgusted as you gaze upon [ogled.p_them()].")
-	examine_text += span_userdanger("[ogled.p_They()] [ogled.p_are()] clearly a BLOODSUCKER!")
+	examine_text += span_danger("[ogled]看起来像个苍白怪诞的驼背，满嘴参差不齐的黄牙，呼吸中带着浓烈的鲜血腥味。你看着这一切，既害怕又恶心。")
+	examine_text += span_userdanger("[ogled]显然是个吸血鬼！")
 
 /datum/bloodsucker_clan/nosferatu/Destroy(force)
 	var/datum/action/cooldown/bloodsucker/feed/suck = locate() in bloodsuckerdatum.powers
@@ -95,7 +95,7 @@
 	ghouldatum.owner.current.add_traits(traits_to_add, GHOUL_TRAIT)
 	ghouldatum.traits += traits_to_add
 	ghouldatum.owner.current.update_sight()
-	to_chat(ghouldatum.owner.current, span_notice("Additionally, you can now ventcrawl while naked, and are permanently disfigured. You also have night vision, know how which wires to cut, and have silent footsteps."))
+	to_chat(ghouldatum.owner.current, span_notice("此外，你现在可以赤身钻通风管，并已永久毁容。你还拥有夜视能力，知道该剪哪根电线，且行走无声。"))
 
 /datum/bloodsucker_clan/nosferatu/favorite_ghoul_loss(datum/antagonist/bloodsucker/source, datum/antagonist/ghoul/ghouldatum)
 	ghouldatum.owner.current.update_sight()

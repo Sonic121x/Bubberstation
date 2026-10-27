@@ -1,7 +1,7 @@
 /obj/item/clothing/gloves/fingerless/punch_mitts
-	name = "punching mitts"
-	desc = "Fingerless gloves with nasty spikes attached. Allows the wearer to utilize the ill-reputed fighting technique known as Hunter Boxing. The style \
-		allows the user to rapidly punch wildlife into smithereens. Great workout. Extremely ill-advised for ensuring your own personal survival."
+	name = "拳击手套"
+	desc = "一副附有狰狞尖刺的无指手套。让佩戴者能够施展那套恶名昭彰的格斗技巧——猎人拳击。这种拳法 \
+		能让使用者在极短时间内把野生动物揍成碎片。锻炼效果极佳。但极其不建议用它来保障自身存活。"
 	icon_state = "punch_mitts"
 	body_parts_covered = HANDS|ARMS
 	resistance_flags = LAVA_PROOF | FIRE_PROOF

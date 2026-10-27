@@ -11,8 +11,8 @@
  * Uses the standard ordnance/tank explosion scaling to compress raw anomaly cores into completed ones. The required explosion radius increases as more cores of that type are created.
  */
 /obj/machinery/research/anomaly_refinery
-	name = "anomaly refinery"
-	desc = "An advanced machine capable of implosion-compressing raw anomaly cores into finished artifacts. Also equipped with state of the art bomb prediction software."
+	name = "异常精炼机"
+	desc = "一台先进的机器，能将原始异常核心内爆压缩成成品器物。还配备了最先进的爆炸预测软件。"
 	circuit = /obj/item/circuitboard/machine/anomaly_refinery
 	icon = 'icons/obj/machines/research.dmi'
 	base_icon_state = "explosive_compressor"
@@ -45,7 +45,7 @@
 /obj/machinery/research/anomaly_refinery/examine_more(mob/user)
 	. = ..()
 	if (obj_flags & EMAGGED)
-		. += span_notice("A small panel on [p_their()] side is dislaying a notice. Something about firmware?")
+		. += span_notice("[p_their()] 侧面的一小块面板上显示着一条通知。似乎是关于固件的内容？")
 
 
 /obj/machinery/research/anomaly_refinery/assume_air(datum/gas_mixture/giver)
@@ -75,46 +75,46 @@
 
 /obj/machinery/research/anomaly_refinery/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(active)
-		to_chat(user, span_warning("You can't insert [tool] into [src] while [p_theyre()] currently active."))
+		to_chat(user, span_warning("[p_theyre()] 正在运行时，你无法将 [tool] 插入 [src]。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/raw_anomaly_core))
 		if(inserted_core)
-			to_chat(user, span_warning("There is already a core in [src]."))
+			to_chat(user, span_warning("[src] 中已经有核心了。"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning("[tool] is stuck to your hand."))
+			to_chat(user, span_warning("[tool] 粘在你手上了。"))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/raw_anomaly_core/raw_core = tool
 		if(!get_required_radius(raw_core.anomaly_type))
-			say("Unfortunately, due to diminishing supplies of condensed anomalous matter, [raw_core] and any cores of its type are no longer of a sufficient quality level to be compressed into a working core.")
+			say("很遗憾，由于凝聚态异常物质的供应日益减少，[raw_core] 及其同类核心的品质已不足以压缩成可用的核心。")
 			return ITEM_INTERACT_BLOCKING
 
 		inserted_core = raw_core
-		to_chat(user, span_notice("You insert [raw_core] into [src]."))
+		to_chat(user, span_notice("你将 [raw_core] 插入 [src]。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!istype(tool, /obj/item/transfer_valve))
 		return NONE
 
 	if(inserted_bomb)
-		to_chat(user, span_warning("There is already a bomb in [src]."))
+		to_chat(user, span_warning("[src] 中已经有炸弹了。"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/transfer_valve/valve = tool
 	if(!valve.ready())
-		to_chat(user, span_warning("[valve] is incomplete."))
+		to_chat(user, span_warning("[valve] 尚不完整。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
-		to_chat(user, span_warning("[tool] is stuck to your hand."))
+		to_chat(user, span_warning("[tool] 粘在你手上了。"))
 		return ITEM_INTERACT_BLOCKING
 
 	inserted_bomb = tool
 	tank_to_target = inserted_bomb.tank_two
-	to_chat(user, span_notice("You insert [tool] into [src]"))
+	to_chat(user, span_notice("你将 [tool] 插入 [src]"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/research/anomaly_refinery/update_icon_state()
@@ -135,12 +135,12 @@
 /obj/machinery/research/anomaly_refinery/emag_act(mob/user, obj/item/card/emag/emag_card)
 	. = ..()
 	if (obj_flags & EMAGGED)
-		balloon_alert(user, "already hacked!")
+		balloon_alert(user, "已被入侵！")
 		return
 
 	obj_flags |= EMAGGED
 	playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, vary = FALSE)
-	say("ERROR: Unauthorized firmware access.")
+	say("错误：未经授权的固件访问。")
 	return TRUE
 
 /**
@@ -148,23 +148,23 @@
  */
 /obj/machinery/research/anomaly_refinery/proc/start_test()
 	if (active)
-		say("ERROR: Already running a compression test.")
+		say("错误：压缩测试已在进行中。")
 		return
 
 	if(!istype(inserted_core) || !istype(inserted_bomb))
-		end_test("ERROR: Missing equipment. Items ejected.")
+		end_test("错误：缺少设备。物品已弹出。")
 		return
 
 	if(!inserted_bomb?.tank_one || !inserted_bomb?.tank_two || !(tank_to_target == inserted_bomb?.tank_one || tank_to_target == inserted_bomb?.tank_two))
-		end_test("ERROR: Transfer valve malfunctioning. Items ejected.")
+		end_test("错误：传输阀故障。物品已弹出。")
 		return
 
-	say("Beginning compression test. Opening transfer valve.")
+	say("开始压缩测试。正在打开传输阀。")
 	active = TRUE
 	test_status = null
 
 	if (obj_flags & EMAGGED)
-		say("ERROR: An firmware issue was detected while starting a process. Running autopatcher.")
+		say("错误：启动进程时检测到固件问题。正在运行自动修补程序。")
 		playsound(src, 'sound/machines/ding.ogg', 50, vary = TRUE)
 		addtimer(CALLBACK(src, PROC_REF(error_test)), 2 SECONDS, TIMER_STOPPABLE | TIMER_UNIQUE | TIMER_NO_HASH_WAIT) // Synced with the sound.
 		return
@@ -178,11 +178,11 @@
  * Triggered by attempting to operate an emagged anomaly refinery.
  */
 /obj/machinery/research/anomaly_refinery/proc/error_test()
-	message_admins("[src] was emagged and ejected a TTV.")
-	investigate_log("was emagged and ejected a TTV.", INVESTIGATE_RESEARCH)
+	message_admins("[src] 被电磁卡入侵，并弹出了一枚 TTV。")
+	investigate_log("被电磁卡入侵，并弹出了一枚 TTV。", INVESTIGATE_RESEARCH)
 	obj_flags &= ~EMAGGED
 
-	say("Issue resolved. Have a nice day!")
+	say("问题已解决。祝你有美好的一天！")
 	inserted_bomb.toggle_valve(tank_to_target)
 	eject_bomb(force = TRUE)
 	timeout_timer = addtimer(CALLBACK(src, PROC_REF(timeout_test)), COMPRESSION_TEST_TIME, TIMER_STOPPABLE | TIMER_UNIQUE | TIMER_NO_HASH_WAIT) // Actually start the test so they can't just put the bomb back in.
@@ -213,7 +213,7 @@
 /obj/machinery/research/anomaly_refinery/proc/check_test(atom/source, list/arguments)
 	SIGNAL_HANDLER
 	if(!inserted_core)
-		test_status = "ERROR: No core present during detonation."
+		test_status = "错误：引爆时没有核心。"
 		return COMSIG_CANCEL_EXPLOSION
 
 	var/heavy = arguments[EXARG_KEY_DEV_RANGE]
@@ -231,13 +231,13 @@
 	SSexplosions.shake_the_room(location, explosion_range, (capped_heavy * 15) + (capped_medium * 20), capped_heavy, capped_medium)
 
 	if(explosion_range < required_range)
-		test_status = "Resultant detonation failed to produce enough implosive power to compress [inserted_core]. Items ejected."
+		test_status = "引爆产生的内爆力不足以压缩 [inserted_core]。物品已弹出。"
 		return COMSIG_CANCEL_EXPLOSION
 
 	if(test_status)
 		return COMSIG_CANCEL_EXPLOSION
 	inserted_core = inserted_core.create_core(src, TRUE, TRUE)
-	test_status = "Success. Resultant detonation has theoretical range of [explosion_range]. Required radius was [required_range]. Core production complete."
+	test_status = "成功。引爆的理论范围为 [explosion_range]。所需半径为 [required_range]。核心生产完成。"
 	return COMSIG_CANCEL_EXPLOSION
 
 /**
@@ -246,7 +246,7 @@
 /obj/machinery/research/anomaly_refinery/proc/timeout_test()
 	timeout_timer = null
 	if(!test_status)
-		test_status = "Transfer valve resulted in negligible explosive power. Items ejected."
+		test_status = "传输阀产生的爆炸威力微不足道。物品已弹出。"
 	end_test(test_status)
 
 /// This is not the real valve opening process. This is the simulated one used for displaying reactions.
@@ -274,7 +274,7 @@
 		return
 	if(user)
 		user.put_in_hands(inserted_bomb)
-		to_chat(user, span_notice("You remove [inserted_bomb] from [src]."))
+		to_chat(user, span_notice("你从 [src] 中取出了 [inserted_bomb]。"))
 	else
 		inserted_bomb.forceMove(drop_location())
 	combined_gasmix = null
@@ -285,7 +285,7 @@
 		return
 	if(user)
 		user.put_in_hands(inserted_core)
-		to_chat(user, span_notice("You remove [inserted_core] from [src]."))
+		to_chat(user, span_notice("你从 [src] 中取出了 [inserted_core]。"))
 	else
 		inserted_core.forceMove(drop_location())
 
@@ -348,7 +348,7 @@
 
 	parsed_gasmixes += list(gas_mixture_parser(tank_to_target?.return_air(), tank_to_target?.name))
 	parsed_gasmixes += list(gas_mixture_parser(other_tank?.return_air(), other_tank?.name))
-	parsed_gasmixes += list(gas_mixture_parser(combined_gasmix, "Combined Gasmix"))
+	parsed_gasmixes += list(gas_mixture_parser(combined_gasmix, "混合气体"))
 
 	data["gasList"] = parsed_gasmixes
 

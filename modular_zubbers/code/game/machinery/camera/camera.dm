@@ -40,7 +40,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/xenobiology, 0)
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/security, 0)
 
 /obj/machinery/camera/autoname/armory
-	name = "motion-sensitive security camera"
+	name = "动态感应监控摄像头"
 	network = list("ss13","security","armory")
 	start_active = TRUE
 
@@ -61,7 +61,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/labor, 0)
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/prison, 0)
 
 /obj/machinery/camera/autoname/vault
-	name = "motion-sensitive security camera"
+	name = "动态感应监控摄像头"
 	network = list("vault")
 	start_active = TRUE
 
@@ -83,7 +83,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/interrogation, 0)
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/minisat, 0)
 
 /obj/machinery/camera/autoname/aicore
-	name = "motion-sensitive security camera"
+	name = "动态感应监控摄像头"
 	network = list("aicore")
 	start_active = TRUE
 
@@ -94,7 +94,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/minisat, 0)
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/aicore, 0)
 
 /obj/machinery/camera/autoname/aiupload
-	name = "motion-sensitive security camera"
+	name = "动态感应监控摄像头"
 	network = list("aiupload")
 	start_active = TRUE
 

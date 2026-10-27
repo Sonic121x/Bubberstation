@@ -1,8 +1,8 @@
 //The robot bodyparts have been moved to code/module/surgery/bodyparts/robot_bodyparts.dm
 
 /obj/item/robot_suit
-	name = "cyborg endoskeleton"
-	desc = "A complex metal backbone with standard limb sockets and pseudomuscle anchors."
+	name = "半机械人内骨骼"
+	desc = "一副复杂的金属脊骨，带有标准的肢体插槽与假肌锚点。"
 	icon = 'icons/mob/augmentation/augments.dmi'
 	icon_state = "robo_suit"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5)
@@ -105,9 +105,9 @@
 	if(l_leg || r_leg || chest || l_arm || r_arm || head)
 		if(I.use_tool(src, user, 5, volume=50))
 			drop_all_parts(T)
-			to_chat(user, span_notice("You disassemble the cyborg shell."))
+			to_chat(user, span_notice("你拆解了半机械人外壳。"))
 	else
-		to_chat(user, span_warning("There is nothing to remove from the endoskeleton!"))
+		to_chat(user, span_warning("内骨骼上没有可拆卸的部件！"))
 	update_appearance()
 
 /// Drops all included parts to the passed location
@@ -138,7 +138,7 @@
 		return TRUE
 
 	if(!chest) //can't remove a cell if there's no chest to remove it from.
-		to_chat(user, span_warning("[src] has no attached torso!"))
+		to_chat(user, span_warning("[src]没有连接躯干！"))
 		return
 
 	var/obj/item/stock_parts/power_store/cell/temp_cell = user.is_holding_item_of_type(/obj/item/stock_parts/power_store/cell)
@@ -147,20 +147,20 @@
 		swap_failed = TRUE
 	else if(!user.transferItemToLoc(temp_cell, chest))
 		swap_failed = TRUE
-		to_chat(user, span_warning("[temp_cell] is stuck to your hand, you can't put it in [src]!"))
+		to_chat(user, span_warning("[temp_cell]粘在你手上了，无法将它放进[src]！"))
 
 	if(chest.cell) //drop the chest's current cell no matter what.
 		put_in_hand_or_drop(user, chest.cell)
 
 	if(swap_failed) //we didn't transfer any new items.
 		if(chest.cell) //old cell ejected, nothing inserted.
-			to_chat(user, span_notice("You remove [chest.cell] from [src]."))
+			to_chat(user, span_notice("你从[src]中取出了[chest.cell]。"))
 			chest.cell = null
 		else
-			to_chat(user, span_warning("The power cell slot in [src]'s torso is empty!"))
+			to_chat(user, span_warning("[src]躯干上的电池槽是空的！"))
 		return
 
-	to_chat(user, span_notice("You [chest.cell ? "replace [src]'s [chest.cell.name] with [temp_cell]" : "insert [temp_cell] into [src]"]."))
+	to_chat(user, span_notice("你[chest.cell ? "将[src]的[chest.cell.name]替换为[temp_cell]" : "将[temp_cell]插入[src]"]。"))
 	chest.cell = temp_cell
 	return TRUE
 
@@ -171,10 +171,10 @@
 		if(l_arm || r_arm || l_leg || r_leg || chest || head)
 			return ITEM_INTERACT_BLOCKING
 		if (!iron_sheet.use(1))
-			to_chat(user, span_warning("You need one sheet of iron to start building ED-209!"))
+			to_chat(user, span_warning("你需要一块铁板才能开始组装 ED-209！"))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/bot_assembly/ed209/assembly = new(drop_location())
-		to_chat(user, span_notice("You arm the robot frame."))
+		to_chat(user, span_notice("你为机器人框架装上了武装。"))
 		var/held_index = user.is_holding(src)
 		qdel(src)
 		if (held_index)
@@ -231,11 +231,11 @@
 			return ITEM_INTERACT_BLOCKING
 
 		if(!new_chestpiece.wired)
-			to_chat(user, span_warning("You need to attach wires to it first!"))
+			to_chat(user, span_warning("你需要先给它接上线缆！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!new_chestpiece.cell)
-			to_chat(user, span_warning("You need to attach a cell to it first!"))
+			to_chat(user, span_warning("你需要先给它装上电池！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(new_chestpiece, src))
@@ -250,12 +250,12 @@
 	if(istype(tool, /obj/item/bodypart/head/robot))
 		var/obj/item/bodypart/head/robot/new_headpiece = tool
 		if(locate(/obj/item/organ) in new_headpiece)
-			to_chat(user, span_warning("There are organs inside [new_headpiece]!"))
+			to_chat(user, span_warning("[new_headpiece]里还有器官！"))
 			return ITEM_INTERACT_BLOCKING
 		if(head)
 			return ITEM_INTERACT_BLOCKING
 		if(!new_headpiece.flash2 || !new_headpiece.flash1)
-			to_chat(user, span_warning("You need to attach a flash to it first!"))
+			to_chat(user, span_warning("你需要先给它装上闪光灯！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(new_headpiece, src))
 			return ITEM_INTERACT_BLOCKING
@@ -268,13 +268,13 @@
 	if(istype(tool, /obj/item/mmi))
 		var/obj/item/mmi/potential_brain = tool
 		if(!check_completion())
-			to_chat(user, span_warning("The MMI must go in after everything else!"))
+			to_chat(user, span_warning("MMI 必须在其他所有部件之后才能安装！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!chest.cell)
-			to_chat(user, span_warning("The endoskeleton still needs a power cell!"))
+			to_chat(user, span_warning("内骨骼还需要一块电池！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!isturf(loc))
-			to_chat(user, span_warning("You can't put [potential_brain] in, the frame has to be standing on the ground to be perfectly precise!"))
+			to_chat(user, span_warning("你无法放入[potential_brain]，框架必须立在地面上才能完美对齐！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!potential_brain.brain_check(user))
 			return ITEM_INTERACT_BLOCKING
@@ -282,7 +282,7 @@
 		var/mob/living/brain/brainmob = potential_brain.brainmob
 		if(is_banned_from(brainmob.ckey, JOB_CYBORG) || QDELETED(src) || QDELETED(brainmob) || QDELETED(user) || QDELETED(potential_brain) || !Adjacent(user))
 			if(!QDELETED(potential_brain))
-				to_chat(user, span_warning("This [potential_brain.name] does not seem to fit!"))
+				to_chat(user, span_warning("这个[potential_brain.name]似乎装不进去！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.temporarilyRemoveItemFromInventory(tool))
 			return ITEM_INTERACT_BLOCKING
@@ -314,8 +314,8 @@
 		playsound(final_product.loc, 'sound/mobs/non-humanoids/cyborg/liveagain.ogg', 75, TRUE)
 
 		if(final_product.is_antag())
-			to_chat(final_product, span_userdanger("You have been robotized!"))
-			to_chat(final_product, span_danger("You must obey your silicon laws and master AI above all else. Your objectives will consider you to be dead."))
+			to_chat(final_product, span_userdanger("你已被机器人化！"))
+			to_chat(final_product, span_danger("你必须优先服从你的硅基法则与主控 AI。你的目标将认为你已经死亡。"))
 
 		SSblackbox.record_feedback("amount", "cyborg_birth", 1)
 		forceMove(final_product)
@@ -326,7 +326,7 @@
 
 		if(!locomotion)
 			final_product.set_lockcharge(TRUE)
-			to_chat(final_product, span_warning("Error: Servo motors unresponsive."))
+			to_chat(final_product, span_warning("错误：伺服电机无响应。"))
 		return ITEM_INTERACT_SUCCESS
 
 
@@ -335,10 +335,10 @@
 		if(!check_completion())
 			return ITEM_INTERACT_BLOCKING
 		if(!isturf(loc))
-			to_chat(user, span_warning("You cannot install [boris_module], the frame has to be standing on the ground to be perfectly precise!"))
+			to_chat(user, span_warning("你无法安装[boris_module]，框架必须立在地面上才能完美对齐！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.temporarilyRemoveItemFromInventory(boris_module))
-			to_chat(user, span_warning("[boris_module] is stuck to your hand!"))
+			to_chat(user, span_warning("[boris_module]粘在你手上了！"))
 			return ITEM_INTERACT_BLOCKING
 		qdel(boris_module)
 		var/mob/living/silicon/robot/shell/final_product = new(get_turf(src), null, forced_ai, aisync, lawsync)
@@ -360,14 +360,14 @@
 		return ITEM_INTERACT_SUCCESS
 
 	if(IS_WRITING_UTENSIL(tool))
-		to_chat(user, span_warning("You need to use a multitool to name [src]!"))
+		to_chat(user, span_warning("你需要用多功能工具来为[src]命名！"))
 		return ITEM_INTERACT_BLOCKING
 
 	return NONE
 
 /obj/item/robot_suit/multitool_act(mob/living/user, obj/item/tool)
 	if(!check_completion())
-		to_chat(user, span_warning("The endoskeleton must be assembled before debugging can begin!"))
+		to_chat(user, span_warning("必须先组装好内骨骼才能开始调试！"))
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 	ui_interact(user)
 	return ITEM_INTERACT_SUCCESS
@@ -378,7 +378,7 @@
 	var/obj/item/held_item = user.get_active_held_item()
 	if(held_item?.tool_behaviour == TOOL_MULTITOOL)
 		return ..()
-	to_chat(user, span_warning("You need a multitool to access debug settings!"))
+	to_chat(user, span_warning("你需要多功能工具才能访问调试设置！"))
 	return UI_CLOSE
 
 /obj/item/robot_suit/ui_state(mob/user)
@@ -387,7 +387,7 @@
 /obj/item/robot_suit/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "CyborgBootDebug", "Cyborg Boot Debug")
+		ui = new(user, src, "CyborgBootDebug", "半机械人启动调试")
 		ui.open()
 
 /obj/item/robot_suit/ui_data(mob/user)
@@ -430,7 +430,7 @@
 			return TRUE
 		if("set_ai")
 			if(length(active_ais(check_mind = FALSE, z = z)) <= 0)
-				to_chat(user, span_alert("No active AIs detected."))
+				to_chat(user, span_alert("未检测到活跃的 AI。"))
 				return
 
 			var/selected_ai = select_active_ai(user, z) // this one runs input()
@@ -441,11 +441,11 @@
 				return TRUE
 			if(forced_ai == selected_ai) // same AI = clear
 				clear_forced_ai()
-				to_chat(user, span_notice("You reset [src]'s AI setting."))
+				to_chat(user, span_notice("你重置了[src]的 AI 设置。"))
 				return TRUE
 
 			set_forced_ai(selected_ai, user)
-			to_chat(user, span_notice("You set [src]'s AI setting to [forced_ai_name]."))
+			to_chat(user, span_notice("你将[src]的 AI 设置设为[forced_ai_name]。"))
 			log_silicon("[key_name(user)] set the default AI for a cyborg shell to [key_name(selected_ai)] at [loc_name(user)]")
 			return TRUE
 

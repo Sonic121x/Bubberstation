@@ -1,6 +1,6 @@
 /obj/item/gun/energy/cell_loaded //The basic cell loaded gun
-	name = "cell-loaded gun"
-	desc = "A energy gun that functions by loading cells for ammo types"
+	name = "电池装填枪"
+	desc = "一种通过装填电池来获得弹药类型的能量枪。"
 
 	/// List containing what cells are allowed to be installed by the gun. This includes all subtypes.
 	var/list/allowed_cells = list()
@@ -17,17 +17,17 @@
 /obj/item/gun/energy/cell_loaded/examine(mob/user)
 	. = ..()
 	if(maxcells)
-		. += "<b>[installedcells.len]</b> out of <b>[maxcells]</b> cell slots are filled."
-		. += span_info("You can use AltClick with an empty hand to remove the most recently inserted cell from the chamber.")
+		. += "已占用 <b>[installedcells.len]</b> / <b>[maxcells]</b> 个电池槽。"
+		. += span_info("空手按下 Alt+单击，可以从弹膛中取出最近插入的电池。")
 
 		for(var/cell in installedcells)
-			. += span_notice("There is \a [cell] loaded in the chamber.") //Shows what cells are currently inside of the gun
+			. += span_notice("弹膛中装有一块 [cell]。") //Shows what cells are currently inside of the gun
 
 /// Handles insertion of weapon cells
 /obj/item/gun/energy/cell_loaded/attackby(obj/item/weaponcell/used_cell, mob/user)
 	if(is_type_in_list(used_cell, allowed_cells)) // Checks allowed_cells to see if the gun is able to load the cells.
 		if(installedcells.len >= maxcells) //Prevents the user from loading any cells past the maximum cell allowance
-			to_chat(user, span_notice("[src] is full, take a cell out to make room."))
+			to_chat(user, span_notice("[src] 已装满，取出一块电池以腾出空间。"))
 			return
 
 		var/obj/item/weaponcell/cell = used_cell
@@ -35,7 +35,7 @@
 			return
 
 		playsound(loc, 'sound/machines/click.ogg', 50, 1)
-		to_chat(user, span_notice("You install the [cell]."))
+		to_chat(user, span_notice("你装上了 [cell]。"))
 		ammo_type += new cell.ammo_type(src)
 		installedcells += cell
 	else
@@ -74,10 +74,10 @@
 
 /obj/item/gun/energy/cell_loaded/click_alt(mob/user, modifiers)
 	if(!installedcells.len) //Checks to see if there is a cell inside of the gun, before removal.
-		to_chat(user, span_notice("The [src] has no cells inside"))
+		to_chat(user, span_notice("[src] 里没有电池"))
 		return CLICK_ACTION_BLOCKING
 
-	to_chat(user, span_notice("You remove a cell"))
+	to_chat(user, span_notice("你取出一块电池"))
 	var/obj/item/last_cell = installedcells[installedcells.len]
 
 	if(last_cell)
@@ -91,5 +91,5 @@
 
 /// A cellgun used for debug, it is able to use any weaponcell.
 /obj/item/gun/energy/cell_loaded/alltypes
-	name = "omni gun"
+	name = "全类型枪"
 	allowed_cells = list(/obj/item/weaponcell)

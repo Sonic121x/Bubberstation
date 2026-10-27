@@ -1,6 +1,6 @@
 /// Space antagonist that harasses people near space and cursed them if they get the chance
 /datum/antagonist/voidwalker
-	name = "\improper Voidwalker"
+	name = "\improper 虚空行者"
 	antagpanel_category = ANTAG_GROUP_ABOMINATIONS
 	pref_flag = ROLE_VOIDWALKER
 
@@ -9,7 +9,7 @@
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
 	ui_name = "AntagInfoVoidwalker"
-	suicide_cry = "FOR THE VOID!!"
+	suicide_cry = "为了虚空！！"
 
 /datum/antagonist/voidwalker/greet()
 	. = ..()
@@ -35,14 +35,14 @@
 
 /datum/objective/voidwalker_objective/New()
 	var/list/explanation_texts = list(
-		"Show them the beauty of the void. Drag them into the cosmic abyss, then impart the truth of the void unto them. Seek to enlighten, not destroy.",
-		"They must see what you have seen. They must walk where you have walked. Bring them to the void and show them the truth. The dead cannot know what you know.",
-		"Recover what you have lost. Bring your children into the inky black and return them to your flock.",
+		"向他们展示虚空之美。将他们拖入宇宙的深渊，然后把虚空的真理传授给他们。你要做的是启迪，而非毁灭。",
+		"他们必须看见你所看见的。他们必须走上你所走过的路。把他们带到虚空中，向他们展示真理。死者无法知晓你所知晓的一切。",
+		"寻回你失去的一切。把你的孩子们带进那浓墨般的黑暗，让他们重归你的族群。",
 	)
 	explanation_text = pick(explanation_texts)
 
 	if(prob(5))
-		explanation_text = "Man I fucking love glass."
+		explanation_text = "天哪，我真是太爱玻璃了。"
 	..()
 
 /datum/objective/voidwalker_objective/check_completion()

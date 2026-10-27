@@ -1,26 +1,26 @@
 /obj/item/paper/crumpled/muddy/fluff/cannon_instructions
-	name = "Mast of Cannon's Past's Cannon Instructions"
-	desc = "A quickly written note detailing the basics of firing a cannon. Who wrote this?"
+	name = "《往昔炮桅的炮术说明》"
+	desc = "一张匆匆写就的便条，记述了开炮的基础知识。这是谁写的？"
 	default_raw_text = @{"
 
-Ye don't know how to load cannon, and ye call yerself a fearsome pirate? I think ye be more alike a space sailor under the space monarchy's flag! Alas, everyone must learn how to blast holes in enemy ships. And thus:<br>
+你个连炮都不会装的家伙，也敢自称可怕的海盗？我看你更像是太空君主旗下的一名太空水手！唉，可谁都得学会怎么在敌船上轰出窟窿。且听好：<br>
 
-<br><center><b>HOW YE FIRES A CANNON:</b><br></center>
+<br><center><b>如何开炮：</b><br></center>
 
-BE STEP ONE: LOAD THE LEAD BALL O' YE CHOICE!<br>
-BE STEP TWO: LOAD 15U PIRATE STANDARD CHARGE O' GUNPOWDER!<br>
-BE STEP THREE: LIGHT THE FUSE WITH SOMETHING, AND LET ER' RIP!<br>
+第一步：装填你选中的铁弹！<br>
+第二步：装填 15U 海盗标准火药！<br>
+第三步：随便拿点什么点燃引信，然后放它开花！<br>
 
-<br><center><b>CANNONBALL TYPES:</b><br></center>
+<br><center><b>炮弹种类：</b><br></center>
 
-REGULAR CANNONBALL: A fine choice for killing landlubbers! Will take off any limb it hits, and most certainly down anyone hit in the chest! If they are not directly hit, they will be at least hurt by the shrapnel!<br>
-EXPLOSIVE SHELLBALL: The most elegant in breaching (er killin', if you're good at aimin') tools, ye be packing this shell with many scuppering chemicals! Just make sure to not fire it when ye be close to target!<br>
-MALFUNCTION SHOT: A very gentle "cannonball" dart at first glance, but make no mistake: This is their worst nightmare! Enjoy an easy boarding process while all their machines are broken and all their weapons unloaded from an EMP!<br>
-THE BIGGEST ONE: A shellball, but much bigger. Ye won't be seein' much of these as they were discontinued for sinkin' the firer's ship as often as it sunk the scallywag's ship. Very big boom! If ye have one, ye have been warned!
+普通炮弹：干掉旱鸭子的绝佳选择！打中哪里就卸掉哪里，打中胸口的人必倒无疑！即使没有直接命中，破片也够他们受的！<br>
+爆破弹：破门（或者说杀人，如果你瞄得准的话）最优雅的工具，这发弹里塞满了各种能让人完蛋的化学药剂！只要记住：别在离目标太近的时候开火！<br>
+故障弹：乍一看只是颗很温和的“炮弹”飞镖，但别搞错：这是他们最可怕的噩梦！趁他们所有机器都瘫痪、所有武器都被 EMP 卸空时，享受轻松的登船过程吧！<br>
+最大的那一颗：一种弹丸，但大得多。你不太会见到这东西，因为它沉掉开炮者自己船的次数和沉掉混蛋船的次数一样多，所以停产了。非常巨大的轰响！如果你手上有一颗，那我已经警告过你了！
 
-<br><center><b>FIRING THAR CANISTER GATLING</b><br></center>
+<br><center><b>发射那门霰弹加特林</b><br></center>
 
-THE CANISTER GATLING AIN'T LIKE OTHER CANNONS, AND DOESN'T REQUIRE GUNPOWDER, INSTEAD RELYING ON SPECIAL CANISTER SHOT SHELLS.
-ALL YOU HAVE TO DO IS CRAM A SHELL IN THE BREACH, LIGHT HER UP AND YOU'LL BE BLOWING THOSE CORPORATE SODS TO KINGDOM COME!
-SHE LACKS THE SHEER WALL-BREAKING PUNCH OF THE HOLEMAKERS, BUT CHEWS THROUGH SOFT TARGETS LIKE A SHARK THROUGH A GROUP OF BEACH THROUGH A GROUP OF BEACHGOERS, YAHAR.
+霰弹加特林可不像别的炮，它不需要火药，而是靠特制的霰弹弹壳。
+你要做的只是把弹壳塞进炮膛，点亮它，然后就能把那帮公司混蛋送去见阎王！
+它没有破壁者那种纯粹的拆墙威力，但对付软目标就像鲨鱼穿过一群海滩游客那样，呀哈！
 	"}

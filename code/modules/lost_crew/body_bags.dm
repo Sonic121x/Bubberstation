@@ -1,12 +1,12 @@
 /obj/item/bodybag/lost_crew
-	name = "long-term body bag"
-	desc = "A folded bag designed for the long-term storage and transportation of cadavers."
+	name = "长期尸体袋"
+	desc = "一种折叠袋，专为长期存放与运送尸体而设计。"
 	unfoldedbag_path = /obj/structure/closet/body_bag/lost_crew
 	icon_state = "bodybag_lost_folded"
 
 /obj/structure/closet/body_bag/lost_crew
-	name = "long-term body bag"
-	desc = "A plastic bag designed for the long-term storage and transportation of cadavers."
+	name = "长期尸体袋"
+	desc = "一种塑料袋，专为长期存放与运送尸体而设计。"
 	icon_state = "bodybag_lost"
 	foldedbag_path = /obj/item/bodybag/lost_crew
 
@@ -19,7 +19,7 @@
 
 /obj/structure/closet/body_bag/lost_crew/with_body/attempt_fold(mob/living/carbon/human/the_folder)
 	if (!body_spawned)
-		to_chat(the_folder, span_warning("The body inside of [src] prevents you from folding it up!"))
+		to_chat(the_folder, span_warning("[src] 里面的尸体让你无法将它折叠起来！"))
 		return FALSE
 	return ..()
 

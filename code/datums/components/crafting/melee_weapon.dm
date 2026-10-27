@@ -1,5 +1,5 @@
 /datum/crafting_recipe/stunprod
-	name = "Stunprod"
+	name = "电击刺棒"
 	result = /obj/item/melee/baton/security/cattleprod
 	reqs = list(
 		/obj/item/restraints/handcuffs/cable = 1,
@@ -10,7 +10,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/teleprod
-	name = "Teleprod"
+	name = "传送刺棒"
 	result = /obj/item/melee/baton/security/cattleprod/teleprod
 	reqs = list(
 		/obj/item/restraints/handcuffs/cable = 1,
@@ -22,7 +22,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/telecrystalprod
-	name = "Snatcherprod"
+	name = "夺物刺棒"
 	result = /obj/item/melee/baton/security/cattleprod/telecrystalprod
 	reqs = list(
 		/obj/item/restraints/handcuffs/cable = 1,
@@ -34,7 +34,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/stunsword
-	name = "\improper NT-20 'Excalibur' Stunsword"
+	name = "\improper NT-20“王者之剑”电击剑"
 	result = /obj/item/melee/baton/security/stunsword
 	reqs = list(
 		/obj/item/claymore = 1,
@@ -55,7 +55,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/stunswordalt
-	name = "\improper NT-20 'Excalibur' Stunsword"
+	name = "\improper NT-20“王者之剑”电击剑"
 	result = /obj/item/melee/baton/security/stunsword
 	reqs = list(
 		/obj/item/katana = 1,
@@ -67,7 +67,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/stunswordalt2
-	name = "\improper NT-20 'Excalibur' Stunsword"
+	name = "\improper NT-20“王者之剑”电击剑"
 	result = /obj/item/melee/baton/security/stunsword
 	reqs = list(
 		/obj/item/melee/sabre = 1,
@@ -79,7 +79,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/tailclub
-	name = "Tail Club"
+	name = "尾巴棍棒"
 	result = /obj/item/tailclub
 	reqs = list(
 		/obj/item/organ/tail/lizard = 1,
@@ -90,7 +90,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/balloon_mallet
-	name = "Balloon Mallet"
+	name = "气球槌"
 	result = /obj/item/balloon_mallet
 	reqs = list(
 		/obj/item/toy/balloon/long = 18,
@@ -102,7 +102,7 @@
 	return HAS_TRAIT(user, TRAIT_BALLOON_SUTRA)
 
 /datum/crafting_recipe/tailwhip
-	name = "Liz O' Nine Tails"
+	name = "九尾蜥鞭"
 	result = /obj/item/melee/chainofcommand/tailwhip
 	reqs = list(
 		/obj/item/organ/tail/lizard = 1,
@@ -113,7 +113,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/catwhip
-	name = "Cat O' Nine Tails"
+	name = "九尾猫鞭"
 	result = /obj/item/melee/chainofcommand/tailwhip/kitty
 	reqs = list(
 		/obj/item/organ/tail/cat = 1,
@@ -123,7 +123,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/chainsaw
-	name = "Chainsaw"
+	name = "链锯"
 	result = /obj/item/chainsaw
 	reqs = list(
 		/obj/item/circular_saw = 1,
@@ -135,7 +135,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/spear
-	name = "Spear"
+	name = "长矛"
 	result = /obj/item/spear
 	reqs = list(
 		/obj/item/restraints/handcuffs/cable = 1,
@@ -146,7 +146,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/wireprod
-	name = "Wireprod assembly"
+	name = "缠线刺棒组件"
 	result = /obj/item/wireprod
 	reqs = list(
 		/obj/item/restraints/handcuffs/cable = 1,
@@ -156,7 +156,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/toysword
-	name = "Toy Sword"
+	name = "玩具剑"
 	reqs = list(
 		/obj/item/light/bulb = 1,
 		/obj/item/stack/cable_coil = 1,
@@ -166,14 +166,14 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/bonedagger
-	name = "Bone Dagger"
+	name = "骨匕首"
 	result = /obj/item/knife/combat/bone
 	time = 2 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 2)
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/bonespear
-	name = "Bone Spear"
+	name = "骨矛"
 	result = /obj/item/spear/bonespear
 	time = 3 SECONDS
 	reqs = list(
@@ -183,7 +183,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/boneaxe
-	name = "Bone Axe"
+	name = "骨斧"
 	result = /obj/item/fireaxe/boneaxe
 	time = 5 SECONDS
 	reqs = list(
@@ -193,7 +193,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/house_edge
-	name = "House Edge"
+	name = "庄家之刃"
 	result = /obj/item/house_edge
 	tool_behaviors = list(TOOL_WRENCH, TOOL_SCREWDRIVER, TOOL_WELDER)
 	reqs = list(
@@ -210,7 +210,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/giant_wrench
-	name = "Big Slappy"
+	name = "大巴掌"
 	result = /obj/item/shovel/giant_wrench
 	tool_behaviors = list(TOOL_CROWBAR, TOOL_SCREWDRIVER, TOOL_WELDER)
 	reqs = list(
@@ -224,7 +224,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/singulo_hammer
-	name = "Singularity Hammer"
+	name = "奇点锤"
 	result = /obj/item/singularityhammer
 	reqs = list(
 		/obj/item/assembly/signaler/anomaly/pyro = 1,
@@ -244,7 +244,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/bambostaff
-	name = "Bamboo Bo Staff"
+	name = "竹制长棍"
 	result = /obj/item/bambostaff
 	reqs = list(
 		/obj/item/stack/sheet/mineral/bamboo = 4,
@@ -254,7 +254,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/sm_sword
-	name = "Supermatter Sword"
+	name = "超物质剑"
 	result = /obj/item/melee/supermatter_sword
 	reqs = list(
 		/obj/item/assembly/signaler/anomaly/vortex = (MAX_CORES_VORTEX - 1),
@@ -266,7 +266,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/dragonator_spear_untreated
-	name = "Untreated Giant-Killer Spear"
+	name = "未淬炼的巨兽杀手长矛"
 	result = /obj/item/spear/dragonator_untreated
 	reqs = list(
 		/obj/item/stack/sheet/plasteel = 15,
@@ -284,7 +284,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/crusher_trophy/watcher_wing
-	name = "Watcher Wing Trophy"
+	name = "守望者翼战利品"
 	result = /obj/item/crusher_trophy/watcher_wing
 	reqs = list(
 		/obj/item/stack/sheet/sinew = 7,
@@ -293,7 +293,7 @@
 	)
 
 /datum/crafting_recipe/crusher_trophy/icewing_watcher_wing
-	name = "Icewing Watcher Wing Trophy"
+	name = "冰翼守望者翼战利品"
 	result = /obj/item/crusher_trophy/ice_wing
 	reqs = list(
 		/obj/item/stack/sheet/sinew/icewing = 3,
@@ -302,7 +302,7 @@
 	)
 
 /datum/crafting_recipe/crusher_trophy/magmawing_watcher_wing
-	name = "Magmawing Watcher Wing Trophy"
+	name = "熔岩翼守望者翼战利品"
 	result = /obj/item/crusher_trophy/magma_wing
 	reqs = list(
 		/obj/item/stack/sheet/sinew/magmawing = 3,
@@ -311,7 +311,7 @@
 	)
 
 /datum/crafting_recipe/crusher_trophy/goliath_tentacle
-	name = "Goliath Tentacle Trophy"
+	name = "歌利亚触手战利品"
 	result = /obj/item/crusher_trophy/goliath_tentacle
 	reqs = list(
 		/obj/item/stack/sheet/animalhide/goliath_hide = 3,
@@ -319,7 +319,7 @@
 	)
 
 /datum/crafting_recipe/crusher_trophy/legion_skull
-	name = "Legion Skull Trophy"
+	name = "军团头骨战利品"
 	result = /obj/item/crusher_trophy/legion_skull
 	reqs = list(
 		/obj/item/organ/monster_core/regenerative_core/legion = 3, // Good sink for expired cores
@@ -327,7 +327,7 @@
 	)
 
 /datum/crafting_recipe/crusher_trophy/lobster_claw
-	name = "Lobster Claw Trophy"
+	name = "龙虾钳战利品"
 	result = /obj/item/crusher_trophy/lobster_claw
 	reqs = list(
 		/obj/item/organ/monster_core/rush_gland = 3,
@@ -336,7 +336,7 @@
 	)
 
 /datum/crafting_recipe/crusher_trophy/brimdemon_fang
-	name = "Brimdemon Fang Trophy"
+	name = "硫磺恶魔獠牙战利品"
 	result = /obj/item/crusher_trophy/brimdemon_fang
 	reqs = list(
 		/obj/item/organ/monster_core/brimdust_sac = 3,
@@ -344,7 +344,7 @@
 	)
 
 /datum/crafting_recipe/crusher_trophy/bileworm_spewlet
-	name = "Bileworm Spewlet Trophy"
+	name = "胆汁虫幼崽战利品"
 	result = /obj/item/crusher_trophy/bileworm_spewlet
 	reqs = list(
 		/obj/item/stack/sheet/animalhide/bileworm = 3,

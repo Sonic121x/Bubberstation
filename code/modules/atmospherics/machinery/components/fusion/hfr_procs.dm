@@ -85,9 +85,9 @@
  */
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/activate(mob/living/user)
 	if(active)
-		to_chat(user, span_notice("You already activated the machine."))
+		to_chat(user, span_notice("你已经启动过这台机器了。"))
 		return
-	to_chat(user, span_notice("You link all parts toghether."))
+	to_chat(user, span_notice("你把所有部件连接在了一起。"))
 	active = TRUE
 	update_appearance(UPDATE_ICON)
 	linked_interface.active = TRUE
@@ -347,19 +347,19 @@
 		alarm()
 
 		if(critical_threshold_proximity > emergency_point)
-			radio.talk_into(src, "[emergency_alert] Integrity: [get_integrity_percent()]%", common_channel)
+			radio.talk_into(src, "[emergency_alert] 完整度：[get_integrity_percent()]%", common_channel)
 			lastwarning = REALTIMEOFDAY
 			if(!has_reached_emergency)
 				investigate_log("has reached the emergency point for the first time.", INVESTIGATE_HYPERTORUS)
-				message_admins("[src] has reached the emergency point [ADMIN_JMP(src)].")
+				message_admins("[src] 已达到紧急阈值 [ADMIN_JMP(src)]。")
 				has_reached_emergency = TRUE
 			send_radio_explanation()
 		else if(critical_threshold_proximity >= critical_threshold_proximity_archived) // The damage is still going up
-			radio.talk_into(src, "[warning_alert] Integrity: [get_integrity_percent()]%", engineering_channel)
+			radio.talk_into(src, "[warning_alert] 完整度：[get_integrity_percent()]%", engineering_channel)
 			lastwarning = REALTIMEOFDAY - (WARNING_TIME_DELAY * 5)
 			send_radio_explanation()
 		else // Phew, we're safe
-			radio.talk_into(src, "[safe_alert] Integrity: [get_integrity_percent()]%", engineering_channel)
+			radio.talk_into(src, "[safe_alert] 完整度：[get_integrity_percent()]%", engineering_channel)
 			lastwarning = REALTIMEOFDAY
 
 	//Melt
@@ -391,13 +391,13 @@
 		return
 
 	if(warning_damage_flags & HYPERTORUS_FLAG_HIGH_POWER_DAMAGE)
-		radio.talk_into(src, "Warning! Shield destabilizing due to excessive power!", engineering_channel)
+		radio.talk_into(src, "警告！护盾因功率过高而失稳！", engineering_channel)
 	if(warning_damage_flags & HYPERTORUS_FLAG_IRON_CONTENT_DAMAGE)
-		radio.talk_into(src, "Warning! Iron shards are damaging the internal core shielding!", engineering_channel)
+		radio.talk_into(src, "警告！铁碎片正在损坏核心内部屏蔽层！", engineering_channel)
 	if(warning_damage_flags & HYPERTORUS_FLAG_HIGH_FUEL_MIX_MOLE)
-		radio.talk_into(src, "Warning! Fuel mix moles reaching critical levels!", engineering_channel)
+		radio.talk_into(src, "警告！燃料混合气体摩尔数已达临界水平！", engineering_channel)
 	if(warning_damage_flags & HYPERTORUS_FLAG_IRON_CONTENT_INCREASE)
-		radio.talk_into(src, "Warning! Iron amount inside the core is increasing!", engineering_channel)
+		radio.talk_into(src, "警告！核心内的铁含量正在上升！", engineering_channel)
 
 /**
  * Called by check_alert() in this file
@@ -412,22 +412,22 @@
 
 	var/critical = selected_fuel.meltdown_flags & HYPERTORUS_FLAG_CRITICAL_MELTDOWN
 	if(critical)
-		priority_announce("WARNING - The explosion will likely cover a big part of the station and the coming EMP will wipe out most of the electronics. \
-				Get as far away as possible from the reactor or find a way to shut it down.", "Alert", 'sound/announcer/notice/notice3.ogg')
-	var/speaking = "[emergency_alert] The Hypertorus fusion reactor has reached critical integrity failure. Emergency magnetic dampeners online."
+		priority_announce("警告——爆炸很可能覆盖空间站的大部分区域，随之而来的 EMP 将摧毁大部分电子设备。\
+				尽可能远离反应堆，或设法将其关闭。", "警报", 'sound/announcer/notice/notice3.ogg')
+	var/speaking = "[emergency_alert] 超环面聚变反应堆的完整度已达临界失效状态。紧急磁阻尼器已上线。"
 	radio.talk_into(src, speaking, common_channel)
 
 	notify_ghosts(
-		"The [src] has begun melting down!",
+		"[src] 已经开始熔毁！",
 		source = src,
-		header = "Meltdown Incoming",
+		header = "熔毁来袭",
 		ghost_sound = 'sound/machines/warning-buzzer.ogg',
 		notify_volume = 75,
 	)
 
 	for(var/i in HYPERTORUS_COUNTDOWN_TIME to 0 step -10)
 		if(critical_threshold_proximity < melting_point) // Cutting it a bit close there engineers
-			radio.talk_into(src, "[safe_alert] Failsafe has been disengaged.", common_channel)
+			radio.talk_into(src, "[safe_alert] 失效保护已解除。", common_channel)
 			final_countdown = FALSE
 			return
 		else if((i % 50) != 0 && i > 50) // A message once every 5 seconds until the final 5 seconds which count down individually
@@ -436,9 +436,9 @@
 		else if(i > 50)
 			if(i == 10 SECONDS && critical)
 				sound_to_playing_players('sound/machines/hypertorus/HFR_critical_explosion.ogg')
-			speaking = "[DisplayTimeText(i, TRUE)] remain before total integrity failure."
+			speaking = "距离完全完整性失效还有 [DisplayTimeText(i, TRUE)]。"
 		else
-			speaking = "[i*0.1]..."
+			speaking = "[i*0.1]……"
 		radio.talk_into(src, speaking, common_channel)
 		sleep(1 SECONDS)
 

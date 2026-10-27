@@ -1,1 +1,1 @@
-#define CAT_GARDENING "Gardening"
+#define CAT_GARDENING "园艺"

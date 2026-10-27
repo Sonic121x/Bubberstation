@@ -4,7 +4,7 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_HEAR = list("chitters."), // Space spiders are taxonomically insects not arachnids, don't DM me
+			BB_EMOTE_HEAR = list("发出吱吱声。"), // Space spiders are taxonomically insects not arachnids, don't DM me
 			BB_EMOTE_SOUND = list('sound/mobs/non-humanoids/insect/chitter.ogg'),
 			BB_SPEAK_CHANCE = 5,
 		),
@@ -28,7 +28,7 @@
 		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic/not_friends,
 		BB_FLEE_TARGETING_STRATEGY = /datum/targeting_strategy/basic/of_size/larger, // Run away from mobs bigger than we are
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_HEAR = list("chitters."),
+			BB_EMOTE_HEAR = list("发出吱吱声。"),
 			BB_EMOTE_SOUND = list('sound/mobs/non-humanoids/insect/chitter.ogg'),
 			BB_SPEAK_CHANCE = 5,
 		),

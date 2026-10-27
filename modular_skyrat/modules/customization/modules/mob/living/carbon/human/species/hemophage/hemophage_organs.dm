@@ -1,5 +1,5 @@
 /// Generic description for the corrupted organs that don't have one.
-#define GENERIC_CORRUPTED_ORGAN_DESC "This shares the shape of a normal organ, but it's been covered and filled with some sort of midnight-black pulsing tissue, engorged with some sort of infectious mass."
+#define GENERIC_CORRUPTED_ORGAN_DESC "它的外形与普通器官相同，但表面和内部都覆满了某种午夜般漆黑的搏动组织，其中胀满着某种具传染性的物质。"
 
 /// The rate at which blood metabolizes in a Hemophage's stomach subtype.
 #define BLOOD_METABOLIZATION_RATE (0.1 * REAGENTS_METABOLISM)
@@ -8,7 +8,7 @@
 
 
 /obj/item/organ/liver/hemophage
-	name = "liver" // Name change is handled by /datum/component/organ_corruption/corrupt_organ()
+	name = "肝脏" // Name change is handled by /datum/component/organ_corruption/corrupt_organ()
 	desc = GENERIC_CORRUPTED_ORGAN_DESC
 	icon = 'modular_skyrat/modules/organs/icons/hemophage_organs.dmi'
 	organ_flags = ORGAN_EDIBLE | ORGAN_TUMOR_CORRUPTED
@@ -61,7 +61,7 @@
 		if(feedback_delivered || !helped)
 			continue
 
-		to_chat(affected_mob, span_notice("A euphoric feeling hits you as blood's warmth washes through your insides. Your body feels more alive, your wounds healthier."))
+		to_chat(affected_mob, span_notice("血液的温暖冲刷过你的体内，一阵欣快感袭来。你的身体更有活力了，伤口也愈合得更好。"))
 		feedback_delivered = TRUE
 
 
@@ -90,7 +90,7 @@
 
 
 /obj/item/organ/stomach/hemophage
-	name = "stomach" // Name change is handled by /datum/component/organ_corruption/corrupt_organ()
+	name = "胃" // Name change is handled by /datum/component/organ_corruption/corrupt_organ()
 	desc = GENERIC_CORRUPTED_ORGAN_DESC
 	icon = 'modular_skyrat/modules/organs/icons/hemophage_organs.dmi'
 	organ_flags = ORGAN_EDIBLE | ORGAN_TUMOR_CORRUPTED
@@ -116,7 +116,7 @@
 
 
 /obj/item/organ/tongue/hemophage
-	name = "tongue" // Name change is handled by /datum/component/organ_corruption/corrupt_organ()
+	name = "舌头" // Name change is handled by /datum/component/organ_corruption/corrupt_organ()
 	desc = GENERIC_CORRUPTED_ORGAN_DESC
 	icon = 'modular_skyrat/modules/organs/icons/hemophage_organs.dmi'
 	organ_flags = ORGAN_EDIBLE | ORGAN_TUMOR_CORRUPTED

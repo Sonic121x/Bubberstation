@@ -4,8 +4,8 @@
 #define MIN_HEALTH 10
 
 /atom/movable/screen/alert/status_effect/slimed
-	name = "Covered in Slime"
-	desc = "You are covered in slime and it's eating away at you! Click to start cleaning it off, or find a faster way to wash it away!"
+	name = "浑身黏液"
+	desc = "你浑身沾满了黏液，它正在侵蚀你！点击开始清理，或找个更快的办法把它洗掉！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "slimed"
 	clickable_glow = TRUE
@@ -32,7 +32,7 @@
 
 /// Try to get rid of it
 /atom/movable/screen/alert/status_effect/slimed/proc/remove_slime()
-	owner.balloon_alert(owner, "cleaning off slime...")
+	owner.balloon_alert(owner, "正在清理黏液……")
 	var/datum/status_effect/slimed/slime_effect = owner.has_status_effect(/datum/status_effect/slimed)
 	while (!QDELETED(src) && !isnull(slime_effect))
 		if (!can_wash())
@@ -64,7 +64,7 @@
 /datum/status_effect/slimed/on_apply()
 	if(owner.get_organic_health() <= MIN_HEALTH)
 		return FALSE
-	to_chat(owner, span_userdanger("You have been covered in a thick layer of slime! Find a way to wash it off!"))
+	to_chat(owner, span_userdanger("你身上覆盖了一层厚厚的黏液！快想办法把它洗掉！"))
 	return ..()
 
 /datum/status_effect/slimed/on_remove()
@@ -78,17 +78,17 @@
 /datum/status_effect/slimed/proc/remove_stacks(stacks_to_remove = 1)
 	slime_stacks -= stacks_to_remove // lose 1 stack per second
 	if(slime_stacks <= 0)
-		to_chat(owner, span_notice("You manage to wash off the layer of slime completely."))
+		to_chat(owner, span_notice("你终于将身上的黏液彻底洗掉了。"))
 		qdel(src)
 		return
 
 	if(prob(10))
-		to_chat(owner,span_warning("The layer of slime is slowly getting thinner."))
+		to_chat(owner,span_warning("黏液层正在慢慢变薄。"))
 
 /datum/status_effect/slimed/tick(seconds_between_ticks)
 	// remove from the mob once we have dealt enough damage
 	if(owner.get_organic_health() <= MIN_HEALTH)
-		to_chat(owner, span_warning("You feel the layer of slime crawling off of your weakened body."))
+		to_chat(owner, span_warning("你感到黏液正从虚弱的身体上爬走。"))
 		qdel(src)
 		return
 
@@ -105,14 +105,14 @@
 
 	if(SPT_PROB(10, seconds_between_ticks))
 		var/feedback_text = pick(list(
-			"Your entire body screams with pain",
-			"Your skin feels like it's coming off",
-			"Your body feels like it's melting together"
+			"你全身都在痛苦地尖叫",
+			"你的皮肤仿佛正在脱落",
+			"你的身体仿佛正在融化成一团"
 		))
-		to_chat(owner, span_userdanger("[feedback_text] as the layer of slime eats away at you!"))
+		to_chat(owner, span_userdanger("黏液侵蚀着你，[feedback_text]！"))
 
 /datum/status_effect/slimed/get_examine_text()
-	return span_warning("[owner.p_They()] [owner.p_are()] covered in bubbling slime!")
+	return span_warning("[owner]身上沾满了冒泡的黏液！")
 
 #undef MIN_HEALTH
 #undef MIN_WATER_STACKS

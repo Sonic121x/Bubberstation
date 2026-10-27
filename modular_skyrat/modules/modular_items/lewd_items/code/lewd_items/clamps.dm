@@ -1,8 +1,8 @@
 //MAKE IT WORK
 
 /obj/item/clothing/sextoy/nipple_clamps
-	name = "nipple clamps"
-	desc = "For causing nipple pain."
+	name = "乳夹"
+	desc = "用于让乳头感到疼痛。"
 	icon_state = "clamps"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
 	w_class = WEIGHT_CLASS_TINY

@@ -14,7 +14,7 @@ path/corner/color_name {\
 }
 
 /obj/structure/chair/sofa
-	name = "old ratty sofa"
+	name = "破旧的老沙发"
 	icon_state = "error"
 	icon = 'icons/obj/chairs_wide.dmi'
 	buildstackamount = 1
@@ -55,27 +55,27 @@ COLORED_SOFA(/obj/structure/chair/sofa, maroon, SOFA_MAROON)
 /obj/structure/chair/sofa/middle/brown/Initialize(mapload)
 	. = ..()
 	if(!mapload)
-		name = "retro sofa"
+		name = "复古沙发"
 
 /obj/structure/chair/sofa/left/brown/Initialize(mapload)
 	. = ..()
 	if(!mapload)
-		name = "retro sofa"
+		name = "复古沙发"
 
 /obj/structure/chair/sofa/right/brown/Initialize(mapload)
 	. = ..()
 	if(!mapload)
-		name = "retro sofa"
+		name = "复古沙发"
 
 /obj/structure/chair/sofa/corner/brown/Initialize(mapload)
 	. = ..()
 	if(!mapload)
-		name = "retro sofa"
+		name = "复古沙发"
 
 // Original icon ported from Eris(?) and updated to work here.
 /obj/structure/chair/sofa/corp
-	name = "sofa"
-	desc = "Soft and cushy."
+	name = "沙发"
+	desc = "柔软又舒适。"
 	icon_state = "corp_sofamiddle"
 
 /obj/structure/chair/sofa/corp/left
@@ -92,8 +92,8 @@ COLORED_SOFA(/obj/structure/chair/sofa, maroon, SOFA_MAROON)
 
 // Ported from Skyrat
 /obj/structure/chair/sofa/bench
-	name = "bench"
-	desc = "Perfectly designed to be comfortable to sit on, and hellish to sleep on."
+	name = "长椅"
+	desc = "设计得坐上去无比舒适，睡上去则如同地狱。"
 	icon = 'icons/map_icons/objects.dmi'
 	icon_state = "/obj/structure/chair/sofa/bench"
 	post_init_icon_state = "bench_middle"
@@ -124,8 +124,8 @@ COLORED_SOFA(/obj/structure/chair/sofa, maroon, SOFA_MAROON)
 
 // Bamboo benches
 /obj/structure/chair/sofa/bamboo
-	name = "bamboo bench"
-	desc = "A makeshift bench with a rustic aesthetic."
+	name = "竹制长椅"
+	desc = "一张临时拼凑的长椅，带着质朴的美感。"
 	icon_state = "bamboo_sofamiddle"
 	resistance_flags = FLAMMABLE
 	max_integrity = 60

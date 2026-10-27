@@ -2,8 +2,8 @@
 
 //The ammo/gun is stored in a back slot item
 /obj/item/minigunpack
-	name = "backpack power source"
-	desc = "The massive external power source for the laser gatling gun."
+	name = "背包式电源"
+	desc = "激光加特林机枪的巨型外接电源。"
 	icon = 'icons/obj/weapons/guns/minigun.dmi'
 	icon_state = "holstered"
 	inhand_icon_state = "backpack"
@@ -45,12 +45,12 @@
 				armed = TRUE
 				if(!user.put_in_hands(gun))
 					armed = FALSE
-					to_chat(user, span_warning("You need a free hand to hold the gun!"))
+					to_chat(user, span_warning("你需要空出一只手才能握住枪！"))
 					return
 				update_appearance()
 				user.update_worn_back()
 		else
-			to_chat(user, span_warning("You are already holding the gun!"))
+			to_chat(user, span_warning("你已经握着枪了！"))
 	else
 		..()
 
@@ -76,16 +76,16 @@
 	gun.forceMove(src)
 	armed = FALSE
 	if(user)
-		to_chat(user, span_notice("You attach \the [gun] to \the [src]."))
+		to_chat(user, span_notice("你把 [gun] 装到 [src] 上。"))
 	else
-		src.visible_message(span_warning("\The [gun] snaps back onto \the [src]!"))
+		src.visible_message(span_warning("[gun] 啪的一声弹回 [src] 上！"))
 	update_appearance()
 	user.update_worn_back()
 
 
 /obj/item/gun/energy/minigun
-	name = "laser gatling gun"
-	desc = "An advanced laser cannon with an incredible rate of fire. Requires a bulky backpack power source to use."
+	name = "激光加特林机枪"
+	desc = "一门射速惊人的高级激光炮。使用时需要配备笨重的背包式电源。"
 	icon = 'icons/obj/weapons/guns/minigun.dmi'
 	icon_state = "minigun_spin"
 	inhand_icon_state = "minigun"
@@ -127,7 +127,7 @@
 
 /obj/item/gun/energy/minigun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(ammo_pack && ammo_pack.overheat >= ammo_pack.overheat_max)
-		to_chat(user, span_warning("The gun's heat sensor locked the trigger to prevent lens damage!"))
+		to_chat(user, span_warning("枪械的热传感器锁住了扳机，以防镜片损坏！"))
 		return
 	. = ..()
 	if(!.)
@@ -140,12 +140,12 @@
 
 /obj/item/gun/energy/minigun/try_fire_gun(atom/target, mob/living/user, params)
 	if(!ammo_pack || ammo_pack.loc != user)
-		to_chat(user, span_warning("You need the backpack power source to fire the gun!"))
+		to_chat(user, span_warning("你需要背包式电源才能开枪！"))
 		return FALSE
 	return ..()
 
 /obj/item/stock_parts/power_store/cell/minigun
-	name = "gatling gun fusion core"
-	desc = "Where did these come from?"
+	name = "加特林机枪聚变核心"
+	desc = "这些东西是从哪儿来的？"
 	maxcharge = 500 * STANDARD_CELL_CHARGE
 	chargerate = 5 * STANDARD_CELL_CHARGE

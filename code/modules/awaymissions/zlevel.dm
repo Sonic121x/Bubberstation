@@ -9,18 +9,18 @@ GLOBAL_LIST_INIT(potentialConfigRandomZlevels, generate_map_list_from_directory(
 	else if(GLOB.potentialRandomZlevels?.len)
 		map = pick_n_take(GLOB.potentialRandomZlevels)
 	else
-		return to_chat(world, span_boldannounce("No valid away mission files, loading aborted."))
-	to_chat(world, span_boldannounce("Loading away mission..."))
+		return to_chat(world, span_boldannounce("没有有效的远征任务文件，已中止加载。"))
+	to_chat(world, span_boldannounce("正在加载远征任务……"))
 	var/loaded = load_new_z_level(map, "Away Mission", config_gateway)
-	to_chat(world, span_boldannounce("Away mission [loaded ? "loaded" : "aborted due to errors"]."))
+	to_chat(world, span_boldannounce("远征任务[loaded ? "已加载" : "因错误中止"]。"))
 	if(!loaded)
-		message_admins("Away mission [map] loading failed due to errors.")
-		log_admin("Away mission [map] loading failed due to errors.")
+		message_admins("远征任务 [map] 因错误加载失败。")
+		log_admin("远征任务 [map] 因错误加载失败。")
 		createRandomZlevel(config_gateway)
 
 /obj/effect/landmark/awaystart
-	name = "away mission spawn"
-	desc = "Randomly picked away mission spawn points."
+	name = "远征任务出生点"
+	desc = "随机选取的远征任务出生点。"
 	var/id
 	var/delay = TRUE // If the generated destination should be delayed by configured gateway delay
 
@@ -46,27 +46,27 @@ GLOBAL_LIST_INIT(potentialConfigRandomZlevels, generate_map_list_from_directory(
 	delay = FALSE
 
 /obj/effect/landmark/awaystart/beach
-	name = "beach away spawn"
+	name = "海滩远征出生点"
 	id = AWAYSTART_BEACH
 
 /obj/effect/landmark/awaystart/museum
-	name = "buseum away spawn"
+	name = "博物馆远征出生点"
 	id = AWAYSTART_MUSEUM
 
 /obj/effect/landmark/awaystart/research
-	name = "research outpost away spawn"
+	name = "研究前哨远征出生点"
 	id = AWAYSTART_RESEARCH
 
 /obj/effect/landmark/awaystart/moonoutpost
-	name = "Moon Outpost 19 away spawn"
+	name = "19 号月球前哨远征出生点"
 	id = AWAYSTART_MOONOUTPOST
 
 /obj/effect/landmark/awaystart/snowcabin
-	name = "snow cabin away spawn"
+	name = "雪屋远征出生点"
 	id = AWAYSTART_SNOWCABIN
 
 /obj/effect/landmark/awaystart/underground
-	name = "Underground Outpost 45 away spawn"
+	name = "45 号地下前哨远征出生点"
 	id = AWAYSTART_UNDERGROUND
 
 /proc/generateMapList(filename)

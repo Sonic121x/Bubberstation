@@ -63,8 +63,8 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 			var/obj/item/melee/sickly_blade/training/new_blade = new(get_turf(human_in_range))
 			welfare_blades += new_blade
 			INVOKE_ASYNC(human_in_range, TYPE_PROC_REF(/mob, put_in_hands), new_blade)
-			to_chat(human_in_range, span_boldbig("Escape is impossible. The only way out is to defeat another participant in this battle to the death."))
-			human_in_range.balloon_alert(human_in_range, "start killing!")
+			to_chat(human_in_range, span_boldbig("你无处可逃。唯一的出路是在这场死斗中击败另一名参战者。"))
+			human_in_range.balloon_alert(human_in_range, "开始杀戮！")
 		human_in_range.apply_status_effect(/datum/status_effect/arena_tracker)
 		RegisterSignal(human_in_range, COMSIG_CAN_Z_MOVE, PROC_REF(on_try_z_move))
 		RegisterSignal(human_in_range, COMSIG_LADDER_TRAVEL, PROC_REF(on_try_ladder))
@@ -76,8 +76,8 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 		mob.remove_traits(given_immunities, HERETIC_ARENA_TRAIT)
 		mob.remove_status_effect(/datum/status_effect/arena_tracker)
 		UnregisterSignal(mob, list(COMSIG_CAN_Z_MOVE, COMSIG_LADDER_TRAVEL, COMSIG_MOVABLE_PRE_MOVE, COMSIG_MOVABLE_POST_TELEPORT))
-		to_chat(mob, span_boldbig("Your bloodlust is sated."))
-		mob.balloon_alert(mob, "escape the arena!")
+		to_chat(mob, span_boldbig("你的嗜血欲望得到了满足。"))
+		mob.balloon_alert(mob, "逃离竞技场！")
 	for(var/turf/to_restore in border_walls)
 		to_restore.ChangeTurf(border_walls[to_restore])
 	for(var/obj/to_refund as anything in welfare_blades)
@@ -127,8 +127,8 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 	arena_caster = caster
 
 /turf/closed/indestructible/heretic_wall
-	name = "eldritch wall"
-	desc = "A wall penning in the sheep amongst the wolves. It glows with malevolent energy - prodding it is likely unwise."
+	name = "异界屏障"
+	desc = "将羔羊与群狼困在一起的屏障，散发着恶意的能量——触碰它恐怕并不明智。"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "eldritch_forcewall"
 	opacity = FALSE
@@ -149,7 +149,7 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 	var/mob/living/living_mob = bumped_atom
 	var/atom/target = get_edge_target_turf(living_mob, get_dir(src, get_step_away(living_mob, src)))
 	living_mob.throw_at(target, 4, 5)
-	to_chat(living_mob, span_userdanger("The wall repels you with tremendous force!"))
+	to_chat(living_mob, span_userdanger("屏障以巨大的力量将你弹开！"))
 
 /// Called when you crit somebody to update your crown
 /datum/status_effect/arena_tracker/proc/on_crit_somebody()
@@ -183,9 +183,9 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 	if(arena_victor) // No need to spam if we've already killed at least 1 person
 		return
 	if(IS_HERETIC(owner))
-		to_chat(owner, span_big(span_hypnophrase("The mansus is pleased with your performance, you may leave now.")))
+		to_chat(owner, span_big(span_hypnophrase("漫宿对你的表现很满意，你现在可以离开了。")))
 	else
-		to_chat(owner, span_big(span_hypnophrase("You have done well, you may leave now.")))
+		to_chat(owner, span_big(span_hypnophrase("你做得很好，现在可以离开了。")))
 	arena_victor = TRUE
 
 /**
@@ -302,10 +302,10 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 /datum/antagonist/heretic_arena_participant/forge_objectives()
 	var/datum/objective/survive = new /datum/objective
 	survive.owner = owner
-	survive.explanation_text = "You have been trapped in an arena. The only way out is to slaughter someone else. Kill your captor, or betray your friends - the choice is yours."
+	survive.explanation_text = "你被困在了竞技场里。唯一的出路就是杀死另一个人。杀死囚禁你的人，或背叛朋友——由你选择。"
 	objectives += survive
 	var/datum/objective/fight_to_escape = new /datum/objective
 	fight_to_escape.owner = owner
-	fight_to_escape.explanation_text = "Escape is impossible. The only way out is to defeat another participant in this battle to the death. \
-		A weapon has been bestowed unto you, granting you a fighting chance, it would be quite a shame were you to attempt to break it."
+	fight_to_escape.explanation_text = "你无处可逃。唯一的出路是在这场死斗中击败另一名参战者。\
+		你已获赐一件武器，拥有了奋战求生的机会。若试图将它破坏，可就太可惜了。"
 	objectives += fight_to_escape

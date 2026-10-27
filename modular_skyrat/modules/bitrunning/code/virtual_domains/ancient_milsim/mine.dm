@@ -9,8 +9,8 @@
 	set_light_on(TRUE)
 
 /obj/item/minespawner/ancient_milsim
-	name = "deactivated low-yield landmine"
-	desc = "When activated, will deploy a low-yield explosive landmine after 1.5 second passes, perfect for setting traps in tight corridors."
+	name = "未激活的低当量地雷"
+	desc = "激活后，会在 1.5 秒后布设一枚低当量爆炸地雷，非常适合在狭窄走廊里设下陷阱。"
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "landmine-inactive"
 

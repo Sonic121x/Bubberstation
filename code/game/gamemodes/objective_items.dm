@@ -53,7 +53,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 //Contains the target item datums for Steal objectives.
 /datum/objective_item
 	/// How the item is described in the objective
-	var/name = "a silly bike horn! Honk!"
+	var/name = "一个滑稽的自行车喇叭！滑稽！"
 	/// Typepath of item
 	var/targetitem = /obj/item/bikehorn
 	/// Valid containers that the target item can be in.
@@ -83,7 +83,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	 */
 	var/difficulty = 0
 	/// A hint explaining how one may find the target item.
-	var/steal_hint = "The clown might have one."
+	var/steal_hint = "小丑可能有一个。"
 
 	///If the item takes special steps to destroy for an objective (e.g. blackbox)
 	var/destruction_method = null
@@ -132,19 +132,19 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 
 // Unique-ish low risk objectives
 /datum/objective_item/steal/traitor/bartender_shotgun
-	name = "the bartender's shotgun"
+	name = "酒保的霰弹枪"
 	targetitem = /obj/item/gun/ballistic/shotgun/doublebarrel
 	excludefromjob = list(JOB_BARTENDER)
 	item_owner = list(JOB_BARTENDER)
 	exists_on_map = TRUE
 	difficulty = 2
-	steal_hint = "A double-barrel shotgun usually found on the bartender's person, or if none are around, in the bar's backroom."
+	steal_hint = "一把双管霰弹枪，通常由酒保随身携带；若没有酒保，则放在酒吧后室。"
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/gun/ballistic/shotgun/doublebarrel)
 
 /datum/objective_item/steal/traitor/fireaxe
-	name = "a fire axe"
+	name = "一把消防斧"
 	targetitem = /obj/item/fireaxe
 	excludefromjob = list(
 		JOB_ATMOSPHERIC_TECHNICIAN,
@@ -159,14 +159,14 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	)
 	exists_on_map = TRUE
 	difficulty = 3
-	steal_hint = "Only two of these exist on the station - one in the bridge, and one in atmospherics. \
-		You can use a multitool to hack open the case, or break it open the hard way."
+	steal_hint = "空间站上只有两把，一把在舰桥，另一把在大气部。\
+		你可以用多功能工具破解展示柜，也可以直接砸开。"
 
 /obj/item/fireaxe/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/fireaxe)
 
 /datum/objective_item/steal/traitor/big_crowbar
-	name = "a mech removal tool"
+	name = "一把机甲拆卸工具"
 	targetitem = /obj/item/crowbar/mechremoval
 	excludefromjob = list(
 		JOB_RESEARCH_DIRECTOR,
@@ -176,110 +176,110 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	item_owner = list(JOB_ROBOTICIST)
 	exists_on_map = TRUE
 	difficulty = 2
-	steal_hint = "A specialized tool found in the roboticist's lab. You can use a multitool to hack open the case, or break it open the hard way."
+	steal_hint = "机器人专家实验室中的专用工具。你可以用多功能工具破解展示柜，也可以直接砸开。"
 
 /obj/item/crowbar/mechremoval/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/crowbar/mechremoval)
 
 /datum/objective_item/steal/traitor/nullrod
-	name = "the chaplain's null rod"
+	name = "牧师的虚无法杖"
 	targetitem = /obj/item/nullrod
 	excludefromjob = list(JOB_CHAPLAIN)
 	item_owner = list(JOB_CHAPLAIN)
 	exists_on_map = TRUE
 	difficulty = 2
-	steal_hint = "A holy artifact usually found on the chaplain's person, or if none are around, in the chapel's relic closet. \
-		If there is a chaplain aboard, it is likely be to be transformed into some holy weapon - some of which are... difficult to remove from their person."
+	steal_hint = "一件圣物，通常由牧师随身携带；若没有牧师，则放在教堂的圣物柜中。\
+		如果站上有牧师，它可能已经变成了某种神圣武器——其中有些……很难从牧师身上取下来。"
 
 /obj/item/nullrod/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/nullrod)
 
 /datum/objective_item/steal/traitor/clown_shoes
-	name = "the clown's shoes"
+	name = "小丑的鞋子"
 	targetitem = /obj/item/clothing/shoes/clown_shoes
 	excludefromjob = list(JOB_CLOWN, JOB_CARGO_TECHNICIAN, JOB_QUARTERMASTER)
 	item_owner = list(JOB_CLOWN)
 	exists_on_map = TRUE
 	difficulty = 1
-	steal_hint = "The clown's huge, bright shoes. They should always be on the clown's feet."
+	steal_hint = "小丑那双巨大而鲜艳的鞋子，应该一直穿在小丑脚上。"
 
 /obj/item/clothing/shoes/clown_shoes/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/clothing/shoes/clown_shoes)
 
 /datum/objective_item/steal/traitor/mime_mask
-	name = "the mime's mask"
+	name = "默剧演员的面具"
 	targetitem = /obj/item/clothing/mask/gas/mime
 	excludefromjob = list(JOB_MIME, JOB_CARGO_TECHNICIAN, JOB_QUARTERMASTER)
 	item_owner = list(JOB_MIME)
 	exists_on_map = TRUE
 	difficulty = 1
-	steal_hint = "The mime's mask. It should always be on the mime's face."
+	steal_hint = "默剧演员的面具，应该一直戴在默剧演员脸上。"
 
 /obj/item/clothing/mask/gas/mime/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/clothing/mask/gas/mime)
 
 /datum/objective_item/steal/traitor/pka
-	name = "a protokinetic accelerator"
+	name = "一把原型动能加速器"
 	targetitem = /obj/item/gun/energy/recharge/kinetic_accelerator
 	excludefromjob = list(JOB_SHAFT_MINER, JOB_CARGO_TECHNICIAN, JOB_QUARTERMASTER)
 	item_owner = list(JOB_SHAFT_MINER)
 	exists_on_map = TRUE
 	difficulty = 1
-	steal_hint = "A tool primarily used by shaft miners to mine. Most carry one (or multiple) on their person, \
-		but they can also be found in the Mining Station, Mining office, or Auxiliary Mining Base on the station."
+	steal_hint = "主要供矿工采矿的工具。大多数矿工会随身携带一把或多把，\
+		也可以在采矿站、采矿办公室或空间站上的辅助采矿基地找到。"
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/gun/energy/recharge/kinetic_accelerator)
 
 /datum/objective_item/steal/traitor/chef_moustache
-	name = "a fancy fake moustache"
+	name = "一副精致的假胡须"
 	targetitem = /obj/item/clothing/mask/fakemoustache/italian
 	excludefromjob = list(JOB_COOK, JOB_HEAD_OF_PERSONNEL, JOB_CARGO_TECHNICIAN, JOB_QUARTERMASTER)
 	item_owner = list(JOB_COOK)
 	exists_on_map = TRUE
 	difficulty = 1
-	steal_hint = "The chef's fake Italian moustache, either found on their face or in the garbage, depending on who's on duty."
+	steal_hint = "厨师的意大利式假胡须。它可能戴在厨师脸上，也可能被扔进垃圾桶，取决于当班的是谁。"
 
 /obj/item/clothing/mask/fakemoustache/italian/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/clothing/mask/fakemoustache/italian)
 
 /datum/objective_item/steal/traitor/det_revolver
-	name = "detective's revolver"
+	name = "侦探的左轮手枪"
 	targetitem = /obj/item/gun/ballistic/revolver/c38/detective
 	excludefromjob = list(JOB_DETECTIVE)
 	exists_on_map = TRUE
 	difficulty = 3
-	steal_hint = "A .38 special revolver found in the Detective's holder. \
-		Usually found on the Detective's person, or if none are around, in the detective's locker, in their office."
+	steal_hint = "侦探枪套中的 .38 Special 左轮手枪。\
+		通常由侦探随身携带；若没有侦探，则放在侦探办公室的储物柜里。"
 
 /obj/item/gun/ballistic/revolver/c38/detective/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/gun/ballistic/revolver/c38/detective)
 
 /datum/objective_item/steal/traitor/lawyers_badge
-	name = "the lawyer's badge"
+	name = "律师的徽章"
 	targetitem = /obj/item/clothing/accessory/lawyers_badge
 	excludefromjob = list(JOB_LAWYER)
 	item_owner = list(JOB_LAWYER)
 	exists_on_map = TRUE
 	difficulty = 1
-	steal_hint = "The lawyer's badge. Usually pinned to their chest, but a spare can be obtained from their clothes vendor."
+	steal_hint = "律师的徽章。通常别在胸前，也可以从律师服装售货机取得备用徽章。"
 
 /obj/item/clothing/accessory/lawyers_badge/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/clothing/accessory/lawyers_badge)
 
 /datum/objective_item/steal/traitor/chief_engineer_belt
-	name = "the chief engineer's belt"
+	name = "总工程师的腰带"
 	targetitem = /obj/item/storage/belt/utility/chief
 	excludefromjob = list(JOB_CHIEF_ENGINEER)
 	exists_on_map = TRUE
 	difficulty = 2
-	steal_hint = "The chief engineer's toolbelt, strapped to their waist at all times."
+	steal_hint = "总工程师的工具腰带，一直系在其腰间。"
 
 /obj/item/storage/belt/utility/chief/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/storage/belt/utility/chief)
 
 /datum/objective_item/steal/traitor/telebaton
-	name = "a head of staff's telescopic baton"
+	name = "一名部门主管的伸缩警棍"
 	targetitem = /obj/item/melee/baton/telescopic
 	excludefromjob = list(
 		JOB_RESEARCH_DIRECTOR,
@@ -292,7 +292,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	)
 	exists_on_map = TRUE
 	difficulty = 3
-	steal_hint = "A self-defense weapon standard-issue for all heads of staffs barring the Head of Security. Rarely found off of their person."
+	steal_hint = "除安保主管外，所有部门主管标配的防身武器。他们很少让它离身。"
 
 /datum/objective_item/steal/traitor/telebaton/check_special_completion(obj/item/thing)
 	return !istype(thing, /obj/item/melee/baton/telescopic/contractor_baton)
@@ -301,32 +301,32 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/melee/baton/telescopic)
 
 /datum/objective_item/steal/traitor/cargo_budget
-	name = "cargo's departmental budget"
+	name = "货运部的部门预算卡"
 	targetitem = /obj/item/card/id/departmental_budget/car
 	excludefromjob = list(JOB_QUARTERMASTER, JOB_CARGO_TECHNICIAN)
 	item_owner = list(JOB_QUARTERMASTER)
 	exists_on_map = TRUE
 	difficulty = 2
-	steal_hint = "A card that grants access to Cargo's funds. \
-		Normally found in the locker of the Quartermaster, but a particularly keen one may have it on their person or in their wallet."
+	steal_hint = "一张可以支取货运部资金的卡片。\
+		通常放在货运主管的储物柜里，不过警觉的主管可能会随身携带或收进钱包。"
 
 /obj/item/card/id/departmental_budget/car/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/card/id/departmental_budget/car)
 
 /datum/objective_item/steal/traitor/captain_modsuit
-	name = "the captain's magnate MOD control unit"
+	name = "舰长的巨头型 MOD 控制单元"
 	targetitem = /obj/item/mod/control/pre_equipped/magnate
 	excludefromjob = list(JOB_CAPTAIN)
 	exists_on_map = TRUE
 	difficulty = 3
-	steal_hint = "An expensive, hand-crafted MOD unit made for the station's Captain. \
-		If not being worn by the Captain, you would find it in the Suit Storage Unit in their quarters."
+	steal_hint = "为舰长手工打造的昂贵 MOD 单元。\
+		如果舰长没有穿戴，它会放在舰长宿舍的防护服储存单元中。"
 
 /obj/item/mod/control/pre_equipped/magnate/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/mod/control/pre_equipped/magnate)
 
 /datum/objective_item/steal/traitor/captain_spare
-	name = "the captain's spare ID"
+	name = "舰长的备用身份卡"
 	targetitem = /obj/item/card/id/advanced/gold/captains_spare
 	excludefromjob = list(
 		JOB_RESEARCH_DIRECTOR,
@@ -339,9 +339,9 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	)
 	exists_on_map = TRUE
 	difficulty = 4
-	steal_hint = "The spare ID of the High Lord himself. \
-		If there's no official Captain around, you may find it pinned to the chest of the Acting Captain - one of the Heads of Staff. \
-		Otherwise, you'll have to bust open the golden safe on the bridge with acid or explosives to get to it."
+	steal_hint = "最高领导本人的备用身份卡。\
+		如果没有正式舰长，它可能别在代理舰长——某位部门主管——的胸前。\
+		否则，你得用酸液或炸药打开舰桥上的金色保险箱才能拿到它。"
 
 /obj/item/card/id/advanced/gold/captains_spare/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/card/id/advanced/gold/captains_spare)
@@ -350,115 +350,115 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 
 // Will always generate even with no Captain due to its security and temptation to use it
 /datum/objective_item/steal/caplaser
-	name = "the captain's antique laser gun"
+	name = "舰长的古董激光枪"
 	targetitem = /obj/item/gun/energy/laser/captain
 	excludefromjob = list(JOB_CAPTAIN)
 	exists_on_map = TRUE
 	difficulty = 4
-	steal_hint = "A self-charging laser gun found in a display case in the Captain's Quarters. \
-		Breaking it open may trigger a security alert, so be careful."
+	steal_hint = "舰长宿舍展示柜中的自充能激光枪。\
+		打破展示柜可能会触发安保警报，请小心。"
 
 /obj/item/gun/energy/laser/captain/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/gun/energy/laser/captain)
 
 /datum/objective_item/steal/hoslaser
-	name = "the head of security's personal laser gun"
+	name = "安保主管的私人激光枪"
 	targetitem = /obj/item/gun/energy/e_gun/hos
 	excludefromjob = list(JOB_HEAD_OF_SECURITY)
 	item_owner = list(JOB_HEAD_OF_SECURITY)
 	exists_on_map = TRUE
 	difficulty = 4
-	steal_hint = "The Head of Security's unique three mode laser gun. \
-		Always found on their person, if they are alive, but may otherwise be found in their locker."
+	steal_hint = "安保主管独有的三模式激光枪。\
+		只要主管还活着，就一定随身携带；否则可能放在其储物柜中。"
 
 /obj/item/gun/energy/e_gun/hos/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/gun/energy/e_gun/hos)
 
 /datum/objective_item/steal/compactshotty
-	name = "the warden's personal compact shotgun"
+	name = "典狱长的私人紧凑型霰弹枪"
 	targetitem = /obj/item/gun/ballistic/shotgun/automatic/combat/compact
 	excludefromjob = list(JOB_WARDEN)
 	item_owner = list(JOB_WARDEN)
 	exists_on_map = TRUE
 	difficulty = 4
-	steal_hint = "A miniaturized combat shotgun. May be found in Head of Security's locker or strapped to their back."
+	steal_hint = "一把小型战斗霰弹枪，可能在安保主管的储物柜中，也可能背在其背上。"
 
 /obj/item/gun/ballistic/shotgun/automatic/combat/compact/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/gun/ballistic/shotgun/automatic/combat/compact)
 
 /datum/objective_item/steal/handtele
-	name = "a hand teleporter"
+	name = "一台手持传送器"
 	targetitem = /obj/item/hand_tele
 	excludefromjob = list(JOB_CAPTAIN, JOB_RESEARCH_DIRECTOR, JOB_HEAD_OF_PERSONNEL)
 	item_owner = list(JOB_CAPTAIN, JOB_RESEARCH_DIRECTOR)
 	exists_on_map = TRUE
 	difficulty = 3
-	steal_hint = "Only two of these devices exist on the station, with one sitting in the Teleporter Room \
-		for emergencies, and the other in the Captain's Quarters for personal use."
+	steal_hint = "空间站上只有两台这种装置，一台放在传送室中\
+		用于应急，另一台放在舰长宿舍供舰长私人使用。"
 
 /obj/item/hand_tele/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/hand_tele)
 
 /datum/objective_item/steal/jetpack
-	name = "the Captain's jetpack"
+	name = "舰长的喷气背包"
 	targetitem = /obj/item/tank/jetpack/captain
 	excludefromjob = list(JOB_CAPTAIN)
 	item_owner = list(JOB_CAPTAIN)
 	exists_on_map = TRUE
 	difficulty = 3
-	steal_hint = "A special yellow jetpack found in the Suit Storage Unit in the Captain's Quarters."
+	steal_hint = "舰长宿舍防护服储存单元中的特制黄色喷气背包。"
 
 /obj/item/tank/jetpack/captain/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/tank/jetpack/captain)
 
 /datum/objective_item/steal/magboots
-	name = "the chief engineer's advanced magnetic boots"
+	name = "总工程师的高级磁力靴"
 	targetitem = /obj/item/clothing/shoes/magboots/advance
 	excludefromjob = list(JOB_CHIEF_ENGINEER)
 	item_owner = list(JOB_CHIEF_ENGINEER)
 	exists_on_map = TRUE
 	difficulty = 3
-	steal_hint = "A pair of magnetic boots found in the Chief Engineer's Suit Storage Unit. \
-		May also be found on their person, concealed beneath their MODsuit."
+	steal_hint = "总工程师防护服储存单元中的一双磁力靴。\
+		也可能正穿在其脚上，藏在 MOD 模块化外骨骼下面。"
 
 /obj/item/clothing/shoes/magboots/advance/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/clothing/shoes/magboots/advance)
 
 /datum/objective_item/steal/capmedal
-	name = "the medal of captaincy"
+	name = "舰长勋章"
 	targetitem = /obj/item/clothing/accessory/medal/gold/captain
 	excludefromjob = list(JOB_CAPTAIN)
 	item_owner = list(JOB_CAPTAIN)
 	exists_on_map = TRUE
 	difficulty = 3
-	steal_hint = "A gold medal found in the medal box in the Captain's Quarters. \
-		The Captain usually also has one pinned to their jumpsuit."
+	steal_hint = "舰长宿舍勋章盒中的一枚金质勋章。\
+		舰长通常也会在制服上别一枚。"
 
 /obj/item/clothing/accessory/medal/gold/captain/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/clothing/accessory/medal/gold/captain)
 
 /datum/objective_item/steal/hypo
 	//name = "the hypospray" // ORIGINAL
-	name = "the Chief Medical Officer's hypospray" // SKYRAT EDIT CHANGE
+	name = "首席医疗官的无针注射器" // SKYRAT EDIT CHANGE
 	//targetitem = /obj/item/reagent_containers/hypospray/cmo // ORIGINAL
 	targetitem = /obj/item/hypospray/mkii/deluxe/cmo // SKYRAT EDIT CHANGE
 	excludefromjob = list(JOB_CHIEF_MEDICAL_OFFICER)
 	item_owner = list(JOB_CHIEF_MEDICAL_OFFICER)
 	exists_on_map = TRUE
 	difficulty = 3
-	steal_hint = "The Chief Medical Officer's personal medical injector. \
-		Usually found amongst their medical supplies on their person, in their belt, or otherwise in their locker."
+	steal_hint = "首席医疗官的私人医疗注射器。\
+		通常放在其随身或腰带里的医疗用品中，也可能存放在其储物柜中。"
 
 /obj/item/hypospray/mkii/deluxe/cmo/add_stealing_item_objective() // SKYRAT EDIT CHANGE
 	return add_item_to_steal(src, /obj/item/hypospray/mkii/deluxe/cmo) // SKYRAT EDIT CHANGE
 
 /datum/objective_item/steal/nukedisc
-	name = "the nuclear authentication disk"
+	name = "核弹认证磁盘"
 	targetitem = /obj/item/disk/nuclear
 	excludefromjob = list(JOB_CAPTAIN)
 	difficulty = 5
-	steal_hint = "THAT disk - you know the one. Carried by the Captain at all times (hopefully). \
-		Difficult to miss, but if you can't find it, the Head of Security and Captain both have devices to track its precise location."
+	steal_hint = "就是那张磁盘——你知道是哪张。舰长会一直随身携带它（但愿如此）。\
+		它十分显眼，但如果你找不到，安保主管和舰长都有能够追踪其准确位置的设备。"
 
 /obj/item/disk/nuclear/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/disk/nuclear)
@@ -467,51 +467,51 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return !N.fake
 
 /datum/objective_item/steal/ablative
-	name = "an ablative trenchcoat"
+	name = "一件烧蚀风衣"
 	targetitem = /obj/item/clothing/suit/hooded/ablative
 	excludefromjob = list(JOB_HEAD_OF_SECURITY, JOB_WARDEN)
 	item_owner = list(JOB_HEAD_OF_SECURITY)
 	exists_on_map = TRUE
 	difficulty = 4
-	steal_hint = "An ablative trechcoat found on the shelves of the Armory."
+	steal_hint = "军械库架子上的一件烧蚀风衣。"
 
 /obj/item/clothing/suit/hooded/ablative/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/clothing/suit/hooded/ablative)
 
 /datum/objective_item/steal/reactive
-	name = "the reactive teleport armor"
+	name = "反应式传送装甲"
 	targetitem = /obj/item/clothing/suit/armor/reactive/teleport
 	excludefromjob = list(JOB_RESEARCH_DIRECTOR)
 	item_owner = list(JOB_RESEARCH_DIRECTOR)
 	exists_on_map = TRUE
 	difficulty = 3
-	steal_hint = "A special suit of armor found in the possession of the Research Director. \
-		You may otherwise find it in their locker."
+	steal_hint = "科研主管持有的一套特殊装甲。\
+		也可能放在其储物柜中。"
 
 /obj/item/clothing/suit/armor/reactive/teleport/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/clothing/suit/armor/reactive/teleport)
 
 /datum/objective_item/steal/documents
-	name = "any set of secret documents of any organization"
+	name = "任意组织的一套秘密文件"
 	valid_containers = list(/obj/item/folder)
 	targetitem = /obj/item/documents
 	exists_on_map = TRUE
 	difficulty = 3
-	steal_hint = "A set of papers belonging to a megaconglomerate. \
-		Nanotrasen documents can easily be found in the station's vault. \
-		For other corporations, you may find them in strange and distant places. \
-		A photocopy may also suffice."
+	steal_hint = "属于某个大型企业集团的一套文件。\
+		纳米传讯的文件很容易在空间站金库中找到。\
+		其他公司的文件则可能藏在奇怪而遥远的地方。\
+		复印件也可以。"
 
 /obj/item/documents/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/documents) //Any set of secret documents. Doesn't have to be NT's
 
 /datum/objective_item/steal/nuke_core
-	name = "the heavily radioactive plutonium core from the onboard self-destruct"
+	name = "站内自毁装置中具有强烈放射性的钚核心"
 	valid_containers = list(/obj/item/nuke_core_container)
 	targetitem = /obj/item/nuke_core
 	exists_on_map = TRUE
 	difficulty = 4
-	steal_hint = "The core of the station's self-destruct device, found in the vault."
+	steal_hint = "空间站自毁装置的核心，位于金库中。"
 
 /obj/item/nuke_core/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/nuke_core)
@@ -521,13 +521,13 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	..()
 
 /datum/objective_item/steal/hdd_extraction
-	name = "the source code for Project Goon from the master R&D server mainframe"
+	name = "研发主服务器大型主机中的暴徒计划源代码"
 	targetitem = /obj/item/disk/computer/hdd_theft
 	excludefromjob = list(JOB_RESEARCH_DIRECTOR, JOB_SCIENTIST, JOB_ROBOTICIST, JOB_GENETICIST)
 	item_owner = list(JOB_RESEARCH_DIRECTOR, JOB_SCIENTIST)
 	exists_on_map = TRUE
 	difficulty = 4
-	steal_hint = "The hard drive of the master research server, found in R&D's server room."
+	steal_hint = "主研究服务器的硬盘，位于研发部服务器机房中。"
 
 /obj/item/disk/computer/hdd_theft/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/disk/computer/hdd_theft)
@@ -538,11 +538,11 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 
 
 /datum/objective_item/steal/supermatter
-	name = "a sliver of a supermatter crystal"
+	name = "一小片超物质晶体"
 	targetitem = /obj/item/nuke_core/supermatter_sliver
 	valid_containers = list(/obj/item/nuke_core_container/supermatter)
 	difficulty = 5
-	steal_hint = "A small shard of the station's supermatter crystal engine."
+	steal_hint = "空间站超物质晶体引擎的一小块碎片。"
 
 /datum/objective_item/steal/supermatter/New()
 	special_equipment += /obj/item/storage/box/syndie_kit/supermatter
@@ -553,10 +553,10 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 
 // Doesn't need item_owner = (JOB_AI) because this handily functions as a murder objective if there isn't one
 /datum/objective_item/steal/functionalai
-	name = "a functional AI"
+	name = "一台正常运作的 AI"
 	targetitem = /obj/item/aicard
 	difficulty = 5
-	steal_hint = "An intellicard (or MODsuit) containing an active, functional AI."
+	steal_hint = "一张智能卡或一套 MOD 模块化外骨骼，其中装有活跃且正常运作的 AI。"
 
 /datum/objective_item/steal/functionalai/New()
 	. = ..()
@@ -584,14 +584,14 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return FALSE
 
 /datum/objective_item/steal/blueprints
-	name = "the station blueprints"
+	name = "空间站蓝图"
 	targetitem = /obj/item/blueprints
 	excludefromjob = list(JOB_CHIEF_ENGINEER)
 	item_owner = list(JOB_CHIEF_ENGINEER)
 	altitems = list(/obj/item/photo)
 	exists_on_map = TRUE
 	difficulty = 3
-	steal_hint = "The blueprints of the station, found in the Chief Engineer's locker, or on their person. A picture may suffice."
+	steal_hint = "空间站的蓝图，在总工程师的储物柜中或由其随身携带。照片也可以。"
 
 /obj/item/blueprints/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/blueprints)
@@ -606,13 +606,13 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return FALSE
 
 /datum/objective_item/steal/blackbox
-	name = "the Blackbox"
+	name = "黑匣子"
 	targetitem = /obj/item/blackbox
 	excludefromjob = list(JOB_CHIEF_ENGINEER, JOB_STATION_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN)
 	exists_on_map = TRUE
 	difficulty = 4
-	steal_hint = "The station's data Blackbox, found solely within Telecommunications."
-	destruction_method = "Too strong to be destroyed via normal means - needs to be dusted via the supermatter, or burnt in the chapel's crematorium."
+	steal_hint = "空间站的数据黑匣子，只存在于电信机房中。"
+	destruction_method = "太坚固了，无法以常规手段摧毁。需要用超物质将其化为灰烬，或在教堂的焚化炉中烧毁。"
 
 /obj/item/blackbox/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/blackbox)
@@ -621,74 +621,74 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 // A number of special early-game steal objectives intended to be used with the steal-and-destroy objective.
 // They're basically items of utility or emotional value that may be found on many players or lying around the station.
 /datum/objective_item/steal/traitor/insuls
-	name = "some insulated gloves"
+	name = "一双绝缘手套"
 	targetitem = /obj/item/clothing/gloves/color/yellow
 	excludefromjob = list(JOB_CARGO_TECHNICIAN, JOB_QUARTERMASTER, JOB_ATMOSPHERIC_TECHNICIAN, JOB_STATION_ENGINEER, JOB_CHIEF_ENGINEER)
 	item_owner = list(JOB_STATION_ENGINEER, JOB_CHIEF_ENGINEER)
 	exists_on_map = TRUE
 	difficulty = 1
-	steal_hint = "A basic pair of insulated gloves, usually worn by Assistants, Engineers, or Cargo Technicians."
+	steal_hint = "一双基础绝缘手套，通常由助理、工程师或货运技术员佩戴。"
 
 /obj/item/clothing/gloves/color/yellow/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/clothing/gloves/color/yellow)
 
 /datum/objective_item/steal/traitor/moth_plush
-	name = "a cute moth plush toy"
+	name = "一个可爱的蛾人毛绒玩偶"
 	targetitem = /obj/item/toy/plush/moth
 	excludefromjob = list(JOB_PSYCHOLOGIST, JOB_PARAMEDIC, JOB_CHEMIST, JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CORONER)
 	exists_on_map = TRUE
 	difficulty = 1
-	steal_hint = "A moth plush toy. The Psychologist has one to help console patients."
+	steal_hint = "一个蛾人毛绒玩偶。心理医生有一个，用来安慰患者。"
 
 /obj/item/toy/plush/moth/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/toy/plush/moth)
 
 /datum/objective_item/steal/traitor/lizard_plush
-	name = "a cute lizard plush toy"
+	name = "一个可爱的蜥蜴人毛绒玩偶"
 	targetitem = /obj/item/toy/plush/lizard_plushie
 	exists_on_map = TRUE
 	difficulty = 1
-	steal_hint = "A lizard plush toy. Often found hidden in maintenance."
+	steal_hint = "一个蜥蜴人毛绒玩偶，通常藏在维护隧道中。"
 
 /obj/item/toy/plush/lizard_plushie/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/toy/plush/lizard_plushie)
 
 /datum/objective_item/steal/traitor/denied_stamp
-	name = "cargo's denied stamp"
+	name = "货运部的驳回印章"
 	targetitem = /obj/item/stamp/denied
 	excludefromjob = list(JOB_CARGO_TECHNICIAN, JOB_QUARTERMASTER, JOB_SHAFT_MINER)
 	exists_on_map = TRUE
 	difficulty = 1
-	steal_hint = "Cargo often has multiple of these red stamps lying around to process paperwork."
+	steal_hint = "货运部通常有好几个这种红色印章，用来处理文书。"
 
 /obj/item/stamp/denied/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/stamp/denied)
 
 /datum/objective_item/steal/traitor/granted_stamp
-	name = "cargo's granted stamp"
+	name = "货运部的批准印章"
 	targetitem = /obj/item/stamp/granted
 	excludefromjob = list(JOB_CARGO_TECHNICIAN, JOB_QUARTERMASTER, JOB_SHAFT_MINER)
 	exists_on_map = TRUE
 	difficulty = 1
-	steal_hint = "Cargo often has multiple of these green stamps lying around to process paperwork."
+	steal_hint = "货运部通常有好几个这种绿色印章，用来处理文书。"
 
 /obj/item/stamp/granted/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/stamp/granted)
 
 /datum/objective_item/steal/traitor/space_law
-	name = "a book on space law"
+	name = "一本太空法书籍"
 	targetitem = /obj/item/book/manual/wiki/security_space_law
 	excludefromjob = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_LAWYER, JOB_DETECTIVE)
 	exists_on_map = TRUE
 	difficulty = 1
-	steal_hint = "Sometimes found in the possession of members of Security and Lawyers. \
-		The courtroom and the library are also good places to look."
+	steal_hint = "有时由安保人员或律师持有。\
+		法庭和图书馆也值得找找。"
 
 /obj/item/book/manual/wiki/security_space_law/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/book/manual/wiki/security_space_law)
 
 /datum/objective_item/steal/traitor/rpd
-	name = "a rapid pipe dispenser"
+	name = "一台快速管道铺设器"
 	targetitem = /obj/item/pipe_dispenser
 	excludefromjob = list(
 		JOB_ATMOSPHERIC_TECHNICIAN,
@@ -702,13 +702,13 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	item_owner = list(JOB_CHIEF_ENGINEER)
 	exists_on_map = TRUE
 	difficulty = 1
-	steal_hint = "A tool often used by Engineers, Atmospherics Technicians, and Ordnance Technicians."
+	steal_hint = "工程师、大气技术员和军械技术员常用的工具。"
 
 /obj/item/pipe_dispenser/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/pipe_dispenser)
 
 /datum/objective_item/steal/traitor/donut_box
-	name = "a box of prized donuts"
+	name = "一盒珍贵的甜甜圈"
 	targetitem = /obj/item/storage/fancy/donut_box
 	excludefromjob = list(
 		JOB_CAPTAIN,
@@ -725,7 +725,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	)
 	exists_on_map = TRUE
 	difficulty = 1
-	steal_hint = "Everyone has a box of donuts - you may most commonly find them on the Bridge, within Security, or in any department's break room."
+	steal_hint = "人人都有一盒甜甜圈。最常见的位置是舰桥、安保部和各部门的休息室。"
 
 /obj/item/storage/fancy/donut_box/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/storage/fancy/donut_box)
@@ -734,18 +734,18 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	objective_type = OBJECTIVE_ITEM_TYPE_SPY
 
 /datum/objective_item/steal/spy/lamarr
-	name = "the Research Director's pet headcrab"
+	name = "科研主管的宠物猎头蟹"
 	targetitem = /obj/item/clothing/mask/facehugger/lamarr
 	excludefromjob = list(JOB_RESEARCH_DIRECTOR)
 	exists_on_map = TRUE
 	difficulty = 3
-	steal_hint = "The Research Director's pet headcrab, Lamarr, found in a secure cage in their office."
+	steal_hint = "科研主管的宠物猎头蟹拉玛，关在其办公室的安全笼中。"
 
 /obj/item/clothing/mask/facehugger/lamarr/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/clothing/mask/facehugger/lamarr)
 
 /datum/objective_item/steal/spy/disabler
-	name = "a disabler"
+	name = "一把制伏枪"
 	targetitem = /obj/item/gun/energy/disabler
 	excludefromjob = list(
 		JOB_CAPTAIN,
@@ -756,10 +756,10 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 		JOB_WARDEN,
 	)
 	difficulty = 2
-	steal_hint = "A hand-held disabler, often found in the possession of Security Officers."
+	steal_hint = "一把手持制伏枪，通常由安保员携带。"
 
 /datum/objective_item/steal/spy/energy_gun
-	name = "an energy gun"
+	name = "一把能量枪"
 	targetitem = /obj/item/gun/energy/e_gun
 	excludefromjob = list(
 		JOB_CAPTAIN,
@@ -775,7 +775,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	)
 	exists_on_map = TRUE
 	difficulty = 2
-	steal_hint = "A two-mode energy gun, found in the station's Armory, as well as in the hands of some heads of staff for personal defense."
+	steal_hint = "一把双模式能量枪，存放在空间站军械库中，部分部门主管也会携带以作防身。"
 
 /datum/objective_item/steal/spy/energy_gun/check_special_completion(obj/item/thing)
 	return thing.type == /obj/item/gun/energy/e_gun
@@ -785,7 +785,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 		return add_item_to_steal(src, /obj/item/gun/energy/e_gun)
 
 /datum/objective_item/steal/spy/laser_gun
-	name = "a laser gun"
+	name = "一把激光枪"
 	targetitem = /obj/item/gun/energy/laser
 	excludefromjob = list(
 		JOB_CAPTAIN,
@@ -801,7 +801,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	)
 	exists_on_map = TRUE
 	difficulty = 3
-	steal_hint = "A simple laser gun, found in the station's Armory."
+	steal_hint = "空间站军械库中的一把普通激光枪。"
 
 /datum/objective_item/steal/spy/laser_gun/check_special_completion(obj/item/thing)
 	return thing.type == /obj/item/gun/energy/laser
@@ -811,7 +811,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 		return add_item_to_steal(src, /obj/item/gun/energy/laser)
 
 /datum/objective_item/steal/spy/shotgun
-	name = "a riot shotgun"
+	name = "一把防暴霰弹枪"
 	targetitem = /obj/item/gun/ballistic/shotgun/riot
 	excludefromjob = list(
 		JOB_DETECTIVE,
@@ -822,13 +822,13 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	)
 	exists_on_map = TRUE
 	difficulty = 3
-	steal_hint = "A shotgun found in the station's Armory for riot suppression. Doesn't miss."
+	steal_hint = "空间站军械库中用于镇压暴乱的霰弹枪。弹无虚发。"
 
 /obj/item/gun/ballistic/shotgun/riot/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/gun/ballistic/shotgun/riot)
 
 /datum/objective_item/steal/spy/temp_gun
-	name = "security's temperature gun"
+	name = "安保部的温度枪"
 	targetitem = /obj/item/gun/energy/temperature/security
 	excludefromjob = list(
 		JOB_DETECTIVE,
@@ -839,13 +839,13 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	)
 	exists_on_map = TRUE
 	difficulty = 2 // lowered for the meme
-	steal_hint = "Security's TRUSTY temperature gun, found in the station's Armory."
+	steal_hint = "安保部那把“可靠”的温度枪，存放在空间站军械库中。"
 
 /obj/item/gun/energy/temperature/security/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/gun/energy/temperature/security)
 
 /datum/objective_item/steal/spy/stamp
-	name = "a head of staff's stamp"
+	name = "一名部门主管的印章"
 	targetitem = /obj/item/stamp/head
 	excludefromjob = list(
 		JOB_CAPTAIN,
@@ -858,13 +858,13 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	)
 	exists_on_map = TRUE
 	difficulty = 1
-	steal_hint = "A stamp owned by a head of staff, from their offices."
+	steal_hint = "某位部门主管的印章，放在其办公室中。"
 
 /obj/item/stamp/head/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/stamp/head)
 
 /datum/objective_item/steal/spy/sunglasses
-	name = "some sunglasses"
+	name = "一副太阳镜"
 	targetitem = /obj/item/clothing/glasses/sunglasses
 	excludefromjob = list(
 		JOB_CAPTAIN,
@@ -879,66 +879,66 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 		JOB_WARDEN,
 	)
 	difficulty = 1
-	steal_hint = "A pair of sunglasses. Lawyers often have a few pairs, as do some heads of staff. \
-		You can also obtain a pair from dissassembling hudglasses."
+	steal_hint = "一副太阳镜。律师和部分部门主管通常有好几副。\
+		你也可以通过拆解 HUD 眼镜获得。"
 
 /datum/objective_item/steal/spy/ce_modsuit
-	name = "the chief engineer's advanced MOD control unit"
+	name = "总工程师的高级型 MOD 控制单元"
 	targetitem = /obj/item/mod/control/pre_equipped/advanced
 	excludefromjob = list(JOB_CHIEF_ENGINEER)
 	exists_on_map = TRUE
 	difficulty = 2
-	steal_hint = "An advanced version of the standard Engineering MODsuit commonly worn by the Chief Engineer."
+	steal_hint = "标准工程型 MOD 模块化外骨骼的高级版本，通常由总工程师穿戴。"
 
 /obj/item/mod/control/pre_equipped/advanced/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/mod/control/pre_equipped/advanced)
 
 /datum/objective_item/steal/spy/rd_modsuit
-	name = "the research director's research MOD control unit"
+	name = "科研主管的研究型 MOD 控制单元"
 	targetitem = /obj/item/mod/control/pre_equipped/research
 	excludefromjob = list(JOB_RESEARCH_DIRECTOR)
 	exists_on_map = TRUE
 	difficulty = 2
-	steal_hint = "A bulky MODsuit commonly worn by the Research Director to protect themselves from the hazards of their work."
+	steal_hint = "一套笨重的 MOD 模块化外骨骼，科研主管通常穿着它来抵御工作中的危险。"
 
 /obj/item/mod/control/pre_equipped/research/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/mod/control/pre_equipped/research)
 
 /datum/objective_item/steal/spy/cmo_modsuit
-	name = "the chief medical officer's rescure MOD control unit"
+	name = "首席医疗官的救援型 MOD 控制单元"
 	targetitem = /obj/item/mod/control/pre_equipped/rescue
 	excludefromjob = list(JOB_CHIEF_MEDICAL_OFFICER)
 	exists_on_map = TRUE
 	difficulty = 2
-	steal_hint = "A MODsuit sometimes equipped by the Chief Medical Officer to perform rescue opperations in hazardous environments."
+	steal_hint = "首席医疗官在危险环境中执行救援任务时有时会穿戴的 MOD 模块化外骨骼。"
 
 /obj/item/mod/control/pre_equipped/rescue/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/mod/control/pre_equipped/rescue)
 
 /datum/objective_item/steal/spy/cmo_defib
-	name = "Chief Medical Officer's Compact Defibrillator"
+	name = "首席医疗官的紧凑型除颤器"
 	targetitem = /obj/item/defibrillator/compact/loaded/cmo
 	excludefromjob = list(JOB_CHIEF_MEDICAL_OFFICER)
 	exists_on_map = TRUE
 	difficulty = 2
-	steal_hint = "The Compact Defibrillator, found on their person, or in their closet."
+	steal_hint = "紧凑型除颤器，由首席医疗官随身携带或存放在其储物柜中。"
 
 /obj/item/defibrillator/compact/loaded/cmo/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/defibrillator/compact/loaded/cmo)
 
 /datum/objective_item/steal/spy/hos_modsuit
-	name = "the head of security's safeguard MOD control unit"
+	name = "安保主管的卫护型 MOD 控制单元"
 	targetitem = /obj/item/mod/control/pre_equipped/safeguard
 	excludefromjob = list(JOB_HEAD_OF_SECURITY)
 	exists_on_map = TRUE
 	difficulty = 2
-	steal_hint = "An advanced MODsuit sometimes worn by the Head of Security when needing to detain hostiles invading the station."
+	steal_hint = "一套高级 MOD 模块化外骨骼，安保主管在需要逮捕入侵空间站的敌人时有时会穿戴。"
 
 /obj/item/mod/control/pre_equipped/safeguard/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/mod/control/pre_equipped/safeguard)
 
 /datum/objective_item/steal/spy/stun_baton
-	name = "a stun baton"
+	name = "一根电击警棍"
 	targetitem = /obj/item/melee/baton/security
 	excludefromjob = list(
 		JOB_CAPTAIN,
@@ -949,13 +949,13 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 		JOB_WARDEN,
 	)
 	difficulty = 2
-	steal_hint = "Steal any stun baton from Security."
+	steal_hint = "从安保部偷取任意一根电击警棍。"
 
 /datum/objective_item/steal/spy/stun_baton/check_special_completion(obj/item/thing)
 	return !istype(thing, /obj/item/melee/baton/security/cattleprod)
 
 /datum/objective_item/steal/spy/det_baton
-	name = "the detective's baton"
+	name = "侦探的警棍"
 	targetitem = /obj/item/melee/baton
 	excludefromjob = list(
 		JOB_CAPTAIN,
@@ -967,7 +967,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	)
 	exists_on_map = TRUE
 	difficulty = 2
-	steal_hint = "The detective's old wooden truncheon, commonly found on their person for self defense."
+	steal_hint = "侦探的旧木警棍，通常由其随身携带以作防身。"
 
 /datum/objective_item/steal/spy/det_baton/check_special_completion(obj/item/thing)
 	return thing.type == /obj/item/melee/baton
@@ -977,12 +977,12 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 		return add_item_to_steal(src, /obj/item/melee/baton)
 
 /datum/objective_item/steal/spy/captain_sabre_sheathe
-	name = "the captain's sabre sheathe"
+	name = "舰长的军刀鞘"
 	targetitem = /obj/item/storage/belt/sheath/sabre
 	excludefromjob = list(JOB_CAPTAIN)
 	exists_on_map = TRUE
 	difficulty = 3
-	steal_hint = "The sheathe for the captain's sabre, found in their closet or strapped to their waist at all times."
+	steal_hint = "舰长军刀的刀鞘，放在其储物柜中，或一直系在其腰间。"
 
 /obj/item/storage/belt/sheath/sabre/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/storage/belt/sheath/sabre)

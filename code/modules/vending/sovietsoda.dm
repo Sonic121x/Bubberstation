@@ -1,10 +1,10 @@
 /obj/machinery/vending/sovietsoda
 	name = "\improper BODA"
-	desc = "Old sweet water vending machine."
+	desc = "一台老式的甜味汽水售货机。"
 	icon_state = "sovietsoda"
 	panel_type = "panel8"
 	light_mask = "soviet-light-mask"
-	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
+	product_ads = "为了沙皇与祖国。;你今天完成营养配额了吗？;非常好！;我们是很朴素的人，我们就吃这些。;有人就有问题。没有人就没有问题。"
 	products = list(
 		/obj/item/reagent_containers/cup/glass/drinkingglass/filled/soda = 30,
 	)

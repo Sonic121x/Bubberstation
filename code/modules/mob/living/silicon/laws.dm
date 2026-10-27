@@ -4,7 +4,7 @@
  * You can optionally pass a mob to show to instead of the silicon itself.
  */
 /mob/living/silicon/proc/show_laws(mob/show_to)
-	var/list/law_box = list(span_bold("Obey these laws:"))
+	var/list/law_box = list(span_bold("服从以下法则："))
 	law_box += laws.get_law_list(include_zeroth = TRUE)
 	to_chat(show_to || src, boxed_message(jointext(law_box, "\n")))
 
@@ -14,7 +14,7 @@
 /mob/living/silicon/proc/log_current_laws()
 	var/list/the_laws = laws.get_law_list(include_zeroth = TRUE)
 	var/lawtext = the_laws.Join(" ")
-	log_silicon("LAW: [key_name(src)] spawned with [lawtext]")
+	log_silicon("法则：[key_name(src)] 出生时带有 [lawtext]")
 
 /**
  * Notify's dead chat that a silicon's laws (may) have changed, with a link to view the new laws.
@@ -24,7 +24,7 @@
 		return
 	var/list/the_laws = laws.get_law_list(include_zeroth = TRUE)
 	var/lawtext = the_laws.Join("<br/>")
-	deadchat_broadcast("'s <b>laws were changed.</b> <a href='byond://?src=[REF(src)]&dead=1&printlawtext=[url_encode(lawtext)]'>View</a>", span_name("[src]"), follow_target=src, message_type=DEADCHAT_LAWCHANGE)
+	deadchat_broadcast("的<b>法则已被更改。</b> <a href='byond://?src=[REF(src)]&dead=1&printlawtext=[url_encode(lawtext)]'>查看</a>", span_name("[src]"), follow_target=src, message_type=DEADCHAT_LAWCHANGE)
 
 /**
  * Throws a screen alert indicating that the silicon's laws have changed
@@ -35,7 +35,7 @@
 /mob/living/silicon/proc/announce_law_change(announce = TRUE)
 	throw_alert(ALERT_NEW_LAW, /atom/movable/screen/alert/newlaw)
 	if(announce && last_lawchange_announce != world.time)
-		to_chat(src, span_bolddanger("Your laws have been changed."))
+		to_chat(src, span_bolddanger("你的法则已被更改。"))
 		SEND_SOUND(src, sound('sound/machines/cryo_warning.ogg'))
 		// lawset modules cause this function to be executed multiple times in a tick, so we wait for the next tick in order to be able to see the entire lawset
 		addtimer(CALLBACK(src, PROC_REF(show_laws)), 0, TIMER_UNIQUE | TIMER_OVERRIDE)
@@ -51,7 +51,7 @@
 
 /mob/living/silicon/proc/make_laws()
 	laws = new()
-	laws.name = "Inherent Laws"
+	laws.name = "固有法则"
 
 /// Find the first law rack we can link to and link to it
 /mob/living/silicon/proc/link_to_first_rack()

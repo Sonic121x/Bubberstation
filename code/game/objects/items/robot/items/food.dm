@@ -4,8 +4,8 @@
 #define DISPENSE_ICECREAM_MODE 4
 
 /obj/item/borg/lollipop
-	name = "treat fabricator"
-	desc = "Reward humans with various treats. Toggle in-module to switch between dispensing and high velocity ejection modes."
+	name = "零食制造器"
+	desc = "用各种零食奖励人类。在模块内切换，可在发放模式与高速弹射模式之间切换。"
 	icon_state = "lollipop"
 	/// The current amount of available candy
 	var/candy = 5
@@ -45,7 +45,7 @@
 ///Dispenses a lollipop
 /obj/item/borg/lollipop/proc/dispense(atom/atom_dispensed_to, mob/user)
 	if(candy <= 0)
-		to_chat(user, span_warning("No treats left in storage!"))
+		to_chat(user, span_warning("储备中没有零食了！"))
 		return FALSE
 	var/turf/turf_to_dispense_to = get_turf(atom_dispensed_to)
 	if(!turf_to_dispense_to || !isopenturf(turf_to_dispense_to))
@@ -61,7 +61,7 @@
 			food_item = new /obj/item/food/lollipop/cyborg(turf_to_dispense_to)
 		if(DISPENSE_ICECREAM_MODE)
 			food_item = new /obj/item/food/icecream(turf_to_dispense_to, list(ICE_CREAM_VANILLA))
-			food_item.desc = "Eat the ice cream."
+			food_item.desc = "把冰淇淋吃掉。"
 
 	var/into_hands = FALSE
 	if(ismob(atom_dispensed_to))
@@ -72,9 +72,9 @@
 	check_amount()
 
 	if(into_hands)
-		user.visible_message(span_notice("[user] dispenses a treat into the hands of [atom_dispensed_to]."), span_notice("You dispense a treat into the hands of [atom_dispensed_to]."), span_hear("You hear a click."))
+		user.visible_message(span_notice("[user]把一份零食发放到[atom_dispensed_to]手中。"), span_notice("你把一份零食发放到[atom_dispensed_to]手中。"), span_hear("你听到一声咔嗒。"))
 	else
-		user.visible_message(span_notice("[user] dispenses a treat."), span_notice("You dispense a treat."), span_hear("You hear a click."))
+		user.visible_message(span_notice("[user]发放了一份零食。"), span_notice("你发放了一份零食。"), span_hear("你听到一声咔嗒。"))
 
 	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 	return TRUE
@@ -82,7 +82,7 @@
 /// Shoot a lollipop
 /obj/item/borg/lollipop/proc/shootL(atom/target, mob/living/user, params)
 	if(candy <= 0)
-		to_chat(user, span_warning("Not enough lollipops left!"))
+		to_chat(user, span_warning("棒棒糖不够了！"))
 		return FALSE
 	candy--
 
@@ -95,13 +95,13 @@
 
 	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 	lollipop.fire_casing(target, user, params, 0, 0, null, 0, src)
-	user.visible_message(span_warning("[user] blasts a flying lollipop at [target]!"))
+	user.visible_message(span_warning("[user]朝[target]射出一根飞行的棒棒糖！"))
 	check_amount()
 
 /// Shoot a gumball
 /obj/item/borg/lollipop/proc/shootG(atom/target, mob/living/user, params)
 	if(candy <= 0)
-		to_chat(user, span_warning("Not enough gumballs left!"))
+		to_chat(user, span_warning("口香糖球不够了！"))
 		return FALSE
 	candy--
 	var/obj/item/ammo_casing/gumball/gumball
@@ -114,7 +114,7 @@
 	gumball.loaded_projectile.color = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
 	playsound(src.loc, 'sound/items/weapons/bulletflyby3.ogg', 50, TRUE)
 	gumball.fire_casing(target, user, params, 0, 0, null, 0, src)
-	user.visible_message(span_warning("[user] shoots a high-velocity gumball at [target]!"))
+	user.visible_message(span_warning("[user]朝[target]射出一颗高速口香糖球！"))
 	check_amount()
 
 /obj/item/borg/lollipop/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -122,7 +122,7 @@
 	if(iscyborg(user))
 		var/mob/living/silicon/robot/robot_user = user
 		if(!robot_user.cell?.use(0.012 * STANDARD_CELL_CHARGE))
-			to_chat(user, span_warning("Not enough power."))
+			to_chat(user, span_warning("电量不足。"))
 			return ITEM_INTERACT_BLOCKING
 
 	switch(mode)
@@ -141,7 +141,7 @@
 	if(iscyborg(user))
 		var/mob/living/silicon/robot/robot_user = user
 		if(!robot_user.cell?.use(0.012 * STANDARD_CELL_CHARGE))
-			to_chat(user, span_warning("Not enough power."))
+			to_chat(user, span_warning("电量不足。"))
 			return ITEM_INTERACT_BLOCKING
 
 	switch(mode)
@@ -159,20 +159,20 @@
 	switch(mode)
 		if(DISPENSE_LOLLIPOP_MODE)
 			mode = THROW_LOLLIPOP_MODE
-			to_chat(user, span_notice("Module is now throwing lollipops."))
+			to_chat(user, span_notice("模块现在会投掷棒棒糖。"))
 		if(THROW_LOLLIPOP_MODE)
 			mode = THROW_GUMBALL_MODE
-			to_chat(user, span_notice("Module is now blasting gumballs."))
+			to_chat(user, span_notice("模块现在会发射口香糖球。"))
 		if(THROW_GUMBALL_MODE)
 			mode = DISPENSE_ICECREAM_MODE
-			to_chat(user, span_notice("Module is now dispensing ice cream."))
+			to_chat(user, span_notice("模块现在会发放冰淇淋。"))
 		if(DISPENSE_ICECREAM_MODE)
 			mode = DISPENSE_LOLLIPOP_MODE
-			to_chat(user, span_notice("Module is now dispensing lollipops."))
+			to_chat(user, span_notice("模块现在会发放棒棒糖。"))
 
 /obj/item/borg/lollipop/ice_cream
-	name = "ice cream fabricator"
-	desc = "Reward humans with vanilla ice cream. Can't go wrong with it."
+	name = "冰淇淋制造器"
+	desc = "用香草冰淇淋奖励人类。选它准没错。"
 	candy = 4
 	candymax = 4
 	charge_delay = 15 SECONDS
@@ -182,8 +182,8 @@
 	return
 
 /obj/item/ammo_casing/gumball
-	name = "Gumball"
-	desc = "Why are you seeing this?!"
+	name = "口香糖球"
+	desc = "你为什么会看到这个？！"
 	projectile_type = /obj/projectile/bullet/gumball
 	click_cooldown_override = 2
 
@@ -195,8 +195,8 @@
 	projectile_type = /obj/projectile/bullet/gumball/harmful
 
 /obj/projectile/bullet/gumball
-	name = "gumball"
-	desc = "Oh noes! A fast-moving gumball!"
+	name = "口香糖球"
+	desc = "糟糕！一颗高速飞行的口香糖球！"
 	icon_state = "gumball"
 	damage = 0
 	speed = 2
@@ -215,8 +215,8 @@
 	gumball.color = color
 
 /obj/item/ammo_casing/lollipop //NEEDS RANDOMIZED COLOR LOGIC.
-	name = "Lollipop"
-	desc = "Why are you seeing this?!"
+	name = "棒棒糖"
+	desc = "你为什么会看到这个？！"
 	projectile_type = /obj/projectile/bullet/lollipop
 	click_cooldown_override = 2
 
@@ -228,8 +228,8 @@
 	projectile_type = /obj/projectile/bullet/lollipop/harmful
 
 /obj/projectile/bullet/lollipop
-	name = "lollipop"
-	desc = "Oh noes! A fast-moving lollipop!"
+	name = "棒棒糖"
+	desc = "糟糕！一根高速飞行的棒棒糖！"
 	icon_state = "lollipop_1"
 	damage = 0
 	speed = 2
@@ -270,8 +270,8 @@
 #undef DISPENSE_ICECREAM_MODE
 
 /obj/item/borg/cookbook
-	name = "Codex Cibus Mechanicus"
-	desc = "It's a robot cookbook!"
+	name = "《机械食谱法典》"
+	desc = "这是一本机器人食谱！"
 	icon = 'icons/obj/service/library.dmi'
 	icon_state = "cooked_book"
 	item_flags = NOBLUDGEON

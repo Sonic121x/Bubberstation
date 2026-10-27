@@ -86,16 +86,16 @@
 
 
 // Heretic path defines.
-#define PATH_START "Start Path"
-#define PATH_SIDE "Side Path"
-#define PATH_ASH "Ash Path"
-#define PATH_RUST "Rust Path"
-#define PATH_FLESH "Flesh Path"
-#define PATH_VOID "Void Path"
-#define PATH_BLADE "Blade Path"
-#define PATH_COSMIC "Cosmic Path"
-#define PATH_LOCK "Lock Path"
-#define PATH_MOON "Moon Path"
+#define PATH_START "起始之道"
+#define PATH_SIDE "旁支之道"
+#define PATH_ASH "灰烬之道"
+#define PATH_RUST "锈蚀之道"
+#define PATH_FLESH "血肉之道"
+#define PATH_VOID "虚空之道"
+#define PATH_BLADE "刀锋之道"
+#define PATH_COSMIC "星辰之道"
+#define PATH_LOCK "启锁之道"
+#define PATH_MOON "月华之道"
 
 //Heretic knowledge tree defines
 #define HKT_NEXT "next"
@@ -164,10 +164,10 @@
 /// Selects a random location for the blob to be placed.
 #define BLOB_RANDOM_PLACEMENT 1
 
-#define CONSTRUCT_JUGGERNAUT "Juggernaut"
-#define CONSTRUCT_WRAITH "Wraith"
-#define CONSTRUCT_ARTIFICER "Artificer"
-#define CONSTRUCT_HARVESTER "Harvester"
+#define CONSTRUCT_JUGGERNAUT "主宰"
+#define CONSTRUCT_WRAITH "怨灵"
+#define CONSTRUCT_ARTIFICER "工匠"
+#define CONSTRUCT_HARVESTER "收割者"
 
 /// The Classic Wizard wizard loadout.
 #define WIZARD_LOADOUT_CLASSIC "loadout_classic"
@@ -417,27 +417,27 @@ GLOBAL_LIST_INIT(human_invader_antagonists, list(
 #define REVENANT_NAME_FILE "revenant_names.json"
 
 /// Antag panel groups
-#define ANTAG_GROUP_ABDUCTORS "Abductors"
-#define ANTAG_GROUP_ABOMINATIONS "Extradimensional Abominations"
-#define ANTAG_GROUP_ARACHNIDS "Arachnid Infestation"
-#define ANTAG_GROUP_ASHWALKERS "Ash Walkers"
-#define ANTAG_GROUP_BIOHAZARDS "Biohazards"
-#define ANTAG_GROUP_BLOODY "Bloody Monstrosities"
-#define ANTAG_GROUP_CLOWNOPS "Clown Operatives"
-#define ANTAG_GROUP_ERT "Emergency Response Team"
-#define ANTAG_GROUP_GLITCH "Digital Anomalies"
-#define ANTAG_GROUP_HORRORS "Eldritch Horrors"
-#define ANTAG_GROUP_LEVIATHANS "Spaceborne Leviathans"
-#define ANTAG_GROUP_NINJAS "Ninja Clan"
-#define ANTAG_GROUP_OVERGROWTH "Invasive Overgrowth"
-#define ANTAG_GROUP_PIRATES "Pirate Crew"
-#define ANTAG_GROUP_SYNDICATE "Syndicate"
-#define ANTAG_GROUP_WIZARDS "Wizard Federation"
-#define ANTAG_GROUP_XENOS "Xenomorph Infestation"
-#define ANTAG_GROUP_FUGITIVES "Escaped Fugitives"
-#define ANTAG_GROUP_HUNTERS "Bounty Hunters"
-#define ANTAG_GROUP_PARADOX "Spacetime Aberrations"
-#define ANTAG_GROUP_CREW "Deviant Crew"
+#define ANTAG_GROUP_ABDUCTORS "绑架者"
+#define ANTAG_GROUP_ABOMINATIONS "异维畸怪"
+#define ANTAG_GROUP_ARACHNIDS "蛛形生物入侵"
+#define ANTAG_GROUP_ASHWALKERS "灰行者"
+#define ANTAG_GROUP_BIOHAZARDS "生物危害"
+#define ANTAG_GROUP_BLOODY "血腥怪物"
+#define ANTAG_GROUP_CLOWNOPS "小丑特工"
+#define ANTAG_GROUP_ERT "紧急响应小队"
+#define ANTAG_GROUP_GLITCH "数字异常"
+#define ANTAG_GROUP_HORRORS "邪异恐怖"
+#define ANTAG_GROUP_LEVIATHANS "太空巨兽"
+#define ANTAG_GROUP_NINJAS "忍者氏族"
+#define ANTAG_GROUP_OVERGROWTH "侵入性植被蔓延"
+#define ANTAG_GROUP_PIRATES "海盗船员"
+#define ANTAG_GROUP_SYNDICATE "辛迪加"
+#define ANTAG_GROUP_WIZARDS "巫师联邦"
+#define ANTAG_GROUP_XENOS "异形入侵"
+#define ANTAG_GROUP_FUGITIVES "逃犯"
+#define ANTAG_GROUP_HUNTERS "赏金猎人"
+#define ANTAG_GROUP_PARADOX "时空畸变"
+#define ANTAG_GROUP_CREW "失常船员"
 
 
 /// Used to denote an antag datum that either isn't necessarily "evil" (like Valentines)
@@ -448,11 +448,11 @@ GLOBAL_LIST_INIT(human_invader_antagonists, list(
 /// Antag's panel action button and the UI therein is viewable by observers
 #define ANTAG_OBSERVER_VISIBLE_PANEL (1 << 2)
 
-#define HUNTER_PACK_COPS "Spacepol Fugitive Hunters"
-#define HUNTER_PACK_RUSSIAN "Russian Fugitive Hunters"
-#define HUNTER_PACK_BOUNTY "Bounty Fugitive Hunters"
-#define HUNTER_PACK_PSYKER "Psyker Fugitive Hunters"
-#define HUNTER_PACK_MI13 "MI13 Fugitive Hunters"
+#define HUNTER_PACK_COPS "太空警察追逃队"
+#define HUNTER_PACK_RUSSIAN "俄罗斯追逃队"
+#define HUNTER_PACK_BOUNTY "赏金追逃队"
+#define HUNTER_PACK_PSYKER "灵能者追逃队"
+#define HUNTER_PACK_MI13 "军情十三处追逃队"
 
 /// Changeling abilities with DNA cost = this are innately given to all changelings
 #define CHANGELING_POWER_INNATE -1

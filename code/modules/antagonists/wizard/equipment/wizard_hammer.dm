@@ -1,7 +1,7 @@
 /////////////////////////////////////////Singularity Hammer///////////////////
 /obj/item/singularityhammer
-	name = "singularity hammer"
-	desc = "The pinnacle of close combat technology, the hammer harnesses the power of a miniaturized singularity to deal crushing blows."
+	name = "奇点锤"
+	desc = "近战科技的巅峰之作，这把锤子驾驭微型奇点的力量，打出毁灭性的重击。"
 	icon = 'icons/obj/weapons/hammer.dmi'
 	icon_state = "singularity_hammer0"
 	base_icon_state = "singularity_hammer"
@@ -17,7 +17,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	armor_type = /datum/armor/item_singularityhammer
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	force_string = "LORD SINGULOTH HIMSELF"
+	force_string = "奇点尊主本尊"
 	///Is it able to pull shit right now?
 	var/charged = TRUE
 
@@ -74,8 +74,8 @@
 
 /////////////////////////////////////////Mjollnir///////////////////
 /obj/item/mjollnir
-	name = "Mjollnir"
-	desc = "A weapon worthy of a god, able to strike with the force of a lightning bolt. It crackles with barely contained energy."
+	name = "妙尔尼尔"
+	desc = "配得上神明的武器，能以闪电的力量发动打击。它噼啪作响，能量几乎难以约束。"
 	icon = 'icons/obj/weapons/hammer.dmi'
 	icon_state = "mjollnir0"
 	base_icon_state = "mjollnir"
@@ -107,9 +107,9 @@
 	target.Knockdown(10 SECONDS)
 	var/datum/effect_system/basic/lightning_spread/lightning = new(target.loc, 5, TRUE)
 	lightning.start()
-	target.visible_message(span_danger("[target.name] is shocked by [src]!"), \
-		span_userdanger("You feel a powerful shock course through your body sending you flying!"), \
-		span_hear("You hear a heavy electrical crack!"))
+	target.visible_message(span_danger("[target.name]被[src]电击！"), \
+		span_userdanger("你感到一股强大的电流贯通全身，把你击飞出去！"), \
+		span_hear("你听到一声沉重的电弧爆响！"))
 	var/atom/throw_target = get_edge_target_turf(target, get_dir(src, get_step_away(target, src)))
 	target.throw_at(throw_target, 200, 4)
 

@@ -1,10 +1,10 @@
 /datum/lazy_template/virtual_domain/heretic_hunt
-	name = "Heretical Hunt"
+	name = "异端狩猎"
 	cost = BITRUNNER_COST_LOW
-	desc = "Betray your fellow man to achieve ultimate power."
+	desc = "背叛你的同胞，以获得至高无上的力量。"
 	difficulty = BITRUNNER_DIFFICULTY_LOW
-	help_text = "Heretics require sacrifice to fuel their dark rituals - bring corpses back to the ritual site! \
-		Corpses of higher ranking crew members are more valuable and may be holding useful equipment."
+	help_text = "异教徒需要献祭来驱动他们的黑暗仪式——把尸体带回仪式现场！\
+		级别更高的船员的尸体更有价值，而且可能携带着有用的装备。"
 	forced_outfit = /datum/outfit/virtual_domain_heretic
 	key = "heretic_hunt"
 	map_name = "heretic_hunt"
@@ -53,14 +53,14 @@
 
 	// mimic a ritual effect
 	if(locate(/obj/structure/closet/crate/secure/bitrunning/encrypted) in range(1, rune))
-		rune.balloon_alert_to_viewers("ritual completed")
+		rune.balloon_alert_to_viewers("仪式完成")
 	else
-		rune.balloon_alert_to_viewers("sacrifice accepted")
+		rune.balloon_alert_to_viewers("献祭已接受")
 	flick("[rune.icon_state]_active", rune)
 	playsound(rune, 'sound/effects/magic/castsummon.ogg', 50, TRUE, extrarange = SILENCED_SOUND_EXTRARANGE, falloff_exponent = 10, ignore_walls = FALSE)
 
 /datum/outfit/virtual_domain_heretic
-	name = "Virtual Domain Heretic"
+	name = "虚拟域异教徒"
 
 	// this gear is just given to them in the safehouse
 	// suit = /obj/item/clothing/suit/hooded/cultrobes/eldritch
@@ -84,7 +84,7 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_TARGET_MINIMUM_STAT = HARD_CRIT,
-		BB_REINFORCEMENTS_SAY = "Help me!",
+		BB_REINFORCEMENTS_SAY = "救救我！",
 		BB_CALLS_REINFORCEMENTS = TRUE,
 	)
 	ai_movement = /datum/ai_movement/basic_avoidance
@@ -101,8 +101,8 @@
 
 // The actual crewmate
 /mob/living/basic/fake_crewman
-	name = "crewmember"
-	desc = "How do you do, fellow crewmen?"
+	name = "船员"
+	desc = "你好啊，船员同胞们？"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	faction = list(FACTION_HOSTILE, "vdom_fake_crew")
 	icon = 'icons/mob/simple/simple_human.dmi'
@@ -139,19 +139,19 @@
 	exposed_wound_bonus = weapon::exposed_wound_bonus * 0.5
 
 /mob/living/basic/fake_crewman/md
-	name = "medical doctor"
+	name = "医生"
 	death_spawner = /obj/effect/mob_spawn/corpse/human/doctor
 	weapon = /obj/item/circular_saw
 
 /mob/living/basic/fake_crewman/sec
-	name = "security officer"
+	name = "安保官"
 	ai_controller = /datum/ai_controller/basic_controller/fake_crewman/instant_hostile
 	death_spawner = /obj/effect/mob_spawn/corpse/human/secoff
 	weapon = /obj/item/knife/combat/survival
 	damage_coeff = list(BRUTE = 0.6, BURN = 0.6, TOX = 1, STAMINA = 1, OXY = 1)
 
 /mob/living/basic/fake_crewman/engi
-	name = "engineer"
+	name = "工程师"
 	death_spawner = /obj/effect/mob_spawn/corpse/human/engineer
 	weapon = /obj/item/weldingtool
 	attack_sound = 'sound/items/tools/welder.ogg'
@@ -163,7 +163,7 @@
 	damage_coeff = list(BRUTE = 0.8, BURN = 0.8, TOX = 1, STAMINA = 1, OXY = 1)
 
 /mob/living/basic/fake_crewman/assistant
-	name = "assistant"
+	name = "助手"
 	ai_controller = /datum/ai_controller/basic_controller/fake_crewman/instant_hostile
 	death_spawner = /obj/effect/mob_spawn/corpse/human/assistant
 	weapon = /obj/item/knife/shiv
@@ -172,7 +172,7 @@
 	weapon = /obj/item/storage/toolbox/mechanical
 
 /mob/living/basic/fake_crewman/boss
-	name = "senior crewmember"
+	name = "资深船员"
 	maxHealth = 120
 	health = 120
 	melee_damage_lower = 20
@@ -180,12 +180,12 @@
 	armour_penetration = 30
 
 /mob/living/basic/fake_crewman/boss/cmo
-	name = "chief medical officer"
+	name = "首席医疗官"
 	death_spawner = /obj/effect/mob_spawn/corpse/human/cmo
 	weapon = /obj/item/surgicaldrill
 
 /mob/living/basic/fake_crewman/boss/ce
-	name = "chief engineer"
+	name = "总工程师"
 	ai_controller = /datum/ai_controller/basic_controller/fake_crewman/ranged
 	death_spawner = /obj/effect/mob_spawn/corpse/human/ce
 	weapon = /obj/item/gun/energy/plasmacutter/adv
@@ -195,7 +195,7 @@
 	AddComponent(/datum/component/ranged_attacks, /obj/item/ammo_casing/energy/plasma/adv, projectile_sound = 'sound/items/weapons/plasma_cutter.ogg', cooldown_time = 1.6 SECONDS)
 
 /mob/living/basic/fake_crewman/boss/hos
-	name = "head of security"
+	name = "安保主管"
 	ai_controller = /datum/ai_controller/basic_controller/fake_crewman/instant_hostile/ranged
 	death_spawner = /obj/effect/mob_spawn/corpse/human/hos
 	weapon = /obj/item/gun/energy/e_gun/hos

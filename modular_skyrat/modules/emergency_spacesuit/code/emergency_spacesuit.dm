@@ -5,8 +5,8 @@
 
 // The suit
 /obj/item/clothing/suit/space/emergency
-	name = "emergency space suit"
-	desc = "A fragile looking emergency spacesuit for limited use in space."
+	name = "应急太空服"
+	desc = "一套看似脆弱的应急太空服，仅供在太空中有限使用。"
 	icon_state = "syndicate-orange"
 	inhand_icon_state = "syndicate-orange"
 	heat_protection = NONE
@@ -35,7 +35,7 @@
 /obj/item/clothing/suit/space/emergency/proc/user_damaged(datum/source, damage, damagetype, def_zone)
 	SIGNAL_HANDLER
 	if(damage && !torn && prob(50))
-		balloon_alert_to_viewers("[src] tears!")
+		balloon_alert_to_viewers("[src] 被撕破了！")
 		clothing_flags &= ~STOPSPRESSUREDAMAGE
 		torn = TRUE
 		playsound(src, 'sound/items/weapons/slashmiss.ogg', 50, TRUE)
@@ -46,18 +46,18 @@
 /obj/item/clothing/suit/space/emergency/update_name(updates)
 	. = ..()
 	if(torn)
-		name = "torn [src]"
+		name = "破损的 [src]"
 
 /obj/item/clothing/suit/space/emergency/examine(mob/user)
 	. = ..()
 	if(torn)
-		. += span_danger("It looks torn and useless!")
+		. += span_danger("它看起来已经破损，无法使用了！")
 
 
 // The helmet
 /obj/item/clothing/head/helmet/space/emergency
-	name = "emergency space helmet"
-	desc = "A fragile looking emergency spacesuit helmet for limited use in space."
+	name = "应急太空头盔"
+	desc = "一顶看似脆弱的应急太空服头盔，仅供在太空中有限使用。"
 	icon_state = "syndicate-helm-orange"
 	inhand_icon_state = "syndicate-helm-orange"
 	heat_protection = NONE
@@ -75,8 +75,8 @@
 // Lil box to hold em in
 
 /obj/item/storage/box/emergency_spacesuit
-	name = "emergency space suit case"
-	desc =  "A small case containing an emergency space suit and helmet."
+	name = "应急太空服箱"
+	desc =  "一只装有一套应急太空服和头盔的小箱子。"
 	icon = 'modular_skyrat/modules/more_briefcases/icons/briefcases.dmi'
 	icon_state = "briefcase_suit"
 	illustration = null

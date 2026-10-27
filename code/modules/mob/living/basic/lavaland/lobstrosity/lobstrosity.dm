@@ -1,22 +1,22 @@
 /// Cowardly mob with a charging attack
 /mob/living/basic/mining/lobstrosity
-	name = "arctic lobstrosity"
-	desc = "These hairy crustaceans creep and multiply in underground lakes deep below the ice. They have a particular taste for fingers."
+	name = "北极龙虾怪"
+	desc = "这些毛茸茸的甲壳类在冰层深处的地下湖中爬行繁衍。它们对指头情有独钟。"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	icon_state = "arctic_lobstrosity"
 	icon_living = "arctic_lobstrosity"
 	icon_dead = "arctic_lobstrosity_dead"
-	friendly_verb_continuous = "chitters at"
-	friendly_verb_simple = "chitters at"
-	speak_emote = list("chitters")
+	friendly_verb_continuous = "唧唧叫着凑近"
+	friendly_verb_simple = "唧唧叫着凑近"
+	speak_emote = list("唧唧作响")
 	maxHealth = 150
 	health = 150
 	obj_damage = 15
 	mob_biotypes = MOB_ORGANIC|MOB_CRUSTACEAN|MOB_AQUATIC|MOB_MINING
 	melee_damage_lower = 15
 	melee_damage_upper = 19
-	attack_verb_continuous = "snips"
-	attack_verb_simple = "snip"
+	attack_verb_continuous = "剪断"
+	attack_verb_simple = "剪断"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE // Closer than a scratch to a crustacean pinching effect
 	melee_attack_cooldown = 1 SECONDS
@@ -50,7 +50,7 @@
 	AddComponent(\
 		/datum/component/amputating_limbs,\
 		surgery_time = snip_speed, \
-		surgery_verb = "begins snipping",\
+		surgery_verb = "剪下",\
 		target_zones = GLOB.arm_zones,\
 	)
 	charge = new charge_type(src)
@@ -88,10 +88,10 @@
 	AddComponent(/datum/component/happiness)
 	AddComponent(/datum/component/obeys_commands, pet_commands)
 	ai_controller.ai_traits |= STOP_MOVING_WHEN_PULLED
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
 
 /mob/living/basic/mining/lobstrosity/befriend(mob/living/new_friend)
 	. = ..()
@@ -107,15 +107,15 @@
 
 /// Lavaland lobster variant, it basically just looks different
 /mob/living/basic/mining/lobstrosity/lava
-	name = "chasm lobstrosity"
-	desc = "Twitching crustaceans boiled red by the sulfurous fumes of the chasms in which they lurk. They have a particular taste for fingers."
+	name = "深渊龙虾怪"
+	desc = "被深渊中含硫的烟气煮得通红的甲壳类，抽搐不止。它们对指头情有独钟。"
 	icon_state = "lobstrosity"
 	icon_living = "lobstrosity"
 	icon_dead = "lobstrosity_dead"
 
 /// Charge a long way, knock down for longer, and perform an instant melee attack
 /datum/action/cooldown/mob_cooldown/charge/basic_charge/lobster
-	name = "Lobster Rush"
+	name = "龙虾冲刺"
 	charge_distance = 8
 	knockdown_duration = 2.5 SECONDS
 
@@ -140,8 +140,8 @@
 
 ///A weaker, yet somewhat faster lobstrosity. Sources include aquarium chasm chrabs, chasms, plasma rivers and perhaps xenobio.
 /mob/living/basic/mining/lobstrosity/juvenile
-	name = "juvenile arctic lobstrosity"
-	desc = "A youngling of the behemothic arctic lobstrosity. They usually stay put in the underground lakes they reside in until they're fully grown."
+	name = "北极龙虾怪幼体"
+	desc = "巨型北极龙虾怪的幼体。它们通常待在自己栖息的地下湖里，直到完全长大。"
 	icon_state = "arctic_juveline_lobstrosity"
 	icon_living = "arctic_juveline_lobstrosity"
 	icon_dead = "arctic_juveline_lobstrosity_dead"
@@ -175,7 +175,7 @@
 /datum/emote/lobstrosity_juvenile/chitter
 	key = "chitter"
 	key_third_person = "chitters"
-	message = "chitters pleasantly!"
+	message = "愉快地唧唧作响！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	sound = 'sound/mobs/non-humanoids/insect/chitter.ogg'
 
@@ -242,8 +242,8 @@
 	qdel(src) //We called change_mob_type without 'delete_old_mob = TRUE' since we had to pass down friends and damage
 
 /mob/living/basic/mining/lobstrosity/juvenile/lava
-	name = "juvenile chasm lobstrosity"
-	desc = "A youngling of the behemothic lobstrosity. They usually don't crawl out of the vents they reside in until they're fully grown."
+	name = "深渊龙虾怪幼体"
+	desc = "巨型龙虾怪的幼体。它们通常要等完全长大才会从栖息的喷口里爬出来。"
 	icon_state = "juveline_lobstrosity"
 	icon_living = "juveline_lobstrosity"
 	icon_dead = "juveline_lobstrosity_dead"
@@ -251,7 +251,7 @@
 
 /// Shorter, weaker version of the Lobster Rush
 /datum/action/cooldown/mob_cooldown/charge/basic_charge/lobster/shrimp
-	name = "Shrimp Rush"
+	name = "虾仔冲刺"
 	charge_distance = 4
 	knockdown_duration = 1.8 SECONDS
 	charge_delay = 0.2 SECONDS
@@ -262,13 +262,13 @@
 
 ///Command the lobster to charge at someone.
 /datum/pet_command/use_ability/lob_charge
-	command_name = "Charge"
-	command_desc = "Command your lobstrosity to charge against someone."
+	command_name = "冲锋"
+	command_desc = "命令你的龙虾怪向某人发起冲锋。"
 	radial_icon = 'icons/mob/actions/actions_items.dmi'
 	radial_icon_state = "sniper_zoom"
 	speech_commands = list("charge", "slam", "tackle")
-	command_feedback = "growl"
-	pointed_reaction = "and growls"
+	command_feedback = "低吼"
+	pointed_reaction = "，发出了低吼"
 	pet_ability_key = BB_TARGETED_ACTION
 
 /datum/pet_command/use_ability/lob_charge/set_command_target(mob/living/parent, atom/target)
@@ -276,7 +276,7 @@
 		return FALSE
 	var/datum/targeting_strategy/targeter = GET_TARGETING_STRATEGY(parent.ai_controller.blackboard[targeting_strategy_key])
 	if(!targeter?.is_valid_target(parent, target))
-		parent.balloon_alert_to_viewers("shakes head!")
+		parent.balloon_alert_to_viewers("摇了摇头！")
 		return FALSE
 	return ..()
 

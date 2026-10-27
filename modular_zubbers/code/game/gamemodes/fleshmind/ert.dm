@@ -8,8 +8,8 @@
 
 
 /datum/ert/odst/fleshmind
-	rename_team = "end-game ODST"
-	polldesc = "the last defense of centcom"
+	rename_team = "终局轨道空降突击队"
+	polldesc = "中央指挥部的最后防线"
 
 
 /datum/ert/odst/fleshmind/post_setup(datum/team/incoming_team)
@@ -39,4 +39,4 @@
 			"style" = /datum/pod_style/deathsquad,
 			"spawn" = living_mob,
 		))
-		to_chat(living_mob, span_redtext("The drop pod thrusters fire up, you're being deployed to the station!"))
+		to_chat(living_mob, span_redtext("空降舱推进器点火，你正被部署到空间站！"))

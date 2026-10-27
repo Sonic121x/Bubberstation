@@ -1,13 +1,13 @@
 /obj/item/storage/box/syndie_kit/syndicate_teleporter
-	name = "syndicate teleporter kit"
+	name = "辛迪加传送器套件"
 
 /obj/item/storage/box/syndie_kit/syndicate_teleporter/PopulateContents()
 	new /obj/item/syndicate_teleporter(src)
 	new /obj/item/paper/syndicate_teleporter(src)
 
 /obj/item/storage/box/alchemist_basic_chems
-	name = "box of alchemical bases"
-	desc = "Contains a set of basic reagents, for all your potion-making needs! If only you labeled them."
+	name = "炼金基底盒"
+	desc = "内含一整套基础试剂，满足你制作药水的所有需求！可惜你没给它们贴标签。"
 	illustration = "beaker"
 
 /obj/item/storage/box/alchemist_basic_chems/PopulateContents()
@@ -18,8 +18,8 @@
 		new /obj/item/reagent_containers/cup/bottle/alchemist_basic(src)
 
 /obj/item/storage/box/alchemist_random_chems
-	name = "box of potions"
-	desc = "An especially fancy box to keep your finished potions safe."
+	name = "药水盒"
+	desc = "一个格外精致的盒子，用来妥善保存你制成的药水。"
 	icon_state = "syndiebox"
 	illustration = "beaker"
 
@@ -31,8 +31,8 @@
 		new /obj/item/reagent_containers/cup/bottle/alchemist_random(src)
 
 /obj/item/storage/box/alchemist_chemistry_kit
-	name = "box of alchemy tools"
-	desc = "Contains everything needed for the up and coming chemistry student to enact hazardous chemical mishaps in the comfort of their own home."
+	name = "炼金工具盒"
+	desc = "内含初出茅庐的化学学生在家中舒舒服服地制造危险化学品事故所需的一切。"
 
 /obj/item/storage/box/alchemist_chemistry_kit/PopulateContents()
 	new /obj/item/reagent_containers/cup/mortar(src)
@@ -45,7 +45,7 @@
 
 
 /obj/item/storage/box/mechabeacons
-	name = "exosuit tracking beacons"
+	name = "外骨骼追踪信标"
 
 /obj/item/storage/box/mechabeacons/PopulateContents()
 	..()
@@ -58,8 +58,8 @@
 	new /obj/item/mecha_parts/mecha_tracking(src)
 
 /obj/item/storage/box/methdealer
-	name = "box"
-	desc = "A brown box."
+	name = "盒子"
+	desc = "一个棕色盒子。"
 	icon_state = "blank_package"
 
 /obj/item/storage/box/methdealer/PopulateContents()
@@ -70,8 +70,8 @@
 	generate_items_inside(items_inside, src)
 
 /obj/item/storage/box/opiumdealer
-	name = "box"
-	desc = "A brown box."
+	name = "盒子"
+	desc = "一个棕色盒子。"
 	icon_state = "blank_package"
 
 /obj/item/storage/box/opiumdealer/PopulateContents()
@@ -82,8 +82,8 @@
 	generate_items_inside(items_inside, src)
 
 /obj/item/storage/box/kronkdealer
-	name = "box"
-	desc = "A brown box."
+	name = "盒子"
+	desc = "一个棕色盒子。"
 	icon_state = "blank_package"
 
 /obj/item/storage/box/kronkdealer/PopulateContents()

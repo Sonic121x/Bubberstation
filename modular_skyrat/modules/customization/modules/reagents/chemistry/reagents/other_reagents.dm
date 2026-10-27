@@ -46,9 +46,9 @@
 	..()
 // Catnip
 /datum/reagent/pax/catnip
-	name = "Catnip"
-	taste_description = "grass"
-	description = "A colourless liquid that makes people more peaceful and felines happier."
+	name = "猫薄荷"
+	taste_description = "草"
+	description = "一种无色液体，能让人更加平和，让猫科动物更加愉快。"
 	metabolization_rate = 1.75 * REAGENTS_METABOLISM
 
 /datum/reagent/pax/catnip/on_mob_life(mob/living/carbon/M)
@@ -56,16 +56,16 @@
 		if(prob(20))
 			M.emote("nya")
 		if(prob(20))
-			to_chat(M, span_notice("[pick("Headpats feel nice.", "Backrubs would be nice.", "Mew")]"))
+			to_chat(M, span_notice("[pick("被摸头的感觉真好。", "要是有人给揉背就好了。", "喵")]"))
 	else
-		to_chat(M, span_notice("[pick("I feel oddly calm.", "I feel relaxed.", "Mew?")]"))
+		to_chat(M, span_notice("[pick("我感到莫名的平静。", "我感到很放松。", "喵？")]"))
 	..()
 
 #define DERMAGEN_SCAR_FIX_AMOUNT 10
 
 /datum/reagent/medicine/dermagen
-	name = "Dermagen"
-	description = "Heals scars formed by past physical trauma when applied. Minimum 10u needed, only works when applied topically."
+	name = "真皮再生剂"
+	description = "涂抹后可治愈过去外伤留下的疤痕。至少需要 10 单位，仅限外敷生效。"
 	color = "#FFEBEB"
 	ph = 6
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -80,7 +80,7 @@
 	if(scarred.stat == DEAD)
 		show_message = FALSE
 	if(show_message)
-		to_chat(scarred, span_danger("The scars on your body start to fade and disappear."))
+		to_chat(scarred, span_danger("你身上的疤痕开始淡化、消失。"))
 	if(reac_volume >= DERMAGEN_SCAR_FIX_AMOUNT)
 		for(var/i in scarred.all_scars)
 			qdel(i)

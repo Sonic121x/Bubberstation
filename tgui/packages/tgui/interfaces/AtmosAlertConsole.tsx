@@ -2,8 +2,8 @@ import { Button, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
-type Data = {
+import { areaDisplay, type BatchDisplayData } from '../localization/batchThreeDisplay';
+type Data = BatchDisplayData & {
   priority: string[];
   minor: string[];
 };
@@ -24,7 +24,7 @@ export const AtmosAlertConsole = (props) => {
               <li key={alert}>
                 <Button
                   icon="times"
-                  content={alert}
+                  content={areaDisplay(alert, data)}
                   color="bad"
                   onClick={() => act('clear', { zone: alert })}
                 />
@@ -37,7 +37,7 @@ export const AtmosAlertConsole = (props) => {
               <li key={alert}>
                 <Button
                   icon="times"
-                  content={alert}
+                  content={areaDisplay(alert, data)}
                   color="average"
                   onClick={() => act('clear', { zone: alert })}
                 />

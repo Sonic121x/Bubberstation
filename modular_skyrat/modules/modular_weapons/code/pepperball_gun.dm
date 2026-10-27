@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/automatic/pistol/pepperball
-	name = "\improper Bolt Pepperball AHG"
-	desc = "An incredibly mediocre 'firearm' designed to fire soft pepper balls meant to easily subdue targets."
+	name = "\improper 博尔特AHG胡椒球枪"
+	desc = "一件极为平庸的“枪械”，用于发射柔软的胡椒球，以轻松制服目标。"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/pepperball/pepperball.dmi'
 	icon_state = "peppergun"
 	w_class = WEIGHT_CLASS_SMALL
@@ -20,8 +20,8 @@
 	AddComponent(/datum/component/seclite_attachable, light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', light_overlay = "flight")
 
 /obj/item/ammo_box/magazine/pepperball
-	name = "pistol magazine (pepperball)"
-	desc = "A gun magazine filled with balls."
+	name = "手枪弹匣（胡椒球）"
+	desc = "装满球状弹药的枪械弹匣。"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/pepperball/pepperball.dmi'
 	icon_state = "pepperball"
 	ammo_type = /obj/item/ammo_casing/pepperball
@@ -30,14 +30,14 @@
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/ammo_casing/pepperball
-	name = "pepperball"
-	desc = "A pepperball casing."
+	name = "胡椒球"
+	desc = "一发胡椒球弹药。"
 	caliber = CALIBER_PEPPERBALL
 	projectile_type = /obj/projectile/bullet/pepperball
 	harmful = FALSE
 
 /obj/projectile/bullet/pepperball
-	name = "pepperball orb"
+	name = "胡椒球弹丸"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/pepperball/projectiles.dmi'
 	icon_state = "pepperball"
 	damage = 0
@@ -58,7 +58,7 @@
 	. = ..()
 
 /obj/item/ammo_box/advanced/pepperballs
-	name = "pepperball ammo box"
+	name = "胡椒球弹药盒"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/pepperball/ammoboxes.dmi'
 	icon_state = "box10x24"
 	ammo_type = /obj/item/ammo_casing/pepperball
@@ -70,7 +70,7 @@
 // Gunset for the pepperball pistol
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball
-	name = "Pepperball AHG gunset"
+	name = "AHG胡椒球枪械套装"
 
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/pistol/pepperball
 	extra_to_spawn = /obj/item/ammo_box/magazine/pepperball

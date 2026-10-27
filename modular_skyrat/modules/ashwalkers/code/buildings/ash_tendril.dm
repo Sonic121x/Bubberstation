@@ -7,21 +7,21 @@
 		return ..()
 
 	if(!user.mind.has_antag_datum(/datum/antagonist/ashwalker))
-		balloon_alert(user, "must be an ashwalker!")
+		balloon_alert(user, "必须是灰行者！")
 		return
 
 	var/obj/item/organ/monster_core/regenerative_core/regen_core = attacking_item
 
 	if(!regen_core.preserve())
-		balloon_alert(user, "organ decayed!")
+		balloon_alert(user, "器官已腐烂！")
 		return
 	playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
-	balloon_alert_to_viewers("[src] revitalizes [regen_core]!")
+	balloon_alert_to_viewers("[src] 使 [regen_core] 重获生机！")
 	return
 
 //this is for logging the destruction of the tendril
 /obj/structure/lavaland/ash_walker/Destroy()
-	var/compiled_string = "The [src] has been destroyed at [loc_name(src.loc)], nearest mobs are "
+	var/compiled_string = "[src] 已在 [loc_name(src.loc)] 被摧毁，附近的生物有 "
 	var/found_anyone = FALSE
 
 	for(var/mob/living/carbon/carbons_nearby in range(7))
@@ -29,7 +29,7 @@
 		found_anyone = TRUE
 
 	if(!found_anyone)
-		compiled_string += "nobody."
+		compiled_string += "无。"
 
 	log_game(compiled_string)
 	return ..()
@@ -52,22 +52,22 @@
 		allow_transform++
 
 	if(allow_transform < REQUIRED_OBSERVERS)
-		balloon_alert_to_viewers("[src] rejects the request, not enough viewers!")
+		balloon_alert_to_viewers("[src] 拒绝了请求，围观者不足！")
 		playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 		human_user.adjust_brute_loss(10)
 		return
 
 	else
-		balloon_alert_to_viewers("[src] reaches out to [human_user]...")
-		var/choice = tgui_alert(human_user, "Become an Ashwalker? You will abandon your previous life and body.", "Major Choice", list("Yes", "No"))
+		balloon_alert_to_viewers("[src] 向 [human_user] 伸出了触须……")
+		var/choice = tgui_alert(human_user, "成为灰行者？你将抛弃过去的人生与躯体。", "重大抉择", list("是", "否"))
 
-		if(choice != "Yes")
-			balloon_alert_to_viewers("[src] feels rejected and punishes [human_user]!")
+		if(choice != "是")
+			balloon_alert_to_viewers("[src] 感到被拒绝，惩罚了 [human_user]！")
 			playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 			human_user.adjust_brute_loss(50)
 			return
 
-		balloon_alert_to_viewers("[src] rejoices and transforms [human_user]!")
+		balloon_alert_to_viewers("[src] 欢欣鼓舞，将 [human_user] 转化成了灰行者！")
 		human_user.unequip_everything()
 		human_user.set_species(/datum/species/lizard/ashwalker)
 		human_user.underwear = "Nude"
@@ -113,7 +113,7 @@
 
 		//there is a 40% chance that the Lava Lizard unlocks their respawn with each sacrifice
 		if(delivery_mob && (delivery_mob.mind?.has_antag_datum(/datum/antagonist/ashwalker)) && (delivery_key in ashies.players_spawned) && prob(40))
-			to_chat(delivery_mob, span_boldwarning("The Necropolis is pleased with your sacrifice. You feel confident your existence after death is secure."))
+			to_chat(delivery_mob, span_boldwarning("死灵之都对你的献祭很满意。你确信自己死后的存续已然无虞。"))
 			ashies.players_spawned -= delivery_key
 
 		viewable_living.investigate_log("has been gibbed via ashwalker sacrifice.", INVESTIGATE_DEATHS)
@@ -136,11 +136,11 @@
 /obj/structure/lavaland/ash_walker/proc/revive_ashwalker(mob/living/carbon/human/revived_ashwalker)
 	var/obj/structure/reviving_ashwalker_egg/spawned_egg = new(get_step(loc, pick(GLOB.alldirs)))
 	revived_ashwalker.forceMove(spawned_egg)
-	to_chat(revived_ashwalker, span_warning("The tendril has decided to be merciful and revive you within a minute, have patience."))
+	to_chat(revived_ashwalker, span_warning("触须决定施以仁慈，将在一分钟内使你复活，请耐心等待。"))
 
 /obj/structure/reviving_ashwalker_egg
-	name = "occupied ashwalker egg"
-	desc = "Past the typical appearance of the yellow, man-sized egg, there seems to be a body floating within!"
+	name = "被占据的灰行者蛋"
+	desc = "除了这颗黄色、一人高的蛋的寻常外观之外，里面似乎还漂浮着一具躯体！"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "large_egg"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | FREEZE_PROOF
@@ -163,7 +163,7 @@
 	living_inside.revive(ADMIN_HEAL_ALL)
 	living_inside.forceMove(get_turf(src))
 	living_inside.mind.grab_ghost()
-	living_inside.balloon_alert_to_viewers("[living_inside] breaks out of [src]!")
+	living_inside.balloon_alert_to_viewers("[living_inside] 从 [src] 中破壳而出！")
 	qdel(src)
 
 #undef REQUIRED_OBSERVERS

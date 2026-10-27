@@ -1,6 +1,6 @@
 // VENDOR
 /obj/machinery/armament_station/assault_operatives
-	name = "Military Grade Armament Station"
+	name = "军用级军械配发站"
 
 	required_access = list(ACCESS_SYNDICATE)
 
@@ -21,6 +21,6 @@
 		var/obj/item/gun/ballistic/spawned_ballistic_gun = item_to_equip
 		if(spawned_ballistic_gun.magazine && !istype(spawned_ballistic_gun.magazine, /obj/item/ammo_box/magazine/internal))
 			var/obj/item/storage/box/ammo_box/spawned_box = new(safe_drop_location)
-			spawned_box.name = "ammo box - [spawned_ballistic_gun.name]"
+			spawned_box.name = "弹药盒 - [spawned_ballistic_gun.name]"
 			for(var/i in 1 to mags_to_spawn)
 				new spawned_ballistic_gun.spawn_magazine_type (spawned_box)

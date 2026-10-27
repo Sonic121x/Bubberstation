@@ -1,11 +1,11 @@
 /datum/quirk/empath
 	name = "Empath"
-	desc = "Whether it's a sixth sense or careful study of body language, it only takes you a quick glance at someone to understand how they feel."
+	desc = "无论靠的是第六感还是对肢体语言的细致研究，你只需看一眼就能了解别人的感受。"
 	icon = FA_ICON_SMILE_BEAM
 	value = 6 // SKYRAT EDIT CHANGE - Quirk Rebalance - Original: value = 8
-	gain_text = span_notice("You feel in tune with those around you.")
-	lose_text = span_danger("You feel isolated from others.")
-	medical_record_text = "Patient is highly perceptive of and sensitive to social cues, or may possibly have ESP. Further testing needed."
+	gain_text = span_notice("你感觉与周围的人心意相通。")
+	lose_text = span_danger("你感觉与他人隔绝了。")
+	medical_record_text = "患者对社交暗示的感知极其敏锐，也可能拥有超感官知觉。需要进一步检查。"
 	mail_goodies = list(/obj/item/toy/foamfinger)
 
 /datum/quirk/empath/add(client/client_source)

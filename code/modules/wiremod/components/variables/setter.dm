@@ -4,8 +4,8 @@
  * Stores the current input when triggered into a variable.
  */
 /obj/item/circuit_component/variable/setter
-	display_name = "Variable Setter"
-	desc = "A component that sets a variable globally on the circuit."
+	display_name = "变量设置器"
+	desc = "在电路中全局设置某个变量的元件。"
 
 	/// The input to store
 	var/datum/port/input/input_port
@@ -13,8 +13,8 @@
 	circuit_size = 0
 
 /obj/item/circuit_component/variable/setter/trigger
-	display_name = "Trigger Variable Setter"
-	desc = "A component that sets a variable globally on the circuit. This one requires input signals and also provides an output signal"
+	display_name = "设置变量触发器"
+	desc = "在电路中全局设置某个变量的元件。该版本需要输入信号，同时也会提供输出信号。"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 /obj/item/circuit_component/variable/setter/get_variable_list(obj/item/integrated_circuit/integrated_circuit)

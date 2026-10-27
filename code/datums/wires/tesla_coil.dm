@@ -1,5 +1,5 @@
 /datum/wires/tesla_coil
-	proper_name = "Tesla Coil"
+	proper_name = "特斯拉线圈"
 	randomize = TRUE //Only one wire don't need blueprints
 	holder_type = /obj/machinery/power/energy_accumulator/tesla_coil
 

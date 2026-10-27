@@ -24,11 +24,11 @@
 ///returns nothing with an alert instead of the message if it contains something in the ic filter, and sanitizes normally if the name is fine. It returns nothing so it backs out of the input the same way as if you had entered nothing.
 /proc/sanitize_name(target, allow_numbers = FALSE, cap_after_symbols = TRUE)
 	if(is_ic_filtered(target) || is_soft_ic_filtered(target))
-		tgui_alert(usr, "You cannot set a name that contains a word prohibited in IC chat!")
+		tgui_alert(usr, "名称不能包含角色内聊天禁用的词语！")
 		return ""
 	var/result = reject_bad_name(target, allow_numbers = allow_numbers, strict = TRUE, cap_after_symbols = cap_after_symbols)
 	if(!result)
-		tgui_alert(usr, "Invalid name.")
+		tgui_alert(usr, "名称无效。")
 		return ""
 	return sanitize(result)
 
@@ -1199,28 +1199,28 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 /proc/weight_class_to_text(w_class)
 	switch(w_class)
 		if(WEIGHT_CLASS_TINY)
-			. = "tiny"
+			. = "微小"
 		if(WEIGHT_CLASS_SMALL)
-			. = "small"
+			. = "小型"
 		if(WEIGHT_CLASS_NORMAL)
-			. = "normal-sized"
+			. = "中型"
 		if(WEIGHT_CLASS_BULKY)
-			. = "bulky"
+			. = "笨重"
 		if(WEIGHT_CLASS_HUGE)
-			. = "huge"
+			. = "巨大"
 		if(WEIGHT_CLASS_GIGANTIC)
-			. = "gigantic"
+			. = "庞大"
 		else
 			. = ""
 
 /proc/weight_class_to_tooltip(w_class)
 	switch(w_class)
 		if(WEIGHT_CLASS_TINY to WEIGHT_CLASS_SMALL)
-			return "This item can fit into pockets, boxes and backpacks."
+			return "此物品可以放进口袋、盒子和背包。"
 		if(WEIGHT_CLASS_NORMAL)
-			return "This item can fit into backpacks."
+			return "此物品可以放进背包。"
 		if(WEIGHT_CLASS_BULKY to WEIGHT_CLASS_GIGANTIC)
-			return "This item is too large to fit into any standard storage."
+			return "此物品太大，无法放入任何标准储物容器。"
 	return ""
 
 /// Removes all non-alphanumerics from the text, keep in mind this can lead to id conflicts

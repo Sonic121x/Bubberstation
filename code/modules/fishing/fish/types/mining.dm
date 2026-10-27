@@ -1,8 +1,8 @@
 /// Commonly found on the mining fishing spots. Can be grown into lobstrosities
 /obj/item/fish/chasm_crab
-	name = "chasm chrab"
+	name = "深渊蟹"
 	fish_id = "chasm_crab"
-	desc = "The young of the lobstrosity mature in pools below the earth, eating what falls in until large enough to clamber out. Those found near the station are well-fed."
+	desc = "龙虾怪的幼体在地底的水池中成长，吃掉落入其中的一切，直到长大到能爬出来。在空间站附近发现的那些吃得很好。"
 	icon_state = "chrab"
 	sprite_height = 9
 	sprite_width = 8
@@ -37,10 +37,10 @@
 	RegisterSignal(src, COMSIG_FISH_FINISH_GROWING, PROC_REF(on_growth))
 
 /obj/item/fish/chasm_crab/get_fish_taste()
-	return list("raw crab" = 2)
+	return list("生蟹肉" = 2)
 
 /obj/item/fish/chasm_crab/get_fish_taste_cooked()
-	return list("cooked crab" = 2)
+	return list("熟蟹肉" = 2)
 
 ///A chasm crab growth speed is determined by its initial weight and size, ergo bigger crabs for faster lobstrosities
 /obj/item/fish/chasm_crab/update_size_and_weight(new_size = average_size, new_weight = average_weight, update_materials = TRUE)
@@ -103,9 +103,9 @@
 		result.ai_controller = new /datum/ai_controller/basic_controller/lobstrosity/juvenile/capricious(result)
 
 /obj/item/fish/chasm_crab/ice
-	name = "arctic chrab"
+	name = "北极蟹"
 	fish_id = "arctic_crab"
-	desc = "A subspecies of chasm chrabs that has adapted to the cold climate and lack of abysmal holes of the icemoon."
+	desc = "深渊蟹的一个亚种，已适应冰月寒冷的气候与缺乏深渊洞穴的环境。"
 	icon_state = "arctic_chrab"
 	required_temperature_min = ICEBOX_MIN_TEMPERATURE-20
 	required_temperature_max = MIN_AQUARIUM_TEMP+15
@@ -115,9 +115,9 @@
 	lob_type = /mob/living/basic/mining/lobstrosity/juvenile
 
 /obj/item/fish/boned
-	name = "unmarine bonemass"
+	name = "非海生骨团"
 	fish_id = "bonemass"
-	desc = "What one could mistake for fish remains, is in reality a species that chose to discard its weak flesh a long time ago. A living fossil, in its most literal sense."
+	desc = "这看起来像鱼的残骸，但实际上是一个很久以前就选择舍弃脆弱肉体的物种。最字面意义上的活化石。"
 	icon_state = "bonemass"
 	sprite_width = 10
 	sprite_height = 7
@@ -132,7 +132,7 @@
 	fish_traits = list(/datum/fish_trait/revival, /datum/fish_trait/carnivore)
 	average_size = 70
 	average_weight = 2000
-	death_text = "%SRC stops moving." //It's dead... or is it?
+	death_text = "%SRC 停止了移动。" //It's dead... or is it?
 	evolution_types = list(/datum/fish_evolution/mastodon)
 	beauty = FISH_BEAUTY_UGLY
 
@@ -147,16 +147,16 @@
 	return //it's all bones and no meat.
 
 /obj/item/fish/boned/get_health_warnings(mob/user, always_deep = FALSE)
-	return list(span_deadsay("It's bones."))
+	return list(span_deadsay("它全是骨头。"))
 
 /obj/item/fish/boned/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] swallows [src] whole! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 把 [src] 整个吞了下去！看起来正试图自杀！"))
 	forceMove(user)
 	addtimer(CALLBACK(src, PROC_REF(skeleton_appears), user), 2 SECONDS)
 	return MANUAL_SUICIDE_NONLETHAL // chance not to die
 
 /obj/item/fish/boned/proc/skeleton_appears(mob/living/user)
-	user.visible_message(span_warning("[user]'s skin melts off!"), span_boldwarning("Your skin melts off!"))
+	user.visible_message(span_warning("[user] 的皮肤熔化了！"), span_boldwarning("你的皮肤熔化了！"))
 	user.spawn_gibs()
 	user.drop_everything(del_on_drop = FALSE, force = FALSE, del_if_nodrop = FALSE)
 	user.set_species(/datum/species/skeleton)
@@ -167,9 +167,9 @@
 	qdel(src)
 
 /obj/item/fish/lavaloop
-	name = "lavaloop"
+	name = "熔岩环"
 	fish_id = "lavaloop"
-	desc = "Due to its curvature, it can be used as make-shift boomerang."
+	desc = "由于它的弯曲形状，可以当作简易回旋镖使用。"
 	icon_state = "lava_loop"
 	sprite_width = 3
 	sprite_height = 5
@@ -202,7 +202,7 @@
 		/datum/component/throwbonus_on_windup,\
 		maximum_bonus = maximum_bonus,\
 		windup_increment_speed = 2,\
-		throw_text = "starts cooking in your hands, it may explode soon!",\
+		throw_text = "开始在你手中变熟，可能很快就要爆炸了！",\
 		pass_maximum_callback = CALLBACK(src, PROC_REF(explode_on_user)),\
 		apply_bonus_callback = CALLBACK(src, PROC_REF(on_fish_land)),\
 		sound_on_success = 'sound/items/weapons/parry.ogg',\
@@ -211,7 +211,7 @@
 	AddElement(/datum/element/raptor_food, attack_modifier = 1.5, growth_modifier = -0.075)
 
 /obj/item/fish/lavaloop/get_fish_taste()
-	return list("chewy fish" = 2)
+	return list("有嚼劲的鱼" = 2)
 
 /obj/item/fish/lavaloop/get_food_types()
 	return SEAFOOD|MEAT|GORE //Well-cooked in lava/plasma
@@ -219,7 +219,7 @@
 /obj/item/fish/lavaloop/proc/explode_on_user(mob/living/user)
 	var/obj/item/bodypart/arm/active_arm = user.get_active_hand()
 	active_arm?.dismember()
-	to_chat(user, span_warning("[src] explodes!"))
+	to_chat(user, span_warning("[src] 爆炸了！"))
 	playsound(src, 'sound/effects/explosion/explosion1.ogg', 40, TRUE)
 	user.flash_act(1, 1)
 	qdel(src)
@@ -230,8 +230,8 @@
 	return (target.mob_size >= MOB_SIZE_LARGE)
 
 /obj/item/fish/lavaloop/plasma_river
-	name = "plasmaloop"
-	desc = "A lavaloop that has evolved to survive in cold liquid plasma. Can be used as make-shift boomerang."
+	name = "等离子环"
+	desc = "一种已进化到能在低温液态等离子体中存活的熔岩环。可以当作简易回旋镖使用。"
 	fish_id = "plasma_lavaloop"
 	icon_state = "plasma_loop"
 	dedicated_in_aquarium_icon_state = /obj/item/fish/lavaloop::icon_state + "_small"

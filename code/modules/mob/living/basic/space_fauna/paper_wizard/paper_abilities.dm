@@ -1,8 +1,8 @@
 /datum/action/cooldown/spell/conjure/wizard_summon_minions
-	name = "Summon Minions"
+	name = "召唤仆从"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "art_summon"
-	invocation = "Rise, my creations! Jump off your pages and into this realm!"
+	invocation = "起来吧，我的造物！从纸页上一跃而出，降临此界！"
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = NONE
 	cooldown_time = 15 SECONDS
@@ -39,10 +39,10 @@
 	summoned_minions--
 
 /datum/action/cooldown/spell/pointed/wizard_mimic
-	name = "Craft Mimicry"
+	name = "手工摹制"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "mimic_summon"
-	invocation = "My craft defines me, you could even say it IS me!"
+	invocation = "我的手艺塑造了我，你甚至可以说，它就是我自己！"
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = NONE
 	cooldown_time = 25 SECONDS

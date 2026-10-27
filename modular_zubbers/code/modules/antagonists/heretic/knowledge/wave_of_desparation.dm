@@ -8,5 +8,5 @@
 /datum/action/cooldown/spell/aoe/wave_of_desperation/cast(atom/cast_on)
 	. = ..()
 
-	owner.visible_message(span_boldwarning("You get the feeling [owner] won't be able to use this spell again any time soon. Capture [owner.p_them()] again!"))
-	owner.visible_message(span_boldnotice("A muzzle or straightjacket will prevent further usage of this ability."))
+	owner.visible_message(span_boldwarning("你觉得[owner]短时间内无法再次使用这个法术。快再次将其抓住！"))
+	owner.visible_message(span_boldnotice("口枷或拘束衣能阻止继续使用这项能力。"))

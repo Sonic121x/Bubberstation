@@ -2,7 +2,7 @@
 
 //temporary visual effects(/obj/effect/temp_visual) used by clock stuff
 /obj/effect/temp_visual/ratvar
-	name = "ratvar's light"
+	name = "拉特瓦之光"
 	icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_effects.dmi'
 	duration = 8
 	randomdir = FALSE
@@ -114,7 +114,7 @@
 
 
 /obj/effect/temp_visual/ratvar/ocular_warden
-	name = "warden's gaze"
+	name = "守卫的凝视"
 	layer = ABOVE_MOB_LAYER
 	icon_state = "warden_gaze"
 	duration = 3
@@ -158,14 +158,14 @@
 
 
 /obj/effect/temp_visual/ratvar/warp
-	name = "spatial distortion"
+	name = "空间扭曲"
 	icon_state = "teleport"
 	layer = ABOVE_MOB_LAYER
 
 
 /obj/effect/temp_visual/steam
-	name = "steam"
-	desc = "Steam! It's hot. It also serves as a game distribution platform."
+	name = "蒸汽"
+	desc = "蒸汽！热腾腾的蒸汽。它同时还是一个游戏发行平台。"
 	icon_state = "smoke"
 	duration = 1.5 SECONDS
 
@@ -194,7 +194,7 @@
 
 
 /obj/effect/temp_visual/steam_release
-	name = "all the steam"
+	name = "满溢的蒸汽"
 
 /obj/effect/temp_visual/steam_release/Initialize(mapload)
 	. = ..()

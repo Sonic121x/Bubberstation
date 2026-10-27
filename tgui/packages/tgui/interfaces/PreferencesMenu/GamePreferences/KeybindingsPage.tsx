@@ -18,7 +18,7 @@ import type { BooleanLike } from 'tgui-core/react';
 import { LoadingScreen } from '../../common/LoadingScreen';
 import type { PreferencesMenuData } from '../types';
 import { TabbedMenu } from './TabbedMenu';
-
+import { emoteDisplay } from '../../../localization/emoteDisplay';
 type Keybinding = {
   name: string;
   description?: string;
@@ -192,11 +192,11 @@ function KeybindingName(props: KeybindingNameProps) {
           borderBottom: '2px dotted rgba(255, 255, 255, 0.8)',
         }}
       >
-        {keybinding.name}
+        {emoteDisplay(keybinding.name)}
       </Box>
     </Tooltip>
   ) : (
-    <span>{keybinding.name}</span>
+    <span>{emoteDisplay(keybinding.name)}</span>
   );
 }
 
@@ -235,7 +235,7 @@ function getKeybindingNodes(
       if (
         searchText &&
         searchText.length >= 2 &&
-        !keybinding.name.toLowerCase().includes(searchText.toLowerCase())
+        !emoteDisplay(keybinding.name).toLowerCase().includes(searchText.toLowerCase())
       ) {
         return null;
       }

@@ -3,8 +3,8 @@
  */
 /mob/vv_get_dropdown()
 	. = ..()
-	VV_DROPDOWN_OPTION(VV_HK_SEND_CRYO, "Send to Cryogenic Storage")
-	VV_DROPDOWN_OPTION(VV_HK_LOAD_PREFS, "Load Prefs Onto Mob")
+	VV_DROPDOWN_OPTION(VV_HK_SEND_CRYO, "送往低温储存")
+	VV_DROPDOWN_OPTION(VV_HK_LOAD_PREFS, "将偏好设置加载到生物上")
 
 /mob/vv_do_topic(list/href_list)
 	. = ..()
@@ -22,18 +22,18 @@
 	if(!check_rights(R_SPAWN))
 		return
 
-	var/send_notice = tgui_alert(usr, "Add a paper notice about sending [name] into a cryopod?", "Leave a paper?", list("Yes", "No", "Cancel"))
-	if(send_notice != "Yes" && send_notice != "No")
+	var/send_notice = tgui_alert(usr, "要附上一张关于将 [name] 送入低温休眠舱的纸条吗？", "留一张纸条？", list("是", "否", "取消"))
+	if(send_notice != "是" && send_notice != "否")
 		return
 
 	//log/message
-	to_chat(usr, "Put [src] in cryopod.")
-	log_admin("[key_name(usr)] has put [key_name(src)] into a cryopod.")
-	var/msg = span_notice("[key_name_admin(usr)] has put [key_name(src)] into a cryopod from [ADMIN_VERBOSEJMP(src)].")
+	to_chat(usr, "已将 [src] 放入低温休眠舱。")
+	log_admin("[key_name(usr)] 已将 [key_name(src)] 放入低温休眠舱。")
+	var/msg = span_notice("[key_name_admin(usr)] 已将 [key_name(src)] 从 [ADMIN_VERBOSEJMP(src)] 放入低温休眠舱。")
 	message_admins(msg)
 	admin_ticket_log(src, msg)
 
-	send_notice = send_notice == "Yes"
+	send_notice = send_notice == "是"
 	send_to_cryo(send_notice)
 
 /**
@@ -44,19 +44,19 @@
 		return
 
 	if(!client)
-		to_chat(usr, span_warning("No client found!"))
+		to_chat(usr, span_warning("未找到客户端！"))
 		return
 
 	if(!ishuman(src))
-		to_chat(usr, span_warning("Mob is not human!"))
+		to_chat(usr, span_warning("该生物不是人类！"))
 		return
 
-	var/notice = tgui_alert(usr, "Are you sure you want to load the clients current prefs onto their mob?", "Load Preferences", list("Yes", "No"))
-	if(notice != "Yes")
+	var/notice = tgui_alert(usr, "你确定要将客户端当前的偏好设置加载到其生物上吗？", "加载偏好设置", list("是", "否"))
+	if(notice != "是")
 		return
 
 	client?.prefs?.apply_prefs_to(src)
 	SSquirks.OverrideQuirks(src, client)
-	var/msg = span_notice("[key_name_admin(usr)] has loaded [key_name(src)]'s preferences onto their current mob [ADMIN_VERBOSEJMP(src)].")
+	var/msg = span_notice("[key_name_admin(usr)] 已将 [key_name(src)] 的偏好设置加载到其当前生物上 [ADMIN_VERBOSEJMP(src)]。")
 	message_admins(msg)
 	admin_ticket_log(src, msg)

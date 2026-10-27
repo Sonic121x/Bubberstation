@@ -3,7 +3,7 @@
 */
 
 /obj/item/storage/toolbox/guncase/skyrat
-	desc = "A thick gun case with foam inserts laid out to fit a weapon, magazines, and gear securely."
+	desc = "一个厚实的枪箱，内部泡沫衬垫可稳妥收纳武器、弹匣和装备。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/gunsets.dmi'
 	icon_state = "guncase"
@@ -30,7 +30,7 @@
 // Small case for pistols and whatnot
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol
-	name = "small gun case"
+	name = "小型枪箱"
 
 	icon_state = "guncase_s"
 

@@ -1,6 +1,6 @@
 /datum/language/buzzwords
 	name = "Buzzwords"
-	desc = "A common language to all insects, made by the rhythmic beating of wings."
+	desc = "所有昆虫通用的语言，由有节律的振翅声构成。"
 	key = "z"
 	space_chance = 0
 	sentence_chance = 0

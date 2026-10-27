@@ -1,5 +1,5 @@
 /obj/effect/projectile
-	name = "pew"
+	name = "咻"
 	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "nothing"
 	layer = HITSCAN_PROJECTILE_LAYER

@@ -8,8 +8,8 @@
  * EMAG AND SUBTYPES
  */
 /obj/item/card/emag
-	desc = "It's a card with a magnetic strip attached to some circuitry."
-	name = "cryptographic sequencer"
+	desc = "一张磁条连接着电路的卡片。"
+	name = "密码序列器"
 	icon_state = "emag"
 	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON
 	slot_flags = ITEM_SLOT_ID
@@ -22,7 +22,7 @@
 
 /obj/item/card/emag/attack_self(mob/user) //for traitors with balls of plastitanium
 	if(Adjacent(user))
-		user.visible_message(span_notice("[user] shows you: [icon2html(src, viewers(user))] [name]."), span_notice("You show [src]."))
+		user.visible_message(span_notice("[user]向你展示：[icon2html(src, viewers(user))] [name]。"), span_notice("你展示了[src]。"))
 	add_fingerprint(user)
 
 /obj/item/card/emag/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -39,9 +39,9 @@
 		return FALSE
 
 	user.visible_message(
-		span_notice("[user] holds [emag_card] to [src], getting the two cards stuck together!"),
-		span_notice("As you hold [emag_card] to [src], their magnets attract to one another, \
-			and they become stuck together!"),
+		span_notice("[user]将[emag_card]贴近[src]，结果两张卡粘在了一起！"),
+		span_notice("你将[emag_card]贴近[src]时，它们的磁铁互相吸引，\
+			两张卡就这样粘在了一起！"),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	playsound(src, 'sound/effects/bang.ogg', 33, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
@@ -57,16 +57,16 @@
 		other_emag.pixel_y = pixel_y + (4 * i)
 		other_emag.layer = layer - (0.01 * i)
 		name += "-[initial(other_emag.name)]"
-		desc += " There seems to be another card stuck to it...pretty soundly."
+		desc += "上面似乎还粘着另一张卡……粘得相当牢。"
 	return TRUE
 
 /obj/item/card/emag/proc/contemplation_period(mob/user)
 	if(QDELETED(user))
 		return
 	if(QDELETED(src))
-		to_chat(user, span_notice("Oh, well."))
+		to_chat(user, span_notice("哦，好吧。"))
 	else
-		to_chat(user, span_warning("Well, shit. Those are never coming apart now."))
+		to_chat(user, span_warning("好吧，操。这下永远也分不开了。"))
 
 /obj/item/card/emag/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -81,8 +81,8 @@
 		gone.desc = initial(desc)
 
 /obj/item/card/emag/bluespace
-	name = "bluespace cryptographic sequencer"
-	desc = "It's a blue card with a magnetic strip attached to some circuitry. It appears to have some sort of transmitter attached to it."
+	name = "蓝空间密码序列器"
+	desc = "一张磁条连接着电路的蓝色卡片，上面似乎还装有某种发射器。"
 	color = rgb(40, 130, 255)
 	prox_check = FALSE
 
@@ -90,13 +90,13 @@
 	color = rgb(40, 130, 255)
 
 /obj/item/card/emag/halloween
-	name = "hack-o'-lantern"
-	desc = "It's a pumpkin with a cryptographic sequencer sticking out."
+	name = "黑客南瓜灯"
+	desc = "一个插着密码序列器的南瓜。"
 	icon_state = "hack_o_lantern"
 
 /obj/item/card/emagfake
 	name = /obj/item/card/emag::name
-	desc = /obj/item/card/emag::desc + " Closer inspection shows that this card is a poorly made replica, with a \"Donk Co.\" logo stamped on the back."
+	desc = /obj/item/card/emag::desc + "仔细一看，这是一张做工粗糙的仿制品，背面印着\"咚克公司\"的标志。"
 	icon = /obj/item/card/emag::icon
 	icon_state = /obj/item/card/emag::icon_state
 	worn_icon_state = /obj/item/card/emag::worn_icon_state
@@ -109,7 +109,7 @@
 
 /obj/item/card/emagfake/attack_self(mob/user) //for assistants with balls of plasteel
 	if(Adjacent(user))
-		user.visible_message(span_notice("[user] shows you: [icon2html(src, viewers(user))] [name]."), span_notice("You show [src]."))
+		user.visible_message(span_notice("[user]向你展示：[icon2html(src, viewers(user))] [name]。"), span_notice("你展示了[src]。"))
 	add_fingerprint(user)
 
 /obj/item/card/emagfake/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -117,7 +117,7 @@
 		playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE, frequency = 2)
 	else if(obj_flags & EMAGGED)
 		log_bomber(user, "triggered", src, "(rigged/emagged)")
-		visible_message(span_boldwarning("[src] begins to heat up!"))
+		visible_message(span_boldwarning("[src]开始发热！"))
 		playsound(src, 'sound/items/bikehorn.ogg', 100, TRUE, frequency = 0.25)
 		addtimer(CALLBACK(src, PROC_REF(blow_up)), 1 SECONDS, TIMER_DELETE_ME)
 		exploding = TRUE
@@ -126,7 +126,7 @@
 	return ITEM_INTERACT_SKIP_TO_ATTACK // So it does the attack animation.
 
 /obj/item/card/emagfake/proc/blow_up()
-	visible_message(span_boldwarning("[src] explodes!"))
+	visible_message(span_boldwarning("[src]爆炸了！"))
 	explosion(src, light_impact_range = 1, explosion_cause = src)
 	qdel(src)
 
@@ -137,7 +137,7 @@
 	desc = /obj/item/card/emag::desc
 	obj_flags |= EMAGGED
 	if(user)
-		balloon_alert(user, "rigged to blow")
+		balloon_alert(user, "已改造成爆炸陷阱")
 		log_bomber(user, "rigged to blow", src, "(emagging)")
 	return TRUE
 
@@ -162,7 +162,7 @@
 /obj/item/card/emag/proc/can_emag(atom/target, mob/user)
 	for (var/subtypelist in type_blacklist)
 		if (target.type in subtypelist)
-			to_chat(user, span_warning("The [target] cannot be affected by the [src]! A more specialized hacking device is required."))
+			to_chat(user, span_warning("[src]无法影响[target]！需要更专门的破解设备。"))
 			return FALSE
 	return TRUE
 
@@ -170,8 +170,8 @@
  * DOORMAG
  */
 /obj/item/card/emag/doorjack
-	desc = "Commonly known as a \"doorjack\", this device is a specialized cryptographic sequencer specifically designed to override station airlock access codes. Uses self-refilling charges to hack airlocks."
-	name = "modified ID card"
+	desc = "俗称\"破门卡\"，是一种专门覆盖空间站气闸门禁代码的密码序列器。通过自动恢复的充能次数破解气闸。"
+	name = "改装身份卡"
 	icon_state = "doorjack"
 	worn_icon_state = "doorjack"
 	var/type_whitelist //List of types
@@ -192,7 +192,7 @@
 
 /obj/item/card/emag/doorjack/proc/use_charge(mob/user)
 	charges --
-	to_chat(user, span_notice("You use [src]. It now has [charges] charge[charges == 1 ? "" : "s"] remaining."))
+	to_chat(user, span_notice("你使用了[src]。现在还剩[charges]次充能。"))
 	charge_timers.Add(addtimer(CALLBACK(src, PROC_REF(recharge)), charge_time, TIMER_STOPPABLE))
 
 /obj/item/card/emag/doorjack/proc/recharge(mob/user)
@@ -202,31 +202,31 @@
 
 /obj/item/card/emag/doorjack/examine(mob/user)
 	. = ..()
-	. += span_notice("It has [charges] charges remaining.")
+	. += span_notice("还剩[charges]次充能。")
 	if (length(charge_timers))
-		. += "[span_notice("<b>A small display on the back reads:")]</b>"
+		. += "[span_notice("<b>背面的小屏幕显示：")]</b>"
 	for (var/i in 1 to length(charge_timers))
 		var/timeleft = timeleft(charge_timers[i])
 		var/loadingbar = num2loadingbar(timeleft/charge_time)
-		. += span_notice("<b>CHARGE #[i]: [loadingbar] ([DisplayTimeText(timeleft)])</b>")
+		. += span_notice("<b>充能 #[i]：[loadingbar]（[DisplayTimeText(timeleft)]）</b>")
 
 /obj/item/card/emag/doorjack/can_emag(atom/target, mob/user)
 	if (charges <= 0)
-		to_chat(user, span_warning("[src] is recharging!"))
+		to_chat(user, span_warning("[src]正在充能！"))
 		return FALSE
 	for (var/list/subtypelist in type_whitelist)
 		if (target.type in subtypelist)
 			return TRUE
-	to_chat(user, span_warning("[src] is unable to interface with this. It only seems to fit into airlock electronics."))
+	to_chat(user, span_warning("[src]无法连接这个设备。它似乎只能接入气闸电路。"))
 	return FALSE
 
 /*
  * Battlecruiser Access
  */
 /obj/item/card/emag/battlecruiser
-	name = "battlecruiser coordinates upload card"
-	desc = "An ominous card that contains the location of the station, and when applied to a communications console, \
-	the ability to long-distance contact the Syndicate fleet."
+	name = "战列巡洋舰坐标上传卡"
+	desc = "一张不祥的卡片，存储着空间站的位置。将其用于通讯控制台，\
+	即可远程联系辛迪加舰队。"
 	icon_state = "battlecruisercaller"
 	worn_icon_state = "emag"
 	///whether we have called the battlecruiser
@@ -236,17 +236,17 @@
 
 /obj/item/card/emag/battlecruiser/proc/use_charge(mob/user)
 	used = TRUE
-	to_chat(user, span_boldwarning("You use [src], and it interfaces with the communication console. No going back..."))
+	to_chat(user, span_boldwarning("你使用[src]接入了通讯控制台。已经没有回头路了……"))
 
 /obj/item/card/emag/battlecruiser/examine(mob/user)
 	. = ..()
-	. += span_notice("It can only be used on the communications console.")
+	. += span_notice("只能用于通讯控制台。")
 
 /obj/item/card/emag/battlecruiser/can_emag(atom/target, mob/user)
 	if(used)
-		to_chat(user, span_warning("[src] is used up."))
+		to_chat(user, span_warning("[src]已经用过了。"))
 		return FALSE
 	if(!istype(target, /obj/machinery/computer/communications))
-		to_chat(user, span_warning("[src] is unable to interface with this. It only seems to interface with the communication console."))
+		to_chat(user, span_warning("[src]无法连接这个设备。它似乎只能接入通讯控制台。"))
 		return FALSE
 	return TRUE

@@ -11,7 +11,7 @@
 	var/turf/location
 
 /datum/status_effect/crucible_soul/on_apply()
-	to_chat(owner,span_notice("You phase through reality, nothing is out of bounds!"))
+	to_chat(owner,span_notice("你穿透了现实，一切都不再是障碍！"))
 	owner.alpha = 180
 	owner.pass_flags |= PASSGLASS | PASSGRILLE | PASSMACHINE | PASSSTRUCTURE | PASSTABLE | PASSMOB | PASSDOORS | PASSVEHICLE // BUBBER EDIT CHANGE - removed PASSCLOSEDTURF
 	location = get_turf(owner)
@@ -20,7 +20,7 @@
 	return TRUE
 
 /datum/status_effect/crucible_soul/on_remove()
-	to_chat(owner,span_notice("You regain your physicality, returning you to your original location..."))
+	to_chat(owner,span_notice("你重获实体，被送回原来的位置……"))
 	owner.alpha = initial(owner.alpha)
 	owner.pass_flags &= ~(PASSGLASS | PASSGRILLE | PASSMACHINE | PASSSTRUCTURE | PASSTABLE | PASSMOB | PASSDOORS | PASSVEHICLE) // BUBBER EDIT CHANGE - removed PASSCLOSEDTURF
 	owner.forceMove(location)
@@ -28,11 +28,11 @@
 	location = null
 
 /datum/status_effect/crucible_soul/get_examine_text()
-	return span_notice("[owner.p_They()] [owner.p_do()]n't seem to be all here.")
+	return span_notice("[owner]似乎并不完全在这里。")
 
 /datum/action/cancel_crucible_soul
-	name = "Recall"
-	desc = "Use to end the blessing early"
+	name = "召回"
+	desc = "使用以提前结束祝福"
 	button_icon = 'icons/obj/antags/eldritch.dmi'
 	button_icon_state = "crucible_soul"
 
@@ -90,7 +90,7 @@
 			found_wound.remove_wound()
 	if(length(drinker.get_missing_limbs()))
 		drinker.regenerate_limbs()
-		to_chat(drinker, span_hypnophrase("The mansus has given you new limbs."))
+		to_chat(drinker, span_hypnophrase("漫宿赐予了你新的肢体。"))
 	playsound(drinker, 'sound/effects/chemistry/ahaha.ogg', 50, TRUE, -1, extrarange = SILENCED_SOUND_EXTRARANGE, frequency = 0.5)
 
 /datum/status_effect/marshal/tick(seconds_between_ticks)
@@ -122,23 +122,23 @@
 
 
 /atom/movable/screen/alert/status_effect/crucible_soul
-	name = "Blessing of Crucible Soul"
-	desc = "You phased through reality. You are halfway to your final destination..."
+	name = "坩埚之魂的祝福"
+	desc = "你穿透了现实。你已在前往最终目的地的半路上……"
 	icon_state = "crucible"
 
 /atom/movable/screen/alert/status_effect/crucible_soul/cooldown
-	desc = "You have recently phased through reality. You must wait before you can do so once more."
+	desc = "你刚刚穿透了现实。必须再等一段时间才能再次这样做。"
 	icon_state = "crucible_cooldown"
 
 /atom/movable/screen/alert/status_effect/duskndawn
-	name = "Blessing of Dusk and Dawn"
-	desc = "Many things hide beyond the horizon. With Owl's help I managed to slip past Sun's guard and Moon's watch."
+	name = "黄昏与黎明的祝福"
+	desc = "地平线之外隐藏着许多东西。在猫头鹰的帮助下，我得以溜过太阳的守卫与月亮的监视。"
 	icon_state = "duskndawn"
 
 /atom/movable/screen/alert/status_effect/marshal
-	name = "Blessing of Wounded Soldier"
-	desc = "Some people seek power through redemption. One thing many people don't know is that battle \
-		is the ultimate redemption, and wounds let you bask in eternal glory."
+	name = "伤兵祝福"
+	desc = "有些人通过救赎来追求力量。许多人不知道的是，战斗 \
+		就是终极的救赎，而伤口让你沐浴在永恒的荣光之中。"
 	icon_state = "wounded_soldier"
 
 // BLADES
@@ -214,7 +214,7 @@
 	mob/living/carbon/human/source,
 	atom/movable/hitby,
 	damage = 0,
-	attack_text = "the attack",
+	attack_text = "这次攻击",
 	attack_type = MELEE_ATTACK,
 	armour_penetration = 0,
 	damage_type = BRUTE,
@@ -236,9 +236,9 @@
 
 	playsound(get_turf(source), 'sound/items/weapons/parry.ogg', 100, TRUE)
 	source.visible_message(
-		span_warning("[to_remove] orbiting [source] snaps in front of [attack_text], blocking it before vanishing!"),
-		span_warning("[to_remove] orbiting you snaps in front of [attack_text], blocking it before vanishing!"),
-		span_hear("You hear a clink."),
+		span_warning("[to_remove]环绕着[source]，在[attack_text]面前骤然一闪，将其挡下后消失了！"),
+		span_warning("[to_remove]环绕着你，在[attack_text]面前骤然一闪，将其挡下后消失了！"),
+		span_hear("你听到一声叮当。"),
 	)
 
 	qdel(to_remove)
@@ -314,28 +314,28 @@
 	UnregisterSignal(owner, COMSIG_CARBON_CUFF_ATTEMPTED)
 	UnregisterSignal(owner, COMSIG_BEING_STRIPPED)
 	owner.visible_message(
-		span_warning("The haze around [owner] disappears, leaving them materialized!"),
-		span_notice("You exit the refuge."),
+		span_warning("[owner]周围的雾气消散，其重新凝聚成型！"),
+		span_notice("你离开了庇护所。"),
 	)
 
 /datum/status_effect/caretaker_refuge/get_examine_text()
-	return span_warning("[owner.p_Theyre()] enveloped in an unholy haze! They cant be touched! Wait it our or hit them with antimagic!") // BUBBER EDIT ADDITION - added They cant be touched! Wait it our or hit them with antimagic!
+	return span_warning("[owner]被不洁的雾气笼罩！无法被触碰！等它自行结束，或用反魔法击中[owner]！") // BUBBER EDIT ADDITION - added They cant be touched! Wait it our or hit them with antimagic!
 
 /datum/status_effect/caretaker_refuge/proc/nullrod_handler(datum/source, obj/item/weapon)
 	SIGNAL_HANDLER
 	playsound(get_turf(owner), 'sound/effects/curse/curse1.ogg', 80, TRUE)
-	owner.visible_message(span_warning("[weapon] repels the haze around [owner]!"))
+	owner.visible_message(span_warning("[weapon]驱散了[owner]周围的雾气！"))
 	owner.remove_status_effect(type)
 
 /datum/status_effect/caretaker_refuge/proc/no_strip(atom/source, mob/user, obj/item/equipping)
 	SIGNAL_HANDLER
-	to_chat(user, span_warning("You fail to put anything on [source] as they are incorporeal!"))
+	to_chat(user, span_warning("你无法给[source]套上任何东西，因为它没有实体！"))
 	return COMPONENT_CANT_STRIP
 
 /datum/status_effect/caretaker_refuge/proc/prevent_spell_usage(datum/source, datum/spell)
 	SIGNAL_HANDLER
 	if(!istype(spell, /datum/action/cooldown/spell/caretaker))
-		owner.balloon_alert(owner, "may not cast spells in refuge!")
+		owner.balloon_alert(owner, "在庇护所中无法施法！")
 		return SPELL_CANCEL_CAST
 
 /datum/status_effect/caretaker_refuge/proc/prevent_cuff(datum/source, mob/attemptee)
@@ -358,8 +358,8 @@
 	owner.remove_traits(list(TRAIT_UNKNOWN_APPEARANCE, TRAIT_UNKNOWN_VOICE, TRAIT_SILENT_FOOTSTEPS), TRAIT_STATUS_EFFECT(id))
 
 /atom/movable/screen/alert/status_effect/moon_grasp_hide
-	name = "Blessing of The Moon"
-	desc = "The Moon clouds their vision, as the sun always has yours."
+	name = "月之祝福"
+	desc = "月亮遮蔽了他们的视线，正如太阳一直遮蔽着你的。"
 	icon_state = "moon_hide"
 
 // Last Resort
@@ -371,13 +371,13 @@
 	tick_interval = STATUS_EFFECT_NO_TICK
 
 /atom/movable/screen/alert/status_effect/heretic_lastresort
-	name = "Last Resort"
-	desc = "Your head spins, heart pumping as fast as it can!"
+	name = "最后手段"
+	desc = "你的脑袋发晕，心脏以最快的速度狂跳！"
 	icon_state = "lastresort"
 
 /datum/status_effect/heretic_lastresort/on_apply()
 	ADD_TRAIT(owner, TRAIT_IGNORESLOWDOWN, TRAIT_STATUS_EFFECT(id))
-	to_chat(owner, span_userdanger("You won't give up that easily!"))
+	to_chat(owner, span_userdanger("你不会这么容易就放弃的！"))
 	return TRUE
 
 /datum/status_effect/heretic_lastresort/on_remove()

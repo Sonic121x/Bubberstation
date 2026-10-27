@@ -69,13 +69,13 @@
 	weight = CLONER_FAILURE_COMMON
 
 /datum/experimental_cloner_fuckup/scramble/apply_to_mob(mob/living/carbon/human/victim)
-	victim.bioscramble("your fucked up genes")
+	victim.bioscramble("你那一团糟的基因")
 	if (prob(50))
 		return
-	victim.bioscramble("your fucked up genes")
+	victim.bioscramble("你那一团糟的基因")
 	if (prob(75))
 		return
-	victim.bioscramble("your fucked up genes")
+	victim.bioscramble("你那一团糟的基因")
 
 /// Mess with the genes
 /datum/experimental_cloner_fuckup/mutate
@@ -128,8 +128,8 @@
 
 /datum/experimental_cloner_fuckup/monkey/post_emerged(mob/living/carbon/victim)
 	victim.visible_message(\
-		span_boldwarning("[victim]'s hair begins to grow rapidly!"),\
-		span_boldwarning("As you emerge from the pod, all the hair on your body starts to grow!"))
+		span_boldwarning("[victim]的毛发开始迅速生长！"),\
+		span_boldwarning("当你从舱中出来时，全身的毛发都开始生长！"))
 	victim.monkeyize()
 
 /// No skin
@@ -139,8 +139,8 @@
 /datum/experimental_cloner_fuckup/skeletised/post_emerged(mob/living/victim)
 	victim.emote("scream")
 	victim.visible_message(\
-		span_boldwarning("[victim]'s flesh slithers off in a disgusting heap!"),\
-		span_boldwarning("As you emerge from the pod, your skin slithers off onto the ground!"))
+		span_boldwarning("[victim]的血肉滑落下来，堆成恶心的一团！"),\
+		span_boldwarning("当你从舱中出来时，皮肤滑落到了地上！"))
 	victim.set_species(/datum/species/skeleton)
 	new /obj/effect/gibspawner/human/bodypartless(victim.drop_location(), victim)
 
@@ -158,8 +158,8 @@
 /datum/experimental_cloner_fuckup/total_failure/post_emerged(mob/living/victim)
 	victim.emote("scream")
 	victim.visible_message(\
-		span_boldwarning("[victim] collapses bonelessly into a writhing heap of flesh!"),\
-		span_boldwarning("As you emerge from the pod, your boneless flesh collapses into a writhing heap!"))
+		span_boldwarning("[victim]失去骨骼支撑，瘫成一团蠕动的血肉！"),\
+		span_boldwarning("当你从舱中出来时，失去骨骼的身体瘫成了一团蠕动的血肉！"))
 	var/mob/living/basic/fleshblob/blob = new(victim.drop_location())
 	blob.name = victim.real_name
 	blob.real_name = victim.real_name

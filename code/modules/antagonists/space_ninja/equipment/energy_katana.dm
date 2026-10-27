@@ -10,9 +10,9 @@
  *
  */
 /obj/item/energy_katana
-	name = "energy katana"
-	desc = "A katana infused with strong energy."
-	desc_controls = "Right-click to dash."
+	name = "能量武士刀"
+	desc = "一把注入了强大能量的武士刀。"
+	desc_controls = "右键突进。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "energy_katana"
 	inhand_icon_state = "energy_katana"
@@ -29,8 +29,8 @@
 	pickup_sound = 'sound/items/unsheath.ogg'
 	drop_sound = 'sound/items/sheath.ogg'
 	block_sound = 'sound/items/weapons/block_blade.ogg'
-	attack_verb_continuous = list("attacks", "slashes", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("attack", "slash", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	attack_verb_continuous = list("攻击", "劈砍", "切割", "撕扯", "割裂", "撕裂", "切碎", "砍削")
+	attack_verb_simple = list("攻击", "劈砍", "切割", "撕扯", "割裂", "撕裂", "切碎", "砍削")
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	sharpness = SHARP_EDGED
 	max_integrity = 200
@@ -91,4 +91,4 @@
 		return
 	sword.melee_attack_chain(user, stabbing)
 	if(prob(5) && check_holidays(APRIL_FOOLS))
-		user.say("Heh, nothin' personnel kid!", forced = "*teleports behind you**")
+		user.say("嘿，没什么私人的，小鬼！", forced = "*teleports behind you**")

@@ -1,9 +1,9 @@
 /datum/computer_file/program/budgetorders
 	filename = "orderapp"
-	filedesc = "NT Shopping Network"
+	filedesc = "纳米传讯购物网络"
 	downloader_category = PROGRAM_CATEGORY_SUPPLY
 	program_open_overlay = "request"
-	extended_desc = "Nanotrasen Shopping Network interface for purchasing supplies from the cargo catalogue using a department budget account."
+	extended_desc = "纳米传讯购物网络界面，可使用部门预算账户从货运目录中采购物资。"
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	can_run_on_flags = PROGRAM_LAPTOP | PROGRAM_PDA
 	size = 10
@@ -18,11 +18,11 @@
 	///Can this console approve purchase requests?
 	var/can_approve_requests = FALSE
 	///What do we say when the shuttle moves with living beings on it.
-	var/safety_warning = "For safety and ethical reasons, the automated supply shuttle cannot transport live organisms, \
-		human remains, classified nuclear weaponry, mail, undelivered departmental order crates, syndicate bombs, \
-		homing beacons, unstable eigenstates, or machinery housing any form of artificial intelligence."
+	var/safety_warning = "出于安全与伦理原因，自动补给穿梭机无法运送活体生物、\
+		遗体、机密核武器、邮件、未送达的部门订单箱、辛迪加炸弹、\
+		归航信标、不稳定的本征态，或任何装载人工智能的机械。"
 	///If you're being raided by pirates, what do you tell the crew?
-	var/blockade_warning = "Bluespace instability detected. Shuttle movement impossible."
+	var/blockade_warning = "检测到蓝空间不稳定，穿梭机无法移动。"
 	///The name of the shuttle template being used as the cargo shuttle. 'cargo' is default and contains critical code. Don't change this unless you know what you're doing.
 	var/cargo_shuttle = "cargo"
 	///The docking port called when returning to the station.
@@ -60,7 +60,7 @@
 /datum/computer_file/program/budgetorders/ui_data(mob/user)
 	var/list/data = list()
 	data["location"] = SSshuttle.supply.getStatusText()
-	data["department"] = "Cargo"
+	data["department"] = "货运部"
 
 	var/datum/bank_account/buyer = SSeconomy.get_dep_account(cargo_account)
 	var/obj/item/card/id/id_card = computer.stored_id?.GetID()
@@ -70,7 +70,7 @@
 			requestonly = FALSE
 			can_approve_requests = TRUE
 			// If buyer is a departmental budget, replaces "Cargo" with that budget - we're not using the cargo budget here
-			data["department"] = "[buyer.account_holder] Requisitions"
+			data["department"] = "[buyer.account_holder] 申购"
 		else
 			requestonly = TRUE
 			can_approve_requests = FALSE
@@ -122,7 +122,7 @@
 	data["can_send"] = FALSE //There is no situation where I want the app to be able to send the shuttle AWAY from the station, but conversely is fine.
 	data["can_approve_requests"] = can_approve_requests
 	data["app_cost"] = TRUE
-	var/message = "Remember to stamp and send back the supply manifests."
+	var/message = "请记得盖章并交回补给清单。"
 	if(SSshuttle.centcom_message)
 		message = SSshuttle.centcom_message
 	if(SSshuttle.supply_blocked)
@@ -164,7 +164,7 @@
 			"orderer" = order.orderer,
 			"reason" = order.reason,
 			"id" = order.id,
-			"account" = order.paying_account ? order.paying_account.account_holder : "Cargo Department"
+			"account" = order.paying_account ? order.paying_account.account_holder : "货运部"
 		))
 
 	return data
@@ -189,11 +189,11 @@
 				return
 			if(SSshuttle.supply.getDockedId() == docking_home)
 				SSshuttle.moveShuttle(cargo_shuttle, docking_away, TRUE)
-				computer.say("The supply shuttle is departing.")
-				user.investigate_log("sent the supply shuttle away.", INVESTIGATE_CARGO)
+				computer.say("补给穿梭机正在离站。")
+				user.investigate_log("将补给穿梭机送离了站。", INVESTIGATE_CARGO)
 			else
-				user.investigate_log("called the supply shuttle.", INVESTIGATE_CARGO)
-				computer.say("The supply shuttle has been called and will arrive in [SSshuttle.supply.timeLeft(600)] minute\s.")
+				user.investigate_log("召回了补给穿梭机。", INVESTIGATE_CARGO)
+				computer.say("已召回补给穿梭机，将在 [SSshuttle.supply.timeLeft(600)] 分钟后抵达。")
 				SSshuttle.moveShuttle(cargo_shuttle, docking_home, TRUE)
 			. = TRUE
 		if("loan")
@@ -210,9 +210,9 @@
 				return
 			else
 				SSshuttle.shuttle_loan.loan_shuttle()
-				computer.say("The supply shuttle has been loaned to CentCom.")
-				user.investigate_log("accepted a shuttle loan event.", INVESTIGATE_CARGO)
-				user.log_message("accepted a shuttle loan event.", LOG_GAME)
+				computer.say("补给穿梭机已租借给中央指挥部。")
+				user.investigate_log("接受了一次穿梭机租借事件。", INVESTIGATE_CARGO)
+				user.log_message("接受了一次穿梭机租借事件。", LOG_GAME)
 				. = TRUE
 		if("add")
 			var/id = text2path(params["id"]) || params["id"]
@@ -222,8 +222,8 @@
 			if((pack.order_flags & (ORDER_EMAG_ONLY | ORDER_POD_ONLY | ORDER_INTERDYNE_ONLY | ORDER_CONTRABAND)) || ((pack.order_flags & ORDER_SPECIAL) && !(pack.order_flags & ORDER_SPECIAL_ENABLED))) // BUBBER EDIT
 				return
 
-			var/name = "*None Provided*"
-			var/rank = "*None Provided*"
+			var/name = "*未提供*"
+			var/rank = "*未提供*"
 			var/ckey = user.ckey
 			var/mob/living/carbon/human/hwoman
 			if(ishuman(user))
@@ -231,7 +231,7 @@
 				rank = hwoman.get_assignment(hand_first = TRUE)
 			else if(issilicon(user))
 				name = user.real_name
-				rank = "Silicon"
+				rank = "硅基单位"
 
 			// Our account that we want to end up paying with.
 			var/datum/bank_account/account
@@ -243,28 +243,28 @@
 
 			if(self_paid)
 				if(!istype(id_card_customer))
-					computer.say("No ID card detected.")
+					computer.say("未检测到 ID 卡。")
 					return
 				if(IS_DEPARTMENTAL_CARD(id_card_customer))
-					computer.say("[id_card_customer] cannot be used to make purchases.")
+					computer.say("[id_card_customer] 不能用于采购。")
 					return
 				account = id_card_customer.registered_account
 				name = id_card_customer.registered_account.account_holder
 				if(!istype(account))
-					computer.say("Invalid bank account.")
+					computer.say("银行账户无效。")
 					return
 
 			var/reason = ""
 			var/datum/bank_account/personal_department
 			if((requestonly && !self_paid) || !(computer.stored_id?.GetID()))
-				reason = tgui_input_text(user, "Reason", name, max_length = MAX_MESSAGE_LEN)
+				reason = tgui_input_text(user, "原因", name, max_length = MAX_MESSAGE_LEN)
 				if(isnull(reason) || ..())
 					return
 
 			if(id_card_customer?.registered_account?.account_job && !self_paid) //Find a budget to pull from
 				personal_department = SSeconomy.get_dep_account(id_card_customer.registered_account.account_job.paycheck_department)
 				if(!(personal_department.account_holder == "Cargo Budget"))
-					var/dept_choice = tgui_alert(user, "Which department are you requesting this for?", "Choose request department", list("Cargo Budget", "[personal_department.account_holder]"))
+					var/dept_choice = tgui_alert(user, "这是为哪个部门申请的？", "选择申请部门", list("Cargo Budget", "[personal_department.account_holder]"))
 					if(!dept_choice)
 						return
 					if(dept_choice == "Cargo Budget")
@@ -272,12 +272,12 @@
 
 			if((pack.order_flags & ORDER_GOODY) && !self_paid && !pack.allow_non_private_purchase) // BUBBER EDIT - allow_non_private_purchase check, matches orderconsole.dm and expressconsole.dm
 				playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-				computer.say("ERROR: Small crates may only be purchased by private accounts.")
+				computer.say("错误：小型板条箱只能使用个人账户购买。")
 				return
 
 			if(SSshuttle.supply.get_order_count(pack) == OVER_ORDER_LIMIT)
 				playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-				computer.say("ERROR: No more then [CARGO_MAX_ORDER] of any pack may be ordered at once")
+				computer.say("错误：单次最多只能订购 [CARGO_MAX_ORDER] 份同种货箱。")
 				return
 
 			if(!self_paid)
@@ -289,17 +289,17 @@
 				SO.generateRequisition(T)
 				computer.stored_paper -= 1
 				if(computer.stored_paper <= 4)
-					computer.say("Paper's storage has only [computer.stored_paper] papers. Refill please!")
+					computer.say("纸张存储仅剩 [computer.stored_paper] 张纸，请补充！")
 					if(computer.stored_paper <= 1)
-						computer.say("Only 1 paper has left, refill please!")
+						computer.say("仅剩 1 张纸，请补充！")
 			else
-				computer.say("Requisition cannot be printed, paper storage is empty. Please insert more paper!")
+				computer.say("无法打印申购单，纸张存储已空，请补充纸张！")
 			if((requestonly && !self_paid) || !(computer.stored_id?.GetID()))
 				SSshuttle.request_list += SO
 			else
 				SSshuttle.shopping_list += SO
 				if(self_paid)
-					computer.say("Order processed. The price will be charged to [account.account_holder]'s bank account on delivery.")
+					computer.say("订单已处理，费用将在送达时从 [account.account_holder] 的银行账户扣除。")
 			playsound(computer, 'sound/effects/coin2.ogg', 40, TRUE)
 			. = TRUE
 		if("remove")

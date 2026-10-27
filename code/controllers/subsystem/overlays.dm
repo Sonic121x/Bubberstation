@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(overlays)
-	name = "Overlay"
+	name = "叠加图层"
 	ss_flags = SS_NO_FIRE|SS_NO_INIT
 	var/list/stats
 
@@ -224,9 +224,9 @@ SUBSYSTEM_DEF(overlays)
 				continue
 
 		diff_found = TRUE
-		diffs += "Diffs detected at [name]: First ([firstv]), Second ([secondv])"
+		diffs += "在[name]处发现差异：第一个值（[firstv]），第二个值（[secondv]）"
 
-	var/text = "Depth of: [iter]\n\t[diffs.Join("\n\t")]"
+	var/text = "深度：[iter]\n\t[diffs.Join("\n\t")]"
 	message_admins(text)
 	log_world(text)
 	return diff_found

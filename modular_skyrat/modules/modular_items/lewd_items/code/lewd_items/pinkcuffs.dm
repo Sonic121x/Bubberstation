@@ -1,6 +1,6 @@
 /obj/item/restraints/handcuffs/lewd
-	name = "kinky handcuffs"
-	desc = "Fake handcuffs meant for erotic roleplay."
+	name = "情趣手铐"
+	desc = "用于情色角色扮演的假手铐。"
 	icon_state = "pinkcuffs"
 	inhand_icon_state = "pinkcuffs"
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_items/lewd_items.dmi'

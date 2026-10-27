@@ -5,8 +5,8 @@
 
 /obj/machinery/power/manufacturing
 	icon = 'icons/obj/machines/manufactorio.dmi'
-	name = "base manufacture receiving type"
-	desc = "this shouldnt exist"
+	name = "基础制造接收类型"
+	desc = "这个不该存在"
 	density = TRUE
 	/// Do we add the simple_rotation component and a text that we are powered by cable? Also allows unwrenching
 	var/may_be_moved = TRUE
@@ -23,8 +23,8 @@
 /obj/machinery/power/manufacturing/examine(mob/user)
 	. = ..()
 	if(may_be_moved)
-		. += "It receives power via cable, but certain buildings do not need power."
-	. += length(contents - circuit) ? "It contains:" : "It contains no items."
+		. += "它通过电缆获取电力，但某些建筑不需要电力。"
+	. += length(contents - circuit) ? "它装有：" : "它没有装任何物品。"
 	for(var/atom/movable/thing as anything in contents - circuit)
 		var/text = thing.name
 		var/obj/item/stack/possible_stack = thing

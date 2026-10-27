@@ -225,9 +225,9 @@
 	environ = environ ? APC_CHANNEL_OFF : APC_CHANNEL_ON
 	if (user)
 		add_hiddenprint(user)
-		var/enabled_or_disabled = environ ? "enabled" : "disabled"
-		balloon_alert(user, "environment power [enabled_or_disabled]")
-		user.log_message("[enabled_or_disabled] the [src] environment settings", LOG_GAME)
+		var/enabled_or_disabled = environ ? "已启用" : "已禁用"
+		balloon_alert(user, "环境供电[enabled_or_disabled]")
+		user.log_message("[enabled_or_disabled][src]的环境供电", LOG_GAME)
 	update_appearance()
 	update()
 
@@ -241,10 +241,10 @@
 
 	lighting = lighting ? APC_CHANNEL_OFF : APC_CHANNEL_ON
 	if (user)
-		var/enabled_or_disabled = lighting ? "enabled" : "disabled"
+		var/enabled_or_disabled = lighting ? "已启用" : "已禁用"
 		add_hiddenprint(user)
-		balloon_alert(user, "lighting power toggled [enabled_or_disabled]")
-		user.log_message("turned [enabled_or_disabled] the [src] lighting settings", LOG_GAME)
+		balloon_alert(user, "照明供电[enabled_or_disabled]")
+		user.log_message("[enabled_or_disabled][src]的照明供电", LOG_GAME)
 	update_appearance()
 	update()
 	return TRUE
@@ -259,10 +259,10 @@
 
 	equipment = equipment ? APC_CHANNEL_OFF : APC_CHANNEL_ON
 	if (user)
-		var/enabled_or_disabled = equipment ? "enabled" : "disabled"
-		balloon_alert(user, "equipment power toggled [enabled_or_disabled]")
+		var/enabled_or_disabled = equipment ? "已启用" : "已禁用"
+		balloon_alert(user, "设备供电[enabled_or_disabled]")
 		add_hiddenprint(user)
-		user.log_message("turned [enabled_or_disabled] the [src] equipment settings", LOG_GAME)
+		user.log_message("[enabled_or_disabled][src]的设备供电", LOG_GAME)
 	update_appearance()
 	update()
 	return CLICK_ACTION_SUCCESS
@@ -279,7 +279,7 @@
 		return
 	if(!point_at(A, TRUE))
 		return
-	log_message("points at [A] using holopad", LOG_EMOTE)
+	log_message("使用全息投影仪指向[A]", LOG_EMOTE)
 
 /* AI Turrets */
 /obj/machinery/turretid/ai_click_alt(mob/living/silicon/ai/user) //toggles lethal on turrets
@@ -296,7 +296,7 @@
 /* Holopads */
 /obj/machinery/holopad/ai_click_alt(mob/living/silicon/ai/user)
 	if (user)
-		balloon_alert(user, "disrupted all active calls")
+		balloon_alert(user, "已中断所有通话")
 		add_hiddenprint(user)
 	hangup_all_calls()
 	return CLICK_ACTION_SUCCESS

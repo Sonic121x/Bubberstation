@@ -1,6 +1,6 @@
 ///Spirit mob that lacks legs but still roams the station as part of the unliving.
 /datum/species/spirit
-	name = "Spirit"
+	name = "幽魂"
 	id = SPECIES_SPIRIT
 	inherent_traits = list(
 		TRAIT_GENELESS,
@@ -47,17 +47,17 @@
 	return ..()
 
 /datum/species/spirit/get_physical_attributes()
-	return "Spirits are the spiritual remains of long-passed entities. They lack legs, can fly, but still eat, breathe, hear and see."
+	return "幽魂是早已逝去之存在的灵魂残骸。他们没有腿，能够飞行，但仍需进食、呼吸、听与看。"
 
 /datum/species/spirit/get_species_description()
-	return "Spirits are spirits of long-dead creatures whom, for one reason or another, still roam around."
+	return "幽魂是早已死去的生物的灵魂，他们因种种缘由仍在此徘徊。"
 
 /datum/species/spirit/get_species_lore()
 	return list(
-		"Spirits are the non-physical remains that linger onto their mortal coil. \
-		They still need their protein and organs to keep themselves \"alive\", \
-		which leads to many of them still believing they are still part of the living, \
-		whether or not they are is a very open-ended debate between philosophers.",
+		"幽魂是附着于尘世躯壳之上的非物质残骸。\
+		他们仍需要蛋白质与器官来维持“存活”，\
+		这使其中许多幽魂仍相信自己仍是生者的一部分；\
+		至于事实是否如此，则是哲学家们争论不休的话题。",
 	)
 
 /datum/species/spirit/create_pref_unique_perks()
@@ -66,15 +66,15 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "body",
-		SPECIES_PERK_NAME = "Leg-less",
-		SPECIES_PERK_DESC = "Ghosts lack legs and float, preventing you from falling into holes in the ground.",
+		SPECIES_PERK_NAME = "无腿",
+		SPECIES_PERK_DESC = "鬼魂没有腿，会漂浮移动，因此不会掉进地面的坑洞。",
 	))
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "shoe-prints",
-		SPECIES_PERK_NAME = "No Feet",
-		SPECIES_PERK_DESC = "You lack feet, therefore the ability to wear any shoes!",
+		SPECIES_PERK_NAME = "没有脚",
+		SPECIES_PERK_DESC = "你没有脚，因此无法穿任何鞋子！",
 	))
 
 	return to_add
@@ -86,7 +86,7 @@
  * is not something that is generally fun to play against.
  */
 /datum/species/spirit/ghost
-	name = "Ghost"
+	name = "鬼魂"
 	id = SPECIES_GHOST
 	inherent_traits = list(
 		TRAIT_GENELESS,
@@ -116,16 +116,16 @@
 	var/datum/action/innate/toggle_passthrough/passthrough_ability
 
 /datum/species/spirit/ghost/get_physical_attributes()
-	return "Ghosts are the spiritual remains of long-passed entities. They lack legs, can fly, can choose at will to become incorporeal, \
-		but still eat, breathe, hear and see."
+	return "鬼魂是早已逝去之存在的灵魂残骸。他们没有腿，能够飞行，可以随意化为无形，\
+		但仍需进食、呼吸、听与看。"
 
 /datum/species/spirit/ghost/get_species_lore()
 	return list(
-		"Ghosts are one of the spookiest creatures known in the galaxy. \
-		While they still need their protein to sustain themselves, they are able to control their own bodies, \
-		going through walls and getting rid of all their posessions at will. \
-		Most knowledge known about them is kept secret by Nanotrasen's top Chaplains, who are keen \
-		to keep it private.",
+		"鬼魂是银河中已知最令人毛骨悚然的生物之一。\
+		尽管他们仍需蛋白质维持自身，却能完全掌控自己的身体，\
+		可以随意穿墙并丢弃所有随身物品。\
+		关于他们的大部分知识都被纳米传讯的顶级牧师封存为秘密，他们 \
+		热衷于将其保持缄默。",
 	)
 
 /datum/species/spirit/ghost/on_species_gain(mob/living/carbon/human/new_ghost, datum/species/old_species, pref_load, regenerate_icons)
@@ -148,9 +148,9 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "ghost",
-		SPECIES_PERK_NAME = "Incorporeal",
-		SPECIES_PERK_DESC = "Ghost are able to control their body to the extent where you can willingly make yourself able \
-			to phase through anything, including your own equipment.",
+		SPECIES_PERK_NAME = "无形",
+		SPECIES_PERK_DESC = "鬼魂对自身的掌控达到了可以随意让自身 \
+			穿透一切物体的程度，包括自己的装备。",
 	))
 
 	return to_add
@@ -163,8 +163,8 @@
  * and completely unable to wear anything.
  */
 /datum/action/innate/toggle_passthrough
-	name = "Toggle passthrough"
-	desc = "Toggles your ability to phase through everything, including your gear and any incompatible organs/limbs."
+	name = "切换穿透"
+	desc = "切换你穿透一切物体的能力，包括你的装备，以及任何不相容的器官与肢体。"
 	button_icon = 'icons/hud/actions.dmi'
 	button_icon_state = "ghost"
 
@@ -255,5 +255,5 @@
 	SIGNAL_HANDLER
 
 	if(new_loc && HAS_TRAIT(new_loc, TRAIT_TURF_BLESSED))
-		to_chat(source, span_warning("Holy energies block your path!"))
+		to_chat(source, span_warning("神圣能量挡住了你的去路！"))
 		return COMSIG_MOB_CLIENT_BLOCK_PRE_LIVING_MOVE

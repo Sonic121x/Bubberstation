@@ -1,6 +1,6 @@
 /obj/item/tickle_feather
-	name = "tickling feather"
-	desc = "A rather ticklish feather that can be used in both mirth and malice."
+	name = "挠痒羽毛"
+	desc = "一根很能挠痒的羽毛，既能逗人开心，也能恶作剧。"
 	icon_state = "feather"
 	inhand_icon_state = "feather"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
@@ -20,57 +20,57 @@
 		return
 
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("[target] doesn't want you to do that."))
+		to_chat(user, span_danger("[target] 不愿意让你这么做。"))
 		return
 
 	var/message = ""
 	switch(user.zone_selected) //to let code know what part of body we gonna tickle
 		if(BODY_ZONE_PRECISE_GROIN)
 			if(carbon_target && !carbon_target.is_bottomless())
-				to_chat(user, span_danger("Looks like [target]'s groin is covered!"))
+				to_chat(user, span_danger("[target] 的胯部似乎被遮住了！"))
 				return
 
-			message = (user == target) ? pick("tickles [target.p_them()]self with [src]",
-					"gently teases [target.p_their()] belly with [src]") \
-				: pick("teases [target]'s belly with [src]",
-					"uses [src] to tickle [target]'s belly",
-					"tickles [target] with [src]")
+			message = (user == target) ? pick("用 [src] 给自己挠痒",
+					"用 [src] 轻轻撩拨自己的肚子") \
+				: pick("用 [src] 撩拨 [target] 的肚子",
+					"用 [src] 给 [target] 的肚子挠痒",
+					"用 [src] 给 [target] 挠痒")
 		if(BODY_ZONE_CHEST)
 			if(carbon_target)
 				var/obj/item/organ/genital/badonkers = carbon_target.get_organ_slot(ORGAN_SLOT_BREASTS)
 				if(!badonkers?.is_exposed())
-					to_chat(user, span_danger("Looks like [target]'s chest is covered!"))
+					to_chat(user, span_danger("[target] 的胸部似乎被遮住了！"))
 					return
 
-				message = (user == target) ? pick("tickles [target.p_them()]self with [src]",
-						"gently teases [target.p_their()] own nipples with [src]") \
-					: pick("teases [target]'s nipples with [src]",
-						"uses [src] to tickle [target]'s left nipple",
-						"uses [src] to tickle [target]'s right nipple")
+				message = (user == target) ? pick("用 [src] 给自己挠痒",
+						"用 [src] 轻轻撩拨自己的乳头") \
+					: pick("用 [src] 撩拨 [target] 的乳头",
+						"用 [src] 给 [target] 的左乳头挠痒",
+						"用 [src] 给 [target] 的右乳头挠痒")
 			else
-				message = (user == target) ? pick("tickles [target.p_them()]self with [src]",
-						"gently teases [target.p_their()] synthetic body with [src]") \
-					: pick("teases [target]'s touch sensors with [src]")
+				message = (user == target) ? pick("用 [src] 给自己挠痒",
+						"用 [src] 轻轻撩拨自己的合成躯体") \
+					: pick("用 [src] 撩拨 [target] 的触觉传感器")
 		if(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 			if(carbon_target && !carbon_target.has_feet(REQUIRE_GENITAL_EXPOSED))
-				to_chat(user, span_danger("Looks like [target]'s feets are covered!"))
+				to_chat(user, span_danger("[target] 的双脚似乎被遮住了！"))
 				return
 
-			message = (user == target) ? pick("tickles [target.p_them()]self with [src]",
-					"gently teases [target.p_their()] own feet with [src]") \
-				: pick("teases [target]'s feet with [src]",
-					"uses [src] to tickle [target]'s [user.zone_selected == BODY_ZONE_L_LEG ? "left" : "right"] foot",
-					"uses [src] to tickle [target]'s toes")
+			message = (user == target) ? pick("用 [src] 给自己挠痒",
+					"用 [src] 轻轻撩拨自己的双脚") \
+				: pick("用 [src] 撩拨 [target] 的双脚",
+					"用 [src] 给 [target] 的[user.zone_selected == BODY_ZONE_L_LEG ? "左" : "右"]脚挠痒",
+					"用 [src] 给 [target] 的脚趾挠痒")
 		if(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM)
 			if(carbon_target && !carbon_target.is_topless())
-				to_chat(user, span_danger("Looks like [target]'s armpits are covered!"))
+				to_chat(user, span_danger("[target] 的腋下似乎被遮住了！"))
 				return
 
-			message = (user == target) ? pick("tickles [target.p_them()]self with [src]",
-					"gently teases [target.p_their()] own armpit with [src]") \
-				: pick("teases [target]'s right armpit with [src]",
-					"uses [src] to tickle [target]'s [user.zone_selected == BODY_ZONE_L_ARM ? "left" : "right"] armpit",
-					"uses [src] to tickle [target]'s underarm")
+			message = (user == target) ? pick("用 [src] 给自己挠痒",
+					"用 [src] 轻轻撩拨自己的腋下") \
+				: pick("用 [src] 撩拨 [target] 的右腋下",
+					"用 [src] 给 [target] 的[user.zone_selected == BODY_ZONE_L_ARM ? "左" : "右"]腋下挠痒",
+					"用 [src] 给 [target] 的腋下挠痒")
 		else
 			return
 
@@ -90,6 +90,6 @@
 
 //Mood boost
 /datum/mood_event/tickled
-	description = span_nicegreen("Wooh... I was tickled. It was... Funny!\n")
+	description = span_nicegreen("呼……刚才被挠痒了。还……挺好玩的！\n")
 	mood_change = 0
 	timeout = 2 MINUTES

@@ -2,7 +2,7 @@
 #define ITEM_HASH(item)(sanitize_css_class_name("[item.name][item.custom_price][item.type]"))
 
 /obj/machinery/vending/custom
-	name = "Custom Vendor"
+	name = "定制售货机"
 	icon_state = "custom"
 	icon_deny = "custom-deny"
 	max_integrity = 400
@@ -43,17 +43,17 @@
 
 /obj/machinery/vending/custom/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(panel_open && istype(held_item, refill_canister))
-		context[SCREENTIP_CONTEXT_LMB] = "Restock vending machine"
+		context[SCREENTIP_CONTEXT_LMB] = "补充售货机库存"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(isliving(user) && istype(held_item, /obj/item/card/id))
 		var/obj/item/card/id/card_used = held_item
 		if(card_used?.registered_account)
 			if(!linked_account)
-				context[SCREENTIP_CONTEXT_LMB] = "Link account"
+				context[SCREENTIP_CONTEXT_LMB] = "绑定账户"
 				return ITEM_INTERACT_SUCCESS
 			else if(linked_account == card_used.registered_account)
-				context[SCREENTIP_CONTEXT_LMB] = "Unlink account"
+				context[SCREENTIP_CONTEXT_LMB] = "解绑账户"
 				return ITEM_INTERACT_SUCCESS
 
 	return ..()
@@ -61,7 +61,7 @@
 /obj/machinery/vending/custom/examine(mob/user)
 	. = ..()
 	if(linked_account)
-		. += span_warning("Machine is ID locked. Be sure to unlink before deconstructing the machine.")
+		. += span_warning("机器已锁定 ID。拆解机器前请务必先解绑。")
 
 /obj/machinery/vending/custom/Exited(obj/item/gone, direction)
 	. = ..()
@@ -87,15 +87,15 @@
 /obj/machinery/vending/custom/canLoadItem(obj/item/loaded_item, mob/user, send_message = TRUE)
 	if(loaded_item.flags_1 & HOLOGRAM_1)
 		if(send_message)
-			speak("This vendor cannot accept nonexistent items.")
+			speak("本售货机无法接受不存在的物品。")
 		return FALSE
 	if(isstack(loaded_item))
 		if(send_message)
-			speak("Loose items may cause problems, try to use it inside wrapping paper.")
+			speak("散装物品可能引发问题，请试着用包装纸包好再放入。")
 		return FALSE
 	if(!loaded_item.custom_price)
 		if(send_message)
-			speak("Item needs to have a custom price set.")
+			speak("物品需要先设置自定义价格。")
 		return FALSE
 	return TRUE
 
@@ -104,11 +104,11 @@
 		return FALSE
 
 	if(loaded_items() == max_loaded_items)
-		speak("There are too many items in stock.")
+		speak("库存里的物品太多了。")
 		return FALSE
 
 	if(!user.transferItemToLoc(inserted_item, src))
-		to_chat(user, span_warning("[inserted_item] is stuck in your hand!"))
+		to_chat(user, span_warning("[inserted_item] 卡在你手里了！"))
 		return FALSE
 
 	//the hash key decides how items stack in the UI. We diffrentiate them based on name & price
@@ -163,22 +163,22 @@
 
 /obj/machinery/vending/custom/post_restock(mob/living/user, restocked)
 	if(!restocked)
-		to_chat(user, span_warning("There's nothing to restock!"))
+		to_chat(user, span_warning("没有可补充的库存！"))
 		return
 
-	to_chat(user, span_notice("You loaded [restocked] items in [src]"))
+	to_chat(user, span_notice("你向 [src] 里装入了 [restocked] 件物品。"))
 
 /obj/machinery/vending/custom/crowbar_act(mob/living/user, obj/item/attack_item)
 	if(linked_account)
 		visible_message(
-			span_warning("Security warning"),
-			span_warning("Unauthorized deconstruction of vending machine is prohibited. Please read the warning alert")
+			span_warning("安全警告"),
+			span_warning("禁止未经授权拆解售货机。请阅读警告提示。")
 		)
-		if(tgui_alert(user, "Vending machine is ID locked.\
-		Deconstruction will result in an catrostrophic self destruct.\
-		If you are the owner of this machine please unlink your account with an ID swipe before proceeding.\
-		Still proceed?",
-		"Vandalism protection protocol",
+		if(tgui_alert(user, "售货机已锁定 ID。\
+		拆解将引发灾难性的自毁。\
+		如果你是本机的所有者，请先用 ID 刷卡解绑账户再继续。\
+		仍要继续吗？",
+		"防破坏保护协议",
 		list("Yes", "No")) == "No")
 			return ITEM_INTERACT_FAILURE
 
@@ -199,20 +199,20 @@
 		if(card_used?.registered_account)
 			if(!linked_account)
 				linked_account = card_used.registered_account
-				speak("\The [src] has been linked to [card_used].")
+				speak("\The [src] 已与 [card_used] 绑定。")
 				return ITEM_INTERACT_SUCCESS
 			else if(linked_account == card_used.registered_account)
 				linked_account = null
-				speak("account unlinked.")
+				speak("账户已解绑。")
 				return ITEM_INTERACT_SUCCESS
 			else
-				to_chat(user, "verification failed. unlinking process has been cancelled.")
+				to_chat(user, "验证失败。解绑流程已取消。")
 		return ITEM_INTERACT_FAILURE
 	return ..()
 
 /obj/machinery/vending/custom/descformat(input, mob/living/user)
 	. = input
-	var/new_slogan = reject_bad_text(tgui_input_text(user, "Set slogan", "Slogan", "Epic", max_length = 60))
+	var/new_slogan = reject_bad_text(tgui_input_text(user, "设置标语", "标语", "史诗级", max_length = 60))
 	if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 	if (new_slogan)
@@ -224,7 +224,7 @@
 	if(records != product_records) //no coin or hidden stuff only product records
 		return
 
-	categories["Products"] = list("icon" = "cart-shopping")
+	categories["商品"] = list("icon" = "cart-shopping")
 	for(var/stocked_hash in products)
 		var/base64 = ""
 		var/obj/item/target = null
@@ -241,7 +241,7 @@
 			path = stocked_hash,
 			name = target.name,
 			price = target.custom_price,
-			category = "Products",
+			category = "商品",
 			ref = stocked_hash,
 			colorable = FALSE,
 			image = base64
@@ -250,7 +250,7 @@
 
 /obj/machinery/vending/custom/ui_interact(mob/user, datum/tgui/ui)
 	if(!linked_account)
-		balloon_alert(user, "no registered owner!")
+		balloon_alert(user, "没有注册所有者！")
 		return FALSE
 	return ..()
 
@@ -278,7 +278,7 @@
 
 	var/obj/item/card/id/id_card = user.get_idcard(TRUE)
 	if(QDELETED(id_card))
-		balloon_alert(user, "no card found!")
+		balloon_alert(user, "未找到卡！")
 		flick(icon_deny, src)
 		return
 
@@ -286,25 +286,25 @@
 	var/datum/bank_account/payee = id_card.registered_account
 	if(!compartmentLoadAccessCheck(user))
 		if(istype(id_card, /obj/item/card/id/departmental_budget))
-			balloon_alert(user, "invalid payment card")
-			to_chat(user, span_warning("You cannot use a departmental card for this."))
+			balloon_alert(user, "无效的支付卡")
+			to_chat(user, span_warning("你不能用部门卡进行此操作。"))
 			return
 		if(!payee.has_money(dispensed_item.custom_price))
-			balloon_alert(user, "insufficient funds!")
+			balloon_alert(user, "余额不足！")
 			return
 		/// Make the transaction
-		payee.adjust_money(-dispensed_item.custom_price, , "Vending: [dispensed_item]")
-		linked_account.adjust_money(dispensed_item.custom_price, "Vending: [dispensed_item] Bought")
-		linked_account.bank_card_talk("[payee.account_holder] made a [dispensed_item.custom_price] \
-		[MONEY_SYMBOL] purchase at your custom vendor.")
+		payee.adjust_money(-dispensed_item.custom_price, , "售货：[dispensed_item]")
+		linked_account.adjust_money(dispensed_item.custom_price, "售货：[dispensed_item] 已购买")
+		linked_account.bank_card_talk("[payee.account_holder] 在你的定制售货机消费了 [dispensed_item.custom_price] \
+		[MONEY_SYMBOL]。")
 		/// Log the transaction
 		SSblackbox.record_feedback("amount", "vending_spent", dispensed_item.custom_price)
-		log_econ("[dispensed_item.custom_price] [MONEY_NAME] were spent on [src] buying a \
-		[dispensed_item] by [payee.account_holder], owned by [linked_account.account_holder].")
+		log_econ("[dispensed_item.custom_price] [MONEY_NAME] 被 [payee.account_holder] 用于在 [src] 购买 \
+		[dispensed_item]，该机所有者为 [linked_account.account_holder]。")
 		/// Make an alert
 		var/ref = REF(user)
 		if(last_shopper != ref || purchase_message_cooldown < world.time)
-			speak("Thank you for your patronage [user]!")
+			speak("感谢您的惠顾，[user]！")
 			purchase_message_cooldown = world.time + 5 SECONDS
 			last_shopper = ref
 
@@ -314,7 +314,7 @@
 	return TRUE
 
 /obj/item/vending_refill/custom
-	machine_name = "Custom Vendor"
+	machine_name = "定制售货机"
 	icon_state = "refill_custom"
 	custom_premium_price = PAYCHECK_CREW
 
@@ -324,7 +324,7 @@
 		. += products[key]
 
 /obj/machinery/vending/custom/unbreakable
-	name = "Indestructible Vendor"
+	name = "不可摧毁的售货机"
 	resistance_flags = INDESTRUCTIBLE
 	allow_custom = FALSE
 
@@ -344,9 +344,9 @@
 	set_anchored(FALSE)
 	set_panel_open(TRUE)
 	//and references the deity
-	name = "[GLOB.deity]'s Consecrated Vendor"
-	desc = "A vending machine created by [GLOB.deity]."
-	slogan_list = list("[GLOB.deity] says: It's your divine right to buy!")
+	name = "[GLOB.deity] 的圣化售货机"
+	desc = "一台由 [GLOB.deity] 创造的售货机。"
+	slogan_list = list("[GLOB.deity] 说：购买是你的神圣权利！")
 	add_filter("vending_outline", 9, list("type" = "outline", "color" = COLOR_VERY_SOFT_YELLOW))
 	add_filter("vending_rays", 10, list("type" = "rays", "size" = 35, "color" = COLOR_VIVID_YELLOW))
 

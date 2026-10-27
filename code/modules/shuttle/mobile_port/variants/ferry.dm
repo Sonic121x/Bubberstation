@@ -1,6 +1,6 @@
 /obj/machinery/computer/shuttle/ferry
-	name = "transport ferry console"
-	desc = "A console that controls the transport ferry."
+	name = "运输渡船控制台"
+	desc = "一台控制运输渡船的控制台。"
 	circuit = /obj/item/circuitboard/computer/ferry
 	shuttleId = "ferry"
 	possible_destinations = "ferry_home;ferry_away;ferry_ntf" //SKYRAT EDIT CHANGE
@@ -10,7 +10,7 @@
 
 /obj/machinery/computer/shuttle/ferry/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!allow_emag)
-		balloon_alert(user, "firewall too powerful!")
+		balloon_alert(user, "防火墙过于强大！")
 		return FALSE
 	return ..()
 
@@ -21,7 +21,7 @@
 	return allow_silicons ? ..() : FALSE
 
 /obj/machinery/computer/shuttle/ferry/request
-	name = "ferry console"
+	name = "渡船控制台"
 	circuit = /obj/item/circuitboard/computer/ferry/request
 	possible_destinations = "ferry_home;ferry_away;ferry_ntf" //SKYRAT EDIT CHANGE
 	req_access = list(ACCESS_CENT_GENERAL)

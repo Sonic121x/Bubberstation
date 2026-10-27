@@ -1,10 +1,10 @@
 /datum/quirk/indebted
 	name = "Indebted"
-	desc = "Bad life decisions, medical bills, student loans, whatever it may be, you've incurred quite the debt. A portion of all you receive will go towards extinguishing it."
+	desc = "无论是糟糕的人生决定、医疗账单还是助学贷款，你都背上了一大笔债务。所有收入的一部分都将用于还债。"
 	icon = FA_ICON_DOLLAR
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_HIDE_FROM_SCAN
 	value = -2
-	medical_record_text = "Alas, the patient struggled to scrape together enough money to pay the checkup bill."
+	medical_record_text = "唉，患者连体检费都难以凑齐。"
 	hardcore_value = 2
 
 /datum/quirk/indebted/add_unique(client/client_source)
@@ -15,7 +15,7 @@
 	var/debt = PAYCHECK_CREW * rand(275, 325)
 	account.account_debt += debt
 	RegisterSignal(account, COMSIG_BANK_ACCOUNT_DEBT_PAID, PROC_REF(on_debt_paid))
-	to_chat(client_source.mob, span_warning("You remember, you've a hefty, [debt] [MONEY_NAME_SINGULAR] debt to pay..."))
+	to_chat(client_source.mob, span_warning("你想起来了，自己还有高达[debt][MONEY_NAME_SINGULAR]的债务要还……"))
 
 ///Once the debt is extinguished, award an achievement and a pin for actually taking care of it.
 /datum/quirk/indebted/proc/on_debt_paid(datum/bank_account/source)

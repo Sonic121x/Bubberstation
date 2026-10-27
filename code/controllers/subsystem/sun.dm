@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(sun)
-	name = "Sun"
+	name = "恒星光照"
 	wait = 1 MINUTES
 
 	var/azimuth = 0 ///clockwise, top-down rotation from 0 (north) to 359

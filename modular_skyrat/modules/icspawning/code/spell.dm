@@ -1,10 +1,10 @@
 /datum/action/cooldown/spell/return_back
-	name = "Return"
-	desc = "Activates your return beacon."
+	name = "返回"
+	desc = "激活你的返回信标。"
 	sound = 'sound/effects/magic/Repulse.ogg'
 	button_icon_state = "lightning"
 	spell_requirements = NONE
-	invocation = "Return on!"
+	invocation = "返回！"
 	invocation_type = INVOCATION_WHISPER
 	school = SCHOOL_EVOCATION
 

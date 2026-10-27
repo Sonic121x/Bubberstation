@@ -1,18 +1,18 @@
 //Flower - base type
 /obj/item/food/grown/flower
-	name = "Flower"
-	desc = "By any other name...? This doesn't look right, you should tell someone about this."
+	name = "花"
+	desc = "换个名字……？这看起来不对劲，你应该把这件事告诉别人。"
 	icon_state = "rose"
 	abstract_type = /obj/item/food/grown/flower
 	foodtypes = VEGETABLES
 
 // Poppy
 /obj/item/seeds/poppy
-	name = "poppy seed pack"
-	desc = "These seeds grow into poppies."
+	name = "罂粟种子包"
+	desc = "这些种子会长成罂粟。"
 	icon_state = "seed-poppy"
 	species = "poppy"
-	plantname = "Poppy Plants"
+	plantname = "罂粟植株"
 	product = /obj/item/food/grown/flower/poppy
 	endurance = 10
 	maturation = 8
@@ -29,8 +29,8 @@
 
 /obj/item/food/grown/flower/poppy
 	seed = /obj/item/seeds/poppy
-	name = "poppy"
-	desc = "Long-used as a symbol of rest, peace, and death."
+	name = "罂粟"
+	desc = "长久以来被用作安眠、和平与死亡的象征。"
 	icon_state = "poppy"
 	slot_flags = ITEM_SLOT_HEAD
 	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER
@@ -40,11 +40,11 @@
 
 // Lily
 /obj/item/seeds/poppy/lily
-	name = "lily seed pack"
-	desc = "These seeds grow into lilies."
+	name = "百合种子包"
+	desc = "这些种子会长成百合。"
 	icon_state = "seed-lily"
 	species = "lily"
-	plantname = "Lily Plants"
+	plantname = "百合植株"
 	product = /obj/item/food/grown/flower/poppy/lily
 	growthstages = 3
 	growing_icon = 'icons/obj/service/hydroponics/growing_flowers.dmi'
@@ -55,17 +55,17 @@
 
 /obj/item/food/grown/flower/poppy/lily
 	seed = /obj/item/seeds/poppy/lily
-	name = "lily"
-	desc = "A beautiful white flower."
+	name = "百合"
+	desc = "一朵美丽的白花。"
 	icon_state = "lily"
 
 	//Spacemans's Trumpet
 /obj/item/seeds/poppy/lily/trumpet
-	name = "spaceman's trumpet seed pack"
-	desc = "A plant sculpted by extensive genetic engineering. The spaceman's trumpet is said to bear no resemblance to its wild ancestors. Inside NT AgriSci circles it is better known as NTPW-0372."
+	name = "太空人小号种子包"
+	desc = "一株经过大量基因工程改造的植物。据说太空人小号与其野生祖先毫无相似之处。在纳米传讯农业科研圈内，它更广为人知的名字是 NTPW-0372。"
 	icon_state = "seed-trumpet"
 	species = "spacemanstrumpet"
-	plantname = "Spaceman's Trumpet Plant"
+	plantname = "太空人小号植株"
 	product = /obj/item/food/grown/flower/trumpet
 	lifespan = 80
 	production = 5
@@ -87,18 +87,18 @@
 
 /obj/item/food/grown/flower/trumpet
 	seed = /obj/item/seeds/poppy/lily/trumpet
-	name = "spaceman's trumpet"
-	desc = "A vivid flower that smells faintly of freshly cut grass. Touching the flower seems to stain the skin some time after contact, yet most other surfaces seem to be unaffected by this phenomenon."
+	name = "太空人小号"
+	desc = "一朵鲜艳的花，散发着淡淡的刚割下的青草气味。触碰这朵花之后，皮肤似乎会在一段时间后染上痕迹，但其他大多数表面似乎不受这一现象影响。"
 	icon_state = "spacemanstrumpet"
 	bite_consumption_mod = 2
 
 // Geranium
 /obj/item/seeds/poppy/geranium
-	name = "geranium seed pack"
-	desc = "These seeds grow into geranium."
+	name = "天竺葵种子包"
+	desc = "这些种子会长成天竺葵。"
 	icon_state = "seed-geranium"
 	species = "geranium"
-	plantname = "Geranium Plants"
+	plantname = "天竺葵植株"
 	product = /obj/item/food/grown/flower/poppy/geranium
 	growthstages = 3
 	growing_icon = 'icons/obj/service/hydroponics/growing_flowers.dmi'
@@ -109,17 +109,17 @@
 
 /obj/item/food/grown/flower/poppy/geranium
 	seed = /obj/item/seeds/poppy/geranium
-	name = "geranium"
-	desc = "A beautiful blue flower."
+	name = "天竺葵"
+	desc = "一朵美丽的蓝花。"
 	icon_state = "geranium"
 
 ///Fraxinella seeds.
 /obj/item/seeds/poppy/geranium/fraxinella
-	name = "fraxinella seed pack"
-	desc = "These seeds grow into fraxinella."
+	name = "白鲜种子包"
+	desc = "这些种子会长成白鲜。"
 	icon_state = "seed-fraxinella"
 	species = "fraxinella"
-	plantname = "Fraxinella Plants"
+	plantname = "白鲜植株"
 	product = /obj/item/food/grown/flower/poppy/geranium/fraxinella
 	mutatelist = null
 	rarity = 15
@@ -129,19 +129,19 @@
 ///Fraxinella Flowers.
 /obj/item/food/grown/flower/poppy/geranium/fraxinella
 	seed = /obj/item/seeds/poppy/geranium/fraxinella
-	name = "fraxinella"
-	desc = "A beautiful light pink flower."
+	name = "白鲜"
+	desc = "一朵美丽的浅粉色花。"
 	icon_state = "fraxinella"
 	distill_reagent = /datum/reagent/ash
 
 // Harebell
 /obj/item/seeds/harebell
-	name = "harebell seed pack"
-	desc = "These seeds grow into pretty little flowers."
+	name = "蓝铃花种子包"
+	desc = "这些种子会长成漂亮的小花。"
 	icon_state = "seed-harebell"
 	plant_icon_offset = 1
 	species = "harebell"
-	plantname = "Harebells"
+	plantname = "蓝铃花"
 	product = /obj/item/food/grown/flower/harebell
 	lifespan = 100
 	endurance = 20
@@ -158,8 +158,8 @@
 
 /obj/item/food/grown/flower/harebell
 	seed = /obj/item/seeds/harebell
-	name = "harebell"
-	desc = "\"I'll sweeten thy sad grave: thou shalt not lack the flower that's like thy face, pale primrose, nor the azured hare-bell, like thy veins; no, nor the leaf of eglantine, whom not to slander, out-sweeten'd not thy breath.\""
+	name = "蓝铃花"
+	desc = "“我要让你的凄凉坟墓变得甜润：你不会缺少像你面庞的苍白报春花，也不会缺少像你血脉的蔚蓝蓝铃花；不，也不会缺少那野蔷薇的叶子——说实话，它的芬芳也比不上你的气息。”"
 	icon_state = "harebell"
 	slot_flags = ITEM_SLOT_HEAD
 	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER
@@ -168,11 +168,11 @@
 
 // Sunflower
 /obj/item/seeds/sunflower
-	name = "sunflower seed pack"
-	desc = "These seeds grow into sunflowers."
+	name = "向日葵种子包"
+	desc = "这些种子会长成向日葵。"
 	icon_state = "seed-sunflower"
 	species = "sunflower"
-	plantname = "Sunflowers"
+	plantname = "向日葵"
 	product = /obj/item/food/grown/flower/sunflower
 	genes = list(/datum/plant_gene/trait/attack/sunflower_attack, /datum/plant_gene/trait/preserved)
 	endurance = 20
@@ -188,8 +188,8 @@
 
 /obj/item/food/grown/flower/sunflower // FLOWER POWER!
 	seed = /obj/item/seeds/sunflower
-	name = "sunflower"
-	desc = "It's beautiful! A certain person might beat you to death if you trample these."
+	name = "向日葵"
+	desc = "真美！要是你踩坏这些花，某个人可能会把你打死。"
 	icon_state = "sunflower"
 	inhand_icon_state = "sunflower"
 	lefthand_file = 'icons/mob/inhands/weapons/plants_lefthand.dmi'
@@ -208,13 +208,13 @@
 
 // Moonflower
 /obj/item/seeds/sunflower/moonflower
-	name = "moonflower seed pack"
-	desc = "These seeds grow into moonflowers."
+	name = "月光花种子包"
+	desc = "这些种子会长成月光花。"
 	icon_state = "seed-moonflower"
 	lefthand_file = 'icons/mob/inhands/items/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/food_righthand.dmi'
 	species = "moonflower"
-	plantname = "Moonflowers"
+	plantname = "月光花"
 	icon_grow = "moonflower-grow"
 	icon_dead = "sunflower-dead"
 	product = /obj/item/food/grown/flower/moonflower
@@ -226,8 +226,8 @@
 
 /obj/item/food/grown/flower/moonflower
 	seed = /obj/item/seeds/sunflower/moonflower
-	name = "moonflower"
-	desc = "Store in a location at least 50 yards away from werewolves."
+	name = "月光花"
+	desc = "请存放在距离狼人至少 50 码以外的地方。"
 	icon_state = "moonflower"
 	inhand_icon_state = "moonflower"
 	slot_flags = ITEM_SLOT_HEAD
@@ -236,11 +236,11 @@
 
 // Novaflower
 /obj/item/seeds/sunflower/novaflower
-	name = "novaflower seed pack"
-	desc = "These seeds grow into novaflowers."
+	name = "新星花种子包"
+	desc = "这些种子会长成新星花。"
 	icon_state = "seed-novaflower"
 	species = "novaflower"
-	plantname = "Novaflowers"
+	plantname = "新星花"
 	icon_grow = "novaflower-grow"
 	icon_dead = "sunflower-dead"
 	product = /obj/item/grown/novaflower
@@ -251,8 +251,8 @@
 
 /obj/item/grown/novaflower
 	seed = /obj/item/seeds/sunflower/novaflower
-	name = "\improper novaflower"
-	desc = "These beautiful flowers have a crisp smokey scent, like a summer bonfire."
+	name = "\improper 新星花"
+	desc = "这些美丽的花朵有着清新的烟熏气味，就像夏日的篝火。"
 	icon_state = "novaflower"
 	inhand_icon_state = "novaflower"
 	lefthand_file = 'icons/mob/inhands/weapons/plants_lefthand.dmi'
@@ -265,19 +265,19 @@
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 1
 	throw_range = 3
-	attack_verb_continuous = list("roasts", "scorches", "burns")
-	attack_verb_simple = list("roast", "scorch", "burn")
+	attack_verb_continuous = list("炙烤", "烧焦", "灼烧")
+	attack_verb_simple = list("炙烤", "烧焦", "灼烧")
 
 /obj/item/grown/novaflower/grind_results()
 	return list(/datum/reagent/consumable/capsaicin = 0, /datum/reagent/consumable/condensedcapsaicin = 0)
 
 // Rose
 /obj/item/seeds/rose
-	name = "rose seed pack"
-	desc = "These seeds grow into roses."
+	name = "玫瑰种子包"
+	desc = "这些种子会长成玫瑰。"
 	icon_state = "seed-rose"
 	species = "rose"
-	plantname = "Rose Bush"
+	plantname = "玫瑰丛"
 	product = /obj/item/food/grown/flower/rose
 	endurance = 12
 	yield = 6
@@ -294,8 +294,8 @@
 
 /obj/item/food/grown/flower/rose
 	seed = /obj/item/seeds/rose
-	name = "\improper rose"
-	desc = "The classic fleur d'amour - flower of love. Watch for its thorns!"
+	name = "\improper 玫瑰"
+	desc = "经典的花中之爱——爱情之花。当心它的刺！"
 	base_icon_state = "rose"
 	icon_state = "rose"
 	inhand_icon_state = "rose"
@@ -318,11 +318,11 @@
 
 // Carbon Rose
 /obj/item/seeds/carbon_rose
-	name = "carbon rose seed pack"
-	desc = "These seeds grow into carbon roses."
+	name = "碳玫瑰种子包"
+	desc = "这些种子会长成碳玫瑰。"
 	icon_state = "seed-carbonrose"
 	species = "carbonrose"
-	plantname = "Carbon Rose Flower"
+	plantname = "碳玫瑰花"
 	product = /obj/item/grown/carbon_rose
 	endurance = 12
 	yield = 6
@@ -339,8 +339,8 @@
 
 /obj/item/grown/carbon_rose
 	seed = /obj/item/seeds/carbon_rose
-	name = "carbon rose"
-	desc = "The all new fleur d'amour gris - the flower of love, modernized, with no harsh thorns."
+	name = "碳玫瑰"
+	desc = "全新的灰色爱情之花——现代化的爱情之花，没有扎人的刺。"
 	icon_state = "carbonrose"
 	lefthand_file = 'icons/mob/inhands/weapons/plants_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/plants_righthand.dmi'

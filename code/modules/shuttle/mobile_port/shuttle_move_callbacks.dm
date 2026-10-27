@@ -32,10 +32,10 @@ All ShuttleMove procs go here
 			living_thing.buckled?.unbuckle_mob(living_thing, force = TRUE)
 			living_thing.pulledby?.stop_pulling()
 			living_thing.stop_pulling()
-			living_thing.visible_message(span_warning("[shuttle] slams into [living_thing]!"))
+			living_thing.visible_message(span_warning("[shuttle] 猛地撞上 [living_thing]！"))
 			SSblackbox.record_feedback("tally", "shuttle_gib", 1, living_thing.type)
-			log_shuttle("[key_name(living_thing)] was shuttle gibbed by [shuttle].")
-			living_thing.investigate_log("has been gibbed by [shuttle].", INVESTIGATE_DEATHS)
+			log_shuttle("[key_name(living_thing)] 被 [shuttle] 碾成了肉酱。")
+			living_thing.investigate_log("被 [shuttle] 碾成了肉酱。", INVESTIGATE_DEATHS)
 			living_thing.gib(DROP_ALL_REMAINS)
 		else if(!ismob(thing)) //non-living mobs shouldn't be affected by shuttles, which is why this is an else
 			if(!thing.anchored)
@@ -344,11 +344,11 @@ All ShuttleMove procs go here
 
 /mob/living/simple_animal/hostile/megafauna/onShuttleMove(turf/newT, turf/oldT, list/movement_force, move_dir, obj/docking_port/stationary/old_dock, obj/docking_port/mobile/moving_dock)
 	. = ..()
-	message_admins("Megafauna [src] [ADMIN_FLW(src)] moved via shuttle from [ADMIN_COORDJMP(oldT)] to [ADMIN_COORDJMP(loc)]")
+	message_admins("巨型动物 [src] [ADMIN_FLW(src)] 经由穿梭机从 [ADMIN_COORDJMP(oldT)] 移动到了 [ADMIN_COORDJMP(loc)]")
 
 /mob/living/basic/boss/onShuttleMove(turf/newT, turf/oldT, list/movement_force, move_dir, obj/docking_port/stationary/old_dock, obj/docking_port/mobile/moving_dock)
 	. = ..()
-	message_admins("Megafauna [src] [ADMIN_FLW(src)] moved via shuttle from [ADMIN_COORDJMP(oldT)] to [ADMIN_COORDJMP(loc)]")
+	message_admins("巨型动物 [src] [ADMIN_FLW(src)] 经由穿梭机从 [ADMIN_COORDJMP(oldT)] 移动到了 [ADMIN_COORDJMP(loc)]")
 
 /************************************Structure move procs************************************/
 

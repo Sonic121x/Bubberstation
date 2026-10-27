@@ -1,5 +1,5 @@
 /datum/design/biogen/biomeat
-	name = "Meat Product"
+	name = "肉制品"
 	id = "meatp"
 	materials = list(/datum/material/biomass = 25) // Monkey Cube is more efficient, but this is easier on the chef.
 	build_path = /obj/item/food/meat/slab/meatproduct

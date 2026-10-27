@@ -4,9 +4,9 @@
 // What if we took a linked list... But made it a mob?
 /// The "Terror of the Night" / Armsy, a large worm made of multiple bodyparts that occupies multiple tiles
 /mob/living/basic/heretic_summon/armsy
-	name = "Lord of the Night"
-	real_name = "Master of Decay"
-	desc = "An abomination made from dozens and dozens of severed and malformed limbs grasping onto each other."
+	name = "暗夜之主"
+	real_name = "腐朽之主"
+	desc = "由数十条被割下、畸形的肢体互相抓握拼凑而成的可憎之物。"
 	icon_state = "armsy_start"
 	icon_living = "armsy_start"
 	base_icon_state = "armsy"
@@ -38,7 +38,7 @@
 	AddComponent(\
 		/datum/component/amputating_limbs,\
 		surgery_time = 0 SECONDS,\
-		surgery_verb = "tears",\
+		surgery_verb = "撕下",\
 		minimum_stat = STABLE,\
 		snip_chance = 10,\
 		target_zones = GLOB.arm_zones,\
@@ -97,7 +97,7 @@
 /mob/living/basic/heretic_summon/armsy/melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	if(!istype(target, /obj/item/bodypart/arm))
 		return ..()
-	visible_message(span_warning("[src] devours [target]!"))
+	visible_message(span_warning("[src] 吞食了 [target]！"))
 	playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 	qdel(target)
 	on_arm_eaten()
@@ -121,7 +121,7 @@
 	if(current_stacks < stacks_to_grow)
 		return
 
-	visible_message(span_boldwarning("[src] flexes and expands!"))
+	visible_message(span_boldwarning("[src] 舒展身体并膨胀起来！"))
 	current_stacks = 0
 	new_segment(behind = src)
 

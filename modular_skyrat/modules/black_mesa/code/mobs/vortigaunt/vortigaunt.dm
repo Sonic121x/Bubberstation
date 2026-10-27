@@ -5,8 +5,8 @@
  * Uses ranged skirmish AI to maintain optimal distance while attacking.
  */
 /mob/living/basic/blackmesa/xen/vortigaunt
-	name = "vortigaunt"
-	desc = "There is no distance between us. No false veils of time or space may intervene."
+	name = "弗地冈"
+	desc = "你我之间没有距离。任何虚假的时间或空间帷幕都无法阻挡。"
 	icon = 'modular_skyrat/modules/black_mesa/icons/mobs.dmi'
 	icon_state = "vortigaunt"
 	icon_living = "vortigaunt"
@@ -54,7 +54,7 @@
  * Slave Vortigaunt - Hostile variant that fights for the Xen forces
  */
 /mob/living/basic/blackmesa/xen/vortigaunt/slave
-	name = "slave vortigaunt"
-	desc = "Bound by the shackles of a sinister force. He does not want to hurt you."
+	name = "奴隶弗地冈"
+	desc = "他被一股邪恶力量的枷锁束缚着。他并不想伤害你。"
 	icon_state = "vortigaunt_slave"
 	faction = list(FACTION_XEN)

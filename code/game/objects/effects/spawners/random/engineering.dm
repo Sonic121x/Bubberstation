@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/engineering
 	name = "engineering loot spawner"
-	desc = "All engineering related spawners go here"
+	desc = "所有工程相关生成器都归在这里。"
 	icon_state = "toolbox"
 
 /obj/effect/spawner/random/engineering/tool

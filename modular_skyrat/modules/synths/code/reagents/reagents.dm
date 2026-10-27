@@ -16,10 +16,10 @@
 // REAGENTS FOR SYNTHS
 
 /datum/reagent/medicine/system_cleaner
-	name = "System Cleaner"
-	description = "Neutralizes harmful chemical compounds inside synthetic systems and refreshes system software."
+	name = "系统清洁剂"
+	description = "中和合成人系统内的有害化合物，并刷新系统软件。"
 	color = "#F1C40F"
-	taste_description = "ethanol"
+	taste_description = "乙醇"
 	metabolization_rate = 2 * REAGENTS_METABOLISM
 	process_flags = REAGENT_SYNTHETIC
 
@@ -36,10 +36,10 @@
 	return TRUE
 
 /datum/reagent/medicine/liquid_solder
-	name = "Liquid Solder"
-	description = "Repairs organ damage in synthetics."
+	name = "液态焊料"
+	description = "修复合成人的器官损伤。"
 	color = "#727272"
-	taste_description = "metal"
+	taste_description = "金属"
 	process_flags = REAGENT_SYNTHETIC
 
 /datum/reagent/medicine/liquid_solder/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick)
@@ -50,8 +50,8 @@
 	return ..()
 
 /datum/reagent/medicine/nanite_slurry
-	name = "Nanite Slurry"
-	description = "A localized swarm of nanomachines specialized in repairing mechanical parts. Concentrated amounts in a synthetic host will rapidly repair organ damage, damaging their exterior and overheating them. Otherwise they will safely purge from an organic host"
+	name = "纳米浆液"
+	description = "专门修复机械部件的局部纳米机器集群。在合成人体内高度聚集时，可迅速修复器官损伤，但会损坏外壳并造成过热。在有机宿主体内则会安全地自行排出。"
 	color = "#cccccc"
 	overdose_threshold = 15
 	metabolization_rate = 1.25 * REAGENTS_METABOLISM
@@ -70,9 +70,9 @@
 
 /datum/reagent/medicine/nanite_slurry/overdose_start(mob/living/affected_mob)
 	if(affected_mob.mob_biotypes & MOB_ROBOTIC)
-		to_chat(affected_mob, span_danger("Your interior systems are overheating as they're being repaired!"))
+		to_chat(affected_mob, span_danger("你的内部系统在修复过程中正在过热！"))
 	else
-		to_chat(affected_mob, span_danger("Your stomach lurches as concentrations of nanites begin disposing of themselves."))
+		to_chat(affected_mob, span_danger("聚集的纳米机器人开始自行排出，你的胃一阵翻腾。"))
 
 /datum/reagent/medicine/nanite_slurry/overdose_process(mob/living/carbon/affected_mob, seconds_per_tick, times_fired) // Mostly to treat a synthetic being EMP'd
 	if(affected_mob.mob_biotypes & MOB_ROBOTIC)
@@ -90,8 +90,8 @@
 
 
 /datum/reagent/medicine/taste_suppressor
-	name = "Taste Suppressor"
-	description = "A colorless medicine aimed to dull the sense of taste of those that consumed it, as long as it's in their system."
+	name = "味觉抑制剂"
+	description = "一种无色药物，在体内存留期间会使服用者的味觉变得迟钝。"
 	color = "#AAAAAA77"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED

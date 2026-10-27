@@ -18,7 +18,7 @@
 #define THAUMATURGY_EXTRA_DAMAGE_LEVEL 4
 #define THAUMATURGY_BLOOD_STEAL_LEVEL 5
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy
-	name = "Thaumaturgy"
+	name = "血之奇术"
 	level_current = 1
 	button_icon_state = "power_thaumaturgy"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED
@@ -29,7 +29,7 @@
 	constant_bloodcost = 0
 	// 5 seconds per charge
 	cooldown_time = 10 SECONDS
-	prefire_message = "Right click where you wish to fire."
+	prefire_message = "右键点击你想射击的位置。"
 	click_to_activate = TRUE // you pay to replenish charges
 	power_activates_immediately = FALSE
 	unset_after_click = FALSE // Lets us cast multiple times
@@ -58,26 +58,26 @@
 	. = ..()
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_desc_extended()
-	. = "<br>Projectile can seek for [get_shot_range()] tiles.<br>"
-	. += "Fire a slow seeking blood bolt at your enemy.<br>"
+	. = "<br>弹体可追踪[get_shot_range()]格。<br>"
+	. += "向敌人发射缓慢追踪的血箭。<br>"
 	if(level_current >= THAUMATURGY_SHIELD_LEVEL)
-		. += "Click the button to create a blood shield<br>"
+		. += "点击按钮生成鲜血护盾。<br>"
 	if(level_current >= THAUMATURGY_DOOR_BREAK_LEVEL)
-		. += "The projectile will open doors/lockers"
+		. += "弹体会打开门和柜子"
 	if(level_current >= THAUMATURGY_BLOOD_STEAL_LEVEL)
-		. += " and steal blood from the target"
+		. += "，并从目标身上窃取血液。"
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_explanation_extended()
 	. = list()
-	. += "Thaumaturgy grants you the ability to cast and shoot a slow moving target seeking blood projectile."
-	. += "The projectile will auto aim to a nearby mob if you aim at the ground."
-	. += "If the Blood blast hits a person, it will deal [get_blood_bolt_damage()] [initial(magic_9ball.damage_type)] damage, and is blocked by [initial(magic_9ball.armor_flag)] armor."
-	. += "You can use Blood blast [get_max_charges()] times before needing to recast Thaumaturgy. After each shot you will have to wait [DisplayTimeText(get_shot_cooldown())]."
-	. += "At level [THAUMATURGY_SHIELD_LEVEL] it will grant you a shield that will block [BLOOD_SHIELD_BLOCK_CHANCE]% of incoming damage, costing you [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood each time."
-	. += "To activate the shield, simply click the action button. You can then fire projectiles by rightclicking."
-	. += "At level [THAUMATURGY_DOOR_BREAK_LEVEL], it will also break open lockers and doors."
-	. += "At level [THAUMATURGY_BLOOD_STEAL_LEVEL], it will also steal blood to feed yourself, just as much as each charge costs."
-	. += "The cooldown increases by [DisplayTimeText(THAUMATURGY_COOLDOWN_PER_CHARGE)] per charge used, and each blast costs [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood."
+	. += "血之奇术让你能够施法并发射缓慢追踪目标的血液弹体。"
+	. += "瞄准地面时，弹体会自动锁定附近的生物。"
+	. += "血箭命中人时会造成[get_blood_bolt_damage()]点[chinese_bloodsucker_damage_display(initial(magic_9ball.damage_type))]伤害，受[chinese_bloodsucker_damage_display(initial(magic_9ball.armor_flag))]护甲抵挡。"
+	. += "每次施放血之奇术后可发射[get_max_charges()]次血箭，之后需要重新施法。每次射击后需要等待[DisplayTimeText(get_shot_cooldown())]。"
+	. += "达到[THAUMATURGY_SHIELD_LEVEL]级后会给予护盾，抵挡[BLOOD_SHIELD_BLOCK_CHANCE]%的来袭伤害，每次消耗[THAUMATURGY_BLOOD_COST_PER_CHARGE]血量。"
+	. += "点击动作按钮即可启用护盾，之后可用右键发射弹体。"
+	. += "达到[THAUMATURGY_DOOR_BREAK_LEVEL]级后，还能击破柜子和门。"
+	. += "达到[THAUMATURGY_BLOOD_STEAL_LEVEL]级后，还会窃取血液供你吸食，数量与每次发射的消耗相同。"
+	. += "每消耗一次充能，冷却时间增加[DisplayTimeText(THAUMATURGY_COOLDOWN_PER_CHARGE)]，每发血箭消耗[THAUMATURGY_BLOOD_COST_PER_CHARGE]血量。"
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/ActivatePower(mob/target)
 	. = ..()
@@ -95,11 +95,11 @@
 	if(blood_shield)
 		var/shield = blood_shield?.resolve()
 		owner.visible_message(
-			span_warning("[owner]\'s [blood_shield] loses its form and disappears into [owner.p_their()] hands "),
-			span_warning("We unform our Blood shield!"),
-			span_hear("You hear liquids sloshing around."),
+			span_warning("[owner]的[blood_shield]失去形状，融入手中。"),
+			span_warning("我们解除了鲜血护盾！"),
+			span_hear("你听到液体晃动的声音。"),
 		)
-		owner.balloon_alert(owner, "you unform the [shield]")
+		owner.balloon_alert(owner, "你解除了[shield]")
 		qdel(shield)
 		blood_shield = null
 	else
@@ -107,14 +107,14 @@
 		blood_shield = WEAKREF(new_shield)
 		if(!owner.put_in_inactive_hand(new_shield))
 			QDEL_NULL(new_shield)
-			owner.balloon_alert(owner, "off hand is full!")
-			to_chat(owner, span_notice("[capitalize(src)] couldn't be activated as your off hand is full."))
+			owner.balloon_alert(owner, "副手被占用！")
+			to_chat(owner, span_notice("副手被占用，无法启用[capitalize(src)]。"))
 			return FALSE
-		owner.balloon_alert(owner, "you form the [src]")
+		owner.balloon_alert(owner, "你凝聚了[src]")
 		owner.visible_message(
-			span_warning("[owner]\'s hands begins to bleed and forms into a [src]!"),
-			span_warning("We form our [src]!"),
-			span_hear("You hear liquids forming together."),
+			span_warning("[owner]的双手开始流血，鲜血凝聚成[src]！"),
+			span_warning("我们凝聚了[src]！"),
+			span_hear("你听到液体聚合的声音。"),
 		)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/DeactivatePower(deactivate_flags)
@@ -157,16 +157,16 @@
 	if(shot_cooldown > world.time)
 		return
 	if(!can_pay_blood(THAUMATURGY_BLOOD_COST_PER_CHARGE))
-		owner.balloon_alert(owner, "not enough blood!")
+		owner.balloon_alert(owner, "血量不足！")
 		DeactivatePower()
 		return
 	shot_cooldown = world.time + get_shot_cooldown()
 	var/mob/living/user = owner
-	owner.balloon_alert(owner, "you fire a blood bolt!")
+	owner.balloon_alert(owner, "你发射了一支血箭！")
 	owner.visible_message(
-		span_warning("[owner] fires a blood bolt at [target]!"),
-		span_warning("You fire a blood bolt at [target]!"),
-		span_hear("You hear a loud crackling sound."),
+		span_warning("[owner]向[target]发射了一支血箭！"),
+		span_warning("你向[target]发射了一支血箭！"),
+		span_hear("你听到响亮的噼啪声。"),
 	)
 	user.changeNext_move(CLICK_CD_RANGE)
 	user.newtonian_move(get_dir(target, user))
@@ -179,7 +179,7 @@
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
 	if(charges <= 0)
 		// delay the message so it doesn't overlap with the cooldown message
-		addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, balloon_alert), owner, "no charges left!"), 0.5 SECONDS)
+		addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, balloon_alert), owner, "充能已用尽！"), 0.5 SECONDS)
 		PowerActivatedSuccesfully(cost_override = 0)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/handle_shot(mob/user, atom/target)
@@ -214,7 +214,7 @@
  *	This is the projectile this Power will fire.
  */
 /obj/projectile/magic/arcane_barrage/bloodsucker
-	name = "blood bolt"
+	name = "血箭"
 	icon_state = "mini_leaper"
 	damage = 1
 	wound_bonus = 20
@@ -258,8 +258,8 @@
  */
 
 /obj/item/shield/bloodsucker
-	name = "blood shield"
-	desc = "A shield made out of blood, requiring blood to sustain hits."
+	name = "鲜血护盾"
+	desc = "由鲜血构成的护盾，承受攻击时需要消耗血液。"
 	item_flags = ABSTRACT | DROPDEL
 	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
 	icon_state = "blood_shield"
@@ -271,7 +271,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 
-/obj/item/shield/bloodsucker/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/shield/bloodsucker/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner)
 	if(bloodsuckerdatum)
 		bloodsuckerdatum.AdjustBloodVolume(-BLOOD_SHIELD_BLOOD_COST)

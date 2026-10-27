@@ -65,7 +65,7 @@
 	GLOB.river_waypoint_list -= "[target_z]"
 
 /obj/effect/landmark/river_waypoint
-	name = "river waypoint"
+	name = "河流航点"
 	var/connected = FALSE
 	invisibility = INVISIBILITY_ABSTRACT
 

@@ -1,13 +1,13 @@
 /obj/item/food/tortilla
-	name = "tortilla"
-	desc = "The base for all your burritos."
+	name = "玉米饼"
+	desc = "所有墨西哥卷饼的基础。"
 	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "tortilla"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
 		/datum/reagent/consumable/nutriment/vitamin = 1,
 	)
-	tastes = list("tortilla" = 1)
+	tastes = list("玉米饼" = 1)
 	foodtypes = GRAIN
 	w_class = WEIGHT_CLASS_TINY
 	crafting_complexity = FOOD_COMPLEXITY_1
@@ -16,8 +16,8 @@
 	AddComponent(/datum/component/grillable, /obj/item/food/hard_taco_shell, rand(15 SECONDS, 30 SECONDS), TRUE, TRUE)
 
 /obj/item/food/burrito
-	name = "burrito"
-	desc = "Tortilla wrapped goodness."
+	name = "墨西哥卷饼"
+	desc = "玉米饼包起来的美味。"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "burrito"
 	food_reagents = list(
@@ -25,15 +25,15 @@
 		/datum/reagent/consumable/nutriment/protein = 4,
 		/datum/reagent/consumable/nutriment/vitamin = 1,
 	)
-	tastes = list("torilla" = 2, "beans" = 3)
+	tastes = list("玉米饼" = 2, "豆子" = 3)
 	foodtypes = VEGETABLES|GRAIN
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_NORMAL
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/cheesyburrito
-	name = "cheesy burrito"
-	desc = "It's a burrito filled with cheese."
+	name = "奶酪墨西哥卷饼"
+	desc = "里面塞满奶酪的墨西哥卷饼。"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "cheesyburrito"
 	food_reagents = list(
@@ -41,15 +41,15 @@
 		/datum/reagent/consumable/nutriment/protein = 5,
 		/datum/reagent/consumable/nutriment/vitamin = 2,
 	)
-	tastes = list("torilla" = 2, "beans" = 3, "cheese" = 1)
+	tastes = list("玉米饼" = 2, "豆子" = 3, "奶酪" = 1)
 	foodtypes = VEGETABLES|GRAIN|DAIRY
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_EXOTIC
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/carneburrito
-	name = "carne asada burrito"
-	desc = "The best burrito for meat lovers."
+	name = "烤牛肉墨西哥卷饼"
+	desc = "肉食爱好者最棒的墨西哥卷饼。"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "carneburrito"
 	food_reagents = list(
@@ -57,7 +57,7 @@
 		/datum/reagent/consumable/nutriment/protein = 6,
 		/datum/reagent/consumable/nutriment/vitamin = 1,
 	)
-	tastes = list("torilla" = 2, "meat" = 4)
+	tastes = list("玉米饼" = 2, "肉" = 4)
 	foodtypes = VEGETABLES|GRAIN|MEAT
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_EXOTIC
@@ -65,8 +65,8 @@
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT * 2)
 
 /obj/item/food/fuegoburrito
-	name = "fuego plasma burrito"
-	desc = "A super spicy burrito."
+	name = "烈焰等离子墨西哥卷饼"
+	desc = "一个超级辣的墨西哥卷饼。"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "fuegoburrito"
 	food_reagents = list(
@@ -75,30 +75,30 @@
 		/datum/reagent/consumable/capsaicin = 5,
 		/datum/reagent/consumable/nutriment/vitamin = 3,
 	)
-	tastes = list("torilla" = 2, "beans" = 3, "hot peppers" = 1)
+	tastes = list("玉米饼" = 2, "豆子" = 3, "辣椒" = 1)
 	foodtypes = VEGETABLES|GRAIN
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_LEGENDARY
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/nachos
-	name = "nachos"
-	desc = "Chips from Space Mexico."
+	name = "玉米片"
+	desc = "来自太空墨西哥的玉米片。"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "nachos"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
 		/datum/reagent/consumable/nutriment/vitamin = 2,
 	)
-	tastes = list("nachos" = 1)
+	tastes = list("玉米片" = 1)
 	foodtypes = GRAIN | FRIED
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_CHEAP
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/cheesynachos
-	name = "cheesy nachos"
-	desc = "The delicious combination of nachos and melting cheese."
+	name = "奶酪玉米片"
+	desc = "玉米片与融化奶酪的美味组合。"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "cheesynachos"
 	food_reagents = list(
@@ -106,15 +106,15 @@
 		/datum/reagent/consumable/nutriment/protein = 1,
 		/datum/reagent/consumable/nutriment/vitamin = 3,
 	)
-	tastes = list("nachos" = 2, "cheese" = 1)
+	tastes = list("玉米片" = 2, "奶酪" = 1)
 	foodtypes = GRAIN | FRIED | DAIRY
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_EXOTIC
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/cubannachos
-	name = "cuban nachos"
-	desc = "That's some dangerously spicy nachos."
+	name = "古巴玉米片"
+	desc = "这玉米片辣得有点危险。"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "cubannachos"
 	food_reagents = list(
@@ -122,15 +122,15 @@
 		/datum/reagent/consumable/capsaicin = 8,
 		/datum/reagent/consumable/nutriment/vitamin = 4,
 	)
-	tastes = list("nachos" = 2, "hot pepper" = 1)
+	tastes = list("玉米片" = 2, "辣椒" = 1)
 	foodtypes = VEGETABLES|FRIED|GRAIN
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_CHEAP
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/taco
-	name = "classic taco"
-	desc = "A traditional taco with meat, cheese, and lettuce."
+	name = "经典塔可"
+	desc = "传统的塔可，配肉、奶酪和生菜。"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "taco"
 	food_reagents = list(
@@ -138,7 +138,7 @@
 		/datum/reagent/consumable/nutriment/protein = 3,
 		/datum/reagent/consumable/nutriment/vitamin = 2,
 	)
-	tastes = list("taco" = 4, "meat" = 2, "cheese" = 2, "lettuce" = 1)
+	tastes = list("塔可" = 4, "肉" = 2, "奶酪" = 2, "生菜" = 1)
 	foodtypes = MEAT | DAIRY | GRAIN | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_NORMAL
@@ -146,31 +146,31 @@
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
 
 /obj/item/food/taco/plain
-	name = "plain taco"
-	desc = "A traditional taco with meat and cheese, minus the rabbit food."
+	name = "原味塔可"
+	desc = "传统的塔可，配肉和奶酪，没有那些兔子吃的草。"
 	icon_state = "taco_plain"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
 		/datum/reagent/consumable/nutriment/protein = 2,
 		/datum/reagent/consumable/nutriment/vitamin = 1,
 	)
-	tastes = list("taco" = 4, "meat" = 2, "cheese" = 2)
+	tastes = list("塔可" = 4, "肉" = 2, "奶酪" = 2)
 	foodtypes = MEAT | DAIRY | GRAIN
 	venue_value = FOOD_PRICE_CHEAP
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/taco/fish
-	name = "fish taco"
-	desc = "A taco with fish, cheese, and cabbage."
+	name = "鱼肉塔可"
+	desc = "配鱼肉、奶酪和卷心菜的塔可。"
 	icon_state = "fishtaco"
-	tastes = list("taco" = 4, "fish" = 2, "cheese" = 2, "cabbage" = 1)
+	tastes = list("塔可" = 4, "鱼" = 2, "奶酪" = 2, "卷心菜" = 1)
 	foodtypes = SEAFOOD | DAIRY | GRAIN | VEGETABLES
 	crafting_complexity = FOOD_COMPLEXITY_3
 	custom_materials = null
 
 /obj/item/food/enchiladas
-	name = "enchiladas"
-	desc = "Viva La Mexico!"
+	name = "墨西哥辣酱卷"
+	desc = "墨西哥万岁！"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "enchiladas"
 	bite_consumption = 4
@@ -180,15 +180,15 @@
 		/datum/reagent/consumable/capsaicin = 6,
 		/datum/reagent/consumable/nutriment/vitamin = 2,
 	)
-	tastes = list("hot peppers" = 1, "meat" = 3, "cheese" = 1, "sour cream" = 1)
+	tastes = list("辣椒" = 1, "肉" = 3, "奶酪" = 1, "酸奶油" = 1)
 	foodtypes = MEAT|VEGETABLES|GRAIN
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_3
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT * 2)
 
 /obj/item/food/stuffedlegion
-	name = "stuffed legion"
-	desc = "The former skull of a damned human, filled with goliath meat. It has a decorative lava pool made of ketchup and hotsauce."
+	name = "酿军团"
+	desc = "一个受诅咒人类的头骨，里面塞满了歌利亚肉。上面还有用番茄酱和辣酱做成的装饰性熔岩池。"
 	icon_state = "stuffed_legion"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
@@ -196,7 +196,7 @@
 		/datum/reagent/consumable/nutriment/vitamin = 5,
 		/datum/reagent/consumable/capsaicin = 2,
 	)
-	tastes = list("death" = 2, "rock" = 1, "meat" = 1, "hot peppers" = 1)
+	tastes = list("死亡" = 2, "岩石" = 1, "肉" = 1, "辣椒" = 1)
 	foodtypes = MEAT
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_LEGENDARY
@@ -205,8 +205,8 @@
 	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT)
 
 /obj/item/food/chipsandsalsa
-	name = "chips and salsa"
-	desc = "Some tortilla chips with a cup of zesty salsa. Highly addictive!"
+	name = "玉米片配莎莎酱"
+	desc = "一些玉米片配一杯风味浓郁的莎莎酱。极易上瘾！"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "chipsandsalsa"
 	trash_type = /obj/item/reagent_containers/cup/bowl
@@ -215,14 +215,14 @@
 		/datum/reagent/consumable/capsaicin = 2,
 		/datum/reagent/consumable/nutriment/vitamin = 4,
 	)
-	tastes = list("peppers" = 1, "salsa" = 3, "tortilla chips" = 1, "onion" = 1)
+	tastes = list("辣椒" = 1, "莎莎酱" = 3, "玉米片" = 1, "洋葱" = 1)
 	foodtypes = VEGETABLES|FRIED|GRAIN
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/classic_chimichanga
-	name = "classic chimichanga"
-	desc = "A deep-fried burrito packed with a generous amount of meat and cheese."
+	name = "经典奇米卷饼"
+	desc = "油炸的墨西哥卷饼，里面塞满了大量肉和奶酪。"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "classic_chimichanga"
 	food_reagents = list(
@@ -230,33 +230,33 @@
 		/datum/reagent/consumable/nutriment/vitamin = 4,
 		/datum/reagent/consumable/nutriment/protein = 6,
 	)
-	tastes = list("deep-fried tortilla" = 1, "meat" = 3, "cheese" = 1, "onions" = 1)
+	tastes = list("油炸玉米饼" = 1, "肉" = 3, "奶酪" = 1, "洋葱" = 1)
 	foodtypes = MEAT | GRAIN | VEGETABLES | DAIRY | FRIED
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_3
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT * 2)
 
 /obj/item/food/vegetarian_chimichanga
-	name = "vegetarian chimichanga"
-	desc = "A deep-fried burrito packed with a generous amount of baked vegetables, for the non-meat eaters."
+	name = "素食奇米卷饼"
+	desc = "油炸的墨西哥卷饼，里面塞满了大量烤蔬菜，献给不吃肉的人。"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "vegetarian_chimichanga"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 8,
 		/datum/reagent/consumable/nutriment/vitamin = 10,
 	)
-	tastes = list("deep-fried tortilla" = 1, "cabbage" = 3, "onions" = 1, "peppers" = 1)
+	tastes = list("油炸玉米饼" = 1, "卷心菜" = 3, "洋葱" = 1, "辣椒" = 1)
 	foodtypes = GRAIN | VEGETABLES | FRIED
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/hard_taco_shell
-	name = "hard taco shell"
-	desc = "A hard taco shell, just waiting to be stuffed with ingredients. Use an ingredient on it to start making custom tacos!"
+	name = "硬塔可壳"
+	desc = "一片硬塔可壳，正等着被填满食材。对它使用一种食材即可开始制作自定义塔可！"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "hard_taco_shell"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
-	tastes = list("hard corn tortilla" = 1)
+	tastes = list("硬玉米饼" = 1)
 	foodtypes = GRAIN | FRIED
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_1
@@ -267,16 +267,16 @@
 
 // empty taco shell for custom tacos
 /obj/item/food/hard_taco_shell/empty
-	name = "hard-shell taco"
+	name = "硬壳塔可"
 	foodtypes = NONE
 	tastes = list()
 	icon_state = "hard_taco_shell"
-	desc = "A customized hard-shell taco."
+	desc = "一个自定义的硬壳塔可。"
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/classic_hard_shell_taco
-	name = "classic hard-shell taco"
-	desc = "A classically-made hard-shell taco, the most satisfying crunch in the galaxy."
+	name = "经典硬壳塔可"
+	desc = "以经典方式制作的硬壳塔可，全银河最令人满足的脆响。"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "classic_hard_shell_taco"
 	food_reagents = list(
@@ -284,15 +284,15 @@
 		/datum/reagent/consumable/nutriment/vitamin = 6,
 		/datum/reagent/consumable/nutriment/protein = 6,
 	)
-	tastes = list("crunchy taco shell" = 1, "cabbage" = 3, "tomatoes" = 1, "ground meat" = 1, "cheese" = 1)
+	tastes = list("脆塔可壳" = 1, "卷心菜" = 3, "番茄" = 1, "碎肉" = 1, "奶酪" = 1)
 	foodtypes = MEAT|VEGETABLES|GRAIN|DAIRY|FRIED
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_4
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
 
 /obj/item/food/plain_hard_shell_taco
-	name = "plain hard-shell taco"
-	desc = "A hard-shell taco with just meat, for the picky eaters and children in us all."
+	name = "原味硬壳塔可"
+	desc = "只夹肉的硬壳塔可，献给挑食的人和每个人心中的小孩。"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "plain_hard_shell_taco"
 	food_reagents = list(
@@ -300,15 +300,15 @@
 		/datum/reagent/consumable/nutriment/vitamin = 3,
 		/datum/reagent/consumable/nutriment/protein = 6,
 	)
-	tastes = list("crunchy taco shell" = 1, "ground meat" = 1)
+	tastes = list("脆塔可壳" = 1, "碎肉" = 1)
 	foodtypes = MEAT|GRAIN|FRIED
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
 
 /obj/item/food/refried_beans
-	name = "refried beans"
-	desc = "A steaming bowl of delicious refried beans, a common staple in Mexican cuisine."
+	name = "炸豆泥"
+	desc = "一碗热气腾腾的美味炸豆泥，墨西哥菜中的常见主食。"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "refried_beans"
 	food_reagents = list(
@@ -317,14 +317,14 @@
 		/datum/reagent/consumable/nutriment/protein = 4,
 	)
 	trash_type = /obj/item/reagent_containers/cup/bowl
-	tastes = list("mashed beans" = 1, "onion" = 3,)
+	tastes = list("豆泥" = 1, "洋葱" = 3,)
 	foodtypes = VEGETABLES | FRIED
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/spanish_rice
-	name = "spanish rice"
-	desc = "A bowl of delicious spanish rice, cooked in a tomato sauce which gives it the orange color."
+	name = "西班牙米饭"
+	desc = "一碗美味的西班牙米饭，用番茄酱烹制，因此呈现橙色。"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "spanish_rice"
 	food_reagents = list(
@@ -332,14 +332,14 @@
 		/datum/reagent/consumable/nutriment/vitamin = 6,
 	)
 	trash_type = /obj/item/reagent_containers/cup/bowl
-	tastes = list("zesty rice" = 1, "tomato sauce" = 3,)
+	tastes = list("香辣米饭" = 1, "番茄酱" = 3,)
 	foodtypes = VEGETABLES|GRAIN
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/pineapple_salsa
-	name = "pineapple salsa"
-	desc = "A not-so liquid salsa made of pineapples, tomatoes, onions, and chilis. Makes for delightfully contrasting flavors."
+	name = "菠萝莎莎酱"
+	desc = "一种不太液体的莎莎酱，由菠萝、番茄、洋葱和辣椒制成。风味对比令人愉悦。"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "pineapple_salsa"
 	trash_type = /obj/item/reagent_containers/cup/bowl
@@ -347,7 +347,7 @@
 		/datum/reagent/consumable/nutriment = 6,
 		/datum/reagent/consumable/nutriment/vitamin = 6,
 	)
-	tastes = list("pineapple" = 4, "tomato" = 3, "onion" = 2, "chili" = 2)
+	tastes = list("菠萝" = 4, "番茄" = 3, "洋葱" = 2, "辣椒" = 2)
 	foodtypes = VEGETABLES | FRUIT | PINEAPPLE
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_3

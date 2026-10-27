@@ -6,8 +6,8 @@
 #define RANDOM_DETONATE_MAX_TIME (6 SECONDS)
 
 /obj/item/grenade/clusterbuster
-	desc = "Use of this weapon may constitute a war crime in your area, consult your local captain."
-	name = "clusterbang"
+	desc = "在你所在地区使用此武器可能构成战争罪，请咨询当地舰长。"
+	name = "集束闪光弹"
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "clusterbang"
 	var/base_state = "clusterbang"
@@ -50,8 +50,8 @@
 //Clusterbang segment
 //////////////////////
 /obj/item/grenade/clusterbuster/segment
-	desc = "A smaller segment of a clusterbang. Better run!"
-	name = "clusterbang segment"
+	desc = "集束闪光弹分离出的小型子弹体。快跑！"
+	name = "集束闪光弹子弹体"
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "clusterbang_segment"
 	base_state = "clusterbang_segment"
@@ -60,7 +60,7 @@
 	. = ..()
 
 	if(base)
-		name = "[base.name] segment"
+		name = "[base.name]子弹体"
 		base_state = "[base.base_state]_segment"
 		icon_state = base_state
 		payload_spawner = base.payload_spawner
@@ -126,55 +126,55 @@
 	icon_state = "flashbang_active"
 
 /obj/item/grenade/clusterbuster/emp
-	name = "Electromagnetic Storm"
+	name = "电磁风暴"
 	payload = /obj/item/grenade/empgrenade
 
 /obj/item/grenade/clusterbuster/smoke
-	name = "Ninja Vanish"
+	name = "忍法隐身"
 	payload = /obj/item/grenade/smokebomb
 
 /obj/item/grenade/clusterbuster/metalfoam
-	name = "Instant Concrete"
+	name = "瞬凝混凝土"
 	payload = /obj/item/grenade/chem_grenade/metalfoam
 
 /obj/item/grenade/clusterbuster/inferno
-	name = "Inferno"
+	name = "炼狱"
 	payload = /obj/item/grenade/chem_grenade/incendiary
 
 /obj/item/grenade/clusterbuster/antiweed
-	name = "RoundDown"
+	name = "草甘尽"
 	payload = /obj/item/grenade/chem_grenade/antiweed
 
 /obj/item/grenade/clusterbuster/cleaner
-	name = "Mr. Proper"
+	name = "洁净先生"
 	payload = /obj/item/grenade/chem_grenade/cleaner
 
 /obj/item/grenade/clusterbuster/teargas
-	name = "Oignon Grenade"
+	name = "洋葱手榴弹"
 	payload = /obj/item/grenade/chem_grenade/teargas
 
 /obj/item/grenade/clusterbuster/facid
-	name = "Aciding Rain"
+	name = "酸雨"
 	payload = /obj/item/grenade/chem_grenade/facid
 
 /obj/item/grenade/clusterbuster/syndieminibomb
-	name = "SyndiWrath"
+	name = "辛迪之怒"
 	payload = /obj/item/grenade/syndieminibomb
 
 /obj/item/grenade/clusterbuster/spawner_manhacks
-	name = "iViscerator"
+	name = "智能剖腹手"
 	payload = /obj/item/grenade/spawnergrenade/manhacks
 
 /obj/item/grenade/clusterbuster/spawner_spesscarp
-	name = "Invasion of the Space Carps"
+	name = "太空鲤鱼入侵"
 	payload = /obj/item/grenade/spawnergrenade/spesscarp
 
 /obj/item/grenade/clusterbuster/soap
-	name = "Slipocalypse"
+	name = "滑倒末日"
 	payload = /obj/item/grenade/spawnergrenade/syndiesoap
 
 /obj/item/grenade/clusterbuster/clf3
-	name = "WELCOME TO HELL"
+	name = "欢迎来到地狱"
 	payload = /obj/item/grenade/chem_grenade/clf3
 
 //random clusterbuster spawner
@@ -189,7 +189,7 @@
 
 //rainbow slime effect
 /obj/item/grenade/clusterbuster/slime
-	name = "Blorble Blorble"
+	name = "咕噜咕噜"
 	icon_state = "slimebang"
 	base_state = "slimebang"
 	payload_spawner = /obj/effect/payload_spawner/random_slime

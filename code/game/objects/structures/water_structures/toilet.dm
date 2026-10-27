@@ -1,6 +1,6 @@
 /obj/structure/toilet
-	name = "toilet"
-	desc = "The HT-451, a torque rotation-based, waste disposal unit for small matter. This one seems remarkably clean."
+	name = "马桶"
+	desc = "HT-451，一款扭矩旋转式的小件废物处理装置。这一台看起来出奇地干净。"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "toilet00" //The first number represents if the toilet lid is up, the second is if the cistern is open.
 	base_icon_state = "toilet"
@@ -51,45 +51,45 @@
 /obj/structure/toilet/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(user.pulling && isliving(user.pulling))
-		context[SCREENTIP_CONTEXT_LMB] = "Give Swirlie"
+		context[SCREENTIP_CONTEXT_LMB] = "按头冲水"
 	if(cover_open)
 		if(isnull(held_item))
 			if(LAZYLEN(fishes))
-				context[SCREENTIP_CONTEXT_LMB] = "Grab Fish"
+				context[SCREENTIP_CONTEXT_LMB] = "抓鱼"
 		else if(istype(held_item, /obj/item/fish))
-			context[SCREENTIP_CONTEXT_LMB] = "Insert Fish"
+			context[SCREENTIP_CONTEXT_LMB] = "放入鱼"
 		else if(istype(held_item, /obj/item/plunger))
-			context[SCREENTIP_CONTEXT_LMB] = "Unclog"
+			context[SCREENTIP_CONTEXT_LMB] = "疏通"
 		else if(held_item.w_class <= WEIGHT_CLASS_SMALL)
-			context[SCREENTIP_CONTEXT_LMB] = "Insert Item"
+			context[SCREENTIP_CONTEXT_LMB] = "放入物品"
 	else if(cistern_open)
 		if(isnull(held_item))
-			context[SCREENTIP_CONTEXT_LMB] = "Check Cistern"
+			context[SCREENTIP_CONTEXT_LMB] = "查看水箱"
 		else if(held_item.tool_behaviour == TOOL_SCREWDRIVER && has_water_reclaimer)
-			context[SCREENTIP_CONTEXT_LMB] = "Remove Reclaimer"
+			context[SCREENTIP_CONTEXT_LMB] = "拆下回收器"
 		else if(istype(held_item, /obj/item/stock_parts/water_recycler) && !has_water_reclaimer)
-			context[SCREENTIP_CONTEXT_LMB] = "Install Reclaimer"
+			context[SCREENTIP_CONTEXT_LMB] = "安装回收器"
 		else
-			context[SCREENTIP_CONTEXT_LMB] = "Insert Item"
-	context[SCREENTIP_CONTEXT_RMB] = "Flush"
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "[cover_open ? "Close" : "Open"] Lid"
+			context[SCREENTIP_CONTEXT_LMB] = "放入物品"
+	context[SCREENTIP_CONTEXT_RMB] = "冲水"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "[cover_open ? "合上" : "打开"] 马桶盖"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/toilet/examine(mob/user)
 	. = ..()
 	if(cover_open)
 		if(LAZYLEN(fishes))
-			. += span_notice("You can see fish in the toilet, you can probably take one out.")
+			. += span_notice("你能看见马桶里有鱼，大概可以捞一条出来。")
 		if(stuck_item)
-			. += span_notice("There seems to be something small in [src]'s bowl...")
+			. += span_notice("[src]的盆里好像有什么小东西……")
 	if(cistern_open && has_water_reclaimer)
-		. += span_notice("A water recycler is installed. Its attached by a pair of screws.")
-		. += span_notice("Its display states: [reagents.total_volume]/[reagents.maximum_volume] liquids remaining.")
+		. += span_notice("已安装了水循环器，用两颗螺丝固定着。")
+		. += span_notice("显示屏显示：剩余液体 [reagents.total_volume]/[reagents.maximum_volume]。")
 
 /obj/structure/toilet/examine_more(mob/user)
 	. = ..()
 	if(cistern_open && LAZYLEN(cistern_items))
-		. += span_notice("You can see [cistern_items.len] items inside of the cistern.")
+		. += span_notice("你能看见水箱里有 [cistern_items.len] 件物品。")
 
 /obj/structure/toilet/Destroy(force)
 	. = ..()
@@ -118,7 +118,7 @@
 	if(swirlie)
 		user.changeNext_move(CLICK_CD_MELEE)
 		playsound(src.loc, SFX_SWING_HIT, 25, TRUE)
-		swirlie.visible_message(span_danger("[user] slams the toilet seat onto [swirlie]'s head!"), span_userdanger("[user] slams the toilet seat onto your head!"), span_hear("You hear reverberating porcelain."))
+		swirlie.visible_message(span_danger("[user]把马桶圈狠狠砸在[swirlie]的头上！"), span_userdanger("[user]把马桶圈狠狠砸在了你的头上！"), span_hear("你听到瓷器回荡的响声。"))
 		log_combat(user, swirlie, "swirlied (brute)")
 		swirlie.adjust_brute_loss(5)
 		return
@@ -127,27 +127,27 @@
 		user.changeNext_move(CLICK_CD_MELEE)
 		var/mob/living/grabbed_mob = user.pulling
 		if(user.grab_state < GRAB_AGGRESSIVE)
-			to_chat(user, span_warning("You need a tighter grip!"))
+			to_chat(user, span_warning("你需要抓得更紧！"))
 			return
 		if(grabbed_mob.loc != get_turf(src))
-			to_chat(user, span_warning("[grabbed_mob] needs to be on [src]!"))
+			to_chat(user, span_warning("[grabbed_mob]必须位于[src]上！"))
 			return
 		if(swirlie)
 			return
 		if(cover_open)
 			if(!reagents.total_volume)
-				to_chat(user, span_notice("\The [src] is dry!"))
+				to_chat(user, span_notice("[src]里是干的！"))
 				return
-			grabbed_mob.visible_message(span_danger("[user] starts to give [grabbed_mob] a swirlie!"), span_userdanger("[user] starts to give you a swirlie..."))
+			grabbed_mob.visible_message(span_danger("[user]开始把[grabbed_mob]的头按进马桶里冲水！"), span_userdanger("[user]开始把你的头按进马桶里冲水……"))
 			swirlie = grabbed_mob
 			var/was_alive = (swirlie.stat != DEAD)
 			if(!do_after(user, 3 SECONDS, target = src, timed_action_flags = IGNORE_HELD_ITEM))
 				swirlie = null
 				return
 			if(!reagents.total_volume)
-				to_chat(user, span_notice("\The [src] is dry!"))
+				to_chat(user, span_notice("[src]里是干的！"))
 				return
-			grabbed_mob.visible_message(span_danger("[user] gives [grabbed_mob] a swirlie!"), span_userdanger("[user] gives you a swirlie!"), span_hear("You hear a toilet flushing."))
+			grabbed_mob.visible_message(span_danger("[user]把[grabbed_mob]的头按进马桶里冲了水！"), span_userdanger("[user]把你的头按进马桶里冲了水！"), span_hear("你听到马桶冲水的声音。"))
 			if(iscarbon(grabbed_mob))
 				var/mob/living/carbon/carbon_grabbed = grabbed_mob
 				if(!carbon_grabbed.internal)
@@ -161,21 +161,21 @@
 			swirlie = null
 		else
 			playsound(src.loc, 'sound/effects/bang.ogg', 25, TRUE)
-			grabbed_mob.visible_message(span_danger("[user] slams [grabbed_mob.name] into [src]!"), span_userdanger("[user] slams you into [src]!"))
+			grabbed_mob.visible_message(span_danger("[user]把[grabbed_mob.name]狠狠撞向[src]！"), span_userdanger("[user]把你狠狠撞向[src]！"))
 			log_combat(user, grabbed_mob, "toilet slammed")
 			grabbed_mob.adjust_brute_loss(5)
 		return
 
 	if(cistern_open && !cover_open && IsReachableBy(user))
 		if(!LAZYLEN(cistern_items))
-			to_chat(user, span_notice("The cistern is empty."))
+			to_chat(user, span_notice("水箱是空的。"))
 			return
 		var/obj/item/random_cistern_item = pick(cistern_items)
 		if(ishuman(user))
 			user.put_in_hands(random_cistern_item)
 		else
 			random_cistern_item.forceMove(drop_location())
-		to_chat(user, span_notice("You find [random_cistern_item] in the cistern."))
+		to_chat(user, span_notice("你在水箱里找到了[random_cistern_item]。"))
 		return
 
 	if(!flushing && LAZYLEN(fishes) && cover_open)
@@ -184,7 +184,7 @@
 			user.put_in_hands(random_fish)
 		else
 			random_fish.forceMove(drop_location())
-		to_chat(user, span_notice("You take [random_fish] out of the toilet, poor thing."))
+		to_chat(user, span_notice("你把[random_fish]从马桶里捞了出来，可怜的家伙。"))
 
 /obj/structure/toilet/click_alt(mob/living/user)
 	if(flushing)
@@ -199,7 +199,7 @@
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(reagents.total_volume <= 50)
-		to_chat(user, span_notice("You press the flush lever, but nothing happens."))
+		to_chat(user, span_notice("你按下冲水扳手，但什么也没发生。"))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	flushing = TRUE
@@ -211,7 +211,7 @@
 				break
 
 	if(something_stuck)
-		reagents.create_foam(/datum/effect_system/fluid_spread/foam, 10, notification = span_danger("[src] overflows, spilling its cistern's contents everywhere!"), log = TRUE)
+		reagents.create_foam(/datum/effect_system/fluid_spread/foam, 10, notification = span_danger("[src]溢了出来，水箱里的东西洒得到处都是！"), log = TRUE)
 	else
 		reagents.remove_all(50)
 
@@ -250,23 +250,23 @@
 	add_fingerprint(user)
 	if(cover_open && istype(tool, /obj/item/fish))
 		if(LAZYLEN(fishes) >= 3)
-			to_chat(user, span_warning("There's too many fishes, flush them down first."))
+			to_chat(user, span_warning("鱼太多了，先把它们冲下去吧。"))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning("\The [tool] is stuck to your hand!"))
+			to_chat(user, span_warning("[tool]粘在你手上了！"))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/fish/the_fish = tool
 		if(the_fish.status == FISH_DEAD)
-			to_chat(user, span_warning("You place [tool] into [src], may it rest in peace."))
+			to_chat(user, span_warning("你把[tool]放进了[src]，愿它安息。"))
 		else
-			to_chat(user, span_notice("You place [tool] into [src], hopefully no one will miss it!"))
+			to_chat(user, span_notice("你把[tool]放进了[src]，希望没人会想念它！"))
 		LAZYADD(fishes, tool)
 		return ITEM_INTERACT_SUCCESS
 
 	if(cistern_open)
 		if(istype(tool, /obj/item/stock_parts/water_recycler))
 			if(has_water_reclaimer)
-				to_chat(user, span_warning("[src] already has a water recycler installed."))
+				to_chat(user, span_warning("[src]已经安装了水循环器。"))
 				return ITEM_INTERACT_BLOCKING
 
 			playsound(src, 'sound/machines/click.ogg', 20, TRUE)
@@ -276,16 +276,16 @@
 			return ITEM_INTERACT_SUCCESS
 
 		if(tool.w_class > WEIGHT_CLASS_NORMAL)
-			to_chat(user, span_warning("[tool] does not fit!"))
+			to_chat(user, span_warning("[tool]放不进去！"))
 			return ITEM_INTERACT_BLOCKING
 		if(w_items + tool.w_class > WEIGHT_CLASS_HUGE)
-			to_chat(user, span_warning("The cistern is full!"))
+			to_chat(user, span_warning("水箱满了！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning("\The [tool] is stuck to your hand, you cannot put it in the cistern!"))
+			to_chat(user, span_warning("[tool]粘在你手上，你无法把它放进水箱！"))
 			return ITEM_INTERACT_BLOCKING
 		add_cistern_item(tool)
-		to_chat(user, span_notice("You carefully place [tool] into the cistern."))
+		to_chat(user, span_notice("你小心翼翼地把[tool]放进水箱。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!cover_open)
@@ -296,19 +296,19 @@
 			return NONE
 
 		if(stuck_item)
-			to_chat(user, span_warning("There's already something blocking [src]'s drain pipe!"))
+			to_chat(user, span_warning("已经有东西堵住[src]的排水管了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning("\The [tool] is stuck to your hand!"))
+			to_chat(user, span_warning("[tool]粘在你手上了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		stuck_item = tool
-		to_chat(user, span_notice("You drop [tool] into [src]'s bowl."))
+		to_chat(user, span_notice("你把[tool]丢进了[src]的盆里。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(reagents.total_volume <= 0)
-		to_chat(user, span_notice("\The [src] is dry."))
+		to_chat(user, span_notice("[src]里是干的。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/food/monkeycube))
@@ -321,12 +321,12 @@
 		return NONE
 
 	if(container.reagents.holder_full())
-		to_chat(user, span_notice("\The [container] is full."))
+		to_chat(user, span_notice("[container]装满了。"))
 		return ITEM_INTERACT_BLOCKING
 
 	reagents.trans_to(container, container.amount_per_transfer_from_this, transferred_by = user)
 	begin_reclamation()
-	to_chat(user, span_notice("You fill [container] from [src]. Gross."))
+	to_chat(user, span_notice("你从[src]里装满了[container]。真恶心。"))
 	return ITEM_INTERACT_SUCCESS
 
 /// Hides an item inside the toilet for later retrievalk
@@ -336,30 +336,30 @@
 	LAZYADD(cistern_items, thing)
 
 /obj/structure/toilet/crowbar_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice("You start to [cistern_open ? "replace the lid on" : "lift the lid off"] the cistern..."))
+	to_chat(user, span_notice("你开始[cistern_open ? "盖上" : "揭开"]水箱的盖子……"))
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, TRUE)
 	if(tool.use_tool(src, user, 30))
 		user.visible_message(
-			span_notice("[user] [cistern_open ? "replaces the lid on" : "lifts the lid off"] the cistern!"),
-			span_notice("You [cistern_open ? "replace the lid on" : "lift the lid off"] the cistern!"),
-			span_hear("You hear grinding porcelain."))
+			span_notice("[user][cistern_open ? "盖上了" : "揭开了"]水箱的盖子！"),
+			span_notice("你[cistern_open ? "盖上了" : "揭开了"]水箱的盖子！"),
+			span_hear("你听到瓷器摩擦的声音。"))
 		cistern_open = !cistern_open
 		update_appearance(UPDATE_ICON_STATE)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/toilet/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!cistern_open)
-		to_chat(user, span_warning("You need to open [src]'s cistern first!"))
+		to_chat(user, span_warning("你需要先打开[src]的水箱！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!has_water_reclaimer)
-		to_chat(user, span_warning("\the [src] doesn't have a water reclaimer installed."))
+		to_chat(user, span_warning("[src]没有安装水回收器。"))
 		return ITEM_INTERACT_BLOCKING
 
 	tool.play_tool_sound(src)
 	has_water_reclaimer = FALSE
 	new /obj/item/stock_parts/water_recycler(drop_location())
-	to_chat(user, span_notice("You remove the water reclaimer from \the [src]."))
+	to_chat(user, span_notice("你从[src]上拆下了水回收器。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/toilet/wrench_act(mob/living/user, obj/item/tool)
@@ -368,10 +368,10 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/toilet/plunger_act(obj/item/plunger/attacking_plunger, mob/living/user, reinforced)
-	user.balloon_alert_to_viewers("furiously plunging...")
+	user.balloon_alert_to_viewers("疯狂疏通中……")
 	if(!do_after(user, 3 SECONDS, target = src))
 		return TRUE
-	user.balloon_alert_to_viewers("finished plunging")
+	user.balloon_alert_to_viewers("疏通完毕")
 	reagents.expose(get_turf(src), TOUCH) //splash on the floor
 	reagents.clear_reagents()
 	begin_reclamation()
@@ -409,13 +409,13 @@
 	if(!secret_type)
 		return
 	var/obj/item/secret = new secret_type(src)
-	secret.desc += " It's a secret!"
+	secret.desc += " 这是个秘密！"
 	add_cistern_item(secret)
 
 ///A toilet made of meat that only drops remains when deconstructed, often unleashed unto this cursed plane of existence by hopeless people off'ing themselves with experi-scanners.
 /obj/structure/toilet/greyscale/flesh
-	desc = "A horrendous mass of fused flesh resembling a standard-issue HT-451 model toilet. How it manages to function as one is beyond you. \
-	This one seems to be made out of the flesh of a devoted employee of the RnD department."
+	desc = "一团令人毛骨悚然的融合血肉，外形却像标准型号的 HT-451 马桶。它究竟是怎么运作的，你完全想不明白。\
+	这一台似乎是用科研部某位尽职员工的血肉做成的。"
 
 /obj/structure/toilet/greyscale/flesh/Initialize(mapload, mob/living/suicide)
 	. = ..()

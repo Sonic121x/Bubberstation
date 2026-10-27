@@ -1,7 +1,7 @@
 /datum/lazy_template/virtual_domain/breeze_bay
-	name = "Breeze Bay"
-	desc = "A beach front town with a large forest to the north."
-	help_text = "It's simple! Enjoy some rays, catch some fish, and have a good time! Don't get bit by the crabs, though."
+	name = "微风湾"
+	desc = "一座临海小镇，北面是一片广袤的森林。"
+	help_text = "很简单！晒晒太阳，钓钓鱼，好好享受一番！不过别被螃蟹咬了。"
 	key = "breeze_bay"
 	map_name = "breeze_bay"
 	reward_points = BITRUNNER_REWARD_LOW

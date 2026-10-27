@@ -1,7 +1,7 @@
 /datum/heretic_knowledge/crucible
-	desc = "Allows you to transmute a portable water tank and a table to create a Mawed Crucible. \
-		The Mawed Crucible can brew powerful potions for combat and utility, but must be fed bodyparts and organs between uses. \
-		Non-heretics can drink the potions, but will suffer massive disgust."
+	desc = "让你能将一个便携水箱和一张桌子转化为巨口坩埚。\
+		巨口坩埚能酿制强效战斗及实用药剂，但每次使用之间必须喂给它肢体和器官。\
+		非异教徒也能饮用这些药剂，但会感到强烈恶心。"
 	drafting_tier = 2 // its honestly kinda strong asf
 
 /obj/item/eldritch_potion/potion_effect(mob/user)
@@ -10,8 +10,8 @@
 		SEND_SIGNAL(source_heretic, COMSIG_HERETIC_POTION_CONSUMED, src, user)
 
 /obj/item/eldritch_potion/crucible_soul
-	crucible_tip = "Allows you to walk through everything except walls. After expiring, you are teleported to your original location, and are \
-	briefly knocked down. A trail of eldritch particles lights the way to your location, so be prepared to move. Lasts 20 seconds."
+	crucible_tip = "让你能穿过墙壁以外的一切障碍。效果结束后，你会被传送回原位，\
+	并短暂倒地。邪异粒子留下的轨迹会暴露你的位置，做好移动的准备。持续20秒。"
 
 /datum/status_effect/crucible_soul
 	duration = 20 SECONDS // enough to get in and grab some shit but not enough to do much fighting

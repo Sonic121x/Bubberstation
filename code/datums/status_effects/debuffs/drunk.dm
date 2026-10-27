@@ -35,17 +35,17 @@
 	// .01s are used in case the drunk value ends up to be a small decimal.
 	switch(drunk_value)
 		if(11 to 21)
-			return span_warning("[owner.p_They()] [owner.p_are()] slightly flushed.")
+			return span_warning("[owner]的脸微微泛红。")
 		if(21.01 to 41)
-			return span_warning("[owner.p_They()] [owner.p_are()] flushed.")
+			return span_warning("[owner]满脸通红。")
 		if(41.01 to 51)
-			return span_warning("[owner.p_They()] [owner.p_are()] quite flushed and [owner.p_their()] breath smells of alcohol.")
+			return span_warning("[owner]满脸通红，呼吸带着酒气。")
 		if(51.01 to 61)
-			return span_warning("[owner.p_They()] [owner.p_are()] very flushed and [owner.p_their()] movements jerky, with breath reeking of alcohol.")
+			return span_warning("[owner]脸色涨红，动作不稳，呼吸中散发着浓重的酒气。")
 		if(61.01 to 91)
-			return span_warning("[owner.p_They()] look[owner.p_s()] like a drunken mess.")
+			return span_warning("[owner]看起来醉得一塌糊涂。")
 		if(91.01 to INFINITY)
-			return span_warning("[owner.p_They()] [owner.p_are()] a shitfaced, slobbering wreck.")
+			return span_warning("[owner]醉得烂如泥，口水直流。")
 
 	return null
 
@@ -239,7 +239,7 @@
 	if(drunk_value >= 81)
 		owner.adjust_tox_loss(1)
 		if(!IS_UNCONSCIOUS_OR_CRIT(owner) && prob(5))
-			to_chat(owner, span_warning("Maybe you should lie down for a bit..."))
+			to_chat(owner, span_warning("也许你该躺一会儿……"))
 
 	// Over 91, we gain even more toxloss, brain damage, and have a chance of dropping into a long sleep
 	if(drunk_value >= 91)
@@ -265,15 +265,15 @@
 		return
 	*/ // SKYRAT EDIT REMOVAL END
 	if(SSshuttle.emergency.mode == SHUTTLE_DOCKED && is_station_level(owner.z))// Don't put us in a deep sleep if the shuttle's here. QoL, mainly.
-		to_chat(owner, span_warning("You're so tired... but you can't miss that shuttle..."))
+		to_chat(owner, span_warning("你好累……但你不能错过那班穿梭机……"))
 	else
 		owner.Sleeping(90 SECONDS)
 
 /// Status effect for being fully drunk (not tipsy).
 /atom/movable/screen/alert/status_effect/drunk
-	name = "Drunk"
-	desc = "All that alcohol you've been drinking is impairing your speech, \
-		motor skills, and mental cognition. Make sure to act like it."
+	name = "醉酒"
+	desc = "你喝下的酒精正在损害你的语言表达、\
+		运动能力和认知能力。请在扮演时体现这一点。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "drunk"
 

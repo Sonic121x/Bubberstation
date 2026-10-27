@@ -3,7 +3,7 @@
 #define INFLAMATION_ADVANCEMENT_PROB 2
 
 /obj/item/organ/appendix
-	name = "appendix"
+	name = "阑尾"
 	icon_state = "appendix"
 	base_icon_state = "appendix"
 
@@ -13,8 +13,8 @@
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
 
-	now_failing = span_warning("An explosion of pain erupts in your lower right abdomen!")
-	now_fixed = span_info("The pain in your abdomen has subsided.")
+	now_failing = span_warning("你的右下腹爆发出剧烈的疼痛！")
+	now_fixed = span_info("你腹部的疼痛已经消退了。")
 	visual = FALSE
 
 	var/inflamation_stage = 0
@@ -24,7 +24,7 @@
 
 /obj/item/organ/appendix/update_name()
 	. = ..()
-	name = "[inflamation_stage ? "inflamed " : null][initial(name)]"
+	name = "[inflamation_stage ? "发炎的" : null][initial(name)]"
 
 /obj/item/organ/appendix/update_icon_state()
 	icon_state = "[base_icon_state][inflamation_stage ? "inflamed" : ""]"
@@ -54,9 +54,9 @@
 	if(isnull(owner.client))
 		return
 	notify_ghosts(
-		"[owner.real_name] has developed spontaneous appendicitis!",
+		"[owner.real_name] 突发阑尾炎了！",
 		source = owner,
-		header = "Whoa, Sick!",
+		header = "哇，病了！",
 	)
 
 /obj/item/organ/appendix/proc/inflamation(seconds_per_tick)
@@ -70,7 +70,7 @@
 				organ_owner.emote("cough")
 		if(2)
 			if(SPT_PROB(1.5, seconds_per_tick))
-				to_chat(organ_owner, span_warning("You feel a stabbing pain in your abdomen!"))
+				to_chat(organ_owner, span_warning("你感到腹部一阵刺痛！"))
 				organ_owner.adjust_organ_loss(ORGAN_SLOT_APPENDIX, 5)
 				organ_owner.Stun(rand(40, 60))
 				organ_owner.adjust_tox_loss(1, forced = TRUE)
@@ -83,11 +83,11 @@
 	var/effective_stage = floor(inflamation_stage + (damage / maxHealth))
 	switch(effective_stage)
 		if(1)
-			return span_warning("Your [self_aware ? "appendix" : "lower abdomen"] feels a little off.")
+			return span_warning("你的[self_aware ? "阑尾" : "下腹部"]感觉有点不对劲。")
 		if(2)
-			return span_warning("Your [self_aware ? "appendix" : "lower right abdomen"] feels sore.")
+			return span_warning("你的[self_aware ? "阑尾" : "右下腹"]感到酸痛。")
 		if(3 to INFINITY)
-			return span_boldwarning("Your [self_aware ? "appendix" : "lower right abdomen"] feels like it's on fire!")
+			return span_boldwarning("你的[self_aware ? "阑尾" : "右下腹"]像着了火一样！")
 
 /obj/item/organ/appendix/get_availability(datum/species/owner_species, mob/living/owner_mob)
 	return owner_species.mutantappendix
@@ -120,19 +120,19 @@
 
 /obj/item/organ/appendix/get_status_text(scanpower, add_tooltips, colored)
 	if(!(organ_flags & ORGAN_FAILING) && inflamation_stage)
-		return conditional_tooltip("<font color='#ff9933'>Inflamed</font>", "Remove surgically.", add_tooltips)
+		return conditional_tooltip("<font color='#ff9933'>发炎</font>", "需手术摘除。", add_tooltips)
 	return ..()
 
 /obj/item/organ/appendix/pod
-	name = "pod thingy"
-	desc = "Strangest salad you've ever seen."
+	name = "豆荚玩意儿"
+	desc = "你见过最奇怪的沙拉。"
 	foodtype_flags = PODPERSON_ORGAN_FOODTYPES
 	color = COLOR_LIME
 
 /obj/item/organ/appendix/pod/Initialize(mapload)
 	. = ..()
 	// this could be anything... anything. still useless though
-	name = pick("pod endoplasmic reticulum", "pod golgi apparatus", "pod plastid", "pod vesicle")
+	name = pick("豆荚内质网", "豆荚高尔基体", "豆荚质体", "豆荚囊泡")
 
 /obj/item/organ/appendix/pod/become_inflamed()
 	return

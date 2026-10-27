@@ -1,21 +1,21 @@
-ADMIN_VERB(map_export, R_DEBUG, "Map Export", "Select a part of the map by coordinates and download it.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(map_export, R_DEBUG, "地图导出", "按坐标选择地图的一部分并下载。", ADMIN_CATEGORY_DEBUG)
 	var/user_x = user.mob.x
 	var/user_y = user.mob.y
 	var/user_z = user.mob.z
-	var/z_level = tgui_input_number(user, "Export Which Z-Level?", "Map Exporter", user_z || 2)
-	var/start_x = tgui_input_number(user, "Start X?", "Map Exporter", user_x || 1, world.maxx, 1)
-	var/start_y = tgui_input_number(user, "Start Y?", "Map Exporter", user_y || 1, world.maxy, 1)
-	var/end_x = tgui_input_number(user, "End X?", "Map Exporter", user_x || 1, world.maxx, 1)
-	var/end_y = tgui_input_number(user, "End Y?", "Map Exporter", user_y || 1, world.maxy, 1)
+	var/z_level = tgui_input_number(user, "导出哪个 Z 层？", "地图导出器", user_z || 2)
+	var/start_x = tgui_input_number(user, "起始 X？", "地图导出器", user_x || 1, world.maxx, 1)
+	var/start_y = tgui_input_number(user, "起始 Y？", "地图导出器", user_y || 1, world.maxy, 1)
+	var/end_x = tgui_input_number(user, "结束 X？", "地图导出器", user_x || 1, world.maxx, 1)
+	var/end_y = tgui_input_number(user, "结束 Y？", "地图导出器", user_y || 1, world.maxy, 1)
 	var/date = time2text(world.timeofday, "YYYY-MM-DD_hh-mm-ss", TIMEZONE_UTC)
-	var/file_name = sanitize_filename(tgui_input_text(user, "Filename?", "Map Exporter", "exported_map_[date]"))
-	var/confirm = tgui_alert(user, "Are you sure you want to do this? This will cause extreme lag!", "Map Exporter", list("Yes", "No"))
+	var/file_name = sanitize_filename(tgui_input_text(user, "文件名？", "地图导出器", "exported_map_[date]"))
+	var/confirm = tgui_alert(user, "你确定要这么做吗？这会造成严重卡顿！", "地图导出器", list("Yes", "No"))
 
 	if(confirm != "Yes")
 		return
 
 	var/map_text = write_map(start_x, start_y, z_level, end_x, end_y, z_level)
-	log_admin("Build Mode: [key_name(user)] is exporting the map area from ([start_x], [start_y], [z_level]) through ([end_x], [end_y], [z_level])")
+	log_admin("建造模式：[key_name(user)] 正在导出从 ([start_x], [start_y], [z_level]) 到 ([end_x], [end_y], [z_level]) 的地图区域")
 	send_exported_map(user, file_name, map_text)
 
 /**

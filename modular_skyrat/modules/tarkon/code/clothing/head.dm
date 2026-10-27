@@ -1,6 +1,6 @@
 /obj/item/clothing/head/utility/welding/hat
-	name = "welder's hat"
-	desc = "A snug fitting flatcap with a wide welding visor"
+	name = "焊工帽"
+	desc = "贴合头部的鸭舌帽，配有宽大的焊接面罩。"
 	worn_icon = 'modular_skyrat/modules/tarkon/icons/mob/clothing/head.dmi'
 	icon = 'modular_skyrat/modules/tarkon/icons/obj/clothing/head.dmi'
 	icon_state = "welderhat"

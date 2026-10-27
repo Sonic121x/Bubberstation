@@ -26,7 +26,7 @@
  * remember that once planes are unified on a render plate you cant change the layering of them!
  */
 /atom/movable/screen/plane_master/rendering_plate
-	name = "Default rendering plate"
+	name = "默认渲染板"
 	multiz_scaled = FALSE
 
 // Blackness renders weird when you view down openspace, because of transforms and borders and such
@@ -34,9 +34,9 @@
 // Sight flags, and shooting vis_contents usage to the moon. So we're doin it different.
 // If image vis contents worked (it should in 515), and we were ok with a maptick cost (wait for threaded maptick) this could be fixed
 /atom/movable/screen/plane_master/rendering_plate/transparent
-	name = "Transparent plate"
-	documentation = "The master rendering plate from the offset below ours will be mirrored onto this plane. That way we achive a \"stack\" effect.\
-		<br>This plane exists to uplayer the master rendering plate to the correct spot in our z layer's rendering order"
+	name = "透明渲染板"
+	documentation = "下方偏移层的主渲染板会镜像到此平面，从而实现堆叠效果。\
+		<br>此平面将主渲染板提升到当前 Z 层绘制顺序中的正确位置。"
 	plane = RENDER_PLANE_TRANSPARENT
 	appearance_flags = PLANE_MASTER
 
@@ -48,8 +48,8 @@
 
 ///Contains most things in the game world
 /atom/movable/screen/plane_master/rendering_plate/game_world
-	name = "Game world plate"
-	documentation = "Contains most of the objects in the world. Mobs, machines, etc. Note the drop shadow, it gives a very nice depth effect."
+	name = "游戏世界渲染板"
+	documentation = "包含世界中的大多数对象，如生物、机器等。投影能营造良好的纵深效果。"
 	plane = RENDER_PLANE_GAME_WORLD
 	appearance_flags = PLANE_MASTER //should use client color
 	blend_mode = BLEND_OVERLAY
@@ -63,8 +63,8 @@
 		add_filter("AO", 1, drop_shadow_filter(x = 0, y = -2, size = 4, color = "#04080FAA"))
 
 /atom/movable/screen/plane_master/rendering_plate/unlit_game_plate
-	name = "Unlit Game rendering plate"
-	documentation = "Feeds the bits of the game plate which want to be effected by lighting into RENDER_PLANE_GAME and the emissive bloom pipeline (the reason this exists)."
+	name = "未照明游戏渲染板"
+	documentation = "将游戏渲染板中需要受到光照影响的部分送入 RENDER_PLANE_GAME 和自发光泛光处理流程。"
 	plane = RENDER_PLANE_UNLIT_GAME
 	render_relay_planes = list(RENDER_PLANE_GAME)
 
@@ -73,9 +73,9 @@
 	add_relay_to(GET_NEW_PLANE(RENDER_PLANE_EMISSIVE_BLOOM, offset), blend_override = BLEND_MULTIPLY)
 
 /atom/movable/screen/plane_master/rendering_plate/particle_weather
-	name = "Particle Weather Holder Plate"
-	documentation = "Plane used to render particle weather, masked by WEATHER_MASK_PLANE. \
-		Cannot be a single screen object as it needs to be a planemaster in order to be properly masked by the weather mask."
+	name = "粒子天气承载板"
+	documentation = "用于绘制粒子天气的平面，受 WEATHER_MASK_PLANE 遮罩。 \
+		它必须是平面主控对象才能正确接受天气遮罩，不能使用单个普通屏幕对象。"
 	plane = RENDER_PLANE_PARTICLE_WEATHER
 	start_hidden = TRUE
 	critical = PLANE_CRITICAL_DISPLAY
@@ -155,8 +155,8 @@
 				vis_contents -= holder
 
 /atom/movable/screen/plane_master/rendering_plate/particle_weather/emissive
-	name = "Emissive Particle Weather Holder Plate"
-	documentation = "Secondary particle weather plane for emissive parts of weather, which is additionally rendered onto the emissive plane after being masked."
+	name = "自发光粒子天气承载板"
+	documentation = "用于天气自发光部分的辅助粒子天气平面，经过遮罩后还会绘制到自发光平面。"
 	plane = RENDER_PLANE_EMISSIVE_PARTICLE_WEATHER
 
 /atom/movable/screen/plane_master/rendering_plate/particle_weather/emissive/Initialize(mapload, datum/hud/hud_owner, datum/plane_master_group/home, offset)
@@ -165,8 +165,8 @@
 	add_relay_to(GET_NEW_PLANE(EMISSIVE_PLANE, offset), relay_color = GLOB.emissive_color)
 
 /atom/movable/screen/plane_master/rendering_plate/turf_lighting
-	name = "Turf lighting post-processing plate"
-	documentation = "Used by overlay lighting, and possibly over plates, to mask out turf lighting."
+	name = "地块光照后处理板"
+	documentation = "供叠加光照及其他可能使用的渲染板遮罩地块光照。"
 	plane = RENDER_PLANE_TURF_LIGHTING
 	render_relay_planes = list(RENDER_PLANE_LIGHTING)
 	blend_mode = BLEND_ADD
@@ -185,14 +185,14 @@
 	))
 
 /atom/movable/screen/plane_master/rendering_plate/emissive_slate
-	name = "Emissive Plate"
-	documentation = "This system works by exploiting BYONDs color matrix filter to use layers to handle emissive blockers.\
-		<br>Emissive overlays are pasted with an atom color that converts them to be entirely some specific color.\
-		<br>Emissive blockers are pasted with an atom color that converts them to be entirely some different color.\
-		<br>Emissive overlays and emissive blockers are put onto the same plane (This one).\
-		<br>The layers for the emissive overlays and emissive blockers cause them to mask eachother similar to normal BYOND objects.\
-		<br>A color matrix filter is applied to the emissive plane to mask out anything that isn't whatever the emissive color is.\
-		<br>This is then used to alpha mask the lighting plane."
+	name = "自发光渲染板"
+	documentation = "此系统利用 BYOND 的颜色矩阵滤镜，通过分层处理自发光遮挡物。\
+		<br>自发光叠加图像使用对象颜色统一转换为某种特定颜色。\
+		<br>自发光遮挡物则统一转换为另一种颜色。\
+		<br>自发光叠加图像和遮挡物都放在此平面上。\
+		<br>它们按照图层顺序相互遮挡，方式与普通 BYOND 对象相同。\
+		<br>随后对自发光平面应用颜色矩阵滤镜，遮去所有非自发光颜色的部分。\
+		<br>最终结果用作光照平面的透明度遮罩。"
 	plane = RENDER_PLANE_EMISSIVE
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -207,8 +207,8 @@
 		add_relay_to(GET_NEW_PLANE(RENDER_PLANE_EMISSIVE, offset - 1), relay_layer = EMISSIVE_Z_BELOW_LAYER)
 
 /atom/movable/screen/plane_master/rendering_plate/emissive_bloom_mask
-	name = "Emissive bloom mask plate"
-	documentation = "A holder plate used purely as a way to full-white bloom emissives before applying them as a mask onto the emissive bloom plate."
+	name = "自发光泛光遮罩板"
+	documentation = "此承载板仅用于对自发光内容进行纯白泛光处理，然后将其作为自发光泛光板的遮罩。"
 	plane = RENDER_PLANE_EMISSIVE_BLOOM_MASK
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -217,9 +217,9 @@
 	critical = PLANE_CRITICAL_DISPLAY
 
 /atom/movable/screen/plane_master/rendering_plate/emissive_bloom
-	name = "Emissive bloom plate"
-	documentation = "Plate used to bloom emissives before adding them onto the overlay lighting plane. We do this by multiplying the game plate\
-		onto a fullbright emissive, then alpha masking it by emissive's color to solve the problem of blockers, both alone and covered by emissives."
+	name = "自发光泛光板"
+	documentation = "此板先对自发光内容施加泛光，再将其加入叠加光照平面。实现方式是将游戏渲染板与全亮自发光内容进行正片叠底混合，\
+		再以自发光颜色进行透明度遮罩，从而处理独立存在或被自发光内容覆盖的遮挡物。"
 	plane = RENDER_PLANE_EMISSIVE_BLOOM
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -238,8 +238,8 @@
 		add_filter("emissive_bloom", 2, bloom_filter(threshold = COLOR_BLACK, size = bloom_scale, offset = ceil(bloom_scale / 2)))
 
 /atom/movable/screen/plane_master/rendering_plate/specular_mask
-	name = "Specular mask plate"
-	documentation = "Plate used to generate the specular mask for the specular plate effect."
+	name = "镜面反射遮罩板"
+	documentation = "用于为镜面反射板效果生成镜面反射遮罩。"
 	plane = RENDER_PLANE_SPECULAR_MASK
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -248,9 +248,9 @@
 	critical = PLANE_CRITICAL_DISPLAY
 
 /atom/movable/screen/plane_master/rendering_plate/overlay_light
-	name = "Overlight plate"
-	documentation = "Combines overlay lights with emissives.\
-		<br>We draw to the generic lighting plate, do some funky stuff with turf lighting to sort of \"cut out\" a bit of space for ourselves there, and do some junk to speculars"
+	name = "叠加光照板"
+	documentation = "将叠加光照与自发光内容合并。\
+		<br>绘制到通用光照板，并处理地块光照以留出所需空间，同时处理镜面反射。"
 	plane = RENDER_PLANE_O_LIGHTING
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -277,8 +277,8 @@
 	))
 
 /atom/movable/screen/plane_master/rendering_plate/specular
-	name = "Specular plate"
-	documentation = "Plate used to artificially increase lighting on certain pixels to poorly mimic shiny surfaces."
+	name = "镜面反射板"
+	documentation = "人为提高特定像素的亮度，粗略模拟光亮表面。"
 	plane = RENDER_PLANE_SPECULAR
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -292,14 +292,14 @@
 
 ///Contains all lighting objects
 /atom/movable/screen/plane_master/rendering_plate/lighting
-	name = "Lighting plate"
-	documentation = "Anything on this plane will be <b>multiplied</b> with the plane it's rendered onto (typically the game plane).\
-		<br>That's how lighting functions at base. Because it uses BLEND_MULTIPLY and occasionally color matrixes, it needs a backdrop of blackness.\
-		<br>See <a href=\"https://secure.byond.com/forum/?post=2141928\">this byond post</a>\
-		<br>Lemme see uh, we're masked by the emissive plane so it can actually function (IE: make things glow in the dark).\
-		<br>We're also masked by the overlay lighting plane, which contains all the well overlay lights in the game. It draws to us and also the game plane.\
-		<br>Masks us out so it has the breathing room to apply its effect.\
-		<br>Oh and we quite often have our alpha changed to achive night vision effects, or things of that sort."
+	name = "光照板"
+	documentation = "此平面的所有内容会与绘制目标平面（通常为游戏平面）进行<b>正片叠底</b>混合。\
+		<br>这是光照的基本原理。由于使用 BLEND_MULTIPLY，有时还会使用颜色矩阵，因此需要黑色背景。\
+		<br>参见<a href=\"https://secure.byond.com/forum/?post=2141928\">这篇 BYOND 论坛帖子</a>。\
+		<br>自发光平面会对此平面进行遮罩，使对象能在黑暗中发光。\
+		<br>叠加光照平面也会对此平面进行遮罩。它包含游戏中的所有叠加光源，同时绘制到此平面和游戏平面。\
+		<br>遮罩会为叠加光照效果留出作用空间。\
+		<br>此外，经常通过调整此平面的透明度来实现夜视等效果。"
 	plane = RENDER_PLANE_LIGHTING
 	blend_mode_override = BLEND_MULTIPLY
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -389,12 +389,12 @@
 	add_filter("light_cutup", 4, color_matrix_filter(list(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1, ratio+red,ratio+green,ratio+blue,0)))
 
 /atom/movable/screen/plane_master/rendering_plate/light_mask
-	name = "Light Mask"
-	documentation = "Any part of this plane that is transparent will be black below it on the game rendering plate.\
-		<br>This is done to ensure emissives and overlay lights don't light things up \"through\" the darkness that normally sits at the bottom of the lighting plane.\
-		<br>We relay copies of the space, floor and wall planes to it, so we can use them as masks. Then we just boost any existing alpha to 100% and we're done.\
-		<br>If we ever switch to a sight setup that shows say, mobs but not floors, we instead mask just overlay lighting and emissives.\
-		<br>This avoids dumb seethrough without breaking stuff like thermals."
+	name = "光照遮罩"
+	documentation = "此平面的透明部分会让其下方游戏渲染板的对应位置变黑。\
+		<br>这样可以防止自发光和叠加光照穿过光照平面底部通常存在的黑暗，照亮后面的对象。\
+		<br>太空、地板和墙壁平面的副本被中继到此处作为遮罩，再将现有不透明度提高到 100%。\
+		<br>如果视野设置只显示生物而不显示地板等内容，则仅遮罩叠加光照和自发光。\
+		<br>这样能避免错误透视，同时保留热成像等功能。"
 	plane = RENDER_PLANE_LIGHT_MASK
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	// Fullwhite where there's anything, no color otherwise
@@ -436,11 +436,11 @@
 
 ///renders in character game objects
 /atom/movable/screen/plane_master/rendering_plate/game_plate
-	name = "Game rendering plate"
-	documentation = "Holds all objects that are ahhh, in character? is maybe the best way to describe it.\
-		<br>We apply a displacement effect from the gravity pulse plane too, so we can warp the game world.\
-		<br>If we have fov enabled we'll relay this onto two different rendering plates to apply fov effects to only a portion. If not, we just draw straight to master.\
-		<br>It's also the step where we finally build lighting into the visual pipeline"
+	name = "游戏渲染板"
+	documentation = "包含角色所处游戏世界中的所有对象。\
+		<br>还会应用引力脉冲平面的置换效果，以扭曲游戏世界。\
+		<br>启用视野限制时，会将其中继到两个不同的渲染板，只对部分画面施加视野效果；否则直接绘制到主渲染板。\
+		<br>光照也在这一阶段最终合入渲染流程。"
 	plane = RENDER_PLANE_GAME
 	render_relay_planes = list(RENDER_PLANE_MASTER)
 	critical = PLANE_CRITICAL_DISPLAY
@@ -485,9 +485,9 @@
 
 ///renders the parts of the plate unmasked by fov
 /atom/movable/screen/plane_master/rendering_plate/unmasked_game_plate
-	name = "Unmasked Game rendering plate"
-	documentation = "Holds the bits of the game plate that aren't impacted by fov.\
-		<br>We use an alpha mask to cut out the bits we plan on dealing with elsewhere"
+	name = "无遮罩游戏渲染板"
+	documentation = "包含游戏渲染板中不受视野限制影响的部分。\
+		<br>使用透明度遮罩剔除将在其他位置处理的部分。"
 	plane = RENDER_PLANE_GAME_UNMASKED
 	render_relay_planes = list(RENDER_PLANE_MASTER)
 
@@ -518,9 +518,9 @@
 
 ///renders the parts of the plate masked by fov
 /atom/movable/screen/plane_master/rendering_plate/masked_game_plate
-	name = "FOV Game rendering plate"
-	documentation = "Contains the bits of the game plate that are hidden by some form of fov\
-		<br>Applies a color matrix to dim and create contrast, alongside a blur. Goal is only half being able to see stuff"
+	name = "视野限制游戏渲染板"
+	documentation = "包含游戏渲染板中被某种视野限制遮挡的部分。\
+		<br>应用颜色矩阵压暗画面、增加对比，并施加模糊，使这些内容只能被隐约看见。"
 	plane = RENDER_PLANE_GAME_MASKED
 	render_relay_planes = list(RENDER_PLANE_MASTER)
 
@@ -553,16 +553,16 @@
 
 ///render plate for OOC stuff like ghosts, hud-screen effects, etc
 /atom/movable/screen/plane_master/rendering_plate/non_game
-	name = "Non-Game rendering plate"
-	documentation = "Renders anything that's out of character. Mostly useful as a converse to the game rendering plate."
+	name = "非游戏渲染板"
+	documentation = "绘制角色所处世界之外的内容，与游戏渲染板相对应。"
 	plane = RENDER_PLANE_NON_GAME
 	render_relay_planes = list(RENDER_PLANE_MASTER)
 
 ///this plate renders the final screen to show to the player
 /atom/movable/screen/plane_master/rendering_plate/master
-	name = "Master rendering plate"
-	documentation = "The endpoint of all plane masters, you can think of this as the final \"view\" we draw.\
-		<br>If offset is not 0 this will be drawn to the transparent plane of the floor above, but otherwise this is drawn to nothing, or shown to the player."
+	name = "主渲染板"
+	documentation = "所有平面主控对象的最终输出位置，可视为最终绘制的画面。\
+		<br>偏移量非 0 时，它会绘制到上一层的透明平面；否则不绘制到其他位置，或直接显示给玩家。"
 	plane = RENDER_PLANE_MASTER
 	render_relay_planes = list()
 

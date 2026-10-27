@@ -4,9 +4,9 @@
  * Allows for mining of mineral walls (walls with ores). Requires a shell.
  */
 /obj/item/circuit_component/mining
-	display_name = "Mine"
-	desc = "A component that can force the shell to mine a target. Only works with drone shells. Only works on mining surfaces."
-	category = "Action"
+	display_name = "挖掘"
+	desc = "可迫使外壳挖掘目标位置的元件。仅对无人机外壳有效，且仅对可挖掘表面生效。"
+	category = "动作"
 
 	/// Frequency input
 	var/datum/port/input/target

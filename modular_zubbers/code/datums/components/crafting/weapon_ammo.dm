@@ -1,5 +1,5 @@
 /datum/crafting_recipe/stingballcan
-	name = "Stingball Canister"
+	name = "蜂刺弹罐"
 	result = /obj/item/ammo_box/stingball
 	reqs = list(
 		/obj/item/grenade/stingbang = 1,

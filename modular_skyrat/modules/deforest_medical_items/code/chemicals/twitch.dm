@@ -21,12 +21,12 @@
 
 // Twitch drug, makes the takers of it faster and able to dodge bullets while in their system, to potentially bad side effects
 /datum/reagent/drug/twitch
-	name = "TWitch"
-	description = "A drug originally developed by and for plutonians to assist them during raids. \
-		Does not see wide use due to the whole reality-disassociation and heart disease thing afterwards. \
-		Can be intentionally overdosed to increase the drug's effects"
+	name = "颤栗"
+	description = "一种最初由冥王星人开发、并为其在突袭中提供辅助的药物。 \
+		由于服用后会出现现实解离和心脏疾病等问题，它并未得到广泛使用。 \
+		可以故意过量服用以增强药效。"
 	color = "#c22a44"
-	taste_description = "television static"
+	taste_description = "电视雪花噪点"
 	metabolization_rate = 0.65 * REAGENTS_METABOLISM
 	ph = 3
 	overdose_threshold = 15
@@ -84,14 +84,14 @@
 
 	if(constant_dose_time < CONSTANT_DOSE_SAFE_LIMIT) // Anything less than this and you'll come out fiiiine, aside from a big hit of stamina damage
 		our_guy.visible_message(
-			span_danger("[our_guy] suddenly slows from their inhuman speeds, coming back with a wicked nosebleed!"),
-			span_danger("You suddenly slow back to normal, a stream of blood gushing from your nose!")
+			span_danger("[our_guy] 突然从非人的速度慢了下来，回来时鼻血直流！"),
+			span_danger("你突然慢回正常速度，一股鲜血从鼻子里涌出！")
 		)
 		our_guy.adjust_stamina_loss(constant_dose_time)
 	else // Much longer than that however, and you're not gonna have a good day
 		our_guy.visible_message(
-			span_danger("[our_guy] suddenly snaps back from their inhumans speeds, coughing up a spray of blood!"),
-			span_danger("As you snap back to normal speed you cough up a worrying amount of blood. You feel like you've just been run over by a power loader.")
+			span_danger("[our_guy] 突然从非人的速度中弹了回来，咳出一片鲜血！"),
+			span_danger("当你恢复正常速度时，你咳出了多得吓人的血。你感觉自己像是被动力装载机碾过一样。")
 		)
 		our_guy.spray_blood(our_guy.dir, 2) // The before mentioned coughing up blood
 		our_guy.emote("cough")
@@ -120,8 +120,8 @@
 	if(HAS_TRAIT(source, TRAIT_INCAPACITATED))
 		return NONE
 	source.visible_message(
-		span_danger("[source] effortlessly dodges [hitting_projectile]!"),
-		span_userdanger("You effortlessly evade [hitting_projectile]!"),
+		span_danger("[source] 毫不费力地闪开了 [hitting_projectile]！"),
+		span_userdanger("你毫不费力地避开了 [hitting_projectile]！"),
 	)
 	playsound(source, pick('sound/items/weapons/bulletflyby.ogg', 'sound/items/weapons/bulletflyby2.ogg', 'sound/items/weapons/bulletflyby3.ogg'), 75, TRUE)
 	source.add_filter(TWITCH_BLUR_EFFECT, 2, gauss_blur_filter(5))
@@ -166,7 +166,7 @@
 	our_guy.adjust_tox_loss(1 * REM * seconds_per_tick, updating_health = FALSE, forced = TRUE, required_biotype = affected_biotype)
 
 	if(SPT_PROB(5, seconds_per_tick))
-		to_chat(our_guy, span_danger("You cough up a splatter of blood!"))
+		to_chat(our_guy, span_danger("你咳出一摊血！"))
 		our_guy.spray_blood(our_guy.dir, 1)
 		our_guy.emote("cough")
 

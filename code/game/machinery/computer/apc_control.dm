@@ -1,6 +1,6 @@
 /obj/machinery/computer/apc_control
-	name = "power flow control console"
-	desc = "Used to remotely control the flow of power to different parts of the station."
+	name = "电力分配控制台"
+	desc = "用于远程控制空间站各区域的电力分配。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/apc_control")
 	icon_screen = "solar"
 	icon_keyboard = "power_key"
@@ -31,7 +31,7 @@
 
 /obj/machinery/computer/apc_control/attack_ai(mob/user)
 	if(!isAdminGhostAI(user))
-		to_chat(user,span_warning("[src] does not support AI control.")) //You already have APC access, cheater!
+		to_chat(user,span_warning("[src]不支持 AI 控制。")) //You already have APC access, cheater!
 		return
 	return ..()
 
@@ -41,7 +41,7 @@
 	obj_flags |= EMAGGED
 	if (user)
 		user.log_message("emagged [src].", LOG_ATTACK, color="red")
-		balloon_alert(user, "access controller shorted")
+		balloon_alert(user, "权限控制器已短路")
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
 
@@ -56,7 +56,7 @@
 	obj_flags &= ~EMAGGED
 	should_log = TRUE
 	user.log_message("restored the logs of [src].", LOG_GAME)
-	log_activity("-=- Logging restored to full functionality at this point -=-")
+	log_activity("-=- 日志记录功能已在此时完全恢复 -=-")
 	restoring = FALSE
 
 ///Initiates remote access to the APC
@@ -64,14 +64,14 @@
 	if(isnull(apc))
 		return
 	if(apc.remote_control_user)
-		to_chat(user, span_warning("\The [apc] is being controlled by someone else!"))
+		to_chat(user, span_warning("[apc]正被其他人控制！"))
 		return
 	if(active_apc)
 		disconnect_apc()
 	playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 	apc.connect_remote_access(user)
 	user.log_message("remotely accessed [apc] from [src].", LOG_GAME)
-	log_activity("[auth_id] remotely accessed APC in [get_area_name(apc.area, TRUE)]")
+	log_activity("[auth_id]远程访问了[chinese_area_display(get_area_name(apc.area, TRUE))]的区域电力控制器")
 	active_apc = apc
 	RegisterSignal(active_apc, COMSIG_QDELETING, PROC_REF(on_apc_destroyed))
 
@@ -129,7 +129,7 @@
 		if(check_apc(apc))
 			var/has_cell = (apc.cell) ? TRUE : FALSE
 			data["apcs"] += list(list(
-					"name" = apc.area.name,
+					"name" = chinese_area_display(apc.area.name),
 					"operating" = apc.operating,
 					"charge" = (has_cell) ? apc.cell.percent() : "NOCELL",
 					"load" = display_power(apc.lastused_total),
@@ -154,8 +154,8 @@
 		if("log-in")
 			if(obj_flags & EMAGGED)
 				authenticated = TRUE
-				auth_id = "Unknown (Unknown):"
-				log_activity("[auth_id] logged in to the terminal")
+				auth_id = "未知（未知）："
+				log_activity("[auth_id]登录了终端")
 				return
 			if(!istype(user))
 				return
@@ -163,19 +163,19 @@
 			if(istype(user_id_card))
 				if(check_access(user_id_card))
 					authenticated = TRUE
-					auth_id = "[user_id_card.registered_name] ([user_id_card.assignment]):"
-					log_activity("[auth_id] logged in to the terminal")
+					auth_id = "[user_id_card.registered_name]（[chinese_job_display(user_id_card.assignment)]）："
+					log_activity("[auth_id]登录了终端")
 					playsound(src, 'sound/machines/terminal/terminal_on.ogg', 50, FALSE)
 				else
-					auth_id = "[user_id_card.registered_name] ([user_id_card.assignment]):"
-					log_activity("[auth_id] attempted to log into the terminal")
+					auth_id = "[user_id_card.registered_name]（[chinese_job_display(user_id_card.assignment)]）："
+					log_activity("[auth_id]尝试登录终端")
 					playsound(src, 'sound/machines/terminal/terminal_error.ogg', 50, FALSE)
-					say("ID rejected, access denied!")
+					say("身份卡被拒，无法访问！")
 				return
-			auth_id = "Unknown (Unknown):"
-			log_activity("[auth_id] attempted to log into the terminal")
+			auth_id = "未知（未知）："
+			log_activity("[auth_id]尝试登录终端")
 		if("log-out")
-			log_activity("[auth_id] logged out of the terminal")
+			log_activity("[auth_id]已退出终端")
 			playsound(src, 'sound/machines/terminal/terminal_off.ogg', 50, FALSE)
 			authenticated = FALSE
 			auth_id = "\[NULL\]"
@@ -194,9 +194,9 @@
 			connect_apc(remote_target, user)
 			return TRUE
 		if("check-logs")
-			log_activity("Checked Logs")
+			log_activity("查看了日志")
 		if("check-apcs")
-			log_activity("Checked APCs")
+			log_activity("查看了区域电力控制器")
 		if("toggle-minor")
 			var/ref = params["ref"]
 			var/type = params["type"]
@@ -216,7 +216,7 @@
 				if(null)
 					return
 				else
-					message_admins("Warning: possible href exploit by [key_name(user)] - attempted to set [html_encode(type)] on [target] to [html_encode(value)]")
+					message_admins("警告：[key_name(user)]可能正在利用 href 漏洞，试图将[target]的[html_encode(type)]设为[html_encode(value)]")
 					user.log_message("possibly trying to href exploit - attempted to set [html_encode(type)] on [target] to [html_encode(value)]", LOG_ADMIN)
 					return
 
@@ -225,14 +225,14 @@
 			var/setTo = ""
 			switch(target.vars[type])
 				if(0)
-					setTo = "Off"
+					setTo = "关闭"
 				if(1)
-					setTo = "Auto Off"
+					setTo = "自动关闭"
 				if(2)
-					setTo = "On"
+					setTo = "开启"
 				if(3)
-					setTo = "Auto On"
-			log_activity("Set APC [target.area.name] [type] to [setTo]")
+					setTo = "自动开启"
+			log_activity("将[chinese_area_display(target.area.name)]区域电力控制器的[type == "equipment" ? "设备供电" : (type == "lighting" ? "照明供电" : "环境供电")]设为[setTo]")
 			user.log_message("set APC [target.area.name] [type] to [setTo]]", LOG_GAME)
 		if("breaker")
 			var/ref = params["ref"]
@@ -240,8 +240,8 @@
 			if(!breaker_target || !check_apc(breaker_target))
 				return
 			breaker_target.toggle_breaker(user)
-			var/setTo = breaker_target.operating ? "On" : "Off"
-			log_activity("Turned APC [breaker_target.area.name]'s breaker [setTo]")
+			var/setTo = breaker_target.operating ? "开启" : "关闭"
+			log_activity("已[setTo][chinese_area_display(breaker_target.area.name)]区域电力控制器的断路器")
 			return TRUE
 
 /obj/machinery/computer/apc_control/ui_close(mob/user)

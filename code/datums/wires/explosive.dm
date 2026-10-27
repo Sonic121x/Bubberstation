@@ -1,6 +1,6 @@
 /datum/wires/explosive
 	var/duds_number = 2 // All "dud" wires cause an explosion when cut or pulsed
-	proper_name = "Explosive Device"
+	proper_name = "爆炸装置"
 	randomize = TRUE // Prevents wires from showing up on blueprints
 
 /datum/wires/explosive/New(atom/holder)
@@ -71,10 +71,10 @@
 /datum/wires/explosive/chem_grenade/explode()
 	var/obj/item/grenade/chem_grenade/grenade = holder
 	var/obj/item/assembly/pulser = get_attached(get_wire(1))
-	var/message = "\An [pulser] has pulsed [grenade] ([grenade.type]), which was installed by [fingerprint]"
+	var/message = "[pulser]向[fingerprint]安装的[grenade]（[grenade.type]）发送了脉冲"
 	if(istype(pulser, /obj/item/assembly/voice))
 		var/obj/item/assembly/voice/spoken_trigger = pulser
-		message +=  " with the following activation message: \"[spoken_trigger.recorded]\""
+		message +=  "，触发语句为：\"[spoken_trigger.recorded]\""
 	if(!grenade.dud_flags)
 		message_admins(message)
 	log_game(message)
@@ -125,8 +125,8 @@
 /datum/wires/explosive/pizza/get_status()
 	var/obj/item/pizzabox/pizza_bomb = holder
 	var/list/status = list()
-	status += "The red light is [pizza_bomb.bomb_active ? "on" : "off"]."
-	status += "The green light is [pizza_bomb.bomb_defused ? "on": "off"]."
+	status += "红灯[pizza_bomb.bomb_active ? "亮起" : "熄灭"]。"
+	status += "绿灯[pizza_bomb.bomb_defused ? "亮起": "熄灭"]。"
 	return status
 
 /datum/wires/explosive/pizza/on_pulse(wire)

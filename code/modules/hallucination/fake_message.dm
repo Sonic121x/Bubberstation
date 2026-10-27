@@ -22,7 +22,7 @@
 	var/list/message_pool = list()
 	if(suspicious_personnel)
 		if(adjacent_to_us)
-			message_pool[span_warning("You feel a tiny prick!")] = 5
+			message_pool[span_warning("你感到一阵轻微的刺痛！")] = 5
 
 		var/obj/item/storage/equipped_backpack = suspicious_personnel.get_item_by_slot(ITEM_SLOT_BACK)
 		if(istype(equipped_backpack))
@@ -50,30 +50,30 @@
 				/obj/item/spellbook,
 			)
 			var/obj/item/stashed_item = pick(stash_item_paths)
-			message_pool[span_notice("[suspicious_personnel] puts the [initial(stashed_item.name)] into [equipped_backpack].")] = 5
+			message_pool[span_notice("[suspicious_personnel] 把 [initial(stashed_item.name)] 放进了 [equipped_backpack]。")] = 5
 
-		message_pool["[span_bold("[suspicious_personnel]")] [pick("sneezes", "coughs")]."] = 1
+		message_pool["[span_bold("[suspicious_personnel]")] [pick("打了个喷嚏", "咳嗽了几声")]。"] = 1
 
-	message_pool[span_notice("You hear something squeezing through the ducts...")] = 1
+	message_pool[span_notice("你听到有什么东西在管道里挤过……")] = 1
 
-	message_pool[span_warning("Your [pick("arm", "leg", "back", "head")] itches.")] = 1
-	message_pool[span_warning("You feel [pick("hot", "cold", "dry", "wet", "woozy", "faint")].")] = 1
-	message_pool[span_warning("Your stomach rumbles.")] = 1
-	message_pool[span_warning("Your head hurts.")] = 1
-	message_pool[span_warning("You hear a faint buzz in your head.")] = 1
+	message_pool[span_warning("你的[pick("手臂", "腿", "背", "头")]发痒。")] = 1
+	message_pool[span_warning("你感到[pick("燥热", "发冷", "干燥", "湿冷", "头晕", "虚弱")]。")] = 1
+	message_pool[span_warning("你的肚子咕咕作响。")] = 1
+	message_pool[span_warning("你的头很痛。")] = 1
+	message_pool[span_warning("你听到脑海里传来微弱的嗡鸣。")] = 1
 
 	if(prob(10))
-		message_pool[span_warning("Behind you.")] = 1
-		message_pool[span_warning("You hear a faint laughter.")] = 1
-		message_pool[span_warning("You hear skittering on the ceiling.")] = 1
-		message_pool[span_warning("You see an inhumanly tall silhouette moving in the distance.")] = 2
+		message_pool[span_warning("在你身后。")] = 1
+		message_pool[span_warning("你听到微弱的笑声。")] = 1
+		message_pool[span_warning("你听到天花板上有窸窣的爬动声。")] = 1
+		message_pool[span_warning("你看到远处有一个高得不似人形的身影在移动。")] = 2
 
 	if(prob(30))
 		var/some_help = pick_list_replacements(HALLUCINATION_FILE, "advice")
 		message_pool[some_help] = 4
 
 	var/chosen = pick_weight(message_pool)
-	feedback_details += "Message: [chosen]"
+	feedback_details += "消息：[chosen]"
 	to_chat(hallucinator, chosen)
 	qdel(src)
 	return TRUE

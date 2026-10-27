@@ -6,7 +6,7 @@
 /// Gas tank air sensor.
 /// These always hook to monitors, be mindful of them
 /obj/machinery/air_sensor
-	name = "gas sensor"
+	name = "气体传感器"
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "gsensor1"
 	resistance_flags = FIRE_PROOF
@@ -29,8 +29,8 @@
 
 	var/static/list/multitool_tips = list(
 		TOOL_MULTITOOL = list(
-			SCREENTIP_CONTEXT_LMB = "Link logged injectors/vents",
-			SCREENTIP_CONTEXT_RMB = "Reset all I/O ports",
+			SCREENTIP_CONTEXT_LMB = "连接已记录的注气器或通风口",
+			SCREENTIP_CONTEXT_RMB = "重置所有输入输出端口",
 		)
 	)
 	AddElement(/datum/element/contextual_screentip_tools, multitool_tips)
@@ -109,8 +109,8 @@
 
 /obj/machinery/air_sensor/examine(mob/user)
 	. = ..()
-	. += span_notice("Use a multitool to link it to an injector, vent, or air alarm, or reset its ports.")
-	. += span_notice("Click with hand to turn it off.")
+	. += span_notice("使用多功能工具可将其连接至注气器、通风口或空气警报器，也可重置端口。")
+	. += span_notice("空手点击可关闭。")
 
 /obj/machinery/air_sensor/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -118,7 +118,7 @@
 	//switched off version of this air sensor but still anchored to the ground
 	var/obj/item/air_sensor/sensor = new(drop_location())
 	sensor.set_anchored(TRUE)
-	sensor.balloon_alert(user, "sensor turned off")
+	sensor.balloon_alert(user, "传感器已关闭")
 
 	//delete self
 	qdel(src)
@@ -139,7 +139,7 @@
 ///right click with multi tool to disconnect everything
 /obj/machinery/air_sensor/multitool_act_secondary(mob/living/user, obj/item/tool)
 	reset()
-	balloon_alert(user, "ports reset")
+	balloon_alert(user, "端口已重置")
 	return TRUE
 
 /obj/machinery/air_sensor/multitool_act(mob/living/user, obj/item/multitool/multi_tool)
@@ -148,10 +148,10 @@
 	var/type = configure(multi_tool.buffer, TRUE)
 	switch(type)
 		if(INLET, OUTLET)
-			var/port = "[type == INLET ? "input" : "output"] port"
-			user.balloon_alert(user, "[port] configured")
-			to_chat(user, span_notice("[src] has connected [multi_tool.buffer] to its [port]."))
-	to_chat(user, span_notice("[src] has been added to multitool buffer."))
+			var/port = "[type == INLET ? "输入" : "输出"]端口"
+			user.balloon_alert(user, "[port]已配置")
+			to_chat(user, span_notice("[src]已将[multi_tool.buffer]连接至其[port]。"))
+	to_chat(user, span_notice("[src]已加入多功能工具缓冲区。"))
 	multi_tool.set_buffer(src)
 
 	return ITEM_INTERACT_SUCCESS
@@ -163,8 +163,8 @@
  * The logic is same as meters
  */
 /obj/item/air_sensor
-	name = "Air Sensor"
-	desc = "A device designed to detect gases and their concentration in an area."
+	name = "气体传感器"
+	desc = "用于检测区域内气体种类及其浓度的装置。"
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "gsensor0"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT + SMALL_MATERIAL_AMOUNT * 0.3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.2)
@@ -178,11 +178,11 @@
 		return NONE
 
 	if(held_item.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = anchored ? "Unwrench" : "Wrench"
+		context[SCREENTIP_CONTEXT_LMB] = anchored ? "解除固定" : "固定"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_WELDER && !anchored)
-		context[SCREENTIP_CONTEXT_LMB] = "Dismantle"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return NONE
@@ -190,11 +190,11 @@
 /obj/item/air_sensor/examine(mob/user)
 	. = ..()
 	if(anchored)
-		. += span_notice("It's [EXAMINE_HINT("wrenched")] in place")
+		. += span_notice("它已用[EXAMINE_HINT("扳手")]固定。")
 	else
-		. += span_notice("It should be [EXAMINE_HINT("wrenched")] in place to turn it on.")
-	. +=  span_notice("It could be [EXAMINE_HINT("welded")] apart.")
-	. +=  span_notice("Click with hand to turn it on.")
+		. += span_notice("需要先用[EXAMINE_HINT("扳手")]固定才能开启。")
+	. +=  span_notice("可以用[EXAMINE_HINT("焊枪")]将它拆解。")
+	. +=  span_notice("空手点击可开启。")
 
 /obj/item/air_sensor/attack_hand(mob/user, list/modifiers)
 	. = ..()
@@ -212,7 +212,7 @@
 		available_sensors += GLOB.station_gas_chambers[chamber_id]
 
 	//make the choice
-	var/chamber_name = tgui_input_list(user, "Select Sensor Purpose", "Select Sensor ID", available_sensors)
+	var/chamber_name = tgui_input_list(user, "选择传感器用途", "选择传感器标识", available_sensors)
 	if(isnull(chamber_name))
 		return
 
@@ -234,7 +234,7 @@
 
 		//make real air sensor in its place
 		var/obj/machinery/air_sensor/new_sensor = new sensor(get_turf(src))
-		new_sensor.balloon_alert(user, "sensor turned on")
+		new_sensor.balloon_alert(user, "传感器已开启")
 		qdel(src)
 
 		break
@@ -247,10 +247,10 @@
 	if(!tool.tool_start_check(user, amount = 1))
 		return ITEM_INTERACT_BLOCKING
 
-	loc.balloon_alert(user, "dismantling sensor")
+	loc.balloon_alert(user, "正在拆解传感器")
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 30, amount = 1))
 		return ITEM_INTERACT_BLOCKING
-	loc.balloon_alert(user, "sensor dismanteled")
+	loc.balloon_alert(user, "传感器已拆解")
 
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS

@@ -43,8 +43,8 @@
 #define SMOKE_STATE_NOT_COOKING 4
 
 /obj/structure/reagent_forge
-	name = "forge"
-	desc = "A structure built out of bricks, for heating up metal, or glass, or ceramic, or food, or anything really."
+	name = "锻炉"
+	desc = "用砖砌成的炉子，可以加热金属、玻璃、陶瓷、食物，或者任何其他东西。"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_structures.dmi'
 	icon_state = "forge_inactive"
 
@@ -76,97 +76,97 @@
 	var/obj/item/plate/oven_tray/used_tray
 	/// The list of possible things to make with materials used on the forge
 	var/static/list/choice_list = list(
-		"Chain" = /obj/item/forging/incomplete/chain,
-		"Plate" = /obj/item/forging/incomplete/plate,
-		"Rapier" = /obj/item/forging/incomplete/rapier,
-		"Sword" = /obj/item/forging/incomplete/sword,
-		"Katana" = /obj/item/forging/incomplete/katana,
-		"Dagger" = /obj/item/forging/incomplete/dagger,
-		"Spear" = /obj/item/forging/incomplete/spear,
-		"Hammer" = /obj/item/forging/incomplete/hammer,
-		"Axe" = /obj/item/forging/incomplete/axe,
-		"Arrowhead" = /obj/item/forging/incomplete/arrowhead,
-		"Revolver Frame" = /obj/item/forging/incomplete/revolver_frame,
-		"Revolver Cylinder" = /obj/item/forging/incomplete/revolver_cylinder,
-		"Staff" = /obj/item/forging/incomplete/staff,
-		"Pickaxe" = /obj/item/forging/incomplete/pickaxe,
-		"Shovel" = /obj/item/forging/incomplete/shovel,
-		"Baseball Bat" = /obj/item/forging/incomplete/baseball_bat,
-		"Rail Nail" = /obj/item/forging/incomplete/rail_nail,
-		"Rail Cart" = /obj/item/forging/incomplete/rail_cart,
+		"链条" = /obj/item/forging/incomplete/chain,
+		"金属板" = /obj/item/forging/incomplete/plate,
+		"刺剑" = /obj/item/forging/incomplete/rapier,
+		"长剑" = /obj/item/forging/incomplete/sword,
+		"武士刀" = /obj/item/forging/incomplete/katana,
+		"匕首" = /obj/item/forging/incomplete/dagger,
+		"长矛" = /obj/item/forging/incomplete/spear,
+		"锤子" = /obj/item/forging/incomplete/hammer,
+		"斧头" = /obj/item/forging/incomplete/axe,
+		"箭头" = /obj/item/forging/incomplete/arrowhead,
+		"左轮枪架" = /obj/item/forging/incomplete/revolver_frame,
+		"左轮弹巢" = /obj/item/forging/incomplete/revolver_cylinder,
+		"法杖" = /obj/item/forging/incomplete/staff,
+		"镐" = /obj/item/forging/incomplete/pickaxe,
+		"铲子" = /obj/item/forging/incomplete/shovel,
+		"棒球棒" = /obj/item/forging/incomplete/baseball_bat,
+		"道钉" = /obj/item/forging/incomplete/rail_nail,
+		"矿车" = /obj/item/forging/incomplete/rail_cart,
 	)
 	/// List of possible choices for the selection radial
 	var/list/radial_choice_list = list()
 	/// Filters the radial choice list by required skill
 	var/list/choice_list_skill_filter = list(
-		"Revolver Frame" = /datum/skill/smithing,
-		"Revolver Cylinder" = /datum/skill/smithing,
+		"左轮枪架" = /datum/skill/smithing,
+		"左轮弹巢" = /datum/skill/smithing,
 	)
 	/// Filters the radial choice list by required level in its skill; true means corresponding element requires it
 	var/list/choice_list_skill_level_filter = list(
-		"Revolver Frame" = 7,
-		"Revolver Cylinder" = 7,
+		"左轮枪架" = 7,
+		"左轮弹巢" = 7,
 	)
 	/// Filters the radial choice list by if it requires the smithing skillchip; true means corresponding element requires it
 	var/list/choice_list_trait_filter = list(
-		"Revolver Frame" = list(TRAIT_KNOW_GUNSMITHING),
-		"Revolver Cylinder" = list(TRAIT_KNOW_GUNSMITHING),
+		"左轮枪架" = list(TRAIT_KNOW_GUNSMITHING),
+		"左轮弹巢" = list(TRAIT_KNOW_GUNSMITHING),
 	)
 	/// Descriptions of the forging items in hint bubbles for the radial menu
 	var/list/radial_choice_hinttext = list()
 
 /obj/structure/reagent_forge/examine(mob/user)
 	. = ..()
-	. += span_notice("You could secure or unsecure it with a wrench.")
-	. += span_notice("You could pry it apart with a crowbar.")
+	. += span_notice("你可以用扳手固定或解除固定。")
+	. += span_notice("你可以用撬棍将它拆开。")
 	if(used_tray)
-		. += span_notice("It has [used_tray] in it, which can be removed with an <b>empty hand</b>.")
+		. += span_notice("里面放着 [used_tray]，可以<b>空手</b>取出。")
 	else
-		. += span_notice("You can place an <b>oven tray</b> in this to <b>bake</b> any items on it.")
+		. += span_notice("放入<b>烤盘</b>即可<b>烘烤</b>盘上的物品。")
 
 	if(forge_level < FORGE_LEVEL_LEGENDARY)
-		. += span_notice("Using an <b>empty hand</b> on [src] will upgrade it, if your forging skill level is above the current upgrade's level.")
+		. += span_notice("如果你的锻造技能高于当前升级等级，<b>空手</b>操作 [src] 即可升级它。")
 
 	switch(forge_level)
 		if(FORGE_LEVEL_YOU_PLAY_LIKE_A_NOOB)
-			. += span_notice("This forge has not been upgraded yet.")
+			. += span_notice("这座锻炉尚未升级。")
 
 		if(FORGE_LEVEL_NOVICE)
-			. += span_notice("This forge has been upgraded by a novice smith.")
+			. += span_notice("这座锻炉已由新手铁匠升级。")
 
 		if(FORGE_LEVEL_APPRENTICE)
-			. += span_notice("This forge has been upgraded by an apprentice smith.")
+			. += span_notice("这座锻炉已由学徒铁匠升级。")
 
 		if(FORGE_LEVEL_JOURNEYMAN)
-			. += span_notice("This forge has been upgraded by a journeyman smith.")
+			. += span_notice("这座锻炉已由熟练铁匠升级。")
 
 		if(FORGE_LEVEL_EXPERT)
-			. += span_notice("This forge has been upgraded by an expert smith.")
+			. += span_notice("这座锻炉已由专家铁匠升级。")
 
 		if(FORGE_LEVEL_MASTER)
-			. += span_notice("This forge has been upgraded by a master smith.")
+			. += span_notice("这座锻炉已由铁匠大师升级。")
 
 		if(FORGE_LEVEL_LEGENDARY)
-			. += span_hierophant("This forge has been upgraded by a legendary smith.") // Legendary skills give you the greatest gift of all, cool text
+			. += span_hierophant("这座锻炉已由传奇铁匠升级。") // Legendary skills give you the greatest gift of all, cool text
 
 	switch(temperature_loss_reduction)
 		if(0)
-			. += span_notice("[src] will lose heat at a normal rate.")
+			. += span_notice("[src] 将以正常速度散热。")
 		if(1)
-			. += span_notice("[src] will lose heat slightly slower than usual.")
+			. += span_notice("[src] 的散热速度比平时稍慢。")
 		if(2)
-			. += span_notice("[src] will lose heat a bit slower than usual.")
+			. += span_notice("[src] 的散热速度比平时慢一些。")
 		if(3)
-			. += span_notice("[src] will lose heat much slower than usual.")
+			. += span_notice("[src] 的散热速度比平时慢得多。")
 		if(4)
-			. += span_notice("[src] will lose heat signficantly slower than usual.")
+			. += span_notice("[src] 的散热速度显著降低。")
 		if(5)
-			. += span_notice("[src] will lose heat at a practically negligible rate.")
+			. += span_notice("[src] 的散热几乎可以忽略不计。")
 
-	. += span_notice("<br>[src] is currently [forge_temperature] degrees hot, going towards [target_temperature] degrees.<br>")
+	. += span_notice("<br>[src] 当前温度为 [forge_temperature] 度，正趋近于 [target_temperature] 度。<br>")
 
 	if(reagent_forging)
-		. += span_warning("[src] has a fine gold trim, it is ready to imbue chemicals into reagent objects.")
+		. += span_warning("[src] 镶有精致的金边，已经可以向试剂物品注入化学物质。")
 
 	return .
 
@@ -278,7 +278,7 @@
 /// Spawns a piece of coal at the forge and renames it to charcoal
 /obj/structure/reagent_forge/proc/spawn_coal()
 	var/obj/item/stack/sheet/mineral/coal/spawn_coal = new(get_turf(src))
-	spawn_coal.name = "charcoal"
+	spawn_coal.name = "木炭"
 
 /obj/structure/reagent_forge/process(seconds_per_tick)
 	/*
@@ -326,7 +326,7 @@
 		baked_item.fire_act(1000) // Overcooked food really does burn, hot hot hot!
 
 		if(SPT_PROB(10, seconds_per_tick))
-			visible_message(span_danger("You smell a burnt smell coming from [src]!")) // Give indication that something is burning in the oven
+			visible_message(span_danger("你闻到 [src] 传出一股焦味！")) // Give indication that something is burning in the oven
 	set_smoke_state(worst_cooked_food_state)
 
 /// Sets the type of particles that the forge should be generating
@@ -384,51 +384,51 @@
 		level_to_upgrade_to = user.mind.get_skill_level(/datum/skill/smithing)
 
 	if((forge_level == level_to_upgrade_to) && !forced)
-		to_chat(user, span_notice("[src] was already upgraded by your level of expertise!"))
+		to_chat(user, span_notice("[src] 已经达到你的技能水平所能升级的程度！"))
 		return
 
 	switch(level_to_upgrade_to) // Remember to carry things over from past levels in case someone skips levels in upgrading
 		if(SKILL_LEVEL_NONE)
 			if(!forced)
-				to_chat(user, span_notice("You'll need some forging skills to really understand how to upgrade [src]."))
+				to_chat(user, span_notice("你需要掌握一些锻造技能，才能真正理解如何升级 [src]。"))
 			return
 
 		if(SKILL_LEVEL_NOVICE)
 			if(!forced)
-				to_chat(user, span_notice("With some experience, you've come to realize there are some easily fixable spots with poor insulation..."))
+				to_chat(user, span_notice("积累一些经验后，你发现了几处保温不良、却很容易修补的地方……"))
 			temperature_loss_reduction = 1
 			forge_level = FORGE_LEVEL_NOVICE
 
 		if(SKILL_LEVEL_APPRENTICE)
 			if(!forced)
-				to_chat(user, span_notice("Further insulation and protection of the thinner areas means [src] will lose heat just that little bit slower."))
+				to_chat(user, span_notice("进一步隔热并加固薄弱部位，让 [src] 的散热速度又降低了一点。"))
 			temperature_loss_reduction = 2
 			forge_level = FORGE_LEVEL_APPRENTICE
 
 		if(SKILL_LEVEL_JOURNEYMAN)
 			if(!forced)
-				to_chat(user, span_notice("Some careful placement and stoking of the flame will allow you to keep at least the embers burning..."))
+				to_chat(user, span_notice("仔细调整燃料位置并照料炉火，至少能让余烬持续燃烧……"))
 			minimum_target_temperature = 25 // Will allow quicker reheating from having no fuel
 			temperature_loss_reduction = 3
 			forge_level = FORGE_LEVEL_JOURNEYMAN
 
 		if(SKILL_LEVEL_EXPERT)
 			if(!forced)
-				to_chat(user, span_notice("[src] has become nearly perfect, able to hold heat for long enough that even a piece of wood can outmatch the longevity of lesser forges."))
+				to_chat(user, span_notice("[src] 已近乎完美，保温能力如此出色，仅一块木头就能比普通锻炉燃烧得更久。"))
 			temperature_loss_reduction = 4
 			minimum_target_temperature = 25
 			forge_level = FORGE_LEVEL_EXPERT
 
 		if(SKILL_LEVEL_MASTER)
 			if(!forced)
-				to_chat(user, span_notice("The perfect forge for a perfect metalsmith, with your knowledge it should bleed heat so slowly, that not even you will live to see [src] cool."))
+				to_chat(user, span_notice("完美铁匠的完美锻炉。凭借你的知识，它散热缓慢到你这辈子恐怕都见不到 [src] 冷却。"))
 			temperature_loss_reduction = MAX_TEMPERATURE_LOSS_DECREASE
 			minimum_target_temperature = 25
 			forge_level = FORGE_LEVEL_MASTER
 
 		if(SKILL_LEVEL_LEGENDARY)
 			if(!forced)
-				to_chat(user, span_notice("With just the right heat treating technique, metal could be made to accept reagents..."))
+				to_chat(user, span_notice("只要采用恰当的热处理技术，就能让金属容纳试剂……"))
 			create_reagent_forge()
 			temperature_loss_reduction = MAX_TEMPERATURE_LOSS_DECREASE
 			minimum_target_temperature = 25 // This won't matter except in a few cases here, but we still need to cover those few cases
@@ -467,7 +467,7 @@
 		return TRUE
 
 	if(used_tray)
-		balloon_alert(user, "remove [used_tray] first")
+		balloon_alert(user, "请先移除 [used_tray]")
 		return TRUE
 
 	if(istype(attacking_item, /obj/item/stack/sheet/mineral/wood)) // Wood is a weak fuel, and will only get the forge up to 50 temperature
@@ -489,7 +489,7 @@
 	if(attacking_item.GetComponent(/datum/component/forge_smithable))
 		var/datum/component/forge_smithable/mycomponent = attacking_item.GetComponent(/datum/component/forge_smithable)
 		mycomponent.heat_for_smithing(FORGE_HEATING_DURATION)
-		balloon_alert(user, "heated [attacking_item]")
+		balloon_alert(user, "已加热 [attacking_item]")
 		return TRUE
 
 	if(istype(attacking_item, /obj/item/ceramic))
@@ -512,7 +512,7 @@
 /// Take the given tray and place it inside the forge, updating everything relevant to that
 /obj/structure/reagent_forge/proc/add_tray_to_forge(mob/living/user, obj/item/plate/oven_tray/tray)
 	if(used_tray) // This shouldn't be able to happen but just to be safe
-		balloon_alert_to_viewers("already has tray")
+		balloon_alert_to_viewers("已有烤盘")
 		return
 
 	if(!user.transferItemToLoc(tray, src, silent = FALSE))
@@ -522,7 +522,7 @@
 	for(var/obj/item/baked_item in tray.contents)
 		SEND_SIGNAL(baked_item, COMSIG_ITEM_OVEN_PLACED_IN, src, user)
 
-	balloon_alert_to_viewers("put [tray] in [src]")
+	balloon_alert_to_viewers("已将 [tray] 放入 [src]")
 	used_tray = tray
 	update_appearance()
 
@@ -530,12 +530,12 @@
 /obj/structure/reagent_forge/proc/remove_tray_from_forge(mob/living/carbon/user)
 	if(!used_tray)
 		if(user)
-			balloon_alert_to_viewers("no tray")
+			balloon_alert_to_viewers("没有烤盘")
 		return
 
 	if(user)
 		user.put_in_hands(used_tray)
-		balloon_alert_to_viewers("removed [used_tray]")
+		balloon_alert_to_viewers("已取出 [used_tray]")
 	else
 		used_tray.forceMove(get_turf(src))
 	used_tray = null
@@ -545,25 +545,25 @@
 
 	if(is_strong_fuel)
 		if(forge_fuel_strong >= 5 MINUTES)
-			balloon_alert(user, "[src] is full on coal")
+			balloon_alert(user, "[src] 已装满煤炭")
 			return
 	if(forge_fuel_weak >= 5 MINUTES)
-		balloon_alert(user, "[src] is full on wood")
+		balloon_alert(user, "[src] 已装满木材")
 		return
 
 	var/obj/item/stack/sheet/stack_sheet = refueling_stack
 	if(!stack_sheet.use(1))
-		balloon_alert(user, "not enough fuel")
+		balloon_alert(user, "燃料不足")
 		return
 
 	if(is_strong_fuel)
 		forge_fuel_strong += 5 MINUTES
 	else
 		forge_fuel_weak += 5 MINUTES
-	balloon_alert(user, "fueled [src]")
+	balloon_alert(user, "已为 [src] 添加燃料")
 
 	if(prob(CHARCOAL_CHANCE) && !is_strong_fuel)
-		to_chat(user, span_notice("[src]'s fuel is packed densely enough to have made some charcoal!"))
+		to_chat(user, span_notice("[src] 中的燃料堆积得足够紧密，生成了一些木炭！"))
 		addtimer(CALLBACK(src, PROC_REF(spawn_coal)), 1 MINUTES)
 
 /// Takes given ore and smelts it, possibly producing extra sheets if upgraded
@@ -571,19 +571,19 @@
 	if(DOING_INTERACTION(user, DOAFTER_SMITHING_FORGE))
 		return
 	if(forge_temperature < MIN_FORGE_TEMP)
-		balloon_alert(user, "forge too cool")
+		balloon_alert(user, "锻炉温度过低")
 		return
 
 	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER)
 
 	if(!ore_item.refined_type)
-		balloon_alert(user, "cannot smelt [ore_item]")
+		balloon_alert(user, "无法熔炼 [ore_item]")
 		return
 
-	balloon_alert_to_viewers("smelting...")
+	balloon_alert_to_viewers("正在熔炼……")
 
 	if(!do_after(user, skill_modifier * 3 SECONDS, target = src, interaction_key = DOAFTER_SMITHING_FORGE))
-		balloon_alert(user, "stopped smelting [ore_item]")
+		balloon_alert(user, "已停止熔炼 [ore_item]")
 		return
 
 	var/src_turf = get_turf(src)
@@ -599,11 +599,11 @@
 /// Handles reagent imbuing
 /obj/structure/reagent_forge/proc/handle_reagent_imbue(obj/attacking_item, mob/living/user)
 	if(!USER_CAN_REAGENT_IMBUE(user))
-		to_chat(user, span_danger("You don't know the right trick to imbue this weapon!"))
+		to_chat(user, span_danger("你不了解为这把武器注入试剂的正确技巧！"))
 		return
 
 	if(attacking_item?.reagents?.total_volume < 1)
-		to_chat(user, span_danger("You need to coat the blade in a reagent before you can imbue it!"))
+		to_chat(user, span_danger("必须先在刀刃上涂上试剂，才能进行注入！"))
 		return
 
 	if(DOING_INTERACTION(user, DOAFTER_SMITHING_FORGE))
@@ -611,19 +611,19 @@
 
 	var/datum/component/reagent_imbued/weapon_component = attacking_item.GetComponent(/datum/component/reagent_imbued)
 	if(!weapon_component)
-		balloon_alert(user, "[attacking_item] is unimbueable!")
+		balloon_alert(user, "无法为 [attacking_item] 注入试剂！")
 		return
 
-	balloon_alert_to_viewers("imbuing...")
+	balloon_alert_to_viewers("正在注入……")
 
 	if(!do_after(user, 10 SECONDS, target = src, interaction_key = DOAFTER_SMITHING_FORGE))
-		balloon_alert(user, "stopped imbuing")
+		balloon_alert(user, "已停止注入")
 		return
 
 	if(USER_CAN_REAGENT_IMBUE(user))
 		weapon_component.set_reagent_imbue(attacking_item.reagents, clear_source_reagents = TRUE)
 
-	balloon_alert_to_viewers("imbued [attacking_item]")
+	balloon_alert_to_viewers("已为 [attacking_item] 注入试剂")
 	playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 	return TRUE
 
@@ -633,23 +633,23 @@
 	if(DOING_INTERACTION(user, DOAFTER_SMITHING_FORGE))
 		return
 	if(forge_temperature < MIN_FORGE_TEMP)
-		balloon_alert(user, "forge too cool")
+		balloon_alert(user, "锻炉温度过低")
 		return
 
 	var/obj/item/ceramic/ceramic_item = attacking_item
 	var/ceramic_speed = user.mind.get_skill_modifier(/datum/skill/production, SKILL_SPEED_MODIFIER) * BASELINE_ACTION_TIME
 
 	if(!ceramic_item.forge_item)
-		balloon_alert(user, "cannot set [ceramic_item]")
+		balloon_alert(user, "无法烧制定型 [ceramic_item]")
 		return
 
-	balloon_alert_to_viewers("setting [ceramic_item]")
+	balloon_alert_to_viewers("正在烧制 [ceramic_item]")
 
 	if(!do_after(user, ceramic_speed, target = src, interaction_key = DOAFTER_SMITHING_FORGE))
-		balloon_alert(user, "stopped setting [ceramic_item]")
+		balloon_alert(user, "已停止烧制 [ceramic_item]")
 		return
 
-	balloon_alert(user, "finished setting [ceramic_item]")
+	balloon_alert(user, "已完成 [ceramic_item] 的烧制定型")
 	var/obj/item/ceramic/spawned_ceramic = new ceramic_item.forge_item(get_turf(src))
 	user.mind?.adjust_experience(/datum/skill/production, 50)
 	spawned_ceramic.color = ceramic_item.color
@@ -660,17 +660,17 @@
 	if(DOING_INTERACTION(user, DOAFTER_SMITHING_FORGE))
 		return
 	if(forge_temperature < MIN_FORGE_TEMP)
-		balloon_alert(user, "forge too cool")
+		balloon_alert(user, "锻炉温度过低")
 		return
 
 	var/obj/item/stack/sheet/glass/glass_item = attacking_item
 	var/glassblowing_speed = user.mind.get_skill_modifier(/datum/skill/production, SKILL_SPEED_MODIFIER) * BASELINE_ACTION_TIME
 	var/glassblowing_amount = BASELINE_HEATING_DURATION / user.mind.get_skill_modifier(/datum/skill/production, SKILL_SPEED_MODIFIER)
 
-	balloon_alert_to_viewers("heating...")
+	balloon_alert_to_viewers("正在加热……")
 
 	if(!do_after(user, glassblowing_speed, target = src, interaction_key = DOAFTER_SMITHING_FORGE) || !glass_item.use(1))
-		balloon_alert(user, "stopped heating [glass_item]")
+		balloon_alert(user, "已停止加热 [glass_item]")
 		return
 
 	var/obj/item/glassblowing/molten_glass/spawned_glass = new /obj/item/glassblowing/molten_glass(get_turf(src))
@@ -683,7 +683,7 @@
 	if(DOING_INTERACTION(user, DOAFTER_SMITHING_FORGE))
 		return
 	if(forge_temperature < MIN_FORGE_TEMP)
-		balloon_alert(user, "forge too cool")
+		balloon_alert(user, "锻炉温度过低")
 		return
 
 	var/obj/item/glassblowing/metal_cup/metal_item = attacking_item
@@ -691,13 +691,13 @@
 	var/glassblowing_amount = BASELINE_HEATING_DURATION / user.mind.get_skill_modifier(/datum/skill/production, SKILL_SPEED_MODIFIER)
 
 	if(!metal_item.has_sand)
-		balloon_alert(user, "[metal_item] has no sand")
+		balloon_alert(user, "[metal_item] 中没有沙子")
 		return
 
-	balloon_alert_to_viewers("heating...")
+	balloon_alert_to_viewers("正在加热……")
 
 	if(!do_after(user, glassblowing_speed, target = src, interaction_key = DOAFTER_SMITHING_FORGE))
-		balloon_alert(user, "stopped heating [metal_item]")
+		balloon_alert(user, "已停止加热 [metal_item]")
 		return
 
 	metal_item.has_sand = FALSE
@@ -715,23 +715,23 @@
 	var/obj/item/forging/forge_item = tool
 
 	if(!forge_fuel_strong && !forge_fuel_weak)
-		balloon_alert(user, "no fuel in [src]")
+		balloon_alert(user, "[src] 中没有燃料")
 		return ITEM_INTERACT_SUCCESS
 
 	if(forge_temperature >= MAX_FORGE_TEMP)
-		balloon_alert(user, "[src] cannot heat further")
+		balloon_alert(user, "[src] 无法继续升温")
 		return ITEM_INTERACT_SUCCESS
 
-	balloon_alert_to_viewers("billowing...")
+	balloon_alert_to_viewers("正在鼓风……")
 
 	while(forge_temperature < 91)
 		if(!do_after(user, skill_modifier * forge_item.toolspeed * 15 DECISECONDS, target = src, interaction_key = DOAFTER_SMITHING_FORGE))
-			balloon_alert_to_viewers("stopped billowing")
+			balloon_alert_to_viewers("已停止鼓风")
 			return ITEM_INTERACT_SUCCESS
 
 		forge_temperature += 10
 
-	balloon_alert(user, "successfully heated [src]")
+	balloon_alert(user, "已成功加热 [src]")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reagent_forge/tong_act(mob/living/user, obj/item/tool)
@@ -740,14 +740,14 @@
 	var/obj/item/tongs_contents = locate(/obj/item/) in tool.contents
 
 	if(forge_temperature < MIN_FORGE_TEMP)
-		balloon_alert(user, "forge too cool")
+		balloon_alert(user, "锻炉温度过低")
 		return ITEM_INTERACT_BLOCKING
 
 	// Here we check the item used on us (tongs) for an incomplete forge item of some kind to heat
 	var/datum/component/forge_smithable/smithable = tongs_contents?.GetComponent(/datum/component/forge_smithable)
 	if(!isnull(smithable))
 		smithable.heat_for_smithing(FORGE_HEATING_DURATION)
-		balloon_alert(user, "heated [tongs_contents]")
+		balloon_alert(user, "已加热 [tongs_contents]")
 		return ITEM_INTERACT_SUCCESS
 
 	// Here we check the item used on us (tongs) for a stack of some kind to create an object from
@@ -762,11 +762,11 @@
 		return
 
 	if(forge_temperature < MIN_FORGE_TEMP)
-		balloon_alert(user, "forge too cool")
+		balloon_alert(user, "锻炉温度过低")
 		return ITEM_INTERACT_BLOCKING
 
 	if(values_sum(search_stack.mats_per_unit) < SHEET_MATERIAL_AMOUNT)
-		balloon_alert(user, "not enough material in [search_stack]")
+		balloon_alert(user, "[search_stack] 的材料不足")
 		return ITEM_INTERACT_BLOCKING
 
 	var/list/my_list = get_filtered_radial_choices(user)
@@ -774,7 +774,7 @@
 	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER)
 
 	if(!user_choice)
-		balloon_alert(user, "nothing chosen")
+		balloon_alert(user, "未选择任何物品")
 		return ITEM_INTERACT_BLOCKING
 
 	// Sets up a list of the materials to give to the item later
@@ -788,22 +788,22 @@
 			material_list[material] = SHEET_MATERIAL_AMOUNT
 
 	if(search_stack.amount < 1)
-		balloon_alert(user, "not enough of [search_stack]")
+		balloon_alert(user, "[search_stack] 数量不足")
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert_to_viewers("heating [search_stack]")
+	balloon_alert_to_viewers("正在加热 [search_stack]")
 
 	if(!burn_hand)
 		if(!isnull(tool))
 			if(!do_after(user, skill_modifier * tool.toolspeed * 2 SECONDS, target = src, interaction_key = DOAFTER_SMITHING_FORGE))
-				balloon_alert_to_viewers("stopped heating [search_stack]")
+				balloon_alert_to_viewers("已停止加热 [search_stack]")
 				return ITEM_INTERACT_BLOCKING
 		else
 			stack_trace("[src] had its 'make forgeable item' function called, with burn_hand = false and tool = null! This should never happen!")
 	else
-		to_chat(user, span_warning("Heating the [search_stack] without equipment seems like a bad idea..."))
+		to_chat(user, span_warning("不用工具就加热 [search_stack]，似乎不是个好主意……"))
 		if(!do_after(user, skill_modifier * 5 SECONDS, target = src, interaction_key = DOAFTER_SMITHING_FORGE))
-			balloon_alert_to_viewers("stopped heating [search_stack]")
+			balloon_alert_to_viewers("已停止加热 [search_stack]")
 			return ITEM_INTERACT_BLOCKING
 
 		var/hand_protected = FALSE
@@ -820,13 +820,13 @@
 			var/hitzone = user.held_index_to_dir(user.active_hand_index) == "r" ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND
 			user.apply_damage(35, BURN, hitzone)
 			playsound(src, 'sound/effects/wounds/sizzle1.ogg', 50, TRUE)
-			to_chat(user, span_danger("You burn your hand putting [search_stack] in [src]!"))
+			to_chat(user, span_danger("你把 [search_stack] 放入 [src] 时烫伤了手！"))
 			user.add_mood_event("burnt_thumb", /datum/mood_event/burnt_thumb)
 
 	search_stack.forceMove(get_turf(src))
 
 	if(!search_stack.use(1))
-		balloon_alert(user, "not enough of [search_stack]")
+		balloon_alert(user, "[search_stack] 数量不足")
 		return ITEM_INTERACT_BLOCKING
 
 	var/spawn_item = choice_list[user_choice]
@@ -839,7 +839,7 @@
 	if(!isnull(smith_component))
 		COOLDOWN_START(smith_component, heating_remainder, FORGE_HEATING_DURATION)
 
-	balloon_alert(user, "prepared [search_stack] into [user_choice]")
+	balloon_alert(user, "已将 [search_stack] 制成 [user_choice] 毛坯")
 
 	return ITEM_INTERACT_SUCCESS
 
@@ -852,39 +852,39 @@
 	var/glassblowing_amount = BASELINE_HEATING_DURATION / user.mind.get_skill_modifier(/datum/skill/production, SKILL_SPEED_MODIFIER)
 
 	if(forge_temperature < MIN_FORGE_TEMP)
-		balloon_alert(user, "not hot enough to start heating [blowing_item]")
+		balloon_alert(user, "温度不足，无法加热 [blowing_item]")
 		return ITEM_INTERACT_SUCCESS
 
 	var/obj/item/glassblowing/molten_glass/find_glass = locate() in blowing_item.contents
 	if(!find_glass)
-		balloon_alert(user, "[blowing_item] does not have any glass to heat up.")
+		balloon_alert(user, "[blowing_item] 中没有可加热的玻璃。")
 		return ITEM_INTERACT_SUCCESS
 
 	if(!COOLDOWN_FINISHED(find_glass, remaining_heat))
-		balloon_alert(user, "[find_glass] is still has remaining heat.")
+		balloon_alert(user, "[find_glass] 仍有余热。")
 		return ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_notice("You begin heating up [blowing_item]."))
+	to_chat(user, span_notice("你开始加热 [blowing_item]。"))
 
 	if(!do_after(user, glassblowing_speed, target = src, interaction_key = DOAFTER_SMITHING_FORGE))
-		balloon_alert(user, "[blowing_item] is interrupted in its heating process.")
+		balloon_alert(user, "[blowing_item] 的加热过程被打断了。")
 		return ITEM_INTERACT_SUCCESS
 
 	COOLDOWN_START(find_glass, remaining_heat, glassblowing_amount)
 	find_glass.total_time = glassblowing_amount
-	to_chat(user, span_notice("You finish heating up [blowing_item]."))
+	to_chat(user, span_notice("你完成了 [blowing_item] 的加热。"))
 	user.mind?.adjust_experience(/datum/skill/production, 10)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reagent_forge/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
 	set_anchored(!anchored)
-	balloon_alert_to_viewers(anchored ? "secured" : "unsecured")
+	balloon_alert_to_viewers(anchored ? "已固定" : "已解除固定")
 	return TRUE
 
 /obj/structure/reagent_forge/crowbar_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
-	balloon_alert(user, "pried apart")
+	balloon_alert(user, "已撬开拆卸")
 	deconstruct(TRUE)
 	return TRUE
 

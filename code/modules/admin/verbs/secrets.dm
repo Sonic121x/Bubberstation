@@ -1,6 +1,6 @@
 GLOBAL_DATUM(everyone_an_antag, /datum/everyone_is_an_antag_controller)
 
-ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before with this handy dandy semi-misc stuff menu.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(secrets, R_NONE, "Secrets", "用这个方便的半杂项菜单，比以前更肆意地滥用权限吧。", ADMIN_CATEGORY_GAME)
 	var/datum/secrets_menu/tgui = new(user)
 	tgui.ui_interact(user.mob)
 	BLACKBOX_LOG_ADMIN_VERB("Secrets Panel")
@@ -40,7 +40,7 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 	return data
 
 #define THUNDERDOME_TEMPLATE_FILE "admin_thunderdome.dmm"
-#define HIGHLANDER_DELAY_TEXT "40 seconds (crush the hope of a normal shift)"
+#define HIGHLANDER_DELAY_TEXT "40 秒（粉碎普通班次的希望）"
 /datum/secrets_menu/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
@@ -54,8 +54,8 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 			for(var/l in GLOB.admin_activities)
 				dat += "<li>[l]</li>"
 			if(!GLOB.admin_activities.len)
-				dat += "No-one has done anything this round!"
-			var/datum/browser/browser = new(holder, "admin_log", "Admin Logs", 600, 500)
+				dat += "本轮还没有人做过任何事！"
+			var/datum/browser/browser = new(holder, "admin_log", "管理员日志", 600, 500)
 			browser.set_content(dat)
 			browser.open()
 		if("show_admins")
@@ -64,7 +64,7 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 				for(var/ckey in GLOB.admin_datums)
 					var/datum/admins/D = GLOB.admin_datums[ckey]
 					dat += "[ckey] - [D.rank_names()]<br>"
-				var/datum/browser/browser = new(holder, "showadmins", "Current admins", 600, 500)
+				var/datum/browser/browser = new(holder, "showadmins", "当前管理员", 600, 500)
 				browser.set_content(dat)
 				browser.open()
 		//Buttons for debug.
@@ -75,7 +75,7 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 				if ((ACCESS_MAINT_TUNNELS in doors.req_access) || (ACCESS_MAINT_TUNNELS in doors.req_one_access))
 					doors.req_access = list()
 					doors.req_one_access = list(ACCESS_BRIG, ACCESS_ENGINEERING)
-			message_admins("[key_name_admin(holder)] made all maint doors engineering and brig access-only.")
+			message_admins("[key_name_admin(holder)] 将所有维护门设为仅工程与禁闭室权限可通行。")
 		if("maint_access_brig")
 			if(!is_debugger)
 				return
@@ -83,20 +83,20 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 				if ((ACCESS_MAINT_TUNNELS in doors.req_access) || (ACCESS_MAINT_TUNNELS in doors.req_one_access))
 					doors.req_access = list(ACCESS_BRIG)
 					doors.req_one_access = list()
-			message_admins("[key_name_admin(holder)] made all maint doors brig access-only.")
+			message_admins("[key_name_admin(holder)] 将所有维护门设为仅禁闭室权限可通行。")
 		if("infinite_sec")
 			if(!is_debugger)
 				return
 			var/datum/job/sec_job = SSjob.get_job_type(/datum/job/security_officer)
 			sec_job.total_positions = -1
 			sec_job.spawn_positions = -1
-			message_admins("[key_name_admin(holder)] has removed the cap on security officers.")
+			message_admins("[key_name_admin(holder)] 取消了安保人员的编制上限。")
 
 		//Buttons for helpful stuff. This is where people land in the tgui
 		if("clear_virus")
-			var/choice = tgui_alert(usr, "Are you sure you want to cure all disease? This will also grant immunity for that disease",, list("Yes", "Cancel"))
+			var/choice = tgui_alert(usr, "你确定要治愈所有疾病吗？这还会为这些疾病授予免疫",, list("Yes", "Cancel"))
 			if(choice == "Yes")
-				message_admins("[key_name_admin(holder)] has cured all diseases.")
+				message_admins("[key_name_admin(holder)] 治愈了所有疾病。")
 				for(var/thing in SSdisease.active_diseases)
 					var/datum/disease/D = thing
 					D.cure()
@@ -126,12 +126,12 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 			toggle_id_ctf(holder, CTF_GHOST_CTF_GAME_ID)
 
 		if("tdomereset")
-			var/delete_mobs = tgui_alert(usr, "Clear all mobs?", "Thunderdome Reset", list("Yes", "No", "Cancel"))
+			var/delete_mobs = tgui_alert(usr, "清除所有生物？", "雷霆竞技场重置", list("Yes", "No", "Cancel"))
 			if(!delete_mobs || delete_mobs == "Cancel")
 				return
 
-			log_admin("[key_name(holder)] reset the thunderdome to default with delete_mobs marked as [delete_mobs].")
-			message_admins(span_adminnotice("[key_name_admin(holder)] reset the thunderdome to default with delete_mobs marked as [delete_mobs]."))
+			log_admin("[key_name(holder)] 将雷霆竞技场重置为默认状态，delete_mobs 标记为 [delete_mobs]。")
+			message_admins(span_adminnotice("[key_name_admin(holder)] 将雷霆竞技场重置为默认状态，delete_mobs 标记为 [delete_mobs]。"))
 
 			var/area/thunderdome = GLOB.areas_by_type[/area/centcom/tdome/arena]
 			if(delete_mobs == "Yes")
@@ -147,49 +147,49 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 			thunderdome_template.load(thunderdome_corner)
 
 		if("set_name")
-			var/new_name = input(holder, "Please input a new name for the station.", "What?", "") as text|null
+			var/new_name = input(holder, "请输入空间站的新名称。", "什么？", "") as text|null
 			if(!new_name)
 				return
 			set_station_name(new_name)
-			log_admin("[key_name(holder)] renamed the station to \"[new_name]\".")
-			message_admins(span_adminnotice("[key_name_admin(holder)] renamed the station to: [new_name]."))
-			priority_announce("[command_name()] has renamed the station to \"[new_name]\".")
+			log_admin("[key_name(holder)] 将空间站重命名为“[new_name]”。")
+			message_admins(span_adminnotice("[key_name_admin(holder)] 将空间站重命名为：[new_name]。"))
+			priority_announce("[command_name()]已将空间站重命名为“[new_name]”。")
 		if("reset_name")
-			var/confirmed = tgui_alert(usr,"Are you sure you want to reset the station name?", "Confirm", list("Yes", "No", "Cancel"))
+			var/confirmed = tgui_alert(usr,"你确定要重置空间站名称吗？", "Confirm", list("Yes", "No", "Cancel"))
 			if(confirmed != "Yes")
 				return
 			var/new_name = new_station_name()
 			set_station_name(new_name)
-			log_admin("[key_name(holder)] reset the station name.")
-			message_admins(span_adminnotice("[key_name_admin(holder)] reset the station name."))
-			priority_announce("[command_name()] has renamed the station to \"[new_name]\".")
+			log_admin("[key_name(holder)] 重置了空间站名称。")
+			message_admins(span_adminnotice("[key_name_admin(holder)] 重置了空间站名称。"))
+			priority_announce("[command_name()]已将空间站重命名为“[new_name]”。")
 		if("moveferry")
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Send CentCom Ferry"))
 			if(!SSshuttle.toggleShuttle("ferry","ferry_home","ferry_away"))
-				message_admins("[key_name_admin(holder)] moved the CentCom ferry")
-				log_admin("[key_name(holder)] moved the CentCom ferry")
+				message_admins("[key_name_admin(holder)] 移动了中央指挥部渡船")
+				log_admin("[key_name(holder)] 移动了中央指挥部渡船")
 		if("togglearrivals")
 			var/obj/docking_port/mobile/arrivals/A = SSshuttle.arrivals
 			if(A)
 				var/new_perma = !A.perma_docked
 				A.perma_docked = new_perma
 				SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Permadock Arrivals Shuttle", "[new_perma ? "Enabled" : "Disabled"]"))
-				message_admins("[key_name_admin(holder)] [new_perma ? "stopped" : "started"] the arrivals shuttle")
-				log_admin("[key_name(holder)] [new_perma ? "stopped" : "started"] the arrivals shuttle")
+				message_admins("[key_name_admin(holder)] [new_perma ? "停止" : "启动"]了抵达穿梭机")
+				log_admin("[key_name(holder)] [new_perma ? "停止" : "启动"]了抵达穿梭机")
 			else
-				to_chat(holder, span_admin("There is no arrivals shuttle."), confidential = TRUE)
+				to_chat(holder, span_admin("没有抵达穿梭机。"), confidential = TRUE)
 		if("movelaborshuttle")
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Send Labor Shuttle"))
 			if(!SSshuttle.toggleShuttle("laborcamp","laborcamp_home","laborcamp_away"))
-				message_admins("[key_name_admin(holder)] moved labor shuttle")
-				log_admin("[key_name(holder)] moved the labor shuttle")
+				message_admins("[key_name_admin(holder)] 移动了劳改营穿梭机")
+				log_admin("[key_name(holder)] 移动了劳改营穿梭机")
 		//!fun! buttons.
 		if("virus")
 			if(!is_funmin)
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Virus Outbreak"))
 			var/datum/round_event_control/event
-			var/prompt = tgui_alert(usr, "What disease system do you want?", "Disease Setup", list("Advanced", "Simple", "Make Your Own"))
+			var/prompt = tgui_alert(usr, "你想使用哪种疾病系统？", "疾病设置", list("Advanced", "Simple", "Make Your Own"))
 			switch(prompt)
 				if("Make Your Own")
 					AdminCreateVirus(holder)
@@ -204,17 +204,17 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 					if(admin_setup_datum.prompt_admins() == ADMIN_CANCEL_EVENT)
 						return
 			event.run_event(admin_forced = TRUE)
-			message_admins("[key_name_admin(usr)] has triggered an event. ([event.name])")
-			log_admin("[key_name(usr)] has triggered an event. ([event.name])")
+			message_admins("[key_name_admin(usr)] 触发了一个事件。（[event.name]）")
+			log_admin("[key_name(usr)] 触发了一个事件。（[event.name]）")
 
 		if("allspecies")
 			if(!is_funmin)
 				return
-			var/result = input(holder, "Please choose a new species","Species") as null|anything in sortTim(GLOB.species_list, GLOBAL_PROC_REF(cmp_text_asc))
+			var/result = input(holder, "请选择新物种","物种") as null|anything in sortTim(GLOB.species_list, GLOBAL_PROC_REF(cmp_text_asc))
 			if(result)
 				SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Mass Species Change", "[result]"))
-				log_admin("[key_name(holder)] turned all humans into [result]")
-				message_admins("\blue [key_name_admin(holder)] turned all humans into [result]")
+				log_admin("[key_name(holder)] 把所有人类变成了[result]")
+				message_admins("\blue [key_name_admin(holder)] 把所有人类变成了[result]")
 				var/newtype = GLOB.species_list[result]
 				for(var/mob/living/carbon/human/human_mob as anything in GLOB.human_list)
 					human_mob.set_species(newtype)
@@ -222,22 +222,22 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 			if(!is_funmin)
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Power All APCs"))
-			log_admin("[key_name(holder)] made all areas powered")
-			message_admins(span_adminnotice("[key_name_admin(holder)] made all areas powered"))
+			log_admin("[key_name(holder)] 为所有区域供电")
+			message_admins(span_adminnotice("[key_name_admin(holder)] 为所有区域供电"))
 			power_restore()
 		if("unpower")
 			if(!is_funmin)
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Depower All APCs"))
-			log_admin("[key_name(holder)] made all areas unpowered")
-			message_admins(span_adminnotice("[key_name_admin(holder)] made all areas unpowered"))
+			log_admin("[key_name(holder)] 切断了所有区域的供电")
+			message_admins(span_adminnotice("[key_name_admin(holder)] 切断了所有区域的供电"))
 			power_failure()
 		if("quickpower")
 			if(!is_funmin)
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Power All SMESs"))
-			log_admin("[key_name(holder)] made all SMESs powered")
-			message_admins(span_adminnotice("[key_name_admin(holder)] made all SMESs powered"))
+			log_admin("[key_name(holder)] 为所有 SMES 充能")
+			message_admins(span_adminnotice("[key_name_admin(holder)] 为所有 SMES 充能"))
 			power_restore_quick()
 		if("anon_name")
 			if(!is_funmin)
@@ -252,7 +252,7 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 		if("onlyone")
 			if(!is_funmin)
 				return
-			var/response = tgui_alert(usr,"Delay by 40 seconds?", "There can, in fact, only be one", list("Instant!", HIGHLANDER_DELAY_TEXT))
+			var/response = tgui_alert(usr,"延迟 40 秒？", "事实上，只能有一个", list("Instant!", HIGHLANDER_DELAY_TEXT))
 			switch(response)
 				if("Instant!")
 					holder.only_one()
@@ -266,7 +266,7 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Guns"))
 			var/survivor_probability = 0
-			switch(tgui_alert(usr,"Do you want this to create survivors antagonists?",,list("No Antags","Some Antags","All Antags!")))
+			switch(tgui_alert(usr,"你希望借此产生幸存者反派吗？",,list("No Antags","Some Antags","All Antags!")))
 				if("Some Antags")
 					survivor_probability = 25
 				if("All Antags!")
@@ -279,7 +279,7 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Magic"))
 			var/survivor_probability = 0
-			switch(tgui_alert(usr,"Do you want this to create magician antagonists?",,list("No Antags","Some Antags","All Antags!")))
+			switch(tgui_alert(usr,"你希望借此产生法师反派吗？",,list("No Antags","Some Antags","All Antags!")))
 				if("Some Antags")
 					survivor_probability = 25
 				if("All Antags!")
@@ -290,7 +290,7 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 		if("towerOfBabel")
 			if(!is_funmin)
 				return
-			if(tgui_alert(usr,"Would you like to randomize language for everyone?",,list("Yes","No")) == "Yes")
+			if(tgui_alert(usr,"你想为所有人随机化语言吗？",,list("Yes","No")) == "Yes")
 				SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Tower of babel"))
 				holder.tower_of_babel()
 
@@ -303,7 +303,7 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 			if(!is_funmin)
 				return
 			if(SSevents.wizardmode)
-				switch(tgui_alert(usr,"What would you like to do?",,list("Intensify Summon Events","Turn Off Summon Events","Nothing")))
+				switch(tgui_alert(usr,"你想做什么？",,list("Intensify Summon Events","Turn Off Summon Events","Nothing")))
 					if("Intensify Summon Events")
 						summon_events(holder)
 						SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Events", "Intensify"))
@@ -312,7 +312,7 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 						SSevents.resetFrequency()
 						SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Events", "Disable"))
 			else
-				if(tgui_alert(usr,"Do you want to toggle summon events on?",,list("Yes","No")) == "Yes")
+				if(tgui_alert(usr,"你想开启召唤事件吗？",,list("Yes","No")) == "Yes")
 					summon_events(holder)
 					SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Events", "Activate"))
 
@@ -332,29 +332,29 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 				)
 					airlock.req_access = list()
 					airlock.req_one_access = list()
-			message_admins("[key_name_admin(holder)] activated Egalitarian Station mode")
-			priority_announce("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.", null, SSstation.announcer.get_rand_report_sound())
+			message_admins("[key_name_admin(holder)] 激活了平等主义空间站模式")
+			priority_announce("中央指挥部气闸控制覆盖已激活。请利用这段时间与你的同事们熟络一下。", null, SSstation.announcer.get_rand_report_sound())
 		if("send_shuttle_back")
 			if (!is_funmin)
 				return
 			if (SSshuttle.emergency.mode != SHUTTLE_ESCAPE)
-				to_chat(usr, span_warning("Emergency shuttle not currently in transit!"), confidential = TRUE)
+				to_chat(usr, span_warning("紧急穿梭机当前不在航程中！"), confidential = TRUE)
 				return
-			var/make_announcement = tgui_alert(usr, "Make a CentCom announcement?", "Emergency shuttle return", list("Yes", "Custom Text", "No")) || "No"
-			var/announcement_text = "Emergency shuttle trajectory overriden, rerouting course back to [station_name()]."
+			var/make_announcement = tgui_alert(usr, "要发布中央指挥部公告吗？", "紧急穿梭机返回", list("Yes", "Custom Text", "No")) || "No"
+			var/announcement_text = "紧急穿梭机轨迹已被覆盖，正在改道返回[station_name()]。"
 			if (make_announcement == "Custom Text")
-				announcement_text = tgui_input_text(usr, "Custom CentCom announcement", "Emergency shuttle return", multiline = TRUE) || announcement_text
-			var/new_timer = tgui_input_number(usr, "How long should the shuttle remain in transit?", "When are we droppin' boys?", 180, 600)
+				announcement_text = tgui_input_text(usr, "自定义中央指挥部公告", "紧急穿梭机返回", multiline = TRUE) || announcement_text
+			var/new_timer = tgui_input_number(usr, "穿梭机应保持航程多久？", "我们什么时候降落，兄弟们？", 180, 600)
 			if (isnull(new_timer) || SSshuttle.emergency.mode != SHUTTLE_ESCAPE)
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Send Shuttle Back"))
-			message_admins("[key_name_admin(holder)] sent the escape shuttle back to the station")
+			message_admins("[key_name_admin(holder)] 将逃逸穿梭机送回了空间站")
 			if (make_announcement != "No")
 				priority_announce(
 					text = announcement_text,
-					title = "Shuttle Trajectory Override",
+					title = "穿梭机轨迹覆盖",
 					sound =  'sound/announcer/announcement/announce_dig.ogg',
-					sender_override = "Emergency Shuttle Uplink Alert",
+					sender_override = "紧急穿梭机上行链路警报",
 					color_override = "grey",
 				)
 			SSshuttle.emergency.timer = INFINITY
@@ -372,13 +372,13 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 					continue
 				vent.initiate_wave_win(forced = TRUE)
 				vent_count++
-			message_admins("[key_name_admin(holder)] tapped [vent_count] ore vents")
-			log_admin("[key_name_admin(holder)] tapped [vent_count] ore vents")
+			message_admins("[key_name_admin(holder)] 开采了 [vent_count] 处矿脉喷口")
+			log_admin("[key_name_admin(holder)] 开采了 [vent_count] 处矿脉喷口")
 		if("blackout")
 			if(!is_funmin)
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Break All Lights"))
-			message_admins("[key_name_admin(holder)] broke all lights")
+			message_admins("[key_name_admin(holder)] 击碎了所有灯")
 			for(var/obj/machinery/light/L as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/light))
 				L.break_light_tube()
 				CHECK_TICK
@@ -386,7 +386,7 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 			if(!is_funmin)
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Fix All Lights"))
-			message_admins("[key_name_admin(holder)] fixed all lights")
+			message_admins("[key_name_admin(holder)] 修复了所有灯")
 			for(var/obj/machinery/light/L as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/light))
 				L.fix()
 				CHECK_TICK
@@ -396,24 +396,24 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 
 			var/list/settings = list(
 				"mainsettings" = list(
-					"typepath" = list("desc" = "Path to spawn", "type" = "datum", "path" = "/mob/living", "subtypesonly" = TRUE, "value" = /mob/living/basic/bee),
-					"humanoutfit" = list("desc" = "Outfit if human", "type" = "datum", "path" = "/datum/outfit", "subtypesonly" = TRUE, "value" = /datum/outfit),
-					"amount" = list("desc" = "Number per portal", "type" = "number", "value" = 1),
-					"portalnum" = list("desc" = "Number of total portals", "type" = "number", "value" = 10),
-					"offerghosts" = list("desc" = "Get ghosts to play mobs", "type" = "boolean", "value" = "No"),
-					"minplayers" = list("desc" = "Minimum number of ghosts", "type" = "number", "value" = 1),
-					"playersonly" = list("desc" = "Only spawn ghost-controlled mobs", "type" = "boolean", "value" = "No"),
-					"ghostpoll" = list("desc" = "Ghost poll question", "type" = "string", "value" = "Do you want to play as %TYPE% portal invader?"),
-					"delay" = list("desc" = "Time between portals, in deciseconds", "type" = "number", "value" = 50),
-					"color" = list("desc" = "Portal color", "type" = "color", "value" = COLOR_VIBRANT_LIME),
-					"playlightning" = list("desc" = "Play lightning sounds on announcement", "type" = "boolean", "value" = "Yes"),
-					"announce_players" = list("desc" = "Make an announcement", "type" = "boolean", "value" = "Yes"),
-					"announcement" = list("desc" = "Announcement", "type" = "string", "value" = "Massive bluespace anomaly detected en route to %STATION%. Brace for impact."),
+					"typepath" = list("desc" = "生成的路径", "type" = "datum", "path" = "/mob/living", "subtypesonly" = TRUE, "value" = /mob/living/basic/bee),
+					"humanoutfit" = list("desc" = "人类时的服装", "type" = "datum", "path" = "/datum/outfit", "subtypesonly" = TRUE, "value" = /datum/outfit),
+					"amount" = list("desc" = "每个传送门的数量", "type" = "number", "value" = 1),
+					"portalnum" = list("desc" = "传送门总数", "type" = "number", "value" = 10),
+					"offerghosts" = list("desc" = "让幽灵扮演生物", "type" = "boolean", "value" = "No"),
+					"minplayers" = list("desc" = "幽灵最低数量", "type" = "number", "value" = 1),
+					"playersonly" = list("desc" = "只生成幽灵控制的生物", "type" = "boolean", "value" = "No"),
+					"ghostpoll" = list("desc" = "幽灵招募问题", "type" = "string", "value" = "你愿意扮演 %TYPE% 传送门入侵者吗？"),
+					"delay" = list("desc" = "传送门之间的间隔，单位为十分之一秒", "type" = "number", "value" = 50),
+					"color" = list("desc" = "传送门颜色", "type" = "color", "value" = COLOR_VIBRANT_LIME),
+					"playlightning" = list("desc" = "公告时播放闪电音效", "type" = "boolean", "value" = "Yes"),
+					"announce_players" = list("desc" = "发布公告", "type" = "boolean", "value" = "Yes"),
+					"announcement" = list("desc" = "公告内容", "type" = "string", "value" = "检测到巨大蓝空间异常正朝 %STATION% 移动。准备承受冲击。"),
 				)
 			)
 
-			message_admins("[key_name(holder)] is creating a custom portal storm...")
-			var/list/pref_return = present_pref_like_picker(holder, "Customize Portal Storm", "Customize Portal Storm", width = 600, timeout = 0, settings = settings)
+			message_admins("[key_name(holder)] 正在创建自定义传送门风暴……")
+			var/list/pref_return = present_pref_like_picker(holder, "自定义传送门风暴", "自定义传送门风暴", width = 600, timeout = 0, settings = settings)
 
 			if (pref_return["button"] != 1)
 				return
@@ -421,7 +421,7 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 			var/list/prefs = settings["mainsettings"]
 
 			if (prefs["amount"]["value"] < 1 || prefs["portalnum"]["value"] < 1)
-				to_chat(holder, span_warning("Number of portals and mobs to spawn must be at least 1."), confidential = TRUE)
+				to_chat(holder, span_warning("传送门数量与生成生物数量必须至少为 1。"), confidential = TRUE)
 				return
 
 			var/mob/path_to_spawn = prefs["typepath"]["value"]
@@ -429,15 +429,15 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 				path_to_spawn = text2path(path_to_spawn)
 
 			if (!ispath(path_to_spawn))
-				to_chat(holder, span_notice("Invalid path [path_to_spawn]."), confidential = TRUE)
+				to_chat(holder, span_notice("无效路径 [path_to_spawn]。"), confidential = TRUE)
 				return
 
 			var/list/candidates = list()
 
 			if (prefs["offerghosts"]["value"] == "Yes")
-				candidates = SSpolling.poll_ghost_candidates(replacetext(prefs["ghostpoll"]["value"], "%TYPE%", initial(path_to_spawn.name)), check_jobban = ROLE_TRAITOR, alert_pic = path_to_spawn, role_name_text = "portal storm")
+				candidates = SSpolling.poll_ghost_candidates(replacetext(prefs["ghostpoll"]["value"], "%TYPE%", initial(path_to_spawn.name)), check_jobban = ROLE_TRAITOR, alert_pic = path_to_spawn, role_name_text = "传送门风暴")
 				if (length(candidates) < prefs["minplayers"]["value"])
-					message_admins("Not enough players signed up to create a portal storm, the minimum was [prefs["minplayers"]["value"]] and the number of signups [length(candidates)]")
+					message_admins("报名参与传送门风暴的玩家不足，最低需要 [prefs["minplayers"]["value"]] 人，报名人数为 [length(candidates)] 人")
 					return
 
 			if (prefs["announce_players"]["value"] == "Yes")
@@ -450,8 +450,8 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 				storm.color = prefs["color"]["value"]
 				storm_appearances += storm
 
-			message_admins("[key_name_admin(holder)] has created a customized portal storm that will spawn [prefs["portalnum"]["value"]] portals, each of them spawning [prefs["amount"]["value"]] of [path_to_spawn]")
-			log_admin("[key_name(holder)] has created a customized portal storm that will spawn [prefs["portalnum"]["value"]] portals, each of them spawning [prefs["amount"]["value"]] of [path_to_spawn]")
+			message_admins("[key_name_admin(holder)] 创建了一场自定义传送门风暴，将生成 [prefs["portalnum"]["value"]] 个传送门，每个传送门生成 [prefs["amount"]["value"]] 个 [path_to_spawn]")
+			log_admin("[key_name(holder)] 创建了一场自定义传送门风暴，将生成 [prefs["portalnum"]["value"]] 个传送门，每个传送门生成 [prefs["amount"]["value"]] 个 [path_to_spawn]")
 
 			var/outfit = prefs["humanoutfit"]["value"]
 			if (!ispath(outfit))
@@ -471,24 +471,24 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Bomb Cap"))
 
-			var/newBombCap = input(holder,"What would you like the new bomb cap to be. (entered as the light damage range (the 3rd number in common (1,2,3) notation)) Must be above 4)", "New Bomb Cap", GLOB.MAX_EX_LIGHT_RANGE) as num|null
+			var/newBombCap = input(holder,"你希望新的炸弹上限是多少。（以轻伤范围输入，即常用 (1,2,3) 记法中的第 3 个数字）必须大于 4）", "新炸弹上限", GLOB.MAX_EX_LIGHT_RANGE) as num|null
 			if (!CONFIG_SET(number/bombcap, newBombCap))
 				return
 
-			message_admins(span_boldannounce("[key_name_admin(holder)] changed the bomb cap to [GLOB.MAX_EX_DEVESTATION_RANGE], [GLOB.MAX_EX_HEAVY_RANGE], [GLOB.MAX_EX_LIGHT_RANGE]"))
-			log_admin("[key_name(holder)] changed the bomb cap to [GLOB.MAX_EX_DEVESTATION_RANGE], [GLOB.MAX_EX_HEAVY_RANGE], [GLOB.MAX_EX_LIGHT_RANGE]")
+			message_admins(span_boldannounce("[key_name_admin(holder)] 将炸弹上限改为 [GLOB.MAX_EX_DEVESTATION_RANGE]、[GLOB.MAX_EX_HEAVY_RANGE]、[GLOB.MAX_EX_LIGHT_RANGE]"))
+			log_admin("[key_name(holder)] 将炸弹上限改为 [GLOB.MAX_EX_DEVESTATION_RANGE]、[GLOB.MAX_EX_HEAVY_RANGE]、[GLOB.MAX_EX_LIGHT_RANGE]")
 		if("department_cooldown_override") //Happens when the button is clicked, creates a value for GLOB.department_cd_override in dept_order.dm
 			if(!is_debugger)
 				return
 			if(isnull(GLOB.department_cd_override))
-				var/set_override = tgui_input_number(usr, "How long would you like the console order cooldown to be?","Cooldown Override", 5)
+				var/set_override = tgui_input_number(usr, "你希望控制台订单冷却时间为多久？","冷却覆盖", 5)
 				if(isnull(set_override))
 					return //user clicked cancel
 				GLOB.department_cd_override = set_override
 			else
-				var/choice = tgui_alert(usr, "Override is active. You can change the cooldown or end the override.", "You were trying to override...", list("Override", "End Override", "Cancel"))
+				var/choice = tgui_alert(usr, "覆盖当前已启用。你可以更改冷却时间或结束覆盖。", "你当时想进行覆盖……", list("Override", "End Override", "Cancel"))
 				if(choice == "Override")
-					var/set_override = tgui_input_number(usr, "How long would you like the console order cooldown to be?", "Title", 5)
+					var/set_override = tgui_input_number(usr, "你希望控制台订单冷却时间为多久？", "标题", 5)
 					GLOB.department_cd_override = set_override
 					return
 				if(choice == "End Override")
@@ -502,62 +502,62 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 			if(!is_funmin)
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Monkeyize All Humans"))
-			message_admins("[key_name_admin(holder)] made everyone into monkeys.")
-			log_admin("[key_name_admin(holder)] made everyone into monkeys.")
+			message_admins("[key_name_admin(holder)] 把所有人都变成了猴子。")
+			log_admin("[key_name_admin(holder)] 把所有人都变成了猴子。")
 			for(var/mob/living/carbon/human/human_mob as anything in GLOB.human_list)
 				INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon, monkeyize))
 		if("antag_all")
 			if(!is_funmin)
 				return
 			if(!SSticker.HasRoundStarted())
-				tgui_alert(usr,"The game hasn't started yet!")
+				tgui_alert(usr,"游戏还没有开始！")
 				return
 			if(GLOB.everyone_an_antag)
-				var/are_we_antagstacking = tgui_alert(usr, "The everyone is antag secret has already been triggered. Do you want to stack antags?", "DANGER ZONE. Are you sure about this?", list("Confirm", "Abort"))
+				var/are_we_antagstacking = tgui_alert(usr, "“所有人都是反派”这一秘密已经触发过了。你要叠加反派吗？", "危险区域。你确定吗？", list("Confirm", "Abort"))
 				if(are_we_antagstacking != "Confirm")
 					return
 
-			var/chosen_antag = tgui_input_list(usr, "Choose antag", "Chose antag", list(ROLE_TRAITOR, ROLE_CHANGELING, ROLE_HERETIC, ROLE_CULTIST, ROLE_NINJA, ROLE_WIZARD, ROLE_NIGHTMARE))
+			var/chosen_antag = tgui_input_list(usr, "选择反派", "选择反派", list(ROLE_TRAITOR, ROLE_CHANGELING, ROLE_HERETIC, ROLE_CULTIST, ROLE_NINJA, ROLE_WIZARD, ROLE_NIGHTMARE))
 			if(!chosen_antag)
 				return
-			var/objective = tgui_input_text(usr, "Enter an objective", "Objective")
+			var/objective = tgui_input_text(usr, "输入一个目标", "目标")
 			if(!objective)
 				return
-			var/confirmation = tgui_alert(usr, "Make everyone in to [chosen_antag] with objective: [objective]", "Are you sure about this?", list("Confirm", "Abort"))
+			var/confirmation = tgui_alert(usr, "将所有人变为[chosen_antag]，目标为：[objective]", "你确定吗？", list("Confirm", "Abort"))
 			if(confirmation != "Confirm")
 				return
-			var/keep_generic_objecives = tgui_alert(usr, "Generate normal objectives?", "Give default objectives?", list("Yes", "No"))
+			var/keep_generic_objecives = tgui_alert(usr, "生成常规目标？", "给予默认目标？", list("Yes", "No"))
 			keep_generic_objecives = (keep_generic_objecives != "Yes") ? FALSE : TRUE
 
 			GLOB.everyone_an_antag = new /datum/everyone_is_an_antag_controller(chosen_antag, objective, keep_generic_objecives)
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("[chosen_antag] All", "[objective]"))
 			for(var/mob/living/player in GLOB.player_list)
 				GLOB.everyone_an_antag.make_antag(null, player)
-			message_admins(span_adminnotice("[key_name_admin(holder)] used everyone is antag secret. Antag is [chosen_antag]. Objective is [objective]. Generate default objectives: [keep_generic_objecives]"))
-			log_admin("[key_name(holder)] used everyone is antag secret: [chosen_antag] . Objective is [objective]. Generate default objectives: [keep_generic_objecives]. ")
+			message_admins(span_adminnotice("[key_name_admin(holder)] 使用了“所有人都是反派”秘密。反派为 [chosen_antag]。目标为 [objective]。生成默认目标：[keep_generic_objecives]"))
+			log_admin("[key_name(holder)] 使用了“所有人都是反派”秘密：[chosen_antag] 。目标为 [objective]。生成默认目标：[keep_generic_objecives]。 ")
 		if("massbraindamage")
 			if(!is_funmin)
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Mass Braindamage"))
 			for(var/mob/living/carbon/human/human_mob in GLOB.player_list)
-				to_chat(human_mob, span_bolddanger("You suddenly feel stupid."), confidential = TRUE)
+				to_chat(human_mob, span_bolddanger("你突然觉得自己变笨了。"), confidential = TRUE)
 				human_mob.adjust_organ_loss(ORGAN_SLOT_BRAIN, 60, 80)
-			message_admins("[key_name_admin(holder)] made everybody brain damaged")
+			message_admins("[key_name_admin(holder)] 让所有人都脑损伤了")
 		if("floorlava")
 			SSweather.run_weather(/datum/weather/floor_is_lava)
 		if("anime")
 			if(!is_funmin)
 				return
-			var/animetype = tgui_alert(usr,"Would you like to have the clothes be changed?",,list("Yes","No","Cancel"))
+			var/animetype = tgui_alert(usr,"你希望更换他们的衣服吗？",,list("Yes","No","Cancel"))
 
 			var/droptype
 			if(animetype == "Yes")
-				droptype = tgui_alert(usr,"Make the uniforms Nodrop?",,list("Yes","No","Cancel"))
+				droptype = tgui_alert(usr,"让制服无法掉落？",,list("Yes","No","Cancel"))
 
 			if(animetype == "Cancel" || droptype == "Cancel")
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Chinese Cartoons"))
-			message_admins("[key_name_admin(holder)] made everything kawaii.")
+			message_admins("[key_name_admin(holder)] 把一切都变得超可爱了。")
 			for(var/mob/living/carbon/human/human_mob as anything in GLOB.human_list)
 				SEND_SOUND(human_mob, sound(SSstation.announcer.event_sounds[ANNOUNCER_ANIMES]))
 
@@ -583,35 +583,35 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 						if(droptype == "Yes")
 							ADD_TRAIT(anime_uniform, TRAIT_NODROP, ADMIN_TRAIT)
 				else
-					to_chat(human_mob, span_warning("You're not kawaii enough for this!"), confidential = TRUE)
+					to_chat(human_mob, span_warning("你不够可爱，没这个资格！"), confidential = TRUE)
 		if("masspurrbation")
 			if(!is_funmin)
 				return
 			mass_purrbation()
-			message_admins("[key_name_admin(holder)] has put everyone on \
-				purrbation!")
-			log_admin("[key_name(holder)] has put everyone on purrbation.")
+			message_admins("[key_name_admin(holder)] 让所有人都被猫化\
+				了！")
+			log_admin("[key_name(holder)] 让所有人都被猫化了。")
 		if("massremovepurrbation")
 			if(!is_funmin)
 				return
 			mass_remove_purrbation()
-			message_admins("[key_name_admin(holder)] has removed everyone from \
-				purrbation.")
-			log_admin("[key_name(holder)] has removed everyone from purrbation.")
+			message_admins("[key_name_admin(holder)] 解除所有\
+				人的猫化。")
+			log_admin("[key_name(holder)] 解除了所有人的猫化。")
 		if("massimmerse")
 			if(!is_funmin)
 				return
 			mass_immerse()
-			message_admins("[key_name_admin(holder)] has Fully Immersed \
-				everyone!")
-			log_admin("[key_name(holder)] has Fully Immersed everyone.")
+			message_admins("[key_name_admin(holder)] 让所有人都彻底沉\
+				浸其中！")
+			log_admin("[key_name(holder)] 让所有人都彻底沉浸其中。")
 		if("unmassimmerse")
 			if(!is_funmin)
 				return
 			mass_immerse(remove=TRUE)
-			message_admins("[key_name_admin(holder)] has Un-Fully Immersed \
-				everyone!")
-			log_admin("[key_name(holder)] has Un-Fully Immersed everyone.")
+			message_admins("[key_name_admin(holder)] 解除了所有人的彻\
+				底沉浸！")
+			log_admin("[key_name(holder)] 解除了所有人的彻底沉浸。")
 		if("makeNerd")
 			var/spawnpoint = pick(GLOB.blobstart)
 			var/list/mob/dead/observer/candidates
@@ -619,12 +619,12 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 			var/mob/living/basic/drone/nerd
 			var/teamsize
 
-			teamsize = input(usr, "How many drones?", "N.E.R.D. team size", 2) as num|null
+			teamsize = input(usr, "需要多少架无人机？", "N.E.R.D. 队伍规模", 2) as num|null
 
 			if(teamsize <= 0)
 				return FALSE
 
-			candidates = SSpolling.poll_ghost_candidates("Do you wish to be considered for a [span_notice("Nanotrasen emergency response drone")]?", check_jobban = ROLE_DRONE, alert_pic = /mob/living/basic/drone/classic, role_name_text = "Nanotrasen emergency response drone")
+			candidates = SSpolling.poll_ghost_candidates("你愿意被考虑担任[span_notice("纳米传讯紧急响应无人机")]吗？", check_jobban = ROLE_DRONE, alert_pic = /mob/living/basic/drone/classic, role_name_text = "纳米传讯紧急响应无人机")
 
 			if(length(candidates) == 0)
 				return FALSE
@@ -642,23 +642,23 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 			if(!is_funmin)
 				return
 			if(GLOB.ctf_games.len <= 0)
-				tgui_alert(usr, "No CTF games are set up.")
+				tgui_alert(usr, "没有已设置的 CTF 游戏。")
 				return
-			var/selected_game = tgui_input_list(usr, "Select a CTF game to ruin.", "Instagib Mode", GLOB.ctf_games)
+			var/selected_game = tgui_input_list(usr, "选择要毁掉的 CTF 游戏。", "一击必杀模式", GLOB.ctf_games)
 			if(isnull(selected_game))
 				return
 			var/datum/ctf_controller/ctf_controller = GLOB.ctf_games[selected_game]
-			var/choice = tgui_alert(usr, "[ctf_controller.instagib_mode ? "Return to standard" : "Enable instagib"] mode?", "Instagib Mode", list("Yes", "No"))
+			var/choice = tgui_alert(usr, "[ctf_controller.instagib_mode ? "恢复标准" : "启用一击必杀"]模式？", "一击必杀模式", list("Yes", "No"))
 			if(choice != "Yes")
 				return
 			ctf_controller.toggle_instagib_mode()
-			message_admins("[key_name_admin(holder)] [ctf_controller.instagib_mode ? "enabled" : "disabled"] instagib mode in CTF game: [selected_game]")
-			log_admin("[key_name_admin(holder)] [ctf_controller.instagib_mode ? "enabled" : "disabled"] instagib mode in CTF game: [selected_game]")
+			message_admins("[key_name_admin(holder)] [ctf_controller.instagib_mode ? "启用" : "禁用"]了 CTF 游戏中的一击必杀模式：[selected_game]")
+			log_admin("[key_name_admin(holder)] [ctf_controller.instagib_mode ? "启用" : "禁用"]了 CTF 游戏中的一击必杀模式：[selected_game]")
 
 		if("mass_heal")
 			if(!is_funmin)
 				return
-			var/heal_mobs = tgui_alert(usr, "Heal all mobs and return ghosts to their bodies?", "Mass Healing", list("Yes", "No"))
+			var/heal_mobs = tgui_alert(usr, "治疗所有生物并将幽灵送回其身体？", "群体治疗", list("Yes", "No"))
 			if(!heal_mobs || heal_mobs != "Yes")
 				return
 
@@ -671,13 +671,13 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 				player.revive(ADMIN_HEAL_ALL, force_grab_ghost = TRUE)
 
 			sound_to_playing_players('sound/effects/pray_chaplain.ogg')
-			message_admins("[key_name_admin(holder)] healed everyone.")
-			log_admin("[key_name(holder)] healed everyone.")
+			message_admins("[key_name_admin(holder)] 治愈了所有人。")
+			log_admin("[key_name(holder)] 治愈了所有人。")
 
 		if("cascade")
 			if(!is_funmin)
 				return
-			message_admins("[key_name_admin(holder)] started a resonance cascade! You're supposed to be a scientist! Use your common sense!")
+			message_admins("[key_name_admin(holder)] 引发了共振级联！你本该是名科学家！动动脑子！")
 			for(var/obj/machinery/power/supermatter_crystal/S in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power/supermatter_crystal))
 				if(!S.is_main_engine)
 					continue
@@ -693,27 +693,27 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 				return
 			if(GLOB.meteor_mode)
 				QDEL_NULL(GLOB.meteor_mode)
-				message_admins("[key_name_admin(holder)] disabled meteor mode.")
+				message_admins("[key_name_admin(holder)] 禁用了流星模式。")
 				return TRUE
 
 			GLOB.meteor_mode = new()
-			var/start_when = tgui_input_number(usr, "Meteors will start in (this many seconds):", "Meteor Mode: Start", (5 MINUTES) / 10, (24 HOURS) / 10, 0)
-			var/ramp_speed = tgui_input_number(usr, "Meteors will worsen every (this many seconds):", "Meteor Mode: Intensity", (5 MINUTES) / 10, (24 HOURS) / 10, (30 SECONDS) / 10)
+			var/start_when = tgui_input_number(usr, "流星将在多少秒后开始：", "流星模式：开始", (5 MINUTES) / 10, (24 HOURS) / 10, 0)
+			var/ramp_speed = tgui_input_number(usr, "流星每隔多少秒加剧：", "流星模式：强度", (5 MINUTES) / 10, (24 HOURS) / 10, (30 SECONDS) / 10)
 			if(!is_funmin) // deadminnied?
 				QDEL_NULL(GLOB.meteor_mode)
 				return TRUE
 			GLOB.meteor_mode.meteordelay = world.time + (start_when * 10)
 			GLOB.meteor_mode.rampupdelta = ramp_speed / 60
 			GLOB.meteor_mode.start_meteor()
-			message_admins("[key_name_admin(holder)] enabled meteor mode. \
-				Meteors will start [start_when ? "in [DisplayTimeText(start_when * 10)]" : "immediately"], and will worsen every [DisplayTimeText(ramp_speed * 10)].")
+			message_admins("[key_name_admin(holder)] 启用了流星模式。流星将[start_when ? "在 [DisplayTimeText(start_when * 10)] 后" : "立即"]开始，\
+				并每隔 [DisplayTimeText(ramp_speed * 10)] 加剧。")
 			return TRUE
 
 		if("fix_gravity")
 			if(!is_funmin)
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("fix_gravity"))
-			message_admins("[key_name_admin(holder)] fixed the gravity generator.")
+			message_admins("[key_name_admin(holder)] 修复了重力发生器。")
 
 			for(var/obj/machinery/gravity_generator/main/the_generator as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/gravity_generator/main))
 				if(!is_station_level(the_generator.z))
@@ -722,7 +722,7 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 				CHECK_TICK
 
 	if(holder)
-		log_admin("[key_name(holder)] used secret: [action].")
+		log_admin("[key_name(holder)] 使用了秘密：[action]。")
 #undef THUNDERDOME_TEMPLATE_FILE
 #undef HIGHLANDER_DELAY_TEXT
 
@@ -757,15 +757,15 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 /// Docks the emergency shuttle back to the station and resets its state
 /proc/return_escape_shuttle(make_announcement)
 	if (SSshuttle.emergency.initiate_docking(SSshuttle.getDock("emergency_home"), force = TRUE) != DOCKING_SUCCESS)
-		message_admins("Emergency shuttle was unable to dock back to the station!")
+		message_admins("紧急穿梭机无法重新对接空间站！")
 		SSshuttle.emergency.timer = 1 // Prevents softlocks
 		return
 	if (make_announcement != "No")
 		priority_announce(
-			text = "[SSshuttle.emergency] has returned to the station.",
-			title = "Emergency Shuttle Override",
+			text = "[SSshuttle.emergency]已返回空间站。",
+			title = "紧急穿梭机覆盖",
 			sound = ANNOUNCER_SHUTTLEDOCK,
-			sender_override = "Emergency Shuttle Uplink Alert",
+			sender_override = "紧急穿梭机上行链路警报",
 			color_override = "grey",
 		)
 	SSshuttle.emergency.mode = SHUTTLE_IDLE

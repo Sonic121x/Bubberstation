@@ -22,26 +22,26 @@
 	var/suicide_message = ""
 	switch(message_type)
 		if(HUMAN_BRAIN_DAMAGE_SUICIDE_MESSAGE) // god damn this message is fucking stupid
-			suicide_message = "[src] pulls both arms outwards in front of [p_their()] chest and pumps them behind [p_their()] back, repeats this motion in a smaller range of motion \
-			down to [p_their()] hips two times once more all while sliding [p_their()] legs in a faux walking motion, claps [p_their()] hands together \
-			in front of [p_them()] while both [p_their()] knees knock together, pumps [p_their()] arms downward, pronating [p_their()] wrists and abducting \
-			[p_their()] fingers outward while crossing [p_their()] legs back and forth, repeats this motion again two times while keeping [p_their()] shoulders low \
-			and hunching over, does finger guns with right hand and left hand bent on [p_their()] hip while looking directly forward and putting [p_their()] left leg forward then \
-			crossing [p_their()] arms and leaning back a little while bending [p_their()] knees at an angle! It looks like [p_theyre()] trying to commit suicide."
+			suicide_message = "[src] 把双臂在胸前向两侧平举，又向背后一甩，随后在更小的幅度内重复这一动作 \
+			一路摆到髋部，如此再来两次，同时让双腿做出假装的行走动作，双手在自己面前拍合 \
+			双膝相互碰撞，双臂向下猛压，手腕内旋、手指外展， \
+			双腿来回交叉，同时保持双肩低垂、身体佝偻，如此再重复两次 \
+			右手比出手指枪，左手叉在髋部，直视前方，左腿向前迈出， \
+			双臂交叉、身体略微后仰，双膝歪斜地弯曲！看来 [p_they()] 正试图自杀。"
 
 		if(HUMAN_COMBAT_MODE_SUICIDE_MESSAGE)
 			suicide_message = pick(list(
-				"[src] is attempting to bite [p_their()] tongue off! It looks like [p_theyre()] trying to commit suicide.",
-				"[src] is holding [p_their()] breath! It looks like [p_theyre()] trying to commit suicide.",
-				"[src] is jamming [p_their()] thumbs into [p_their()] eye sockets! It looks like [p_theyre()] trying to commit suicide.",
-				"[src] is twisting [p_their()] own neck! It looks like [p_theyre()] trying to commit suicide.",
+				"[src] 正试图咬断自己的舌头！看来 [p_they()] 想自杀。",
+				"[src] 正憋着气不呼吸！看来 [p_they()] 想自杀。",
+				"[src] 正把大拇指往自己的眼窝里捅！看来 [p_they()] 想自杀。",
+				"[src] 正扭着自己的脖子！看来 [p_they()] 想自杀。",
 			))
 
 		if(HUMAN_DEFAULT_MODE_SUICIDE_MESSAGE)
 			suicide_message = pick(list(
-				"[src] is getting too high on life! It looks like [p_theyre()] trying to commit suicide.",
-				"[src] is high-fiving [p_them()]self to death! It looks like [p_theyre()] trying to commit suicide.",
-				"[src] is hugging [p_them()]self to death! It looks like [p_theyre()] trying to commit suicide.",
+				"[src] 活得太嗨了！看来 [p_they()] 想自杀。",
+				"[src] 正把自己击掌击死！看来 [p_they()] 想自杀。",
+				"[src] 正把自己抱死！看来 [p_they()] 想自杀。",
 			))
 
 	visible_message(span_danger(suicide_message), span_userdanger(suicide_message), span_hear(get_blind_suicide_message()))
@@ -53,8 +53,8 @@
 		suicide_data = list("suicide tool" = suicide_tool_type)
 		SSblackbox.record_feedback("tally", "suicide_item", 1, suicide_tool_type)
 
-	investigate_log("has died from committing suicide[suicide_tool ? " with [suicide_tool] ([suicide_tool_type])" : ""].", INVESTIGATE_DEATHS)
-	log_message("(job: [src.job ? "[src.job]" : "None"]) committed suicide", LOG_ATTACK, data = suicide_data)
+	investigate_log("已自杀身亡[suicide_tool ? "，使用的工具为 [suicide_tool]（[suicide_tool_type]）" : ""]。", INVESTIGATE_DEATHS)
+	log_message("（职务：[src.job ? "[src.job]" : "无"]）自杀了", LOG_ATTACK, data = suicide_data)
 
 
 #undef HUMAN_BRAIN_DAMAGE_SUICIDE_MESSAGE

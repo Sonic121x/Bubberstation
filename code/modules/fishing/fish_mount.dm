@@ -1,6 +1,6 @@
 /obj/item/wallframe/fish
-	name = "fish mount"
-	desc = "The frame of a mount for trophy fish, to show off your proudest catch."
+	name = "鱼类挂架"
+	desc = "战利品鱼挂架的框架，用来炫耀你最引以为傲的渔获。"
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "fish_mount_item"
 	result_path = /obj/structure/fish_mount
@@ -15,8 +15,8 @@
 
 ///A wallmounted structure on which a fish can be attached to be used as room decoration.
 /obj/structure/fish_mount
-	name = "fish mount"
-	desc = "A mount for trophy fish, to show off your proudest catch."
+	name = "鱼类挂架"
+	desc = "一个战利品鱼挂架，用来炫耀你最引以为傲的渔获。"
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "fish_mount"
 	anchored = TRUE
@@ -60,11 +60,11 @@
 
 /obj/structure/fish_mount/screwdriver_act(mob/living/user, obj/item/item)
 	. = ..()
-	balloon_alert(user, "removing mount...")
+	balloon_alert(user, "正在拆下挂架……")
 	if(!item.use_tool(src, user, 3 SECONDS, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
-	balloon_alert_to_viewers("fish mount removed")
+	balloon_alert_to_viewers("鱼挂架已拆下")
 	deconstruct()
 	return ITEM_INTERACT_SUCCESS
 
@@ -73,7 +73,7 @@
 	var/obj/item/fish/fish_path = pick(valid_picks)
 	if(fish_path.fish_id_redirect_path)
 		fish_path = fish_path.fish_id_redirect_path
-	var/fluff_name = pick("John Trasen III", "a nameless intern", "Pun Pun", AQUARIUM_COMPANY, "Unknown", "Central Command")
+	var/fluff_name = pick("约翰·传讯三世", "一名无名实习生", "潘潘", AQUARIUM_COMPANY, "未知", "中央指挥部")
 	add_fish(new fish_path(loc), from_persistence = TRUE, catcher = fluff_name)
 	mounted_fish.randomize_size_and_weight()
 	mounted_fish.set_status(FISH_DEAD)
@@ -90,16 +90,16 @@
 	if(!isfish(item) || user.combat_mode)
 		return ..()
 	if(mounted_fish)
-		balloon_alert(user, "remove other fish first!")
+		balloon_alert(user, "请先取下其他鱼！")
 		return ITEM_INTERACT_BLOCKING
 	if(item.flags_1 & HOLOGRAM_1)
-		balloon_alert(user, "fish not mountable!")
+		balloon_alert(user, "这条鱼无法挂上！")
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "mounting fish...")
+	balloon_alert(user, "正在挂上鱼……")
 	if(!do_after(user, 3 SECONDS, src) || mounted_fish)
 		return ITEM_INTERACT_BLOCKING
 	add_fish(item, catcher = user.name)
-	balloon_alert_to_viewers("fish mounted")
+	balloon_alert_to_viewers("鱼已挂上")
 	playsound(loc, 'sound/machines/click.ogg', 30, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -151,13 +151,13 @@
 /obj/structure/fish_mount/attack_hand_secondary(mob/living/user, list/modifiers)
 	. = ..()
 	if(!mounted_fish)
-		balloon_alert(user, "no fish mounted!")
+		balloon_alert(user, "没有挂上鱼！")
 	else
 		remove_fish(user)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/fish_mount/proc/remove_fish(mob/living/user)
-	balloon_alert(user, "removing fish...")
+	balloon_alert(user, "正在取下鱼……")
 	if(!do_after(user, (persistence_loaded_fish ? 6 : 3) SECONDS, src) || !mounted_fish)
 		return
 
@@ -170,10 +170,10 @@
 		if(fish_reference.w_class >= WEIGHT_CLASS_BULKY)
 			ash_type = /obj/effect/decal/cleanable/ash/large
 		new ash_type(loc)
-		visible_message("[fish_reference] turns into dust as [fish_reference.p_theyre()] removed from [src].")
+		visible_message("[fish_reference] 在被从 [src] 取下时化为了灰烬。")
 	else
 		user.put_in_hands(mounted_fish)
-	balloon_alert_to_viewers("fish removed")
+	balloon_alert_to_viewers("鱼已取下")
 
 /obj/structure/fish_mount/Exited(atom/movable/gone)
 	if(gone != mounted_fish)

@@ -8,114 +8,114 @@
 	var/item_name = null
 
 /datum/memory/smithing/get_names()
-	return list("The time [protagonist_name] made a [initial(item_name)].")
+	return list("[protagonist_name] 制作[initial(item_name)]的那一次。")
 
 /datum/memory/smithing/get_starts()
 	return list(
-		"[protagonist_name] carefully assembling a [initial(item_name)].",
+		"[protagonist_name] 小心翼翼地组装着[initial(item_name)]。",
 	)
 
 /datum/memory/smithing/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] after finishing [initial(item_name)].",
+		"[protagonist_name] 完成[initial(item_name)]后[mood_verb]。",
 	)
 
 /datum/memory/smithing/sword
 	smithed_item_type = /obj/item/melee/forged_reagent_weapon/sword
-	item_name = "sword"
+	item_name = "长剑"
 
 /datum/memory/smithing/katana
 	smithed_item_type = /obj/item/melee/forged_reagent_weapon/katana
-	item_name = "katana"
+	item_name = "武士刀"
 
 /datum/memory/smithing/dagger
 	smithed_item_type = /obj/item/melee/forged_reagent_weapon/dagger
-	item_name = "dagger"
+	item_name = "匕首"
 
 /datum/memory/smithing/rapier
 	smithed_item_type = /obj/item/melee/forged_reagent_weapon/rapier
-	item_name = "rapier"
+	item_name = "刺剑"
 
 /datum/memory/smithing/spear
 	smithed_item_type = /obj/item/melee/forged_reagent_weapon/spear
-	item_name = "spear"
+	item_name = "长矛"
 
 /datum/memory/smithing/axe
 	smithed_item_type = /obj/item/melee/forged_reagent_weapon/axe
-	item_name = "axe"
+	item_name = "斧头"
 
 /datum/memory/smithing/hammer
 	smithed_item_type = /obj/item/melee/forged_reagent_weapon/hammer
-	item_name = "hammer"
+	item_name = "战锤"
 
 /datum/memory/smithing/buckler
 	smithed_item_type = /obj/item/shield/buckler/reagent_weapon
-	item_name = "buckler"
+	item_name = "小圆盾"
 
 /datum/memory/smithing/pavise
 	smithed_item_type = /obj/item/shield/buckler/reagent_weapon/pavise
-	item_name = "pavise"
+	item_name = "大盾"
 
 /datum/memory/smithing/baseball_bat
 	smithed_item_type = /obj/item/melee/baseball_bat/reagent_forged
-	item_name = "baseball bat"
+	item_name = "棒球棒"
 
 /datum/memory/smithing/revolver
 	smithed_item_type = /obj/item/gun/ballistic/revolver/handcrafted_single_action
-	item_name = "revolver"
+	item_name = "左轮手枪"
 
 /datum/memory/smithing/helmet
 	smithed_item_type = /obj/item/clothing/head/helmet/forging_plate_helmet
-	item_name = "plate helmet"
+	item_name = "板甲头盔"
 
 /datum/memory/smithing/plate_vest
 	smithed_item_type = /obj/item/clothing/suit/armor/forging_plate_armor
-	item_name = "plate vest"
+	item_name = "板甲背心"
 
 /datum/memory/smithing/gloves
 	smithed_item_type = /obj/item/clothing/gloves/forging_plate_gloves
-	item_name = "pair of plate gloves"
+	item_name = "板甲手套"
 
 /datum/memory/smithing/boots
 	smithed_item_type = /obj/item/clothing/shoes/forging_plate_boots
-	item_name = "pair of plate boots"
+	item_name = "板甲靴"
 
 /datum/memory/smithing/horseshoes
 	smithed_item_type = /obj/item/clothing/shoes/horseshoe/reagent_clothing
-	item_name = "set of horseshoes"
+	item_name = "马蹄铁"
 
 /datum/memory/smithing/ring
 	smithed_item_type = /obj/item/clothing/gloves/ring/reagent_clothing
-	item_name = "ring"
+	item_name = "戒指"
 
 /datum/memory/smithing/collar
 	smithed_item_type = /obj/item/clothing/neck/collar/reagent_clothing
-	item_name = "collar"
+	item_name = "项圈"
 
 /datum/memory/smithing/cowboy_holster
 	smithed_item_type = /obj/item/storage/belt/holster/hip_holster/cowboy
-	item_name = "holster"
+	item_name = "枪套"
 
 /datum/memory/smithing/charging_holster
 	smithed_item_type = /obj/item/storage/belt/holster/hip_holster/charging
-	item_name = "charging holster"
+	item_name = "充电枪套"
 
 /datum/memory/smithing/crusader_belt
 	smithed_item_type =  /obj/item/storage/belt/sheath/hip_only/crusader
-	item_name = "utility-scabbard belt"
+	item_name = "剑鞘工具腰带"
 
 /datum/memory/smithing/multi_scabbard
 	smithed_item_type = /obj/item/storage/belt/sheath/hip_only/multi
-	item_name = "multi-scabbard belt"
+	item_name = "多剑鞘腰带"
 
 /datum/memory/smithing/repairing_scabbard
 	smithed_item_type = /obj/item/storage/belt/sheath/hip_only/repairing
-	item_name = "repairing scabbard"
+	item_name = "修复剑鞘"
 
 /datum/memory/smithing/knifethrower
 	smithed_item_type = /obj/item/storage/belt/sheath/hip_only/knifethrowers_belt
-	item_name = "knifethrower's belt"
+	item_name = "飞刀腰带"
 
 /datum/memory/smithing/bluespace_plants
 	smithed_item_type = /obj/item/storage/bag/plants/bluespace
-	item_name = "bluespace plants bag"
+	item_name = "蓝空间植物袋"

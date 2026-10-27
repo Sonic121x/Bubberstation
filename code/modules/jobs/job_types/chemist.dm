@@ -1,7 +1,7 @@
 /datum/job/chemist
 	title = JOB_CHEMIST
-	description = "Supply the doctors with chemicals, make medicine, cook up \
-		sketchy substances in the comfort of a fully reinforced room."
+	description = "为医生提供化学试剂，制作药品，并在全加固的舒适房间里\
+		熬制些来路不明的物质。"
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -33,7 +33,7 @@
 		/obj/item/reagent_containers/cup/bottle/leadacetate = 5,
 		/obj/item/paper/secretrecipe = 1
 	)
-	rpg_title = "Alchemist"
+	rpg_title = "炼金术士"
 	job_flags = STATION_JOB_FLAGS
 
 

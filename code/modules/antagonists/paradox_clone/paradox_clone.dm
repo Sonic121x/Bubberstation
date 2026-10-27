@@ -1,11 +1,11 @@
 /datum/antagonist/paradox_clone
-	name = "\improper Paradox Clone"
+	name = "\improper 悖论克隆体"
 	roundend_category = "Paradox Clone"
 	pref_flag = ROLE_PARADOX_CLONE
 	antagpanel_category = ANTAG_GROUP_PARADOX
 	antag_hud_name = "paradox_clone"
 	show_to_ghosts = TRUE
-	suicide_cry = "THERE CAN BE ONLY ONE!!"
+	suicide_cry = "只能有一个！！"
 	preview_outfit = /datum/outfit/paradox_clone
 
 /datum/antagonist/paradox_clone/get_preview_icon()
@@ -31,12 +31,12 @@
 
 	var/datum/objective/accept_no_substitutes/kill = new()
 	kill.owner = owner
-	kill.set_target_name(original_mind.name || "Unknown")
+	kill.set_target_name(original_mind.name || "未知")
 	objectives += kill
 
 	var/datum/objective/paradox_clone_replace/replace = new()
 	replace.owner = owner
-	replace.name_and_job = "[original_mind.name], the [original_mind.assigned_role.title]"
+	replace.name_and_job = "[original_mind.name]，即[original_mind.assigned_role.title]"
 	replace.update_explanation_text()
 	objectives += replace
 
@@ -58,21 +58,21 @@
 	original_mind.quick_copy_all_memories(owner)
 
 /datum/antagonist/paradox_clone/roundend_report_header()
-	return span_header("A paradox clone appeared on the station!<br>")
+	return span_header("空间站上出现了一名悖论克隆体！<br>")
 
 /datum/objective/paradox_clone_replace
-	name = "clone replace"
+	name = "克隆替换"
 	/// Name and job of the original to replace
 	var/name_and_job
 
 /datum/objective/paradox_clone_replace/update_explanation_text()
-	explanation_text = "Take [name_and_job || "someone's"]'s place. Avoid collateral damage - remember, your mission is to blend in!"
+	explanation_text = "取代[name_and_job || "某人"]的位置。避免附带损伤——记住，你的任务是融入其中！"
 
 /datum/objective/paradox_clone_replace/check_completion()
 	return completed || considered_alive(owner)
 
 /datum/outfit/paradox_clone
-	name = "Paradox Clone (Preview only)"
+	name = "悖论克隆体（仅预览）"
 
 	uniform = /obj/item/clothing/under/rank/civilian/janitor
 	gloves = /obj/item/clothing/gloves/color/black
@@ -80,6 +80,6 @@
 
 ///Static bluespace stream used in its ghost poll icon.
 /obj/effect/bluespace_stream
-	name = "bluespace stream"
+	name = "蓝空间流"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "bluestream"

@@ -1,10 +1,10 @@
 // Herbs
 /obj/item/seeds/herbs
-	name = "herb seed pack"
-	desc = "These seeds grow to produce an assortment of herbs and seasonings."
+	name = "草本种子包"
+	desc = "这些种子会长出各式各样的香草和调味料。"
 	icon_state = "seed-herbs"
 	species = "herbs"
-	plantname = "Herbs"
+	plantname = "香草"
 	product = /obj/item/food/grown/herbs
 	growthstages = 2
 	yield = 5
@@ -17,11 +17,11 @@
 
 /obj/item/food/grown/herbs
 	seed = /obj/item/seeds/herbs
-	name = "bundle of herbs"
-	desc = "A bundle of various herbs. Somehow, you're always able to pick what you need out."
+	name = "一捆香草"
+	desc = "一捆各式香草。不知为何，你总能从中挑出自己需要的那种。"
 	icon_state = "herbs"
 	foodtypes = VEGETABLES
-	tastes = list("nondescript herbs" = 1)
+	tastes = list("难以名状的香草" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/fernet
 
 /obj/item/food/grown/herbs/grind_results()

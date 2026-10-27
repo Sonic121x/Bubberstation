@@ -1,7 +1,7 @@
 /obj/item/wallframe/status_display/vitals
-	name = "vitals display frame"
-	desc = "Used to build vitals displays. Secure on a wall nearby a stasis bed, operating table, \
-		or another machine that can hold patients such as cryo cells or sleepers."
+	name = "生命体征显示器框架"
+	desc = "用于建造生命体征显示器。固定在停滞床、手术台，\
+		或冷冻舱、休眠舱等可容纳患者的设备附近的墙上。"
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 4,
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
@@ -10,8 +10,8 @@
 	result_path = /obj/machinery/vitals_reader
 
 /obj/item/wallframe/status_display/vitals/advanced
-	name = "advanced vitals display frame"
-	desc = "Used to build advanced vitals displays. Performs a more detailed scan of the patient than the basic display."
+	name = "高级生命体征显示器框架"
+	desc = "用于建造高级生命体征显示器。相比基础显示器，可对患者进行更详细的扫描。"
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 4,
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
@@ -22,13 +22,13 @@
 
 /// A wall mounted screen that showcases the vitals of a patient nearby.
 /obj/machinery/vitals_reader
-	name = "vitals display"
-	desc = "A screen that displays the vitals of a patient."
+	name = "生命体征显示器"
+	desc = "显示患者生命体征的屏幕。"
 	icon = 'icons/obj/machines/vitals_monitor.dmi'
 	icon_state = "frame"
-	verb_say = "beeps"
-	verb_ask = "beeps"
-	verb_exclaim = "beeps"
+	verb_say = "哔哔作响"
+	verb_ask = "哔哔作响"
+	verb_exclaim = "哔哔作响"
 	density = FALSE
 	layer = ABOVE_WINDOW_LAYER
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON
@@ -76,9 +76,9 @@
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vitals_reader, 32)
 
 /obj/machinery/vitals_reader/advanced
-	name = "advanced vitals display"
-	desc = "A screen that displays the vitals of a patient. \
-		Performs a more detailed scan of the patient than a basic display."
+	name = "高级生命体征显示器"
+	desc = "显示患者生命体征的屏幕。\
+		相比基础显示器，可对患者进行更详细的扫描。"
 	frame = /obj/item/wallframe/status_display/vitals/advanced
 	scanpower = SCANPOWER_ADVANCED
 
@@ -153,7 +153,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vitals_reader/advanced, 32)
 		set_patient(connected_table.patient)
 
 /obj/machinery/vitals_reader/wrench_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, "detaching...")
+	balloon_alert(user, "正在拆卸……")
 	if(tool.use_tool(src, user, 6 SECONDS, volume = 50))
 		playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 		deconstruct(TRUE)
@@ -165,16 +165,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vitals_reader/advanced, 32)
 
 	if(isnull(connected))
 		if(find_machine())
-			balloon_alert(user, "connected to [connected.name]")
+			balloon_alert(user, "已连接至[connected.name]")
 		else
-			balloon_alert(user, "no connectable machines nearby!")
+			balloon_alert(user, "附近没有可连接的机器！")
 		return ITEM_INTERACT_SUCCESS
 
-	balloon_alert(user, "disconnecting...")
+	balloon_alert(user, "正在断开连接……")
 	if(!do_after(user, 2 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "disconnected from [connected.name]")
+	balloon_alert(user, "已断开与[connected.name]的连接")
 	set_connection(null)
 	return ITEM_INTERACT_SUCCESS
 
@@ -210,35 +210,35 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vitals_reader/advanced, 32)
 		return
 
 	if(isnull(connected))
-		. += span_notice("The display is currently not connected to anything. \
-			Use a [EXAMINE_HINT("multitool")] to connect it to a neighboring machine.")
+		. += span_notice("显示器目前未连接任何设备。\
+			用[EXAMINE_HINT("多功能工具")]将其连接到相邻机器。")
 		return
 
 	if(isnull(patient) || user.is_blind())
 		return
 
 	if(machine_stat & EMPED)
-		. += span_warning("The display is flickering erratically!")
+		. += span_warning("显示器正在不规则地闪烁！")
 		return
 
 	if(!issilicon(user) && !isobserver(user) && get_dist(src, user) > 2)
-		. += span_notice("<i>You are too far away to read the display.</i>")
+		. += span_notice("<i>你离得太远，无法看清显示器。</i>")
 	else if(HAS_TRAIT(user, TRAIT_DUMB) || !user.can_read(src, reading_check_flags = READING_CHECK_LITERACY, silent = TRUE))
-		. += span_warning("You try to comprehend the display, but it's too complex for you to understand.")
+		. += span_warning("你试图看懂显示内容，但它对你来说太复杂了。")
 	else
 		. += healthscan(user, patient, mode = SCANNER_CONDENSED, scanpower = src.scanpower, tochat = FALSE)
 		. += chemscan(user, patient, tochat = FALSE)
 
 /obj/machinery/vitals_reader/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(held_item?.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = "Detach"
+		context[SCREENTIP_CONTEXT_LMB] = "拆卸"
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(is_operational)
 		if(isnull(connected) && held_item?.tool_behaviour == TOOL_MULTITOOL)
-			context[SCREENTIP_CONTEXT_LMB] = "Connect to nearby machine"
+			context[SCREENTIP_CONTEXT_LMB] = "连接附近的机器"
 			. = CONTEXTUAL_SCREENTIP_SET
 		if(!isnull(patient))
-			context[SCREENTIP_CONTEXT_SHIFT_LMB] = "Examine vitals"
+			context[SCREENTIP_CONTEXT_SHIFT_LMB] = "查看生命体征"
 			. = CONTEXTUAL_SCREENTIP_SET
 	return .
 
@@ -430,22 +430,22 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vitals_reader/advanced, 32)
 		if(DEAD)
 			COOLDOWN_START(src, beep_cd, 11 SECONDS)
 			if(last_reported_stat != DEAD)
-				beep_message("lets out a droning beep.")
+				beep_message("发出持续的长鸣。")
 				last_reported_stat = DEAD
 		if(HARD_CRIT)
 			COOLDOWN_START(src, beep_cd, 5 SECONDS)
 			if(last_reported_stat != HARD_CRIT)
-				beep_message("lets out an alternating beep.")
+				beep_message("发出交替变化的哔声。")
 				last_reported_stat = HARD_CRIT
 		if(SOFT_CRIT)
 			COOLDOWN_START(src, beep_cd, 7 SECONDS)
 			if(last_reported_stat != SOFT_CRIT)
-				beep_message("lets out a high pitch beep.")
+				beep_message("发出尖锐的哔声。")
 				last_reported_stat = SOFT_CRIT
 		else
 			COOLDOWN_START(src, beep_cd, 7 SECONDS)
 			if(last_reported_stat != STABLE)
-				beep_message("lets out a beep.")
+				beep_message("发出一声哔响。")
 				last_reported_stat = STABLE
 
 /obj/machinery/vitals_reader/proc/beep_message(message)
@@ -530,8 +530,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vitals_reader/advanced, 32)
 			playsound(src, 'sound/items/tools/welder.ogg', 100, TRUE)
 
 /obj/item/circuit_component/vitals_monitor
-	display_name = "Vitals Monitor"
-	desc = "Allows you to interface with a vitals monitor to read a patient's status."
+	display_name = "生命体征监测器"
+	desc = "连接生命体征监测器以读取患者状态。"
 
 	/// Reference to the linked vitals monitor
 	var/obj/machinery/vitals_reader/linked_monitor
@@ -603,8 +603,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vitals_reader/advanced, 32)
 
 /obj/item/circuit_component/vitals_monitor/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Initial Delay: [DisplayTimeText(1 SECONDS)]", "orange", "clock")
-	. += create_ui_notice("Update Interval: [DisplayTimeText(read_cooldown_period)]", "orange", "clock")
+	. += create_ui_notice("初始延迟：[DisplayTimeText(1 SECONDS)]", "orange", "clock")
+	. += create_ui_notice("更新间隔：[DisplayTimeText(read_cooldown_period)]", "orange", "clock")
 
 /obj/item/circuit_component/vitals_monitor/proc/handle_patient_change(datum/source, mob/living/old_patient, mob/living/new_patient)
 	SIGNAL_HANDLER

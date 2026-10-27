@@ -1,8 +1,8 @@
 /obj/machinery/microwave/frontier_printed
-	desc = "A plastic-paneled microwave oven, capable of doing anything a standard microwave could do. \
-		This one is special designed to be tightly packed into a shape that can be easily re-assembled \
-		later from the factory. There don't seem to be included instructions on getting it folded back \
-		together, though..."
+	desc = "一台塑料面板的微波炉，能完成标准微波炉的一切工作。\
+		这一台特别设计成能被紧密打包成便于之后在工厂里\
+		重新组装的形状。不过，似乎没有附带把它重新折回去的\
+		说明书……"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/kitchen_stuff/microwave.dmi'
 	circuit = null
 	max_n_of_items = 5
@@ -21,7 +21,7 @@
 
 /obj/machinery/microwave/frontier_printed/examine(mob/user)
 	. = ..()
-	. += span_notice("It cannot be repacked, but can be deconstructed normally.")
+	. += span_notice("它无法重新打包，但可以正常拆解。")
 
 /obj/machinery/microwave/frontier_printed/unanchored
 	anchored = FALSE
@@ -29,7 +29,7 @@
 // Deployable item for cargo
 
 /obj/item/flatpacked_machine/macrowave
-	name = "microwave oven parts kit"
+	name = "微波炉零件包"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/kitchen_stuff/microwave.dmi'
 	icon_state = "packed_microwave"
 	w_class = WEIGHT_CLASS_NORMAL

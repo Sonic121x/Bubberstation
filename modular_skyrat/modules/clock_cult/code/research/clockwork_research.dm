@@ -69,7 +69,7 @@
 /datum/clockwork_research/proc/validate_area(failed_validation)
 	if(!selected_area || !length(get_area_turfs(selected_area)))
 		if(failed_validation)
-			log_mapping("Clockwork research node [src] was unable to find a ritual area! Defaulting to base /area/station type.")
+			log_mapping("发条研究节点 [src] 无法找到合适的仪式区域！默认使用基础 /area/station 类型。")
 			selected_area = /area/station
 			return TRUE
 		set_new_area(failed_validation = TRUE) // we will retry this once and only once
@@ -92,9 +92,9 @@
 
 
 /datum/clockwork_research/start
-	name = "Starting Research"
-	desc = "All studies must begin somewhere. Studying His implements is no exception."
-	lore = "...And so, the last of the Justicar's faithful left after His demise, knowing that He would one day return."
+	name = "初始研究"
+	desc = "一切研究都总得有个起点。研究祂的器具也不例外。"
+	lore = "……于是，审判者最后的信徒在祂陨落之后离去，他们知道祂终有一日会归来。"
 	tier = 0
 	starting = TRUE
 	researched = TRUE
@@ -103,9 +103,9 @@
 	)
 
 /datum/clockwork_research/gun
-	name = "Brass Rifle"
-	desc = "A powerful rifle capable of shooting through walls."
-	lore = "With the power of his armament, he struck down the Nar'sian dogs. Blind, he was, but all the more he was seeing."
+	name = "黄铜步枪"
+	desc = "一把威力强大的步枪，能够射穿墙壁。"
+	lore = "凭借其兵器的力量，他击倒了纳尔西的走狗。他虽目盲，却看得更加清楚。"
 	tier = 1
 	unlocked_recipes = list(
 		/datum/tinker_cache_item/clockwork_rifle,

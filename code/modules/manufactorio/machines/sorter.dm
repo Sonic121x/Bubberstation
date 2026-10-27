@@ -1,7 +1,7 @@
 /obj/machinery/power/manufacturing/sorter
 	icon_state = "router"
-	name = "conveyor sort-router"
-	desc = "Pushes things on it to its sides following set criteria, set via multitool."
+	name = "传送带分拣器"
+	desc = "按设定条件将上面的物品推向两侧，条件通过多功能工具设置。"
 	layer = BELOW_OPEN_DOOR_LAYER
 	density = FALSE
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND
@@ -80,7 +80,7 @@
 				for(var/datum/sortrouter_filter/to_do as anything in subtypesof(/datum/sortrouter_filter))
 					filter_by_name[initial(to_do.name)] = to_do
 				filter_by_name = sort_list(filter_by_name)
-			var/target_type = tgui_input_list(usr, "Select a filter", "New Filter", filter_by_name)
+			var/target_type = tgui_input_list(usr, "选择过滤器", "新建过滤器", filter_by_name)
 			if(isnull(target_type)|| !usr.can_perform_action(src, ALLOW_SILICON_REACH))
 				return
 			target_type = filter_by_name[target_type]

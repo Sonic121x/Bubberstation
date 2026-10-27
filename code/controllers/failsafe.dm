@@ -8,7 +8,7 @@
 GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 
 /datum/controller/failsafe // This thing pretty much just keeps poking the master controller
-	name = "Failsafe"
+	name = "故障保护"
 
 	// The length of time to check on the MC (in deciseconds).
 	// Set to 0 to disable.
@@ -44,11 +44,11 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 			if (recovery_result == 1) //Exit emergency loop and delete self if it was able to recover MC
 				break
 			else if (defcon == 1) //Exit Failsafe if we weren't able to recover the MC in the last stage
-				log_game("FailSafe: Failed to recover MC while in emergency state. Failsafe exiting.")
-				message_admins(span_boldannounce("Failsafe failed critically while trying to recreate broken MC. Please manually fix the MC or reboot the server. Failsafe exiting now."))
-				message_admins(span_boldannounce("You can try manually calling these two procs:."))
-				message_admins(span_boldannounce("/proc/recover_all_SS_and_recreate_master: Most stuff should still function but expect instability/runtimes/broken stuff."))
-				message_admins(span_boldannounce("/proc/delete_all_SS_and_recreate_master: Most stuff will be broken but basic stuff like movement and chat should still work."))
+				log_game("故障保护：紧急状态下未能恢复主控制器，故障保护程序正在退出。")
+				message_admins(span_boldannounce("故障保护程序在尝试重建损坏的主控制器时发生严重故障。请手动修复主控制器或重启服务器。故障保护程序即将退出。"))
+				message_admins(span_boldannounce("你可以尝试手动调用以下两个过程："))
+				message_admins(span_boldannounce("/proc/recover_all_SS_and_recreate_master：大多数功能应仍可使用，但可能出现不稳定、运行时错误或功能损坏。"))
+				message_admins(span_boldannounce("/proc/delete_all_SS_and_recreate_master：大多数功能会损坏，但移动和聊天等基本功能应仍可使用。"))
 			else if (recovery_result == -1) //Failed to recreate MC
 				defcon--
 			sleep(initial(processing_interval)) //Wait a bit until the next try
@@ -72,15 +72,15 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 			if(Master.processing && Master.iteration)
 				if (defcon > 1 && (!Master.stack_end_detector || !Master.stack_end_detector.check()))
 
-					to_chat(GLOB.admins, span_boldannounce("ERROR: The Master Controller code stack has exited unexpectedly, Restarting..."))
+					to_chat(GLOB.admins, span_boldannounce("错误：主控制器的执行栈意外退出，正在重启……"))
 					defcon = 0
 					var/rtn = Recreate_MC()
 					if(rtn > 0)
 						master_iteration = 0
-						to_chat(GLOB.admins, span_adminnotice("MC restarted successfully"))
+						to_chat(GLOB.admins, span_adminnotice("主控制器重启成功"))
 					else if(rtn < 0)
-						log_game("FailSafe: Could not restart MC, runtime encountered. Entering defcon 0")
-						to_chat(GLOB.admins, span_boldannounce("ERROR: DEFCON [defcon_pretty()]. Could not restart MC, runtime encountered. I will silently keep retrying."))
+						log_game("故障保护：遇到运行时错误，无法重启主控制器。进入 DEFCON 0 状态")
+						to_chat(GLOB.admins, span_boldannounce("错误：DEFCON [defcon_pretty()]。遇到运行时错误，无法重启主控制器。将继续静默重试。"))
 				// Check if processing is done yet.
 				if(Master.iteration == master_iteration)
 					switch(defcon)
@@ -88,24 +88,24 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 							--defcon
 
 						if(3)
-							message_admins(span_adminnotice("Notice: DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks."))
+							message_admins(span_adminnotice("通知：DEFCON [defcon_pretty()]。主控制器在过去[(5-defcon) * processing_interval]个游戏刻内未运行。"))
 							--defcon
 
 						if(2)
-							to_chat(GLOB.admins, span_boldannounce("Warning: DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks. Automatic restart in [processing_interval] ticks."))
+							to_chat(GLOB.admins, span_boldannounce("警告：DEFCON [defcon_pretty()]。主控制器在过去[(5-defcon) * processing_interval]个游戏刻内未运行，将在[processing_interval]个游戏刻后自动重启。"))
 							--defcon
 
 						if(1)
-							to_chat(GLOB.admins, span_boldannounce("Warning: DEFCON [defcon_pretty()]. The Master Controller has still not fired within the last [(5-defcon) * processing_interval] ticks. Killing and restarting..."))
+							to_chat(GLOB.admins, span_boldannounce("警告：DEFCON [defcon_pretty()]。主控制器在过去[(5-defcon) * processing_interval]个游戏刻内仍未运行。正在终止并重启……"))
 							--defcon
 							var/rtn = Recreate_MC()
 							if(rtn > 0)
 								defcon = 4
 								master_iteration = 0
-								to_chat(GLOB.admins, span_adminnotice("MC restarted successfully"))
+								to_chat(GLOB.admins, span_adminnotice("主控制器重启成功"))
 							else if(rtn < 0)
-								log_game("FailSafe: Could not restart MC, runtime encountered. Entering defcon 0")
-								to_chat(GLOB.admins, span_boldannounce("ERROR: DEFCON [defcon_pretty()]. Could not restart MC, runtime encountered. I will silently keep retrying."))
+								log_game("故障保护：遇到运行时错误，无法重启主控制器。进入 DEFCON 0 状态")
+								to_chat(GLOB.admins, span_boldannounce("错误：DEFCON [defcon_pretty()]。遇到运行时错误，无法重启主控制器。将继续静默重试。"))
 							//if the return number was 0, it just means the mc was restarted too recently, and it just needs some time before we try again
 							//no need to handle that specially when defcon 0 can handle it
 
@@ -114,7 +114,7 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 							if(rtn > 0)
 								defcon = 4
 								master_iteration = 0
-								to_chat(GLOB.admins, span_adminnotice("MC restarted successfully"))
+								to_chat(GLOB.admins, span_adminnotice("主控制器重启成功"))
 				else
 					defcon = min(defcon + 1,5)
 					master_iteration = Master.iteration
@@ -143,10 +143,10 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 		master_iteration = 0
 		SSticker.Recover(); //Recover the ticket system so the Masters runlevel gets set
 		Master.Initialize(10, FALSE, FALSE) //Need to manually start the MC, normally world.new would do this
-		to_chat(GLOB.admins, span_adminnotice("Failsafe recovered MC while in emergency state [defcon_pretty()]"))
+		to_chat(GLOB.admins, span_adminnotice("故障保护程序在紧急状态[defcon_pretty()]下恢复了主控制器"))
 	else
-		log_game("FailSafe: Failsafe in emergency state and was unable to recreate MC while in defcon state [defcon_pretty()].")
-		message_admins(span_boldannounce("Failsafe in emergency state and master down, trying to recreate MC while in defcon level [defcon_pretty()] failed."))
+		log_game("故障保护：处于紧急状态，未能在 DEFCON [defcon_pretty()]状态下重建主控制器。")
+		message_admins(span_boldannounce("故障保护程序处于紧急状态，主控制器已停止运行，在 DEFCON [defcon_pretty()]状态下尝试重建主控制器失败。"))
 
 ///Recreate all SSs which will still cause data survive due to Recover(), the new Master will then find and take them from global.vars
 /proc/recover_all_SS_and_recreate_master()
@@ -159,9 +159,9 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 	if (. == 1) //We were able to create a new master
 		SSticker.Recover(); //Recover the ticket system so the Masters runlevel gets set
 		Master.Initialize(10, FALSE, FALSE) //Need to manually start the MC, normally world.new would do this
-		to_chat(GLOB.admins, span_adminnotice("MC successfully recreated after recovering all subsystems!"))
+		to_chat(GLOB.admins, span_adminnotice("已恢复所有子系统并成功重建主控制器！"))
 	else
-		message_admins(span_boldannounce("Failed to create new MC!"))
+		message_admins(span_boldannounce("创建新主控制器失败！"))
 
 ///Delete all existing SS to basically start over
 /proc/delete_all_SS_and_recreate_master()
@@ -173,13 +173,13 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 	if (. == 1) //We were able to create a new master
 		SSticker.Recover(); //Recover the ticket system so the Masters runlevel gets set
 		Master.Initialize(10, FALSE, FALSE) //Need to manually start the MC, normally world.new would do this
-		to_chat(GLOB.admins, span_adminnotice("MC successfully recreated after deleting and recreating all subsystems!"))
+		to_chat(GLOB.admins, span_adminnotice("已删除并重建所有子系统，成功重建主控制器！"))
 	else
-		message_admins(span_boldannounce("Failed to create new MC!"))
+		message_admins(span_boldannounce("创建新主控制器失败！"))
 
 /datum/controller/failsafe/proc/defcon_pretty()
 	return defcon
 
 /datum/controller/failsafe/stat_entry(msg)
-	msg = "Defcon: [defcon_pretty()] (Interval: [Failsafe.processing_interval] | Iteration: [Failsafe.master_iteration])"
+	msg = "故障等级：[defcon_pretty()]（间隔：[Failsafe.processing_interval] | 迭代：[Failsafe.master_iteration]）"
 	return msg

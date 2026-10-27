@@ -95,7 +95,7 @@
 	celebrate_kill(victim)
 	if(!is_station_level(z) || client) //NPC monsters won't heal while on station
 		heal_overall_damage(victim.maxHealth * 0.5)
-	victim.investigate_log("has been devoured by [src].", INVESTIGATE_DEATHS)
+	victim.investigate_log("被 [src] 吞噬了。", INVESTIGATE_DEATHS)
 	if(iscarbon(victim))
 		qdel(victim.get_organ_slot(ORGAN_SLOT_LUNGS))
 		qdel(victim.get_organ_slot(ORGAN_SLOT_HEART))
@@ -108,8 +108,8 @@
 /// Small little taunt when we epically troll someone
 /mob/living/basic/boss/proc/celebrate_kill(mob/living/poor_sap)
 	visible_message(
-		span_danger("[src] disembowels [poor_sap]!"),
-		span_userdanger("You feast on [poor_sap]'s organs, restoring your health!"),
+		span_danger("[src] 剖开了 [poor_sap] 的肚子！"),
+		span_userdanger("你吞食了 [poor_sap] 的内脏，恢复了生命值！"),
 	)
 
 /// Handles adding all relevant achievements when applicable (probably when we are defeated)

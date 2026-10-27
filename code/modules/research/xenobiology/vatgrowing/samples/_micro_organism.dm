@@ -1,9 +1,9 @@
 ///A single type of growth.
 /datum/micro_organism
 	///Name, shown on microscope
-	var/name = "Unknown fluids"
+	var/name = "不明液体"
 	///Desc, shown by science goggles
-	var/desc = "White fluid that tastes like salty coins and milk"
+	var/desc = "尝起来像咸硬币和牛奶的白色液体"
 
 ///Returns a short description of the cell line
 /datum/micro_organism/proc/get_details(show_details)
@@ -88,7 +88,7 @@
 	for(var/x in 1 to resulting_atom_count)
 		var/atom/thing = new resulting_atom(get_turf(vat))
 		ADD_TRAIT(thing, TRAIT_VATGROWN, "vatgrowing")
-		vat.visible_message(span_nicegreen("[thing] pops out of [vat]!"))
+		vat.visible_message(span_nicegreen("[thing] 从 [vat] 里弹了出来！"))
 		//We maybe add some color. the chance is static for now, but idewally we would be able to manipulate it in the future.
 		if(prob(CYTO_SHINY_CHANCE))
 			var/mob/living/basic/vat_creature = thing
@@ -101,14 +101,14 @@
 
 ///Overriden to show more info like needs, supplementary and supressive reagents and also growth.
 /datum/micro_organism/cell_line/get_details(show_details)
-	. += "[span_notice("[desc] - growth progress: [growth]%")]"
+	. += "[span_notice("[desc] - 生长进度：[growth]%")]"
 	if(show_details)
-		. += "\n- " + return_reagent_text("Requires:", required_reagents)
-		. += "\n- " + return_reagent_text("Likes:", supplementary_reagents)
-		. += "\n- " + return_reagent_text("Hates:", suppressive_reagents)
+		. += "\n- " + return_reagent_text("需要：", required_reagents)
+		. += "\n- " + return_reagent_text("喜欢：", supplementary_reagents)
+		. += "\n- " + return_reagent_text("厌恶：", suppressive_reagents)
 
 ///Return a nice list of all the reagents in a specific category with a specific prefix. This needs to be reworked because the formatting sucks ass.
-/datum/micro_organism/cell_line/proc/return_reagent_text(prefix_text = "It requires:", list/reagentlist)
+/datum/micro_organism/cell_line/proc/return_reagent_text(prefix_text = "它需要：", list/reagentlist)
 	if(!reagentlist.len)
 		return
 	var/list/reagent_names = list()
@@ -122,30 +122,30 @@
 	//This determines how much the hue of the atom is shifted, 0.5 is the most extreme, respresenting a 180° hue shift.
 	var/hue_shift = 1
 	//This affix is added to the name of the atom, to help players understand and converse about the different rarity levels.
-	var/rarity_affix = "glitched"
+	var/rarity_affix = "故障"
 	// for adding some unique effects for subtypes, should you wish to do so
 	var/strength_factor = 1
 
 	switch(rand(1, 100))
 		if(1 to 35) //35% chance : painted
 			hue_shift = 0.15
-			rarity_affix = "painted"
+			rarity_affix = "彩绘"
 			strength_factor = 1.2
 		if(36 to 70) //35% chance : mutant
 			hue_shift = 0.85 //this value is equivalent in distance as the painted tier, just in the other direction.
-			rarity_affix = "mutant"
+			rarity_affix = "变异"
 			strength_factor = 1.4
 		if(71 to 83) //13% chance : rare
 			hue_shift = 0.3
-			rarity_affix = "rare"
+			rarity_affix = "稀有"
 			strength_factor = 1.6
 		if(84 to 95) //12% chance : shiny
 			hue_shift = 0.7
-			rarity_affix = "shiny"
+			rarity_affix = "闪光"
 			strength_factor = 2
 		if(96 to 100) //5% chance : mutant king
 			hue_shift = 0.5 //Best in show, most extreme color change.
-			rarity_affix = "mutant king" //The name is up to debate, since cyto is all about freaky creatures I thought it was good choice over something like "cosmic" or "regal".
+			rarity_affix = "变异之王" //The name is up to debate, since cyto is all about freaky creatures I thought it was good choice over something like "cosmic" or "regal".
 			strength_factor = 2.5
 
 	var/list/mutant_shift_matrix = list(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1, hue_shift,0,0,0) //matrix for our colour shifting.

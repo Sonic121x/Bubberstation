@@ -1,5 +1,5 @@
 /obj/docking_port/mobile/arrivals
-	name = "arrivals shuttle"
+	name = "抵达穿梭机"
 	shuttle_id = "arrival"
 
 	dir = WEST
@@ -72,7 +72,7 @@
 		if(!CheckTurfsPressure())
 			damaged = FALSE
 			if(console)
-				console.say("Repairs complete, launching soon.")
+				console.say("维修完成，即将发射。")
 		return
 
 //If this proc is high on the profiler add a cooldown to the stuff after this line
@@ -80,7 +80,7 @@
 	else if(CheckTurfsPressure())
 		damaged = TRUE
 		if(console)
-			console.say("Alert, hull breach detected!")
+			console.say("警报，检测到船体破损！")
 		aas_config_announce(/datum/aas_config_entry/arrivals_broken, list(), command_span=TRUE)
 		if(mode != SHUTTLE_CALL)
 			sound_played = FALSE
@@ -145,7 +145,7 @@
 	var/dockTime = CONFIG_GET(number/arrivals_shuttle_dock_window)
 	if(mode == SHUTTLE_CALL && timeLeft(1) > dockTime)
 		if(console)
-			console.say(damaged ? "Initiating emergency docking for repairs!" : "Now approaching: [station_name()].")
+			console.say(damaged ? "正在启动紧急对接以进行维修！" : "正在接近：[station_name()]。")
 		hyperspace_sound(HYPERSPACE_LAUNCH, areas) //for the new guy
 		setTimer(dockTime)
 
@@ -156,19 +156,19 @@
 		if(!force_depart)
 			var/cancel_reason
 			if(PersonCheck())
-				cancel_reason = "lifeform dectected on board"
+				cancel_reason = "船上检测到生命体"
 			else if(NukeDiskCheck())
-				cancel_reason = "critical station device detected on board"
+				cancel_reason = "船上检测到关键站内设备"
 			if(cancel_reason)
 				mode = SHUTTLE_IDLE
 				if(console)
-					console.say("Launch cancelled, [cancel_reason].")
+					console.say("发射已取消，[cancel_reason]。")
 				return
 		force_depart = FALSE
 	. = ..()
 	if(!. && !docked && !damaged)
 		if(console)
-			console.say("Welcome to your new life, employees!")
+			console.say("员工们，欢迎开始你们的新生活！")
 		for(var/L in queued_announces)
 			var/datum/callback/C = L
 			C.Invoke()
@@ -190,7 +190,7 @@
 		force_depart = TRUE
 	if(mode == SHUTTLE_IDLE)
 		if(console)
-			console.say(pickingup ? "Departing immediately for new employee pickup." : "Shuttle departing.")
+			console.say(pickingup ? "立即出发接运新员工。" : "穿梭机正在出发。")
 		var/obj/docking_port/stationary/target = target_dock
 		if(QDELETED(target))
 			target = SSshuttle.getDock("arrival_stationary")
@@ -202,7 +202,7 @@
 
 	Launch(TRUE)
 
-	to_chat(user, span_notice("Calling your shuttle. One moment..."))
+	to_chat(user, span_notice("正在呼叫你的穿梭机，请稍候……"))
 	while(mode != SHUTTLE_CALL && !damaged)
 		stoplag()
 

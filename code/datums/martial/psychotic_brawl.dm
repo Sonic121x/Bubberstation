@@ -1,5 +1,5 @@
 /datum/martial_art/psychotic_brawling
-	name = "Psychotic Brawling"
+	name = "癫狂斗殴术"
 	id = MARTIALART_PSYCHOBRAWL
 	pacifist_style = TRUE
 
@@ -19,13 +19,13 @@
 			if(iscarbon(defender) && iscarbon(attacker))
 				var/mob/living/carbon/carbon_defender = defender
 				carbon_defender.help_shake_act(attacker)
-			atk_verb = "helped"
+			atk_verb = "帮助了"
 		if(2)
 			attacker.emote("cry")
 			attacker.Stun(2 SECONDS)
-			atk_verb = "cried looking at"
+			atk_verb = "哭着望向"
 		if(3)
-			if(defender.check_block(attacker, 0, "[attacker]'s grab", UNARMED_ATTACK))
+			if(defender.check_block(attacker, 0, "[attacker]的抓取", UNARMED_ATTACK))
 				return MARTIAL_ATTACK_FAIL
 			if(attacker.body_position == LYING_DOWN)
 				return MARTIAL_ATTACK_INVALID
@@ -40,33 +40,33 @@
 					if(grab_attack)
 						log_combat(attacker, defender, "grabbed", addition="aggressively")
 						defender.visible_message(
-							span_warning("[attacker] violently grabs [defender]!"),
-							span_userdanger("You're violently grabbed by [attacker]!"),
-							span_hear("You hear sounds of aggressive fondling!"),
+							span_warning("[attacker]猛地抓住了[defender]！"),
+							span_userdanger("[attacker]猛地抓住了你！"),
+							span_hear("你听到了粗暴拉扯的声音！"),
 							null,
 							attacker,
 						)
-						to_chat(attacker, span_danger("You violently grab [defender]!"))
+						to_chat(attacker, span_danger("你猛地抓住了[defender]！"))
 						attacker.setGrabState(GRAB_AGGRESSIVE) //Instant aggressive grab
 					else
 						log_combat(attacker, defender, "grabbed", addition="passively")
 						attacker.setGrabState(GRAB_PASSIVE)
 		if(4)
-			atk_verb = "headbutt"
+			atk_verb = "头槌"
 			var/defender_damage = rand(5, 10)
-			if(defender.check_block(attacker, defender_damage, "[attacker]'s [atk_verb]", UNARMED_ATTACK))
+			if(defender.check_block(attacker, defender_damage, "[attacker]的[atk_verb]", UNARMED_ATTACK))
 				return MARTIAL_ATTACK_FAIL
 
 			attacker.do_attack_animation(defender, ATTACK_EFFECT_PUNCH)
 			attacker.emote("flip")
 			defender.visible_message(
-				span_danger("[attacker] [atk_verb]s [defender]!"),
-				span_userdanger("You're [atk_verb]ed by [attacker]!"),
-				span_hear("You hear a sickening sound of flesh hitting flesh!"),
+				span_danger("[attacker]用[atk_verb]撞击了[defender]！"),
+				span_userdanger("[attacker]用[atk_verb]撞击了你！"),
+				span_hear("你听到了令人作呕的肉体撞击声！"),
 				null,
 				attacker,
 			)
-			to_chat(attacker, span_danger("You [atk_verb] [defender]!"))
+			to_chat(attacker, span_danger("你用[atk_verb]撞击了[defender]！"))
 			playsound(defender, 'sound/items/weapons/punch1.ogg', 40, TRUE, -1)
 			defender.apply_damage(defender_damage, attacker.get_attack_type(), BODY_ZONE_HEAD)
 			attacker.apply_damage(rand(5, 10), attacker.get_attack_type(), BODY_ZONE_HEAD)
@@ -79,19 +79,19 @@
 			if(HAS_TRAIT(attacker, TRAIT_PACIFISM))
 				attacker.add_mood_event("bypassed_pacifism", /datum/mood_event/pacifism_bypassed)
 		if(5,6)
-			atk_verb = pick("kick", "hit", "slam")
-			if(defender.check_block(attacker, 0, "[attacker]'s [atk_verb]", UNARMED_ATTACK))
+			atk_verb = pick("踢击", "击打", "猛击")
+			if(defender.check_block(attacker, 0, "[attacker]的[atk_verb]", UNARMED_ATTACK))
 				return MARTIAL_ATTACK_FAIL
 
 			attacker.do_attack_animation(defender, ATTACK_EFFECT_PUNCH)
 			defender.visible_message(
-				span_danger("[attacker] [atk_verb]s [defender] with such inhuman strength that it sends [defender.p_them()] flying backwards!"),
-				span_userdanger("You're [atk_verb]ed by [attacker] with such inhuman strength that it sends you flying backwards!"),
-				span_hear("You hear a sickening sound of flesh hitting flesh!"),
+				span_danger("[attacker]以非人的力量[atk_verb]了[defender]，将其打得向后飞去！"),
+				span_userdanger("[attacker]以非人的力量[atk_verb]了你，将你打得向后飞去！"),
+				span_hear("你听到了令人作呕的肉体撞击声！"),
 				null,
 				attacker,
 			)
-			to_chat(attacker, span_danger("You [atk_verb] [defender] with such inhuman strength that it sends [defender.p_them()] flying backwards!"))
+			to_chat(attacker, span_danger("你以非人的力量[atk_verb]了[defender]，将其打得向后飞去！"))
 			defender.apply_damage(rand(15, 30), attacker.get_attack_type())
 			playsound(defender, 'sound/effects/meteorimpact.ogg', 25, TRUE, -1)
 			var/throwtarget = get_edge_target_turf(attacker, get_dir(attacker, get_step_away(defender, attacker)))

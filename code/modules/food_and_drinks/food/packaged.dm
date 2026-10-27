@@ -2,8 +2,8 @@
 
 // Cans
 /obj/item/food/canned
-	name = "canned air"
-	desc = "If you ever wondered where air came from..."
+	name = "罐装空气"
+	desc = "如果你曾好奇空气是从哪来的……"
 	food_reagents = list(
 		/datum/reagent/oxygen = 6,
 		/datum/reagent/nitrogen = 24,
@@ -20,7 +20,7 @@
 	return // It's in a can
 
 /obj/item/food/canned/proc/open_can(mob/user)
-	to_chat(user, span_notice("You pull back the tab of \the [src]."))
+	to_chat(user, span_notice("你拉开了[src]的拉环。"))
 	playsound(user.loc, 'sound/items/foodcanopen.ogg', 50)
 	reagents.flags |= OPENCONTAINER
 	preserved_food = FALSE
@@ -33,13 +33,13 @@
 
 /obj/item/food/canned/attack(mob/living/target, mob/user, def_zone)
 	if (!is_drainable())
-		to_chat(user, span_warning("[src]'s lid hasn't been opened!"))
+		to_chat(user, span_warning("[src]的盖子还没打开！"))
 		return FALSE
 	return ..()
 
 /obj/item/food/canned/beans
-	name = "tin of beans"
-	desc = "Musical fruit in a slightly less musical container."
+	name = "一罐豆子"
+	desc = "会唱歌的豆子，装在一个没那么会唱歌的容器里。"
 	icon_state = "beans"
 	trash_type = /obj/item/trash/can/food/beans
 	food_reagents = list(
@@ -52,8 +52,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/canned/peaches
-	name = "canned peaches"
-	desc = "Just a nice can of ripe peaches swimming in their own juices."
+	name = "罐装桃子"
+	desc = "一罐不错的熟桃子，泡在自己的汁水里。"
 	icon_state = "peachcan"
 	trash_type = /obj/item/trash/can/food/peaches
 	food_reagents = list(
@@ -65,16 +65,16 @@
 	foodtypes = FRUIT | SUGAR
 
 /obj/item/food/canned/peaches/maint
-	name = "maintenance peaches"
-	desc = "I have a mouth and I must eat."
+	name = "维修通道桃子"
+	desc = "我有一张嘴，我必须进食。"
 	icon_state = "peachcanmaint"
 	trash_type = /obj/item/trash/can/food/peaches/maint
 	tastes = list("peaches" = 1, "tin" = 7)
 	venue_value = FOOD_PRICE_EXOTIC
 
 /obj/item/food/canned/tomatoes
-	name = "canned San Marzano tomatoes"
-	desc = "A can of premium San Marzano tomatoes, from the hills of Southern Italy."
+	name = "罐装圣马扎诺番茄"
+	desc = "一罐优质圣马扎诺番茄，来自意大利南部的丘陵。"
 	icon_state = "tomatoescan"
 	trash_type = /obj/item/trash/can/food/tomatoes
 	food_reagents = list(
@@ -85,8 +85,8 @@
 	foodtypes = VEGETABLES //fuck you, real life!
 
 /obj/item/food/canned/pine_nuts
-	name = "canned pine nuts"
-	desc = "A small can of pine nuts. Can be eaten on their own, if you're into that."
+	name = "罐装松子"
+	desc = "一小罐松子。如果你喜欢，也可以直接吃。"
 	icon_state = "pinenutscan"
 	trash_type = /obj/item/trash/can/food/pine_nuts
 	food_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3)
@@ -95,8 +95,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/food/canned/envirochow
-	name = "dog eat dog envirochow"
-	desc = "The first pet food product that is made fully sustainable by employing ancient British animal husbandry techniques."
+	name = "狗咬狗环保粮"
+	desc = "首款完全可持续的宠物食品，采用古老的英国畜牧技术制成。"
 	icon_state = "envirochow"
 	trash_type = /obj/item/trash/can/food/envirochow
 	food_reagents = list(
@@ -142,16 +142,16 @@
 /obj/item/food/canned/envirochow/proc/apply_buff(mob/living/simple_animal/hungry_pet, mob/living/dog_mom)
 	hungry_pet.apply_status_effect(/datum/status_effect/limited_buff/health_buff) //the status effect keeps track of the stacks
 	hungry_pet.visible_message(
-		span_notice("[hungry_pet] chows down on [src]."),
-		span_nicegreen("You chow down on [src]."),
-		span_notice("You hear sloppy eating noises."))
+		span_notice("[hungry_pet]大口吃起了[src]。"),
+		span_nicegreen("你大口吃起了[src]。"),
+		span_notice("你听到吧唧吧唧的进食声。"))
 	SEND_SIGNAL(src, COMSIG_FOOD_CONSUMED, hungry_pet, dog_mom ? dog_mom : hungry_pet) //If there is no dog mom, we assume the pet fed itself.
 	playsound(loc, 'sound/items/eatfood.ogg', rand(30, 50), TRUE)
 	qdel(src)
 
 /obj/item/food/canned/squid_ink
-	name = "canned squid ink"
-	desc = "An odd ingredient in typical cooking, squid ink lends a taste of the sea to any dish- while also dyeing it jet black in the process."
+	name = "罐装鱿鱼墨"
+	desc = "在寻常烹饪中算是古怪的食材，鱿鱼墨能为任何菜肴增添海的味道——同时在这个过程中把它染成乌黑。"
 	icon_state = "squidinkcan"
 	trash_type = /obj/item/trash/can/food/squid_ink
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/salt = 5)
@@ -172,12 +172,12 @@
 	if(can_splat_on)
 		victim.adjust_temp_blindness_up_to(2.5 SECONDS, 3 SECONDS)
 		victim.adjust_confusion_up_to(2.5 SECONDS, 3 SECONDS)
-	victim.visible_message(span_warning("[victim] is inked by [src]!"), span_userdanger("You've been inked by [src]!"))
+	victim.visible_message(span_warning("[victim]被[src]喷了一身墨！"), span_userdanger("你被[src]喷了一身墨！"))
 	playsound(victim, SFX_DESECRATION, 50, TRUE)
 
 /obj/item/food/canned/chap
-	name = "can of CHAP"
-	desc = "CHAP: Chopped Ham And Pork. The classic American canned meat product that won a world war, then sent millions of servicemen home with heart congestion."
+	name = "一罐 CHAP"
+	desc = "CHAP：碎火腿与猪肉。这款经典的美国罐装肉制品赢得了一场世界大战，然后把数百万军人送回家时附赠了心脏淤塞。"
 	icon_state = "chapcan"
 	trash_type = /obj/item/trash/can/food/chap
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/salt = 5)
@@ -185,11 +185,11 @@
 	foodtypes = MEAT
 
 /obj/item/food/canned/chap/make_processable()
-	AddElement(/datum/element/processable, TOOL_KNIFE,  /obj/item/food/chapslice, 5, 3 SECONDS, table_required = TRUE, screentip_verb = "Cut")
+	AddElement(/datum/element/processable, TOOL_KNIFE,  /obj/item/food/chapslice, 5, 3 SECONDS, table_required = TRUE, screentip_verb = "切开")
 
 /obj/item/food/chapslice
-	name = "slice of chap"
-	desc = "A thin slice of chap. Useful for frying, or making sandwiches."
+	name = "一片 CHAP"
+	desc = "一片薄薄的 CHAP。适合煎炸或做三明治。"
 	icon = 'icons/obj/food/martian.dmi'
 	icon_state = "chapslice"
 	food_reagents = list(
@@ -203,8 +203,8 @@
 	AddComponent(/datum/component/grillable, /obj/item/food/grilled_chapslice, rand(20 SECONDS, 40 SECONDS), TRUE, TRUE)
 
 /obj/item/food/grilled_chapslice
-	name = "grilled slice of chap"
-	desc = "A greasy hot slice of chap. Forms a good part of a balanced meal."
+	name = "烤 CHAP 片"
+	desc = "一片油腻滚烫的 CHAP。是均衡饮食的重要组成部分。"
 	icon = 'icons/obj/food/martian.dmi'
 	icon_state = "chapslice_grilled"
 	food_reagents = list(
@@ -216,8 +216,8 @@
 
 // DONK DINNER: THE INNOVATIVE WAY TO GET YOUR DAILY RECOMMENDED ALLOWANCE OF SALT... AND THEN SOME!
 /obj/item/food/ready_donk
-	name = "\improper Ready-Donk: Bachelor Chow"
-	desc = "A quick Donk-dinner: now with flavour!"
+	name = "\improper 咚克即食餐：单身汉餐"
+	desc = "一份快捷的咚克晚餐：现在有味道了！"
 	icon_state = "ready_donk_bachelor"
 	trash_type = /obj/item/trash/ready_donk
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
@@ -240,15 +240,15 @@
 
 /obj/item/food/ready_donk/examine_more(mob/user)
 	. = ..()
-	. += span_notice("<i>You browse the back of the box...</i>")
-	. += "\t[span_info("Ready-Donk: a product of Donk Co.")]"
-	. += "\t[span_info("Heating instructions: open box and pierce film, heat in microwave on high for 2 minutes. Allow to stand for 60 seconds prior to eating. Product will be hot.")]"
-	. += "\t[span_info("Per 200g serving contains: 8g Sodium; 25g Fat, of which 22g are saturated; 2g Sugar.")]"
+	. += span_notice("<i>你浏览着包装盒背面……</i>")
+	. += "\t[span_info("咚克即食餐：咚克公司产品。")]"
+	. += "\t[span_info("加热说明：打开包装盒并刺破封膜，放入微波炉高火加热 2 分钟。食用前静置 60 秒。产品会很烫。")]"
+	. += "\t[span_info("每 200 克含：钠 8 克；脂肪 25 克，其中饱和脂肪 22 克；糖 2 克。")]"
 	return .
 
 /obj/item/food/ready_donk/warm
-	name = "warm Ready-Donk: Bachelor Chow"
-	desc = "A quick Donk-dinner, now with flavour! And it's even hot!"
+	name = "温热的咚克即食餐：单身汉餐"
+	desc = "一份快捷的咚克晚餐，现在有味道了！而且还是热的！"
 	icon_state = "ready_donk_bachelor_warm"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 5,
@@ -260,8 +260,8 @@
 	warm_type = /obj/item/food/badrecipe
 
 /obj/item/food/ready_donk/mac_n_cheese
-	name = "\improper Ready-Donk: Donk-a-Roni"
-	desc = "Neon-orange mac n' cheese in seconds!"
+	name = "\improper 咚克即食餐：咚克意面"
+	desc = "几秒钟就能吃到的霓虹橙色芝士通心粉！"
 	icon_state = "ready_donk_mac"
 	tastes = list("cheesy pasta" = 2, "laziness" = 1)
 	foodtypes = GRAIN | DAIRY | JUNKFOOD
@@ -269,15 +269,15 @@
 	warm_type = /obj/item/food/ready_donk/warm/mac_n_cheese
 
 /obj/item/food/ready_donk/warm/mac_n_cheese
-	name = "warm Ready-Donk: Donk-a-Roni"
-	desc = "Neon-orange mac n' cheese, ready to eat!"
+	name = "温热的咚克即食餐：咚克意面"
+	desc = "霓虹橙色芝士通心粉，即开即食！"
 	icon_state = "ready_donk_mac_warm"
 	tastes = list("cheesy pasta" = 2, "laziness" = 1)
 	foodtypes = GRAIN | DAIRY | JUNKFOOD
 
 /obj/item/food/ready_donk/donkhiladas
-	name = "\improper Ready-Donk: Donkhiladas"
-	desc = "Donk Co's signature Donkhiladas with Donk sauce, for an 'authentic' taste of Mexico."
+	name = "\improper 咚克即食餐：咚克玉米卷饼"
+	desc = "咚克公司的招牌咚克玉米卷饼，配咚克酱，带来“正宗”的墨西哥风味。"
 	icon_state = "ready_donk_mex"
 	tastes = list("enchiladas" = 2, "laziness" = 1)
 	foodtypes = GRAIN | DAIRY | MEAT | VEGETABLES | JUNKFOOD
@@ -285,15 +285,15 @@
 	warm_type = /obj/item/food/ready_donk/warm/donkhiladas
 
 /obj/item/food/ready_donk/warm/donkhiladas
-	name = "warm Ready-Donk: Donkhiladas"
-	desc = "Donk Co's signature Donkhiladas with Donk sauce, served as hot as the Mexican sun."
+	name = "温热的咚克即食餐：咚克玉米卷饼"
+	desc = "咚克公司的招牌咚克玉米卷饼，配咚克酱，热得像墨西哥的太阳。"
 	icon_state = "ready_donk_mex_warm"
 	tastes = list("enchiladas" = 2, "laziness" = 1)
 	foodtypes = GRAIN | DAIRY | MEAT | VEGETABLES | JUNKFOOD
 
 /obj/item/food/ready_donk/nachos_grandes //which translates to... big nachos
-	name = "\improper Ready-Donk: Donk Sol Series Boritos Nachos Grandes"
-	desc = "Get ready for game day with Donk's classic Nachos Grandes, sponsors of the Donk Sol Series! Boritos chips loaded with cheese, spicy meat and beans, alongside separate guac, pico and donk sauce. Batter up!"
+	name = "\improper 咚克即食餐：咚克太阳系列博里托斯玉米片（大份）"
+	desc = "用咚克经典的玉米片大份装为比赛日做好准备，它可是咚克太阳系列赛的赞助商！博里托斯玉米片堆满芝士、香辣肉和豆子，另附鳄梨酱、皮科酱和咚克酱。准备开球！"
 	icon_state = "ready_donk_nachos"
 	tastes = list("nachos" = 2, "laziness" = 1)
 	foodtypes = GRAIN | DAIRY | MEAT | VEGETABLES | JUNKFOOD
@@ -301,15 +301,15 @@
 	warm_type = /obj/item/food/ready_donk/warm/nachos_grandes
 
 /obj/item/food/ready_donk/warm/nachos_grandes
-	name = "warm Ready-Donk: Donk Sol Series Boritos Nachos Grandes"
-	desc = "Get ready for game day with Donk's classic Nachos Grandes, sponsors of the Donk Sol Series! Boritos chips loaded with cheese, spicy meat and beans, alongside separate guac, pico and donk sauce. Served hotter than Sakamoto's fastball!"
+	name = "温热的咚克即食餐：咚克太阳系列博里托斯玉米片（大份）"
+	desc = "用咚克经典的玉米片大份装为比赛日做好准备，它可是咚克太阳系列赛的赞助商！博里托斯玉米片堆满芝士、香辣肉和豆子，另附鳄梨酱、皮科酱和咚克酱。上桌时比坂本的快球还烫！"
 	icon_state = "ready_donk_nachos_warm"
 	tastes = list("nachos" = 2, "laziness" = 1)
 	foodtypes = GRAIN | DAIRY | MEAT | VEGETABLES | JUNKFOOD
 
 /obj/item/food/ready_donk/donkrange_chicken
-	name = "\improper Ready-Donk: Donk-range Chicken"
-	desc = "A Chinese classic, it's Donk's original spicy orange chicken with stir-fried peppers and onions, all over steamed rice."
+	name = "\improper 咚克即食餐：咚克散养鸡"
+	desc = "一道中式经典，咚克原味香辣橙汁鸡，配爆炒辣椒与洋葱，浇在蒸米饭上。"
 	icon_state = "ready_donk_orange"
 	tastes = list("orange chicken" = 2, "laziness" = 1)
 	foodtypes = GRAIN | MEAT | VEGETABLES | JUNKFOOD
@@ -317,15 +317,15 @@
 	warm_type = /obj/item/food/ready_donk/warm/donkrange_chicken
 
 /obj/item/food/ready_donk/warm/donkrange_chicken
-	name = "warm Ready-Donk: Donk-range Chicken"
-	desc = "A Chinese classic, it's Donk's original spicy orange chicken with stir-fried peppers and onions, all over steamed rice and served hotter than a dragon's breath."
+	name = "温热的咚克即食餐：咚克散养鸡"
+	desc = "一道中式经典，咚克原味香辣橙汁鸡，配爆炒辣椒与洋葱，浇在蒸米饭上，上桌时比龙的吐息还烫。"
 	icon_state = "ready_donk_orange_warm"
 	tastes = list("orange chicken" = 2, "laziness" = 1)
 	foodtypes = GRAIN | MEAT | VEGETABLES | JUNKFOOD
 
 /obj/item/food/ready_donk/salisbury_steak
-	name = "\improper Ready-Donk Donkriginals: Salisbury Steak"
-	desc = "The original and best: it's a slab of moulded beef, drenched in brown gravy, with a side of mashed potatoes. Better find a TV to eat this in front of."
+	name = "\improper 咚克即食餐咚克原味系列：索尔兹伯里牛排"
+	desc = "原版之最：一大块压制成型的牛肉，浇满棕色肉汁，配一份土豆泥。最好找台电视边看边吃。"
 	icon_state = "ready_donk_salisbury"
 	tastes = list("salisbury steak" = 2, "laziness" = 1)
 	foodtypes = MEAT | VEGETABLES | JUNKFOOD
@@ -333,15 +333,15 @@
 	warm_type = /obj/item/food/ready_donk/warm/salisbury_steak
 
 /obj/item/food/ready_donk/warm/salisbury_steak
-	name = "warm Ready-Donk Donkriginals: Salisbury Steak"
-	desc = "The original and best: it's a slab of moulded beef, drenched in brown gravy, with a side of mashed potatoes. It's almost as hot as a season finale."
+	name = "温热的咚克即食餐咚克原味系列：索尔兹伯里牛排"
+	desc = "原版之最：一大块压制成型的牛肉，浇满棕色肉汁，配一份土豆泥。它几乎和季终集一样火热。"
 	icon_state = "ready_donk_salisbury_warm"
 	tastes = list("salisbury steak" = 2, "laziness" = 1)
 	foodtypes = MEAT | VEGETABLES | JUNKFOOD
 
 /obj/item/food/ready_donk/country_chicken
-	name = "\improper Ready-Donk Donkriginals: Country-Fried Chicken"
-	desc = "A TV dinner classic: \"crispy\" fried chicken in country gravy, mashed potatoes, and green beans."
+	name = "\improper 咚克即食餐咚克原味系列：乡村炸鸡"
+	desc = "电视晚餐经典之作：“酥脆”炸鸡配乡村肉汁、土豆泥和青豆。"
 	icon_state = "ready_donk_chicken"
 	tastes = list("country-fried chicken" = 2, "laziness" = 1)
 	foodtypes = MEAT | DAIRY | VEGETABLES | JUNKFOOD
@@ -349,16 +349,16 @@
 	warm_type = /obj/item/food/ready_donk/warm/country_chicken
 
 /obj/item/food/ready_donk/warm/country_chicken
-	name = "warm Ready-Donk Donkriginals: Country-Fried Chicken"
-	desc = "A TV dinner classic: \"crispy\" fried chicken in country gravy, mashed potatoes, and green beans. Get it while it's hot!"
+	name = "温热的咚克即食餐咚克原味系列：乡村炸鸡"
+	desc = "电视晚餐经典之作：“酥脆”炸鸡配乡村肉汁、土豆泥和青豆。趁热吃！"
 	icon_state = "ready_donk_chicken_warm"
 	tastes = list("country-fried chicken" = 2, "laziness" = 1)
 	foodtypes = MEAT | DAIRY | VEGETABLES | JUNKFOOD
 
 // Rations
 /obj/item/food/rationpack
-	name = "ration pack"
-	desc = "A square bar that sadly <i>looks</i> like chocolate, packaged in a nondescript grey wrapper. Has saved soldiers' lives before - usually by stopping bullets."
+	name = "口粮包"
+	desc = "一块方形棒状物，可惜<i>看起来</i>像巧克力，装在毫无特色的灰色包装里。它曾救过士兵的命——通常是靠挡子弹。"
 	icon_state = "rationpack"
 	bite_consumption = 3
 	junkiness = 15

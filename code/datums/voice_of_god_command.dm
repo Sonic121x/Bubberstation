@@ -46,7 +46,7 @@ GLOBAL_LIST_INIT(voice_of_god_commands, init_voice_of_god_commands())
 	for(var/mob/living/candidate in candidates)
 		if(candidate.stat != DEAD && !HAS_TRAIT(candidate, TRAIT_DEAF))
 			if(candidate.can_block_magic(MAGIC_RESISTANCE_HOLY|MAGIC_RESISTANCE_MIND, charge_cost = 0))
-				to_chat(user, span_userdanger("Something's wrong! [candidate] seems to be resisting your commands."))
+				to_chat(user, span_userdanger("不对劲！[candidate]似乎在抵抗你的命令。"))
 				continue
 
 			listeners += candidate
@@ -91,7 +91,7 @@ GLOBAL_LIST_INIT(voice_of_god_commands, init_voice_of_god_commands())
 			break
 
 	if(!forced)
-		message_admins("[ADMIN_LOOKUPFLW(user)] said '[log_message]' with Voice of God, affecting [english_list(listeners)], with a power multiplier of [power_multiplier].")
+		message_admins("[ADMIN_LOOKUPFLW(user)]用神之声说了“[log_message]”，影响了[english_list(listeners)]，威力倍率为[power_multiplier]。")
 	user.log_message("said '[log_message]' with Voice of God[forced ? " forced by [forced]" : ""], affecting [english_list(listeners)], with a power multiplier of [power_multiplier].", LOG_GAME, color="red")
 	SSblackbox.record_feedback("tally", "voice_of_god", 1, log_message)
 
@@ -301,7 +301,7 @@ GLOBAL_LIST_INIT(voice_of_god_commands, init_voice_of_god_commands())
 		var/to_say = user.name
 		// 0.1% chance to be a smartass
 		if(findtext(LOWER_TEXT(message), smartass_regex) && prob(0.1))
-			to_say = "My name"
+			to_say = "我的名字"
 		addtimer(CALLBACK(target, TYPE_PROC_REF(/atom/movable, say), to_say), 0.5 SECONDS * iteration)
 		iteration++
 
@@ -312,7 +312,7 @@ GLOBAL_LIST_INIT(voice_of_god_commands, init_voice_of_god_commands())
 /datum/voice_of_god_command/knock_knock/execute(list/listeners, mob/living/user, power_multiplier = 1, message)
 	var/iteration = 1
 	for(var/mob/living/target as anything in listeners)
-		addtimer(CALLBACK(target, TYPE_PROC_REF(/atom/movable, say), "Who's there?"), 0.5 SECONDS * iteration)
+		addtimer(CALLBACK(target, TYPE_PROC_REF(/atom/movable, say), "谁在那儿？"), 0.5 SECONDS * iteration)
 		iteration++
 
 /// This command forces silicon listeners to state all their laws.
@@ -423,7 +423,7 @@ GLOBAL_LIST_INIT(voice_of_god_commands, init_voice_of_god_commands())
 	var/iteration = 1
 	for(var/mob/living/target as anything in listeners)
 		if(prob(25))
-			addtimer(CALLBACK(target, TYPE_PROC_REF(/atom/movable, say), "HOW HIGH?!!"), 0.5 SECONDS * iteration)
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/atom/movable, say), "跳多高？！！"), 0.5 SECONDS * iteration)
 		else
 			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/, emote), "jump"), 0.5 SECONDS * iteration)
 		iteration++

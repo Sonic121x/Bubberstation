@@ -1,6 +1,6 @@
 /obj/machinery/door/window
-	name = "interior door"
-	desc = "A strong door."
+	name = "室内门"
+	desc = "一扇坚固的门。"
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "left"
 	layer = ABOVE_WINDOW_LAYER
@@ -387,21 +387,21 @@
 /obj/machinery/door/window/examine(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
-		. += span_warning("Its access panel is smoking slightly.")
+		. += span_warning("它的维护面板正冒着缕缕烟雾。")
 	if(!density)
 		if(panel_open)
-			. += span_notice("The [span_boldnotice("airlock electronics")] could be [span_boldnotice("levered")] out.")
+			. += span_notice("可以[span_boldnotice("撬出")][span_boldnotice("气闸电子组件")]。")
 
 
 /obj/machinery/door/window/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(density || operating)
-		to_chat(user, span_warning("You need to open the door to access the maintenance panel!"))
+		to_chat(user, span_warning("你需要先开门才能接触维护面板！"))
 		return ITEM_INTERACT_BLOCKING
 	add_fingerprint(user)
 	tool.play_tool_sound(src)
 	toggle_panel_open()
-	to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance panel."))
+	to_chat(user, span_notice("你[panel_open ? "打开" : "关闭"]了维护面板。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/door/window/crowbar_act(mob/living/user, obj/item/tool)
@@ -409,8 +409,8 @@
 	if(!panel_open || density || operating)
 		return ITEM_INTERACT_BLOCKING
 	add_fingerprint(user)
-	user.visible_message(span_notice("[user] removes the electronics from \the [src]."), \
-	span_notice("You start to remove electronics from \the [src]..."))
+	user.visible_message(span_notice("[user]从[src]拆除电子组件。"), \
+	span_notice("你开始从[src]拆除电子组件……"))
 	if(!tool.use_tool(src, user, 40, volume=50))
 		return ITEM_INTERACT_BLOCKING
 	if(!panel_open || density || operating || !loc)
@@ -433,10 +433,10 @@
 	windoor_assembly.update_appearance()
 	windoor_assembly.created_name = name
 	if(obj_flags & EMAGGED)
-		to_chat(user, span_warning("You discard the damaged electronics."))
+		to_chat(user, span_warning("你丢弃了损坏的电子组件。"))
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
-	to_chat(user, span_notice("You remove the airlock electronics."))
+	to_chat(user, span_notice("你拆除了气闸电子组件。"))
 	var/obj/item/electronics/airlock/dropped_electronics
 	if(!electronics)
 		dropped_electronics = new/obj/item/electronics/airlock(drop_location())
@@ -470,7 +470,7 @@
 		var/obj/item/crowbar/power/power_tool = I
 		if(power_tool.limit_jaws_access && forced)
 			playsound(src.loc, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-			user.balloon_alert(user, "cannot pry open!")
+			user.balloon_alert(user, "无法撬开！")
 			return
 
 	if(!hasPower() || forced)
@@ -479,7 +479,7 @@
 		else
 			close(BYPASS_DOOR_CHECKS)
 	else
-		to_chat(user, span_warning("The door's motors resist your efforts to force it!"))
+		to_chat(user, span_warning("门的电机抵抗着你强行开门的动作！"))
 
 /obj/machinery/door/window/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.mode)
@@ -494,7 +494,7 @@
 	return FALSE
 
 /obj/machinery/door/window/brigdoor
-	name = "secure door"
+	name = "安全门"
 	icon_state = "leftsecure"
 	base_state = "leftsecure"
 	var/id = null
@@ -503,12 +503,12 @@
 	explosion_block = 1
 
 /obj/machinery/door/window/brigdoor/security/cell
-	name = "cell door"
-	desc = "For keeping in criminal scum."
+	name = "牢房门"
+	desc = "用于关住罪犯败类。"
 	req_access = list(ACCESS_BRIG)
 
 /obj/machinery/door/window/brigdoor/security/holding
-	name = "holding cell door"
+	name = "拘留室门"
 	req_one_access = list(ACCESS_SECURITY)
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/left, 0)
@@ -540,8 +540,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/brigdoor/security/holding
 	base_state = "rightsecure"
 
 /obj/machinery/door/window/brigdoor/security/holodeck
-	name = "cell door"
-	desc = "For keeping in criminal scum."
+	name = "牢房门"
+	desc = "用于关住罪犯败类。"
 	req_one_access = COMMON_ACCESS
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/brigdoor/security/holodeck/left, 0)

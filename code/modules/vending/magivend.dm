@@ -1,11 +1,11 @@
 /obj/machinery/vending/magivend
-	name = "\improper MagiVend"
-	desc = "A magic vending machine."
+	name = "\improper 魔法售货机"
+	desc = "一台魔法售货机。"
 	icon_state = "MagiVend"
 	panel_type = "panel10"
-	product_slogans = "Sling spells the proper way with MagiVend!;Be your own Houdini! Use MagiVend!"
-	vend_reply = "Have an enchanted evening!"
-	product_ads = "FJKLFJSD;AJKFLBJAKL;1234 LOONIES LOL!;>MFW;Kill them fuckers!;GET DAT FUKKEN DISK;HONK!;EI NATH;Destroy the station!;Admin conspiracies since forever!;Space-time bending hardware!"
+	product_slogans = "用魔法售货机，以正确的方式施法！;做你自己的霍迪尼！就用魔法售货机！"
+	vend_reply = "祝你度过一个迷人的夜晚！"
+	product_ads = "FJKLFJSD;AJKFLBJAKL;1234 一群疯子 哈哈！;>MFW;杀了那些混蛋！;拿到那该死的磁盘;洪克！;EI NATH;摧毁空间站！;自古以来就有管理员阴谋！;扭曲时空的硬件！"
 	products = list(
 		/obj/item/clothing/head/wizard = 1,
 		/obj/item/clothing/suit/wizrobe = 1,
@@ -36,5 +36,5 @@
 	acid = 50
 
 /obj/item/vending_refill/magivend
-	machine_name = "MagiVend"
+	machine_name = "魔法售货机"
 	icon_state = "refill_magivend"

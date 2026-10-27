@@ -1,6 +1,6 @@
 /mob/living/basic/bot/secbot/honkbot
-	name = "\improper Honkbot"
-	desc = "A little robot. It looks happy with its bike horn."
+	name = "\improper 洪克机器人"
+	desc = "一台小机器人。它拿着自行车喇叭，看起来很开心。"
 	icon_state = "honkbot"
 	base_icon_state = "honkbot"
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, STAMINA = 0, OXY = 0)
@@ -11,11 +11,11 @@
 	radio_channel = RADIO_CHANNEL_SERVICE
 	bot_type = HONK_BOT
 	bot_mode_flags = BOT_MODE_ON | BOT_MODE_REMOTE_ENABLED | BOT_MODE_CAN_BE_SAPIENT | BOT_MODE_AUTOPATROL | BOT_MODE_ROUNDSTART_POSSESSION
-	hackables = "sound control systems"
+	hackables = "声音控制系统"
 	path_image_color = "#FF69B4"
 	data_hud_type = TRAIT_SECURITY_HUD_ID_ONLY
 	additional_access = /datum/id_trim/job/clown
-	possessed_message = "You are a honkbot! Make sure the crew are having a great time!"
+	possessed_message = "你是一台洪克机器人！确保船员们都玩得开心！"
 	security_mode_flags = parent_type::security_mode_flags | HONKBOT_MODE_SLIP
 	///our voicelines
 	var/static/list/honkbot_sounds = list(
@@ -70,11 +70,11 @@
 	icon_state = bot_access_flags & BOT_COVER_EMAGGED ? "[base_icon_state]-e" : "[base_icon_state]-c"
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_appearance)), 3 SECONDS, TIMER_OVERRIDE|TIMER_UNIQUE)
 
-	audible_message(span_danger("[src] gives out an evil laugh!"))
+	audible_message(span_danger("[src] 发出邪恶的笑声！"))
 	playsound(src, 'sound/mobs/non-humanoids/honkbot/honkbot_evil_laugh.ogg', 75, TRUE, -1) // evil laughter
 
 /mob/living/basic/bot/secbot/honkbot/retrieve_emag_message()
-	audible_message(span_danger("[src] gives out an evil laugh!"))
+	audible_message(span_danger("[src] 发出邪恶的笑声！"))
 	playsound(src, 'sound/mobs/non-humanoids/honkbot/honkbot_evil_laugh.ogg', 75, TRUE, -1) // evil laughter
 
 /mob/living/basic/bot/secbot/honkbot/post_stun(mob/living/carbon/current_target)

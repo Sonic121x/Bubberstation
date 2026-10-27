@@ -43,7 +43,7 @@
 	// BUBBER EDIT END: pAI self Wipe
 	// Software related ui actions
 	if(available_software[action] && !installed_software.Find(action))
-		balloon_alert(ui.user, "software unavailable!")
+		balloon_alert(ui.user, "软件不可用！")
 		return FALSE
 	switch(action)
 		if("Atmospheric Sensor")
@@ -63,7 +63,7 @@
 			door_jack(params["mode"])
 			return TRUE
 		if("Encryption Slot")
-			balloon_alert(usr, "radio frequencies [!encrypt_mod ? "enabled" : "disabled"]")
+			balloon_alert(usr, "无线电频率已[!encrypt_mod ? "启用" : "禁用"]")
 			encrypt_mod = !encrypt_mod
 			radio.subspace_transmission = !radio.subspace_transmission
 			return TRUE
@@ -162,22 +162,22 @@
  */
 /mob/living/silicon/pai/proc/check_dna()
 	if(emagged) // Their master DNA signature is scrambled anyway
-		to_chat(src, span_syndradio("You are not at liberty to do this! All agents are clandestine."))
+		to_chat(src, span_syndradio("你无权这么做！所有特工都是秘密行动的。"))
 		return FALSE
 	var/mob/living/carbon/holder = get_holder()
 	if(!isnull(holder))
-		balloon_alert(src, "not being carried")
+		balloon_alert(src, "未被携带")
 		return FALSE
-	balloon_alert(src, "requesting dna sample")
-	if(tgui_alert(holder, "[src] is requesting a DNA sample from you. Will you allow it to confirm your identity?", "Checking DNA", list("Yes", "No")) != "Yes")
-		balloon_alert(src, "dna sample refused!")
+	balloon_alert(src, "正在请求 DNA 样本")
+	if(tgui_alert(holder, "[src] 正在请求你提供一份 DNA 样本。是否允许其确认你的身份？", "DNA 校验", list("是", "否")) != "是")
+		balloon_alert(src, "DNA 样本已被拒绝！")
 		return FALSE
-	holder.visible_message(span_notice("[holder] presses [holder.p_their()] thumb against [src]."), span_notice("You press your thumb against [src]."), span_notice("[src] makes a sharp clicking sound as it extracts DNA material from [holder]."))
+	holder.visible_message(span_notice("[holder] 将拇指按在 [src] 上。"), span_notice("你将拇指按在 [src] 上。"), span_notice("[src] 在从 [holder] 身上提取 DNA 材料时发出一声尖锐的咔嗒声。"))
 	if(!holder.has_dna())
-		balloon_alert(src, "no dna detected!")
+		balloon_alert(src, "未检测到 DNA！")
 		return FALSE
-	to_chat(src, span_bolddanger(("[holder]'s UE string: [holder.dna.unique_enzymes]")))
-	to_chat(src, span_notice("DNA [holder.dna.unique_enzymes == master_dna ? "matches" : "does not match"] our stored Master's DNA."))
+	to_chat(src, span_bolddanger(("[holder] 的 UE 串：[holder.dna.unique_enzymes]")))
+	to_chat(src, span_notice("DNA [holder.dna.unique_enzymes == master_dna ? "符合" : "不符合"]我们存储的主人 DNA。"))
 	return TRUE
 
 /**
@@ -205,7 +205,7 @@
 		if(PAI_SCAN_TARGET)
 			var/mob/living/carbon/target = get_holder()
 			if(isnull(target))
-				balloon_alert(src, "not being carried!")
+				balloon_alert(src, "未被携带！")
 				return FALSE
 			healthscan(src, target)
 			return TRUE
@@ -213,10 +213,10 @@
 		if(PAI_SCAN_MASTER)
 			var/mob/living/resolved_master = find_master()
 			if(isnull(resolved_master))
-				balloon_alert(src, "no master detected!")
+				balloon_alert(src, "未检测到主人！")
 				return FALSE
 			if(!is_valid_z_level(get_turf(src), get_turf(resolved_master)))
-				balloon_alert(src, "master out of range!")
+				balloon_alert(src, "主人超出范围！")
 				return FALSE
 			healthscan(src, resolved_master)
 			return TRUE

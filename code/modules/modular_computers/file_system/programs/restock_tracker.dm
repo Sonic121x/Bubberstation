@@ -1,9 +1,9 @@
 /datum/computer_file/program/restock_tracker
 	filename = "restockapp"
-	filedesc = "NT Restock Tracker"
+	filedesc = "纳米传讯补货追踪器"
 	downloader_category = PROGRAM_CATEGORY_SUPPLY
 	program_open_overlay = "restock"
-	extended_desc = "Nanotrasen IoT network listing all the vending machines found on station, and how well stocked they are each. Profitable!"
+	extended_desc = "纳米传讯物联网，列出站内所有自动售货机及其各自的存货充足程度。有利可图！"
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	can_run_on_flags = PROGRAM_ALL
 	size = 4

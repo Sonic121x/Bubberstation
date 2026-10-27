@@ -1,4 +1,4 @@
-ADMIN_VERB(cmd_admin_say, R_NONE, "ASay", "Send a message to other admins", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(cmd_admin_say, R_NONE, "ASay", "向其他管理员发送消息", ADMIN_CATEGORY_MAIN)
 	VERB_ARG(message, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	message = emoji_parse(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	if(!message)
@@ -34,5 +34,5 @@ ADMIN_VERB(cmd_admin_say, R_NONE, "ASay", "Send a message to other admins", ADMI
 	BLACKBOX_LOG_ADMIN_VERB("Asay")
 
 /client/proc/get_admin_say()
-	var/msg = input(src, null, "asay \"text\"") as text|null
+	var/msg = input(src, null, "管理员发言 \"文本\"") as text|null
 	SSadmin_verbs.dynamic_invoke_verb(src, /datum/admin_verb/cmd_admin_say, msg)

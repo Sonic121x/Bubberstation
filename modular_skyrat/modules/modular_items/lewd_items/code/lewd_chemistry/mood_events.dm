@@ -3,4 +3,4 @@
 	timeout = 5 MINUTES
 
 /datum/mood_event/minor_overdose/add_effects(drug_name)
-	description = "<span class='warning'>I think I took a bit too much [drug_name]...</span>\n"
+	description = "<span class='warning'>我想我 [drug_name] 摄入得有点过量了……</span>\n"

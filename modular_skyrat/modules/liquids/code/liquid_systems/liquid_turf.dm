@@ -342,18 +342,18 @@
 	if(mob_turf.turf_height - turf_height <= -TURF_HEIGHT_BLOCK_THRESHOLD)
 		//Climb up
 		if(user == dropped_mob)
-			user.balloon_alert_to_viewers("climbing...")
+			user.balloon_alert_to_viewers("攀爬中……")
 		else
-			dropped_mob.balloon_alert_to_viewers("being pulled up...")
+			dropped_mob.balloon_alert_to_viewers("正被拉上去……")
 		if(do_after(user, 2 SECONDS, dropped_mob))
 			dropped_mob.forceMove(src)
 		return
 	if(turf_height - mob_turf.turf_height <= -TURF_HEIGHT_BLOCK_THRESHOLD)
 		//Climb down
 		if(user == dropped_mob)
-			user.balloon_alert_to_viewers("climbing down...")
+			user.balloon_alert_to_viewers("向下攀爬中……")
 		else
-			dropped_mob.balloon_alert_to_viewers("being lowered...")
+			dropped_mob.balloon_alert_to_viewers("正被放下去……")
 		if(do_after(user, 2 SECONDS, dropped_mob))
 			dropped_mob.forceMove(src)
 		return

@@ -4,8 +4,8 @@
  * Replace any instance of a word/letter in a string with another
  */
 /obj/item/circuit_component/compare/contains/replace
-	display_name = "String Replace"
-	desc = "Replace any instance of a word/letter in a string with another"
+	display_name = "字符串替换"
+	desc = "把字符串中出现的某个词或字母替换为另一个词或字母。"
 
 	var/datum/port/input/replacement
 

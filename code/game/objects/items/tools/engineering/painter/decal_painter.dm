@@ -1,7 +1,7 @@
 /obj/item/airlock_painter/decal
-	name = "decal painter"
-	desc = "An airlock painter, reprogrammed to use a different style of paint in order to apply decals for floor tiles as well, in addition to repainting doors. Decals break when the floor tiles are removed."
-	desc_controls = "Alt-Click to remove the ink cartridge."
+	name = "贴花喷漆器"
+	desc = "一台气闸喷漆器，经过重新编程后使用不同风格的油漆，除了能重新粉刷门之外，还能在地砖上喷涂贴花。当地砖被移除时，贴花会随之消失。"
+	desc_controls = "Alt 单击取出墨盒。"
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "decal_sprayer"
 	inhand_icon_state = "decal_sprayer"
@@ -138,7 +138,7 @@
 	selected_color = chosen_color
 
 /obj/item/airlock_painter/decal/debug
-	name = "extreme decal painter"
+	name = "超级贴花喷漆器"
 	icon_state = "decal_sprayer_ex"
 	initial_ink_type = /obj/item/toner/extreme
 
@@ -154,7 +154,7 @@
 	if(cyborg.cell && cyborg.cell.charge > 0)
 		cyborg.cell.use(0.025 * STANDARD_CELL_CHARGE)
 	else if(cyborg.cell.charge <= 0)
-		balloon_alert(user, "not enough energy!")
+		balloon_alert(user, "能量不足！")
 		return
 
 /obj/item/airlock_painter/decal/cyborg/click_alt(mob/user)

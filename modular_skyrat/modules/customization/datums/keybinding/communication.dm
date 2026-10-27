@@ -1,7 +1,7 @@
 /datum/keybinding/client/communication/looc
 	hotkey_keys = list("L")
 	name = LOOC_CHANNEL
-	full_name = "Local OOC (LOOC)"
+	full_name = "本地 OOC（LOOC）"
 	keybind_signal = COMSIG_KB_CLIENT_LOOC_DOWN
 
 /datum/keybinding/client/communication/looc/down(client/user)
@@ -14,7 +14,7 @@
 /datum/keybinding/client/communication/whisper
 	hotkey_keys = list("Y")
 	name = WHIS_CHANNEL
-	full_name = "IC Whisper"
+	full_name = "IC 低语"
 	keybind_signal = COMSIG_KB_CLIENT_WHISPER_DOWN
 
 /datum/keybinding/client/communication/whisper/down(client/user)

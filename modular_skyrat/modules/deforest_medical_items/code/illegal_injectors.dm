@@ -1,8 +1,8 @@
 // Twitch, because having sandevistans be implants is for losers, just inject it!
 /obj/item/reagent_containers/hypospray/medipen/deforest/twitch
-	name = "TWitch sensory stimulant injector"
-	desc = "A Deforest branded autoinjector, loaded with 'TWitch' among other reagents. This drug is known to make \
-		those who take it 'see faster', whatever that means."
+	name = "颤栗感官兴奋剂自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，除其他试剂外还装有“颤栗”。这种药据称能让 \
+		服用者“看得更快”，谁知道那是什么意思。"
 	base_icon_state = "twitch"
 	icon_state = "twitch"
 	list_reagents = list(
@@ -15,9 +15,9 @@
 
 // Demoneye, for when you feel the need to become "fucking invincible"
 /obj/item/reagent_containers/hypospray/medipen/deforest/demoneye
-	name = "DemonEye steroid injector"
-	desc = "A Deforest branded autoinjector, loaded with 'DemonEye' among other reagents. This drug is known to make \
-		those who take it numb to all pains and extremely difficult to kill as a result."
+	name = "恶魔之眼类固醇自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，除其他试剂外还装有“恶魔之眼”。这种药据称能让 \
+		服用者对一切疼痛麻木，因此极难被杀死。"
 	base_icon_state = "demoneye"
 	icon_state = "demoneye"
 	list_reagents = list(
@@ -29,9 +29,9 @@
 
 // Mix of many of the stamina damage regenerating drugs to provide a cocktail no baton could hope to beat
 /obj/item/reagent_containers/hypospray/medipen/deforest/aranepaine
-	name = "aranepaine combat stimulant injector"
-	desc = "A Deforest branded autoinjector, loaded with a cocktail of drugs to make any who take it nearly \
-		immune to exhaustion while it's in their system."
+	name = "阿兰尼培因战斗兴奋剂自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，装有鸡尾酒式的混合药物，可让服用者在药效期间几乎 \
+		完全不会力竭。"
 	base_icon_state = "aranepaine"
 	icon_state = "aranepaine"
 	list_reagents = list(
@@ -45,9 +45,9 @@
 
 // Nothing inherently illegal, just a potentially very dangerous mix of chems to be able to inject into people
 /obj/item/reagent_containers/hypospray/medipen/deforest/pentibinin
-	name = "pentibinin normalizant injector"
-	desc = "A Deforest branded autoinjector, loaded with a cocktail of drugs to make any who take it \
-		recover from many different types of damages, with many unusual or undocumented side-effects."
+	name = "彭替比宁调节剂自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，装有鸡尾酒式的混合药物，可让服用者 \
+		从多种不同的损伤中恢复，但会带来许多异常或未记录的副作用。"
 	base_icon_state = "pentibinin"
 	icon_state = "pentibinin"
 	list_reagents = list(
@@ -61,9 +61,9 @@
 
 // Combat stimulant that makes you immune to slowdowns for a bit
 /obj/item/reagent_containers/hypospray/medipen/deforest/synalvipitol
-	name = "synalvipitol muscle stimulant injector"
-	desc = "A Deforest branded autoinjector, loaded with a cocktail of drugs to make any who take it \
-		nearly immune to the slowing effects of silly things like 'being tired' or 'facing muscle failure'."
+	name = "辛纳维匹托肌肉兴奋剂自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，装有鸡尾酒式的混合药物，可让服用者 \
+		几乎不受“感到疲惫”或“肌肉衰竭”这类蠢事所造成的减速影响。"
 	base_icon_state = "synalvipitol"
 	icon_state = "synalvipitol"
 	list_reagents = list(

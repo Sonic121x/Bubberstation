@@ -5,9 +5,9 @@
  */
 
 /turf/open/lava
-	name = "lava"
+	name = "熔岩"
 	icon_state = "lava"
-	desc = "Looks painful to step in. Don't mine down."
+	desc = "踩进去看起来会很痛。别往下挖。"
 	gender = PLURAL //"That's some lava."
 	baseturfs = /turf/open/lava //lava all the way down
 	slowdown = 2
@@ -212,14 +212,14 @@
 
 	if(istype(tool, /obj/item/stack/rods/lava))
 		if(locate(/obj/structure/lattice/catwalk/lava, src))
-			to_chat(user, span_warning("There is already a lattice here!"))
+			to_chat(user, span_warning("这里已经有一个格架了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!astype(tool, /obj/item/stack/rods/lava).use(1))
-			to_chat(user, span_warning("You need one rod to build a heatproof lattice."))
+			to_chat(user, span_warning("你需要一根杆才能搭建耐热格架。"))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You construct a lattice."))
+		to_chat(user, span_notice("你搭建了一个格架。"))
 		playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
 		new /obj/structure/lattice/catwalk/lava(locate(x, y, z))
 		return ITEM_INTERACT_SUCCESS
@@ -228,17 +228,17 @@
 	if(istype(tool, /obj/item/cigarette))
 		var/obj/item/cigarette/ciggie = tool
 		if(ciggie.lit)
-			to_chat(user, span_warning("\The [ciggie] is already lit!"))
+			to_chat(user, span_warning("[ciggie]已经点燃了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		var/clumsy_modifier = HAS_TRAIT(user, TRAIT_CLUMSY) ? 2 : 1
 		if(prob(25 * clumsy_modifier))
-			ciggie.light(span_warning("[user] expertly dips \the [ciggie.name] into [src], along with the rest of [user.p_their()] arm. What a dumbass."))
+			ciggie.light(span_warning("[user]娴熟地把[ciggie.name]连同自己整条手臂一起浸入了[src]。真是个蠢货。"))
 			var/mob/living/burned_guy = user
 			burned_guy.apply_damage(90, BURN, user.get_active_hand())
 			return ITEM_INTERACT_SUCCESS
 
-		ciggie.light(span_rose("[user] expertly dips \the [ciggie.name] into [src], lighting it with the scorching heat of the planet. Witnessing such a feat is almost enough to make you cry."))
+		ciggie.light(span_rose("[user]娴熟地把[ciggie.name]浸入[src]，借这颗星球灼热的温度将它点燃。能见证这样的壮举，几乎足以让人落泪。"))
 		return ITEM_INTERACT_SUCCESS
 
 /turf/open/lava/proc/is_safe()
@@ -367,7 +367,7 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/lava/smooth
-	name = "lava"
+	name = "熔岩"
 	baseturfs = /turf/open/lava/smooth
 	icon = 'icons/turf/floors/lava.dmi'
 	mask_icon = 'icons/turf/floors/lava_mask.dmi'
@@ -443,8 +443,8 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/lava/plasma
-	name = "liquid plasma"
-	desc = "A flowing stream of chilled liquid plasma. You probably shouldn't get in."
+	name = "液态等离子体"
+	desc = "一股流动的冷却液态等离子体。你大概不该跳进去。"
 	icon_state = "liquidplasma"
 	initial_gas_mix = BURNING_COLD
 	baseturfs = /turf/open/lava/plasma
@@ -516,16 +516,16 @@
 		burn_human.del_and_replace_bodypart(plasmalimb, special = TRUE)
 		burn_human.update_body_parts()
 		burn_human.emote("scream")
-		burn_human.visible_message(span_warning("[burn_human]'s [burn_limb.plaintext_zone] melts down to the bone!"), \
-			span_userdanger("You scream out in pain as your [burn_limb.plaintext_zone] melts down to the bone, held together only by strands of purple fungus!"))
+		burn_human.visible_message(span_warning("[burn_human]的[burn_limb.plaintext_zone]融化见骨！"), \
+			span_userdanger("你的[burn_limb.plaintext_zone]融化见骨，只靠几缕紫色菌丝勉强相连，你痛得尖叫起来！"))
 
 	// If all of your limbs are plasma then congrats: you are plasma man
 	if(length(immune_parts) || length(transform_parts))
 		return
 	burn_human.ignite_mob()
 	burn_human.set_species(/datum/species/plasmaman)
-	burn_human.visible_message(span_warning("[burn_human] bursts into flame as the last of [burn_human.p_their()] body is coated in fungus!"), \
-		span_userdanger("Your senses numb as what remains of your flesh sloughs off, revealing the plasma-encrusted bone beneath!"))
+	burn_human.visible_message(span_warning("[burn_human]身体的最后一寸被菌丝覆满，随即爆燃起来！"), \
+		span_userdanger("你残存的血肉剥落，露出覆满等离子体的骨骼，你的知觉随之麻木！"))
 
 //mafia specific tame happy plasma (normal atmos, no slowdown)
 /turf/open/lava/plasma/mafia

@@ -3,10 +3,10 @@
 #define BOOKCASE_FINISHED 2
 
 /obj/structure/bookcase
-	name = "bookcase"
+	name = "书架"
 	icon = 'icons/obj/service/library.dmi'
 	icon_state = "bookempty"
-	desc = "A great place for storing knowledge."
+	desc = "存放知识的好地方。"
 	anchored = FALSE
 	density = TRUE
 	opacity = FALSE
@@ -96,16 +96,16 @@
 /obj/structure/bookcase/examine(mob/user)
 	. = ..()
 	if(!anchored)
-		. += span_notice("The <i>bolts</i> on the bottom are unsecured.")
+		. += span_notice("底部的<i>螺栓</i>尚未固定。")
 	else
-		. += span_notice("It's secured in place with <b>bolts</b>.")
+		. += span_notice("它已用<b>螺栓</b>固定在地面上。")
 	switch(state)
 		if(BOOKCASE_UNANCHORED)
-			. += span_notice("There's a <b>small crack</b> visible on the back panel.")
+			. += span_notice("背板上有一道可见的<b>细小裂缝</b>。")
 		if(BOOKCASE_ANCHORED)
-			. += span_notice("There's space inside for a <i>wooden</i> shelf.")
+			. += span_notice("里面还留有安装<i>木质</i>搁板的空间。")
 		if(BOOKCASE_FINISHED)
-			. += span_notice("There's a <b>small crack</b> visible on the shelf.")
+			. += span_notice("搁板上有一道可见的<b>细小裂缝</b>。")
 
 /obj/structure/bookcase/set_anchored(anchorvalue)
 	. = ..()
@@ -126,11 +126,11 @@
 			return NONE
 		var/obj/item/stack/sheet/mineral/wood/planks = tool
 		if(planks.get_amount() < 2)
-			balloon_alert(user, "not enough wood")
+			balloon_alert(user, "木材不足")
 			return ITEM_INTERACT_BLOCKING
 
 		planks.use(2)
-		balloon_alert(user, "shelf added")
+		balloon_alert(user, "已加装搁板")
 		state = BOOKCASE_FINISHED
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
@@ -155,7 +155,7 @@
 		if (!found_anything)
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, "emptied into [src]")
+		balloon_alert(user, "已放入[src]")
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -167,17 +167,17 @@
 			if(!tool.use_tool(src, user, 2 SECONDS, volume = 50))
 				return ITEM_INTERACT_BLOCKING
 
-			user.balloon_alert(user, "pried apart")
+			user.balloon_alert(user, "已撬开")
 			deconstruct(TRUE)
 			return ITEM_INTERACT_SUCCESS
 
 		if(BOOKCASE_FINISHED)
 			if(length(contents))
-				balloon_alert(user, "remove the books first")
+				balloon_alert(user, "请先取出书本")
 				return ITEM_INTERACT_BLOCKING
 
 			tool.play_tool_sound(src, 100)
-			balloon_alert(user, "pried the shelf out")
+			balloon_alert(user, "已撬出搁板")
 			new /obj/item/stack/sheet/mineral/wood(drop_location(), 2)
 			state = BOOKCASE_ANCHORED
 			update_appearance()
@@ -191,13 +191,13 @@
 			if(!tool.use_tool(src, user, 2 SECONDS, volume = 50))
 				return ITEM_INTERACT_BLOCKING
 
-			balloon_alert(user, "wrenched in place")
+			balloon_alert(user, "已用扳手固定")
 			set_anchored(TRUE)
 			return ITEM_INTERACT_SUCCESS
 
 		if(BOOKCASE_ANCHORED)
 			tool.play_tool_sound(src, 100)
-			balloon_alert(user, "unwrenched the frame")
+			balloon_alert(user, "已拧松框架")
 			set_anchored(FALSE)
 			return ITEM_INTERACT_SUCCESS
 
@@ -211,7 +211,7 @@
 		return
 	if(!length(contents))
 		return
-	var/obj/item/book/choice = tgui_input_list(user, "Book to remove from the shelf", "Remove Book", sort_names(contents.Copy()))
+	var/obj/item/book/choice = tgui_input_list(user, "要从书架上取出哪本书", "取出书籍", sort_names(contents.Copy()))
 	if(isnull(choice))
 		return
 	if(!(user.mobility_flags & MOBILITY_USE) || IS_UNCONSCIOUS_OR_CRIT(user) || HAS_TRAIT(user, TRAIT_HANDS_BLOCKED) || !in_range(loc, user))
@@ -240,10 +240,10 @@
 	return ..()
 
 /obj/structure/bookcase/nameformat(input, user)
-	return "bookcase[input? " ([input])" : null]"
+	return "书架[input? "（[input]）" : null]"
 
 /obj/structure/bookcase/manuals/engineering
-	name = "engineering manuals bookcase"
+	name = "工程手册书架"
 
 /obj/structure/bookcase/manuals/engineering/Initialize(mapload)
 	. = ..()
@@ -254,7 +254,7 @@
 	update_appearance()
 
 /obj/structure/bookcase/manuals/research_and_development
-	name = "\improper R&D manuals bookcase"
+	name = "\improper 研发手册书架"
 
 /obj/structure/bookcase/manuals/research_and_development/Initialize(mapload)
 	. = ..()

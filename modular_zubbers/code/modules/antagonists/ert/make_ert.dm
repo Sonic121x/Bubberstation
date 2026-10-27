@@ -7,7 +7,7 @@
  *
  * PROC IS NOT ASYNC.
  */
-/proc/make_ert(ert_type, teamsize = 5, mission_objective_override = "Assist the station.", poll_description = "an ERT team", code = "UNKNOWN", enforce_human = FALSE, open_armory_doors = FALSE, leader_experience = FALSE, random_names = TRUE, notify_players = TRUE, spawnpoint_override = FALSE)
+/proc/make_ert(ert_type, teamsize = 5, mission_objective_override = "援助空间站。", poll_description = "紧急响应小队", code = "UNKNOWN", enforce_human = FALSE, open_armory_doors = FALSE, leader_experience = FALSE, random_names = TRUE, notify_players = TRUE, spawnpoint_override = FALSE)
 	if(!ert_type)
 		return
 
@@ -33,7 +33,7 @@
 	if(!LAZYLEN(spawnpoints))
 		CRASH("make_ert had no ERT spawnpoints to choose from!")
 
-	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates("Do you wish to be considered for [created_ert_datum.polldesc]?", check_jobban = ROLE_DEATHSQUAD, alert_pic = /obj/item/card/id/advanced/centcom/ert, role_name_text = "emergency response team")
+	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates("你愿意报名加入[created_ert_datum.polldesc]吗？", check_jobban = ROLE_DEATHSQUAD, alert_pic = /obj/item/card/id/advanced/centcom/ert, role_name_text = "紧急响应小队")
 
 	if(!length(candidates))
 		return NOT_ENOUGH_PLAYERS
@@ -108,14 +108,14 @@
 		ert_operative.mind.set_assigned_role(SSjob.get_job_type(ert_antag.ert_job_path))
 
 		//Logging and cleanup
-		log_game("[key_name(ert_operative)] has been selected as an [ert_antag.name]")
+		log_game("[key_name(ert_operative)] 被选为[ert_antag.name]。")
 		number_of_agents--
 		team_spawned++
 
 	if(team_spawned)
-		message_admins("[created_ert_datum.polldesc] has spawned with the mission: [created_ert_datum.mission]")
+		message_admins("[created_ert_datum.polldesc]已生成，任务：[created_ert_datum.mission]")
 		if(created_ert_datum.notify_players)
-			priority_announce("Central command has responded to your request for a CODE [uppertext(created_ert_datum.code)] Emergency Response Team and have confirmed one to be enroute.", "ERT Request", ANNOUNCER_ERTYES)
+			priority_announce("中央指挥部已批准你们请求派遣[chinese_ert_code_display(created_ert_datum.code)]级紧急响应小队的申请，并确认队伍正在赶来。", "紧急响应小队请求", ANNOUNCER_ERTYES)
 	//Open the Armory doors
 	if(created_ert_datum.opendoors)
 		for(var/obj/machinery/door/poddoor/ert/door as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/door/poddoor/ert))

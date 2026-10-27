@@ -1,6 +1,6 @@
 /obj/item/clothing/head/mothcap
-	name = "mothic softcap"
-	desc = "A padded leather cap with goggles, standard issue aboard the moth fleet. Keeps your head warm and debris away from those big eyes."
+	name = "蛾族软帽"
+	desc = "一顶带护目镜的加垫皮革帽，是蛾族舰队的制式装备。既能保暖，又能让碎屑远离那双大眼睛。"
 	icon_state = "mothcap"
 	icon = 'icons/obj/clothing/head/moth.dmi'
 	worn_icon = 'icons/mob/clothing/head/moth.dmi'
@@ -10,7 +10,7 @@
 	flags_inv = HIDEHAIR|SHOWSPRITEEARS // SKYRAT EDIT CHANGE
 
 /obj/item/clothing/head/mothcap/original
-	desc = "An authentic, padded leather cap with magnifying goggles, standard issue aboard the moth fleet. Keeps your head warm and debris away from those big eyes."
+	desc = "一顶正宗的加垫皮革帽，配有放大护目镜，是蛾族舰队的制式装备。既能保暖，又能让碎屑远离那双大眼睛。"
 
 /obj/item/clothing/head/mothcap/original/Initialize(mapload)
 	. = ..()

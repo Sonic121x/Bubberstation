@@ -15,17 +15,17 @@
  * A mean-ass single-combat sword-wielding nigh-demigod that is nothing but a walking, talking, breathing Berserk reference. He do kill shit doe!
  */
 /mob/living/simple_animal/hostile/megafauna/gladiator
-	name = "\proper The Marked One"
-	desc = "An ancient miner lost to time, chosen and changed by the Necropolis, encased in a suit of armor. Only a chosen few can match his speed and strength."
+	name = "\proper 被标记者"
+	desc = "一名被时间遗忘的古代矿工，被死灵之都选中并改变，如今裹在一套护甲之中。只有极少数被选中的人才能与他匹敌速度与力量。"
 	icon = 'modular_skyrat/modules/gladiator/icons/markedone.dmi'
 	icon_state = "marked1"
 	icon_dead = "marked_dying"
-	attack_verb_simple = "cleave"
-	attack_verb_continuous = "cleaves"
+	attack_verb_simple = "劈砍"
+	attack_verb_continuous = "劈砍"
 	attack_sound = 'modular_skyrat/master_files/sound/weapons/bloodyslice.ogg'
 	death_sound = 'sound/mobs/non-humanoids/space_dragon/space_dragon_roar.ogg'
-	death_message = "falls on his sword, ash evaporating from every hole in his armor."
-	gps_name = "Forgotten Signal"
+	death_message = "扑倒在自己的剑上，灰烬从护甲的每个孔洞中蒸发而出。"
+	gps_name = "遗忘信号"
 	gender = MALE
 	rapid_melee = 1
 	melee_queue_distance = 2
@@ -107,10 +107,10 @@
 /mob/living/simple_animal/hostile/megafauna/gladiator/examine()
 	if(stat >= DEAD)
 		. = ..()
-		. += span_boldwarning("Unearthly energies bind the body to it's place of defeat. You cannot move it.")
+		. += span_boldwarning("超凡的能量将这具躯体束缚在它败亡的地方。你无法移动它。")
 	else
 		. = ..()
-		. += span_boldwarning("They are currently in Phase [phase].")
+		. += span_boldwarning("他目前处于第 [phase] 阶段。")
 
 /// Gets him mad at you if you're a species he's not racist towards, and provides the 50% to block attacks in the first and fourth phases
 /mob/living/simple_animal/hostile/megafauna/gladiator/adjustHealth(amount, updating_health, forced)
@@ -193,11 +193,11 @@
 	if(isliving(A))
 		var/mob/living/living_atom = A
 		forceMove(get_turf(living_atom))
-		visible_message(span_danger("[src] knocks [living_atom] down!"))
+		visible_message(span_danger("[src] 把 [living_atom] 撞倒在地！"))
 		living_atom.Paralyze(20)
 		discharge()
 	else if(istype(A, /turf/closed))
-		visible_message(span_danger("[src] crashes headfirst into [A]!"))
+		visible_message(span_danger("[src] 一头撞上了 [A]！"))
 		discharge(1.5)
 
 /// Makes the Marked One unhappy and more befitting of his "hostile" subtype status.
@@ -223,21 +223,21 @@
 		// BUBBER TODO - Bring the says back when refactoring to basicmobs
 		if(targetspecies.id == SPECIES_HUMAN)
 			var/static/list/human_messages = list(
-									"Is this all that is left?",
-									"Show the necropolis it was wrong to choose me.",
-									"Ironic that I become what I once fought like you.",
-									"Sometimes, the abyss gazes back.",
-									"Show me a good time, miner!",
-									"I'll give you the first hit.",
+									"这就是剩下的全部了吗？",
+									"让死灵之都看看，选中我是个错误。",
+									"讽刺的是，我变成了自己曾像你一样对抗的东西。",
+									"有时，深渊也会回望。",
+									"让我乐一乐吧，矿工！",
+									"第一击让给你。",
 								)
 			INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), message = pick(human_messages))
 			introduced |= WEAKREF(target)
 		else if(targetspecies.id == SPECIES_LIZARD_ASH)
 			var/static/list/ashie_messages = list(
-									"Foolishness, ash walker!",
-									"I've had enough of you for a lifetime!",
-									"I don't need a crusher to KICK YOUR ASS!",
-									"GET OVER HERE!!",
+									"愚蠢，灰行者！",
+									"我这一辈子都受够你们了！",
+									"我不用粉碎器也能揍扁你！",
+									"给我过来！！",
 								)
 
 			INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), message = pick(ashie_messages), language = /datum/language/ashtongue)
@@ -246,11 +246,11 @@
 			GiveTarget(target)
 		else
 			var/static/list/other_humanoid_messages = list(
-									"I will smite you!",
-									"I will show you true power!",
-									"Let us see how worthy you are!",
-									"You will make a fine rug!",
-									"For the necropolis!"
+									"我要制裁你！",
+									"我会让你见识真正的力量！",
+									"让我们看看你有多大能耐！",
+									"你会是一块不错的地毯！",
+									"为了死灵之都！"
 									)
 			INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), message = pick(other_humanoid_messages))
 			introduced |= WEAKREF(target)
@@ -258,7 +258,7 @@
 			GiveTarget(target)
 	else
 		//simplemobs beware
-		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "It's berserkin' time!")
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "该狂暴了！")
 		introduced |= WEAKREF(target)
 
 /// Checks against the Marked One's current health and updates his phase accordingly. Uses variable shitcode to make sure his phase updates only ever happen *once*
@@ -314,15 +314,15 @@
 	if(!istype(our_turf))
 		return
 	var/static/list/spin_messages = list(
-							"Duck!",
-							"I'll break your legs!",
-							"Plain, dead, simple!",
-							"SWING AND A MISS!",
-							"Only one of us makes it outta here!",
-							"JUMP-ROPE!!",
-							"Slice and dice, right?!",
-							"Come on, HIT ME!",
-							"CLANG!!",
+							"蹲下！",
+							"我要打断你的腿！",
+							"干脆、利落、简单！",
+							"挥空啦！",
+							"我们只有一个能活着出去！",
+							"跳绳啦！！",
+							"切块剁碎，对吧？！",
+							"来啊，打我啊！",
+							"铛！！",
 						)
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), message = pick(spin_messages))
 	spinning = TRUE
@@ -347,9 +347,9 @@
 			if(!faction_check(faction, slapped.faction) && !(slapped in hit_things))
 				playsound(src, 'modular_skyrat/modules/gladiator/Clang_cut.ogg', 75, 0)
 				if(slapped.apply_damage(40, BRUTE, BODY_ZONE_CHEST, slapped.run_armor_check(BODY_ZONE_CHEST), wound_bonus = CANT_WOUND))
-					visible_message(span_danger("[src] slashes through [slapped] with his spinning blade!"))
+					visible_message(span_danger("[src] 用旋转的刃劈开了 [slapped]！"))
 				else
-					visible_message(span_danger("[src]'s spinning blade is stopped by [slapped]!"))
+					visible_message(span_danger("[src] 的旋转刃被 [slapped] 挡下了！"))
 					spinning = FALSE
 				hit_things |= slapped
 		if(!spinning)
@@ -363,13 +363,13 @@
 /mob/living/simple_animal/hostile/megafauna/gladiator/proc/charge(atom/target, range = 1)
 	face_atom(target)
 	var/static/list/charge_messages = list(
-							"Heads up!",
-							"Coming through!",
-							"This ends only one way!",
-							"Hold still!",
-							"GET OVER HERE!",
-							"Looking for this?!",
-							"COME ON!!",
+							"小心了！",
+							"借过！",
+							"这只会有一个结局！",
+							"别动！",
+							"给我过来！",
+							"在找这个吗？！",
+							"来吧！！",
 						)
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), message = pick(charge_messages))
 	animate(src, color = "#ff6666", 0.3 SECONDS)
@@ -412,13 +412,13 @@
 			new /obj/effect/temp_visual/small_smoke/halfsecond(targeted)
 			forceMove(targeted)
 			var/static/list/tele_messages = list(
-				"Hi.",
-				"Hello there.",
-				"Hello.",
-				"Hey.",
-				"Yo.",
-				"Boo.",
-				"Sup.",
+				"嗨。",
+				"你好啊。",
+				"你好。",
+				"嘿。",
+				"哟。",
+				"吓！",
+				"最近怎样。",
 			)
 
 			if(prob(TELE_QUIP_CHANCE))
@@ -447,7 +447,7 @@
 			for(var/mob/living/target in stomp_turf)
 				if(target == src || target.throwing)
 					continue
-				to_chat(target, span_userdanger("[src]'s ground slam shockwave sends you flying!"))
+				to_chat(target, span_userdanger("[src] 的地面重击冲击波把你掀飞了！"))
 				var/turf/thrownat = get_ranged_target_turf_direct(src, target, throw_range, rand(-10, 10))
 				target.throw_at(thrownat, 8, 2, null, TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
 				target.apply_damage(20, BRUTE, wound_bonus=CANT_WOUND)

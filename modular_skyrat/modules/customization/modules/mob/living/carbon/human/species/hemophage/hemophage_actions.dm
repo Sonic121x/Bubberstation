@@ -1,7 +1,7 @@
 /// The message displayed in the hemophage's chat when they enter their dormant state.
-#define DORMANT_STATE_START_MESSAGE "You feel your tumor's pulse slowing down, as it enters a dormant state. You suddenly feel incredibly weak and vulnerable to everything, and exercise has become even more difficult, as only your most vital bodily functions remain."
+#define DORMANT_STATE_START_MESSAGE "你感觉到肿瘤的搏动正在放缓，进入了休眠状态。你突然感到极度虚弱，对一切都毫无抵御之力，运动也变得愈发困难，因为身体只剩最关键的生理功能仍在运作。"
 /// The message displayed in the hemophage's chat when they leave their dormant state.
-#define DORMANT_STATE_END_MESSAGE "You feel a rush through your veins, as you can tell your tumor is pulsating at a regular pace once again. You no longer feel incredibly vulnerable, and exercise isn't as difficult anymore."
+#define DORMANT_STATE_END_MESSAGE "一阵热流涌过你的血管，你能感觉到肿瘤又重新以规律的节奏搏动起来。你不再感到极度脆弱，运动也不再那么困难了。"
 
 
 /datum/action/cooldown/hemophage
@@ -17,8 +17,8 @@
 
 
 /datum/action/cooldown/hemophage/toggle_dormant_state
-	name = "Enter Dormant State"
-	desc = "Causes the tumor inside of you to enter a dormant state, causing it to need just a minimum amount of blood to survive. However, as the tumor living in your body is the only thing keeping you still alive, rendering it latent cuts both it and you to just the essential functions to keep standing. It will no longer mend your body even in the darkness, and the lack of blood pumping through you will have you the weakest you've ever felt; and leave you hardly able to run. It is not on a switch, and it will take some time for it to awaken."
+	name = "进入休眠状态"
+	desc = "使你体内的肿瘤进入休眠状态，只需极少量血液便能存活。然而，寄生在你体内的肿瘤是维持你生命的唯一依靠，让它沉寂下来会使它与你自己都只剩维持站立的基本功能。它不会再在黑暗中修补你的身体，而血液流动的匮乏会让你感受到前所未有的虚弱，几乎无法奔跑。它并不是可以随意切换的开关，重新唤醒它需要一些时间。"
 	cooldown_time = 3 MINUTES
 	background_icon = 'modular_zubbers/icons/mob/actions/bloodsucker.dmi'
 	active_background_icon_state = "vamp_power_on"
@@ -33,10 +33,10 @@
 	if(!tumor || !istype(tumor)) // This shouldn't happen, but you can never be too careful.
 		return
 
-	owner.balloon_alert(owner, "[tumor.is_dormant ? "leaving" : "entering"] dormant state")
+	owner.balloon_alert(owner, "[tumor.is_dormant ? "正在离开" : "正在进入"]休眠状态")
 
 	if(!do_after(owner, 3 SECONDS))
-		owner.balloon_alert(owner, "cancelled state change")
+		owner.balloon_alert(owner, "状态切换已取消")
 		return
 
 	to_chat(owner, span_notice("[tumor.is_dormant ? DORMANT_STATE_END_MESSAGE : DORMANT_STATE_START_MESSAGE]"))
@@ -47,8 +47,8 @@
 	tumor.toggle_dormant_tumor_vulnerabilities(owner)
 
 	if(tumor.is_dormant)
-		name = "Exit Dormant State"
-		desc =  "Causes the pitch-black mass living inside of you to awaken, allowing your circulation to return and blood to pump freely once again. It fills your legs to let you run again, and longs for the darkness as it did before. You start to feel strength rather than the weakness you felt before. However, the tumor giving you life is not on a switch, and it will take some time to subdue it again."
+		name = "退出休眠状态"
+		desc =  "使你体内那团漆黑之物苏醒过来，让血液循环恢复，血液重新自由流淌。它重新充满你的双腿，让你再次奔跑，并像从前那样渴望着黑暗。你开始感到力量，而非先前的虚弱。然而，赋予你生命的肿瘤并不是可以随意切换的开关，再次压制它需要一些时间。"
 	else
 		name = initial(name)
 		desc = initial(desc)

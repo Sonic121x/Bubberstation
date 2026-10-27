@@ -1,6 +1,6 @@
 /// The subsystem for controlling drastic performance enhancements aimed at reducing server load for a smoother albeit slightly duller gaming experience
 SUBSYSTEM_DEF(lag_switch)
-	name = "Lag Switch"
+	name = "降负载开关"
 	ss_flags = SS_NO_FIRE
 
 	/// If the lag switch measures should attempt to trigger automatically, TRUE if a config value exists
@@ -34,8 +34,8 @@ SUBSYSTEM_DEF(lag_switch)
 	auto_switch = FALSE
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CLIENT_CONNECT)
 	veto_timer_id = addtimer(CALLBACK(src, PROC_REF(set_all_measures), TRUE, TRUE), 20 SECONDS, TIMER_STOPPABLE)
-	message_admins("Lag Switch population threshold reached. Automatic activation of lag mitigation measures occuring in 20 seconds. (<a href='byond://?_src_=holder;[HrefToken()];change_lag_switch_option=CANCEL'>CANCEL</a>)")
-	log_admin("Lag Switch population threshold reached. Automatic activation of lag mitigation measures occuring in 20 seconds.")
+	message_admins("已达到降负载开关的人数阈值。将在 20 秒后自动启用缓解卡顿措施。（<a href='byond://?_src_=holder;[HrefToken()];change_lag_switch_option=CANCEL'>取消</a>）")
+	log_admin("已达到降负载开关的人数阈值。将在 20 秒后自动启用缓解卡顿措施。")
 
 /// (En/Dis)able automatic triggering of switches based on client count
 /datum/controller/subsystem/lag_switch/proc/toggle_auto_enable()
@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(lag_switch)
 
 	slowmode_cooldown = length_secs
 	if(measures[SLOWMODE_SAY])
-		to_chat(world, span_boldannounce("Slowmode timer has been changed to [length] seconds by an admin."))
+		to_chat(world, span_boldannounce("管理员已将慢速聊天间隔改为 [length] 秒。"))
 	return TRUE
 
 /// Handle the state change for individual measures
@@ -93,10 +93,10 @@ SUBSYSTEM_DEF(lag_switch)
 					if(observer.client?.holder) // Don't freeze admins
 						continue
 					GLOB.keyloop_list -= observer
-				deadchat_broadcast(span_big("To increase performance Observer freelook is now disabled. Please use Orbit, Teleport, and Jump to look around."), message_type = DEADCHAT_ANNOUNCEMENT)
+				deadchat_broadcast(span_big("为提高性能，已禁用观察者自由移动。请使用环绕跟随、传送和跳转功能查看周围。"), message_type = DEADCHAT_ANNOUNCEMENT)
 			else
 				GLOB.keyloop_list |= GLOB.player_list
-				deadchat_broadcast("Observer freelook has been re-enabled. Enjoy your wooshing.", message_type = DEADCHAT_ANNOUNCEMENT)
+				deadchat_broadcast("观察者自由移动已重新启用。尽情飘荡吧。", message_type = DEADCHAT_ANNOUNCEMENT)
 		if(DISABLE_GHOST_ZOOM_TRAY)
 			if(state) // if enabling make sure current ghosts are updated
 				for(var/mob/dead/observer/ghost in GLOB.dead_mob_list)
@@ -106,32 +106,32 @@ SUBSYSTEM_DEF(lag_switch)
 						ghost.client.view_size.resetToDefault()
 		if(SLOWMODE_SAY)
 			if(state)
-				to_chat(world, span_boldannounce("Slowmode for IC/dead chat has been enabled with [slowmode_cooldown/10] seconds between messages."))
+				to_chat(world, span_boldannounce("角色内聊天和亡者聊天已启用慢速模式，消息间隔为 [slowmode_cooldown/10] 秒。"))
 			else
 				for(var/client/C as anything in GLOB.clients)
 					COOLDOWN_RESET(C, say_slowmode)
-				to_chat(world, span_boldannounce("Slowmode for IC/dead chat has been disabled by an admin."))
+				to_chat(world, span_boldannounce("管理员已禁用角色内聊天和亡者聊天的慢速模式。"))
 		if(DISABLE_NON_OBSJOBS)
 			world.update_status()
 		if(DISABLE_PARALLAX)
 			if (state)
-				to_chat(world, span_boldannounce("Parallax has been disabled for performance concerns."))
+				to_chat(world, span_boldannounce("为改善性能，已禁用视差效果。"))
 			else
-				to_chat(world, span_boldannounce("Parallax has been re-enabled."))
+				to_chat(world, span_boldannounce("视差效果已重新启用。"))
 
 			for (var/mob/mob as anything in GLOB.mob_list)
 				mob.hud_used?.update_parallax_pref()
 		if (DISABLE_FOOTSTEPS)
 			if (state)
-				to_chat(world, span_boldannounce("Footstep sounds have been disabled for performance concerns."))
+				to_chat(world, span_boldannounce("为改善性能，已禁用脚步声。"))
 			else
-				to_chat(world, span_boldannounce("Footstep sounds have been re-enabled."))
+				to_chat(world, span_boldannounce("脚步声已重新启用。"))
 		// SKYRAT EDIT ADDITION
 		if (DISABLE_CREATOR)
 			if (state)
-				to_chat(world, span_boldannounce("The character creator and preferences menu has been disabled for performance metrics."))
+				to_chat(world, span_boldannounce("出于性能考虑，已禁用角色创建器和偏好设置菜单。"))
 			else
-				to_chat(world, span_boldannounce("The character creator has been re-enabled."))
+				to_chat(world, span_boldannounce("角色创建器已重新启用。"))
 		// SKYRAT EDIT END
 
 	return TRUE
@@ -143,8 +143,8 @@ SUBSYSTEM_DEF(lag_switch)
 		return FALSE
 
 	if(automatic)
-		message_admins("Lag Switch enabling automatic measures now.")
-		log_admin("Lag Switch enabling automatic measures now.")
+		message_admins("降负载开关正在启用自动措施。")
+		log_admin("降负载开关正在启用自动措施。")
 		veto_timer_id = null
 		for(var/i in 1 to auto_measures.len)
 			set_measure(auto_measures[i], state)

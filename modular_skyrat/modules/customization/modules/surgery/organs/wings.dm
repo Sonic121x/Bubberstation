@@ -1,6 +1,6 @@
 /obj/item/organ/wings
-	name = "wings"
-	desc = "A pair of wings. Those may or may not allow you to fly... or at the very least flap."
+	name = "翅膀"
+	desc = "一对翅膀。它们也许能让你飞起来……至少也能扑腾两下。"
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_WINGS
 	mutantpart_key = "wings"
@@ -26,8 +26,8 @@
 	return draw_color
 
 /obj/item/organ/wings/moth
-	name = "moth wings"
-	desc = "A pair of fuzzy moth wings."
+	name = "蛾翅"
+	desc = "一对毛茸茸的蛾翅。"
 	flight_for_species = list(SPECIES_MOTH)
 
 /obj/item/organ/wings/flight
@@ -35,18 +35,18 @@
 	can_open = TRUE
 
 /obj/item/organ/wings/flight/angel
-	name = "angel wings"
-	desc = "A pair of magnificent, feathery wings. They look strong enough to lift you up in the air."
+	name = "天使翅膀"
+	desc = "一对华丽的羽翼。看起来足以把你托上天空。"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Angel", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"))
 
 /obj/item/organ/wings/flight/dragon
-	name = "dragon wings"
-	desc = "A pair of intimidating, membranous wings. They look strong enough to lift you up in the air."
+	name = "龙翼"
+	desc = "一对令人生畏的膜翼。看起来足以把你托上天空。"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Dragon", MUTANT_INDEX_COLOR_LIST = list("#880000"))
 
 /obj/item/organ/wings/flight/megamoth
-	name = "megamoth wings"
-	desc = "A pair of horrifyingly large, fuzzy wings. They look strong enough to lift you up in the air."
+	name = "巨蛾翅膀"
+	desc = "一对大得吓人的毛茸茸翅膀。看起来足以把你托上天空。"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Megamoth", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"))
 
 

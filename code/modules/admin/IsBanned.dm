@@ -11,8 +11,8 @@
 	if (!key || (!real_bans_only && (!address || !computer_id)))
 		if(real_bans_only)
 			return FALSE
-		log_access("Failed Login (invalid data): [key] [address]-[computer_id]")
-		return list("reason"="invalid login data", "desc"="Error: Could not check ban status, Please try again. Error message: Your computer provided invalid or blank information to the server on connection (byond username, IP, and Computer ID.) Provided information for reference: Username:'[key]' IP:'[address]' Computer ID:'[computer_id]'. (If you continue to get this error, please restart byond or contact byond support.)")
+		log_access("登录失败（数据无效）：[key] [address]-[computer_id]")
+		return list("reason"="invalid login data", "desc"="错误：无法检查封禁状态，请重试。错误信息：你的计算机在连接时向服务器提供了无效或空白的信息（byond 用户名、IP 和计算机 ID）。供参考的信息：用户名：'[key]' IP：'[address]' 计算机 ID：'[computer_id]'。（如果持续遇到此错误，请重启 byond 或联系 byond 客服。）")
 
 	if (type == "world")
 		return ..() //shunt world topic banchecks to purely to byond's internal ban system
@@ -58,22 +58,22 @@
 	if(!real_bans_only && !C && CONFIG_GET(flag/usewhitelist))
 		if(!check_whitelist(ckey))
 			if (admin)
-				log_admin("The admin [ckey] has been allowed to bypass the whitelist")
+				log_admin("管理员 [ckey] 已被允许绕过白名单")
 				if (message)
-					message_admins(span_adminnotice("The admin [ckey] has been allowed to bypass the whitelist"))
-					addclientmessage(ckey,span_adminnotice("You have been allowed to bypass the whitelist"))
+					message_admins(span_adminnotice("管理员 [ckey] 已被允许绕过白名单"))
+					addclientmessage(ckey,span_adminnotice("你已被允许绕过白名单"))
 			else
-				log_access("Failed Login: [ckey] - Not on whitelist")
-				return list("reason"="whitelist", "desc" = "\nReason: You are not on the white list for this server")
+				log_access("登录失败：[ckey] - 不在白名单中")
+				return list("reason"="whitelist", "desc" = "\n原因：你不在该服务器的白名单中")
 
 	//Guest Checking
 	if(!real_bans_only && !C && is_guest_key(key))
 		if (CONFIG_GET(flag/guest_ban))
-			log_access("Failed Login: [ckey] - Guests not allowed")
-			return list("reason"="guest", "desc"="\nReason: Guests not allowed. Please sign in with a byond account.")
+			log_access("登录失败：[ckey] - 不允许访客登录")
+			return list("reason"="guest", "desc"="\n原因：不允许访客登录。请使用 byond 账号登录。")
 		if (CONFIG_GET(flag/panic_bunker) && SSdbcore.Connect())
-			log_access("Failed Login: [ckey] - Guests not allowed during panic bunker")
-			return list("reason"="guest", "desc"="\nReason: Sorry but the server is currently not accepting connections from never before seen players or guests. If you have played on this server with a byond account before, please log in to the byond account you have played from.")
+			log_access("登录失败：[ckey] - 恐慌掩体期间不允许访客登录")
+			return list("reason"="guest", "desc"="\n原因：抱歉，服务器目前不接受从未见过的玩家或访客连接。如果你曾使用 byond 账号在本服务器游玩过，请登录你曾使用的 byond 账号。")
 
 	//Population Cap Checking
 	var/extreme_popcap = CONFIG_GET(number/extreme_popcap)
@@ -81,12 +81,12 @@
 		var/popcap_value = GLOB.clients.len
 		if(popcap_value >= extreme_popcap && !GLOB.joined_player_list.Find(ckey))
 			if(!CONFIG_GET(flag/byond_member_bypass_popcap) || !world.IsSubscribed(ckey, "BYOND"))
-				log_access("Failed Login: [ckey] - Population cap reached")
-				return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
+				log_access("登录失败：[ckey] - 已达人口上限")
+				return list("reason"="popcap", "desc"= "\n原因：[CONFIG_GET(string/extreme_popcap_message)]")
 
 	if(CONFIG_GET(flag/sql_enabled))
 		if(!SSdbcore.Connect())
-			var/msg = "Ban database connection failure. Key [ckey] not checked"
+			var/msg = "封禁数据库连接失败。未检查键 [ckey]"
 			log_world(msg)
 			if (message)
 				message_admins(msg)
@@ -95,29 +95,29 @@
 			for(var/i in ban_details)
 				if(admin)
 					if(text2num(i["applies_to_admins"]))
-						var/msg = "Admin [ckey] is admin banned, and has been disallowed access."
+						var/msg = "管理员 [ckey] 已被管理员封禁，已拒绝其访问。"
 						log_admin(msg)
 						if (message)
 							message_admins(msg)
 					else
-						var/msg = "Admin [ckey] has been allowed to bypass a matching non-admin ban on [ckey(i["key"])] [i["ip"]]-[i["computerid"]]."
+						var/msg = "管理员 [ckey] 已被允许绕过对 [ckey(i["key"])] [i["ip"]]-[i["computerid"]] 的匹配非管理员封禁。"
 						log_admin(msg)
 						if (message)
 							message_admins(msg)
-							addclientmessage(ckey,span_adminnotice("Admin [ckey] has been allowed to bypass a matching non-admin ban on [i["key"]] [i["ip"]]-[i["computerid"]]."))
+							addclientmessage(ckey,span_adminnotice("管理员 [ckey] 已被允许绕过对 [i["key"]] [i["ip"]]-[i["computerid"]] 的匹配非管理员封禁。"))
 						continue
-				var/expires = "This is a permanent ban."
-				var/global_ban = "This is a global ban from all of our servers." //SKYRAT EDIT ADDITION - MULTISERVER
+				var/expires = "这是永久封禁。"
+				var/global_ban = "这是来自我们所有服务器的全球封禁。" //SKYRAT EDIT ADDITION - MULTISERVER
 				if(i["expiration_time"])
-					expires = " The ban is for [DisplayTimeText(text2num(i["duration"]) MINUTES)] and expires on [i["expiration_time"]] (server time)."
+					expires = " 该封禁为期 [DisplayTimeText(text2num(i["duration"]) MINUTES)]，将于 [i["expiration_time"]]（服务器时间）到期。"
 				if(!text2num(i["global_ban"])) //SKYRAT EDIT ADDITION - MULTISERVER
-					global_ban = "This is a  single-server ban, and only applies to [i["server_name"]]." //SKYRAT EDIT ADDITION - MULTISERVER
-				var/desc = /* SKYRAT EDIT CHANGE - MULTISERVER */ {"You, or another user of this computer or connection ([i["key"]]) is banned from playing here.
-				The ban reason is: [i["reason"]]
-				This ban (BanID #[i["id"]]) was applied by [i["admin_key"]] on [i["bantime"]] during round ID [i["round_id"]].
+					global_ban = "这是单服务器封禁，仅适用于 [i["server_name"]]。" //SKYRAT EDIT ADDITION - MULTISERVER
+				var/desc = /* SKYRAT EDIT CHANGE - MULTISERVER */ {"你或该计算机/连接的另一位用户（[i["key"]]）已被禁止在此游玩。
+				封禁原因为：[i["reason"]]
+				本次封禁（BanID #[i["id"]]）由 [i["admin_key"]] 于 [i["bantime"]] 在回合 ID [i["round_id"]] 期间施加。
 				[global_ban]
 				[expires]"}
-				log_suspicious_login("Failed Login: [ckey] [computer_id] [address] - Banned (#[i["id"]]) [text2num(i["global_ban"]) ? "globally" : "locally"]") //SKYRAT EDIT CHANGE - MULTISERVER
+				log_suspicious_login("登录失败：[ckey] [computer_id] [address] - 已封禁（#[i["id"]]）[text2num(i["global_ban"]) ? "全球" : "本地"]") //SKYRAT EDIT CHANGE - MULTISERVER
 				return list("reason"="Banned","desc"="[desc]")
 	if (admin)
 		if (GLOB.directory[ckey])
@@ -193,16 +193,16 @@
 				var/action
 				if (ban["fromdb"])
 					cachedban["timeout"] = TRUE
-					action = "putting it on timeout for the remainder of the round"
+					action = "将其在本回合剩余时间内置于超时状态"
 				else
 					cachedban["reverting"] = TRUE
-					action = "reverting to its roundstart state"
+					action = "将其恢复至回始状态"
 
 				world.SetConfig("ban", bannedckey, null)
 
 				//we always report this
-				log_game("Stickyban on [bannedckey] detected as rogue, [action]")
-				message_admins("Stickyban on [bannedckey] detected as rogue, [action]")
+				log_game("检测到针对 [bannedckey] 的粘性封禁异常，[action]")
+				message_admins("检测到针对 [bannedckey] 的粘性封禁异常，[action]")
 				//do not convert to timer.
 				spawn (5)
 					world.SetConfig("ban", bannedckey, null)
@@ -240,18 +240,18 @@
 		//ie, ones where the "apply to this game only" checkbox is not checked (defaults to not checked)
 		//So it's safe to let admins walk thru host/sticky bans here
 		if (admin)
-			log_admin("The admin [ckey] has been allowed to bypass a matching host/sticky ban on [bannedckey]")
+			log_admin("管理员 [ckey] 已被允许绕过对 [bannedckey] 的匹配主机/粘性封禁")
 			if (message)
-				message_admins(span_adminnotice("The admin [ckey] has been allowed to bypass a matching host/sticky ban on [bannedckey]"))
-				addclientmessage(ckey,span_adminnotice("You have been allowed to bypass a matching host/sticky ban on [bannedckey]"))
+				message_admins(span_adminnotice("管理员 [ckey] 已被允许绕过对 [bannedckey] 的匹配主机/粘性封禁"))
+				addclientmessage(ckey,span_adminnotice("你已被允许绕过对 [bannedckey] 的匹配主机/粘性封禁"))
 			return null
 
 		if (C) //user is already connected!.
-			to_chat(C, span_redtext("You are about to get disconnected for matching a sticky ban after you connected. If this turns out to be the ban evasion detection system going haywire, we will automatically detect this and revert the matches. if you feel that this is the case, please wait EXACTLY 6 seconds then reconnect using file -> reconnect to see if the match was automatically reversed."), confidential = TRUE)
+			to_chat(C, span_redtext("你在连接后匹配到粘性封禁，即将被断开连接。如果这实际上是封禁规避检测系统失控所致，我们会自动检测并撤销这些匹配。如果你认为属于这种情况，请恰好等待 6 秒，然后使用 文件 -> 重新连接 重连，以确认该匹配是否已被自动撤销。"), confidential = TRUE)
 
-		var/desc = "\nReason:(StickyBan) You, or another user of this computer or connection ([bannedckey]) is banned from playing here. The ban reason is:\n[ban["message"]]\nThis ban was applied by [ban["admin"]]\nThis is a BanEvasion Detection System ban, if you think this ban is a mistake, please wait EXACTLY 6 seconds, then try again before filing an appeal.\n"
+		var/desc = "\n原因：（粘性封禁）你或该计算机/连接的另一位用户（[bannedckey]）已被禁止在此游玩。封禁原因为：\n[ban["message"]]\n本次封禁由 [ban["admin"]] 施加\n这是封禁规避检测系统施加的封禁，如果你认为此封禁有误，请恰好等待 6 秒后重试，然后再提交申诉。\n"
 		. = list("reason" = "Stickyban", "desc" = desc)
-		log_suspicious_login("Failed Login: [ckey] [computer_id] [address] - StickyBanned [ban["message"]] Target Username: [bannedckey] Placed by [ban["admin"]]")
+		log_suspicious_login("登录失败：[ckey] [computer_id] [address] - 粘性封禁 [ban["message"]] 目标用户名：[bannedckey] 施加者：[ban["admin"]]")
 
 	return .
 

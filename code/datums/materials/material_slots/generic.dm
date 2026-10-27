@@ -2,7 +2,7 @@
 
 /// Generic main/parent type for all weapon heads
 /datum/material_slot/weapon_head
-	name = "weapon head"
+	name = "武器头部"
 	requirement_type = /datum/material_requirement/solid_material
 
 /datum/material_slot/weapon_head/on_applied(obj/item/target, datum/material/material, amount, multiplier)
@@ -101,7 +101,7 @@
 
 /// Main type for all weapon handles
 /datum/material_slot/handle
-	name = "handle"
+	name = "握柄"
 	requirement_type = /datum/material_requirement/solid_material
 
 /datum/material_slot/handle/on_applied(obj/item/target, datum/material/material, amount, multiplier)

@@ -82,17 +82,17 @@
 
 /datum/component/forge_smithable/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice("It can be safely picked up with tongs.")
-	examine_list += span_notice("It can be heated by being inserted into a forge.")
-	examine_list += span_notice("It can be quenched in any open container that's large enough.")
+	examine_list += span_notice("可以用钳子安全地夹起它。")
+	examine_list += span_notice("放入锻炉即可加热。")
+	examine_list += span_notice("任何足够大的敞口容器都能用于为它淬火。")
 	if(COOLDOWN_FINISHED(src, heating_remainder))
-		examine_list += span_notice("The metal needs to be reheated before it is malleable again.")
+		examine_list += span_notice("金属需要重新加热才能继续塑形。")
 	else if(USER_CAN_SEE_SMITHING_INFO(user))
-		examine_list += span_notice("The metal is hot enough to work.")
-		examine_list += span_notice("You'd estimate that it's about [round(get_completion_ratio() * 100)]% complete.")
-		examine_list += span_notice("The careful smithing makes it look about [round(get_perfect_ratio() * 100)]% perfected.")
+		examine_list += span_notice("金属的温度已经足以加工。")
+		examine_list += span_notice("你估计它已完成约 [round(get_completion_ratio() * 100)]%。")
+		examine_list += span_notice("精心锻造让它的完美度达到了约 [round(get_perfect_ratio() * 100)]%。")
 	else
-		examine_list += span_notice("If you were more skilled at smithing you could discern more information from it...")
+		examine_list += span_notice("如果你的锻造技术更熟练，就能看出更多细节……")
 
 
 /datum/component/forge_smithable/proc/good_hit(amount = 1, playsound = FALSE)
@@ -124,7 +124,7 @@
 	if(playsound)
 		conditional_pref_sound(parent_item, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 35, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 
-	parent_item.balloon_alert_to_viewers("the [parent_item] shattered!")
+	parent_item.balloon_alert_to_viewers("[parent_item] 碎裂了！")
 	qdel(parent_item)
 	qdel(src)
 
@@ -148,22 +148,22 @@
 	if(!HAS_TRAIT(user, TRAIT_DEAF))
 		switch(hit_quality)
 			if(ANVIL_HAMMER_HIT_CANNOT_WORK)
-				parent_item.balloon_alert(user,"can't work!")
+				parent_item.balloon_alert(user,"无法加工！")
 			if(ANVIL_HAMMER_HIT_BAD)
-				parent_item.balloon_alert(user,"bad hit")
+				parent_item.balloon_alert(user,"敲击失误")
 			if(ANVIL_HAMMER_HIT_GOOD)
 				if(is_finished_smithing())
 					if(is_perfected())
-						parent_item.balloon_alert(user,"[parent_item] is perfected!")
+						parent_item.balloon_alert(user,"[parent_item] 已臻完美！")
 					else
-						parent_item.balloon_alert(user,"[parent_item] sounds done")
+						parent_item.balloon_alert(user,"[parent_item] 听起来已经完成了")
 				else
-					parent_item.balloon_alert(user, "good hit")
+					parent_item.balloon_alert(user, "敲击良好")
 			if(ANVIL_HAMMER_HIT_PERFECT)
 				if(is_finished_smithing() && is_perfected())
-					parent_item.balloon_alert(user,"[parent_item] is perfected!")
+					parent_item.balloon_alert(user,"[parent_item] 已臻完美！")
 				else
-					parent_item.balloon_alert(user, "perfect hit!")
+					parent_item.balloon_alert(user, "完美敲击！")
 
 /datum/component/forge_smithable/proc/get_hit_quality(mob/living/user, obj/item/forging/hammer/tool)
 	if(parent_item.GetComponent(/datum/component/reagent_imbued))
@@ -215,7 +215,7 @@
 /datum/component/forge_smithable/proc/anvil_work(mob/living/user, obj/item/tool)
 	if(COOLDOWN_FINISHED(src, heating_remainder))
 		bad_hit()
-		user.balloon_alert(user, "metal too cool")
+		user.balloon_alert(user, "金属温度过低")
 		return ITEM_INTERACT_SUCCESS
 
 	var/quality_points_to_give = get_quality_points(user, tool)
@@ -223,7 +223,7 @@
 	switch(hit_quality)
 		if(ANVIL_HAMMER_HIT_CANNOT_WORK)
 			bad_hit(playsound = TRUE)
-			to_chat(user, span_warning("You don't know how to work with reagent imbued items!"))
+			to_chat(user, span_warning("你不知道如何加工注入了试剂的物品！"))
 		if(ANVIL_HAMMER_HIT_BAD)
 			bad_hit(playsound = TRUE)
 		if(ANVIL_HAMMER_HIT_GOOD)
@@ -251,19 +251,19 @@
 /datum/component/forge_smithable/proc/try_quench(datum/reagents/dunk_reagents, dunk_object, mob/living/user, show_message = TRUE)
 	if(COOLDOWN_FINISHED(src, heating_remainder))
 		if(show_message)
-			parent_item.balloon_alert(user, "[parent_item] is too cool to successfully quench!")
+			parent_item.balloon_alert(user, "[parent_item] 温度过低，无法淬火！")
 		return FALSE
 	if(!(dunk_reagents.flags & DUNKABLE))
 		if(show_message)
-			parent_item.balloon_alert(user, "[dunk_object] doesn't have a large enough hole to immerse [parent_item]!")
+			parent_item.balloon_alert(user, "[dunk_object] 的开口不够大，无法浸入 [parent_item]！")
 		return FALSE
 	if(dunk_reagents.chem_temp > MAX_QUENCH_HEAT)
 		if(show_message)
-			parent_item.balloon_alert(user, "[dunk_object] is too hot to cool [parent_item]!")
+			parent_item.balloon_alert(user, "[dunk_object] 太热，无法冷却 [parent_item]！")
 		return FALSE
 	if(dunk_reagents.total_volume < MIN_VOLUME_TO_QUENCH)
 		if(show_message)
-			parent_item.balloon_alert(user, "[dunk_object] doesn't contain enough fluid to immerse [parent_item]!")
+			parent_item.balloon_alert(user, "[dunk_object] 中的液体不足以浸没 [parent_item]！")
 		return FALSE
 
 	dunk_reagents.expose_temperature(HEAT_GIVEN_FROM_QUENCHING_METAL)
@@ -277,9 +277,9 @@
 		if(!isnull(my_imbue))
 			my_imbue.set_reagent_imbue(dunk_reagents, FALSE, TRUE)
 			if(show_message)
-				parent_item.balloon_alert(user, "[parent_item] is imbued!")
+				parent_item.balloon_alert(user, "[parent_item] 已注入试剂！")
 	else if(show_message)
-		parent_item.balloon_alert(user, "[parent_item] is quenched!")
+		parent_item.balloon_alert(user, "[parent_item] 已淬火！")
 
 	if(!isnull(quench_callback))
 		quench_callback.Invoke(dunk_reagents, dunk_object, user)

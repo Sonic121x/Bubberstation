@@ -20,7 +20,7 @@
 
 	bodycam = new(parent)
 	bodycam.network = list(network)
-	bodycam.name = camera_name
+	bodycam.name = camera_name == "bodycam" ? "随身摄像头" : camera_name
 	bodycam.c_tag = c_tag
 	if(emp_proof)
 		bodycam.AddElement(/datum/element/empprotection, EMP_PROTECT_ALL)

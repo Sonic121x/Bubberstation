@@ -169,7 +169,7 @@
 
 // Human blood type, for organizational purposes mainly
 /datum/blood_type/human
-	desc = "Blood cells suspended in plasma, the most abundant of which being the hemoglobin-containing red blood cells."
+	desc = "悬浮在血浆中的血细胞，其中数量最多的是含血红蛋白的红细胞。"
 	dna_string = "Human DNA"
 	abstract_type = /datum/blood_type/human
 
@@ -245,13 +245,13 @@
 
 /datum/blood_type/animal
 	name = BLOOD_TYPE_ANIMAL
-	desc = "Blood cells suspended in plasma, the most abundant of which being the hemoglobin-containing red blood cells."
+	desc = "悬浮在血浆中的血细胞，其中数量最多的是含血红蛋白的红细胞。"
 	dna_string = "Animal DNA"
 
 /datum/blood_type/lizard
 	name = BLOOD_TYPE_LIZARD
-	desc = "Green sulfhemoglobin subtype-based blood, which while less effective at transporting oxygen, \
-		is capable of withstanding much higher temperatures without breaking down or clotting."
+	desc = "以绿色硫血红蛋白为基础的血液亚型。虽然运输氧气的效率较低，\
+		却能在高得多的温度下也不会分解或凝固。"
 	dna_string = "Lizard DNA"
 	// color = BLOOD_COLOR_LIZARD //BUBBER EDIT REMOVAL
 
@@ -311,7 +311,7 @@
 
 /datum/blood_type/xeno
 	name = BLOOD_TYPE_XENO
-	desc = "An incredibly potent mineral acid, somehow capable of carrying oxygen."
+	desc = "一种效力惊人的矿物酸，却不知怎么能够携带氧气。"
 	dna_string = "Alien DNA"
 	color = BLOOD_COLOR_XENO
 	reagent_type = /datum/reagent/toxin/acid
@@ -319,7 +319,7 @@
 	blood_flags = BLOOD_ADD_DNA | BLOOD_COVER_ALL
 
 /datum/blood_type/xeno/get_blood_name()
-	return "Acid" // "pool of sulphuric acid" is a bit too lengthy of a name
+	return "酸液" // "pool of sulphuric acid" is a bit too lengthy of a name
 
 /datum/blood_type/xeno/set_up_blood(obj/effect/decal/cleanable/blood/blood, new_splat = FALSE)
 	. = ..()
@@ -328,7 +328,7 @@
 	blood.can_dry = FALSE
 	// Replace only the default description
 	if (blood.desc == /obj/effect/decal/cleanable/blood::desc)
-		blood.desc = "It's green and acidic. It looks like... <i>blood?</i>"
+		blood.desc = "它是绿色的，带有酸性。看起来像……<i>血液？</i>"
 
 /// April fool's blood for clowns
 /datum/blood_type/clown

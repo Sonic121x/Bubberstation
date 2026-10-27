@@ -4,14 +4,14 @@
 #define BREAKDOWN_TIME (60 SECONDS)
 
 /obj/item/paper/guides/jobs/medical/morgue
-	name = "morgue memo"
-	default_raw_text = "<font size='2'>Since this station's medbay never seems to fail to be staffed by the mindless monkeys \
-		meant for genetics experiments, I'm leaving a reminder here for anyone handling the pile of cadavers the quacks are sure \
-		to leave.</font><BR><BR><font size='4'><font color=red>Red lights mean there's a plain ol' dead body inside.</font><BR><BR>\
-		<font color=orange>Yellow lights mean there's non-body objects inside.</font><BR><font size='2'>Probably stuff pried off a \
-		corpse someone grabbed, or if you're lucky it's stashed booze.</font><BR><BR><font color=green>Green lights mean the morgue \
-		system detects the body may be able to be brought back to life.</font></font><BR><font size='2'>I don't know how that works, \
-		but keep it away from the kitchen and go yell at the coroner.</font><BR><BR>- CentCom medical inspector"
+	name = "太平间备忘"
+	default_raw_text = "<font size='2'>本空间站医疗部似乎从来都不缺那些为基因实验准备的无脑猴子\
+		来值班，所以我还是在这里留一张备忘，给所有要处理那堆庸医肯定 \
+		会留下的尸体的人。</font><BR><BR><font size='4'><font color=red>红灯表示里面只是一具普通的死尸。</font><BR><BR>\
+		<font color=orange>黄灯表示里面装的是非尸体物品。</font><BR><font size='2'>大概是从 \
+		别人抓来的尸体上撬下来的东西，运气好的话也许是私藏的烈酒。</font><BR><BR><font color=green>绿灯表示太平间 \
+		系统检测到尸体可能还救得活。</font></font><BR><font size='2'>我不知道那是怎么个原理，\
+		但请把它远离厨房，然后去找验尸官发火吧。</font><BR><BR>——中央指挥部医疗检查员"
 
 /* Morgue stuff
  * Contains:
@@ -58,7 +58,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 /obj/structure/bodycontainer/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(!locked)
-		context[SCREENTIP_CONTEXT_LMB] = "Open/Close"
+		context[SCREENTIP_CONTEXT_LMB] = "打开/关闭"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/bodycontainer/Destroy()
@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	if(locked)
 		if(COOLDOWN_FINISHED(src, breakout_message_cooldown))
 			COOLDOWN_START(src, breakout_message_cooldown, BREAKOUT_COOLDOWN)
-			to_chat(user, span_warning("[src]'s door won't budge!"))
+			to_chat(user, span_warning("[src]的门纹丝不动！"))
 		return
 	open()
 
@@ -87,10 +87,10 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	if(.)
 		return
 	if(locked)
-		to_chat(user, span_danger("It's locked."))
+		to_chat(user, span_danger("它被锁上了。"))
 		return
 	if(!connected)
-		to_chat(user, "That doesn't appear to have a tray.")
+		to_chat(user, "它似乎没有托盘。")
 		return
 	if(connected.loc == src)
 		open()
@@ -116,15 +116,15 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
 	user.visible_message(null, \
-		span_notice("You lean on the back of [src] and start pushing the tray open... (this will take about [DisplayTimeText(BREAKDOWN_TIME)].)"), \
-		span_hear("You hear a metallic creaking from [src]."))
+		span_notice("你抵住[src]的后部，开始把托盘往外推……（这大约需要 [DisplayTimeText(BREAKDOWN_TIME)]。）"), \
+		span_hear("你听到[src]传来金属摩擦的吱嘎声。"))
 	if(!do_after(user, BREAKDOWN_TIME, target = src))
 		return
 	if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src)
 		return
 	user.visible_message(
-		span_warning("[user] successfully broke out of [src]!"),
-		span_notice("You successfully break out of [src]!"),
+		span_warning("[user]成功从[src]里挣脱了出来！"),
+		span_notice("你成功从[src]里挣脱了出来！"),
 	)
 	open()
 
@@ -227,8 +227,8 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
  * Morgue
  */
 /obj/structure/bodycontainer/morgue
-	name = "morgue"
-	desc = "Used to keep bodies in until someone fetches them. Includes a high-tech alert system."
+	name = "太平间"
+	desc = "用于存放尸体，直到有人来认领。配有高科技警报系统。"
 	icon_state = "morgue1"
 	base_icon_state = "morgue"
 	dir = EAST
@@ -292,13 +292,13 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 		internal_air.temperature -= temperature_decrease_this_tick
 
 /obj/structure/bodycontainer/morgue/beeper_off
-	name = "secure morgue"
-	desc = "Used to keep bodies in until someone fetches them. Starts with their beeper off."
+	name = "安全太平间"
+	desc = "用于存放尸体，直到有人来认领。初始状态下蜂鸣器关闭。"
 	beeper = FALSE
 
 /obj/structure/bodycontainer/morgue/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "[beeper ? "disable beeper" : "enable beeper"]"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "[beeper ? "关闭蜂鸣器" : "启用蜂鸣器"]"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/bodycontainer/morgue/proc/update_morgue_status()
@@ -367,17 +367,17 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 /obj/structure/bodycontainer/morgue/examine(mob/user)
 	. = ..()
-	. += span_notice("The speaker is [beeper ? "enabled" : "disabled"]. Alt-click to toggle it.")
+	. += span_notice("扬声器当前[beeper ? "已启用" : "已禁用"]。按住 Alt 点击可切换。")
 
 /obj/structure/bodycontainer/morgue/click_alt(mob/user)
 	beeper = !beeper
-	to_chat(user, span_notice("You turn the speaker function [beeper ? "on" : "off"]."))
+	to_chat(user, span_notice("你把扬声器功能[beeper ? "打开" : "关闭"]了。"))
 	return CLICK_ACTION_SUCCESS
 
 /obj/structure/bodycontainer/morgue/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
-	balloon_alert(user, "alert system overloaded")
+	balloon_alert(user, "警报系统已过载")
 	obj_flags |= EMAGGED
 	update_appearance(UPDATE_ICON)
 	return TRUE
@@ -420,8 +420,8 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
  */
 GLOBAL_LIST_EMPTY(crematoriums)
 /obj/structure/bodycontainer/crematorium
-	name = "crematorium"
-	desc = "A human incinerator. Works well on barbecue nights."
+	name = "焚化炉"
+	desc = "人体焚化炉。在烧烤之夜表现尤佳。"
 	icon = 'icons/obj/machines/crematorium.dmi'
 	icon_state = "crema1"
 	base_icon_state = "crema"
@@ -444,7 +444,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	return ..()
 
 /obj/structure/bodycontainer/crematorium/attack_robot(mob/user) //Borgs can't use crematoriums without help
-	to_chat(user, span_warning("[src] is locked against you."))
+	to_chat(user, span_warning("[src]已锁定，你无法使用。"))
 	return
 
 /obj/structure/bodycontainer/crematorium/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
@@ -467,10 +467,10 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	// Make sure we don't delete the actual morgue and its tray
 	var/list/conts = get_all_contents() - src - connected
 	if(!length(conts))
-		audible_message(span_hear("You hear a hollow crackle."))
+		audible_message(span_hear("你听到一阵空洞的噼啪声。"))
 		return
 
-	audible_message(span_hear("You hear a roar as the crematorium activates."))
+	audible_message(span_hear("焚化炉启动，你听到一阵轰鸣。"))
 	locked = TRUE
 	update_appearance()
 
@@ -482,9 +482,9 @@ GLOBAL_LIST_EMPTY(crematoriums)
 			victim.emote("scream")
 
 		if(user)
-			log_combat(user, victim, "cremated")
+			log_combat(user, victim, "火化")
 		else
-			victim.log_message("was cremated", LOG_ATTACK)
+			victim.log_message("被火化了", LOG_ATTACK)
 
 		for(var/obj/O in conts) //conts defined above, ignores crematorium and tray
 			// SKYRAT EDIT ADDITION
@@ -496,7 +496,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 			qdel(O)
 
 		if(user.stat != DEAD)
-			user.investigate_log("has died from being cremated.", INVESTIGATE_DEATHS)
+			user.investigate_log("因被火化而死亡。", INVESTIGATE_DEATHS)
 
 		victim.death(TRUE)
 		if(!QDELETED(victim)) //some animals get automatically deleted on death.
@@ -523,8 +523,8 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	playsound(src.loc, 'sound/machines/ding.ogg', 50, TRUE) // You horrible people
 
 /obj/structure/bodycontainer/crematorium/creamatorium
-	name = "creamatorium"
-	desc = "A human incinerator. Works well during ice cream socials."
+	name = "冰淇淋焚化炉"
+	desc = "人体焚化炉。在冰淇淋社交会上表现尤佳。"
 
 /obj/structure/bodycontainer/crematorium/creamatorium/cremate(mob/user)
 	var/list/icecreams = list()
@@ -573,7 +573,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	if (connected)
 		connected.close()
 	else
-		to_chat(user, span_warning("That's not connected to anything!"))
+		to_chat(user, span_warning("它没有连接到任何东西！"))
 	add_fingerprint(user)
 
 /obj/structure/tray/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -601,14 +601,14 @@ GLOBAL_LIST_EMPTY(crematoriums)
 			return
 	O.forceMove(src.loc)
 	if (user != O)
-		visible_message(span_warning("[user] stuffs [O] into [src]."))
+		visible_message(span_warning("[user]把[O]塞进了[src]。"))
 
 /*
  * Crematorium tray
  */
 /obj/structure/tray/c_tray
-	name = "crematorium tray"
-	desc = "Apply body before burning."
+	name = "焚化炉托盘"
+	desc = "焚烧前请放入遗体。"
 	icon_state = "cremat"
 	layer = /obj/structure/bodycontainer/crematorium::layer - 0.03
 
@@ -616,8 +616,8 @@ GLOBAL_LIST_EMPTY(crematoriums)
  * Morgue tray
  */
 /obj/structure/tray/m_tray
-	name = "morgue tray"
-	desc = "Apply corpse before closing."
+	name = "太平间托盘"
+	desc = "关闭前请放入尸体。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "morguet"
 	pass_flags_self = PASSTABLE | LETPASSTHROW

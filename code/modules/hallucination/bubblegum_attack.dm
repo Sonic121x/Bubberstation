@@ -11,7 +11,7 @@
 	/// if haunt_them is TRUE, they will also be shown one of these lines when the hallucination occurs
 	var/static/list/hallucination_lines = BUBBLEGUM_HALLUCINATION_LINES
 
-/datum/hallucination/oh_yeah/New(mob/living/hallucinator, source = "an external source", haunt_them = FALSE)
+/datum/hallucination/oh_yeah/New(mob/living/hallucinator, source = "外部来源", haunt_them = FALSE)
 	src.haunt_them = haunt_them
 	return ..()
 
@@ -30,7 +30,7 @@
 	if(!wall_source)
 		return FALSE
 
-	feedback_details += "Source: ([wall_source.x], [wall_source.y], [wall_source.z])"
+	feedback_details += "来源：([wall_source.x], [wall_source.y], [wall_source.z])"
 
 	var/turf/target_landing_turf = get_turf(hallucinator)
 	var/turf/target_landing_image_turf = get_step(target_landing_turf, SOUTHWEST) // The icon is 3x3, so we shift down+left
@@ -86,8 +86,8 @@
 		step_away(hallucinator, fake_bubbles)
 		shake_camera(hallucinator, 4, 3)
 		hallucinator.visible_message(
-			span_warning("[hallucinator] jumps backwards, falling on the ground!"),
-			span_userdanger("[fake_bubbles] slams into you!"),
+			span_warning("[hallucinator] 向后一跃，摔倒在地！"),
+			span_userdanger("[fake_bubbles] 狠狠撞上你！"),
 		)
 		QDEL_IN(src, 3 SECONDS)
 
@@ -96,7 +96,7 @@
 
 /// Fake bubblegum hallucination effect for the oh yeah hallucination
 /obj/effect/client_image_holder/hallucination/bubblegum
-	name = "Bubblegum"
+	name = "泡泡糖"
 	image_icon = 'icons/mob/simple/lavaland/96x96megafauna.dmi'
 	image_state = "bubblegum"
 	image_pixel_x = -32

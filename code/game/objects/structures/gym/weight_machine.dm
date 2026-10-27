@@ -3,8 +3,8 @@
 #define SAFE_DRUNK_LEVEL 39
 
 /obj/structure/weightmachine
-	name = "chest press machine"
-	desc = "Just looking at this thing makes you feel tired."
+	name = "平板卧推机"
+	desc = "光是看着这玩意儿就让人觉得累。"
 	icon = 'icons/obj/fluff/gym_equipment.dmi'
 	icon_state = "stacklifter"
 	base_icon_state = "stacklifter"
@@ -21,32 +21,32 @@
 	var/datum/action/push_weights/weight_action
 
 	///message when drunk user fails to use the machine
-	var/drunk_message = "You try for a new record and pull through! Through a muscle that is."
+	var/drunk_message = "你想挑战新纪录，还真撑过去了！——我是说，把肌肉给撑断了。"
 
 	// the total reps you can do before you hit stamcrit based on fitness level
 	var/static/list/total_workout_reps = list(3, 4, 4, 5, 6, 6, 7)
 
 	///List of messages picked when using the machine.
 	var/static/list/more_weight = list(
-		"pushing it to the limit!",
-		"going into overdrive!",
-		"burning with determination!",
-		"rising up to the challenge!",
-		"getting strong now!",
-		"getting ripped!",
+		"推向极限！",
+		"进入超频状态！",
+		"斗志燃烧！",
+		"迎难而上！",
+		"越来越强壮了！",
+		"肌肉线条出来了！",
 	)
 	///List of messages picked when finished using the machine.
 	var/static/list/finished_message = list(
-		"You feel stronger!",
-		"You feel like you can take on the world!",
-		"You feel robust!",
-		"You feel indestructible!",
+		"你感觉自己更强壮了！",
+		"你感觉自己能征服世界！",
+		"你感觉自己很能打！",
+		"你感觉自己坚不可摧！",
 	)
 	var/static/list/finished_silicon_message = list(
-		"You feel nothing!",
-		"No pain, no gain!",
-		"Chassis hardness rating... Unchanged.",
-		"You feel the exact same. Nothing.",
+		"你什么感觉都没有！",
+		"没有付出，就没有收获！",
+		"机身硬度评级……无变化。",
+		"你感觉和之前一模一样。什么都没有。",
 	)
 
 /obj/structure/weightmachine/Initialize(mapload)
@@ -59,11 +59,11 @@
 	if(!tool_behaviors)
 		tool_behaviors = string_assoc_nested_list(list(
 			TOOL_CROWBAR = list(
-				SCREENTIP_CONTEXT_RMB = "Deconstruct",
+				SCREENTIP_CONTEXT_RMB = "拆解",
 			),
 
 			TOOL_WRENCH = list(
-				SCREENTIP_CONTEXT_RMB = "Anchor",
+				SCREENTIP_CONTEXT_RMB = "固定",
 			),
 		))
 	AddElement(/datum/element/contextual_screentip_tools, tool_behaviors)
@@ -78,14 +78,14 @@
 
 	if(being_buckled == buckler)
 		being_buckled.visible_message(
-			span_notice("[buckler] lays down on [src]."),
-			span_notice("You lay down on [src]."),
+			span_notice("[buckler]躺到了[src]上。"),
+			span_notice("你躺到了[src]上。"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_buckled.visible_message(
-			span_notice("[buckler] lays [being_buckled] down on [src]."),
-			span_notice("[buckler] lays you down on [src]."),
+			span_notice("[buckler]把[being_buckled]放躺到[src]上。"),
+			span_notice("[buckler]把你放躺到[src]上。"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
@@ -95,14 +95,14 @@
 
 	if(being_unbuckled == unbuckler)
 		being_unbuckled.visible_message(
-			span_notice("[unbuckler] gets up from [src]."),
-			span_notice("You get up from [src]."),
+			span_notice("[unbuckler]从[src]上起身。"),
+			span_notice("你从[src]上起身。"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_unbuckled.visible_message(
-			span_notice("[unbuckler] pulls [being_unbuckled] up from [src]."),
-			span_notice("[unbuckler] pulls you up from [src]."),
+			span_notice("[unbuckler]把[being_unbuckled]从[src]上拉了起来。"),
+			span_notice("[unbuckler]把你从[src]上拉了起来。"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
@@ -116,16 +116,16 @@
 
 /obj/structure/weightmachine/wrench_act_secondary(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
-	balloon_alert(user, anchored ? "unsecured" : "secured")
+	balloon_alert(user, anchored ? "已解除固定" : "已固定")
 	anchored = !anchored
 	return TRUE
 
 /obj/structure/weightmachine/crowbar_act_secondary(mob/living/user, obj/item/tool)
 	if(anchored)
-		balloon_alert(user, "still secured!")
+		balloon_alert(user, "仍处于固定状态！")
 		return FALSE
 	tool.play_tool_sound(src)
-	balloon_alert(user, "deconstructing...")
+	balloon_alert(user, "正在拆解……")
 	if (!do_after(user, 10 SECONDS, target = src))
 		return FALSE
 	new /obj/item/stack/sheet/iron(get_turf(src), 5)
@@ -136,7 +136,7 @@
 
 /obj/structure/weightmachine/proc/perform_workout(mob/living/user)
 	if(user.nutrition <= NUTRITION_LEVEL_STARVING)
-		user.balloon_alert(user, "too hungry to workout!")
+		user.balloon_alert(user, "太饿了，练不动！")
 		return
 
 	user.balloon_alert_to_viewers("[pick(more_weight)]")
@@ -147,7 +147,7 @@
 		var/clumsy_chance = 30 - (user.mind.get_skill_level(/datum/skill/athletics) * 5)
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(clumsy_chance))
 			playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
-			to_chat(user, span_warning("Your hand slips, causing \the [src] to smash you!"))
+			to_chat(user, span_warning("你的手一滑，[src]狠狠砸在了你身上！"))
 			user.take_bodypart_damage(rand(2, 5))
 			end_workout()
 			return
@@ -225,13 +225,13 @@
  * Weight lifter subtype
  */
 /obj/structure/weightmachine/weightlifter
-	name = "incline bench press"
+	name = "上斜卧推机"
 	icon_state = "benchpress"
 	base_icon_state = "benchpress"
 
 	pixel_shift_z = 5
 
-	drunk_message = "You raise the bar over you trying to balance it with one hand, keyword tried."
+	drunk_message = "你举起杠铃，想用一只手保持平衡，注意，只是想。"
 
 #undef WORKOUT_XP
 #undef EXERCISE_STATUS_DURATION

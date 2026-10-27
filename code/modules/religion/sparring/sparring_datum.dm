@@ -152,22 +152,22 @@
 ///someone used a gun
 /datum/sparring_match/proc/gun_violation(mob/offender, obj/item/gun/gun_fired, target, params, zone_override, list/bonus_spread_values)
 	SIGNAL_HANDLER
-	violation(offender, "using guns")
+	violation(offender, "使用枪械")
 
 ///someone used a grenade
 /datum/sparring_match/proc/grenade_violation(datum/offender)
 	SIGNAL_HANDLER
-	violation(offender, "using grenades")
+	violation(offender, "使用手榴弹")
 
 ///someone used melee weapons
 /datum/sparring_match/proc/melee_violation(datum/offender, obj/item/thing, mob/user, params)
 	SIGNAL_HANDLER
 
 	if(weapons_condition != CONDITION_CEREMONIAL_ONLY)
-		violation(offender, "using melee weapons")
+		violation(offender, "使用近战武器")
 	if(istype(thing, /obj/item/ceremonial_blade))
 		return
-	violation(offender, "using non ceremonial weapons")
+	violation(offender, "使用非仪式武器")
 
 /datum/sparring_match/proc/teleport_violation(datum/offender)
 	SIGNAL_HANDLER
@@ -184,14 +184,14 @@
 	if(inhabited_area == arena_condition)
 		return //still in the ring!! :)
 
-	violation(mover, "leaving the arena")
+	violation(mover, "离开竞技场")
 	var/atom/throw_target = get_edge_target_turf(mover, REVERSE_DIR(direction))
 	mover.throw_at(throw_target, 6, 4)
 
 /datum/sparring_match/proc/violation(mob/living/carbon/human/offender, reason)
 	SIGNAL_HANDLER
 
-	to_chat(offender, span_userdanger("Violation! No [reason]!"))
+	to_chat(offender, span_userdanger("违规！禁止[reason]！"))
 	if(offender == chaplain)
 		chaplain_violations_allowed--
 		if(!chaplain_violations_allowed)
@@ -208,14 +208,14 @@
 			possible_punishments += PUNISHMENT_BRAND
 		switch(pick(possible_punishments))
 			if(PUNISHMENT_OMEN)
-				to_chat(interfering, span_warning("You get a bad feeling... for interfering with [chaplain]'s sparring match..."))
+				to_chat(interfering, span_warning("你有一种不祥的预感……因为你干涉了 [chaplain] 的切磋比赛……"))
 				interfering.AddComponent(/datum/component/omen)
 			if(PUNISHMENT_LIGHTNING)
-				to_chat(interfering, span_warning("[GLOB.deity] has punished you for interfering with [chaplain]'s sparring match!"))
+				to_chat(interfering, span_warning("[GLOB.deity] 因你干涉 [chaplain] 的切磋比赛而惩罚了你！"))
 				lightningbolt(interfering)
 			if(PUNISHMENT_BRAND)
 				var/mob/living/carbon/human/branded = interfering
-				to_chat(interfering, span_warning("[GLOB.deity] brands your flesh for interfering with [chaplain]'s sparring match!!"))
+				to_chat(interfering, span_warning("[GLOB.deity] 因你干涉 [chaplain] 的切磋比赛而在你身上烙下印记！！"))
 				var/obj/item/bodypart/branded_limb = pick(branded.get_bodyparts())
 				branded_limb.force_wound_upwards(/datum/wound/burn/flesh/severe/brand, wound_source = "divine intervention")
 				branded.emote("scream")
@@ -229,9 +229,9 @@
 	cleanup_sparring_match()
 
 	if(chaplain) //flubing means we don't know who is still standing
-		to_chat(chaplain, span_bolddanger("The match was flub'd! No winners, no losers. You may restart the match with another contract."))
+		to_chat(chaplain, span_bolddanger("比赛被搞砸了！没有胜者，也没有败者。你可以用另一份契约重新开始比赛。"))
 	if(opponent)
-		to_chat(opponent, span_bolddanger("The match was flub'd! No winners, no losers."))
+		to_chat(opponent, span_bolddanger("比赛被搞砸了！没有胜者，也没有败者。"))
 	qdel(src)
 
 ///helper to remove all the effects after a match ends
@@ -245,14 +245,14 @@
 
 /datum/sparring_match/proc/end_match(mob/living/carbon/human/winner, mob/living/carbon/human/loser, violation_victory = FALSE)
 	cleanup_sparring_match()
-	to_chat(chaplain, span_bolddanger("[violation_victory ? "[loser] DISQUALIFIED!" : ""]  [winner] HAS WON!"))
-	to_chat(opponent, span_bolddanger("[violation_victory ? "[loser] DISQUALIFIED!" : ""]  [winner] HAS WON!"))
+	to_chat(chaplain, span_bolddanger("[violation_victory ? "[loser] 被取消资格！" : ""]  [winner] 获胜！"))
+	to_chat(opponent, span_bolddanger("[violation_victory ? "[loser] 被取消资格！" : ""]  [winner] 获胜！"))
 	win(winner, loser, violation_victory)
 	lose(loser, winner)
 	if(stakes_condition != STAKES_YOUR_SOUL)
-		var/healing_message = "You may want to heal up the loser now."
+		var/healing_message = "你现在或许该给败者治疗一下。"
 		if(winner == chaplain)
-			healing_message += " Your bible will heal the loser for awhile."
+			healing_message += " 你的圣经会在一段时间内治疗败者。"
 		to_chat(winner, span_notice(healing_message))
 	qdel(src)
 
@@ -262,16 +262,16 @@
 		if(STAKES_HOLY_MATCH)
 			if(winner == chaplain)
 				if(violation_victory)
-					to_chat(winner, span_warning("[GLOB.deity] is not entertained from a matched decided by violations. No favor awarded..."))
+					to_chat(winner, span_warning("[GLOB.deity] 对由违规行为决定的比赛不感兴趣。未获得恩宠……"))
 				else
-					to_chat(winner, span_nicegreen("You've won favor with [GLOB.deity]!"))
+					to_chat(winner, span_nicegreen("你赢得了 [GLOB.deity] 的恩宠！"))
 				var/datum/religion_sect/spar/sect = GLOB.religious_sect
 				sect.adjust_favor(1, winner)
 				sect.past_opponents += WEAKREF(loser)
 		if(STAKES_MONEY_MATCH)
-			to_chat(winner, span_nicegreen("You've won all of [loser]'s money!"))
+			to_chat(winner, span_nicegreen("你赢走了 [loser] 的全部钱财！"))
 		if(STAKES_YOUR_SOUL)
-			to_chat(winner, span_nicegreen("You've won [loser]'s SOUL!"))
+			to_chat(winner, span_nicegreen("你赢得了 [loser] 的灵魂！"))
 
 /datum/sparring_match/proc/lose(mob/living/carbon/human/loser, mob/living/carbon/human/winner)
 	if(!loser) //shit happened?
@@ -282,24 +282,24 @@
 				var/datum/religion_sect/spar/sect = GLOB.religious_sect
 				sect.matches_lost++
 				if(sect.matches_lost < 3)
-					to_chat(loser, span_userdanger("[GLOB.deity] is angry you lost in their name!"))
+					to_chat(loser, span_userdanger("[GLOB.deity] 因你以其名义落败而愤怒！"))
 					return
-				to_chat(loser, span_userdanger("[GLOB.deity] is enraged by your lackluster sparring record!"))
+				to_chat(loser, span_userdanger("[GLOB.deity] 对你糟糕的切磋战绩极为震怒！"))
 				lightningbolt(loser)
 				loser.add_mood_event("sparring", /datum/mood_event/banished)
 				loser.mind.set_holy_role(NONE)
-				to_chat(loser, span_userdanger("You have been excommunicated! You are no longer holy!"))
+				to_chat(loser, span_userdanger("你已被逐出教会！你不再神圣！"))
 		if(STAKES_MONEY_MATCH)
-			to_chat(loser, span_userdanger("You've lost all your money to [winner]!"))
+			to_chat(loser, span_userdanger("你的全部钱财都输给了 [winner]！"))
 			var/datum/bank_account/loser_account = loser.get_bank_account()
 			var/datum/bank_account/winner_account = winner.get_bank_account()
 			if(!loser_account || !winner_account)//the winner is pretty owned in this case but whatever shoulda read the fine print of the contract
 				return
-			winner_account.transfer_money(loser_account, loser_account.account_balance, "Bet: Sparring")
+			winner_account.transfer_money(loser_account, loser_account.account_balance, "赌注：切磋")
 		if(STAKES_YOUR_SOUL)
 			var/turf/shard_turf = get_turf(loser)
 			if(!shard_turf)
 				return
-			to_chat(loser, span_userdanger("You've lost ownership over your soul to [winner]!"))
+			to_chat(loser, span_userdanger("你对自己灵魂的所有权已输给了 [winner]！"))
 			var/obj/item/soulstone/anybody/chaplain/sparring/shard = new(shard_turf)
 			INVOKE_ASYNC(shard, TYPE_PROC_REF(/obj/item/soulstone, capture_soul), loser, winner, forced = TRUE)

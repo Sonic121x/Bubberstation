@@ -1,6 +1,6 @@
 /obj/item/organ/moth_markings
-	name = "moth markings"
-	desc = "How did you even get that off...?"
+	name = "蛾类斑纹"
+	desc = "你到底是怎么把那个弄下来的……？"
 	icon_state = "random_fly_2"
 
 	mutantpart_key = "moth_markings"

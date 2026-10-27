@@ -5,11 +5,11 @@
  */
 
 /datum/brain_trauma/special/bluespace_prophet/phobetor
-	name = "Sleepless Dreamer"
-	desc = "The patient, after undergoing untold psychological hardship, believes they can travel between the dreamscapes of this dimension."
-	scan_desc = "awoken sleeper"
-	gain_text = "<span class='notice'>Your mind snaps, and you wake up. You <i>really</i> wake up."
-	lose_text = "<span class='warning'>You succumb once more to the sleepless dream of the unwoken."
+	name = "不眠梦者"
+	desc = "患者经历了难以言喻的心理苦难后，相信自己能在此维度的梦境之间穿梭。"
+	scan_desc = "已觉醒的沉睡者"
+	gain_text = "<span class='notice'>你的心智崩裂，你醒来了。你<i>真正地</i>醒来了。"
+	lose_text = "<span class='warning'>你再次沉沦于未醒之人的不眠梦境。"
 
 	///Created tears, only checking the FIRST one, not the one it's created to link to.
 	var/list/created_firsts = list()
@@ -46,14 +46,14 @@
 
 	first.linked_to = second
 	first.seer = owner
-	first.desc += " This one leads to [get_area(second)]."
-	first.name += " ([get_area(second)])"
+	first.desc += " 这条裂隙通往[chinese_area_display(get_area_name(second))]。"
+	first.name += "（[chinese_area_display(get_area_name(second))]）"
 	created_firsts += first
 
 	second.linked_to = first
 	second.seer = owner
-	second.desc += " This one leads to [get_area(first)]."
-	second.name += " ([get_area(first)])"
+	second.desc += " 这条裂隙通往[chinese_area_display(get_area_name(first))]。"
+	second.name += "（[chinese_area_display(get_area_name(first))]）"
 
 	// Delete Next Portal if it's time (it will remove its partner)
 	var/obj/effect/client_image_holder/phobetor/first_on_the_stack = created_firsts[1]
@@ -105,8 +105,8 @@
  */
 
 /obj/effect/client_image_holder/phobetor
-	name = "phobetor tear"
-	desc = "A subdimensional rip in reality, which gives extra-spacial passage to those who have woken from the sleepless dream."
+	name = "梦魇裂隙"
+	desc = "现实中一道通向次维度的裂口，为从不眠梦境中觉醒的人提供超空间通道。"
 	image_icon = 'modular_zubbers/icons/effects/phobetor_tear.dmi'
 	image_state = "phobetor_tear"
 	// Place this above shadows so it always glows.
@@ -152,18 +152,18 @@
 	if(user != seer || !linked_to)
 		return
 	if(user.loc != src.loc)
-		to_chat(user, "Step into the Tear before using it.")
+		to_chat(user, "先踏入裂隙，再使用它。")
 		return
 	for(var/obj/item/implant/tracking/imp in user.implants)
-		to_chat(user, span_warning("[imp] gives you the sense that you're being watched."))
+		to_chat(user, span_warning("[imp] 让你感觉自己正被监视。"))
 		return
 	// Is this, or linked, stream being watched?
 	if(check_location_seen(user, get_turf(user)))
-		to_chat(user, span_warning("Not while you're being watched."))
+		to_chat(user, span_warning("被注视时无法使用。"))
 		return
 	if(check_location_seen(user, get_turf(linked_to)))
-		to_chat(user, span_warning("Your destination is being watched."))
+		to_chat(user, span_warning("你的目的地正被注视着。"))
 		return
-	to_chat(user, span_notice("You slip unseen through [src]."))
+	to_chat(user, span_notice("你悄无声息地穿过了 [src]。"))
 	user.playsound_local(null, 'sound/effects/magic/wand_teleport.ogg', 30, FALSE, pressure_affected = FALSE)
 	user.forceMove(get_turf(linked_to))

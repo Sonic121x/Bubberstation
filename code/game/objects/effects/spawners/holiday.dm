@@ -2,7 +2,7 @@
 /obj/effect/spawner/holiday
 	icon = 'icons/effects/random_spawners.dmi' //reusing icons for efficiency
 	name = "holiday spawner"
-	desc = "a spawner effect that only spawns stuff if a holiday is being celebrated."
+	desc = "仅在庆祝节日时生成物品的生成器效果。"
 	///It contains holiday names (use macros please) as key, and the list of things to spawn on said holiday as value.
 	var/list/holidays_to_spawn
 	///If set and no holiday object is spawned, spawn this instead.
@@ -22,7 +22,7 @@
 
 /obj/effect/spawner/holiday/powdered_ingredient
 	name = "holiday powdered ingredient"
-	desc = "A little extra for the kitchen during specific holidays like moth and tiziran festivities."
+	desc = "在蛾族和提兹拉等特定节庆期间，为厨房提供一些额外食材。"
 	icon_state = "chips"
 	holidays_to_spawn = list(
 		LIZARD_ATRAKOR_DAY = list( //korta flour is made of this
@@ -85,7 +85,7 @@
 
 /obj/effect/spawner/holiday/bar_keg
 	name = "bar keg spawner"
-	desc = "The spawner of the keg on the station. Special stuff on Beer Day and St. Patrick's Day."
+	desc = "空间站酒桶生成器。在啤酒节和圣帕特里克节会提供特别酒品。"
 	icon_state = "keg"
 	holidays_to_spawn = list(
 		ST_PATRICK_DAY = list(

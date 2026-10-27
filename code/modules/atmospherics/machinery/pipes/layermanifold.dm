@@ -1,8 +1,8 @@
 /obj/machinery/atmospherics/pipe/layer_manifold
-	name = "layer adaptor"
+	name = "管道层适配器"
 	icon = 'icons/obj/pipes_n_cables/manifold.dmi'
 	icon_state = "manifoldlayer"
-	desc = "A special pipe to bridge pipe layers with."
+	desc = "一种用于桥接不同管道层的特殊管道。"
 	dir = SOUTH
 	initialize_directions = NORTH|SOUTH
 	pipe_flags = PIPING_ALL_LAYER | PIPING_DEFAULT_LAYER_ONLY | PIPING_CARDINAL_AUTONORMALIZE | PIPING_BRIDGE
@@ -135,7 +135,7 @@
 		user.ventcrawl_layer = clamp(user.ventcrawl_layer + 1, PIPING_LAYER_MIN, PIPING_LAYER_MAX)
 	if((SOUTH|WEST) & direction)
 		user.ventcrawl_layer = clamp(user.ventcrawl_layer - 1, PIPING_LAYER_MIN, PIPING_LAYER_MAX)
-	to_chat(user, "You align yourself with the [user.ventcrawl_layer]\th output.")
+	to_chat(user, "你将自身对齐至第 [user.ventcrawl_layer] 层输出口。")
 
 /obj/machinery/atmospherics/pipe/layer_manifold/visible
 	hide = FALSE

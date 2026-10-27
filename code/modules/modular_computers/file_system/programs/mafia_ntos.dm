@@ -1,8 +1,8 @@
 /datum/computer_file/program/mafia
 	filename = "mafia"
-	filedesc = "Mafia"
+	filedesc = "黑手党"
 	program_open_overlay = "mafia"
-	extended_desc = "A program that allows you to play the infamous Mafia game, straight from your Modular PC."
+	extended_desc = "一款可直接在模块化电脑上游玩臭名昭著的黑手党游戏的程序。"
 	downloader_category = PROGRAM_CATEGORY_GAMES
 	size = 6
 	tgui_id = "NtosMafiaPanel"
@@ -21,7 +21,7 @@
 	var/datum/mafia_role/pda_role = game.get_role_player(computer)
 	if(!pda_role)
 		return ..()
-	game.send_message(span_notice("[pda_role.body] has deleted the game from their PDA, and therefore has left the game."))
+	game.send_message(span_notice("[pda_role.body] 已从 PDA 中删除了游戏，因此退出了本局。"))
 	pda_role.kill(game)
 	return ..()
 
@@ -63,7 +63,7 @@
 	ui_header = "mafia.gif"
 	if(game.get_role_player(computer))
 		alert_pending = TRUE
-		computer.alert_call(src, "Mafia game started!")
+		computer.alert_call(src, "黑手党游戏开始了！")
 
 ///Called when a game of Mafia ends, deletes its ui header.
 /datum/computer_file/program/mafia/proc/on_game_end(datum/mafia_controller/game)

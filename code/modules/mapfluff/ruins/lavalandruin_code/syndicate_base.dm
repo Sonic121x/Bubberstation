@@ -3,8 +3,8 @@
 	config_file = "strings/modular_maps/syndicatebase.toml"
 
 /obj/structure/closet/crate/secure/freezer/commsagent
-	name = "Assorted Tongues And Tongue Accessories"
-	desc = "Unearthing this was probably a mistake."
+	name = "各式舌头及舌头配件"
+	desc = "挖出这东西大概是个错误。"
 
 /obj/structure/closet/crate/secure/freezer/commsagent/PopulateContents()
 	. = ..() //Contains a variety of less exotic tongues (And tongue accessories) for the comms agent to mess with.
@@ -20,8 +20,8 @@
 	new	/obj/item/clothing/gloves/radio(src)
 
 /obj/machinery/power/supermatter_crystal/shard/syndicate
-	name = "syndicate supermatter shard"
-	desc = "Your benefactors conveniently neglected to mention it's already assembled."
+	name = "辛迪加超物质碎片"
+	desc = "你的资助者很“贴心”地忘了提它已经组装好了。"
 	anchored = TRUE
 	radio_key = /obj/item/encryptionkey/syndicate
 	emergency_channel = "Syndicate"
@@ -30,7 +30,7 @@
 
 /obj/machinery/power/supermatter_crystal/shard/syndicate/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/scalpel/supermatter)) //You can already yoink the docs as a free objective win, another would be just gross
-		to_chat(user, span_danger("This shard's already in Syndicate custody, taking it again could cause more harm than good."))
+		to_chat(user, span_danger("这块碎片已经在辛迪加手中了，再拿走它弊大于利。"))
 		return ITEM_INTERACT_BLOCKING
 
 	return NONE

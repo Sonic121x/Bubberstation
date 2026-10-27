@@ -1,7 +1,7 @@
 /datum/techweb_node/bio_scan
 	id = TECHWEB_NODE_BIO_SCAN
-	display_name = "Biological Scan"
-	description = "Advanced technology for analyzing patient health and reagent compositions, ensuring precise diagnostics and treatment in the medical bay."
+	display_name = "生物扫描"
+	description = "用于分析患者健康状况与试剂成分的先进技术，确保医疗舱能进行精确诊断与治疗。"
 	prereq_ids = list(TECHWEB_NODE_MEDBAY_EQUIP)
 	design_ids = list(
 		"healthanalyzer",
@@ -18,8 +18,8 @@
 
 /datum/techweb_node/cytology
 	id = TECHWEB_NODE_CYTOLOGY
-	display_name = "Cytology"
-	description = "Cellular biology research focused on cultivation of limbs and diverse organisms from cells."
+	display_name = "细胞学"
+	description = "以细胞培养肢体及各类生物为方向的细胞生物学研究。"
 	prereq_ids = list(TECHWEB_NODE_BIO_SCAN)
 	design_ids = list(
 		"limbgrower",
@@ -33,8 +33,8 @@
 
 /datum/techweb_node/xenobiology
 	id = TECHWEB_NODE_XENOBIOLOGY
-	display_name = "Xenobiology"
-	description = "Exploration of non-human biology, unlocking the secrets of extraterrestrial lifeforms and their unique biological processes."
+	display_name = "异种生物学"
+	description = "对非人类生物学的探索，揭开外星生命形式及其独特生理过程的秘密。"
 	prereq_ids = list(TECHWEB_NODE_CYTOLOGY)
 	design_ids = list(
 		"xenobioconsole",
@@ -51,8 +51,8 @@
 
 /datum/techweb_node/gene_engineering
 	id = TECHWEB_NODE_GENE_ENGINEERING
-	display_name = "Gene Engineering"
-	description = "Research into sophisticated DNA manipulation techniques, enabling the modification of human genetic traits to unlock specific abilities and enhancements."
+	display_name = "基因工程"
+	description = "对精细 DNA 操作技术的研究，可改造人类遗传性状，从而解锁特定能力与强化。"
 	prereq_ids = list(TECHWEB_NODE_SELECTION, TECHWEB_NODE_XENOBIOLOGY)
 	design_ids = list(
 		"dnascanner",
@@ -71,8 +71,8 @@
 /datum/techweb_node/botany_equip
 	id = TECHWEB_NODE_BOTANY_EQUIP
 	starting_node = TRUE
-	display_name = "Botany Equipment"
-	description = "Essential tools for maintaining onboard gardens, supporting plant growth in the unique environment of the space station."
+	display_name = "植物学设备"
+	description = "维护站内花园的基本工具，支持植物在空间站独特环境中的生长。"
 	design_ids = list(
 		"seed_extractor",
 		"plant_analyzer",
@@ -85,8 +85,8 @@
 
 /datum/techweb_node/hydroponics
 	id = TECHWEB_NODE_HYDROPONICS
-	display_name = "Hydroponics"
-	description = "Research into advanced hydroponic systems for efficient and sustainable plant cultivation."
+	display_name = "水培学"
+	description = "对先进水培系统的研究，以实现高效且可持续的植物栽培。"
 	prereq_ids = list(TECHWEB_NODE_BOTANY_EQUIP, TECHWEB_NODE_CHEM_SYNTHESIS)
 	design_ids = list(
 		"biogenerator",
@@ -98,8 +98,8 @@
 
 /datum/techweb_node/selection
 	id = TECHWEB_NODE_SELECTION
-	display_name = "Artificial Selection"
-	description = "Advancement in plant cultivation techniques through artificial selection, enabling precise manipulation of plant DNA."
+	display_name = "人工选择"
+	description = "通过人工选择推进植物栽培技术，可精确操控植物的 DNA。"
 	prereq_ids = list(TECHWEB_NODE_HYDROPONICS)
 	design_ids = list(
 		"flora_gun",

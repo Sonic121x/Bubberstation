@@ -2,12 +2,12 @@
 #define PHYLACTERY_ACCOUNT_MIN 300
 
 /datum/heretic_knowledge/blood_to_money
-	name = "Claw of the Capitalist"
-	desc = "Allows you to use blood to steal credits out of a target's bank account. Blood gained from the Phlyactery can only steal from \
-	accounts with three hundred credits or more. Notifies the target on invocation."
-	gain_text = "Nanotrasen's efforts were not in vain. The Capitalist, one of many gods-from-steel, successfully penetrated the mansus \
-	and established itself after a long and gruesome war. What Nanotrasen did not anticipate, however, was its reluctance to work with its \
-	creators, and instead pursuing its own goals of greed and avarice."
+	name = "资本家之爪"
+	desc = "让你能利用鲜血窃取目标银行账户中的信用点。从命匣中取得的血液只能窃取\
+	余额不少于三百信用点的账户。施展时会通知目标。"
+	gain_text = "纳米传讯的努力没有白费。众多钢铁之神中的资本家成功侵入漫宿，\
+	并在漫长而惨烈的战争后站稳了脚跟。然而，纳米传讯没有料到，祂不愿与自己的\
+	创造者合作，转而追逐自身贪婪无厌的欲望。"
 	drafting_cost = 1
 	drafting_tier = 1
 	research_tree_icon_path = 'icons/obj/medical/syringe.dmi'
@@ -54,21 +54,21 @@
 		var/mob/living/curr_mob = entry[5]
 		var/datum/reagents/holder = entry[6]
 		if (curr_mob?.can_block_magic(MAGIC_RESISTANCE))
-			to_chat(curr_mob, span_warning("You feel the cold grasp of capitalism gripping your finances... but then it slips away."))
+			to_chat(curr_mob, span_warning("你感觉资本主义冰冷的魔爪攥住了你的钱财……但随即滑开了。"))
 			continue
 
 		var/to_steal = (creds * ((blood_amount * 0.01) * BLOOD_AMOUNT_TO_STEAL_PERCENT_RATIO))
 
 		if (from_phylactery)
 			if (account.account_balance < PHYLACTERY_ACCOUNT_MIN)
-				to_chat(user, span_warning("Not enough money to extract from a phylacterized sample of blood!"))
+				to_chat(user, span_warning("这份命匣血样对应的账户余额不足，无法提取！"))
 				continue
 
 		to_steal = floor(to_steal)
 		account.adjust_money(-to_steal, "##^@%%$^")
 		if (curr_mob != null)
-			to_chat(curr_mob, span_warning("You feel the cold grasp of capitalism gripping your finanaces and tearing them away... someone just stole some of your money through the mansus!"))
-			curr_mob.balloon_alert(curr_mob, "money stolen!")
+			to_chat(curr_mob, span_warning("你感觉资本主义冰冷的魔爪攥住钱财，将其夺走……有人刚刚通过漫宿偷走了你的一部分钱！"))
+			curr_mob.balloon_alert(curr_mob, "钱被偷走了！")
 
 		// no space cash bc space cash is picky
 		var/obj/item/holochip/cash = new /obj/item/holochip(loc)

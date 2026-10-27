@@ -1,6 +1,6 @@
 /obj/item/circuit_component/equipment_action
-	display_name = "Equipment Action"
-	desc = "Represents an action the user can take when using supported shells."
+	display_name = "装备动作"
+	desc = "表示使用者在使用受支持外壳时可以执行的动作。"
 	required_shells = list(/obj/item/organ/cyberimp/bci, /obj/item/mod/module/circuit)
 
 	/// The icon of the button
@@ -88,11 +88,11 @@
 /obj/item/circuit_component/equipment_action/proc/update_actions()
 	for(var/target in granted_to)
 		var/datum/action/granted_action = granted_to[target]
-		granted_action.name = button_name.value || "Action"
+		granted_action.name = button_name.value || "动作"
 		granted_action.button_icon_state = "bci_[replacetextEx(LOWER_TEXT(icon_options.value), " ", "_")]"
 
 /datum/action/innate/circuit_equipment_action
-	name = "Action"
+	name = "动作"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "bci_power"
 	check_flags = AB_CHECK_CONSCIOUS

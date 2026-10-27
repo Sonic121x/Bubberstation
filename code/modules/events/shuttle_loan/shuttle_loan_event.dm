@@ -1,11 +1,11 @@
 /// Gives the choice to "loan" the shuttle to central command, giving a big delay on its return to the station in exchange for money and loot/threats in the cargo hold. Only one can be available at a time.
 /datum/round_event_control/shuttle_loan
-	name = "Shuttle Loan"
+	name = "穿梭机租借"
 	typepath = /datum/round_event/shuttle_loan
 	max_occurrences = 3
 	earliest_start = 7 MINUTES
 	category = EVENT_CATEGORY_BUREAUCRATIC
-	description = "If cargo accepts the offer, fills the shuttle with loot and/or enemies."
+	description = "若货运部接受该提议，就会在穿梭机里装满战利品和/或敌人。"
 	///The types of loan events already run (and to be excluded if the event triggers).
 	admin_setup = list(/datum/event_admin_setup/listed_options/shuttle_loan)
 	///A list of normally unavailable (or already run) situations datums
@@ -47,13 +47,13 @@
 		situation = new fake_situation
 	else
 		SSshuttle.shuttle_loan = src
-	priority_announce("Cargo: [situation.announcement_text]", situation.sender)
+	priority_announce("货运部：[situation.announcement_text]", situation.sender)
 	if(fake)
 		qdel(situation)
 
 ///Triggered when accepting the shuttle loan. Gives payment and delays shuttle. Ensures the event won't be deleted from event controller until after the cargo arrives at the station.
 /datum/round_event/shuttle_loan/proc/loan_shuttle()
-	priority_announce(situation.thanks_msg, "Cargo shuttle commandeered by [command_name()].")
+	priority_announce(situation.thanks_msg, "货运穿梭机已被 [command_name()] 征用。")
 
 	dispatched = TRUE
 	var/datum/bank_account/dep_account = SSeconomy.get_dep_account(ACCOUNT_CAR)
@@ -65,7 +65,7 @@
 	SSshuttle.supply.setTimer(delay_time)
 	SSshuttle.centcom_message += situation.shuttle_transit_text
 
-	log_game("Shuttle loan event firing with type '[situation.logging_desc]'.")
+	log_game("穿梭机租借事件触发，类型为 '[situation.logging_desc]'。")
 
 /datum/round_event/shuttle_loan/tick()
 	if(dispatched)
@@ -110,7 +110,7 @@
 		new spawn_type(spawn_turf)
 
 /datum/event_admin_setup/listed_options/shuttle_loan
-	input_text = "Select a loan offer?"
+	input_text = "选择一份租借提议？"
 
 /datum/event_admin_setup/listed_options/shuttle_loan/get_list()
 	var/datum/round_event_control/shuttle_loan/loan_event = event_control

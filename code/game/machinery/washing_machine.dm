@@ -174,8 +174,8 @@ GLOBAL_LIST_INIT(dye_registry, list(
 ))
 
 /obj/machinery/washing_machine
-	name = "washing machine"
-	desc = "Gets rid of those pesky bloodstains, or your money back!"
+	name = "洗衣机"
+	desc = "彻底清除恼人的血迹，否则全额退款！"
 	icon = 'icons/obj/machines/washing_machine.dmi' //ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 	icon_state = "wm_1_0"
 	density = TRUE
@@ -195,7 +195,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 /obj/machinery/washing_machine/examine(mob/user)
 	. = ..()
 	if(!busy)
-		. += span_notice("<b>Right-click</b> with an empty hand to start a wash cycle.")
+		. += span_notice("空手<b>右键点击</b>可开始洗涤。")
 
 /obj/machinery/washing_machine/RefreshParts()
 	. = ..()
@@ -284,7 +284,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 	inhand_x_dimension = initial(target_type.inhand_x_dimension)
 	inhand_y_dimension = initial(target_type.inhand_y_dimension)
 	name = initial(target_type.name)
-	desc = "[initial(target_type.desc)] The colors look a little dodgy."
+	desc = "[initial(target_type.desc)]颜色看起来有点不对劲。"
 	return target_type //successfully "appearance copy" dyed something; returns the target type as a hacky way of extending
 
 //what happens to this object when washed inside a washing machine
@@ -371,16 +371,16 @@ GLOBAL_LIST_INIT(dye_registry, list(
 	if(user.combat_mode)
 		return NONE
 	if (!state_open)
-		to_chat(user, span_warning("Open the door first!"))
+		to_chat(user, span_warning("先打开门！"))
 		return ITEM_INTERACT_BLOCKING
 	if(bloody_mess)
-		to_chat(user, span_warning("[src] must be cleaned up first!"))
+		to_chat(user, span_warning("必须先清理[src]！"))
 		return ITEM_INTERACT_BLOCKING
 	if(total_load >= max_wash_capacity)
-		to_chat(user, span_warning("The washing machine is full!"))
+		to_chat(user, span_warning("洗衣机已经满了！"))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(item, src))
-		to_chat(user, span_warning("\The [item] is stuck to your hand, you cannot put it in the washing machine!"))
+		to_chat(user, span_warning("[item]粘在你的手上，无法放进洗衣机！"))
 		return ITEM_INTERACT_BLOCKING
 	if(item.dye_color)
 		color_source = item
@@ -394,7 +394,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 	if(.)
 		return
 	if(busy)
-		to_chat(user, span_warning("[src] is busy!"))
+		to_chat(user, span_warning("[src]正在运转！"))
 		return
 
 	if(user.pulling && isliving(user.pulling))
@@ -407,10 +407,10 @@ GLOBAL_LIST_INIT(dye_registry, list(
 				update_appearance()
 			else if(ishuman(victim))
 				if(user.grab_state < GRAB_AGGRESSIVE)
-					balloon_alert(user, "grab harder!")
+					balloon_alert(user, "抓得更紧些！")
 					return
 
-				victim.visible_message(span_danger("[user] is trying to force [victim] into [src]!"))
+				victim.visible_message(span_danger("[user]正试图把[victim]强行塞进[src]！"))
 				log_game("[key_name_and_tag(user)] is forcing [key_name_and_tag(victim)] into a washing machine")
 				if(!do_after(user, 3 SECONDS, target = src, timed_action_flags = IGNORE_HELD_ITEM, extra_checks = CALLBACK(src, PROC_REF(check_aggro_grab), user)))
 					return
@@ -435,13 +435,13 @@ GLOBAL_LIST_INIT(dye_registry, list(
 	if(!user.can_perform_action(src, ALLOW_SILICON_REACH))
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
 	if(busy)
-		to_chat(user, span_warning("[src] is busy!"))
+		to_chat(user, span_warning("[src]正在运转！"))
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
 	if(state_open)
-		to_chat(user, span_warning("Close the door first!"))
+		to_chat(user, span_warning("先关上门！"))
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
 	if(bloody_mess)
-		to_chat(user, span_warning("[src] must be cleaned up first!"))
+		to_chat(user, span_warning("必须先清理[src]！"))
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
 	busy = TRUE
 	if(HAS_TRAIT(user, TRAIT_BRAINWASHING))

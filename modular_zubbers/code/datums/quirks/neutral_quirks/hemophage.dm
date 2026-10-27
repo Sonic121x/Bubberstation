@@ -2,11 +2,11 @@
 
 /datum/quirk/hemophage
 	name = "Hemophagia"
-	desc = "You have the organs and abilities of someone suffering from the hemophage virus."
+	desc = "你拥有嗜血者病毒感染者的器官与能力。"
 	icon = FA_ICON_TEETH
 	value = 0
-	medical_record_text = "During physical examination, patient was found to have corrupted organs and other abilities commonly found in those suffering \
-		from the hemophage virus."
+	medical_record_text = "体检发现，患者具有变异器官及其他通常见于\
+		嗜血者病毒感染者的能力。"
 	hardcore_value = 0
 	mail_goodies = list(/obj/item/reagent_containers/blood/random)
 	quirk_flags = QUIRK_HIDE_FROM_SCAN
@@ -128,20 +128,20 @@
 	else
 		if(in_coffin())
 			quirk_holder.add_mood_event("vampsleep", /datum/mood_event/coffinsleep/quirk)
-			sun_burn_message(span_warning("The sun is up, but you safely rest in your [quirk_holder.loc.name]."))
+			sun_burn_message(span_warning("太阳升起了，但你正安全地躺在[quirk_holder.loc.name]里。"))
 		else
 			quirk_holder.add_mood_event("vampsleep", /datum/mood_event/daylight_bad_sleep)
 			quirk_holder.adjust_fire_loss(1)
-			sun_burn_message(span_warning("[quirk_holder.loc] is not a coffin, but it keeps you safe enough."))
+			sun_burn_message(span_warning("[quirk_holder.loc]虽然不是棺材，但足以保护你。"))
 
 /datum/quirk/hemophage/proc/sun_burn()
 	quirk_holder.add_mood_event("vampsleep", /datum/mood_event/daylight_sun_scorched)
 	if(quirk_holder.blood_volume > BLOOD_VOLUME_NORMAL * 0.71) // 397.6
 		quirk_holder.blood_volume -= 5
-		sun_burn_message(span_warning("The sun burns your skin, but your blood protects you from the worst of it..."))
+		sun_burn_message(span_warning("阳光灼烧你的皮肤，但你的鲜血抵挡了最严重的伤害……"))
 		quirk_holder.adjust_fire_loss(1)
 		return
-	sun_burn_message(span_userdanger("THE SUN, IT BURNS!"))
+	sun_burn_message(span_userdanger("太阳，好烫！"))
 	quirk_holder.adjust_fire_loss(2)
 	quirk_holder.adjust_fire_stacks(1)
 	quirk_holder.ignite_mob()
@@ -156,7 +156,7 @@
 /datum/quirk/hemophage/proc/sun_warning(atom/source, danger_level, vampire_warning_message, ghoul_warning_message)
 	SIGNAL_HANDLER
 	if(danger_level == DANGER_LEVEL_SOL_ROSE)
-		vampire_warning_message = span_userdanger("Solar flares bombard the station with deadly UV light! Stay in cover for the next [TIME_BLOODSUCKER_DAY / 60] minutes or risk death!")
+		vampire_warning_message = span_userdanger("太阳耀斑正以致命紫外线轰击空间站！接下来的[TIME_BLOODSUCKER_DAY / 60]分钟内务必躲在掩体中，否则可能死亡！")
 	SSsunlight.warn_notify(quirk_holder, danger_level, vampire_warning_message)
 
 /datum/quirk/hemophage/proc/in_coffin()

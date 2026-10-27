@@ -1,6 +1,6 @@
 /obj/machinery/vending/wallmed
-	name = "\improper Emergency NanoMed"
-	desc = "Wall-mounted Medical Equipment dispenser, Meant to be used in medical emergencies."
+	name = "\improper 应急纳米医疗"
+	desc = "壁挂式医疗设备售货机，供医疗紧急情况使用。"
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
 	panel_type = "wallmed-panel"
@@ -34,5 +34,5 @@
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/wallmed, 32)
 
 /obj/item/vending_refill/wallmed
-	machine_name = "Emergency NanoMed"
+	machine_name = "应急纳米医疗"
 	icon_state = "refill_medical"

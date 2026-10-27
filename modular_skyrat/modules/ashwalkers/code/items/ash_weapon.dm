@@ -1,7 +1,7 @@
 //ASH WEAPON
 /obj/item/melee/macahuitl
-	name = "ash macahuitl"
-	desc = "A weapon that looks like it will leave really bad marks."
+	name = "灰烬马夸威特"
+	desc = "一件看起来会留下极难看痕迹的武器。"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_clothing.dmi'
 	lefthand_file = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_clothing_left.dmi'
 	righthand_file = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_clothing_right.dmi'
@@ -22,7 +22,7 @@
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 2)
 
 /datum/crafting_recipe/ash_recipe/macahuitl
-	name = "Ash Macahuitl"
+	name = "灰烬马夸威特"
 	result = /obj/item/melee/macahuitl
 	reqs = list(
 		/obj/item/stack/sheet/bone = 2,
@@ -33,6 +33,6 @@
 	category = CAT_WEAPON_MELEE
 
 /obj/item/kinetic_crusher/cursed
-	name = "cursed ash carver"
-	desc = "A horrible, alive-looking weapon that pulses every so often. The tendril created this monstrosity to mimic and compete with those who invade the land."
+	name = "诅咒灰烬切割器"
+	desc = "一件可怕的、看起来像活物般的武器，时不时会脉动一下。触须创造出这头怪物，用以模仿并对抗那些入侵这片土地的人。"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'

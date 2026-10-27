@@ -18,9 +18,9 @@
 		basic_pawn.melee_attack_cooldown = current_cooldown / 2
 
 		if(controller.blackboard_key_exists(BB_CURRENT_TARGET))
-			basic_pawn.visible_message(span_danger("\The [basic_pawn] gets an enraged look at [controller.blackboard[BB_CURRENT_TARGET]]!"))
+			basic_pawn.visible_message(span_danger("[basic_pawn]怒视着[controller.blackboard[BB_CURRENT_TARGET]]！"))
 		else
-			basic_pawn.visible_message(span_danger("\The [basic_pawn] gets an enraged look!"))
+			basic_pawn.visible_message(span_danger("[basic_pawn]露出了愤怒的神情！"))
 		return AI_BEHAVIOR_SUCCEEDED
 
 	if(!low_health && is_enraged)

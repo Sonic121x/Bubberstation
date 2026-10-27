@@ -1,6 +1,6 @@
 /datum/action/changeling_expel_worm
-	name = "Expel Worm"
-	desc = "Forcefully expel the blood worm in your body."
+	name = "驱除血虫"
+	desc = "强行驱除你体内的血虫。"
 
 	background_icon_state = "bg_changeling"
 	overlay_icon_state = "bg_changeling_border"
@@ -23,7 +23,7 @@
 	if(!.)
 		return
 	var/mob/living/basic/blood_worm/invader = locate() in owner.loc
-	to_chat(owner, span_danger("You expel \the [invader] from your body!"))
-	to_chat(invader, span_userdanger("You are forcefully expelled by the body of \the [owner.loc]!"))
+	to_chat(owner, span_danger("你将[invader]从体内驱除！"))
+	to_chat(invader, span_userdanger("你被[owner.loc]的身体强行驱除！"))
 	invader.leave_host() // hasta la vista, worm
 	return TRUE

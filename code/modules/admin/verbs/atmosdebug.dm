@@ -1,27 +1,27 @@
 ADMIN_VERB_VISIBILITY(atmos_debug, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(atmos_debug, R_DEBUG, "Check Plumbing", "Verifies the integrity of the plumbing network.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(atmos_debug, R_DEBUG, "检查管道", "验证管道网络的完整性。", ADMIN_CATEGORY_MAPPING)
 	BLACKBOX_LOG_ADMIN_VERB("Check Plumbing")
 
 	//all plumbing - yes, some things might get stated twice, doesn't matter.
 	for(var/obj/machinery/atmospherics/components/pipe as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/atmospherics/components))
 		if(pipe.z && (!pipe.nodes || !pipe.nodes.len || (null in pipe.nodes)))
-			to_chat(user, "Unconnected [pipe.name] located at [ADMIN_VERBOSEJMP(pipe)]", confidential = TRUE)
+			to_chat(user, "未连接的[pipe.name]，位于 [ADMIN_VERBOSEJMP(pipe)]", confidential = TRUE)
 
 	//Pipes
 	for(var/obj/machinery/atmospherics/pipe/pipe as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/atmospherics/pipe))
 		if(istype(pipe, /obj/machinery/atmospherics/pipe/smart) || istype(pipe, /obj/machinery/atmospherics/pipe/layer_manifold) || istype(pipe, /obj/machinery/atmospherics/pipe/multiz))
 			continue
 		if(pipe.z && (!pipe.nodes || !pipe.nodes.len || (null in pipe.nodes)))
-			to_chat(user, "Unconnected [pipe.name] located at [ADMIN_VERBOSEJMP(pipe)]", confidential = TRUE)
+			to_chat(user, "未连接的[pipe.name]，位于 [ADMIN_VERBOSEJMP(pipe)]", confidential = TRUE)
 
 	//Nodes
 	for(var/obj/machinery/atmospherics/node1 as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/atmospherics))
 		for(var/obj/machinery/atmospherics/node2 in node1.nodes)
 			if(!(node1 in node2.nodes))
-				to_chat(user, "One-way connection in [node1.name] located at [ADMIN_VERBOSEJMP(node1)]", confidential = TRUE)
+				to_chat(user, "[node1.name] 存在单向连接，位于 [ADMIN_VERBOSEJMP(node1)]", confidential = TRUE)
 
 ADMIN_VERB_VISIBILITY(power_debug, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(power_debug, R_DEBUG, "Check Power", "Verifies the integrity of the power network.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(power_debug, R_DEBUG, "检查电力", "验证电力网络的完整性。", ADMIN_CATEGORY_MAPPING)
 	BLACKBOX_LOG_ADMIN_VERB("Check Power")
 	var/list/results = list()
 
@@ -29,23 +29,23 @@ ADMIN_VERB(power_debug, R_DEBUG, "Check Power", "Verifies the integrity of the p
 		if (!PN.nodes || !PN.nodes.len)
 			if(PN.cables && (PN.cables.len > 1))
 				var/obj/structure/cable/C = PN.cables[1]
-				results += "Powernet with no nodes! Example cable at [ADMIN_VERBOSEJMP(C)]"
+				results += "电网没有节点！示例线缆位于 [ADMIN_VERBOSEJMP(C)]"
 
 		if (!PN.cables || (PN.cables.len < 10))
 			if(PN.cables && (PN.cables.len > 1))
 				var/obj/structure/cable/C = PN.cables[1]
-				results += "Powernet with fewer than 10 cables! Example cable at [ADMIN_VERBOSEJMP(C)]"
+				results += "电网的线缆少于 10 根！示例线缆位于 [ADMIN_VERBOSEJMP(C)]"
 
 	for(var/turf/T in world.contents)
 		var/cable_layers //cache all cable layers (which are bitflags) present
 		for(var/obj/structure/cable/C in T.contents)
 			if(cable_layers & C.cable_layer)
-				results += "Doubled wire at [ADMIN_VERBOSEJMP(C)]"
+				results += "线缆重叠于 [ADMIN_VERBOSEJMP(C)]"
 			else
 				cable_layers |= C.cable_layer
 		var/obj/machinery/power/terminal/term = locate(/obj/machinery/power/terminal) in T.contents
 		if(term)
 			var/obj/structure/cable/C = locate(/obj/structure/cable) in T.contents
 			if(!C)
-				results += "Unwired terminal at [ADMIN_VERBOSEJMP(term)]"
+				results += "未接线的终端位于 [ADMIN_VERBOSEJMP(term)]"
 	to_chat(user, "[results.Join("\n")]", confidential = TRUE)

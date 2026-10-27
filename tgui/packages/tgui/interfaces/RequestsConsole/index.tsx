@@ -1,16 +1,16 @@
 import { Button, Stack } from 'tgui-core/components';
-
+import { areaDisplay } from '../../localization/batchThreeDisplay';
 import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
 import { RequestsConsoleHeader } from './RequestsConsoleHeader';
 import { RequestMainScreen } from './RequestsConsoleMainScreen';
 import type { RequestsData } from './types';
-
+import { machineChoiceDisplay } from '../common/machineChoiceDisplay';
 export const RequestsConsole = (props) => {
   const { act, data } = useBackend<RequestsData>();
   const { department } = data;
   return (
-    <Window title={`${department} Requests Console`} width={500} height={600}>
+    <Window title={`${machineChoiceDisplay(areaDisplay(department, data))}请求控制台`} width={500} height={600}>
       <Window.Content>
         <RequestsConsoleContent />
       </Window.Content>
@@ -37,7 +37,7 @@ const RequestsConsoleFooter = (props) => {
       <Button.Checkbox
         fluid
         checked={!silent}
-        content={'Speaker'}
+        content={'扬声器'}
         onClick={() => {
           act('toggle_silent');
         }}

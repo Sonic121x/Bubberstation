@@ -1,24 +1,24 @@
 /datum/religion_rites/holy_violin
-	name = "Cogitandi Fidis"
-	desc = "Creates a holy violin that can analyze songs played from it."
+	name = "科吉坦迪·菲迪斯"
+	desc = "创造一把能分析所奏歌曲的神圣小提琴。"
 	ritual_length = 6 SECONDS
-	ritual_invocations = list("A servant of jubilee is needed ...")
-	invoke_msg = "... A great mind for musical matters!"
+	ritual_invocations = list("需要一位欢庆的仆从……")
+	invoke_msg = "……以及一颗通晓音律的伟大心灵！"
 	favor_cost = 20 //you only need one
 
 /datum/religion_rites/holy_violin/invoke_effect(mob/living/user, atom/religious_tool)
 	. = ..()
 	var/turf/tool_turf = get_turf(religious_tool)
 	var/obj/item/instrument/violin/fidis = new /obj/item/instrument/violin/festival(get_turf(religious_tool))
-	fidis.visible_message(span_notice("[fidis] appears!"))
+	fidis.visible_message(span_notice("[fidis] 出现了！"))
 	playsound(tool_turf, 'sound/effects/pray.ogg', 50, TRUE)
 
 /datum/religion_rites/portable_song_tuning
-	name = "Portable Song Tuning"
-	desc = "Empowers a provided instrument to work as a portable altar for tuning songs. It will need to be recharged after five rites."
+	name = "便携歌曲调律"
+	desc = "为提供的乐器赋予便携祭坛的功能，用于调律歌曲。每五次仪式后需要重新充能。"
 	ritual_length = 6 SECONDS
-	ritual_invocations = list("Allow me to bring your holy inspirations ...")
-	invoke_msg = "... And send them with the winds my tunes ride!"
+	ritual_invocations = list("请允许我带来你神圣的灵感……")
+	invoke_msg = "……并让它们随我的曲调乘风而去！"
 	favor_cost = 10
 	///instrument to empower
 	var/obj/item/instrument/instrument_target
@@ -27,7 +27,7 @@
 	for(var/obj/item/instrument/could_empower in get_turf(religious_tool))
 		instrument_target = could_empower
 		return ..()
-	to_chat(user, span_warning("You need to place an instrument on [religious_tool] to do this!"))
+	to_chat(user, span_warning("你需要把一件乐器放在 [religious_tool] 上才能这么做！"))
 	return FALSE
 
 /datum/religion_rites/portable_song_tuning/invoke_effect(mob/living/user, atom/movable/religious_tool)
@@ -36,9 +36,9 @@
 	var/turf/tool_turf = get_turf(religious_tool)
 	instrument_target = null
 	if(QDELETED(empower_target) || !(tool_turf == empower_target.loc)) //check if the instrument is still there
-		to_chat(user, span_warning("Your target left the altar!"))
+		to_chat(user, span_warning("你的目标离开了祭坛！"))
 		return FALSE
-	empower_target.visible_message(span_notice("[empower_target] glows for a moment."))
+	empower_target.visible_message(span_notice("[empower_target] 闪耀了一瞬。"))
 	playsound(tool_turf, 'sound/effects/pray.ogg', 50, TRUE)
 	var/list/allowed_rites_from_bible = subtypesof(/datum/religion_rites/song_tuner)
 	empower_target.AddComponent( \
@@ -54,15 +54,15 @@
 
 ///prototype for rites that tune a song.
 /datum/religion_rites/song_tuner
-	name = "Tune Song"
-	desc = "this is a prototype."
+	name = "调律歌曲"
+	desc = "这是一个原型。"
 	ritual_length = 10 SECONDS
 	favor_cost = 10
 	rite_flags = NONE
 	///if repeats count as continuations instead of a song's end, TRUE
 	var/repeats_okay = TRUE
 	///personal message sent to the chaplain as feedback for their chosen song
-	var/song_invocation_message = "beep borp you forgot to fill in a variable report to git hub"
+	var/song_invocation_message = "哔啵，你忘了填变量，快去给 GitHub 提报告"
 	///visible message sent to indicate a song will have special properties
 	var/song_start_message
 	///particle effect of playing this tune
@@ -108,11 +108,11 @@
 	return
 
 /datum/religion_rites/song_tuner/evangelism
-	name = "Evangelical Hymn"
-	desc = "Spreads the word of your god, gaining favor for each non-holy listener. At the end of the song, you'll bless all listeners, improving mood."
+	name = "福音圣歌"
+	desc = "传播你神祇的教诲，每有一名非神圣聆听者便获得恩宠。歌曲结束时，你会祝福所有聆听者，改善其心情。"
 	particles_path = /particles/musical_notes/holy
-	song_invocation_message = "You've prepared a holy song!"
-	song_start_message = span_notice("This music sounds blessed!")
+	song_invocation_message = "你准备好了一首神圣之歌！"
+	song_start_message = span_notice("这段音乐听起来受到祝福！")
 	glow_color = "#FEFFE0"
 	favor_cost = 0
 
@@ -126,11 +126,11 @@
 	listener.add_mood_event("blessing", /datum/mood_event/blessing)
 
 /datum/religion_rites/song_tuner/light
-	name = "Illuminating Solo"
-	desc = "Sing a bright song, lighting up the area around you. At the end of the song, you'll give some illumination to listeners."
+	name = "光明独奏"
+	desc = "唱一首明亮之歌，照亮你周围的区域。歌曲结束时，你会为聆听者带来一些光照。"
 	particles_path = /particles/musical_notes/light
-	song_invocation_message = "You've prepared a bright song!"
-	song_start_message = span_notice("This music simply glows!")
+	song_invocation_message = "你准备好了一首明亮之歌！"
+	song_start_message = span_notice("这段音乐简直在发光！")
 	glow_color = "#fcff44"
 	repeats_okay = FALSE
 	favor_cost = 0
@@ -148,11 +148,11 @@
 	listener.apply_status_effect(/datum/status_effect/song/light)
 
 /datum/religion_rites/song_tuner/nullwave
-	name = "Nullwave Vibrato"
-	desc = "Sing a dull song, protecting listeners from magic."
+	name = "虚空波颤音"
+	desc = "唱一首沉闷之歌，保护聆听者免受魔法影响。"
 	particles_path = /particles/musical_notes/nullwave
-	song_invocation_message = "You've prepared an antimagic song!"
-	song_start_message = span_nicegreen("This music makes you feel protected!")
+	song_invocation_message = "你准备好了一首反魔法之歌！"
+	song_start_message = span_nicegreen("这段音乐让你感到受到保护！")
 	glow_color = "#a9a9b8"
 	repeats_okay = FALSE
 
@@ -160,11 +160,11 @@
 	listener.apply_status_effect(/datum/status_effect/song/antimagic)
 
 /datum/religion_rites/song_tuner/pain
-	name = "Murderous Chord"
-	desc = "Sing a sharp song, cutting those around you. Works less effectively on fellow priests. At the end of the song, you'll open dozens of cuts on all listeners."
+	name = "杀戮和弦"
+	desc = "唱一首尖锐之歌，割伤周围的人。对同为牧师者效果较差。歌曲结束时，你会让所有聆听者身上裂开数十道伤口。"
 	particles_path = /particles/musical_notes/harm
-	song_invocation_message = "You've prepared a painful song!"
-	song_start_message = span_danger("This music cuts like a knife!")
+	song_invocation_message = "你准备好了一首痛苦之歌！"
+	song_start_message = span_danger("这段音乐像刀一样割人！")
 	glow_color = "#FF4460"
 	repeats_okay = FALSE
 
@@ -180,11 +180,11 @@
 	sliced_limb.force_wound_upwards(/datum/wound/slash/flesh/moderate/many_cuts)
 
 /datum/religion_rites/song_tuner/lullaby
-	name = "Spiritual Lullaby"
-	desc = "Sing a lullaby, tiring and slowing those around you. At the end of the song, you'll lull all listeners to sleep."
+	name = "灵魂摇篮曲"
+	desc = "唱一首摇篮曲，使周围的人疲惫而迟缓。歌曲结束时，你会让所有聆听者昏昏入睡。"
 	particles_path = /particles/musical_notes/sleepy
-	song_invocation_message = "You've prepared a sleepy song!"
-	song_start_message = span_warning("This music's making you feel drowsy...")
+	song_invocation_message = "你准备好了一首催眠之歌！"
+	song_start_message = span_warning("这段音乐让你感到昏昏欲睡……")
 	favor_cost = 40 //actually really strong
 	glow_color = "#83F6FF"
 	repeats_okay = FALSE
@@ -200,9 +200,9 @@
 		return
 
 	var/static/list/sleepy_messages = list(
-		"The music is putting you to sleep...",
-		"The music makes you nod off for a moment.",
-		"You try to focus on staying awake through the song.",
+		"这音乐正让你入睡……",
+		"这音乐让你有一瞬间打起了瞌睡。",
+		"你努力集中精神，想在歌声中保持清醒。",
 	)
 
 	if(prob(20))
@@ -211,5 +211,5 @@
 	listener.set_eye_blur_if_lower(4 SECONDS)
 
 /datum/religion_rites/song_tuner/lullaby/finish_effect(mob/living/carbon/human/listener, atom/song_source)
-	to_chat(listener, span_danger("Wow, the ending of that song was... pretty..."))
+	to_chat(listener, span_danger("哇，那首歌的结尾真是……挺……"))
 	listener.AdjustSleeping(5 SECONDS)

@@ -1,8 +1,8 @@
 /datum/job/cargo_technician
 	title = JOB_CARGO_TECHNICIAN
-	description = "Distribute supplies to the departments that ordered them, \
-		collect empty crates, load and unload the supply shuttle, \
-		ship bounty cubes."
+	description = "将物资分发给下单的各个部门，\
+		回收空板条箱，装卸补给穿梭机，\
+		寄送赏金方块。"
 	faction = FACTION_STATION
 	total_positions = 5
 	spawn_positions = 3
@@ -31,7 +31,7 @@
 		/obj/item/gun/ballistic/rifle/boltaction = 1,
 		/obj/item/gun/ballistic/automatic/wt550 = 1,
 	)
-	rpg_title = "Merchantman"
+	rpg_title = "行商"
 	job_flags = STATION_JOB_FLAGS
 
 

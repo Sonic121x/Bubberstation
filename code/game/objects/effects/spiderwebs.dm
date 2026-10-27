@@ -1,9 +1,9 @@
 #define SPIDER_WEB_TINT	"web_colour_tint"
 
 /obj/structure/spider
-	name = "web"
+	name = "蛛网"
 	icon = 'icons/effects/web.dmi'
-	desc = "It's stringy and sticky."
+	desc = "丝丝缕缕，黏黏糊糊。"
 	anchored = TRUE
 	density = FALSE
 	max_integrity = 15
@@ -68,9 +68,9 @@
 		return
 	if(!HAS_TRAIT(user, TRAIT_WEB_WEAVER))
 		return
-	loc.balloon_alert_to_viewers("weaving...")
+	loc.balloon_alert_to_viewers("正在织网……")
 	if(!do_after(user, 2 SECONDS))
-		loc.balloon_alert(user, "interrupted!")
+		loc.balloon_alert(user, "已中断！")
 		return
 	qdel(src)
 	var/obj/item/stack/sheet/cloth/woven_cloth = new /obj/item/stack/sheet/cloth
@@ -101,20 +101,20 @@
 /obj/structure/spider/stickyweb/proc/stuck_react(mob/living/victim)
 	if(victim.get_stamina_loss() > 90)
 		if(victim.body_position != LYING_DOWN)
-			to_chat(victim, span_warning("You trip over \the [src] due to exhaustion!"))
+			to_chat(victim, span_warning("你因精疲力竭被[src]绊倒了！"))
 
 		victim.SetKnockdown(3 SECONDS)
 		return
 
 	if(prob(25))
-		loc.balloon_alert(victim, "stuck in web!")
+		loc.balloon_alert(victim, "被蛛网粘住了！")
 		victim.Shake(duration = 0.2 SECONDS)
 
 	victim.adjust_stamina_loss(rand(10, 15))
 
 /// Web made by geneticists, needs special handling to allow them to pass through their own webs
 /obj/structure/spider/stickyweb/genetic
-	desc = "It's stringy, sticky, and came out of your coworker."
+	desc = "丝丝缕缕，黏黏糊糊，而且出自你的同事体内。"
 	/// Mob with special permission to cross this web
 	var/mob/living/allowed_mob
 
@@ -133,7 +133,7 @@
 /// Web with a 100% chance to intercept movement
 /obj/structure/spider/stickyweb/very_sticky
 	max_integrity = 20
-	desc = "Extremely sticky silk, you're not easily getting through there."
+	desc = "极其黏稠的蛛丝，你很难穿过去。"
 	stuck_chance = 100
 	projectile_stuck_chance = 100
 
@@ -151,8 +151,8 @@
 
 /// Web 'wall'
 /obj/structure/spider/stickyweb/sealed
-	name = "sealed web"
-	desc = "A solid wall of web, dense enough to block air flow."
+	name = "密封蛛网"
+	desc = "坚实的蛛网墙，致密得足以阻挡气流。"
 	icon = 'icons/obj/smooth_structures/webwall.dmi'
 	base_icon_state = "webwall"
 	icon_state = "webwall-0"
@@ -170,8 +170,8 @@
 
 /// Walls which reflects lasers
 /obj/structure/spider/stickyweb/sealed/reflector
-	name = "reflective silk screen"
-	desc = "Hardened webbing treated with special chemicals which cause it to repel projectiles."
+	name = "反射蛛丝屏障"
+	desc = "经过特殊化学处理的硬化蛛网，能够弹开投射物。"
 	icon = 'icons/obj/smooth_structures/webwall_reflector.dmi'
 	base_icon_state = "webwall_reflector"
 	icon_state = "webwall_reflector-0"
@@ -184,8 +184,8 @@
 
 /// Opaque and durable web 'wall'
 /obj/structure/spider/stickyweb/sealed/tough
-	name = "hardened web"
-	desc = "Webbing hardened through a chemical process into a durable barrier."
+	name = "硬化蛛网"
+	desc = "通过化学处理硬化成耐用屏障的蛛网。"
 	icon = 'icons/obj/smooth_structures/webwall_dark.dmi'
 	base_icon_state = "webwall_dark"
 	icon_state = "webwall_dark-0"
@@ -198,8 +198,8 @@
 
 /// Web 'door', blocks atmos but not movement
 /obj/structure/spider/passage
-	name = "web passage"
-	desc = "An opaque curtain of web which seals in air but doesn't impede passage."
+	name = "蛛网通道"
+	desc = "不透明的蛛网帘，能封住空气，却不妨碍通行。"
 	icon = 'icons/obj/smooth_structures/stickyweb_rotated.dmi'
 	base_icon_state = "stickyweb_rotated"
 	icon_state = "stickyweb_rotated-0"
@@ -221,8 +221,8 @@
 	add_filter(SPIDER_WEB_TINT, 10, list("type" = "outline", "color" = "#ffffffff", "alpha" = 0.8, "size" = 0.1))
 
 /obj/structure/spider/cocoon
-	name = "cocoon"
-	desc = "Something wrapped in silky spider web."
+	name = "蛛茧"
+	desc = "某个被丝滑蛛网包裹的东西。"
 	icon_state = "cocoon1"
 	max_integrity = 60
 
@@ -234,8 +234,8 @@
 	var/breakout_time = 600
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	to_chat(user, span_notice("You struggle against the tight bonds... (This will take about [DisplayTimeText(breakout_time)].)"))
-	visible_message(span_notice("You see something struggling and writhing in \the [src]!"))
+	to_chat(user, span_notice("你试图挣脱紧紧的束缚……（大约需要[DisplayTimeText(breakout_time)]。）"))
+	visible_message(span_notice("你看到有什么东西正在[src]中挣扎扭动！"))
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src)
 			return
@@ -243,15 +243,15 @@
 
 /obj/structure/spider/cocoon/Destroy()
 	var/turf/T = get_turf(src)
-	src.visible_message(span_warning("\The [src] splits open."))
+	src.visible_message(span_warning("[src]裂开了。"))
 	for(var/atom/movable/A in contents)
 		A.forceMove(T)
 	return ..()
 
 /// Web caltrops
 /obj/structure/spider/spikes
-	name = "web spikes"
-	desc = "Silk hardened into small yet deadly spikes."
+	name = "蛛丝尖刺"
+	desc = "硬化成细小致命尖刺的蛛丝。"
 	layer = ABOVE_OPEN_TURF_LAYER
 	plane = FLOOR_PLANE
 	icon = 'icons/obj/smooth_structures/stickyweb_spikes.dmi'
@@ -270,8 +270,8 @@
 	AddComponent(/datum/component/caltrop, min_damage = 20, max_damage = 30, flags = CALTROP_NOSTUN | CALTROP_BYPASS_SHOES)
 
 /obj/structure/spider/effigy
-	name = "web effigy"
-	desc = "A giant spider! Fortunately, this one is just a statue of hardened webbing."
+	name = "蛛网塑像"
+	desc = "一只巨型蜘蛛！幸好，这只是用硬化蛛网做的雕像。"
 	icon_state = "effigy"
 	max_integrity = 125
 	density = TRUE

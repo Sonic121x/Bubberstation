@@ -1,7 +1,7 @@
 /obj/item/circuit_component/list_literal/wirenet_send
-	display_name = "Wirenet Transmitter List Literal"
-	desc = "Creates a list literal data package and sends it through the connected cable network. If Encryption Key is set then transmitted data will be only picked up by receivers with the same Encryption Key."
-	category = "Utility"
+	display_name = "线路网列表常量发射器"
+	desc = "创建一个列表常量数据包，并通过已连接的电缆网络发送。若设置了加密密钥，则只有使用相同加密密钥的接收器才能接收到所发送的数据。"
+	category = "实用工具"
 
 	ui_buttons = list(
 		"1" = CABLE_LAYER_1_NAME,
@@ -43,8 +43,8 @@
 
 /obj/item/circuit_component/list_literal/wirenet_send/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Set the cable layer to connect to with the \"1\", \"2\", and \"3\" buttons.", "green", "info")
-	. += create_ui_notice("Currently connected to: [GLOB.cable_layer_to_name["[cable_layer]"]]", "green", "info")
+	. += create_ui_notice("使用“1”“2”“3”按钮设置要连接的电缆层。", "green", "info")
+	. += create_ui_notice("当前连接到：[GLOB.cable_layer_to_name["[cable_layer]"]]", "green", "info")
 
 /obj/item/circuit_component/list_literal/wirenet_send/populate_ports()
 	. = ..()

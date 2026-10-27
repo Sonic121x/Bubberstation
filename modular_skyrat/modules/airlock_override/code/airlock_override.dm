@@ -145,12 +145,12 @@ GLOBAL_VAR_INIT(force_eng_override, FALSE)
 /proc/toggle_eng_override()
 	if(!GLOB.force_eng_override)
 		GLOB.force_eng_override = TRUE
-		minor_announce("Engineering staff will have expanded access to areas of the station during the emergency.", "Engineering Emergency", sound_override = 'sound/announcer/notice/notice1.ogg')
+		minor_announce("紧急状态期间，工程部人员将获得空间站各区域的扩展通行权限。", "工程紧急情况", sound_override = 'sound/announcer/notice/notice1.ogg')
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_FORCE_ENG_OVERRIDE, TRUE)
 		SSblackbox.record_feedback("nested tally", "keycard_auths", 1, list("engineer override access", "enabled"))
 	else
 		GLOB.force_eng_override = FALSE
-		minor_announce("Expanded engineering access has been revoked.", "Engineering Emergency")
+		minor_announce("工程扩展通行权限已被撤销。", "工程紧急情况")
 		var/level = SSsecurity_level.get_current_level_as_number()
 		SSblackbox.record_feedback("nested tally", "keycard_auths", 1, list("engineer override access", "disabled"))
 		if(level == SEC_LEVEL_ORANGE)

@@ -1,6 +1,6 @@
 /obj/item/cane
-	name = "cane"
-	desc = "A cane used by a true gentleman. Or a clown."
+	name = "手杖"
+	desc = "真正绅士用的手杖。或者小丑用的。"
 	icon = 'icons/obj/weapons/staff.dmi'
 	icon_state = "cane"
 	inhand_icon_state = "stick"
@@ -11,8 +11,8 @@
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/iron= SMALL_MATERIAL_AMOUNT * 0.5)
-	attack_verb_continuous = list("bludgeons", "whacks", "disciplines", "thrashes")
-	attack_verb_simple = list("bludgeon", "whack", "discipline", "thrash")
+	attack_verb_continuous = list("敲打", "重击", "惩戒", "抽打")
+	attack_verb_simple = list("敲打", "重击", "惩戒", "抽打")
 	/// The amount of slowdown to reduce for a limbless leg
 	var/limbless_slowdown_modifier = 0.6 // reduces slowdown by 40%
 	/// Does this cause waddling when held
@@ -27,8 +27,8 @@
 	return null
 
 /obj/item/cane/crutch
-	name = "medical crutch"
-	desc = "A medical crutch used by people missing a leg. Not all that useful if you're missing both of them, though."
+	name = "医疗拐杖"
+	desc = "缺了一条腿的人所用的医疗拐杖。不过要是两条腿都没了，这东西就没那么有用了。"
 	icon = 'icons/obj/weapons/staff.dmi'
 	icon_state = "crutch_med"
 	inhand_icon_state = "crutch_med"
@@ -39,8 +39,8 @@
 	throwforce = 8
 	w_class = WEIGHT_CLASS_BULKY
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
-	attack_verb_continuous = list("bludgeons", "whacks", "thrashes")
-	attack_verb_simple = list("bludgeon", "whack", "thrash")
+	attack_verb_continuous = list("敲打", "重击", "抽打")
+	attack_verb_simple = list("敲打", "重击", "抽打")
 	limbless_slowdown_modifier = 0.4 // reduces slowdown by 60%
 	causes_waddling = TRUE
 
@@ -49,15 +49,15 @@
 	AddElement(/datum/element/cuffable_item)
 
 /obj/item/cane/crutch/wood
-	name = "wooden crutch"
-	desc = "A handmade crutch. Also makes a decent bludgeon if you need it."
+	name = "木制拐杖"
+	desc = "手工制作的拐杖。需要时也能当根不错的棍棒用。"
 	icon_state = "crutch_wood"
 	inhand_icon_state = "crutch_wood"
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/cane/white
-	name = "white cane"
-	desc = "Traditionally used by the blind to help them see. Folds down to be easier to transport."
+	name = "白手杖"
+	desc = "传统上供盲人用来探路。可折叠，便于携带。"
 	icon_state = "cane_white"
 	inhand_icon_state = "cane_white"
 	icon_angle = 45
@@ -76,8 +76,8 @@
 		hitsound_on = hitsound, \
 		w_class_on = WEIGHT_CLASS_BULKY, \
 		clumsy_check = FALSE, \
-		attack_verb_continuous_on = list("smacks", "strikes", "cracks", "beats"), \
-		attack_verb_simple_on = list("smack", "strike", "crack", "beat"), \
+		attack_verb_continuous_on = list("猛拍", "击打", "抽裂", "痛揍"), \
+		attack_verb_simple_on = list("猛拍", "击打", "抽裂", "痛揍"), \
 	)
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 
@@ -94,7 +94,7 @@
 	SIGNAL_HANDLER
 
 	if(user)
-		balloon_alert(user, active ? "extended" : "collapsed")
+		balloon_alert(user, active ? "已展开" : "已收起")
 
 	if(!HAS_TRAIT(src, TRAIT_BLIND_TOOL))
 		ADD_TRAIT(src, TRAIT_BLIND_TOOL, INNATE_TRAIT)

@@ -1,8 +1,8 @@
 /obj/effect/abstract/ripple
-	name = "hyperspace ripple"
-	desc = "Something is coming through hyperspace, you can see the \
-		visual disturbances. It's probably best not to be on top of these \
-		when whatever is tunneling comes through."
+	name = "超空间涟漪"
+	desc = "有东西正从超空间穿行而来，你能看到 \
+		那些视觉扰动。不管钻过来的是什么，\
+		最好别站在它上面。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "medi_holo"
 	anchored = TRUE

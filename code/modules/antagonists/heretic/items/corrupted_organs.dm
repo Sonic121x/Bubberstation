@@ -1,21 +1,21 @@
 /// Renders you unable to see people who were heretics at the time that this organ is gained
 /obj/item/organ/eyes/corrupt
-	name = "corrupt orbs"
-	desc = "These eyes have seen something they shouldn't have."
+	name = "腐化眼球"
+	desc = "这双眼睛看见了不该看见的东西。"
 	icon_state = "eyes_voidwalker"
 	iris_overlay = null
 	eye_color_left = COLOR_VOID_PURPLE
 	eye_color_right = COLOR_VOID_PURPLE
 	organ_flags = parent_type::organ_flags | ORGAN_HAZARDOUS
 	pupils_name = span_hypnophrase("pierced realities") //teeny tiny mansus portals, IN YOUR EYEBALLS (known to cause cancer in the state of california)
-	penlight_message = "ARE THE LOCK, THE LIGHT IS THE KEY! THE HIGHER I RISE, THE MORE I-"
+	penlight_message = "便是锁，而光就是钥匙！我攀升愈高，便愈——"
 	/// The override images we are applying
 	var/list/hallucinations
 
 /obj/item/organ/eyes/corrupt/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/corrupted_organ, FALSE)
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their eyes have wide dilated pupils, and no iris. Something is moving in the darkness.", BODY_ZONE_PRECISE_EYES)
+	AddElement(/datum/element/noticable_organ, "其双眼瞳孔极度扩张，没有虹膜。某种东西正在那片黑暗中蠕动。", BODY_ZONE_PRECISE_EYES)
 
 /obj/item/organ/eyes/corrupt/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
@@ -44,25 +44,25 @@
 /obj/item/organ/eyes/corrupt/penlight_examine(mob/living/viewer, obj/item/examtool)
 	viewer.playsound_local(src, 'sound/effects/magic/magic_block_mind.ogg', 75, FALSE)
 	if(!viewer.is_blind() && !IS_HERETIC_OR_MONSTER(viewer))
-		to_chat(viewer, span_danger("Your eyes sizzle in their sockets as eldritch energies assault them!"))
+		to_chat(viewer, span_danger("邪异能量侵袭了你的双眼，让它们在眼窝中灼痛嘶鸣！"))
 		viewer.emote("scream")
 		viewer.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
 		viewer.adjust_timed_status_effect(15 SECONDS, /datum/status_effect/speech/slurring/heretic)
 		viewer.adjust_timed_status_effect(5 SECONDS, /datum/status_effect/temporary_blindness) //debounce basically.
 		var/obj/item/organ/eyes/parboiled = viewer.get_organ_slot(ORGAN_SLOT_EYES)
 		parboiled?.apply_organ_damage(40) //enough to blind, but not enough to blind *permanently*
-	return "[owner.p_Their()] eyes [span_hypnophrase(penlight_message)]"
+	return "[owner]的双眼[span_hypnophrase(penlight_message)]"
 
 /// Sometimes speak in incomprehensible tongues
 /obj/item/organ/tongue/corrupt
-	name = "corrupt tongue"
-	desc = "This one tells only lies."
+	name = "腐化舌头"
+	desc = "这条舌头只会吐露谎言。"
 	organ_flags = parent_type::organ_flags | ORGAN_HAZARDOUS
 
 /obj/item/organ/tongue/corrupt/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/corrupted_organ)
-	AddElement(/datum/element/noticable_organ, "The inside of %PRONOUN_their mouth is full of stars.", BODY_ZONE_PRECISE_MOUTH)
+	AddElement(/datum/element/noticable_organ, "其口中布满繁星。", BODY_ZONE_PRECISE_MOUTH)
 
 /obj/item/organ/tongue/corrupt/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
@@ -82,8 +82,8 @@
 
 /// Randomly secretes alcohol or hallucinogens when you're drinking something
 /obj/item/organ/liver/corrupt
-	name = "corrupt liver"
-	desc = "After what you've seen you could really go for a drink."
+	name = "腐化肝脏"
+	desc = "见识过那些事物之后，你确实需要喝上一杯。"
 	organ_flags = parent_type::organ_flags | ORGAN_HAZARDOUS
 	/// How much extra ingredients to add?
 	var/amount_added = 5
@@ -123,13 +123,13 @@
 	extra_reagents.add_reagent(pick(extra_ingredients), amount_added)
 	extra_reagents.trans_to(human, amount_added, transferred_by = src, methods = INJECT)
 	if (prob(20))
-		to_chat(human, span_warning("As you take a sip, you feel something bubbling in your stomach..."))
+		to_chat(human, span_warning("刚喝下一口，你就感觉胃里有什么在冒泡……"))
 
 
 /// Rapidly become hungry if you are not digesting blood
 /obj/item/organ/stomach/corrupt
-	name = "corrupt stomach"
-	desc = "This parasite demands an unwholesome diet in order to be satisfied."
+	name = "腐化胃"
+	desc = "这种寄生物必须靠不洁的食物才能得到满足。"
 	organ_flags = parent_type::organ_flags | ORGAN_HAZARDOUS
 	/// Do we have an unholy thirst?
 	var/thirst_satiated = FALSE
@@ -141,7 +141,7 @@
 /obj/item/organ/stomach/corrupt/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/corrupted_organ)
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_They %PRONOUN_have an unhealthy pallor.")
+	AddElement(/datum/element/noticable_organ, "其面色呈现出病态的苍白。")
 
 /obj/item/organ/stomach/corrupt/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
@@ -162,7 +162,7 @@
 		return
 
 	if (!thirst_satiated)
-		to_chat(source, span_cult_italic("The thirst is satisfied... for now."))
+		to_chat(source, span_cult_italic("饥渴得到了满足……暂时如此。"))
 	thirst_satiated = TRUE
 	deltimer(thirst_timer)
 	thirst_timer = addtimer(VARSET_CALLBACK(src, thirst_satiated, FALSE), 3 MINUTES, TIMER_STOPPABLE | TIMER_DELETE_ME)
@@ -178,14 +178,14 @@
 	COOLDOWN_START(src, message_cooldown, 30 SECONDS)
 
 	var/static/list/blood_messages = list(
-		"Blood...",
-		"Everyone suddenly looks so tasty.",
-		"The blood...",
-		"There's an emptiness in you that only blood can fill.",
-		"You could really go for some blood right now.",
-		"You feel the blood rushing through your veins.",
-		"You think about biting someone's throat.",
-		"Your stomach growls and you feel a metallic taste in your mouth.",
+		"血……",
+		"所有人突然看起来都那么美味。",
+		"鲜血……",
+		"你体内的空虚唯有鲜血才能填满。",
+		"你现在真想喝点血。",
+		"你感到鲜血在血管中奔涌。",
+		"你开始想象咬住某人的喉咙。",
+		"你的胃咕咕作响，嘴里泛起一股铁锈味。",
 	)
 	to_chat(human, span_cult_italic(pick(blood_messages)))
 
@@ -193,9 +193,9 @@
 
 /// Occasionally bombards you with spooky hands and lets everyone hear your pulse.
 /obj/item/organ/heart/corrupt
-	name = "corrupt heart"
-	desc = "What corruption is this spreading along with the blood?"
-	beat_noise = "THE THUMPTHUMPTHUMPING OF THE CHISEL ON THE GLASS. OPEN THE FUTURE SHATTER THE-"
+	name = "腐化心脏"
+	desc = "究竟是什么腐化之物正随着血液蔓延？"
+	beat_noise = "凿子敲击玻璃的咚咚咚声。开启未来，击碎那——"
 	organ_flags = parent_type::organ_flags | ORGAN_HAZARDOUS
 	cell_line = CELL_LINE_ORGAN_HEART_CURSED
 	cells_minimum = 2 //guarantees we always get sacred heart and corrupted heart cells
@@ -221,14 +221,14 @@
 		hearer.adjust_timed_status_effect(15 SECONDS, /datum/status_effect/speech/slurring/heretic)
 		var/obj/item/bodypart/head/regret = hearer.get_bodypart(BODY_ZONE_HEAD)
 		regret?.force_wound_upwards(/datum/wound/pierce/bleed/severe/magicalearpain, wound_source = "stethoscoped a corrupted heart")
-	return "[owner.p_Their()] heart produces [span_hypnophrase(beat_noise)]"
+	return "[owner]的心脏发出[span_hypnophrase(beat_noise)]"
 
 /// Sometimes cough out some kind of dangerous gas
 /obj/item/organ/lungs/corrupt
-	name = "corrupt lungs"
-	desc = "Some things SHOULD be drowned in tar."
+	name = "腐化肺"
+	desc = "有些东西就该被淹死在焦油里。"
 	organ_flags = parent_type::organ_flags | ORGAN_HAZARDOUS
-	breath_noise = "SECRET SONGS OF THE BREAKING OF THE MAKING OF THE WAKING FROM THE-"
+	breath_noise = "那关于破碎、关于创造、关于从那——苏醒的秘密歌谣——"
 	/// How likely are we not to cough every time we take a breath?
 	var/cough_chance = 15
 	/// How much gas to emit?
@@ -264,12 +264,12 @@
 		hearer.emote("scream")
 		hearer.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
 		hearer.sound_damage(10, 40 SECONDS)
-	return "[owner.p_Their()] lungs emit [span_hypnophrase(breath_noise)]"
+	return "[owner]的肺发出[span_hypnophrase(breath_noise)]"
 
 /// It's full of worms
 /obj/item/organ/appendix/corrupt
-	name = "corrupt appendix"
-	desc = "What kind of dark, cosmic force is even going to bother to corrupt an appendix?"
+	name = "腐化阑尾"
+	desc = "究竟是哪种黑暗的宇宙力量，竟会费心去腐化一条阑尾？"
 	organ_flags = parent_type::organ_flags | ORGAN_HAZARDOUS
 	/// How likely are we to spawn worms?
 	var/worm_chance = 2
@@ -277,7 +277,7 @@
 /obj/item/organ/appendix/corrupt/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/corrupted_organ)
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their abdomen is distended... and wiggling.", BODY_ZONE_PRECISE_GROIN)
+	AddElement(/datum/element/noticable_organ, "其腹部胀大……还在蠕动。", BODY_ZONE_PRECISE_GROIN)
 
 /obj/item/organ/appendix/corrupt/on_life(seconds_per_tick)
 	. = ..()

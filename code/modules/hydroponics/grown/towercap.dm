@@ -1,9 +1,9 @@
 /obj/item/seeds/tower
-	name = "tower-cap mycelium pack"
-	desc = "This mycelium grows into tower-cap mushrooms."
+	name = "塔盖菇菌丝包"
+	desc = "这种菌丝会成长为塔盖菇。"
 	icon_state = "mycelium-tower"
 	species = "towercap"
-	plantname = "Tower Caps"
+	plantname = "塔盖菇"
 	product = /obj/item/grown/log
 	lifespan = 80
 	endurance = 50
@@ -20,11 +20,11 @@
 	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism
 
 /obj/item/seeds/tower/steel
-	name = "steel-cap mycelium pack"
-	desc = "This mycelium grows into steel logs."
+	name = "钢盖菇菌丝包"
+	desc = "这种菌丝会长成钢木原木。"
 	icon_state = "mycelium-steelcap"
 	species = "steelcap"
-	plantname = "Steel Caps"
+	plantname = "钢盖菇"
 	product = /obj/item/grown/log/steel
 	mutatelist = null
 	reagents_add = list(/datum/reagent/cellulose = 0.05, /datum/reagent/iron = 0.05)
@@ -32,22 +32,22 @@
 
 /obj/item/grown/log
 	seed = /obj/item/seeds/tower
-	name = "tower-cap log"
-	desc = "It's better than bad, it's good!"
+	name = "塔盖菇原木"
+	desc = "它比差的好，它很好！"
 	icon_state = "logs"
 	force = 5
 	throwforce = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 2
 	throw_range = 3
-	attack_verb_continuous = list("bashes", "batters", "bludgeons", "whacks")
-	attack_verb_simple = list("bash", "batter", "bludgeon", "whack")
+	attack_verb_continuous = list("猛击", "痛打", "重砸", "敲打")
+	attack_verb_simple = list("猛击", "痛打", "重砸", "敲打")
 	/// Type of plank you can get from this type of log
 	var/plank_type = /obj/item/stack/sheet/mineral/wood
 	/// How many planks you can get from this type of log, without counting seed potency
 	var/plank_count = 1
 	/// Name of plank, shown in context tips and balloon alerts when cutting the log
-	var/plank_name = "wooden planks"
+	var/plank_name = "木板"
 	var/static/list/accepted = typecacheof(list(
 		/obj/item/food/grown/tobacco,
 		/obj/item/food/grown/tea,
@@ -75,18 +75,18 @@
 
 	if(held_item.get_sharpness())
 		// May be a little long, but I think "cut into planks" for steel caps may be confusing.
-		context[SCREENTIP_CONTEXT_LMB] = "Cut into [plank_name]"
+		context[SCREENTIP_CONTEXT_LMB] = "切成[plank_name]"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(CheckAccepted(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "Make torch"
+		context[SCREENTIP_CONTEXT_LMB] = "制作火把"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return NONE
 
 /obj/item/grown/log/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(tool.get_sharpness())
-		user.balloon_alert(user, "made [plank_count] [plank_name]")
+		user.balloon_alert(user, "制成了 [plank_count] 份 [plank_name]")
 		new plank_type(user.loc, plank_count)
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
@@ -94,10 +94,10 @@
 	if(CheckAccepted(tool))
 		var/obj/item/food/grown/leaf = tool
 		if(!HAS_TRAIT(leaf, TRAIT_DRIED))
-			balloon_alert(user, "dry it first!")
+			balloon_alert(user, "先把它弄干！")
 			return ITEM_INTERACT_BLOCKING
 
-		user.balloon_alert(user, "torch crafted")
+		user.balloon_alert(user, "火把已制成")
 		var/obj/item/flashlight/flare/torch/new_torch = new /obj/item/flashlight/flare/torch(user.loc)
 		user.dropItemToGround(tool)
 		user.put_in_active_hand(new_torch)
@@ -112,24 +112,24 @@
 
 /obj/item/grown/log/tree
 	seed = null
-	name = "wood log"
-	desc = "TIMMMMM-BERRRRRRRRRRR!"
+	name = "原木"
+	desc = "倒————啦————！"
 	plank_count = 10
 
 /obj/item/grown/log/steel
 	seed = /obj/item/seeds/tower/steel
-	name = "steel-cap log"
-	desc = "It's made of metal."
+	name = "钢盖菇原木"
+	desc = "它是金属做的。"
 	icon_state = "steellogs"
 	plank_type = /obj/item/stack/rods
-	plank_name = "rods"
+	plank_name = "金属杆"
 
 /obj/item/grown/log/steel/CheckAccepted(obj/item/I)
 	return FALSE
 
 /obj/structure/punji_sticks
-	name = "punji sticks"
-	desc = "Don't step on this."
+	name = "尖竹桩"
+	desc = "别踩上去。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "punji"
 	resistance_flags = FLAMMABLE
@@ -175,7 +175,7 @@
 		if(LAZYLEN(buckled_mobs))
 			return
 		if(buckle_mob(fallen_mob, TRUE))
-			to_chat(fallen_mob, span_userdanger("You are impaled by [src]!"))
+			to_chat(fallen_mob, span_userdanger("你被 [src] 刺穿了！"))
 			fallen_mob.apply_damage(25 * levels, BRUTE, sharpness = SHARP_POINTY)
 			if(iscarbon(fallen_mob))
 				var/mob/living/carbon/fallen_carbon = fallen_mob
@@ -186,13 +186,13 @@
 /obj/structure/punji_sticks/unbuckle_mob(mob/living/buckled_mob, force, can_fall)
 	if(force)
 		return ..()
-	to_chat(buckled_mob, span_warning("You begin climbing out of [src]."))
+	to_chat(buckled_mob, span_warning("你开始从 [src] 里爬出来。"))
 	buckled_mob.apply_damage(5, BRUTE, sharpness = SHARP_POINTY)
 	if(!do_after(buckled_mob, 5 SECONDS, target = src))
-		to_chat(buckled_mob, span_userdanger("You fail to detach yourself from [src]."))
+		to_chat(buckled_mob, span_userdanger("你没能把自己从 [src] 上脱开。"))
 		return
 	return ..()
 
 /obj/structure/punji_sticks/spikes
-	name = "wooden spikes"
+	name = "木刺"
 	icon_state = "woodspike"

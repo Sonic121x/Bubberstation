@@ -1,46 +1,46 @@
 /obj/item/ammo_box/c9mm
-	name = "ammo box (9mm)"
+	name = "弹药盒（9mm）"
 	icon_state = "9mmbox"
 	ammo_type = /obj/item/ammo_casing/c9mm
 	max_ammo = 30
 
 /obj/item/ammo_box/c10mm
-	name = "ammo box (10mm)"
+	name = "弹药盒（10mm）"
 	icon_state = "10mmbox"
 	ammo_type = /obj/item/ammo_casing/c10mm
 	max_ammo = 20
 
 /obj/item/ammo_box/c45
-	name = "ammo box (.45)"
+	name = "弹药盒（.45）"
 	icon_state = "45box"
 	ammo_type = /obj/item/ammo_casing/c45
 	max_ammo = 20
 
 /obj/item/ammo_box/a40mm
-	name = "ammo box (40mm grenades)"
+	name = "弹药盒（40mm 榴弹）"
 	icon_state = "40mm"
 	ammo_type = /obj/item/ammo_casing/a40mm
 	max_ammo = 4
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
 /obj/item/ammo_box/a40mm/rubber
-	name = "ammo box (40mm rubber puck)"
+	name = "弹药盒（40mm 橡胶弹）"
 	ammo_type = /obj/item/ammo_casing/a40mm/rubber
 
 /obj/item/ammo_box/a40mm/flak
-	name = "ammo box (40mm titanium flak)"
+	name = "弹药盒（40mm 钛破片弹）"
 	ammo_type = /obj/item/ammo_casing/a40mm/flak
 
 /obj/item/ammo_box/a40mm/incendiary
-	name = "ammo box (40mm incendiary grenade)"
+	name = "弹药盒（40mm 燃烧榴弹）"
 	ammo_type = /obj/item/ammo_casing/a40mm/incendiary
 
 /obj/item/ammo_box/a40mm/tear_gas
-	name = "ammo box (40mm tear gas grenade)"
+	name = "弹药盒（40mm 催泪榴弹）"
 	ammo_type = /obj/item/ammo_casing/a40mm/tear_gas
 
 /obj/item/ammo_box/rocket
-	name = "rocket bouquet (84mm HE)"
+	name = "火箭弹束（84mm 高爆）"
 	icon_state = "rocketbundle"
 	ammo_type = /obj/item/ammo_casing/rocket
 	max_ammo = 3
@@ -50,13 +50,13 @@
 	return FALSE
 
 /obj/item/ammo_box/n762
-	name = "ammo box (7.62x38mmR)"
+	name = "弹药盒（7.62x38mmR）"
 	icon_state = "10mmbox"
 	ammo_type = /obj/item/ammo_casing/n762
 	max_ammo = 14
 
 /obj/item/ammo_box/foambox
-	name = "ammo box (Foam Darts)"
+	name = "弹药盒（泡沫飞镖）"
 	icon = 'icons/obj/weapons/guns/toy.dmi'
 	icon_state = "foambox"
 	ammo_type = /obj/item/ammo_casing/foam_dart

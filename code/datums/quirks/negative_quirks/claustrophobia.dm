@@ -1,11 +1,11 @@
 /datum/quirk/claustrophobia
 	name = "Claustrophobia"
-	desc = "You are terrified of small spaces and certain jolly figures. If you are placed inside any container, locker, or machinery, a panic attack sets in and you struggle to breathe."
+	desc = "你害怕狭小空间和某些喜气洋洋的人物。被放入任何容器、柜子或机器内，都会让你惊恐发作、呼吸困难。"
 	icon = FA_ICON_BOX_OPEN
 	value = -4
-	medical_record_text = "Patient demonstrates a fear of tight spaces."
-	medical_symptom_text = "Experiences panic attacks and shortness of breath when confined in small spaces. \
-		Medication such as Psicodine may lessen the severity of the reaction."
+	medical_record_text = "患者表现出对狭小空间的恐惧。"
+	medical_symptom_text = "被困在狭小空间时会出现惊恐发作与呼吸急促。\
+		心定宁等药物或可减轻反应的严重程度。"
 	hardcore_value = 5
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_TRAUMALIKE
 	mail_goodies = list(/obj/item/reagent_containers/syringe/convermol) // to help breathing

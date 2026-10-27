@@ -19,8 +19,8 @@ GLOBAL_LIST(whitelist)
 		return FALSE
 	. = (ckey in GLOB.whitelist)
 
-ADMIN_VERB(whitelist_player, R_BAN, "Whitelist CKey", "Adds a ckey to the Whitelist file.", ADMIN_CATEGORY_MAIN)
-	var/input_ckey = input("CKey to whitelist: (Adds CKey to the whitelist.txt)") as null|text
+ADMIN_VERB(whitelist_player, R_BAN, "白名单 CKey", "将某个 ckey 添加到白名单文件。", ADMIN_CATEGORY_MAIN)
+	var/input_ckey = input("要加入白名单的 CKey：（将 CKey 添加到 whitelist.txt）") as null|text
 	// The ckey proc "santizies" it to be its "true" form
 	var/canon_ckey = ckey(input_ckey)
 	if(!input_ckey || !canon_ckey)
@@ -32,8 +32,8 @@ ADMIN_VERB(whitelist_player, R_BAN, "Whitelist CKey", "Adds a ckey to the Whitel
 	GLOB.whitelist += canon_ckey
 	rustg_file_append("\n[input_ckey]", WHITELISTFILE)
 
-	message_admins("[input_ckey] has been whitelisted by [key_name(user)]")
-	log_admin("[input_ckey] has been whitelisted by [key_name(user)]")
+	message_admins("[input_ckey] 已被 [key_name(user)] 加入白名单")
+	log_admin("[input_ckey] 已被 [key_name(user)] 加入白名单")
 
 ADMIN_VERB_CUSTOM_EXIST_CHECK(whitelist_player)
 	return CONFIG_GET(flag/usewhitelist)

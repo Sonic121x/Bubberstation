@@ -17,7 +17,7 @@ import { JOB2ICON } from '../common/JobToIcon';
 import { CRIMESTATUS2COLOR } from './constants';
 import { isRecordMatch } from './helpers';
 import type { SecurityRecord, SecurityRecordsData } from './types';
-
+import { recordDisplay } from '../../localization/batchThreeDisplay';
 /** Tabs on left, with search bar */
 export const SecurityRecordTabs = (props) => {
   const { act, data } = useBackend<SecurityRecordsData>();
@@ -30,7 +30,7 @@ export const SecurityRecordTabs = (props) => {
   const [search, setSearch] = useState('');
 
   const sorted = sortBy(
-    filter(records, (record) => isRecordMatch(record, search)),
+    filter(records, (record) => isRecordMatch(record, search) || recordDisplay(record.rank, data).includes(search)),
     [(record) => record.name],
   );
 

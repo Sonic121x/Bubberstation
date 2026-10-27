@@ -436,7 +436,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 	return pick(get_choices())
 
 /datum/preference/choiced/compile_constant_data()
-	var/list/data = list()
+	var/list/data = list(CHOICED_PREFERENCE_DISPLAY_NAMES = chinese_accessory_choice_names(get_choices()))
 
 	var/list/choices = list()
 
@@ -473,7 +473,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 		main_feature_name ||= capitalize(relevant_organ::name)
 	if(relevant_body_markings)
 		feature_key ||= relevant_body_markings::dna_feature_key
-		main_feature_name ||= "Body markings"
+		main_feature_name ||= "身体花纹"
 	if(isnull(feature_key))
 		CRASH("`feature_key` was not set or inferable for [type]!")
 

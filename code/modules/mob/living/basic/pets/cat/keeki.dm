@@ -1,6 +1,6 @@
 /mob/living/basic/pet/cat/cak
-	name = "Keeki"
-	desc = "She is a cat made out of cake."
+	name = "琪琪"
+	desc = "她是一只由蛋糕做成的猫。"
 	icon_state = "cak"
 	icon_living = "cak"
 	icon_dead = "cak_dead"
@@ -13,11 +13,11 @@
 		/obj/item/food/cakeslice/birthday = 3,
 		/obj/item/food/meat/slab = 2
 	)
-	response_harm_continuous = "takes a bite out of"
-	response_harm_simple = "take a bite out of"
+	response_harm_continuous = "咬了一口"
+	response_harm_simple = "咬一口"
 	ai_controller = /datum/ai_controller/basic_controller/cat/cake
 	attacked_sound = 'sound/items/eatfood.ogg'
-	death_message = "loses her false life and collapses!"
+	death_message = "失去了虚假的生命，瘫倒在地！"
 	death_sound = SFX_BODYFALL
 	held_state = "cak"
 	can_interact_with_stove = TRUE
@@ -48,13 +48,13 @@
 	var/datum/mind/candidate_mind = candidate.brainmob.mind
 	candidate_mind.transfer_to(src)
 	candidate_mind.grab_ghost()
-	to_chat(src, "[span_boldbig("You are a cak!")]<b> You're a harmless cat/cake hybrid that everyone loves. People can take bites out of you if they're hungry, but you regenerate health \
-	so quickly that it generally doesn't matter. You're remarkably resilient to any damage besides this and it's hard for you to really die at all. You should go around and bring happiness and \
-	free cake to the station!</b>")
+	to_chat(src, "[span_boldbig("你是一只蛋糕猫！")]<b> 你是一只人见人爱的无害猫蛋糕混合体。大家饿了都能咬你几口，但你的生命恢复得极快， \
+	所以这通常无关紧要。除了这类伤害外，你异常坚韧，几乎根本死不了。你应该四处走走， \
+	为空间站带来欢乐和免费的蛋糕！</b>")
 	var/default_name = initial(name)
-	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, "You are \the [src]. Would you like to change your name to something else?", "Name change", default_name, MAX_NAME_LEN)), cap_after_symbols = FALSE)
+	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, "你是 \the [src]。你想改成别的名字吗？", "更改名字", default_name, MAX_NAME_LEN)), cap_after_symbols = FALSE)
 	if(new_name)
-		to_chat(src, span_notice("Your name is now <b>[new_name]</b>!"))
+		to_chat(src, span_notice("你的名字现在是 <b>[new_name]</b>！"))
 		name = new_name
 
 /mob/living/basic/pet/cat/cak/spin(spintime, speed)

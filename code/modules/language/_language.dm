@@ -8,7 +8,7 @@
 	/// Fluff name of language if any.
 	var/name = "an unknown language"
 	/// Short description for 'Check Languages'.
-	var/desc = "A language."
+	var/desc = "一种语言。"
 	/// Character used to speak in language
 	/// If key is null, then the language isn't real or learnable.
 	var/key

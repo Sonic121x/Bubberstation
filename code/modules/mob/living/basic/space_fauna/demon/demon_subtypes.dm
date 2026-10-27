@@ -1,9 +1,9 @@
 /// The famous blood-crawling slaughter demons of wizardry fame.
 /mob/living/basic/demon/slaughter
-	name = "slaughter demon"
-	real_name = "slaughter demon"
+	name = "屠戮恶魔"
+	real_name = "屠戮恶魔"
 	unique_name = FALSE
-	speak_emote = list("gurgles","wails","screeches")
+	speak_emote = list("咕噜道","哀号","尖啸")
 
 	icon_state = "slaughter_demon"
 	icon_living = "slaughter_demon"
@@ -70,11 +70,11 @@
 		return
 
 	if(!Adjacent(attack_target))
-		to_chat(src, span_warning("You are too far away to use your slam attack on [attack_target]!"))
+		to_chat(src, span_warning("你离得太远，无法对 [attack_target] 使用猛撞攻击！"))
 		return
 
 	if(!COOLDOWN_FINISHED(src, slam_cooldown))
-		to_chat(src, span_warning("Your slam ability is still on cooldown!"))
+		to_chat(src, span_warning("你的猛撞技能仍在冷却中！"))
 		return
 
 	face_atom(attack_target)
@@ -83,16 +83,16 @@
 	victim.take_bodypart_damage(brute = 20, wound_bonus = wound_bonus) // don't worry, there's more punishment when they hit something
 
 	visible_message(
-		span_danger("[src] slams into [victim] with monstrous strength!"),
-		span_danger("You slam into [victim] with monstrous strength!"),
+		span_danger("[src] 以怪物般的力量猛撞向 [victim]！"),
+		span_danger("你以怪物般的力量猛撞向 [victim]！"),
 		ignored_mobs = victim,
 	)
-	to_chat(victim, span_userdanger("[src] slams into you with monstrous strength, sending you flying like a ragdoll!"))
+	to_chat(victim, span_userdanger("[src] 以怪物般的力量撞向你，把你像布娃娃一样撞飞了出去！"))
 
 	var/turf/yeet_target = get_edge_target_turf(victim, dir)
 	victim.throw_at(yeet_target, 10, 5, src)
 	COOLDOWN_START(src, slam_cooldown, slam_cooldown_time)
-	log_combat(src, victim, "slaughter slammed")
+	log_combat(src, victim, "屠戮猛撞")
 
 /// Proc that we execute on attacking someone to keep track of our hitstreaks and wound bonuses. Also handles triggering the bodyslam on attacks.
 /mob/living/basic/demon/slaughter/proc/on_attack(mob/living/source, atom/attack_target, proximity_flag, list/modifiers)
@@ -118,13 +118,13 @@
 
 /// The laughter demon! It's everyone's best friend! It just wants to hug them so much, it wants to hug everyone at once!
 /mob/living/basic/demon/slaughter/laughter
-	name = "laughter demon"
-	real_name = "laughter demon"
-	desc = "A large, adorable creature covered in armor with pink bows."
-	speak_emote = list("giggles", "titters", "chuckles", "guffaws", "laughs")
-	response_help_continuous = "hugs"
-	attack_verb_continuous = "wildly tickles"
-	attack_verb_simple = "wildly tickle"
+	name = "欢笑恶魔"
+	real_name = "欢笑恶魔"
+	desc = "一只巨大的可爱生物，披着装甲，缀着粉色蝴蝶结。"
+	speak_emote = list("咯咯笑", "窃笑", "轻笑", "哈哈大笑", "大笑")
+	response_help_continuous = "拥抱"
+	attack_verb_continuous = "疯狂挠痒"
+	attack_verb_simple = "疯狂挠痒"
 
 	attack_sound = 'sound/items/bikehorn.ogg'
 	attack_vis_effect = null
@@ -132,7 +132,7 @@
 
 	icon_state = "bow_demon"
 	icon_living = "bow_demon"
-	death_message = "fades out, as all of its friends are released from its prison of hugs."
+	death_message = "渐渐消散，它所有的朋友都从拥抱的牢笼中解脱了。"
 
 	antag_type = /datum/antagonist/slaughter/laughter
 	crawl_type = /datum/action/cooldown/spell/jaunt/bloodcrawl/slaughter_demon/funny
@@ -150,12 +150,12 @@
 /mob/living/basic/demon/slaughter/laughter/proc/on_death()
 	SIGNAL_HANDLER
 	var/mob/living/basic/pet/cat/kitten/kitty = new(drop_location())
-	kitty.name = "Laughter"
+	kitty.name = "欢笑"
 
 /mob/living/basic/demon/slaughter/laughter/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			investigate_log("has died from a devastating explosion.", INVESTIGATE_DEATHS)
+			investigate_log("死于一场毁灭性的爆炸。", INVESTIGATE_DEATHS)
 			death()
 		if(EXPLODE_HEAVY)
 			adjust_brute_loss(60)
@@ -165,5 +165,5 @@
 	return TRUE
 
 /mob/living/basic/demon/slaughter/engine_demon
-	name = "engine demon"
+	name = "引擎恶魔"
 	faction = list(FACTION_HELL, FACTION_NEUTRAL)

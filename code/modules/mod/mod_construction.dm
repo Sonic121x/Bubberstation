@@ -1,67 +1,67 @@
 /obj/item/mod/construction
-	desc = "A part used in MOD construction."
+	desc = "用于建造 MOD 外骨骼的部件。"
 	icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
 	inhand_icon_state = "rack_parts"
 
 /obj/item/mod/construction/helmet
-	name = "MOD helmet"
+	name = "MOD 头盔"
 	icon_state = "helmet"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5)
 
 /obj/item/mod/construction/helmet/examine(mob/user)
 	. = ..()
-	. += span_notice("You could insert it into a <b>MOD shell</b>...")
+	. += span_notice("你可以把它插入<b>MOD 外壳</b>……")
 
 /obj/item/mod/construction/chestplate
-	name = "MOD chestplate"
+	name = "MOD 胸甲"
 	icon_state = "chestplate"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5)
 
 /obj/item/mod/construction/chestplate/examine(mob/user)
 	. = ..()
-	. += span_notice("You could insert it into a <b>MOD shell</b>...")
+	. += span_notice("你可以把它插入<b>MOD 外壳</b>……")
 
 /obj/item/mod/construction/gauntlets
-	name = "MOD gauntlets"
+	name = "MOD 护手"
 	icon_state = "gauntlets"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5)
 
 /obj/item/mod/construction/gauntlets/examine(mob/user)
 	. = ..()
-	. += span_notice("You could insert these into a <b>MOD shell</b>...")
+	. += span_notice("你可以把这些插入<b>MOD 外壳</b>……")
 
 /obj/item/mod/construction/boots
-	name = "MOD boots"
+	name = "MOD 靴子"
 	icon_state = "boots"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5)
 
 /obj/item/mod/construction/boots/examine(mob/user)
 	. = ..()
-	. += span_notice("You could insert these into a <b>MOD shell</b>...")
+	. += span_notice("你可以把这些插入<b>MOD 外壳</b>……")
 
 /obj/item/mod/construction/broken_core
-	name = "broken MOD core"
+	name = "损坏的 MOD 核心"
 	icon_state = "mod-core"
-	desc = "An internal power source for a Modular Outerwear Device. You don't seem to be able to source any power from this one, though."
+	desc = "模块化外穿装置的内置电源。不过这个似乎已经无法供电了。"
 
 /obj/item/mod/construction/broken_core/examine(mob/user)
 	. = ..()
-	. += span_notice("You could repair it with a <b>screwdriver</b>...")
+	. += span_notice("你可以用<b>螺丝刀</b>把它修好……")
 
 /obj/item/mod/construction/broken_core/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, "repairing...")
+	balloon_alert(user, "正在修理……")
 	if(!tool.use_tool(src, user, 5 SECONDS, volume = 30))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断！")
 		return
 	new /obj/item/mod/core/standard(drop_location())
 	qdel(src)
 
 /obj/item/mod/construction/lavalandcore
-	name = "plasma flower"
+	name = "等离子花"
 	icon_state = "plasma-flower"
-	desc = "A strange flower from the desolate wastes of lavaland. It pulses with a bright purple glow.  \
-		Its shape is remarkably similar to that of a MOD core."
+	desc = "一株来自熔岩地带荒芜废土的奇异花朵。它散发着明亮的紫色光芒并不断脉动。  \
+		它的形状与 MOD 核心惊人地相似。"
 	light_system = OVERLAY_LIGHT
 	light_color = "#cc00cc"
 	light_range = 2.5
@@ -69,7 +69,7 @@
 
 /obj/item/mod/construction/lavalandcore/examine(mob/user)
 	. = ..()
-	. += span_notice("You could probably attach some <b>wires</b> to it...")
+	. += span_notice("你大概可以往上面接一些<b>线缆</b>……")
 
 /obj/item/mod/construction/lavalandcore/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/stack/cable_coil))
@@ -78,9 +78,9 @@
 	if(!tool.tool_start_check(user, amount=2))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "installing wires...")
+	balloon_alert(user, "正在安装线缆……")
 	if(!tool.use_tool(src, user, 5 SECONDS, amount = 2, volume = 30))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断！")
 		return ITEM_INTERACT_BLOCKING
 
 	new /obj/item/mod/core/plasma/lavaland(drop_location())
@@ -88,8 +88,8 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/mod/construction/plating
-	name = "MOD external plating"
-	desc = "External plating used to finish a MOD control unit."
+	name = "MOD 外部装甲板"
+	desc = "用于完成 MOD 控制单元的外部装甲板。"
 	icon_state = "standard-plating"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SMALL_MATERIAL_AMOUNT * 5)
 	var/datum/mod_theme/theme = /datum/mod_theme
@@ -97,7 +97,7 @@
 /obj/item/mod/construction/plating/Initialize(mapload)
 	. = ..()
 	var/datum/mod_theme/used_theme = GLOB.mod_themes[theme]
-	name = "MOD [used_theme.name] external plating"
+	name = "MOD [chinese_batch_ten_theme_display(used_theme.name)] 外部装甲板"
 	desc = "[desc] [used_theme.desc]"
 	icon_state = "[used_theme.default_skin]-plating"
 
@@ -139,9 +139,9 @@
 #define SCREWED_ASSEMBLY_STEP "screwed_assembly"
 
 /obj/item/mod/construction/shell
-	name = "MOD shell"
+	name = "MOD 外壳"
 	icon_state = "mod-construction_start"
-	desc = "A MOD shell."
+	desc = "一个 MOD 外壳。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 2.5)
 	var/obj/item/core
 	var/obj/item/helmet
@@ -155,23 +155,23 @@
 	var/display_text
 	switch(step)
 		if(START_STEP)
-			display_text = "It looks like it's missing a <b>MOD core</b>..."
+			display_text = "看起来缺少一块<b>MOD 核心</b>……"
 		if(CORE_STEP)
-			display_text = "The core seems <b>loose</b>..."
+			display_text = "核心似乎<b>松动了</b>……"
 		if(SCREWED_CORE_STEP)
-			display_text = "It looks like it's missing a <b>helmet</b>..."
+			display_text = "看起来缺少一顶<b>头盔</b>……"
 		if(HELMET_STEP)
-			display_text = "It looks like it's missing a <b>chestplate</b>..."
+			display_text = "看起来缺少一件<b>胸甲</b>……"
 		if(CHESTPLATE_STEP)
-			display_text = "It looks like it's missing <b>gauntlets</b>..."
+			display_text = "看起来缺少<b>护手</b>……"
 		if(GAUNTLETS_STEP)
-			display_text = "It looks like it's missing <b>boots</b>..."
+			display_text = "看起来缺少<b>靴子</b>……"
 		if(BOOTS_STEP)
-			display_text = "The assembly seems <b>unsecured</b>..."
+			display_text = "组件似乎<b>未固定</b>……"
 		if(WRENCHED_ASSEMBLY_STEP)
-			display_text = "The assembly seems <b>loose</b>..."
+			display_text = "组件似乎<b>松动</b>……"
 		if(SCREWED_ASSEMBLY_STEP)
-			display_text = "All it's missing is <b>external plating</b>..."
+			display_text = "只差<b>外部装甲板</b>了……"
 	. += span_notice(display_text)
 
 /obj/item/mod/construction/shell/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -181,11 +181,11 @@
 				return NONE
 
 			if(!user.transferItemToLoc(tool, src))
-				balloon_alert(user, "it's stuck!")
+				balloon_alert(user, "卡住了！")
 				return ITEM_INTERACT_BLOCKING
 
 			playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-			balloon_alert(user, "core inserted")
+			balloon_alert(user, "核心已插入")
 			core = tool
 			step = CORE_STEP
 			update_icon_state()
@@ -196,11 +196,11 @@
 				return NONE
 
 			if(!user.transferItemToLoc(tool, src))
-				balloon_alert(user, "it's stuck!")
+				balloon_alert(user, "卡住了！")
 				return ITEM_INTERACT_BLOCKING
 
 			playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-			balloon_alert(user, "helmet added")
+			balloon_alert(user, "头盔已安装")
 			helmet = tool
 			step = HELMET_STEP
 			update_icon_state()
@@ -211,11 +211,11 @@
 				return NONE
 
 			if(!user.transferItemToLoc(tool, src))
-				balloon_alert(user, "it's stuck!")
+				balloon_alert(user, "卡住了！")
 				return ITEM_INTERACT_BLOCKING
 
 			playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-			balloon_alert(user, "chestplate added")
+			balloon_alert(user, "胸甲已安装")
 			chestplate = tool
 			step = CHESTPLATE_STEP
 			update_icon_state()
@@ -226,11 +226,11 @@
 				return NONE
 
 			if(!user.transferItemToLoc(tool, src))
-				balloon_alert(user, "it's stuck!")
+				balloon_alert(user, "卡住了！")
 				return ITEM_INTERACT_BLOCKING
 
 			playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-			balloon_alert(user, "gauntlets added")
+			balloon_alert(user, "护手已安装")
 			gauntlets = tool
 			step = GAUNTLETS_STEP
 			update_icon_state()
@@ -241,11 +241,11 @@
 				return NONE
 
 			if(!user.transferItemToLoc(tool, src))
-				balloon_alert(user, "it's stuck!")
+				balloon_alert(user, "卡住了！")
 				return ITEM_INTERACT_BLOCKING
 
 			playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-			balloon_alert(user, "boots added")
+			balloon_alert(user, "靴子已安装")
 			boots = tool
 			step = BOOTS_STEP
 			update_icon_state()
@@ -257,7 +257,7 @@
 
 			var/obj/item/mod/construction/plating/external_plating = tool
 			if(!user.transferItemToLoc(tool, src))
-				balloon_alert(user, "it's stuck!")
+				balloon_alert(user, "卡住了！")
 				return ITEM_INTERACT_BLOCKING
 
 			playsound(src, 'sound/machines/click.ogg', 30, TRUE)
@@ -265,7 +265,7 @@
 			core = null
 			qdel(src)
 			user.put_in_hands(mod)
-			mod.balloon_alert(user, "unit finished")
+			mod.balloon_alert(user, "单元已完成")
 			update_icon_state()
 			return ITEM_INTERACT_SUCCESS
 
@@ -278,7 +278,7 @@
 			if(!tool.use_tool(src, user, 0, volume = 30))
 				return ITEM_INTERACT_BLOCKING
 
-			balloon_alert(user, "core screwed")
+			balloon_alert(user, "核心已拧紧")
 			step = SCREWED_CORE_STEP
 			update_icon_state()
 			return ITEM_INTERACT_SUCCESS
@@ -287,7 +287,7 @@
 			if(!tool.use_tool(src, user, 0, volume = 30))
 				return ITEM_INTERACT_BLOCKING
 
-			balloon_alert(user, "core unscrewed")
+			balloon_alert(user, "核心已拧松")
 			step = CORE_STEP
 			update_icon_state()
 			return ITEM_INTERACT_SUCCESS
@@ -296,7 +296,7 @@
 			if(!tool.use_tool(src, user, 0, volume = 30))
 				return ITEM_INTERACT_BLOCKING
 
-			balloon_alert(user, "assembly screwed")
+			balloon_alert(user, "组件已拧紧")
 			step = SCREWED_ASSEMBLY_STEP
 			update_icon_state()
 			return ITEM_INTERACT_SUCCESS
@@ -305,7 +305,7 @@
 			if(!tool.use_tool(src, user, 0, volume = 30))
 				return ITEM_INTERACT_BLOCKING
 
-			balloon_alert(user, "assembly unscrewed")
+			balloon_alert(user, "组件已拧松")
 			step = WRENCHED_ASSEMBLY_STEP
 			update_icon_state()
 			return ITEM_INTERACT_SUCCESS
@@ -319,7 +319,7 @@
 				return ITEM_INTERACT_SUCCESS
 
 			core.forceMove(drop_location())
-			balloon_alert(user, "core taken out")
+			balloon_alert(user, "核心已取出")
 			step = START_STEP
 			update_icon_state()
 			return ITEM_INTERACT_SUCCESS
@@ -329,7 +329,7 @@
 				return ITEM_INTERACT_BLOCKING
 
 			helmet.forceMove(drop_location())
-			balloon_alert(user, "helmet removed")
+			balloon_alert(user, "头盔已拆下")
 			helmet = null
 			step = SCREWED_CORE_STEP
 			update_icon_state()
@@ -340,7 +340,7 @@
 				return ITEM_INTERACT_BLOCKING
 
 			chestplate.forceMove(drop_location())
-			balloon_alert(user, "chestplate removed")
+			balloon_alert(user, "胸甲已拆下")
 			chestplate = null
 			step = HELMET_STEP
 			update_icon_state()
@@ -351,7 +351,7 @@
 				return ITEM_INTERACT_BLOCKING
 
 			gauntlets.forceMove(drop_location())
-			balloon_alert(user, "gauntlets removed")
+			balloon_alert(user, "护手已拆下")
 			gauntlets = null
 			step = CHESTPLATE_STEP
 			update_icon_state()
@@ -362,7 +362,7 @@
 				return ITEM_INTERACT_BLOCKING
 
 			boots.forceMove(drop_location())
-			balloon_alert(user, "boots removed")
+			balloon_alert(user, "靴子已拆下")
 			boots = null
 			step = GAUNTLETS_STEP
 			update_icon_state()
@@ -376,7 +376,7 @@
 			if(!tool.use_tool(src, user, 0, volume = 30))
 				return ITEM_INTERACT_BLOCKING
 
-			balloon_alert(user, "assembly secured")
+			balloon_alert(user, "组件已固定")
 			step = WRENCHED_ASSEMBLY_STEP
 			update_icon_state()
 			return ITEM_INTERACT_SUCCESS
@@ -385,7 +385,7 @@
 			if(!tool.use_tool(src, user, 0, volume = 30))
 				return ITEM_INTERACT_BLOCKING
 
-			balloon_alert(user, "assembly unsecured")
+			balloon_alert(user, "组件已解除固定")
 			step = BOOTS_STEP
 			update_icon_state()
 			return ITEM_INTERACT_SUCCESS

@@ -19,7 +19,7 @@
 	return FALSE
 
 /turf/closed/examine_descriptor(mob/user)
-	return "wall"
+	return "墙"
 
 /**
  * Some turfs (mineral) are big, so they need to be on the game plane at a high layer

@@ -1,5 +1,5 @@
 /obj/docking_port/mobile
-	name = "shuttle"
+	name = "穿梭机"
 	icon_state = "mobile"
 
 	area_type = SHUTTLE_DEFAULT_SHUTTLE_AREA_TYPE
@@ -67,7 +67,7 @@
 	if(!shuttle_id)
 		shuttle_id = "shuttle"
 	if(!name)
-		name = "shuttle"
+		name = "穿梭机"
 	var/counter = 1
 	var/tmp_id = shuttle_id
 	var/tmp_name = name
@@ -187,7 +187,7 @@
 		shuttle_id = "shuttle"
 
 	if(!name)
-		name = "shuttle"
+		name = "穿梭机"
 
 	var/counter = SSshuttle.assoc_mobile[shuttle_id]
 	if(!replace || !counter)
@@ -275,13 +275,13 @@
 		return TRUE
 	else
 		if(status != SHUTTLE_ALREADY_DOCKED && !silent) // SHUTTLE_ALREADY_DOCKED is no cause for error
-			message_admins("Shuttle [src] cannot dock at [S], error: [status]")
+			message_admins("穿梭机 [src] 无法停靠在 [S]，错误：[status]")
 		// We're already docked there, don't need to do anything.
 		// Triggering shuttle movement code in place is weird
 		return FALSE
 
 /obj/docking_port/mobile/proc/transit_failure()
-	message_admins("Shuttle [src] repeatedly failed to create transit zone.")
+	message_admins("穿梭机 [src] 反复无法创建中转区域。")
 
 /**
  * Calls the shuttle to the destination port, respecting its ignition and call timers
@@ -460,7 +460,7 @@
 				return
 			var/error = initiate_docking(destination, preferred_direction)
 			if(error && error & (DOCKING_NULL_DESTINATION | DOCKING_NULL_SOURCE))
-				var/msg = "A mobile dock in transit exited initiate_docking() with an error. This is most likely a mapping problem: Error: [error],  ([src]) ([previous][ADMIN_JMP(previous)] -> [destination][ADMIN_JMP(destination)])"
+				var/msg = "一艘在中转中的移动停靠点调用 initiate_docking() 时出错。这很可能是地图问题：错误：[error]， ([src]) ([previous][ADMIN_JMP(previous)] -> [destination][ADMIN_JMP(destination)])"
 				WARNING(msg)
 				message_admins(msg)
 				mode = SHUTTLE_IDLE
@@ -617,36 +617,36 @@
  */
 /obj/docking_port/mobile/proc/get_status_text_tgui()
 	var/obj/docking_port/stationary/dockedAt = get_docked()
-	var/docked_at = dockedAt?.name || "Unknown"
+	var/docked_at = dockedAt?.name || "未知"
 	if(!istype(dockedAt, /obj/docking_port/stationary/transit))
 		return docked_at
 	if(timeLeft() > 1 HOURS)
-		return "Hyperspace"
+		return "超空间"
 	else
 		var/obj/docking_port/stationary/dst = (mode == SHUTTLE_RECALL) ? previous : destination
-		return "In transit to [dst?.name || "unknown location"]"
+		return "正在前往 [dst?.name || "未知地点"]"
 
 /obj/docking_port/mobile/proc/getStatusText()
 	var/obj/docking_port/stationary/dockedAt = get_docked()
-	var/docked_at = dockedAt?.name || "unknown"
+	var/docked_at = dockedAt?.name || "未知"
 	if(istype(dockedAt, /obj/docking_port/stationary/transit))
 		if (timeLeft() > 1 HOURS)
-			return "hyperspace"
+			return "超空间"
 		else
 			var/obj/docking_port/stationary/dst
 			if(mode == SHUTTLE_RECALL)
 				dst = previous
 			else
 				dst = destination
-			. = "transit towards [dst?.name || "unknown location"] ([getTimerStr()])"
+			. = "正前往 [dst?.name || "未知地点"]（[getTimerStr()]）"
 	else if(mode == SHUTTLE_RECHARGING)
-		return "[docked_at], recharging [getTimerStr()]"
+		return "[docked_at]，充能中 [getTimerStr()]"
 	else
 		return docked_at
 
 /obj/docking_port/mobile/proc/getDbgStatusText()
 	var/obj/docking_port/stationary/dockedAt = get_docked()
-	. = (dockedAt?.name) ? dockedAt.name : "unknown"
+	. = (dockedAt?.name) ? dockedAt.name : "未知"
 	if(istype(dockedAt, /obj/docking_port/stationary/transit))
 		var/obj/docking_port/stationary/dst
 		if(mode == SHUTTLE_RECALL)
@@ -654,13 +654,13 @@
 		else
 			dst = destination
 		if(dst)
-			. = "(transit to) [dst.name || dst.shuttle_id]"
+			. = "（前往）[dst.name || dst.shuttle_id]"
 		else
-			. = "(transit to) nowhere"
+			. = "（前往）无处"
 	else if(dockedAt)
 		. = dockedAt.name || dockedAt.shuttle_id
 	else
-		. = "unknown"
+		. = "未知"
 
 
 // attempts to locate /obj/machinery/computer/shuttle with matching ID inside the shuttle
@@ -776,7 +776,7 @@
 ///Let people know shits about to go down
 /obj/docking_port/mobile/proc/announce_shuttle_events()
 	for(var/datum/shuttle_event/event as anything in event_list)
-		notify_ghosts("\The [src] has selected: [event.name]")
+		notify_ghosts("\The [src] 选择了：[event.name]")
 
 /obj/docking_port/mobile/emergency/on_emergency_launch()
 	return

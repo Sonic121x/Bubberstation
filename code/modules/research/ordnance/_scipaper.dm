@@ -153,21 +153,21 @@
 	var/list/transcripted_gains = list(SCIPAPER_COOPERATION_INDEX, SCIPAPER_FUNDING_INDEX)
 	for (var/gain_index in transcripted_gains)
 		if (!gains)
-			transcripted_gains[gain_index] = "None"
+			transcripted_gains[gain_index] = "无"
 			continue
 		switch (round(gains[gain_index]))
 			if(-INFINITY to 0)
-				transcripted_gains[gain_index] = "None"
+				transcripted_gains[gain_index] = "无"
 			if(1 to 24)
-				transcripted_gains[gain_index] = "Little"
+				transcripted_gains[gain_index] = "极少"
 			if(25 to 49)
-				transcripted_gains[gain_index] = "Moderate"
+				transcripted_gains[gain_index] = "中等"
 			if(50 to 99)
-				transcripted_gains[gain_index] = "Significant"
+				transcripted_gains[gain_index] = "可观"
 			if(100 to INFINITY)
-				transcripted_gains[gain_index] = "Huge"
+				transcripted_gains[gain_index] = "巨大"
 			else
-				transcripted_gains[gain_index] = "Undefined"
+				transcripted_gains[gain_index] = "未定义"
 	gist["gains"] = transcripted_gains
 	gist["title"] = title
 	gist["author"] = author
@@ -180,12 +180,12 @@
 
 /datum/scientific_paper/proc/autofill()
 	if(!title)
-		title = "On [initial(experiment_path.name)] - [tier]"
+		title = "关于 [initial(experiment_path.name)]——第 [tier] 级"
 	if(!author)
-		author = "Unknown"
+		author = "未知"
 		et_alia = FALSE
 	if(!abstract)
-		abstract = "Published on [server_timestamp(ic_time = TRUE)] (PT: [round_timestamp()])"
+		abstract = "发表于 [server_timestamp(ic_time = TRUE)]（PT：[round_timestamp()]）"
 
 /datum/scientific_paper/explosive
 	/**

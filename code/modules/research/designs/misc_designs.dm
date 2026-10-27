@@ -1,8 +1,8 @@
 // HUDs
 
 /datum/design/health_hud
-	name = "Health Scanner HUD"
-	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
+	name = "生命扫描 HUD"
+	desc = "一种平视显示器，可扫描视野内的人形生物并提供其健康状况的准确数据。"
 	id = "health_hud"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
@@ -13,8 +13,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/health_hud_night
-	name = "Night Vision Health Scanner HUD"
-	desc = "An advanced medical head-up display that allows doctors to find patients in complete darkness."
+	name = "夜视生命扫描 HUD"
+	desc = "一种先进的医疗平视显示器，能让医生在完全黑暗中找到病人。"
 	id = "health_hud_night"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -30,8 +30,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/security_hud
-	name = "Security HUD"
-	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status."
+	name = "安保 HUD"
+	desc = "一种平视显示器，可扫描视野内的人形生物并提供其 ID 状态的准确数据。"
 	id = "security_hud"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
@@ -42,8 +42,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/security_hud_night
-	name = "Night Vision Security HUD"
-	desc = "A heads-up display which provides id data and vision in complete darkness."
+	name = "夜视安保 HUD"
+	desc = "一种平视显示器，能在完全黑暗中提供 ID 数据和视野。"
 	id = "security_hud_night"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -59,8 +59,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/diagnostic_hud
-	name = "Diagnostic HUD"
-	desc = "A HUD used to analyze and determine faults within robotic machinery."
+	name = "诊断 HUD"
+	desc = "一种用于分析并判定机械装置故障的 HUD。"
 	id = "diagnostic_hud"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
@@ -71,8 +71,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/diagnostic_hud_night
-	name = "Night Vision Diagnostic HUD"
-	desc = "Upgraded version of the diagnostic HUD designed to function during a power failure."
+	name = "夜视诊断 HUD"
+	desc = "诊断 HUD 的升级版本，专为断电时仍能运作而设计。"
 	id = "diagnostic_hud_night"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -90,8 +90,8 @@
 // Misc
 
 /datum/design/welding_goggles
-	name = "Welding Goggles"
-	desc = "Protects the eyes from bright flashes; approved by the mad scientist association."
+	name = "焊接护目镜"
+	desc = "保护眼睛免受强光闪烁伤害；经疯狂科学家协会认证。"
 	id = "welding_goggles"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
@@ -102,8 +102,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/welding_mask
-	name = "Welding Gas Mask"
-	desc = "A gas mask with built in welding goggles and face shield. Looks like a skull, clearly designed by a nerd."
+	name = "焊接面具"
+	desc = "内置焊接护目镜和面罩的防毒面具。看起来像个骷髅，显然是书呆子设计的。"
 	id = "weldingmask"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
@@ -118,8 +118,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/bright_helmet
-	name = "Workplace-Ready Firefighter Helmet"
-	desc = "By applying state of the art lighting technology to a fire helmet with industry standard photo-chemical hardening methods, this hardhat will protect you from robust workplace hazards."
+	name = "工作场所专用消防员头盔"
+	desc = "通过把最先进的照明技术应用于消防头盔，并采用符合工业标准的光化学硬化工艺，这顶安全帽能保护你免受严苛的工作场所危害。"
 	id = "bright_helmet"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -135,8 +135,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/mauna_mug
-	name = "Mauna Mug"
-	desc = "This awesome mug will ensure your coffee never stays cold!"
+	name = "毛纳马克杯"
+	desc = "这只超棒的马克杯能让你的咖啡永不冷却！"
 	id = "mauna_mug"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT)
@@ -151,8 +151,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/rolling_table
-	name = "Rolly poly"
-	desc = "We duct-taped some wheels to the bottom of a table. It's goddamn science alright?"
+	name = "带轮桌子"
+	desc = "我们把几只轮子用胶带粘在桌子底下。这他妈就是科学，明白吗？"
 	id = "rolling_table"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*2)
@@ -163,8 +163,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/portaseeder
-	name = "Portable Seed Extractor"
-	desc = "For the enterprising botanist on the go. Less efficient than the stationary model, it creates one seed per plant."
+	name = "便携式种子提取器"
+	desc = "专为四处奔波的有为植物学家打造。效率不如固定型号，每株植物只能产出一颗种子。"
 	id = "portaseeder"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT*4)
@@ -175,7 +175,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/clown_firing_pin
-	name = "Hilarious Firing Pin"
+	name = "搞笑击针"
 	id = "clown_firing_pin"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 3, /datum/material/bananium =SMALL_MATERIAL_AMOUNT*5)
@@ -186,7 +186,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/water_balloon
-	name = "Water Balloon"
+	name = "水气球"
 	id = "water_balloon"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic =SMALL_MATERIAL_AMOUNT*5)
@@ -197,8 +197,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/mesons
-	name = "Optical Meson Scanners"
-	desc = "Used by engineering and mining staff to see basic structural and terrain layouts through walls, regardless of lighting condition."
+	name = "光学介子扫描仪"
+	desc = "供工程与采矿人员使用，可透过墙壁看到基础结构与地形布局，不受光照条件影响。"
 	id = "mesons"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
@@ -209,8 +209,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/engine_goggles
-	name = "Engineering Scanner Goggles"
-	desc = "Goggles used by engineers. The Meson Scanner mode lets you see basic structural and terrain layouts through walls, regardless of lighting condition. The T-ray Scanner mode lets you see underfloor objects such as cables and pipes."
+	name = "工程扫描眼镜"
+	desc = "工程师使用的眼镜。介子扫描模式可让你隔着墙壁看到基础结构与地形布局，不受光照条件影响。T 射线扫描模式则让你看到地板下的物体，如电缆和管道。"
 	id = "engine_goggles"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/plasma =SMALL_MATERIAL_AMOUNT)
@@ -221,8 +221,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/tray_goggles
-	name = "Optical T-Ray Scanners"
-	desc = "Used by engineering staff to see underfloor objects such as cables and pipes."
+	name = "光学 T 射线扫描仪"
+	desc = "供工程人员使用，可看到地板下的物体，如电缆和管道。"
 	id = "tray_goggles"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
@@ -233,8 +233,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/atmos_thermal
-	name = "Atmospheric thermal imaging goggles"
-	desc = "Used by Atmospheric Technician to determine the temperature of the air"
+	name = "大气热成像眼镜"
+	desc = "供大气技术员用来测定空气的温度。"
 	id = "atmos_thermal"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/plasma =SMALL_MATERIAL_AMOUNT)
@@ -245,8 +245,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/nvgmesons
-	name = "Night Vision Optical Meson Scanners"
-	desc = "Prototype meson scanners fitted with an extra sensor which amplifies the visible light spectrum and overlays it to the UHD display."
+	name = "夜视介子扫描仪"
+	desc = "装有额外传感器的原型介子扫描仪，可放大可见光谱并将其叠加到超高清显示屏上。"
 	id = "nvgmesons"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -262,8 +262,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/night_vision_goggles
-	name = "Night Vision Goggles"
-	desc = "Goggles that let you see through darkness unhindered."
+	name = "夜视护目镜"
+	desc = "让你能毫无阻碍地看穿黑暗的护目镜。"
 	id = "night_visision_goggles"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -279,8 +279,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/magboots
-	name = "Magnetic Boots"
-	desc = "Magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle."
+	name = "磁力靴"
+	desc = "磁性靴子，常用于舱外活动，以确保使用者安全地附着在载具上。"
 	id = "magboots"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -295,8 +295,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/forcefield_projector
-	name = "Forcefield Projector"
-	desc = "A device which can project temporary forcefields to seal off an area."
+	name = "力场投影仪"
+	desc = "一种可投射临时力场以封闭某一区域的装置。"
 	id = "forcefield_projector"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -310,8 +310,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/sci_goggles
-	name = "Science Goggles"
-	desc = "Goggles fitted with a portable analyzer capable of determining the research worth of an item or components of a machine."
+	name = "科研护目镜"
+	desc = "装有便携式分析仪的护目镜，能判定物品或机器组件的研究价值。"
 	id = "scigoggles"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
@@ -322,8 +322,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/nv_sci_goggles
-	name = "Night Vision Science Goggles"
-	desc = "Goggles that lets the user see in the dark and recognize chemical compounds at a glance."
+	name = "夜视科研护目镜"
+	desc = "让佩戴者能在黑暗中视物，并一眼辨别化合物的护目镜。"
 	id = "nv_scigoggles"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -339,8 +339,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/roastingstick
-	name = "Advanced Roasting Stick"
-	desc = "A roasting stick for cooking sausages in exotic ovens."
+	name = "高级烤棒"
+	desc = "一根用于在异域烤箱中烤香肠的烤棒。"
 	id = "roastingstick"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -355,8 +355,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/locator
-	name = "Bluespace Locator"
-	desc = "Used to track portable teleportation beacons and targets with embedded tracking implants."
+	name = "蓝空间定位器"
+	desc = "用于追踪便携式传送信标以及带有追踪植入体的目标。"
 	id = "locator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron=HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/silver =SMALL_MATERIAL_AMOUNT*5)
@@ -367,8 +367,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/quantum_keycard
-	name = "Quantum Keycard"
-	desc = "Allows for the construction of a quantum keycard."
+	name = "量子钥匙卡"
+	desc = "可用于制造量子钥匙卡。"
 	id = "quantum_keycard"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/silver =SMALL_MATERIAL_AMOUNT*5, /datum/material/bluespace =HALF_SHEET_MATERIAL_AMOUNT)
@@ -379,8 +379,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/botpad_remote
-	name = "Bot Launchpad Controller"
-	desc = "Allows you to control the connected bot launchpad"
+	name = "机器人平台控制器"
+	desc = "让你可以控制已连接的机器人平台。"
 	id = "botpad_remote"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/iron =SMALL_MATERIAL_AMOUNT*5)
@@ -391,8 +391,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/anomaly_neutralizer
-	name = "Anomaly Neutralizer"
-	desc = "An advanced tool capable of instantly neutralizing anomalies, designed to capture the fleeting aberrations created by the engine."
+	name = "异常体中和器"
+	desc = "一种先进工具，能瞬间中和异常体，专为捕捉引擎产生的短暂异象而设计。"
 	id = "anomaly_neutralizer"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT, /datum/material/gold =SHEET_MATERIAL_AMOUNT, /datum/material/plasma =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/uranium =SHEET_MATERIAL_AMOUNT)
@@ -403,8 +403,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/donksoft_refill
-	name = "Donksoft Toy Vendor Refill"
-	desc = "A refill canister for Donksoft Toy Vendors."
+	name = "咚克软玩具售货机补充包"
+	desc = "咚克软玩具售货机的补充罐。"
 	id = "donksoft_refill"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -421,8 +421,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/oxygen_tank
-	name = "Oxygen Tank"
-	desc = "An empty oxygen tank."
+	name = "氧气罐"
+	desc = "一只空的氧气罐。"
 	id = "oxygen_tank"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT)
@@ -433,8 +433,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/plasma_tank
-	name = "Plasma Tank"
-	desc = "An empty oxygen tank."
+	name = "等离子气罐"
+	desc = "一只空的氧气罐。"
 	id = "plasma_tank"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT)
@@ -445,8 +445,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/id
-	name = "Identification Card"
-	desc = "A card used to provide ID and determine access across the station. Has an integrated digital display and advanced microchips."
+	name = "身份识别卡"
+	desc = "用于证明身份及确定空间站各处通行权限的卡片，内置数字显示屏和先进微芯片。"
 	id = "idcard"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass =SMALL_MATERIAL_AMOUNT)
@@ -457,8 +457,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/eng_gloves
-	name = "Tinkers Gloves"
-	desc = "Overdesigned engineering gloves that have automated construction subroutines dialed in, allowing for faster construction while worn."
+	name = "工匠手套"
+	desc = "设计过度复杂的工程手套，内置调校好的自动化建造子程序，穿戴时能加快建造速度。"
 	id = "eng_gloves"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT, /datum/material/silver=HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/gold =HALF_SHEET_MATERIAL_AMOUNT)
@@ -469,7 +469,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/lavarods
-	name = "Lava-Resistant Iron Rods"
+	name = "耐熔岩铁棍"
 	id = "lava_rods"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron=HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plasma=SMALL_MATERIAL_AMOUNT*5, /datum/material/titanium=SHEET_MATERIAL_AMOUNT)
@@ -480,8 +480,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/plasticducky
-	name = "Rubber Ducky"
-	desc = "The classic Nanotrasen design for competitively priced bath based duck toys. No need for fancy Waffle Corp. rubber, buy Plastic Ducks today!"
+	name = "塑料小黄鸭"
+	desc = "纳米传讯经典的平价浴用橡皮鸭设计。无需华夫公司的高级橡胶，今天就买塑料小黄鸭！"
 	id = "plasticducky"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic =HALF_SHEET_MATERIAL_AMOUNT)
@@ -492,8 +492,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/pneumatic_seal
-	name = "Pneumatic Airlock Seal"
-	desc = "A heavy brace used to seal airlocks. Useful for keeping out people without the dexterity to remove it."
+	name = "气动气闸密封器"
+	desc = "用于封闭气闸的重型支架。对于没有足够技巧把它挪开的人来说，这东西相当管用。"
 	id = "pneumatic_seal"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*10, /datum/material/plasma = SHEET_MATERIAL_AMOUNT*5)
@@ -506,8 +506,8 @@
 // Janitor Designs
 
 /datum/design/advmop
-	name = "Advanced Mop"
-	desc = "An upgraded mop with a large internal capacity for holding water or other cleaning chemicals."
+	name = "高级拖把"
+	desc = "升级版拖把，内部容量很大，可储存水或其他清洁化学品。"
 	id = "advmop"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT*2.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2)
@@ -518,8 +518,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/normtrash
-	name = "Trashbag"
-	desc = "It's a bag for trash, you put garbage in it."
+	name = "垃圾袋"
+	desc = "这是装垃圾的袋子，你把垃圾装进去。"
 	id = "normtrash"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic =SHEET_MATERIAL_AMOUNT)
@@ -530,8 +530,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/blutrash
-	name = "Trashbag of Holding"
-	desc = "An advanced trash bag with bluespace properties; capable of holding a plethora of garbage."
+	name = "次元垃圾袋"
+	desc = "一只具有蓝空间特性的高级垃圾袋，能装下海量垃圾。"
 	id = "blutrash"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/gold =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/uranium = SMALL_MATERIAL_AMOUNT*2.5, /datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
@@ -542,8 +542,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/light_replacer
-	name = "Light Replacer"
-	desc = "A device to automatically replace lights. Refill with working light bulbs."
+	name = "灯具更换器"
+	desc = "一种自动更换灯具的装置。可用完好的灯泡补充。"
 	id = "light_replacer"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/silver = SMALL_MATERIAL_AMOUNT*1.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT * 1.5)
@@ -554,8 +554,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/light_replacer_blue
-	name = "Bluespace Light Replacer"
-	desc = "A device to automatically replace lights at a distance. Refill with working light bulbs."
+	name = "蓝空间灯具更换器"
+	desc = "一种可远距离自动更换灯具的装置。可用完好的灯泡补充。"
 	id = "light_replacer_blue"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/silver = SMALL_MATERIAL_AMOUNT*1.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/bluespace =SMALL_MATERIAL_AMOUNT * 3)
@@ -566,8 +566,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/buffer_upgrade
-	name = "Floor Buffer Upgrade"
-	desc = "A floor buffer that can be attached to vehicular janicarts."
+	name = "地板抛光机升级"
+	desc = "一种可安装到机动清洁车上的地板抛光机。"
 	id = "buffer"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2)
@@ -578,8 +578,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/vacuum_upgrade
-	name = "Vacuum Upgrade"
-	desc = "A vacuum that can be attached to vehicular janicarts."
+	name = "吸尘器升级"
+	desc = "一种可安装到机动清洁车上的吸尘器。"
 	id = "vacuum"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2)
@@ -590,8 +590,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/paint_remover
-	name = "Paint Remover"
-	desc = "Removes stains from the floor, and not much else."
+	name = "除漆剂"
+	desc = "能清除地板上的污渍，除此之外就没什么用了。"
 	id = "paint_remover"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT)
@@ -602,8 +602,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/spraybottle
-	name = "Spray Bottle"
-	desc = "A spray bottle, with an unscrewable top."
+	name = "喷瓶"
+	desc = "一个喷瓶，瓶盖可以旋开。"
 	id = "spraybottle"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2)
@@ -614,8 +614,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/beartrap
-	name = "Bear Trap"
-	desc = "A trap used to catch space bears and other legged creatures."
+	name = "捕熊夹"
+	desc = "用来捕捉太空熊以及其他有腿生物的陷阱。"
 	id = "beartrap"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/titanium =HALF_SHEET_MATERIAL_AMOUNT)
@@ -629,7 +629,7 @@
 // Hydroponics
 
 /datum/design/adv_watering_can
-	name = "Advanced Watering Can"
+	name = "高级洒水壶"
 	id = "adv_watering_can"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT*2.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2)
@@ -642,8 +642,8 @@
 // Holobarriers
 
 /datum/design/holosign
-	name = "Holographic Sign Projector"
-	desc = "A holographic projector used to project various warning signs."
+	name = "全息标志投影器"
+	desc = "一种用于投射各种警示标志的全息投影器。"
 	id = "holosign"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
@@ -654,8 +654,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/holobarrier_jani
-	name = "Custodial Holobarrier Projector"
-	desc = "A holographic projector used to project hard light wet floor barriers."
+	name = "保洁全息屏障投影器"
+	desc = "一种用于投射硬光湿地警示屏障的全息投影器。"
 	id = "holobarrier_jani"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT)
@@ -666,8 +666,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/holosignsec
-	name = "Security Holobarrier Projector"
-	desc = "A holographic projector that creates holographic security barriers."
+	name = "安保全息屏障投影器"
+	desc = "一种可生成全息安保屏障的全息投影器。"
 	id = "holosignsec"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT)
@@ -678,8 +678,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/holosignengi
-	name = "Engineering Holobarrier Projector"
-	desc = "A holographic projector that creates holographic engineering barriers."
+	name = "工程全息屏障投影器"
+	desc = "一种可生成全息工程屏障的全息投影器。"
 	id = "holosignengi"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT)
@@ -690,8 +690,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/holosignatmos
-	name = "ATMOS Holofan Projector"
-	desc = "A holographic projector that creates holographic barriers that prevent changes in atmospheric conditions."
+	name = "ATMOS 全息风扇投影器"
+	desc = "一种可生成全息屏障的全息投影器，这些屏障能阻止大气状态发生变化。"
 	id = "holosignatmos"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT)
@@ -702,8 +702,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/holobarrier_med
-	name = "PENLITE Holobarrier Projector"
-	desc = "PENLITE holobarriers, a device that halts individuals with malicious diseases."
+	name = "PENLITE 全息屏障投影器"
+	desc = "PENLITE 全息屏障，一种能拦下携带恶性疾病者的装置。"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/holosign_creator/medical
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/silver =SMALL_MATERIAL_AMOUNT) //a hint of silver since it can troll 2 antags (bad viros and sentient disease)
@@ -716,8 +716,8 @@
 // Armour
 
 /datum/design/reactive_armour
-	name = "Reactive Armor Shell"
-	desc = "An experimental suit of armour capable of utilizing an implanted anomaly core to protect the user."
+	name = "反应装甲外壳"
+	desc = "一件实验性装甲，可利用植入的异常核心来保护使用者。"
 	id = "reactive_armour"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -734,8 +734,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/knight_armour
-	name = "Knight Armour"
-	desc = "A royal knight's favorite garments. Can be trimmed by any friendly person."
+	name = "骑士护甲"
+	desc = "皇家骑士最钟爱的服装。任何友善之人都能对它进行修饰。"
 	id = "knight_armour"
 	build_type = AUTOLATHE
 	materials = list(/datum/material_requirement/armor_material = SHEET_MATERIAL_AMOUNT * 5)
@@ -743,8 +743,8 @@
 	category = list(RND_CATEGORY_IMPORTED)
 
 /datum/design/knight_helmet
-	name = "Knight Helmet"
-	desc = "A royal knight's favorite hat. If you hold it upside down it's actually a bucket."
+	name = "骑士头盔"
+	desc = "皇家骑士最钟爱的帽子。把它倒过来看，其实是个水桶。"
 	id = "knight_helmet"
 	build_type = AUTOLATHE
 	materials = list(/datum/material_requirement/armor_material = SHEET_MATERIAL_AMOUNT * 2.5)
@@ -754,8 +754,8 @@
 // Security
 
 /datum/design/seclite
-	name = "Seclite"
-	desc = "A robust flashlight used by security."
+	name = "安保手电筒"
+	desc = "安保人员使用的坚固手电筒。"
 	id = "seclite"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT*2.5)
@@ -766,8 +766,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/pepperspray
-	name = "Pepper Spray"
-	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly. Printed pepper sprays do not contain reagents."
+	name = "胡椒喷雾"
+	desc = "由 UhangInc 制造，用于快速致盲并放倒对手。打印出的胡椒喷雾不含试剂。"
 	id = "pepperspray"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
@@ -778,8 +778,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/bola_energy
-	name = "Energy Bola"
-	desc = "A specialized hard-light bola designed to ensnare fleeing criminals and aid in arrests."
+	name = "能量流星锤"
+	desc = "一种特制的硬光流星锤，用于缠住逃跑的罪犯，协助实施逮捕。"
 	id = "bola_energy"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/silver =SMALL_MATERIAL_AMOUNT*5, /datum/material/plasma =SMALL_MATERIAL_AMOUNT*5, /datum/material/titanium =SMALL_MATERIAL_AMOUNT*5)
@@ -791,8 +791,8 @@
 	autolathe_exportable = FALSE
 
 /datum/design/zipties
-	name = "Zipties"
-	desc = "Plastic, disposable zipties that can be used to restrain temporarily but are destroyed after use."
+	name = "扎带"
+	desc = "塑料制的一次性扎带，可用来短暂束缚他人，但使用后即毁。"
 	id = "zipties"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT*2.5)
@@ -803,8 +803,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/evidencebag
-	name = "Evidence Bag"
-	desc = "An empty evidence bag."
+	name = "证物袋"
+	desc = "一个空的证物袋。"
 	id = "evidencebag"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic =SMALL_MATERIAL_AMOUNT)
@@ -816,8 +816,8 @@
 
 
 /datum/design/dragnet_beacon
-	name = "DRAGnet Beacon"
-	desc = "A beacon that can be used as a teleport destination for DRAGnet snare rounds. Remember to sync it with your DRAGnet first!"
+	name = "DRAGnet 信标"
+	desc = "一个可作为 DRAGnet 捕获弹传送落点的信标。记得先与你的 DRAGnet 同步！"
 	id = "dragnet_beacon"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2)
@@ -828,8 +828,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/inspector
-	name = "N-Spect Scanner"
-	desc = "Central Command-issued inspection device. Performs inspections according to Nanotrasen protocols when activated, then prints an encrypted report regarding the maintenance of the station. Definitely not giving you cancer."
+	name = "N 光谱扫描仪"
+	desc = "中央指挥部配发的检查设备。启动后会按纳米传讯规程执行检查，随后打印一份关于空间站维护状况的加密报告。绝对不会让你得癌症。"
 	id = "inspector"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/uranium =SHEET_MATERIAL_AMOUNT)
@@ -844,7 +844,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/sec_pen
-	name = "Security Pen"
+	name = "安保笔"
 	id = "sec_pen"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT)
@@ -855,7 +855,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/plumbing_rcd
-	name = "Plumbing Constructor"
+	name = "管道建造器"
 	id = "plumbing_rcd"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*38, /datum/material/glass = SHEET_MATERIAL_AMOUNT*18, /datum/material/plastic =HALF_SHEET_MATERIAL_AMOUNT)
@@ -866,7 +866,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/gas_filter
-	name = "Gas Filter"
+	name = "大气气体过滤器"
 	id = "gas_filter"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT)
@@ -877,7 +877,7 @@
 	departmental_flags = ALL
 
 /datum/design/plasmaman_gas_filter
-	name = "Plasmaman Gas Filter"
+	name = "等离子人大气气体过滤器"
 	id = "plasmaman_gas_filter"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT)
@@ -890,7 +890,7 @@
 // Tape
 
 /datum/design/super_sticky_tape
-	name = "Super Sticky Tape"
+	name = "超黏胶带"
 	id = "super_sticky_tape"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic =SHEET_MATERIAL_AMOUNT * 1.5)
@@ -901,7 +901,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/pointy_tape
-	name = "Pointy Tape"
+	name = "尖刺胶带"
 	id = "pointy_tape"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plastic =HALF_SHEET_MATERIAL_AMOUNT)
@@ -912,7 +912,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/super_pointy_tape
-	name = "Super Pointy Tape"
+	name = "超尖刺胶带"
 	id = "super_pointy_tape"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plastic =SHEET_MATERIAL_AMOUNT)
@@ -925,7 +925,7 @@
 // Tackle Gloves
 
 /datum/design/tackle_dolphin
-	name = "Dolphin Gloves"
+	name = "海豚手套"
 	id = "tackle_dolphin"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT*2.5)
@@ -936,7 +936,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/tackle_rocket
-	name = "Rocket Gloves"
+	name = "火箭手套"
 	id = "tackle_rocket"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic =SHEET_MATERIAL_AMOUNT)
@@ -949,8 +949,8 @@
 // Restaurant Equipment
 
 /datum/design/holosign/restaurant
-	name = "Restaurant Seating Projector"
-	desc = "A holographic projector that creates seating designation for restaurants."
+	name = "餐厅座位指示器生成器"
+	desc = "一种可为餐厅标示座位区域的全息投影器。"
 	id = "holosignrestaurant"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
@@ -961,8 +961,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/holosign/bar
-	name = "Bar Seating Projector"
-	desc = "A holographic projector that creates seating designation for bars."
+	name = "酒吧座位指示器生成器"
+	desc = "一种可为酒吧标示座位区域的全息投影器。"
 	id = "holosignbar"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
@@ -973,8 +973,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/oven_tray
-	name = "Oven Tray"
-	desc = "Gotta shove something in!"
+	name = "烤箱托盘"
+	desc = "总得往里塞点什么！"
 	id = "oven_tray"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5)
@@ -987,8 +987,8 @@
 // Fishing Equipment
 
 /datum/design/fishing_rod_tech
-	name = "Advanced Fishing Rod"
-	desc = "A fishing rod with an embedded generator dispensing an infinite supply of fishing baits."
+	name = "高级钓鱼竿"
+	desc = "内置发电机的钓鱼竿，可无限供应鱼饵。"
 	id = "fishing_rod_tech"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/uranium =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic =SHEET_MATERIAL_AMOUNT)
@@ -999,8 +999,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/fishing_gloves
-	name = "Athletic Fishing Gloves"
-	desc = "A pair of gloves to fish without a fishing rod and train your athletics with."
+	name = "运动钓鱼手套"
+	desc = "一副不用钓竿就能钓鱼、还能顺带锻炼运动能力的手套。"
 	id = "fishing_gloves"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = SHEET_MATERIAL_AMOUNT)
@@ -1011,8 +1011,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/stabilized_hook
-	name = "Gyro-Stabilized Hook"
-	desc = "An advanced fishing hook that gives the user a tighter control on the fish when reeling in."
+	name = "陀螺稳定鱼钩"
+	desc = "一种高级鱼钩，让使用者在收线时能更牢固地控制上钩的鱼。"
 	id = "stabilized_hook"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 3, /datum/material/titanium = SMALL_MATERIAL_AMOUNT * 2)
@@ -1023,8 +1023,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/auto_reel
-	name = "Fishing Line Auto-Reel"
-	desc = "An advanced line reel which can be used speed up fishing or casually snag other items in your direction."
+	name = "钓线自动收线器"
+	desc = "一种高级钓线卷轮，可用来加快钓鱼速度，或随手把其他物品拽向自己。"
 	id = "auto_reel"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 3, /datum/material/silver = SMALL_MATERIAL_AMOUNT * 3)
@@ -1035,8 +1035,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/bluespace_reel
-	name = "Bluespace Fishing Line"
-	desc = "An advanced line reel that can be used to reach distant fishing spots as well as other things whereas a normal fishing line cannot."
+	name = "蓝空间钓线"
+	desc = "一种高级钓线卷轮，可触及远处的钓点，还能做到普通钓线做不到的其他事。"
 	id = "bluespace_reel"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 3, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 3)
@@ -1047,8 +1047,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/fish_analyzer
-	name = "Fish Analyzer"
-	desc = "An analyzer used to monitor fish's status and traits with."
+	name = "鱼类分析仪"
+	desc = "一种用于监测鱼类状态与特质的分析仪。"
 	id = "fish_analyzer"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.5)
@@ -1059,8 +1059,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/bluespace_fish_case
-	name = "Bluespace Fish Case"
-	desc = "An improved fish case to keep large fish in stasis in a compact little space."
+	name = "蓝空间鱼盒"
+	desc = "一种改进型鱼盒，能在紧凑的小空间里让大鱼保持停滞。"
 	id = "bluespace_fish_case"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT, /datum/material/plastic = SMALL_MATERIAL_AMOUNT, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT)
@@ -1071,8 +1071,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/bluespace_fish_tank
-	name = "Bluespace Fish Tank Kit"
-	desc = "The required components to upgrade the capacity of a fish tank."
+	name = "蓝空间鱼缸套件"
+	desc = "用于升级鱼缸容量所需的组件。"
 	id = "bluespace_fish_tank_kit"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/titanium = SMALL_MATERIAL_AMOUNT, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 3)
@@ -1083,8 +1083,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/fish_genegun
-	name = "Fish Gene Gun"
-	desc = "A device designed to inject or extract traits to and from fish. Also compatible with most aquatic-adjacent creatures."
+	name = "鱼类基因枪"
+	desc = "一种用于向鱼类注入或从鱼类提取特质的装置。也适用于大多数水生类生物。"
 	id = "fish_genegun"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 4, /datum/material/titanium = SMALL_MATERIAL_AMOUNT * 3, /datum/material/diamond = SMALL_MATERIAL_AMOUNT * 2)
@@ -1097,7 +1097,7 @@
 // Coffeemaker Stuff
 
 /datum/design/coffeepot
-	name = "Coffeepot"
+	name = "咖啡壶"
 	id = "coffeepot"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/plastic =SMALL_MATERIAL_AMOUNT*5)
@@ -1108,7 +1108,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/coffeepot_bluespace
-	name = "Bluespace Coffeepot"
+	name = "蓝空间咖啡壶"
 	id = "bluespace_coffeepot"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic =SMALL_MATERIAL_AMOUNT*5, /datum/material/bluespace =SMALL_MATERIAL_AMOUNT*5)
@@ -1119,7 +1119,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/coffee_cartridge
-	name = "Blank Coffee Cartridge"
+	name = "空白咖啡粉盒"
 	id = "coffee_cartridge"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic =HALF_SHEET_MATERIAL_AMOUNT)
@@ -1130,7 +1130,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/syrup_bottle
-	name = "Syrup bottle"
+	name = "糖浆瓶"
 	id = "syrup_bottle"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic =HALF_SHEET_MATERIAL_AMOUNT)
@@ -1141,7 +1141,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/radio_navigation_beacon
-	name = "Compact Radio Navigation Gigabeacon"
+	name = "紧凑型无线电导航巨型信标"
 	id = "gigabeacon"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
@@ -1153,7 +1153,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/shuttle_rods
-	name = "Shuttle Frame Rods"
+	name = "穿梭机框架铁棍"
 	id = "shuttlerods"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/titanium = SMALL_MATERIAL_AMOUNT)
@@ -1166,9 +1166,9 @@
 // Experimental designs
 
 /datum/design/polymorph_belt
-	name = "Polymorphic Field Inverter"
+	name = "变形场反转器"
 	id = "polymorph_belt"
-	desc = "This device can scan and store DNA from other life forms, and use it to transform its wearer. It requires a Bioscrambler Anomaly Core in order to function."
+	desc = "这台设备可以扫描并储存其他生命形态的 DNA，并用它来变形其佩戴者。需要一枚生物扰乱异常核心才能运作。"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/polymorph_belt
 	materials = list(
@@ -1182,9 +1182,9 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/perceptomatrix
-	name = "Perceptomatrix Helm"
+	name = "感知矩阵头盔"
 	id = "perceptomatrix"
-	desc = "This helm harnesses hallucinatory energies to shield its owner from perceptual anomalies. It requires a Hallucination Anomaly Core in order to function."
+	desc = "这顶头盔利用幻觉能量保护其主人免受感知异常的影响。需要一枚致幻异常核心才能运作。"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/clothing/head/helmet/perceptomatrix
 	materials = list(
@@ -1202,8 +1202,8 @@
 // Anomaly locked item
 
 /datum/design/space_furnace
-	name = "Space Furnace"
-	desc = "A heavy furnace capable of forming a temporary bubble that holds in breathable air. Requires a pyroclastic anomaly core to function."
+	name = "太空炉"
+	desc = "一座沉重的炉子，可临时形成一个能留住可呼吸空气的气泡。需要一枚热碎屑异常核心才能运作。"
 	id = "space_furnace"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -1218,8 +1218,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/anomalous_fishing_hook
-	name = "Anomalous Fishing Hook"
-	desc = "A fishing hook with a slot for an anomaly core. Depending on the core inserted, it can have various effects on the rod or the fish caught."
+	name = "异常拟饵钩"
+	desc = "一种带有异常核心插槽的鱼钩。根据插入的核心不同，它能对钓竿或钓到的鱼产生各种效果。"
 	id = "anomalous_fishing_hook"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/titanium = SHEET_MATERIAL_AMOUNT, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 0.2)

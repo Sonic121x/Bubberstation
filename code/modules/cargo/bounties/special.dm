@@ -2,8 +2,8 @@
 	unique = TRUE
 
 /datum/bounty/item/special/alien_organs
-	name = "Alien Organs"
-	description = "Nanotrasen is interested in studying Xenomorph biology. Ship a set of organs to be thoroughly compensated."
+	name = "异形器官"
+	description = "纳米传讯有兴趣研究异形生物学。运送一整套器官来换取丰厚的报酬。"
 	reward = CARGO_CRATE_VALUE * 50
 	required_count = 3
 	wanted_types = list(
@@ -16,8 +16,8 @@
 	)
 
 /datum/bounty/item/special/syndicate_documents
-	name = "Syndicate Documents"
-	description = "Intel regarding the syndicate is highly prized at CentCom. If you find syndicate documents, ship them. You could save lives."
+	name = "辛迪加文件"
+	description = "有关辛迪加的情报在中央指挥部备受欢迎。如果你找到了辛迪加文件，就运送过来吧。你能拯救生命。"
 	reward = CARGO_CRATE_VALUE * 30
 	wanted_types = list(
 		/obj/item/documents/syndicate = TRUE,
@@ -33,8 +33,8 @@
 	return TRUE
 
 /datum/bounty/item/special/adamantine
-	name = "Adamantine"
-	description = "Nanotrasen's anomalous materials division is in desperate need of adamantine. Send them a large shipment and we'll make it worth your while."
+	name = "精金"
+	description = "纳米传讯的异常材料部门急需精金。送一批大批量过来，我们会让你觉得物有所值。"
 	reward = CARGO_CRATE_VALUE * 70
 	required_count = 10
 	wanted_types = list(/obj/item/stack/sheet/mineral/adamantine = TRUE)

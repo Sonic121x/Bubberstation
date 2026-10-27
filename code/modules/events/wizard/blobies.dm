@@ -1,9 +1,9 @@
 /datum/round_event_control/wizard/blobies //avast!
-	name = "Zombie Outbreak"
+	name = "僵尸爆发"
 	weight = 3
 	typepath = /datum/round_event/wizard/blobies
 	max_occurrences = 3
-	description = "Spawns a blob spore on every corpse."
+	description = "在每具尸体上生成一个变形菌孢子。"
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 7
 

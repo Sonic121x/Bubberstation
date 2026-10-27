@@ -1,19 +1,19 @@
 /mob/living/basic/butterfly
-	name = "butterfly"
-	desc = "A colorful butterfly, how'd it get up here?"
+	name = "蝴蝶"
+	desc = "一只色彩斑斓的蝴蝶，它是怎么飞到这儿来的？"
 	icon_state = "butterfly"
 	icon_living = "butterfly"
 	icon_dead = "butterfly_dead"
 
-	response_help_continuous = "shoos"
-	response_help_simple = "shoo"
-	response_disarm_continuous = "brushes aside"
-	response_disarm_simple = "brush aside"
-	response_harm_continuous = "squashes"
-	response_harm_simple = "squash"
-	speak_emote = list("flutters")
-	friendly_verb_continuous = "nudges"
-	friendly_verb_simple = "nudge"
+	response_help_continuous = "驱赶"
+	response_help_simple = "驱赶"
+	response_disarm_continuous = "拨开"
+	response_disarm_simple = "拨开"
+	response_harm_continuous = "压扁"
+	response_harm_simple = "压扁"
+	speak_emote = list("扑扇翅膀")
+	friendly_verb_continuous = "轻碰"
+	friendly_verb_simple = "轻碰"
 
 	maxHealth = 2
 	health = 2
@@ -45,7 +45,7 @@
 	unsuitable_atmos_damage = 0
 
 /mob/living/basic/butterfly/lavaland/temporary
-	name = "strange butterfly"
+	name = "奇怪的蝴蝶"
 	basic_mob_flags = DEL_ON_DEATH
 	/// The atom that's spawning the butterflies
 	var/atom/source = null
@@ -93,4 +93,4 @@
 
 /mob/living/basic/butterfly/lavaland/temporary/examine(mob/user)
 	. = ..()
-	. += span_notice("Something about it seems unreal...")
+	. += span_notice("它看上去有些不太真实……")

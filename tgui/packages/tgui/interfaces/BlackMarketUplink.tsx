@@ -9,7 +9,7 @@ import {
   Tabs,
 } from 'tgui-core/components';
 import { formatMoney } from 'tgui-core/format';
-
+import { chineseDisplay } from 'tgui/localization/zhDisplay';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
@@ -173,7 +173,7 @@ const ShipmentSelector = (props) => {
           }
           return (
             <Stack.Item key={method.name} mx={1} width="17.5rem">
-              <Box fontSize="30px">{method.name}</Box>
+              <Box fontSize="30px">{chineseDisplay(method.name)}</Box>
               <Box mt={1}>{method.description}</Box>
               <Button
                 mt={2}

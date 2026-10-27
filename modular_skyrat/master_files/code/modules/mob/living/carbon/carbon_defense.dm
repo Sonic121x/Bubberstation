@@ -8,9 +8,9 @@
 		if(target_on_help_and_unarmed || HAS_TRAIT(target, TRAIT_RESTRAINED))
 			do_slap_animation(target)
 			playsound(target.loc, 'sound/items/weapons/slap.ogg', 50, TRUE, -1)
-			visible_message("<span class='danger'>[src] slaps [target] in the face!</span>",
-				"<span class='notice'>You slap [target] in the face! </span>",\
-			"You hear a slap.")
+			visible_message("<span class='danger'>[src] 一巴掌扇在 [target] 脸上！</span>",
+				"<span class='notice'>你一巴掌扇在 [target] 脸上！ </span>",\
+			"你听到一声巴掌声。")
 			target.unwag_tail()
 			return
 	if(zone_selected == BODY_ZONE_PRECISE_GROIN && target.dir == src.dir)
@@ -19,26 +19,26 @@
 				var/obj/item/bodypart/affecting = src.get_bodypart(BODY_ZONE_HEAD)
 				if(affecting?.receive_damage(PERSONAL_SPACE_DAMAGE))
 					src.update_damage_overlays()
-				visible_message(span_danger("[src] tried slapping [target]'s ass, but they were slapped instead!"),
-				span_danger("You tried slapping [target]'s ass, but they hit you back, ouch!"),
-				"You hear a slap.", ignored_mobs = list(target))
+				visible_message(span_danger("[src] 想扇 [target] 的屁股，结果反被扇了一巴掌！"),
+				span_danger("你想扇 [target] 的屁股，结果被打了回来，好痛！"),
+				"你听到一声巴掌声。", ignored_mobs = list(target))
 				playsound(target.loc, 'sound/effects/snap.ogg', 50, TRUE, ASS_SLAP_EXTRA_RANGE)
-				to_chat(target, span_danger("[src] tried slapping your ass, but you hit them back!"))
+				to_chat(target, span_danger("[src] 想扇你的屁股，结果被你打了回去！"))
 				return
 			else
-				visible_message(span_danger("[src] tried slapping [target]'s ass, but they were blocked!"),
-				span_danger("You tried slapping [target]'s ass, but they blocked you!"),
-				"You hear a slap.", ignored_mobs = list(target))
+				visible_message(span_danger("[src] 想扇 [target] 的屁股，但被挡住了！"),
+				span_danger("你想扇 [target] 的屁股，但被挡了下来！"),
+				"你听到一声巴掌声。", ignored_mobs = list(target))
 				playsound(target.loc, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, ASS_SLAP_EXTRA_RANGE)
-				to_chat(target, span_danger("[src] tried slapping your ass, but you blocked them!"))
+				to_chat(target, span_danger("[src] 想扇你的屁股，但你挡住了！"))
 				return
 		else
 			do_ass_slap_animation(target)
 			playsound(target.loc, 'sound/items/weapons/slap.ogg', 50, TRUE, ASS_SLAP_EXTRA_RANGE)
-			visible_message("<span class='danger'>[src] slaps [target] right on the ass!</span>",\
-				"<span class='notice'>You slap [target] on the ass, how satisfying.</span>",\
-				"You hear a slap.", ignored_mobs = list(target))
-			to_chat(target, "<span class='danger'>[src] slaps your ass!")
+			visible_message("<span class='danger'>[src] 一巴掌拍在 [target] 的屁股上！</span>",\
+				"<span class='notice'>你一巴掌拍在 [target] 的屁股上，真是太解压了。</span>",\
+				"你听到一声巴掌声。", ignored_mobs = list(target))
+			to_chat(target, "<span class='danger'>[src] 拍了你的屁股！")
 			return
 	return ..()
 

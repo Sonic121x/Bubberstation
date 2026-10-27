@@ -947,7 +947,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 	var/numtrays = length(trays)
 	if(numtrays == 0)
 		if(admin_spawned)
-			message_admins("[src] spawned at [ADMIN_VERBOSEJMP(src)] failed to find a closed morgue to spawn a body!")
+			message_admins("[src] 在 [ADMIN_VERBOSEJMP(src)] 生成，但未能找到可用的已关闭太平间以放置尸体！")
 		else
 			log_mapping("[src] at [x],[y] could not find any morgues.")
 		return
@@ -961,7 +961,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 		body_bag.insert(new_human, TRUE)
 		body_bag.close()
-		body_bag.tag_name = "[new_human.real_name][new_human.dna?.species ? " - [new_human.dna.species.name]" : " - Human"]"
+		body_bag.tag_name = "[new_human.real_name][new_human.dna?.species ? " - [new_human.dna.species.name]" : " - 人类"]"
 		body_bag.AddComponent(/datum/component/rename, "[initial(body_bag.name)][body_bag.tag_name? " - [body_bag.tag_name]" : null]", body_bag.desc)
 		body_bag.update_icon()
 		body_bag.forceMove(morgue_tray)
@@ -1008,7 +1008,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 		var/turf/food_turf = length(table_turfs) ? pick(table_turfs) : dogbed_turf
 		new /obj/item/knife/kitchen(food_turf)
 		var/obj/item/food/cake/birthday/iancake = new(food_turf)
-		iancake.desc = "Happy birthday, Ian!"
+		iancake.desc = "生日快乐，伊恩！"
 
 	if(!length(open_turfs))
 		return
@@ -1076,7 +1076,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_atoms_ontop)
 
 	new /obj/item/clothing/head/costume/festive(dogbed_turf)
 	var/obj/item/reagent_containers/cup/glass/bottle/champagne/iandrink = new(dogbed_turf)
-	iandrink.name = "dog champagne"
+	iandrink.name = "狗狗香槟"
 	iandrink.pixel_y += 8
 	iandrink.pixel_x += 8
 

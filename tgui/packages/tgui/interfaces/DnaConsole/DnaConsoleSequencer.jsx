@@ -254,7 +254,7 @@ export const DnaConsoleSequencer = (props) => {
           Genetic sequence corrupted. Subject diagnostic report: DECEASED.
         </Section>
       )) ||
-        (isMonkey && mutation?.Name !== 'Monkified' && (
+        (isMonkey && !['Monkified', '猴化'].includes(mutation?.Name) && (
           <Section color="bad">
             Genetic sequence corrupted. Subject diagnostic report: MONKEY.
           </Section>

@@ -50,7 +50,7 @@
 		var/datum/species/species = GLOB.species_prototypes[species_type]
 
 		data[species_id] = list()
-		data[species_id]["name"] = species.name
+		data[species_id]["name"] = chinese_footprint_species_display(species.name)
 		data[species_id]["desc"] = species.get_species_description()
 		data[species_id]["lore"] = species.get_species_lore()
 		data[species_id]["icon"] = sanitize_css_class_name(species.name)

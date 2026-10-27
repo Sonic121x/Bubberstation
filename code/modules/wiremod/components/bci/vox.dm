@@ -6,9 +6,9 @@
  */
 
 /obj/item/circuit_component/vox
-	display_name = "VOX Announcement"
-	desc = "A component that plays a local VOX Announcement for the user. Requires a BCI shell."
-	category = "BCI"
+	display_name = "VOX 播报"
+	desc = "为使用者播放本地 VOX 播报的元件。需要脑机接口外壳。"
+	category = "脑机接口"
 
 	required_shells = list(/obj/item/organ/cyberimp/bci)
 

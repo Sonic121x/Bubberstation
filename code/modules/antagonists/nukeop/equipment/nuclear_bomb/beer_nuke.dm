@@ -1,7 +1,7 @@
 /// A fake nuke that actually contains beer.
 /obj/machinery/nuclearbomb/beer
-	name = "\improper Nanotrasen-brand nuclear fission explosive"
-	desc = "One of the more successful achievements of the Nanotrasen Corporate Warfare Division, their nuclear fission explosives are renowned for being cheap to produce and devastatingly effective. Signs explain that though this particular device has been decommissioned, every Nanotrasen station is equipped with an equivalent one, just in case. All Captains carefully guard the disk needed to detonate them - at least, the sign says they do. There seems to be a tap on the back."
+	name = "\improper 纳米传讯牌核裂变炸药"
+	desc = "纳米传讯企业战争部较为成功的成果之一，其核裂变炸药以生产成本低廉、杀伤效果惊人而闻名。标牌上说明，虽然这台特定装置已经退役，但每座纳米传讯空间站都配有同等型号，以防万一。所有舰长都会小心看管引爆所需的磁盘——至少标牌上是这么说的。背面似乎装了个龙头。"
 	proper_bomb = FALSE
 	is_on_minimap = FALSE
 	/// The keg located within the beer nuke.
@@ -24,9 +24,9 @@
 /obj/machinery/nuclearbomb/beer/examine(mob/user)
 	. = ..()
 	if(keg.reagents.total_volume)
-		. += span_notice("It has [keg.reagents.total_volume] unit\s left.")
+		. += span_notice("里面还剩 [keg.reagents.total_volume] 单位。")
 	else
-		. += span_danger("It's empty.")
+		. += span_danger("里面空了。")
 
 /obj/machinery/nuclearbomb/beer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!tool.is_refillable())
@@ -46,7 +46,7 @@
 	if(is_station_level(bomb_location.z))
 		addtimer(CALLBACK(src, PROC_REF(really_actually_explode)), 11 SECONDS)
 	else
-		visible_message(span_notice("[src] fizzes ominously."))
+		visible_message(span_notice("[src]不祥地嘶嘶冒泡。"))
 		addtimer(CALLBACK(src, PROC_REF(local_foam)), 11 SECONDS)
 
 /obj/machinery/nuclearbomb/beer/disarm_nuke(mob/disarmer)
@@ -64,7 +64,7 @@
 	//if it's always hooked in it'll override admin choices
 	RegisterSignal(overflow_control, COMSIG_CREATED_ROUND_EVENT, PROC_REF(on_created_round_event))
 	disarm_nuke()
-	overflow_control.run_event(event_cause = "a beer nuke")
+	overflow_control.run_event(event_cause = "一枚啤酒核弹")
 
 /// signal sent from overflow control when it fires an event
 /obj/machinery/nuclearbomb/beer/proc/on_created_round_event(datum/round_event_control/source_event_control, datum/round_event/scrubber_overflow/every_vent/created_event)

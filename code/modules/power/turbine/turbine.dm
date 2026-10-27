@@ -62,44 +62,44 @@
 		return NONE
 
 	if(panel_open && istype(held_item, part_path))
-		context[SCREENTIP_CONTEXT_CTRL_LMB] = "[installed_part ? "Replace" : "Install"] part"
+		context[SCREENTIP_CONTEXT_CTRL_LMB] = "[installed_part ? "替换" : "安装"]部件"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_CTRL_LMB] = "[panel_open ? "Close" : "Open"] panel"
+		context[SCREENTIP_CONTEXT_CTRL_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_WRENCH && panel_open)
-		context[SCREENTIP_CONTEXT_CTRL_LMB] = "Rotate"
+		context[SCREENTIP_CONTEXT_CTRL_LMB] = "旋转"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_CROWBAR)
 		if(installed_part)
-			context[SCREENTIP_CONTEXT_CTRL_RMB] = "Remove part"
+			context[SCREENTIP_CONTEXT_CTRL_RMB] = "取出部件"
 		if(panel_open)
-			context[SCREENTIP_CONTEXT_CTRL_LMB] = "Deconstruct"
+			context[SCREENTIP_CONTEXT_CTRL_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_MULTITOOL)
 		if(panel_open)
-			context[SCREENTIP_CONTEXT_CTRL_LMB] = "Change cable layer"
+			context[SCREENTIP_CONTEXT_CTRL_LMB] = "更改线缆层"
 		else
-			context[SCREENTIP_CONTEXT_CTRL_LMB] = "Link parts"
+			context[SCREENTIP_CONTEXT_CTRL_LMB] = "连接部件"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/power/turbine/examine(mob/user)
 	. = ..()
 	if(installed_part)
-		. += span_notice("Currently at tier [installed_part.current_tier].")
+		. += span_notice("当前为 [installed_part.current_tier] 级。")
 		if(installed_part.current_tier + 1 < TURBINE_PART_TIER_FOUR)
-			. += span_notice("Can be upgraded by using a tier [installed_part.current_tier + 1] part.")
-		. += span_notice("\The [installed_part] can be [EXAMINE_HINT("pried")] out.")
+			. += span_notice("可使用 [installed_part.current_tier + 1] 级部件进行升级。")
+		. += span_notice("\The [installed_part] 可以被[EXAMINE_HINT("撬开")]取出。")
 	else
-		. += span_warning("Is missing a [initial(part_path.name)].")
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+		. += span_warning("缺少[initial(part_path.name)]。")
+	. += span_notice("它的维护面板可以[EXAMINE_HINT("用螺丝刀")][panel_open ? "拧上" : "拧开"]。")
 	if(panel_open)
-		. += span_notice("It can rotated with a [EXAMINE_HINT("wrench")]")
-		. += span_notice("The full machine can be [EXAMINE_HINT("pried")] apart")
+		. += span_notice("它可以用[EXAMINE_HINT("扳手")]旋转")
+		. += span_notice("整台机器可以被[EXAMINE_HINT("撬开")]拆解")
 
 ///Is this machine currently running
 /obj/machinery/power/turbine/proc/is_active()
@@ -167,10 +167,10 @@
 /obj/machinery/power/turbine/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ITEM_INTERACT_BLOCKING
 	if(is_active())
-		balloon_alert(user, "turn it off!")
+		balloon_alert(user, "请先关闭它！")
 		return
 	if(!anchored)
-		balloon_alert(user, "anchor first!")
+		balloon_alert(user, "请先固定！")
 		return
 
 	tool.play_tool_sound(src, 50)
@@ -194,13 +194,13 @@
 /obj/machinery/power/turbine/crowbar_act_secondary(mob/living/user, obj/item/tool)
 	. = ITEM_INTERACT_BLOCKING
 	if(!panel_open)
-		balloon_alert(user, "panel is closed!")
+		balloon_alert(user, "面板已关闭！")
 		return
 	if(!installed_part)
-		balloon_alert(user, "no rotor installed!")
+		balloon_alert(user, "未安装转子！")
 		return
 	if(is_active())
-		balloon_alert(user, "[src] is on!")
+		balloon_alert(user, "[src] 正在运行！")
 		return
 
 	user.put_in_hands(installed_part)
@@ -253,10 +253,10 @@
 
 	//not in a state to accept the part. block so we don't bash the machine and damage it
 	if(is_active())
-		balloon_alert(user, "turn off the machine first!")
+		balloon_alert(user, "请先关闭机器！")
 		return ITEM_INTERACT_BLOCKING
 	if(!panel_open)
-		balloon_alert(user, "open the maintenance hatch first!")
+		balloon_alert(user, "请先打开维护舱门！")
 		return ITEM_INTERACT_BLOCKING
 
 	//install the part
@@ -264,9 +264,9 @@
 		return ITEM_INTERACT_BLOCKING
 	if(installed_part)
 		user.put_in_hands(installed_part)
-		balloon_alert(user, "replaced part with the one in hand")
+		balloon_alert(user, "已用手中的部件替换旧部件")
 	else
-		balloon_alert(user, "installed new part")
+		balloon_alert(user, "已安装新部件")
 	user.transferItemToLoc(object, src)
 	installed_part = object
 	efficiency = installed_part.get_tier_value(TURBINE_MAX_EFFICIENCY)
@@ -274,8 +274,8 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/power/turbine/inlet_compressor
-	name = "inlet compressor"
-	desc = "The input side of a turbine generator, contains the compressor."
+	name = "进气压缩机"
+	desc = "涡轮发电机的进气侧，内含压缩机。"
 	icon_state = "inlet_compressor"
 	base_icon_state = "inlet"
 	circuit = /obj/item/circuitboard/machine/turbine_compressor
@@ -333,8 +333,8 @@
 
 //===========================OUTLET==============================================
 /obj/machinery/power/turbine/turbine_outlet
-	name = "turbine outlet"
-	desc = "The output side of a turbine generator, contains the turbine and the stator."
+	name = "涡轮出口"
+	desc = "涡轮发电机的输出侧，内含涡轮与定子。"
 	icon_state = "turbine_outlet"
 	base_icon_state = "outlet"
 	circuit = /obj/item/circuitboard/machine/turbine_stator
@@ -380,8 +380,8 @@
 
 //===========================================CORE ROTOR=========================================
 /obj/machinery/power/turbine/core_rotor
-	name = "core rotor"
-	desc = "The middle part of a turbine generator, contains the rotor and the main computer."
+	name = "核心转子"
+	desc = "涡轮发电机的中间部分，内含转子与主计算机。"
 	icon_state = "core_rotor"
 	base_icon_state = "core"
 	can_change_cable_layer = TRUE
@@ -426,17 +426,17 @@
 
 	if(held_item.tool_behaviour == TOOL_MULTITOOL)
 		if(panel_open)
-			context[SCREENTIP_CONTEXT_CTRL_LMB] = "Change cable layer"
+			context[SCREENTIP_CONTEXT_CTRL_LMB] = "更改线缆层"
 		else
-			context[SCREENTIP_CONTEXT_CTRL_LMB] = "Link/Log parts"
+			context[SCREENTIP_CONTEXT_CTRL_LMB] = "连接/记录部件"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/power/turbine/core_rotor/examine(mob/user)
 	. = ..()
 	if(!panel_open)
-		. += span_notice("[EXAMINE_HINT("screw")] open its panel to change cable layer.")
+		. += span_notice("[EXAMINE_HINT("用螺丝刀")]打开其面板以更改线缆层。")
 	if(!all_parts_connected)
-		. += span_warning("The parts need to be linked via a [EXAMINE_HINT("multitool")]")
+		. += span_warning("各部件需要通过[EXAMINE_HINT("多用工具")]连接")
 
 ///Adds overlays to this turbines appearance
 /obj/machinery/power/turbine/core_rotor/set_overlays(list/overlays)
@@ -449,7 +449,7 @@
 
 /obj/machinery/power/turbine/core_rotor/cable_layer_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, "open panel first!")
+		balloon_alert(user, "请先打开面板！")
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -463,10 +463,10 @@
 		return ITEM_INTERACT_SUCCESS
 
 	//log rotor to link later to computer
-	balloon_alert(user, "all parts linked")
+	balloon_alert(user, "所有部件已连接")
 	var/obj/item/multitool/multitool = tool
 	multitool.set_buffer(src)
-	to_chat(user, span_notice("You store linkage information in [tool]'s buffer."))
+	to_chat(user, span_notice("你将连接信息存入 [tool] 的缓冲区。"))
 
 	//success
 	return ITEM_INTERACT_SUCCESS
@@ -501,7 +501,7 @@
 
 	//are we broken
 	if(machine_stat & BROKEN)
-		feedback(user, "rotor is broken!")
+		feedback(user, "转子已损坏！")
 		return (all_parts_connected = FALSE)
 
 	//locate compressor & turbine, when checking we simply check to see if they are still there
@@ -516,46 +516,46 @@
 
 			//show corrective actions
 			if(!QDELETED(compressor) || !QDELETED(turbine))
-				feedback(user, "rotor is facing the wrong way!")
+				feedback(user, "转子朝向错误！")
 				return (all_parts_connected = FALSE)
 
 	//sanity checks for compressor
 	if(QDELETED(compressor))
-		feedback(user, "missing compressor!")
+		feedback(user, "缺少压缩机！")
 		return (all_parts_connected = FALSE)
 	if(compressor.dir != dir && compressor.dir != REVERSE_DIR(dir)) //make sure it's not perpendicular to the rotor
-		feedback(user, "compressor not aligned with rotor!")
+		feedback(user, "压缩机未与转子对齐！")
 		return (all_parts_connected = FALSE)
 	if(compressor.machine_stat & MAINT)
-		feedback(user, "close compressor panel!")
+		feedback(user, "请关闭压缩机的面板！")
 		return (all_parts_connected = FALSE)
 	if(compressor.machine_stat & BROKEN)
-		feedback(user, "compressor is broken!")
+		feedback(user, "压缩机已损坏！")
 		return (all_parts_connected = FALSE)
 	if(!compressor.installed_part)
-		feedback(user, "compressor has a missing part!")
+		feedback(user, "压缩机缺少部件！")
 		return (all_parts_connected = FALSE)
 
 	//sanity checks for turbine
 	if(QDELETED(turbine))
-		feedback(user, "missing turbine!")
+		feedback(user, "缺少涡轮！")
 		return (all_parts_connected = FALSE)
 	if(turbine.dir != dir && turbine.dir != REVERSE_DIR(dir)) //make sure it's not perpendicular to the rotor
-		feedback(user, "turbine not aligned with rotor!")
+		feedback(user, "涡轮未与转子对齐！")
 		return (all_parts_connected = FALSE)
 	if(turbine.machine_stat & MAINT)
-		feedback(user, "close turbine panel!")
+		feedback(user, "请关闭涡轮的面板！")
 		return (all_parts_connected = FALSE)
 	if(turbine.machine_stat & BROKEN)
-		feedback(user, "turbine is broken!")
+		feedback(user, "涡轮已损坏！")
 		return (all_parts_connected = FALSE)
 	if(!turbine.installed_part)
-		feedback(user, "turbine is missing stator part!")
+		feedback(user, "涡轮缺少定子部件！")
 		return (all_parts_connected = FALSE)
 
 	//sanity check to make sure turbine & compressor are facing the same direction. From an visual perspective they will appear facing away from each other actually. I know blame spriter's
 	if(compressor.dir != turbine.dir)
-		feedback(user, "turbine & compressor are not facing away from each other!")
+		feedback(user, "涡轮与压缩机的朝向没有相互背离！")
 		return (all_parts_connected = FALSE)
 
 	//all checks successfull remember result
@@ -685,24 +685,24 @@
 	add_avail(produced_energy)
 
 /obj/item/paper/guides/jobs/atmos/turbine
-	name = "paper- 'Quick guide on the new and improved turbine!'"
-	default_raw_text = "<B>How to operate the turbine</B><BR>\
-	-The new turbine is not much different from the old one, just put gases in the chamber, light them up and activate the machine from the nearby computer.\
-	-There is a new parameter that's visible within the turbine computer's UI, damage. The turbine will be damaged when the heat gets too high, according to the tiers of the parts used. Make sure it doesn't get too hot!<BR>\
-	-You can avoid the turbine critically failing by upgrading the parts of the machine, but not with stock parts as you might be used to. There are 3 all-new parts, one for each section of the turbine.<BR>\
-	-These items are: the compressor part, the rotor part and the stator part. All of them can be printed in any engi lathes (both proto and auto).<BR>\
-	-There are 4 tiers for these items, only the first tier can be printed. The next tier of each part can be made by using various materials on the part (clicking with the material in hand, on the part). The material required to reach the next tier is stated in the part's examine text, try shift clicking it!<BR>\
-	-Each tier increases the efficiency (more power), the max reachable RPM, and the max temperature that the machine can process without taking damage (up to fusion temperatures at the last tier!).<BR>\
-	-A word of warning, the machine is very inefficient in its gas consumption and many unburnt gases will pass through. If you want to be cheap you can either pre-burn the gases or add a filtering system to collect the unburnt gases and reuse them."
+	name = "纸张——‘新型改良涡轮机快速指南！’"
+	default_raw_text = "<B>如何操作涡轮机</B><BR>\
+	-新型涡轮机与旧款差别不大，只需把气体送入腔室、点燃它们，再从附近的计算机启动机器即可。\
+	-涡轮机计算机界面中新增了一项参数：损伤。当热量过高时，涡轮机就会受损，具体取决于所用部件的等级。请务必别让它过热！<BR>\
+	-你可以通过升级机器部件来避免涡轮机严重损毁，但不能像以往那样使用标准部件。共有 3 种全新部件，分别对应涡轮机的三个部分。<BR>\
+	-这些部件是：压缩机部件、转子部件和定子部件。它们都可以在任何工程车床上打印（原型车床和自动车床均可）。<BR>\
+	-这些部件共有 4 个等级，只有第一级可以打印。每一级的下一级可以通过对部件使用各种材料来制作（手持材料点击部件）。升到下一级所需的材料会写在部件的检视文本中，试试按住 Shift 点击它吧！<BR>\
+	-每一级都会提升效率（电力更多）、最高可达 RPM，以及机器在不受损情况下可处理的最高温度（最高等级时可达聚变温度！）。<BR>\
+	-提醒一句，这台机器的气体消耗效率非常低，许多未燃烧的气体都会直接通过。如果你想省钱，可以预先燃烧气体，或者加装一套过滤系统来收集未燃烧气体并回收利用。"
 
 /datum/aas_config_entry/engineering_turbine_failure
-	name = "Engineering Alert: Turbine Failure"
+	name = "工程警报：涡轮机故障"
 	announcement_lines_map = list(
-		"Message" = "Warning, turbine at %LOCATION taking damage, current integrity at %INTEGRITY%!",
+		"Message" = "警告，位于 %LOCATION 的涡轮机正在受损，当前完整度为 %INTEGRITY%！",
 	)
 	vars_and_tooltips_map = list(
-		"LOCATION" = "will be replaced with location of the turbine.",
-		"INTEGRITY" = "with the current integrity of the turbine.",
+		"LOCATION" = "将被替换为涡轮机所在位置。",
+		"INTEGRITY" = "将被替换为涡轮机当前的完整度。",
 	)
 
 #undef PRESSURE_MAX

@@ -4,9 +4,9 @@
  * Removes an element from an assoc list.
  */
 /obj/item/circuit_component/variable/assoc_list/list_remove
-	display_name = "Associative List Remove"
-	desc = "Removes a key from an associative list variable."
-	category = "List"
+	display_name = "关联列表移除"
+	desc = "从关联列表变量中移除一个键。"
+	category = "列表"
 
 	/// Key to remove to the list
 	var/datum/port/input/to_remove

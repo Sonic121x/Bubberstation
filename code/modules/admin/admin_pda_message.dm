@@ -1,5 +1,5 @@
 
-ADMIN_VERB(message_pda, R_ADMIN, "PDA Message", "Send a message to a user's PDA.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(message_pda, R_ADMIN, "PDA 消息", "向用户的 PDA 发送消息。", ADMIN_CATEGORY_EVENTS)
 	user.holder.message_pda()
 
 ///Opens up the PDA Message Panel
@@ -8,7 +8,7 @@ ADMIN_VERB(message_pda, R_ADMIN, "PDA Message", "Send a message to a user's PDA.
 		return
 
 	if(!length(GLOB.pda_messengers))
-		to_chat(usr, span_warning("ERROR: There are no users you can send a message to"))
+		to_chat(usr, span_warning("错误：没有你可以发送消息的用户"))
 		return
 
 	var/datum/admin_pda_panel/ui = new(usr)
@@ -60,7 +60,7 @@ ADMIN_VERB(message_pda, R_ADMIN, "PDA Message", "Send a message to a user's PDA.
 					targets += messenger
 
 			if(!length(targets))
-				to_chat(usr, span_warning("ERROR: Target is unavailable."))
+				to_chat(usr, span_warning("错误：目标不可用。"))
 				return FALSE
 
 			var/datum/signal/subspace/messaging/tablet_message/signal = new(null, list(
@@ -81,12 +81,12 @@ ADMIN_VERB(message_pda, R_ADMIN, "PDA Message", "Send a message to a user's PDA.
 				signal.send_to_receivers()
 
 			if(!(force || signal.data["reject"]))
-				to_chat(usr, span_warning("ERROR: PDA message was rejected by the telecomms setup."))
+				to_chat(usr, span_warning("错误：PDA 消息被电信系统拒绝。"))
 				return FALSE
 
-			var/recipient = spam ? "everyone" : get_messenger_name(targets[1])
+			var/recipient = spam ? "所有人" : get_messenger_name(targets[1])
 
-			message_admins("[key_name_admin(usr)] sent a custom PDA message to [recipient].")
-			log_admin("[key_name(usr)] sent a custom PDA message to [recipient]. Message: [params["message"]].")
-			log_pda("[key_name(usr)] sent an admin custom PDA message to [recipient]. Message: [params["message"]]")
+			message_admins("[key_name_admin(usr)] 向 [recipient] 发送了一条自定义 PDA 消息。")
+			log_admin("[key_name(usr)] 向 [recipient] 发送了一条自定义 PDA 消息。消息：[params["message"]]。")
+			log_pda("[key_name(usr)] 向 [recipient] 发送了一条管理员自定义 PDA 消息。消息：[params["message"]]")
 			return TRUE

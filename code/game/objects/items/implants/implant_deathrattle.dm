@@ -106,24 +106,24 @@
 
 		// Deliberately the same message framing as ghost deathrattle
 		var/mob/living/recipient = implant.imp_in
-		to_chat(recipient, "<i>You hear a strange, robotic voice in your head...</i> \"[span_robot("<b>[name]</b> has died at <b>[area_name]</b>.")]\"")
+		to_chat(recipient, "<i>你脑海中响起一个奇异的机械声音……</i> \"[span_robot("<b>[name]</b> 已死于 <b>[area_name]</b>。")]\"")
 		recipient.playsound_local(get_turf(recipient), sound, vol = 75, vary = FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 
 /obj/item/implant/deathrattle
-	name = "deathrattle implant"
-	desc = "Hope no one else dies, prepare for when they do."
+	name = "亡语植入体"
+	desc = "但愿不会再有人死去，但也要为那一刻做好准备。"
 
 	actions_types = null
 	allow_multiple = TRUE
 
-	implant_info = "Requires configuration before implanting. Automatically activates upon implantation. \
-		Notifies the host of deaths that occur in other deathrattle implant hosts linked to the same deathrattle group."
+	implant_info = "植入前需要进行配置。植入后自动激活。\
+		当与同一亡语组相连的其他亡语植入体宿主死亡时，会通知本宿主。"
 
-	implant_lore = "The Robust Corp Fatality Notification System, colloquially the \"deathrattle\" implant, \
-		is a subcutaneous hybrid vitals tracker and encrypted transmitter, \
-		designed to communicate with other FNS units implanted within other hosts. Upon detecting a lack of vital signs, \
-		the FNS will relay the fatality and its rough estimated location to the other hosts. How it can communicate \
-		over such long distances is a trade secret that both Nanotrasen and the Syndicate are quite curious about."
+	implant_lore = "强劲公司死亡通知系统，俗称“亡语”植入体，\
+		是一种皮下混合式生命体征追踪器与加密发射器，\
+		用于与其他植入在宿主体内的死亡通知系统单元通信。一旦检测到生命体征消失，\
+		该系统就会将死亡事件及其大致位置转发给其他宿主。它究竟如何实现如此远距离的通信，\
+		是一项商业机密，纳米传讯与辛迪加都对此颇感兴趣。"
 
 	/// What deathrattle group type do we create? Group types dictate area whitelisting/blacklisting.
 	var/deathrattle_group_type = /datum/deathrattle_group/standard
@@ -133,28 +133,28 @@
 
 /obj/item/implant/deathrattle/can_be_implanted_in(mob/living/target)
 	if(!current_group)
-		balloon_alert(target, "deathrattle needs configuration!")
+		balloon_alert(target, "亡语植入体尚未配置！")
 		return FALSE
 	// Can be implanted in anything that's a mob. Syndicate cyborgs, talking fish, humans...
 	return TRUE
 
 /obj/item/implant/deathrattle/lavaland
-	name = "expeditionary deathrattle implant"
+	name = "远征亡语植入体"
 
 	deathrattle_group_type = /datum/deathrattle_group/lavaland
 
-	implant_info = "ONLY TRIGGERS ON NON-STATION DEATHS. \
-		Requires configuration before implanting. Automatically activates upon implantation. \
-		Notifies the host of deaths that occur in other deathrattle implant hosts linked to the same deathrattle group."
+	implant_info = "仅对站外死亡触发。\
+		植入前需要进行配置。植入后自动激活。\
+		当与同一亡语组相连的其他亡语植入体宿主死亡时，会通知本宿主。"
 
 /obj/item/implantcase/deathrattle
-	name = "implant case - 'Deathrattle'"
-	desc = "A glass case containing a deathrattle implant."
+	name = "植入体盒 - “亡语”"
+	desc = "一个装有亡语植入体的玻璃盒。"
 	imp_type = /obj/item/implant/deathrattle
 
 /obj/item/implantcase/deathrattle/lavaland
-	name = "implant case - 'Expeditionary Deathrattle'"
-	desc = "A glass case containing an expeditionary deathrattle implant. Only alerts to deaths that occur on Lavaland."
+	name = "植入体盒 - “远征亡语”"
+	desc = "一个装有远征亡语植入体的玻璃盒。只会在熔岩地带发生死亡时发出警报。"
 	imp_type = /obj/item/implant/deathrattle/lavaland
 
 #undef DEATHRATTLE_AREA_NOLIST

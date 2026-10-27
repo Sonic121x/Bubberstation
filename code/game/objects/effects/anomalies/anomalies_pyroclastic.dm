@@ -1,6 +1,6 @@
 
 /obj/effect/anomaly/pyro
-	name = "pyroclastic anomaly"
+	name = "火成异常体"
 	icon_state = "pyroclastic"
 	var/ticks = 0
 	/// How many seconds between each gas release
@@ -40,7 +40,7 @@
 
 /obj/effect/anomaly/pyro/proc/start_poll()
 	already_polling = TRUE
-	chosen_one = SSpolling.poll_ghosts_for_target(check_jobban = ROLE_SENTIENCE, poll_time = poll_time, checked_target = src, ignore_category = POLL_IGNORE_PYROSLIME, alert_pic = src, role_name_text = "pyroclastic anomaly slime")
+	chosen_one = SSpolling.poll_ghosts_for_target(check_jobban = ROLE_SENTIENCE, poll_time = poll_time, checked_target = src, ignore_category = POLL_IGNORE_PYROSLIME, alert_pic = src, role_name_text = "火成异常体史莱姆")
 
 /obj/effect/anomaly/pyro/proc/makepyroslime()
 	var/turf/open/tile = get_turf(src)

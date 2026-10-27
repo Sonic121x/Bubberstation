@@ -2,17 +2,17 @@
 //space pirates from the pirate event.
 
 /obj/effect/mob_spawn/ghost_role/human/pirate
-	name = "space pirate sleeper"
-	desc = "A cryo sleeper smelling faintly of rum."
+	name = "太空海盗休眠舱"
+	desc = "一台隐约散发着朗姆酒气味的低温休眠舱。"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	prompt_name = "a space pirate"
+	prompt_name = "一名太空海盗"
 	outfit = /datum/outfit/pirate/space
 	anchored = TRUE
 	density = FALSE
 	show_flavor = FALSE //Flavour only exists for spawners menu
-	you_are_text = "You are a space pirate."
-	flavour_text = "The station refused to pay for your protection. Protect the ship, siphon the credits from the station, and raid it for even more loot."
+	you_are_text = "你是一名太空海盗。"
+	flavour_text = "空间站拒绝为你的保护付费。守好你的船，从空间站抽走信用点，再洗劫一番以夺取更多战利品。"
 	spawner_job_path = /datum/job/space_pirate
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE
 	///Rank of the pirate on the ship, it's used in generating pirate names!
@@ -52,12 +52,12 @@
 	rank = "Rogue"
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/skeleton
-	name = "pirate remains"
-	desc = "Some inanimate bones. They feel like they could spring to life at any moment!"
+	name = "海盗遗骸"
+	desc = "一些没有生命的骸骨。感觉它们随时都可能活过来！"
 	density = FALSE
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "remains"
-	prompt_name = "a skeleton pirate"
+	prompt_name = "一名骷髅海盗"
 	mob_species = /datum/species/skeleton
 	outfit = /datum/outfit/pirate
 	rank = "Mate"
@@ -73,11 +73,11 @@
 	rank = "Gunner"
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/silverscale
-	name = "elegant sleeper"
-	desc = "Cozy. You get the feeling you aren't supposed to be here, though..."
+	name = "精致的休眠舱"
+	desc = "舒适宜人。不过你总觉得自己不该出现在这里……"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	prompt_name = "a silverscale"
+	prompt_name = "一名银鳞者"
 	mob_species = /datum/species/lizard/silverscale
 	outfit = /datum/outfit/pirate/silverscale
 	rank = "High-born"
@@ -104,14 +104,14 @@
 	rank = "Top-drawer"
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/interdyne
-	name = "\improper Interdyne sleeper"
-	desc = "A surprisingly clean cryogenic sleeper. You can see your reflection on the sides!"
+	name = "\improper 英特戴恩休眠舱"
+	desc = "一台出奇干净的低温休眠舱。你都能在侧面看到自己的倒影！"
 	density = FALSE
-	you_are_text = "You are an Ex-Interdyne pharmacyst now turned space pirate."
-	flavour_text = "The station has refused to fund your research, so you will 'convince' them to donate to your charitable cause."
+	you_are_text = "你曾是英特戴恩的药剂师，如今转行做了太空海盗。"
+	flavour_text = "空间站拒绝资助你的研究，所以你要“说服”他们为你的慈善事业捐款。"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	prompt_name = "An Ex-Interdyne employee"
+	prompt_name = "一名英特戴恩前雇员"
 	outfit = /datum/outfit/pirate/interdyne
 	rank = "Pharmacist"
 
@@ -136,14 +136,14 @@
 	rank = "Pharmacist"
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/grey
-	name = "\improper Assistant sleeper"
-	desc = "A very dirty cryogenic sleeper. You're not sure if it even works."
+	name = "\improper 助理休眠舱"
+	desc = "一台非常脏的低温休眠舱。你都不确定它还能不能用。"
 	density = FALSE
-	you_are_text = "You used to be a Nanotrasen assistant, until a riot gone awry. Now you wander space, ransacking any ships you come across!"
-	flavour_text = "There's nothing a toolbox can't whack in the head enough times to spill blood, or in this case money. Loot everything!"
+	you_are_text = "你曾是纳米传讯的助理，直到一场暴动失控。如今你在太空中游荡，洗劫遇到的每一艘飞船！"
+	flavour_text = "没有什么东西是工具箱砸头砸得够多次还不见血的，在这里，血就是钱。把一切都搜刮干净！"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	prompt_name = "An assistant gone loose"
+	prompt_name = "一名失控的助理"
 	outfit = /datum/outfit/pirate/grey
 	rank = "Tider"
 
@@ -151,14 +151,14 @@
 	rank = "Tidemaster"
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/irs
-	name = "\improper Space IRS sleeper"
-	desc = "A surprisingly clean cryogenic sleeper. You can see your reflection on the sides!"
+	name = "\improper 太空税务局休眠舱"
+	desc = "一台出奇干净的低温休眠舱。你都能在侧面看到自己的倒影！"
 	density = FALSE
-	you_are_text = "You are an agent working for the space IRS"
-	flavour_text = "Not even in the expanse of the expanding universe can someone evade the tax man! Whether you are just a well disciplined and professional pirate gang or an actual agent from a local polity. You will squeeze the station dry of its income regardless! Through peaceful means or otherwise..."
+	you_are_text = "你是为太空税务局工作的特工。"
+	flavour_text = "即便在无限扩张的宇宙深处，也没人能逃过税务官！无论你只是一支纪律严明的专业海盗团伙，还是某个地方政体的真正特工，你都要把空间站的钱财榨干！无论用和平手段还是别的什么手段……"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	prompt_name = "An agent of the space IRS"
+	prompt_name = "一名太空税务局特工"
 	outfit = /datum/outfit/pirate/irs
 	fluff_spawn = null // dirs are fucked and I don't have the energy to deal with it
 	rank = "Agent"
@@ -182,15 +182,15 @@
 	is_leader = TRUE
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/lustrous
-	name = "lustrous crystal"
-	desc = "A crystal housing a mutated Ethereal, it emanates a foreboding glow."
+	name = "晶莹水晶"
+	desc = "一枚容纳着变异以太人的水晶，散发着不祥的光芒。"
 	density = FALSE
-	you_are_text = "Once you were a proud Ethereal, now all that remains is your hunger for the precious bluespace crystal."
-	flavour_text = "The station has denied you your bluespace crystals, the sweet ambrosia of the fifth-dimension. Strike the earth!"
+	you_are_text = "你曾是一名骄傲的以太人，如今只剩下对珍贵蓝空间水晶的饥渴。"
+	flavour_text = "空间站拒绝给你蓝空间水晶——那第五维度的甜美甘露。开挖吧！"
 	icon = 'icons/mob/effects/ethereal_crystal.dmi'
 	icon_state = "ethereal_crystal"
 	fluff_spawn = null
-	prompt_name = "a geode dweller"
+	prompt_name = "一名晶洞居民"
 	mob_species = /datum/species/ethereal/lustrous
 	outfit = /datum/outfit/pirate/lustrous
 	rank = "Scintillant"
@@ -205,15 +205,15 @@
 	rank = "Coruscant"
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/medieval
-	name = "\improper Improvised sleeper"
-	desc = "A body bag poked with holes, currently being used as a sleeping bag. Someone seems to be sleeping inside of it."
+	name = "\improper 简陋休眠舱"
+	desc = "一个戳了孔的尸袋，如今被当作睡袋使用。里面似乎有人正在睡觉。"
 	density = FALSE
-	you_are_text = "You were a nobody before, until you were given a sword and the opportunity to rise up in ranks. If you put some effort, you can make it big!"
-	flavour_text = "Raiding some cretins while engaging in bloodsport and violence? what a deal. Stay together and pillage everything!"
+	you_are_text = "你从前无名无姓，直到有人给了你一把剑和向上攀爬的机会。只要肯下点功夫，你就能出人头地！"
+	flavour_text = "一边劫掠那些蠢货，一边享受血腥竞技与暴力？太划算了。保持队形，把一切抢光！"
 	icon = 'icons/obj/medical/bodybag.dmi'
 	icon_state = "bodybag"
 	fluff_spawn = null
-	prompt_name = "a medieval warmonger"
+	prompt_name = "一名中世纪好战者"
 	outfit = /datum/outfit/pirate/medieval
 	rank = "Footsoldier"
 

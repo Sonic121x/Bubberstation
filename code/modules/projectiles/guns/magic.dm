@@ -1,6 +1,6 @@
 /obj/item/gun/magic
-	name = "staff of nothing"
-	desc = "This staff is boring to watch because even though it came first you've seen everything it can do in other staves for years."
+	name = "虚无之杖"
+	desc = "这根法杖看起来没什么意思，因为尽管它是最早出现的，它会的每一招你这些年来都已在别的法杖上见过了。"
 	icon = 'icons/obj/weapons/guns/magic.dmi'
 	icon_state = "staffofnothing"
 	inhand_icon_state = "staff"
@@ -13,7 +13,7 @@
 	clumsy_check = FALSE
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL // Has no trigger at all, uses magic instead
 	pin = /obj/item/firing_pin/magic
-	about_to_shoot_inside_mail_text = "It's humming with energy!"
+	about_to_shoot_inside_mail_text = "它正嗡鸣着蓄满能量！"
 	/// If true, our fire sound gets lower as our charges decrease
 	var/pitch_with_charges = TRUE
 	/// What kind of magic is this
@@ -94,7 +94,7 @@
 		var/area/A = get_area(user)
 		if(istype(A, /area/centcom/wizard_station))
 			add_fingerprint(user)
-			to_chat(user, span_warning("You know better than to violate the security of The Den, best wait until you leave to use [src]."))
+			to_chat(user, span_warning("你应该知道不该违反巢穴的安保规定，最好等离开后再使用 [src]。"))
 			return
 		else
 			no_den_usage = FALSE // Well you're probably not going back
@@ -145,14 +145,14 @@
 	return 1
 
 /obj/item/gun/magic/shoot_with_empty_chamber(mob/living/user)
-	to_chat(user, span_warning("\The [src] whizzles quietly."))
+	to_chat(user, span_warning("[src] 发出轻微的嘶嘶声。"))
 
 /obj/item/gun/magic/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is twisting [src] above [user.p_their()] head, releasing a magical blast! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 把 [src] 举在头顶上方扭动，释放出一道魔法冲击！看起来是想自杀！"))
 	if (can_user_shoot(user))
 		charges--
 		return do_suicide(user)
-	user.visible_message(span_suicide("...but nothing happens."))
+	user.visible_message(span_suicide("……但什么也没发生。"))
 	return SHAME
 
 /// Extend to do something funny

@@ -1,7 +1,7 @@
 
 /datum/action/cooldown/spell/pointed/abyssal_gaze
-	name = "Abyssal Gaze"
-	desc = "This spell instills a deep terror in your target, temporarily chilling and blinding it."
+	name = "深渊凝视"
+	desc = "此法术在目标心中注入深深的恐惧，暂时使其寒冷并失明。"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/cult_target.dmi'
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "bg_demon_border"
@@ -16,7 +16,7 @@
 	antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_HOLY|MAGIC_RESISTANCE_MIND
 
 	cast_range = 5
-	active_msg = "You prepare to instill a deep terror in a target..."
+	active_msg = "你准备在目标心中注入深深的恐惧……"
 
 	/// The duration of the blind on our target
 	var/blind_duration = 4 SECONDS
@@ -29,11 +29,11 @@
 /datum/action/cooldown/spell/pointed/abyssal_gaze/cast(mob/living/carbon/cast_on)
 	. = ..()
 	if(cast_on.can_block_magic(antimagic_flags))
-		to_chat(owner, span_warning("The spell had no effect!"))
-		to_chat(cast_on, span_warning("You feel a freezing darkness closing in on you, but it rapidly dissipates."))
+		to_chat(owner, span_warning("法术没有产生任何效果！"))
+		to_chat(cast_on, span_warning("你感到一片冰冷的黑暗向你逼近，但它迅速消散了。"))
 		return FALSE
 
-	to_chat(cast_on, span_userdanger("A freezing darkness surrounds you..."))
+	to_chat(cast_on, span_userdanger("一片冰冷的黑暗包围了你……"))
 	cast_on.playsound_local(get_turf(cast_on), 'sound/effects/hallucinations/i_see_you1.ogg', 50, 1)
 	owner.playsound_local(get_turf(owner), 'sound/effects/ghost2.ogg', 50, 1)
 	cast_on.adjust_temp_blindness(blind_duration)

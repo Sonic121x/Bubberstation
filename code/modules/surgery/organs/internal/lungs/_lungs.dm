@@ -1,5 +1,5 @@
 /obj/item/organ/lungs
-	name = "lungs"
+	name = "肺"
 	icon_state = "lungs"
 
 	zone = BODY_ZONE_CHEST
@@ -10,11 +10,11 @@
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY * 0.9 // fails around 16.5 minutes, lungs are one of the last organs to die (of the ones we have)
 
-	low_threshold_passed = span_warning("You feel short of breath.")
-	high_threshold_passed = span_warning("You feel some sort of constriction around your chest as your breathing becomes shallow and rapid.")
-	now_fixed = span_warning("Your lungs seem to once again be able to hold air.")
-	low_threshold_cleared = span_info("You can breathe normally again.")
-	high_threshold_cleared = span_info("The constriction around your chest loosens as your breathing calms down.")
+	low_threshold_passed = span_warning("你感到喘不上气。")
+	high_threshold_passed = span_warning("你感觉胸口像被什么勒紧了，呼吸变得又浅又急。")
+	now_fixed = span_warning("你的肺似乎又能存住空气了。")
+	low_threshold_cleared = span_info("你又能正常呼吸了。")
+	high_threshold_cleared = span_info("随着呼吸平缓下来，胸口的压迫感也松开了。")
 
 	cell_line = CELL_LINE_ORGAN_LUNGS
 	cells_minimum = 1
@@ -91,7 +91,7 @@
 	var/tritium_irradiation_probability_min = 10
 	var/tritium_irradiation_probability_max = 60
 
-	var/cold_message = "your face freezing and an icicle forming"
+	var/cold_message = "传来面部冻结、冰柱成形的感觉"
 	var/cold_level_1_threshold = COLD_LEVEL_1_THRESHOLD
 	var/cold_level_2_threshold = COLD_LEVEL_2_THRESHOLD
 	var/cold_level_3_threshold = COLD_LEVEL_3_THRESHOLD
@@ -100,7 +100,7 @@
 	var/cold_level_3_damage = COLD_GAS_DAMAGE_LEVEL_3
 	var/cold_damage_type = BURN
 
-	var/hot_message = "your face burning and a searing heat"
+	var/hot_message = "传来面部灼烧、热浪炙烤的感觉"
 	var/heat_level_1_threshold = HEAT_LEVEL_1_THRESHOLD
 	var/heat_level_2_threshold = HEAT_LEVEL_2_THRESHOLD
 	var/heat_level_3_threshold = HEAT_LEVEL_3_THRESHOLD
@@ -109,7 +109,7 @@
 	var/heat_level_3_damage = HEAT_GAS_DAMAGE_LEVEL_3
 	var/heat_damage_type = BURN
 
-	var/breath_noise = "steady in- and exhalation"
+	var/breath_noise = "平稳的吸气与呼气声"
 
 /obj/item/organ/lungs/Initialize(mapload)
 	. = ..()
@@ -389,12 +389,12 @@
 	if (freon_pp > gas_stimulation_min)
 		breather.reagents.add_reagent(/datum/reagent/freon, 1)
 	if (prob(freon_pp))
-		to_chat(breather, span_alert("Your mouth feels like it's burning!"))
+		to_chat(breather, span_alert("你的嘴里像在燃烧！"))
 	if (freon_pp > 40)
 		breather.emote("gasp")
 		breather.adjust_fire_loss(15)
 		if (prob(freon_pp / 2))
-			to_chat(breather, span_alert("Your throat closes up!"))
+			to_chat(breather, span_alert("你的喉咙收紧了！"))
 			breather.set_silence_if_lower(6 SECONDS)
 	else
 		breather.adjust_fire_loss(freon_pp / 4)
@@ -414,7 +414,7 @@
 	// Euphoria side-effect.
 	if(healium_pp > gas_stimulation_min)
 		if(prob(15))
-			to_chat(breather, span_alert("Your head starts spinning and your lungs burn!"))
+			to_chat(breather, span_alert("你的头开始发晕，肺部像在燃烧！"))
 			healium_euphoria = EUPHORIA_ACTIVE
 			breather.emote("gasp")
 	else
@@ -468,22 +468,22 @@
 			// At lower pp, give out a little warning
 			breather.clear_mood_event("smell")
 			if(prob(5))
-				to_chat(breather, span_notice("There is an unpleasant smell in the air."))
+				to_chat(breather, span_notice("空气中有股难闻的气味。"))
 		if(5 to 15)
 			//At somewhat higher pp, warning becomes more obvious
 			if(prob(15))
-				to_chat(breather, span_warning("You smell something horribly decayed inside this room."))
+				to_chat(breather, span_warning("你闻到这个房间里有东西腐烂得厉害。"))
 				breather.add_mood_event("smell", /datum/mood_event/disgust/bad_smell)
 		if(15 to 30)
 			//Small chance to vomit. By now, people have internals on anyway
 			if(prob(5))
-				to_chat(breather, span_warning("The stench of rotting carcasses is unbearable!"))
+				to_chat(breather, span_warning("腐烂尸体的恶臭让人难以忍受！"))
 				breather.add_mood_event("smell", /datum/mood_event/disgust/nauseating_stench)
 				breather.vomit(VOMIT_CATEGORY_DEFAULT)
 		if(30 to INFINITY)
 			//Higher chance to vomit. Let the horror start
 			if(prob(15))
-				to_chat(breather, span_warning("The stench of rotting carcasses is unbearable!"))
+				to_chat(breather, span_warning("腐烂尸体的恶臭让人难以忍受！"))
 				breather.add_mood_event("smell", /datum/mood_event/disgust/nauseating_stench)
 				breather.vomit(VOMIT_CATEGORY_DEFAULT)
 		else
@@ -548,7 +548,7 @@
 	if((prob(nitrium_pp) && (nitrium_pp > 15)))
 		// Nitrium side-effect.
 		breather.adjust_organ_loss(ORGAN_SLOT_LUNGS, nitrium_pp * 0.1)
-		to_chat(breather, span_notice("You feel a burning sensation in your chest"))
+		to_chat(breather, span_notice("你感到胸口有灼烧感"))
 	// Metabolize to reagents.
 	if (nitrium_pp > 5)
 		var/existing = breather.reagents.get_reagent_amount(/datum/reagent/nitrium_low_metabolization)
@@ -764,7 +764,7 @@
 			breath_effect_prob = 25
 		if(breath_temperature < cold_level_1_threshold)
 			if(prob(sqrt(breath_effect_prob) * 4))
-				to_chat(breather, span_warning("You feel [cold_message] in your [name]!"))
+				to_chat(breather, span_warning("你感到你的[name]里[cold_message]！"))
 				if(prob(50))
 					breather.emote("shiver")
 			if(prob(breath_effect_prob))
@@ -790,7 +790,7 @@
 			heat_message_prob = 25
 		if(breath_temperature > heat_level_1_threshold)
 			if(prob(sqrt(heat_message_prob) * 4))
-				to_chat(breather, span_warning("You feel [hot_message] in your [name]!"))
+				to_chat(breather, span_warning("你感到你的[name]里[hot_message]！"))
 
 	// The air you breathe out should match your body temperature
 	breath.temperature = breather.bodytemperature
@@ -841,7 +841,7 @@
 		if(do_i_cough)
 			owner.emote("cough")
 	if(organ_flags & ORGAN_FAILING && !IS_UNCONSCIOUS_OR_CRIT(owner))
-		owner.visible_message(span_danger("[owner] grabs [owner.p_their()] throat, struggling for breath!"), span_userdanger("You suddenly feel like you can't breathe!"))
+		owner.visible_message(span_danger("[owner] 掐住自己的喉咙，拼命喘气！"), span_userdanger("你突然觉得自己喘不上气！"))
 		failed = TRUE
 
 /obj/item/organ/lungs/get_availability(datum/species/owner_species, mob/living/owner_mob)
@@ -850,17 +850,17 @@
 /obj/item/organ/lungs/feel_for_damage(self_aware)
 	if(organ_flags & ORGAN_FAILING)
 		if(self_aware)
-			return span_boldwarning("Your lungs hurt madly[HAS_TRAIT(owner, TRAIT_NOBREATH) ? "" : ", and you can't breathe"]!")
-		return span_boldwarning("It hurts madly[HAS_TRAIT(owner, TRAIT_NOBREATH) ? "" : ", and you can't breathe"]!")
+			return span_boldwarning("你的肺部剧痛无比[HAS_TRAIT(owner, TRAIT_NOBREATH) ? "" : "，而且喘不上气"]！")
+		return span_boldwarning("那里剧痛无比[HAS_TRAIT(owner, TRAIT_NOBREATH) ? "" : "，而且喘不上气"]！")
 	if(damage < low_threshold)
 		return ""
 	if(damage < high_threshold)
 		if(self_aware)
-			return span_warning("Your lungs feel tight[HAS_TRAIT(owner, TRAIT_NOBREATH) ?  "" : ", and breathing is harder"].")
-		return span_warning("It feels tight[HAS_TRAIT(owner, TRAIT_NOBREATH) ?  "" : ", and breathing is harder"].")
+			return span_warning("你的肺部发紧[HAS_TRAIT(owner, TRAIT_NOBREATH) ?  "" : "，而且呼吸更吃力"]。")
+		return span_warning("那里发紧[HAS_TRAIT(owner, TRAIT_NOBREATH) ?  "" : "，而且呼吸更吃力"]。")
 	if(self_aware)
-		return span_boldwarning("Your lungs feel extremely tight[HAS_TRAIT(owner, TRAIT_NOBREATH) ?  "" : ", and every breath is a struggle"].")
-	return span_boldwarning("It feels extremely tight[HAS_TRAIT(owner, TRAIT_NOBREATH) ?  "" : ", and every breath is a struggle"].")
+		return span_boldwarning("你的肺部紧绷得厉害[HAS_TRAIT(owner, TRAIT_NOBREATH) ?  "" : "，每一次呼吸都很费力"]。")
+	return span_boldwarning("那里紧绷得厉害[HAS_TRAIT(owner, TRAIT_NOBREATH) ?  "" : "，每一次呼吸都很费力"]。")
 
 /obj/item/organ/lungs/get_status_appendix(scanpower, add_tooltips)
 	var/initial_pressure_mult = initial(received_pressure_mult)
@@ -893,33 +893,33 @@
 
 /// by default, returns the lungs' breath_noise var as a notice. called when stethoscope is used on chest, uses the return as a message for stethoscope user.
 /obj/item/organ/lungs/proc/hear_breath_noise(mob/living/hearer)
-	return span_notice("[owner.p_Their()] lungs emit [breath_noise].")
+	return span_notice("[owner]的肺部发出[breath_noise]。")
 
 #define SMOKER_ORGAN_HEALTH (STANDARD_ORGAN_THRESHOLD * 0.75)
 #define SMOKER_LUNG_HEALING (STANDARD_ORGAN_HEALING * 0.75)
 
 /obj/item/organ/lungs/plasmaman
-	name = "plasma filter"
-	desc = "A spongy rib-shaped mass for filtering plasma from the air."
+	name = "等离子过滤器"
+	desc = "一块海绵状、肋骨形状的组织，用于从空气中过滤等离子体。"
 	icon_state = "lungs-plasma"
 	organ_traits = list(TRAIT_NOHUNGER) // A fresh breakfast of plasma is a great start to any morning.
-	breath_noise = "a crackle, like crushed foam"
+	breath_noise = "像压碎的泡沫一样的噼啪声"
 	safe_oxygen_min = 0 //We don't breathe this
 	safe_plasma_min = 4 //We breathe THIS!
 	safe_plasma_max = 0
 
 /obj/item/organ/lungs/plasmaman/plasmaman_smoker
-	name = "smoker plasma filter"
-	desc = "A plasma filter that look discolored, a result from smoking a lot."
+	name = "吸烟者等离子过滤器"
+	desc = "一个变了色的等离子过滤器，是长期吸烟的结果。"
 	icon_state = "lungs_plasma_smoker"
-	breath_noise = "a wheezing crackle, like crushed foam"
+	breath_noise = "像压碎的泡沫一样、带着喘息的噼啪声"
 	maxHealth = SMOKER_ORGAN_HEALTH
 	healing_factor = SMOKER_LUNG_HEALING
 
 /obj/item/organ/lungs/slime
-	name = "slime vacuole"
-	desc = "A large organelle designed to store oxygen and other important gasses."
-	breath_noise = "a low burbling"
+	name = "史莱姆液泡"
+	desc = "一个大型细胞器，用于储存氧气和其他重要气体。"
+	breath_noise = "低沉的咕嘟声"
 	safe_plasma_max = 0 //We breathe this to gain POWER.
 
 /obj/item/organ/lungs/slime/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/breather_slime)
@@ -929,19 +929,19 @@
 		breather_slime.adjust_blood_volume(0.2 * plasma_pp) // 10/s when breathing literally nothing but plasma, which will suffocate you.
 
 /obj/item/organ/lungs/smoker_lungs
-	name = "smoker lungs"
-	desc = "A pair of lungs that look sickly, a result from smoking a lot."
+	name = "吸烟者肺"
+	desc = "一对看起来病恹恹的肺，是长期吸烟的结果。"
 	icon_state = "lungs_smoker"
-	breath_noise = "an unsteady, wheezing rhythm"
+	breath_noise = "不稳的喘息节律"
 	maxHealth = SMOKER_ORGAN_HEALTH
 	healing_factor = SMOKER_LUNG_HEALING
 
 /obj/item/organ/lungs/cybernetic
-	name = "basic cybernetic lungs"
-	desc = "A basic cybernetic version of the lungs found in traditional humanoid entities."
-	failing_desc = "seems to be broken."
+	name = "基础义体肺"
+	desc = "传统人形生物肺部的义体基础版本。"
+	failing_desc = "似乎已经损坏。"
 	icon_state = "lungs-c"
-	breath_noise = "a steady whirr"
+	breath_noise = "稳定的嗡鸣声"
 	organ_flags = ORGAN_ROBOTIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT)
@@ -958,16 +958,16 @@
 		organ_flags |= ORGAN_EMP //Starts organ faliure - gonna need replacing soon.
 
 /obj/item/organ/lungs/cybernetic/tier2
-	name = "cybernetic lungs"
-	desc = "A cybernetic version of the lungs found in traditional humanoid entities. Allows for greater intakes of oxygen than organic lungs, requiring slightly less pressure."
+	name = "义体肺"
+	desc = "传统人形生物肺部的义体版本。相比有机肺能摄入更多氧气，所需气压也略低。"
 	icon_state = "lungs-c-u"
 	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD
 	safe_oxygen_min = 13
 	emp_vulnerability = 40
 
 /obj/item/organ/lungs/cybernetic/tier3
-	name = "upgraded cybernetic lungs"
-	desc = "A more advanced version of the stock cybernetic lungs. Features the ability to filter out lower levels of plasma and carbon dioxide."
+	name = "升级版义体肺"
+	desc = "标准义体肺的更高级版本。能够过滤较低浓度的等离子体与二氧化碳。"
 	icon_state = "lungs-c-u2"
 	safe_plasma_max = 20
 	safe_co2_max = 20
@@ -981,10 +981,10 @@
 	cold_level_3_threshold = COLD_LEVEL_3_THRESHOLD - 20
 
 /obj/item/organ/lungs/cybernetic/surplus
-	name = "surplus prosthetic lungs"
-	desc = "Two fragile, inflatable sacks of air that only barely mimic the function of human lungs. \
-		Offer no protection against EMPs."
-	breath_noise = "a concerningly unstable scratchy whirr. You <b>shouldn't touch this</b> while it's running"
+	name = "廉价义体肺"
+	desc = "两个脆弱、可充气的空气袋，仅仅勉强模仿人类肺部的功能。\
+		完全没有任何电磁脉冲防护能力。"
+	breath_noise = "令人担忧、极不稳定的沙沙嗡鸣。它在运转时你<b>不该碰它</b>"
 	icon_state = "lungs-c-s"
 	maxHealth = 0.35 * STANDARD_ORGAN_THRESHOLD
 	emp_vulnerability = 100
@@ -995,20 +995,20 @@
 	AddElement(/datum/element/dangerous_organ_removal, /*surgical = */ TRUE)
 
 /obj/item/organ/lungs/cybernetic/surplus/hear_breath_noise(mob/living/hearer)
-	return span_danger("[owner.p_Their()] lungs emit [breath_noise].")
+	return span_danger("[owner]的肺部发出[breath_noise]。")
 
 /obj/item/organ/lungs/ghost
-	name = "ghost lungs"
-	desc = "No one knows what this is even supposed to breathe."
+	name = "幽灵肺"
+	desc = "没人知道这东西到底是用来呼吸什么的。"
 	icon_state = "lungs-ghost"
 	movement_type = PHASING
 	organ_flags = parent_type::organ_flags | ORGAN_GHOST
 
 /obj/item/organ/lungs/lavaland
-	name = "blackened frilled lungs" // blackened from necropolis exposure
-	desc = "Exposure to the necropolis has mutated these lungs to breathe the air of Indecipheres, the lava-covered moon."
+	name = "焦黑的褶边肺" // blackened from necropolis exposure
+	desc = "暴露在死灵之都环境中使这些肺发生了突变，能够呼吸被熔岩覆盖的卫星因德西菲瑞斯的空气。"
 	icon_state = "lungs-ashwalker"
-	breath_noise = "a throbbing smoke-like hiss"
+	breath_noise = "一阵阵悸动、如烟雾般的嘶嘶声"
 
 // Normal oxygen is 21 kPa partial pressure, but SS13 humans can tolerate down
 // to 16 kPa. So it follows that ashwalkers, as humanoids, follow the same rules.
@@ -1103,19 +1103,19 @@
 #undef LUNG_CAPACITY_ALERT_BUFFER
 
 /obj/item/organ/lungs/ethereal
-	name = "aeration reticulum"
-	desc = "These exotic lungs seem crunchier than most."
+	name = "充气网器"
+	desc = "这对奇异的肺似乎比大多数肺更脆。"
 	icon_state = "lungs_ethereal"
-	breath_noise = "a low fluorescent hum"
+	breath_noise = "低沉的荧光嗡鸣"
 	heat_level_1_threshold = FIRE_MINIMUM_TEMPERATURE_TO_SPREAD // 150C or 433k, in line with ethereal max safe body temperature
 	heat_level_2_threshold = HEAT_LEVEL_2_THRESHOLD + 73
 	heat_level_3_threshold = HEAT_LEVEL_3_THRESHOLD + 73
 
 /obj/item/organ/lungs/ethereal/ethereal_smoker
-	name = "smoker aeration reticulum"
-	desc = "A pair of exotic lungs that look pale and sickly, a result from smoking a lot."
+	name = "吸烟者充气网器"
+	desc = "一对看起来苍白病态的奇异肺，是长期吸烟的结果。"
 	icon_state = "lungs_ethereal_smoker"
-	breath_noise = "a spotty hum, like a broken lightbulb"
+	breath_noise = "断断续续的嗡鸣，像坏掉的灯泡"
 	maxHealth = SMOKER_ORGAN_HEALTH
 	healing_factor = SMOKER_LUNG_HEALING
 
@@ -1132,15 +1132,15 @@
 
 
 /obj/item/organ/lungs/pod
-	name = "pod vacuole"
-	desc = "A large organelle designed to store oxygen and other important gasses."
-	breath_noise = "a humid hiss"
+	name = "豆荚液泡"
+	desc = "一个大型细胞器，用于储存氧气和其他重要气体。"
+	breath_noise = "湿润的嘶嘶声"
 	foodtype_flags = PODPERSON_ORGAN_FOODTYPES
 	color = COLOR_LIME
 
 /obj/item/organ/lungs/evolved
-	name = "evolved lungs"
-	desc = "A pair of lungs, with an organic filtering system and a stronger musculature."
+	name = "进化肺"
+	desc = "一对拥有有机过滤系统和更强肌肉组织的肺。"
 
 	icon_state = "lungs-evolved"
 

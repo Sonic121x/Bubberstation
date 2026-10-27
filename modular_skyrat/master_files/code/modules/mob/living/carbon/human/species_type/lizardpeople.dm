@@ -13,9 +13,9 @@ Lizard subspecies: ASHWALKERS
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "comment",
-		SPECIES_PERK_NAME = "Native Speaker",
-		SPECIES_PERK_DESC = "Ashwalkers can only speak [initial(common_language.name)]. \
-			It is rare, but not impossible, for an Ashwalker to learn another language."
+		SPECIES_PERK_NAME = "母语者",
+		SPECIES_PERK_DESC = "灰行者只能讲 [initial(common_language.name)]。\
+			灰行者学会其他语言的情况很罕见，但并非不可能。"
 	))
 
 	return to_add

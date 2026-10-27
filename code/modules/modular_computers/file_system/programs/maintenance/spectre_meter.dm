@@ -7,10 +7,10 @@
 
 /datum/computer_file/program/maintenance/spectre_meter
 	filename = "spectre_meter"
-	filedesc = "Spectre-Meter"
+	filedesc = "幽灵探测仪"
 	power_cell_use = PROGRAM_BASIC_CELL_USE * 2
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
-	extended_desc = "A program used to somehow detect nearby spectral presence. Combine with the camera app to take photos of ghosts."
+	extended_desc = "一款能以某种方式探测附近灵体存在的程序。与相机应用配合即可拍摄幽灵。"
 	size = 7
 	can_run_on_flags = PROGRAM_LAPTOP|PROGRAM_PDA
 	tgui_id = "NtosSpectreMeter"
@@ -161,7 +161,7 @@
 
 /obj/item/circuit_component/mod_program/spectre_meter/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Scan Coooldown: [SPOOK_COOLDOWN]", "orange", "stopwatch")
+	. += create_ui_notice("扫描冷却：[SPOOK_COOLDOWN]", "orange", "stopwatch")
 
 /obj/item/circuit_component/mod_program/spectre_meter/input_received(datum/port/port)
 	var/datum/computer_file/program/maintenance/spectre_meter/meter = associated_program

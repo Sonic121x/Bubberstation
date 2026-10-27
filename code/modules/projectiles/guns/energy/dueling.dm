@@ -5,9 +5,9 @@
 #define DUEL_FIRING 5
 
 //paper rock scissors
-#define DUEL_SETTING_A "wide"
-#define DUEL_SETTING_B "cone"
-#define DUEL_SETTING_C "pinpoint"
+#define DUEL_SETTING_A "广域"
+#define DUEL_SETTING_B "锥形"
+#define DUEL_SETTING_C "定点"
 
 /datum/duel
 	var/obj/item/gun/energy/dueling/gun_A
@@ -35,7 +35,7 @@
 	var/mob/living/A = get_duelist(gun_A)
 	var/mob/living/B = get_duelist(gun_B)
 	if(!A || !B)
-		message_duelists(span_warning("To begin the duel, both participants need to be holding paired dueling pistols."))
+		message_duelists(span_warning("要开始决斗，双方参与者都必须手持已配对的决斗手枪。"))
 		return
 	begin()
 
@@ -45,7 +45,7 @@
 	fired.Cut()
 	countdown_step = countdown_length
 
-	message_duelists(span_notice("Set your gun setting and move [required_distance] steps away from your opponent."))
+	message_duelists(span_notice("设置好你的手枪模式，并与对手拉开 [required_distance] 步的距离。"))
 
 	START_PROCESSING(SSobj,src)
 
@@ -67,7 +67,7 @@
 	return G == gun_A ? gun_B : gun_A
 
 /datum/duel/proc/end()
-	message_duelists(span_notice("Duel finished. Re-engaging safety."))
+	message_duelists(span_notice("决斗结束。保险装置已重新启用。"))
 	STOP_PROCESSING(SSobj,src)
 	state = DUEL_IDLE
 
@@ -94,26 +94,26 @@
 
 
 /datum/duel/proc/back_to_prep()
-	message_duelists(span_notice("Positions invalid. Please move to valid positions exactly [required_distance] steps away from each other to continue."))
+	message_duelists(span_notice("位置无效。请移动到彼此相距正好 [required_distance] 步的有效位置以继续。"))
 	state = DUEL_PREPARATION
 	confirmations.Cut()
 	countdown_step = countdown_length
 
 /datum/duel/proc/confirm_positioning()
-	message_duelists(span_notice("Position confirmed. Confirm readiness by pulling the trigger once."))
+	message_duelists(span_notice("位置已确认。扣动一次扳机以确认准备就绪。"))
 	state = DUEL_READY
 
 /datum/duel/proc/confirm_ready()
-	message_duelists(span_notice("Readiness confirmed. Starting countdown. Commence firing at zero mark."))
+	message_duelists(span_notice("准备就绪已确认。倒计时开始。归零时开始射击。"))
 	state = DUEL_COUNTDOWN
 
 /datum/duel/proc/countdown_step()
 	countdown_step--
 	if(countdown_step == 0)
 		state = DUEL_FIRING
-		message_duelists(span_userdanger("Fire!"))
+		message_duelists(span_userdanger("开火！"))
 	else
-		message_duelists(span_userdanger("[countdown_step]!"))
+		message_duelists(span_userdanger("[countdown_step]！"))
 
 /datum/duel/proc/check_fired()
 	if(fired.len == 2)
@@ -146,8 +146,8 @@
 	qdel(src)
 
 /obj/item/gun/energy/dueling
-	name = "dueling pistol"
-	desc = "High-tech dueling pistol. Launches chaff and projectile according to preset settings."
+	name = "决斗手枪"
+	desc = "高科技决斗手枪。会根据预设模式发射干扰箔条和射弹。"
 	icon_state = "dueling_pistol"
 	inhand_icon_state = "gun"
 	ammo_x_offset = 2
@@ -172,15 +172,15 @@
 	if(check_valid_duel(user, FALSE) || other_gun.check_valid_duel(user, FALSE))
 		return ITEM_INTERACT_BLOCKING
 	var/datum/duel/newduel = new(src, other_gun)
-	to_chat(user,span_notice("Pairing established. Pairing code: [newduel.pairing_code]"))
+	to_chat(user,span_notice("配对已建立。配对码：[newduel.pairing_code]"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/gun/energy/dueling/examine_more(mob/user)
 	. = ..()
 	if(check_valid_duel(user, FALSE))
-		. += "The pairing code is: [duel.pairing_code]"
+		. += "配对码为：[duel.pairing_code]"
 	else
-		. += "[src] is currently unpaired."
+		. += "[src] 目前未配对。"
 
 /obj/item/gun/energy/dueling/proc/setting_iconstate()
 	switch(setting)
@@ -210,7 +210,7 @@
 			setting = DUEL_SETTING_C
 		if(DUEL_SETTING_C)
 			setting = DUEL_SETTING_A
-	to_chat(user,span_notice("You switch [src] setting to [setting] mode."))
+	to_chat(user,span_notice("你将 [src] 的模式切换为 [setting] 模式。"))
 	update_appearance()
 
 /obj/item/gun/energy/dueling/update_overlays()
@@ -236,7 +236,7 @@
 		if(DUEL_READY)
 			return .
 		else
-			to_chat(user,span_warning("[src] is locked. Wait for FIRE signal before shooting."))
+			to_chat(user,span_warning("[src] 已锁定。请等待开火信号后再射击。"))
 			return FALSE
 
 /obj/item/gun/energy/dueling/proc/is_duelist(mob/living/L)
@@ -251,10 +251,10 @@
 		return
 	if(duel.state == DUEL_READY)
 		duel.confirmations[src] = TRUE
-		to_chat(user,span_notice("You confirm your readiness."))
+		to_chat(user,span_notice("你确认自己已准备就绪。"))
 		return
 	else if(!is_duelist(target)) //I kinda want to leave this out just to see someone shoot a bystander or missing.
-		to_chat(user,span_warning("[src] safety system prevents shooting anyone but your designated opponent."))
+		to_chat(user,span_warning("[src] 的安全系统会阻止你射击指定对手以外的任何人。"))
 		return
 	else
 		duel.fired[src] = TRUE
@@ -268,7 +268,7 @@
 /obj/item/gun/energy/dueling/proc/check_valid_duel(mob/living/user, do_warn)
 	if(!duel)
 		if(do_warn)
-			to_chat(user,span_warning("[src] is currently unpaired."))
+			to_chat(user,span_warning("[src] 目前未配对。"))
 		return FALSE
 	return TRUE
 
@@ -312,7 +312,7 @@
 //Projectile
 
 /obj/projectile/energy/duel
-	name = "dueling beam"
+	name = "决斗光束"
 	icon_state = "declone"
 	reflectable = FALSE
 	var/setting

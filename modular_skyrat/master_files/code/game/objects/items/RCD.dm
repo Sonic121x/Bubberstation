@@ -1,6 +1,6 @@
 /obj/item/construction/rcd/arcd/mattermanipulator
-	name = "matter manipulator"
-	desc = "A strange, familiar yet distinctly different analogue to the Nanotrasen standard RCD. Works at range, and can deconstruct reinforced walls. Reload using metal, glass, or plasteel."
+	name = "物质操纵器"
+	desc = "一种奇怪、似曾相识却又明显不同的装置，类似纳米传讯标准的快速建造装置。可远程工作，并能拆除加固墙。使用金属、玻璃或塑钢补充。"
 	icon = 'modular_skyrat/master_files/icons/obj/tools.dmi'
 	icon_state = "rcd"
 	worn_icon_state = "RCD"
@@ -31,13 +31,13 @@
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/construction/plumbing/mining
-	name = "mining plumbing constructor"
-	desc = "A type of plumbing constructor designed to harvest from geysers and collect their fluids."
+	name = "采矿管道建造器"
+	desc = "一种管道建造器，用于从间歇泉中采集并收集其流体。"
 	icon = 'modular_skyrat/modules/aesthetics/tools/tools.dmi'
 	icon_state = "plumberer_mining"
 	var/static/list/mining_design_types = list(
 		//category 1 Synthesizers i.e devices which creates , reacts & destroys chemicals
-		"Synthesizers" = list(
+		"合成器" = list(
 			/obj/machinery/plumbing/grinder_chemical = 30,
 			/obj/machinery/plumbing/liquid_pump = 35, //extracting chemicals from ground is one way of creation
 			/obj/machinery/plumbing/disposer = 10,
@@ -45,7 +45,7 @@
 		),
 
 		//category 2 distributors i.e devices which inject , move around , remove chemicals from the network
-		"Distributors" = list(
+		"分配器" = list(
 			/obj/machinery/duct = 1,
 			/obj/machinery/plumbing/layer_manifold = 5,
 			/obj/machinery/plumbing/input = 5,
@@ -56,7 +56,7 @@
 		),
 
 		//category 3 Storage i.e devices which stores & makes the processed chemicals ready for consumption
-		"Storage" = list(
+		"储存" = list(
 			/obj/machinery/plumbing/tank = 20,
 			/obj/machinery/plumbing/acclimator = 10,
 			/obj/machinery/plumbing/bottler = 50,
@@ -64,7 +64,7 @@
 		),
 
 		//category 4 liquids
-		"Liquids" = list(
+		"液体" = list(
 			/obj/structure/drain = 5,
 		),
 	)
@@ -74,8 +74,8 @@
 	plumbing_design_types = mining_design_types
 
 /obj/item/construction/rcd/robotics_rcd
-	name = "Robotics RCD"
-	desc = "A modified RCD that has less storage than your usual NT RCD is and has less construction options and has lost the ability to deconstruct in favor of being more accessible for synthetic repairs. Reload using metal, glass, or plasteel."
+	name = "机器人 RCD"
+	desc = "一种改装的 RCD，储量比常见的纳米传讯 RCD 更少，建造选项也更少，并且为了便于合成人维修而舍弃了拆除功能。使用金属、玻璃或塑钢补充。"
 	icon = 'modular_skyrat/master_files/icons/obj/tools.dmi'
 	icon_state = "roborcd"
 	worn_icon_state = "RCD"
@@ -87,13 +87,13 @@
 	banned_upgrades = RCD_ALL_UPGRADES
 
 /obj/item/construction/rcd/robotics_rcd/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
-	balloon_alert(user, "no deconstruction mode")
+	balloon_alert(user, "没有拆除模式")
 	return NONE
 
 //Research cyborg RCD upgrade
 /obj/item/construction/rcd/borg/robotics_rcd
-	name = "Robotics RCD"
-	desc = "A modified RCD designed specifically for synthetic repairs."
+	name = "机器人 RCD"
+	desc = "专为合成人维修而设计的改装 RCD。"
 	icon = 'modular_skyrat/master_files/icons/obj/tools.dmi'
 	icon_state = "roborcd"
 	worn_icon_state = "RCD"

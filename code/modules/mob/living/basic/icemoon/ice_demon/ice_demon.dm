@@ -1,6 +1,6 @@
 /mob/living/basic/mining/ice_demon
-	name = "demonic watcher"
-	desc = "A creature formed entirely out of ice, bluespace energy emanates from inside of it."
+	name = "恶魔守望者"
+	desc = "一具完全由冰构成的生物，体内散发着蓝空间能量。"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	icon_state = "ice_demon"
 	icon_living = "ice_demon"
@@ -14,8 +14,8 @@
 	obj_damage = 40
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	attack_verb_continuous = "slices"
-	attack_verb_simple = "slice"
+	attack_verb_continuous = "劈砍"
+	attack_verb_simple = "劈砍"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	move_force = MOVE_FORCE_VERY_STRONG
@@ -23,7 +23,7 @@
 	pull_force = MOVE_FORCE_VERY_STRONG
 	crusher_loot = /obj/item/crusher_trophy/ice_demon_cube
 	ai_controller = /datum/ai_controller/basic_controller/ice_demon
-	death_message = "fades as the energies that tied it to this world dissipate."
+	death_message = "在维系它与这个世界的能量消散时淡去。"
 	death_sound = 'sound/effects/magic/demon_dies.ogg'
 
 /mob/living/basic/mining/ice_demon/Initialize(mapload)
@@ -50,8 +50,8 @@
 	return ..()
 
 /mob/living/basic/mining/demon_afterimage
-	name = "afterimage demonic watcher"
-	desc = "Is this some sort of illusion?"
+	name = "残影恶魔守望者"
+	desc = "这是某种幻象吗？"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	icon_state = "ice_demon"
 	icon_living = "ice_demon"
@@ -64,8 +64,8 @@
 	health = 20
 	melee_damage_lower = 5
 	melee_damage_upper = 5
-	attack_verb_continuous = "slices"
-	attack_verb_simple = "slice"
+	attack_verb_continuous = "劈砍"
+	attack_verb_simple = "劈砍"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	alpha = 80
 	ai_controller = /datum/ai_controller/basic_controller/ice_demon/afterimage

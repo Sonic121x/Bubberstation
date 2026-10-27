@@ -2,8 +2,8 @@
 	group = "Costumes & Toys"
 
 /datum/supply_pack/costumes_toys/randomised
-	name = "Collectable Hats Crate"
-	desc = "Flaunt your status with three unique, highly-collectable hats!"
+	name = "收藏帽板条箱"
+	desc = "用三顶独特、极具收藏价值的帽子来炫耀你的地位吧！"
 	cost = CARGO_CRATE_VALUE * 40
 	var/num_contained = 3 //number of items picked to be contained in a randomised crate
 	contains = list(/obj/item/clothing/head/collectable/chef,
@@ -28,7 +28,7 @@
 					/obj/item/clothing/head/collectable/xenom,
 					/obj/item/clothing/head/collectable/petehat,
 				)
-	crate_name = "collectable hats crate"
+	crate_name = "收藏帽板条箱"
 	crate_type = /obj/structure/closet/crate/wooden
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 	test_ignored = TRUE
@@ -40,8 +40,8 @@
 		new item(container)
 
 /datum/supply_pack/costumes_toys/formalwear
-	name = "Formalwear Crate"
-	desc = "You're gonna like the way you look, I guaranteed it. Contains an asston of fancy clothing."
+	name = "正装板条箱"
+	desc = "你会喜欢自己这副模样的，我保证。内含一大堆花哨衣物。"
 	cost = CARGO_CRATE_VALUE * 4 //Lots of very expensive items. You gotta pay up to look good!
 	contains = list(/obj/item/clothing/under/dress/tango,
 					/obj/item/clothing/under/misc/assistantformal = 2,
@@ -67,23 +67,23 @@
 					/obj/item/clothing/under/suit/tan,
 					/obj/item/lipstick/random,
 				)
-	crate_name = "formalwear crate"
+	crate_name = "正装板条箱"
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/clownpin
-	name = "Hilarious Firing Pin Crate"
-	desc = "I uh... I'm not really sure what this does. Wanna buy it?"
+	name = "搞笑撞针板条箱"
+	desc = "我呃……我也不太确定这是干什么的。要买吗？"
 	cost = CARGO_CRATE_VALUE * 10
 	order_flags = ORDER_CONTRABAND
 	contains = list(/obj/item/firing_pin/clown)
-	crate_name = "toy crate" // It's /technically/ a toy. For the clown, at least.
+	crate_name = "玩具板条箱" // It's /technically/ a toy. For the clown, at least.
 	crate_type = /obj/structure/closet/crate/wooden
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/costumes_toys/lasertag
-	name = "Laser Tag Crate"
-	desc = "Foam Force is for boys. Laser Tag is for men. Contains three sets of red suits, blue suits, \
-		matching helmets, and matching laser tag guns."
+	name = "激光对战板条箱"
+	desc = "泡沫枪是男孩玩的。激光对战是男人玩的。内含三套红色队服、蓝色队服、\
+		配套头盔以及配套激光对战枪。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/gun/energy/laser/redtag = 3,
 					/obj/item/gun/energy/laser/bluetag = 3,
@@ -92,39 +92,39 @@
 					/obj/item/clothing/head/helmet/taghelm/blue = 3,
 					/obj/item/clothing/head/helmet/taghelm/red = 3,
 				)
-	crate_name = "laser tag crate"
+	crate_name = "激光对战板条箱"
 
 /datum/supply_pack/costumes_toys/knucklebones
-	name = "Knucklebones Game Crate"
-	desc = "A fun dice game definitely not invented by a cult. Consult your local chaplain regarding \
-		approved religious activity. Contains eighteen d6, one stick of chalk, and instructions on how to play."
+	name = "羊拐骨游戏板条箱"
+	desc = "一款有趣的骰子游戏，绝对不是一个邪教发明的。关于获准的宗教活动，\
+		请咨询你当地的牧师。内含十八颗 d6 骰子、一根粉笔以及游戏玩法说明。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/dice/d6 = 18,
 					/obj/item/paper/guides/knucklebone,
 					/obj/item/toy/crayon/white,
 				)
-	crate_name = "knucklebones game crate"
+	crate_name = "羊拐骨游戏板条箱"
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/lasertag/pins
-	name = "Laser Tag Firing Pins Crate"
-	desc = "Three laser tag firing pins used in laser-tag units to ensure users are wearing their vests."
+	name = "激光对战撞针板条箱"
+	desc = "三枚用于激光对战装备的激光对战撞针，可确保使用者穿着对战背心。"
 	cost = CARGO_CRATE_VALUE * 3.5
 	order_flags = ORDER_CONTRABAND
 	contains = list(/obj/item/storage/box/lasertagpins)
-	crate_name = "laser tag crate"
+	crate_name = "激光对战板条箱"
 
 /datum/supply_pack/costumes_toys/mech_suits
-	name = "Mech Pilot's Suit Crate"
-	desc = "Suits for piloting big robots. Contains four of those!"
+	name = "机甲驾驶员服装板条箱"
+	desc = "用于驾驶大型机器人的服装。内含四件！"
 	cost = CARGO_CRATE_VALUE * 3 //state-of-the-art technology doesn't come cheap
 	contains = list(/obj/item/clothing/under/costume/mech_suit = 4)
-	crate_name = "mech pilot's suit crate"
+	crate_name = "机甲驾驶员服装板条箱"
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/costume_original
-	name = "Original Costume Crate"
-	desc = "Reenact Shakespearean plays with this assortment of outfits. Contains eight different costumes!"
+	name = "经典服装板条箱"
+	desc = "用这一批服装重演莎士比亚戏剧。内含八种不同的服装！"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/clothing/head/costume/snowman,
 					/obj/item/clothing/suit/costume/snowman,
@@ -140,14 +140,14 @@
 					/obj/item/clothing/suit/hooded/carp_costume,
 					/obj/item/clothing/suit/hooded/bee_costume,
 				)
-	crate_name = "original costume crate"
+	crate_name = "经典服装板条箱"
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/costume
-	name = "Standard Costume Crate"
-	desc = "Supply the station's entertainers with the equipment of their trade with these \
-		Nanotrasen-approved costumes! Contains a full clown and mime outfit, along with a \
-		bike horn and a bottle of nothing."
+	name = "标准服装板条箱"
+	desc = "用这些经纳米传讯认可的服装，为站内表演者提供他们这行所需的\
+		装备！内含一整套小丑与哑剧演员服装，外加一个\
+		自行车喇叭和一瓶虚无。"
 	cost = CARGO_CRATE_VALUE * 2
 	access = ACCESS_THEATRE
 	contains = list(/obj/item/storage/backpack/clown,
@@ -164,7 +164,7 @@
 					/obj/item/reagent_containers/cup/glass/bottle/bottleofnothing,
 					/obj/item/storage/backpack/mime,
 				)
-	crate_name = "standard costume crate"
+	crate_name = "标准服装板条箱"
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/costume/fill(obj/container)
@@ -174,14 +174,14 @@
 	new funny_gas_internals(container)
 
 /datum/supply_pack/costumes_toys/randomised/toys
-	name = "Toy Crate"
-	desc = "Who cares about pride and accomplishment? Skip the gaming and get straight \
-		to the sweet rewards with this product! Contains five random toys. Warranty void \
-		if used to prank research directors."
+	name = "玩具板条箱"
+	desc = "谁在乎自豪感与成就感？跳过游玩过程，直接享受这产品带来的\
+		甜蜜奖励吧！内含五个随机玩具。若用于恶作剧\
+		科研主管，保修失效。"
 	cost = CARGO_CRATE_VALUE * 8 // or play the arcade machines ya lazy bum
 	num_contained = 5
 	contains = list()
-	crate_name = "toy crate"
+	crate_name = "玩具板条箱"
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/randomised/toys/fill(obj/container)
@@ -194,24 +194,24 @@
 		new the_toy(container)
 
 /datum/supply_pack/costumes_toys/wizard
-	name = "Wizard Costume Crate"
-	desc = "Pretend to join the Wizard Federation with this full wizard outfit! Nanotrasen would like to remind \
-		its employees that actually joining the Wizard Federation is subject to termination of job and life."
+	name = "巫师服装板条箱"
+	desc = "用这套完整的巫师装束假装加入了巫师联邦！纳米传讯希望提醒\
+		其员工：真正加入巫师联邦会导致职务及生命被终止。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/staff,
 					/obj/item/clothing/suit/wizrobe/fake,
 					/obj/item/clothing/shoes/sandal,
 					/obj/item/clothing/head/wizard/fake,
 				)
-	crate_name = "wizard costume crate"
+	crate_name = "巫师服装板条箱"
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/trekkie
-	name = "Trekkie Costume Crate"
-	desc = "Wear the scrapped concepts for twelve of Nanotrasen's jumpsuits, based off popular \
-		late-20th century Earth media! While they couldn't be used for the official jumpsuits \
-		due to copyright infringement, it's been assured that they can still legally be sold under \
-		the label of being 'failed designs'."
+	name = "星际迷服装板条箱"
+	desc = "穿上纳米传讯十二款连体工作服的废弃设计，其灵感源自二十世纪末\
+		地球的流行媒体！虽然这些设计因版权侵权无法用于官方连体工作服，\
+		但已有人保证，它们仍可合法地以“失败设计”的名义\
+		出售。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(
 		/obj/item/clothing/under/trek/command,
@@ -230,11 +230,11 @@
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/randomised/tcg
-	name = "Big-Ass Booster Pack Pack"
-	desc = "A bumper load of NT TCG Booster Packs of varying series. Collect them all!"
+	name = "超大补充包礼包"
+	desc = "满满一大堆纳米传讯集换式卡牌补充包，涵盖多个系列。把它们全收集齐吧！"
 	cost = 1000
 	contains = list()
-	crate_name = "booster pack pack"
+	crate_name = "补充包礼包"
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
 /datum/supply_pack/costumes_toys/randomised/tcg/fill(obj/container)
@@ -244,8 +244,8 @@
 		new cardpacktype(container)
 
 /datum/supply_pack/costumes_toys/stickers
-	name = "Sticker Pack Crate"
-	desc = "This crate contains a random assortment of stickers."
+	name = "贴纸包板条箱"
+	desc = "这个板条箱内装有随机搭配的贴纸。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list()
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
@@ -258,33 +258,33 @@
 		new /obj/item/storage/box/stickers/googly(crate)
 
 /datum/supply_pack/costumes_toys/pinata
-	name = "Corgi Pinata Kit"
-	desc = "This crate contains a pinata full of candy, a blindfold and a bat for smashing it."
+	name = "柯基皮纳塔套装"
+	desc = "这个板条箱内装有一个装满糖果的皮纳塔、一条蒙眼布和一根用来砸开它的球棒。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(
 		/obj/item/pinata,
 		/obj/item/melee/baseball_bat,
 		/obj/item/clothing/glasses/blindfold,
 	)
-	crate_name = "corgi pinata kit"
+	crate_name = "柯基皮纳塔套装"
 	crate_type = /obj/structure/closet/crate/wooden
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
 /datum/supply_pack/costumes_toys/balloons
-	name = "Long Balloons Kit"
-	desc = "This crate contains a box of long balloons, plus a skillchip for non-clowns to join the fun! Extra layer of safety so clowns at CentCom won't get to them."
+	name = "长条气球套装"
+	desc = "这个板条箱内装有一盒长条气球，外加一枚让非小丑也能加入欢乐的技能芯片！多一层安全保障，中央指挥部的小丑可拿不到它们。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(
 		/obj/item/storage/box/balloons,
 		/obj/item/skillchip/job/clown,
 	)
-	crate_name = "long balloons kit"
+	crate_name = "长条气球套装"
 	crate_type = /obj/structure/closet/crate/wooden
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
 /datum/supply_pack/costumes_toys/christmas
-	name = "Surplus Christmas Gifts"
-	desc = "This crate contains pre-wrapped gifts addressed to station employees, sourced at random from Nanotrasen surplus as part of a morale boosting initiative."
+	name = "剩余圣诞礼物"
+	desc = "这个板条箱内装有预先包装好、寄给站内员工的礼物，作为提升士气计划的一部分从纳米传讯的剩余物资中随机抽取。"
 	cost = CARGO_CRATE_VALUE * 30
 	contains = list()
 	order_flags = ORDER_SPECIAL
@@ -316,4 +316,4 @@
 	parcel.update_icon()
 	parcel.drag_slowdown = crate.drag_slowdown
 	crate.forceMove(parcel)
-	parcel.name = "christmas gifts"
+	parcel.name = "圣诞礼物"

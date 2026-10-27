@@ -10,8 +10,8 @@
 #define CENTAUR_ATTACK_SCREAM_VOLUME 60
 
 /mob/living/basic/mold
-	name = "mold mob"
-	desc = "A debug mob for molds. You should report seeing this."
+	name = "霉菌生物"
+	desc = "用于调试霉菌的生物。如果你看到了它，请报告此问题。"
 	icon = 'modular_skyrat/modules/mold/icons/blob_mobs.dmi'
 	gold_core_spawnable = NO_SPAWN
 	faction = list(FACTION_MOLD)
@@ -24,12 +24,12 @@
  * They're immune to burn damage and have a chance to add fire stacks on melee attack
  */
 /mob/living/basic/mold/oil_shambler
-	name = "oil shambler"
-	desc = "Humanoid figure covered in oil, or maybe they're just oil? They seem to be perpetually on fire."
+	name = "油污蹒跚者"
+	desc = "全身覆满油污的人形身影，或许它完全由油组成？它似乎一直在燃烧。"
 	icon_state = "oil_shambler"
 	icon_living = "oil_shambler"
 	icon_dead = "oil_shambler"
-	speak_emote = list("crackles")
+	speak_emote = list("噼啪作响")
 
 	maxHealth = 25
 	health = 25
@@ -46,7 +46,7 @@
 
 	basic_mob_flags = DEL_ON_DEATH
 	gold_core_spawnable = HOSTILE_SPAWN
-	death_message = "evaporates!"
+	death_message = "蒸发了！"
 
 	light_system = OVERLAY_LIGHT
 	light_color = LIGHT_COLOR_FIRE
@@ -91,8 +91,8 @@
 
 /datum/bt_node/ai_behavior/random_speech/oil_shambler
 	speech_chance = 3
-	emote_hear = list("bubbles.", "crackles.", "groans.")
-	emote_see = list("bubbles.")
+	emote_hear = list("咕嘟冒泡。", "噼啪作响。", "呻吟。")
+	emote_see = list("冒出气泡。")
 
 /**
  * DISEASE MOLD
@@ -101,12 +101,12 @@
  * They try to inject their target on melee attacks and, if successful, make them contract a disease
  */
 /mob/living/basic/mold/diseased_rat
-	name = "diseased rat"
-	desc = "An incredibly large, rabid looking rat. There are shrooms growing out of it"
+	name = "染病巨鼠"
+	desc = "一只大得惊人、看起来狂暴的老鼠，身上还长着蘑菇。"
 	icon_state = "diseased_rat"
 	icon_living = "diseased_rat"
 	icon_dead = "diseased_rat_dead"
-	speak_emote = list("chitters")
+	speak_emote = list("吱吱叫")
 
 	maxHealth = 30
 	health = 30
@@ -115,8 +115,8 @@
 	melee_damage_upper = 13
 	obj_damage = 30
 	attack_sound = 'sound/items/weapons/bite.ogg'
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "啃咬"
+	attack_verb_simple = "啃咬"
 
 	pass_flags = PASSTABLE
 	basic_mob_flags = DEL_ON_DEATH
@@ -136,7 +136,7 @@
 
 	var/mob/living/carbon/disease_target = target
 	if(can_inject(disease_target))
-		to_chat(disease_target, span_danger("[src] manages to penetrate your clothing with its teeth!"))
+		to_chat(disease_target, span_danger("[src]的牙齿咬穿了你的衣服！"))
 		disease_target.ForceContractDisease(new given_disease(), FALSE, TRUE)
 
 /datum/ai_controller/basic_controller/diseased_rat
@@ -149,8 +149,8 @@
 
 /datum/bt_node/ai_behavior/random_speech/diseased_rat
 	speech_chance = 3
-	emote_hear = list("squeaks.", "gnashes.", "hisses.")
-	emote_see = list("drools.")
+	emote_hear = list("吱吱叫。", "磨牙。", "嘶嘶叫。")
+	emote_see = list("流着口水。")
 
 /**
  * ELECTRIC MOLD
@@ -159,12 +159,12 @@
  * They inject their target with teslium on melee attacks
  */
 /mob/living/basic/mold/electric_mosquito
-	name = "electric mosquito"
-	desc = "An oversized mosquito with what seems like electricity inside its body."
+	name = "电蚊"
+	desc = "一只体型过大的蚊子，体内似乎流动着电流。"
 	icon_state = "electric_mosquito"
 	icon_living = "electric_mosquito"
 	icon_dead = "electric_mosquito_dead"
-	speak_emote = list("buzzes")
+	speak_emote = list("嗡嗡叫")
 
 	maxHealth = 20
 	health = 20
@@ -172,8 +172,8 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 8
 	obj_damage = 20
-	attack_verb_continuous = "stings"
-	attack_verb_simple = "sting"
+	attack_verb_continuous = "叮刺"
+	attack_verb_simple = "叮刺"
 	attack_sound = 'sound/effects/blob/attackblob.ogg'
 	basic_mob_flags = DEL_ON_DEATH
 
@@ -200,8 +200,8 @@
 
 /datum/bt_node/ai_behavior/random_speech/electric_mosquito
 	speech_chance = 3
-	emote_hear = list("zaps.", "buzzes.", "crackles.")
-	emote_see = list("arcs.")
+	emote_hear = list("滋滋放电。", "嗡嗡叫。", "噼啪作响。")
+	emote_see = list("迸出电弧。")
 
 /**
  * RADIATION MOLD
@@ -210,12 +210,12 @@
  * They have a chance to irradiate their target on hit
  */
 /mob/living/basic/mold/centaur
-	name = "centaur"
-	desc = "A horrific combination of bone and flesh with multiple sets of legs and feet."
+	name = "半人马怪"
+	desc = "骨骼与血肉恐怖地结合在一起，长着多组腿脚。"
 	icon_state = "centaur"
 	icon_living = "centaur"
 	icon_dead = "centaur_dead"
-	speak_emote = list("groans")
+	speak_emote = list("呻吟")
 
 	maxHealth = 60
 	health = 60
@@ -267,8 +267,8 @@
 
 /datum/bt_node/ai_behavior/random_speech/centaur
 	speech_chance = 3
-	emote_hear = list("chitters.", "groans.", "wails.")
-	emote_see = list("writhes.")
+	emote_hear = list("吱吱叫。", "呻吟。", "哀嚎。")
+	emote_see = list("扭动着身体。")
 
 
 #undef OIL_SHAMBLER_OVERLAY

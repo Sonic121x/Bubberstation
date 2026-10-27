@@ -1,30 +1,30 @@
 /mob/living/basic/mushroom
-	name = "walking mushroom"
-	desc = "It's a massive mushroom... with legs?"
+	name = "行走蘑菇"
+	desc = "这是一株巨大的蘑菇……还长着腿？"
 	icon_state = "mushroom_color"
 	icon_living = "mushroom_color"
 	icon_dead = "mushroom_dead"
 	mob_biotypes = MOB_ORGANIC | MOB_PLANT
 
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "whacks"
-	response_harm_simple = "whack"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推到一边"
+	response_disarm_simple = "轻轻推到一边"
+	response_harm_continuous = "猛拍"
+	response_harm_simple = "猛拍"
 
 	speed = 1
 	melee_damage_lower = 4
 	melee_damage_upper = 4
 	maxHealth = 60
-	attack_verb_continuous = "chomps"
-	attack_verb_simple = "chomp"
+	attack_verb_continuous = "撕咬"
+	attack_verb_simple = "撕咬"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 
 	faction = list(FACTION_MUSHROOM)
-	speak_emote = list("squeaks")
-	death_message = "fainted!"
+	speak_emote = list("吱吱叫")
+	death_message = "晕倒了！"
 
 	ai_controller = /datum/ai_controller/basic_controller/mushroom
 	var/cap_color = "#ffffff"
@@ -92,10 +92,10 @@
 		consume_mushroom(target)
 		return
 	target.faint_ticker++
-	visible_message(span_notice("[src] chews a bit on [target]."))
+	visible_message(span_notice("[src] 在 [target] 上啃了几口。"))
 
 /mob/living/basic/mushroom/proc/consume_mushroom(mob/living/basic/mushroom/consumed)
-	visible_message(span_warning("[src] devours [consumed]!"))
+	visible_message(span_warning("[src] 吞食了 [consumed]！"))
 	var/level_gain = (consumed.powerlevel - powerlevel)
 	if(level_gain >= 0 && !ckey && !consumed.bruised)//Player shrooms can't level up to become robust gods.
 		consumed.level_up(level_gain)
@@ -124,7 +124,7 @@
 		add_overlay(cap_living)
 
 /mob/living/basic/mushroom/proc/recover(obj/item/mush_meal)
-	visible_message(span_notice("[src] eats [mush_meal]!"))
+	visible_message(span_notice("[src] 吃掉了 [mush_meal]！"))
 	update_mushroomcap()
 	qdel(mush_meal)
 	if(!COOLDOWN_FINISHED(src, recovery_cooldown))

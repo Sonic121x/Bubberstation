@@ -32,10 +32,10 @@
 
 	var/list/soft_filter_result = CAN_BYPASS_FILTER(src) ? null : is_soft_ooc_filtered(message)
 	if (soft_filter_result)
-		if(tgui_alert(usr,"Your message contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to say it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr,"你的消息包含\"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\"。原因：\"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\"。确定要发送吗？", "敏感词提醒", list("Yes", "No")) != "Yes")
 			return
-		message_admins("[ADMIN_LOOKUPFLW(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[html_encode(message)]\"")
-		log_admin_private("[key_name(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[message]\"")
+		message_admins("[ADMIN_LOOKUPFLW(usr)] 通过了软性过滤词 \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\"，可能正在使用不被允许的词汇。消息：\"[html_encode(message)]\"")
+		log_admin_private("[key_name(usr)] 通过了软性过滤词 \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\"，可能正在使用不被允许的词汇。消息：\"[message]\"")
 
 	if(!message)
 		return
@@ -49,7 +49,7 @@
 				SSadmin_verbs.dynamic_invoke_verb(client, /datum/admin_verb/dsay, message)
 			if(MODE_PUPPET)
 				if(!mind.current.say(message))
-					to_chat(src, span_warning("Your linked body was unable to speak!"))
+					to_chat(src, span_warning("你关联的躯体无法说话！"))
 		return
 
 	message = copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN)

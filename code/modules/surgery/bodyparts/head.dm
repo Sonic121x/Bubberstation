@@ -1,6 +1,6 @@
 /obj/item/bodypart/head
 	name = BODY_ZONE_HEAD
-	desc = "Didn't make sense not to live for fun, your brain gets smart but your head gets dumb."
+	desc = "不为了寻开心而活可没道理，脑子越来越灵，脑袋却越来越笨。"
 	icon = 'icons/mob/human/bodyparts.dmi'
 	icon_state = "default_human_head"
 	max_damage = LIMB_MAX_HP_CORE
@@ -16,8 +16,8 @@
 	disabled_wound_penalty = 25
 	scars_covered_by_clothes = FALSE
 	is_dimorphic = TRUE
-	unarmed_attack_verbs = list("bite", "chomp")
-	unarmed_attack_verbs_continuous = list("bites", "chomps")
+	unarmed_attack_verbs = list("咬", "啃咬")
+	unarmed_attack_verbs_continuous = list("咬", "啃咬")
 	unarmed_attack_effect = ATTACK_EFFECT_BITE
 	unarmed_attack_sound = 'sound/items/weapons/bite.ogg'
 	unarmed_miss_sound = 'sound/items/weapons/bite.ogg'
@@ -109,8 +109,8 @@
 /obj/item/bodypart/head/animate_atom_living(mob/living/owner)
 	var/mob/living/basic/animated = ..()
 	animated.attack_vis_effect = ATTACK_EFFECT_BITE
-	animated.attack_verb_continuous = "bites"
-	animated.attack_verb_simple = "bite"
+	animated.attack_verb_continuous = "撕咬"
+	animated.attack_verb_simple = "撕咬"
 	return animated
 
 /obj/item/bodypart/head/grind_results()
@@ -123,33 +123,33 @@
 	var/shown_name = get_face_name()
 	var/obj/item/organ/brain/brain = locate(/obj/item/organ/brain) in src
 	if(!brain)
-		. += span_info("The brain has been removed from [src].")
+		. += span_info("[src] 的大脑已被取出。")
 	else if(brain.suicided || (brain.brainmob && HAS_TRAIT(brain.brainmob, TRAIT_SUICIDED)))
-		. += span_info("There's a miserable expression on [shown_name]'s face; they must have really hated life. There's no hope of recovery.")
+		. += span_info("[shown_name] 的脸上带着一副痛苦的神情；生前一定非常厌世。已经没有恢复的希望了。")
 	else if(brain.brainmob)
 		if(brain.brainmob?.health <= HEALTH_THRESHOLD_DEAD)
-			. += span_info("It's leaking some kind of... clear fluid? The brain inside must be in pretty bad shape.")
+			. += span_info("有什么东西在往外渗……透明的液体？里面的脑子状况一定很糟。")
 		if(brain.brainmob.key || brain.brainmob.get_ghost(FALSE, TRUE))
-			. += span_info("Its muscles are twitching slightly... It seems to have some life still in it.")
+			. += span_info("它的肌肉在微微抽搐……似乎还残留着一丝生机。")
 		else
-			. += span_info("It's completely lifeless. Perhaps there'll be a chance for them later.")
+			. += span_info("它已经完全没有了生命迹象。也许之后他们还有机会。")
 	else if(brain?.decoy_override)
-		. += span_info("It's completely lifeless. Perhaps there'll be a chance for them later.")
+		. += span_info("它已经完全没有了生命迹象。也许之后他们还有机会。")
 	else
-		. += span_info("It's completely lifeless.")
+		. += span_info("它已经完全没有了生命迹象。")
 
 	if(!(locate(/obj/item/organ/eyes) in src))
-		. += span_info("[shown_name]'s eyes have been removed.")
+		. += span_info("[shown_name] 的眼睛已被取出。")
 
 	if(!(locate(/obj/item/organ/ears) in src))
-		. += span_info("[shown_name]'s ears have been removed.")
+		. += span_info("[shown_name] 的耳朵已被取出。")
 
 	if(!(locate(/obj/item/organ/tongue) in src))
-		. += span_info("[shown_name]'s tongue has been removed.")
+		. += span_info("[shown_name] 的舌头已被取出。")
 
 /obj/item/bodypart/head/proc/get_face_name()
 	if (HAS_TRAIT(src, TRAIT_DISFIGURED))
-		return "Unknown"
+		return "未知"
 	return real_name
 
 /obj/item/bodypart/head/can_dismember(obj/item/item)
@@ -163,10 +163,10 @@
 
 /obj/item/bodypart/head/drop_organs(mob/user, violent_removal)
 	if(user)
-		user.visible_message(span_warning("[user] saws [src] open and pulls out a brain!"), span_notice("You saw [src] open and pull out a brain."))
+		user.visible_message(span_warning("[user] 锯开 [src] 并取出了大脑！"), span_notice("你锯开 [src] 并取出了大脑。"))
 	var/obj/item/organ/brain/brain = locate(/obj/item/organ/brain) in src
 	if(brain && violent_removal && prob(90)) //ghetto surgery can damage the brain.
-		to_chat(user, span_warning("[brain] was damaged in the process!"))
+		to_chat(user, span_warning("[brain] 在这个过程中受损了！"))
 		brain.set_organ_damage(brain.maxHealth)
 	return ..()
 
@@ -208,7 +208,7 @@
 	. += get_lips_overlays(dropped)
 
 /obj/item/bodypart/head/get_voice(add_id_name)
-	return "The head of [get_face_name()]"
+	return "[get_face_name()] 的头颅"
 
 /obj/item/bodypart/head/update_bodypart_damage_state()
 	if (head_flags & HEAD_NO_DISFIGURE)

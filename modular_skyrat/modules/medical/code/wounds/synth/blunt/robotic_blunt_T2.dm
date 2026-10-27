@@ -1,18 +1,18 @@
 /datum/wound/blunt/robotic/secures_internals/severe
-	name = "Detached Fastenings"
-	desc = "Various fastening devices are extremely loose and solder has disconnected at multiple points, causing significant jostling of internal components and \
-	noticable limb dysfunction."
-	treat_text = "Fastening of bolts and screws by a qualified technician (though bone gel may suffice in the absence of one) followed by re-soldering."
-	examine_desc = "jostles with every move, solder visibly broken"
-	occur_text = "visibly cracks open, solder flying everywhere"
+	name = "紧固件脱落"
+	desc = "多种紧固装置极度松动，焊点在多处断开，导致内部组件剧烈晃动，\
+	肢体出现明显功能障碍。"
+	treat_text = "由合格技师固定螺栓和螺丝（若没有技师，骨胶也能凑合），然后重新焊接。"
+	examine_desc = "每次动作都会晃动，焊点明显断裂"
+	occur_text = "明显裂开，焊锡四处飞溅"
 	severity = WOUND_SEVERITY_SEVERE
 
-	simple_treat_text = "<b>If on the <b>chest</b>, <b>walk</b>, <b>grasp it</b>, <b>splint</b>, <b>rest</b> or <b>buckle yourself</b> to something to reduce movement effects. \
-	Afterwards, get <b>someone else</b>, ideally a <b>robo/engi</b> to <b>screwdriver/wrench</b> it, and then <b>re-solder it</b>!"
-	homemade_treat_text = "If <b>unable to screw/wrench</b>, <b>bone gel</b> can, over time, secure inner components at risk of <b>corrossion</b>. \
-	Alternatively, <b>crowbar</b> the limb open to expose the internals - this will make it <b>easier</b> to re-secure them, but has a <b>high risk</b> of <b>shocking</b> you, \
-	so use insulated gloves. This will <b>cripple the limb</b>, so use it only as a last resort!"
-	treat_text_short = "Use a screwdriver or wrench, and then a welder or cautery."
+	simple_treat_text = "<b>若位于<b>胸部</b>，<b>行走</b>、<b>抓住它</b>、<b>打夹板</b>、<b>休息</b>或将<b>自己系</b>在物体上以减少移动影响。\
+	之后找<b>别人</b>——最好是<b>机修/工程</b>人员——用<b>螺丝刀/扳手</b>固定，然后<b>重新焊接</b>！"
+	homemade_treat_text = "若<b>无法用螺丝刀/扳手</b>固定，<b>骨胶</b>可以随着时间固定内部组件，但有<b>腐蚀</b>风险。\
+	或者，用<b>撬棍</b>撬开肢体以露出内部——这会让重新固定<b>更容易</b>，但有<b>很高风险</b>会让你被<b>电击</b>，\
+	所以请戴上绝缘手套。这会<b>使肢体残废</b>，因此只能作为最后手段！"
+	treat_text_short = "使用螺丝刀或扳手，然后使用焊接工具或烧灼器。"
 
 	wound_flags = (ACCEPTS_GAUZE|MANGLES_EXTERIOR|SPLINT_OVERLAY|CAN_BE_GRASPED)
 	treatable_by = list(/obj/item/stack/medical/bone_gel)

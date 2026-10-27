@@ -26,8 +26,8 @@
 	if(DEADLINE_TIMESTAMP - world.realtime <= 0)
 		tgui_alert(
 			src,
-			"Unvetted players are no longer allowed to join or observe rounds, please visit #get-vetted in the Discord to submit a vetting application",
-			"You are unvetted!",
+			"未通过审核的玩家已无法加入或旁观回合，请前往Discord的#get-vetted频道提交审核申请。",
+			"你尚未通过审核！",
 			timeout = 10 SECONDS,
 		)
 		return FALSE
@@ -35,8 +35,8 @@
 	var/remaining_time = round((DEADLINE_TIMESTAMP - world.realtime) / (1 DAYS), 1)
 	tgui_deadline_alert(
 		src,
-		"Unvetted players will lose the ability to join or observe rounds in [remaining_time] day\s!",
-		"Get vetted by [time2text(DEADLINE_TIMESTAMP, "Month DD YYYY")]!",
+		"未通过审核的玩家将在[remaining_time]天后无法加入或旁观回合！",
+		"请在[time2text(DEADLINE_TIMESTAMP, "YYYY-MM-DD")]之前通过审核！",
 		days_remaining = remaining_time,
 		timeout = 10 SECONDS,
 	)
@@ -109,17 +109,17 @@
 		play_lobby_button_sound()
 		// Prevent readying up after the round has begun setting up or is already playing
 		if(SSticker.current_state >= GAME_STATE_SETTING_UP)
-			to_chat(src, span_notice("The round is starting. You cannot ready up at this time."))
+			to_chat(src, span_notice("回合正在开始，此时无法准备。"))
 			return FALSE
 		if(CONFIG_GET(flag/min_flavor_text))
 			var/datum/preferences/preferences = client.prefs
 			var/uses_silicon_flavortext = (is_silicon_job(preferences?.get_highest_priority_job()) && length_char(client?.prefs?.read_preference(/datum/preference/text/silicon_flavor_text)) < CONFIG_GET(number/silicon_flavor_text_character_requirement))
 			var/uses_normal_flavortext = (!is_silicon_job(preferences?.get_highest_priority_job()) && length_char(client?.prefs?.read_preference(/datum/preference/text/flavor_text)) < CONFIG_GET(number/flavor_text_character_requirement))
 			if(uses_silicon_flavortext)
-				to_chat(src, span_notice("You need at least [CONFIG_GET(number/silicon_flavor_text_character_requirement)] characters of Silicon Flavor Text to ready up for the round. You have [length_char(client.prefs.read_preference(/datum/preference/text/silicon_flavor_text))] characters."))
+				to_chat(src, span_notice("硅基角色外貌描述至少需要[CONFIG_GET(number/silicon_flavor_text_character_requirement)]个字符才能准备加入本局。你目前填写了[length_char(client.prefs.read_preference(/datum/preference/text/silicon_flavor_text))]个字符。"))
 				return
 			if(uses_normal_flavortext)
-				to_chat(src, span_notice("You need at least [CONFIG_GET(number/flavor_text_character_requirement)] characters of Flavor Text to ready up for the round. You have [length_char(client.prefs.read_preference(/datum/preference/text/flavor_text))] characters."))
+				to_chat(src, span_notice("角色外貌描述至少需要[CONFIG_GET(number/flavor_text_character_requirement)]个字符才能准备加入本局。你目前填写了[length_char(client.prefs.read_preference(/datum/preference/text/flavor_text))]个字符。"))
 				return
 
 		if(!unvetted_notified && !trigger_unvetted_warning())
@@ -198,18 +198,18 @@
 	if(LAZYLEN(servers) == 1)
 		var/server_name = servers[1]
 		var/server_ip = servers[server_name]
-		var/confirm = tgui_alert(src, "Are you sure you want to swap to [server_name] ([server_ip])?", "Swapping server!", list("Connect me!", "Stay here"))
-		if(confirm == "Connect me!")
-			to_chat_immediate(src, "So long, spaceman.")
+		var/confirm = tgui_alert(src, "确定要切换至[server_name]（[server_ip]）吗？", "切换服务器", list("连接过去！", "留在这里"))
+		if(confirm == "连接过去！")
+			to_chat_immediate(src, "再见，太空人。")
 			client << link(server_ip)
 		return
-	var/server_name = tgui_input_list(src, "Please select the server you wish to swap to:", "Swap servers!", servers)
+	var/server_name = tgui_input_list(src, "请选择要切换到的服务器：", "切换服务器", servers)
 	if(!server_name)
 		return
 	var/server_ip = servers[server_name]
-	var/confirm = tgui_alert(src, "Are you sure you want to swap to [server_name] ([server_ip])?", "Swapping server!", list("Connect me!", "Stay here!"))
-	if(confirm == "Connect me!")
-		to_chat_immediate(src, "So long, spaceman.")
+	var/confirm = tgui_alert(src, "确定要切换至[server_name]（[server_ip]）吗？", "切换服务器", list("连接过去！", "留在这里！"))
+	if(confirm == "连接过去！")
+		to_chat_immediate(src, "再见，太空人。")
 		src.client << link(server_ip)
 
 /**
@@ -219,7 +219,7 @@
 	if (!client || client.interviewee)
 		return
 	if(!length(GLOB.lobby_station_traits))
-		to_chat(src, span_warning("There are currently no job traits available!"))
+		to_chat(src, span_warning("目前没有可用的职业特性！"))
 		return
 	var/list/available_lobby_station_traits = list()
 	for (var/datum/station_trait/trait as anything in GLOB.lobby_station_traits)
@@ -228,10 +228,10 @@
 		available_lobby_station_traits += trait
 
 	if(!LAZYLEN(available_lobby_station_traits))
-		to_chat(src, span_warning("There are currently no job traits available!"))
+		to_chat(src, span_warning("目前没有可用的职业特性！"))
 		return
 
-	var/datum/station_trait/clicked_trait = tgui_input_list(src, "Select a job trait to sign up for:", "Job Traits", available_lobby_station_traits)
+	var/datum/station_trait/clicked_trait = chinese_batch_ten_station_trait_choice(src, "选择要报名的职业特性：", "职业特性", available_lobby_station_traits)
 
 	if(!clicked_trait)
 		return
@@ -272,9 +272,9 @@
 		qdel(query_get_new_polls)
 		return
 	if(query_get_new_polls.NextRow())
-		output +={"<a class="menu_button menu_newpoll" href='byond://?src=[text_ref(src)];polls_menu=1'>POLLS (NEW)</a>"}
+		output +={"<a class="menu_button menu_newpoll" href='byond://?src=[text_ref(src)];polls_menu=1'>投票（新）</a>"}
 	else
-		output +={"<a class="menu_button" href='byond://?src=[text_ref(src)];polls_menu=1'>POLLS</a>"}
+		output +={"<a class="menu_button" href='byond://?src=[text_ref(src)];polls_menu=1'>投票</a>"}
 	qdel(query_get_new_polls)
 	if(QDELETED(src))
 		return

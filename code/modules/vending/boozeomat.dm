@@ -1,13 +1,13 @@
 /obj/machinery/vending/boozeomat
-	name = "\improper Booze-O-Mat"
-	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
+	name = "\improper 酒水自动售货机"
+	desc = "一项技术奇迹，据说能在你开口的瞬间为你调出你想喝的那一杯。"
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
 	panel_type = "panel22"
 
 	product_categories = list(
 		list(
-			"name" = "Alcoholic",
+			"name" = "含酒精",
 			"icon" = "wine-bottle",
 			"products" = list(
 				/obj/item/reagent_containers/cup/glass/bottle/curacao = 5,
@@ -42,7 +42,7 @@
 		),
 
 		list(
-			"name" = "Non-Alcoholic",
+			"name" = "无酒精",
 			"icon" = "bottle-water",
 			"products" = list(
 				/obj/item/reagent_containers/cup/glass/ice = 10,
@@ -65,7 +65,7 @@
 		),
 
 		list(
-			"name" = "Glassware",
+			"name" = "玻璃器皿",
 			"icon" = "wine-glass",
 			"products" = list(
 				/obj/item/reagent_containers/cup/glass/drinkingglass = 30,
@@ -90,8 +90,8 @@
 		/obj/item/reagent_containers/cup/glass/bottle/trappist = 5,
 	)
 
-	product_slogans = "I hope nobody asks me for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;Quite delighted to serve you!;Is nobody thirsty on this station?"
-	product_ads = "Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;Quite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best quality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
+	product_slogans = "希望没人来问我要那该死的茶……;酒精是人类的朋友。你会抛弃朋友吗？;很高兴为您服务！;这站上就没人渴吗？"
+	product_ads = "喝光它！;酒对你有好处！;酒精是人类最好的朋友。;很高兴为您服务！;来杯冰爽的啤酒如何？;没什么比酒更治愈！;抿一口！;来一杯！;来瓶啤酒！;啤酒对你有好处！;只有最上等的酒！;自 2053 年以来品质最好的酒！;获奖葡萄酒！;酒精拉满！;男人爱啤酒。;为进步干杯！"
 	refill_canister = /obj/item/vending_refill/boozeomat
 	default_price = PAYCHECK_CREW * 0.9
 	extra_price = PAYCHECK_COMMAND
@@ -104,5 +104,5 @@
 	allow_custom = FALSE
 
 /obj/item/vending_refill/boozeomat
-	machine_name = "Booze-O-Mat"
+	machine_name = "酒水自动售货机"
 	icon_state = "refill_booze"

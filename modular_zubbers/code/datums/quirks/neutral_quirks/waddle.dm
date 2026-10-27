@@ -1,11 +1,11 @@
 /datum/quirk/waddle
 	name = "Waddle"
-	desc = "Your movements always had a bit more of a waddle to them."
-	medical_record_text = "Subject appears to be terrible at dancing."
+	desc = "你走起路来总是有些摇摇摆摆。"
+	medical_record_text = "该人员似乎很不擅长跳舞。"
 	value = 0
 	icon = FA_ICON_WIND
-	gain_text = span_notice("You feel like walking silly")
-	lose_text = span_notice("You no longer feel like walking silly")
+	gain_text = span_notice("你想用滑稽的姿势走路")
+	lose_text = span_notice("你不再想用滑稽的姿势走路了")
 	quirk_flags = null
 	mail_goodies = list(/obj/item/food/grown/banana)
 

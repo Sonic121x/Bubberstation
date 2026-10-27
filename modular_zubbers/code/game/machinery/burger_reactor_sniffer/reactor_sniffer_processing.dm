@@ -33,12 +33,12 @@
 		last_meltdown = has_meltdown
 		if(last_meltdown)
 			alert_radio(
-				"Stray ionization detected! Reduce power output immediately!",
+				"检测到逸散电离！立即降低功率输出！",
 				bypass_cooldown=TRUE
 			)
 		else
 			alert_radio(
-				"Stray ionization no longer detected. Returning to safe operating parameters.",
+				"已不再检测到逸散电离。正在恢复安全运行参数。",
 				bypass_cooldown=TRUE,
 				alert_emergency_channel=alerted_emergency_channel
 			)
@@ -48,13 +48,13 @@
 		last_criticality = highest_criticality
 		if(highest_criticality >= 100)
 			alert_radio(
-				"CRITICALITY THRESHOLD MET! SEEK SHELTER IMMEDIATELY! CRITICALITY AT [round(last_criticality,0.1)]%!",
+				"已达到临界阈值！立即寻找掩体！临界度为[round(last_criticality,0.1)]%！",
 				bypass_cooldown=TRUE,
 				alert_emergency_channel=alert_emergency_channel
 			)
 		else
 			alert_radio(
-				"Stray ionization detected! Criticality at [round(last_criticality,0.1)]%!",
+				"检测到逸散电离！临界度为[round(last_criticality,0.1)]%！",
 				alert_emergency_channel=alert_emergency_channel
 			)
 
@@ -62,7 +62,7 @@
 		last_integrity = lowest_integrity_percent
 		if(abs(highest_criticality - last_criticality) >= 0.05 || lowest_integrity_percent <= 0.3)
 			alert_radio(
-				"[lowest_integrity_percent <= 0.3 ? "DANGER!" : "Warning!"] integrity at [round(lowest_integrity_percent*100,0.1)]%! Repairs required!",
+				"[lowest_integrity_percent <= 0.3 ? "危险！" : "警告！"]完整度为[round(lowest_integrity_percent*100,0.1)]%！需要维修！",
 				alert_emergency_channel=alert_emergency_channel,
 				criticality=FALSE,
 				bypass_cooldown=lowest_integrity_percent <= 0.1

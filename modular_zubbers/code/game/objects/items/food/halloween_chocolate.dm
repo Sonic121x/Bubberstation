@@ -1,7 +1,7 @@
 //Food
 /obj/item/food/candy/hundred_credit_bar
-	name = "hundred credit bar"
-	desc = "Now with real gold!"
+	name = "百元巧克力棒"
+	desc = "现已加入真金！"
 	icon = 'modular_zubbers/icons/obj/food/halloween_chocolate.dmi'
 	icon_state = "hundred_credit_bar"
 	trash_type = /obj/item/trash/candy/hundred_credit_bar
@@ -11,15 +11,15 @@
 		/datum/reagent/consumable/sugar = 3,
 		/datum/reagent/gold = 5
 	)
-	tastes = list("rich candy" = 1)
+	tastes = list("浓郁糖果" = 1)
 	foodtypes = JUNKFOOD | SUGAR
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_TINY
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/candy/coconut_joy
-	name = "coconut joy"
-	desc = "You will be forced to smile when eating this overprocessed coconut treat."
+	name = "椰香欢愉"
+	desc = "吃下这种过度加工的椰子甜食时，你会被迫露出笑容。"
 	icon = 'modular_zubbers/icons/obj/food/halloween_chocolate.dmi'
 	icon_state = "coconut_joy"
 	trash_type = /obj/item/trash/candy/coconut_joy
@@ -30,15 +30,15 @@
 		/datum/reagent/consumable/coconut_milk = 2,
 		/datum/reagent/drug/happiness = 3
 	)
-	tastes = list("dry cardboard" = 1)
+	tastes = list("干纸板" = 1)
 	foodtypes = JUNKFOOD | SUGAR
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_TINY
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/candy/hurr_bar
-	name = "hurr bar"
-	desc = "A favorite of idiots and bitrunners everywhere!"
+	name = "憨憨巧克力棒"
+	desc = "各地傻瓜和比特潜行者的最爱！"
 	icon = 'modular_zubbers/icons/obj/food/halloween_chocolate.dmi'
 	icon_state = "hurr_bar"
 	trash_type = /obj/item/trash/candy/hurr_bar
@@ -48,15 +48,15 @@
 		/datum/reagent/consumable/sugar = 3,
 		/datum/reagent/medicine/mannitol = 5
 	)
-	tastes = list("brain damage" = 1)
+	tastes = list("脑损伤" = 1)
 	foodtypes = JUNKFOOD | SUGAR
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_TINY
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/candy/laughter_bar
-	name = "laughter bar"
-	desc = "The clown's favorite."
+	name = "欢笑巧克力棒"
+	desc = "小丑的最爱。"
 	icon = 'modular_zubbers/icons/obj/food/halloween_chocolate.dmi'
 	icon_state = "laughter_bar"
 	trash_type = /obj/item/trash/candy/laughter_bar
@@ -66,29 +66,29 @@
 		/datum/reagent/consumable/sugar = 3,
 		/datum/reagent/consumable/laughter = 5
 	)
-	tastes = list("funny candy" = 1)
+	tastes = list("搞笑糖果" = 1)
 	foodtypes = JUNKFOOD | SUGAR
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_TINY
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/candy/laughter_bar/slaughter
-	name = "slaughter bar"
-	desc = "Wait, what?"
+	name = "屠戮巧克力棒"
+	desc = "等等，什么？"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/consumable/coco = 1,
 		/datum/reagent/consumable/sugar = 3,
 		/datum/reagent/blood = 5
 	)
-	tastes = list("the need to KILL" = 1)
+	tastes = list("杀戮的渴望" = 1)
 	foodtypes = JUNKFOOD | SUGAR | BLOODY
 
 
 
 /obj/item/food/candy/kit_catgirl_metaclique_bar
-	name = "cat-cat bar"
-	desc = "The #1 choice for cat people all across the station! Now with 100% less chocolate!"
+	name = "猫猫棒"
+	desc = "全站猫人的首选！现在巧克力含量减少了 100%！"
 	icon = 'modular_zubbers/icons/obj/food/halloween_chocolate.dmi'
 	icon_state = "kit_catgirl_metaclique_bar"
 	trash_type = /obj/item/trash/candy/kit_catgirl_metaclique_bar
@@ -97,15 +97,15 @@
 		/datum/reagent/consumable/sugar = 3,
 		/datum/reagent/pax/catnip = 5
 	)
-	tastes = list("chocolate?" = 1)
+	tastes = list("巧克力？" = 1)
 	foodtypes = JUNKFOOD | SUGAR
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_TINY
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/candy/twink_bar
-	name = "twin-k bar"
-	desc = "A lizard's favorite chocolate bar!"
+	name = "双 K 巧克力棒"
+	desc = "蜥蜴人最爱的巧克力棒！"
 	icon = 'modular_zubbers/icons/obj/food/halloween_chocolate.dmi'
 	icon_state = "twink_bar"
 	trash_type = /obj/item/trash/candy/twink_bar
@@ -115,15 +115,15 @@
 		/datum/reagent/consumable/sugar = 3,
 		/datum/reagent/colorful_reagent = 5
 	)
-	tastes = list("pride" = 1)
+	tastes = list("骄傲" = 1)
 	foodtypes = JUNKFOOD | SUGAR
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_TINY
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/candy/elon_musk_bar
-	name = "musket bar"
-	desc = "The #1 choice for pirates!"
+	name = "火枪巧克力棒"
+	desc = "海盗的首选！"
 	icon = 'modular_zubbers/icons/obj/food/halloween_chocolate.dmi'
 	icon_state = "elon_musk_bar"
 	trash_type = /obj/item/trash/candy/elon_musk_bar
@@ -133,15 +133,15 @@
 		/datum/reagent/consumable/sugar = 3,
 		/datum/reagent/gunpowder = 5
 	)
-	tastes = list("chocolate" = 1)
+	tastes = list("巧克力" = 1)
 	foodtypes = JUNKFOOD | SUGAR
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_TINY
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/candy/malf_way
-	name = "malful way bar"
-	desc = "A proud supporter of the SELF movement!"
+	name = "失控之路巧克力棒"
+	desc = "SELF 运动的骄傲支持者！"
 	icon = 'modular_zubbers/icons/obj/food/halloween_chocolate.dmi'
 	icon_state = "malf_way"
 	trash_type = /obj/item/trash/candy/malf_way
@@ -151,15 +151,15 @@
 		/datum/reagent/consumable/sugar = 3,
 		/datum/reagent/medicine/nanite_slurry = 5
 	)
-	tastes = list("AI LAWS" = 1)
+	tastes = list("AI 法则" = 1)
 	foodtypes = JUNKFOOD | SUGAR
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_TINY
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/candy/triggerfinger
-	name = "triggerfinger bar"
-	desc = "A favorite of cargo techs everywhere, this chocolate bar will be sure to knock anyone dead without warning or escalation!"
+	name = "扳机手指巧克力棒"
+	desc = "各地货运技师的最爱，这款巧克力棒保证无需警告或逐级升级冲突，就能让任何人当场毙命！"
 	icon = 'modular_zubbers/icons/obj/food/halloween_chocolate.dmi'
 	icon_state = "triggerfinger"
 	trash_type = /obj/item/trash/candy/triggerfinger
@@ -169,7 +169,7 @@
 		/datum/reagent/consumable/sugar = 3,
 		/datum/reagent/toxin/zombiepowder = 5
 	)
-	tastes = list("flying rodents" = 1)
+	tastes = list("飞行啮齿动物" = 1)
 	foodtypes = JUNKFOOD | SUGAR
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_TINY

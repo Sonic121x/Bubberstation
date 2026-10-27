@@ -6,7 +6,7 @@
 //////////////////////////////////////////////
 
 /datum/dynamic_ruleset/midround/from_living/bloodsucker
-	name = "Vampiric Accident"
+	name = "吸血鬼意外"
 	config_tag = "Midround Bloodsucker"
 	midround_type = HEAVY_MIDROUND
 	preview_antag_datum = /datum/antagonist/bloodsucker

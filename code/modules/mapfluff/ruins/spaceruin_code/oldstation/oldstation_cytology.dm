@@ -1,6 +1,6 @@
 /obj/item/petri_dish/oldstation
-	name = "molly's biopsy"
-	desc = "You can see a moldy piece of sandwich inside the dish. Maybe it helped to preserve the bacteria for that long."
+	name = "莫莉的活检样本"
+	desc = "你能看到培养皿里有一块发霉的三明治。也许正是它让细菌保存了这么久。"
 
 /obj/item/petri_dish/oldstation/Initialize(mapload)
 	. = ..()
@@ -13,7 +13,7 @@
 	update_appearance()
 
 /obj/item/reagent_containers/cup/beaker/oldstation
-	name = "cultivation broth"
+	name = "培养肉汤"
 	amount_per_transfer_from_this = 50
 	list_reagents = list(
 		// Required for CELL_LINE_TABLE_COW

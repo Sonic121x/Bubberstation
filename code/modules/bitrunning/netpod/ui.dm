@@ -20,7 +20,7 @@
 	var/list/data = list()
 
 	if(!length(cached_outfits))
-		cached_outfits += make_outfit_collection("Jobs", subtypesof(/datum/outfit/job))
+		cached_outfits += make_outfit_collection("职业", subtypesof(/datum/outfit/job))
 
 	data["collections"] = cached_outfits
 

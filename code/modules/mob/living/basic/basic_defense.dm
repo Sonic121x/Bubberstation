@@ -10,32 +10,32 @@
 	if(!user.combat_mode)
 		if (stat != DEAD)
 			visible_message(
-				span_notice("[user] [response_help_continuous] [src]."),
-				span_notice("[user] [response_help_continuous] you."),
+				span_notice("[user] [response_help_continuous] [src]。"),
+				span_notice("[user] [response_help_continuous] 你。"),
 				ignored_mobs = user,
 			)
-			to_chat(user, span_notice("You [response_help_simple] [src]."))
+			to_chat(user, span_notice("你 [response_help_simple] [src]。"))
 			playsound(loc, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
 		return TRUE
 
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning("You don't want to hurt [src]!"))
+		to_chat(user, span_warning("你不想伤害 [src]！"))
 		return TRUE
 	var/obj/item/bodypart/arm/active_arm = user.get_active_hand()
 	var/damage = rand(active_arm.unarmed_damage_low, active_arm.unarmed_damage_high)
-	if(check_block(user, damage, "[user]'s punch", UNARMED_ATTACK, 0, BRUTE))
+	if(check_block(user, damage, "[user] 的拳头", UNARMED_ATTACK, 0, BRUTE))
 		return
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 	visible_message(
-		span_danger("[user] [response_harm_continuous] [src]!"),
-		span_userdanger("[user] [response_harm_continuous] you!"),
+		span_danger("[user] [response_harm_continuous] [src]！"),
+		span_userdanger("[user] [response_harm_continuous] 你！"),
 		vision_distance = COMBAT_MESSAGE_RANGE,
 		ignored_mobs = user,
 	)
-	to_chat(user, span_danger("You [response_harm_simple] [src]!"))
+	to_chat(user, span_danger("你 [response_harm_simple] [src]！"))
 	playsound(loc, attacked_sound, 25, TRUE, -1)
 	apply_damage(damage)
-	log_combat(user, src, "attacked")
+	log_combat(user, src, "攻击了")
 	updatehealth()
 	return TRUE
 
@@ -44,22 +44,22 @@
 		return ..()
 	var/moved = !(shove_flags & SHOVE_BLOCKED)
 	shover.visible_message(
-		span_danger("[shover.name] [response_disarm_continuous] [src][moved ? ", pushing [p_them()]" : ""]!"),
-		span_danger("You [response_disarm_simple] [src][moved ? ", pushing [p_them()]" : ""]!"),
-		span_hear("You hear aggressive shuffling!"),
+		span_danger("[shover.name] [response_disarm_continuous] [src][moved ? "，把[p_them()]推开" : ""]！"),
+		span_danger("你 [response_disarm_simple] [src][moved ? "，把[p_them()]推开" : ""]！"),
+		span_hear("你听到激烈的推搡声！"),
 		COMBAT_MESSAGE_RANGE,
 		list(src),
 	)
-	to_chat(src, span_userdanger("You're [moved ? "pushed" : "shoved"] by [shover.name]!"))
+	to_chat(src, span_userdanger("你被 [shover.name] [moved ? "推开" : "推搡"]了！"))
 
 /mob/living/basic/attack_hulk(mob/living/carbon/human/user)
 	. = ..()
 	if(!.)
 		return
 	playsound(loc, SFX_PUNCH, 25, TRUE, -1)
-	visible_message(span_danger("[user] punches [src]!"), \
-					span_userdanger("You're punched by [user]!"), null, COMBAT_MESSAGE_RANGE, user)
-	to_chat(user, span_danger("You punch [src]!"))
+	visible_message(span_danger("[user] 出拳打了 [src]！"), \
+					span_userdanger("你被 [user] 打了一拳！"), null, COMBAT_MESSAGE_RANGE, user)
+	to_chat(user, span_danger("你打了 [src] 一拳！"))
 	apply_damage(15, damagetype = BRUTE)
 
 /mob/living/basic/attack_paw(mob/living/carbon/human/user, list/modifiers)
@@ -69,9 +69,9 @@
 
 	if (!user.combat_mode)
 		if (health > 0)
-			visible_message(span_notice("[user.name] [response_help_continuous] [src]."), \
-							span_notice("[user.name] [response_help_continuous] you."), null, COMBAT_MESSAGE_RANGE, user)
-			to_chat(user, span_notice("You [response_help_simple] [src]."))
+			visible_message(span_notice("[user.name] [response_help_continuous] [src]。"), \
+							span_notice("[user.name] [response_help_continuous] 你。"), null, COMBAT_MESSAGE_RANGE, user)
+			to_chat(user, span_notice("你 [response_help_simple] [src]。"))
 			playsound(loc, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
 
 
@@ -81,18 +81,18 @@
 		return
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		playsound(loc, 'sound/items/weapons/pierce.ogg', 25, TRUE, -1)
-		visible_message(span_danger("[user] [response_disarm_continuous] [name]!"), \
-			span_userdanger("[user] [response_disarm_continuous] you!"), null, COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, span_danger("You [response_disarm_simple] [name]!"))
-		log_combat(user, src, "disarmed")
+		visible_message(span_danger("[user] [response_disarm_continuous] [name]！"), \
+			span_userdanger("[user] [response_disarm_continuous] 你！"), null, COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_danger("你 [response_disarm_simple] [name]！"))
+		log_combat(user, src, "缴械了")
 		return
 	var/damage = rand(user.melee_damage_lower, user.melee_damage_upper)
-	visible_message(span_danger("[user] slashes at [src]!"), \
-		span_userdanger("You're slashed at by [user]!"), null, COMBAT_MESSAGE_RANGE, user)
-	to_chat(user, span_danger("You slash at [src]!"))
+	visible_message(span_danger("[user] 挥爪劈向 [src]！"), \
+		span_userdanger("你被 [user] 挥爪劈中！"), null, COMBAT_MESSAGE_RANGE, user)
+	to_chat(user, span_danger("你挥爪劈向 [src]！"))
 	playsound(loc, 'sound/items/weapons/slice.ogg', 25, TRUE, -1)
 	apply_damage(damage)
-	log_combat(user, src, "attacked")
+	log_combat(user, src, "攻击了")
 
 /mob/living/basic/attack_larva(mob/living/carbon/alien/larva/attacking_larva, list/modifiers)
 	. = ..()
@@ -125,7 +125,7 @@
 			if(prob(bomb_armor))
 				apply_damage(500, damagetype = BRUTE)
 			else
-				investigate_log("has been gibbed by an explosion.", INVESTIGATE_DEATHS)
+				investigate_log("被爆炸炸成了碎块。", INVESTIGATE_DEATHS)
 				gib(DROP_ALL_REMAINS)
 
 		if (EXPLODE_HEAVY)
@@ -176,9 +176,9 @@
 /mob/living/basic/proc/emp_reaction(severity)
 	switch(severity)
 		if(EMP_LIGHT)
-			visible_message(span_danger("[src] shakes violently, its parts coming loose!"))
+			visible_message(span_danger("[src] 剧烈颤抖，零件都松脱了！"))
 			apply_damage(maxHealth * 0.6)
 			Shake(duration = 1 SECONDS)
 		if(EMP_HEAVY)
-			visible_message(span_danger("[src] suddenly bursts apart!"))
+			visible_message(span_danger("[src] 突然爆裂开来！"))
 			apply_damage(maxHealth)

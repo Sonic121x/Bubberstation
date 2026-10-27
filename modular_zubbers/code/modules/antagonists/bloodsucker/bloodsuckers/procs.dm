@@ -20,7 +20,7 @@
 	power = new power()
 	powers += power
 	power.Grant(owner.current)
-	log_uplink("[key_name(owner.current)] purchased [power].")
+	log_uplink("[key_name(owner.current)]购买了[power]。")
 	return power
 
 ///Called when a Bloodsucker loses a power: (power)
@@ -40,8 +40,8 @@
 	if(broke_masquerade)
 		return
 	owner.current.playsound_local(null, 'modular_zubbers/sound/bloodsucker/lunge_warn.ogg', 100, FALSE, pressure_affected = FALSE)
-	to_chat(owner.current, span_cult_bold_italic("You have broken the Masquerade!"))
-	to_chat(owner.current, span_warning("Bloodsucker Tip: When you break the Masquerade, you become open for termination by fellow Bloodsuckers, and your Ghouls are no longer completely loyal to you, as other Bloodsuckers can steal them for themselves!"))
+	to_chat(owner.current, span_cult_bold_italic("你破坏了避世戒律！"))
+	to_chat(owner.current, span_warning("吸血鬼提示：破坏避世戒律后，其他吸血鬼可以将你处决，你的血仆也不再完全忠于你，因为其他吸血鬼可以将其据为己有！"))
 	broke_masquerade = TRUE
 	antag_hud_name = "masquerade_broken"
 	add_team_hud(owner.current)
@@ -51,7 +51,7 @@
 /datum/antagonist/bloodsucker/proc/fix_masquerade(mob/admin)
 	if(!broke_masquerade)
 		return
-	to_chat(owner.current, span_cult_bold_italic("You have re-entered the Masquerade."))
+	to_chat(owner.current, span_cult_bold_italic("你重新遵守了避世戒律。"))
 	broke_masquerade = FALSE
 	antag_hud_name = "bloodsucker"
 	add_team_hud(owner.current)
@@ -63,20 +63,20 @@
 	if(masquerade_infractions >= 3)
 		break_masquerade()
 	else
-		to_chat(owner.current, span_cult_bold("You violated the Masquerade! Break the Masquerade [3 - masquerade_infractions] more times and you will become a criminal to the Bloodsucker's Cause!"))
+		to_chat(owner.current, span_cult_bold("你违反了避世戒律！再违反[3 - masquerade_infractions]次，你就会成为吸血鬼事业的罪人！"))
 
 /datum/antagonist/bloodsucker/proc/RankUp(force = FALSE)
 	if(!owner || !owner.current)
 		return
 	AdjustUnspentRank(1)
 	if(!my_clan)
-		to_chat(owner.current, span_notice("You have gained a rank. Join a Clan to spend it."))
+		to_chat(owner.current, span_notice("你获得了一个等级。加入氏族后才能使用。"))
 		return
 	// Spend Rank Immediately?
 	if(!is_valid_coffin())
-		to_chat(owner, span_notice("<EM>You have grown more ancient! Sleep in a coffin (or put your Favorite Ghoul on a persuasion rack for Ventrue) that you have claimed to thicken your blood and become more powerful.</EM>"))
+		to_chat(owner, span_notice("<EM>你变得更加古老！在你认领的棺材中休眠（梵卓则需将宠爱血仆放到劝化刑架上），使血液浓化，变得更强大。</EM>"))
 		if(bloodsucker_level_unspent >= 2)
-			to_chat(owner, span_announce("Bloodsucker Tip: If you cannot find or steal a coffin to use, you can build one from wood or metal."))
+			to_chat(owner, span_announce("吸血鬼提示：若找不到或偷不到可用的棺材，可以用木材或金属制作一口。"))
 		return
 	SpendRank()
 
@@ -147,7 +147,7 @@
 		return FALSE
 	// Viewer is Target's Ghoul?
 	if(!isobserver(viewer) && (viewer.mind.has_antag_datum(/datum/antagonist/ghoul) in ghouls))
-		var/returnString = "\[<span class='warning'><EM>This is your Master!</EM></span>\]"
+		var/returnString = "\[<span class='warning'><EM>这是你的主人！</EM></span>\]"
 		var/returnIcon = "[icon2html('modular_zubbers/icons/misc/language.dmi', world, "bloodsucker")]"
 		returnString += "\n"
 		return returnIcon + returnString
@@ -171,11 +171,11 @@
 	var/mob/living/carbon/user = owner.current
 	if(blood_level_gain < level_cost)
 		if(!silent)
-			user.balloon_alert(user, "not enough blood thickening points!")
+			user.balloon_alert(user, "血液浓化点数不足！")
 		return FALSE
 	if(requires_blood && bloodsucker_blood_volume < level_cost)
 		if(!silent)
-			user.balloon_alert(user, "not enough blood!")
+			user.balloon_alert(user, "血量不足！")
 		return FALSE
 	return TRUE
 
@@ -184,8 +184,8 @@
 /datum/antagonist/bloodsucker/proc/blood_level_gain(silent = TRUE, requires_blood = FALSE)
 	var/level_cost = get_level_cost()
 	if(can_gain_blood_rank(silent, requires_blood)) // Checks if we have drunk enough blood from the living to allow us to gain a level up as well as checking if we have enough blood to actually use on the level up
-		var/input = tgui_alert(owner.current, "You have drunk enough blood from the living to thicken your blood, this will cost you [level_cost] blood and give you another level",  "Thicken your blood?.", list("Yes", "No")) //asks user if they want to spend their blood on a level
-		if(input == "Yes")
+		var/input = tgui_alert(owner.current, "你已从活人身上吸取了足够的鲜血，可以使自身血液浓化。这将消耗[level_cost]血量并给予你一个等级。",  "浓化血液？", list("是", "否")) //asks user if they want to spend their blood on a level
+		if(input == "是")
 			AdjustUnspentRank(1) // gives level
 			blood_level_gain -= level_cost // Subtracts the cost from the pool of drunk blood
 			if(requires_blood)
@@ -219,8 +219,8 @@
 	DisableAllPowers(TRUE)
 	if(HAS_TRAIT_FROM_ONLY(old_owner, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
 		torpor_end(TRUE)
-	to_chat(old_owner, span_userdanger("You have lost your [organ.slot]!"))
-	to_chat(old_owner, span_warning("This means you will no longer enter torpor nor revive from death, and you will no longer heal any damage, nor can you use your abilities."))
+	to_chat(old_owner, span_userdanger("你失去了[organ.name]！"))
+	to_chat(old_owner, span_warning("这意味着你无法再进入蛰眠或死而复生，也无法愈合伤势或使用能力。"))
 
 /// checks if we're a brainmob inside a brain & the brain is inside a head
 /datum/antagonist/bloodsucker/proc/is_head(mob/living/poor_fucker)
@@ -241,25 +241,25 @@
 	return issynthetic(humie) ? humie.get_fire_loss() : humie.get_fire_loss_nonProsthetic()
 
 /datum/antagonist/bloodsucker/proc/admin_set_blood(mob/admin)
-	var/blood = tgui_input_number(admin, "What blood level to set [owner.current]'s to?", "Blood is life.", floor(bloodsucker_blood_volume), max_blood_volume, 0)
+	var/blood = tgui_input_number(admin, "要将[owner.current]的血量设为多少？", "鲜血即生命。", floor(bloodsucker_blood_volume), max_blood_volume, 0)
 	// 0 input is falsey
 	if(blood == null)
 		return
 	SetBloodVolume(blood)
 
 /datum/antagonist/bloodsucker/proc/admin_rankup(mob/admin)
-	to_chat(admin, span_notice("[owner.current] has been given a free level"))
+	to_chat(admin, span_notice("已给予[owner.current]一个免费等级"))
 	RankUp()
 
 /datum/antagonist/bloodsucker/proc/admin_give_power(mob/admin)
-	var/power_type = tgui_input_list(admin, "What power to give [owner.current]?", "Might is right.", all_bloodsucker_powers)
+	var/power_type = tgui_input_list(admin, "要给予[owner.current]什么能力？", "力量即正义。", all_bloodsucker_powers)
 	if(!power_type)
 		return
 	var/datum/action/cooldown/bloodsucker/power = BuyPower(power_type)
 	power.upgrade_power()
 
 /datum/antagonist/bloodsucker/proc/admin_remove_power(mob/admin)
-	var/datum/action/cooldown/bloodsucker/power = tgui_input_list(admin, "What power to remove from [owner.current]?", "Might is right.", powers)
+	var/datum/action/cooldown/bloodsucker/power = tgui_input_list(admin, "要移除[owner.current]的什么能力？", "力量即正义。", powers)
 	if(!power)
 		return
 	RemovePower(power)
@@ -270,10 +270,10 @@
 		if(power.purchase_flags & BLOODSUCKER_DEFAULT_POWER)
 			continue
 		valid_powers += power
-	var/datum/action/cooldown/bloodsucker/power = tgui_input_list(admin, "What power to set the level of for [owner.current]?", "Might is right.", valid_powers)
+	var/datum/action/cooldown/bloodsucker/power = tgui_input_list(admin, "要设置[owner.current]的哪项能力等级？", "力量即正义。", valid_powers)
 	if(!power)
 		return
-	var/level = tgui_input_number(admin, "What level to set [power] to?", "Might is right.", power.level_current, 30, 0)
+	var/level = tgui_input_number(admin, "要将[power]设为几级？", "力量即正义。", power.level_current, 30, 0)
 	if(level == null)
 		return
 	power.level_current = level
@@ -282,7 +282,7 @@
 /datum/antagonist/bloodsucker/proc/regain_heart(mob/living/carbon/target, obj/structure/closet/crate/coffin/coffin)
 	var/obj/item/organ/heart = locate(/obj/item/organ/heart) in coffin.contents
 	if(heart && !target.get_organ_slot(ORGAN_SLOT_HEART) && heart.Insert(target))
-		to_chat(target, span_warning("You have regained your heart!"))
+		to_chat(target, span_warning("你重新获得了心脏！"))
 
 /datum/antagonist/bloodsucker/proc/allow_head_to_talk(mob/speaker, message, ignore_spam, forced)
 	SIGNAL_HANDLER
@@ -328,8 +328,8 @@
 	if(stake_can_kill())
 		FinalDeath()
 	else
-		to_chat(target, span_userdanger("You have been staked! Your powers are useless, your death forever, while it remains in place."))
-		target.balloon_alert(target, "you have been staked!")
+		to_chat(target, span_userdanger("你的心脏被桩刺穿了！只要它还留在原处，你的能力就毫无用处，死亡也将成为永别。"))
+		target.balloon_alert(target, "心脏被桩刺穿了！")
 
 /// is it something that is close enough to a coffin to let us heal/level up in it?
 /datum/antagonist/bloodsucker/proc/is_valid_coffin()
@@ -359,8 +359,8 @@
 	var/mob/living/carbon/user = owner.current
 	//Level up if possible.
 	if(!my_clan)
-		user.balloon_alert(user, "enter a clan!")
-		to_chat(user, span_notice("You must enter a Clan to rank up. Do it in the antag menu, which you can see by pressing the action button in the top left."))
+		user.balloon_alert(user, "请加入氏族！")
+		to_chat(user, span_notice("你必须加入氏族才能升级。点击左上角的动作按钮打开反派菜单，即可加入氏族。"))
 	else if(!is_frenzied())
 		if(GetUnspentRank() < 1)
 			blood_level_gain()

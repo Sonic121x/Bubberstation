@@ -1,21 +1,21 @@
 
-#define ROBOTIC_LIGHT_BRUTE_MSG "marred"
-#define ROBOTIC_MEDIUM_BRUTE_MSG "dented"
-#define ROBOTIC_HEAVY_BRUTE_MSG "like its falling apart"
+#define ROBOTIC_LIGHT_BRUTE_MSG "有划痕"
+#define ROBOTIC_MEDIUM_BRUTE_MSG "有凹痕"
+#define ROBOTIC_HEAVY_BRUTE_MSG "仿佛快要散架"
 
-#define ROBOTIC_LIGHT_BURN_MSG "scorched"
-#define ROBOTIC_MEDIUM_BURN_MSG "charred"
-#define ROBOTIC_HEAVY_BURN_MSG "smoldering"
+#define ROBOTIC_LIGHT_BURN_MSG "有焦痕"
+#define ROBOTIC_MEDIUM_BURN_MSG "被烧得焦黑"
+#define ROBOTIC_HEAVY_BURN_MSG "还在冒烟"
 
 //For ye whom may venture here, split up arm / hand sprites are formatted as "l_hand" & "l_arm".
 //The complete sprite (displayed when the limb is on the ground) should be named "borg_l_arm".
 //Failure to follow this pattern will cause the hand's icons to be missing due to the way get_limb_icon() works to generate the mob's icons using the aux_zone var.
 
 /obj/item/bodypart/arm/left/robot
-	name = "cyborg left arm"
-	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
+	name = "半机械人左臂"
+	desc = "包裹着拟肌肉的骨架肢体，外覆低导电性外壳。"
 	limb_id = BODYPART_ID_ROBOTIC
-	attack_verb_simple = list("slapped", "punched")
+	attack_verb_simple = list("扇击", "拳击")
 	inhand_icon_state = "buildpipe"
 	icon = 'icons/mob/augmentation/augments.dmi'
 	icon_static = 'icons/mob/augmentation/augments.dmi'
@@ -53,9 +53,9 @@
 		. += should_draw_greyscale ? icon_greyscale : icon_static
 
 /obj/item/bodypart/arm/right/robot
-	name = "cyborg right arm"
-	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
-	attack_verb_simple = list("slapped", "punched")
+	name = "半机械人右臂"
+	desc = "包裹着拟肌肉的骨架肢体，外覆低导电性外壳。"
+	attack_verb_simple = list("扇击", "拳击")
 	inhand_icon_state = "buildpipe"
 	icon_static = 'icons/mob/augmentation/augments.dmi'
 	icon = 'icons/mob/augmentation/augments.dmi'
@@ -95,9 +95,9 @@
 		. += should_draw_greyscale ? icon_greyscale : icon_static
 
 /obj/item/bodypart/leg/left/robot
-	name = "cyborg left leg"
-	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
-	attack_verb_simple = list("kicked", "stomped")
+	name = "半机械人左腿"
+	desc = "包裹着拟肌肉的骨架肢体，外覆低导电性外壳。"
+	attack_verb_simple = list("踢击", "踩踏")
 	inhand_icon_state = "buildpipe"
 	icon_static = 'icons/mob/augmentation/augments.dmi'
 	icon = 'icons/mob/augmentation/augments.dmi'
@@ -142,18 +142,18 @@
 		return
 	if(prob(80 / severity))
 		if(owner.body_position == LYING_DOWN) // So the message isn't duplicated. If they were stunned beforehand by something else, then the message not showing makes more sense anyways.
-			to_chat(owner, span_danger("Your [plaintext_zone] suddenly malfunctions!"))
+			to_chat(owner, span_danger("你的[chinese_body_zone_display(plaintext_zone)]突然发生故障！"))
 		else
-			to_chat(owner, span_danger("As your [plaintext_zone] suddenly malfunctions, it causes you to fall to the ground!"))
+			to_chat(owner, span_danger("你的[chinese_body_zone_display(plaintext_zone)]突然发生故障，害你摔倒在地！"))
 		owner.Knockdown(AUGGED_LEG_EMP_KNOCKDOWN_TIME)
 	owner.adjust_staggered(STAGGERED_SLOWDOWN_LENGTH * 3 / severity)
 	owner.client?.move_delay = max(owner.client?.move_delay, world.time)
 	owner.client?.move_delay += 0.6 SECONDS / severity
 
 /obj/item/bodypart/leg/right/robot
-	name = "cyborg right leg"
-	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
-	attack_verb_simple = list("kicked", "stomped")
+	name = "半机械人右腿"
+	desc = "包裹着拟肌肉的骨架肢体，外覆低导电性外壳。"
+	attack_verb_simple = list("踢击", "踩踏")
 	inhand_icon_state = "buildpipe"
 	icon_static =  'icons/mob/augmentation/augments.dmi'
 	icon = 'icons/mob/augmentation/augments.dmi'
@@ -198,17 +198,17 @@
 		return
 	if(prob(80 / severity))
 		if(owner.body_position == LYING_DOWN) // So the message isn't duplicated. If they were stunned beforehand by something else, then the message not showing makes more sense anyways.
-			to_chat(owner, span_danger("Your [plaintext_zone] suddenly malfunctions!"))
+			to_chat(owner, span_danger("你的[chinese_body_zone_display(plaintext_zone)]突然发生故障！"))
 		else
-			to_chat(owner, span_danger("As your [plaintext_zone] suddenly malfunctions, it causes you to fall to the ground!"))
+			to_chat(owner, span_danger("你的[chinese_body_zone_display(plaintext_zone)]突然发生故障，害你摔倒在地！"))
 		owner.Knockdown(AUGGED_LEG_EMP_KNOCKDOWN_TIME)
 	owner.adjust_staggered(STAGGERED_SLOWDOWN_LENGTH * 3 / severity)
 	owner.client?.move_delay = max(owner.client?.move_delay, world.time)
 	owner.client?.move_delay += 0.6 SECONDS / severity
 
 /obj/item/bodypart/chest/robot
-	name = "cyborg torso"
-	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell."
+	name = "半机械人躯干"
+	desc = "经过重度加固的箱体，内装半机械人逻辑板，并留有标准电源电池的位置。"
 	inhand_icon_state = "buildpipe"
 	icon_static =  'icons/mob/augmentation/augments.dmi'
 	icon = 'icons/mob/augmentation/augments.dmi'
@@ -260,7 +260,7 @@
 		return
 	var/damage_percent_to_max = (get_damage() / max_damage)
 	if(damage_percent_to_max >= robotic_emp_paralyze_damage_percent_threshold)
-		to_chat(owner, span_danger("Your [plaintext_zone]'s logic boards temporarily become unresponsive!"))
+		to_chat(owner, span_danger("你[chinese_body_zone_display(plaintext_zone)]的逻辑板暂时失去了响应！"))
 		owner.Stun(AUGGED_CHEST_EMP_STUN_TIME / severity)
 	owner.adjust_jitter(AUGGED_CHEST_EMP_SHAKE_TIME / severity)
 
@@ -321,24 +321,24 @@
 /obj/item/bodypart/chest/robot/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/stock_parts/power_store/cell))
 		if(cell)
-			to_chat(user, span_warning("A cell is already present in [src]!"))
+			to_chat(user, span_warning("[src] 里已经装有电池了！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		cell = tool
-		to_chat(user, span_notice("You insert [cell] into [src]."))
+		to_chat(user, span_notice("你把 [cell] 装入了 [src]。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/stack/cable_coil))
 		if(wired)
-			to_chat(user, span_warning("[src] is already wired up!"))
+			to_chat(user, span_warning("[src] 已经接好线了！"))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/stack/cable_coil/coil = tool
 		if (!coil.use(1))
-			to_chat(user, span_warning("You need one length of coil to wire it!"))
+			to_chat(user, span_warning("你需要一段线圈才能给它接线！"))
 			return ITEM_INTERACT_BLOCKING
 		wired = TRUE
-		to_chat(user, span_notice("You wire the cell inside of [src]."))
+		to_chat(user, span_notice("你把 [src] 内部的电池接好了线。"))
 		return ITEM_INTERACT_SUCCESS
 	return NONE
 
@@ -348,7 +348,7 @@
 		return
 	. = TRUE
 	cutter.play_tool_sound(src)
-	to_chat(user, span_notice("You cut the wires out of [src]."))
+	to_chat(user, span_notice("你剪断了 [src] 里的电线。"))
 	new /obj/item/stack/cable_coil(drop_location(), 1)
 	wired = FALSE
 
@@ -356,24 +356,24 @@
 	..()
 	. = TRUE
 	if(!cell)
-		to_chat(user, span_warning("There's no power cell installed in [src]!"))
+		to_chat(user, span_warning("[src] 里没有安装电源电池！"))
 		return
 	screwtool.play_tool_sound(src)
-	to_chat(user, span_notice("Remove [cell] from [src]."))
+	to_chat(user, span_notice("从 [src] 中取出 [cell]。"))
 	cell.forceMove(drop_location())
 
 /obj/item/bodypart/chest/robot/examine(mob/user)
 	. = ..()
 	if(cell)
-		. += {"It has a [cell] inserted.\n
-		[span_info("You can use a <b>screwdriver</b> to remove [cell].")]"}
+		. += {"里面装有一块 [cell]。\n
+		[span_info("你可以用<b>螺丝刀</b>取出 [cell]。")]"}
 	else
-		. += span_info("It has an empty port for a <b>power cell</b>.")
+		. += span_info("它有一个空的<b>电源电池</b>插口。")
 	if(wired)
-		. += "Its all wired up[cell ? " and ready for usage" : ""].\n"+\
-		span_info("You can use <b>wirecutters</b> to remove the wiring.")
+		. += "它已经全部接好线[cell ? "，可以立即使用" : ""]。\n"+\
+		span_info("你可以用<b>剪线钳</b>拆除线路。")
 	else
-		. += span_info("It has a couple spots that still need to be <b>wired</b>.")
+		. += span_info("它还有几处需要<b>接线</b>。")
 
 /obj/item/bodypart/chest/robot/drop_organs(mob/user, violent_removal)
 	var/atom/drop_loc = drop_location()
@@ -384,8 +384,8 @@
 	return ..()
 
 /obj/item/bodypart/head/robot
-	name = "cyborg head"
-	desc = "A standard reinforced braincase, with spine-plugged neural socket and sensor gimbals."
+	name = "半机械人头颅"
+	desc = "标准的加固脑壳，配有脊椎插接式神经接口与传感器万向节。"
 	inhand_icon_state = "buildpipe"
 	icon_static = 'icons/mob/augmentation/augments.dmi'
 	icon = 'icons/mob/augmentation/augments.dmi'
@@ -432,7 +432,7 @@
 	. = ..()
 	if(!. || isnull(owner))
 		return
-	to_chat(owner, span_danger("Your [plaintext_zone] hurts..."))
+	to_chat(owner, span_danger("你的[chinese_body_zone_display(plaintext_zone)]很疼……"))
 	QDEL_IN(owner.add_client_colour(/datum/client_colour/malfunction, HEAD_TRAIT), (AUGGED_HEAD_EMP_GLITCH_DURATION / severity))
 	owner.adjust_confusion(AUGGED_HEAD_EMP_GLITCH_DURATION / severity)
 
@@ -451,16 +451,16 @@
 /obj/item/bodypart/head/robot/examine(mob/user)
 	. = ..()
 	if(!flash1 && !flash2)
-		. += span_info("It has two empty eye sockets for <b>flashes</b>.")
+		. += span_info("它有两个空的眼窝，可装入<b>闪光器</b>。")
 	else
 		var/single_flash = FALSE
 		if(!flash1 || !flash2)
 			single_flash = TRUE
-			. += {"One of its eye sockets is currently occupied by a flash.\n
-			[span_info("It has an empty eye socket for another <b>flash</b>.")]"}
+			. += {"它的一个眼窝里已经装有闪光器。\n
+			[span_info("另一个眼窝还是空的，可再装一个<b>闪光器</b>。")]"}
 		else
-			. += "It has two eye sockets occupied by flashes."
-		. += span_notice("You can remove the seated flash[single_flash ? "":"es"] with a <b>crowbar</b>.")
+			. += "它的两个眼窝里都装有闪光器。"
+		. += span_notice("你可以用<b>撬棍</b>取出已装入的[single_flash ? "一个" : "两个"]闪光器。")
 
 /obj/item/bodypart/head/robot/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/assembly/flash/handheld))
@@ -468,11 +468,11 @@
 
 	var/obj/item/assembly/flash/handheld/flash = tool
 	if(flash1 && flash2)
-		to_chat(user, span_warning("[src] already has both flash-eyes present!"))
+		to_chat(user, span_warning("[src] 的两个眼窝都已经装上闪光器了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(flash.burnt_out)
-		to_chat(user, span_warning("You can't use a broken flash!"))
+		to_chat(user, span_warning("你不能使用损坏的闪光器！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(flash, src))
@@ -482,18 +482,18 @@
 		flash2 = flash
 	else
 		flash1 = flash
-	to_chat(user, span_notice("You insert the flash into the eye socket."))
+	to_chat(user, span_notice("你把闪光器插入眼窝。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/bodypart/head/robot/crowbar_act(mob/living/user, obj/item/prytool)
 	..()
 	if(flash1 || flash2)
 		prytool.play_tool_sound(src)
-		to_chat(user, span_notice("You remove the flash from [src]."))
+		to_chat(user, span_notice("你从 [src] 上取下了闪光器。"))
 		flash1?.forceMove(drop_location())
 		flash2?.forceMove(drop_location())
 	else
-		to_chat(user, span_warning("There is no flash to remove from [src]."))
+		to_chat(user, span_warning("[src] 上没有可拆除的闪光器。"))
 	return TRUE
 
 /obj/item/bodypart/head/robot/drop_organs(mob/user, violent_removal)
@@ -507,8 +507,8 @@
 // They also suck to punch with.
 
 /obj/item/bodypart/arm/left/robot/surplus
-	name = "surplus prosthetic left arm"
-	desc = "A skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
+	name = "剩余义肢左臂"
+	desc = "骨架结构的机械义肢。款式过时、质地脆弱，但总比没有强。"
 	icon_static = 'icons/mob/augmentation/surplus_augments.dmi'
 	icon = 'icons/mob/augmentation/surplus_augments.dmi'
 	burn_modifier = 1
@@ -522,8 +522,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/arm/right/robot/surplus
-	name = "surplus prosthetic right arm"
-	desc = "A skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
+	name = "剩余义肢右臂"
+	desc = "骨架结构的机械义肢。款式过时、质地脆弱，但总比没有强。"
 	icon_static = 'icons/mob/augmentation/surplus_augments.dmi'
 	icon = 'icons/mob/augmentation/surplus_augments.dmi'
 	burn_modifier = 1
@@ -537,8 +537,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/leg/left/robot/surplus
-	name = "surplus prosthetic left leg"
-	desc = "A skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
+	name = "剩余义肢左腿"
+	desc = "骨架结构的机械义肢。款式过时、质地脆弱，但总比没有强。"
 	icon_static = 'icons/mob/augmentation/surplus_augments.dmi'
 	icon = 'icons/mob/augmentation/surplus_augments.dmi'
 	brute_modifier = 1
@@ -552,8 +552,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/leg/right/robot/surplus
-	name = "surplus prosthetic right leg"
-	desc = "A skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
+	name = "剩余义肢右腿"
+	desc = "骨架结构的机械义肢。款式过时、质地脆弱，但总比没有强。"
 	icon_static = 'icons/mob/augmentation/surplus_augments.dmi'
 	icon = 'icons/mob/augmentation/surplus_augments.dmi'
 	brute_modifier = 1
@@ -569,8 +569,8 @@
 // Advanced Limbs: More durable, high punching force
 
 /obj/item/bodypart/arm/left/robot/advanced
-	name = "advanced robotic left arm"
-	desc = "An advanced cybernetic arm, capable of greater feats of strength and durability."
+	name = "高级机械左臂"
+	desc = "先进的赛博机械臂，能发挥更强的力量与耐久性。"
 	icon_static = 'icons/mob/augmentation/advanced_augments.dmi'
 	icon = 'icons/mob/augmentation/advanced_augments.dmi'
 	unarmed_damage_low = 5
@@ -582,8 +582,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 3, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 3)
 
 /obj/item/bodypart/arm/right/robot/advanced
-	name = "advanced robotic right arm"
-	desc = "An advanced cybernetic arm, capable of greater feats of strength and durability."
+	name = "高级机械右臂"
+	desc = "先进的赛博机械臂，能发挥更强的力量与耐久性。"
 	icon_static = 'icons/mob/augmentation/advanced_augments.dmi'
 	icon = 'icons/mob/augmentation/advanced_augments.dmi'
 	unarmed_damage_low = 5
@@ -595,8 +595,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 3, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 3)
 
 /obj/item/bodypart/leg/left/robot/advanced
-	name = "advanced robotic left leg"
-	desc = "An advanced cybernetic leg, capable of greater feats of strength and durability."
+	name = "高级机械左腿"
+	desc = "先进的赛博机械腿，能发挥更强的力量与耐久性。"
 	icon_static = 'icons/mob/augmentation/advanced_augments.dmi'
 	icon = 'icons/mob/augmentation/advanced_augments.dmi'
 	unarmed_damage_low = 7
@@ -608,8 +608,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 3, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 3)
 
 /obj/item/bodypart/leg/right/robot/advanced
-	name = "advanced robotic right leg"
-	desc = "An advanced cybernetic leg, capable of greater feats of strength and durability."
+	name = "高级机械右腿"
+	desc = "先进的赛博机械腿，能发挥更强的力量与耐久性。"
 	icon_static = 'icons/mob/augmentation/advanced_augments.dmi'
 	icon = 'icons/mob/augmentation/advanced_augments.dmi'
 	unarmed_damage_low = 7

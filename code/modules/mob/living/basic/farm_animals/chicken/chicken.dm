@@ -7,8 +7,8 @@ GLOBAL_VAR_INIT(chicken_count, 0)
 * Not-entirely-flightless domesticated birds that lay eggs, which are then consumed by humans and other animals.
 */
 /mob/living/basic/chicken
-	name = "\improper chicken"
-	desc = "Hopefully the eggs are good this season."
+	name = "\improper 鸡"
+	desc = "希望这一季的蛋品质不错。"
 	gender = FEMALE
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	icon_state = "chicken_brown"
@@ -16,17 +16,17 @@ GLOBAL_VAR_INIT(chicken_count, 0)
 	icon_dead = "chicken_brown_dead"
 	density = FALSE
 	butcher_results = list(/obj/item/food/meat/slab/chicken = 2)
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "pecks"
-	response_harm_simple = "peck"
-	attack_verb_continuous = "pecks"
-	attack_verb_simple = "peck"
-	friendly_verb_continuous = "headbutts"
-	friendly_verb_simple = "headbutt"
-	speak_emote = list("clucks", "croons")
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "啄"
+	response_harm_simple = "啄"
+	attack_verb_continuous = "啄"
+	attack_verb_simple = "啄"
+	friendly_verb_continuous = "用头蹭"
+	friendly_verb_simple = "用头蹭"
+	speak_emote = list("咯咯叫", "咕咕叫")
 	health = 15
 	maxHealth = 15
 	pass_flags = PASSTABLE | PASSMOB
@@ -48,7 +48,7 @@ GLOBAL_VAR_INIT(chicken_count, 0)
 /datum/emote/chicken/cluck
 	key = "cluck"
 	key_third_person = "clucks"
-	message = "clucks happily!"
+	message = "开心地咯咯叫！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'sound/mobs/non-humanoids/chicken/bagawk.ogg'
@@ -68,7 +68,7 @@ GLOBAL_VAR_INIT(chicken_count, 0)
 		/datum/component/egg_layer,\
 		/obj/item/food/egg/organic,\
 		list(/obj/item/food/grown/wheat),\
-		feed_messages = list("She clucks contently."),\
+		feed_messages = list("她满足地咯咯叫。"),\
 		lay_messages = EGG_LAYING_MESSAGES,\
 		eggs_left = 0,\
 		eggs_added_from_eating = rand(1, 4),\
@@ -98,9 +98,9 @@ GLOBAL_VAR_INIT(chicken_count, 0)
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_SAY = list("Cluck!", "BWAAAAARK BWAK BWAK BWAK!", "Bwaak bwak."),
-			BB_EMOTE_HEAR = list("clucks.", "croons."),
-			BB_EMOTE_SEE = list("pecks at the ground.", "flaps her wings viciously."),
+			BB_EMOTE_SAY = list("咯咯！", "嘎啊啊啊！咯咯咯！", "嘎嘎咯咯。"),
+			BB_EMOTE_HEAR = list("咯咯叫着。", "咕咕叫着。"),
+			BB_EMOTE_SEE = list("啄着地面。", "凶狠地扇动翅膀。"),
 			BB_EMOTE_SOUND = list('sound/mobs/non-humanoids/chicken/clucks.ogg', 'sound/mobs/non-humanoids/chicken/bagawk.ogg'),
 			BB_SPEAK_CHANCE = 15,
 		),

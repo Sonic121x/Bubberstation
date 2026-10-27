@@ -4,8 +4,8 @@
  * Lets the caster enter and exit pools of blood.
  */
 /datum/action/cooldown/spell/jaunt/bloodcrawl
-	name = "Blood Crawl"
-	desc = "Allows you to phase in and out of existence via pools of blood."
+	name = "血遁"
+	desc = "让你能借助血泊在存在与虚无之间穿行。"
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "bg_demon_border"
 
@@ -40,7 +40,7 @@
 	if(find_nearby_blood(get_turf(owner)))
 		return TRUE
 	if(feedback)
-		to_chat(owner, span_warning("There must be a nearby source of blood!"))
+		to_chat(owner, span_warning("附近必须有血液来源！"))
 	return FALSE
 
 /datum/action/cooldown/spell/jaunt/bloodcrawl/cast(mob/living/cast_on)
@@ -68,7 +68,7 @@
 
 	if(!.)
 		reset_spell_cooldown()
-		to_chat(jaunter, span_warning("You are unable to blood crawl!"))
+		to_chat(jaunter, span_warning("你无法进行血遁！"))
 
 /**
  * Attempts to enter the passed blood pool.
@@ -77,7 +77,7 @@
 /datum/action/cooldown/spell/jaunt/bloodcrawl/proc/try_enter_jaunt(obj/effect/decal/cleanable/blood, mob/living/jaunter, forced = FALSE)
 	if(!forced)
 		if(enter_blood_time > 0 SECONDS)
-			blood.visible_message(span_warning("[jaunter] starts to sink into [blood]!"))
+			blood.visible_message(span_warning("[jaunter] 开始沉入 [blood]！"))
 			if(!do_after(jaunter, enter_blood_time, target = blood))
 				return FALSE
 
@@ -102,7 +102,7 @@
 		jaunter.put_in_hands(left_hand)
 		jaunter.put_in_hands(right_hand)
 
-	blood.visible_message(span_warning("[jaunter] sinks into [blood]!"))
+	blood.visible_message(span_warning("[jaunter] 沉入了 [blood]！"))
 	playsound(jaunt_turf, 'sound/effects/magic/enter_blood.ogg', 50, TRUE, -1)
 	jaunter.extinguish_mob()
 
@@ -116,18 +116,18 @@
 /datum/action/cooldown/spell/jaunt/bloodcrawl/proc/try_exit_jaunt(obj/effect/decal/cleanable/blood, mob/living/jaunter, forced = FALSE)
 	if(!forced)
 		if(HAS_TRAIT(jaunter, TRAIT_NO_TRANSFORM))
-			to_chat(jaunter, span_warning("You cannot exit yet!!"))
+			to_chat(jaunter, span_warning("你现在还不能出来！！"))
 			return FALSE
 
 		if(exit_blood_time > 0 SECONDS)
-			blood.visible_message(span_warning("[blood] starts to bubble..."))
+			blood.visible_message(span_warning("[blood] 开始冒泡……"))
 			if(!do_after(jaunter, exit_blood_time, target = blood))
 				return FALSE
 
 	if(!exit_jaunt(jaunter, get_turf(blood)))
 		return FALSE
 
-	blood.visible_message(span_boldwarning("[jaunter] rises out of [blood]!"))
+	blood.visible_message(span_boldwarning("[jaunter] 从 [blood] 中升起！"))
 	return TRUE
 
 /datum/action/cooldown/spell/jaunt/bloodcrawl/on_jaunt_exited(obj/effect/dummy/phased_mob/jaunt, mob/living/unjaunter)
@@ -159,9 +159,9 @@
  * Allows the blood crawler to consume people they are dragging.
  */
 /datum/action/cooldown/spell/jaunt/bloodcrawl/slaughter_demon
-	name = "Voracious Blood Crawl"
-	desc = "Allows you to phase in and out of existence via pools of blood. If you are dragging someone in critical or dead, \
-		they will be consumed by you, fully healing you."
+	name = "贪婪血遁"
+	desc = "让你能借助血泊在存在与虚无之间穿行。如果你正拖着重伤或死亡的人， \
+		他们会被你吞噬，并完全治愈你。"
 	/// The sound played when someone's consumed.
 	var/consume_sound = 'sound/effects/magic/demon_consume.ogg'
 	/// Apply damage every 20 seconds if we bloodcrawling
@@ -189,8 +189,8 @@
 
 	if(!IS_UNCONSCIOUS_OR_CRIT(victim))
 		jaunt_turf.visible_message(
-			span_warning("[victim] kicks free of [blood] just before entering it!"),
-			blind_message = span_notice("You hear splashing and struggling."),
+			span_warning("[victim] 在即将进入 [blood] 前挣脱了出来！"),
+			blind_message = span_notice("你听到水花四溅和挣扎的声音。"),
 		)
 		return FALSE
 
@@ -200,8 +200,8 @@
 	victim.forceMove(jaunter)
 	victim.emote("scream")
 	jaunt_turf.visible_message(
-		span_boldwarning("[jaunter] drags [victim] into [blood]!"),
-		blind_message = span_notice("You hear a splash."),
+		span_boldwarning("[jaunter] 把 [victim] 拖进了 [blood]！"),
+		blind_message = span_notice("你听到一声水花。"),
 	)
 
 	ADD_TRAIT(jaunter, TRAIT_NO_TRANSFORM, REF(src))
@@ -230,7 +230,7 @@
 		return
 	lazy_demon.apply_damage(lazy_demon.maxHealth * 0.05, BRUTE)
 	jaunt_damage_timer = addtimer(CALLBACK(src, PROC_REF(damage_for_lazy_demon), lazy_demon), 20 SECONDS, TIMER_STOPPABLE)
-	to_chat(lazy_demon, span_warning("You feel your flesh dissolving into the sea of blood. You shouldn't stay in Blood Crawl for too long!"))
+	to_chat(lazy_demon, span_warning("你感到自己的血肉正在消融于血海之中。你不该在血遁中停留太久！"))
 
 /**
  * Consumes the [victim] from the [jaunter], fully healing them
@@ -242,7 +242,7 @@
 	for(var/i in 1 to 3)
 		playsound(get_turf(jaunter), consume_sound, 50, TRUE)
 		if(!do_after(jaunter, 3 SECONDS, victim))
-			to_chat(jaunter, span_danger("You lose your victim!"))
+			to_chat(jaunter, span_danger("你失去了你的受害者！"))
 			return FALSE
 		if(QDELETED(src))
 			return FALSE
@@ -255,7 +255,7 @@
 	// No defib possible after laughter
 	victim.apply_damage(1000, BRUTE, wound_bonus = CANT_WOUND)
 	if(victim.stat != DEAD)
-		victim.investigate_log("has been killed by being consumed by a slaughter demon.", INVESTIGATE_DEATHS)
+		victim.investigate_log("被屠戮恶魔吞噬而亡。", INVESTIGATE_DEATHS)
 	victim.death()
 	on_victim_consumed(victim, jaunter)
 
@@ -270,7 +270,7 @@
 	if(!iscarbon(jaunter))
 		resist_jaunt_damage = TRUE
 		deltimer(jaunt_damage_timer)
-	to_chat(jaunter, span_danger("You begin to feast on [victim]... You can not move while you are doing this."))
+	to_chat(jaunter, span_danger("你开始享用 [victim]……在此期间你无法移动。"))
 
 /**
  * Called when a victim is successfully consumed.
@@ -279,7 +279,7 @@
 	if(!iscarbon(jaunter))
 		resist_jaunt_damage = FALSE
 		jaunt_damage_timer = addtimer(CALLBACK(src, PROC_REF(damage_for_lazy_demon), jaunter), 20 SECONDS, TIMER_STOPPABLE)
-	to_chat(jaunter, span_danger("You devour [victim]. Your health is fully restored."))
+	to_chat(jaunter, span_danger("你吞噬了 [victim]。你的生命值已完全恢复。"))
 	qdel(victim)
 
 /**
@@ -287,9 +287,9 @@
  * All mobs consumed are revived after the demon is killed.
  */
 /datum/action/cooldown/spell/jaunt/bloodcrawl/slaughter_demon/funny
-	name = "Friendly Blood Crawl"
-	desc = "Allows you to phase in and out of existence via pools of blood. If you are dragging someone in critical or dead - I mean, \
-		sleeping, when entering a blood pool, they will be invited to a party and fully heal you!"
+	name = "友好血遁"
+	desc = "让你能借助血泊在存在与虚无之间穿行。如果你正拖着重伤或死亡的人——我是说， \
+		睡着的人，进入血泊时，他们会被邀请参加派对，并完全治愈你！"
 	consume_sound = 'sound/misc/scary_horn.ogg'
 
 	// Keep the people we hug!
@@ -309,10 +309,10 @@
 	return ..()
 
 /datum/action/cooldown/spell/jaunt/bloodcrawl/slaughter_demon/funny/on_victim_start_consume(mob/living/victim, mob/living/jaunter)
-	to_chat(jaunter, span_clown("You invite [victim] to your party! You can not move while you are doing this."))
+	to_chat(jaunter, span_clown("你邀请 [victim] 参加你的派对！在此期间你无法移动。"))
 
 /datum/action/cooldown/spell/jaunt/bloodcrawl/slaughter_demon/funny/on_victim_consumed(mob/living/victim, mob/living/jaunter)
-	to_chat(jaunter, span_clown("[victim] joins your party! Your health is fully restored."))
+	to_chat(jaunter, span_clown("[victim] 加入了你的派对！你的生命值已完全恢复。"))
 	consumed_mobs += victim
 	RegisterSignal(victim, COMSIG_MOB_STATCHANGE, PROC_REF(on_victim_statchange))
 	RegisterSignal(victim, COMSIG_QDELETING, PROC_REF(on_victim_deleted))
@@ -336,7 +336,7 @@
 		if(!friend.revive(ADMIN_HEAL_ALL, force_grab_ghost = TRUE))
 			continue
 		friend.playsound_local(release_turf, 'sound/effects/magic/exit_blood.ogg', 50, TRUE, -1)
-		to_chat(friend, span_clown("You leave [source]'s warm embrace, and feel ready to take on the world."))
+		to_chat(friend, span_clown("你离开了 [source] 温暖的怀抱，感觉自己已准备好迎接整个世界。"))
 
 
 /**
@@ -353,7 +353,7 @@
 		return
 	// Someone we've eaten has spontaneously revived; maybe regen coma, maybe a changeling
 	victim.forceMove(get_turf(victim))
-	victim.visible_message(span_warning("[victim] falls out of the air, covered in blood, with a confused look on their face."))
+	victim.visible_message(span_warning("[victim] 从半空中跌落，浑身是血，一脸困惑。"))
 	exit_blood_effect(victim)
 
 	consumed_mobs -= victim
@@ -369,8 +369,8 @@
 
 /// Bloodcrawl "hands", prevent the user from holding items in bloodcrawl
 /obj/item/bloodcrawl
-	name = "blood crawl"
-	desc = "You are unable to hold anything while in this form."
+	name = "血遁"
+	desc = "在这种形态下你无法持有任何物品。"
 	icon = 'icons/effects/blood.dmi'
 	item_flags = ABSTRACT | DROPDEL
 

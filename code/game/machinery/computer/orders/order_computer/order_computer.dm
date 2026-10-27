@@ -2,18 +2,18 @@
 GLOBAL_LIST_EMPTY(order_console_products)
 
 /obj/machinery/computer/order_console
-	name = "Orders Console"
-	desc = "An interface for ordering specific ingredients from Cargo, with an express option at the cost of more money."
+	name = "订购控制台"
+	desc = "用于向货运部订购指定食材的终端，也可加价选择速递。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/order_console")
 	icon_screen = "request"
 	icon_keyboard = "generic_key"
 	light_color = LIGHT_COLOR_ORANGE
 	///Tooltip for the express button in TGUI
-	var/express_tooltip = @{"Sends your purchases instantly,
-	but locks the console longer and increases the price!"}
+	var/express_tooltip = @{"立即送达你购买的物品，
+	但价格更高，控制台的冷却时间也更长！"}
 	///Tooltip for the purchase button in TGUI
-	var/purchase_tooltip = @{"Your purchases will arrive at cargo,
-	and hopefully get delivered by them."}
+	var/purchase_tooltip = @{"你购买的物品将送至货运部，
+	希望他们会帮忙送来。"}
 
 	///Cooldown between order uses.
 	COOLDOWN_DECLARE(order_cooldown)
@@ -159,7 +159,7 @@ GLOBAL_LIST_EMPTY(order_console_products)
 
 			var/obj/item/card/id/used_id_card = living_user.get_idcard(TRUE)
 			if(!used_id_card || !used_id_card.registered_account)
-				say("No bank account detected!")
+				say("未检测到银行账户！")
 				return
 			if(!purchase_items(used_id_card))
 				return
@@ -173,13 +173,13 @@ GLOBAL_LIST_EMPTY(order_console_products)
 				return
 			var/obj/item/card/id/used_id_card = living_user.get_idcard(TRUE)
 			if(!used_id_card || !used_id_card.registered_account)
-				say("No bank account detected!")
+				say("未检测到银行账户！")
 				return
 			if(!purchase_items(used_id_card, express = TRUE))
 				return
-			var/say_message = "Thank you for your purchase!"
+			var/say_message = "感谢购买！"
 			if(express_cost_multiplier > 1)
-				say_message += " Please note: The charge of this purchase and machine cooldown has been multiplied by [express_cost_multiplier]!"
+				say_message += "请注意：本次购买费用和机器冷却时间均提高至[express_cost_multiplier]倍！"
 			COOLDOWN_START(src, order_cooldown, cooldown_time * express_cost_multiplier)
 			say(say_message)
 			if(blackbox_key)
@@ -212,7 +212,7 @@ GLOBAL_LIST_EMPTY(order_console_products)
 	var/final_cost = round(get_total_cost() * (express ? express_cost_multiplier : cargo_cost_multiplier))
 	if(subtract_points(final_cost, card))
 		return TRUE
-	say("Sorry, but you do not have enough [credit_type].")
+	say("抱歉，你的[credit_type]不足。")
 	return FALSE
 
 /**
@@ -223,7 +223,7 @@ GLOBAL_LIST_EMPTY(order_console_products)
  * returns TRUE if successfull
  */
 /obj/machinery/computer/order_console/proc/subtract_points(final_cost, obj/item/card/id/card)
-	return card.registered_account.adjust_money(-final_cost, "[name]: Purchase")
+	return card.registered_account.adjust_money(-final_cost, "[name]：购物")
 
 /**
  * start of the shipment of your order
@@ -236,9 +236,9 @@ GLOBAL_LIST_EMPTY(order_console_products)
 	return
 
 /datum/aas_config_entry/order_console
-	name = "Cargo Alert: Local Ordering Console Announcements"
+	name = "货运提醒：本地订购控制台公告"
 	announcement_lines_map = list()
-	general_tooltip = "Used to make announces, when consoles listed here placing new order"
+	general_tooltip = "此处列出的控制台提交新订单时，用于发布公告。"
 
 /datum/aas_config_entry/order_console/New()
 	. = ..()
@@ -248,6 +248,6 @@ GLOBAL_LIST_EMPTY(order_console_products)
 
 /datum/aas_config_entry/order_console/compile_announce(list/variables_map, announcement_line)
 	if (!announcement_lines_map.len)
-		announcement_lines_map["Error"] = "Unknown Error happened, while we tried to procceed an order, please report this to Nanotrasen."
+		announcement_lines_map["Error"] = "处理订单时发生未知错误，请向纳米传讯报告。"
 	. = ..()
 

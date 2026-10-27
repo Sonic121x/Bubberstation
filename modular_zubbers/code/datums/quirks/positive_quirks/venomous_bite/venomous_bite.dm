@@ -3,8 +3,8 @@
 #define VENOMOUS_BITE_WOUND_BONUS 40
 
 /datum/action/cooldown/mob_cooldown/venomous_bite
-	name = "Inject Venom"
-	desc = "Sink your fangs into another and inject them with your venom. Ineffective against those wearing armor."
+	name = "注入毒液"
+	desc = "用尖牙咬住他人，注入你的毒液。对穿戴护甲的人无效。"
 
 	button_icon = 'modular_zubbers/icons/mob/actions/quirks/venomous_bite.dmi'
 	button_icon_state = "venom"
@@ -32,28 +32,28 @@
 	. = ..()
 	if (!.)
 		return
-	owner.visible_message(span_warning("[owner] bares [owner.p_their()] fangs..."), span_notice("You bare your fangs..."))
+	owner.visible_message(span_warning("[owner]露出了尖牙……"), span_notice("你露出了尖牙……"))
 
 /datum/action/cooldown/mob_cooldown/venomous_bite/Activate(atom/target_atom)
 	if (!isliving(target_atom))
 		return FALSE
 
 	if (astype(owner, /mob/living/carbon)?.is_mouth_covered())
-		owner.balloon_alert(owner, "mouth covered!")
+		owner.balloon_alert(owner, "嘴部被遮住了！")
 		return FALSE
 
 	if (!owner.Adjacent(target_atom))
-		owner.balloon_alert(owner, "too far!")
+		owner.balloon_alert(owner, "太远了！")
 		return FALSE
 
 	if (target_atom == owner)
-		owner.balloon_alert(owner, "can't bite yourself!")
+		owner.balloon_alert(owner, "不能咬自己！")
 		return FALSE
 
 	log_combat(owner, target_atom, "started to bite", null, "with venom: [reagent_typepath::name]")
-	owner.visible_message(span_warning("[owner] starts to bite [target_atom]!"), span_warning("You start to bite [target_atom]!"), ignored_mobs = target_atom)
-	to_chat(target_atom, span_userdanger("[owner] starts to bite you!"))
-	owner.balloon_alert_to_viewers("biting...")
+	owner.visible_message(span_warning("[owner]开始咬[target_atom]！"), span_warning("你开始咬[target_atom]！"), ignored_mobs = target_atom)
+	to_chat(target_atom, span_userdanger("[owner]开始咬你！"))
+	owner.balloon_alert_to_viewers("咬住……")
 	if (!do_after(owner, 0.5 SECONDS, target_atom, IGNORE_HELD_ITEM))
 		return FALSE
 
@@ -70,18 +70,18 @@
 	var/armor = target.run_armor_check(target_zone, MELEE)
 	var/obj/item/bodypart/part = target.get_bodypart(target_zone)
 
-	var/text = "[owner] sinks [owner.p_their()] teeth into [target]'s [target.parse_zone_with_bodypart(target_zone)]!"
-	var/self_message = "You sink your teeth into [target]'s [target.parse_zone_with_bodypart(target_zone)]!"
-	var/victim_message = "[owner] sinks [owner.p_their()] teeth into your [target.parse_zone_with_bodypart(target_zone)]!"
+	var/text = "[owner]将尖牙刺入[target]的[chinese_body_zone_display(target.parse_zone_with_bodypart(target_zone))]！"
+	var/self_message = "你将尖牙刺入[target]的[chinese_body_zone_display(target.parse_zone_with_bodypart(target_zone))]！"
+	var/victim_message = "[owner]将尖牙刺入你的[chinese_body_zone_display(target.parse_zone_with_bodypart(target_zone))]！"
 
 	var/covered = FALSE
 	if (ishuman(target))
 		for (var/obj/item/clothing/iter_clothing as anything in astype(target, /mob/living/carbon/human).get_clothing_on_part(part))
 			if (iter_clothing.clothing_flags & THICKMATERIAL)
 				covered = TRUE
-				text = "[owner] tries to bite [target], but breaks [owner.p_their()] teeth on [target]'s clothing! Ouch!"
-				self_message = "You try to bite [target], but you break your teeth on [target.p_their()] clothing! Ouch!"
-				victim_message = "[owner] tries to bite you, but breaks [owner.p_their()] teeth on your clothing! Ouch!"
+				text = "[owner]试图咬[target]，却被[target]的衣物崩断了牙！哎哟！"
+				self_message = "你试图咬[target]，却被对方的衣物崩断了牙！哎哟！"
+				victim_message = "[owner]试图咬你，却被你的衣物崩断了牙！哎哟！"
 				owner.emote("scream")
 				astype(owner, /mob/living)?.apply_damage(1, BRUTE, BODY_ZONE_HEAD)
 				break

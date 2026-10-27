@@ -3,8 +3,8 @@
 #define REPAIR_WELDER_COST 10
 
 /obj/machinery/mounted_machine_gun
-	name = "\improper T90 Mounted Machine Gun"
-	desc = "A high calibre mounted machine gun capable of laying down copious amounts of suppressive fire."
+	name = "\improper T90架设机枪"
+	desc = "一挺大口径架设机枪，能够提供猛烈的压制火力。"
 	icon = 'modular_skyrat/modules/mounted_machine_gun/icons/turret.dmi'
 	icon_state = "mmg"
 	base_icon_state = "mmg"
@@ -93,30 +93,30 @@
 /obj/machinery/mounted_machine_gun/examine(mob/user)
 	. = ..()
 	if(ammo_box)
-		. += span_notice("It has [ammo_box] loaded, with [ammo_box.ammo_count()] rounds remaining.")
+		. += span_notice("已装载[ammo_box]，剩余[ammo_box.ammo_count()]发弹药。")
 	else
-		. += span_danger("It does not have an ammo box loaded!")
-	. += span_notice("The cover is [cover_open ? "open" : "closed"]. <b>Alt+click</b> to [cover_open ? "close" : "open"] it.")
-	. += span_notice("Use a welder to repair it.")
+		. += span_danger("尚未装载弹药箱！")
+	. += span_notice("机匣盖已[cover_open ? "打开" : "关闭"]。<b>Alt+单击</b>可将其[cover_open ? "关闭" : "打开"]。")
+	. += span_notice("使用焊接工具进行修理。")
 	switch(barrel_heat)
 		if(BARREL_HEAT_THRESHOLD_LOW to BARREL_HEAT_THRESHOLD_HIGH)
-			. += span_warning("The barrel looks hot.")
+			. += span_warning("枪管看起来很烫。")
 		if(BARREL_HEAT_THRESHOLD_HIGH to INFINITY)
-			. += span_warning("The barrel looks moulten!")
+			. += span_warning("枪管看起来快熔化了！")
 	if(overheated)
-		. += span_danger("It is heatlocked!")
+		. += span_danger("它因过热而锁定！")
 
 /obj/machinery/mounted_machine_gun/welder_act(mob/living/user, obj/item/tool)
 	if(user.combat_mode)
 		return
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, "it doesn't need repairs!")
+		balloon_alert(user, "无需修理！")
 		return TRUE
-	balloon_alert_to_viewers("repairing...")
+	balloon_alert_to_viewers("正在修理……")
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = REPAIR_WELDER_COST, volume = 100))
 		return TRUE
 	update_integrity(max_integrity)
-	balloon_alert_to_viewers("repaired!")
+	balloon_alert_to_viewers("已修复！")
 
 /// Undeploying, for when you want to move your big dakka around
 /obj/machinery/mounted_machine_gun/wrench_act(mob/living/user, obj/item/wrench/used_wrench)
@@ -127,10 +127,10 @@
 	if(!ishuman(user))
 		return TRUE
 	if(ammo_box)
-		balloon_alert_to_viewers("remove ammo box!")
+		balloon_alert_to_viewers("先移除弹药箱！")
 		return TRUE
 	used_wrench.play_tool_sound(user)
-	balloon_alert_to_viewers("undeploying...")
+	balloon_alert_to_viewers("正在收起……")
 	if(!do_after(user, undeploy_time))
 		return TRUE
 	var/obj/undeployed_object = new undeployed_type(src)
@@ -184,7 +184,7 @@
 	if(!can_interact(user))
 		return
 	if(!cover_open)
-		balloon_alert(user, "cover closed!")
+		balloon_alert(user, "机匣盖关着！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!ammo_box)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -196,24 +196,24 @@
 	if(!istype(weapon, ammo_box_type))
 		return
 	if(ammo_box)
-		balloon_alert(user, "already loaded!")
+		balloon_alert(user, "已经装载！")
 		return
 	ammo_box = weapon
 	weapon.forceMove(src)
 	playsound(src, 'modular_skyrat/modules/mounted_machine_gun/sound/insert_ammobox.ogg', 100)
-	balloon_alert(user, "ammo box inserted!")
+	balloon_alert(user, "已装入弹药箱！")
 
 /obj/machinery/mounted_machine_gun/proc/remove_ammo_box(mob/living/user)
 	ammo_box.forceMove(drop_location())
 	user.put_in_hands(ammo_box)
 	ammo_box = null
 	playsound(src, 'modular_skyrat/modules/mounted_machine_gun/sound/remove_ammobox.ogg', 100)
-	balloon_alert(user, "ammo box removed!")
+	balloon_alert(user, "已移除弹药箱！")
 	update_appearance()
 
 /obj/machinery/mounted_machine_gun/proc/toggle_cover(mob/user)
 	cover_open = !cover_open
-	balloon_alert(user, "cover [cover_open ? "opened" : "closed"]!")
+	balloon_alert(user, "机匣盖已[cover_open ? "打开" : "关闭"]！")
 	playsound(src, cover_open ? 'modular_skyrat/modules/mounted_machine_gun/sound/open_lid.ogg' : 'modular_skyrat/modules/mounted_machine_gun/sound/close_lid.ogg', 100)
 
 /// Registers all the required signals and sets up the client to work with the turret.
@@ -359,10 +359,10 @@
 		drop_bolt()
 		fire_result = FALSE
 	if(cover_open)
-		balloon_alert_to_viewers("cover open!")
+		balloon_alert_to_viewers("机匣盖开着！")
 		fire_result = FALSE
 	if(overheated)
-		balloon_alert_to_viewers("barrel heatlocked!")
+		balloon_alert_to_viewers("枪管过热锁定！")
 		fire_result = FALSE
 	if(!fire_result)
 		playsound(src, 'sound/items/weapons/gun/general/dry_fire.ogg', 50, TRUE)
@@ -454,8 +454,8 @@
 			user.pixel_y = -8
 
 /obj/item/mounted_machine_gun_folded
-	name = "\improper folded T-90 mounted machine gun"
-	desc = "A folded and unloaded mounted machine gun, ready to be deployed and used."
+	name = "\improper 折叠的T-90架设机枪"
+	desc = "一挺折叠收起、未装弹的架设机枪，可以展开使用。"
 	icon = 'modular_skyrat/modules/mounted_machine_gun/icons/turret_objects.dmi'
 	icon_state = "folded_hmg"
 	max_integrity = 250

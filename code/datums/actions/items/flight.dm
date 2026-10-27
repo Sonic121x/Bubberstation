@@ -1,7 +1,7 @@
 // Action that toggles flight onto the mob.
 /datum/action/item_action/toggle_flight
-	name = "Activate Flight Jets"
-	desc = "Activates the jet boot's miniturized rocket thrusters, allowing for sustained flight."
+	name = "启动飞行推进器"
+	desc = "启动喷气靴的微型火箭推进器，实现持续飞行。"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "jet_boot_toggle"
 	/// Managed overlay for the fire produced from flight.
@@ -41,7 +41,7 @@
 
 /datum/action/item_action/toggle_flight/do_effect(trigger_flags)
 	if(!ishuman(owner))
-		to_chat(owner, span_warning("Your shoes aren't built with you in mind, unfortunately."))
+		to_chat(owner, span_warning("很遗憾，这双鞋并不适合你的身体。"))
 		return FALSE
 	if(!target)
 		return FALSE
@@ -61,7 +61,7 @@
 		human_owner.AddElement(/datum/element/forced_gravity, 0)
 		SEND_SIGNAL(human_owner, COMSIG_JETBOOTS_ACTIVE, human_owner)
 		ADD_TRAIT(human_owner, TRAIT_PASSTABLE, SHOES_TRAIT)
-		to_chat(human_owner, span_notice("You click your jet boots together and begin to hover gently above the ground..."))
+		to_chat(human_owner, span_notice("你将喷气靴相互一碰，开始缓缓悬浮在地面上方……"))
 		human_owner.set_resting(FALSE, TRUE)
 		human_owner.refresh_gravity()
 		RegisterSignals(human_owner, list(COMSIG_LIVING_STATUS_STUN, COMSIG_LIVING_STATUS_KNOCKDOWN, COMSIG_LIVING_STATUS_PARALYZE), PROC_REF(switch_flight))
@@ -80,7 +80,7 @@
 	human_owner.RemoveElement(/datum/element/forced_gravity, 0)
 	SEND_SIGNAL(human_owner, COMSIG_JETBOOTS_INACTIVE, human_owner)
 	REMOVE_TRAIT(human_owner, TRAIT_PASSTABLE, SHOES_TRAIT)
-	to_chat(human_owner, span_notice("You're lowered back onto the ground..."))
+	to_chat(human_owner, span_notice("你缓缓落回地面……"))
 	human_owner.refresh_gravity()
 	UnregisterSignal(human_owner, list(COMSIG_LIVING_STATUS_STUN, COMSIG_LIVING_STATUS_KNOCKDOWN, COMSIG_LIVING_STATUS_PARALYZE))
 	//visuals
@@ -100,11 +100,11 @@
 	if(!location)
 		return FALSE
 	if(human.get_item_by_slot(ITEM_SLOT_LEGCUFFED))
-		to_chat(human, span_warning("Your legs are bound! Free yourself first!"))
+		to_chat(human, span_warning("你的双腿被束缚住了！先挣脱束缚！"))
 		return FALSE
 
 	var/datum/gas_mixture/environment = location.return_air()
 	if(environment?.return_pressure() < HAZARD_LOW_PRESSURE + 10)
-		to_chat(human, span_warning("The atmosphere is too thin for you to fly!"))
+		to_chat(human, span_warning("空气太稀薄，无法飞行！"))
 		return FALSE
 	return TRUE

@@ -14,20 +14,20 @@
 
 /mob/living/basic/cortical_borer/proc/try_enter_host(mob/living/carbon/human/victim)
 	if(check_for_target_bio_protection(victim))
-		balloon_alert(src, "head too protected!")
+		balloon_alert(src, "头部防护太强！")
 		return FALSE
 	if(victim.has_borer())
-		balloon_alert(src, "already occupied")
+		balloon_alert(src, "已被占据")
 		return FALSE
 	if(!do_after(src, (((upgrade_flags & BORER_FAST_BORING) && !(upgrade_flags & BORER_HIDING)) ? 3 SECONDS : 6 SECONDS), target = victim))
-		balloon_alert(src, "keep still")
+		balloon_alert(src, "别乱动")
 		return FALSE
 	if(get_dist(victim, src) > 1)
-		balloon_alert(src, "too far")
+		balloon_alert(src, "太远了")
 		return FALSE
 	var/obj/item/organ/brain/brain = victim.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!istype(brain))
-		balloon_alert(src, "no brain")
+		balloon_alert(src, "没有大脑")
 		return FALSE
 
 	return enter_host(victim, brain)
@@ -37,14 +37,14 @@
 	forceMove(human_host)
 
 	if(!(upgrade_flags & BORER_STEALTH_MODE))
-		to_chat(human_host, span_notice("A chilling sensation goes down your spine..."))
+		to_chat(human_host, span_notice("一阵寒意顺着你的脊背而下……"))
 	copy_languages(human_host)
 
 	var/obj/item/organ/borer_body/borer_organ = new()
 	borer_organ.borer = src
 	borer_organ.Insert(human_host)
 
-	log_message("[key_name(src)] went into [key_name(human_host)] at [loc_name(get_turf(human_host))]", LOG_GAME)
+	log_message("[key_name(src)] 在 [loc_name(get_turf(human_host))] 钻进了 [key_name(human_host)] 体内", LOG_GAME)
 
 	ADD_TRAIT(src, TRAIT_WEATHER_IMMUNE, "borer_in_host")
 
@@ -54,16 +54,16 @@
 
 /mob/living/basic/cortical_borer/proc/try_leave_host()
 	if(host_sugar())
-		balloon_alert(src, "cannot function with sugar in host")
+		balloon_alert(src, "宿主体内有糖分，无法运作")
 		return TRUE // We force a cooldown over sugar
-	balloon_alert(src, "left host")
+	balloon_alert(src, "已离开宿主")
 	if(!(upgrade_flags & BORER_STEALTH_MODE))
-		to_chat(human_host, span_notice("Something carefully tickles your inner ear..."))
+		to_chat(human_host, span_notice("有什么东西正小心翼翼地挠着你的内耳……"))
 	return leave_host()
 
 /mob/living/basic/cortical_borer/proc/leave_host()
 	var/turf/dropoff_turf = get_turf(human_host)
-	log_message("[key_name(src)] left [key_name(human_host)] at [loc_name(dropoff_turf)]", LOG_GAME)
+	log_message("[key_name(src)] 在 [loc_name(dropoff_turf)] 离开了 [key_name(human_host)]", LOG_GAME)
 
 	leave_host_clean()
 	forceMove(dropoff_turf)

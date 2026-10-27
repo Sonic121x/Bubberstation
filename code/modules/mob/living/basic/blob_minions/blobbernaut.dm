@@ -3,8 +3,8 @@
  * Has a variant which takes damage when away from blob tiles
  */
 /mob/living/basic/blob_minion/blobbernaut
-	name = "blobbernaut"
-	desc = "A hulking, mobile chunk of blobmass."
+	name = "变形菌巨兽"
+	desc = "一大团能活动的变形菌肉块。"
 	icon_state = "blobbernaut"
 	base_icon_state = "blobbernaut"
 	icon_living = "blobbernaut"
@@ -16,13 +16,13 @@
 	melee_damage_upper = BLOBMOB_BLOBBERNAUT_DMG_SOLO_UPPER
 	melee_attack_cooldown = CLICK_CD_MELEE
 	obj_damage = BLOBMOB_BLOBBERNAUT_DMG_OBJ
-	attack_verb_continuous = "slams"
-	attack_verb_simple = "slam"
+	attack_verb_continuous = "猛砸"
+	attack_verb_simple = "猛砸"
 	attack_sound = 'sound/effects/blob/blobattack.ogg'
-	verb_say = "gurgles"
-	verb_ask = "demands"
-	verb_exclaim = "roars"
-	verb_yell = "bellows"
+	verb_say = "咕噜道"
+	verb_ask = "喝问道"
+	verb_exclaim = "咆哮道"
+	verb_yell = "大吼道"
 	pressure_resistance = 50
 	mob_size = MOB_SIZE_LARGE
 	ai_controller = /datum/ai_controller/basic_controller/blobbernaut
@@ -167,10 +167,10 @@
 	health = maxHealth / 2 // Start out injured to encourage not beelining away from the blob
 	SEND_SOUND(src, sound('sound/effects/blob/blobattack.ogg'))
 	SEND_SOUND(src, sound('sound/effects/blob/attackblob.ogg'))
-	to_chat(src, span_infoplain("You are powerful, hard to kill, and slowly regenerate near nodes and cores, [span_cult_large("but will slowly die if not near the blob")] or if the factory that made you is killed."))
-	to_chat(src, span_infoplain("You can communicate with other blobbernauts and overminds <b>telepathically</b> by attempting to speak normally"))
-	to_chat(src, span_infoplain("Your overmind's blob reagent is: <b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font>!"))
-	to_chat(src, span_infoplain("The <b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font> reagent [blobstrain.shortdesc ? "[blobstrain.shortdesc]" : "[blobstrain.description]"]"))
+	to_chat(src, span_infoplain("你力量强大、难以杀死，在节点和核心附近会缓慢恢复，[span_cult_large("但若不在变形菌附近便会缓慢死亡")]，制造你的工厂被摧毁时同样会缓慢死亡。"))
+	to_chat(src, span_infoplain("你可以通过正常说话的方式，与其他变形菌巨兽及主脑<b>心灵感应</b>交流"))
+	to_chat(src, span_infoplain("你主脑的变形菌菌株是：<b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font>！"))
+	to_chat(src, span_infoplain("<b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font> 菌株[blobstrain.shortdesc ? "[blobstrain.shortdesc]" : "[blobstrain.description]"]"))
 
 /// Called by our factory to inform us that it's not going to support us financially any more
 /mob/living/basic/blob_minion/blobbernaut/minion/on_factory_destroyed()

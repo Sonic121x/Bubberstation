@@ -1,6 +1,6 @@
 /obj/item/assembly/infra
-	name = "infrared emitter"
-	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
+	name = "红外发射器"
+	desc = "发射一道可见或不可见的光束，光束被中断时触发。"
 	icon_state = "infrared"
 	base_icon_state = "infrared"
 	custom_materials = list(
@@ -38,7 +38,7 @@
 
 /obj/item/assembly/infra/examine(mob/user)
 	. = ..()
-	. += span_notice("The infrared trigger is [on ? "on" : "off"].")
+	. += span_notice("红外触发器处于[on ? "开启" : "关闭"]状态。")
 
 /// Checks if the passed movable can block the beam.
 /obj/item/assembly/infra/proc/atom_blocks_beam(atom/movable/beam_atom)
@@ -295,5 +295,5 @@
 
 // Beam subtype for the infrared emitter
 /obj/effect/ebeam/reacting/infrared
-	name = "infrared beam"
+	name = "红外光束"
 	alpha = 175

@@ -1,13 +1,13 @@
 /obj/item/clothing/mask/breath/vox
-	desc = "A close-fitting mask that can be connected to an air supply. This one's got an easily accessible feeding port to be more suitable for the Vox crewmembers."
-	name = "vox breath mask"
+	desc = "一种可连接气源、贴合面部的面罩。这一款设有方便取用的进食口，更适合沃克斯船员。"
+	name = "沃克斯呼吸面罩"
 	actions_types = list()
 	flags_cover = NONE
 	visor_flags_cover = NONE
 
 /obj/item/clothing/mask/balaclavaadjust
-	name = "adjustable balaclava"
-	desc = "Wider eyed and made of an elastic based material, this one seems like it can contort more."
+	name = "可调节巴拉克拉瓦头套"
+	desc = "眼孔更宽，由弹性材料制成，这一顶似乎能做出更多变形。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/mask.dmi'
 	icon_state = "balaclava"
@@ -26,17 +26,17 @@
 			if (0)
 				flags_inv = HIDEHAIR
 				icon_state = initial(icon_state) + "_open"
-				to_chat(user, "You put the balaclava away, revealing your face.")
+				to_chat(user, "你把巴拉克拉瓦头套拉下，露出了脸。")
 				open = 1
 			if (1)
 				flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 				icon_state = initial(icon_state) + "_mouth"
-				to_chat(user, "You adjust the balaclava up to cover your mouth.")
+				to_chat(user, "你把巴拉克拉瓦头套向上拉，遮住了嘴。")
 				open = 2
 			else
 				flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 				icon_state = initial(icon_state)
-				to_chat(user, "You pull the balaclava up to cover your whole head.")
+				to_chat(user, "你把巴拉克拉瓦头套拉起，盖住了整个头部。")
 				open = 0
 		user.update_body_parts()
 		user.update_worn_ears()
@@ -45,12 +45,12 @@
 /obj/item/clothing/mask/balaclavaadjust/attack_self(mob/user)
 	adjust_mask(user)
 
-GAME_VERB_SRC(/obj/item/clothing/mask/balaclavaadjust, toggle, usr, "Adjust Balaclava", "Object")
+GAME_VERB_SRC(/obj/item/clothing/mask/balaclavaadjust, toggle, usr, "调整巴拉克拉瓦头套", "Object")
 		adjust_mask(usr)
 
 /obj/item/clothing/mask/balaclava/threehole
-	name = "three hole balaclava"
-	desc = "Tiocfaidh ar la."
+	name = "三孔巴拉克拉瓦头套"
+	desc = "我们的日子终将到来。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/mask.dmi'
 	icon_state = "balaclavam"
@@ -59,23 +59,23 @@ GAME_VERB_SRC(/obj/item/clothing/mask/balaclavaadjust, toggle, usr, "Adjust Bala
 	visor_flags_inv = HIDEHAIR
 
 /obj/item/clothing/mask/balaclava/threehole/green
-	name = "three hole green balaclava"
-	desc = "Tiocfaidh ar la."
+	name = "绿色三孔巴拉克拉瓦头套"
+	desc = "我们的日子终将到来。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/mask.dmi'
 	icon_state = "swatclavam"
 	inhand_icon_state = "balaclava"
 
 /obj/item/clothing/mask/muzzle/ball
-	name = "ballgag"
-	desc = "I'm pretty fuckin far from okay."
+	name = "口球"
+	desc = "我离“没事”还差得他妈远呢。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/mask.dmi'
 	icon_state = "ballgag"
 
 /obj/item/clothing/mask/muzzle/ring
-	name = "ring gag"
-	desc = "A mouth wrap seemingly designed to hold the mouth open."
+	name = "环形口塞"
+	desc = "一种似乎旨在让嘴保持张开的口罩。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/mask.dmi'
 	icon_state = "ringgag"

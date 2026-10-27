@@ -2,7 +2,7 @@ import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { batchThreeDisplay } from '../localization/batchThreeDisplay';
 export const Teleporter = (props) => {
   const { act, data } = useBackend();
   const {
@@ -30,7 +30,7 @@ export const Teleporter = (props) => {
               <LabeledList>
                 <LabeledList.Item label="Regime">
                   <Button
-                    content={regime_set}
+                    content={batchThreeDisplay(regime_set)}
                     onClick={() => act('regimeset')}
                   />
                 </LabeledList.Item>

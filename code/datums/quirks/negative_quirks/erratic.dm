@@ -1,12 +1,12 @@
 /datum/quirk/erratic
 	name = "Erratic"
-	desc = "You mood swings like a pendulum, causing your personality to change on a whim every so often."
+	desc = "你的情绪像钟摆一样摇摆不定，性格也时不时随之改变。"
 	icon = FA_ICON_MASKS_THEATER
 	value = -3
-	gain_text = span_danger("You feel erratic.") // say that again?
-	lose_text = span_notice("You feel more stable.")
-	medical_record_text = "Patient has a bipolar personality disorder."
-	medical_symptom_text = "Exhibits sudden and unpredictable changes in personality, mood, and behavior, often swinging between extremes of emotion and demeanor."
+	gain_text = span_danger("你感觉自己反复无常。") // say that again?
+	lose_text = span_notice("你感觉稳定多了。")
+	medical_record_text = "患者的人格与情绪呈双相变化。"
+	medical_symptom_text = "人格、情绪及行为出现突发且难以预测的变化，常在情感与举止的极端之间摇摆。"
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_MOODLET_BASED|QUIRK_PROCESSES|QUIRK_TRAUMALIKE
 	hardcore_value = 3
 	mail_goodies = list(/obj/item/storage/pill_bottle/psicodine)
@@ -40,14 +40,14 @@
 	if(random_index % 2 == 0)
 		random_index = 0
 		replace_personalities(base_personalities)
-		to_chat(quirk_holder, span_notice("You feel... normal."))
+		to_chat(quirk_holder, span_notice("你感觉……很正常。"))
 		announce_personality_change()
 		return
 
 	var/max = CONFIG_GET(number/max_personalities)
 	var/list/new_personality = prob(1) ? list() : SSpersonalities.select_random_personalities(max - 2, max + 1)
 	replace_personalities(new_personality)
-	to_chat(quirk_holder, span_notice("You feel... different."))
+	to_chat(quirk_holder, span_notice("你感觉……不一样了。"))
 	announce_personality_change()
 
 /datum/quirk/erratic/proc/replace_personalities(list/new_personalities)
@@ -58,4 +58,4 @@
 	var/list/new_personality = list()
 	for(var/datum/personality/personality_type as anything in quirk_holder.personalities)
 		new_personality += initial(personality_type.name)
-	to_chat(quirk_holder, span_green("Your personality is now: [english_list(new_personality)]."))
+	to_chat(quirk_holder, span_green("你现在的性格是：[english_list(new_personality)]。"))

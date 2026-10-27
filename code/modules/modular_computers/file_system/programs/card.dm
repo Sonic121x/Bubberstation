@@ -1,9 +1,9 @@
 /datum/computer_file/program/card_mod
 	filename = "plexagonidwriter"
-	filedesc = "Plexagon Access Management"
+	filedesc = "普莱克萨贡权限管理"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	program_open_overlay = "id"
-	extended_desc = "Program for programming employee ID cards to access parts of the station."
+	extended_desc = "用于为员工 ID 卡设置权限、以便进入站内各区域的程序。"
 	download_access = list(ACCESS_COMMAND)
 	size = 8
 	tgui_id = "NtosCard"
@@ -57,7 +57,7 @@
 	if((!target_dept || is_centcom) && (ACCESS_CHANGE_IDS in auth_card.access))
 		minor = FALSE
 		authenticated_card = "[auth_card.name]"
-		authenticated_user = auth_card.registered_name ? auth_card.registered_name : "Unknown"
+		authenticated_user = auth_card.registered_name ? auth_card.registered_name : "未知"
 		job_templates = is_centcom ? SSid_access.centcom_job_templates.Copy() : SSid_access.station_job_templates.Copy()
 		valid_access = is_centcom ? SSid_access.get_region_access_list(list(REGION_CENTCOM)) : SSid_access.get_region_access_list(list(REGION_ALL_STATION))
 		computer.update_static_data_for_all_viewers()
@@ -79,7 +79,7 @@
 	if(length(region_access))
 		minor = TRUE
 		valid_access |= SSid_access.get_region_access_list(region_access)
-		authenticated_card = "[auth_card.name] \[LIMITED ACCESS\]"
+		authenticated_card = "[auth_card.name] \[受限权限\]"
 		computer.update_static_data_for_all_viewers()
 		return TRUE
 
@@ -124,12 +124,12 @@
 		if("PRG_print")
 			if(!computer || !authenticated_card || !modified_id)
 				return TRUE
-			var/contents = {"<h4>Access Report</h4>
-						<u>Prepared By:</u> [authenticated_user]<br>
-						<u>For:</u> [modified_id.registered_name || "Unregistered"]<br>
+			var/contents = {"<h4>权限报告</h4>
+						<u>编制人：</u> [authenticated_user]<br>
+						<u>对象：</u> [modified_id.registered_name || "未登记"]<br>
 						<hr>
-						<u>Assignment:</u> [modified_id.assignment]<br>
-						<u>Access:</u><br>
+						<u>职务：</u> [modified_id.assignment]<br>
+						<u>权限：</u><br>
 						"}
 
 			var/list/known_access_rights = SSid_access.get_region_access_list(list(REGION_ALL_STATION))
@@ -137,12 +137,12 @@
 				if(A in known_access_rights)
 					contents += " [SSid_access.get_access_desc(A)]"
 
-			if(!computer.print_text(contents, "access report - [modified_id.registered_name || "Unregistered"]"))
-				to_chat(usr, span_notice("Printer is out of paper."))
+			if(!computer.print_text(contents, "权限报告——[modified_id.registered_name || "未登记"]"))
+				to_chat(usr, span_notice("打印机缺纸。"))
 				return TRUE
 			else
 				playsound(computer, 'sound/machines/terminal/terminal_on.ogg', 50, FALSE)
-				computer.visible_message(span_notice("\The [computer] prints out a paper."))
+				computer.visible_message(span_notice("[computer] 打印出一张纸。"))
 			return TRUE
 		// Used to fire someone. Wipes all access from their card and modifies their assignment.
 		if("PRG_terminate")
@@ -150,11 +150,11 @@
 				return TRUE
 			if(minor)
 				if(!(modified_id.trim?.type in job_templates))
-					to_chat(usr, span_notice("Software error: You do not have the necessary permissions to demote this card."))
+					to_chat(usr, span_notice("软件错误：你没有降级此卡的所需权限。"))
 					return TRUE
 
 			// Set the new assignment then remove the trim.
-			modified_id.assignment = is_centcom ? "Fired" : "Demoted"
+			modified_id.assignment = is_centcom ? "已解雇" : "已降职"
 			SSid_access.remove_trim_from_card(modified_id)
 
 			playsound(computer, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
@@ -183,7 +183,7 @@
 			new_name = reject_bad_name(new_name, allow_numbers = TRUE)
 
 			if(!new_name)
-				to_chat(usr, span_notice("Software error: The ID card rejected the new name as it contains prohibited characters."))
+				to_chat(usr, span_notice("软件错误：ID 卡拒绝了新名字，因其包含违禁字符。"))
 				return TRUE
 
 			modified_id.registered_name = new_name
@@ -228,17 +228,17 @@
 
 			if(access_type in modified_id.access)
 				modified_id.remove_access(list(access_type))
-				LOG_ID_ACCESS_CHANGE(user, modified_id, "removed [SSid_access.get_access_desc(access_type)]")
+				LOG_ID_ACCESS_CHANGE(user, modified_id, "移除了 [SSid_access.get_access_desc(access_type)]")
 				return TRUE
 
 			if(!modified_id.add_access(list(access_type), try_wildcard))
-				to_chat(usr, span_notice("ID error: ID card rejected your attempted access modification."))
-				LOG_ID_ACCESS_CHANGE(user, modified_id, "failed to add [SSid_access.get_access_desc(access_type)][try_wildcard ? " with wildcard [try_wildcard]" : ""]")
+				to_chat(usr, span_notice("ID 错误：ID 卡拒绝了你尝试的权限修改。"))
+				LOG_ID_ACCESS_CHANGE(user, modified_id, "尝试添加 [SSid_access.get_access_desc(access_type)] 失败[try_wildcard ? "，通配符 [try_wildcard]" : ""]")
 				return TRUE
 
 			if(access_type in ACCESS_ALERT_ADMINS)
-				message_admins("[ADMIN_LOOKUPFLW(user)] just added [SSid_access.get_access_desc(access_type)] to an ID card [ADMIN_VV(modified_id)] [(modified_id.registered_name) ? "belonging to [modified_id.registered_name]." : "with no registered name."]")
-			LOG_ID_ACCESS_CHANGE(user, modified_id, "added [SSid_access.get_access_desc(access_type)]")
+				message_admins("[ADMIN_LOOKUPFLW(user)] 刚刚将 [SSid_access.get_access_desc(access_type)] 添加到了 ID 卡 [ADMIN_VV(modified_id)] [(modified_id.registered_name) ? "，持卡人为 [modified_id.registered_name]。" : "，该卡未登记姓名。"]")
+			LOG_ID_ACCESS_CHANGE(user, modified_id, "添加了 [SSid_access.get_access_desc(access_type)]")
 			return TRUE
 		// Apply template to ID card.
 		if("PRG_template")
@@ -275,7 +275,7 @@
 		if("PRG_insert_alt_id")
 			var/obj/item/card/id/alt_id = user.get_active_held_item()
 			if(!isidcard(alt_id))
-				to_chat(user, span_notice("You must hold an ID card to insert it into the secondary slot."))
+				to_chat(user, span_notice("你必须手持 ID 卡才能将其插入副卡槽。"))
 				return TRUE
 			computer.insert_secondary_id(alt_id, user)
 			return TRUE
@@ -327,7 +327,7 @@
 	var/datum/id_trim/card_trim = card.trim
 
 	data["id_name"] = card.name
-	data["id_rank"] = card.assignment || "Unassigned"
+	data["id_rank"] = card.assignment || "未分配"
 	data["id_owner"] = card.registered_name || "-----"
 	data["access_on_card"] = card.access || list()
 	data["wildcard_slots"] = card.wildcard_slots || list()

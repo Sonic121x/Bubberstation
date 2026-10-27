@@ -8,9 +8,9 @@
  * General logic unit with AND OR capabilities
  */
 /obj/item/circuit_component/compare/logic
-	display_name = "Logic"
-	desc = "A component with 'and' and 'or' capabilities."
-	category = "Math"
+	display_name = "逻辑"
+	desc = "具备“与”和“或”运算能力的元件。"
+	category = "数学"
 
 	var/datum/port/input/option/logic_options
 

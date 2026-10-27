@@ -1,11 +1,11 @@
 /obj/item/food/honeycomb
-	name = "honeycomb"
-	desc = "A hexagonal mesh of honeycomb."
+	name = "蜂巢蜜"
+	desc = "一块六边形的蜂巢蜜。"
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "honeycomb"
 	max_volume = 10
 	food_reagents = list(/datum/reagent/consumable/honey = 5)
-	tastes = list("honey" = 1)
+	tastes = list("蜂蜜" = 1)
 	preserved_food = TRUE
 	starting_reagent_purity = 1
 	var/honey_color = ""
@@ -26,7 +26,7 @@
 /obj/item/food/honeycomb/proc/set_reagent(reagent)
 	var/datum/reagent/R = GLOB.chemical_reagents_list[reagent]
 	if(istype(R))
-		name = "honeycomb ([R.name])"
+		name = "蜂巢蜜（[R.name]）"
 		honey_color = R.color
 		reagents.add_reagent(R.type,5)
 	else

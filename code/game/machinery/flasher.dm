@@ -1,8 +1,8 @@
 // It is a gizmo that flashes a small area
 
 /obj/machinery/flasher
-	name = "mounted flash"
-	desc = "A wall-mounted flashbulb device."
+	name = "壁挂闪光器"
+	desc = "壁挂式闪光灯装置。"
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "mflash1"
 	base_icon_state = "mflash"
@@ -68,12 +68,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 	if (!istype(tool, /obj/item/assembly/flash/handheld))
 		return NONE
 	if (bulb)
-		to_chat(user, span_warning("A flashbulb is already installed in [src]!"))
+		to_chat(user, span_warning("[src]内已经装有闪光灯了！"))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice("[user] installs [tool] into [src]."), \
-						span_notice("You install [tool] into [src]."))
+	user.visible_message(span_notice("[user]将[tool]装入了[src]。"), \
+						span_notice("你将[tool]装入了[src]。"))
 	power_change()
 	return ITEM_INTERACT_SUCCESS
 
@@ -82,10 +82,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 	add_fingerprint(user)
 	if(!bulb)
 		return NONE
-	user.visible_message(span_notice("[user] begins to disconnect [src]'s flashbulb."), span_notice("You begin to disconnect [src]'s flashbulb..."))
+	user.visible_message(span_notice("[user]开始拆除[src]的闪光灯。"), span_notice("你开始拆除[src]的闪光灯……"))
 	if(!tool.use_tool(src, user, 30, volume=50) || !bulb)
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice("[user] disconnects [src]'s flashbulb!"), span_notice("You disconnect [src]'s flashbulb."))
+	user.visible_message(span_notice("[user]拆除了[src]的闪光灯！"), span_notice("你拆除了[src]的闪光灯。"))
 	bulb.forceMove(loc)
 	power_change()
 	return ITEM_INTERACT_SUCCESS
@@ -93,12 +93,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 /obj/machinery/flasher/wrench_act(mob/living/user, obj/item/tool)
 	add_fingerprint(user)
 	if(bulb)
-		to_chat(user, span_warning("Remove a flashbulb from [src] first!"))
+		to_chat(user, span_warning("请先从[src]拆除闪光灯！"))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You start unsecuring the flasher frame..."))
+	to_chat(user, span_notice("你开始解除闪光器框架的固定……"))
 	if(!tool.use_tool(src, user, 40, volume=50))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You unsecure the flasher frame."))
+	to_chat(user, span_notice("你解除了闪光器框架的固定。"))
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -165,8 +165,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 		new /obj/item/stack/sheet/iron (loc, 2)
 
 /obj/machinery/flasher/portable //Portable version of the flasher. Only flashes when anchored
-	name = "portable flasher"
-	desc = "A portable flashing device. Wrench to activate and deactivate. Cannot detect slow movements."
+	name = "便携闪光器"
+	desc = "便携式闪光装置。用扳手启用或停用，无法探测缓慢的移动。"
 	icon = 'icons/obj/machines/sec.dmi'
 	icon_state = "pflash1-p"
 	base_icon_state = "pflash"
@@ -202,14 +202,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 /obj/machinery/flasher/portable/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src, 100)
 	if (!anchored && !isinspace())
-		to_chat(user, span_notice("[src] is now secured."))
+		to_chat(user, span_notice("[src]现已固定。"))
 		add_overlay("[base_icon_state]-s")
 		set_anchored(TRUE)
 		power_change()
 		proximity_monitor.set_range(flash_range)
 		return ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_notice("[src] can now be moved."))
+	to_chat(user, span_notice("现在可以移动[src]了。"))
 	cut_overlays()
 	set_anchored(FALSE)
 	power_change()
@@ -217,8 +217,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/wallframe/flasher
-	name = "mounted flash frame"
-	desc = "Used for building wall-mounted flashers."
+	name = "壁挂闪光器框架"
+	desc = "用于建造壁挂闪光器。"
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "mflash_frame"
 	result_path = /obj/machinery/flasher
@@ -227,7 +227,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/flasher, 26)
 
 /obj/item/wallframe/flasher/examine(mob/user)
 	. = ..()
-	. += span_notice("Its channel ID is '[id]'.")
+	. += span_notice("它的频道 ID 为“[id]”。")
 
 /obj/item/wallframe/flasher/after_attach(obj/attached_to)
 	..()

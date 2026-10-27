@@ -1,12 +1,12 @@
 #define GAMING_WITHDRAWAL_TIME (15 MINUTES)
 /datum/quirk/gamer
 	name = "Gamer"
-	desc = "You are a hardcore gamer, and you have a need to game. You love winning and hate losing. You only like gamer food."
+	desc = "你是个硬核玩家，离不开游戏。你喜欢赢，讨厌输，而且只爱吃玩家零食。"
 	icon = FA_ICON_GAMEPAD
 	value = 0
-	gain_text = span_notice("You feel the sudden urge to game.")
-	lose_text = span_notice("You've lost all interest in gaming.")
-	medical_record_text = "Patient has a severe video game addiction."
+	gain_text = span_notice("你突然很想打游戏。")
+	lose_text = span_notice("你对游戏彻底失去了兴趣。")
+	medical_record_text = "患者存在严重的电子游戏成瘾。"
 	mob_trait = TRAIT_GAMER
 	mail_goodies = list(/obj/item/toy/intento, /obj/item/clothing/head/fedora)
 	/// Timer for gaming withdrawal to kick in
@@ -81,7 +81,7 @@
 /datum/quirk/gamer/proc/gamer_moment()
 	// It was a heated gamer moment...
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	human_holder.say(";[pick("SHIT", "PISS", "FUCK", "CUNT", "COCKSUCKER", "MOTHERFUCKER")]!!", forced = name)
+	human_holder.say(";[pick("狗屎", "尿", "操", "臭婊子", "舔屌的", "他妈的")]！！", forced = name)
 
 /datum/quirk/gamer/proc/enter_withdrawal()
 	var/mob/living/carbon/human/human_holder = quirk_holder

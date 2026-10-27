@@ -1,11 +1,11 @@
 // Muli
 /obj/item/seeds/muli
-	name = "pack of muli starters"
-	desc = "This bacterial colony forms into muli pods."
+	name = "穆利种子包"
+	desc = "这种细菌菌落会生长成穆利荚。"
 	icon = 'modular_skyrat/master_files/icons/obj/hydroponics/seeds.dmi'
 	icon_state = "seed-muli"
 	species = "muli"
-	plantname = "Muli Colony"
+	plantname = "穆利菌落"
 	product = /obj/item/food/grown/muli
 	growing_icon = 'modular_skyrat/master_files/icons/obj/hydroponics/growing.dmi'
 	icon_grow = "muli-grow"
@@ -17,12 +17,12 @@
 
 /obj/item/food/grown/muli
 	seed = /obj/item/seeds/muli
-	name = "muli pod"
-	desc = "A soft, oval-shaped pod. Contains a minty pale-blue juice used for many applications in teshari cuisine."
+	name = "穆利荚"
+	desc = "柔软的椭圆形荚果，内含带薄荷味的淡蓝色汁液，在特沙利料理中有许多用途。"
 	icon = 'modular_skyrat/master_files/icons/obj/hydroponics/harvest.dmi'
 	icon_state = "muli"
 	foodtypes = VEGETABLES
-	tastes = list("mint and savory sweetness" = 1)
+	tastes = list("薄荷与鲜甜" = 1)
 
 /obj/item/food/grown/muli/grind_results()
 	return list(/datum/reagent/consumable/muli_juice = 0.1)

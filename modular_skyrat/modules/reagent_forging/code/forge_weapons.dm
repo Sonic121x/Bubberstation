@@ -2,7 +2,7 @@
 
 // Damage is technically 10 by default since that's the max you get from perfect hits when crafting. Find a non-third-of-sth value for the multiplier to get to 18, I'll wait
 /obj/item/melee/forged_reagent_weapon
-	name = "forged reagent weapon"
+	name = "锻造试剂武器"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'
 	lefthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_l.dmi'
 	righthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_r.dmi'
@@ -35,8 +35,8 @@
 	/// animation type to show when doing a nonlethal attack
 	var/nonlethal_animation = ATTACK_ANIMATION_PIERCE
 	//verbs to use when secondary attacking
-	var/list/secondary_attack_verb_continuous = list("shaft-strikes")
-	var/list/secondary_attack_verb_simple = list("shaft-strike")
+	var/list/secondary_attack_verb_continuous = list("杆击")
+	var/list/secondary_attack_verb_simple = list("杆击")
 
 	//below numbers are multiplied by the weapon's force
 	//how much stamina damage to apply on a rightclick
@@ -50,11 +50,11 @@
 	var/healthpercent = round((atom_integrity/max_integrity) * 100, 1)
 	switch(healthpercent)
 		if(50 to 99)
-			. += span_info("It looks slightly damaged.")
+			. += span_info("它看起来略有损伤。")
 		if(25 to 50)
-			. += span_info("It appears heavily damaged.")
+			. += span_info("它看起来严重受损。")
 		if(0 to 25)
-			. += span_warning("It's falling apart!")
+			. += span_warning("它快要散架了！")
 
 /obj/item/melee/forged_reagent_weapon/Initialize(mapload)
 	. = ..()
@@ -103,8 +103,8 @@
 	// clumsy people redirect this attack - yes, this bypasses IWASBATONED and such
 	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 		user.visible_message(
-			span_danger("[user] accidentally hits [user.p_them()]self over the head with [src]! What a doofus!"),
-			span_userdanger("You accidentally hit yourself over the head with [src]!"),
+			span_danger("[user] 不小心用 [src] 打中了自己的脑袋！真是个笨蛋！"),
+			span_userdanger("你不小心用 [src] 打中了自己的脑袋！"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
@@ -183,8 +183,8 @@
 	. = list()
 	if(length(secondary_attack_verb_continuous) >= 1)
 		var/random = rand(1, length(secondary_attack_verb_continuous))
-		.["visible"] = span_danger("[user] [secondary_attack_verb_continuous[random]] [target] with [src]!")
-		.["local"] = span_userdanger("[user] [secondary_attack_verb_continuous[random]] you with [src]!")
+		.["visible"] = span_danger("[user] 用 [src] [secondary_attack_verb_continuous[random]]了 [target]！")
+		.["local"] = span_userdanger("[user] 用 [src] [secondary_attack_verb_continuous[random]]了你！")
 
 /obj/item/melee/forged_reagent_weapon/proc/on_attack_animation(obj/item/source, atom/movable/attacker, atom/attacked_atom, animation_type, list/image_override, list/animation_override, list/angle_override)
 	SIGNAL_HANDLER
@@ -200,17 +200,17 @@
 		return NONE
 
 	if (isobj(target))
-		context[SCREENTIP_CONTEXT_LMB] = "Attack"
+		context[SCREENTIP_CONTEXT_LMB] = "攻击"
 	else
-		context[SCREENTIP_CONTEXT_LMB] = "Attack"
+		context[SCREENTIP_CONTEXT_LMB] = "攻击"
 		if(can_nonlethal_altfire && ishuman(target))
-			context[SCREENTIP_CONTEXT_RMB] = "Non-lethally Attack"
+			context[SCREENTIP_CONTEXT_RMB] = "非致命攻击"
 
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/melee/forged_reagent_weapon/sword
-	name = "reagent sword"
-	desc = "A sharp, maneuverable bastard sword most adept at blocking opposing melee strikes."
+	name = "试剂长剑"
+	desc = "一把锋利灵活的手半剑，尤其擅长格挡敌人的近战攻击。"
 	force = 7
 	armour_penetration = 10
 	wound_bonus = -5
@@ -224,14 +224,14 @@
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FIRE_PROOF
 	block_chance = 30
-	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	attack_verb_continuous = list("攻击", "劈砍", "刺击", "切削", "撕扯", "划伤", "撕裂", "剁砍", "切割")
+	attack_verb_simple = list("攻击", "劈砍", "刺击", "切削", "撕扯", "划伤", "撕裂", "剁砍", "切割")
 	sharpness = SHARP_EDGED
 	max_integrity = 150
 	stamina_damage_multiplier = 1.75
 	knockdown_time_multiplier = 1 DECISECONDS
-	secondary_attack_verb_continuous = list("pommel-strikes")
-	secondary_attack_verb_simple = list("pommel-strike")
+	secondary_attack_verb_continuous = list("柄首击打")
+	secondary_attack_verb_simple = list("柄首击打")
 	var/wielded = FALSE
 	var/unwielded_block_chance = 30
 	var/wielded_block_chance = 45
@@ -250,8 +250,8 @@
 	block_chance = unwielded_block_chance
 
 /obj/item/melee/forged_reagent_weapon/katana
-	name = "reagent katana"
-	desc = "A katana sharp enough to penetrate body armor, but not quite million-times-folded sharp."
+	name = "试剂武士刀"
+	desc = "一把锋利得足以穿透护甲的武士刀，但还没有折叠锻打百万次那么夸张。"
 	force = 7
 	armour_penetration = 25 //Slices through armour like butter, but can't quite bisect a knight like the real thing.
 	wound_bonus = -5
@@ -264,13 +264,13 @@
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FIRE_PROOF
-	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	attack_verb_continuous = list("攻击", "劈砍", "刺击", "切削", "撕扯", "划伤", "撕裂", "剁砍", "切割")
+	attack_verb_simple = list("攻击", "劈砍", "刺击", "切削", "撕扯", "划伤", "撕裂", "剁砍", "切割")
 	sharpness = SHARP_EDGED
 	stamina_damage_multiplier = 1.5
 	knockdown_time_multiplier = 0.6 DECISECONDS
-	secondary_attack_verb_continuous = list("pommel-strikes")
-	secondary_attack_verb_simple = list("pommel-strike")
+	secondary_attack_verb_continuous = list("柄首击打")
+	secondary_attack_verb_simple = list("柄首击打")
 
 /obj/item/melee/forged_reagent_weapon/katana/Initialize(mapload)
 	. = ..()
@@ -278,8 +278,8 @@
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
 /obj/item/melee/forged_reagent_weapon/dagger
-	name = "reagent dagger"
-	desc = "A lightweight dagger historically used to stab at the gaps in armour of fallen knights of old."
+	name = "试剂匕首"
+	desc = "一把轻巧的匕首，过去常被用来刺入倒地骑士的铠甲缝隙。"
 	force = 5
 	icon_state = "dagger"
 	inhand_icon_state = "dagger"
@@ -291,8 +291,8 @@
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FIRE_PROOF
-	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	attack_verb_continuous = list("攻击", "劈砍", "刺击", "切削", "撕扯", "划伤", "撕裂", "剁砍", "切割")
+	attack_verb_simple = list("攻击", "劈砍", "刺击", "切削", "撕扯", "划伤", "撕裂", "剁砍", "切割")
 	sharpness = SHARP_EDGED
 	can_nonlethal_altfire = FALSE
 	wound_bonus = 5
@@ -363,7 +363,7 @@
 
 	if(!successful_sneak_attack)
 		if(sneak_attack_fail_message)
-			user.balloon_alert(carbon_target, "sneak attack avoided!")
+			user.balloon_alert(carbon_target, "躲过了偷袭！")
 		return FALSE
 	return TRUE
 
@@ -372,12 +372,12 @@
 	var/armor_block = carbon_target.run_armor_check(affecting, MELEE, armour_penetration = armour_penetration)
 
 	carbon_target.apply_damage(bonus_damage, BRUTE, def_zone = affecting, blocked = armor_block, wound_bonus = exposed_wound_bonus, sharpness = SHARP_EDGED)
-	carbon_target.balloon_alert(user, "sneak attack!")
+	carbon_target.balloon_alert(user, "偷袭！")
 	playsound(carbon_target, 'sound/items/weapons/guillotine.ogg', 50, TRUE)
 
 /obj/item/melee/forged_reagent_weapon/rapier
-	name = "reagent rapier"
-	desc = "A lightweight rapier. Usually kept as a self-defense weapon; good at parrying attacks but cannot be two-handed for extra power."
+	name = "试剂刺剑"
+	desc = "一把轻巧的刺剑，通常作为防身武器；擅长招架攻击，但无法通过双手持握增强威力。"
 	force = 10
 	block_chance = 30
 	icon_state = "rapier"
@@ -392,13 +392,13 @@
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FIRE_PROOF
-	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("attack", "pierces", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	attack_verb_continuous = list("攻击", "劈砍", "刺击", "切削", "撕扯", "划伤", "撕裂", "剁砍", "切割")
+	attack_verb_simple = list("攻击", "穿刺", "刺击", "切削", "撕扯", "划伤", "撕裂", "剁砍", "切割")
 	sharpness = SHARP_POINTY
 	stamina_damage_multiplier = 1.5
 	knockdown_time_multiplier = 1.4
-	secondary_attack_verb_continuous = list("hilt-strikes")
-	secondary_attack_verb_simple = list("hilt-strike")
+	secondary_attack_verb_continuous = list("剑柄击打")
+	secondary_attack_verb_simple = list("剑柄击打")
 
 /obj/item/melee/forged_reagent_weapon/rapier/Initialize(mapload)
 	. = ..()
@@ -408,8 +408,8 @@
 	AddComponent(/datum/component/reagent_imbued/weapon, list(FORGE_EFFECT_BLOCKCHANCE = 5))
 
 /obj/item/melee/forged_reagent_weapon/staff //doesn't do damage. Useful for healing reagents.
-	name = "reagent staff"
-	desc = "A staff most notably capable of being imbued with reagents, especially useful alongside its otherwise harmless nature."
+	name = "试剂法杖"
+	desc = "一根能够注入试剂的法杖，这项功能与它本身几乎无害的特性十分相配。"
 	force = 0
 	icon_state = "staff"
 	inhand_icon_state = "staff"
@@ -420,8 +420,8 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FIRE_PROOF
 	nonlethal_animation = ATTACK_ANIMATION_SLASH
-	attack_verb_continuous = list("reagent casts on", "waves a staff over")
-	attack_verb_simple = list("reagent cast on", "wave a staff over")
+	attack_verb_continuous = list("施加试剂于", "挥杖拂过")
+	attack_verb_simple = list("施加试剂于", "挥杖拂过")
 
 /obj/item/melee/forged_reagent_weapon/staff/apply_reagent_component()
 	AddComponent(/datum/component/reagent_imbued/weapon, list(FORGE_EFFECT_REAGENT_INJECT = 3), 0.7)
@@ -441,8 +441,8 @@
 	user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/item/melee/forged_reagent_weapon/spear
-	name = "reagent spear"
-	desc = "A long spear that can be wielded in two hands to boost damage at the cost of single-handed versatility."
+	name = "试剂长矛"
+	desc = "一根长矛，可牺牲单手操作的灵活性，改用双手持握以提高伤害。"
 	force = 7
 	throwforce = 22
 	armour_penetration = 10
@@ -455,16 +455,16 @@
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FIRE_PROOF
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
-	attack_verb_continuous = list("attacks", "pokes", "jabs", "tears", "lacerates", "gores")
-	attack_verb_simple = list("attack", "poke", "jab", "tear", "lacerate", "gore")
+	attack_verb_continuous = list("攻击", "戳刺", "猛刺", "撕扯", "划伤", "刺穿")
+	attack_verb_simple = list("攻击", "戳刺", "猛刺", "撕扯", "划伤", "刺穿")
 	wound_bonus = -10
 	exposed_wound_bonus = 20
 	sharpness = SHARP_POINTY
 	nonlethal_animation = ATTACK_ANIMATION_SLASH
 	stamina_damage_multiplier = 2
 	knockdown_time_multiplier = 0.2
-	secondary_attack_verb_continuous = list("shaft-strikes")
-	secondary_attack_verb_simple = list("shaft-strike")
+	secondary_attack_verb_continuous = list("杆击")
+	secondary_attack_verb_simple = list("杆击")
 
 /obj/item/melee/forged_reagent_weapon/spear/Initialize(mapload)
 	. = ..()
@@ -481,8 +481,8 @@
 	armour_penetration /= 2
 
 /obj/item/melee/forged_reagent_weapon/axe
-	name = "reagent axe"
-	desc = "An axe especially balanced for throwing and embedding into fleshy targets, yet also effective at destroying shields of all sorts."
+	name = "试剂斧"
+	desc = "一把专为投掷和平衡设计的斧头，易于嵌入血肉目标，也擅长摧毁各种盾牌。"
 	force = 7
 	armour_penetration = 10
 	wound_bonus = -5
@@ -495,13 +495,13 @@
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FIRE_PROOF
-	attack_verb_continuous = list("slashes", "bashes")
-	attack_verb_simple = list("slash", "bash")
+	attack_verb_continuous = list("劈砍", "猛砸")
+	attack_verb_simple = list("劈砍", "猛砸")
 	sharpness = SHARP_EDGED
 	stamina_damage_multiplier = 3
 	knockdown_time_multiplier = 0.7
-	secondary_attack_verb_continuous = list("blunt-strikes")
-	secondary_attack_verb_simple = list("blunt-strike")
+	secondary_attack_verb_continuous = list("钝击")
+	secondary_attack_verb_simple = list("钝击")
 
 /datum/embedding/forged_axe
 	embed_chance = 65
@@ -521,17 +521,17 @@
 		var/mob/living/carbon/human/H = M
 		for(var/obj/item/shield/I in H.held_items)
 			if(I.breakable_by_damage)
-				user.balloon_alert(user, "devastating blow!")
+				user.balloon_alert(user, "毁灭一击！")
 				playsound(src, 'sound/effects/bang.ogg', 30)
 				I.take_damage(15, BRUTE, 0, FALSE, get_dir(user, H))
 			else
-				user.balloon_alert(user, "crippling blow!")
+				user.balloon_alert(user, "致残一击！")
 				playsound(src, 'sound/effects/tableheadsmash.ogg', 30)
 				H.apply_damage(15, STAMINA)
 
 /obj/item/melee/forged_reagent_weapon/hammer
-	name = "reagent hammer"
-	desc = "A heavy, weighted hammer that packs an incredible punch but can prove to be unwieldy. Useful for forging!"
+	name = "试剂战锤"
+	desc = "一把配重沉重的锤子，威力惊人但不太灵便。也能用于锻造！"
 	force = 6 //strong when wielded, but boring.
 	armour_penetration = 10
 	wound_bonus = -5
@@ -543,8 +543,8 @@
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FIRE_PROOF
-	attack_verb_continuous = list("bashes", "whacks")
-	attack_verb_simple = list("bash", "whack")
+	attack_verb_continuous = list("猛砸", "敲击")
+	attack_verb_simple = list("猛砸", "敲击")
 	tool_behaviour = TOOL_HAMMER
 	///the list of things that, if attacked, will set the attack speed to rapid
 	var/static/list/fast_attacks = list(
@@ -553,8 +553,8 @@
 	)
 	stamina_damage_multiplier = 1.8
 	knockdown_time_multiplier = 0.6
-	secondary_attack_verb_continuous = list("shaft-strikes")
-	secondary_attack_verb_simple = list("shaft-strike")
+	secondary_attack_verb_continuous = list("杆击")
+	secondary_attack_verb_simple = list("杆击")
 
 /obj/item/melee/forged_reagent_weapon/hammer/Initialize(mapload)
 	. = ..()
@@ -587,8 +587,8 @@
 	user.changeNext_move(CLICK_CD_SLOW) //The hammer attacks slower but has more damage, that's it's thing now
 
 /obj/item/shield/buckler/reagent_weapon //Same as a buckler, but metal.
-	name = "reagent plated buckler shield"
-	desc = "A small, round shield best used in tandem with a melee weapon in close-quarters combat."
+	name = "试剂覆板小圆盾"
+	desc = "一面小圆盾，最适合在近身战中配合近战武器使用。"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'
 	worn_icon = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_worn.dmi'
 	icon_state = "buckler"
@@ -629,8 +629,8 @@
 		incompletion_effects = list(FORGE_EFFECT_BLOCKCHANCE, FORGE_EFFECT_FORCE))
 
 /obj/item/shield/buckler/reagent_weapon/pavise //similar to the adamantine shield. Huge, slow, lets you soak damage and packs a wallop.
-	name = "reagent plated pavise shield"
-	desc = "An large wall-like shield. Very heavy, but extremely protective."
+	name = "试剂覆板大盾"
+	desc = "一面如墙般的大盾。非常沉重，但防护极佳。"
 	force = 10
 	icon_state = "pavise"
 	inhand_icon_state = "pavise"
@@ -658,14 +658,14 @@
 		incompletion_effects = list(FORGE_EFFECT_BLOCKCHANCE, FORGE_EFFECT_FORCE))
 
 /obj/item/pickaxe/reagent_weapon
-	name = "reagent pickaxe"
+	name = "试剂镐"
 
 /obj/item/pickaxe/reagent_weapon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/weapon)
 
 /obj/item/shovel/reagent_weapon
-	name = "reagent shovel"
+	name = "试剂铲"
 
 /obj/item/shovel/reagent_weapon/Initialize(mapload)
 	. = ..()
@@ -696,8 +696,8 @@
 	qdel(src)
 
 /obj/item/melee/forged_reagent_weapon/bokken
-	name = "bokken"
-	desc = "A wooden sword that is capable of wielded in two hands. It seems to be made to prevent permanent injuries."
+	name = "木刀"
+	desc = "一把可以双手持握的木刀，似乎专为避免造成永久伤害而制作。"
 	force = 10
 	armour_penetration = 40
 	icon_state = "bokken"
@@ -711,8 +711,8 @@
 	resistance_flags = FLAMMABLE
 	stamina_damage_multiplier = 1.5
 	knockdown_time_multiplier = 0.6 DECISECONDS
-	attack_verb_continuous = list("bonks", "bashes", "whacks", "pokes", "prods")
-	attack_verb_simple = list("bonk", "bash", "whack", "poke", "prod")
+	attack_verb_continuous = list("敲打", "猛砸", "重击", "戳刺", "捅刺")
+	attack_verb_simple = list("敲打", "猛砸", "重击", "戳刺", "捅刺")
 	var/wielded = FALSE
 	var/unwielded_block_chance = 20
 	var/wielded_block_chance = 40
@@ -736,7 +736,7 @@
 /obj/item/melee/forged_reagent_weapon/bokken/attack(mob/living/carbon/target_mob, mob/living/user, params)
 	. = ..()
 	if(!iscarbon(target_mob))
-		user.visible_message(span_warning("The [src] seems to be ineffective against the [target_mob]!"))
+		user.visible_message(span_warning("[src] 似乎对 [target_mob] 无效！"))
 		playsound(src, 'sound/items/weapons/genhit.ogg', 75, TRUE)
 		return
 	playsound(src, pick('sound/items/weapons/genhit1.ogg', 'sound/items/weapons/genhit2.ogg', 'sound/items/weapons/genhit3.ogg'), 100, TRUE)
@@ -746,8 +746,8 @@
 	AddComponent(/datum/component/two_hand_reach, unwield_reach = 1, wield_reach = 2)
 
 /obj/item/melee/baseball_bat/reagent_forged
-	name = "reagent forged baseball bat"
-	desc = "A legendary weapon forged by an at-least-okay blacksmith. It's perfect for a game of Ye Olde Based Balle."
+	name = "试剂锻造棒球棒"
+	desc = "由至少还算合格的铁匠锻造的传奇武器。最适合来一场古典棒球赛。"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'
 	inhand_icon_state = "baseball_bat"
 	lefthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_l.dmi'

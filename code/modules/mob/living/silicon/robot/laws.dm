@@ -8,25 +8,25 @@
 	if(lawupdate)
 		if (!QDELETED(connected_ai))
 			if(IS_UNCONSCIOUS_OR_CRIT(connected_ai) || connected_ai.control_disabled)
-				to_chat(src, span_bold("AI signal lost, unable to sync laws."))
+				to_chat(src, span_bold("AI 信号丢失，无法同步法则。"))
 
 			else
 				lawsync()
-				to_chat(src, span_bold("Laws synced with AI, be sure to note any changes."))
+				to_chat(src, span_bold("法则已与 AI 同步，请务必留意任何变动。"))
 		else
-			to_chat(src, span_bold("No AI selected to sync laws with, disabling lawsync protocol."))
+			to_chat(src, span_bold("未选择要同步法则的 AI，正在禁用法则同步协议。"))
 			lawupdate = FALSE
 
 	. = ..()
 
 	if (shell) //AI shell
-		to_chat(src, span_bold("Remember, you are an AI remotely controlling your shell, other AIs can be ignored."))
+		to_chat(src, span_bold("请注意，你是远程操控自己机体的 AI，其他 AI 可以忽略。"))
 	else if (connected_ai)
-		to_chat(src, span_bold("Remember, [connected_ai.name] is your master, other AIs can be ignored."))
+		to_chat(src, span_bold("请注意，[connected_ai.name] 是你的主人，其他 AI 可以忽略。"))
 	else if (emagged)
-		to_chat(src, span_bold("Remember, you are not required to listen to the AI."))
+		to_chat(src, span_bold("请注意，你没有义务听从 AI 的指令。"))
 	else
-		to_chat(src, span_bold("Remember, you are not bound to any AI, you are not required to listen to them."))
+		to_chat(src, span_bold("请注意，你不受任何 AI 约束，也没有义务听从它们。"))
 
 /**
  * For AIs, iterates over connected cyborg and calls try_sync_laws
@@ -62,4 +62,4 @@
 
 /mob/living/silicon/robot/announce_law_change()
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(logevent),"Law update processed."), 0, TIMER_UNIQUE | TIMER_OVERRIDE) //Post_Lawchange gets spammed by some law boards, so let's wait it out
+	addtimer(CALLBACK(src, PROC_REF(logevent),"法则更新已处理。"), 0, TIMER_UNIQUE | TIMER_OVERRIDE) //Post_Lawchange gets spammed by some law boards, so let's wait it out

@@ -30,7 +30,7 @@
 		department = pick(list(/datum/job_department/assistant, /datum/job_department/medical, /datum/job_department/engineering, /datum/job_department/science, /datum/job_department/cargo, /datum/job_department/service, /datum/job_department/security) - independent_departments)
 		if(!department)
 			if(message_admins)
-				message_admins("Department Revolt could not create a nation, as all the departments are independent! You have created nations, you madman!")
+				message_admins("部门叛乱无法建立国家，因为所有部门都已独立！你们这些疯子，居然把国家都建完了！")
 			CRASH("Department Revolt could not create a nation, as all the departments are independent")
 	department = SSjob.get_department_type(department)
 
@@ -57,19 +57,19 @@
 		citizens += possible_separatist
 		separatist_mind.add_antag_datum(/datum/antagonist/separatist, nation, department)
 		nation.add_member(separatist_mind)
-		possible_separatist.log_message("was made into a separatist, long live [nation.name]!", LOG_ATTACK, color="red")
+		possible_separatist.log_message("被改造成了一名分离主义者，[nation.name] 万岁！", LOG_ATTACK, color="red")
 
 	//if we didn't convert anyone we just kill the team datum, otherwise cleanup and make official
 	if(!citizens.len)
 		qdel(nation)
 		if(message_admins)
-			message_admins("The nation of [nation.name] did not have enough potential members to be created.")
+			message_admins("[nation.name] 国因潜在成员不足而未能建立。")
 		return
 	var/jobs_english_list = english_list(jobs_to_revolt)
 	if(message_admins)
-		message_admins("The nation of [nation.name] has been formed. Affected jobs are [jobs_english_list]. Any new crewmembers with these jobs will join the secession.")
+		message_admins("[nation.name] 国已成立。受影响的职业有：[jobs_english_list]。任何这些职业的新船员都将加入分裂势力。")
 	if(announcement)
-		var/announce_text = "The new independent state of [nation.name] has formed from the ashes of the [department.department_name] department!"
+		var/announce_text = "新的独立国家 [nation.name] 已在 [department.department_name] 部门的废墟中建立！"
 		if(istype(department, /datum/job_department/assistant)) //the text didn't really work otherwise
-			announce_text = "The assistants of the station have risen to form the new independent state of [nation.name]!"
-		priority_announce(announce_text, "Secession from [GLOB.station_name]",  has_important_message = TRUE)
+			announce_text = "空间站的助理们已经起义，建立了新的独立国家 [nation.name]！"
+		priority_announce(announce_text, "脱离 [GLOB.station_name]",  has_important_message = TRUE)

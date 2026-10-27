@@ -1,12 +1,12 @@
 
 /// The Starfury map template itself.
 /datum/map_template/battlecruiser_starfury
-	name = "SBC Starfury"
+	name = "SBC 星怒号"
 	mappath = "_maps/templates/battlecruiser_starfury.dmm"
 
 // Stationary docking ports for the Starfury's strike shuttles.
 /obj/docking_port/stationary/starfury_corvette
-	name = "SBC Starfury Corvette Bay"
+	name = "SBC 星怒号护卫舰停泊舱"
 	shuttle_id = "SBC_corvette_bay"
 	roundstart_template = /datum/map_template/shuttle/starfury/corvette
 	hidden = TRUE
@@ -16,7 +16,7 @@
 	dir = NORTH
 
 /obj/docking_port/stationary/starfury_fighter
-	name = "SBC Starfury Fighter Bay"
+	name = "SBC 星怒号战斗机停泊舱"
 	shuttle_id = "SBC_fighter_bay"
 	hidden = TRUE
 	width = 5
@@ -25,23 +25,23 @@
 	dir = NORTH
 
 /obj/docking_port/stationary/starfury_fighter/fighter_one
-	name = "SBC Starfury Port Fighter Bay"
+	name = "SBC 星怒号左舷战斗机停泊舱"
 	shuttle_id = "SBC_fighter1_bay"
 	roundstart_template = /datum/map_template/shuttle/starfury/fighter_one
 
 /obj/docking_port/stationary/starfury_fighter/fighter_two
-	name = "SBC Starfury Center Fighter Bay"
+	name = "SBC 星怒号中部战斗机停泊舱"
 	shuttle_id = "SBC_fighter2_bay"
 	roundstart_template = /datum/map_template/shuttle/starfury/fighter_two
 
 /obj/docking_port/stationary/starfury_fighter/fighter_three
-	name = "SBC Starfury Starboard Fighter Bay"
+	name = "SBC 星怒号右舷战斗机停泊舱"
 	shuttle_id = "SBC_fighter3_bay"
 	roundstart_template = /datum/map_template/shuttle/starfury/fighter_three
 
 // Mobile docking ports for the Starfury's strike shuttles.
 /obj/docking_port/mobile/syndicate_fighter
-	name = "syndicate fighter"
+	name = "辛迪加战斗机"
 	shuttle_id = "syndicate_fighter"
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 	hidden = TRUE
@@ -49,19 +49,19 @@
 	port_direction = SOUTH
 
 /obj/docking_port/mobile/syndicate_fighter/fighter_one
-	name = "syndicate fighter one"
+	name = "辛迪加战斗机一号"
 	shuttle_id = "SBC_fighter1"
 
 /obj/docking_port/mobile/syndicate_fighter/fighter_two
-	name = "syndicate fighter two"
+	name = "辛迪加战斗机二号"
 	shuttle_id = "SBC_fighter2"
 
 /obj/docking_port/mobile/syndicate_fighter/fighter_three
-	name = "syndicate fighter three"
+	name = "辛迪加战斗机三号"
 	shuttle_id = "SBC_fighter3"
 
 /obj/docking_port/mobile/syndicate_corvette
-	name = "syndicate corvette"
+	name = "辛迪加护卫舰"
 	shuttle_id = "SBC_corvette"
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 	hidden = TRUE
@@ -70,8 +70,8 @@
 	preferred_direction = WEST
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/fighter
-	name = "syndicate fighter navigation computer"
-	desc = "Used to pilot syndicate fighters to commence precision strikes."
+	name = "辛迪加战斗机导航计算机"
+	desc = "用于驾驶辛迪加战斗机执行精确打击。"
 	x_offset = 0
 	y_offset = 3
 
@@ -94,8 +94,8 @@
 	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/corvette
-	name = "syndicate corvette navigation computer"
-	desc = "Used to pilot the syndicate corvette to board enemy stations and ships."
+	name = "辛迪加护卫舰导航计算机"
+	desc = "用于驾驶辛迪加护卫舰登上敌方空间站与舰船。"
 	shuttleId = "SBC_corvette"
 	shuttlePortId = "SBC_corvette_custom"
 	jump_to_ports = list("syndicate_ne" = 1, "syndicate_nw" = 1, "syndicate_n" = 1, "syndicate_se" = 1, "syndicate_sw" = 1, "syndicate_s" = 1, "SBC_corvette_bay" = 1)
@@ -103,8 +103,8 @@
 	x_offset = 0
 
 /obj/machinery/computer/shuttle/starfury/fighter
-	name = "syndicate fighter control console"
-	desc = "A control computer which controls a shuttle which operates from the SBC Starfury.."
+	name = "辛迪加战斗机控制台"
+	desc = "一台控制计算机，用于操控从 SBC 星怒号上运作的穿梭机……"
 	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/computer/shuttle/starfury/fighter/fighter_one
@@ -123,8 +123,8 @@
 	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/computer/shuttle/starfury/corvette
-	name = "syndicate corvette control console"
-	desc = "A control computer which controls a shuttle which operates from the SBC Starfury.."
+	name = "辛迪加护卫舰控制台"
+	desc = "一台控制计算机，用于操控从 SBC 星怒号上运作的穿梭机……"
 	shuttleId = "SBC_corvette"
 	possible_destinations = "SBC_corvette_custom;SBC_corvette_bay;syndicate_ne;syndicate_nw;syndicate_n;syndicate_se;syndicate_sw;syndicate_s"
 	req_access = list(ACCESS_SYNDICATE)
@@ -135,7 +135,7 @@
  */
 /proc/summon_battlecruiser(datum/team/battlecruiser/team)
 
-	var/list/candidates = SSpolling.poll_ghost_candidates("Do you wish to be considered for [span_notice("battlecruiser crew")]?", check_jobban = ROLE_TRAITOR, alert_pic = /obj/machinery/sleeper/syndie, role_name_text = "battlecruiser crew")
+	var/list/candidates = SSpolling.poll_ghost_candidates("你希望被考虑加入[span_notice("战列巡洋舰船员")]吗？", check_jobban = ROLE_TRAITOR, alert_pic = /obj/machinery/sleeper/syndie, role_name_text = "战列巡洋舰船员")
 	shuffle_inplace(candidates)
 
 	var/datum/map_template/ship = SSmapping.map_templates["battlecruiser_starfury.dmm"]
@@ -169,13 +169,13 @@
 				spawner.antag_team.players_spawned += (our_candidate.ckey)
 				candidates.Splice(1, 2)
 				notify_ghosts(
-					"The battlecruiser has an object of interest: [our_candidate]!",
+					"战列巡洋舰上有一个值得关注的目标：[our_candidate]！",
 					source = our_candidate,
 				)
 			else
 				notify_ghosts(
-					"The battlecruiser has an object of interest: [spawner]!",
+					"战列巡洋舰上有一个值得关注的目标：[spawner]！",
 					source = spawner,
 				)
 
-	priority_announce("Unidentified armed ship detected near the station.")
+	priority_announce("空间站附近检测到一艘身份不明的武装舰船。")

@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/car/clowncar
-	name = "clown car"
-	desc = "How someone could even fit in there is byond me."
+	name = "小丑车"
+	desc = "怎么会有人塞得进去？这完全 BYOND 我的理解。"
 	icon_state = "clowncar"
 	max_integrity = 150
 	armor_type = /datum/armor/car_clowncar
@@ -58,7 +58,7 @@
 			add_control_flags(H, VEHICLE_CONTROL_DRIVE)
 			RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(fire_cannon_at))
 			playsound(src, 'sound/vehicles/clown_car/door_close.ogg', 70, TRUE)
-			M.log_message("has entered [src] as a possible driver", LOG_GAME)
+			M.log_message("以可能驾驶员身份进入了 [src]", LOG_GAME)
 			return
 	add_control_flags(M, VEHICLE_CONTROL_KIDNAPPED)
 
@@ -70,9 +70,9 @@
 			var/reagent_amount = forced_mob.reagents.get_reagent_amount(/datum/reagent/consumable/ethanol/irishcarbomb)
 			forced_mob.reagents.del_reagent(/datum/reagent/consumable/ethanol/irishcarbomb)
 			if(reagent_amount >= 30)
-				message_admins("[ADMIN_LOOKUPFLW(forced_mob)] was forced into a clown car with [reagent_amount] unit(s) of Irish Car Bomb, causing an explosion.")
-				forced_mob.log_message("was forced into a clown car with [reagent_amount] unit(s) of Irish Car Bomb, causing an explosion.", LOG_GAME)
-				audible_message(span_userdanger("You hear a rattling sound coming from the engine. That can't be good..."), null, 1)
+				message_admins("[ADMIN_LOOKUPFLW(forced_mob)] 被强行塞进小丑车时带有 [reagent_amount] 单位的爱尔兰汽车炸弹，引发了爆炸。")
+				forced_mob.log_message("被强行塞进小丑车时带有 [reagent_amount] 单位的爱尔兰汽车炸弹，引发了爆炸。", LOG_GAME)
+				audible_message(span_userdanger("你听见发动机传来咔嗒咔嗒的响声。这可不是什么好兆头……"), null, 1)
 				addtimer(CALLBACK(src, PROC_REF(irish_car_bomb)), 5 SECONDS)
 
 /obj/vehicle/sealed/car/clowncar/proc/irish_car_bomb()
@@ -96,7 +96,7 @@
 /obj/vehicle/sealed/car/clowncar/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
 	if(prob(33))
-		visible_message(span_danger("[src] spews out a ton of space lube!"))
+		visible_message(span_danger("[src] 喷出大量太空润滑油！"))
 		do_foam(4, src, loc, /datum/reagent/lube, 25)
 
 /obj/vehicle/sealed/car/clowncar/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -104,21 +104,21 @@
 		return ..()
 	var/obj/item/food/grown/banana/banana = tool
 	repair_damage(banana.seed.potency)
-	to_chat(user, span_danger("You use [banana] to repair [src]!"))
+	to_chat(user, span_danger("你用 [banana] 修理 [src]！"))
 	qdel(banana)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/vehicle/sealed/car/clowncar/Bump(atom/bumped)
 	. = ..()
 	if(isclosedturf(bumped))
-		visible_message(span_warning("[src] rams into [bumped] and crashes!"))
+		visible_message(span_warning("[src] 撞上 [bumped]，撞毁了！"))
 		playsound(src, pick(
 			'sound/vehicles/clown_car/clowncar_crash1.ogg',
 			'sound/vehicles/clown_car/clowncar_crash2.ogg',
 			), 75)
 		playsound(src, 'sound/vehicles/clown_car/clowncar_crashpins.ogg', 75)
 		dump_mobs(TRUE)
-		log_combat(src, bumped, "crashed into", null, "dumping all passengers")
+		log_combat(src, bumped, "撞上了", null, "甩出全部乘客")
 
 	if(!isliving(bumped) || ismegafauna(bumped))
 		return
@@ -129,17 +129,17 @@
 			var/mob/living/carbon/carb = hittarget_living
 			carb.Paralyze(4 SECONDS) //I play to make sprites go horizontal
 
-		hittarget_living.visible_message(span_warning("[src] rams into [hittarget_living] and sucks [hittarget_living.p_them()] up!")) //fuck off shezza this isn't ERP.
+		hittarget_living.visible_message(span_warning("[src] 撞上 [hittarget_living] 并把它吸了进去！")) //fuck off shezza this isn't ERP.
 		mob_forced_enter(hittarget_living)
 		playsound(src, pick(
 			'sound/vehicles/clown_car/clowncar_ram1.ogg',
 			'sound/vehicles/clown_car/clowncar_ram2.ogg',
 			'sound/vehicles/clown_car/clowncar_ram3.ogg',
 			), 75)
-		log_combat(src, hittarget_living, "sucked up")
+		log_combat(src, hittarget_living, "吸入了")
 		return
 
-	visible_message(span_warning("[src] careens into [hittarget_living]! Oh the humanity!"))
+	visible_message(span_warning("[src] 猛地撞上 [hittarget_living]！天哪，惨不忍睹！"))
 	for(var/mob/living/carbon/carbon_occupant in occupants)
 		if(prob(35)) //Note: The randomstep on dump_mobs throws occupants into each other and often causes wounds regardless.
 			continue
@@ -156,7 +156,7 @@
 
 	hittarget_living.add_splatter_floor(small_drip = FALSE)
 	hittarget_living.adjust_brute_loss(200)
-	log_combat(src, hittarget_living, "rammed into", null, "injuring all passengers and killing the [hittarget_living]")
+	log_combat(src, hittarget_living, "撞上了", null, "令所有乘客受伤并杀死了 [hittarget_living]")
 	dump_mobs(TRUE)
 	playsound(src, 'sound/vehicles/car_crash.ogg', 100)
 
@@ -171,18 +171,18 @@
 		return
 	if(HAS_TRAIT(target_pancake, TRAIT_INCAPACITATED))
 		return
-	target_pancake.visible_message(span_warning("[src] runs over [target_pancake], flattening [target_pancake.p_them()] like a pancake!"))
+	target_pancake.visible_message(span_warning("[src] 碾过 [target_pancake]，把它压得像煎饼一样扁！"))
 	target_pancake.AddElement(/datum/element/squish, 5 SECONDS)
 	target_pancake.Paralyze(2 SECONDS)
 	playsound(target_pancake, 'sound/effects/cartoon_sfx/cartoon_splat.ogg', 75)
-	log_combat(src, crossed, "ran over")
+	log_combat(src, crossed, "碾过了")
 
 /obj/vehicle/sealed/car/clowncar/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "fun mode engaged")
-	to_chat(user, span_danger("You scramble [src]'s child safety lock, and a panel with six colorful buttons appears!"))
+	balloon_alert(user, "趣味模式已启动")
+	to_chat(user, span_danger("你弄乱了 [src] 的儿童安全锁，一个带有六个彩色按钮的面板弹了出来！"))
 	initialize_controller_action_type(/datum/action/vehicle/sealed/roll_the_dice, VEHICLE_CONTROL_DRIVE)
 	initialize_controller_action_type(/datum/action/vehicle/sealed/cannon, VEHICLE_CONTROL_DRIVE)
 	AddElementTrait(TRAIT_WADDLING, INNATE_TRAIT, /datum/element/waddling)
@@ -207,31 +207,31 @@
 /obj/vehicle/sealed/car/clowncar/proc/roll_the_dice(mob/user)
 	playsound(src, 'sound/vehicles/clown_car/button_press.ogg', 50, TRUE, MEDIUM_RANGE_SOUND_EXTRARANGE)
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_CLOWNCAR_RANDOMNESS))
-		to_chat(user, span_notice("The button panel is currently recharging."))
+		to_chat(user, span_notice("按钮面板正在充能。"))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_CLOWNCAR_RANDOMNESS, dice_cooldown_time)
 	switch(rand(1,6))
 		if(1)
-			visible_message(span_danger("[user] presses one of the colorful buttons on [src], and a special banana peel drops out of it."))
+			visible_message(span_danger("[user] 按下 [src] 上其中一个彩色按钮，一片特制香蕉皮掉了出来。"))
 			new /obj/item/grown/bananapeel/specialpeel(loc)
 		if(2)
-			visible_message(span_danger("[user] presses one of the colorful buttons on [src], and unknown chemicals flood out of it."))
+			visible_message(span_danger("[user] 按下 [src] 上其中一个彩色按钮，未知的化学物质涌了出来。"))
 			do_foam(200, src, loc, get_random_reagent_id(), 100, log = TRUE)
 		if(3)
-			visible_message(span_danger("[user] presses one of the colorful buttons on [src], and the clown car turns on its singularity disguise system."))
+			visible_message(span_danger("[user] 按下 [src] 上其中一个彩色按钮，小丑车启动了它的奇点伪装系统。"))
 			icon = 'icons/obj/machines/engine/singularity.dmi'
 			icon_state = "singularity_s1"
 			addtimer(CALLBACK(src, PROC_REF(reset_icon)), 10 SECONDS)
 		if(4)
-			visible_message(span_danger("[user] presses one of the colorful buttons on [src], and the clown car spews out a cloud of laughing gas."))
+			visible_message(span_danger("[user] 按下 [src] 上其中一个彩色按钮，小丑车喷出一团笑气。"))
 			do_chem_smoke(4, src, src, /datum/reagent/consumable/superlaughter, 50, log = TRUE)
 
 		if(5)
-			visible_message(span_danger("[user] presses one of the colorful buttons on [src], and the clown car starts dropping an oil trail."))
+			visible_message(span_danger("[user] 按下 [src] 上其中一个彩色按钮，小丑车开始漏下一路油迹。"))
 			RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(cover_in_oil))
 			addtimer(CALLBACK(src, PROC_REF(stop_dropping_oil)), 3 SECONDS)
 		if(6)
-			visible_message(span_danger("[user] presses one of the colorful buttons on [src], and the clown car lets out a comedic toot."))
+			visible_message(span_danger("[user] 按下 [src] 上其中一个彩色按钮，小丑车发出一声滑稽的放屁声。"))
 			playsound(src, 'sound/vehicles/clown_car/clowncar_fart.ogg', 100)
 			for(var/mob/living/L in orange(loc, 6))
 				L.emote("laugh")
@@ -255,19 +255,19 @@
 ///Toggles the on and off state of the clown cannon that shoots random kidnapped people
 /obj/vehicle/sealed/car/clowncar/proc/toggle_cannon(mob/user)
 	if(cannonmode == CLOWN_CANNON_BUSY)
-		to_chat(user, span_notice("Please wait for the vehicle to finish its current action first."))
+		to_chat(user, span_notice("请先等载具完成当前动作。"))
 		return
 	if(cannonmode) //canon active, deactivate
 		flick("clowncar_fromfire", src)
 		icon_state = "clowncar"
 		addtimer(CALLBACK(src, PROC_REF(deactivate_cannon)), 2 SECONDS)
 		playsound(src, 'sound/vehicles/clown_car/clowncar_cannonmode2.ogg', 75)
-		visible_message(span_danger("[src] starts going back into mobile mode."))
+		visible_message(span_danger("[src] 开始恢复移动模式。"))
 	else
 		canmove = FALSE //anchor and activate canon
 		flick("clowncar_tofire", src)
 		icon_state = "clowncar_fire"
-		visible_message(span_danger("[src] opens up and reveals a large cannon."))
+		visible_message(span_danger("[src] 打开并露出一门巨大的加农炮。"))
 		addtimer(CALLBACK(src, PROC_REF(activate_cannon)), 2 SECONDS)
 		playsound(src, 'sound/vehicles/clown_car/clowncar_cannonmode1.ogg', 75)
 	cannonmode = CLOWN_CANNON_BUSY
@@ -304,7 +304,7 @@
 		'sound/vehicles/carcannon3.ogg',
 		), 75)
 	unlucky_sod.throw_at(target, 10, 2)
-	log_combat(user, unlucky_sod, "fired", src, "towards [target]") //this doesn't catch if the mob hits something between the car and the target
+	log_combat(user, unlucky_sod, "发射了", src, "朝向 [target]") //this doesn't catch if the mob hits something between the car and the target
 	return COMSIG_MOB_CANCEL_CLICKON
 
 ///Increments the thanks counter every time someone thats been kidnapped thanks the driver

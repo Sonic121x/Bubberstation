@@ -1,12 +1,12 @@
 /obj/item/reagent_containers/applicator/patch
-	name = "patch"
-	desc = "A chemical patch for touch based applications."
+	name = "药贴"
+	desc = "一种用于接触式给药的化学药贴。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "bandaid_blank"
 	inhand_icon_state = null
 	possible_transfer_amounts = list()
 	volume = 40
-	apply_method = "apply"
+	apply_method = "贴上"
 	embed_type = /datum/embedding/med_patch
 	// Quick to apply
 	application_delay = 1.5 SECONDS
@@ -20,17 +20,17 @@
 	var/obj/item/bodypart/affecting = carbon_eater.get_bodypart(check_zone(user.zone_selected))
 
 	if(!affecting)
-		to_chat(user, span_warning("The limb is missing!"))
+		to_chat(user, span_warning("那条肢体不见了！"))
 		return FALSE
 
 	if(!IS_ORGANIC_LIMB(affecting))
-		to_chat(user, span_notice("Medicine won't work on an inorganic limb!"))
+		to_chat(user, span_notice("药物对无机肢体无效！"))
 		return FALSE
 
 	return TRUE
 
 /obj/item/reagent_containers/applicator/patch/on_consumption(mob/living/carbon/consumer, mob/giver, list/modifiers)
-	consumer.log_message("Had \a [src] patch applied by [giver], containing the following reagents: [english_list(reagents.reagent_list)].", LOG_GAME)
+	consumer.log_message("被 [giver] 贴上了 \a [src] 药贴，其中含有以下试剂：[english_list(reagents.reagent_list)]。", LOG_GAME)
 	var/clicked_x = LAZYACCESS(modifiers, ICON_X)
 	var/clicked_y = LAZYACCESS(modifiers, ICON_Y)
 	if (isnull(clicked_x))
@@ -175,25 +175,25 @@
 	transfer_per_second = /obj/item/reagent_containers/applicator/patch::volume
 
 /obj/item/reagent_containers/applicator/patch/libital
-	name = "libital patch (brute)"
-	desc = "A pain reliever. Does minor liver damage. Diluted with Granibitaluri."
+	name = "利比妥药贴（钝击）"
+	desc = "一种止痛药。会造成轻微肝脏损伤。已用格拉尼比妥稀释。"
 	list_reagents = list(/datum/reagent/medicine/c2/libital = 2, /datum/reagent/medicine/granibitaluri = 8) //10 iterations
 	icon_state = "bandaid_brute"
 
 /obj/item/reagent_containers/applicator/patch/aiuri
-	name = "aiuri patch (burn)"
-	desc = "Helps with burn injuries. Does minor eye damage. Diluted with Granibitaluri."
+	name = "艾尤里药贴（烧伤）"
+	desc = "有助于治疗烧伤。会造成轻微眼部损伤。已用格拉尼比妥稀释。"
 	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 2, /datum/reagent/medicine/granibitaluri = 8)
 	icon_state = "bandaid_burn"
 
 /obj/item/reagent_containers/applicator/patch/fent
-	name = "unmarked patch"
-	desc = "An unmarked, unlabeled transdermal patch for you to wear!"
+	name = "无标记药贴"
+	desc = "一片没有标记、没有标签的透皮药贴，给你贴上用的！"
 	list_reagents = list(/datum/reagent/toxin/fentanyl = 2)
 
 /obj/item/reagent_containers/applicator/patch/synthflesh
-	name = "synthflesh patch"
-	desc = "Helps with brute and burn injuries. Slightly toxic. Three patches applied can restore a corpse husked by burns."
+	name = "合成肉液药贴"
+	desc = "有助于治疗钝击和烧伤。略有毒性。贴上三片即可让被烧成焦尸的尸体恢复原状。"
 	list_reagents = list(/datum/reagent/medicine/c2/synthflesh = 20)
 	list_reagents_purity = 1
 	icon_state = "bandaid_both"
@@ -210,11 +210,11 @@
 	var/mob/living/carbon/carbies = eater
 	if(HAS_TRAIT_FROM(carbies, TRAIT_HUSK, BURN) && carbies.get_fire_loss() > UNHUSK_DAMAGE_THRESHOLD * 2.5)
 		// give them a warning if the mob is a husk but synthflesh won't unhusk yet
-		carbies.visible_message(span_boldwarning("[carbies]'s burns need to be repaired first before synthflesh will unhusk it!"))
+		carbies.visible_message(span_boldwarning("需要先修复 [carbies] 的烧伤，合成肉液才能让其脱离焦尸状态！"))
 
 /obj/item/reagent_containers/applicator/patch/ondansetron
-	name = "ondansetron patch"
-	desc = "Alleviates nausea. May cause drowsiness."
+	name = "昂丹司琼药贴"
+	desc = "缓解恶心。可能引起困倦。"
 	list_reagents = list(/datum/reagent/medicine/ondansetron = 10)
 	icon_state = "bandaid_toxin"
 

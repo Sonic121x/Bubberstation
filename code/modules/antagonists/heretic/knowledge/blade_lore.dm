@@ -11,31 +11,31 @@
 		"moving" = FALSE,
 	)
 	description = list(
-		"The Path of Blade is as the name suggests.",
-		"You are highly competent at cutting your opponents to ribbons.",
-		"Pick this path if you want to fight, and you want to be the best at fighting.",
+		"刀锋之道，正如其名。",
+		"你极擅长将对手切成碎片。",
+		"如果你想战斗，并且想成为最强的战斗者，就选这条道路。",
 	)
 	pros = list(
-		"Capable of blocking incoming attacks, retaliating with a riposte.",
-		"Rapidly deals damage through dual-wielded blades and channeled strikes.",
-		"High defense against stuns and knockdowns.",
-		"Highly lethal combatant in a direct combat with a single opponent.",
+		"能够格挡来袭攻击，并以反击回敬。",
+		"通过双持刀锋与引导打击快速造成伤害。",
+		"对眩晕和击倒有很高的防御能力。",
+		"在与单个对手的正面战斗中极具杀伤力。",
 	)
 	cons = list(
-		"Requires a high degree of skill input.",
-		"Without blades, the path loses most of its fighting power.",
-		"Lacks mobility options.",
-		"Lacks environmental protections.",
+		"需要较高的操作技巧。",
+		"没有刀锋时，这条道路会失去大部分战斗力。",
+		"缺乏机动性选项。",
+		"缺乏环境防护。",
 	)
 	tips = list(
-		"Your Mansus Grasp will stun your opponent if they are attacked from behind or while they are prone. This also locks them in the room they are in until the mark is detonated. Triggering the mark will grant you a orbiting knife that will protect you from one melee or ranged attack.",
-		"You have the highest blade cap out of all paths (A total of 4). But since they require silver or titanium to craft, you might be strapped for ingredients if the miners aren't doing their job. If you need materials, shuttle walls and seats are a source of titanium metal, and surgery tables a source of silver.",
-		"You are highly reliant on approaching opponents in melee. Slips, bolas and beartraps are your worst enemy. You can counteract slips by crafting a pair of Greaves Of The Prophet, or remove restraints with Ashen Passage.",
-		"Realignment will pull you out of stuns and knockdowns, but also pacifies you for the duration.",
-		"With Empowered Blades, your offensive power grows considerably. You are able to fight with dual-wielded blades, and can empower them by activating your Mansus Grasp while wielding your blades. Your blades also deal additional damage to objects, silicons and mechs.",
-		"Maintaining a good offense also creates a good defense. With orbiting blades, you are able to block additional incoming attacks.",
-		"With Furious Steel, you can not only produce several knives for defensive purposes, but throw them by clicking with an empty hand. This gives you additional ranged power in a pinch.",
-		"Use Wolves Among Sheep with caution. Not only does it have a significant cooldown, but it also arms anyone trapped in the effect with you with blades of their own. Use it either as a last ditch defense, or when you know you have the upper hand and need an extra edge. Just don't try to flee the area before taking someone out first.",
+		"若从背后袭击对手，或在对手倒地时袭击，你的漫宿之握会使其眩晕。这还会将其锁在其所在的房间内，直到印记被引爆。引爆印记会赋予你一把环绕飞行的匕首，可为你抵挡一次近战或远程攻击。",
+		"在所有道路中，你的刀锋上限最高（共 4 把）。但它们需要银或钛来制作，如果矿工不干活，你可能会缺少材料。若需要材料，穿梭机的墙壁和座椅是钛金属的来源，手术台则是银的来源。",
+		"你非常依赖贴近对手进行近战。滑倒、流星锤和捕熊夹是你最大的敌人。你可以制作一双“先知护胫”来抵消滑倒，或用“灰烬之路”摆脱束缚。",
+		"“重整姿态”能让你摆脱眩晕和击倒，但也会在持续时间内使你无法攻击。",
+		"有了“强化刀锋”，你的攻击力会大幅提升。你可以双持刀锋战斗，并在持刀时激活漫宿之握来强化它们。你的刀锋对物体、硅基单位和机甲也会造成额外伤害。",
+		"保持良好攻势也能形成良好防御。凭借环绕飞行的刀锋，你能额外格挡来袭攻击。",
+		"有了“狂怒之钢”，你不仅能制造数把匕首用于防御，还能在空手时点击将其掷出。这能在危急时刻为你提供额外的远程火力。",
+		"使用“羊群中的狼”要谨慎。它不仅冷却很长，还会给被困在效果中的每个人配发自己的刀锋。你可以把它当作最后的防御手段，或在确信自己占优、需要额外优势时使用。只是别在解决掉某人之前试图逃离该区域。",
 	)
 
 	start = /datum/heretic_knowledge/limited_amount/starting/base_blade
@@ -51,12 +51,12 @@
 	ascension = /datum/heretic_knowledge/ultimate/blade_final
 
 /datum/heretic_knowledge/limited_amount/starting/base_blade
-	name = "The Cutting Edge"
-	desc = "Opens up the Path of Blades to you.<br>\
-		Allows you to create Sundered Blades. \
-		You can create up to four at a time."
-	transmute_text = "Transmute a knife with one bar of silver or titanium."
-	gain_text = "Our great ancestors forged swords and practiced sparring on the eve of great battles."
+	name = "锋刃初开"
+	desc = "为你开启刀锋之道。<br>\
+		允许你制造裂魂之刃。\
+		你最多可同时拥有四把。"
+	transmute_text = "用一块银锭或钛锭转化一把刀。"
+	gain_text = "我们伟大的先祖会在重大战役前夜锻剑、切磋。"
 	required_atoms = list(
 		/obj/item/knife = 1,
 		list(/obj/item/stack/sheet/mineral/silver, /obj/item/stack/sheet/mineral/titanium) = 1,
@@ -77,7 +77,7 @@
 	// We're officially behind them, apply effects
 	target.AdjustParalyzed(1.5 SECONDS)
 	target.apply_damage(10, BRUTE, wound_bonus = CANT_WOUND)
-	target.balloon_alert(source, "backstab!")
+	target.balloon_alert(source, "背刺！")
 	playsound(target, 'sound/items/weapons/guillotine.ogg', 100, TRUE)
 
 /datum/heretic_knowledge/limited_amount/starting/base_blade/create_mark(mob/living/source, mob/living/target)
@@ -85,7 +85,7 @@
 	if(istype(blade_mark))
 		var/area/to_lock_to = get_area(target)
 		blade_mark.locked_to = to_lock_to
-		to_chat(target, span_hypnophrase("An otherworldly force is compelling you to stay in [get_area_name(to_lock_to)]!"))
+		to_chat(target, span_hypnophrase("一股超凡的力量正迫使你留在[get_area_name(to_lock_to)]！"))
 	return blade_mark
 
 /datum/heretic_knowledge/limited_amount/starting/base_blade/trigger_mark(mob/living/source, mob/living/target)
@@ -95,11 +95,11 @@
 	source.apply_status_effect(/datum/status_effect/protective_blades, 60 SECONDS, 1, 20, 0 SECONDS)
 
 /datum/heretic_knowledge/spell/realignment
-	name = "Realignment"
-	desc = "Grants you Realignment, a spell that wil realign your body rapidly for a short period.<br>\
-		During this process, you will rapidly regenerate stamina and quickly recover from stuns, however, you will be unable to attack.<br>\
-		This spell can be cast in rapid succession, but doing so will increase the cooldown."
-	gain_text = "In the flurry of death, he found peace within himself. Despite insurmountable odds, he forged on."
+	name = "重整姿态"
+	desc = "赋予你“重整姿态”，一个能在短时间内快速重塑身体状态的咒法。<br>\
+		在此过程中，你会快速恢复体力并迅速从眩晕中恢复，但无法攻击。<br>\
+		该咒法可连续施放，但连续施放会增加冷却时间。"
+	gain_text = "在死亡的狂风骤雨中，他在内心寻得了平静。纵使胜算渺茫，他仍不断前行。"
 	action_to_add = /datum/action/cooldown/spell/realignment
 	cost = 2
 	max_charges = 3
@@ -110,12 +110,12 @@
 #define BLOOD_FLOW_PER_SEVEIRTY -1
 
 /datum/heretic_knowledge/duel_stance
-	name = "Stance of the Torn Champion"
-	desc = "Grants resilience to blood loss from wounds and immunity to having your limbs dismembered.<br>\
-		Additionally, when damaged below 50% of your maximum health, \
-		you gain increased resistance to gaining wounds and resistance to slowdown."
-	gain_text = "In time, it was he who stood alone among the bodies of his former comrades, awash in blood, none of it his own. \
-		He was without rival, equal, or purpose."
+	name = "被撕裂的勇士之姿"
+	desc = "使你对伤口失血更具耐受力，并使你的肢体无法被断肢。<br>\
+		此外，当你的生命值低于最大值的 50% 时，\
+		你会获得更强的抗伤能力和减速抗性。"
+	gain_text = "最终，只有他独自站在昔日同伴的尸骸之间，浑身浴血，却没有一滴是他自己的。\
+		他再无敌手，再无对等者，也再无目的。"
 	cost = 2
 	research_tree_icon_path = 'icons/effects/blood.dmi'
 	research_tree_icon_state = "suitblood"
@@ -147,7 +147,7 @@
 
 	var/obj/item/held_item = source.get_active_held_item()
 	if(in_duelist_stance)
-		examine_list += span_warning("[source] looks unnaturally poised[held_item?.force >= 15 ? " and ready to strike out":""].")
+		examine_list += span_warning("[source] 看起来异常沉着[held_item?.force >= 15 ? "，随时准备出击" : ""]。")
 
 /datum/heretic_knowledge/duel_stance/proc/on_wound_gain(mob/living/source, datum/wound/gained_wound, obj/item/bodypart/limb)
 	SIGNAL_HANDLER
@@ -161,14 +161,14 @@
 	SIGNAL_HANDLER
 
 	if(in_duelist_stance && source.health > source.maxHealth * 0.5)
-		source.balloon_alert(source, "exited duelist stance")
+		source.balloon_alert(source, "已退出决斗姿态")
 		in_duelist_stance = FALSE
 		source.remove_traits(list(TRAIT_HARDLY_WOUNDED), type)
 		source.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown, TRUE)
 		return
 
 	if(!in_duelist_stance && source.health <= source.maxHealth * 0.5)
-		source.balloon_alert(source, "entered duelist stance")
+		source.balloon_alert(source, "已进入决斗姿态")
 		in_duelist_stance = TRUE
 		ADD_TRAIT(source, TRAIT_HARDLY_WOUNDED, type)
 		source.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown, TRUE)
@@ -177,11 +177,11 @@
 #undef BLOOD_FLOW_PER_SEVEIRTY
 
 /datum/heretic_knowledge/armor/blade
-	desc = "Create a Shattered Panoply.<br>\
-		Provides baton resistance and shock insulation while worn."
-	transmute_text = "Transmute a table (or a suit), a mask and a sheet of titanium or silver."
-	gain_text = "The echoing, directionless cacophony of violence reverberates about me. \
-		Even as the Champion's steel panoply was torn from their form, each piece craves purpose still, seeking to intercept unseen or imagined attackers."
+	desc = "制造成套的破碎甲胄。<br>\
+		穿戴时提供电击棍抗性与电击绝缘。"
+	transmute_text = "用一张桌子（或一套西装）、一个面具和一张钛板或银板转化。"
+	gain_text = "暴力的嘈杂回声漫无方向地在我四周回荡。\
+		即便勇士的钢铁甲胄已从其躯体上被撕下，每一片仍渴望着作用，试图拦截看不见或想象出来的袭击者。"
 	result_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch/blade)
 	research_tree_icon_state = "blade_armor"
 	required_atoms = list(
@@ -191,25 +191,25 @@
 	)
 
 /datum/heretic_knowledge/spell/wolves_among_sheep
-	name = "Wolves Among Sheep"
-	desc = "Alters the fabric of reality, conjuring a magical arena impassable to outsiders, \
-		all participants are trapped and immune to any form of crowd control or environmental hazards; \
-		trapped participants are granted a Blade and are unable to leave or jaunt until they score a critical hit. \
-		Knocking combatant into critical condition partially restore the Heretic's health."
-	gain_text = "Shadows crawl across the room, casting every chair, table \
-		and console into the looming shape of another traitorous hand. \
-		I have made an enemy of all, and peace will never be known to me \
-		again. I have shattered bonds and severed all alliances. In this truth, \
-		I know now the fragility of comradery. My enemies will be all, divided."
+	name = "羊群中的狼"
+	desc = "改变现实的构造，召出一个外人无法进入的魔法竞技场，\
+		所有参与者都会被困住，并对任何形式的群体控制或环境危害免疫；\
+		被困的参与者会获得一把刀锋，且在取得一次暴击之前无法离开或瞬移。\
+		将一名战斗者打至危急状态会部分恢复异教徒的生命值。"
+	gain_text = "阴影在房间中爬行，把每一把椅子、桌子和\
+		每一台控制台都投射成另一只背叛之手那逼近的轮廓。\
+		我已与所有人为敌，和平再也不会为我所知\
+		了。我打碎了纽带，斩断了所有同盟。在这一真相中，\
+		我终于明白同袍情谊何其脆弱。我的敌人将是一切，四分五裂。"
 	cost = 2
 	action_to_add = /datum/action/cooldown/spell/wolves_among_sheep
 	is_final_knowledge = TRUE
 	max_charges = 4
 	path_recharge_amount = 0.0
 	holywater_drain_amount = 0.25
-	transmute_text = "You are rewarded with one charge for every sacrifice you complete. \
-		You will also be rewarded with a charge if you knock at least three combatants into critical condition while the spell is active. \
-		You may only have up to four charges at once."
+	transmute_text = "每完成一次献祭，你都会获得一次充能。\
+		若在咒法生效期间将至少三名战斗者打入危急状态，你也会获得一次充能。\
+		你同时最多只能拥有四次充能。"
 
 /datum/heretic_knowledge/spell/wolves_among_sheep/New()
 	. = ..()
@@ -228,13 +228,13 @@
 	add_charges(1)
 
 /datum/heretic_knowledge/blade_upgrade/blade
-	name = "Empowered Blades"
-	desc = "Attacking someone with a Sundered Blade in both hands \
-		will now deliver a blow with both at once, dealing two attacks in rapid succession.<br>\
-		The second blow will be slightly weaker.<br>\
-		You are able to infuse your mansus grasp directly into your blades, and your blades are more effective against structures."
-	gain_text = "I found him cleaved in twain, halves locked in a duel without end; \
-		a flurry of blades, neither hitting their mark, for the Champion was indomitable."
+	name = "强化刀锋"
+	desc = "双手各持一把裂魂之刃攻击他人时，\
+		现在会同时挥出双手，快速连续造成两次攻击。<br>\
+		第二次攻击会稍弱一些。<br>\
+		你可以将漫宿之握直接注入刀锋，且刀锋对建筑结构更有效。"
+	gain_text = "我找到他时，他已被劈成两半，两半仍陷在一场无尽的决斗中；\
+		刀光纷飞，彼此都无法命中，因为勇士不可战胜。"
 	research_tree_icon_path = 'icons/ui_icons/antags/heretic/knowledge.dmi'
 	research_tree_icon_state = "blade_upgrade_blade"
 	/// How much force do we apply to the offhand?
@@ -323,13 +323,13 @@
 		equipped.demolition_mod = 2.5
 
 /datum/heretic_knowledge/spell/furious_steel
-	name = "Furious Steel"
-	desc = "Grants you Furious Steel, a targeted spell. Using it will summon three \
-		orbiting blades around you.<br>These blades will protect you from all attacks, \
-		but are consumed on use.<br>You can click to fire the blades \
-		at a target, dealing damage and causing bleeding."
-	gain_text = "Without thinking, I took the knife of a fallen soldier and threw with all my might. My aim was true! \
-		The Torn Champion smiled at their first taste of agony, and with a nod, their blades became my own."
+	name = "狂怒之钢"
+	desc = "赋予你“狂怒之钢”，一个指向性咒法。使用后会在你周围召唤三把\
+		环绕飞行的刀锋。<br>这些刀锋会保护你免受一切攻击，\
+		但使用后即被消耗。<br>你可以点击将刀锋射向\
+		一个目标，造成伤害并引发流血。"
+	gain_text = "我未及思索，便抓起一名倒下士兵的刀，用尽全力掷出。我的准头精准无比！\
+		被撕裂的勇士在初尝痛苦时笑了，随后一点头，他们的刀锋便归我所有。"
 	required_atoms = list(/obj/item/knife = 1)
 	action_to_add = /datum/action/cooldown/spell/pointed/projectile/furious_steel
 	cost = 2
@@ -337,7 +337,7 @@
 	recharge_amount = 0.5
 	focus_recharge_amount = 0.33
 	holywater_drain_amount = 0.16
-	transmute_text = "Can be manually recharged by completing a ritual with a knife - this will return half of the spell's maximum charges."
+	transmute_text = "可用一把刀完成仪式来手动充能——这会恢复该咒法最大充能数的一半。"
 
 /datum/heretic_knowledge/spell/furious_steel/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
 	. = ..()
@@ -355,19 +355,19 @@
 		remove_charges(1)
 
 /datum/heretic_knowledge/ultimate/blade_final
-	name = "Maelstrom of Silver"
-	desc = "The ascension ritual of the Path of Blades.<br>\
-		When completed, you will be surrounded in a constant, regenerating orbit of blades. \
-		These blades will protect you from all attacks, but are consumed on use.<br>\
-		Your Furious Steel spell will also have a shorter cooldown.<br>\
-		Additionally, you become a master of combat, gaining full wound immunity and the ability to shrug off short stuns.<br>\
-		Your Sundered Blades deal bonus damage and heal you on attack for a portion of the damage dealt."
-	transmute_text = "Transmute three corpses with either no head or a split skull."
-	gain_text = "The Torn Champion is freed! I will become the blade reunited, and with my greater ambition, \
-		I AM UNMATCHED! A STORM OF STEEL AND SILVER IS UPON US! WITNESS MY ASCENSION!"
+	name = "白银漩涡"
+	desc = "刀锋之道的登神仪式。<br>\
+		完成后，你将被一圈持续存在、不断再生的刀锋环绕。\
+		这些刀锋会保护你免受一切攻击，但使用后即被消耗。<br>\
+		你的“狂怒之钢”咒法冷却时间也会缩短。<br>\
+		此外，你将成为战斗大师，获得完全的伤口免疫，并能轻易摆脱短暂的眩晕。<br>\
+		你的裂魂之刃会造成额外伤害，并在攻击时按所造成伤害的一部分为你治疗。"
+	transmute_text = "转化三具无头或颅骨开裂的尸体。"
+	gain_text = "被撕裂的勇士已获自由！我将成为重归完整的刀锋，以我更大的野心，\
+		我无人能敌！钢铁与白银的风暴即将降临！见证我的登神！"
 
 	ascension_achievement = /datum/award/achievement/misc/blade_ascension
-	announcement_text = "%SPOOKY% Master of blades, the Torn Champion's disciple, %NAME% has ascended! Their steel is that which will cut reality in a maelstom of silver! %SPOOKY%"
+	announcement_text = "%SPOOKY% 刀锋之主、被撕裂的勇士之徒 %NAME% 已登神！其钢铁将以白银漩涡斩裂现实！%SPOOKY%"
 	announcement_sound = 'sound/music/antag/heretic/ascend_blade.ogg'
 
 /datum/heretic_knowledge/ultimate/blade_final/is_valid_sacrifice(mob/living/carbon/human/sacrifice)
@@ -384,9 +384,9 @@
 	user.apply_status_effect(/datum/status_effect/protective_blades/recharging, STATUS_EFFECT_PERMANENT, 8, 30, 0.25 SECONDS, /obj/effect/floating_blade, 60 SECONDS)
 	user.add_stun_absorption(
 		source = name,
-		message = span_warning("%EFFECT_OWNER throws off the stun!"),
-		self_message = span_warning("You throw off the stun!"),
-		examine_message = span_hypnophrase("%EFFECT_OWNER_THEYRE standing stalwartly."),
+		message = span_warning("%EFFECT_OWNER 摆脱了眩晕！"),
+		self_message = span_warning("你摆脱了眩晕！"),
+		examine_message = span_hypnophrase("%EFFECT_OWNER_THEYRE 屹立不倒。"),
 		// flashbangs are like 5-10 seoncds,
 		// a banana peel is ~5 seconds, depending on botany
 		// body throws and tackles are less than 5 seconds,

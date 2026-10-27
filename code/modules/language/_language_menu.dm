@@ -70,58 +70,58 @@
 				. = TRUE
 		if("grant_language")
 			if((is_admin || isobserver(speaker)) && language_datum)
-				var/list/choices = list("Only Spoken", "Only Understood", "Both")
-				var/choice = tgui_input_list(user, "How do you want to add this language?", "[language_datum]", choices)
+				var/list/choices = list("仅可说", "仅可理解", "两者")
+				var/choice = tgui_input_list(user, "你想以何种方式添加这种语言？", "[language_datum]", choices)
 				if(isnull(choice))
 					return
 				var/adding_flags = NONE
 				switch(choice)
-					if("Only Spoken")
+					if("仅可说")
 						adding_flags |= SPOKEN_LANGUAGE
-					if("Only Understood")
+					if("仅可理解")
 						adding_flags |= UNDERSTOOD_LANGUAGE
-					if("Both")
+					if("两者")
 						adding_flags |= ALL
 
 				var/ask_to_remove_block
 				var/list/block_being_removed_on = list()
 				if(adding_flags & SPOKEN_LANGUAGE && LAZYACCESS(language_holder.blocked_speaking, language_datum))
 					ask_to_remove_block = TRUE
-					block_being_removed_on += "spoken"
+					block_being_removed_on += "说出"
 
 				if(ask_to_remove_block)
-					choice = tgui_alert(user, "Do you want to lift the blockage that's also preventing the language to be [block_being_removed_on.Join(" or ")]?", "[language_datum]", list("Yes", "No"))
-					if(choice == "Yes")
+					choice = tgui_alert(user, "是否解除封锁？该封锁同时也使该语言无法被[block_being_removed_on.Join("或")]。", "[language_datum]", list("是", "否"))
+					if(choice == "是")
 						language_holder.remove_blocked_language(language_datum, adding_flags, LANGUAGE_ALL)
 				language_holder.grant_language(language_datum, adding_flags)
 				if(is_admin)
-					message_admins("[key_name_admin(user)] granted the [language_name] language to [key_name_admin(speaker)].")
-					log_admin("[key_name(user)] granted the language [language_name] to [key_name(speaker)].")
+					message_admins("[key_name_admin(user)] 将 [language_name] 语言授予了 [key_name_admin(speaker)]。")
+					log_admin("[key_name(user)] 将 [language_name] 语言授予了 [key_name(speaker)]。")
 				. = TRUE
 		if("remove_language")
 			if((is_admin || isobserver(speaker)) && language_datum)
-				var/list/choices = list("Only Spoken", "Only Understood", "Both")
-				var/choice = tgui_input_list(user, "Which part do you wish to remove?", "[language_datum]", choices)
+				var/list/choices = list("仅可说", "仅可理解", "两者")
+				var/choice = tgui_input_list(user, "你想移除哪一部分？", "[language_datum]", choices)
 				if(isnull(choice))
 					return
 				var/removing_flags = NONE
 				switch(choice)
-					if("Only Spoken")
+					if("仅可说")
 						removing_flags |= SPOKEN_LANGUAGE
-					if("Only Understood")
+					if("仅可理解")
 						removing_flags |= UNDERSTOOD_LANGUAGE
-					if("Both")
+					if("两者")
 						removing_flags |= ALL
 
 				language_holder.remove_language(language_datum, removing_flags)
 				if(is_admin)
-					message_admins("[key_name_admin(user)] removed the [language_name] language to [key_name_admin(speaker)].")
-					log_admin("[key_name(user)] removed the language [language_name] to [key_name(speaker)].")
+					message_admins("[key_name_admin(user)] 从 [key_name_admin(speaker)] 身上移除了 [language_name] 语言。")
+					log_admin("[key_name(user)] 从 [key_name(speaker)] 身上移除了 [language_name] 语言。")
 				. = TRUE
 		if("toggle_omnitongue")
 			if(is_admin || isobserver(speaker))
 				language_holder.omnitongue = !language_holder.omnitongue
 				if(is_admin)
-					message_admins("[key_name_admin(user)] [language_holder.omnitongue ? "enabled" : "disabled"] the ability to speak all languages (that they know) of [key_name_admin(speaker)].")
-					log_admin("[key_name(user)] [language_holder.omnitongue ? "enabled" : "disabled"] the ability to speak all languages (that_they know) of [key_name(speaker)].")
+					message_admins("[key_name_admin(user)] [language_holder.omnitongue ? "启用" : "禁用"]了 [key_name_admin(speaker)] 说出其已知所有语言的能力。")
+					log_admin("[key_name(user)] [language_holder.omnitongue ? "启用" : "禁用"]了 [key_name(speaker)] 说出其已知所有语言的能力。")
 				. = TRUE

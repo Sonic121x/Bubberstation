@@ -37,10 +37,10 @@
 	if(!block_usage)
 		return NONE
 	vending_machine.speak(pick(
-		"Once in a life time offer, and you [pick("blew it", "missed it", "screwed it up")]!",
-		"The deals are off!",
-		"We don't accept card, only accept flesh and blood!",
-		"You had your chance!",
+		"千载难逢的优惠，你却[pick("搞砸了", "错过了", "毁了它")]！",
+		"优惠结束了！",
+		"我们不接受刷卡，只接受血肉！",
+		"你已经有过机会了！",
 	))
 	return VENDING_DENIED
 

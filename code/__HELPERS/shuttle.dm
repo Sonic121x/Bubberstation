@@ -435,7 +435,7 @@ GLOBAL_LIST_EMPTY(shuttle_frames_by_turf)
 	if(mobile_port.get_docked() != dock_at)
 		mobile_port.initiate_docking(dock_at, force = TRUE)
 
-	message_admins("[key_name(user)] has created a shuttle at [ADMIN_VERBOSEJMP(origin)].")
+	message_admins("[key_name(user)] 在 [ADMIN_VERBOSEJMP(origin)] 创建了一艘穿梭机。")
 	log_shuttle("[key_name(user)] has created a shuttle at [get_area(origin)].")
 
 	return mobile_port
@@ -496,7 +496,7 @@ GLOBAL_LIST_EMPTY(shuttle_frames_by_turf)
 		shuttle.calculate_docking_port_information()
 	shuttle.initiate_docking(shuttle.get_docked(), force = TRUE)
 
-	message_admins("[key_name(user)] has expanded [shuttle] at [ADMIN_VERBOSEJMP(user)].")
+	message_admins("[key_name(user)] 在 [ADMIN_VERBOSEJMP(user)] 扩建了[shuttle]。")
 	log_shuttle("[key_name(user)] expanded [shuttle] at [get_area(user)].")
 
 /proc/clear_empty_shuttle_turfs(obj/docking_port/mobile/shuttle)

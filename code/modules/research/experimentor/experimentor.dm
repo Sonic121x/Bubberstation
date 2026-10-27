@@ -1,6 +1,6 @@
 /obj/machinery/rnd/experimentor
 	name = "\improper E.X.P.E.R.I-MENTOR"
-	desc = "Experimental Xeon Particle Entropy Reaction Infuser or something like that. Nanotrasen's new reaction infuser, with a slight less tendency to catastrophically fail than the previous model... or so they say."
+	desc = "实验性氙粒子熵反应注入器，大概是这么个东西。纳米传讯的新型反应注入器，发生灾难性故障的倾向比上一代机型稍微低那么一点……至少他们是这么说的。"
 	icon = 'icons/obj/machines/experimentator.dmi'
 	icon_state = "h_lathe"
 	base_icon_state = "h_lathe"
@@ -147,9 +147,9 @@
 /obj/machinery/rnd/experimentor/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads:<br>")
-		. += span_notice("Malfunction probability reduced by [span_bold("[malfunction_probability_coeff]")].")
-		. += span_notice("Cooldown interval between experiments at [span_bold("[cooldown]")] seconds.")
+		. += span_notice("状态显示屏显示：<br>")
+		. += span_notice("故障概率降低了 [span_bold("[malfunction_probability_coeff]")]。")
+		. += span_notice("实验之间的冷却间隔为 [span_bold("[cooldown]")] 秒。")
 
 /obj/machinery/rnd/experimentor/on_deconstruction(disassembled)
 	. = ..()
@@ -238,7 +238,7 @@
 
 	var/atom/drop_atom = get_step(src, EAST) || drop_location()
 	if(should_clone)
-		visible_message(span_notice("A duplicate of \the [loaded_item] pops out!"))
+		visible_message(span_notice("一份 \the [loaded_item] 的复制品弹了出来！"))
 		new loaded_item.type(drop_atom)
 		return
 
@@ -277,48 +277,48 @@
 	var/malf_coefficient = rand(1, 100)
 	switch(malf_coefficient)
 		if(1 to 15)
-			visible_message(span_warning("[src]'s onboard detection system has malfunctioned!"))
+			visible_message(span_warning("[src] 的机载检测系统发生了故障！"))
 			item_reactions["[loaded_item.type]"] = pick(get_available_reactions())
 			item_eject()
 		if(16 to 35)
-			visible_message(span_warning("[src] melts [loaded_item], ian-izing the air around it!"))
+			visible_message(span_warning("[src] 熔化了 [loaded_item]，把周围的空气变成了伊恩味！"))
 			do_smoke(1, src, src)
 			var/mob/living/tracked_ian = tracked_ian_ref?.resolve()
 			if(tracked_ian)
 				do_smoke(1, src, tracked_ian.loc)
 				tracked_ian.forceMove(loc)
-				investigate_log("Experimentor has stolen Ian!", INVESTIGATE_EXPERIMENTOR)
+				investigate_log("实验机偷走了伊恩！", INVESTIGATE_EXPERIMENTOR)
 			else
 				new /mob/living/basic/pet/dog/corgi(loc)
-				investigate_log("Experimentor has spawned a new corgi.", INVESTIGATE_EXPERIMENTOR)
+				investigate_log("实验机生成了一只新的柯基。", INVESTIGATE_EXPERIMENTOR)
 		if(36 to 50)
-			visible_message(span_warning("Experimentor draws the life essence of those nearby!"))
+			visible_message(span_warning("实验机正在抽取附近生物的生命精华！"))
 			for(var/mob/living/m in view(4,src))
-				to_chat(m, span_danger("You feel your flesh being torn from you, mists of blood drifting to [src]!"))
+				to_chat(m, span_danger("你感觉自己的血肉正被撕裂，血雾飘向 [src]！"))
 				playsound(src, pick('sound/effects/curse/curse1.ogg', 'sound/effects/curse/curse2.ogg', 'sound/effects/curse/curse3.ogg'), 30)
 				m.apply_damage(50, BRUTE, BODY_ZONE_CHEST)
-				investigate_log("Experimentor has taken 50 brute a blood sacrifice from [m]", INVESTIGATE_EXPERIMENTOR)
+				investigate_log("实验机从 [m] 身上取走了 50 点钝击伤害作为血祭", INVESTIGATE_EXPERIMENTOR)
 		if(51 to 75)
-			visible_message(span_warning("[src] encounters a run-time error!"))
+			visible_message(span_warning("[src] 遭遇了运行时错误！"))
 			do_smoke(1, src, src)
 			var/mob/living/tracked_runtime = tracked_runtime_ref?.resolve()
 			if(tracked_runtime)
 				do_smoke(1, src, tracked_runtime.loc)
 				tracked_runtime.forceMove(drop_location())
-				investigate_log("Experimentor has stolen Runtime!", INVESTIGATE_EXPERIMENTOR)
+				investigate_log("实验机偷走了运行时！", INVESTIGATE_EXPERIMENTOR)
 			else
 				new /mob/living/basic/pet/cat(loc)
-				investigate_log("Experimentor failed to steal Runtime the cat and instead spawned a new cat.", INVESTIGATE_EXPERIMENTOR)
+				investigate_log("实验机没能偷走猫“运行时”，只好生成了一只新猫。", INVESTIGATE_EXPERIMENTOR)
 		if(76 to 98)
-			visible_message(span_warning("[src] emits a low hum."))
+			visible_message(span_warning("[src] 发出低沉的嗡鸣。"))
 			do_sparks(3, FALSE, src, src)
 			use_energy(500 KILO JOULES)
-			investigate_log("Experimentor has drained power from its APC", INVESTIGATE_EXPERIMENTOR)
+			investigate_log("实验机从其 APC 抽取了电力", INVESTIGATE_EXPERIMENTOR)
 		if(99)
-			visible_message(span_warning("[src] begins to glow and vibrate. It's going to blow!"))
+			visible_message(span_warning("[src] 开始发光并剧烈震动，它要炸了！"))
 			addtimer(CALLBACK(src, PROC_REF(boom)), 5 SECONDS)
 		if(100)
-			visible_message(span_warning("[src] begins to glow and vibrate. It's going to blow!"))
+			visible_message(span_warning("[src] 开始发光并剧烈震动，它要炸了！"))
 			addtimer(CALLBACK(src, PROC_REF(honk)), 5 SECONDS)
 
 
@@ -342,11 +342,11 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(weapon, src))
-		to_chat(user, span_warning("\The [weapon] is stuck to your hand!"))
+		to_chat(user, span_warning("\The [weapon] 粘在了你手上！"))
 		return ITEM_INTERACT_BLOCKING
 
 	loaded_item = weapon
-	to_chat(user, span_notice("You put [weapon] in the chamber."))
+	to_chat(user, span_notice("你把 [weapon] 放进了反应腔。"))
 	flick("h_lathe_load", src)
 	try_generate_reaction_for_item(loaded_item)
 	return ITEM_INTERACT_SUCCESS
@@ -378,5 +378,5 @@
 
 /obj/machinery/rnd/experimentor/proc/warn_admins(user, ReactionName)
 	var/turf/T = get_turf(user)
-	message_admins("Experimentor reaction: [ReactionName] generated by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(T)]")
-	log_game("Experimentor reaction: [ReactionName] generated by [key_name(user)] in [AREACOORD(T)]")
+	message_admins("实验机反应：[ReactionName] 由 [ADMIN_LOOKUPFLW(user)] 在 [ADMIN_VERBOSEJMP(T)] 触发")
+	log_game("实验机反应：[ReactionName] 由 [key_name(user)] 在 [AREACOORD(T)] 触发")

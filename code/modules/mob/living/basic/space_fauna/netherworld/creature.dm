@@ -1,6 +1,6 @@
 /mob/living/basic/creature
-	name = "creature"
-	desc = "A sanity-destroying otherthing from the netherworld."
+	name = "异界生物"
+	desc = "来自冥界的异形之物，光是看着它就能摧毁你的理智。"
 	icon_state = "otherthing"
 	icon_living = "otherthing"
 	icon_dead = "otherthing-dead"
@@ -10,15 +10,15 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 30
 	speed = 2
-	attack_verb_continuous = "slashes"
-	attack_verb_simple = "slash"
+	attack_verb_continuous = "挥砍"
+	attack_verb_simple = "挥砍"
 	gold_core_spawnable = HOSTILE_SPAWN
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	melee_attack_cooldown = 1 SECONDS
 	faction = list(FACTION_NETHER)
-	speak_emote = list("screams")
-	death_message = "gets his head split open."
+	speak_emote = list("尖叫")
+	death_message = "的脑袋被劈开了。"
 	unsuitable_atmos_damage = 0
 	unsuitable_cold_damage = 0
 	unsuitable_heat_damage = 0
@@ -68,8 +68,8 @@
 
 /// Jaunt spell used by creature. Can only jaunt or unjaunt if nothing can see you.
 /datum/action/cooldown/spell/jaunt/creature_teleport
-	name = "Uncanny Movement"
-	desc = "Enter or leave an alternate plane where you can travel through walls. You can only enter or emerge if unobserved."
+	name = "诡异移动"
+	desc = "进入或离开一个可以穿墙而行的平行位面。只有在无人注视时才能进入或现身。"
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "blink"
 	background_icon_state = "bg_default"
@@ -92,7 +92,7 @@
 	if (!owner)
 		return SPELL_CANCEL_CAST
 	if (!do_after(owner, 6 SECONDS, target = owner.loc))
-		owner.balloon_alert(owner, "interrupted!")
+		owner.balloon_alert(owner, "被打断了！")
 		return SPELL_CANCEL_CAST
 	return ..()
 
@@ -105,11 +105,11 @@
 	enter_jaunt(cast_on)
 
 /mob/living/basic/creature/tiggles
-	name = "Miss Tiggles"
+	name = "蒂格尔斯小姐"
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/creature/hatchling
-	name = "hatchling"
+	name = "幼体"
 	health = 25
 	maxHealth = 25
 	health_scaling = FALSE

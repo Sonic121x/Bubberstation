@@ -1,6 +1,6 @@
 /obj/crystal_mass
-	name = "crystal mass"
-	desc = "You see this massive crystal mass looming towards you, cracking and screeching at every seemingly random movement."
+	name = "晶体团块"
+	desc = "你看到这团巨大的晶体朝你逼近，每一次看似随机的动作都伴随着碎裂与尖啸。"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "crystal_cascade_1"
 	layer = AREA_LAYER
@@ -59,11 +59,11 @@
 
 	for(var/atom/movable/checked_atom as anything in next_turf)
 		if(isliving(checked_atom))
-			sm_comp.dust_mob(src, checked_atom, span_danger("\The [src] lunges out on [checked_atom], touching [checked_atom.p_them()]... \
-					[checked_atom.p_their()] body begins to shine with a brilliant light before crystallizing from the inside out and joining \the [src]!"),
-				span_userdanger("The crystal mass lunges on you and hits you in the chest. As your vision is filled with a blinding light, you think to yourself \"Damn it.\""))
+			sm_comp.dust_mob(src, checked_atom, span_danger("[src] 扑向 [checked_atom]，碰触了对方…… \
+					对方的身体开始闪耀出刺目的光芒，随后由内而外结晶，并融入 [src]！"),
+				span_userdanger("晶体团块扑向你，正中你的胸口。当致盲的白光充满你的视野时，你心里想：“该死。”"))
 		else if(istype(checked_atom, /obj/cascade_portal))
-			checked_atom.visible_message(span_userdanger("\The [checked_atom] screeches and closes away as it is hit by \a [src]! Too late!"))
+			checked_atom.visible_message(span_userdanger("\The [checked_atom] 发出一声尖啸，在被 \a [src] 击中时闭合消失！太迟了！"))
 			playsound(get_turf(checked_atom), 'sound/effects/magic/charge.ogg', 50, TRUE)
 			playsound(get_turf(checked_atom), 'sound/effects/supermatter.ogg', 50, TRUE)
 			qdel(checked_atom)
@@ -77,9 +77,9 @@
 	SIGNAL_HANDLER
 
 	visible_message(
-		span_warning("[hitting_projectile] flies into [src] with a loud crack, before rapidly flashing into ash."),
+		span_warning("[hitting_projectile] 伴随着一声巨响撞入 [src]，随即迅速闪成灰烬。"),
 		null,
-		span_hear("You hear a loud crack as you are washed with a wave of heat."),
+		span_hear("你听到一声巨响，同时被一阵热浪席卷。"),
 	)
 
 	playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
@@ -93,7 +93,7 @@
 	if(!iscarbon(user))
 		return
 	var/mob/living/carbon/jedi = user
-	to_chat(jedi, span_userdanger("That was a really dense idea."))
+	to_chat(jedi, span_userdanger("这主意真是太有分量了。"))
 	jedi.ghostize()
 	var/obj/item/organ/brain/rip_u = locate(/obj/item/organ/brain) in jedi.organs
 	if(rip_u)
@@ -107,8 +107,8 @@
 	return ..()
 
 /obj/cascade_portal
-	name = "Bluespace Rift"
-	desc = "Your mind begins to spin as it tries to comprehend what it sees."
+	name = "蓝空间裂隙"
+	desc = "当你的头脑试图理解眼前之物时，它开始天旋地转。"
 	icon = 'icons/effects/224x224.dmi'
 	icon_state = "reality"
 	anchored = TRUE
@@ -127,16 +127,16 @@
 	. = ..()
 	var/turf/location = get_turf(src)
 	var/area_name = get_area_name(src)
-	message_admins("Exit rift created at [area_name]. [ADMIN_VERBOSEJMP(location)]")
-	log_game("Bluespace Exit Rift was created at [area_name].")
-	investigate_log("created at [area_name].", INVESTIGATE_ENGINE)
+	message_admins("出口裂隙已在 [area_name] 生成。[ADMIN_VERBOSEJMP(location)]")
+	log_game("蓝空间出口裂隙已在 [area_name] 生成。")
+	investigate_log("已在 [area_name] 生成。", INVESTIGATE_ENGINE)
 
 /obj/cascade_portal/Destroy(force)
 	var/turf/location = get_turf(src)
 	var/area_name = get_area_name(src)
-	message_admins("Exit rift at [area_name] deleted. [ADMIN_VERBOSEJMP(location)]")
-	log_game("Bluespace Exit Rift at [area_name] was deleted.")
-	investigate_log("was deleted.", INVESTIGATE_ENGINE)
+	message_admins("位于 [area_name] 的出口裂隙已删除。[ADMIN_VERBOSEJMP(location)]")
+	log_game("位于 [area_name] 的蓝空间出口裂隙已被删除。")
+	investigate_log("已被删除。", INVESTIGATE_ENGINE)
 	return ..()
 
 /obj/cascade_portal/Bumped(atom/movable/hit_object)
@@ -151,11 +151,11 @@
  */
 /obj/cascade_portal/proc/consume(atom/movable/consumed_object)
 	if(isliving(consumed_object))
-		consumed_object.visible_message(span_danger("\The [consumed_object] walks into \the [src]... \
-			A blinding light covers [consumed_object.p_their()] body before disappearing completely!"),
-			span_userdanger("You walk into \the [src] as your body is washed with a powerful blue light. \
-				You contemplate about this decision before landing face first onto the cold, hard floor."),
-			span_hear("You hear a loud crack as a distortion passes through you."))
+		consumed_object.visible_message(span_danger("\The [consumed_object] 走入了 \the [src]…… \
+			一阵刺目的光芒笼罩了其身体，随后彻底消失！"),
+			span_userdanger("你走入了 \the [src]，一股强大的蓝色光芒冲刷着你的身体。 \
+				你还来不及反思这个决定，就已经脸朝下摔在冰冷坚硬的地板上。"),
+			span_hear("你听到一声巨响，同时一阵扭曲掠过你身边。"))
 
 		var/list/arrival_turfs = get_area_turfs(/area/centcom/central_command_areas/evacuation)
 		var/turf/arrival_turf
@@ -164,8 +164,8 @@
 		while(!is_safe_turf(arrival_turf))
 
 		var/mob/living/consumed_mob = consumed_object
-		message_admins("[key_name_admin(consumed_mob)] has entered [src] [ADMIN_VERBOSEJMP(src)].")
-		investigate_log("was entered by [key_name(consumed_mob)].", INVESTIGATE_ENGINE)
+		message_admins("[key_name_admin(consumed_mob)] 进入了 [src] [ADMIN_VERBOSEJMP(src)]。")
+		investigate_log("被 [key_name(consumed_mob)] 进入。", INVESTIGATE_ENGINE)
 		consumed_mob.forceMove(arrival_turf)
 		consumed_mob.Paralyze(100)
 		consumed_mob.adjust_brute_loss(30)
@@ -174,7 +174,7 @@
 		new /obj/effect/particle_effect/sparks(consumed_object)
 		playsound(consumed_object, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	else if(isitem(consumed_object))
-		consumed_object.visible_message(span_danger("\The [consumed_object] smacks into \the [src] and disappears out of sight."), null,
-			span_hear("You hear a loud crack as a small distortion passes through you."))
+		consumed_object.visible_message(span_danger("\The [consumed_object] 撞上 \the [src]，随即消失不见。"), null,
+			span_hear("你听到一声巨响，同时一阵微小的扭曲掠过你身边。"))
 
 		qdel(consumed_object)

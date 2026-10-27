@@ -1,10 +1,10 @@
 /obj/item/seeds/seedling
-	name = "seedling seed pack"
-	desc = "These seeds grow into a floral assistant which can help look after other plants!"
+	name = "幼苗种子包"
+	desc = "这些种子会长成一株花卉助手，能帮忙照看其他植物！"
 	icon_state = "seed-seedling"
 	growing_icon = 'icons/obj/service/hydroponics/growing_fruits.dmi'
 	species = "seedling"
-	plantname = "Seedling Plant"
+	plantname = "幼苗植株"
 	product = /mob/living/basic/seedling
 	lifespan = 40
 	endurance = 7

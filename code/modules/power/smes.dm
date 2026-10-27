@@ -2,8 +2,8 @@
 // stores power
 // SKYRAT EDIT COMMENT: Modularized Power change in modular_nova\master_files\code\modules\power\smes.dm
 /obj/machinery/power/smes
-	name = "power storage unit"
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
+	name = "储能单元"
+	desc = "一台大容量超导磁储能（SMES）单元。"
 	icon_state = "smes"
 	base_icon_state = "smes"
 	density = TRUE
@@ -94,9 +94,9 @@
 /obj/machinery/power/smes/Destroy()
 	if(SSticker.IsRoundInProgress())
 		var/turf/turf = get_turf(src)
-		message_admins("[src] deleted at [ADMIN_VERBOSEJMP(turf)]")
-		log_game("[src] deleted at [AREACOORD(turf)]")
-		investigate_log("deleted at [AREACOORD(turf)]", INVESTIGATE_ENGINE)
+		message_admins("[src] 已删除，位置 [ADMIN_VERBOSEJMP(turf)]")
+		log_game("[src] 已删除，位置 [AREACOORD(turf)]")
+		investigate_log("已在 [AREACOORD(turf)] 被删除", INVESTIGATE_ENGINE)
 	disconnect_terminal()
 	return ..()
 
@@ -106,35 +106,35 @@
 		return
 
 	if(istype(held_item, /obj/item/stack/cable_coil) && !terminal && can_place_terminal(user, held_item, silent = TRUE))
-		context[SCREENTIP_CONTEXT_LMB] = "Install terminal"
+		context[SCREENTIP_CONTEXT_LMB] = "安装终端"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(held_item.tool_behaviour == TOOL_WRENCH && panel_open)
-		context[SCREENTIP_CONTEXT_LMB] = "Rotate"
+		context[SCREENTIP_CONTEXT_LMB] = "旋转"
 		return CONTEXTUAL_SCREENTIP_SET
 	else if(held_item.tool_behaviour == TOOL_WIRECUTTER && terminal && panel_open)
-		context[SCREENTIP_CONTEXT_LMB] = "Cut terminal"
+		context[SCREENTIP_CONTEXT_LMB] = "剪断终端"
 		return CONTEXTUAL_SCREENTIP_SET
 	else if(held_item.tool_behaviour == TOOL_CROWBAR && !terminal && panel_open)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/power/smes/examine(user)
 	. = ..()
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "opened"].")
+	. += span_notice("它的维护面板可以[EXAMINE_HINT("用螺丝刀")][panel_open ? "拧上" : "拧开"]。")
 	if(panel_open)
 		if(!terminal)
-			. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
-		. += span_notice("It can [EXAMINE_HINT("wrenched")] to rotate.")
+			. += span_notice("它可以用[EXAMINE_HINT("撬棍")]撬开。")
+		. += span_notice("它可以用[EXAMINE_HINT("扳手")]旋转。")
 
 	if(!terminal)
-		. += span_warning("A terminal that requires [EXAMINE_HINT("10 cable pieces")] needs to be installed!.")
+		. += span_warning("需要安装一个终端，这需要[EXAMINE_HINT("10 段电缆")]！")
 	else if(panel_open)
-		. += span_notice("The terminal can be [EXAMINE_HINT("cut")] apart.")
+		. += span_notice("终端可以用[EXAMINE_HINT("剪线钳")]剪断。")
 
 /obj/machinery/power/smes/update_overlays()
 	. = ..()
@@ -224,19 +224,19 @@
 	var/turf/terminal_turf = get_turf(user)
 	if(!panel_open)
 		if(!silent && user)
-			balloon_alert(user, "open the maintenance panel!")
+			balloon_alert(user, "请先打开维护面板！")
 		return FALSE
 	if(terminal_turf.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
 		if(!silent && user)
-			balloon_alert(user, "remove the floor plating!")
+			balloon_alert(user, "请先移除地板镀层！")
 		return FALSE
 	if(terminal)
 		if(!silent && user)
-			balloon_alert(user, "already wired!")
+			balloon_alert(user, "已经接好线了！")
 		return FALSE
 	if(installing_cable.get_amount() < 10)
 		if(!silent && user)
-			balloon_alert(user, "need ten lengths of cable!")
+			balloon_alert(user, "需要十段电缆！")
 		return FALSE
 	return TRUE
 
@@ -251,7 +251,7 @@
 		//select cable layer
 		var/terminal_cable_layer = installing_cable.target_layer
 		if(LAZYACCESS(modifiers, RIGHT_CLICK))
-			var/choice = tgui_input_list(user, "Select Power Input Cable Layer", "Select Cable Layer", GLOB.cable_name_to_layer)
+			var/choice = tgui_input_list(user, "选择电力输入电缆层", "选择电缆层", GLOB.cable_name_to_layer)
 			if(isnull(choice) \
 				|| !user.is_holding(installing_cable) \
 				|| !user.Adjacent(src) \
@@ -260,8 +260,8 @@
 			)
 				return ITEM_INTERACT_BLOCKING
 			terminal_cable_layer = GLOB.cable_name_to_layer[choice]
-		user.visible_message(span_notice("[user.name] starts adding cables to [src]."))
-		balloon_alert(user, "adding cables...")
+		user.visible_message(span_notice("[user.name] 开始向 [src] 添加电缆。"))
+		balloon_alert(user, "正在添加电缆……")
 		playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 
 		//use cable
@@ -276,8 +276,8 @@
 			do_sparks(5, TRUE, src)
 			return ITEM_INTERACT_BLOCKING
 		cable.use(10)
-		user.visible_message(span_notice("[user.name] adds cables to [src]."))
-		balloon_alert(user, "cables added")
+		user.visible_message(span_notice("[user.name] 向 [src] 添加了电缆。"))
+		balloon_alert(user, "电缆已添加")
 
 		//build the terminal and link it to the network
 		terminal = new(turf)
@@ -303,14 +303,14 @@
 
 /obj/machinery/power/smes/crowbar_act(mob/living/user, obj/item/tool)
 	if(terminal)
-		balloon_alert(user, "remove the power terminal!")
+		balloon_alert(user, "请先移除电力终端！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(default_deconstruction_crowbar(user, tool))
 		var/turf/ground = get_turf(src)
-		message_admins("[src] has been deconstructed by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(ground)].")
-		user.log_message("deconstructed [src]", LOG_GAME)
-		investigate_log("deconstructed by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
+		message_admins("[src] 于 [ADMIN_VERBOSEJMP(ground)] 被 [ADMIN_LOOKUPFLW(user)] 拆解。")
+		user.log_message("拆解了 [src]", LOG_GAME)
+		investigate_log("于 [AREACOORD(src)] 被 [key_name(user)] 拆解。", INVESTIGATE_ENGINE)
 		return ITEM_INTERACT_SUCCESS
 
 	return ITEM_INTERACT_BLOCKING
@@ -324,15 +324,15 @@
 			if(term && term.dir == REVERSE_DIR(dir))
 				terminal = term
 				terminal.master = src
-				to_chat(user, span_notice("Terminal found."))
+				to_chat(user, span_notice("找到终端。"))
 				set_machine_stat(machine_stat & ~BROKEN)
 				update_appearance(UPDATE_OVERLAYS)
 				return ITEM_INTERACT_SUCCESS
-		to_chat(user, span_alert("No power terminal found."))
+		to_chat(user, span_alert("未找到电力终端。"))
 
 /obj/machinery/power/smes/cable_layer_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, "open panel first!")
+		balloon_alert(user, "请先打开面板！")
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -374,7 +374,7 @@
 				// either from no charge or set to 0
 				if(output_used < 0.1)
 					outputting = FALSE
-					investigate_log("lost power and turned off", INVESTIGATE_ENGINE)
+					investigate_log("失去电力并关闭", INVESTIGATE_ENGINE)
 			else
 				outputting = FALSE
 	else
@@ -513,7 +513,7 @@
 /obj/machinery/power/smes/proc/log_smes(mob/user)
 	PRIVATE_PROC(TRUE)
 
-	investigate_log("Input/Output: [input_level]/[output_level] | Charge: [total_charge()] | Output-mode: [output_attempt?"ON":"OFF"] | Input-mode: [input_attempt?"AUTO":"OFF"] by [user ? key_name(user) : "outside forces"]", INVESTIGATE_ENGINE)
+	investigate_log("输入/输出：[input_level]/[output_level] | 电量：[total_charge()] | 输出模式：[output_attempt?"开启":"关闭"] | 输入模式：[input_attempt?"自动":"关闭"]，操作者 [user ? key_name(user) : "外部力量"]", INVESTIGATE_ENGINE)
 
 /obj/machinery/power/smes/emp_act(severity)
 	. = ..()
@@ -531,8 +531,8 @@
 
 // Variant of SMES that starts with super power cells for higher longevity
 /obj/machinery/power/smes/super
-	name = "super capacity power storage unit"
-	desc = "A super-capacity superconducting magnetic energy storage (SMES) unit. Relatively rare, and typically installed in long-range outposts where minimal maintenance is expected."
+	name = "超大容量储能单元"
+	desc = "一台超大容量超导磁储能（SMES）单元。相当稀有，通常安装在预期几乎无需维护的远程前哨站。"
 	circuit = /obj/item/circuitboard/machine/smes/super
 
 /obj/machinery/power/smes/super/full
@@ -549,8 +549,8 @@
 	output_level = 90 KILO WATTS
 
 /obj/machinery/power/smes/magical
-	name = "magical power storage unit"
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit. Magically produces power."
+	name = "魔法储能单元"
+	desc = "一台大容量超导磁储能（SMES）单元。能以魔法方式产生电力。"
 
 /obj/machinery/power/smes/magical/adjust_charge(charge_adjust)
 	//give charge without consuming anything

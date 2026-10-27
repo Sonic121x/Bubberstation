@@ -28,9 +28,9 @@
 
 ///swirl around the owner in menacing fashion
 /datum/pet_command/attack/swirl
-	command_name = "Swirl"
+	command_name = "盘旋"
 	requires_pointing = TRUE
-	command_desc = "Your pets will swirl around you and attack whoever you point at!"
+	command_desc = "你的宠物会绕着你盘旋，并攻击你指向的目标！"
 	speech_commands = list("swirl", "spiral", "swarm")
 	pointed_reaction = null
 	refuse_reaction = null
@@ -80,8 +80,8 @@
 	controller.set_behavior_tree_override(SUBPLAN_ID_PET_COMMAND, /datum/bt_node/subtree/pet_command/beehive)
 
 /datum/pet_command/beehive/enter
-	command_name = "Enter beehive"
-	command_desc = "Your bees will enter their beehive."
+	command_name = "进入蜂巢"
+	command_desc = "你的蜜蜂会进入它们的蜂巢。"
 	speech_commands = list("enter", "home", "in")
 
 /datum/pet_command/beehive/enter/check_beehive_conditions(mob/living/living_pawn, obj/structure/hive)
@@ -90,16 +90,16 @@
 	return can_see(living_pawn, hive, 9)
 
 /datum/pet_command/beehive/exit
-	command_name = "Exit beehive"
-	command_desc = "Your bees will exit their beehive."
+	command_name = "离开蜂巢"
+	command_desc = "你的蜜蜂会离开它们的蜂巢。"
 	speech_commands = list("exit", "leave", "out")
 
 /datum/pet_command/beehive/exit/check_beehive_conditions(mob/living/living_pawn, obj/structure/hive)
 	return (living_pawn in hive)
 
 /datum/pet_command/scatter
-	command_name = "Scatter"
-	command_desc = "Command your pets to scatter all around you!"
+	command_name = "散开"
+	command_desc = "命令你的宠物四散到你周围！"
 	speech_commands = list("disperse", "spread", "scatter")
 
 /datum/pet_command/scatter/set_command_active(mob/living/parent, mob/living/commander)

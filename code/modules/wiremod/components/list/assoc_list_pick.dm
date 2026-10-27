@@ -5,9 +5,9 @@
  * For actuel code refer to code\modules\wiremod\components\list\list_pick.dm
  */
 /obj/item/circuit_component/list_pick/assoc
-	display_name = "Associative List Pick"
-	desc = "A component that lets a user pick 1 element from an associative list. Returns the selected element."
-	category = "List"
+	display_name = "关联列表抽取"
+	desc = "让使用者从关联列表中抽取 1 个元素的元件。返回被选中的元素。"
+	category = "列表"
 
 /obj/item/circuit_component/list_pick/assoc/populate_options()
 	list_options = add_option_port("List Type", GLOB.wiremod_basic_types)

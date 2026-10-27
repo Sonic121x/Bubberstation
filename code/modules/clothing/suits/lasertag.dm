@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/bluetag
-	name = "blue laser tag armor"
-	desc = "A piece of plastic armor. It has sensors that react to red light." //Lasers are concentrated light
+	name = "蓝色激光对战护甲"
+	desc = "一件塑料护甲。它装有对红光有反应的传感器。" //Lasers are concentrated light
 	icon_state = "bluetag"
 	icon = 'icons/obj/clothing/suits/costume.dmi'
 	worn_icon = 'icons/mob/clothing/suits/costume.dmi'
@@ -23,8 +23,8 @@
 	user.RemoveComponentSource(REF(src), /datum/component/lasertag)
 
 /obj/item/clothing/suit/redtag
-	name = "red laser tag armor"
-	desc = "A piece of plastic armor. It has sensors that react to blue light."
+	name = "红色激光对战护甲"
+	desc = "一件塑料护甲。它装有对蓝光有反应的传感器。"
 	icon_state = "redtag"
 	icon = 'icons/obj/clothing/suits/costume.dmi'
 	worn_icon = 'icons/mob/clothing/suits/costume.dmi'

@@ -1,6 +1,6 @@
 /// Manages the security cameras and camera chunks
 SUBSYSTEM_DEF(cameras)
-	name = "Cameras"
+	name = "摄像头"
 	ss_flags = SS_BACKGROUND
 	priority = FIRE_PRIORITY_CAMERAS
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
@@ -44,7 +44,7 @@ SUBSYSTEM_DEF(cameras)
 			break
 
 /datum/controller/subsystem/cameras/stat_entry(msg)
-	msg = "Cams: [length(cameras)] | Chunks: [length(chunks)] | Updating: [length(chunks_to_update)]"
+	msg = "摄像头: [length(cameras)] | 区块: [length(chunks)] | 更新中: [length(chunks_to_update)]"
 	return ..()
 
 /// Updates the images for new plane offsets
@@ -287,7 +287,7 @@ SUBSYSTEM_DEF(cameras)
 /datum/controller/subsystem/cameras/proc/get_available_camera_by_tag_list(list/networks_available, list/z_levels_available)
 	var/list/available_cameras_by_tag = list()
 	for(var/obj/machinery/camera/camera as anything in get_filtered_and_sorted_cameras(networks_available, z_levels_available))
-		available_cameras_by_tag["[camera.c_tag][camera.can_use() ? null : " (Deactivated)"]"] = camera
+		available_cameras_by_tag["[camera.c_tag][camera.can_use() ? null : "（已停用）"]"] = camera
 
 	return available_cameras_by_tag
 
@@ -321,7 +321,7 @@ SUBSYSTEM_DEF(cameras)
 #undef IGNORE_CAMERA
 
 /obj/effect/overlay/camera_static
-	name = "static"
+	name = "雪花噪点"
 	icon = null
 	icon_state = null
 	anchored = TRUE  // should only appear in vis_contents, but to be safe
@@ -333,8 +333,8 @@ SUBSYSTEM_DEF(cameras)
 
 	plane = CAMERA_STATIC_PLANE
 
-ADMIN_VERB(pause_camera_updates, R_ADMIN, "Toggle Camera Updates", "Stop security cameras from updating, meaning what they see now is what they will see forever.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(pause_camera_updates, R_ADMIN, "切换摄像头更新", "停止监控摄像头更新，使其画面一直停留在当前时刻。", ADMIN_CATEGORY_DEBUG)
 	SScameras.disable_camera_updates = !SScameras.disable_camera_updates
-	log_admin("[key_name_admin(user)] [SScameras.disable_camera_updates ? "disabled" : "enabled"] camera updates.")
-	message_admins("Admin [key_name_admin(user)] has [SScameras.disable_camera_updates ? "disabled" : "enabled"] camera updates.")
+	log_admin("[key_name_admin(user)] [SScameras.disable_camera_updates ? "禁用" : "启用"]了摄像头更新。")
+	message_admins("管理员 [key_name_admin(user)] [SScameras.disable_camera_updates ? "禁用" : "启用"]了摄像头更新。")
 	BLACKBOX_LOG_ADMIN_VERB("Toggle Camera Updates")

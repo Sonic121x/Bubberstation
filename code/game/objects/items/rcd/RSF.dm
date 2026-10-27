@@ -6,8 +6,8 @@ RSF
 ///Extracts the related object from an associated list of objects and values, or lists and objects.
 #define OBJECT_OR_LIST_ELEMENT(from, input) (islist(input) ? from[input] : input)
 /obj/item/rsf
-	name = "\improper Rapid-Service-Fabricator"
-	desc = "A device used to rapidly deploy service items."
+	name = "\improper 快速服务制造器"
+	desc = "一种用于快速生成服务用品的装置。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rsf"
 	inhand_icon_state = "rsf"
@@ -52,9 +52,9 @@ RSF
 	///A list of surfaces that we are allowed to place things on.
 	var/list/allowed_surfaces = list(/turf/open/floor, /obj/structure/table)
 	///The unit of mesure of the matter, for use in text
-	var/discriptor = "fabrication-units"
+	var/discriptor = "制造单位"
 	///The verb that describes what we're doing, for use in text
-	var/action_type = "Dispensing"
+	var/action_type = "正在输出"
 	///Holds a copy of world.time from the last time the synth was used.
 	var/cooldown = 0
 	///How long should the minimum period between this RSF's item dispensings be?
@@ -67,7 +67,7 @@ RSF
 
 /obj/item/rsf/examine(mob/user)
 	. = ..()
-	. += span_notice("It currently holds [matter]/[max_matter] [discriptor].")
+	. += span_notice("它当前存有 [matter]/[max_matter] 个[discriptor]。")
 
 /obj/item/rsf/cyborg
 	matter = 30
@@ -78,7 +78,7 @@ RSF
 
 	var/tempMatter = matter_by_item[tool.type] + matter
 	if(tempMatter > max_matter)
-		to_chat(user, span_warning("\The [src] can't hold any more [discriptor]!"))
+		to_chat(user, span_warning("[src]无法容纳更多[discriptor]了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(isstack(tool))
@@ -88,7 +88,7 @@ RSF
 		qdel(tool)
 	matter = tempMatter //We add its value
 	playsound(src.loc, 'sound/machines/click.ogg', 10, TRUE)
-	to_chat(user, span_notice("\The [src] now holds [matter]/[max_matter] [discriptor]."))
+	to_chat(user, span_notice("[src]现在存有 [matter]/[max_matter] 个[discriptor]。"))
 	icon_state = base_icon_state//and set the icon state to the base state
 	return ITEM_INTERACT_SUCCESS
 
@@ -135,7 +135,7 @@ RSF
 	if(use_matter(dispense_cost, user))//If we can charge that amount of charge, we do so and return true
 		playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
 		var/atom/meme = new to_dispense(get_turf(interacting_with))
-		to_chat(user, span_notice("[action_type] [meme.name]..."))
+		to_chat(user, span_notice("[action_type] [meme.name]……"))
 		cooldown = world.time + cooldowndelay
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
@@ -146,18 +146,18 @@ RSF
 		var/mob/living/silicon/robot/R = user
 		var/end_charge = R.cell.charge - charge
 		if(end_charge < 0)
-			to_chat(user, span_warning("You do not have enough power to use [src]."))
+			to_chat(user, span_warning("你没有足够的电力使用[src]。"))
 			icon_state = spent_icon_state
 			return FALSE
 		R.cell.charge = end_charge
 		return TRUE
 	else
 		if(matter - 1 < 0)
-			to_chat(user, span_warning("\The [src] doesn't have enough [discriptor] left."))
+			to_chat(user, span_warning("[src]剩余的[discriptor]不足。"))
 			icon_state = spent_icon_state
 			return FALSE
 		matter--
-		to_chat(user, span_notice("\The [src] now holds [matter]/[max_matter] [discriptor]."))
+		to_chat(user, span_notice("[src]现在存有 [matter]/[max_matter] 个[discriptor]。"))
 		return TRUE
 
 ///Helper proc that iterates through all the things we are allowed to spawn on, and sees if the passed atom is one of them
@@ -165,16 +165,16 @@ RSF
 	return is_type_in_list(to_check, allowed_surfaces)
 
 /obj/item/rsf/cookiesynth
-	name = "Cookie Synthesizer"
-	desc = "A self-recharging device used to rapidly deploy cookies."
+	name = "饼干合成器"
+	desc = "一种可自行充能的装置，用于快速生成饼干。"
 	icon_state = "rcd"
 	base_icon_state = "rcd"
 	spent_icon_state = "rcd"
 	max_matter = 10
 	cost_by_item = list(/obj/item/food/cookie = 100)
 	dispense_cost = 100
-	discriptor = "cookie-units"
-	action_type = "Fabricates"
+	discriptor = "饼干单位"
+	action_type = "制造出"
 	cooldowndelay = 10 SECONDS
 	///Tracks whether or not the cookiesynth is about to print a poisoned cookie
 	var/toxin = FALSE //This might be better suited to some initialize fuckery, but I don't have a good "poisoned" sprite
@@ -182,9 +182,9 @@ RSF
 /obj/item/rsf/cookiesynth/emag_act(mob/user, obj/item/card/emag/emag_card)
 	obj_flags ^= EMAGGED
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, "reagent safety checker shorted out")
+		balloon_alert(user, "试剂安全检查器被短接了")
 	else
-		balloon_alert(user, "reagent safety checker reset")
+		balloon_alert(user, "试剂安全检查器已重置")
 	return TRUE
 
 /obj/item/rsf/cookiesynth/attack_self(mob/user)
@@ -194,10 +194,10 @@ RSF
 	if(((obj_flags & EMAGGED) || (P?.emagged)) && !toxin)
 		toxin = TRUE
 		to_dispense = /obj/item/food/cookie/sleepy
-		to_chat(user, span_alert("Cookie Synthesizer hacked."))
+		to_chat(user, span_alert("饼干合成器已被入侵。"))
 	else
 		toxin = FALSE
 		to_dispense = /obj/item/food/cookie
-		to_chat(user, span_notice("Cookie Synthesizer reset."))
+		to_chat(user, span_notice("饼干合成器已重置。"))
 
 #undef OBJECT_OR_LIST_ELEMENT

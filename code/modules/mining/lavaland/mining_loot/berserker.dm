@@ -5,11 +5,11 @@
 #define BERSERK_ATTACK_SPEED_MODIFIER 0.25
 
 /obj/item/clothing/suit/hooded/berserker
-	name = "berserker armor"
-	desc = "This hulking armor seems to possess some kind of dark force within; howling in rage, hungry for carnage. \
-		The self-sealing stem bolts that allowed this suit to be spaceworthy have long since corroded. However, the entity \
-		sealed within the suit seems to hunger for the fleeting lifeforce found in the remains left in the remains of drakes. \
-		Feeding it drake remains seems to empower a suit piece, though turns the remains back to lifeless ash."
+	name = "狂战士护甲"
+	desc = "这具笨重的护甲内部似乎寄宿着某种黑暗力量；它在狂怒中嚎叫，渴望着杀戮。 \
+		曾让这套护甲得以适应太空的自密封杆螺栓早已锈蚀。然而， \
+		被封在护甲内的存在似乎在渴求龙类残骸中那转瞬即逝的生命力。 \
+		喂给它龙类残骸似乎能强化护甲部件，但残骸会化为毫无生气的灰烬。"
 	icon_state = "berserker"
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
@@ -45,15 +45,15 @@
 /obj/item/clothing/suit/hooded/berserker/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, ALL, inventory_flags = ITEM_SLOT_OCLOTHING)
-	AddComponent(/datum/component/armor_plate, maxamount = 1, upgrade_item = /obj/item/drake_remains, armor_mod = /datum/armor/drake_empowerment, upgrade_prefix = "empowered")
+	AddComponent(/datum/component/armor_plate, maxamount = 1, upgrade_item = /obj/item/drake_remains, armor_mod = /datum/armor/drake_empowerment, upgrade_prefix = "强化的")
 	allowed = GLOB.mining_suit_allowed
 
 /obj/item/clothing/head/hooded/berserker
-	name = "berserker helmet"
-	desc = "This burdensome helmet seems to possess some kind of dark force within; howling in rage, hungry for carnage. \
-		The self-sealing stem bolts that allowed this helmet to be spaceworthy have long since corroded. However, the entity \
-		sealed within the suit seems to hunger for the fleeting lifeforce found in the remains left in the remains of drakes. \
-		Feeding it drake remains seems to empower a suit piece, though turns the remains back to lifeless ash."
+	name = "狂战士头盔"
+	desc = "这顶沉重的头盔内部似乎寄宿着某种黑暗力量；它在狂怒中嚎叫，渴望着杀戮。 \
+		曾让这顶头盔得以适应太空的自密封杆螺栓早已锈蚀。然而， \
+		被封在护甲内的存在似乎在渴求龙类残骸中那转瞬即逝的生命力。 \
+		喂给它龙类残骸似乎能强化护甲部件，但残骸会化为毫无生气的灰烬。"
 	icon_state = "berserker"
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
@@ -74,12 +74,12 @@
 /obj/item/clothing/head/hooded/berserker/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, LOCKED_HELMET_TRAIT)
-	AddComponent(/datum/component/armor_plate, maxamount = 1, upgrade_item = /obj/item/drake_remains, armor_mod = /datum/armor/drake_empowerment, upgrade_prefix = "empowered")
+	AddComponent(/datum/component/armor_plate, maxamount = 1, upgrade_item = /obj/item/drake_remains, armor_mod = /datum/armor/drake_empowerment, upgrade_prefix = "强化的")
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_PLATE_ARMOR_RUSTLE, 8)
 
 /obj/item/clothing/head/hooded/berserker/examine()
 	. = ..()
-	. += span_notice("Berserk mode is [berserk_charge]% charged.")
+	. += span_notice("狂暴模式已充能 [berserk_charge]%。")
 
 /obj/item/clothing/head/hooded/berserker/process(seconds_per_tick)
 	if(berserk_active)
@@ -102,8 +102,8 @@
 	berserk_charge = clamp(round(berserk_charge + berserk_value), 0, MAX_BERSERK_CHARGE)
 	if(berserk_charge >= MAX_BERSERK_CHARGE)
 		var/datum/action/item_action/berserk_mode/ragemode = locate() in actions
-		to_chat(owner, span_cult_large("Berserk mode is fully charged."))
-		balloon_alert(owner, "berserk charged")
+		to_chat(owner, span_cult_large("狂暴模式已完全充能。"))
+		balloon_alert(owner, "狂暴已充能")
 		ragemode?.build_all_button_icons(UPDATE_BUTTON_STATUS)
 
 /obj/item/clothing/head/hooded/berserker/IsReflect()
@@ -112,7 +112,7 @@
 /// Starts berserk, reducing incoming brute by 50%, doubled attacking speed, NOGUNS trait, adding a color and giving them the berserk movespeed modifier
 /obj/item/clothing/head/hooded/berserker/proc/berserk_mode(mob/living/carbon/human/user)
 	var/datum/action/item_action/berserk_mode/ragemode = locate() in actions
-	to_chat(user, span_cult("You enter berserk mode."))
+	to_chat(user, span_cult("你进入了狂暴模式。"))
 	playsound(user, 'sound/effects/magic/staff_healing.ogg', 50)
 	user.add_movespeed_modifier(/datum/movespeed_modifier/berserk)
 	user.physiology.brute_mod *= 0.5
@@ -133,7 +133,7 @@
 		return
 	var/datum/action/item_action/berserk_mode/ragemode = locate() in actions
 	ragemode?.build_all_button_icons(UPDATE_BUTTON_STATUS)
-	to_chat(user, span_cult("You exit berserk mode."))
+	to_chat(user, span_cult("你退出了狂暴模式。"))
 	playsound(user, 'sound/effects/magic/summonitems_generic.ogg', 50)
 	user.remove_movespeed_modifier(/datum/movespeed_modifier/berserk)
 	user.physiology.brute_mod *= 2

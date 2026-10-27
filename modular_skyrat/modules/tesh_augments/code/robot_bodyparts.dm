@@ -1,10 +1,10 @@
-#define ROBOTIC_LIGHT_BRUTE_MSG "marred"
-#define ROBOTIC_MEDIUM_BRUTE_MSG "dented"
-#define ROBOTIC_HEAVY_BRUTE_MSG "falling apart"
+#define ROBOTIC_LIGHT_BRUTE_MSG "有刮痕"
+#define ROBOTIC_MEDIUM_BRUTE_MSG "有凹陷"
+#define ROBOTIC_HEAVY_BRUTE_MSG "濒临散架"
 
-#define ROBOTIC_LIGHT_BURN_MSG "scorched"
-#define ROBOTIC_MEDIUM_BURN_MSG "charred"
-#define ROBOTIC_HEAVY_BURN_MSG "smoldering"
+#define ROBOTIC_LIGHT_BURN_MSG "有焦痕"
+#define ROBOTIC_MEDIUM_BURN_MSG "烧焦"
+#define ROBOTIC_HEAVY_BURN_MSG "冒着余烟"
 
 /*
  * The damage modifiers here are modified to stay in line with teshari
@@ -18,8 +18,8 @@
 //Teshari normal
 
 /obj/item/bodypart/arm/left/robot/teshari
-	name = "cybernetic left raptoral forelimb"
-	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
+	name = "猛禽型机械左前肢"
+	desc = "包覆仿生肌肉与膜状羽毛的骨架式肢体，配有低导电性外壳。"
 	icon = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -32,8 +32,8 @@
 	burn_modifier = 0.9
 
 /obj/item/bodypart/arm/right/robot/teshari
-	name = "cybernetic right raptoral forelimb"
-	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
+	name = "猛禽型机械右前肢"
+	desc = "包覆仿生肌肉与膜状羽毛的骨架式肢体，配有低导电性外壳。"
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -46,8 +46,8 @@
 	burn_modifier = 0.9
 
 /obj/item/bodypart/leg/left/robot/teshari
-	name = "cybernetic left raptoral hindlimb"
-	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
+	name = "猛禽型机械左后肢"
+	desc = "包覆仿生肌肉与膜状羽毛的骨架式肢体，配有低导电性外壳。"
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -60,8 +60,8 @@
 	burn_modifier = 0.9
 
 /obj/item/bodypart/leg/right/robot/teshari
-	name = "cybernetic right raptoral hindlimb"
-	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
+	name = "猛禽型机械右后肢"
+	desc = "包覆仿生肌肉与膜状羽毛的骨架式肢体，配有低导电性外壳。"
 	icon_static =  'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -74,8 +74,8 @@
 	burn_modifier = 0.9
 
 /obj/item/bodypart/chest/robot/teshari
-	name = "cybernetic raptoral torso"
-	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell, covered in a layer of membranous feathers."
+	name = "猛禽型机械躯干"
+	desc = "经过重度加固的外壳，内置半机械人逻辑板，并留有标准电池的空间，表面覆盖一层膜状羽毛。"
 	icon_static =  'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -87,8 +87,8 @@
 	robotic_emp_paralyze_damage_percent_threshold = 0.5
 
 /obj/item/bodypart/head/robot/teshari
-	name = "cybernetic raptoral head"
-	desc = "A standard reinforced braincase, with spine-plugged neural socket and sensor gimbals. A layer of membranous feathers covers the stark metal."
+	name = "猛禽型机械头部"
+	desc = "标准强化脑壳，配有连接脊柱的神经插座和传感器万向架，裸露金属外覆盖着一层膜状羽毛。"
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -107,8 +107,8 @@
 //Teshari greyscale
 
 /obj/item/bodypart/arm/left/robot/teshari_greyscale
-	name = "cybernetic left raptoral forelimb"
-	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
+	name = "猛禽型机械左前肢"
+	desc = "包覆仿生肌肉与膜状羽毛的骨架式肢体，配有低导电性外壳。"
 	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
@@ -122,8 +122,8 @@
 	burn_modifier = 0.9
 
 /obj/item/bodypart/arm/right/robot/teshari_greyscale
-	name = "cybernetic right raptoral forelimb"
-	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
+	name = "猛禽型机械右前肢"
+	desc = "包覆仿生肌肉与膜状羽毛的骨架式肢体，配有低导电性外壳。"
 	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
@@ -137,8 +137,8 @@
 	burn_modifier = 0.9
 
 /obj/item/bodypart/leg/left/robot/teshari_greyscale
-	name = "cybernetic left raptoral hindlimb"
-	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
+	name = "猛禽型机械左后肢"
+	desc = "包覆仿生肌肉与膜状羽毛的骨架式肢体，配有低导电性外壳。"
 	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
@@ -152,8 +152,8 @@
 	burn_modifier = 0.9
 
 /obj/item/bodypart/leg/right/robot/teshari_greyscale
-	name = "cybernetic right raptoral hindlimb"
-	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
+	name = "猛禽型机械右后肢"
+	desc = "包覆仿生肌肉与膜状羽毛的骨架式肢体，配有低导电性外壳。"
 	icon_static =  'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
@@ -167,8 +167,8 @@
 	burn_modifier = 0.9
 
 /obj/item/bodypart/chest/robot/teshari_greyscale
-	name = "cybernetic raptoral torso"
-	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell, covered in a layer of membranous feathers."
+	name = "猛禽型机械躯干"
+	desc = "经过重度加固的外壳，内置半机械人逻辑板，并留有标准电池的空间，表面覆盖一层膜状羽毛。"
 	icon_static =  'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
@@ -181,8 +181,8 @@
 	robotic_emp_paralyze_damage_percent_threshold = 0.5
 
 /obj/item/bodypart/head/robot/teshari_greyscale
-	name = "cybernetic raptoral head"
-	desc = "A standard reinforced braincase, with spine-plugged neural socket and sensor gimbals. A layer of membranous feathers covers the stark metal."
+	name = "猛禽型机械头部"
+	desc = "标准强化脑壳，配有连接脊柱的神经插座和传感器万向架，裸露金属外覆盖着一层膜状羽毛。"
 	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
@@ -201,8 +201,8 @@
 // teshari_ surplus
 
 /obj/item/bodypart/arm/left/robot/teshari_surplus
-	name = "prosthetic left raptoral forelimb"
-	desc = "A skeletal, robotic wing. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	name = "猛禽型左前肢义肢"
+	desc = "骨架式机械翼，过时而脆弱，但总比没有强。一层膜状羽毛遮住了廉价的组件。"
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -220,8 +220,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/arm/right/robot/teshari_surplus
-	name = "prosthetic right raptoral forelimb"
-	desc = "A skeletal, robotic wing. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	name = "猛禽型右前肢义肢"
+	desc = "骨架式机械翼，过时而脆弱，但总比没有强。一层膜状羽毛遮住了廉价的组件。"
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -238,8 +238,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/leg/left/robot/teshari_surplus
-	name = "prosthetic left raptoral hindlimb"
-	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	name = "猛禽型左后肢义肢"
+	desc = "骨架式机械后肢，过时而脆弱，但总比没有强。一层膜状羽毛遮住了廉价的组件。"
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -256,8 +256,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/leg/right/robot/teshari_surplus
-	name = "prosthetic right raptoral hindlimb"
-	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	name = "猛禽型右后肢义肢"
+	desc = "骨架式机械后肢，过时而脆弱，但总比没有强。一层膜状羽毛遮住了廉价的组件。"
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -274,8 +274,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/arm/left/robot/teshari_surplus
-	name = "prosthetic left raptoral forelimb"
-	desc = "A skeletal, robotic wing. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	name = "猛禽型左前肢义肢"
+	desc = "骨架式机械翼，过时而脆弱，但总比没有强。一层膜状羽毛遮住了廉价的组件。"
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -292,8 +292,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/arm/right/robot/teshari_surplus
-	name = "prosthetic right raptoral forelimb"
-	desc = "A skeletal, robotic wing. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	name = "猛禽型右前肢义肢"
+	desc = "骨架式机械翼，过时而脆弱，但总比没有强。一层膜状羽毛遮住了廉价的组件。"
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -312,8 +312,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/leg/left/robot/teshari_surplus
-	name = "prosthetic left raptoral hindlimb"
-	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	name = "猛禽型左后肢义肢"
+	desc = "骨架式机械后肢，过时而脆弱，但总比没有强。一层膜状羽毛遮住了廉价的组件。"
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -331,8 +331,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/leg/right/robot/teshari_surplus
-	name = "prosthetic right raptoral hindlimb"
-	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	name = "猛禽型右后肢义肢"
+	desc = "骨架式机械后肢，过时而脆弱，但总比没有强。一层膜状羽毛遮住了廉价的组件。"
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/surplus_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -351,8 +351,8 @@
 // teshari_ advanced
 
 /obj/item/bodypart/arm/left/robot/teshari_advanced
-	name = "advanced left raptoral forelimb"
-	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	name = "高级猛禽型左前肢"
+	desc = "先进的机械肢体。这类设计通常专供仍在寻找阿瓦隆的人使用。"
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -374,8 +374,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/arm/right/robot/teshari_advanced
-	name = "advanced right raptoral forelimb"
-	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	name = "高级猛禽型右前肢"
+	desc = "先进的机械肢体。这类设计通常专供仍在寻找阿瓦隆的人使用。"
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -397,8 +397,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/leg/left/robot/teshari_advanced
-	name = "advanced left raptoral hindlimb"
-	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	name = "高级猛禽型左后肢"
+	desc = "先进的机械后肢。这类设计通常专供仍在寻找阿瓦隆的人使用。"
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -420,8 +420,8 @@
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
 /obj/item/bodypart/leg/right/robot/teshari_advanced
-	name = "advanced right raptoral hindlimb"
-	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	name = "高级猛禽型右后肢"
+	desc = "先进的机械后肢。这类设计通常专供仍在寻找阿瓦隆的人使用。"
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM

@@ -1,6 +1,6 @@
 /mob/living/basic/stickman
-	name = "Angry Stick Man"
-	desc = "A being from a realm with only 2 dimensions. At least it's trying to stay faced towards you."
+	name = "愤怒火柴人"
+	desc = "来自只有二维的世界的存在。至少它努力想正面朝向你。"
 	icon_state = "stickman"
 	icon_living = "stickman"
 	icon_dead = "stickman_dead"
@@ -9,8 +9,8 @@
 	health = 100
 	maxHealth = 100
 	speed = 0.5
-	attack_verb_continuous = "punches"
-	attack_verb_simple = "punch"
+	attack_verb_continuous = "出拳"
+	attack_verb_simple = "出拳"
 	melee_damage_lower = 10
 	melee_damage_upper = 10
 	melee_attack_cooldown = 1.5 SECONDS
@@ -40,25 +40,25 @@
 	ai_movement = /datum/ai_movement/basic_avoidance
 
 /mob/living/basic/stickman/dog
-	name = "Angry Stick Dog"
-	desc = "Stickman's best friend, if he could see him at least."
+	name = "愤怒火柴狗"
+	desc = "火柴人最好的朋友——前提是他能看见它。"
 	icon_state = "stickdog"
 	icon_living = "stickdog"
 	icon_dead = "stickdog_dead"
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	sharpness = SHARP_POINTY
 	mob_biotypes = MOB_BEAST
 	attack_sound = 'sound/items/weapons/bite.ogg'
 
 /mob/living/basic/stickman/ranged
-	name = "Angry Stick Gunman"
-	desc = "How do 2 dimensional guns even work??"
+	name = "愤怒火柴枪手"
+	desc = "二维的枪到底是怎么运作的？？"
 	icon_state = "stickmanranged"
 	icon_living = "stickmanranged"
-	attack_verb_continuous = "whacks"
-	attack_verb_simple = "whack"
+	attack_verb_continuous = "敲打"
+	attack_verb_simple = "敲打"
 	melee_damage_lower = 5
 	melee_damage_upper = 5
 	attack_sound = 'sound/items/weapons/genhit1.ogg'

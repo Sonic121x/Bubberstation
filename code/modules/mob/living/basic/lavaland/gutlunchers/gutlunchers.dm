@@ -4,8 +4,8 @@
 #define MAX_POSSIBLE_HEALTH 100
 
 /mob/living/basic/mining/gutlunch
-	name = "gutlunch"
-	desc = "A scavenger that eats raw ores, often found alongside ash walkers. Produces a thick, nutritious milk."
+	name = "食脏兽"
+	desc = "一种以原矿为食的食腐动物，常与灰行者一同出没。能产出浓稠而富含营养的乳汁。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "gutlunch"
 	icon_living = "gutlunch"
@@ -13,18 +13,18 @@
 	combat_mode = FALSE
 	mob_biotypes = MOB_ORGANIC|MOB_BUG|MOB_MINING
 	basic_mob_flags = DEL_ON_DEATH
-	speak_emote = list("warbles", "quavers")
+	speak_emote = list("颤声鸣叫", "打着哆嗦哼叫")
 	faction = list(FACTION_ASHWALKER)
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "squishes"
-	response_harm_simple = "squish"
-	friendly_verb_continuous = "pinches"
-	friendly_verb_simple = "pinch"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "压扁"
+	response_harm_simple = "压扁"
+	friendly_verb_continuous = "轻捏"
+	friendly_verb_simple = "轻捏"
 	gold_core_spawnable = FRIENDLY_SPAWN
-	death_message = "is pulped into bugmash."
+	death_message = "被碾成了一团虫泥。"
 	greyscale_config = /datum/greyscale_config/gutlunch
 	///possible colors we can have
 	var/list/possible_colors = list(COLOR_WHITE)
@@ -51,7 +51,7 @@
 		return BASIC_MOB_CONTINUE_ATTACK_CHAIN
 	var/obj/ore_food = locate(/obj/item/stack/ore) in target
 	if(isnull(ore_food))
-		balloon_alert(src, "no food!")
+		balloon_alert(src, "没有食物！")
 	else
 		UnarmedAttack(ore_food, TRUE, modifiers)
 	return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
@@ -85,7 +85,7 @@
 	)
 
 /mob/living/basic/mining/gutlunch/milk
-	name = "gubbuck"
+	name = "食脏乳兽"
 	gender = FEMALE
 	possible_colors = list("#E39FBB","#817178","#9d667d")
 	ai_controller = /datum/ai_controller/basic_controller/gutlunch/gutlunch_milk
@@ -105,7 +105,7 @@
 	full_udder.color = LAZYACCESS(atom_colours, FIXED_COLOUR_PRIORITY) || COLOR_GRAY
 
 /mob/living/basic/mining/gutlunch/warrior
-	name = "gunther"
+	name = "冈瑟"
 	gender = MALE
 	melee_damage_lower = 8
 	melee_damage_upper = 13
@@ -139,7 +139,7 @@
 	. += full_udder
 
 /mob/living/basic/mining/gutlunch/grub
-	name = "grublunch"
+	name = "食脏幼兽"
 	possible_colors = list("#cc9797", "#b74c4c")
 	can_breed = FALSE
 	gender = NEUTER

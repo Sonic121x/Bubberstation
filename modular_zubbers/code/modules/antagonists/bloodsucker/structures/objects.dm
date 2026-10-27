@@ -20,8 +20,8 @@
 			being_drunk = FALSE
 			return
 		attacker.visible_message(
-			span_notice("[attacker] forces [victim] to drink from the [src]."),
-			span_notice("You put the [src] up to [victim]'s mouth."))
+			span_notice("[attacker]强迫[victim]喝下[src]中的液体。"),
+			span_notice("你将[src]凑到[victim]嘴边。"))
 		reagents.trans_to(victim, BLOODBAG_GULP_SIZE, transferred_by = attacker, methods = INGEST)
 		playsound(victim.loc, 'sound/items/drink.ogg', 30, 1)
 		being_drunk = FALSE
@@ -29,8 +29,8 @@
 
 	while(do_after(victim, 1 SECONDS, timed_action_flags = IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(can_drink), attacker, victim)))
 		victim.visible_message(
-			span_notice("[victim] puts the [src] up to their mouth."),
-			span_notice("You take a sip from the [src]."),
+			span_notice("[victim]将[src]凑到嘴边。"),
+			span_notice("你从[src]中喝了一口。"),
 		)
 		reagents.trans_to(victim, BLOODBAG_GULP_SIZE, transferred_by = attacker, methods = INGEST)
 		playsound(victim.loc, 'sound/items/drink.ogg', 30, 1)
@@ -43,20 +43,20 @@
 	if(!canconsume(victim, attacker))
 		return FALSE
 	if(!reagents || !reagents.total_volume)
-		to_chat(victim, span_warning("[src] is empty!"))
+		to_chat(victim, span_warning("[src]是空的！"))
 		return FALSE
 	return TRUE
 
 ///Bloodbag of Bloodsucker blood (used by Ghouls only)
 /obj/item/reagent_containers/blood/o_minus/bloodsucker
-	name = "blood pack"
+	name = "血袋"
 	blood_type = null
 	list_reagents = list(/datum/reagent/blood/bloodsucker = 200)
 
 /obj/item/reagent_containers/blood/o_minus/bloodsucker/examine(mob/user)
 	. = ..()
 	if(user.mind.has_antag_datum(/datum/antagonist/ex_ghoul) || user.mind.has_antag_datum(/datum/antagonist/ghoul/revenge))
-		. += span_notice("Seems to be just about the same color as your Master's...")
+		. += span_notice("颜色似乎与你主人的血液差不多……")
 
 //////////////////////
 //      STAKES      //
@@ -65,9 +65,9 @@
 	if(!item.get_sharpness())
 		return ..()
 	user.visible_message(
-		span_notice("[user] begins whittling [src] into a pointy object."),
-		span_notice("You begin whittling [src] into a sharp point at one end."),
-		span_hear("You hear wood carving."),
+		span_notice("[user]开始将[src]削成尖锐的形状。"),
+		span_notice("你开始将[src]的一端削尖。"),
+		span_hear("你听到削木头的声音。"),
 	)
 	// 5 Second Timer
 	if(!do_after(user, 5 SECONDS, src, NONE, TRUE))
@@ -75,8 +75,8 @@
 	// Make Stake
 	var/obj/item/stake/new_item = new(user.loc)
 	user.visible_message(
-		span_notice("[user] finishes carving a stake out of [src]."),
-		span_notice("You finish carving a stake out of [src]."),
+		span_notice("[user]将[src]削成了一根木桩。"),
+		span_notice("你将[src]削成了一根木桩。"),
 	)
 	// Prepare to Put in Hands (if holding wood)
 	var/obj/item/stack/sheet/mineral/wood/wood_stack = src
@@ -108,8 +108,8 @@
 	embed_chance = 20
 
 /obj/item/stake
-	name = "wooden stake"
-	desc = "A simple wooden stake carved to a sharp point."
+	name = "木桩"
+	desc = "一根削尖了的简单木桩。"
 	icon = 'modular_zubbers/icons/obj/equipment/stakes.dmi'
 	icon_state = "wood"
 	inhand_icon_state = "wood"
@@ -118,8 +118,8 @@
 	slot_flags = ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
-	attack_verb_continuous = list("staked", "stabbed", "tore into")
-	attack_verb_simple = list("staked", "stabbed", "tore into")
+	attack_verb_continuous = list("桩刺", "刺穿", "撕开")
+	attack_verb_simple = list("桩刺", "刺穿", "撕开")
 	sharpness = SHARP_EDGED
 	embed_data = /datum/embedding/stake
 	force = 6
@@ -133,9 +133,9 @@
 
 /obj/item/stake/examine_more(mob/user)
 	. = ..()
-	. += span_notice("You can use [src] to stake someone in the chest, if they are laying down or grabbed by the neck.")
+	. += span_notice("目标躺倒或被扼住脖子时，可以用[src]刺入其胸膛。")
 	if(IS_BLOODSUCKER(user))
-		. += span_warning("You feel a sense of dread as you look at the [src]...")
+		. += span_warning("看着[src]，你心中升起一阵恐惧……")
 
 /obj/item/stake/attack(mob/living/target, mob/living/user, params)
 	. = ..()
@@ -147,20 +147,20 @@
 	if(target == user)
 		return
 	if(!target.can_be_staked()) // Oops! Can't.
-		to_chat(user, span_danger("You can't stake [target] when they are moving about! They have to be laying down or grabbed by the neck!"))
+		to_chat(user, span_danger("[target]还在活动，无法刺入木桩！目标必须躺倒或被扼住脖子！"))
 		return
 	if(HAS_TRAIT(target, TRAIT_PIERCEIMMUNE))
-		to_chat(user, span_danger("[target]'s chest resists the stake. It won't go in."))
+		to_chat(user, span_danger("[target]的胸膛抵住了桩，刺不进去。"))
 		return
 
-	to_chat(user, span_notice("You put all your weight into embedding the stake into [target]'s chest..."))
+	to_chat(user, span_notice("你使出全身力气，试图将桩刺入[target]的胸膛……"))
 	playsound(user, 'sound/effects/magic/Demon_consume.ogg', 50, 1)
 	if(!do_after(user, staketime, target, extra_checks = CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon, can_be_staked)))) // user / target / time / uninterruptable / show progress bar / extra checks
 		return
 	// Drop & Embed Stake
 	user.visible_message(
-		span_danger("[user.name] drives the [src] into [target]'s chest!"),
-		span_danger("You drive the [src] into [target]'s chest!"),
+		span_danger("[user.name]将[src]钉入了[target]的胸膛！"),
+		span_danger("你将[src]钉入了[target]的胸膛！"),
 	)
 	playsound(get_turf(target), 'sound/effects/splat.ogg', 40, 1)
 	if(force_embed(target, target.get_bodypart(BODY_ZONE_CHEST))) //and if it embeds successfully in their chest, cause a lot of pain
@@ -175,8 +175,8 @@
 	if(!heart)
 		return
 	target.visible_message(
-		span_danger("The [src.name] pierces [target]'s chest, destroying their [heart.name]!"),
-		span_userdanger("You feel a HORRIBLE pain as the [src.name] pierces your chest, destroying your [heart.name]!"),
+		span_danger("[src.name]刺穿了[target]的胸膛，摧毁了其[heart.name]！"),
+		span_userdanger("[src.name]刺穿你的胸膛，摧毁了[heart.name]，你感到可怕的剧痛！"),
 	)
 	qdel(heart)
 
@@ -203,8 +203,8 @@
 
 /// Created by welding and acid-treating a simple stake.
 /obj/item/stake/hardened
-	name = "hardened stake"
-	desc = "A wooden stake carved to a sharp point and hardened by fire."
+	name = "硬化木桩"
+	desc = "一根削尖后经火烤硬化的木桩。"
 	icon_state = "hardened"
 	force = 8
 	throwforce = 12
@@ -215,15 +215,15 @@
 
 /obj/item/stake/hardened/examine_more(mob/user)
 	. = ..()
-	. += span_notice("The [src] won't fall out by itself, if embedded in someone.")
+	. += span_notice("[src]刺入人体后不会自行脱落。")
 
 /datum/embedding/stake/silver
 	embed_chance = 0 // we want it to only be embeddable manually
 	fall_chance = 0
 
 /obj/item/stake/hardened/silver
-	name = "silver stake"
-	desc = "Polished and sharp at the end. For when some mofo is always trying to iceskate uphill."
+	name = "银桩"
+	desc = "抛光锃亮，末端尖锐。专治那些总想逆坡滑冰、不知好歹的混蛋。"
 	icon_state = "silver"
 	inhand_icon_state = "silver"
 	siemens_coefficient = 1
@@ -235,7 +235,7 @@
 
 /obj/item/stake/hardened/silver/examine_more(mob/user)
 	. = ..()
-	. += span_notice("You think that the [src] could destroy someone's heart if you really slam it in someone's ribs properly.")
+	. += span_notice("你觉得只要将[src]狠狠刺进肋骨之间，就能摧毁对方的心脏。")
 
 //////////////////////
 //     ARCHIVES     //
@@ -253,14 +253,14 @@
  *	Regular Bloodsuckers won't have any negative effects from the book, while everyone else will get burns/eye damage.
  */
 /obj/item/book/kindred
-	name = "\improper Book of Nod"
-	starting_title = "the Book of Nod"
-	desc = "Cryptic documents explaining hidden truths behind Undead beings. It is said only Curators can decipher what they really mean."
+	name = "\improper 诺德之书"
+	starting_title = "诺德之书"
+	desc = "揭示不死生物背后隐秘真相的晦涩文献。据说只有馆长能破译其中的真正含义。"
 	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/bloodsucker_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/bloodsucker_righthand.dmi'
 	icon_state = "kindred_book"
-	starting_author = "dozens of generations of Curators"
+	starting_author = "数十代馆长"
 	unique = TRUE
 	throw_speed = 1
 	throw_range = 10
@@ -274,7 +274,7 @@
 	SSpoints_of_interest.make_point_of_interest(src)
 
 /obj/item/book/kindred/carving_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice("You feel the gentle whispers of a Librarian telling you not to cut [starting_title]."))
+	to_chat(user, span_notice("你仿佛听到图书管理员轻声劝你不要切割《[starting_title]》。"))
 	return ITEM_INTERACT_BLOCKING
 
 ///Attacking someone with the book.
@@ -284,36 +284,36 @@
 		return
 	if(!HAS_TRAIT(user.mind, TRAIT_BLOODSUCKER_HUNTER))
 		if(IS_BLOODSUCKER(user))
-			to_chat(user, span_notice("[src] seems to be too complicated for you. It would be best to leave this for someone else to take."))
+			to_chat(user, span_notice("[src]对你而言似乎太过深奥，最好留给别人。"))
 			return
-		to_chat(user, span_warning("[src] burns your hands as you try to use it!"))
+		to_chat(user, span_warning("你试图使用[src]，却被它灼伤了双手！"))
 		user.apply_damage(3, BURN, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 		return
 
 	if(!COOLDOWN_FINISHED(src, bloodsucker_check_cooldown))
-		user.balloon_alert(user, "your head hurts, wait a minute ")
-		addtimer(CALLBACK(user, TYPE_PROC_REF(/atom, balloon_alert), user, "You feel your head clear up."), cooldown_time)
+		user.balloon_alert(user, "头痛欲裂，请稍等")
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/atom, balloon_alert), user, "你的头脑清醒了。"), cooldown_time)
 		return
-	user.balloon_alert_to_viewers(user, "reading book...")
-	user.balloon_alert(target, "looks at you and checks their [src]...")
+	user.balloon_alert_to_viewers(user, "正在读书……")
+	user.balloon_alert(target, "看着你，并查阅[src]……")
 	if(!do_after(user, 3 SECONDS, target, timed_action_flags = NONE, show_progress = TRUE))
-		to_chat(user, span_notice("You quickly close [src]."))
+		to_chat(user, span_notice("你迅速合上了[src]。"))
 		return
 	COOLDOWN_START(src, bloodsucker_check_cooldown, cooldown_time)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(target)
 	// Are we a Bloodsucker | Are we on Masquerade. If one is true, they will fail.
 	if(IS_BLOODSUCKER(target) && !HAS_TRAIT(target, TRAIT_MASQUERADE))
 		if(bloodsuckerdatum.broke_masquerade)
-			to_chat(user, span_warning("[target], also known as '[bloodsuckerdatum.return_full_name()]', is indeed a Bloodsucker, but you already knew this."))
+			to_chat(user, span_warning("[target]，又名‘[bloodsuckerdatum.return_full_name()]’，确实是吸血鬼，不过你早已知道。"))
 			return
-		to_chat(user, span_warning("[target], also known as '[bloodsuckerdatum.return_full_name()]', [bloodsuckerdatum.my_clan ? "is part of the [bloodsuckerdatum.my_clan]!" : "is not part of a clan."] You quickly note this information down, memorizing it."))
+		to_chat(user, span_warning("[target]，又名‘[bloodsuckerdatum.return_full_name()]’，[bloodsuckerdatum.my_clan ? "属于[chinese_bloodsucker_clan_display(bloodsuckerdatum.my_clan.name)]！" : "不属于任何氏族。"]你迅速记下这些信息，将其铭记于心。"))
 		bloodsuckerdatum.break_masquerade()
 	else
-		to_chat(user, span_notice("You fail to draw any conclusions to [target] being a Bloodsucker."))
+		to_chat(user, span_notice("你无法确定[target]是否是吸血鬼。"))
 
 /obj/item/book/kindred/attack_self(mob/living/user)
 	if(user.mind && !(HAS_TRAIT(user.mind, TRAIT_BLOODSUCKER_HUNTER) || IS_BLOODSUCKER(user)))
-		to_chat(user, span_warning("You feel your eyes unable to read the boring texts..."))
+		to_chat(user, span_warning("你觉得双眼无法继续阅读这些枯燥的文字……"))
 		user.set_eye_blur_if_lower(10 SECONDS)
 		return
 	ui_interact(user)
@@ -329,14 +329,14 @@
 
 	for(var/datum/bloodsucker_clan/clans as anything in subtypesof(/datum/bloodsucker_clan))
 		var/clan_data = list()
-		clan_data["clan_name"] = initial(clans.name)
+		clan_data["clan_name"] = chinese_bloodsucker_clan_display(initial(clans.name))
 		clan_data["clan_desc"] = initial(clans.description)
 		data["clans"] += list(clan_data)
 
 	return data
 
 /obj/structure/displaycase/curator
-	desc = "This book was found inside a coffin of a long dead Curator. It is said to be able to reveal the true nature of those who feed upon mankind."
+	desc = "这本书发现于一位早已死去的馆长的棺材中。据说它能揭示那些以人类为食者的真实本质。"
 	start_showpiece_type = /obj/item/book/kindred
 	req_access = list(ACCESS_LIBRARY)
 
@@ -353,6 +353,6 @@
 	if(!heart_thief)
 		return
 	if(heart_thief.check_if_valid_item(src))
-		. += span_notice("This [src.name] will do for your purposes...")
+		. += span_notice("这本[src.name]符合你的需要……")
 	else
-		. += span_notice("This [src.name] is of lesser quality, it won't do...")
+		. += span_notice("这本[src.name]质量较差，不符合要求……")

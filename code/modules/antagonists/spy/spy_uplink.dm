@@ -44,9 +44,9 @@
 
 	if(!is_our_spy(user))
 		return
-	examine_list += span_notice("You recognize this as your <i>spy uplink</i>.")
-	examine_list += span_notice("- [EXAMINE_HINT("Use it in hand")] to view your bounty list.")
-	examine_list += span_notice("- [EXAMINE_HINT("Right click")] with it on a bounty target to claim it.")
+	examine_list += span_notice("你认出这是你的<i>间谍上行链路</i>。")
+	examine_list += span_notice("- [EXAMINE_HINT("在手中使用")]以查看你的赏金列表。")
+	examine_list += span_notice("- 手持它对赏金目标[EXAMINE_HINT("右键点击")]即可领取。")
 
 /datum/component/spy_uplink/proc/block_pda_bombs(obj/item/source)
 	SIGNAL_HANDLER
@@ -82,10 +82,10 @@
 		if(!bounty.is_stealable(stealing))
 			continue
 		if(bounty.claimed)
-			stealing.balloon_alert(spy, "bounty already claimed!")
+			stealing.balloon_alert(spy, "赏金已被领取！")
 			return TRUE
 		if(DOING_INTERACTION(spy, REF(src)))
-			spy.balloon_alert(spy, "already scanning!") // Only shown if they're trying to scan two valid targets
+			spy.balloon_alert(spy, "已在扫描中！") // Only shown if they're trying to scan two valid targets
 			return TRUE
 		SEND_SIGNAL(stealing, COMSIG_MOVABLE_SPY_STEALING, spy, bounty)
 		INVOKE_ASYNC(src, PROC_REF(start_stealing), stealing, spy, bounty)
@@ -96,10 +96,10 @@
 /// Wraps the stealing process in a scanning effect.
 /datum/component/spy_uplink/proc/start_stealing(atom/movable/stealing, mob/living/spy, datum/spy_bounty/bounty)
 	if(!isturf(stealing.loc) && stealing.loc != spy)
-		to_chat(spy, span_warning("Your uplink blinks red: [stealing] cannot be extracted from there."))
+		to_chat(spy, span_warning("你的上行链路红光闪烁：[stealing]无法从那里提取。"))
 		return FALSE
 
-	log_combat(spy, stealing, "started stealing", parent, "(spy bounty)")
+	log_combat(spy, stealing, "开始窃取", parent, "(间谍赏金)")
 	playsound(stealing, 'sound/items/pshoom/pshoom.ogg', 33, vary = TRUE, extrarange = SILENCED_SOUND_EXTRARANGE, frequency = 0.33, ignore_walls = FALSE)
 
 	var/obj/effect/scan_effect/active_scan_effect = new(stealing.loc)
@@ -134,17 +134,17 @@
 /// If successful, proceeds to complete the bounty.
 /datum/component/spy_uplink/proc/steal_process(atom/movable/stealing, mob/living/spy, datum/spy_bounty/bounty)
 	spy.visible_message(
-		span_warning("[spy] starts scanning [stealing] with a strange device..."),
-		span_notice("You start scanning [stealing], preparing it for extraction."),
+		span_warning("[spy]开始用一个奇怪的装置扫描[stealing]……"),
+		span_notice("你开始扫描[stealing]，为提取做准备。"),
 	)
 
 	if(!do_after(spy, bounty.theft_time, stealing, interaction_key = REF(src), cog_icon = null))
 		return FALSE
 	if(bounty.claimed)
-		to_chat(spy, span_warning("Your uplink blinks red: The bounty for [stealing] has been claimed by another spy!"))
+		to_chat(spy, span_warning("你的上行链路红光闪烁：[stealing]的赏金已被另一名间谍领取！"))
 		return FALSE
 	if(spy.is_holding(stealing) && !spy.dropItemToGround(stealing))
-		to_chat(spy, span_warning("Your uplink blinks red: [stealing] seems stuck to your hand!"))
+		to_chat(spy, span_warning("你的上行链路红光闪烁：[stealing]似乎粘在你手上了！"))
 		return FALSE
 
 	var/bounty_key = bounty.get_dupe_protection_key(stealing)
@@ -162,13 +162,13 @@
 	if(isitem(reward))
 		spy.put_in_hands(reward)
 
-	to_chat(spy, span_notice("Bounty complete! You have been rewarded with \a [reward].\
-		[reward.loc == spy ? "" : " <i>Find it at your feet.</i>"]"))
+	to_chat(spy, span_notice("赏金完成！你获得了[reward]作为奖励。\
+		[reward.loc == spy ? "" : " <i>在你的脚边找找吧。</i>"]"))
 
 	playsound(parent, 'sound/machines/wewewew.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
-	log_combat(spy, stealing, "stole", parent, "(spy bounty)")
-	log_spy("[key_name(spy)] completed the bounty [bounty.name] of difficulty [bounty.difficulty] by stealing [stealing] for \a [reward].")
+	log_combat(spy, stealing, "窃取了", parent, "(间谍赏金)")
+	log_spy("[key_name(spy)] 通过窃取 [stealing] 换得 [reward]，完成了难度为 [bounty.difficulty] 的赏金 [bounty.name]。")
 	SSblackbox.record_feedback("nested tally", "spy_bounty", 1, list("[stealing.type]", "[bounty.type]", "[bounty.difficulty]", "[bounty.reward_item.type]"))
 
 	var/datum/antagonist/spy/spy_datum = spy_ref?.resolve()
@@ -207,7 +207,7 @@
 	layer = ABOVE_ALL_MOB_LAYER
 
 /obj/effect/scan_effect/cone
-	name = "holoray"
+	name = "全息射线"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "scan_beam"
 	color = "#3ba0ff"

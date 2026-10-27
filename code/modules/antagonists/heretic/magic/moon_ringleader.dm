@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/aoe/moon_ringleader
-	name = "Ringleaders Rise"
-	desc = "Big AoE spell that summons copies of you. \
-			If any copies are attacked, they cause brain damage, sanity damage, and will briefly stun everyone nearby."
+	name = "头目崛起"
+	desc = "一个大型范围法术，召唤你的复制体。\
+			任意复制体受到攻击时，都会造成脑损伤、理智损伤，并短暂眩晕附近所有人。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'

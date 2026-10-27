@@ -9,7 +9,7 @@ import {
 } from 'tgui-core/components';
 import { type BooleanLike, classes } from 'tgui-core/react';
 import { capitalizeAll } from 'tgui-core/string';
-
+import { chineseDisplay } from 'tgui/localization/zhDisplay';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { MatterItem, SiloItem } from './RapidConstructionDevice';
@@ -53,7 +53,7 @@ const PlumbingTypeSection = (props) => {
             selected={category.cat_name === shownCategory.cat_name}
             onClick={() => setCategoryName(category.cat_name)}
           >
-            {category.cat_name}
+            {chineseDisplay(category.cat_name)}
           </Tabs.Tab>
         ))}
       </Tabs>
@@ -80,7 +80,7 @@ const PlumbingTypeSection = (props) => {
               transform: 'scale(1.3) translate(9.5%, 11.2%)',
             }}
           />
-          <span>{capitalizeAll(recipe.name)}</span>
+          <span>{chineseDisplay(capitalizeAll(recipe.name))}</span>
         </Button>
       ))}
     </Section>
@@ -91,7 +91,7 @@ export const LayerSelect = (props) => {
   const { act, data } = useBackend<Data>();
   const { piping_layer } = data;
   return (
-    <LabeledList.Item label="Layer">
+    <LabeledList.Item label="管层">
       {[1, 2, 3, 4, 5].map((layer) => (
         <Button.Checkbox
           key={layer}

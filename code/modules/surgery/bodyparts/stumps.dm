@@ -14,7 +14,7 @@
 
 /obj/item/bodypart/head/stump/Initialize(mapload)
 	. = ..()
-	name = "stump"
+	name = "残肢"
 	// these traits are largely redundant, as many places that check for disabled limbs filter stumps.
 	// however, marking them as unusable for the sake of completeness might make it easier to work with.
 	ADD_TRAIT(src, TRAIT_PARALYSIS, INNATE_TRAIT)
@@ -29,7 +29,7 @@
 
 /obj/item/bodypart/leg/left/stump/Initialize(mapload)
 	. = ..()
-	name = "stump"
+	name = "残肢"
 	ADD_TRAIT(src, TRAIT_PARALYSIS, INNATE_TRAIT)
 
 /obj/item/bodypart/leg/right/stump
@@ -42,7 +42,7 @@
 
 /obj/item/bodypart/leg/right/stump/Initialize(mapload)
 	. = ..()
-	name = "stump"
+	name = "残肢"
 	ADD_TRAIT(src, TRAIT_PARALYSIS, INNATE_TRAIT)
 
 /obj/item/bodypart/arm/left/stump
@@ -55,7 +55,7 @@
 
 /obj/item/bodypart/arm/left/stump/Initialize(mapload)
 	. = ..()
-	name = "stump"
+	name = "残肢"
 	ADD_TRAIT(src, TRAIT_PARALYSIS, INNATE_TRAIT)
 
 /obj/item/bodypart/arm/right/stump
@@ -68,5 +68,5 @@
 
 /obj/item/bodypart/arm/right/stump/Initialize(mapload)
 	. = ..()
-	name = "stump"
+	name = "残肢"
 	ADD_TRAIT(src, TRAIT_PARALYSIS, INNATE_TRAIT)

@@ -1,4 +1,4 @@
-ADMIN_VERB(dynamic_panel, R_ADMIN, "Dynamic Panel", "Mess with dynamic.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(dynamic_panel, R_ADMIN, "动态模式面板", "调整动态模式。", ADMIN_CATEGORY_GAME)
 	dynamic_panel(user.mob)
 
 /proc/dynamic_panel(mob/user)
@@ -7,9 +7,9 @@ ADMIN_VERB(dynamic_panel, R_ADMIN, "Dynamic Panel", "Mess with dynamic.", ADMIN_
 	var/datum/dynamic_panel/tgui = new()
 	tgui.ui_interact(user)
 
-	log_admin("[key_name(user)] opened the Dynamic Panel.")
+	log_admin("[key_name(user)] 打开了动态模式面板。")
 	if(!isobserver(user))
-		message_admins("[key_name_admin(user)] opened the Dynamic Panel.")
+		message_admins("[key_name_admin(user)] 打开了动态模式面板。")
 	BLACKBOX_LOG_ADMIN_VERB("Dynamic Panel")
 
 /datum/dynamic_panel
@@ -91,7 +91,7 @@ ADMIN_VERB(dynamic_panel, R_ADMIN, "Dynamic Panel", "Mess with dynamic.", ADMIN_
 /datum/dynamic_panel/proc/ruleset_to_data(datum/dynamic_ruleset/ruleset)
 	var/list/data = list()
 	var/ruleset_path = isdatum(ruleset) ? ruleset.type : ruleset
-	data["name"] = initial(ruleset.name)
+	data["name"] = chinese_batch_four_admin_display(initial(ruleset.name))
 	data["id"] = initial(ruleset.config_tag)
 	data["typepath"] = ruleset_path
 	data["selected_players"] = list()
@@ -117,8 +117,8 @@ ADMIN_VERB(dynamic_panel, R_ADMIN, "Dynamic Panel", "Mess with dynamic.", ADMIN_
 			if(!ruleset)
 				return
 			SSdynamic.unqueue_ruleset(ruleset)
-			message_admins("[key_name_admin(ui.user)] removed [ruleset.config_tag] from the dynamic ruleset queue.")
-			log_admin("[key_name_admin(ui.user)] removed [ruleset.config_tag] from the dynamic ruleset queue.")
+			message_admins("[key_name_admin(ui.user)] 从动态规则集队列中移除了 [ruleset.config_tag]。")
+			log_admin("[key_name_admin(ui.user)] 从动态规则集队列中移除了 [ruleset.config_tag]。")
 			qdel(ruleset)
 			return TRUE
 		if("add_queued_ruleset")
@@ -126,8 +126,8 @@ ADMIN_VERB(dynamic_panel, R_ADMIN, "Dynamic Panel", "Mess with dynamic.", ADMIN_
 			if(!ruleset_path)
 				return
 			SSdynamic.queue_ruleset(ruleset_path)
-			message_admins("[key_name_admin(ui.user)] added [initial(ruleset_path.config_tag)] to the dynamic ruleset queue.")
-			log_admin("[key_name_admin(ui.user)] added [initial(ruleset_path.config_tag)] to the dynamic ruleset queue.")
+			message_admins("[key_name_admin(ui.user)] 将 [initial(ruleset_path.config_tag)] 加入了动态规则集队列。")
+			log_admin("[key_name_admin(ui.user)] 将 [initial(ruleset_path.config_tag)] 加入了动态规则集队列。")
 			return TRUE
 		if("dynamic_vv")
 			ui.user?.client?.debug_variables(SSdynamic)
@@ -137,8 +137,8 @@ ADMIN_VERB(dynamic_panel, R_ADMIN, "Dynamic Panel", "Mess with dynamic.", ADMIN_
 			if(!category)
 				return
 			SSdynamic.rulesets_to_spawn[category] += 1
-			message_admins("[key_name_admin(ui.user)] added 1 to the [category] ruleset category.")
-			log_admin("[key_name_admin(ui.user)] added 1 to the [category] ruleset category.")
+			message_admins("[key_name_admin(ui.user)] 将 [category] 类别的规则集数量增加了 1。")
+			log_admin("[key_name_admin(ui.user)] 将 [category] 类别的规则集数量增加了 1。")
 			return TRUE
 		if("set_ruleset_category_count")
 			var/category = params["ruleset_category"]
@@ -146,15 +146,15 @@ ADMIN_VERB(dynamic_panel, R_ADMIN, "Dynamic Panel", "Mess with dynamic.", ADMIN_
 			if(!category || !isnum(count))
 				return
 			SSdynamic.rulesets_to_spawn[category] = count
-			message_admins("[key_name_admin(ui.user)] set the [category] ruleset category to [count].")
-			log_admin("[key_name_admin(ui.user)] set the [category] ruleset category to [count].")
+			message_admins("[key_name_admin(ui.user)] 将 [category] 类别的规则集数量设为了 [count]。")
+			log_admin("[key_name_admin(ui.user)] 将 [category] 类别的规则集数量设为了 [count]。")
 			return TRUE
 		if("execute_ruleset")
 			var/datum/dynamic_ruleset/ruleset_path = text2path(params["ruleset_type"])
 			if(!ruleset_path)
 				return
-			message_admins("[key_name_admin(ui.user)] executed the ruleset [initial(ruleset_path.config_tag)].")
-			log_admin("[key_name_admin(ui.user)] executed the ruleset [initial(ruleset_path.config_tag)].")
+			message_admins("[key_name_admin(ui.user)] 执行了规则集 [initial(ruleset_path.config_tag)]。")
+			log_admin("[key_name_admin(ui.user)] 执行了规则集 [initial(ruleset_path.config_tag)]。")
 			ASYNC
 				SSdynamic.force_run_midround(ruleset_path, alert_admins_on_fail = TRUE, admin = ui.user)
 			return TRUE
@@ -164,72 +164,72 @@ ADMIN_VERB(dynamic_panel, R_ADMIN, "Dynamic Panel", "Mess with dynamic.", ADMIN_
 				return
 			if(ruleset_path in SSdynamic.admin_disabled_rulesets)
 				SSdynamic.admin_disabled_rulesets -= ruleset_path
-				message_admins("[key_name_admin(ui.user)] enabled [ruleset_path] to be selected.")
-				log_admin("[key_name_admin(ui.user)] enabled [ruleset_path] to be selected.")
+				message_admins("[key_name_admin(ui.user)] 允许选用 [ruleset_path]。")
+				log_admin("[key_name_admin(ui.user)] 允许选用 [ruleset_path]。")
 			else
 				SSdynamic.admin_disabled_rulesets += ruleset_path
-				message_admins("[key_name_admin(ui.user)] disabled [ruleset_path] from being selected.")
-				log_admin("[key_name_admin(ui.user)] disabled [ruleset_path] from being selected.")
+				message_admins("[key_name_admin(ui.user)] 禁止选用 [ruleset_path]。")
+				log_admin("[key_name_admin(ui.user)] 禁止选用 [ruleset_path]。")
 			return TRUE
 		if("disable_all")
 			SSdynamic.admin_disabled_rulesets |= subtypesof(/datum/dynamic_ruleset)
-			message_admins("[key_name_admin(ui.user)] disabled all rulesets from being selected.")
-			log_admin("[key_name_admin(ui.user)] disabled all rulesets from being selected.")
+			message_admins("[key_name_admin(ui.user)] 禁止选用所有规则集。")
+			log_admin("[key_name_admin(ui.user)] 禁止选用所有规则集。")
 		if("enable_all")
 			SSdynamic.admin_disabled_rulesets.Cut()
-			message_admins("[key_name_admin(ui.user)] re-enabled all rulesets.")
-			log_admin("[key_name_admin(ui.user)] re_enabled all rulesets.")
+			message_admins("[key_name_admin(ui.user)] 重新启用了所有规则集。")
+			log_admin("[key_name_admin(ui.user)] 重新启用了所有规则集。")
 		if("set_tier")
 			if(SSdynamic.current_tier && SSticker.HasRoundStarted())
 				return TRUE
 			var/list/tiers = list()
 			for(var/datum/dynamic_tier/tier as anything in subtypesof(/datum/dynamic_tier))
-				tiers[tier::config_tag] = tier
-			var/picked = tgui_input_list(ui.user, "Pick a dynamic tier before the game starts", "Pick tier", tiers, ui_state = ADMIN_STATE(R_ADMIN))
+				tiers[tier::name] = tier
+			var/picked = tgui_input_list(ui.user, "在游戏开始前选择动态模式等级", "选择等级", tiers, ui_state = ADMIN_STATE(R_ADMIN))
 			if(picked && !SSticker.HasRoundStarted())
 				SSdynamic.set_tier(tiers[picked])
-				message_admins("[key_name_admin(ui.user)] set the dynamic tier to [picked].")
-				log_admin("[key_name_admin(ui.user)] set the dynamic tier to [picked].")
+				message_admins("[key_name_admin(ui.user)] 将动态模式等级设为了 [picked]。")
+				log_admin("[key_name_admin(ui.user)] 将动态模式等级设为了 [picked]。")
 			return TRUE
 		if("max_light_chance")
 			SSdynamic.admin_forcing_next_light = !SSdynamic.admin_forcing_next_light
-			message_admins("[key_name_admin(ui.user)] [SSdynamic.admin_forcing_next_light ? "forced" : "reset"] the next light ruleset chance.")
-			log_admin("[key_name_admin(ui.user)] [SSdynamic.admin_forcing_next_light ? "forced" : "reset"] the next light ruleset chance.")
+			message_admins("[key_name_admin(ui.user)] [SSdynamic.admin_forcing_next_light ? "将下一次轻度规则集的触发概率设为必定触发" : "重置了下一次轻度规则集的触发概率"]。")
+			log_admin("[key_name_admin(ui.user)] [SSdynamic.admin_forcing_next_light ? "将下一次轻度规则集的触发概率设为必定触发" : "重置了下一次轻度规则集的触发概率"]。")
 			return TRUE
 		if("max_heavy_chance")
 			SSdynamic.admin_forcing_next_heavy = !SSdynamic.admin_forcing_next_heavy
-			message_admins("[key_name_admin(ui.user)] [SSdynamic.admin_forcing_next_heavy ? "forced" : "reset"] the next heavy ruleset chance.")
-			log_admin("[key_name_admin(ui.user)] [SSdynamic.admin_forcing_next_heavy ? "forced" : "reset"] the next heavy ruleset chance.")
+			message_admins("[key_name_admin(ui.user)] [SSdynamic.admin_forcing_next_heavy ? "将下一次重度规则集的触发概率设为必定触发" : "重置了下一次重度规则集的触发概率"]。")
+			log_admin("[key_name_admin(ui.user)] [SSdynamic.admin_forcing_next_heavy ? "将下一次重度规则集的触发概率设为必定触发" : "重置了下一次重度规则集的触发概率"]。")
 			return TRUE
 		if("max_latejoin_chance")
 			SSdynamic.admin_forcing_next_latejoin = !SSdynamic.admin_forcing_next_latejoin
-			message_admins("[key_name_admin(ui.user)] [SSdynamic.admin_forcing_next_latejoin ? "forced" : "reset"] the next latejoin ruleset chance.")
-			log_admin("[key_name_admin(ui.user)] [SSdynamic.admin_forcing_next_latejoin ? "forced" : "reset"] the next latejoin ruleset chance.")
+			message_admins("[key_name_admin(ui.user)] [SSdynamic.admin_forcing_next_latejoin ? "将下一次中途加入规则集的触发概率设为必定触发" : "重置了下一次中途加入规则集的触发概率"]。")
+			log_admin("[key_name_admin(ui.user)] [SSdynamic.admin_forcing_next_latejoin ? "将下一次中途加入规则集的触发概率设为必定触发" : "重置了下一次中途加入规则集的触发概率"]。")
 			return TRUE
 		if("light_start_now")
 			COOLDOWN_RESET(SSdynamic, light_ruleset_start)
-			message_admins("[key_name_admin(ui.user)] reset the light ruleset start cooldown.")
-			log_admin("[key_name_admin(ui.user)] reset the light ruleset start cooldown.")
+			message_admins("[key_name_admin(ui.user)] 清除了轻度规则集的启动冷却时间。")
+			log_admin("[key_name_admin(ui.user)] 清除了轻度规则集的启动冷却时间。")
 			return TRUE
 		if("heavy_start_now")
 			COOLDOWN_RESET(SSdynamic, heavy_ruleset_start)
-			message_admins("[key_name_admin(ui.user)] reset the heavy ruleset start cooldown.")
-			log_admin("[key_name_admin(ui.user)] reset the heavy ruleset start cooldown.")
+			message_admins("[key_name_admin(ui.user)] 清除了重度规则集的启动冷却时间。")
+			log_admin("[key_name_admin(ui.user)] 清除了重度规则集的启动冷却时间。")
 			return TRUE
 		if("latejoin_start_now")
 			COOLDOWN_RESET(SSdynamic, latejoin_ruleset_start)
-			message_admins("[key_name_admin(ui.user)] reset the latejoin ruleset start cooldown.")
-			log_admin("[key_name_admin(ui.user)] reset the latejoin ruleset start cooldown.")
+			message_admins("[key_name_admin(ui.user)] 清除了中途加入规则集的启动冷却时间。")
+			log_admin("[key_name_admin(ui.user)] 清除了中途加入规则集的启动冷却时间。")
 			return TRUE
 		if("reset_midround_cooldown")
 			COOLDOWN_RESET(SSdynamic, midround_cooldown)
-			message_admins("[key_name_admin(ui.user)] reset the midround cooldown.")
-			log_admin("[key_name_admin(ui.user)] reset the midround cooldown.")
+			message_admins("[key_name_admin(ui.user)] 清除了回合中途事件的冷却时间。")
+			log_admin("[key_name_admin(ui.user)] 清除了回合中途事件的冷却时间。")
 			return TRUE
 		if("reset_latejoin_cooldown")
 			COOLDOWN_RESET(SSdynamic, latejoin_cooldown)
-			message_admins("[key_name_admin(ui.user)] reset the latejoin cooldown.")
-			log_admin("[key_name_admin(ui.user)] reset the latejoin cooldown.")
+			message_admins("[key_name_admin(ui.user)] 清除了中途加入事件的冷却时间。")
+			log_admin("[key_name_admin(ui.user)] 清除了中途加入事件的冷却时间。")
 			return TRUE
 		if("hide_ruleset")
 			var/index = params["ruleset_index"]
@@ -240,15 +240,15 @@ ADMIN_VERB(dynamic_panel, R_ADMIN, "Dynamic Panel", "Mess with dynamic.", ADMIN_
 				return
 			if(ruleset in SSdynamic.unreported_rulesets)
 				SSdynamic.unreported_rulesets -= ruleset
-				message_admins("[key_name_admin(ui.user)] hid [ruleset] from the roundend report.")
-				log_admin("[key_name_admin(ui.user)] hid [ruleset] from the roundend report.")
+				message_admins("[key_name_admin(ui.user)] 在回合结束报告中隐藏了 [ruleset]。")
+				log_admin("[key_name_admin(ui.user)] 在回合结束报告中隐藏了 [ruleset]。")
 			else
 				SSdynamic.unreported_rulesets += ruleset
-				message_admins("[key_name_admin(ui.user)] unhid [ruleset] from the roundend report.")
-				log_admin("[key_name_admin(ui.user)] unhid [ruleset] from the roundend report.")
+				message_admins("[key_name_admin(ui.user)] 在回合结束报告中取消隐藏了 [ruleset]。")
+				log_admin("[key_name_admin(ui.user)] 在回合结束报告中取消隐藏了 [ruleset]。")
 			return TRUE
 		if("toggle_antag_events")
 			SSdynamic.antag_events_enabled = !SSdynamic.antag_events_enabled
-			message_admins("[key_name_admin(ui.user)] [SSdynamic.antag_events_enabled ? "enabled" : "disabled"] antag events.")
-			log_admin("[key_name_admin(ui.user)] [SSdynamic.antag_events_enabled ? "enabled" : "disabled"] antag events.")
+			message_admins("[key_name_admin(ui.user)] [SSdynamic.antag_events_enabled ? "启用" : "禁用"]了反派事件。")
+			log_admin("[key_name_admin(ui.user)] [SSdynamic.antag_events_enabled ? "启用" : "禁用"]了反派事件。")
 			return TRUE

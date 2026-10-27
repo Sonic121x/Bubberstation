@@ -1,6 +1,6 @@
 /atom/movable/screen/alert/status_effect/vulnerable_to_damage
-	name = "Vulnerable To Damage"
-	desc = "You will take more damage than normal while your body recovers from mending itself!"
+	name = "易受伤害"
+	desc = "在身体从自我修复中恢复的期间，你会受到比平常更多的伤害！"
 	icon_state = "terrified"
 
 /datum/status_effect/vulnerable_to_damage
@@ -17,14 +17,14 @@
 	duration = 15 MINUTES
 
 /datum/status_effect/vulnerable_to_damage/on_apply()
-	to_chat(owner, span_userdanger("Your body suddenly feels weak and fragile!"))
+	to_chat(owner, span_userdanger("你的身体突然变得虚弱而脆弱！"))
 	var/mob/living/carbon/human/carbon_owner = owner
 	carbon_owner.physiology.damage_resistance -= damage_resistance_subtraction
 	carbon_owner.physiology.bleed_mod += bleed_modifier_addition
 	return ..()
 
 /datum/status_effect/vulnerable_to_damage/on_remove()
-	to_chat(owner, span_notice("You seem to have recovered from your unnatural fragility!"))
+	to_chat(owner, span_notice("你似乎已经从那种非自然的脆弱中恢复过来了！"))
 	var/mob/living/carbon/human/carbon_recoverer = owner
 	carbon_recoverer.physiology.damage_resistance += damage_resistance_subtraction
 	carbon_recoverer.physiology.bleed_mod -= bleed_modifier_addition

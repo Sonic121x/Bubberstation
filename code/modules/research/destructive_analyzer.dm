@@ -8,8 +8,8 @@
  * It is used to destroy hand-held objects and advance technological research.
  */
 /obj/machinery/rnd/destructive_analyzer
-	name = "destructive analyzer"
-	desc = "Learn science by destroying things!"
+	name = "破坏性分析仪"
+	desc = "通过摧毁东西来学习科学！"
 	icon_state = "d_analyzer"
 	base_icon_state = "d_analyzer"
 	circuit = /obj/item/circuitboard/machine/destructive_analyzer
@@ -23,10 +23,10 @@
 
 	var/screentip_set = FALSE
 	if(loaded_item)
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Remove Item"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "取出物品"
 		screentip_set = TRUE
 	else if(!isnull(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "Insert Item"
+		context[SCREENTIP_CONTEXT_LMB] = "放入物品"
 		screentip_set = TRUE
 
 	if(screentip_set)
@@ -38,9 +38,9 @@
 		return
 
 	if(loaded_item)
-		. += span_notice("[EXAMINE_HINT("Left-Click")] to remove loaded item inside.")
+		. += span_notice("用[EXAMINE_HINT("左键")]取出内部的物品。")
 	else
-		. += span_notice("An item can be loaded inside via [EXAMINE_HINT("Left-Click")].")
+		. += span_notice("可通过[EXAMINE_HINT("左键")]放入物品。")
 
 /obj/machinery/rnd/destructive_analyzer/base_item_interaction(mob/living/user, obj/item/weapon, list/modifiers)
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
@@ -50,12 +50,12 @@
 	if(!is_insertion_ready(user))
 		return ..()
 	if(!user.transferItemToLoc(weapon, src))
-		to_chat(user, span_warning("\The [weapon] is stuck to your hand, you cannot put it in \the [src]!"))
+		to_chat(user, span_warning("\The [weapon] 粘在了你手上，你无法把它放进 \the [src]！"))
 		return ITEM_INTERACT_BLOCKING
 
 	busy = TRUE
 	loaded_item = weapon
-	to_chat(user, span_notice("You place \the [weapon] inside \the [src]."))
+	to_chat(user, span_notice("你把 \the [weapon] 放进了 \the [src]。"))
 	flick("[base_icon_state]_la", src)
 	addtimer(CALLBACK(src, PROC_REF(finish_loading)), 1 SECONDS)
 	return ITEM_INTERACT_SUCCESS
@@ -115,14 +115,14 @@
 	switch(action)
 		if("eject_item")
 			if(busy)
-				balloon_alert(user, "already busy!")
+				balloon_alert(user, "正忙！")
 				return TRUE
 			if(loaded_item)
 				unload_item()
 				return TRUE
 		if("deconstruct")
 			if(!user_try_decon_id(params["deconstruct_id"]))
-				say("Destructive analysis failed!")
+				say("破坏性分析失败！")
 			return TRUE
 
 /obj/machinery/rnd/destructive_analyzer/item_interaction_secondary(mob/living/user, obj/item/tool, list/modifiers)
@@ -187,7 +187,7 @@
 	if(isliving(thing))
 		var/mob/living/mob_thing = thing
 		if(mob_thing.stat != DEAD)
-			mob_thing.investigate_log("has been killed by a destructive analyzer.", INVESTIGATE_DEATHS)
+			mob_thing.investigate_log("被破坏性分析仪杀死了。", INVESTIGATE_DEATHS)
 		mob_thing.death()
 	var/list/point_value = techweb_item_point_check(thing)
 	if(point_value && !stored_research.deconstructed_items[thing.type])

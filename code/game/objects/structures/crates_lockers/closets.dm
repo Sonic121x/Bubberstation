@@ -5,8 +5,8 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 
 
 /obj/structure/closet
-	name = "closet"
-	desc = "It's a basic storage unit."
+	name = "储物柜"
+	desc = "一个基本的储物设施。"
 	icon = 'icons/obj/storage/closet.dmi'
 	icon_state = "generic"
 	density = TRUE
@@ -373,31 +373,31 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 /obj/structure/closet/examine(mob/user)
 	. = ..()
 	if(id_card)
-		. += span_notice("It can be [EXAMINE_HINT("marked")] with a pen.")
+		. += span_notice("可以用笔为它[EXAMINE_HINT("标记")]。")
 	if(can_weld_shut && !welded)
-		. += span_notice("It can be [EXAMINE_HINT("welded")] shut.")
+		. += span_notice("可以将它[EXAMINE_HINT("焊死")]。")
 	if(welded)
-		. += span_notice("It's [EXAMINE_HINT("welded")] shut.")
+		. += span_notice("它被[EXAMINE_HINT("焊死")]了。")
 	if(anchorable && !anchored)
-		. += span_notice("It can be [EXAMINE_HINT("bolted")] to the ground.")
+		. += span_notice("可以用[EXAMINE_HINT("螺栓固定")]在地面上。")
 	if(anchored)
-		. += span_notice("It's [anchorable ? EXAMINE_HINT("bolted") : "attached firmly"] to the ground.")
+		. += span_notice("它已[anchorable ? EXAMINE_HINT("用螺栓固定") : "牢牢固定"]在地面上。")
 	if(length(paint_jobs))
-		. += span_notice("It can be [EXAMINE_HINT("painted")] with another texture.")
+		. += span_notice("可以为它[EXAMINE_HINT("喷涂")]另一种外观。")
 	if(HAS_TRAIT(user, TRAIT_SKITTISH) && divable)
-		. += span_notice("If you bump into [p_them()] while running, you will jump inside.")
+		. += span_notice("如果你奔跑时撞上它，就会跳进去。")
 
 	if(can_install_electronics)
 		if(!secure)
-			. += span_notice("You can install airlock electronics for access control.")
+			. += span_notice("可以安装气闸电路来控制访问权限。")
 		else
-			. += span_notice("Its airlock electronics are [EXAMINE_HINT("screwed")] in place.")
+			. += span_notice("它的气闸电路已用[EXAMINE_HINT("螺丝固定")]。")
 		if(!card_reader_installed && length(access_choices))
-			. += span_notice("You can install a card reader for further access control.")
+			. += span_notice("可以安装读卡器来进一步控制访问权限。")
 		else if(card_reader_installed)
-			. += span_notice("The card reader could be [EXAMINE_HINT("pried")] out.")
-			. += span_notice("Swipe your PDA with an ID card/Just ID to change access levels.")
-			. += span_notice("Use multitool to [access_locked ? "unlock" : "lock"] the access panel.")
+			. += span_notice("可以将读卡器[EXAMINE_HINT("撬")]出来。")
+			. += span_notice("刷身份证或装有身份证的 PDA 来更改访问权限。")
+			. += span_notice("使用多功能工具[access_locked ? "解锁" : "锁定"]权限面板。")
 
 /obj/structure/closet/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -405,63 +405,63 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 
 	if(isnull(held_item))
 		if(!welded)
-			context[SCREENTIP_CONTEXT_LMB] = opened ? "Close" : "Open"
-			context[SCREENTIP_CONTEXT_RMB] = opened ? "Close" : "Open"
+			context[SCREENTIP_CONTEXT_LMB] = opened ? "关闭" : "打开"
+			context[SCREENTIP_CONTEXT_RMB] = opened ? "关闭" : "打开"
 		if(secure && !broken)
 			if (opened)
-				context[SCREENTIP_CONTEXT_RMB] = "Close"
+				context[SCREENTIP_CONTEXT_RMB] = "关闭"
 			else
-				context[SCREENTIP_CONTEXT_RMB] = !locked ? "Lock" : "Unlock"
+				context[SCREENTIP_CONTEXT_RMB] = !locked ? "上锁" : "解锁"
 				if (locked)
-					context[SCREENTIP_CONTEXT_LMB] = "Unlock"
+					context[SCREENTIP_CONTEXT_LMB] = "解锁"
 		screentip_change = TRUE
 	if(secure && !opened && istype(held_item, /obj/item/card/id))
-		context[SCREENTIP_CONTEXT_LMB] = !locked ? "Lock" : "Unlock"
-		context[SCREENTIP_CONTEXT_RMB] = !locked ? "Lock" : "Unlock"
+		context[SCREENTIP_CONTEXT_LMB] = !locked ? "上锁" : "解锁"
+		context[SCREENTIP_CONTEXT_RMB] = !locked ? "上锁" : "解锁"
 		screentip_change = TRUE
 
 	if(istype(held_item, cutting_tool))
 		if(opened)
-			context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+			context[SCREENTIP_CONTEXT_LMB] = "拆解"
 			screentip_change = TRUE
 		else
 			if(!welded && can_weld_shut)
-				context[SCREENTIP_CONTEXT_LMB] = "Weld"
+				context[SCREENTIP_CONTEXT_LMB] = "焊死"
 				screentip_change = TRUE
 			else if(welded)
-				context[SCREENTIP_CONTEXT_LMB] = "Unweld"
+				context[SCREENTIP_CONTEXT_LMB] = "解除焊接"
 				screentip_change = TRUE
 
 	if(istype(held_item) && held_item.tool_behaviour == TOOL_WRENCH && anchorable)
-		context[SCREENTIP_CONTEXT_RMB] = anchored ? "Unanchor" : "Anchor"
+		context[SCREENTIP_CONTEXT_RMB] = anchored ? "解除固定" : "固定"
 		screentip_change = TRUE
 
 	if(!locked && !opened && (welded || !can_weld_shut))
 		if(!secure)
 			if(!broken && can_install_electronics && istype(held_item, /obj/item/electronics/airlock))
-				context[SCREENTIP_CONTEXT_LMB] = "Install Electronics"
+				context[SCREENTIP_CONTEXT_LMB] = "安装电路"
 				screentip_change = TRUE
 		else
 			if(istype(held_item) && held_item.tool_behaviour == TOOL_SCREWDRIVER)
-				context[SCREENTIP_CONTEXT_LMB] = "Remove Electronics"
+				context[SCREENTIP_CONTEXT_LMB] = "拆除电路"
 				screentip_change = TRUE
 			if(!card_reader_installed && length(access_choices) && !broken && can_install_electronics && istype(held_item, /obj/item/stock_parts/card_reader))
-				context[SCREENTIP_CONTEXT_LMB] = "Install Reader"
+				context[SCREENTIP_CONTEXT_LMB] = "安装读卡器"
 				screentip_change = TRUE
 		if(card_reader_installed && istype(held_item) && held_item.tool_behaviour == TOOL_CROWBAR)
-			context[SCREENTIP_CONTEXT_LMB] = "Remove Reader"
+			context[SCREENTIP_CONTEXT_LMB] = "拆除读卡器"
 			screentip_change = TRUE
 
 	if(!locked && !opened)
 		if(id_card && IS_WRITING_UTENSIL(held_item))
-			context[SCREENTIP_CONTEXT_LMB] = "Rename"
+			context[SCREENTIP_CONTEXT_LMB] = "重命名"
 			screentip_change = TRUE
 		if(secure && card_reader_installed && !broken)
 			if(!access_locked && istype(held_item) && !isnull(held_item.GetID()))
-				context[SCREENTIP_CONTEXT_LMB] = "Change Access"
+				context[SCREENTIP_CONTEXT_LMB] = "更改权限"
 				screentip_change = TRUE
 			if(istype(held_item) && istype(held_item) && held_item.tool_behaviour == TOOL_MULTITOOL)
-				context[SCREENTIP_CONTEXT_LMB] = "[access_locked ? "Unlock" : "Lock"] Access Panel"
+				context[SCREENTIP_CONTEXT_LMB] = "[access_locked ? "解锁" : "锁定"]权限面板"
 				screentip_change = TRUE
 
 	return screentip_change ? CONTEXTUAL_SCREENTIP_SET : NONE
@@ -480,13 +480,13 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 		if(!(user.mobility_flags & MOBILITY_USE))
 			return FALSE
 	if(pulledby && user && HAS_TRAIT(src, TRAIT_STRONGPULL) && user != pulledby)
-		to_chat(user, span_danger("[pulledby] has an incredibly strong grip on [src], preventing it from opening."))
+		to_chat(user, span_danger("[pulledby]死死抓住[src]，使它无法打开。"))
 		return FALSE
 	var/turf/T = get_turf(src)
 	for(var/mob/living/L in T)
 		if(L.anchored || horizontal && L.mob_size > MOB_SIZE_TINY && L.density)
 			if(user)
-				to_chat(user, span_danger("There's something large on top of [src], preventing it from opening."))
+				to_chat(user, span_danger("[src]上压着一个大东西，使它无法打开。"))
 			return FALSE
 	return TRUE
 
@@ -495,12 +495,12 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	for(var/obj/structure/closet/closet in T)
 		if(closet != src && !closet.wall_mounted)
 			if(user)
-				balloon_alert(user, "[closet.name] is in the way!")
+				balloon_alert(user, "[closet.name]挡住了！")
 			return FALSE
 	for(var/mob/living/L in T)
 		if(L.anchored || horizontal && L.mob_size > MOB_SIZE_TINY && L.density)
 			if(user)
-				to_chat(user, span_danger("There's something too large in [src], preventing it from closing."))
+				to_chat(user, span_danger("[src]里有东西太大，使它无法关闭。"))
 			return FALSE
 	return TRUE
 
@@ -680,7 +680,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	if(!secure || !card_reader_installed || broken || locked || opened)
 		return
 	access_locked = !access_locked
-	balloon_alert(user, "access panel [access_locked ? "locked" : "unlocked"]")
+	balloon_alert(user, "权限面板已[access_locked ? "锁定" : "解锁"]")
 	return TRUE
 
 /// sets the access for the closets from the swiped ID card
@@ -700,7 +700,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 		if(!length(paint_jobs))
 			return ITEM_INTERACT_BLOCKING
 
-		var/choice = tgui_input_list(user, "Set Closet Paintjob", "Paintjob", paint_jobs)
+		var/choice = chinese_structure_choice(user, "设置储物柜涂装", "涂装", paint_jobs)
 		if(isnull(choice))
 			return ITEM_INTERACT_BLOCKING
 
@@ -717,8 +717,8 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/electronics/airlock) && can_install_airlock_electronics(user))
-		user.visible_message(span_notice("[user] installs the electronics into the [src]."),\
-			span_notice("You start to install electronics into the [src]..."))
+		user.visible_message(span_notice("[user]正在将电路安装到[src]中。"),\
+			span_notice("你开始将电路安装到[src]中……"))
 
 		if(!do_after(user, 4 SECONDS, target = src, extra_checks = CALLBACK(src, PROC_REF(can_install_airlock_electronics), user)))
 			return ITEM_INTERACT_BLOCKING
@@ -729,14 +729,14 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 		inherit_airlock_electronics_access(tool)
 		qdel(tool)
 		secure = TRUE
-		balloon_alert(user, "electronics installed")
+		balloon_alert(user, "电路已安装")
 
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/stock_parts/card_reader) && can_install_card_reader(user))
-		user.visible_message(span_notice("[user] is installing a card reader."),
-							span_notice("You begin installing the card reader."))
+		user.visible_message(span_notice("[user]正在安装读卡器。"),
+							span_notice("你开始安装读卡器。"))
 
 		if(!do_after(user, 4 SECONDS, target = src, extra_checks = CALLBACK(src, PROC_REF(can_install_card_reader), user)))
 			return ITEM_INTERACT_BLOCKING
@@ -744,7 +744,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 		qdel(tool)
 		card_reader_installed = TRUE
 
-		balloon_alert(user, "card reader installed")
+		balloon_alert(user, "读卡器已安装")
 		return ITEM_INTERACT_SUCCESS
 
 	var/obj/item/card/id/card = tool.GetID()
@@ -758,7 +758,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 		if(num_choices == 1)
 			choice = access_choices[1]
 		else
-			choice = tgui_input_list(user, "Set Access Type", "Access Type", access_choices)
+			choice = chinese_structure_choice(user, "设置访问类型", "访问类型", access_choices)
 		if(isnull(choice))
 			return ITEM_INTERACT_BLOCKING
 
@@ -766,11 +766,11 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 		switch(choice)
 			if("Personal") //only the player who swiped their id has access.
 				id_card = WEAKREF(card)
-				name = "[card.registered_name]'s locker"
-				desc = initial(desc) + " It has been ID locked to [card.registered_name]."
+				name = "[card.registered_name]的储物柜"
+				desc = initial(desc) + "它已绑定[card.registered_name]的身份证。"
 			if("Job") //anyone who has the same access permissions as this id has access. Does NOT apply to the whole department.
-				name = "[card.assignment]'s locker"
-				desc = initial(desc) + " It has been access locked to [card.assignment]s."
+				name = "[chinese_job_display(card.assignment)]的储物柜"
+				desc = initial(desc) + "它的访问权限已限制为[chinese_job_display(card.assignment)]。"
 				set_access(card.GetAccess())
 			if("None") //free for all
 				name = initial(name)
@@ -780,15 +780,15 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 				set_access(list())
 
 		if(!isnull(id_card))
-			balloon_alert(user, "now owned by [card.registered_name]")
+			balloon_alert(user, "现归[card.registered_name]所有")
 		else
-			balloon_alert(user, "set to [choice]")
+			balloon_alert(user, "已设为[chinese_structure_choice_display(choice)]")
 		return ITEM_INTERACT_SUCCESS
 
 	if(opened)
 		if(istype(tool, cutting_tool) && tool.tool_behaviour != TOOL_WELDER) // for example cardboard box is cut with wirecutters
-			user.visible_message(span_notice("[user] cut apart \the [src]."), \
-								span_notice("You cut \the [src] apart with \the [tool]."))
+			user.visible_message(span_notice("[user]拆开了[src]。"), \
+								span_notice("你用[tool]拆开了[src]。"))
 			deconstruct(TRUE)
 			return ITEM_INTERACT_SUCCESS
 
@@ -821,11 +821,11 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 		return FALSE
 
 	if(broken)
-		balloon_alert(user, "its broken!")
+		balloon_alert(user, "它坏了！")
 		return FALSE
 
 	if(locked)
-		balloon_alert(user, "unlock first!")
+		balloon_alert(user, "先解锁！")
 		return FALSE
 
 	return TRUE
@@ -835,10 +835,10 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	if(!secure || opened)
 		return FALSE
 	if(card_reader_installed)
-		balloon_alert(user, "attached to reader!")
+		balloon_alert(user, "与读卡器相连！")
 		return FALSE
 	if(locked)
-		balloon_alert(user, "unlock first!")
+		balloon_alert(user, "先解锁！")
 		return FALSE
 
 	return TRUE
@@ -849,15 +849,15 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 		return FALSE
 
 	if(broken)
-		balloon_alert(user, "its broken!")
+		balloon_alert(user, "它坏了！")
 		return FALSE
 
 	if(!secure)
-		balloon_alert(user, "no electronics inside!")
+		balloon_alert(user, "里面没有电路！")
 		return FALSE
 
 	if(locked)
-		balloon_alert(user, "unlock first!")
+		balloon_alert(user, "先解锁！")
 		return FALSE
 
 	return TRUE
@@ -868,7 +868,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 		return FALSE
 
 	if(locked)
-		balloon_alert(user, "unlock first!")
+		balloon_alert(user, "先解锁！")
 		return FALSE
 
 	return TRUE
@@ -880,8 +880,8 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	if(!can_unscrew_airlock_electronics(user))
 		return NONE
 
-	user.visible_message(span_notice("[user] begins to remove the electronics from the [src]."),\
-						span_notice("You begin to remove the electronics from the [src]..."))
+	user.visible_message(span_notice("[user]开始拆除[src]中的电路。"),\
+						span_notice("你开始拆除[src]中的电路……"))
 
 	if (!tool.use_tool(src, user, 4 SECONDS, volume = 50, extra_checks = CALLBACK(src, PROC_REF(can_unscrew_airlock_electronics), user)))
 		return ITEM_INTERACT_BLOCKING
@@ -897,7 +897,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	req_one_access = null
 	id_card = null
 	secure = FALSE
-	balloon_alert(user, "electronics removed")
+	balloon_alert(user, "电路已拆除")
 
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -909,8 +909,8 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	if(!can_pryout_card_reader(user))
 		return NONE
 
-	user.visible_message(span_notice("[user] begins to pry the card reader out from [src]."),\
-						span_notice("You begin to pry the card reader out from [src]..."))
+	user.visible_message(span_notice("[user]开始从[src]中撬出读卡器。"),\
+						span_notice("你开始从[src]中撬出读卡器……"))
 
 	if(!tool.use_tool(src, user, 4 SECONDS, extra_checks = CALLBACK(src, PROC_REF(can_pryout_card_reader), user)))
 		return ITEM_INTERACT_BLOCKING
@@ -918,7 +918,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	new /obj/item/stock_parts/card_reader(drop_location())
 	card_reader_installed = FALSE
 
-	balloon_alert(user, "card reader removed")
+	balloon_alert(user, "读卡器已拆除")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/closet/welder_act(mob/living/user, obj/item/tool)
@@ -928,22 +928,22 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 
 	if(opened && istype(tool, cutting_tool)) // not all of them take welders
 		if(resistance_flags & INDESTRUCTIBLE)
-			to_chat(user, span_warning("You can't cut [src] apart!"))
+			to_chat(user, span_warning("你无法拆开[src]！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!tool.tool_start_check(user, amount=1))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You begin cutting \the [src] apart..."))
+		to_chat(user, span_notice("你开始切开[src]……"))
 		if(!tool.use_tool(src, user, 4 SECONDS, volume=50))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!opened)
 			return ITEM_INTERACT_BLOCKING
 
-		user.visible_message(span_notice("[user] slices apart \the [src]."),
-							span_notice("You cut \the [src] apart with \the [tool]."),
-							span_hear("You hear welding."))
+		user.visible_message(span_notice("[user]切开了[src]。"),
+							span_notice("你用[tool]切开了[src]。"),
+							span_hear("你听到焊接声。"))
 		deconstruct(TRUE)
 		return ITEM_INTERACT_SUCCESS
 
@@ -961,9 +961,9 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 
 	welded = !welded
 	after_weld(welded)
-	user.visible_message(span_notice("[user] [welded ? "welds shut" : "unwelded"] \the [src]."),
-						span_notice("You [welded ? "weld" : "unwelded"] \the [src] with \the [tool]."),
-						span_hear("You hear welding."))
+	user.visible_message(span_notice("[user][welded ? "焊死了" : "解除了焊接"]的对象是[src]。"),
+						span_notice("你用[tool][welded ? "焊死了[src]" : "解除了[src]的焊接"]。"),
+						span_hear("你听到焊接声。"))
 	user.log_message("[welded ? "welded":"unwelded"] closet [src] with [tool]", LOG_GAME)
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -971,14 +971,14 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 
 /obj/structure/closet/wrench_act_secondary(mob/living/user, obj/item/tool)
 	if(!anchorable)
-		balloon_alert(user, "no anchor bolts!")
+		balloon_alert(user, "没有固定螺栓！")
 		return TRUE
 	if(isinspace() && !anchored) // We want to prevent anchoring a locker in space, but we should still be able to unanchor it there
-		balloon_alert(user, "nothing to anchor to!")
+		balloon_alert(user, "没有可固定的位置！")
 		return TRUE
 	set_anchored(!anchored)
 	tool.play_tool_sound(src, 75)
-	user.balloon_alert_to_viewers("[anchored ? "anchored" : "unanchored"]")
+	user.balloon_alert_to_viewers("[anchored ? "已固定" : "已解除固定"]")
 	return TRUE
 
 /obj/structure/closet/proc/after_weld(weld_state)
@@ -1001,14 +1001,14 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 		return
 	var/turf/T = get_turf(src)
 	add_fingerprint(user)
-	user.visible_message(span_warning("[user] [actuallyismob ? "tries to ":""]stuff [O] into [src]."), \
-		span_warning("You [actuallyismob ? "try to ":""]stuff [O] into [src]."), \
-		span_hear("You hear clanging."))
+	user.visible_message(span_warning("[user][actuallyismob ? "试图":""]将[O]塞进[src]。"), \
+		span_warning("你[actuallyismob ? "试图":""]将[O]塞进[src]。"), \
+		span_hear("你听到哐啷声。"))
 	if(actuallyismob)
 		if(do_after(user, 4 SECONDS, O))
-			user.visible_message(span_notice("[user] stuffs [O] into [src]."), \
-				span_notice("You stuff [O] into [src]."), \
-				span_hear("You hear a loud metal bang."))
+			user.visible_message(span_notice("[user]将[O]塞进了[src]。"), \
+				span_notice("你将[O]塞进了[src]。"), \
+				span_hear("你听到响亮的金属撞击声。"))
 			var/mob/living/L = O
 			if(!issilicon(L))
 				L.Paralyze(40)
@@ -1027,7 +1027,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	if(locked)
 		if(message_cooldown <= world.time)
 			message_cooldown = world.time + 50
-			to_chat(user, span_warning("[src]'s door won't budge!"))
+			to_chat(user, span_warning("[src]的门纹丝不动！"))
 		return
 	container_resist_act(user)
 
@@ -1063,7 +1063,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	if(attack_hand(user))
 		return ITEM_INTERACT_BLOCKING
 
-GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "Toggle Open", null)
+GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "开关柜门", null)
 
 	if(!usr.can_perform_action(src) || !isturf(loc))
 		return
@@ -1071,7 +1071,7 @@ GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "Toggle Open", nu
 	if(iscarbon(usr) || issilicon(usr) || isdrone(usr))
 		return toggle(usr)
 	else
-		to_chat(usr, span_warning("This mob type can't use this verb."))
+		to_chat(usr, span_warning("这种生物无法使用此指令。"))
 
 // Objects that try to exit a locker by stepping were doing so successfully,
 // and due to an oversight in turf/Enter() were going through walls.  That
@@ -1100,9 +1100,9 @@ GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "Toggle Open", nu
 	//okay, so the closet is either welded or locked... resist!!!
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message(span_warning("[src] begins to shake violently!"), \
-		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
-		span_hear("You hear banging from [src]."))
+	user.visible_message(span_warning("[src]开始剧烈晃动！"), \
+		span_notice("你抵住[src]的背面，开始用力推门……（这大约需要[DisplayTimeText(breakout_time)]。）"), \
+		span_hear("你听到[src]中传来撞击声。"))
 
 	addtimer(CALLBACK(src, PROC_REF(check_if_shake)), 1 SECONDS)
 
@@ -1110,12 +1110,12 @@ GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "Toggle Open", nu
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || (loc_required && (user.loc != src)) || opened || (!locked && !welded) )
 			return
 		//we check after a while whether there is a point of resisting anymore and whether the user is capable of resisting
-		user.visible_message(span_danger("[user] successfully broke out of [src]!"),
-							span_notice("You successfully break out of [src]!"))
+		user.visible_message(span_danger("[user]成功挣脱了[src]！"),
+							span_notice("你成功挣脱了[src]！"))
 		bust_open()
 	else
 		if(user.loc == src) //so we don't get the message if we resisted multiple times and succeeded.
-			to_chat(user, span_warning("You fail to break out of [src]!"))
+			to_chat(user, span_warning("你没能挣脱[src]！"))
 
 /obj/structure/closet/relay_container_resist_act(mob/living/user, obj/container)
 	container_resist_act(user)
@@ -1182,9 +1182,9 @@ GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "Toggle Open", nu
 				req_one_access = null
 				return togglelock(user, silent)
 			if(!can_unlock(user, user.get_idcard(), registered_id))
-				error_msg = "not your locker!"
+				error_msg = "这不是你的储物柜！"
 		else if(!can_unlock(user, user.get_idcard()))
-			error_msg = "access denied!"
+			error_msg = "访问被拒绝！"
 		if(error_msg)
 			if(!silent)
 				balloon_alert(user, error_msg)
@@ -1195,8 +1195,8 @@ GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "Toggle Open", nu
 	locked = !locked
 	play_closet_lock_sound()
 	user.visible_message(
-		span_notice("[user] [locked ? "locks" : "unlocks"] [src]."),
-		span_notice("You [locked ? "locked" : "unlocked"] [src]."),
+		span_notice("[user][locked ? "锁上" : "解锁"]了[src]。"),
+		span_notice("你[locked ? "锁上" : "解锁"]了[src]。"),
 	)
 	update_appearance()
 	return TRUE
@@ -1223,8 +1223,8 @@ GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "Toggle Open", nu
 
 /obj/structure/closet/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(secure && !broken)
-		visible_message(span_warning("Sparks fly from [src]!"), blind_message = span_hear("You hear a faint electrical spark."))
-		balloon_alert(user, "lock broken open")
+		visible_message(span_warning("[src]火花四溅！"), blind_message = span_hear("你听到微弱的电火花声。"))
+		balloon_alert(user, "锁已破坏")
 		playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		broken = TRUE
 		locked = FALSE
@@ -1288,10 +1288,10 @@ GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "Toggle Open", nu
 	else
 		target.Knockdown(SHOVE_KNOCKDOWN_SOLID)
 	update_icon()
-	target.visible_message(span_danger("[shover.name] shoves [target.name] into [src]!"),
-		span_userdanger("You're shoved into [src] by [shover.name]!"),
-		span_hear("You hear aggressive shuffling followed by a loud thud!"), COMBAT_MESSAGE_RANGE, shover)
-	to_chat(src, span_danger("You shove [target.name] into [src]!"))
+	target.visible_message(span_danger("[shover.name]将[target.name]推进了[src]！"),
+		span_userdanger("你被[shover.name]推进了[src]！"),
+		span_hear("你听到激烈的扭动声，随后是一声巨响！"), COMBAT_MESSAGE_RANGE, shover)
+	to_chat(src, span_danger("你将[target.name]推进了[src]！"))
 	log_combat(shover, target, "shoved", "into [src] (locker/crate)[weapon ? " with [weapon]" : ""]")
 	return COMSIG_LIVING_SHOVE_HANDLED
 
@@ -1312,11 +1312,11 @@ GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "Toggle Open", nu
 /obj/structure/closet/rename_checks(mob/living/user)
 	. = TRUE
 	if(locked)
-		src.balloon_alert(user, "unlock first!")
+		src.balloon_alert(user, "先解锁！")
 		return FALSE
 
 	if(isnull(id_card) && secure)
-		src.balloon_alert(user, "not yours to rename!")
+		src.balloon_alert(user, "你无权重命名！")
 		return FALSE
 
 ///Spears deal bonus damages to lockers
@@ -1325,8 +1325,8 @@ GAME_VERB_SRC(/obj/structure/closet, verb_toggleopen, view(1), "Toggle Open", nu
 		HIDE_ATTACK_MESSAGES(attack_modifiers)
 		MODIFY_ATTACK_FORCE_MULTIPLIER(attack_modifiers, 2)
 		user.visible_message(
-			span_danger("[user] stabs with precision [src]'s electronics with [attacking_item]!"),
-			span_danger("You stab with precision [src]'s electronics with [attacking_item]!"),
+			span_danger("[user]用[attacking_item]精准刺中了[src]的电路！"),
+			span_danger("你用[attacking_item]精准刺中了[src]的电路！"),
 			null,
 			COMBAT_MESSAGE_RANGE,
 		)

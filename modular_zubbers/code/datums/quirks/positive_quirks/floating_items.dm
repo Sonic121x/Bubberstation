@@ -1,11 +1,11 @@
 /datum/quirk/floating_items
 	name = "Psionic Holding"
-	desc = "You find holding items with your hands so inconvenient, and use your mind powers to do so instead."
+	desc = "你觉得用手拿东西太麻烦了，所以改用念力。"
 	value = 0
 	icon = FA_ICON_METEOR
-	medical_record_text = "Subject's mind is capable of extremely limited telekinesis."
-	gain_text = "Your mind feels like it can lift weights!"
-	lose_text = "Your mind feels like it took a cheat day."
+	medical_record_text = "该人员拥有极为有限的念动力。"
+	gain_text = "你觉得自己的意念可以举重了！"
+	lose_text = "你觉得自己的意念偷懒去了。"
 	mob_trait = TRAIT_FLOATING_HELD
 
 /datum/quirk_constant_data/floating_items
@@ -29,7 +29,7 @@
 	return "#FF99FF"
 
 /datum/action/innate/toggle_floating_items
-	name = "Toggle Psionic Holding"
+	name = "切换念力持物"
 	button_icon = 'modular_skyrat/master_files/icons/effects/tele_effects.dmi'
 	button_icon_state = "telekinesishead"
 	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
@@ -44,11 +44,11 @@
 			if(ishuman(owner))
 				var/mob/living/carbon/human/owner_human = owner
 				owner_human.update_held_items()
-			to_chat(owner, span_notice("You stop focusing on moving objects with your mind."))
+			to_chat(owner, span_notice("你不再专注于用意念移动物品。"))
 		else
 			ADD_TRAIT(owner, TRAIT_FLOATING_HELD, QUIRK_TRAIT)
 			if(ishuman(owner))
 				var/mob/living/carbon/human/owner_human = owner
 				owner_human.update_held_items()
-			to_chat(owner, span_notice("You feel ready to move objects with your mind."))
+			to_chat(owner, span_notice("你准备好用意念移动物品了。"))
 	return TRUE

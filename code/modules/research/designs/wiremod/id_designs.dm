@@ -1,5 +1,5 @@
 /datum/design/component/id_getter
-	name = "ID Getter Component"
+	name = "ID 获取元件"
 	id = "comp_id_getter"
 	build_path = /obj/item/circuit_component/id_getter
 	category = list(
@@ -7,7 +7,7 @@
 	)
 
 /datum/design/component/id_info_reader
-	name = "ID Info Reader Component"
+	name = "ID 信息读取元件"
 	id = "comp_id_info_reader"
 	build_path = /obj/item/circuit_component/id_info_reader
 	category = list(
@@ -15,7 +15,7 @@
 	)
 
 /datum/design/component/id_access_reader
-	name = "ID Access Reader Component"
+	name = "ID 权限读取元件"
 	id = "comp_id_access_reader"
 	build_path = /obj/item/circuit_component/id_access_reader
 	category = list(
@@ -23,7 +23,7 @@
 	)
 
 /datum/design/component/access_checker
-	name = "Access Checker Component"
+	name = "权限校验元件"
 	id = "comp_access_checker"
 	build_path = /obj/item/circuit_component/compare/access
 	category = list(

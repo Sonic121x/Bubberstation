@@ -2,8 +2,8 @@
 /obj/item/clothing/suit/toggle/jacket
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
-	name = "bomber jacket"
-	desc = "A warm bomber jacket, with synthetic-wool lining to keep you nice and warm in the depths of space. Aviators not included."
+	name = "飞行夹克"
+	desc = "一件暖和的飞行夹克，内衬合成羊毛，让你在太空深处保持温暖舒适。不含飞行员墨镜。"
 	icon_state = "bomberalt"
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 	body_parts_covered = CHEST|ARMS|GROIN
@@ -20,35 +20,35 @@
 	worn_icon = 'icons/mob/clothing/suits/jacket.dmi'
 
 /obj/item/clothing/suit/toggle/jacket/supply/head
-	name = "quartermaster's jacket"
-	desc = "Even if people refuse to recognize you as a head, they can recognize you as a badass."
+	name = "货运主管夹克"
+	desc = "即使人们拒绝承认你是部门主管，他们也能看出你是个狠角色。"
 	icon_state = "qmjacket"
 
 //Flannels
 /obj/item/clothing/suit/toggle/jacket/flannel
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
-	name = "flannel jacket"
-	desc = "A cozy and warm plaid flannel jacket. Praised by Lumberjacks and Truckers alike."
+	name = "法兰绒夹克"
+	desc = "一件舒适暖和的格纹法兰绒夹克。伐木工和卡车司机都赞不绝口。"
 	icon_state = "flannel"
 	body_parts_covered = CHEST|ARMS //Being a bit shorter, flannels dont cover quite as much as the rest of the woolen jackets (- GROIN)
 	cold_protection = CHEST|ARMS
 	heat_protection = CHEST|ARMS	//As a plus side, they're more insulating, protecting a bit from the heat as well
 
 /obj/item/clothing/suit/toggle/jacket/flannel/red
-	name = "red flannel jacket"
+	name = "红色法兰绒夹克"
 	icon_state = "flannel_red"
 
 /obj/item/clothing/suit/toggle/jacket/flannel/aqua
-	name = "aqua flannel jacket"
+	name = "水色法兰绒夹克"
 	icon_state = "flannel_aqua"
 
 /obj/item/clothing/suit/toggle/jacket/flannel/brown
-	name = "brown flannel jacket"
+	name = "棕色法兰绒夹克"
 	icon_state = "flannel_brown"
 
 /obj/item/clothing/suit/toggle/jacket/flannel/gags
-	name = "flannel shirt"
+	name = "法兰绒衬衫"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/toggle/jacket/flannel/gags"
 	post_init_icon_state = "flannelgags"

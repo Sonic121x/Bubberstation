@@ -13,7 +13,7 @@
 	mood_message = "I wish I could stay here forever."
 
 /turf/closed/wall/bathhouse
-	desc = "It's cool to the touch, pleasantly so."
+	desc = "摸起来凉凉的，十分惬意。"
 	icon = 'icons/turf/shuttleold.dmi'
 	icon_state = "block"
 	base_icon_state = "block"

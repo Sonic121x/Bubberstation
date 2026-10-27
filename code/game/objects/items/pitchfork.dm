@@ -11,13 +11,13 @@
 	icon_angle = -45
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
-	name = "pitchfork"
-	desc = "A simple tool used for moving hay."
+	name = "干草叉"
+	desc = "一把用来翻动干草的简单工具。"
 	force = 7
 	throwforce = 15
 	w_class = WEIGHT_CLASS_BULKY
-	attack_verb_continuous = list("attacks", "impales", "pierces")
-	attack_verb_simple = list("attack", "impale", "pierce")
+	attack_verb_continuous = list("攻击", "刺穿", "戳穿")
+	attack_verb_simple = list("攻击", "刺穿", "戳穿")
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 	max_integrity = 200

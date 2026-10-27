@@ -44,28 +44,28 @@
 		offset[2] += y_off
 	return offset_to_screen_loc(offset[1], offset[2], our_client?.view)
 
-ADMIN_VERB(test_movable_UI, R_DEBUG, "Spawn Movable UI Object", "Spawn a movable UI object for testing.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(test_movable_UI, R_DEBUG, "生成可移动界面对象", "生成用于测试的可移动界面对象。", ADMIN_CATEGORY_DEBUG)
 	var/atom/movable/screen/movable/M = new
-	M.name = "Movable UI Object"
+	M.name = "可移动界面对象"
 	M.icon_state = "block"
-	M.maptext = MAPTEXT("Movable")
+	M.maptext = MAPTEXT("可移动")
 	M.maptext_width = 64
 
-	var/screen_l = input(user, "Where on the screen? (Formatted as 'X,Y' e.g: '1,1' for bottom left)","Spawn Movable UI Object") as text|null
+	var/screen_l = input(user, "放在屏幕的什么位置？（格式为“X,Y”，例如“1,1”表示左下角）","生成可移动界面对象") as text|null
 	if(!screen_l)
 		return
 
 	M.screen_loc = screen_l
 	user.screen += M
 
-ADMIN_VERB(test_snap_ui, R_DEBUG, "Spawn Snap UI Object", "Spawn a snap UI object for testing.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(test_snap_ui, R_DEBUG, "生成吸附界面对象", "生成用于测试的吸附界面对象。", ADMIN_CATEGORY_DEBUG)
 	var/atom/movable/screen/movable/snap/S = new
-	S.name = "Snap UI Object"
+	S.name = "吸附界面对象"
 	S.icon_state = "block"
-	S.maptext = MAPTEXT("Snap")
+	S.maptext = MAPTEXT("吸附")
 	S.maptext_width = 64
 
-	var/screen_l = input(user,"Where on the screen? (Formatted as 'X,Y' e.g: '1,1' for bottom left)","Spawn Snap UI Object") as text|null
+	var/screen_l = input(user,"放在屏幕的什么位置？（格式为“X,Y”，例如“1,1”表示左下角）","生成吸附界面对象") as text|null
 	if(!screen_l)
 		return
 

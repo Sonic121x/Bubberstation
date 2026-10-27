@@ -1,8 +1,8 @@
 //This one's from bay12
 /obj/machinery/vending/cart
 	name = "\improper PTech"
-	desc = "Cartridges for PDAs."
-	product_slogans = "Carts to go!"
+	desc = "PDA 的程序卡带。"
+	product_slogans = "卡带即刻带走！"
 	icon_state = "cart"
 	icon_deny = "cart-deny"
 	panel_type = "panel6"

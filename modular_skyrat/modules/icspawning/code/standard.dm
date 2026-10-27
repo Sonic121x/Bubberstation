@@ -7,8 +7,8 @@
 	e_cost = LASER_SHOTS(1000, STANDARD_CELL_CHARGE)
 
 /obj/item/clothing/suit/armor/vest/debug
-	name = "Bluespace Tech vest"
-	desc = "A sleek piece of armour designed for Bluespace agents."
+	name = "蓝空间技师护甲背心"
+	desc = "一件为蓝空间特工设计的流线型护甲。"
 	armor_type = /datum/armor/vest_debug
 	w_class = WEIGHT_CLASS_TINY
 
@@ -26,12 +26,12 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/storage/belt/utility/chief/full/debug
-	name = "\improper Bluespace Tech's belt"
+	name = "\improper 蓝空间技师的工具腰带"
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/storage/part_replacer/bluespace/tier4/bst
-	name = "\improper Bluespace Tech RPED"
-	desc = "A specialized bluespace RPED for technicians that can manufacture stock parts on the fly. Alt-Right-Click to manufacture parts, change settings, or clear its internal storage."
+	name = "\improper 蓝空间技师快速部件更换装置"
+	desc = "一款专为技师设计的蓝空间快速部件更换装置，可即时制造标准部件。按住 Alt 右键点击可制造部件、更改设置或清空其内部存储。"
 	/// Whether or not auto-clear is enabled
 	var/auto_clear = TRUE
 	/// List of valid types for pick_stock_part().
@@ -190,28 +190,28 @@
 
 		// If it's not a /datum/stock_part subtype either, something has gone wrong and devs should probably be alerted.
 		if(found_matching < parts_amount_required)
-			to_chat(user, span_notice("Something went wrong manufacturing [req_component]. Alert the devs, and let them know what machine it was!"))
+			to_chat(user, span_notice("制造 [req_component] 时出了点问题。请通知开发者，并告诉他们这是哪台机器！"))
 
 /// BSTs' special Bluespace RPED can manufacture parts on Alt-RMB, either cables, glass, machine boards, or stock parts.
 /obj/item/storage/part_replacer/bluespace/tier4/bst/click_alt_secondary(mob/user)
 	// Ask the user what they want to make, or if they want to clear the storage.
-	var/spawn_selection = tgui_input_list(user, "Pick a part, or clear storage", "RPED Manufacture", list("Clear All Items", "Toggle Auto-Clear", "Cables", "Glass", "Spare T4s", "Machine Board", "Stock Part", "Beaker"))
+	var/spawn_selection = tgui_input_list(user, "选择一种部件，或清空存储", "快速部件更换装置制造", list("清空所有物品", "切换自动清理", "电缆", "玻璃", "备用 T4 部件", "机器电路板", "标准部件", "烧杯"))
 	// If they didn't cancel out of the list selection, we do things.  Clear-all removes all items, auto-clear destroys left-overs after upgrades, and everything else is pretty self-explanatory.
 	// Machine boards and stock parts use a recursive subtype selector.
 	if(isnull(spawn_selection))
 		return
-	else if(spawn_selection == "Clear All Items")
+	else if(spawn_selection == "清空所有物品")
 		var/list/inv_grab = atom_storage.return_inv(FALSE)
 		for(var/obj/item/stored_item in inv_grab)
 			qdel(stored_item)
-	else if(spawn_selection == "Toggle Auto-Clear")
+	else if(spawn_selection == "切换自动清理")
 		auto_clear = !auto_clear
-		to_chat(user, span_notice("The RPED will now [(auto_clear ? "destroy" : "keep")] items left-over after upgrades."))
-	else if(spawn_selection == "Cables")
+		to_chat(user, span_notice("快速部件更换装置现在会[(auto_clear ? "销毁" : "保留")]升级后剩余的物品。"))
+	else if(spawn_selection == "电缆")
 		atom_storage.attempt_insert(new /obj/item/stack/cable_coil(src), user, TRUE)
-	else if(spawn_selection == "Glass")
+	else if(spawn_selection == "玻璃")
 		atom_storage.attempt_insert(new /obj/item/stack/sheet/glass/fifty(src), user, TRUE)
-	else if(spawn_selection == "Spare T4s")
+	else if(spawn_selection == "备用 T4 部件")
 		for(var/i in 1 to 10)
 			atom_storage.attempt_insert(new /obj/item/stock_parts/capacitor/quadratic(src), user, TRUE)
 			atom_storage.attempt_insert(new /obj/item/stock_parts/scanning_module/triphasic(src), user, TRUE)
@@ -221,11 +221,11 @@
 			atom_storage.attempt_insert(new /obj/item/stock_parts/power_store/cell/bluespace(src), user, TRUE)
 	else
 		var/subtype
-		if(spawn_selection == "Machine Board")
+		if(spawn_selection == "机器电路板")
 			subtype = /obj/item/circuitboard/machine
-		else if(spawn_selection == "Stock Part")
+		else if(spawn_selection == "标准部件")
 			subtype = /obj/item/stock_parts
-		else if(spawn_selection == "Beaker")
+		else if(spawn_selection == "烧杯")
 			subtype = /obj/item/reagent_containers/cup/beaker
 		if(subtype)
 			pick_stock_part(user, FALSE, subtype)
@@ -258,12 +258,12 @@
 			if(path == subtype)
 				items_temp["[initial(path_as_obj.name)]: [path]"] = path
 			else
-				items_temp["[initial(path_as_obj.name)] (+[length(subtypesof(path))] more): [path]"] = path
+				items_temp["[initial(path_as_obj.name)]（另有 [length(subtypesof(path))] 个）：[path]"] = path
 		else
 			items_temp["[initial(path_as_obj.name)]: [path]"] = path
 
 	// Finally, once the listed is generated, ask the user what they want to spawn.
-	var/target_item = tgui_input_list(user, "Select Subtype", "RPED Manufacture", sort_list(items_temp))
+	var/target_item = tgui_input_list(user, "选择子类型", "快速部件更换装置制造", sort_list(items_temp))
 	if(target_item)
 		// If they select something, and the name:path binding is valid, then either spawn it, OR, if it has subtypes, and isn't the parent type, recurse to let them pick a subtype.
 		if(items_temp[target_item])

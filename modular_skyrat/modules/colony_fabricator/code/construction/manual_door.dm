@@ -1,5 +1,5 @@
 /obj/structure/mineral_door/manual_colony_door
-	name = "manual airlock"
+	name = "手动气闸"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/doors/airlock_manual.dmi'
 	material_flags = NONE
 	icon_state = "manual"
@@ -70,7 +70,7 @@
 
 // Parts kit for putting the door together
 /obj/item/flatpacked_machine/airlock_kit_manual
-	name = "prefab manual airlock parts kit"
+	name = "预制手动气闸零件包"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/doors/packed.dmi'
 	icon_state = "airlock_parts_manual"
 	type_to_deploy = /obj/structure/mineral_door/manual_colony_door

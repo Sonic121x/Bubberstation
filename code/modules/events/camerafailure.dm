@@ -1,11 +1,11 @@
 /datum/round_event_control/camera_failure
-	name = "Camera Failure"
+	name = "监控摄像头故障"
 	typepath = /datum/round_event/camera_failure
 	weight = 100
 	max_occurrences = 20
 	alert_observers = FALSE
 	category = EVENT_CATEGORY_ENGINEERING
-	description = "Turns off a random amount of cameras."
+	description = "关闭随机数量的监控摄像头。"
 
 /datum/round_event/camera_failure
 	fakeable = FALSE

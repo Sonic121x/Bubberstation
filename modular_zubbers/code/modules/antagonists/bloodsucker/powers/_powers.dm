@@ -1,5 +1,5 @@
 /datum/action/cooldown/bloodsucker
-	name = "Vampiric Gift"
+	name = "吸血鬼恩赐"
 	background_icon = 'modular_zubbers/icons/mob/actions/bloodsucker.dmi'
 	background_icon_state = "vamp_power_off"
 	button_icon = 'modular_zubbers/icons/mob/actions/bloodsucker.dmi'
@@ -104,12 +104,12 @@
 		return FALSE
 	// Cooldown?
 	if(!COOLDOWN_FINISHED(src, next_use_time))
-		owner.balloon_alert(owner, "power unavailable!")
+		owner.balloon_alert(owner, "能力不可用！")
 		return FALSE
 	if(!bloodsuckerdatum_power)
 		var/mob/living/living_owner = owner
 		if(!HAS_TRAIT(living_owner, TRAIT_NOBLOOD) && living_owner.blood_volume <= bloodcost)
-			to_chat(owner, span_warning("You need at least [bloodcost] blood to activate [name]"))
+			to_chat(owner, span_warning("你至少需要[bloodcost]血量才能启用[name]"))
 			return FALSE
 		return TRUE
 
@@ -117,7 +117,7 @@
 	if(bloodsuckerdatum_power.is_frenzied())
 		return TRUE
 	if(bloodsuckerdatum_power.GetBloodVolume() < bloodcost)
-		to_chat(owner, span_warning("You need at least [bloodcost] blood to activate [name]"))
+		to_chat(owner, span_warning("你至少需要[bloodcost]血量才能启用[name]"))
 		return FALSE
 	return TRUE
 
@@ -148,7 +148,7 @@
 		return FALSE
 	// Constant Cost (out of blood)
 	if(constant_bloodcost > 0 && !can_pay_blood(user))
-		to_chat(user, span_warning("You don't have the blood to upkeep [src]."))
+		to_chat(user, span_warning("你的血量不足以维持[src]。"))
 		return FALSE
 	return TRUE
 
@@ -157,30 +157,30 @@
 		return FALSE
 	if(!(bloodsucker_check_flags & BP_CAN_USE_HEARTLESS) && bloodsuckerdatum_power && !user.get_organ_slot(ORGAN_SLOT_HEART))
 		if(feedback)
-			to_chat(user, span_warning("To channel your powers you need a heart!"))
+			to_chat(user, span_warning("你需要心脏才能引导力量！"))
 		return FALSE
 	if(isbrain(user))
 		if(feedback)
-			to_chat(user, span_warning("What are you going to do, jump on someone and suck their blood? You're just a head."))
+			to_chat(user, span_warning("你打算怎么做，跳到别人身上吸血吗？你只剩一个脑袋了。"))
 		return FALSE
 	// Torpor?
 	if((bloodsucker_check_flags & BP_CANT_USE_IN_TORPOR) && bloodsuckerdatum_power?.is_in_torpor())
 		if(feedback)
-			to_chat(user, span_warning("Not while you're in Torpor."))
+			to_chat(user, span_warning("蛰眠中不能这样做。"))
 		return FALSE
 	if(!(bloodsucker_check_flags & BP_CAN_USE_TRANSFORMED) && (user.has_status_effect(/datum/status_effect/shapechange_mob/from_spell) || user.has_status_effect(/datum/status_effect/shapechange_mob)))
 		if(feedback)
-			to_chat(user, span_warning("You can't do this while transformed!"))
+			to_chat(user, span_warning("变身状态下不能这样做！"))
 		return FALSE
 	// Frenzy?
 	if((bloodsucker_check_flags & BP_CANT_USE_IN_FRENZY) && (bloodsuckerdatum_power?.is_frenzied()))
 		if(feedback)
-			to_chat(user, span_warning("You cannot use powers while in a Frenzy!"))
+			to_chat(user, span_warning("狂暴中无法使用能力！"))
 		return FALSE
 	// Stake?
 	if(!(bloodsucker_check_flags & BP_CAN_USE_WHILE_STAKED) && user.am_staked())
 		if(feedback)
-			to_chat(user, span_warning("You have a stake in your chest! Your powers are useless."))
+			to_chat(user, span_warning("你的胸口插着一根桩！你的能力无法发挥作用。"))
 		return FALSE
 	return TRUE
 
@@ -229,7 +229,7 @@
 	if(power_flags & BP_CONTINUOUS_EFFECT || constant_bloodcost)
 		START_PROCESSING(SSprocessing, src)
 
-	owner.log_message("used [src][bloodcost != 0 ? " at the cost of [bloodcost]" : ""].", LOG_ATTACK, color="red")
+	owner.log_message("使用了[src][bloodcost != 0 ? "，消耗[bloodcost]血量" : ""]。", LOG_ATTACK, color="red")
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
 /datum/action/cooldown/bloodsucker/proc/RightClickActivate(trigger_flags)
@@ -291,9 +291,9 @@
 	SHOULD_CALL_PARENT(TRUE)
 	. = list()
 	if(level_current != -1)
-		. += "LEVEL: [level_current] [name]:"
+		. += "等级：[level_current] [name]："
 	else
-		. += "(Inherent Power) [name]:"
+		. += "（固有能力）[name]："
 
 	. += get_power_explanation_extended()
 
@@ -304,16 +304,16 @@
 	SHOULD_CALL_PARENT(TRUE)
 	var/new_desc = ""
 	if(level_current != -1)
-		new_desc += "<br><b>LEVEL:</b> [level_current]"
+		new_desc += "<br><b>等级：</b>[level_current]"
 	else
-		new_desc += "<br><b>(Inherent Power)</b>"
+		new_desc += "<br><b>（固有能力）</b>"
 	if(bloodcost > 0)
-		new_desc += "<br><br><b>COST:</b> [bloodcost] Blood"
+		new_desc += "<br><br><b>消耗：</b>[bloodcost]血量"
 	if(constant_bloodcost > 0)
-		new_desc += "<br><br><b>CONSTANT COST:</b><i> [name] costs [constant_bloodcost] blood per second to keep it active.</i>"
+		new_desc += "<br><br><b>持续消耗：</b><i>维持[name]每秒消耗[constant_bloodcost]血量。</i>"
 	if(power_flags & BP_AM_SINGLEUSE)
-		new_desc += "<br><br><br>SINGLE USE:</br><i> [name] can only be used once per night.</i>"
-	new_desc += "<br><br><b>DESCRIPTION:</b> [get_power_desc_extended()]"
+		new_desc += "<br><br><br>单次使用：</br><i>[name]每晚只能使用一次。</i>"
+	new_desc += "<br><br><b>说明：</b>[get_power_desc_extended()]"
 	new_desc += "<br>"
 	return new_desc
 

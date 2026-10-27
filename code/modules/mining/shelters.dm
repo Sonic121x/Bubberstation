@@ -46,12 +46,12 @@
 	return SHELTER_DEPLOY_ALLOWED
 
 /datum/map_template/shelter/alpha
-	name = "Shelter Alpha"
+	name = "阿尔法避难所"
 	shelter_id = "shelter_alpha"
-	description = "A cosy self-contained pressurized shelter, with \
-		built-in navigation, entertainment, medical facilities and a \
-		sleeping area! Order now, and we'll throw in a TINY FAN, \
-		absolutely free!"
+	description = "一座舒适、自成一体的加压避难所，内置导航、娱乐、医疗设施以及\
+		睡眠区！现在下单，\
+		我们还会额外附赠一台袖珍风扇，\
+		完全免费！"
 	mappath = "_maps/templates/shelter_1.dmm"
 
 /datum/map_template/shelter/alpha/New()
@@ -60,13 +60,13 @@
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /datum/map_template/shelter/beta
-	name = "Shelter Beta"
+	name = "贝塔避难所"
 	shelter_id = "shelter_beta"
-	description = "An extremely luxurious shelter, containing all \
-		the amenities of home, including carpeted floors, hot and cold \
-		running water, a gourmet three course meal, cooking facilities, \
-		and a deluxe companion to keep you from getting lonely during \
-		an ash storm."
+	description = "一座极其奢华的避难所，家中所需的一切应有尽有，\
+		包括铺着地毯的地面、冷热自来水、\
+		一顿三道菜的美食、烹饪设施，\
+		以及一位豪华伴侣，让你在灰烬风暴来袭时\
+		也不至于感到孤单。"
 	mappath = "_maps/templates/shelter_2.dmm"
 
 /datum/map_template/shelter/beta/New()
@@ -75,13 +75,13 @@
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /datum/map_template/shelter/charlie
-	name = "Shelter Charlie"
+	name = "查理避难所"
 	shelter_id = "shelter_charlie"
-	description = "A luxury elite bar which holds an entire bar \
-		along with two vending machines, tables, and a restroom that \
-		also has a sink. This isn't a survival capsule and so you can \
-		expect that this won't save you if you're bleeding out to \
-		death."
+	description = "一间豪华高端的酒吧，内有完整的吧台，\
+		外加两台自动售货机、桌椅，\
+		以及一间配有洗手池的洗手间。\
+		这不是生存舱，所以你该料到，\
+		若你正流血濒死，它可救不了你。"
 	mappath = "_maps/templates/shelter_3.dmm"
 
 /datum/map_template/shelter/charlie/New()
@@ -90,11 +90,11 @@
 	banned_objects = typecacheof(/obj/structure/stone_tile)
 
 /datum/map_template/shelter/toilet
-	name = "Emergency Relief Shelter"
+	name = "应急解手避难所"
 	shelter_id = "shelter_toilet"
-	description = "A stripped-down emergency shelter focused on providing \
-		only the most essential amenities to unfortunate employees who find \
-		themselves in need far from home."
+	description = "一处极简的应急避难所，只为那些\
+		在离家很远的地方突感内急的倒霉员工\
+		提供最基本的便利。"
 	mappath = "_maps/templates/shelter_t.dmm"
 
 /datum/map_template/shelter/toilet/New()
@@ -104,9 +104,9 @@
 
 ///Not exactly mining shelters, but they make use of survival capsules code.
 /datum/map_template/shelter/fishing
-	name = "Freshwater Spring"
+	name = "淡水泉"
 	shelter_id = "fishing_default"
-	description = "A spring from which you can fish several freshwater fish, including goldfish, catfish and pikes."
+	description = "一处可以钓到多种淡水鱼的泉水，包括金鱼、鲶鱼和狗鱼。"
 	mappath = "_maps/templates/fishing_freshwater.dmm"
 	has_ceiling = FALSE
 	///The icon shown in the radial menu
@@ -130,53 +130,53 @@
 	))
 
 /datum/map_template/shelter/fishing/beach
-	name = "Saltwater Spring"
+	name = "咸水泉"
 	shelter_id = "fishing_beach"
 	mappath = "_maps/templates/fishing_saltwater.dmm"
-	description = "A spring from which you can fish several saltwater fish, including clownfish, pufferfish and stingrays."
+	description = "一处可以钓到多种咸水鱼的泉水，包括小丑鱼、河豚和魟鱼。"
 	radial_icon = "seaboat"
 
 /datum/map_template/shelter/fishing/tizira
-	name = "Tiziran Spring"
+	name = "提兹拉泉"
 	shelter_id = "fishing_tizira"
 	mappath = "_maps/templates/fishing_tizira.dmm"
-	description = "A spring from which you can fish several fish native to the lizardfolk's native planet, Tizira."
+	description = "一处可以钓到数种蜥蜴人母星提兹拉原生鱼类的泉水。"
 	radial_icon = "planet"
 
 /datum/map_template/shelter/fishing/hot_spring
-	name = "Hot Spring"
+	name = "温泉"
 	shelter_id = "fishing_hot_spring"
 	mappath = "_maps/templates/fishing_hot_spring.dmm"
-	description = "A hot spring. Its purposes as a fishing spot is limited, but at least you get to have a relaxing bath."
+	description = "一处温泉。作为钓点用处有限，但至少你能舒舒服服地泡个澡。"
 	radial_icon = "onsen"
 
 /datum/map_template/shelter/fishing/ice
-	name = "Ice Fishing Spot"
+	name = "冰钓点"
 	shelter_id = "fishing_ice"
 	mappath = "_maps/templates/fishing_ice.dmm"
-	description = "A small, already dug ice hole surrounded by snow. You can catch salmon and arctic char here."
+	description = "一个已经凿好的小冰洞，四周是积雪。在这里可以钓到鲑鱼和北极红点鲑。"
 	radial_icon = "ice"
 
 /datum/map_template/shelter/fishing/lava
-	name = "Lava Fishing Spot"
+	name = "熔岩钓点"
 	shelter_id = "fishing_lava"
 	mappath = "_maps/templates/fishing_lava.dmm"
-	description = "A small 2x2 puddle of not-safe-for-live lava. You can catch lava loops here, and maybe a chest."
+	description = "一小片 2x2 的熔岩水洼，活物请勿靠近。你可以在这里钓到熔岩环鱼，说不定还能钓上一只箱子。"
 	radial_icon = "lava"
 	safe = FALSE
 
 /datum/map_template/shelter/fishing/plasma
-	name = "Plasma Fishing Spot"
+	name = "等离子钓点"
 	shelter_id = "fishing_plasma"
 	mappath = "_maps/templates/fishing_plasma.dmm"
-	description = "A small 2x2 puddle of not-safe-for-live plasma. You can catch lava loops and arctic chrabs here."
+	description = "一小片 2x2 的等离子水洼，活物请勿靠近。你可以在这里钓到熔岩环鱼和北极蟹。"
 	radial_icon = "plasma"
 	safe = FALSE
 
 /datum/map_template/shelter/fishing/depths
-	name = "Deep Ocean Fishing Spot"
+	name = "深海钓点"
 	shelter_id = "fishing_depths"
 	mappath = "_maps/templates/fishing_depths.dmm"
-	description = "A 3x3 pool of deep water, enough that it's tiring to wade across. You can catch ocean fish here."
+	description = "一片 3x3 的深水池，深到蹚过去都会让人累得够呛。你可以在这里钓到海洋鱼类。"
 	radial_icon = "depths"
 	safe = FALSE

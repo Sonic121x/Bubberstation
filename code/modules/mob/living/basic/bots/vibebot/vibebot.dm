@@ -1,6 +1,6 @@
 /mob/living/basic/bot/vibebot
-	name = "\improper Vibebot"
-	desc = "A little robot. It's just vibing, doing its thing."
+	name = "\improper 氛围机器人"
+	desc = "一台小巧的机器人。它只是跟着感觉走，干着自己的事。"
 	icon = 'icons/mob/silicon/aibots.dmi'
 	icon_state = "vibebot1"
 	base_icon_state = "vibebot"
@@ -12,13 +12,13 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3.3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 4)
 
 
-	hackables = "vibing scanners"
+	hackables = "氛围扫描器"
 	radio_key = /obj/item/encryptionkey/headset_service
 	radio_channel = RADIO_CHANNEL_SERVICE
 	bot_type = VIBE_BOT
 	data_hud_type = TRAIT_DIAGNOSTIC_HUD
 	path_image_color = "#2cac12"
-	possessed_message = "You are a vibebot! Maintain the station's vibes to the best of your ability!"
+	possessed_message = "你是一台氛围机器人！尽你所能维持空间站的氛围！"
 
 /mob/living/basic/bot/vibebot/Initialize(mapload)
 	. = ..()

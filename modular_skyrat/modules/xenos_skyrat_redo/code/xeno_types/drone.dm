@@ -1,8 +1,8 @@
 /// SKYRAT MODULE SKYRAT_XENO_REDO
 
 /mob/living/carbon/alien/adult/skyrat/drone
-	name = "alien drone"
-	desc = "As plain looking as you could call an alien with armored black chitin and large claws."
+	name = "异形雄蜂"
+	desc = "对于一只披着黑色甲壳、长着巨爪的异形来说，它算是相貌平平。"
 	caste = "drone"
 	maxHealth = 200
 	health = 200
@@ -28,8 +28,8 @@
 	GRANT_ACTION(/datum/action/cooldown/alien/skyrat/heal_aura)
 
 /datum/action/cooldown/alien/skyrat/heal_aura
-	name = "Healing Aura"
-	desc = "Friendly xenomorphs in a short range around yourself will receive passive healing."
+	name = "治疗光环"
+	desc = "附近小范围内的友方异形会持续获得治疗。"
 	button_icon_state = "healaura"
 	plasma_cost = 100
 	cooldown_time = 90 SECONDS
@@ -49,10 +49,10 @@
 /datum/action/cooldown/alien/skyrat/heal_aura/Activate()
 	. = ..()
 	if(aura_active)
-		owner.balloon_alert(owner, "already healing")
+		owner.balloon_alert(owner, "已经在治疗中")
 		return FALSE
-	owner.balloon_alert(owner, "healing aura started")
-	to_chat(owner, span_danger("We emit pheromones that encourage sisters near us to heal themselves for the next [aura_duration / 10] seconds."))
+	owner.balloon_alert(owner, "治疗光环已开启")
+	to_chat(owner, span_danger("我们释放信息素，促进身旁姐妹的自愈，持续 [aura_duration / 10] 秒。"))
 	addtimer(CALLBACK(src, PROC_REF(aura_deactivate)), aura_duration)
 	aura_active = TRUE
 	aura_healing_component = owner.AddComponent(/datum/component/aura_healing, range = aura_range, requires_visibility = TRUE, brute_heal = aura_healing_amount, burn_heal = aura_healing_amount, limit_to_trait = TRAIT_XENO_HEAL_AURA, healing_color = aura_healing_color)
@@ -63,4 +63,4 @@
 		return
 	aura_active = FALSE
 	QDEL_NULL(aura_healing_component)
-	owner.balloon_alert(owner, "healing aura ended")
+	owner.balloon_alert(owner, "治疗光环已结束")

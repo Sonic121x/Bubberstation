@@ -1,11 +1,11 @@
 // Symptoms are the effects that engineered advanced diseases do.
 
 /datum/symptom
-	var/name = "8-bitten bugs"
+	var/name = "八位虫咬症"
 	///Basic symptom description
-	var/desc = "If you see this something went very wrong."
+	var/desc = "如果你看到这个，说明出了严重错误。"
 	///Potential illness name caused by the symptom
-	var/illness = "Unidentified"
+	var/illness = "未识别"
 	///Descriptions of threshold effects
 	var/threshold_descs = list()
 	///How the symptom affects the disease's stealth stat, positive values make it less noticeable
@@ -131,7 +131,7 @@
 		var/datum/reagent/cure = symptom_cure
 		data["symptom_cure"] = cure.name
 	else
-		data["symptom_cure"] = "Nothing"
+		data["symptom_cure"] = "无"
 	data["cure_color"] = cure_color
 	return data
 

@@ -84,52 +84,52 @@
 
 	var/label_line = ""
 	if(damage_multiplier > 1 || added_damage > 0)
-		label_line += "It is especially effective against"
+		label_line += "它尤其克制的目标为"
 	else if(damage_multiplier < 1 || added_damage < 0)
-		label_line += "It is less effective against"
+		label_line += "它较难对付的目标为"
 	else
-		label_line += "It interacts uniquely with" // for custom behaviors?
+		label_line += "它具有特殊互动效果的目标为" // for custom behaviors?
 
 	label_line += " "
 	if(label_text)
 		label_line += label_text
 	else if(affected_biotypes)
-		var/list/affected_biotypes_readable = bitfield_to_list(affected_biotypes, MOB_BIOTYPES_READABLE)
-		label_line += "[english_list(affected_biotypes_readable)] enemies"
+		var/list/affected_biotypes_readable = chinese_biotypes_display(bitfield_to_list(affected_biotypes, MOB_BIOTYPES_READABLE))
+		label_line += "[jointext(affected_biotypes_readable, "、")]类敌人"
 	else
-		label_line += "certain enemies"
+		label_line += "特定敌人"
 
 	if(damage_multiplier > 1 || added_damage > 0)
 		var/magnitude = ""
 		switch(max(damage_multiplier, added_damage / 10))
 			if(3 to INFINITY)
-				magnitude = "massively increased"
+				magnitude = "极大提高"
 			if(2 to 3)
-				magnitude = "greatly increased"
+				magnitude = "大幅提高"
 			if(1.5 to 2)
-				magnitude = "significantly increased"
+				magnitude = "显著提高"
 			if(1 to 1.5)
-				magnitude = "slightly increased"
+				magnitude = "略有提高"
 
-		label_line += ", dealing [span_warning(magnitude)] damage per hit"
+		label_line += "，每次命中的伤害[span_warning(magnitude)]"
 
 	else if(damage_multiplier < 1 || added_damage < 0)
 		var/magnitude = ""
 		switch(min(damage_multiplier, 10 / abs(added_damage || 1)))
 			if(-INFINITY to 0)
-				magnitude = "no"
+				magnitude = "为零"
 			if(0 to 0.3)
-				magnitude = "massively reduced"
+				magnitude = "极大降低"
 			if(0.3 to 0.6)
-				magnitude = "greatly reduced"
+				magnitude = "大幅降低"
 			if(0.6 to 0.9)
-				magnitude = "significantly reduced"
+				magnitude = "显著降低"
 			if(0.9 to 1)
-				magnitude = "slightly reduced"
+				magnitude = "略有降低"
 
-		label_line += ", dealing [span_warning(magnitude)] damage per hit"
+		label_line += "，每次命中的伤害[span_warning(magnitude)]"
 
-	label_line += "."
+	label_line += "。"
 	readout += label_line
 
 // Item attack handling

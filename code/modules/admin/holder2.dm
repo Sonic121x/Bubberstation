@@ -13,7 +13,7 @@ GLOBAL_PROTECT(href_token)
 	var/list/datum/admin_rank/ranks
 
 	var/target
-	var/name = "nobody's admin datum (no rank)" //Makes for better runtimes
+	var/name = "无主管理员数据（无等级）" //Makes for better runtimes
 	var/client/owner = null
 	var/fakekey = null
 
@@ -67,9 +67,9 @@ GLOBAL_PROTECT(href_token)
 		QDEL_IN(src, 0)
 		CRASH("Admin datum created with invalid ranks: [ranks] ([json_encode(ranks)])")
 	target = ckey
-	name = "[ckey]'s admin datum ([join_admin_ranks(ranks)])"
+	name = "[ckey] 的管理员数据（[join_admin_ranks(ranks)]）"
 	src.ranks = ranks
-	admin_signature = "Nanotrasen Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
+	admin_signature = "纳米传讯军官 #[rand(0,9)][rand(0,9)][rand(0,9)]"
 	href_token = GenerateToken()
 	//only admins with +ADMIN start admined
 	if(protected)
@@ -133,7 +133,7 @@ GLOBAL_PROTECT(href_token)
 		return
 
 	if(client?.ckey != target)
-		var/msg = " has attempted to associate with [target]'s admin datum"
+		var/msg = " 试图关联到 [target] 的管理员数据"
 		message_admins("[key_name_admin(client)][msg]")
 		log_admin("[key_name(client)][msg]")
 		return
@@ -281,7 +281,7 @@ GLOBAL_PROTECT(href_token)
 
 #undef VALID_2FA_CONNECTION
 
-#define ERROR_2FA_REQUEST_PERMISSIONS "<h1><b class='danger'>You could not be verified, and a DB connection couldn't be established. Please contact an admin with +PERMISSIONS to grant you permission.</b></h1>"
+#define ERROR_2FA_REQUEST_PERMISSIONS "<h1><b class='danger'>无法验证你的身份，且无法建立数据库连接。请联系拥有 +PERMISSIONS 权限的管理员为你授予权限。</b></h1>"
 
 /datum/admins/proc/start_2fa_process(client/client, id)
 	ASSIGN_GAME_VERB(client, /client, admin_2fa_verify)
@@ -327,9 +327,9 @@ GLOBAL_PROTECT(href_token)
 		client,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = {"
-			<h1><b class='danger'>You could not be verified.</b></h1>
-			<h2><b class='danger'>Please visit <a href='[url_for_2fa]'>[url_for_2fa]</a> to verify.</b></h2>
-			<h2><b class='danger'>When you are done, click the 'Verify Admin' button in your admin tab.</b></h2>
+			<h1><b class='danger'>无法验证你的身份。</b></h1>
+			<h2><b class='danger'>请访问 <a href='[url_for_2fa]'>[url_for_2fa]</a> 进行验证。</b></h2>
+			<h2><b class='danger'>完成后，请点击管理标签页中的“Verify Admin”按钮。</b></h2>
 		"},
 		confidential = TRUE,
 	)
@@ -362,7 +362,7 @@ GLOBAL_PROTECT(href_token)
 
 
 /datum/admins/proc/alert_2fa_necessary(client/client)
-	var/msg = " is trying to join, but needs to verify their ckey."
+	var/msg = " 正在尝试加入，但需要验证其 ckey。"
 	message_admins("[key_name_admin(client)][msg]")
 	log_admin("[key_name(client)][msg]")
 
@@ -376,7 +376,7 @@ GLOBAL_PROTECT(href_token)
 		to_chat(
 			admin_client,
 			type = MESSAGE_TYPE_ADMINLOG,
-			html = span_admin("[span_prefix("ADMIN 2FA:")] You have the ability to verify [key_name_admin(client)] by using the Permissions Panel."),
+			html = span_admin("[span_prefix("管理员 2FA：")] 你可以通过权限面板来验证 [key_name_admin(client)]。"),
 			confidential = TRUE,
 		)
 
@@ -478,7 +478,7 @@ you will have to do something like if(client.rights & R_ADMIN) yourself.
 			return TRUE
 		else
 			if(show_msg)
-				to_chat(usr, "<font color='red'>Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</font>", confidential = TRUE)
+				to_chat(usr, "<font color='red'>错误：你没有足够的权限执行该操作。你需要以下旗标之一：[rights2text(rights_required," ")]。</font>", confidential = TRUE)
 	return FALSE
 
 //probably a bit iffy - will hopefully figure out a better solution

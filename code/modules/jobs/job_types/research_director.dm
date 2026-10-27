@@ -1,8 +1,8 @@
 /datum/job/research_director
 	title = JOB_RESEARCH_DIRECTOR
-	description = "Supervise research efforts, ensure Robotics is in working \
-		order, make sure the AI and its Cyborgs aren't rogue, replace them if \
-		they are."
+	description = "监督科研工作，确保机器人部门处于正常\
+		运转状态，确认人工智能及其半机械人没有失控，\
+		若有失控则予以替换。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	head_announce = RADIO_CHANNEL_SCIENCE
 	faction = FACTION_STATION
@@ -40,7 +40,7 @@
 	)
 
 	family_heirlooms = list(/obj/item/toy/plush/slimeplushie)
-	rpg_title = "Archmagister"
+	rpg_title = "大法师"
 	job_flags = STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS
 
 	human_authority = JOB_AUTHORITY_HUMANS_ONLY
@@ -49,7 +49,7 @@
 
 
 /datum/job/research_director/get_captaincy_announcement(mob/living/captain)
-	return "Due to staffing shortages, newly promoted Acting Captain [captain.real_name] on deck!"
+	return "由于人手不足，新晋代理舰长 [captain.real_name] 已到任！"
 
 
 /datum/outfit/job/rd

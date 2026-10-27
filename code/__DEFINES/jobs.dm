@@ -10,7 +10,7 @@
 #define JOB_UNAVAILABLE_AGE 7
 
 /// Used when the `get_job_unavailable_error_message` proc can't make sense of a given code.
-#define GENERIC_JOB_UNAVAILABLE_ERROR "Error: Unknown job availability."
+#define GENERIC_JOB_UNAVAILABLE_ERROR "错误：未知的职位可用状态。"
 
 // Human authority settings
 // If you want to add another setting, make sure to also add it to the if chain in /datum/job_config_type/human_authority/validate_value()
@@ -20,7 +20,7 @@
 #define DEFAULT_RELIGION "Christianity"
 #define DEFAULT_DEITY "Space Jesus"
 #define DEFAULT_BIBLE "Default Bible Name"
-#define DEFAULT_BIBLE_REPLACE(religion) "The Holy Book of [religion]"
+#define DEFAULT_BIBLE_REPLACE(religion) "[religion]圣典"
 
 #define JOB_DISPLAY_ORDER_DEFAULT 0
 
@@ -331,13 +331,13 @@ DEFINE_BITFIELD(job_flags, list(
 #define FACTION_STATION "Station"
 
 // Variable macros used to declare who is the supervisor for a given job, announced to the player when they join as any given job.
-#define SUPERVISOR_CAPTAIN "the Captain"
-#define SUPERVISOR_CE "the Chief Engineer"
-#define SUPERVISOR_CMO "the Chief Medical Officer"
-#define SUPERVISOR_HOP "the Head of Personnel"
-#define SUPERVISOR_HOS "the Head of Security"
-#define SUPERVISOR_QM "the Quartermaster"
-#define SUPERVISOR_RD "the Research Director"
+#define SUPERVISOR_CAPTAIN "舰长"
+#define SUPERVISOR_CE "总工程师"
+#define SUPERVISOR_CMO "首席医疗官"
+#define SUPERVISOR_HOP "人事主管"
+#define SUPERVISOR_HOS "安保主管"
+#define SUPERVISOR_QM "货运主管"
+#define SUPERVISOR_RD "科研主管"
 
 /// Mind traits that should be shared by every head of staff. has to be this way cause byond lists lol
 #define HEAD_OF_STAFF_MIND_TRAITS TRAIT_FAST_TYING, TRAIT_HIGH_VALUE_RANSOM

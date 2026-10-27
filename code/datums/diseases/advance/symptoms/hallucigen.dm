@@ -8,9 +8,9 @@
 */
 
 /datum/symptom/hallucigen
-	name = "Hallucigen"
-	desc = "The virus stimulates the brain, causing occasional hallucinations."
-	illness = "Paranoyance"
+	name = "致幻"
+	desc = "病毒刺激大脑，偶尔引发幻觉。"
+	illness = "疑神疑鬼"
 	stealth = 1
 	resistance = -2
 	stage_speed = 2
@@ -22,8 +22,8 @@
 	symptom_cure = /datum/reagent/medicine/psicodine
 	cure_color = "yellow"
 	threshold_descs = list(
-		"Stage Speed 7" = "Increases the amount of hallucinations.",
-		"Stealth 4" = "The virus mimics positive symptoms.",
+		"阶段速度 7" = "增加幻觉数量。",
+		"隐蔽性 4" = "病毒伪装出有益症状。",
 	)
 	var/fake_healthy = FALSE
 
@@ -42,25 +42,25 @@
 	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
-	var/list/healthy_messages = list("Your lungs feel great.", "You realize you haven't been breathing.", "You don't feel the need to breathe.",\
-					"Your eyes feel great.", "Your ears feel great.", "You don't feel the need to blink.")
+	var/list/healthy_messages = list("你的肺感觉非常舒畅。", "你意识到自己一直没有呼吸。", "你觉得自己无需呼吸。",\
+					"你的眼睛感觉非常舒适。", "你的耳朵感觉非常舒适。", "你觉得自己无需眨眼。")
 	switch(A.stage)
 		if(1, 2)
 			if(prob(base_message_chance))
 				if(!fake_healthy)
-					to_chat(M, span_notice("[pick("Something appears in your peripheral vision, then winks out.", "You hear a faint whisper with no source.", "Your head aches.")]"))
+					to_chat(M, span_notice("[pick("有什么东西出现在你的余光中，随即消失。", "你听见一阵来源不明的微弱低语。", "你的头隐隐作痛。")]"))
 				else
 					to_chat(M, span_notice("[pick(healthy_messages)]"))
 		if(3, 4)
 			if(prob(base_message_chance))
 				if(!fake_healthy)
-					to_chat(M, span_danger("[pick("Something is following you.", "You are being watched.", "You hear a whisper in your ear.", "Thumping footsteps slam toward you from nowhere.")]"))
+					to_chat(M, span_danger("[pick("有什么东西正跟着你。", "有人正在监视你。", "你耳边响起低语。", "不知从何处传来的沉重脚步声正向你逼近。")]"))
 				else
 					to_chat(M, span_notice("[pick(healthy_messages)]"))
 		else
 			if(prob(base_message_chance))
 				if(!fake_healthy)
-					to_chat(M, span_userdanger("[pick("Oh, your head...", "Your head pounds.", "They're everywhere! Run!", "Something in the shadows...")]"))
+					to_chat(M, span_userdanger("[pick("哦，你的头……", "你的头一阵阵剧痛。", "它们无处不在！快跑！", "阴影里有什么东西……")]"))
 				else
 					to_chat(M, span_notice("[pick(healthy_messages)]"))
 			M.adjust_hallucinations(90 SECONDS * power)

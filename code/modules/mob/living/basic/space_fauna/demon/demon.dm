@@ -1,19 +1,19 @@
 /// Player controlled mobs that rip and tear, typically summoned by wizards.
 /mob/living/basic/demon
-	name = "imp"
-	real_name = "imp"
+	name = "小恶魔"
+	real_name = "小恶魔"
 	unique_name = TRUE
-	desc = "A large, menacing creature covered in armored black scales."
+	desc = "一只体型庞大、令人生畏的生物，全身覆盖着如铠甲般的黑色鳞片。"
 
-	speak_emote = list("cackles","screeches")
-	response_help_continuous = "thinks better of touching"
-	response_help_simple = "think better of touching"
-	response_disarm_continuous = "flails at"
-	response_disarm_simple = "flail at"
-	response_harm_continuous = "punches"
-	response_harm_simple = "punch"
-	attack_verb_continuous = "wildly tears into"
-	attack_verb_simple = "wildly tear into"
+	speak_emote = list("嘎嘎怪笑","尖啸")
+	response_help_continuous = "犹豫着不敢碰"
+	response_help_simple = "犹豫着不敢碰"
+	response_disarm_continuous = "胡乱拍打"
+	response_disarm_simple = "胡乱拍打"
+	response_harm_continuous = "挥拳打"
+	response_harm_simple = "挥拳打"
+	attack_verb_continuous = "疯狂撕咬"
+	attack_verb_simple = "疯狂撕咬"
 
 	icon = 'icons/mob/simple/demon.dmi'
 	icon_state = "demon"
@@ -33,7 +33,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	melee_attack_cooldown = CLICK_CD_MELEE
-	death_message = "screams in agony as it sublimates into a sulfurous smoke."
+	death_message = "痛苦地尖叫着，升华成一缕硫磺烟雾。"
 	death_sound = 'sound/effects/magic/demon_dies.ogg'
 
 	habitable_atmos = null
@@ -72,4 +72,4 @@
 	mind.add_antag_datum(antag_type)
 
 	SEND_SOUND(src, 'sound/effects/magic/demon_dies.ogg')
-	to_chat(src, span_bold("You are currently not currently in the same plane of existence as the station. Use your Blood Crawl ability near a pool of blood to manifest and wreak havoc."))
+	to_chat(src, span_bold("你目前并不与空间站处于同一存在层面。在一滩血液附近使用你的血中穿行技能，即可显形并大肆破坏。"))

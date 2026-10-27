@@ -1,6 +1,6 @@
 /obj/machinery/quantumpad
-	name = "quantum pad"
-	desc = "A bluespace quantum-linked telepad used for teleporting objects to other quantum pads."
+	name = "量子传送台"
+	desc = "采用蓝空间量子链接的传送台，用于将物体传送到其他量子传送台。"
 	icon = 'icons/obj/machines/telepad.dmi'
 	icon_state = "qpad-idle"
 	base_icon_state = "qpad"
@@ -32,11 +32,11 @@
 
 /obj/machinery/quantumpad/examine(mob/user)
 	. = ..()
-	. += span_notice("It is [ linked_pad ? "currently" : "not"] linked to another pad.")
+	. += span_notice("它[ linked_pad ? "目前已" : "尚未"]连接到另一个传送台。")
 	if(!panel_open)
-		. += span_notice("The panel is <i>screwed</i> in, obstructing the linking device.")
+		. += span_notice("面板用<i>螺丝</i>固定着，遮住了链接装置。")
 	else
-		. += span_notice("The <i>linking</i> device is now able to be <i>scanned<i> with a multitool.")
+		. += span_notice("现在可以用多功能工具<i>扫描<i>其<i>链接</i>装置。")
 
 /obj/machinery/quantumpad/RefreshParts()
 	. = ..()
@@ -55,19 +55,19 @@
 /obj/machinery/quantumpad/multitool_act(mob/living/user, obj/item/multitool/multi_tool)
 	if(panel_open)
 		multi_tool.set_buffer(src)
-		balloon_alert(user, "saved to multitool buffer")
-		to_chat(user, span_notice("You save the data in [multi_tool] buffer. It can now be saved to pads with closed panels."))
+		balloon_alert(user, "已存入多功能工具缓冲区")
+		to_chat(user, span_notice("你将数据存入了[multi_tool]的缓冲区。现在可以写入面板关闭的传送台。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(multi_tool.buffer, /obj/machinery/quantumpad))
 		if(multi_tool.buffer == src)
-			balloon_alert(user, "cannot link to self!")
+			balloon_alert(user, "无法连接自身！")
 			return ITEM_INTERACT_BLOCKING
 		linked_pad = multi_tool.buffer
-		balloon_alert(user, "data uploaded from buffer")
+		balloon_alert(user, "已从缓冲区上传数据")
 		return ITEM_INTERACT_SUCCESS
 
-	balloon_alert(user, "no quantum pad data found!")
+	balloon_alert(user, "未找到量子传送台数据！")
 	return NONE
 
 /obj/machinery/quantumpad/screwdriver_act(mob/living/user, obj/item/tool)
@@ -80,13 +80,13 @@
 	if(istype(tool, /obj/item/quantum_keycard))
 		var/obj/item/quantum_keycard/card = tool
 		if(card.qpad)
-			to_chat(user, span_notice("You insert [card] into [src]'s card slot, activating it."))
+			to_chat(user, span_notice("你将[card]插入[src]的卡槽，启动了它。"))
 			interact(user, card.qpad)
 			return ITEM_INTERACT_SUCCESS
-		to_chat(user, span_notice("You insert [card] into [src]'s card slot, initiating the link procedure."))
+		to_chat(user, span_notice("你将[card]插入[src]的卡槽，开始链接程序。"))
 		if(!do_after(user, 4 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice("You complete the link between [card] and [src]."))
+		to_chat(user, span_notice("你完成了[card]与[src]之间的链接。"))
 		card.set_pad(src)
 		return ITEM_INTERACT_SUCCESS
 
@@ -104,29 +104,29 @@
 		if(map_pad_link_id && initMappedLink())
 			target_pad = linked_pad
 		else
-			to_chat(user, span_warning("Target pad not found!"))
+			to_chat(user, span_warning("未找到目标传送台！"))
 			return
 	//SKYRAT EDIT ADDITION
 	var/turf/my_turf = get_turf(src)
 	if(is_away_level(my_turf.z))
-		to_chat(user, "<span class='warning'>[src] cannot be used here!</span>")
+		to_chat(user, "<span class='warning'>[src]无法在此处使用！</span>")
 		return
 	//SKYRAT EDIT END
 
 	if(world.time < last_teleport + teleport_cooldown)
-		to_chat(user, span_warning("[src] is recharging power. Please wait [DisplayTimeText(last_teleport + teleport_cooldown - world.time)]."))
+		to_chat(user, span_warning("[src]正在恢复能量。请等待[DisplayTimeText(last_teleport + teleport_cooldown - world.time)]。"))
 		return
 
 	if(teleporting)
-		to_chat(user, span_warning("[src] is charging up. Please wait."))
+		to_chat(user, span_warning("[src]正在充能。请稍候。"))
 		return
 
 	if(target_pad.teleporting)
-		to_chat(user, span_warning("Target pad is busy. Please wait."))
+		to_chat(user, span_warning("目标传送台正忙。请稍候。"))
 		return
 
 	if(target_pad.machine_stat & NOPOWER)
-		to_chat(user, span_warning("Target pad is not responding to ping."))
+		to_chat(user, span_warning("目标传送台未响应连接探测。"))
 		return
 	add_fingerprint(user)
 	doteleport(user, target_pad)
@@ -155,11 +155,11 @@
 	teleporting = FALSE
 	if(machine_stat & NOPOWER)
 		if(user)
-			to_chat(user, span_warning("[src] is unpowered!"))
+			to_chat(user, span_warning("[src]没有电力！"))
 		return
 	if(QDELETED(target_pad) || target_pad.machine_stat & NOPOWER)
 		if(user)
-			to_chat(user, span_warning("Linked pad is not responding to ping. Teleport aborted."))
+			to_chat(user, span_warning("已连接的传送台未响应连接探测。传送已中止。"))
 		return
 
 	last_teleport = world.time
@@ -198,12 +198,12 @@
 		. = TRUE
 
 /obj/item/paper/guides/quantumpad
-	name = "Quantum Pad For Dummies"
-	default_raw_text = "<center><b>Dummies Guide To Quantum Pads</b></center><br><br><center>Do you hate the concept of having to use your legs, let alone <i>walk</i> to places? Well, with the Quantum Pad (tm), never again will the fear of cardio keep you from going places!<br><br><c><b>How to set up your Quantum Pad(tm)</b></center><br><br>1.Unscrew the Quantum Pad(tm) you wish to link.<br>2. Use your multi-tool to cache the buffer of the Quantum Pad(tm) you wish to link.<br>3. Apply the multi-tool to the secondary Quantum Pad(tm) you wish to link to the first Quantum Pad(tm)<br><br><center>If you followed these instructions carefully, your Quantum Pad(tm) should now be properly linked together for near-instant movement across the station! Bear in mind that this is technically a one-way teleport, so you'll need to do the same process with the secondary pad to the first one if you wish to travel between both.</center>"
+	name = "量子传送台入门指南"
+	default_raw_text = "<center><b>量子传送台傻瓜指南</b></center><br><br><center>你是否连动用双腿都嫌麻烦，更别提<i>走路</i>去别处？有了量子传送台™，对有氧运动的恐惧将再也无法阻止你出行！<br><br><c><b>如何设置你的量子传送台™</b></center><br><br>1. 拧开你想连接的量子传送台™面板。<br>2. 使用多功能工具缓存该量子传送台™的数据。<br>3. 对希望与第一台连接的第二台量子传送台™使用多功能工具。<br><br><center>若你仔细遵照这些步骤，两台量子传送台™现在应该已经正确连接，让你几乎瞬间穿越空间站！请注意，这实际上是单向传送；若要双向往返，你还需要从第二台向第一台重复同样的操作。</center>"
 
 /obj/item/circuit_component/quantumpad
-	display_name = "Quantum Pad"
-	desc = "A bluespace quantum-linked telepad used for teleporting objects to other quantum pads."
+	display_name = "量子传送台"
+	desc = "采用蓝空间量子链接的传送台，用于将物体传送到其他量子传送台。"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL
 
 	var/datum/port/input/target_pad

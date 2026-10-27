@@ -1,32 +1,32 @@
 /// Possible places/departments to inspect
 #define INSPECTION_LIST list( \
-	"Cargo", \
-	"Command", \
-	"Engineering", \
-	"Medical", \
-	"Science", \
-	"Service", \
-	"Security", \
+	"货运", \
+	"指挥", \
+	"工程", \
+	"医疗", \
+	"科研", \
+	"服务", \
+	"安保", \
 )
 
 /// List of possible decorative job titles for additional roleplay potential
 #define NRI_JOB_LIST list( \
-	"PSC Patrol Officer", \
-	"PSC Satellite-Patrol Officer", \
-	"PSC Yefreitor-Patrol Officer", \
-	"PSC Junior Patrol Officer", \
-	"PSC Government Investigator", \
-	"PSC Field Inspector", \
-	"PSC Counter-Truancy Officer", \
+	"PSC 巡逻官", \
+	"PSC 卫星巡逻官", \
+	"PSC 下士巡逻官", \
+	"PSC 初级巡逻官", \
+	"PSC 政府调查员", \
+	"PSC 现场督察", \
+	"PSC 反擅离职守官", \
 )
 
 /// List of possible decorative leader job titles for additional roleplay potential
 #define NRI_LEADER_JOB_LIST list( \
-	"PSC Lieutenant Officer", \
-	"PSC Sergeant Officer", \
-	"PSC Senior Patrol Officer", \
-	"PSC Lead Investigator", \
-	"PSC Lead Inspector", \
+	"PSC 中尉警官", \
+	"PSC 警佐", \
+	"PSC 高级巡逻官", \
+	"PSC 首席调查员", \
+	"PSC 首席督察", \
 )
 
 /// Amount of items to "confiscate", lower amount
@@ -39,54 +39,54 @@ GLOBAL_VAR(first_officer)
 
 ///NRI police patrol with a mission to find out if the fine reason is legitimate and then act from there.
 /datum/pirate_gang/nri_raiders
-	name = "PSC IAC Police Patrol"
+	name = "PSC 内务委员会警察巡逻队"
 
 	ship_template_id = "nri_raider"
 	ship_name_pool = "imperial_names"
 
-	threat_title = "Commonwealth Audit"
-	threat_content = "Greetings %STATION, this is the %SHIPNAME dispatch outpost. \
-	Due to recent Imperial regulatory violations, such as %RESULT and many other smaller issues, your station has been fined %PAYOFF credits. \
-	Inadequate imperial police activity is currently present in your sector, thus the failure to comply might instead result in a police patrol dispatch \
-	for second attempt negotiations, sector police presence reinforcement and close-up inspections. Pan Slavic Commonwealth's collegial secretary out."
-	arrival_announcement = "Regulation-identified vessel approaching. Vessel ID tag is %NUMBER1-%NUMBER2-%NUMBER3. \
-	Vessel Model: Potato Beetle, Flight ETA: three minutes minimal. Vessel is authorised by the international regulations to perform its duties. \
-	We're clear for close orbit. Friendly reminder not to measure the distance between the vessel and the destination location, nor install any tracking devices anywhere on board of the vessel or in its close vicinity, \
-	unless given permission to; not to approach it, unless given permission to; not to perform any aggressive actions, nor any preparations to do so, to the vessel or the commissioned crew, \
-	as all of this is grounds for preemptive self-defense procedures initiation, and might result in moral or structural damage, arrests, injury or possibly death. In case of any complaints, they are to be sent directly to your employers."
-	possible_answers = list("Submit to audit and pay the fine.", "Override the response system for an immediate police dispatch.")
+	threat_title = "联邦审计"
+	threat_content = "向 %STATION 致意，这里是 %SHIPNAME 调度前哨站。 \
+	鉴于近期发生的帝国法规违规行为，例如 %RESULT，以及许多其他较小问题，你的空间站已被处以 %PAYOFF 信用点罚款。 \
+	你所在星区目前的帝国警察活动力度不足，因此若拒不配合，可能改为派出警察巡逻队 \
+	进行第二次协商尝试、增援星区警力并进行近距离检查。泛斯拉夫联邦内务秘书，通话结束。"
+	arrival_announcement = "已识别到合规船只正在接近。船只 ID 标签为 %NUMBER1-%NUMBER2-%NUMBER3。 \
+	船只型号：土豆甲虫，飞行预计到达时间：最快三分钟。本船获国际法规授权执行其职责。 \
+	我方已获准进入近距离轨道。友好提醒：请勿测量本船与目的地之间的距离，也请勿在本船船上或附近安装任何追踪设备， \
+	除非获得许可；请勿靠近本船，除非获得许可；请勿对本船或受命船员采取任何攻击性行动，也请勿做任何此类准备， \
+	因为这一切都构成启动先发制人自卫程序的理由，并可能导致道德或结构上的损害、逮捕、受伤甚至死亡。如有任何投诉，请直接提交给你的雇主。"
+	possible_answers = list("接受审计并缴纳罚款。", "覆写响应系统，立即派出警察。")
 
-	response_received = "Should be it, thank you for cooperation. Pan-Slavic Commonwealth collegial secretary out."
-	response_too_late = "Your response was very delayed. We have been instructed to send in the patrol ship for second attempt negotiations, stand by."
-	response_not_enough = "Your bank balance does not hold enough money at the moment or the system has been overriden. We are sending a patrol ship for second attempt negotiations, stand by."
+	response_received = "就是这样，感谢配合。泛斯拉夫联邦内务秘书，通话结束。"
+	response_too_late = "你的回复严重迟延。我们已接到指示，派出巡逻船进行第二次协商尝试，请待命。"
+	response_not_enough = "你的银行余额目前不足，或系统已被覆写。我们正派出巡逻船进行第二次协商尝试，请待命。"
 	announcement_color = "purple"
 
 /datum/pirate_gang/nri_raiders/generate_message(payoff)
 	var/number = rand(1,99)
 	///Station name one is the most important pick and is pretty much the station's main argument against getting fined, thus it better be mostly always right.
 	var/station_designation = pick_weight(list(
-		"Nanotrasen Research Station" = 70,
-		"Nanotrasen Refueling Outpost" = 5,
-		"Interdyne Pharmaceuticals Chemical Factory" = 5,
-		"Free Teshari League Engineering Station" = 5,
-		"Agurkrral Military Base" = 5,
-		"Sol Federation Embassy" = 5,
-		"Pan-Slavic Commonwealth Civilian Port" = 5,
+		"纳米传讯研究站" = 70,
+		"纳米传讯补给前哨站" = 5,
+		"英特戴恩制药化工厂" = 5,
+		"自由特沙利联盟工程站" = 5,
+		"阿古克拉尔军事基地" = 5,
+		"太阳联邦大使馆" = 5,
+		"泛斯拉夫联邦民用港口" = 5,
 	))
 	///"right" = Right for the raiders to use as an argument; usually pretty difficult to avoid.
 	var/right_pick = pick(
-		"high probability of PSC-affiliated civilian casualties aboard the facility",
-		"highly increased funding by the SolFed authorities; neglected PSC-backed subsidiaries' contracts",
-		"unethical hiring practices and unfair payment allocation for the PSC citizens",
-		"recently discovered BSA-[number] or similar model in close proximity to the neutral space aboard this or nearby affiliated facility",
+		"该设施上极有可能出现 PSC 相关平民伤亡",
+		"太阳联邦当局大幅增加拨款；忽视了 PSC 支持的下属公司合同",
+		"针对 PSC 公民的不道德雇佣行为与不公平薪酬分配",
+		"近期在此设施或附近附属设施的中立空间附近发现 BSA-[number] 或类似型号",
 	)
 	///"wrong" = Loosely based accusations that can be easily disproven if people think.
 	var/wrong_pick = pick(
-		"inadequate support of the local producer",
-		"unregulated production of Gauss weaponry aboard this installation",
-		"SolFed-backed stationary military formation on the surface of Indecipheres",
-		"AUTOMATED REGULATORY VIOLATION DETECTION SYSTEM CRITICAL FAILURE. PLEASE CONTACT AND INFORM THE DISPATCHED AUTHORITIES TO RESOLVE THE ISSUE. \
-		ANY POSSIBLE INDENTURE HAS BEEN CLEARED. WE APOLOGIZE FOR THE INCONVENIENCE",
+		"对当地生产者的支持不足",
+		"该设施上未经管制地生产高斯武器",
+		"太阳联邦支持的固定军事编队出现在因德西菲瑞斯地表",
+		"自动违规检测系统严重故障。请联系并告知已派出的当局以解决该问题。 \
+		所有可能的契约义务均已清除。对由此造成的不便我们深表歉意",
 	)
 	var/final_result = pick(right_pick, wrong_pick)
 	var/built_threat_content = replacetext(threat_content, "%SHIPNAME", ship_name)
@@ -145,7 +145,7 @@ GLOBAL_VAR(first_officer)
 	id_trim = /datum/id_trim/nri_police
 
 /obj/item/modular_computer/pda/nri_police
-	name = "\improper Commonwealth police PDA"
+	name = "\improper 联邦警察 PDA"
 	icon_state = "/obj/item/modular_computer/pda/nri_police"
 	device_theme = PDA_THEME_TERMINAL
 	greyscale_colors = "#363655#7878f7"
@@ -159,14 +159,14 @@ GLOBAL_VAR(first_officer)
 	inserted_item = /obj/item/pen/fourcolor
 
 /obj/item/card/id/advanced/nri_police
-	name = "\improper Commonwealth police identification card"
-	desc = "A retro-looking card model modified to work with the modern identification systems."
+	name = "\improper 联邦警察身份卡"
+	desc = "一种外观复古的卡片型号，经过改装以适配现代身份识别系统。"
 	icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	icon_state = "card_nri_police"
 	assigned_icon_state = "assigned_nri_police"
 
 /datum/id_trim/nri_police
-	assignment = "Pan-Slavic Field Officer"
+	assignment = "泛斯拉夫外勤军官"
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	trim_state = "trim_nri_police"
 	department_color = COLOR_NRI_POLICE_BLUE
@@ -178,16 +178,16 @@ GLOBAL_VAR(first_officer)
 /obj/item/gun/energy/e_gun/advtaser
 
 /obj/effect/mob_spawn/ghost_role/human/nri_raider
-	name = "Pan-Slavic Raider sleeper"
-	desc = "Cozy. You get the feeling you aren't supposed to be here, though..."
-	prompt_name = "a Pan-Slavic Marine"
+	name = "泛斯拉夫突袭者休眠舱"
+	desc = "很舒适。不过你总觉得，自己似乎不该出现在这里……"
+	prompt_name = "一名泛斯拉夫陆战队员"
 	icon = 'modular_skyrat/modules/cryosleep/icons/cryogenics.dmi'
 	icon_state = "cryopod"
 	mob_species = /datum/species/human
 	faction = list(FACTION_RAIDER)
-	you_are_text = "You are a Pan-Slavic Commonwealth task force."
-	flavour_text = "The station has refused to pay the fine for breaking Imperial regulations, you are here to recover the debt. Do so by demanding the funds. Force approach is usually recommended, but isn't the only method."
-	important_text = "Allowed races are Humans, Akula, Teshari and Synths. Follow your field officer's orders. Important mention - while you are listed as the pirates gamewise, you really aren't lore-and-everything-else-wise. Roleplay accordingly."
+	you_are_text = "你是泛斯拉夫联邦特遣队的一员。"
+	flavour_text = "该空间站拒绝为违反帝国法规缴纳罚款，你来此追讨欠款。通过索要资金来完成任务。通常建议采取武力手段，但这并非唯一方法。"
+	important_text = "允许的种族为人类、阿库拉、特沙利与合成人。服从你的外勤军官的命令。重要提示：虽然你在游戏机制中被列为海盗，但在背景设定及其他方面你并不是。请据此进行角色扮演。"
 	outfit = /datum/outfit/pirate/nri
 	restricted_species = list(/datum/species/human, /datum/species/akula, /datum/species/synthetic, /datum/species/teshari)
 	random_appearance = FALSE
@@ -216,12 +216,12 @@ GLOBAL_VAR(first_officer)
 	policy_index = ROLE_FUGITIVE_HUNTER
 
 /obj/effect/mob_spawn/ghost_role/human/nri_raider/officer
-	name = "Pan-Slavic Officer sleeper"
-	prompt_name = "a Pan-Slavic Field Officer"
-	mob_name = "Pan-Slavic Commonwealth police patrol's field officer"
+	name = "泛斯拉夫军官休眠舱"
+	prompt_name = "一名泛斯拉夫外勤军官"
+	mob_name = "泛斯拉夫联邦警察巡逻队外勤军官"
 	outfit = /datum/outfit/pirate/nri/officer
-	flavour_text = "The station has refused to pay the fine for breaking Imperial regulations, as a consequence you are here to perform a prolonged inspection."
-	important_text = "Allowed races are Humans, Akula, Teshari and Synths. Roleplay accordingly. There is an important document in your pocket I'd advise you to read and keep safe."
+	flavour_text = "该空间站拒绝为违反帝国法规缴纳罚款，因此你来此执行长期检查。"
+	important_text = "允许的种族为人类、阿库拉、特沙利与合成人。请据此进行角色扮演。你口袋中有一份重要文件，建议你阅读并妥善保管。"
 
 /obj/effect/mob_spawn/ghost_role/human/nri_raider/officer/apply_codename(mob/living/carbon/human/spawned_human)
 	var/callsign = pick(GLOB.callsigns_nri)
@@ -238,16 +238,16 @@ GLOBAL_VAR(first_officer)
 	// if this is the first officer, keep a reference to them
 	if(!GLOB.first_officer)
 		GLOB.first_officer = spawned_human
-		to_chat(spawned_human, span_bold("With you being the leader of the group and having a special designation, 'Actual', it's your duty to make sure this entire operation \
-			goes smoothly. As in, doesn't result in an intergalactic political scandal, or an unneecessary shooting. It's also very likely expected for you to be performing \
-			all the necessary negotiations, so do prepare yourself for that."))
+		to_chat(spawned_human, span_bold("作为队伍的领袖并拥有“Actual”这一特殊代号，你有责任确保整个行动 \
+			顺利进行。也就是说，不要引发星际政治丑闻，也不要造成不必要的枪战。此外，很可能还期望你 \
+			亲自进行所有必要的谈判，所以请为此做好准备。"))
 
-	to_chat(spawned_human, "[span_bold("The station has overriden the response system for the reasons unknown, keep the ship intact, communicate with the station, \
-		perform an inspection to determine the legitimacy of the fine, and try to get the funds yourself, if it's legitimate. \
-		In any case, perform your predefined duties and uphold some semblance of intergalactic law and professionalism, even if just for show.")] <br><br>\
-		[span_small("Also, a small OOC clarification: none of your objectives are meant to be completable mechanically, so don't stress yourself over not greentexting or anything; \
-		If you have a better plan than 'completing' them, like an idea for a gimmick, it's better to communicate with the admins and your colleagues to possibly allow you to \
-		do something custom.")]")
+	to_chat(spawned_human, "[span_bold("空间站出于未知原因覆写了响应系统，保持飞船完好，与空间站沟通，\
+		执行检查以判定罚款是否合法，若合法则自行设法取得资金。\
+		无论如何，履行你既定的职责，并维持某种程度的星际法律与专业形象，哪怕只是做做样子。")] <br><br>\
+		[span_small("另外，补充一点 OOC 说明：你的目标都不是机械上可完成的，所以不要因为没有绿字完成之类的而紧张；\
+		如果你有比“完成”它们更好的计划，比如某个整活点子，最好与管理员和同事沟通，好让你能\
+		做些自定义的事情。")]")
 	apply_codename(spawned_human)
 
 
@@ -270,13 +270,13 @@ GLOBAL_VAR(first_officer)
 /datum/map_template/shuttle/pirate/nri_raider
 	prefix = "_maps/shuttles/skyrat/"
 	suffix = "nri_raider"
-	name = "pirate ship (PSC Enforcer-Class Starship)"
+	name = "海盗船（PSC 执法者级星舰）"
 	port_x_offset = -5
 	port_y_offset = 5
 
 
 /area/shuttle/pirate/nri
-	name = "PSC Starship"
+	name = "PSC 星舰"
 	forced_ambience = TRUE
 	ambient_buzz = 'modular_skyrat/modules/encounters/sounds/amb_ship_01.ogg'
 	ambient_buzz_vol = 15
@@ -288,19 +288,19 @@ GLOBAL_VAR(first_officer)
 						'modular_skyrat/modules/encounters/sounds/intercom_loop.ogg')
 
 /obj/machinery/computer/shuttle/pirate/nri
-	name = "police shuttle console"
+	name = "警用穿梭机控制台"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/pirate/nri
-	name = "police shuttle navigation computer"
-	desc = "Used to designate a precise transit location for the police shuttle."
+	name = "警用穿梭机导航计算机"
+	desc = "用于为警用穿梭机指定精确的过境地点。"
 
 /obj/machinery/base_alarm/nri_raider
 	alarm_sound_file = 'modular_skyrat/modules/encounters/sounds/env_horn.ogg'
 	alarm_cooldown = 32
 
 /obj/machinery/porta_turret/syndicate/nri_raider
-	name = "anti-projectile turret"
-	desc = "An automatic defense turret designed for point-defense, it's probably not that wise to try approaching it."
+	name = "反投射物炮塔"
+	desc = "一种用于点防御的自动防御炮塔，试图靠近它大概不是明智之举。"
 	scan_range = 9
 	shot_delay = 15
 	faction = list(FACTION_RAIDER)
@@ -323,13 +323,13 @@ GLOBAL_VAR(first_officer)
 		return TRUE
 
 /obj/projectile/bullet/ciws
-	name = "anti-projectile salvo"
+	name = "反投射物齐射"
 	icon_state = "guardian"
 	damage = 15
 	armour_penetration = 10
 
 /obj/docking_port/mobile/pirate/nri_raider
-	name = "PSC IAC-PV 'Evangelium'" //Nobody will care about the translation but basically NRI Internal Affairs Collegium-Patrol Vessel
+	name = "PSC IAC-PV“福音”号" //Nobody will care about the translation but basically NRI Internal Affairs Collegium-Patrol Vessel
 	initial_engine_power = 6
 	port_direction = EAST
 	preferred_direction = EAST
@@ -341,14 +341,14 @@ GLOBAL_VAR(first_officer)
 	landing_sound = sound('modular_skyrat/modules/encounters/sounds/env_ship_down.ogg')
 
 /obj/structure/plaque/static_plaque/golden/commission/ks13/nri_raider
-	desc = "formerly-NRI Terentiev-Yermolayev Orbital Shipworks, Providence High Orbit, Ship OSTs-02\n'Potato Beetle' Class Corvette\nCommissioned 10/11/2562 'Keeping Promises'"
+	desc = "前 NRI 捷连季耶夫-叶尔莫拉耶夫轨道船厂，普罗维登斯高轨道，船体 OSTs-02\n“土豆甲虫”级护卫舰\n2562 年 10 月 11 日服役，舰名“信守承诺”"
 
 /obj/machinery/computer/centcom_announcement/nri_raider
-	name = "police announcement console"
-	desc = "A console used for making priority Internal Affairs Collegium dispatch reports."
+	name = "警用公告控制台"
+	desc = "用于发布内务委员会优先调度报告的控制台。"
 	req_access = null
 	circuit = null
-	command_name = "PSC Enforcer-Class Starship Telegram"
+	command_name = "PSC 执法者级星舰电报"
 	report_sound = ANNOUNCER_NRI_RAIDERS
 
 /obj/item/storage/belt/security/nri/PopulateContents()
@@ -360,7 +360,7 @@ GLOBAL_VAR(first_officer)
 
 /obj/item/storage/box/nri_survival_pack/raider
 	w_class = WEIGHT_CLASS_SMALL
-	desc = "A box filled with useful emergency items, supplied by the Commonwealth. It feels particularily light."
+	desc = "一箱由联邦提供的实用应急物品。摸起来格外轻。"
 
 /obj/item/storage/box/nri_survival_pack/raider/PopulateContents()
 	new /obj/item/oxygen_candle(src)
@@ -372,92 +372,92 @@ GLOBAL_VAR(first_officer)
 	new /obj/item/crowbar/red(src)
 
 /obj/item/paper/fluff/nri_document
-	name = "Commonwealth Police SOPs"
-	default_raw_text = {"<h1>Pan-Slavic Commonwealth Internal Affairs Collegium Rim-World Patrol Standard Operation Procedures, Part One: Procedures</h1><br>
-	<br><br><small>Annotation. The guide is devoted to the consideration of the legal foundations of the expeditionary patrol police of the Pan-Slavic Commonwealth. The scientific analysis of the normative legal acts regulating the activities of the expeditionary patrol police allows us to establish its tasks and functions, as well as the main areas of activity. The system and methods of applying proactive self-defense in the activities of the expeditionary patrol police of the Pan-Slavic Commonwealth are considered. The issues of its differences with the central and political police are touched upon. Attention is paid to the socio-practical significance of issues related to ensuring external security in the Pan-Slavic Commonwealth in the fight against ordinary crime.</small>
-	<br><br>One of the main functions of any sovereign State is to ensure national security, that is, to take measures to protect individuals, society and the state from internal and external threats. Through the implementation of this function, the territorial integrity and sustainable development of the state is ensured, its defense and security are strengthened, rights, freedoms, and a decent standard of living of the population are ensured.
-	<br>The expeditionary police plays an important role in the protective function of the Pan-Slavic Commonwealth in the second half of the XXVI century. It was it who, in addition to the protective functions, was entrusted with difficult tasks of general management. The main task of the expeditionary police was to ensure and protect the interests of the imperial government at the facilities defined by agreements on interaction and cooperation. At the same time, it was the expeditionary police that was obliged to assist the political police in ensuring the internal security of the Empire.
-	<br>In order to effectively carry out the activities of the expeditionary police, an Instruction was adopted to the ranks of independently functioning departments, which consolidated the organizational structure, rights and duties of the ranks of the latter. In particular, the Instruction determined that the branches have the purpose of their activities to secretly investigate and conduct inquiries in the form of preventing, eliminating, exposing and prosecuting criminal acts of an ordinary nature; expanding, consolidating and promoting the influence of the state in the sector. The Instructions drew attention to the area of activity of a chosen dispatch, as well as to the fact that all information on cases of a political nature, the heads of dispatches are required to document those immediately. Of interest is also a note in the Instructions, according to which the chiefs of the expeditionary police were minimally subordinate to the supreme headquarters, and were on self-government.
-	<br>The instruction defined the boundaries of self-defense of independent branches. In particular, clear factors were determined, consisting of obvious aggression or preparation for illegal actions on the part of the cooperating stations and the preparations necessary for their action were made. Everything, however, lies entirely on the highest rank designated by the patrol. In addition, the principles of signaling aggression were also defined. Signaling methods, code terminology, and so on will be discussed in the next part of the document set.
-	<br><br>Per current PSC External Relationships, as well as PSC Internal Affairs Collegium regulations, the following procedure must be performed, to minimse the risk of first response patrol casualties, as well as better station-to-patrol communication chances:
-	<br>1. Ensure that the station's bodyguarding dispatch is limited to one person per two heads only; with a maximum of three present if all heads are invited. This list includes Personal Protection Specialists, i.e. Blueshields, Redshields; security personnel; hired off-station mercenaries; weaponised crewmembers or other militia; weaponised animals, and so on;
-	<br>2. Ensure that the station's bodyguarding dispatch is positioned right in front of you; with a clear escape route present to you and your colleagues. It is permitted to install additional reinforcements or barricades in order to increase your chances of survival against untrustworthy elements, if deemed necessary by your commanding officer;
-	<br>3. Ensure that the station's command and security/military/defense force is not inspecting your ship, nor close approaching it, without your commanding officer's permission. It is recommended to leave a single officer as a ship's overseer, in order to minimise government property damage, as well as ensure maximum patrol efficiency in the field;
-	<br>4. Ensure that the station's security/military/defense force is not preparing for a raid, using your shipped <small>(assembly required)</small> camera console. If needed, call them out on your ship's preinstalled station announcements system and remind them of invested funds, or the station's connections with the government, or so on;
-	<br>5. Ensure that the ship, or any of the officers hasn't received any parcels, envelopes, letters or other packages, without its contents being stated by a third party and re-reviewed by any of the officers afterwards, to minimise chances of a bombing, teleportation, or any other terroristic act. If any of the above mentioned objects are to be received without the following procedured being initiated, it is required to dispose of the following objects immediately and report to the commanding officer.
-	<br><br>From the recent observations, while not being defined pre-revision in the following list, and officialy not being disclosed by the Nanotrasen Corporation, you might become a victim to their recent invention: a high-precision high-velocity particle accelerator, the Bluespace Artillerty Cannon. This weaponry is frequency-locked on certain global positioning systems, which are according to state regulations are built into the ship's hull. Said weaponry is excellent at disposing of small fighters to patrol corvettes, and damaging attack frigates; capable of splitting your standard issue corvette in half. And thus, to minimise your casualties and to ensure your safety, this guide provides you with a necessary information on how to circumvent said weaponry.
-	<br>In order to perform a dodging maneuver, you have to:
-	<br>1. For the ship, lock onto the stable position in space, using your navigations console;
-	<br>2. The moment Bluespace Artillery Cannon starts charging up, boot up the ship's thrusters;
-	<br>3. And as such, dodge the Artillery shot. Its design is position-locked and is only good against stationary, or especially slow targets, thus, allowing you to move away from the target position.
-	<br><b>In the case of a confirmed Bluespace Artillery fire on your position, any other unauthorised Bluespace Artillery fire during your presence on station, threats to use the Bluespace Artillery against the dispatch, or sector-wide Bluespace Artillery fire announcement, it is required to dispose of it, as it's a direct notification of aggression towards the dispatch and the foreign nation.</b>
-	<br><br>Bluespace Artilleries are a fragile pieces of machinery, so a directed explosion over any of its main battery's parts will disable it for good. For that, you'll require a single standard-issue block of C4 composite explosive, as well as precise follow of this instructions:
-	<br>In order to destroy a BSA cannon, you have to:
-	<br>1. Approach the main battery, usually looking and designed like the huge artillery emplacement;
-	<br>2. Set a C4 plastic explosive charge on it, preferably with a signaller attached for maximum efficiency, or an otherwise short explosion timer;
-	<br>3. Depart the explosion radius and the artillery cannon itself, causing additional destruction and damage to other pieces of the artillery in the process. It is advised to do so, as that'll delay any possible attempts at rebuilding the artillery piece.
-	<br><b>Afterwards, if any of the following procedures are to be enacted, the station is to be considered a hostile ground; and you are fully permitted to perform the preemptive self-defense procedures afterwards, without the commanding officer's approval.</b>
-	<br><br>If any of the following conditions are not met, or in the case of a Bluespace Artillery fire, you're authorised to request the preemptive self-defense procedures initiation from your commanding officer; which, in turn, allows you to disable and arrest the station's security forces, using any of the equipment available to you, or otherwise acquired.
-	<br><small>Thus, the creation of independent branches in the Empire led to the fact that these units directed the activities of the entire police to combat ordinary crimes. Prior to their formation, the task of combating corporal crime was the direct responsibility of the ranks of the local planetary patrols and, in special cases, the Planetary Guard. The ranks of independent departments were given equal rights in the investigation of criminal offenses with the ranks of the planetary police, since they acted on the basis of the same adopted normative legal acts. The provisions of the law created in accordance with the recent Instruction were more specifically defined: the goals, tasks of independent departments, their internal structure, the procedure for conducting operational investigative actions. At the same time, it, in general, has not changed the principle of organizational structure of patrols and therefore they, nevertheless, in part, remain limited in their activities within the territory under their jurisdiction. In this regard, they cannot carry out operational search activities outside the stations to which they were assigned.</small>
-	<br> <span style=\"color:black;font-family:'Segoe Script';\"><p><b>Printed by: Pan-Slavic Commonwealth Internal Affairs Collegium, for educational and referential purposes only.</b></p></span>"}
+	name = "联邦警察标准操作程序"
+	default_raw_text = {"<h1>泛斯拉夫联邦内务委员会边区巡逻队标准操作程序，第一部分：程序</h1><br>
+	<br><br><small>说明：本指南旨在探讨泛斯拉夫联邦远征巡逻警察的法律基础。通过对规范远征巡逻警察活动的规范性法律文件进行科学分析，我们可以确定其任务与职能，以及主要活动领域。文中还探讨了泛斯拉夫联邦远征巡逻警察在活动中运用主动自卫的制度与方法，并涉及其与中央警察及政治警察的区别。此外，还关注了与保障泛斯拉夫联邦外部安全、打击普通犯罪相关问题所具有的社会实践意义。</small>
+	<br><br>任何主权国家的主要职能之一都是保障国家安全，即采取措施保护个人、社会和国家免受内外威胁。通过履行这一职能，国家的领土完整与可持续发展得以保障，其国防与安全得到加强，人民的权利、自由与体面生活水平也得以保障。
+	<br>在二十六世纪下半叶，远征警察在泛斯拉夫联邦的保护职能中扮演着重要角色。除了保护职能之外，它还肩负着繁重的总体管理任务。远征警察的主要任务是在互动与合作协定所规定的设施内保障并维护帝国政府的利益。与此同时，远征警察还有义务协助政治警察保障帝国的内部安全。
+	<br>为了有效开展远征警察的活动，当局向独立运作的部门人员颁布了一项训令，确立了后述人员的组织结构、权利与职责。具体而言，该训令规定各分支的活动宗旨是秘密侦查并以预防、消除、揭露和起诉普通性质的犯罪行为的形式开展调查；扩大、巩固并推广国家在该星区的影响力。训令还提请关注所选派遣队的活动区域，并指出对于所有涉及政治性质案件的信息，派遣队负责人必须立即予以记录。训令中另有一处值得注意：远征警察的首长对最高司令部的隶属程度极低，实行自治。
+	<br>该训令界定了独立分支的自卫边界。具体而言，明确了若干清晰要件，包括合作空间站方面存在明显侵略行为或违法行动的准备，且已为其行动做出必要准备。不过，一切完全取决于巡逻队指定的最高级别人员。此外，还界定了发出侵略信号的原则。信号方式、代码术语等内容将在本文件集的下一部分中讨论。
+	<br><br>根据现行的 PSC 对外关系以及 PSC 内务委员会条例，必须执行以下程序，以尽量降低首批响应巡逻队的伤亡风险，并提高空间站与巡逻队之间的沟通机会：
+	<br>1. 确保空间站的护卫派遣人数仅限每两名主管配一人；若所有主管均受邀，在场者最多三人。该名单包括个人保护专家，即蓝盾、红盾；安保人员；受雇的站外雇佣兵；持有武器的船员或其他民兵；持有武器的动物，等等；
+	<br>2. 确保空间站的护卫派遣位于你正前方；并为你和同事留有一条清晰的撤离路线。若你的指挥官认为有必要，允许加装额外加固设施或路障，以提高你面对不可信人员时的生存几率；
+	<br>3. 确保空间站的指挥层与安保／军事／防御力量未经你方指挥官许可，不得检查你的飞船，也不得靠近飞船。建议留一名军官担任飞船看管人，以尽量减少政府财产损失，并确保外勤巡逻效率最大化；
+	<br>4. 确保空间站的安保／军事／防御力量没有利用你船上配备的<small>（需组装）</small>摄像控制台准备突袭。如有需要，可通过飞船预装的空间站广播系统点名提醒他们，提醒其已投入的资金，或空间站与政府的关系等等；
+	<br>5. 确保飞船及任何军官均未在未经第三方说明内容、且事后未由任一军官重新检查的情况下接收任何包裹、信封、信件或其他物件，以将炸弹袭击、传送或其他恐怖行为的可能性降到最低。若上述物件在未启动下列程序的情况下被接收，必须立即处置该物件并向指挥官报告。
+	<br><br>根据近期观察，尽管下列清单在修订前尚未明确，纳米传讯公司也官方未予披露，但你仍可能成为其新近发明的受害者：一种高精度高速粒子加速器——蓝空间火炮。该武器锁定于某些全球定位系统频率，按照国规，这些系统被嵌入船体。该武器极擅长摧毁小型战斗机乃至巡逻护卫舰，并能重创攻击护卫舰；足以将你的制式护卫舰劈成两半。因此，为尽量减少伤亡并确保你的安全，本指南为你提供规避该武器所需的信息。
+	<br>要执行闪避机动，你必须：
+	<br>1. 为飞船使用导航控制台锁定太空中的稳定位置；
+	<br>2. 在蓝空间火炮开始充能的瞬间，启动飞船推进器；
+	<br>3. 由此躲开火炮射击。其设计锁定位置，仅对静止或特别缓慢的目标有效，因此你可离开目标位置。
+	<br><b>若确认有蓝空间火炮向你所在位置开火、你在站期间发生任何其他未经授权的蓝空间火炮射击、有人威胁对派遣队使用蓝空间火炮，或出现全星区蓝空间火炮射击公告，则必须将其处置，因为这直接表明了对派遣队及外国的侵略意图。</b>
+	<br><br>蓝空间火炮是脆弱的机械装置，因此在其主炮任一部件上方实施定向爆炸即可将其永久瘫痪。为此，你需要一块标准配发的 C4 复合炸药，并严格遵循以下说明：
+	<br>要摧毁一门 BSA 火炮，你必须：
+	<br>1. 接近主炮，其外观与设计通常类似巨大的火炮阵地；
+	<br>2. 在其上安放 C4 塑胶炸药，最好加装信号器以达到最高效率，或设置较短的爆炸计时；
+	<br>3. 离开爆炸半径及火炮本身，并在过程中对其他火炮部件造成额外破坏与损伤。建议这样做，因为这会拖延任何重建该火炮的尝试。
+	<br><b>此后，若需执行下列任一程序，该空间站应被视为敌对区域；你完全获准在无需指挥官批准的情况下执行先发制人自卫程序。</b>
+	<br><br>若下列任一条件未得到满足，或在发生蓝空间火炮射击的情况下，你获准向指挥官请求启动先发制人自卫程序；该程序随后允许你使用任何可用或以其他方式获得的装备，解除空间站安保力量的行动能力并逮捕他们。
+	<br><small>因此，帝国境内独立分支的设立使这些单位主导了整个警察机关打击普通犯罪的活动。在其成立之前，打击人身犯罪的任务是当地行星巡逻队人员的直接职责，特殊情况下则由行星卫队承担。独立部门的人员在刑事犯罪侦查中与行星警察人员享有同等权利，因为他们依据同样的现行规范性法律文件行事。依照最新训令制定的法律条款更为具体地界定了独立部门的目标、任务、内部结构以及开展行动侦查的程序。与此同时，总体上并未改变巡逻队组织结构的原则，因此它们在自身管辖领土内的活动仍部分受到限制。对此，它们无法在被分配到的空间站之外开展行动搜查活动。</small>
+	<br> <span style=\"color:black;font-family:'Segoe Script';\"><p><b>印制：泛斯拉夫联邦内务委员会，仅供教育与参考之用。</b></p></span>"}
 
 /obj/item/paper/fluff/nri_document_two
-	name = "Commonwealth Police Codespeak"
-	default_raw_text = {"<h1>Pan-Slavic Commonwealth Internal Affairs Collegium Rim-World Patrol Standard Operation Procedures, Part Two: Cyphering and Codewords</h1><br>
-	<br><br><small>Annotation. The guide is devoted to the consideration of the communicative foundations of the expeditionary patrol police of the Pan-Slavic Commonwealth. The scientific analysis of the old time police patrol codespeak allows us to reenact their level of efficiency, as well as grants us the possibility to minimise possible information leaks to the civilian population and the possible suspects.</small>
-	<br>To better encode signal words and minimize information leaks, an independent detachment of each sector will receive a list of certain signal words and other terminology, which will be provided in the following list. Before each departure, it is recommended to proofread them in order to consolidate the material; and during operations, it is recommended to use them instead of the usual jargon. The list is provided below:
-	<br>In order to effectively carry out the activities of the expeditionary police, an Instruction was adopted to the ranks of independently functioning departments, which consolidated the organizational structure, rights and duties of the ranks of the latter. In particular, the Instruction determined that the branches have the purpose of their activities to secretly investigate and conduct inquiries in the form of preventing, eliminating, exposing and prosecuting criminal acts of an ordinary nature; expanding, consolidating and promoting the influence of the state in the sector. The Instructions drew attention to the area of activity of a chosen dispatch, as well as to the fact that all information on cases of a political nature, the heads of dispatches are required to document those immediately. Of interest is also a note in the Instructions, according to which the chiefs of the expeditionary police were minimally subordinate to the supreme headquarters, and were on self-government.
-	<br><small>10-0 = Use caution;
-	<br>10-1 = Out of service to treat damage;
-	<br>10-1s = Out of service to eat;
-	<br>10-1r = Out of service to rest;
-	<br>10-2 = You are being received clearly;
-	<br>10-4 = Understood;
-	<br>10-8 = In service;
-	<br>10-9 = Stand down or stand-by;
-	<br>10-14 = Convoy detail, or request to keep moving;
-	<br>10-15 = Prisoner in custody;
-	<br>10-20 = Location;
-	<br>10-25 = Report in person;
-	<br>10-29 = Does conform to rules or regulations;
-	<br>10-30 = Does not conform to rules or regulations;
-	<br>10-65 = Need assistance;
-	<br>10-90 = Animal - sighted;
-	<br>10-91 = Alien - sighted;
-	<br>10-92 = Humanoid - sighted;
-	<br>10-93 = Xenomorph - sighted;
-	<br>10-94 = Unknown lifeform - sighted;
-	<br>10-90 to 10-94, with a "d" modifier (i.e. 10-90d) = Lifeform - dead;
-	<br>10-90 to 10-94, with a "w" modifier (i.e. 10-92w) = Lifeform - wounded;
-	<br>10-90 to 10-94, with a "r" modifier (i.e. 10-93r) = Lifeform - resisting;
-	<br>10-97 = Arrived at scene;
-	<br>10-99 = Last remaining officer;
-	<br>10-103 = Disturbance;
-	<br>10-107 = Suspicious person;
-	<br>10-108 = Officer down;
-	<br>10-40 = Reinforcements;
-	<br>10-41 = Evacuation;
-	<br>10-42 = Medical;
-	<br>10-43 = Damage Control;
-	<br>10-99 = Officer needs help immediately;
-	<br>12-40 = Officer requests Shoot-On-Sight order.</small>
-	<br><small>Thus, the creation of independent branches in the Empire led to the fact that these units directed the activities of the entire police to combat ordinary crimes. Prior to their formation, the task of combating corporal crime was the direct responsibility of the ranks of the local planetary patrols and, in special cases, the Planetary Guard. The ranks of independent departments were given equal rights in the investigation of criminal offenses with the ranks of the planetary police, since they acted on the basis of the same adopted normative legal acts. The provisions of the law created in accordance with the recent Instruction were more specifically defined: the goals, tasks of independent departments, their internal structure, the procedure for conducting operational investigative actions. At the same time, it, in general, has not changed the principle of organizational structure of patrols and therefore they, nevertheless, in part, remain limited in their activities within the territory under their jurisdiction. In this regard, they cannot carry out operational search activities outside the stations to which they were assigned.</small>
-	<br> <span style=\"color:black;font-family:'Segoe Script';\"><p><b>Printed by: Pan-Slavic Commonwealth Internal Affairs Collegium, for educational and referential purposes only.</b></p></span>"}
+	name = "联邦警察代码语"
+	default_raw_text = {"<h1>泛斯拉夫联邦内务委员会边区巡逻队标准操作程序，第二部分：密码与代码词</h1><br>
+	<br><br><small>说明：本指南旨在探讨泛斯拉夫联邦远征巡逻警察的通信基础。对旧时警察巡逻代码语的科学分析，使我们得以重现其效率水平，并尽可能减少向平民及可能嫌疑人泄露信息的可能。</small>
+	<br>为更好地对信号词进行编码并尽量减少信息泄露，每个星区的独立分遣队将收到一份特定信号词及其他术语的清单，具体见下列清单。每次出发前，建议通读以巩固记忆；行动期间，建议使用这些词取代惯常行话。清单如下：
+	<br>为了有效开展远征警察的活动，当局向独立运作的部门人员颁布了一项训令，确立了后述人员的组织结构、权利与职责。具体而言，该训令规定各分支的活动宗旨是秘密侦查并以预防、消除、揭露和起诉普通性质的犯罪行为的形式开展调查；扩大、巩固并推广国家在该星区的影响力。训令还提请关注所选派遣队的活动区域，并指出对于所有涉及政治性质案件的信息，派遣队负责人必须立即予以记录。训令中另有一处值得注意：远征警察的首长对最高司令部的隶属程度极低，实行自治。
+	<br><small>10-0 = 小心谨慎；
+	<br>10-1 = 因处理损伤而暂停执勤；
+	<br>10-1s = 因进食而暂停执勤；
+	<br>10-1r = 因休息而暂停执勤；
+	<br>10-2 = 接收清晰；
+	<br>10-4 = 明白；
+	<br>10-8 = 正在执勤；
+	<br>10-9 = 解除戒备或待命；
+	<br>10-14 = 车队护送任务，或要求继续前进；
+	<br>10-15 = 已拘押囚犯；
+	<br>10-20 = 位置；
+	<br>10-25 = 当面报到；
+	<br>10-29 = 符合规则或条例；
+	<br>10-30 = 不符合规则或条例；
+	<br>10-65 = 需要协助；
+	<br>10-90 = 发现动物；
+	<br>10-91 = 发现外星生物；
+	<br>10-92 = 发现类人生物；
+	<br>10-93 = 发现异形；
+	<br>10-94 = 发现未知生命体；
+	<br>10-90 至 10-94 加 “d” 修饰（例如 10-90d）= 生命体已死亡；
+	<br>10-90 至 10-94 加 “w” 修饰（例如 10-92w）= 生命体受伤；
+	<br>10-90 至 10-94 加 “r” 修饰（例如 10-93r）= 生命体拒捕；
+	<br>10-97 = 已到达现场；
+	<br>10-99 = 最后一名在岗警官；
+	<br>10-103 = 骚乱；
+	<br>10-107 = 可疑人员；
+	<br>10-108 = 警官倒下；
+	<br>10-40 = 增援；
+	<br>10-41 = 撤离；
+	<br>10-42 = 医疗；
+	<br>10-43 = 损管；
+	<br>10-99 = 警官需要立即支援；
+	<br>12-40 = 警官请求格杀勿论命令。</small>
+	<br><small>因此，帝国境内独立分支的设立使这些单位主导了整个警察机关打击普通犯罪的活动。在其成立之前，打击人身犯罪的任务是当地行星巡逻队人员的直接职责，特殊情况下则由行星卫队承担。独立部门的人员在刑事犯罪侦查中与行星警察人员享有同等权利，因为他们依据同样的现行规范性法律文件行事。依照最新训令制定的法律条款更为具体地界定了独立部门的目标、任务、内部结构以及开展行动侦查的程序。与此同时，总体上并未改变巡逻队组织结构的原则，因此它们在自身管辖领土内的活动仍部分受到限制。对此，它们无法在被分配到的空间站之外开展行动搜查活动。</small>
+	<br> <span style=\"color:black;font-family:'Segoe Script';\"><p><b>印制：泛斯拉夫联邦内务委员会，仅供教育与参考之用。</b></p></span>"}
 
 /obj/item/paper/fluff/nri_police
-	name = "hastily printed note"
-	default_raw_text = {"Hey, officer, we couldn't arrange getting you a proper military frigate, -you know, those goddamn bureaucrats with their permission requests and paperwork-, so the police corvette will have to suffice.
-	<br> It was not designed for any kind of long-term deployments and anything more aggressive than shooting up a bunch of punks, so expect frequent power outages and a significant lack of raiding machinery.
-	<br> We have done some quick modifications to make it more suitable for military use, and smuggled you some defensive and military-grade medical equipment to balance it out. And some SMGs that were so convenient to \"go out of service and get scrapped". It should do the job for now.
-	<br> It is worth mentioning that your fourth marine, the maintenance crew man, went on a vacation. Dude's been pretty nervous as of late so it's only fair to let him get some well deserved rest - he has been maintaining this ship the whole time you've been in cryosleep. This should not affect your performance anyways.
-	<br> As for the broken Krinkov, there is nothing we can do for now. Will have to use the policemen's, not like you're here to fight the solarians anyways.
-	<br> And, please, for the love of God and the Eternal Empress - do not make this mission into a shootout. We can't afford any more casualties in this sector, especially with the most of our military being on the frontline.
+	name = "匆忙印制的便条"
+	default_raw_text = {"嘿，警官，我们没能给你弄到一艘像样的军用护卫舰——你也知道，就是那些该死的官僚，张口闭口都是许可申请和文书——所以只能用这艘警用护卫舰凑合了。
+	<br> 它本来就不是为任何形式的长期部署而设计的，也不适合干比痛揍一群小混混更激烈的事，所以请做好频繁停电和突击装备严重不足的准备。
+	<br> 我们做了些快速改装，让它更适合军用，还偷偷给你塞了些防御装备和军用级医疗设备来平衡一下。另外还有一些冲锋枪，反正它们“退役报废”起来方便得很。眼下应该够用了。
+	<br> 值得一提的是，你的第四名陆战队员——那位维护人员——去度假了。这家伙最近一直相当紧张，让他好好休息一下也是应该的——你躺在休眠舱里的这段时间，一直是他维护这艘船。无论如何，这不应影响你的表现。
+	<br> 至于那挺坏掉的 Krinkov，我们目前无能为力。只能用警察的装备了，反正你也不是来跟太阳联邦的人打仗的。
+	<br> 还有，看在上帝和永恒女皇的份上——别把这次任务搞成一场枪战。这个星区再也承受不起更多伤亡了，尤其是我们大部分军队都还在前线。
 	<br>
-	<br> Don't screw this up,
-	<br> <span style=\"color:black;font-family:'Segoe Script';\"><p><b>Defense Collegia Shipmaster, Akulan Contractor, Shinrun Kantes.</b></p></span>"}
+	<br> 别搞砸了，
+	<br> <span style=\"color:black;font-family:'Segoe Script';\"><p><b>国防委员会船务长，阿库拉承包商，辛伦·坎特斯。</b></p></span>"}
 
 /obj/item/folder/blue/nri_cop
-	name = "Commonwealth police SOPs"
+	name = "联邦警察标准操作程序"
 
 /obj/item/folder/blue/nri_cop/Initialize(mapload)
 	. = ..()
@@ -470,16 +470,16 @@ GLOBAL_VAR(first_officer)
 	storage_type = /obj/item/tank/internals/oxygen/yellow
 
 /obj/machinery/shuttle_scrambler/nri
-	name = "system crasher"
-	desc = "This heap of machinery locks down supply lines to a halt. Can be turned off, but does not siphon any money. Do that yourself, lazyass."
+	name = "系统瘫痪器"
+	desc = "这堆机器能让补给线路彻底停摆。可以关闭，但不会吸取任何资金。想吸钱就自己动手，懒鬼。"
 	siphon_per_tick = 0
 
 /obj/machinery/shuttle_scrambler/nri/toggle_on(mob/user)
 	SSshuttle.registerTradeBlockade(src)
-	AddComponent(/datum/component/gps, "NRI Starship")
+	AddComponent(/datum/component/gps, "NRI 星舰")
 	active = TRUE
-	to_chat(user,span_notice("You toggle [src] [active ? "on":"off"]."))
-	to_chat(user,span_warning("The scrambling signal can be now tracked by GPS."))
+	to_chat(user,span_notice("你将 [src] [active ? "开启" : "关闭"]。"))
+	to_chat(user,span_warning("干扰信号现在可以被 GPS 追踪。"))
 	START_PROCESSING(SSobj,src)
 
 /obj/machinery/shuttle_scrambler/nri/process()
@@ -497,43 +497,43 @@ GLOBAL_VAR(first_officer)
 
 /obj/machinery/shuttle_scrambler/nri/interact(mob/user)
 	if(active)
-		var/deactivation_response = tgui_alert(user,"Turn the crasher off?", "Crasher", list("Yes", "Cancel"))
-		if(deactivation_response != "Yes")
+		var/deactivation_response = tgui_alert(user,"关闭瘫痪器？", "瘫痪器", list("是", "取消"))
+		if(deactivation_response != "是")
 			return
 		if(!active|| !user.can_perform_action(src))
 			return
 		toggle_off(user)
 		update_appearance()
 		send_notification()
-		to_chat(user,span_notice("You toggle [src] [active ? "on":"off"]."))
+		to_chat(user,span_notice("你将 [src] [active ? "开启" : "关闭"]。"))
 		return
-	var/scramble_response = tgui_alert(user, "Turning the crasher on might alienate the population and will make the shuttle trackable by GPS. Are you sure you want to do it?", "Crasher", list("Yes", "Cancel"))
-	if(scramble_response != "Yes")
+	var/scramble_response = tgui_alert(user, "开启瘫痪器可能会疏远民众，并会让穿梭机可被 GPS 追踪。你确定要这么做吗？", "瘫痪器", list("是", "取消"))
+	if(scramble_response != "是")
 		return
 	if(active || !user.can_perform_action(src))
 		return
 	toggle_on(user)
 	update_appearance()
 	send_notification()
-	to_chat(user,span_notice("You toggle [src] [active ? "on":"off"]."))
+	to_chat(user,span_notice("你将 [src] [active ? "开启" : "关闭"]。"))
 	return
 
 
 /obj/machinery/shuttle_scrambler/nri/send_notification()
 	if(active)
-		priority_announce("We're intercepting all of the current and future supply deliveries until you're more cooperative with the dispatch. So, please do be.","PSC IAC HQ",ANNOUNCER_NRI_RAIDERS,"Priority", color_override = "purple")
+		priority_announce("我们正在拦截当前及未来所有补给运送，直到你方更配合调度处为止。所以，请务必配合。","PSC 内务委员会总部",ANNOUNCER_NRI_RAIDERS,"Priority", color_override = "purple")
 	else
-		priority_announce("We've received a signal to stop the blockade; you're once again free to do whatever you were doing before.","PSC IAC HQ",ANNOUNCER_NRI_RAIDERS,"Priority", color_override = "purple")
+		priority_announce("我们已收到停止封锁的信号；你方可以再度自由地继续之前在做的事了。","PSC 内务委员会总部",ANNOUNCER_NRI_RAIDERS,"Priority", color_override = "purple")
 
 /datum/antagonist/cop
-	name = "\improper Commonwealth Police Officer"
+	name = "\improper 联邦警察"
 	//Even if their goal's almost a complete antithesis to what pirates normally do, their spawn is, well, done via pirate code.
 	pref_flag = ROLE_SPACE_PIRATE
 	roundend_category = "nri cops"
-	antagpanel_category = "Commonwealth Police"
+	antagpanel_category = "联邦警察"
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
-	suicide_cry = "God, save the Empress!!"
+	suicide_cry = "天佑女皇！！"
 	///Team datum for admin tracking
 	var/datum/team/cop/crew
 
@@ -587,7 +587,7 @@ GLOBAL_VAR(first_officer)
 	return ..()
 
 /datum/team/cop
-	name = "\improper Commonwealth police patrol"
+	name = "\improper 联邦警察巡逻队"
 
 /datum/team/cop/proc/forge_objectives()
 	add_objective(new /datum/objective/policing)
@@ -606,13 +606,13 @@ GLOBAL_VAR(first_officer)
 		cop.objectives |= objectives
 
 /datum/objective/policing
-	name = "policing"
-	explanation_text = "Contact the station to perform an inspection. Delegate responsibilities among the ship's crew. Minimise civilian casualties."
+	name = "维持治安"
+	explanation_text = "联系空间站进行检查。在船员之间分配职责。尽量减少平民伤亡。"
 	martyr_compatible = TRUE
 
 /datum/objective/inspect_area
-	name = "inspect area"
-	explanation_text = "Inspect certain department and make sure it's up to our specifications. Special scrutiny and pickyness is advised."
+	name = "检查部门"
+	explanation_text = "检查特定部门，确保其符合我们的规范。建议格外仔细并挑剔一些。"
 	///Area picked for an entirely roleplay objective.
 	var/inspection_area
 	martyr_compatible = TRUE
@@ -624,12 +624,12 @@ GLOBAL_VAR(first_officer)
 /datum/objective/inspect_area/update_explanation_text()
 	..()
 	if(inspection_area)
-		explanation_text = "Inspect [inspection_area] department and make sure it's up to our specifications. Special scrutiny and pickyness is advised."
+		explanation_text = "检查[inspection_area]部门，确保其符合我们的规范。建议格外仔细并挑剔一些。"
 	else
-		explanation_text = "Perform a general station inspection and make sure it's up to any loose specifications you can think of."
+		explanation_text = "对空间站进行全面检查，确保其符合你能想到的任何宽松规范。"
 
 /datum/objective/survey
-	name = "survey"
+	name = "民意调查"
 	martyr_compatible = TRUE
 	admin_grantable = TRUE
 	///Area picked for an entirely roleplay objective.
@@ -642,18 +642,18 @@ GLOBAL_VAR(first_officer)
 /datum/objective/survey/update_explanation_text()
 	..()
 	if(survey_area)
-		explanation_text = "Execute continuous crime prevention and citizen surveying procedures over [survey_area] department. Prevent crime in a given department and perform a public survey to collect people's opinions on various matters."
+		explanation_text = "在[survey_area]部门持续执行犯罪预防与公民调查程序。在指定部门预防犯罪，并开展公众调查以收集人们对各类事务的意见。"
 	else
-		explanation_text = "Execute continuous crime prevention and citizen surveying procedures around the station. Prevent crime around the area and perform a public survey to collect people's opinions on various matters."
+		explanation_text = "在空间站各处持续执行犯罪预防与公民调查程序。在周边区域预防犯罪，并开展公众调查以收集人们对各类事务的意见。"
 
 /datum/objective/steal_n_of_type/contraband
-	name = "confiscate contraband"
-	explanation_text = "Confiscate at least cool number pieces of contraband. Drugs, illicit weaponry, armor or equipment of any sort."
+	name = "没收违禁品"
+	explanation_text = "没收至少若干件违禁品。毒品、非法武器、护甲或任何种类的装备。"
 
 /datum/objective/steal_n_of_type/contraband/New()
 	. = ..()
 	amount = rand(CONFISCATE_LOWER, CONFISCATE_HIGHER)
-	explanation_text = "Confiscate at least [amount] pieces of contraband. Drugs, illicit weaponry, armor or equipment of any sort."
+	explanation_text = "没收至少 [amount] 件违禁品。毒品、非法武器、护甲或任何种类的装备。"
 	update_explanation_text()
 	return
 
@@ -661,13 +661,13 @@ GLOBAL_VAR(first_officer)
 	return completed //I am letting them roleplay this out, just like the other objectives.
 
 /datum/objective/dock
-	name = "dock"
-	explanation_text = "Dock to, or generally attempt to stay in the same sector the station is; to extend your on-site presence."
+	name = "停靠"
+	explanation_text = "停靠到空间站所在星区，或尽量停留在同一星区，以延长你的现场存在时间。"
 	martyr_compatible = TRUE
 
 /datum/objective/dock/New()
 	. = ..()
-	explanation_text = "Dock to, or generally attempt to stay in the same sector the [station_name()] is; to extend your on-site presence."
+	explanation_text = "停靠到 [station_name()] 所在星区，或尽量停留在同一星区，以延长你的现场存在时间。"
 	update_explanation_text()
 	return
 

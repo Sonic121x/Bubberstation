@@ -10,7 +10,7 @@
 	///The action that the owner can use to ignore the prayers
 	var/datum/action/innate/listen_prayers/toggle
 	///The description we give to the instance of the listen_prayers toggle.
-	var/toggle_desc = "Allows you to listen to prayers"
+	var/toggle_desc = "让你能够聆听祈祷"
 
 /datum/component/listen_prayers/Initialize(datum/callback/pre_prayer_callback, deity_name, toggle_desc)
 	if(!istype(parent, /datum/mind))
@@ -66,10 +66,10 @@
 
 ///An action to stop hearing prayers on command. Doesn't do a whole lot without the associated component
 /datum/action/innate/listen_prayers
-	name = "Listen Prayers"
+	name = "聆听祈祷"
 	button_icon = 'icons/hud/actions.dmi'
 	button_icon_state = "pray"
-	desc = "Allows you to eavesdrop on prayers from the world around you."
+	desc = "让你能够窃听周围世界中的祈祷。"
 	active = TRUE
 
 /datum/action/innate/listen_prayers/Destroy()
@@ -82,11 +82,11 @@
 /datum/action/innate/listen_prayers/Activate()
 	active = TRUE
 	REMOVE_TRAIT(owner, TRAIT_DONT_HEAR_PRAYERS, ACTION_TRAIT)
-	to_chat(owner, span_green("You are ready to listen to prayers once again."))
+	to_chat(owner, span_green("你已准备好再次聆听祈祷。"))
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
 /datum/action/innate/listen_prayers/Deactivate()
 	active = FALSE
 	ADD_TRAIT(owner, TRAIT_DONT_HEAR_PRAYERS, ACTION_TRAIT)
-	to_chat(owner, span_green("You stop listening to prayers."))
+	to_chat(owner, span_green("你停止了聆听祈祷。"))
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)

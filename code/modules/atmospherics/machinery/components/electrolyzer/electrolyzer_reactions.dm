@@ -48,17 +48,17 @@ GLOBAL_LIST_INIT(electrolyzer_reactions, electrolyzer_reactions_list())
 	return TRUE
 
 /datum/electrolyzer_reaction/h2o_conversion
-	name = "H2O Conversion"
+	name = "H2O 转化"
 	id = "h2o_conversion"
-	desc = "Conversion of H2o into O2 and H2"
+	desc = "将 H2O 转化为 O2 与 H2。"
 	requirements = list(
 		/datum/gas/water_vapor = MINIMUM_MOLE_COUNT
 	)
 	factor = list(
-		/datum/gas/water_vapor = "2 moles of H2O get consumed",
-		/datum/gas/oxygen = "1 mole of O2 gets produced",
-		/datum/gas/hydrogen = "2 moles of H2 get produced",
-		"Location" = "Can only happen on turfs with an active Electrolyzer.",
+		/datum/gas/water_vapor = "消耗 2 摩尔 H2O",
+		/datum/gas/oxygen = "生成 1 摩尔 O2",
+		/datum/gas/hydrogen = "生成 2 摩尔 H2",
+		"Location" = "只能发生在装有运行中电解器的地块上。",
 	)
 
 /datum/electrolyzer_reaction/h2o_conversion/react(datum/gas_mixture/air_mixture, working_power, list/electrolyzer_args = list())
@@ -74,16 +74,16 @@ GLOBAL_LIST_INIT(electrolyzer_reactions, electrolyzer_reactions_list())
 		air_mixture.temperature = max(air_mixture.temperature * old_heat_capacity / new_heat_capacity, TCMB)
 
 /datum/electrolyzer_reaction/nob_conversion
-	name = "Hypernob conversion"
+	name = "超惰性气体转化"
 	id = "nob_conversion"
-	desc = "Conversion of Hypernoblium into Antinoblium"
+	desc = "将超惰性气体转化为反惰性气体。"
 	requirements = list(
 		/datum/gas/hypernoblium = MINIMUM_MOLE_COUNT,
 	)
 	factor = list(
-		/datum/gas/hypernoblium = "1 mole of Hypernoblium gets consumed",
-		/datum/gas/antinoblium = "1 mole of Antinoblium get produced",
-		"Location" = "Can only happen on turfs that are being struck by supermatter zaps with a power level above 5 GeV.",
+		/datum/gas/hypernoblium = "消耗 1 摩尔超惰性气体",
+		/datum/gas/antinoblium = "生成 1 摩尔反惰性气体",
+		"Location" = "只能发生在正被功率高于 5 GeV 的超物质电弧击中的地块上。",
 	)
 
 /datum/electrolyzer_reaction/nob_conversion/reaction_check(datum/gas_mixture/air_mixture, list/electrolyzer_args = list())
@@ -108,19 +108,19 @@ GLOBAL_LIST_INIT(electrolyzer_reactions, electrolyzer_reactions_list())
 		air_mixture.temperature = max(air_mixture.temperature * old_heat_capacity / new_heat_capacity, TCMB)
 
 /datum/electrolyzer_reaction/halon_generation
-	name = "Halon generation"
+	name = "哈龙生成"
 	id = "halon_generation"
-	desc = "Production of halon from the electrolysis of BZ."
+	desc = "通过电解 BZ 制取哈龙。"
 	requirements = list(
 		/datum/gas/bz = MINIMUM_MOLE_COUNT,
 	)
 	factor = list(
-		/datum/gas/bz = "Consumed during reaction.",
-		/datum/gas/oxygen = "0.2 moles of oxygen gets produced per mole of BZ consumed.",
-		/datum/gas/halon = "2 moles of Halon gets produced per mole of BZ consumed.",
-		"Energy" = "91.2321 kJ of thermal energy is released per mole of BZ consumed.",
-		"Temperature" = "Reaction efficiency is proportional to temperature.",
-		"Location" = "Can only happen on turfs with an active Electrolyzer.",
+		/datum/gas/bz = "在反应过程中被消耗。",
+		/datum/gas/oxygen = "每消耗 1 摩尔 BZ 生成 0.2 摩尔氧气。",
+		/datum/gas/halon = "每消耗 1 摩尔 BZ 生成 2 摩尔哈龙。",
+		"Energy" = "每消耗 1 摩尔 BZ 释放 91.2321 kJ 热能。",
+		"Temperature" = "反应效率与温度成正比。",
+		"Location" = "只能发生在装有运行中电解器的地块上。",
 	)
 
 /datum/electrolyzer_reaction/halon_generation/react(datum/gas_mixture/air_mixture, working_power, list/electrolyzer_args = list())

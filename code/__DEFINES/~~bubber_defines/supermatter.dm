@@ -1,1 +1,1 @@
-#define SM_POWER_POWERLOSS_CURSED "Unknown Thaumatergical Anomaly"
+#define SM_POWER_POWERLOSS_CURSED "未知奇术异常"

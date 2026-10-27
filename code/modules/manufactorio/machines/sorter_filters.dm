@@ -28,39 +28,39 @@
 	return name
 
 /datum/sortrouter_filter/proc/edit(mob/user)
-	to_chat(user, "This filter is not editable.")
+	to_chat(user, "此过滤器不可编辑。")
 
 /datum/sortrouter_filter/proc/meets_conditions(atom/checking)
 
 /datum/sortrouter_filter/is_stack
-	name = "input is stack"
+	name = "输入是堆叠"
 
 /datum/sortrouter_filter/is_stack/meets_conditions(atom/checking)
 	return isstack(checking)
 
 /datum/sortrouter_filter/is_ore
-	name = "input is ore"
+	name = "输入是矿石"
 
 /datum/sortrouter_filter/is_ore/meets_conditions(atom/checking)
 	return istype(checking, /obj/item/stack/ore)
 
 /datum/sortrouter_filter/is_mail
-	name = "input is mail"
+	name = "输入是邮件"
 
 /datum/sortrouter_filter/is_mail/meets_conditions(atom/checking)
 	return istype(checking, /obj/item/mail)
 
 /datum/sortrouter_filter/is_tagged
-	name = "input is tagged X"
+	name = "输入带有 X 标签"
 
 /datum/sortrouter_filter/is_tagged/edit(mob/user)
-	var/target = tgui_input_list(user, "Select a tag", "Tag", sort_list(GLOB.TAGGERLOCATIONS))
+	var/target = tgui_input_list(user, "选择标签", "标签", sort_list(GLOB.TAGGERLOCATIONS))
 	if(isnull(target) || !user.can_perform_action(sorter, ALLOW_SILICON_REACH))
 		return
 	value = GLOB.TAGGERLOCATIONS.Find(target)
 
 /datum/sortrouter_filter/is_tagged/return_name()
-	return "input is tagged [value ? GLOB.TAGGERLOCATIONS[value] : ""]"
+	return "输入带有 [value ? GLOB.TAGGERLOCATIONS[value] : ""] 标签"
 
 /datum/sortrouter_filter/is_tagged/meets_conditions(checking)
 	var/obj/item/delivery/mail_or_delivery = checking
@@ -71,31 +71,31 @@
 	return value == sort_tag
 
 /datum/sortrouter_filter/name_contains
-	name = "input's name contains"
+	name = "输入名称包含"
 
 /datum/sortrouter_filter/name_contains/edit(mob/user)
-	var/target = tgui_input_text(user, "What should it contain?", "Name", value, 12)
+	var/target = tgui_input_text(user, "名称应包含什么？", "名称", value, 12)
 	if(isnull(target)|| !user.can_perform_action(sorter, ALLOW_SILICON_REACH))
 		return
 	value = target
 
 /datum/sortrouter_filter/name_contains/return_name()
-	return "input's name contains [value]"
+	return "输入名称包含 [value]"
 
 /datum/sortrouter_filter/name_contains/meets_conditions(atom/checking)
 	return findtext(LOWER_TEXT(checking.name), value)
 
 /datum/sortrouter_filter/is_path_specific
-	name = "input is specific item"
+	name = "输入是指定物品"
 	/// are we currently listening for an item to set as our filter?
 	var/currently_listening = FALSE
 
 /datum/sortrouter_filter/is_path_specific/edit(mob/user)
 	name = initial(name)
 	if(!currently_listening)
-		name = "awaiting item"
-		to_chat(user, "Hit the sorter with the item of choice to set the filter.")
-		sorter.balloon_alert(user, "awaiting item!")
+		name = "等待物品"
+		to_chat(user, "用想要筛选的物品敲击分拣器以设置过滤器。")
+		sorter.balloon_alert(user, "等待物品！")
 		currently_listening = TRUE
 		RegisterSignal(sorter, COMSIG_ATOM_ATTACKBY, PROC_REF(sorter_hit))
 	else
@@ -106,7 +106,7 @@
 	currently_listening = FALSE
 	value = attacking_item.type
 	name = attacking_item.name
-	sorter.balloon_alert(user, "filter set")
+	sorter.balloon_alert(user, "过滤器已设定")
 	UnregisterSignal(sorter, COMSIG_ATOM_ATTACKBY)
 	return COMPONENT_NO_AFTERATTACK
 
@@ -114,7 +114,7 @@
 	return checking.type == value
 
 /datum/sortrouter_filter/is_path_specific/subtypes
-	name = "input is specific kind of item"
+	name = "输入是指定类型的物品"
 
 /datum/sortrouter_filter/is_path_specific/subtypes/meets_conditions(atom/checking)
 	return istype(checking.type, value)

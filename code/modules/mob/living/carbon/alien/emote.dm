@@ -5,13 +5,13 @@
 /datum/emote/living/alien/gnarl
 	key = "gnarl"
 	key_third_person = "gnarls"
-	message = "gnarls and shows its teeth..."
+	message = "龇牙咧嘴，露出了牙齿……"
 
 /datum/emote/living/alien/roar
 	key = "roar"
 	key_third_person = "roars"
-	message_alien = "roars."
-	message_larva = "softly roars."
+	message_alien = "发出咆哮。"
+	message_larva = "轻声咆哮。"
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	vary = TRUE
 	sounds_by_mobtype = list(

@@ -1,7 +1,7 @@
 /// Lavaland mob which tries to line up with its target and fire a laser
 /mob/living/basic/mining/brimdemon
-	name = "brimdemon"
-	desc = "A volatile creature resembling an enormous horned skull. Its response to almost any stimulus is to unleash a beam of infernal energy."
+	name = "硫磺恶魔"
+	desc = "一种形似巨大带角头骨的暴躁生物。它几乎对任何刺激的反应都是释放一道地狱能量光束。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "brimdemon"
 	icon_living = "brimdemon"
@@ -9,17 +9,17 @@
 	speed = 3
 	maxHealth = 250
 	health = 250
-	friendly_verb_continuous = "scratches at"
-	friendly_verb_simple = "scratch at"
-	speak_emote = list("cackles")
+	friendly_verb_continuous = "蹭了蹭"
+	friendly_verb_simple = "蹭了蹭"
+	speak_emote = list("咯咯怪笑")
 	melee_damage_lower = 7.5
 	melee_damage_upper = 7.5
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	melee_attack_cooldown = 0.6 SECONDS
 	attack_vis_effect = ATTACK_EFFECT_BITE
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
-	death_message = "wails as infernal energy escapes from its wounds, leaving it an empty husk."
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
+	death_message = "哀嚎着，地狱能量从伤口中逸散而出，只留下一具空壳。"
 	death_sound = 'sound/effects/magic/demon_dies.ogg'
 	light_color = LIGHT_COLOR_BLOOD_MAGIC
 	light_power = 5
@@ -66,7 +66,7 @@
 
 /// Show a funny animation before doing an explosion
 /obj/effect/temp_visual/brim_burst
-	name = "bursting brimdemon"
+	name = "爆裂的硫磺恶魔"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "brimdemon_dead"
 	duration = 1.9 SECONDS

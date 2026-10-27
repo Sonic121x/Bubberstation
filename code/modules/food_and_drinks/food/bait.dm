@@ -1,6 +1,6 @@
 /obj/item/food/bait
-	name = "this is bait"
-	desc = "you got baited."
+	name = "这是诱饵"
+	desc = "你上钩了。"
 	icon = 'icons/obj/fishing.dmi'
 	abstract_type = /obj/item/food/bait
 	/// Quality trait of this bait
@@ -15,8 +15,8 @@
 	ADD_TRAIT(src, bait_quality, INNATE_TRAIT)
 
 /obj/item/food/bait/worm
-	name = "worm"
-	desc = "It's a wriggling worm from a can of fishing bait. You're not going to eat it, are you?"
+	name = "蠕虫"
+	desc = "一条从钓鱼诱饵罐头里取出的蠕虫。你不会真要吃它吧？"
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "worm"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 1)
@@ -27,13 +27,13 @@
 	rod_overlay_icon_state = "worm_overlay"
 
 /obj/item/food/bait/worm/premium
-	name = "extra slimy worm"
-	desc = "This worm looks very sophisticated."
+	name = "格外黏滑的蠕虫"
+	desc = "这条蠕虫看起来非常讲究。"
 	bait_quality = TRAIT_GOOD_QUALITY_BAIT
 
 /obj/item/food/bait/natural
-	name = "natural bait"
-	desc = "Fish can't seem to get enough of this!"
+	name = "天然诱饵"
+	desc = "鱼好像永远吃不够这个！"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "pill9"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
@@ -48,8 +48,8 @@
 	REMOVE_TRAIT(src, bait_quality, INNATE_TRAIT)
 
 /obj/item/food/bait/doughball
-	name = "doughball"
-	desc = "Small piece of dough. Simple but effective fishing bait."
+	name = "面团球"
+	desc = "一小块面团。简单但有效的钓鱼诱饵。"
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "doughball"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 1)
@@ -61,7 +61,7 @@
 
 ///The abstract synthetic doughball type.
 /obj/item/food/bait/doughball/synthetic
-	name = "synthetic doughball"
+	name = "合成面团球"
 	icon_state = "doughball_blue"
 	rod_overlay_icon_state = "dough_blue_overlay"
 	preserved_food = TRUE
@@ -73,8 +73,8 @@
 
 ///Found in the can of omni-baits, only available from the super fishing toolbox, from the fishing mystery box.
 /obj/item/food/bait/doughball/synthetic/super
-	name = "super-doughball"
-	desc = "Be they herbivore or carnivores, no fish will be able to resist this."
+	name = "超级面团球"
+	desc = "无论食草鱼还是食肉鱼，没有鱼能抗拒它。"
 	bait_quality = TRAIT_GREAT_QUALITY_BAIT
 	show_on_wiki = TRUE
 

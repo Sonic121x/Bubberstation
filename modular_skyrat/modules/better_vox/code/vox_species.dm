@@ -1,5 +1,5 @@
 /datum/species/vox_primalis
-	name = "Vox"
+	name = "沃克斯"
 	id = SPECIES_VOX_PRIMALIS
 	can_augment = FALSE
 	digitigrade_customization = DIGITIGRADE_NEVER // We have our own unique sprites!
@@ -66,31 +66,31 @@
 
 /datum/species/vox_primalis/get_species_description()
 	return list(
-		"By the account of those unaware, the Vox seem to be a nomadic race of avianoid creatures that operate in and around human space at the behest of “crazed, dreaming gods.“ \
-		The true Vox are the wholly reclusive Vox Auralis, vastly powerful psychics and bio-engineers. They are a distant race at the best of times. \
-		These Vox, the Primalis, are the laboring underclass that the Auralis use to sustain the Arkships, following a convoluted trail throughout the Milky Way."
+		"在那些不知情者的描述中，沃克斯似乎是一个游牧的鸟形生物种族，依照“疯狂而做梦的神明”的吩咐，在人类太空及其周边活动。\
+		真正的沃克斯是完全与世隔绝的沃克斯·奥拉利斯，是强大无比的灵能者与生物工程师。即便在最好的时候，他们也与人疏远。\
+		这些沃克斯，即原始沃克斯，是奥拉利斯用来维持方舟舰运转的劳役下层，沿着一条曲折的踪迹穿行于银河。"
 	)
 
 /datum/species/vox_primalis/get_species_lore()
 	return list(
-		"The Vox are a theocratic nation led by the Vox Auralis. All of the engineered species beneath them are more than predisposed to follow the Auralis, they must utterly obey them. \
-		The Vox are perhaps one of the oldest races in the galaxy, drifting through the stars in their massive Ark Ships, often scattered about the vast cosmos. \
-		The Auralis have even been known to contract and exploit Vox Primalis with galactic entities for a continuous supply of resources. \
-		Yet, the Auralis are almost entirely unknown to the galaxy at large, as the distinction of “Vox” falls almost solely upon the Vox Primalis.",
-		"The Vox Primalis are not only the physical form, but rather a biomechanical entity known as a “Cortical Stack”. A body without a stack is little more than a husk. \
-		The task of coordinating available stacks on an Arkship is given to the Apex, a powerful biocomputer woven into the vessel's systems. \
-		The average Primalis is a reptilian avian with stiff, semi-rigid keratin quills atop their head, a long and prehensile tail, and a beak containing rows of angled teeth. \
-		They tend to have two tongues, one on the roof of the mouth and the other on the lower jaw, allowing them to speak the complex Vox language with ease. \
-		The Primalis do not generally need to live frugal, though they have been predisposed to doing so.",
-		"The height of a Primalis varies heavily, ranging from as small as 3 feet, to as large as 10 feet for living haulers of heavy equipment. So long as the Cortical Stack remains intact, \
-		death is only an inconvenience. The stack can be transferred to a new body within minutes to hours, and operational in almost no time at all. If a stack is damaged, \
-		the Vox experiences ego death, its “true death”. Even if the stack can be repaired at this stage, the personality cannot. Primalis are created with a purpose, \
-		the Cortical Stack imbued with the needed skills. Primalis must still practice their craft and hone their skills, though they tend to be prodigal compared to humans. \
-		Vox live a rigid life, with little room for advancement in a society where everything has its place under the Armalis, a caste made for combat.",
-		"Armalis are entirely dependent on the psychic network of the Apex to function, and are much like an AI with its cyborgs. \
-		As a result, Armalis can never stray far from their ship as all higher brain function effectively ceases. They have not been given the gift of free will. \
-		The Arkships do not want for much, but they still have use for commerce. Vox bioengineering is second to none, making it a prime bartering chip for research, \
-		and Arkships are often willing to trade in fragments of knowledge for resource aid and engineering assistance.",
+		"沃克斯是一个由沃克斯·奥拉利斯领导的神权国家。所有在其之下被工程化培育的物种都极度倾向于追随奥拉利斯，他们必须绝对服从。\
+		沃克斯或许是银河中最古老的种族之一，他们乘坐庞大的方舟舰在群星间漂泊，常常散布于广袤宇宙各处。\
+		奥拉利斯甚至曾与银河中的各种势力签约，利用原始沃克斯来换取持续的资源供应。\
+		然而，奥拉利斯对银河大众而言几乎完全不为人知，因为“沃克斯”这一称谓几乎只落在原始沃克斯身上。",
+		"原始沃克斯不仅仅是肉体形态，更是一种被称为“皮层堆栈”的生物机械实体。没有堆栈的身体不过是一具空壳。\
+		协调方舟舰上可用堆栈的任务交给“顶点”，一台编织进舰船系统的强大生物计算机。\
+		普通的原始沃克斯是爬行类的鸟形生物，头顶长有坚硬、半刚性的角质棘刺，尾巴长而能卷握，鸟喙中排着成列的斜生牙齿。\
+		他们通常有两条舌头，一条在上颚，一条在下颌，这让他们能轻松说出复杂的沃克斯语。\
+		原始沃克斯一般并不需要过节俭的生活，尽管他们天生倾向于如此。",
+		"原始沃克斯的身高差异极大，小到仅 3 英尺，大到 10 英尺，可充当重型设备的活体搬运工。只要皮层堆栈完好无损，\
+		死亡就只是一种不便。堆栈可以在数分钟到数小时内转移到新的身体，并且几乎立刻就能恢复运作。如果堆栈受损，\
+		沃克斯就会经历自我死亡，即其“真正的死亡”。即便到了这一步堆栈还能修复，人格也无法恢复。原始沃克斯生来就有其用途，\
+		皮层堆栈中灌注了所需的技能。原始沃克斯仍需练习手艺、磨练技能，尽管与人类相比他们往往称得上天赋异禀。\
+		沃克斯过着刻板的生活，在一个人人各安其位、皆受阿玛利斯——一个专为战斗而生的种姓——统辖的社会里，晋升空间十分有限。",
+		"阿玛利斯完全依赖“顶点”的灵能网络才能运作，很像 AI 与它的半机械人们。\
+		因此，阿玛利斯永远无法远离自己的舰船，否则一切高级脑功能实际上都会停止。他们并未被赐予自由意志。\
+		方舟舰所需不多，但他们仍有商贸的需求。沃克斯的生物工程水平无人能及，这使其成为换取研究的绝佳筹码，\
+		而方舟舰往往愿意用零散的知识来换取资源援助与工程协助。",
 	)
 
 /datum/species/vox_primalis/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons = TRUE)
@@ -103,5 +103,5 @@
 	human_who_gained_species.update_body()
 
 /obj/item/organ/eyes/vox_primalis
-	name = "vox eyes"
+	name = "沃克斯眼睛"
 	eye_icon = 'modular_skyrat/modules/better_vox/icons/bodyparts/vox_eyes.dmi'

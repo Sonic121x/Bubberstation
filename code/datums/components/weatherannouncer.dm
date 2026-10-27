@@ -132,14 +132,14 @@
 /datum/component/weather_announcer/proc/get_warning_message()
 	switch(warning_level)
 		if(WEATHER_ALERT_CLEAR)
-			return "All clear, no weather alerts to report."
+			return "天气平稳，无气象警报。"
 		if(WEATHER_ALERT_INCOMING)
-			return "Weather front incoming, begin to seek shelter."
+			return "天气锋面即将到来，请开始寻找庇护所。"
 		if(WEATHER_ALERT_IMMINENT_OR_ACTIVE)
 			if (!is_weather_dangerous)
-				return "No risk expected from incoming weather front."
-			return "Weather front imminent, find shelter immediately."
-	return "Error in meteorological calculation. Please report this deviation to a trained programmer."
+				return "预计即将到来的天气锋面不会造成危险。"
+			return "天气锋面即刻抵达，请立即寻找庇护所。"
+	return "气象计算出错。请将此异常报告给专业程序员。"
 
 /datum/component/weather_announcer/proc/time_till_storm()
 	var/list/mining_z_levels = SSmapping.levels_by_trait(radar_z_trait)
@@ -221,12 +221,12 @@
 	if(isnull(time_until_next))
 		return
 	if (time_until_next == 0)
-		examine_texts += span_warning("A storm is currently active, please seek shelter.")
+		examine_texts += span_warning("目前正有风暴，请寻找庇护所。")
 	else
-		examine_texts += span_notice("The next storm is inbound in [DisplayTimeText(time_until_next)].")
+		examine_texts += span_notice("下一场风暴将在[DisplayTimeText(time_until_next)]后到来。")
 
 	if(!check_accuracy())
-		examine_texts += span_smallnoticeital("Due to insufficient radar coverage, the timing of this forecast may be inaccurate.")
+		examine_texts += span_smallnoticeital("由于雷达覆盖不足，本次预报的时间可能不准确。")
 
 /datum/component/weather_announcer/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
@@ -236,13 +236,13 @@
 	UnregisterSignal(parent, COMSIG_ATOM_EXAMINE)
 
 /datum/aas_config_entry/weather
-	name = "Cargo Alert: Weather Forecast"
-	general_tooltip = "Allows the radio to announce incoming weather."
+	name = "货运警报：天气预报"
+	general_tooltip = "允许无线电播报即将到来的天气。"
 	announcement_lines_map = list(
-		"Clear" = "All clear, no weather alerts to report.",
-		"Incoming" = "Weather front incoming, begin to seek shelter.",
-		"Imminent or Active" = "Weather front imminent, find shelter immediately.",
-		"Safe" = "No risk expected from incoming weather front.",
+		"Clear" = "天气平稳，无气象警报。",
+		"Incoming" = "天气锋面即将到来，请开始寻找庇护所。",
+		"Imminent or Active" = "天气锋面即刻抵达，请立即寻找庇护所。",
+		"Safe" = "预计即将到来的天气锋面不会造成危险。",
 	)
 
 /datum/aas_config_entry/weather/act_up()

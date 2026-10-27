@@ -50,15 +50,15 @@
 
 	switch (stage)
 		if (STAGE_SHOULD_SWAP_HAND)
-			var/hand_name = IS_RIGHT_INDEX(hand_to_watch) ? "right" : "left"
+			var/hand_name = IS_RIGHT_INDEX(hand_to_watch) ? "右手" : "左手"
 			show_instruction(keybinding_message(
 				/datum/keybinding/mob/swap_hands,
-				"Press '%KEY%' to use your [hand_name] hand",
-				"Click '<b>SWAP</b>' to use your [hand_name] hand",
+				"按“%KEY%”使用你的[hand_name]",
+				"点击“<b>切换手部</b>”使用你的[hand_name]",
 			))
 
 		if (STAGE_PICK_UP_ITEM)
-			show_instruction("Pick something up!")
+			show_instruction("捡起一件物品！")
 
 /datum/tutorial/switch_hands/proc/on_swap_hands(mob/living/source, obj/item/swapped_to, obj/item/swapped_from)
 	SIGNAL_HANDLER

@@ -10,8 +10,8 @@
 
 
 /datum/action/cooldown/mob_cooldown/projectile_attack/tyrant_laser
-	name = "Main Laser"
-	desc = "Shoot a laser towards a target"
+	name = "主激光炮"
+	desc = "向目标发射激光"
 	button_icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	button_icon_state = "green_laser"
 	cooldown_time = 3 SECONDS
@@ -30,8 +30,8 @@
 	return ..()
 
 /datum/action/cooldown/mob_cooldown/projectile_attack/tyrant_rocket
-	name = "Shoot Rocket"
-	desc = "Shoot a rocket towards a target"
+	name = "发射火箭"
+	desc = "向目标发射火箭"
 	button_icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	button_icon_state = "low_yield_rocket"
 	cooldown_time = 3 SECONDS
@@ -40,7 +40,7 @@
 	can_move = FALSE
 
 /datum/action/cooldown/mob_cooldown/projectile_attack/tyrant_rocket/attack_sequence(mob/living/firer, atom/target)
-	firer.balloon_alert_to_viewers("begins whirring violently!")
+	firer.balloon_alert_to_viewers("开始剧烈嗡鸣！")
 	playsound(src, 'modular_zubbers/sound/fleshmind/tyrant/charge_up.ogg', 100, TRUE)
 	if(!do_after(firer, 2 SECONDS))
 		return

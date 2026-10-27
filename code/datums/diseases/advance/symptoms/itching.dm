@@ -7,9 +7,9 @@
  * Bonus: Displays an annoying message! Should be used for buffing your disease.
 */
 /datum/symptom/itching
-	name = "Itching"
-	desc = "The virus irritates the skin, causing itching."
-	illness = "Discrete Itching"
+	name = "瘙痒"
+	desc = "病毒刺激皮肤，引起瘙痒。"
+	illness = "隐性瘙痒"
 	stealth = 0
 	resistance = 3
 	stage_speed = 3
@@ -19,8 +19,8 @@
 	symptom_delay = 15
 	var/scratch = FALSE
 	threshold_descs = list(
-		"Transmission 6" = "Increases frequency of itching.",
-		"Stage Speed 7" = "The host will scratch itself when itching, causing superficial damage.",
+		"传染性 6" = "增加瘙痒频率。",
+		"阶段速度 7" = "宿主瘙痒时会抓挠自己，造成表皮损伤。",
 	)
 	///emote cooldowns
 	COOLDOWN_DECLARE(itching_cooldown)

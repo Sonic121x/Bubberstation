@@ -1,8 +1,8 @@
 /datum/religion_rites
 	/// name of the religious rite
-	var/name = "religious rite"
+	var/name = "宗教仪式"
 	/// Description of the religious rite
-	var/desc = "immm gonna rooon"
+	var/desc = "我我我要念咒了"
 	/// length it takes to complete the ritual
 	var/ritual_length = (10 SECONDS) //total length it'll take
 	/// list of invocations said (strings) throughout the rite
@@ -28,7 +28,7 @@
 
 /datum/religion_rites/proc/can_afford(mob/living/user)
 	if(GLOB.religious_sect?.favor < favor_cost)
-		to_chat(user, span_warning("This rite requires more favor!"))
+		to_chat(user, span_warning("此仪式需要更多恩宠！"))
 		return FALSE
 	return TRUE
 
@@ -36,7 +36,7 @@
 /datum/religion_rites/proc/perform_rite(mob/living/user, atom/religious_tool)
 	if(!can_afford(user))
 		return FALSE
-	to_chat(user, span_notice("You begin to perform the rite of [name]..."))
+	to_chat(user, span_notice("你开始举行 [name] 仪式……"))
 	if(!ritual_invocations)
 		if(do_after(user, ritual_length))
 			return TRUE
@@ -78,32 +78,32 @@
 /**** Mechanical God ****/
 
 /datum/religion_rites/synthconversion
-	name = "Synthetic Conversion"
-	desc = "Convert a humanoid individual into a (superior) android. Buckle a human to convert them, otherwise this rite will convert you."
+	name = "合成转化"
+	desc = "将某个人形个体转化为（更高级的）仿生人。将人类绑上以转化对方，否则此仪式会转化你自己。"
 	ritual_length = 30 SECONDS
-	ritual_invocations = list("By the inner workings of our god ...",
-						"... We call upon you, in the face of adversity ...",
-						"... to complete us, removing that which is undesirable ...")
-	invoke_msg = "... Arise, our champion! Become that which your soul craves, live in the world as your true form!!"
+	ritual_invocations = list("借我神的内在机关……",
+						"……我们在逆境中向你呼唤……",
+						"……请你补全我们，除去那些不想要的部分……")
+	invoke_msg = "……起身吧，我们的冠军！成为你灵魂渴望之物，以真正的形态活在世间！！"
 	favor_cost = 1000
 
 /datum/religion_rites/synthconversion/perform_rite(mob/living/user, atom/religious_tool)
 	if(!ismovable(religious_tool))
-		to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
+		to_chat(user, span_warning("此仪式需要一件可将人绑缚其上的宗教器具。"))
 		return FALSE
 	var/atom/movable/movable_reltool = religious_tool
 	if(!movable_reltool)
 		return FALSE
 	if(LAZYLEN(movable_reltool.buckled_mobs))
-		to_chat(user, span_warning("You're going to convert the one buckled on [movable_reltool]."))
+		to_chat(user, span_warning("你将要转化绑在 [movable_reltool] 上的那个人。"))
 	else
 		if(!movable_reltool.can_buckle) //yes, if you have somehow managed to have someone buckled to something that now cannot buckle, we will still let you perform the rite!
-			to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
+			to_chat(user, span_warning("此仪式需要一件可将人绑缚其上的宗教器具。"))
 			return FALSE
 		if(isandroid(user))
-			to_chat(user, span_warning("You've already converted yourself. To convert others, they must be buckled to [movable_reltool]."))
+			to_chat(user, span_warning("你已经转化了自己。若要转化他人，必须将其绑在 [movable_reltool] 上。"))
 			return FALSE
-		to_chat(user, span_warning("You're going to convert yourself with this ritual."))
+		to_chat(user, span_warning("你将要通过此仪式转化自己。"))
 	return ..()
 
 /datum/religion_rites/synthconversion/invoke_effect(mob/living/user, atom/religious_tool)
@@ -122,19 +122,19 @@
 	if(!rite_target)
 		return FALSE
 	rite_target.set_species(/datum/species/android)
-	rite_target.visible_message(span_notice("[rite_target] has been converted by the rite of [name]!"))
+	rite_target.visible_message(span_notice("[rite_target] 已被 [name] 仪式转化！"))
 	return TRUE
 
 
 /datum/religion_rites/machine_blessing
-	name = "Receive Blessing"
-	desc = "Receive a blessing from the machine god to further your ascension."
+	name = "接受祝福"
+	desc = "接受机械之神的祝福，以推进你的升华。"
 	ritual_length = 5 SECONDS
 	ritual_invocations = list(
-		"Let your will power our forges.",
-		"...Help us in our great conquest!",
+		"让你的意志驱动我们的熔炉。",
+		"……在我们伟大的征服中帮助我们！",
 	)
-	invoke_msg = "The end of flesh is near!"
+	invoke_msg = "血肉的终末已近！"
 	favor_cost = 2000
 
 /datum/religion_rites/machine_blessing/invoke_effect(mob/living/user, atom/movable/religious_tool)
@@ -180,31 +180,31 @@
 ///all greed rites cost money instead
 /datum/religion_rites/greed
 	ritual_length = 5 SECONDS
-	invoke_msg = "Sorry I was late, I was just making a shitload of money."
+	invoke_msg = "抱歉我迟到了，刚才在忙着赚一大笔钱。"
 	var/money_cost = 0
 
 /datum/religion_rites/greed/can_afford(mob/living/user)
 	var/datum/bank_account/account = user.get_bank_account()
 	if(!account)
-		to_chat(user, span_warning("You need a way to pay for the rite!"))
+		to_chat(user, span_warning("你必须有支付仪式费用的方式！"))
 		return FALSE
 	if(account.account_balance < money_cost)
-		to_chat(user, span_warning("This rite requires more money!"))
+		to_chat(user, span_warning("此仪式需要更多钱！"))
 		return FALSE
 	return TRUE
 
 /datum/religion_rites/greed/invoke_effect(mob/living/user, atom/movable/religious_tool)
 	var/datum/bank_account/account = user.get_bank_account()
 	if(!account || account.account_balance < money_cost)
-		to_chat(user, span_warning("This rite requires more money!"))
+		to_chat(user, span_warning("此仪式需要更多钱！"))
 		return FALSE
-	account.adjust_money(-money_cost, "Church Donation: Rite")
+	account.adjust_money(-money_cost, "教会捐赠：仪式")
 	. = ..()
 
 /datum/religion_rites/greed/vendatray
-	name = "Purchase Vend-A-Tray"
-	desc = "Summons a vend-a-tray. You can use it to sell items!"
-	invoke_msg = "I need a vend-a-tray to make some more money!"
+	name = "购买售卖托盘"
+	desc = "召唤一个售卖托盘。你可以用它出售物品！"
+	invoke_msg = "我需要一个售卖托盘来赚更多钱！"
 	money_cost = 300
 
 /datum/religion_rites/greed/vendatray/invoke_effect(mob/living/user, atom/movable/religious_tool)
@@ -215,9 +215,9 @@
 	return TRUE
 
 /datum/religion_rites/greed/custom_vending
-	name = "Purchase Personal Vending Machine"
-	desc = "Summons a custom vending machine. You can use it to sell MANY items!"
-	invoke_msg = "If I get a custom vending machine for my products, I can be RICH!"
+	name = "购买私人自动售货机"
+	desc = "召唤一台自定义自动售货机。你可以用它出售大量物品！"
+	invoke_msg = "如果我有一台自定义自动售货机来卖我的产品，我就能发财！"
 	money_cost = 1000 //quite a step up from vendatray
 
 /datum/religion_rites/greed/custom_vending/invoke_effect(mob/living/user, atom/movable/religious_tool)
@@ -230,13 +230,13 @@
 /*********Maintenance God**********/
 
 /datum/religion_rites/maint_adaptation
-	name = "Maintenance Adaptation"
-	desc = "Begin your metamorphasis into a being more fit for Maintenance."
+	name = "维护区适应"
+	desc = "开始蜕变为更适合维护区的存在。"
 	ritual_length = 10 SECONDS
-	ritual_invocations = list("I abandon the world ...",
-	"... to become one with the deep ...",
-	"... My form will become twisted ...")
-	invoke_msg = "... but my smile I will keep!"
+	ritual_invocations = list("我舍弃这个世界……",
+	"……与深处融为一体……",
+	"……我的形态将变得扭曲……")
+	invoke_msg = "……但我会保留我的微笑！"
 	favor_cost = 150 //150u of organic slurry
 
 /datum/religion_rites/maint_adaptation/perform_rite(mob/living/carbon/human/user, atom/religious_tool)
@@ -244,13 +244,13 @@
 		return FALSE
 	//uses HAS_TRAIT_FROM because junkies are also hopelessly addicted
 	if(HAS_TRAIT_FROM(user, TRAIT_HOPELESSLY_ADDICTED, "maint_adaptation"))
-		to_chat(user, span_warning("You've already adapted."))
+		to_chat(user, span_warning("你已经适应过了。"))
 		return FALSE
 	return ..()
 
 /datum/religion_rites/maint_adaptation/invoke_effect(mob/living/user, atom/movable/religious_tool)
 	..()
-	to_chat(user, span_warning("You feel your genes rattled and reshaped. <b>You're becoming something new.</b>"))
+	to_chat(user, span_warning("你感到基因被搅动、重塑。<b>你正在变成某种新东西。</b>"))
 	user.emote("laugh")
 	ADD_TRAIT(user, TRAIT_HOPELESSLY_ADDICTED, "maint_adaptation")
 	//addiction sends some nasty mood effects but we want the maint adaption to be enjoyed like a fine wine
@@ -264,28 +264,28 @@
 	user.mind.add_addiction_points(/datum/addiction/maintenance_drugs, 1000)//ensure addiction
 
 /datum/religion_rites/adapted_eyes
-	name = "Adapted Eyes"
-	desc = "Only available after maintenance adaptation. Your eyes will adapt as well, becoming useless in the light."
+	name = "适应之眼"
+	desc = "仅在维护区适应后可用。你的双眼也会适应，在光线下变得无用。"
 	ritual_length = 10 SECONDS
-	invoke_msg = "I no longer want to see the light."
+	invoke_msg = "我不再想看见光了。"
 	favor_cost = 300 //300u of organic slurry, i'd consider this a reward of the sect
 
 /datum/religion_rites/adapted_eyes/perform_rite(mob/living/carbon/human/user, atom/religious_tool)
 	if(!ishuman(user))
 		return FALSE
 	if(!HAS_TRAIT_FROM(user, TRAIT_HOPELESSLY_ADDICTED, "maint_adaptation"))
-		to_chat(user, span_warning("You need to adapt to maintenance first."))
+		to_chat(user, span_warning("你需要先适应维护区。"))
 		return FALSE
 	var/obj/item/organ/eyes/night_vision/maintenance_adapted/adapted = user.get_organ_slot(ORGAN_SLOT_EYES)
 	if(adapted && istype(adapted))
-		to_chat(user, span_warning("Your eyes are already adapted!"))
+		to_chat(user, span_warning("你的眼睛已经适应了！"))
 		return FALSE
 	return ..()
 
 /datum/religion_rites/adapted_eyes/invoke_effect(mob/living/carbon/human/user, atom/movable/religious_tool)
 	..()
 	var/obj/item/organ/eyes/oldeyes = user.get_organ_slot(ORGAN_SLOT_EYES)
-	to_chat(user, span_warning("You feel your eyes adapt to the darkness!"))
+	to_chat(user, span_warning("你感到双眼适应了黑暗！"))
 	if(oldeyes)
 		oldeyes.Remove(user, special = TRUE)
 		qdel(oldeyes)//eh
@@ -293,10 +293,10 @@
 	neweyes.Insert(user, special = TRUE)
 
 /datum/religion_rites/adapted_food
-	name = "Moldify"
-	desc = "Once adapted to the Maintenance, you will not be able to eat regular food. This should help."
+	name = "霉化"
+	desc = "适应维护区后，你将无法食用普通食物。这应该能帮上忙。"
 	ritual_length = 5 SECONDS
-	invoke_msg = "Moldify!"
+	invoke_msg = "霉化！"
 	favor_cost = 5 //5u of organic slurry
 	///the food that will be molded, only one per rite
 	var/obj/item/food/mold_target
@@ -307,7 +307,7 @@
 			continue
 		mold_target = could_mold //moldify this o great one
 		return ..()
-	to_chat(user, span_warning("You need to place food on [religious_tool] to do this!"))
+	to_chat(user, span_warning("你需要把食物放在 [religious_tool] 上才能这么做！"))
 	return FALSE
 
 /datum/religion_rites/adapted_food/invoke_effect(mob/living/user, atom/movable/religious_tool)
@@ -315,19 +315,19 @@
 	var/obj/item/food/moldify = mold_target
 	mold_target = null
 	if(QDELETED(moldify) || !(get_turf(religious_tool) == moldify.loc)) //check if the same food is still there
-		to_chat(user, span_warning("Your target left the altar!"))
+		to_chat(user, span_warning("你的目标离开了祭坛！"))
 		return FALSE
-	to_chat(user, span_warning("[moldify] becomes rancid!"))
+	to_chat(user, span_warning("[moldify] 变得腐臭了！"))
 	user.emote("laugh")
 	new /obj/item/food/badrecipe/moldy(get_turf(religious_tool))
 	qdel(moldify)
 	return TRUE
 
 /datum/religion_rites/ritual_totem
-	name = "Create Ritual Totem"
-	desc = "Creates a ritual totem, a portable tool for performing rites on the go. Requires wood. Can only be picked up by the holy."
+	name = "制作仪式图腾"
+	desc = "制作一个仪式图腾，一种可随身携带的仪式工具。需要木材。只有神圣者才能拾起。"
 	favor_cost = 100
-	invoke_msg = "Padala!!"
+	invoke_msg = "帕达拉！！"
 	///the food that will be molded, only one per rite
 	var/obj/item/stack/sheet/mineral/wood/converted
 
@@ -335,7 +335,7 @@
 	for(var/obj/item/stack/sheet/mineral/wood/could_totem in get_turf(religious_tool))
 		converted = could_totem //totemify this o great one
 		return ..()
-	to_chat(user, span_warning("You need a piece of wood to do this!"))
+	to_chat(user, span_warning("你需要一块木头才能这么做！"))
 	return FALSE
 
 /datum/religion_rites/ritual_totem/invoke_effect(mob/living/user, atom/movable/religious_tool)
@@ -344,9 +344,9 @@
 	var/obj/item/stack/sheet/mineral/wood/padala = converted
 	converted = null
 	if(QDELETED(padala) || !(get_turf(religious_tool) == padala.loc)) //check if the same food is still there
-		to_chat(user, span_warning("Your target left the altar!"))
+		to_chat(user, span_warning("你的目标离开了祭坛！"))
 		return FALSE
-	to_chat(user, span_warning("[padala] reshapes into a totem!"))
+	to_chat(user, span_warning("[padala] 重塑成了一根图腾！"))
 	if(!padala.use(1))//use one wood
 		return
 	user.emote("laugh")
@@ -356,9 +356,9 @@
 ///sparring god rites
 
 /datum/religion_rites/sparring_contract
-	name = "Summon Sparring Contract"
-	desc = "Turns some paper into a sparring contract."
-	invoke_msg = "I will train in the name of my god."
+	name = "召唤切磋契约"
+	desc = "将一些纸张变成一份切磋契约。"
+	invoke_msg = "我将以我神之名训练。"
 	///paper to turn into a sparring contract
 	var/obj/item/paper/contract_target
 
@@ -368,7 +368,7 @@
 			continue
 		contract_target = could_contract
 		return ..()
-	to_chat(user, span_warning("You need to place blank paper on [religious_tool] to do this!"))
+	to_chat(user, span_warning("你需要把空白纸张放在 [religious_tool] 上才能这么做！"))
 	return FALSE
 
 /datum/religion_rites/sparring_contract/invoke_effect(mob/living/user, atom/movable/religious_tool)
@@ -377,24 +377,24 @@
 	var/turf/tool_turf = get_turf(religious_tool)
 	contract_target = null
 	if(QDELETED(blank_paper) || !(tool_turf == blank_paper.loc)) //check if the same paper is still there
-		to_chat(user, span_warning("Your target left the altar!"))
+		to_chat(user, span_warning("你的目标离开了祭坛！"))
 		return FALSE
-	blank_paper.visible_message(span_notice("words magically form on [blank_paper]!"))
+	blank_paper.visible_message(span_notice("文字神奇地在 [blank_paper] 上浮现！"))
 	playsound(tool_turf, 'sound/effects/pray.ogg', 50, TRUE)
 	var/datum/religion_sect/spar/sect = GLOB.religious_sect
 	if(sect.existing_contract)
-		sect.existing_contract.visible_message(span_warning("[src] fizzles into nothing!"))
+		sect.existing_contract.visible_message(span_warning("[src] 嘶的一声化为乌有！"))
 		qdel(sect.existing_contract)
 	sect.existing_contract = new /obj/item/sparring_contract(tool_turf)
 	qdel(blank_paper)
 	return TRUE
 
 /datum/religion_rites/declare_arena
-	name = "Declare Arena"
-	desc = "Declare a new area as fit for sparring. You'll be able to select it in contracts."
+	name = "宣告竞技场"
+	desc = "宣告一片新区域适合切磋。你可以在契约中选择它。"
 	ritual_length = 6 SECONDS
-	ritual_invocations = list("I seek new horizons ...")
-	invoke_msg = "... may my climb be steep."
+	ritual_invocations = list("我寻求新的地平线……")
+	invoke_msg = "……愿我的攀登陡峭艰难。"
 	favor_cost = 1 //only costs one holy battle for a new area
 	var/area/area_instance
 
@@ -405,7 +405,7 @@
 			continue
 		if(!(unfiltered_area.area_flags & HIDDEN_AREA))
 			filtered += unfiltered_area
-	area_instance = tgui_input_list(user, "Choose an area to mark as an arena!", "Arena Declaration", filtered)
+	area_instance = tgui_input_list(user, "选择一片区域标记为竞技场！", "竞技场宣告", filtered)
 	if(isnull(area_instance))
 		return FALSE
 	. = ..()
@@ -414,13 +414,13 @@
 	. = ..()
 	var/datum/religion_sect/spar/sect = GLOB.religious_sect
 	sect.arenas[area_instance.name] = area_instance.type
-	to_chat(user, span_warning("[area_instance] is a now an option to select on sparring contracts."))
+	to_chat(user, span_warning("[area_instance] 现在已成为切磋契约中的可选项。"))
 
 /datum/religion_rites/ceremonial_weapon
-	name = "Forge Ceremonial Gear"
-	desc = "Turn some material into ceremonial gear. Ceremonial blades are weak outside of sparring and quite heavy to lug around."
+	name = "锻造仪式装备"
+	desc = "将一些材料变成仪式装备。仪式刀刃在切磋之外很弱，而且携带起来相当沉重。"
 	ritual_length = 10 SECONDS
-	invoke_msg = "Weapons in your name! Battles with your blood!"
+	invoke_msg = "以你之名的武器！以你之血的战斗！"
 	favor_cost = 0
 	///the material that will be attempted to be forged into a weapon
 	var/obj/item/stack/sheet/converted
@@ -441,9 +441,9 @@
 		return ..()
 	// We've found a material but it wasn't solid enough.
 	if(not_rigid)
-		to_chat(user, span_warning("[not_rigid] is not suitable for being made into gear!"))
+		to_chat(user, span_warning("[not_rigid] 不适合用来制作装备！"))
 	else
-		to_chat(user, span_warning("You need at least five sheets of a rigid material to make gear!"))
+		to_chat(user, span_warning("你至少需要五张刚性材料才能制作装备！"))
 	return FALSE
 
 /datum/religion_rites/ceremonial_weapon/invoke_effect(mob/living/user, atom/movable/religious_tool)
@@ -452,10 +452,10 @@
 	var/obj/item/stack/sheet/used_for_blade = converted
 	converted = null
 	if(QDELETED(used_for_blade) || !(get_turf(religious_tool) == used_for_blade.loc) || used_for_blade.amount < 5) //check if the same food is still there
-		to_chat(user, span_warning("Your target left the altar!"))
+		to_chat(user, span_warning("你的目标离开了祭坛！"))
 		return FALSE
 	var/material_used = used_for_blade.material_type
-	to_chat(user, span_warning("[used_for_blade] reshapes into a ceremonial blade!"))
+	to_chat(user, span_warning("[used_for_blade] 重塑成了一把仪式刀刃！"))
 	if(!used_for_blade.use(5))//use 5 of the material
 		return
 	var/obj/item/ceremonial_blade/blade = new(altar_turf)
@@ -463,41 +463,41 @@
 	return TRUE
 
 /datum/religion_rites/unbreakable
-	name = "Become Unbreakable"
-	desc = "Your training has made you unbreakable. In times of crisis, you will attempt to keep fighting on."
+	name = "变得坚不可摧"
+	desc = "你的训练使你坚不可摧。在危急时刻，你会试图继续战斗。"
 	ritual_length = 10 SECONDS
-	invoke_msg = "My will must be unbreakable. Grant me this boon!"
+	invoke_msg = "我的意志必须坚不可摧。请赐予我这份恩惠！"
 	favor_cost = 4 //4 duels won
 
 /datum/religion_rites/unbreakable/perform_rite(mob/living/carbon/human/user, atom/religious_tool)
 	if(!ishuman(user))
 		return FALSE
 	if(HAS_TRAIT_FROM(user, TRAIT_UNBREAKABLE, INNATE_TRAIT))
-		to_chat(user, span_warning("Your spirit is already unbreakable!"))
+		to_chat(user, span_warning("你的精神已经坚不可摧了！"))
 		return FALSE
 	return ..()
 
 /datum/religion_rites/unbreakable/invoke_effect(mob/living/carbon/human/user, atom/movable/religious_tool)
 	..()
-	to_chat(user, span_nicegreen("You feel [GLOB.deity]'s will to keep fighting pouring into you!"))
+	to_chat(user, span_nicegreen("你感到 [GLOB.deity] 坚持战斗的意志涌入体内！"))
 	user.AddComponent(/datum/component/unbreakable)
 
 /datum/religion_rites/tenacious
-	name = "Become Tenacious"
-	desc = "Your training has made you tenacious. In times of crisis, you will be able to crawl faster."
+	name = "变得坚韧"
+	desc = "你的训练使你坚韧不拔。在危急时刻，你能爬得更快。"
 	ritual_length = 10 SECONDS
-	invoke_msg = "Grant me your tenacity! I have proven myself!"
+	invoke_msg = "赐予我你的坚韧！我已经证明了自己！"
 	favor_cost = 3 //3 duels won
 
 /datum/religion_rites/tenacious/perform_rite(mob/living/carbon/human/user, atom/religious_tool)
 	if(!ishuman(user))
 		return FALSE
 	if(HAS_TRAIT_FROM(user, TRAIT_TENACIOUS, INNATE_TRAIT))
-		to_chat(user, span_warning("Your spirit is already tenacious!"))
+		to_chat(user, span_warning("你的精神已经坚韧不拔了！"))
 		return FALSE
 	return ..()
 
 /datum/religion_rites/tenacious/invoke_effect(mob/living/carbon/human/user, atom/movable/religious_tool)
 	..()
-	to_chat(user, span_nicegreen("You feel [GLOB.deity]'s tenacity pouring into you!"))
+	to_chat(user, span_nicegreen("你感到 [GLOB.deity] 的坚韧涌入体内！"))
 	user.AddElement(/datum/element/tenacious)

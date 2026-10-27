@@ -1,11 +1,11 @@
 /datum/quirk/defensive
 	name = "Jerk"
-	desc = "You are rude and impatient, and want people to get out of your way. "
+	desc = "你粗鲁又急躁，恨不得别人都给你让路。"
 	icon = FA_ICON_FROWN_OPEN
-	medical_record_text = "Patient has anger issues."
+	medical_record_text = "患者存在愤怒控制问题。"
 	value = 6
-	gain_text = span_notice("You feel like punching someone.")
-	lose_text = span_notice("You feel calmer.")
+	gain_text = span_notice("你想揍人。")
+	lose_text = span_notice("你平静了些。")
 	quirk_flags = QUIRK_HIDE_FROM_SCAN
 	COOLDOWN_DECLARE(shovingspam)
 

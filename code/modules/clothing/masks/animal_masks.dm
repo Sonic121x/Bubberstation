@@ -64,13 +64,13 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 /obj/item/clothing/mask/animal/examine(mob/user)
 	. = ..()
 	if(clothing_flags & VOICEBOX_TOGGLABLE)
-		. += span_notice("Its voicebox is currently [clothing_flags & VOICEBOX_DISABLED ? "disabled" : "enabled"]. <b>Alt-click</b> to toggle it.")
+		. += span_notice("它的语音盒当前处于[clothing_flags & VOICEBOX_DISABLED ? "禁用" : "启用"]状态。<b>Alt 点击</b>可切换。")
 
 /obj/item/clothing/mask/animal/click_alt(mob/user)
 	if(!(clothing_flags & VOICEBOX_TOGGLABLE))
 		return NONE
 	clothing_flags ^= VOICEBOX_DISABLED
-	to_chat(user, span_notice("You [clothing_flags & VOICEBOX_DISABLED ? "disabled" : "enabled"] [src]'s voicebox."))
+	to_chat(user, span_notice("你[clothing_flags & VOICEBOX_DISABLED ? "禁用" : "启用"]了 [src] 的语音盒。"))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/clothing/mask/animal/proc/make_cursed() //apply cursed effects.
@@ -78,8 +78,8 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	clothing_flags = NONE //force animal sounds to always on.
 	if(flags_inv == initial(flags_inv))
 		flags_inv = HIDEFACIALHAIR
-	name = "[animal_type] face"
-	desc = "It looks like a [animal_type] mask, but closer inspection reveals it's melded onto this person's face!"
+	name = "[animal_type]脸"
+	desc = "它看起来像一张[animal_type]面具，但仔细查看会发现，它已经与这个人的脸融合在一起了！"
 	if(curse_spawn_sound)
 		playsound(src, curse_spawn_sound, 50, TRUE)
 	var/update_speech_mod = !modifies_speech && LAZYLEN(animal_sounds)
@@ -90,7 +90,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 		if(M.get_item_by_slot(ITEM_SLOT_MASK) == src)
 			if(update_speech_mod)
 				RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
-			to_chat(M, span_userdanger("[src] was cursed!"))
+			to_chat(M, span_userdanger("[src] 被诅咒了！"))
 			M.update_worn_mask()
 			M.refresh_obscured()
 
@@ -106,7 +106,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	if(ismob(loc))
 		var/mob/M = loc
 		if(M.get_item_by_slot(ITEM_SLOT_MASK) == src)
-			to_chat(M, span_notice("[src]'s curse has been lifted!"))
+			to_chat(M, span_notice("[src] 的诅咒已被解除！"))
 			if(update_speech_mod)
 				UnregisterSignal(M, COMSIG_MOB_SAY)
 			M.update_worn_mask()
@@ -124,14 +124,14 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	if(!iscarbon(user))
 		return ..()
 	if((slot & ITEM_SLOT_MASK) && HAS_TRAIT_FROM(src, TRAIT_NODROP, CURSED_MASK_TRAIT))
-		to_chat(user, span_userdanger("[src] was cursed!"))
+		to_chat(user, span_userdanger("[src] 被诅咒了！"))
 	return ..()
 
 
 /obj/item/clothing/mask/animal/pig
-	name = "pig mask"
-	desc = "A rubber pig mask with a built-in voice modulator."
-	animal_type = "pig"
+	name = "猪面具"
+	desc = "一张内置语音调制器的橡胶猪面具。"
+	animal_type = "猪"
 	icon_state = "pig"
 	inhand_icon_state = null
 	animal_sounds = list("Oink!","Squeeeeeeee!","Oink Oink!")
@@ -143,13 +143,13 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 
 ///frog mask - reeee!!
 /obj/item/clothing/mask/animal/frog
-	name = "frog mask"
-	desc = "An ancient mask carved in the shape of a frog.<br> Sanity is like gravity, all it needs is a push."
+	name = "青蛙面具"
+	desc = "一张雕刻成青蛙形状的古老面具。<br> 理智就像重力，只需轻轻一推。"
 	icon_state = "frog"
 	inhand_icon_state = null
 	animal_sounds = list("Ree!!", "Reee!!","REEE!!","REEEEE!!")
 	animal_sounds_alt_probability = 5
-	animal_sounds_alt = list("HUUUUU!!","SMOOOOOKIN'!!","Hello my baby, hello my honey, hello my rag-time gal.", "Feels bad, man.", "GIT DIS GUY OFF ME!!" ,"SOMEBODY STOP ME!!", "NORMIES, GET OUT!!")
+	animal_sounds_alt = list("HUUUUU!!","SMOOOOOKIN'!!","你好啊宝贝，你好啊甜心，你好啊我的拉格泰姆姑娘。", "感觉真糟糕，老兄。", "把这家伙从我身上弄下去！！","谁来阻止我！！", "凡人，滚出去！！")
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 
 /obj/item/clothing/mask/animal/frog/Initialize(mapload)
@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	cursed = TRUE
 
 /obj/item/clothing/mask/animal/cowmask
-	name = "cow mask"
+	name = "奶牛面具"
 	icon_state = "cowmask"
 	inhand_icon_state = null
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
@@ -181,9 +181,9 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	cursed = TRUE
 
 /obj/item/clothing/mask/animal/horsehead
-	name = "horse mask"
-	desc = "A mask made of soft vinyl and latex, representing the head of a horse."
-	animal_type = "horse"
+	name = "马头面具"
+	desc = "一张由柔软乙烯基和乳胶制成的面具，外形为马头。"
+	animal_type = "马"
 	icon_state = "horsehead"
 	inhand_icon_state = null
 	animal_sounds = list("NEEIIGGGHHHH!", "NEEEIIIIGHH!", "NEIIIGGHH!", "HAAWWWWW!", "HAAAWWW!")
@@ -194,8 +194,8 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	cursed = TRUE
 
 /obj/item/clothing/mask/animal/small
-	name = "A small animal mask"
-	desc = "If you're seeing this, yell at a coder."
+	name = "小型动物面具"
+	desc = "如果你看到这个，去骂程序员。"
 	abstract_type = /obj/item/clothing/mask/animal/small
 	flags_inv = HIDEFACE|HIDESNOUT
 
@@ -204,9 +204,9 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	return ..()
 
 /obj/item/clothing/mask/animal/small/rat
-	name = "rat mask"
-	desc = "A mask made of soft vinyl and latex, representing the head of a rat."
-	animal_type = "rat"
+	name = "老鼠面具"
+	desc = "一张由柔软乙烯基和乳胶制成的面具，外形为老鼠头。"
+	animal_type = "老鼠"
 	icon_state = "rat"
 	inhand_icon_state = null
 	animal_sounds = list("Skree!","SKREEE!","Squeak!")
@@ -215,9 +215,9 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	cursed = TRUE
 
 /obj/item/clothing/mask/animal/small/fox
-	name = "fox mask"
-	desc = "A mask made of soft vinyl and latex, representing the head of a fox."
-	animal_type = "fox"
+	name = "狐狸面具"
+	desc = "一张由柔软乙烯基和乳胶制成的面具，外形为狐狸头。"
+	animal_type = "狐狸"
 	icon_state = "fox"
 	inhand_icon_state = null
 	animal_sounds = list("Ack-Ack!","Ack-Ack-Ack-Ackawoooo!","Geckers!","AWOO!","TCHOFF!")
@@ -226,9 +226,9 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	cursed = TRUE
 
 /obj/item/clothing/mask/animal/small/bee
-	name = "bee mask"
-	desc = "A mask made of soft vinyl and latex, representing the head of a bee."
-	animal_type = "bee"
+	name = "蜜蜂面具"
+	desc = "一张由柔软乙烯基和乳胶制成的面具，外形为蜜蜂头。"
+	animal_type = "蜜蜂"
 	icon_state = "bee"
 	inhand_icon_state = null
 	animal_sounds = list("BZZT!", "BUZZZ!", "B-zzzz!", "Bzzzzzzttttt!")
@@ -237,9 +237,9 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	cursed = TRUE
 
 /obj/item/clothing/mask/animal/small/bear
-	name = "bear mask"
-	desc = "A mask made of soft vinyl and latex, representing the head of a bear."
-	animal_type = "bear"
+	name = "熊面具"
+	desc = "一张由柔软乙烯基和乳胶制成的面具，外形为熊头。"
+	animal_type = "熊"
 	icon_state = "bear"
 	inhand_icon_state = null
 	animal_sounds = list("RAWR!","Rawr!","GRR!","Growl!")
@@ -262,9 +262,9 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	cursed = TRUE
 
 /obj/item/clothing/mask/animal/small/bat
-	name = "bat mask"
-	desc = "A mask made of soft vinyl and latex, representing the head of a bat."
-	animal_type = "bat"
+	name = "蝙蝠面具"
+	desc = "一张由柔软乙烯基和乳胶制成的面具，外形为蝙蝠头。"
+	animal_type = "蝙蝠"
 	icon_state = "bat"
 	inhand_icon_state = null
 
@@ -273,22 +273,22 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 
 
 /obj/item/clothing/mask/animal/small/raven
-	name = "raven mask"
-	desc = "A mask made of soft vinyl and latex, representing the head of a raven."
+	name = "乌鸦面具"
+	desc = "一张由柔软乙烯基和乳胶制成的面具，外形为乌鸦头。"
 	icon_state = "raven"
 	inhand_icon_state = null
-	animal_type = "raven"
+	animal_type = "乌鸦"
 	animal_sounds = list("CAW!", "C-CAWW!", "Squawk!")
-	animal_sounds_alt = list("Nevermore...")
+	animal_sounds_alt = list("永不复还……")
 	animal_sounds_alt_probability = 1
 
 /obj/item/clothing/mask/animal/small/raven/cursed
 	cursed = TRUE
 
 /obj/item/clothing/mask/animal/small/jackal
-	name = "jackal mask"
-	desc = "A mask made of soft vinyl and latex, representing the head of a jackal."
-	animal_type = "jackal"
+	name = "胡狼面具"
+	desc = "一张由柔软乙烯基和乳胶制成的面具，外形为胡狼头。"
+	animal_type = "胡狼"
 	icon_state = "jackal"
 	inhand_icon_state = null
 	animal_sounds = list("YAP!", "Woof!", "Bark!", "AUUUUUU!")
@@ -297,13 +297,13 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	cursed = TRUE
 
 /obj/item/clothing/mask/animal/small/tribal
-	name = "tribal mask"
-	desc = "A mask carved out of wood, detailed carefully by hand."
-	animal_type = "tribal" //honk.
+	name = "部落面具"
+	desc = "一张用木头雕刻的面具，由手工精心制作。"
+	animal_type = "部落" //honk.
 	icon_state = "bumba"
 	inhand_icon_state = null
-	animal_sounds = list("Bad juju, mon!", "Da Iwa be praised!", "Sum bad mojo, dat!", "You do da voodoo, mon!")
-	animal_sounds_alt = list("Eekum-bokum!", "Oomenacka!", "In mah head..... Zombi.... Zombi!")
+	animal_sounds = list("坏兆头啊，老兄！", "赞美伊瓦大神！", "这兆头可不妙！", "你在施伏都术啊，老兄！")
+	animal_sounds_alt = list("Eekum-bokum!", "Oomenacka!", "在我脑子里……僵尸……僵尸！")
 	animal_sounds_alt_probability = 5
 
 /obj/item/clothing/mask/animal/small/tribal/Initialize(mapload)

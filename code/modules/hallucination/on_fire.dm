@@ -48,7 +48,7 @@
 		return FALSE
 
 	hallucinator.client?.images |= fire_overlay
-	to_chat(hallucinator, span_userdanger("You're set on fire!"))
+	to_chat(hallucinator, span_userdanger("你着火了！"))
 	hallucinator.add_mood_event("on_fire", /datum/mood_event/on_fire)
 	var/atom/movable/screen/alert/fire/fake/alert = hallucinator.throw_alert(ALERT_FIRE, /atom/movable/screen/alert/fire/fake, override = TRUE)
 	alert.hallucination_weakref = WEAKREF(src)
@@ -149,6 +149,6 @@
 	return !!roller.apply_status_effect(/datum/status_effect/stop_drop_roll/hallucinating, hallucination_weakref)
 
 /datum/mood_event/fake_fire
-	description = "Oh... I was just imagining those flames."
+	description = "哦……那些火焰只是我的想象罢了。"
 	mood_change = 4
 	timeout = 30 SECONDS

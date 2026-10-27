@@ -1,10 +1,10 @@
 /obj/item/implant/mortis
-	name = "MORTIS implant"
+	name = "MORTIS 植入体"
 
 /obj/item/implant/mortis/get_data()
-	var/dat = {"<b>Implant Specifications:</b><BR>
-				<b>Name:</b> God Co. MORTIS Implant<BR>
-				<b>Life:</b> Activates upon death.<BR>
+	var/dat = {"<b>植入体规格：</b><BR>
+				<b>名称：</b>God Co. MORTIS 植入体<BR>
+				<b>寿命：</b>死亡时激活。<BR>
 				"}
 	return dat
 
@@ -23,5 +23,5 @@
 	playsound(source.loc, 'modular_skyrat/modules/chaplain/sound/mortis.ogg', 50, 0)
 
 /obj/item/implanter/mortis
-	name = "implanter (MORTIS)"
+	name = "植入器（MORTIS）"
 	imp_type = /obj/item/implant/mortis

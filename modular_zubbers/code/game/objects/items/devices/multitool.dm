@@ -1,6 +1,6 @@
 /obj/item/multitool/abductor/bluespace
-	name = "bluespace multitool"
-	desc = "Functionally identical, but we gotta maintain the theme. It's probably okay if you have this, but probably not."
+	name = "蓝空间多功能工具"
+	desc = "功能完全一样，但我们得保持主题一致。你拿着这东西大概没问题，也可能有问题。"
 	icon = 'modular_zubbers/icons/obj/tools.dmi'
 	icon_state = "bst_multitool"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/equipment/tools_lefthand.dmi'

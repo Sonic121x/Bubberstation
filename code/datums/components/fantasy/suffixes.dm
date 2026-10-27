@@ -1,5 +1,5 @@
 /datum/fantasy_affix/cosmetic_suffixes
-	name = "purely cosmetic suffix"
+	name = "纯装饰性后缀"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD | AFFIX_EVIL
 
@@ -8,41 +8,41 @@
 
 /datum/fantasy_affix/cosmetic_suffixes/New()
 	goodSuffixes = list(
-		"dexterity",
-		"constitution",
-		"intelligence",
-		"wisdom",
-		"charisma",
-		"the forest",
-		"the hills",
-		"the plains",
-		"the sea",
-		"the sun",
-		"the moon",
-		"the void",
-		"the world",
-		"many secrets",
-		"many tales",
-		"many colors",
-		"rending",
-		"sundering",
-		"the night",
-		"the day",
+		"敏捷",
+		"体魄",
+		"智力",
+		"智慧",
+		"魅力",
+		"森林",
+		"丘陵",
+		"平原",
+		"海洋",
+		"太阳",
+		"月亮",
+		"虚空",
+		"世界",
+		"万千秘密",
+		"万千传说",
+		"缤纷色彩",
+		"撕裂",
+		"破碎",
+		"黑夜",
+		"白昼",
 		)
 	badSuffixes = list(
-		"draining",
-		"burden",
-		"discomfort",
-		"awkwardness",
-		"poor hygiene",
-		"timidity",
+		"汲取",
+		"负担",
+		"不适",
+		"笨拙",
+		"污秽",
+		"怯懦",
 		)
 
 	weight = (length(goodSuffixes) + length(badSuffixes)) * 10
 
 /datum/fantasy_affix/cosmetic_suffixes/apply(datum/component/fantasy/comp, newName)
 	if(comp.quality > 0 || (comp.quality == 0 && prob(50)))
-		. = "[newName] of [pick(goodSuffixes)]"
+		. = "[newName]·[pick(goodSuffixes)]"
 		if(comp.quality >= 10)
 			START_PROCESSING(SSprocessing, src)
 			if(comp.quality >= 15)
@@ -50,12 +50,12 @@
 			else
 				comp.parent.AddComponent(/datum/component/unusual_effect, color = "#FFBF0030")
 	else
-		. = "[newName] of [pick(badSuffixes)]"
+		. = "[newName]·[pick(badSuffixes)]"
 	return .
 
 //////////// Good suffixes
 /datum/fantasy_affix/bane
-	name = "of <mobtype> slaying (random species, carbon or simple animal)"
+	name = "<生物类型>杀手（随机种族、碳基生物或简单动物）"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 
@@ -83,10 +83,10 @@
 
 	var/obj/item/master = comp.parent
 	comp.appliedComponents += master.AddComponent(/datum/component/bane, affected_biotypes = picked_mobtype, damage_multiplier = 2)
-	return "[newName] of [initial(picked_mobtype.name)] slaying"
+	return "[newName]·[initial(picked_mobtype.name)]杀手"
 
 /datum/fantasy_affix/summoning
-	name = "of <mobtype> summoning (dangerous, can pick all but megafauna tier stuff)"
+	name = "召唤<生物类型>（危险，除巨型生物级别外均可选中）"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 	weight = 5
@@ -125,10 +125,10 @@
 		max_mobs = max_mobs,\
 		spawn_delay = spawn_delay,\
 	)
-	return "[newName] of [initial(picked_mobtype.name)] summoning"
+	return "[newName]·召唤[initial(picked_mobtype.name)]"
 
 /datum/fantasy_affix/shrapnel
-	name = "shrapnel"
+	name = "破片"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 
@@ -161,10 +161,10 @@
 
 	var/obj/item/master = comp.parent
 	comp.appliedComponents += master.AddComponent(/datum/component/mirv, picked_projectiletype)
-	return "[newName] of [initial(picked_projectiletype.name)] shrapnel"
+	return "[newName]·[initial(picked_projectiletype.name)]破片"
 
 /datum/fantasy_affix/strength
-	name = "of strength (knockback)"
+	name = "力量（击退）"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 
@@ -172,7 +172,7 @@
 	. = ..()
 	var/obj/item/master = comp.parent
 	master.AddElement(/datum/element/knockback, CEILING(comp.quality/2, 1), FLOOR(comp.quality/10, 1))
-	return "[newName] of strength"
+	return "[newName]·力量"
 
 /datum/fantasy_affix/strength/remove(datum/component/fantasy/comp)
 	var/obj/item/master = comp.parent
@@ -181,7 +181,7 @@
 //////////// Bad suffixes
 
 /datum/fantasy_affix/fool
-	name = "of the fool (honking)"
+	name = "愚者（喇叭声）"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_EVIL
 
@@ -189,10 +189,10 @@
 	. = ..()
 	var/obj/item/master = comp.parent
 	comp.appliedComponents += master.AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg' = 1), 50, falloff_exponent = 20)
-	return "[newName] of the fool"
+	return "[newName]·愚者"
 
 /datum/fantasy_affix/curse_of_hunger
-	name = "curse of hunger"
+	name = "饥饿诅咒"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_EVIL
 	weight = 5
@@ -208,8 +208,8 @@
 	. = ..()
 	var/obj/item/master = comp.parent
 	var/filter_color = "#8a0c0ca1" //clarified args
-	var/new_name = pick(", eternally hungry", " of the glutton", " cursed with hunger", ", consumer of all", " of the feast")
-	master.AddElement(/datum/element/curse_announcement, "[master] is cursed with the curse of hunger!", filter_color, "", comp)
+	var/new_name = pick("·永恒饥饿", "·暴食者", "·饥饿之咒", "·万物吞噬者", "·盛宴")
+	master.AddElement(/datum/element/curse_announcement, "[master]受到了饥饿诅咒！", filter_color, "", comp)
 	comp.appliedComponents += master.AddComponent(/datum/component/curse_of_hunger)
 	return "[newName][new_name]"
 
@@ -218,7 +218,7 @@
 	master.RemoveElement(/datum/element/curse_announcement) //just in case
 
 /datum/fantasy_affix/curse_of_polymorph
-	name = "curse of polymorph"
+	name = "变形诅咒"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_EVIL
 
@@ -234,7 +234,7 @@
 	. = ..()
 	var/obj/item/master = comp.parent
 	var/filter_color = "#800080a1" //clarified args
-	var/new_name = pick(", transforming", " of the polymorph", " cursed with polymorphing", ", changer of all", " of changing")
+	var/new_name = pick("·蜕变", "·变形者", "·变形之咒", "·万物变换者", "·变幻")
 	var/static/list/possible_results = list(
 		WABBAJACK_MONKEY,
 		WABBAJACK_ROBOT,
@@ -243,7 +243,7 @@
 		WABBAJACK_HUMAN,
 		WABBAJACK_ANIMAL,
 	)
-	master.AddElement(/datum/element/curse_announcement, "[master] is cursed with the curse of polymorph!", filter_color, "", comp)
+	master.AddElement(/datum/element/curse_announcement, "[master]受到了变形诅咒！", filter_color, "", comp)
 	comp.appliedComponents += master.AddComponent(/datum/component/curse_of_polymorph, pick(possible_results))
 	return "[newName][new_name]"
 
@@ -252,7 +252,7 @@
 	master.RemoveElement(/datum/element/curse_announcement) //just in case
 
 /datum/fantasy_affix/speed
-	name = "of speed"
+	name = "迅捷"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 
@@ -265,14 +265,14 @@
 	. = ..()
 	var/obj/item/master = comp.parent
 	master.slowdown = min(-comp.quality / 5, master.slowdown)
-	return "[newName] of speed"
+	return "[newName]·迅捷"
 
 /datum/fantasy_affix/speed/remove(datum/component/fantasy/comp)
 	var/obj/item/master = comp.parent
 	master.slowdown = initial(master.slowdown)
 
 /datum/fantasy_affix/doot
-	name = "of dooting"
+	name = "号鸣"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 	weight = 1
@@ -280,21 +280,21 @@
 /datum/fantasy_affix/doot/apply(datum/component/fantasy/comp, newName)
 	. = ..()
 	comp.parent.AddElement(/datum/element/spooky, too_spooky = comp.quality > 17, stam_damage_mult = comp.quality * 0.15)
-	return "[newName] of [pick("dooting", "spooks", "rattling", "the bones")]"
+	return "[newName]·[pick("号鸣", "惊魂", "骨骼作响", "白骨")]"
 
 /datum/fantasy_affix/doot/remove(datum/component/fantasy/comp)
 	comp.parent.RemoveElement(/datum/element/spooky, too_spooky = comp.quality > 17, stam_damage_mult = comp.quality * 0.15)
 
 // On hitting a mob their click cd is slowed marginally
 /datum/fantasy_affix/windseeker
-	name = "of the Windseeker"
+	name = "逐风者"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 	weight = 3
 
 /datum/fantasy_affix/windseeker/apply(datum/component/fantasy/comp, newName)
 	comp.parent.AddElement(/datum/element/slow_target_click_cd_attack, get_cd_penalty(comp))
-	return "[newName] of the Windseeker"
+	return "[newName]·逐风者"
 
 /datum/fantasy_affix/windseeker/remove(datum/component/fantasy/comp)
 	comp.parent.RemoveElement(/datum/element/slow_target_click_cd_attack, get_cd_penalty(comp))

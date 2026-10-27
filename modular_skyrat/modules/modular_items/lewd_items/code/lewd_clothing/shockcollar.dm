@@ -1,6 +1,6 @@
 /obj/item/electropack/shockcollar
-	name = "shock collar"
-	desc = "A reinforced metal collar. It has some sort of wiring near the front."
+	name = "电击项圈"
+	desc = "一个加固金属项圈。正面附近装着某种线路。"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_neck.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 	icon_state = "shockcollar"
@@ -19,7 +19,7 @@
 	var/tagname = null
 
 /datum/design/electropack/shockcollar
-	name = "Shockcollar"
+	name = "电击项圈"
 	id = "shockcollar"
 	build_type = AUTOLATHE
 	build_path = /obj/item/electropack/shockcollar
@@ -34,7 +34,7 @@
 
 /obj/item/electropack/shockcollar/attack_hand(mob/user)
 	if(loc == user && user.get_item_by_slot(ITEM_SLOT_NECK))
-		to_chat(user, span_warning("The collar is fastened tight! You'll need help if you want to take it off!"))
+		to_chat(user, span_warning("项圈扣得很紧！想取下来你得找人帮忙！"))
 		return
 	return ..()
 
@@ -52,7 +52,7 @@
 		addtimer(VARSET_CALLBACK(src, shock_cooldown, FALSE), 10 SECONDS)
 		step(affected_mob, pick(GLOB.cardinals))
 
-		to_chat(affected_mob, span_danger("You feel a sharp shock from the collar!"))
+		to_chat(affected_mob, span_danger("你感到项圈传来一阵尖锐的电击！"))
 		do_sparks(3, TRUE, affected_mob)
 
 		affected_mob.Paralyze(30)
@@ -68,7 +68,7 @@
 
 /obj/item/electropack/shockcollar/attackby(obj/item/used_item, mob/user, params) // Moves it here because on_click is being bad
 	if(istype(used_item, /obj/item/pen))
-		var/tag_input = stripped_input(user, "Would you like to change the name on the tag?", "Name your new pet", tagname ? tagname : "Spot", MAX_NAME_LEN)
+		var/tag_input = stripped_input(user, "你想更改铭牌上的名字吗？", "给你的新宠物取个名字", tagname ? tagname : "点点", MAX_NAME_LEN)
 		if(tag_input)
 			tagname = tag_input
 			name = "[initial(name)] - [tag_input]"
@@ -85,12 +85,12 @@
 		if(ISMULTIPLE(frequency, 2)) // Signaller frequencies are always uneven!
 			frequency++
 	if(freq_in_name)
-		name = initial(name) + " - freq: [frequency/10] code: [code]"
+		name = initial(name) + " - 频率：[frequency/10] 代码：[code]"
 	. = ..()
 
 /obj/item/electropack/shockcollar/pacify
-	name = "pacifying collar"
-	desc = "A reinforced metal collar that latches onto the wearer and prevents harmful thoughts."
+	name = "安抚项圈"
+	desc = "一个加固金属项圈，会紧扣在佩戴者身上，阻止其产生有害的念头。"
 
 /obj/item/electropack/shockcollar/pacify/equipped(mob/living/carbon/human/user, slot)
 	. = ..()

@@ -1,7 +1,7 @@
 /datum/job/shaft_miner
 	title = JOB_SHAFT_MINER
-	description = "Travel to strange lands, mine ores, \
-		meet strange creatures, kill them for their gold."
+	description = "前往陌生的土地开采矿石，\
+		遇见奇怪的生物，为了它们的金子把它们杀掉。"
 	faction = FACTION_STATION
 	total_positions = 3
 	spawn_positions = 3
@@ -24,7 +24,7 @@
 		)
 
 	family_heirlooms = list(/obj/item/pickaxe/mini, /obj/item/shovel)
-	rpg_title = "Adventurer"
+	rpg_title = "冒险家"
 	job_flags = STATION_JOB_FLAGS
 
 

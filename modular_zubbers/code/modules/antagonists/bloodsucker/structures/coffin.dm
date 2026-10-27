@@ -4,10 +4,10 @@
 	// ALREADY CLAIMED
 	if(claimed.resident)
 		if(claimed.resident != owner.current)
-			claimed.balloon_alert(owner.current, "already claimed by another!")
+			claimed.balloon_alert(owner.current, "已被他人认领！")
 		return FALSE
 	if(!(GLOB.the_station_areas.Find(current_area.type)))
-		claimed.balloon_alert(owner.current, "not part of station!")
+		claimed.balloon_alert(owner.current, "不属于空间站！")
 		return
 	return TRUE
 
@@ -17,8 +17,8 @@
 	// This is my Haven
 	coffin = claimed
 	bloodsucker_haven_area = current_area
-	to_chat(owner, span_userdanger("You have claimed the [claimed] as your place of immortal rest! Your haven is now [bloodsucker_haven_area]."))
-	to_chat(owner, span_announce("Bloodsucker Tip: Find new haven recipes in the Structures tab of the <i>Crafting Menu</i>, including the <i>Persuasion Rack</i> for converting crew into Ghouls."))
+	to_chat(owner, span_userdanger("你已认领[claimed]作为不死者的安息之所！你的避难所现位于[chinese_area_display(bloodsucker_haven_area.name)]。"))
+	to_chat(owner, span_announce("吸血鬼提示：在<i>制作菜单</i>的结构标签页中可找到新的避难所配方，包括将船员转化为血仆的<i>劝化刑架</i>。"))
 	return TRUE
 
 /// From crate.dm
@@ -32,15 +32,15 @@
 /obj/structure/closet/crate/coffin/examine(mob/user)
 	. = ..()
 	if(user == resident)
-		. += span_cult("This is your Claimed Coffin.")
-		. += span_cult("Rest in it while injured to enter Torpor. Entering it with unspent Ranks will allow you to spend one.")
-		. += span_cult("Going inside while it contains a heart will put it in your chest, letting you regain your might.")
-		. += span_cult("Alt-Click while inside the Coffin to Lock/Unlock. This also fixes the lock if it's broken.")
-		. += span_cult("Alt-Click while outside of your Coffin to Unclaim it, unwrenching it and all your other structures as a result.")
+		. += span_cult("这是你认领的棺材。")
+		. += span_cult("受伤时在里面休息可进入蛰眠。带有未使用等级时进入，可消耗其中一个。")
+		. += span_cult("若棺材中有心脏，进入后会将其装入你的胸腔，让你重获力量。")
+		. += span_cult("在棺材内Alt点击可上锁或解锁，也能修复损坏的锁。")
+		. += span_cult("在棺材外Alt点击可放弃认领，同时解除棺材和你所有其他结构的固定。")
 
 /obj/structure/closet/crate/coffin/blackcoffin
-	name = "black coffin"
-	desc = "For those departed who are not so dear."
+	name = "黑色棺材"
+	desc = "献给那些不那么受人怀念的逝者。"
 	icon_state = "coffin"
 	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
 	open_sound = 'modular_zubbers/sound/machines/coffin_open.ogg'
@@ -62,8 +62,8 @@
 	acid = 60
 
 /obj/structure/closet/crate/coffin/securecoffin
-	name = "secure coffin"
-	desc = "For those too scared of having their place of rest disturbed."
+	name = "安全棺材"
+	desc = "为那些极其害怕安息之所被打扰的人准备。"
 	icon_state = "securecoffin"
 	base_icon_state = "securecoffin"
 	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
@@ -86,8 +86,8 @@
 	acid = 100
 
 /obj/structure/closet/crate/coffin/meatcoffin
-	name = "meat coffin"
-	desc = "When you're ready to meat your maker, the steaks can never be too high."
+	name = "血肉棺材"
+	desc = "当你准备肉身去见造物主时，再高的肉价也不算代价。"
 	icon_state = "meatcoffin"
 	base_icon_state = "meatcoffin"
 	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
@@ -114,8 +114,8 @@
 	acid = 60
 
 /obj/structure/closet/crate/coffin/metalcoffin
-	name = "metal coffin"
-	desc = "A big metal sardine can inside of another big metal sardine can, in space."
+	name = "金属棺材"
+	desc = "太空中，一个巨大的金属沙丁鱼罐头里装着另一个巨大的金属沙丁鱼罐头。"
 	icon_state = "metalcoffin"
 	base_icon_state = "metalcoffin"
 	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
@@ -196,9 +196,9 @@
 			bloodsucker_structure.unbolt()
 	if(!silent)
 		if(manual)
-			to_chat(resident, span_cult_italic("You have unclaimed your coffin! This also unclaims all your other Bloodsucker structures!"))
+			to_chat(resident, span_cult_italic("你放弃了对棺材的认领！其他所有吸血鬼结构也同时被放弃！"))
 		else
-			to_chat(resident, span_cult_italic("You sense that the link with your coffin and your sacred haven has been broken! You will need to seek another."))
+			to_chat(resident, span_cult_italic("你感到与棺材和神圣避难所的联系已断裂！你需要另觅居所。"))
 	// Remove resident. Because this object isnt removed from the game immediately (GC?) we need to give them a way to see they don't have a home anymore.
 	resident = null
 	if(interaction_flags_click & ALLOW_RESTING)
@@ -215,7 +215,7 @@
 		locked = FALSE
 		return TRUE
 	playsound(get_turf(src), 'modular_zubbers/sound/machines/coffin_locked.ogg', 20, 1)
-	to_chat(user, span_notice("[src] appears to be locked tight from the inside."))
+	to_chat(user, span_notice("[src]似乎从里面锁得严严实实。"))
 
 /obj/structure/closet/crate/coffin/close(mob/living/user)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
@@ -224,7 +224,7 @@
 			if(prompt_coffin_claim(bloodsuckerdatum))
 				enlarge(user)
 			else
-				user.balloon_alert(user, "already claimed by another!")
+				user.balloon_alert(user, "已被他人认领！")
 	. = ..()
 	if(!.)
 		return FALSE
@@ -245,15 +245,15 @@
 
 /obj/structure/closet/crate/coffin/proc/prompt_coffin_claim(datum/antagonist/bloodsucker/dracula)
 	var/area/current_area = get_area(src)
-	switch(tgui_alert(dracula.owner.current, "Do you wish to claim this as your coffin? [current_area] will be your haven.", "Claim Haven", list("Yes", "No")))
-		if("Yes")
+	switch(tgui_alert(dracula.owner.current, "要认领这口棺材吗？[chinese_area_display(current_area.name)]将成为你的避难所。", "认领避难所", list("是", "否")))
+		if("是")
 			return claim_coffin(dracula.owner.current, current_area)
 	return FALSE
 
 // some fatass bloodsucker is trying to fit in a too-small coffin, how about we make some room?
 /obj/structure/closet/crate/proc/enlarge(mob/living/user)
 	ADD_TRAIT(src, TRAIT_COFFIN_ENLARGED, "bloodsucker_coffin")
-	to_chat(user, span_warning("The coffin creaks and squeaks as you try to squeeze into it. It's a tight fit but you manage it make it fit you."))
+	to_chat(user, span_warning("你试着挤进棺材，棺材吱呀作响。虽然很挤，但你还是成功钻了进去。"))
 	playsound(src, 'modular_skyrat/modules/aesthetics/airlock/sound/creaking.ogg')
 	animate(src, 1 SECONDS, FALSE, BOUNCE_EASING, transform = transform.Scale(1.5))
 
@@ -269,7 +269,7 @@
 /// You cannot weld or deconstruct an owned coffin. Only the owner can destroy their own coffin.
 /obj/structure/closet/crate/coffin/wrench_act_secondary(mob/living/user, obj/item/tool)
 	if(resident && anchored)
-		to_chat(user, span_danger("The coffin won't come unanchored from the floor.[user == resident ? " You can Alt-Click to unclaim and unwrench your Coffin." : ""]"))
+		to_chat(user, span_danger("棺材无法从地板上拆下来。[user == resident ? "你可以Alt点击，放弃认领并解除棺材的固定。" : ""]"))
 		return TRUE
 	. = ..()
 
@@ -277,15 +277,15 @@
 	if(locked)
 		var/pry_time = pry_lid_timer * tool.toolspeed // Pry speed must be affected by the speed of the tool.
 		user.visible_message(
-			span_notice("[user] tries to pry the lid off of [src] with [tool]."),
-			span_notice("You begin prying the lid off of [src] with [tool]. This should take about [DisplayTimeText(pry_time)].")
+			span_notice("[user]试着用[tool]撬开[src]的盖子。"),
+			span_notice("你开始用[tool]撬开[src]的盖子，大约需要[DisplayTimeText(pry_time)]。")
 		)
 		if(!do_after(user, pry_time, src))
 			return TRUE
 		bust_open()
 		user.visible_message(
-			span_notice("[user] snaps the door of [src] wide open."),
-			span_notice("The door of [src] snaps open.")
+			span_notice("[user]猛地撬开了[src]的盖子。"),
+			span_notice("[src]的盖子猛地打开了。")
 		)
 		return TRUE
 	if(!resident)
@@ -294,7 +294,7 @@
 /obj/structure/closet/crate/coffin/welder_act(mob/living/user, obj/item/tool)
 	if(user != resident)
 		if(istype(tool, cutting_tool))
-			to_chat(user, span_notice("This is a much more complex mechanical structure than you thought. You don't know where to begin cutting [src]."))
+			to_chat(user, span_notice("这套机械结构比你想象中复杂得多。你不知道该从哪里开始切割[src]。"))
 			return TRUE
 	. = ..()
 
@@ -320,13 +320,13 @@
 		return CLICK_ACTION_SUCCESS
 
 	if(user == resident && user.Adjacent(src))
-		balloon_alert(user, "unclaim coffin?")
+		balloon_alert(user, "放弃认领棺材？")
 		var/static/list/unclaim_options = list(
-			"Yes" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_yes"),
-			"No" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_no"))
+			"是" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_yes"),
+			"否" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_no"))
 		var/unclaim_response = show_radial_menu(user, src, unclaim_options, radius = 36, require_near = TRUE)
 		switch(unclaim_response)
-			if("Yes")
+			if("是")
 				unclaim_coffin(TRUE)
 	return CLICK_ACTION_SUCCESS
 
@@ -335,16 +335,16 @@
 		if(!broken)
 			locked = inLocked
 			if(locked)
-				to_chat(user, span_notice("You flip a secret latch and lock yourself inside [src]."))
+				to_chat(user, span_notice("你拨动隐藏门闩，将自己锁在[src]里面。"))
 			else
-				to_chat(user, span_notice("You flip a secret latch and unlock [src]."))
+				to_chat(user, span_notice("你拨动隐藏门闩，解锁了[src]。"))
 			return TRUE
 		// Broken? Let's fix it.
-		to_chat(resident, span_notice("The secret latch that would lock [src] from the inside is broken. You set it back into place..."))
+		to_chat(resident, span_notice("用于从内部锁住[src]的隐藏门闩坏了。你试着将它装回原位……"))
 		if(!do_after(resident, 5 SECONDS, src))
-			to_chat(resident, span_notice("You fail to fix [src]'s mechanism."))
+			to_chat(resident, span_notice("你没能修好[src]的机关。"))
 			return FALSE
-		to_chat(resident, span_notice("You fix the mechanism and lock it."))
+		to_chat(resident, span_notice("你修好了机关，并将其锁上。"))
 		broken = FALSE
 		locked = TRUE
 		return TRUE

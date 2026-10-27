@@ -1,6 +1,6 @@
 /obj/item/clothing/strapon
-	name = "strapon"
-	desc = "Sometimes you need a special way to humiliate someone."
+	name = "穿戴式假阳具"
+	desc = "有时候你需要用特别的方式来羞辱某人。"
 	icon_state = "strapon_human"
 	base_icon_state = "strapon"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
@@ -104,8 +104,8 @@
 
 //button stuff
 /datum/action/item_action/take_strapon
-	name = "Put strapon in hand"
-	desc = "Put the strapon in your hand in order to use it properly."
+	name = "把假阳具握在手中"
+	desc = "把假阳具拿在手里，以便正常使用。"
 
 /datum/action/item_action/take_strapon/Trigger(trigger_flags)
 	if(!..())
@@ -119,7 +119,7 @@
 	if(src == user.belt)
 		toggle(user)
 	else
-		to_chat(user, span_warning("You need to put the strapon around your waist before you can use it!"))
+		to_chat(user, span_warning("你需要先把假阳具系在腰上才能使用！"))
 
 /obj/item/clothing/strapon/proc/toggle(mob/living/carbon/human/user)
 	conditional_pref_sound(user, 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg', 40, TRUE)
@@ -129,13 +129,13 @@
 	if(in_hands == TRUE)
 		if(istype(held, /obj/item/strapon_dildo))
 			qdel(held)
-			user.visible_message(span_notice("[user] puts the strapon back."))
+			user.visible_message(span_notice("[user] 把假阳具收了回去。"))
 			in_hands = FALSE
 			return
 
 		else if(istype(unheld, /obj/item/strapon_dildo))
 			qdel(unheld)
-			user.visible_message(span_notice("[user] puts the strapon back."))
+			user.visible_message(span_notice("[user] 把假阳具收了回去。"))
 			in_hands = FALSE
 			return
 
@@ -149,11 +149,11 @@
 					strapon_item.strapon_type = strapon_type
 					strapon_item.update_icon_state()
 					strapon_item.update_icon()
-					user.visible_message(span_notice("[user] holds the strapon in their hand menacingly."))
+					user.visible_message(span_notice("[user] 威胁性地把假阳具握在手中。"))
 					in_hands = TRUE
 					return
 		else
-			user.visible_message(span_notice("[user] tries to hold the strapon in their hand, but their hand isn't empty!"))
+			user.visible_message(span_notice("[user] 想把假阳具握在手中，但手上并不空！"))
 			return
 	else
 		strapon_item = new()
@@ -161,13 +161,13 @@
 		strapon_item.strapon_type = strapon_type
 		strapon_item.update_icon_state()
 		strapon_item.update_icon()
-		user.visible_message(span_notice("[user] holds the strapon in their hand menacingly."))
+		user.visible_message(span_notice("[user] 威胁性地把假阳具握在手中。"))
 		in_hands = TRUE
 		return
 
 /obj/item/strapon_dildo
-	name = "strapon"
-	desc = "An item with which to be menacing and merciless."
+	name = "穿戴式假阳具"
+	desc = "一件用来威慑与无情的道具。"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
 	icon_state = "dildo_human"
 	base_icon_state = "dildo"
@@ -201,12 +201,12 @@
 			if(BODY_ZONE_PRECISE_GROIN)
 				if(vagina)
 					if(hit_mob.is_bottomless() || vagina.visibility_preference == GENITAL_ALWAYS_SHOW)
-						message = pick("delicately rubs [hit_mob]'s vagina with [src]", "uses [src] to fuck [hit_mob]'s vagina", "jams [hit_mob]'s pussy with [src]", "teases [hit_mob]'s pussy with [src]")
+						message = pick("用 [src] 轻轻摩擦 [hit_mob] 的阴道", "用 [src] 操进 [hit_mob] 的阴道", "把 [src] 狠狠塞进 [hit_mob] 的小穴", "用 [src] 挑逗 [hit_mob] 的小穴")
 						hit_mob.adjust_arousal(6)
 						hit_mob.adjust_pleasure(8)
 						if(prob(40))
 							hit_mob.try_lewd_autoemote(pick("twitch_s", "moan"))
-						user.visible_message(span_purple("[user] [message]!"))
+						user.visible_message(span_purple("[user][message]！"))
 						conditional_pref_sound(loc, pick('modular_skyrat/modules/modular_items/lewd_items/sounds/bang1.ogg',
 											'modular_skyrat/modules/modular_items/lewd_items/sounds/bang2.ogg',
 											'modular_skyrat/modules/modular_items/lewd_items/sounds/bang3.ogg',
@@ -214,21 +214,21 @@
 											'modular_skyrat/modules/modular_items/lewd_items/sounds/bang5.ogg',
 											'modular_skyrat/modules/modular_items/lewd_items/sounds/bang6.ogg'), 60, TRUE)
 					else
-						to_chat(user, span_danger("[hit_mob]'s groin is covered!"))
+						to_chat(user, span_danger("[hit_mob] 的裆部被遮住了！"))
 						return
 				else
-					to_chat(user, span_danger("[hit_mob] doesn't have suitable genitalia for that!"))
+					to_chat(user, span_danger("[hit_mob] 没有适合这么做的性器官！"))
 					return
 
 			if(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_PRECISE_EYES) //Mouth only. Sorry, perverts. No eye/ear penetration for you today.
 				if(!hit_mob.is_mouth_covered())
-					message = pick("fucks [hit_mob]'s mouth with [src]", "chokes [hit_mob] by inserting [src] into [hit_mob.p_their()] throat", "forces [hit_mob] to suck [src]", "inserts [src] into [hit_mob]'s throat")
+					message = pick("用 [src] 操进 [hit_mob] 的嘴里", "把 [src] 捅进 [hit_mob] 的喉咙深处，让 [hit_mob] 喘不过气", "强迫 [hit_mob] 含住 [src]", "把 [src] 插进 [hit_mob] 的喉咙")
 					hit_mob.adjust_arousal(4)
 					hit_mob.adjust_pleasure(1)
 					hit_mob.adjust_oxy_loss(1.5)
 					if(prob(70))
 						hit_mob.try_lewd_autoemote(pick("gasp", "moan"))
-					user.visible_message(span_purple("[user] [message]!"))
+					user.visible_message(span_purple("[user][message]！"))
 					conditional_pref_sound(loc, pick('modular_skyrat/modules/modular_items/lewd_items/sounds/bang1.ogg',
 										'modular_skyrat/modules/modular_items/lewd_items/sounds/bang2.ogg',
 										'modular_skyrat/modules/modular_items/lewd_items/sounds/bang3.ogg',
@@ -237,17 +237,17 @@
 										'modular_skyrat/modules/modular_items/lewd_items/sounds/bang6.ogg'), 40, TRUE)
 
 				else
-					to_chat(user, span_danger("[hit_mob]'s mouth is covered!"))
+					to_chat(user, span_danger("[hit_mob] 的嘴被遮住了！"))
 					return
 
 			else
 				if(hit_mob.is_bottomless())
-					message = pick("fucks [hit_mob]'s ass with [src]", "uses [src] to fuck [hit_mob]'s anus", "jams [hit_mob]'s ass with [src]", "roughly fucks [hit_mob]'s ass with [src], causing their eyes to roll back")
+					message = pick("用 [src] 操进 [hit_mob] 的屁股", "用 [src] 操进 [hit_mob] 的肛门", "把 [src] 狠狠捅进 [hit_mob] 的屁股", "用 [src] 粗暴地操着 [hit_mob] 的屁股，让 [hit_mob] 爽得翻起了白眼")
 					hit_mob.adjust_arousal(5)
 					hit_mob.adjust_pleasure(5)
 					if(prob(60))
 						hit_mob.try_lewd_autoemote(pick("twitch_s", "moan", "shiver"))
-					user.visible_message(span_purple("[user] [message]!"))
+					user.visible_message(span_purple("[user][message]！"))
 					conditional_pref_sound(loc, pick('modular_skyrat/modules/modular_items/lewd_items/sounds/bang1.ogg',
 										'modular_skyrat/modules/modular_items/lewd_items/sounds/bang2.ogg',
 										'modular_skyrat/modules/modular_items/lewd_items/sounds/bang3.ogg',
@@ -256,8 +256,8 @@
 										'modular_skyrat/modules/modular_items/lewd_items/sounds/bang6.ogg'), 100, TRUE)
 
 				else
-					to_chat(user, span_danger("[hit_mob]'s anus is covered!"))
+					to_chat(user, span_danger("[hit_mob] 的肛门被遮住了！"))
 					return
 	else
-		to_chat(user, span_danger("[hit_mob] doesn't want you to do that."))
+		to_chat(user, span_danger("[hit_mob] 不想让你这么做。"))
 		return

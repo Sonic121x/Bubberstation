@@ -2,15 +2,15 @@
 ///Pretend to upgrade security's techfab but in reality apply only one better matter bin!
 ///Note that a stock part in a machine can either be an object, or a datum.
 /datum/experiment/scanning/points/machinery_tiered_scan
-	name = "Upgraded Machinery Scanning Experiment"
-	description = "Base experiment for scanning machinery with upgraded parts"
+	name = "升级机械扫描实验"
+	description = "用于扫描装有升级部件的机械的基础实验"
 	exp_tag = "Scan"
 	///What tier of parts is required for the experiment
 	var/required_tier = 1
 
 /datum/experiment/scanning/points/machinery_tiered_scan/check_progress()
 	. = ..()
-	.[1] = EXPERIMENT_PROG_INT("Scan samples of the following machines built with parts of tier [required_tier] or better.", points, required_points)[1]
+	.[1] = EXPERIMENT_PROG_INT("扫描以下使用 [required_tier] 级或更好部件建造的机械样本。", points, required_points)[1]
 
 /datum/experiment/scanning/points/machinery_tiered_scan/final_contributing_index_checks(datum/component/experiment_handler/experiment_handler, atom/target, typepath)
 	. = ..()
@@ -26,13 +26,13 @@
 	for(var/datum/stock_part/datum_stock_part in machine.component_parts)
 		if(datum_stock_part.tier >= required_tier)
 			return TRUE
-	experiment_handler.announce_message("Scanned machine is missing high enough quality parts. Expecting tier [required_tier] parts or better.")
+	experiment_handler.announce_message("被扫描的机械缺少足够高品质的部件。需要 [required_tier] 级或更好的部件。")
 	return FALSE
 
 //This experiment type will turn up TRUE if there is a specific part in the scanned machine
 /datum/experiment/scanning/points/machinery_pinpoint_scan
-	name = "Machinery Pinpoint Stock Parts Scanning Experiment"
-	description = "Base experiment for scanning machinery with specific parts"
+	name = "机械精确标准部件扫描实验"
+	description = "用于扫描装有特定部件的机械的基础实验"
 	exp_tag = "Scan"
 	///Which stock part are we looking for in the machine.
 	///We use obj instead of datum here, as some stock parts aren't datumised, and in datumised ones
@@ -41,7 +41,7 @@
 
 /datum/experiment/scanning/points/machinery_pinpoint_scan/check_progress()
 	. = ..()
-	.[1] = EXPERIMENT_PROG_INT("Scan samples of the following machines upgraded with \a [initial(required_stock_part.name)] to accumulate enough points to complete this experiment.", points, required_points)[1]
+	.[1] = EXPERIMENT_PROG_INT("扫描以下用 [initial(required_stock_part.name)] 升级过的机械样本，以积累足够点数完成本实验。", points, required_points)[1]
 
 /datum/experiment/scanning/points/machinery_pinpoint_scan/final_contributing_index_checks(datum/component/experiment_handler/experiment_handler, atom/target, typepath)
 	. = ..()
@@ -57,5 +57,5 @@
 	for(var/datum/stock_part/datum_stock_part in machine.component_parts)
 		if(istype(datum_stock_part.physical_object_reference, required_stock_part))
 			return TRUE
-	experiment_handler.announce_message("Scanned machine is missing an exact quality part. Expecting tier [required_stock_part.name] part.")
+	experiment_handler.announce_message("被扫描的机械缺少所需品质的部件。需要 [required_stock_part.name] 部件。")
 	return FALSE

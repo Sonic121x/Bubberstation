@@ -1,11 +1,11 @@
 /obj/item/organ/heart/gland
-	name = "fleshy mass"
-	desc = "A nausea-inducing hunk of twisting flesh and metal."
+	name = "肉块"
+	desc = "一团令人作呕的扭曲血肉与金属。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "gland"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_PROMINENT // weird?
 	/// Shows name of the gland as well as a description of what it does upon examination by abductor scientists and observers.
-	var/abductor_hint = "baseline placebo referencer"
+	var/abductor_hint = "基础安慰剂参照器"
 
 	/// The minimum time between activations
 	var/cooldown_low = 30 SECONDS
@@ -30,7 +30,7 @@
 /obj/item/organ/heart/gland/examine(mob/user)
 	. = ..()
 	if(HAS_MIND_TRAIT(user, TRAIT_ABDUCTOR_SCIENTIST_TRAINING) || isobserver(user))
-		. += span_notice("It is \a [abductor_hint]")
+		. += span_notice("它是[abductor_hint]。")
 
 /obj/item/organ/heart/gland/Stop()
 	return FALSE
@@ -60,11 +60,11 @@
 	if(!ownerCheck() || !mind_control_uses || active_mind_control)
 		return FALSE
 	mind_control_uses--
-	owner.balloon_alert(owner, "new compulsion")
-	to_chat(owner, span_userdanger("You suddenly feel an irresistible compulsion to follow an order..."))
+	owner.balloon_alert(owner, "新的强迫指令")
+	to_chat(owner, span_userdanger("你突然感到一股难以抗拒的冲动，想要服从一项命令……"))
 	to_chat(owner, span_mind_control("[command]"))
 	active_mind_control = TRUE
-	message_admins("[key_name(user)] sent an abductor mind control message to [key_name(owner)]: [command]")
+	message_admins("[key_name(user)] 向 [key_name(owner)] 发送了一条绑架者心灵控制讯息：[command]")
 	user.log_message("sent an abductor mind control message to [key_name(owner)]: [command]", LOG_GAME)
 	update_gland_hud()
 	var/atom/movable/screen/alert/mind_control/mind_alert = owner.throw_alert(ALERT_MIND_CONTROL, /atom/movable/screen/alert/mind_control)
@@ -75,8 +75,8 @@
 /obj/item/organ/heart/gland/proc/clear_mind_control()
 	if(!ownerCheck() || !active_mind_control)
 		return FALSE
-	owner.balloon_alert(owner, "compulsion forgotten")
-	to_chat(owner, span_userdanger("You feel the compulsion fade, and you <i>completely forget</i> about your previous orders."))
+	owner.balloon_alert(owner, "强迫指令已遗忘")
+	to_chat(owner, span_userdanger("你感到那股冲动逐渐消退，你<i>彻底忘记</i>了先前的命令。"))
 	owner.clear_alert(ALERT_MIND_CONTROL)
 	active_mind_control = FALSE
 	return TRUE

@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/mothcoat
-	name = "mothic flightsuit"
-	desc = "This peculiar utility harness is a common sight among the moth fleet's crews due to its ability to fasten the wings to the body without impacting mobility inside cramped ship interiors. It looks somewhat crude yet it's surprisingly comfortable."
+	name = "蛾族飞行服"
+	desc = "这种奇特的实用束带在蛾族舰队的船员中十分常见，它能把翅膀固定在身体上，同时不影响在狭窄舰舱内的活动。它看上去有些粗糙，却出奇地舒适。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/mothcoat"
 	post_init_icon_state = "mothcoat"
@@ -13,7 +13,7 @@
 	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/flashlight/lantern) //lamp
 
 /obj/item/clothing/suit/mothcoat/original
-	desc = "An old-school flightsuit from the moth fleet. A perfect token of mothic survivalistic and adaptable attitude, yet a bitter reminder that with the loss of their home planet and institution of the fleet, their beloved wings remain as a burden to bear, condemned to never fly again."
+	desc = "一件来自蛾族舰队的老式飞行服。它完美体现了蛾族求生与适应的精神，却也苦涩地提醒着人们：随着故乡行星的失去与舰队的建立，他们珍爱的翅膀成了必须背负的负担，注定再也无法飞翔。"
 	icon_state = "/obj/item/clothing/suit/mothcoat/original"
 	greyscale_colors = "#dfa409"
 
@@ -23,8 +23,8 @@
 	create_storage(storage_type = /datum/storage/pockets)
 
 /obj/item/clothing/suit/mothcoat/winter
-	name = "mothic mantella"
-	desc = "A thick garment that keeps warm and protects those precious wings from harsh weather, also commonly used during festivities. Feels much heavier than it looks."
+	name = "蛾族短披风"
+	desc = "一件厚实的衣物，既保暖，又能保护珍贵的翅膀免受恶劣天气侵袭，节日期间也常有人穿。手感比看上去重得多。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/mothcoat/winter"
 	post_init_icon_state = "mothcoat_winter"

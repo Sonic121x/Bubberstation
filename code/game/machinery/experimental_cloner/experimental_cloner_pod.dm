@@ -3,8 +3,8 @@ GLOBAL_VAR_INIT(experimental_cloner_fuckup_chance, 50)
 
 /// Machine which experimentally clones people you scanned with the experimental cloner scanner
 /obj/machinery/experimental_cloner
-	name = "experimental cloning pod"
-	desc = "An early prototype of the currently-outlawed cloning pods used by Nanotrasen executives. I wonder if it still works?"
+	name = "实验性克隆舱"
+	desc = "纳米传讯高管曾使用的克隆舱早期原型，如今已被禁止使用。不知道它是否还能运作？"
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "pod_0"
 	base_icon_state = "pod"
@@ -44,7 +44,7 @@ GLOBAL_VAR_INIT(experimental_cloner_fuckup_chance, 50)
 /obj/machinery/experimental_cloner/examine(mob/user)
 	. = ..()
 	if (running)
-		. += span_notice("You can see a shape forming in the murky liquid.")
+		. += span_notice("你可以看见浑浊的液体中有一个轮廓正在成形。")
 
 /obj/machinery/experimental_cloner/update_icon_state()
 	. = ..()
@@ -60,16 +60,16 @@ GLOBAL_VAR_INIT(experimental_cloner_fuckup_chance, 50)
 
 	if (!tool.tool_start_check(user, amount = 5))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You start slicing \the [src] apart."))
+	to_chat(user, span_notice("你开始切开[src]。"))
 	if(!tool.use_tool(src, user, 6 SECONDS, amount = 5, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 	deconstruct(disassembled = TRUE)
-	to_chat(user, span_notice("You slice \the [src] apart."))
+	to_chat(user, span_notice("你切开了[src]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/experimental_cloner/multitool_act(mob/living/user, obj/item/multitool/tool)
 	tool.set_buffer(src)
-	balloon_alert(user, "frequency stored")
+	balloon_alert(user, "频率已保存")
 	return ITEM_INTERACT_SUCCESS
 
 /// Start growing a guy
@@ -116,7 +116,7 @@ GLOBAL_VAR_INIT(experimental_cloner_fuckup_chance, 50)
 		checked_target = result,
 		ignore_category = POLL_IGNORE_EXPERIMENTAL_CLONER,
 		alert_pic = result,
-		role_name_text = "Clone of [loaded_record.name]",
+		role_name_text = "[loaded_record.name]的克隆体",
 		announce_chosen = TRUE,
 	)
 
@@ -131,7 +131,7 @@ GLOBAL_VAR_INIT(experimental_cloner_fuckup_chance, 50)
 
 	chosen_one.log_message("took control of experimental clone of [result].", LOG_GAME)
 	result.PossessByPlayer(chosen_one.ckey)
-	to_chat(result, span_boldnotice("You are [loaded_record.name]! You aren't quite sure where you are or how you got here, though."))
+	to_chat(result, span_boldnotice("你是[loaded_record.name]！不过，你不太清楚自己身在何处，也不知道是怎么来到这里的。"))
 	var/policy = get_policy(ROLE_EXPERIMENTAL_CLONER)
 	if (policy)
 		to_chat(result, span_notice(policy))
@@ -139,7 +139,7 @@ GLOBAL_VAR_INIT(experimental_cloner_fuckup_chance, 50)
 	UnregisterSignal(result, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_LIVING_DEATH))
 	result.forceMove(drop_location())
 	if (prob(evil_chance))
-		message_admins("[ADMIN_LOOKUPFLW(result)] has become an evil clone tasked to kill everyone else called '[result.real_name]'.")
+		message_admins("[ADMIN_LOOKUPFLW(result)]成为了邪恶克隆体，任务是杀死所有其他名为“[result.real_name]”的人。")
 		result.mind?.add_antag_datum(/datum/antagonist/evil_clone)
 
 	mistake?.post_emerged(result)

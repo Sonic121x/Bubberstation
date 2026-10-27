@@ -187,14 +187,14 @@
 			ui_selected_module_index = text2num(params["index"])
 			return TRUE
 		if("changename")
-			var/userinput = tgui_input_text(usr, "Choose a new exosuit name", "Rename exosuit", max_length = MAX_NAME_LEN, default = name)
+			var/userinput = tgui_input_text(usr, "选择新的机甲名称", "重命名机甲", max_length = MAX_NAME_LEN, default = name)
 			if(!userinput)
 				return
 			if(is_ic_filtered(userinput) || is_soft_ic_filtered(userinput))
-				tgui_alert(usr, "You cannot set a name that contains a word prohibited in IC chat!")
+				tgui_alert(usr, "名称不能包含在角色内聊天中被禁用的词语！")
 				return
 			if(userinput == format_text(name)) //default mecha names may have improper span artefacts in their name, so we format the name
-				to_chat(usr, span_notice("You rename [name] to... well, [userinput]."))
+				to_chat(usr, span_notice("你把 [name] 重命名为……嗯，[userinput]。"))
 				return
 			name = "\proper [userinput]"
 			chassis_camera?.update_c_tag(src)
@@ -204,10 +204,10 @@
 		if("dna_lock")
 			var/mob/living/carbon/user = usr
 			if(!istype(user) || !user.dna)
-				to_chat(user, "[icon2html(src, occupants)][span_notice("You can't create a DNA lock with no DNA!.")]")
+				to_chat(user, "[icon2html(src, occupants)][span_notice("没有 DNA 就无法创建 DNA 锁！")]")
 				return
 			dna_lock = user.dna.unique_enzymes
-			to_chat(user, "[icon2html(src, occupants)][span_notice("You feel a prick as the needle takes your DNA sample.")]")
+			to_chat(user, "[icon2html(src, occupants)][span_notice("针头采集你的 DNA 样本时，你感到一阵刺痛。")]")
 		if("reset_dna")
 			dna_lock = null
 		if("toggle_cabin_seal")
@@ -230,7 +230,7 @@
 			if(HAS_TRAIT(src, TRAIT_MECHA_DIAGNOSTIC_CREATED))
 				return FALSE
 			var/obj/item/mecha_diagnostic/diagnostic = new /obj/item/mecha_diagnostic(get_turf(src))
-			diagnostic.name = "mecha holodiagnostic ([src.name])"
+			diagnostic.name = "机甲全息诊断仪（[src.name]）"
 			diagnostic.mech_data += src
 			ADD_TRAIT(src, TRAIT_MECHA_DIAGNOSTIC_CREATED, REF(src))
 	return TRUE

@@ -1,7 +1,7 @@
 /**********************Mining Scanners**********************/
 /obj/item/mining_scanner
-	desc = "A scanner that checks surrounding rock for useful minerals; it can also be used to stop gibtonite detonations."
-	name = "manual mining scanner"
+	desc = "一种可检测周围岩石中有用矿物的扫描仪；也可用于阻止爆裂矿爆炸。"
+	name = "手动采矿扫描仪"
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "manual_mining"
 	inhand_icon_state = "analyzer"
@@ -34,8 +34,8 @@
 	qdel(src)
 
 /obj/item/t_scanner/adv_mining_scanner
-	desc = "A scanner that automatically checks surrounding rock for useful minerals; it can also be used to stop gibtonite detonations. This one has an extended range."
-	name = "advanced automatic mining scanner"
+	desc = "一种可自动检测周围岩石中有用矿物的扫描仪；也可用于阻止爆裂矿爆炸。该型号扫描范围更大。"
+	name = "高级自动采矿扫描仪"
 	icon_state = "advmining0"
 	inhand_icon_state = "analyzer"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -59,8 +59,8 @@
 	toggle_on()
 
 /obj/item/t_scanner/adv_mining_scanner/lesser
-	name = "automatic mining scanner"
-	desc = "A scanner that automatically checks surrounding rock for useful minerals; it can also be used to stop gibtonite detonations."
+	name = "自动采矿扫描仪"
+	desc = "一种可自动检测周围岩石中有用矿物的扫描仪；也可用于阻止爆裂矿爆炸。"
 	icon_state = "mining0"
 	range = 4
 	cooldown = 50
@@ -93,7 +93,7 @@
 	if(vents_nearby && scanner)
 		if(undiscovered)
 			playsound(scanner, 'sound/machines/radar-ping.ogg', radar_volume, FALSE)
-			scanner.balloon_alert_to_viewers("ore vent nearby")
+			scanner.balloon_alert_to_viewers("附近有矿脉喷口")
 		else
 			playsound(scanner, 'sound/machines/sonar-ping.ogg', radar_volume, FALSE)
 		scanner.spasm_animation(1.5 SECONDS)

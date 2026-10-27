@@ -2,11 +2,11 @@
 #define ALCOHOL_EXPONENT 1.6 //The exponent applied to boozepwr to make higher volume alcohol at least a little bit damaging to the liver
 
 /datum/reagent/consumable/ethanol
-	name = "Ethanol"
-	description = "A well-known alcohol with a variety of applications."
+	name = "乙醇"
+	description = "一种广为人知的酒精，用途广泛。"
 	color = "#404030" // rgb: 64, 64, 48
 	nutriment_factor = 0
-	taste_description = "alcohol"
+	taste_description = "酒精"
 	metabolization_rate = 0.3 * REAGENTS_METABOLISM // BUBBER EDIT CHANGE - Original: 0.5 * REAGENTS_METABOLISM
 	creation_purity = 1 // impure base reagents are a big no-no
 	ph = 7.33
@@ -44,7 +44,7 @@
 	if(LAZYLEN(data))
 		if(!isnull(data["quality"]))
 			quality = data["quality"]
-			name = "Natural " + name
+			name = "天然" + name
 		if(data["boozepwr"])
 			boozepwr = data["boozepwr"]
 	if(boozepwr > 0)
@@ -90,14 +90,14 @@
 	if(istype(exposed_obj, /obj/item/paper))
 		var/obj/item/paper/paperaffected = exposed_obj
 		paperaffected.clear_paper()
-		to_chat(usr, span_notice("[paperaffected]'s ink washes away."))
+		to_chat(usr, span_notice("[paperaffected] 上的墨迹被冲掉了。"))
 	if(istype(exposed_obj, /obj/item/book))
 		if(reac_volume >= 5)
 			var/obj/item/book/affectedbook = exposed_obj
 			affectedbook.book_data.set_content("")
-			exposed_obj.visible_message(span_notice("[exposed_obj]'s writing is washed away by [name]!"))
+			exposed_obj.visible_message(span_notice("[exposed_obj] 上的字迹被 [name] 冲掉了！"))
 		else
-			exposed_obj.visible_message(span_warning("[exposed_obj]'s ink is smeared by [name], but doesn't wash away!"))
+			exposed_obj.visible_message(span_warning("[exposed_obj] 上的墨迹被 [name] 抹花了，但没有被冲掉！"))
 	return ..()
 
 /datum/reagent/consumable/ethanol/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)//Splashing people with ethanol isn't quite as good as fuel.
@@ -110,12 +110,12 @@
 		exposed_mob.add_surgery_speed_mod("alcohol", round(1 - (boozepwr / 650), 0.05), min(reac_volume * 1 MINUTES, 5 MINUTES)) // Weak alcohol has less sterilizing power
 
 /datum/reagent/consumable/ethanol/beer
-	name = "Beer"
-	description = "An alcoholic beverage brewed since ancient times on Old Earth. Still popular today."
+	name = "啤酒"
+	description = "一种自旧地球远古时代便已酿造的酒精饮料。如今依然受欢迎。"
 	color = "#D7BC31" // rgb: 215, 188, 49
 	nutriment_factor = 1
 	boozepwr = 25
-	taste_description = "mild carbonated malt"
+	taste_description = "温和的碳酸麦芽味"
 	ph = 4
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -127,29 +127,29 @@
 	mytray.adjust_waterlevel(round(volume * 0.7))
 
 /datum/reagent/consumable/ethanol/beer/light
-	name = "Light Beer"
-	description = "An alcoholic beverage brewed since ancient times on Old Earth. This variety has reduced calorie and alcohol content."
+	name = "淡啤酒"
+	description = "一种自旧地球远古时代便已酿造的酒精饮料。这种品类降低了热量与酒精含量。"
 	boozepwr = 5 //Space Europeans hate it
-	taste_description = "dish water"
+	taste_description = "洗碗水"
 	ph = 5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/beer/maltliquor
-	name = "Malt Liquor"
-	description = "An alcoholic beverage brewed since ancient times on Old Earth. This variety is stronger than usual, super cheap, and super terrible."
+	name = "麦芽酒"
+	description = "一种自旧地球远古时代便已酿造的酒精饮料。这种品类比寻常的更烈、超便宜，也超难喝。"
 	boozepwr = 35
-	taste_description = "sweet corn beer and the hood life"
+	taste_description = "甜玉米啤酒和贫民区生活"
 	ph = 4.8
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/beer/green
-	name = "Green Beer"
-	description = "An alcoholic beverage brewed since ancient times on Old Earth. This variety is dyed a festive green."
+	name = "绿啤酒"
+	description = "一种自旧地球远古时代便已酿造的酒精饮料。这种品类被染成了节日绿。"
 	color = COLOR_CRAYON_GREEN
 	overdose_threshold = 55 //More than a glass
-	taste_description = "green piss water"
+	taste_description = "绿色的尿水"
 	ph = 6
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -178,8 +178,8 @@
 	affected_human.update_body(is_creating = TRUE)
 
 /datum/reagent/consumable/ethanol/kahlua
-	name = "Kahlua"
-	description = "A widely known, Mexican coffee-flavoured liqueur. In production since 1936!"
+	name = "卡鲁瓦"
+	description = "一种广为人知的墨西哥咖啡味利口酒。自 1936 年起生产！"
 	color = "#8e8368" // rgb: 142,131,104
 	boozepwr = 45
 	ph = 6
@@ -196,29 +196,29 @@
 		drinker.set_jitter_if_lower(10 SECONDS)
 
 /datum/reagent/consumable/ethanol/whiskey
-	name = "Whiskey"
-	description = "A superb and well-aged single-malt whiskey. Damn."
+	name = "威士忌"
+	description = "一瓶上乘的陈年单一麦芽威士忌。真不错。"
 	color = "#b4a287" // rgb: 180,162,135
 	boozepwr = 75
-	taste_description = "molasses"
+	taste_description = "糖蜜味"
 	ph = 4.5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/whiskey/kong
-	name = "Kong"
-	description = "Makes You Go Ape!&#174;"
+	name = "金刚"
+	description = "让你变得像猿一样！&#174;"
 	color = "#332100" // rgb: 51, 33, 0
-	taste_description = "the grip of a giant ape"
+	taste_description = "巨猿的握力"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/whiskey/candycorn
-	name = "Candy Corn Liquor"
-	description = "Like they drank in 2D speakeasies."
+	name = "玉米糖利口酒"
+	description = "就像 2D 地下酒吧里喝的那样。"
 	color = "#ccb800" // rgb: 204, 184, 0
-	taste_description = "pancake syrup"
+	taste_description = "煎饼糖浆"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -228,14 +228,14 @@
 		drinker.adjust_hallucinations(4 SECONDS * metabolization_ratio)
 
 /datum/reagent/consumable/ethanol/thirteenloko
-	name = "Thirteen Loko"
-	description = "A potent mixture of caffeine and alcohol."
+	name = "十三洛科"
+	description = "一种咖啡因与酒精的强效混合物。"
 	color = "#102000" // rgb: 16, 32, 0
 	nutriment_factor = 1
 	boozepwr = 80
 	quality = DRINK_GOOD
 	overdose_threshold = 60
-	taste_description = "jitters and death"
+	taste_description = "颤抖与死亡"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_STIMULATED)
@@ -250,7 +250,7 @@
 
 /datum/reagent/consumable/ethanol/thirteenloko/overdose_start(mob/living/drinker, metabolization_ratio)
 	. = ..()
-	to_chat(drinker, span_userdanger("Your entire body violently jitters as you start to feel queasy. You really shouldn't have drank all of that [name]!"))
+	to_chat(drinker, span_userdanger("你的全身剧烈颤抖，开始感到恶心。你真不该把那杯 [name] 全喝掉！"))
 	drinker.set_jitter_if_lower(40 SECONDS)
 	drinker.Stun(1.5 SECONDS)
 
@@ -260,11 +260,11 @@
 		var/obj/item/held_item = drinker.get_active_held_item()
 		if(held_item)
 			drinker.dropItemToGround(held_item)
-			to_chat(drinker, span_notice("Your hands jitter and you drop what you were holding!"))
+			to_chat(drinker, span_notice("你的手一抖，把拿着的东西掉了！"))
 			drinker.set_jitter_if_lower(20 SECONDS)
 
 	if(SPT_PROB(3.5, seconds_per_tick))
-		to_chat(drinker, span_notice("[pick("You have a really bad headache.", "Your eyes hurt.", "You find it hard to stay still.", "You feel your heart practically beating out of your chest.")]"))
+		to_chat(drinker, span_notice("[pick("你头痛得厉害。", "你的眼睛很疼。", "你觉得难以保持不动。", "你感觉心脏几乎要跳出胸腔。")]"))
 
 	if(SPT_PROB(2.5, seconds_per_tick) && iscarbon(drinker))
 		var/obj/item/organ/eyes/eyes = drinker.get_organ_slot(ORGAN_SLOT_EYES)
@@ -272,45 +272,45 @@
 			if(drinker.is_blind())
 				eyes.Remove(drinker)
 				eyes.forceMove(get_turf(drinker))
-				to_chat(drinker, span_userdanger("You double over in pain as you feel your eyeballs liquify in your head!"))
+				to_chat(drinker, span_userdanger("你痛苦地弯下腰，感觉眼球在脑袋里融化了！"))
 				drinker.emote("scream")
 				if(drinker.adjust_brute_loss(15 * metabolization_ratio, updating_health = FALSE, required_bodytype = affected_bodytype))
 					. = UPDATE_MOB_HEALTH
 			else
-				to_chat(drinker, span_userdanger("You scream in terror as you go blind!"))
+				to_chat(drinker, span_userdanger("你失明了，惊恐地尖叫起来！"))
 				if(eyes.apply_organ_damage(eyes.maxHealth))
 					. = UPDATE_MOB_HEALTH
 				drinker.emote("scream")
 
 	if(SPT_PROB(1.5, seconds_per_tick) && iscarbon(drinker))
-		drinker.visible_message(span_danger("[drinker] starts having a seizure!"), span_userdanger("You have a seizure!"))
+		drinker.visible_message(span_danger("[drinker] 开始抽搐！"), span_userdanger("你抽搐起来！"))
 		if(drinker.Unconscious(10 SECONDS))
 			. = UPDATE_MOB_HEALTH
 		drinker.set_jitter_if_lower(700 SECONDS)
 
 	if(SPT_PROB(0.5, seconds_per_tick) && iscarbon(drinker))
 		drinker.apply_status_effect(/datum/status_effect/heart_attack)
-		to_chat(drinker, span_userdanger("You're pretty sure you just felt your heart stop for a second there.."))
+		to_chat(drinker, span_userdanger("你很确定刚才有那么一瞬间，你的心跳停止了……"))
 		drinker.playsound_local(drinker, 'sound/effects/singlebeat.ogg', 100, 0)
 
 /datum/reagent/consumable/ethanol/vodka
-	name = "Vodka"
-	description = "Number one drink AND fueling choice for Russians worldwide."
+	name = "伏特加"
+	description = "全世界俄罗斯人首选的饮品兼燃料。"
 	color = "#0064C8" // rgb: 0, 100, 200
 	boozepwr = 65
-	taste_description = "grain alcohol"
+	taste_description = "谷物酒精"
 	ph = 8.1
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_CLEANS //Very high proof
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/vodka
 
 /datum/reagent/consumable/ethanol/bilk
-	name = "Bilk"
-	description = "This appears to be beer mixed with milk. Disgusting."
+	name = "奶啤"
+	description = "这似乎是啤酒和牛奶的混合物。真恶心。"
 	color = "#895C4C" // rgb: 137, 92, 76
 	nutriment_factor = 2
 	boozepwr = 15
-	taste_description = "desperation and lactate"
+	taste_description = "绝望与乳酸盐"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -321,12 +321,12 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/threemileisland
-	name = "Three Mile Island Iced Tea"
-	description = "Made for a woman, strong enough for a man."
+	name = "三哩岛冰茶"
+	description = "为女人而制，却强到男人也扛不住。"
 	color = "#666340" // rgb: 102, 99, 64
 	boozepwr = 10
 	quality = DRINK_FANTASTIC
-	taste_description = "dryness"
+	taste_description = "干涩"
 	ph = 3.5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -336,33 +336,33 @@
 	drinker.set_drugginess(100 SECONDS * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/consumable/ethanol/gin
-	name = "Gin"
-	description = "It's gin. In space. I say, good sir."
+	name = "金酒"
+	description = "这是金酒。在太空里。我说，先生。"
 	color = "#d8e8f0" // rgb: 216,232,240
 	boozepwr = 45
-	taste_description = "an alcoholic christmas tree"
+	taste_description = "一棵含酒精的圣诞树"
 	ph = 6.9
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/rum
-	name = "Rum"
-	description = "Yohoho and all that."
+	name = "朗姆酒"
+	description = "哟呵呵，还有那一套。"
 	color = "#c9c07e" // rgb: 201,192,126
 	boozepwr = 60
-	taste_description = "spiked butterscotch"
+	taste_description = "加了料的奶油糖"
 	ph = 6.5
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/rum
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/rum/aged
-	name = "Aged Rum"
-	description = "Sink me! That's some fancy rum to share with buckoos."
+	name = "陈年朗姆酒"
+	description = "把我沉海吧！这可是能和伙计们分享的上等朗姆酒。"
 	color = "#c0b675" // rgb: 192,183,117
 	boozepwr = 70
-	taste_description = "extra-spiked butterscotch"
+	taste_description = "加料更足的奶油糖"
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/rum/aged
 	quality = DRINK_FANTASTIC
 	metabolized_traits = list(TRAIT_STRONG_STOMACH)
@@ -379,32 +379,32 @@
 	return ..()
 
 /datum/reagent/consumable/ethanol/tequila
-	name = "Tequila"
-	description = "A strong and mildly flavoured, Mexican produced spirit. Feeling thirsty, hombre?"
+	name = "龙舌兰酒"
+	description = "一种墨西哥产的烈性蒸馏酒，味道柔和。渴了吗，伙计？"
 	color = "#FFFF91" // rgb: 255, 255, 145
 	boozepwr = 70
-	taste_description = "paint stripper"
+	taste_description = "油漆去除剂"
 	ph = 4
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/vermouth
-	name = "Vermouth"
-	description = "You suddenly feel a craving for a martini..."
+	name = "味美思"
+	description = "你突然很想喝一杯马提尼……"
 	color = "#91FF91" // rgb: 145, 255, 145
 	boozepwr = 45
-	taste_description = "dry alcohol"
+	taste_description = "干型酒精"
 	ph = 3.25
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/wine
-	name = "Wine"
-	description = "A premium alcoholic beverage made from distilled grape juice."
+	name = "葡萄酒"
+	description = "一种由蒸馏葡萄汁制成的优质酒精饮料。"
 	color = "#7E4043" // rgb: 126, 64, 67
 	boozepwr = 35
-	taste_description = "bitter sweetness"
+	taste_description = "苦涩的甜味"
 	ph = 3.45
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -414,66 +414,66 @@
 /datum/reagent/consumable/ethanol/wine/on_merge(list/mix_data, amount)
 	. = ..()
 	if(data && mix_data && data["vintage"] != mix_data["vintage"])
-		data["vintage"] = "mixed wine"
+		data["vintage"] = "混合葡萄酒"
 
 /datum/reagent/consumable/ethanol/wine/get_taste_description(mob/living/taster)
 	if(HAS_TRAIT(taster,TRAIT_WINE_TASTER))
 		if(data && data["vintage"])
 			return list("[data["vintage"]]" = 1)
 		else
-			return list("synthetic wine"=1)
+			return list("合成葡萄酒"=1)
 	return ..()
 
 /datum/reagent/consumable/ethanol/lizardwine
-	name = "Lizard Wine"
-	description = "An alcoholic beverage from Space China, made by infusing lizard tails in ethanol."
+	name = "蜥蜴葡萄酒"
+	description = "一种来自太空中国的酒精饮料，用乙醇浸泡蜥蜴尾巴制成。"
 	color = "#7E4043" // rgb: 126, 64, 67
 	boozepwr = 45
 	quality = DRINK_FANTASTIC
-	taste_description = "scaley sweetness"
+	taste_description = "带鳞片的甜味"
 	ph = 3
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/grappa
-	name = "Grappa"
-	description = "A fine Italian brandy, for when regular wine just isn't alcoholic enough for you."
+	name = "格拉帕"
+	description = "一种上好的意大利白兰地，适合觉得普通葡萄酒不够烈的时候。"
 	color = "#F8EBF1"
 	boozepwr = 60
-	taste_description = "classy bitter sweetness"
+	taste_description = "优雅的苦涩甜味"
 	ph = 3.5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/amaretto
-	name = "Amaretto"
-	description = "A gentle drink that carries a sweet aroma."
+	name = "杏仁利口酒"
+	description = "一种带有甜美香气的温和饮品。"
 	color = "#E17600"
 	boozepwr = 25
-	taste_description = "fruity and nutty sweetness"
+	taste_description = "果香与坚果的甜味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/cognac
-	name = "Cognac"
-	description = "A sweet and strongly alcoholic drink, made after numerous distillations and years of maturing. Classy as fornication."
+	name = "干邑"
+	description = "一种甜美而烈性的饮品，经过多次蒸馏与多年陈酿制成。优雅得要命。"
 	color = "#AB3C05" // rgb: 171, 60, 5
 	boozepwr = 75
-	taste_description = "smooth and french"
+	taste_description = "顺滑而有法国味"
 	ph = 3.5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/absinthe
-	name = "Absinthe"
-	description = "A powerful alcoholic drink. Rumored to cause hallucinations but does not."
+	name = "苦艾酒"
+	description = "一种烈性酒精饮料。传闻会致幻，但实际上不会。"
 	color = rgb(10, 206, 0)
 	boozepwr = 80 //Very strong even by default
-	taste_description = "death and licorice"
+	taste_description = "死亡与甘草"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -483,33 +483,33 @@
 		drinker.adjust_hallucinations(8 SECONDS * metabolization_ratio)
 
 /datum/reagent/consumable/ethanol/hooch
-	name = "Hooch"
-	description = "Either someone's failure at cocktail making or attempt in alcohol production. In any case, do you really want to drink that?"
+	name = "私酿烈酒"
+	description = "要么是某人调鸡尾酒失败，要么是尝试酿酒。无论如何，你真的想喝那个吗？"
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 100
-	taste_description = "pure resignation"
+	taste_description = "纯粹的认命"
 	addiction_types = list(/datum/addiction/maintenance_drugs = 600)
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/ale
-	name = "Ale"
-	description = "A dark alcoholic beverage made with malted barley and yeast."
+	name = "艾尔啤酒"
+	description = "一种用发芽大麦和酵母酿造的深色酒精饮料。"
 	color = "#976063" // rgb: 151,96,99
 	boozepwr = 65
-	taste_description = "hearty barley ale"
+	taste_description = "醇厚的麦芽艾尔"
 	ph = 4.5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/goldschlager
-	name = "Goldschlager"
-	description = "100 proof cinnamon schnapps, made for alcoholic teen girls on spring break."
+	name = "金箔肉桂酒"
+	description = "100 度的肉桂烈酒，专为春假期间的未成年醉酒女孩而制。"
 	color = "#FFFF91" // rgb: 255, 255, 145
 	boozepwr = 25
 	quality = DRINK_NICE
-	taste_description = "burning cinnamon"
+	taste_description = "燃烧的肉桂"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -540,33 +540,33 @@
 	mob_reagents.add_reagent(/datum/reagent/gold, convert_amount)
 
 /datum/reagent/consumable/ethanol/patron
-	name = "Patron"
-	description = "Tequila with silver in it, a favorite of alcoholic women in the club scene."
+	name = "培恩龙舌兰"
+	description = "里面泡着银的龙舌兰酒，夜店酒客里酗酒女性的最爱。"
 	color = "#585840" // rgb: 88, 88, 64
 	boozepwr = 60
 	quality = DRINK_VERYGOOD
-	taste_description = "metallic and expensive"
+	taste_description = "金属味与昂贵感"
 	ph = 4.5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_HIGH
 
 /datum/reagent/consumable/ethanol/gintonic
-	name = "Gin and Tonic"
-	description = "An all time classic, mild cocktail."
+	name = "金汤力"
+	description = "永不过时的经典温和鸡尾酒。"
 	color = "#cae7ec" // rgb: 202,231,236
 	boozepwr = 20
 	quality = DRINK_NICE
-	taste_description = "mild and tart"
+	taste_description = "温和而酸涩"
 	ph = 3
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_EASY
 
 /datum/reagent/consumable/ethanol/rum_coke
-	name = "Rum and Coke"
-	description = "Rum, mixed with cola."
-	taste_description = "cola"
+	name = "朗姆可乐"
+	description = "朗姆酒，混合可乐。"
+	taste_description = "可乐"
 	boozepwr = 30
 	quality = DRINK_NICE
 	color = "#3E1B00"
@@ -575,12 +575,12 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/cuba_libre
-	name = "Cuba Libre"
-	description = "Viva la Revolucion! Viva Cuba Libre!"
+	name = "自由古巴"
+	description = "革命万岁！自由古巴万岁！"
 	color = "#3E1B00" // rgb: 62, 27, 0
 	boozepwr = 50
 	quality = DRINK_GOOD
-	taste_description = "a refreshing marriage of citrus and rum"
+	taste_description = "柑橘与朗姆的清爽结合"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -596,54 +596,54 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/whiskey_cola
-	name = "Whiskey Cola"
-	description = "Whiskey, mixed with cola. Surprisingly refreshing."
+	name = "威士忌可乐"
+	description = "威士忌，混合可乐。出乎意料地清爽。"
 	color = "#3E1B00" // rgb: 62, 27, 0
 	boozepwr = 40
 	quality = DRINK_NICE
-	taste_description = "cola"
+	taste_description = "可乐"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/martini
-	name = "Classic Martini"
-	description = "Vermouth with Gin. Not quite how 007 enjoyed it, but still delicious."
+	name = "经典马提尼"
+	description = "味美思配金酒。不完全是 007 喜欢的那种，但依然美味。"
 	color = "#cddbac" // rgb: 205,219,172
 	boozepwr = 60
 	quality = DRINK_NICE
-	taste_description = "dry class"
+	taste_description = "干练的格调"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_EASY
 
 /datum/reagent/consumable/ethanol/vodkamartini
-	name = "Vodka Martini"
-	description = "Vodka with Gin. Not quite how 007 enjoyed it, but still delicious."
+	name = "伏特加马提尼"
+	description = "伏特加配金酒。不完全是 007 喜欢的那种，但依然美味。"
 	color = "#cddcad" // rgb: 205,220,173
 	boozepwr = 65
 	quality = DRINK_NICE
-	taste_description = "shaken, not stirred"
+	taste_description = "摇匀，不要搅拌"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 
 /datum/reagent/consumable/ethanol/white_russian
-	name = "White Russian"
-	description = "That's just, like, your opinion, man..."
+	name = "白俄罗斯"
+	description = "那只是，呃，你的看法而已，老兄……"
 	color = "#A68340" // rgb: 166, 131, 64
 	boozepwr = 50
 	quality = DRINK_GOOD
-	taste_description = "bitter cream"
+	taste_description = "苦涩的奶油"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/screwdrivercocktail
-	name = "Screwdriver"
-	description = "Vodka, mixed with plain ol' orange juice. The result is surprisingly delicious."
+	name = "螺丝刀"
+	description = "伏特加，混合最普通的橙汁。结果出奇地美味。"
 	color = "#A68310" // rgb: 166, 131, 16
 	boozepwr = 40
 	quality = DRINK_NICE
-	taste_description = "oranges"
+	taste_description = "橙子"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -691,22 +691,22 @@
 	REMOVE_TRAIT(drinker, TRAIT_HALT_RADIATION_EFFECTS, "[type]")
 
 /datum/reagent/consumable/ethanol/booger
-	name = "Booger"
-	description = "Ewww..."
+	name = "鼻屎酒"
+	description = "呕……"
 	color = "#8CFF8C" // rgb: 140, 255, 140
 	boozepwr = 45
 	quality = DRINK_GOOD
-	taste_description = "sweet 'n creamy"
+	taste_description = "甜美顺滑"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/bloody_mary
-	name = "Bloody Mary"
-	description = "A strange yet pleasurable mixture made of vodka, tomato and lime juice. Or at least you THINK the red stuff is tomato juice."
+	name = "血腥玛丽"
+	description = "一种由伏特加、番茄和青柠汁调成的奇怪却令人愉悦的混合物。或者至少你以为那红色的东西是番茄汁。"
 	color = "#bf707c" // rgb: 191,112,124
 	boozepwr = 55
 	quality = DRINK_GOOD
-	taste_description = "tomatoes with a hint of lime and liquid murder"
+	taste_description = "番茄，带一丝青柠和液态谋杀味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -715,12 +715,12 @@
 	drinker.adjust_blood_volume((0.25 + round(2 * drinker.get_drunk_amount() / 40, 0.1)) * metabolization_ratio * seconds_per_tick, maximum = BLOOD_VOLUME_NORMAL) // Bloody Mary restores blood loss based on how drunk you are
 
 /datum/reagent/consumable/ethanol/brave_bull
-	name = "Brave Bull"
-	description = "It's just as effective as Dutch-Courage!"
+	name = "勇猛公牛"
+	description = "它和荷兰勇气一样有效！"
 	color = "#a79f98" // rgb: 167,159,152
 	boozepwr = 60
 	quality = DRINK_NICE
-	taste_description = "alcoholic bravery"
+	taste_description = "酒精带来的勇气"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_EASY
@@ -729,24 +729,24 @@
 
 /datum/reagent/consumable/ethanol/brave_bull/on_mob_metabolize(mob/living/drinker)
 	. = ..()
-	tough_text = pick("brawny", "tenacious", "tough", "hardy", "sturdy") //Tuff stuff
-	to_chat(drinker, span_notice("You feel [tough_text]!"))
+	tough_text = pick("强壮", "坚韧", "强硬", "耐劳", "结实") //Tuff stuff
+	to_chat(drinker, span_notice("你觉得自己很[tough_text]！"))
 	drinker.maxHealth += 10 //Brave Bull makes you sturdier, and thus capable of withstanding a tiny bit more punishment.
 	drinker.health += 10
 
 /datum/reagent/consumable/ethanol/brave_bull/on_mob_end_metabolize(mob/living/drinker)
 	. = ..()
-	to_chat(drinker, span_notice("You no longer feel [tough_text]."))
+	to_chat(drinker, span_notice("你不再觉得自己[tough_text]了。"))
 	drinker.maxHealth -= 10
 	drinker.health = min(drinker.health - 10, drinker.maxHealth) //This can indeed crit you if you're alive solely based on alchol ingestion
 
 /datum/reagent/consumable/ethanol/tequila_sunrise
-	name = "Tequila Sunrise"
-	description = "Tequila, Grenadine, and Orange Juice."
+	name = "龙舌兰日出"
+	description = "龙舌兰、红石榴糖浆和橙汁。"
 	color = "#FFE48C" // rgb: 255, 228, 140
 	boozepwr = 45
 	quality = DRINK_GOOD
-	taste_description = "oranges with a hint of pomegranate"
+	taste_description = "橙子带一丝石榴味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
@@ -754,7 +754,7 @@
 
 /datum/reagent/consumable/ethanol/tequila_sunrise/on_mob_metabolize(mob/living/drinker)
 	. = ..()
-	to_chat(drinker, span_notice("You feel gentle warmth spread through your body!"))
+	to_chat(drinker, span_notice("你感到温和的暖意流遍全身！"))
 	light_holder = new(drinker)
 	light_holder.set_light(3, 0.7, COLOR_TANGERINE_YELLOW) //Tequila Sunrise makes you radiate dim light, like a sunrise!
 
@@ -767,16 +767,16 @@
 
 /datum/reagent/consumable/ethanol/tequila_sunrise/on_mob_end_metabolize(mob/living/drinker)
 	. = ..()
-	to_chat(drinker, span_notice("The warmth in your body fades."))
+	to_chat(drinker, span_notice("你体内的暖意消散了。"))
 	QDEL_NULL(light_holder)
 
 /datum/reagent/consumable/ethanol/toxins_special
-	name = "Toxins Special"
-	description = "This thing is ON FIRE! CALL THE DAMN SHUTTLE!"
+	name = "毒素特调"
+	description = "这东西着火了！快叫那该死的穿梭机！"
 	color = "#8880a8" // rgb: 136,128,168
 	boozepwr = 25
 	quality = DRINK_VERYGOOD
-	taste_description = "spicy toxins"
+	taste_description = "辛辣的毒素"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -785,13 +785,13 @@
 	drinker.adjust_bodytemperature(15 * metabolization_ratio * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick, 0, drinker.get_body_temp_normal() + 20) //310.15 is the normal bodytemp.
 
 /datum/reagent/consumable/ethanol/beepsky_smash
-	name = "Beepsky Smash"
-	description = "Drink this and prepare for the LAW."
+	name = "毕普斯基重击"
+	description = "喝了这杯，准备迎接法律吧。"
 	color = COLOR_OLIVE // rgb: 128,128,0
 	boozepwr = 60 //THE FIST OF THE LAW IS STRONG AND HARD
 	quality = DRINK_GOOD
 	metabolization_rate = 1.25 * REAGENTS_METABOLISM
-	taste_description = "JUSTICE"
+	taste_description = "正义"
 	overdose_threshold = 40
 	ph = 2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -834,22 +834,22 @@
 		drinker.gain_trauma(/datum/brain_trauma/mild/phobia/security, TRAUMA_RESILIENCE_BASIC)
 
 /datum/reagent/consumable/ethanol/irish_cream
-	name = "Irish Cream"
-	description = "Whiskey-imbued cream, what else would you expect from the Irish?"
+	name = "爱尔兰奶油"
+	description = "浸过威士忌的奶油，你还指望爱尔兰人能做出什么？"
 	color = "#e3d0b2" // rgb: 227,208,178
 	boozepwr = 35
 	quality = DRINK_NICE
-	taste_description = "creamy alcohol"
+	taste_description = "奶油味酒精"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/manly_dorf
-	name = "The Manly Dorf"
-	description = "Beer and Ale, brought together in a delicious mix. Intended for true men only."
+	name = "男子汉矮人"
+	description = "啤酒与艾尔的美妙混合。仅供真正的男人享用。"
 	color = "#815336" // rgb: 129,83,54
 	boozepwr = 100 //For the manly only
 	quality = DRINK_NICE
-	taste_description = "hair on your chest and your chin"
+	taste_description = "胸口和下巴上的毛发"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	var/dorf_mode = FALSE
@@ -859,7 +859,7 @@
 	if(ishuman(drinker))
 		var/mob/living/carbon/human/potential_dwarf = drinker
 		if(HAS_TRAIT(potential_dwarf, TRAIT_DWARF))
-			to_chat(potential_dwarf, span_notice("Now THAT is MANLY!"))
+			to_chat(potential_dwarf, span_notice("这才叫有男人味！"))
 			boozepwr = 50 // will still smash but not as much.
 			dorf_mode = TRUE
 
@@ -873,31 +873,31 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/longislandicedtea
-	name = "Long Island Iced Tea"
-	description = "The liquor cabinet, brought together in a delicious mix. Intended for middle-aged alcoholic women only."
+	name = "长岛冰茶"
+	description = "把酒柜里的酒全混在一起的美味混合。仅供中年酗酒女性享用。"
 	color = "#ff6633" // rgb: 255,102,51
 	boozepwr = 50
 	quality = DRINK_VERYGOOD
-	taste_description = "a mixture of cola and alcohol"
+	taste_description = "可乐与酒精的混合物"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/moonshine
-	name = "Moonshine"
-	description = "You've really hit rock bottom now... your liver packed its bags and left last night."
+	name = "月光酒"
+	description = "你现在真是彻底完蛋了……你的肝脏昨晚收拾行李走了。"
 	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha) (like water)
 	boozepwr = 95
-	taste_description = "bitterness"
+	taste_description = "苦涩"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/b52
 	name = "B-52"
-	description = "Coffee, Irish Cream, and cognac. You will get bombed."
+	description = "咖啡、爱尔兰奶油和干邑。你会被炸翻的。"
 	color = "#8f1733" // rgb: 143,23,51
 	boozepwr = 85
 	quality = DRINK_GOOD
-	taste_description = "angry and irish"
+	taste_description = "愤怒的爱尔兰味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_EASY
@@ -907,55 +907,55 @@
 	playsound(drinker, 'sound/effects/explosion/explosion_distant.ogg', 100, FALSE)
 
 /datum/reagent/consumable/ethanol/irishcoffee
-	name = "Irish Coffee"
-	description = "Coffee, and alcohol. More fun than a Mimosa to drink in the morning."
+	name = "爱尔兰咖啡"
+	description = "咖啡和酒精。早上喝比含羞草鸡尾酒更有趣。"
 	color = "#874010" // rgb: 135,64,16
 	boozepwr = 30
 	quality = DRINK_NICE
-	taste_description = "giving up on the day"
+	taste_description = "对这一天彻底放弃"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_STIMULATED)
 
 /datum/reagent/consumable/ethanol/margarita
-	name = "Margarita"
-	description = "On the rocks with salt on the rim. Arriba~!"
+	name = "玛格丽特"
+	description = "加冰，杯沿沾盐。阿里巴~！"
 	color = "#8CFF8C" // rgb: 140, 255, 140
 	boozepwr = 35
 	quality = DRINK_NICE
-	taste_description = "dry and salty"
+	taste_description = "干涩而咸"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/ethanol/black_russian
-	name = "Black Russian"
-	description = "For the lactose-intolerant. Still as classy as a White Russian."
+	name = "黑俄罗斯"
+	description = "为乳糖不耐受者准备。依然像白俄罗斯一样有格调。"
 	color = "#360000" // rgb: 54, 0, 0
 	boozepwr = 60
 	quality = DRINK_NICE
-	taste_description = "bitterness"
+	taste_description = "苦涩"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/manhattan
-	name = "Manhattan"
-	description = "The Detective's undercover drink of choice. He never could stomach gin..."
+	name = "曼哈顿"
+	description = "侦探最爱的伪装饮品。他一直受不了金酒……"
 	color = "#ff3300" // rgb: 255,51,0
 	boozepwr = 50
 	quality = DRINK_NICE
-	taste_description = "mild dryness"
+	taste_description = "淡淡的干涩"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_EASY
 
 /datum/reagent/consumable/ethanol/manhattan_proj
-	name = "Manhattan Project"
-	description = "A scientist's drink of choice, for pondering ways to blow up the station."
+	name = "曼哈顿计划"
+	description = "科学家的最爱，用来思考如何炸掉空间站。"
 	color = COLOR_MOSTLY_PURE_RED
 	boozepwr = 60
 	quality = DRINK_VERYGOOD
-	taste_description = "death, the destroyer of worlds"
+	taste_description = "死亡，世界的毁灭者"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -964,22 +964,22 @@
 	drinker.set_drugginess(1 MINUTES * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/consumable/ethanol/whiskeysoda
-	name = "Whiskey Soda"
-	description = "For the more refined griffon."
+	name = "威士忌苏打"
+	description = "为更有品位的狮鹫准备。"
 	color = "#ffcc33" // rgb: 255,204,51
 	boozepwr = 40
 	quality = DRINK_NICE
-	taste_description = "soda"
+	taste_description = "苏打"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/antifreeze
-	name = "Anti-freeze"
-	description = "The ultimate refreshment. Not what it sounds like."
+	name = "防冻液"
+	description = "终极提神饮品。不是听起来的那样。"
 	color = "#30f0f8" // rgb: 48,240,248
 	boozepwr = 35
 	quality = DRINK_NICE
-	taste_description = "Jack Frost's piss"
+	taste_description = "冰霜杰克的尿"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -988,12 +988,12 @@
 	drinker.adjust_bodytemperature(20 * metabolization_ratio * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick, 0, drinker.get_body_temp_normal() + 20) //310.15 is the normal bodytemp.
 
 /datum/reagent/consumable/ethanol/barefoot
-	name = "Barefoot"
-	description = "Barefoot and pregnant."
+	name = "赤脚"
+	description = "赤脚又怀孕。"
 	color = "#fc5acc" // rgb: 252,90,204
 	boozepwr = 30
 	quality = DRINK_VERYGOOD
-	taste_description = "creamy berries"
+	taste_description = "奶油浆果"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1006,22 +1006,22 @@
 				return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/snowwhite
-	name = "Snow White"
-	description = "A cold refreshment."
+	name = "白雪"
+	description = "一份冰凉提神的饮品。"
 	color = COLOR_WHITE // rgb: 255, 255, 255
 	boozepwr = 20
 	quality = DRINK_NICE
-	taste_description = "refreshing cold"
+	taste_description = "清爽的冰凉"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/demonsblood
-	name = "Demon's Blood"
-	description = "AHHHH!!!!"
+	name = "恶魔之血"
+	description = "啊啊啊啊！！！！"
 	color = "#820000" // rgb: 130, 0, 0
 	boozepwr = 75
 	quality = DRINK_VERYGOOD
-	taste_description = "sweet tasting iron"
+	taste_description = "甜美的铁锈味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_STIMULATED)
@@ -1046,20 +1046,20 @@
 
 	var/turf/jaunt_turf = get_turf(jaunter)
 	jaunt_turf.visible_message(
-		span_warning("Something prevents [source] from entering [blood]!"),
-		blind_message = span_notice("You hear a splash and a thud.")
+		span_warning("有什么东西阻止了 [source] 进入 [blood]！"),
+		blind_message = span_notice("你听到溅水声和一声闷响。")
 	)
-	to_chat(jaunter, span_warning("A strange force is blocking [source] from entering!"))
+	to_chat(jaunter, span_warning("一股奇怪的力量正阻止 [source] 进入！"))
 
 	return COMPONENT_STOP_CONSUMPTION
 
 /datum/reagent/consumable/ethanol/devilskiss
-	name = "Devil's Kiss"
-	description = "Creepy time!"
+	name = "恶魔之吻"
+	description = "诡异时刻！"
 	color = "#A68310" // rgb: 166, 131, 16
 	boozepwr = 70
 	quality = DRINK_VERYGOOD
-	taste_description = "bitter iron"
+	taste_description = "苦涩的铁味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1082,59 +1082,59 @@
 
 	. = COMPONENT_STOP_CONSUMPTION
 
-	to_chat(jaunter, span_boldwarning("AAH! THEIR FLESH! IT BURNS!"))
+	to_chat(jaunter, span_boldwarning("啊啊！他们的血肉！在灼烧！"))
 	jaunter.apply_damage(25, BRUTE, wound_bonus = CANT_WOUND)
 
 	for(var/obj/effect/decal/cleanable/nearby_blood in range(1, get_turf(source)))
 		if(!nearby_blood.can_bloodcrawl_in())
 			continue
 		source.forceMove(get_turf(nearby_blood))
-		source.visible_message(span_warning("[nearby_blood] violently expels [source]!"))
+		source.visible_message(span_warning("[nearby_blood] 猛地将 [source] 排出！"))
 		crawl.exit_blood_effect(source)
 		return
 
 	// Fuck it, just eject them, thanks to some split second cleaning
 	source.forceMove(get_turf(source))
-	source.visible_message(span_warning("[source] appears from nowhere, covered in blood!"))
+	source.visible_message(span_warning("[source] 凭空出现，浑身是血！"))
 	crawl.exit_blood_effect(source)
 
 /datum/reagent/consumable/ethanol/vodkatonic
-	name = "Vodka and Tonic"
-	description = "For when a gin and tonic isn't Russian enough."
+	name = "伏特加汤力"
+	description = "适合觉得金汤力不够俄罗斯的时候。"
 	color = "#0064C8" // rgb: 0, 100, 200
 	boozepwr = 40
 	quality = DRINK_NICE
-	taste_description = "tart bitterness"
+	taste_description = "酸涩的苦味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/ginfizz
-	name = "Gin Fizz"
-	description = "Refreshingly lemony, deliciously dry."
+	name = "金菲士"
+	description = "清爽的柠檬味，美味的干涩感。"
 	color = "#ffffcc" // rgb: 255,255,204
 	boozepwr = 25
 	quality = DRINK_GOOD
-	taste_description = "dry, tart lemons"
+	taste_description = "干涩酸爽的柠檬"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/bahama_mama
-	name = "Bahama Mama"
-	description = "A tropical cocktail with a complex blend of flavors."
+	name = "巴哈马妈妈"
+	description = "一款风味层次复杂的热带鸡尾酒。"
 	color = "#FF7F3B" // rgb: 255, 127, 59
 	boozepwr = 35
 	quality = DRINK_GOOD
-	taste_description = "pineapple, coconut, and a hint of coffee"
+	taste_description = "菠萝、椰子，还有一丝咖啡"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/singulo
-	name = "Singulo"
-	description = "A blue-space beverage!"
+	name = "奇点"
+	description = "一款蓝空间饮品！"
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 35
 	quality = DRINK_VERYGOOD
-	taste_description = "concentrated matter"
+	taste_description = "浓缩的物质"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_MADNESS_IMMUNE)
@@ -1163,12 +1163,12 @@
 		drinker.emote("burp")
 
 /datum/reagent/consumable/ethanol/sbiten
-	name = "Sbiten"
-	description = "A spicy Vodka! Might be a little hot for the little guys!"
+	name = "斯比滕"
+	description = "一种辛辣的伏特加！对小家伙们来说可能有点烫！"
 	color = "#d8d5ae" // rgb: 216,213,174
 	boozepwr = 70
 	quality = DRINK_GOOD
-	taste_description = "hot and spice"
+	taste_description = "辛辣滚烫"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1177,32 +1177,32 @@
 	drinker.adjust_bodytemperature(50 * metabolization_ratio * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick, 0, BODYTEMP_HEAT_DAMAGE_LIMIT) //310.15 is the normal bodytemp.
 
 /datum/reagent/consumable/ethanol/red_mead
-	name = "Red Mead"
-	description = "The true Viking drink! Even though it has a strange red color."
+	name = "红色蜂蜜酒"
+	description = "真正的维京饮品！尽管它有着奇怪的红色。"
 	color = "#C73C00" // rgb: 199, 60, 0
 	boozepwr = 31 //Red drinks are stronger
 	quality = DRINK_GOOD
-	taste_description = "sweet and salty alcohol"
+	taste_description = "又甜又咸的酒精"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/mead
-	name = "Mead"
-	description = "A Viking drink, though a cheap one."
+	name = "蜂蜜酒"
+	description = "一种维京饮品，不过是廉价的那种。"
 	color = "#e0c058" // rgb: 224,192,88
 	nutriment_factor = 1
 	boozepwr = 30
 	quality = DRINK_NICE
-	taste_description = "sweet, sweet alcohol"
+	taste_description = "甜甜的酒精"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/iced_beer
-	name = "Iced Beer"
-	description = "A beer which is so cold the air around it freezes."
+	name = "冰镇啤酒"
+	description = "一种冷到周围空气都冻结的啤酒。"
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 15
-	taste_description = "refreshingly cold"
+	taste_description = "清爽冰凉"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1211,74 +1211,74 @@
 	drinker.adjust_bodytemperature(-20 * metabolization_ratio * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick, T0C) //310.15 is the normal bodytemp.
 
 /datum/reagent/consumable/ethanol/grog
-	name = "Grog"
-	description = "Watered-down rum, Nanotrasen approves!"
+	name = "格罗格酒"
+	description = "兑了水的朗姆酒，纳米传讯认可！"
 	color = "#e0e058" // rgb: 224,224,88
 	boozepwr = 1 //Basically nothing
-	taste_description = "a poor excuse for alcohol"
+	taste_description = "配不上酒精的借口"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/aloe
-	name = "Aloe"
-	description = "So very, very, very good."
+	name = "芦荟酒"
+	description = "非常、非常、非常好喝。"
 	color = "#f8f800" // rgb: 248,248,0
 	boozepwr = 30
 	quality = DRINK_VERYGOOD
-	taste_description = "sweet 'n creamy"
+	taste_description = "甜美顺滑"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	//somewhat annoying mix
 	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/ethanol/andalusia
-	name = "Andalusia"
-	description = "A nice, strangely named drink."
+	name = "安达卢西亚"
+	description = "一杯名字奇怪的好酒。"
 	color = "#c8f860" // rgb: 200,248,96
 	boozepwr = 45
 	quality = DRINK_GOOD
-	taste_description = "lemons"
+	taste_description = "柠檬"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/alliescocktail
-	name = "Allies Cocktail"
-	description = "A drink made from your allies. Not as sweet as those made from your enemies."
+	name = "盟友鸡尾酒"
+	description = "用你的盟友调成的酒。不如用敌人调成的那么甜。"
 	color = "#60f8f8" // rgb: 96,248,248
 	boozepwr = 50
 	quality = DRINK_NICE
-	taste_description = "bitter yet free"
+	taste_description = "苦涩却自由"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_EASY
 
 /datum/reagent/consumable/ethanol/acid_spit
-	name = "Acid Spit"
-	description = "A drink for the daring, can be deadly if incorrectly prepared!"
+	name = "酸液喷吐"
+	description = "为胆大者准备的饮品，调配不当可能致命！"
 	color = "#365000" // rgb: 54, 80, 0
 	boozepwr = 70
 	quality = DRINK_VERYGOOD
-	taste_description = "stomach acid"
+	taste_description = "胃酸"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/amasec
-	name = "Amasec"
-	description = "Official drink of the Nanotrasen Gun-Club!"
+	name = "阿玛赛克"
+	description = "纳米传讯枪械俱乐部的官方饮品！"
 	color = "#e0e058" // rgb: 224,224,88
 	boozepwr = 45
 	quality = DRINK_GOOD
-	taste_description = "dark and metallic"
+	taste_description = "深沉而带金属味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/changelingsting
-	name = "Changeling Sting"
-	description = "You take a tiny sip and feel a burning sensation..."
+	name = "变形怪之刺"
+	description = "你抿了一小口，感到一阵灼烧感……"
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 50
 	quality = DRINK_GOOD
-	taste_description = "your brain coming out your nose"
+	taste_description = "你的大脑从鼻子里流出来"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1288,22 +1288,22 @@
 	changeling?.adjust_chemicals(metabolization_rate * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/consumable/ethanol/irishcarbomb
-	name = "Irish Car Bomb"
-	description = "Mmm, tastes like the free Irish state."
+	name = "爱尔兰汽车炸弹"
+	description = "嗯，尝起来像自由爱尔兰国。"
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 25
 	quality = DRINK_GOOD
-	taste_description = "the spirit of Ireland"
+	taste_description = "爱尔兰的精神"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/syndicatebomb
-	name = "Syndicate Bomb"
-	description = "Tastes like terrorism!"
+	name = "辛迪加炸弹"
+	description = "尝起来像恐怖主义！"
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 90
 	quality = DRINK_GOOD
-	taste_description = "purified antagonism"
+	taste_description = "提纯的敌对情绪"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1313,44 +1313,44 @@
 		playsound(get_turf(drinker), 'sound/effects/explosion/explosionfar.ogg', 100, TRUE)
 
 /datum/reagent/consumable/ethanol/hiveminderaser
-	name = "Hivemind Eraser"
-	description = "A vessel of pure flavor."
+	name = "蜂巢心智清除者"
+	description = "一容器纯粹的滋味。"
 	color = "#FF80FC" // rgb: 255, 128, 252
 	boozepwr = 40
 	quality = DRINK_GOOD
-	taste_description = "psychic links"
+	taste_description = "心灵链接"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/erikasurprise
-	name = "Erika Surprise"
-	description = "The surprise is, it's green!"
+	name = "艾丽卡的惊喜"
+	description = "惊喜就是——它是绿色的！"
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 35
 	quality = DRINK_VERYGOOD
-	taste_description = "tartness and bananas"
+	taste_description = "酸味与香蕉"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/driestmartini
-	name = "Driest Martini"
-	description = "Only for the experienced. You think you see sand floating in the glass."
+	name = "最干马提尼"
+	description = "仅供老手。你觉得自己看到玻璃里飘着沙子。"
 	nutriment_factor = 1
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 65
 	quality = DRINK_GOOD
-	taste_description = "a beach"
+	taste_description = "一片海滩"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/bananahonk
-	name = "Banana Honk"
-	description = "A drink from Clown Heaven."
+	name = "香蕉喇叭"
+	description = "来自小丑天堂的饮品。"
 	nutriment_factor = 1
 	color = "#FFFF91" // rgb: 255, 255, 140
 	boozepwr = 60
 	quality = DRINK_GOOD
-	taste_description = "a bad joke"
+	taste_description = "一个糟糕的笑话"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1363,13 +1363,13 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/silencer
-	name = "Silencer"
-	description = "A drink from Mime Heaven."
+	name = "消音器"
+	description = "来自默剧天堂的饮品。"
 	nutriment_factor = 2
 	color = "#a8a8a8" // rgb: 168,168,168
 	boozepwr = 59 //Proof that clowns are better than mimes right here
 	quality = DRINK_GOOD
-	taste_description = "a pencil eraser"
+	taste_description = "一块橡皮擦"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1382,42 +1382,42 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/drunkenblumpkin
-	name = "Drunken Blumpkin"
-	description = "A weird mix of whiskey and blumpkin juice."
+	name = "醉南瓜"
+	description = "威士忌和南瓜汁的奇怪混合物。"
 	color = "#1EA0FF" // rgb: 30,160,255
 	boozepwr = 30
 	quality = DRINK_VERYGOOD
-	taste_description = "molasses and a mouthful of pool water"
+	taste_description = "糖蜜和满嘴的泳池水"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/whiskey_sour //Requested since we had whiskey cola and soda but not sour.
-	name = "Whiskey Sour"
-	description = "Lemon juice/whiskey/sugar mixture. Moderate alcohol content."
+	name = "威士忌酸酒"
+	description = "柠檬汁/威士忌/糖的混合物。中等酒精含量。"
 	color = rgb(255, 201, 49)
 	boozepwr = 35
 	quality = DRINK_GOOD
-	taste_description = "sour lemons"
+	taste_description = "酸柠檬"
 
 /datum/reagent/consumable/ethanol/hcider
-	name = "Hard Cider"
-	description = "Apple juice, for adults."
+	name = "烈性苹果酒"
+	description = "苹果汁，成人版。"
 	color = "#CD6839"
 	nutriment_factor = 1
 	boozepwr = 25
-	taste_description = "the season that <i>falls</i> between summer and winter"
+	taste_description = "那个<i>落</i>在夏冬之间的季节"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/fetching_fizz //A reference to one of my favorite games of all time. Pulls nearby ores to the imbiber!
-	name = "Fetching Fizz"
-	description = "Whiskey sour/iron/uranium mixture resulting in a highly magnetic slurry. Mild alcohol content." //Requires no alcohol to make but has alcohol anyway because ~magic~
+	name = "磁吸气泡饮"
+	description = "威士忌酸酒/铁/铀的混合物，形成一种高度磁性的悬浮液。中等酒精含量。" //Requires no alcohol to make but has alcohol anyway because ~magic~
 	color = rgb(255, 91, 15)
 	boozepwr = 10
 	quality = DRINK_VERYGOOD
 	metabolization_rate = 0.1 * REAGENTS_METABOLISM
-	taste_description = "charged metal" // the same as teslium, honk honk.
+	taste_description = "带电的金属" // the same as teslium, honk honk.
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1429,13 +1429,13 @@
 
 //Another reference. Heals those in critical condition extremely quickly.
 /datum/reagent/consumable/ethanol/hearty_punch
-	name = "Hearty Punch"
-	description = "Brave bull/syndicate bomb/absinthe mixture resulting in an energizing beverage. Mild alcohol content."
+	name = "暖心潘趣"
+	description = "勇猛公牛/辛迪加炸弹/苦艾酒的混合物，形成一种提神饮品。中等酒精含量。"
 	color = rgb(140, 0, 0)
 	boozepwr = 90
 	quality = DRINK_VERYGOOD
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
-	taste_description = "bravado in the face of disaster"
+	taste_description = "灾难面前的豪勇"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1451,21 +1451,21 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/bacchus_blessing //An EXTREMELY powerful drink. Smashed in seconds, dead in minutes.
-	name = "Bacchus' Blessing"
-	description = "Unidentifiable mixture. Unmeasurably high alcohol content."
+	name = "巴克斯的赐福"
+	description = "无法辨识的混合物。高得无法测量的酒精含量。"
 	color = rgb(51, 19, 3) //Sickly brown
 	boozepwr = 300 //I warned you
-	taste_description = "a wall of bricks"
+	taste_description = "一堵砖墙"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/atomicbomb
-	name = "Atomic Bomb"
-	description = "Nuclear proliferation never tasted so good."
+	name = "原子弹"
+	description = "核扩散从未如此美味。"
 	color = "#666300" // rgb: 102, 99, 0
 	boozepwr = 0 //custom drunk effect
 	quality = DRINK_FANTASTIC
-	taste_description = "da bomb"
+	taste_description = "真是炸弹"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_HIGH
@@ -1486,12 +1486,12 @@
 				return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/gargle_blaster
-	name = "Pan-Galactic Gargle Blaster"
-	description = "Whoah, this stuff looks volatile!"
+	name = "泛银河漱口爆弹"
+	description = "哇，这东西看起来很不稳定！"
 	color = "#9cc8b4" // rgb: 156,200,180
 	boozepwr = 0 //custom drunk effect
 	quality = DRINK_GOOD
-	taste_description = "your brains smashed out by a lemon wrapped around a gold brick"
+	taste_description = "你的脑子被包在金砖上的柠檬砸得粉碎"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1511,12 +1511,12 @@
 				return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/neurotoxin
-	name = "Neurotoxin"
-	description = "A strong neurotoxin that puts the patient into a death-like state."
+	name = "神经毒素"
+	description = "一种强效神经毒素，会让患者进入类死亡状态。"
 	color = "#2E2E61" // rgb: 46, 46, 97
 	boozepwr = 50
 	quality = DRINK_VERYGOOD
-	taste_description = "a numbing sensation"
+	taste_description = "麻木的感觉"
 	metabolization_rate = REAGENTS_METABOLISM
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -1533,7 +1533,7 @@
 	if(SPT_PROB(10, seconds_per_tick))
 		need_mob_update += drinker.adjust_stamina_loss(5 * metabolization_ratio, updating_stamina = FALSE, required_biotype = affected_biotype)
 		drinker.drop_all_held_items()
-		to_chat(drinker, span_notice("You cant feel your hands!"))
+		to_chat(drinker, span_notice("你的手没知觉了！"))
 	if(current_cycle > 6)
 		if(SPT_PROB(10, seconds_per_tick))
 			var/paralyzed_limb = pick_paralyzed_limb()
@@ -1545,7 +1545,7 @@
 				if(!drinker.undergoing_cardiac_arrest() && drinker.can_heartattack())
 					drinker.set_heartattack(TRUE)
 					if(!IS_UNCONSCIOUS_OR_CRIT(drinker))
-						drinker.visible_message(span_userdanger("[drinker] clutches at [drinker.p_their()] chest as if [drinker.p_their()] heart stopped!"))
+						drinker.visible_message(span_userdanger("[drinker] 捂住胸口，仿佛心脏停止了跳动！"))
 	if(need_mob_update)
 		return UPDATE_MOB_HEALTH
 
@@ -1558,14 +1558,14 @@
 	drinker.adjust_stamina_loss(10, required_biotype = affected_biotype)
 
 /datum/reagent/consumable/ethanol/hippies_delight
-	name = "Hippie's Delight"
-	description = "You just don't get it maaaan."
+	name = "嬉皮士的愉悦"
+	description = "你就是不明白，伙计……"
 	color = "#b16e8b" // rgb: 177,110,139
 	nutriment_factor = 0
 	boozepwr = 0 //custom drunk effect
 	quality = DRINK_FANTASTIC
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
-	taste_description = "giving peace a chance"
+	taste_description = "给和平一个机会"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1602,34 +1602,34 @@
 					return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/eggnog
-	name = "Eggnog"
-	description = "For enjoying the most wonderful time of the year."
+	name = "蛋奶酒"
+	description = "用来享受一年中最美好的时光。"
 	color = "#ffe2ad" // rgb: 255, 226, 173
 	nutriment_factor = 2
 	boozepwr = 1
 	quality = DRINK_VERYGOOD
-	taste_description = "custard and alcohol"
+	taste_description = "蛋奶糊与酒精"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/dreadnog
-	name = "Dreadnog"
-	description = "For suffering during a period of joy."
+	name = "恐怖蛋奶酒"
+	description = "用来在欢乐时期受苦。"
 	color = "#f7ffad" // rgb: 247, 255, 173
 	nutriment_factor = 3 * REAGENTS_METABOLISM
 	boozepwr = 1
 	quality = DRINK_REVOLTING
-	taste_description = "custard and alcohol"
+	taste_description = "蛋奶糊与酒精"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/narsour
-	name = "Nar'Sour"
-	description = "Side effects include self-mutilation and hoarding plasteel."
+	name = "纳尔酸酒"
+	description = "副作用包括自残和囤积塑钢。"
 	color = RUNE_COLOR_DARKRED
 	boozepwr = 10
 	quality = DRINK_FANTASTIC
-	taste_description = "bloody"
+	taste_description = "血腥"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1639,48 +1639,48 @@
 	drinker.adjust_stutter_up_to(6 SECONDS * metabolization_ratio * seconds_per_tick, 6 SECONDS)
 
 /datum/reagent/consumable/ethanol/triple_sec
-	name = "Triple Sec"
-	description = "A sweet and vibrant orange liqueur."
+	name = "三重橙酒"
+	description = "一种甜美而鲜亮的橙味利口酒。"
 	color = COLOR_ICECREAM_PEACH
 	boozepwr = 30
-	taste_description = "a warm flowery orange taste which recalls the ocean air and summer wind of the caribbean"
+	taste_description = "温暖的花香橙味，令人想起加勒比海的海风与夏日微风"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/creme_de_menthe
-	name = "Creme de Menthe"
-	description = "A minty liqueur excellent for refreshing, cool drinks."
+	name = "薄荷利口酒"
+	description = "一种薄荷味利口酒，非常适合调制清爽冷饮。"
 	color = "#467446" //rgb: 70, 116, 70
 	boozepwr = 20
-	taste_description = "a minty, cool, and invigorating splash of cold streamwater"
+	taste_description = "薄荷般清凉提神的冷冽溪水"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/creme_de_cacao
-	name = "Creme de Cacao"
-	description = "A chocolatey liqueur excellent for adding dessert notes to beverages and bribing sororities."
+	name = "可可利口酒"
+	description = "一种巧克力味利口酒，非常适合为饮品增添甜点风味，也适合用来贿赂女生会。"
 	color = "#350900" // rgb: 53, 9, 0
 	boozepwr = 20
-	taste_description = "a slick and aromatic hint of chocolates swirling in a bite of alcohol"
+	taste_description = "一丝顺滑芳香的巧克力在酒精中盘旋"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/creme_de_coconut
-	name = "Creme de Coconut"
-	description = "A coconut liqueur for smooth, creamy, tropical drinks."
+	name = "椰子利口酒"
+	description = "一种椰子利口酒，适合调制顺滑、浓郁的热带饮品。"
 	color = "#F7F0D0"
 	boozepwr = 20
-	taste_description = "a sweet milky flavor with notes of toasted sugar"
+	taste_description = "甜美奶香，带有烘烤糖的余韵"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/quadruple_sec
-	name = "Quadruple Sec"
-	description = "Kicks just as hard as licking the power cell on a baton, but tastier."
+	name = "四重橙酒"
+	description = "喝下它的冲击力不亚于舔电棍的电池，但更好喝。"
 	color = "#cc0000"
 	boozepwr = 35
 	quality = DRINK_GOOD
-	taste_description = "an invigorating bitter freshness which suffuses your being; no enemy of the station will go unrobusted this day"
+	taste_description = "令人振奋的苦涩清新充盈全身；今日，空间站的敌人一个也别想逃过制裁"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1694,12 +1694,12 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/quintuple_sec
-	name = "Quintuple Sec"
-	description = "Law, Order, Alcohol, and Police Brutality distilled into one single elixir of JUSTICE."
+	name = "五重橙酒"
+	description = "法律、秩序、酒精与警察暴力，蒸馏成一瓶纯粹的正义灵药。"
 	color = "#ff3300"
 	boozepwr = 55
 	quality = DRINK_FANTASTIC
-	taste_description = "THE LAW"
+	taste_description = "法律"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1715,32 +1715,32 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/grasshopper
-	name = "Grasshopper"
-	description = "A fresh and sweet dessert shooter. Difficult to look manly while drinking this."
+	name = "蚱蜢"
+	description = "一杯清爽甜美的餐后短饮。喝这个很难显得有男子气概。"
 	color = "#00ff00"
 	boozepwr = 15
 	quality = DRINK_GOOD
-	taste_description = "chocolate and mint dancing around your mouth"
+	taste_description = "巧克力和薄荷在嘴里跳舞"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/stinger
-	name = "Stinger"
-	description = "A snappy way to end the day."
+	name = "螫刺"
+	description = "结束一天的爽快方式。"
 	color = "#ccff99"
 	boozepwr = 55
 	quality = DRINK_NICE
-	taste_description = "a slap on the face in the best possible way"
+	taste_description = "以最美好的方式给你一记耳光"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/bastion_bourbon
-	name = "Bastion Bourbon"
-	description = "Soothing hot herbal brew with restorative properties. Hints of citrus and berry flavors."
+	name = "堡垒波旁威士忌"
+	description = "舒缓的热草药酒，具有恢复功效。带有一丝柑橘和浆果风味。"
 	color = COLOR_CYAN
 	boozepwr = 30
 	quality = DRINK_FANTASTIC
-	taste_description = "hot herbal brew with a hint of fruit"
+	taste_description = "带果香的热草药酒"
 	metabolization_rate = 2 * REAGENTS_METABOLISM //0.4u per second
 	ph = 4
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1762,9 +1762,9 @@
 	need_mob_update += drinker.adjust_stamina_loss(max(-heal_amt * 5, -20), updating_stamina = FALSE, required_biotype = affected_biotype)
 	if(need_mob_update)
 		drinker.updatehealth()
-	drinker.visible_message(span_warning("[drinker] shivers with renewed vigor!"), span_notice("One taste of [LOWER_TEXT(name)] fills you with energy!"))
+	drinker.visible_message(span_warning("[drinker] 浑身一颤，重新充满了活力！"), span_notice("只尝一口[LOWER_TEXT(name)]，你就充满了能量！"))
 	if(!IS_UNCONSCIOUS_OR_CRIT(drinker) && heal_points == 20) //brought us out of softcrit
-		drinker.visible_message(span_danger("[drinker] lurches to [drinker.p_their()] feet!"), span_boldnotice("Up and at 'em, kid."))
+		drinker.visible_message(span_danger("[drinker] 摇摇晃晃地站了起来！"), span_boldnotice("起来干活了，小子。"))
 
 /datum/reagent/consumable/ethanol/bastion_bourbon/on_mob_life(mob/living/drinker, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -1779,11 +1779,11 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/squirt_cider
-	name = "Squirt Cider"
-	description = "Fermented squirt extract with a nose of stale bread and ocean water. Whatever a squirt is."
+	name = "斯奎特苹果酒"
+	description = "发酵的斯奎特提取物，闻起来有陈面包和海水的味道。不管斯奎特到底是什么。"
 	color = COLOR_RED
 	boozepwr = 40
-	taste_description = "stale bread with a staler aftertaste"
+	taste_description = "陈面包，余味更陈"
 	nutriment_factor = 2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -1793,22 +1793,22 @@
 	drinker.satiety += 5 * metabolization_ratio * seconds_per_tick //for context, vitamins give 15 satiety per second
 
 /datum/reagent/consumable/ethanol/fringe_weaver
-	name = "Fringe Weaver"
-	description = "Bubbly, classy, and undoubtedly strong - a Glitch City classic."
+	name = "边缘编织者"
+	description = "气泡感、有格调，而且毫无疑问地烈——故障城的经典之作。"
 	color = "#FFEAC4"
 	boozepwr = 90 //classy hooch, essentially, but lower pwr to make up for slightly easier access
 	quality = DRINK_GOOD
-	taste_description = "ethylic alcohol with a hint of sugar"
+	taste_description = "乙醇酒精带一丝糖味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/sugar_rush
-	name = "Sugar Rush"
-	description = "Sweet, light, and fruity - as girly as it gets."
+	name = "糖分冲击"
+	description = "香甜、轻盈、果味十足——少女到不能再少女。"
 	color = "#FF226C"
 	boozepwr = 10
 	quality = DRINK_GOOD
-	taste_description = "your arteries clogging with sugar"
+	taste_description = "你的动脉被糖堵住了"
 	nutriment_factor = 2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -1818,12 +1818,12 @@
 	drinker.satiety -= 10 * metabolization_ratio * seconds_per_tick //junky as hell! a whole glass will keep you from being able to eat junk food
 
 /datum/reagent/consumable/ethanol/crevice_spike
-	name = "Crevice Spike"
-	description = "Sour, bitter, and smashingly sobering."
+	name = "裂隙尖刺"
+	description = "酸、苦，而且醒酒效果惊人。"
 	color = "#5BD231"
 	boozepwr = -10 //sobers you up - ideally, one would drink to get hit with brute damage now to avoid alcohol problems later
 	quality = DRINK_VERYGOOD
-	taste_description = "a bitter SPIKE with a sour aftertaste"
+	taste_description = "苦涩的尖刺，余味发酸"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1832,20 +1832,20 @@
 	drinker.adjust_brute_loss(3 * min(5,volume), required_bodytype = affected_bodytype) //minimum 3 brute damage on ingestion to limit non-drink means of injury - a full 5 unit gulp of the drink trucks you for the full 15
 
 /datum/reagent/consumable/ethanol/sake
-	name = "Sake"
-	description = "A sweet rice wine of questionable legality and extreme potency."
+	name = "清酒"
+	description = "一种甜米酒，合法性存疑，效力极强。"
 	color = "#DDDDDD"
 	boozepwr = 70
-	taste_description = "sweet rice wine"
+	taste_description = "甜米酒"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/peppermint_patty
-	name = "Peppermint Patty"
-	description = "This lightly alcoholic drink combines the benefits of menthol and cocoa."
+	name = "薄荷帕蒂"
+	description = "这款轻酒精饮品结合了薄荷醇与可可的益处。"
 	color = "#45ca7a"
-	taste_description = "mint and chocolate"
+	taste_description = "薄荷与巧克力"
 	boozepwr = 25
 	quality = DRINK_GOOD
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1857,12 +1857,12 @@
 	drinker.adjust_bodytemperature(5 * TEMPERATURE_DAMAGE_COEFFICIENT * metabolization_ratio * seconds_per_tick, 0, drinker.get_body_temp_normal())
 
 /datum/reagent/consumable/ethanol/alexander
-	name = "Alexander"
-	description = "Named after a Greek hero, this mix is said to embolden a user's shield as if they were in a phalanx."
+	name = "亚历山大"
+	description = "以一位希腊英雄命名，据说这杯混合物能让使用者的盾牌如方阵中一般坚固。"
 	color = "#F5E9D3"
 	boozepwr = 50
 	quality = DRINK_GOOD
-	taste_description = "bitter, creamy cacao"
+	taste_description = "苦涩的奶油可可"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	var/datum/weakref/mighty_shield
@@ -1874,7 +1874,7 @@
 		for(var/obj/item/shield/the_shield in the_human.contents)
 			mighty_shield = WEAKREF(the_shield)
 			the_shield.block_chance += 10
-			to_chat(the_human, span_notice("[the_shield] appears polished, although you don't recall polishing it."))
+			to_chat(the_human, span_notice("[the_shield] 看起来被擦得锃亮，尽管你不记得自己擦过它。"))
 			break
 
 /datum/reagent/consumable/ethanol/alexander/on_mob_life(mob/living/drinker, seconds_per_tick, metabolization_ratio)
@@ -1889,37 +1889,37 @@
 	var/obj/item/shield/the_shield = mighty_shield?.resolve()
 	if(the_shield)
 		the_shield.block_chance -= 10
-		to_chat(drinker,span_notice("You notice [the_shield] looks worn again. Weird."))
+		to_chat(drinker,span_notice("你注意到 [the_shield] 又显得破旧了。真奇怪。"))
 		mighty_shield = null
 
 /datum/reagent/consumable/ethanol/amaretto_alexander
-	name = "Amaretto Alexander"
-	description = "A weaker version of the Alexander, what it lacks in strength it makes up for in flavor."
+	name = "杏仁亚历山大"
+	description = "亚历山大的弱化版，牺牲了强度，换来了风味。"
 	color = "#DBD5AE"
 	boozepwr = 35
 	quality = DRINK_VERYGOOD
-	taste_description = "sweet, creamy cacao"
+	taste_description = "甜美的奶油可可"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/sidecar
-	name = "Sidecar"
-	description = "The one ride you'll gladly give up the wheel for."
+	name = "边车"
+	description = "你唯一心甘情愿交出方向盘的一次旅程。"
 	color = "#FFC55B"
 	boozepwr = 45
 	quality = DRINK_GOOD
-	taste_description = "delicious freedom"
+	taste_description = "美味的自由"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/ethanol/between_the_sheets
-	name = "Between the Sheets"
-	description = "A provocatively named classic. Funny enough, doctors recommend drinking it before taking a nap while underneath bedsheets."
+	name = "床笫之间"
+	description = "名字颇具挑逗性的经典之作。说来有趣，医生建议在床单下小睡前喝它。"
 	color = "#F4C35A"
 	boozepwr = 55
 	quality = DRINK_GOOD
-	taste_description = "seduction"
+	taste_description = "诱惑"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
@@ -1950,42 +1950,42 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/kamikaze
-	name = "Kamikaze"
-	description = "Divinely windy."
+	name = "神风"
+	description = "神圣的风。"
 	color = "#EEF191"
 	boozepwr = 35
 	quality = DRINK_GOOD
-	taste_description = "divine windiness"
+	taste_description = "神圣的风感"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/mojito
-	name = "Mojito"
-	description = "A drink that looks as refreshing as it tastes."
+	name = "莫吉托"
+	description = "一杯看起来和喝起来一样清爽的饮品。"
 	color = "#DFFAD9"
 	boozepwr = 20
 	quality = DRINK_GOOD
-	taste_description = "refreshing mint"
+	taste_description = "清爽薄荷"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/ethanol/moscow_mule
-	name = "Moscow Mule"
-	description = "A chilly drink that reminds you of the Derelict."
+	name = "莫斯科骡子"
+	description = "一杯让你想起废弃站的冰凉饮品。"
 	color = "#EEF1AA"
 	boozepwr = 30
 	quality = DRINK_GOOD
-	taste_description = "refreshing spiciness"
+	taste_description = "清爽的辛辣感"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/fernet
-	name = "Fernet"
-	description = "An incredibly bitter herbal liqueur used as a digestif."
+	name = "费内特"
+	description = "一种极其苦涩的草本利口酒，用作餐后消化酒。"
 	color = "#1B2E24" // rgb: 27, 46, 36
 	boozepwr = 80
-	taste_description = "utter bitterness"
+	taste_description = "彻头彻尾的苦味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1998,12 +1998,12 @@
 	drinker.overeatduration = 0
 
 /datum/reagent/consumable/ethanol/fernet_cola
-	name = "Fernet Cola"
-	description = "A very popular and bittersweet digestif, ideal after a heavy meal. Best served on a sawed-off cola bottle as per tradition."
+	name = "费内特可乐"
+	description = "一种广受欢迎的苦甜消化酒，最适合在大餐后饮用。按传统，最好盛在锯开的可乐瓶里供应。"
 	color = "#390600" // rgb: 57, 6,
 	boozepwr = 25
 	quality = DRINK_NICE
-	taste_description = "sweet relief"
+	taste_description = "甜蜜的慰藉"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -2016,12 +2016,12 @@
 	drinker.overeatduration = 0
 
 /datum/reagent/consumable/ethanol/fanciulli
-	name = "Fanciulli"
-	description = "What if the Manhattan cocktail ACTUALLY used a bitter herb liqueur? Helps you sober up." //also causes a bit of stamina damage to symbolize the afterdrink lazyness
+	name = "凡丘利"
+	description = "如果曼哈顿鸡尾酒真的用了苦味草本利口酒会怎样？有助于你醒酒。" //also causes a bit of stamina damage to symbolize the afterdrink lazyness
 	color = "#CA933F" // rgb: 202, 147, 63
 	boozepwr = -10
 	quality = DRINK_NICE
-	taste_description = "a sweet sobering mix"
+	taste_description = "甜美的醒酒混合物"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_HIGH
@@ -2037,12 +2037,12 @@
 		drinker.adjust_stamina_loss(20, required_biotype = affected_biotype)
 
 /datum/reagent/consumable/ethanol/branca_menta
-	name = "Branca Menta"
-	description = "A refreshing mixture of bitter Fernet with mint creme liqueur."
+	name = "布兰卡薄荷酒"
+	description = "苦味费内特与薄荷奶油利口酒的清爽混合。"
 	color = "#4B5746" // rgb: 75, 87, 70
 	boozepwr = 35
 	quality = DRINK_GOOD
-	taste_description = "a bitter freshness"
+	taste_description = "苦涩的清新"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
@@ -2057,13 +2057,13 @@
 		drinker.adjust_stamina_loss(35, required_biotype = affected_biotype)
 
 /datum/reagent/consumable/ethanol/blank_paper
-	name = "Blank Paper"
-	description = "A bubbling glass of blank paper. Just looking at it makes you feel fresh."
+	name = "空白纸张"
+	description = "一杯冒着气泡的空白纸张。光是看着它就让你觉得神清气爽。"
 	nutriment_factor = 1
 	color = "#DCDCDC" // rgb: 220, 220, 220
 	boozepwr = 20
 	quality = DRINK_GOOD
-	taste_description = "bubbling possibility"
+	taste_description = "冒泡的可能性"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -2076,15 +2076,15 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/fruit_wine
-	name = "Fruit Wine"
-	description = "A wine made from grown plants."
+	name = "果酒"
+	description = "用种植的植物酿成的葡萄酒。"
 	color = COLOR_WHITE
 	boozepwr = 35
 	quality = DRINK_GOOD
-	taste_description = "bad coding"
+	taste_description = "糟糕的代码"
 	ph = 4
-	var/list/names = list("null fruit" = 1) //Names of the fruits used. Associative list where name is key, value is the percentage of that fruit.
-	var/list/tastes = list("bad coding" = 1) //List of tastes. See above.
+	var/list/names = list("未知水果" = 1) //Names of the fruits used. Associative list where name is key, value is the percentage of that fruit.
+	var/list/tastes = list("糟糕的代码" = 1) //List of tastes. See above.
 
 /datum/reagent/consumable/ethanol/fruit_wine/on_new(list/data)
 	if(!data)
@@ -2138,29 +2138,29 @@
 	var/named = FALSE
 	for(var/fruit_name in names)
 		if(names[fruit_name] >= minimum_name_percent)
-			name += "[fruit_name] "
+			name += "[fruit_name]、"
 			named = TRUE
 	if(named)
-		name += "Wine"
+		name += "葡萄酒"
 	else
-		name = "Mixed [names_in_order[1]] Wine"
+		name = "混合[names_in_order[1]]葡萄酒"
 
 	var/alcohol_description
 	switch(boozepwr)
 		if(120 to INFINITY)
-			alcohol_description = "suicidally strong"
+			alcohol_description = "自杀般浓烈"
 		if(90 to 120)
-			alcohol_description = "rather strong"
+			alcohol_description = "相当浓烈"
 		if(70 to 90)
-			alcohol_description = "strong"
+			alcohol_description = "浓烈"
 		if(40 to 70)
-			alcohol_description = "rich"
+			alcohol_description = "醇厚"
 		if(20 to 40)
-			alcohol_description = "mild"
+			alcohol_description = "温和"
 		if(0 to 20)
-			alcohol_description = "sweet"
+			alcohol_description = "甜美"
 		else
-			alcohol_description = "watery" //How the hell did you get negative boozepwr?
+			alcohol_description = "寡淡" //How the hell did you get negative boozepwr?
 
 	var/list/fruits = list()
 	if(names_in_order.len <= 3)
@@ -2168,36 +2168,36 @@
 	else
 		for(var/i in 1 to 3)
 			fruits += names_in_order[i]
-		fruits += "other plants"
+		fruits += "其他植物"
 	var/fruit_list = english_list(fruits)
-	description = "A [alcohol_description] wine brewed from [fruit_list]."
+	description = "一种用 [fruit_list] 酿造的[alcohol_description]葡萄酒。"
 
 	var/flavor = ""
 	if(!primary_tastes.len)
-		primary_tastes = list("[alcohol_description] alcohol")
+		primary_tastes = list("[alcohol_description]酒精")
 	flavor += english_list(primary_tastes)
 	if(secondary_tastes.len)
-		flavor += ", with a hint of "
+		flavor += "，带有一丝"
 		flavor += english_list(secondary_tastes)
 	taste_description = flavor
 
 /datum/reagent/consumable/ethanol/champagne //How the hell did we not have champagne already!?
-	name = "Champagne"
-	description = "A sparkling wine known for its ability to strike fast and hard."
+	name = "香槟"
+	description = "一种气泡葡萄酒，以猛烈迅速的上头效果闻名。"
 	color = "#ffffc1"
 	boozepwr = 40
-	taste_description = "auspicious occasions and bad decisions"
+	taste_description = "吉庆场合与糟糕决定"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_EASY
 
 /datum/reagent/consumable/ethanol/wizz_fizz
-	name = "Wizz Fizz"
-	description = "A magical potion, fizzy and wild! However the taste, you will find, is quite mild."
+	name = "维兹菲兹"
+	description = "一种魔法药水，气泡翻腾又狂野！不过你会发现，它的味道相当温和。"
 	color = "#4235d0" //Just pretend that the triple-sec was blue curacao.
 	boozepwr = 50
 	quality = DRINK_GOOD
-	taste_description = "friendship! It is magic, after all"
+	taste_description = "友谊！毕竟这是魔法"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -2214,12 +2214,12 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/bug_spray
-	name = "Bug Spray"
-	description = "A harsh, acrid, bitter drink, for those who need something to brace themselves."
+	name = "杀虫喷雾"
+	description = "一种刺激、辛辣、苦涩的饮品，适合需要壮胆的人。"
 	color = "#33ff33"
 	boozepwr = 45
 	quality = DRINK_GOOD
-	taste_description = "the pain of ten thousand slain mosquitos"
+	taste_description = "一万只被杀死的蚊子的痛苦"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	affected_biotype = MOB_BUG
@@ -2238,48 +2238,48 @@
 			drinker.emote("scream")
 
 /datum/reagent/consumable/ethanol/applejack
-	name = "Applejack"
-	description = "The perfect beverage for when you feel the need to horse around."
+	name = "苹果杰克"
+	description = "当你觉得自己需要胡闹一番时的完美饮品。"
 	color = "#ff6633"
 	boozepwr = 20
-	taste_description = "an honest day's work at the orchard"
+	taste_description = "果园里诚实劳作的一天"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/jack_rose
-	name = "Jack Rose"
-	description = "A light cocktail perfect for sipping with a slice of pie."
+	name = "杰克玫瑰"
+	description = "一款适合配一片派慢慢啜饮的轻淡鸡尾酒。"
 	color = "#ff6633"
 	boozepwr = 15
 	quality = DRINK_NICE
-	taste_description = "a sweet and sour slice of apple"
+	taste_description = "酸甜的苹果片"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/turbo
-	name = "Turbo"
-	description = "A turbulent cocktail associated with outlaw hoverbike racing. Not for the faint of heart."
+	name = "涡轮"
+	description = "一款与非法悬浮摩托竞速相关的狂野鸡尾酒。胆小者勿试。"
 	color = "#e94c3a"
 	boozepwr = 85
 	quality = DRINK_VERYGOOD
-	taste_description = "the outlaw spirit"
+	taste_description = "不法之徒的精神"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/turbo/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, metabolization_ratio)
 	. = ..()
 	if(SPT_PROB(2, seconds_per_tick))
-		to_chat(drinker, span_notice("[pick("You feel disregard for the rule of law.", "You feel pumped!", "Your head is pounding.", "Your thoughts are racing..")]"))
+		to_chat(drinker, span_notice("[pick("你对法律毫不在乎。", "你感觉浑身是劲！", "你的头在狂跳。", "你的思绪飞驰……")]"))
 	if(drinker.adjust_stamina_loss(-0.5 * drinker.get_drunk_amount() * metabolization_ratio * seconds_per_tick, updating_stamina = FALSE, required_biotype = affected_biotype))
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/old_timer
-	name = "Old Timer"
-	description = "An archaic potation enjoyed by old coots of all ages."
+	name = "老古董"
+	description = "一种陈旧的饮品，各年龄的老顽固都喜欢。"
 	color = "#996835"
 	boozepwr = 35
 	quality = DRINK_NICE
-	taste_description = "simpler times"
+	taste_description = "更简单的时代"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -2297,37 +2297,37 @@
 					metabolizer.set_facial_hairstyle("Beard (Very Long)", update = TRUE)
 
 				if(metabolizer.age > 969) //Best not let people get older than this or i might incur G-ds wrath
-					metabolizer.visible_message(span_notice("[metabolizer] becomes older than any man should be.. and crumbles into dust!"))
+					metabolizer.visible_message(span_notice("[metabolizer] 老到了不该有的年纪……然后化为尘土！"))
 					metabolizer.dust(just_ash = FALSE, drop_items = TRUE, force = FALSE)
 
 /datum/reagent/consumable/ethanol/rubberneck
-	name = "Rubberneck"
-	description = "A quality rubberneck should not contain any gross natural ingredients."
+	name = "扭头看客"
+	description = "一杯优质的扭头看客不应含有任何恶心的天然原料。"
 	color = "#ffe65b"
 	boozepwr = 60
 	quality = DRINK_GOOD
-	taste_description = "artificial fruitiness"
+	taste_description = "人工果味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_SHOCKIMMUNE)
 
 /datum/reagent/consumable/ethanol/duplex
-	name = "Duplex"
-	description = "An inseparable combination of two fruity drinks."
+	name = "双层"
+	description = "两种果味饮品的不可分割组合。"
 	color = "#50e5cf"
 	boozepwr = 25
 	quality = DRINK_NICE
-	taste_description = "green apples and blue raspberries"
+	taste_description = "青苹果和蓝覆盆子"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/trappist
-	name = "Trappist Beer"
-	description = "A strong dark ale brewed by space-monks."
+	name = "特拉比斯特啤酒"
+	description = "一种由太空修士酿造的浓烈深色艾尔。"
 	color = "#390c00"
 	boozepwr = 40
 	quality = DRINK_VERYGOOD
-	taste_description = "dried plums and malt"
+	taste_description = "干李子与麦芽"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -2340,11 +2340,11 @@
 		drinker.adjust_stutter(-2 SECONDS * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/consumable/ethanol/blazaam
-	name = "Blazaam"
-	description = "A strange drink that few people seem to remember existing. Doubles as a Berenstain remover."
+	name = "布拉赞"
+	description = "一种奇怪的饮品，似乎很少有人记得它存在过。还能兼职充当贝伦斯坦移除器。"
 	boozepwr = 70
 	quality = DRINK_FANTASTIC
-	taste_description = "alternate realities"
+	taste_description = "平行现实"
 	var/stored_teleports = 0
 
 /datum/reagent/consumable/ethanol/blazaam/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, metabolization_ratio)
@@ -2360,19 +2360,19 @@
 				drinker.vomit(vomit_flags = VOMIT_CATEGORY_DEFAULT, vomit_type = /obj/effect/decal/cleanable/vomit/purple)
 
 /datum/reagent/consumable/ethanol/planet_cracker
-	name = "Planet Cracker"
-	description = "This jubilant drink celebrates humanity's triumph over the alien menace. May be offensive to non-human crewmembers."
+	name = "裂星者"
+	description = "这款欢庆的饮品庆祝人类战胜了外星威胁。可能对非人类船员带有冒犯性。"
 	boozepwr = 50
 	quality = DRINK_FANTASTIC
-	taste_description = "triumph with a hint of bitterness"
+	taste_description = "带着一丝苦涩的胜利"
 
 /datum/reagent/consumable/ethanol/mauna_loa
-	name = "Mauna Loa"
-	description = "Extremely hot; not for the faint of heart!"
+	name = "冒纳罗亚"
+	description = "极其滚烫；胆小者勿试！"
 	boozepwr = 40
 	color = "#fe8308" // 254, 131, 8
 	quality = DRINK_FANTASTIC
-	taste_description = "fiery, with an aftertaste of burnt flesh"
+	taste_description = "火辣，余味是烧焦的血肉"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -2385,52 +2385,52 @@
 		drinker.ignite_mob()
 
 /datum/reagent/consumable/ethanol/painkiller
-	name = "Painkiller"
-	description = "Dulls your pain. Your emotional pain, that is."
+	name = "止痛剂"
+	description = "减轻你的痛苦。是你的情感痛苦。"
 	boozepwr = 20
 	color = "#EAD677"
 	quality = DRINK_NICE
-	taste_description = "sugary tartness"
+	taste_description = "甜腻的酸味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_ANALGESIA)
 
 /datum/reagent/consumable/ethanol/pina_colada
-	name = "Pina Colada"
-	description = "A fresh pineapple drink with coconut rum. Yum."
+	name = "椰林飘香"
+	description = "一杯新鲜的菠萝饮品，加入椰子朗姆酒。好喝。"
 	boozepwr = 40
 	color = "#FFF1B2"
 	quality = DRINK_FANTASTIC
-	taste_description = "pineapple, coconut, and a hint of the ocean"
+	taste_description = "菠萝、椰子，还有一丝海洋味"
 
 /datum/reagent/consumable/ethanol/pina_olivada
-	name = "Piña Olivada"
-	description = "An oddly designed concoction of olive oil and pineapple juice."
+	name = "橄榄椰林"
+	description = "一款设计古怪的橄榄油与菠萝汁混合物。"
 	boozepwr = 20 // the oil coats your gastrointestinal tract, meaning you can't absorb as much alcohol. horrifying
 	color = "#493c00"
 	quality = DRINK_NICE
-	taste_description = "a horrible emulsion of pineapple and olive oil"
+	taste_description = "菠萝与橄榄油的可怕乳浊液"
 
 /datum/reagent/consumable/ethanol/pina_olivada/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, metabolization_ratio)
 	. = ..()
 	if(SPT_PROB(8, seconds_per_tick))
-		drinker.manual_emote(pick("coughs up some oil", "swallows the lump in [drinker.p_their()] throat", "gags", "chokes up a bit"))
+		drinker.manual_emote(pick("咳出一些油", "咽下喉咙里的块状物", "干呕", "有点噎住"))
 	if(SPT_PROB(3, seconds_per_tick))
 		var/static/list/messages = list(
-			"A horrible aftertaste coats your mouth.",
-			"You feel like you're going to choke on the oil in your throat.",
-			"You start to feel some heartburn coming on.",
-			"You want to throw up, but you know that nothing can come out due to the clog in your esophagus.",
-			"Your throat feels horrible.",
+			"一股可怕的后味覆满你的口腔。",
+			"你觉得自己要被喉咙里的油噎住了。",
+			"你开始感到烧心。",
+			"你想吐，但你知道食道被堵住了，什么也吐不出来。",
+			"你的喉咙难受极了。",
 		)
 		to_chat(drinker, span_notice(pick(messages)))
 
 /datum/reagent/consumable/ethanol/pruno // pruno mix is in drink_reagents
-	name = "Pruno"
+	name = "监狱私酿"
 	color = "#E78108"
-	description = "Fermented prison wine made from fruit, sugar, and despair. Security loves to confiscate this, which is the only kind thing Security has ever done."
+	description = "用水果、糖和绝望发酵而成的监狱葡萄酒。安保部最爱没收这种酒，这是安保部做过唯一一件善事。"
 	boozepwr = 85
-	taste_description = "your tastebuds being individually shanked"
+	taste_description = "你的味蕾被逐个捅了一刀"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -2439,43 +2439,43 @@
 	drinker.adjust_disgust(5 * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/consumable/ethanol/ginger_amaretto
-	name = "Ginger Amaretto"
-	description = "A delightfully simple cocktail that pleases the senses."
+	name = "姜味杏仁利口酒"
+	description = "一款令人愉悦的简单鸡尾酒，能满足感官。"
 	boozepwr = 30
 	color = "#EFB42A"
 	quality = DRINK_GOOD
-	taste_description = "sweetness followed by a soft sourness and warmth"
+	taste_description = "甜味之后是柔和的酸味与温暖"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/godfather
-	name = "Godfather"
-	description = "A rough cocktail with illegal connections."
+	name = "教父"
+	description = "一款有着非法关系的粗犷鸡尾酒。"
 	boozepwr = 50
 	color = "#E68F00"
 	quality = DRINK_GOOD
-	taste_description = "a delightful softened punch"
+	taste_description = "令人愉悦的柔化冲击"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/ethanol/godmother
-	name = "Godmother"
-	description = "A twist on a classic, liked more by mature women."
+	name = "教母"
+	description = "经典之作的变体，更受成熟女性喜爱。"
 	boozepwr = 50
 	color = "#E68F00"
 	quality = DRINK_GOOD
-	taste_description = "sweetness and a zesty twist"
+	taste_description = "甜味与活泼的转折"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/kortara
-	name = "Kortara"
-	description = "A sweet, milky nut-based drink enjoyed on Tizira. Frequently mixed with fruit juices and cocoa for extra refreshment."
+	name = "科塔拉"
+	description = "一种在提兹拉广受欢迎的甜美奶状坚果饮品。常与果汁和可可混合以增添清爽感。"
 	boozepwr = 25
 	color = "#EEC39A"
 	quality = DRINK_GOOD
-	taste_description = "sweet nectar"
+	taste_description = "甜美花蜜"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -2486,12 +2486,12 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/sea_breeze
-	name = "Sea Breeze"
-	description = "Light and refreshing with a mint and cocoa hit- like mint choc chip ice cream you can drink!"
+	name = "海风"
+	description = "轻盈清爽，带有薄荷与可可的风味——就像能喝的薄荷巧克力脆冰淇淋！"
 	boozepwr = 15
 	color = "#CFFFE5"
 	quality = DRINK_VERYGOOD
-	taste_description = "mint choc chip"
+	taste_description = "薄荷巧克力脆"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -2500,22 +2500,22 @@
 	drinker.apply_status_effect(/datum/status_effect/throat_soothed)
 
 /datum/reagent/consumable/ethanol/white_tiziran
-	name = "White Tiziran"
-	description = "A mix of vodka and kortara. The Lizard imbibes."
+	name = "白色提兹拉"
+	description = "伏特加与科塔拉的混合。蜥蜴人的最爱。"
 	boozepwr = 50
 	color = "#A68340"
 	quality = DRINK_GOOD
-	taste_description = "strikes and gutters"
+	taste_description = "起伏与沟壑"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/drunken_espatier
-	name = "Drunken Espatier"
-	description = "Look, if you had to get into a shootout in the cold vacuum of space, you'd want to be drunk too."
+	name = "醉酒的太空步兵"
+	description = "听着，如果你得在冰冷的太空真空中枪战，你也会想喝醉的。"
 	boozepwr = 65
 	color = "#A68340"
 	quality = DRINK_GOOD
-	taste_description = "sorrow"
+	taste_description = "悲伤"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -2532,12 +2532,12 @@
 	drinker.remove_status_effect(/datum/status_effect/grouped/screwy_hud/fake_healthy, type)
 
 /datum/reagent/consumable/ethanol/protein_blend
-	name = "Protein Blend"
-	description = "A vile blend of protein, pure grain alcohol, korta flour, and blood. Useful for bulking up, if you can keep it down."
+	name = "蛋白混合饮"
+	description = "蛋白质、纯谷物酒精、科塔面粉和血液的恶心混合物。如果你能忍住不吐，它对增肌很有用。"
 	boozepwr = 65
 	color = "#FF5B69"
 	quality = DRINK_NICE
-	taste_description = "regret"
+	taste_description = "后悔"
 	nutriment_factor = 3
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -2551,22 +2551,22 @@
 		drinker.adjust_disgust(2 * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/consumable/ethanol/mushi_kombucha
-	name = "Mushi Kombucha"
-	description = "A popular summer beverage on Tizira, made from sweetened mushroom tea."
+	name = "蘑菇康普茶"
+	description = "提兹拉广受欢迎的夏日饮品，用加糖的蘑菇茶制成。"
 	boozepwr = 10
 	color = "#C46400"
 	quality = DRINK_VERYGOOD
-	taste_description = "sweet 'shrooms"
+	taste_description = "甜蘑菇"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/triumphal_arch
-	name = "Triumphal Arch"
-	description = "A drink celebrating the Lizard Empire and its military victories. It's popular at bars on Unification Day."
+	name = "凯旋门"
+	description = "一款庆祝蜥蜴帝国及其军事胜利的饮品。在统一日当天很受酒吧欢迎。"
 	boozepwr = 60
 	color = COLOR_GOLD
 	quality = DRINK_FANTASTIC
-	taste_description = "victory"
+	taste_description = "胜利"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -2576,12 +2576,12 @@
 		drinker.add_mood_event("triumph", /datum/mood_event/memories_of_home, name)
 
 /datum/reagent/consumable/ethanol/the_juice
-	name = "The Juice"
-	description = "Woah man, this like, feels familiar to you dude."
+	name = "那果汁"
+	description = "哇哦老兄，这玩意儿让你觉得挺眼熟的，伙计。"
 	color = "#4c14be"
 	boozepwr = 50
 	quality = DRINK_GOOD
-	taste_description = "like, the future, man"
+	taste_description = "就像，未来，老兄"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	var/datum/brain_trauma/special/bluespace_prophet/prophet_trauma
@@ -2598,12 +2598,12 @@
 
 //a jacked up absinthe that causes hallucinations to the game master controller basically, used in smuggling objectives
 /datum/reagent/consumable/ethanol/ritual_wine
-	name = "Ritual Wine"
-	description = "The dangerous, potent, alcoholic component of ritual wine."
+	name = "仪式之酒"
+	description = "仪式之酒中危险、强效的酒精成分。"
 	color = rgb(35, 231, 25)
 	boozepwr = 90 //enjoy near death intoxication
 	taste_mult = 6
-	taste_description = "concentrated herbs"
+	taste_description = "浓缩的草药"
 
 /datum/reagent/consumable/ethanol/ritual_wine/on_mob_metabolize(mob/living/psychonaut)
 	. = ..()
@@ -2621,122 +2621,122 @@
 
 //Moth Drinks
 /datum/reagent/consumable/ethanol/curacao
-	name = "Curaçao"
-	description = "Made with laraha oranges, for an aromatic finish."
+	name = "库拉索"
+	description = "用拉哈拉橙制成，收尾芳香。"
 	boozepwr = 30
 	color = "#1a5fa1"
 	quality = DRINK_NICE
-	taste_description = "blue orange"
+	taste_description = "蓝色橙子"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/navy_rum //IN THE NAVY
-	name = "Navy Rum"
-	description = "Rum as the finest sailors drink."
+	name = "海军朗姆酒"
+	description = "最优秀的水手们喝的朗姆酒。"
 	boozepwr = 90 //the finest sailors are often drunk
 	color = "#d8e8f0"
 	quality = DRINK_NICE
-	taste_description = "a life on the waves"
+	taste_description = "波涛上的生活"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/bitters //why do they call them bitters, anyway? they're more spicy than anything else
-	name = "Andromeda Bitters"
-	description = "A bartender's best friend, often used to lend a delicate spiciness to any drink. Produced in New Trinidad, now and forever."
+	name = "仙女座苦酒"
+	description = "调酒师最好的朋友，常用于为任何饮品增添细腻的辛香。产自新特立尼达，现在如此，永远如此。"
 	boozepwr = 70
 	color = "#1c0000"
 	quality = DRINK_NICE
-	taste_description = "spiced alcohol"
+	taste_description = "加了香料的酒精"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/admiralty //navy rum, vermouth, fernet
-	name = "Admiralty"
-	description = "A refined, bitter drink made with navy rum, vermouth and fernet."
+	name = "海军部"
+	description = "一款用海军朗姆酒、味美思和费内特调制的精致苦味饮品。"
 	boozepwr = 80
 	color = "#1F0001"
 	quality = DRINK_VERYGOOD
-	taste_description = "haughty arrogance"
+	taste_description = "傲慢自大"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/long_haul //Rum, Curacao, Sugar, dash of bitters, lengthened with soda water
-	name = "Long Haul"
-	description = "A favourite amongst freighter pilots, unscrupulous smugglers, and nerf herders."
+	name = "长途货运"
+	description = "货机飞行员、不法走私者和驯兽人的最爱。"
 	boozepwr = 20
 	color = "#003153"
 	quality = DRINK_VERYGOOD
-	taste_description = "companionship"
+	taste_description = "陪伴"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/long_john_silver //navy rum, bitters, lemonade
-	name = "Long John Silver"
-	description = "A long drink of navy rum, bitters, and lemonade. Particularly popular aboard the Mothic Fleet as it's light on ration credits and heavy on flavour."
+	name = "长约翰·西尔弗"
+	description = "一款由海军朗姆酒、苦酒和柠檬水调成的长饮。在蛾族舰队中尤其受欢迎，因为它消耗配给点数少而风味浓郁。"
 	boozepwr = 45
 	color = "#c4b35c"
 	quality = DRINK_VERYGOOD
-	taste_description = "rum and spices"
+	taste_description = "朗姆与香料"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/tropical_storm //dark rum, pineapple juice, triple citrus, curacao
-	name = "Tropical Storm"
-	description = "A taste of the Caribbean in one glass."
+	name = "热带风暴"
+	description = "一杯尝尽加勒比风味。"
 	boozepwr = 25
 	color = "#00bfa3"
 	quality = DRINK_VERYGOOD
-	taste_description = "the tropics"
+	taste_description = "热带"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/dark_and_stormy //rum and ginger beer- simple and classic
-	name = "Dark and Stormy"
-	description = "A classic drink arriving to thunderous applause." //thank you, thank you, I'll be here forever
+	name = "黑暗风暴"
+	description = "一款在雷鸣般掌声中登场的经典饮品。" //thank you, thank you, I'll be here forever
 	boozepwr = 30
 	color = "#8c5046"
 	quality = DRINK_GOOD
-	taste_description = "ginger and rum"
+	taste_description = "姜与朗姆"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/salt_and_swell //navy rum, tochtause syrup, egg whites, dash of saline-glucose solution
-	name = "Salt and Swell"
-	description = "A bracing sour with an interesting salty taste."
+	name = "盐与涌"
+	description = "一款带有有趣咸味的提神酸酒。"
 	boozepwr = 60
 	color = "#b4abd0"
 	quality = DRINK_FANTASTIC
-	taste_description = "salt and spice"
+	taste_description = "盐与香料"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/tiltaellen //yoghurt, salt, vinegar
-	name = "Tiltällen"
-	description = "A lightly fermented yoghurt drink with salt and a light dash of vinegar. Has a distinct sour cheesy flavour."
+	name = "蒂尔塔伦"
+	description = "一种轻度发酵的酸奶饮品，加盐并滴入少许醋。有独特的酸味奶酪风味。"
 	boozepwr = 10
 	color = "#F4EFE2"
 	quality = DRINK_NICE
-	taste_description = "sour cheesy yoghurt"
+	taste_description = "酸味奶酪酸奶"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/tich_toch
-	name = "Tich Toch"
-	description = "A mix of Tiltällen, Töchtaüse Syrup, and vodka. It's not exactly to everyones' tastes."
+	name = "蒂奇托奇"
+	description = "蒂尔塔伦、托赫陶瑟糖浆和伏特加的混合。它并不完全符合所有人的口味。"
 	boozepwr = 75
 	color = "#b4abd0"
 	quality = DRINK_VERYGOOD
-	taste_description = "spicy sour cheesy yoghurt"
+	taste_description = "辛辣酸爽的奶酪酸奶"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/helianthus
-	name = "Helianthus"
-	description = "A dark yet radiant mixture of absinthe and hallucinogens. The choice of all true artists."
+	name = "向日葵"
+	description = "苦艾酒与致幻剂的深沉却璀璨的混合物。所有真正艺术家的选择。"
 	boozepwr = 75
 	color = "#fba914"
 	quality = DRINK_VERYGOOD
-	taste_description = "golden memories"
+	taste_description = "金色回忆"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	var/hal_amt = 4
@@ -2748,34 +2748,34 @@
 		drinker.adjust_hallucinations_up_to(4 SECONDS * metabolization_ratio, 48 SECONDS)
 
 /datum/reagent/consumable/ethanol/plumwine
-	name = "Plum wine"
-	description = "Plums turned into wine."
+	name = "梅酒"
+	description = "李子酿成的酒。"
 	color = "#8a0421"
 	nutriment_factor = 1
 	boozepwr = 20
-	taste_description = "a poet's love and undoing"
+	taste_description = "诗人的爱与毁灭"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/the_hat
-	name = "The Hat"
-	description = "A fancy drink, usually served in a man's hat."
+	name = "帽子"
+	description = "一杯花哨的饮品，通常盛在男人的帽子里。"
 	color = "#b90a5c"
 	boozepwr = 80
 	quality = DRINK_NICE
-	taste_description = "something perfumy"
+	taste_description = "某种香水味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/gin_garden
-	name = "Gin Garden"
-	description = "Excellent cooling alcoholic drink with not so ordinary taste."
+	name = "金酒花园"
+	description = "一款优秀的清凉酒精饮品，风味并不寻常。"
 	boozepwr = 20
 	color = "#6cd87a"
 	quality = DRINK_VERYGOOD
-	taste_description = "light gin with sweet ginger and cucumber"
+	taste_description = "清淡金酒配甜姜与黄瓜"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
@@ -2785,11 +2785,11 @@
 	doll.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT * metabolization_ratio * seconds_per_tick, doll.get_body_temp_normal())
 
 /datum/reagent/consumable/ethanol/wine_voltaic
-	name = "Voltaic Yellow Wine"
-	description = "Electrically charged wine. Recharges ethereals, but also nontoxic."
+	name = "伏打黄葡萄酒"
+	description = "带电的葡萄酒。能为以太人充能，而且无毒。"
 	boozepwr = 30
 	color = "#FFAA00"
-	taste_description = "static with a hint of sweetness"
+	taste_description = "静电带一丝甜味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -2804,12 +2804,12 @@
 		stomach.adjust_charge(reac_volume * 10 * ETHEREAL_DISCHARGE_RATE)
 
 /datum/reagent/consumable/ethanol/telepole
-	name = "Telepole"
-	description = "A grounding rod in the form of a drink. Recharges ethereals, and gives temporary shock resistance."
+	name = "电杆"
+	description = "以饮品形式存在的接地棒。能为以太人充能，并赋予暂时性的抗电击能力。"
 	boozepwr = 50
 	color = "#b300ff"
 	quality = DRINK_NICE
-	taste_description = "the howling storm"
+	taste_description = "呼啸的风暴"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_SHOCKIMMUNE)
@@ -2825,12 +2825,12 @@
 		stomach.adjust_charge(reac_volume * 20 * ETHEREAL_DISCHARGE_RATE)
 
 /datum/reagent/consumable/ethanol/pod_tesla
-	name = "Pod Tesla"
-	description = "Ride the lightning!  Recharges ethereals, suppresses phobias, and gives strong temporary shock resistance."
+	name = "特斯拉荚"
+	description = "驾驭闪电！为以太人充能，抑制恐惧症，并赋予强力的暂时抗电击能力。"
 	boozepwr = 80
 	color = "#00fbff"
 	quality = DRINK_FANTASTIC
-	taste_description = "victory, with a hint of insanity"
+	taste_description = "胜利，带一丝疯狂"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -2854,328 +2854,328 @@
 
 // Welcome to the Blue Room Bar and Grill, home to Mars' finest cocktails
 /datum/reagent/consumable/ethanol/rice_beer
-	name = "Rice Beer"
-	description = "A light, rice-based lagered beer popular on Mars. Considered a hate crime against Bavarians under the Reinheitsgebot Act of 1516."
+	name = "米啤酒"
+	description = "一种火星上流行的清淡米制拉格啤酒。根据 1516 年《纯净法》，这被视为对巴伐利亚人的仇恨犯罪。"
 	boozepwr = 5
 	color = "#664300"
 	quality = DRINK_NICE
-	taste_description = "mild carbonated malt"
+	taste_description = "温和的碳酸麦芽味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/shochu
-	name = "Shochu"
-	description = "Also known as soju or baijiu, this drink is made from fermented rice, much like sake, but at a generally higher proof making it more similar to a true spirit."
+	name = "烧酎"
+	description = "又称烧酒或白酒，这种饮品由发酵大米制成，与清酒相似，但酒精度通常更高，因此更接近真正的烈酒。"
 	boozepwr = 45
 	color = "#DDDDDD"
 	quality = DRINK_NICE
-	taste_description = "stiff rice wine"
+	taste_description = "辛辣的米酒"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/yuyake
-	name = "Yūyake"
-	description = "A sweet melon liqueur from Japan. Considered a relic of the 1980s by most, it has some niche use in cocktail making, in part due to its bright red colour."
+	name = "夕烧"
+	description = "一种来自日本的甜瓜利口酒。多数人认为它是 1980 年代遗留下来的产物，但在调酒中仍有一些小众用途，部分原因是它鲜红的颜色。"
 	boozepwr = 40
 	color = "#F54040"
 	quality = DRINK_NICE
-	taste_description = "sweet melon"
+	taste_description = "甜瓜"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/coconut_rum
-	name = "Coconut Rum"
-	description = "The distilled essence of the beach. Tastes like bleach-blonde hair and suncream."
+	name = "椰子朗姆酒"
+	description = "海滩的蒸馏精华。尝起来像漂白的金发和防晒霜。"
 	boozepwr = 21
 	color = "#e4f2f5"
 	quality = DRINK_NICE
-	taste_description = "coconut rum"
+	taste_description = "椰子朗姆酒"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 // Mixed Martian Drinks
 /datum/reagent/consumable/ethanol/yuyakita
-	name = "Yūyakita"
-	description = "A hell unleashed upon the world by an unnamed patron."
+	name = "夕烧北"
+	description = "一位不愿透露姓名的顾客释放到世上的地狱。"
 	boozepwr = 40
 	color = "#e43414"
 	quality = DRINK_NICE
-	taste_description = "death"
+	taste_description = "死亡"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/saibasan
-	name = "Saibāsan"
-	description = "A drink glorifying Cybersun's enduring business."
+	name = "赛博桑"
+	description = "一款颂扬赛博太阳公司长久经营的饮品。"
 	boozepwr = 20
 	color = "#f25100"
 	quality = DRINK_FANTASTIC
-	taste_description = "betrayal"
+	taste_description = "背叛"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/banzai_ti
-	name = "Banzai-Tī"
-	description = "A variation on the Long Island Iced Tea, made with yuyake for an alternative flavour that's hard to place."
+	name = "万岁茶"
+	description = "长岛冰茶的变体，用夕烧调制出难以言喻的另类风味。"
 	boozepwr = 40
 	color = "#fd3b00"
 	quality = DRINK_VERYGOOD
-	taste_description = "an asian twist on the liquor cabinet"
+	taste_description = "酒柜的亚洲变奏"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/sanraizusoda
-	name = "Sanraizusōda"
-	description = "It's a melon cream soda, except with alcohol- what's not to love? Well... possibly the hangovers."
+	name = "日出苏打"
+	description = "这是甜瓜奶油苏打，只不过加了酒精——有什么理由不爱呢？嗯……可能是宿醉。"
 	boozepwr = 6
 	color = "#f37d7b"
 	quality = DRINK_GOOD
-	taste_description = "creamy melon soda"
+	taste_description = "奶油甜瓜苏打"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/kumicho
-	name = "Kumichō"
-	description = "A new take on a classic cocktail, the Kumicho takes the Godfather formula and adds shochu for an Asian twist."
+	name = "组长"
+	description = "经典鸡尾酒的全新演绎，组长采用教父的配方并加入烧酎，带来亚洲风味。"
 	boozepwr = 62
 	color = "#b87456"
 	quality = DRINK_VERYGOOD
-	taste_description = "rice and rye"
+	taste_description = "米与黑麦"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/red_planet
-	name = "Red Planet"
-	description = "Made in celebration of the Martian Concession, the Red Planet is based on the classic El Presidente, and is as patriotic as it is bright crimson."
+	name = "红色星球"
+	description = "为庆祝火星租界而创制，红色星球以经典的总统鸡尾酒为基础，既爱国又鲜红。"
 	boozepwr = 45
 	color = "#ac4948"
 	quality = DRINK_VERYGOOD
-	taste_description = "the spirit of freedom"
+	taste_description = "自由的精神"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/amaterasu
-	name = "Amaterasu"
-	description = "Named for Amaterasu, the Shinto Goddess of the Sun, this cocktail embodies radiance- or something like that, anyway."
+	name = "天照"
+	description = "以日本神道太阳女神天照命名，这款鸡尾酒象征着光辉——大概是这样吧。"
 	boozepwr = 54 //1 part bitters is a lot
 	color = "#e43414"
 	quality = DRINK_VERYGOOD
-	taste_description = "sweet nectar of the gods"
+	taste_description = "众神的甜美花蜜"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/nekomimosa
-	name = "Nekomimosa"
-	description = "An overly sweet cocktail, made with melon liqueur, melon juice, and champagne (which contains no melon, unfortunately)."
+	name = "猫耳含羞草"
+	description = "一款过甜的鸡尾酒，用甜瓜利口酒、甜瓜汁和香槟调成（遗憾的是，香槟里没有甜瓜）。"
 	boozepwr = 17
 	color = "#FF0C8D"
 	quality = DRINK_GOOD
-	taste_description = "MELON"
+	taste_description = "甜瓜！"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/sentai_quencha //melon soda, triple citrus, shochu, blue curacao
-	name = "Sentai Quencha"
-	description = "Based on the galaxy-famous \"Kyūkyoku no Ninja Pawā Sentai\", the Sentai Quencha is a favourite at anime conventions and weeb bars."
+	name = "战队昆查"
+	description = "以银河闻名的《究极忍者力量战队》为灵感，战队昆查是动漫展和御宅酒吧里的人气饮品。"
 	boozepwr = 28
 	color = "#00ffa6"
 	quality = DRINK_GOOD
-	taste_description = "ultimate ninja power"
+	taste_description = "究极忍者力量"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/bosozoku
-	name = "Bōsōzoku"
-	description = "A simple summer drink from Mars, made from a 1:1 mix of rice beer and lemonade."
+	name = "暴走族"
+	description = "一款来自火星的简单夏日饮品，由米啤酒和柠檬水按 1:1 混合而成。"
 	boozepwr = 6
 	color = "#d7d84f"
 	quality = DRINK_GOOD
-	taste_description = "bittersweet lemon"
+	taste_description = "苦甜柠檬"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/ersatzche
-	name = "Ersatzche"
-	description = "Sweet, bitter, spicy- that's a great combination."
+	name = "代用切"
+	description = "甜、苦、辣——这是绝妙的组合。"
 	boozepwr = 6
 	color = "#bc6a2b"
 	quality = DRINK_VERYGOOD
-	taste_description = "spicy pineapple beer"
+	taste_description = "辛辣菠萝啤酒"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/red_city_am
-	name = "Red City AM"
-	description = "A breakfast drink from New Osaka, for when you really need to get drunk at 9:30 in the morning in more socially acceptable manner than drinking bagwine on the bullet train. Not that you should drink this on the bullet train either."
+	name = "红城早晨"
+	description = "一款来自新大阪的早餐饮品，适合你在早上 9:30 需要以比在子弹列车上喝袋装酒更社会可接受的方式喝醉时。不过你也不该在子弹列车上喝这个。"
 	boozepwr = 5 //this thing is fucking disgusting and both less tasty and less alcoholic than a bloody mary. it is against god and nature
 	color = "#ef0903"
 	quality = DRINK_NICE
-	taste_description = "breakfast in a glass"
+	taste_description = "玻璃杯里的早餐"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/kings_ransom
-	name = "King's Ransom"
-	description = "A stiff, bitter drink with an odd name and odder recipe."
+	name = "国王的赎金"
+	description = "一款烈性苦味饮品，名字古怪，配方更古怪。"
 	boozepwr = 26
 	color = "#bd2e20"
 	quality = DRINK_VERYGOOD
-	taste_description = "bitter raspberry"
+	taste_description = "苦味覆盆子"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/four_bit
-	name = "Four Bit"
-	description = "A drink to power your typing hands."
+	name = "四比特"
+	description = "一款为你打字的手补充能量的饮品。"
 	boozepwr = 26
 	color = "#c4b000"
 	quality = DRINK_GOOD
-	taste_description = "cyberspace"
+	taste_description = "赛博空间"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/white_hawaiian //coconut milk, coconut rum, coffee liqueur
-	name = "White Hawaiian"
-	description = "A take on the classic White Russian, subbing out the classics for some tropical flavours."
+	name = "白色夏威夷"
+	description = "经典白俄罗斯的变体，用热带风味取代了经典配方。"
 	boozepwr = 16
 	color = "#ffffeb"
 	quality = DRINK_GOOD
-	taste_description = "COCONUT"
+	taste_description = "椰子！"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/maui_sunrise //coconut rum, pineapple juice, yuyake, triple citrus, lemon-lime soda
-	name = "Maui Sunrise"
-	description = "Behind this drink's red facade lurks a sharp, complex flavour."
+	name = "毛伊日出"
+	description = "在这杯饮品的红色外表之下，潜藏着锐利而复杂的风味。"
 	boozepwr = 15
 	color = "#f1922b"
 	quality = DRINK_VERYGOOD
-	taste_description = "sunrise over the pacific"
+	taste_description = "太平洋上的日出"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/imperial_mai_tai //navy rum, rum, lime, triple sec, korta nectar
-	name = "Imperial Mai Tai"
-	description = "For when orgeat is in short supply, do as the spacers do- make do and mend."
+	name = "帝国迈泰"
+	description = "当杏仁糖浆短缺时，就像太空人那样——将就着修补一下吧。"
 	boozepwr = 52
 	color = "#cf7d61"
 	quality = DRINK_VERYGOOD
-	taste_description = "spicy nutty rum"
+	taste_description = "辛辣坚果朗姆"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/konococo_rumtini //todo: add espresso | coffee, coffee liqueur, coconut rum, sugar
-	name = "Konococo Rumtini"
-	description = "Coconut rum, coffee liqueur, and espresso- an odd combination, to be sure, but a welcomed one."
+	name = "科诺可可朗姆提尼"
+	description = "椰子朗姆、咖啡利口酒和浓缩咖啡——确实是奇怪的组合，但很受欢迎。"
 	boozepwr = 20
 	color = "#421711"
 	quality = DRINK_VERYGOOD
-	taste_description = "coconut coffee"
+	taste_description = "椰子咖啡"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_STIMULATED)
 
 /datum/reagent/consumable/ethanol/blue_hawaiian //pineapple juice, lemon juice, coconut rum, blue curacao
-	name = "Blue Hawaiian"
-	description = "Sweet, sharp and coconutty."
+	name = "蓝色夏威夷"
+	description = "甜、锐利，满是椰子味。"
 	boozepwr = 30
 	color = "#295875"
 	quality = DRINK_VERYGOOD
-	taste_description = "the aloha state"
+	taste_description = "阿罗哈州"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/boston_sour
-	name = "Boston Sour"
-	description = "Whiskey sour texturally elevated by an egg white."
+	name = "波士顿酸酒"
+	description = "蛋白让威士忌酸酒的口感更上一层楼。"
 	boozepwr = 35
 	color = "#ddc28b"
 	quality = DRINK_VERYGOOD
-	taste_description = "foamy lemony sourness"
+	taste_description = "泡沫般的柠檬酸味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/star
-	name = "Star"
-	description = "A blend of applejack and vermouth accented with bitters."
+	name = "星"
+	description = "苹果杰克与味美思的混合，并以苦酒点缀。"
 	boozepwr = 40
 	color = "#e5a654"
 	quality = DRINK_GOOD
-	taste_description = "vinous apples"
+	taste_description = "葡萄酒般的苹果"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/old_fashioned
-	name = "Old Fashioned"
-	description = "By some measures the first cocktail, made by flavoring a hard spirit with sugar and bitters, with the spirit in question most often being whiskey in modern times."
+	name = "古典鸡尾酒"
+	description = "从某些角度看这是第一款鸡尾酒，以糖和苦酒为烈酒调味，如今最常用的烈酒是威士忌。"
 	boozepwr = 60
 	color = "#b4a287"
 	quality = DRINK_GOOD
-	taste_description = "rounded out whiskey"
+	taste_description = "圆润的威士忌"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_EASY
 
 /datum/reagent/consumable/ethanol/sazerac
-	name = "Sazerac"
-	description = "Whiskey made aromatic by absinthe and creole bitters."
+	name = "萨泽拉克"
+	description = "用苦艾酒和克里奥尔苦酒赋予威士忌芳香。"
 	boozepwr = 65
 	color = "#f43f69"
 	quality = DRINK_GOOD
-	taste_description = "flowery anise-scented whiskey"
+	taste_description = "花香般的八角味威士忌"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_EASY
 
 /datum/reagent/consumable/ethanol/amaretto_sour
-	name = "Amaretto Sour"
-	description = "A sour made with sweet amaretto."
+	name = "杏仁酸酒"
+	description = "一款用甜美杏仁利口酒调成的酸酒。"
 	boozepwr = 15
 	color = "#ddc28b"
 	quality = DRINK_VERYGOOD
-	taste_description = "foamy lemony sweetness"
+	taste_description = "泡沫般的柠檬甜味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/ethanol/ramos_gin_fizz
-	name = "Ramos Gin Fizz"
-	description = "A complex twist on the concept of a gin fizz, adding cream and egg white along side lemon juice for an incomparable textural experience. In this version, the drink's signature usage of orange blossom water is replaced with a drop of orange liqueur."
+	name = "拉莫斯金菲士"
+	description = "金菲士概念的复杂变体，加入奶油、蛋白和柠檬汁，带来无可比拟的口感体验。在这个版本中，标志性的橙花水被一滴橙味利口酒取代。"
 	boozepwr = 35
 	color = "#f9e7c2"
 	quality = DRINK_FANTASTIC
-	taste_description = "creamy fluffy citrusy gin"
+	taste_description = "奶油般蓬松的柑橘金酒"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/french_75
-	name = "French 75"
-	description = "A sophisticated cocktail made by strengthening champagne with gin, then flavoring with lemon juice and sugar."
+	name = "法国 75"
+	description = "一款精致的鸡尾酒，用金酒增强香槟，再以柠檬汁和糖调味。"
 	boozepwr = 35
 	color = "#ffffc1"
 	quality = DRINK_GOOD
-	taste_description = "glory and gunnery"
+	taste_description = "荣耀与炮火"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/ethanol/sangria
-	name = "Sangria"
-	description = "A blood-red wine punch strengthened with liquor and sweetened with as much chopped fruit as one can get their hands on."
+	name = "桑格利亚"
+	description = "一款血红色的葡萄酒潘趣酒，用烈酒增强，并加入尽可能多的切碎水果增甜。"
 	boozepwr = 20
 	color = "#c4383b"
 	quality = DRINK_GOOD
-	taste_description = "refreshing fruity wine"
+	taste_description = "清爽的果味葡萄酒"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/suffering_bastard
-	name = "Suffering Bastard"
-	description = "A tiki style hangover cure made from ginger beer, spirits, and bitters."
+	name = "受苦混蛋"
+	description = "一款提基风格的解酒药，由姜汁啤酒、烈酒和苦酒调成。"
 	boozepwr = 20
 	color = "#e8ca78"
 	quality = DRINK_VERYGOOD
-	taste_description = "ginger-flavored recuperation"
+	taste_description = "姜味十足的恢复饮品"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -3187,12 +3187,12 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/blue_blazer
-	name = "Blue Blazer"
-	description = "The signature drink of a legendary bartender from the 19th century. While remembered for how he innovated the art of bartending, at the end of the day this drink is really just warmed and sweetened whiskey."
+	name = "蓝色烈焰"
+	description = "19 世纪一位传奇调酒师的招牌饮品。虽然他因创新调酒艺术而被铭记，但归根结底，这杯饮品只是加热并加甜的威士忌。"
 	boozepwr = 25
 	color = "#b5949b"
 	quality = DRINK_NICE
-	taste_description = "scorched sweet whiskey"
+	taste_description = "焦香的甜威士忌"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -3201,12 +3201,12 @@
 	affected_mob.adjust_bodytemperature(25 * TEMPERATURE_DAMAGE_COEFFICIENT * metabolization_ratio * seconds_per_tick, 0, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/ethanol/hot_toddy
-	name = "Hot Toddy"
-	description = "A warmed blend of spirits, sugar, and spices. While the concept is ancient, this preparation with cognac and refined sugar is a bit more modern."
+	name = "热托迪"
+	description = "烈酒、糖和香料的温热混合。这个概念虽然古老，但这种用干邑和精制糖的配方要现代一些。"
 	boozepwr = 25
 	color = "#f2d2b4"
 	quality = DRINK_GOOD
-	taste_description = "the warmth of a comfy fireplace"
+	taste_description = "舒适壁炉的温暖"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
@@ -3216,32 +3216,32 @@
 	affected_mob.adjust_bodytemperature(25 * TEMPERATURE_DAMAGE_COEFFICIENT * metabolization_ratio * seconds_per_tick, 0, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/ethanol/tizirian_sour
-	name = "Tizirian Sour"
-	description = "A twist on a trinidad sour, using korta nectar in place of orgeat. Despite the name, it was invented by a martian barkeep."
+	name = "提兹拉酸酒"
+	description = "特立尼达酸酒的变体，用科塔花蜜代替杏仁糖浆。尽管名字如此，它其实是由一位火星酒保发明的。"
 	boozepwr = 35
 	color = "#9b4b3a"
 	quality = DRINK_VERYGOOD
-	taste_description = "sweetened and spiced bitterness"
+	taste_description = "加甜加香的苦味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/daiquiri
-	name = "Daiquiri"
-	description = "In some ways the ultimate tropical cocktail, very few rum drinks are not in some way a descendant of this classic."
+	name = "大吉利"
+	description = "从某些方面说这是终极热带鸡尾酒，很少有朗姆酒饮品不是这款经典的某种后代。"
 	boozepwr = 35
 	color = "#b6d3a6"
 	quality = DRINK_NICE
-	taste_description = "crisp lime"
+	taste_description = "清脆的青柠"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/flip_cocktail
-	name = "Flip Cocktail"
-	description = "A simplified and modernized adaptation of a much older drink that predates the Cocktail. While the older version used ale and was heated before it was drunk, this version is chilled. Really, the main similarity is the use of a whole egg."
+	name = "翻转鸡尾酒"
+	description = "一款更古老饮品的简化现代化改编，其历史早于鸡尾酒本身。旧版本用艾尔啤酒并加热后饮用，而这个版本是冰镇的。说到底，主要相似之处就是用了整颗蛋。"
 	boozepwr = 30
 	color = "#dddfca"
 	quality = DRINK_GOOD
-	taste_description = "creamy brandy and nutmeg"
+	taste_description = "奶油白兰地与肉豆蔻"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -3251,11 +3251,11 @@
 		drinker.emote("flip")
 
 /datum/reagent/consumable/ethanol/aperitivo
-	name = "Aperitivo Liqueur"
-	description = "An aggressively bittersweet liqueur flavored with cinchona bark and other botanicals. Perfect for stimulating one's appetite or fighting off malaria."
+	name = "开胃利口酒"
+	description = "一种带有强烈苦甜味的利口酒，以金鸡纳树皮和其他植物调味。非常适合刺激食欲或抵抗疟疾。"
 	boozepwr = 40
 	color = "#bf1038"
-	taste_description = "intense citrusy bitterness"
+	taste_description = "强烈的柑橘苦味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -3265,32 +3265,32 @@
 	drinker.overeatduration = 0
 
 /datum/reagent/consumable/ethanol/herbal_liqueur
-	name = "Herbal Liqueur"
-	description = "A liqueur made with a wide variety of herbs and spices, infused into spirit through both distillation and maceration. So many, in fact, that trying to pick them out by scent and taste seems nearly impossible..."
+	name = "草本利口酒"
+	description = "一种用各种草本和香料制成的利口酒，通过蒸馏和浸渍融入烈酒。品种之多，以至于想靠气味和味道分辨它们几乎不可能……"
 	boozepwr = 75
 	color = "#95be7d"
 	quality = DRINK_NICE
-	taste_description = "confounding herbaceousness"
+	taste_description = "令人困惑的草本味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_EASY
 
 /datum/reagent/consumable/ethanol/maraschino
-	name = "Maraschino Liqueur"
-	description = "A classic sweet liqueur made from the fruits, leaves, and even branches of sour cherries. Surprisingly, it doesn't actually taste much like cherry."
+	name = "樱桃利口酒"
+	description = "一种经典的甜利口酒，由酸樱桃的果实、叶子甚至枝条制成。令人惊讶的是，它的味道其实不太像樱桃。"
 	boozepwr = 50
 	color = "#DDDDDD"
-	taste_description = "nutty sweetness"
+	taste_description = "坚果般的甜味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/bartenders_handshake
-	name = "Bartender's Handshake"
-	description = "A tradition of somewhat inconsistent providence, possibly linked to an obscure challenge-coin-based marketing scheme, this drink is a way for bartenders to greet and test each other's mettle via a drink that only a fellow barkeep could appreciate. While there are nearly as many versions of this drink as there are bars, this version tests one's palate by combining two of the most bitter ingredients you're likely to find in a bar."
+	name = "调酒师握手"
+	description = "一项来源不太统一的传统，可能与某个冷门的挑战币营销方案有关，这款饮品是调酒师们相互问候、试炼彼此本事的方式，只有同行才懂得欣赏。虽然这款饮品的版本几乎和酒吧一样多，但这个版本将你能在酒吧找到的两种最苦的原料组合在一起，考验你的味蕾。"
 	boozepwr = 50
 	color = "#270101"
 	quality = DRINK_VERYGOOD
-	taste_description = "pretentious bitterness"
+	taste_description = "故作高深的苦味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -3304,32 +3304,32 @@
 		drinker.adjust_disgust(2 * REM * seconds_per_tick)
 
 /datum/reagent/consumable/ethanol/brandy_crusta
-	name = "Brandy Crusta"
-	description = "The far more gussied-up ancestor of the Sidecar, this heavily garnished cocktail is the grandparent of many essential drinks served today."
+	name = "白兰地库斯塔"
+	description = "边车的华丽祖先，这款装饰繁复的鸡尾酒是如今许多重要饮品的祖辈。"
 	boozepwr = 30
 	color = "#f8c51c"
 	quality = DRINK_VERYGOOD
-	taste_description = "orangy sweetness"
+	taste_description = "橙香般的甜味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/casino
-	name = "Casino"
-	description = "A gin-heavy classic. Juniper is tempered by scant amounts of citrus and sweetened with liqueur."
+	name = "卡西诺"
+	description = "一款以金酒为主的经典之作。杜松子的味道被少量柑橘柔化，并以利口酒增甜。"
 	boozepwr = 45
 	color = "#fdee65"
 	quality = DRINK_GOOD
-	taste_description = "sweet juniper"
+	taste_description = "甜杜松子"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/garibaldi //Makes revs resitant to wounds and fearless.
-	name = "Garibaldi"
-	description = "Named for the 19th-century Italian general, the red-orange color scheme of this drink mimics the shirts of those who followed him into battles all across the world."
+	name = "加里波第"
+	description = "以 19 世纪意大利将军命名，这款饮品的橙红色调模仿了追随他征战世界各地的士兵所穿的衬衫。"
 	boozepwr = 15
 	color = "#f77e2e"
 	quality = DRINK_GOOD
-	taste_description = "bitter oranges"
+	taste_description = "苦橙"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_EASY
@@ -3341,34 +3341,34 @@
 		drinker.apply_status_effect(/datum/status_effect/rev_resilience)
 
 /datum/reagent/consumable/ethanol/improved_whiskey
-	name = "Improved Whiskey Cocktail"
-	description = "The Classic Whiskey cocktail improved by the addition of absinthe and maraschino, as well as swapping the typical orange peel garnish for lemon."
+	name = "改良威士忌鸡尾酒"
+	description = "经典威士忌鸡尾酒的改良版，加入了苦艾酒和樱桃利口酒，并用柠檬取代了常见的橙皮装饰。"
 	boozepwr = 65
 	color = "#b8a385"
 	quality = DRINK_VERYGOOD
-	taste_description = "nutty anise-scented whiskey"
+	taste_description = "坚果般的八角味威士忌"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/ethanol/jungle_bird
-	name = "Jungle Bird"
-	description = "This late-tiki concoction leverages the brilliant combination of bitter liqueur and pineapple juice to make a remarkably well-balanced cocktail."
+	name = "丛林鸟"
+	description = "这款晚期提基风格的调制品，巧妙结合了苦味利口酒与菠萝汁，调出一杯极为平衡的鸡尾酒。"
 	boozepwr = 25
 	color = "#da8370"
 	quality = DRINK_VERYGOOD
-	taste_description = "pineapple and quinine"
+	taste_description = "菠萝与奎宁"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_SUPERMATTER_SOOTHER) //If you have this in your system, you calm down the SM by being near it.
 
 /datum/reagent/consumable/ethanol/last_word
-	name = "Last Word"
-	description = "Despite being invented at the turn of the 20th century, this drink fell into obscurity until the cocktail renaissance of the beginning of the 21st, where it then went on to dominate bars and inspire countless twists upon its formula."
+	name = "遗言"
+	description = "尽管这款饮品诞生于 20 世纪之交，却一直默默无闻，直到 21 世纪初的鸡尾酒复兴运动，它才主宰了酒吧，并激发了无数配方变体。"
 	boozepwr = 50
 	color = "#dddfcaff"
 	quality = DRINK_VERYGOOD
-	taste_description = "herbal finality"
+	taste_description = "草本的终局感"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -3379,27 +3379,27 @@
 		return
 
 	ADD_TRAIT(drinker, TRAIT_HAD_LAST_WORD, type)
-	to_chat(drinker, span_notice("You take a moment to silently savor your drink..."))
+	to_chat(drinker, span_notice("你花了一点时间，安静地品味你的饮品……"))
 	drinker.set_silence_if_lower(5 SECONDS)
 	addtimer(TRAIT_CALLBACK_REMOVE(drinker, TRAIT_HAD_LAST_WORD, type), 300 SECONDS)
 
 /datum/reagent/consumable/ethanol/mary_pickford
-	name = "Mary Pickford"
-	description = "Named after an early 20th-century film star, this cocktail takes a rum and pineapple flavor profile and presents it in a classier and more elegant form than one would typically expect."
+	name = "玛丽·皮克福德"
+	description = "以 20 世纪早期的一位电影明星命名，这款鸡尾酒将朗姆与菠萝的风味组合，以比人们通常预期更有格调、更优雅的形式呈现。"
 	boozepwr = 35
 	color = "#f7b7a7ff"
 	quality = DRINK_GOOD
-	taste_description = "elegant pineapple"
+	taste_description = "优雅的菠萝"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/negroni //Aperitif that supresses overeating
-	name = "Negroni"
-	description = "An iconic Italian aperitif, its simple intensity crowns it as perhaps the ultimate bitter cocktail. Supposedly it was named after an Italian count who wanted a stronger version of a spritz and asked his bartender to replace soda with gin."
+	name = "内格罗尼"
+	description = "一款标志性的意大利开胃酒，其简单的浓烈让它堪称终极苦味鸡尾酒。据说它得名于一位想要更烈版斯普里茨的意大利伯爵，他让酒保用金酒代替了苏打水。"
 	boozepwr = 50
 	color = "#cf0e00ff"
 	quality = DRINK_GOOD
-	taste_description = "bittersweet vermouth"
+	taste_description = "苦甜味美思"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_EASY
@@ -3409,22 +3409,22 @@
 	drinker.overeatduration -= 20
 
 /datum/reagent/consumable/ethanol/nuclear_daiquiri
-	name = "Nuclear daiquiri"
-	description = "Overproof, funky, pot still rum and herbal liqueur takes the simple elegance of a Cuban daiquiri and turns it on its head."
+	name = "核大吉利"
+	description = "超高酒精度、风味浓烈、壶式蒸馏的朗姆酒与草本利口酒，将古巴大吉利的简约优雅彻底颠覆。"
 	boozepwr = 65
 	color = "#22cc22"
 	quality = DRINK_GOOD
-	taste_description = "hogo and herbs"
+	taste_description = "浓烈的朗姆酒香与草本"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/nuclear_daiquiri_thermo
-	name = "Thermonuclear Daiquiri"
-	description = "A drink for those who enjoy the gnarlier things in life, like high-ester rums and Cobalt 60."
+	name = "热核大吉利"
+	description = "一款献给喜欢生活中更硬核事物的人——比如高酯朗姆酒和钴-60。"
 	boozepwr = 80
 	color = "#00dd00"
 	quality = DRINK_FANTASTIC
-	taste_description = "approximately 3.6 roentgen"
+	taste_description = "大约 3.6 伦琴"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -3443,12 +3443,12 @@
 	drinker.set_dizzy_if_lower(10 SECONDS * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/consumable/ethanol/poets_dream
-	name = "Poet's Dream"
-	description = "This cocktail takes a classic martini base and twists it into a deliciously sweet and herbal mode. Nanotrasen regulations state not to drink this too soon before sleep, or risk 'oneiric encroachment,' whatever that means."
+	name = "诗人梦"
+	description = "这款鸡尾酒以经典马提尼为基底，将其转化为甜美而富有草本风味的形态。纳米传讯规定，睡前不宜过早饮用此酒，否则会有“梦境入侵”的风险——不管那是什么意思。"
 	boozepwr = 50
 	color = "#d4b14f"
 	quality = DRINK_GOOD
-	taste_description = "honeyed herbal gin"
+	taste_description = "蜂蜜草本金酒"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -3461,23 +3461,23 @@
 	affected_mob.remove_status_effect(/datum/status_effect/grouped/heretic_dreams, type)
 
 /datum/reagent/consumable/ethanol/pousse_cafe
-	name = "Pousse Cafe"
-	description = "An aesthetically beautiful cocktail made from the careful and meticulous layering of various liquors. Extremely annoying to make."
+	name = "普斯咖啡"
+	description = "一款美观的鸡尾酒，由多种利口酒精心细致地分层而成。调制起来极其麻烦。"
 	boozepwr = 50
 	color = "#93cf33"
 	quality = DRINK_FANTASTIC
-	taste_description = "a cascade of varying liqueurs"
+	taste_description = "层层叠叠的利口酒"
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	glass_price = DRINK_PRICE_HIGH
 
 /datum/reagent/consumable/ethanol/spritz //Aperitif that supresses overeating
-	name = "Spritz" // If someone wants to add an elderflower spritz or something else like that, just rename this to spritz al bitter or whatever
-	description = "This bittersweet and refreshing aperitif brings to mind the beautiful summer sunsets of venice."
+	name = "斯普里茨" // If someone wants to add an elderflower spritz or something else like that, just rename this to spritz al bitter or whatever
+	description = "这款苦甜清爽的开胃酒让人想起威尼斯美丽的夏日黄昏。"
 	boozepwr = 20
 	color = "#ee714b"
 	quality = DRINK_GOOD
-	taste_description = "bittersweet refreshment"
+	taste_description = "苦甜清爽"
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	glass_price = DRINK_PRICE_EASY
@@ -3487,12 +3487,12 @@
 	drinker.overeatduration -= 20
 
 /datum/reagent/consumable/ethanol/vieux_carre
-	name = "Vieux Carré"
-	description = "One of the best of many great cocktails to come out of New Orleans, this drink does honor to that city's French Quarter both in name and in taste."
+	name = "老广场"
+	description = "新奥尔良出产的众多伟大鸡尾酒中最出色的一款，这款饮品在名字和味道上都向该市的法国区致敬。"
 	boozepwr = 60
 	color = "#b43110"
 	quality = DRINK_VERYGOOD
-	taste_description = "Creole hospitality"
+	taste_description = "克里奥尔式的热情款待"
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 

@@ -1,16 +1,16 @@
 // prestidigitation
 /datum/heretic_knowledge/spell/tricksters_cackle
-	name = "Trickster's Promise"
-	desc = "Allows you to pick from a small list of party tricks and somewhat useful abilities, such as cleaning, confetti, etc. Right click to select the mode. Left click to cast. (Can be casted without a focus)"
-	gain_text = "The Trickster, true to its name, is a trickster. It always holds a deck of cards, or perhaps a paintbrush. Offer a smile and a wink to the god, \
-	and it might just grant you its promise."
+	name = "诡戏者的承诺"
+	desc = "让你能选择若干派对戏法和实用小能力，如清洁、喷洒彩纸等。右键选择模式，左键施放。（无需施法媒介）"
+	gain_text = "诡戏者名副其实，最爱耍弄花招。祂手中总握着一副牌，或许也会是一支画笔。向这位神灵微笑、眨眼，\
+	祂也许就会赐下自己的承诺。"
 	drafting_tier = 1
 	drafting_cost = 1 // has actual uses - free cleaning? free synth-compatible healing? yes please
 	action_to_add = /datum/action/cooldown/spell/pointed/tricksters_cackle
 
 /datum/action/cooldown/spell/pointed/tricksters_cackle
-	name = "Trickster's Promise"
-	desc = "Allows you to pick from a small list of party tricks and vaguely useful abilities. Right click to select the mode. Left click to cast."
+	name = "诡戏者的承诺"
+	desc = "让你能选择若干派对戏法和实用小能力。右键选择模式，左键施放。"
 	var/static/list/modes = list(
 		"Spawn Confetti" = 5 SECONDS,
 		"Clean" = 2 SECONDS,
@@ -42,11 +42,11 @@
 /datum/action/cooldown/spell/pointed/tricksters_cackle/Trigger(mob/clicker, trigger_flags, atom/target)
 	var/right_clicked = !!(trigger_flags & TRIGGER_SECONDARY_ACTION)
 	if (right_clicked)
-		mode = show_radial_menu(clicker, clicker, modes_to_images)
+		mode = chinese_heretic_trick_radial(clicker, modes_to_images)
 		if (isnull(mode))
 			return TRUE
 		cooldown_time = modes[mode]
-		clicker.balloon_alert(clicker, "selected [LOWER_TEXT(mode)]")
+		clicker.balloon_alert(clicker, "已选择[chinese_heretic_trick_display(mode)]")
 		return TRUE
 	else
 		return ..()
@@ -84,30 +84,30 @@
 			playsound(owner, 'sound/effects/snap.ogg', 30)
 
 			owner.visible_message(
-				span_warning("[owner] makes a triangle with [owner.p_their()] fingers. You hear a hyena cackle, then suddenly - a stream of confetti fires out from inbetween [owner.p_their()] digits!"),
-				span_notice("You make the triangle-glyph, and much to the Trickster's promise, a stream of confetti flies out from between your fingers!")
+				span_warning("[owner]用手指比出三角形。你听见鬣狗的怪笑，随后——一串彩纸突然从指间喷出！"),
+				span_notice("你比出三角秘符，正如诡戏者所承诺的，一串彩纸从你的指间飞出！")
 			)
 			return TRUE
 		if ("Clean")
 			if (!cast_on.Adjacent(owner))
-				owner.balloon_alert(owner, "too far!")
+				owner.balloon_alert(owner, "太远了！")
 				return FALSE
 			cast_on.wash(CLEAN_SCRUB)
 			owner.visible_message(
-				span_warning("[owner] makes a circle with [owner.p_their()] fingers. You hear a hyena sniffle, then suddenly - [cast_on] appears clean as ever!"),
-				span_notice("You make the circle-glyph, and much to the Trickster's promise, [cast_on] is suddenly clean!")
+				span_warning("[owner]用手指比出圆形。你听见鬣狗的抽鼻声，随后——[cast_on]突然变得一尘不染！"),
+				span_notice("你比出圆形秘符，正如诡戏者所承诺的，[cast_on]突然变得干干净净！")
 			)
-			cast_on.balloon_alert_to_viewers("cleaned!")
+			cast_on.balloon_alert_to_viewers("清洁完毕！")
 			return TRUE
 		if ("Add A Glow To Any Item")
 			if (!cast_on.Adjacent(owner))
-				owner.balloon_alert(owner, "too far!")
+				owner.balloon_alert(owner, "太远了！")
 				return FALSE
 			if (!isitem(cast_on))
-				owner.balloon_alert(owner, "not an item!")
+				owner.balloon_alert(owner, "不是物品！")
 				return FALSE
 			if (cast_on.light != null)
-				owner.balloon_alert(owner, "already luminous!")
+				owner.balloon_alert(owner, "已经在发光！")
 				return FALSE
 			cast_on.set_light(
 				3,
@@ -116,40 +116,40 @@
 			)
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(unset_trickster_light), cast_on), 120 SECONDS)
 			owner.visible_message(
-				span_warning("[owner] makes a diamond with [owner.p_their()] fingers. You hear a hyena grunt, then suddenly - [cast_on] lights up in orange light!"),
-				span_notice("You make the diamond-glyph, and much to the Trickster's promise, [cast_on] is suddenly luminous!")
+				span_warning("[owner]用手指比出菱形。你听见鬣狗的低哼，随后——[cast_on]突然亮起橙色光芒！"),
+				span_notice("你比出菱形秘符，正如诡戏者所承诺的，[cast_on]突然发起光来！")
 			)
-			cast_on.balloon_alert_to_viewers("glowing!")
+			cast_on.balloon_alert_to_viewers("发光了！")
 			return TRUE
 		if ("Enhance Taste & Add Healing To Food")
 			if (!cast_on.Adjacent(owner))
-				owner.balloon_alert(owner, "too far!")
+				owner.balloon_alert(owner, "太远了！")
 				return FALSE
 			if (!IS_EDIBLE(cast_on))
-				owner.balloon_alert(owner, "inedible!")
+				owner.balloon_alert(owner, "不能食用！")
 				return FALSE
 			if (HAS_TRAIT(cast_on, TRAIT_TRICKSTER_TASTE))
-				owner.balloon_alert(owner, "already boosted!")
+				owner.balloon_alert(owner, "已经强化过了！")
 				return FALSE
 			ADD_TRAIT(cast_on, TRAIT_TRICKSTER_TASTE, REF(src))
 			cast_on.reagents?.add_reagent(/datum/reagent/medicine/omnizine/heretic, 5)
 
 			owner.visible_message(
-				span_warning("[owner] makes a square with [owner.p_their()] fingers. You hear a hyena hum, then suddenly - [cast_on] looks much more appetizing..."),
-				span_notice("You make the square-glyph, and much to the Trickster's promise, [cast_on] is suddenly more appetizing!")
+				span_warning("[owner]用手指比出方形。你听见鬣狗的哼鸣，随后——[cast_on]看起来突然更加诱人了……"),
+				span_notice("你比出方形秘符，正如诡戏者所承诺的，[cast_on]突然变得更加美味诱人！")
 			)
 
 			RegisterSignal(cast_on, COMSIG_FOOD_GET_EXTRA_COMPLEXITY, PROC_REF(get_food_boost))
 
-			cast_on.balloon_alert_to_viewers("yummy...")
+			cast_on.balloon_alert_to_viewers("真美味……")
 
 			return TRUE
 
 	return FALSE
 
 /datum/reagent/medicine/omnizine/heretic
-	name = "Trickster's Cackle"
-	description = "Laugh, laugh, laugh it off! It's all just a play, anyway!"
+	name = "诡戏者的怪笑"
+	description = "笑吧，笑吧，一笑置之！反正一切都只是一场戏！"
 	color = "#d8c7b7"
 	healing = 0.3 // slightly better than protozine
 	chemical_flags = NONE // synths can heal from it
@@ -170,4 +170,4 @@
 		0,
 		0
 	)
-	target.visible_message(span_warning("[target]'s light fades..."))
+	target.visible_message(span_warning("[target]的光芒消退了……"))

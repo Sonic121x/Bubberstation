@@ -1,7 +1,7 @@
 
 /obj/item/rbmk_upgrade
-	name = "\improper RB-MK2 software upgrade disk"
-	desc = "It seems to be empty. Good fucking job, coders."
+	name = "\improper RB-MK2 软件升级磁盘"
+	desc = "里面似乎是空的。程序员们，干得真他妈漂亮。"
 	icon = 'icons/obj/devices/floppy_disks.dmi'
 	icon_state = "datadisk2"
 
@@ -18,9 +18,9 @@
 		var/obj/item/rbmk_upgrade/upgrade_disk = tool
 		if(upgrade_disk.can_upgrade(src))
 			upgrade_disk.apply_upgrade(src)
-			balloon_alert(user, "upgraded!")
+			balloon_alert(user, "升级完成！")
 		else
-			balloon_alert(user, "can't upgrade!")
+			balloon_alert(user, "无法升级！")
 		return TRUE
 
 
@@ -29,8 +29,8 @@
 
 //Auto Vent
 /obj/item/rbmk_upgrade/auto_vent
-	name = "\improper RB-MK2 software upgrade disk - auto vent"
-	desc = "A disk that allows you to install an upgrade into the RB-MK that automatically controls vent usage to maximize power gain at all temperature setups."
+	name = "\improper RB-MK2 软件升级磁盘——自动通风"
+	desc = "可为 RB-MK 安装自动通风升级的磁盘，在各种温度配置下自动控制通风，使发电收益最大化。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/glass = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/silver =SHEET_MATERIAL_AMOUNT, /datum/material/titanium =SHEET_MATERIAL_AMOUNT)
 
 /obj/item/rbmk_upgrade/auto_vent/apply_upgrade(obj/machinery/power/rbmk2/machine)
@@ -42,8 +42,8 @@
 
 //Safeties
 /obj/item/rbmk_upgrade/safeties
-	name = "\improper RB-MK2 software upgrade disk - safeties optimization"
-	desc = "A disk that allows you to install an upgrade into the RB-MK that effectively decreases the safeties threshold from 75% to 95%, preventing premature ejectulation."
+	name = "\improper RB-MK2 软件升级磁盘——安全系统优化"
+	desc = "可为 RB-MK 安装安全系统优化升级的磁盘，将安全触发阈值从75%调整至95%，防止过早弹出。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/glass = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/gold =SHEET_MATERIAL_AMOUNT, /datum/material/uranium =SHEET_MATERIAL_AMOUNT)
 
 /obj/item/rbmk_upgrade/safeties/apply_upgrade(obj/machinery/power/rbmk2/machine)
@@ -56,8 +56,8 @@
 
 //Overclock
 /obj/item/rbmk_upgrade/overclock
-	name = "\improper RB-MK2 software upgrade disk - overclock"
-	desc = "A disk that allows you to install an upgrade into the RB-MK that enables overlocking of the reactor."
+	name = "\improper RB-MK2 软件升级磁盘——超频"
+	desc = "可为 RB-MK 安装超频功能升级的磁盘。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/glass = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/bluespace =SHEET_MATERIAL_AMOUNT, /datum/material/uranium =SHEET_MATERIAL_AMOUNT)
 
 /obj/item/rbmk_upgrade/overclock/apply_upgrade(obj/machinery/power/rbmk2/machine)

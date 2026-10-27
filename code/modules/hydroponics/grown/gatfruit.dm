@@ -1,11 +1,11 @@
 
 // Gatfruit
 /obj/item/seeds/gatfruit
-	name = "gatfruit seed pack"
-	desc = "These seeds grow into pea-shooting revolvers."
+	name = "加特果种子包"
+	desc = "这些种子会长成能发射豌豆的左轮手枪。"
 	icon_state = "seed-gatfruit"
 	species = "gatfruit"
-	plantname = "Gatfruit Tree"
+	plantname = "加特果树"
 	product = /obj/item/food/grown/gatfruit
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	lifespan = 20
@@ -21,13 +21,13 @@
 
 /obj/item/food/grown/gatfruit
 	seed = /obj/item/seeds/gatfruit
-	name = "gatfruit"
-	desc = "It smells like burning gunpowder."
+	name = "加特果"
+	desc = "闻起来像燃烧的火药。"
 	icon_state = "gatfruit"
 	trash_type = /obj/item/gun/ballistic/revolver/peashooter
 	bite_consumption_mod = 2
 	foodtypes = FRUIT
-	tastes = list("gunpowder" = 1)
+	tastes = list("火药" = 1)
 	wine_power = 90 //It burns going down, too.
 
 /obj/item/food/grown/gatfruit/Initialize(mapload, obj/item/seeds/new_seed)

@@ -1,6 +1,6 @@
 /mob/living/basic/pet/poppy
-	name = "Poppy the Safety Inspector"
-	desc = "Safety first!"
+	name = "安全检查员波比"
+	desc = "安全第一！"
 	icon = 'modular_skyrat/master_files/icons/mob/pets.dmi'
 	icon_state = "poppypossum"
 	icon_living = "poppypossum"
@@ -9,19 +9,19 @@
 	unique_pet = TRUE
 	maxHealth = 30
 	health = 30
-	speak_emote = list("hisses")
+	speak_emote = list("嘶嘶")
 	/// Is the inspection currently being passed?
 	var/safety_inspection = TRUE
 	/// Are they scared already?
 	var/upset = FALSE
 	/// Are they near the supermatter?
 	var/near_engine = FALSE
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "stamps on"
-	response_harm_simple = "stamp"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "踩踏"
+	response_harm_simple = "踩踏"
 	density = FALSE
 	mobility_flags = MOBILITY_FLAGS_REST_CAPABLE_DEFAULT
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
@@ -45,9 +45,9 @@
 	ai_movement = /datum/ai_movement/basic_avoidance
 
 /datum/bt_node/ai_behavior/random_speech/poppy
-	speak = list("Hiss!", "HISS!", "Hissss?")
-	emote_hear = list("hisses.")
-	emote_see = list("runs in a circle.", "shakes.")
+	speak = list("嘶！", "嘶——！", "嘶嘶嘶？")
+	emote_hear = list("发出嘶嘶声。")
+	emote_see = list("绕圈跑动。", "抖动身体。")
 	speech_chance = 1
 
 /mob/living/basic/pet/poppy/Initialize(mapload)
@@ -72,7 +72,7 @@
 		var/list/sm_chamber = get_area_turfs(/area/station/engineering/supermatter)
 		if(src.loc in sm_chamber)
 			safety_inspection = FALSE
-			priority_announce("This is a generated message due to an automated signal regarding the safety standards of the engineering department onboard [station_name()]. Due to the station engineers failing to meet the standard set by Central Command, each of them are now at risk of being forcefully enrolled in a re-evaluation program at later notice...", "Concerning the results of a safety inspection", type = "Priority")
+			priority_announce("这是一条由自动信号触发的生成讯息，内容涉及 [station_name()] 上工程部的安全标准。由于本站工程师未能达到中央指挥部设定的标准，他们每人都可能被强制纳入稍后通知的再评估计划……", "关于安全检查的结果", type = "Priority")
 			// It's just flavor, no tangible punishment
 	return ..()
 
@@ -105,11 +105,11 @@
 	if(!SPT_PROB(0.5, seconds_per_tick))
 		return
 	if(!resting)
-		manual_emote(pick("lets out a hiss before resting.", "catches a break.", "gives a simmering hiss before lounging.", "exams her surroundings before relaxing."))
+		manual_emote(pick("发出一声嘶鸣，随后趴下休息。", "趁机歇了口气。", "发出低沉的嘶声，然后懒洋洋地趴开。", "打量了一圈四周，然后放松下来。"))
 		set_resting(TRUE)
 		return
 	else
-		manual_emote(pick("stretches her claws, rising...", "diligently gets up, ready to inspect!", "stops her resting."))
+		manual_emote(pick("伸出爪子伸了个懒腰，站起身来……", "认真地起身，准备开始检查！", "结束了休息。"))
 		set_resting(FALSE)
 
 	return ..()
@@ -127,12 +127,12 @@
 
 	//emote("sweatdrop") - BUBBER TODO - Make this not lint
 	do_jitter_animation(60)
-	manual_emote("'s fur stands up, [src.p_their()] body trembling...")
+	manual_emote("的毛发竖了起来，全身不停颤抖……")
 
-	notify_ghosts("[src] was startled by the supermatter!",
+	notify_ghosts("[src] 被超物质吓到了！",
 		source = src,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
-		header = "Safety Inspection!",
+		header = "安全检查！",
 	)
 	addtimer(CALLBACK(src, PROC_REF(calm_down)), 60 SECONDS)
 

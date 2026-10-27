@@ -1,16 +1,16 @@
 /// Support unit gets it's own very basic antag datum for admin logging.
 /datum/antagonist/traitor/contractor_support
-	name = "Contractor Support Unit"
+	name = "承包商支援单位"
 	pref_flag = ROLE_CONTRACTOR_SUPPORT
-	employer = "Contractor Support Unit"
+	employer = "承包商支援单位"
 	show_in_roundend = FALSE
 	give_objectives = TRUE
 	give_uplink = FALSE
 
 /datum/antagonist/traitor/contractor_support/forge_traitor_objectives()
 	var/datum/objective/generic_objective = new
-	generic_objective.name = "Follow Contractor's Orders"
-	generic_objective.explanation_text = "Follow your orders. Assist agents in this mission area."
+	generic_objective.name = "服从承包商命令"
+	generic_objective.explanation_text = "服从你的命令，协助该任务区域内的特工。"
 	generic_objective.completed = TRUE
 	objectives += generic_objective
 
@@ -18,7 +18,7 @@
 	return
 
 /datum/outfit/contractor_partner
-	name = "Contractor Support Unit"
+	name = "承包商支援单位"
 
 	uniform = /obj/item/clothing/under/chameleon
 	suit = /obj/item/clothing/suit/chameleon

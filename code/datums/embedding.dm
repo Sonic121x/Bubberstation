@@ -97,9 +97,9 @@
 	SIGNAL_HANDLER
 
 	if(is_harmless())
-		examine_list["sticky"] = "[parent] looks sticky, and could probably get stuck to someone if thrown properly!"
+		examine_list["sticky"] = "[parent]看起来黏糊糊的，投掷得当的话应该能粘到别人身上！"
 	else
-		examine_list["embeddable"] = "[parent] has a fine point, and could probably embed in someone if thrown properly!"
+		examine_list["embeddable"] = "[parent]有着尖端，投掷得当的话应该能嵌入别人身体！"
 
 /// Is passed victim a valid target for us to embed into?
 /datum/embedding/proc/can_embed(atom/movable/source, mob/living/carbon/victim, hit_zone, datum/thrownthing/throwingdatum)
@@ -192,8 +192,8 @@
 
 	chance -= armor
 	if (chance < 0)
-		victim.visible_message(span_danger("[parent] bounces off [victim]'s armor, unable to embed!"),
-			span_notice("[parent] bounces off your armor, unable to embed!"), vision_distance = COMBAT_MESSAGE_RANGE)
+		victim.visible_message(span_danger("[parent]被[victim]的护甲弹开，未能嵌入身体！"),
+			span_notice("[parent]被你的护甲弹开，未能嵌入身体！"), vision_distance = COMBAT_MESSAGE_RANGE)
 		return FALSE
 
 	return prob(chance)
@@ -222,8 +222,8 @@
 	parent.forceMove(owner)
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(weapon_disappeared))
 	RegisterSignal(parent, COMSIG_MAGIC_RECALL, PROC_REF(magic_pull))
-	owner.visible_message(span_danger("[parent] [is_harmless() ? "sticks itself to" : "embeds itself in"] [owner]'s [owner_limb.plaintext_zone]!"),
-		span_userdanger("[parent] [is_harmless() ? "sticks itself to" : "embeds itself in"] your [owner_limb.plaintext_zone]!"))
+	owner.visible_message(span_danger("[parent][is_harmless() ? "粘在了" : "嵌入了"][owner]的[chinese_body_zone_display(owner_limb.plaintext_zone)]！"),
+		span_userdanger("[parent][is_harmless() ? "粘在了" : "嵌入了"]你的[chinese_body_zone_display(owner_limb.plaintext_zone)]！"))
 
 	var/damage = parent.throwforce
 	if (!is_harmless(consider_stamina = TRUE))
@@ -242,8 +242,8 @@
 	if (damage <= 0)
 		return TRUE
 
-	var/armor = owner.run_armor_check(owner_limb.body_zone, MELEE, "Your armor has protected your [owner_limb.plaintext_zone].",
-		"Your armor has softened a hit to your [owner_limb.plaintext_zone].", parent.armour_penetration,
+	var/armor = owner.run_armor_check(owner_limb.body_zone, MELEE, "护甲保护了你的[chinese_body_zone_display(owner_limb.plaintext_zone)]。",
+		"护甲减轻了你[chinese_body_zone_display(owner_limb.plaintext_zone)]受到的冲击。", parent.armour_penetration,
 		weak_against_armour = parent.weak_against_armour,
 	)
 
@@ -324,12 +324,12 @@
 	if (jack_the_ripper != owner)
 		time_taken *= RIPPING_OUT_HELP_TIME_MULTIPLIER
 		damage_mult *= RIPPING_OUT_HELP_DAMAGE_MULTIPLIER
-		owner.visible_message(span_warning("[jack_the_ripper] attempts to remove [parent] from [owner]'s [owner_limb.plaintext_zone]!"),
-			span_userdanger("[jack_the_ripper] attempt to remove [parent] from your [owner_limb.plaintext_zone]!"), ignored_mobs = jack_the_ripper)
-		to_chat(jack_the_ripper, span_notice("You attempt to remove [parent] from [owner]'s [owner_limb.plaintext_zone]..."))
+		owner.visible_message(span_warning("[jack_the_ripper]试图从[owner]的[chinese_body_zone_display(owner_limb.plaintext_zone)]上取下[parent]！"),
+			span_userdanger("[jack_the_ripper]试图从你的[chinese_body_zone_display(owner_limb.plaintext_zone)]上取下[parent]！"), ignored_mobs = jack_the_ripper)
+		to_chat(jack_the_ripper, span_notice("你试图从[owner]的[chinese_body_zone_display(owner_limb.plaintext_zone)]上取下[parent]……"))
 	else
-		owner.visible_message(span_warning("[owner] attempts to remove [parent] from [owner.p_their()] [owner_limb.plaintext_zone]."),
-			span_notice("You attempt to remove [parent] from your [owner_limb.plaintext_zone]..."))
+		owner.visible_message(span_warning("[owner]试图从自己的[chinese_body_zone_display(owner_limb.plaintext_zone)]上取下[parent]。"),
+			span_notice("你试图从自己的[chinese_body_zone_display(owner_limb.plaintext_zone)]上取下[parent]……"))
 
 	if (!do_after(jack_the_ripper, time_taken, owner, extra_checks = CALLBACK(src, PROC_REF(still_in))))
 		return
@@ -338,12 +338,12 @@
 		return
 
 	if (jack_the_ripper == owner)
-		owner.visible_message(span_notice("[owner] successfully rips [parent] [is_harmless() ? "off" : "out"] of [owner.p_their()] [owner_limb.plaintext_zone]!"),
-			span_notice("You successfully remove [parent] from your [owner_limb.plaintext_zone]."))
+		owner.visible_message(span_notice("[owner]成功从自己的[chinese_body_zone_display(owner_limb.plaintext_zone)][is_harmless() ? "上扯下" : "中拔出"]了[parent]！"),
+			span_notice("你成功从自己的[chinese_body_zone_display(owner_limb.plaintext_zone)]上移除了[parent]。"))
 	else
-		owner.visible_message(span_notice("[jack_the_ripper] successfully rips [parent] [is_harmless() ? "off" : "out"] of [owner]'s [owner_limb.plaintext_zone]!"),
-			span_userdanger("[jack_the_ripper] removes [parent] from your [owner_limb.plaintext_zone]!"), ignored_mobs = jack_the_ripper)
-		to_chat(jack_the_ripper, span_notice("You successfully remove [parent] from [owner]'s [owner_limb.plaintext_zone]."))
+		owner.visible_message(span_notice("[jack_the_ripper]成功从[owner]的[chinese_body_zone_display(owner_limb.plaintext_zone)][is_harmless() ? "上扯下" : "中拔出"]了[parent]！"),
+			span_userdanger("[jack_the_ripper]从你的[chinese_body_zone_display(owner_limb.plaintext_zone)]上移除了[parent]！"), ignored_mobs = jack_the_ripper)
+		to_chat(jack_the_ripper, span_notice("你成功从[owner]的[chinese_body_zone_display(owner_limb.plaintext_zone)]上移除了[parent]。"))
 
 	if (!is_harmless())
 		damaging_removal_effect(damage_mult)
@@ -404,9 +404,9 @@
 	)
 
 	if(stealthy_embed)
-		to_chat(owner, span_danger("Something in your [owner_limb.plaintext_zone] jostles and stings!"))
+		to_chat(owner, span_danger("你的[chinese_body_zone_display(owner_limb.plaintext_zone)]里有东西晃动，带来阵阵刺痛！"))
 	else
-		to_chat(owner, span_userdanger("[parent] embedded in your [owner_limb.plaintext_zone] jostles and stings!"))
+		to_chat(owner, span_userdanger("嵌在你[chinese_body_zone_display(owner_limb.plaintext_zone)]里的[parent]晃动着，带来阵阵刺痛！"))
 	jostle_effects()
 
 /// Effects which should occur when the owner moves, sometimes
@@ -475,9 +475,9 @@
 		damagetype = STAMINA,
 	)
 	if(stealthy_embed)
-		to_chat(owner, span_danger("Something in your [owner_limb.plaintext_zone] [pain_stam_pct < 1 ? "hurts!" : "weighs you down."]"))
+		to_chat(owner, span_danger("你的[chinese_body_zone_display(owner_limb.plaintext_zone)]里有什么东西[pain_stam_pct < 1 ? "让你疼痛不已！" : "拖累着你。"]"))
 	else
-		to_chat(owner, span_userdanger("[parent] embedded in your [owner_limb.plaintext_zone] [pain_stam_pct < 1 ? "hurts!" : "weighs you down."]"))
+		to_chat(owner, span_userdanger("嵌在你[chinese_body_zone_display(owner_limb.plaintext_zone)]里的[parent][pain_stam_pct < 1 ? "让你疼痛不已！" : "拖累着你。"]"))
 
 /// Called every process, return TRUE in order to abort further processing - if it falls out, etc
 /datum/embedding/proc/process_effect(seconds_per_tick)
@@ -498,23 +498,23 @@
 		pluck_time *= 1.5
 
 	if (self_pluck)
-		owner.visible_message(span_danger("[owner] begins plucking [parent] from [owner.p_their()] [owner_limb.plaintext_zone] with [tool]..."),
-			span_notice("You start plucking [parent] from your [owner_limb.plaintext_zone] with [tool]..."), visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE)
+		owner.visible_message(span_danger("[owner]开始用[tool]从自己的[chinese_body_zone_display(owner_limb.plaintext_zone)]上取出[parent]……"),
+			span_notice("你开始用[tool]从自己的[chinese_body_zone_display(owner_limb.plaintext_zone)]上取出[parent]……"), visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE)
 	else
-		user.visible_message(span_danger("[user] begins plucking [parent] from [owner]'s [owner_limb.plaintext_zone] with [tool]..."),
-			span_notice("You start plucking [parent] from [owner]'s [owner_limb.plaintext_zone] with [tool]..."), ignored_mobs = owner)
-		to_chat(owner, span_userdanger("[user] begins plucking [parent] from your [owner_limb.plaintext_zone] with [tool]... "))
+		user.visible_message(span_danger("[user]开始用[tool]从[owner]的[chinese_body_zone_display(owner_limb.plaintext_zone)]上取出[parent]……"),
+			span_notice("你开始用[tool]从[owner]的[chinese_body_zone_display(owner_limb.plaintext_zone)]上取出[parent]……"), ignored_mobs = owner)
+		to_chat(owner, span_userdanger("[user]开始用[tool]从你的[chinese_body_zone_display(owner_limb.plaintext_zone)]上取出[parent]……"))
 
 	if (!do_after(user, pluck_time, owner, extra_checks = CALLBACK(src, PROC_REF(still_in))))
 		if (self_pluck)
-			to_chat(user, span_danger("You fail to pluck [parent] from your [owner_limb.plaintext_zone]."))
+			to_chat(user, span_danger("你没能从自己的[chinese_body_zone_display(owner_limb.plaintext_zone)]上取出[parent]。"))
 		else
-			to_chat(user, span_danger("You fail to pluck [parent] from [owner]'s [owner_limb.plaintext_zone]."))
-			to_chat(owner, span_danger("[user] fails to pluck [parent] from your [owner_limb.plaintext_zone]."))
+			to_chat(user, span_danger("你没能从[owner]的[chinese_body_zone_display(owner_limb.plaintext_zone)]上取出[parent]。"))
+			to_chat(owner, span_danger("[user]没能从你的[chinese_body_zone_display(owner_limb.plaintext_zone)]上取出[parent]。"))
 		return
 
 	if (self_pluck)
-		to_chat(span_notice("You pluck [parent] from your [owner_limb.plaintext_zone][safe_pluck ? "." : span_danger(", but it hurts like hell")]"))
+		to_chat(span_notice("你从自己的[chinese_body_zone_display(owner_limb.plaintext_zone)]上取出了[parent][safe_pluck ? "。" : span_danger("，但疼得要命")]"))
 
 	if(!safe_pluck)
 		damaging_removal_effect(min(self_pluck ? 1 : RIPPING_OUT_HELP_DAMAGE_MULTIPLIER, 0.4 * tool.w_class))
@@ -524,8 +524,8 @@
 /// Called when then item randomly falls out of a carbon. This handles the damage and descriptors, then calls remove_embedding()
 /datum/embedding/proc/fall_out()
 	if(is_harmless())
-		owner.visible_message(span_warning("[parent] falls off of [owner.name]'s [owner_limb.plaintext_zone]!"),
-			span_warning("[parent] falls off of your [owner_limb.plaintext_zone]!"))
+		owner.visible_message(span_warning("[parent]从[owner.name]的[chinese_body_zone_display(owner_limb.plaintext_zone)]上掉了下来！"),
+			span_warning("[parent]从你的[chinese_body_zone_display(owner_limb.plaintext_zone)]上掉了下来！"))
 		remove_embedding()
 		return
 
@@ -544,8 +544,8 @@
 		damagetype = STAMINA,
 	)
 
-	owner.visible_message(span_danger("[parent] falls out of [owner.name]'s [owner_limb.plaintext_zone]!"),
-		span_userdanger("[parent] falls out of your [owner_limb.plaintext_zone]!"))
+	owner.visible_message(span_danger("[parent]从[owner.name]的[chinese_body_zone_display(owner_limb.plaintext_zone)]里掉了出来！"),
+		span_userdanger("[parent]从你的[chinese_body_zone_display(owner_limb.plaintext_zone)]里掉了出来！"))
 	remove_embedding()
 
 /// Whenever the parent item is forcefully moved by some weird means
@@ -553,7 +553,7 @@
 	SIGNAL_HANDLER
 	// If something moved it to their limb, its not really *disappearing*, is it?
 	if (owner && parent.loc != owner_limb)
-		to_chat(owner, span_userdanger("[parent] that was embedded in your [owner_limb.plaintext_zone] disappears!"))
+		to_chat(owner, span_userdanger("嵌在你[chinese_body_zone_display(owner_limb.plaintext_zone)]里的[parent]消失了！"))
 	stop_embedding()
 
 /// So the sticky grenades chain-detonate, because mobs are very careful with which of their contents they blow up
@@ -575,7 +575,7 @@
 	SIGNAL_HANDLER
 
 	if(is_harmless())
-		owner.visible_message(span_danger("[parent] vanishes from [owner]'s [owner_limb.plaintext_zone]!"), span_userdanger("[parent] vanishes from [owner_limb.plaintext_zone]!"))
+		owner.visible_message(span_danger("[parent]从[owner]的[chinese_body_zone_display(owner_limb.plaintext_zone)]中消失了！"), span_userdanger("[parent]从[chinese_body_zone_display(owner_limb.plaintext_zone)]中消失了！"))
 		return
 
 	var/damage = parent.w_class * remove_pain_mult
@@ -599,12 +599,12 @@
 
 	var/dist = get_dist(caster, owner) //Check if the caster is close enough to yank them in
 	if(dist >= 7)
-		owner.visible_message(span_danger("[parent] is violently torn from [owner]'s [owner_limb.plaintext_zone]!"), span_userdanger("[parent] is violently torn from your [owner_limb.plaintext_zone]!"))
+		owner.visible_message(span_danger("[parent]被从[owner]的[chinese_body_zone_display(owner_limb.plaintext_zone)]中猛烈扯出！"), span_userdanger("[parent]被从你的[chinese_body_zone_display(owner_limb.plaintext_zone)]中猛烈扯出！"))
 		return
 
 	owner.throw_at(caster, get_dist(owner, caster) - 1, 1, caster)
 	owner.Paralyze(1 SECONDS)
-	owner.visible_message(span_alert("[owner] is sent flying towards [caster] as the [parent] tears out of them!"), span_alert("You are launched at [caster] as the [parent] tears from your body and towards their hand!"))
+	owner.visible_message(span_alert("[parent]从[owner]体内撕裂而出，将其带向[caster]！"), span_alert("[parent]从你的身体中撕裂而出，飞向[caster]的手，同时将你也带飞了过去！"))
 
 /datum/embedding/proc/still_in()
 	if (parent.loc != owner)

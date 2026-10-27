@@ -1,7 +1,7 @@
 ///A pinata that has a chance to drop candy items when struck with a melee weapon that deals at least 10 damage
 /obj/structure/pinata
-	name = "corgi pinata"
-	desc = "A papier-mâché representation of a corgi that contains all sorts of sugary treats."
+	name = "柯基皮纳塔"
+	desc = "用纸浆做的柯基犬造型皮纳塔，里面装满了各种甜食。"
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "pinata_placed"
 	base_icon_state = "pinata_placed"
@@ -46,8 +46,8 @@
 
 ///An item that when used inhand spawns an immovable pinata
 /obj/item/pinata
-	name = "pinata assembly kit"
-	desc = "A papier-mâché corgi that contains various candy, must be set up before you can smash it."
+	name = "皮纳塔组装套件"
+	desc = "用纸浆做的柯基犬造型皮纳塔，内装各种糖果，得先组装好才能砸开。"
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "pinata"
 	///The pinata that is created when this is placed.
@@ -57,16 +57,16 @@
 	var/turf/player_turf = get_turf(user)
 	if(player_turf?.is_blocked_turf(TRUE))
 		return FALSE
-	balloon_alert_to_viewers("setting up pinata...")
+	balloon_alert_to_viewers("正在组装皮纳塔……")
 	if(!do_after(user, 4 SECONDS, target = get_turf(user)))
-		balloon_alert(user, "cancelled!")
+		balloon_alert(user, "已取消！")
 	new pinata_type(get_turf(user))
-	balloon_alert(user, "pinata setup")
+	balloon_alert(user, "皮纳塔组装完成")
 	qdel(src)
 
 /obj/structure/pinata/syndie
-	name = "syndicate corgi pinata"
-	desc = "A papier-mâché representation of a corgi that contains all sorts of bombastic treats."
+	name = "辛迪加柯基皮纳塔"
+	desc = "用纸浆做的柯基犬造型皮纳塔，里面装着各种“劲爆”的玩意儿。"
 	icon_state = "pinata_syndie_placed"
 	base_icon_state = "pinata_syndie_placed"
 	destruction_loot = 2
@@ -85,14 +85,14 @@
 	) //Candy items at the top, explosives at the bottom to be easier to read instead of fully alphabetized.
 
 /obj/item/pinata/syndie
-	name = "weapons grade pinata assembly kit"
-	desc = "A papier-mâché corgi that contains various candy and explosives, must be set up before you can smash it."
+	name = "军用级皮纳塔组装套件"
+	desc = "用纸浆做的柯基犬造型皮纳塔，内装各种糖果和爆炸物，得先组装好才能砸开。"
 	icon_state = "pinata_syndie"
 	pinata_type = /obj/structure/pinata/syndie
 
 /obj/structure/pinata/donk
-	name = "donk corgi pinata"
-	desc = "A papier-mâché representation of a corgi that contains all sorts of savory treats."
+	name = "咚克柯基皮纳塔"
+	desc = "用纸浆做的柯基犬造型皮纳塔，里面装着各种咸香零食。"
 	icon_state = "pinata_donk_placed"
 	base_icon_state = "pinata_donk_placed"
 	debris = /obj/effect/decal/cleanable/wrapping/pinata/donk
@@ -110,7 +110,7 @@
 	)
 
 /obj/item/pinata/donk
-	name = "\improper Donk Co. pinata assembly kit"
-	desc = "A papier-mâché corgi that contains various foodstuff and toys, must be set up before you can smash it."
+	name = "\improper 咚克公司皮纳塔组装套件"
+	desc = "用纸浆做的柯基犬造型皮纳塔，内装各种食物和玩具，得先组装好才能砸开。"
 	icon_state = "pinata_donk"
 	pinata_type = /obj/structure/pinata/donk

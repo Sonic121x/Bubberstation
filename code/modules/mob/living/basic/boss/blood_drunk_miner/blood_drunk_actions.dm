@@ -18,10 +18,10 @@
 	basic_source.melee_attack(target, ignore_cooldown = TRUE)
 
 /datum/action/cooldown/mob_cooldown/transform_weapon
-	name = "Transform Weapon"
+	name = "变形武器"
 	button_icon = 'icons/obj/mining_zones/artefacts.dmi'
 	button_icon_state = "cleaving_saw"
-	desc = "Transform weapon into a different state."
+	desc = "将武器变形为另一种形态。"
 	cooldown_time = 5 SECONDS
 	shared_cooldown = MOB_SHARED_COOLDOWN_2
 	/// The max possible cooldown, cooldown is random between the default cooldown time and this
@@ -41,8 +41,8 @@
 	blood_drunk_miner.transform_saw()
 
 /datum/action/cooldown/mob_cooldown/projectile_attack/rapid_fire/kinetic_accelerator
-	name = "Fire Kinetic Accelerator"
-	desc = "Fires a kinetic accelerator projectile at the target."
+	name = "发射动能加速器"
+	desc = "向目标发射动能加速器弹丸。"
 	button_icon = 'icons/obj/weapons/guns/energy.dmi'
 	button_icon_state = "kineticgun"
 	cooldown_time = 1.5 SECONDS
@@ -60,7 +60,7 @@
 	var/reload_delay = 0.1 SECONDS
 
 /datum/action/cooldown/mob_cooldown/projectile_attack/rapid_fire/kinetic_accelerator/Activate(atom/target_atom)
-	owner.visible_message(span_danger("[owner] fires the proto-kinetic accelerator!"))
+	owner.visible_message(span_danger("[owner] 发射了原型动能加速器！"))
 	owner.face_atom(target_atom)
 	owner.do_alert_animation(alert_delay + (shot_count - 1) * shot_delay)
 	disable_cooldown_actions()

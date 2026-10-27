@@ -72,8 +72,8 @@
 	// Sanity in case one is null for some reason
 	var/picked_index = rand(max(length(weapon.attack_verb_simple), length(weapon.attack_verb_continuous)))
 
-	var/message_verb_continuous = "attacks"
-	var/message_verb_simple = "attack"
+	var/message_verb_continuous = "攻击"
+	var/message_verb_simple = "攻击"
 	var/message_hit_area = get_hit_area_message(hit_area)
 	// Sanity in case one is... longer than the other?
 	if (picked_index && length(weapon.attack_verb_continuous) >= picked_index)
@@ -91,22 +91,22 @@
 		var/interior_ready_to_dismember = (!has_interior || (hit_bodypart.mangled_state & BODYPART_MANGLED_INTERIOR))
 
 		if ((exterior_ready_to_dismember && interior_ready_to_dismember) || hit_bodypart.dismemberable_by_total_damage())
-			extra_wound_details = ", threatening to sever it entirely"
+			extra_wound_details = "，大有彻底斩断之势"
 		else if((has_interior && (has_exterior && exterior_ready_to_dismember) && weapon.get_sharpness()))
 			var/bone_text = hit_bodypart.get_internal_description()
-			extra_wound_details = ", [weapon.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through to the [bone_text]"
+			extra_wound_details = "，[weapon.get_sharpness() == SHARP_EDGED ? "切开" : "刺穿"]直至 [bone_text]"
 		else if(has_exterior && ((has_interior && interior_ready_to_dismember) && weapon.get_sharpness()))
 			var/tissue_text = hit_bodypart.get_external_description()
-			extra_wound_details = ", [weapon.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] at the remaining [tissue_text]"
+			extra_wound_details = "，[weapon.get_sharpness() == SHARP_EDGED ? "切开" : "刺穿"]了残余的 [tissue_text]"
 
-	var/attack_message_spectator = "[src] [message_verb_continuous][message_hit_area] with [weapon][extra_wound_details]!"
-	var/attack_message_victim = "You're [message_verb_continuous][message_hit_area] with [weapon][extra_wound_details]!"
-	var/attack_message_attacker = "You [message_verb_simple] [src][message_hit_area] with [weapon][extra_wound_details]!"
+	var/attack_message_spectator = "[src] 被 [weapon][message_verb_continuous]了[message_hit_area][extra_wound_details]！"
+	var/attack_message_victim = "有人用 [weapon][message_verb_continuous]了你[message_hit_area][extra_wound_details]！"
+	var/attack_message_attacker = "你用 [weapon][message_verb_simple]了 [src][message_hit_area][extra_wound_details]！"
 	if(user in viewers(src, null))
-		attack_message_spectator = "[user] [message_verb_continuous] [src][message_hit_area] with [weapon][extra_wound_details]!"
-		attack_message_victim = "[user] [message_verb_continuous] you[message_hit_area] with [weapon][extra_wound_details]!"
+		attack_message_spectator = "[user] 用 [weapon][message_verb_continuous]了 [src][message_hit_area][extra_wound_details]！"
+		attack_message_victim = "[user] 用 [weapon][message_verb_continuous]了你[message_hit_area][extra_wound_details]！"
 	if(user == src)
-		attack_message_victim = "You [message_verb_simple] yourself[message_hit_area] with [weapon][extra_wound_details]!"
+		attack_message_victim = "你用 [weapon][message_verb_simple]了自己[message_hit_area][extra_wound_details]！"
 	visible_message(span_danger("[attack_message_spectator]"),\
 		span_userdanger("[attack_message_victim]"), null, COMBAT_MESSAGE_RANGE, user)
 	if(user != src)
@@ -211,7 +211,7 @@
 	if (stat == DEAD)
 		return
 	else
-		show_message(span_userdanger("The blob attacks!"))
+		show_message(span_userdanger("变形菌发动了攻击！"))
 		adjust_brute_loss(10)
 
 ///Adds to the parent by also adding functionality to propagate shocks through pulling and doing some fluff effects.
@@ -287,7 +287,7 @@
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/helper, force_friendly)
 	var/nosound = FALSE //SKYRAT EDIT ADDITION - EMOTES
 	if(on_fire)
-		to_chat(helper, span_warning("You can't put [p_them()] out with just your bare hands!"))
+		to_chat(helper, span_warning("你没法只用手把[p_them()]身上的火扑灭！"))
 		return
 
 	if(SEND_SIGNAL(src, COMSIG_CARBON_PRE_MISC_HELP, helper) & COMPONENT_BLOCK_MISC_HELP)
@@ -299,43 +299,43 @@
 
 	if(body_position == LYING_DOWN)
 		if(buckled)
-			to_chat(helper, span_warning("You need to unbuckle [src] first to do that!"))
+			to_chat(helper, span_warning("你得先把 [src] 解开束缚才能这么做！"))
 			return
-		helper.visible_message(span_notice("[helper] shakes [src] trying to get [p_them()] up!"), \
-						null, span_hear("You hear the rustling of clothes."), DEFAULT_MESSAGE_RANGE, list(helper, src))
-		to_chat(helper, span_notice("You shake [src] trying to pick [p_them()] up!"))
-		to_chat(src, span_notice("[helper] shakes you to get you up!"))
+		helper.visible_message(span_notice("[helper] 摇晃 [src]，想把[p_them()]拉起来！"), \
+						null, span_hear("你听到衣物摩擦的窸窣声。"), DEFAULT_MESSAGE_RANGE, list(helper, src))
+		to_chat(helper, span_notice("你摇晃 [src]，想把[p_them()]扶起来！"))
+		to_chat(src, span_notice("[helper] 摇晃你，想把你拉起来！"))
 	//SKYRAT EDIT ADDITION BEGIN - EMOTES -- SENSITIVE SNOUT TRAIT ADDITION
 	else if(helper.zone_selected == BODY_ZONE_PRECISE_MOUTH)
 		nosound = TRUE
 		if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && (!IS_UNCONSCIOUS_OR_CRIT(src)) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS) && !(HAS_TRAIT(src, TRAIT_SENSITIVESNOUT))) // Bubberstation Edit - Sensitive snoot check
-			visible_message(span_warning("[helper] tries to boop [src] on the nose, but [p_they()] move[p_s()] out of the way."))
+			visible_message(span_warning("[helper] 想戳一下 [src] 的鼻子，但[p_they()]躲开了。"))
 			return
 		else
 			playsound(src, 'modular_zubbers/sound/emotes/nose_boop.ogg', 50, 0)
 			if(HAS_TRAIT(src, TRAIT_SENSITIVESNOUT) && !is_mouth_covered(ITEM_SLOT_MASK))
-				to_chat(src, span_warning("[helper] boops you on your sensitive nose, sending you to the ground!"))
+				to_chat(src, span_warning("[helper] 戳了戳你敏感的鼻子，把你放倒在地！"))
 				src.Knockdown(20)
 				src.apply_damage(30, STAMINA)
-			helper.visible_message(span_notice("[helper] boops [src]'s nose."), span_notice("You boop [src] on the nose."))
+			helper.visible_message(span_notice("[helper] 戳了戳 [src] 的鼻子。"), span_notice("你戳了戳 [src] 的鼻子。"))
 	//SKYRAT EDIT ADDITION END
 	else if(check_zone(helper.zone_selected) == BODY_ZONE_HEAD && get_bodypart(BODY_ZONE_HEAD)) //Headpats!
 		//SKYRAT EDIT ADDITION BEGIN - OVERSIZED & DISALLOWED HEADPATS
 		if(HAS_TRAIT(src, TRAIT_OVERSIZED) && !HAS_TRAIT(helper, TRAIT_OVERSIZED))
-			visible_message(span_warning("[helper] tries to pat [src] on the head, but can't reach!"))
+			visible_message(span_warning("[helper] 想摸摸 [src] 的头，但够不着！"))
 			return
 		else if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && (!IS_UNCONSCIOUS_OR_CRIT(src)) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
-			visible_message(span_warning("[helper] tries to pat [src] on the head, but [p_they()] move[p_s()] out of the way."))
+			visible_message(span_warning("[helper] 想摸摸 [src] 的头，但[p_they()]躲开了。"))
 			return
 		//SKYRAT EDIT ADDITION END
-		helper.visible_message(span_notice("[helper] gives [src] a pat on the head to make [p_them()] feel better!"), \
-					null, span_hear("You hear a soft patter."), DEFAULT_MESSAGE_RANGE, list(helper, src))
-		to_chat(helper, span_notice("You give [src] a pat on the head to make [p_them()] feel better!"))
-		to_chat(src, span_notice("[helper] gives you a pat on the head to make you feel better! "))
+		helper.visible_message(span_notice("[helper] 摸摸 [src] 的头，让[p_them()]心情好一点！"), \
+					null, span_hear("你听到轻柔的拍打声。"), DEFAULT_MESSAGE_RANGE, list(helper, src))
+		to_chat(helper, span_notice("你摸摸 [src] 的头，让[p_them()]心情好一点！"))
+		to_chat(src, span_notice("[helper] 摸摸你的头，让你心情好一点！"))
 
 		share_blood_on_touch(helper, ITEM_SLOT_HEAD|ITEM_SLOT_MASK)
 		if(HAS_TRAIT(src, TRAIT_BADTOUCH))
-			to_chat(helper, span_warning("[src] looks visibly upset as you pat [p_them()] on the head."))
+			to_chat(helper, span_warning("你摸[p_them()]的头时，[src] 明显一脸不快。"))
 		//SKYRAT EDIT ADDITION BEGIN - EMOTES
 		if(HAS_TRAIT(src, TRAIT_EXCITABLE))
 			var/obj/item/organ/tail/src_tail = get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
@@ -344,21 +344,21 @@
 		//SKYRAT EDIT ADDITION END
 
 	else if ((helper.zone_selected == BODY_ZONE_PRECISE_GROIN) && !isnull(src.get_organ_by_type(/obj/item/organ/tail)))
-		helper.visible_message(span_notice("[helper] pulls on [src]'s tail!"), \
-					null, span_hear("You hear a soft patter."), DEFAULT_MESSAGE_RANGE, list(helper, src))
-		to_chat(helper, span_notice("You pull on [src]'s tail!"))
-		to_chat(src, span_notice("[helper] pulls on your tail!"))
+		helper.visible_message(span_notice("[helper] 拉了拉 [src] 的尾巴！"), \
+					null, span_hear("你听到轻柔的拍打声。"), DEFAULT_MESSAGE_RANGE, list(helper, src))
+		to_chat(helper, span_notice("你拉了拉 [src] 的尾巴！"))
+		to_chat(src, span_notice("[helper] 拉了拉你的尾巴！"))
 		if(HAS_TRAIT(src, TRAIT_BADTOUCH)) //How dare they!
-			to_chat(helper, span_warning("[src] makes a grumbling noise as you pull on [p_their()] tail."))
+			to_chat(helper, span_warning("你拉[p_their()]尾巴时，[src] 发出了不满的咕哝声。"))
 		else
 			add_mood_event("tailpulled", /datum/mood_event/tailpulled)
 
 	else if ((helper.zone_selected == BODY_ZONE_PRECISE_GROIN) && (istype(get_item_by_slot(ITEM_SLOT_HEAD), /obj/item/clothing/head/costume/kitty) || istype(get_item_by_slot(ITEM_SLOT_HEAD), /obj/item/clothing/head/collectable/kitty)))
 		var/obj/item/clothing/head/faketail = get_item_by_slot(ITEM_SLOT_HEAD) // Should probably be COMSIG_CARBON_PRE_MISC_HELP
-		helper.visible_message(span_danger("[helper] pulls on [src]'s tail... and it rips off!"), \
-					null, span_hear("You hear a ripping sound."), DEFAULT_MESSAGE_RANGE, list(helper, src))
-		to_chat(helper, span_danger("You pull on [src]'s tail... and it rips off!"))
-		to_chat(src, span_userdanger("[helper] pulls on your tail... and it rips off!"))
+		helper.visible_message(span_danger("[helper] 拉了拉 [src] 的尾巴……结果把它扯掉了！"), \
+					null, span_hear("你听到一声撕裂声。"), DEFAULT_MESSAGE_RANGE, list(helper, src))
+		to_chat(helper, span_danger("你拉了拉 [src] 的尾巴……结果把它扯掉了！"))
+		to_chat(src, span_userdanger("[helper] 拉了拉你的尾巴……结果把它扯掉了！"))
 		playsound(loc, 'sound/effects/cloth_rip.ogg', 75, TRUE)
 		dropItemToGround(faketail)
 		helper.put_in_hands(faketail)
@@ -366,20 +366,20 @@
 
 	else
 		if (helper.grab_state >= GRAB_AGGRESSIVE)
-			helper.visible_message(span_notice("[helper] embraces [src] in a tight bear hug!"), \
-						null, span_hear("You hear the rustling of clothes."), DEFAULT_MESSAGE_RANGE, list(helper, src))
-			to_chat(helper, span_notice("You wrap [src] into a tight bear hug!"))
-			to_chat(src, span_notice("[helper] squeezes you super tightly in a firm bear hug!"))
+			helper.visible_message(span_notice("[helper] 紧紧抱住 [src]，来了个熊抱！"), \
+						null, span_hear("你听到衣物摩擦的窸窣声。"), DEFAULT_MESSAGE_RANGE, list(helper, src))
+			to_chat(helper, span_notice("你把 [src] 紧紧搂进一个熊抱里！"))
+			to_chat(src, span_notice("[helper] 一个结实的熊抱，把你搂得紧紧的！"))
 		else
 			// SKYRAT EDIT ADDITION START
 			if (HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && (!IS_UNCONSCIOUS_OR_CRIT(src)) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
-				visible_message(span_warning("[helper] tries to hug [src], but [p_they()] move[p_s()] out of the way."))
+				visible_message(span_warning("[helper] 想抱住 [src]，但[p_they()]躲开了。"))
 				return
 			// SKYRAT EDIT ADDITION END
-			helper.visible_message(span_notice("[helper] hugs [src] to make [p_them()] feel better!"), \
-						null, span_hear("You hear the rustling of clothes."), DEFAULT_MESSAGE_RANGE, list(helper, src))
-			to_chat(helper, span_notice("You hug [src] to make [p_them()] feel better!"))
-			to_chat(src, span_notice("[helper] hugs you to make you feel better!"))
+			helper.visible_message(span_notice("[helper] 抱住 [src]，让[p_them()]心情好一点！"), \
+						null, span_hear("你听到衣物摩擦的窸窣声。"), DEFAULT_MESSAGE_RANGE, list(helper, src))
+			to_chat(helper, span_notice("你抱住 [src]，让[p_them()]心情好一点！"))
+			to_chat(src, span_notice("[helper] 抱住你，让你心情好一点！"))
 
 		share_blood_on_touch(helper, ITEM_SLOT_HEAD|ITEM_SLOT_MASK|ITEM_SLOT_GLOVES)
 		// Warm them up with hugs
@@ -402,14 +402,14 @@
 
 		// Let people know if they hugged someone really warm or really cold
 		if(helper.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT)
-			to_chat(src, span_warning("It feels like [helper] is over heating as [helper.p_they()] hug[helper.p_s()] you."))
+			to_chat(src, span_warning("抱你的时候，[helper] 浑身烫得像是要过热了。"))
 		else if(helper.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
-			to_chat(src, span_warning("It feels like [helper] is freezing as [helper.p_they()] hug[helper.p_s()] you."))
+			to_chat(src, span_warning("抱你的时候，[helper] 浑身冷得像冰。"))
 
 		if(bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT)
-			to_chat(helper, span_warning("It feels like [src] is over heating as you hug [p_them()]."))
+			to_chat(helper, span_warning("你抱[p_them()]时，[src] 浑身烫得像是要过热了。"))
 		else if(bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
-			to_chat(helper, span_warning("It feels like [src] is freezing as you hug [p_them()]."))
+			to_chat(helper, span_warning("你抱[p_them()]时，[src] 浑身冷得像冰。"))
 
 		if(HAS_TRAIT(helper, TRAIT_FRIENDLY) || force_friendly)
 			if (helper.mob_mood.sanity >= SANITY_GREAT)
@@ -419,7 +419,7 @@
 				add_mood_event("friendly_hug", /datum/mood_event/betterhug, helper)
 
 		if(HAS_TRAIT(src, TRAIT_BADTOUCH))
-			to_chat(helper, span_warning("[src] looks visibly upset as you hug [p_them()]."))
+			to_chat(helper, span_warning("你抱[p_them()]时，[src] 明显一脸不快。"))
 
 	SEND_SIGNAL(src, COMSIG_CARBON_HELP_ACT, helper)
 	SEND_SIGNAL(helper, COMSIG_CARBON_HELPED, src)
@@ -453,11 +453,11 @@
 			if(!embeds)
 				embeds = TRUE
 				// this way, we only visibly try to examine ourselves if we have something embedded, otherwise we'll still hug ourselves :)
-				visible_message(span_notice("[src] examines [p_them()]self."), \
-					span_notice("You check yourself for shrapnel."), visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE)
+				visible_message(span_notice("[src] 检查了一下自己。"), \
+					span_notice("你检查自己身上有没有弹片。"), visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE)
 			var/harmless = weapon.get_embed().is_harmless()
-			var/stuck_wordage = harmless ? "stuck to" : "embedded in"
-			var/embed_text = "\t <a href='byond://?src=[REF(src)];embedded_object=[REF(weapon)];embedded_limb=[REF(limb)]'> There is [icon2html(weapon, src)] \a [weapon] [stuck_wordage] your [limb.plaintext_zone]!</a>"
+			var/stuck_wordage = harmless ? "粘在" : "嵌在"
+			var/embed_text = "\t <a href='byond://?src=[REF(src)];embedded_object=[REF(weapon)];embedded_limb=[REF(limb)]'> 有 [icon2html(weapon, src)] [weapon] [stuck_wordage]你的 [limb.plaintext_zone]！</a>"
 			if (harmless)
 				to_chat(src, span_italics(span_notice(embed_text)))
 			else
@@ -481,16 +481,16 @@
 
 		switch(damage)
 			if(1)
-				to_chat(src, span_warning("Your eyes sting a little."))
+				to_chat(src, span_warning("你的眼睛有点刺痛。"))
 				if(prob(40))
 					eyes.apply_organ_damage(1)
 
 			if(2)
-				to_chat(src, span_warning("Your eyes burn."))
+				to_chat(src, span_warning("你的双眼火辣辣地疼。"))
 				eyes.apply_organ_damage(rand(2, 4))
 
 			if(3 to INFINITY)
-				to_chat(src, span_warning("Your eyes itch and burn severely!"))
+				to_chat(src, span_warning("你的双眼又痒又痛，十分难受！"))
 				eyes.apply_organ_damage(rand(12, 16))
 
 		if(eyes.damage > 10)
@@ -499,19 +499,19 @@
 
 			if(eyes.damage > eyes.low_threshold)
 				if(!is_nearsighted_from(EYE_DAMAGE) && prob(eyes.damage - eyes.low_threshold))
-					to_chat(src, span_warning("Your eyes start to burn badly!"))
+					to_chat(src, span_warning("你的眼睛开始剧烈灼痛！"))
 					eyes.apply_organ_damage(eyes.low_threshold)
 
 				else if(!is_blind() && prob(eyes.damage - eyes.high_threshold))
-					to_chat(src, span_warning("You can't see anything!"))
+					to_chat(src, span_warning("你什么都看不见了！"))
 					eyes.apply_organ_damage(eyes.maxHealth)
 
 			else
-				to_chat(src, span_warning("Your eyes are really starting to hurt. This can't be good for you!"))
+				to_chat(src, span_warning("你的眼睛真的开始疼了。这对你可没好处！"))
 		return TRUE
 
 	else if(damage == 0 && prob(20)) // just enough protection
-		to_chat(src, span_notice("Something bright flashes in the corner of your vision!"))
+		to_chat(src, span_notice("你的视野边缘闪过一道亮光！"))
 
 /mob/living/carbon/adjust_oxy_loss(amount, updating_health = TRUE, forced, required_biotype)
 	if(!forced && HAS_TRAIT(src, TRAIT_NOBREATH))
@@ -559,19 +559,19 @@
 		return
 	var/starting_hand_index = active_hand_index
 	if(starting_hand_index == grasped_part.held_index)
-		to_chat(src, span_danger("You can't grasp your [grasped_part.name] with itself!"))
+		to_chat(src, span_danger("你不能用[grasped_part.name]抓住它自己！"))
 		return
 
 	var/bleed_rate = grasped_part.cached_bleed_rate
-	var/bleeding_text = (bleed_rate ? ", trying to stop the bleeding" : "")
-	to_chat(src, span_warning("You try grasping at your [grasped_part.name][bleeding_text]..."))
+	var/bleeding_text = (bleed_rate ? "，同时试图止血" : "")
+	to_chat(src, span_warning("你试图抓住自己的[grasped_part.name][bleeding_text]……"))
 	if(!do_after(src, 0.75 SECONDS))
-		to_chat(src, span_danger("You fail to grasp your [grasped_part.name]."))
+		to_chat(src, span_danger("你没能抓住自己的[grasped_part.name]。"))
 		return
 
 	var/obj/item/hand_item/self_grasp/grasp = new
 	if(starting_hand_index != active_hand_index || !put_in_active_hand(grasp))
-		to_chat(src, span_danger("You fail to grasp your [grasped_part.name]."))
+		to_chat(src, span_danger("你没能抓住自己的[grasped_part.name]。"))
 		QDEL_NULL(grasp)
 		return
 	grasp.grasp_limb(grasped_part)
@@ -589,8 +589,8 @@
 
 /// an abstract item representing you holding your own limb to staunch the bleeding, see [/mob/living/carbon/proc/grabbedby] will probably need to find somewhere else to put this.
 /obj/item/hand_item/self_grasp
-	name = "self-grasp"
-	desc = "Sometimes all you can do is slow the bleeding."
+	name = "自握止血"
+	desc = "有时候你能做的，只有让血流得慢一点。"
 	icon_state = "latexballoon"
 	inhand_icon_state = "nothing"
 	slowdown = 0.5
@@ -602,7 +602,7 @@
 
 /obj/item/hand_item/self_grasp/Destroy()
 	if(user)
-		to_chat(user, span_warning("You stop holding onto your[grasped_part ? " [grasped_part.name]" : "self"]."))
+		to_chat(user, span_warning("你停止了对自己[grasped_part ? "[grasped_part.name]" : "身体"]的抓握。"))
 		UnregisterSignal(user, COMSIG_QDELETING)
 	if(grasped_part)
 		UnregisterSignal(grasped_part, list(COMSIG_CARBON_REMOVE_LIMB, COMSIG_QDELETING))
@@ -632,8 +632,8 @@
 	RegisterSignals(grasped_part, list(COMSIG_CARBON_REMOVE_LIMB, COMSIG_QDELETING), PROC_REF(qdel_void))
 
 	var/bleed_rate = grasped_part.cached_bleed_rate
-	var/bleeding_text = (bleed_rate ? ", trying to stop the bleeding" : "")
-	user.visible_message(span_danger("[user] grasps at [user.p_their()] [grasped_part.name][bleeding_text]."), span_notice("You grab hold of your [grasped_part.name] tightly."), vision_distance=COMBAT_MESSAGE_RANGE)
+	var/bleeding_text = (bleed_rate ? "，同时试图止血" : "")
+	user.visible_message(span_danger("[user] 紧紧抓住自己的[grasped_part.name][bleeding_text]。"), span_notice("你紧紧抓住了自己的[grasped_part.name]。"), vision_distance=COMBAT_MESSAGE_RANGE)
 	playsound(get_turf(src), 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
 	return TRUE
 
@@ -649,7 +649,7 @@
 		return FALSE
 
 	if (run_armor_check(attack_flag = BIO, silent = TRUE) >= 100)
-		to_chat(src, span_warning("Your armor shields you from [scramble_source]!"))
+		to_chat(src, span_warning("你的护甲挡住了[scramble_source]！"))
 		return FALSE
 
 	if (!length(GLOB.bioscrambler_valid_organs) || !length(GLOB.bioscrambler_valid_parts))
@@ -675,10 +675,10 @@
 				qdel(picked_user_part)
 
 	if (!changed_something)
-		to_chat(src, span_notice("Your augmented body protects you from [scramble_source]!"))
+		to_chat(src, span_notice("你改造过的身体保护你免受[scramble_source]影响！"))
 		return FALSE
 	update_body(TRUE)
-	balloon_alert(src, "something has changed about you")
+	balloon_alert(src, "你身上有些东西变了")
 	return TRUE
 
 /// Fill in the lists of things we can bioscramble into people

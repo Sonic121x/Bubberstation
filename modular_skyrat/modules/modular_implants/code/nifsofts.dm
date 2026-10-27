@@ -3,11 +3,11 @@
 ///The base NIFSoft
 /datum/nifsoft
 	///What is the name of the NIFSoft?
-	var/name = "Generic NIFsoft"
+	var/name = "通用 NIFSoft"
 	///What is the name of the program when looking at the program from inside of a NIF? This is good if you want to mask a NIFSoft's name.
 	var/program_name
 	///A description of what the program does. This is used when looking at programs in the NIF, along with installing them from the store.
-	var/program_desc = "This program does stuff!"
+	var/program_desc = "这个程序会做一些事情！"
 	//What NIF does this program belong to?
 	var/datum/weakref/parent_nif
 	///Who is the NIF currently linked to?
@@ -95,16 +95,16 @@
 		return FALSE
 
 	if(installed_nif.broken)
-		installed_nif.balloon_alert(installed_nif.linked_mob, "your NIF is broken")
+		installed_nif.balloon_alert(installed_nif.linked_mob, "你的 NIF 已损坏")
 		return FALSE
 
 	if(cooldown && on_cooldown)
-		installed_nif.balloon_alert(installed_nif.linked_mob, "[src.name] is currently on cooldown.")
+		installed_nif.balloon_alert(installed_nif.linked_mob, "[src.name] 正处于冷却中。")
 		return FALSE
 
 	if(active)
 		active = FALSE
-		installed_nif.balloon_alert(installed_nif.linked_mob, "[src.name] is no longer running")
+		installed_nif.balloon_alert(installed_nif.linked_mob, "[src.name] 已停止运行")
 		installed_nif.power_usage -= active_cost
 		return TRUE
 
@@ -112,7 +112,7 @@
 		return FALSE
 
 	if(active_mode)
-		installed_nif.balloon_alert(installed_nif.linked_mob, "[src.name] is now running")
+		installed_nif.balloon_alert(installed_nif.linked_mob, "[src.name] 已开始运行")
 		installed_nif.power_usage += active_cost
 		active = TRUE
 
@@ -165,8 +165,8 @@
 
 /// A disk that can upload NIFSofts to a recpient with a NIFSoft installed.
 /obj/item/disk/nifsoft_uploader
-	name = "Generic NIFSoft datadisk"
-	desc = "A datadisk that can be used to upload a loaded NIFSoft to the user's NIF"
+	name = "通用 NIFSoft 数据磁盘"
+	desc = "一张数据磁盘，可用于将已载入的 NIFSoft 上传到使用者的 NIF"
 	icon = 'modular_skyrat/modules/modular_implants/icons/obj/disks.dmi'
 	icon_state = "base_disk"
 	sticker_icon_state = null
@@ -181,7 +181,7 @@
 	if(CONFIG_GET(flag/disable_lewd_items) && initial(loaded_nifsoft.lewd_nifsoft))
 		return INITIALIZE_HINT_QDEL
 
-	name = "[initial(loaded_nifsoft.name)] datadisk"
+	name = "[initial(loaded_nifsoft.name)] 数据磁盘"
 
 /// Datadisks use their own icon file, so the coloured skins inherited from /obj/item/disk do not
 /// exist for them. Applying one blanks the sprite, so don't offer them at all.
@@ -194,7 +194,7 @@
 	var/nifsoft_desc = initial(loaded_nifsoft.program_desc)
 
 	if(nifsoft_desc)
-		. += span_cyan("Program description: [nifsoft_desc]")
+		. += span_cyan("程序描述：[nifsoft_desc]")
 
 
 /// Attempts to install the NIFSoft on the disk to the target
@@ -207,7 +207,7 @@
 	var/datum/nifsoft/installed_nifsoft = new loaded_nifsoft(installed_nif, TRUE)
 
 	if(!installed_nifsoft.parent_nif)
-		balloon_alert(target, "installation failed")
+		balloon_alert(target, "安装失败")
 		return FALSE
 
 	if(!reusable)
@@ -218,7 +218,7 @@
 
 /obj/item/disk/nifsoft_uploader/attack(mob/living/mob, mob/living/user, params)
 	if(mob != user && !do_after(user, 5 SECONDS, mob))
-		balloon_alert(user, "installation failed")
+		balloon_alert(user, "安装失败")
 		return FALSE
 
 	attempt_software_install(mob)

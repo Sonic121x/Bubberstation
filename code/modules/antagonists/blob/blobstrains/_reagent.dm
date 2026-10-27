@@ -27,7 +27,7 @@
 // These can only be applied by blobs. They are what (reagent) blobs are made out of.
 /datum/reagent/blob
 	color = COLOR_WHITE
-	taste_description = "bad code and slime"
+	taste_description = "劣质代码和黏液"
 	chemical_flags = NONE
 
 
@@ -35,9 +35,9 @@
 	..()
 
 	if(name == "Unknown")
-		description = "shouldn't exist and you should adminhelp immediately."
+		description = "本不应存在，你应立即向管理员求助。"
 	else if(description == "")
-		description = "[name] is the reagent created by that type of blob."
+		description = "[name] 是那种变形菌生成的试剂。"
 
 /// Used by blob reagents to calculate the reaction volume they should use when exposing mobs.
 /datum/reagent/blob/proc/return_mob_expose_reac_volume(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message, touch_protection, mob/eye/blob/overmind)

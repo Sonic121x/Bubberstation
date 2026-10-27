@@ -1,6 +1,6 @@
 /obj/machinery/power/manufacturing/storagebox
-	name = "manufacturing storage unit"
-	desc = "Its basically a box. Receives resources (if anchored). Needs a machine to take stuff out of without dumping everything out."
+	name = "制造储存单元"
+	desc = "基本上就是个箱子。可以接收资源（需要固定）。需要配合机器才能从中取物，而不会把所有东西都倒出来。"
 	icon_state = "box"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 	/// how much can we hold
@@ -26,7 +26,7 @@
 
 /obj/machinery/power/manufacturing/storagebox/screwdriver_act(mob/living/user, obj/item/tool)
 	. = NONE
-	balloon_alert(user, "disassembling...")
+	balloon_alert(user, "正在拆卸……")
 	if(!do_after(user, 5 SECONDS, src))
 		return ITEM_INTERACT_FAILURE
 	atom_destruction()
@@ -41,7 +41,7 @@
 	. = ..()
 	if(user.combat_mode)
 		return
-	balloon_alert(user, "dumping..")
+	balloon_alert(user, "正在倒出……")
 	if(!do_after(user, 1.25 SECONDS, src))
 		return
 	dump_inventory_contents()

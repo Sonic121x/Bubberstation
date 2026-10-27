@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/aoe/magic_missile
-	name = "Magic Missile"
-	desc = "This spell fires several, slow moving, magic projectiles at nearby targets."
+	name = "魔法飞弹"
+	desc = "该法术会向附近的目标发射数枚缓慢飞行的魔法弹。"
 	button_icon_state = "magicm"
 	sound = 'sound/effects/magic/magic_missile.ogg'
 
@@ -36,8 +36,8 @@
 	to_fire.fire()
 
 /datum/action/cooldown/spell/aoe/magic_missile/lesser
-	name = "Lesser Magic Missile"
-	desc = "This spell fires several, slow moving, magic projectiles at nearby targets."
+	name = "次级魔法飞弹"
+	desc = "该法术会向附近的目标发射数枚缓慢飞行的魔法弹。"
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "bg_demon_border"
 

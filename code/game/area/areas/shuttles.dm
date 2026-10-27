@@ -117,7 +117,7 @@
 ////////////////////////////Single-area shuttles////////////////////////////
 /area/shuttle/transit
 	name = "Hyperspace"
-	desc = "Weeeeee"
+	desc = "呜呼——"
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 
@@ -263,7 +263,7 @@
 	requires_power = FALSE
 
 /obj/effect/forcefield/arena_shuttle
-	name = "portal"
+	name = "传送门"
 	initial_duration = 0
 	var/list/warp_points = list()
 
@@ -278,29 +278,29 @@
 
 	var/mob/living/L = AM
 	if(L.pulling && istype(L.pulling, /obj/item/bodypart/head))
-		to_chat(L, span_notice("Your offering is accepted. You may pass."), confidential = TRUE)
+		to_chat(L, span_notice("你的祭品已获接纳。你可以通过。"), confidential = TRUE)
 		qdel(L.pulling)
 		var/turf/LA = get_turf(pick(warp_points))
 		L.forceMove(LA)
 		L.remove_status_effect(/datum/status_effect/hallucination)
-		to_chat(L, "<span class='reallybig redtext'>The battle is won. Your bloodlust subsides.</span>", confidential = TRUE)
+		to_chat(L, "<span class='reallybig redtext'>战斗已经胜利。你的嗜血欲望消退了。</span>", confidential = TRUE)
 		for(var/obj/item/chainsaw/doomslayer/chainsaw in L)
 			qdel(chainsaw)
 		var/obj/item/skeleton_key/key = new(L)
 		L.put_in_hands(key)
 	else
-		to_chat(L, span_warning("You are not yet worthy of passing. Drag a severed head to the barrier to be allowed entry to the hall of champions."), confidential = TRUE)
+		to_chat(L, span_warning("你还没有资格通过。将一颗断头拖到屏障处，才能获准进入冠军大厅。"), confidential = TRUE)
 
 /obj/effect/landmark/shuttle_arena_safe
-	name = "hall of champions"
-	desc = "For the winners."
+	name = "冠军殿堂"
+	desc = "献给胜利者。"
 
 /obj/effect/landmark/shuttle_arena_entrance
-	name = "\proper the arena"
-	desc = "A lava filled battlefield."
+	name = "\proper 竞技场"
+	desc = "一片布满熔岩的战场。"
 
 /obj/effect/forcefield/arena_shuttle_entrance
-	name = "portal"
+	name = "传送门"
 	initial_duration = 0
 	var/list/warp_points = list()
 
@@ -315,5 +315,5 @@
 	var/obj/effect/landmark/LA = pick(warp_points)
 	var/mob/living/M = AM
 	M.forceMove(get_turf(LA))
-	to_chat(M, "<span class='reallybig redtext'>You're trapped in a deadly arena! To escape, you'll need to drag a severed head to the escape portals.</span>", confidential = TRUE)
+	to_chat(M, "<span class='reallybig redtext'>你被困在致命的竞技场中！要逃出去，你需要将一颗断头拖到逃生传送门处。</span>", confidential = TRUE)
 	M.apply_status_effect(/datum/status_effect/mayhem)

@@ -5,8 +5,8 @@
 	behavior_tree_json = "code/modules/mob/living/basic/bots/hygienebot/hygienebot.bt.json"
 	blackboard = list(
 		BB_SALUTE_MESSAGES = list(
-			"salutes",
-			"nods in appreciation towards",
+			"敬礼，致意的对象是",
+			"赞许地点了点头，致意的对象是",
 		),
 		BB_WASH_FRUSTRATION = 0,
 	)

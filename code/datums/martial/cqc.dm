@@ -7,7 +7,7 @@
 /datum/martial_art/cqc
 	name = "CQC"
 	id = MARTIALART_CQC
-	help_verb = "Remember The Basics"
+	help_verb = "回顾 CQC 基础"
 	smashes_tables = TRUE
 	display_combos = TRUE
 	/// Weakref to a mob we're currently restraining (with grab-grab combo)
@@ -33,8 +33,8 @@
 	if(!can_use(cqc_user))
 		return
 	cqc_user.visible_message(
-		span_danger("[cqc_user] twists [attacker]'s arm, sending their [attack_weapon] back towards them!"),
-		span_userdanger("Making sure to avoid [attacker]'s [attack_weapon], you twist their arm to send it right back at them!"),
+		span_danger("[cqc_user]扭转[attacker]的手臂，将[attack_weapon]反送向攻击者自己！"),
+		span_userdanger("你避开[attacker]的[attack_weapon]，扭转对方的手臂，将攻击原路奉还！"),
 	)
 	var/obj/item/melee/touch_attack/touch_weapon = attack_weapon
 	var/datum/action/cooldown/spell/touch/touch_spell = touch_weapon.spell_which_made_us?.resolve()
@@ -51,13 +51,13 @@
 	if(attack_type == PROJECTILE_ATTACK)
 		return NONE
 
-	var/blocking_text = "block"
-	var/blocking_text_s = "blocks"
+	var/blocking_text = "格挡了"
+	var/blocking_text_s = "格挡了"
 	var/potential_block_chance = block_chance
 
 	if(attack_type == OVERWHELMING_ATTACK)
-		blocking_text = "dodge"
-		blocking_text_s = "dodges"
+		blocking_text = "躲过了"
+		blocking_text_s = "躲过了"
 		potential_block_chance = clamp(round(potential_block_chance / (attack_type == OVERWHELMING_ATTACK ? 2 : 1), 1), 0, 100)
 
 	if(!prob(potential_block_chance))
@@ -66,14 +66,14 @@
 	var/mob/living/attacker = GET_ASSAILANT(hitby)
 	if(istype(attacker) && cqc_user.Adjacent(attacker))
 		cqc_user.visible_message(
-			span_danger("[cqc_user] [blocking_text_s] [attack_text] and twists [attacker]'s arm behind [attacker.p_their()] back!"),
-			span_userdanger("You [blocking_text] [attack_text]!"),
+			span_danger("[cqc_user][blocking_text_s][attack_text]，并将[attacker]的手臂反扭到背后！"),
+			span_userdanger("你[blocking_text][attack_text]！"),
 		)
 		attacker.Stun(4 SECONDS)
 	else
 		cqc_user.visible_message(
-			span_danger("[cqc_user] [blocking_text_s] [attack_text]!"),
-			span_userdanger("You [blocking_text] [attack_text]!"),
+			span_danger("[cqc_user][blocking_text_s][attack_text]！"),
+			span_userdanger("你[blocking_text][attack_text]！"),
 		)
 	return SUCCESSFUL_BLOCK
 
@@ -107,13 +107,13 @@
 
 	attacker.do_attack_animation(defender)
 	defender.visible_message(
-		span_danger("[attacker] slams [defender] into the ground!"),
-		span_userdanger("You're slammed into the ground by [attacker]!"),
-		span_hear("You hear a sickening sound of flesh hitting flesh!"),
+		span_danger("[attacker]将[defender]狠狠摔向地面！"),
+		span_userdanger("[attacker]将你狠狠摔向地面！"),
+		span_hear("你听到肉体碰撞的骇人闷响！"),
 		null,
 		attacker,
 	)
-	to_chat(attacker, span_danger("You slam [defender] into the ground!"))
+	to_chat(attacker, span_danger("你将[defender]狠狠摔向地面！"))
 	playsound(attacker, 'sound/items/weapons/slam.ogg', 50, TRUE, -1)
 	defender.apply_damage(10, BRUTE)
 	defender.Paralyze(12 SECONDS)
@@ -128,13 +128,13 @@
 	if(defender.body_position == LYING_DOWN && !IS_UNCONSCIOUS(defender) && defender.get_stamina_loss() >= 100)
 		log_combat(attacker, defender, "knocked out (Head kick)(CQC)")
 		defender.visible_message(
-			span_danger("[attacker] kicks [defender]'s head, knocking [defender.p_them()] out!"),
-			span_userdanger("You're knocked unconscious by [attacker]!"),
-			span_hear("You hear a sickening sound of flesh hitting flesh!"),
+			span_danger("[attacker]踢中[defender]的头部，将其踢昏！"),
+			span_userdanger("[attacker]将你踢昏了！"),
+			span_hear("你听到肉体碰撞的骇人闷响！"),
 			null,
 			attacker,
 		)
-		to_chat(attacker, span_danger("You kick [defender]'s head, knocking [defender.p_them()] out!"))
+		to_chat(attacker, span_danger("你踢中[defender]的头部，将其踢昏！"))
 		playsound(attacker, 'sound/items/weapons/genhit1.ogg', 50, TRUE, -1)
 
 		var/helmet_protection = defender.run_armor_check(BODY_ZONE_HEAD, MELEE)
@@ -144,13 +144,13 @@
 
 	else
 		defender.visible_message(
-			span_danger("[attacker] kicks [defender] back!"),
-			span_userdanger("You're kicked back by [attacker]!"),
-			span_hear("You hear a sickening sound of flesh hitting flesh!"),
+			span_danger("[attacker]将[defender]踢退！"),
+			span_userdanger("[attacker]将你踢退！"),
+			span_hear("你听到肉体碰撞的骇人闷响！"),
 			COMBAT_MESSAGE_RANGE,
 			attacker,
 		)
-		to_chat(attacker, span_danger("You kick [defender] back!"))
+		to_chat(attacker, span_danger("你将[defender]踢退！"))
 		playsound(attacker, 'sound/items/weapons/cqchit1.ogg', 50, TRUE, -1)
 		var/atom/throw_target = get_edge_target_turf(defender, attacker.dir)
 		defender.throw_at(throw_target, 1, 14, attacker)
@@ -165,13 +165,13 @@
 	attacker.do_attack_animation(defender)
 	log_combat(attacker, defender, "pressured (CQC)")
 	defender.visible_message(
-		span_danger("[attacker] punches [defender]'s neck!"),
-		span_userdanger("Your neck is punched by [attacker]!"),
-		span_hear("You hear a sickening sound of flesh hitting flesh!"),
+		span_danger("[attacker]一拳击中[defender]的颈部！"),
+		span_userdanger("[attacker]一拳击中你的颈部！"),
+		span_hear("你听到肉体碰撞的骇人闷响！"),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	to_chat(attacker, span_danger("You punch [defender]'s neck!"))
+	to_chat(attacker, span_danger("你一拳击中[defender]的颈部！"))
 	defender.adjust_stamina_loss(60)
 	playsound(attacker, 'sound/items/weapons/cqchit1.ogg', 50, TRUE, -1)
 	return TRUE
@@ -184,13 +184,13 @@
 
 	log_combat(attacker, defender, "restrained (CQC)")
 	defender.visible_message(
-		span_warning("[attacker] locks [defender] into a restraining position!"),
-		span_userdanger("You're locked into a restraining position by [attacker]!"),
-		span_hear("You hear shuffling and a muffled groan!"),
+		span_warning("[attacker]用擒拿姿势锁住了[defender]！"),
+		span_userdanger("[attacker]用擒拿姿势锁住了你！"),
+		span_hear("你听到扭动声和一声低沉的呻吟！"),
 		null,
 		attacker,
 	)
-	to_chat(attacker, span_danger("You lock [defender] into a restraining position!"))
+	to_chat(attacker, span_danger("你用擒拿姿势锁住了[defender]！"))
 	defender.adjust_stamina_loss(20)
 	defender.Stun(10 SECONDS)
 	restraining_mob = WEAKREF(defender)
@@ -204,13 +204,13 @@
 	attacker.do_attack_animation(defender)
 	log_combat(attacker, defender, "consecutive CQC'd (CQC)")
 	defender.visible_message(
-		span_danger("[attacker] strikes [defender]'s abdomen, neck and back consecutively"), \
-		span_userdanger("Your abdomen, neck and back are struck consecutively by [attacker]!"),
-		span_hear("You hear a sickening sound of flesh hitting flesh!"),
+		span_danger("[attacker]连续击打[defender]的腹部、颈部和背部！"), \
+		span_userdanger("[attacker]连续击打你的腹部、颈部和背部！"),
+		span_hear("你听到肉体碰撞的骇人闷响！"),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	to_chat(attacker, span_danger("You strike [defender]'s abdomen, neck and back consecutively!"))
+	to_chat(attacker, span_danger("你连续击打[defender]的腹部、颈部和背部！"))
 	playsound(defender, 'sound/items/weapons/cqchit2.ogg', 50, TRUE, -1)
 	var/obj/item/held_item = defender.get_active_held_item()
 	if(held_item && defender.temporarilyRemoveItemFromInventory(held_item))
@@ -238,13 +238,13 @@
 		attacker.setGrabState(GRAB_AGGRESSIVE) //Instant aggressive grab if on grab intent
 		log_combat(attacker, defender, "grabbed", addition="aggressively")
 		defender.visible_message(
-			span_warning("[attacker] violently grabs [defender]!"),
-			span_userdanger("You're grabbed violently by [attacker]!"),
-			span_hear("You hear sounds of aggressive fondling!"),
+			span_warning("[attacker]粗暴地抓住了[defender]！"),
+			span_userdanger("[attacker]粗暴地抓住了你！"),
+			span_hear("你听到激烈的抓扯声！"),
 			COMBAT_MESSAGE_RANGE,
 			attacker,
 		)
-		to_chat(attacker, span_danger("You violently grab [defender]!"))
+		to_chat(attacker, span_danger("你粗暴地抓住了[defender]！"))
 	return MARTIAL_ATTACK_SUCCESS
 
 /datum/martial_art/cqc/harm_act(mob/living/attacker, mob/living/defender)
@@ -257,17 +257,17 @@
 		if(!isnull(head))
 			playsound(defender, 'sound/effects/wounds/crack1.ogg', 100)
 			defender.visible_message(
-				span_danger("[attacker] snaps the neck of [defender]!"),
-				span_userdanger("Your neck is snapped by [attacker]!"),
-				span_hear("You hear a sickening snap!"),
+				span_danger("[attacker]扭断了[defender]的脖子！"),
+				span_userdanger("[attacker]扭断了你的脖子！"),
+				span_hear("你听到一声骇人的断裂声！"),
 				ignored_mobs = attacker
 			)
-			to_chat(attacker, span_danger("In a swift motion, you snap the neck of [defender]!"))
+			to_chat(attacker, span_danger("你干脆利落地扭断了[defender]的脖子！"))
 			log_combat(attacker, defender, "snapped neck")
 			defender.apply_damage(100, BRUTE, BODY_ZONE_HEAD, wound_bonus=CANT_WOUND)
 			if(!HAS_TRAIT(defender, TRAIT_NODEATH))
 				defender.death()
-				defender.investigate_log("has had [defender.p_their()] neck snapped by [attacker].", INVESTIGATE_DEATHS)
+				defender.investigate_log("被[attacker]扭断了脖子。", INVESTIGATE_DEATHS)
 			return MARTIAL_ATTACK_SUCCESS
 
 	if(defender.check_block(attacker, 10, attacker.name, UNARMED_ATTACK))
@@ -275,13 +275,13 @@
 
 	if(attacker.resting && defender.stat != DEAD && defender.body_position == STANDING_UP)
 		defender.visible_message(
-			span_danger("[attacker] leg sweeps [defender]!"),
-			span_userdanger("Your legs are sweeped by [attacker]!"),
-			span_hear("You hear a sickening sound of flesh hitting flesh!"),
+			span_danger("[attacker]对[defender]使出了扫堂腿！"),
+			span_userdanger("[attacker]扫中了你的双腿！"),
+			span_hear("你听到肉体碰撞的骇人闷响！"),
 			null,
 			attacker,
 		)
-		to_chat(attacker, span_danger("You leg sweep [defender]!"))
+		to_chat(attacker, span_danger("你对[defender]使出了扫堂腿！"))
 		playsound(attacker, 'sound/effects/hit_kick.ogg', 50, TRUE, -1)
 		attacker.do_attack_animation(defender)
 		defender.apply_damage(10, BRUTE)
@@ -304,13 +304,13 @@
 	playsound(defender, (picked_hit_type == "kick" || picked_hit_type == "stomp") ? 'sound/items/weapons/cqchit2.ogg' : 'sound/items/weapons/cqchit1.ogg', 50, TRUE, -1)
 
 	defender.visible_message(
-		span_danger("[attacker] [picked_hit_type]ed [defender]!"),
-		span_userdanger("You're [picked_hit_type]ed by [attacker]!"),
-		span_hear("You hear a sickening sound of flesh hitting flesh!"),
+		span_danger("[attacker]以[chinese_cqc_hit_display(picked_hit_type)]攻击了[defender]！"),
+		span_userdanger("[attacker]以[chinese_cqc_hit_display(picked_hit_type)]攻击了你！"),
+		span_hear("你听到肉体碰撞的骇人闷响！"),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	to_chat(attacker, span_danger("You [picked_hit_type] [defender]!"))
+	to_chat(attacker, span_danger("你以[chinese_cqc_hit_display(picked_hit_type)]攻击了[defender]！"))
 	log_combat(attacker, defender, "attacked ([picked_hit_type]'d)(CQC)")
 	return MARTIAL_ATTACK_SUCCESS
 
@@ -325,13 +325,13 @@
 	if(IS_WEAKREF_OF(attacker.pulling, restraining_mob))
 		log_combat(attacker, defender, "disarmed (CQC)", addition = "knocked out (CQC Chokehold)")
 		defender.visible_message(
-			span_danger("[attacker] puts [defender] into a chokehold!"),
-			span_userdanger("You're put into a chokehold by [attacker]!"),
-			span_hear("You hear shuffling and a muffled groan!"),
+			span_danger("[attacker]锁住了[defender]的喉咙！"),
+			span_userdanger("[attacker]锁住了你的喉咙！"),
+			span_hear("你听到扭动声和一声低沉的呻吟！"),
 			null,
 			attacker,
 		)
-		to_chat(attacker, span_danger("You put [defender] into a chokehold!"))
+		to_chat(attacker, span_danger("你锁住了[defender]的喉咙！"))
 		defender.SetSleeping(40 SECONDS)
 		restraining_mob = null
 		if(attacker.grab_state < GRAB_NECK && !HAS_TRAIT(attacker, TRAIT_PACIFISM))
@@ -351,13 +351,13 @@
 			disarmed_item = null
 
 		defender.visible_message(
-			span_danger("[attacker] strikes [defender]'s jaw with their hand[disarmed_item ? ", disarming [defender.p_them()] of [disarmed_item]" : ""]!"),
-			span_userdanger("[attacker] strikes your jaw,[disarmed_item ? " disarming you of [disarmed_item] and" : ""] leaving you disoriented!"),
-			span_hear("You hear a sickening sound of flesh hitting flesh!"),
+			span_danger("[attacker]用手击打[defender]的下颌[disarmed_item ? "，夺下了[disarmed_item]" : ""]！"),
+			span_userdanger("[attacker]击打你的下颌[disarmed_item ? "，夺下了你的[disarmed_item]" : ""]，让你晕头转向！"),
+			span_hear("你听到肉体碰撞的骇人闷响！"),
 			COMBAT_MESSAGE_RANGE,
 			attacker,
 		)
-		to_chat(attacker, span_danger("You strike [defender]'s jaw,[disarmed_item ? " disarming [defender.p_them()] of [disarmed_item] and" : ""] leaving [defender.p_them()] disoriented!"))
+		to_chat(attacker, span_danger("你击打[defender]的下颌[disarmed_item ? "，夺下了[disarmed_item]" : ""]，让其晕头转向！"))
 		playsound(defender, 'sound/items/weapons/cqchit1.ogg', 50, TRUE, -1)
 		defender.set_jitter_if_lower(4 SECONDS)
 		defender.apply_damage(5, attacker.get_attack_type())
@@ -365,13 +365,13 @@
 		return MARTIAL_ATTACK_SUCCESS
 
 	defender.visible_message(
-		span_danger("[attacker] fails to disarm [defender]!"), \
-		span_userdanger("You're nearly disarmed by [attacker]!"),
-		span_hear("You hear a swoosh!"),
+		span_danger("[attacker]没能缴械[defender]！"), \
+		span_userdanger("[attacker]差点将你缴械！"),
+		span_hear("你听到呼的一声！"),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	to_chat(attacker, span_warning("You fail to disarm [defender]!"))
+	to_chat(attacker, span_warning("你没能缴械[defender]！"))
 	playsound(defender, 'sound/items/weapons/punchmiss.ogg', 25, TRUE, -1)
 	log_combat(attacker, defender, "failed to disarm (CQC)")
 	return MARTIAL_ATTACK_FAIL
@@ -380,20 +380,20 @@
 /datum/martial_art/cqc/get_style_help()
 	. = list()
 
-	. += "<b><i>You try to remember some of the basics of CQC.</i></b>"
+	. += "<b><i>你试着回忆 CQC 的一些基础招式。</i></b>"
 
-	. += "[span_notice("Slam")]: Grab Punch. Slam opponent into the ground, knocking them down."
-	. += "[span_notice("CQC Kick")]: Punch Punch. Knocks opponent away. Knocks out stunned opponents and does stamina damage."
-	. += "[span_notice("Restrain")]: Grab Grab. Locks opponents into a restraining position, disarm to knock them out with a chokehold."
-	. += "[span_notice("Pressure")]: Shove Grab. Decent stamina damage."
-	. += "[span_notice("Consecutive CQC")]: Shove Shove Punch. Mainly offensive move, huge damage and decent stamina damage."
+	. += "[span_notice("摔击")]：抓取、拳击。将对手摔向地面，使其倒地。"
+	. += "[span_notice("CQC 踢击")]：拳击、拳击。将对手踢退；可击昏已失去行动能力的对手，并造成体力伤害。"
+	. += "[span_notice("擒拿")]：抓取、抓取。锁住对手，随后使用缴械可通过锁喉使其昏迷。"
+	. += "[span_notice("压迫打击")]：推搡、抓取。造成可观的体力伤害。"
+	. += "[span_notice("连续 CQC")]：推搡、推搡、拳击。以进攻为主，造成大量伤害与可观的体力伤害。"
 
-	. += "<b><i>In addition, by having your throw mode on when being attacked, you enter an active defense mode where you have a chance to block and sometimes even counter attacks done to you.</i></b>"
+	. += "<b><i>此外，受攻击时开启投掷模式即可进入主动防御状态，有机会格挡，甚至反击对方的攻击。</i></b>"
 	return .
 
 ///Subtype of CQC. Only used for the chef.
 /datum/martial_art/cqc/under_siege
-	name = "Close Quarters Cooking"
+	name = "近身烹饪术"
 	///List of all areas that CQC will work in, defaults to Kitchen.
 	var/list/kitchen_areas = list(/area/station/service/kitchen)
 

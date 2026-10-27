@@ -17,38 +17,38 @@
 
 #define CHANCE_TO_CREATE_MECHIVER 15
 
-#define DAMAGE_RESPONSE_PHRASES list("Stop it, please!", \
-	"Please stop, it hurts! Please!", \
-	"You're hurting me, please, stop it!", \
-	"I don't want to die, please!", \
-	"Please, I want to live, don't kill me!", \
-	"Darkness- Please, I-I don't... want...", \
-	"Wa-wait! Please! I can still feel! It h-hurts!", \
-	"Why- w-why! Why are you.. doing this to us..?", \
-	"Y-you're not helping!", \
-	"Do.. you think, we deserve to die..?",)
+#define DAMAGE_RESPONSE_PHRASES list("住手，求你了！", \
+	"求你停下，好痛！求你了！", \
+	"你弄疼我了，求求你，住手！", \
+	"我不想死，求你了！", \
+	"求你，我想活着，别杀我！", \
+	"好黑——求你，我、我不……想……", \
+	"等、等等！求你！我还有感觉！好、好痛！", \
+	"为什么——为、为什么！为什么……要这样对我们……？", \
+	"你、你这不是在帮忙！", \
+	"你……觉得，我们该死吗……？",)
 
-#define INTERACT_RESPONSE_PHRASES list("I don't want to be touched by you!", \
-	"Please, stop touching me. You're not part of this.", \
-	"We can help you, just lay down where you are.", \
-	"We felt so lonely before, don't you ever feel that way?", \
-	"We want to help you, but you have to work with us.", \
-	"You're not part of the flesh, but it's not hard to join...", \
-	"I-I'm not some tool, I can think for myself.",)
+#define INTERACT_RESPONSE_PHRASES list("我不想让你碰我！", \
+	"求你别碰我。你不是我们的一员。", \
+	"我们可以帮你，只要原地躺下就好。", \
+	"我们从前如此孤独，你难道从未有过这种感觉？", \
+	"我们想帮你，但你必须配合。", \
+	"你还不属于血肉，但加入并不难……", \
+	"我、我不是工具，我能独立思考。",)
 
-#define PAIN_RESPONSE_EMOTES list("starts crying.", \
-	"whimpers.", \
-	"shakes in pain.", \
-	"visibly winces.", \
-	"contorts sickeningly.", \
-	"bleeds black fuming liquid.", \
-	"shudders, sparks cascading to the floor.", \
-	"pleads, letting out sounds of mechanical agony.", \
-	"begs, their vocoder garbled.", \
-	"shrieks in terror.", \
-	"tries and fails at self-repair, their body unresponsive.", \
-	"winces, optics dimming.", \
-	"shakes with an awful metallic noise.",)
+#define PAIN_RESPONSE_EMOTES list("开始哭泣。", \
+	"呜咽着。", \
+	"痛苦地颤抖。", \
+	"明显地瑟缩了一下。", \
+	"令人作呕地扭曲着。", \
+	"流出冒烟的黑色液体。", \
+	"颤抖着，火花倾泻到地板上。", \
+	"哀求着，发出机械般痛苦的声音。", \
+	"乞求着，声码器含混不清。", \
+	"恐惧地尖叫。", \
+	"试图自我修复却失败了，身体毫无反应。", \
+	"瑟缩着，光学器官渐渐暗淡。", \
+	"颤抖着，发出可怕的金属声。",)
 
 
 #define PAIN_RESPONSE_SOUNDS list('modular_zubbers/sound/fleshmind/robot_talk_heavy1.ogg', \
@@ -108,7 +108,7 @@
 		var/mob/living/basic/fleshmind/mechiver/new_mechiver = incoming_controller.spawn_mob(get_turf(parent_machinery), /mob/living/basic/fleshmind/mechiver)
 		parent_machinery.circuit.forceMove(get_turf(parent_machinery))
 		parent_machinery.circuit = null
-		notify_ghosts("A new corrupt Mechiver has been created by [incoming_controller.controller_fullname]!", source = new_mechiver)
+		notify_ghosts("[incoming_controller.controller_fullname]制造了一台新的腐化机械转化者！", source = new_mechiver)
 		qdel(parent_machinery)
 		return
 
@@ -186,7 +186,7 @@
 
 	var/obj/machinery/parent_machinery = parent
 
-	to_chat(user_to_throw, span_userdanger("[parent_machinery] thrashes you with one of it's tendrils, sending you flying!"))
+	to_chat(user_to_throw, span_userdanger("[parent_machinery]用一根触须抽打你，将你击飞！"))
 	playsound(parent_machinery, 'sound/items/weapons/whip.ogg', 70, TRUE)
 	new /obj/effect/temp_visual/kinetic_blast(get_turf(user_to_throw))
 
@@ -219,7 +219,7 @@
 /datum/component/machine_corruption/proc/on_examine(atom/examined, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += "<b>It has strange wires wrappped around it!</b>"
+	examine_list += "<b>上面缠绕着奇怪的线缆！</b>"
 
 /**
  * Infected machines are considered alive, they react to damage, trying to stop the agressor!

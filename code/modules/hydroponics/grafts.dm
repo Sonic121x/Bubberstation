@@ -2,14 +2,14 @@
  *A new subsystem for hydroponics, as a way to share specific traits into plants, as a way to phase out the DNA manipulator.
  */
 /obj/item/graft
-	name = "plant graft"
-	desc = "A carefully cut graft off of a freshly grown plant. Can be grafted onto a plant in order to share unique plant traits onto a plant."
+	name = "植物嫁接枝"
+	desc = "从一株刚长成的植物上小心切下的嫁接枝。可以嫁接到其他植物上，以将独特的植物性状分享给那株植物。"
 	w_class = WEIGHT_CLASS_TINY
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "graft_plant"
 	worn_icon_state = "graft"
-	attack_verb_continuous = list("plants", "vegitizes", "crops", "reaps", "farms")
-	attack_verb_simple = list("plant", "vegitize", "crop", "reap", "farm")
+	attack_verb_continuous = list("拍打", "蹂躏", "劈砍", "收割", "耕作")
+	attack_verb_simple = list("拍打", "蹂躏", "劈砍", "收割", "耕作")
 	/// Our internal seed used to modify stats or genes by grafting or passed as our seed when propagating vegetatively,
 	var/obj/item/seeds/plant_dna = /obj/item/seeds/apple
 
@@ -36,7 +36,7 @@
 
 	var/static/list/hovering_item_typechecks = list(
 		/obj/item/plant_analyzer = list(
-			SCREENTIP_CONTEXT_LMB = "Scan graft",
+			SCREENTIP_CONTEXT_LMB = "扫描嫁接枝",
 		),
 	)
 

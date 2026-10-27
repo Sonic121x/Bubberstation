@@ -1,7 +1,7 @@
 // Nuclear Operative Weapons and Ammunition
 
 /datum/uplink_category/weapon_kits
-	name = "Weapon Kits (Recommended)"
+	name = "武器套件（推荐）"
 	weight = 30
 
 /datum/uplink_item/weapon_kits
@@ -12,7 +12,7 @@
 // ~~ Ammunition Categories ~~
 
 /datum/uplink_category/ammo_nuclear
-	name = "Additional and Unique Ammunition"
+	name = "额外与特殊弹药"
 	weight = 29
 
 /datum/uplink_item/ammo_nuclear
@@ -46,11 +46,11 @@
 // Only allows one purchase, and doesn't prevent the purchase of the contained items. Focused on newer players to help them understand what items they need to succeed, and to help older players quickly purchase the baseline gear they need.
 
 /datum/uplink_item/weapon_kits/core
-	name = "Core Equipment Box (Essential)"
-	desc = "This box contains an airlock authentification override card, a MODsuit energy shield module, a C-4 explosive charge, a freedom implant and a stimpack injector. \
-		The most important support items for most operatives to succeed in their mission, bundled together. It is highly recommend you buy this kit. \
-		Note: This bundle is not at a discount. You can purchase all of these items separately. You do not NEED these items, but most operatives fail WITHOUT at \
-		least SOME of these items. More experienced operatives can do without."
+	name = "核心装备箱（必备）"
+	desc = "这个箱子包含一张气闸门禁覆盖卡、一个 MOD 外骨骼能量护盾模块、一枚 C-4 爆破装药、一个自由植入体以及一支兴奋剂注射器。 \
+		大多数特工完成任务最重要的支援物品，一次打包。强烈建议你购买这套装备。 \
+		注意：此组合包并未打折。所有物品都可以单独购买。你并非“必需”这些物品，但大多数特工若是缺少其中 \
+		至少“部分”物品就会失败。经验丰富的特工可以不用这些。"
 	item = /obj/item/storage/box/syndie_kit/core_gear
 	//The cost for the core kit is always equivalent to the combined costs of the included items
 	cost = (/datum/uplink_item/device_tools/doorjack::cost + /datum/uplink_item/implants/freedom::cost + /datum/uplink_item/explosives/c4::cost + /datum/uplink_item/device_tools/stimpack::cost +	/datum/uplink_item/suits/energy_shield::cost)
@@ -68,9 +68,9 @@
 // ~~ Bulldog Shotgun ~~
 
 /datum/uplink_item/weapon_kits/low_cost/shotgun
-	name = "Bulldog Shotgun Case (Moderate)"
-	desc = "A fully-loaded 2-round burst fire drum-fed shotgun, complete with a secondary magazine you can hotswap. The gun has a handy label to explain how. \
-		Compatible with all 12g rounds. Designed for close quarter anti-personnel engagements. Comes with three spare magazines."
+	name = "斗牛犬霰弹枪箱（中等）"
+	desc = "一把装满弹的 2 发点射弹鼓供弹霰弹枪，另附一个可热插拔的备用弹鼓。枪身上贴着便利的说明标签。 \
+		兼容所有 12 号霰弹。专为近距离反人员交战设计。附三个备用弹鼓。"
 	item = /obj/item/storage/toolbox/guncase/bulldog
 	relevant_child_items = list(
 		/datum/uplink_item/ammo_nuclear/basic/buck,
@@ -85,53 +85,53 @@
 	)
 
 /datum/uplink_item/ammo_nuclear/basic/buck
-	name = "12g Buckshot Drum (Bulldog)"
-	desc = "An additional 8-round buckshot magazine for use with the Bulldog shotgun. Front towards enemy."
+	name = "12 号鹿弹弹鼓（斗牛犬）"
+	desc = "一个 8 发装鹿弹弹鼓，用于斗牛犬霰弹枪。请将正面朝向敌人。"
 	item = /obj/item/ammo_box/magazine/m12g
 	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/basic/slug
-	name = "12g Slug Drum (Bulldog)"
-	desc = "An additional 8-round slug magazine for use with the Bulldog shotgun. \
-		Now 8 times less likely to shoot your pals."
+	name = "12 号独头弹弹鼓（斗牛犬）"
+	desc = "一个 8 发装独头弹弹鼓，用于斗牛犬霰弹枪。 \
+		现在打中同伴的概率降低了 8 倍。"
 	item = /obj/item/ammo_box/magazine/m12g/slug
 	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/basic/flechette
-	name = "12g Flechette Shells (Bulldog)"
-	desc = "An alternative 8-round flechette magazine for use in the Bulldog shotgun. \
-		Getting stopped by armor? Why not flechette? Turn meat and kevlar to tatters!"
+	name = "12 号箭弹（斗牛犬）"
+	desc = "一种 8 发装箭弹弹鼓，可用于斗牛犬霰弹枪。 \
+		被护甲挡住了？为什么不试试箭弹？把血肉和凯夫拉一起撕成碎片！"
 	item = /obj/item/ammo_box/magazine/m12g/flechette
 	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/basic/donk
-	name = "12g Donk Co. 'Donk Spike' Flechette Magazine Box (Bulldog)"
-	desc = "A whole box of 8-round Donk Co. 'Donk Spike' flechette magazines for use in the \
-		Bulldog shotgun. Sponsored by the Donk Corporation! A whole box of these magazines for \
-		the price of one purchase! WARNING: DO NOT SNIFF THE MAGAZINES!"
+	name = "12 号咚克公司“咚克尖刺”箭弹弹匣箱（斗牛犬）"
+	desc = "整整一箱 8 发装咚克公司“咚克尖刺”箭弹弹匣，可用于 \
+		斗牛犬霰弹枪。由咚克公司赞助！买一次就能得到一整箱这样的弹匣！ \
+		警告：请勿嗅闻弹匣！"
 	item = /obj/item/storage/box/syndie_kit/shotgun_surplus
 	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/incendiary/dragon
-	name = "12g Dragon's Breath Drum (Bulldog)"
-	desc = "An alternative 8-round dragon's breath magazine for use in the Bulldog shotgun. \
-		'I'm a fire starter, twisted fire starter!'"
+	name = "12 号龙息弹弹鼓（斗牛犬）"
+	desc = "一种 8 发装龙息弹弹鼓，可用于斗牛犬霰弹枪。 \
+		“我是纵火狂，扭曲的纵火狂！”"
 	item = /obj/item/ammo_box/magazine/m12g/dragon
 	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/special/meteor
-	name = "12g Meteorslug Shells (Bulldog)"
-	desc = "An alternative 8-round meteorslug magazine for use in the Bulldog shotgun. \
-		Great for blasting holes into the hull and knocking down enemies."
+	name = "12 号陨石独头弹（斗牛犬）"
+	desc = "一种 8 发装陨石独头弹弹鼓，可用于斗牛犬霰弹枪。 \
+		非常适合在船体上轰出大洞并击倒敌人。"
 	item = /obj/item/ammo_box/magazine/m12g/meteor
 	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 // ~~ Ansem Pistol ~~
 
 /datum/uplink_item/weapon_kits/low_cost/clandestine
-	name = "Ansem Pistol Case (Easy/Spare)"
-	desc = "A small, easily concealable handgun that uses 10mm auto rounds in 8-round magazines and is compatible \
-			with suppressors. Comes with three spare magazines."
+	name = "安瑟姆手枪箱（简单／备用）"
+	desc = "一把小巧、易于隐藏的手枪，使用 10 毫米自动手枪弹，弹匣容量 8 发，并且兼容 \
+			消音器。附三个备用弹匣。"
 	item = /obj/item/storage/toolbox/guncase/clandestine
 	relevant_child_items = list(
 		/datum/uplink_item/ammo_nuclear/basic/m10mm,
@@ -141,29 +141,29 @@
 	)
 
 /datum/uplink_item/ammo_nuclear/basic/m10mm
-	name = "10mm Handgun Magazine (Ansem)"
-	desc = "An additional 8-round 10mm magazine, compatible with the Ansem pistol."
+	name = "10 毫米手枪弹匣（安瑟姆）"
+	desc = "一个 8 发装 10 毫米备用弹匣，适用于安瑟姆手枪。"
 	item = /obj/item/ammo_box/magazine/m10mm
 	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/ap/m10mm
-	name = "10mm Armour Piercing Magazine (Ansem)"
-	desc = "An additional 8-round 10mm magazine, compatible with the Ansem pistol. \
-		These rounds are less effective at injuring the target but penetrate protective gear."
+	name = "10 毫米穿甲弹匣（安瑟姆）"
+	desc = "一个 8 发装 10 毫米备用弹匣，适用于安瑟姆手枪。 \
+		这些子弹对目标的杀伤效果较差，但能穿透防护装备。"
 	item = /obj/item/ammo_box/magazine/m10mm/ap
 	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/hp/m10mm
-	name = "10mm Hollow Point Magazine (Ansem)"
-	desc = "An additional 8-round 10mm magazine, compatible with the Ansem pistol. \
-		These rounds are more damaging but ineffective against armour."
+	name = "10 毫米空尖弹匣（安瑟姆）"
+	desc = "一个 8 发装 10 毫米备用弹匣，适用于安瑟姆手枪。 \
+		这些子弹杀伤力更强，但对护甲无效。"
 	item = /obj/item/ammo_box/magazine/m10mm/hp
 	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/incendiary/m10mm
-	name = "10mm Incendiary Magazine (Ansem)"
-	desc = "An additional 8-round 10mm magazine, compatible with the Ansem pistol. \
-		Loaded with incendiary rounds which inflict less damage, but ignite the target."
+	name = "10 毫米燃烧弹匣（安瑟姆）"
+	desc = "一个 8 发装 10 毫米备用弹匣，适用于安瑟姆手枪。 \
+		装有燃烧弹，造成的伤害较低，但会点燃目标。"
 	item = /obj/item/ammo_box/magazine/m10mm/fire
 	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
@@ -177,9 +177,9 @@
 // ~~ C-20r Submachine Gun ~~
 
 /datum/uplink_item/weapon_kits/medium_cost/smg
-	name = "C-20r Submachine Gun Case (Easy)"
-	desc = "A fully-loaded Scarborough Arms bullpup submachine gun. The C-20r fires .45 rounds with a \
-		24-round magazine and is compatible with suppressors. Comes with spare three magazines."
+	name = "C-20r 冲锋枪箱（简单）"
+	desc = "一把装满弹的斯卡伯勒军火公司犊牛式冲锋枪。C-20r 发射 .45 子弹， \
+		弹匣容量 24 发，并兼容消音器。附三个备用弹匣。"
 	item = /obj/item/storage/toolbox/guncase/c20r
 	relevant_child_items = list(
 		/datum/uplink_item/ammo_nuclear/ap/smg,
@@ -189,26 +189,26 @@
 	)
 
 /datum/uplink_item/ammo_nuclear/basic/smg
-	name = ".45 SMG Magazine (C-20r)"
-	desc = "An additional 24-round .45 magazine suitable for use with the C-20r submachine gun."
+	name = ".45 冲锋枪弹匣（C-20r）"
+	desc = "一个 24 发装 .45 备用弹匣，适用于 C-20r 冲锋枪。"
 	item = /obj/item/ammo_box/magazine/smgm45
 
 /datum/uplink_item/ammo_nuclear/ap/smg
-	name = ".45 Armor Piercing SMG Magazine (C-20r)"
-	desc = "An additional 24-round .45 magazine suitable for use with the C-20r submachine gun.\
-		These rounds are less effective at injuring the target but penetrate protective gear."
+	name = ".45 穿甲冲锋枪弹匣（C-20r）"
+	desc = "一个 24 发装 .45 备用弹匣，适用于 C-20r 冲锋枪。\
+		这些子弹对目标的杀伤效果较差，但能穿透防护装备。"
 	item = /obj/item/ammo_box/magazine/smgm45/ap
 
 /datum/uplink_item/ammo_nuclear/hp/smg
-	name = ".45 Hollow Point SMG Magazine (C-20r)"
-	desc = "An additional 24-round .45 magazine suitable for use with the C-20r submachine gun.\
-		These rounds are more damaging but ineffective against armour."
+	name = ".45 空尖冲锋枪弹匣（C-20r）"
+	desc = "一个 24 发装 .45 备用弹匣，适用于 C-20r 冲锋枪。\
+		这些子弹杀伤力更强，但对护甲无效。"
 	item = /obj/item/ammo_box/magazine/smgm45/hp
 
 /datum/uplink_item/ammo_nuclear/incendiary/smg
-	name = ".45 Incendiary SMG Magazine (C-20r)"
-	desc = "An additional 24-round .45 magazine suitable for use with the C-20r submachine gun.\
-		Loaded with incendiary rounds which inflict little damage, but ignite the target."
+	name = ".45 燃烧冲锋枪弹匣（C-20r）"
+	desc = "一个 24 发装 .45 备用弹匣，适用于 C-20r 冲锋枪。\
+		装有燃烧弹，造成的伤害较低，但会点燃目标。"
 	item = /obj/item/ammo_box/magazine/smgm45/incen
 	cost = 4
 	purchasable_from = UPLINK_SERIOUS_OPS
@@ -216,14 +216,14 @@
 // ~~ Energy Sword and Shield & CQC ~~
 
 /datum/uplink_item/weapon_kits/medium_cost/sword_and_board
-	name = "Energy Shield and Sword Case (Very Hard)"
-	desc = "A case containing an energy sword and energy shield. Paired together, it provides considerable defensive power without compromising lethal potency. \
-		Perfect for the enterprising nuclear knight. Comes with a medieval helmet for your MODsuit!"
+	name = "能量盾与能量剑箱（极难）"
+	desc = "一个内装能量剑和能量盾的箱子。两者搭配使用时，能在不牺牲致命威力的前提下提供可观的防御力。 \
+		非常适合有进取心的核爆骑士。附赠一顶给你的 MOD 外骨骼用的中世纪头盔！"
 	item = /obj/item/storage/toolbox/guncase/sword_and_board
 
 /datum/uplink_item/weapon_kits/medium_cost/cqc
-	name = "CQC Equipment Case (Very Hard)"
-	desc = "Contains a manual that instructs you in the ways of CQC, or Close Quarters Combat. Comes with a stealth implant, a pack of smokes and a snazzy bandana (use it with the hat stabilizers in your MODsuit)."
+	name = "近身格斗术装备箱（极难）"
+	desc = "内含一本教你近身格斗术（CQC）的手册。附赠一个隐匿植入体、一包香烟和一条时髦的头巾（可搭配 MOD 外骨骼的帽子稳定器使用）。"
 	item = /obj/item/storage/toolbox/guncase/cqc
 	purchasable_from = UPLINK_ALL_SYNDIE_OPS
 	surplus = 0
@@ -232,9 +232,9 @@
 // Nuclear operatives get a special deal on their revolver purchase compared to traitors.
 
 /datum/uplink_item/weapon_kits/medium_cost/revolvercase
-	name = "Syndicate Revolver Case (Moderate)"
-	desc = "Waffle Corp's modernized Syndicate revolver. Fires 7 brutal rounds of .357 Magnum. \
-		A classic operative weapon, improved for the modern era. Comes with 3 additional speedloaders of .357."
+	name = "辛迪加左轮手枪箱（中等）"
+	desc = "华夫公司现代化改造的辛迪加左轮手枪。可发射 7 发残暴的 .357 马格南子弹。 \
+		经典的特工武器，为现代时代而改良。附 3 个额外的 .357 速装器。"
 	item = /obj/item/storage/toolbox/guncase/revolver
 	relevant_child_items = list(
 		/datum/uplink_item/ammo/revolver,
@@ -244,25 +244,25 @@
 	)
 
 /datum/uplink_item/ammo_nuclear/basic/revolver
-	name = ".357 Speed Loader (Revolver)"
-	desc = "A speed loader that contains seven additional .357 Magnum rounds; usable with the Syndicate revolver. \
-		For when you really need a lot of things dead. Unlike field agents, operatives get a premium price for their speedloaders!"
+	name = ".357 速装器（左轮手枪）"
+	desc = "一个装有七发 .357 马格南子弹的速装器，可用于辛迪加左轮手枪。 \
+		适用于你确实需要让很多东西死掉的时候。与外勤特工不同，行动特工买速装器可是要付上溢价！"
 	item = /obj/item/ammo_box/speedloader/c357
 	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/special/revolver/phasic
-	name = ".357 Phasic Speed Loader (Revolver)"
-	desc = "A speed loader that contains seven additional .357 Magnum phasic rounds; usable with the Syndicate revolver. \
-		These bullets are made from an experimental alloy, 'Ghost Lead', that allows it to pass through almost any non-organic material. \
-		The name is a misnomer. It doesn't contain any lead whatsoever!"
+	name = ".357 相位速装器（左轮手枪）"
+	desc = "一个装有七发 .357 马格南相位弹的速装器，可用于辛迪加左轮手枪。 \
+		这些子弹由一种名为“幽灵铅”的实验性合金制成，几乎能穿透任何非有机材料。 \
+		这名字其实名不副实，它根本不含任何铅！"
 	item = /obj/item/ammo_box/speedloader/c357/phasic
 	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
 
 /datum/uplink_item/ammo_nuclear/special/revolver/heartseeker
-	name = ".357 Heartseeker Speed Loader (Revolver)"
-	desc = "A speed loader that contains seven additional .357 Magnum heartseeker rounds; usable with the Syndicate revolver. \
-		Able to veer straight into targets! Don't miss a shot with heartseeker! As seen in the hit NTFlik horror-space western film, Forget-Me-Not!	\
-		Brought to you by Roseus Galactic!"
+	name = ".357 追心速装器（左轮手枪）"
+	desc = "一个装有七发 .357 马格南追心弹的速装器，可用于辛迪加左轮手枪。 \
+		能让子弹径直拐向目标！用追心弹绝不失手！正如纳米传讯影视热门恐怖太空西部片《勿忘我》中所见！	\
+		由玫瑰银河公司呈献！"
 	item = /obj/item/ammo_box/speedloader/c357/heartseeker
 	cost = 3
 	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
@@ -271,9 +271,9 @@
 // 'If god had wanted you to live, he would not have created ME!'
 
 /datum/uplink_item/weapon_kits/medium_cost/rawketlawnchair
-	name = "Dardo-RE Rocket Propelled Grenade Launcher (Hard)"
-	desc = "A reusable rocket propelled grenade launcher preloaded with a low-yield 84mm HE round. \
-		Guaranteed to take your target out with a bang, or your money back! Comes with a bouquet of additional rockets!"
+	name = "Dardo-RE 火箭推进榴弹发射器（困难）"
+	desc = "一把可重复使用的火箭推进榴弹发射器，预装一发低当量 84 毫米高爆弹。 \
+		保证让你的目标“轰”然倒下，否则退钱！附赠一束额外火箭弹！"
 	item = /obj/item/storage/toolbox/guncase/rocketlauncher
 	relevant_child_items = list(
 		/datum/uplink_item/ammo_nuclear/ap/rocket,
@@ -281,14 +281,14 @@
 	)
 
 /datum/uplink_item/ammo_nuclear/basic/rocket
-	name = "84mm HE Rocket Bouquet (Rocket Launcher)"
-	desc = "Three low-yield anti-personnel HE rocket wrapped in a bundle. Gonna take you out in style!"
+	name = "84 毫米高爆火箭弹束（火箭发射器）"
+	desc = "三发低当量反人员高爆火箭弹，捆成一束。保证让你退场得很有型！"
 	item = /obj/item/ammo_box/rocket
 
 /datum/uplink_item/ammo_nuclear/ap/rocket
-	name = "84mm HEAP Rocket (Rocket Launcher)"
-	desc = "A high-yield HEAP rocket; extremely effective against literally everything and anything near that thing that doesn't exist anymore. \
-			Strike fear into the hearts of your enemies."
+	name = "84 毫米高爆穿甲火箭弹（火箭发射器）"
+	desc = "一发高当量高爆穿甲火箭弹；对一切、以及那东西附近任何已不复存在的东西都极其有效。 \
+			让你的敌人心中充满恐惧。"
 	item = /obj/item/ammo_casing/rocket/heap
 
 //High-cost: 18 TC each. Really should only be coming out during war for how powerful it is, or be the majority of your TC outside of war.
@@ -301,9 +301,9 @@
 // ~~ L6 SAW Machine Gun ~~
 
 /datum/uplink_item/weapon_kits/high_cost/machinegun
-	name = "L6 Squad Automatic Weapon (Moderate)"
-	desc = "A fully-loaded Scarborough Arms belt-fed machine gun. \
-			This deadly weapon has a 50-round box chambered for 7.12x82mm ammunition." //SKYRAT EDIT - AUSSEC TO SCARBOROUGH
+	name = "L6 班用自动武器（中等）"
+	desc = "一把装满弹的斯卡伯勒军火公司弹链供弹机枪。 \
+			这件致命武器配有一个 50 发弹箱，发射 7.12x82mm 弹药。" //SKYRAT EDIT - AUSSEC TO SCARBOROUGH
 	item = /obj/item/gun/ballistic/automatic/l6_saw
 	relevant_child_items = list(
 		/datum/uplink_item/ammo_nuclear/ap/machinegun,
@@ -314,42 +314,42 @@
 	)
 
 /datum/uplink_item/ammo_nuclear/basic/machinegun
-	name = "7mm Box Magazine (L6 SAW)"
-	desc = "A 50-round magazine of 7mm ammunition for use with the L6 SAW. \
-		By the time you need to use this, you'll already be standing on a pile of corpses."
+	name = "7 毫米弹箱（L6 SAW）"
+	desc = "一个 50 发装 7 毫米弹箱，适用于 L6 SAW。 \
+		等你要用上它的时候，你早就站在一堆尸体上了。"
 	item = /obj/item/ammo_box/magazine/m7mm
 
 /datum/uplink_item/ammo_nuclear/ap/machinegun
-	name = "7mm (Armor Penetrating) Box Magazine (L6 SAW)"
-	desc = "A 50-round magazine of 7mm ammunition for use in the L6 SAW; equipped with special properties \
-		to puncture even the most durable armor."
+	name = "7 毫米（穿甲）弹箱（L6 SAW）"
+	desc = "一个 50 发装 7 毫米弹箱，用于 L6 SAW；装填有特殊属性弹药， \
+		能击穿最坚固的护甲。"
 	item = /obj/item/ammo_box/magazine/m7mm/ap
 
 /datum/uplink_item/ammo_nuclear/hp/machinegun
-	name = "7mm (Hollow-Point) Box Magazine (L6 SAW)"
-	desc = "A 50-round magazine of 7mm ammunition for use in the L6 SAW; equipped with hollow-point tips to help \
-		with the unarmored masses of crew."
+	name = "7 毫米（空尖）弹箱（L6 SAW）"
+	desc = "一个 50 发装 7 毫米弹箱，用于 L6 SAW；配有空尖弹头，方便 \
+		对付那些没穿护甲的船员。"
 	item = /obj/item/ammo_box/magazine/m7mm/hollow
 
 /datum/uplink_item/ammo_nuclear/incendiary/machinegun
-	name = "7mm (Incendiary) Box Magazine (L6 SAW)"
-	desc = "A 50-round magazine of 7mm ammunition for use in the L6 SAW; tipped with a special flammable \
-		mixture that'll ignite anyone struck by the bullet. Some men just want to watch the world burn."
+	name = "7 毫米（燃烧）弹箱（L6 SAW）"
+	desc = "一个 50 发装 7 毫米弹箱，用于 L6 SAW；弹头涂有特殊易燃混合剂， \
+		被子弹击中的任何人都会着火。有些人就是想看着世界燃烧。"
 	item = /obj/item/ammo_box/magazine/m7mm/incen
 
 /datum/uplink_item/ammo_nuclear/special/machinegun
-	name = "7mm (Match) Box Magazine (L6 SAW)"
-	desc = "A 50-round magazine of 7mm ammunition for use in the L6 SAW; you didn't know there was a demand for match grade \
-		precision bullet hose ammo, but these rounds are finely tuned and perfect for ricocheting off walls all fancy-like."
+	name = "7 毫米（比赛级）弹箱（L6 SAW）"
+	desc = "一个 50 发装 7 毫米弹箱，用于 L6 SAW；你原来不知道比赛级 \
+		精密“子弹喷水枪”弹药也有市场，但这些子弹经过精细调校，非常适合漂亮地从墙上弹射。"
 	item = /obj/item/ammo_box/magazine/m7mm/match
 
 // ~~ M-90gl Carbine ~~
 
 /datum/uplink_item/weapon_kits/high_cost/carbine
-	name = "M-90gl Carbine Case (Hard)"
-	desc = "A fully-loaded, specialized three-round burst carbine that fires .223 ammunition from a 30 round magazine.\
-		Comes with a 40mm underbarrel grenade launcher. Use secondary-fire to fire the grenade launcher. Also comes with two spare magazines \
-		and a box of 40mm rubber pucks."
+	name = "M-90gl 卡宾枪箱（困难）"
+	desc = "一把装满弹的专用三发点射卡宾枪，使用 30 发弹匣发射 .223 弹药。\
+		下挂一具 40 毫米榴弹发射器。用次要开火模式发射榴弹发射器。另附两个备用弹匣 \
+		和一盒 40 毫米橡胶弹丸。"
 	item = /obj/item/storage/toolbox/guncase/m90gl
 	relevant_child_items = list(
 		/datum/uplink_item/ammo_nuclear/basic/carbine,
@@ -360,25 +360,25 @@
 	)
 
 /datum/uplink_item/ammo_nuclear/basic/carbine
-	name = ".223 Toploader Magazine (M-90gl)"
-	desc = "An additional 30-round .223 magazine; suitable for use with the M-90gl carbine. \
-		These bullets pack less punch than 7mm rounds, but they still offer more power than .45 ammo due to their innate armour penetration."
+	name = ".223 顶装弹匣（M-90gl）"
+	desc = "一个 30 发装 .223 备用弹匣，适用于 M-90gl 卡宾枪。 \
+		这些子弹的威力不如 7 毫米弹，但凭借固有的穿甲能力，仍比 .45 弹药更有力。"
 	item = /obj/item/ammo_box/magazine/m223
 
 /datum/uplink_item/ammo_nuclear/special/carbine
-	name = ".223 Toploader Phasic Magazine (M-90gl)"
-	desc = "An additional 30-round .223 magazine; suitable for use with the M-90gl carbine. \
-		These bullets are made from an experimental alloy, 'Ghost Lead', that allows it to pass through almost any non-organic material. \
-		The name is a misnomer. It doesn't contain any lead whatsoever!"
+	name = ".223 顶装相位弹匣（M-90gl）"
+	desc = "一个 30 发装 .223 备用弹匣，适用于 M-90gl 卡宾枪。 \
+		这些子弹由一种名为“幽灵铅”的实验性合金制成，几乎能穿透任何非有机材料。 \
+		这名字其实名不副实，它根本不含任何铅！"
 	item = /obj/item/ammo_box/magazine/m223/phasic
 
 // ~~ Anti-Materiel Sniper Rifle ~~
 
 /datum/uplink_item/weapon_kits/high_cost/sniper
-	name = "Anti-Materiel Sniper Rifle Briefcase (Hard)"
-	desc = "An outdated, but still extremely powerful anti-materiel sniper rifle. Fires .50 BMG cartridges from a 6 round magazine. \
-		Can be fitted with a suppressor. If anyone asks how that even works, tell them it's Nanotrasen's fault. Comes with \
-		3 spare magazines; 2 regular magazines and 1 disruptor magazine. Also comes with a suit and tie."
+	name = "反器材狙击步枪公文包（困难）"
+	desc = "一把虽然过时、但依然极其强大的反器材狙击步枪。使用 6 发弹匣发射 .50 BMG 弹药。 \
+		可安装消音器。如果有人问这怎么可能，就告诉他是纳米传讯的错。附 \
+		3 个备用弹匣：2 个普通弹匣和 1 个干扰弹匣。还附赠一套西装和领带。"
 	item = /obj/item/storage/briefcase/sniper
 	relevant_child_items = list(
 		/datum/uplink_item/ammo_nuclear/ap/sniper/penetrator,
@@ -389,59 +389,59 @@
 	)
 
 /datum/uplink_item/ammo_nuclear/basic/sniper
-	name = ".50 BMG Magazine (AMSR)"
-	desc = "An additional standard 6-round magazine for use with .50 sniper rifles."
+	name = ".50 BMG 弹匣（AMSR）"
+	desc = "一个 6 发装标准备用弹匣，适用于 .50 狙击步枪。"
 	item = /obj/item/ammo_box/magazine/sniper_rounds
 
 /datum/uplink_item/ammo_nuclear/basic/sniper/surplussniper
-	name = ".50 BMG Surplus Magazine Box (AMSR)"
-	desc = "A box full of surplus .50 BMG magazines. Not as good as high quality magazines, \
-		usually lacking the penetrative power and impact, but good enough to keep the gun firing. \
-		Useful for arming a squad."
+	name = ".50 BMG 军剩弹匣箱（AMSR）"
+	desc = "一整箱军剩 .50 BMG 弹匣。不如高品质弹匣， \
+		通常缺少穿透力和冲击力，但足够让枪继续开火。 \
+		适合给一整队人配发。"
 	cost = 7 //1 TC per magazine, special price for a special deal!
 	item = /obj/item/storage/box/syndie_kit/sniper_surplus
 
 /datum/uplink_item/ammo_nuclear/ap/sniper/penetrator
-	name = ".50 BMG Penetrator Magazine (AMSR)"
-	desc = "A 6-round magazine of penetrator ammo designed for use with .50 sniper rifles. \
-		Can pierce walls and multiple enemies."
+	name = ".50 BMG 穿甲弹匣（AMSR）"
+	desc = "一个 6 发装穿甲弹匣，专为 .50 狙击步枪设计。 \
+		可以击穿墙壁和多个敌人。"
 	item = /obj/item/ammo_box/magazine/sniper_rounds/penetrator
 
 /datum/uplink_item/ammo_nuclear/incendiary/sniper
-	name = ".50 BMG Incendiary Magazine (AMSR)"
-	desc = "A 6-round magazine of incendiary ammo. \
-		Sets your enemies ablaze, along with everyone else next to them!"
+	name = ".50 BMG 燃烧弹匣（AMSR）"
+	desc = "一个 6 发装燃烧弹匣。 \
+		让你的敌人以及他们旁边的所有人一起着火！"
 	item = /obj/item/ammo_box/magazine/sniper_rounds/incendiary
 
 /datum/uplink_item/ammo_nuclear/basic/sniper/disruptor
-	name = ".50 BMG Disruptor Magazine (AMSR)"
-	desc = "A 6-round magazine of disruptor ammo designed for use with .50 sniper rifles. \
-		Put your enemies and their alarm clock to sleep today!"
+	name = ".50 BMG 干扰弹匣（AMSR）"
+	desc = "一个 6 发装干扰弹匣，专为 .50 狙击步枪设计。 \
+		今天就让你的敌人和他们的闹钟一起睡去吧！"
 	item = /obj/item/ammo_box/magazine/sniper_rounds/disruptor
 
 /datum/uplink_item/ammo_nuclear/special/sniper/marksman
-	name = ".50 BMG Marksman Magazine (AMSR)"
-	desc = "A 6-round magazine of marksman ammo designed for use with .50 sniper rifles. \
-		Blast your enemies with instant shots! Just watch out for the rebound..."
+	name = ".50 BMG 射手弹匣（AMSR）"
+	desc = "一个 6 发装射手弹匣，专为 .50 狙击步枪设计。 \
+		用瞬间命中的射击轰爆敌人！只是要当心反弹……"
 	item = /obj/item/ammo_box/magazine/sniper_rounds/marksman
 
 /datum/uplink_item/weapon_kits/high_cost/doublesword
-	name = "Double-Bladed Energy Sword Case (Very Hard)"
-	desc = "A case containing a double-bladed energy sword, anti-slip module, meth autoinjector, and a bar of soap. \
-		Some say the most infamous nuclear operatives utilized this combination of equipment to slaughter hundreds \
-		of Nanotrasen employees. However, some also say this is an embellishment from the Tiger Co-operative. \
-		The soap did most of the work. Comes with a prisoner uniform so you fit the part."
+	name = "双刃能量剑箱（极难）"
+	desc = "一个装有双刃能量剑、防滑模块、甲基苯丙胺自动注射器和一块肥皂的箱子。 \
+		有人说最臭名昭著的核爆特工就是用这套装备屠杀了数百名 \
+		纳米传讯员工。不过也有人说这是猛虎合作社的夸张宣传。 \
+		大部分活儿其实是肥皂干的。附赠一套囚服，好让你更入戏。"
 	item = /obj/item/storage/toolbox/guncase/doublesword
 
 //Meme weapons: Literally just weapons used as a joke, shouldn't be particularly expensive.
 
 /datum/uplink_item/weapon_kits/surplus_smg
-	name = "Surplus Smart-SMG (Flukie)"
-	desc = "A failed experimental 'smart gun'. The use of .160 rocket propelled projectiles resulted in reduced stopping power \
-		but increased overally accuracy so long as the shooter vaguely aimed towards their target. The relative increase in \
-		operator effort from absurd recoil contradicted advertized advantages, resulting in poor market performance. However, \
-		there sure are a lots still lying around in poorly secured warehouses. So we took them. And now you can have them. \
-		If you REALLY want it. All I'm saying is: good luck."
+	name = "军剩智能冲锋枪（侥幸）"
+	desc = "一把失败的实验性“智能枪”。使用 .160 火箭推进弹导致停止作用下降， \
+		但只要射手大致朝目标瞄准，整体精度就会提高。 \
+		荒谬的后坐力带来的操作负担相对增加，与宣传中的优势相矛盾，导致市场表现惨淡。不过， \
+		仍有大量存货躺在安保松懈的仓库里。所以我们把它们拿来了。现在你可以拥有它们， \
+		如果你真的想要的话。我只想说：祝你好运。"
 	item = /obj/item/gun/ballistic/automatic/smartgun
 	cost = 2
 	purchasable_from = UPLINK_SERIOUS_OPS
@@ -450,8 +450,8 @@
 	)
 
 /datum/uplink_item/ammo_nuclear/surplus_smg
-	name = "Surplus Smart-SMG Magazine (Smartgun)"
-	desc = "A large box magazine made for use in the Abielle smart-SMG."
+	name = "军剩智能冲锋枪弹匣（智能冲锋枪）"
+	desc = "一个大容量弹匣，供阿比耶尔智能冲锋枪使用。"
 	item = /obj/item/ammo_box/magazine/smartgun
 	cost = 1
 	purchasable_from = UPLINK_SERIOUS_OPS
@@ -466,130 +466,130 @@
 	purchasable_from = UPLINK_ALL_SYNDIE_OPS
 
 /datum/uplink_item/explosives/military_grade/buzzkill
-	name = "Buzzkill Grenade Box"
-	desc = "A box with three grenades that release a swarm of angry bees upon activation. These bees indiscriminately attack friend or foe \
-		with random toxins. Courtesy of the BLF and Tiger Cooperative."
+	name = "扫兴蜂手榴弹盒"
+	desc = "一盒三枚手榴弹，激活后会释放一群愤怒的蜜蜂。这些蜜蜂不分敌我，用随机的毒素 \
+		攻击周围一切。由 BLF 与猛虎合作社提供。"
 	item = /obj/item/storage/box/syndie_kit/bee_grenades
 
 /datum/uplink_item/explosives/military_grade/virus_grenade
-	name = "Fungal Tuberculosis Grenade Box"
-	desc = "A primed bio-grenade packed into a compact box. Comes with five Bio Virus Antidote Kit (BVAK) \
-		autoinjectors for rapid application on up to two targets each, a syringe, and a bottle containing \
-		the BVAK solution."
+	name = "真菌性结核手榴弹盒"
+	desc = "一枚装在小巧盒子里的待发生化手榴弹。附五支生化病毒解毒套件（BVAK） \
+		自动注射器，每支最多可快速用于两名目标，一支注射器，以及一瓶 \
+		含 BVAK 溶液的药剂。"
 	item = /obj/item/storage/box/syndie_kit/tuberculosisgrenade
 	restricted = TRUE
 
 /datum/uplink_item/explosives/military_grade/viscerators
-	name = "Viscerator Delivery Grenade Box"
-	desc = "A box containing unique grenades that deploys a swarm of viscerators upon activation, which will chase down and shred \
-		any non-operatives in the area."
+	name = "撕裂者投放手榴弹盒"
+	desc = "一盒特殊手榴弹，激活后会部署一群撕裂者，它们会追杀并撕碎 \
+		区域内任何非行动特工的人。"
 	item = /obj/item/storage/box/syndie_kit/manhack_grenades
 
 /datum/uplink_item/explosives/military_grade/frag_grenade
-	name = "Frag Grenade Box"
-	desc = "A box containing 7 frag grenades. Simple. Destructive."
+	name = "破片手榴弹盒"
+	desc = "一盒 7 枚破片手榴弹。简单。粗暴。"
 	item = /obj/item/storage/box/syndie_kit/frag_grenades
 	cost = 5
 	purchasable_from = UPLINK_SERIOUS_OPS
 
 /datum/uplink_item/explosives/military_grade/x4
-	name = "Composition X-4"
-	desc = "Similar to C4, but with a stronger blast that is directional instead of circular. X-4 can be placed on a solid surface, such as a wall or window, \
-		and it will blast through the wall, injuring anything on the opposite side, while being safer to the user. For when you want a controlled explosion that \
-		leaves a wider, deeper, hole."
+	name = "X-4 塑性炸药"
+	desc = "与 C4 类似，但爆炸更强，且为定向而非环形。X-4 可以贴在墙壁或窗户等 \
+		实体表面上，炸穿墙壁并伤及另一侧的任何东西，同时对使用者更安全。 \
+		适用于你需要一场可控爆炸，并且想留下更宽、更深洞口的场合。"
 	item = /obj/item/grenade/c4/x4
 	cost = 2
 
 /datum/uplink_item/explosives/military_grade/syndicate_minibomb
-	name = "Syndicate Minibomb"
-	desc = "The minibomb is a grenade with a five-second fuse. Upon detonation, it will create a small hull breach \
-			in addition to dealing high amounts of damage to nearby personnel."
+	name = "辛迪加迷你炸弹"
+	desc = "迷你炸弹是一枚引信为五秒的手榴弹。引爆时，除了对附近人员造成大量伤害之外， \
+			还会在船体上炸出一个小破口。"
 	item = /obj/item/grenade/syndieminibomb
 	cost = 2
 	purchasable_from = UPLINK_SERIOUS_OPS
 
 /datum/uplink_item/explosives/military_grade/pizza_bomb
-	name = "Pizza Bomb"
-	desc = "A pizza box with a bomb cunningly attached to the lid. The timer needs to be set by opening the box; afterwards, \
-			opening the box again will trigger the detonation after the timer has elapsed. Comes with free pizza, for you or your target!\
-			Cybersun Industries would like to remind you that eating pizza in the middle of a delicate infiltration operation is not recommened, \
-			and that there are no guarantees that the pizza is safe from any explosive contaminants."
+	name = "披萨炸弹"
+	desc = "一个披萨盒，盒盖上巧妙地装着一枚炸弹。需要打开盒子来设定计时器；此后， \
+			计时结束后再次打开盒子就会引爆。附赠免费披萨，给你或者你的目标！\
+			赛博太阳工业提醒您，在精密的渗透行动中途吃披萨并不可取， \
+			并且无法保证披萨未受任何爆炸性污染物沾染。"
 	item = /obj/item/pizzabox/bomb
 	cost = 2
 
 // ~~ Grenadier's Belt Kit ~~
 
 /datum/uplink_item/weapon_kits/high_cost/grenadier
-	name = "Grenadier's Belt and Pneumatic Grenade Launcher Kit (Hard)"
-	desc = "A belt containing 26 lethally dangerous and destructive grenades, along with a pneumatic grenade launcher to fire them. Comes with an extra multitool and screwdriver."
+	name = "掷弹兵腰带与气动榴弹发射器套件（困难）"
+	desc = "一条装有 26 枚致命危险且极具破坏力的手榴弹的腰带，另配一具气动榴弹发射器。附赠一把多功能工具和一把螺丝刀。"
 	item = /obj/item/storage/box/syndie_kit/demoman
 	purchasable_from = UPLINK_SERIOUS_OPS
 
 // ~~ Pump-Action Grenade Launcher Kit ~~
 
 /datum/uplink_item/weapon_kits/medium_cost/china_lake
-	name = "Pump-Action Grenade Launcher Kit (Moderate)"
-	desc = "A weapon case containing a 40mm pump-action grenade launcher and a bandolier of 40mm grenades. Less versatile than the pneumatic grenade launcher kit, but no less dangerous. \
-		Though try to be careful about danger close. If you even care. A favourite of the Tiger Cooperative."
+	name = "泵动式榴弹发射器套件（中等）"
+	desc = "一个武器箱，内含一具 40 毫米泵动式榴弹发射器和一条 40 毫米榴弹弹带。不如气动榴弹发射器套件灵活，但危险程度毫不逊色。 \
+		不过要注意近距离误伤。如果你在乎的话。猛虎合作社的最爱。"
 	item = /obj/item/storage/toolbox/guncase/china_lake
 	purchasable_from = UPLINK_SERIOUS_OPS
 
 /datum/uplink_item/ammo_nuclear/basic/a40mm
-	name = "40mm HE Shell Box (Grenade Launchers)"
-	desc = "A box of 40mm HE grenades for use with ballistic grenade launchers. \
-		Your teammates will ask you to not shoot these down small hallways. \
-		You'll do it anyway."
+	name = "40 毫米高爆弹箱（榴弹发射器）"
+	desc = "一盒 40 毫米高爆榴弹，适用于弹道式榴弹发射器。 \
+		队友会求你别在狭窄走廊里打这个。 \
+		你还是会打。"
 	item = /obj/item/ammo_box/a40mm
 
 /datum/uplink_item/ammo_nuclear/basic/a40mm/rubber
-	name = "40mm Rubber Shell Box (Grenade Launchers)"
-	desc = "A box of 40mm rubber grenades for use with ballistic grenade launchers. Launching a giant rubber puck at someone at high velocity is maybe the most \
-		humane thing you are about to do today. For when you're trying to earn some karma points or something."
+	name = "40 毫米橡胶弹箱（榴弹发射器）"
+	desc = "一盒 40 毫米橡胶榴弹，适用于弹道式榴弹发射器。以高速向别人发射一枚巨大的橡胶弹丸，大概是你今天 \
+		能做的最人道的事了。适合你想攒点人品值之类的时候。"
 	item = /obj/item/ammo_box/a40mm/rubber
 
 /datum/uplink_item/ammo_nuclear/ap/a40mm
-	name = "40mm Titanium Flak Shell Box (Grenade Launchers)"
-	desc = "A box of 40mm titanium flak shells for use with ballistic grenade launchers. Launches an obscene number of titanium ball bearings into your enemies. \
-		For when you want to get up close and personal."
+	name = "40 毫米钛珠榴弹箱（榴弹发射器）"
+	desc = "一盒 40 毫米钛珠榴弹，适用于弹道式榴弹发射器。向敌人喷射数量离谱的钛珠。 \
+		适合你想贴身肉搏的时候。"
 	item = /obj/item/ammo_box/a40mm
 
 /datum/uplink_item/ammo_nuclear/incendiary/a40mm
-	name = "40mm Incendiary Shell Box (Grenade Launchers)"
-	desc = "A box of 40mm incendiary grenade shells for use with ballistic grenade launchers. Launches a incendiary payload at targets, bursting on contact and \
-		engulfing everything around it in roaring fire. For when you really don't want to leave anything and anyone unscathed. Including possibly your allies."
+	name = "40 毫米燃烧弹箱（榴弹发射器）"
+	desc = "一盒 40 毫米燃烧榴弹，适用于弹道式榴弹发射器。向目标发射燃烧剂，接触即爆， \
+		把周围一切卷入熊熊烈火。适合你确实不想放过任何东西和任何人的时候。包括你的队友。"
 	item = /obj/item/ammo_box/a40mm
 
 // ~~ Detonator: In case you lose the old one ~~
 
 /datum/uplink_item/explosives/military_grade/syndicate_detonator
-	name = "Syndicate Detonator"
-	desc = "The Syndicate detonator is a companion device to the Syndicate bomb. Simply press the included button \
-		and an encrypted radio frequency will instruct all live Syndicate bombs to detonate. \
-		Useful for when speed matters or you wish to synchronize multiple bomb blasts. Be sure to stand clear of \
-		the blast radius before using the detonator."
+	name = "辛迪加起爆器"
+	desc = "辛迪加起爆器是辛迪加炸弹的配套装置。只需按下附带的按钮， \
+		一段加密无线电频率就会指示所有在线的辛迪加炸弹引爆。 \
+		适合追求速度或希望同步多起爆炸的场合。使用起爆器前请务必远离 \
+		爆炸范围。"
 	item = /obj/item/syndicatedetonator
 	cost = 1
 
 /datum/uplink_item/explosives/military_grade/c4bag
-	name = "Bag of C-4 explosives"
-	desc = "Because sometimes quantity is quality. Contains 10 C-4 plastic explosives."
+	name = "一袋 C-4 炸药"
+	desc = "因为有时候数量就是质量。内含 10 块 C-4 塑性炸药。"
 	item = /obj/item/storage/backpack/duffelbag/syndie/c4
 	cost = 5 // 50% discount!
 
 /datum/uplink_item/explosives/military_grade/x4bag
-	name = "Bag of X-4 explosives"
-	desc = "For when you didn't bring the bunker buster to your latest operation. Contains 10 X-4 shaped plastic explosives."
+	name = "一袋 X-4 炸药"
+	desc = "适合你上次行动没带上掩体破坏弹的时候。内含 10 块 X-4 锥形塑性炸药。"
 	item = /obj/item/storage/backpack/duffelbag/syndie/x4
 	cost = 10 // 50% discount!
 
 /datum/uplink_item/explosives/military_grade/syndicate_bomb
-	name = "Syndicate Bomb"
-	desc = "The Syndicate bomb is a fearsome device capable of massive destruction. It has an adjustable timer, \
-		with a minimum of %MIN_BOMB_TIMER seconds, and can be bolted to the floor with a wrench to prevent \
-		movement. The bomb is bulky and cannot be moved; upon ordering this item, a smaller beacon will be \
-		transported to you that will teleport the actual bomb to it upon activation. Note that this bomb can \
-		be defused, and some crew may attempt to do so. \
-		The bomb core can be pried out and manually detonated with other explosives."
+	name = "辛迪加炸弹"
+	desc = "辛迪加炸弹是一种可怕的装置，能造成大规模破坏。它配有可调节的计时器， \
+		最短为 %MIN_BOMB_TIMER 秒，并且可以用扳手固定在地面上以防 \
+		移动。炸弹体积笨重，无法搬动；订购此物品时，会有一个较小的信标 \
+		被传送到你身边，激活后会把真正的炸弹传送到信标处。请注意，这枚炸弹 \
+		可以被拆除，有些船员可能会尝试这么做。 \
+		炸弹核心可以被撬出来，并用其他爆炸物手动引爆。"
 	item = /obj/item/sbeacondrop/bomb
 	cost = 8
 
@@ -598,8 +598,8 @@
 	desc = replacetext(desc, "%MIN_BOMB_TIMER", SYNDIEBOMB_MIN_TIMER_SECONDS)
 
 /datum/uplink_item/explosives/military_grade/syndicate_bomb/emp
-	name = "Syndicate EMP Bomb"
-	desc = "A variation of the syndicate bomb designed to produce a large EMP effect."
+	name = "辛迪加 EMP 炸弹"
+	desc = "辛迪加炸弹的一种变体，旨在产生大范围的 EMP 效果。"
 	item = /obj/item/sbeacondrop/emp
 	cost = 6
 
@@ -611,7 +611,7 @@
 // Support (Borgs and Reinforcements)
 
 /datum/uplink_category/reinforcements
-	name = "Reinforcements"
+	name = "增援"
 	weight = 28
 
 /datum/uplink_item/reinforcements
@@ -623,36 +623,36 @@
 	refundable = TRUE
 
 /datum/uplink_item/reinforcements/operative_reinforcement
-	name = "Operative Reinforcements"
-	desc = "Call in an additional team member from one of our factions. \
-		They'll come equipped with a mere surplus SMG, so arming them is recommended."
+	name = "行动特工增援"
+	desc = "从我们的某个派系呼叫一名额外的队员。 \
+		他们只带一把军剩冲锋枪，所以建议给他们配好武装。"
 	item = /obj/item/antag_spawner/nuke_ops
 
 /datum/uplink_item/reinforcements/assault_borg
-	name = "Syndicate Assault Cyborg"
-	desc = "A cyborg designed and programmed for systematic extermination of non-Syndicate personnel. \
-		Comes equipped with a self-resupplying LMG, a grenade launcher, energy sword, emag, pinpointer, flash and crowbar."
+	name = "辛迪加突击半机械人"
+	desc = "一种为系统性消灭非辛迪加人员而设计、编程的半机械人。 \
+		配备自动补弹的轻机枪、榴弹发射器、能量剑、emag、定位仪、闪光灯和撬棍。"
 	item = /obj/item/antag_spawner/nuke_ops/borg_tele/assault
 
 /datum/uplink_item/reinforcements/medical_borg
-	name = "Syndicate Medical Cyborg"
-	desc = "A combat medical cyborg. Has limited offensive potential, but makes more than up for it with its support capabilities. \
-		It comes equipped with a nanite hypospray, a medical beamgun, combat defibrillator, full surgical kit including an energy saw, an emag, pinpointer and flash. \
-		Thanks to its organ storage bag, it can perform surgery as well as any humanoid."
+	name = "辛迪加医疗半机械人"
+	desc = "一种战斗医疗半机械人。攻击潜力有限，但凭借其支援能力完全弥补了这一点。 \
+		它配备纳米机器人注射枪、医疗光束枪、战斗除颤器、全套手术工具（包括能量锯）、emag、定位仪和闪光灯。 \
+		得益于它的器官储存袋，它能像任何类人生物一样进行手术。"
 	item = /obj/item/antag_spawner/nuke_ops/borg_tele/medical
 
 /datum/uplink_item/reinforcements/saboteur_borg
-	name = "Syndicate Saboteur Cyborg"
-	desc = "A streamlined engineering cyborg, equipped with covert modules. Also incapable of leaving the welder in the shuttle. \
-		Aside from regular Engineering equipment, it comes with a special destination tagger that lets it traverse disposals networks. \
-		Its chameleon projector lets it disguise itself as a Nanotrasen cyborg, on top it has thermal vision and a pinpointer."
+	name = "辛迪加破坏者半机械人"
+	desc = "一种流线型的工程半机械人，配备隐蔽模块。但它同样会把焊接工具忘在穿梭机上。 \
+		除了常规工程装备外，它还带有一个特殊的目的地贴标器，可借此穿行垃圾处理管网。 \
+		它的变色龙投影器能让它伪装成纳米传讯半机械人，此外还具备热成像视觉和定位仪。"
 	item = /obj/item/antag_spawner/nuke_ops/borg_tele/saboteur
 
 /datum/uplink_item/reinforcements/overwatch_agent
-	name = "Overwatch Intelligence Agent"
-	desc = "An Overwatch Intelligence Agent is assigned to your operation. They can view your progress and help coordinate using your \
-		operative team's body-cams. They can also pilot the shuttle remotely and view the station's camera net. \
-		If you're a meathead who's just here to kill people and don't care about strategising or intel, you'll still have someone to bear witness to your murder-spree!"
+	name = "守望情报特工"
+	desc = "一名守望情报特工将被指派支援你的行动。他们能查看你的进度，并通过你 \
+		行动小队随身摄像头协助协调。他们还能远程驾驶穿梭机并查看空间站的摄像头网络。 \
+		如果你只是个只想杀人的莽夫，不在乎策略或情报，至少还有个人能见证你的屠杀狂欢！"
 	item = /obj/item/antag_spawner/nuke_ops/overwatch
 	cost = 10
 	purchasable_from = UPLINK_FIREBASE_OPS
@@ -661,8 +661,8 @@
 // Technically not a spawn but it is a kind of reinforcement...I guess.
 
 /datum/uplink_item/reinforcements/turretbox
-	name = "Disposable Sentry Gun"
-	desc = "A disposable sentry gun deployment system cleverly disguised as a toolbox, apply wrench for functionality."
+	name = "一次性哨戒炮"
+	desc = "一套一次性哨戒炮部署系统，巧妙地伪装成工具箱，用扳手敲一下即可启用。"
 	item = /obj/item/storage/toolbox/emergency/turret/nukie
 	cost = 16
 	restricted = FALSE
@@ -670,8 +670,8 @@
 
 
 /datum/uplink_item/reinforcements/ed209
-	name = "Modified ED209"
-	desc = "Stolen Nanotrasen tech, slightly tweaked and modified to fit a greater purpose."
+	name = "改装 ED209"
+	desc = "偷来的纳米传讯科技，经过小幅调整与改装，以适应更宏大的用途。"
 	item = /obj/item/antag_spawner/nuke_ops/ed209_nukie
 	cost = 20
 	restricted = FALSE
@@ -681,45 +681,45 @@
 // Bundles
 
 /datum/uplink_item/bundles_tc/cyber_implants
-	name = "Cybernetic Implants Bundle"
-	desc = "A box containing x-ray eyes, a CNS Rebooter and Reviver implant. Comes with an autosurgeon for each."
+	name = "义体植入体组合"
+	desc = "一个箱子，内含 X 光眼、CNS 重启植入体和复活植入体。每个都附一台自动手术器。"
 	item = /obj/item/storage/box/cyber_implants
 	cost = 20 //worth 24 TC
 	purchasable_from = UPLINK_SERIOUS_OPS
 
 /datum/uplink_item/bundles_tc/medical
-	name = "Medical bundle"
-	desc = "The support specialist: Aid your fellow operatives with this medical bundle. Contains a tactical medkit, \
-		a Donksoft LMG, a box of riot darts and a magboot MODsuit module to rescue your friends in no-gravity environments."
+	name = "医疗组合"
+	desc = "支援专家：用这套医疗组合援助你的同伴特工。内含一个战术医疗包、 \
+		一把咚克软轻机枪、一盒防暴飞镖，以及一个磁力靴 MOD 外骨骼模块，方便你在无重力环境中营救伙伴。"
 	item = /obj/item/storage/backpack/duffelbag/syndie/med/medicalbundle
 	cost = 25 // normally 31
 	purchasable_from = UPLINK_SERIOUS_OPS
 
 /datum/uplink_item/bundles_tc/firestarter
-	name = "Spetsnaz Pyro bundle"
-	desc = "For systematic suppression of carbon lifeforms in close quarters: Contains an Elite MODsuit with a flamethrower attachment, \
-		Stechkin APS machine pistol, two incendiary magazines, a minibomb and a stimulant syringe. \
-		Order NOW and comrade Boris will throw in an extra tracksuit."
+	name = "特种部队纵火兵组合"
+	desc = "用于在近距离系统性压制碳基生命体：内含一套带火焰喷射器附件的精英 MOD 外骨骼、 \
+		斯捷奇金 APS 冲锋手枪、两个燃烧弹匣、一枚迷你炸弹和一支兴奋剂注射器。 \
+		立即下单，鲍里斯同志还会额外送你一套运动服。"
 	item = /obj/item/storage/backpack/duffelbag/syndie/firestarter
 	cost = 30
 	purchasable_from = UPLINK_SERIOUS_OPS
 
 /datum/uplink_item/bundles_tc/induction_kit
-	name = "Syndicate Induction Kit"
-	desc = "Met a fellow syndicate agent on the station? Kept some TC in reserve just in case? Or are you communicating with one via the Syndicate channel? \
-		Get this kit and you'll be able to induct them into your operative team via a special implant. \
-		Additionally, it contains an assortment of useful gear for new operatives, including a space suit, an Ansem pistol, two spare magazines, and more! \
-		*NOT* for usage with Reinforcements, and does not brainwash the target!"
+	name = "辛迪加征募套件"
+	desc = "在空间站上遇到另一位辛迪加特工？预留了一些 TC 以防万一？或者你正在通过辛迪加频道与某人联络？ \
+		买下这套装备，你就能通过特殊植入体把他们征召进你的行动小队。 \
+		此外，它还包含一批对新特工有用的装备，包括一套太空服、一把安瑟姆手枪、两个备用弹匣等等！ \
+		*不要*用于增援，而且它不会给目标洗脑！"
 	item = /obj/item/storage/box/syndie_kit/induction_kit
 	cost = 10
 	purchasable_from = UPLINK_NUKE_OPS
 
 /datum/uplink_item/bundles_tc/cowboy
-	name = "Syndicate Outlaw Kit"
-	desc = "There've been high tales of an outlaw 'round these parts. A fella so ruthless and efficient no ranger could ever capture 'em. \
-	Now you can be just like 'em! \
-	This kit contains armor-lined cowboy equipment, a custom revolver and holster, and a horse with a complimentary apple to tame. \
-	A lighter is also included, though you must supply your own smokes."
+	name = "辛迪加亡命徒套件"
+	desc = "据说这一带出没着一个亡命徒。那家伙心狠手辣又高效，没有哪个巡警能抓住他。 \
+	现在你也能变得和他一样！ \
+	这套装备包含带装甲内衬的牛仔装备、一把定制左轮手枪与枪套，以及一匹附赠苹果可供驯服的小马。 \
+	还附赠一个打火机，不过香烟得你自己准备。"
 	item = /obj/item/storage/box/syndie_kit/cowboy
 	cost = 18
 	purchasable_from = UPLINK_SERIOUS_OPS
@@ -733,7 +733,7 @@
 // Mech related gear
 
 /datum/uplink_category/mech
-	name = "Mech Reinforcement"
+	name = "机甲增援"
 	weight = 27
 
 /datum/uplink_item/mech
@@ -745,9 +745,9 @@
 // ~~ Mechs ~~
 
 /datum/uplink_item/mech/gygax
-	name = "Dark Gygax Exosuit"
-	desc = "A lightweight exosuit, painted in a dark scheme. Its speed and equipment selection make it excellent \
-		for hit-and-run style attacks. Features a scattershot shotgun, armor boosters against melee and ranged attacks, and ion thrusters."
+	name = "暗影吉盖克斯机甲"
+	desc = "一台轻量级机甲，涂装为暗色。它的速度和装备选项使其非常适合 \
+		打了就跑的战术。配备散射霰弹枪、对抗近战与远程攻击的装甲增强器，以及离子推进器。"
 	item = /obj/vehicle/sealed/mecha/gygax/dark/loaded
 	cost = 60
 	relevant_child_items = list(
@@ -755,9 +755,9 @@
 	)
 
 /datum/uplink_item/mech/mauler
-	name = "Mauler Exosuit"
-	desc = "A massive and incredibly deadly military-grade exosuit. Features long-range targeting, thrust vectoring \
-		and deployable smoke. Comes equipped with an LMG, scattershot carbine, missile rack, and an antiprojectile armor booster."
+	name = "蹂躏者机甲"
+	desc = "一台庞大且极其致命的军用级机甲。具备远程锁定、推力矢量 \
+		和可部署烟雾。配备轻机枪、散射卡宾枪、导弹发射架，以及反投射物装甲增强器。"
 	item = /obj/vehicle/sealed/mecha/marauder/mauler/loaded
 	cost = 100
 	relevant_child_items = list(
@@ -767,15 +767,15 @@
 // ~~ Mech Support ~~
 
 /datum/uplink_item/mech/support_bag
-	name = "Dark Gygax Support Duffel Bag"
-	desc = "A duffel bag containing ammo for isx full reloads of the scattershot exosuit weapon, which is equipped on standard Dark Gygax exosuits. Also comes with some support equipment for maintaining the mech, including tools and an inducer."
+	name = "暗影吉盖克斯支援行李袋"
+	desc = "一个行李袋，内含可供散射机甲武器完全装填六次的弹药，该武器装备于标准暗影吉盖克斯机甲上。还附带一些用于维护机甲的支援装备，包括工具和一个感应器。"
 	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/darkgygax
 	cost = 4
 	purchasable_from = UPLINK_SERIOUS_OPS
 
 /datum/uplink_item/mech/support_bag/mauler
-	name = "Mauler Support Duffel Bag"
-	desc = "A duffel bag containing ammo for three full reloads of the LMG and SRM-8 missile launcher that are equipped on a standard Mauler exosuit. Also comes with some support equipment for maintaining the mech, including tools and an inducer."
+	name = "蹂躏者支援行李袋"
+	desc = "一个行李袋，内含可供标准蹂躏者机甲所装备的轻机枪和 SRM-8 导弹发射器完全装填三次的弹药。还附带一些用于维护机甲的支援装备，包括工具和一个感应器。"
 	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/mauler
 	cost = 6
 	purchasable_from = UPLINK_SERIOUS_OPS
@@ -788,10 +788,10 @@
 	purchasable_from = UPLINK_SERIOUS_OPS
 
 /datum/uplink_item/stealthy_weapons/romerol_kit
-	name = "Romerol"
-	desc = "A highly experimental bioterror agent which creates dormant nodules to be etched into the grey matter of the brain. \
-		On death, these nodules take control of the dead body, causing limited revivification, \
-		along with slurred speech, aggression, and the ability to infect others with this agent."
+	name = "罗梅罗尔"
+	desc = "一种高度实验性的生物恐怖制剂，会在脑灰质中形成休眠结节。 \
+		死亡时，这些结节会接管死者的身体，造成有限度的复活， \
+		并伴有言语不清、攻击性，以及将这种制剂传染给他人的能力。"
 	item = /obj/item/storage/box/syndie_kit/romerol
 	cost = 25
 	population_minimum = TRAITOR_POPULATION_LOWPOP
@@ -802,63 +802,63 @@
 // Modsuits
 
 /datum/uplink_item/suits/modsuit/elite
-	name = "Elite Syndicate MODsuit"
-	desc = "An upgraded, elite version of the Syndicate MODsuit. It features fireproofing, and also \
-		provides the user with superior armor and mobility compared to the standard Syndicate MODsuit."
+	name = "辛迪加精英 MOD 外骨骼"
+	desc = "辛迪加 MOD 外骨骼的升级精英版。具备防火性能，而且 \
+		相比标准辛迪加 MOD 外骨骼，能为使用者提供更优越的护甲和机动性。"
 	item = /obj/item/mod/control/pre_equipped/elite
 	purchasable_from = (UPLINK_ALL_SYNDIE_OPS | UPLINK_SPY)
 
 /datum/uplink_item/suits/energy_shield
-	name = "MODsuit Energy Shield Module"
-	desc = "An energy shield module for a MODsuit. The shields can stop a single impact \
-		before needing to recharge. Used wisely, this module will keep you alive for a lot longer."
+	name = "MOD 外骨骼能量护盾模块"
+	desc = "一种用于 MOD 外骨骼的能量护盾模块。护盾能挡下一次冲击， \
+		之后需要重新充能。用得巧妙的话，这个模块能让你活得更久。"
 	item = /obj/item/mod/module/energy_shield
 	cost = 8
 	purchasable_from = (UPLINK_ALL_SYNDIE_OPS | UPLINK_SPY)
 
 /datum/uplink_item/suits/emp_shield
-	name = "MODsuit Advanced EMP Shield Module"
-	desc = "An advanced EMP shield module for a MODsuit. It protects your entire body from electromagnetic pulses."
+	name = "MOD 外骨骼高级 EMP 护盾模块"
+	desc = "一种用于 MOD 外骨骼的高级 EMP 护盾模块。它能保护你的全身免受电磁脉冲影响。"
 	item = /obj/item/mod/module/emp_shield/advanced
 	cost = 5
 	purchasable_from = (UPLINK_ALL_SYNDIE_OPS | UPLINK_SPY)
 
 /datum/uplink_item/suits/injector
-	name = "MODsuit Injector Module"
-	desc = "An injector module for a MODsuit. It is an extendable piercing injector with 30u capacity."
+	name = "MOD 外骨骼注射模块"
+	desc = "一种用于 MOD 外骨骼的注射模块。它是一支可伸出的穿刺注射器，容量 30u。"
 	item = /obj/item/mod/module/injector
 	cost = 2
 	purchasable_from = (UPLINK_ALL_SYNDIE_OPS | UPLINK_SPY)
 	uplink_item_flags = NONE
 
 /datum/uplink_item/suits/holster
-	name = "MODsuit Holster Module"
-	desc = "A holster module for a MODsuit. It can stealthily store any not too heavy gun inside it."
+	name = "MOD 外骨骼枪套模块"
+	desc = "一种用于 MOD 外骨骼的枪套模块。它能隐蔽地收纳任何不太重的枪械。"
 	item = /obj/item/mod/module/holster
 	cost = 2
 	purchasable_from = (UPLINK_ALL_SYNDIE_OPS | UPLINK_SPY)
 	uplink_item_flags = NONE
 
 /datum/uplink_item/device_tools/medgun_mod
-	name = "Medbeam Gun Module"
-	desc = "A wonder of Syndicate engineering, the Medbeam gun module, or Medi-Gun enables a medic to keep his fellow \
-		operatives in the fight, even while under fire. Don't cross the streams!"
+	name = "医疗光束枪模块"
+	desc = "辛迪加工程的奇迹，医疗光束枪模块让军医能够让自己的同伴 \
+		在火力压制下依然坚持作战。别让光束交叉！"
 	item = /obj/item/mod/module/medbeam
 	cost = 15
 	purchasable_from = UPLINK_ALL_SYNDIE_OPS
 
 /datum/uplink_item/suits/syndi_intellicard
-	name = "Pre-Loaded Syndicate Intellicard"
-	desc = "A syndicate intellicard that can be activated to download a captured Nanotrasen AI, modified with the standard syndicate lawset. You can slot it into your modsuit for a conversational partner! It can additionally control the MODsuit's modules at will, and move your body around even if you're in critical condition or dead. \
-			However, due to failsafes activated during the extraction process, the AI is unable to interact with electronics from anywhere but direct proximity..."
+	name = "预装填辛迪加智能卡"
+	desc = "一张辛迪加智能卡，激活后可下载一名被俘获的纳米传讯 AI，并将其改造为标准辛迪加法则集。你可以把它插入 MOD 外骨骼，得到一个会聊天的伙伴！它还能随意控制 MOD 外骨骼的模块，并在你濒死或死亡时操控你的身体。 \
+			不过，由于抽取过程启动的失效保护，该 AI 只能通过直接接触与电子设备交互……"
 	item = /obj/item/aicard/syndie/loaded
 	cost = 12
 	purchasable_from = UPLINK_ALL_SYNDIE_OPS
 	refundable = TRUE
 
 /datum/uplink_item/suits/synd_ai_upgrade
-	name = "Syndicate AI Upgrade"
-	desc = "...unless you buy the Syndicate Upgrade! This data chip allows the captured AI to increase its interaction range by two tiles per application. The Syndicate recommends three or four purchases at most, for a total of seven or infinite meters of range."
+	name = "辛迪加 AI 升级"
+	desc = "……除非你购买辛迪加升级！这枚数据芯片可让被俘获的 AI 每次应用时增加两格的交互范围。辛迪加建议最多购买三次或四次，以获得总共七米或无限的交互范围。"
 	item = /obj/item/disk/computer/syndie_ai_upgrade
 	cost = 4
 	purchasable_from = UPLINK_ALL_SYNDIE_OPS
@@ -868,8 +868,8 @@
 // Devices
 
 /datum/uplink_item/device_tools/assault_pod
-	name = "Assault Pod Targeting Device"
-	desc = "Use this to select the landing zone of your assault pod."
+	name = "突击舱目标定位器"
+	desc = "用它来选择突击舱的着陆区。"
 	item = /obj/item/assault_pod
 	cost = 30
 	surplus = 0
@@ -878,37 +878,37 @@
 	purchasable_from = UPLINK_FIREBASE_OPS
 
 /datum/uplink_item/device_tools/syndie_jaws_of_life
-	name = "Syndicate Jaws of Life"
-	desc = "Based on a Nanotrasen model, this powerful tool can be used as both a crowbar and a pair of wirecutters. \
-		In its crowbar configuration, it can be used to force open airlocks. Very useful for entering the station or its departments."
+	name = "辛迪加救生钳"
+	desc = "基于纳米传讯的型号，这件强力工具既能当撬棍，也能当剪线钳。 \
+		在撬棍形态下，它可以用来强行打开气闸。对于进入空间站或其各部门非常有用。"
 	item = /obj/item/crowbar/power/syndicate
 	cost = 4
 	purchasable_from = UPLINK_SERIOUS_OPS | UPLINK_SPY
 
 /datum/uplink_item/device_tools/medkit
-	name = "Syndicate Combat Medic Kit"
-	desc = "This first aid kit is a suspicious black and red. Included is a number of atropine medipens \
-		for rapid stabilization and detonation prevention, sutures and regenerative mesh for wound treatment, and patches \
-		for faster healing on the field. Also comes with basic medical tools and sterlizer."
+	name = "辛迪加战斗军医包"
+	desc = "这个急救包呈可疑的黑红配色。内含若干阿托品注射笔， \
+		用于快速稳定伤情和防止引爆，缝合线和再生网片用于处理伤口，以及贴片 \
+		用于在战场上加速愈合。还附带基础医疗工具和消毒剂。"
 	item = /obj/item/storage/medkit/tactical
 	cost = 4
 	purchasable_from = UPLINK_SERIOUS_OPS
 
 /datum/uplink_item/device_tools/medkit/premium
-	name = "Syndicate Combat Medical Suite"
-	desc = "This first aid kit is a suspicious black and red. Included is an unloaded combat chemical injector \
-		for suit-penetrative chem delivery, a medical science night vision HUD for quick identification of injured personnel and chemical supplies, \
-		improved medical supplies, including Interdyne-approved pharmaceuticals, a hacked cybernetic surgery toolset arm implant, \
-		and some helpful MODsuit modules for for field medical use and operative physiopharmaceutical augmentation."
+	name = "辛迪加战斗医疗全套装备"
+	desc = "这个急救包呈可疑的黑红配色。内含一支未装填的战斗化学注射器， \
+		可穿透太空服投送化学药剂；一副医学科研夜视 HUD，便于快速辨认伤员和化学补给； \
+		改良的医疗用品，包括经英特戴恩制药公司认可的药品；一条被骇入的义体手术工具臂植入体； \
+		以及一些有助于野外医疗使用和行动特工生理药剂强化的 MOD 外骨骼模块。"
 	item = /obj/item/storage/medkit/tactical/premium
 	cost = 15
 	purchasable_from = UPLINK_SERIOUS_OPS
 
 /datum/uplink_item/device_tools/potion
-	name = "Syndicate Sentience Potion"
+	name = "辛迪加智力药水"
 	item = /obj/item/slimepotion/sentience/nuclear
-	desc = "A potion recovered at great risk by undercover Syndicate operatives and then subsequently modified with Syndicate technology. \
-		Using it will make any animal sentient, and bound to serve you, as well as implanting an internal radio for communication and an internal ID card for opening doors."
+	desc = "一种由辛迪加卧底特工冒着极大风险回收、随后又用辛迪加科技改造的药水。 \
+		使用后能让任何动物获得智力，并绑定为你效力，同时为它植入一枚用于交流的内部无线电和一张用于开门的内部身份卡。"
 	cost = 4
 	purchasable_from = UPLINK_SERIOUS_OPS | UPLINK_SPY
 	restricted = TRUE
@@ -920,60 +920,60 @@
 	purchasable_from = UPLINK_NUKE_OPS
 
 /datum/uplink_item/implants/nuclear/deathrattle
-	name = "Box of Deathrattle Implants"
-	desc = "A collection of implants (and one reusable implanter) that should be injected into the team. When one of the team \
-		dies, all other implant holders receive a mental message informing them of their teammates' name \
-		and the location of their death. Unlike most implants, these are designed to be implanted \
-		in any creature, biological or mechanical."
+	name = "亡语植入体盒"
+	desc = "一批植入体（以及一台可重复使用的植入器），应当注入队员体内。当队中一人 \
+		死亡时，所有其他植入者都会收到一条心灵讯息，告知他们队友的名字 \
+		和死亡地点。与大多数植入体不同，这些设计为可植入 \
+		任何生物体内，无论生物还是机械。"
 	item = /obj/item/storage/box/syndie_kit/imp_deathrattle
 	cost = 4
 
 /datum/uplink_item/implants/nuclear/microbomb
-	name = "Microbomb Implant"
-	desc = "An implant injected into the body, and later activated either manually or automatically upon death. \
-		The more implants inside of you, the higher the explosive power. \
-		This will permanently destroy your body, however."
+	name = "微型炸弹植入体"
+	desc = "一种注入体内的植入体，之后可手动激活，或在死亡时自动激活。 \
+		你体内的植入体越多，爆炸威力就越高。 \
+		不过，这会永久摧毁你的身体。"
 	item = /obj/item/storage/box/syndie_kit/imp_microbomb
 	cost = 2
 	purchasable_from = UPLINK_SERIOUS_OPS | UPLINK_SPY
 
 /datum/uplink_item/implants/nuclear/macrobomb
-	name = "Macrobomb Implant"
-	desc = "An implant injected into the body, and later activated either manually or automatically upon death. \
-		Upon death, releases a massive explosion that will wipe out everything nearby."
+	name = "大型炸弹植入体"
+	desc = "一种注入体内的植入体，之后可手动激活，或在死亡时自动激活。 \
+		死亡时会释放一场巨大的爆炸，摧毁附近的一切。"
 	item = /obj/item/storage/box/syndie_kit/imp_macrobomb
 	cost = 20
 	restricted = TRUE
 
 /datum/uplink_item/implants/nuclear/deniability
-	name = "Tactical Deniability Implant"
-	desc = "An implant injected into the brain, and later activated either manually or automatically upon entering critical condition. \
-			Prevents collapsing from critical condition, but explodes after a while."
+	name = "战术推责植入体"
+	desc = "一种注入脑部的植入体，之后可手动激活，或在进入濒危状态时自动激活。 \
+			能防止因濒危状态而倒下，但过一段时间后会爆炸。"
 	item = /obj/item/storage/box/syndie_kit/imp_deniability
 	cost = 6
 	purchasable_from = UPLINK_SERIOUS_OPS | UPLINK_SPY
 
 /datum/uplink_item/implants/nuclear/reviver
-	name = "Reviver Implant"
-	desc = "This implant will attempt to revive and heal you if you lose consciousness. Comes with an autosurgeon."
+	name = "复活植入体"
+	desc = "这种植入体会在你失去意识时尝试复活并治疗你。附一台自动手术器。"
 	item = /obj/item/autosurgeon/syndicate/reviver
 	cost = 8
 
 /datum/uplink_item/implants/nuclear/thermals
-	name = "Thermal Eyes"
-	desc = "These cybernetic eyes will give you thermal vision. Comes with a free autosurgeon."
+	name = "热成像义眼"
+	desc = "这些义眼能给你热成像视觉。附赠一台免费自动手术器。"
 	item = /obj/item/autosurgeon/syndicate/thermal_eyes
 	cost = 8
 
 /datum/uplink_item/implants/nuclear/implants/xray
-	name = "X-ray Vision Implant"
-	desc = "These cybernetic eyes will give you X-ray vision. Comes with an autosurgeon."
+	name = "X 光视觉植入体"
+	desc = "这些义眼能给你 X 光视觉。附一台自动手术器。"
 	item = /obj/item/autosurgeon/syndicate/xray_eyes
 	cost = 8
 
 /datum/uplink_item/implants/nuclear/antistun
-	name = "CNS Rebooter Implant"
-	desc = "This implant will help you get back up on your feet faster after being stunned. Comes with an autosurgeon."
+	name = "CNS 重启植入体"
+	desc = "这种植入体能帮助你在被眩晕后更快站起来。附一台自动手术器。"
 	item = /obj/item/autosurgeon/syndicate/anti_stun
 	cost = 8
 
@@ -988,7 +988,7 @@
 // Base Keys
 
 /datum/uplink_category/base_keys
-	name = "Base Keys"
+	name = "基地门禁卡"
 	weight = 27
 
 /datum/uplink_item/base_keys
@@ -999,43 +999,43 @@
 	cant_discount = TRUE
 
 /datum/uplink_item/base_keys/bomb_key
-	name = "Syndicate Ordnance Laboratory Access Card"
-	desc = "Do you fancy yourself an explosives expert? If so, then consider yourself lucky! With this special Authorization Key, \
-		you can blow those corpo suits away with your very own home-made explosive devices. Made in your local firebase's \
-		very own Ordnance Laboratory! *The Syndicate is not responsible for injuries or deaths sustained while utilizing the lab."
+	name = "辛迪加军械实验室门禁卡"
+	desc = "你自认为是爆炸物专家吗？如果是，那你走运了！有了这张特殊授权卡， \
+		你就能用自己亲手制作的爆炸装置把那些企业西装佬炸飞。就产自你所在火力基地的 \
+		军械实验室！*辛迪加对使用实验室期间造成的伤亡概不负责。"
 	cost = 30
 	item = /obj/item/keycard/syndicate_bomb
 
 /datum/uplink_item/base_keys/bio_key
-	name = "Syndicate Bio-Weapon Laboratory Access Card"
-	desc = "In the right hands, even vile corpo technology can be turned into a vast arsenal of liberation and justice. From \
-		micro-organism symbiosis to slime-core weaponization, this special Authorization Key can let you push past the boundaries \
-		of bio-terrorism at breakneck speeds. As a bonus, these labs even come equipped with natural life support! *Plants not included."
+	name = "辛迪加生化武器实验室门禁卡"
+	desc = "在合适的人手里，即使是邪恶的企业科技也能转化为庞大的解放与正义武库。从 \
+		微生物共生到史莱姆核心武器化，这张特殊授权卡能让你以惊人速度突破生物恐怖主义的 \
+		边界。作为额外福利，这些实验室甚至还配备了自然生命维持系统！*不含植物。"
 	item = /obj/item/keycard/syndicate_bio
 	purchasable_from = UPLINK_CLOWN_OPS | UPLINK_NUKE_OPS
 
 /datum/uplink_item/base_keys/chem_key
-	name = "Syndicate Chemical Plant Access Card"
-	desc = "For some of our best Operatives, watching corpo space stations blow up with a flash of retribution just isn't enough. \
-		Folks like those prefer a more personal touch to their artistry. For those interested, a special Authorization Key \
-		can be instantly delivered to your location. Create groundbreaking chemical agents, cook up, sell the best of drugs, \
-		and listen to the best classic music today!"
+	name = "辛迪加化工厂门禁卡"
+	desc = "对于我们当中一些最优秀的行动特工来说，看着企业空间站在复仇的闪光中爆炸还远远不够。 \
+		这类人更喜欢给他们的艺术创作增添一点私人触感。感兴趣的话，一张特殊授权卡 \
+		可以立即送到你的位置。制造开创性的化学药剂、下厨、贩卖顶级毒品， \
+		并欣赏今日最佳古典音乐！"
 	item = /obj/item/keycard/syndicate_chem
 	purchasable_from = UPLINK_CLOWN_OPS | UPLINK_NUKE_OPS
 
 /datum/uplink_item/base_keys/fridge_key
-	name = "Lopez's Access Card"
-	desc = "Hungry? So is everyone in Firebase Balthazord. Lopez is a great cook, don't get me wrong, but he's stubborn when it \
-		comes to the meal plans. Sometimes you just want to pig out. Listen, don't tell anyone, ok? I picked this out of his \
-		pocket during this morning's briefing. He's been looking for it since. Take it, get into the fridge, and cook up whatever \
-		you need before he gets back. And remember: DON'T TELL ANYONE! -M.T"
+	name = "洛佩斯门禁卡"
+	desc = "饿了？巴尔萨佐德火力基地的每个人都饿了。别误会，洛佩斯是个好厨子，但他对 \
+		菜单安排固执得很。有时候你就是想大吃一顿。听着，别告诉任何人，好吗？今天早上简报时 \
+		我从他口袋里摸到了这个。他一直在找。拿去吧，进到冷藏库，在他回来之前 \
+		想做什么就做什么。记住：别告诉任何人！——M.T"
 	item = /obj/item/keycard/syndicate_fridge
 	purchasable_from = UPLINK_CLOWN_OPS | UPLINK_NUKE_OPS
 
 /datum/uplink_item/base_keys/custodial_key
-	name = "Syndicate Custodial Access Card"
-	desc = "Your workplace dirty? No problem! with this card you gain access to the custodial. Containing a janitorial cart \
-	with some janitorial supplies and an canister of water vapour."
+	name = "辛迪加清洁工具间门禁卡"
+	desc = "你的工作场所脏了？没问题！有了这张卡，你就能进入清洁工具间。里面有一辆清洁推车， \
+	配有一些清洁用品和一罐水蒸气。"
 	item = /obj/item/keycard/syndicate_custodial
 	purchasable_from = UPLINK_CLOWN_OPS | UPLINK_NUKE_OPS
 
@@ -1043,8 +1043,8 @@
 // It is fundamental for the game's health for there to be a hat crate for nuclear operatives.
 
 /datum/uplink_item/badass/hats
-	name = "Hat Crate"
-	desc = "Hat crate! Contains hats! HATS!!!"
+	name = "帽子板条箱"
+	desc = "帽子板条箱！内含帽子！帽子！！！"
 	item = /obj/structure/closet/crate/large/hats
 	cost = 5
 	purchasable_from = UPLINK_ALL_SYNDIE_OPS

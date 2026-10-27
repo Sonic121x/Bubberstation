@@ -1,8 +1,8 @@
 //banana flavored chaos and horror ahead
 
 /obj/item/clothing/shoes/clown_shoes/banana_shoes
-	name = "mk-honk prototype shoes"
-	desc = "Lost prototype of advanced clown tech. Powered by bananium, these shoes leave a trail of chaos in their wake."
+	name = "MK-洪克原型鞋"
+	desc = "失落的小丑高科技原型鞋。以香蕉矿为动力，所过之处留下一路混乱。"
 	icon_state = "clown_prototype_off"
 	actions_types = list(/datum/action/item_action/toggle)
 	/// Whether the clown shoes are active (spawning bananas)
@@ -58,25 +58,25 @@
 		return
 
 	toggle_clowning_action()
-	to_chat(wearer, span_warning("You ran out of bananium!"))
+	to_chat(wearer, span_warning("你的香蕉矿用完了！"))
 
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/attack_self(mob/user)
 	var/sheet_amount = bananium.retrieve_all()
 	if(sheet_amount)
-		to_chat(user, span_notice("You retrieve [sheet_amount] sheets of bananium from the prototype shoes."))
+		to_chat(user, span_notice("你从原型鞋中取出 [sheet_amount] 片香蕉矿。"))
 	else
-		to_chat(user, span_warning("You cannot retrieve any bananium from the prototype shoes!"))
+		to_chat(user, span_warning("你无法从原型鞋中取出任何香蕉矿！"))
 
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/examine(mob/user)
 	. = ..()
-	. += span_notice("The shoes are [on ? "enabled" : "disabled"].")
+	. += span_notice("这双鞋当前处于[on ? "启用" : "停用"]状态。")
 
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/ui_action_click(mob/user)
 	if(bananium.get_material_amount(/datum/material/bananium) >= material_per_banana)
 		toggle_clowning_action()
-		to_chat(user, span_notice("You [on ? "activate" : "deactivate"] the prototype shoes."))
+		to_chat(user, span_notice("你[on ? "启用" : "停用"]了原型鞋。"))
 	else
-		to_chat(user, span_warning("You need bananium to turn the prototype shoes on!"))
+		to_chat(user, span_warning("你需要香蕉矿才能启用原型鞋！"))
 
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/update_icon_state()
 	icon_state = "clown_prototype_[on ? "on" : "off"]"

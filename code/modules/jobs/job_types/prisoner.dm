@@ -1,10 +1,10 @@
 /datum/job/prisoner
 	title = JOB_PRISONER
-	description = "Keep yourself occupied in permabrig."
+	description = "在永久监禁区里自寻消遣。"
 	faction = FACTION_STATION
 	total_positions = 12		// SKYRAT EDIT: Original value (0)
 	spawn_positions = 2
-	supervisors = "the security team"
+	supervisors = "安保团队"
 	exp_granted_type = EXP_TYPE_CREW
 	bounty_types = CIV_JOB_PRISONER
 	paycheck = PAYCHECK_LOWER
@@ -22,7 +22,7 @@
 	)
 
 	family_heirlooms = list(/obj/item/pen/blue)
-	rpg_title = "Defeated Miniboss"
+	rpg_title = "被击败的小头目"
 	job_flags = STATION_JOB_FLAGS | JOB_CANNOT_OPEN_SLOTS | JOB_ANTAG_PROTECTED & ~JOB_REOPEN_ON_ROUNDSTART_LOSS
 
 /datum/job/prisoner/New()
@@ -42,11 +42,11 @@
 		crime_name = pick(assoc_to_keys(GLOB.prisoner_crimes))
 
 	var/datum/prisoner_crime/crime = GLOB.prisoner_crimes[crime_name]
-	var/datum/crime/past_crime = new(crime.name, crime.desc, "Central Command", "Indefinite.")
+	var/datum/crime/past_crime = new(crime.name, crime.desc, "中央指挥部", "无限期。")
 	var/datum/record/crew/target_record = find_record(crewmember.real_name)
 	target_record.crimes += past_crime
 	target_record.recreate_manifest_photos(add_height_chart = TRUE)
-	to_chat(crewmember, span_warning("You are imprisoned for \"[crime_name]\"."))
+	to_chat(crewmember, span_warning("你因“[crime_name]”入狱。"))
 	crewmember.add_mob_memory(/datum/memory/key/permabrig_crimes, crimes = crime_name)
 
 /datum/outfit/job/prisoner

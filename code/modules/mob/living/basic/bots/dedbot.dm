@@ -4,8 +4,8 @@
 #define SPIN_SLASH_ABILITY_TYPEPATH /datum/action/cooldown/mob_cooldown/exenterate
 
 /mob/living/basic/bot/dedbot
-	name = "\improper Donk Exenteration Drone" //Exenteration means ripping entrails out, ouch!
-	desc = "A bladed commercial defence drone, often called an 'Ex-Drone' or 'D.E.D.bot'. It follows a simple programmed patrol route, and slashes at anyone who doesn't have an identity implant."
+	name = "\improper 咚克剜肠无人机" //Exenteration means ripping entrails out, ouch!
+	desc = "一台带刃的商用防御无人机，常被称作“Ex-Drone”或“D.E.D.bot”。它会沿着简单的预设路线巡逻，并砍伤任何没有身份植入体的人。"
 	icon_state = "ded_drone0"
 	base_icon_state = "ded_drone"
 	req_one_access = list(ACCESS_SYNDICATE)
@@ -19,8 +19,8 @@
 	ai_controller = /datum/ai_controller/basic_controller/bot/dedbot
 	faction = list(ROLE_SYNDICATE)
 	sharpness = SHARP_EDGED
-	attack_verb_continuous = "eviscerates"
-	attack_verb_simple = "eviscerate"
+	attack_verb_continuous = "剖开"
+	attack_verb_simple = "剖开"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	gold_core_spawnable = HOSTILE_SPAWN
@@ -28,7 +28,7 @@
 	bubble_icon = "machine"
 	pass_flags = PASSMOB | PASSFLAPS
 	maximum_survivable_temperature = 360 //prone to overheating
-	possessed_message = "You are an exenteration drone. Exenterate."
+	possessed_message = "你是一台剜肠无人机。去剜肠吧。"
 	additional_access = /datum/id_trim/away/hauntedtradingpost/boss
 	bot_mode_flags = BOT_MODE_ON | BOT_MODE_AUTOPATROL
 	mob_size = MOB_SIZE_SMALL
@@ -64,8 +64,8 @@
 	)
 
 /datum/action/cooldown/mob_cooldown/exenterate
-	name = "Exenterate"
-	desc = "Disembowel every living thing in range with your blades."
+	name = "剜肠"
+	desc = "用你的刀刃剖开范围内所有活物的肚子。"
 	button_icon = 'icons/obj/weapons/stabby.dmi'
 	button_icon_state = "huntingknife"
 	click_to_activate = FALSE
@@ -91,7 +91,7 @@
 	if(!COOLDOWN_FINISHED(src, cooldown_time))
 		return FALSE
 	caster.Shake(1.4, 0.8, 0.3 SECONDS)
-	caster.visible_message(span_danger("[caster] shakes violently!"))
+	caster.visible_message(span_danger("[caster] 剧烈颤抖！"))
 	playsound(caster, 'sound/items/weapons/drill.ogg', 120 , TRUE)
 	slash_em(caster)
 	StartCooldown(cooldown_time)
@@ -100,8 +100,8 @@
 	for(var/mob/living/victim in range(ability_range, caster))
 		if(victim.has_faction(immune_factions) && victim.IsReachableBy(owner))
 			continue
-		to_chat(caster, span_warning("You slice [victim]!"))
-		to_chat(victim, span_warning("You are cut by [caster]'s blades!"))
+		to_chat(caster, span_warning("你切开了 [victim]！"))
+		to_chat(victim, span_warning("你被 [caster] 的刀刃切中了！"))
 		victim.apply_damage(damage = damage_dealt, damagetype = BRUTE, def_zone = pick(valid_targets), sharpness = SHARP_EDGED)
 
 #undef SPIN_SLASH_ABILITY_TYPEPATH

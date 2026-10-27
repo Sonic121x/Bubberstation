@@ -10,7 +10,7 @@ import {
 
 import { useBackend, useSharedState } from '../backend';
 import { Window } from '../layouts';
-
+import { batchThreeDisplay } from '../localization/batchThreeDisplay';
 export const Limbgrower = (props) => {
   const { act, data } = useBackend();
   const {
@@ -70,7 +70,7 @@ export const Limbgrower = (props) => {
                 selected={tab === category.name}
                 onClick={() => setTab(category.name)}
               >
-                {category.name}
+                {batchThreeDisplay(category.name)}
               </Tabs.Tab>
             ))}
           </Tabs>

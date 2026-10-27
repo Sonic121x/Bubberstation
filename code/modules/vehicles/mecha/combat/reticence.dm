@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/mecha/reticence
-	desc = "A silent, fast, and nigh-invisible miming exosuit. Popular among mimes and mime assassins."
-	name = "\improper reticence"
+	desc = "一台安静、迅捷、几乎隐形的默剧机甲。在默剧演员与默剧刺客中很受欢迎。"
+	name = "\improper 缄默"
 	icon_state = "reticence"
 	base_icon_state = "reticence"
 	movedelay = 1

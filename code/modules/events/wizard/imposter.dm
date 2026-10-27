@@ -1,10 +1,10 @@
 /datum/round_event_control/wizard/imposter //Mirror Mania
-	name = "Imposter Wizard"
+	name = "冒名巫师"
 	weight = 1
 	typepath = /datum/round_event/wizard/imposter
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
-	description = "Spawns a doppelganger of the wizard."
+	description = "生成一个巫师的二重身。"
 	min_wizard_trigger_potency = 2
 	max_wizard_trigger_potency = 7
 
@@ -13,7 +13,7 @@
 		if(!ishuman(M.current))
 			continue
 		var/mob/living/carbon/human/W = M.current
-		var/mob/chosen_one = SSpolling.poll_ghost_candidates("Would you like to be an [span_notice("imposter wizard")]?", check_jobban = ROLE_WIZARD, alert_pic = /obj/item/clothing/head/wizard, jump_target = W, role_name_text = "imposter wizard", amount_to_pick = 1)
+		var/mob/chosen_one = SSpolling.poll_ghost_candidates("你想成为一名[span_notice("冒名巫师")]吗？", check_jobban = ROLE_WIZARD, alert_pic = /obj/item/clothing/head/wizard, jump_target = W, role_name_text = "冒名巫师", amount_to_pick = 1)
 		if(isnull(chosen_one))
 			return //Sad Trombone
 		new /obj/effect/particle_effect/fluid/smoke(W.loc)
@@ -32,6 +32,6 @@
 		imposter.wiz_team = master.wiz_team
 		master.wiz_team.add_member(imposter)
 		I.mind.add_antag_datum(imposter)
-		I.log_message("is an imposter!", LOG_ATTACK, color="red") //?
+		I.log_message("是个冒名者！", LOG_ATTACK, color="red") //?
 		SEND_SOUND(I, sound('sound/effects/magic.ogg'))
 		announce_to_ghosts(I)

@@ -31,7 +31,7 @@
 // todo move this to it's own trait
 /obj/item/clothing/neck/necklace/memento_mori/memento(mob/living/carbon/human/user)
 	if(IS_BLOODSUCKER(user))
-		to_chat(user, span_warning("The Memento notices your undead soul, and refuses to react.."))
+		to_chat(user, span_warning("勿忘终有一死察觉到你的不死灵魂，拒绝回应……"))
 		return
 	return ..()
 
@@ -59,16 +59,16 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(src)
 	if(bloodsuckerdatum)
 		. += ""
-		. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
-		. += "Maximum blood: [bloodsuckerdatum.max_blood_volume]"
-		. += "Blood Thickening: [bloodsuckerdatum.blood_level_gain] / [bloodsuckerdatum.get_level_cost()]"
+		. += "累计吸血量：[bloodsuckerdatum.total_blood_drank]"
+		. += "血量上限：[bloodsuckerdatum.max_blood_volume]"
+		. += "血液浓化：[bloodsuckerdatum.blood_level_gain] / [bloodsuckerdatum.get_level_cost()]"
 		if(bloodsuckerdatum.is_frenzied())
-			. += "Frenzy exit blood threshold: [bloodsuckerdatum.frenzy_exit_threshold()]"
+			. += "脱离狂暴血量阈值：[bloodsuckerdatum.frenzy_exit_threshold()]"
 		else
-			. += "Frenzy blood threshold: [bloodsuckerdatum.frenzy_enter_threshold()]"
+			. += "进入狂暴血量阈值：[bloodsuckerdatum.frenzy_enter_threshold()]"
 
 /datum/outfit/bloodsucker_outfit
-	name = "Bloodsucker outfit (Preview only)"
+	name = "吸血鬼装束（仅供预览）"
 	suit = /obj/item/clothing/suit/costume/dracula
 
 /datum/outfit/bloodsucker_outfit/post_equip(mob/living/carbon/human/enrico, visualsOnly=FALSE)

@@ -1,8 +1,8 @@
 // Surgical analog to manual dislocation treatment
 /datum/surgery_operation/limb/repair_dislocation
-	name = "reset dislocation"
-	desc = "Reset a dislocated bone in a patient's limb. \
-		Similar to the field procedure, but quicker and safer due to being performed in a controlled environment."
+	name = "复位脱位"
+	desc = "复位病人肢体中脱位的骨头。 \
+		与野外应急处理类似，但在受控环境下施行，因此更快也更安全。"
 	operation_flags = OPERATION_PRIORITY_NEXT_STEP | OPERATION_NO_PATIENT_REQUIRED | OPERATION_AFFECTS_MOOD | OPERATION_STANDING_ALLOWED | OPERATION_IGNORE_CLOTHES
 	implements = list(
 		TOOL_BONESET = 1,
@@ -21,7 +21,7 @@
 	return image(/obj/item/bonesetter)
 
 /datum/surgery_operation/limb/repair_dislocation/all_required_strings()
-	return list("the limb must be dislocated") + ..()
+	return list("肢体必须处于脱位状态") + ..()
 
 /datum/surgery_operation/limb/repair_dislocation/state_check(obj/item/bodypart/limb)
 	for(var/datum/wound/blunt/bone/bone_wound in limb.wounds)
@@ -34,11 +34,11 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to reset the dislocation in [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to reset the dislocation in [FORMAT_LIMB_OWNER(limb)] with [tool]."),
-		span_notice("[surgeon] begins to reset the dislocation in [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始复位[FORMAT_LIMB_OWNER(limb)]的脱位……"),
+		span_notice("[surgeon] 开始用 [tool] 复位[FORMAT_LIMB_OWNER(limb)]的脱位。"),
+		span_notice("[surgeon] 开始复位[FORMAT_LIMB_OWNER(limb)]的脱位。"),
 	)
-	display_pain(limb.owner, "Your [limb.plaintext_zone] aches with pain!")
+	display_pain(limb.owner, "你的[chinese_body_zone_display(limb.plaintext_zone)]隐隐作痛！")
 
 /datum/surgery_operation/limb/repair_dislocation/on_success(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	for(var/datum/wound/blunt/bone/bone_wound in limb.wounds)
@@ -48,26 +48,26 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You successfully reset the dislocation in [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] successfully resets the dislocation in [FORMAT_LIMB_OWNER(limb)]!"),
-		span_notice("[surgeon] successfully resets the dislocation in [FORMAT_LIMB_OWNER(limb)]!"),
+		span_notice("你成功复位了[FORMAT_LIMB_OWNER(limb)]的脱位。"),
+		span_notice("[surgeon] 成功复位了[FORMAT_LIMB_OWNER(limb)]的脱位！"),
+		span_notice("[surgeon] 成功复位了[FORMAT_LIMB_OWNER(limb)]的脱位！"),
 	)
-	display_pain(limb.owner, "Your [limb.plaintext_zone] feels much better now!")
+	display_pain(limb.owner, "你的[chinese_body_zone_display(limb.plaintext_zone)]现在舒服多了！")
 
 /datum/surgery_operation/limb/repair_dislocation/on_failure(obj/item/bodypart/limb, mob/living/surgeon, tool, list/operation_args)
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You fail to reset the dislocation in [FORMAT_LIMB_OWNER(limb)], causing further damage!"),
-		span_notice("[surgeon] fails to reset the dislocation in [FORMAT_LIMB_OWNER(limb)], causing further damage!"),
-		span_notice("[surgeon] fails to reset the dislocation in [FORMAT_LIMB_OWNER(limb)]!"),
+		span_notice("你没能复位[FORMAT_LIMB_OWNER(limb)]的脱位，还造成了更多损伤！"),
+		span_notice("[surgeon] 没能复位[FORMAT_LIMB_OWNER(limb)]的脱位，还造成了更多损伤！"),
+		span_notice("[surgeon] 没能复位[FORMAT_LIMB_OWNER(limb)]的脱位！"),
 	)
-	display_pain(limb.owner, "The pain in your [limb.plaintext_zone] intensifies!")
+	display_pain(limb.owner, "你[chinese_body_zone_display(limb.plaintext_zone)]的疼痛加剧了！")
 	limb.receive_damage(25, damage_source = tool)
 
 /datum/surgery_operation/limb/repair_hairline
-	name = "repair hairline fracture"
-	desc = "Mend a hairline fracture in a patient's bone."
+	name = "修复骨裂"
+	desc = "修补病人骨骼上的骨裂。"
 	operation_flags = OPERATION_PRIORITY_NEXT_STEP | OPERATION_NO_PATIENT_REQUIRED
 	implements = list(
 		TOOL_BONESET = 1,
@@ -89,7 +89,7 @@
 	return image(/obj/item/bonesetter)
 
 /datum/surgery_operation/limb/repair_hairline/all_required_strings()
-	return list("the limb must have a hairline fracture") + ..()
+	return list("肢体必须有骨裂") + ..()
 
 /datum/surgery_operation/limb/repair_hairline/state_check(obj/item/bodypart/limb)
 	if(!(locate(/datum/wound/blunt/bone/severe) in limb.wounds))
@@ -100,11 +100,11 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to repair the fracture in [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to repair the fracture in [FORMAT_LIMB_OWNER(limb)] with [tool]."),
-		span_notice("[surgeon] begins to repair the fracture in [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始修复[FORMAT_LIMB_OWNER(limb)]的骨折……"),
+		span_notice("[surgeon] 开始用 [tool] 修复[FORMAT_LIMB_OWNER(limb)]的骨折。"),
+		span_notice("[surgeon] 开始修复[FORMAT_LIMB_OWNER(limb)]的骨折。"),
 	)
-	display_pain(limb.owner, "Your [limb.plaintext_zone] aches with pain!")
+	display_pain(limb.owner, "你的[chinese_body_zone_display(limb.plaintext_zone)]隐隐作痛！")
 
 /datum/surgery_operation/limb/repair_hairline/on_success(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	var/datum/wound/blunt/bone/fracture = locate() in limb.wounds
@@ -113,14 +113,14 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You successfully repair the fracture in [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] successfully repairs the fracture in [FORMAT_LIMB_OWNER(limb)]!"),
-		span_notice("[surgeon] successfully repairs the fracture in [FORMAT_LIMB_OWNER(limb)]!"),
+		span_notice("你成功修复了[FORMAT_LIMB_OWNER(limb)]的骨折。"),
+		span_notice("[surgeon] 成功修复了[FORMAT_LIMB_OWNER(limb)]的骨折！"),
+		span_notice("[surgeon] 成功修复了[FORMAT_LIMB_OWNER(limb)]的骨折！"),
 	)
 
 /datum/surgery_operation/limb/reset_compound
-	name = "reset compound fracture"
-	desc = "Reset a compound fracture in a patient's bone, preparing it for proper healing."
+	name = "复位开放性骨折"
+	desc = "复位病人骨骼上的开放性骨折，为正常愈合做好准备。"
 	operation_flags = OPERATION_PRIORITY_NEXT_STEP | OPERATION_NO_PATIENT_REQUIRED
 	implements = list(
 		TOOL_BONESET = 1,
@@ -142,7 +142,7 @@
 	return image(/obj/item/bonesetter)
 
 /datum/surgery_operation/limb/reset_compound/all_required_strings()
-	return list("the limb must have a compound fracture") + ..()
+	return list("肢体必须有开放性骨折") + ..()
 
 /datum/surgery_operation/limb/reset_compound/state_check(obj/item/bodypart/limb)
 	var/datum/wound/blunt/bone/critical/fracture = locate() in limb.wounds
@@ -154,11 +154,11 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to reset the bone in [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to reset the bone in [FORMAT_LIMB_OWNER(limb)] with [tool]."),
-		span_notice("[surgeon] begins to reset the bone in [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始复位[FORMAT_LIMB_OWNER(limb)]的骨头……"),
+		span_notice("[surgeon] 开始用 [tool] 复位[FORMAT_LIMB_OWNER(limb)]的骨头。"),
+		span_notice("[surgeon] 开始复位[FORMAT_LIMB_OWNER(limb)]的骨头。"),
 	)
-	display_pain(limb.owner, "The aching pain in your [limb.plaintext_zone] is overwhelming!")
+	display_pain(limb.owner, "你[chinese_body_zone_display(limb.plaintext_zone)]的酸痛难以忍受！")
 
 /datum/surgery_operation/limb/reset_compound/on_success(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	var/datum/wound/blunt/bone/critical/fracture = locate() in limb.wounds
@@ -167,14 +167,14 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You successfully reset the bone in [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] successfully resets the bone in [FORMAT_LIMB_OWNER(limb)] with [tool]!"),
-		span_notice("[surgeon] successfully resets the bone in [FORMAT_LIMB_OWNER(limb)]!"),
+		span_notice("你成功复位了[FORMAT_LIMB_OWNER(limb)]的骨头。"),
+		span_notice("[surgeon] 成功用 [tool] 复位了[FORMAT_LIMB_OWNER(limb)]的骨头！"),
+		span_notice("[surgeon] 成功复位了[FORMAT_LIMB_OWNER(limb)]的骨头！"),
 	)
 
 /datum/surgery_operation/limb/repair_compound
-	name = "repair compound fracture"
-	desc = "Mend a compound fracture in a patient's bone."
+	name = "修复开放性骨折"
+	desc = "修补病人骨骼上的开放性骨折。"
 	operation_flags = OPERATION_PRIORITY_NEXT_STEP | OPERATION_NO_PATIENT_REQUIRED
 	implements = list(
 		/obj/item/stack/medical/bone_gel = 1,
@@ -195,7 +195,7 @@
 	return image(/obj/item/stack/medical/bone_gel)
 
 /datum/surgery_operation/limb/repair_compound/all_required_strings()
-	return list("the limb's compound fracture has been reset") + ..()
+	return list("肢体的开放性骨折已复位") + ..()
 
 /datum/surgery_operation/limb/repair_compound/state_check(obj/item/bodypart/limb)
 	var/datum/wound/blunt/bone/critical/fracture = locate() in limb.wounds
@@ -207,11 +207,11 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to repair the fracture in [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to repair the fracture in [FORMAT_LIMB_OWNER(limb)] with [tool]."),
-		span_notice("[surgeon] begins to repair the fracture in [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始修复[FORMAT_LIMB_OWNER(limb)]的骨折……"),
+		span_notice("[surgeon] 开始用 [tool] 修复[FORMAT_LIMB_OWNER(limb)]的骨折。"),
+		span_notice("[surgeon] 开始修复[FORMAT_LIMB_OWNER(limb)]的骨折。"),
 	)
-	display_pain(limb.owner, "The aching pain in your [limb.plaintext_zone] is overwhelming!")
+	display_pain(limb.owner, "你[chinese_body_zone_display(limb.plaintext_zone)]的酸痛难以忍受！")
 
 /datum/surgery_operation/limb/repair_compound/on_success(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	var/datum/wound/blunt/bone/critical/fracture = locate() in limb.wounds
@@ -219,14 +219,14 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You successfully repair the fracture in [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] successfully repairs the fracture in [FORMAT_LIMB_OWNER(limb)] with [tool]!"),
-		span_notice("[surgeon] successfully repairs the fracture in [FORMAT_LIMB_OWNER(limb)]!"),
+		span_notice("你成功修复了[FORMAT_LIMB_OWNER(limb)]的骨折。"),
+		span_notice("[surgeon] 成功用 [tool] 修复了[FORMAT_LIMB_OWNER(limb)]的骨折！"),
+		span_notice("[surgeon] 成功修复了[FORMAT_LIMB_OWNER(limb)]的骨折！"),
 	)
 
 /datum/surgery_operation/limb/prepare_cranium_repair
-	name = "discard skull debris"
-	desc = "Clear away bone fragments and debris from a patient's cranial fissure in preparation for repair."
+	name = "清除颅骨碎屑"
+	desc = "清除病人颅骨裂口中的骨片与碎屑，为修复做好准备。"
 	operation_flags = OPERATION_PRIORITY_NEXT_STEP | OPERATION_NO_PATIENT_REQUIRED
 	implements = list(
 		TOOL_HEMOSTAT = 1,
@@ -246,7 +246,7 @@
 	return image(/obj/item/hemostat)
 
 /datum/surgery_operation/limb/prepare_cranium_repair/all_required_strings()
-	return list("the cranium must be fractured") + ..()
+	return list("颅骨必须裂开") + ..()
 
 /datum/surgery_operation/limb/prepare_cranium_repair/state_check(obj/item/bodypart/limb)
 	var/datum/wound/cranial_fissure/fissure = locate() in limb.wounds
@@ -258,11 +258,11 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to discard the smaller skull debris in [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to discard the smaller skull debris in [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to poke around in [FORMAT_LIMB_OWNER(limb)]..."),
+		span_notice("你开始清除[FORMAT_LIMB_OWNER(limb)]中较小的颅骨碎屑……"),
+		span_notice("[surgeon] 开始清除[FORMAT_LIMB_OWNER(limb)]中较小的颅骨碎屑……"),
+		span_notice("[surgeon] 开始在[FORMAT_LIMB_OWNER(limb)]里翻找……"),
 	)
-	display_pain(limb.owner, "Your brain feels like it's getting stabbed by little shards of glass!")
+	display_pain(limb.owner, "你的大脑感觉像被细小的玻璃碎片刺扎！")
 
 /datum/surgery_operation/limb/prepare_cranium_repair/on_success(obj/item/bodypart/limb, mob/living/surgeon, tool, list/operation_args)
 	. = ..()
@@ -270,8 +270,8 @@
 	fissure?.prepped = TRUE
 
 /datum/surgery_operation/limb/repair_cranium
-	name = "repair cranium"
-	desc = "Mend a cranial fissure in a patient's skull."
+	name = "修复颅骨"
+	desc = "修补病人颅骨上的裂口。"
 	operation_flags = OPERATION_PRIORITY_NEXT_STEP | OPERATION_NO_PATIENT_REQUIRED
 	implements = list(
 		/obj/item/stack/medical/bone_gel = 1,
@@ -291,7 +291,7 @@
 	return image(/obj/item/stack/medical/bone_gel)
 
 /datum/surgery_operation/limb/repair_cranium/all_required_strings()
-	return list("the debris has been cleared from the cranial fissure") + ..()
+	return list("颅骨裂口处的碎屑已被清除") + ..()
 
 /datum/surgery_operation/limb/repair_cranium/state_check(obj/item/bodypart/limb)
 	var/datum/wound/cranial_fissure/fissure = locate() in limb.wounds
@@ -303,12 +303,12 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to repair [limb.owner || limb]'s skull as best you can..."),
-		span_notice("[surgeon] begins to repair [limb.owner || limb]'s skull with [tool]."),
-		span_notice("[surgeon] begins to repair [limb.owner || limb]'s skull."),
+		span_notice("你开始尽己所能修复[limb.owner || limb]的头骨……"),
+		span_notice("[surgeon] 开始用 [tool] 修复[limb.owner || limb]的头骨。"),
+		span_notice("[surgeon] 开始修复[limb.owner || limb]的头骨。"),
 	)
 
-	display_pain(limb.owner, "You can feel pieces of your skull rubbing against your brain!")
+	display_pain(limb.owner, "你能感觉到颅骨碎片在摩擦你的大脑！")
 
 /datum/surgery_operation/limb/repair_cranium/on_success(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	var/datum/wound/cranial_fissure/fissure = locate() in limb.wounds
@@ -317,7 +317,7 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You successfully repair [limb.owner || limb]'s skull."),
-		span_notice("[surgeon] successfully repairs [limb.owner || limb]'s skull with [tool]."),
-		span_notice("[surgeon] successfully repairs [limb.owner || limb]'s skull.")
+		span_notice("你成功修复了[limb.owner || limb]的头骨。"),
+		span_notice("[surgeon] 成功用 [tool] 修复了[limb.owner || limb]的头骨。"),
+		span_notice("[surgeon] 成功修复了[limb.owner || limb]的头骨。")
 	)

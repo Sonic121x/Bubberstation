@@ -1,7 +1,7 @@
 /// A nasty little robotic bug that dusts people on attack. Jeepers. This should be a very, very, very rare spawn.
 /mob/living/basic/supermatter_spider
-	name = "supermatter spider"
-	desc= "A sliver of supermatter placed upon a robotically enhanced pedestal."
+	name = "超物质蜘蛛"
+	desc= "一片超物质碎晶，安放在经过机械强化的底座上。"
 
 	icon = 'icons/mob/simple/smspider.dmi'
 	icon_state = "smspider"
@@ -11,11 +11,11 @@
 	gender = NEUTER
 	status_flags = CANPUSH
 	mob_biotypes = MOB_BUG|MOB_ROBOTIC|MOB_MINERAL
-	speak_emote = list("vibrates")
+	speak_emote = list("震动")
 
 
-	attack_verb_continuous = "slices"
-	attack_verb_simple = "slice"
+	attack_verb_continuous = "切割"
+	attack_verb_simple = "切割"
 	attack_sound = 'sound/effects/supermatter.ogg'
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 
@@ -24,7 +24,7 @@
 	minimum_survivable_temperature = TCMB
 	maximum_survivable_temperature = T0C + 1250
 	habitable_atmos = null
-	death_message = "falls to the ground, its shard dulling to a miserable grey!"
+	death_message = "跌落在地，它的晶片黯淡成了可悲的灰色！"
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1)
 
 	faction = list(FACTION_HOSTILE)
@@ -54,7 +54,7 @@
 
 	if(isliving(target))
 		var/mob/living/victim = target
-		victim.investigate_log("has been dusted by [src].", INVESTIGATE_DEATHS)
+		victim.investigate_log("被 [src] 化为灰烬。", INVESTIGATE_DEATHS)
 		dust_feedback(target)
 		victim.dust()
 		if(single_use)
@@ -71,11 +71,11 @@
 /// Simple proc that plays the supermatter dusting sound and sends a visible message.
 /mob/living/basic/supermatter_spider/proc/dust_feedback(atom/target)
 	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
-	visible_message(span_danger("[src] knocks into [target], turning [target.p_them()] to dust in a brilliant flash of light!"))
+	visible_message(span_danger("[src] 撞上了 [target]，在一道耀眼的光芒中将其化为尘埃！"))
 
 /mob/living/basic/supermatter_spider/overcharged
-	name = "overcharged supermatter spider"
-	desc = "A sliver of overcharged supermatter placed upon a robotically enhanced pedestal. This one seems especially dangerous."
+	name = "超载超物质蜘蛛"
+	desc = "一片超载的超物质碎晶，安放在经过机械强化的底座上。这一只看起来格外危险。"
 	icon_state = "smspideroc"
 	icon_living = "smspideroc"
 	maxHealth = 25
@@ -87,8 +87,8 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_HEAR = list("clinks.", "clanks."),
-			BB_EMOTE_SEE = list("vibrates."),
+			BB_EMOTE_HEAR = list("叮当作响。", "哐当作响。"),
+			BB_EMOTE_SEE = list("嗡嗡震动。"),
 			BB_SPEAK_CHANCE = 7,
 		),
 	)

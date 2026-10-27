@@ -1,9 +1,9 @@
 /area/ruin/shoe_factory
-	name = "\improper Shoe Factory"
+	name = "\improper 鞋厂"
 
 /obj/effect/spawner/random/mining_loot/shoe_factory
-	name = "random shoe factory loot"
-	desc = "Spawns shoes from the loot list. Shoes have a randomized slowdown modifier."
+	name = "随机鞋厂战利品"
+	desc = "从战利品列表中生成鞋子。鞋子的减速系数是随机的。"
 	icon = 'icons/obj/clothing/shoes.dmi'
 	icon_state = "sneakers"
 	loot = list()
@@ -24,93 +24,93 @@
 	return shoe
 
 /obj/item/paper/fluff/ruins/shoe_factory/osha_shutdown
-	name = "Official Spess OSHA Closure Notice"
-	desc = "A heavily stamped document with a bright red 'CONDEMNED' watermark."
-	default_raw_text = "<b>SPESS OCCUPATIONAL SAFETY & HEALTH ADMINISTRATION</b><br><br> \
-	<b>ORDER OF IMMEDIATE CLOSURE</b><br><br> \
-	Facility 44-S (Footwear Manufacturing Division) is hereby ordered to cease all operations indefinitely pending a Class-A kinetic anomaly investigation.<br><br> \
-	<b>Citations:</b><br> \
+	name = "太空职业安全与健康管理局正式封闭通知"
+	desc = "一份盖满印章的文件，上面有鲜红的“已封闭”水印。"
+	default_raw_text = "<b>太空职业安全与健康管理局</b><br><br> \
+	<b>立即封闭令</b><br><br> \
+	44-S 设施（制鞋分部）现被勒令无限期停止一切运营，直至 A 级动能异常调查完成。<br><br> \
+	<b>违规事项：</b><br> \
 	<ul> \
-	<li><b>Violation 882.A:</b> Extreme deviation in product density. Random inspections reveal that approximately 99% of 'Sprint-Mate' footwear units possess a localized gravitational anomaly. Users report immense physical exertion, equating standard walking to 'dragging an asteroid through wet cement.'</li> \
-	<li><b>Violation 882.B:</b> Lethal kinetic acceleration. The remaining 1% of the production line exhibits zero-friction bluespace properties. A OSHA inspector testing a pair was accelerated to 150 km/h into a reinforced plasma glass window, resulting in critical injuries and a localized hull breach.</li> \
+	<li><b>违规 882.A：</b>产品密度出现极端偏差。随机抽检发现，约 99% 的“疾驰伴侣”牌鞋类产品带有局部重力异常。使用者报告称体力消耗极大，普通步行被形容为“拖着一颗小行星穿过湿水泥”。</li> \
+	<li><b>违规 882.B：</b>致命动能加速。生产线上剩余 1% 的产品具有零摩擦蓝空间特性。一名职业安全局检查员试穿一双后被加速至 150 km/h，撞上强化等离子玻璃窗，造成重伤并导致局部船体破损。</li> \
 	</ul><br> \
-	All assets are frozen. Do not attempt to transport the remaining stock. If you must move a crate, DO NOT wear the contents."
+	所有资产均已冻结。请勿尝试运输剩余库存。如必须搬运板条箱，切勿穿上箱内的东西。"
 
 
 /obj/item/paper/fluff/shoe_factory_osha
-	name = "Space OSHA Inspection Notice"
+	name = "太空职业安全局检查通知"
 	default_raw_text = {"
-		<center><b>NANOTRASEN OCCUPATIONAL SAFETY AND HAZARD ADMINISTRATION</b><br>
-		<i>Form 77-B: Mandatory Facility Closure Order</i></center><br>
+		<center><b>纳米传讯职业安全与危害管理局</b><br>
+		<i>表格 77-B：强制设施封闭令</i></center><br>
 		<hr>
-		<b>Facility:</b> Cobbleton & Sons Shoe Manufacturing, Ltd.<br>
-		<b>Inspector:</b> H. Bootsworth, Senior Field Auditor<br>
-		<b>Date of Inspection:</b> ██/██/25██<br>
-		<b>Outcome:</b> <font color='red'><b>IMMEDIATE CLOSURE ORDERED</b></font><br>
+		<b>设施：</b> 科布尔顿父子制鞋有限公司<br>
+		<b>检查员：</b> H·布茨沃斯，高级现场审计员<br>
+		<b>检查日期：</b> ██/██/25██<br>
+		<b>结果：</b> <font color='red'><b>已下令立即封闭</b></font><br>
 		<hr>
-		<b>Summary of Violations:</b><br>
+		<b>违规摘要：</b><br>
 		<br>
-		Following a routine workplace safety audit, the following CRITICAL violations
-		were observed on the factory floor:<br>
+		在例行工作场所安全审计后，以下严重违规
+		于工厂车间内被发现：<br>
 		<br>
-		1. Multiple pairs of finished footwear were found to exhibit anomalous and
-		hazardous properties inconsistent with standard shoe behavior. Products were
-		observed (REDACTED), emitting unlicensed energy signatures, and in one case
-		actively resisting removal from the test subject's feet.<br>
+		1. 多双成品鞋被查出具有与标准鞋类行为不符的
+		异常危险特性。产品被观察到（已隐去），散发出未经许可的
+		能量信号，其中一双甚至主动抗拒
+		从受试者脚上取下。<br>
 		<br>
-		2. ZERO quality assurance records were found on-site. When asked about QA
-		procedures, the floor manager gestured vaguely at a clown and said
-		"he tries them on sometimes."<br>
+		2. 现场未发现任何质量保证记录。当被问及质量保证
+		流程时，车间经理含糊地朝一个小丑比了比，说道
+		“他有时候会试穿。”<br>
 		<br>
-		3. The manufacturing line lacks any form of anomalous material handling
-		protocols despite the finished product clearly being outside baseline
-		safety parameters.<br>
+		3. 生产线完全缺乏任何形式的异常材料处理
+		规程，尽管成品明显超出基准
+		安全参数。<br>
 		<br>
-		<b>Closing Remarks:</b><br>
+		<b>结束语：</b><br>
 		<br>
-		I have been a Safety Auditor for 15 years across 3 sectors. I have shut down
-		plasma refineries. I have cited singularity engine rooms. I have written
-		violations for clown cars exceeding maximum occupancy by a factor of eleven.<br>
+		我做了 15 年安全审计员，跨越 3 个星区。我关停过
+		等离子精炼厂。我处罚过奇点引擎室。我还为超出最大载员
+		十一倍的小丑车写过违规报告。<br>
 		<br>
-		I have never seen shoes do the things these shoes do.<br>
+		我从没见过鞋子能做出这些鞋子做的事。<br>
 		<br>
-		This facility is to remain sealed until such time as a full anomalous item
-		review board can assess the product line. Any remaining inventory is
-		NOT to be removed from the premises.<br>
+		本设施将被封存，直至完整的异常物品
+		审查委员会能够评估该产品线为止。任何剩余库存
+		均不得从厂区内移出。<br>
 		<br>
-		<i>(Addendum: if anyone from Corporate is reading this - no, you cannot
-		sell these. I don't care how much the profit margin is. Stop asking.)</i><br>
+		<i>（附注：如果公司里有人在读这个——不行，你们不能
+		卖这些鞋。我不管利润率有多高。别再问了。）</i><br>
 		<hr>
-		<i>This notice is the property of Space OSHA. Removal or defacement of this
-		notice is punishable under Nanotrasen Workplace Safety Code § 4.77.2</i>
+		<i>本通知为太空职业安全局财产。撕除或涂污本
+		通知者，将依纳米传讯工作场所安全法 § 4.77.2 处罚</i>
 	"}
 
 /obj/item/paper/fluff/shoe_factory_closure
-	name = "NOTICE OF CLOSURE"
-	desc = "An official-looking document bearing the Space OSHA seal. Someone has drawn a tiny angry face on the corner."
-	default_raw_text = {"<center><b>SPACE OCCUPATIONAL SAFETY & HAZARDS ADMINISTRATION</b></center>
-<center><b>OFFICIAL NOTICE OF FACILITY CLOSURE</b></center>
+	name = "封闭通知"
+	desc = "一份盖着太空职业安全局印章、看起来很正式的文件。有人在角落画了一个小小的生气表情。"
+	default_raw_text = {"<center><b>太空职业安全与危害管理局</b></center>
+<center><b>设施封闭正式通知</b></center>
 <hr>
-<b>Facility:</b> Unnamed Bootwear Manufactory, Sector (REDACTED)<br>
-<b>Inspecting Officer:</b> Senior Agent Greaves, Division VII<br>
-<b>Status:</b> <b>PERMANENTLY CLOSED</b>, pending owner's response (owner has not responded in 14 standard months).<br>
+<b>设施：</b> 无名靴类制造厂，第（已隐去）星区<br>
+<b>检查官：</b> 高级特工格里夫斯，第七处<br>
+<b>状态：</b> <b>永久关闭</b>，等待业主回应（业主已 14 个标准月未作回应）。<br>
 <hr>
 
-To whom it may concern,<br><br>
+致相关人士：<br><br>
 
-Following a routine compliance audit, this facility has been found in gross violation of no fewer than <i>thirty-two</i> distinct Space OSHA regulations. A full list is appended in Annex B. For the purposes of this summary notice, the most egregious are reproduced below:<br><br>
+在例行合规审计后，本设施被认定严重违反了不少于<i>三十二</i>项太空职业安全局规定。完整清单见附件 B。就本摘要通知而言，以下为最恶劣的几项：<br><br>
 
-<b>1.</b> Complete absence of any functioning Quality Assurance pipeline. Upon questioning, the foreman claimed the previous QA officer "left in a hurry" through an unpatched hole in the ceiling. The hole has been independently verified. The QA officer has not.<br><br>
+<b>1.</b> 完全没有任何运转中的质量保证流程。面对质询，工头声称前任质量保证官是从天花板上一个未修补的洞里“匆忙离开”的。该洞已得到独立核实。那位质量保证官则没有。<br><br>
 
-<b>2.</b> Production of footwear containing <i>undeclared active components</i>. This office has recovered several finished units displaying behavior wildly inconsistent with what a reasonable being would call "a shoe." The proprietor insists these are "premium features" for "the discerning adventurer." This office insists they are lawsuits.<br><br>
+<b>2.</b> 生产含有<i>未申报活性成分</i>的鞋类。本办公室已回收多件成品，其表现与任何理性生物所称的“鞋”都大相径庭。业主坚称这些是给“有品位的冒险者”准备的“高级功能”。本办公室坚称这些是官司。<br><br>
 
-<b>3.</b> Failure to properly label hazardous stock. If you are reading this notice, and you are standing in the facility, and you are considering putting on a pair of the shoes on the floor: <b>please do not.</b> Or do. We are no longer liable either way.<br><br>
+<b>3.</b> 未对危险库存进行妥善标识。如果你正在读这份通知，而你正站在设施内，并且你正考虑穿上地板上的一双鞋：<b>请不要。</b> 或者穿吧。无论哪种，我们都不再承担责任。<br><br>
 
-<b>4.</b> No fire exits. No fire extinguishers. Considerable amounts of flammable leather. We don't even know where to start.<br><br>
+<b>4.</b> 没有消防出口。没有灭火器。大量易燃皮革。我们甚至不知道从哪儿说起。<br><br>
 
-By the authority vested in this office, all operations are to cease immediately. Any remaining inventory is the property of the Crown and/or whoever gets here first.<br><br>
+依据本办公室所获授权，一切运营须立即停止。任何剩余库存均归王室和/或最先赶到者所有。<br><br>
 
-Stay safe out there.<br><br>
+在外注意安全。<br><br>
 
-— <i>Sr. Agent Greaves, Space OSHA</i><br>
-<i>"If it looks unsafe, it probably is. If it looks safe, it probably still is."</i>"}
+— <i>高级特工格里夫斯，太空职业安全局</i><br>
+<i>“看起来不安全，那多半就不安全。看起来安全，那多半还是不安全。”</i>"}

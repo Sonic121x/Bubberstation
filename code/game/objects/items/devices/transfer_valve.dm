@@ -1,6 +1,6 @@
 /obj/item/transfer_valve
 	icon = 'icons/obj/devices/assemblies.dmi'
-	name = "tank transfer valve"
+	name = "气罐传输阀"
 	icon_state = "valve_1"
 	base_icon_state = "valve"
 	inhand_icon_state = "ttv"
@@ -8,7 +8,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/bombs_righthand.dmi'
 	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
 	worn_icon_state = "ttv"
-	desc = "Regulates the transfer of air between two tanks."
+	desc = "调节两个气罐之间的气体传输。"
 	w_class = WEIGHT_CLASS_BULKY
 
 	var/obj/item/tank/tank_one
@@ -36,25 +36,25 @@
 /obj/item/transfer_valve/examine(mob/user)
 	. = ..()
 	if(tank_one)
-		. += span_notice("A [tank_one] is attached to the primary port.")
+		. += span_notice("主接口连接着[tank_one]。")
 	if(tank_two)
-		. += span_notice("A [tank_two] is attached to the secondary port.")
+		. += span_notice("副接口连接着[tank_two]。")
 	if(!tank_one || !tank_two)
-		. += span_notice("You could attach a gas tank onto the open port.")
+		. += span_notice("可以在空闲接口上连接气罐。")
 	if(attached_device)
-		. += span_notice("A [attached_device] is attached to the fuse input.")
+		. += span_notice("引信输入端连接着[attached_device]。")
 	if(wired)
-		. += span_notice("It looks like some nutjob added makeshift backpack straps with [EXAMINE_HINT("wires")]...")
-		. += span_notice("You could cut off the straps with [EXAMINE_HINT(TOOL_WIRECUTTER)].")
+		. += span_notice("似乎有个疯子用[EXAMINE_HINT("电线")]给它装了简易背带……")
+		. += span_notice("可以用[EXAMINE_HINT("钢丝钳")]剪掉背带。")
 
 /obj/item/transfer_valve/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 
 	if(tank_one || tank_two)
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Remove [tank_one || tank_two]"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "拆下[tank_one || tank_two]"
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item) && is_type_in_list(held_item, list(/obj/item/tank, /obj/item/assembly)))
-		context[SCREENTIP_CONTEXT_LMB] = "Attach [held_item]"
+		context[SCREENTIP_CONTEXT_LMB] = "安装[held_item]"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	return . || NONE
@@ -64,7 +64,7 @@
 	if(istype(target, /obj/vehicle/ridden/wheelchair))
 		var/obj/vehicle/ridden/wheelchair/chair = target
 		if(!chair.bell_attached)
-			context[SCREENTIP_CONTEXT_LMB] = "Attach TTV to wheelchair."
+			context[SCREENTIP_CONTEXT_LMB] = "将气罐传输阀装到轮椅上。"
 			return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/transfer_valve/click_alt(mob/user)
@@ -97,9 +97,9 @@
 		var/obj/vehicle/ridden/wheelchair/chair = interacting_with
 
 		if (chair.bomb_attached)
-			user.balloon_alert(user, "already has a TTV!")
+			user.balloon_alert(user, "已有气罐传输阀！")
 			return ITEM_INTERACT_FAILURE
-		user.balloon_alert(user, "attaching TTV...")
+		user.balloon_alert(user, "正在安装气罐传输阀……")
 		if (!do_after(user, 0.5 SECONDS, chair))
 			return ITEM_INTERACT_FAILURE
 
@@ -131,10 +131,10 @@
 	if(istype(tool, /obj/item/stack/cable_coil) && !wired)
 		var/obj/item/stack/cable_coil/coil = tool
 		if (coil.get_amount() < 15)
-			to_chat(user, span_warning("You need fifteen lengths of coil for this!"))
+			to_chat(user, span_warning("这需要十五段电线！"))
 			return ITEM_INTERACT_BLOCKING
 		coil.use(15)
-		to_chat(user, span_notice("You add some cables, not being really sure why. Looks like <i>backpack</i> straps."))
+		to_chat(user, span_notice("你装了些电线，自己也不太清楚为什么。看起来像<i>背包</i>带。"))
 		wired = TRUE
 		slot_flags |= ITEM_SLOT_BACK
 		update_appearance()
@@ -146,7 +146,7 @@
 	if(!wired)
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 	tool.play_tool_sound(src)
-	to_chat(user, span_notice("You remove the cables."))
+	to_chat(user, span_notice("你拆掉了电线。"))
 	wired = FALSE
 	slot_flags &= ~ITEM_SLOT_BACK
 	forceMove(drop_location())
@@ -160,14 +160,14 @@
 		if(!user.transferItemToLoc(new_tank, src))
 			return FALSE
 		tank_one = new_tank
-		to_chat(user, span_notice("You attach the [new_tank] to the transfer valve's primary port."))
+		to_chat(user, span_notice("你把[new_tank]接到了传输阀的主接口。"))
 	else if(!tank_two)
 		if(!user.transferItemToLoc(new_tank, src))
 			return FALSE
 		tank_two = new_tank
-		to_chat(user, span_notice("You attach the [new_tank] to the transfer valve's secondary port."))
+		to_chat(user, span_notice("你把[new_tank]接到了传输阀的副接口。"))
 	else
-		to_chat(user, span_warning("There are already two tanks attached, remove one first!"))
+		to_chat(user, span_warning("已经连接了两个气罐，请先拆下一个！"))
 		return FALSE
 
 	update_appearance()
@@ -175,15 +175,15 @@
 
 /obj/item/transfer_valve/proc/try_attach_assembly(obj/item/assembly/A, mob/user)
 	if(A.secured)
-		to_chat(user, span_notice("The [A] is secured; unsecure it first."))
+		to_chat(user, span_notice("[A]已固定，请先松开。"))
 		return FALSE
 	if(attached_device)
-		to_chat(user, span_warning("There is already a device attached to the valve, remove it first!"))
+		to_chat(user, span_warning("阀门上已有装置，请先拆下！"))
 		return FALSE
 	if(!user.transferItemToLoc(A, src))
 		return FALSE
 	attached_device = A
-	to_chat(user, span_notice("You attach the [A] to the valve controls and secure it."))
+	to_chat(user, span_notice("你把[A]装到阀门控制装置上并固定好。"))
 	A.holder = src
 	A.on_attach()
 	A.toggle_secure() //this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).
@@ -316,30 +316,30 @@
 			if(issignaler(attached_device))
 				var/obj/item/assembly/signaler/attached_signaller = attached_device
 				attachment = "<A href='byond://?_src_=holder;[HrefToken()];secrets=list_signalers'>[attached_signaller]</A>"
-				attachment_signal_log = attached_signaller.last_receive_signal_log ? "The following log entry is the last one associated with the attached signaller<br>[attached_signaller.last_receive_signal_log]" : "There is no signal log entry."
+				attachment_signal_log = attached_signaller.last_receive_signal_log ? "以下是所连接信号器的最后一条日志<br>[attached_signaller.last_receive_signal_log]" : "没有信号日志。"
 			else
 				attachment = attached_device
 
 		var/admin_attachment_message
 		var/attachment_message
 		if(attachment)
-			admin_attachment_message = "The bomb had [attachment], which was attached by [attacher ? ADMIN_LOOKUPFLW(attacher) : "Unknown"]"
+			admin_attachment_message = "炸弹装有[attachment]，安装者为[attacher ? ADMIN_LOOKUPFLW(attacher) : "未知"]"
 			attachment_message = " with [attachment] attached by [attacher ? key_name_admin(attacher) : "Unknown"]"
 
 		var/mob/bomber = get_mob_by_key(fingerprintslast)
 		var/admin_bomber_message
 		var/bomber_message
 		if(bomber)
-			admin_bomber_message = "The bomb's most recent set of fingerprints indicate it was last touched by [ADMIN_LOOKUPFLW(bomber)]"
+			admin_bomber_message = "炸弹上最新的指纹表明，最后接触者是[ADMIN_LOOKUPFLW(bomber)]"
 			bomber_message = " - Last touched by: [key_name_admin(bomber)]"
 			bomber.log_message("opened bomb valve", LOG_GAME, log_globally = FALSE)
 
 		if(istype(attachment, /obj/item/assembly/voice))
 			var/obj/item/assembly/voice/spoken_trigger = attachment
 			attachment_message += " with the following activation message: \"[spoken_trigger.recorded]\""
-			admin_attachment_message += " with the following activation message: \"[spoken_trigger.recorded]\""
+			admin_attachment_message += "，触发语句为：\"[spoken_trigger.recorded]\""
 
-		var/admin_bomb_message = "Bomb valve opened in [ADMIN_VERBOSEJMP(bombturf)]<br>[admin_attachment_message]<br>[admin_bomber_message]<br>[attachment_signal_log]"
+		var/admin_bomb_message = "炸弹阀门在[ADMIN_VERBOSEJMP(bombturf)]打开<br>[admin_attachment_message]<br>[admin_bomber_message]<br>[attachment_signal_log]"
 		GLOB.bombers += admin_bomb_message
 		message_admins(admin_bomb_message)
 		log_game("Bomb valve opened in [AREACOORD(bombturf)][attachment_message][bomber_message]")

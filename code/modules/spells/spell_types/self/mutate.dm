@@ -37,8 +37,8 @@
 		cast_on.dna.remove_mutation(mutation, MUTATION_SOURCE_SPELL)
 
 /datum/action/cooldown/spell/apply_mutations/mutate
-	name = "Mutate"
-	desc = "This spell causes you to turn into a gigantic hulk and gain laser vision for a short while. Unlike the lesser nonmagical version, it works on non-humans and mantains hand dexterity as well!"
+	name = "变异"
+	desc = "该法术会让你短暂变成巨大的绿巨人，并获得激光视觉。与普通的非魔法版本不同，它对非人类也有效，而且还能保持手部的灵活性！"
 	cooldown_time = 40 SECONDS
 	cooldown_reduction_per_rank = 5 SECONDS
 	spell_max_level = 3

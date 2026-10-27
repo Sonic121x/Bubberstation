@@ -8,10 +8,10 @@
 */
 
 /datum/reagent/drug/aphrodisiac/succubus_milk
-	name = "succubus milk"
-	description = "A volatile collodial mixture derived from milk that encourages mammary production via a potent estrogen mix."
+	name = "魅魔乳汁"
+	description = "一种由乳汁提取的挥发性胶体混合物，借助强效雌激素配方促进乳腺分泌。"
 	color = "#E60584"
-	taste_description = "a milky ice cream like flavour"
+	taste_description = "奶油冰淇淋般的风味"
 	overdose_threshold = 20
 	metabolization_rate = 0.25
 	life_pref_datum = /datum/preference/toggle/erp/breast_enlargement
@@ -19,64 +19,64 @@
 
 	/// Words for the breasts when huge.
 	var/static/list/words_for_bigger = list(
-		"huge",
-		"massive",
-		"squishy",
-		"gigantic",
-		"rather large",
-		"jiggly",
-		"hefty",
+		"巨大",
+		"硕大",
+		"软弹",
+		"庞大",
+		"十分丰满",
+		"颤巍巍",
+		"饱满",
 	)
 	/// Synonyms for breasts.
 	var/static/list/boob_text_list = list(
-		"boobs",
-		"tits",
-		"breasts",
+		"胸部",
+		"奶子",
+		"乳房",
 	)
 	/// Synonyms for the chest.
 	var/static/list/covered_boobs_list = list(
-		"bust",
-		"chest",
-		"bosom",
+		"胸部",
+		"胸口",
+		"胸脯",
 	)
 	/// Synonyms for bigger breasts.
 	var/static/list/bigger_boob_text_list = list(
-		"jigglies",
-		"melons",
-		"jugs",
-		"boobies",
-		"milkers",
-		"boobs",
-		"tits",
-		"breasts",
+		"颤巍巍的双乳",
+		"大甜瓜",
+		"奶罐子",
+		"奶子",
+		"产奶器",
+		"胸部",
+		"乳房",
+		"胸脯",
 	)
 	/// Wording chosen to expand the breasts,shown only to the mob.
 	var/static/list/action_text_list = list(
-		"expand outward to ",
-		"grow out to ",
-		"begin to enlarge, growing to ",
-		"suddenly expand to ",
-		"swell out to ",
+		"向外膨胀到",
+		"生长到",
+		"开始变大，长到",
+		"猛地扩张到",
+		"鼓胀到",
 	)
 	/// Wording chosen to be seen by other mobs, regardless of whether mob is clothed/unclothed.
 	var/static/list/public_bigger_action_text_list = list(
-		"expand and jiggle outward.",
-		"grow a bit larger, bouncing about.",
-		"seem a bit bigger than they were before.",
-		"bounce and jiggle as they suddenly expand.",
+		"向外膨胀，颤巍巍地抖动起来。",
+		"又变大了一些，晃来晃去。",
+		"看起来比之前更大了。",
+		"突然膨胀，又弹又晃。",
 	)
 	/// Wording chosen to be seen by other mobs, while mob is unclothed.
 	var/static/list/public_action_text_list = list(
-		"expand outward.",
-		"seem to grow a bit larger.",
-		"appear a bit bigger than they were before.",
-		"bounce and jiggle as they suddenly expand.",
+		"向外膨胀。",
+		"似乎又变大了一些。",
+		"看起来比之前更大了一点。",
+		"突然膨胀，又弹又晃。",
 	)
 	/// Wording chosen to be seen by other mobs, while mob is clothed.
 	var/static/list/notice_boobs = list(
-		"seems to be a bit tighter.",
-		"appears to be a bit bigger.",
-		"seems to swell outward a bit.",
+		"似乎绷得更紧了一些。",
+		"看起来大了一点。",
+		"似乎向外鼓了一些。",
 	)
 
 /datum/reagent/drug/aphrodisiac/succubus_milk/life_effects(mob/living/carbon/human/exposed_mob) //Increases breast size
@@ -126,39 +126,39 @@
 			if(BREAST_SIZE_FLATCHESTED)
 				return
 			if(BREAST_SIZE_BEYOND_MEASUREMENT)
-				exposed_mob.visible_message(span_notice("[exposed_mob]'s [pick(words_for_bigger)] [pick(bigger_boob_text_list)] [pick(public_bigger_action_text_list)]"))
-				to_chat(exposed_mob, span_purple("Your [pick(words_for_bigger)] [pick(bigger_boob_text_list)] [pick(action_text_list)]about [mob_breasts.genital_size] inches in diameter."))
+				exposed_mob.visible_message(span_notice("[exposed_mob]的[pick(words_for_bigger)][pick(bigger_boob_text_list)][pick(public_bigger_action_text_list)]"))
+				to_chat(exposed_mob, span_purple("你的[pick(words_for_bigger)][pick(bigger_boob_text_list)][pick(action_text_list)]约 [mob_breasts.genital_size] 英寸直径。"))
 			else
 				if(mob_breasts?.genital_size >= (max_breast_size - 2))
-					exposed_mob.visible_message(span_notice("[exposed_mob]'s [pick(words_for_bigger)] [pick(bigger_boob_text_list)] [pick(public_bigger_action_text_list)]"))
-					to_chat(exposed_mob, span_purple("Your [pick(words_for_bigger)] [pick(bigger_boob_text_list)] [pick(action_text_list)]about [translation]-cups."))
+					exposed_mob.visible_message(span_notice("[exposed_mob]的[pick(words_for_bigger)][pick(bigger_boob_text_list)][pick(public_bigger_action_text_list)]"))
+					to_chat(exposed_mob, span_purple("你的[pick(words_for_bigger)][pick(bigger_boob_text_list)][pick(action_text_list)]约 [translation] 罩杯。"))
 				else
-					exposed_mob.visible_message(span_notice("[exposed_mob]'s [pick(boob_text_list)] [pick(public_action_text_list)]"))
-					to_chat(exposed_mob, span_purple("Your [pick(boob_text_list)] [pick(action_text_list)]about [translation]-cups."))
+					exposed_mob.visible_message(span_notice("[exposed_mob]的[pick(boob_text_list)][pick(public_action_text_list)]"))
+					to_chat(exposed_mob, span_purple("你的[pick(boob_text_list)][pick(action_text_list)]约 [translation] 罩杯。"))
 	else
 		switch(translation)
 			if(BREAST_SIZE_FLATCHESTED)
 				return
 
 			if(BREAST_SIZE_BEYOND_MEASUREMENT)
-				exposed_mob.visible_message(span_notice("[exposed_mob]'s [pick(boob_text_list)] [pick(public_bigger_action_text_list)]"))
-				to_chat(exposed_mob, span_purple("Your [pick(words_for_bigger)] [pick(bigger_boob_text_list)] [pick(action_text_list)]about [mob_breasts.genital_size] inches in diameter."))
+				exposed_mob.visible_message(span_notice("[exposed_mob]的[pick(boob_text_list)][pick(public_bigger_action_text_list)]"))
+				to_chat(exposed_mob, span_purple("你的[pick(words_for_bigger)][pick(bigger_boob_text_list)][pick(action_text_list)]约 [mob_breasts.genital_size] 英寸直径。"))
 			else
 				if(mob_breasts?.genital_size >= (max_breast_size - 2))
-					exposed_mob.visible_message(span_notice("[exposed_mob]'s [pick(boob_text_list)] [pick(public_bigger_action_text_list)]"))
-					to_chat(exposed_mob, span_purple("Your [pick(words_for_bigger)] [pick(bigger_boob_text_list)] [pick(action_text_list)]about [translation]-cups."))
+					exposed_mob.visible_message(span_notice("[exposed_mob]的[pick(boob_text_list)][pick(public_bigger_action_text_list)]"))
+					to_chat(exposed_mob, span_purple("你的[pick(words_for_bigger)][pick(bigger_boob_text_list)][pick(action_text_list)]约 [translation] 罩杯。"))
 				else
-					exposed_mob.visible_message(span_notice("The area around [exposed_mob]'s [pick(covered_boobs_list)] [pick(notice_boobs)]"))
-					to_chat(exposed_mob, span_purple("Your [pick(boob_text_list)] [pick(action_text_list)]about [translation]-cups."))
+					exposed_mob.visible_message(span_notice("[exposed_mob]的[pick(covered_boobs_list)]周围[pick(notice_boobs)]"))
+					to_chat(exposed_mob, span_purple("你的[pick(boob_text_list)][pick(action_text_list)]约 [translation] 罩杯。"))
 
 // Notify the user that they're overdosing. Doesn't affect their mood.
 /datum/reagent/drug/aphrodisiac/succubus_milk/overdose_start(mob/living/carbon/human/exposed_mob)
-	to_chat(exposed_mob, span_userdanger("You feel like you took too much [name]!"))
+	to_chat(exposed_mob, span_userdanger("你觉得自己摄入了太多 [name]！"))
 	exposed_mob.add_mood_event("[type]_overdose", /datum/mood_event/minor_overdose, name)
 
 /datum/chemical_reaction/succubus_milk
 	results = list(/datum/reagent/drug/aphrodisiac/succubus_milk = 8)
 	required_reagents = list(/datum/reagent/medicine/salglu_solution = 1, /datum/reagent/consumable/milk = 1, /datum/reagent/medicine/c2/synthflesh = 2, /datum/reagent/silicon = 3, /datum/reagent/drug/aphrodisiac/crocin = 3)
-	mix_message = "the reaction gives off a mist of milk."
+	mix_message = "反应释放出一阵乳汁般的雾气。"
 	erp_reaction = TRUE
 	reaction_tags = REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG | REACTION_TAG_HARD

@@ -1,6 +1,6 @@
 /datum/wires/roulette
 	holder_type = /obj/machinery/roulette
-	proper_name = "Roulette Table"
+	proper_name = "轮盘赌桌"
 	randomize = TRUE
 
 /datum/wires/roulette/New(atom/holder)
@@ -23,10 +23,10 @@
 /datum/wires/roulette/get_status()
 	var/obj/machinery/roulette/R = holder
 	var/list/status = list()
-	status += "The machines bolts [R.anchored ? "have engaged!" : "have disengaged."]"
-	status += "The main circuit is [R.on ? "on" : "off"]."
-	status += "The main system lock appears to be [R.locked ? "on" : "off"]."
-	status += "The account balance system appears to be [R.my_card ? "connected to [R.my_card.registered_account.account_holder]" : "disconnected"]."
+	status += "机器的固定螺栓[R.anchored ? "已锁定！" : "已松开。"]"
+	status += "主电路[R.on ? "已开启" : "已关闭"]。"
+	status += "主系统锁似乎[R.locked ? "已开启" : "已关闭"]。"
+	status += "账户余额系统似乎[R.my_card ? "已连接到[R.my_card.registered_account.account_holder]" : "已断开连接"]。"
 	return status
 
 /datum/wires/roulette/on_pulse(wire)
@@ -40,13 +40,13 @@
 			R.set_anchored(!R.anchored)
 		if(WIRE_RESETOWNER)
 			R.my_card = null
-			R.audible_message(span_warning("Owner reset!"))
+			R.audible_message(span_warning("所有者已重置！"))
 			R.locked = FALSE
 		if(WIRE_PRIZEVEND)
 			R.shock(usr, 70)
 			if(R.locked)
 				return
-			R.audible_message(span_warning("Unauthorized prize vend detected! Locking down machine!"))
+			R.audible_message(span_warning("检测到未经授权的奖品发放！正在锁定机器！"))
 			R.prize_theft(0.20)
 
 /datum/wires/roulette/on_cut(wire, mend, source)
@@ -68,5 +68,5 @@
 			R.shock(usr, 75)
 			if(R.locked)
 				return
-			R.audible_message(span_warning("Unauthorized prize vend detected! Locking down machine!"))
+			R.audible_message(span_warning("检测到未经授权的奖品发放！正在锁定机器！"))
 			R.prize_theft(0.10)

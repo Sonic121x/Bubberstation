@@ -1,8 +1,8 @@
 // Disposal pipes
 
 /obj/structure/disposalpipe
-	name = "disposal pipe"
-	desc = "An underfloor disposal pipe."
+	name = "垃圾管道"
+	desc = "一条地板下的垃圾管道。"
 	icon = 'icons/obj/pipes_n_cables/disposal.dmi'
 	anchored = TRUE
 	density = FALSE
@@ -158,10 +158,10 @@
 	if(!I.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return TRUE
 
-	to_chat(user, span_notice("You start slicing [src]..."))
+	to_chat(user, span_notice("你开始切割 [src]……"))
 	if(I.use_tool(src, user, 30, volume=50))
 		deconstruct()
-		to_chat(user, span_notice("You slice [src]."))
+		to_chat(user, span_notice("你切开了 [src]。"))
 	return TRUE
 
 //checks if something is blocking the deconstruction (e.g. trunk with a bin still linked to it)
@@ -281,7 +281,7 @@
 
 /obj/structure/disposalpipe/trunk/can_be_deconstructed(mob/user)
 	if(linked)
-		to_chat(user, span_warning("You need to deconstruct disposal machinery above this pipe!"))
+		to_chat(user, span_warning("你需要先拆掉这根管道上方的垃圾处理设备！"))
 		return FALSE
 	return TRUE
 
@@ -311,7 +311,7 @@
 
 // a broken pipe
 /obj/structure/disposalpipe/broken
-	desc = "A broken piece of disposal pipe."
+	desc = "一截破损的垃圾管道。"
 	icon_state = "pipe-b"
 	initialize_dirs = DISP_DIR_NONE
 	// broken pipes always have dpdir=0 so they're not found as 'real' pipes

@@ -52,8 +52,8 @@
 	if(istype(ammobox, /obj/item/ammo_box) && box_reload_penalty)
 		box_load = TRUE
 		user.changeNext_move(box_reload_delay) // cooldown to simulate having to fumble for another round
-		balloon_alert(user, "reload encumbered!")
-	to_chat(user, span_notice("You load [num_loaded] [cartridge_wording]\s into [src][box_load ?  ", but it takes some extra effort" : ""]."))
+		balloon_alert(user, "装填受阻！")
+	to_chat(user, span_notice("你将[num_loaded]发弹药装入[src][box_load ?  "，不过这有些费力" : ""]。"))
 
 /obj/effect/temp_visual/dir_setting/firing_effect
 	light_system = OVERLAY_LIGHT

@@ -9,8 +9,8 @@
 #define SCANGATE_NANITES "Nanites" // BUBBER EDIT ADDITION
 
 /obj/machinery/scanner_gate
-	name = "scanner gate"
-	desc = "A gate able to perform mid-depth scans on any organisms who pass under it."
+	name = "扫描门"
+	desc = "能对从门下通过的任何生物进行中等深度扫描的门。"
 	icon = 'icons/obj/machines/scangate.dmi'
 	icon_state = "scangate"
 	base_icon_state = "scangate"
@@ -113,11 +113,11 @@
 /obj/machinery/scanner_gate/examine(mob/user)
 	. = ..()
 
-	. += span_notice("It's set to scan for [span_boldnotice(scangate_mode)].")
+	. += span_notice("当前扫描模式：[span_boldnotice(chinese_scangate_display(scangate_mode))]。")
 	if(locked)
-		. += span_notice("The control panel is ID-locked. Swipe a valid ID to unlock it.")
+		. += span_notice("控制面板已用身份卡锁定。刷有效的身份卡即可解锁。")
 	else
-		. += span_notice("The control panel is unlocked. Swipe an ID to lock it.")
+		. += span_notice("控制面板已解锁。刷身份卡即可锁定。")
 
 /obj/machinery/scanner_gate/proc/on_entered(datum/source, atom/movable/thing)
 	SIGNAL_HANDLER
@@ -167,14 +167,14 @@
 
 		locked = FALSE
 		req_access = list()
-		balloon_alert(user, "unlocked")
+		balloon_alert(user, "已解锁")
 		return ITEM_INTERACT_SUCCESS
 
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, "nothing happens!")
+		balloon_alert(user, "毫无反应！")
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "locked")
+	balloon_alert(user, "已锁定")
 	req_access = tool.GetAccess() // returns a copy so this is chill
 	locked = TRUE
 	return ITEM_INTERACT_SUCCESS
@@ -192,7 +192,7 @@
 	locked = FALSE
 	req_access = list()
 	obj_flags |= EMAGGED
-	balloon_alert(user, "id checker disabled")
+	balloon_alert(user, "身份卡检查已禁用")
 	return TRUE
 
 /obj/machinery/scanner_gate/proc/perform_scan(atom/movable/thing)
@@ -206,20 +206,20 @@
 			return
 		if(SCANGATE_WANTED)
 			if(ishuman(thing))
-				detected_thing = "Warrant"
+				detected_thing = "通缉令"
 				var/mob/living/carbon/human/scanned_human = thing
 				var/perpname = scanned_human.get_face_name(scanned_human.get_id_name())
 				var/datum/record/crew/target = find_record(perpname)
 				if(!target || (target.wanted_status == WANTED_ARREST))
 					beep = TRUE
 		if(SCANGATE_MINDSHIELD)
-			detected_thing = "Mindshield"
+			detected_thing = "心智护盾"
 			if(ishuman(thing))
 				var/mob/living/carbon/human/scanned_human = thing
 				if(HAS_TRAIT(scanned_human, TRAIT_MINDSHIELD))
 					beep = TRUE
 		if(SCANGATE_DISEASE)
-			detected_thing = "[disease_threshold] infection"
+			detected_thing = "[chinese_scangate_display(disease_threshold)]感染"
 			if(iscarbon(thing))
 				var/mob/living/carbon/scanned_carbon = thing
 				if(get_disease_severity_value(scanned_carbon.check_virus()) >= get_disease_severity_value(disease_threshold))
@@ -230,15 +230,15 @@
 				var/datum/species/scan_species = /datum/species/human
 				if(detect_species_id && (detect_species_id in available_species))
 					scan_species = GLOB.species_list[detect_species_id]
-					detected_thing = scan_species.name
+					detected_thing = chinese_footprint_species_display(scan_species.name)
 				if(is_species(scanned_human, scan_species))
 					beep = TRUE
 				if(detect_species_id == SPECIES_ZOMBIE) //Can detect dormant zombies
-					detected_thing = "Romerol infection"
+					detected_thing = "罗梅罗尔感染"
 					if(scanned_human.get_organ_slot(ORGAN_SLOT_ZOMBIE))
 						beep = TRUE
 		if(SCANGATE_GUNS)
-			detected_thing = "Weapons"
+			detected_thing = "武器"
 			if(isgun(thing))
 				beep = TRUE
 			else if(ishuman(thing))
@@ -261,13 +261,13 @@
 				var/mob/living/carbon/human/scanned_human = thing
 				if(scanned_human.nutrition <= detect_nutrition && detect_nutrition == NUTRITION_LEVEL_STARVING)
 					beep = TRUE
-					detected_thing = "Starvation"
+					detected_thing = "饥饿"
 				if(scanned_human.nutrition >= detect_nutrition && detect_nutrition == NUTRITION_LEVEL_FAT)
 					beep = TRUE
-					detected_thing = "Obesity"
+					detected_thing = "肥胖"
 		//SKYRAT EDIT BEGIN - MORE SCANNER GATE OPTIONS
 		if(SCANGATE_GENDER)
-			detected_thing = detect_gender
+			detected_thing = chinese_record_value_display(detect_gender)
 			if(ishuman(thing))
 				var/mob/living/carbon/human/scanned_human = thing
 				if((scanned_human.gender in list("male", "female"))) //funny thing: nb people will always get by the scan B)
@@ -276,7 +276,7 @@
 		//SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
 		// BUBBER EDIT ADDITION BEGIN - NANITES
 		if(SCANGATE_NANITES)
-			detected_thing = "Nanite cloud #[nanite_cloud]"
+			detected_thing = "纳米机器人云端 #[nanite_cloud]"
 			if(isliving(thing))
 				var/detected_cloud_id = SEND_SIGNAL(thing, COMSIG_NANITE_GET_CLOUD)
 				if(detected_cloud_id == nanite_cloud)
@@ -299,7 +299,7 @@
 	else
 		SEND_SIGNAL(src, COMSIG_SCANGATE_PASS_NO_TRIGGER, thing)
 		if(bypassed)
-			say("[detected_thing] detection bypassed.")
+			say("已豁免[detected_thing]检测。")
 		if(!ignore_signals)
 			color = wires.get_color_of_wire(WIRE_DENY)
 			var/obj/item/assembly/assembly = wires.get_attached(color)
@@ -313,7 +313,7 @@
 		return
 
 	if(detected_thing)
-		say("[detected_thing][reverse ? " not " : " "]detected!!")
+		say("[reverse ? "未检测到" : "检测到"][detected_thing]！！")
 
 	COOLDOWN_START(src, next_beep, 2 SECONDS)
 	playsound(source = src, soundin = 'sound/machines/scanner/scanbuzz.ogg', vol = 30, vary = FALSE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, falloff_distance = 4)
@@ -335,7 +335,7 @@
 	for(var/species_id in available_species)
 		var/datum/species/specie = GLOB.species_list[species_id]
 		.["available_species"] += list(list(
-			"specie_name" = capitalize(format_text(specie.name)),
+			"specie_name" = chinese_footprint_species_display(capitalize(format_text(specie.name))),
 			"specie_id" = species_id,
 		))
 	// BUBBER EDIT ADDITION BEGIN - NANITES

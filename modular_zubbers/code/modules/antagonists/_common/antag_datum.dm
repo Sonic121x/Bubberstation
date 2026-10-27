@@ -1,7 +1,7 @@
 
 /datum/antagonist
-	var/antag_panel_title = "Antagonist Panel"
-	var/antag_panel_description = "This is the antagonist panel. It contains all the abilities you have access to as an antagonist. Use them wisely."
+	var/antag_panel_title = "反派面板"
+	var/antag_panel_description = "这是反派面板，其中列出了你作为反派可使用的全部能力。请明智地使用它们。"
 
 /datum/antagonist/proc/ability_ui_data(actions = list())
 	var/list/data = list()

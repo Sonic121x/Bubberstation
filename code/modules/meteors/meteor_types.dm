@@ -1,8 +1,8 @@
 #define DEFAULT_METEOR_LIFETIME 1800
 
 /obj/effect/meteor
-	name = "\proper the concept of meteor"
-	desc = "You should probably run instead of gawking at this."
+	name = "\proper 陨石这个概念"
+	desc = "你大概应该赶紧跑，而不是盯着它发呆。"
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "small"
 	density = TRUE
@@ -33,7 +33,7 @@
 	var/lifetime = DEFAULT_METEOR_LIFETIME
 
 	///Used by Stray Meteor event to indicate meteor type (the type of sensor that "detected" it) in announcement
-	var/signature = "motion"
+	var/signature = "运动"
 
 /obj/effect/meteor/Initialize(mapload, turf/target)
 	. = ..()
@@ -104,7 +104,7 @@
 /obj/effect/meteor/proc/ram_turf(turf/T)
 	//first yell at mobs about them dying horribly
 	for(var/mob/living/thing in T)
-		thing.visible_message(span_warning("[src] slams into [thing]."), span_userdanger("[src] slams into you!."))
+		thing.visible_message(span_warning("[src] 撞上了 [thing]。"), span_userdanger("[src] 撞上了你！"))
 
 	//then, ram the turf
 	switch(hitpwr)
@@ -128,7 +128,7 @@
 	. = ..()
 
 	if((user.mind?.get_skill_level(/datum/skill/athletics) >= SKILL_LEVEL_LEGENDARY))
-		. += span_notice("On second thought, it doesn't look too tough.")
+		. += span_notice("再一想，它看起来也没那么硬。")
 	check_examine_award(user)
 
 ///Called by component/meteor_combat to send us moving to the edge of the map away from whoever punched us
@@ -190,7 +190,7 @@
 
 //Sand
 /obj/effect/meteor/sand
-	name = "space sand"
+	name = "太空沙"
 	icon_state = "dust"
 	hits = 2
 	hitpwr = EXPLODE_LIGHT
@@ -217,7 +217,7 @@
 
 //Dust
 /obj/effect/meteor/dust
-	name = "space dust"
+	name = "太空尘埃"
 	icon_state = "dust"
 	pass_flags = PASSTABLE | PASSGRILLE
 	hits = 1
@@ -228,7 +228,7 @@
 
 //Medium-sized
 /obj/effect/meteor/medium
-	name = "meteor"
+	name = "陨石"
 	dropamt = 3
 	threat = SEVERITY_MEDIUM_METEOR
 
@@ -238,7 +238,7 @@
 
 //Large-sized
 /obj/effect/meteor/big
-	name = "big meteor"
+	name = "大型陨石"
 	icon_state = "large"
 	hits = 6
 	heavy = TRUE
@@ -251,15 +251,15 @@
 
 //Flaming meteor
 /obj/effect/meteor/flaming
-	name = "flaming meteor"
-	desc = "A veritable shooting star, both beautiful and frightening. You should probably keep your distance from this."
+	name = "燃烧陨石"
+	desc = "名副其实的流星，既美丽又骇人。你最好离它远一点。"
 	icon_state = "flaming"
 	hits = 5
 	heavy = TRUE
 	meteorsound = 'sound/effects/bamf.ogg'
 	meteordrop = list(/obj/item/stack/ore/plasma)
 	threat = SEVERITY_FLAMING_METEOR
-	signature = "thermal"
+	signature = "热成像"
 
 /obj/effect/meteor/flaming/meteor_effect()
 	..()
@@ -267,14 +267,14 @@
 
 //Radiation meteor
 /obj/effect/meteor/irradiated
-	name = "glowing meteor"
-	desc = "An irradiated chunk of space rock. You could probably stop and appreciate its incandescent green glow, if it weren't moving so fast."
+	name = "发光陨石"
+	desc = "一块受辐射的太空岩石。要不是它飞得这么快，你或许还能停下来欣赏它那炽热的绿色光芒。"
 	icon_state = "glowing"
 	heavy = TRUE
 	hits = 9
 	meteordrop = list(/obj/item/stack/ore/uranium)
 	threat = SEVERITY_IRRADIATED_METEOR
-	signature = "radiation"
+	signature = "辐射"
 
 /obj/effect/meteor/irradiated/meteor_effect()
 	..()
@@ -285,14 +285,14 @@
 
 //Cluster meteor
 /obj/effect/meteor/cluster
-	name = "cluster meteor"
-	desc = "A cluster of densely packed rocks, with a volatile core. You should probably get out of the way."
+	name = "集群陨石"
+	desc = "一团紧密聚集的岩石，核心极不稳定。你最好赶快让开。"
 	icon_state = "sharp"
 	hits = 9
 	heavy = TRUE
 	meteorsound = 'sound/effects/break_stone.ogg'
 	threat = SEVERITY_CLUSTER_METEOR
-	signature = "ordnance"
+	signature = "军械"
 	///Number of fragmentation meteors to be spawned
 	var/cluster_count = 8
 
@@ -310,21 +310,21 @@
 	explosion(src, heavy_impact_range = 2, light_impact_range = 3, flash_range = 4, adminlog = FALSE)
 
 /obj/effect/meteor/cluster_fragment
-	name = "cluster meteor fragment"
-	desc = "A fast-moving fragment of exploded cluster-rock."
+	name = "集群陨石碎片"
+	desc = "集群岩石爆炸后高速飞散的碎片。"
 	icon_state = "dust"
 
 //frozen carp "meteor"
 /obj/effect/meteor/carp
-	name = "frozen carp"
+	name = "冰冻鲤鱼"
 	icon_state = "carp"
-	desc = "Am I glad he's frozen in there, and that we're out here."
+	desc = "真高兴它被冻在里面，而我们待在外头。"
 	hits = 4
 	meteorsound = 'sound/mobs/humanoids/ethereal/ethereal_revive_fail.ogg'
 	meteordrop = list(/mob/living/basic/carp)
 	dropamt = 1
 	threat = SEVERITY_FROZEN_CARP
-	signature = "fishing and trawling"
+	signature = "捕捞"
 
 /obj/effect/meteor/carp/Initialize(mapload)
 	if(prob(2))
@@ -333,14 +333,14 @@
 
 //bluespace meteor
 /obj/effect/meteor/bluespace
-	name = "bluespace meteor"
-	desc = "A large geode containing bluespace dust at its core, hurtling through space. That's the stuff the crew are here to research. How convenient for them."
+	name = "蓝空间陨石"
+	desc = "一块内部蕴含蓝空间尘埃的巨大晶洞，正高速穿过太空。这正是船员们要研究的东西。对他们来说可真方便。"
 	icon_state = "bluespace"
 	dropamt = 3
 	hits = 12
 	meteordrop = list(/obj/item/stack/ore/bluespace_crystal)
 	threat = SEVERITY_BLUESPACE_METEOR
-	signature = "bluespace flux"
+	signature = "蓝空间通量"
 
 /obj/effect/meteor/bluespace/Bump(atom/bumped_atom)
 	..()
@@ -348,8 +348,8 @@
 		do_teleport(src, get_turf(src), 6, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 
 /obj/effect/meteor/banana
-	name = "bananium meteor"
-	desc = "Maybe it's a chunk blasted off of the legendary Clown Planet... How annoying."
+	name = "香蕉矿陨石"
+	desc = "也许这是从传说中的小丑星球上炸下来的一块……真烦人。"
 	icon_state = "bananium"
 	dropamt = 4
 	hits = 175 //Honks everything, including space tiles. Depending on the angle/how much stuff it hits, there's a fair chance that it will spare the station from the actual explosion
@@ -357,7 +357,7 @@
 	meteorsound = 'sound/items/bikehorn.ogg'
 	threat = SEVERITY_BANANIUM_METEOR
 	movement_type = PHASING
-	signature = "comedy"
+	signature = "喜剧"
 
 /obj/effect/meteor/banana/meteor_effect()
 	..()
@@ -369,16 +369,16 @@
 /obj/effect/meteor/banana/ram_turf(turf/bumped)
 	for(var/mob/living/slipped in get_turf(bumped))
 		slipped.slip(100, slipped.loc,- GALOSHES_DONT_HELP|SLIDE)
-		slipped.visible_message(span_warning("[src] honks [slipped] to the floor!"), span_userdanger("[src] harmlessly passes through you, knocking you over."))
+		slipped.visible_message(span_warning("[src] 把 [slipped] 鸣笛掀翻在地！"), span_userdanger("[src] 无害地穿过你，把你撞倒在地。"))
 	get_hit()
 
 /obj/effect/meteor/emp
-	name = "electromagnetically charged meteor"
-	desc = "It radiates with captive energy, ready to be let loose upon the world."
+	name = "电磁充能陨石"
+	desc = "它散发着被束缚的能量，随时准备向世界释放。"
 	icon_state = "bluespace"
 	hits = 6
 	threat = SEVERITY_EMP_METEOR
-	signature = "electromagnetic interference"
+	signature = "电磁干扰"
 
 /obj/effect/meteor/emp/Move()
 	. = ..()
@@ -392,16 +392,16 @@
 
 //Meaty Ore
 /obj/effect/meteor/meaty
-	name = "meaty ore"
+	name = "肉矿"
 	icon_state = "meateor"
-	desc = "Just... don't think too hard about where this thing came from."
+	desc = "只是……别太深究这东西是从哪来的。"
 	hits = 2
 	heavy = TRUE
 	meteorsound = 'sound/effects/blob/blobattack.ogg'
 	meteordrop = list(/obj/item/food/meat/slab/human, /obj/item/organ/heart, /obj/item/organ/lungs, /obj/item/organ/appendix)
 	var/meteorgibs = /obj/effect/gibspawner/generic
 	threat = SEVERITY_MEATY_ORE
-	signature = "culinary material"
+	signature = "烹饪材料"
 
 /obj/effect/meteor/meaty/setup_extra_drops()
 	meteordrop += pick(subtypesof(/obj/item/food/meat/slab/human/mutant))
@@ -424,7 +424,7 @@
 	color = "#5EFF00"
 	meteordrop = list(/obj/item/food/meat/slab/xeno, /obj/item/organ/tongue/alien)
 	meteorgibs = /obj/effect/gibspawner/xeno
-	signature = "exotic culinary material"
+	signature = "异域烹饪材料"
 
 /obj/effect/meteor/meaty/xeno/setup_extra_drops()
 	meteordrop += subtypesof(/obj/item/organ/alien)
@@ -435,16 +435,16 @@
 
 //Station buster Tunguska
 /obj/effect/meteor/tunguska
-	name = "tunguska meteor"
+	name = "通古斯陨石"
 	icon_state = "flaming"
-	desc = "Your life briefly passes before your eyes the moment you lay them on this monstrosity."
+	desc = "当你看到这头怪物的一瞬间，你的一生会在眼前短暂闪过。"
 	hits = 30
 	hitpwr = EXPLODE_DEVASTATE
 	heavy = TRUE
 	meteorsound = 'sound/effects/bamf.ogg'
 	meteordrop = list(/obj/item/stack/ore/plasma)
 	threat = SEVERITY_TUNGSKA_METEOR
-	signature = "armageddon"
+	signature = "末日"
 
 /obj/effect/meteor/tunguska/Move()
 	. = ..()
@@ -461,8 +461,8 @@
 		explosion(src, devastation_range = 2, heavy_impact_range = 4, light_impact_range = 6, flash_range = 8, adminlog = FALSE)
 
 /obj/effect/meteor/pumpkin
-	name = "PUMPKING"
-	desc = "THE PUMPKING'S COMING!"
+	name = "南瓜王"
+	desc = "南瓜王来了！"
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "spooky"
 	hits = 10

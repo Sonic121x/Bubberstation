@@ -1,6 +1,6 @@
 /obj/item/inhaler
-	name = "inhaler"
-	desc = "A small device capable of administering short bursts of aerosolized chemicals. Requires a canister to function."
+	name = "吸入器"
+	desc = "一种小型装置，可短促喷出雾化化学物质。需要装入气罐才能使用。"
 	w_class = WEIGHT_CLASS_SMALL
 
 	icon = 'icons/obj/medical/chemical.dmi'
@@ -50,7 +50,7 @@
 	if (isnull(canister))
 		return
 
-	. += span_blue("It seems to have <b>[canister]</b> inserted.")
+	. += span_blue("里面似乎插着 <b>[canister]</b>。")
 	if (!show_puffs_left)
 		return
 
@@ -59,7 +59,7 @@
 		puffs_left = span_blue("[puffs_left]")
 	else
 		puffs_left = span_danger("[puffs_left]")
-	. += "Its rotary display shows its canister can be used [puffs_left] more times."
+	. += "它的旋转显示盘显示气罐还能使用 [puffs_left] 次。"
 
 /obj/item/inhaler/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -89,21 +89,21 @@
 	if (target_mob == user) // no need for a target message
 		puff_timer = canister.self_administer_delay
 
-		pre_use_visible_message = span_notice("[user] puts [src] to [user.p_their()] lips, fingers on the canister...")
-		pre_use_self_message = span_notice("You put [src] to your lips and put pressure on the canister...")
+		pre_use_visible_message = span_notice("[user] 把 [src] 凑到自己唇边，手指按在气罐上……")
+		pre_use_self_message = span_notice("你把 [src] 凑到唇边，并按压气罐……")
 
-		post_use_visible_message = span_notice("[user] takes a puff of [src]!")
-		post_use_self_message = span_notice("You take a puff of [src]!")
+		post_use_visible_message = span_notice("[user] 吸了一口 [src]！")
+		post_use_self_message = span_notice("你吸了一口 [src]！")
 	else
 		puff_timer = canister.other_administer_delay
 
-		pre_use_visible_message = span_warning("[user] tries to force [src] between [target_mob]'s lips...")
-		pre_use_self_message = span_notice("You try to put [src] to [target_mob]'s lips...")
-		pre_use_target_message = span_userdanger("[user] tries to force [src] between your lips!")
+		pre_use_visible_message = span_warning("[user] 试图把 [src] 硬塞到 [target_mob] 的唇间……")
+		pre_use_self_message = span_notice("你试着把 [src] 凑到 [target_mob] 的唇边……")
+		pre_use_target_message = span_userdanger("[user] 试图把 [src] 硬塞进你的唇间！")
 
-		post_use_visible_message = span_warning("[user] forces [src] between [target_mob]'s lips and pushes the canister down!")
-		post_use_self_message = span_notice("You force [src] between [target_mob]'s lips and press on the canister!")
-		post_use_target_message = span_userdanger("[user] forces [src] between your lips and presses on the canister, filling your lungs with aerosol!")
+		post_use_visible_message = span_warning("[user] 把 [src] 硬塞进 [target_mob] 的唇间，并按下气罐！")
+		post_use_self_message = span_notice("你把 [src] 硬塞进 [target_mob] 的唇间，并按压气罐！")
+		post_use_target_message = span_userdanger("[user] 把 [src] 硬塞进你的唇间并按压气罐，让气雾灌满了你的肺！")
 
 	if (puff_timer > 0)
 		user.visible_message(pre_use_visible_message, ignored_mobs = list(user, target_mob))
@@ -137,30 +137,30 @@
 /// Tries to remove the canister, if any is inserted.
 /obj/item/inhaler/proc/try_remove_canister(mob/living/user, modifiers)
 	if (isnull(canister))
-		balloon_alert(user, "no canister inserted!")
+		balloon_alert(user, "未装入气罐！")
 		return FALSE
 
 	if (canister.removal_time > 0)
-		balloon_alert(user, "removing canister...")
+		balloon_alert(user, "正在取出气罐……")
 		if (!do_after(user, canister.removal_time, src))
 			return FALSE
 
-	balloon_alert(user, "canister removed")
+	balloon_alert(user, "气罐已取出")
 	playsound(src, canister.post_insert_sound, canister.post_insert_volume)
 	set_canister(null, user)
 
 // Tries to insert a canister, if none is already inserted.
 /obj/item/inhaler/proc/try_insert_canister(obj/item/reagent_containers/inhaler_canister/new_canister, mob/living/user, params)
 	if (!isnull(canister))
-		balloon_alert(user, "remove the existing canister!")
+		balloon_alert(user, "先取出现有气罐！")
 		return FALSE
 
-	balloon_alert(user, "inserting canister...")
+	balloon_alert(user, "正在装入气罐……")
 	playsound(src, new_canister.pre_insert_sound, new_canister.pre_insert_volume)
 	if (!do_after(user, new_canister.insertion_time, src))
 		return FALSE
 	playsound(src, new_canister.post_insert_sound, new_canister.post_insert_volume)
-	balloon_alert(user, "canister inserted")
+	balloon_alert(user, "气罐已装入")
 	set_canister(new_canister, user)
 
 	return TRUE
@@ -182,36 +182,36 @@
 /obj/item/inhaler/proc/can_puff(mob/living/target_mob, mob/living/user, silent = FALSE)
 	if (isnull(canister))
 		if (!silent)
-			balloon_alert(user, "no canister!")
+			balloon_alert(user, "没有气罐！")
 		return FALSE
 	if (isnull(canister.reagents) || canister.reagents.total_volume <= 0)
 		if (!silent)
-			balloon_alert(user, "canister is empty!")
+			balloon_alert(user, "气罐是空的！")
 		return FALSE
 	if (!iscarbon(target_mob)) // maybe mix this into a general has mouth check
 		if (!silent)
-			balloon_alert(user, "not breathing!")
+			balloon_alert(user, "无法呼吸！")
 		return FALSE
 	var/mob/living/carbon/carbon_target = target_mob
 	if (carbon_target.is_mouth_covered())
 		if (!silent)
-			balloon_alert(user, "expose the mouth!")
+			balloon_alert(user, "露出嘴部！")
 		return FALSE
 	if (HAS_TRAIT(carbon_target, TRAIT_NOBREATH))
 		if (!silent)
-			balloon_alert(user, "not breathing!")
+			balloon_alert(user, "无法呼吸！")
 		return FALSE
 	var/obj/item/organ/lungs/lungs = carbon_target.get_organ_slot(ORGAN_SLOT_LUNGS)
 	if (isnull(lungs) || lungs.received_pressure_mult <= 0)
 		if (!silent)
-			balloon_alert(user, "not breathing!")
+			balloon_alert(user, "无法呼吸！")
 		return FALSE
 
 	return TRUE
 
 /obj/item/reagent_containers/inhaler_canister
-	name = "inhaler canister"
-	desc = "A small canister filled with aerosolized reagents for use in a inhaler."
+	name = "吸入器气罐"
+	desc = "一个小气罐，里面装满了用于吸入器的雾化试剂。"
 	w_class = WEIGHT_CLASS_TINY
 
 	icon = 'icons/obj/medical/chemical.dmi'
@@ -260,46 +260,46 @@
 
 /obj/item/reagent_containers/inhaler_canister/handle_deconstruct(disassembled)
 	if (!reagents?.total_volume)
-		visible_message(span_warning("[src] breaks open - but is empty!"))
+		visible_message(span_warning("[src] 破开了——但里面是空的！"))
 		return ..()
 
 	do_chem_smoke(1, src, get_turf(src), carry = reagents, log = TRUE)
-	visible_message(span_warning("[src] breaks open and sprays its aerosilized contents everywhere!"))
+	visible_message(span_warning("[src] 破开了，把雾化内容物喷得到处都是！"))
 	return ..()
 
 /obj/item/inhaler/medical
 	icon_state = "inhaler_medical"
 
 /obj/item/inhaler/salbutamol
-	name = "salbutamol inhaler"
+	name = "沙丁胺醇吸入器"
 	icon_state = "inhaler_medical"
 	initial_casister_path = /obj/item/reagent_containers/inhaler_canister/salbutamol
 
 /obj/item/reagent_containers/inhaler_canister/salbutamol
-	name = "salbutamol canister"
+	name = "沙丁胺醇气罐"
 	icon_state = "canister_medical"
 	list_reagents = list(/datum/reagent/medicine/salbutamol = 30)
 
 /obj/item/inhaler/albuterol
-	name = "albuterol inhaler"
+	name = "沙丁胺醇吸入器"
 	icon_state = "inhaler_medical"
 	initial_casister_path = /obj/item/reagent_containers/inhaler_canister/albuterol
 
 /obj/item/reagent_containers/inhaler_canister/albuterol
-	name = "albuterol canister"
-	desc = "A small canister filled with aerosolized reagents for use in a inhaler. This one contains albuterol, a potent bronchodilator that can stop \
-	asthma attacks in their tracks."
+	name = "沙丁胺醇气罐"
+	desc = "一个小气罐，里面装满了用于吸入器的雾化试剂。这一罐含有沙丁胺醇，一种强效支气管扩张剂，能即刻中止\
+	哮喘发作。"
 	icon_state = "canister_medical"
 	list_reagents = list(/datum/reagent/medicine/albuterol = 30)
 
 /obj/item/reagent_containers/inhaler_canister/albuterol/asthma
-	name = "low-pressure albuterol canister"
-	desc = "A small canister filled with aerosolized reagents for use in a inhaler. This one contains albuterol, a potent bronchodilator that can stop \
-	asthma attacks in their tracks. It seems to be a lower-pressure variant, and can only hold 20u."
+	name = "低压沙丁胺醇气罐"
+	desc = "一个小气罐，里面装满了用于吸入器的雾化试剂。这一罐含有沙丁胺醇，一种强效支气管扩张剂，能即刻中止\
+	哮喘发作。它似乎是低压型号，只能容纳 20u。"
 	list_reagents = list(/datum/reagent/medicine/albuterol = 20)
 	volume = 20
 
 /obj/item/inhaler/albuterol/asthma
-	name = "rescue inhaler"
+	name = "急救吸入器"
 	icon_state = "inhaler_generic"
 	initial_casister_path = /obj/item/reagent_containers/inhaler_canister/albuterol/asthma

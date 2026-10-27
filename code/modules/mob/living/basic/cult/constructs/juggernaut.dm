@@ -1,18 +1,18 @@
 /mob/living/basic/construct/juggernaut
-	name = "Juggernaut"
-	real_name = "Juggernaut"
-	desc = "A massive, armored construct built to spearhead attacks and soak up enemy fire."
+	name = "主宰"
+	real_name = "主宰"
+	desc = "一个巨大、重装的构装体，专为领头发动攻击并承受敌方火力而造。"
 	icon_state = "juggernaut"
 	icon_living = "juggernaut"
 	maxHealth = 150
 	health = 150
-	response_harm_continuous = "harmlessly punches"
-	response_harm_simple = "harmlessly punch"
+	response_harm_continuous = "徒劳地拳击"
+	response_harm_simple = "徒劳地拳击"
 	obj_damage = 90
 	melee_damage_lower = 25
 	melee_damage_upper = 25
-	attack_verb_continuous = "smashes their armored gauntlet into"
-	attack_verb_simple = "smash your armored gauntlet into"
+	attack_verb_continuous = "以重装护手猛砸"
+	attack_verb_simple = "以重装护手猛砸"
 	speed = 2.5
 	attack_sound = 'sound/items/weapons/punch3.ogg'
 	status_flags = NONE
@@ -22,7 +22,7 @@
 		/datum/action/cooldown/spell/forcewall/cult,
 		/datum/action/innate/cult/create_rune/wall,
 	)
-	playstyle_string = span_bold("You are a Juggernaut. Though slow, your shell can withstand heavy punishment, create shield walls, rip apart enemies and walls alike, and even deflect energy weapons.")
+	playstyle_string = span_bold("你是一名主宰。虽然行动迟缓，但你的外壳能承受沉重打击、制造盾墙、把敌人和墙壁一并撕碎，甚至能弹开能量武器。")
 
 	smashes_walls = TRUE
 
@@ -44,8 +44,8 @@
 
 	apply_damage(hitting_projectile.damage * 0.5, hitting_projectile.damage_type)
 	visible_message(
-		span_danger("\The [hitting_projectile] is reflected by [src]'s armored shell!"),
-		span_userdanger("\The [hitting_projectile] is reflected by your armored shell!"),
+		span_danger("\The [hitting_projectile] 被 [src] 的重装外壳弹开了！"),
+		span_userdanger("\The [hitting_projectile] 被你的重装外壳弹开了！"),
 	)
 
 	hitting_projectile.reflect(src)

@@ -1,6 +1,6 @@
 /obj/structure/closet/l3closet
-	name = "level 3 biohazard gear closet"
-	desc = "It's a storage unit for level 3 biohazard gear."
+	name = "三级生物防护装备柜"
+	desc = "用于存放三级生物防护装备的柜子。"
 	icon_state = "bio"
 
 /obj/structure/closet/l3closet/PopulateContents()

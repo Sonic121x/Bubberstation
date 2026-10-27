@@ -8,13 +8,13 @@
  */
 
 /datum/round_event_control/sandstorm
-	name = "Sandstorm: Directional"
+	name = "沙尘暴：定向"
 	typepath = /datum/round_event/sandstorm
 	max_occurrences = 3
 	min_players = 35
 	earliest_start = 35 MINUTES
 	category = EVENT_CATEGORY_SPACE
-	description = "A wave of space dust continually grinds down a side of the station."
+	description = "一阵太空尘埃持续磨损空间站的一侧。"
 	min_wizard_trigger_potency = 6
 	max_wizard_trigger_potency = 7
 	admin_setup = list(/datum/event_admin_setup/listed_options/sandstorm)
@@ -35,23 +35,23 @@
 	if(!start_side)
 		start_side = pick(GLOB.cardinals)
 
-	var/start_side_text = "unknown"
+	var/start_side_text = "未知"
 	switch(start_side)
 		if(NORTH)
-			start_side_text = "fore"
+			start_side_text = "前方"
 		if(SOUTH)
-			start_side_text = "aft"
+			start_side_text = "后方"
 		if(EAST)
-			start_side_text = "starboard"
+			start_side_text = "右舷"
 		if(WEST)
-			start_side_text = "port"
+			start_side_text = "左舷"
 		else
 			stack_trace("Sandstorm event given [start_side] as unrecognized direction. Cancelling event...")
 			kill()
 			return
 
-	priority_announce("A large wave of space dust is approaching from the [start_side_text] side of the station. \
-		Impact is expected in the next two minutes. All employees are encouraged to assist in repairs and damage mitigation if possible.", "Collision Emergency Alert")
+	priority_announce("一大波太空尘埃正从空间站的 [start_side_text] 侧逼近。\
+		预计将在两分钟内撞击。鼓励所有员工尽可能协助维修并减轻损害。", "碰撞紧急警报")
 
 /datum/round_event/sandstorm/tick()
 	spawn_meteors(15, GLOB.meteors_sandstorm, start_side)
@@ -65,13 +65,13 @@
  */
 
 /datum/round_event_control/sandstorm_classic
-	name = "Sandstorm: Classic"
+	name = "沙尘暴：经典"
 	typepath = /datum/round_event/sandstorm_classic
 	weight = 0
 	max_occurrences = 0
 	earliest_start = 0 MINUTES
 	category = EVENT_CATEGORY_SPACE
-	description = "The station is pelted by an extreme amount of dust, from all sides, for several minutes. Very destructive and likely to cause lag. Use at own risk."
+	description = "空间站被从四面八方而来的海量尘埃连续拍打数分钟。破坏性极强，且很可能造成卡顿。使用风险自负。"
 	map_flags = EVENT_SPACE_ONLY
 
 /datum/round_event/sandstorm_classic
@@ -84,8 +84,8 @@
 	spawn_meteors(10, GLOB.meteors_dust)
 
 /datum/event_admin_setup/listed_options/sandstorm
-	input_text = "Choose a side to powersand?"
-	normal_run_option = "Random Sandstorm Direction"
+	input_text = "选择要强力喷砂的一侧？"
+	normal_run_option = "随机沙尘暴方向"
 
 /datum/event_admin_setup/listed_options/sandstorm/get_list()
 	return list("Up", "Down", "Right", "Left")

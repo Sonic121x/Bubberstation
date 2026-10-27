@@ -10,7 +10,7 @@ import {
   Stack,
   Table,
 } from 'tgui-core/components';
-
+import { chineseDisplay, chineseDropdownOptions } from 'tgui/localization/zhDisplay';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { PageSelect } from './LibraryConsole/components/PageSelect';
@@ -99,8 +99,8 @@ const SearchAndDisplay = (props) => {
             </Stack.Item>
             <Stack.Item>
               <Dropdown
-                options={search_categories}
-                selected={category}
+                options={chineseDropdownOptions(search_categories)}
+                selected={category} displayText={chineseDisplay(category)}
                 onSelected={(value) =>
                   act('set_search_category', {
                     category: value,
@@ -165,7 +165,7 @@ const SearchAndDisplay = (props) => {
         {records.map((record) => (
           <Table.Row key={record.key}>
             <Table.Cell>{record.id}</Table.Cell>
-            <Table.Cell>{record.category}</Table.Cell>
+            <Table.Cell>{chineseDisplay(record.category)}</Table.Cell>
             <Table.Cell>{record.title}</Table.Cell>
             <Table.Cell>{record.author}</Table.Cell>
           </Table.Row>

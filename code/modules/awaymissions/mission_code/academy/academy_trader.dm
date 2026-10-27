@@ -1,7 +1,7 @@
 /mob/living/basic/trader/mr_corporate
-	name = "Mr Corporate"
-	desc = "A high ranking centcom official in their modsuit, they seem a bit, shallow."
-	speak_emote = list("demands")
+	name = "企业先生"
+	desc = "一名穿着 MOD 外骨骼的中央指挥部高级官员，看起来有点……浅薄。"
+	speak_emote = list("要求")
 	mob_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	gender = MALE
 	spawner_path = /obj/effect/mob_spawn/corpse/human/skeleton/mr_corporate
@@ -15,7 +15,7 @@
 	outfit = /datum/outfit/mr_corporate
 
 /datum/outfit/mr_corporate
-	name = "Centcom official"
+	name = "中央指挥部官员"
 	uniform = /obj/item/clothing/under/rank/centcom/commander
 	mask = /obj/item/clothing/mask/gas/atmos/centcom
 	ears = /obj/item/radio/headset/headset_cent/alt/leader

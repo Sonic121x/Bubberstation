@@ -5,7 +5,7 @@
 #define OBSESSED_OBJECTIVE_JEALOUS "jealous"
 
 /datum/antagonist/obsessed
-	name = "Obsessed"
+	name = "痴迷者"
 	show_in_antagpanel = TRUE
 	antagpanel_category = ANTAG_GROUP_CREW
 	pref_flag = ROLE_OBSESSED
@@ -15,7 +15,7 @@
 	roundend_category = "obsessed"
 	antag_flags = ANTAG_SKIP_GLOBAL_LIST
 	silent = TRUE //not actually silent, because greet will be called by the trauma anyway.
-	suicide_cry = "FOR MY LOVE!!"
+	suicide_cry = "为了我的爱！！"
 	preview_outfit = /datum/outfit/obsessed
 	hardcore_random_bonus = TRUE
 	stinger_sound = 'sound/music/antag/creepalert.ogg'
@@ -29,7 +29,7 @@
 
 /// Dummy antag datum that will show the cured obsessed to admins
 /datum/antagonist/former_obsessed
-	name = "Former Obsessed"
+	name = "前痴迷者"
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
 	antagpanel_category = ANTAG_GROUP_CREW
@@ -42,13 +42,13 @@
 /datum/antagonist/obsessed/admin_add(datum/mind/new_owner,mob/admin)
 	var/mob/living/carbon/C = new_owner.current
 	if(!istype(C))
-		to_chat(admin, "[roundend_category] come from a brain trauma, so they need to at least be a carbon!")
+		to_chat(admin, "[roundend_category]源自脑部创伤，所以他们至少得是碳基生物！")
 		return
 	if(!C.get_organ_by_type(/obj/item/organ/brain)) // If only I had a brain
-		to_chat(admin, "[roundend_category] come from a brain trauma, so they need to HAVE A BRAIN.")
+		to_chat(admin, "[roundend_category]源自脑部创伤，所以他们必须得有脑子。")
 		return
-	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] into [name].")
-	log_admin("[key_name(admin)] made [key_name(new_owner)] into [name].")
+	message_admins("[key_name_admin(admin)]把[key_name_admin(new_owner)]变成了[name]。")
+	log_admin("[key_name(admin)]把[key_name(new_owner)]变成了[name]。")
 	//PRESTO FUCKIN MAJESTO
 	C.gain_trauma(/datum/brain_trauma/special/obsessed)//ZAP
 
@@ -78,7 +78,7 @@
 	return final_icon
 
 /datum/outfit/obsessed
-	name = "Obsessed (Preview only)"
+	name = "痴迷者（仅预览）"
 
 	uniform = /obj/item/clothing/under/misc/overalls
 	gloves = /obj/item/clothing/gloves/latex
@@ -143,7 +143,7 @@
 		O.update_explanation_text()
 
 /datum/antagonist/obsessed/roundend_report_header()
-	return span_header("Someone became obsessed!<br>")
+	return span_header("有人陷入了痴迷！<br>")
 
 /datum/antagonist/obsessed/roundend_report()
 	var/list/report = list()
@@ -162,16 +162,16 @@
 				break
 	if(trauma)
 		if(trauma.total_time_creeping > 0)
-			report += span_greentext("The [name] spent a total of [DisplayTimeText(trauma.total_time_creeping)] being near [trauma.obsession]!")
+			report += span_greentext("[name]总共在[trauma.obsession]身边待了 [DisplayTimeText(trauma.total_time_creeping)]！")
 		else
-			report += span_redtext("The [name] did not go near their obsession the entire round! That's extremely impressive!")
+			report += span_redtext("[name]整轮都没有靠近过自己的痴迷对象！这真是令人印象深刻！")
 	else
-		report += span_redtext("The [name] had no trauma attached to their antagonist ways! Either it bugged out or an admin incorrectly gave this good samaritan antag and it broke! You might as well show yourself!!")
+		report += span_redtext("[name]的反派身份没有关联任何创伤！要么是出了故障，要么是管理员错误地把这个反派身份给了这位好人，然后就坏掉了！你不妨直接现身吧！！")
 
 	if(objectives.len == 0 || objectives_complete)
-		report += "<span class='greentext big'>The [name] was successful!</span>"
+		report += "<span class='greentext big'>[name]成功了！</span>"
 	else
-		report += "<span class='redtext big'>The [name] has failed!</span>"
+		report += "<span class='redtext big'>[name]失败了！</span>"
 
 	return report.Join("<br>")
 
@@ -183,10 +183,10 @@
 
 /datum/objective/assassinate/obsessed/update_explanation_text()
 	if(target?.current)
-		explanation_text = "Murder [target.name], the [target_role_type ? english_list(target.get_special_roles()) : target.assigned_role.title]."
+		explanation_text = "杀死[target.name]，这名[target_role_type ? english_list(target.get_special_roles()) : target.assigned_role.title]。"
 	else
-		message_admins("WARNING! [ADMIN_LOOKUPFLW(owner)] obsessed objectives forged without an obsession!")
-		explanation_text = "Free Objective"
+		message_admins("警告！[ADMIN_LOOKUPFLW(owner)]的痴迷目标在没有痴迷对象的情况下生成了！")
+		explanation_text = "自由目标"
 		completed = TRUE
 
 /datum/objective/assassinate/jealous //assassinate, but it changes the target to someone else in the previous target's department. cool, right?
@@ -194,9 +194,9 @@
 
 /datum/objective/assassinate/jealous/update_explanation_text()
 	if(target?.current && obsessed_target)
-		explanation_text = "Assassinate [target.name], [obsessed_target]'s coworker, ONCE." // BUBBER EDIT CHANGE - ORIGINAL: "Murder [target.name], [obsessed_target]'s coworker."
+		explanation_text = "暗杀[target.name]，即[obsessed_target]的同事，仅限一次。" // BUBBER EDIT CHANGE - ORIGINAL: "Murder [target.name], [obsessed_target]'s coworker."
 	else
-		explanation_text = "Free Objective"
+		explanation_text = "自由目标"
 		completed = TRUE
 
 /datum/objective/assassinate/jealous/find_target(dupe_search_range, list/blacklist)
@@ -222,7 +222,7 @@
 	return target
 
 /datum/objective/spendtime //spend some time around someone, handled by the obsessed trauma since that ticks
-	name = "spendtime"
+	name = "陪伴时间"
 	var/timer = 0
 
 /datum/objective/spendtime/update_explanation_text()
@@ -230,16 +230,16 @@
 		timer = 5 MINUTES + pick(-60 SECONDS, 0)
 
 	if(target?.current)
-		explanation_text = "Spend [DisplayTimeText(timer)] around [target.name] while they're alive."
+		explanation_text = "在[target.name]活着的时候，在其身边待上 [DisplayTimeText(timer)]。"
 	else
-		explanation_text = "Free Objective"
+		explanation_text = "自由目标"
 		completed = TRUE
 
 /datum/objective/spendtime/check_completion()
 	return timer <= 0 || completed
 
 /datum/objective/hug//this objective isn't perfect. hugging the correct amount of times, then switching bodies, might fail the objective anyway. maybe i'll come back and fix this sometime.
-	name = "hugs"
+	name = "拥抱"
 	var/hugs_needed = 0
 
 /datum/objective/hug/update_explanation_text()
@@ -247,25 +247,25 @@
 		hugs_needed = rand(4,6)
 
 	if(target?.current)
-		explanation_text = "Hug [target.name] [hugs_needed] times while they're alive."
+		explanation_text = "在[target.name]活着的时候拥抱其 [hugs_needed] 次。"
 
 	else
-		explanation_text = "Free Objective"
+		explanation_text = "自由目标"
 		completed = TRUE
 
 /datum/objective/hug/check_completion()
 	return hugs_needed <= 0 || completed
 
 /datum/objective/polaroid //take a picture of the target with you in it.
-	name = "polaroid"
+	name = "拍立得照片"
 	/// Weakref to our obsession's original mob
 	var/datum/weakref/obsession_weakref
 
 /datum/objective/polaroid/update_explanation_text()
 	if(target?.current)
-		explanation_text = "Take a photo of [target.name] while they're alive, and keep it in your bag."
+		explanation_text = "在[target.name]活着的时候给对方拍一张照片，并把它放在你的包里。"
 	else
-		explanation_text = "Free Objective"
+		explanation_text = "自由目标"
 		completed = TRUE
 
 /datum/objective/polaroid/check_completion()
@@ -276,13 +276,13 @@
 
 
 /datum/objective/steal/heirloom_thief //exactly what it sounds like, steal someone's heirloom.
-	name = "heirloomthief"
+	name = "家传宝物窃贼"
 
 /datum/objective/steal/heirloom_thief/update_explanation_text()
 	if(steal_target)
-		explanation_text = "Steal [target]'s family heirloom, [steal_target] they cherish."
+		explanation_text = "偷走[target]珍视的家传宝物[steal_target]。"
 	else
-		explanation_text = "Free Objective"
+		explanation_text = "自由目标"
 		completed = TRUE
 
 /datum/objective/steal/heirloom_thief/find_target(dupe_search_range, list/blacklist)

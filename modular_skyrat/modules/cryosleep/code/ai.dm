@@ -1,10 +1,10 @@
-GAME_VERB_DESC(/mob/living/silicon/ai, ai_cryo, "AI Cryogenic Stasis", "Puts the current AI personality into cryogenic stasis, freeing the space for another.", "AI Commands")
+GAME_VERB_DESC(/mob/living/silicon/ai, ai_cryo, "AI 低温休眠", "将当前 AI 人格置入低温休眠，为下一位腾出位置。", "AI 指令")
 	if(incapacitated)
 		return
-	switch(alert("Would you like to enter cryo? This will ghost you. Remember to AHELP before cryoing out of important roles, even with no admins online.",,"Yes.","No."))
+	switch(alert("你要进入低温休眠吗？这会让你变成幽灵。即使当前没有管理员在线，在从重要职位上退出前也请记得先用 AHELP 报备。",,"Yes.","No."))
 		if("Yes.")
 			src.ghostize(FALSE)
-			var/announce_rank = "Artificial Intelligence,"
+			var/announce_rank = "人工智能"
 			if(GLOB.announcement_systems.len)
 				// Sends an announcement the AI has cryoed.
 				var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)

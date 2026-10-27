@@ -14,8 +14,8 @@
 	worn_icon = 'icons/mob/clothing/suits/utility.dmi'
 
 /obj/item/clothing/suit/utility/fire
-	name = "emergency firesuit"
-	desc = "A suit that helps protect against fire and heat."
+	name = "应急消防服"
+	desc = "一套有助于抵御火焰与高温的防护服。"
 	icon_state = "fire"
 	inhand_icon_state = "ro_suit"
 	w_class = WEIGHT_CLASS_BULKY
@@ -67,15 +67,15 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 
 /obj/item/clothing/suit/utility/fire/heavy
-	name = "heavy firesuit"
-	desc = "An old, bulky thermal protection suit."
+	name = "重型消防服"
+	desc = "一套老旧笨重的隔热防护服。"
 	icon_state = "thermal"
 	inhand_icon_state = "ro_suit"
 	slowdown = 1.5
 
 /obj/item/clothing/suit/utility/fire/atmos
-	name = "atmospheric firesuit"
-	desc = "An expensive firesuit that protects against even the most deadly of station fires. Designed to protect even if the wearer is set aflame."
+	name = "大气消防服"
+	desc = "一套昂贵的消防服，连空间站上最致命的火灾也能抵御。即使穿戴者被点燃，它仍能提供保护。"
 	icon_state = "atmos_firesuit"
 	inhand_icon_state = "firefighter_atmos"
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
@@ -88,8 +88,8 @@
  * Bomb protection
  */
 /obj/item/clothing/head/utility/bomb_hood
-	name = "bomb hood"
-	desc = "Use in case of bomb."
+	name = "防爆头罩"
+	desc = "遇炸弹时使用。"
 	icon_state = "bombsuit"
 	clothing_flags = THICKMATERIAL | SNUG_FIT
 	armor_type = /datum/armor/utility_bomb_hood
@@ -120,8 +120,8 @@
 	acid = 50
 
 /obj/item/clothing/suit/utility/bomb_suit
-	name = "bomb suit"
-	desc = "A suit designed for safety when handling explosives."
+	name = "防爆服"
+	desc = "一套为安全处理爆炸物而设计的防护服。"
 	icon_state = "bombsuit"
 	inhand_icon_state = null
 	w_class = WEIGHT_CLASS_BULKY
@@ -173,9 +173,9 @@
 */
 
 /obj/item/clothing/head/utility/radiation
-	name = "radiation hood"
+	name = "辐射防护头罩"
 	icon_state = "rad"
-	desc = "A hood with radiation protective properties. The label reads, 'Made with lead. Please do not consume insulation.'"
+	desc = "一顶具有辐射防护性能的头罩。标签上写着：“含铅制成。请勿食用保暖层。”"
 	clothing_flags = THICKMATERIAL | SNUG_FIT
 	flags_inv = HIDEMASK|HIDEEARS|HIDEFACE|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	armor_type = /datum/armor/utility_radiation
@@ -197,8 +197,8 @@
 	acid = 30
 
 /obj/item/clothing/suit/utility/radiation
-	name = "radiation suit"
-	desc = "A suit that protects against radiation. The label reads, 'Made with lead. Please do not consume insulation.'"
+	name = "辐射防护服"
+	desc = "一套可抵御辐射的防护服。标签上写着：“含铅制成。请勿食用保暖层。”"
 	icon_state = "rad"
 	inhand_icon_state = "rad_suit"
 	w_class = WEIGHT_CLASS_BULKY

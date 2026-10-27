@@ -1,6 +1,6 @@
 /mob/living/basic/garden_gnome
-	name = "Garden Gnome"
-	desc = "You have been gnomed."
+	name = "花园侏儒"
+	desc = "你已经被侏儒了。"
 	icon = 'icons/mob/simple/garden_gnome.dmi'
 	icon_state = "gnome"
 	icon_living = "gnome"
@@ -14,12 +14,12 @@
 	obj_damage = 20
 	melee_damage_lower = 5
 	melee_damage_upper = 10
-	attack_verb_continuous = "punches"
-	attack_verb_simple = "punch"
+	attack_verb_continuous = "挥拳打"
+	attack_verb_simple = "挥拳打"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	melee_attack_cooldown = 1.2 SECONDS
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 1, OXY = 1)
-	speak_emote = list("announces")
+	speak_emote = list("宣告道")
 
 	unsuitable_atmos_damage = 0
 	minimum_survivable_temperature = 0

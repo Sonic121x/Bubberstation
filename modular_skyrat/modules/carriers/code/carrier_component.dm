@@ -11,7 +11,7 @@ GLOBAL_LIST_EMPTY(soulcatchers)
  */
 /datum/component/carrier
 	/// What is the name of the carrier?
-	var/name = "carrier"
+	var/name = "载体"
 	/// What rooms are linked to this carrier
 	var/list/carrier_rooms = list()
 	/// What carrier room are verbs sending messages to?
@@ -140,7 +140,7 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 	if(!carrier_owner)
 		return FALSE
 
-	if(tgui_alert(carrier_owner, "Do you wish to allow [joiner_name] into your soulcatcher?", name, list("Yes", "No"), autofocus = FALSE) != "Yes")
+	if(tgui_alert(carrier_owner, "你想让 [joiner_name] 进入你的灵魂捕手吗？", name, list("Yes", "No"), autofocus = FALSE) != "Yes")
 		return FALSE
 
 	return TRUE
@@ -198,7 +198,7 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 	target_room.current_mobs += target_soul
 
 	target_soul.clear_fullscreen("carrier", FALSE)
-	to_chat(target_soul, span_cyan("you've been transferred to [target_room]!"))
+	to_chat(target_soul, span_cyan("你已被转移到 [target_room]！"))
 	to_chat(target_soul, span_notice(target_room.room_description))
 
 	return TRUE
@@ -238,15 +238,15 @@ GLOBAL_LIST_EMPTY(soulcatchers)
  */
 /datum/carrier_room
 	/// What is the name of the room?
-	var/name = "Carrier room"
+	var/name = "载体空间"
 	/// What is the description of the room?
-	var/room_description = "it feels roomy in here."
+	var/room_description = "这里感觉很宽敞。"
 	/// What souls are currently inside of the room?
 	var/list/current_mobs = list()
 	/// Weakref for the master carrier datum
 	var/datum/weakref/master_carrier
 	/// What is the name of the person sending the messages?
-	var/outside_voice = "Host"
+	var/outside_voice = "宿主"
 	/// Can the room be joined at all?
 	var/joinable = TRUE
 	/// What is the color of chat messages sent by the room?
@@ -269,13 +269,13 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 	carrier_component.current_room = WEAKREF(src)
 	mob_to_add.forceMove(parent_carrier.parent)
 
-	to_chat(mob_to_add, span_cyan("You find yourself now inside of: [name]"))
+	to_chat(mob_to_add, span_cyan("你发现自己现在身处：[name]"))
 	to_chat(mob_to_add, span_notice(room_description))
 
 	var/atom/parent_atom = parent_object
 	if(istype(parent_atom))
 		var/turf/carrier_turf = get_turf(parent_carrier.parent)
-		var/message_to_log = "[key_name(mob_to_add)] entered [src] inside of [parent_atom] at [loc_name(carrier_turf)]"
+		var/message_to_log = "[key_name(mob_to_add)] 在 [loc_name(carrier_turf)] 进入了 [parent_atom] 内的 [src]"
 		parent_atom.log_message(message_to_log, LOG_GAME)
 		mob_to_add.log_message(message_to_log, LOG_GAME)
 
@@ -344,7 +344,7 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 		if(!istype(user_component))
 			return FALSE
 	else
-		sender_mob = "soulcatcher host"
+		sender_mob = "灵魂捕手宿主"
 
 	if(istype(user_component) && user_component.communicating_externally)
 		var/obj/item/parent_object = parent_carrier.parent
@@ -368,8 +368,8 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 	var/message = ""
 	var/owner_message = ""
 	if(!emote)
-		message = "<font color=[room_color]>\ [soulcatcher_icon] <b>[sender_name]</b> says, \"[message_to_send]\"</font>"
-		owner_message = "<font color=[room_color]>\ <b>([first_room_name_word[1]])</b> [soulcatcher_icon] <b>[sender_name]</b> says, \"[message_to_send]\"</font>"
+		message = "<font color=[room_color]>\ [soulcatcher_icon] <b>[sender_name]</b> 说：“[message_to_send]”</font>"
+		owner_message = "<font color=[room_color]>\ <b>([first_room_name_word[1]])</b> [soulcatcher_icon] <b>[sender_name]</b> 说：“[message_to_send]”</font>"
 		log_say("[sender_mob] in [name] carrier room said: [message_to_send]")
 	else
 		message = "<font color=[room_color]>\ [soulcatcher_icon] <b>[sender_name]</b> [message_to_send]</font>"

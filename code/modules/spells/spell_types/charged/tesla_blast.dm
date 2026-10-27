@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/charged/beam/tesla
-	name = "Tesla Blast"
-	desc = "Charge up a tesla arc and release it at random nearby targets! \
-		You can move freely while it charges. The arc jumps between targets and can knock them down."
+	name = "特斯拉冲击"
+	desc = "蓄起一道特斯拉电弧，然后射向附近随机一个目标！ \
+		蓄力时你可以自由移动。电弧会在目标之间跳跃，并能将其击倒。"
 	button_icon_state = "lightning"
 	sound = 'sound/effects/magic/lightningbolt.ogg'
 
@@ -12,7 +12,7 @@
 	invocation_type = INVOCATION_SHOUT
 	school = SCHOOL_EVOCATION
 
-	channel_message = span_notice("You start gathering power...")
+	channel_message = span_notice("你开始聚集能量……")
 	charge_overlay_icon = 'icons/effects/effects.dmi'
 	charge_overlay_state = "electricity"
 	charge_sound = 'sound/effects/magic/lightning_chargeup.ogg'
@@ -31,12 +31,12 @@
 
 	if(to_beam.can_block_magic(antimagic_flags))
 		to_beam.visible_message(
-			span_warning("[to_beam] absorbs the spell, remaining unharmed!"),
-			span_userdanger("You absorb the spell, remaining unharmed!"),
+			span_warning("[to_beam] 吸收了法术，安然无恙！"),
+			span_userdanger("你吸收了法术，安然无恙！"),
 		)
 
 	else
-		to_beam.electrocute_act(bolt_energy, "Lightning Bolt", flags = SHOCK_NOGLOVES)
+		to_beam.electrocute_act(bolt_energy, "闪电箭", flags = SHOCK_NOGLOVES)
 
 	// Bounce again! Call our proc recursively to keep the chain going (even if our mob blocked it with antimagic)
 	if(bounces < 1)

@@ -1,24 +1,24 @@
 /obj/item/ammo_casing/shotgun
 	icon = 'modular_skyrat/modules/shotgunrebalance/icons/shotshells.dmi'
-	desc = "A 12 gauge iron slug."
+	desc = "一发12号口径铁制独头弹。"
 	custom_materials = AMMO_MATS_SHOTGUN
 
 // THE BELOW TWO SLUGS ARE NOTED AS ADMINONLY AND HAVE ***EIGHTY*** WOUND BONUS. NOT BARE WOUND BONUS. FLAT WOUND BONUS.
 /obj/item/ammo_casing/shotgun/executioner
-	name = "expanding shotgun slug"
-	desc = "A 12 gauge fragmenting slug purpose-built to annihilate flesh on impact."
+	name = "膨胀独头弹"
+	desc = "一发12号口径破碎独头弹，专为命中时摧毁血肉而设计。"
 	can_be_printed = FALSE // noted as adminonly in code/modules/projectiles/projectile/bullets/shotgun.dm.
 
 /obj/item/ammo_casing/shotgun/pulverizer
-	name = "pulverizer shotgun slug"
-	desc = "A 12 gauge uranium slug purpose-built to break bones on impact."
+	name = "粉碎者独头弹"
+	desc = "一发12号口径铀制独头弹，专为命中时打碎骨骼而设计。"
 	can_be_printed = FALSE // noted as adminonly in code/modules/projectiles/projectile/bullets/shotgun.dm
 
 /obj/item/ammo_casing/shotgun/incendiary
-	name = "incendiary slug"
-	desc = "A 12 gauge magnesium slug meant for \"setting shit on fire and looking cool while you do it\".\
+	name = "燃烧独头弹"
+	desc = "一发12号口径镁制独头弹，专为“帅气地把东西点着”而生。\
 	<br><br>\
-	<i>INCENDIARY: Leaves a trail of fire when shot, sets targets aflame.</i>"
+	<i>燃烧：发射时留下火焰轨迹，并点燃目标。</i>"
 
 /obj/item/ammo_casing/shotgun/ion
 	custom_materials = AMMO_MATS_SHOTGUN_TIDE
@@ -37,39 +37,39 @@
 	custom_materials = AMMO_MATS_SHOTGUN_PLASMA
 
 /obj/item/ammo_casing/shotgun/stunslug
-	name = "taser slug"
-	desc = "A 12 gauge silver slug with electrical microcomponents meant to incapacitate targets."
+	name = "泰瑟独头弹"
+	desc = "一发装有微型电子元件的12号口径银制独头弹，用于使目标失去行动能力。"
 	can_be_printed = FALSE // comment out if you want rocket tag shotgun ammo being printable
 
 /obj/item/ammo_casing/shotgun/meteorslug
-	name = "meteor slug"
-	desc = "A 12 gauge shell rigged with CMC technology which launches a heap of matter with great force when fired.\
+	name = "流星独头弹"
+	desc = "一发采用CMC技术的12号口径弹药，能够以巨大力量射出一团物质。\
 	<br><br>\
-	<i>METEOR: Fires a meteor-like projectile that knocks back movable objects like people and airlocks.</i>"
+	<i>流星：发射流星般的弹体，将人和气闸等可移动物体击退。</i>"
 	can_be_printed = FALSE // techshell. assumed intended balance being a pain to assemble
 
 /obj/item/ammo_casing/shotgun/frag12
-	name = "FRAG-12 slug"
-	desc = "A 12 gauge shell containing high explosives designed for defeating some barriers and light vehicles, disrupting IEDs, or intercepting assistants.\
+	name = "FRAG-12独头弹"
+	desc = "一发装有烈性炸药的12号口径弹药，用于摧毁部分障碍和轻型载具、排除简易爆炸装置，或拦截助理。\
 	<br><br>\
-	<i>HIGH EXPLOSIVE: Explodes on impact.</i>"
+	<i>高爆：命中时爆炸。</i>"
 	can_be_printed = FALSE // techshell. assumed intended balance being a pain to assemble
 
 /obj/item/ammo_casing/shotgun/pulseslug
 	can_be_printed = FALSE // techshell. assumed intended balance being a pain to assemble
 
 /obj/item/ammo_casing/shotgun/incapacitate
-	name = "hornet's nest shell"
-	desc = "A 12 gauge shell filled with some kind of material that excels at incapacitating targets. Contains a lot of pellets, \
-	sacrificing individual pellet strength for sheer stopping power in what's best described as \"spitting distance\".\
+	name = "黄蜂窝霰弹"
+	desc = "一发12号口径弹药，装填了特别适合使目标失能的材料。内含大量弹丸，\
+	牺牲单颗弹丸威力，换来在近到可以“吐口水”的距离内的惊人停止作用。\
 	<br><br>\
-	<i>HORNET'S NEST: Fire an overwhelming amount of projectiles in a single shot.</i>"
+	<i>黄蜂窝：一次射出数量惊人的弹丸。</i>"
 	can_be_printed = FALSE
 
 /obj/item/ammo_casing/shotgun/beehive
-	name = "hornet shell"
-	desc = "A less-lethal 12 gauge shell that fires four pellets capable of bouncing off nearly any surface \
-		and re-aiming themselves toward the nearest target. They will, however, go for <b>any target</b> nearby."
+	name = "黄蜂霰弹"
+	desc = "一发低致命性12号口径弹药，发射四颗能够从几乎任何表面弹开的弹丸，\
+		并自动重新瞄准最近的目标。不过，它们会攻击附近的<b>任何目标</b>。"
 	icon_state = "cnrshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot/beehive
 	pellets = 4
@@ -80,7 +80,7 @@
 	advanced_print_req = TRUE
 
 /obj/projectile/bullet/pellet/shotgun_buckshot/beehive
-	name = "hornet flechette"
+	name = "黄蜂箭形弹"
 	icon = 'modular_skyrat/modules/shotgunrebalance/icons/projectiles.dmi'
 	icon_state = "hornet"
 	damage = 4
@@ -103,8 +103,8 @@
 	homing_inaccuracy_max = 80
 
 /obj/item/ammo_casing/shotgun/antitide
-	name = "stardust shell"
-	desc = "A highly experimental shell filled with nanite electrodes that will embed themselves in soft targets. The electrodes are charged from kinetic movement which means moving targets will get punished more. it also cannot be reflected by martial art"
+	name = "星尘弹"
+	desc = "高度实验性的弹药，内含会嵌入软目标的纳米电极。电极从运动中获取电能，因此目标越动，受到的惩罚越重。它也无法被武术反弹。"
 	icon_state = "lasershell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot/antitide
 	pellets = 1
@@ -115,7 +115,7 @@
 	advanced_print_req = TRUE
 
 /obj/projectile/bullet/pellet/shotgun_buckshot/antitide
-	name = "electrode"
+	name = "电极"
 	icon = 'modular_skyrat/modules/shotgunrebalance/icons/projectiles.dmi'
 	icon_state = "stardust"
 	damage = 15
@@ -147,14 +147,14 @@
 	..()
 
 /obj/item/ammo_casing/shotgun/frangible
-	name = "frangible slug"
-	desc = "A weak anti materiel shell intended for dislodging airlock, breaking down barricades and structures. Not effective against people."
+	name = "易碎独头弹"
+	desc = "一种威力较弱的反器材弹，用于破开气闸、路障和建筑，对人效果不佳。"
 	icon_state = "breacher"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1, /datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT)
 	projectile_type = /obj/projectile/bullet/frangible_slug
 
 /obj/projectile/bullet/frangible_slug
-	name = "frangible slug"
+	name = "易碎独头弹"
 	damage = 15 //I'd kill you if you manage to kill someone with this shit
 	wound_bonus = 30
 	exposed_wound_bonus = 30
@@ -171,13 +171,13 @@
 			damage = 15
 
 /obj/item/ammo_casing/shotgun/hunter
-	name = "hunter slug shell"
-	desc = "A 12 gauge slug shell that fires specially designed slugs that deal extra damage to the local planetary fauna"
+	name = "狩猎独头弹"
+	desc = "一发12号口径独头弹，使用特制弹头，可对当地星球的野生动物造成额外伤害。"
 	icon_state = "huntershell"
 	projectile_type = /obj/projectile/bullet/shotgun_slug/hunter
 
 /obj/projectile/bullet/shotgun_slug/hunter
-	name = "12g hunter slug"
+	name = "12号口径狩猎独头弹"
 	damage = 20
 	range = 12
 	/// How much the damage is multiplied by when we hit a mob with the correct biotype
@@ -200,8 +200,8 @@
 	return ..()
 
 /obj/item/ammo_casing/shotgun/honkshot
-	name = "confetti shell"
-	desc = "A 12 gauge buckshot shell thats been filled to the brim with confetti, yippie!"
+	name = "彩纸弹"
+	desc = "一发装满彩纸的12号口径霰弹，耶！"
 	icon_state = "honkshell"
 	projectile_type = /obj/projectile/bullet/honkshot
 	pellets = 12
@@ -210,7 +210,7 @@
 	harmful = FALSE
 
 /obj/projectile/bullet/honkshot
-	name = "confetti"
+	name = "彩纸"
 	damage = 0
 	sharpness = NONE
 	shrapnel_type = NONE

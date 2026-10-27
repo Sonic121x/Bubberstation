@@ -1,8 +1,8 @@
-#define PREVIEW_PREF_JOB "Job"
-#define PREVIEW_PREF_LOADOUT "Loadout"
-#define PREVIEW_PREF_UNDERWEAR "Underwear"
-#define PREVIEW_PREF_NAKED "Naked"
-#define PREVIEW_PREF_NAKED_AROUSED "Naked - Aroused"
+#define PREVIEW_PREF_JOB "职业装备"
+#define PREVIEW_PREF_LOADOUT "自选装备"
+#define PREVIEW_PREF_UNDERWEAR "内衣"
+#define PREVIEW_PREF_NAKED "裸体"
+#define PREVIEW_PREF_NAKED_AROUSED "裸体 - 兴奋"
 
 /// for tri color prefs: doesn't check type_to_check pref
 #define TRICOLOR_NO_CHECK 0

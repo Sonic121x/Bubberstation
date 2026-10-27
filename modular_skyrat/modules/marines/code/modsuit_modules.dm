@@ -1,10 +1,10 @@
 /obj/item/mod/module/smartgun
-	name = "MOD smartgun module"
-	desc = "A bulky module that attahces to the back of a MODsuit, this \
-			module is comprised of two parts, a holster and the M63A4 \"Smartgun\". \
-			The holster works as storage for a gun that would be otherwise uncarryable, \
-			and the gun itself fires at a blistering rate of fire, capable of suppressing enemies \
-			without hurting teammates thanks to IFF technology."
+	name = "MOD 智能机枪模块"
+	desc = "一个厚重笨大的模块，附着在 MOD 外骨骼背部，这个 \
+			模块由两部分组成：一个枪套，以及 M63A4“智能机枪”。 \
+			枪套可作为存放一把本来无法携带的枪械的容器， \
+			而枪械本身以极快的射速开火，凭借敌我识别技术， \
+			能够在压制敌人的同时不伤及队友。"
 	icon_state = "smartgun"
 	icon = 'modular_skyrat/modules/marines/icons/items/module.dmi'
 	overlay_icon_file = 'modular_skyrat/modules/marines/icons/mobs/mod_modules.dmi'

@@ -1,6 +1,6 @@
 /datum/design/jawsoflife/science
-	name = "Hybrid cutters"
-	desc = "An off-shoot of the jaws of life that lacks the door-opening power"
+	name = "混合剪钳"
+	desc = "救生钳的衍生产品，缺少强行开门的动力。"
 	id = SCIENCE_JAWS_OF_LIFE_DESIGN_ID // added one more requirement since the Jaws of Life are a bit OP
 	build_path = /obj/item/crowbar/power/science
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
@@ -12,8 +12,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/rcd_loaded/robotics_rcd
-	name = "Robotics RCD"
-	desc = "A modified RCD that has less storage than your usual NT RCD is and has less construction options and has lost the ability to deconstruct in favor of being more accessible for synthetic repairs. Reload using metal, glass, or plasteel."
+	name = "机器人维修快速建造装置"
+	desc = "经过改装的快速建造装置，比普通纳米传讯型号的容量更小、建造选项更少，也失去了拆解能力，换来了更便捷的合成人维修功能。可用金属、玻璃或塑钢补充材料。"
 	id = SCIENCE_ROBORCD_DESIGN_ID
 	build_type = PROTOLATHE | AWAY_LATHE
 	transfered_materials = list(
@@ -23,7 +23,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/handdrill/science/New()
-	name = ("Science " + name)
-	desc += " with a science paintjob"
+	name = ("科研型" + name)
+	desc += "，采用科研部门涂装。"
 
 	return ..()

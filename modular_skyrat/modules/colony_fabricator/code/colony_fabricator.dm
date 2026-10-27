@@ -1,8 +1,8 @@
 /obj/machinery/rnd/production/colony_lathe
-	name = "rapid construction fabricator"
-	desc = "These bad boys are seen just about anywhere someone would want or need to build fast, damn the consequences. \
-		That tends to be colonies, especially on dangerous worlds, where the influences of this one machine can be seen \
-		in every bit of architecture."
+	name = "快速建造机"
+	desc = "无论在哪里，只要有人想要或需要快速建造，不顾后果如何，都能见到这些家伙的身影。\
+		这通常就是殖民地，尤其是在危险的星球上；在那里，这台机器的影响\
+		体现在每一处建筑之中。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/machines.dmi'
 	icon_state = "colony_lathe"
 	base_icon_state = "colony_lathe"
@@ -70,7 +70,7 @@
 	var/design_delta = cached_designs.len - previous_design_count
 
 	if(design_delta > 0)
-		say("Received [design_delta] new design[design_delta == 1 ? "" : "s"].")
+		say("收到 [design_delta] 个新设计。")
 		playsound(src, 'sound/machines/beep/twobeep_high.ogg', 50, TRUE)
 
 	update_static_data_for_all_viewers()
@@ -78,7 +78,7 @@
 // Item for carrying the lathe around and building it
 
 /obj/item/flatpacked_machine
-	name = "flat-packed rapid construction fabricator"
+	name = "扁平包装快速建造机"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/packed_machines.dmi'
 	icon_state = "colony_lathe_packed"
 	w_class = WEIGHT_CLASS_BULKY

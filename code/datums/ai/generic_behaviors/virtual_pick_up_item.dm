@@ -26,10 +26,10 @@
 	var/atom/pawn = controller.pawn
 	var/obj/item/held = controller.blackboard[storage_key]
 	if(held?.loc == pawn)
-		pawn.visible_message(span_notice("[pawn] drops [held]."))
+		pawn.visible_message(span_notice("[pawn]放下了[held]。"))
 		held.forceMove(get_turf(pawn))
 		controller.clear_blackboard_key(storage_key)
-	pawn.visible_message(span_notice("[pawn] picks up [target]."))
+	pawn.visible_message(span_notice("[pawn]拿起了[target]。"))
 	target.forceMove(pawn)
 	controller.set_blackboard_key(storage_key, target)
 
@@ -51,9 +51,9 @@
 	var/mob/pawn = controller.pawn
 	var/obj/item/item = controller.blackboard[storage_key]
 	if(QDELETED(item) || item.loc != pawn)
-		pawn.visible_message(span_notice("[pawn] looks around as if [pawn.p_they()] [pawn.p_have()] lost something."))
+		pawn.visible_message(span_notice("[pawn]四处张望，好像丢了什么东西。"))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	pawn.visible_message(span_notice("[pawn] delivers [item] to [target]."))
+	pawn.visible_message(span_notice("[pawn]将[item]送到了[target]处。"))
 	item.forceMove(get_turf(target))
 	controller.clear_blackboard_key(storage_key)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED

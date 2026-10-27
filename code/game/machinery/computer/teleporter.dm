@@ -2,8 +2,8 @@
 #define REGIME_GATE "Gate"
 
 /obj/machinery/computer/teleporter
-	name = "teleporter control console"
-	desc = "Used to control a linked teleportation Hub and Station."
+	name = "传送器控制台"
+	desc = "用于控制已连接的传送枢纽和传送站。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/launchpad")
 	icon_screen = "teleport"
 	icon_keyboard = "teleport_key"
@@ -68,7 +68,7 @@
 	data["power_station"] = power_station ? TRUE : FALSE
 	data["teleporter_hub"] = power_station?.teleporter_hub ? TRUE : FALSE
 	data["regime_set"] = regime_set
-	data["target"] = !target ? "None" : "[get_area(target)] [(regime_set != REGIME_GATE) ? "" : REGIME_TELEPORTER]"
+	data["target"] = !target ? "无" : "[chinese_area_display(get_area_name(target))] [(regime_set != REGIME_GATE) ? "" : "传送器"]"
 	data["calibrating"] = calibrating
 
 	if(power_station?.teleporter_hub?.calibrated || power_station?.teleporter_hub?.accuracy >= 3)
@@ -89,10 +89,10 @@
 		return
 
 	if(!check_hub_connection())
-		say("Error: Unable to detect hub.")
+		say("错误：未检测到传送枢纽。")
 		return
 	if(calibrating)
-		say("Error: Calibration in progress. Stand by.")
+		say("错误：正在校准，请稍候。")
 		return
 
 	switch(action)
@@ -106,13 +106,13 @@
 			. = TRUE
 		if("calibrate")
 			if(!target_ref)
-				say("Error: No target set to calibrate to.")
+				say("错误：未设置校准目标。")
 				return
 			if(power_station.teleporter_hub.calibrated || power_station.teleporter_hub.accuracy >= 3)
-				say("Hub is already calibrated!")
+				say("传送枢纽已经校准！")
 				return
 
-			say("Processing hub calibration to target...")
+			say("正在将传送枢纽校准至目标……")
 			calibrating = TRUE
 			power_station.update_appearance()
 			addtimer(CALLBACK(src, PROC_REF(finish_calibration)), 5 SECONDS * (3 - power_station.teleporter_hub.accuracy)) //Better parts mean faster calibration
@@ -136,9 +136,9 @@
 	calibrating = FALSE
 	if(check_hub_connection())
 		power_station.teleporter_hub.calibrated = TRUE
-		say("Calibration complete.")
+		say("校准完成。")
 	else
-		say("Error: Unable to detect hub.")
+		say("错误：未检测到传送枢纽。")
 	power_station.update_appearance()
 
 /obj/machinery/computer/teleporter/proc/check_hub_connection()
@@ -205,17 +205,17 @@
 	var/list/targets = get_targets()
 
 	if (regime_set == REGIME_TELEPORTER)
-		var/desc = tgui_input_list(usr, "Select a location to lock in", "Locking Computer", sort_list(targets))
+		var/desc = chinese_teleporter_choice(usr, "选择要锁定的位置", "目标锁定计算机", targets)
 		if(isnull(desc) || !user.can_perform_action(src, ALLOW_SILICON_REACH))
 			return
 		set_teleport_target(targets[desc])
 		user.log_message("set the teleporter target to [targets[desc]].]", LOG_GAME)
 	else
 		if (!length(targets))
-			to_chat(user, span_alert("No active connected stations located."))
+			to_chat(user, span_alert("未找到已连接且启用的传送站。"))
 			return
 
-		var/desc = tgui_input_list(usr, "Select a station to lock in", "Locking Computer", sort_list(targets))
+		var/desc = chinese_teleporter_choice(usr, "选择要锁定的传送站", "目标锁定计算机", targets)
 		if(isnull(desc)|| !user.can_perform_action(src, ALLOW_SILICON_REACH))
 			return
 		var/obj/machinery/teleport/station/target_station = targets[desc]
@@ -241,8 +241,8 @@
 #undef REGIME_GATE
 
 /obj/item/circuit_component/teleporter_control_console
-	display_name = "Teleporter Control Console"
-	desc = "Used to control a linked teleportation Hub and Station."
+	display_name = "传送器控制台"
+	desc = "用于控制已连接的传送枢纽和传送站。"
 	circuit_flags = CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	var/datum/port/input/new_target

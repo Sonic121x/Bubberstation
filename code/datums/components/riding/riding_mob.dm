@@ -75,8 +75,8 @@
 	if(. || !consequences)
 		return
 
-	rider.visible_message(span_warning("[rider] falls off of [living_parent]!"), \
-					span_warning("You fall off of [living_parent]!"))
+	rider.visible_message(span_warning("[rider]从[living_parent]身上摔了下来！"), \
+					span_warning("你从[living_parent]身上摔了下来！"))
 	rider.Paralyze(1 SECONDS)
 	rider.Knockdown(4 SECONDS)
 	living_parent.unbuckle_mob(rider)
@@ -115,7 +115,7 @@
 	if(!keycheck(user))
 		if(ispath(keytype, /obj/item))
 			var/obj/item/key = keytype
-			to_chat(user, span_warning("You need a [initial(key.name)] to ride [movable_parent]!"))
+			to_chat(user, span_warning("你需要[initial(key.name)]才能骑乘[movable_parent]！"))
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	var/mob/living/living_parent = parent
 	step(living_parent, direction)
@@ -158,8 +158,8 @@
 	if(!iscyborg(movable_parent) && !isanimal_or_basicmob(movable_parent))
 		return
 	var/turf/target = get_edge_target_turf(movable_parent, movable_parent.dir)
-	rider.visible_message(span_warning("[rider] is thrown clear of [movable_parent]!"), \
-	span_warning("You're thrown clear of [movable_parent]!"))
+	rider.visible_message(span_warning("[rider]被从[movable_parent]身上甩了出去！"), \
+	span_warning("你被从[movable_parent]身上甩了出去！"))
 	rider.throw_at(target, throw_range, throw_speed, movable_parent, gentle = gentle)
 
 /// If we're a cyborg or animal and we spin, we yeet whoever's on us off us
@@ -204,11 +204,11 @@
 		return COMPONENT_RIDDEN_ALLOW_Z_MOVE
 	if(!can_be_driven)
 		if(z_move_flags & ZMOVE_FEEDBACK)
-			to_chat(rider, span_warning("[movable_parent] cannot be driven around. Unbuckle from [movable_parent.p_them()] first."))
+			to_chat(rider, span_warning("你无法操纵[movable_parent]移动。请先解除固定。"))
 		return COMPONENT_RIDDEN_STOP_Z_MOVE
 	if(!ride_check(rider, FALSE))
 		if(z_move_flags & ZMOVE_FEEDBACK)
-			to_chat(rider, span_warning("You're unable to ride [movable_parent] right now!"))
+			to_chat(rider, span_warning("你现在无法骑乘[movable_parent]！"))
 		return COMPONENT_RIDDEN_STOP_Z_MOVE
 	return COMPONENT_RIDDEN_ALLOW_Z_MOVE
 
@@ -249,7 +249,7 @@
 		return
 	ridden.Shake(pixelshiftx = 1, pixelshifty = 0, duration = 1 SECONDS)
 	ridden.spin(spintime = 1 SECONDS, speed = 1)
-	ridden.balloon_alert(rider, "tries to shake you off!")
+	ridden.balloon_alert(rider, "试图把你甩下来！")
 	new /datum/riding_minigame(ridden, rider)
 
 /datum/component/riding/creature/human/RegisterWithParent()
@@ -293,14 +293,14 @@
 		rider.Paralyze(1 SECONDS)
 		rider.Knockdown(4 SECONDS)
 		human_parent.visible_message(
-			span_danger("[rider] topples off of [human_parent] as they both fall to the ground!"),
-			span_warning("You fall to the ground, bringing [rider] with you!"),
-			span_hear("You hear two consecutive thuds."),
+			span_danger("[rider]从[human_parent]身上翻落，两人一起摔到了地上！"),
+			span_warning("你摔到了地上，把[rider]也带倒了！"),
+			span_hear("你听到接连两声闷响。"),
 			COMBAT_MESSAGE_RANGE,
 			ignored_mobs = rider,
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
-		to_chat(rider, span_danger("[human_parent] falls to the ground, bringing you with [human_parent.p_them()]!"))
+		to_chat(rider, span_danger("[human_parent]摔倒在地，把你也带倒了！"))
 
 /datum/component/riding/creature/human/get_rider_offsets_and_layers(pass_index, mob/offsetter)
 	var/mob/living/carbon/human/seat = parent
@@ -382,8 +382,8 @@
 	rider.Paralyze(1 SECONDS)
 	rider.Knockdown(4 SECONDS)
 	rider.visible_message(
-		span_warning("[seat] pushes [rider] off of [seat.p_them()]!"),
-		span_warning("[seat] pushes you off of [seat.p_them()]!"),
+		span_warning("[seat]把[rider]从身上推了下来！"),
+		span_warning("[seat]把你从身上推了下来！"),
 	)
 
 
@@ -398,7 +398,7 @@
 	. = user.usable_hands
 	if(!. && consequences)
 		Unbuckle(user)
-		to_chat(user, span_warning("You can't grab onto [robot_parent] with no hands!"))
+		to_chat(user, span_warning("你没有手，无法抓住[robot_parent]！"))
 
 /datum/component/riding/creature/cyborg/get_rider_offsets_and_layers(pass_index, mob/offsetter)
 	var/mob/living/silicon/robot/robot_parent = parent
@@ -782,7 +782,7 @@
 	var/mob/living/living_parent = parent
 	if(lavaland_equipment_pressure_check(get_turf(living_parent)) || !length(living_parent.buckled_mobs))
 		return
-	living_parent.balloon_alert_to_viewers("freaks out!")
+	living_parent.balloon_alert_to_viewers("惊慌失措！")
 	living_parent.spin(spintime = 2 SECONDS, speed = 1)
 	for(var/mob/living/buckled_mob in living_parent.buckled_mobs)
 		force_dismount(buckled_mob, throw_range = 2, gentle = TRUE)

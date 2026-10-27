@@ -1,6 +1,6 @@
 /obj/item/clothing/under/syndicate
-	name = "tactical turtleneck"
-	desc = "A nondescript and slightly suspicious looking turtleneck with digital camouflage cargo pants."
+	name = "战术高领衫"
+	desc = "一件毫不起眼、又略显可疑的高领衫，配数码迷彩工装裤。"
 	icon_state = "syndicate"
 	inhand_icon_state = "bl_suit"
 	has_sensor = NO_SENSORS
@@ -16,8 +16,8 @@
 	wound = 10
 
 /obj/item/clothing/under/syndicate/skirt
-	name = "tactical skirtleneck"
-	desc = "A nondescript and slightly suspicious looking skirtleneck."
+	name = "战术高领短裙"
+	desc = "一件毫不起眼、又略显可疑的高领短裙。"
 	icon_state = "syndicate_skirt"
 	inhand_icon_state = "bl_suit"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -26,8 +26,8 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/syndicate/bloodred
-	name = "blood-red sneaksuit"
-	desc = "It still counts as stealth if there are no witnesses."
+	name = "血红色潜行服"
+	desc = "只要没有目击者，那依然算潜行。"
 	icon_state = "bloodred_pajamas"
 	inhand_icon_state = "bl_suit"
 	armor_type = /datum/armor/clothing_under/syndicate_bloodred
@@ -50,8 +50,8 @@
 	wound = 10
 
 /obj/item/clothing/under/syndicate/bloodred/sleepytime
-	name = "blood-red pajamas"
-	desc = "Do operatives dream of nuclear sheep?"
+	name = "血红色睡衣"
+	desc = "特工会梦见核绵羊吗？"
 	icon_state = "bloodred_pajamas"
 	inhand_icon_state = "bl_suit"
 	armor_type = /datum/armor/clothing_under/bloodred_sleepytime
@@ -61,8 +61,8 @@
 	acid = 40
 
 /obj/item/clothing/under/syndicate/tacticool
-	name = "tacticool turtleneck"
-	desc = "Just looking at it makes you want to buy an SKS, go into the woods, and -operate-."
+	name = "战术潮高领衫"
+	desc = "光是看着它，你就想买一把 SKS，钻进树林里——展开行动——。"
 	icon_state = "tactifool"
 	inhand_icon_state = "bl_suit"
 	has_sensor = HAS_SENSORS
@@ -75,8 +75,8 @@
 
 /obj/item/clothing/under/syndicate/tacticool/examine(mob/user)
 	. = ..()
-	. += "It has a label that says cleaning this 'genuine' Waffle Corp. product with cleaning solutions other than Grime Liberator telelocational podcrystals will void the warranty."
-	. += "What on earth is a <font color='red'>tele</font>locational pod<font color='red'>crystal</font>?"
+	. += "它有个标签，上面写着：若使用“污垢解放者”传送舱晶体以外的清洁剂清洗这件“正牌”华夫公司产品，将使保修失效。"
+	. += "到底什么是<font color='red'>传送</font>舱<font color='red'>晶体</font>？"
 
 /obj/item/clothing/under/syndicate/tacticool/dye_item(dye_color, dye_key_override)
 	if(dye_color == DYE_SYNDICATE)
@@ -92,8 +92,8 @@
 	new our_jumpsuit(loc)
 
 /obj/item/clothing/under/syndicate/tacticool/skirt
-	name = "tacticool skirtleneck"
-	desc = "Just looking at it makes you want to buy an SKS, go into the woods, and -operate-."
+	name = "战术潮高领短裙"
+	desc = "光是看着它，你就想买一把 SKS，钻进树林里——展开行动——。"
 	icon_state = "tactifool_skirt"
 	inhand_icon_state = "bl_suit"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -102,8 +102,8 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/syndicate/sniper
-	name = "tactical turtleneck suit"
-	desc = "A double seamed tactical turtleneck disguised as a civilian-grade silk suit. Intended for the most formal operator. The collar is really sharp."
+	name = "战术高领套装"
+	desc = "一件双缝线战术高领衫，伪装成民用级丝绸西装。专为最讲究礼仪的特工打造。衣领真的很锋利。"
 	icon_state = "tactical_suit"
 	inhand_icon_state = "bl_suit"
 	can_adjust = FALSE
@@ -111,8 +111,8 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/syndicate/camo
-	name = "camouflage fatigues"
-	desc = "A green military camouflage uniform."
+	name = "迷彩作战服"
+	desc = "一套绿色军用迷彩制服。"
 	icon_state = "camogreen"
 	inhand_icon_state = "g_suit"
 	can_adjust = FALSE
@@ -120,9 +120,9 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/syndicate/cybersun
-	name = "\improper Cybersun businesswear"
-	desc = "This black and orange businesswear appears to be made of some kind of protective lightweight material. \
-		Perfect for hostile takeovers and budget meetings."
+	name = "\improper Cybersun 商务装"
+	desc = "这套黑橙配色的商务装似乎由某种轻质防护材料制成。 \
+		非常适合恶意收购和预算会议。"
 	icon_state = "cybersun_suit"
 	inhand_icon_state = "bl_suit"
 	can_adjust = FALSE
@@ -130,9 +130,9 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/syndicate/floortilecamo
-	name = "floortile camouflage fatigues"
-	desc = "The newest floortile camouflage fatigues used for hallway warfare. \
-		The best breathability, flexibility and comfort. Designed by Camo-J's."
+	name = "地板砖迷彩作战服"
+	desc = "用于走廊战的最新款地板砖迷彩作战服。 \
+		最佳透气性、灵活性与舒适度。由 Camo-J's 设计。"
 	icon_state = "camofloortile"
 	inhand_icon_state = "gy_suit"
 	can_adjust = FALSE
@@ -144,8 +144,8 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, -5) //tacticool
 
 /obj/item/clothing/under/syndicate/soviet
-	name = "Ratnik 5 tracksuit"
-	desc = "Badly translated labels tell you to clean this in Vodka. Great for squatting in."
+	name = "拉特尼克 5 号运动服"
+	desc = "翻译糟糕的标签让你用伏特加清洗它。非常适合蹲着。"
 	icon_state = "trackpants"
 	can_adjust = FALSE
 	supports_variations_flags = NONE
@@ -157,16 +157,16 @@
 	melee = 10
 
 /obj/item/clothing/under/syndicate/combat
-	name = "combat uniform"
-	desc = "With a suit lined with this many pockets, you are ready to operate."
+	name = "作战制服"
+	desc = "配有这么多口袋的制服，你已经准备好展开行动了。"
 	icon_state = "syndicate_combat"
 	can_adjust = FALSE
 	supports_variations_flags = NONE
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/syndicate/rus_army
-	name = "advanced military tracksuit"
-	desc = "Military grade tracksuits for frontline squatting."
+	name = "高级军用运动服"
+	desc = "军用级运动服，专为前线蹲姿而生。"
 	icon_state = "rus_under"
 	can_adjust = FALSE
 	supports_variations_flags = NONE
@@ -178,8 +178,8 @@
 	melee = 5
 
 /obj/item/clothing/under/syndicate/scrubs
-	name = "tactical scrubs"
-	desc = "A deep burgundy set of scrubs, made tactically for tactical reasons."
+	name = "战术手术服"
+	desc = "一套深酒红色手术服，出于战术原因而战术化制作。"
 	icon = 'icons/obj/clothing/under/medical.dmi'
 	worn_icon = 'icons/mob/clothing/under/medical.dmi'
 	icon_state = "scrubswine"
@@ -199,8 +199,8 @@
 	acid = 40
 
 /obj/item/clothing/under/plasmaman/syndicate
-	name = "tacticool envirosuit"
-	desc = "A sinister looking envirosuit, for the boniest of operatives."
+	name = "战术潮环境服"
+	desc = "一件看起来阴森的环境服，为最骨感的特工打造。"
 	icon_state = "syndie_envirosuit"
 	has_sensor = NO_SENSORS
 	resistance_flags = FIRE_PROOF

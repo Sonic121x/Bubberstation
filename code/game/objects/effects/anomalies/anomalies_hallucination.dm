@@ -1,6 +1,6 @@
 
 /obj/effect/anomaly/hallucination
-	name = "hallucination anomaly"
+	name = "幻觉异常体"
 	icon_state = "hallucination"
 	anomaly_core = /obj/item/assembly/signaler/anomaly/hallucination
 	/// Time passed since the last effect, increased by seconds_per_tick of the SSobj
@@ -9,10 +9,10 @@
 	var/release_delay = 5
 	/// Messages sent to people feeling the pulses
 	var/static/list/messages = list(
-		span_warning("You feel your conscious mind fall apart!"),
-		span_warning("Reality warps around you!"),
-		span_warning("Something's whispering around you!"),
-		span_warning("You are going insane!"),
+		span_warning("你感觉自己的意识正在崩溃！"),
+		span_warning("你周围的现实扭曲了！"),
+		span_warning("有什么东西在你周围低语！"),
+		span_warning("你快要疯了！"),
 	)
 	///Do we spawn misleading decoys?
 	var/spawn_decoys = TRUE
@@ -68,25 +68,25 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_ILLUSORY_EFFECT, INNATE_TRAIT)
 	report_text = pick(
-		"[src]'s unstable field is fluctuating along frequency 9999999.99999, code 9999999.99999. No, no, that can't be right?",
-		"It doesn't detect anything. It awaits an input, as if you're pointing it towards nothing at all. What?",
-		"The interface displays [pick("a bad memory from your past", "the frequency numbers in a language you cannot read", "the first 15 digits of Pi", "yourself, from behind, angled at a 3/4ths isometric perspective")]. What the hell?",
-		"Nothing happens?",
-		"It reports that you are a [pick("moron", "idiot", "cretin", "lowlife", "worthless denthead", "gump")]. Huh?",
-		"It tells you to try again, because you're doing it all wrong. What?",
-		"It occurs to you that the anomaly you're scanning isn't actually there.",
-		"It's not working. You activate %TOOL% again. Still broken. You activate %TOOL%. You activate %TOOL%. Why isn't this working??",
-		"Something happens. You can't tell what. The interface on %TOOL% remains blank.",
-		"What are you even trying to accomplish here? Did you really think that was going to work?",
-		"Someone behind you whispers the frequency code to you, but you can't quite hear them. The interface on %TOOL% remains blank.",
-		"For a brief moment, you see yourself traversing a frozen forest, before snapping back to reality. The interface on %TOOL% remains blank.",
-		"Nothing interesting happens. Are you sure you're actually using it on anything?",
-		"For a moment you can feel your skin falling off, then blink as the sensation vanishes. What the hell did that mean?",
-		"The interface reports that you are a complete failure, and have screwed everything up again. Great work.",
-		"You realize that the formatting of this message is completely wrong, and get confused. Now why would that be?",
-		"%TOOL% stares back at you. It looks dissapointed, its screen practically saying 'You missed the anomaly, you dolt. There's nothing there!'",
-		"Nothing. Weird, maybe %TOOL% must be broken or something?",
-		"You activate %TOOL%. You activate %TOOL%. You activate %TOOL%. You activate %TOOL%. You activate %TOOL%. You activate %TOOL%. You activate %TOOL%. Why isn't it working??",
+		"[src]的不稳定场正以频率 9999999.99999 波动，代码为 9999999.99999。不，不对，这怎么可能？",
+		"它什么也没检测到，还在等待输入，仿佛你正对着空无一物的地方。什么？",
+		"屏幕上显示着[pick("你过去的一段痛苦回忆", "用你看不懂的语言写出的频率数字", "圆周率的前十五位数字", "以四分之三等距视角从背后看去的你自己")]。这是什么鬼？",
+		"什么也没发生？",
+		"它报告说你是个[pick("蠢货", "白痴", "笨蛋", "人渣", "一无是处的呆瓜", "傻子")]。啊？",
+		"它告诉你再试一次，因为你的操作全错了。什么？",
+		"你突然意识到，你正在扫描的异常体其实根本不存在。",
+		"它没反应。你再次启动%TOOL%。还是坏的。你启动%TOOL%。你启动%TOOL%。为什么它就是不工作？？",
+		"发生了什么事。你却说不上来。%TOOL%的屏幕仍然一片空白。",
+		"你究竟想在这里干什么？你真的以为这样有用吗？",
+		"有人在你身后低声说出频率代码，可你听不清。%TOOL%的屏幕仍然一片空白。",
+		"短短一瞬间，你看见自己正穿行于冰封的森林，随后又猛然回到现实。%TOOL%的屏幕仍然一片空白。",
+		"什么有意思的事也没发生。你确定自己真的在用它扫描什么东西吗？",
+		"有那么一瞬间，你感觉自己的皮肤正在脱落；眨眼间，这种感觉又消失了。这到底是什么意思？",
+		"屏幕报告说，你是个彻头彻尾的失败者，又把一切搞砸了。干得漂亮。",
+		"你意识到这条消息的格式完全不对，感到一头雾水。这又是为什么呢？",
+		"%TOOL%回望着你，似乎很失望。屏幕简直就在说：‘你没对准异常体，蠢货。那里什么都没有！’",
+		"毫无反应。奇怪，也许%TOOL%坏了，或者是别的什么原因？",
+		"你启动%TOOL%。你启动%TOOL%。你启动%TOOL%。你启动%TOOL%。你启动%TOOL%。你启动%TOOL%。你启动%TOOL%。为什么它就是不工作？？",
 	)
 
 /obj/effect/anomaly/hallucination/decoy/anomalyEffect(seconds_per_tick)
@@ -96,7 +96,7 @@
 #endif
 
 /obj/effect/anomaly/hallucination/decoy/analyzer_act(mob/living/user, obj/item/analyzer/tool)
-	to_chat(user, span_notice("You activate [tool]. [replacetext(report_text, "%TOOL%", "[tool]")]"))
+	to_chat(user, span_notice("你启动了[tool]。[replacetext(report_text, "%TOOL%", "[tool]")]"))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/effect/anomaly/hallucination/decoy/detonate()

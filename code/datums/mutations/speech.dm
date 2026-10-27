@@ -4,23 +4,23 @@
 
 
 /datum/mutation/nervousness
-	name = "Nervousness"
-	desc = "The subject gains a nervous stutter."
+	name = "紧张"
+	desc = "受试者会因紧张而口吃。"
 	instability = NEGATIVE_STABILITY_NONE
 	quality = MINOR_NEGATIVE
-	text_gain_indication = span_danger("You feel nervous.")
+	text_gain_indication = span_danger("你感到紧张。")
 
 /datum/mutation/nervousness/on_life(seconds_per_tick)
 	if(SPT_PROB(5, seconds_per_tick))
 		owner.set_stutter_if_lower(20 SECONDS)
 
 /datum/mutation/wacky
-	name = "Wacky"
-	desc = "The subject not only becomes a clown, but instead the entire circus."
+	name = "滑稽"
+	desc = "受试者不只是变成了小丑，简直成了整座马戏团。"
 	instability = NEGATIVE_STABILITY_NONE
 	quality = MINOR_NEGATIVE
-	text_gain_indication = span_sans(span_notice("You feel an off sensation in your voicebox."))
-	text_lose_indication = span_notice("The off sensation passes.")
+	text_gain_indication = span_sans(span_notice("你的喉头感觉有些异样。"))
+	text_lose_indication = span_notice("异样的感觉消失了。")
 
 /datum/mutation/wacky/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
@@ -39,11 +39,11 @@
 	speech_args[SPEECH_SPANS] |= SPAN_SANS
 
 /datum/mutation/heckacious
-	name = "Heckacious Larincks"
-	desc = "duge what is WISH your words man..........."
+	name = "魔性喉咙"
+	desc = "锅们你说的这都什莫玩意儿啊…………"
 	quality = MINOR_NEGATIVE
-	text_gain_indication = span_sans("aw SHIT man. your throat feels like FUCKASS.")
-	text_lose_indication = span_notice("The demonic entity possessing your larynx has finally released its grasp.")
+	text_gain_indication = span_sans("噢，操，锅们。你的嗓子感觉糟透腚了。")
+	text_lose_indication = span_notice("附在你喉咙里的恶魔终于松手了。")
 	locked = TRUE
 
 /datum/mutation/heckacious/on_acquiring(mob/living/carbon/human/owner)
@@ -134,12 +134,12 @@
 	speech_args[SPEECH_MESSAGE] = message
 
 /datum/mutation/mute
-	name = "Mute"
-	desc = "The subject's vocal section of the brain is completely inhibited."
+	name = "失语"
+	desc = "受试者大脑中控制发声的区域被完全抑制。"
 	instability = NEGATIVE_STABILITY_MAJOR
 	quality = NEGATIVE
-	text_gain_indication = span_danger("You feel unable to express yourself at all.")
-	text_lose_indication = span_danger("You feel able to speak freely again.")
+	text_gain_indication = span_danger("你感觉自己完全无法开口表达了。")
+	text_lose_indication = span_danger("你感觉自己又能自由说话了。")
 
 /datum/mutation/mute/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
@@ -153,12 +153,12 @@
 	REMOVE_TRAIT(owner, TRAIT_MUTE, GENETIC_MUTATION)
 
 /datum/mutation/unintelligible
-	name = "Unintelligible"
-	desc = "The subject's vocal section of the brain is partially inhibited, distorting speech."
+	name = "言语不清"
+	desc = "受试者大脑中控制发声的区域被部分抑制，导致言语失真。"
 	instability = NEGATIVE_STABILITY_MODERATE
 	quality = NEGATIVE
-	text_gain_indication = span_danger("You can't seem to form any coherent thoughts!")
-	text_lose_indication = span_danger("Your mind feels more clear.")
+	text_gain_indication = span_danger("你似乎无法形成任何连贯的想法！")
+	text_lose_indication = span_danger("你的思绪清晰了许多。")
 
 /datum/mutation/unintelligible/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
@@ -172,40 +172,40 @@
 	REMOVE_TRAIT(owner, TRAIT_UNINTELLIGIBLE_SPEECH, GENETIC_MUTATION)
 
 /datum/mutation/swedish
-	name = "Swedish"
-	desc = "A horrible mutation originating from the distant past, thought to be eradicated after the incident in 2037. \
-		The subject's speech becomes difficult to understand, and is often mistaken for a foreign language."
+	name = "瑞典腔"
+	desc = "一种源于遥远过去的可怕突变，人们曾以为它在2037年的事件后已经绝迹。\
+		受试者的言语变得难以理解，常被误认为是在说外语。"
 	instability = NEGATIVE_STABILITY_NONE
 	quality = MINOR_NEGATIVE
-	text_gain_indication = span_notice("You feel Swedish, however that works.")
-	text_lose_indication = span_notice("The feeling of Swedishness passes.")
+	text_gain_indication = span_notice("你感觉自己很瑞典，虽然不知道这究竟是什么意思。")
+	text_lose_indication = span_notice("那种瑞典的感觉消失了。")
 	var/static/list/language_mutilation = list("w" = "v", "j" = "y", "bo" = "bjo", "a" = list("å","ä","æ","a"), "o" = list("ö","ø","o"))
 
 /datum/mutation/swedish/New(datum/mutation/copymut)
 	. = ..()
-	AddComponent(/datum/component/speechmod, replacements = language_mutilation, end_string = list("",", bork",", bork, bork"), end_string_chance = 30)
+	AddComponent(/datum/component/speechmod, replacements = language_mutilation, end_string = list("","，啵克","，啵克，啵克"), end_string_chance = 30)
 
 /datum/mutation/chav
-	name = "Chav"
-	desc = "An unknown mutation that causes the subject to speak in a very specific dialect. \
-		The subject's speech becomes difficult to understand, and is often mistaken for a foreign language."
+	name = "街头混混腔"
+	desc = "一种未知突变，使受试者说起某种非常特别的方言。\
+		受试者的言语变得难以理解，常被误认为是在说外语。"
 	instability = NEGATIVE_STABILITY_NONE
 	quality = MINOR_NEGATIVE
-	text_gain_indication = span_notice("Ye feel like a reet prat like, innit?")
-	text_lose_indication = span_notice("You no longer feel like being rude and sassy.")
+	text_gain_indication = span_notice("你丫觉得自个儿像个二货，是不？")
+	text_lose_indication = span_notice("你不再想出言不逊、阴阳怪气了。")
 
 /datum/mutation/chav/New(datum/mutation/copymut)
 	. = ..()
-	AddComponent(/datum/component/speechmod, replacements = strings("chav_replacement.json", "chav"), end_string = ", mate", end_string_chance = 30)
+	AddComponent(/datum/component/speechmod, replacements = strings("chav_replacement.json", "chav"), end_string = "，哥们", end_string_chance = 30)
 
 /datum/mutation/elvis
-	name = "Elvis"
-	desc = "A terrifying mutation named after its 'patient-zero'. \
-		The subject begins to speak in strange rhythms, and often breaks into dance."
+	name = "猫王"
+	desc = "一种以其“零号病人”命名的可怕突变。\
+		受试者说话开始带有奇怪的节奏，还常常突然跳起舞来。"
 	instability = NEGATIVE_STABILITY_NONE
 	quality = MINOR_NEGATIVE
-	text_gain_indication = span_notice("You feel pretty good, honeydoll.")
-	text_lose_indication = span_notice("You feel a little less conversation would be great.")
+	text_gain_indication = span_notice("你感觉好极了，甜心宝贝。")
+	text_lose_indication = span_notice("你觉得少说两句也不错。")
 
 /datum/mutation/elvis/New(datum/mutation/copymut)
 	. = ..()
@@ -215,19 +215,19 @@
 	switch(pick(1,2))
 		if(1)
 			if(SPT_PROB(7.5, seconds_per_tick))
-				var/list/dancetypes = list("swinging", "fancy", "stylish", "20'th century", "jivin'", "rock and roller", "cool", "salacious", "bashing", "smashing")
+				var/list/dancetypes = list("摇摆的", "花哨的", "时髦的", "二十世纪风格的", "牛仔舞式的", "摇滚风格的", "酷炫的", "撩人的", "劲爆的", "惊艳的")
 				var/dancemoves = pick(dancetypes)
-				owner.visible_message("<b>[owner]</b> busts out some [dancemoves] moves!")
+				owner.visible_message("<b>[owner]</b>突然跳起了[dancemoves]舞步！")
 		if(2)
 			if(SPT_PROB(7.5, seconds_per_tick))
-				owner.visible_message("<b>[owner]</b> [pick("jiggles their hips", "rotates their hips", "gyrates their hips", "taps their foot", "dances to an imaginary song", "jiggles their legs", "snaps their fingers")]!")
+				owner.visible_message("<b>[owner]</b>[pick("抖动着臀部", "扭转着胯部", "摇摆着臀部", "用脚打着拍子", "随着想象中的歌曲起舞", "抖动着双腿", "打起了响指")]！")
 
 /datum/mutation/stoner
-	name = "Stoner"
-	desc = "The subject's intelligence levels drop significantly, causing them to speak in words that only others on a similar level can understand."
+	name = "嗨客"
+	desc = "受试者的智力大幅下降，说的话只有处于同样状态的人才能理解。"
 	quality = NEGATIVE
-	text_gain_indication = span_notice("You feel...totally chill, man!")
-	text_lose_indication = span_notice("You feel like you have a better sense of time.")
+	text_gain_indication = span_notice("你感觉……超放松，老兄！")
+	text_lose_indication = span_notice("你感觉自己的时间感恢复了些。")
 
 /datum/mutation/stoner/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
@@ -242,13 +242,13 @@
 	owner.remove_blocked_language(subtypesof(/datum/language) - /datum/language/beachbum, source = LANGUAGE_STONER)
 
 /datum/mutation/medieval
-	name = "Medieval"
-	desc = "A horrible mutation originating from the distant past, thought to have once been a common gene in all of old Terran \"Europe\". \
-		The subject gains a verbal tick that causes them to speak very particularly."
+	name = "中世纪腔"
+	desc = "一种源于遥远过去的可怕突变，据信曾是旧地球“欧洲”各地常见的基因。\
+		受试者会染上某种口癖，说话风格变得十分特别。"
 	instability = NEGATIVE_STABILITY_NONE
 	quality = MINOR_NEGATIVE
-	text_gain_indication = span_notice("You feel like seeking the holy grail!")
-	text_lose_indication = span_notice("You no longer feel like seeking anything.")
+	text_gain_indication = span_notice("你想去寻找圣杯！")
+	text_lose_indication = span_notice("你不再想寻找任何东西了。")
 
 /datum/mutation/medieval/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
@@ -285,13 +285,13 @@
 		speech_args[SPEECH_MESSAGE] = message
 
 /datum/mutation/piglatin
-	name = "Pig Latin"
-	desc = "Historians say five centuries ago, humanity spoke entirely in this mystical language. \
-		The subject becomes forced to speak in said language, which is often difficult to understand."
+	name = "猪拉丁语"
+	desc = "历史学家声称，五个世纪前全人类都使用这种神秘语言。\
+		受试者被迫使用这种通常难以理解的语言说话。"
 	instability = NEGATIVE_STABILITY_NONE
 	quality = MINOR_NEGATIVE
-	text_gain_indication = span_notice("Omethingsay eelsfay offyay.")
-	text_lose_indication = span_notice("The off sensation passes.")
+	text_gain_indication = span_notice("么什感觉不对劲哎。")
+	text_lose_indication = span_notice("异样的感觉消失了。")
 
 /datum/mutation/piglatin/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()

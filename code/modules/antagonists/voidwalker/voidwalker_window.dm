@@ -1,6 +1,6 @@
 /obj/structure/window/fulltile/voidwalker
-	name = "void-smeared window"
-	desc = "This window darkens the view of the other side, to the point that nothing but the glow of the stars can be made out. Nothing reflects in the pane."
+	name = "虚空涂抹的窗户"
+	desc = "这扇窗使另一侧的景象变得昏暗，除了星光的微芒之外，什么也分辨不出。窗玻璃上没有任何倒影。"
 	max_integrity = 75 //Doesn't have the damage deflection of a reinforced window
 	/// Particle effect for making the window look spooky.
 	var/obj/effect/abstract/particle_holder/spooky_particles

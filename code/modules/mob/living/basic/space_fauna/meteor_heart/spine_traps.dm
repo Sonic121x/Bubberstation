@@ -1,7 +1,7 @@
 /// Marks several areas with thrusting spines which damage and slow people
 /datum/action/cooldown/mob_cooldown/spine_traps
-	name = "thrusting spines"
-	desc = "Mark several nearby areas with thrusting spines, which will spring up when disturbed."
+	name = "突刺尖刺"
+	desc = "在附近数处标出突刺尖刺，一旦被惊动就会弹起。"
 	button_icon = 'icons/mob/simple/meteor_heart.dmi'
 	button_icon_state = "spikes_stabbing"
 	cooldown_time = 15 SECONDS
@@ -49,7 +49,7 @@
 /obj/effect/temp_visual/thrusting_spines
 	icon = 'icons/mob/simple/meteor_heart.dmi'
 	icon_state = "spikes_idle"
-	desc = "Sharp spines lying in wait in the ground, you probably don't want to walk on those."
+	desc = "锋利的尖刺潜伏在地里，你大概不想踩上去。"
 	duration = 10 SECONDS
 	/// If this will trigger a trap when entered
 	var/active = FALSE

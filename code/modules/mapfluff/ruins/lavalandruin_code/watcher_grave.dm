@@ -1,14 +1,14 @@
 /obj/effect/mob_spawn/corpse/goliath/pierced
-	corpse_description = "Seems to have been pierced through the heart by a Watcher spike."
-	naive_corpse_description = "It's got a pretty big boo-boo, might need one of the large plasters."
+	corpse_description = "似乎被守望者的尖刺刺穿了心脏。"
+	naive_corpse_description = "它受了好大的伤，可能需要一张特大号创可贴。"
 
 /obj/effect/mob_spawn/corpse/watcher/goliath_chewed
-	corpse_description = "Prior to its death, it was badly mangled by the jaws of a Goliath."
-	naive_corpse_description = "It's all tuckered out after playing rough with a Goliath."
+	corpse_description = "死前它被歌利亚的巨颚严重撕碎。"
+	naive_corpse_description = "它跟歌利亚玩得太疯，累坏了。"
 
 /obj/effect/mob_spawn/corpse/watcher/crushed
-	corpse_description = "Crushed by a rockslide, it seemed to have been scraping frantically at the rocks even as it perished."
-	naive_corpse_description = "All of those rocks probably don't make a comfortable blanket."
+	corpse_description = "它被落石压死，似乎直到断气前都还在拼命刨抓岩石。"
+	naive_corpse_description = "这么多石头当被子大概不太舒服。"
 
 
 #define WATCHER_EGG_LIVELY_MOD 0.75
@@ -16,11 +16,11 @@
 
 /// Egg which hatches into a helpful pet. Or you can eat it if you want.
 /obj/item/food/egg/watcher
-	name = "watcher egg"
-	desc = "A lonely egg still pulsing with life, somehow untouched by the corruption of the Necropolis."
+	name = "守望者蛋"
+	desc = "一枚孤独的蛋，仍在随着生命搏动，不知怎的没有受到死灵之都腐化的侵染。"
 	icon_state = "egg_watcher"
 	chick_throw_prob = 100
-	tastes = list("ocular fluid" = 6, "loneliness" = 1)
+	tastes = list("眼球液" = 6, "孤独" = 1)
 	preserved_food = TRUE
 	/// How far have we moved?
 	var/steps_travelled = 0
@@ -41,15 +41,15 @@
 	new /obj/effect/spawner/random/lavaland_mob/watcher(spawn_turf)
 
 /obj/item/food/egg/watcher/examine(mob/user)
-	return ..() + span_notice("<i>Watch it more closely to see how it is doing...</i>")
+	return ..() + span_notice("<i>更仔细地观察它，看看它的状况……</i>")
 
 /obj/item/food/egg/watcher/examine_more(mob/user)
 	. = ..()
 	if (steps_travelled < (steps_to_hatch * WATCHER_EGG_ACTIVE_MOD))
-		return . + span_notice("Something stirs listlessly inside.")
+		return . + span_notice("里面有东西在无精打采地蠕动。")
 	if (steps_travelled < steps_to_hatch * WATCHER_EGG_LIVELY_MOD)
-		return . + span_notice("Something is moving actively inside.")
-	return . + span_boldnotice("It's jiggling wildly, it's about to hatch!")
+		return . + span_notice("里面有东西在活跃地移动。")
+	return . + span_boldnotice("它剧烈地晃动着，就要孵化了！")
 
 /// Called when we are moved, whether inside an inventory or by ourself somehow
 /obj/item/food/egg/watcher/proc/on_stepped(atom/movable/egg, atom/mover, atom/old_loc, direction)
@@ -62,7 +62,7 @@
 		return
 	if (steps_travelled < steps_to_hatch)
 		return
-	visible_message(span_boldnotice("[src] splits and unfurls into a baby Watcher!"))
+	visible_message(span_boldnotice("[src] 裂开了，舒展成一只幼年守望者！"))
 	playsound(new_loc, 'sound/effects/splat.ogg', 50, TRUE)
 	new /obj/effect/decal/cleanable/greenglow(new_loc)
 	new /obj/item/watcher_hatchling(new_loc)
@@ -91,8 +91,8 @@
 
 /// A cute pet who will occasionally attack lavaland mobs for you
 /obj/item/watcher_hatchling
-	name = "watcher hatchling"
-	desc = "A newly born watcher, apparently free of the Necropolis' corruption. Perhaps one of the last."
+	name = "幼年守望者"
+	desc = "一只刚出生的守望者，似乎未受死灵之都腐化的影响。也许是最后几只之一。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "watcher_baby"
 	w_class = WEIGHT_CLASS_SMALL
@@ -139,7 +139,7 @@
 
 /// Orbiting visual which shoots at mining mobs
 /obj/effect/watcher_orbiter
-	name = "watcher hatchling"
+	name = "幼年守望者"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "watcher_baby"
 	layer = EDGED_TURF_LAYER // Don't render under lightbulbs
@@ -247,19 +247,19 @@
 /// We must guard this corpse
 /obj/effect/watcher_orbiter/proc/on_parent_died(mob/living/parent)
 	SIGNAL_HANDLER
-	visible_message(span_notice("[src] emits a piteous keening in mourning of [parent]!"))
+	visible_message(span_notice("[src] 发出凄厉的哀鸣，悼念 [parent]！"))
 	fire_delay /= on_death_multiplier
 
 /// Exit hyperactive mode
 /obj/effect/watcher_orbiter/proc/on_parent_revived(mob/living/parent)
 	SIGNAL_HANDLER
-	visible_message(span_notice("[src] chirps happily as [parent] suddenly gasps for breath!"))
+	visible_message(span_notice("[parent] 突然大口喘起气来，[src] 欢快地鸣叫着！"))
 	fire_delay *= on_death_multiplier
 
 
 /// Beam fired by a baby watcher, doesn't actually do less damage than its parent
 /obj/projectile/baby_watcher_blast
-	name = "hatchling beam"
+	name = "幼崽光束"
 	icon_state = "ice_2"
 	damage = 10
 	damage_type = BRUTE // Mining mobs don't take a lot of burn damage so we'll pretend

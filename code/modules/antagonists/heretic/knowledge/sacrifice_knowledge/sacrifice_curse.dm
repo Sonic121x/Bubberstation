@@ -45,7 +45,7 @@
 	SIGNAL_HANDLER
 	if (attacker != owner)
 		return
-	log_combat(owner, the_curser, "attacked", addition = "and lost some organs because they had previously been sacrificed by them.")
+	log_combat(owner, the_curser, "attacked", addition = "并因为此前曾被对方献祭而失去了部分器官。")
 	experience_the_consequences()
 
 /// If we are attacked by the guy who cursed us, that's also no good
@@ -53,7 +53,7 @@
 	SIGNAL_HANDLER
 	if (attacker != the_curser)
 		return
-	log_combat(the_curser, owner, "attacked", addition = "and as they had previously sacrificed them, removed some of their organs.")
+	log_combat(the_curser, owner, "attacked", addition = "并且由于此前曾献祭过对方，摘除了其部分器官。")
 	experience_the_consequences()
 
 /// Experience something you may not enjoy which may also significantly shorten your lifespan
@@ -79,9 +79,9 @@
 	var/obj/item/organ/removing_organ = pick(removable_organs)
 
 	if (carbon_owner.vomit(vomit_flags = VOMIT_CATEGORY_BLOOD))
-		carbon_owner.visible_message(span_boldwarning("[carbon_owner] vomits out [carbon_owner.p_their()] [removing_organ]"))
+		carbon_owner.visible_message(span_boldwarning("[carbon_owner]把[removing_organ]吐了出来"))
 	else
-		carbon_owner.visible_message(span_boldwarning("[carbon_owner]'s [removing_organ] rips itself out of `[carbon_owner.p_their()] chest!"))
+		carbon_owner.visible_message(span_boldwarning("[carbon_owner]的[removing_organ]从胸腔中撕裂而出！"))
 
 	removing_organ.Remove(carbon_owner)
 

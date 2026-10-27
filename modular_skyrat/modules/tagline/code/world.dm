@@ -22,10 +22,10 @@
 	if(SSmapping.current_map)
 		features += "[SSmapping.current_map.map_name]"
 
-	features += "~[players] player[players == 1 ? "": "s"]"
+	features += "约[players]名玩家"
 
 	if (!host && hostedby)
-		features += "hosted by <b>[hostedby]</b>"
+		features += "由<b>[hostedby]</b>托管"
 
 	if(length(features))
 		new_status += "\[[jointext(features, ", ")]"

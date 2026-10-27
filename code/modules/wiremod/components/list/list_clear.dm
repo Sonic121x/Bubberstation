@@ -4,9 +4,9 @@
  * Clears an element to a list.
  */
 /obj/item/circuit_component/variable/list/listclear
-	display_name = "List Clear"
-	desc = "Clears a list variable."
-	category = "List"
+	display_name = "列表清空"
+	desc = "清空列表变量。"
+	category = "列表"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 

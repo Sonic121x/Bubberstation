@@ -1,9 +1,9 @@
 /datum/action/cooldown/mob_cooldown/wrap
-	name = "Wrap"
-	desc = "Wrap something or someone in a cocoon. \
-		If it's a human or similar species, you'll also consume them. \
-		Consuming a wrapped victim can empower your egg-laying abilities. \
-		Activate this ability and then click on an adjacent target to begin wrapping them."
+	name = "包裹"
+	desc = "将某物或某人包裹进茧里。\
+		如果目标是人类或类似种族，你还会将其吞噬。\
+		吞噬被包裹的受害者可以强化你的产卵能力。\
+		激活此能力后，点击相邻的目标即可开始将其包裹。"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	button_icon = 'icons/mob/actions/actions_animal.dmi'
@@ -30,7 +30,7 @@
 		return FALSE
 	if(DOING_INTERACTION(owner, DOAFTER_SOURCE_SPIDER))
 		if (feedback)
-			owner.balloon_alert(owner, "busy!")
+			owner.balloon_alert(owner, "正忙！")
 		return FALSE
 	return TRUE
 
@@ -39,7 +39,7 @@
 	if(!.)
 		return
 
-	on_who.balloon_alert(on_who, "prepared to wrap")
+	on_who.balloon_alert(on_who, "准备包裹")
 	button_icon_state = "wrap_1"
 	build_all_button_icons()
 
@@ -49,13 +49,13 @@
 		return
 
 	if (refund_cooldown)
-		on_who.balloon_alert(on_who, "wrap cancelled")
+		on_who.balloon_alert(on_who, "已取消包裹")
 	button_icon_state = "wrap_0"
 	build_all_button_icons()
 
 /datum/action/cooldown/mob_cooldown/wrap/Activate(atom/to_wrap)
 	if(!owner.Adjacent(to_wrap))
-		owner.balloon_alert(owner, "must be closer!")
+		owner.balloon_alert(owner, "必须再靠近一点！")
 		return FALSE
 
 	if(!ismovable(to_wrap) || to_wrap == owner)
@@ -63,13 +63,13 @@
 	if(isliving(to_wrap))
 		var/mob/living/living_target = to_wrap
 		if(living_target.mob_biotypes & MOB_SPECIAL)
-			owner.balloon_alert(owner, "can't wrap, too strong!")
+			owner.balloon_alert(owner, "无法包裹，它太强了！")
 			return FALSE
 		if(living_target.mob_biotypes & MOB_SPIRIT)
-			owner.balloon_alert(owner, "can't wrap ghosts!")
+			owner.balloon_alert(owner, "无法包裹幽灵！")
 			return FALSE
 		if(isspider(living_target))
-			owner.balloon_alert(owner, "can't wrap spiders!")
+			owner.balloon_alert(owner, "无法包裹蜘蛛！")
 			return FALSE
 	var/atom/movable/target_movable = to_wrap
 	if(target_movable.anchored)
@@ -81,15 +81,15 @@
 
 /datum/action/cooldown/mob_cooldown/wrap/proc/cocoon(atom/movable/to_wrap)
 	if(isliving(to_wrap))
-		to_chat(to_wrap, span_userdanger("[owner] begins to secrete a sticky substance around you."))
+		to_chat(to_wrap, span_userdanger("[owner] 开始在你周围分泌一种黏稠的物质。"))
 	owner.visible_message(
-		span_notice("[owner] begins to secrete a sticky substance around [to_wrap]."),
-		span_notice("You begin wrapping [to_wrap] into a cocoon."),
+		span_notice("[owner] 开始在 [to_wrap] 周围分泌一种黏稠的物质。"),
+		span_notice("你开始把 [to_wrap] 包裹进茧里。"),
 	)
 	if(do_after(owner, wrap_time, target = to_wrap, interaction_key = DOAFTER_SOURCE_SPIDER))
 		wrap_target(to_wrap)
 	else
-		owner.balloon_alert(owner, "interrupted!")
+		owner.balloon_alert(owner, "被打断了！")
 
 /datum/action/cooldown/mob_cooldown/wrap/proc/wrap_target(mob/living/to_wrap)
 	var/obj/structure/spider/cocoon/casing = new(to_wrap.loc)
@@ -103,15 +103,15 @@
 				egg_power.charges++
 				egg_power.build_all_button_icons()
 				owner.visible_message(
-					span_danger("[owner] sticks a proboscis into [living_wrapped] and sucks a viscous substance out."),
-					span_notice("You suck the nutriment out of [living_wrapped], feeding you enough to lay a cluster of enriched eggs."),
+					span_danger("[owner] 把口器刺入 [living_wrapped]，吸出了一股黏稠的物质。"),
+					span_notice("你从 [living_wrapped] 体内吸走了营养物质，足以让你产下一簇富集卵。"),
 				)
 			ADD_TRAIT(living_wrapped, TRAIT_SPIDER_CONSUMED, TRAIT_GENERIC)
-			living_wrapped.investigate_log("has been killed by being wrapped in a cocoon.", INVESTIGATE_DEATHS)
+			living_wrapped.investigate_log("因被裹进茧中而死亡。", INVESTIGATE_DEATHS)
 			living_wrapped.death() //you just ate them, they're dead.
-			log_combat(owner, living_wrapped, "spider cocooned")
+			log_combat(owner, living_wrapped, "用蜘蛛茧包裹了")
 		else
-			to_chat(owner, span_warning("[living_wrapped] is not edible!"))
+			to_chat(owner, span_warning("[living_wrapped] 不能食用！"))
 
 	to_wrap.forceMove(casing)
 	if(isliving(to_wrap)&& (to_wrap.mob_biotypes & MOB_HUMANOID))

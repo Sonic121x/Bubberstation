@@ -1,7 +1,7 @@
 /obj/item/fish/starfish/chrystarfish
-	name = "chrystarfish"
+	name = "晶星鱼"
 	fish_id = "chrystarfish"
-	desc = "This is what happens when a cosmostarfish sneaks into the bluespace compartment of a hyperspace engine. Very pointy and damaging - leading cause of spaceship explosions in 2554."
+	desc = "当一条宇宙海星偷偷钻进超空间引擎的蓝空间舱时，就会发生这种事。非常尖锐且极具破坏性——2554 年飞船爆炸的首要原因。"
 	icon = 'icons/obj/aquarium/rift.dmi'
 	dedicated_in_aquarium_icon = 'icons/obj/aquarium/rift.dmi'
 	icon_state = "chrystarfish"
@@ -29,7 +29,7 @@
 	food = /datum/reagent/bluespace
 	feeding_frequency = 10 MINUTES
 	max_integrity = 100
-	death_text = "%SRC splinters apart into shards!"
+	death_text = "%SRC 碎裂成碎片！"
 	random_case_rarity = FISH_RARITY_GOOD_LUCK_FINDING_THIS
 	fillet_type = /obj/item/stack/ore/bluespace_crystal
 	num_fillets = 3
@@ -58,7 +58,7 @@
 
 /datum/embedding/chrystarfish/jostle_effects()
 	do_teleport(owner, get_turf(owner), 3, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
-	owner.visible_message(span_danger("[owner] teleports as [parent] jostles inside of [owner.p_them()]!"))
+	owner.visible_message(span_danger("[owner] 因 [parent] 在其体内晃动而传送走了！"))
 
 /obj/item/fish/starfish/chrystarfish/set_status(new_status, silent)
 	. = ..()
@@ -79,14 +79,14 @@
 /obj/item/fish/starfish/chrystarfish/flinch_on_eat(mob/living/eater, mob/living/feeder)
 	if(status != FISH_ALIVE)
 		return
-	to_chat(feeder, span_warning("[src] slips out of the spacetime in pain!"))
+	to_chat(feeder, span_warning("[src] 因疼痛滑出了时空！"))
 
 	var/tp_range = 6 * clamp(weight/average_weight, 3, 9) // usually 6, plus or minus fish weight
 	// teleports itself if on a turf otherwise its container - whatever it is
 	do_teleport(isturf(loc) ? src : loc, get_turf(feeder), tp_range, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 
 /obj/item/fish/starfish/chrystarfish/suicide_act(mob/living/user)
-	visible_message(span_suicide("[user] swallows [src] whole! It looks like they're trying to commit suicide!"))
+	visible_message(span_suicide("[user] 把 [src] 整个吞了下去！看来他们想自杀！"))
 	forceMove(user)
 	// *everything*
 	for(var/obj/thing in user.get_contents())
@@ -103,9 +103,9 @@
 #define PATIENCE_UNCOMFY "PATIENCE_UNCOMFY"
 
 /obj/item/fish/dolphish
-	name = "walro-dolphish"
+	name = "海象豚鱼"
 	fish_id = "walro-dolphish"
-	desc = "Strange bloodthirsty apex predator from beyond. A powerful weapon, but it -hates- being held."
+	desc = "来自异界的嗜血奇异顶级掠食者。一件强大的武器，但它极其——讨厌——被握住。"
 	icon = 'icons/obj/aquarium/wide.dmi'
 	dedicated_in_aquarium_icon = 'icons/obj/aquarium/rift.dmi'
 	icon_state = "dolphish"
@@ -226,7 +226,7 @@
 	switch(patience)
 		if(0)
 			// No check, we always want sharky to bite jerky on 0
-			moc.visible_message(span_bolddanger("[src] bites directly into [moc] and squirms away from [moc.p_their()] grasp!"), span_userdanger("[src] sinks its fangs into you!!"))
+			moc.visible_message(span_bolddanger("[src] 直接咬进 [moc]，并从其抓握中扭脱逃走！"), span_userdanger("[src] 把獠牙扎进了你体内！！"))
 			moc.apply_damage(force, BRUTE, moc.get_active_hand(), wound_bonus = wound_bonus, exposed_wound_bonus = exposed_wound_bonus, sharpness = sharpness, attacking_item = src)
 			forceMove(moc.drop_location())
 			moc.painful_scream()
@@ -234,18 +234,18 @@
 			playsound(src, hitsound, 45)
 		if(1 to 10)
 			// No check, final warning as they struggle, also funny.
-			visible_message(span_bolddanger("[src] thrashes against [moc]'s grasp!"))
+			visible_message(span_bolddanger("[src] 在 [moc] 的抓握中剧烈挣扎！"))
 			moc.shake_up_animation()
 		if(10 to 15)
 			if(last_effect == PATIENCE_FLINCH)
 				return
-			visible_message(span_danger("[src] flinches away from [moc]!"))
+			visible_message(span_danger("[src] 从 [moc] 身边缩了回去！"))
 			moc.shake_up_animation()
 			last_effect = PATIENCE_FLINCH
 		if(15 to 20)
 			if(last_effect == PATIENCE_UNCOMFY)
 				return
-			visible_message(span_notice("[src] seems uncomfortable in [moc]'s grasp."))
+			visible_message(span_notice("[src] 在 [moc] 的抓握中似乎很不舒服。"))
 			last_effect = PATIENCE_UNCOMFY
 
 	return
@@ -255,8 +255,8 @@
 
 /obj/item/fish/dolphish/pet_fish(mob/living/user, in_aquarium)
 	user.visible_message(
-		span_warning("[user] tries to pet [src], but it sinks its fangs into [user.p_their()] hand!"),
-		span_warning("You try to pet [src], but it sinks its fangs into your hand!"),
+		span_warning("[user] 想抚摸 [src]，但它把獠牙扎进了抚摸它的手里！"),
+		span_warning("你想抚摸 [src]，但它把獠牙扎进了你的手里！"),
 		vision_distance = DEFAULT_MESSAGE_RANGE - 3,
 		)
 	user.apply_damage(force, BRUTE, user.get_active_hand(), wound_bonus = wound_bonus, exposed_wound_bonus = exposed_wound_bonus, sharpness = sharpness, attacking_item = src)
@@ -265,9 +265,9 @@
 	user.painful_scream()
 
 /obj/item/fish/flumpulus
-	name = "flumpulus"
+	name = "弗伦普卢斯"
 	fish_id = "flumpulus"
-	desc = "You can hardly even guess as to how this possibly counts as a fish. Inexplicably, you get the feeling that it could serve as a fantastic way to cushion a fall."
+	desc = "你几乎猜不出这东西凭什么能算作一条鱼。莫名其妙地，你有一种感觉：它很适合用来缓冲坠落。"
 	icon = 'icons/obj/aquarium/rift.dmi'
 	dedicated_in_aquarium_icon = 'icons/obj/aquarium/rift.dmi'
 	icon_state = "flumpulus"
@@ -305,7 +305,7 @@
 	beauty = FISH_BEAUTY_UGLY
 
 /obj/item/fish/flumpulus/suicide_act(mob/living/user)
-	visible_message(span_suicide("[user] swallows [src] whole! It looks like they're trying to commit suicide!"))
+	visible_message(span_suicide("[user] 把 [src] 整个吞了下去！看来他们想自杀！"))
 	forceMove(user)
 	. = MANUAL_SUICIDE
 	for(var/i in 1 to rand(5, 15))
@@ -318,13 +318,13 @@
 	new_eyes = new new_eyes(user)
 	new_eyes.Insert(user)
 	playsound(user, 'sound/effects/cartoon_sfx/cartoon_pop.ogg', 50, TRUE)
-	user.visible_message("[user]'s [eyes ? eyes : "eye holes"] suddenly sprout stalks and turn into [new_eyes]!")
+	user.visible_message("[user] 的 [eyes ? eyes : "眼窝"] 突然长出柄来，变成了 [new_eyes]！")
 	ASYNC
 		user.emote("scream")
 		eyes.throw_at(get_edge_target_turf(user, pick(GLOB.alldirs)), rand(1, 10), rand(1, 10))
 		sleep(5 SECONDS)
 		if(!QDELETED(eyes))
-			eyes.visible_message(span_danger("[eyes] rapidly turn to dust."))
+			eyes.visible_message(span_danger("[eyes] 迅速化为尘土。"))
 			eyes.dust()
 
 /obj/item/fish/flumpulus/get_base_edible_reagents_to_add()
@@ -339,7 +339,7 @@
 		return .
 
 	for(var/mob/living/fallen_mob in falling_movables)
-		visible_message(span_danger("[src] flattens like a pancake as [fallen_mob] lands on top of it!"))
+		visible_message(span_danger("当 [fallen_mob] 落在 [src] 上方时，[src] 像煎饼一样被压扁了！"))
 		damage_fish(max_integrity * integrity_failure * 0.9) // very "durable"
 		AddElement(/datum/element/squish, 15 SECONDS)
 		fallen_mob.Paralyze(0.5 SECONDS)
@@ -348,11 +348,11 @@
 	return FALL_INTERCEPTED | FALL_NO_MESSAGE
 
 /obj/item/fish/gullion
-	name = "gullion"
+	name = "古利恩"
 	fish_id = "gullion"
-	desc = "This crystalline fish is actually one of only two known silicon-based lifeforms. \
-		It avoids death via oxygen-silicate reactions by organically shielding its exterior, allowing the thick scales to calcify into quartz and diamond, at the cost of rendering the fish functionally blind. \
-		How xenomorphs manage is a complete mystery bordering on bullshit."
+	desc = "这种结晶鱼实际上是已知仅有的两种硅基生命体之一。\
+		它通过有机地包覆外壳来避免氧-硅反应导致的死亡，使厚重的鳞片钙化为石英与钻石，代价是让这条鱼在功能上完全失明。\
+		异形究竟是怎么做到的，完全是个近乎扯淡的谜。"
 	icon = 'icons/obj/aquarium/rift.dmi'
 	dedicated_in_aquarium_icon = 'icons/obj/aquarium/rift.dmi'
 	icon_state = "gullion"
@@ -369,7 +369,7 @@
 	food = /datum/reagent/silicon
 	feeding_frequency = 30 SECONDS
 	max_integrity = 320
-	death_text = "%SRC calcifies."
+	death_text = "%SRC 钙化了。"
 	random_case_rarity = FISH_RARITY_GOOD_LUCK_FINDING_THIS
 	fillet_type = /obj/item/stack/sheet/mineral/diamond
 	num_fillets = 2
@@ -393,17 +393,17 @@
 	max_pressure = WARNING_HIGH_PRESSURE
 
 /obj/item/fish/gullion/suicide_act(mob/living/user)
-	visible_message(span_suicide("[user] swallows [src] whole! It looks like they're trying to commit suicide!"))
+	visible_message(span_suicide("[user] 把 [src] 整个吞了下去！看来他们想自杀！"))
 	forceMove(user)
 	var/datum/gas_mixture/environment = user.loc.return_air()
 	var/oxygen_in_air = locate(/datum/gas/oxygen) in environment.moles
 	if(!oxygen_in_air || (status == FISH_DEAD))
-		visible_message(span_suicide("[user] chokes and dies! (Wait, from the fish or from lack of air?)"))
+		visible_message(span_suicide("[user] 窒息而死了！（等等，是因为鱼还是因为缺氧？）"))
 		return OXYLOSS
 
 	user.petrify(statue_timer = INFINITY)
 	user.death()
-	visible_message(span_suicide("[user]'s skin turns into quartz upon contact with the oxygen in the air!'"))
+	visible_message(span_suicide("[user] 的皮肤一接触空气中的氧气就变成了石英！"))
 	qdel(src)
 	return MANUAL_SUICIDE
 
@@ -411,9 +411,9 @@
 // This thing is a plague - throws itself around and envenoms those it hits.
 // Worse, it's immune to the environment and revives either way.
 /obj/item/fish/mossglob
-	name = "mossglob"
+	name = "苔藓团"
 	fish_id = "mossglob"
-	desc = "This dreaded, malicious, and nearly unkillable glob of moss is rumoured to be nature's revenge against fishermen."
+	desc = "这团可憎、恶毒、几乎杀不死的苔藓，据说是大自然对渔夫的报复。"
 	icon = 'icons/obj/aquarium/rift.dmi'
 	dedicated_in_aquarium_icon = 'icons/obj/aquarium/rift.dmi'
 	icon_state = "mossglob"
@@ -433,7 +433,7 @@
 
 	max_integrity = 750
 	integrity_failure = 0.33
-	death_text = "%SRC decomposes."
+	death_text = "%SRC 腐烂分解了。"
 	random_case_rarity = FISH_RARITY_NOPE
 	// hand-tuned to be a your worst enemy
 	fish_traits = list(
@@ -469,12 +469,12 @@
 		AddElement(/datum/element/haunted, COLOR_GREEN)
 
 /obj/item/fish/mossglob/suicide_act(mob/living/user)
-	visible_message(span_suicide("[user] sticks [user.p_their()] arm deep into [src]! It looks like they're trying to offer themselves to it!"))
+	visible_message(span_suicide("[user] 把自己的手臂深深插进 [src] 里！看来是想把自己献给这东西！"))
 	user.drop_everything()
 	set_status(FISH_ALIVE)
 	transform = transform.Scale(1.15, 1.15)
 	update_size_and_weight(new_size = size * 1.15, new_weight = weight * 1.15)
-	visible_message(span_suicide("[user] is absorbed into [src]!"))
+	visible_message(span_suicide("[user] 被 [src] 吸收了！"))
 	objectify(user, src)
 	return MANUAL_SUICIDE_NONLETHAL
 
@@ -505,10 +505,10 @@
 // Babbelfish are psychic 'predators' that don't physically attack their prey, but emit a psychic aura that kills them, eating their corpses.
 // When they die they emit a horrendous wail that deafens and debilitates people nearby - let alone fish.
 /obj/item/fish/babbelfish
-	name = "babbelfish"
+	name = "巴别鱼"
 	fish_id = "babbelfish"
-	desc = "Babbelfish are both visually -and- psychically unsettling - their psychic wails damage the minds of those nearby. The effect is negligible on humans, but deadly for fish. \
-		It is said that splitting one in two and inserting the pieces into each ear unlocks your psychic potential."
+	desc = "巴别鱼在外观上——以及——在心灵上都令人不安：它们的心灵哀嚎会损伤附近者的心智。这对人类影响甚微，但对鱼类却是致命的。\
+		据说把一条巴别鱼一分为二、将两半分别塞进两只耳朵，就能开启你的心灵潜能。"
 	icon = 'icons/obj/aquarium/rift.dmi'
 	dedicated_in_aquarium_icon = 'icons/obj/aquarium/rift.dmi'
 	icon_state = "babbelfish"
@@ -522,7 +522,7 @@
 	sprite_width = 11
 	sprite_height = 13
 
-	death_text = span_big(span_alertalien("%SRC emits a horrendous wailing as it perishes!"))
+	death_text = span_big(span_alertalien("%SRC 在死去时发出可怕的哀嚎！"))
 	random_case_rarity = FISH_RARITY_NOPE
 	max_integrity = 500
 	average_size = 30
@@ -545,16 +545,16 @@
 /obj/item/fish/babbelfish/examine_more(mob/user)
 	. = ..()
 	. += span_smallnoticeital(
-		"“Sorry, you <i>speak Anglish</i>, how is that possible?\n\
-		“I speak many languages,” the pile of octopuses replied. It was hard to get a handle on where it was speaking from, or how, and that was with me using vibration magic to check. “Those are babel fish in front of you. They're very rare, and available for a good trade.”\n\
-		“Babel fish,” I said, pointing down at the tank with the bright yellow fish. “Meaning … fish capable of letting you hear any language?” That still wouldn't have explained how the octopus pile spoke Anglish.\n\
-		“Ah, no, my apologies, I'm afraid not,” they replied, wiggling some tentacles. “These fish, if put into your ear, will make everything another person says sound like gibberish.”\n\
-		“Ah,” I replied. “Babble fish. And if two people with babble fish in their ears talk to each other, they're suddenly mutually intelligible?”\n\
-		The octopus pile swayed from side to side. “No.”\n\
-		“I don't know your business,” replied the octopus pile. “Why <i>do</i> you want them?”\n\
-		I looked down at the fish. “Uh,” I said. “I guess … it would help to keep me from hearing things I didn't want to hear?”\n\
-		They burst into applause, which in this case was a bunch of tentacles wetly slapping against equally wet flesh. “Very good! I hadn't thought of that.”\n\
-		“But then why,” I began, then thought better of it. “Alright, I''ll buy one. <i>But</i>, you need to explain to me how you speak Anglish.”")
+		"“抱歉，你<i>会说盎格鲁语</i>，这怎么可能？\n\
+		“我会说很多语言，”那堆章鱼答道。很难弄清它究竟从哪里发声、又是如何发声的，而且这还是在用振动魔法探查之后。“你面前那些是巴别鱼。它们非常稀有，可用作一笔好交易。”\n\
+		“巴别鱼，”我说着，指向那缸亮黄色的鱼。“意思是……能让你听懂任何语言的鱼？”这仍然无法解释那堆章鱼怎么会说盎格鲁语。\n\
+		“啊，不，抱歉，恐怕不是，”它们答道，扭动着几条触手。“这些鱼如果塞进你的耳朵，会让别人说的每句话听起来都像胡言乱语。”\n\
+		“啊，”我答道。“胡言乱语鱼。那么如果两个耳朵里塞着胡言乱语鱼的人互相交谈，他们突然就能互相听懂了？”\n\
+		那堆章鱼左右摇晃。“不能。”\n\
+		“我不打听你的事，”那堆章鱼答道。“你<i>到底</i>为什么想要它们？”\n\
+		我低头看着鱼。“呃，”我说。“我猜……它能帮我听不到那些我不想听到的东西？”\n\
+		它们鼓起掌来——在这里，那不过是一堆触手湿漉漉地拍打同样湿漉漉的肉体。“很好！我之前没想到这一点。”\n\
+		“但那么为什么，”我开口，随后又改了主意。“好吧，我买一条。<i>但是</i>，你得向我解释你是怎么说出盎格鲁语的。”")
 
 /**
  * In the suicide:
@@ -568,9 +568,9 @@
 /obj/item/fish/babbelfish/suicide_act(mob/living/user)
 	if(status == FISH_DEAD)
 		if(moron_inside)
-			visible_message(span_suicide("[user] puts [src] against their lips, but [src] is already full!"))
+			visible_message(span_suicide("[user] 把 [src] 凑到唇边，但 [src] 里面已经满了！"))
 			return SHAME
-		visible_message(span_suicide("[user] puts [src] against their lips, but [src]'s psychic afterimage sucks [user.p_them()] inward!"))
+		visible_message(span_suicide("[user] 把 [src] 凑到唇边，但 [src] 的心灵残影把 [user] 吸了进去！"))
 		user.drop_everything()
 		objectify(user, src)
 		user.fully_replace_character_name(null, name) // fish's name
@@ -580,11 +580,11 @@
 		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(check_loc))
 		return MANUAL_SUICIDE_NONLETHAL // in case they somehow break out
 
-	visible_message(span_suicide("[user] puts [src] against their lips! It looks like they're preparing to say something!"))
-	var/psychic_speech = tgui_input_text(user, message = "Say something!", title = "What are your last words?", timeout = 15 SECONDS)
+	visible_message(span_suicide("[user] 把 [src] 凑到唇边！看来他们准备说点什么！"))
+	var/psychic_speech = tgui_input_text(user, message = "说点什么！", title = "你的遗言是什么？", timeout = 15 SECONDS)
 	if(!psychic_speech || !locate(src) in user.get_contents())
-		user.say("Err, umm... uhh... erm...", forced = "blustering like a moron due to babbelfish suicide")
-		visible_message(span_suicide("[user] dies from shame!"))
+		user.say("呃，嗯……唔……呃……", forced = "blustering like a moron due to babbelfish suicide")
+		visible_message(span_suicide("[user] 羞愧而死！"))
 		return OXYLOSS
 
 	voice_of_god(psychic_speech, user, list("big", "alertalien"), base_multiplier = 5, include_speaker = TRUE, forced = TRUE, ignore_spam = TRUE)
@@ -628,12 +628,12 @@
  * This is punishment for neglecting your catches.
  */
 /obj/item/fish/babbelfish/proc/psy_wail()
-	manual_emote("wails!")
+	manual_emote("发出哀嚎！")
 	playsound(src, 'sound/mobs/non-humanoids/fish/fish_psyblast.ogg', 100)
 	var/list/mob/living/mobs_in_range = get_hearers_in_range(7, src)
 	for(var/mob/living/screeched in mobs_in_range)
 		if(screeched.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 1))
-			to_chat(screeched, span_notice("You resist the psychic wail!"))
+			to_chat(screeched, span_notice("你抵抗住了心灵哀嚎！"))
 			continue
 		var/power = 1
 		if(HAS_TRAIT(screeched, TRAIT_DEAF)) // bit weaker if deaf. but its still psychic
@@ -664,7 +664,7 @@
 		fishie.set_status(FISH_DEAD)
 		affected++
 	if(affected)
-		visible_message(span_bolddanger("[src]'s wail kills [affected] fish nearby!")) // m-m-m-m-m-MONSTER KILL
+		visible_message(span_bolddanger("[src] 的哀嚎杀死了附近 [affected] 条鱼！")) // m-m-m-m-m-MONSTER KILL
 
 /obj/item/fish/babbelfish/attack_hand(mob/living/user, list/modifiers)
 
@@ -672,10 +672,10 @@
 		return ..()
 
 	if((user.usable_hands < 2) && !HAS_TRAIT(user, TRAIT_STRENGTH))
-		to_chat(user, span_notice("[src] is too dense to twist apart with only one hand."))
+		to_chat(user, span_notice("[src] 太致密了，单手无法把它拧开。"))
 		return
 
-	to_chat(user, span_danger("You start pulling and twisting [src], trying to split it down the middle..."))
+	to_chat(user, span_danger("你开始拉扯并扭转 [src]，试图把它从中间掰开……"))
 	if(!do_after(user, 5 SECONDS, src))
 		return
 
@@ -693,18 +693,18 @@
  * All this to be a curator, this is silly.
 */
 /obj/item/organ/ears/babbelfish
-	name = "split babbelfish halves"
+	name = "掰开的巴别鱼两半"
 	icon_state = "babbearfish"
-	desc = "Both halves of a babbelfish after being twisted apart. The legends claim inserting these can unlock your psychic potential. It probably wasn't worth hearing that wail, though."
+	desc = "一条巴别鱼被掰开后的两半。传说塞入耳中即可开启你的心灵潜能。不过，为此听到那声哀嚎大概并不值得。"
 	organ_traits = list(TRAIT_XRAY_HEARING, TRAIT_GOOD_HEARING)
 
 	healing_factor = STANDARD_ORGAN_HEALING * 5
 	decay_factor = 0
 
-	low_threshold_passed = span_noticealien("Psychic whispers make it a bit difficult to hear sometimes..")
-	now_failing = span_noticealien("Psychic noise is overcrowding your senses!")
-	now_fixed = span_noticealien("The psychic noise starts to fade.")
-	low_threshold_cleared = span_noticealien("The whispers leave you alone.")
+	low_threshold_passed = span_noticealien("心灵低语有时会让人有点听不清……")
+	now_failing = span_noticealien("心灵的噪音正充斥着你的感官！")
+	now_fixed = span_noticealien("心灵的噪音开始消退。")
+	low_threshold_cleared = span_noticealien("低语声放过了你。")
 
 	bang_protect = EAR_PROTECTION_VACUUM
 	damage_multiplier = 0.1
@@ -729,7 +729,7 @@
 
 /obj/item/organ/ears/babbelfish/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_They %PRONOUN_have weird, deep-rooted obsidian tubes sticking out of where their ears should be.")
+	AddElement(/datum/element/noticable_organ, "%PRONOUN_They %PRONOUN_have 奇异的、深植的黑曜石管从耳朵原本的位置伸出来。")
 	babbel_overlay = new()
 	removal_holder = new(src)
 
@@ -751,15 +751,15 @@
 	. = ..()
 	var/obj/item/organ/ears/ears = target_mob.get_organ_slot(ORGAN_SLOT_EARS)
 	if(!ears)
-		to_chat(user, span_notice("[target_mob == user ? "You don't have" : target_mob + "has no"] ears to shove [src] into!"))
+		to_chat(user, span_notice("[target_mob == user ? "你没有" : target_mob + "没有"]耳朵可以把 [src] 塞进去！"))
 		return
 
-	to_chat(user, span_danger("You start shoving [src] into [target_mob == user ? "your" : target_mob + "'s"] ears. Probably a bad idea."))
+	to_chat(user, span_danger("你开始把 [src] 塞进 [target_mob == user ? "你的" : target_mob + "的"] 耳朵里。这大概不是个好主意。"))
 	if(!do_after(user, 2.5 SECONDS * (target_mob == user ? 1 : 3), src))
 		return
 
 	user.apply_damage(25, BRUTE, user.get_bodypart(ears.zone), attacking_item = src)
-	to_chat(user, span_notice("As you're shoving them in, the [src] take on a life of their own and brutishly crawl right into [target_mob == user ? "your" : target_mob + "'s"] ears, taking their place entirely while maiming [target_mob == user ? "your" : target_mob.p_their()]  [ears.zone]!"))
+	to_chat(user, span_notice("就在你往里塞的时候，[src] 忽然像有了自己的生命，粗暴地爬进 [target_mob == user ? "你的" : target_mob + "的"] 耳朵，完全取代了它们，同时重创了 [target_mob == user ? "你的" : "对方的"] [chinese_body_zone_display(ears.zone)]！"))
 	playsound(user, 'sound/effects/magic/demon_consume.ogg', vol = 100, falloff_exponent = 2, vary = TRUE)
 	// bad moodlet
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
@@ -777,7 +777,7 @@
 	)
 
 	if(HAS_MIND_TRAIT(organ_owner, TRAIT_TOWER_OF_BABEL))
-		to_chat(organ_owner, span_noticealien("You don't feel that much different this time. Looks like your brain has attuned to the [src]'s effect."))
+		to_chat(organ_owner, span_noticealien("这次你感觉没太大不同。看来你的大脑已经适应了 [src] 的效果。"))
 		return
 
 	if(!removal_holder)
@@ -790,18 +790,18 @@
 			organ_owner.remove_all_languages(source = LANGUAGE_ALL)
 			//but speak everything
 			organ_owner.grant_all_languages(language_flags = SPOKEN_LANGUAGE, grant_omnitongue = FALSE, source = LANGUAGE_BABEL)
-			to_chat(organ_owner, span_noticealien("You feel like you've been given the first half of a cosmic puzzle!"))
+			to_chat(organ_owner, span_noticealien("你感觉自己被赋予了宇宙谜题的前一半！"))
 		if(46 to 90)
 			// Can speak nothing
 			organ_owner.remove_all_languages(source = LANGUAGE_ALL)
 			// but understand everything
 			organ_owner.grant_all_languages(language_flags = UNDERSTOOD_LANGUAGE, grant_omnitongue = FALSE, source = LANGUAGE_BABEL)
-			to_chat(organ_owner, span_noticealien("You feel like you've been given the second half of a cosmic puzzle!"))
+			to_chat(organ_owner, span_noticealien("你感觉自己被赋予了宇宙谜题的后一半！"))
 		if(91 to 100)
 			// jackpot!
 			organ_owner.grant_all_languages(language_flags = ALL, grant_omnitongue = TRUE, source = LANGUAGE_BABEL)
-			to_chat(organ_owner, span_noticealien("You feel like you've been given both halves of a cosmic puzzle!"))
-			to_chat(organ_owner, span_boldnicegreen("So <i>that's</i> what they said to you that one time..."))
+			to_chat(organ_owner, span_noticealien("你感觉自己被赋予了宇宙谜题的两半！"))
+			to_chat(organ_owner, span_boldnicegreen("所以<i>那</i>就是他们那次对你说的话……"))
 
 	if(organ_owner.mind)
 		ADD_TRAIT(organ_owner.mind, TRAIT_TOWER_OF_BABEL, MAGIC_TRAIT) // only one roll per mind
@@ -812,14 +812,14 @@
 	// Reset
 	organ_owner.remove_all_languages(source = LANGUAGE_ALL)
 	organ_owner.copy_languages(removal_holder)
-	to_chat(organ_owner, span_notice("You feel significantly more mundane."))
+	to_chat(organ_owner, span_notice("你觉得自己平凡了不少。"))
 	QDEL_NULL(removal_holder)
 	QDEL_NULL(bound_component)
 
 /obj/item/organ/ears/babbelfish/proc/on_drain_magic(mob/user)
-	to_chat(user, span_noticealien("Your [src] pop as they protect your mind from psychic phenomena!"))
+	to_chat(user, span_noticealien("你的 [src] 在保护你的心智免受心灵现象侵害时爆开了！"))
 	adjust_temporary_deafness(40 SECONDS)
 
 /obj/item/organ/ears/babbelfish/proc/on_expire(mob/user)
-	to_chat(user, span_noticealien("Your [src] suddenly burst apart!"))
+	to_chat(user, span_noticealien("你的 [src] 突然爆裂开来！"))
 	apply_organ_damage(maxHealth, maxHealth)

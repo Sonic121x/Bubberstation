@@ -113,13 +113,13 @@
 	canvas.generated_icon = icon
 	canvas.icon_generated = TRUE
 	canvas.finalized = TRUE
-	canvas.name = "painting - [title]"
+	canvas.name = "画作 - [title]"
 	///this is a copy of something that is already in the database- it should not be able to be saved.
 	canvas.no_save = TRUE
 	canvas.update_icon()
 
 SUBSYSTEM_DEF(persistent_paintings)
-	name = "Persistent Paintings"
+	name = "持久化画作"
 	ss_flags = SS_NO_FIRE
 	dependencies = list(
 		/datum/controller/subsystem/persistence,
@@ -242,7 +242,7 @@ SUBSYSTEM_DEF(persistent_paintings)
 		current_data["version"] = 3
 		var/old_title = current_data["title"]
 		var/new_title = reject_bad_name(old_title, allow_numbers = TRUE, ascii_only = FALSE, strict = TRUE, cap_after_symbols = FALSE)
-		current_data["title"] = new_title || "Illegibly Titled Artwork"
+		current_data["title"] = new_title || "标题无法辨认的画作"
 
 	return current_data
 
@@ -271,9 +271,9 @@ SUBSYSTEM_DEF(persistent_paintings)
 			var/height = painting_icon.Height()
 			var/list/new_data = list()
 			new_data["md5"] = old_data["md5"]
-			new_data["title"] = old_data["title"] || "Untitled Artwork"
+			new_data["title"] = old_data["title"] || "无题画作"
 			new_data["creator_ckey"] = old_data["ckey"] || ""
-			new_data["creator_name"] = "Anonymous"
+			new_data["creator_name"] = "匿名"
 			new_data["creation_date"] = time2text(world.realtime, "DDD MMM DD hh:mm:ss YYYY", TIMEZONE_UTC) // Could use creation/modified file helpers in rustg
 			new_data["creation_round_id"] = GLOB.round_id
 			new_data["tags"] = list(category,"Migrated from version 0")
@@ -282,7 +282,7 @@ SUBSYSTEM_DEF(persistent_paintings)
 			new_data["credit_value"] = 0
 			new_data["width"] = width
 			new_data["height"] = height
-			new_data["medium"] = "Spraypaint on canvas" //Let's go with most common tool.
+			new_data["medium"] = "布面喷漆" //Let's go with most common tool.
 			data += list(new_data)
 	result["paintings"] = data
 	//We're going to save this immidiately this is non-recoverable operation

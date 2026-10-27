@@ -1,6 +1,6 @@
 /mob/living/basic/bot/mulebot
-	name = "\improper MULEbot"
-	desc = "A Multiple Utility Load Effector bot."
+	name = "\improper 骡子货运机器人"
+	desc = "一台多用途载货执行机器人。"
 	icon = 'icons/mob/silicon/aibots.dmi'
 	icon_state = "mulebot0"
 	base_icon_state = "mulebot"
@@ -34,8 +34,8 @@
 	path_image_color = "#7F5200"
 	hud_type = /datum/hud/living/mulebot
 
-	hackables = "obstacle detection circuits"
-	possessed_message = "You are a MULEbot! Do your best to make sure that packages get to their destination!"
+	hackables = "障碍物探测电路"
+	possessed_message = "你是一台骡子货运机器人！尽你所能确保包裹送达目的地！"
 	ai_controller = /datum/ai_controller/basic_controller/bot/mulebot
 
 	/// unique identifier in case there are multiple mulebots.
@@ -79,8 +79,8 @@
 
 	set_id(suffix || assign_random_name())
 	suffix = null
-	if(name == "\improper MULEbot")
-		name = "\improper MULEbot [id]"
+	if(name == "\improper 骡子货运机器人")
+		name = "\improper 骡子货运机器人 [id]"
 	set_home(get_turf(src))
 	ai_controller.update_able_to_run()
 	update_appearance()
@@ -111,12 +111,12 @@
 	. = ..()
 	if(bot_access_flags & BOT_COVER_MAINTS_OPEN)
 		if(cell)
-			. += span_notice("It has \a [cell] installed.")
-			. += span_info("You can use a <b>crowbar</b> to remove it.")
+			. += span_notice("它里面安装着 \a [cell]。")
+			. += span_info("你可以用<b>撬棍</b>把它取出来。")
 		else
-			. += span_notice("It has an empty compartment where a <b>power cell</b> can be installed.")
+			. += span_notice("它有一个空槽位，可以安装<b>电池</b>。")
 	if(load) //observer check is so we don't show the name of the ghost that's sitting on it to prevent metagaming who's ded.
-		. += span_notice("\A [isobserver(load) ? "ghostly figure" : load] is on its load platform.")
+		. += span_notice("\A [isobserver(load) ? "幽灵般的身影" : load] 正停在它的载货平台上。")
 
 /mob/living/basic/bot/mulebot/get_cell()
 	return cell
@@ -132,11 +132,11 @@
 /mob/living/basic/bot/mulebot/turn_on(mob/user)
 	if(bot_access_flags & BOT_COVER_MAINTS_OPEN)
 		if(user)
-			to_chat(user, span_warning("[src]'s maintenance panel is open!"))
+			to_chat(user, span_warning("[src] 的维护面板还开着！"))
 		return FALSE
 	if(!has_power())
 		if(user)
-			to_chat(user, span_warning("[src] has no power!"))
+			to_chat(user, span_warning("[src] 没有电力！"))
 		return FALSE
 	return ..()
 
@@ -175,16 +175,16 @@
 /mob/living/basic/bot/mulebot/proc/buzz(type)
 	switch(type)
 		if(MULEBOT_MOOD_SIGH)
-			audible_message(span_hear("[src] makes a sighing buzz."))
+			audible_message(span_hear("[src] 发出一声叹息般的嗡鸣。"))
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 		if(MULEBOT_MOOD_ANNOYED)
-			audible_message(span_hear("[src] makes an annoyed buzzing sound."))
+			audible_message(span_hear("[src] 发出烦躁的嗡鸣声。"))
 			playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, FALSE)
 		if(MULEBOT_MOOD_DELIGHT)
-			audible_message(span_hear("[src] makes a delighted ping!"))
+			audible_message(span_hear("[src] 发出愉悦的提示音！"))
 			playsound(src, 'sound/machines/ping.ogg', 50, FALSE)
 		if(MULEBOT_MOOD_CHIME)
-			audible_message(span_hear("[src] makes a chiming sound!"))
+			audible_message(span_hear("[src] 发出清脆的鸣响！"))
 			playsound(src, 'sound/machines/chime.ogg', 50, FALSE)
 	flick("[base_icon_state]1", src)
 

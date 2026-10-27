@@ -40,8 +40,8 @@
 * Comes with a large number of visual customization options for coders who with to add new variants.
 **/
 /obj/item/reagent_containers/cup/jerrycan
-	name = "plastic jerrycan"
-	desc = "A voluminous container made from the finest HDPE.\n\nNow with integrated Smart Cap™ technology to prevent expensive spills when handling industrial liquids."
+	name = "塑料油桶"
+	desc = "由最优质的高密度聚乙烯制成的大容量容器。\n\n现在集成了 Smart Cap™ 智能盖技术，处理工业液体时可防止代价高昂的泼洒。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	righthand_file = 'icons/mob/inhands/items/chemistry_righthand.dmi'
 	lefthand_file = 'icons/mob/inhands/items/chemistry_lefthand.dmi'
@@ -108,80 +108,80 @@
 	inhand_icon_state = "jerrycan_yellow"
 
 /obj/item/reagent_containers/cup/jerrycan/eznutriment
-	name = "E-Z-Nutrient™ can"
-	desc = "A large container presumably filled to the brim with 'E-Z-Nutrient'-brand plant nutrient. It can't get easier than this."
+	name = "易滋营养剂™ 大桶"
+	desc = "一个大容器，按理说装满了“易滋营养剂”牌植物营养剂。没有比这更省事的了。"
 	label_type = LABEL_EZ_NUTRIENT
 	list_reagents = list(/datum/reagent/plantnutriment/eznutriment = 200)
 	custom_price = PAYCHECK_CREW * 1
 
 /obj/item/reagent_containers/cup/jerrycan/left4zed
-	name = "Left 4 Zed™ can"
-	desc = "A large container labled 'Left 4 Zed' plant nutrient. A good choice when the stronger stuff is unavailable."
+	name = "求生之路 4™ 大桶"
+	desc = "一个大容器，标着“求生之路 4”植物营养剂。买不到更强效的东西时，这是个不错的选择。"
 	label_type = LABEL_LEFT_4_ZED
 	cap_type = CAP_GREEN
 	list_reagents = list(/datum/reagent/plantnutriment/left4zednutriment = 200)
 	custom_price = PAYCHECK_CREW * 1.2
 
 /obj/item/reagent_containers/cup/jerrycan/robustharvest
-	name = "Robust Harvest™ can"
-	desc = "A large container labled 'Robust Harvest' plant nutrient. Only trust 'Robust Harvest' for a robust yield."
+	name = "强劲丰收™ 大桶"
+	desc = "一个大容器，标着“强劲丰收”植物营养剂。想要强劲的收成，就只信赖“强劲丰收”。"
 	label_type = LABEL_ROBUST_HARVEST
 	list_reagents = list(/datum/reagent/plantnutriment/robustharvestnutriment = 200)
 	custom_price = PAYCHECK_CREW * 1.5
 
 /obj/item/reagent_containers/cup/jerrycan/ammonia
-	name = "NT-AG ammonia can"
-	desc = "A large container labled 'NT-AG' anhydrous ammonia. A warning label reads: Store separately from chlorine-based cleaning products!"
+	name = "NT-AG 氨水桶"
+	desc = "一个大容器，标着“NT-AG”无水氨。警告标签上写着：请与含氯清洁产品分开存放！"
 	label_type = LABEL_TEXT
 	cap_type = CAP_BLUE
 	list_reagents = list(/datum/reagent/ammonia = 200)
 
 /obj/item/reagent_containers/cup/jerrycan/diethylamine
-	name = "NT-AG diethylamine can"
+	name = "NT-AG 二乙胺桶"
 	label_type = LABEL_TEXT_OLD
 	cap_type = CAP_GREEN
-	desc = "A large container labled 'NT-AG' diethylamine. A disclaimer written in bold letters reads: FOR AGRICULTURAL USE ONLY. RESALE PROHIBITED."
+	desc = "一个大容器，标着“NT-AG”二乙胺。一行粗体免责声明写着：仅限农业用途。禁止转售。"
 	list_reagents = list(/datum/reagent/diethylamine = 200)
 
 /obj/item/reagent_containers/cup/jerrycan/sus
-	name = "DonkCo great value phlogiston can"
+	name = "咚克公司超值燃素桶"
 	label_type = LABEL_SUSPICIOUS_BLACK
-	desc = "A large can of phlogiston, ostensibly for removing dried out Donk-pocket™ filling from the production line."
+	desc = "一大桶燃素，名义上是用来清除生产线上干结的咚克口袋饼™ 馅料的。"
 	list_reagents = list(/datum/reagent/phlogiston = 200)
 
 /obj/item/reagent_containers/cup/jerrycan/oil
-	name = "oil can"
+	name = "机油桶"
 	label_type = LABEL_INFLAMMABLE
 	cap_type = CAP_RED
-	desc = "A large can full of synthetic lubricating oil."
+	desc = "一大桶合成润滑油。"
 	list_reagents = list(/datum/reagent/fuel/oil = 200)
 
 /obj/item/reagent_containers/cup/jerrycan/space_cleaner
-	name = "BLAM!™-brand non-foaming space cleaner can"
+	name = "BLAM!™ 牌无泡太空清洁剂桶"
 	label_type = LABEL_SPACE_CLEANER
 	cap_type = CAP_RED
-	desc = "Stubborn stains, grease and grime got you cornered? No duty to retreat when you got BLAM!™ on your side!\nBLAM!™ - A WaffleCo product."
+	desc = "顽固污渍、油垢和积灰把你逼到墙角了？有 BLAM!™ 在手，你无需退缩！\nBLAM!™——华夫公司出品。"
 	list_reagents = list(/datum/reagent/space_cleaner = 200)
 
 /obj/item/reagent_containers/cup/jerrycan/milk
-	name = "milk jug"
+	name = "牛奶壶"
 	label_type = LABEL_NT_MINI
 	cap_type = CAP_BLUE
-	desc = "A jug of most wholesome milk."
+	desc = "一壶最纯正的牛奶。"
 	list_reagents = list(/datum/reagent/consumable/milk = 200)
 
 /obj/item/reagent_containers/cup/jerrycan/concrete_mix
-	name = "concrete mix can"
+	name = "混凝土混合料桶"
 	label_type = LABEL_CONCRETE
 	cap_type = CAP_BLACK
-	desc = "A large can of ready-to-use concrete mix. Just add water."
+	desc = "一大桶即用型混凝土混合料。只需加水。"
 	list_reagents = list(/datum/reagent/concrete_mix = 200)
 
 /obj/item/reagent_containers/cup/jerrycan/hexacrete
-	name = "hexacrete can"
+	name = "六角混凝土桶"
 	label_type = LABEL_HEXACRETE
 	cap_type = CAP_RED
-	desc = "A large canister of hexacrete."
+	desc = "一大桶六角混凝土。"
 	list_reagents = list(/datum/reagent/concrete/hexacrete = 200)
 
 #undef LABEL_TEXT

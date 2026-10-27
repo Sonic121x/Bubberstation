@@ -1,8 +1,8 @@
 /datum/techweb_node/robotics
 	id = TECHWEB_NODE_ROBOTICS
 	starting_node = TRUE
-	display_name = "Robotics"
-	description = "Programmable machines that make our lives lazier."
+	display_name = "机器人技术"
+	description = "让我们生活得更懒散的可编程机械。"
 	design_ids = list(
 		"botnavbeacon",
 		"mechfab",
@@ -11,8 +11,8 @@
 
 /datum/techweb_node/exodrone
 	id = TECHWEB_NODE_EXODRONE
-	display_name = "Exploration Drones"
-	description = "Adapted arcade machines to covertly harness gamers' skills in controlling real drones for practical purposes."
+	display_name = "探索无人机"
+	description = "改装过的街机，暗中利用玩家的技巧操控真实无人机，以达到实用目的。"
 	prereq_ids = list(TECHWEB_NODE_ROBOTICS)
 	design_ids = list(
 		"exodrone_console",
@@ -25,8 +25,8 @@
 // AI root node
 /datum/techweb_node/ai
 	id = TECHWEB_NODE_AI
-	display_name = "Artificial Intelligence"
-	description = "Exploration of AI systems, more intelligent than the entire crew put together."
+	display_name = "人工智能"
+	description = "对 AI 系统的探索，它们比全船船员加起来还要聪明。"
 	prereq_ids = list(TECHWEB_NODE_ROBOTICS)
 	design_ids = list(
 		"aicore",
@@ -68,8 +68,8 @@
 
 /datum/techweb_node/ai_laws
 	id = TECHWEB_NODE_AI_LAWS
-	display_name = "Advanced AI Upgrades"
-	description = "Delving into sophisticated AI directives, with hopes that they won't lead to humanity's extinction."
+	display_name = "高级 AI 升级"
+	description = "钻研复杂精密的 AI 指令，但愿它们不会导致人类灭绝。"
 	prereq_ids = list(TECHWEB_NODE_AI)
 	design_ids = list(
 		"ai_power_upgrade",

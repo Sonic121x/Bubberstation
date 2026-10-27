@@ -8,4 +8,4 @@
 	/datum/map_generator_module/rand_bushes, \
 	/datum/map_generator_module/rand_rocks, \
 	/datum/map_generator_module/dense_layer/grass_tufts)
-	buildmode_name = "Pattern: Nature"
+	buildmode_name = "图案：自然"

@@ -1,7 +1,7 @@
 
 /obj/item/clothing/head/utility/beekeeper_head
-	name = "beekeeper hat"
-	desc = "Keeps the lil buzzing buggers out of your eyes."
+	name = "养蜂帽"
+	desc = "让那些嗡嗡作响的小家伙别钻进你的眼睛。"
 	icon_state = "beekeeper"
 	inhand_icon_state = null
 	clothing_flags = THICKMATERIAL | SNUG_FIT
@@ -10,8 +10,8 @@
 	equip_sound = null
 
 /obj/item/clothing/suit/utility/beekeeper_suit
-	name = "beekeeper suit"
-	desc = "Keeps the lil buzzing buggers away from your squishy bits."
+	name = "养蜂服"
+	desc = "让那些嗡嗡作响的小家伙远离你柔软的部位。"
 	icon_state = "beekeeper"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS

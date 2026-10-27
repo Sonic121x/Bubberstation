@@ -16,8 +16,8 @@
 #define REMOVE_DELAY 15
 
 /obj/item/construction/rld
-	name = "Rapid Lighting Device"
-	desc = "A device used to rapidly provide lighting sources to an area. Reload with iron, plasteel, glass or compressed matter cartridges."
+	name = "快速照明装置"
+	desc = "一种用于快速为区域提供光源的装置。可用铁、塑钢、玻璃或压缩物质弹药筒补充。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rld"
 	worn_icon_state = "RPD"
@@ -64,12 +64,12 @@
 	switch(choice)
 		if("Light Fixture")
 			mode = LIGHT_MODE
-			to_chat(user, span_notice("You change RLD's mode to 'Permanent Light Construction'."))
+			to_chat(user, span_notice("你将 RLD 的模式切换为“永久照明建造”。"))
 		if("Glow Stick")
 			mode = GLOW_MODE
-			to_chat(user, span_notice("You change RLD's mode to 'Light Launcher'."))
+			to_chat(user, span_notice("你将 RLD 的模式切换为“照明弹发射器”。"))
 		if("Color Pick")
-			var/new_choice = tgui_color_picker(user, "", "Choose Color", color_choice)
+			var/new_choice = tgui_color_picker(user, "", "选择颜色", color_choice)
 			if(new_choice == null)
 				return
 
@@ -84,7 +84,7 @@
 			color_choice = new_choice
 		if("Deconstruct")
 			mode = REMOVE_MODE
-			to_chat(user, span_notice("You change RLD's mode to 'Deconstruct'."))
+			to_chat(user, span_notice("你将 RLD 的模式切换为“拆除”。"))
 		else
 			toggle_silo(user)
 
@@ -169,7 +169,7 @@
 						winner = C
 						winning_dist = contender
 				if(!winner)
-					balloon_alert(user, "no valid target!")
+					balloon_alert(user, "没有有效目标！")
 					return ITEM_INTERACT_BLOCKING
 				var/obj/machinery/light/L = new /obj/machinery/light(get_turf(winner))
 				L.setDir(get_dir(winner, interacting_with))
@@ -217,8 +217,8 @@
 	return NONE
 
 /obj/item/construction/rld/mini
-	name = "mini-rapid-light-device"
-	desc = "A device used to rapidly provide lighting sources to an area. Reload with iron, plasteel, glass or compressed matter cartridges."
+	name = "微型快速照明装置"
+	desc = "一种用于快速为区域提供光源的装置。可用铁、塑钢、玻璃或压缩物质弹药筒补充。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rld"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -228,8 +228,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 5, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 4, /datum/material/gold = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/construction/rld/cyborg
-	name = "Cyborg rapid-light-device"
-	desc = "A device used to rapidly provide lighting sources to an area. Runs off a cyborg's internal power supply"
+	name = "半机械人快速照明装置"
+	desc = "一种用于快速为区域提供光源的装置。由半机械人的内部电源供电。"
 	// Energy Use
 	var/energyfactor = 0.050 * STANDARD_CELL_CHARGE
 
@@ -248,11 +248,11 @@
 	var/mob/living/silicon/robot/borgy = user
 	if(!borgy.cell)
 		if(user)
-			balloon_alert(user, "no cell found!")
+			balloon_alert(user, "未找到电池！")
 		return 0
 	. = borgy.cell.use(amount * energyfactor)
 	if(!. && user)
-		balloon_alert(user, "insufficient charge!")
+		balloon_alert(user, "电量不足！")
 	return .
 
 

@@ -1,7 +1,7 @@
 /obj/machinery/vending/security
-	name = "\improper Armadyne Peacekeeper Equipment Vendor"
-	desc = "An Armadyne peacekeeper equipment vendor."
-	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
+	name = "\improper 阿玛达因维和装备售货机"
+	desc = "阿玛达因制造的维和装备售货机。"
+	product_ads = "敲开资本家的脑壳！;给他们迎头痛击！;别忘了——伤害是好事！;你的武器就在这里。;手铐！;不许动，混蛋！;兄弟，别电我！;兄弟，电他们。;何不来个甜甜圈？"
 	icon = 'modular_skyrat/modules/sec_haul/icons/vending/vending.dmi'
 	products = list(
 		/obj/item/restraints/handcuffs = 18,
@@ -34,17 +34,17 @@
 	)
 
 /obj/item/vending_refill/security
-	machine_name = "Armadyne Peacekeeper Equipment Vendor"
+	machine_name = "阿玛达因维和装备售货机"
 
 
 /obj/machinery/vending/wardrobe/sec_wardrobe
-	name = "\improper Peacekeeper Outfitting Station"
-	desc = "A vending machine stocked with Lopland's \"Peacekeeper\" security package, including standardized uniforms and general equipment."
+	name = "\improper 维和装备站"
+	desc = "供应洛普兰“维和者”安保套装的售货机，内有标准制服和通用装备。"
 	icon = 'modular_skyrat/modules/sec_haul/icons/vending/vending.dmi'
 	light_mask = "sec-light-mask"
 	icon_state = "peace"
-	product_ads = "Beat perps in style!;The stains wash right out!;You have the right to be fashionable!;Now you can be the fashion police you always wanted to be!"
-	vend_reply = "Good luck, Peacekeeper!"
+	product_ads = "时髦地痛揍罪犯！;污渍一洗就掉！;你有权追求时尚！;现在，你终于可以成为梦寐以求的时尚警察了！"
+	vend_reply = "祝你好运，维和员！"
 	products = list(/obj/item/clothing/suit/hooded/wintercoat/security = 5,
 					/obj/item/clothing/suit/toggle/jacket/sec = 5,
 					/obj/item/clothing/neck/security_cape = 5,
@@ -72,14 +72,14 @@
 	light_color = COLOR_MODERATE_BLUE
 
 /obj/item/vending_refill/wardrobe/sec_wardrobe
-	machine_name = "Peacekeeper Outfitting Station"
+	machine_name = "维和装备站"
 
 //List for the old one, for when its mapped in; curates it nicely, adds /redsec to the items, and also prevents some conflicts with the above vendor
 /obj/machinery/vending/wardrobe/sec_wardrobe/red
-	name = "\improper SecDrobe"
-	desc = "A vending machine for security and security-related clothing!"
-	product_ads = "Beat perps in style!;It's red so you can't see the blood!;You have the right to be fashionable!;Now you can be the fashion police you always wanted to be!"
-	vend_reply = "Thank you for using the SecDrobe!"
+	name = "\improper 安保衣橱"
+	desc = "出售安保及相关服装的售货机！"
+	product_ads = "时髦地痛揍罪犯！;红色让血迹无处可寻！;你有权追求时尚！;现在，你终于可以成为梦寐以求的时尚警察了！"
+	vend_reply = "感谢使用安保衣橱！"
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "secdrobe"
 	products = list(/obj/item/clothing/suit/hooded/wintercoat/security/redsec = 3,

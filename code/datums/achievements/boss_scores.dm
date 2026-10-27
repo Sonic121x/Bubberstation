@@ -1,59 +1,59 @@
 /datum/award/score/tendril_score
-	name = "Tendril Score"
-	desc = "Watch your step"
+	name = "触须清除数"
+	desc = "当心脚下"
 	database_id = TENDRIL_CLEAR_SCORE
 
 /datum/award/score/boss_score
-	name = "Bosses Killed"
-	desc = "You've killed HOW many?"
+	name = "首领击杀数"
+	desc = "你居然杀了这么多？！"
 	database_id = BOSS_SCORE
 
 /datum/award/score/blood_miner_score
-	name = "Blood-Drunk Miners Killed"
-	desc = "You've killed HOW many?"
+	name = "嗜血矿工击杀数"
+	desc = "你居然杀了这么多？！"
 	database_id = MINER_SCORE
 
 /datum/award/score/demonic_miner_score
-	name = "Demonic-Frost Miners Killed"
-	desc = "You've killed HOW many?"
+	name = "恶魔霜冻矿工击杀数"
+	desc = "你居然杀了这么多？！"
 	database_id = FROST_MINER_SCORE
 
 /datum/award/score/bubblegum_score
-	name = "Bubblegums Killed"
-	desc = "You've killed HOW many?"
+	name = "泡泡糖击杀数"
+	desc = "你居然杀了这么多？！"
 	database_id = BUBBLEGUM_SCORE
 
 /datum/award/score/colussus_score
-	name = "Colossus Killed"
-	desc = "You've killed HOW many?"
+	name = "巨像击杀数"
+	desc = "你居然杀了这么多？！"
 	database_id = COLOSSUS_SCORE
 
 /datum/award/score/drake_score
-	name = "Drakes Killed"
-	desc = "You've killed HOW many?"
+	name = "巨龙击杀数"
+	desc = "你居然杀了这么多？！"
 	database_id = DRAKE_SCORE
 
 /datum/award/score/hierophant_score
-	name = "Hierophants Killed"
-	desc = "You've killed HOW many?"
+	name = "圣职者击杀数"
+	desc = "你居然杀了这么多？！"
 	database_id = HIEROPHANT_SCORE
 
 /datum/award/score/legion_score
-	name = "Legions Killed"
-	desc = "You've killed HOW many?"
+	name = "军团击杀数"
+	desc = "你居然杀了这么多？！"
 	database_id = LEGION_SCORE
 
 /datum/award/score/swarmer_beacon_score
-	name = "Swarmer Beacons Killed"
-	desc = "You've killed HOW many?"
+	name = "蜂群信标摧毁数"
+	desc = "你居然杀了这么多？！"
 	database_id = SWARMER_BEACON_SCORE
 
 /datum/award/score/wendigo_score
-	name = "Wendigos Killed"
-	desc = "You've killed HOW many?"
+	name = "温迪戈击杀数"
+	desc = "你居然杀了这么多？！"
 	database_id = WENDIGO_SCORE
 
 /datum/award/score/thething_score
-	name = "The Thing Killed"
-	desc = "You've killed HOW many?"
+	name = "怪形击杀数"
+	desc = "你居然杀了这么多？！"
 	database_id = THETHING_SCORE

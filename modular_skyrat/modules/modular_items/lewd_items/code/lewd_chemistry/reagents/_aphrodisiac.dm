@@ -1,7 +1,7 @@
 // The base ERP chem. It handles pref and human type checks for you, so ALL chems relating to ERP should be subtypes of this.
 /datum/reagent/drug/aphrodisiac
-	name = "liquid ERP"
-	description = "ERP in its liquified form. Complain to a coder."
+	name = "液态 ERP"
+	description = "液态形式的 ERP。去找程序员抱怨吧。"
 	chemical_flags = REAGENT_NO_RANDOM_RECIPE
 	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC | REAGENT_PROTEAN
 
@@ -182,7 +182,7 @@
 	if((mob_penis?.genital_size >= (TAKE_DAMAGE_THRESHOLD_PENIS)) && (exposed_mob.w_uniform || exposed_mob.wear_suit))
 		var/target_bodypart = exposed_mob.get_bodypart(BODY_ZONE_PRECISE_GROIN)
 		if(prob(damage_chance))
-			to_chat(exposed_mob, span_danger("You feel a tightness in your pants!"))
+			to_chat(exposed_mob, span_danger("你感到裤裆里一阵紧绷！"))
 			exposed_mob.apply_damage(1, BRUTE, target_bodypart)
 
 /**
@@ -244,7 +244,7 @@
 	// Damage from being too big for your clothes
 	if((mob_breasts?.genital_size >= (TAKE_DAMAGE_THRESHOLD_BREASTS)) && (exposed_mob.w_uniform || exposed_mob.wear_suit))
 		if(prob(damage_chance))
-			to_chat(exposed_mob, span_danger("Your breasts begin to strain against your clothes!"))
+			to_chat(exposed_mob, span_danger("你的胸部开始把衣服绷紧！"))
 			exposed_mob.adjust_oxy_loss(5)
 			exposed_mob.apply_damage(1, BRUTE, exposed_mob.get_bodypart(BODY_ZONE_CHEST))
 
@@ -325,7 +325,7 @@
 		update_appearance(exposed_mob, mob_testicles)
 
 	else if(mob_testicles.genital_size == balls_min_size && !mob_penis) // Wait for penis to completely shrink away first before removing balls
-		var/message = "You feel a tightening sensation in your groin as things seem to smooth out down there."
+		var/message = "你感到胯部一阵紧缩，那里的东西似乎变得平整了。"
 		remove_genital(exposed_mob, mob_testicles, suppress_chat, message)
 
 /*
@@ -349,7 +349,7 @@
 		update_appearance(exposed_mob, mob_breasts)
 
 	else if(mob_breasts.genital_size == breast_minimum_size) // Handle completely shrinking away, if prefs allow
-		var/message = "Your breasts have completely tightened into firm, flat pecs."
+		var/message = "你的胸部已经完全收紧，变成了结实平坦的胸肌。"
 		remove_genital(exposed_mob, mob_breasts, suppress_chat, message)
 
 /*
@@ -361,7 +361,7 @@
 * message - the message to send to chat
 */
 /datum/reagent/drug/aphrodisiac/proc/shrink_vagina(mob/living/carbon/human/exposed_mob, suppress_chat = FALSE, obj/item/organ/genital/vagina/mob_vagina = exposed_mob?.get_organ_slot(ORGAN_SLOT_VAGINA))
-	var/message = "You can the feel the muscles in your groin begin to tighten as your vagina seals itself completely shut."
+	var/message = "你感到胯部的肌肉开始收紧，阴道完全闭合了。"
 	remove_genital(exposed_mob, mob_vagina, suppress_chat, message)
 
 /*
@@ -470,7 +470,7 @@
 	update_appearance(exposed_mob, new_penis)
 
 	if(!suppress_chat)
-		to_chat(exposed_mob, span_purple("Your crotch feels warm as something suddenly sprouts between your legs."))
+		to_chat(exposed_mob, span_purple("你的胯部一阵温热，双腿之间突然冒出了什么东西。"))
 
 /**
 * Handle creation of testicles
@@ -526,12 +526,12 @@
 
 	if(new_breasts.visibility_preference == GENITAL_ALWAYS_SHOW || exposed_mob.is_topless())
 		if(!suppress_chat) // So we don't spam chat
-			exposed_mob.visible_message(span_notice("[exposed_mob]'s bust suddenly expands!"))
-			to_chat(exposed_mob, span_purple("Your chest feels warm, tingling with sensitivity as it expands outward."))
+			exposed_mob.visible_message(span_notice("[exposed_mob] 的胸部突然膨胀起来！"))
+			to_chat(exposed_mob, span_purple("你的胸口一阵温热，随着向外膨胀，敏感得发麻。"))
 	else
 		if(!suppress_chat)
-			exposed_mob.visible_message(span_notice("The area around [exposed_mob]'s chest suddenly bounces a bit."))
-			to_chat(exposed_mob, span_purple("Your chest feels warm, tingling with sensitivity as it strains against your clothes."))
+			exposed_mob.visible_message(span_notice("[exposed_mob] 胸口周围的衣物突然晃动了一下。"))
+			to_chat(exposed_mob, span_purple("你的胸口一阵温热，在衣服下绷紧，敏感得发麻。"))
 
 	return new_breasts
 
@@ -559,7 +559,7 @@
 	new_vagina.Insert(exposed_mob, 0, FALSE)
 	update_appearance(exposed_mob)
 	if(!suppress_chat)
-		to_chat(exposed_mob, span_purple("You feel a warmth in your groin as something blossoms down there."))
+		to_chat(exposed_mob, span_purple("你感到胯部一阵温热，那里似乎绽放出了什么。"))
 
 /**
 * Handle creation of womb

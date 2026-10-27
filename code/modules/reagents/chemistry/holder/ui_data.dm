@@ -1,7 +1,7 @@
 /datum/reagents/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "Reagents", "Reaction search")
+		ui = new(user, src, "Reagents", "反应检索")
 		ui.status = UI_INTERACTIVE //How do I prevent a UI from autoclosing if not in LoS
 		ui_tags_selected = NONE //Resync with gui on open (gui expects no flags)
 		ui_reagent_id = null
@@ -71,44 +71,44 @@
 		thermic *= 100 //Because arbitary is a lower scale
 	switch(thermic)
 		if(-INFINITY to -1500)
-			return "Overwhelmingly endothermic"
+			return "极度吸热"
 		if(-1500 to -1000)
-			return "Extremely endothermic"
+			return "剧烈吸热"
 		if(-1000 to -500)
-			return "Strongly endothermic"
+			return "强吸热"
 		if(-500 to -200)
-			return "Moderately endothermic"
+			return "中等吸热"
 		if(-200 to -50)
-			return "Endothermic"
+			return "吸热"
 		if(-50 to 0)
-			return "Weakly endothermic"
+			return "弱吸热"
 		if(0)
 			return ""
 		if(0 to 50)
-			return "Weakly Exothermic"
+			return "弱放热"
 		if(50 to 200)
-			return "Exothermic"
+			return "放热"
 		if(200 to 500)
-			return "Moderately exothermic"
+			return "中等放热"
 		if(500 to 1000)
-			return "Strongly exothermic"
+			return "强放热"
 		if(1000 to 1500)
-			return "Extremely exothermic"
+			return "剧烈放热"
 		if(1500 to INFINITY)
-			return "Overwhelmingly exothermic"
+			return "极度放热"
 
 /datum/reagents/proc/parse_addictions(datum/reagent/reagent)
 	var/list/addict_text = list()
 	for(var/entry, threshold in reagent.addiction_types)
 		switch(threshold)
 			if(0 to 10)
-				addict_text += "Potent [GLOB.addictions[entry].name]"
+				addict_text += "强效 [GLOB.addictions[entry].name]"
 			if(10 to 30)
-				addict_text += "Strong [GLOB.addictions[entry].name]"
+				addict_text += "强烈 [GLOB.addictions[entry].name]"
 			if(30 to 100)
 				addict_text += "[GLOB.addictions[entry].name]"
 			if(100 to INFINITY)
-				addict_text += "Weak [GLOB.addictions[entry].name]"
+				addict_text += "轻微 [GLOB.addictions[entry].name]"
 
 	return addict_text
 
@@ -134,7 +134,7 @@
 	if(ui_reagent_id)
 		var/datum/reagent/reagent = GLOB.chemical_reagents_list[ui_reagent_id]
 		if(!reagent)
-			to_chat(user, "Could not find reagent!")
+			to_chat(user, "找不到试剂！")
 			ui_reagent_id = null
 		else
 			data["reagent_mode_reagent"] = list("name" = reagent.name, "id" = reagent.type, "desc" = reagent.description, "reagentCol" = reagent.color, "pH" = reagent.ph, "pHCol" = convert_ph_to_readable_color(reagent.ph), "metaRate" = reagent.metabolization_rate, "OD" = reagent.overdose_threshold)
@@ -154,7 +154,7 @@
 	if (ui_reaction_id)
 		var/datum/chemical_reaction/reaction = GLOB.chemical_reactions_list[ui_reaction_id]
 		if(!reaction)
-			to_chat(user, "Could not find reaction!")
+			to_chat(user, "找不到反应！")
 			ui_reaction_id = null
 			return data
 		//Required holder
@@ -266,7 +266,7 @@
 		ui_reaction_index = index
 	var/list/sub_reactions = GLOB.chemical_reactions_list_product_index[path]
 	if(!length(sub_reactions))
-		to_chat(usr, "There is no recipe associated with this product.")
+		to_chat(usr, "该产物没有关联的配方。")
 		return FALSE
 	if(ui_reaction_index > length(sub_reactions))
 		ui_reaction_index = 1
@@ -288,20 +288,20 @@
 			ui_reaction_id = text2path(params["id"])
 			return TRUE
 		if("search_reagents")
-			var/input_reagent = tgui_input_list(usr, "Select reagent", "Reagent", GLOB.name2reagent)
+			var/input_reagent = tgui_input_list(usr, "选择试剂", "试剂", GLOB.name2reagent)
 			input_reagent = get_reagent_type_from_product_string(input_reagent) //from string to type
 			var/datum/reagent/reagent = GLOB.chemical_reagents_list[input_reagent]
 			if(!reagent)
-				to_chat(usr, "Could not find reagent!")
+				to_chat(usr, "找不到试剂！")
 				return FALSE
 			ui_reagent_id = reagent.type
 			return TRUE
 		if("search_recipe")
-			var/input_reagent = (input("Enter the name of product reagent", "Input") as text|null)
+			var/input_reagent = (input("输入产物试剂名称", "输入") as text|null)
 			input_reagent = get_reagent_type_from_product_string(input_reagent) //from string to type
 			var/datum/reagent/reagent = GLOB.chemical_reagents_list[input_reagent]
 			if(!reagent)
-				to_chat(usr, "Could not find product reagent!")
+				to_chat(usr, "找不到产物试剂！")
 				return
 			ui_reaction_id = get_reaction_from_indexed_possibilities(reagent.type)
 			return TRUE

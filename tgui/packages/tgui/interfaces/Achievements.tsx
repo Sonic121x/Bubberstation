@@ -62,7 +62,7 @@ export const Achievements = (props) => {
   const { categories } = data;
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
   return (
-    <Window title="Achievements" width={540} height={680}>
+    <Window title="成就" width={540} height={680}>
       <Window.Content scrollable>
         <Tabs>
           {categories.map((category) => (
@@ -71,20 +71,20 @@ export const Achievements = (props) => {
               selected={selectedCategory === category}
               onClick={() => setSelectedCategory(category)}
             >
-              {category}
+              {({ Bosses: '首领', Jobs: '职业', Skills: '技能', Misc: '杂项', Mafia: '黑手党', Scores: '积分', Normal: '普通' } as Record<string, string>)[category] ?? category}
             </Tabs.Tab>
           ))}
           <Tabs.Tab
             selected={selectedCategory === 'High Scores'}
             onClick={() => setSelectedCategory('High Scores')}
           >
-            High Scores
+            排行榜
           </Tabs.Tab>
           <Tabs.Tab
             selected={selectedCategory === 'Progress'}
             onClick={() => setSelectedCategory('Progress')}
           >
-            Progress
+            进度
           </Tabs.Tab>
         </Tabs>
         {(selectedCategory === 'High Scores' && <HighScoreTable />) ||
@@ -116,12 +116,12 @@ const AchievementTable = (props) => {
             {(achievement.score && (
               <Box color={achievement.value > 0 ? 'good' : 'bad'}>
                 {achievement.value > 0
-                  ? `Earned ${achievement.value} times`
-                  : 'Locked'}
+                  ? `已获得 ${achievement.value} 次`
+                  : '未解锁'}
               </Box>
             )) || (
               <Box color={achievement.value ? 'good' : 'bad'}>
-                {achievement.value ? 'Unlocked' : 'Locked'}
+                {achievement.value ? '已解锁' : '未解锁'}
               </Box>
             )}
             {!!achievement.achieve_info && (
@@ -229,8 +229,8 @@ const HighScoreTable = () => {
         <Table>
           <Table.Row header>
             <Table.Cell textAlign="center">#</Table.Cell>
-            <Table.Cell textAlign="center">Key</Table.Cell>
-            <Table.Cell textAlign="center">Score</Table.Cell>
+            <Table.Cell textAlign="center">账号</Table.Cell>
+            <Table.Cell textAlign="center">积分</Table.Cell>
           </Table.Row>
           {highscore.scores.map((score, i) => (
             <Table.Row key={score.ckey} className="candystripe" m={2}>

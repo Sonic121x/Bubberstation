@@ -2,7 +2,7 @@
 
 // Interlink specific fences so people can't cut their way into restricted areas
 /obj/structure/fence/interlink
-	name = "reinforced fence"
-	desc = "The latest in Nanotrasen development: A reinforced metal fence. This'll keep those pesky assistants out!"
+	name = "加固围栏"
+	desc = "纳米传讯的最新研发成果：一款加固金属围栏。这下能把那些烦人的助理挡在外面了！"
 	cuttable = FALSE
 	invulnerable = TRUE

@@ -1,8 +1,8 @@
 /datum/admins/proc/player_panel_new()//The new one
 	if(!check_rights())
 		return
-	log_admin("[key_name(usr)] checked the player panel.")
-	var/dat = "<html><head><meta http-equiv='X-UA-Compatible' content='IE=edge' charset='UTF-8'/><title>Player Panel</title></head>"
+	log_admin("[key_name(usr)] 查看了玩家面板。")
+	var/dat = "<html><head><meta http-equiv='X-UA-Compatible' content='IE=edge' charset='UTF-8'/><title>玩家面板</title></head>"
 
 	var/ui_scale = owner.prefs.read_preference(/datum/preference/toggle/ui_scale)
 
@@ -80,7 +80,7 @@
 
 					body += "</td><td align='center'>";
 
-					body += "<font size='2'><b>"+job+" "+name+"</b><br><b>Real name "+real_name+"</b><br><b>Played by "+key+" ("+ip+")</b><br><b>Old names: "+old_names+"</b></font>";
+					body += "<font size='2'><b>"+job+" "+name+"</b><br><b>真实姓名 "+real_name+"</b><br><b>玩家 "+key+" ("+ip+")</b><br><b>旧名："+old_names+"</b></font>";
 
 					body += "</td><td align='center'>";
 
@@ -96,7 +96,7 @@
 					body += "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow="+ref+"'>FLW</a> - "
 					body += "<a href='byond://?_src_=holder;[HrefToken()];individuallog="+ref+"'>LOGS</a><br>"
 					if(antagonist > 0)
-						body += "<font size='2'><a href='byond://?_src_=holder;[HrefToken()];check_antagonist=1'><font color='red'><b>Antagonist</b></font></a></font>";
+						body += "<font size='2'><a href='byond://?_src_=holder;[HrefToken()];check_antagonist=1'><font color='red'><b>反派</b></font></a></font>";
 
 					body += "</td></tr></table>";
 
@@ -155,7 +155,7 @@
 						return;
 					locked_tabs.push(id);
 					var notice_span = document.getElementById(notice_span_id);
-					notice_span.innerHTML = "<font color='red'>Locked</font> ";
+					notice_span.innerHTML = "<font color='red'>已锁定</font> ";
 				}
 
 				function attempt(ab){
@@ -201,14 +201,14 @@
 		<table width='560' align='center' cellspacing='0' cellpadding='5' id='maintable'>
 			<tr id='title_tr'>
 				<td align='center'>
-					<font size='5'><b>Player panel</b></font><br>
-					Hover over a line to see more information - <a href='byond://?_src_=holder;[HrefToken()];check_antagonist=1'>Check antagonists</a> - Kick <a href='byond://?_src_=holder;[HrefToken()];kick_all_from_lobby=1;afkonly=0'>everyone</a>/<a href='byond://?_src_=holder;[HrefToken()];kick_all_from_lobby=1;afkonly=1'>AFKers</a> in lobby
+					<font size='5'><b>玩家面板</b></font><br>
+					将鼠标悬停在某一行上可查看更多信息 - <a href='byond://?_src_=holder;[HrefToken()];check_antagonist=1'>检查反派</a> - 将大厅中的 <a href='byond://?_src_=holder;[HrefToken()];kick_all_from_lobby=1;afkonly=0'>所有人</a>/<a href='byond://?_src_=holder;[HrefToken()];kick_all_from_lobby=1;afkonly=1'>挂机者</a> 踢出
 					<p>
 				</td>
 			</tr>
 			<tr id='search_tr'>
 				<td align='center'>
-					<b>Search:</b> <input type='text' id='filter' value='' style='width:300px;'>
+					<b>搜索：</b> <input type='text' id='filter' value='' style='width:300px;'>
 				</td>
 			</tr>
 	</table>
@@ -238,14 +238,14 @@
 					if(ishuman(M) && M.job)
 						M_job = M.job
 					else if(ismonkey(M))
-						M_job = "Monkey"
+						M_job = "猴子"
 					else if(isalien(M)) //aliens
 						if(islarva(M))
-							M_job = "Alien larva"
+							M_job = "异形幼体"
 						else
 							M_job = ROLE_ALIEN
 					else
-						M_job = "Carbon-based"
+						M_job = "碳基生物"
 
 				else if(issilicon(M)) //silicon
 					if(isAI(M))
@@ -255,28 +255,28 @@
 					else if(iscyborg(M))
 						M_job = "Cyborg"
 					else
-						M_job = "Silicon-based"
+						M_job = "硅基生物"
 
 				else if(isanimal_or_basicmob(M)) //simple animals
 					if(iscorgi(M))
-						M_job = "Corgi"
+						M_job = "柯基"
 					else if(isslime(M))
-						M_job = "slime"
+						M_job = "史莱姆"
 					else
-						M_job = "Animal"
+						M_job = "动物"
 
 				else
-					M_job = "Living"
+					M_job = "活物"
 
 			else if(isnewplayer(M))
-				M_job = "New player"
+				M_job = "新玩家"
 
 			else if(isobserver(M))
 				var/mob/dead/observer/O = M
 				if(O.started_as_observer)//Did they get BTFO or are they just not trying?
-					M_job = "Observer"
+					M_job = "观察者"
 				else
-					M_job = "Ghost"
+					M_job = "幽灵"
 
 			var/M_key = html_encode(M.key)
 			var/M_ip_address = isnull(M.lastKnownIP) ? "+localhost+" : M.lastKnownIP

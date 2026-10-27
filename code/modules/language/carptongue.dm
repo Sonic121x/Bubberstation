@@ -1,6 +1,6 @@
 /datum/language/carptongue
 	name = "Carptongue"
-	desc = "Various fishy sounds that might make sense to space carps."
+	desc = "各种鱼类的声响，太空鲤鱼或许能听懂。"
 	key = "c"
 	icon_state = "fish"
 	flags = LANGUAGE_NO_STUTTER|LANGUAGE_TONGUELESS_SPEECH

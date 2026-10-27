@@ -1,11 +1,11 @@
 /obj/item/organ/eyes/robotic
-	name = "robotic eyes"
-	desc = "Your vision is augmented."
+	name = "机械眼"
+	desc = "你的视觉得到了增强。"
 	icon_state = "eyes_cyber"
 	organ_flags = ORGAN_ROBOTIC
-	failing_desc = "seems to be broken."
+	failing_desc = "似乎已经损坏。"
 	pupils_name = "apertures"
-	penlight_message = "are cybernetic, click-whirring as they refocus"
+	penlight_message = "是机械义眼，重新聚焦时会发出咔哒的响动"
 	custom_materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT * 4, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 2.5)
 
 /obj/item/organ/eyes/robotic/emp_act(severity)
@@ -14,18 +14,18 @@
 		return
 	if(prob(100 / severity))
 		return
-	to_chat(owner, span_warning("Static obfuscates your vision!"))
+	to_chat(owner, span_warning("雪花噪点模糊了你的视觉！"))
 	owner.flash_act(visual = 1)
 
 /obj/item/organ/eyes/robotic/basic
-	name = "basic robotic eyes"
-	desc = "A pair of basic cybernetic eyes that restore vision, but at some vulnerability to light."
+	name = "基础机械眼"
+	desc = "一对基础机械义眼，可恢复视力，但多少有些怕光。"
 	icon_state = "eyes_cyber_basic"
 	iris_overlay = null
 	eye_color_left = "#2f3032"
 	eye_color_right = "#2f3032"
 	flash_protect = FLASH_PROTECTION_SENSITIVE
-	penlight_message = "are low grade cybernetics, poorly compensating for the light"
+	penlight_message = "是低劣的机械义眼，对光线的补偿很差"
 	custom_materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT * 4, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 2.5)
 
 /obj/item/organ/eyes/robotic/basic/emp_act(severity)
@@ -34,13 +34,13 @@
 		return
 	if(prob(10 * severity))
 		apply_organ_damage(20 * severity)
-		to_chat(owner, span_warning("Your eyes start to fizzle in their sockets!"))
+		to_chat(owner, span_warning("你的双眼在眼窝里滋滋作响！"))
 		do_sparks(2, TRUE, owner)
 		owner.emote("scream")
 
 /obj/item/organ/eyes/robotic/xray
-	name = "x-ray eyes"
-	desc = "These cybernetic eyes will give you X-ray vision. Blinking is futile."
+	name = "X 射线眼"
+	desc = "这些机械义眼会赋予你 X 射线视觉。眨眼是徒劳的。"
 	icon_state = "eyes_cyber_xray"
 	iris_overlay = null
 	eye_color_left = "#3cb8a5"
@@ -48,12 +48,12 @@
 	sight_flags = SEE_MOBS | SEE_OBJS | SEE_TURFS
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	organ_traits = list(TRAIT_XRAY_VISION)
-	penlight_message = "are replaced by small radiation emitters and detectors"
+	penlight_message = "已被小型辐射发射器与探测器取代"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.6, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.6, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 0.6, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 0.6, /datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/uranium = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/organ/eyes/robotic/thermals
-	name = "thermal eyes"
-	desc = "These cybernetic eye implants will give you thermal vision. Vertical slit pupil included."
+	name = "热成像眼"
+	desc = "这些机械眼部植入体会赋予你热成像视觉。还附带垂直竖瞳。"
 	icon_state = "eyes_cyber_thermal"
 	iris_overlay = null
 	eye_color_left = "#ce2525"
@@ -63,12 +63,12 @@
 	sight_flags = SEE_MOBS
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	pupils_name = "slit aperatures"
-	penlight_message = "are cybernetic, with vertically slit metalic lenses."
+	penlight_message = "是机械义眼，装有垂直狭缝的金属晶状体"
 	custom_materials = list(/datum/material/diamond = SHEET_MATERIAL_AMOUNT, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.6, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.6, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 0.6, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 0.6, /datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/organ/eyes/robotic/flashlight
-	name = "flashlight eyes"
-	desc = "It's two flashlights rigged together with some wire. Why would you put these in someone's head?"
+	name = "手电筒眼"
+	desc = "这是两个用手电筒加几根电线硬凑在一起的东西。你为什么会把这种东西装进别人脑袋里？"
 	icon_state = "flashlight_eyes"
 	eye_color_left = "#fee5a3"
 	eye_color_right = "#fee5a3"
@@ -79,7 +79,7 @@
 	var/obj/item/flashlight/eyelight/eye
 	light_reactive = FALSE
 	pupils_name = "flashlights"
-	penlight_message = "are actually two flashlights taped together. ...why"
+	penlight_message = "其实是用胶带绑在一起的两个手电筒。……为什么呢"
 
 /obj/item/organ/eyes/robotic/flashlight/Initialize(mapload)
 	. = ..()
@@ -103,15 +103,15 @@
 
 // Welding shield implant
 /obj/item/organ/eyes/robotic/shield
-	name = "shielded robotic eyes"
-	desc = "These reactive micro-shields will protect you from welders and flashes without obscuring your vision."
+	name = "防护型机械眼"
+	desc = "这些反应式微型护盾能保护你不受焊接器与闪光的伤害，同时不会遮挡视线。"
 	icon_state = "eyes_cyber_shield"
 	iris_overlay = null
 	eye_color_left = "#353845"
 	eye_color_right = "#353845"
 	flash_protect = FLASH_PROTECTION_WELDER
 	pupils_name = "flash shields"
-	penlight_message = "have polarized cybernetic lenses, blocking bright lights"
+	penlight_message = "装有偏振的机械晶状体，能挡下强光"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.6, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 4)
 
 /obj/item/organ/eyes/robotic/shield/Initialize(mapload)
@@ -125,8 +125,8 @@
 #define UPDATE_EYES_RIGHT 2
 
 /obj/item/organ/eyes/robotic/glow
-	name = "high luminosity eyes"
-	desc = "Special glowing eyes, used by snowflakes who want to be special."
+	name = "高亮度眼"
+	desc = "特殊的发光眼，专供那些想显得与众不同的“雪花”使用。"
 	icon_state = "eyes_cyber_glow"
 	iris_overlay = "eyes_cyber_glow_iris"
 	eye_color_left = "#19191a"
@@ -145,7 +145,7 @@
 	var/left_eye_color_string
 	/// The custom selected eye color for the right eye. Defaults to the mob's natural eye color
 	var/right_eye_color_string
-	penlight_message = "shine back with cybernetic LEDs"
+	penlight_message = "以赛博 LED 反射出光芒"
 
 /obj/item/organ/eyes/robotic/glow/Initialize(mapload)
 	. = ..()
@@ -224,8 +224,8 @@
 		if("pick_color")
 			var/new_color = tgui_color_picker(
 				usr,
-				"Choose eye color color:",
-				"High Luminosity Eyes Menu",
+				"选择眼睛颜色：",
+				"高亮度眼菜单",
 				light_color_string
 			)
 			if(new_color)
@@ -398,17 +398,17 @@
 // Moth variations
 
 /obj/item/organ/eyes/robotic/moth
-	name = "robotic moth eyes"
-	desc = "Your vision is augmented. Much like actual moth eyes, very sensitive to bright lights."
+	name = "机械蛾眼"
+	desc = "你的视觉得到了增强。和真正的蛾眼一样，对强光非常敏感。"
 	icon_state = "eyes_moth_cyber"
 	eye_icon_state = "motheyes_cyber"
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	pupils_name = "aperture clusters"
-	penlight_message = "are metal hemispheres, resembling insect eyes"
+	penlight_message = "是金属半球，形似昆虫的复眼"
 	custom_materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT * 4, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 2.5)
 
 /obj/item/organ/eyes/robotic/basic/moth
-	name = "basic robotic moth eyes"
+	name = "基础机械蛾眼"
 	icon_state = "eyes_moth_cyber_basic"
 	eye_icon_state = "motheyes_white"
 	eye_color_left = "#65686f"
@@ -416,11 +416,11 @@
 	blink_animation = FALSE
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	pupils_name = "aperture clusters"
-	penlight_message = "are metal hemispheres, resembling insect eyes"
+	penlight_message = "是金属半球，形似昆虫的复眼"
 
 /obj/item/organ/eyes/robotic/xray/moth
-	name = "moth x-ray eyes"
-	desc = "These cybernetic imitation moth eyes will give you X-ray vision. Blinking is futile. Much like actual moth eyes, very sensitive to bright lights."
+	name = "蛾 X 射线眼"
+	desc = "这些机械仿生蛾眼会赋予你 X 射线视觉。眨眼是徒劳的。和真正的蛾眼一样，对强光非常敏感。"
 	icon_state = "eyes_moth_cyber_xray"
 	eye_icon_state = "motheyes_white"
 	eye_color_left = "#3c4e52"
@@ -430,29 +430,29 @@
 	pupils_name = "aperture clusters"
 
 /obj/item/organ/eyes/robotic/shield/moth
-	name = "shielded robotic moth eyes"
+	name = "防护型机械蛾眼"
 	icon_state = "eyes_moth_cyber_shield"
 	eye_icon_state = "motheyes_white"
 	eye_color_left = "#353845"
 	eye_color_right = "#353845"
 	blink_animation = FALSE
 	pupils_name = "aperture clusters"
-	penlight_message = "have shutters, protecting insectoid compound eyes."
+	penlight_message = "装有遮光片，保护着昆虫式的复眼"
 
 /obj/item/organ/eyes/robotic/glow/moth
-	name = "high luminosity moth eyes"
-	desc = "Special glowing eyes, to be one with the lamp. Much like actual moth eyes, very sensitive to bright lights."
+	name = "高亮度蛾眼"
+	desc = "特殊的发光眼，只为与灯融为一体。和真正的蛾眼一样，对强光非常敏感。"
 	icon_state = "eyes_moth_cyber_glow"
 	eye_icon_state = "motheyes_cyber"
 	iris_overlay = "eyes_moth_cyber_glow_iris"
 	blink_animation = FALSE
 	base_eye_state = "eyes_mothglow"
 	flash_protect = FLASH_PROTECTION_SENSITIVE
-	penlight_message = "are bulbous clusters of LEDs and cameras"
+	penlight_message = "是成团的 LED 与摄像头组成的球状结构"
 	pupils_name = "aperture clusters"
 
 /obj/item/organ/eyes/robotic/thermals/moth
-	name = "thermal moth eyes"
+	name = "热成像蛾眼"
 	icon_state = "eyes_moth_cyber_thermal"
 	eye_icon_state = "motheyes_white"
 	eye_color_left = "#901f38"
@@ -460,12 +460,12 @@
 	blink_animation = FALSE
 	flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE
 	pupils_name = "sensor clusters"
-	penlight_message = "are two clustered hemispheres of thermal sensors"
+	penlight_message = "是两团由热传感器组成的半球"
 
 // Chaplain's special boy
 /obj/item/organ/eyes/night_vision/maintenance_adapted
-	name = "adapted eyes"
-	desc = "These red eyes look like two foggy marbles. They give off a particularly worrying glow in the dark."
+	name = "适应眼"
+	desc = "这双红眼看起来像两颗朦胧的玻璃珠。它们在黑暗中会散发出格外令人不安的光芒。"
 	icon_state = "eyes_adapted"
 	eye_color_left = "#f74a4d"
 	eye_color_right = "#f74a4d"
@@ -476,17 +476,17 @@
 	low_light_cutoff = list(5, 12, 20)
 	medium_light_cutoff = list(15, 20, 30)
 	high_light_cutoff = list(30, 35, 50)
-	penlight_message = "glow a foggy red, sizzling under the light!"
+	penlight_message = "泛着朦胧的红光，在光线下滋滋作响！"
 
 /obj/item/organ/eyes/night_vision/maintenance_adapted/penlight_examine(mob/living/viewer, obj/item/examtool)
 	if(!owner.is_blind())
-		to_chat(owner, span_danger("Your eyes sizzle agonizingly as light is shone on them!"))
+		to_chat(owner, span_danger("光线照在眼睛上，你的双眼发出剧痛般的滋滋声！"))
 		apply_organ_damage(20 * examtool.light_power) //that's 0.5 lightpower for a penlight, so one penlight shining is equivalent to two seconds in a lit area
-	return span_danger("[owner.p_Their()] eyes [penlight_message]")
+	return span_danger("[owner]的眼睛[penlight_message]")
 
 /obj/item/organ/eyes/night_vision/maintenance_adapted/on_life(seconds_per_tick)
 	if(owner.get_eye_protection() <= FLASH_PROTECTION_SENSITIVE && !owner.is_blind() && isturf(owner.loc) && owner.has_light_nearby(light_amount=0.5)) //we allow a little more than usual so we can produce light from the adapted eyes
-		to_chat(owner, span_danger("Your eyes! They burn in the light!"))
+		to_chat(owner, span_danger("你的眼睛！它们在光下灼烧！"))
 		apply_organ_damage(10) //blind quickly
 		playsound(owner, 'sound/machines/grill/grillsizzle.ogg', 50)
 	else
@@ -509,8 +509,8 @@
 #define IFF_FACTION_EVERYONE "Non-Allies"
 
 /obj/item/organ/eyes/robotic/tacvisor
-	name = "tactical EFF visor"
-	desc = "A failed attempt at integrating IFF systems directly into soldiers' prefrontal cortex, this complex sensor array has proved to be impractical as the additional load impared the user's ability to recognize people's appearances or voices. The screen is there just for intimidation."
+	name = "战术 EFF 面罩"
+	desc = "这是将 IFF 系统直接集成到士兵前额叶皮层的失败尝试。这套复杂的传感器阵列已被证明并不实用，因为额外的负担损害了使用者辨认他人外貌或声音的能力。那块屏幕只是为了威慑。"
 	icon_state = "eyes_tacvisor"
 	eye_icon_state = "eyes_tacvisor"
 	blink_animation = FALSE
@@ -521,7 +521,7 @@
 	flash_protect = FLASH_PROTECTION_WELDER
 	lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
 	pupils_name = "faceplate"
-	penlight_message = "are a wide reinforced faceplate with an inbuilt screen and a multitude of combat sensors"
+	penlight_message = "是一块宽大的强化面板，内置屏幕与大量战斗传感器"
 	light_reactive = FALSE
 	actions_types = list(/datum/action/item_action/organ_action/use)
 	custom_materials = list(/datum/material/gold = SHEET_MATERIAL_AMOUNT * 0.6, /datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 4, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 4, /datum/material/silver = SMALL_MATERIAL_AMOUNT * 4)
@@ -561,9 +561,9 @@
 	)
 	/// Threat flags and their tooltips
 	var/static/list/threat_flag_options = list(
-		"Valid ID" = JUDGE_IDCHECK,
-		"Weapon Permit" = JUDGE_WEAPONCHECK,
-		"Security Status" = JUDGE_RECORDCHECK,
+		"有效证件" = JUDGE_IDCHECK,
+		"武器许可" = JUDGE_WEAPONCHECK,
+		"安保状态" = JUDGE_RECORDCHECK,
 	)
 
 /obj/item/organ/eyes/robotic/tacvisor/generate_body_overlay(obj/item/bodypart/limb)
@@ -591,7 +591,7 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "perceptual scanners overriden")
+	balloon_alert(user, "感知扫描器已被覆写")
 	return TRUE
 
 /obj/item/organ/eyes/robotic/tacvisor/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
@@ -637,7 +637,7 @@
 		return COMSIG_MOVABLE_CANCEL_HEARING
 
 	var/list/message_mods = hearing_args[HEARING_MESSAGE_MODE]
-	message_mods[MODE_SPEAKER_NAME_OVERRIDE] = "Unknown"
+	message_mods[MODE_SPEAKER_NAME_OVERRIDE] = "未知"
 
 /obj/item/organ/eyes/robotic/tacvisor/proc/on_login(mob/living/source, client/user_client)
 	SIGNAL_HANDLER
@@ -687,7 +687,7 @@
 /obj/item/organ/eyes/robotic/tacvisor/proc/make_overlay(mob/living/target)
 	if (obj_flags & EMAGGED)
 		var/image/overlay_image = image(mutable_appearance('icons/effects/effects.dmi', "nothing"), target)
-		overlay_image.name = "Unknown"
+		overlay_image.name = "未知"
 		overlay_image.override = TRUE
 		overlay_image.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 		SET_PLANE_EXPLICIT(overlay_image, ABOVE_GAME_PLANE, target)
@@ -708,7 +708,7 @@
 	appearance_copy.overlays += static_effect
 	appearance_copy.override = TRUE
 	var/image/overlay_image = image(appearance_copy, target)
-	overlay_image.name = "Unknown"
+	overlay_image.name = "未知"
 	overlay_image.override = TRUE
 	SET_PLANE_EXPLICIT(overlay_image, ABOVE_GAME_PLANE, target)
 	return overlay_image
@@ -769,7 +769,7 @@
 	if (target == owner || !iscarbon(target) && !(isliving(target) && (obj_flags & EMAGGED)))
 		return
 
-	var/list/override_strings = list(span_warning("You're struggling to make out any details..."))
+	var/list/override_strings = list(span_warning("你很难辨认出任何细节……"))
 
 	if (!threat_flags && !(obj_flags & EMAGGED))
 		examine_overrides[EXAMINE_OVERRIDE_PRIORITY_IFF] = override_strings
@@ -785,13 +785,13 @@
 	var/threat_level = victim.assess_threat(threat_flags, lasercolor)
 	switch (threat_level)
 		if (THREAT_ASSESS_MAXIMUM to INFINITY)
-			override_strings += span_boldwarning("Assessed threat level of [threat_level]! Extreme danger of criminal activity!")
+			override_strings += span_boldwarning("评估威胁等级：[threat_level]！存在极端犯罪活动危险！")
 		if (THREAT_ASSESS_DANGEROUS to THREAT_ASSESS_MAXIMUM)
-			override_strings += span_warning("Assessed threat level of [threat_level]. Criminal scum detected!")
+			override_strings += span_warning("评估威胁等级：[threat_level]。检测到犯罪渣滓！")
 		if (1 to THREAT_ASSESS_DANGEROUS)
-			override_strings += span_notice("Assessed threat level of [threat_level]. Probably not dangerous... yet.")
+			override_strings += span_notice("评估威胁等级：[threat_level]。大概还不危险……暂时。")
 		else
-			override_strings += span_notice("Seems to be a trustworthy individual.")
+			override_strings += span_notice("看起来是个值得信任的人。")
 
 	examine_overrides[EXAMINE_OVERRIDE_PRIORITY_IFF] = override_strings
 
@@ -874,7 +874,7 @@
 
 /obj/item/organ/eyes/robotic/tacvisor/screwdriver_act(mob/living/user, obj/item/tool)
 	user_controls = !user_controls
-	balloon_alert(user, "user controls [user_controls ? "enabled" : "disabled"]")
+	balloon_alert(user, "用户控制已[user_controls ? "启用" : "禁用"]")
 	if (user_controls)
 		add_item_action(/datum/action/item_action/organ_action/use)
 	else
@@ -884,8 +884,8 @@
 
 /obj/item/organ/eyes/robotic/tacvisor/examine(mob/user)
 	. = ..()
-	. += span_notice("Its settings can be changed with a [EXAMINE_HINT("multitool")].")
-	. += span_notice("User configuration switch is currently in the [user_controls ? "on" : "off"] position, and could be flipped wtih a [EXAMINE_HINT("screwdriver")].")
+	. += span_notice("可以用[EXAMINE_HINT("多用途工具")]更改其设置。")
+	. += span_notice("用户配置开关当前处于[user_controls ? "开" : "关"]的位置，可以用[EXAMINE_HINT("螺丝刀")]拨动。")
 
 /obj/item/organ/eyes/robotic/tacvisor/proc/on_entered(mob/living/source)
 	if (source in direct_view_tracking)

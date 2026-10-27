@@ -1,7 +1,7 @@
 /obj/effect/shark_infested_waters
-	name = "a carp with a fricken laser rifle attached to their head"
-	desc = "An ill-tempered endangered species of territorial water carp with a laser rifle on its head. \
-	Captured and trained to kill any who attempt to cross its waters. Pretty much unkillable."
+	name = "脑袋上居然装着激光步枪的鲤鱼"
+	desc = "一种脾气暴躁、领地意识强烈的濒危水栖鲤鱼，脑袋上装着激光步枪。\
+	它被捕获并训练成杀死任何试图穿过其水域的人。几乎杀不死。"
 	icon = 'modular_zubbers/icons/effects/shark_infested_waters.dmi'
 	icon_state = "shark"
 	glide_size = 32
@@ -44,7 +44,7 @@
 			if(COOLDOWN_FINISHED(src,growl_cooldown) && !prob(80)) // Growl optimization
 				COOLDOWN_START(src,growl_cooldown,3 SECONDS)
 				src.audible_message(
-					span_warning("[src] growls at [arrived]..."),
+					span_warning("[src]对[arrived]发出低吼……"),
 					hearing_distance = COMBAT_MESSAGE_RANGE
 				)
 

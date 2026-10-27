@@ -5,34 +5,34 @@
  *
  */
 /mob/living/basic/lightgeist
-	name = "lightgeist"
-	desc = "This small floating creature is a completely unknown form of life... being near it fills you with a sense of tranquility."
+	name = "光灵"
+	desc = "这种漂浮着的小生物是一种完全未知的生命形式……靠近它会让你感到一片宁静。"
 	icon_state = "lightgeist"
 	icon_living = "lightgeist"
 	icon_dead = "butterfly_dead"
-	response_help_continuous = "waves away"
-	response_help_simple = "wave away"
-	response_disarm_continuous = "brushes aside"
-	response_disarm_simple = "brush aside"
-	response_harm_continuous = "disrupts"
-	response_harm_simple = "disrupt"
-	speak_emote = list("oscillates")
+	response_help_continuous = "挥手赶开"
+	response_help_simple = "挥手赶开"
+	response_disarm_continuous = "拂到一边"
+	response_disarm_simple = "拂到一边"
+	response_harm_continuous = "扰乱"
+	response_harm_simple = "扰乱"
+	speak_emote = list("明灭摇曳")
 	maxHealth = 2
 	health = 2
 	melee_damage_lower = 5
 	melee_damage_upper = 5
 	melee_attack_cooldown = 5 SECONDS
-	friendly_verb_continuous = "taps"
-	friendly_verb_simple = "tap"
+	friendly_verb_continuous = "轻触"
+	friendly_verb_simple = "轻触"
 	density = FALSE
 	basic_mob_flags = DEL_ON_DEATH
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
 	gold_core_spawnable = HOSTILE_SPAWN
-	verb_say = "warps"
-	verb_ask = "floats inquisitively"
-	verb_exclaim = "zaps"
-	verb_yell = "bangs"
+	verb_say = "扭曲着说"
+	verb_ask = "好奇地飘着问"
+	verb_exclaim = "噼啪放电地说"
+	verb_yell = "砰然作响地喊"
 	initial_language_holder = /datum/language_holder/lightbringer
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, STAMINA = 1, OXY = 0)
 	light_range = 4
@@ -56,8 +56,8 @@
 		heal_burn = melee_damage_upper,\
 		heal_time = 0,\
 		valid_targets_typecache = typecacheof(list(/mob/living)),\
-		action_text = "%SOURCE% begins mending the wounds of %TARGET%",\
-		complete_text = "%TARGET%'s wounds mend together.",\
+		action_text = "%SOURCE% 开始修复 %TARGET% 的伤口",\
+		complete_text = "%TARGET% 的伤口愈合了。",\
 	)
 
 /mob/living/basic/lightgeist/melee_attack(atom/target, list/modifiers, ignore_cooldown = FALSE)

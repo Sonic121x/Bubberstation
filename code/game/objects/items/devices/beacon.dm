@@ -1,6 +1,6 @@
 /obj/item/beacon
-	name = "\improper tracking beacon"
-	desc = "A beacon used by a teleporter."
+	name = "\improper 追踪信标"
+	desc = "供传送机使用的信标。"
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "beacon"
 	inhand_icon_state = "beacon"
@@ -25,7 +25,7 @@
 
 /obj/item/beacon/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(isnull(held_item))
-		context[SCREENTIP_CONTEXT_RMB] = "Toggle beacon"
+		context[SCREENTIP_CONTEXT_RMB] = "开关信标"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return NONE
@@ -42,7 +42,7 @@
 		GLOB.teleportbeacons += src
 	else
 		turn_off()
-	to_chat(user, span_notice("You [enabled ? "enable" : "disable"] the beacon."))
+	to_chat(user, span_notice("你[enabled ? "启用" : "禁用"]了信标。"))
 	return
 
 /obj/item/beacon/attack_hand_secondary(mob/user, list/modifiers)

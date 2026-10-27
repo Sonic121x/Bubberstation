@@ -1,5 +1,5 @@
 /obj/item/organ/heart/gland/chem
-	abductor_hint = "intrinsic pharma-provider. The abductee constantly produces random chemicals inside their bloodstream. They also quickly regenerate toxin damage."
+	abductor_hint = "内置药剂供给器。被绑架者的血液中会不断产生随机化学物质，他们还会快速恢复毒素伤害。"
 	cooldown_low = 50
 	cooldown_high = 50
 	uses = -1

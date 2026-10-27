@@ -1,8 +1,8 @@
 /// moonicorn subtype, very hostile unless there's some food to be eatin'
 /mob/living/basic/cow/moonicorn
-	name = "moonicorn"
-	desc = "Magical cow of legend. Its horn will pacify anything it touches, rendering victims mostly helpless. \
-		Victims, yes, because despite the enimatic and wonderous appearance, the moonicorn is incredibly aggressive."
+	name = "月角牛"
+	desc = "传说中的魔法奶牛。它的角能安抚任何被触碰之物，让受害者几乎无力反抗。 \
+		受害者，没错，因为尽管外表神秘而奇妙，月角牛却极具攻击性。"
 	icon_state = "moonicorn"
 	icon_living = "moonicorn"
 	icon_dead = "moonicorn_dead"
@@ -12,15 +12,15 @@
 	melee_damage_lower = 25
 	melee_damage_upper = 25
 	obj_damage = 35
-	attack_verb_continuous = "telekinetically rams its moonihorn into"
-	attack_verb_simple = "telekinetically ram your moonihorn into"
+	attack_verb_continuous = "用念力将月角撞向"
+	attack_verb_simple = "用念力将你的月角撞向"
 	gold_core_spawnable = NO_SPAWN
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	ai_controller = /datum/ai_controller/basic_controller/cow/moonicorn
 	food_types = list(/obj/item/food/grown/galaxythistle)
-	tame_message = "nods with respect"
-	self_tame_message = "nod with respect"
+	tame_message = "尊敬地点了点头"
+	self_tame_message = "尊敬地点了点头"
 	milked_reagent = /datum/reagent/drug/mushroomhallucinogen
 
 /mob/living/basic/cow/moonicorn/Initialize(mapload)
@@ -46,9 +46,9 @@
 		BB_BASIC_MOB_TIP_REACTING = FALSE,
 		BB_BASIC_MOB_TIPPER = null,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_SAY = list("moo?", "moo", "MOOOOOO"),
-			BB_EMOTE_HEAR = list("brays."),
-			BB_EMOTE_SEE = list("shakes her head."),
+			BB_EMOTE_SAY = list("哞？", "哞", "哞哞哞哞哞"),
+			BB_EMOTE_HEAR = list("哞哞叫着。"),
+			BB_EMOTE_SEE = list("摇了摇头。"),
 			BB_EMOTE_SOUND = list('sound/mobs/non-humanoids/cow/cow.ogg'),
 			BB_SPEAK_CHANCE = 1,
 		),

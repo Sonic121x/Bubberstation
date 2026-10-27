@@ -1,7 +1,7 @@
 /datum/job/veteran_advisor
 	title = JOB_VETERAN_ADVISOR
-	description = "Advise HoS, and Captain on matters of Security. Train green Officers. \
-		Lay back in your wheelchair and say \"I told you\" to the HoS when all of the station collapses."
+	description = "就安保事务向安保主管与舰长提供建议，训练新手安保官。 \
+		当整个空间站崩溃时，坐在轮椅上对安保主管说一句“我早就说过”。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	faction = FACTION_STATION
 	total_positions = 0
@@ -32,7 +32,7 @@
 		/obj/item/instrument/trumpet = 5,
 		/obj/item/storage/fancy/cigarettes/cigars = 10,
 	)
-	rpg_title = "Royal Advisor"
+	rpg_title = "皇家顾问"
 	allow_bureaucratic_error = FALSE
 	job_flags = STATION_JOB_FLAGS | STATION_TRAIT_JOB_FLAGS | JOB_ANTAG_PROTECTED
 

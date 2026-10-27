@@ -1,7 +1,7 @@
 /// Breathe "fire" in a line (it's freezing cold)
 /datum/action/cooldown/mob_cooldown/fire_breath/ice
-	name = "Ice Breath"
-	desc = "Fire a cold line of fire towards the enemy!"
+	name = "冰息"
+	desc = "向敌人喷出一道寒冷的火焰！"
 	button_icon = 'icons/effects/magic.dmi'
 	button_icon_state = "fireball"
 	cooldown_time = 6 SECONDS
@@ -47,8 +47,8 @@
 
 /// Breathe really cold fire in a plus shape, like bomberman
 /datum/action/cooldown/mob_cooldown/fire_breath/ice/eruption
-	name = "Ice Eruption"
-	desc = "Unleash cold fire in all directions"
+	name = "冰霜喷发"
+	desc = "向四面八方喷出寒冷的火焰"
 	button_icon = 'icons/effects/fire.dmi'
 	button_icon_state = "light"
 	cooldown_time = 6 SECONDS
@@ -78,5 +78,5 @@
 
 ///Fire subtype for ash whelps
 /datum/action/cooldown/mob_cooldown/fire_breath/ice/eruption/fire
-	name = "Eruption"
+	name = "喷发"
 	fire_temperature = /datum/action/cooldown/mob_cooldown/fire_breath::fire_temperature

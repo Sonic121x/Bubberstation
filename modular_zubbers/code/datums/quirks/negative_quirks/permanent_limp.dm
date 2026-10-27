@@ -1,11 +1,11 @@
 /datum/quirk/permanent_limp //As it turns out, upstream now has a limping quirk. (/datum/quirk/item_quirk/limper). Feel free to nuke this quirk to reduce redundancy.
 	name = "Permanent Limp"
-	desc = "One of your legs has a permanent limp."
+	desc = "你的一条腿永久跛行。"
 	icon = FA_ICON_PERSON_WALKING_WITH_CANE
 	value = -3
-	gain_text = "You start to walk with a limp"
-	lose_text = "Your limp is cured"
-	medical_record_text = "Patient has an untreatable impairment in motive capability in the lower extremities."
+	gain_text = "你开始一瘸一拐地走路"
+	lose_text = "你的跛行治好了"
+	medical_record_text = "患者下肢存在无法治愈的运动功能障碍。"
 	hardcore_value = 2
 	mail_goodies = list(/obj/item/cane/crutch)
 

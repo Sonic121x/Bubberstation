@@ -4,9 +4,9 @@
  * It can blind people to make a getaway, but also get stronger if it attacks the same target consecutively.
  */
 /mob/living/basic/heretic_summon/raw_prophet
-	name = "\improper Raw Prophet"
-	real_name = "Raw Prophet"
-	desc = "An abomination stitched together from a few severed arms and one swollen, orphaned eye."
+	name = "\improper 原生先知"
+	real_name = "原生先知"
+	desc = "由几条被割下的手臂和一只肿胀、孤零零的眼睛缝合而成的可憎之物。"
 	icon_state = "raw_prophet"
 	icon_living = "raw_prophet"
 	status_flags = CANPUSH
@@ -29,12 +29,12 @@
 	var/static/list/body_parts = list(/obj/effect/gibspawner/human, /obj/item/bodypart/arm/left, /obj/item/organ/eyes)
 	AddElement(/datum/element/death_drops, body_parts)
 	AddComponent(/datum/component/focused_attacker)
-	var/on_link_message = "You feel something new enter your sphere of mind... \
-		You hear whispers of people far away, screeches of horror and a huming of welcome to [src]'s Mansus Link."
-	var/on_unlink_message = "Your mind shatters as [src]'s Mansus Link leaves your mind."
+	var/on_link_message = "你感到某种新的东西进入了你的心智领域…… \
+		你听见远方人们的低语、恐惧的尖啸，以及欢迎你加入 [src] 的漫宿链接的嗡鸣。"
+	var/on_unlink_message = "当 [src] 的漫宿链接离开你的心智时，你的心智崩碎了。"
 	AddComponent( \
 		/datum/component/mind_linker/active_linking, \
-		network_name = "Mansus Link", \
+		network_name = "漫宿链接", \
 		chat_color = "#568b00", \
 		post_unlink_callback = CALLBACK(src, PROC_REF(after_unlink)), \
 		speech_action_background_icon_state = "bg_heretic", \

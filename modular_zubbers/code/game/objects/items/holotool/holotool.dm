@@ -1,6 +1,6 @@
 /obj/item/holotool
-	name = "experimental holotool"
-	desc = "A highly experimental holographic tool projector. Less efficient than its physical counterparts."
+	name = "实验型全息工具"
+	desc = "实验性质很强的全息工具投影器，效率不及相应的实体工具。"
 	icon = 'modular_zubbers/icons/obj/holotool.dmi'
 	icon_state = "holotool"
 	inhand_icon_state = "holotool"
@@ -49,10 +49,10 @@
 
 /obj/item/holotool/examine(mob/user)
 	. = ..()
-	. += span_notice("It is currently set to the [current_tool ? current_tool.name : "off"] mode.")
+	. += span_notice("当前模式为[chinese_holotool_mode_display(current_tool ? current_tool.name : "off")]。")
 	if(tool_behaviour == TOOL_MULTITOOL)
-		. += span_notice("Its buffer [buffer?.resolve() ? "contains [buffer.resolve()]." : "is empty."]")
-	. += span_info("Attack self to select tool modes.")
+		. += span_notice("缓冲区[buffer?.resolve() ? "存有[buffer.resolve()]。" : "为空。"]")
+	. += span_info("在手中使用即可选择工具模式。")
 
 // Welding tool repair is currently hardcoded and not based on tool behavior
 /obj/item/holotool/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -71,11 +71,11 @@
 		return NONE
 
 	if (!affecting.brute_dam)
-		balloon_alert(user, "limb not damaged")
+		balloon_alert(user, "肢体没有损伤")
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice("[user] starts to fix some of the dents on [attacked_humanoid == user ? user.p_their() : "[attacked_humanoid]'s"] [affecting.name]."),
-		span_notice("You start fixing some of the dents on [attacked_humanoid == user ? "your" : "[attacked_humanoid]'s"] [affecting.name]."))
+	user.visible_message(span_notice("[user]开始修复[attacked_humanoid == user ? "自己" : "[attacked_humanoid]"]的[affecting.name]上的凹痕。"),
+		span_notice("你开始修复[attacked_humanoid == user ? "自己" : "[attacked_humanoid]"]的[affecting.name]上的凹痕。"))
 	var/use_delay = 1 SECONDS
 	if(user == attacked_humanoid)
 		use_delay = 5 SECONDS
@@ -83,7 +83,7 @@
 	if(!use_tool(attacked_humanoid, user, use_delay, volume=50, amount=1))
 		return ITEM_INTERACT_BLOCKING
 
-	if (!attacked_humanoid.item_heal(user, brute_heal = 15, burn_heal = 0, heal_message_brute = "dents", heal_message_burn = "burnt wires", required_bodytype = BODYTYPE_ROBOTIC))
+	if (!attacked_humanoid.item_heal(user, brute_heal = 15, burn_heal = 0, heal_message_brute = "凹痕", heal_message_burn = "烧毁的线路", required_bodytype = BODYTYPE_ROBOTIC))
 		return ITEM_INTERACT_BLOCKING
 
 	INVOKE_ASYNC(src, PROC_REF(try_heal_loop), interacting_with, user, TRUE)
@@ -101,7 +101,7 @@
 	if(istype(action, /datum/action/item_action/change_tool))
 		return ..()
 	else if(istype(action, /datum/action/item_action/change_ht_color))
-		var/chosen_color = tgui_color_picker(user, "Select Color", "[src]", "#48D1CC")
+		var/chosen_color = tgui_color_picker(user, "选择颜色", "[src]", "#48D1CC")
 		if(!chosen_color || QDELETED(src) || user.incapacitated || !user.is_holding(src))
 			return
 		current_light_color = chosen_color
@@ -152,7 +152,7 @@
 
 /obj/item/holotool/attack_self(mob/user)
 	var/list/possible_choices = return_usable_modes()
-	var/datum/holotool_mode/chosen = show_radial_menu(
+	var/datum/holotool_mode/chosen = chinese_holotool_radial(
 		user = user,
 		anchor = src,
 		choices = possible_choices,
@@ -166,7 +166,7 @@
 /obj/item/holotool/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
-	to_chat(user, span_danger("ZZT- ILLEGAL BLUEPRINT UNLOCKED- CONTACT !#$@^%$# NANOTRASEN SUPPORT-@*%$^%!"))
+	to_chat(user, span_danger("滋——已解锁非法蓝图——请联系 !#$@^%$# 纳米传讯技术支持——@*%$^%！"))
 	do_sparks(5, FALSE, src)
 	obj_flags |= EMAGGED
 	return TRUE

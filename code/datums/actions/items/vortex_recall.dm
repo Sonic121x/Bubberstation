@@ -1,6 +1,6 @@
 /datum/action/item_action/vortex_recall
-	name = "Vortex Recall"
-	desc = "Recall yourself, and anyone nearby, to an attuned hierophant beacon at any time.<br>If the beacon is still attached, will detach it."
+	name = "漩涡召回"
+	desc = "随时将自己和附近的人传送回已绑定的圣职者信标。<br>如果信标仍装在武器上，则将其卸下。"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "vortex_recall"
 

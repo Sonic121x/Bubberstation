@@ -33,7 +33,7 @@
 	src.config_flags = config_flags
 	src.tool_flags = tool_flags
 	src.backdrop = backdrop
-	layers = list(list("name" = "Background", visible = TRUE, "data" = create_layer_data(initial_layer_color)))
+	layers = list(list("name" = "背景", visible = TRUE, "data" = create_layer_data(initial_layer_color)))
 
 /datum/sprite_editor_workspace/proc/copy(preserve_history = FALSE)
 	var/datum/sprite_editor_workspace/new_workspace = new(width, height, dirs, color_mode, config_flags, tool_flags)
@@ -202,11 +202,11 @@
 						bottom_layer["[dir]"][y][x] = blend_color(bottom_layer["[dir]"][y][x], top_layer["[dir]"][y][x])
 			layers.Cut(layer, layer+1)
 		if("addLayer")
-			var/layer_name = "New Layer"
+			var/layer_name = "新图层"
 			var/dupe_count = 1
 			for(var/list/layer in layers)
 				if(layer["name"] == layer_name)
-					layer_name = "New Layer [++dupe_count]"
+					layer_name = "新图层 [++dupe_count]"
 			layers += list(list("name" = layer_name, "visible" = TRUE, "data" = create_layer_data()))
 		if("deleteLayer")
 			var/layer = transaction["layer"]

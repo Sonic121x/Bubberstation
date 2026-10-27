@@ -1,5 +1,5 @@
 /datum/antagonist/space_dragon
-	name = "\improper Space Dragon"
+	name = "\improper 太空龙"
 	roundend_category = "space dragons"
 	antagpanel_category = ANTAG_GROUP_LEVIATHANS
 	pref_flag = ROLE_SPACE_DRAGON
@@ -33,11 +33,11 @@
 
 /datum/antagonist/space_dragon/greet()
 	. = ..()
-	to_chat(owner, "<b>Through endless time and space we have moved. We do not remember from where we came, we do not know where we will go.  All of space belongs to us.\n\
-					It is an empty void, of which our kind was the apex predator, and there was little to rival our claim to this title.\n\
-					But now, we find intruders spread out amongst our claim, willing to fight our teeth with magics unimaginable, their dens like lights flickering in the depths of space.\n\
-					Today, we will snuff out one of those lights.</b>")
-	to_chat(owner, span_boldwarning("You have five minutes to find a safe location to place down the first rift.  If you take longer than five minutes to place a rift, you will be returned from whence you came."))
+	to_chat(owner, "<b>我们穿越无尽的时间与空间而来。我们不记得自己从何而来，也不知将往何处去。整个太空都属于我们。\n\
+					这是一片空旷的虚空，我们的族群曾是这里的顶级掠食者，几乎没有谁能挑战我们的这一地位。\n\
+					但如今，我们发现入侵者散布在我们的领地上，以难以想象的魔法对抗我们的利齿，他们的巢穴如同深空中的点点灯火。\n\
+					今天，我们将熄灭其中一盏。</b>")
+	to_chat(owner, span_boldwarning("你有五分钟时间寻找一处安全地点放置第一道裂隙。若超过五分钟仍未放置裂隙，你将被送回你来的地方。"))
 	owner.announce_objectives()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/effects/magic/demon_attack1.ogg', 80)
 
@@ -86,7 +86,7 @@
 	locate_rift_ability?.Grant(antag)
 	wavespeak = antag.AddComponent( \
 		/datum/component/mind_linker, \
-		network_name = "Wavespeak", \
+		network_name = "波语", \
 		chat_color = "#635BAF", \
 		signals_which_destroy_us = list(COMSIG_LIVING_DEATH), \
 		speech_action_icon = 'icons/mob/actions/actions_space_dragon.dmi', \
@@ -141,11 +141,11 @@
 		return
 	riftTimer = min(riftTimer + 1, maxRiftTimer + 1)
 	if(riftTimer == (maxRiftTimer - 60))
-		to_chat(owner.current, span_boldwarning("You have a minute left to summon the rift! Get to it!"))
+		to_chat(owner.current, span_boldwarning("你还剩一分钟召唤裂隙！快去！"))
 		return
 	if(riftTimer >= maxRiftTimer)
 		// BUBBER CHANGE START: dragons don't die to not summoning a rift
-		to_chat(owner.current, span_boldwarning("You've failed to summon the rift in a timely manner! You will be slowed down until you do so!"))
+		to_chat(owner.current, span_boldwarning("你未能及时召唤裂隙！在完成召唤之前，你的移动速度会降低！"))
 		owner.current.add_movespeed_modifier(/datum/movespeed_modifier/dragon_depression)
 		riftTimer = -1
 		// BUBBER CHANGE END
@@ -167,7 +167,7 @@
 	if(rifts_charged != 3 && !objective_complete) // BUBBER ADDITION
 		if(owner.current.stat == DEAD)
 			return
-		to_chat(owner.current, span_warning("You will be able to make a new rift in 5 minutes."))
+		to_chat(owner.current, span_warning("你可以在 5 分钟后再次制造裂隙。"))
 		addtimer(CALLBACK(src, PROC_REF(give_rift_ability)), 5 MINUTES)
 	SEND_SOUND(owner.current, sound('sound/vehicles/rocketlaunch.ogg'))
 	for(var/obj/structure/carp_rift/rift as anything in rift_list)
@@ -195,8 +195,8 @@
 	permanant_empower()
 	var/datum/objective/summon_carp/main_objective = locate() in objectives
 	main_objective?.completed = TRUE
-	priority_announce("A large amount of lifeforms have been detected approaching [station_name()] at extreme speeds. \
-		Remaining crew are advised to evacuate as soon as possible.", "[command_name()] Wildlife Observations", has_important_message = TRUE)
+	priority_announce("检测到大量生命体正以极高速接近[station_name()]。\
+		建议剩余船员尽快撤离。", "[command_name()] 野生生物观测", has_important_message = TRUE)
 	sound_to_playing_players('sound/mobs/non-humanoids/space_dragon/space_dragon_roar.ogg', volume = 75)
 	for(var/obj/structure/carp_rift/rift as anything in rift_list)
 		rift.carp_stored = 999999
@@ -238,7 +238,7 @@
 	owner.current.remove_movespeed_modifier(/datum/movespeed_modifier/dragon_rage)
 
 /datum/objective/summon_carp
-	explanation_text = "Summon 3 rifts in order to flood the station with carp."
+	explanation_text = "召唤 3 道裂隙，让鲤鱼淹没空间站。"
 
 /datum/objective/summon_carp/update_explanation_text()
 	var/datum/antagonist/space_dragon/dragon_owner = owner.has_antag_datum(/datum/antagonist/space_dragon)
@@ -250,13 +250,13 @@
 		converted_names += possible_area.get_original_area_name()
 
 	explanation_text = initial(explanation_text)
-	explanation_text += " Your possible rift locations are: [english_list(converted_names)]"
+	explanation_text += " 你可能的裂隙位置是：[english_list(converted_names)]"
 
 /datum/antagonist/space_dragon/roundend_report()
 	var/list/parts = list()
 	var/datum/objective/summon_carp/S = locate() in objectives
 	if(S.check_completion())
-		parts += "<span class='redtext big'>The [name] has succeeded! Station space has been reclaimed by the space carp!</span>"
+		parts += "<span class='redtext big'>[name]成功了！空间站周边的太空已被太空鲤鱼夺回！</span>"
 	parts += printplayer(owner)
 	var/objectives_complete = TRUE
 	if(objectives.len)
@@ -266,19 +266,19 @@
 				objectives_complete = FALSE
 				break
 	if(objectives_complete)
-		parts += "<span class='greentext big'>The [name] was successful!</span>"
+		parts += "<span class='greentext big'>[name]成功了！</span>"
 	else
-		parts += "<span class='redtext big'>The [name] has failed!</span>"
+		parts += "<span class='redtext big'>[name]失败了！</span>"
 
 	if(length(carp))
-		parts += span_header("<br>The [name] was assisted by:")
+		parts += span_header("<br>协助[name]的有：")
 		parts += "<ul class='playerlist'>"
 		var/list/players_to_carp_taken = list()
 		for(var/datum/mind/carpy as anything in carp)
 			players_to_carp_taken[carpy.key] += 1
 		var/list = ""
 		for(var/carp_user in players_to_carp_taken)
-			list += "<li><b>[carp_user]</b>, who played <b>[players_to_carp_taken[carp_user]]</b> space carps.</li>"
+			list += "<li><b>[carp_user]</b>，扮演了 <b>[players_to_carp_taken[carp_user]]</b> 只太空鲤鱼。</li>"
 		parts += list
 		parts += "</ul>"
 

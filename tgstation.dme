@@ -9225,6 +9225,7 @@
 #include "modular_zubbers\code\__DEFINES\techweb_nodes.dm"
 #include "modular_zubbers\code\__DEFINES\traits.dm"
 #include "modular_zubbers\code\__DEFINES\vitezstvi.dm"
+#include "modular_zubbers\code\__HELPERS\chinese_display.dm"
 #include "modular_zubbers\code\_globalvars\tgui_fallback.dm"
 #include "modular_zubbers\code\_globalvars\lists\_maintenance_loot.dm"
 #include "modular_zubbers\code\_globalvars\lists\erp_items.dm"

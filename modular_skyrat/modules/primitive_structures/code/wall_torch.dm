@@ -1,6 +1,6 @@
 /obj/structure/wall_torch
-	name = "mounted torch"
-	desc = "A simple torch mounted to the wall, for lighting and such."
+	name = "壁挂火把"
+	desc = "一支固定在墙上的简易火把，用于照明等用途。"
 	icon = 'modular_skyrat/modules/primitive_structures/icons/lighting.dmi'
 	icon_state = "walltorch"
 	base_icon_state = "walltorch"
@@ -52,7 +52,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch, 28)
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch/spawns_lit, 28)
 
 /datum/crafting_recipe/wall_torch
-	name = "Wall Torch"
+	name = "壁挂火把"
 	result = /obj/item/wallframe/torch
 	reqs = list(
 		/obj/item/stack/sheet/mineral/wood = 2,
@@ -63,8 +63,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch/spawns_lit, 28)
 	category = CAT_STRUCTURE
 
 /obj/item/wallframe/torch
-	name = "wall mounted torch"
-	desc = "A simple torch ready to be mounted to the wall, for lighting and such. Apply to wall to use."
+	name = "壁挂火把"
+	desc = "一支可安装在墙上用于照明的简易火把。对墙壁使用即可安装。"
 	icon = 'modular_skyrat/modules/primitive_structures/icons/lighting.dmi'
 	icon_state = "walltorch"
 	result_path = /obj/structure/wall_torch

@@ -1,5 +1,5 @@
 /obj/machinery/portable_atmospherics/pump
-	name = "portable air pump"
+	name = "便携式空气泵"
 	icon_state = "siphon"
 	density = TRUE
 	max_integrity = 250
@@ -79,7 +79,7 @@
 			on = FALSE
 			update_appearance()
 	else if(on && holding && direction == PUMP_OUT)
-		user.investigate_log("started a transfer into [holding].", INVESTIGATE_ATMOS)
+		user.investigate_log("开始向 [holding] 转移。", INVESTIGATE_ATMOS)
 
 /obj/machinery/portable_atmospherics/pump/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -122,17 +122,17 @@
 				var/plasma_moles = air_contents.moles[/datum/gas/plasma]
 				var/n2o_moles = air_contents.moles[/datum/gas/nitrous_oxide]
 				if(n2o_moles || plasma_moles)
-					message_admins("[ADMIN_LOOKUPFLW(usr)] turned on a pump that contains [n2o_moles ? "N2O" : ""][n2o_moles && plasma_moles ? " & " : ""][plasma_moles ? "Plasma" : ""] at [ADMIN_VERBOSEJMP(src)]")
-					log_admin("[key_name(usr)] turned on a pump that contains [n2o_moles ? "N2O" : ""][n2o_moles && plasma_moles ? " & " : ""][plasma_moles ? "Plasma" : ""] at [AREACOORD(src)]")
+					message_admins("[ADMIN_LOOKUPFLW(usr)] 启动了一台含有 [n2o_moles ? "N2O" : ""][n2o_moles && plasma_moles ? " & " : ""][plasma_moles ? "等离子体" : ""] 的空气泵，位置：[ADMIN_VERBOSEJMP(src)]")
+					log_admin("[key_name(usr)] 启动了一台含有 [n2o_moles ? "N2O" : ""][n2o_moles && plasma_moles ? " & " : ""][plasma_moles ? "等离子体" : ""] 的空气泵，位置：[AREACOORD(src)]")
 			else if(on && direction == PUMP_OUT)
-				usr.investigate_log("started a transfer into [holding].", INVESTIGATE_ATMOS)
+				usr.investigate_log("开始向 [holding] 转移。", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("direction")
 			if(direction == PUMP_OUT)
 				direction = PUMP_IN
 			else
 				if(on && holding)
-					usr.investigate_log("started a transfer into [holding].", INVESTIGATE_ATMOS)
+					usr.investigate_log("开始向 [holding] 转移。", INVESTIGATE_ATMOS)
 				direction = PUMP_OUT
 			. = TRUE
 		if("pressure")
@@ -151,7 +151,7 @@
 				. = TRUE
 			if(.)
 				target_pressure = clamp(pressure, PUMP_MIN_PRESSURE, PUMP_MAX_PRESSURE)
-				investigate_log("was set to [target_pressure] kPa by [key_name(usr)].", INVESTIGATE_ATMOS)
+				investigate_log("被 [key_name(usr)] 设为 [target_pressure] kPa。", INVESTIGATE_ATMOS)
 		if("eject")
 			if(holding)
 				replace_tank(usr, FALSE)
@@ -162,8 +162,8 @@
 				return
 			suppress_reactions = !suppress_reactions
 			SSair.start_processing_machine(src)
-			message_admins("[ADMIN_LOOKUPFLW(usr)] turned [suppress_reactions ? "on" : "off"] the [src] reaction suppression.")
-			usr.investigate_log("turned [suppress_reactions ? "on" : "off"] the [src] reaction suppression.", INVESTIGATE_ATMOS)
+			message_admins("[ADMIN_LOOKUPFLW(usr)] [suppress_reactions ? "开启" : "关闭"]了 [src] 的反应抑制。")
+			usr.investigate_log("[suppress_reactions ? "开启" : "关闭"]了 [src] 的反应抑制。", INVESTIGATE_ATMOS)
 			. = TRUE
 	update_appearance()
 
@@ -172,14 +172,14 @@
 	return ..()
 
 /obj/machinery/portable_atmospherics/pump/lil_pump
-	name = "Lil' Pump"
+	name = "小泵"
 
 /obj/machinery/portable_atmospherics/pump/lil_pump/Initialize(mapload)
 	. = ..()
 	//25% chance to occur
 	if(prob(25))
-		name = "Liler' Pump"
-		desc = "When a Lil' Pump and a portable air pump love each other very much."
+		name = "小小泵"
+		desc = "当一个小泵和一台便携式空气泵深爱着彼此的时候。"
 		var/matrix/lil_pump = matrix()
 		lil_pump.Scale(0.8)
 		src.transform = lil_pump

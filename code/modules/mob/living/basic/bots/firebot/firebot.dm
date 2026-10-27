@@ -1,8 +1,8 @@
 #define FOAM_INTERVAL 5 SECONDS
 
 /mob/living/basic/bot/firebot
-	name = "\improper Firebot"
-	desc = "A little fire extinguishing bot. He looks rather anxious."
+	name = "\improper 消防机器人"
+	desc = "一台小小的消防机器人。它看起来很焦虑。"
 	icon = 'icons/mob/silicon/aibots.dmi'
 	icon_state = "firebot1"
 	light_color = "#8cffc9"
@@ -14,9 +14,9 @@
 	radio_channel = RADIO_CHANNEL_ENGINEERING
 	bot_type = FIRE_BOT
 	additional_access = /datum/id_trim/job/station_engineer
-	hackables = "fire safety protocols"
+	hackables = "消防安全协议"
 	path_image_color = "#FFA500"
-	possessed_message = "You are a firebot! Protect the station from fires to the best of your ability!"
+	possessed_message = "你是一台消防机器人！尽你所能保护空间站免遭火灾！"
 	ai_controller = /datum/ai_controller/basic_controller/bot/firebot
 	///our inbuilt fire extinguisher
 	var/obj/item/extinguisher/internal_ext
@@ -90,9 +90,9 @@
 	if(!(bot_access_flags & BOT_COVER_EMAGGED))
 		return
 
-	to_chat(user, span_warning("You enable the very ironically named \"fighting with fire\" mode, and disable the targeting safeties.")) // heheehe. funny
+	to_chat(user, span_warning("你启用了名字极具讽刺意味的“以火攻火”模式，并关闭了目标锁定安全装置。")) // heheehe. funny
 
-	audible_message(span_danger("[src] buzzes oddly!"))
+	audible_message(span_danger("[src] 发出奇怪的嗡鸣！"))
 	playsound(src, SFX_SPARKS, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 	internal_ext.chem = /datum/reagent/clf3 //Refill the internal extinguisher with liquid fire

@@ -1,9 +1,9 @@
 // Jumpsuit
 
 /obj/item/clothing/under/frontier_colonist
-	name = "frontier jumpsuit"
-	desc = "A heavy grey jumpsuit with extra padding around the joints. Two massive pockets included. \
-		No matter what you do to adjust it, its always just slightly too large."
+	name = "边疆连体服"
+	desc = "一件厚重的灰色连体服，关节处有额外衬垫，还配有两个巨大的口袋。\
+		无论你怎么调整，它总是稍微大了一点。"
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
 	icon_state = "jumpsuit"
 	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
@@ -20,9 +20,9 @@
 // Boots
 
 /obj/item/clothing/shoes/jackboots/frontier_colonist
-	name = "heavy frontier boots"
-	desc = "A well built pair of tall boots usually seen on the feet of explorers, first wave colonists, \
-		and LARPers across the galaxy."
+	name = "重型边疆长靴"
+	desc = "一双做工精良的高筒靴，常见于探险家、第一波殖民者\
+		以及全银河的真人角色扮演者脚上。"
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
 	icon_state = "boots"
 	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
@@ -39,10 +39,10 @@
 // Jackets
 
 /obj/item/clothing/suit/jacket/frontier_colonist
-	name = "frontier trenchcoat"
-	desc = "A knee length coat with a water-resistant exterior and relatively comfortable interior. \
-		In between? Just enough protective material to stop the odd sharp thing getting through, \
-		though don't expect miracles."
+	name = "边疆风衣"
+	desc = "一件及膝外套，外层防水，内里相对舒适。\
+		夹层呢？只有刚好够挡住偶尔刺入的尖物的保护材料，\
+		不过别指望奇迹。"
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
 	icon_state = "jacket"
 	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
@@ -60,29 +60,29 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
 
 /obj/item/clothing/suit/jacket/frontier_colonist/short
-	name = "frontier jacket"
-	desc = "A short coat with a water-resistant exterior and relatively comfortable interior. \
-		In between? Just enough protective material to stop the odd sharp thing getting through, \
-		though don't expect miracles."
+	name = "边疆夹克"
+	desc = "一件短外套，外层防水，内里相对舒适。\
+		夹层呢？只有刚好够挡住偶尔刺入的尖物的保护材料，\
+		不过别指望奇迹。"
 	icon_state = "jacket_short"
 	worn_icon_state = "jacket_short"
 
 /obj/item/clothing/suit/jacket/frontier_colonist/medical
-	name = "frontier medical jacket"
-	desc = "A short coat with a water-resistant exterior and relatively comfortable interior. \
-		In between? Just enough protective material to stop the odd sharp thing getting through, \
-		though don't expect miracles. This one is colored a bright red and covered in white \
-		stripes to denote that someone wearing it might be able to provide medical assistance."
+	name = "边疆医疗夹克"
+	desc = "一件短外套，外层防水，内里相对舒适。\
+		夹层呢？只有刚好够挡住偶尔刺入的尖物的保护材料，\
+		不过别指望奇迹。这一件染成了亮红色，并覆有白色\
+		条纹，以表明穿着者或许能提供医疗援助。"
 	icon_state = "jacket_med"
 	worn_icon_state = "jacket_med"
 
 // Flak Jacket
 
 /obj/item/clothing/suit/frontier_colonist_flak
-	name = "frontier flak jacket"
-	desc = "A simple flak jacket with an exterior of water-resistant material. \
-		Jackets like these are often found on first wave colonists that want some armor \
-		due to the fact they can be made easily within a colony core type machine."
+	name = "边疆防破片夹克"
+	desc = "一件外层为防水材料的简易防破片夹克。\
+		这类夹克常见于想要一些护甲的第一波殖民者身上，\
+		因为它们很容易在殖民地核心类机器中制造出来。"
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
 	icon_state = "flak"
 	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
@@ -106,8 +106,8 @@
 // Various softcaps
 
 /obj/item/clothing/head/soft/frontier_colonist
-	name = "frontier cap"
-	desc = "It's a robust baseball hat in a rugged green color."
+	name = "边疆帽"
+	desc = "一顶结实的棒球帽，呈粗犷的绿色。"
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
 	icon_state = "cap"
 	soft_type = "cap"
@@ -122,8 +122,8 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
 
 /obj/item/clothing/head/soft/frontier_colonist/medic
-	name = "frontier medical cap"
-	desc = "It's a robust baseball hat in a stylish red color. Has a white diamond to denote that its wearer might be able to provide medical assistance."
+	name = "边疆医疗帽"
+	desc = "一顶结实的棒球帽，颜色是时髦的红色。帽上有一个白色菱形标志，表示佩戴者或许能提供医疗援助。"
 	icon_state = "cap_medical"
 	soft_type = "cap_medical"
 	worn_icon_state = "cap_medical"
@@ -131,8 +131,8 @@
 // Helmet (Is it a helmet? Questionable? I'm not sure what to call this thing)
 
 /obj/item/clothing/head/frontier_colonist_helmet
-	name = "frontier soft helmet"
-	desc = "A unusual piece of headwear somewhere between a proper helmet and a normal cap."
+	name = "边疆软盔"
+	desc = "一件介于正规头盔与普通帽子之间的奇特头饰。"
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
 	icon_state = "tanker"
 	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
@@ -151,9 +151,9 @@
 // Headset
 
 /obj/item/radio/headset/headset_frontier_colonist
-	name = "frontier radio headset"
-	desc = "A bulky headset that should hopefully survive exposure to the elements better than station headsets might. \
-		Has a built-in antenna allowing the headset to work independently of a communications network. Unable to use encryption keys."
+	name = "边疆无线电耳机"
+	desc = "一副笨重的耳机，但愿它比空间站的耳机更能经受风吹日晒。\
+		内置天线，使耳机可以脱离通讯网络独立工作。无法使用加密密钥。"
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
 	icon_state = "radio"
 	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
@@ -176,9 +176,9 @@
 // Gloves
 
 /obj/item/clothing/gloves/frontier_colonist
-	name = "frontier gloves"
-	desc = "A sturdy pair of black gloves that'll keep your precious fingers protected from the outside world. \
-		They go a bit higher up the arm than most gloves should, and you aren't quite sure why."
+	name = "边疆手套"
+	desc = "一双结实的黑色手套，能保护你宝贵的手指免受外界侵袭。\
+		它们比大多数手套往上延伸得更高一些，而你不太清楚为什么。"
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
 	icon_state = "gloves"
 	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
@@ -201,10 +201,10 @@
 // Special mask
 
 /obj/item/clothing/mask/gas/atmos/frontier_colonist
-	name = "frontier gas mask"
-	desc = "An improved gas mask commonly seen in places where the atmosphere is less than breathable, \
-		but otherwise more or less habitable. Its certified to protect against most biological hazards \
-		to boot."
+	name = "边疆防毒面具"
+	desc = "一种改良型防毒面具，常见于大气不太适合呼吸、\
+		但总体尚可居住的地方。它还通过了认证，可抵御大多数\
+		生物危害。"
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
 	icon_state = "mask"
 	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
@@ -240,7 +240,7 @@
 
 // boots
 /obj/item/clothing/shoes/jackboots/frontier_colonist/loadout
-	name = "frontier jackboots"
+	name = "边疆长靴"
 	armor_type = /datum/armor/shoes_jackboots
 
 // mask

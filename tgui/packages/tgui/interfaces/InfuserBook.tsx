@@ -11,7 +11,7 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { batchThreeDisplay } from '../localization/batchThreeDisplay';
 type Entry = {
   name: string;
   infuse_mob_name: string;
@@ -250,7 +250,7 @@ const InfuserEntry = (props: InfuserEntryProps) => {
   return (
     <Section
       fill
-      title={`${entry.name} Mutant`}
+      title={`${batchThreeDisplay(entry.name)}变种人`}
       height={PAGE_HEIGHT}
       buttons={
         <Button tooltip={tierData.desc} icon={tierData.icon}>

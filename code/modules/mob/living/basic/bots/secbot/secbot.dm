@@ -1,6 +1,6 @@
 /mob/living/basic/bot/secbot
-	name = "\improper Securitron"
-	desc = "A little security robot. He looks less than thrilled."
+	name = "\improper 安保机器人"
+	desc = "一台小巧的安保机器人。它看起来一点也不高兴。"
 	icon = 'icons/mob/silicon/aibots.dmi'
 	icon_state = "secbot"
 	base_icon_state = "secbot"
@@ -22,9 +22,9 @@
 	bot_type = SEC_BOT
 	bot_mode_flags = ~BOT_MODE_CAN_BE_SAPIENT
 	data_hud_type = TRAIT_SECURITY_HUD
-	hackables = "target identification systems"
+	hackables = "目标识别系统"
 	path_image_color = COLOR_RED
-	possessed_message = "You are a securitron! Guard the station to the best of your ability!"
+	possessed_message = "你是一台安保机器人！尽你所能守卫空间站！"
 	additional_access = /datum/id_trim/job/detective
 
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6.2, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 3.2)
@@ -98,7 +98,7 @@
 	speed += 3
 	addtimer(VARSET_CALLBACK(src, speed, speed - 3), 6 SECONDS)
 	playsound(src, 'sound/machines/defib/defib_zap.ogg', 50)
-	visible_message(span_warning("[src] shakes and speeds up!"))
+	visible_message(span_warning("[src] 颤抖了一下，速度变快了！"))
 
 /mob/living/basic/bot/secbot/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -146,9 +146,9 @@
 
 	// Turns an oversight into a feature. Beepsky will now announce when pacifists taunt him over sec comms.
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		user.visible_message(span_notice("[user] taunts [src], daring [p_them()] to give chase!"), \
-			span_notice("You taunt [src], daring [p_them()] to chase you!"), span_hear("You hear someone shout a daring taunt!"), DEFAULT_MESSAGE_RANGE, user)
-		speak("Taunted by pacifist scumbag [RUNECHAT_BOLD("[user]")] in [get_area(src)].", radio_channel)
+		user.visible_message(span_notice("[user] 嘲弄 [src]，挑衅[p_them()]来追！"), \
+			span_notice("你嘲弄 [src]，挑衅[p_them()]来追你！"), span_hear("你听到有人喊出一句大胆的挑衅！"), DEFAULT_MESSAGE_RANGE, user)
+		speak("在 [get_area(src)] 被和平主义败类 [RUNECHAT_BOLD("[user]")] 嘲弄。", radio_channel)
 
 		// Interrupt the attack chain. We've already handled this scenario for pacifists.
 		return
@@ -156,14 +156,14 @@
 	return ..()
 
 /mob/living/basic/bot/secbot/proc/retrieve_emag_message()
-	audible_message(span_danger("[src] buzzes oddly!"))
+	audible_message(span_danger("[src] 发出奇怪的嗡鸣声！"))
 
 /mob/living/basic/bot/secbot/emag_act(mob/user, obj/item/card/emag/emag_card)
 	. = ..()
 	if(!(bot_access_flags & BOT_COVER_EMAGGED))
 		return
 	if(user)
-		balloon_alert(user, "target assessment circuits shorted")
+		balloon_alert(user, "目标评估电路短路")
 
 	retrieve_emag_message()
 	security_mode_flags &= ~SECBOT_DECLARE_ARRESTS
@@ -178,7 +178,7 @@
 	var/threat = ai_controller.blackboard[BB_CURRENT_CRIMINAL_ASSESSMENT] || 5
 	if(security_mode_flags & SECBOT_DECLARE_ARRESTS)
 		var/area/location = get_area(src)
-		speak("[security_mode_flags & SECBOT_HANDCUFF_TARGET ? "Arresting" : "Detaining"] level [threat] scumbag [RUNECHAT_BOLD("[current_target]")] in [location].", radio_channel)
+		speak("[security_mode_flags & SECBOT_HANDCUFF_TARGET ? "正在逮捕" : "正在拘留"] [threat] 级败类 [RUNECHAT_BOLD("[current_target]")]，地点：[location]。", radio_channel)
 	payment_check(current_target)
 	update_bot_mode(new_mode = BOT_PREP_ARREST)
 
@@ -214,18 +214,18 @@
 		return FALSE
 	var/obj/item/card/id/target_id = human_target.get_idcard()
 	if(!target_id)
-		say("Unable to pay fine: No ID card found.")
+		say("无法缴纳罚款：未找到身份证件。")
 		return TRUE
 	var/datum/bank_account/insurance = target_id.registered_account
 	if(!insurance)
-		say("Unable to pay fine: No bank account found.")
+		say("无法缴纳罚款：未找到银行账户。")
 		return TRUE
-	if(!insurance.adjust_money(-fair_market_price, "Securitron fine"))
-		say("Unable to pay fine: Not enough funds in account.")
+	if(!insurance.adjust_money(-fair_market_price, "安保机器人罚款"))
+		say("无法缴纳罚款：账户余额不足。")
 		return TRUE
 
 	SSeconomy.get_dep_account(payment_department)?.adjust_money(fair_market_price)
-	say("Fine paid: Thank you for your compliance. Your account been charged [fair_market_price] [MONEY_NAME].")
+	say("罚款已缴纳：感谢你的配合。你的账户已被扣除 [fair_market_price] [MONEY_NAME]。")
 	return FALSE
 
 /mob/living/basic/bot/secbot/generate_speak_list()

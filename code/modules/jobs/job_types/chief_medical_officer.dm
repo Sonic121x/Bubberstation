@@ -1,7 +1,7 @@
 /datum/job/chief_medical_officer
 	title = JOB_CHIEF_MEDICAL_OFFICER
-	description = "Coordinate doctors and other medbay employees, ensure they \
-		know how to save lives, check for injuries on the crew monitor."
+	description = "协调医生和其他医疗部员工，确保他们\
+		懂得如何救人性命，并留意船员监控上的伤情。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	head_announce = RADIO_CHANNEL_MEDICAL
 	faction = FACTION_STATION
@@ -40,7 +40,7 @@
 		/obj/effect/spawner/random/medical/surgery_tool_alien = 1
 	)
 	family_heirlooms = list(/obj/item/storage/medkit/ancient/heirloom, /obj/item/scalpel, /obj/item/hemostat, /obj/item/circular_saw, /obj/item/retractor, /obj/item/cautery, /obj/item/statuebust/hippocratic)
-	rpg_title = "High Cleric"
+	rpg_title = "高阶牧师"
 	job_flags = STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS
 
 	human_authority = JOB_AUTHORITY_HUMANS_ONLY
@@ -49,7 +49,7 @@
 
 
 /datum/job/chief_medical_officer/get_captaincy_announcement(mob/living/captain)
-	return "Due to staffing shortages, newly promoted Acting Captain [captain.real_name] on deck!"
+	return "由于人手不足，新晋代理舰长 [captain.real_name] 已到任！"
 
 
 /datum/outfit/job/cmo

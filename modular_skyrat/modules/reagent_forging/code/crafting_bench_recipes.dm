@@ -1,9 +1,9 @@
 /datum/crafting_bench_recipe
 	abstract_type = /datum/crafting_bench_recipe
 	/// The name of the recipe to show
-	var/recipe_name = "generic debug recipe"
+	var/recipe_name = "通用调试配方"
 	/// What appears in the infobox when viewed in the crafting menu
-	var/recipe_desc = "generic debug recipe"
+	var/recipe_desc = "通用调试配方"
 	/// The items required to create the resulting item
 	var/list/recipe_requirements
 	/// What the end result of this recipe should be
@@ -150,7 +150,7 @@
 	var/list/returner = list()
 	for(var/obj/requirement_item as anything in recipe_requirements)
 		if(!recipe_requirements[requirement_item])
-			returner += span_boldwarning("[requirement_item] does not have an amount required set, this should not happen, report it.")
+			returner += span_boldwarning("[requirement_item] 未设置需求数量，这不应发生，请报告此问题。")
 			continue
 
 		returner += get_ingredient_description(requirement_item)
@@ -187,7 +187,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/crafting_bench_recipe/weapon_completion_recipe //Exists so I don't have to modify the code too much for weapon completion
-	recipe_name = "generic weapon completion recipe (should not be visible)"
+	recipe_name = "通用武器组装配方（不应显示）"
 	recipe_requirements = list(
 		/obj/item/stack/sheet/mineral/wood = 1,
 	)
@@ -232,8 +232,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/crafting_bench_recipe/wearable/plate_armor/plate_helmet
-	recipe_name = "plate helmet"
-	recipe_desc = "Protective headgear. Smithing oil and perfected metalworking will make it even more protective."
+	recipe_name = "板甲头盔"
+	recipe_desc = "防护头具。锻造油和完美的金属加工能进一步增强其防护性能。"
 	recipe_requirements = list(
 		/obj/item/stack/sheet/leather = 1,
 		/obj/item/forging/complete/plate = 1,
@@ -244,8 +244,8 @@
 
 
 /datum/crafting_bench_recipe/wearable/plate_armor/plate_vest
-	recipe_name = "plate vest"
-	recipe_desc = "Protective chestplating. Smithing oil and perfected metalworking will make it even more protective."
+	recipe_name = "板甲背心"
+	recipe_desc = "防护胸甲。锻造油和完美的金属加工能进一步增强其防护性能。"
 	recipe_requirements = list(
 		/obj/item/stack/sheet/leather = 1,
 		/obj/item/forging/complete/plate = 1,
@@ -255,8 +255,8 @@
 	completion_memory_given = /datum/memory/smithing/plate_vest
 
 /datum/crafting_bench_recipe/wearable/plate_armor/plate_gloves
-	recipe_name = "plate gloves"
-	recipe_desc = "Protective bracers. Smithing oil and perfected metalworking will make it even more protective."
+	recipe_name = "板甲手套"
+	recipe_desc = "防护护腕。锻造油和完美的金属加工能进一步增强其防护性能。"
 	recipe_requirements = list(
 		/obj/item/stack/sheet/leather = 1,
 		/obj/item/forging/complete/plate = 1,
@@ -266,8 +266,8 @@
 	completion_memory_given = /datum/memory/smithing/gloves
 
 /datum/crafting_bench_recipe/wearable/plate_armor/plate_boots
-	recipe_name = "plate boots"
-	recipe_desc = "Protective greaves. Smithing oil and perfected metalworking will make it even more protective."
+	recipe_name = "板甲靴"
+	recipe_desc = "防护胫甲。锻造油和完美的金属加工能进一步增强其防护性能。"
 	recipe_requirements = list(
 		/obj/item/stack/sheet/leather = 1,
 		/obj/item/forging/complete/plate = 1,
@@ -277,8 +277,8 @@
 	completion_memory_given = /datum/memory/smithing/boots
 
 /datum/crafting_bench_recipe/wearable/plate_armor/horse_shoes
-	recipe_name = "horse shoes"
-	recipe_desc = "Protective... horse shoes? Smithing oil and perfected metalworking will make it even more protective."
+	recipe_name = "马蹄铁"
+	recipe_desc = "用于防护的……马蹄铁？锻造油和完美的金属加工能进一步增强其防护性能。"
 	recipe_requirements = list(
 		/obj/item/forging/complete/chain = 1,
 		/obj/item/stack/sheet/iron = 2,
@@ -288,8 +288,8 @@
 	completion_memory_given = /datum/memory/smithing/horseshoes
 
 /datum/crafting_bench_recipe/wearable/ring
-	recipe_name = "ring"
-	recipe_desc = "A small ring that imbues the wearer with reagents. Perfected metalworking will make it imbue more reagents at once. Smithing oil increases its durability."
+	recipe_name = "戒指"
+	recipe_desc = "一枚能向佩戴者输送试剂的小戒指。完美的金属加工能提高每次输送的试剂量，锻造油能增强耐用性。"
 	recipe_requirements = list(
 		/obj/item/forging/complete/chain = 1,
 	)
@@ -298,8 +298,8 @@
 	completion_memory_given = /datum/memory/smithing/ring
 
 /datum/crafting_bench_recipe/wearable/collar
-	recipe_name = "collar"
-	recipe_desc = "A small collar that imbues the wearer with reagents. Perfected metalworking will make it imbue more reagents at once. Smithing oil increases its durability."
+	recipe_name = "项圈"
+	recipe_desc = "一个能向佩戴者输送试剂的小项圈。完美的金属加工能提高每次输送的试剂量，锻造油能增强耐用性。"
 	recipe_requirements = list(
 		/obj/item/forging/complete/chain = 1,
 	)
@@ -308,8 +308,8 @@
 	completion_memory_given = /datum/memory/smithing/collar
 
 /datum/crafting_bench_recipe/wearable/handcuffs
-	recipe_name = "handcuffs"
-	recipe_desc = "A pair of handcuffs; they need to be purged of reagents before they can be used."
+	recipe_name = "手铐"
+	recipe_desc = "一副手铐，使用前需要清除其中的试剂。"
 	recipe_requirements = list(
 		/obj/item/forging/complete/chain = 1,
 	)
@@ -321,8 +321,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/crafting_bench_recipe/buckler
-	recipe_name = "buckler"
-	recipe_desc = "A small shield. Perfected metalworking will make it more protective. Smithing oil will enhance its stopping power."
+	recipe_name = "小圆盾"
+	recipe_desc = "一面小盾牌。完美的金属加工能提高防护性能，锻造油能增强抵挡能力。"
 	recipe_requirements = list(
 		/obj/item/forging/complete/plate = 1,
 		/obj/item/stack/sheet/mineral/wood = 2,
@@ -332,8 +332,8 @@
 	completion_memory_given = /datum/memory/smithing/buckler
 
 /datum/crafting_bench_recipe/pavise
-	recipe_name = "pavise"
-	recipe_desc = "A large shield. Perfected metalworking will make it more protective. Smithing oil will enhance its stopping power."
+	recipe_name = "大盾"
+	recipe_desc = "一面大型盾牌。完美的金属加工能提高防护性能，锻造油能增强抵挡能力。"
 	recipe_requirements = list(
 		/obj/item/forging/complete/plate = 1,
 		/obj/item/stack/sheet/mineral/wood = 4,
@@ -343,8 +343,8 @@
 	completion_memory_given = /datum/memory/smithing/pavise
 
 /datum/crafting_bench_recipe/bokken
-	recipe_name = "bokken"
-	recipe_desc = "A wooden sword, typically meant for practice swordfighting."
+	recipe_name = "木刀"
+	recipe_desc = "一把木制刀剑，通常用于练习剑术。"
 	recipe_requirements = list(
 		/obj/item/stack/sheet/mineral/wood = 4,
 	)
@@ -352,8 +352,8 @@
 	time_to_assemble = 3 SECONDS
 
 /datum/crafting_bench_recipe/bow
-	recipe_name = "bow"
-	recipe_desc = "A length of curved wood attached at both ends with string. Launches arrows."
+	recipe_name = "弓"
+	recipe_desc = "一根两端用弦相连的弯曲木条。用于射箭。"
 	recipe_requirements = list(
 		/obj/item/stack/sheet/mineral/wood = 4,
 	)
@@ -361,8 +361,8 @@
 	time_to_assemble = 4 SECONDS
 
 /datum/crafting_bench_recipe/revolver
-	recipe_name = "revolver"
-	recipe_desc = "A classical single-action revolver."
+	recipe_name = "左轮手枪"
+	recipe_desc = "一把经典的单动式左轮手枪。"
 	recipe_requirements = list(
 		/obj/item/stack/sheet/mineral/wood = 1,
 		/obj/item/forging/complete/revolver_cylinder = 1,
@@ -416,8 +416,8 @@
 /////////////////////////////// BELT COMPLETION ///////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/crafting_bench_recipe/cowboy_holster
-	recipe_name = "cowboy holster"
-	recipe_desc = "A quickdraw holster-belt that can additionally store extra ammo boxes."
+	recipe_name = "牛仔枪套"
+	recipe_desc = "一条快速拔枪枪套腰带，还能额外存放弹药盒。"
 	recipe_requirements = list(
 		/obj/item/stack/sheet/leather = 3,
 		/obj/item/stack/sheet/mineral/gold = 1,
@@ -430,8 +430,8 @@
 	required_traits = list(TRAIT_KNOW_GUNSMITHING)
 
 /datum/crafting_bench_recipe/charging_holster
-	recipe_name = "charging holster"
-	recipe_desc = "A bluespace holster-belt that can charge electric guns stored in it."
+	recipe_name = "充电枪套"
+	recipe_desc = "一条蓝空间枪套腰带，可以为收纳其中的电能枪械充电。"
 	recipe_requirements = list(
 		/obj/item/stack/sheet/plastic = 1,
 		/obj/item/stack/sheet/mineral/gold = 1,
@@ -450,11 +450,11 @@
 	if(requirement_item != /obj/item/circuitboard/machine/recharger)
 		. = ..()
 	else
-		return span_notice("<b>[recipe_requirements[requirement_item]]</b> - machine board (weapon recharger)")
+		return span_notice("<b>[recipe_requirements[requirement_item]]</b> - 机器电路板（武器充电器）")
 
 /datum/crafting_bench_recipe/crusader_belt
-	recipe_name = "scabbard-utility belt"
-	recipe_desc = "A belt that holds one sword and has a number of side-pouches for holding miscellaneous items."
+	recipe_name = "剑鞘工具腰带"
+	recipe_desc = "一条能容纳一把剑的腰带，另有多个用于存放杂物的侧袋。"
 	recipe_requirements = list(
 		/obj/item/stack/sheet/leather = 3,
 		/obj/item/stack/sheet/cloth = 2,
@@ -467,8 +467,8 @@
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 /datum/crafting_bench_recipe/multi_scabbard
-	recipe_name = "multi-scabbard harness"
-	recipe_desc = "A set of harnesses that allow the wearer to carry multiple bulky weapons."
+	recipe_name = "多剑鞘背带"
+	recipe_desc = "一套让穿戴者能够携带多件大型武器的背带。"
 	recipe_requirements = list(
 		/obj/item/stack/sheet/leather = 6,
 		/obj/item/stack/sheet/cloth = 6,
@@ -480,8 +480,8 @@
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 /datum/crafting_bench_recipe/repairing_scabbard
-	recipe_name = "repairing scabbard"
-	recipe_desc = "A belt that holds one weapon and slowly restores its integrity over time."
+	recipe_name = "修复剑鞘"
+	recipe_desc = "一条能容纳一件武器并随时间缓慢修复其耐久的腰带。"
 	recipe_requirements = list(
 		/obj/item/stack/sheet/leather = 3,
 		/obj/item/stack/sheet/mineral/silver = 1,
@@ -494,8 +494,8 @@
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 /datum/crafting_bench_recipe/knifethrower
-	recipe_name = "knifethrower's belt"
-	recipe_desc = "A belt that can hold a ton of knives."
+	recipe_name = "飞刀腰带"
+	recipe_desc = "一条能装下大量刀具的腰带。"
 	recipe_requirements = list(
 		/obj/item/stack/sheet/leather = 3,
 		/obj/item/stack/sheet/cloth = 2,
@@ -507,8 +507,8 @@
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 /datum/crafting_bench_recipe/bluespace_plants
-	recipe_name = "bluespace plant bag"
-	recipe_desc = "A bluespace bag specially designed for holding plants."
+	recipe_name = "蓝空间植物袋"
+	recipe_desc = "一个专门用于存放植物的蓝空间袋子。"
 	recipe_requirements = list(
 		/obj/item/stack/sheet/cloth = 5,
 		/obj/item/grown/bananapeel/bluespace = 1,
@@ -527,7 +527,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/crafting_bench_recipe/borer_cage
-	recipe_name = "cortical borer cage"
+	recipe_name = "皮层钻虫笼"
 	recipe_requirements = list(
 		/obj/item/forging/complete/plate = 3,
 	)
@@ -536,8 +536,8 @@
 
 
 /datum/crafting_bench_recipe/coil
-	recipe_name = "coil"
-	recipe_desc = "A helically-shaped length of metal. Purged of reagents, it is used for crafting other materials."
+	recipe_name = "线圈"
+	recipe_desc = "一段螺旋形金属，清除试剂后可用于制作其他材料。"
 	recipe_requirements = list(
 		/obj/item/forging/complete/chain = 1,
 	)
@@ -545,8 +545,8 @@
 	time_to_assemble = 2 SECONDS
 
 /datum/crafting_bench_recipe/seed_mesh
-	recipe_name = "seed mesh"
-	recipe_desc = "A sifting mesh used to pull seeds from sand. Reagents have no effect on this."
+	recipe_name = "种子筛网"
+	recipe_desc = "用于从沙子里筛出种子的筛网。试剂对此物没有影响。"
 	recipe_requirements = list(
 		/obj/item/forging/complete/plate = 1,
 		/obj/item/forging/complete/chain = 1,
@@ -555,8 +555,8 @@
 	time_to_assemble = 10 SECONDS
 
 /datum/crafting_bench_recipe/centrifuge
-	recipe_name = "centrifuge"
-	recipe_desc = "A centrifuge is used to separate reagents in a solution. It typically must be purged of reagents to keep the solution clean."
+	recipe_name = "离心机"
+	recipe_desc = "离心机用于分离溶液中的试剂。通常必须清除其自身残留试剂，以保持溶液洁净。"
 	recipe_requirements = list(
 		/obj/item/forging/complete/plate = 1,
 	)
@@ -564,8 +564,8 @@
 	time_to_assemble = 7 SECONDS
 
 /datum/crafting_bench_recipe/empty_circuit
-	recipe_name = "circuit"
-	recipe_desc = "Hand-made circuitry that can be used in electronic devices. Reagents are usually cleaned out before it can function correctly."
+	recipe_name = "电路"
+	recipe_desc = "可用于电子设备的手工电路。通常需要先清除试剂，才能正常工作。"
 	recipe_requirements = list(
 		/obj/item/forging/complete/plate = 1,
 		/obj/item/forging/coil = 1,

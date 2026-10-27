@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT_TYPED(light_types, /datum/light_template, generate_light_types(
 	/// Unique id for this template
 	var/id = ""
 	/// What category to put this template in
-	var/category = "UNSORTED"
+	var/category = "未分类"
 	/// Icon to use to display this clientside
 	var/icon = ""
 	/// Icon state to display clientside
@@ -72,81 +72,81 @@ GLOBAL_LIST_INIT_TYPED(light_types, /datum/light_template, generate_light_types(
 	spawn_type = path_to_read
 
 /datum/light_template/read_light/standard_bar
-	name = "Light Bar"
-	category = "Bar"
+	name = "灯管"
+	category = "灯管"
 	path_to_read = /obj/machinery/light
 
 /datum/light_template/read_light/warm_bar
-	name = "Warm Bar"
-	category = "Bar"
+	name = "暖光灯管"
+	category = "灯管"
 	path_to_read = /obj/machinery/light/warm
 
 /datum/light_template/read_light/dimwarm_bar
-	name = "Dim Warm Bar"
-	category = "Bar"
+	name = "暗淡暖光灯管"
+	category = "灯管"
 	path_to_read = /obj/machinery/light/warm/dim
 
 /datum/light_template/read_light/cold_bar
-	name = "Cold Bar"
-	category = "Bar"
+	name = "冷光灯管"
+	category = "灯管"
 	path_to_read = /obj/machinery/light/cold
 
 /datum/light_template/read_light/dimcold_bar
-	name = "Dim Cold Bar"
-	category = "Bar"
+	name = "暗淡冷光灯管"
+	category = "灯管"
 	path_to_read = /obj/machinery/light/cold/dim
 
 /datum/light_template/read_light/red_bar
-	name = "Red Bar"
-	category = "Bar"
+	name = "红光灯管"
+	category = "灯管"
 	path_to_read = /obj/machinery/light/red
 
 /datum/light_template/read_light/dimred_bar
-	name = "Dim Red Bar"
-	category = "Bar"
+	name = "暗淡红光灯管"
+	category = "灯管"
 	path_to_read = /obj/machinery/light/red/dim
 
 /datum/light_template/read_light/blacklight_bar
-	name = "Black Bar"
-	category = "Bar"
+	name = "黑光灯管"
+	category = "灯管"
 	path_to_read = /obj/machinery/light/blacklight
 
 /datum/light_template/read_light/dim_bar
-	name = "Dim Bar"
-	category = "Bar"
+	name = "暗淡灯管"
+	category = "灯管"
 	path_to_read = /obj/machinery/light/dim
 
 /datum/light_template/read_light/very_dim_bar
-	name = "Very Dim Bar"
-	category = "Bar"
+	name = "极暗灯管"
+	category = "灯管"
 	path_to_read = /obj/machinery/light/very_dim
 
 /datum/light_template/read_light/standard_bulb
-	name = "Light Bulb"
-	category = "Bulb"
+	name = "灯泡"
+	category = "灯泡"
 	path_to_read = /obj/machinery/light/small
 
 /datum/light_template/read_light/dim_bulb
-	name = "Dim Bulb"
-	category = "Bulb"
+	name = "暗淡灯泡"
+	category = "灯泡"
 	path_to_read = /obj/machinery/light/small/dim
 
 /datum/light_template/read_light/red_bulb
-	name = "Red Bulb"
-	category = "Bulb"
+	name = "红光灯泡"
+	category = "灯泡"
 	path_to_read = /obj/machinery/light/small/red
 
 /datum/light_template/read_light/dimred_bulb
-	name = "Dim-Red Bulb"
-	category = "Bulb"
+	name = "暗淡红光灯泡"
+	category = "灯泡"
 	path_to_read = /obj/machinery/light/small/red/dim
 
 /datum/light_template/read_light/blacklight_bulb
-	name = "Black Bulb"
-	category = "Bulb"
+	name = "黑光灯泡"
+	category = "灯泡"
 	path_to_read = /obj/machinery/light/small/blacklight
 
 /datum/light_template/read_light/standard_floor
-	name = "Floor Light"
-	category = "Misc"
+	name = "地灯"
+	category = "其他"
 	path_to_read = /obj/machinery/light/floor

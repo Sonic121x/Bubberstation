@@ -1,6 +1,6 @@
 /obj/structure/life_candle
-	name = "life candle"
-	desc = "You are dead. Insert quarter to continue."
+	name = "生命蜡烛"
+	desc = "你已经死了。投入硬币以继续。"
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle1"
 	light_system = OVERLAY_LIGHT
@@ -49,14 +49,14 @@
 	if(!user.mind)
 		return
 	if(user.mind in linked_minds)
-		user.visible_message(span_notice("[user] reaches out and pinches the flame of [src]."), span_warning("You sever the connection between yourself and [src]."))
+		user.visible_message(span_notice("[user] 伸出手，掐灭了[src]的火焰。"), span_warning("你切断了自己与[src]之间的联系。"))
 		linked_minds -= user.mind
 		if(!linked_minds.len)
 			REMOVE_TRAIT(src, TRAIT_MOVE_FLOATING, LIFECANDLE_TRAIT)
 	else
 		if(!linked_minds.len)
 			ADD_TRAIT(src, TRAIT_MOVE_FLOATING, LIFECANDLE_TRAIT)
-		user.visible_message(span_notice("[user] touches [src]. It seems to respond to [user.p_their()] presence!"), span_warning("You create a connection between you and [src]."))
+		user.visible_message(span_notice("[user]触碰了[src]。它似乎对[user]的存在作出了回应！"), span_warning("你在自己与[src]之间建立了联系。"))
 		linked_minds |= user.mind
 
 	update_appearance()
@@ -74,9 +74,9 @@
 /obj/structure/life_candle/examine(mob/user)
 	. = ..()
 	if(linked_minds.len)
-		. += "[src] is active, and linked to [linked_minds.len] souls."
+		. += "[src] 处于激活状态，已与 [linked_minds.len] 个灵魂相连。"
 	else
-		. += "It is static, still, unmoving."
+		. += "它静止不动，毫无生气。"
 
 /obj/structure/life_candle/process()
 	if(!linked_minds.len)

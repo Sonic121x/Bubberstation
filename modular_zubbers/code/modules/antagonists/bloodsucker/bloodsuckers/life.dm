@@ -25,7 +25,7 @@
 /datum/antagonist/bloodsucker/proc/life_active()
 	if(HandleHealing())
 		if((COOLDOWN_FINISHED(src, bloodsucker_spam_healing)) && bloodsucker_blood_volume > 0)
-			to_chat(owner.current, span_notice("The power of your blood begins knitting your wounds..."))
+			to_chat(owner.current, span_notice("你的血液之力开始愈合伤口……"))
 			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_HEALING)
 
 /datum/antagonist/bloodsucker/proc/on_death(mob/living/source, gibbed)
@@ -66,14 +66,14 @@
 	if(value + humanity_lost >= HUMANITY_LOST_MAXIMUM)
 		if(has_masq)
 			RemovePowerByPath(MASQUERADE)
-			to_chat(owner.current, span_warning("You hit the maximum amount of lost Humanty, you are far from Human. You've forgotten how to pretend to be like your prey..."))
+			to_chat(owner.current, span_warning("你已彻底失去人性，与人类相去甚远。你忘记了该如何伪装成猎物的同类……"))
 		else
-			to_chat(owner.current, span_hypnophrase("The Beast, it yearns for Blood..."))
+			to_chat(owner.current, span_hypnophrase("心中的野兽，渴望着鲜血……"))
 	else if(!has_masq)
 		BuyPower(MASQUERADE)
-		to_chat(owner.current, span_hypnophrase("You've remembered, yet again, how it feels to live again."))
+		to_chat(owner.current, span_hypnophrase("你又一次想起了活着的感觉。"))
 	humanity_lost = clamp(value, 0, HUMANITY_LOST_MAXIMUM)
-	to_chat(owner.current, span_warning("You feel as if you [value < 0 ? "gained" : "lost" ] some of your humanity, you will now enter Frenzy at [FRENZY_THRESHOLD_ENTER + (humanity_lost * 10)] Blood."))
+	to_chat(owner.current, span_warning("你感觉自己[value < 0 ? "恢复" : "失去" ]了些许人性，现在血量降至[FRENZY_THRESHOLD_ENTER + (humanity_lost * 10)]时便会进入狂暴。"))
 
 #undef MASQUERADE
 
@@ -122,7 +122,7 @@
 		costMult += round(blood_over_cap / 1000, 0.1) // effectively 1 (normal) + 0.1 for every 100 blood you are over cap
 	if(amInCoffin && is_in_torpor())
 		if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && (COOLDOWN_FINISHED(src, bloodsucker_spam_healing)))
-			to_chat(user, span_alert("You do not heal while your Masquerade ability is active."))
+			to_chat(user, span_alert("启用避世伪装能力时，你无法自愈。"))
 			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_MASQUERADE)
 			return FALSE
 		fireheal = min(get_fire_loss(), actual_regen)
@@ -175,7 +175,7 @@
 		AdjustBloodVolume(-limb_regen_cost)
 		var/obj/item/bodypart/missing_bodypart = user.get_bodypart(missing_limb) // 2) Limb returns Damaged
 		missing_bodypart.brute_dam = missing_bodypart.max_damage
-		to_chat(user, span_notice("Your flesh knits as it regrows your [missing_bodypart]!"))
+		to_chat(user, span_notice("你的血肉重新交织，长出了[chinese_body_zone_display(missing_bodypart)]！"))
 		playsound(user, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 		return TRUE
 
@@ -200,7 +200,7 @@
 		return
 
 	if(HAS_TRAIT_FROM_ONLY(bloodsuckeruser, TRAIT_HUSK, CHANGELING_DRAIN) || bloodsuckeruser.has_status_effect(/datum/status_effect/gutted))
-		to_chat(bloodsuckeruser, span_danger("Your immortal blood has healed your body from near-irrecoverable damage, but has used nearly all of your blood in doing so!"))
+		to_chat(bloodsuckeruser, span_danger("不死之血修复了你几乎无可挽回的伤势，但也因此消耗了近乎全部血液！"))
 		AddHumanityLost(2)
 		SetBloodVolume(min(bloodsucker_blood_volume, frenzy_enter_threshold() * 2))
 		bloodsuckeruser.cure_husk(CHANGELING_DRAIN)
@@ -242,7 +242,7 @@
 		var/obj/item/organ/yucky_organs = tumors
 		if(!istype(yucky_organs))
 			continue
-		to_chat(bloodsuckeruser, span_warning("You feel a little ill for a moment, but it passes. Did you just cough up a tumor?"))
+		to_chat(bloodsuckeruser, span_warning("你感到一阵短暂的不适，随即消散。你刚才是不是咳出了一个肿瘤？"))
 		yucky_organs.Remove(bloodsuckeruser)
 		yucky_organs.forceMove(get_turf(bloodsuckeruser))
 
@@ -283,7 +283,7 @@
 	var/datum/status_effect/frenzy/status_effect = owner.current.has_status_effect(/datum/status_effect/frenzy)
 	if(bloodsucker_blood_volume >= frenzy_exit_threshold() && status_effect?.duration == STATUS_EFFECT_PERMANENT)
 		status_effect.duration = 10 SECONDS
-		owner.current.balloon_alert(owner.current, "frenzy ends in 10 seconds!")
+		owner.current.balloon_alert(owner.current, "狂暴将在10秒后结束！")
 	// BLOOD_VOLUME_BAD: [224] - Jitter
 	if(bloodsucker_blood_volume < BLOOD_VOLUME_BAD && prob(0.5) && !is_in_torpor() && !HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
 		owner.current.set_timed_status_effect(3 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
@@ -344,7 +344,7 @@
 	RegisterSignal(poor_fucker, COMSIG_MOB_SAY, PROC_REF(shake_head_on_talk))
 	poor_fucker.revive()
 	poor_fucker.stat = STABLE
-	to_chat(poor_fucker, span_warning("Your immortal [pick(list("blood", "curse"))] keeps your head alive! Though... what will you do now?"))
+	to_chat(poor_fucker, span_warning("你的不死[pick(list("之血", "诅咒"))]让头颅仍然活着！不过……现在你该怎么办？"))
 	// No lungs to speak, let's make it spooky
 	poor_fucker.speech_span = SPAN_PAPYRUS
 
@@ -400,16 +400,16 @@
 	// Elders get dusted, Fledglings get gibbed.
 	if(bloodsucker_level >= 4)
 		user.visible_message(
-			span_warning("[user]'s skin crackles and dries, their skin and bones withering to dust. A hollow cry whips from what is now a sandy pile of remains."),
-			span_userdanger("Your soul escapes your withering body as the abyss welcomes you to your Final Death."),
-			span_hear("You hear a dry, crackling sound."))
+			span_warning("[user]的皮肤噼啪作响、逐渐干枯，皮肉和骨骼都化为粉尘。一声空洞的哀号从那堆沙砾般的遗骸中传出。"),
+			span_userdanger("你的灵魂逸出枯萎的躯体，深渊迎接着你的终极死亡。"),
+			span_hear("你听到干燥的噼啪声。"))
 		addtimer(CALLBACK(user, TYPE_PROC_REF(/atom/movable, dust)), 5 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
 		return
 	user.visible_message(
-		span_warning("[user]'s skin bursts forth in a spray of gore and detritus. A horrible cry echoes from what is now a wet pile of decaying meat."),
-		span_userdanger("Your soul escapes your withering body as the abyss welcomes you to your Final Death."),
-		span_hear("<span class='italics'>You hear a wet, bursting sound."))
+		span_warning("[user]的皮肤爆裂，喷出血肉与碎屑。一声恐怖的哀号从那堆湿漉漉的腐肉中回荡而出。"),
+		span_userdanger("你的灵魂逸出枯萎的躯体，深渊迎接着你的终极死亡。"),
+		span_hear("<span class='italics'>你听到湿黏的爆裂声。"))
 	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, gib), DROP_ITEMS), 2 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
-	user.investigate_log("Died as a bloodsucker from Final Death.", INVESTIGATE_DEATHS)
+	user.investigate_log("作为吸血鬼遭遇终极死亡。", INVESTIGATE_DEATHS)
 
 #undef BLOODSUCKER_PASSIVE_BLOOD_DRAIN

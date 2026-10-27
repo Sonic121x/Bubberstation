@@ -3,10 +3,10 @@
 #define SET_UP_TIME (5 MINUTES)
 
 /obj/item/clockwork/integration_cog
-	name = "integration cog"
-	desc = "A small cog that seems to spin by its own acord when left alone."
+	name = "集成齿轮"
+	desc = "一个小齿轮，独自放置时似乎会自行转动。"
 	icon_state = "integration_cog"
-	clockwork_desc = "A sharp cog that can cut through and be inserted into APCs to extract power for your machinery."
+	clockwork_desc = "一个锋利的齿轮，能切开并插入 APC 中，为你的机械提取电力。"
 	/// If this cog has been set up, meaning that it is fully initialized (after APC insertion), granting a cog to the clock cultists
 	var/set_up = FALSE
 
@@ -17,40 +17,40 @@
 
 	var/obj/machinery/power/apc/cogger_apc = attacked_atom
 	if(cogger_apc.integration_cog)
-		balloon_alert(user, "already has a cog inside!")
+		balloon_alert(user, "里面已经有一个齿轮了！")
 		return
 
 	if(!cogger_apc.panel_open)
 		//Cut open the panel
-		balloon_alert(user, "cutting open APC...")
+		balloon_alert(user, "正在切开 APC……")
 		if(!do_after(user, 5 SECONDS, target = cogger_apc))
 			return
 
-		balloon_alert(user, UNLINT("APC cut open"))
+		balloon_alert(user, UNLINT("APC 已切开"))
 		cogger_apc.panel_open = TRUE
 		cogger_apc.update_appearance()
 		return
 
 	//Insert the cog
-	balloon_alert(user, "inserting [src]...")
+	balloon_alert(user, "正在插入 [src]……")
 	if(!do_after(user, 4 SECONDS, target = cogger_apc))
-		balloon_alert(user, "failed to insert [src]!")
+		balloon_alert(user, "插入 [src] 失败！")
 		return
 
 	cogger_apc.integration_cog = src
 	forceMove(cogger_apc)
 	cogger_apc.panel_open = FALSE
 	cogger_apc.update_appearance()
-	balloon_alert(user, "[src] inserted")
+	balloon_alert(user, "已插入 [src]")
 	playsound(get_turf(user), 'sound/machines/clockcult/integration_cog_install.ogg', 20)
 	if(!cogger_apc.clock_cog_rewarded)
 		addtimer(CALLBACK(src, PROC_REF(finish_setup), cogger_apc), SET_UP_TIME)
 
-		send_clock_message(null, span_brass(span_bold("[user] has installed an integration cog into [cogger_apc].")), msg_ghosts = FALSE)
-		notify_ghosts("[user] has installed an integration cog into [cogger_apc]",
+		send_clock_message(null, span_brass(span_bold("[user] 将一枚集成齿轮安装到了 [cogger_apc] 中。")), msg_ghosts = FALSE)
+		notify_ghosts("[user] 将一枚集成齿轮安装到了 [cogger_apc] 中",
 			source = user,
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
-			header = "Integration cog",
+			header = "集成齿轮",
 		)
 
 
@@ -67,7 +67,7 @@
 	for(var/obj/item/clockwork/clockwork_slab/slab as anything in GLOB.clockwork_slabs)
 		slab.cogs++
 
-	send_clock_message(null, span_brass(span_bold("[cogger_apc]'s integration cog has finished initialization.")), msg_ghosts = FALSE)
+	send_clock_message(null, span_brass(span_bold("[cogger_apc] 的集成齿轮已完成初始化。")), msg_ghosts = FALSE)
 
 
 /obj/machinery/power/apc
@@ -88,22 +88,22 @@
 	if(isliving(user))
 		var/mob/living/living_user = user
 		if(integration_cog || (living_user.has_status_effect(/datum/status_effect/hallucination) && prob(HALLUCINATION_COG_CHANCE)))
-			. += span_brass("A small cogwheel is inside of it.")
+			. += span_brass("它内部有一个小齿轮。")
 
 		if(integration_cog && IS_CLOCK(user))
-			. += span_brass("The integration cog is [integration_cog.set_up ? "fully initialized" : "still initializing"].")
+			. += span_brass("集成齿轮[integration_cog.set_up ? "已完全初始化" : "仍在初始化"]。")
 
 
 /obj/machinery/power/apc/crowbar_act(mob/user, obj/item/crowbar)
 	if(!opened || !integration_cog)
 		return ..()
 
-	balloon_alert(user, "prying something out of [src]...")
+	balloon_alert(user, "正在从 [src] 中撬出某物……")
 	crowbar.play_tool_sound(src)
 	if(!crowbar.use_tool(src, user, 5 SECONDS))
 		return
 
-	balloon_alert(user, "pried out something, destroying it!")
+	balloon_alert(user, "撬出了某物，并将其摧毁！")
 	QDEL_NULL(integration_cog)
 
 #undef MAX_POWER_PER_COG

@@ -1,6 +1,6 @@
 ///Simple animals 2.0, This time, let's really try to keep it simple. This basetype should purely be used as a base-level for implementing simplified behaviours for things such as damage and attacks. Everything else should be in components or AI behaviours.
 /mob/living/basic
-	name = "basic mob"
+	name = "基础生物"
 	icon = 'icons/mob/simple/animal.dmi'
 	abstract_type = /mob/living/basic
 	health = 20
@@ -55,27 +55,27 @@
 
 	///When someone interacts with the simple animal.
 	///Help-intent verb in present continuous tense.
-	var/response_help_continuous = "pokes"
+	var/response_help_continuous = "戳了戳"
 	///Help-intent verb in present simple tense.
-	var/response_help_simple = "poke"
+	var/response_help_simple = "戳一戳"
 	///Disarm-intent verb in present continuous tense.
-	var/response_disarm_continuous = "shoves"
+	var/response_disarm_continuous = "推搡"
 	///Disarm-intent verb in present simple tense.
-	var/response_disarm_simple = "shove"
+	var/response_disarm_simple = "推搡"
 	///Harm-intent verb in present continuous tense.
-	var/response_harm_continuous = "hits"
+	var/response_harm_continuous = "打了"
 	///Harm-intent verb in present simple tense.
-	var/response_harm_simple = "hit"
+	var/response_harm_simple = "打"
 
 	///Basic mob's own attacks verbs,
 	///Attacking verb in present continuous tense.
-	var/attack_verb_continuous = "attacks"
+	var/attack_verb_continuous = "攻击"
 	///Attacking verb in present simple tense.
-	var/attack_verb_simple = "attack"
+	var/attack_verb_simple = "攻击"
 	///Attacking, but without damage, verb in present continuous tense.
-	var/friendly_verb_continuous = "nuzzles"
+	var/friendly_verb_continuous = "蹭了蹭"
 	///Attacking, but without damage, verb in present simple tense.
-	var/friendly_verb_simple = "nuzzle"
+	var/friendly_verb_simple = "蹭一蹭"
 
 	////////THIS SECTION COULD BE ITS OWN ELEMENT
 	///Icon to use
@@ -229,7 +229,7 @@
 	. = ..()
 	if(stat != DEAD)
 		return
-	. += span_deadsay("Upon closer examination, [p_they()] appear[p_s()] to be [HAS_MIND_TRAIT(user, TRAIT_NAIVE) ? "asleep" : "dead"].")
+	. += span_deadsay("仔细检查后，[p_they()] 看起来像是[HAS_MIND_TRAIT(user, TRAIT_NAIVE) ? "睡着了" : "已经死了"]。")
 
 /mob/living/basic/proc/melee_attack(atom/target, list/modifiers, ignore_cooldown = FALSE)
 	var/early_melee_result = early_melee_attack(target, modifiers, ignore_cooldown)

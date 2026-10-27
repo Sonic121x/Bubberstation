@@ -141,17 +141,17 @@
 			return TRUE //they picked a sect lets update so some weird spammy shit doesn't happen
 		if("perform_rite")
 			if(!ispath(text2path(params["path"]), /datum/religion_rites))
-				message_admins("[ADMIN_LOOKUPFLW(usr)] has tried to spawn an item when performing a rite.")
+				message_admins("[ADMIN_LOOKUPFLW(usr)]尝试在进行仪式时生成物品。")
 				return
 			perform_rite(usr, text2path(params["path"]))
 
 /// Select the sect, called from [/datum/component/religious_tool/proc/AttemptActions]
 /datum/component/religious_tool/proc/select_sect(mob/living/user, path)
 	if(user.mind.holy_role != HOLY_ROLE_HIGHPRIEST)
-		to_chat(user, span_warning("You are not the high priest, and therefore cannot select a religious sect."))
+		to_chat(user, span_warning("你不是大祭司，因此无法选择教派。"))
 		return
 	if(!user.can_perform_action(parent, FORBID_TELEKINESIS_REACH))
-		to_chat(user,span_warning("You cannot select a sect at this time."))
+		to_chat(user,span_warning("你目前无法选择教派。"))
 		return
 	set_new_religious_sect(text2path(path))
 
@@ -159,15 +159,15 @@
 /datum/component/religious_tool/proc/perform_rite(mob/living/user, path)
 	if(user.mind.holy_role < HOLY_ROLE_PRIEST)
 		if(user.mind.holy_role == HOLY_ROLE_DEACON)
-			to_chat(user, span_warning("You are merely a deacon of [GLOB.deity], and therefore cannot perform rites."))
+			to_chat(user, span_warning("你只是[GLOB.deity]的执事，因此无法进行仪式。"))
 		else
-			to_chat(user, span_warning("You are not holy, and therefore cannot perform rites."))
+			to_chat(user, span_warning("你并非圣职人员，因此无法进行仪式。"))
 		return
 	if(rite_types_allowlist && !is_path_in_list(path, rite_types_allowlist))
-		to_chat(user, span_warning("This cannot perform that kind of rite."))
+		to_chat(user, span_warning("此物无法用于进行该仪式。"))
 		return
 	if(!user.can_perform_action(parent, FORBID_TELEKINESIS_REACH))
-		to_chat(user,span_warning("You are not close enough to perform the rite."))
+		to_chat(user,span_warning("距离太远，无法进行仪式。"))
 		return
 	//we have a rite already, but we want to do a new one.
 	if(performing_rite && !ispath(performing_rite.type, path))
@@ -239,7 +239,7 @@
 	var/list/item_names = list()
 	for(var/atom/sac_type as anything in easy_access_sect.desired_items)
 		var/append = easy_access_sect.desired_items[sac_type]
-		var/entry = "[initial(sac_type.name)]s [append]"
+		var/entry = "[initial(sac_type.name)] [append]"
 		item_names += entry
 	return english_list(item_names)
 
@@ -259,12 +259,12 @@
 
 	if(!can_i_see)
 		return
-	examine_list += span_notice("Use a [catalyst_type::name] to interact with this.")
+	examine_list += span_notice("使用[catalyst_type::name]与此物交互。")
 	if(isnull(easy_access_sect))
 		if(operation_flags & RELIGION_TOOL_SECTSELECT)
-			examine_list += span_notice("This looks like it can be used to select a sect.")
+			examine_list += span_notice("此物似乎可用于选择教派。")
 			return
 	if(operation_flags & RELIGION_TOOL_SACRIFICE)//this can be moved around if things change but usually no rites == no sacrifice
-		examine_list += span_notice("Desired items can be used on this to increase favor.")
+		examine_list += span_notice("用所需的祭品与此物交互可提升恩宠。")
 	if(easy_access_sect.rites_list && operation_flags & RELIGION_TOOL_INVOKE)
-		examine_list += span_notice("You can invoke rites from this.")
+		examine_list += span_notice("你可以借此举行仪式。")

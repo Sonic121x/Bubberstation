@@ -1,7 +1,7 @@
 #define SPELLBOOK_CATEGORY_PERKS "Perks"
 
 /datum/spellbook_entry/perks
-	desc = "Main node of perks"
+	desc = "特长主节点"
 	category = SPELLBOOK_CATEGORY_PERKS
 	refundable = FALSE // no refund
 	requires_wizard_garb = FALSE
@@ -15,7 +15,7 @@
 	RegisterSignal(user, COMSIG_MOB_HUD_CREATED, PROC_REF(on_hud_created))
 	if (user.hud_used)
 		on_hud_created(user)
-	to_chat(user, span_notice("You got a new perk: [src.name]."))
+	to_chat(user, span_notice("你获得了新特长：[src.name]。"))
 	log_purchase(user.key)
 	return TRUE
 
@@ -32,8 +32,8 @@
 	perk.icon_state = hud_icon
 
 /datum/spellbook_entry/perks/fourhands
-	name = "Four Hands"
-	desc = "Gives you even more hands to perform magic"
+	name = "四只手"
+	desc = "赋予你更多只手来施展魔法"
 	hud_icon = "fourhands"
 
 /datum/spellbook_entry/perks/fourhands/buy_spell(mob/living/carbon/human/user, obj/item/spellbook/book, log_buy)
@@ -41,9 +41,9 @@
 	user.change_number_of_hands(4)
 
 /datum/spellbook_entry/perks/wormborn
-	name = "Worm Born"
-	desc = "Your soul is infested with mana worms. When you die, you will be reborn as a large worm. \
-		When the worm dies, it has no such luck. Parasitic infection prevents you from binding your soul to objects."
+	name = "蠕虫之生"
+	desc = "你的灵魂被法力蠕虫侵染。当你死亡时，你将重生为一条巨大的蠕虫。\
+		而当这蠕虫死亡时，可就没有这种好运了。寄生感染会阻止你将灵魂绑定到物体上。"
 	hud_icon = "wormborn"
 	no_coexistence_typecache = list(/datum/action/cooldown/spell/lichdom)
 
@@ -52,8 +52,8 @@
 	user.AddComponent(/datum/component/wormborn)
 
 /datum/spellbook_entry/perks/dejavu
-	name = "Déjà vu"
-	desc = "Every 60 seconds returns you to the place where you were 60 seconds ago with the same amount of health as you had 60 seconds ago."
+	name = "既视感"
+	desc = "每隔 60 秒，将你送回 60 秒前所在的位置，并使你的生命值恢复到 60 秒前的状态。"
 	hud_icon = "dejavu"
 
 /datum/spellbook_entry/perks/dejavu/buy_spell(mob/living/carbon/human/user, obj/item/spellbook/book, log_buy)
@@ -69,8 +69,8 @@
 	UnregisterSignal(wizard, COMSIG_ENTER_AREA)
 
 /datum/spellbook_entry/perks/spell_lottery
-	name = "Spells Lottery"
-	desc = "Spells Lottery gives you the chance to get something from the book absolutely free, but you can no longer refund any purchases."
+	name = "法术抽奖"
+	desc = "“法术抽奖”让你有机会完全免费地从法术书中获得某样东西，但你再也无法退款任何已购买的项目。"
 	hud_icon = "spellottery"
 
 /datum/spellbook_entry/perks/spell_lottery/buy_spell(mob/living/carbon/human/user, obj/item/spellbook/book, log_buy)
@@ -78,8 +78,8 @@
 	ADD_TRAIT(user, TRAIT_SPELLS_LOTTERY, REF(src))
 
 /datum/spellbook_entry/perks/gamble
-	name = "Gamble"
-	desc = "You get 2 random perks."
+	name = "赌博"
+	desc = "你获得 2 个随机特长。"
 	hud_icon = "gamble"
 
 /datum/spellbook_entry/perks/gamble/buy_spell(mob/living/carbon/human/user, obj/item/spellbook/book, log_buy)
@@ -97,18 +97,18 @@
 		if(perks_allocated >= 2)
 			break
 	if(taking_perks.len < 1)
-		to_chat(user, span_warning("Gamble cannot give 2 perks, so points are returned"))
+		to_chat(user, span_warning("“赌博”无法提供 2 个特长，因此点数已退还"))
 		return FALSE
 	taking_perks = shuffle(taking_perks)
 	for(var/datum/spellbook_entry/perks/perks_ready in taking_perks)
 		perks_ready.buy_spell(user, book, log_buy)
 
 /datum/spellbook_entry/perks/heart_eater
-	name = "Heart Eater"
-	desc = "Gives you the ability to obtain a sentient being's life force by eating their heart. \
-		Additionally, you can tear a vulnerable being's heart out with your bare hands. \
-		By eating someone's heart you can increase your damage resistance or gain random mutation. \
-		Hearts also provide strong healing."
+	name = "食心者"
+	desc = "赋予你通过吞食他人心脏来获取其生命力的能力。\
+		此外，你可以赤手空拳掏出一名虚弱者的心脏。\
+		吞食他人心脏可以提升你的伤害抗性，或让你获得随机突变。\
+		心脏也能提供强大的治疗效果。"
 	hud_icon = "hearteater"
 
 /datum/spellbook_entry/perks/heart_eater/buy_spell(mob/living/carbon/human/user, obj/item/spellbook/book, log_buy)
@@ -116,9 +116,9 @@
 	user.AddComponent(/datum/component/heart_eater)
 
 /datum/spellbook_entry/perks/slime_friends
-	name = "Slime Friends"
-	desc = "Slimes are your friends. \
-		Every 15 seconds you lose some nutriments and summon a random evil slime to fight on your side."
+	name = "史莱姆伙伴"
+	desc = "史莱姆是你的朋友。\
+		每隔 15 秒，你会失去一些营养物质，并召唤一只随机邪恶史莱姆为你而战。"
 	hud_icon = "slimefriends"
 
 /datum/spellbook_entry/perks/slime_friends/buy_spell(mob/living/carbon/human/user, obj/item/spellbook/book, log_buy)
@@ -126,9 +126,9 @@
 	user.AddComponent(/datum/component/slime_friends)
 
 /datum/spellbook_entry/perks/transparence
-	name = "Transparence"
-	desc = "You become a little closer to the world of the dead. \
-		Projectiles pass through you, but you lose 25% of your health and you are hunted by a terrible curse which wants to return you to the afterlife."
+	name = "半透明化"
+	desc = "你向亡者的世界靠近了一些。\
+		投射物会穿过你，但你会失去 25% 的生命值，并遭到一道可怕诅咒的追猎，它想把你带回死后世界。"
 	hud_icon = "transparence"
 
 /datum/spellbook_entry/perks/transparence/buy_spell(mob/living/carbon/human/user, obj/item/spellbook/book, log_buy)
@@ -147,9 +147,9 @@
 	UnregisterSignal(wizard, COMSIG_ENTER_AREA)
 
 /datum/spellbook_entry/perks/magnetism
-	name = "Magnetism"
-	desc = "You get a small gravity anomaly that orbit around you. \
-		Nearby things will be attracted to you."
+	name = "磁性"
+	desc = "你获得一个环绕你运行的小型重力异常。\
+		附近的东西会被吸引向你。"
 	hud_icon = "magnetism"
 
 /datum/spellbook_entry/perks/magnetism/buy_spell(mob/living/carbon/human/user, obj/item/spellbook/book, log_buy)
@@ -158,7 +158,7 @@
 	magnitizm.orbit(user, 20)
 
 /obj/effect/wizard_magnetism
-	name = "magnetic anomaly"
+	name = "磁力异常"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield2"
 	/// We need to orbit around someone.

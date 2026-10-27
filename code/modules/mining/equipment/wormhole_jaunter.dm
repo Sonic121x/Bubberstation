@@ -1,7 +1,7 @@
 /**********************Jaunter**********************/
 /obj/item/wormhole_jaunter
-	name = "wormhole jaunter"
-	desc = "A single use device harnessing outdated wormhole technology, Nanotrasen has since turned its eyes to bluespace for more accurate teleportation. The wormholes it creates are unpleasant to travel through, to say the least.\nThanks to modifications provided by the Free Golems, this jaunter can be worn on the belt to provide protection from chasms."
+	name = "虫洞跳跃器"
+	desc = "一种利用过时虫洞技术的一次性装置，纳米传讯此后已将目光转向蓝空间，以实现更精确的传送。至少可以说，穿过它制造的虫洞感觉并不好受。\n得益于自由魔像提供的改装，这个跳跃器可以挂在腰带上，提供坠入裂隙时的保护。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "Jaunter"
 	inhand_icon_state = "electronic"
@@ -15,7 +15,7 @@
 	slot_flags = ITEM_SLOT_BELT
 
 /obj/item/wormhole_jaunter/attack_self(mob/user)
-	user.visible_message(span_notice("[user.name] activates \the [src]!"))
+	user.visible_message(span_notice("[user.name] 激活了 \the [src]！"))
 	SSblackbox.record_feedback("tally", "jaunter", 1, "User") // user activated
 	activate(user, TRUE)
 
@@ -23,7 +23,7 @@
 	var/turf/device_turf = get_turf(src)
 	if(!device_turf || is_centcom_level(device_turf.z) || is_reserved_level(device_turf.z))
 		if(user)
-			to_chat(user, span_notice("You're having difficulties getting \the [src] to work."))
+			to_chat(user, span_notice("你很难让 \the [src] 正常运作。"))
 		return FALSE
 	return TRUE
 
@@ -47,9 +47,9 @@
 
 	if(!can_jaunter_teleport())
 		if(user)
-			to_chat(user, span_notice("\The [src] found no beacons in the world to anchor a wormhole to."))
+			to_chat(user, span_notice("\The [src] 在世界上找不到可以锚定虫洞的信标。"))
 		else
-			visible_message(span_notice("\The [src] found no beacons in the world to anchor a wormhole to!"))
+			visible_message(span_notice("\The [src] 在世界上找不到可以锚定虫洞的信标！"))
 		return FALSE
 
 	var/list/destinations = get_destinations()
@@ -77,11 +77,11 @@
 
 	var/mob/M = loc
 	if(istype(M) && triggered)
-		M.visible_message(span_userdanger("Your [src.name] overloads and activates!"))
+		M.visible_message(span_userdanger("你的 [src.name] 过载并激活了！"))
 		SSblackbox.record_feedback("tally", "jaunter", 1, "EMP") // EMP accidental activation
 		activate(M, FALSE, TRUE)
 	else if(triggered)
-		visible_message(span_warning("\The [src] overloads and activates!"))
+		visible_message(span_warning("\The [src] 过载并激活了！"))
 		activate()
 
 /obj/item/wormhole_jaunter/equipped(mob/user, slot, initial)
@@ -99,17 +99,17 @@
 	if(!activate(user, FALSE, TRUE))
 		return
 
-	to_chat(user, span_userdanger("Your [src] activates, saving you from \the [chasm]!"))
-	chasm.visible_message(span_boldwarning("[user] falls into \the [chasm]!")) // To freak out any bystanders
+	to_chat(user, span_userdanger("你的 [src] 激活了，把你从 \the [chasm] 中救了出来！"))
+	chasm.visible_message(span_boldwarning("[user] 掉进了 \the [chasm]！")) // To freak out any bystanders
 	SSblackbox.record_feedback("tally", "jaunter", 1, "Chasm") // Chasm automatic activation
 	return COMPONENT_NO_CHASM_DROP
 
 //jaunter tunnel
 /obj/effect/portal/jaunt_tunnel
-	name = "jaunt tunnel"
+	name = "跳跃隧道"
 	icon = 'icons/effects/anomalies.dmi'
 	icon_state = "vortex"
-	desc = "A stable hole in the universe made by a wormhole jaunter. Turbulent doesn't even begin to describe how rough passage through one of these is, but at least it will always get you somewhere near a beacon."
+	desc = "由虫洞跳跃器在宇宙中开出的稳定孔洞。用“颠簸”都不足以形容穿过它的感觉有多难受，但至少总能把你送到某个信标附近。"
 	mech_sized = TRUE //save your ripley
 	innate_accuracy_penalty = 6
 	light_on = FALSE

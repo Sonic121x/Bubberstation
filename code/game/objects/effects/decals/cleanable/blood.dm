@@ -1,6 +1,6 @@
 /obj/effect/decal/cleanable/blood
-	name = "pool of blood"
-	desc = "It's slippery and gooey. Perhaps it's the chef's cooking?"
+	name = "一滩血液"
+	desc = "又滑又黏。难道是厨师做的菜？"
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "floor1"
 	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")
@@ -35,7 +35,7 @@
 	/// When dried, this is prefixed to the name
 	var/dry_prefix = "dried"
 	/// When dried, this becomes the desc of the blood
-	var/dry_desc = "Looks like it's been here a while. Eew."
+	var/dry_desc = "看起来已经在这里有一阵子了。真恶心。"
 
 /*
  * diseases - List of diseases to add to this decal on init
@@ -95,13 +95,13 @@
 
 /obj/effect/decal/cleanable/blood/update_name(updates)
 	. = ..()
-	name = initial(name)
+	name = chinese_update_cleanable_name(initial(name))
 	if(base_name)
-		name = "[base_name] [get_blood_string()]"
+		name = chinese_update_cleanable_name("[base_name] [get_blood_string()]")
 	if(base_suffix)
-		name = "[base_name ? name : get_blood_string()] [base_suffix]"
+		name = chinese_update_cleanable_name("[base_name ? chinese_statistics_name : get_blood_string()] [base_suffix]")
 	if(dried && dry_prefix)
-		name = "[dry_prefix] [name]"
+		name = chinese_update_cleanable_name("[dry_prefix] [chinese_statistics_name]")
 
 /obj/effect/decal/cleanable/blood/update_desc(updates)
 	. = ..()
@@ -282,16 +282,16 @@
 	return isgroundlessturf(here_turf)
 
 /obj/effect/decal/cleanable/blood/tracks
-	desc = "They look like tracks left by wheels."
+	desc = "看起来像车轮留下的痕迹。"
 	icon_state = "tracks"
 	random_icon_states = null
 	beauty = -50
 	base_name = null
-	dry_desc = "Some old bloody tracks left by wheels. Machines are evil, perhaps."
+	dry_desc = "车轮留下的陈旧血迹。也许机器就是邪恶的。"
 
 /obj/effect/decal/cleanable/blood/trail_holder
-	name = "trail of blood"
-	desc = "Your instincts say you shouldn't be following these."
+	name = "一道血液拖痕"
+	desc = "你的直觉告诉你不该顺着它追下去。"
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "trails_1" // For mappers
 	random_icon_states = null
@@ -451,8 +451,8 @@
 	return new_trail
 
 /obj/effect/decal/cleanable/blood/trail
-	name = "blood trail"
-	desc = "A trail of blood."
+	name = "血液拖痕"
+	desc = "一道血液拖痕。"
 	icon_state = "ltrails_1"
 	random_icon_states = list("ltrails_1", "ltrails_2")
 	vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
@@ -487,7 +487,7 @@
 
 /obj/effect/decal/cleanable/blood/trail/update_desc(updates)
 	. = ..()
-	desc = "A [dried ? "dried " : ""]trail of [get_blood_string()]."
+	desc = "一道[dried ? "干涸的" : ""][chinese_blood_decal_text(get_blood_string())]拖痕。"
 
 /obj/effect/decal/cleanable/blood/trail/lazy_init_reagents()
 	if(!istype(loc, /obj/effect/decal/cleanable/blood/trail_holder))
@@ -511,8 +511,8 @@
 	return ..()
 
 /obj/effect/decal/cleanable/blood/gibs
-	name = "gibs"
-	desc = "They look extremely gruesome."
+	name = "碎肉"
+	desc = "看起来极其血腥。"
 	icon_state = "gib1"
 	layer = GIB_LAYER
 	plane = GAME_PLANE
@@ -521,7 +521,7 @@
 
 	base_name = null
 	dry_prefix = "rotting"
-	dry_desc = "They look extremely gruesome as some terrible smell fills the air."
+	dry_desc = "看起来极其血腥，空气中弥漫着可怕的恶臭。"
 	decal_reagent = /datum/reagent/consumable/liquidgibs
 	reagent_amount = 5
 	is_mopped = TRUE // probably shouldn't be, but janitor powercreep
@@ -647,8 +647,8 @@
 	random_icon_states = list("gibmid1", "gibmid2", "gibmid3")
 
 /obj/effect/decal/cleanable/blood/gibs/old
-	name = "old rotting gibs"
-	desc = "Space Jesus, why didn't anyone clean this up? They smell terrible."
+	name = "陈旧腐烂的碎肉"
+	desc = "太空耶稣啊，怎么没人清理这些？真是臭不可闻。"
 	color = BLOOD_COLOR_DRIED // Just for mappers. Overriden in init
 	bloodiness = 0
 	dried = TRUE
@@ -661,24 +661,24 @@
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_SLUDGE, CELL_VIRUS_TABLE_GENERIC, rand(2,4), 10)
 
 /obj/effect/decal/cleanable/blood/drip
-	name = "drop of blood"
-	desc = "A spattering."
+	name = "一滴血液"
+	desc = "零星溅落的血滴。"
 	icon_state = "drip5" //using drip5 since the others tend to blend in with pipes & wires.
 	random_icon_states = list("drip1","drip2","drip3","drip4","drip5")
 	bloodiness = 0
 	base_name = "drop of"
-	dry_desc = "A dried spattering."
+	dry_desc = "零星溅落的干涸血滴。"
 
 /obj/effect/decal/cleanable/blood/footprints
-	name = "footprints"
-	desc = "WHOSE FOOTPRINTS ARE THESE?"
+	name = "脚印"
+	desc = "这是谁的脚印？"
 	icon = 'icons/effects/footprints.dmi'
 	icon_state = "blood1"
 	random_icon_states = null
 	appearance_flags = parent_type::appearance_flags | KEEP_TOGETHER
 	bloodiness = 0 // set based on the bloodiness of the foot
 	base_name = null
-	dry_desc = "HMM... SOMEONE WAS HERE!"
+	dry_desc = "嗯……有人来过这里！"
 
 	var/entered_dirs = 0
 	var/exited_dirs = 0
@@ -768,24 +768,24 @@
 	if(LAZYLEN(species_types) + LAZYLEN(shoe_types) == 0)
 		return
 
-	. += "You recognise the footprints as belonging to:"
+	. += "你认出了这些脚印的来源："
 	for(var/obj/item/clothing/shoes/sole as anything in shoe_types)
-		var/article = initial(sole.article) || (initial(sole.gender) == PLURAL ? "Some" : "A")
-		. += "[icon2html(initial(sole.icon), user, initial(sole.icon_state))] [article] <B>[initial(sole.name)]</B>."
+		var/article = "一双"
+		. += "[icon2html(initial(sole.icon), user, initial(sole.icon_state))] [article]<B>[initial(sole.name)]</B>。"
 
 	for(var/species in species_types)
 		switch(species)
 			if("unknown")
-				. += "&bull; Some <B>creature's feet</B>."
+				. += "&bull; <B>某种生物的脚</B>。"
 			if(SPECIES_MONKEY)
-				. += "&bull; Some <B>monkey feet</B>."
+				. += "&bull; <B>猴子的脚</B>。"
 			if(SPECIES_HUMAN)
-				. += "&bull; Some <B>human feet</B>."
+				. += "&bull; <B>人类的脚</B>。"
 			else
-				. += "&bull; Some <B>[species] feet</B>."
+				. += "&bull; <B>[chinese_footprint_species_display(species)]的脚</B>。"
 
 /obj/effect/decal/cleanable/blood/hitsplatter
-	name = "blood splatter"
+	name = "血液溅迹"
 	pass_flags = PASSTABLE | PASSGRILLE
 	icon_state = "hitsplatter1"
 	random_icon_states = list("hitsplatter1", "hitsplatter2", "hitsplatter3")

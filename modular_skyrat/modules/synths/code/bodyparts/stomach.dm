@@ -1,5 +1,5 @@
 /obj/item/organ/stomach/synth
-	name = "synthetic bio-reactor"
+	name = "合成人生物反应堆"
 	icon = 'modular_skyrat/master_files/icons/obj/surgery.dmi'
 	icon_state = "stomach-ipc"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -8,7 +8,7 @@
 	maxHealth = 1 * STANDARD_ORGAN_THRESHOLD
 	zone = "chest"
 	slot = "stomach"
-	desc = "A specialised mini reactor, for synthetic use only. Has a low-power mode to ensure baseline functions. Without this, synthetics are unable to stay powered."
+	desc = "合成人专用的特制微型反应堆，设有保障基本功能的低功耗模式。没有它，合成人便无法维持供电。"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 	custom_materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -27,16 +27,16 @@
 			if(EMP_HEAVY)
 				owner.nutrition = max(0, owner.nutrition - SYNTH_STOMACH_HEAVY_EMP_CHARGE_LOSS)
 				apply_organ_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
-				to_chat(owner, span_warning("Alert: Severe battery discharge!"))
+				to_chat(owner, span_warning("警报：电池严重放电！"))
 
 			if(EMP_LIGHT)
 				owner.nutrition = max(0, owner.nutrition - SYNTH_STOMACH_LIGHT_EMP_CHARGE_LOSS)
 				apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
-				to_chat(owner, span_warning("Alert: Minor battery discharge!"))
+				to_chat(owner, span_warning("警报：电池轻度放电！"))
 
 /datum/design/synth_stomach
-	name = "Synthetic Bio-Reactor"
-	desc = "A specialised mini reactor, for synthetic use only. Has a low-power mode to ensure baseline functions. Without this, synthetics are unable to stay powered."
+	name = "合成人生物反应堆"
+	desc = "合成人专用的特制微型反应堆，设有保障基本功能的低功耗模式。没有它，合成人便无法维持供电。"
 	id = "synth_stomach"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS

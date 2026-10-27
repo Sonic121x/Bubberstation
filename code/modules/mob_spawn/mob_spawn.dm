@@ -1,5 +1,5 @@
 /obj/effect/mob_spawn
-	name = "Mob Spawner"
+	name = "生物生成器"
 	density = TRUE
 	anchored = TRUE
 	//So it shows up in the map editor
@@ -189,7 +189,7 @@
 	if(LAZYFIND(ckeys_trying_to_spawn, user.ckey))
 		return
 	if(uses <= 0 && !infinite_use)
-		to_chat(user, span_warning("This spawner is out of charges!"))
+		to_chat(user, span_warning("此生成器已用尽次数！"))
 		return FALSE
 	if(!can_ghost_take(user))
 		return FALSE
@@ -202,25 +202,25 @@
 	var/apply_prefs = FALSE
 	// SKYRAT EDIT ADDITION START
 	if(restricted_species && !(user.client?.prefs?.read_preference(/datum/preference/choiced/species) in restricted_species))
-		var/incorrect_species = tgui_alert(user, "Current species preference incompatible, proceed with random appearance?", "Incompatible Species", list("Yes", "No"))
+		var/incorrect_species = tgui_alert(user, "当前物种偏好不兼容，是否以随机外观继续？", "物种不兼容", list("Yes", "No"))
 		if(incorrect_species != "Yes")
 			LAZYREMOVE(ckeys_trying_to_spawn, user_ckey)
 			return
 	// SKYRAT EDIT ADDITION END
 
 	if(prompt_ghost)
-		var/prompt = "Become [prompt_name]?"
+		var/prompt = "是否成为[prompt_name]？"
 		if(!temp_body && user.can_reenter_corpse && user.mind)
-			prompt += " (Warning, You can no longer be revived!)"
+			prompt += "（警告：你将无法再被复活！）"
 		prompt_fail = tgui_alert(user, prompt, buttons = list("Yes", "No"), timeout = 10 SECONDS) != "Yes"
 
 	var/species_pref = user.client.prefs.read_preference(/datum/preference/choiced/species) || /datum/species/human
 	// BUBBER EDIT - Commented observer check
 	if(!prompt_fail && /*user.started_as_observer &&*/ allow_custom_character /*&& (GLOB.species_prototypes[species_pref].get_breath_type() == GAS_O2)*/)
-		var/static_prompt = "Because you haven't taken a role so far, you may spawn in as \
-			[((allow_custom_character & GHOSTROLE_TAKE_PREFS_SPECIES) || species_pref == /datum/species/human) ? "" : "a human version of"] \
-			your customized character with a random name. Would you like to?"
-		apply_prefs = tgui_alert(user, static_prompt, "Custom Character", list("Yes", "No"), 10 SECONDS) == "Yes"
+		var/static_prompt = "由于你迄今还没有担任任何角色，你可以以随机名字降临，成为\
+			[((allow_custom_character & GHOSTROLE_TAKE_PREFS_SPECIES) || species_pref == /datum/species/human) ? "" : "人类版本的"] \
+			你自定义的角色。你愿意吗？"
+		apply_prefs = tgui_alert(user, static_prompt, "自定义角色", list("Yes", "No"), 10 SECONDS) == "Yes"
 
 	if(!prompt_fail && !pre_ghost_take(user))
 		prompt_fail = TRUE
@@ -238,14 +238,14 @@
 /// Checks if a ghost can take this ghost role.
 /obj/effect/mob_spawn/ghost_role/proc/can_ghost_take(mob/dead/observer/user)
 	if(is_banned_from(user.ckey, role_ban))
-		to_chat(user, span_warning("You are banned from this role!"))
+		to_chat(user, span_warning("你被禁止担任此角色！"))
 		return FALSE
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER) && !(flags_1 & ADMIN_SPAWNED_1))
-		to_chat(user, span_warning("An admin has temporarily disabled non-admin ghost roles!"))
+		to_chat(user, span_warning("管理员已暂时禁用非管理员幽灵角色！"))
 		return FALSE
 	// SKYRAT EDIT ADDITION START
 	if(is_banned_from(user.ckey, BAN_GHOST_ROLE_SPAWNER)) // Ghost role bans
-		to_chat(user, span_warning("Error, you are banned from playing ghost roles!"))
+		to_chat(user, span_warning("错误：你被禁止游玩幽灵角色！"))
 		return FALSE
 	// SKYRAT EDIT ADDITION END
 	if(QDELETED(src) || QDELETED(user))
@@ -272,7 +272,7 @@
 	SHOULD_NOT_SLEEP(TRUE)
 	ASSERT(istype(user))
 
-	user.log_message("became a [prompt_name].", LOG_GAME)
+	user.log_message("成为了[prompt_name]。", LOG_GAME)
 	if(!temp_body)
 		user.mind = null // dissassociate mind, don't let it follow us to the next life
 
@@ -420,8 +420,8 @@
 	brute_damage = 1000
 
 /obj/effect/mob_spawn/cockroach
-	name = "Cockroach Spawner"
-	desc = "A spawner for cockroaches, the most common vermin in the station. Small chance to spawn a bloodroach."
+	name = "蟑螂生成器"
+	desc = "蟑螂的生成器，空间站里最常见的害虫。有小概率生成一只吸饱了血的蟑螂。"
 	mob_type = /mob/living/basic/cockroach
 	var/bloodroach_chance = 1 // 1% chance to spawn a bloodroach
 

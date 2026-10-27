@@ -14,7 +14,7 @@
 	var/text = ""
 	for(var/type in sum)
 		text += "[type] = [sum[type]]\n"
-	text += "total iterated: [total]"
+	text += "共遍历：[total]"
 
 	for(var/client/lad in GLOB.admins)
 		var/datum/action/spawn_light/let_there_be = new (lad.mob.mind || lad.mob)
@@ -141,8 +141,8 @@ GLOBAL_LIST_EMPTY(light_debugged_atoms)
 	animate(src, alpha = initial(alpha), time = 2)
 
 /atom/movable/screen/light_button/toggle
-	name = "Toggle Light"
-	desc = "Click to turn the light on/off"
+	name = "开/关灯光"
+	desc = "点击以开启或关闭灯光"
 	icon_state = "light_enable"
 
 /atom/movable/screen/light_button/toggle/attach_to(atom/new_owner)
@@ -173,8 +173,8 @@ GLOBAL_LIST_EMPTY(light_debugged_atoms)
 		icon_state = "light_disable"
 
 /atom/movable/screen/light_button/edit
-	name = "Edit Light"
-	desc = "Click to open an editing menu for the light"
+	name = "编辑灯光"
+	desc = "点击以打开该灯光的编辑菜单"
 	icon_state = "light_focus"
 
 /atom/movable/screen/light_button/edit/attach_to(atom/new_owner)
@@ -256,7 +256,7 @@ GLOBAL_LIST_EMPTY(light_debugged_atoms)
 		if("set_on")
 			parent.set_light(l_on = params["value"])
 		if("change_color")
-			var/chosen_color = tgui_color_picker(ui.user, "Pick new color", "[parent]", parent.light_color)
+			var/chosen_color = tgui_color_picker(ui.user, "选择新颜色", "[parent]", parent.light_color)
 			if(chosen_color)
 				parent.set_light(l_color = chosen_color)
 		if("set_power")
@@ -324,8 +324,8 @@ GLOBAL_LIST_EMPTY(light_debugged_atoms)
 		light_source.light_flags |= LIGHT_FROZEN
 
 /atom/movable/screen/light_button/move
-	name = "Move Light"
-	desc = "Drag to move the light around"
+	name = "移动灯光"
+	desc = "拖动以移动灯光"
 	icon_state = "light_move"
 	mouse_drag_pointer = 'icons/effects/mouse_pointers/light_drag.dmi'
 
@@ -336,8 +336,8 @@ GLOBAL_LIST_EMPTY(light_debugged_atoms)
 	movable_owner.forceMove(get_turf(over_object))
 
 /datum/action/spawn_light
-	name = "Spawn Light"
-	desc = "Create a light from a template"
+	name = "生成灯光"
+	desc = "从模板创建一道光"
 	button_icon = 'icons/mob/actions/actions_construction.dmi'
 	button_icon_state = "light_spawn"
 

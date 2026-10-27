@@ -1,7 +1,7 @@
 /// A simple one-use beacon to activate a two-way portal to the anchored receiver it's linked to.
 /obj/item/permanent_portal_creator
-	name = "two-way bluespace entanglement device"
-	desc = "A device with a very complex name, that is only used to confirm the second location that's tied to a stationary entanglement anchor."
+	name = "双向蓝空间纠缠装置"
+	desc = "一件名字极其复杂的装置，仅用于确认与固定式纠缠锚点相连的第二处位置。"
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "hand_tele"
 	inhand_icon_state = "electronic"
@@ -17,9 +17,9 @@
 	/// The weakref to the linked entanglement anchor.
 	var/datum/weakref/linked_anchor = null
 	/// The name of the portal created at the position of the device.
-	var/beacon_portal_name = "portal to somewhere"
+	var/beacon_portal_name = "通往某处的传送门"
 	/// The name of the portal created at the position of the anchor.
-	var/anchor_portal_name = "exit from somewhere"
+	var/anchor_portal_name = "来自某处的出口"
 
 
 /datum/armor/item_permanent_portal_creator
@@ -29,52 +29,52 @@
 
 /obj/item/permanent_portal_creator/attack_self(mob/user, modifiers)
 	if(!linked_anchor)
-		balloon_alert(user, "not linked!")
+		balloon_alert(user, "未链接！")
 		return
 
 	if(!isweakref(linked_anchor))
-		balloon_alert(user, "invalid destination!")
+		balloon_alert(user, "目的地无效！")
 		return
 
 	var/obj/item/permanent_portal_anchor/portal_anchor = linked_anchor.resolve()
 
 	if(!istype(portal_anchor) || !get_turf(portal_anchor))
-		balloon_alert(user, "invalid destination!")
+		balloon_alert(user, "目的地无效！")
 		return
 
-	if(tgui_alert(user, "Are you sure that this is the place you want to have the portal located at? This action is permanent and cannot be undone.", "Are you sure?", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, "你确定要把传送门设在这里吗？此操作是永久性的，无法撤销。", "你确定吗？", list("是", "否")) != "是")
 		return
 
-	balloon_alert(user, "begining entanglement process...")
+	balloon_alert(user, "开始纠缠过程……")
 
 	if(!do_after(user, 5 SECONDS))
-		balloon_alert(user, "entanglement cancelled!")
+		balloon_alert(user, "纠缠已取消！")
 		return
 
 	var/list/obj/effect/portal/created_portals = create_portal_pair(get_turf(src), get_turf(portal_anchor), _lifespan = NONE)
 	created_portals[1].name = beacon_portal_name
 	created_portals[2].name = anchor_portal_name
 
-	created_portals[1].balloon_alert(user, "entanglement successful!")
+	created_portals[1].balloon_alert(user, "纠缠成功！")
 
 	qdel(portal_anchor)
 	qdel(src)
 
 
 /obj/item/permanent_portal_creator/space_hotel
-	name = "\improper Twin Nexus two-way bluespace entanglement device"
-	beacon_portal_name = "portal to the Twin Nexus"
-	anchor_portal_name = "exit of the Twin Nexus"
+	name = "\improper 双枢纽双向蓝空间纠缠装置"
+	beacon_portal_name = "通往双枢纽的传送门"
+	anchor_portal_name = "双枢纽的出口"
 
 
 /obj/item/permanent_portal_creator/space_hotel/examine(mob/user)
 	. = ..()
-	. += "\nThis one seems to have the Twin Nexus hotel's logo engraved on its back."
+	. += "\n这一件的背面似乎刻着双枢纽酒店的标志。"
 
 
 /obj/item/permanent_portal_anchor
-	name = "two-way bluespace entanglement anchor"
-	desc = "A device with a very complex name, that serves as the stationary target of a linked two-way bluespace entanglement device."
+	name = "双向蓝空间纠缠锚点"
+	desc = "一件名字极其复杂的装置，作为相连的双向蓝空间纠缠装置的固定目标。"
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "beacon"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
@@ -96,17 +96,17 @@
 	if(!ishuman(user))
 		return
 
-	balloon_alert(user, "deploying...")
+	balloon_alert(user, "部署中……")
 
 	if(!do_after(user, 5 SECONDS))
-		balloon_alert(user, "deployment failed!")
+		balloon_alert(user, "部署失败！")
 		return
 
 	deploy(user)
 
 	playsound(src, 'modular_skyrat/modules/aesthetics/airlock/sound/bolts_down.ogg', 50, FALSE)
 
-	balloon_alert(user, "deployment successful!")
+	balloon_alert(user, "部署成功！")
 
 
 /// Simple helper proc to deploy the anchor, with mob/user as an optional argument to make them drop it if they're holding it.
@@ -126,24 +126,24 @@
 		return ..()
 
 	if(!anchored)
-		balloon_alert(user, "needs to be deployed!")
+		balloon_alert(user, "需要先部署！")
 		return
 
 	var/obj/item/permanent_portal_creator/portal_maker = attacking_item
 	portal_maker.linked_anchor = WEAKREF(src)
 
-	balloon_alert(user, "linking successful!")
+	balloon_alert(user, "链接成功！")
 
 
 /obj/item/permanent_portal_anchor/space_hotel
-	name = "\improper Twin Nexus two-way bluespace entanglement anchor"
-	desc = "A device with a very complex name, that serves as the stationary target of a linked two-way bluespace entanglement device.\n\nIn your case, it serves to let your guests out."
+	name = "\improper 双枢纽双向蓝空间纠缠锚点"
+	desc = "一件名字极其复杂的装置，作为相连的双向蓝空间纠缠装置的固定目标。\n\n就你这里而言，它的作用是把你的客人送出去。"
 
 
 //Space Hotel Keycards and Room Doors
 /obj/item/key_card/hotel_room
-	name = "\improper Twin Nexus keycard"
-	desc = "A keycard, to open a keycard-locked hotel room."
+	name = "\improper 双枢纽房卡"
+	desc = "一张房卡，用于打开需要刷卡的酒店房间。"
 	access_id = "guest_room_"
 	/// The number of the room, so that it gets automatically handled by the code everywhere
 	/// it's relevant.
@@ -165,12 +165,12 @@
 	if(!room_number)
 		return
 
-	. += "It has an engraving on it that reads: \"Guest Room [room_number]\""
+	. += "上面刻着：“客房 [room_number]”"
 
 
 /obj/item/key_card/hotel_room/master
-	name = "\improper Twin Nexus master keycard"
-	desc = "A master keycard, to open all the keycard-locked hotel rooms.\nIt has an engraving on it that reads: \"Master Access\""
+	name = "\improper 双枢纽万能房卡"
+	desc = "一张万能房卡，可打开所有需要刷卡的酒店房间。\n上面刻着：“万能通行权限”"
 	access_id = null
 	master_access = TRUE
 
@@ -185,7 +185,7 @@
 	return access_list
 
 /obj/machinery/door/airlock/keyed/hotel_room
-	name = "Guest Room"
+	name = "客房"
 	access_id = "guest_room_"
 	autoclose = TRUE
 	greyscale_accent_color = null

@@ -11,14 +11,14 @@ Fluoride Stare: After someone says 5 words, blah blah blah...
 /datum/status_effect/organ_set_bonus/gondola
 	id = "organ_set_bonus_gondola"
 	organs_needed = 3
-	bonus_activate_text = span_notice("Gondola DNA is deeply infused with you! You are the ultimate observer, uncaring of the environment around you...")
-	bonus_deactivate_text = span_notice("Your DNA is no longer serene and gondola-like, and so you begin remembering that breathing is like, important...")
+	bonus_activate_text = span_notice("贡多拉的 DNA 已与你深度融合！你成了终极观察者，对周围的环境毫不在意……")
+	bonus_deactivate_text = span_notice("你的 DNA 不再像贡多拉那样平和，于是你开始想起，呼吸好像还挺重要的……")
 	bonus_traits = list(TRAIT_RESISTHEAT, TRAIT_RESISTCOLD, TRAIT_NOBREATH, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE)
 
 /// makes you a pacifist and turns most mobs neutral towards you
 /obj/item/organ/heart/gondola
-	name = "mutated gondola-heart"
-	desc = "Gondola DNA infused into what was once a normal heart."
+	name = "突变贡多拉心脏"
+	desc = "一颗原本正常的心脏，融合了贡多拉的 DNA。"
 
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/organ/heart/gondola"
@@ -32,7 +32,7 @@ Fluoride Stare: After someone says 5 words, blah blah blah...
 /obj/item/organ/heart/gondola/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/gondola)
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_They radiate%PRONOUN_s an aura of serenity.")
+	AddElement(/datum/element/noticable_organ, "浑身散发着宁静的气息。")
 	AddElement(/datum/element/update_icon_blocker)
 
 /obj/item/organ/heart/gondola/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
@@ -50,8 +50,8 @@ Fluoride Stare: After someone says 5 words, blah blah blah...
 
 /// Zen (tounge): You can no longer speak, but get a powerful positive moodlet
 /obj/item/organ/tongue/gondola
-	name = "mutated gondola-tongue"
-	desc = "Gondola DNA infused into what was once a normal tongue."
+	name = "突变贡多拉舌头"
+	desc = "一条原本正常的舌头，融合了贡多拉的 DNA。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/organ/tongue/gondola"
 	post_init_icon_state = "tongue"
@@ -62,7 +62,7 @@ Fluoride Stare: After someone says 5 words, blah blah blah...
 
 /obj/item/organ/tongue/gondola/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their mouth is permanently affixed into a relaxed smile.", BODY_ZONE_PRECISE_MOUTH)
+	AddElement(/datum/element/noticable_organ, "嘴角始终挂着轻松的微笑。", BODY_ZONE_PRECISE_MOUTH)
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/gondola)
 
 /obj/item/organ/tongue/gondola/on_mob_insert(mob/living/carbon/tongue_owner, special, movement_flags)
@@ -75,8 +75,8 @@ Fluoride Stare: After someone says 5 words, blah blah blah...
 
 /// Loving arms: your hands become unable to hold much of anything but your hugs now infuse the subject with pax.
 /obj/item/organ/liver/gondola
-	name = "mutated gondola-liver"
-	desc = "Gondola DNA infused into what was once a normal liver."
+	name = "突变贡多拉肝脏"
+	desc = "一颗原本正常的肝脏，融合了贡多拉的 DNA。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/organ/liver/gondola"
 	post_init_icon_state = "liver"
@@ -86,20 +86,20 @@ Fluoride Stare: After someone says 5 words, blah blah blah...
 /obj/item/organ/liver/gondola/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/gondola)
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their left arm has small needles breaching the skin all over it.", BODY_ZONE_L_ARM)
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their right arm has small needles breaching the skin all over it.", BODY_ZONE_R_ARM)
+	AddElement(/datum/element/noticable_organ, "左臂上布满刺破皮肤的小针。", BODY_ZONE_L_ARM)
+	AddElement(/datum/element/noticable_organ, "右臂上布满刺破皮肤的小针。", BODY_ZONE_R_ARM)
 
 /obj/item/organ/liver/gondola/on_mob_insert(mob/living/carbon/liver_owner, special, movement_flags)
 	. = ..()
 	var/has_left = liver_owner.has_left_hand(check_disabled = FALSE)
 	var/has_right = liver_owner.has_right_hand(check_disabled = FALSE)
 	if(has_left && has_right)
-		to_chat(liver_owner, span_warning("Your arms grow terribly weak as small, needle-like pricks grow all over them!"))
+		to_chat(liver_owner, span_warning("你的双臂变得极其无力，长满了细小的针状尖刺！"))
 	else if(has_left || has_right)
-		to_chat(liver_owner, span_warning("Your arm grows terribly weak as small, needle-like pricks grow all over it!"))
+		to_chat(liver_owner, span_warning("你的手臂变得极其无力，长满了细小的针状尖刺！"))
 	else
-		to_chat(liver_owner, span_warning("You feel like something would be happening to your arms right now... if you still had them."))
-	to_chat(liver_owner, span_notice("Hugging a target will pacify them, but you won't be able to carry much of anything anymore."))
+		to_chat(liver_owner, span_warning("你觉得自己的双臂本该发生点什么……前提是你还有双臂。"))
+	to_chat(liver_owner, span_notice("拥抱目标会使其变得平和，但你也再拿不起什么东西了。"))
 	RegisterSignal(liver_owner, COMSIG_HUMAN_EQUIPPING_ITEM, PROC_REF(on_owner_equipping_item))
 	RegisterSignal(liver_owner, COMSIG_LIVING_TRY_PULL, PROC_REF(on_owner_try_pull))
 	RegisterSignal(liver_owner, COMSIG_CARBON_HELPED, PROC_REF(on_hug))
@@ -112,7 +112,7 @@ Fluoride Stare: After someone says 5 words, blah blah blah...
 /obj/item/organ/liver/gondola/proc/on_owner_equipping_item(mob/living/carbon/human/owner, obj/item/equip_target, slot)
 	SIGNAL_HANDLER
 	if(equip_target.w_class > WEIGHT_CLASS_TINY)
-		equip_target.balloon_alert(owner, "too weak to hold this!")
+		equip_target.balloon_alert(owner, "太虚弱，拿不动！")
 		return COMPONENT_BLOCK_EQUIP
 
 /// signal sent when owner tries to pull an item
@@ -121,12 +121,12 @@ Fluoride Stare: After someone says 5 words, blah blah blah...
 	if(isliving(target))
 		var/mob/living/living_target = target
 		if(living_target.mob_size > MOB_SIZE_TINY)
-			living_target.balloon_alert(owner, "too weak to pull this!")
+			living_target.balloon_alert(owner, "太虚弱，拉不动！")
 			return COMSIG_LIVING_CANCEL_PULL
 	if(isitem(target))
 		var/obj/item/item_target = target
 		if(item_target.w_class > WEIGHT_CLASS_TINY)
-			item_target.balloon_alert(owner, "too weak to pull this!")
+			item_target.balloon_alert(owner, "太虚弱，拉不动！")
 			return COMSIG_LIVING_CANCEL_PULL
 
 /obj/item/organ/liver/gondola/proc/on_hug(mob/living/carbon/human/source, mob/living/carbon/hugged)
@@ -139,7 +139,7 @@ Fluoride Stare: After someone says 5 words, blah blah blah...
 	if(BODY_ZONE_R_ARM in covered_body_zones)
 		pax_injected -= 2
 	if(pax_injected > 0 && hugged.reagents?.add_reagent(/datum/reagent/pax, pax_injected))
-		to_chat(hugged, span_warning("You feel a tiny prick!"))
+		to_chat(hugged, span_warning("你感到轻微的刺痛！"))
 
 #undef GONDOLA_ORGAN_COLOR
 #undef GONDOLA_SCLERA_COLOR

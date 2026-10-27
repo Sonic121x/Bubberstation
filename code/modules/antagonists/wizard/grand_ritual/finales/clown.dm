@@ -1,7 +1,7 @@
 /// Dress the crew as magical clowns
 /datum/grand_finale/clown
-	name = "Jubilation"
-	desc = "The ultimate use of your gathered power! Rewrite time so that everyone went to clown college! Now they'll prank each other for you!"
+	name = "欢庆"
+	desc = "你积聚力量的终极运用！改写时间线，让所有人都上过小丑学院！现在他们会替你互相恶作剧！"
 	icon = 'icons/obj/clothing/masks.dmi'
 	icon_state = "clown"
 	glow_colour = "#ffff0048"
@@ -22,13 +22,13 @@
 			continue
 		if (HAS_TRAIT(victim, TRAIT_CLOWN_ENJOYER))
 			victim.add_mood_event("clown_world", /datum/mood_event/clown_world)
-		to_chat(victim, span_notice("The world spins and dissolves. Your past flashes before your eyes, backwards.\n\
-			Life strolls back into the ocean and shrinks into nothingness, planets explode into storms of solar dust, \
-			the stars rush back to greet each other at the beginning of things and then... you snap back to the present. \n\
-			Everything is just as it was and always has been. \n\n\
-			A stray thought sticks in the forefront of your mind. \n\
-			[span_hypnophrase("I'm so glad that I work at Clown Research Station [station_name()]!")] \n\
-			Is... that right?"))
+		to_chat(victim, span_notice("世界旋转、消融。你的过去在眼前倒放着闪过。\n\
+			生命退回海洋，缩成虚无；行星炸裂成太阳尘埃的风暴，\
+			群星在万物之初匆匆相会，然后……你猛地回到当下。 \n\
+			一切都与从前一样，一如既往。 \n\n\
+			一个念头牢牢占据你的脑海。 \n\
+			[span_hypnophrase("我真高兴能在小丑研究站 [station_name()] 工作！")] \n\
+			这……对吗？"))
 		if (is_clown_job(victim.mind.assigned_role))
 			var/datum/action/cooldown/spell/conjure_item/clown_pockets/new_spell = new(victim)
 			new_spell.Grant(victim)
@@ -47,7 +47,7 @@
 	mood_change = 4
 
 /datum/mood_event/clown_world/add_effects(param)
-	description = "I LOVE working at Clown Research Station [station_name()]!!"
+	description = "我热爱在小丑研究站 [station_name()] 工作！！"
 
 /// Dress the passed mob as a magical clown, self-explanatory
 /datum/grand_finale/clown/proc/dress_as_magic_clown(mob/living/carbon/human/victim)

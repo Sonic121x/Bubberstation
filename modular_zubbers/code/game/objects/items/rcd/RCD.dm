@@ -1,6 +1,6 @@
 /obj/item/construction/rcd/combat/admin
-	name = "bluespace RCD"
-	desc = "The RCD that you shouldn't have. Nigh-instantly creates and destroys at a distance. Contains infinite material to make an infinite number of reflector bases."
+	name = "蓝空间 RCD"
+	desc = "一把你本不该拥有的 RCD，几乎能瞬间远程建造或拆除。拥有无限材料，可以制造无限个反射器底座。"
 	icon = 'modular_zubbers/icons/obj/tools.dmi'
 	icon_state = "bst_rcd"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/equipment/tools_lefthand.dmi'

@@ -1,6 +1,6 @@
 /datum/surgery_operation/limb/prepare_cavity
-	name = "widen chest cavity"
-	desc = "Widen a patient's chest cavity to allow for implanting of larger items."
+	name = "撑开胸腔"
+	desc = "撑开病人的胸腔，以便植入更大的物品。"
 	implements = list(
 		TOOL_RETRACTOR = 1,
 		TOOL_CROWBAR = 1.5,
@@ -15,7 +15,7 @@
 	return image(/obj/item/retractor)
 
 /datum/surgery_operation/limb/prepare_cavity/all_required_strings()
-	return list("operate on chest (target chest)") + ..()
+	return list("对胸部施术（目标胸部）") + ..()
 
 /datum/surgery_operation/limb/prepare_cavity/state_check(obj/item/bodypart/chest/limb)
 	return limb.body_zone == BODY_ZONE_CHEST
@@ -24,19 +24,19 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to open [FORMAT_LIMB_OWNER(limb)] cavity wide..."),
-		span_notice("[surgeon] begins to open [FORMAT_LIMB_OWNER(limb)] cavity wide."),
-		span_notice("[surgeon] begins to open [FORMAT_LIMB_OWNER(limb)] cavity wide."),
+		span_notice("你开始把[FORMAT_LIMB_OWNER(limb)]大大撑开……"),
+		span_notice("[surgeon] 开始把[FORMAT_LIMB_OWNER(limb)]大大撑开。"),
+		span_notice("[surgeon] 开始把[FORMAT_LIMB_OWNER(limb)]大大撑开。"),
 	)
-	display_pain(limb.owner, "You can feel pressure as your [limb.plaintext_zone] is being opened wide!")
+	display_pain(limb.owner, "你感到[chinese_body_zone_display(limb.plaintext_zone)]被撑开时传来的压迫感！")
 
 /datum/surgery_operation/limb/prepare_cavity/on_success(obj/item/bodypart/chest/limb, mob/living/surgeon, tool, list/operation_args)
 	. = ..()
 	limb.add_surgical_state(SURGERY_CAVITY_WIDENED)
 
 /datum/surgery_operation/limb/undo_prepare_cavity
-	name = "close chest cavity"
-	desc = "Reset a patient's chest cavity."
+	name = "闭合胸腔"
+	desc = "复位病人的胸腔。"
 	implements = list(
 		TOOL_RETRACTOR = 1,
 		TOOL_CROWBAR = 1.5,
@@ -50,7 +50,7 @@
 	return image(/obj/item/retractor)
 
 /datum/surgery_operation/limb/undo_prepare_cavity/all_required_strings()
-	return list("operate on chest (target chest)") + ..()
+	return list("对胸部施术（目标胸部）") + ..()
 
 /datum/surgery_operation/limb/undo_prepare_cavity/state_check(obj/item/bodypart/chest/limb)
 	return limb.body_zone == BODY_ZONE_CHEST
@@ -59,19 +59,19 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to close [FORMAT_LIMB_OWNER(limb)] cavity..."),
-		span_notice("[surgeon] begins to close [FORMAT_LIMB_OWNER(limb)] cavity."),
-		span_notice("[surgeon] begins to close [FORMAT_LIMB_OWNER(limb)] cavity."),
+		span_notice("你开始闭合[FORMAT_LIMB_OWNER(limb)]……"),
+		span_notice("[surgeon] 开始闭合[FORMAT_LIMB_OWNER(limb)]。"),
+		span_notice("[surgeon] 开始闭合[FORMAT_LIMB_OWNER(limb)]。"),
 	)
-	display_pain(limb.owner, "You can feel pressure as your [limb.plaintext_zone] is being closed!")
+	display_pain(limb.owner, "你感到[chinese_body_zone_display(limb.plaintext_zone)]被闭合时的压迫感！")
 
 /datum/surgery_operation/limb/undo_prepare_cavity/on_success(obj/item/bodypart/chest/limb, mob/living/surgeon, tool, list/operation_args)
 	. = ..()
 	limb.remove_surgical_state(SURGERY_CAVITY_WIDENED)
 
 /datum/surgery_operation/limb/cavity_implant
-	name = "cavity implant"
-	desc = "Implant an item into a patient's body cavity."
+	name = "腔体植入"
+	desc = "将物品植入病人的体腔。"
 	operation_flags = OPERATION_NOTABLE
 	implements = list(
 		/obj/item = 1,
@@ -90,7 +90,7 @@
 	))
 
 /datum/surgery_operation/limb/cavity_implant/all_required_strings()
-	return list("operate on chest (target chest)") + ..()
+	return list("对胸部施术（目标胸部）") + ..()
 
 /datum/surgery_operation/limb/cavity_implant/get_default_radial_image()
 	return image('icons/hud/screen_gen.dmi', "arrow_large_still")
@@ -126,20 +126,20 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to insert [tool] into [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to insert [tool] into [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] begins to insert [tool.w_class > WEIGHT_CLASS_SMALL ? tool : "something"] into [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始把 [tool] 插入[FORMAT_LIMB_OWNER(limb)]……"),
+		span_notice("[surgeon] 开始把 [tool] 插入[FORMAT_LIMB_OWNER(limb)]。"),
+		span_notice("[surgeon] 开始把 [tool.w_class > WEIGHT_CLASS_SMALL ? tool : "某样东西"] 插入[FORMAT_LIMB_OWNER(limb)]。"),
 	)
-	display_pain(limb.owner, "You can feel something being inserted into your [limb.plaintext_zone], it hurts like hell!")
+	display_pain(limb.owner, "你感到有东西被插入[chinese_body_zone_display(limb.plaintext_zone)]，疼得要命！")
 
 /datum/surgery_operation/limb/cavity_implant/on_success(obj/item/bodypart/chest/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	if (!surgeon.transferItemToLoc(tool, limb.owner, force = TRUE)) // shouldn't fail but just in case
 		display_results(
 			surgeon,
 			limb.owner,
-			span_warning("You can't seem to fit [tool] in [limb.owner]'s [limb.plaintext_zone]!"),
-			span_warning("[surgeon] can't seem to fit [tool] in [limb.owner]'s [limb.plaintext_zone]!"),
-			span_warning("[surgeon] can't seem to fit [tool.w_class > WEIGHT_CLASS_SMALL ? tool : "something"] in [limb.owner]'s [limb.plaintext_zone]!"),
+			span_warning("你似乎没法把 [tool] 塞进[limb.owner]的[chinese_body_zone_display(limb.plaintext_zone)]！"),
+			span_warning("[surgeon] 似乎没法把 [tool] 塞进[limb.owner]的[chinese_body_zone_display(limb.plaintext_zone)]！"),
+			span_warning("[surgeon] 似乎没法把 [tool.w_class > WEIGHT_CLASS_SMALL ? tool : "某样东西"] 塞进[limb.owner]的[chinese_body_zone_display(limb.plaintext_zone)]！"),
 		)
 		return
 
@@ -148,15 +148,15 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You stuff [tool] into [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] stuffs [tool] into [FORMAT_LIMB_OWNER(limb)]!"),
-		span_notice("[surgeon] stuffs [tool.w_class > WEIGHT_CLASS_SMALL ? tool : "something"] into [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你把 [tool] 硬塞进了[FORMAT_LIMB_OWNER(limb)]。"),
+		span_notice("[surgeon] 把 [tool] 硬塞进了[FORMAT_LIMB_OWNER(limb)]！"),
+		span_notice("[surgeon] 把 [tool.w_class > WEIGHT_CLASS_SMALL ? tool : "某样东西"] 硬塞进了[FORMAT_LIMB_OWNER(limb)]。"),
 	)
 
 
 /datum/surgery_operation/limb/undo_cavity_implant
-	name = "remove cavity implant"
-	desc = "Remove an item from a body cavity."
+	name = "取出腔体植入物"
+	desc = "从体腔中取出物品。"
 	implements = list(
 		IMPLEMENT_HAND = 1,
 		TOOL_HEMOSTAT = 2,
@@ -170,7 +170,7 @@
 	all_surgery_states_required = SURGERY_SKIN_OPEN|SURGERY_ORGANS_CUT|SURGERY_CAVITY_WIDENED
 
 /datum/surgery_operation/limb/undo_cavity_implant/all_required_strings()
-	return list("operate on chest (target chest)") + ..()
+	return list("对胸部施术（目标胸部）") + ..()
 
 /datum/surgery_operation/limb/undo_cavity_implant/get_default_radial_image()
 	return image('icons/hud/screen_gen.dmi', "arrow_large_still")
@@ -178,8 +178,8 @@
 /datum/surgery_operation/limb/undo_cavity_implant/get_radial_options(obj/item/bodypart/chest/limb, obj/item/tool, operating_zone)
 	// Not bothering to cache this as the chance of hitting the same cavity item in the same round is rather low
 	var/datum/radial_menu_choice/option = new()
-	option.name = "remove [limb.cavity_item]"
-	option.info = "Replace the [limb.cavity_item] embededd in the patient's chest cavity."
+	option.name = "取出 [limb.cavity_item]"
+	option.info = "取出嵌在病人胸腔里的 [limb.cavity_item]。"
 	option.image = get_generic_limb_radial_image(BODY_ZONE_CHEST)
 	option.image.overlays += add_radial_overlays(limb.cavity_item)
 	return option
@@ -198,20 +198,20 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to extract [limb.cavity_item] from [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to extract [limb.cavity_item] from [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] begins to extract something from [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始从[FORMAT_LIMB_OWNER(limb)]中取出 [limb.cavity_item]……"),
+		span_notice("[surgeon] 开始从[FORMAT_LIMB_OWNER(limb)]中取出 [limb.cavity_item]。"),
+		span_notice("[surgeon] 开始从[FORMAT_LIMB_OWNER(limb)]中取出某样东西。"),
 	)
-	display_pain(limb.owner, "You feel a serious pain in your [limb.plaintext_zone]!")
+	display_pain(limb.owner, "你感到[chinese_body_zone_display(limb.plaintext_zone)]传来剧烈的疼痛！")
 
 /datum/surgery_operation/limb/undo_cavity_implant/on_success(obj/item/bodypart/chest/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	if(isnull(limb.cavity_item)) // something else could have removed it mid surgery?
 		display_results(
 			surgeon,
 			limb.owner,
-			span_warning("You find nothing to remove from [FORMAT_LIMB_OWNER(limb)]."),
-			span_warning("[surgeon] finds nothing to remove from [FORMAT_LIMB_OWNER(limb)]."),
-			span_warning("[surgeon] finds nothing to remove from [FORMAT_LIMB_OWNER(limb)]."),
+			span_warning("你在[FORMAT_LIMB_OWNER(limb)]里找不到可以取出的东西。"),
+			span_warning("[surgeon] 在[FORMAT_LIMB_OWNER(limb)]里找不到可以取出的东西。"),
+			span_warning("[surgeon] 在[FORMAT_LIMB_OWNER(limb)]里找不到可以取出的东西。"),
 		)
 		return
 
@@ -221,9 +221,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You pull [implant] out of [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] pulls [implant] out of [FORMAT_LIMB_OWNER(limb)]!"),
-		span_notice("[surgeon] pulls something out of [FORMAT_LIMB_OWNER(limb)]!"),
+		span_notice("你把 [implant] 从[FORMAT_LIMB_OWNER(limb)]里拉了出来。"),
+		span_notice("[surgeon] 把 [implant] 从[FORMAT_LIMB_OWNER(limb)]里拉了出来！"),
+		span_notice("[surgeon] 从[FORMAT_LIMB_OWNER(limb)]里拉出了某样东西！"),
 	)
-	display_pain(limb.owner, "You can feel [implant.name] being pulled out of you!")
+	display_pain(limb.owner, "你能感觉到 [implant.name] 正从你体内被拉出！")
 	surgeon.put_in_hands(implant)

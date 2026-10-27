@@ -1,4 +1,4 @@
 /obj/item/reagent_containers/cup/phylactery/examine(mob/user)
 	. = ..()
 
-	. += span_notice("This small cup can draw blood from anyone nearby with a single click. Very useful for [EXAMINE_HINT("curse rituals")], which require blood of a sapient creature.")
+	. += span_notice("只需点击一下，这只小杯就能抽取附近任何人的血液。对需要智慧生物血液的[EXAMINE_HINT("诅咒仪式")]很有帮助。")

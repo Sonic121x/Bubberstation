@@ -1,6 +1,6 @@
 /mob/living/basic/mining_drone
-	name = "\improper Nanotrasen minebot"
-	desc = "The instructions printed on the side read: This is a small robot used to support miners, can be set to search and collect loose ore, or to help fend off wildlife."
+	name = "\improper 纳米传讯采矿机器人"
+	desc = "侧面印着的说明写着：这是一台用于支援矿工的小型机器人，可设定为搜寻并拾取散落的矿石，或协助驱赶野生动物。"
 	gender = NEUTER
 	icon = 'icons/mob/silicon/aibots.dmi'
 	icon_state = "mining_drone"
@@ -16,14 +16,14 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	obj_damage = 10
-	attack_verb_continuous = "drills"
-	attack_verb_simple = "drill"
+	attack_verb_continuous = "钻击"
+	attack_verb_simple = "钻击"
 	attack_sound = 'sound/items/weapons/circsawhit.ogg'
 	sentience_type = SENTIENCE_MINEBOT
-	speak_emote = list("states")
+	speak_emote = list("陈述")
 	mob_biotypes = MOB_ROBOTIC
 	faction = list(FACTION_STATION, FACTION_NEUTRAL)
-	death_message = "blows apart!"
+	death_message = "炸成了碎片！"
 	light_system = OVERLAY_LIGHT
 	light_range = 6
 	// I want this to be a bit more dim, for vibes
@@ -55,10 +55,10 @@
 	)
 	///possible colors the bot can have
 	var/static/list/possible_colors= list(
-		"Default" = null, //default color state
-		"Blue" = "#70d5e7",
-		"Red" = "#ee7fb9",
-		"Green" = "#5fea94",
+		"默认" = null, //default color state
+		"蓝色" = "#70d5e7",
+		"红色" = "#ee7fb9",
+		"绿色" = "#5fea94",
 	)
 
 /mob/living/basic/mining_drone/Initialize(mapload)
@@ -93,39 +93,39 @@
 /mob/living/basic/mining_drone/set_combat_mode(new_mode, silent = TRUE, force = FALSE)
 	. = ..()
 	icon_state = combat_mode ? "mining_drone_offense" : "mining_drone"
-	balloon_alert(src, "now [combat_mode ? "attacking" : "collecting"]")
+	balloon_alert(src, "现在 [combat_mode ? "攻击" : "收集"]")
 
 /mob/living/basic/mining_drone/examine(mob/user)
 	. = ..()
 	if(health < maxHealth)
 		if(health >= maxHealth * 0.5)
-			. += span_warning("[p_They()] look slightly dented.")
+			. += span_warning("[p_They()] 看起来有轻微凹陷。")
 		else
-			. += span_boldwarning("[p_They()] look severely dented!")
+			. += span_boldwarning("[p_They()] 看起来严重凹陷了！")
 
 	if(isnull(stored_gun) || !stored_gun.max_mod_capacity)
 		return
 
-	. += "<b>[stored_gun.get_remaining_mod_capacity()]%</b> mod capacity remaining."
+	. += "剩余 <b>[stored_gun.get_remaining_mod_capacity()]%</b> 改装容量。"
 
 	for(var/obj/item/borg/upgrade/modkit/modkit as anything in stored_gun.modkits)
-		. += span_notice("There is \a [modkit] installed, using <b>[modkit.cost]%</b> capacity.")
+		. += span_notice("已安装 \a [modkit]，占用 <b>[modkit.cost]%</b> 容量。")
 	if(ai_controller && ai_controller.ai_status == AI_STATUS_OFF && ai_controller.get_expected_ai_status() == AI_STATUS_ON)
-		. += "The [src] appears to be in <b>sleep mode</b>. You can restore normal functions by <b>tapping</b> it."
+		. += "这 [src] 似乎处于<b>休眠模式</b>。你可以<b>轻拍</b>它来恢复正常功能。"
 
 
 /mob/living/basic/mining_drone/welder_act(mob/living/user, obj/item/welder)
 	if(user.combat_mode)
 		return FALSE
 	if(combat_mode)
-		user.balloon_alert(user, "can't repair in attack mode!")
+		user.balloon_alert(user, "攻击模式下无法修理！")
 		return TRUE
 	if(maxHealth == health)
-		user.balloon_alert(user, "at full integrity!")
+		user.balloon_alert(user, "结构完好！")
 		return TRUE
 	if(welder.use_tool(src, user, 0, volume=40))
 		adjust_brute_loss(-15)
-		user.balloon_alert(user, "successfully repaired!")
+		user.balloon_alert(user, "修理成功！")
 	return TRUE
 
 /mob/living/basic/mining_drone/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -219,7 +219,7 @@
 	if(user.combat_mode)
 		return CLICK_ACTION_BLOCKING
 	set_combat_mode(!combat_mode)
-	balloon_alert(user, "now [combat_mode ? "attacking wildlife" : "collecting loose ore"]")
+	balloon_alert(user, "现在 [combat_mode ? "攻击野生动物" : "收集散落矿石"]")
 	return CLICK_ACTION_SUCCESS
 
 /mob/living/basic/mining_drone/RangedAttack(atom/target, list/modifiers)
@@ -238,7 +238,7 @@
 		target_ore.forceMove(src)
 
 /mob/living/basic/mining_drone/proc/drop_ore()
-	to_chat(src, span_notice("You dump your stored ore."))
+	to_chat(src, span_notice("你倒出了储存的矿石。"))
 	for(var/obj/item/stack/ore/dropped_item in contents)
 		dropped_item.forceMove(get_turf(src))
 

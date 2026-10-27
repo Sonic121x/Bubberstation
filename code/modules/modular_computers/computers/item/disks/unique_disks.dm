@@ -1,6 +1,6 @@
 /obj/item/disk/computer/syndicate
-	name = "syndicate data disk"
-	desc = "A data disk with some high-tech programs. Rumor has it that the disk is made of gold, which probably makes it expensive as hell."
+	name = "辛迪加数据磁盘"
+	desc = "一张存有若干高科技程序的数据磁盘。有传言说这磁盘是金子做的，所以大概贵得离谱。"
 	icon_state = "datadisk9"
 	custom_materials = list(/datum/material/gold = SMALL_MATERIAL_AMOUNT)
 
@@ -15,7 +15,7 @@
 	starting_programs = list(/datum/computer_file/program/contract_uplink)
 
 /obj/item/disk/computer/black_market
-	desc = "Removable disk used to store data. This one has a smudged piece of paper glued to it, reading \"PC softwarez\"."
+	desc = "用于存储数据的可移动磁盘。这一张上面粘着一张被蹭脏的纸条，写着“电脑软件”。"
 
 /obj/item/disk/computer/black_market/Initialize(mapload)
 	. = ..()

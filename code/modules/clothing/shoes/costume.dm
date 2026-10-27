@@ -1,6 +1,6 @@
 /obj/item/clothing/shoes/roman
-	name = "roman sandals"
-	desc = "Sandals with buckled leather straps on it."
+	name = "罗马凉鞋"
+	desc = "带有皮革扣带的凉鞋。"
 	icon_state = "roman"
 	inhand_icon_state = "wizshoe"
 	strip_delay = 10 SECONDS
@@ -10,8 +10,8 @@
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/clothing/shoes/griffin
-	name = "griffon boots"
-	desc = "A pair of costume boots fashioned after bird talons."
+	name = "狮鹫靴"
+	desc = "一双仿照鸟爪造型的戏服靴。"
 	icon_state = "griffinboots"
 	inhand_icon_state = null
 	lace_time = 8 SECONDS
@@ -25,26 +25,26 @@
 	create_storage(storage_type = /datum/storage/pockets/shoes)
 
 /obj/item/clothing/shoes/singery
-	name = "yellow performer's boots"
-	desc = "These boots were made for dancing."
+	name = "黄色表演者靴"
+	desc = "这双靴子是为跳舞而生的。"
 	icon_state = "ysing"
 	equip_delay_other = 5 SECONDS
 
 /obj/item/clothing/shoes/singerb
-	name = "blue performer's boots"
-	desc = "These boots were made for dancing."
+	name = "蓝色表演者靴"
+	desc = "这双靴子是为跳舞而生的。"
 	icon_state = "bsing"
 	equip_delay_other = 5 SECONDS
 
 /obj/item/clothing/shoes/singerr
-	name = "red performer's boots"
-	desc = "These boots were made for dancing."
+	name = "红色表演者靴"
+	desc = "这双靴子是为跳舞而生的。"
 	icon_state = "rsing"
 	equip_delay_other = 5 SECONDS
 
 /obj/item/clothing/shoes/bronze
-	name = "bronze boots"
-	desc = "A giant, clunky pair of shoes crudely made out of bronze. Why would anyone wear these?"
+	name = "青铜靴"
+	desc = "一双用青铜粗糙打造的巨大而笨重的鞋子。谁会愿意穿这种东西？"
 	icon = 'icons/obj/clothing/shoes.dmi'
 	icon_state = "clockwork_treads"
 	fastening_type = SHOES_SLIPON
@@ -56,29 +56,29 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, 4)
 
 /obj/item/clothing/shoes/cookflops
-	desc = "All this talk of antags, greytiding, and griefing... I just wanna grill for god's sake!"
-	name = "grilling sandals"
+	desc = "整天都在说什么反派、灰色浪潮、恶意捣乱……我只想烤个肉，老天爷！"
+	name = "烧烤凉鞋"
 	icon_state = "cookflops"
 	inhand_icon_state = "cookflops"
 	fastening_type = SHOES_SLIPON
 	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/shoes/jackbros
-	name = "frosty boots"
-	desc = "For when you're stepping on up to the plate."
+	name = "霜冻靴"
+	desc = "适合你准备登场击球的时候。"
 	icon_state = "JackFrostShoes"
 	inhand_icon_state = null
 
 /obj/item/clothing/shoes/swagshoes
-	name = "swag shoes"
-	desc = "They got me for my foams!"
+	name = "潮鞋"
+	desc = "他们就是冲着我的泡沫鞋来的！"
 	icon_state = "SwagShoes"
 	inhand_icon_state = null
 	clothing_flags = parent_type::clothing_flags | CARP_STYLE_FACTOR
 
 /obj/item/clothing/shoes/glow
-	name = "glow shoes"
-	desc = "t3h c00L3st sh03z j00'LL 3v3r f1nd."
+	name = "发光鞋"
+	desc = "你所能找到的最酷的鞋。"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/glow"
 	post_init_icon_state = "glow_shoes"
@@ -103,14 +103,14 @@
 	. += emissive_appearance('icons/obj/clothing/shoes.dmi', "glow_shoes_emissive", offset_spokesman = src, alpha = src.alpha)
 
 /obj/item/clothing/shoes/saints
-	name = "saints sneakers"
-	desc = "Officially branded Saints sneakers. Incredibly valuable!"
+	name = "圣徒运动鞋"
+	desc = "官方正品圣徒牌运动鞋。价值连城！"
 	icon_state = "saints_shoes"
 	inhand_icon_state = null
 
 /obj/item/clothing/shoes/jester_shoes
-	name = "jester shoes"
-	desc = "Shoes that jingle with every step!!"
+	name = "弄臣鞋"
+	desc = "每走一步都会叮当作响的鞋子！！"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/jester_shoes"
 	post_init_icon_state = "jester_map"
@@ -126,8 +126,8 @@
 	LoadComponent(/datum/component/squeak, list('sound/effects/jingle.ogg' = 1), 50, falloff_exponent = 20, step_delay_override = 0)
 
 /obj/item/clothing/shoes/ducky_shoes
-	name = "ducky shoes"
-	desc = "I got boots, that go *quack quack quack quack quack."
+	name = "鸭鸭鞋"
+	desc = "我有双靴子，走起来 *嘎 嘎 嘎 嘎 嘎。"
 	icon_state = "ducky_shoes"
 	inhand_icon_state = "ducky_shoes"
 

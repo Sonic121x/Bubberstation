@@ -1,7 +1,7 @@
 /obj/item/fish/clownfish
-	name = "clownfish"
+	name = "小丑鱼"
 	fish_id = "clownfish"
-	desc = "Clownfish catch prey by swimming onto the reef, attracting larger fish, and luring them back to the anemone. The anemone will sting and eat the larger fish, leaving the remains for the clownfish."
+	desc = "小丑鱼会游到礁石上捕捉猎物，吸引更大的鱼，再把它们引回海葵。海葵会蜇刺并吃掉那些大鱼，把残骸留给小丑鱼。"
 	icon_state = "clownfish"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	sprite_width = 7
@@ -16,12 +16,12 @@
 	required_temperature_max = MIN_AQUARIUM_TEMP+30
 
 /obj/item/fish/clownfish/get_fish_taste()
-	return list("raw fish" = 2, "something funny" = 1)
+	return list("生鱼肉" = 2, "有点好笑的东西" = 1)
 
 /obj/item/fish/clownfish/lube
-	name = "lubefish"
+	name = "润滑鱼"
 	fish_id = "lube"
-	desc = "A clownfish exposed to cherry-flavored lube for far too long. First discovered the days following a cargo incident around the seas of Europa, when thousands of thousands of thousands..."
+	desc = "一条在樱桃味润滑油里泡得太久的小丑鱼。最初是在一次货运事故后，于欧罗巴海域附近被发现，当时成千上万成千上万成千上万……"
 	icon_state = "lubefish"
 	random_case_rarity = FISH_RARITY_VERY_RARE
 	fish_traits = list(/datum/fish_trait/picky_eater, /datum/fish_trait/lubed)
@@ -33,16 +33,16 @@
 
 // become lubeman. but you suicide
 /obj/item/fish/clownfish/lube/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] covers themselves in [src]'s residue, then swallows it whole! It looks like [user.p_theyre()] trying to commit lubide!"))
+	user.visible_message(span_suicide("[user] 把自己涂满 [src] 的残余物，然后整个吞了下去！看起来是想以润滑方式寻短见！"))
 	user.AddComponent(/datum/component/slippery, 8 SECONDS, SLIDE|GALOSHES_DONT_HELP)
 	user.AddElement(/datum/element/lube_walking)
 	qdel(src)
 	return OXYLOSS
 
 /obj/item/fish/cardinal
-	name = "cardinalfish"
+	name = "主教鱼"
 	fish_id = "cardinal"
-	desc = "Cardinalfish are often found near sea urchins, where the fish hide when threatened."
+	desc = "主教鱼常出现在海胆附近，遇到威胁时它们就躲进那里。"
 	icon_state = "cardinalfish"
 	sprite_width = 6
 	sprite_height = 3
@@ -55,9 +55,9 @@
 	required_temperature_max = MIN_AQUARIUM_TEMP+30
 
 /obj/item/fish/greenchromis
-	name = "green chromis"
+	name = "绿雀鲷"
 	fish_id = "greenchromis"
-	desc = "The Chromis can vary in color from blue to green depending on the lighting and distance from the lights."
+	desc = "根据光照和与灯光的距离不同，雀鲷的颜色会在蓝色和绿色之间变化。"
 	icon_state = "greenchromis"
 	sprite_width = 5
 	sprite_height = 3
@@ -71,9 +71,9 @@
 	fishing_difficulty_modifier = 5 // Bit harder
 
 /obj/item/fish/firefish
-	name = "firefish goby"
+	name = "火鱼虾虎鱼"
 	fish_id = "firefish"
-	desc = "To communicate in the wild, the firefish uses its dorsal fin to alert others of potential danger."
+	desc = "在野外交流时，火鱼会用背鳍提醒同伴潜在的危险。"
 	icon_state = "firefish"
 	sprite_width = 5
 	sprite_height = 3
@@ -87,9 +87,9 @@
 	required_temperature_max = MIN_AQUARIUM_TEMP+28
 
 /obj/item/fish/pufferfish
-	name = "pufferfish"
+	name = "河豚"
 	fish_id = "pufferfish"
-	desc = "They say that one pufferfish contains enough toxins to kill 30 people, although in the last few decades they've been genetically engineered en masse to be less poisonous."
+	desc = "据说一条河豚所含的毒素足以杀死 30 个人，不过在最近几十年里，它们已被大规模基因改造得不那么有毒了。"
 	icon_state = "pufferfish"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	sprite_width = 8
@@ -104,13 +104,13 @@
 	beauty = FISH_BEAUTY_GOOD
 
 /obj/item/fish/pufferfish/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] bites into [src] and starts sucking on it! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 咬住 [src] 开始吸吮！看起来是想要自杀！"))
 	return TOXLOSS
 
 /obj/item/fish/lanternfish
-	name = "lanternfish"
+	name = "灯笼鱼"
 	fish_id = "lanternfish"
-	desc = "Typically found in areas below 6600 feet below the surface of the ocean, they live in complete darkness."
+	desc = "通常生活在海面下 6600 英尺以下的区域，栖息于完全的黑暗之中。"
 	icon_state = "lanternfish"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	random_case_rarity = FISH_RARITY_VERY_RARE
@@ -125,9 +125,9 @@
 	beauty = FISH_BEAUTY_NULL
 
 /obj/item/fish/stingray
-	name = "stingray"
+	name = "黄貂鱼"
 	fish_id = "stingray"
-	desc = "A type of ray, most known for its venomous stinger. Despite that, They're normally docile, if not a bit easily frightened."
+	desc = "一种魟鱼，最出名的是它带毒的尾刺。尽管如此，它们通常性情温顺，只是有点容易受惊。"
 	icon_state = "stingray"
 	stable_population = 4
 	sprite_height = 7
@@ -140,9 +140,9 @@
 	fish_traits = list(/datum/fish_trait/stinger, /datum/fish_trait/toxic_barbs, /datum/fish_trait/wary, /datum/fish_trait/carnivore, /datum/fish_trait/predator)
 
 /obj/item/fish/swordfish
-	name = "swordfish"
+	name = "剑鱼"
 	fish_id = "swordfish"
-	desc = "A large billfish, most famous for its elongated bill, while also fairly popular for cooking, and as a fearsome weapon in the hands of a veteran spess-fisherman."
+	desc = "一种大型喙鱼，最出名的是它细长的吻部，同时也颇受欢迎用于烹饪，而在老练的太空渔夫手中更是一件可怕的武器。"
 	icon = 'icons/obj/aquarium/wide.dmi'
 	icon_state = "swordfish"
 	inhand_icon_state = "swordfish"
@@ -237,9 +237,9 @@
 	block_chance += bonus_malus * 7
 
 /obj/item/fish/squid
-	name = "squid"
+	name = "鱿鱼"
 	fish_id = "squid"
-	desc = "An elongated mollusk with eight tentacles, natural camouflage and ink clouds to spray at predators. One of the most intelligent, well-equipped invertebrates out there."
+	desc = "一种细长的软体动物，拥有八条触腕、天然的伪装能力，以及能朝掠食者喷射的墨雾。是现存最聪明、装备最齐全的无脊椎动物之一。"
 	icon_state = "squid"
 	sprite_width = 4
 	sprite_height = 5
@@ -253,16 +253,16 @@
 	fish_traits = list(/datum/fish_trait/heavy, /datum/fish_trait/carnivore, /datum/fish_trait/predator, /datum/fish_trait/ink, /datum/fish_trait/camouflage, /datum/fish_trait/wary)
 
 /obj/item/fish/squid/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] points [src]'s ink glands at their face and presses INCREDIBLY hard! It looks like [user.p_theyre()] trying to commit squidcide!"))
+	user.visible_message(span_suicide("[user] 把 [src] 的墨腺对准自己的脸，用尽力气一按！看起来是想以鱿鱼方式寻短见！"))
 
 	// No head? Bozo.
 	var/obj/item/bodypart/head = user.get_bodypart(BODY_ZONE_HEAD)
 	if(isnull(head))
-		user.visible_message(span_suicide("[user] has no head! The ink goes flying by!"))
+		user.visible_message(span_suicide("[user] 没有头！墨汁飞过去了！"))
 		return SHAME
 
 	// get inked.
-	user.visible_message(span_warning("[user] is inked by [src]!"), span_userdanger("You've been inked by [src]!"))
+	user.visible_message(span_warning("[user] 被 [src] 喷了一脸墨！"), span_userdanger("你被 [src] 喷了一脸墨！"))
 	user.AddComponent(/datum/component/face_decal/splat, \
 		color = COLOR_NEARLY_ALL_BLACK, \
 		memory_type = /datum/memory/witnessed_inking, \
@@ -274,19 +274,19 @@
 		return OXYLOSS
 
 	head.dismember(silent = FALSE)
-	user.visible_message(span_suicide("[user]'s head goes FLYING OFF from the overpressurized ink jet!"))
+	user.visible_message(span_suicide("[user] 的头被超压的墨流冲得飞了出去！"))
 	return MANUAL_SUICIDE
 
 /obj/item/fish/squid/get_fish_taste()
-	return list("raw mollusk" = 2)
+	return list("生软体动物" = 2)
 
 /obj/item/fish/squid/get_fish_taste_cooked()
-	return list("cooked mollusk" = 2, "tenderness" = 0.5)
+	return list("熟软体动物" = 2, "柔嫩" = 0.5)
 
 /obj/item/fish/monkfish
-	name = "monkfish"
+	name = "鮟鱇鱼"
 	fish_id = "monkfish"
-	desc = "A member of the Lophiid family of anglerfish. It goes by several different names, however none of them will make it look any prettier, nor be any less delicious."
+	desc = "鮟鱇科的一员。它有好几个不同的名字，但哪一个都不能让它看起来更漂亮，也不会让它更好吃。"
 	icon_state = "monkfish"
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	sprite_height = 7
@@ -308,12 +308,12 @@
 
 /obj/item/fish/monkfish/Initialize(mapload, apply_qualities = TRUE)
 	. = ..()
-	name = pick("monkfish", "fishing-frog", "frog-fish", "sea-devil", "goosefish")
+	name = pick("鮟鱇鱼", "钓鱼蛙", "蛙鱼", "海魔鬼", "鹅鱼")
 
 /obj/item/fish/plaice
-	name = "plaice"
+	name = "鲽鱼"
 	fish_id = "plaice"
-	desc = "Perhaps the most prominent flatfish in the space-market. Nature really pulled out the rolling pin on this one."
+	desc = "也许是太空市场上最出名的比目鱼。大自然在它身上可真是把擀面杖都拿出来了。"
 	icon_state = "plaice"
 	sprite_height = 7
 	sprite_width = 6

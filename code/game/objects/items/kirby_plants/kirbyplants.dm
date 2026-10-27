@@ -1,10 +1,10 @@
 /obj/item/kirbyplants
-	name = "potted plant"
+	name = "盆栽"
 	//icon = 'icons/obj/fluff/flora/plants.dmi' // SKYRAT EDIT - ORIGINAL
 	icon = 'modular_skyrat/modules/aesthetics/plants/plants.dmi' // SKYRAT EDIT CHANGE
 	icon_state = "plant-01"
 	base_icon_state = "plant-01"
-	desc = "A little bit of nature contained in a pot."
+	desc = "一小片被封在花盆里的自然。"
 	layer = ABOVE_MOB_LAYER
 	w_class = WEIGHT_CLASS_HUGE
 	force = 10
@@ -39,11 +39,11 @@
 	. = ..()
 	if(custom_plant_name)
 		return
-	name = "[dead ? "dead ":null][initial(name)]"
+	name = "[dead ? "枯死的":null][initial(name)]"
 
 /obj/item/kirbyplants/update_desc(updates)
 	. = ..()
-	desc = dead ? "The unidentifiable plant remnants make you feel like planting something new in the pot." : initial(desc)
+	desc = dead ? "无法辨认的植物残骸让你想在花盆里种点新东西。" : initial(desc)
 
 /obj/item/kirbyplants/vv_edit_var(vname, vval)
 	. = ..()
@@ -56,14 +56,14 @@
 
 /obj/item/kirbyplants/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!dead && trimmable && HAS_TRAIT(user, TRAIT_BONSAI) && isturf(loc) && tool.get_sharpness())
-		to_chat(user,span_notice("You start trimming [src]."))
+		to_chat(user,span_notice("你开始修剪[src]。"))
 		if(!do_after(user, 3 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user,span_notice("You finish trimming [src]."))
+		to_chat(user,span_notice("你修剪完了[src]。"))
 		change_visual()
 
 	if(dead && istype(tool, /obj/item/seeds))
-		to_chat(user,span_notice("You start planting a new seed into the pot."))
+		to_chat(user,span_notice("你开始往花盆里种下一颗新种子。"))
 		if(!do_after(user, 3 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 		qdel(tool)
@@ -117,16 +117,16 @@
 	dead = TRUE
 
 /obj/item/kirbyplants/random/dead/research_director
-	name = "RD's potted plant"
+	name = "科研主管的盆栽"
 	custom_plant_name = TRUE
 
 /obj/item/kirbyplants/random/dead/update_desc(updates)
 	. = ..()
-	desc = "A gift from the botanical staff, presented after the RD's reassignment. There's a tag on it that says \"Y'all come back now, y'hear?\"[dead ? "\nIt doesn't look very healthy...":null]"
+	desc = "植物学部门送来的礼物，在科研主管调任后赠予。上面挂着一个标签，写着“你们可得回来啊，听见没？”[dead ? "\n它看起来不太健康……":null]"
 
 /obj/item/kirbyplants/random/fullysynthetic
-	name = "plastic potted plant"
-	desc = "A fake, cheap looking, plastic tree. Perfect for people who kill every plant they touch."
+	name = "塑料盆栽"
+	desc = "一棵廉价感的假塑料树。非常适合那些碰什么植物就死什么植物的人。"
 	icon_state = "plant-26"
 	custom_materials = (list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 4))
 	trimmable = FALSE
@@ -138,22 +138,22 @@
 
 //SKYRAT EDIT ADDITION START
 /obj/item/kirbyplants/monkey
-	name = "monkey plant"
-	desc = "Something that seems to have been made by the Nanotrasen science division, one might call it an abomination. It's heads seem... alive."
+	name = "猴头盆栽"
+	desc = "这东西似乎是纳米传讯科研部门的产物，有人或许会称之为怪物。它的脑袋看起来……还活着。"
 	icon_state = "monkeyplant"
 	trimmable = FALSE
 //SKYRAT EDIT ADDITION END
 
 /obj/item/kirbyplants/photosynthetic
-	name = "photosynthetic potted plant"
-	desc = "A bioluminescent plant."
+	name = "光合盆栽"
+	desc = "一株会发出生物光的植物。"
 	icon_state = "plant-09"
 	light_color = COLOR_BRIGHT_BLUE
 	light_range = 3
 
 /obj/item/kirbyplants/potty
-	name = "Potty the Potted Plant"
-	desc = "A secret agent staffed in the station's bar to protect the mystical cakehat."
+	name = "盆栽波特"
+	desc = "一名潜伏在空间站酒吧的特工，负责守护神秘的蛋糕帽。"
 	icon_state = "potty"
 	base_icon_state = "potty"
 	custom_plant_name = TRUE
@@ -187,8 +187,8 @@
 		. += "[base_icon_state]_light"
 
 /obj/item/kirbyplants/fern
-	name = "neglected fern"
-	desc = "An old botanical research sample collected on a long forgotten jungle planet."
+	name = "疏于照料的蕨类"
+	desc = "一份古老的植物学研究样本，采集自一颗早已被遗忘的丛林星球。"
 	icon_state = "fern"
 	trimmable = FALSE
 

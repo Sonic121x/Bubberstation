@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(vis_overlays)
-	name = "Vis contents overlays"
+	name = "可视内容叠加图层"
 	wait = 1 MINUTES
 	ss_flags = SS_NO_INIT
 	priority = FIRE_PRIORITY_VIS

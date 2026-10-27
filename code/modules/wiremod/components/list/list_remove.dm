@@ -4,9 +4,9 @@
  * Removes an element to a list.
  */
 /obj/item/circuit_component/variable/list/listremove
-	display_name = "List Remove"
-	desc = "Removes an element from a list variable."
-	category = "List"
+	display_name = "列表移除"
+	desc = "从列表变量中移除一个元素。"
+	category = "列表"
 
 	/// Element to remove to the list
 	var/datum/port/input/to_remove

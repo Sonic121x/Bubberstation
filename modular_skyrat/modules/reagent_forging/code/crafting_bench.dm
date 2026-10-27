@@ -10,8 +10,8 @@
 #define MAX_FORGING_COMPLETE_ITEMS 50
 
 /obj/structure/reagent_crafting_bench
-	name = "forging workbench"
-	desc = "A crafting bench fitted with tools, securing mechanisms, and a steady surface for blacksmithing."
+	name = "锻造工作台"
+	desc = "配备工具、固定装置和稳固台面的制作台，供铁匠工作使用。"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_structures.dmi'
 	icon_state = "crafting_bench_empty"
 
@@ -99,25 +99,25 @@
 
 /obj/structure/reagent_crafting_bench/examine(mob/user)
 	. = ..()
-	. += span_notice("You could secure or unsecure it with a wrench.")
-	. += span_notice("You could pry it apart with a crowbar.")
-	. += span_notice("You could insert a stack of material into the drawers, or <b>right click</b> to retrieve it later.")
+	. += span_notice("你可以用扳手固定或解除固定。")
+	. += span_notice("你可以用撬棍将它拆开。")
+	. += span_notice("你可以将一叠材料放入抽屉，之后<b>右键点击</b>即可取回。")
 
 	if(!isnull(forged_item_on_surface))
 		if(istype(forged_item_on_surface, /obj/item/forging/complete))
 			var/obj/item/forging/complete/complete_item = forged_item_on_surface
-			. += span_notice("[src] has a <b>[initial(complete_item.name)]</b> sitting on it, awaiting completion. <br>")
+			. += span_notice("[src] 上放着一个等待组装完成的<b>[initial(complete_item.name)]</b>。<br>")
 			var/obj/item/completion_item = complete_item.spawning_item
-			. += span_notice("With <b>[WEAPON_COMPLETION_WOOD_AMOUNT]</b> sheets of <b>wood</b> nearby, and some <b>hammering</b>, it could be completed into a <b>[initial(completion_item.name)]</b>.")
+			. += span_notice("在附近准备 <b>[WEAPON_COMPLETION_WOOD_AMOUNT]</b> 块<b>木板</b>，再加以<b>锤打</b>，即可完成<b>[initial(completion_item.name)]</b>。")
 			return // We don't want to show any selected recipes if there's weapon head on the bench
 	else
 		if(selected_recipe)
 			var/obj/resulting_item = selected_recipe.resulting_item
-			. += span_notice("The selected recipe's resulting item is: <b>[initial(resulting_item.name)]</b> <br>")
-			. += span_notice("Gather the required materials, listed below, <b>near the bench</b>, then start <b>hammering</b> to complete it! <br>")
+			. += span_notice("所选配方的成品为：<b>[initial(resulting_item.name)]</b><br>")
+			. += span_notice("将下列所需材料放在<b>工作台附近</b>，然后开始<b>锤打</b>即可完成！<br>")
 
 			if(!length(selected_recipe.recipe_requirements))
-				. += span_boldwarning("Somehow, this recipe has no requirements, report this as this shouldn't happen.")
+				. += span_boldwarning("不知为何，此配方没有材料需求。这不应发生，请报告此问题。")
 				return
 
 		. += selected_recipe?.get_recipe_requirements_description()
@@ -172,26 +172,26 @@
 	if(!isnull(forged_item_on_surface))
 		user.put_in_hands(forged_item_on_surface)
 		forged_item_on_surface = null
-		balloon_alert(user, "[forged_item_on_surface] retrieved")
+		balloon_alert(user, "已取回 [forged_item_on_surface]")
 		update_appearance()
 		return
 
 	if(selected_recipe)
 		clear_recipe()
-		balloon_alert_to_viewers("recipe cleared")
+		balloon_alert_to_viewers("已清除配方")
 		update_appearance()
 		return
 
 	var/chosen_recipe = show_radial_menu(user, src, get_filtered_radial_choices(user), radius = 38, require_near = TRUE, tooltips = TRUE)
 
 	if(!chosen_recipe)
-		balloon_alert(user, "no recipe choice")
+		balloon_alert(user, "未选择配方")
 		return
 
 	var/datum/crafting_bench_recipe/recipe_to_use = recipe_names_to_path[chosen_recipe]
 	selected_recipe = new recipe_to_use
 
-	balloon_alert(user, "recipe chosen")
+	balloon_alert(user, "已选择配方")
 	update_appearance()
 
 ///Exclusively gives all the radial choices that the user can know how to make.
@@ -249,7 +249,7 @@
 		if(!isnull(forged_item_on_surface))
 			if(forged_item_on_surface.loc != src)
 				forged_item_on_surface.forceMove(forge_item)
-				balloon_alert(user, "took [forged_item_on_surface]")
+				balloon_alert(user, "已取走 [forged_item_on_surface]")
 				forged_item_on_surface = null
 			return ITEM_INTERACT_SUCCESS
 		else
@@ -282,24 +282,24 @@
 
 /obj/structure/reagent_crafting_bench/proc/attempt_place(obj/item/attacking_item, mob/user)
 	if(!isnull(forged_item_on_surface))
-		balloon_alert(user, "already full")
+		balloon_alert(user, "已经放满了")
 		return
 
 	forged_item_on_surface = attacking_item
 	attacking_item.forceMove(src)
-	balloon_alert_to_viewers("placed [attacking_item]")
+	balloon_alert_to_viewers("已放置 [attacking_item]")
 	update_appearance()
 	return
 
 /obj/structure/reagent_crafting_bench/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
 	set_anchored(!anchored)
-	balloon_alert_to_viewers(anchored ? "secured" : "unsecured")
+	balloon_alert_to_viewers(anchored ? "已固定" : "已解除固定")
 	return TRUE
 
 /obj/structure/reagent_crafting_bench/crowbar_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
-	balloon_alert(user, "pried apart")
+	balloon_alert(user, "已撬开拆卸")
 	deconstruct(TRUE)
 	return TRUE
 
@@ -335,16 +335,16 @@
 		return
 
 	if(!istype(forged_item_on_surface, /obj/item/forging/complete))
-		balloon_alert(user, "invalid item")
+		balloon_alert(user, "物品无效")
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/forging/complete/complete_item = forged_item_on_surface
 	if(!complete_item.spawning_item)
-		balloon_alert(user, "[forged_item_on_surface] cannot be completed")
+		balloon_alert(user, "无法完成 [forged_item_on_surface]")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!can_we_craft_this(complete_item.recipe_requirements))
-		balloon_alert(user, "not enough materials")
+		balloon_alert(user, "材料不足")
 		return ITEM_INTERACT_BLOCKING
 
 	playsound(src, 'sound/items/hammering_wood.ogg', 50, vary = TRUE)
@@ -352,37 +352,37 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(!can_we_craft_this(complete_item.recipe_requirements))
-		balloon_alert(user, "not enough materials")
+		balloon_alert(user, "材料不足")
 		return ITEM_INTERACT_BLOCKING
 
 	var/list/things_to_use = can_we_craft_this(complete_item.recipe_requirements, TRUE)
 	var/obj/thing_just_made = create_thing_from_requirements(things_to_use, user = user, skill_to_grant = /datum/skill/smithing, skill_amount = 30, completing_a_weapon = TRUE)
 
 	if(!thing_just_made)
-		message_admins("[src] just tried to finish a weapon but somehow created nothing! This is not working as intended!")
+		message_admins("[src] 尝试完成武器制作，却没有生成任何物品！这不是预期行为！")
 		return ITEM_INTERACT_SUCCESS
 
-	balloon_alert_to_viewers("[thing_just_made] created")
+	balloon_alert_to_viewers("已制成 [thing_just_made]")
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reagent_crafting_bench/proc/check_craftability_general(mob/living/user, obj/item/tool)
 	if(!selected_recipe)
-		balloon_alert(user, "no recipe selected")
+		balloon_alert(user, "未选择配方")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user_can_craft(user, selected_recipe.recipe_name))
-		balloon_alert(user, "you're not skilled enough!")
+		balloon_alert(user, "技能水平不足！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!can_we_craft_this(selected_recipe.recipe_requirements))
-		balloon_alert(user, "missing ingredients")
+		balloon_alert(user, "缺少材料")
 		return ITEM_INTERACT_BLOCKING
 
 	return ITEM_INTERACT_SUCCESS
 /obj/structure/reagent_crafting_bench/proc/can_we_craft_this(list/required_items, return_ingredients_list = FALSE)
 	if(!length(required_items))
-		message_admins("[src] just tried to check for ingredients nearby without having a list of items to check for!")
+		message_admins("[src] 在没有材料清单的情况下尝试检查附近材料！")
 		return FALSE
 
 	var/list/surrounding_items = list()
@@ -420,15 +420,15 @@
 /obj/structure/reagent_crafting_bench/proc/create_thing_from_requirements(list/things_to_use, datum/crafting_bench_recipe/recipe_to_follow, mob/living/user, datum/skill/skill_to_grant, skill_amount, completing_a_weapon)
 
 	if(!recipe_to_follow && !completing_a_weapon)
-		message_admins("[src] just tried to complete a recipe without having a recipe, and without it being the completion of a forging weapon!")
+		message_admins("[src] 在没有配方、也并非组装锻造武器的情况下尝试完成配方！")
 		return FALSE
 
 	if(completing_a_weapon && isnull(forged_item_on_surface))
-		message_admins("[src] just tried to complete a forge weapon without there being a weapon head inside it to complete!")
+		message_admins("[src] 内没有待组装的武器头，却尝试完成锻造武器！")
 		return FALSE
 
 	if(!length(things_to_use))
-		message_admins("[src] just tried to craft something from requirements, but was not given a list of requirements!")
+		message_admins("[src] 尝试根据材料需求制作物品，却未获得需求清单！")
 		return FALSE
 
 	if(completing_a_weapon)
@@ -443,7 +443,7 @@
 	newly_created_thing = recipe_to_follow.create_using_item_list(things_to_use, user, 	src)
 
 	if(!newly_created_thing)
-		message_admins("[src] just failed to create something while crafting!")
+		message_admins("[src] 在制作过程中未能生成物品！")
 		return FALSE
 
 	user.mind?.adjust_experience(skill_to_grant, skill_amount)
@@ -457,21 +457,21 @@
 	if(isnull(existing_stack))
 		stack_item_container[my_stack.merge_type] = my_stack
 		my_stack.forceMove(src)
-		balloon_alert(user, "stashed [my_stack]")
+		balloon_alert(user, "已存入 [my_stack]")
 	else
 		if(existing_stack.amount >= existing_stack.max_amount)
-			balloon_alert(user, "[my_stack] drawer is full!")
+			balloon_alert(user, "[my_stack] 的抽屉已满！")
 		else
 			my_stack.merge(stack_item_container[my_stack.merge_type])
-			balloon_alert(user, "stashed [my_stack]")
+			balloon_alert(user, "已存入 [my_stack]")
 
 /obj/structure/reagent_crafting_bench/proc/attempt_complete_item_storage(obj/item/forging/complete/complete_item, mob/living/user)
 	if(length(forging_complete_container[complete_item.type]) >= MAX_FORGING_COMPLETE_ITEMS)
-		balloon_alert(user, "[initial(complete_item.name)] drawer is full!")
+		balloon_alert(user, "[initial(complete_item.name)] 的抽屉已满！")
 	else
 		forging_complete_container[complete_item.type] += complete_item
 		complete_item.forceMove(src)
-		balloon_alert(user, "stashed [initial(complete_item.name)]")
+		balloon_alert(user, "已存入 [initial(complete_item.name)]")
 
 /obj/structure/reagent_crafting_bench/proc/clear_empty_stacks()
 	var/obj/item/stack/sheet/my_stack

@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/pointed/dominate
-	name = "Dominate"
-	desc = "This spell dominates the mind of a lesser creature to the will of Nar'Sie, \
-		allying it only to her direct followers."
+	name = "支配术"
+	desc = "此法术支配低等生物的心智，使其臣服于纳尔西的意志， \
+		只与她的直属信徒结盟。"
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "bg_demon_border"
 
@@ -17,7 +17,7 @@
 	antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_HOLY|MAGIC_RESISTANCE_MIND
 
 	cast_range = 7
-	active_msg = "You prepare to dominate the mind of a target..."
+	active_msg = "你准备支配一个目标的心智……"
 
 /datum/action/cooldown/spell/pointed/dominate/is_valid_target(atom/cast_on)
 	if(!isliving(cast_on))
@@ -40,8 +40,8 @@
 /datum/action/cooldown/spell/pointed/dominate/cast(mob/living/simple_animal/cast_on)
 	. = ..()
 	if(cast_on.can_block_magic(antimagic_flags))
-		to_chat(cast_on, span_warning("Your feel someone attempting to subject your mind to terrible machinations!"))
-		to_chat(owner, span_warning("[cast_on] resists your domination!"))
+		to_chat(cast_on, span_warning("你感到有什么东西正试图让你的心智屈服于可怕的阴谋！"))
+		to_chat(owner, span_warning("[cast_on] 抵抗了你的支配！"))
 		return FALSE
 
 	var/turf/cast_turf = get_turf(cast_on)

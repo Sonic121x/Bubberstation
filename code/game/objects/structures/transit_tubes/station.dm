@@ -7,10 +7,10 @@
 
 
 /obj/structure/transit_tube/station
-	name = "station tube station"
+	name = "运输管道站点"
 	icon_state = "closed_station0"
 	base_icon_state = "station0"
-	desc = "The lynchpin of the transit system."
+	desc = "运输系统的关键枢纽。"
 	exit_delay = 1
 	enter_delay = 2
 	tube_construction = /obj/structure/c_transit_tube/station
@@ -51,7 +51,7 @@
 	R.transfer_fingerprints_to(TP)
 	TP.add_fingerprint(user)
 	TP.setDir(turn(src.dir, -90))
-	user.visible_message(span_notice("[user] inserts [R]."), span_notice("You insert [R]."))
+	user.visible_message(span_notice("[user]插入了[R]。"), span_notice("你插入了[R]。"))
 	qdel(R)
 
 
@@ -65,10 +65,10 @@
 				var/mob/living/GM = user.pulling
 				if(user.grab_state >= GRAB_AGGRESSIVE)
 					if(GM.buckled || GM.has_buckled_mobs())
-						to_chat(user, span_warning("[GM] is attached to something!"))
+						to_chat(user, span_warning("[GM]正固定在什么东西上！"))
 						return
 					for(var/obj/structure/transit_tube_pod/pod in loc)
-						pod.visible_message(span_warning("[user] starts putting [GM] into the [pod]!"))
+						pod.visible_message(span_warning("[user]开始把[GM]塞进[pod]！"))
 						if(do_after(user, 1.5 SECONDS, target = src))
 							if(open_status == STATION_TUBE_OPEN && GM && user.grab_state >= GRAB_AGGRESSIVE && user.pulling == GM && !GM.buckled && !GM.has_buckled_mobs())
 								GM.Paralyze(100)
@@ -82,7 +82,7 @@
 
 					else if(open_status == STATION_TUBE_OPEN)
 						if(pod.contents.len && user.loc != pod)
-							user.visible_message(span_notice("[user] starts emptying [pod]'s contents onto the floor."), span_notice("You start emptying [pod]'s contents onto the floor..."))
+							user.visible_message(span_notice("[user]开始把[pod]里的东西倒在地上。"), span_notice("你开始把[pod]里的东西倒在地上……"))
 							if(do_after(user, 1 SECONDS, target = src)) //So it doesn't default to close_animation() on fail
 								if(pod && pod.loc == loc)
 									for(var/atom/movable/AM in pod)
@@ -98,7 +98,7 @@
 	for(var/obj/structure/transit_tube_pod/victim in loc)
 		victim.deconstruct(FALSE, user)
 		anything_done = TRUE
-	to_chat(user, span_notice("[anything_done ? "You empty \the [src]." : "\The [src] is already empty!"]"))
+	to_chat(user, span_notice("[anything_done ? "你清空了\the [src]。" : "\The [src]已经是空的了！"]"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/transit_tube/station/proc/open_animation()
@@ -223,9 +223,9 @@
 //special dispenser station, it creates a pod for you to enter when you bump into it.
 
 /obj/structure/transit_tube/station/dispenser
-	name = "station tube pod dispenser"
+	name = "运输管道舱分配器"
 	icon_state = "open_dispenser0"
-	desc = "The lynchpin of a GOOD transit system."
+	desc = "一套优秀运输系统的关键枢纽。"
 	enter_delay = 1
 	tube_construction = /obj/structure/c_transit_tube/station/dispenser
 	base_icon_state = "dispenser0"
@@ -247,7 +247,7 @@
 
 /obj/structure/transit_tube/station/dispenser/examine(mob/user)
 	. = ..()
-	. += span_notice("This station will create a pod for you to ride, no need to wait for one.")
+	. += span_notice("该站点会为你生成一个可供乘坐的吊舱，无需等待。")
 
 /obj/structure/transit_tube/station/dispenser/Bumped(atom/movable/AM)
 	if(!(istype(AM) && AM.dir == boarding_dir) || AM.anchored)
@@ -255,13 +255,13 @@
 	if(!isliving(AM))
 		if(!COOLDOWN_FINISHED(src, freight_output))
 			if(COOLDOWN_FINISHED(src, freight_message))
-				AM.visible_message(span_notice("Freight pod dispenser is recharging. Please wait."))
+				AM.visible_message(span_notice("货运吊舱分配器正在充能，请稍候。"))
 				COOLDOWN_START(src, freight_message, 10 SECONDS)
 			return
 		COOLDOWN_START(src, freight_output, 2 SECONDS)
 
 	var/obj/structure/transit_tube_pod/dispensed/pod = new(loc)
-	AM.visible_message(span_notice("[pod] forms around [AM]."), span_notice("[pod] materializes around you."))
+	AM.visible_message(span_notice("[pod]在[AM]周围成型了。"), span_notice("[pod]在你周围凝聚成型。"))
 	playsound(src, 'sound/items/weapons/emitter2.ogg', 50, TRUE)
 	pod.setDir(turn(src.dir, -90))
 	AM.forceMove(pod)

@@ -1,6 +1,6 @@
 /turf/open/misc/beach
-	name = "beach"
-	desc = "Sandy."
+	name = "海滩"
+	desc = "多沙。"
 	icon = 'icons/turf/sand.dmi'
 	flags_1 = NONE
 	bullet_bounce_sound = null
@@ -49,8 +49,8 @@
 
 /turf/open/misc/beach/sand
 	gender = PLURAL
-	name = "sand"
-	desc = "Surf's up."
+	name = "沙地"
+	desc = "浪来了。"
 	icon_state = "sand"
 	base_icon_state = "sand"
 	baseturfs = /turf/open/misc/beach/sand
@@ -61,8 +61,8 @@
 		icon_state = "sand[rand(1,4)]"
 
 /turf/open/misc/beach/coast
-	name = "coastline"
-	desc = "Tide's high tonight. Charge your batons."
+	name = "海岸线"
+	desc = "今晚涨潮。给电击棍充好电。"
 	icon = 'icons/turf/beach.dmi'
 	icon_state = "beach"
 	base_icon_state = "beach"
@@ -89,8 +89,8 @@
 
 /turf/open/misc/sandy_dirt
 	gender = PLURAL
-	name = "dirt"
-	desc = "Upon closer examination, it's still dirt."
+	name = "泥土"
+	desc = "仔细一看，还是泥土。"
 	icon = 'icons/turf/floors.dmi'
 	damaged_dmi = 'icons/turf/damaged.dmi'
 	icon_state = "sand"
@@ -112,8 +112,8 @@
 
 /turf/open/misc/ironsand
 	gender = PLURAL
-	name = "iron sand"
-	desc = "Like sand, but more <i>iron</i>."
+	name = "铁砂"
+	desc = "和沙子一样，只是更<i>铁</i>。"
 	icon_state = "ironsand1"
 	base_icon_state = "ironsand1"
 	footstep = FOOTSTEP_SAND

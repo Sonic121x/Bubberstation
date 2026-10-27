@@ -2,12 +2,12 @@
 #define RELIC_NECROTECH "necrotech"
 
 /obj/item/relic
-	name = "strange object"
-	desc = "What mysteries could this hold? Maybe Research & Development could find out."
+	name = "奇怪物体"
+	desc = "这东西藏着什么奥秘？也许研发部能查清楚。"
 	icon = 'icons/obj/devices/artefacts.dmi'
 	icon_state = "debug_artefact"
 	/// The name this artefact will have when it's activated.
-	var/real_name = "artefact"
+	var/real_name = "造物"
 	/// Has this artefact been activated?
 	var/activated = FALSE
 	/// What effect this artefact has when used. Randomly determined when activated.
@@ -37,20 +37,20 @@
 	var/themed_name_suffix
 	if(artifact_theme == RELIC_PROTOTYPE)
 		icon_state = "[RELIC_PROTOTYPE][rand(1, 9)]"
-		themed_name_prefix = pick("experimental", "prototype", "artificial", "handcrafted", "ramshackle", "odd")
-		themed_name_suffix = pick("device", "assembly", "gadget", "gizmo", "contraption", "machine", "widget", "object")
-		real_name = "[pick(themed_name_prefix)] [pick(themed_name_suffix)]"
-		name = "strange [pick(themed_name_suffix)]"
+		themed_name_prefix = pick("实验性", "原型", "人造", "手工", "破旧", "古怪")
+		themed_name_suffix = pick("装置", "组件", "小器具", "小玩意儿", "拼装物", "机器", "小部件", "物件")
+		real_name = "[pick(themed_name_prefix)][pick(themed_name_suffix)]"
+		name = "奇怪的[pick(themed_name_suffix)]"
 	if(artifact_theme == RELIC_NECROTECH)
 		icon_state = "[RELIC_NECROTECH][rand(1, 6)]"
-		themed_name_prefix = pick("dark", "bloodied", "unholy", "archeotechnological", "dismal", "ruined", "thrumming")
-		themed_name_suffix = pick("instrument", "shard", "fetish", "bibelot", "trinket", "offering", "relic")
-		real_name = "[pick(themed_name_prefix)] [pick(themed_name_suffix)]"
-		name = "strange relic"
+		themed_name_prefix = pick("黑暗", "血染", "不洁", "远古科技", "阴郁", "残破", "嗡鸣")
+		themed_name_suffix = pick("器具", "碎片", "护符", "摆件", "小饰品", "祭品", "遗物")
+		real_name = "[pick(themed_name_prefix)][pick(themed_name_suffix)]"
+		name = "奇怪遗物"
 	update_appearance()
 
 /obj/item/relic/lavaland
-	name = "strange relic"
+	name = "奇怪遗物"
 	artifact_theme = RELIC_NECROTECH
 
 /obj/item/relic/proc/reveal()
@@ -97,10 +97,10 @@
 
 /obj/item/relic/attack_self(mob/user)
 	if(!activated)
-		to_chat(user, span_notice("You aren't quite sure what this is. Maybe R&D knows what to do with it?"))
+		to_chat(user, span_notice("你不太确定这是什么。也许研发部知道该怎么处理它？"))
 		return
 	if(!COOLDOWN_FINISHED(src, cooldown))
-		to_chat(user, span_warning("[src] does not react!"))
+		to_chat(user, span_warning("[src] 没有反应！"))
 		return
 	if(loc != user)
 		return
@@ -123,7 +123,7 @@
 	playsound(src, SFX_SPARKS, rand(25,50), TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	var/mob/living/basic/pet/dog/corgi/sad_corgi = new(get_turf(user))
 	sad_corgi.throw_at(pick(oview(10,user)), 10, rand(3,8), callback = CALLBACK(src, PROC_REF(throw_smoke), sad_corgi))
-	warn_admins(user, "Corgi Cannon", FALSE)
+	warn_admins(user, "柯基炮", FALSE)
 
 /// Spawns cleaning foam
 /obj/item/relic/proc/cleaning_foam(mob/user)
@@ -131,7 +131,7 @@
 	var/obj/item/grenade/chem_grenade/cleaner/spawned_foamer = new(get_turf(user))
 	spawned_foamer.detonate()
 	qdel(spawned_foamer)
-	warn_admins(user, "Foam", FALSE)
+	warn_admins(user, "泡沫", FALSE)
 
 /// Similar to cleaning foam but spawns the acid variant
 /obj/item/relic/proc/cleaning_foam_acid(mob/user)
@@ -139,9 +139,9 @@
 	var/obj/item/grenade/chem_grenade/ez_clean/spawned_foamer = new(get_turf(user))
 	spawned_foamer.detonate()
 	qdel(spawned_foamer)
-	warn_admins(user, "Acid Foam", TRUE)
+	warn_admins(user, "酸性泡沫", TRUE)
 	if(prob(80))
-		to_chat(user, span_warning("[src] melts apart!"))
+		to_chat(user, span_warning("[src] 熔解了！"))
 		acid_melt()
 
 /// Flashbangs anyone nearby
@@ -149,11 +149,11 @@
 	playsound(src, SFX_SPARKS, rand(25,50), TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	var/obj/item/grenade/flashbang/spawned_flashbang = new(get_turf(user))
 	spawned_flashbang.detonate()
-	warn_admins(user, "Flash")
+	warn_admins(user, "闪光")
 
 /// Summon a bunch of random animals, some of which are dangerous
 /obj/item/relic/proc/summon_animals(mob/user)
-	var/message = span_danger("[src] begins to shake, and in the distance the sound of rampaging animals arises!")
+	var/message = span_danger("[src] 开始震颤，远处传来野兽狂奔的声响！")
 	visible_message(message)
 	to_chat(user, message)
 	var/static/list/valid_animals = list(
@@ -174,14 +174,14 @@
 		var/animal_spawn = pick(valid_animals)
 		var/mob/living/animal = new animal_spawn(get_turf(src))
 		ADD_TRAIT(animal, TRAIT_SPAWNED_MOB, INNATE_TRAIT)
-	warn_admins(user, "Mass Mob Spawn")
+	warn_admins(user, "批量生物生成")
 	if(prob(60))
-		relic_message(span_warning("[src] falls apart!"))
+		relic_message(span_warning("[src] 散架了！"))
 		deconstruct(FALSE)
 
 /// Version of summon_animals that spawns mostly lavaland monsters
 /obj/item/relic/proc/summon_animals_monsters(mob/user)
-	var/message = span_danger("[src] begins to shake, and in the distance the sound of roaring arises!")
+	var/message = span_danger("[src] 开始震颤，远处传来咆哮声！")
 	visible_message(message)
 	to_chat(user, message)
 	var/static/list/valid_monsters = list(
@@ -208,14 +208,14 @@
 		var/animal_spawn = pick(valid_monsters)
 		var/mob/living/animal = new animal_spawn(get_turf(src))
 		ADD_TRAIT(animal, TRAIT_SPAWNED_MOB, INNATE_TRAIT)
-	warn_admins(user, "Mass Mob Spawn (Monster)")
+	warn_admins(user, "批量生物生成（怪物）")
 	if(prob(80))
-		relic_message(span_warning("[src] falls apart!"))
+		relic_message(span_warning("[src] 散架了！"))
 		deconstruct(FALSE)
 
 /// Spawns a bunch of mimics of the relic which also can spawn relics, but despawn shortly
 /obj/item/relic/proc/rapid_self_dupe(mob/user)
-	audible_message("[src] emits a loud pop!")
+	audible_message("[src] 发出一声巨响的爆裂声！")
 	var/list/dummy_artifacts = list()
 	for(var/counter in 1 to rand(5,10))
 		var/obj/item/relic/duped = new type(get_turf(src))
@@ -227,23 +227,23 @@
 		dummy_artifacts += duped
 		duped.throw_at(pick(oview(7,get_turf(src))),10,1)
 	QDEL_LIST_IN(dummy_artifacts, rand(1 SECONDS, 10 SECONDS))
-	warn_admins(user, "Rapid duplicator", 0)
+	warn_admins(user, "快速复制", 0)
 
 /// Explodes after a few seconds
 /obj/item/relic/proc/heat_and_explode(mob/user)
-	to_chat(user, span_danger("[src] begins to heat up!"))
+	to_chat(user, span_danger("[src] 开始发热！"))
 	addtimer(CALLBACK(src, PROC_REF(blow_up), user), rand(3.5 SECONDS, 10 SECONDS))
 
 /obj/item/relic/proc/blow_up(mob/user)
 	if(loc == user)
-		visible_message(span_notice("\The [src]'s top opens, releasing a powerful blast!"))
+		visible_message(span_notice("\The [src] 的顶部打开，释放出强大的冲击！"))
 		explosion(src, heavy_impact_range = rand(1,5), light_impact_range = rand(1,5), flame_range = 2, flash_range = rand(1,5), adminlog = TRUE)
-		warn_admins(user, "Explosion")
+		warn_admins(user, "爆炸")
 		deconstruct(FALSE) //Comment this line to produce a light grenade (the bomb that keeps on exploding when used)!!
 
 /// Teleports the relic, and anyone holding it, to a random location nearby
 /obj/item/relic/proc/uncontrolled_teleport(mob/user)
-	to_chat(user, span_notice("[src] begins to vibrate!"))
+	to_chat(user, span_notice("[src] 开始振动！"))
 
 	var/teleport_time = rand(1 SECONDS, 3 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(do_the_teleport), user), teleport_time)
@@ -255,22 +255,22 @@
 	if(is_centcom_level(userturf.z))
 		return
 	var/to_teleport = ismovable(loc) ? loc : src
-	visible_message(span_notice("[to_teleport] twists and bends, relocating itself!"))
+	visible_message(span_notice("[to_teleport] 扭曲弯折，转移了自身的位置！"))
 	throw_smoke(get_turf(to_teleport))
 	do_teleport(to_teleport, userturf, 8, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 	throw_smoke(get_turf(to_teleport))
-	warn_admins(user, "Teleport", FALSE)
+	warn_admins(user, "传送", FALSE)
 
 /// Version of uncontrolled_teleport with cult theming, and that affects all nearby movables rather than just the relic
 /obj/item/relic/proc/uncontrolled_aoe_teleport(mob/user)
-	to_chat(user, span_notice("[src] begins to vibrate intensely!"))
+	to_chat(user, span_notice("[src] 开始剧烈振动！"))
 
 	var/teleport_time = rand(1 SECONDS, 3 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(do_the_aoe_teleport), user), teleport_time)
 	Shake(2, 2, teleport_time, 0.03 SECONDS)
 
 /obj/item/relic/proc/do_the_aoe_teleport(mob/user)
-	visible_message(span_notice("[src] twists and bends, relocating anything nearby!"))
+	visible_message(span_notice("[src] 扭曲弯折，将周围的一切都转移了位置！"))
 	var/turf/teleturf = get_turf(src)
 	for(var/atom/movable/nearby in view(2, teleturf))
 		if(nearby.anchored || nearby.invisibility || HAS_TRAIT(nearby, TRAIT_UNDERFLOOR))
@@ -296,9 +296,9 @@
 		else
 			new /obj/effect/temp_visual/cult/sparks(nearby.loc)
 
-	warn_admins(user, "AOE Teleport")
+	warn_admins(user, "范围传送")
 	if(prob(30))
-		relic_message(span_warning("[src] teleports away, never to be seen again!"))
+		relic_message(span_warning("[src] 传送离开，再也不会出现了！"))
 		qdel(src)
 
 // Creates a glass and fills it up with a drink.
@@ -316,7 +316,7 @@
 /// Scrambles your organs. 33% chance to delete after use.
 /obj/item/relic/proc/tummy_ache(mob/user)
 	new /obj/effect/temp_visual/circle_wave/bioscrambler/light(get_turf(src))
-	to_chat(user, span_notice("Your stomach starts growling..."))
+	to_chat(user, span_notice("你的肚子开始咕咕作响……"))
 	addtimer(CALLBACK(src, PROC_REF(scrambliticus), user), rand(1 SECONDS, 3 SECONDS)) // throw it away!
 
 /obj/item/relic/proc/scrambliticus(mob/user)
@@ -326,14 +326,14 @@
 		nearby.bioscramble(name)
 		playsound(nearby, SFX_SPARKS, rand(25,50), TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		throw_smoke(get_turf(nearby))
-		to_chat(nearby, span_notice("You feel weird."))
+		to_chat(nearby, span_notice("你感觉怪怪的。"))
 	if(prob(33))
-		relic_message(span_warning("[src] falls apart!"))
+		relic_message(span_warning("[src] 散架了！"))
 		deconstruct(FALSE)
 
 /// Charges an item or two in your inventory. Also yourself.
 /obj/item/relic/proc/charger(mob/living/user)
-	to_chat(user, span_danger("You're recharged!"))
+	to_chat(user, span_danger("你被充能了！"))
 	var/stunner = 1.25 SECONDS
 	if(iscarbon(user))
 		var/mob/living/carbon/carboner = user
@@ -347,7 +347,7 @@
 	lightning_fx(user, stunner)
 	var/recharges = rand(1, 2)
 	if(!length(chargeable_items))
-		to_chat(user, span_notice("You have a strange feeling for a moment, but then it passes."))
+		to_chat(user, span_notice("你有种奇怪的感觉，但很快就消失了。"))
 		return
 	while(length(chargeable_items) && recharges)
 		recharges--
@@ -356,7 +356,7 @@
 		chargeable_items.Remove(to_charge_base)
 		to_charge.charge = to_charge.maxcharge
 		to_charge_base.update_appearance(UPDATE_ICON|UPDATE_OVERLAYS)
-		to_chat(user, span_notice("[to_charge_base] feels energized!"))
+		to_chat(user, span_notice("[to_charge_base] 充满了能量！"))
 		lightning_fx(to_charge_base, 0.8 SECONDS)
 
 /obj/item/relic/proc/lightning_fx(atom/shocker, time)
@@ -374,9 +374,9 @@
 		victim.help_shake_act(user, force_friendly = TRUE)
 		new /obj/effect/temp_visual/heart(victim.loc)
 	if(length(huggeds))
-		to_chat(user, span_nicegreen("You feel friendly!"))
+		to_chat(user, span_nicegreen("你感觉很友好！"))
 	else
-		to_chat(user, pick(span_notice("You hug yourself, for some reason."), span_notice("You have a strange feeling for a moment, but then it passes.")))
+		to_chat(user, pick(span_notice("你不知为何抱住了自己。"), span_notice("你有种奇怪的感觉，但很快就消失了。")))
 
 /// Converts a 3x3 area into a random dimensional theme.
 /obj/item/relic/proc/dimensional_shift(mob/user)
@@ -392,7 +392,7 @@
 /// TODO: make them part of the same kit (lobster hat, lobster suit)
 /obj/item/relic/proc/disguiser(mob/user)
 	if(!iscarbon(user))
-		to_chat(user, span_notice("You have a strange feeling for a moment, but then it passes."))
+		to_chat(user, span_notice("你有种奇怪的感觉，但很快就消失了。"))
 		return
 
 	if(prob(80)) // >:)
@@ -403,7 +403,7 @@
 	throw_smoke(user)
 
 	if(!ishuman(user))
-		to_chat(user, span_notice("You have a peculiar feeling for a moment, but then it passes."))
+		to_chat(user, span_notice("你有种异样的感觉，但很快就消失了。"))
 		return
 
 	var/mob/living/carbon/human/humerus = user
@@ -478,8 +478,8 @@
 	add_filter("block_shield", 1, outline_filter(0, COLOR_BIOLUMINESCENCE_YELLOW), shield)
 	transition_filter("block_shield", outline_filter(2, COLOR_BIOLUMINESCENCE_YELLOW), cooldown_timer * 0.5)
 
-	relic_message(span_notice("[src] starts to glow a bright yellow!"))
-	warn_admins(user, "Shield", FALSE)
+	relic_message(span_notice("[src] 开始发出明亮的黄光！"))
+	warn_admins(user, "护盾", FALSE)
 
 /// Makes the relic holder have a shield that blocks 1 powerful attack
 /obj/item/relic/proc/t2_shield_holder(mob/user)
@@ -507,15 +507,15 @@
 	add_filter("block_shield", 1, outline_filter(0, COLOR_BIOLUMINESCENCE_YELLOW), shield)
 	transition_filter("block_shield", outline_filter(2, COLOR_BIOLUMINESCENCE_YELLOW), cooldown_timer * 0.5)
 
-	relic_message(span_notice("[src] starts to glow a bright yellow!"))
-	warn_admins(user, "Shield", FALSE)
+	relic_message(span_notice("[src] 开始发出明亮的黄光！"))
+	warn_admins(user, "护盾", FALSE)
 
 /obj/item/relic/proc/shield_hit(mob/living/owner, attack_text, current_charges)
 	playsound(src, 'sound/items/weapons/marauder.ogg', 20, TRUE, frequency = 1.25)
-	owner.visible_message(span_danger("[owner]'s holds [src] up, blocking [attack_text] with a projected shield!"))
+	owner.visible_message(span_danger("[owner] 举起 [src]，用投射护盾挡住了 [attack_text]！"))
 	if(current_charges <= 0)
 		set_light_on(FALSE)
-		relic_message(span_notice("[src] stops glowing."))
+		relic_message(span_notice("[src] 停止了发光。"))
 		remove_filter("block_shield")
 
 /obj/item/relic/proc/remove_shield(list/cleanup_components)
@@ -523,18 +523,18 @@
 		qdel(comp)
 	light_system = initial(light_system)
 	if(light_on)
-		relic_message(span_notice("[src] stops glowing."))
+		relic_message(span_notice("[src] 停止了发光。"))
 	remove_filter("block_shield")
 
 /// Places rock turfs around the relic
 /obj/item/relic/proc/place_rocks(mob/user)
-	relic_message(span_notice("A spire of rock erupts from the ground beneath [src]!"))
+	relic_message(span_notice("[src] 下方的地面喷出一座石刺！"))
 	playsound(src, 'sound/effects/rock/rock_break.ogg', 50, TRUE)
 	var/turf/spawnloc = get_turf(src)
 	for(var/turf/open/open_turf in RANGE_TURFS(rand(1, 2), spawnloc))
 		var/turf/closed/mineral/asteroid/rock = open_turf.place_on_top(/turf/closed/mineral/asteroid)
 		if(istype(rock))
-			rock.name = "fragile rock"
+			rock.name = "脆弱岩石"
 			rock.weak_turf = TRUE
 			rock.tool_mine_speed = 2 SECONDS
 			rock.hand_mine_speed = 10 SECONDS
@@ -542,10 +542,10 @@
 			within_rock.Paralyze(1 SECONDS)
 			within_rock.Knockdown(3 SECONDS)
 			within_rock.apply_damage(10, BRUTE, BODY_ZONE_CHEST, blocked = within_rock.getarmor(BODY_ZONE_CHEST, MELEE), wound_bonus = 10, exposed_wound_bonus = 10)
-			to_chat(within_rock, span_danger("You are smashed by [rock]!"))
-	warn_admins(user, "Rocks", FALSE)
+			to_chat(within_rock, span_danger("你被 [rock] 砸中！"))
+	warn_admins(user, "岩石", FALSE)
 	if(prob(20))
-		relic_message(span_warning("[src] crumbles into dust!"))
+		relic_message(span_warning("[src] 化为尘土！"))
 		deconstruct(FALSE)
 
 /// User sprays out blood in all directions
@@ -555,9 +555,9 @@
 	add_filter("blood_outgoing", 1, outline_filter(0, COLOR_DARK))
 	transition_filter("blood_outgoing", outline_filter(2, BLOOD_COLOR_RED), yeet_time)
 	if(istype(user) && CAN_HAVE_BLOOD(user))
-		to_chat(user, span_danger("[src] starts glowing an ominous red!"))
+		to_chat(user, span_danger("[src] 开始发出不祥的红光！"))
 	else
-		to_chat(user, span_danger("[src] starts glowing an ominous red..."))
+		to_chat(user, span_danger("[src] 开始发出不祥的红光……"))
 
 	addtimer(CALLBACK(src, PROC_REF(actually_yeet_blood)), yeet_time)
 
@@ -574,13 +574,13 @@
 			splatcount += strength
 
 	if(splatcount > 0)
-		relic_message(span_warning("Blood sprays out from [src]!"))
-		warn_admins(user, "Blood Dispersal", FALSE)
+		relic_message(span_warning("鲜血从 [src] 喷涌而出！"))
+		warn_admins(user, "血液扩散", FALSE)
 		playsound(src, 'sound/effects/wounds/blood3.ogg', 50, TRUE)
 		if(prob(20))
 			hidden_power = PROC_REF(suck_blood)
 	else
-		relic_message(span_warning("[src] pulses ominously, but nothing happens!"))
+		relic_message(span_warning("[src] 不祥地脉动着，但什么也没发生！"))
 
 	transition_filter("blood_outgoing", outline_filter(0, COLOR_DARK), 1 SECONDS)
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, remove_filter), "blood_outgoing"), 2 SECONDS)
@@ -592,9 +592,9 @@
 	add_filter("blood_incoming", 1, outline_filter(0, COLOR_DARK))
 	transition_filter("blood_incoming", outline_filter(2, BLOOD_COLOR_RED), suck_time)
 	if(istype(user) && CAN_HAVE_BLOOD(user))
-		to_chat(user, span_danger("[src] starts glowing an ominous red!"))
+		to_chat(user, span_danger("[src] 开始发出不祥的红光！"))
 	else
-		to_chat(user, span_danger("[src] starts glowing an ominous red..."))
+		to_chat(user, span_danger("[src] 开始发出不祥的红光……"))
 
 	addtimer(CALLBACK(src, PROC_REF(actually_suck_blood)), suck_time)
 
@@ -606,19 +606,19 @@
 			if(nearby == user || !CAN_HAVE_BLOOD(nearby) || nearby.can_block_magic(MAGIC_RESISTANCE_HOLY, 1))
 				continue
 			nearby.transfer_blood_to(user, rand(6, 10), ignore_low_blood = TRUE, ignore_incompatibility = TRUE, transfer_viruses = FALSE)
-			to_chat(nearby, span_danger("You feel a sudden weakness as blood is drawn out of you [nearby.is_blind() ? "" : " and into [user]"]!"))
+			to_chat(nearby, span_danger("血液被从你体内抽出[nearby.is_blind() ? "" : "，流入 [user]"]，你感到一阵突如其来的虚弱！"))
 			any_affected = TRUE
 			nearby.Beam(user, icon_state = "blood", time = 1 SECONDS)
 			new /obj/effect/temp_visual/cult/sparks(nearby.loc)
 
 	if(any_affected)
 		playsound(src, 'sound/effects/magic/enter_blood.ogg', 50, TRUE)
-		relic_message(span_warning("Blood from nearby creatures is drawn towards [src], and into [user]!"))
-		warn_admins(user, "Blood Suck")
+		relic_message(span_warning("附近生物的血液被吸向 [src]，并涌入 [user]！"))
+		warn_admins(user, "吸血")
 		if(prob(10))
 			hidden_power = PROC_REF(yeet_blood)
 	else
-		relic_message(span_warning("[src] pulses ominously, but nothing happens!"))
+		relic_message(span_warning("[src] 不祥地脉动着，但什么也没发生！"))
 
 	transition_filter("blood_incoming", outline_filter(0, COLOR_DARK), 1 SECONDS)
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, remove_filter), "blood_incoming"), 2 SECONDS)
@@ -626,9 +626,9 @@
 /// Alerts admins on usage of dagnerous relics
 /obj/item/relic/proc/warn_admins(mob/user, relic_type, priority = TRUE)
 	var/turf/location = get_turf(src)
-	var/log_msg = "[relic_type] relic used by [key_name(user)] in [AREACOORD(location)]"
+	var/log_msg = "[relic_type]遗物由 [key_name(user)] 在 [AREACOORD(location)] 使用"
 	if(priority)
-		message_admins("[relic_type] relic activated by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(location)]")
+		message_admins("[relic_type]遗物由 [ADMIN_LOOKUPFLW(user)] 在 [ADMIN_VERBOSEJMP(location)] 激活")
 	log_game(log_msg)
 	investigate_log(log_msg, "experimentor")
 

@@ -1,3 +1,3 @@
 /obj/item/modular_computer/pda/long_range
-	name = "Far range PDA"
+	name = "远程 PDA"
 	long_ranged = TRUE

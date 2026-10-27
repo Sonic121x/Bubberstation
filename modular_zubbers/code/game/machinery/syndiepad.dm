@@ -12,7 +12,7 @@
 
 ///Pad for the Syndicate Bounty Control.
 /obj/item/circuitboard/machine/syndiepad
-	name = "Interdyne bounty pad"
+	name = "英特戴恩悬赏交货平台"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/piratepad/syndiepad
 	req_components = list(
@@ -21,10 +21,10 @@
 	)
 
 /obj/machinery/piratepad/syndiepad
-	name = "interdyne bounty pad"
-	desc = "A standard NT citizen bounty pad, hacked by Gorlex Industries to \
-	sell any (non-living) object to an distant off-sector black market \
-	for processing. No returns!"
+	name = "英特戴恩悬赏交货平台"
+	desc = "一台经过戈尔莱克斯工业破解的标准纳米传讯公民悬赏平台，\
+	可将任何非活体物品出售给遥远星区外的黑市\
+	进行处理。概不退货！"
 	circuit = /obj/item/circuitboard/machine/syndiepad
 	var/warmup_reduction = 0
 
@@ -46,14 +46,14 @@
 
 ///Computer for activating the bounty pad
 /obj/item/circuitboard/computer/syndiepad
-	name = "Interdyne Bounty Control Terminal"
+	name = "英特戴恩悬赏控制终端"
 	build_path = /obj/machinery/computer/piratepad_control/syndiepad
 
 /obj/machinery/computer/piratepad_control/syndiepad
-	name = "interdyne bounty control terminal"
-	desc = "A hacked console for the modified citizen bounty pad. \
-	Proudly brought to you by Gorlex Industries."
-	status_report = "Ready for delivery."
+	name = "英特戴恩悬赏控制终端"
+	desc = "用于改装公民悬赏平台的破解控制台。\
+	戈尔莱克斯工业荣誉出品。"
+	status_report = "已准备交货。"
 	icon_screen = "civ_bounty"
 	icon_keyboard = "syndie_key"
 	warmup_time = SYN_BOUNTY_PAD_WARM_TIME
@@ -87,7 +87,7 @@
 	if(!synced_bank_account) /// Resolve the account
 		synced_bank_account = SSeconomy.get_dep_account(credits_account == "" ? ACCOUNT_CAR : credits_account)
 		if(!synced_bank_account)
-			status_report = "Error: No department account found. Please report to Gorlex Industries."
+			status_report = "错误：未找到部门账户。请向戈尔莱克斯工业报告。"
 			sending = FALSE
 			reset_icon(pad)
 			return
@@ -113,14 +113,14 @@
 /obj/machinery/computer/piratepad_control/syndiepad/proc/safe_to_sell()
 	var/obj/machinery/piratepad/syndiepad/pad = pad_ref?.resolve()
 	if(!pad)
-		status_report = "Error: Pad not found. Please re-link the pad to the console to continue."
+		status_report = "错误：未找到平台。请重新将平台连接到控制台后继续。"
 		return FALSE
 	for(var/atom/movable/AM in get_turf(pad))
 		if(AM == pad)
 			continue
 		for(var/atom/exporting_atom in AM.get_all_contents()) /// Reuse the cargo blacklist logic here to ensure we're not deleting something important forever
 			if((is_type_in_typecache(exporting_atom, GLOB.blacklisted_cargo_types) || HAS_TRAIT(exporting_atom, TRAIT_BANNED_FROM_CARGO_SHUTTLE)) && !istype(exporting_atom, /obj/docking_port))
-				status_report = "Error: Black listed item ([format_text(exporting_atom.name)]) detected on pad. Please remove from pad and rescan."
+				status_report = "错误：平台上检测到黑名单物品（[format_text(exporting_atom.name)]）。请将其移走后重新扫描。"
 				return FALSE
 	return TRUE
 
@@ -133,25 +133,25 @@
 
 //Tarkon Pad
 /obj/item/circuitboard/machine/syndiepad/tarkon
-	name = "tarkon bounty pad"
+	name = "塔肯悬赏交货平台"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/piratepad/syndiepad/tarkon
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT)
 
 /obj/machinery/piratepad/syndiepad/tarkon
-	name = "Tarkon bounty pad"
-	desc = "A standard Tarkon bounty pad used by Tarkon Industries \
-	send any (non-living) object to an distant off-sector\ \
-	for processing. No returns!"
+	name = "塔肯悬赏交货平台"
+	desc = "塔肯工业使用的标准悬赏交货平台，\
+	可将任何非活体物品送往遥远的星区之外\
+	进行处理。概不退货！"
 	circuit = /obj/item/circuitboard/machine/syndiepad/tarkon
 
 /obj/item/circuitboard/computer/syndiepad/tarkon
-	name = "tarkon bounty control terminal"
+	name = "塔肯悬赏控制终端"
 	build_path = /obj/machinery/computer/piratepad_control/syndiepad/tarkon
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT)
 
 /obj/machinery/computer/piratepad_control/syndiepad/tarkon
-	name = "Tarkon bounty control terminal"
-	desc = "A console for an old model of a citizen bounty pad."
+	name = "塔肯悬赏控制终端"
+	desc = "用于旧型号公民悬赏平台的控制台。"
 	circuit = /obj/item/circuitboard/computer/syndiepad/tarkon
 	credits_account = ACCOUNT_TAR

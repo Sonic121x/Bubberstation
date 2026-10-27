@@ -7,8 +7,8 @@
  */
 
 /mob/living/basic/blackmesa/xen/gordon_freeman
-	name = "\improper Gordon Freeman"
-	desc = "Gordon Freeman in the flesh. Or in the zombified form, it seems."
+	name = "\improper 戈登·弗里曼"
+	desc = "戈登·弗里曼本尊。不过看样子已经变成僵尸形态了。"
 	icon = 'modular_skyrat/modules/black_mesa/icons/mobs.dmi'
 	icon_state = "gordon_freeman"
 	base_icon_state = "gordon_freeman"
@@ -20,8 +20,8 @@
 	melee_damage_lower = 45
 	melee_damage_upper = 45
 	attack_sound = 'modular_skyrat/master_files/sound/weapons/crowbar2.ogg'
-	attack_verb_continuous = "smashes"
-	attack_verb_simple = "smash"
+	attack_verb_continuous = "猛砸"
+	attack_verb_simple = "猛砸"
 
 	// Movement
 	speed = -2
@@ -73,7 +73,7 @@
 				new item_type(T)
 
 		// Create death effect
-		T.visible_message(span_warning("[src] violently dissolves into a pile of flesh!"))
+		T.visible_message(span_warning("[src] 剧烈崩解成一堆血肉！"))
 		new /obj/effect/gibspawner/generic(T)
 
 	// Clean up the mob
@@ -111,27 +111,27 @@
 	return TRUE
 
 /obj/machinery/door/puzzle/keycard/xen/freeman_boss_entry
-	name = "entry door"
-	desc = "Complete the puzzle to open this door."
+	name = "入口门"
+	desc = "完成谜题即可打开这扇门。"
 	icon = 'modular_skyrat/modules/black_mesa/icons/xen_door.dmi'
 	icon_state = "resin"
 	puzzle_id = "freeman_entry"
 
 /obj/item/keycard/freeman_boss_entry
-	name = "entry keycard"
+	name = "入口钥匙卡"
 	color = "#1100ff"
 	puzzle_id = "freeman_entry"
 
 /obj/machinery/door/puzzle/keycard/xen/freeman_boss_exit
-	name = "exit door"
-	desc = "You must defeat him."
+	name = "出口门"
+	desc = "你必须击败他。"
 	icon = 'modular_skyrat/modules/black_mesa/icons/xen_door.dmi'
 	icon_state = "resin"
 	puzzle_id = "freeman_exit"
 
 /obj/item/keycard/freeman_boss_exit
-	name = "\improper Freeman's ID card"
-	desc = "How could you do it? HOW?!!"
+	name = "\improper 弗里曼的 ID 卡"
+	desc = "你怎么下得去手？怎么下得去手？！"
 	color = "#fffb00"
 	puzzle_id = "freeman_exit"
 
@@ -139,7 +139,7 @@
 	reward_type = /obj/item/keycard/freeman_boss_entry
 
 /obj/effect/freeman_blocker
-	name = "freeman blocker"
+	name = "弗里曼阻挡器"
 
 /obj/effect/freeman_blocker/CanPass(atom/blocker, movement_dir, blocker_opinion)
 	. = ..()
@@ -178,7 +178,7 @@
 
 /datum/id_trim/gordon_freeman
 	trim_state = "trim_scientist"
-	assignment = "Theoretical Physicist"
+	assignment = "理论物理学家"
 
 /datum/id_trim/gordon_freeman/New()
 	. = ..()

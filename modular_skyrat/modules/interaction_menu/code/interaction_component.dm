@@ -205,24 +205,24 @@
 		var/obj/item/clothing/sextoy/existing_item = target.vars[item_index]
 
 		if(!existing_item && !new_item)
-			source.show_message(span_warning("No item to insert or remove!"))
+			source.show_message(span_warning("没有可插入或取出的物品！"))
 			return
 
 		if(!existing_item && !istype(new_item))
-			source.show_message(span_warning("The item you're holding is not a toy!"))
+			source.show_message(span_warning("你手里拿的物品不是玩具！"))
 			return
 
 		if(can_lewd_strip(source, target, item_index) && is_toy_compatible(new_item, item_index))
 			var/internal = (item_index in list(ORGAN_SLOT_VAGINA, ORGAN_SLOT_ANUS))
-			var/insert_or_attach = internal ? "insert" : "attach"
-			var/into_or_onto = internal ? "into" : "onto"
+			var/insert_or_attach = internal ? "插" : "装"
+			var/into_or_onto = internal ? "里" : "上"
 
 			if(existing_item)
-				source.visible_message(span_purple("[source.name] starts trying to remove something from [target.name]'s [item_index]."), span_purple("You start to remove [existing_item.name] from [target.name]'s [item_index]."), span_purple("You hear someone trying to remove something from someone nearby."), vision_distance = 1, ignored_mobs = list(target))
+				source.visible_message(span_purple("[source.name] 开始试着从 [target.name] 的 [item_index] 里取出什么东西。"), span_purple("你开始从 [target.name] 的 [item_index] 里取出 [existing_item.name]。"), span_purple("你听到附近有人在试着从别人身上取出什么东西。"), vision_distance = 1, ignored_mobs = list(target))
 			else if (new_item)
-				source.visible_message(span_purple("[source.name] starts trying to [insert_or_attach] the [new_item.name] [into_or_onto] [target.name]'s [item_index]."), span_purple("You start to [insert_or_attach] the [new_item.name] [into_or_onto] [target.name]'s [item_index]."), span_purple("You hear someone trying to [insert_or_attach] something [into_or_onto] someone nearby."), vision_distance = 1, ignored_mobs = list(target))
+				source.visible_message(span_purple("[source.name] 开始试着把 [new_item.name] [insert_or_attach] 到 [target.name] 的 [item_index] [into_or_onto]。"), span_purple("你开始把 [new_item.name] [insert_or_attach] 到 [target.name] 的 [item_index] [into_or_onto]。"), span_purple("你听到附近有人在试着把什么东西 [insert_or_attach] 到别人身上。"), vision_distance = 1, ignored_mobs = list(target))
 			if (source != target)
-				target.show_message(span_warning("[source.name] is trying to [existing_item ? "remove the [existing_item.name] [internal ? "in" : "on"]" : new_item ? "is trying to [insert_or_attach] the [new_item.name] [into_or_onto]" : span_alert("What the fuck, impossible condition? interaction_component.dm!")] your [item_index]!"))
+				target.show_message(span_warning("[source.name] 正试着[existing_item ? "从你的 [item_index] 里取出 [existing_item.name]" : new_item ? "把 [new_item.name] [insert_or_attach] 到你的 [item_index] [into_or_onto]" : span_alert("搞什么鬼，不可能的条件？interaction_component.dm！")]！"))
 			if(do_after(
 				source,
 				5 SECONDS,
@@ -231,22 +231,22 @@
 				) && can_lewd_strip(source, target, item_index))
 
 				if(existing_item)
-					source.visible_message(span_purple("[source.name] removes [existing_item.name] from [target.name]'s [item_index]."), span_purple("You remove [existing_item.name] from [target.name]'s [item_index]."), span_purple("You hear someone remove something from someone nearby."), vision_distance = 1)
+					source.visible_message(span_purple("[source.name] 从 [target.name] 的 [item_index] 里取出了 [existing_item.name]。"), span_purple("你从 [target.name] 的 [item_index] 里取出了 [existing_item.name]。"), span_purple("你听到附近有人从别人身上取出了什么东西。"), vision_distance = 1)
 					target.dropItemToGround(existing_item, force = TRUE) // Force is true, cause nodrop shouldn't affect lewd items.
 					target.vars[item_index] = null
 				else if (new_item)
-					source.visible_message(span_purple("[source.name] [internal ? "inserts" : "attaches"] the [new_item.name] [into_or_onto] [target.name]'s [item_index]."), span_purple("You [insert_or_attach] the [new_item.name] [into_or_onto] [target.name]'s [item_index]."), span_purple("You hear someone [insert_or_attach] something [into_or_onto] someone nearby."), vision_distance = 1)
+					source.visible_message(span_purple("[source.name] 把 [new_item.name] [insert_or_attach] 到了 [target.name] 的 [item_index] [into_or_onto]。"), span_purple("你把 [new_item.name] [insert_or_attach] 到了 [target.name] 的 [item_index] [into_or_onto]。"), span_purple("你听到附近有人把什么东西 [insert_or_attach] 到了别人身上。"), vision_distance = 1)
 					target.vars[item_index] = new_item
 					new_item.forceMove(target)
 					new_item.lewd_equipped(target, item_index)
 				target.update_inv_lewd()
 
 		else
-			source.show_message(span_warning("Failed to adjust [target.name]'s toys!"))
+			source.show_message(span_warning("没能调整 [target.name] 的玩具！"))
 
 		return TRUE
 
-	message_admins("Unhandled interaction '[params["interaction"]]'. Inform coders.")
+	message_admins("未处理的互动“[params["interaction"]]”。请通知程序员。")
 
 /// Checks if the target has ERP toys enabled, and can be logially reached by the user.
 /datum/component/interactable/proc/can_lewd_strip(mob/living/carbon/human/source, mob/living/carbon/human/target, slot_index)

@@ -1,8 +1,8 @@
 #define PAPERS_PER_OVERLAY 8
 #define PAPER_OVERLAY_PIXEL_SHIFT 2
 /obj/item/paper_bin
-	name = "paper bin"
-	desc = "Contains all the paper you'll never need."
+	name = "纸盒"
+	desc = "装着你永远用不完的纸。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "paper_bin0"
 	inhand_icon_state = "sheet-metal"
@@ -45,7 +45,7 @@
 	var/obj/item/paper/paper = new papertype
 	if(check_holidays(APRIL_FOOLS))
 		if(prob(30))
-			paper.add_raw_text("<font face=\"[CRAYON_FONT]\" color=\"red\"><b>HONK HONK HONK HONK HONK HONK HONK<br>HOOOOOOOOOOOOOOOOOOOOOONK<br>APRIL FOOLS</b></font>")
+			paper.add_raw_text("<font face=\"[CRAYON_FONT]\" color=\"red\"><b>HONK HONK HONK HONK HONK HONK HONK<br>HOOOOOOOOOOOOOOOOOOOOOONK<br>愚人节快乐</b></font>")
 			paper.AddElement(/datum/element/honkspam)
 			paper.update_appearance()
 	return paper
@@ -54,7 +54,7 @@
 	if(!droppoint)
 		droppoint = drop_location()
 	if(collapse)
-		visible_message(span_warning("The stack of paper collapses!"))
+		visible_message(span_warning("这摞纸塌了！"))
 	for(var/obj/item/paper/stacked_paper in paper_stack) //first, dump all of the paper that already exists
 		stacked_paper.forceMove(droppoint)
 		if(!stacked_paper.pixel_y)
@@ -103,7 +103,7 @@
 		pen.add_fingerprint(user)
 		pen.forceMove(user.loc)
 		user.put_in_hands(pen)
-		to_chat(user, span_notice("You take [pen] out of [src]."))
+		to_chat(user, span_notice("你从 [src] 中取出 [pen]。"))
 		bin_pen = null
 		update_appearance()
 	else if(total_paper > 0)
@@ -112,10 +112,10 @@
 		top_paper.add_fingerprint(user)
 		top_paper.forceMove(user.loc)
 		user.put_in_hands(top_paper)
-		to_chat(user, span_notice("You take [top_paper] out of [src]."))
+		to_chat(user, span_notice("你从 [src] 中取出 [top_paper]。"))
 		update_appearance()
 	else
-		to_chat(user, span_warning("[src] is empty!"))
+		to_chat(user, span_warning("[src] 是空的！"))
 	add_fingerprint(user)
 	return ..()
 
@@ -127,7 +127,7 @@
 	if(istype(tool, /obj/item/paper))
 		if(!user.transferItemToLoc(tool, src, silent = FALSE))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice("You put [tool] in [src]."))
+		to_chat(user, span_notice("你把 [tool] 放进 [src]。"))
 		paper_stack += tool
 		total_paper += 1
 		update_appearance()
@@ -136,7 +136,7 @@
 	if(istype(tool, /obj/item/pen) && !bin_pen)
 		if(!user.transferItemToLoc(tool, src, silent = FALSE))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice("You put [tool] in [src]."))
+		to_chat(user, span_notice("你把 [tool] 放进 [src]。"))
 		bin_pen = tool
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
@@ -155,9 +155,9 @@
 /obj/item/paper_bin/examine(mob/user)
 	. = ..()
 	if(total_paper)
-		. += "It contains [total_paper > 1 ? "[total_paper] papers" : "one paper"]."
+		. += "里面装有[total_paper > 1 ? "[total_paper] 张纸" : "一张纸"]。"
 	else
-		. += "It doesn't contain anything."
+		. += "里面什么也没有。"
 
 /obj/item/paper_bin/update_icon_state()
 	if(total_paper < 1)
@@ -212,13 +212,13 @@
 		. += pen_overlay
 
 /obj/item/paper_bin/construction
-	name = "construction paper bin"
-	desc = "Contains all the paper you'll never need, IN COLOR!"
+	name = "手工纸盒"
+	desc = "装着你永远用不完的纸，还是彩色的！"
 	papertype = /obj/item/paper/construction
 
 /obj/item/paper_bin/bundlenatural
-	name = "natural paper bundle"
-	desc = "A bundle of paper created using traditional methods."
+	name = "天然纸捆"
+	desc = "用传统方法制成的一捆纸。"
 	icon_state = "paper_stack"
 	papertype = /obj/item/paper/natural
 	resistance_flags = FLAMMABLE
@@ -230,7 +230,7 @@
 /obj/item/paper_bin/bundlenatural/Initialize(mapload)
 	binding_cable = new(src, 2)
 	binding_cable.set_cable_color(CABLE_COLOR_BROWN)
-	binding_cable.desc += " Non-natural."
+	binding_cable.desc += " 非天然材质。"
 	return ..()
 
 /obj/item/paper_bin/bundlenatural/dump_contents(atom/droppoint)
@@ -258,21 +258,21 @@
 
 /obj/item/paper_bin/bundlenatural/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/paper/carbon))
-		to_chat(user, span_warning("[tool] won't fit into [src]."))
+		to_chat(user, span_warning("[tool] 放不进 [src]。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(tool.get_sharpness())
 		if(!tool.use_tool(src, user, 1 SECONDS))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice("You slice the cable from [src]."))
+		to_chat(user, span_notice("你割断了 [src] 上的绳子。"))
 		deconstruct(TRUE)
 		return ITEM_INTERACT_SUCCESS
 
 	return ..()
 
 /obj/item/paper_bin/carbon
-	name = "carbon paper bin"
-	desc = "Contains all the paper you'll ever need, in duplicate!"
+	name = "复写纸盒"
+	desc = "装着你永远用不完的纸，还是一式两份的！"
 	icon_state = "paper_bin_carbon0"
 	papertype = /obj/item/paper/carbon
 	bin_overlay_string = "paper_bin_carbon_overlay"

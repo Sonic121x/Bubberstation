@@ -1,6 +1,6 @@
 /obj/item/organ/synth_antenna
-	name = "synth antenna"
-	desc = "Wonder if we'll catch Syndicate frequencies with these..."
+	name = "合成人天线"
+	desc = "不知道能不能用这玩意儿收到辛迪加的频段……"
 	icon_state = "random_fly_1"
 
 	mutantpart_key = MUTANT_SYNTH_ANTENNA

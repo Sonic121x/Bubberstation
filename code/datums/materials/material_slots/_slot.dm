@@ -2,7 +2,7 @@
 /datum/material_slot
 	abstract_type = /datum/material_slot
 	/// Name of the slot for autolathe UI
-	var/name = "error"
+	var/name = "错误"
 	/// Material requirement type which controls what materials can be used to fill this slot when printing an item
 	var/datum/material_requirement/requirement_type = null
 	/// Relative amount of material in this slot for when multiple slots are filled with a single material

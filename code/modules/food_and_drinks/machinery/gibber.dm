@@ -1,6 +1,6 @@
 /obj/machinery/gibber
-	name = "gibber"
-	desc = "The name isn't descriptive enough?"
+	name = "绞碎机"
+	desc = "这名字还不够说明问题吗？"
 	icon = 'icons/obj/machines/kitchen.dmi'
 	icon_state = "grinder"
 	base_icon_state = "grinder"
@@ -25,11 +25,11 @@
 	. = ..()
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(on_cleaned))
 	if(prob(5))
-		name = "meat grinder"
-		desc = "Okay, if I... if I chop you up in a meat grinder, and the only thing that comes out, that's left of you, is your eyeball, \
-			you'r- you're PROBABLY DEAD! You're probably going to - not you, I'm just sayin', like, if you- if somebody were to, like, \
-			push you into a meat grinder, and, like, your- one of your finger bones is still intact, they're not gonna pick it up and go, \
-			Well see, yeah it wasn't deadly, it wasn't an instant kill move! You still got, like, this part of your finger left!"
+		name = "绞肉机"
+		desc = "好吧，如果我……如果我把你丢进绞肉机里绞碎，最后出来的、你剩下的唯一东西，是你的眼球， \
+			那你——你八成是死了！你大概会——不是你，我只是说，比如，如果你——如果有人，比如， \
+			把你推进绞肉机，然后，比如，你的——你的一根指骨还完好无损，他们不会把它捡起来说， \
+			你看，是啊，这不算致命，这不算一击必杀！你还剩下，比如，你手指的这一截！"
 		dirty = TRUE
 		update_appearance(UPDATE_OVERLAYS)
 
@@ -47,10 +47,10 @@
 /obj/machinery/gibber/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Outputting <b>[efficiency]%</b> of meat after <b>[gibtime*0.1]</b> seconds of processing.")
+		. += span_notice("状态显示屏显示：处理 <b>[gibtime*0.1]</b> 秒后产出 <b>[efficiency]%</b> 的肉。")
 		for(var/datum/stock_part/servo/servo in component_parts)
 			if(servo.tier >= 2)
-				. += span_notice("[src] has been upgraded to process inorganic materials.")
+				. += span_notice("[src] 已升级，可处理无机材料。")
 
 /obj/machinery/gibber/update_overlays()
 	. = ..()
@@ -94,36 +94,36 @@
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(operating)
-		to_chat(user, span_danger("It's locked and running."))
+		to_chat(user, span_danger("它已锁定并正在运转。"))
 		return
 
 	if(!anchored)
-		to_chat(user, span_warning("[src] cannot be used unless bolted to the ground!"))
+		to_chat(user, span_warning("除非用螺栓固定在地面上，否则无法使用 [src]！"))
 		return
 
 	if(user.pulling && isliving(user.pulling))
 		var/mob/living/L = user.pulling
 		if(!iscarbon(L))
-			to_chat(user, span_warning("This item is not suitable for [src]!"))
+			to_chat(user, span_warning("此物品不适合放进 [src]！"))
 			return
 		var/mob/living/carbon/C = L
 		if(C.buckled || C.has_buckled_mobs())
-			to_chat(user, span_warning("[C] is attached to something!"))
+			to_chat(user, span_warning("[C] 被固定在什么东西上！"))
 			return
 
 		if(!ignore_clothing)
 			for(var/obj/item/I in C.held_items + C.get_equipped_items())
 				if(!HAS_TRAIT(I, TRAIT_NODROP))
-					to_chat(user, span_warning("Subject may not have abiotic items on!"))
+					to_chat(user, span_warning("受试者不得佩戴无机物品！"))
 					return
 
-		user.visible_message(span_danger("[user] starts to put [C] into [src]!"))
+		user.visible_message(span_danger("[user] 开始把 [C] 放进 [src]！"))
 
 		add_fingerprint(user)
 
 		if(do_after(user, gibtime, target = src))
 			if(C && user.pulling == C && !C.buckled && !C.has_buckled_mobs() && !occupant)
-				user.visible_message(span_danger("[user] stuffs [C] into [src]!"))
+				user.visible_message(span_danger("[user] 把 [C] 塞进了 [src]！"))
 				C.forceMove(src)
 				set_occupant(C)
 				update_appearance()
@@ -145,7 +145,7 @@
 	. = ..()
 	icon_state = panel_open ? "[base_icon_state]_open" : base_icon_state
 
-GAME_VERB_SRC(/obj/machinery/gibber, eject, oview(1), "Empty gibber", null)
+GAME_VERB_SRC(/obj/machinery/gibber, eject, oview(1), "清空绞碎机", null)
 
 	if (IS_UNCONSCIOUS_OR_CRIT(usr) || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED))
 		return
@@ -164,18 +164,18 @@ GAME_VERB_SRC(/obj/machinery/gibber, eject, oview(1), "Empty gibber", null)
 		return
 
 	if(!occupant)
-		audible_message(span_hear("You hear a loud metallic grinding sound."))
+		audible_message(span_hear("你听见响亮的金属摩擦声。"))
 		return
 
 	if(occupant.flags_1 & HOLOGRAM_1)
-		audible_message(span_hear("You hear a very short metallic grinding sound."))
+		audible_message(span_hear("你听见一阵非常短暂的金属摩擦声。"))
 		playsound(loc, 'sound/machines/hiss.ogg', 20, TRUE)
 		qdel(occupant)
 		set_occupant(null)
 		return
 
 	use_energy(active_power_usage)
-	audible_message(span_hear("You hear a loud squelchy grinding sound."))
+	audible_message(span_hear("你听见响亮的湿滑摩擦声。"))
 	playsound(loc, 'sound/machines/juicer.ogg', 50, TRUE)
 	operating = TRUE
 	update_appearance()
@@ -221,8 +221,8 @@ GAME_VERB_SRC(/obj/machinery/gibber, eject, oview(1), "Empty gibber", null)
 		SEND_SIGNAL(victim, COMSIG_LIVING_GIBBER_ACT, user, src, results)
 		process_results(victim, results)
 		addtimer(CALLBACK(src, PROC_REF(finish_gibbing), results, victim.get_gibs_type(), diseases), gibtime)
-		log_combat(user, victim, "gibbed")
-		victim.investigate_log("has been gibbed by [src].", INVESTIGATE_DEATHS)
+		log_combat(user, victim, "绞碎")
+		victim.investigate_log("被 [src] 绞碎了。", INVESTIGATE_DEATHS)
 		victim.death(TRUE)
 		victim.ghostize()
 		set_occupant(null)
@@ -264,8 +264,8 @@ GAME_VERB_SRC(/obj/machinery/gibber, eject, oview(1), "Empty gibber", null)
 	SEND_SIGNAL(victim, COMSIG_LIVING_GIBBER_ACT, user, src, results)
 	process_results(victim, results)
 	addtimer(CALLBACK(src, PROC_REF(finish_gibbing), results, victim.get_gibs_type(), diseases), gibtime)
-	log_combat(user, victim, "gibbed")
-	victim.investigate_log("has been gibbed by [src].", INVESTIGATE_DEATHS)
+	log_combat(user, victim, "绞碎")
+	victim.investigate_log("被 [src] 绞碎了。", INVESTIGATE_DEATHS)
 	victim.death(TRUE)
 	victim.ghostize()
 	set_occupant(null)
@@ -273,7 +273,7 @@ GAME_VERB_SRC(/obj/machinery/gibber, eject, oview(1), "Empty gibber", null)
 
 /obj/machinery/gibber/proc/spawn_meat(mob/living/victim, meat_type = /obj/item/food/meat/slab, list/datum/disease/diseases)
 	var/obj/item/food/meat/meat = new meat_type(src, blood_dna_info)
-	meat.name = "[victim.real_name]'s [meat.name]"
+	meat.name = "[victim.real_name] 的[meat.name]"
 	meat.set_custom_materials(list(SSmaterials.get_material(/datum/material/meat/mob_meat, victim) = 4 * SHEET_MATERIAL_AMOUNT))
 	if (!istype(meat))
 		return

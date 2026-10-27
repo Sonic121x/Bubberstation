@@ -1,7 +1,7 @@
 /datum/species/pod
 	// A mutation caused by a human being ressurected in a revival pod. These regain health in light, and begin to wither in darkness.
-	name = "\improper Podperson"
-	plural_form = "Podpeople"
+	name = "\improper 豆荚人"
+	plural_form = "豆荚人"
 	id = SPECIES_PODPERSON
 	inherent_traits = list(
 		TRAIT_MUTANT_COLORS,
@@ -47,18 +47,18 @@
 	human.update_body(is_creating = TRUE)
 
 /datum/species/pod/get_physical_attributes()
-	return "Podpeople are in many ways the inverse of shadows, healing in light and starving with the dark. \
-		Their bodies are like tinder and easy to char."
+	return "豆荚人在许多方面与暗影人相反：在光明中治愈，在黑暗中枯萎。\
+		他们的身体如同火绒，极易烧焦。"
 
 /datum/species/pod/get_species_description()
-	return "Podpeople are largely peaceful plant based lifeforms, resembling a humanoid figure made of leaves, flowers, and vines."
+	return "豆荚人主要是和平的植物类生命体，外形如同由叶片、花朵与藤蔓构成的人形。"
 
 /datum/species/pod/get_species_lore()
 	return list(
-		"Not much is known about the origins of the Podpeople. \
-		Many assume them to be the result of a long forgotten botanical experiment, slowly mutating for years on years until they became the beings they are today. \
-		Ever since they were uncovered long ago, their kind have been found on board stations and planets across the galaxy, \
-		often working in hydroponics bays, kitchens, or science departments, working with plants and other botanical lifeforms.",
+		"关于豆荚人的起源，人们所知不多。\
+		许多人认为他们是某个早已被遗忘的植物学实验的产物，在漫长的岁月中缓慢变异，最终成为如今的模样。\
+		自很久以前被发现以来，他们的同类便出现在银河各处的空间站与行星上，\
+		常在水培舱、厨房或科研部门工作，照料植物与其他植物类生命体。",
 	)
 
 /datum/species/pod/create_pref_unique_perks()
@@ -67,24 +67,24 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "lightbulb",
-		SPECIES_PERK_NAME = "Photosynthetic",
-		SPECIES_PERK_DESC = "As long as you are conscious, and within a well-lit area, you will slowly heal brute, burn, toxin and oxygen damage and gain nutrition - and never get fat! \
-		However, if you are LOW on nutrition, you will progressively take brute damage until you die or enter the light once more."
+		SPECIES_PERK_NAME = "光合作用",
+		SPECIES_PERK_DESC = "只要保持清醒并处于照明良好的区域，你就会缓慢治愈钝击、灼烧、毒素与缺氧伤害并获得营养——而且永远不会发胖！ \
+		不过，若你的营养水平很低，你会持续受到钝击伤害，直到死亡或再次回到光亮中。"
 	))
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "biohazard",
-		SPECIES_PERK_NAME = "Weedkiller Susceptability",
-		SPECIES_PERK_DESC = "Being a floral life form, you are susceptable to anti-florals and will take extra toxin damage from it!"
+		SPECIES_PERK_NAME = "除草剂易感性",
+		SPECIES_PERK_DESC = "作为花卉类生命体，你对除花剂十分敏感，会因此受到额外的毒素伤害！"
 	))
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "briefcase-medical",
-		SPECIES_PERK_NAME = "Semi-Complex Biology",
-		SPECIES_PERK_DESC = "Your biology is extremely complex, making ordinary health scanners unable to scan you. Make sure the doctor treating you either has a \
-		plant analyzer or a advanced health scanner!"
+		SPECIES_PERK_NAME = "半复杂生物学",
+		SPECIES_PERK_DESC = "你的生理结构极为复杂，普通健康扫描仪无法扫描你。请确保为你治疗的医生手上有 \
+		植物分析仪或高级健康扫描仪！"
 	))
 
 	return to_add

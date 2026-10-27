@@ -19,16 +19,16 @@
 	dnr_person.can_reenter_corpse = FALSE
 	holder.med_hud_set_status()
 	dnr_person.stay_dead()
-	dnr_person.log_message("had their player ([key_name(src)]) do-not-resuscitate / DNR automatically via trait.", LOG_GAME, color = COLOR_GREEN, log_globally = FALSE)
+	dnr_person.log_message("玩家（[key_name(src)]）因特性自动启用了禁止复苏（DNR）。", LOG_GAME, color = COLOR_GREEN, log_globally = FALSE)
 	if(!holder.has_quirk(/datum/quirk/dnr))
 		holder.add_quirk(/datum/quirk/dnr)
 	addtimer(CALLBACK(src, PROC_REF(cleanup), holder), 60 SECONDS)
-	message_admins("[holder] has died with DNR trait & element, releasing job slot in 60 seconds.")
+	message_admins("[holder]带有禁止复苏特性与元素并已死亡，将在60秒后释放职位名额。")
 
 /datum/element/dnr/proc/cleanup(mob/living/holder) // What if they gib, though?
 	var/datum/job/job_to_free = SSjob.get_job(holder.mind.assigned_role.title)
 	job_to_free.current_positions--
-	holder.log_message("has been released via their current body via DNR trait - ([holder])", LOG_GAME, color = COLOR_GREEN)
+	holder.log_message("因禁止复苏特性而脱离当前身体——（[holder]）", LOG_GAME, color = COLOR_GREEN)
 	holder.mind = null
 
 /datum/element/dnr/Attach(mob/living/target)

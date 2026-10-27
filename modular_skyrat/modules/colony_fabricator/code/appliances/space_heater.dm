@@ -1,7 +1,7 @@
 /obj/machinery/space_heater/wall_mounted
-	name = "wall mounted A/C unit"
-	desc = "A compact heating and cooling device for large scale applications, made to mount onto walls up and out of the way. \
-		It charges with the nearest APC; the internal cell buffers the power to the heating/cooling mechanism."
+	name = "壁挂式空调机组"
+	desc = "一种用于大规模场景的紧凑型加热/制冷设备，可安装在墙上，不占地方。 \
+		它从最近的区域电力控制器取电；内部电池为加热/制冷机构缓冲供电。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/space_heater.dmi'
 	anchored = TRUE
 	density = FALSE
@@ -50,7 +50,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/space_heater/wall_mounted/with_cell, 
 	return
 
 /obj/machinery/space_heater/wall_mounted/default_unfasten_wrench(mob/living/user, obj/item/wrench, time)
-	user.balloon_alert(user, "deconstructing...")
+	user.balloon_alert(user, "拆解中……")
 	wrench.play_tool_sound(src)
 	if(wrench.use_tool(src, user, 1 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
@@ -70,9 +70,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/space_heater/wall_mounted/with_cell, 
 // Wallmount for creating the heaters
 
 /obj/item/wallframe/wall_heater
-	name = "unmounted A/C unit"
-	desc = "A compact heating and cooling device for small scale applications, made to mount onto walls up and out of the way. \
-		Like other, more free-standing space heaters however, these still require cell power to function."
+	name = "未安装的空调机组"
+	desc = "一种用于小规模场景的紧凑型加热/制冷设备，可安装在墙上，不占地方。 \
+		不过，与其他更独立的太空加热器一样，它仍然需要电池供电才能运作。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/space_heater.dmi'
 	icon_state = "sheater-off"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -105,7 +105,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/space_heater/wall_mounted/with_cell, 
 	user.transferItemToLoc(tool, src)
 	if(!isnull(cell))
 		user.put_in_hands(cell)
-		user.balloon_alert(user, "swapped")
+		user.balloon_alert(user, "已更换")
 	cell = tool
 	return ITEM_INTERACT_SUCCESS
 
@@ -125,15 +125,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/space_heater/wall_mounted/with_cell, 
 /obj/item/wallframe/wall_heater/examine(mob/user)
 	. = ..()
 	if(cell)
-		. += span_notice("It contains a [ispath(cell) ? cell::name : cell.name], which could be replaced.")
+		. += span_notice("它装有一块 [ispath(cell) ? cell::name : cell.name]，可以更换。")
 	else
-		. += span_notice("It is empty. You could insert a [span_bold("cell")].")
+		. += span_notice("它是空的。你可以插入一块[span_bold("电池")]。")
 
 /obj/item/wallframe/wall_heater/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(!isnull(cell) && isnull(held_item))
-		context[SCREENTIP_CONTEXT_RMB] = "Remove cell"
+		context[SCREENTIP_CONTEXT_RMB] = "取出电池"
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/stock_parts/power_store))
-		context[SCREENTIP_CONTEXT_LMB] = "Insert cell"
+		context[SCREENTIP_CONTEXT_LMB] = "插入电池"
 		. = CONTEXTUAL_SCREENTIP_SET

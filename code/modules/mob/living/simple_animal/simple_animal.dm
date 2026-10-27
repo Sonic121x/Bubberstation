@@ -1,6 +1,6 @@
 /// Simple, mostly AI-controlled critters, such as pets, bots, and drones.
 /mob/living/simple_animal
-	name = "animal"
+	name = "动物"
 	icon = 'icons/mob/simple/animal.dmi'
 	abstract_type = /mob/living/simple_animal
 	health = 20
@@ -40,17 +40,17 @@
 
 	///When someone interacts with the simple animal.
 	///Help-intent verb in present continuous tense.
-	var/response_help_continuous = "pokes"
+	var/response_help_continuous = "戳了戳"
 	///Help-intent verb in present simple tense.
-	var/response_help_simple = "poke"
+	var/response_help_simple = "戳一戳"
 	///Disarm-intent verb in present continuous tense.
-	var/response_disarm_continuous = "shoves"
+	var/response_disarm_continuous = "推搡"
 	///Disarm-intent verb in present simple tense.
-	var/response_disarm_simple = "shove"
+	var/response_disarm_simple = "推搡"
 	///Harm-intent verb in present continuous tense.
-	var/response_harm_continuous = "hits"
+	var/response_harm_continuous = "打了"
 	///Harm-intent verb in present simple tense.
-	var/response_harm_simple = "hit"
+	var/response_harm_simple = "打"
 	var/harm_intent_damage = 3
 	///Maximum amount of stamina damage the mob can be inflicted with total
 	var/max_staminaloss = 200
@@ -90,17 +90,17 @@
 	/// 1 for full damage , 0 for none , -1 for 1:1 heal from that source.
 	var/list/damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1)
 	///Attacking verb in present continuous tense.
-	var/attack_verb_continuous = "attacks"
+	var/attack_verb_continuous = "攻击"
 	///Attacking verb in present simple tense.
-	var/attack_verb_simple = "attack"
+	var/attack_verb_simple = "攻击"
 	/// Sound played when the critter attacks.
 	var/attack_sound
 	/// Override for the visual attack effect shown on 'do_attack_animation()'.
 	var/attack_vis_effect
 	///Attacking, but without damage, verb in present continuous tense.
-	var/friendly_verb_continuous = "nuzzles"
+	var/friendly_verb_continuous = "蹭了蹭"
 	///Attacking, but without damage, verb in present simple tense.
-	var/friendly_verb_simple = "nuzzle"
+	var/friendly_verb_simple = "蹭一蹭"
 	///Set to 1 to allow breaking of crates,lockers,racks,tables; 2 for walls; 3 for Rwalls.
 	var/environment_smash = ENVIRONMENT_SMASH_NONE
 
@@ -223,9 +223,9 @@
 	. = ..()
 	if(stat == DEAD)
 		if(HAS_MIND_TRAIT(user, TRAIT_NAIVE))
-			. += span_deadsay("Upon closer examination, [p_they()] appear[p_s()] to be asleep.")
+			. += span_deadsay("仔细检查后，[p_they()] 看起来像是睡着了。")
 		else
-			. += span_deadsay("Upon closer examination, [p_they()] appear[p_s()] to be dead.")
+			. += span_deadsay("仔细检查后，[p_they()] 看起来像是已经死了。")
 
 /mob/living/simple_animal/update_stat()
 	if(HAS_TRAIT(src, TRAIT_GODMODE))
@@ -351,8 +351,8 @@
 
 /mob/living/simple_animal/get_status_tab_items()
 	. = ..()
-	. += "Health: [round((health / maxHealth) * 100)]% ([health]/[maxHealth])"
-	. += "Combat Mode: [combat_mode ? "On" : "Off"]"
+	. += "生命值：[round((health / maxHealth) * 100)]%（[health]/[maxHealth]）"
+	. += "战斗模式：[combat_mode ? "开启" : "关闭"]"
 
 /mob/living/simple_animal/proc/drop_loot(drop_loc)
 	if (!length(loot))
@@ -544,18 +544,18 @@
 	if(isliving(hunted)) // Are we hunting a living mob?
 		var/mob/living/prey = hunted
 		if(inept_hunter) // Make your hunter inept to have them unable to catch their prey.
-			visible_message(span_warning("[src] chases [prey] around, to no avail!"))
+			visible_message(span_warning("[src] 追着 [prey] 到处跑，却毫无收获！"))
 			step(prey, pick(GLOB.cardinals))
 			COOLDOWN_START(src, emote_cooldown, 1 MINUTES)
 			return
 		if(!IS_UNCONSCIOUS_OR_CRIT(prey))
-			manual_emote("chomps [prey]!")
+			manual_emote("咬住 [prey]！")
 			prey.death()
 			prey = null
 			COOLDOWN_START(src, emote_cooldown, 1 MINUTES)
 			return
 	else // We're hunting an object, and should delete it instead of killing it. Mostly useful for decal bugs like ants or spider webs.
-		manual_emote("chomps [hunted]!")
+		manual_emote("咬住 [hunted]！")
 		qdel(hunted)
 		hunted = null
 		COOLDOWN_START(src, emote_cooldown, 1 MINUTES)

@@ -75,11 +75,11 @@
 #define CAN_USE_ON_DEAD (1<<2)
 
 #define MAFIA_PHASE_SETUP "No Game"
-#define MAFIA_PHASE_DAY "Morning Period"
-#define MAFIA_PHASE_VOTING "Voting Period"
+#define MAFIA_PHASE_DAY "早晨阶段"
+#define MAFIA_PHASE_VOTING "投票阶段"
 #define MAFIA_PHASE_JUDGEMENT "Judgment"
-#define MAFIA_PHASE_NIGHT "Night Period"
-#define MAFIA_PHASE_VICTORY_LAP "Victory Lap"
+#define MAFIA_PHASE_NIGHT "夜晚阶段"
+#define MAFIA_PHASE_VICTORY_LAP "胜利巡游"
 
 #define MAFIA_ALIVE 1
 #define MAFIA_DEAD 2

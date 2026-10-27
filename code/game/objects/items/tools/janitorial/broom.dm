@@ -2,8 +2,8 @@
 #define BROOM_PUSH_LIMIT 20
 
 /obj/item/pushbroom
-	name = "push broom"
-	desc = "This is my BROOMSTICK! It can be used manually or braced with two hands to sweep items as you move. It has a telescopic handle for compact storage."
+	name = "推扫帚"
+	desc = "这是我的扫帚棍！它既可以直接使用，也可以双手握持，让你在移动时清扫物品。它配有可伸缩的手柄，便于紧凑收纳。"
 	icon = 'icons/obj/service/janitor.dmi'
 	icon_state = "broom0"
 	base_icon_state = "broom"
@@ -15,8 +15,8 @@
 	throw_speed = 3
 	throw_range = 7
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb_continuous = list("sweeps", "brushes off", "bludgeons", "whacks")
-	attack_verb_simple = list("sweep", "brush off", "bludgeon", "whack")
+	attack_verb_continuous = list("扫过", "拂去", "重砸", "猛抽")
+	attack_verb_simple = list("扫", "拂", "砸", "抽")
 	resistance_flags = FLAMMABLE
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
 	// BUBBER EDIT ADDITION START - implanted broom variant
@@ -51,7 +51,7 @@
  * * user - The user which is wielding the broom
  */
 /obj/item/pushbroom/proc/on_wield(obj/item/source, mob/user)
-	to_chat(user, span_notice("You brace the [src] against the ground in a firm sweeping stance."))
+	to_chat(user, span_notice("你将[src]抵住地面，摆出稳健的清扫姿势。"))
 	RegisterSignal(user, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(sweep))
 
 /**

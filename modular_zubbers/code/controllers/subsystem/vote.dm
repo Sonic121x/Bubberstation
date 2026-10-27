@@ -38,7 +38,7 @@
 		if(current_vote.vote_sound && (late_voter.prefs.read_preference(/datum/preference/toggle/sound_announcements)))
 			SEND_SOUND(late_voter, sound(current_vote.vote_sound))
 
-		to_chat(late_voter, vote_font(fieldset_block("[current_vote.name] Vote", "It's time to make your choices! Type 'vote' or click <a href='byond://winset?command=vote'>here</a> to place your votes.", "boxed_message purple_box")))
+		to_chat(late_voter, vote_font(fieldset_block("[chinese_vote_display(current_vote.name)]投票", "是时候做出选择了！输入“vote”或点击<a href='byond://winset?command=vote'>这里</a>进行投票。", "boxed_message purple_box")))
 		if (current_vote.force_open_panel_on_reminder)
 			SSvote.ui_interact(late_voter.mob)
 

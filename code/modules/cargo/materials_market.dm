@@ -4,10 +4,10 @@
 #define GALATIC_MATERIAL_ORDER "Galactic Materials Market"
 
 /obj/machinery/materials_market
-	name = "galactic materials market"
-	desc = "This machine allows the user to buy and sell sheets of minerals \
-		across the system. Prices are known to fluxuate quite often,\
-		sometimes even within the same minute. All transactions are final."
+	name = "银河材料市场"
+	desc = "这台机器允许用户在整个星系范围内买卖矿物板材。\
+		价格经常波动，\
+		有时甚至在同一分钟内就会变动。所有交易概不退款。"
 	circuit = /obj/item/circuitboard/machine/materials_market
 	req_access = list(ACCESS_CARGO)
 	density = TRUE
@@ -46,27 +46,27 @@
 		return NONE
 
 	if(!is_operational)
-		balloon_alert(user, "no power!")
+		balloon_alert(user, "没有电力！")
 		return ITEM_INTERACT_FAILURE
 
 	var/list/datum/material/materials = exportable.custom_materials
 	if(materials.len != 1)
-		balloon_alert(user, "alloy stacks not allowed")
+		balloon_alert(user, "不允许合金堆叠")
 		return ITEM_INTERACT_FAILURE
 
 	var/price = SSstock_market.materials_prices[materials[1].type]
 	if(!price)
-		balloon_alert(user, "materials in stack are worthless")
+		balloon_alert(user, "堆叠中的材料毫无价值")
 		return ITEM_INTERACT_FAILURE
 
 	if(!user.transferItemToLoc(exportable, src))
-		to_chat(user, span_warning("[exportable] is stuck in hand!"))
+		to_chat(user, span_warning("[exportable] 卡在手里了！"))
 		return ITEM_INTERACT_FAILURE
 
 	var/obj/item/stock_block/new_block = new /obj/item/stock_block(drop_location())
 	new_block.export_value = price
 	new_block.set_custom_materials(materials)
-	to_chat(user, span_notice("You have created a stock block worth [new_block.export_value * exportable.amount] [MONEY_SYMBOL]! Sell it before it becomes liquid!"))
+	to_chat(user, span_notice("你制作了一块价值 [new_block.export_value * exportable.amount] [MONEY_SYMBOL] 的材料股块！在它变成流动状态前把它卖掉！"))
 	playsound(src, 'sound/machines/synth/synth_yes.ogg', 50, FALSE)
 	qdel(exportable)
 	use_energy(active_power_usage)
@@ -226,7 +226,7 @@
 	var/mob/living/living_user = ui.user
 	var/obj/item/card/id/used_id_card = living_user.get_idcard(TRUE)
 	if(isnull(used_id_card))
-		say("No ID Found")
+		say("未找到 ID 卡")
 		return
 	var/can_buy_via_budget = (ACCESS_CARGO in used_id_card?.GetAccess())
 
@@ -260,12 +260,12 @@
 			else if(can_buy_via_budget)
 				account_payable = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			if(!account_payable)
-				say("No bank account detected!")
+				say("未检测到银行账户！")
 				return
 
 			//sanity checks for available quantity & budget
 			if(quantity > SSstock_market.materials_quantity[material_bought])
-				say("Not enough materials on the market to purchase!")
+				say("市场上没有足够的材料可供购买！")
 				return
 
 			var/cost = SSstock_market.materials_prices[material_bought] * quantity
@@ -280,14 +280,14 @@
 				// Check if this order exceeded the market limit
 				var/prior_sheets = current_order.pack.contains[sheet_to_buy]
 				if(prior_sheets + quantity > SSstock_market.materials_quantity[material_bought] )
-					say("There aren't enough sheets on the market! Please wait for more sheets to be traded before adding more.")
+					say("市场上没有足够的板材！请等待更多板材交易后再追加。")
 					playsound(living_user, 'sound/machines/synth/synth_no.ogg', 35, FALSE)
 					return
 
 				// Check if the order exceeded the purchase limit
 				var/prior_stacks = ROUND_UP(prior_sheets / MAX_STACK_SIZE)
 				if(prior_stacks >= MAX_STACK_LIMIT)
-					say("There are already 10 stacks of sheets on order! Please wait for them to arrive before ordering more.")
+					say("已经有 10 堆板材在订单中了！请等它们送达后再订购更多。")
 					playsound(living_user, 'sound/machines/synth/synth_no.ogg', 35, FALSE)
 					return
 
@@ -296,7 +296,7 @@
 				if(!isnull(current_order.paying_account)) //order is already being paid by another account
 					paying_account = current_order.paying_account
 				if(current_order.get_final_cost() + cost > paying_account.account_balance)
-					say("Order exceeds available budget! Please send it before purchasing more.")
+					say("订单超出可用预算！请先发送订单再继续购买。")
 					return
 
 				// Finally Append to this order
@@ -321,11 +321,11 @@
 			)
 			//first time order compute the correct cost and compare
 			if(new_order.get_final_cost() > account_payable.account_balance)
-				say("Not enough money to start purchase!")
+				say("没有足够的钱来发起购买！")
 				qdel(new_order)
 				return
 
-			say("Thank you for your purchase! It will arrive on the next cargo shuttle!")
+			say("感谢您的购买！货物将随下一班货运穿梭机送达！")
 			SSshuttle.shopping_list += new_order
 			return TRUE
 
@@ -343,8 +343,8 @@
 				return TRUE
 
 /obj/item/stock_block
-	name = "stock block"
-	desc = "A block of stock. It's worth a certain amount of money, based on a sale on the materials market. Ship it on the cargo shuttle to claim your money."
+	name = "材料股块"
+	desc = "一块材料股。它价值若干金钱，数额取决于材料市场上的一次交易。把它装上货运穿梭机即可领取你的钱。"
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "stock_block"
 	/// How many credits was this worth when created?
@@ -364,16 +364,16 @@
 	var/quantity = custom_materials[export_mat] / SHEET_MATERIAL_AMOUNT
 
 	if(fluid)
-		. += span_warning("\The [src] is currently liquid! Its value is based on the market price.")
+		. += span_warning("[src]目前处于流动状态！其价值以市场价格为准。")
 		update_value()
 	else
-		. += span_notice("\The [src]'s value is still [span_boldnotice("locked in")]. [span_boldnotice("Sell it")] before its value becomes liquid!")
+		. += span_notice("[src] 的价值仍被[span_boldnotice("锁定")]。[span_boldnotice("卖掉它")]，别等价值流动起来！")
 
-	. += span_notice("\The [src] is worth [quantity * export_value] [MONEY_SYMBOL], from selling [quantity] sheets of [export_mat.name].")
+	. += span_notice("[src] 价值 [quantity * export_value] [MONEY_SYMBOL]，来自出售 [quantity] 张 [export_mat.name]。")
 
 /// Creates a visible effect warning nearby players that a stock block is beginning to become liquid in price.
 /obj/item/stock_block/proc/value_warning()
-	visible_message(span_warning("\The [src] is starting to become liquid!"))
+	visible_message(span_warning("[src] 的价值开始流动了！"))
 	icon_state = "stock_block_fluid"
 	update_appearance(UPDATE_ICON_STATE)
 
@@ -382,7 +382,7 @@
 	update_value()
 	icon_state = "stock_block_liquid"
 	update_appearance(UPDATE_ICON_STATE)
-	visible_message(span_warning("\The [src] becomes liquid!"))
+	visible_message(span_warning("[src] 的价值已变为流动状态！"))
 	fluid = TRUE
 
 /// Updates the value of the stock block, for examine, and for sale value. Export value becomes equal to the stock market value of that material.

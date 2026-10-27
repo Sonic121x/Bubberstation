@@ -3,10 +3,10 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 
 /datum/computer_file/program/job_management
 	filename = "plexagoncore"
-	filedesc = "Plexagon HR Core"
+	filedesc = "普莱克萨贡人力资源核心"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	program_open_overlay = "id"
-	extended_desc = "Program for viewing and changing job slot availability."
+	extended_desc = "用于查看并调整职业岗位配额的程序。"
 	download_access = list(ACCESS_COMMAND)
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	size = 4
@@ -69,7 +69,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 				GLOB.time_last_changed_position = world.time / 10
 			j.total_positions++
 			opened_positions[edit_job_target]++
-			log_job_debug("[key_name(usr)] opened a [j.title] job position, for a total of [j.total_positions] open job slots.")
+			log_job_debug("[key_name(usr)] 开启了 [j.title] 的一个岗位，当前共开放 [j.total_positions] 个岗位名额。")
 			playsound(computer, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 			return TRUE
 		if("PRG_close_job")
@@ -82,7 +82,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 				GLOB.time_last_changed_position = world.time / 10
 			j.total_positions--
 			opened_positions[edit_job_target]--
-			log_job_debug("[key_name(usr)] closed a [j.title] job position, leaving [j.total_positions] open job slots.")
+			log_job_debug("[key_name(usr)] 关闭了 [j.title] 的一个岗位，剩余 [j.total_positions] 个开放岗位名额。")
 			playsound(computer, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 			return TRUE
 		if("PRG_priority")
@@ -98,7 +98,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 				if(length(SSjob.prioritized_jobs) < 5)
 					SSjob.prioritized_jobs += j
 				else
-					computer.say("Error: CentCom employment protocols restrict prioritising more than 5 jobs.")
+					computer.say("错误：中央指挥部雇佣协议限制最多只能优先 5 个职业。")
 			playsound(computer, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 			return TRUE
 

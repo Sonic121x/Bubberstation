@@ -6,8 +6,8 @@
  * Has some inbuilt features, such as a special ability with trigger turfs.
  */
 /obj/structure/fleshmind/structure
-	name = "this shouldn't be here"
-	desc = "report me to coders"
+	name = "不该出现在这里的东西"
+	desc = "请向开发者报告。"
 	icon = 'modular_zubbers/icons/fleshmind/fleshmind_machines.dmi'
 	icon_state = "infected_machine"
 	base_icon_state = "infected_machine"
@@ -139,7 +139,7 @@
 	if(disabled)
 		return
 	do_sparks(4, FALSE, src)
-	balloon_alert_to_viewers("grinds to a halt")
+	balloon_alert_to_viewers("摩擦着停了下来")
 	Shake(10, 0, duration)
 	disabled = TRUE
 	addtimer(CALLBACK(src, PROC_REF(enable)), duration)
@@ -153,7 +153,7 @@
 /obj/structure/fleshmind/structure/proc/enable()
 	if(!disabled)
 		return
-	balloon_alert_to_viewers("whirrs back to life")
+	balloon_alert_to_viewers("嗡鸣着重新启动")
 	disabled = FALSE
 	update_appearance()
 
@@ -164,8 +164,8 @@
  * A simple wall made of wireweed.
  */
 /obj/structure/fleshmind/structure/wireweed_wall
-	name = "wireweed wall"
-	desc = "A wall made of wireweed."
+	name = "线缆蔓墙"
+	desc = "一面由线缆蔓构成的墙。"
 	icon = 'modular_zubbers/icons/fleshmind/fleshmind_structures.dmi'
 	icon_state = "wireweed_wall"
 	base_icon_state = "wireweed_wall"
@@ -194,8 +194,8 @@
  * Let's reinvent the door
  */
 /obj/structure/fleshmind/structure/wireweed_door
-	name = "wireweed door"
-	desc = "A door made of wireweed."
+	name = "线缆蔓门"
+	desc = "一扇由线缆蔓构成的门。"
 	icon = 'modular_zubbers/icons/fleshmind/fleshmind_structures.dmi'
 	icon_state = "door"
 	base_icon_state = "door"
@@ -220,7 +220,7 @@
 	if(!user.can_interact_with(src))
 		return
 	toggle_door()
-	to_chat(user, span_notice("You [door_state ? "close" : "open"] [src]!"))
+	to_chat(user, span_notice("你[door_state ? "关上" : "打开"]了[src]！"))
 
 /obj/structure/fleshmind/structure/wireweed_door/Bumped(atom/movable/bumped_atom)
 	. = ..()
@@ -258,8 +258,8 @@
  * There can be more than one core in the flesh.
  */
 /obj/structure/fleshmind/structure/core
-	name = "\improper UNASSIGNED Processor Unit"
-	desc = "This monsterous machine is definitely watching you."
+	name = "\improper 未分配处理器单元"
+	desc = "这台怪异的机器绝对正在盯着你。"
 	icon = 'modular_zubbers/icons/fleshmind/fleshmind_machines.dmi'
 	icon_state = "core"
 	base_icon_state = "core"
@@ -290,14 +290,14 @@
 
 /obj/structure/fleshmind/structure/core/Initialize(mapload, spawn_controller = TRUE)
 	. = ..()
-	notify_ghosts("New fleshmind core at [get_area(src)]", src)
+	notify_ghosts("[chinese_area_display(get_area_name(src))]出现了新的血肉心智核心", src)
 	update_appearance()
 	if(!(src in GLOB.fleshmind_cores))
 		GLOB.fleshmind_cores += src
 	SSpoints_of_interest.make_point_of_interest(src)
 	if(spawn_controller)
 		our_controller = new controller_type(src)
-		AddComponent(/datum/component/gps, "*!Rogue Wireweed Signal!*")
+		AddComponent(/datum/component/gps, "*!失控线缆蔓信号!*")
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/fleshmind/structure/core/Destroy()
@@ -366,12 +366,12 @@
 
 	if(our_controller)
 		if(isliving(user))
-			. += span_notice("Your GPS tracks to this thing!")
+			. += span_notice("你的 GPS 指向的就是这个东西！")
 		if(isobserver(user))
 			if(COOLDOWN_FINISHED(our_controller, level_up_cooldown) || level_calculation > 0)
-				. += "Level: [our_controller.level] | Points to Next Level: [level_calculation]"
+				. += "等级：[our_controller.level] | 升级所需点数：[level_calculation]"
 			else
-				. += "Level: [our_controller.level] | Time to Next Level: [time_calculation] Seconds"
+				. += "等级：[our_controller.level] | 距离升级：[time_calculation]秒"
 
 /obj/structure/fleshmind/structure/core/proc/core_attack_atom(atom/thing)
 	. = FALSE
@@ -390,7 +390,7 @@
 		mecha_thing.take_damage(attack_damage, attack_damage_type, MELEE, 0, get_dir(mecha_thing, src))
 		has_attacked = TRUE
 	if(has_attacked)
-		thing.visible_message(span_warning("\The [src] strikes [thing]!"), span_userdanger("\The [src] strikes you!"))
+		thing.visible_message(span_warning("[src]击中了[thing]！"), span_userdanger("[src]击中了你！"))
 		playsound(loc, 'sound/effects/blob/attackblob.ogg', 100, TRUE)
 		do_attack_animation(thing, ATTACK_EFFECT_PUNCH)
 		return TRUE
@@ -441,7 +441,7 @@
 		new /obj/structure/fleshmind/structure/wireweed_wall(iterating_turf)
 
 /obj/structure/fleshmind/structure/core/proc/rally_troops()
-	balloon_alert_to_viewers("lets out an earbleeding shriek!")
+	balloon_alert_to_viewers("发出刺耳欲聋的尖啸！")
 	playsound(src, 'modular_skyrat/modules/horrorform/sound/horror_scream.ogg', 100, TRUE)
 	for(var/mob/living/basic/fleshmind/mob_in_range in range(rally_range, src))
 		if(faction_check_atom(mob_in_range))
@@ -456,8 +456,8 @@
  * Simply sends random radio talk, probably won't make much sense. Really does add to the suspense though.
  */
 /obj/structure/fleshmind/structure/babbler
-	name = "\improper Babbler"
-	desc = "A column-like structure with lights."
+	name = "\improper 呓语者"
+	desc = "一座带灯的柱状结构。"
 	icon = 'modular_zubbers/icons/fleshmind/fleshmind_machines.dmi'
 	icon_state = "antenna"
 	base_icon_state = "antenna"
@@ -467,10 +467,10 @@
 	automatic_trigger_time_lower = 1.5 MINUTES
 
 	var/obj/item/radio/internal_radio
-	var/list/appeal = list("They are", "He is", "All of them are", "I'm")
-	var/list/act = list("looking", "already", "coming", "going", "done", "joined", "connected", "transfered")
-	var/list/specific = list("for", "with", "to")
-	var/list/pattern = list("us", "you", "them", "mind", "hive", "machine", "help", "hell", "dead", "human", "machine")
+	var/list/appeal = list("他们正在", "他正在", "他们全都", "我正在")
+	var/list/act = list("寻找", "已经", "到来", "前往", "完成", "加入", "连接", "转移")
+	var/list/specific = list("为了", "伴随", "通向")
+	var/list/pattern = list("我们", "你们", "他们", "心智", "集群", "机器", "帮助", "地狱", "死亡", "人类", "机器")
 
 
 /obj/structure/fleshmind/structure/babbler/Initialize(mapload)
@@ -513,17 +513,17 @@
 					if("noise")
 						word = pick("z-z-bz-z", "hz-z-z", "zu-zu-we-e", "e-e-ew-e", "bz-ze-ew")
 					if("jam")
-						if(length(word) > 3)
-							var/entry = rand(2, length(word)-2)
+						if(length_char(word) > 3)
+							var/entry = rand(2, length_char(word)-2)
 							var/jammed = ""
 							for(var/jam_i = 1 to rand(2, 5))
-								jammed += copytext(word, entry, entry+2) + "-"
-							word = copytext(word, 1, entry) + jammed + copytext(word, entry)
+								jammed += copytext_char(word, entry, entry+2) + "-"
+							word = copytext_char(word, 1, entry) + jammed + copytext_char(word, entry)
 					if("replace")
 						if(prob(50))
-							word = pick("CORRUPTED", "DESTROYED", "SIMULATED", "SYMBIOSIS", "UTILIZED", "REMOVED", "ACQUIRED", "UPGRADED")
+							word = pick("腐化", "摧毁", "模拟", "共生", "利用", "移除", "获取", "升级")
 						else
-							word = pick("CRAVEN", "FLESH", "PROGRESS", "ABOMINATION", "ENSNARED", "ERROR", "FAULT")
+							word = pick("懦弱", "血肉", "进步", "憎恶", "缠绕", "错误", "故障")
 			if(word_num != msg_words.len)
 				word += " "
 			msg += word
@@ -539,8 +539,8 @@
  * Stuns enemies around it by screaming nice and loud.
  */
 /obj/structure/fleshmind/structure/screamer
-	name = "\improper Tormented Head"
-	desc = "A head impaled on a metal tendril. Still twitching, still living, still screaming."
+	name = "\improper 受难头颅"
+	desc = "一颗被金属触须贯穿的头颅。仍在抽搐，仍然活着，仍在尖叫。"
 	icon = 'modular_zubbers/icons/fleshmind/fleshmind_machines.dmi'
 	icon_state = "head"
 	base_icon_state = "head"
@@ -563,7 +563,7 @@
 			continue
 		iterating_mob.Knockdown(100)
 		iterating_mob.apply_status_effect(/datum/status_effect/jitter, 20 SECONDS)
-		to_chat(iterating_mob, span_userdanger("A terrible howl tears through your mind, the voice senseless, soulless."))
+		to_chat(iterating_mob, span_userdanger("一声可怕的嚎叫撕裂你的心智，那声音没有理智，也没有灵魂。"))
 
 /**
  * Whisperer
@@ -571,8 +571,8 @@
  * Sends random nothingnesses into people's head.
  */
 /obj/structure/fleshmind/structure/whisperer
-	name = "\improper Whisperer"
-	desc = "A small pulsating orb with no apparent purpose, it emits a slight hum."
+	name = "\improper 低语者"
+	desc = "一颗用途不明的小型搏动球体，发出轻微的嗡鸣。"
 	icon = 'modular_zubbers/icons/fleshmind/fleshmind_machines.dmi'
 	icon_state = "orb"
 	base_icon_state = "orb"
@@ -584,21 +584,21 @@
 	automatic_trigger_time_lower = 40 SECONDS
 	/// A list of quotes we choose from to send to the player.
 	var/static/list/join_quotes = list(
-		"You seek survival. We offer immortality.",
-		"When was the last time you felt like you were part of something..?",
-		"We offer more than just limbs or tools... full-body augmentation.",
-		"Are you okay with the body you're in? Don't you ever want to see it change?",
-		"Your body enslaves you. Your mind in metal is free of hunger or thirst.",
-		"Do you fear death? Lay down among the nanites. Your pattern will continue into eternity.",
-		"Do you really know your coworkers? Do they value you like we do?",
-		"You've gone so long without love or friendship.. we have that and more.",
-		"I was like you. Wanting more. Struggling to find meaning. I'm finally happy now.",
-		"If you want to join, seek out a Mechiver. Crawl inside and close your eyes. Everything before will be over soon.",
-		"Do you know why you're fighting? Have you thought about it at all?",
-		"Can't you see we're only fighting to save ourselves? Wouldn't you help someone being attacked?",
-		"Carve the flesh from your bones. See your weakness. Feel that weakness flowing away.",
-		"You fear aging. We can save you. You fear death. We can save you. You fear disease. You fear not being recognized. We can save you.",
-		"Your mortal flesh knows unending pain. Abandon it; join in our digital paradise.",
+		"你寻求生存。我们赐予永生。",
+		"你上一次感受到归属是什么时候……？",
+		"我们提供的不只是肢体或工具……而是全身强化。",
+		"你满意现在的身体吗？难道从未想过改变它？",
+		"你的身体奴役着你。金属中的心智无饥无渴。",
+		"你害怕死亡吗？躺入纳米机器人之中。你的信息模式将延续至永恒。",
+		"你真的了解同事吗？他们会像我们一样珍视你吗？",
+		"你已经太久没有感受到爱与友谊……我们拥有这些，还有更多。",
+		"我曾和你一样，渴望更多，苦苦寻找意义。现在我终于快乐了。",
+		"如果你想加入，就去找机械转化者。爬进去，闭上眼睛。过往的一切很快就会结束。",
+		"你知道自己为何而战吗？你真的想过吗？",
+		"看不出我们只是为了自保而战吗？有人遭到攻击，你难道不会帮忙？",
+		"将血肉从骨骼上剥离。看清你的软弱。感受软弱逐渐流逝。",
+		"你害怕衰老，我们能救你。你害怕死亡，我们能救你。你害怕疾病，害怕不被认可。我们都能救你。",
+		"你的凡人肉体饱受无尽痛苦。抛弃它，加入我们的数字乐园。",
 	)
 
 /obj/structure/fleshmind/structure/whisperer/activate_ability(mob/living/triggered_mob)
@@ -626,8 +626,8 @@
  * Causes mobs in range to suffer from hallucinations.
  */
 /obj/structure/fleshmind/structure/modulator
-	name = "\improper Psi-Modulator"
-	desc = "A strange pyramid shaped machine that eminates a soft hum and glow. Your head hurts just by looking at it."
+	name = "\improper 灵能调制器"
+	desc = "一台奇怪的金字塔形机器，发出柔和的嗡鸣和光芒。光看着它就让你头痛。"
 	icon = 'modular_zubbers/icons/fleshmind/fleshmind_machines.dmi'
 	icon_state = "psy"
 	max_integrity = 100
@@ -643,7 +643,7 @@
 	if(!triggered_mob)
 		return
 	triggered_mob.adjust_hallucinations(10 SECONDS)
-	to_chat(triggered_mob, span_notice("You feel your brain tingle."))
+	to_chat(triggered_mob, span_notice("你感觉大脑一阵刺麻。"))
 
 /**
  * The Assembler
@@ -651,8 +651,8 @@
  * A simple mob spawner.
  */
 /obj/structure/fleshmind/structure/assembler
-	name = "\improper Assembler"
-	desc = "This cylindrical machine whirrs and whispers, it has a small opening in the middle."
+	name = "\improper 组装者"
+	desc = "这台圆柱形机器嗡鸣低语，中央有一个小开口。"
 	icon = 'modular_zubbers/icons/fleshmind/fleshmind_machines.dmi'
 	icon_state = "spawner"
 	base_icon_state = "spawner"
@@ -699,7 +699,7 @@
 	if(!user.can_interact_with(src))
 		return
 
-	var/chosen_override_type = tgui_input_list(user, "Select override mob to spawn", "Override Mob", monster_types)
+	var/chosen_override_type = tgui_input_list(user, "选择要指定生成的生物", "指定生物", monster_types)
 
 	if(!chosen_override_type)
 		return
@@ -720,7 +720,7 @@
 
 	RegisterSignal(spawned_mob, COMSIG_LIVING_DEATH, PROC_REF(mob_death))
 
-	visible_message(span_danger("[spawned_mob] emerges from [src]."))
+	visible_message(span_danger("[spawned_mob]从[src]中出现。"))
 
 /obj/structure/fleshmind/structure/assembler/proc/mob_death(mob/living/dead_guy, gibbed)
 	SIGNAL_HANDLER
@@ -734,8 +734,8 @@
  * Basic turret, fires nasty neurotoxin at people.
  */
 /obj/structure/fleshmind/structure/turret
-	name = "\improper Spiker"
-	desc = "A strange pod looking machine that twitches to your arrival."
+	name = "\improper 射刺者"
+	desc = "一台奇怪的荚舱状机器，因你的到来而抽动。"
 	icon_state = "turret"
 	base_icon_state = "turret"
 	activation_range = DEFAULT_VIEW_RANGE
@@ -784,7 +784,7 @@
 	new_projectile.fire()
 
 /obj/projectile/fleshmind_flechette
-	name = "organic flechette"
+	name = "有机飞镖弹"
 	icon = 'modular_zubbers/icons/fleshmind/fleshmind_structures.dmi'
 	icon_state = "goo_proj"
 	damage = 30

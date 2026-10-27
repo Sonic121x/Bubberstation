@@ -399,22 +399,22 @@ GLOBAL_LIST_INIT(tool_items, list(
 
 // Keys for equip_in_one_of_slots, if you add new ones update the assoc lists in equip_in_one_of_slots
 /// Items placed into the left pocket.
-#define LOCATION_LPOCKET "in your left pocket"
+#define LOCATION_LPOCKET "在你的左侧口袋里"
 /// Items placed into the right pocket
-#define LOCATION_RPOCKET "in your right pocket"
+#define LOCATION_RPOCKET "在你的右侧口袋里"
 /// Items placed into the backpack.
-#define LOCATION_BACKPACK "in your backpack"
+#define LOCATION_BACKPACK "在你的背包里"
 /// Items placed into the hands.
-#define LOCATION_HANDS "in your hands"
+#define LOCATION_HANDS "在你的手中"
 /// Items placed in the glove slot.
-#define LOCATION_GLOVES "on your hands"
+#define LOCATION_GLOVES "戴在你的手上"
 /// Items placed in the eye/glasses slot.
-#define LOCATION_EYES "covering your eyes"
+#define LOCATION_EYES "遮住你的眼睛"
 /// Items placed in the mask slot.
-#define LOCATION_MASK "covering your face"
+#define LOCATION_MASK "遮住你的脸"
 /// Items placed on the head/hat slot.
-#define LOCATION_HEAD "on your head"
+#define LOCATION_HEAD "戴在你的头上"
 /// Items placed in the neck slot.
-#define LOCATION_NECK "around your neck"
+#define LOCATION_NECK "围在你的脖子上"
 /// Items placed in the id slot
-#define LOCATION_ID "in your ID slot"
+#define LOCATION_ID "在你的 ID 卡槽里"

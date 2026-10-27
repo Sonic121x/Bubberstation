@@ -20,18 +20,18 @@
 
 /obj/item/laser_pointer/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!upgradable)
-		balloon_alert(user, "can't remove integrated diode!")
+		balloon_alert(user, "无法拆下集成二极管！")
 		return
 	return ..()
 
 /obj/item/laser_pointer/attackby(obj/item/attack_item, mob/user, params)
 	if(istype(attack_item, /obj/item/stock_parts/micro_laser) || istype(attack_item, /obj/item/stack/ore/bluespace_crystal))
 		if(!upgradable)
-			balloon_alert(user, "can't upgrade integrated parts!")
+			balloon_alert(user, "无法升级集成部件！")
 			return
 	return ..()
 
 /obj/item/laser_pointer/examine(mob/user)
 	. = ..()
 	if(!upgradable)
-		. += span_notice("The diode and the lens are both cheap, integrated components. This pointer cannot be upgraded.")
+		. += span_notice("二极管和透镜都是廉价的集成元件。这个指示器无法升级。")

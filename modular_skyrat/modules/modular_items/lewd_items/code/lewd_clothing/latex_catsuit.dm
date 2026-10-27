@@ -1,6 +1,6 @@
 /obj/item/clothing/under/misc/latex_catsuit
-	name = "latex catsuit"
-	desc = "A shiny uniform that fits snugly to the skin."
+	name = "乳胶连体衣"
+	desc = "一件闪闪发亮、紧贴皮肤的制服。"
 	icon_state = "latex_catsuit_female"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_uniform.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform.dmi'

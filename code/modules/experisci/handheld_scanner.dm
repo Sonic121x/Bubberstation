@@ -4,8 +4,8 @@
  * Handheld scanning unit to perform scanning experiments
  */
 /obj/item/experi_scanner
-	name = "Experi-Scanner"
-	desc = "A handheld scanner used for completing the many experiments of modern science."
+	name = "实验扫描仪"
+	desc = "一台手持扫描仪，用于完成现代科学中的众多实验。"
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "experiscanner"
@@ -34,7 +34,7 @@
 	)
 
 /obj/item/experi_scanner/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is giving in to the Great Toilet Beyond! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正在向彼岸的伟大马桶屈服！看起来是想要自杀！"))
 
 	forceMove(drop_location())
 	user.forceMove(src)

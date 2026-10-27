@@ -1,20 +1,20 @@
 /mob/living/basic/pony
-	name = "pony"
-	desc = "Look at my horse, my horse is amazing!"
+	name = "小马"
+	desc = "看看我的马，我的马棒极了！"
 	icon_state = "pony"
 	icon_living = "pony"
 	icon_dead = "pony_dead"
 	gender = MALE
 	mob_biotypes = MOB_ORGANIC | MOB_BEAST
-	speak_emote = list("neighs", "winnies")
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "kicks"
-	response_harm_simple = "kick"
-	attack_verb_continuous = "kicks"
-	attack_verb_simple = "kick"
+	speak_emote = list("嘶鸣", "轻声嘶叫")
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "踢"
+	response_harm_simple = "踢"
+	attack_verb_continuous = "踢"
+	attack_verb_simple = "踢"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_KICK
 	melee_damage_lower = 5
@@ -41,7 +41,7 @@
 /datum/emote/pony/whicker
 	key = "whicker"
 	key_third_person = "whickers"
-	message = "whickers."
+	message = "轻声嘶鸣着。"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'sound/mobs/non-humanoids/pony/snort.ogg'
@@ -63,11 +63,11 @@
 	. = ..()
 	playsound(src, 'sound/mobs/non-humanoids/pony/snort.ogg', 50)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/pony)
-	visible_message(span_notice("[src] snorts happily."))
+	visible_message(span_notice("[src] 开心地打了个响鼻。"))
 	new /obj/effect/temp_visual/heart(loc)
 	var/static/list/tamed_emotes = list(
-		BB_EMOTE_HEAR = list("snorts."),
-		BB_EMOTE_SEE = list("snorts."),
+		BB_EMOTE_HEAR = list("打了个响鼻。"),
+		BB_EMOTE_SEE = list("打了个响鼻。"),
 		BB_EMOTE_SOUND = list('sound/mobs/non-humanoids/pony/snort.ogg'),
 		BB_SPEAK_CHANCE = 3,
 	)
@@ -98,7 +98,7 @@
 	set_greyscale(colors = ponycolors)
 
 /mob/living/basic/pony/proc/whinny_angrily()
-	manual_emote("whinnies ANGRILY!")
+	manual_emote("愤怒地嘶鸣！")
 
 	playsound(src, pick(list(
 		'sound/mobs/non-humanoids/pony/whinny01.ogg',
@@ -129,8 +129,8 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_HEAR = list("whinnies!"),
-			BB_EMOTE_SEE = list("horses around."),
+			BB_EMOTE_HEAR = list("嘶鸣着！"),
+			BB_EMOTE_SEE = list("撒欢乱跑。"),
 			BB_EMOTE_SOUND = list('sound/mobs/non-humanoids/pony/whinny01.ogg', 'sound/mobs/non-humanoids/pony/whinny02.ogg', 'sound/mobs/non-humanoids/pony/whinny03.ogg'),
 			BB_SPEAK_CHANCE = 3,
 		),
@@ -143,7 +143,7 @@
 /mob/living/basic/pony/syndicate
 	health = 300
 	maxHealth = 300
-	desc = "A special breed of horse engineered by the syndicate to be capable of surviving in the deep reaches of space. A modern outlaw's best friend."
+	desc = "辛迪加培育的特殊马种，能够在深空环境中生存。现代亡命之徒最好的朋友。"
 	faction = list(ROLE_SYNDICATE)
 	ponycolors = list("#5d566f", COLOR_RED)
 	pressure_resistance = 200
@@ -167,7 +167,7 @@
 		COLOR_DARK_BROWN=1,
 	)
 	ponycolors = list("#5d566f", pick_weight(mane_colors))
-	name = pick("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+	name = pick("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六")
 	// Only one person can tame these fellas, and they only need one apple
 	var/static/list/food_types = list(/obj/item/food/grown/apple)
 	AddComponent(/datum/component/tameable, food_types = food_types, tame_chance = 100, bonus_tame_chance = 15, unique = unique_tamer)
@@ -175,7 +175,7 @@
 /mob/living/basic/pony/dangerous
 	health = 300
 	maxHealth = 300
-	desc = "A special breed of horse engineered by the syndicate to be capable of surviving in the deep reaches of space. A modern outlaw's best friend."
+	desc = "辛迪加培育的特殊马种，能够在深空环境中生存。现代亡命之徒最好的朋友。"
 	faction = list(ROLE_SYNDICATE)
 	ponycolors = list("#666666", COLOR_ORANGE)
 	pressure_resistance = 200
@@ -193,6 +193,6 @@
 	. = ..()
 	var/mane_colors = list(COLOR_RED, COLOR_ORANGE, COLOR_YELLOW)
 	ponycolors = list("#666666", pick(mane_colors))
-	name = pick("S-Horse", "Plotva", "Horsekk", "Agro", "Hons")
+	name = pick("S-马", "普罗特瓦", "霍塞克", "阿格罗", "洪斯")
 	var/static/list/food_types = list(/obj/item/food/grown/apple)
 	AddComponent(/datum/component/tameable, food_types = food_types, tame_chance = 100, bonus_tame_chance = 15, unique = unique_tamer)

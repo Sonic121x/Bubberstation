@@ -1,8 +1,8 @@
 /datum/techweb_node/programming
 	id = TECHWEB_NODE_PROGRAMMING
 	starting_node = TRUE
-	display_name = "Programming"
-	description = "Dedicate an entire shift to program a fridge to greet you when opened."
+	display_name = "编程"
+	description = "把整整一个班次都用来给冰箱编程，好让它在被打开时向你问好。"
 	prereq_ids = list(TECHWEB_NODE_ROBOTICS)
 	design_ids = list(
 		"component_printer",
@@ -94,8 +94,8 @@
 
 /datum/techweb_node/circuit_shells
 	id = TECHWEB_NODE_CIRCUIT_SHELLS
-	display_name = "Advanced Circuit Shells"
-	description = "Adding brains to more things."
+	display_name = "高级电路外壳"
+	description = "给更多东西装上大脑。"
 	prereq_ids = list(TECHWEB_NODE_PROGRAMMING)
 	design_ids = list(
 		"assembly_shell",
@@ -118,8 +118,8 @@
 
 /datum/techweb_node/bci
 	id = TECHWEB_NODE_BCI
-	display_name = "Brain-Computer Interface"
-	description = "Embedded brain circuits. May occasionally stream Nanotrasen ads in dreams."
+	display_name = "脑机接口"
+	description = "嵌入式脑部电路。偶尔会在梦境中播放纳米传讯的广告。"
 	prereq_ids = list(TECHWEB_NODE_CIRCUIT_SHELLS, TECHWEB_NODE_PASSIVE_IMPLANTS)
 	design_ids = list(
 		"bci_implanter",
@@ -139,8 +139,8 @@
 
 /datum/techweb_node/programmed_robot
 	id = TECHWEB_NODE_PROGRAMMED_ROBOT
-	display_name = "Programmed Robot"
-	description = "Grants access to movable shells, allowing for remote operations and pranks."
+	display_name = "程序化机器人"
+	description = "解锁可移动外壳，用于远程操作和恶作剧。"
 	prereq_ids = list(TECHWEB_NODE_CIRCUIT_SHELLS)
 	design_ids = list(
 		"drone_shell",
@@ -151,8 +151,8 @@
 
 /datum/techweb_node/programmed_server
 	id = TECHWEB_NODE_PROGRAMMED_SERVER
-	display_name = "Programmed Server"
-	description = "Grants access to a server shell that has a very high capacity for components."
+	display_name = "程序化服务器"
+	description = "解锁一种可容纳极多组件的服务器外壳。"
 	prereq_ids = list(TECHWEB_NODE_BCI)
 	design_ids = list(
 		"server_shell",

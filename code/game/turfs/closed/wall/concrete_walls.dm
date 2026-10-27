@@ -1,6 +1,6 @@
 /turf/closed/wall/concrete
-	name = "concrete wall"
-	desc = "A thick wall made of concrete, poured around steel supports."
+	name = "混凝土墙"
+	desc = "一堵厚实的混凝土墙，浇筑在钢制支架周围。"
 	icon = 'icons/turf/walls/concrete.dmi'
 	icon_state = "concrete-0"
 	base_icon_state = "concrete"
@@ -30,14 +30,14 @@
 
 /turf/closed/wall/concrete/deconstruction_hints(mob/user)
 	. = list()
-	. += span_notice("[p_They()] look[p_s()] like you could smash [p_them()] with <b>[tool_behaviour_name(TOOL_MINING)]</b>.")
+	. += span_notice("看起来可以用 <b>[tool_behaviour_name(TOOL_MINING)]</b> 砸开它。")
 	switch(harden_lvl)
 		if(0.8 to 0.99)
-			. += "[p_They()] look[p_s()] nearly dry."
+			. += "它看起来快要干了。"
 		if(0.4 to 0.8)
-			. += "[p_They()] look[p_s()] a little wet."
+			. += "它看起来还有点湿。"
 		if(0 to 0.4)
-			. += "[p_They()] look[p_s()] freshly poured."
+			. += "它看起来刚浇筑完成。"
 	return
 
 /turf/closed/wall/concrete/try_clean(obj/item/W, mob/living/user)
@@ -46,12 +46,12 @@
 
 /turf/closed/wall/concrete/try_decon(obj/item/I, mob/user)
 	if (I.tool_behaviour == TOOL_MINING)
-		to_chat(user, span_notice("You begin breaking the wall..."))
+		to_chat(user, span_notice("你开始砸墙……"))
 		if(I.use_tool(src, user, slicing_duration, volume=100))
 			// break_prob decreases linearly from 100 to hardness as it cures
 			var/break_prob = hardness + (1 - harden_lvl) * (100 - hardness)
 			if(prob(break_prob))
-				to_chat(user, span_notice("You break the wall."))
+				to_chat(user, span_notice("你砸开了墙壁。"))
 				dismantle_wall()
 				new /obj/effect/decal/cleanable/concrete_dust(src)
 			else
@@ -95,8 +95,8 @@
 	update_icon(UPDATE_ICON_STATE)
 
 /turf/closed/wall/concrete/reinforced
-	name = "hexacrete wall"
-	desc = "A thick wall made of steel-reinforced hexacrete. Sturdier than a normal concrete wall."
+	name = "六角混凝土墙"
+	desc = "一堵厚实的六角混凝土墙，内部有钢架加固。比普通混凝土墙更坚固。"
 	icon = 'icons/turf/walls/hexacrete.dmi'
 	icon_state = "hexacrete-0"
 	base_icon_state = "hexacrete"

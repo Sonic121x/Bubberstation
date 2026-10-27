@@ -1,12 +1,12 @@
 /obj/item/clothing/gloves/kaza_ruk/sec/warden
-	name = "warden's kaza ruk gloves"
-	desc = "These gloves seem to guide you through a non-lizardperson friendly variant of the Tiziran martial art, Kaza Ruk. \
-		Reinforced bracing helps keep the wearer planted during close-quarters scuffles."
+	name = "典狱长卡扎鲁克手套"
+	desc = "这双手套似乎能引导你施展提兹拉武术卡扎鲁克的改良版本，非蜥蜴人也能轻松使用。\
+		加固支撑有助于佩戴者在近身搏斗时站稳脚跟。"
 	clothing_traits = list(TRAIT_FAST_CUFFING, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, TRAIT_NO_STAGGER, TRAIT_NO_THROW_HITPUSH)
 
 /obj/item/gun/energy/laser/scatter/shotty/warden
-	name = "warden's disabler shotgun"
-	desc = "A combat shotgun gutted and refitted with an internal disabler system. The power supply unit seems to have suffered during The Great Burgerstation Riots of '69"
+	name = "典狱长失能霰弹枪"
+	desc = "一把被拆空并改装了内置失能系统的战斗霰弹枪。供电单元似乎在69年的汉堡站大暴乱中遭受了损坏。"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/scatter/disabler)
 	pin = /obj/item/firing_pin
 	projectile_damage_multiplier = 0.75

@@ -6,8 +6,8 @@
  * Each variant (scientist, guard, HECU, HEV) has different health values and corpses.
  */
 /mob/living/basic/blackmesa/xen/headcrab_zombie
-	name = "headcrab zombie"
-	desc = "This unlucky person has had a headcrab latch onto their head. Ouch."
+	name = "猎头蟹僵尸"
+	desc = "这个倒霉蛋的脑袋上趴了一只猎头蟹。真疼。"
 	icon = 'modular_skyrat/modules/black_mesa/icons/mobs.dmi'
 	icon_state = "zombie"
 	base_icon_state = "zombie"
@@ -77,16 +77,16 @@
 
 /// Scientist zombie - baseline zombie with standard stats
 /mob/living/basic/blackmesa/xen/headcrab_zombie/scientist
-	name = "zombified scientist"
-	desc = "Even after death, I still have to wear this horrible tie!"
+	name = "僵尸化科学家"
+	desc = "就算死了，我还是得戴着这条难看的领带！"
 	icon_state = "scientist_zombie"
 	base_icon_state = "scientist_zombie"
 	corpse_type = /obj/effect/mob_spawn/corpse/human/scientist_zombie
 
 /// Security guard zombie - medium armor
 /mob/living/basic/blackmesa/xen/headcrab_zombie/guard
-	name = "zombified guard"
-	desc = "About that brain I owed ya!"
+	name = "僵尸化警卫"
+	desc = "还欠你那颗脑子呢！"
 	icon_state = "security_zombie"
 	base_icon_state = "security_zombie"
 	maxHealth = 140
@@ -95,8 +95,8 @@
 
 /// HECU Marine zombie - heavy armor
 /mob/living/basic/blackmesa/xen/headcrab_zombie/hecu
-	name = "zombified marine"
-	desc = "MY. ASS. IS. DEAD."
+	name = "僵尸化陆战队员"
+	desc = "我。的。屁。股。死。了。"
 	icon_state = "hecu_zombie"
 	base_icon_state = "hecu_zombie"
 	maxHealth = 190
@@ -105,8 +105,8 @@
 
 /// HEV zombie - extremely tough due to the HEV suit
 /mob/living/basic/blackmesa/xen/headcrab_zombie/hev
-	name = "zombified hazardous environment specialist"
-	desc = "User death... surpassed."
+	name = "僵尸化危险环境专家"
+	desc = "使用者死亡……已被超越。"
 	icon_state = "hev_zombie"
 	base_icon_state = "hev_zombie"
 	maxHealth = 250

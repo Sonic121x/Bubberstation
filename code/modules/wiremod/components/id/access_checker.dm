@@ -1,7 +1,7 @@
 /obj/item/circuit_component/compare/access
-	display_name = "Access Checker"
-	desc = "Performs a basic comparison between two lists of strings, with additional functions that help in using it to check access on IDs."
-	category = "ID"
+	display_name = "权限校验"
+	desc = "对两个字符串列表进行基础比较，并提供辅助功能，以便用它检查 ID 上的权限。"
+	category = "ID 卡权限"
 
 	/// A list of the accesses to check
 	var/datum/port/input/subject_accesses
@@ -18,8 +18,8 @@
 
 /obj/item/circuit_component/compare/access/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("When \"Check Any\" is true, returns true if \"Access To Check\" contains ANY value in \"Required Access\".", "orange", "info")
-	. += create_ui_notice("When \"Check Any\" is false, returns true only if \"Access To Check\" contains ALL values in \"Required Access\".", "orange", "info")
+	. += create_ui_notice("当“检查任意”为真时，只要“待检查权限”包含“所需权限”中的任意一项，就返回真。", "orange", "info")
+	. += create_ui_notice("当“检查任意”为假时，仅当“待检查权限”包含“所需权限”中的全部项目时才返回真。", "orange", "info")
 
 /obj/item/circuit_component/compare/access/populate_custom_ports()
 	subject_accesses = add_input_port("Access To Check", PORT_TYPE_LIST(PORT_TYPE_STRING))
@@ -58,7 +58,7 @@
 
 /obj/item/circuit_component/compare/access/ui_perform_action(mob/user, action)
 	if(LAZYLEN(required_accesses.connected_ports))
-		balloon_alert(user, "disconnect port before manually configuring!")
+		balloon_alert(user, "请先断开端口，再手动配置！")
 		return
 	interact(user)
 

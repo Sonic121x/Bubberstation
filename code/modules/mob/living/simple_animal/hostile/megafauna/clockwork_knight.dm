@@ -7,19 +7,19 @@ I'd rather there be something than the clockwork ruin be entirely empty though s
 */
 
 /mob/living/simple_animal/hostile/megafauna/clockwork_defender
-	name = "clockwork defender"
-	desc = "A traitorous clockwork knight who lived on, despite its creators destruction."
+	name = "发条守卫"
+	desc = "一名背叛的发条骑士，纵使其创造者早已毁灭，它却依然存续。"
 	health = 300
 	maxHealth = 300
 	icon_state = "clockwork_defender"
 	icon_living = "clockwork_defender"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
-	attack_verb_continuous = "slashes"
-	attack_verb_simple = "slash"
+	attack_verb_continuous = "劈砍"
+	attack_verb_simple = "劈砍"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	weather_immunities = list(TRAIT_SNOWSTORM_IMMUNE)
-	speak_emote = list("roars")
+	speak_emote = list("咆哮")
 	armour_penetration = 40
 	melee_damage_lower = 20
 	melee_damage_upper = 20
@@ -31,11 +31,11 @@ I'd rather there be something than the clockwork ruin be entirely empty though s
 	rapid_melee = 2 // every second
 	melee_queue_distance = 20
 	ranged = TRUE
-	gps_name = "Clockwork Signal"
+	gps_name = "发条信号"
 	loot = list(/obj/item/clockwork_alloy)
 	wander = FALSE
 	del_on_death = TRUE
-	death_message = "falls, quickly decaying into centuries old dust."
+	death_message = "倒下，随即迅速化为积攒了数百年的陈旧尘土。"
 	death_sound = SFX_BODYFALL
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	attack_action_types = list()
@@ -48,8 +48,8 @@ I'd rather there be something than the clockwork ruin be entirely empty though s
 	return
 
 /obj/item/clockwork_alloy
-	name = "clockwork alloy"
-	desc = "The remains of the strongest clockwork knight."
+	name = "发条合金"
+	desc = "最强发条骑士的残骸。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "clockwork_alloy"
 	w_class = WEIGHT_CLASS_TINY

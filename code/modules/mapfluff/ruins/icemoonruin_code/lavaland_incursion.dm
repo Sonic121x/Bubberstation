@@ -2,7 +2,7 @@
 	corpse_type = /obj/effect/mob_spawn/corpse/human/skeleton/cultist
 
 /obj/effect/mob_spawn/corpse/human/skeleton/cultist
-	name = "skeleton cultist"
+	name = "骷髅血教徒"
 	outfit = /datum/outfit/skeleton_cultist
 
 /datum/outfit/skeleton_cultist
@@ -12,9 +12,9 @@
 	shoes = /obj/item/clothing/shoes/cult
 
 /obj/item/paper/crumpled/bloody/ruins/lavaland_incursion
-	name = "blood-written note"
-	default_raw_text = "<br><br><font color='red'>Here, far above Indecipheres, shrouded in snow and ice, I sign the death warrant of the last of a species. The Dragons kneel beneath us.</font>"
+	name = "血书便条"
+	default_raw_text = "<br><br><font color='red'>在这里，在因德西菲瑞斯的高空之上，风雪与冰霜笼罩之中，我签下了某个物种最后一名成员的死刑令。巨龙们跪伏在我们脚下。</font>"
 
 /obj/item/paper/crumpled/bloody/ruins/lavaland_incursion/last
-	name = "blood-written note"
-	default_raw_text = "<br><br><b><font color='red'>SHE WAS WRONG. KILL IT? WE COULD BARELY CONTAIN IT. AND NOW, INDECIPHERES WANTS IT TO COME HOME</font>"
+	name = "血书便条"
+	default_raw_text = "<br><br><b><font color='red'>她错了。杀了它？我们几乎关不住它。而现在，因德西菲瑞斯想让它回家</font>"

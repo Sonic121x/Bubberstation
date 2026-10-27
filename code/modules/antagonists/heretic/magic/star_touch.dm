@@ -1,9 +1,9 @@
 /datum/action/cooldown/spell/touch/star_touch
-	name = "Star Touch"
-	desc = "Can be used to apply a star mark to a target. \
-		If your victim is already star marked, tethers you to your target with a cosmic ray. \
-		If the tether remains unbroken for 8 seconds, they will be put to sleep and teleported to you. \
-		Star Touch can also remove Cosmic Runes, or teleport you to your Star Gazer when used in hand."
+	name = "星辰之触"
+	desc = "可用于给目标施加星辰标记。\
+		如果受害者已被施加星辰标记，则会用一道宇宙射线将你与目标拴系起来。\
+		如果拴系保持 8 秒未被打断，对方将陷入沉睡并被传送至你身边。\
+		星辰之触还能移除宇宙符文；在手中使用时，还可以把你传送至你的观星者处。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -30,7 +30,7 @@
 
 /datum/action/cooldown/spell/touch/star_touch/on_antimagic_triggered(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
 	victim.visible_message(
-		span_danger("The spell bounces off of you!"),
+		span_danger("法术在你身上弹开了！"),
 	)
 
 /datum/action/cooldown/spell/touch/star_touch/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/victim, mob/living/carbon/caster)
@@ -65,9 +65,9 @@
 	return FALSE
 
 /obj/item/melee/touch_attack/star_touch
-	name = "Star Touch"
-	desc = "A sinister looking aura that distorts the flow of reality around it. \
-		Causes people with a star mark to sleep for 4 seconds, and causes people without a star mark to get one."
+	name = "星辰之触"
+	desc = "一团外表邪恶、会扭曲周围现实流动的光环。\
+		使带有星辰标记的人沉睡 4 秒，并使没有星辰标记的人获得一个。"
 	icon_state = "star"
 	inhand_icon_state = "star"
 
@@ -75,8 +75,8 @@
 	. = ..()
 	AddComponent(\
 		/datum/component/effect_remover, \
-		success_feedback = "You remove %THEEFFECT.", \
-		tip_text = "Clear rune", \
+		success_feedback = "你移除了%THEEFFECT。", \
+		tip_text = "清除符文", \
 		on_clear_callback = CALLBACK(src, PROC_REF(after_clear_rune)), \
 		effects_we_clear = list(/obj/effect/cosmic_rune), \
 	)
@@ -110,14 +110,14 @@
 		QDEL_NULL(second_rune)
 
 /obj/item/melee/touch_attack/star_touch/ignition_effect(atom/to_light, mob/user)
-	. = span_rose("[user] effortlessly snaps [user.p_their()] fingers near [to_light], igniting it with cosmic energies. Fucking badass!")
+	. = span_rose("[user]在[to_light]旁轻描淡写地打了个响指，用宇宙能量将其点燃。真他妈帅！")
 	remove_hand_with_no_refund(user)
 
 /obj/item/melee/touch_attack/star_touch/attack_self(mob/living/user)
 	var/datum/action/cooldown/spell/touch/star_touch/star_touch_spell = spell_which_made_us?.resolve()
 	var/mob/living/basic/heretic_summon/star_gazer/star_gazer_mob = star_touch_spell?.get_star_gazer()
 	if(!star_gazer_mob)
-		balloon_alert(user, "no linked star gazer!")
+		balloon_alert(user, "没有关联的观星者！")
 		return ..()
 	new /obj/effect/temp_visual/cosmic_explosion(get_turf(user))
 	do_teleport(
@@ -131,7 +131,7 @@
 	remove_hand_with_no_refund(user)
 
 /obj/effect/ebeam/cosmic
-	name = "cosmic beam"
+	name = "宇宙光束"
 
 /datum/status_effect/cosmic_beam
 	id = "cosmic_beam"
@@ -204,7 +204,7 @@
 	SIGNAL_HANDLER
 	if(successful_teleport)
 		return
-	to_chat(owner, span_warning("Your cosmic tether to [current_target] has been broken!"))
+	to_chat(owner, span_warning("你与[current_target]之间的宇宙拴系被打断了！"))
 	active = FALSE
 	lose_target()
 	duration = 0

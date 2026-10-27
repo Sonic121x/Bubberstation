@@ -7,7 +7,7 @@
 	antag_moodlet = /datum/mood_event/focused
 	show_to_ghosts = TRUE
 	hijack_speed = 2 //If you can't take out the station, take the shuttle instead.
-	suicide_cry = "FOR THE SYNDICATE!!"
+	suicide_cry = "为了辛迪加！！"
 	stinger_sound = 'sound/music/antag/ops.ogg'
 	desensitized_modifier = DESENSITIZED_THRESHOLD * 0.5
 
@@ -39,7 +39,7 @@
 
 /datum/antagonist/nukeop/greet()
 	play_stinger()
-	to_chat(owner, span_big("You are a [nuke_team ? nuke_team.syndicate_name : "syndicate"] agent!"))
+	to_chat(owner, span_big("你是[nuke_team ? nuke_team.syndicate_name : "辛迪加"]的特工！"))
 	owner.announce_objectives()
 
 /datum/antagonist/nukeop/on_gain()
@@ -101,13 +101,13 @@
 
 /datum/antagonist/nukeop/admin_add(datum/mind/new_owner,mob/admin)
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has nuke op'ed [key_name_admin(new_owner)].")
-	log_admin("[key_name(admin)] has nuke op'ed [key_name(new_owner)].")
+	message_admins("[key_name_admin(admin)]已将[key_name_admin(new_owner)]设为核爆特工。")
+	log_admin("[key_name(admin)]已将[key_name(new_owner)]设为核爆特工。")
 
 /datum/antagonist/nukeop/get_admin_commands()
 	. = ..()
-	.["Send to base"] = CALLBACK(src, PROC_REF(admin_send_to_base))
-	.["Tell code"] = CALLBACK(src, PROC_REF(admin_tell_code))
+	.["传送到基地"] = CALLBACK(src, PROC_REF(admin_send_to_base))
+	.["告知密码"] = CALLBACK(src, PROC_REF(admin_tell_code))
 
 /datum/antagonist/nukeop/get_preview_icon()
 	if (!preview_outfit)
@@ -157,10 +157,10 @@
 			code = bombue.r_code
 			break
 	if (code)
-		antag_memory += "<B>Syndicate Nuclear Bomb Code</B>: [code]<br>"
-		to_chat(owner.current, "The nuclear authorization code is: <B>[code]</B>")
+		antag_memory += "<B>辛迪加核弹密码</B>：[code]<br>"
+		to_chat(owner.current, "核弹授权密码是：<B>[code]</B>")
 	else
-		to_chat(admin, span_danger("No valid nuke found!"))
+		to_chat(admin, span_danger("未找到有效的核弹！"))
 
 /datum/antagonist/nukeop/proc/give_alias()
 	if(nuke_team?.syndicate_name)
@@ -171,12 +171,12 @@
 			human_to_rename.fully_replace_character_name(null, chosen_name)
 		else
 			var/number = nuke_team?.members.Find(owner) || 1
-			owner.current.fully_replace_character_name(null, "[nuke_team.syndicate_name] Operative #[number]")
+			owner.current.fully_replace_character_name(null, "[nuke_team.syndicate_name] 特工 #[number]")
 
 /datum/antagonist/nukeop/proc/memorize_code()
-	antag_memory += "<B>[nuke_team.tracked_nuke] Code</B>: [nuke_team.memorized_code]<br>"
+	antag_memory += "<B>[nuke_team.tracked_nuke] 密码</B>：[nuke_team.memorized_code]<br>"
 	owner.add_memory(/datum/memory/key/nuke_code, nuclear_code = nuke_team.memorized_code)
-	to_chat(owner, "The nuclear authorization code is: <B>[nuke_team.memorized_code]</B>")
+	to_chat(owner, "核弹授权密码是：<B>[nuke_team.memorized_code]</B>")
 
 /// Actually moves our nukie to where they should be
 /datum/antagonist/nukeop/proc/move_to_spawnpoint()
@@ -185,7 +185,7 @@
 	var/turf/destination = get_spawnpoint()
 	owner.current.forceMove(destination)
 	if(!owner.current.onSyndieBase())
-		message_admins("[ADMIN_LOOKUPFLW(owner.current)] is a NUKE OP and move_to_spawnpoint put them somewhere that isn't the syndie base, help please.")
+		message_admins("[ADMIN_LOOKUPFLW(owner.current)]是核爆特工，但 move_to_spawnpoint 把其放到了辛迪加基地之外的地方，请协助处理。")
 		stack_trace("Nuke op move_to_spawnpoint resulted in a location not on the syndicate base. (Was moved to: [destination])")
 
 /// Gets the position we spawn at

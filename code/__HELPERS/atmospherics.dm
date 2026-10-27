@@ -107,15 +107,15 @@ GLOBAL_LIST_EMPTY(gas_handbook)
 				factor_info["factor_name"] = factor
 				factor_info["factor_type"] = "misc"
 				if(factor == "Temperature" || factor == "Pressure")
-					factor_info["tooltip"] = "Reaction is influenced by the [LOWER_TEXT(factor)] of the place where the reaction is occurring."
+					factor_info["tooltip"] = "反应会受到发生地点的[factor == "Temperature" ? "温度" : "气压"]影响。"
 				else if(factor == "Energy")
-					factor_info["tooltip"] = "Energy released by the reaction, may or may not result in linear temperature change depending on a slew of other factors."
+					factor_info["tooltip"] = "反应释放的能量；根据其他多种因素，温度变化可能呈线性，也可能不呈线性。"
 				else if(factor == "Radiation")
-					factor_info["tooltip"] = "This reaction emits dangerous radiation! Take precautions."
+					factor_info["tooltip"] = "此反应会释放危险辐射！请做好防护。"
 				else if (factor == "Location")
-					factor_info["tooltip"] = "This reaction has special behaviour when occurring in specific locations."
+					factor_info["tooltip"] = "此反应在特定地点发生时会产生特殊效果。"
 				else if(factor == "Hot Ice")
-					factor_info["tooltip"] = "Hot ice are solidified stacks of plasma. Ignition of one will result in a raging fire."
+					factor_info["tooltip"] = "热冰是凝固成块的等离子体，点燃后会引发猛烈大火。"
 			reaction_info["factors"] += list(factor_info)
 		GLOB.reaction_handbook += list(reaction_info)
 		qdel(reaction)
@@ -140,13 +140,13 @@ GLOBAL_LIST_EMPTY(gas_handbook)
 				factor_info["factor_name"] = factor
 				factor_info["factor_type"] = "misc"
 				if(factor == "Temperature" || factor == "Pressure")
-					factor_info["tooltip"] = "Reaction is influenced by the [LOWER_TEXT(factor)] of the place where the reaction is occurring."
+					factor_info["tooltip"] = "反应会受到发生地点的[factor == "Temperature" ? "温度" : "气压"]影响。"
 				else if(factor == "Energy")
-					factor_info["tooltip"] = "Energy released by the reaction, may or may not result in linear temperature change depending on a slew of other factors."
+					factor_info["tooltip"] = "反应释放的能量；根据其他多种因素，温度变化可能呈线性，也可能不呈线性。"
 				else if(factor == "Radiation")
-					factor_info["tooltip"] = "This reaction emits dangerous radiation! Take precautions."
+					factor_info["tooltip"] = "此反应会释放危险辐射！请做好防护。"
 				else if (factor == "Location")
-					factor_info["tooltip"] = "This reaction has special behaviour when occurring in specific locations."
+					factor_info["tooltip"] = "此反应在特定地点发生时会产生特殊效果。"
 			reaction_info["factors"] += list(factor_info)
 		GLOB.reaction_handbook += list(reaction_info)
 		qdel(reaction)

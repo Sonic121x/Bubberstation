@@ -1,9 +1,9 @@
 // Wall-fillings; items you can re-skin in hand and place onto griders to create different wall types.
 
 /obj/item/stack/wall_filling
-	name = "wall filling"
-	singular_name = "wall filler"
-	desc = "An empty wall filling. This should not exist."
+	name = "墙体填充物"
+	singular_name = "墙体填充物"
+	desc = "一份空的墙体填充物。这种东西本不该存在。"
 	//wall-fillings will generaly use the inhands of the sheet they are made from.
 	lefthand_file = 'icons/mob/inhands/items/sheets_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/sheets_righthand.dmi'
@@ -25,38 +25,38 @@
 
 /obj/item/stack/wall_filling/examine(mob/user)
 	. = ..()
-	. += span_notice("Use while in your hand to change what type of [src] you want.")
+	. += span_notice("拿在手中使用，可更改你想要的[src]类型。")
 	if(throwforce && !is_cyborg) //do not want to divide by zero or show the message to borgs who can't throw
 		var/damage_value
 		switch(ceil(MAX_LIVING_HEALTH / throwforce)) //throws to crit a human
 			if(1 to 3)
-				damage_value = "superb"
+				damage_value = "极佳"
 			if(4 to 6)
-				damage_value = "great"
+				damage_value = "上佳"
 			if(7 to 9)
-				damage_value = "good"
+				damage_value = "良好"
 			if(10 to 12)
-				damage_value = "fairly decent"
+				damage_value = "相当不错"
 			if(13 to 15)
-				damage_value = "mediocre"
+				damage_value = "平庸"
 		if(!damage_value)
 			return
-		. += span_notice("Those could work as a [damage_value] throwing weapon.")
+		. += span_notice("这些可以当作一件[damage_value]的投掷武器使用。")
 
 /obj/item/stack/wall_filling/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (tool.tool_behaviour != TOOL_WELDER)
 		return ..()
 
 	if(!made_from)
-		to_chat(user, span_warning("You can not reform this!"))
+		to_chat(user, span_warning("你无法重塑这个东西！"))
 		stack_trace("A wall filling of type [type] doesn't have its made_from set.")
 		return
 	if(!tool.use_tool(src, user, 0, volume=40))
 		return
 	var/obj/item/new_item = new made_from(user.drop_location(), 2)
-	user.visible_message(span_notice("[user] shaped [src] into [new_item] with [tool]."), \
-		span_notice("You shaped [src] into [new_item] with [tool]."), \
-		span_hear("You hear welding."))
+	user.visible_message(span_notice("[user]用[tool]把[src]塑形成了[new_item]。"), \
+		span_notice("你用[tool]把[src]塑形成了[new_item]。"), \
+		span_hear("你听见了焊接声。"))
 	var/holding = user.is_holding(src)
 	use(1)
 	if(holding && QDELETED(src))
@@ -94,9 +94,9 @@ GLOBAL_LIST_EMPTY(wall_reskin_lists)
 		wall_reskin_types = wall_reskin_list(wall_reskin_types)
 
 /obj/item/stack/wall_filling/plastitanium
-	name = "plastitanium wall filling"
-	singular_name = "plastitanium wall filler"
-	desc = "A filling for a standard plastitanium wall."
+	name = "塑钛墙体填充物"
+	singular_name = "塑钛墙体填充物"
+	desc = "用于标准塑钛墙的填充物。"
 	icon_state = "plastitanium-wall-fill"
 	inhand_icon_state = "sheet-plastitanium"
 	mats_per_unit = list(/datum/material/alloy/plastitanium=SHEET_MATERIAL_AMOUNT*2)
@@ -113,22 +113,22 @@ GLOBAL_LIST_EMPTY(wall_reskin_lists)
 	merge_type = /obj/item/stack/wall_filling/plastitanium/basic
 
 /obj/item/stack/wall_filling/plastitanium/survivalpod
-	name = "survival pod wall filling"
-	singular_name = "survival pod wall filler"
+	name = "生存舱墙体填充物"
+	singular_name = "生存舱墙体填充物"
 	icon_state = "survivalpod-wall-fill"
-	desc = "A filling for a survival pod wall, often usen for mining in hostile enviroments."
+	desc = "用于生存舱墙体的填充物，常用于恶劣环境下的采矿作业。"
 	merge_type = /obj/item/stack/wall_filling/plastitanium/survivalpod
 
 /obj/item/stack/wall_filling/plastitanium/pod
-	name = "dark shuttle wall filling"
-	singular_name = "dark shuttle wall filler"
+	name = "暗色穿梭机墙体填充物"
+	singular_name = "暗色穿梭机墙体填充物"
 	icon_state = "pod-wall-fill"
-	desc = "A filling for a dark shuttle wall. Dark mode on."
+	desc = "用于暗色穿梭机墙体的填充物。暗色模式已开启。"
 	merge_type = /obj/item/stack/wall_filling/plastitanium/pod
 
 /obj/item/stack/wall_filling/plastitanium/redpod
-	name = "red dark shuttle wall filling"
-	singular_name = "red dark shuttle wall filler"
+	name = "红色暗色穿梭机墙体填充物"
+	singular_name = "红色暗色穿梭机墙体填充物"
 	icon_state = "redpod-wall-fill"
-	desc = "A filling for a red dark shuttle wall. Quite the menacing vibe."
+	desc = "用于红色暗色穿梭机墙体的填充物。颇有几分威慑气息。"
 	merge_type = /obj/item/stack/wall_filling/plastitanium/redpod

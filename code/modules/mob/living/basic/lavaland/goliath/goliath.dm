@@ -1,7 +1,7 @@
 /// Slow moving mob which attempts to immobilise its target
 /mob/living/basic/mining/goliath
-	name = "goliath"
-	desc = "A hulking, armor-plated beast with long tendrils arching from its back."
+	name = "歌利亚"
+	desc = "一头魁梧的巨兽，全身覆盖着板甲般的硬壳，背上拱起长长的触须。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters_wide.dmi'
 	icon_state = "goliath"
 	icon_living = "goliath"
@@ -12,16 +12,16 @@
 	speed = 12
 	maxHealth = 300
 	health = 300
-	friendly_verb_continuous = "wails at"
-	friendly_verb_simple = "wail at"
-	speak_emote = list("bellows")
+	friendly_verb_continuous = "哀嚎着靠近"
+	friendly_verb_simple = "哀嚎着靠近"
+	speak_emote = list("怒吼")
 	obj_damage = 100
 	melee_damage_lower = 25
 	melee_damage_upper = 25
 	attack_sound = 'sound/items/weapons/punch1.ogg'
-	attack_verb_continuous = "pulverizes"
-	attack_verb_simple = "pulverize"
-	throw_blocked_message = "does nothing to the tough hide of"
+	attack_verb_continuous = "碾碎"
+	attack_verb_simple = "碾碎"
+	throw_blocked_message = "撞在坚硬外皮上，未能伤及"
 	move_force = MOVE_FORCE_VERY_STRONG
 	move_resist = MOVE_FORCE_VERY_STRONG
 	pull_force = MOVE_FORCE_VERY_STRONG
@@ -91,7 +91,7 @@
 /mob/living/basic/mining/goliath/examine(mob/user)
 	. = ..()
 	if (saddled)
-		. += span_info("Someone appears to have attached a saddle to this one.")
+		. += span_info("似乎有人给这一只装上了鞍座。")
 
 // Goliaths can summon tentacles more frequently as they take damage, scary.
 /mob/living/basic/mining/goliath/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, exposed_wound_bonus, sharpness, attack_direction, attacking_item, wound_clothing)
@@ -106,22 +106,22 @@
 		return ..()
 
 	if (!tameable)
-		balloon_alert(user, "doesn't fit!")
+		balloon_alert(user, "装不上去！")
 		return ITEM_INTERACT_BLOCKING
 
 	if (saddled)
-		balloon_alert(user, "already saddled!")
+		balloon_alert(user, "已经装好鞍座了！")
 		return ITEM_INTERACT_BLOCKING
 
 	if (!HAS_TRAIT(src, TRAIT_TAMED))
-		balloon_alert(user, "too rowdy!")
+		balloon_alert(user, "太暴躁了！")
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "affixing saddle...")
+	balloon_alert(user, "正在安装鞍座……")
 	if (!do_after(user, delay = 5.5 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "ready to ride")
+	balloon_alert(user, "可以骑乘了")
 	qdel(tool)
 	make_rideable()
 	return ITEM_INTERACT_SUCCESS
@@ -187,8 +187,8 @@
 
 /// Legacy Goliath mob with different sprites, largely the same behaviour
 /mob/living/basic/mining/goliath/ancient
-	name = "ancient goliath"
-	desc = "A massive beast that uses long tentacles to ensnare its prey, threatening them is not advised under any conditions."
+	name = "远古歌利亚"
+	desc = "一头庞大的巨兽，用长触须缠住猎物；无论如何都不建议去招惹它。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters_wide.dmi'
 	icon_state = "ancient_goliath"
 	icon_living = "ancient_goliath"
@@ -198,9 +198,9 @@
 
 /// Rare Goliath variant which occasionally replaces the normal mining mob, releases shitloads of tentacles
 /mob/living/basic/mining/goliath/ancient/immortal
-	name = "immortal goliath"
-	desc = "Goliaths are biologically immortal, and rare specimens have survived for centuries. \
-		This one is clearly ancient, and its tentacles constantly churn the earth around it."
+	name = "不朽歌利亚"
+	desc = "歌利亚在生物学上是不死的，稀有的个体已存活了数百年。 \
+		这一只显然极为古老，它的触须不停翻搅着周围的土地。"
 	maxHealth = 400
 	health = 400
 	/// Don't re-check nearby turfs for this long
@@ -236,7 +236,7 @@
 
 /// Use this to ride a goliath
 /obj/item/goliath_saddle
-	name = "goliath saddle"
-	desc = "This rough saddle will give you a serviceable seat upon a goliath! Provided you can get one to stand still."
+	name = "歌利亚鞍座"
+	desc = "这副粗糙的鞍座能让你在歌利亚背上获得一个还能凑合的座位！前提是你能让它站定不动。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "goliath_saddle"

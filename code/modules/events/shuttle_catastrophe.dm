@@ -1,10 +1,10 @@
 /datum/round_event_control/shuttle_catastrophe
-	name = "Shuttle Catastrophe"
+	name = "穿梭机灾难"
 	typepath = /datum/round_event/shuttle_catastrophe
 	weight = 10
 	max_occurrences = 1
 	category = EVENT_CATEGORY_BUREAUCRATIC
-	description = "Replaces the emergency shuttle with a random one."
+	description = "用随机穿梭机替换应急穿梭机。"
 	admin_setup = list(/datum/event_admin_setup/warn_admin/shuttle_catastrophe, /datum/event_admin_setup/listed_options/shuttle_catastrophe)
 
 /datum/round_event_control/shuttle_catastrophe/can_spawn_event(players, allow_magic = FALSE)
@@ -24,18 +24,18 @@
 	var/datum/map_template/shuttle/new_shuttle
 
 /datum/round_event/shuttle_catastrophe/announce(fake)
-	var/cause = pick("was attacked by [syndicate_name()] Operatives", "mysteriously teleported away", "had its refuelling crew mutiny",
-		"was found with its engines stolen", "\[REDACTED\]", "flew into the sunset, and melted", "learned something from a very wise cow, and left on its own",
-		"had cloning devices on it", "had its shuttle inspector put the shuttle in reverse instead of park, causing the shuttle to crash into the hangar")
-	var/message = "Your emergency shuttle [cause]. "
+	var/cause = pick("遭到了 [syndicate_name()] 特工的袭击", "神秘地被传送走了", "的加油船员发生了哗变",
+		"被发现引擎被盗", "\[已删节\]", "飞向落日，然后融化了", "从一头非常聪明的牛那里学到了什么，便自行离去",
+		"上面装有克隆设备", "的穿梭机检查员把穿梭机挂成了倒挡而不是驻车挡，导致穿梭机撞进了机库")
+	var/message = "你的应急穿梭机[cause]。 "
 
 	if(SSshuttle.shuttle_insurance)
-		message += "Luckily, your shuttle insurance has covered the costs of repair!"
+		message += "幸运的是，你的穿梭机保险已承担了维修费用！"
 		if(SSeconomy.get_dep_account(ACCOUNT_CAR))
-			message += " You have been awarded a bonus from [command_name()] for smart spending."
+			message += " 由于开支得当，你获得了来自 [command_name()] 的奖金。"
 	else
-		message += "Your replacement shuttle will be the [new_shuttle.name] until further notice."
-	priority_announce(message, "[command_name()] Spacecraft Engineering")
+		message += "在另行通知之前，你的替换穿梭机将是 [new_shuttle.name]。"
+	priority_announce(message, "[command_name()] 航天工程部")
 
 /datum/round_event/shuttle_catastrophe/setup()
 	if(SSshuttle.shuttle_insurance || !isnull(new_shuttle)) //If an admin has overridden it don't re-roll it
@@ -63,18 +63,18 @@
 		break
 	SSshuttle.existing_shuttle = SSshuttle.emergency
 	SSshuttle.action_load(new_shuttle, replace = TRUE)
-	log_shuttle("Shuttle Catastrophe set a new shuttle, [new_shuttle.name].")
+	log_shuttle("穿梭机灾难设置了一艘新穿梭机：[new_shuttle.name]。")
 
 /datum/event_admin_setup/warn_admin/shuttle_catastrophe
-	warning_text = "This will unload the currently docked emergency shuttle, and ERASE ANYTHING within it. Proceed anyways?"
-	snitch_text = "has forced a shuttle catastrophe while a shuttle was already docked."
+	warning_text = "这将卸载当前停靠的应急穿梭机，并抹除其中的一切。仍要继续吗？"
+	snitch_text = "在一艘穿梭机已停靠时强行触发了穿梭机灾难。"
 
 /datum/event_admin_setup/warn_admin/shuttle_catastrophe/should_warn()
 	return EMERGENCY_AT_LEAST_DOCKED || istype(SSshuttle.emergency, /obj/docking_port/mobile/emergency/shuttle_build)
 
 /datum/event_admin_setup/listed_options/shuttle_catastrophe
-	input_text = "Select a specific shuttle?"
-	normal_run_option = "Random shuttle"
+	input_text = "选择指定的穿梭机？"
+	normal_run_option = "随机穿梭机"
 
 /datum/event_admin_setup/listed_options/shuttle_catastrophe/get_list()
 	var/list/valid_shuttle_templates = list()

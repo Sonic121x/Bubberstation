@@ -1,6 +1,6 @@
 /datum/mafia_role/lawyer
-	name = "Lawyer"
-	desc = "You can choose a person to provide extensive legal advice to, preventing night actions."
+	name = "律师"
+	desc = "你可以选择一人为其提供详尽的法律建议，使其无法进行夜间行动。"
 	revealed_outfit = /datum/outfit/mafia/lawyer
 	role_type = TOWN_SUPPORT
 	hud_icon = SECHUD_LAWYER
@@ -10,8 +10,8 @@
 	role_unique_actions = list(/datum/mafia_ability/roleblock)
 
 /datum/mafia_role/hop
-	name = "Head of Personnel"
-	desc = "You can reveal yourself once per game, tripling your vote power but becoming unable to be protected!"
+	name = "人事主管"
+	desc = "你每局可以公开一次身份，使你的投票权变为三倍，但将无法受到保护！"
 	role_type = TOWN_SUPPORT
 	role_flags = ROLE_UNIQUE
 	role_flags = ROLE_CAN_KILL
@@ -23,8 +23,8 @@
 	role_unique_actions = list(/datum/mafia_ability/self_reveal)
 
 /datum/mafia_role/chaplain
-	name = "Chaplain"
-	desc = "You can communicate with spirits of the dead each night to discover dead crewmember roles."
+	name = "牧师"
+	desc = "你每夜可以与死者的灵魂交流，查明已死亡船员的身份。"
 	role_type = TOWN_INVEST
 	team = MAFIA_TEAM_TOWN | MAFIA_TEAM_DEAD
 	hud_icon = SECHUD_CHAPLAIN

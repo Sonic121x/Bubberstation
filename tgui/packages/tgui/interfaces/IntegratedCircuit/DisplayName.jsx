@@ -1,5 +1,5 @@
 import { Box, Button, Flex } from 'tgui-core/components';
-
+import { batchThreeDisplay } from '../../localization/batchThreeDisplay';
 import {
   DATATYPE_DISPLAY_HANDLERS,
   FUNDAMENTAL_DATA_TYPES,
@@ -34,7 +34,7 @@ export const DisplayName = (props) => {
                 })
               }
               color={port.color}
-              name={port.name}
+              name={batchThreeDisplay(port.name)}
               value={port.current_data}
               extraData={port.datatype_data}
             />
@@ -49,10 +49,10 @@ export const DisplayName = (props) => {
                 })
               }
             >
-              <Box color="white">{port.name}</Box>
+              <Box color="white">{batchThreeDisplay(port.name)}</Box>
             </Button>
           ) : (
-            port.name
+            batchThreeDisplay(port.name)
           )}
         </Flex.Item>
         <Flex.Item>

@@ -1,6 +1,6 @@
 /datum/job/geneticist
 	title = JOB_GENETICIST
-	description = "Alter genomes, turn monkeys into humans (and vice-versa), and make DNA backups."
+	description = "修改基因组，把猴子变成人类（反过来也行），并制作 DNA 备份。"
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -27,7 +27,7 @@
 	)
 
 	family_heirlooms = list(/obj/item/clothing/under/shorts/purple)
-	rpg_title = "Genemancer"
+	rpg_title = "基因术士"
 	job_flags = STATION_JOB_FLAGS
 
 

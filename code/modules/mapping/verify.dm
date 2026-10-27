@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(map_reports)
 	var/static/tag_number = 0
 
 /datum/map_report/New(datum/parsed_map/map)
-	original_path = map.original_path || "Untitled"
+	original_path = map.original_path || "未命名"
 	GLOB.map_reports += src
 
 /datum/map_report/Destroy(force)
@@ -25,19 +25,19 @@ GLOBAL_LIST_EMPTY(map_reports)
 /datum/map_report/proc/show_to(client/C)
 	var/list/html = list()
 	if(crashed)
-		html += "<p><b>Validation crashed</b>: check the runtime logs.</p>"
+		html += "<p><b>验证崩溃</b>：请检查运行时日志。</p>"
 	if(!loadable)
-		html += "<p><b>Not loadable</b>: some tiles are missing their turfs or areas.</p>"
+		html += "<p><b>无法加载</b>：某些地块缺少其地形或区域。</p>"
 
 	if(bad_paths.len)
-		html += "<p>Bad paths: <ol>"
+		html += "<p>错误路径：<ol>"
 		for(var/path in bad_paths)
 			var/list/keys = bad_paths[path]
-			html += "<li><tt>[path]</tt>: used in ([keys.len]): <tt>[keys.Join("</tt>, <tt>")]</tt>"
+			html += "<li><tt>[path]</tt>：用于（[keys.len]）：<tt>[keys.Join("</tt>, <tt>")]</tt>"
 		html += "</ol></p>"
 
 	if(bad_keys.len)
-		html += "<p>Bad keys: <ul>"
+		html += "<p>错误键名：<ul>"
 		for(var/key in bad_keys)
 			var/list/messages = bad_keys[key]
 			html += "<li><tt>[key]</tt>"
@@ -47,7 +47,7 @@ GLOBAL_LIST_EMPTY(map_reports)
 				html += "<ul><li>[messages.Join("</li><li>")]</li></ul>"
 			html += "</li>"
 		html += "</ul></p>"
-	var/datum/browser/browser = new(C.mob, "[tag]", "Report for map file [original_path]", 600, 400)
+	var/datum/browser/browser = new(C.mob, "[tag]", "地图文件 [original_path] 的报告", 600, 400)
 	browser.set_content(html.Join())
 	browser.open()
 
@@ -92,13 +92,13 @@ GLOBAL_LIST_EMPTY(map_reports)
 
 		if(turfs == 0)
 			report.loadable = FALSE
-			LAZYADD(report.bad_keys[key], "no turf")
+			LAZYADD(report.bad_keys[key], "缺少地形")
 		else if(turfs > 1)
-			LAZYADD(report.bad_keys[key], "[turfs] stacked turfs")
+			LAZYADD(report.bad_keys[key], "叠加了 [turfs] 层地形")
 
 		if(areas != 1)
 			report.loadable = FALSE
-			LAZYADD(report.bad_keys[key], "[areas] areas instead of 1")
+			LAZYADD(report.bad_keys[key], "区域数为 [areas]，应为 1")
 
 	// return the report
 	if(report.bad_paths.len || report.bad_keys.len || !report.loadable)

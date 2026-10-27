@@ -73,9 +73,9 @@
 
 /obj/item/circuit_component/mod_program/messenger/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Cooldown per recipient: [DisplayTimeText(MESSENGER_CIRCUIT_CD_PER_RECIPIENT)]", "orange", "stopwatch")
-	. += create_ui_notice("Minimum cooldown: [DisplayTimeText(MESSENGER_CIRCUIT_MIN_COOLDOWN)]", "orange", "stopwatch")
-	. += create_ui_notice("Maximum cooldown: [DisplayTimeText(MESSENGER_CIRCUIT_MAX_COOLDOWN)]", "orange", "stopwatch")
+	. += create_ui_notice("每位收件人的冷却：[DisplayTimeText(MESSENGER_CIRCUIT_CD_PER_RECIPIENT)]", "orange", "stopwatch")
+	. += create_ui_notice("最短冷却：[DisplayTimeText(MESSENGER_CIRCUIT_MIN_COOLDOWN)]", "orange", "stopwatch")
+	. += create_ui_notice("最长冷却：[DisplayTimeText(MESSENGER_CIRCUIT_MAX_COOLDOWN)]", "orange", "stopwatch")
 
 /obj/item/circuit_component/mod_program/messenger/proc/message_received(datum/source, datum/signal/subspace/messaging/tablet_message/signal, message_job, message_name)
 	SIGNAL_HANDLER

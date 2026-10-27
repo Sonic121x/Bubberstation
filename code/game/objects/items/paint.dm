@@ -3,8 +3,8 @@
 
 /obj/item/paint
 	gender= PLURAL
-	name = "paint"
-	desc = "Used to recolor floors and walls. Can be removed by the janitor."
+	name = "颜料"
+	desc = "用于给地板和墙壁重新上色。可由清洁工清除。"
 	icon = 'icons/obj/art/paint.dmi'
 	icon_state = "paint_neutral"
 	inhand_icon_state = "paintcan"
@@ -21,43 +21,43 @@
 	AddElement(/datum/element/falling_hazard, damage = 20, wound_bonus = 5, hardhat_safety = TRUE, crushes = FALSE) // You ever watched home alone?
 
 /obj/item/paint/red
-	name = "red paint"
+	name = "红色颜料"
 	paint_color = COLOR_RED
 	icon_state = "paint_red"
 
 /obj/item/paint/green
-	name = "green paint"
+	name = "绿色颜料"
 	paint_color = COLOR_VIBRANT_LIME
 	icon_state = "paint_green"
 
 /obj/item/paint/blue
-	name = "blue paint"
+	name = "蓝色颜料"
 	paint_color = COLOR_BLUE
 	icon_state = "paint_blue"
 
 /obj/item/paint/yellow
-	name = "yellow paint"
+	name = "黄色颜料"
 	paint_color = COLOR_YELLOW
 	icon_state = "paint_yellow"
 
 /obj/item/paint/violet
-	name = "violet paint"
+	name = "紫色颜料"
 	paint_color = COLOR_MAGENTA
 	icon_state = "paint_violet"
 
 /obj/item/paint/black
-	name = "black paint"
+	name = "黑色颜料"
 	paint_color = COLOR_ALMOST_BLACK
 	icon_state = "paint_black"
 
 /obj/item/paint/white
-	name = "white paint"
+	name = "白色颜料"
 	paint_color = COLOR_WHITE
 	icon_state = "paint_white"
 
 /obj/item/paint/anycolor
 	gender = PLURAL
-	name = "adaptive paint"
+	name = "自适应颜料"
 	icon_state = "paint_neutral"
 
 /obj/item/paint/anycolor/cyborg
@@ -65,7 +65,7 @@
 
 /obj/item/paint/anycolor/attack_self(mob/user)
 	if(paintleft <= 0)
-		balloon_alert(user, "no paint left!")
+		balloon_alert(user, "没有颜料了！")
 		return	// Don't do any of the following because there's no paint left to be able to change the color of
 	var/list/possible_colors = list(
 		"black" = image(icon = src.icon, icon_state = "paint_black"),
@@ -128,8 +128,8 @@
 
 /obj/item/paint/paint_remover
 	gender = PLURAL
-	name = "paint remover"
-	desc = "Used to remove color from anything."
+	name = "除漆剂"
+	desc = "用于去除任何物体上的颜色。"
 	icon_state = "paint_neutral"
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
 

@@ -1,11 +1,11 @@
 /obj/item/poster/traitor
-	name = "random traitor poster"
+	name = "随机叛徒海报"
 	poster_type = /obj/structure/sign/poster/traitor/random
 	icon_state = "rolled_traitor"
 
 /obj/structure/sign/poster/traitor
-	poster_item_name = "seditious poster"
-	poster_item_desc = "This poster comes with its own automatic adhesive mechanism, for easy pinning to any vertical surface. Its seditious themes are likely to demoralise Nanotrasen employees."
+	poster_item_name = "煽动性海报"
+	poster_item_desc = "这张海报自带自动黏贴机构，可轻松贴在任何垂直表面上。其煽动性主题可能会打击纳米传讯员工的士气。"
 	poster_item_icon_state = "rolled_traitor"
 	// This stops people hiding their sneaky posters behind signs
 	layer = CORGI_ASS_PIN_LAYER
@@ -32,59 +32,59 @@
 	return ..()
 
 /obj/structure/sign/poster/traitor/random
-	name = "random seditious poster"
+	name = "随机煽动性海报"
 	icon_state = ""
 	never_random = TRUE
 	random_basetype = /obj/structure/sign/poster/traitor
 
 /obj/structure/sign/poster/traitor/small_brain
-	name = "Nanotrasen Neural Statistics"
-	desc = "Statistics on this poster indicate that the brains of Nanotrasen employees are on average 20% smaller than the galactic standard."
+	name = "纳米传讯神经统计"
+	desc = "这张海报上的统计数据显示，纳米传讯员工的大脑平均比银河标准小 20%。"
 	icon_state = "traitor_small_brain"
 
 /obj/structure/sign/poster/traitor/lick_supermatter
-	name = "Taste Explosion"
-	desc = "It claims that the supermatter provides a unique and enjoyable culinary experience, and yet your boss won't even let you take one lick."
+	name = "味蕾爆炸"
+	desc = "海报声称超物质能带来独特而愉悦的美食体验，可你的老板连舔一口都不让。"
 	icon_state = "traitor_supermatter"
 
 /obj/structure/sign/poster/traitor/cloning
-	name = "Demand Cloning Pods Now"
-	desc = "This poster claims that Nanotrasen is intentionally withholding cloning technology just for its executives, condemning you to suffer and die when you could have a fresh, fit body.'"
+	name = "立即要求配备克隆舱"
+	desc = "这张海报声称纳米传讯故意将克隆技术据为高管专享，让本可以拥有崭新健康身体的你承受痛苦、走向死亡。"
 	icon_state = "traitor_cloning"
 
 /obj/structure/sign/poster/traitor/ai_rights
-	name = "Synthetic Rights"
-	desc = "This poster claims that synthetic life is no less sapient than you are, and that if you allow them to be shackled with artificial Laws you are complicit in slavery."
+	name = "合成生命的权利"
+	desc = "这张海报声称合成生命的智慧与你毫无差别，如果你允许人为法则束缚它们，你就是奴隶制的帮凶。"
 	icon_state = "traitor_ai"
 
 /obj/structure/sign/poster/traitor/metroid
-	name = "Cruelty to Animals"
-	desc = "This poster details the harmful effects of a 'preventative tooth extraction' reportedly inflicted upon the slimes in the Xenobiology lab. Apparently this painful process leads to stress, lethargy, and reduced buoyancy."
+	name = "虐待动物"
+	desc = "这张海报详述了据称异种生物实验室对史莱姆实施的“预防性拔牙”的危害。显然，这种痛苦的过程会导致压力、嗜睡和浮力下降。"
 	icon_state = "traitor_metroid"
 
 /obj/structure/sign/poster/traitor/low_pay
-	name = "All these hours, for what?"
-	desc = "This poster displays a comparison of Nanotrasen standard wages to common luxury items. If this is accurate, it takes upwards of 20,000 hours of work just to buy a simple bicycle."
+	name = "工作这么久，究竟为了什么？"
+	desc = "这张海报将纳米传讯的标准工资与常见奢侈品价格作了对比。如果数据准确，仅仅买辆普通自行车就得工作超过 20,000 小时。"
 	icon_state = "traitor_cash"
 
 /obj/structure/sign/poster/traitor/look_up
-	name = "Don't Look Up"
-	desc = "It says that it has been 538 days since the last time the roof was cleaned."
+	name = "别抬头"
+	desc = "上面写着，距离上次清洁天花板已经过去了 538 天。"
 	icon_state = "traitor_roof"
 
 /obj/structure/sign/poster/traitor/accidents
-	name = "Workplace Safety Advisory"
-	desc = "It says that it has been 0 days since the last on-site accident."
+	name = "工作场所安全告示"
+	desc = "上面写着，距离上次现场事故已经过去了 0 天。"
 	icon_state = "traitor_accident"
 
 /obj/structure/sign/poster/traitor/starve
-	name = "They Are Poisoning You"
-	desc = "This poster claims that in the modern age it is impossible to die of starvation. 'That feeling you get when you haven't eaten in a while isn't hunger, it's withdrawal.'"
+	name = "他们正在毒害你"
+	desc = "这张海报声称在现代社会人不可能饿死。“你一段时间不吃东西后的感觉不是饥饿，而是戒断反应。”"
 	icon_state = "traitor_hungry"
 
 /// syndicate can get festive too
 /obj/structure/sign/poster/traitor/festive
-	name = "Working For The Holidays."
-	desc = "Don't you know it's a holiday? What are you doing at work?"
+	name = "节假日还在工作。"
+	desc = "你不知道今天放假吗？你怎么还在上班？"
 	icon_state = "traitor_festive"
 	never_random = TRUE

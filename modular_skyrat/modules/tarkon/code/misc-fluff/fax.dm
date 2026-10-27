@@ -1,5 +1,5 @@
 /obj/machinery/fax/tarkon
-	name = "Port Tarkon Fax Machine";
+	name = "塔肯港传真机";
 	fax_name = "Tarkon Industries Bridge";
 
 /obj/machinery/fax/tarkon/Initialize(mapload)

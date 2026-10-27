@@ -1,4 +1,4 @@
-#define ARMAMENT_CATEGORY_EXPLOSIVES "Explosives"
+#define ARMAMENT_CATEGORY_EXPLOSIVES "爆炸物"
 
 /datum/armament_entry/hecu/explosives
 	category = ARMAMENT_CATEGORY_EXPLOSIVES

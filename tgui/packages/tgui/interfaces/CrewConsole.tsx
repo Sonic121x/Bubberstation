@@ -6,7 +6,7 @@ import { createSearch } from 'tgui-core/string';
 import { useBackend } from '../backend';
 import { COLORS } from '../constants';
 import { Window } from '../layouts';
-
+import { areaDisplay, recordDisplay, type BatchDisplayData } from '../localization/batchThreeDisplay';
 const HEALTH_COLOR_BY_LEVEL = [
   '#17d568',
   '#c4cf2d',
@@ -153,7 +153,7 @@ type CrewSensor = {
   ref: string;
 };
 
-type CrewConsoleData = {
+type CrewConsoleData = BatchDisplayData & {
   sensors: CrewSensor[];
   link_allowed: BooleanLike;
 };
@@ -244,8 +244,8 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
   return (
     <Table.Row className="candystripe">
       <Table.Cell bold={jobIsHead(ijob)} color={jobToColor(ijob)}>
-        {name}
-        {assignment !== undefined ? ` (${assignment})` : ''}
+        {name === 'Unknown' ? '未知' : name}
+        {assignment !== undefined ? ` (${recordDisplay(assignment, data)})` : ''}
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
         {oxydam !== undefined ? (
@@ -285,7 +285,7 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
       </Table.Cell>
       <Table.Cell>
         {area !== '~' && area !== undefined ? (
-          area
+          areaDisplay(area, data)
         ) : (
           <Icon name="question" color="#ffffff" size={1} />
         )}

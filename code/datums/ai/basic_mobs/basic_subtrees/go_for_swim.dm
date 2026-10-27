@@ -11,5 +11,5 @@
 		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
 	if(!SPT_PROB(5, seconds_per_tick))
 		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
-	living_pawn.manual_emote("splashes water all around!")
+	living_pawn.manual_emote("把水溅得到处都是！")
 	return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED

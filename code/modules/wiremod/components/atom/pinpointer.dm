@@ -4,9 +4,9 @@
  * Return the location of its input.
  */
 /obj/item/circuit_component/pinpointer
-	display_name = "Proximity Pinpointer"
-	desc = "A component that returns the xyz co-ordinates of its entity input, as long as its in view."
-	category = "Entity"
+	display_name = "近距离定位针"
+	desc = "只要目标在视野内，就返回其输入实体 xyz 坐标的元件。"
+	category = "实体"
 
 	var/datum/port/input/target
 

@@ -1,5 +1,5 @@
 /datum/antagonist/bloodsucker
-	name = "\improper Bloodsucker"
+	name = "\improper 吸血鬼"
 	show_in_antagpanel = TRUE
 	roundend_category = "bloodsuckers"
 	antagpanel_category = "Bloodsucker"
@@ -135,7 +135,7 @@
 	var/mob/living/carbon/current_mob = mob_override || owner.current
 	register_body_signals(current_mob)
 	talking_head(current_mob)
-	handle_clown_mutation(current_mob, mob_override ? null : "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
+	handle_clown_mutation(current_mob, mob_override ? null : "作为吸血鬼小丑，你不再会伤到自己。对鲜血的渴望压制了你的小丑天性。")
 	add_team_hud(current_mob)
 	remove_invalid_quirks(current_mob)
 
@@ -203,24 +203,24 @@
 
 /datum/antagonist/bloodsucker/get_admin_commands()
 	. = ..()
-	.["Set blood level"] = CALLBACK(src, PROC_REF(admin_set_blood))
-	.["Give Level"] = CALLBACK(src, PROC_REF(admin_rankup))
+	.["设置血量"] = CALLBACK(src, PROC_REF(admin_set_blood))
+	.["增加等级"] = CALLBACK(src, PROC_REF(admin_rankup))
 	// I know admins can technically do it via VV's dropdown, but it's super inconvenient.
-	.["Give Power"] = CALLBACK(src, PROC_REF(admin_give_power))
-	.["Remove Power"] = CALLBACK(src, PROC_REF(admin_remove_power))
-	.["Set Power Level"] = CALLBACK(src, PROC_REF(admin_set_power_level))
+	.["授予能力"] = CALLBACK(src, PROC_REF(admin_give_power))
+	.["移除能力"] = CALLBACK(src, PROC_REF(admin_remove_power))
+	.["设置能力等级"] = CALLBACK(src, PROC_REF(admin_set_power_level))
 	if(bloodsucker_level_unspent >= 1)
-		.["Remove Level"] = CALLBACK(src, PROC_REF(RankDown))
+		.["降低等级"] = CALLBACK(src, PROC_REF(RankDown))
 
 	if(broke_masquerade)
-		.["Fix Masquerade"] = CALLBACK(src, PROC_REF(fix_masquerade))
+		.["恢复避世戒律"] = CALLBACK(src, PROC_REF(fix_masquerade))
 	else
-		.["Break Masquerade"] = CALLBACK(src, PROC_REF(break_masquerade))
+		.["违背避世戒律"] = CALLBACK(src, PROC_REF(break_masquerade))
 
 	if(my_clan)
-		.["Remove Clan"] = CALLBACK(src, PROC_REF(remove_clan))
+		.["移除氏族"] = CALLBACK(src, PROC_REF(remove_clan))
 	else
-		.["Add Clan"] = CALLBACK(src, PROC_REF(admin_set_clan))
+		.["加入氏族"] = CALLBACK(src, PROC_REF(admin_set_clan))
 
 ///Called when you get the antag datum, called only ONCE per antagonist.
 /datum/antagonist/bloodsucker/on_gain()
@@ -312,26 +312,26 @@
 /datum/antagonist/bloodsucker/greet()
 	. = ..()
 	var/fullname = return_full_name()
-	to_chat(owner, span_userdanger("You are [fullname], a strain of vampire known as a Bloodsucker!"))
+	to_chat(owner, span_userdanger("你是[fullname]，一名以鲜血为食的吸血鬼！"))
 	owner.announce_objectives()
 	if(bloodsucker_level_unspent >= 2)
-		to_chat(owner, span_announce("As a latejoiner, you have [bloodsucker_level_unspent] bonus Ranks, entering your claimed coffin allows you to spend a Rank."))
+		to_chat(owner, span_announce("作为中途加入者，你获得了[bloodsucker_level_unspent]个额外等级。进入你认领的棺材即可消耗等级。"))
 	owner.current.playsound_local(null, 'modular_zubbers/sound/bloodsucker/BloodsuckerAlert.ogg', 100, FALSE, pressure_affected = FALSE)
-	antag_memory += "Although you were born a mortal, in undeath you earned the name <b>[fullname]</b>.<br>"
+	antag_memory += "你虽生为凡人，却在不死之身中赢得了<b>[fullname]</b>之名。<br>"
 
 /datum/antagonist/bloodsucker/farewell()
-	to_chat(owner.current, span_userdanger("<FONT size = 3>With a snap, your curse has ended. You are no longer a Bloodsucker. You live once more!</FONT>"))
+	to_chat(owner.current, span_userdanger("<FONT size = 3>刹那之间，你的诅咒解除了。你不再是吸血鬼。你重获新生！</FONT>"))
 	// Refill with Blood so they don't instantly die.
 	if(!HAS_TRAIT(owner.current, TRAIT_NOBLOOD))
 		owner.current.blood_volume = max(owner.current.blood_volume, BLOOD_VOLUME_NORMAL)
 
 // Called when using admin tools to give antag status
 /datum/antagonist/bloodsucker/admin_add(datum/mind/new_owner, mob/admin)
-	var/levels = tgui_input_number(admin, "How many unspent Ranks would you like [new_owner] to have?","Bloodsucker Rank", GetUnspentRank(), 100, 0)
-	var/msg = " made [key_name_admin(new_owner)] into \a [name]"
+	var/levels = tgui_input_number(admin, "要给予[new_owner]多少个未使用等级？","吸血鬼等级", GetUnspentRank(), 100, 0)
+	var/msg = "将[key_name_admin(new_owner)]变成了[name]"
 	if(levels > 1)
 		bloodsucker_level_unspent = levels
-		msg += " with [levels] extra unspent Ranks."
+		msg += "，并给予[levels]个额外未使用等级。"
 	message_admins("[key_name_admin(usr)][msg]")
 	log_admin("[key_name(usr)][msg]")
 	new_owner.add_antag_datum(src)
@@ -351,7 +351,7 @@
 	data["in_clan"] = !!my_clan
 	var/list/clan_data = list()
 	if(my_clan)
-		clan_data["clan_name"] = my_clan.name
+		clan_data["clan_name"] = chinese_bloodsucker_clan_display(my_clan.name)
 		clan_data["clan_description"] = my_clan.description
 		clan_data["clan_icon"] = my_clan.join_icon
 		clan_data["clan_icon_state"] = my_clan.join_icon_state
@@ -381,14 +381,14 @@
 	report += "<br><span class='header'><b>\[[return_full_name()]\]</b></span>"
 	report += printplayer(owner)
 	if(my_clan)
-		report += "They were part of the <b>[my_clan.name]</b>!"
+		report += "其所属氏族为<b>[chinese_bloodsucker_clan_display(my_clan.name)]</b>！"
 
 	// Default Report
 	var/objectives_complete = TRUE
 	if(objectives.len)
 		report += printobjectives(objectives)
 		for(var/datum/objective/objective in objectives)
-			if(objective.objective_name == "Optional Objective")
+			if(objective.objective_name == "可选目标")
 				continue
 			if(!objective.check_completion())
 				objectives_complete = FALSE
@@ -396,7 +396,7 @@
 
 	// Now list their ghouls
 	if(ghouls.len)
-		report += "<span class='header'>Their Ghouls were...</span>"
+		report += "<span class='header'>其血仆包括……</span>"
 		for(var/datum/antagonist/ghoul/all_ghouls as anything in ghouls)
 			if(!all_ghouls.owner)
 				continue
@@ -404,17 +404,17 @@
 			ghoul_report += "<b>[all_ghouls.owner.name]</b>"
 
 			if(all_ghouls.owner.assigned_role)
-				ghoul_report += " the [all_ghouls.owner.assigned_role.title]"
+				ghoul_report += "，职位：[chinese_job_display(all_ghouls.owner.assigned_role.title)]"
 			if(IS_FAVORITE_GHOUL(all_ghouls.owner.current))
-				ghoul_report += " and was the <b>Favorite Ghoul</b>"
+				ghoul_report += "，身份为<b>宠爱血仆</b>"
 			else if(IS_REVENGE_GHOUL(all_ghouls.owner.current))
-				ghoul_report += " and was the <b>Revenge Ghoul</b>"
+				ghoul_report += "，身份为<b>复仇血仆</b>"
 			report += ghoul_report.Join()
 
 	if(objectives.len == 0 || objectives_complete)
-		report += "<span class='greentext big'>The [name] was successful!</span>"
+		report += "<span class='greentext big'>[name]成功了！</span>"
 	else
-		report += "<span class='redtext big'>The [name] has failed!</span>"
+		report += "<span class='redtext big'>[name]失败了！</span>"
 
 	return report.Join("<br>")
 
@@ -516,7 +516,7 @@
 /// Include additional information about antag in this part
 /datum/antagonist/bloodsucker/antag_listing_status()
 	if(owner && !considered_alive(owner))
-		return "<font color=red>Final Death</font>"
+		return "<font color=red>终极死亡</font>"
 	return ..()
 
 /datum/antagonist/bloodsucker/proc/considered_alive(datum/mind/player_mind, enforce_human)
@@ -544,15 +544,15 @@
 			var/datum/objective/bloodsucker/conversion/chosen_subtype = pick(subtypesof(/datum/objective/bloodsucker/conversion))
 			var/datum/objective/bloodsucker/conversion/conversion_objective = new chosen_subtype
 			conversion_objective.owner = owner
-			conversion_objective.objective_name = "Optional Objective"
+			conversion_objective.objective_name = "可选目标"
 			objectives += conversion_objective
 		if(2) // Heart Thief Objective
 			var/datum/objective/steal_n_of_type/hearts/heartthief_objective = new
 			heartthief_objective.owner = owner
-			heartthief_objective.objective_name = "Optional Objective"
+			heartthief_objective.objective_name = "可选目标"
 			objectives += heartthief_objective
 		if(3) // Drink Blood Objective
 			var/datum/objective/bloodsucker/gourmand/gourmand_objective = new
 			gourmand_objective.owner = owner
-			gourmand_objective.objective_name = "Optional Objective"
+			gourmand_objective.objective_name = "可选目标"
 			objectives += gourmand_objective

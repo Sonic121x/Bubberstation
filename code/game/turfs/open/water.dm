@@ -1,7 +1,7 @@
 /turf/open/water
-	name = "water"
+	name = "水"
 	gender = PLURAL
-	desc = "Shallow water."
+	desc = "浅水。"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "riverwater_motion"
 	baseturfs = /turf/open/water
@@ -89,16 +89,16 @@
 	planetary_atmos = FALSE
 
 /turf/open/water/no_planet_atmos/deep
-	name = "deep water"
-	desc = "Less shallow water."
+	name = "深水"
+	desc = "没那么浅的水。"
 	icon_state = "deep_riverwater_motion"
 	immerse_overlay = "immerse_deep"
 	baseturfs = /turf/open/water/no_planet_atmos/deep
 	is_swimming_tile = TRUE
 
 /turf/open/water/no_planet_atmos/deep/lethal
-	name = "treacherous water"
-	desc = "Less shallow, very dangerous water. You feel like it would be a very bad idea to enter this water."
+	name = "险恶水域"
+	desc = "没那么浅、非常危险的水域。你觉得进入这片水域会是个非常糟糕的主意。"
 	stamina_entry_cost = 25
 	ticking_stamina_cost = 15
 	ticking_oxy_damage = 2
@@ -107,7 +107,7 @@
 /turf/open/water/beach
 	planetary_atmos = FALSE
 	gender = PLURAL
-	desc = "Come on in, it's great!"
+	desc = "快下来吧，感觉棒极了！"
 	icon = 'icons/turf/beach.dmi'
 	icon_state = "water"
 	base_icon_state = "water"
@@ -121,8 +121,8 @@
 
 /// Deep water drains stamina and starts drowning you
 /turf/open/water/deep_beach
-	name = "deep water"
-	desc = "Don't forget your life jacket."
+	name = "深水"
+	desc = "别忘了穿救生衣。"
 	immerse_overlay = "immerse_deep"
 	icon = 'icons/turf/beach.dmi'
 	icon_state = "deepwater"
@@ -132,8 +132,8 @@
 	is_swimming_tile = TRUE
 
 /turf/open/water/deep_beach/lethal
-	name = "treacherous water"
-	desc = "You think entering this water would probably go extremely badly."
+	name = "险恶水域"
+	desc = "你觉得进入这片水域大概会非常不妙。"
 
 /turf/open/water/lavaland_atmos
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -201,7 +201,7 @@
 	return TRUE
 
 /turf/open/water/beach/tizira
-	desc = "Shallow water. It somehow reminds you of lizardfolk."
+	desc = "浅水。不知为何让你想起了蜥蜴人。"
 	icon_state = "tizira_water"
 	base_icon_state = "tizira_water"
 	baseturfs = /turf/open/water/beach/tizira
@@ -212,11 +212,11 @@
  * the living mob inside the turf is actually immersed in it (eg. not flying, not floating).
  */
 /turf/open/water/hot_spring
-	name = "hot spring"
+	name = "温泉"
 	icon_state = "pool_1"
-	desc = "Water kept warm through some unknown heat source, possibly a geothermal heat source far underground. \
-		Whatever it is, it feels pretty damn nice to swim, and you can even catch a glimpse of \
-		the odd fish darting through the water."
+	desc = "水被某种未知的热源保温，可能是深处地下的地热源。\
+		不管那是什么，在里面游泳的感觉真是舒服极了，你甚至能瞥见\
+		有奇怪的鱼在水里穿梭。"
 	baseturfs = /turf/open/water/hot_spring
 	planetary_atmos = FALSE
 	immerse_overlay_alpha = 190

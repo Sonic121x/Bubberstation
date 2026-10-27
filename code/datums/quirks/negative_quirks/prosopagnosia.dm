@@ -1,11 +1,11 @@
 /datum/quirk/prosopagnosia
 	name = "Prosopagnosia"
-	desc = "You have a mental disorder that prevents you from being able to recognize faces at all."
+	desc = "你患有一种认知障碍，完全无法辨认人脸。"
 	icon = FA_ICON_USER_SECRET
 	value = -4
-	medical_record_text = "Patient suffers from prosopagnosia and cannot recognize faces."
-	medical_symptom_text = "Unable to recognize familiar faces, often relying on alternative cues such as \
-		voice, clothing, identification, or context to identify individuals."
+	medical_record_text = "患者患有面容失认症，无法辨认人脸。"
+	medical_symptom_text = "无法辨认熟悉的面孔，通常依靠其他线索，\
+		如声音、衣着、证件或情境来识别他人。"
 	hardcore_value = 5
 	mail_goodies = list(/obj/item/skillchip/appraiser) // bad at recognizing faces but good at recognizing IDs
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_TRAUMALIKE
@@ -42,7 +42,7 @@
 		return NONE
 
 	var/id_name =  see_ids && examined.get_id_name("", honorifics = TRUE)
-	name_override[1] = id_name ? "[id_name]?" : "Unknown"
+	name_override[1] = id_name ? "[id_name]？" : "不明人士"
 	return COMPONENT_EXAMINE_NAME_OVERRIDEN
 
 /datum/status_effect/grouped/see_no_names/proc/screentip_name_override(datum/source, list/returned_name, obj/item/held_item, mob/living/carbon/human/hovered)
@@ -52,7 +52,7 @@
 		return NONE
 
 	var/id_name = see_ids && hovered.get_id_name("", honorifics = TRUE)
-	returned_name[1] = id_name ? "[id_name]?" : "Unknown"
+	returned_name[1] = id_name ? "[id_name]？" : "不明人士"
 	return SCREENTIP_NAME_SET
 
 /// Conceals the names of other mobs, unless they are wearing an ID - then, that ID takes precedence

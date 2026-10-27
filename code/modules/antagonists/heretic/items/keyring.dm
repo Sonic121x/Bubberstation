@@ -1,6 +1,6 @@
 /obj/effect/lock_portal
-	name = "crack in reality"
-	desc = "A crack in space, impossibly deep and painful to the eyes. Definitely not safe."
+	name = "现实裂隙"
+	desc = "空间中的一道裂隙，深不可测，看着就让人眼睛发痛。绝对不安全。"
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "realitycrack"
 	light_system = COMPLEX_LIGHT
@@ -68,7 +68,7 @@
 
 	if(!IS_HERETIC_OR_MONSTER(teleportee))
 		teleportee.apply_damage(20, BRUTE) //so they dont roll it like a jackpot machine to see if they can land in the armory
-		to_chat(teleportee, span_userdanger("You stumble through [src], battered by forces beyond your comprehension, landing anywhere but where you thought you were going."))
+		to_chat(teleportee, span_userdanger("你踉跄着穿过[src]，被无法理解的力量撕扯，最后落在了完全不是你想去的地方。"))
 
 	INVOKE_ASYNC(src, PROC_REF(async_opendoor), doorstination)
 
@@ -111,19 +111,19 @@
 	. = ..()
 	if(!IS_HERETIC_OR_MONSTER(user))
 		return
-	. += span_hypnophrase("Enchanted by the Mansus!")
-	. += span_hypnophrase("Using an ID on this or using this ID on another ID will consume it and allow you to copy its accesses.")
-	. += span_hypnophrase("<b>Using this in-hand</b> allows you to change its appearance.")
-	. += span_hypnophrase("<b>Using this on a pair of doors</b>, allows you to link them together. Entering one door will transport you to the other, while heathens are instead teleported to a random airlock.")
-	. += span_hypnophrase("<b>Ctrl-clicking the ID</b>, makes the ID make inverted portals instead, which teleport you onto a random airlock onstation, while heathens are teleported to the destination.")
+	. += span_hypnophrase("受漫宿附魔！")
+	. += span_hypnophrase("把一张 ID 卡用在这张卡上，或用这张卡点击另一张 ID 卡，都会将其吞噬，并让你复制它的权限。")
+	. += span_hypnophrase("<b>在手中使用此卡</b>，可以改变它的外观。")
+	. += span_hypnophrase("<b>用它依次点击一对门</b>，就能把它们连接起来。走进其中一扇门会被传送到另一扇，而异教徒则会被传送到随机的气闸。")
+	. += span_hypnophrase("<b>Ctrl 点击此 ID 卡</b>，可以让它改为制造反向裂隙，把你传送到站内随机的气闸，而异教徒则会被传送到目的地。")
 
 /obj/item/card/id/advanced/heretic/attack_self(mob/user)
 	. = ..()
 	if(!IS_HERETIC(user))
 		return
-	var/cardname = tgui_input_list(user, "Shapeshift into?", "Shapeshift", fused_ids)
+	var/cardname = tgui_input_list(user, "要变化成？", "变形", fused_ids)
 	if(!cardname)
-		balloon_alert(user, "no options!")
+		balloon_alert(user, "没有可选项！")
 		return ..()
 	var/obj/item/card/id/card = fused_ids[cardname]
 	shapeshift(card)
@@ -132,7 +132,7 @@
 	if(!IS_HERETIC(user))
 		return CLICK_ACTION_BLOCKING
 	inverted = !inverted
-	balloon_alert(user, "[inverted ? "now" : "no longer"] creating inverted rifts")
+	balloon_alert(user, "[inverted ? "现在" : "不再"]制造反向裂隙")
 	return CLICK_ACTION_SUCCESS
 
 ///Changes our appearance to the passed ID card
@@ -163,10 +163,10 @@
 
 ///Creates a portal pair at door1 and door2, displays a balloon alert to user
 /obj/item/card/id/advanced/heretic/proc/make_portal(mob/user, obj/machinery/door/door1, obj/machinery/door/door2)
-	var/message = "linked"
+	var/message = "已连接"
 	if(portal_one || portal_two)
 		clear_portals()
-		message += ", previous cleared"
+		message += "，已清除先前的连接"
 	portal_one = new(get_turf(door2), door2, inverted)
 	portal_two = new(get_turf(door1), door1, inverted)
 	portal_one.destination = portal_two
@@ -189,7 +189,7 @@
 	access |= card.access
 	if(!isnull(user))
 		playsound(drop_location(), 'sound/items/eatfood.ogg', rand(10,30), TRUE)
-		balloon_alert(user, "consumed card")
+		balloon_alert(user, "已吞噬 ID 卡")
 
 /obj/item/card/id/advanced/heretic/interact_with_atom(atom/target, mob/living/user, list/modifiers)
 	if(!IS_HERETIC(user))
@@ -209,19 +209,19 @@
 		return ITEM_INTERACT_BLOCKING
 
 	// BUBBER EDIT ADDITION BEGIN - cant use it for insta escapes
-	user.balloon_alert_to_viewers("linking...")
+	user.balloon_alert_to_viewers("正在连接……")
 	if (!do_after(user, 5 SECONDS, user, IGNORE_HELD_ITEM))
 		return ITEM_INTERACT_BLOCKING
 	// BUBBER EDIT ADDITION END
 
 	if(reference_resolved)
 		make_portal(user, reference_resolved, target)
-		to_chat(user, span_notice("You use [src], to link [reference_resolved] and [target] together."))
+		to_chat(user, span_notice("你使用[src]，把[reference_resolved]和[target]连接在了一起。"))
 		link = null
-		balloon_alert(user, "link 2/2")
+		balloon_alert(user, "连接 2/2")
 	else
 		link = WEAKREF(target)
-		balloon_alert(user, "link 1/2")
+		balloon_alert(user, "连接 1/2")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/card/id/advanced/heretic/Destroy()

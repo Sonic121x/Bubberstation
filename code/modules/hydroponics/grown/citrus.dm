@@ -1,7 +1,7 @@
 // Citrus - base type
 /obj/item/food/grown/citrus
-	name = "citrus"
-	desc = "It's so sour, your face will twist."
+	name = "柑橘类"
+	desc = "酸得你脸都要拧成一团。"
 	icon_state = "lime"
 	abstract_type = /obj/item/food/grown/citrus
 	foodtypes = FRUIT
@@ -9,11 +9,11 @@
 
 // Lime
 /obj/item/seeds/lime
-	name = "lime seed pack"
-	desc = "These are very sour seeds."
+	name = "青柠种子包"
+	desc = "这些种子非常酸。"
 	icon_state = "seed-lime"
 	species = "lime"
-	plantname = "Lime Tree"
+	plantname = "青柠树"
 	product = /obj/item/food/grown/citrus/lime
 	lifespan = 55
 	endurance = 50
@@ -26,8 +26,8 @@
 
 /obj/item/food/grown/citrus/lime
 	seed = /obj/item/seeds/lime
-	name = "lime"
-	desc = "It's so sour, your face will twist."
+	name = "青柠"
+	desc = "酸得你脸都要拧成一团。"
 	icon_state = "lime"
 
 /obj/item/food/grown/citrus/lime/juice_typepath()
@@ -35,11 +35,11 @@
 
 // Orange
 /obj/item/seeds/orange
-	name = "orange seed pack"
-	desc = "Sour seeds."
+	name = "橙子种子包"
+	desc = "酸味的种子。"
 	icon_state = "seed-orange"
 	species = "orange"
-	plantname = "Orange Tree"
+	plantname = "橙树"
 	product = /obj/item/food/grown/citrus/orange
 	lifespan = 60
 	endurance = 50
@@ -54,8 +54,8 @@
 
 /obj/item/food/grown/citrus/orange
 	seed = /obj/item/seeds/orange
-	name = "orange"
-	desc = "It's a tangy fruit."
+	name = "橙子"
+	desc = "一种酸甜可口的水果。"
 	icon_state = "orange"
 	foodtypes = ORANGES | FRUIT
 	distill_reagent = /datum/reagent/consumable/ethanol/triple_sec
@@ -65,11 +65,11 @@
 
 // Lemon
 /obj/item/seeds/lemon
-	name = "lemon seed pack"
-	desc = "These are sour seeds."
+	name = "柠檬种子包"
+	desc = "这些种子很酸。"
 	icon_state = "seed-lemon"
 	species = "lemon"
-	plantname = "Lemon Tree"
+	plantname = "柠檬树"
 	product = /obj/item/food/grown/citrus/lemon
 	lifespan = 55
 	endurance = 45
@@ -83,8 +83,8 @@
 
 /obj/item/food/grown/citrus/lemon
 	seed = /obj/item/seeds/lemon
-	name = "lemon"
-	desc = "When life gives you lemons, make lemonade."
+	name = "柠檬"
+	desc = "当生活给你柠檬，就做柠檬水吧。"
 	icon_state = "lemon"
 
 /obj/item/food/grown/citrus/lemon/juice_typepath()
@@ -92,11 +92,11 @@
 
 // Combustible lemon
 /obj/item/seeds/firelemon //combustible lemon is too long so firelemon
-	name = "combustible lemon seed pack"
-	desc = "When life gives you lemons, don't make lemonade. Make life take the lemons back! Get mad! I don't want your damn lemons!"
+	name = "可燃柠檬种子包"
+	desc = "当生活给你柠檬，别做柠檬水。让生活把柠檬收回去！发火吧！我才不要你那该死的柠檬！"
 	icon_state = "seed-firelemon"
 	species = "firelemon"
-	plantname = "Combustible Lemon Tree"
+	plantname = "可燃柠檬树"
 	product = /obj/item/food/grown/firelemon
 	growing_icon = 'icons/obj/service/hydroponics/growing_fruits.dmi'
 	icon_grow = "lime-grow"
@@ -109,8 +109,8 @@
 
 /obj/item/food/grown/firelemon
 	seed = /obj/item/seeds/firelemon
-	name = "Combustible Lemon"
-	desc = "Made for burning houses down."
+	name = "可燃柠檬"
+	desc = "专门用来烧房子的。"
 	icon_state = "firelemon"
 	alt_icon = "firelemon_active"
 	foodtypes = FRUIT
@@ -118,11 +118,11 @@
 
 //3D Orange
 /obj/item/seeds/orange_3d
-	name = "extradimensional orange seed pack"
-	desc = "Polygonal seeds."
+	name = "异次元橙子种子包"
+	desc = "多边形的种子。"
 	icon_state = "seed-orange"
 	species = "orange"
-	plantname = "Extradimensional Orange Tree"
+	plantname = "异次元橙树"
 	product = /obj/item/food/grown/citrus/orange_3d
 	lifespan = 60
 	endurance = 50
@@ -137,8 +137,8 @@
 
 /obj/item/food/grown/citrus/orange_3d
 	seed = /obj/item/seeds/orange_3d
-	name = "extradimensional orange"
-	desc = "You can hardly wrap your head around this thing."
+	name = "异次元橙子"
+	desc = "你几乎无法理解这东西。"
 	icon_state = "orang"
 	foodtypes = ORANGES
 	alt_icon = "orange"

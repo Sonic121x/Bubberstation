@@ -4,26 +4,26 @@
 */
 
 /mob/living/basic/pet/fox
-	name = "fox"
-	desc = "They're a fox."
+	name = "狐狸"
+	desc = "它是一只狐狸。"
 	icon = 'icons/mob/simple/pets.dmi'
 	icon_state = "fox"
 	icon_living = "fox"
 	icon_dead = "fox_dead"
-	speak_emote = list("geckers", "barks")
+	speak_emote = list("咯咯尖叫", "吠叫")
 	butcher_results = list(/obj/item/food/meat/slab = 3)
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "kicks"
-	response_harm_simple = "kick"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "踢"
+	response_harm_simple = "踢"
 	gold_core_spawnable = FRIENDLY_SPAWN
 	held_state = "fox"
 	melee_damage_lower = 5
 	melee_damage_upper = 5
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	ai_controller = /datum/ai_controller/basic_controller/fox
@@ -45,7 +45,7 @@
 /datum/emote/fox/yap
 	key = "yap"
 	key_third_person = "yaps"
-	message = "yaps happily!"
+	message = "开心地尖声吠叫！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /mob/living/basic/pet/fox/Initialize(mapload)
@@ -77,8 +77,8 @@
 
 // The captain's fox, Renault
 /mob/living/basic/pet/fox/renault
-	name = "Renault"
-	desc = "Renault, the Captain's trustworthy fox."
+	name = "雷诺"
+	desc = "雷诺，舰长最信赖的狐狸。"
 	gender = FEMALE
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
@@ -88,8 +88,8 @@
 	ai_controller = /datum/ai_controller/basic_controller/fox/docile
 
 /mob/living/basic/pet/fox/icemoon
-	name = "icemoon fox"
-	desc = "A fox, scraping by the icemoon hostile atmosphere."
+	name = "冰月狐"
+	desc = "一只在冰月恶劣的大气中艰难求生的狐狸。"
 	gold_core_spawnable = NO_SPAWN
 	habitable_atmos = null
 	minimum_survivable_temperature = BODYTEMP_COLD_ICEBOX_SAFE //BUBBER EDIT Original = ICEBOX_MIN_TEMPERATURE

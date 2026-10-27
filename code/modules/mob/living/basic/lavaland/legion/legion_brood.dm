@@ -1,7 +1,7 @@
 /// A spooky skull which heals lavaland mobs, attacks miners, and infests their bodies
 /mob/living/basic/mining/legion_brood
-	name = "legion"
-	desc = "One of many."
+	name = "军团"
+	desc = "众多之一。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "legion_head"
 	icon_living = "legion_head"
@@ -16,17 +16,17 @@
 	unsuitable_atmos_damage = 0
 	minimum_survivable_temperature = 0
 	maximum_survivable_temperature = INFINITY
-	friendly_verb_continuous = "chatters near"
-	friendly_verb_simple = "chatter near"
+	friendly_verb_continuous = "咔哒作响地凑近"
+	friendly_verb_simple = "咔哒作响地凑近"
 	maxHealth = 1
 	health = 1
 	melee_damage_lower = 12
 	melee_damage_upper = 12
 	obj_damage = 0
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
 	attack_vis_effect = ATTACK_EFFECT_BITE
-	speak_emote = list("echoes") // who the fuck speaking as this mob it dies 10 seconds after it spawns
+	speak_emote = list("回荡着低语") // who the fuck speaking as this mob it dies 10 seconds after it spawns
 	attack_sound = 'sound/items/weapons/pierce.ogg'
 	density = FALSE
 	ai_controller = /datum/ai_controller/basic_controller/legion_brood
@@ -72,7 +72,7 @@
 		created_by = null
 
 	if (isliving(target) && faction_check_atom(target) && !istype(target, mob_creator?.type))
-		visible_message(span_warning("[src] melds with [target]'s flesh!"))
+		visible_message(span_warning("[src] 融入了 [target] 的血肉之中！"))
 		target.apply_status_effect(/datum/status_effect/regenerative_core)
 		new /obj/effect/temp_visual/heal(get_turf(target), COLOR_HEALING_CYAN)
 		death()
@@ -81,7 +81,7 @@
 
 /// Turn the targeted mob into one of us
 /mob/living/basic/mining/legion_brood/proc/infest(mob/living/carbon/human/target)
-	visible_message(span_warning("[name] burrows into the flesh of [target]!"))
+	visible_message(span_warning("[name] 钻进了 [target] 的血肉之中！"))
 	var/spawn_type = get_legion_type(target)
 	var/mob/living/basic/mining/legion/new_legion = new spawn_type(loc)
 	new_legion.consume(target)
@@ -127,7 +127,7 @@
 
 /// Like the Legion's summoned skull but funnier (it's snow now)
 /mob/living/basic/mining/legion_brood/snow
-	name = "snow legion"
+	name = "雪地军团"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	icon_state = "snowlegion_head"
 	icon_living = "snowlegion_head"

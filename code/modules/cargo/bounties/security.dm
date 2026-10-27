@@ -1,9 +1,9 @@
 ///Bounties that require you to perform documentation and inspection of your department to send to centcom.
 /datum/bounty/patrol
-	name = "Patrol Station"
-	description = "Perform a routine patrol of %AREA_NAME%. \
-		You must travel at least %AREA_COVERAGE% meters within the area. \
-		Your ID card will update you as you progress."
+	name = "巡逻空间站"
+	description = "对 %AREA_NAME% 进行例行巡逻。 \
+		你必须在区域内至少行进 %AREA_COVERAGE% 米。 \
+		你的 ID 卡会在你推进时更新进度。"
 	reward = CARGO_CRATE_VALUE * 5
 	allow_duplicate = TRUE
 	global_exempt = TRUE
@@ -59,7 +59,7 @@
 	return progress
 
 /datum/bounty/patrol/print_required()
-	return "[get_progress()]/[needed_coverage] meters"
+	return "[get_progress()]/[needed_coverage] 米"
 
 /datum/bounty/patrol/can_claim()
 	return get_progress() >= needed_coverage
@@ -109,35 +109,35 @@
 	var/progress = get_progress()
 	if(alerted == 0)
 		alerted = 1
-		id_card.registered_account.bank_card_talk("Patrol started. \
-			Travel [needed_coverage] meters in the area to complete your patrol.", force = TRUE)
+		id_card.registered_account.bank_card_talk("巡逻开始。 \
+			在该区域内行进 [needed_coverage] 米以完成巡逻。", force = TRUE)
 		return
 
 	var/progress_percent = progress / needed_coverage
 	if(progress_percent >= 0.25 && alerted < 2)
 		alerted = 2
-		id_card.registered_account.bank_card_talk("Patrol 25% complete.", force = TRUE)
+		id_card.registered_account.bank_card_talk("巡逻已完成 25%。", force = TRUE)
 		return
 
 	if(progress_percent >= 0.5 && alerted < 3)
 		alerted = 3
-		id_card.registered_account.bank_card_talk("Patrol 50% complete.", force = TRUE)
+		id_card.registered_account.bank_card_talk("巡逻已完成 50%。", force = TRUE)
 		return
 
 	if(progress_percent >= 0.75 && alerted < 4)
 		alerted = 4
-		id_card.registered_account.bank_card_talk("Patrol 75% complete.", force = TRUE)
+		id_card.registered_account.bank_card_talk("巡逻已完成 75%。", force = TRUE)
 		return
 
 	if(progress >= needed_coverage && alerted < 5)
 		alerted = 5
-		id_card.registered_account.bank_card_talk("Patrol complete. \
-			Return to the bounty terminal to claim your reward.", force = TRUE)
+		id_card.registered_account.bank_card_talk("巡逻完成。 \
+			返回赏金终端领取你的奖励。", force = TRUE)
 		stop_tracking(id_card) // don't need this anymore
 		return
 
 /datum/bounty/patrol/supply
-	name = "Patrol Cargo"
+	name = "巡逻货运"
 	allow_duplicate = FALSE
 
 /datum/bounty/patrol/supply/get_patrol_area_types()
@@ -160,7 +160,7 @@
 	)
 
 /datum/bounty/patrol/medical
-	name = "Patrol Medical"
+	name = "巡逻医疗"
 	allow_duplicate = FALSE
 
 /datum/bounty/patrol/medical/get_patrol_area_types()
@@ -182,7 +182,7 @@
 	)
 
 /datum/bounty/patrol/science
-	name = "Patrol Science"
+	name = "巡逻科研"
 	allow_duplicate = FALSE
 
 /datum/bounty/patrol/science/get_patrol_area_types()
@@ -201,7 +201,7 @@
 	)
 
 /datum/bounty/patrol/engineering
-	name = "Patrol Engineering"
+	name = "巡逻工程"
 	allow_duplicate = FALSE
 
 /datum/bounty/patrol/engineering/get_patrol_area_types()
@@ -219,8 +219,8 @@
 	)
 
 /datum/bounty/item/contraband
-	name = "Confiscated Contraband"
-	description = "The Syndicate is constantly acting to subvert crewmates of Nanotrasen-affiliated stations. Ship us your latest batch of confiscated contraband."
+	name = "没收的违禁品"
+	description = "辛迪加一直在设法策反纳米传讯旗下空间站的船员。请把你最新查获的一批违禁品运送给我们。"
 	reward = CARGO_CRATE_VALUE * 4
 	required_count = 5
 	wanted_types = list(/obj/item = TRUE)

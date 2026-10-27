@@ -63,8 +63,8 @@
 		return
 	if (!SSdbcore.Connect())
 		if(existing_book && (fail_loud || prob(5)))
-			var/error_text = "There once was a book from Nantucket<br>But the database failed us, so f*$! it.<br>I tried to be good to you<br>Now this is an I.O.U<br>If you're feeling entitled, well, stuff it!<br><br><font color='gray'>~</font>"
-			existing_book.book_data = new("Strange Book", "???", error_text)
+			var/error_text = "从前有一本书来自楠塔基特<br>可数据库抛弃了我们，那就去它的。<br>我本想待你以善意<br>如今只能给你一张欠条<br>你要是觉得受了委屈，那就忍着吧！<br><br><font color='gray'>~</font>"
+			existing_book.book_data = new("奇怪的书", "???", error_text)
 		return
 	if(category == BOOK_CATEGORY_RANDOM)
 		category = null
@@ -84,13 +84,13 @@
 			data.set_title(book_deets[1], trusted = TRUE)
 			data.set_author(book_deets[2], trusted = TRUE)
 			data.set_content(book_deets[3], trusted = TRUE)
-			to_randomize.name = "Book: [to_randomize.book_data.title]"
+			to_randomize.name = "书：[to_randomize.book_data.title]"
 			if(!existing_book)
 				to_randomize.gen_random_icon_state()
 	qdel(query_get_random_books)
 
 /obj/structure/bookcase/random/fiction
-	name = "bookcase (Fiction)"
+	name = "书架（虚构类）"
 	random_category = BOOK_CATEGORY_FICTION
 	///have we spawned the chuuni granter
 	var/static/chuuni_book_spawned = FALSE
@@ -101,19 +101,19 @@
 		new /obj/item/book/granter/chuunibyou(src)
 
 /obj/structure/bookcase/random/nonfiction
-	name = "bookcase (Non-Fiction)"
+	name = "书架（非虚构类）"
 	random_category = BOOK_CATEGORY_NONFICTION
 
 /obj/structure/bookcase/random/religion
-	name = "bookcase (Religion)"
+	name = "书架（宗教类）"
 	random_category = BOOK_CATEGORY_RELIGION
 
 /obj/structure/bookcase/random/adult
-	name = "bookcase (Adult)"
+	name = "书架（成人）"
 	random_category = BOOK_CATEGORY_ADULT
 
 /obj/structure/bookcase/random/reference
-	name = "bookcase (Reference)"
+	name = "书架（参考类）"
 	random_category = BOOK_CATEGORY_REFERENCE
 	///Chance to spawn a random manual book
 	var/ref_book_prob = 20
@@ -125,7 +125,7 @@
 		new /obj/item/book/manual/random(src)
 
 /obj/structure/bookcase/random/reference/wizard
-	desc = "It reeks of cheese..."
+	desc = "这里散发着一股奶酪味……"
 	///Whether this shelf has spawned a cheese granter
 	var/static/cheese_granter_spawned = FALSE
 

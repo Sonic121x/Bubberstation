@@ -1,7 +1,7 @@
 /datum/map_template/ruin/lavaland/arena
-	name = "Lava-Ruin Grand Arena"
+	name = "熔岩遗迹大竞技场"
 	id = "arena"
-	description = "An ancient gladitorial arena containing a deadly warrior within."
+	description = "一座古老的角斗竞技场，其中困着一名致命的战士。"
 	prefix = "_maps/RandomRuins/LavaRuins/skyrat/"
 	suffix = "lavaland_surface_arena.dmm"
 	cost = 0

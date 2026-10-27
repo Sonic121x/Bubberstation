@@ -2,8 +2,8 @@
 	icon = 'icons/obj/pipes_n_cables/color_adapter.dmi'
 	icon_state = "adapter_map-3"
 
-	name = "color adapter"
-	desc = "A one meter section of regular pipe used to connect different colored pipes."
+	name = "颜色适配器"
+	desc = "一段一米长的普通管道，用于连接颜色不同的管道。"
 
 	dir = SOUTH
 	initialize_directions = NORTH | SOUTH

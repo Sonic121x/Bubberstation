@@ -1,6 +1,6 @@
 /datum/wires/mecha
 	holder_type = /obj/vehicle/sealed/mecha
-	proper_name = "Mecha Control"
+	proper_name = "机甲控制系统"
 
 /datum/wires/mecha/New(atom/holder)
 	wires = list(WIRE_IDSCAN, WIRE_DISARM, WIRE_ZAP, WIRE_OVERCLOCK, WIRE_LAUNCH)
@@ -19,12 +19,12 @@
 /datum/wires/mecha/get_status()
 	var/obj/vehicle/sealed/mecha/mecha = holder
 	var/list/status = list()
-	status += "The orange light is [mecha.internal_damage & MECHA_INT_SHORT_CIRCUIT ? "on" : "off"]."
-	status += "The red light is [mecha.overclock_mode ? "blinking" : "off"]."
-	status += "The green light is [(mecha.mecha_flags & ID_LOCK_ON) || mecha.dna_lock ? "on" : "off"]."
+	status += "橙灯[mecha.internal_damage & MECHA_INT_SHORT_CIRCUIT ? "亮起" : "熄灭"]。"
+	status += "红灯[mecha.overclock_mode ? "正在闪烁" : "熄灭"]。"
+	status += "绿灯[(mecha.mecha_flags & ID_LOCK_ON) || mecha.dna_lock ? "亮起" : "熄灭"]。"
 	if(mecha.mecha_flags & HAS_LIGHTS)
-		status += "The yellow light is [mecha.light_on ? "on" : "off"]."
-	status += "The blue light is [mecha.equipment_disabled ? "on" : "off"]."
+		status += "黄灯[mecha.light_on ? "亮起" : "熄灭"]。"
+	status += "蓝灯[mecha.equipment_disabled ? "亮起" : "熄灭"]。"
 	return status
 
 /datum/wires/mecha/on_pulse(wire, user)

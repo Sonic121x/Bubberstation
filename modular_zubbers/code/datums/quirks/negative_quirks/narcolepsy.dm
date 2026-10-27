@@ -1,10 +1,10 @@
 /datum/quirk/narcolepsy
 	name = "Narcolepsy"
-	desc = "You may fall asleep at any moment and feel tired often."
+	desc = "你随时都可能睡着，而且经常感到疲惫。"
 	icon = FA_ICON_CLOUD_MOON_RAIN
 	value = -8
 	hardcore_value = 8
-	medical_record_text = "Patient may involuntarily fall asleep during normal activities."
+	medical_record_text = "患者可能在正常活动时不由自主地入睡。"
 	mail_goodies = list(
 		/obj/item/reagent_containers/cup/glass/coffee,
 		/obj/item/reagent_containers/cup/soda_cans/space_mountain_wind,
@@ -18,7 +18,7 @@
 
 	var/obj/item/storage/pill_bottle/prescription_stimulant/stimmies = new()
 	if(quirk_holder.equip_to_storage(stimmies, ITEM_SLOT_BACK, del_on_fail = TRUE, initial = TRUE, indirect_action = TRUE))
-		to_chat(quirk_holder, span_info("You have been given a bottle of mild stimulants to assist in staying awake this shift..."))
+		to_chat(quirk_holder, span_info("你获配了一瓶温和兴奋剂，以帮助你在本班次保持清醒……"))
 
 /datum/quirk/narcolepsy/remove()
 	. = ..()
@@ -26,7 +26,7 @@
 	user?.cure_trauma_type(/datum/brain_trauma/severe/narcolepsy/permanent, TRAUMA_RESILIENCE_ABSOLUTE)
 
 /datum/brain_trauma/severe/narcolepsy/permanent
-	scan_desc = "narcolepsy"
+	scan_desc = "发作性睡病"
 
 //similar to parent but slower
 /datum/brain_trauma/severe/narcolepsy/permanent/on_life(seconds_per_tick, times_fired)
@@ -46,10 +46,10 @@
 		sleep_chance = sleep_chance / 2
 
 	if(!drowsy && SPT_PROB(sleep_chance, seconds_per_tick))
-		to_chat(owner, span_warning("You feel tired..."))
+		to_chat(owner, span_warning("你感到疲惫……"))
 		owner.adjust_drowsiness(rand(30 SECONDS, 60 SECONDS))
 
 	else if(drowsy && SPT_PROB(sleep_chance, seconds_per_tick))
-		to_chat(owner, span_warning("You fall asleep."))
+		to_chat(owner, span_warning("你睡着了。"))
 		owner.Sleeping(rand(20 SECONDS, 30 SECONDS))
 

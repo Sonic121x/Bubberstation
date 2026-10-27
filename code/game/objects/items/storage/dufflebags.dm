@@ -1,6 +1,6 @@
 /obj/item/storage/backpack/duffelbag
-	name = "duffel bag"
-	desc = "A large duffel bag for holding extra things."
+	name = "行李袋"
+	desc = "一个大号行李袋，用于存放额外物品。"
 	icon_state = "duffel"
 	inhand_icon_state = "duffel"
 	actions_types = list(/datum/action/item_action/zipper)
@@ -27,7 +27,7 @@
 
 /obj/item/storage/backpack/duffelbag/examine(mob/user)
 	. = ..()
-	. += "[zipped_up ? "It's zipped up, preventing you from accessing its contents." : "It's unzipped, and harder to move in."]"
+	. += "[zipped_up ? "拉链已拉上，你无法取出其中的物品。" : "拉链已拉开，行动起来更迟缓。"]"
 
 /obj/item/storage/backpack/duffelbag/attack_self(mob/user, modifiers)
 	if(loc != user) // God fuck TK
@@ -52,13 +52,13 @@
 	if(!zipped_up)
 		return ..()
 
-	balloon_alert(user, "unzipping...")
+	balloon_alert(user, "正在拉开拉链……")
 	playsound(src, unzip_sfx, 100, FALSE)
 	var/datum/callback/can_unzip = CALLBACK(src, PROC_REF(zipper_matches), TRUE)
 	if(!do_after(user, unzip_duration, src, extra_checks = can_unzip))
-		user.balloon_alert(user, "unzip failed!")
+		user.balloon_alert(user, "拉开拉链失败！")
 		return
-	balloon_alert(user, "unzipped")
+	balloon_alert(user, "已拉开拉链")
 	set_zipper(FALSE)
 	return TRUE
 
@@ -69,13 +69,13 @@
 	if(zipped_up)
 		return SECONDARY_ATTACK_CALL_NORMAL
 
-	balloon_alert(user, "zipping...")
+	balloon_alert(user, "正在拉上拉链……")
 	playsound(src, zip_up_sfx, 100, FALSE)
 	var/datum/callback/can_zip = CALLBACK(src, PROC_REF(zipper_matches), FALSE)
 	if(!do_after(user, zip_up_duration, src, extra_checks = can_zip))
-		user.balloon_alert(user, "zip failed!")
+		user.balloon_alert(user, "拉上拉链失败！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	balloon_alert(user, "zipped")
+	balloon_alert(user, "已拉上拉链")
 	set_zipper(TRUE)
 	return SECONDARY_ATTACK_CONTINUE_CHAIN
 
@@ -107,10 +107,10 @@
 	zip_slowdown = 0
 
 /obj/item/storage/backpack/duffelbag/cursed
-	name = "living duffel bag"
-	desc = "A cursed clown duffel bag that hungers for food of any kind. A warning label suggests that it eats food inside. \
-		If that food happens to be a horribly ruined mess or the chef scrapped out of the microwave, or poisoned in some way, \
-		then it might have negative effects on the bag..."
+	name = "活化行李袋"
+	desc = "一只被诅咒的小丑行李袋，渴望任何种类的食物。警告标签提示它会吃掉里面的食物。\
+		如果那些食物是糟糕透顶的废料、被厨师从微波炉里丢出来的残渣，或以某种方式被下了毒，\
+		那它可能会对袋子产生负面效果……"
 	icon_state = "duffel-curse"
 	inhand_icon_state = "duffel-curse"
 	zip_slowdown = 2
@@ -121,74 +121,74 @@
 	AddComponent(/datum/component/curse_of_hunger, add_dropdel = TRUE)
 
 /obj/item/storage/backpack/duffelbag/captain
-	name = "captain's duffel bag"
-	desc = "A large duffel bag for holding extra captainly goods."
+	name = "舰长行李袋"
+	desc = "一个大号行李袋，用于存放舰长的额外物品。"
 	icon_state = "duffel-captain"
 	inhand_icon_state = "duffel-captain"
 
 /obj/item/storage/backpack/duffelbag/med
-	name = "medical duffel bag"
-	desc = "A large duffel bag for holding extra medical supplies."
+	name = "医疗行李袋"
+	desc = "一个大号行李袋，用于存放额外的医疗用品。"
 	icon_state = "duffel-medical"
 	inhand_icon_state = "duffel-med"
 
 /obj/item/storage/backpack/duffelbag/chief_medic
-	name = "chief medical officer's duffel bag"
-	desc = "A large duffel bag for handling the duties of the entire medical department at once."
+	name = "首席医疗官行李袋"
+	desc = "一个大号行李袋，可一次性承担整个医疗部的职责。"
 	icon_state = "duffel-chiefmedical"
 	inhand_icon_state = "duffel-med"
 
 /obj/item/storage/backpack/duffelbag/coroner
-	name = "coroner duffel bag"
-	desc = "A large duffel bag for holding large amounts of organs at once."
+	name = "验尸官行李袋"
+	desc = "一个大号行李袋，可一次性存放大量器官。"
 	icon_state = "duffel-coroner"
 	inhand_icon_state = "duffel-coroner"
 
 /obj/item/storage/backpack/duffelbag/explorer
-	name = "explorer duffel bag"
-	desc = "A large duffel bag for holding extra exotic treasures."
+	name = "探险家行李袋"
+	desc = "一个大号行李袋，用于存放额外的异域珍宝。"
 	icon_state = "duffel-explorer"
 	inhand_icon_state = "duffel-explorer"
 
 /obj/item/storage/backpack/duffelbag/hydroponics
-	name = "hydroponic's duffel bag"
-	desc = "A large duffel bag for holding extra gardening tools."
+	name = "水培行李袋"
+	desc = "一个大号行李袋，用于存放额外的园艺工具。"
 	icon_state = "duffel-hydroponics"
 	inhand_icon_state = "duffel-hydroponics"
 
 /obj/item/storage/backpack/duffelbag/chemistry
-	name = "chemistry duffel bag"
-	desc = "A large duffel bag for holding extra chemical substances."
+	name = "化学行李袋"
+	desc = "一个大号行李袋，用于存放额外的化学物质。"
 	icon_state = "duffel-chemistry"
 	inhand_icon_state = "duffel-chemistry"
 
 /obj/item/storage/backpack/duffelbag/genetics
-	name = "geneticist's duffel bag"
-	desc = "A large duffel bag for holding extra genetic mutations."
+	name = "基因学家行李袋"
+	desc = "一个大号行李袋，用于存放额外的基因突变。"
 	icon_state = "duffel-genetics"
 	inhand_icon_state = "duffel-genetics"
 
 /obj/item/storage/backpack/duffelbag/science
-	name = "scientist's duffel bag"
-	desc = "A large duffel bag for holding extra scientific components."
+	name = "科学家行李袋"
+	desc = "一个大号行李袋，用于存放额外的科研组件。"
 	icon_state = "duffel-science"
 	inhand_icon_state = "duffel-sci"
 
 /obj/item/storage/backpack/duffelbag/virology
-	name = "virologist's duffel bag"
-	desc = "A large duffel bag for holding extra viral bottles."
+	name = "病毒学家行李袋"
+	desc = "一个大号行李袋，用于存放额外的病毒瓶。"
 	icon_state = "duffel-virology"
 	inhand_icon_state = "duffel-virology"
 
 /obj/item/storage/backpack/duffelbag/sec
-	name = "security duffel bag"
-	desc = "A large duffel bag for holding extra security supplies and ammunition."
+	name = "安保行李袋"
+	desc = "一个大号行李袋，用于存放额外的安保用品与弹药。"
 	icon_state = "duffel-security"
 	inhand_icon_state = "duffel-sec"
 
 /obj/item/storage/backpack/duffelbag/sec/surgery
-	name = "surgical duffel bag"
-	desc = "A large duffel bag for holding extra supplies - this one has a material inlay with space for various sharp-looking tools."
+	name = "手术行李袋"
+	desc = "一个大号行李袋，用于存放额外用品——这一款内嵌衬层，可放置各种锋利的工具。"
 
 /obj/item/storage/backpack/duffelbag/sec/surgery/PopulateContents()
 	new /obj/item/scalpel(src)
@@ -204,15 +204,15 @@
 	new /obj/item/blood_filter(src)
 
 /obj/item/storage/backpack/duffelbag/engineering
-	name = "industrial duffel bag"
-	desc = "A large duffel bag for holding extra tools and supplies."
+	name = "工业行李袋"
+	desc = "一个大号行李袋，用于存放额外的工具和用品。"
 	icon_state = "duffel-engineering"
 	inhand_icon_state = "duffel-eng"
 	resistance_flags = FIRE_PROOF
 
 /obj/item/storage/backpack/duffelbag/drone
-	name = "drone duffel bag"
-	desc = "A large duffel bag for holding tools and hats."
+	name = "无人机行李袋"
+	desc = "一个大号行李袋，用于存放工具和帽子。"
 	icon_state = "duffel-drone"
 	inhand_icon_state = "duffel-drone"
 	resistance_flags = FIRE_PROOF
@@ -227,8 +227,8 @@
 	new /obj/item/multitool(src)
 
 /obj/item/storage/backpack/duffelbag/clown
-	name = "clown's duffel bag"
-	desc = "A large duffel bag for holding lots of funny gags!"
+	name = "小丑行李袋"
+	desc = "一个大号行李袋，用于存放许多搞笑道具！"
 	icon_state = "duffel-clown"
 	inhand_icon_state = "duffel-clown"
 
@@ -240,8 +240,8 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/storage/backpack/duffelbag/syndie
-	name = "tactical duffel bag" // BUBBER EDIT CHANGE: Just a normal bag. Original: name = "suspicious looking duffel bag"
-	desc = "A large duffel bag for holding extra tactical supplies." // BUBBER EDIT CHANGE: Just a normal bag. Original: desc = "A large duffel bag for holding extra tactical supplies. It contains an oiled plastitanium zipper for maximum speed tactical zipping, and is better balanced on your back than an average duffelbag. Can hold two bulky items!"
+	name = "战术行李袋" // BUBBER EDIT CHANGE: Just a normal bag. Original: name = "suspicious looking duffel bag"
+	desc = "一个大号行李袋，用于存放额外的战术补给。" // BUBBER EDIT CHANGE: Just a normal bag. Original: desc = "A large duffel bag for holding extra tactical supplies. It contains an oiled plastitanium zipper for maximum speed tactical zipping, and is better balanced on your back than an average duffelbag. Can hold two bulky items!"
 	icon_state = "duffel-syndie"
 	inhand_icon_state = "duffel-syndieammo"
 	storage_type = /datum/storage/duffel/syndicate
@@ -254,11 +254,11 @@
 
 	// BUBBER EDIT ADDITION BEGIN: Just a normal bag.
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE
-	special_desc = "This duffel bag has the Syndicate logo stiched on the inside. It appears to be made from lighter yet sturdier materials, and features an oiled plastitanium zipper for maximum speed tactical zipping."
+	special_desc = "这只行李袋内侧缝有辛迪加标志。它似乎由更轻却更坚固的材料制成，并配有上油的塑钛拉链，以便以最快速度完成战术拉链操作。"
 	// BUBBER EDIT ADDITION END: Just a normal bag.
 
 /obj/item/storage/backpack/duffelbag/syndie/hitman
-	desc = "A large duffel bag for holding extra things. There is a Nanotrasen logo on the back."
+	desc = "一个大号行李袋，用于存放额外物品。背面印有纳米传讯标志。"
 	icon_state = "duffel-syndieammo"
 	inhand_icon_state = "duffel-syndieammo"
 
@@ -273,20 +273,20 @@
 	new /obj/item/clothing/head/fedora(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/med
-	name = "medical duffel bag"
-	desc = "A large duffel bag for holding extra tactical medical supplies."
+	name = "医疗行李袋"
+	desc = "一个大号行李袋，用于存放额外的战术医疗用品。"
 	icon_state = "duffel-syndiemed"
 	inhand_icon_state = "duffel-syndiemed"
 
 /obj/item/storage/backpack/duffelbag/syndie/surgery
-	name = "surgery duffel bag"
-	desc = "A large duffel bag for holding extra supplies - this one has a material inlay with space for various sharp-looking tools." // BUBBER EDIT CHANGE: Just a normal bag. Original: desc = "A suspicious looking duffel bag for holding surgery tools."
+	name = "手术行李袋"
+	desc = "一个大号行李袋，用于存放额外用品——这一款内嵌衬层，可放置各种锋利的工具。" // BUBBER EDIT CHANGE: Just a normal bag. Original: desc = "A suspicious looking duffel bag for holding surgery tools."
 	icon_state = "duffel-syndiemed"
 	inhand_icon_state = "duffel-syndiemed"
 
 	// BUBBER EDIT ADDITION BEGIN: Just a normal bag.
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE
-	special_desc = "This duffel bag has the Syndicate logo stiched on the inside. It appears to be made from lighter yet sturdier materials."
+	special_desc = "这只行李袋内侧缝有辛迪加标志。它似乎由更轻却更坚固的材料制成。"
 	// BUBBER EDIT ADDITION END: Just a normal bag.
 
 /obj/item/storage/backpack/duffelbag/syndie/surgery/PopulateContents()
@@ -305,14 +305,14 @@
 	new /obj/item/mmi/syndie(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo
-	name = "ammunition duffel bag"
-	desc = "A large duffel bag for holding extra weapons ammunition and supplies."
+	name = "弹药行李袋"
+	desc = "一个大号行李袋，用于存放额外的武器弹药与补给。"
 	icon_state = "duffel-syndieammo"
 	inhand_icon_state = "duffel-syndieammo"
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/darkgygax
-	name = "\improper Dark Gygax ammunition duffel bag"
-	desc = "A large duffel bag, packed to the brim with ammunition for the scattershot exosuit weapon. Suited to equipping the standard loadout of a Dark Gygax."
+	name = "\improper 暗黑吉盖克斯弹药行李袋"
+	desc = "一个大号行李袋，塞满了供外骨骼霰弹武器使用的弹药，适合为暗黑吉盖克斯的标准配置提供补给。"
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/darkgygax/PopulateContents()
 	new /obj/item/mecha_ammo/scattershot(src)
@@ -324,8 +324,8 @@
 	new /obj/item/storage/belt/utility/syndicate(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/mauler
-	name = "\improper Mauler ammunition duffel bag"
-	desc = "A large duffel bag, packed to the brim with various exosuit ammo. Suited to equipping the standard loadout of a Dark Gygax."
+	name = "\improper 蹂躏者弹药行李袋"
+	desc = "一个大号行李袋，塞满了各种外骨骼弹药，适合为暗黑吉盖克斯的标准配置提供补给。"
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/mauler/PopulateContents()
 	new /obj/item/mecha_ammo/lmg(src)
@@ -337,7 +337,7 @@
 	new /obj/item/storage/belt/utility/syndicate(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/med/medicalbundle
-	desc = "A large duffel bag containing a medical equipment, a Donksoft LMG, a big jumbo box of riot darts, and a magboot MODsuit module."
+	desc = "一个大号行李袋，内含一套医疗设备、一挺咚克软弹轻机枪、一大盒防暴飞镖，以及一个磁力靴 MOD 外骨骼模块。"
 
 /obj/item/storage/backpack/duffelbag/syndie/med/medicalbundle/PopulateContents()
 	new /obj/item/mod/module/magboot(src)
@@ -346,7 +346,7 @@
 	new /obj/item/ammo_box/foambox/riot(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/med/bioterrorbundle
-	desc = "A large duffel bag containing deadly chemicals, a handheld chem sprayer, Bioterror foam grenade, a Donksoft assault rifle, box of riot grade darts, a dart pistol, and a box of syringes."
+	desc = "一个大号行李袋，内含致命化学品、一把手持化学喷雾器、一枚生物恐怖泡沫手榴弹、一把咚克软弹突击步枪、一盒防暴级飞镖、一把飞镖手枪和一盒注射器。"
 
 /obj/item/storage/backpack/duffelbag/syndie/med/bioterrorbundle/PopulateContents()
 	new /obj/item/reagent_containers/spray/chemsprayer/bioterror(src)
@@ -368,7 +368,7 @@
 		new /obj/item/grenade/c4/x4(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/firestarter
-	desc = "A large duffel bag containing a New Russian pyro backpack sprayer, Elite MODsuit, a Stechkin APS pistol, minibomb, ammo, and other equipment."
+	desc = "一个大号行李袋，内含新俄罗斯喷火背包喷射器、精英 MOD 外骨骼、一把斯捷奇金 APS 手枪、迷你炸弹、弹药及其他装备。"
 
 /obj/item/storage/backpack/duffelbag/syndie/firestarter/PopulateContents()
 	new /obj/item/clothing/under/syndicate/soviet(src)
@@ -393,18 +393,18 @@
 	new /obj/item/implanter/sad_trombone(src)
 
 /obj/item/storage/backpack/henchmen
-	name = "wings"
-	desc = "Granted to the henchmen who deserve it. This probably doesn't include you."
+	name = "翅膀"
+	desc = "授予配得上的喽啰。这大概不包括你。"
 	icon_state = "henchmen"
 	inhand_icon_state = null
 
 /obj/item/storage/backpack/duffelbag/cops
-	name = "police bag"
-	desc = "A large duffel bag for holding extra police gear."
+	name = "警用包"
+	desc = "一个大号行李袋，用于存放额外的警用装备。"
 
 /obj/item/storage/backpack/duffelbag/mining_conscript
-	name = "mining conscription kit"
-	desc = "A duffel bag containing everything a crewmember needs to support a shaft miner in the field."
+	name = "采矿征召套件"
+	desc = "一个行李袋，内含船员在野外支援竖井矿工所需的一切。"
 	icon_state = "duffel-explorer"
 	inhand_icon_state = "duffel-explorer"
 

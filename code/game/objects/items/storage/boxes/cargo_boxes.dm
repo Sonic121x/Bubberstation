@@ -1,8 +1,8 @@
 // This file contains all boxes used by the Cargo department and its purpose on the station.
 
 /obj/item/storage/box/shipping
-	name = "box of shipping supplies"
-	desc = "Contains several scanners and labelers for shipping things. Wrapping Paper not included."
+	name = "货运用品箱"
+	desc = "内含数个用于货运的扫描仪和贴标器。不含包装纸。"
 	illustration = "shipping"
 
 /obj/item/storage/box/shipping/PopulateContents()
@@ -15,8 +15,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/shipping/debug
-	name = "box of bigger shipping supplies"
-	desc = "Everything you need to make your own cargo department."
+	name = "更大的货运用品箱"
+	desc = "建立你自己的货运部所需的一切。"
 
 /obj/item/storage/box/shipping/debug/PopulateContents()
 	var/list/items_inside = list(

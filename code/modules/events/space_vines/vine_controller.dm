@@ -49,7 +49,7 @@ GLOBAL_LIST_INIT(vine_mutations_list, init_vine_mutation_list())
 /datum/spacevine_controller/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "--- /spacevine_controller ---")
-	VV_DROPDOWN_OPTION(VV_HK_SPACEVINE_PURGE, "Delete Vines")
+	VV_DROPDOWN_OPTION(VV_HK_SPACEVINE_PURGE, "删除藤蔓")
 
 /datum/spacevine_controller/vv_do_topic(href_list)
 	. = ..()
@@ -58,7 +58,7 @@ GLOBAL_LIST_INIT(vine_mutations_list, init_vine_mutation_list())
 		return
 
 	if(href_list[VV_HK_SPACEVINE_PURGE])
-		if(tgui_alert(usr, "Are you sure you want to delete this spacevine cluster?", "Delete Vines", list("Yes", "No")) == "Yes")
+		if(tgui_alert(usr, "你确定要删除这簇太空藤蔓吗？", "删除藤蔓", list("Yes", "No")) == "Yes")
 			DeleteVines()
 
 /datum/spacevine_controller/proc/DeleteVines() //this is kill

@@ -56,7 +56,7 @@
  * The core
  */
 /obj/structure/mold/structure/core
-	name = "core"
+	name = "核心"
 	icon = 'modular_skyrat/modules/mold/icons/blob_core.dmi'
 	icon_state = "blob_core"
 	layer = TABLE_LAYER
@@ -126,8 +126,8 @@
  * Mold resin
  */
 /obj/structure/mold/resin
-	name = "mold"
-	desc = "It looks like mold, but it seems alive."
+	name = "霉菌"
+	desc = "看起来像霉菌，却似乎有生命。"
 	icon = 'modular_skyrat/modules/mold/icons/blob_resin.dmi'
 	icon_state = "blob_floor"
 	density = FALSE
@@ -214,7 +214,7 @@
  * Bulbs
  */
 /obj/structure/mold/structure/bulb
-	name = "bulb"
+	name = "菌囊"
 	icon = 'modular_skyrat/modules/mold/icons/blob_bulb.dmi'
 	icon_state = "blob_bulb_empty"
 	density = FALSE
@@ -302,8 +302,8 @@
  * Wall
  */
 /obj/structure/mold/structure/wall
-	name = "mold wall"
-	desc = "Looks like some kind of thick resin."
+	name = "霉菌墙"
+	desc = "看起来像某种浓稠的树脂。"
 	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi'
 	icon_state = "resin_wall-0"
 	base_icon_state = "resin_wall"
@@ -325,8 +325,8 @@
  * Conditioner
  */
 /obj/structure/mold/structure/conditioner
-	name = "pulsating vent"
-	desc = "An unsightly vent, it appears to be puffing something out."
+	name = "搏动气孔"
+	desc = "一个难看的气孔，似乎正向外喷吐着什么。"
 	density = FALSE
 	icon = 'modular_skyrat/modules/mold/icons/blob_spawner.dmi'
 	icon_state = "blob_vent"
@@ -366,7 +366,7 @@
  * Hatchery
  */
 /obj/structure/mold/structure/spawner
-	name = "hatchery"
+	name = "孵化巢"
 	icon = 'modular_skyrat/modules/mold/icons/blob_spawner.dmi'
 	icon_state = "blob_spawner"
 	density = FALSE
@@ -385,7 +385,7 @@
 		spawn_time = mold_type.spawn_cooldown, \
 		max_spawned = mold_type.max_spawns, \
 		faction = list(FACTION_MOLD), \
-		spawn_text = "emerges from", \
+		spawn_text = "钻出", \
 	)
 
 #undef CORE_RETALIATION_COOLDOWN

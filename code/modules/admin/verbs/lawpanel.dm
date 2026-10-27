@@ -1,6 +1,6 @@
-ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(law_panel, R_ADMIN, "AI 法则面板", "查看 AI 法则。", ADMIN_CATEGORY_EVENTS)
 	if(!isobserver(user) && SSticker.HasRoundStarted())
-		message_admins("[key_name_admin(user)] checked AI laws via the Law Panel.")
+		message_admins("[key_name_admin(user)] 通过 AI 法则面板查看了 AI 法则。")
 	var/datum/law_panel/tgui = new
 	tgui.ui_interact(user.mob)
 	BLACKBOX_LOG_ADMIN_VERB("Law Panel")
@@ -21,10 +21,10 @@ ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_
 
 /datum/law_panel/proc/add_law_helper(mob/living/user, mob/living/silicon/borgo)
 	var/list/lawtypes = list(LAW_ZEROTH, LAW_HACKED, LAW_INHERENT, LAW_SUPPLIED) // in order of priority
-	var/lawtype = tgui_input_list(user, "Select law type", "Law type", lawtypes)
+	var/lawtype = tgui_input_list(user, "选择法则类型", "法则类型", lawtypes)
 	if(isnull(lawtype))
 		return FALSE
-	var/lawtext = tgui_input_text(user, "Input law text", "Law text") // admin verb so no max length and also any user-level input is config based already so ehhhh
+	var/lawtext = tgui_input_text(user, "输入法则内容", "法则内容") // admin verb so no max length and also any user-level input is config based already so ehhhh
 	if(!lawtext)
 		return FALSE
 	if(QDELETED(src) || QDELETED(borgo))
@@ -33,8 +33,8 @@ ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_
 	switch(lawtype)
 		if(LAW_ZEROTH)
 			if(borgo.laws.zeroth || borgo.laws.zeroth_borg)
-				var/zero_override_alert = tgui_alert(user, "This silicon already has a zeroth law, \
-					this will override their existing one. Are you sure?", "Zeroth law override", list("Yes", "No"))
+				var/zero_override_alert = tgui_alert(user, "该硅基单位已经有一条第零法则了，\
+					继续操作将覆盖其现有法则。你确定吗？", "覆盖第零法则", list("Yes", "No"))
 				if(zero_override_alert != "Yes" || QDELETED(src) || QDELETED(borgo))
 					return FALSE
 
@@ -47,41 +47,41 @@ ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_
 		if(LAW_SUPPLIED)
 			borgo.laws.add_supplied_law(lawtext) // Just goes to the end of the list
 
-	log_law_change(user, "added law to [key_name(borgo)] (type: [lawtype], text: [lawtext])")
-	log_admin("[key_name(user)] has UPLOADED a [lawtype] law to [key_name(borgo)] stating: [lawtext]")
-	message_admins("[key_name(user)] has UPLOADED a [lawtype] law to [key_name(borgo)] stating: [lawtext]")
+	log_law_change(user, "为 [key_name(borgo)] 添加了法则（类型：[lawtype]，内容：[lawtext]）")
+	log_admin("[key_name(user)] 向 [key_name(borgo)] 上传了一条 [lawtype] 法则，内容为：[lawtext]")
+	message_admins("[key_name(user)] 向 [key_name(borgo)] 上传了一条 [lawtype] 法则，内容为：[lawtext]")
 	return TRUE
 
 /datum/law_panel/proc/move_law_helper(mob/living/user, mob/living/silicon/borgo, direction, law)
 	var/list/relevant_laws = borgo.laws.inherent
 	var/lawindex = relevant_laws.Find(law)
 	if(!lawindex)
-		to_chat(user, span_danger("Something went wrong, we couldn't move that law."))
+		to_chat(user, span_danger("出了点问题，我们无法移动那条法则。"))
 		return FALSE
 
 	switch(direction)
 		if("up")
 			if(lawindex == length(relevant_laws)) // Already at the top? Sanity
-				to_chat(user, span_danger("Something went wrong, we couldn't move that law."))
+				to_chat(user, span_danger("出了点问题，我们无法移动那条法则。"))
 				return FALSE
 
 			relevant_laws.Swap(lawindex + 1, lawindex)
 		if("down")
 			if(lawindex == 1) // Already at the bottom? Sanity
-				to_chat(user, span_danger("Something went wrong, we couldn't move that law."))
+				to_chat(user, span_danger("出了点问题，我们无法移动那条法则。"))
 				return FALSE
 
 			relevant_laws.Swap(lawindex - 1, lawindex)
 		else
 			CRASH("Invalid direction ([direction]) passed to move_law_helper.")
 
-	log_law_change(user, "moved law for [key_name(borgo)] (type: [LAW_INHERENT], law: [law], direction: [direction])")
-	log_admin("[key_name(user)] has MOVED a [LAW_INHERENT] law for [key_name(borgo)] [direction]. LAW: [law]")
-	message_admins("[key_name(user)] has MOVED a [LAW_INHERENT] law for [key_name(borgo)] [direction]. LAW: [law]")
+	log_law_change(user, "移动了 [key_name(borgo)] 的法则（类型：[LAW_INHERENT]，法则：[law]，方向：[direction]）")
+	log_admin("[key_name(user)] 移动了 [key_name(borgo)] 的一条 [LAW_INHERENT] 法则，方向为 [direction]。法则：[law]")
+	message_admins("[key_name(user)] 移动了 [key_name(borgo)] 的一条 [LAW_INHERENT] 法则，方向为 [direction]。法则：[law]")
 	return TRUE
 
 /datum/law_panel/proc/edit_law_text_helper(mob/living/user, mob/living/silicon/borgo, lawtype, oldlaw)
-	var/newlaw = tgui_input_text(user, "Edit this law's text.", "Edit law", oldlaw)
+	var/newlaw = tgui_input_text(user, "编辑这条法则的内容。", "编辑法则", oldlaw)
 	if(!newlaw || QDELETED(src) || QDELETED(borgo))
 		return FALSE
 
@@ -103,15 +103,15 @@ ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_
 	if(lawtype != LAW_ZEROTH)
 		var/lawindex = relevant_laws.Find(oldlaw)
 		if(!lawindex)
-			to_chat(user, span_danger("Something went wrong, we couldn't edit that law."))
+			to_chat(user, span_danger("出了点问题，我们无法编辑那条法则。"))
 			return FALSE
 
 		relevant_laws[lawindex] = newlaw
 
-	log_law_change(user, "edited law for [key_name(borgo)] (type: [lawtype], old: [oldlaw], new: [newlaw])")
-	log_admin("[key_name(user)] has EDITED [key_name(borgo)] [lawtype] law. OLD LAW: [oldlaw] \
-		NEW LAW: [newlaw]")
-	message_admins("[key_name(user)] has EDITED a [lawtype] law on [key_name(borgo)]")
+	log_law_change(user, "编辑了 [key_name(borgo)] 的法则（类型：[lawtype]，原内容：[oldlaw]，新内容：[newlaw]）")
+	log_admin("[key_name(user)] 编辑了 [key_name(borgo)] 的 [lawtype] 法则。原法则：[oldlaw] \
+		新法则：[newlaw]")
+	message_admins("[key_name(user)] 编辑了 [key_name(borgo)] 的一条 [lawtype] 法则")
 	return TRUE
 
 /datum/law_panel/proc/remove_law_helper(mob/living/user, mob/living/silicon/borgo, lawtype, law)
@@ -127,9 +127,9 @@ ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_
 		else
 			return FALSE
 
-	log_law_change(user, "removed law from [key_name(borgo)] (type: [lawtype], text: [law])")
-	log_admin("[key_name(user)] has REMOVED a law from [key_name(borgo)]. LAW: [law]")
-	message_admins("[key_name(user)] has REMOVED a law from [key_name(borgo)]. LAW: [law]")
+	log_law_change(user, "从 [key_name(borgo)] 移除了法则（类型：[lawtype]，内容：[law]）")
+	log_admin("[key_name(user)] 从 [key_name(borgo)] 移除了一条法则。法则：[law]")
+	message_admins("[key_name(user)] 从 [key_name(borgo)] 移除了一条法则。法则：[law]")
 	return TRUE
 
 /datum/law_panel/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -145,7 +145,7 @@ ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_
 	if(params["ref"])
 		borgo = locate(params["ref"]) in GLOB.silicon_mobs
 		if(QDELETED(borgo))
-			to_chat(usr, span_danger("That cyborg is invalid."))
+			to_chat(usr, span_danger("该半机械人无效。"))
 			return TRUE
 
 	switch(action)
@@ -206,16 +206,16 @@ ADMIN_VERB(law_panel, R_ADMIN, "Law Panel", "View the AI laws.", ADMIN_CATEGORY_
 
 			borg_information["master_ai"] = cyborg.connected_ai?.real_name
 			borg_information["borg_synced"] = cyborg.lawupdate
-			borg_information["borg_type"] = "Cyborg"
+			borg_information["borg_type"] = "半机械人"
 
 		else if(isAI(borgo))
 			borg_information["borg_type"] = "AI"
 
 		else if(ispAI(borgo))
-			borg_information["borg_type"] = "PAI"
+			borg_information["borg_type"] = "个人 AI"
 
 		else
-			borg_information["borg_type"] = "Unknown"
+			borg_information["borg_type"] = "未知"
 
 		borg_information["borg_name"] = borgo.real_name
 		borg_information["ref"] = REF(borgo)

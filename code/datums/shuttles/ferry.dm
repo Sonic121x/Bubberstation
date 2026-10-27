@@ -6,41 +6,41 @@
 /datum/map_template/shuttle/ferry/base
 	suffix = "base"
 	name = "transport ferry"
-	description = "Standard issue Box/Metastation CentCom ferry."
+	description = "Box/Meta 站标准配备的中央指挥部渡船。"
 
 /datum/map_template/shuttle/ferry/meat
 	suffix = "meat"
 	name = "\"meat\" ferry"
-	description = "Ahoy! We got all kinds o' meat aft here. Meat from plant people, people who be dark, not in a racist way, just they're dark black. \
-	Oh and lizard meat too,mighty popular that is. Definitely 100% fresh, just ask this guy here. *person on meatspike moans* See? \
-	Definitely high quality meat, nothin' wrong with it, nothin' added, definitely no zombifyin' reagents!"
-	admin_notes = "Meat currently contains no zombifying reagents, lizard on meatspike must be spawned in."
+	description = "喂！船尾这儿啥肉都有。植物人的肉，还有黑乎乎的人的肉——不是种族歧视，他们就是漆黑一片。\
+	哦，还有蜥蜴肉，那可是畅销货。绝对百分百新鲜，不信问这位。*肉钩上的人呻吟起来* 看吧？\
+	绝对的优质肉，没毛病，没添加剂，绝对没有让人变僵尸的药剂！"
+	admin_notes = "肉目前不含僵尸化药剂；肉钩上的蜥蜴人需要手动生成。"
 
 /datum/map_template/shuttle/ferry/lighthouse
 	suffix = "lighthouse"
 	name = "The Lighthouse(?)"
-	description = "*static*... part of a much larger vessel, possibly military in origin. \
-	The weapon markings aren't anything we've seen ...static... by almost never the same person twice, possible use of unknown storage ...static... \
-	seeing ERT officers onboard, but no missions are on file for ...static...static...annoying jingle... only at The LIGHTHOUSE! \
-	Fulfilling needs you didn't even know you had. We've got EVERYTHING, and something else!"
-	admin_notes = "Currently larger than ferry docking port on Box, will not hit anything, but must be force docked. Trader and ERT bodyguards are not included."
+	description = "*杂音*……是一艘更大型舰船的一部分，可能源自军方。\
+	武器上的标记我们从未见过……杂音……几乎从不由同一个人两次，可能使用了未知的储存……杂音……\
+	看到紧急响应小队军官在船上，但没有任何任务记录……杂音……杂音……恼人的广告曲……尽在灯塔号！\
+	满足你连自己都没察觉的需求。我们应有尽有，还不止于此！"
+	admin_notes = "目前比 Box 站的渡船停靠口更大，不会撞到东西，但必须强制对接。不包含商人和紧急响应小队保镖。"
 
 /datum/map_template/shuttle/ferry/fancy
 	suffix = "fancy"
 	name = "fancy transport ferry"
-	description = "At some point, someone upgraded the ferry to have fancier flooring... and fewer seats."
+	description = "某个时候，有人给渡船换上了更华丽的地板……以及更少的座位。"
 
 /datum/map_template/shuttle/ferry/kilo
 	suffix = "kilo"
 	name = "kilo transport ferry"
-	description = "Standard issue CentCom Ferry for Kilo pattern stations. Includes additional equipment and rechargers."
+	description = "Kilo 型空间站标准配备的中央指挥部渡船。包含额外设备和充电器。"
 
 /datum/map_template/shuttle/ferry/northstar
 	suffix = "northstar"
 	name = "north star transport ferry"
-	description = "In the very depths of the frontier, you'll need a rugged shuttle capable of delivering crew, this is that."
+	description = "在边疆深处，你需要一艘能运送船员的坚固穿梭机，就是它了。"
 
 /datum/map_template/shuttle/ferry/nebula
 	suffix = "nebula"
 	name = "nebula transport ferry"
-	description = "A good ferry for a graceful trip with a breeze. Comes with rechargers."
+	description = "让旅程轻松惬意的优质渡船。配有充电器。"

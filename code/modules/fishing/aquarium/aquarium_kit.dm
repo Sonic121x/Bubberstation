@@ -1,7 +1,7 @@
 ///Fish feed can
 /obj/item/reagent_containers/cup/fish_feed
-	name = "fish feed can"
-	desc = "A refillable can that dispenses nutritious fish feed."
+	name = "鱼食罐"
+	desc = "可补充的罐子，能挤出营养丰富的鱼食。"
 	icon = 'icons/obj/aquarium/supplies.dmi'
 	icon_state = "fish_feed"
 	w_class = WEIGHT_CLASS_TINY
@@ -19,8 +19,8 @@
  * Most subtypes of this also start with a fish already inside.
  */
 /obj/item/storage/fish_case
-	name = "stasis fish case"
-	desc = "A resizable case keeping the fish inside in stasis."
+	name = "休眠鱼盒"
+	desc = "可调整大小的盒子，能让其中的鱼保持休眠。"
 	icon = 'icons/obj/storage/case.dmi'
 	icon_state = "fishbox"
 	w_class = WEIGHT_CLASS_SMALL
@@ -58,7 +58,7 @@
 	fluid_type = AQUARIUM_FLUID_SALTWATER
 
 /obj/item/storage/fish_case/syndicate
-	name = "ominous fish case"
+	name = "不祥的鱼盒"
 
 /obj/item/storage/fish_case/syndicate/get_fish_type()
 	var/datum/fish_source/portal/syndicate = GLOB.preset_fish_sources[/datum/fish_source/portal/syndicate]
@@ -69,7 +69,7 @@
 	return pick(picks)
 
 /obj/item/storage/fish_case/tiziran
-	name = "imported fish case"
+	name = "进口鱼盒"
 
 /obj/item/storage/fish_case/tiziran/get_fish_type()
 	return pick_weight(list(
@@ -82,8 +82,8 @@
 
 ///Subtype bought from the blackmarket at a gratuitously cheap price. The catch? The fish inside it is dead.
 /obj/item/storage/fish_case/blackmarket
-	name = "ominous fish case"
-	desc = "A resizable case keeping the fish inside in stasis. This one holds a faint cadaverine smell."
+	name = "不祥的鱼盒"
+	desc = "可调整大小的盒子，能让其中的鱼保持休眠。这一只带着淡淡的尸胺气味。"
 
 /obj/item/storage/fish_case/blackmarket/get_fish_type()
 	var/static/list/weighted_list = list(
@@ -109,16 +109,16 @@
 		fish.set_status(FISH_DEAD)
 
 /obj/item/storage/fish_case/bluespace
-	name = "bluespace fish case"
+	name = "蓝空间鱼盒"
 	icon_state = "fishbox_bluespace"
-	desc = "An improved fish case to keep large fish in stasis in a compact little space."
+	desc = "改进型鱼盒，能在紧凑的小空间里让大鱼保持休眠。"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/fish_case
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT, /datum/material/plastic = SMALL_MATERIAL_AMOUNT, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT)
 
 /obj/item/aquarium_kit
-	name = "DIY Aquarium Construction Kit"
-	desc = "Everything you need to build your own aquarium or fish tank. Raw materials sold separately."
+	name = "DIY 水族箱建造套件"
+	desc = "建造你自己的水族箱或鱼缸所需的一切。原材料另售。"
 	icon = 'icons/obj/aquarium/supplies.dmi'
 	icon_state = "construction_kit"
 	w_class = WEIGHT_CLASS_TINY
@@ -130,8 +130,8 @@
 	AddElement(/datum/element/slapcrafting, recipes)
 
 /obj/item/aquarium_prop
-	name = "generic aquarium prop"
-	desc = "very boring"
+	name = "通用水族装饰物"
+	desc = "非常无聊"
 	icon = 'icons/obj/aquarium/tanks.dmi'
 
 	w_class = WEIGHT_CLASS_TINY
@@ -159,29 +159,29 @@
 	beauty_holder += beauty
 
 /obj/item/aquarium_prop/rocks
-	name = "decorative rocks"
-	desc = "A bunch of tiny plastic rocks for decorating an aquarium. Surely you could have just used real pebbles?"
+	name = "装饰岩石"
+	desc = "一堆用于装饰水族箱的小塑料石头。你明明可以直接用真鹅卵石吧？"
 	icon_state = "rocks"
 
 /obj/item/aquarium_prop/seaweed
-	name = "fake seaweed"
-	desc = "Little plastic sheets with weighted bottoms, designed to look like underwater foliage. They can be used to spruce up an aquarium."
+	name = "假水草"
+	desc = "底部配重的小塑料片，专门做成水下植物的样子。它们可以用来装点水族箱。"
 	icon_state = "seaweeds_back"
 	layer_mode = AQUARIUM_LAYER_MODE_BOTTOM
 
 /obj/item/aquarium_prop/seaweed/top
-	desc = "A bunch of artificial plants for an aquarium."
+	desc = "一堆用于水族箱的人造植物。"
 	icon_state = "seaweeds_front"
 	layer_mode = AQUARIUM_LAYER_MODE_TOP
 
 /obj/item/aquarium_prop/sand
-	name = "aquarium sand"
-	desc = "A plastic board for lining the bottom of an aquarium. It's got a bumpy patterned surface vaguely reminiscent of yellow sand."
+	name = "水族箱底沙"
+	desc = "用于铺在水族箱底部的塑料板。它的表面有凹凸纹理，隐约让人想起黄色的沙子。"
 	icon_state = "sand"
 	layer_mode = AQUARIUM_LAYER_MODE_BEHIND_GLASS
 
 /obj/item/aquarium_prop/treasure
-	name = "tiny treasure chest"
-	desc = "A very small plastic treaure chest, with nothing inside. You could put this in an aquarium, and it'll look like very small pirates hid treasure in there. Wouldn't that be nice?"
+	name = "微型宝箱"
+	desc = "一个非常小的塑料宝箱，里面空空如也。你可以把它放进水族箱，看起来就像有非常小的海盗把宝藏藏在了那里。那不是挺好吗？"
 	icon_state = "treasure"
 	layer_mode = AQUARIUM_LAYER_MODE_BOTTOM

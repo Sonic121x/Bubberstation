@@ -1,8 +1,8 @@
 /datum/surgery_operation/organ/fix_wings
-	name = "repair wings"
-	rnd_name = "Pteroplasty (Wing Repair)"
-	desc = "Repair a patient's damaged wings to restore flight capability."
-	rnd_desc = "A surgical procedure that repairs damaged wings using Synthflesh."
+	name = "修复翅膀"
+	rnd_name = "翅膀整形术（翅膀修复）"
+	desc = "修复病人受损的翅膀，以恢复飞行能力。"
+	rnd_desc = "一种使用合成肉液修复受损翅膀的手术。"
 	implements = list(
 		TOOL_HEMOSTAT = 1.15,
 		TOOL_SCREWDRIVER = 2.85,
@@ -19,10 +19,10 @@
 	return image(icon = 'icons/mob/human/species/moth/moth_wings.dmi', icon_state = "m_moth_wings_monarch_BEHIND")
 
 /datum/surgery_operation/organ/fix_wings/all_required_strings()
-	return ..() + list("the wings must be burnt", "the patient must be dosed with >=5u [/datum/reagent/medicine/c2/synthflesh::name]")
+	return ..() + list("翅膀必须已被烧毁", "病人必须已摄入至少 5 单位 [/datum/reagent/medicine/c2/synthflesh::name]")
 
 /datum/surgery_operation/organ/fix_wings/all_blocked_strings()
-	return ..() + list("if the limb has bones, they must be intact")
+	return ..() + list("若该肢体有骨骼，则骨骼必须完好")
 
 /datum/surgery_operation/organ/fix_wings/state_check(obj/item/organ/wings/moth/organ)
 	if(!organ.burnt)
@@ -38,21 +38,21 @@
 	display_results(
 		surgeon,
 		organ.owner,
-		span_notice("You begin to repair [organ.owner]'s damaged wings..."),
-		span_notice("[surgeon] begins to repair [organ.owner]'s damaged wings."),
-		span_notice("[surgeon] begins to perform surgery on [organ.owner]'s damaged wings."),
+		span_notice("你开始修复 [organ.owner] 受损的翅膀……"),
+		span_notice("[surgeon] 开始修复 [organ.owner] 受损的翅膀。"),
+		span_notice("[surgeon] 开始对 [organ.owner] 受损的翅膀施行手术。"),
 	)
-	display_pain(organ.owner, "Your wings sting like hell!")
+	display_pain(organ.owner, "你的翅膀疼得要命！")
 
 /datum/surgery_operation/organ/fix_wings/on_success(obj/item/organ/wings/moth/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
 		surgeon,
 		organ.owner,
-		span_notice("You succeed in repairing [organ.owner]'s wings."),
-		span_notice("[surgeon] successfully repairs [organ.owner]'s wings!"),
-		span_notice("[surgeon] completes the surgery on [organ.owner]'s wings."),
+		span_notice("你成功修复了 [organ.owner] 的翅膀。"),
+		span_notice("[surgeon] 成功修复了 [organ.owner] 的翅膀！"),
+		span_notice("[surgeon] 完成了对 [organ.owner] 翅膀的手术。"),
 	)
-	display_pain(organ.owner, "You can feel your wings again!")
+	display_pain(organ.owner, "你又能感觉到自己的翅膀了！")
 	// heal the wings in question
 	organ.heal_wings(surgeon, ALL)
 

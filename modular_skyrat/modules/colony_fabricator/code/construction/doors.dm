@@ -1,7 +1,7 @@
 // Shutters
 
 /obj/machinery/door/poddoor/shutters/colony_fabricator
-	name = "prefab shutters"
+	name = "预制卷帘门"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/doors/shutter.dmi'
 
 /obj/machinery/door/poddoor/shutters/colony_fabricator/preopen
@@ -35,7 +35,7 @@
 			return 0.4 SECONDS
 
 /obj/item/flatpacked_machine/shutter_kit
-	name = "prefab shutters parts kit"
+	name = "预制卷帘门零件包"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/doors/packed.dmi'
 	icon_state = "shutters_parts"
 	type_to_deploy = /obj/machinery/door/poddoor/shutters/colony_fabricator/preopen
@@ -48,20 +48,20 @@
 // Airlocks
 
 /obj/machinery/door/airlock/colony_prefab
-	name = "prefab airlock"
+	name = "预制气闸"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/doors/airlock.dmi'
 	overlays_file = 'modular_skyrat/modules/colony_fabricator/icons/doors/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_colony_prefab
 
 /obj/structure/door_assembly/door_assembly_colony_prefab
-	name = "prefab airlock assembly"
+	name = "预制气闸组件"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/doors/airlock.dmi'
-	base_name = "prefab airlock"
+	base_name = "预制气闸"
 	airlock_type = /obj/machinery/door/airlock/colony_prefab
 	noglass = TRUE
 
 /obj/item/flatpacked_machine/airlock_kit
-	name = "prefab airlock parts kit"
+	name = "预制气闸零件包"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/doors/packed.dmi'
 	icon_state = "airlock_parts"
 	type_to_deploy = /obj/machinery/door/airlock/colony_prefab

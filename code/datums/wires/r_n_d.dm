@@ -1,6 +1,6 @@
 /datum/wires/rnd
 	holder_type = /obj/machinery/rnd
-	proper_name = "R&D Machinery"
+	proper_name = "研发设备"
 	randomize = TRUE
 
 /datum/wires/rnd/New(atom/holder)
@@ -21,8 +21,8 @@
 /datum/wires/rnd/get_status()
 	var/obj/machinery/rnd/R = holder
 	var/list/status = list()
-	status += "The red light is [R.disabled ? "off" : "on"]."
-	status += "The blue light is [R.hacked ? "off" : "on"]."
+	status += "红灯[R.disabled ? "熄灭" : "亮起"]。"
+	status += "蓝灯[R.hacked ? "熄灭" : "亮起"]。"
 	return status
 
 /datum/wires/rnd/on_pulse(wire)

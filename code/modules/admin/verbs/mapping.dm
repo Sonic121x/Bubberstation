@@ -1,5 +1,5 @@
 ADMIN_VERB_VISIBILITY(camera_view, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(camera_view, R_DEBUG, "Camera Range Display", "Shows the range of cameras on the station.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(camera_view, R_DEBUG, "摄像机范围显示", "显示站内摄像机的覆盖范围。", ADMIN_CATEGORY_MAPPING)
 	var/on = FALSE
 	for(var/turf/T in world)
 		if(T.maptext)
@@ -19,36 +19,36 @@ ADMIN_VERB(camera_view, R_DEBUG, "Camera Range Display", "Shows the range of cam
 GLOBAL_LIST_EMPTY(dirty_vars)
 
 ADMIN_VERB_VISIBILITY(see_dirty_varedits, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(see_dirty_varedits, R_DEBUG, "Dirty Varedits", "Shows all dirty varedits.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(see_dirty_varedits, R_DEBUG, "未清理的变量修改", "显示所有未清理的变量修改。", ADMIN_CATEGORY_MAPPING)
 	var/list/dat = list()
-	dat += "<h3>Abandon all hope ye who enter here</h3><br><br>"
+	dat += "<h3>凡进入此地者，弃绝一切希望</h3><br><br>"
 	for(var/thing in GLOB.dirty_vars)
 		dat += "[thing]<br>"
 		CHECK_TICK
-	var/datum/browser/popup = new(user, "dirty_vars", "Dirty Varedits", 900, 750)
+	var/datum/browser/popup = new(user, "dirty_vars", "未清理的变量修改", 900, 750)
 	popup.set_content(dat.Join())
 	popup.open()
 #endif
 
 ADMIN_VERB_VISIBILITY(sec_camera_report, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(sec_camera_report, R_DEBUG, "Camera Report", "Get a printout of all camera issues.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(sec_camera_report, R_DEBUG, "摄像机报告", "获取所有摄像机问题的报告。", ADMIN_CATEGORY_MAPPING)
 	var/list/obj/machinery/camera/CL = list()
 
 	for(var/obj/machinery/camera/C as anything in SScameras.cameras)
 		CL += C
 
-	var/output = {"<B>Camera Abnormalities Report</B><HR>
-<B>The following abnormalities have been detected. The ones in red need immediate attention: Some of those in black may be intentional.</B><BR><ul>"}
+	var/output = {"<B>摄像机异常报告</B><HR>
+<B>检测到以下异常。红色的需要立即处理：部分黑色的可能是有意为之。</B><BR><ul>"}
 
 	for(var/obj/machinery/camera/C1 in CL)
 		for(var/obj/machinery/camera/C2 in CL)
 			if(C1 != C2)
 				if(C1.c_tag == C2.c_tag)
-					output += "<li><font color='red'>c_tag match for cameras at [ADMIN_VERBOSEJMP(C1)] and [ADMIN_VERBOSEJMP(C2)] - c_tag is [C1.c_tag]</font></li>"
+					output += "<li><font color='red'>[ADMIN_VERBOSEJMP(C1)] 与 [ADMIN_VERBOSEJMP(C2)] 处的摄像机 c_tag 重复 - c_tag 为 [C1.c_tag]</font></li>"
 				if(C1.loc == C2.loc && C1.dir == C2.dir && C1.pixel_x == C2.pixel_x && C1.pixel_y == C2.pixel_y)
-					output += "<li><font color='red'>FULLY overlapping cameras at [ADMIN_VERBOSEJMP(C1)] Networks: [json_encode(C1.network)] and [json_encode(C2.network)]</font></li>"
+					output += "<li><font color='red'>[ADMIN_VERBOSEJMP(C1)] 处的摄像机完全重叠 网络：[json_encode(C1.network)] 与 [json_encode(C2.network)]</font></li>"
 				if(C1.loc == C2.loc)
-					output += "<li>Overlapping cameras at [ADMIN_VERBOSEJMP(C1)] Networks: [json_encode(C1.network)] and [json_encode(C2.network)]</li>"
+					output += "<li>[ADMIN_VERBOSEJMP(C1)] 处的摄像机重叠 网络：[json_encode(C1.network)] 与 [json_encode(C2.network)]</li>"
 		var/turf/T = get_step(C1,C1.dir)
 		if(!T || !isturf(T) || !T.density )
 			if(!(locate(/obj/structure/grille) in T))
@@ -58,14 +58,14 @@ ADMIN_VERB(sec_camera_report, R_DEBUG, "Camera Report", "Get a printout of all c
 						window_check = 1
 						break
 				if(!window_check)
-					output += "<li><font color='red'>Camera not connected to wall at [ADMIN_VERBOSEJMP(C1)] Network: [json_encode(C1.network)]</font></li>"
+					output += "<li><font color='red'>[ADMIN_VERBOSEJMP(C1)] 处的摄像机未连接到墙体 网络：[json_encode(C1.network)]</font></li>"
 
 	output += "</ul>"
 	user << browse(HTML_SKELETON(output),"window=airreport;size=1000x500")
 	BLACKBOX_LOG_ADMIN_VERB("Show Camera Report")
 
 ADMIN_VERB_VISIBILITY(intercom_view, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(intercom_view, R_DEBUG, "Intercom Range Display", "Shows the range of intercoms on the station.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(intercom_view, R_DEBUG, "对讲机范围显示", "显示站内对讲机的覆盖范围。", ADMIN_CATEGORY_MAPPING)
 	var/static/intercom_range_display_status = FALSE
 	intercom_range_display_status = !intercom_range_display_status
 
@@ -80,18 +80,18 @@ ADMIN_VERB(intercom_view, R_DEBUG, "Intercom Range Display", "Shows the range of
 	BLACKBOX_LOG_ADMIN_VERB("Show Intercom Range")
 
 ADMIN_VERB_VISIBILITY(show_map_reports, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(show_map_reports, R_DEBUG, "Show Map Reports", "Displays a list of map reports.", ADMIN_CATEGORY_MAPPING)
-	var/dat = {"<b>List of all map reports:</b><br>"}
+ADMIN_VERB(show_map_reports, R_DEBUG, "显示地图报告", "显示地图报告列表。", ADMIN_CATEGORY_MAPPING)
+	var/dat = {"<b>所有地图报告列表：</b><br>"}
 
 	for(var/datum/map_report/report as anything in GLOB.map_reports)
-		dat += "[report.tag] ([report.original_path]) - <a href='byond://?src=[REF(report)];[HrefToken()];show=1'>View</a><br>"
+		dat += "[report.tag] ([report.original_path]) - <a href='byond://?src=[REF(report)];[HrefToken()];show=1'>查看</a><br>"
 
 	user << browse(HTML_SKELETON(dat), "window=map_reports")
 
 ADMIN_VERB_VISIBILITY(cmd_show_at_list, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(cmd_show_at_list, R_DEBUG, "Show roundstart AT list", "Displays a list of active turfs coordinates at roundstart.", ADMIN_CATEGORY_MAPPING)
-	var/dat = {"<b>Coordinate list of Active Turfs at Roundstart</b>
-		<br>Real-time Active Turfs list you can see in Air Subsystem at active_turfs var<br>"}
+ADMIN_VERB(cmd_show_at_list, R_DEBUG, "显示开局活动地形列表", "显示开局时所有活动地形的坐标列表。", ADMIN_CATEGORY_MAPPING)
+	var/dat = {"<b>开局活动地形的坐标列表</b>
+		<br>可在空气子系统的 active_turfs 变量中查看的实时活动地形列表<br>"}
 
 	for(var/t in GLOB.active_turfs_startlist)
 		var/turf/T = t
@@ -103,34 +103,34 @@ ADMIN_VERB(cmd_show_at_list, R_DEBUG, "Show roundstart AT list", "Displays a lis
 	BLACKBOX_LOG_ADMIN_VERB("Show Roundstart Active Turfs")
 
 ADMIN_VERB_VISIBILITY(cmd_show_at_markers, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(cmd_show_at_markers, R_DEBUG, "Show roundstart AT markers", "Places a marker on all active-at-roundstart turfs.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(cmd_show_at_markers, R_DEBUG, "显示开局活动地形标记", "在所有开局即活动的地形上放置标记。", ADMIN_CATEGORY_MAPPING)
 	var/count = 0
 	for(var/obj/effect/abstract/marker/at/AT in GLOB.all_abstract_markers)
 		qdel(AT)
 		count++
 
 	if(count)
-		to_chat(user, "[count] AT markers removed.", confidential = TRUE)
+		to_chat(user, "已移除 [count] 个活动地形标记。", confidential = TRUE)
 	else
 		for(var/t in GLOB.active_turfs_startlist)
 			new /obj/effect/abstract/marker/at(t)
 			count++
-		to_chat(user, "[count] AT markers placed.", confidential = TRUE)
+		to_chat(user, "已放置 [count] 个活动地形标记。", confidential = TRUE)
 
 	BLACKBOX_LOG_ADMIN_VERB("Show Roundstart Active Turf Markers")
 
-ADMIN_VERB(enable_mapping_verbs, R_DEBUG, "Enable Mapping Verbs", "Enable all mapping verbs.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(enable_mapping_verbs, R_DEBUG, "启用地图制作指令", "启用所有地图制作指令。", ADMIN_CATEGORY_MAPPING)
 	SSadmin_verbs.update_visibility_flag(user, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG, TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Enable Debug Verbs")
 
 ADMIN_VERB_VISIBILITY(disable_mapping_verbs, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(disable_mapping_verbs, R_DEBUG, "Disable Mapping Verbs", "Disable all mapping verbs.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(disable_mapping_verbs, R_DEBUG, "禁用地图制作指令", "禁用所有地图制作指令。", ADMIN_CATEGORY_MAPPING)
 	SSadmin_verbs.update_visibility_flag(user, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG, FALSE)
 	BLACKBOX_LOG_ADMIN_VERB("Disable Debug Verbs")
 
 ADMIN_VERB_VISIBILITY(count_objects_on_z_level, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(count_objects_on_z_level, R_DEBUG, "Count Objects On Z-Level", "Counts the number of objects of a certain type on a specific z-level.", ADMIN_CATEGORY_MAPPING)
-	var/level = input(user, "Which z-level?","Level?") as text|null
+ADMIN_VERB(count_objects_on_z_level, R_DEBUG, "统计 Z 层级上的物体", "统计特定 Z 层级上某种类型的物体数量。", ADMIN_CATEGORY_MAPPING)
+	var/level = input(user, "哪个 Z 层级？","层级？") as text|null
 	if(!level)
 		return
 	var/num_level = text2num(level)
@@ -139,7 +139,7 @@ ADMIN_VERB(count_objects_on_z_level, R_DEBUG, "Count Objects On Z-Level", "Count
 	if(!isnum(num_level))
 		return
 
-	var/type_text = input(user, "Which type path?","Path?") as text|null
+	var/type_text = input(user, "哪个类型路径？","路径？") as text|null
 	if(!type_text)
 		return
 	var/type_path = text2path(type_text)
@@ -163,12 +163,12 @@ ADMIN_VERB(count_objects_on_z_level, R_DEBUG, "Count Objects On Z-Level", "Count
 					count++
 					atom_list += A
 
-	to_chat(world, "There are [count] objects of type [type_path] on z-level [num_level]", confidential = TRUE)
+	to_chat(world, "Z 层级 [num_level] 上共有 [count] 个类型为 [type_path] 的物体", confidential = TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Count Objects Zlevel")
 
 ADMIN_VERB_VISIBILITY(count_objects_all, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(count_objects_all, R_DEBUG, "Count Objects All", "Counts the number of objects of a certain type in the game world.", ADMIN_CATEGORY_MAPPING)
-	var/type_text = input(user, "Which type path?","") as text|null
+ADMIN_VERB(count_objects_all, R_DEBUG, "统计全部物体", "统计游戏世界中某种类型的物体数量。", ADMIN_CATEGORY_MAPPING)
+	var/type_text = input(user, "哪个类型路径？","") as text|null
 	if(!type_text)
 		return
 	var/type_path = text2path(type_text)
@@ -181,20 +181,20 @@ ADMIN_VERB(count_objects_all, R_DEBUG, "Count Objects All", "Counts the number o
 		if(istype(A,type_path))
 			count++
 
-	to_chat(world, "There are [count] objects of type [type_path] in the game world", confidential = TRUE)
+	to_chat(world, "游戏世界中共有 [count] 个类型为 [type_path] 的物体", confidential = TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Count Objects All")
 
 GLOBAL_VAR_INIT(say_disabled, FALSE)
 ADMIN_VERB_VISIBILITY(disable_communication, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(disable_communication, R_DEBUG, "Disable all communication verbs", "Disables all communication verbs.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(disable_communication, R_DEBUG, "禁用所有通讯指令", "禁用所有通讯指令。", ADMIN_CATEGORY_MAPPING)
 	GLOB.say_disabled = !GLOB.say_disabled
 	if(GLOB.say_disabled)
-		message_admins("[key_name_admin(user)] used 'Disable all communication verbs', killing all communication methods.")
+		message_admins("[key_name_admin(user)] 使用了“禁用所有通讯指令”，切断了所有通讯方式。")
 	else
-		message_admins("[key_name_admin(user)] used 'Disable all communication verbs', restoring all communication methods.")
+		message_admins("[key_name_admin(user)] 使用了“禁用所有通讯指令”，恢复了所有通讯方式。")
 
 ADMIN_VERB_VISIBILITY(create_mapping_job_icons, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(create_mapping_job_icons, R_DEBUG, "Generate job landmarks icons", "Generates job starting location landmarks.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(create_mapping_job_icons, R_DEBUG, "生成职业初始点图标", "生成职业初始位置的地标。", ADMIN_CATEGORY_MAPPING)
 	var/icon/final = icon()
 	var/list/job_key_to_icon = list() // SKYRAT EDIT ADDITION
 	var/mob/living/carbon/human/dummy/D = new(locate(1,1,1)) //spawn on 1,1,1 so we don't have runtimes when items are deleted
@@ -228,7 +228,7 @@ ADMIN_VERB(create_mapping_job_icons, R_DEBUG, "Generate job landmarks icons", "G
 	fcopy(final, "icons/mob/landmarks.dmi")
 
 ADMIN_VERB_VISIBILITY(debug_z_levels, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(debug_z_levels, R_DEBUG, "Debug Z-Levels", "Displays a list of all z-levels and their linkages.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(debug_z_levels, R_DEBUG, "调试 Z 层级", "显示所有 Z 层级及其连接关系的列表。", ADMIN_CATEGORY_MAPPING)
 	to_chat(user, boxed_message(gather_z_level_information(append_grid = TRUE)), confidential = TRUE)
 
 /// Returns all necessary z-level information. Argument `append_grid` allows the user to see a table showing all of the z-level linkages, which is only visible and useful in-game.
@@ -236,7 +236,7 @@ ADMIN_VERB(debug_z_levels, R_DEBUG, "Debug Z-Levels", "Displays a list of all z-
 	var/list/messages = list()
 
 	var/list/z_list = SSmapping.z_list
-	messages += "<b>World</b>: [world.maxx] x [world.maxy] x [world.maxz]\n"
+	messages += "<b>世界</b>：[world.maxx] x [world.maxy] x [world.maxz]\n"
 
 	var/list/linked_levels = list()
 	var/min_x = INFINITY
@@ -246,35 +246,35 @@ ADMIN_VERB(debug_z_levels, R_DEBUG, "Debug Z-Levels", "Displays a list of all z-
 
 	for(var/z in 1 to max(world.maxz, z_list.len))
 		if (z > z_list.len)
-			messages += "<b>[z]</b>: Unmanaged (out of bounds)"
+			messages += "<b>[z]</b>：未托管（超出边界）"
 			continue
 		var/datum/space_level/level = z_list[z]
 		if (!level)
-			messages += "<b>[z]</b>: Unmanaged (null)"
+			messages += "<b>[z]</b>：未托管（空值）"
 			continue
 		var/linkage
 		switch (level.linkage)
 			if (UNAFFECTED)
-				linkage = "no linkage"
+				linkage = "无连接"
 			if (SELFLOOPING)
-				linkage = "self-looping"
+				linkage = "自循环"
 			if (CROSSLINKED)
-				linkage = "linked at ([level.xi], [level.yi])"
+				linkage = "连接于 ([level.xi], [level.yi])"
 				linked_levels += level
 				min_x = min(min_x, level.xi)
 				min_y = min(min_y, level.yi)
 				max_x = max(max_x, level.xi)
 				max_y = max(max_y, level.yi)
 			else
-				linkage = "unknown linkage '[level.linkage]'"
+				linkage = "未知连接“[level.linkage]”"
 
-		messages += "<b>[z]</b>: [level.name], [linkage], traits: [json_encode(level.traits)]"
+		messages += "<b>[z]</b>：[level.name]，[linkage]，特性：[json_encode(level.traits)]"
 		if (level.z_value != z)
-			messages += "-- z_value is [level.z_value], should be [z]"
+			messages += "-- z_value 为 [level.z_value]，应为 [z]"
 		if (level.name == initial(level.name))
-			messages += "-- name not set"
+			messages += "-- 名称未设置"
 		if (z > world.maxz)
-			messages += "-- exceeds max z"
+			messages += "-- 超出最大 Z 层级"
 
 	var/grid[max_x - min_x + 1][max_y - min_y + 1]
 	for(var/datum/space_level/linked_level in linked_levels)
@@ -292,7 +292,7 @@ ADMIN_VERB(debug_z_levels, R_DEBUG, "Debug Z-Levels", "Displays a list of all z-
 	return messages.Join("\n")
 
 ADMIN_VERB_VISIBILITY(station_food_debug, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(station_food_debug, R_DEBUG, "Count Station Food", "Counts the number of food items on the station.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(station_food_debug, R_DEBUG, "统计站内食物", "统计站内食物的数量。", ADMIN_CATEGORY_MAPPING)
 	var/list/foodcount = list()
 	for(var/obj/item/food/fuck_me in world)
 		var/turf/location = get_turf(fuck_me)
@@ -300,7 +300,7 @@ ADMIN_VERB(station_food_debug, R_DEBUG, "Count Station Food", "Counts the number
 			continue
 		LAZYADDASSOC(foodcount, fuck_me.type, 1)
 
-	var/table_header = "<tr><th>Name</th> <th>Type</th> <th>Amount</th>"
+	var/table_header = "<tr><th>名称</th> <th>类型</th> <th>数量</th>"
 	var/table_contents = list()
 	for(var/atom/type as anything in foodcount)
 		var/foodname = initial(type.name)
@@ -309,12 +309,12 @@ ADMIN_VERB(station_food_debug, R_DEBUG, "Count Station Food", "Counts the number
 
 	var/page_style = "<style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style>"
 	var/page_contents = "[page_style]<table style=\"width:100%\">[table_header][jointext(table_contents, "")]</table>"
-	var/datum/browser/popup = new(user.mob, "fooddebug", "Station Food Count", 600, 400)
+	var/datum/browser/popup = new(user.mob, "fooddebug", "站内食物统计", 600, 400)
 	popup.set_content(page_contents)
 	popup.open()
 
 ADMIN_VERB_VISIBILITY(station_stack_debug, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(station_stack_debug, R_DEBUG, "Count Station Stacks", "Count the stacks of materials on station.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(station_stack_debug, R_DEBUG, "统计站内材料堆", "统计站内材料堆的数量。", ADMIN_CATEGORY_MAPPING)
 	var/list/stackcount = list()
 	for(var/obj/item/stack/fuck_me in world)
 		var/turf/location = get_turf(fuck_me)
@@ -322,7 +322,7 @@ ADMIN_VERB(station_stack_debug, R_DEBUG, "Count Station Stacks", "Count the stac
 			continue
 		LAZYADDASSOC(stackcount, fuck_me.type, fuck_me.amount)
 
-	var/table_header = "<tr><th>Name</th> <th>Type</th> <th>Amount</th>"
+	var/table_header = "<tr><th>名称</th> <th>类型</th> <th>数量</th>"
 	var/table_contents = list()
 	for(var/atom/type as anything in stackcount)
 		var/stackname = initial(type.name)
@@ -331,18 +331,18 @@ ADMIN_VERB(station_stack_debug, R_DEBUG, "Count Station Stacks", "Count the stac
 
 	var/page_style = "<style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style>"
 	var/page_contents = "[page_style]<table style=\"width:100%\">[table_header][jointext(table_contents, "")]</table>"
-	var/datum/browser/popup = new(user.mob, "stackdebug", "Station Stack Count", 600, 400)
+	var/datum/browser/popup = new(user.mob, "stackdebug", "站内材料堆统计", 600, 400)
 	popup.set_content(page_contents)
 	popup.open()
 
 ADMIN_VERB_VISIBILITY(check_for_obstructed_atmospherics, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(check_for_obstructed_atmospherics, R_DEBUG, "Check For Obstructed Atmospherics", "Checks for obstructions on atmospherics machines.", ADMIN_CATEGORY_MAPPING)
-	message_admins(span_adminnotice("[key_name_admin(user)] is checking for obstructed atmospherics through the debug command."))
+ADMIN_VERB(check_for_obstructed_atmospherics, R_DEBUG, "检查大气设备遮挡", "检查大气机械上方的遮挡物。", ADMIN_CATEGORY_MAPPING)
+	message_admins(span_adminnotice("[key_name_admin(user)] 正在通过调试指令检查大气设备遮挡。"))
 	BLACKBOX_LOG_ADMIN_VERB("Check For Obstructed Atmospherics")
 
 	var/list/results = list()
 
-	results += "<h2><b>Anything that is considered to aesthetically obstruct an atmospherics machine (vent, scrubber, port) is listed below.</b> Please re-arrange to accommodate for this.</h2><br>"
+	results += "<h2><b>以下列出所有在视觉上被视为遮挡大气机械（通风口、洗涤器、接口）的物体。</b> 请重新布置以留出空间。</h2><br>"
 
 	// Ignore out stuff we see in normal and standard mapping that we don't care about (false alarms). Typically stuff that goes directionally off turfs or other undertile objects that we don't want to care about.
 	var/list/ignore_list = list(
@@ -383,17 +383,17 @@ ADMIN_VERB(check_for_obstructed_atmospherics, R_DEBUG, "Check For Obstructed Atm
 			continue
 		var/list/obj/obstruction = locate(/obj) in iterated_turf.contents
 		if(!is_type_in_list(obstruction, ignore_list))
-			results += "There is an obstruction on top of an atmospherics machine at: [ADMIN_VERBOSEJMP(iterated_turf)].<br>"
+			results += "大气机械上方存在遮挡物：[ADMIN_VERBOSEJMP(iterated_turf)]。<br>"
 
 	if(results.len == 1) // only the header is in the list, we're good
-		to_chat(user, "No obstructions detected.", confidential = TRUE)
+		to_chat(user, "未检测到遮挡物。", confidential = TRUE)
 	else
-		var/datum/browser/popup = new(user.mob, "atmospherics_obstructions", "Atmospherics Obstructions", 900, 750)
+		var/datum/browser/popup = new(user.mob, "atmospherics_obstructions", "大气设备遮挡物", 900, 750)
 		popup.set_content(results.Join())
 		popup.open()
 
 ADMIN_VERB_VISIBILITY(modify_lights, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(modify_lights, R_DEBUG, "Toggle Light Debug", "Toggles light debug mode.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(modify_lights, R_DEBUG, "切换灯光调试", "切换灯光调试模式。", ADMIN_CATEGORY_MAPPING)
 	if(GLOB.light_debug_enabled)
 		undebug_light_sources()
 		return
@@ -406,5 +406,5 @@ ADMIN_VERB(modify_lights, R_DEBUG, "Toggle Light Debug", "Toggles light debug mo
 	debug_light_sources()
 
 ADMIN_VERB_VISIBILITY(visualize_lights, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
-ADMIN_VERB(visualize_lights, R_DEBUG, "Visualize Lighting Corners", "Visualizes the corners of all lights on the station.", ADMIN_CATEGORY_MAPPING)
+ADMIN_VERB(visualize_lights, R_DEBUG, "可视化灯光边角", "可视化站内所有灯光的边角。", ADMIN_CATEGORY_MAPPING)
 	display_corners()

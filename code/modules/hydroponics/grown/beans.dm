@@ -1,10 +1,10 @@
 // Soybeans
 /obj/item/seeds/soya
-	name = "soybean seed pack"
-	desc = "These seeds grow into soybean plants."
+	name = "大豆种子包"
+	desc = "这些种子会长成大豆植株。"
 	icon_state = "seed-soybean"
 	species = "soybean"
-	plantname = "Soybean Plants"
+	plantname = "大豆植株"
 	product = /obj/item/food/grown/soybeans
 	maturation = 4
 	production = 4
@@ -19,8 +19,8 @@
 
 /obj/item/food/grown/soybeans
 	seed = /obj/item/seeds/soya
-	name = "soybeans"
-	desc = "It's pretty bland, but oh the possibilities..."
+	name = "大豆"
+	desc = "味道相当寡淡，但可能性无穷……"
 	gender = PLURAL
 	icon_state = "soybeans"
 	foodtypes = VEGETABLES
@@ -32,11 +32,11 @@
 
 // Koibean
 /obj/item/seeds/soya/koi
-	name = "koibean seed pack"
-	desc = "These seeds grow into koibean plants."
+	name = "锦鲤豆种子包"
+	desc = "这些种子会长成锦鲤豆植株。"
 	icon_state = "seed-koibean"
 	species = "koibean"
-	plantname = "Koibean Plants"
+	plantname = "锦鲤豆植株"
 	product = /obj/item/food/grown/koibeans
 	potency = 10
 	mutatelist = null
@@ -45,8 +45,8 @@
 
 /obj/item/food/grown/koibeans
 	seed = /obj/item/seeds/soya/koi
-	name = "koibean"
-	desc = "Something about these seems fishy, they seem really soft, almost squeezable!"
+	name = "锦鲤豆"
+	desc = "这些东西透着股鱼腥味，它们摸起来非常柔软，几乎能捏出水来！"
 	icon_state = "koibeans"
 	foodtypes = VEGETABLES
 	tastes = list("koi" = 1)
@@ -54,7 +54,7 @@
 
 //Now squeezable for imitation carpmeat
 /obj/item/food/grown/koibeans/attack_self(mob/living/user)
-	user.visible_message(span_notice("[user] crushes [src] into a slab of carplike meat."), span_notice("You crush [src] into something that resembles a slab of carplike meat."))
+	user.visible_message(span_notice("[user] 把 [src] 捏成了一块类似鲤鱼肉的东西。"), span_notice("你把 [src] 捏成了形似鲤鱼肉块的东西。"))
 	playsound(user, 'sound/effects/blob/blobattack.ogg', 50, TRUE)
 	var/obj/item/food/fishmeat/carp/imitation/fishie = new(null)
 	fishie.reagents.set_all_reagents_purity(seed.get_reagent_purity())
@@ -65,11 +65,11 @@
 //Butterbeans, the beans wid da butta!
 // Butterbeans! - Squeeze for a single butter slice!
 /obj/item/seeds/soya/butter
-	name = "butterbean seed pack"
-	desc = "These seeds grow into butterbean plants."
+	name = "黄油豆种子包"
+	desc = "这些种子会长成黄油豆植株。"
 	icon_state = "seed-butterbean"
 	species = "butterbean"
-	plantname = "Butterbean Plants"
+	plantname = "黄油豆植株"
 	product = /obj/item/food/grown/butterbeans
 	potency = 10
 	mutatelist = null
@@ -78,15 +78,15 @@
 
 /obj/item/food/grown/butterbeans
 	seed = /obj/item/seeds/soya/butter
-	name = "butterbean"
-	desc = "Soft, creamy and milky... You could almost smear them over toast."
+	name = "黄油豆"
+	desc = "柔软、细腻又乳香浓郁……你几乎可以把它们抹在吐司上。"
 	icon_state = "butterbeans"
 	foodtypes = VEGETABLES | DAIRY
 	tastes = list("creamy butter" = 1)
 	distill_reagent = /datum/reagent/consumable/yoghurt
 
 /obj/item/food/grown/butterbeans/attack_self(mob/living/user)
-	user.visible_message(span_notice("[user] crushes [src] into a pat of butter."), span_notice("You crush [src] into something that resembles butter."))
+	user.visible_message(span_notice("[user] 把 [src] 捏成了一块黄油。"), span_notice("你把 [src] 捏成了形似黄油的东西。"))
 	playsound(user, 'sound/effects/blob/blobattack.ogg', 50, TRUE)
 	var/obj/item/food/butterslice/butties = new(null)
 	butties.reagents.set_all_reagents_purity(seed.get_reagent_purity())
@@ -96,11 +96,11 @@
 
 // Green Beans
 /obj/item/seeds/greenbean
-	name = "green bean seed pack"
-	desc = "These seeds grow into green bean plants."
+	name = "四季豆种子包"
+	desc = "这些种子会长成四季豆植株。"
 	icon_state = "seed-greenbean"
 	species = "greenbean"
-	plantname = "Green Bean Plants"
+	plantname = "四季豆植株"
 	product = /obj/item/food/grown/greenbeans
 	instability = 0
 	maturation = 4
@@ -116,8 +116,8 @@
 
 /obj/item/food/grown/greenbeans
 	seed = /obj/item/seeds/greenbean
-	name = "green beans"
-	desc = "Simple and healthy, what more do you need?"
+	name = "四季豆"
+	desc = "简单又健康，你还想要什么？"
 	gender = PLURAL
 	icon_state = "greenbean"
 	foodtypes = FRUIT
@@ -125,11 +125,11 @@
 
 // Jumping Bean
 /obj/item/seeds/greenbean/jump
-	name = "jumping bean seed pack"
-	desc = "These seeds grow into jumping bean plants."
+	name = "跳豆种子包"
+	desc = "这些种子会长成跳豆植株。"
 	icon_state = "seed-jumpingbean"
 	species = "jumpingbean"
-	plantname = "Jumping Bean Plants"
+	plantname = "跳豆植株"
 	product = /obj/item/food/grown/jumpingbeans
 	yield = 2
 	instability = 18
@@ -144,8 +144,8 @@
 
 /obj/item/food/grown/jumpingbeans
 	seed = /obj/item/seeds/greenbean/jump
-	name = "jumping bean"
-	desc = "Umm, what's causing it to move like that?"
+	name = "跳豆"
+	desc = "呃，是什么让它那样动的？"
 	icon_state = "jumpingbean"
 	foodtypes = FRUIT | BUGS
 	tastes = list("bugs" = 1)

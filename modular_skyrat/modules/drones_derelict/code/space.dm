@@ -2,5 +2,5 @@
 	id = "drones_derelict"
 	prefix = "_maps/RandomRuins/SpaceRuins/skyrat/"
 	suffix = "drones_derelict.dmm"
-	name = "Space-Ruin Babylon Station 13"
-	description = "Babylon Station 13 was meant to be a stepping stone towards a better future, but it ended up being an astronomical financial burden. The owners realized that there was no ability to recoup their losses, and decided to cut the program."
+	name = "太空遗迹巴比伦空间站 13"
+	description = "巴比伦空间站 13 本应成为通往更美好未来的垫脚石，最终却成了天文数字般的财政负担。所有者意识到已无法收回损失，便决定终止该项目。"

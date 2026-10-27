@@ -196,6 +196,6 @@ DEFINE_BITFIELD(operation_flags, list(
 #define OPERATION_BURN_MULTIPLIER "burn_multiplier"
 
 /// Used in string formatting to print a limb as "John's right arm" or "the human right arm"
-#define FORMAT_LIMB_OWNER(limb) (limb.owner ? "[limb.owner]'s [limb.plaintext_zone]" : limb)
+#define FORMAT_LIMB_OWNER(limb) (limb.owner ? "[limb.owner]的[chinese_body_zone_display(limb.plaintext_zone)]" : limb)
 /// Used in string formatting to print an organ's location as "John" or "the human chest"
 #define FORMAT_ORGAN_OWNER(organ) (organ.owner || organ.loc)

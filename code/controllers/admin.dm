@@ -1,6 +1,6 @@
 // Clickable stat() button.
 /obj/effect/statclick
-	name = "Initializing..."
+	name = "正在初始化……"
 	blocks_emissive = EMISSIVE_BLOCK_NONE
 	var/target
 
@@ -33,18 +33,18 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 		return
 	if(!class)
 		if(istype(target, /datum/controller/subsystem))
-			class = "subsystem"
+			class = "子系统"
 		else if(istype(target, /datum/controller))
-			class = "controller"
+			class = "控制器"
 		else if(isdatum(target))
 			class = "datum"
 		else
-			class = "unknown"
+			class = "未知类型"
 
 	usr.client.debug_variables(target)
-	message_admins("Admin [key_name_admin(usr)] is debugging the [target] [class].")
+	message_admins("管理员[key_name_admin(usr)]正在调试[target]（[class]）。")
 
-ADMIN_VERB(restart_controller, R_DEBUG, "Restart Controller", "Restart one of the various periodic loop controllers for the game (be careful!)", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(restart_controller, R_DEBUG, "重启控制器", "重启游戏的某个周期循环控制器（请谨慎操作！）", ADMIN_CATEGORY_DEBUG)
 	VERB_ARG_LIST(controller, list("Master", "Failsafe"))
 	switch(controller)
 		if("Master")
@@ -54,9 +54,9 @@ ADMIN_VERB(restart_controller, R_DEBUG, "Restart Controller", "Restart one of th
 			new /datum/controller/failsafe()
 			BLACKBOX_LOG_ADMIN_VERB("Restart Failsafe Controller")
 
-	message_admins("Admin [key_name_admin(user)] has restarted the [controller] controller.")
+	message_admins("管理员[key_name_admin(user)]已重启[controller]控制器。")
 
-ADMIN_VERB(debug_controller, R_DEBUG, "Debug Controller", "Debug the various periodic loop controllers for the game (be careful!)", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(debug_controller, R_DEBUG, "调试控制器", "调试游戏的各种周期循环控制器（请谨慎操作！）", ADMIN_CATEGORY_DEBUG)
 	var/list/controllers = list()
 	var/list/controller_choices = list()
 
@@ -67,7 +67,7 @@ ADMIN_VERB(debug_controller, R_DEBUG, "Debug Controller", "Debug the various per
 		controllers[controller.name] = controller //we use an associated list to ensure clients can't hold references to controllers
 		controller_choices += controller.name
 
-	var/datum/controller/controller_string = input("Select controller to debug", "Debug Controller") as null|anything in controller_choices
+	var/datum/controller/controller_string = input("选择要调试的控制器", "调试控制器") as null|anything in controller_choices
 	var/datum/controller/controller = controllers[controller_string]
 
 	if (!istype(controller))
@@ -76,4 +76,4 @@ ADMIN_VERB(debug_controller, R_DEBUG, "Debug Controller", "Debug the various per
 	user.debug_variables(controller)
 
 	BLACKBOX_LOG_ADMIN_VERB("Debug Controller")
-	message_admins("Admin [key_name_admin(user)] is debugging the [controller] controller.")
+	message_admins("管理员[key_name_admin(user)]正在调试[controller]控制器。")

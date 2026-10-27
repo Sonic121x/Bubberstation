@@ -48,14 +48,14 @@
 #define RULESET_VARIATION (1<<3)
 
 /// Href for cancelling midround rulesets before execution
-#define MIDROUND_CANCEL_HREF(...) "(<a href='byond://?src=[REF(src)];admin_cancel_midround=[REF(picked_ruleset)]'>CANCEL</a>)"
+#define MIDROUND_CANCEL_HREF(...) "(<a href='byond://?src=[REF(src)];admin_cancel_midround=[REF(picked_ruleset)]'>取消</a>)"
 /// Href for rerolling midround rulesets before execution
 #define MIDROUND_REROLL_HREF(rulesets) "[length(rulesets) \
-	? "(<a href='byond://?src=[REF(src)];admin_reroll=[REF(picked_ruleset)]'>SOMETHING ELSE</a>)" \
-	: "([span_tooltip("There are no more rulesets to pick from!", "NOTHING ELSE")])"\
+	? "(<a href='byond://?src=[REF(src)];admin_reroll=[REF(picked_ruleset)]'>换一个</a>)" \
+	: "([span_tooltip("没有其他可选的规则集了！", "无其他选项")])"\
 ]"
 
-#define RULESET_CONFIG_CANCEL "Cancel"
+#define RULESET_CONFIG_CANCEL "取消"
 
 /// Used to easily get a config entry for a dynamic ruleset or tier
 #define GET_DYNAMIC_CONFIG(some_typepath, var_name) SSdynamic.get_config_value(some_typepath, NAMEOF(some_typepath, ##var_name), some_typepath::##var_name)

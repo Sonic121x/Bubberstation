@@ -24,7 +24,7 @@
 	combo_list = combos
 	for(var/combo in combo_list)
 		var/list/combo_specifics = combo_list[combo]
-		var/step_string = english_list(combo_specifics[COMBO_STEPS])
+		var/step_string = chinese_combo_steps_display(combo_specifics[COMBO_STEPS])
 		combo_strings += span_notice("<b>[combo]</b> - [step_string]")
 	src.examine_message = examine_message
 	src.reset_message = reset_message

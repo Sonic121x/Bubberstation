@@ -150,7 +150,7 @@
 /obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker/proc/view_book(id, mob/show_to)
 	if (!SSdbcore.Connect())
 		can_connect = FALSE
-		message_admins("Failed to establish database connection.")
+		message_admins("无法建立数据库连接。")
 		return
 
 	var/datum/db_query/query_library_view = SSdbcore.NewQuery(
@@ -206,11 +206,11 @@
 /obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker/proc/hide_book(id, reason, client/admin)
 	if(!SSdbcore.Connect())
 		can_connect = FALSE
-		to_chat(admin, span_danger("Failed to establish database connection."))
+		to_chat(admin, span_danger("无法建立数据库连接。"))
 		return
 	if(!check_rights_for(admin, R_BAN))
-		log_admin_private("[admin.ckey] tried to hide a book without the required perms")
-		message_admins("[admin.ckey] tried to hide a book without the required perms")
+		log_admin_private("[admin.ckey] 试图在没有相应权限的情况下隐藏书籍")
+		message_admins("[admin.ckey] 试图在没有相应权限的情况下隐藏书籍")
 		return
 
 	var/datum/db_query/query_hide_book = SSdbcore.NewQuery({"
@@ -233,7 +233,7 @@
 		return
 	qdel(query_update_log)
 
-	var/log_reason = "([admin.ckey]) hid book #[id][reason ? ": \"[reason]\"" : ""]"
+	var/log_reason = "([admin.ckey]) 隐藏了书籍 #[id][reason ? "：“[reason]”" : ""]"
 	log_admin_private(log_reason)
 	library_updated()
 	update_db_info()
@@ -241,11 +241,11 @@
 /obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker/proc/unhide_book(id, reason, client/admin)
 	if(!SSdbcore.Connect())
 		can_connect = FALSE
-		to_chat(admin, span_danger("Failed to establish database connection."))
+		to_chat(admin, span_danger("无法建立数据库连接。"))
 		return
 	if(!check_rights_for(admin, R_BAN))
-		log_admin_private("[admin.ckey] tried to unhide a book without the required perms")
-		message_admins("[admin.ckey] tried to unhide a book without the required perms")
+		log_admin_private("[admin.ckey] 试图在没有相应权限的情况下恢复书籍")
+		message_admins("[admin.ckey] 试图在没有相应权限的情况下恢复书籍")
 		return
 
 	var/datum/db_query/query_unhide_book = SSdbcore.NewQuery({"
@@ -268,7 +268,7 @@
 		return
 	qdel(query_update_log)
 
-	log_admin_private("([admin.ckey]) unhid book #[id]")
+	log_admin_private("([admin.ckey]) 恢复了书籍 #[id]")
 	library_updated()
 	update_db_info()
 

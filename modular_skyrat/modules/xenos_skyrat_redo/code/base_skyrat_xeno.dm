@@ -1,7 +1,7 @@
 /// SKYRAT MODULE SKYRAT_XENO_REDO
 
 /mob/living/carbon/alien/adult/skyrat
-	name = "rare bugged alien"
+	name = "罕见的异常异形"
 	icon = 'modular_skyrat/modules/xenos_skyrat_redo/icons/big_xenos.dmi'
 	rotate_on_lying = FALSE
 	base_pixel_x = -16 //All of the xeno sprites are 64x64, and we want them to be level with the tile they are on, much like oversized quirk users
@@ -38,7 +38,7 @@
 	pixel_x = -16
 
 	ADD_TRAIT(src, TRAIT_XENO_HEAL_AURA, TRAIT_XENO_INNATE)
-	real_name = "alien [caste]"
+	real_name = initial(name)
 
 /// Called when a larva or xeno evolves, adds a configurable timer on evolving again to the xeno
 /mob/living/carbon/alien/adult/skyrat/proc/has_just_evolved()
@@ -71,8 +71,8 @@
 		return FALSE
 
 /datum/action/cooldown/alien/skyrat/sleepytime //I don't think this has a mechanical advantage but they have cool resting sprites so...
-	name = "Rest"
-	desc = "Sometimes even murder aliens need to have a little lie down."
+	name = "休息"
+	desc = "有时，连嗜杀的异形也需要躺下来歇一歇。"
 	button_icon_state = "sleepytime"
 
 /datum/action/cooldown/alien/skyrat/sleepytime/Activate()
@@ -86,8 +86,8 @@
 	return TRUE
 
 /datum/action/cooldown/alien/skyrat/generic_evolve
-	name = "Evolve"
-	desc = "Allows us to evolve to a higher caste of our type, if there is not one already."
+	name = "进化"
+	desc = "如果尚无对应的高阶个体，我们便可进化为同系的更高阶种。"
 	button_icon_state = "evolution"
 	/// What type this ability will turn the owner into upon completion
 	var/type_to_evolve_into
@@ -103,32 +103,32 @@
 	var/mob/living/carbon/alien/adult/skyrat/evolver = owner
 
 	if(!istype(evolver))
-		to_chat(owner, span_warning("You aren't an alien, you can't evolve!"))
+		to_chat(owner, span_warning("你不是异形，无法进化！"))
 		return FALSE
 
 	type_to_evolve_into = evolver.next_evolution
 	if(!type_to_evolve_into)
-		to_chat(evolver, span_bolddanger("Something is wrong... We can't evolve into anything? (This is broken report it on GitHub)"))
+		to_chat(evolver, span_bolddanger("不对劲……我们竟然没有可进化的形态？（功能异常，请在 GitHub 上报告。）"))
 		CRASH("Couldn't find an evolution for [owner] ([owner.type]).")
 
 	if(!isturf(evolver.loc))
 		return FALSE
 
 	if(get_alien_type(type_to_evolve_into))
-		evolver.balloon_alert(evolver, "too many of our evolution already")
+		evolver.balloon_alert(evolver, "此进化形态数量已满")
 		return FALSE
 
 	var/obj/item/organ/alien/hivenode/node = evolver.get_organ_by_type(/obj/item/organ/alien/hivenode)
 	if(!node)
-		to_chat(evolver, span_bolddanger("We can't sense our node's connection to the hive... We can't evolve!"))
+		to_chat(evolver, span_bolddanger("我们感受不到节点与虫巢的联系……无法进化！"))
 		return FALSE
 
 	if(node.recent_queen_death)
-		to_chat(evolver, span_bolddanger("The death of our queen... We can't seem to gather the mental energy required to evolve..."))
+		to_chat(evolver, span_bolddanger("我们的女王死了……我们似乎无法凝聚进化所需的精神力量……"))
 		return FALSE
 
 	if(evolver.has_evolved_recently)
-		evolver.balloon_alert(evolver, "can evolve in 1.5 minutes") //Make that 1.5 variable later, but it keeps fucking up for me :(
+		evolver.balloon_alert(evolver, "1.5 分钟后可进化") //Make that 1.5 variable later, but it keeps fucking up for me :(
 		return FALSE
 
 	var/new_beno = new type_to_evolve_into(evolver.loc)

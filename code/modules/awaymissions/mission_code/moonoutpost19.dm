@@ -1,8 +1,8 @@
 // moonoutpost19
 
 /obj/structure/fluff/minepost
-	name = "wooden post"
-	desc = "A sturdy space-wood post, capable of holding up a mineshaft."
+	name = "木桩"
+	desc = "一根结实的太空木桩，足以支撑起一条矿道。"
 	icon = 'icons/obj/fluff/general.dmi'
 	icon_state = "minepost"
 	density = FALSE
@@ -11,7 +11,7 @@
 	initial_gas_mix = MOONBASE19_ATMOS
 
 /turf/open/misc/asteroid/basalt/moon_air
-	name = "asteroid impact"
+	name = "陨石撞击坑"
 	initial_gas_mix = MOONBASE19_ATMOS
 
 /turf/open/floor/iron/moon
@@ -25,27 +25,27 @@
 
 //Areas
 /area/awaymission/moonoutpost19
-	name = "space"
+	name = "太空"
 	icon_state = "awaycontent1"
 
 /area/awaymission/moonoutpost19/arrivals
-	name = "MO19 Arrivals"
+	name = "MO19 抵达区"
 	icon_state = "awaycontent2"
 
 /area/awaymission/moonoutpost19/arrivals/shed
-	name = "MO19 Arrivals Shed"
+	name = "MO19 抵达区棚屋"
 	icon_state = "awaycontent9"
 
 /area/awaymission/moonoutpost19/research
-	name = "MO19 Research"
+	name = "MO19 研究区"
 	icon_state = "awaycontent3"
 
 /area/awaymission/moonoutpost19/syndicate
-	name = "Syndicate Outpost"
+	name = "辛迪加哨站"
 	icon_state = "awaycontent4"
 
 /area/awaymission/moonoutpost19/main
-	name = "Khonsu 19"
+	name = "孔苏 19"
 	always_unpowered = TRUE
 	power_environ = FALSE
 	power_equip = FALSE
@@ -55,7 +55,7 @@
 	outdoors = TRUE
 
 /area/awaymission/moonoutpost19/hive
-	name = "The Hive"
+	name = "巢穴"
 	always_unpowered = TRUE
 	power_environ = FALSE
 	power_equip = FALSE
@@ -63,11 +63,11 @@
 	icon_state = "awaycontent6"
 
 /area/awaymission/moonoutpost19/tent
-	name = "Research Tent"
+	name = "研究帐篷"
 	icon_state = "awaycontent7"
 
 /area/awaymission/moonoutpost19/mines
-	name = "Mineral Excavation Tunnels"
+	name = "矿物采掘隧道"
 	always_unpowered = TRUE
 	power_environ = FALSE
 	power_equip = FALSE
@@ -77,104 +77,104 @@
 
 //Fluff objects/structures.
 /obj/structure/fluff/meteor
-	name = "meteor"
-	desc = "Khonsu 19 is known for it's relatively high specific gravity, resulting in constant meteor showers and impacts."
+	name = "陨石"
+	desc = "孔苏 19 以其相对较高的比重著称，因此常有陨石雨与撞击。"
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "small"
 	density = TRUE
 
 /obj/structure/fluff/meteor/large
-	name = "large meteor"
-	desc = "Something this large would probably rip a space station in half. It's a good thing it landed here instead!"
+	name = "大型陨石"
+	desc = "这么大的东西大概能把一座空间站撕成两半。幸好它落在了这里！"
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "large"
 
 /obj/structure/fluff/meteor/sharp
-	name = "rocky meteor"
-	desc = "A big, rocky ourcrop. More common in space than on a moon like this."
+	name = "岩石陨石"
+	desc = "一大块岩石露头。比起这样的卫星，它在太空中更常见。"
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "sharp"
 
 //Papers
 
 /obj/item/paper/crumpled/awaymissions/moonoutpost19/hastey_note
-	name = "Hastily Written Note"
-	default_raw_text = "<i>19 06 2554</i><br><br><i>I fucking knew it. There was a major breach, that idiotic force field failed and the xenomorphs rushed out and took out the scientists. I've managed to make it to my office and closed the blast doors. I can hear them trying to pry open the doors. Probably don't have long. I have no clue what has happened to the rest of the crew, for all I know they've been killed to produce more of the fucks.</i>"
+	name = "匆匆写就的便条"
+	default_raw_text = "<i>19 06 2554</i><br><br><i>我他妈就知道。发生了一次大规模泄露，那个愚蠢的力场失效了，异形冲了出来干掉了科学家。我设法跑到了办公室并关上了防爆门。我能听见它们在撬门。大概撑不了多久了。我不知道其他船员怎么样了，说不定他们已经被杀了，用来生出更多这种杂种。</i>"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/research/larva_social
-	name = "Larva Xenomorph Social Interactions & Capturing Procedure"
-	default_raw_text = "Researcher: <u>Dr. Sakuma Sano    </u><br>Date: <u>04/06/2554</u><br><br>Report:<br>As expected, all that is left of the monkeys we sent in earlier is a group of xenomorph larvae. It is quite clear that the facehuggers are not selective in their hosts, and so far the gestation process has been shown to have a 100% success rate.<br><br>The larvae themselves have been behaving very differently from the lone larva we first observed, and despite shying away from humans they are clearly comfortable with others of their kind. Our previous suspicions on larvae have been confirmed with their demonstration of playfulness: they are not nearly as aggressive or violent when young, before molting to adulthood.<br><br>The majority of the play we observed involved a sort of hide-and-seek, and occasionally wrestling by tangling themselves and struggling out of it. While normally we would write these off as instinctual play for honing their skills when they molt, their growth period is so incredibly fast and they are still such adept killers that it would serve no practical purpose. The only explanation for this is perhaps to create bonds and friendships with each other, if that is even possible for such an incredibly hostile race. It may be that they are much more reasonable with each other than other life forms.<br><br>It had become clear that now was the best time to extract a xenomorph for dissecting, as these were all still larvae and the queen was still attached to its ovipositor and would be immobile. With the approval of the research director, we sent in our medical robot that had been dubbed 'Head Surgeon' into the containment pen, dropping the shields for only a fraction of a second to allow it entry. The larvae were cautious, but the curiosity of one had him within grabbing range of our robot. It was brought out and quickly euthanized through lethal injection, courtesy of our mechanical doctor."
+	name = "幼体异形社交互动与捕获流程"
+	default_raw_text = "研究员：<u>佐久间佐野博士    </u><br>日期：<u>04/06/2554</u><br><br>报告：<br>正如预期，我们先前送进去的猴子只剩下一群异形幼体。可以明确看出，抱脸虫对宿主并不挑剔，而且到目前为止，孕育过程表现出 100% 的成功率。<br><br>这些幼体本身的行为与我们最初观察到的那只独居幼体大不相同，尽管它们会躲避人类，但显然与自己同类相处得十分自在。我们先前的猜测因它们表现出的顽皮而得到证实：它们在蜕皮成年之前，远没有那么好斗或暴戾。<br><br>我们观察到的大部分玩耍都类似一种捉迷藏，偶尔还会互相缠在一起扭打，再挣扎着脱身。通常我们会把这当作它们为蜕皮后磨练技能的本能玩耍，但它们的生长期快得难以置信，而且本就是如此老练的杀手，这种玩耍并没有实际用途。对此唯一的解释，或许是为了在彼此之间建立联系与友谊——如果这种极其敌对的种族也能有友谊的话。或许它们彼此之间比其他生命形式要讲道理得多。<br><br>现在已经很明确，此刻正是取出一只异形用于解剖的最佳时机，因为它们全都还是幼体，而女王仍与产卵管相连，无法移动。经研究主管批准，我们派出了被戏称为“头部外科医生”的医疗机器人进入收容围栏，只在一瞬间放下护盾让它进入。幼体们十分警惕，但其中一只的好奇心让它进入了我们机器人的抓取范围。它被带了出来，并由我们的机械医生施以安乐死注射，迅速结束了生命。"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/research/xeno_queen
-	name = "Queen Xenomorph Physiology & Behavior Observation"
-	default_raw_text = "Researcher: <u>Dr. Sakuma Sano    </u><br>Date: <u>04/06/2554</u><br><br>Report:<br>I have studied many interesting and diverse life-forms as a xenobiologist ranging from creatures as large as cows, to specimens too small see with the naked eye. This is by far the largest alien I have ever seen. The alien we were previously studying has molted and has become an absolutely enormous creature. Standing at over 15 feet tall and weighing in at likely two tons or more, the xenomorph queen is an absolutely breathtakingly large and cruel monster. Its behavior has changed drastically from when it was a drone, having become far more comfortable with sitting and staring at us, rather than smashing at the windows.<br><br>The queen, physiologically speaking, is fairly similar to the other xenomorphs, with a few key differences. Its enormous size demands large legs, while the back seems to be always hunched forward. The dorsal tubes on the back have changed to several large spikes, and we observed the alien now sports a second pair of smaller arms on its chest.  The purpose of these secondary arms is still unknown. Finally, the queen's crown has become incredibly large, with what seems to be a retractable slot to hide its head in. The dome appears to be extremely thick near the front, and will likely be able to resist a lot of trauma. Despite the enormous size it has grown to, it is not that much slower than it used to be.<br><br>After two hours of doing relatively nothing but staring, the queen began to produce an unusually large amount of resin and weeds, quickly shaping up a large nest that it then hid behind. It then proceeded to smash out all the lights, leaving us with very little to see with our cameras. When we looked through the back cameras, we had discovered that it had grown a large ovipositor, and was releasing large eggs onto the ground. This had us all in agreement that this stage of the life cycle was the queen.<br><br>Over the next few hours, the eggs grew to their full sizes, and we provided the subject with new monkey hosts. When they approached the eggs, they opened to release more facehuggers. It seems that we have observed the full cycle of reproduction for this species. We can expect more larvae in the next few hours."
+	name = "女王异形的生理与行为观察"
+	default_raw_text = "研究员：<u>佐久间佐野博士    </u><br>日期：<u>04/06/2554</u><br><br>报告：<br>作为一名异种生物学家，我研究过许多有趣而多样的生命形式，从牛那么大的生物，到肉眼都看不见的标本。这是我见过的最大的外星生物。我们此前研究的那只外星生物已经蜕皮，变成了一个极其庞大的生物。异形女王身高超过 15 英尺，体重很可能有两吨以上，是一个大得令人窒息、残酷无比的怪物。它的行为与还是工蜂时相比发生了巨大变化，现在它更乐意坐着盯着我们，而不是猛砸窗户。<br><br>从生理学上说，女王与其他异形相当相似，只有几处关键差异。它庞大的体型需要粗壮的腿，而背部似乎总是向前弓起。背上的背管已经变成了几根巨大的尖刺，我们还观察到这只外星生物现在胸前多出了一对较小的手臂。这对次级手臂的用途仍然不明。最后，女王的头冠变得极其巨大，上面似乎有一个可伸缩的凹槽用来藏起头部。头冠前端看起来极厚，很可能能承受大量伤害。尽管它长到了如此庞大的体型，速度却并没有比过去慢多少。<br><br>在将近两个小时几乎只是盯着我们看之后，女王开始分泌异常大量的树脂与杂草，很快筑起了一个大巢，然后躲在后面。接着它把所有的灯都砸碎了，让我们的摄像头几乎什么都看不见。当我们查看后方摄像头时，发现它长出了一根巨大的产卵管，正把大颗的卵产到地上。这让我们一致认定，这一生命周期阶段就是女王。<br><br>在接下来的几个小时里，这些卵长到了完整大小，我们为实验对象提供了新的猴子宿主。当猴子靠近那些卵时，卵便张开，释放出更多的抱脸虫。看来我们已经观察到了这一物种完整的繁殖周期。可以预料，接下来几个小时内会有更多幼体出现。"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/research/xeno_adult
-	name = "Adult Xenomorph Physiology & Behavior Observation"
-	default_raw_text = "Researcher: <u>Dr. Sakuma Sano    </u><br>Date: <u>03/06/2554</u><br><br>Report:<br>The other scientists and I can hardly believe our eyes. The snake-like larva has molted into a 7 foot tall insectoid nightmare in just a few hours. It's obvious now as to why such heavy duty containment was needed. It immediately tried to escape however by flinging itself at the window in a flurry of swipes and stabs. It seems its behavior has returned to a state that is very similar to the facehugger, though I doubt with the same intent! Thankfully, our glass and shields have shown to be more than sturdy enough for such a violent creature, and so far, any attempts at the creature escaping have been in vain.<br><br>As for its physiology, the creature has an elongated head with what appears to be have an exoskeleton resembling an external rib-cage on the torso. The alien is also fairly skinny with a lean body. The little amount of meat on the alien appears to be entirely muscle.  We assume this makes it deceptively strong, while remaining agile at the same time.  One of the most interesting things we have seen is its pharyngeal jaw.  It has some what of an inner mouth capable of being fired externally at extremely high speeds. It has already caused many dents in the walls and a few small cracks in the window with it. The alien also has a couple of dorsal tubes on its back, their purpose unknown. Finally, this monster sports a long ridged tail, complete with a large and extremely sharp blade at the tip.<br><br>Normally I would be absolutely terrified of something like this, but I'm putting my trust in Nanotrasen with the containment. After all, they wouldn't build a cell that could fail to contain its subject, would they?"
+	name = "成体异形的生理与行为观察"
+	default_raw_text = "研究员：<u>佐久间佐野博士    </u><br>日期：<u>03/06/2554</u><br><br>报告：<br>我和其他科学家几乎不敢相信自己的眼睛。那条蛇一样的幼体在短短几个小时内就蜕皮成了一只 7 英尺高的昆虫噩梦。现在显然能明白为什么需要如此重型的收容措施了。它立刻试图逃跑，猛烈地扑向窗户，一通抓挠与刺击。它的行为似乎又回到了与抱脸虫非常相似的状态，不过我怀疑意图并不相同！幸运的是，我们的玻璃和护盾证明足够坚固，完全能挡住这样一只暴戾的生物，到目前为止，它所有的逃跑尝试都是徒劳。<br><br>至于它的生理结构，这只生物有一只细长的头，躯干上似乎有一层类似外置肋骨的外骨骼。这只外星生物还相当瘦，身体精干。它身上那点肉似乎全都是肌肉。我们推测这让它强得具有欺骗性，同时依然敏捷。我们见过的最有趣的东西之一是它的咽部颚。它有一个可以极高速向外弹射的内口。它已经用这个在墙上撞出许多凹痕，还在窗户上弄出了几条小裂纹。这只外星生物背上还有几根背管，用途不明。最后，这个怪物还有一条长长的、带棱脊的尾巴，尾端有一片巨大且极其锋利的刃。<br><br>通常我会被这样的东西吓得要命，但我把信任交给了纳米传讯的收容措施。毕竟，他们不会造出一间关不住自己收容对象的牢房，对吧？"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/research/larva_psych
-	name = "Larva Xenomorph Physiology & Behavior Observation"
-	default_raw_text = "Researcher: <u>Dr. Sakuma Sano    </u><br>Date: <u>03/06/2554</u><br><br>Report:<br>When the larva first emerged from the chest of the monkey, it seemed very curious. It would wander around aimlessly for awhile and then sit still. We are unable to determine the gender of the larva, or even determine if it has a gender. After some time had passed, it seemed to lose interest in its surroundings and sat mostly still while occasionally wagging its tail. We decided to throw in a live mouse to see if it would consume it. The larva quickly attacked and ate the mouse and seemed to get larger very suddenly, this suggests that the larvae are capable of metabolizing and directing all the energy towards growth at previously thought impossible speeds. It is a shame that we cannot observe the process more closely, as we do not currently know how dangerous or violent this creature is or will become as it matures fully.<br><br>It is tempting to imagine the possibilities of utilizing such a mechanism. The capability of skipping years of growth time for children, repairing bodily damage in a matter of moments, even its usage in existing cloning technology."
+	name = "幼体异形的生理与行为观察"
+	default_raw_text = "研究员：<u>佐久间佐野博士    </u><br>日期：<u>03/06/2554</u><br><br>报告：<br>当幼体第一次从猴子的胸腔里钻出来时，它显得非常好奇。它会漫无目的地游荡一会儿，然后静静地坐着。我们无法确定这只幼体的性别，甚至无法确定它是否有性别。过了一段时间后，它似乎对周围环境失去了兴趣，大多安静地坐着，偶尔摇摇尾巴。我们决定扔进一只活老鼠，看看它是否会吃掉。幼体迅速发起攻击并吃掉了老鼠，而且似乎突然变大了，这表明幼体能够以先前认为不可能的速度代谢并把全部能量用于生长。可惜我们无法更仔细地观察这一过程，因为我们目前还不知道这种生物有多危险、多暴戾，或者它完全成熟后会变成什么样。<br><br>不禁让人想象利用这种机制的可能性。让孩子跳过数年的生长时间、在片刻之间修复身体损伤，甚至将其用于现有的克隆技术。"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/research/facehugger
-	name = "'Facehugger' Xenomorph Physiology & Behavior Observation"
-	default_raw_text = "Researcher: <u>Dr. Sakuma Sano    </u><br>Date: <u>03/06/2554</u><br><br>Report:<br>The test subject we were provided with truly is alien. It is a small spider-like creature with bony legs leading to a smooth body. It has a long tail connected to it, and it has shown extremely aggressive behavior by flinging its entire body at the glass and shields to no avail. While doing so, we noticed there was a small pink hole in the middle of the body.<br><br>When we sent in a monkey through the crude but effective disposal tube, the alien immediately jumped at its face and latched on. The monkey was quickly suffocated by its constricting tail, unable to pry off the fingers. The monkey at first seemed to be dead, but was observed to be breathing. The recently named alien 'facehugger' fell off dead and curled its legs up like a spider moments after it had finished with the monkey's body.<br><br>While the monkey appeared to be unharmed, we kept it in the cell for a couple more hours until we were horrified to discover it screaming out in pain as a snake-like creature erupted from the monkey's chest! It appears that the 'facehugger' is only the start of this life cycle. The impregnation cycle involving the creatures growing inside the chests of their hosts seems to only be the beginning."
+	name = "“抱脸虫”异形的生理与行为观察"
+	default_raw_text = "研究员：<u>佐久间佐野博士    </u><br>日期：<u>03/06/2554</u><br><br>报告：<br>提供给我们的实验对象确实名副其实地是外星生物。它是一只形似蜘蛛的小型生物，骨质的腿连着一个光滑的身体，还长着一条长尾。它表现出极度攻击性的行为，把整个身体扑向玻璃和护盾，但毫无效果。在这个过程中，我们注意到它身体中央有一个粉红色的小孔。<br><br>当我们通过那套粗糙但有效的处理管道送进一只猴子时，这只外星生物立刻跳向它的脸并紧紧吸附上去。猴子很快被它收紧的尾巴憋死，怎么也掰不开那些指状肢体。猴子最初看起来像是死了，但后来被观察到仍在呼吸。在它结束了猴子身体的事情后不久，这只最近被命名为“抱脸虫”的外星生物便脱落下来死去，像蜘蛛一样蜷起腿。<br><br>尽管猴子看起来毫发无伤，我们仍把它在牢房里多留了几个小时，直到我们惊恐地发现它痛苦地尖叫起来，一条蛇一样的生物从猴子的胸腔里爆了出来！看来“抱脸虫”只是这一生命周期的开端。这种生物在宿主体内孕育的寄生周期似乎仅仅是个开始。"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/research/xeno_hivemind
-	name = "The Hivemind Hypothesis"
-	default_raw_text = "Researcher: <u>Dr. Mark Douglas    </u><br>Date: <u>17/06/2554</u><br><br>Report:<br>Earlier today we have observed a new phenomenon with our subjects. While feeding them our last monkey subject and throwing out the box, the aliens merely looked at us instead of infecting the monkey right away. They looked to be collectively distressed as they would no longer be given hosts, where instead we would move to the next phase of the experiment. When I glanced at the gas tanks and piping leading to their cell, I looked back to see all of them were up against the glass, even the queen! It was as if they all understood what was going to happen, even though we knew only the queen had the cognitive capability to do so.<br><br>The only explanation for this is a form of communication between the aliens, but we have seen no such action take place anywhere in the cell until now. We also know that regular drone and hunter xenomorphs have no personality or instinct to survive by themselves. Perhaps the queen has a direct link to them? A form of a commander or overseer that controls their every move? A hivemind?"
+	name = "蜂巢意识假说"
+	default_raw_text = "研究员：<u>马克·道格拉斯博士    </u><br>日期：<u>17/06/2554</u><br><br>报告：<br>今天早些时候，我们在实验对象身上观察到了一种新现象。当我们喂给它们最后一只猴子并把箱子扔出去时，那些外星生物只是看着我们，没有立刻感染那只猴子。它们看起来集体陷入了不安，因为它们不会再被提供宿主，而我们转而进入实验的下一个阶段。当我瞥了一眼通向它们牢房的储气罐和管道，再回头看时，发现它们全都贴在玻璃上，连女王也是！就好像它们全都明白即将发生什么，尽管我们知道只有女王具备那样的认知能力。<br><br>对此唯一的解释是外星生物之间存在某种交流方式，但直到现在，我们在牢房里任何地方都没见过这样的行为。我们也知道普通的工蜂与猎手异形既没有个性，也没有独自求生的本能。也许是女王与它们之间存在直接联系？某种指挥官或监视者控制着它们的一举一动？一种蜂巢意识？"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/research/xeno_behavior
-	name = "\improper A Preliminary Study of Alien Behavior"
-	default_raw_text = "Researcher: <u>Dr. Sakuma Sano    </u><br>Date: <u>08/06/2554</u><br><br>Report:<br>The xenomorphs we have come to study here are a remarkable species. They are almost universally aggressive across all castes, showing no remorse or guilt or pause before or after acts of violence. They appear to be a species entirely designed to kill. Oddly enough, even their method of reproduction is a brutal two-for-one method of birthing a new xenomorph and killing its host.<br><br>The lone xenomorph we studied only five days ago showed little sign of intelligence. Only a simple drone that flung itself at the safety glass and shields repeatedly and thankfully without success. Once the drone molted into a queen, it became much more calm and calculating, merely looking at us and waiting while building its nest. As the hive grew in size and in numbers, so too did the intelligence of the common hunter and drone. We are still researching how they can communicate with one another and the relationship between the different castes and the queen. We will continue to update our research as we learn more about the species."
+	name = "\improper 外星行为初步研究"
+	default_raw_text = "研究员：<u>佐久间佐野博士    </u><br>日期：<u>08/06/2554</u><br><br>报告：<br>我们在这里研究的异形是一种非凡的物种。几乎所有种姓都普遍具有攻击性，在暴力行为前后都不表现出一丝悔意、内疚或犹豫。它们似乎是一个完全为杀戮而设计的物种。奇怪的是，就连它们的繁殖方式也是残酷的一举两得：既诞生出新的异形，又杀死宿主。<br><br>仅仅五天前我们研究的那只独居异形几乎没有表现出任何智慧的迹象，只是一只普通的工蜂，反复扑向安全玻璃和护盾，所幸都没有成功。当这只工蜂蜕皮成女王后，它变得冷静和精于算计得多，只是看着我们，一边筑巢一边等待。随着巢穴在规模和数量上增长，普通猎手与工蜂的智慧也随之提高。我们仍在研究它们如何彼此交流，以及不同种姓与女王之间的关系。随着我们对该物种的了解加深，我们会继续更新我们的研究。"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/research/xeno_castes
-	name = "The Xenomorph 'Castes'"
-	default_raw_text = "Researcher: <u>Dr. Mark Douglas    </u><br>Date: <u>06/06/2554</u><br><br>Report:<br>While observing the growing number of aliens in the containment cell, we began to notice subtle differences that were consistently repeating. Like ants, these creatures clearly have different specialized variations that determine their roles in the hive. We have dubbed the three currently observed castes as Hunters, Drones, and Sentinels.<br><br>Hunters have been observed to be by far the most aggressive and agile of the three, constantly running on every surface and frequently swiping at the windows. They are also remarkably good at camouflaging themselves in darkness and on their resin structures, appearing almost invisible to the unwary observer. They are always the first to reach the monkeys we send in leading us to believe that this caste is primarily used for finding and retrieving hosts.<br><br>Drones on the other hand are much more docile and seem more shy by comparison, though not any less aggressive than the other castes. They have been observed to have a much wider head and lack dorsal tubes. They have shown to be less agile and visibly more fragile than any other caste. The drone however has never been observed to interact with the monkeys directly and instead preferring maintenance of the hive by building walls of resin and moving eggs around the nest. As far as we know, we have only ever observed a drone become a queen, and we have no way of knowing if the other castes have that capability.<br><br>Lastly, we have the Sentinels, which appear at first glance to be the guards of the hive.  They have so far been only observed to remain near the queen and the eggs, frequently curled up against the walls. We have only observed one instance where they have interacted with a monkey who strayed too closely to the queen, and was pounced and held down immediately until it was applied with a facehugger. Their lack of movement makes it difficult to determine their exact purpose as guards, sentries, or other role."
+	name = "异形的“种姓”"
+	default_raw_text = "研究员：<u>马克·道格拉斯博士    </u><br>日期：<u>06/06/2554</u><br><br>报告：<br>在观察收容牢房中数量不断增加的外星生物时，我们开始注意到一些不断重复出现的细微差异。像蚂蚁一样，这些生物显然有不同的专门变体，决定了它们在巢穴中的角色。我们把目前观察到的三个种姓分别命名为猎手、工蜂与哨兵。<br><br>据观察，猎手是三者中最具攻击性和最敏捷的，不停地在各种表面上奔跑，还时常拍打窗户。它们也非常擅长在黑暗中以及在自己的树脂结构上伪装自己，对不留心的观察者来说几乎不可见。它们总是最先扑向我们送进去的猴子，这让我们相信这一种姓主要用于寻找和运送宿主。<br><br>相比之下，工蜂要温顺得多，看起来也更胆怯，尽管攻击性并不比其他种姓低。据观察，它们的头部要宽得多，也没有背管。它们显得不如其他任何种姓敏捷，而且明显更脆弱。然而工蜂从未被观察到直接与猴子互动，反而更喜欢通过建造树脂墙和搬运巢中的卵来维护巢穴。据我们所知，我们只观察到过工蜂变成女王，无法知道其他种姓是否也有这种能力。<br><br>最后是哨兵，乍看之下它们似乎是巢穴的守卫。到目前为止，它们只被观察到待在女王和卵附近，常常蜷缩在墙边。我们只观察到过一次它们与一只靠女王太近的猴子互动，那只猴子立刻被扑倒按住，直到被贴上抱脸虫。它们缺乏活动使得很难确定它们究竟是守卫、哨兵，还是其他角色的确切用途。"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/research/larva_autopsy
-	name = "Larva Xenomorph Autopsy Report"
-	default_raw_text = "Researcher: <u>Dr. Mark Douglas    </u><br>Date: <u>04/06/2554</u><br><br>Report:<br>After an extremely dangerous, time consuming and costly dissection, we have managed to record and identify several of the organs inside of the first stage of the xenomorph cycle: the larva. This procedure took an extensive amount of time because these creatures have incredibly, almost-comically acidic blood that can melt through almost anything in a few moments. We had to use over a dozen scalpels and retractors to complete the autopsy.<br><br>The larva seems to possess far fewer and quite different organs than that of a human. There is a stomach, with no digestive tract, a heart, which seems to lack any blood-oxygen circulation purpose, and an elongated brain, even though its as dumb as any large cat. It also lacks any liver, kidneys, or other basic organs.<br><br>We can't determine the exact nature of how these creatures grow, nor if they gain organs as they become adults. The larger breeds of xenomorph are too dangerous to kill and capture to give us an accurate answer to these questions. All that we can conclude is that being able to function with so little and yet be so deadly means that these creatures are highly evolved and likely to be extremely durable to various hazards that would otherwise be lethal to humans."
+	name = "幼体异形尸检报告"
+	default_raw_text = "研究员：<u>马克·道格拉斯博士    </u><br>日期：<u>04/06/2554</u><br><br>报告：<br>经过一次极其危险、耗时且代价高昂的解剖，我们终于记录并辨认出了异形生命周期第一阶段——幼体——体内的若干器官。这一过程耗费了大量时间，因为这些生物的血液酸性极强，几乎到了滑稽的地步，几分钟内就能融化几乎任何东西。为了完成尸检，我们用掉了十几把手术刀和牵开器。<br><br>幼体拥有的器官似乎比人类少得多，而且相当不同。有一个没有消化道的胃，一颗似乎不具备任何血液供氧循环用途的心脏，还有一个细长的脑——尽管它和任何大猫一样愚笨。它还缺少肝脏、肾脏或其他基本器官。<br><br>我们无法确定这些生物生长的确切机制，也无法确定它们成年后是否会获得新的器官。体型较大的异形品种太过危险，无法杀死并捕获，因此无法给我们准确的答案。我们只能得出结论：能以如此少的器官维持运转却又如此致命，说明这些生物高度进化，很可能对各种原本对人类致命的危害具有极强的耐受性。"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/research/evacuation
-	name = "Evacuation Procedure"
-	default_raw_text = "<h3><font color=red>In The Event of Xenobiology Breach: Evacuate staff, Lock down Xenobiology, Notify on-site superiors and/or Central Command immediately.</h3></b><br><br><h3>Current Xenobiology Containment Level:<u><strike>Secure</strike><i><b> RUN                    </h3></b></i></u>"
+	name = "疏散流程"
+	default_raw_text = "<h3><font color=red>若发生异种生物学泄露：疏散人员，封锁异种生物学部门，立即通知现场上级与/或中央指挥部。</h3></b><br><br><h3>当前异种生物学收容等级：<u><strike>安全</strike><i><b> 快跑                    </h3></b></i></u>"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/log/personal
-	name = "Personal Log"
-	default_raw_text = "Log 1:<br>We got our promised supply drop today. We were only meant to get it, what, a week ago? This bloody gateway keeps desyncing itself, and that means subsisting off recycled water and carb packs. No clue where the damn thing connects to on its off days, and HQ say we are 'not to touch it if it isn't linking to command.' We dumped off the assload of crates Jim filled, got our boxes of oxygen, food and drink, and closed the portal.<br><br>Log 2:<br>Damn thing is acting up again. Three days no contact this time. I thought I heard clanking noises from it yesterday. Jim is going on about the NT base or some shit. We've been over this before - They don't know we're here, that engineer was too drunk to recognize his suit, especially since I had it painted orange. He's starting to get annoying. We're safe.<br><br>Log 3:<br>Gateway synced itself up automatically today. I opened it for an instant to spy through it, got a glimpse of the inside of a transport container. Either HQ's redecorating or something, or there's more than two of these things."
+	name = "个人日志"
+	default_raw_text = "日志 1：<br>我们今天收到了承诺的补给空投。我们本来只该在——呃——一周前就收到的。这该死的传送门总是自己失同步，这意味着我们只能靠循环水和碳水包过活。完全不知道这鬼东西休息日到底连到哪里，而总部说我们“在它没有连接至指挥部时不能碰它”。我们把吉姆装满的一大堆板条箱卸了下来，拿到了我们的氧气、食物和饮料箱子，然后关上了传送门。<br><br>日志 2：<br>那鬼东西又在闹毛病了。这次三天没联系。我昨天好像听到它那边传来叮当声。吉姆一直在说什么纳米传讯基地之类的屁话。这事我们以前就讨论过了——他们不知道我们在这里，那个工程师醉得连自己的宇航服都认不出来，尤其是我还把它漆成了橙色。他开始变得烦人了。我们是安全的。<br><br>日志 3：<br>传送门今天自己自动同步了。我打开了一瞬间想偷看一眼，瞥见了一个运输集装箱的内部。要么是总部在重新装修什么的，要么就是这种东西不止两个。"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/log/personal_2
-	name = "Personal Log"
-	default_raw_text = "Log 1:<br>While mining today I noticed the NT station was finished with its renovations. They placed some huge reinforced tumor on the station, looks so ugly. I wouldn't be surprised if those pigs decided to turn that little astronomy outpost into a prison with that thing, it'd be pretty typical of them.<br><br>Log 2:<br>Really dumb of me but I just waved at an engineer in the outpost, and he waved back. I hope to god he was too dumb or drunk to recognize the suit, because if he isn't then we might have to pull out before they come looking for us.<br><br>Log 3:<br>That huge reinforced tumor in their science section has been making a lot of noise lately. I've been hearing some banging and scratching from the other side and I'm kind of glad now that they reinforced this thing so much. I'll be sleeping with my gun under my pillow from now on."
+	name = "个人日志"
+	default_raw_text = "日志 1：<br>今天采矿时我注意到纳米传讯空间站的翻修已经完工了。他们在空间站上安了一个巨大的加固肿瘤，真丑。要是那些猪决定用那玩意儿把那个小天文学前哨站变成监狱，我一点也不会惊讶，这很像他们的作风。<br><br>日志 2：<br>我真是蠢，我刚才居然朝前哨站里的一名工程师挥了手，他也挥了回来。我真希望老天保佑他太蠢或者太醉，认不出这套宇航服，因为如果他认出来了，我们可能得在他们来找我们之前撤走。<br><br>日志 3：<br>他们科研区里那个巨大的加固肿瘤最近一直发出很大噪音。我一直听到从另一边传来的敲击声和刮擦声，现在我倒有点庆幸他们把这东西加固得这么结实。从今以后我要枕着枪睡觉了。"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/engineering
-	name = "Engineering Instructions"
-	default_raw_text = "Alright, listen up. If you're reading this, I'm either taking a shit or I've been recalled back to Command. Either way, you'll need to know how to restore power. We've stolen this stuff from Nanotrasen, so all the equipment is jury-rigged. We have generators that work on both plasma and uranium, about 50 sheets should power the outpost for quite a while. If the generators aren't working, which is very likely, take the power cell on the desk and put it into the APC in the hallway. That should get the place running, at least for a little while."
+	name = "工程说明"
+	default_raw_text = "好了，听好。如果你在读这个，那我要么是在拉屎，要么是被召回指挥部了。不管哪种情况，你都需要知道怎么恢复供电。这些东西是我们从纳米传讯偷来的，所以所有设备都是临时拼凑的。我们有既能用等离子体也能用铀的发电机，大约 50 张燃料板应该够这个前哨站用上一阵子。如果发电机不工作——这很有可能——就把桌上的电源电池拿出来，装进走廊里的 APC 中。这应该能让这地方运行起来，至少能撑一会儿。"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/log/kenneth
-	name = "Personal Log - Kenneth Cunningham"
-	default_raw_text = "Entry One - 27/05/2554:<br>I just arrived, and already I hate my job. I'm stuck on this shithole of an outpost, trying to avoid these damn eggheads running all over the place preparing for god knows what. There's no crimes to stop, no syndies to kill, and I'm not even allowed to beat the fuckin' assistant senseless! They said I was transferred from Space Station 13 for 'good behavior', but this feels more like a punishment than a reward. All I know is that if I don't get some action soon, I'm going to go insane.<br><br>Entry Two - 03/06/2554:<br>Okay, so get this: we got a fuckin' deathsquad coming in today! I thought the day I saw one of them would be the day my employment was 'terminated', if you get my drift. They're escorting some sort of weird alien creature for the eggheads to study. I heard one of the docs telling the chef that this thing killed a whole security force before it was captured. I sure as hell hope that I don't have to fight it.<br><br>Entry Three - 08/06/2554:<br>My first real bit of 'action' today, if you could call it that. Crazy Ivan got in a fight with Kuester today about his Booze-O-Mat. Apparently one of the crewmembers had stolen a couple bottles of booze from the machine after Ivan disabled the ID lock. Tell you the truth, I don't blame the thief. Everyone is going a little stir-crazy in here, and the bartender is being damn stingy with the alcohol. Either way, once they started to pick a fight, I had to take them down. It's a damn shame that we don't have a brig, though. I had to lock Ivan in a fuckin' freezer, for god's sake. Let's hope that we can keep our sanity together, at least for a while.<br><br>Entry Four - 10/06/2554:<br>Jesus fucking Christ riding on a motorbike. These things the scientists are studying are terrifying! Fucking great huge purple bug things as tall as the ceiling, with blades for arms and drooling at the mouth. I don't think my taser will do jack shit against these damn things, but the eggheads say that they're safely contained. If they do, I have a feeling that it's only a matter of time before we're all screwed. These bastards look like walking death.<br><br>Entry Five - 18/06/2554:<br>Finally caught who stole the booze from Kuester. It was that fuckin' loser assistant Steve! He was in the dorms, chugging his worries away. I took one of the bottles back to the barkeep, but no one has to know about this second one. I think I'm gonna enjoy this while watching tomorrow's Thunderdome match.<br><br>Entry Six - 19/06/2554:<br>Oh, great. The chef is still sleeping, so we get Ivan's gruel for breakfast today. I overheard Sano and Douglas saying something about the aliens being restless, so we might get some action today. As long as it happens after the big game, I'm fine with it. I still got one beer to drink before I'm ready to die."
+	name = "个人日志——肯尼斯·坎宁安"
+	default_raw_text = "条目一——27/05/2554：<br>我刚到，就已经讨厌我的工作了。我被困在这个狗屎一样的前哨站，想避开那些四处乱跑、为天知道什么做准备的书呆子。这里没有犯罪要制止，没有辛迪加要杀，我甚至不被允许把那个该死的助手打个半死！他们说我是因为“表现良好”才从空间站 13 号调来的，但这感觉更像是惩罚而不是奖励。我只知道，如果我不能很快找到点刺激，我会疯掉。<br><br>条目二——03/06/2554：<br>好，你听听这个：我们今天要来一支该死的死亡小队！我以为我看到他们中任何一个的那天，就是我的雇佣关系被“终止”的那天，你懂我的意思。他们押送着某种奇怪的外星生物，让那帮书呆子研究。我听到一个博士跟厨师说，这东西在被捕获之前干掉了一整支安保部队。我真他妈希望我不用和它打。<br><br>条目三——08/06/2554：<br>今天是我第一次真正的“行动”，如果你能这么叫的话。疯狂的伊万今天因为他的烈酒自动售货机和库斯特打了一架。显然，在伊万解除了 ID 锁之后，有个船员从那台机器里偷了几瓶酒。说实话，我不怪那个贼。这里每个人都快被关疯了，而酒保又他妈的抠门得很。不管怎样，他们一动手，我就得把他们制服。遗憾的是我们没有禁闭室。我只好把伊万锁进一个该死的冷冻柜里，我的天。希望我们能保持理智，至少能撑一阵子。<br><br>条目四——10/06/2554：<br>我的老天爷啊。科学家们研究的这些东西太可怕了！他妈的高大、巨大的紫色虫形生物，和天花板一样高，手臂是刀刃，嘴里流着口水。我不觉得我的电击枪对这鬼东西有任何用处，但那些书呆子说它们被安全收容了。如果它们真跑出来，我有种感觉，我们全完蛋只是时间问题。这些杂种看起来就像会走路的死亡。<br><br>条目五——18/06/2554：<br>终于抓到偷库斯特酒的人了。就是那个该死的窝囊废助手史蒂夫！他在宿舍里，借酒消愁。我把其中一瓶还给了酒保，但第二瓶的事没必要让别人知道。我想我会一边享受它，一边看明天的雷霆竞技场比赛。<br><br>条目六——19/06/2554：<br>哦，太好了。厨师还在睡，所以我们今天早饭吃伊万做的糊糊。我无意中听到佐野和道格拉斯说那些外星生物躁动不安，所以我们今天可能有点行动。只要它发生在大赛之后，我就无所谓。我死之前还有一瓶啤酒要喝呢。"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/log/ivan
-	name = "Personal Log - Ivan Volodin"
-	default_raw_text = "Ivan Volodin Stories:<br><br>Entry Won - 28/05/2554:<br>Hello. I am Crazy Ivan. Boss say I must write. I do good job fixing outpost. Is very good job. Much better than mines. Many nice people. I cause no trouble.<br><br>Entry Too - 05/06/2554:<br>I am finding problem with Booze-O-Mat. Is not problem. I solve very easy. Use yellow tool to make purple light go off. I am good engineer! Bartender will be very happy.<br><br>Entry Tree - 08/06/2554:<br>Bartender is not happy. Security man is not happy. Cannot feel legs, is very cold in freezer. Is not good. Table is jammed into door, have no tools. Is very not good. But, on bright side, found meat! Shall chew to keep spirits up.<br><br>Entry Fore - 12/06/2554:<br>Big nasty purple bug looked at me today. Make nervous. Blue wall wire can be broken, then bad thing happens. Very very bad thing. Man in orange spacesuit wave at me today too. He seem nice. Wonder who was?<br><br>Entry Fiv - 15/06/2554:<br>I eat cornflakes today. Is good day. Sun shine for a while. Was nice. I also take ride on disposals chute. Was fun, but tiny. Get clog out of pipes, was vodka bottle. Is empty. This make many sads.<br><br>Entry Sex: 19/06/2554:<br>Purple bugs jumpy today. When waved, get hiss. Maybe very bad. Maybe just ill. Do not know. Is science problem, is not engineer problem. I eat sandwich. Is glorious job. Wish to never end."
+	name = "个人日志——伊万·沃洛金"
+	default_raw_text = "伊万·沃洛金的故事：<br><br>条目一——28/05/2554：<br>你好。我是疯狂的伊万。老板说我必须写。我把前哨站修得很好。是非常好的工作。比矿井好多了。很多好人。我没惹麻烦。<br><br>条目二——05/06/2554：<br>我在烈酒自动售货机上发现问题。不是问题。我解决很容易。用黄色工具让紫灯灭掉。我是好工程师！酒保会很高兴。<br><br>条目三——08/06/2554：<br>酒保不高兴。安保的人不高兴。腿没感觉，冷冻柜里很冷。不好。桌子卡在门口，没有工具。很不好。不过，往好处想，找到肉了！要嚼一嚼保持精神。<br><br>条目四——12/06/2554：<br>今天大坏紫虫看着我。让我紧张。蓝色墙上的线可以被弄断，然后坏事发生。非常非常坏的坏事。今天还有穿橙色太空服的人向我挥手。他看起来人很好。想知道是谁？<br><br>条目五——15/06/2554：<br>我今天吃玉米片。是好日子。太阳出来了一会儿。很好。我还坐了垃圾滑道。很好玩，但太窄了。把管道里堵的东西弄出来，是伏特加瓶子。是空的。这让我很伤心。<br><br>条目六——19/06/2554：<br>紫虫今天很跳。跟它挥手，它嘶嘶叫。也许很坏。也许只是生病。不知道。是科学问题，不是工程师问题。我吃三明治。是光荣的工作。希望永远不要结束。"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/log/gerald
-	name = "Personal Log - Gerald Rosswell"
-	default_raw_text = "Personal Log for Research Director Gerald Rosswell<br><br>Entry One - 17/05/2554:<br>You know, I can't believe I took this position so suddenly. I saw that corporate needed a research director for one of it's outposts and thought it would be a cakewalk, there isn't going to be a lot of research to be done on a tiny outpost. Mainly just running scans on the gas giant we are orbiting or some basic RnD. However, they conveniently forgot to tell me that me and my science staff would have to pull double duty as medical staff and that there is no one higher up on the chain of command here, so I get to pull triple duty as acting captain as well! This shit is probably allowed in some 3 point fine print buried underneath the literally thousands of pages of contracts. Well, at least the research will be easy work.<br><br>Entry Two - 25/05/2554:<br>Well, we all expected it at the outpost, CentCom has decided to completely change what research we are doing. They've decided that we should be research the species known as 'xenomporphs'. They announced this change 4 days ago and along with it, sadly, the termination of our current science staff barring me. Not to mention the constant noise made by the construction detail they sent to staple on a xenobiology lab ensuring no one has been able to sleep decently ever since they announced the shift. To make matters worse our current security guard actually died of a heart attack today. Just goes to show that 75 year old men shouldn't be security guards. Still can't believe that they decided to do this major change less than a month after the outpost was established.<br><br>Entry Three - 27/05/2554:<br>The new security guard arrived today. Apparently transferred here from the research station that also is orbiting the gas giant. He seems to be rather angry about his transfer. Considering the rumors I've heard about the research station he's probably caught off guard by the fact that Steve hasn't tried to force an IED down his throat.<br><br>Entry Four - 06/06/2554:<br>My requests for additional security and containment measures for the 'xenomorph' has been denied. Does Central Command not notice how dangerous these creatures are? The only thing keeping them in is a force field, a minor problem with the power grid and the entire hive is loose. What would stop them then, the lone security guard with a dinky little taser? Kenneth can barely handle a short-tempered engineer. We are under equipped and under staffed, we are inevitably going to be destroyed unless we get the equipment and staff we need.<br><br>Entry Five - 10/06/2554:<br>Cunningham got a good look at the xenomorph in containment. He was frightened for the rest of the day, rather amusing if it wasn't for the fact that we are all trapped on this scrap heap with naught but a force field keeping those xenomorphs in.<br><br>Entry Six - 17/06/2554:<br>The reactions from the specimens today has shown that they possess strange mental properties. Mark hypothesizes that they possibly have a sort of hive mind, while nothing is certain this would explain how xenomorphs seem to have vastly increased intellect when a 'queen' is present. Of course, to test this hypothesis would require many complicated procedures which we will not be able to undertake. But we do not know the full extend of the xenomorph mind, it may or may not be able to find a way to circumvent our containment system. I will resend my request for additional security measures along with this new found information."
+	name = "个人日志——杰拉尔德·罗斯韦尔"
+	default_raw_text = "研究主管杰拉尔德·罗斯韦尔的个人日志<br><br>条目一——17/05/2554：<br>你知道吗，我真不敢相信我这么突然就接下了这个职位。我看到公司需要一个研究主管去他们的一个前哨站，还以为这是件轻松的事，在一个小前哨站里不会有太多研究要做，主要就是对我们环绕的那颗气态巨行星做些扫描，或者一些基础的研发。然而，他们很方便地忘了告诉我，我和我的科研人员还得兼职医疗人员，而且这里的指挥链上没有更高的人，所以我还得兼职代理舰长，身兼三职！这种东西大概写在那几千页合同底下某条三号字体的小字里，而且多半是被允许的。算了，至少研究工作会很轻松。<br><br>条目二——25/05/2554：<br>嗯，我们前哨站的人都预料到了，中央指挥部决定彻底改变我们的研究方向。他们决定让我们研究被称为“异形”的物种。他们四天前宣布了这一变动，遗憾的是，随之而来的是除我之外所有现任科研人员的解雇。更别提他们派来的施工队为了加装一个异种生物学实验室而弄得噪音不断，自从他们宣布这一转变以来，就没人能好好睡过觉。更糟的是，我们现任的安保警卫今天竟然心脏病发作死了。这只能说明 75 岁的老头不该当安保警卫。还是不敢相信他们居然在前哨站建成不到一个月后就决定做这么大的变动。<br><br>条目三——27/05/2554：<br>新的安保警卫今天到了。显然是从同样环绕那颗气态巨行星的研究站调来的。他对这次调动似乎相当愤怒。考虑到我听到的关于那座研究站的传闻，他大概是没想到史蒂夫居然没有试图把土制炸弹塞进他喉咙里。<br><br>条目四——06/06/2554：<br>我为“异形”提出的增加安保与收容措施的请求被驳回了。中央指挥部难道没注意到这些生物有多危险吗？把它们关住的只有一道力场，电网出点小问题，整个巢穴就会脱困。那之后还有什么能挡住它们，就凭那个带着小破电击枪的孤身警卫？肯尼斯连一个脾气不好的工程师都应付不了。我们装备不足、人手不足，除非得到我们需要的装备和人员，否则我们必然会被毁灭。<br><br>条目五——10/06/2554：<br>坎宁安好好看了一眼收容中的异形。他之后一整天都吓得不行，要不是我们全被困在这堆废铁上、只靠一道力场把那些异形关住，这倒挺好笑。<br><br>条目六——17/06/2554：<br>今天标本们的反应表明它们拥有某种奇怪的精神特性。马克推测它们可能具有某种蜂巢意识，虽然一切都不确定，但这可以解释为什么在有“女王”存在时异形似乎智力大幅提升。当然，要验证这一假设需要许多复杂的程序，我们无法进行。但我们并不知道异形心智的全部范围，它也许能找到方法绕过我们的收容系统。我会连同这一新发现一起重新提交我关于增加安保措施的请求。"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/food_specials
-	name = "Specials This Week"
-	default_raw_text = "<b><h2>I Can't Believe It's Not Pasta: Half off on Wednesdays</h2></b><br><br><b><h2><font color=blue>Burger night every Friday 6PM-10PM, free drinks with purchase of meal!</font></h2></b><br><br><b><h2><font color=red>Premiering Tonight: The comedy stylings of Shoe Snatching Willy! 11AM-7PM</font></h2></b>"
+	name = "本周特惠"
+	default_raw_text = "<b><h2>难以置信这不是意面：周三半价</h2></b><br><br><b><h2><font color=blue>每周五晚 6 点至 10 点汉堡之夜，购买餐点即赠饮品！</font></h2></b><br><br><b><h2><font color=red>今晚首演：抢鞋威利的喜剧表演！上午 11 点至晚 7 点</font></h2></b>"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/welcome
-	name = "Welcome Notice"
-	default_raw_text = "<p><p align=center><h2>Welcome to Moon Outpost 19! Property of Nanotrasen Inc.</h2></p><hr><br><br>Staff Roster:<br>-Dr. Gerald Rosswell: Research Director & Acting Captain<br>-Dr. Sakuma Sano: Xenobiologist<br>-Dr. Mark Douglas: Xenobiologist<br>-Kenneth Cunningham: Security Officer-Ivan Volodin: Engineer<br>-Mathias Kuester: Bartender<br>-Sven Edling: Chef<br>-Steve: Assistant<br><br>Please enjoy your stay, and report any abnormalities to an officer."
+	name = "欢迎告示"
+	default_raw_text = "<p><p align=center><h2>欢迎来到月球前哨站 19！纳米传讯公司财产</h2></p><hr><br><br>员工名册：<br>-杰拉尔德·罗斯韦尔博士：研究主管兼代理舰长<br>-佐久间佐野博士：异种生物学家<br>-马克·道格拉斯博士：异种生物学家<br>-肯尼斯·坎宁安：安保警官——伊万·沃洛金：工程师<br>-马蒂亚斯·库斯特：酒保<br>-斯文·埃德林：厨师<br>-史蒂夫：助手<br><br>请享受您的停留，并向上级报告任何异常情况。"
 
 /obj/item/paper/fluff/awaymissions/moonoutpost19/goodbye_note
-	name = "Note"
-	default_raw_text = "<i>Bugs break out. I run to here and lock door. I hear door next to me break open and screams. All nice people here dead now. I no want to be eaten, and bottle always said to be coward way out, but person who say that is stupid. Mira, there is no escape for me, tell Alexis and Elena that father will never come home, and that I love you all.</i>"
+	name = "便条"
+	default_raw_text = "<i>虫子跑出来了。我跑到这里锁上门。我听见隔壁的门被撞开，还有尖叫声。这里所有好人都死了。我不想被吃掉，瓶子总说是懦夫的做法，但说这话的人是傻子。米拉，我逃不掉了，告诉亚历克西斯和埃琳娜，爸爸再也回不来了，我爱你们所有人。</i>"
 
 

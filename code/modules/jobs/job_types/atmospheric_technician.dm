@@ -1,6 +1,6 @@
 /datum/job/atmospheric_technician
 	title = JOB_ATMOSPHERIC_TECHNICIAN
-	description = "Ensure the air is breathable on the station, fill oxygen tanks, fight fires, purify the air."
+	description = "确保空间站内的空气可供呼吸，填充氧气罐，扑灭火灾，净化空气。"
 	faction = FACTION_STATION
 	total_positions = 3
 	spawn_positions = 2
@@ -35,7 +35,7 @@
 	)
 
 	job_flags = STATION_JOB_FLAGS
-	rpg_title = "Aeromancer"
+	rpg_title = "御风术士"
 
 /datum/outfit/job/atmos
 	name = "Atmospheric Technician"

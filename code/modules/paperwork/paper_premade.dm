@@ -3,292 +3,292 @@
  */
 
 /obj/item/paper/fluff/sop
-	name = "paper- 'Standard Operating Procedure'"
-	default_raw_text = {"Alert Levels:
-	<br>Blue- Emergency
-	&emsp;1. Caused by fire
-	&emsp;2. Caused by manual interaction
-	<br>&emsp;Action:
-	&emsp;&emsp;Close all fire doors. These can only be opened by resetting the alarm.
-	<br>Red- Ejection/Self-Destruct
-	&emsp;1. Caused by module operating computer.
-	<br>&emsp;Action:
-	&emsp;&emsp;After the specified time, the module will eject completely.
-	<br>Engine Maintenance Instructions:
-	&emsp;Shut off ignition systems:
-	&emsp;Activate internal power
-	&emsp;Activate orbital balance matrix
-	&emsp;Remove volatile liquids from area
-	&emsp;Wear a fire suit
-	<br>&emsp;After
-	&emsp;&emsp;Decontaminate
-	&emsp;&emsp;Visit medical examiner
-	<br>Toxin Laboratory Procedure:
-	&emsp;Wear a gas mask regardless
-	&emsp;Get an oxygen tank
-	&emsp;Activate internal atmosphere
-	<br>&emsp;After
-	&emsp;&emsp;Decontaminate
-	&emsp;&emsp;Visit medical examiner
-	<br>Disaster Procedure:
-	<br>&emsp;Fire:
-	&emsp;&emsp;Activate sector fire alarm
-	&emsp;&emsp;Move to a safe area
-	&emsp;&emsp;Get a fire suit
-	<br>&emsp;&emsp;After:
-	&emsp;&emsp;&emsp;Assess Damage
-	&emsp;&emsp;&emsp;Repair damages
-	&emsp;&emsp;&emsp;If needed, Evacuate
-	<br>&emsp;Meteor Shower:
-	&emsp;&emsp;Activate fire alarm
-	&emsp;&emsp;Move to the back of ship
-	<br>&emsp;&emsp;After:
-	&emsp;&emsp;&emsp;Repair damage
-	&emsp;&emsp;&emsp;If needed, Evacuate
-	<br>&emsp;Accidental Reentry:
-	&emsp;&emsp;Activate fire alarms in front of ship
-	&emsp;&emsp;Move volatile matter to a fireproof area
-	&emsp;&emsp;Get a fire suit
-	&emsp;&emsp;Stay secure until an emergency ship arrives
-	<br>&emsp;&emsp;If ship does not arrive-
-	&emsp;&emsp;&emsp;Evacuate to a nearby safe area
+	name = "纸张 - '标准操作程序'"
+	default_raw_text = {"警报等级：
+	<br>蓝色 - 紧急情况
+	&emsp;1. 由火灾引发
+	&emsp;2. 由手动操作引发
+	<br>&emsp;操作：
+	&emsp;&emsp;关闭所有防火门。这些门只有在重置警报后才能打开。
+	<br>红色 - 弹射/自毁
+	&emsp;1. 由模块操作计算机引发。
+	<br>&emsp;操作：
+	&emsp;&emsp;在指定时间之后，模块将完全弹射。
+	<br>引擎维护指示：
+	&emsp;关闭点火系统：
+	&emsp;激活内部电源
+	&emsp;激活轨道平衡矩阵
+	&emsp;清除区域内的易挥发液体
+	&emsp;穿戴防火服
+	<br>&emsp;之后
+	&emsp;&emsp;进行净化
+	&emsp;&emsp;前往医疗检查官处
+	<br>毒素实验室规程：
+	&emsp;无论如何都要佩戴防毒面具
+	&emsp;拿一个氧气罐
+	&emsp;激活内部大气
+	<br>&emsp;之后
+	&emsp;&emsp;进行净化
+	&emsp;&emsp;前往医疗检查官处
+	<br>灾难规程：
+	<br>&emsp;火灾：
+	&emsp;&emsp;启动区域火警
+	&emsp;&emsp;转移到安全区域
+	&emsp;&emsp;拿一件防火服
+	<br>&emsp;&emsp;之后：
+	&emsp;&emsp;&emsp;评估损害
+	&emsp;&emsp;&emsp;修复损害
+	&emsp;&emsp;&emsp;如有必要，进行撤离
+	<br>&emsp;流星雨：
+	&emsp;&emsp;启动火警
+	&emsp;&emsp;转移到船体后部
+	<br>&emsp;&emsp;之后：
+	&emsp;&emsp;&emsp;修复损害
+	&emsp;&emsp;&emsp;如有必要，进行撤离
+	<br>&emsp;意外再入大气层：
+	&emsp;&emsp;启动船体前部的火警
+	&emsp;&emsp;将易挥发物质转移到防火区域
+	&emsp;&emsp;拿一件防火服
+	&emsp;&emsp;保持安全，直到救援船抵达
+	<br>&emsp;&emsp;如果救援船未到达——
+	&emsp;&emsp;&emsp;撤离到附近的安全区域
 	"}
 
 /obj/item/paper/fluff/shuttles/daniel
-	default_raw_text = "i love daniel<br>daniel is my best friend<br><br>you are tearing me apart elise"
+	default_raw_text = "我爱丹尼尔<br>丹尼尔是我最好的朋友<br><br>你把我撕碎了，伊莉丝"
 
 /obj/item/paper/fluff/jobs/prisoner/letter
-	name = "letter from home"
-	default_raw_text = {"Dearest sweetheart,
-	<br>It is truly saddening you must spend your time locked up in an awful prison on that dangerous station. I have spoken to your lawyer who will attempt to appeal to the judge so your sentence may hopefully be reduced.
-	<br>Regardless, I just want you to understand that all of us out here still love you, and want to see you released safely some day! I know that prison can be a very vicious place, so please promise us you'll avoid getting into any fights or trouble, okay?
-	<br>We all care for your safety deeply, and could not live with ourselves if you ended up getting hurt. We've scheduled a visit to see you, and with any luck, hopefully our request will be granted soon.
-	<br>Anyway, please do your best to get by in that place, and never forget we'll be always here for you, no matter if we're separated.
+	name = "家书"
+	default_raw_text = {"亲爱的：
+	<br>得知你不得不在那个危险空间站上可怕的监狱里度过时光，我实在心痛。我已经和你的律师谈过，他会尝试向法官申诉，希望你的刑期能得以缩短。
+	<br>无论如何，我只想让你明白，我们外边的所有人都仍然爱着你，都盼着有朝一日能看着你平安出狱！我知道监狱可能是个非常凶险的地方，所以请答应我们，别卷入任何斗殴或麻烦，好吗？
+	<br>我们都深切关心你的安危，如果你受了伤，我们可没法原谅自己。我们已经安排了探视，运气好的话，希望我们的申请很快就能获批。
+	<br>总之，请在那地方尽力撑下去，永远别忘了，无论我们是否分离，我们都会一直在这里等着你。
 	<br>
-	<br>Please stay safe,
-	<br>-Love, <i>Your Dearest</i>"}
+	<br>请务必保重，
+	<br>-爱你，<i>你最亲爱的人</i>"}
 
 
 //////////// Job guides n' fluff
 
 /obj/item/paper/guides/jobs/hydroponics
-	name = "paper- 'Greetings from Billy Bob'"
-	default_raw_text = {"<B>Hey fellow botanist!</B>
-	<br>I didn't trust the station folk so I left
-	a couple of weeks ago. But here's some
-	instructions on how to operate things here.
-	You can grow plants and each iteration they become
-	stronger, more potent and have better yield, if you
-	know which ones to pick. Use your botanist's analyzer
-	for that. You can turn harvested plants into seeds
-	at the seed extractor, and replant them for better stuff!
-	Sometimes if the weed level gets high in the tray
-	mutations into different mushroom or weed species have
-	been witnessed. On the rare occasion even weeds mutate!
-	<br>Either way, have fun!
-	<br>Best regards,
-	Billy Bob Johnson.
-	<br>PS.
-	Here's a few tips:
-	In nettles, potency = damage
-	In amanitas, potency = deadliness + side effects
-	In Liberty caps, potency = drug power + effects
-	In chilies, potency = heat
-	<B>Nutrients keep mushrooms alive!</B>
-	<B>Water keeps weeds such as nettles alive!</B>
-	<B>All other plants need both.</B>"}
+	name = "纸张 - '比利·鲍勃的问候'"
+	default_raw_text = {"<B>嗨，植物学同行！</B>
+	<br>我不太信任站上那些人，所以几周前
+	就走了。不过这里留了些
+	关于这边怎么操作的说明。
+	你可以种植物，每经过一轮培育它们都会变得
+	更强、更有效、产量更高，只要
+	你知道该挑哪些。用你的植物学分析仪
+	来判断吧。你可以把收获的植物送进
+	种子提取机变成种子，再重新种下去，获得更好的东西！
+	有时候托盘里的杂草等级过高，
+	曾有人目击到植物变异成不同的蘑菇或杂草种类。
+	罕见情况下，连杂草也会变异！
+	<br>总之，玩得开心！
+	<br>此致敬礼，
+	比利·鲍勃·约翰逊。
+	<br>附言。
+	这里有几个小贴士：
+	荨麻中，效力 = 伤害
+	毒蝇伞中，效力 = 致命性 + 副作用
+	自由帽中，效力 = 药力 + 效果
+	辣椒中，效力 = 辣度
+	<B>营养液能让蘑菇存活！</B>
+	<B>水能让荨麻等杂草存活！</B>
+	<B>其他所有植物两者都需要。</B>"}
 
 /obj/item/paper/guides/jobs/holopad_hydro
-	name = "paper- 'Holopad Notice'"
-	default_raw_text = "<B>Can't get any botanists at the table? Have you tried using the damn holopad?</B><BR>\n<BR>\nStep onto the pad, and interface with it<BR>\nthen make your dang ol' call!<BR>\n<BR>\nYou want to call \"Hydroponics\" to reach them."
+	name = "纸张 - '全息投影台通知'"
+	default_raw_text = "<B>没法把植物学家叫到桌前？你试过用那台该死的全息投影台吗？</B><BR>\n<BR>\n走上投影台，与它交互<BR>\n然后打你的电话吧！<BR>\n<BR>\n你要呼叫“水培部”才能联系到他们。"
 
 /obj/item/paper/guides/jobs/engineering/bsa
-	name = "Bluespace Artillery (BSA) Assembly Instructions"
-	default_raw_text = {"<b>Below is a quick guide on setting up your new Bluespace Artillery Cannon.</b>
+	name = "蓝空间火炮（BSA）组装说明"
+	default_raw_text = {"<b>以下是你新蓝空间火炮的快速安装指南。</b>
 	<br>
-	Featuring the newest in Nanotrasen technology, the Bluespace Artillery Cannon is your surefire ticket to complete and total threat elimination.
+	蓝空间火炮采用纳米传讯的最新技术，是你彻底消灭一切威胁的可靠保障。
 	<br>
-	<h1>1. Acquire necessary resources.</h1>
-	* Bluespace Artillery Bore
-	* Bluespace Artillery Fusor
-	* Bluespace Artillery Generator
-	* Bluespace Artillery Controls
-	* 26 cable pieces
-	* 20 iron
-	* 20 bluespace crystals (or artificial)
-	* 5 quadratic capacitors
-	* 5 femto servos
-	* 2 glass sheets
-	<h1>2. Find suitable location</h1>
-	The BSA has a steep power requirement and functions best when it is on its own APC; keep other items in the room to a minimum. Ensure the BSA is placed at the edge of the station, so that it won't shoot through another portion of the station..  Make sure the room isn't easily accessible by someone who shouldn't be there.
-	<h1>3. Construction</h1>
-	1. Build three machine frames.
-	2. Determine the desired direction you want your artillery to face.
-	3. Leave five spaces in front, three behind.  The artillery cannon finishes itself after the assemblies are aligned.
-	4. Place the machine frames in a horizontal line.
-	5. Wrench the three machine frames in place.
-	6. Install wires in the three machine frames.
-	7. Install the bore in the front machine frame. This is your barrel.
-	8. Install the fusor in the center machine frame.
-	9. Install the generator in the back machine frame.
-	10. Examine the three machines and see what else they need, you can use a screwdriver to finish the assembly when parts are installed.
-	11. Construct a computer terminal in the same room as the BSA assembly, make sure they draw power from the same APC or ask the Chief Engineer to check the blueprints for you.
-	12. Use a screwdriver to fasten the board, install wires and two glass sheets, use screwdriver again to turn on.
-	13. Use a multitool and interact with the generator, then the fusor.
-	14. Use a multitool again to interact with the bore, then the fusor.
-	15. Use the console to finalize construction. If the console doesn't display any error messages, a faint green hologram will indicate the BSA's position. Reposition if needed.
-	And with that, you are done!
-	<b>Commencing firing protocols requires the access of at least two heads, the console will be locked down until this requirement is met.</b>
-	<b>Always make sure you are certain before attempting to fire the BSA.</b>
+	<h1>1. 收集必要资源。</h1>
+	* 蓝空间火炮弹膛
+	* 蓝空间火炮聚变器
+	* 蓝空间火炮发生器
+	* 蓝空间火炮控制台
+	* 26 段线缆
+	* 20 铁
+	* 20 蓝空间水晶（或人造品）
+	* 5 个二次电容器
+	* 5 个飞秒伺服器
+	* 2 张玻璃
+	<h1>2. 寻找合适位置</h1>
+	BSA 的功率需求很高，最好让它单独接一台 APC；房间里的其他设备要尽可能少。确保 BSA 放置在空间站边缘，以免它射穿空间站的另一部分。还要确保不该进去的人不容易进入该房间。
+	<h1>3. 建造</h1>
+	1. 建造三个机器框架。
+	2. 确定你希望火炮朝向的方向。
+	3. 前方留出五格，后方留出三格。各组件对齐后，火炮会自动完成组装。
+	4. 把机器框架排成一条水平线。
+	5. 用扳手把三个机器框架固定到位。
+	6. 在三个机器框架中安装线缆。
+	7. 把炮膛安装在前方的机器框架上。这就是你的炮管。
+	8. 把聚变器安装在中间的机器框架上。
+	9. 把发生器安装在后方的机器框架上。
+	10. 检查这三台机器还缺什么，零件装好后可以用螺丝刀完成组装。
+	11. 在与 BSA 组件同一房间内建造一台计算机终端，确保它从同一台 APC 取电，或者请总工程师帮你查看蓝图。
+	12. 用螺丝刀固定电路板，安装线缆和两张玻璃，再用螺丝刀开机。
+	13. 用多功能工具依次与发生器、聚变器交互。
+	14. 再次使用多功能工具，依次与炮膛、聚变器交互。
+	15. 使用控制台完成建造。如果控制台没有显示任何错误信息，一道微弱的绿色全息投影会标示出 BSA 的位置。如有需要请重新调整位置。
+	至此，你就完成了！
+	<b>启动开火协议至少需要两名主管的权限，在满足此要求之前，控制台将被锁定。</b>
+	<b>在尝试发射 BSA 之前，务必确认你已经下定决心。</b>
 	<br>
-	<i>Keep this manual for your records, failure to do so will void your 2 day limited liability warranty from Nanotrasen.</i>"}
+	<i>请保留本手册以备查阅，否则你从纳米传讯获得的 2 天有限责任保修将失效。</i>"}
 
 /obj/item/paper/fluff/jobs/engineering/frequencies
-	name = "Station Frequencies"
-	default_raw_text = {"Please remember the frequencies of each radio channel used on station:
-		* AI Private - 144.7
-		* Command - 135.3
-		* Common - 145.9
-		* Engineering - 135.7
-		* Medical - 135.5
-		* Science - 135.1
-		* Security - 135.9
-		* Service - 134.9
-		* Supply - 134.7"}
+	name = "空间站频道频率"
+	default_raw_text = {"请记住站上各无线电频道的频率：
+		* AI 专用 - 144.7
+		* 指挥 - 135.3
+		* 通用 - 145.9
+		* 工程 - 135.7
+		* 医疗 - 135.5
+		* 科研 - 135.1
+		* 安保 - 135.9
+		* 服务 - 134.9
+		* 补给 - 134.7"}
 
 /obj/item/paper/fluff/jobs/security/beepsky_mom
-	name = "Note from Beepsky's Mom"
+	name = "毕普斯基妈妈的留言"
 	default_raw_text = "01001001 00100000 01101000 01101111 01110000 01100101 00100000 01111001 01101111 01110101 00100000 01110011 01110100 01100001 01111001 00100000 01110011 01100001 01100110 01100101 00101110 00100000 01001100 01101111 01110110 01100101 00101100 00100000 01001101 01101111 01101101 00101110"
 
 /obj/item/paper/guides/jobs/security/courtroom
-	name = "paper- 'A Crash Course in Legal SOP on SS13'"
-	default_raw_text = {"<B>Roles:</B>
-	The Detective is basically the investigator and prosecutor.
-	The Staff Assistant can perform these functions with written authority from the Detective.
-	The Captain/HoP/Warden acts as the judicial authority.
-	The Security Officers are responsible for executing warrants, security during trial, and prisoner transport.
-	<br><B>Investigative Phase:</B>
-	After the crime has been committed the Detective's job is to gather evidence and try to ascertain not only who did it but what happened. They must take special care to catalogue everything and must not leave anything out. They should write out all the evidence on paper, and make sure they take an appropriate number of fingerprints. If they must ask someone questions, they have permission to confront them. If the person refuses, they can ask a judicial authority to write a subpoena for questioning. If again they fail to respond, that person is to be jailed as insubordinate and obstructing justice. Said person will be released after they cooperate.
-	<br>Once the FT has a clear idea as to who the criminal is, they are to write an arrest warrant. IT MUST LIST THE CHARGES. The FT is to then go to the judicial authority and explain a small version of their case. If the case is moderately acceptable the authority should sign it. Security must then execute said warrant.
-	<br><B>Pre-Pre-Trial Phase:</B>
-	A legal representative must be provided to the defendant if the defendant requests one. That person and the defendant are then to be given time to meet (in the brig IS ACCEPTABLE). The defendant and their lawyer are then to be given a copy of all the evidence that will be presented at trial (rewriting it all on paper is fine). THIS IS CALLED THE DISCOVERY PACK. With a few exceptions, THIS IS THE ONLY EVIDENCE BOTH SIDES MAY USE AT TRIAL. IF the prosecution will be seeking the death penalty it MUST be stated at this time. ALSO if the defense will be seeking not guilty by mental defect it must state this at this time to allow ample time for examination.
-	At this time, each side is to compile a list of witnesses. By default, the defendant is on both lists. The defense and prosecution can compile more evidence beforehand BUT in order for it to be admissible the evidence MUST also be given to the other side.\nThe defense has time to compile motions against some evidence here.
-	<B>Possible Motions:</B>
-	1. <U>Invalidate Evidence-</U> Something with the evidence is wrong and the evidence is to be thrown out. This includes irrelevance or corrupt security.
-	2. <U>Free Movement-</U> The defendant is to be kept unrestrained before and during the trial.
-	3. <U>Subpoena Witness-</U> If the defense presents good reasons for needing a witness but said person fails to cooperate then a subpoena is issued.
-	4. <U>Drop the Charges-</U> Not enough evidence is presented for a trial so the charges are to be dropped. The FT CAN RETRY but the judicial authority must carefully reexamine the new evidence.
-	5. <U>Declare Incompetent-</U> The defendant is insane. Once this is granted a medical official is to examine the patient. If they are indeed insane, they are to be placed under care of the medical staff until they are deemed competent to stand trial.
-	<br>ALL PARTIES MOVE TO A COURTROOM
-	<B>Pre-Trial Hearings:</B>
-	A judicial authority and the 2 sides are to meet in the trial room. NO ONE ELSE BESIDES A SECURITY DETAIL IS TO BE PRESENT. The defense submits a plea. If the plea is guilty, then proceed directly to sentencing phase. Now the sides each present their motions to the judicial authority. They rule on them. Each side can debate each motion. Then the judicial authority gets a list of crew members. They first get a chance to look at them all and pick out acceptable and available jurors. Those jurors are then called over. Each side can ask a few questions and dismiss jurors they find too biased. HOWEVER before dismissal the judicial authority MUST agree to the reasoning.
-	<br><B>The Trial:</B>
-	The trial has three phases.
-	1. <B>Opening Arguments</B>- Each side can give a short speech. They may not present ANY evidence.
-	2. <B>Witness Calling/Evidence Presentation</B>- The prosecution goes first and is able to call the witnesses on their approved list in any order. They can recall them if necessary. During the questioning, the lawyer may use evidence alongside questions to help prove a point. After each witness, the other side has a chance to cross-examine. After both sides are done questioning a witness, the prosecution can present another or recall one (even the EXACT same one again!). After prosecution is done, the defense can call witnesses. After the initial cases are presented, both sides are free to call witnesses on either list.
-	Once both sides are done calling witnesses, we move onto the next phase.
-	3. <B>Closing Arguments</B>- Same as opening.
-	The jury then deliberates IN PRIVATE. THEY MUST ALL AGREE on a verdict. REMEMBER: They mix between some charges being guilty and others not guilty (i.e. if you supposedly killed someone with a gun, and you unfortunately picked up a gun without authorization, then you CAN be found not guilty of murder BUT guilty of possession of illegal weaponry.). Once they have agreed, they present their verdict. If the jury votes in majority that they will be unable to unanimously reach a verdict, they call a deadlocked jury and the case restarts at Pre-Trial phase with an entirely new set of jurors.
-	<br><B>Sentencing Phase:</B>
-	If the death penalty was sought (you MUST have gone through a trial for death penalty) then skip to the second part.
-	I. Each side can present more evidence/witnesses in any order. The prosecution is to submit a suggested penalty. After all the sides are done, the judicial authority is to give a sentence.
-	II. The jury stays and does the same thing as I. Their sole job is to determine if the death penalty is applicable. If not, then the judge selects a sentence.<BR>\n<BR>\nThe trial is now complete. Security then executes the sentence and adds the applicable convictions to the person's record.
+	name = "纸张 - 'SS13 法律标准操作程序速成课'"
+	default_raw_text = {"<B>角色：</B>
+	侦探基本上就是调查员兼检察官。
+	职员助理在获得侦探书面授权后可以履行这些职能。
+	舰长/人事主管/监狱长担任司法权威。
+	安保官员负责执行逮捕令、审判期间的安保以及押送囚犯。
+	<br><B>调查阶段：</B>
+	犯罪发生后，侦探的工作是收集证据，并努力查明不仅是谁干的，还有发生了什么。他们必须特别小心地记录一切，不得遗漏任何内容。他们应把所有证据写在纸上，并确保采集足够数量的指纹。如果他们必须询问某人，他们有权当面质询。如果对方拒绝，他们可以请司法权威签发传唤令以进行问询。如果对方仍然不予回应，该人将被以不服从和妨碍司法罪收监。待其配合后即可释放。
+	<br>一旦侦探明确谁是罪犯，就要撰写逮捕令。逮捕令必须列出指控罪名。随后侦探应前往司法权威处，简要说明案情。如果案情尚可接受，权威应予以签署。之后安保部必须执行该逮捕令。
+	<br><B>预审前阶段：</B>
+	如果被告提出要求，必须为其提供一名法律代表。随后应给该代表和被告留出会面时间（在监狱内会面是可以的）。然后应向被告及其律师提供一份将在审判中出示的全部证据的副本（全部重新抄写在纸上也可以）。这被称为证据开示包。除少数例外，这是双方在审判中唯一可以使用的证据。如果控方将寻求死刑，必须在此阶段声明。另外，如果辩方将以精神缺陷为由主张无罪，也必须在此阶段声明，以便留出充足的检查时间。
+	此时，双方各自整理一份证人名单。默认情况下，被告会出现在两份名单上。辩方和控方可以事先收集更多证据，但若要让其可被采纳，这些证据也必须交给对方。\n辩方在此有时间针对某些证据提出动议。
+	<B>可能的动议：</B>
+	1. <U>证据无效——</U>证据存在问题，应予排除。包括证据无关或安保腐败。
+	2. <U>自由行动——</U>被告在审判前及审判期间不得受到束缚。
+	3. <U>传唤证人——</U>如果辩方提出了需要证人的充分理由，而该人拒绝配合，则签发传票。
+	4. <U>撤销指控——</U>证据不足以进行审判，因此应撤销指控。侦探可以重新起诉，但司法权威必须仔细重新审查新证据。
+	5. <U>宣告无行为能力——</U>被告精神失常。此项动议获准后，须由医疗官员对病人进行检查。若确实精神失常，则应将其置于医疗人员照料之下，直至被认定有能力接受审判。
+	<br>所有当事方移至法庭
+	<B>预审听证：</B>
+	司法权威与双方在审判室会面。除安保人员外，其他人一律不得在场。辩方提交答辩。若答辩为有罪，则直接进入量刑阶段。接着双方各自向司法权威提出动议。权威对其作出裁决。双方可就每项动议进行辩论。随后司法权威取得一份船员名单。他们先有机会浏览名单，挑选出可接受且可到场的陪审员。然后传唤这些陪审员。双方可以问几个问题，并剔除他们认为过于偏颇的陪审员。但在剔除之前，司法权威必须同意其理由。
+	<br><B>审判：</B>
+	审判分为三个阶段。
+	1. <B>开场陈述</B>——双方可作简短发言。不得出示任何证据。
+	2. <B>传唤证人/出示证据</B>——控方先行，可按任意顺序传唤其获批名单上的证人。必要时可再次传唤。在询问过程中，律师可以结合证据提问，以帮助证明观点。每位证人之后，对方有机会进行交叉询问。双方询问完一名证人后，控方可再出示另一名或再次传唤（甚至完全同一位！）。控方结束后，辩方可传唤证人。初始案情呈现完毕后，双方均可自由传唤任一名单上的证人。
+	双方传唤证人完毕后，我们进入下一阶段。
+	3. <B>结案陈词</B>——同开场。
+	随后陪审团私下商议。他们必须就裁决达成一致。请记住：他们可能对某些指控认定有罪，对另一些认定无罪（例如，如果你据称用枪杀了人，而你又不巧未经授权捡起了一把枪，那么你可能被判谋杀无罪，但被判非法持有武器有罪）。达成一致后，他们宣布裁决。如果陪审团以多数票认为无法达成一致裁决，则宣布陪审团僵持，案件重新从预审阶段开始，并换上一整套新的陪审员。
+	<br><B>量刑阶段：</B>
+	如果已寻求死刑（你必须经过审判才能判处死刑），则跳到第二部分。
+	I. 双方可任意顺序出示更多证据/证人。控方应提交建议的刑罚。各方完毕后，由司法权威宣判。
+	II. 陪审团留下，做与第一部分相同的事。他们的唯一职责是判定是否适用死刑。如果不适用，则由法官选择刑罚。<BR>\n<BR>\n审判至此结束。随后安保部执行判决，并将相关定罪记录加入该人的档案。
 	"}
 
 /obj/item/paper/guides/jobs/security/labor_camp
-	name = "Labor Camp Operating Guide"
-	default_raw_text = {"<b>Labor Camp Facility Operation Guide</b>
-	<br>Hello there, proud operator of an NT-Sec Prisoner Rehabilitation Center.  A solution to rising crime rates and falling productivity, these facilities are specifically designed for the safe, productive imprisonment of your most dangerous criminals.
-	<br>To press a long-term prisoner into the service of the station, replace their equipment with prisoners' garb at one of the prison lockers, as per normal operating procedure.  Before assigning a prisoner their ID, insert the ID into a prisoner management console and assign the prisoner a quota, based on the severity of their crime.
-	A single sheet of most materials produces five points for the prisoner, and points can be expected to be produced at a rate of about 100 per minute, though punishments as severe as forced labor should be reserved for serious crimes of sentences not less than five minutes long.
-	Once you have prepared the prisoner, place them in the secure northern half of the labor shuttle, and send them to the station.  Once they meet their quota by feeding sheets to the stacker, they will be allowed to return to the station, and will be able to open the secure door to the prisoner release area.
-	<br>In the case of dangerous prisoners, surveillance may be needed. To that end, there is a prisoner monitoring room on the mining station, equipped with a remote flasher and a lockdown button.  The mine itself is patrolled by a securibot, so the nearby security records console can also be used to secure hostile prisoners on the mine."}
+	name = "劳改营操作指南"
+	default_raw_text = {"<b>劳改营设施操作指南</b>
+	<br>你好，骄傲的 NT-Sec 囚犯康复中心操作员。作为犯罪率上升与生产力下降的解决方案，这些设施专为安全、高效地关押你最危险的罪犯而设计。
+	<br>要把长期囚犯投入为空间站服务，请按标准操作程序，在任意一个监狱储物柜处将其装备替换为囚服。在为囚犯分配 ID 之前，先把 ID 插入囚犯管理控制台，并根据其罪行严重程度为其设定配额。
+	大多数材料每张可为囚犯产出五点，产出速率预计约为每分钟 100 点，不过强制劳动这类严厉惩罚应仅用于刑期不少于五分钟的严重罪行。
+	准备好囚犯后，将其安置在劳改穿梭机北半部的安全区域，并把他们送往空间站。当他们通过向堆叠机投送板材达成配额后，便获准返回空间站，并能打开通往囚犯释放区的安全门。
+	<br>对于危险囚犯，可能需要监视。为此，采矿站设有囚犯监控室，配备远程闪光器与封锁按钮。矿区本身由一名安保机器人巡逻，因此附近的安保记录控制台也可用于控制矿区上的敌对囚犯。"}
 
 /obj/item/paper/fluff/jobs/jobs
-	name = "paper- 'Job Information'"
-	default_raw_text = "Information on all formal jobs that can be assigned on Space Station 13 can be found on this document.<BR>\nThe data will be in the following form.<BR>\nGenerally lower ranking positions come first in this list.<BR>\n<BR>\n<B>Job Name</B>   general access>lab access-engine access-systems access (atmosphere control)<BR>\n\tJob Description<BR>\nJob Duties (in no particular order)<BR>\nTips (where applicable)<BR>\n<BR>\n<B>Research Assistant</B> 1>1-0-0<BR>\n\tThis is probably the lowest level position. Anyone who enters the space station after the initial job\nassignment will automatically receive this position. Access with this is restricted. Head of Personnel should\nappropriate the correct level of assistance.<BR>\n1. Assist the researchers.<BR>\n2. Clean up the labs.<BR>\n3. Prepare materials.<BR>\n<BR>\n<B>Staff Assistant</B> 2>0-0-0<BR>\n\tThis position assists the security officer in their duties. The staff assistants should primarily br\npatrolling the ship, waiting until they are needed to maintain ship safety.\n(Addendum: Updated/Elevated Security Protocols admit issuing of low level weapons to security personnel)<BR>\n1. Patrol ship/Guard key areas<BR>\n2. Assist security officer<BR>\n3. Perform other security duties.<BR>\n<BR>\n<B>Technical Assistant</B> 1>0-0-1<BR>\n\tThis is yet another low level position. The technical assistant helps the engineer and the station\ntechnician with the upkeep and maintenance of the station. This job is very important because it usually\ngets to be a heavy workload on station technician and these helpers will alleviate that.<BR>\n1. Assist Station technician and Engineers.<BR>\n2. Perform general maintenance of station.<BR>\n3. Prepare materials.<BR>\n<BR>\n<B>Medical Assistant</B> 1>1-0-0<BR>\n\tThis is the fourth position yet it is slightly less common. This position doesn't have much power\noutside of the med bay. Consider this position like a nurse who helps to upkeep medical records and the\nmaterials (filling syringes and checking vitals)<BR>\n1. Assist the medical personnel.<BR>\n2. Update medical files.<BR>\n3. Prepare materials for medical operations.<BR>\n<BR>\n<B>Research Technician</B> 2>3-0-0<BR>\n\tThis job is primarily a step up from research assistant. These people generally do not get their own lab\nbut are more hands on in the experimentation process. At this level they are permitted to work as consultants to\nthe others formally.<BR>\n1. Inform superiors of research.<BR>\n2. Perform research alongside of official researchers.<BR>\n<BR>\n<B>Detective</B> 3>2-0-0<BR>\n\tThis job is in most cases slightly boring at best. Their sole duty is to\nperform investigations of crime scenes and analysis of the crime scene. This\nalleviates SOME of the burden from the security officer. This person's duty\nis to draw conclusions as to what happened and testify in court. Said person\nalso should store the evidence properly.<BR>\n1. Perform crime-scene investigations/draw conclusions.<BR>\n2. Store and catalogue evidence properly.<BR>\n3. Testify to superiors/inquiries on findings.<BR>\n<BR>\n<B>Station Technician</B> 2>0-2-3<BR>\n\tPeople assigned to this position must work to make sure all the systems aboard Space Station 13 are operable.\nThey should primarily work in the computer lab and repairing faulty equipment. They should work with the\natmospheric technician.<BR>\n1. Maintain SS13 systems.<BR>\n2. Repair equipment.<BR>\n<BR>\n<B>Atmospheric Technician</B> 3>0-0-4<BR>\n\tThese people should primarily work in the atmospheric control center and lab. They have the very important\njob of maintaining the delicate atmosphere on SS13.<BR>\n1. Maintain atmosphere on SS13.<BR>\n2. Research atmospheres on the space station. (safely please!)<BR>\n<BR>\n<B>Engineer</B> 2>1-3-0<BR>\n\tPeople working as this should generally have detailed knowledge as to how the propulsion systems on SS13\nwork. They are one of the few classes that have unrestricted access to the engine area.<BR>\n1. Upkeep the engine.<BR>\n2. Prevent fires in the engine.<BR>\n3. Maintain a safe orbit.<BR>\n<BR>\n<B>Medical Researcher</B> 2>5-0-0<BR>\n\tThis position may need a little clarification. Their duty is to make sure that all experiments are safe and\nto conduct experiments that may help to improve the station. They will be generally idle until a new laboratory\nis constructed.<BR>\n1. Make sure the station is kept safe.<BR>\n2. Research medical properties of materials studied of Space Station 13.<BR>\n<BR>\n<B>Scientist</B> 2>5-0-0<BR>\n\tThese people study the properties, particularly the toxic properties, of materials handled on SS13.\nTechnically they can also be called Plasma Technicians as plasma is the material they routinely handle.<BR>\n1. Research plasma.<BR>\n2. Make sure all plasma is properly handled.<BR>\n<BR>\n<B>Medical Doctor (Officer)</B> 2>0-0-0<BR>\n\tPeople working this job should primarily stay in the medical area. They should make sure everyone goes to\nthe medical bay for treatment and examination. Also they should make sure that medical supplies are kept in\norder.<BR>\n1. Heal wounded people.<BR>\n2. Perform examinations of all personnel.<BR>\n3. Monitor usage of medical equipment.<BR>\n<BR>\n<B>Security Officer</B> 3>0-0-0<BR>\n\tThese people should attempt to keep the peace inside the station and make sure the station is kept safe. One\nside duty is to assist in repairing the station. They also work like general maintenance personnel. They are not\ngiven a weapon and must use their own resources.<BR>\n(Addendum: Updated/Elevated Security Protocols admit issuing of weapons to security personnel)<BR>\n1. Maintain order.<BR>\n2. Assist others.<BR>\n3. Repair structural problems.<BR>\n<BR>\n<B>Head of Security</B> 4>5-2-2<BR>\n\tPeople assigned as Head of Security should issue orders to the security staff. They should\nalso carefully moderate the usage of all security equipment. All security matters should be reported to this person.<BR>\n1. Oversee security.<BR>\n2. Assign patrol duties.<BR>\n3. Protect the station and staff.<BR>\n<BR>\n<B>Head of Personnel</B> 4>4-2-2<BR>\n\tPeople assigned as head of personnel will find themselves moderating all actions done by personnel. \nAlso they have the ability to assign jobs and access levels.<BR>\n1. Assign duties.<BR>\n2. Moderate personnel.<BR>\n3. Moderate research. <BR>\n<BR>\n<B>Captain</B> 5>5-5-5 (unrestricted station wide access)<BR>\n\tThis is the highest position you can acquire on Space Station 13. They are allowed anywhere inside the\nspace station and therefore should protect their ID card. They also have the ability to assign positions\nand access levels. They should not abuse their power.<BR>\n1. Assign all positions on SS13.<BR>\n2. Inspect the station for any problems.<BR>\n3. Perform administrative duties.<BR>\n"
+	name = "纸张 - '职位信息'"
+	default_raw_text = "关于可在空间站 13 上分配的所有正式职位信息，均可在本文件中查到。<BR>\n数据将按以下格式列出。<BR>\n通常职级较低的职位排在列表前面。<BR>\n<BR>\n<B>职位名称</B>   通用通行权>实验室通行权-工程通行权-系统通行权（大气控制）<BR>\n\t职位说明<BR>\n职务内容（不分先后）<BR>\n小贴士（如适用）<BR>\n<BR>\n<B>研究助理</B> 1>1-0-0<BR>\n\t这大概是级别最低的职位。任何在初始职位分配之后进入空间站的人\n都会自动获得此职位。该职位的通行权限受到限制。人事主管应\n为其安排适当级别的协助权限。<BR>\n1. 协助研究人员。<BR>\n2. 打扫实验室。<BR>\n3. 准备材料。<BR>\n<BR>\n<B>职员助理</B> 2>0-0-0<BR>\n\t该职位协助安保官员履行职责。职员助理主要应当在\n舰上巡逻，随时待命以维护舰船安全。\n（附注：更新/升级后的安保规程允许向安保人员发放低级别武器）<BR>\n1. 巡逻舰船/守卫关键区域<BR>\n2. 协助安保官员<BR>\n3. 执行其他安保职责。<BR>\n<BR>\n<B>技术助理</B> 1>0-0-1<BR>\n\t这又是一个低级别职位。技术助理协助工程师和空间站\n技术员进行空间站的保养与维护。这个职位非常重要，因为它通常\n会给空间站技术员带来沉重的工作负担，而这些帮手能减轻负担。<BR>\n1. 协助空间站技术员与工程师。<BR>\n2. 进行空间站的日常维护。<BR>\n3. 准备材料。<BR>\n<BR>\n<B>医疗助理</B> 1>1-0-0<BR>\n\t这是第四个职位，但相对少见一些。该职位在医疗舱之外\n没有多少权力。可以把这个职位看作一名护士，协助维护医疗记录和\n物资（灌装注射器、检查生命体征）<BR>\n1. 协助医疗人员。<BR>\n2. 更新医疗档案。<BR>\n3. 为医疗作业准备物资。<BR>\n<BR>\n<B>研究技术员</B> 2>3-0-0<BR>\n\t这个职位基本上是研究助理的进阶。这些人通常没有自己的实验室，\n但在实验过程中参与得更多。在这个级别上，他们被正式允许\n担任其他人的顾问。<BR>\n1. 向上级汇报研究情况。<BR>\n2. 与正式研究员一同进行研究。<BR>\n<BR>\n<B>侦探</B> 3>2-0-0<BR>\n\t这个职位在大多数情况下顶多算是有点无聊。他们唯一的职责是\n对犯罪现场进行调查与分析。这能减轻安保官员的\n部分负担。此人的职责是就所发生之事得出结论，并在法庭上作证。\n此人还应妥善保管证据。<BR>\n1. 进行犯罪现场调查/得出结论。<BR>\n2. 妥善保存并记录证据。<BR>\n3. 向上级作证/就发现接受询问。<BR>\n<BR>\n<B>空间站技术员</B> 2>0-2-3<BR>\n\t被分配到此职位的人必须确保空间站 13 上的所有系统均可正常运行。\n他们主要应在计算机实验室工作并修理故障设备。他们应与\n大气技术员协同工作。<BR>\n1. 维护 SS13 系统。<BR>\n2. 修理设备。<BR>\n<BR>\n<B>大气技术员</B> 3>0-0-4<BR>\n\t这些人主要应在大气控制中心与实验室工作。他们肩负着维护 SS13\n上精密大气环境这一非常重要的职责。<BR>\n1. 维护 SS13 上的大气环境。<BR>\n2. 研究空间站上的大气环境。（请注意安全！）<BR>\n<BR>\n<B>工程师</B> 2>1-3-0<BR>\n\t担任此职位的人通常应详细了解 SS13 上的推进系统如何\n运作。他们是少数几个可以不受限制进入引擎区域的职业之一。<BR>\n1. 维护引擎。<BR>\n2. 防止引擎起火。<BR>\n3. 维持安全轨道。<BR>\n<BR>\n<B>医学研究员</B> 2>5-0-0<BR>\n\t这个职位可能需要稍作说明。他们的职责是确保所有实验安全，\n并进行可能有助于改善空间站的实验。在新的实验室建成之前，\n他们通常无事可做。<BR>\n1. 确保空间站保持安全。<BR>\n2. 研究空间站 13 所研究材料的医学特性。<BR>\n<BR>\n<B>科学家</B> 2>5-0-0<BR>\n\t这些人研究 SS13 上处理的各种材料的性质，尤其是其毒性。\n严格来说他们也可被称为等离子体技术员，因为等离子体是他们日常处理的材料。<BR>\n1. 研究等离子体。<BR>\n2. 确保所有等离子体都得到妥善处理。<BR>\n<BR>\n<B>医生（军官）</B> 2>0-0-0<BR>\n\t从事此职位的人主要应待在医疗区域。他们应确保每个人都前往\n医疗舱接受治疗与检查。此外，他们还应确保医疗物资保持\n井然有序。<BR>\n1. 治疗伤员。<BR>\n2. 为所有人员进行检查。<BR>\n3. 监控医疗设备的使用。<BR>\n<BR>\n<B>安保官员</B> 3>0-0-0<BR>\n\t这些人应努力维持空间站内的安定，并确保空间站安全。一项\n附带职责是协助修理空间站。他们也像一般维护人员那样工作。他们不会\n配发武器，必须使用自己的资源。<BR>\n（附注：更新/升级后的安保规程允许向安保人员发放武器）<BR>\n1. 维持秩序。<BR>\n2. 协助他人。<BR>\n3. 修理结构问题。<BR>\n<BR>\n<B>安保主管</B> 4>5-2-2<BR>\n\t被任命为安保主管的人应向安保人员下达命令。他们还应\n谨慎管理所有安保设备的使用。所有安保事务都应向此人报告。<BR>\n1. 监督安保工作。<BR>\n2. 分配巡逻任务。<BR>\n3. 保护空间站与员工。<BR>\n<BR>\n<B>人事主管</B> 4>4-2-2<BR>\n\t被任命为人事主管的人会发现自己需要管理所有人员的行为。 \n此外，他们还有权分配职位与通行权限等级。<BR>\n1. 分配职责。<BR>\n2. 管理人员。<BR>\n3. 管理科研工作。 <BR>\n<BR>\n<B>舰长</B> 5>5-5-5（全站不受限制的通行权）<BR>\n\t这是你在空间站 13 上能获得的最高职位。他们被允许进入空间站内\n任何地方，因此应保护好自己的 ID 卡。他们也有权分配职位\n与通行权限等级。他们不应滥用权力。<BR>\n1. 分配 SS13 上的所有职位。<BR>\n2. 检查空间站是否存在问题。<BR>\n3. 履行行政职责。<BR>\n"
 
 /obj/item/paper/fluff/jobs/mining/smelter_notice
-	name = "paper- Smelting Operations Closed"
-	default_raw_text = "<B>**NOTICE**</B><BR><BR>Smelting operations moved on-station.<BR><BR>Take your unrefined ore to the Redemption Machine in the Delivery Office to redeem points.<BR><BR>--SS13 Command"
+	name = "纸张 - '熔炼作业已关闭'"
+	default_raw_text = "<B>**通知**</B><BR><BR>熔炼作业已迁至站内。<BR><BR>请把未精炼的矿石带到交付办公室的兑换机兑换积分。<BR><BR>——SS13 指挥部"
 
 /obj/item/paper/fluff/jobs/security/court_judgement
-	name = "paper- 'Judgement'"
-	default_raw_text = "For crimes against the station, the offender is sentenced to:<BR>\n<BR>\n"
+	name = "纸张 - '判决'"
+	default_raw_text = "因犯危害空间站的罪行，罪犯被判处：<BR>\n<BR>\n"
 
 /obj/item/paper/fluff/jobs/ordnance/chemical_info
-	name = "paper- 'Chemical Information'"
-	default_raw_text = {"Known Onboard Toxins:
-	&emsp;Grade A Semi-Liquid Plasma:
-	&emsp;&emsp;Highly poisonous. You cannot sustain concentrations above 15 units.
-	&emsp;&emsp;A gas mask fails to filter plasma after 50 units.
-	&emsp;&emsp;Will attempt to diffuse like a gas.
-	&emsp;&emsp;Filtered by scrubbers.
-	&emsp;&emsp;There is a bottled version which is very different
-	&emsp;&emsp;from the version found in canisters!
-	&emsp;&emsp;WARNING: Highly Flammable. Keep away from heat
-	&emsp;&emsp;sources except in an enclosed fire area!
-	&emsp;&emsp;WARNING: It is a crime to use this without authorization.
-	Known Onboard Anti-Toxin:
-	&emsp;Anti-Toxin Type 01P: Works against Grade A Plasma.
-	&emsp;&emsp;Best if injected directly into bloodstream.
-	&emsp;&emsp;A full injection is in every regular Med-Kit.
-	&emsp;&emsp;Special toxin Kits hold around 7.
-	<BR>Known Onboard Chemicals (other):
-	&emsp;Rejuvenation T#001:
-	&emsp;&emsp;Even 1 unit injected directly into the bloodstream
-	&emsp;&emsp;&emsp;will cure unconscious and sleep toxins.
-	&emsp;&emsp;If administered to a dying patient it will prevent
-	&emsp;&emsp;&emsp;further damage for about units*3 seconds.
-	&emsp;&emsp;&emsp;It will not cure them or allow them to be cured.
-	&emsp;&emsp;It can be administered to a non-dying patient
-	&emsp;&emsp;but the chemicals disappear just as fast.
-	&emsp;Morphine T#054:
-	&emsp;&emsp;5 units will induce precisely 1 minute of sleep.
-	&emsp;&emsp;&emsp;The effects are cumulative.
-	&emsp;&emsp;WARNING: It is a crime to use this without authorization."}
+	name = "纸张 - '化学信息'"
+	default_raw_text = {"已知站内毒素：
+	&emsp;A 级半液态等离子体：
+	&emsp;&emsp;剧毒。浓度无法维持在 15 单位以上。
+	&emsp;&emsp;超过 50 单位后，防毒面具便无法过滤等离子体。
+	&emsp;&emsp;会像气体一样扩散。
+	&emsp;&emsp;可被气体净化器过滤。
+	&emsp;&emsp;瓶装版本与
+	&emsp;&emsp;罐装版本大不相同！
+	&emsp;&emsp;警告：高度易燃。请远离热源，
+	&emsp;&emsp;除非处于封闭的防火区域内！
+	&emsp;&emsp;警告：未经授权使用属于犯罪行为。
+	&emsp;已知站内抗毒素：
+	&emsp;抗毒素 01P 型：对 A 级等离子体有效。
+	&emsp;&emsp;最好直接注射进血液。
+	&emsp;&emsp;每份常规医疗包中都有一支。
+	&emsp;&emsp;专用毒素包中约有 7 支。
+	<BR>已知站内化学品（其他）：
+	&emsp;复新剂 T#001：
+	&emsp;&emsp;只需 1 单位直接注入血液，
+	&emsp;&emsp;&emsp;即可治愈昏迷与睡眠毒素。
+	&emsp;&emsp;若给予濒死病人，可在约单位数*3 秒内
+	&emsp;&emsp;&emsp;防止进一步损伤。
+	&emsp;&emsp;&emsp;但它不会治愈病人，也不会使病人可被治愈。
+	&emsp;&emsp;它可以给予非濒死病人，
+	&emsp;&emsp;但化学物质同样会迅速消失。
+	&emsp;吗啡 T#054：
+	&emsp;&emsp;5 单位将精确引发 1 分钟的睡眠。
+	&emsp;&emsp;&emsp;效果会累积。
+	&emsp;&emsp;警告：未经授权使用属于犯罪行为。"}
 
 /obj/item/paper/fluff/jobs/medical/hippocratic
-	name = "paper- 'Hippocratic Oath'"
-	default_raw_text = {"<i>I swear to fulfill, to the best of my ability and judgment, this covenant:
+	name = "纸张 - '希波克拉底誓言'"
+	default_raw_text = {"<i>我发誓，将尽我所能与判断，履行此誓约：
 	<br>
-	I will respect the hard-won scientific gains of those physicians in whose steps I walk,
-	and gladly share such knowledge as is mine with those who are to follow.
+	我将尊重我踏其足迹前行的那些医师来之不易的科学成果，
+	并乐于将我所知的知识与后来者分享。
 	<br>
-	I will apply, for the benefit of the sick, all measures that are required,
-	avoiding those twin traps of overtreatment and therapeutic nihilism.
+	我将为了病人的利益，采取一切必要的措施，
+	避免过度治疗与治疗虚无主义这两个陷阱。
 	<br>
-	I will remember that there is art to medicine as well as science,
-	and that warmth, sympathy, and understanding may outweigh the surgeon's knife or the chemist's drug.
+	我将铭记，医学既是科学，也是艺术，
+	而温暖、同情与理解或许胜过外科医生的刀或药剂师的药。
 	<br>
-	I will not be ashamed to say "I know not,"
-	nor will I fail to call in my colleagues when the skills of another are needed for a patient's recovery.
+	我不会羞于说“我不知道”，
+	也不会在病人康复需要他人技艺时，不去请我的同事帮忙。
 	<br>
-	I will respect the privacy of my patients, for their problems are not disclosed to me that the world may know. Most especially must I tread with care in matters of life and death.
-	If it is given me to save a life, all thanks. But it may also be within my power to take a life;
-	this awesome responsibility must be faced with great humbleness and awareness of my own frailty. Above all, I must not play at God.
+	我将尊重病人的隐私，因为他们的烦恼向我吐露，并非为了让世人知晓。尤其在生死之事上，我必须格外谨慎。
+	若我有幸救回一条生命，那全凭恩典。但我也可能拥有夺走生命的力量；
+	这份重大的责任必须以极大的谦卑和对自己脆弱的认识来面对。最重要的是，我绝不可扮演上帝。
 	<br>
-	I will remember that I do not treat a fever chart, a cancerous growth, but a sick human being, whose illness may affect the person's family and economic stability.
-	My responsibility includes these related problems, if I am to care adequately for the sick.
+	我将铭记，我治疗的不是一张体温图表、一块癌性肿块，而是一个病人，其疾病可能影响其家庭与经济稳定。
+	若要充分照护病人，我的责任也包括这些相关问题。
 	<br>
-	I will prevent disease whenever I can, for prevention is preferable to cure.
+	我将尽可能预防疾病，因为预防胜于治疗。
 	<br>
-	I will remember that I remain a member of society, with special obligations to all my fellow human beings,
-	those sound of mind and body as well as the infirm.
+	我将铭记，我仍是社会的一员，对所有同胞负有特殊的义务，
+	无论他们身心健全还是虚弱多病。
 	<br>
-	If I do not violate this oath, may I enjoy life and art, respected while I live and remembered with affection thereafter.
-	May I always act so as to preserve the finest traditions of my calling and may I long experience the joy of healing those who seek my help.
+	若我不违背此誓言，愿我一生享有生活与艺术，生前受人尊敬，身后被人深情铭记。
+	愿我始终恪守我职业最优良的传统，并长久体验治愈求助者的喜悦。
 	</i>"}
 
 /obj/item/paper/fluff/jobs/medical/blood_types
-	name = "blood type compatibility reference"
-	default_raw_text = {"<h2>Blood Type Compatibility</h2>
+	name = "血型相容性参考"
+	default_raw_text = {"<h2>血型相容性</h2>
 <table style="text-align:center;" border="1" width="100%">
 		<tbody>
 			<tr>
 				<td width="25px" height="25px"></td>
 				<td></td>
-				<td colspan="10" style="background-color: red; color: white;">Donor</td>
+				<td colspan="10" style="background-color: red; color: white;">供血者</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -305,7 +305,7 @@
 				<td style="background-color: red; color: white;">U</td>
 			</tr>
 			<tr>
-				<td rowspan="10" style="margin: 0; padding-left:6px; writing-mode: sideways-rl; background-color: blue; color: white;">Receiver</td>
+				<td rowspan="10" style="margin: 0; padding-left:6px; writing-mode: sideways-rl; background-color: blue; color: white;">受血者</td>
 				<td style="background-color: blue; color: white;">A+</td>
 				<td>✓</td>
 				<td>✓</td>
@@ -438,8 +438,8 @@
 		</tbody>
 	</table>
 	<br/>
-	Blood types not written above can only receive from the same blood type.
-	Certain species do not have blood.
+	上表未列出的血型只能接受同型血。
+	某些物种没有血液。
 	"}
 
 	/*
@@ -450,73 +450,73 @@
 /////////// CentCom
 
 /obj/item/paper/fluff/stations/centcom/disk_memo
-	name = "memo"
-	default_raw_text = "GET DAT FUKKEN DISK"
+	name = "备忘录"
+	default_raw_text = "快把那张该死的磁盘拿来"
 
 /obj/item/paper/fluff/stations/centcom/broken_evac
-	default_raw_text = "Due to circumstances beyond our control, your Emergency Evacuation Shuttle is out of service.<br><br>We apologize for the inconvenience this may cause you.<br><br>Please enjoy the use of this complementary book.<br><br>Sincerely,<br>CentCom Operations Demolitions Examination Retribution Bugfixing Underlining Services"
+	default_raw_text = "由于我们无法控制的情况，你的紧急撤离穿梭机已停止服务。<br><br>对于由此可能给你造成的不便，我们深表歉意。<br><br>请尽情享用这本赠送的书。<br><br>此致，<br>中央指挥部 运营·爆破·审查·报复·漏洞修复·下划线服务处"
 
 /obj/item/paper/fluff/stations/centcom/bulletin
-	name = "paper- 'Official Bulletin'"
-	default_raw_text = "<BR>CentCom Security<BR>Port Division<BR>Official Bulletin<BR><BR>Inspector,<BR>There is an emergency shuttle arriving today.<BR><BR>Approval is restricted to Nanotrasen employees only. Deny all other entrants.<BR><BR>CentCom Port Commissioner"
+	name = "纸张 - '官方公告'"
+	default_raw_text = "<BR>中央指挥部安保部<BR>港口处<BR>官方公告<BR><BR>检查员：<BR>今天将有一艘紧急穿梭机抵达。<BR><BR>仅限纳米传讯员工批准入内。其余人员一律拒绝。<BR><BR>中央指挥部港口专员"
 
 
 /////////// Lavaland
 
 /obj/item/paper/fluff/stations/lavaland/orm_notice
-	name = "URGENT! RENOVATIONS!"
-	default_raw_text = "A hastily written note has been scribbled here... <br><br> Please use the <s>ore redemption machine</s> smelter and refinery in the cargo office for smelting. PLEASE! Leave boulders alone for the BRM to pick up! <br><br>--The Research Staff"
+	name = "紧急！翻新施工！"
+	default_raw_text = "这里潦草地写着一张匆忙留下的便条…… <br><br> 请使用货运办公室里的 <s>矿石兑换机</s> 熔炼炉与精炼机进行熔炼。拜托了！别动巨石，留给巨石回收矩阵来收集！ <br><br>——科研人员"
 
 /////////// Space Ruins
 
 /obj/item/paper/fluff/spaceruins/lizardsgas/memorandum
-	name = "A Memorandum"
-	default_raw_text = {"To all employees:
-	<br> Hey there, it's me, Josh. You know who I am, I hired you! Anyways, you're probably wondering why this gas station is themed after lizards. I just think they're pretty neat! I wish I was a lizard.
+	name = "一份备忘录"
+	default_raw_text = {"致全体员工：
+	<br> 嗨，是我，乔什。你知道我是谁，是我雇了你！总之，你大概在想这家加油站为什么以蜥蜴为主题。我就是觉得它们挺可爱的！我真希望自己是只蜥蜴。
 	<br>
-	<br> Anywho, it's also called "The Lizard's Gas" for another reason... <i> weeeeeeeeeeeeeeeeeeeeeeeeeeed. </i> Yeah, I got a buddy who's a fucking wizard with growing weed.
+	<br> 另外，它也叫“蜥蜴加油站”还有另一个原因……<i> 大——麻——</i> 对，我有个哥们儿在种大麻这方面简直是个他妈的天才。
 	<br>
-	<br> Anyways, I thought that when I bought this fuckin' joint (ha ha get it weed), that I should probably sell, y'know, <i> gas? </i> Get it? Gas. Like weed. God, I love weed so much.
+	<br> 总之，我想着既然我买下了这破店（哈哈，懂了吗，大麻），那我大概该卖点，你懂的，<i> 汽油？</i> 懂了吗？汽油。就像大麻。天啊，我太爱大麻了。
 	<br>
-	<br> Back to my point, feel free to sling some of this weed on the side. I don't know what jurisdiction we're in, but it's fine. I know it's fine. I probably wouldn't care. Weed.
+	<br> 回到正题，你随便私下卖点大麻也没关系。我不知道我们在谁的管辖范围内，但没关系。我知道没关系。我大概也不会在乎。大麻。
 	<br>
-	<br> Yep, all of my weed is in this box. Enjoy! I'm going to go home and hit a gram of my THC (that's like, concentrated weed) Pen (for weed). I'll be back, and those hemp ropes I tied should stay...
+	<br> 没错，我所有的大麻都在这个箱子里。慢慢享用！我要回家抽一克我的 THC（就是那种浓缩大麻）笔（抽大麻用的）。我会回来的，我绑的那些麻绳应该还能撑着……
 	<br>
-	<br> Make sure you turn that SMES off before you leave! It needs to be on for everything to function, but there's only so much charge left and I can't afford a new one!
+	<br> 走之前记得把那个 SMES 关掉！它得开着才能让一切运转，但剩下的电量不多了，我可买不起新的！
 	<br>
-	<br> Best of luck!
-	<br> Josh."}
+	<br> 祝你好运！
+	<br> 乔什。"}
 
 /// instructions for nuclear operatives on how to use their medipen
 
 /obj/item/paper/fluff/operative
-	name = "ATTENTION: How to prevent your untimely demise."
+	name = "注意：如何避免你过早身亡。"
 	color = "#b94030"
-	desc = "Seems important. That's why it's red."
+	desc = "看起来很重要。所以才是红色的。"
 	default_raw_text = {"
 Greetings operative.
 
-<br>As you may be aware, since your financial backers do not wish to provide our collective enemies access to any trace of you or your physical form, we've had to augment
-you with an explosive located in the base of your neck: a microbomb implant. This implant activates a blood-based explosive the moment your heart stops beating, destroying all
-evidence of your physical body and brain, eradicating you permanently so those freaks at Nanotrasen can't interrogate your brain. Or worse, clone you and mindwipe you.
-We much prefer you free to die red than a slave to the corporation. I'm sure you agree. <B><i>Right, comrade?</i></B>
+<br>你可能已经知道，由于我们的资助者不希望我们共同的敌人得到关于你或你身体的任何线索，我们只能给你加装
+一枚位于颈根的爆炸装置：微型炸弹植入体。一旦你的心脏停止跳动，该植入体就会激活一种血液基爆炸物，摧毁你身体与大脑的
+全部证据，将你永久抹除，好让纳米传讯那些怪胎没法审问你的大脑。或者更糟，把你克隆出来再洗脑。
+我们更愿意看到你自由地壮烈赴死，也不愿你沦为公司的奴隶。我相信你也同意。<B><i>对吧，同志？</i></B>
 <br>
-<br>Now, don't fret. While this is beneficial for our needs, we understand that operatives sometimes would prefer themselves to be able to have more
-precise control over their own total oblivion. This is why our microbomb implants come equipped with a few useful features.
+<br>现在，别慌。虽然这符合我们的需要，但我们理解，特工有时会希望自己能对自身的彻底湮灭
+有更精确的掌控。正因如此，我们的微型炸弹植入体配备了几项实用功能。
 <br>
-<br><B>Firstly, the bombs autodetonation is neutralized by atropine</B>. So, if you have atropine in your system when your heart stops beating, your implant does not automatically detonate.
-This is why you are equipped with an atropine autoinjector. If you see a fellow operative fall, immediately inject them with the autoinjector before they expire. If you're lucky,
-you'll potentially be able to recover their body for revival. Atropine also just so happens to be an incredibly powerful stablizer, so maybe use it before you fall. You might just
-be able to save yourself for a few seconds and keep fighting.
+<br><B>首先，炸弹的自动引爆会被阿托品中和</B>。因此，如果你心脏停止跳动时体内有阿托品，植入体便不会自动引爆。
+这就是为什么给你配备了阿托品自动注射器。如果你看到同伴倒下，请在他们断气前立刻为其注射。运气好的话，
+你或许还能回收他们的身体进行复活。顺带一提，阿托品还是一种极其强效的稳定剂，所以也许可以在自己倒下前先用上。你也许
+还能为自己争取几秒钟，继续战斗。
 <br>
-<br><B>Secondly, the bomb can be activated posthumously</B>. There is a small onboard, low-level AI built into the microbomb. Based on a series of arbitrary factors, the bomb can still be activated
-despite the presence of atropine by releasing a failsafe vial of monkey blood (notoriously volatile), the timing of which is determined by the onboard AI.
-<br>The only factor is whether or not, and forgive me for what I'm about to write, your 'animating spirit' still resides within your body to guide the AI and activate the bomb manually.
-<br>Please, do not ask your fellow operatives what this means.
+<br><B>其次，炸弹可以在死后被激活</B>。微型炸弹内置了一个小型低级人工智能。基于一系列任意因素，即使有阿托品存在，
+炸弹仍可被激活——它会释放一瓶保底的猴子血（以极不稳定著称），释放时机由机载 AI 决定。
+<br>唯一的因素是，请原谅我接下来的写法，你的“附体之灵”是否仍留在你的体内，以引导 AI 并手动引爆炸弹。
+<br>拜托，别去问你的同伴这是什么意思。
 <br>
-<br>They'll probably say something absurd like <B>'your ghost needs to still be in your body to use the microbomb'</B>. That's stupid, do not listen to these ridiculous assertions. It is likely Nanotrasen propaganda.
+<br>他们大概会说些荒唐的话，比如<B>“你的幽灵必须还在体内才能使用微型炸弹”</B>。这太蠢了，别听这些荒谬的说法。这多半是纳米传讯的宣传。
 <br>
-<br>Ghosts are not real. Necromancy is <B>bullshit</B>.
+<br>幽灵并不存在。死灵术是<B>胡扯</B>。
 <br>
-<br>Anyway, best of luck on your mission, operative.
+<br>总之，祝你任务顺利，特工。
 	"}

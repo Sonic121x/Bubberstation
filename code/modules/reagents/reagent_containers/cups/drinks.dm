@@ -2,8 +2,8 @@
 /// Drinks.
 ////////////////////////////////////////////////////////////////////////////////
 /obj/item/reagent_containers/cup/glass
-	name = "drink"
-	desc = "yummy"
+	name = "饮料"
+	desc = "真好喝"
 	icon = 'icons/obj/drinks/drinks.dmi'
 	icon_state = "glass_empty"
 	abstract_type = /obj/item/reagent_containers/cup/glass
@@ -11,8 +11,8 @@
 	resistance_flags = NONE
 
 	isGlass = TRUE
-	attack_verb_continuous = list("smashes", "bashes")
-	attack_verb_simple = list("smash", "bash")
+	attack_verb_continuous = list("砸碎", "猛击")
+	attack_verb_simple = list("砸碎", "猛击")
 
 /obj/item/reagent_containers/cup/glass/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum, do_splash = TRUE)
 	. = ..()
@@ -49,8 +49,8 @@
 
 
 /obj/item/reagent_containers/cup/glass/trophy
-	name = "pewter cup"
-	desc = "Everyone gets a trophy."
+	name = "锡杯"
+	desc = "人人都有奖杯。"
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "pewter_cup"
 	w_class = WEIGHT_CLASS_TINY
@@ -65,8 +65,8 @@
 	isGlass = FALSE
 
 /obj/item/reagent_containers/cup/glass/trophy/gold_cup
-	name = "gold cup"
-	desc = "You're winner!"
+	name = "金杯"
+	desc = "你是赢家！"
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "golden_cup"
 	inhand_icon_state = "golden_cup"
@@ -82,8 +82,8 @@
 	AddElement(/datum/element/cuffable_item) //closed handles
 
 /obj/item/reagent_containers/cup/glass/trophy/silver_cup
-	name = "silver cup"
-	desc = "Best loser!"
+	name = "银杯"
+	desc = "最佳输家！"
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "silver_cup"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -98,8 +98,8 @@
 	AddElement(/datum/element/cuffable_item) //closed handle
 
 /obj/item/reagent_containers/cup/glass/trophy/bronze_cup
-	name = "bronze cup"
-	desc = "At least you ranked!"
+	name = "铜杯"
+	desc = "好歹你上榜了！"
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "bronze_cup"
 	w_class = WEIGHT_CLASS_SMALL
@@ -115,8 +115,8 @@
 // Formatting is the same as food.
 
 /obj/item/reagent_containers/cup/glass/coffee
-	name = "robust coffee"
-	desc = "Careful, the beverage you're about to enjoy is extremely hot."
+	name = "强劲咖啡"
+	desc = "小心，你即将享用的饮料非常烫。"
 	icon = 'icons/obj/drinks/coffee.dmi'
 	icon_state = "coffee"
 	base_icon_state = "coffee"
@@ -135,12 +135,12 @@
 
 /obj/item/reagent_containers/cup/glass/coffee/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click to toggle cup lid.")
+	. += span_notice("按住 Alt 点击可开合杯盖。")
 	return
 
 /obj/item/reagent_containers/cup/glass/coffee/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "[lid_open ? "Add" : "Remove"] Lid"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "[lid_open ? "盖上" : "取下"]杯盖"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/reagent_containers/cup/glass/coffee/click_alt(mob/user)
@@ -156,21 +156,21 @@
 	return ..()
 
 /obj/item/reagent_containers/cup/glass/ice
-	name = "ice cup"
-	desc = "Careful, cold ice, do not chew."
+	name = "冰杯"
+	desc = "小心，冰很凉，别咬。"
 	custom_price = PAYCHECK_LOWER * 0.6
 	icon_state = "icecup"
 	list_reagents = list(/datum/reagent/consumable/ice = 30)
 	isGlass = FALSE
 
 /obj/item/reagent_containers/cup/glass/ice/prison
-	name = "dirty ice cup"
-	desc = "Either Nanotrasen's water supply is contaminated, or this machine actually vends lemon, chocolate, and cherry snow cones."
+	name = "脏冰杯"
+	desc = "要么是纳米传讯的供水被污染了，要么这台机器真的在卖柠檬、巧克力和樱桃味的雪泥。"
 	list_reagents = list(/datum/reagent/consumable/ice = 25, /datum/reagent/consumable/liquidgibs = 5)
 
 /obj/item/reagent_containers/cup/glass/mug // parent type is literally just so empty mug sprites are a thing
-	name = "mug"
-	desc = "A drink served in a classy mug."
+	name = "马克杯"
+	desc = "用有格调的马克杯装着的饮品。"
 	icon = 'icons/obj/drinks/coffee.dmi'
 	icon_state = "tea_empty"
 	base_icon_state = "tea"
@@ -185,14 +185,14 @@
 	return ..()
 
 /obj/item/reagent_containers/cup/glass/mug/tea
-	name = "Duke Purple tea"
-	desc = "An insult to Duke Purple is an insult to the Space Queen! Any proper gentleman will fight you, if you sully this tea."
+	name = "紫公爵茶"
+	desc = "侮辱紫公爵就是侮辱太空女王！谁敢糟蹋这杯茶，任何体面的绅士都会与你决斗。"
 	icon_state = "tea"
 	list_reagents = list(/datum/reagent/consumable/tea = 30)
 
 /obj/item/reagent_containers/cup/glass/mug/coco
-	name = "Dutch hot coco"
-	desc = "Made in Space South America."
+	name = "荷兰热可可"
+	desc = "产自太空南美洲。"
 	icon_state = "tea"
 	list_reagents = list(/datum/reagent/consumable/hot_coco = 15, /datum/reagent/consumable/sugar = 5)
 	drink_type = SUGAR
@@ -200,14 +200,14 @@
 	custom_price = PAYCHECK_CREW * 1.2
 
 /obj/item/reagent_containers/cup/glass/mug/nanotrasen
-	name = "\improper Nanotrasen mug"
-	desc = "A mug to display your corporate pride."
+	name = "\improper 纳米传讯马克杯"
+	desc = "用来彰显你对公司自豪感的马克杯。"
 	icon_state = "mug_nt_empty"
 	base_icon_state = "mug_nt"
 
 /obj/item/reagent_containers/cup/glass/coffee_cup
-	name = "coffee cup"
-	desc = "A heat-formed plastic coffee cup. Can theoretically be used for other hot drinks, if you're feeling adventurous."
+	name = "咖啡杯"
+	desc = "一种热成型塑料咖啡杯。理论上也能用来装其他热饮，如果你敢于冒险的话。"
 	icon = 'icons/obj/drinks/coffee.dmi'
 	icon_state = "coffee_cup_e"
 	base_icon_state = "coffee_cup"
@@ -220,8 +220,8 @@
 	return ..()
 
 /obj/item/reagent_containers/cup/glass/dry_ramen
-	name = "cup ramen"
-	desc = "Just add 5ml of water, self heats! A taste that reminds you of your school years. Now new with salty flavour!"
+	name = "杯装拉面"
+	desc = "只需加入 5 毫升水，自动加热！这味道让你想起学生时代。全新咸香口味！"
 	icon_state = "ramen"
 	list_reagents = list(/datum/reagent/consumable/dry_ramen = 15, /datum/reagent/consumable/salt = 3)
 	drink_type = GRAIN
@@ -229,8 +229,8 @@
 	custom_price = PAYCHECK_CREW * 0.9
 
 /obj/item/reagent_containers/cup/glass/waterbottle
-	name = "bottle of water"
-	desc = "A bottle of water filled at an old Earth bottling facility."
+	name = "瓶装水"
+	desc = "一瓶在古老地球灌装厂灌装的水。"
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "smallbottle"
 	inhand_icon_state = null
@@ -266,15 +266,15 @@
 /obj/item/reagent_containers/cup/glass/waterbottle/examine(mob/user)
 	. = ..()
 	if(cap_lost)
-		. += span_notice("The cap seems to be missing.")
+		. += span_notice("瓶盖似乎不见了。")
 	else if(!is_open_container())
-		. += span_notice("The cap is firmly on to prevent spilling. Alt-click to remove the cap.")
+		. += span_notice("瓶盖紧紧盖着以防洒出。按住 Alt 点击可取下瓶盖。")
 	else
-		. += span_notice("The cap has been taken off. Alt-click to put a cap on.")
+		. += span_notice("瓶盖已取下。按住 Alt 点击可盖上瓶盖。")
 
 /obj/item/reagent_containers/cup/glass/waterbottle/click_alt(mob/user)
 	if(cap_lost)
-		to_chat(user, span_warning("The cap seems to be missing! Where did it go?"))
+		to_chat(user, span_warning("瓶盖似乎不见了！它跑哪去了？"))
 		return CLICK_ACTION_BLOCKING
 
 	var/fumbled = HAS_TRAIT(user, TRAIT_CLUMSY) && prob(5)
@@ -282,14 +282,14 @@
 		reset_container_flags()
 		animate(src, transform = null, time = 2, loop = 0)
 		if(fumbled)
-			to_chat(user, span_warning("You fumble with [src]'s cap! The cap falls onto the ground and simply vanishes. Where the hell did it go?"))
+			to_chat(user, span_warning("你手忙脚乱地摆弄 [src] 的瓶盖！瓶盖掉到地上，然后就这么消失了。它到底去哪了？"))
 			cap_lost = TRUE
 		else
-			to_chat(user, span_notice("You remove the cap from [src]."))
+			to_chat(user, span_notice("你取下了 [src] 的瓶盖。"))
 			playsound(loc, 'sound/items/handling/reagent_containers/plastic_bottle/bottle_cap_open.ogg', 50, TRUE)
 	else
 		update_container_flags(SEALED_CONTAINER | TRANSPARENT)
-		to_chat(user, span_notice("You put the cap on [src]."))
+		to_chat(user, span_notice("你给 [src] 盖上了瓶盖。"))
 		playsound(loc, 'sound/items/handling/reagent_containers/plastic_bottle/bottle_cap_close.ogg', 50, TRUE)
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
@@ -302,7 +302,7 @@
 	if(is_open_container() || !reagents.total_volume)
 		return
 	if(prob(flip_chance)) // landed upright
-		src.visible_message(span_notice("[src] lands upright!"))
+		src.visible_message(span_notice("[src] 直立着地！"))
 		var/mob/living/thrower = throwingdatum?.get_thrower()
 		if(istype(thrower))
 			thrower.add_mood_event("bottle_flip", /datum/mood_event/bottle_flip)
@@ -318,7 +318,7 @@
 	start_capped = FALSE
 
 /obj/item/reagent_containers/cup/glass/waterbottle/large
-	desc = "A fresh commercial-sized bottle of water."
+	desc = "一瓶新鲜的商用大瓶装水。"
 	icon_state = "largebottle"
 	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 3)
 	list_reagents = list(/datum/reagent/water = 100)
@@ -333,8 +333,8 @@
 
 // Admin spawn
 /obj/item/reagent_containers/cup/glass/waterbottle/relic
-	name = "mysterious bottle"
-	desc = "A bottle quite similar to a water bottle, but with some words scribbled on with a marker. It seems to be radiating some kind of energy."
+	name = "神秘瓶子"
+	desc = "一个和水瓶很相似的瓶子，不过上面用马克笔涂写了一些字。它似乎散发着某种能量。"
 	flip_chance = 100 // FLIPP
 
 /obj/item/reagent_containers/cup/glass/waterbottle/relic/Initialize(mapload)
@@ -342,13 +342,13 @@
 	var/datum/reagent/random_reagent = new reagent_id
 	list_reagents = list(random_reagent.type = 50)
 	. = ..()
-	desc += span_notice("The writing reads '[random_reagent.name]'.")
+	desc += span_notice("上面写着“[random_reagent.name]”。")
 	update_appearance()
 
 
 /obj/item/reagent_containers/cup/glass/sillycup
-	name = "paper cup"
-	desc = "A paper water cup."
+	name = "纸杯"
+	desc = "一个纸质水杯。"
 	icon_state = "water_cup_e"
 	possible_transfer_amounts = list(10)
 	volume = 10
@@ -360,8 +360,8 @@
 	return ..()
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/smallcarton
-	name = "small carton"
-	desc = "A small carton, intended for holding drinks."
+	name = "小纸盒"
+	desc = "一个小纸盒，用来装饮料。"
 	icon = 'icons/obj/drinks/boxes.dmi'
 	icon_state = "juicebox"
 	volume = 15
@@ -378,8 +378,8 @@
 	)
 
 /obj/item/reagent_containers/cup/glass/colocup
-	name = "colo cup"
-	desc = "A cheap, mass produced style of cup, typically used at parties. They never seem to come out red, for some reason..."
+	name = "科洛杯"
+	desc = "一种廉价量产的杯子，常见于各种派对。出于某种原因，它们似乎从来不会变成红色……"
 	icon = 'icons/obj/drinks/colo.dmi'
 	icon_state = "colocup"
 	inhand_icon_state = "colocup"
@@ -399,11 +399,11 @@
 		return
 	icon_state = "colocup[rand(0, 6)]"
 	if(icon_state == "colocup6")
-		desc = "A cheap, mass produced style of cup, typically used at parties. Woah, this one is in red! What the hell?"
+		desc = "一种廉价量产的杯子，常见于各种派对。哇，这一个居然是红色的！什么鬼？"
 
 /obj/item/reagent_containers/cup/glass/colocup/lean
-	name = "lean"
-	desc = "A cup of that purple drank, the stuff that makes you go WHEEZY BABY."
+	name = "紫水"
+	desc = "一杯那种紫色饮料，就是让你嗨成“嗨宝”的玩意儿。"
 	icon_state = "lean"
 	list_reagents = list(/datum/reagent/consumable/lean = 20)
 	random_sprite = FALSE
@@ -415,8 +415,8 @@
 
 
 /obj/item/reagent_containers/cup/glass/shaker
-	name = "shaker"
-	desc = "A metal shaker to mix drinks in."
+	name = "摇壶"
+	desc = "用来调酒的金属摇壶。"
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "shaker"
 	custom_materials = list(/datum/material/iron= HALF_SHEET_MATERIAL_AMOUNT * 1.5)
@@ -427,48 +427,48 @@
 	/// Whether or not poured drinks should use custom names and descriptions
 	var/using_custom_drinks = FALSE
 	/// Name custom drinks will have
-	var/custom_drink_name = "Custom drink"
+	var/custom_drink_name = "自定义饮品"
 	/// Description custom drinks will have
-	var/custom_drink_desc = "Mixed by your favourite bartender!"
+	var/custom_drink_desc = "由你最喜欢的调酒师调制！"
 
 /obj/item/reagent_containers/cup/glass/shaker/Initialize(mapload)
 	. = ..()
 	if(prob(10))
-		name = "\improper Nanotrasen 20th Anniversary Shaker"
-		desc += " It has an emblazoned Nanotrasen logo on it."
+		name = "\improper 纳米传讯二十周年纪念摇壶"
+		desc += " 上面印着醒目的纳米传讯标志。"
 		icon_state = "shaker_n"
 
 /obj/item/reagent_containers/cup/glass/shaker/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "[using_custom_drinks ? "Disable" : "Enable"] custom drinks"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "[using_custom_drinks ? "禁用" : "启用"]自定义饮品"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/reagent_containers/cup/glass/shaker/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click to [using_custom_drinks ? "disable" : "enable"] custom drink naming")
+	. += span_notice("按住 Alt 点击可[using_custom_drinks ? "禁用" : "启用"]自定义饮品命名")
 	if(using_custom_drinks)
-		. += span_notice("Drinks poured from this shaker will have the following name: [custom_drink_name]")
-		. += span_notice("Drinks poured from this shaker will have the following description: [custom_drink_desc]")
+		. += span_notice("从这只摇壶倒出的饮品将使用以下名称：[custom_drink_name]")
+		. += span_notice("从这只摇壶倒出的饮品将使用以下描述：[custom_drink_desc]")
 
 /obj/item/reagent_containers/cup/glass/shaker/click_alt(mob/user)
 	if(using_custom_drinks)
 		using_custom_drinks = FALSE
 		disable_custom_drinks()
-		balloon_alert(user, "custom drinks disabled")
+		balloon_alert(user, "已禁用自定义饮品")
 		return CLICK_ACTION_BLOCKING
 
-	var/new_name = reject_bad_text(tgui_input_text(user, "Drink name", "Set drink name", custom_drink_name, 45, FALSE), 64)
+	var/new_name = reject_bad_text(tgui_input_text(user, "饮品名称", "设定饮品名称", custom_drink_name, 45, FALSE), 64)
 	if(!new_name)
-		balloon_alert(user, "invalid drink name!")
+		balloon_alert(user, "饮品名称无效！")
 		using_custom_drinks = FALSE
 		return CLICK_ACTION_BLOCKING
 
 	if(!user.can_perform_action(src, NEED_HANDS|FORBID_TELEKINESIS_REACH))
 		return CLICK_ACTION_BLOCKING
 
-	var/new_desc = reject_bad_text(tgui_input_text(user, "Drink description", "Set drink description", custom_drink_desc, 64, TRUE), 128)
+	var/new_desc = reject_bad_text(tgui_input_text(user, "饮品描述", "设定饮品描述", custom_drink_desc, 64, TRUE), 128)
 	if(!new_desc)
-		balloon_alert(user, "invalid drink description!")
+		balloon_alert(user, "饮品描述无效！")
 		using_custom_drinks = FALSE
 		return CLICK_ACTION_BLOCKING
 
@@ -480,7 +480,7 @@
 	custom_drink_desc = new_desc
 
 	enable_custom_drinks()
-	balloon_alert(user, "now pouring custom drinks")
+	balloon_alert(user, "现在倒出的是自定义饮品")
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/reagent_containers/cup/glass/shaker/proc/enable_custom_drinks()
@@ -501,8 +501,8 @@
 	ADD_TRAIT(target_glass, TRAIT_WAS_RENAMED, SHAKER_LABEL_TRAIT)
 
 /obj/item/reagent_containers/cup/glass/flask
-	name = "flask"
-	desc = "Every good spaceman knows it's a good idea to bring along a couple of pints of whiskey wherever they go."
+	name = "随身酒壶"
+	desc = "每个优秀的太空人都知道，走到哪都该带上几品脱威士忌。"
 	custom_price = PAYCHECK_COMMAND * 2
 	icon = 'icons/obj/drinks/bottles.dmi'
 	worn_icon_state = "flask"
@@ -512,15 +512,15 @@
 	isGlass = FALSE
 
 /obj/item/reagent_containers/cup/glass/flask/gold
-	name = "captain's flask"
-	desc = "A gold flask belonging to the captain."
+	name = "舰长的酒壶"
+	desc = "属于舰长的金质酒壶。"
 	worn_icon_state = "flask_gold"
 	icon_state = "flask_gold"
 	custom_materials = list(/datum/material/gold=SMALL_MATERIAL_AMOUNT*5)
 
 /obj/item/reagent_containers/cup/glass/flask/det
-	name = "detective's flask"
-	desc = "The detective's only true friend."
+	name = "侦探的酒壶"
+	desc = "侦探唯一真正的朋友。"
 	worn_icon_state = "detflask"
 	icon_state = "detflask"
 	list_reagents = list(/datum/reagent/consumable/ethanol/whiskey = 30)
@@ -529,8 +529,8 @@
 	list_reagents = list(/datum/reagent/consumable/applejuice = 30)
 
 /obj/item/reagent_containers/cup/glass/mug/britcup
-	name = "cup"
-	desc = "A cup with the British flag emblazoned on it."
+	name = "茶杯"
+	desc = "印有英国国旗的杯子。"
 	icon = 'icons/obj/drinks/coffee.dmi'
 	icon_state = "britcup_empty"
 	base_icon_state = "britcup"

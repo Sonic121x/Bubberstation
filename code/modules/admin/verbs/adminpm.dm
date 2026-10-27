@@ -13,20 +13,20 @@
 // We also make SURE to fail loud, IE: if something stops the message from reaching the recipient, the sender HAS to know
 // If you "refactor" this to make it "cleaner" I will send you to hell
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_pm_context, R_NONE, "Admin PM Mob", /mob)
+ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_pm_context, R_NONE, "向生物发送管理员私信", /mob)
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	if(!ismob(target))
 		to_chat(
 			src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Context: Target mob is not a mob, somehow."),
+			html = span_danger("错误：Admin-PM-Context：目标生物不知怎的并不是生物。"),
 			confidential = TRUE,
 		)
 		return
 	user.cmd_admin_pm(target.client, null)
 	BLACKBOX_LOG_ADMIN_VERB("Admin PM Mob")
 
-ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "管理员私信", "显示可发送私信的客户端列表", ADMIN_CATEGORY_MAIN)
 	var/list/targets = list()
 	for(var/client/client in GLOB.clients)
 		var/nametag = ""
@@ -34,16 +34,16 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		var/mob_name = lad?.name
 		var/real_mob_name = lad?.real_name
 		if(!lad)
-			nametag = "(No Mob)"
+			nametag = "（无生物体）"
 		else if(isnewplayer(lad))
-			nametag = "(New Player)"
+			nametag = "（新玩家）"
 		else if(isobserver(lad))
-			nametag = "[mob_name](Ghost)"
+			nametag = "[mob_name]（幽灵）"
 		else
-			nametag = "[real_mob_name](as [mob_name])"
+			nametag = "[real_mob_name]（当前为 [mob_name]）"
 		targets["[nametag] - [client]"] = client
 
-	var/target = input(src,"To whom shall we send a message?", "Admin PM", null) as null|anything in sort_list(targets)
+	var/target = input(src,"我们要向谁发送讯息？", "管理员私信", null) as null|anything in sort_list(targets)
 	if (isnull(target))
 		return
 	user.cmd_admin_pm(targets[target], null)
@@ -57,7 +57,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Reply: You are unable to use admin PM-s (muted)."),
+			html = span_danger("错误：Admin-PM-Reply：你已被禁言，无法使用管理员私信。"),
 			confidential = TRUE)
 		return
 
@@ -71,7 +71,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		if(holder)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = span_danger("Error: Admin-PM-Reply: Client not found."),
+				html = span_danger("错误：Admin-PM-Reply：未找到客户端。"),
 				confidential = TRUE)
 		return
 
@@ -97,23 +97,23 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	// The recipient's ckey, formatted slightly with html
 	var/formatted_recipient_ckey = key_name(recipient, FALSE, FALSE)
 
-	var/message_prompt = "Message:"
+	var/message_prompt = "讯息："
 	if(recipient_ticket)
-		message_admins("[our_linked_name] has started replying to [recipient_linked_ckey]'s admin help.")
+		message_admins("[our_linked_name]开始回复[recipient_linked_ckey]的管理员求助。")
 		// If none's interacted with the ticket yet
 		if(length(recipient_interactions) == 1)
 			if(length(opening_interactions)) // Inform the admin that they aren't the first
 				var/printable_interators = english_list(opening_interactions)
 				SEND_SOUND(src, sound('sound/machines/buzz/buzz-sigh.ogg', volume=30))
-				message_prompt += "\n\n**This ticket is already being responded to by: [printable_interators]**"
+				message_prompt += "\n\n**此工单已由以下人员回应：[printable_interators]**"
 			// add the admin who is currently responding to the list of people responding
 			LAZYADD(recipient_ticket.opening_responders, src)
 
-	var/request = "Private message to"
+	var/request = "私信发送至"
 	if(recipient_fake_key)
-		request = "[request] an Administrator."
+		request = "[request] 一名管理员。"
 	else
-		request = "[request] [formatted_recipient_ckey]."
+		request = "[request] [formatted_recipient_ckey]。"
 
 	var/message = input(src, message_prompt, request) as message|null
 
@@ -121,7 +121,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		LAZYREMOVE(recipient_ticket.opening_responders, src)
 
 	if (!message)
-		message_admins("[our_linked_name] has cancelled their reply to [recipient_linked_ckey]'s admin help.")
+		message_admins("[our_linked_name]取消了对[recipient_linked_ckey]管理员求助的回复。")
 		return
 
 	if(!recipient) //We lost the client during input, disconnected or relogged.
@@ -130,14 +130,14 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		else
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = span_danger("Error: Admin-PM-Reply: Client not found."),
+				html = span_danger("错误：Admin-PM-Reply：未找到客户端。"),
 				confidential = TRUE)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = "[span_danger("<b>Message not sent:</b>")]<br>[message]",
+				html = "[span_danger("<b>讯息未发送：</b>")]<br>[message]",
 				confidential = TRUE)
 			if(recipient_ticket)
-				recipient_ticket.AddInteraction("<b>No client found, message not sent:</b><br>[message]")
+				recipient_ticket.AddInteraction("<b>未找到客户端，讯息未发送：</b><br>[message]")
 			return
 	cmd_admin_pm(whom, message)
 
@@ -148,18 +148,18 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM: You are unable to use admin PM-s (muted)."),
+			html = span_danger("错误：Admin-PM：你已被禁言，无法使用管理员私信。"),
 			confidential = TRUE)
 		return
 
 	if(!holder && !current_ticket) //no ticket? https://www.youtube.com/watch?v=iHSPf6x1Fdo
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("You can no longer reply to this ticket, please open another one by using the Adminhelp verb if need be."),
+			html = span_danger("你已无法回复此工单，如确有需要，请使用“管理员求助”动词另开工单。"),
 			confidential = TRUE)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_notice("Message: [message]"),
+			html = span_notice("讯息：[message]"),
 			confidential = TRUE)
 		return
 
@@ -192,26 +192,26 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		if(!externalreplyamount) //to prevent people from spamming irc/discord
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = span_danger("Error: Admin-PM-Message: External reply cap hit."),
+				html = span_danger("错误：Admin-PM-Message：外部回复次数已达上限。"),
 				confidential = TRUE)
 			return null
 		var/msg = ""
 		if(existing_message)
 			msg = existing_message
 		else
-			msg = input(src,"Message:", "Private message to Administrator") as message|null
+			msg = input(src,"讯息：", "向管理员发送私信") as message|null
 
 		if(!msg)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = span_danger("Error: Admin-PM-Message: No message input."),
+				html = span_danger("错误：Admin-PM-Message：未输入讯息。"),
 				confidential = TRUE)
 			return null
 
 		if(holder)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = span_danger("Error: Admin-PM-Message: Use the admin IRC/Discord channel, nerd."),
+				html = span_danger("错误：Admin-PM-Message：去用管理员的 IRC/Discord 频道吧，书呆子。"),
 				confidential = TRUE)
 			return null
 		return msg
@@ -219,7 +219,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	if(!istype(ambiguious_recipient, /client))
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Message: Client not found."),
+			html = span_danger("错误：Admin-PM-Message：未找到客户端。"),
 			confidential = TRUE)
 		return null
 
@@ -242,19 +242,19 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	if(existing_message)
 		msg = existing_message
 	else
-		var/request = "Private message to"
+		var/request = "私信发送至"
 		if(recipient_fake_key)
-			request = "[request] an Administrator."
+			request = "[request] 一名管理员。"
 		else
-			request = "[request] [recipient_print_key]."
+			request = "[request] [recipient_print_key]。"
 		//get message text, limit its length.and clean/escape html
-		msg = input(src,"Message:", request) as message|null
+		msg = input(src,"讯息：", request) as message|null
 		msg = trim(msg)
 
 	if(!msg)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Message: No message input."),
+			html = span_danger("错误：Admin-PM-Message：未输入讯息。"),
 			confidential = TRUE)
 		return null
 
@@ -270,14 +270,14 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	if(holder)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Message: Client not found."),
+			html = span_danger("错误：Admin-PM-Message：未找到客户端。"),
 			confidential = TRUE)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = "[span_danger("<b>Message not sent:</b>")]<br>[msg]",
+			html = "[span_danger("<b>讯息未发送：</b>")]<br>[msg]",
 			confidential = TRUE)
 		if(recipient_ticket)
-			recipient_ticket.AddInteraction("<b>No client found, message not sent:</b><br>[msg]")
+			recipient_ticket.AddInteraction("<b>未找到客户端，讯息未发送：</b><br>[msg]")
 		return null
 	if(our_ticket)
 		our_ticket.MessageNoRecipient(msg)
@@ -311,8 +311,8 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 
 	if(ambiguious_recipient == EXTERNAL_PM_USER)
 		var/datum/admin_help/new_admin_help = admin_ticket_log(src,
-			"<font color='red'>Reply PM from-<b>[name_key_with_link]</b> to <i>External</i>: [keyword_parsed_msg]</font>",
-			player_message = "<font color='red'>Reply PM from-<b>[name_key_with_link]</b> to <i>External</i>: [send_message]</font>")
+			"<font color='red'>来自-<b>[name_key_with_link]</b> 发往 <i>外部</i> 的回复私信：[keyword_parsed_msg]</font>",
+			player_message = "<font color='red'>来自-<b>[name_key_with_link]</b> 发往 <i>外部</i> 的回复私信：[send_message]</font>")
 
 		new_admin_help.reply_to_admins_notification(raw_message)
 
@@ -320,7 +320,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 
 		externalreplyamount--
 
-		var/category = "Reply: [ckey]"
+		var/category = "回复：[ckey]"
 		if(new_admin_help)
 			category = "#[new_help_id] [category]"
 
@@ -330,7 +330,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	if(!istype(ambiguious_recipient, /client))
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Send: Client not found."),
+			html = span_danger("错误：Admin-PM-Send：未找到客户端。"),
 			confidential = TRUE)
 		return FALSE
 
@@ -395,13 +395,13 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_notice("Admin PM to-<b>[their_name_with_link]</b>: [span_linkify(send_message)]"),
+			html = span_notice("发往-<b>[their_name_with_link]</b> 的管理员私信：[span_linkify(send_message)]"),
 			confidential = TRUE)
 
 		admin_ticket_log(recipient,
-			"<font color='purple'>PM From [name_key_with_link]: [keyword_parsed_msg]</font>",
+			"<font color='purple'>来自 [name_key_with_link] 的私信：[keyword_parsed_msg]</font>",
 			log_in_blackbox = FALSE,
-			player_message = "<font color='purple'>PM From [link_to_us]: [send_message]</font>")
+			player_message = "<font color='purple'>来自 [link_to_us] 的私信：[send_message]</font>")
 
 		if(!already_logged) //Reply to an existing ticket
 			SSblackbox.LogAhelp(recipient_ticket_id, "Reply", send_message, recip_ckey, our_ckey)
@@ -422,11 +422,11 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		if(!ticket)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = span_danger("Error: Admin-PM-Send: Non-admin to non-admin PM communication is forbidden."),
+				html = span_danger("错误：Admin-PM-Send：禁止非管理员之间进行私信通讯。"),
 				confidential = TRUE)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = "[span_danger("<b>Message not sent:</b>")]<br>[send_message]",
+				html = "[span_danger("<b>讯息未发送：</b>")]<br>[send_message]",
 				confidential = TRUE)
 			return FALSE
 		ticket.MessageNoRecipient(send_message)
@@ -439,11 +439,11 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	if(!ticket)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Send: Attempted to send a reply to a closed ticket."),
+			html = span_danger("错误：Admin-PM-Send：尝试回复一个已关闭的工单。"),
 			confidential = TRUE)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_notice("Relaying message to a new admin help."),
+			html = span_notice("正在将讯息转交至新的管理员求助。"),
 			confidential = TRUE)
 		GLOB.admin_help_ui_handler.perform_adminhelp(src, raw_message, FALSE)
 		return FALSE
@@ -464,12 +464,12 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_notice("Admin PM to-<b>[their_name_with_link]</b>: [span_linkify(keyword_parsed_msg)]"),
+			html = span_notice("发往-<b>[their_name_with_link]</b> 的管理员私信：[span_linkify(keyword_parsed_msg)]"),
 			confidential = TRUE)
 
 		//omg this is dumb, just fill in both their logs
-		var/interaction_message = "<font color='purple'>PM from-<b>[name_key_with_link]</b> to-<b>[their_name_with_link]</b>: [keyword_parsed_msg]</font>"
-		var/player_interaction_message = "<font color='purple'>PM from-<b>[link_to_us]</b> to-<b>[link_to_their]</b>: [send_message]</font>"
+		var/interaction_message = "<font color='purple'>来自-<b>[name_key_with_link]</b> 发送至-<b>[their_name_with_link]</b> 的私信：[keyword_parsed_msg]</font>"
+		var/player_interaction_message = "<font color='purple'>来自-<b>[link_to_us]</b> 发送至-<b>[link_to_their]</b> 的私信：[send_message]</font>"
 		admin_ticket_log(src,
 			interaction_message,
 			log_in_blackbox = FALSE,
@@ -484,8 +484,8 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		return TRUE
 
 	// This is us (a player) trying to talk to the recipient (an admin)
-	var/replymsg = "Reply PM from-<b>[name_key_with_link]</b>: [span_linkify(keyword_parsed_msg)]"
-	var/player_replymsg = "Reply PM from-<b>[link_to_us]</b>: [span_linkify(send_message)]"
+	var/replymsg = "来自-<b>[name_key_with_link]</b> 的回复私信：[span_linkify(keyword_parsed_msg)]"
+	var/player_replymsg = "来自-<b>[link_to_us]</b> 的回复私信：[span_linkify(send_message)]"
 	admin_ticket_log(src,
 		"<font color='red'>[replymsg]</font>",
 		log_in_blackbox = FALSE,
@@ -538,13 +538,13 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		for(var/client/lad in GLOB.admins)
 			to_chat(lad,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = span_notice("<B>PM: [our_linked_ckey]-&gt;External:</B> [keyword_parsed_msg]"),
+				html = span_notice("<B>私信：[our_linked_ckey]-&gt;外部：</B> [keyword_parsed_msg]"),
 				confidential = TRUE)
 		return
 	if(!istype(ambiguious_recipient, /client))
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Notify: Client not found."),
+			html = span_danger("错误：Admin-PM-Notify：未找到客户端。"),
 			confidential = TRUE)
 		return
 
@@ -567,7 +567,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 			continue
 		to_chat(lad,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_notice("<B>PM: [our_linked_ckey]-&gt;[recipient_linked_ckey]:</B> [keyword_parsed_msg]") ,
+			html = span_notice("<B>私信：[our_linked_ckey]-&gt;[recipient_linked_ckey]：</B> [keyword_parsed_msg]") ,
 			confidential = TRUE)
 
 /// Accepts a message and an ambiguious recipient (some sort of client representative, or [EXTERNAL_PM_USER])
@@ -576,7 +576,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			html = span_danger("Error: Admin-PM-Filter: You are unable to use admin PM-s (muted)."),
+			html = span_danger("错误：Admin-PM-Filter：你已被禁言，无法使用管理员私信。"),
 			confidential = TRUE)
 		return
 
@@ -586,12 +586,12 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		if(!message)
 			to_chat(src,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = span_danger("Error: Admin-PM-Filter: Your message contained only HTML, it's been sanitized away and the message disregarded."),
+				html = span_danger("错误：Admin-PM-Filter：你的讯息只包含 HTML，已被清理掉，讯息被忽略。"),
 				confidential = TRUE)
 			return
 	return message
 
-#define TGS_AHELP_USAGE "Usage: ticket <close|resolve|icissue|reject|reopen \[ticket #\]|list>"
+#define TGS_AHELP_USAGE "用法：ticket <close|resolve|icissue|reject|reopen \[ticket #\]|list>"
 /proc/TgsPm(target, message, sender)
 	var/requested_ckey = ckey(target)
 	var/ambiguious_target = disambiguate_client(requested_ckey)
@@ -622,29 +622,29 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 			if("close")
 				if(ticket)
 					ticket.Close(tgs_tagged)
-					return "Ticket #[ticket_id] successfully closed"
+					return "工单 #[ticket_id] 已成功关闭"
 			if("resolve")
 				if(ticket)
 					ticket.Resolve(tgs_tagged)
-					return "Ticket #[ticket_id] successfully resolved"
+					return "工单 #[ticket_id] 已成功解决"
 			if("icissue")
 				if(ticket)
 					ticket.ICIssue(tgs_tagged)
-					return "Ticket #[ticket_id] successfully marked as IC issue"
+					return "工单 #[ticket_id] 已成功标记为角色内事件"
 			if("reject")
 				if(ticket)
 					ticket.Reject(tgs_tagged)
-					return "Ticket #[ticket_id] successfully rejected"
+					return "工单 #[ticket_id] 已成功驳回"
 			if("reopen")
 				if(ticket)
-					return "Error: [target] already has ticket #[ticket_id] open"
+					return "错误：[target] 已经有打开的工单 #[ticket_id]"
 				var/ticket_num
 				// If the passed in command actually has a ticket id arg
 				if(split_size >= 3)
 					ticket_num = text2num(splits[3])
 
 				if(isnull(ticket_num))
-					return "Error: No/Invalid ticket id specified. [TGS_AHELP_USAGE]"
+					return "错误：未指定或无效的工单 ID。[TGS_AHELP_USAGE]"
 
 				// The active ticket we're trying to reopen, if one exists
 				var/datum/admin_help/active_ticket = GLOB.ahelp_tickets.TicketByID(ticket_num)
@@ -653,41 +653,41 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 				var/boinked_ckey = active_ticket?.initiator_ckey
 
 				if(!active_ticket)
-					return "Error: Ticket #[ticket_num] not found"
+					return "错误：未找到工单 #[ticket_num]"
 				if(boinked_ckey != target)
-					return "Error: Ticket #[ticket_num] belongs to [boinked_ckey]"
+					return "错误：工单 #[ticket_num] 属于 [boinked_ckey]"
 
 				active_ticket.Reopen()
-				return "Ticket #[ticket_num] successfully reopened"
+				return "工单 #[ticket_num] 已成功重新打开"
 			if("list")
 				var/list/tickets = GLOB.ahelp_tickets.TicketsByCKey(target)
 				var/tickets_length = length(tickets)
 
 				if(!tickets_length)
-					return "None"
+					return "无"
 				var/list/printable_tickets = list()
 				for(var/datum/admin_help/iterated_ticket in tickets)
 					// The id of the iterated adminhelp
 					var/iterated_id = iterated_ticket?.id
 					var/text = ""
 					if(iterated_ticket == ticket)
-						text += "Active: "
+						text += "活动："
 					text += "#[iterated_id]"
 					printable_tickets += text
 				return printable_tickets.Join(", ")
 			else
 				return TGS_AHELP_USAGE
-		return "Error: Ticket could not be found"
+		return "错误：找不到工单"
 
 	// Now that we've handled command processing, we can actually send messages to the client
 	if(!recipient)
-		return "Error: No client"
+		return "错误：无客户端"
 
 	var/adminname
 	if(CONFIG_GET(flag/show_irc_name))
 		adminname = tgs_tagged
 	else
-		adminname = "Administrator"
+		adminname = "管理员"
 
 	var/stealthkey = GetTgsStealthKey()
 
@@ -695,14 +695,14 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 	message = emoji_parse(message)
 
 	if(!message)
-		return "Error: No message"
+		return "错误：无讯息"
 
 	// The ckey of our recipient, with a reply link, and their mob if one exists
 	var/recipient_name_linked = key_name_admin(recipient)
 	// The ckey of our recipient, with their mob if one exists. No link
 	var/recipient_name = key_name_admin(recipient)
 
-	message_admins("External message from [sender] to [recipient_name_linked] : [message]")
+	message_admins("来自 [sender] 发往 [recipient_name_linked] 的外部讯息：[message]")
 	log_admin_private("External PM: [sender] -> [recipient_name] : [message]")
 
 	recipient.receive_ahelp(
@@ -710,7 +710,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		message,
 	)
 
-	admin_ticket_log(recipient, "<font color='purple'>PM From [tgs_tagged]: [message]</font>", log_in_blackbox = FALSE)
+	admin_ticket_log(recipient, "<font color='purple'>来自 [tgs_tagged] 的私信：[message]</font>", log_in_blackbox = FALSE)
 
 	window_flash(recipient, ignorepref = TRUE)
 	// Nullcheck because we run a winset in window flash and I do not trust byond
@@ -719,7 +719,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		SEND_SOUND(recipient, 'sound/effects/adminhelp.ogg')
 
 		recipient.externalreplyamount = EXTERNALREPLYCOUNT
-	return "Message Successful"
+	return "讯息发送成功"
 
 /// Gets TGS's stealth key, generates one if none is found
 /proc/GetTgsStealthKey()
@@ -755,10 +755,10 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		src,
 		type = MESSAGE_TYPE_ADMINPM,
 		html = fieldset_block(
-			span_adminhelp("Administrator private message"),
-			"<span class='[span_class]'>Admin PM from-<b>[reply_to]</b></span>\n\n\
+			span_adminhelp("管理员私信"),
+			"<span class='[span_class]'>来自-<b>[reply_to]</b> 的管理员私信</span>\n\n\
 			<span class='[span_class]'>[message]</span>\n\n\
-			<i class='adminsay'>Click on the administrator's name to reply.</i>",
+			<i class='adminsay'>点击管理员的名字即可回复。</i>",
 			"boxed_message red_box"),
 		confidential = TRUE
 	)

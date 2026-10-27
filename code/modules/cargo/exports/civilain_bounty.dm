@@ -1,7 +1,7 @@
 /datum/export/bounty_box
 	cost = 1
 	k_elasticity = 0 //Bounties are non-elastic funds.
-	unit_name = "completed bounty cube"
+	unit_name = "已完成的赏金方块"
 	export_types = list(/obj/item/bounty_cube)
 
 /datum/export/bounty_box/get_base_cost(obj/item/bounty_cube/cube)

@@ -1,6 +1,6 @@
 /mob/living/basic/mouse
-	name = "mouse"
-	desc = "This cute little guy just loves the taste of insulated electrical cables. Isn't he adorable?"
+	name = "老鼠"
+	desc = "这只可爱的小家伙就爱啃绝缘电缆。是不是很萌？"
 	icon_state = "mouse_gray"
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
@@ -17,13 +17,13 @@
 	faction = list(FACTION_RAT, FACTION_MAINT_CREATURES)
 	butcher_results = list(/obj/item/food/meat/slab/mouse = 1)
 
-	speak_emote = list("squeaks")
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "splats"
-	response_harm_simple = "splat"
+	speak_emote = list("吱吱叫")
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "拍扁"
+	response_harm_simple = "拍扁"
 
 	ai_controller = /datum/ai_controller/basic_controller/mouse
 
@@ -49,7 +49,7 @@
 /datum/emote/mouse/squeak
 	key = "squeak"
 	key_third_person = "squeaks"
-	message = "squeak!"
+	message = "吱吱！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'sound/mobs/non-humanoids/mouse/mousesqueek.ogg'
@@ -98,15 +98,15 @@
 	var/sameside = user.faction_check_atom(src, exact_match = TRUE)
 	if(isregalrat(user))
 		if(sameside)
-			. += span_notice("This rat serves under you.")
+			. += span_notice("这只老鼠为你效力。")
 		else
-			. += span_warning("This peasant serves a different king! Strike [p_them()] down!")
+			. += span_warning("这个乡巴佬效忠于别的国王！把 [p_them()] 打倒！")
 
 	else if(user != src && ismouse(user))
 		if(sameside)
-			. += span_notice("You both serve the same king.")
+			. += span_notice("你们效忠于同一位国王。")
 		else
-			. += span_warning("This fool serves a different king!")
+			. += span_warning("这个蠢货效忠于别的国王！")
 
 /// Kills the rat and changes its icon state to be splatted (bloody).
 /mob/living/basic/mouse/proc/splat()
@@ -121,8 +121,8 @@
 	var/aheal_included = full_heal_flags & HEAL_ADMIN
 	var/cap = CONFIG_GET(number/ratcap)
 	if(!aheal_included && !ckey && length(SSmobs.cheeserats) >= cap)
-		visible_message(span_warning("[src] twitches, but does not continue moving \
-			due to the overwhelming rodent population on the station!"))
+		visible_message(span_warning("[src] 抽搐了一下，但没能继续动弹，\
+			因为空间站上的老鼠实在太多了！"))
 		return
 
 	. = ..()
@@ -161,7 +161,7 @@
 			var/obj/item/food/deadmouse/mouse = new(place_to_make_corpse)
 			mouse.copy_corpse(src)
 			if(HAS_TRAIT(src, TRAIT_BEING_SHOCKED))
-				mouse.desc = "They're toast."
+				mouse.desc = "它被电焦了。"
 				mouse.add_atom_colour("#3A3A3A", FIXED_COLOUR_PRIORITY)
 			found_holder?.release(FALSE)
 			if(must_equip)
@@ -191,7 +191,7 @@
 	SIGNAL_HANDLER
 
 	if(ishuman(entered) && !IS_UNCONSCIOUS_OR_CRIT(src))
-		to_chat(entered, span_notice("[icon2html(src, entered)] Squeak!"))
+		to_chat(entered, span_notice("[icon2html(src, entered)] 吱吱！"))
 
 /// Called when a mouse is hand-fed some cheese, it will stop being afraid of humans
 /mob/living/basic/mouse/tamed(mob/living/tamer, obj/item/food/cheese/cheese)
@@ -206,8 +206,8 @@
 	// Royal cheese will evolve us into a regal rat
 	if(istype(cheese, /obj/item/food/cheese/royal))
 		visible_message(
-			span_warning("[src] devours [cheese]! They morph into something... greater!"),
-			span_notice("You devour [cheese], and start morphing into something... greater!"),
+			span_warning("[src] 吞下了 [cheese]！它正在变成……更伟大的存在！"),
+			span_notice("你吞下了 [cheese]，开始变成……更伟大的存在！"),
 		)
 		evolve_into_regal_rat()
 		qdel(cheese)
@@ -217,8 +217,8 @@
 	// Normal cheese will either heal us
 	if(prob(90) || health < maxHealth)
 		visible_message(
-			span_notice("[src] nibbles [cheese]."),
-			span_notice("You nibble [cheese][health < maxHealth ? ", restoring your health" : ""].")
+			span_notice("[src] 啃着 [cheese]。"),
+			span_notice("你啃着 [cheese][health < maxHealth ? "，恢复了生命值" : ""]。")
 		)
 		adjust_health(-maxHealth)
 
@@ -226,13 +226,13 @@
 	// ...if the rat cap allows us, that is
 	else if(length(SSmobs.cheeserats) >= cap)
 		visible_message(
-			span_warning("[src] carefully eats [cheese], hiding it from the [cap] mice on the station!"),
-			span_notice("You carefully nibble [cheese], hiding it from the [cap] other mice on board the station.")
+			span_warning("[src] 小心翼翼地吃着 [cheese]，好避开站上的 [cap] 只老鼠！"),
+			span_notice("你小心翼翼地啃着 [cheese]，好避开站上的另外 [cap] 只老鼠。")
 		)
 	else
 		visible_message(
-			span_notice("[src] nibbles through [cheese], attracting another mouse!"),
-			span_notice("You nibble through [cheese], attracting another mouse!")
+			span_notice("[src] 啃完了 [cheese]，引来了另一只老鼠！"),
+			span_notice("你啃完了 [cheese]，引来了另一只老鼠！")
 		)
 		create_a_new_rat()
 
@@ -242,7 +242,7 @@
 /mob/living/basic/mouse/proc/evolve_into_regal_rat()
 	var/mob/living/basic/regal_rat/controlled/regalrat = new(loc)
 	mind?.transfer_to(regalrat)
-	INVOKE_ASYNC(regalrat, TYPE_PROC_REF(/atom/movable, say), "RISE, MY SUBJECTS! SCREEEEEEE!")
+	INVOKE_ASYNC(regalrat, TYPE_PROC_REF(/atom/movable, say), "起来吧，我的子民！嘶啊啊啊啊！")
 	qdel(src)
 
 /// Creates a new mouse based on this mouse's subtype.
@@ -253,9 +253,9 @@
 /mob/living/basic/mouse/proc/try_bite_cable(obj/structure/cable/cable)
 	if(cable.avail() && !HAS_TRAIT(src, TRAIT_SHOCKIMMUNE) && prob(cable_zap_prob))
 		visible_message(
-			span_warning("[src] chews through \the [cable]. It's toast!"),
-			span_userdanger("As you bite deeply into [cable], you suddenly realize this may have been a bad idea."),
-			span_hear("You hear electricity crack."),
+			span_warning("[src] 咬穿了 \the [cable]。它被电焦了！"),
+			span_userdanger("当你深深咬进 [cable] 时，你突然意识到这或许不是个好主意。"),
+			span_hear("你听见电流噼啪作响。"),
 		)
 		// Finely toasted
 		ADD_TRAIT(src, TRAIT_BEING_SHOCKED, TRAIT_GENERIC)
@@ -266,8 +266,8 @@
 
 	else
 		visible_message(
-			span_warning("[src] chews through \the [cable]."),
-			span_notice("You chew through \the [cable]."),
+			span_warning("[src] 咬穿了 \the [cable]。"),
+			span_notice("你咬穿了 \the [cable]。"),
 		)
 
 	playsound(cable, 'sound/effects/sparks/sparks2.ogg', 100, TRUE)
@@ -289,14 +289,14 @@
 
 //TOM IS ALIVE! SQUEEEEEEEE~K :)
 /mob/living/basic/mouse/brown/tom
-	name = "Tom"
-	desc = "Jerry the cat is not amused."
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "splats"
-	response_harm_simple = "splat"
+	name = "汤姆"
+	desc = "猫咪杰瑞可不觉得有趣。"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "拍扁"
+	response_harm_simple = "拍扁"
 	gold_core_spawnable = NO_SPAWN
 	contributes_to_ratcap = FALSE
 
@@ -314,8 +314,8 @@
 	new /mob/living/basic/mouse/brown(loc, HAS_TRAIT(src, TRAIT_TAMED)) // dominant gene
 
 /mob/living/basic/mouse/rat
-	name = "rat"
-	desc = "They're a nasty, ugly, evil, disease-ridden rodent with anger issues."
+	name = "大老鼠"
+	desc = "它们是恶心、丑陋、邪恶、携带疾病的啮齿动物，还一肚子暴脾气。"
 
 	gold_core_spawnable = HOSTILE_SPAWN
 	melee_damage_lower = 3
@@ -334,12 +334,12 @@
 
 /// Mice turn into food when they die
 /obj/item/food/deadmouse
-	name = "dead mouse"
-	desc = "They look like somebody dropped the bass on it. A lizard's favorite meal."
+	name = "死老鼠"
+	desc = "看起来像是有人把它当贝斯砸过。蜥蜴的最爱。"
 	icon = 'icons/mob/simple/animal.dmi'
 	icon_state = "mouse_gray_dead"
 	bite_consumption = 3
-	eatverbs = list("devour")
+	eatverbs = list("吞食")
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	foodtypes = GORE | MEAT | RAW
 	decomp_req_handle = TRUE
@@ -366,13 +366,13 @@
 /obj/item/food/deadmouse/examine(mob/user)
 	. = ..()
 	if (reagents?.has_reagent(/datum/reagent/yuck) || reagents?.has_reagent(/datum/reagent/fuel))
-		. += span_warning("[p_Theyre()] dripping with fuel and smells terrible.")
+		. += span_warning("[p_Theyre()] 正滴着燃料，气味难闻。")
 
 ///Spawn a new mouse from this dead mouse item when hit by a lazarus injector and conditions are met.
 /obj/item/food/deadmouse/proc/use_lazarus(datum/source, obj/item/lazarus_injector/injector, mob/user)
 	SIGNAL_HANDLER
 	if(injector.revive_type != SENTIENCE_ORGANIC)
-		balloon_alert(user, "invalid creature!")
+		balloon_alert(user, "不是有效的生物！")
 		return
 	var/mob/living/basic/mouse/revived_critter = new critter_type (drop_location(), FALSE, body_color)
 	revived_critter.name = name
@@ -385,15 +385,15 @@
 	if(!tool.get_sharpness() || !user.combat_mode)
 		return NONE
 	if(!isturf(loc))
-		balloon_alert(user, "can't butcher here!")
+		balloon_alert(user, "这里不能屠宰！")
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "butchering...")
+	balloon_alert(user, "屠宰中……")
 	if(!do_after(user, 0.75 SECONDS, src))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断！")
 		return ITEM_INTERACT_BLOCKING
 
-	loc.balloon_alert(user, "butchered")
+	loc.balloon_alert(user, "已屠宰")
 	new /obj/item/food/meat/slab/mouse(loc)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -406,12 +406,12 @@
 	var/datum/reagents/target_reagents = interacting_with.reagents
 	var/trans_amount = reagents.maximum_volume - reagents.total_volume * (4 / 3)
 	if(target_reagents.has_reagent(/datum/reagent/fuel) && target_reagents.trans_to(src, trans_amount))
-		to_chat(user, span_notice("You dip [src] into [interacting_with]."))
+		to_chat(user, span_notice("你把 [src] 浸入 [interacting_with] 中。"))
 		return ITEM_INTERACT_SUCCESS
 
 /obj/item/food/deadmouse/moldy
-	name = "moldy dead mouse"
-	desc = "A dead rodent, consumed by mold and rot. There is a slim chance that a lizard might still eat it."
+	name = "发霉的死老鼠"
+	desc = "一只被霉菌和腐烂吞噬的死啮齿动物。蜥蜴也许还有很小的几率肯吃它。"
 	icon_state = "mouse_gray_dead"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/mold = 10)
 	foodtypes = GORE | MEAT | RAW | GROSS
@@ -443,9 +443,9 @@
 		BB_CURRENT_HUNTING_TARGET = null, // cheese
 		BB_LOW_PRIORITY_HUNTING_TARGET = null, // cable
 		BB_OWNER_SELF_HARM_RESPONSES = list(
-			"*me cleans its whiskers in disapproval.",
-			"*me squeaks sadly.",
-			"*me sheds a single small tear."
+			"*me 不赞同地清理着自己的胡须。",
+			"*me 悲伤地吱吱叫。",
+			"*me 挤出了一小滴眼泪。"
 		)
 	)
 

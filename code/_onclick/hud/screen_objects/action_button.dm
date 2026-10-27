@@ -154,20 +154,20 @@
 		if(SCRN_OBJ_IN_PALETTE)
 			position_info = SCRN_OBJ_IN_PALETTE
 
-	user.client.prefs.action_buttons_screen_locs["[name]_[id]"] = position_info
+	user.client.prefs.action_buttons_screen_locs["[chinese_action_storage_name(name, linked_action?.type)]_[id]"] = position_info
 
 /atom/movable/screen/movable/action_button/proc/load_position()
 	var/mob/user = our_hud.mymob
 	if(!user)
 		return
-	var/position_info = user.client?.prefs?.action_buttons_screen_locs["[name]_[id]"] || SCRN_OBJ_DEFAULT
+	var/position_info = user.client?.prefs?.action_buttons_screen_locs["[chinese_action_storage_name(name, linked_action?.type)]_[id]"] || SCRN_OBJ_DEFAULT
 	user.hud_used.position_action(src, position_info)
 
 /atom/movable/screen/movable/action_button/proc/dump_save()
 	var/mob/user = our_hud.mymob
 	if(!user?.client)
 		return
-	user.client.prefs.action_buttons_screen_locs -= "[name]_[id]"
+	user.client.prefs.action_buttons_screen_locs -= "[chinese_action_storage_name(name, linked_action?.type)]_[id]"
 
 /atom/movable/screen/movable/action_button/proc/update_keybind_maptext(key)
 	cut_overlay(keybind_maptext)
@@ -270,7 +270,7 @@
 	action.HideFrom(src)
 
 /atom/movable/screen/button_palette
-	desc = "<b>Drag</b> buttons to move them<br><b>Shift-click</b> any button to reset it<br><b>Alt-click any button</b> to begin binding it to a key<br><b>Alt-click this</b> to reset all buttons"
+	desc = "<b>拖动</b>按钮以移动它们<br><b>Shift 点击</b>任意按钮以重置位置<br><b>Alt 点击任意按钮</b>以绑定快捷键<br><b>Alt 点击此处</b>以重置所有按钮"
 	icon = 'icons/hud/64x16_actions.dmi'
 	icon_state = "screen_gen_palette"
 	screen_loc = ui_action_palette
@@ -301,9 +301,9 @@
 /atom/movable/screen/button_palette/update_name(updates)
 	. = ..()
 	if(expanded)
-		name = "Hide Buttons"
+		name = "隐藏按钮"
 	else
-		name = "Show Buttons"
+		name = "显示按钮"
 
 /atom/movable/screen/button_palette/proc/refresh_owner()
 	var/mob/viewer = our_hud.mymob
@@ -382,7 +382,7 @@ GLOBAL_LIST_INIT(palette_removed_matrix, list(1.4,0,0,0, 0.7,0.4,0,0, 0.4,0,0.6,
 			for(var/datum/hud/hud as anything in action.viewers)
 				var/atom/movable/screen/movable/action_button/button = action.viewers[hud]
 				hud.position_action(button, SCRN_OBJ_DEFAULT)
-		to_chat(usr, span_notice("Action button positions have been reset."))
+		to_chat(usr, span_notice("动作按钮的位置已重置。"))
 		return TRUE
 
 	set_expanded(!expanded)
@@ -470,21 +470,21 @@ GLOBAL_LIST_INIT(palette_removed_matrix, list(1.4,0,0,0, 0.7,0.4,0,0, 0.4,0,0.6,
 	return ..()
 
 /atom/movable/screen/palette_scroll/down
-	name = "Scroll Down"
-	desc = "<b>Click</b> on this to scroll the actions above down"
+	name = "向下滚动"
+	desc = "<b>点击</b>此处，向下滚动上方的动作列表"
 	icon_state = "scroll_down"
 	scroll_direction = 1
 
 /atom/movable/screen/palette_scroll/up
-	name = "Scroll Up"
-	desc = "<b>Click</b> on this to scroll the actions above up"
+	name = "向上滚动"
+	desc = "<b>点击</b>此处，向上滚动上方的动作列表"
 	icon_state = "scroll_up"
 	scroll_direction = -1
 
 /// Exists so you have a place to put your buttons when you move them around
 /atom/movable/screen/action_landing
-	name = "Button Space"
-	desc = "<b>Drag and drop</b> a button into this spot<br>to add it to the group"
+	name = "按钮空位"
+	desc = "将按钮<b>拖放</b>到此处<br>以加入此组"
 	icon = 'icons/hud/screen_gen.dmi'
 	icon_state = "reserved"
 	// We want our whole 32x32 space to be clickable, so dropping's forgiving

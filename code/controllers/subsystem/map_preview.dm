@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(map_previews)
-	name = "Map Previews"
+	name = "地图预览"
 	ss_flags = SS_NO_FIRE
 	dependencies = list(
 		/datum/controller/subsystem/machines,

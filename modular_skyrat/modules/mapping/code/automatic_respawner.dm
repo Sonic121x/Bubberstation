@@ -1,6 +1,6 @@
 /obj/machinery/automatic_respawner
-	name = "Automatic Respawner"
-	desc = "Allows for lost souls to find a new body."
+	name = "自动重生器"
+	desc = "让迷失的灵魂找到一具新身体。"
 	icon = 'modular_skyrat/modules/mapping/icons/machinery/automatic_respawner.dmi'
 	icon_state = "respawner"
 	use_power = FALSE //It doesn't make sense for this to require power in most of the use cases.
@@ -14,7 +14,7 @@
 	/// What is the type of the outfit datum that we want applied to the new body?
 	var/datum/outfit/target_outfit = /datum/outfit/job/assistant
 	/// What text is shown to the mob that respawned? FALSE will disable anything from being sent.
-	var/text_to_show = "Hello there!"
+	var/text_to_show = "你好！"
 
 
 /obj/machinery/automatic_respawner/attack_ghost(mob/user)
@@ -28,19 +28,19 @@
 
 		var/datum/component/respawner/mind_component = user.mind.GetComponent(target_component)
 		if(!mind_component)
-			to_chat(user, span_warning("You are not able to use [src]!"))
+			to_chat(user, span_warning("你无法使用 [src]！"))
 			return FALSE
 
 		if(mind_component.time_before_respawn && !COOLDOWN_FINISHED(mind_component, respawn_timer))
-			to_chat(user, span_warning("You have [COOLDOWN_TIMELEFT(mind_component, respawn_timer) / 10] seconds left before you can use [src]."))
+			to_chat(user, span_warning("你还需要 [COOLDOWN_TIMELEFT(mind_component, respawn_timer) / 10] 秒才能使用 [src]。"))
 			return FALSE
 
 	if(!COOLDOWN_FINISHED(src, respawn_cooldown))
-		to_chat(user, span_warning("[src] has [COOLDOWN_TIMELEFT(src, respawn_cooldown) / 10] seconds left before it can be used again. Please try again later."))
+		to_chat(user, span_warning("[src] 还需 [COOLDOWN_TIMELEFT(src, respawn_cooldown) / 10] 秒才能再次使用。请稍后再试。"))
 		return FALSE
 
-	var/choice = tgui_alert(user, "Do you wish to use the respawner? If you have a body, you will not be able to return to it.", name, list("Yes", "No"))
-	if(choice != "Yes")
+	var/choice = tgui_alert(user, "你想使用重生器吗？如果你已有身体，你将无法回到那具身体。", name, list("是", "否"))
+	if(choice != "是")
 		return FALSE
 
 	var/mob/living/carbon/human/spawned_player = new(user)
@@ -68,18 +68,18 @@
 	. = ..()
 	if(cooldown_time)
 		if(!COOLDOWN_FINISHED(src, respawn_cooldown))
-			. += span_warning("[src] has [COOLDOWN_TIMELEFT(src, respawn_cooldown) / 10] seconds left before it can be used again.")
+			. += span_warning("[src] 还需 [COOLDOWN_TIMELEFT(src, respawn_cooldown) / 10] 秒才能再次使用。")
 
 		else
-			. += span_abductor("[src] has a cooldown of [cooldown_time / 10] seconds between uses.")
+			. += span_abductor("[src] 每次使用之间有 [cooldown_time / 10] 秒冷却。")
 
 /obj/machinery/automatic_respawner/test
 	cooldown_time = 1.5 MINUTES
 	target_component = /datum/component/respawner
 
 /obj/item/respawn_implant //Not actually an implanter
-	name = "Respawn Implanter"
-	desc = "Life doesn't end after death."
+	name = "重生植入器"
+	desc = "死亡并非生命的终点。"
 	icon = 'modular_skyrat/modules/aesthetics/implanter/implanter.dmi'
 	icon_state = "implanter0"
 	inhand_icon_state = "syringe_0"

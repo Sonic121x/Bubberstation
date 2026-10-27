@@ -4,8 +4,8 @@
  * Immobilises people with tentacles. It's not a fetish.
  */
 /obj/item/gun/magic/wand/tentacles
-	name = "restraining rod"
-	desc = "This wriggling wand binds its victims in a place for a time, although it doesn't stop them from shooting back."
+	name = "拘束之杖"
+	desc = "这根不停扭动的魔杖能把受害者束缚在原地一段时间，但无法阻止他们还击。"
 	school = SCHOOL_CONJURATION
 	ammo_type = /obj/item/ammo_casing/magic/tentacle_staff
 	icon_state = "tentawand"
@@ -29,7 +29,7 @@
 
 /// Grabs the target for a while in an unwanted hug
 /obj/projectile/magic/tentacle_staff
-	name = "bolt of binding"
+	name = "束缚魔弹"
 	icon_state = "tentacle_end"
 
 /obj/projectile/magic/tentacle_staff/on_hit(mob/living/target, blocked = 0, pierce_hit)
@@ -42,7 +42,7 @@
 
 /// Different enough from the goliath tentacle to just be its own subtype
 /obj/effect/wizard_tentacle
-	name = "tentacle"
+	name = "触须"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "goliath_tentacle_wiggle"
 	layer = BELOW_MOB_LAYER
@@ -60,8 +60,8 @@
 	flick("goliath_tentacle_spawn", src)
 
 	if (victim.stat != DEAD && !HAS_TRAIT(victim, TRAIT_TENTACLE_IMMUNE))
-		balloon_alert(victim, "grabbed")
-		visible_message(span_danger("[src] grabs hold of [victim]!"))
+		balloon_alert(victim, "被抓住了")
+		visible_message(span_danger("[src] 抓住了 [victim]！"))
 		victim.apply_damage(15, BRUTE)
 		if (victim.apply_status_effect(status_applied, grab_time, src))
 			buckle_mob(victim, TRUE)
@@ -73,7 +73,7 @@
 
 /obj/effect/wizard_tentacle/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
 	if (buckled_mob == user)
-		balloon_alert(user, "can't reach!")
+		balloon_alert(user, "够不着！")
 		return
 	return ..()
 
@@ -124,9 +124,9 @@
 /datum/status_effect/incapacitating/immobilized/wizard_tentacle/proc/on_helped(mob/source, mob/helping)
 	SIGNAL_HANDLER
 	if (helping == owner)
-		owner.balloon_alert(owner, "can't reach!")
+		owner.balloon_alert(owner, "够不着！")
 		return NONE
-	source.visible_message(span_notice("[helping] rips [source] from the tentacle's grasp!"))
+	source.visible_message(span_notice("[helping] 把 [source] 从触须的束缚中拽了出来！"))
 	release()
 	return COMPONENT_BLOCK_MISC_HELP
 
@@ -155,7 +155,7 @@
 	. = ..()
 	if (!owner || !had_tentacle)
 		return
-	owner.visible_message(span_suicide("The tentacle drags [owner] directly to hell!"))
+	owner.visible_message(span_suicide("触须把 [owner] 直接拖进了地狱！"))
 	owner.unequip_everything()
 	animate(owner, transform = matrix() * 0, time = RETRACT_TIME)
 	animate(owner, pixel_y = -12, time = RETRACT_TIME, flags = ANIMATION_PARALLEL)

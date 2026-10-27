@@ -14,7 +14,7 @@
 	///Defines the color/alert code of the response team. Unused if a polldesc is defined.
 	var/code
 	///The mission given to this ERT type in their flavor text.
-	var/mission = "Assist the station."
+	var/mission = "支援空间站。"
 	///The number of players for consideration.
 	var/teamsize = 5
 	///The "would you like to play as XXX" message used when polling for players.
@@ -36,7 +36,7 @@
 
 /datum/ert/New()
 	if (!polldesc)
-		polldesc = "a Code [code] Nanotrasen Emergency Response Team"
+		polldesc = "代号为[chinese_ert_code_display(code)]的纳米传讯紧急响应小队"
 
 /datum/ert/blue
 	opendoors = FALSE
@@ -53,16 +53,16 @@
 /datum/ert/deathsquad
 	roles = list(/datum/antagonist/ert/deathsquad)
 	leader_role = /datum/antagonist/ert/deathsquad/leader
-	rename_team = "Deathsquad"
+	rename_team = "死亡小队"
 	code = "Delta"
-	mission = "Leave no witnesses."
-	polldesc = "an elite Nanotrasen Strike Team"
+	mission = "不留目击者。"
+	polldesc = "纳米传讯精锐突击队"
 
 /datum/ert/marine
 	leader_role = /datum/antagonist/ert/marine
 	roles = list(/datum/antagonist/ert/marine/security, /datum/antagonist/ert/marine/engineer, /datum/antagonist/ert/marine/medic)
-	rename_team = "Marine Squad"
-	polldesc = "an 'elite' Nanotrasen Strike Team"
+	rename_team = "陆战小队"
+	polldesc = "纳米传讯“精锐”突击队"
 	opendoors = FALSE
 
 /datum/ert/centcom_official
@@ -71,52 +71,52 @@
 	opendoors = FALSE
 	leader_role = /datum/antagonist/ert/official
 	roles = list(/datum/antagonist/ert/official)
-	rename_team = "CentCom Officials"
-	polldesc = "a CentCom Official"
+	rename_team = "中央指挥部官员"
+	polldesc = "中央指挥部官员"
 	random_names = FALSE
 	leader_experience = FALSE
 
 /datum/ert/centcom_official/New()
-	mission = "Conduct a routine performance review of [station_name()] and its Captain."
+	mission = "对[station_name()]及其舰长开展例行绩效审查。"
 
 /datum/ert/inquisition
 	roles = list(/datum/antagonist/ert/chaplain/inquisitor, /datum/antagonist/ert/security/inquisitor, /datum/antagonist/ert/medic/inquisitor)
 	leader_role = /datum/antagonist/ert/commander/inquisitor
-	rename_team = "Inquisition"
-	mission = "Destroy any traces of paranormal activity aboard the station."
-	polldesc = "a Nanotrasen paranormal response team"
+	rename_team = "审判庭"
+	mission = "清除空间站内一切超自然活动的痕迹。"
+	polldesc = "纳米传讯超自然事件响应小队"
 
 /datum/ert/janitor
 	roles = list(/datum/antagonist/ert/janitor, /datum/antagonist/ert/janitor/heavy)
 	leader_role = /datum/antagonist/ert/janitor/heavy
 	teamsize = 4
 	opendoors = FALSE
-	rename_team = "Janitor"
-	mission = "Clean up EVERYTHING."
-	polldesc = "a Nanotrasen Janitorial Response Team"
+	rename_team = "清洁小队"
+	mission = "把一切都打扫干净。"
+	polldesc = "纳米传讯清洁响应小队"
 
 /datum/ert/intern
 	roles = list(/datum/antagonist/ert/intern)
 	leader_role = /datum/antagonist/ert/intern/leader
 	teamsize = 7
 	opendoors = FALSE
-	rename_team = "Horde of Interns"
-	mission = "Assist in conflict resolution."
-	polldesc = "an unpaid internship opportunity with Nanotrasen"
+	rename_team = "实习生大军"
+	mission = "协助解决冲突。"
+	polldesc = "纳米传讯的无薪实习机会"
 	random_names = FALSE
 
 /datum/ert/intern/unarmed
 	roles = list(/datum/antagonist/ert/intern/unarmed)
 	leader_role = /datum/antagonist/ert/intern/leader/unarmed
-	rename_team = "Unarmed Horde of Interns"
+	rename_team = "无武装实习生大军"
 
 /datum/ert/erp
 	roles = list(/datum/antagonist/ert/security/party, /datum/antagonist/ert/clown/party, /datum/antagonist/ert/engineer/party, /datum/antagonist/ert/janitor/party)
 	leader_role = /datum/antagonist/ert/commander/party
 	opendoors = FALSE
-	rename_team = "Emergency Response Party"
-	mission = "Create entertainment for the crew."
-	polldesc = "a Code Rainbow Nanotrasen Emergency Response Party"
+	rename_team = "紧急响应派对"
+	mission = "为船员提供娱乐。"
+	polldesc = "彩虹代号纳米传讯紧急响应派对"
 	code = "Rainbow"
 
 /datum/ert/bounty_hunters
@@ -124,9 +124,9 @@
 	leader_role = /datum/antagonist/ert/bounty_armor
 	teamsize = 3
 	opendoors = FALSE
-	rename_team = "Bounty Hunters"
-	mission = "Assist the station in catching perps, dead or alive."
-	polldesc = "a Centcom-hired bounty hunting gang"
+	rename_team = "赏金猎人"
+	mission = "协助空间站抓捕罪犯，生死不论。"
+	polldesc = "中央指挥部雇佣的赏金猎人团伙"
 	random_names = FALSE
 	ert_template = /datum/map_template/shuttle/ert/bounty
 
@@ -135,9 +135,9 @@
 	leader_role = /datum/antagonist/ert/militia/general
 	teamsize = 4
 	opendoors = FALSE
-	rename_team = "Frontier Militia"
-	mission = "Having heard the station's request for aid, assist the crew in defending themselves."
-	polldesc = "an independent station defense militia"
+	rename_team = "边疆民兵"
+	mission = "响应空间站的求援，协助船员进行自卫。"
+	polldesc = "独立的空间站防卫民兵队"
 	random_names = TRUE
 
 /datum/ert/medical
@@ -146,7 +146,7 @@
 	leader_role = /datum/antagonist/ert/medical_commander
 	enforce_human = FALSE //All the best doctors I know are moths and cats
 	roles = list(/datum/antagonist/ert/medical_technician)
-	rename_team = "EMT Squad"
+	rename_team = "急救小队"
 	code = "Violet"
-	mission = "Provide emergency medical services to the crew."
-	polldesc = "an emergency medical response team"
+	mission = "为船员提供紧急医疗服务。"
+	polldesc = "紧急医疗响应小队"

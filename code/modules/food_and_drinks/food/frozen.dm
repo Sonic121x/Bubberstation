@@ -1,6 +1,6 @@
 /obj/item/food/icecreamsandwich
-	name = "ice cream sandwich"
-	desc = "Portable ice cream in its own packaging."
+	name = "冰淇淋三明治"
+	desc = "自带包装的便携冰淇淋。"
 	icon = 'icons/obj/food/frozen_treats.dmi'
 	icon_state = "icecreamsandwich"
 	w_class = WEIGHT_CLASS_TINY
@@ -8,15 +8,15 @@
 		/datum/reagent/consumable/nutriment = 3,
 		/datum/reagent/consumable/ice = 4,
 	)
-	tastes = list("ice cream" = 1)
+	tastes = list("冰淇淋" = 1)
 	foodtypes = GRAIN | DAIRY | SUGAR
 	food_flags = FOOD_FINGER_FOOD
 	crafting_complexity = FOOD_COMPLEXITY_2
 	crafted_food_buff = /datum/status_effect/food/chilling
 
 /obj/item/food/strawberryicecreamsandwich
-	name = "strawberry ice cream sandwich"
-	desc = "Portable ice cream in its own packaging of the strawberry variety."
+	name = "草莓冰淇淋三明治"
+	desc = "自带包装的便携草莓味冰淇淋。"
 	icon = 'icons/obj/food/frozen_treats.dmi'
 	icon_state = "strawberryicecreamsandwich"
 	w_class = WEIGHT_CLASS_TINY
@@ -24,15 +24,15 @@
 		/datum/reagent/consumable/nutriment = 4,
 		/datum/reagent/consumable/ice = 4,
 	)
-	tastes = list("ice cream" = 2, "berry" = 2)
+	tastes = list("冰淇淋" = 2, "浆果" = 2)
 	foodtypes = GRAIN|FRUIT|DAIRY|SUGAR
 	food_flags = FOOD_FINGER_FOOD
 	crafting_complexity = FOOD_COMPLEXITY_3
 	crafted_food_buff = /datum/status_effect/food/chilling
 
 /obj/item/food/spacefreezy
-	name = "space freezy"
-	desc = "The best ice cream in space."
+	name = "太空冰爽"
+	desc = "太空中最好的冰淇淋。"
 	icon = 'icons/obj/food/frozen_treats.dmi'
 	icon_state = "spacefreezy"
 	w_class = WEIGHT_CLASS_TINY
@@ -41,7 +41,7 @@
 		/datum/reagent/consumable/bluecherryjelly = 5,
 		/datum/reagent/consumable/nutriment/vitamin = 5,
 	)
-	tastes = list("blue cherries" = 2, "ice cream" = 2)
+	tastes = list("蓝樱桃" = 2, "冰淇淋" = 2)
 	foodtypes = GRAIN|FRUIT|DAIRY|SUGAR
 	crafting_complexity = FOOD_COMPLEXITY_3
 	crafted_food_buff = /datum/status_effect/food/chilling
@@ -51,8 +51,8 @@
 	AddComponent(/datum/component/ice_cream_holder)
 
 /obj/item/food/sundae
-	name = "sundae"
-	desc = "A classic dessert."
+	name = "圣代"
+	desc = "一道经典甜点。"
 	icon = 'icons/obj/food/frozen_treats.dmi'
 	icon_state = "sundae"
 	w_class = WEIGHT_CLASS_SMALL
@@ -61,7 +61,7 @@
 		/datum/reagent/consumable/banana = 5,
 		/datum/reagent/consumable/nutriment/vitamin = 2,
 	)
-	tastes = list("ice cream" = 1, "banana" = 1)
+	tastes = list("冰淇淋" = 1, "香蕉" = 1)
 	foodtypes = GRAIN|FRUIT|DAIRY|SUGAR
 	crafting_complexity = FOOD_COMPLEXITY_3
 	crafted_food_buff = /datum/status_effect/food/chilling
@@ -71,8 +71,8 @@
 	AddComponent(/datum/component/ice_cream_holder, y_offset = -2, sweetener = /datum/reagent/consumable/caramel)
 
 /obj/item/food/honkdae
-	name = "honkdae"
-	desc = "The clown's favorite dessert."
+	name = "洪克圣代"
+	desc = "小丑最爱的甜点。"
 	icon = 'icons/obj/food/frozen_treats.dmi'
 	icon_state = "honkdae"
 	w_class = WEIGHT_CLASS_SMALL
@@ -81,7 +81,7 @@
 		/datum/reagent/consumable/banana = 10,
 		/datum/reagent/consumable/nutriment/vitamin = 4,
 	)
-	tastes = list("ice cream" = 1, "banana" = 1, "a bad joke" = 1)
+	tastes = list("冰淇淋" = 1, "香蕉" = 1, "一个烂笑话" = 1)
 	foodtypes = GRAIN|FRUIT|DAIRY|SUGAR
 	crafting_complexity = FOOD_COMPLEXITY_4
 	crafted_food_buff = /datum/status_effect/food/chilling
@@ -95,8 +95,8 @@
 /////////////
 
 /obj/item/food/snowcones //We use this as a base for all other snowcones
-	name = "flavorless snowcone"
-	desc = "It's just shaved ice. Still fun to chew on."
+	name = "无味雪锥"
+	desc = "只是刨冰而已。不过嚼起来还是挺有意思的。"
 	icon = 'icons/obj/food/frozen_treats.dmi'
 	icon_state = "flavorless_sc"
 	w_class = WEIGHT_CLASS_SMALL
@@ -104,7 +104,7 @@
 	food_reagents = list(
 		/datum/reagent/water = 11,
 	) // We dont get food for water/juices
-	tastes = list("ice" = 1, "water" = 1)
+	tastes = list("冰" = 1, "水" = 1)
 	foodtypes = SUGAR //We use SUGAR as a base line to act in as junkfood, other wise we use fruit
 	food_flags = FOOD_FINGER_FOOD
 	crafting_complexity = FOOD_COMPLEXITY_2
@@ -120,104 +120,104 @@
 	// the juice component will be transferred in from crafting
 
 /obj/item/food/snowcones/lime
-	name = "lime snowcone"
-	desc = "Lime syrup drizzled over a snowball in a paper cup."
+	name = "青柠雪锥"
+	desc = "淋在纸杯雪球上的青柠糖浆。"
 	icon_state = "lime_sc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/consumable/limejuice = 5,
 		/datum/reagent/water = 11,
 	)
-	tastes = list("ice" = 1, "water" = 1, "limes" = 5)
+	tastes = list("冰" = 1, "水" = 1, "青柠" = 5)
 	foodtypes = FRUIT
 
 /obj/item/food/snowcones/lemon
-	name = "lemon snowcone"
-	desc = "Lemon syrup drizzled over a snowball in a paper cup."
+	name = "柠檬雪锥"
+	desc = "淋在纸杯雪球上的柠檬糖浆。"
 	icon_state = "lemon_sc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/consumable/lemonjuice = 5,
 		/datum/reagent/water = 11,
 	)
-	tastes = list("ice" = 1, "water" = 1, "lemons" = 5)
+	tastes = list("冰" = 1, "水" = 1, "柠檬" = 5)
 	foodtypes = FRUIT
 
 /obj/item/food/snowcones/apple
-	name = "apple snowcone"
-	desc = "Apple syrup drizzled over a snowball in a paper cup."
+	name = "苹果雪锥"
+	desc = "淋在纸杯雪球上的苹果糖浆。"
 	icon_state = "amber_sc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/consumable/applejuice = 5,
 		/datum/reagent/water = 11,
 	)
-	tastes = list("ice" = 1, "water" = 1, "apples" = 5)
+	tastes = list("冰" = 1, "水" = 1, "苹果" = 5)
 	foodtypes = FRUIT
 
 /obj/item/food/snowcones/grape
-	name = "grape snowcone"
-	desc = "Grape syrup drizzled over a snowball in a paper cup."
+	name = "葡萄雪锥"
+	desc = "淋在纸杯雪球上的葡萄糖浆。"
 	icon_state = "grape_sc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/consumable/grapejuice = 5,
 		/datum/reagent/water = 11,
 	)
-	tastes = list("ice" = 1, "water" = 1, "grape" = 5)
+	tastes = list("冰" = 1, "水" = 1, "葡萄" = 5)
 	foodtypes = FRUIT
 
 /obj/item/food/snowcones/orange
-	name = "orange snowcone"
-	desc = "Orange syrup drizzled over a snowball in a paper cup."
+	name = "橙子雪锥"
+	desc = "淋在纸杯雪球上的橙子糖浆。"
 	icon_state = "orange_sc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/consumable/orangejuice = 5,
 		/datum/reagent/water = 11,
 	)
-	tastes = list("ice" = 1, "water" = 1, "orange" = 5)
+	tastes = list("冰" = 1, "水" = 1, "橙子" = 5)
 	foodtypes = FRUIT | ORANGES
 
 /obj/item/food/snowcones/blue
-	name = "bluecherry snowcone"
-	desc = "Bluecherry syrup drizzled over a snowball in a paper cup, how rare!"
+	name = "蓝樱桃雪锥"
+	desc = "淋在纸杯雪球上的蓝樱桃糖浆，真稀罕！"
 	icon_state = "blue_sc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/consumable/bluecherryjelly = 5,
 		/datum/reagent/water = 11,
 	)
-	tastes = list("ice" = 1, "water" = 1, "blue" = 5, "cherries" = 5)
+	tastes = list("冰" = 1, "水" = 1, "蓝" = 5, "樱桃" = 5)
 	foodtypes = FRUIT
 
 /obj/item/food/snowcones/red
-	name = "cherry snowcone"
-	desc = "Cherry syrup drizzled over a snowball in a paper cup."
+	name = "樱桃雪锥"
+	desc = "淋在纸杯雪球上的樱桃糖浆。"
 	icon_state = "red_sc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/consumable/cherryjelly = 5,
 		/datum/reagent/water = 11,
 	)
-	tastes = list("ice" = 1, "water" = 1, "red" = 5, "cherries" = 5)
+	tastes = list("冰" = 1, "水" = 1, "红" = 5, "樱桃" = 5)
 	foodtypes = FRUIT
 
 /obj/item/food/snowcones/berry
-	name = "berry snowcone"
-	desc = "Berry syrup drizzled over a snowball in a paper cup."
+	name = "浆果雪锥"
+	desc = "淋在纸杯雪球上的浆果糖浆。"
 	icon_state = "berry_sc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/consumable/berryjuice = 5,
 		/datum/reagent/water = 11,
 	)
-	tastes = list("ice" = 1, "water" = 1, "berries" = 5)
+	tastes = list("冰" = 1, "水" = 1, "浆果" = 5)
 	foodtypes = FRUIT
 
 /obj/item/food/snowcones/fruitsalad
-	name = "fruit salad snowcone"
-	desc = "A delightful mix of citrus syrups drizzled over a snowball in a paper cup."
+	name = "水果沙拉雪锥"
+	desc = "柑橘类糖浆的美妙混合，淋在纸杯雪球上。"
 	icon_state = "fruitsalad_sc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
@@ -226,23 +226,23 @@
 		/datum/reagent/consumable/orangejuice = 5,
 		/datum/reagent/water = 11,
 	)
-	tastes = list("ice" = 1, "water" = 1, "oranges" = 5, "limes" = 5, "lemons" = 5, "citrus" = 5, "salad" = 5)
+	tastes = list("冰" = 1, "水" = 1, "橙子" = 5, "青柠" = 5, "柠檬" = 5, "柑橘" = 5, "沙拉" = 5)
 	foodtypes = FRUIT | ORANGES
 
 /obj/item/food/snowcones/pineapple
-	name = "pineapple snowcone"
-	desc = "Pineapple syrup drizzled over a snowball in a paper cup."
+	name = "菠萝雪锥"
+	desc = "淋在纸杯雪球上的菠萝糖浆。"
 	icon_state = "pineapple_sc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/consumable/pineapplejuice = 5,
 		/datum/reagent/water = 11,
 	)
-	tastes = list("ice" = 1, "water" = 1, "pineapples" = 5)
+	tastes = list("冰" = 1, "水" = 1, "菠萝" = 5)
 	foodtypes = PINEAPPLE //Pineapple to allow all that like pineapple to enjoy
 
 /obj/item/food/snowcones/mime
-	name = "mime snowcone"
+	name = "默剧演员雪锥"
 	desc = "..."
 	icon_state = "mime_sc"
 	food_reagents = list(
@@ -250,86 +250,86 @@
 		/datum/reagent/consumable/nothing = 5,
 		/datum/reagent/water = 11,
 	)
-	tastes = list("ice" = 1, "water" = 1, "nothing" = 5)
+	tastes = list("冰" = 1, "水" = 1, "虚无" = 5)
 	foodtypes = SUGAR
 
 /obj/item/food/snowcones/clown
-	name = "clown snowcone"
-	desc = "Laughter drizzled over a snowball in a paper cup."
+	name = "小丑雪锥"
+	desc = "淋在纸杯雪球上的笑声。"
 	icon_state = "clown_sc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/consumable/laughter = 5,
 		/datum/reagent/water = 11,
 	)
-	tastes = list("ice" = 1, "water" = 1, "jokes" = 5, "brainfreeze" = 5, "joy" = 5)
+	tastes = list("冰" = 1, "水" = 1, "笑话" = 5, "脑冻" = 5, "欢乐" = 5)
 	foodtypes = SUGAR | FRUIT
 
 /obj/item/food/snowcones/soda
-	name = "space cola snowcone"
-	desc = "Space Cola drizzled over a snowball in a paper cup."
+	name = "太空可乐雪锥"
+	desc = "淋在纸杯雪球上的太空可乐。"
 	icon_state = "soda_sc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/consumable/space_cola = 5,
 		/datum/reagent/water = 11,
 	)
-	tastes = list("ice" = 1, "water" = 1, "cola" = 5)
+	tastes = list("冰" = 1, "水" = 1, "可乐" = 5)
 	foodtypes = SUGAR
 
 /obj/item/food/snowcones/spacemountainwind
-	name = "space mountain wind snowcone"
-	desc = "Space Mountain Wind drizzled over a snowball in a paper cup."
+	name = "太空山风雪锥"
+	desc = "淋在纸杯雪球上的太空山风。"
 	icon_state = "mountainwind_sc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/consumable/spacemountainwind = 5,
 		/datum/reagent/water = 11,
 	)
-	tastes = list("ice" = 1, "water" = 1, "mountain wind" = 5)
+	tastes = list("冰" = 1, "水" = 1, "山风" = 5)
 	foodtypes = SUGAR
 
 
 /obj/item/food/snowcones/pwrgame
-	name = "pwrgame snowcone"
-	desc = "Pwrgame soda drizzled over a snowball in a paper cup."
+	name = "电玩能量雪锥"
+	desc = "淋在纸杯雪球上的电玩能量汽水。"
 	icon_state = "pwrgame_sc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/consumable/pwr_game = 5,
 		/datum/reagent/water = 11,
 	)
-	tastes = list("ice" = 1, "water" = 1, "valid" = 5, "salt" = 5, "wats" = 5)
+	tastes = list("冰" = 1, "水" = 1, "正道" = 5, "盐" = 5, "水水" = 5)
 	foodtypes = SUGAR
 
 /obj/item/food/snowcones/honey
-	name = "honey snowcone"
-	desc = "Honey drizzled over a snowball in a paper cup."
+	name = "蜂蜜雪锥"
+	desc = "淋在纸杯雪球上的蜂蜜。"
 	icon_state = "amber_sc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/consumable/honey = 5,
 		/datum/reagent/water = 11,
 	)
-	tastes = list("ice" = 1, "water" = 1, "flowers" = 5, "sweetness" = 5, "wax" = 1)
+	tastes = list("冰" = 1, "水" = 1, "花" = 5, "甜味" = 5, "蜡" = 1)
 	foodtypes = SUGAR
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/snowcones/rainbow
-	name = "rainbow snowcone"
-	desc = "A very colorful snowball in a paper cup."
+	name = "彩虹雪锥"
+	desc = "纸杯里一颗色彩缤纷的雪球。"
 	icon_state = "rainbow_sc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 5,
 		/datum/reagent/consumable/laughter = 25,
 		/datum/reagent/water = 11,
 	)
-	tastes = list("ice" = 1, "water" = 1, "sunlight" = 5, "light" = 5, "slime" = 5, "paint" = 3, "clouds" = 3)
+	tastes = list("冰" = 1, "水" = 1, "阳光" = 5, "光" = 5, "史莱姆" = 5, "颜料" = 3, "云" = 3)
 	foodtypes = SUGAR
 
 /obj/item/food/popsicle
-	name = "bug popsicle"
-	desc = "Mmmm, this should not exist."
+	name = "虫子冰棒"
+	desc = "嗯……这东西本不该存在。"
 	icon = 'icons/obj/food/frozen_treats.dmi'
 	icon_state = "popsicle_stick_s"
 	food_reagents = list(
@@ -338,7 +338,7 @@
 		/datum/reagent/consumable/vanilla = 2,
 		/datum/reagent/consumable/sugar = 4,
 	)
-	tastes = list("beetle juice")
+	tastes = list("甲虫汁")
 	trash_type = /obj/item/popsicle_stick
 	w_class = WEIGHT_CLASS_SMALL
 	foodtypes = DAIRY | SUGAR
@@ -372,18 +372,18 @@
 	update_appearance()
 
 /obj/item/popsicle_stick
-	name = "popsicle stick"
+	name = "冰棒棍"
 	icon = 'icons/obj/food/frozen_treats.dmi'
 	icon_state = "popsicle_stick"
-	desc = "This humble little stick usually carries a frozen treat, at the moment it seems freed from this Atlassian burden."
+	desc = "这根谦卑的小木棍通常承载着一份冷冻甜点，此刻它似乎已经从扛起世界的重负中解脱了。"
 	custom_materials = list(/datum/material/wood = SMALL_MATERIAL_AMOUNT * 0.20)
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_TINY
 	force = 0
 
 /obj/item/food/popsicle/creamsicle_orange
-	name = "orange creamsicle"
-	desc = "A classic orange creamsicle. A sunny frozen treat."
+	name = "橙子奶油冰棒"
+	desc = "一支经典的橙子奶油冰棒。阳光般的冷冻甜点。"
 	food_reagents = list(
 		/datum/reagent/consumable/orangejuice = 4,
 		/datum/reagent/consumable/cream = 2,
@@ -394,8 +394,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/popsicle/creamsicle_berry
-	name = "berry creamsicle"
-	desc = "A vibrant berry creamsicle. A berry good frozen treat."
+	name = "浆果奶油冰棒"
+	desc = "一支鲜艳的浆果奶油冰棒。非常莓好的冷冻甜点。"
 	food_reagents = list(
 		/datum/reagent/consumable/berryjuice = 4,
 		/datum/reagent/consumable/cream = 2,
@@ -407,8 +407,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/popsicle/jumbo
-	name = "jumbo ice cream"
-	desc = "A luxurious ice cream covered in rich chocolate. It seems smaller than you remember it being."
+	name = "巨无霸冰淇淋"
+	desc = "一支覆满浓郁巧克力的豪华冰淇淋。它看起来比你记忆中的小了一些。"
 	food_reagents = list(
 		/datum/reagent/consumable/hot_coco = 4,
 		/datum/reagent/consumable/cream = 2,
@@ -419,8 +419,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/popsicle/licorice_creamsicle
-	name = "\improper Void Bar™"
-	desc = "A salty licorice ice cream. A salty frozen treat."
+	name = "\improper 虚空棒™"
+	desc = "一支咸味甘草冰淇淋。咸味的冷冻甜点。"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
 		/datum/reagent/consumable/salt = 1,
@@ -428,16 +428,16 @@
 		/datum/reagent/consumable/vanilla = 1,
 		/datum/reagent/consumable/sugar = 4,
 	)
-	tastes = list("salty liquorice")
+	tastes = list("咸甘草")
 	overlay_state = "licorice_creamsicle"
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/cornuto
-	name = "cornuto"
+	name = "科尔努托"
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/food/frozen_treats.dmi'
 	icon_state = "cornuto"
-	desc = "A neapolitan vanilla and chocolate ice cream cone. It menaces with a sprinkling of caramelized nuts."
+	desc = "一支那不勒斯风的香草巧克力冰淇淋蛋筒。上面撒着一层焦糖坚果，颇有威势。"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
 		/datum/reagent/consumable/hot_coco = 4,
@@ -445,15 +445,15 @@
 		/datum/reagent/consumable/vanilla = 4,
 		/datum/reagent/consumable/sugar = 2,
 	)
-	tastes = list("chopped hazelnuts", "waffle")
+	tastes = list("碎榛子", "华夫饼")
 	foodtypes = GRAIN|DAIRY|SUGAR
 	venue_value = FOOD_PRICE_NORMAL
 	crafting_complexity = FOOD_COMPLEXITY_3
 	crafted_food_buff = /datum/status_effect/food/chilling
 
 /obj/item/food/popsicle/meatsicle
-	name = "meatsicle"
-	desc = "A horrific abomination of raw meat, glazed with sugar on a stick, then frozen."
+	name = "肉冰棒"
+	desc = "生肉、糖浆与木棍构成的恐怖造物，然后被冻住。"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
 		/datum/reagent/consumable/nutriment/fat = 2,

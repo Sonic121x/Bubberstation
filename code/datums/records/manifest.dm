@@ -84,7 +84,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		.manifest tr.alt td {[monochrome?"border-top-width: 2px":"background-color: #DEF"]}
 	</style></head>
 	<table class="manifest" width='350px'>
-	<tr class='head'><th>Name</th><th>Rank</th></tr>
+	<tr class='head'><th>姓名</th><th>职位</th></tr>
 	"}
 	for(var/department in manifest)
 		var/list/entries = manifest[department]
@@ -93,7 +93,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		var/even = FALSE
 		for(var/entry in entries)
 			var/list/entry_list = entry
-			dat += "<tr[even ? " class='alt'" : ""]><td>[entry_list["name"]]</td><td>[entry_list["rank"]]</td></tr>"
+			dat += "<tr[even ? " class='alt'" : ""]><td>[entry_list["name"]]</td><td>[chinese_job_display(entry_list["rank"])]</td></tr>"
 			even = !even
 
 	dat += "</table>"

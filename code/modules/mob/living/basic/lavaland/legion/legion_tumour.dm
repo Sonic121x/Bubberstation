@@ -1,8 +1,8 @@
 /// Left behind when a legion infects you, for medical enrichment
 /obj/item/organ/legion_tumour
-	name = "legion tumour"
-	desc = "A mass of pulsing flesh and dark tendrils, containing the power to regenerate flesh at a terrible cost."
-	failing_desc = "pulses and writhes with horrible life, reaching towards you with its tendrils!"
+	name = "军团肿瘤"
+	desc = "一团搏动着的血肉与暗色触须，其中蕴含着以惨痛代价再生血肉的力量。"
+	failing_desc = "以骇人的生命力搏动着、扭动着，触须向你伸了过来！"
 	icon = 'icons/obj/medical/organs/mining_organs.dmi'
 	icon_state = "legion_remains"
 	zone = BODY_ZONE_CHEST
@@ -54,7 +54,7 @@
 
 /obj/item/organ/legion_tumour/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
-	owner.log_message("has received [src] which will eventually turn them into a Legion.", LOG_VICTIM)
+	owner.log_message("接入了 [src]，这最终会将其变成军团。", LOG_VICTIM)
 
 /obj/item/organ/legion_tumour/attack(mob/living/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	if (try_apply(target, user))
@@ -72,16 +72,16 @@
 		target.apply_status_effect(applied_status)
 
 		if (target != user)
-			target.visible_message(span_notice("[user] splatters [target] with [src]... Disgusting tendrils pull [target.p_their()] wounds shut!"))
+			target.visible_message(span_notice("[user] 把 [src] 抹在 [target] 身上……恶心的触须把伤口拉合了！"))
 		else
-			to_chat(user, span_notice("You smear [src] on yourself. Disgusting tendrils pull your wounds closed."))
+			to_chat(user, span_notice("你把 [src] 抹在自己身上。恶心的触须把你的伤口拉合了。"))
 		return TRUE
 
 	if (!ishuman(target))
 		return FALSE
 
-	log_combat(user, target, "used a Legion Tumour on", src, "as they are in crit, this will turn them into a Legion.")
-	target.visible_message(span_boldwarning("[user] splatters [target] with [src]... and it springs into horrible life!"))
+	log_combat(user, target, "使用了军团肿瘤攻击", src, "因其处于濒死状态，这会将其变成军团。")
+	target.visible_message(span_boldwarning("[user] 把 [src] 抹在 [target] 身上……它顿时迸发出骇人的生命！"))
 	var/mob/living/basic/mining/legion_brood/skull = new(target.loc)
 	skull.melee_attack(target)
 	return TRUE
@@ -93,7 +93,7 @@
 
 	if (stage >= 2)
 		if(SPT_PROB(stage / 5, seconds_per_tick))
-			to_chat(owner, span_notice("You feel a bit better."))
+			to_chat(owner, span_notice("你感觉好了一点。"))
 			owner.apply_status_effect(applied_status) // It's not all bad!
 		if(SPT_PROB(1, seconds_per_tick))
 			owner.emote("twitch")
@@ -101,16 +101,16 @@
 	switch(stage)
 		if(2, 3)
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(owner, span_danger("Your chest spasms!"))
+				to_chat(owner, span_danger("你的胸口抽搐起来！"))
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(owner, span_danger("You feel weak."))
+				to_chat(owner, span_danger("你感到虚弱。"))
 			if(SPT_PROB(1, seconds_per_tick))
 				SEND_SOUND(owner, sound(pick(spooky_sounds)))
 			if(SPT_PROB(2, seconds_per_tick))
 				owner.vomit()
 		if(4, 5)
 			if(SPT_PROB(2, seconds_per_tick))
-				to_chat(owner, span_danger("Something flexes under your skin."))
+				to_chat(owner, span_danger("有什么东西在你皮肤下绷动。"))
 			if(SPT_PROB(2, seconds_per_tick))
 				if (prob(40))
 					SEND_SOUND(owner, sound('sound/music/antag/bloodcult/ghost_whisper.ogg'))
@@ -125,7 +125,7 @@
 					child.assign_creator(owner, copy_full_faction = FALSE)
 
 			if(SPT_PROB(3, seconds_per_tick))
-				to_chat(owner, span_danger("Your muscles ache."))
+				to_chat(owner, span_danger("你的肌肉酸痛。"))
 				owner.take_bodypart_damage(3)
 
 	if (stage == 5)
@@ -139,25 +139,25 @@
 	stage++
 	elapsed_time = 0
 	if (stage == 5)
-		to_chat(owner, span_bolddanger("Something is moving under your skin!"))
+		to_chat(owner, span_bolddanger("有什么东西正在你皮肤下移动！"))
 
 /// Consume our host
 /obj/item/organ/legion_tumour/proc/infest()
 	if (QDELETED(src) || QDELETED(owner))
 		return
-	owner.log_message("has been turned into a Legion by their tumour.", LOG_VICTIM)
-	owner.visible_message(span_boldwarning("Black tendrils burst from [owner]'s flesh, covering them in amorphous flesh!"))
+	owner.log_message("被自身的肿瘤变成了军团。", LOG_VICTIM)
+	owner.visible_message(span_boldwarning("黑色触须从 [owner] 的血肉中爆出，将其覆盖在一团无定形的血肉之中！"))
 	var/mob/living/basic/mining/legion/new_legion = new spawn_type(owner.loc)
 	new_legion.consume(owner)
 	qdel(src)
 
 /obj/item/organ/legion_tumour/on_find(mob/living/finder)
 	. = ..()
-	to_chat(finder, span_warning("There's an enormous tumour in [owner]'s [zone]!"))
+	to_chat(finder, span_warning("[owner] 的 [zone] 里有一个巨大的肿瘤！"))
 	if(stage < 4)
-		to_chat(finder, span_notice("Its tendrils seem to twitch towards the light."))
+		to_chat(finder, span_notice("它的触须似乎在朝光亮处抽搐。"))
 		return
-	to_chat(finder, span_notice("Its pulsing tendrils reach all throughout the body."))
+	to_chat(finder, span_notice("它搏动的触须已经遍布全身。"))
 	if(prob(stage * 2))
 		infest()
 

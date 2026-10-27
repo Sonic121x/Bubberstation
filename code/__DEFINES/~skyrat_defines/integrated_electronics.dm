@@ -16,18 +16,18 @@
 #define IC_ACTION_LONG_RANGE	(1<<2) //! If the circuit communicate with something outside of the assembly
 
 // Displayed along with the pin name to show what type of pin it is.
-#define IC_FORMAT_ANY			"\<ANY\>"
-#define IC_FORMAT_STRING		"\<TEXT\>"
-#define IC_FORMAT_CHAR			"\<CHAR\>"
-#define IC_FORMAT_COLOR			"\<COLOR\>"
-#define IC_FORMAT_NUMBER		"\<NUM\>"
-#define IC_FORMAT_DIR			"\<DIR\>"
-#define IC_FORMAT_BOOLEAN		"\<BOOL\>"
-#define IC_FORMAT_REF			"\<REF\>"
-#define IC_FORMAT_LIST			"\<LIST\>"
-#define IC_FORMAT_INDEX			"\<INDEX\>"
+#define IC_FORMAT_ANY			"\<任意\>"
+#define IC_FORMAT_STRING		"\<文本\>"
+#define IC_FORMAT_CHAR			"\<字符\>"
+#define IC_FORMAT_COLOR			"\<颜色\>"
+#define IC_FORMAT_NUMBER		"\<数字\>"
+#define IC_FORMAT_DIR			"\<方向\>"
+#define IC_FORMAT_BOOLEAN		"\<布尔值\>"
+#define IC_FORMAT_REF			"\<引用\>"
+#define IC_FORMAT_LIST			"\<列表\>"
+#define IC_FORMAT_INDEX			"\<索引\>"
 
-#define IC_FORMAT_PULSE			"\<PULSE\>"
+#define IC_FORMAT_PULSE			"\<脉冲\>"
 
 // Used inside input/output list to tell the constructor what pin to make.
 #define IC_PINTYPE_ANY				/datum/integrated_io

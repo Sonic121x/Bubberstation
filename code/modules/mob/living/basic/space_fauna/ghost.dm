@@ -1,13 +1,13 @@
 /mob/living/basic/ghost
-	name = "ghost"
-	desc = "A soul of the dead, spooky."
+	name = "幽灵"
+	desc = "死者的灵魂，透着诡异。"
 	icon = 'icons/mob/simple/mob.dmi'
 	icon_state = "ghost"
 	icon_living = "ghost"
 	mob_biotypes = MOB_SPIRIT | MOB_UNDEAD
-	speak_emote = list("wails", "weeps")
-	response_help_continuous = "passes through"
-	response_help_simple = "pass through"
+	speak_emote = list("哀号", "啜泣")
+	response_help_continuous = "穿过"
+	response_help_simple = "穿过"
 	combat_mode = TRUE
 	basic_mob_flags = DEL_ON_DEATH
 	status_flags = CANPUSH
@@ -15,13 +15,13 @@
 	health = 40
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	attack_verb_continuous = "grips"
-	attack_verb_simple = "grip"
+	attack_verb_continuous = "抓握"
+	attack_verb_simple = "抓握"
 	unsuitable_atmos_damage = 0
 	unsuitable_cold_damage = 0
 	unsuitable_heat_damage = 0
 	attack_sound = 'sound/effects/hallucinations/growl1.ogg'
-	death_message = "wails, disintegrating into a pile of ectoplasm!"
+	death_message = "哀号着消散成一堆灵质！"
 	gold_core_spawnable = NO_SPAWN //too spooky for science
 	light_system = OVERLAY_LIGHT
 	light_range = 2.5 // same glowing as visible player ghosts
@@ -90,9 +90,9 @@
 	if(random_identity)
 		switch(rand(0,1))
 			if(0)
-				name = "ghost of [pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"
+				name = "[pick(GLOB.first_names_male)] [pick(GLOB.last_names)] 的幽灵"
 			if(1)
-				name = "ghost of [pick(GLOB.first_names_female)] [pick(GLOB.last_names)]"
+				name = "[pick(GLOB.first_names_female)] [pick(GLOB.last_names)] 的幽灵"
 
 /datum/ai_controller/basic_controller/ghost
 	behavior_tree_json = "code/modules/mob/living/basic/space_fauna/ghost.bt.json"
@@ -104,13 +104,13 @@
 
 /// Weaker variant of ghosts. Meant to be summoned in swarms via the ectoplasmic anomaly and associated ghost portal.
 /mob/living/basic/ghost/swarm
-	name = "vengeful spirit"
-	desc = "Back from the grave, and not happy about it."
+	name = "复仇之灵"
+	desc = "从坟墓里回来了，而且对此很不高兴。"
 	maxHealth = 30
 	health = 30
-	attack_verb_continuous = "smashes"
-	attack_verb_simple = "smash"
+	attack_verb_continuous = "猛砸"
+	attack_verb_simple = "猛砸"
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	death_message = "wails as it is torn back to the realm from which it came!"
+	death_message = "哀号着被拽回它来时的领域！"
 	random_identity = FALSE

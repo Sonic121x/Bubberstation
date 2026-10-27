@@ -49,16 +49,16 @@
 			dialed_holopads += connected_holopad
 			if(head_call)
 				if(connected_holopad.secure)
-					calling_pad.say("Auto-connection refused, falling back to call mode.")
-					connected_holopad.say("Incoming call.")
+					calling_pad.say("自动连接遭拒，已切换至呼叫模式。")
+					connected_holopad.say("收到呼叫。")
 				else
-					connected_holopad.say("Incoming connection.")
+					connected_holopad.say("收到连接请求。")
 			else
-				connected_holopad.say("Incoming call.")
+				connected_holopad.say("收到呼叫。")
 			connected_holopad.set_holocall(src)
 
 	if(!dialed_holopads.len)
-		calling_pad.say("Connection failure.")
+		calling_pad.say("连接失败。")
 		qdel(src)
 		return
 
@@ -102,9 +102,9 @@
 	testing("Holocall disconnect")
 	if(H == connected_holopad)
 		var/area/A = get_area(connected_holopad)
-		calling_holopad.say("[A] holopad disconnected.")
+		calling_holopad.say("[A]的全息投影台已断开连接。")
 	else if(H == calling_holopad && connected_holopad)
-		connected_holopad.say("[user] disconnected.")
+		connected_holopad.say("[user]已断开连接。")
 
 	ConnectionFailure(H, TRUE)
 
@@ -113,7 +113,7 @@
 	testing("Holocall connection failure: graceful [graceful]")
 	if(disconnected_holopad == connected_holopad || disconnected_holopad == calling_holopad)
 		if(!graceful && disconnected_holopad != calling_holopad)
-			calling_holopad.say("Connection failure.")
+			calling_holopad.say("连接失败。")
 		qdel(src)
 		return
 
@@ -122,7 +122,7 @@
 	dialed_holopads -= disconnected_holopad
 	if(!dialed_holopads.len)
 		if(graceful)
-			calling_holopad.say("Call rejected.")
+			calling_holopad.say("呼叫遭拒。")
 		testing("No recipients, terminating")
 		qdel(src)
 
@@ -162,7 +162,7 @@
 	hangup = new(eye, src)
 	hangup.Grant(user)
 	playsound(answering_holopad, 'sound/machines/ping.ogg', 100)
-	answering_holopad.say("Connection established.")
+	answering_holopad.say("连接已建立。")
 
 //Checks the validity of a holocall and qdels itself if it's not. Returns TRUE if valid, FALSE otherwise
 /datum/holocall/proc/Check()
@@ -179,14 +179,14 @@
 		if(!connected_holopad)
 			. = world.time < (call_start_time + HOLOPAD_MAX_DIAL_TIME)
 			if(!.)
-				calling_holopad.say("No answer received.")
+				calling_holopad.say("无人接听。")
 
 	if(!.)
 		testing("Holocall Check fail")
 		qdel(src)
 
 /datum/action/innate/end_holocall
-	name = "End Holocall"
+	name = "结束全息通话"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "camera_off"
 	var/datum/holocall/hcall
@@ -213,8 +213,8 @@
 	user.setDir(olddir)
 
 /obj/item/disk/holodisk
-	name = "holorecord disk"
-	desc = "Stores recorder holocalls."
+	name = "全息录像盘"
+	desc = "用于存储录制的全息通话。"
 	sticker_icon_state = "o_holo"
 	obj_flags = UNIQUE_RENAME
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT)
@@ -239,7 +239,7 @@
 	var/obj/item/disk/holodisk/holodisk_original = tool
 
 	if (!holodisk_original.record)
-		to_chat(user, span_warning("[holodisk_original] has no record on it!"))
+		to_chat(user, span_warning("[holodisk_original]里没有录像！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if (!record)
@@ -249,7 +249,7 @@
 	record.caller_image = holodisk_original.record.caller_image
 	record.entries = holodisk_original.record.entries.Copy()
 	record.language = holodisk_original.record.language
-	to_chat(user, span_notice("You copy the record from [holodisk_original] to [src] by connecting the ports!"))
+	to_chat(user, span_notice("你连接接口，将[holodisk_original]中的录像复制到了[src]！"))
 	name = holodisk_original.name
 
 	return ITEM_INTERACT_SUCCESS
@@ -366,43 +366,43 @@
 /obj/item/disk/holodisk/example
 	preset_image_type = /datum/preset_holoimage/clown
 	preset_record_text = {"
-	NAME Clown
+	NAME 小丑
 	DELAY 10
-	SAY Why did the chaplain cross the maint ?
+	SAY 牧师为什么要穿过维护通道？
 	DELAY 20
-	SAY He wanted to get to the other side!
+	SAY 因为他想去彼岸！
 	SOUND clownstep
 	DELAY 30
 	LANGUAGE /datum/language/narsie
-	SAY Helped him get there!
+	SAY 我帮他过去了！
 	DELAY 10
-	SAY ALSO IM SECRETLY A GORILLA
+	SAY 还有，其实我是一只大猩猩
 	DELAY 10
 	PRESET /datum/preset_holoimage/gorilla
-	NAME Gorilla
+	NAME 大猩猩
 	LANGUAGE /datum/language/common
-	SAY OOGA
+	SAY 呜嘎
 	DELAY 20"}
 
 /obj/item/disk/holodisk/donutstation/whiteship
-	name = "Blackbox Print-out #DS024"
-	desc = "A holodisk containing the last viable recording of DS024's blackbox."
+	name = "黑匣子转录盘 #DS024"
+	desc = "一张全息录像盘，保存着 DS024 黑匣子最后一段可用录像。"
 	preset_image_type = /datum/preset_holoimage/engineer/ce
 	preset_record_text = {"
-	NAME Geysr Shorthalt
-	SAY Engine renovations complete and the ships been loaded. We all ready?
+	NAME 盖瑟·肖特霍尔特
+	SAY 引擎改造完成，船也装载好了。大家准备好了吗？
 	DELAY 25
 	PRESET /datum/preset_holoimage/engineer
-	NAME Jacob Ullman
-	SAY Lets blow this popsicle stand of a station.
+	NAME 雅各布·乌尔曼
+	SAY 咱们赶紧离开这个破站吧。
 	DELAY 20
 	PRESET /datum/preset_holoimage/engineer/atmos
-	NAME Lindsey Cuffler
-	SAY Uh, sir? Shouldn't we call for a secondary shuttle? The bluespace drive on this thing made an awfully weird noise when we jumped here..
+	NAME 林赛·卡夫勒
+	SAY 呃，长官？我们不该叫一艘备用穿梭机吗？这玩意儿的蓝空间引擎在我们跃迁过来时发出了特别古怪的声音……
 	DELAY 30
 	PRESET /datum/preset_holoimage/engineer/ce
-	NAME Geysr Shorthalt
-	SAY Pah! Ship techie at the dock said to give it a good few kicks if it started acting up, let me just..
+	NAME 盖瑟·肖特霍尔特
+	SAY 嗤！码头的船舶技工说，这东西要是犯毛病，狠狠踹上几脚就行了。让我来……
 	DELAY 25
 	SOUND punch
 	SOUND sparks
@@ -415,180 +415,180 @@
 	SOUND warpspeed
 	DELAY 15
 	PRESET /datum/preset_holoimage/engineer/atmos
-	NAME Lindsey Cuffler
-	SAY Uhh.. is it supposed to be doing that??
+	NAME 林赛·卡夫勒
+	SAY 呃……它这样真的正常吗？？
 	DELAY 15
 	PRESET /datum/preset_holoimage/engineer/ce
-	NAME Geysr Shorthalt
-	SAY See? Working as intended. Now, are we all ready?
+	NAME 盖瑟·肖特霍尔特
+	SAY 看吧？运行正常。那么，现在大家都准备好了吗？
 	DELAY 10
 	PRESET /datum/preset_holoimage/engineer
-	NAME Jacob Ullman
-	SAY Is it supposed to be glowing like that?
+	NAME 雅各布·乌尔曼
+	SAY 它本来就该这么发光吗？
 	DELAY 20
 	SOUND explosion
 
 	"}
 
 /obj/item/disk/holodisk/ruin/snowengieruin
-	name = "Blackbox Print-out #EB412"
-	desc = "A holodisk containing the last moments of EB412. There's a bloody fingerprint on it."
+	name = "黑匣子转录盘 #EB412"
+	desc = "一张记录了 EB412 最后时刻的全息录像盘，上面留着一个血指印。"
 	preset_image_type = /datum/preset_holoimage/engineer
 	preset_record_text = {"
-	NAME Dave Tundrale
-	SAY Maria, how's Build?
+	NAME 戴夫·滕德雷尔
+	SAY 玛丽亚，建造进展怎么样？
 	DELAY 10
-	NAME Maria Dell
+	NAME 玛丽亚·德尔
 	PRESET /datum/preset_holoimage/engineer/atmos
-	SAY It's fine, don't worry. I've got Plastic on it. And frankly, i'm kinda busy with, the, uhhm, incinerator.
+	SAY 挺好的，别担心。我让普拉斯蒂克去处理了。说实话，我正忙着弄那个，呃，焚化炉。
 	DELAY 30
-	NAME Dave Tundrale
+	NAME 戴夫·滕德雷尔
 	PRESET /datum/preset_holoimage/engineer
-	SAY Aight, wonderful. The science mans been kinda shit though. No RCDs-
+	SAY 行，太好了。不过科研那边实在不怎么样，连快速建造装置都没有——
 	DELAY 20
-	NAME Maria Dell
+	NAME 玛丽亚·德尔
 	PRESET /datum/preset_holoimage/engineer/atmos
-	SAY Enough about your RCDs. They're not even that important, just bui-
+	SAY 别再念叨你的快速建造装置了。那东西根本没那么重要，直接建——
 	DELAY 15
 	SOUND explosion
 	DELAY 10
-	SAY Oh, shit!
+	SAY 哦，操！
 	DELAY 10
 	PRESET /datum/preset_holoimage/engineer/atmos/mod
 	LANGUAGE /datum/language/narsie
-	NAME Unknown
-	SAY RISE, MY LORD!!
+	NAME 未知
+	SAY 降临吧，我的主！！
 	DELAY 10
 	LANGUAGE /datum/language/common
-	NAME Plastic
+	NAME 普拉斯蒂克
 	PRESET /datum/preset_holoimage/engineer/mod
-	SAY Fuck, fuck, fuck!
+	SAY 操，操，操！
 	DELAY 20
-	NAME Maria Dell
+	NAME 玛丽亚·德尔
 	PRESET /datum/preset_holoimage/engineer/atmos
-	SAY GEORGE, WAIT-
+	SAY 乔治，等等——
 	DELAY 10
 	PRESET /datum/preset_holoimage/corgi
-	NAME Blackbox Automated Message
-	SAY Connection lost. Dumping audio logs to disk.
+	NAME 黑匣子自动消息
+	SAY 连接中断。正在将音频日志转存到磁盘。
 	DELAY 50"}
 
 /obj/item/disk/holodisk/ruin/ghost_restaurant
-	name = "Blackbox Print-out #NG234"
+	name = "黑匣子转录盘 #NG234"
 	preset_image_type = /datum/preset_holoimage/assistant
 	preset_record_text = {"
-	NAME Aron Blue
-	SAY Message from NTGrub Themed Surprise Deliveries, Trademark.
+	NAME 阿伦·布鲁
+	SAY 收到纳米餐饮主题惊喜配送公司的消息——注册商标。
 	DELAY 20
-	NAME Henry Fresh
-	SAY Must you always say the full name, dude?
+	NAME 亨利·弗雷什
+	SAY 老兄，你非得每次都念全名吗？
 	DELAY 20
-	NAME Aron Blue
-	SAY Ahem!
+	NAME 阿伦·布鲁
+	SAY 咳咳！
 	DELAY 20
-	NAME Aron Blue
-	SAY It says that they loved our new robot themes!
+	NAME 阿伦·布鲁
+	SAY 消息说他们超喜欢我们新的机器人主题！
 	DELAY 20
-	NAME Henry Fresh
-	SAY Oh dang!
+	NAME 亨利·弗雷什
+	SAY 哇，厉害！
 	DELAY 20
-	NAME Henry Fresh
-	SAY Will we be moved to the main team?
+	NAME 亨利·弗雷什
+	SAY 我们会被调进主团队吗？
 	DELAY 20
-	NAME Aron Blue
-	SAY Hell yeah we will! High five!
+	NAME 阿伦·布鲁
+	SAY 那当然！击个掌！
 	DELAY 20
 	SOUND punch
-	NAME Henry Fresh
-	SAY High five!
+	NAME 亨利·弗雷什
+	SAY 击掌！
 	DELAY 20
-	NAME Henry Fresh
-	SAY Oh, new order. Its for, hah, *Funny Food*.
+	NAME 亨利·弗雷什
+	SAY 哦，新订单。要的是，哈，*搞笑美食*。
 	DELAY 20
-	NAME Aron Blue
-	SAY Easy!
+	NAME 阿伦·布鲁
+	SAY 简单！
 	DELAY 20
-	NAME Aron Blue
-	SAY I will dress up this robot as a clown.
+	NAME 阿伦·布鲁
+	SAY 我把这个机器人打扮成小丑。
 	DELAY 20
-	NAME Henry Fresh
-	SAY Well, if you are that basic, lets make it ask for a Banana Pie.
+	NAME 亨利·弗雷什
+	SAY 好吧，既然你这么没创意，就让它去要个香蕉派吧。
 	DELAY 20
-	NAME Aron Blue
-	SAY Gateway to Planetside Pagliacci 15 is open.
+	NAME 阿伦·布鲁
+	SAY 通往行星地表帕利亚奇 15 号的传送门已开启。
 	DELAY 20
-	NAME Aron Blue
-	SAY Feels appropriate.
+	NAME 阿伦·布鲁
+	SAY 感觉挺合适。
 	DELAY 15
 	SOUND clown_step
 	DELAY 10
 	SOUND sparks
 	DELAY 10
-	NAME Aron Blue
-	SAY Next order is for a simple farm dish.
+	NAME 阿伦·布鲁
+	SAY 下一单要一道简单的农家菜。
 	DELAY 20
-	NAME Henry Fresh
-	SAY Unlike you, I am creative.
+	NAME 亨利·弗雷什
+	SAY 我可不像你，我很有创意。
 	DELAY 20
-	NAME Henry Fresh
-	SAY I'll dress it up as a scarecrow.
+	NAME 亨利·弗雷什
+	SAY 我把它打扮成稻草人。
 	SOUND rustle
 	DELAY 20
-	NAME Aron Blue
-	SAY Let's ask for uuuh, Hot Potato.
+	NAME 阿伦·布鲁
+	SAY 让它去要个，呃，热土豆吧。
 	DELAY 20
-	NAME Henry Fresh
-	SAY Send it to the new place. Firebase Balthazord.
+	NAME 亨利·弗雷什
+	SAY 把它送到那个新地方，巴尔萨佐德火力基地。
 	DELAY 20
-	NAME Henry Fresh
-	SAY Wait.
+	NAME 亨利·弗雷什
+	SAY 等等。
 	DELAY 10
-	NAME Henry Fresh
-	SAY You know its called Baked Potato, right?
+	NAME 亨利·弗雷什
+	SAY 你知道那东西叫烤土豆吧？
 	DELAY 10
 	SOUND sparks
 	DELAY 20
-	NAME Aron Blue
-	SAY Shut up, they'll know what I meant!
+	NAME 阿伦·布鲁
+	SAY 闭嘴，他们知道我什么意思！
 	DELAY 20
 	SOUND sparks
 	DELAY 10
-	NAME Henry Fresh
-	SAY Its back.
+	NAME 亨利·弗雷什
+	SAY 它回来了。
 	DELAY 20
-	NAME Henry Fresh
-	SAY Haha, it brought a raw potato.
+	NAME 亨利·弗雷什
+	SAY 哈哈，它带回了一个生土豆。
 	DELAY 20
-	NAME Aron Blue
-	SAY HENRY ITS TICK-
+	NAME 阿伦·布鲁
+	SAY 亨利，它在滴答——
 	DELAY 20
 	SOUND explosion
 	DELAY 20
 	PRESET /datum/preset_holoimage/corgi
-	NAME Blackbox Automated Message
-	SAY Connection lost. Dumping audio logs to disk.
+	NAME 黑匣子自动消息
+	SAY 连接中断。正在将音频日志转存到磁盘。
 	DELAY 50
 	"}
 
 /obj/item/disk/holodisk/ruin/space/travelers_rest
-	name = "Owner's memo"
-	desc = "A holodisk containing a small memo from the previous owner, addressed to someone else."
+	name = "主人的备忘录"
+	desc = "一张全息录像盘，存着前任主人留给另一个人的简短备忘。"
 	preset_image_type = /datum/preset_holoimage/engineer/atmos
 	preset_record_text = {"
-		NAME Space Adventurer
+		NAME 太空冒险家
 		SOUND PING
 		DELAY 20
-		SAY Hey, I left you this message for when you come back.
+		SAY 嘿，我给你留了这段话，等你回来就能听到。
 		DELAY 50
-		SAY I picked up an emergency signal from a freighter and I'm going there to search for some goodies.
+		SAY 我收到了一艘货船的求救信号，准备过去找点好东西。
 		DELAY 50
-		SAY You can crash here if you need to, but make sure to check the anchor cables before you leave.
+		SAY 你需要的话可以在这儿落脚，但走之前一定要检查锚缆。
 		DELAY 50
-		SAY If you don't, this thing might drift off into space.
+		SAY 不检查的话，这东西可能会飘进太空。
 		DELAY 50
-		SAY Then some weirdo could find it and potentially claim it as their own.
+		SAY 到时候说不定哪个怪人会发现它，把它据为己有。
 		DELAY 50
-		SAY Anyway, gotta go, see ya!
+		SAY 总之，我得走了，再见！
 		DELAY 40
 		SOUND sparks
 	"}

@@ -1,6 +1,6 @@
 /turf/closed/wall
-	name = "wall"
-	desc = "A huge chunk of iron used to separate rooms."
+	name = "墙壁"
+	desc = "一大块用来分隔房间的铁。"
 	icon = 'icons/turf/walls/wall.dmi'
 	icon_state = "wall-0"
 	base_icon_state = "wall"
@@ -64,10 +64,10 @@
 	. = NONE
 	if(!isnull(held_item))
 		if((initial(smoothing_flags) & SMOOTH_DIAGONAL_CORNERS) && held_item.tool_behaviour == TOOL_WRENCH)
-			context[SCREENTIP_CONTEXT_LMB] = "Adjust Wall Corner"
+			context[SCREENTIP_CONTEXT_LMB] = "调整墙角"
 			return CONTEXTUAL_SCREENTIP_SET
 		else if(istype(held_item, /obj/structure/wall_support::rods_type))
-			context[SCREENTIP_CONTEXT_LMB] = "Build Wall Support"
+			context[SCREENTIP_CONTEXT_LMB] = "建造墙体支撑"
 			return CONTEXTUAL_SCREENTIP_SET
 
 /turf/closed/wall/mouse_drop_receive(atom/dropping, mob/user, params)
@@ -86,11 +86,11 @@
 /turf/closed/wall/examine(mob/user)
 	. = ..()
 	if(initial(smoothing_flags) & SMOOTH_DIAGONAL_CORNERS)
-		. += span_notice("You could adjust its corners with a <b>wrench</b>.")
+		. += span_notice("你可以用<b>扳手</b>调整它的墙角。")
 	. += deconstruction_hints(user)
 
 /turf/closed/wall/proc/deconstruction_hints(mob/user)
-	return span_notice("The outer plating is <b>welded</b> firmly in place.")
+	return span_notice("外层装甲板已被<b>焊接</b>固定在原位。")
 
 /turf/closed/wall/attack_tk()
 	return
@@ -169,9 +169,9 @@
 	else
 		playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
 		add_dent(WALL_DENT_HIT)
-		user.visible_message(span_danger("[user] smashes \the [src]!"), \
-					span_danger("You smash \the [src]!"), \
-					span_hear("You hear a booming smash!"))
+		user.visible_message(span_danger("[user]砸碎了[src]！"), \
+					span_danger("你砸碎了[src]！"), \
+					span_hear("你听到一声轰然巨响！"))
 	return TRUE
 
 /**
@@ -195,13 +195,13 @@
 	if(.)
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	to_chat(user, span_notice("You push the wall but nothing happens!"))
+	to_chat(user, span_notice("你推了推墙，但什么也没发生！"))
 	playsound(src, 'sound/items/weapons/genhit.ogg', 25, TRUE)
 	add_fingerprint(user)
 
 /turf/closed/wall/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning("You don't have the dexterity to do this!"))
+		to_chat(user, span_warning("你的手不够灵巧，做不了这个！"))
 		return ITEM_INTERACT_BLOCKING
 
 	add_fingerprint(user)
@@ -220,10 +220,10 @@
 		if(!W.tool_start_check(user, amount=1))
 			return FALSE
 
-		to_chat(user, span_notice("You begin fixing dents on the wall..."))
+		to_chat(user, span_notice("你开始修补墙上的凹痕……"))
 		if(W.use_tool(src, user, 0, volume=100))
 			if(iswallturf(src) && LAZYLEN(dent_decals))
-				to_chat(user, span_notice("You fix some dents on the wall."))
+				to_chat(user, span_notice("你修补了墙上的一些凹痕。"))
 				cut_overlay(dent_decals)
 				dent_decals.Cut()
 			return TRUE
@@ -235,10 +235,10 @@
 		if(!I.tool_start_check(user, amount=round(slicing_duration / 50), heat_required = HIGH_TEMPERATURE_REQUIRED))
 			return FALSE
 
-		to_chat(user, span_notice("You begin slicing through the outer plating..."))
+		to_chat(user, span_notice("你开始切割外层装甲板……"))
 		if(I.use_tool(src, user, slicing_duration, volume=100))
 			if(iswallturf(src))
-				to_chat(user, span_notice("You remove the outer plating."))
+				to_chat(user, span_notice("你拆下了外层装甲板。"))
 				dismantle_wall()
 			return TRUE
 
@@ -251,14 +251,14 @@
 	var/obj/item/stack/rods = I
 	var/amount_needed = /obj/structure/wall_support::rods_amount
 	if(rods.get_amount() < amount_needed)
-		to_chat(user, span_warning("You need at least [amount_needed] rods for that!"))
+		to_chat(user, span_warning("你至少需要[amount_needed]根金属杆才能这么做！"))
 		return FALSE
-	to_chat(user, span_notice("You start constructing wall support..."))
+	to_chat(user, span_notice("你开始建造墙体支撑……"))
 	if(do_after(user, 2 SECONDS, target = src))
 		var/obj/structure/wall_support/WS = new(src)
 		rods.use(amount_needed)
 		rods.transfer_fingerprints_to(WS)
-		to_chat(user, span_notice("You place [WS] on [src]."))
+		to_chat(user, span_notice("你把[WS]放到了[src]上。"))
 		return TRUE
 	return FALSE
 
@@ -354,6 +354,6 @@
 	else
 		smoothing_flags |= SMOOTH_DIAGONAL_CORNERS
 	QUEUE_SMOOTH(src)
-	to_chat(user, span_notice("You adjust [src]."))
+	to_chat(user, span_notice("你调整了[src]。"))
 	tool.play_tool_sound(src)
 	return ITEM_INTERACT_SUCCESS

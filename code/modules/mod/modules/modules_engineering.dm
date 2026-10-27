@@ -2,10 +2,10 @@
 
 ///Welding Protection - Makes the helmet protect from flashes and welding.
 /obj/item/mod/module/welding
-	name = "MOD welding protection module"
-	desc = "A module installed into the visor of the suit, this projects a \
-		polarized, holographic overlay in front of the user's eyes. It's rated high enough for \
-		immunity against extremities such as spot and arc welding, solar eclipses, and handheld flashlights."
+	name = "MOD 焊接防护模块"
+	desc = "一种安装在套装面罩上的模块，能在使用者眼前投射\
+		一层偏振的全息叠像。其防护等级足以\
+		抵御点焊、弧焊、日食以及手持手电筒等极端强光。"
 	icon_state = "welding"
 	complexity = 1
 	incompatible_modules = list(/obj/item/mod/module/welding)
@@ -27,7 +27,7 @@
 		head_cover.flash_protect = initial(head_cover.flash_protect)
 
 /obj/item/mod/module/welding/syndicate
-	name = "MODsuit flash-protected optical suite"
+	name = "MOD 模块化外骨骼防闪光光学套件"
 	complexity = 0
 	removable = FALSE
 	incompatible_modules = list(/obj/item/mod/module/welding, /obj/item/mod/module/welding/syndicate, /obj/item/mod/module/stealth/wraith)
@@ -59,10 +59,10 @@
 
 ///T-Ray Scan - Scans the terrain for undertile objects.
 /obj/item/mod/module/t_ray
-	name = "MOD t-ray scan module"
-	desc = "A module installed into the visor of the suit, allowing the user to use a pulse of terahertz radiation \
-		to essentially echolocate things beneath the floor, mostly cables and pipes. \
-		A staple of atmospherics work, and counter-smuggling work."
+	name = "MOD T 射线扫描模块"
+	desc = "一种安装在套装面罩上的模块，让使用者能发射太赫兹辐射脉冲，\
+		像回声定位一样探明地板下方的物体，主要是电缆和管道。\
+		这是大气部门的常备装备，反走私工作也常用到。"
 	icon_state = "tray"
 	module_type = MODULE_TOGGLE
 	complexity = 1
@@ -78,11 +78,11 @@
 
 ///Magnetic Stability - Gives the user a slowdown but makes them negate gravity and be immune to slips.
 /obj/item/mod/module/magboot
-	name = "MOD magnetic stability module"
-	desc = "These are powerful electromagnets fitted into the suit's boots, allowing users both \
-		excellent traction no matter the condition indoors, and to essentially hitch a ride on the exterior of a hull. \
-		However, these basic models do not feature computerized systems to automatically toggle them on and off, \
-		so numerous users report a certain stickiness to their steps."
+	name = "MOD 磁力稳定模块"
+	desc = "这是装配在套装靴子里的强力电磁铁，无论室内条件如何，\
+		都能给使用者提供极佳的抓地力，还能让人扒在船体外侧搭顺风车。\
+		不过，这些基础型号没有自动开关的计算机系统，\
+		因此许多使用者报告说自己的步伐总有点粘滞感。"
 	icon_state = "magnet"
 	module_type = MODULE_TOGGLE
 	complexity = 2
@@ -117,17 +117,17 @@
 		module_slowdowns += slowdown_active
 
 /obj/item/mod/module/magboot/advanced
-	name = "MOD advanced magnetic stability module"
+	name = "MOD 高级磁力稳定模块"
 	removable = FALSE
 	complexity = 0
 	slowdown_active = 0
 
 ///Emergency Tether - Shoots a grappling hook projectile in 0g that throws the user towards it.
 /obj/item/mod/module/tether
-	name = "MOD emergency tether module"
-	desc = "A custom-built grappling-hook powered by a winch capable of hauling the user. \
-		While some older models of cargo-oriented grapples have capacities of a few tons, \
-		these are only capable of working in zero-gravity environments, a blessing to some Engineers."
+	name = "MOD 应急系绳模块"
+	desc = "一种定制的抓钩，由一台能牵引使用者的绞盘驱动。\
+		虽然一些面向货运的旧式抓钩载重可达数吨，\
+		但这些只在零重力环境下有效，对某些工程师来说反而是好事。"
 	icon_state = "tether"
 	module_type = MODULE_ACTIVE
 	complexity = 2
@@ -139,7 +139,7 @@
 
 /obj/item/mod/module/tether/used()
 	if(HAS_TRAIT_FROM(mod.wearer, TRAIT_TETHER_ATTACHED, REF(src)))
-		balloon_alert(mod.wearer, "already tethered!")
+		balloon_alert(mod.wearer, "已经系上系绳了！")
 		playsound(src, 'sound/items/weapons/gun/general/dry_fire.ogg', 25, TRUE)
 		return FALSE
 	return ..()
@@ -157,7 +157,7 @@
 
 /obj/item/mod/module/tether/get_configuration()
 	. = ..()
-	.["cut_tethers"] = add_ui_configuration("Cut Tethers", "button", "scissors")
+	.["cut_tethers"] = add_ui_configuration("切断系绳", "button", "scissors")
 
 /obj/item/mod/module/tether/configure_edit(key, value)
 	if (key == "cut_tethers")
@@ -167,7 +167,7 @@
 	SEND_SIGNAL(src, COMSIG_MOD_TETHER_SNAP)
 
 /obj/projectile/tether
-	name = "tether"
+	name = "系绳"
 	icon_state = "tether_projectile"
 	icon = 'icons/obj/clothing/modsuit/mod_modules.dmi'
 	damage = 0
@@ -254,8 +254,8 @@
 	return ..()
 
 /obj/item/tether_anchor
-	name = "tether anchor"
-	desc = "A reinforced anchor with a tether attachment point. A centuries old EVA tool which saved countless engineers' lives."
+	name = "系绳锚点"
+	desc = "一种带系绳连接点的加固锚点。这项有数百年历史的舱外活动工具曾挽救无数工程师的生命。"
 	icon_state = "tether_latched"
 	icon = 'icons/obj/clothing/modsuit/mod_modules.dmi'
 	max_integrity = 60
@@ -277,8 +277,8 @@
 
 /obj/item/tether_anchor/examine(mob/user)
 	. = ..()
-	. += span_info("It can be secured by using a wrench on it. Use right-click to tether yourself to [src].")
-	. += span_info("LMB shortens the tether while RMB lengthens it. Ctrl-click to cut the tether.")
+	. += span_info("可以用扳手将其固定。右键点击可将自己系在 [src] 上。")
+	. += span_info("左键缩短系绳，右键放长系绳。Ctrl+点击可切断系绳。")
 
 /obj/item/tether_anchor/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -294,14 +294,14 @@
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(HAS_TRAIT_FROM(user, TRAIT_TETHER_ATTACHED, REF(src)))
-		balloon_alert(user, "already tethered!")
+		balloon_alert(user, "已经系上系绳了！")
 		return
 
 	if (parent_module && HAS_TRAIT_FROM(user, TRAIT_TETHER_ATTACHED, REF(parent_module)))
-		balloon_alert(user, "already tethered!")
+		balloon_alert(user, "已经系上系绳了！")
 		return
 
-	balloon_alert(user, "attached tether")
+	balloon_alert(user, "已连接系绳")
 	user.AddComponent(/datum/component/tether, src, 7, "tether", tether_trait_source = REF(src))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -320,33 +320,33 @@
 		return
 
 	if(HAS_TRAIT_FROM(target, TRAIT_TETHER_ATTACHED, REF(src)))
-		balloon_alert(user, "already tethered!")
+		balloon_alert(user, "已经系上系绳了！")
 		return
 
 	if (parent_module && HAS_TRAIT_FROM(user, TRAIT_TETHER_ATTACHED, REF(parent_module)))
-		balloon_alert(user, "already tethered!")
+		balloon_alert(user, "已经系上系绳了！")
 		return
 
 	if (target == user)
-		balloon_alert(user, "attached tether")
+		balloon_alert(user, "已连接系绳")
 		user.AddComponent(/datum/component/tether, src, 7, "tether", tether_trait_source = REF(src), no_target_trait = TRUE)
 		return
 
-	balloon_alert(user, "attaching tether...")
-	to_chat(target, span_userdanger("[user] is trying to attach a tether to you!"))
+	balloon_alert(user, "正在连接系绳……")
+	to_chat(target, span_userdanger("[user] 正试图把一根系绳连到你身上！"))
 	if (!do_after(user, 5 SECONDS, target))
 		return
 
 	if(HAS_TRAIT_FROM(target, TRAIT_TETHER_ATTACHED, REF(src)))
-		balloon_alert(user, "already tethered!")
+		balloon_alert(user, "已经系上系绳了！")
 		return
 
 	if (parent_module && HAS_TRAIT_FROM(user, TRAIT_TETHER_ATTACHED, REF(parent_module)))
-		balloon_alert(user, "already tethered!")
+		balloon_alert(user, "已经系上系绳了！")
 		return
 
-	balloon_alert(user, "attached tether")
-	to_chat(target, span_userdanger("[user] attaches a tether to you!"))
+	balloon_alert(user, "已连接系绳")
+	to_chat(target, span_userdanger("[user] 把一根系绳连到了你身上！"))
 	target.AddComponent(/datum/component/tether, src, 7, "tether", tether_trait_source = REF(src), no_target_trait = TRUE)
 
 /obj/item/tether_anchor/proc/tether_snapped(datum/component/tether/tether, tether_source)
@@ -370,10 +370,10 @@
 
 ///Radiation Protection - Protects the user from radiation, gives them a geiger counter and rad info in the panel.
 /obj/item/mod/module/rad_protection
-	name = "MOD radiation protection module"
-	desc = "A module utilizing polymers and reflective shielding to protect the user against ionizing radiation; \
-		a common danger in space. This comes with software to notify the wearer that they're even in a radioactive area, \
-		giving a voice to an otherwise silent killer."
+	name = "MOD 辐射防护模块"
+	desc = "一种利用聚合物和反射屏蔽层保护使用者免受电离辐射伤害的模块；\
+		电离辐射是太空中常见的危险。它附带软件，能在佩戴者身处放射性区域时发出提醒，\
+		让这个原本无声的杀手开口说话。"
 	icon_state = "radshield"
 	complexity = 2
 	idle_power_cost = DEFAULT_CHARGE_DRAIN * 0.3
@@ -413,11 +413,11 @@
 
 ///Constructor - Lets you build quicker and create RCD holograms.
 /obj/item/mod/module/constructor
-	name = "MOD constructor module"
-	desc = "This module entirely occupies the wearer's forearm, notably causing conflict with \
-		advanced arm servos meant to carry crewmembers. However, it functions as an \
-		extremely advanced construction hologram scanner, as well as containing the \
-		latest engineering schematics combined with inbuilt memory to help the user build walls."
+	name = "MOD 建造模块"
+	desc = "本模块会完全占用使用者的前臂，因此会与用于搬运船员的\
+		高级手臂伺服系统明显冲突。不过，它可作为一台\
+		极其先进的建造全息扫描仪，并内置\
+		最新的工程蓝图和内建储存，帮助使用者建造墙壁。"
 	icon_state = "constructor"
 	module_type = MODULE_USABLE
 	complexity = 2
@@ -440,12 +440,12 @@
 
 ///Safety-First Head Protection - Protects your brain matter from sudden impacts.
 /obj/item/mod/module/headprotector
-	name = "MOD safety-first head protection module"
-	desc = "A series of dampening plates are installed along the back and upper areas of \
-		the helmet. These plates absorb abrupt kinetic shocks delivered to the skull. \
-		The bulk of this module prevents it from being installed in any suit that is capable \
-		of combat armor adjustments. However, the rudimentry nature of the module makes it \
-		relatively easy to install into most other suits."
+	name = "MOD 安全第一头部防护模块"
+	desc = "头盔的后部和上部装有一系列减震板。\
+		这些板会吸收传递到头骨的突发动能冲击。\
+		本模块体积较大，因此无法装入任何\
+		具备战斗护甲调整功能的套装。不过，该模块构造简陋，\
+		相对容易装入大多数其他套装。"
 	icon_state = "welding"
 	complexity = 1
 	incompatible_modules = list(/obj/item/mod/module/welding/syndicate, /obj/item/mod/module/infiltrator)
@@ -460,8 +460,8 @@
 
 ///Mister - Sprays water over an area.
 /obj/item/mod/module/mister
-	name = "MOD water mister module"
-	desc = "A module containing a mister, able to spray it over areas."
+	name = "MOD 喷水器模块"
+	desc = "一种内置喷雾器的模块，可将水喷洒到大片区域。"
 	icon_state = "mister"
 	module_type = MODULE_ACTIVE
 	complexity = 2
@@ -479,8 +479,8 @@
 
 ///Resin Mister - Sprays resin over an area.
 /obj/item/mod/module/mister/atmos
-	name = "MOD resin mister module"
-	desc = "An atmospheric resin mister, able to fix up areas quickly."
+	name = "MOD 树脂喷雾模块"
+	desc = "一种大气用树脂喷雾器，能迅速修补大片区域。"
 	device = /obj/item/extinguisher/mini/nozzle/mod
 	volume = 250
 	custom_materials = list(/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 0.75, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT)
@@ -490,5 +490,5 @@
 	reagents.add_reagent(/datum/reagent/water, volume)
 
 /obj/item/extinguisher/mini/nozzle/mod
-	name = "MOD atmospheric mister"
-	desc = "An atmospheric resin mister with three modes, mounted as a module."
+	name = "MOD 大气喷雾器"
+	desc = "一种拥有三种模式的大气树脂喷雾器，以模块形式安装。"

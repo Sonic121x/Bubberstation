@@ -27,7 +27,7 @@
 
 	for(var/mob/living/falling_victim in falling_movables)
 		if(soft_object == falling_victim)
-			to_chat(falling_victim, span_notice("Your fall is cushioned by your body to provide a soft landing!"))
+			to_chat(falling_victim, span_notice("你的身体缓冲了坠落的冲击，让你平稳着陆！"))
 		else
-			to_chat(falling_victim, span_notice("[soft_object] provides a soft landing for you!"))
+			to_chat(falling_victim, span_notice("[soft_object]缓冲了你的落地！"))
 	return FALL_INTERCEPTED | FALL_NO_MESSAGE

@@ -2,73 +2,73 @@
 	group = "Canisters & Materials"
 
 /datum/supply_pack/materials/cardboard50
-	name = "50 Cardboard Sheets"
-	desc = "Create a bunch of boxes."
+	name = "50 张纸板"
+	desc = "做一大堆箱子。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/stack/sheet/cardboard/fifty)
-	crate_name = "cardboard sheets crate"
+	crate_name = "纸板箱"
 
 /datum/supply_pack/materials/license50
-	name = "50 Empty License Plates"
-	desc = "Create a bunch of license plates."
+	name = "50 块空白车牌"
+	desc = "制作一大堆车牌。"
 	cost = CARGO_CRATE_VALUE * 2  // 50 * 25 + 700 - 1000 = 950 credits profit
 	access_view = ACCESS_BRIG_ENTRANCE
 	contains = list(/obj/item/stack/license_plates/empty/fifty)
-	crate_name = "empty license plate crate"
+	crate_name = "空白车牌箱"
 
 /datum/supply_pack/materials/plastic50
-	name = "50 Plastic Sheets"
-	desc = "Build a limitless amount of toys with fifty plastic sheets!"
+	name = "50 张塑料板"
+	desc = "用五十张塑料板做出数不尽的玩具！"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/stack/sheet/plastic/fifty)
-	crate_name = "plastic sheets crate"
+	crate_name = "塑料板箱"
 
 /datum/supply_pack/materials/sandstone30
-	name = "30 Sandstone Blocks"
-	desc = "Neither sandy nor stony, these thirty blocks will still get the job done."
+	name = "30 块砂岩砖"
+	desc = "既不含沙也不像石头，但这三十块砖照样能派上用场。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/stack/sheet/mineral/sandstone/thirty)
-	crate_name = "sandstone blocks crate"
+	crate_name = "砂岩砖箱"
 
 /datum/supply_pack/materials/wood50
-	name = "50 Wood Planks"
-	desc = "Turn cargo's boring metal groundwork into beautiful \
-		panelled flooring and much more with fifty wooden planks!"
+	name = "50 块木板"
+	desc = "用五十块木板，把货运部枯燥的金属地面变成 \
+		漂亮的镶板地板，还有更多用途！"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/stack/sheet/mineral/wood/fifty)
-	crate_name = "wood planks crate"
+	crate_name = "木板箱"
 
 /datum/supply_pack/materials/foamtank
-	name = "Firefighting Foam Tank Crate"
-	desc = "Contains a tank of firefighting foam. Also known as \"plasmaman's bane.\""
+	name = "消防泡沫罐箱"
+	desc = "内含一罐消防泡沫。又名“等离子人的克星”。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/structure/reagent_dispensers/foamtank)
-	crate_name = "foam tank crate"
+	crate_name = "泡沫罐箱"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/materials/fueltank
-	name = "Fuel Tank Crate"
-	desc = "Contains a welding fuel tank. Caution, highly flammable."
+	name = "燃料罐箱"
+	desc = "内含一罐焊接燃料。小心，极易燃。"
 	cost = CARGO_CRATE_VALUE * 1.6
 	contains = list(/obj/structure/reagent_dispensers/fueltank)
-	crate_name = "fuel tank crate"
+	crate_name = "燃料罐箱"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/materials/hightankfuel
-	name = "Large Fuel Tank Crate"
-	desc = "Contains a high-capacity fuel tank. Keep contents away from open flame."
+	name = "大容量燃料罐箱"
+	desc = "内含一个大容量燃料罐。请让内容物远离明火。"
 	cost = CARGO_CRATE_VALUE * 4
 	access_view = ACCESS_ENGINEERING
 	contains = list(/obj/structure/reagent_dispensers/fueltank/large)
-	crate_name = "high-capacity fuel tank crate"
+	crate_name = "大容量燃料罐箱"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/materials/watertank
-	name = "Water Tank Crate"
-	desc = "Contains a tank of dihydrogen monoxide... sounds dangerous."
+	name = "水箱"
+	desc = "内含一罐一氧化二氢……听起来很危险。"
 	cost = CARGO_CRATE_VALUE * 1.2
 	contains = list(/obj/structure/reagent_dispensers/watertank)
-	crate_name = "water tank crate"
+	crate_name = "水箱"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/materials/gas_canisters
@@ -90,12 +90,12 @@
 		if(!initial(gas.purchaseable))
 			continue
 		var/datum/supply_pack/materials/pack = new
-		pack.name = "[name] Canister"
-		pack.desc = "Contains a canister of [name]."
+		pack.name = "[name] 气罐"
+		pack.desc = "内含一罐 [name]。"
 		if(initial(gas.dangerous))
 			pack.access = ACCESS_ATMOSPHERICS
 			pack.access_view = ACCESS_ATMOSPHERICS
-		pack.crate_name = "[name] canister crate"
+		pack.crate_name = "[name] 气罐箱"
 		pack.id = "[type]([name])"
 
 		pack.cost = cost + moleCount * initial(gas.base_value) * 1.6

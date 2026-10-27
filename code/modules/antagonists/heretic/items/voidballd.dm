@@ -1,6 +1,6 @@
 /obj/item/void_prison
-	name = "void prison"
-	desc = "A small glass orb of swirling darkness. It feels cold to the touch, and consumes all light around it."
+	name = "虚空牢狱"
+	desc = "一颗小小的玻璃球，里面翻涌着黑暗。摸上去冰凉，会吞噬周围所有的光。"
 	icon = 'icons/mob/actions/actions_ecult.dmi'
 	icon_state = "voidball"
 	pickup_sound = 'sound/items/handling/materials/glass_pick_up.ogg'
@@ -18,7 +18,7 @@
 	playsound(src, SFX_SHATTER, 50, TRUE)
 	playsound(src, 'sound/effects/magic/voidblink.ogg', 50, FALSE)
 	if(IS_HERETIC_OR_MONSTER(user))
-		to_chat(user, span_mansus("You smash [src], releasing its power around you!"))
+		to_chat(user, span_mansus("你砸碎了[src]，让它的力量在你周围释放！"))
 		for(var/mob/living/nearby_mob in view(3, user))
 			if(IS_HERETIC_OR_MONSTER(nearby_mob))
 				continue
@@ -26,28 +26,28 @@
 				continue
 			if(nearby_mob.can_block_magic(MAGIC_RESISTANCE))
 				nearby_mob.visible_message(
-					span_danger("A swirling, cold void wraps around [nearby_mob], but they burst free in a wave of heat!"),
-					span_userdanger("A yawning void begins to open before you, but a great wave of heat bursts it apart! You are protected!!")
+					span_danger("一股翻涌的寒冷虚空缠绕住[nearby_mob]，但对方在一阵热浪中挣脱了！"),
+					span_userdanger("一个张开的虚空在你面前展开，但一股巨大的热浪将它轰碎！你受到了保护！！")
 				)
 				continue
 			nearby_mob.visible_message(
-				span_danger("A swirling, cold void wraps around [nearby_mob]!"),
-				span_userdanger("A yawning void opens before you! You are swallowed by the darkness, and find yourself in complete nothingness..."),
+				span_danger("一股翻涌的寒冷虚空缠绕住[nearby_mob]！"),
+				span_userdanger("一个张开的虚空在你面前展开！你被黑暗吞没，置身于彻底的空无之中……"),
 			)
 			nearby_mob.apply_status_effect(/datum/status_effect/void_prison)
 
 	else if(user.can_block_magic(MAGIC_RESISTANCE))
-		to_chat(user, span_hypnophrase("You smash [src], but its power begins to encompass you!"))
+		to_chat(user, span_hypnophrase("你砸碎了[src]，但它的力量开始将你包裹！"))
 		user.visible_message(
-			span_danger("A swirling, cold void wraps around [user], but they burst free in a wave of heat!"),
-			span_userdanger("A yawning void begins to open before you, but a great wave of heat bursts it apart! You are protected!!")
+			span_danger("一股翻涌的寒冷虚空缠绕住[user]，但对方在一阵热浪中挣脱了！"),
+			span_userdanger("一个张开的虚空在你面前展开，但一股巨大的热浪将它轰碎！你受到了保护！！")
 		)
 
 	else
-		to_chat(user, span_hypnophrase("You smash [src], but its power begins to encompass you!"))
+		to_chat(user, span_hypnophrase("你砸碎了[src]，但它的力量开始将你包裹！"))
 		user.visible_message(
-			span_danger("A swirling, cold void wraps around [user]!"),
-			span_userdanger("A yawning void opens before you! You are swallowed by the darkness, and find yourself in complete nothingness..."),
+			span_danger("一股翻涌的寒冷虚空缠绕住[user]！"),
+			span_userdanger("一个张开的虚空在你面前展开！你被黑暗吞没，置身于彻底的空无之中……"),
 		)
 		user.apply_status_effect(/datum/status_effect/void_prison)
 
@@ -113,8 +113,8 @@
 
 //---- Screen alert
 /atom/movable/screen/alert/status_effect/void_prison
-	name = "Void Prison"
-	desc = "A Yawning void encases your mortal coil." //Go straight to jail, do not pass GO, do not collect 200$
+	name = "虚空牢狱"
+	desc = "一个张开的虚空包裹住了你的凡躯。" //Go straight to jail, do not pass GO, do not collect 200$
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	icon_state = "heretic_template"
 	overlay_icon = 'icons/mob/actions/actions_ecult.dmi'

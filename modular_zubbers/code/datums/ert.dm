@@ -33,7 +33,7 @@
 	code = "Goldstar"
 
 /datum/outfit/centcom/asset_protection
-	name = "Asset Protection"
+	name = "资产保护"
 
 	uniform = /obj/item/clothing/under/syndicate/sniper
 	back = /obj/item/mod/control/pre_equipped/asset_protection
@@ -70,6 +70,6 @@
 	..()
 
 /datum/outfit/centcom/asset_protection/leader
-	name = "Asset Protection Officer"
+	name = "资产保护军官"
 	head = /obj/item/clothing/head/helmet/space/beret
 

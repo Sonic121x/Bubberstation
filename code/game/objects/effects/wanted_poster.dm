@@ -12,12 +12,12 @@
 	var/postHeaderText = "WANTED" // MAX 7 Characters
 	var/postHeaderColor = COLOR_RED
 	var/background = "wanted_background"
-	var/postName = "wanted poster"
-	var/postDesc = "A wanted poster for"
+	var/postName = "通缉海报"
+	var/postDesc = "通缉对象："
 
 /obj/item/poster/wanted/missing
-	postName = "missing poster"
-	postDesc = "A missing poster for"
+	postName = "寻人海报"
+	postDesc = "失踪人员："
 	postHeaderText = "MISSING" // MAX 7 Characters
 	postHeaderColor = COLOR_BLUE
 
@@ -35,7 +35,7 @@
 
 	. = ..(mapload, wanted_poster)
 	name = "[postName] ([wanted_name])"
-	desc = "[postDesc] [wanted_name]."
+	desc = "[postDesc][wanted_name]。"
 	postHeaderText = headerText
 
 /obj/structure/sign/poster/wanted

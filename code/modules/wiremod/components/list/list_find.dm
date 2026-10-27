@@ -4,9 +4,9 @@
  * Finds an element in a list and returns the index.
  */
 /obj/item/circuit_component/listin
-	display_name = "Element Find"
-	desc = "Checks if an element is in a list and returns the index it is as if it is. Index is set to 0 on failure."
-	category = "List"
+	display_name = "元素查找"
+	desc = "检查元素是否在列表中，若在则返回其索引；失败时索引为 0。"
+	category = "列表"
 
 	/// The list type we're checking
 	var/datum/port/input/list_type

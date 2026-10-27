@@ -1,11 +1,11 @@
 /obj/item/seeds/cocaleaf
-	name = "coca leaf seed pack"
-	desc = "These seeds grow into coca shrubs. They make you feel energized just looking at them..."
+	name = "古柯种子包"
+	desc = "这些种子能长成古柯灌木。光是看着它们就让你精神一振……"
 	icon = 'modular_skyrat/master_files/icons/obj/hydroponics/seeds.dmi'
 	growing_icon = 'modular_skyrat/master_files/icons/obj/hydroponics/growing.dmi'
 	icon_state = "seed-cocoleaf"
 	species = "cocoleaf"
-	plantname = "Coca Leaves"
+	plantname = "古柯"
 	maturation = 8
 	potency = 20
 	growthstages = 1
@@ -15,10 +15,10 @@
 
 /obj/item/food/grown/cocaleaf
 	seed = /obj/item/seeds/cocaleaf
-	name = "coca leaf"
-	desc = "A leaf of the coca shrub, which contains a potent psychoactive alkaloid known as 'cocaine'."
+	name = "古柯叶"
+	desc = "一片古柯灌木的叶子，含有名为“可卡因”的强效精神活性生物碱。"
 	icon = 'modular_skyrat/master_files/icons/obj/hydroponics/harvest.dmi'
 	icon_state = "cocoleaf"
 	foodtypes = FRUIT //i guess? i mean it grows on trees...
-	tastes = list("leaves" = 1)
+	tastes = list("树叶" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/sins_delight //Cocaine is one hell of a sin.

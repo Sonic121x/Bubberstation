@@ -1,10 +1,10 @@
 /datum/computer_file/program/supermatter_monitor
 	filename = "ntcims"
-	filedesc = "NT CIMS"
+	filedesc = "纳米传讯 CIMS"
 	downloader_category = PROGRAM_CATEGORY_ENGINEERING
 	ui_header = "smmon_0.gif"
 	program_open_overlay = "smmon_0"
-	extended_desc = "Crystal Integrity Monitoring System, connects to specially calibrated supermatter sensors to provide information on the status of supermatter-based engines."
+	extended_desc = "晶体完整性监测系统，可连接经过专门校准的超物质传感器，提供基于超物质的引擎的状态信息。"
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	download_access = list(ACCESS_CONSTRUCTION)
 	size = 5
@@ -75,7 +75,7 @@
 	SIGNAL_HANDLER
 	if(!computer.get_ntnet_status())
 		return
-	computer.alert_call(src, "Crystal delamination in progress!")
+	computer.alert_call(src, "晶体正在发生崩解！")
 	alert_pending = TRUE
 
 /datum/computer_file/program/supermatter_monitor/proc/clear_supermatter(obj/machinery/power/supermatter_crystal/sm)

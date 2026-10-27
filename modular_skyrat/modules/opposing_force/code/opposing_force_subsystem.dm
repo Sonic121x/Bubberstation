@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(opposing_force)
 	var/status = OPFOR_SUBSYSTEM_READY
 
 /datum/controller/subsystem/opposing_force/stat_entry(msg)
-	msg = "UNSUB: [LAZYLEN(unsubmitted_applications)] | SUB: [LAZYLEN(submitted_applications)] | APPR: [LAZYLEN(approved_applications)]"
+	msg = "未提交：[LAZYLEN(unsubmitted_applications)] | 已提交：[LAZYLEN(submitted_applications)] | 已批准：[LAZYLEN(approved_applications)]"
 	return ..()
 
 /datum/controller/subsystem/opposing_force/Initialize()
@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(opposing_force)
 
 /datum/controller/subsystem/opposing_force/proc/approve(datum/opposing_force/opposing_force, mob/approver)
 	if(!is_admin(approver.client))
-		message_admins("Oppoding_force_subsystem: [ADMIN_LOOKUPFLW(approver)] attempted to approve an OPFOR application but was not an admin!")
+		message_admins("敌对势力子系统：[ADMIN_LOOKUPFLW(approver)]尝试批准敌对势力申请，但没有管理员权限！")
 		CRASH("Opposing_force_subsystem: Attempted to approve an opposing force but the approver ([approver?.ckey]) was not an admin!")
 
 	if(!LAZYFIND(unsubmitted_applications, opposing_force))
@@ -111,7 +111,7 @@ SUBSYSTEM_DEF(opposing_force)
 
 /datum/controller/subsystem/opposing_force/proc/deny(datum/opposing_force/opposing_force, reason, mob/denier)
 	if(!is_admin(denier.client))
-		message_admins("Oppoding_force_subsystem: [ADMIN_LOOKUPFLW(denier)] attempted to deny an OPFOR application but was not an admin!")
+		message_admins("敌对势力子系统：[ADMIN_LOOKUPFLW(denier)]尝试拒绝敌对势力申请，但没有管理员权限！")
 		CRASH("Opposing_force_subsystem: Attempted to deny an opposing force but the denier ([denier?.ckey]) was not an admin!")
 
 	if(LAZYFIND(submitted_applications, opposing_force))
@@ -170,7 +170,7 @@ SUBSYSTEM_DEF(opposing_force)
 
 /datum/controller/subsystem/opposing_force/proc/view_opfor(datum/opposing_force/opposing_force, mob/viewer)
 	if(!is_admin(viewer.client))
-		message_admins("Oppoding_force_subsystem: [ADMIN_LOOKUPFLW(viewer)] attempted to view an OPFOR application but was not an admin!")
+		message_admins("敌对势力子系统：[ADMIN_LOOKUPFLW(viewer)]尝试查看敌对势力申请，但没有管理员权限！")
 		CRASH("Opposing_force_subsystem: Attempted to view an opposing force but the viewer was not an admin!")
 
 	opposing_force.ui_interact(viewer)
@@ -178,19 +178,19 @@ SUBSYSTEM_DEF(opposing_force)
 /datum/controller/subsystem/opposing_force/proc/get_check_antag_listing()
 	var/list/returned_html = list("<br>")
 
-	returned_html += "<b>OPFOR Applications</b>"
+	returned_html += "<b>敌对势力申请</b>"
 
-	returned_html += "Submitted - FOLLOW QUEUE!"
+	returned_html += "已提交——请按队列顺序处理！"
 	var/queue_count = 1
 	for(var/datum/opposing_force/opposing_force in submitted_applications)
 		returned_html += " - <b>[queue_count].</b> [opposing_force.build_html_panel_entry()]"
 		queue_count++
 
-	returned_html += "Approved"
+	returned_html += "已批准"
 	for(var/datum/opposing_force/opposing_force in approved_applications)
 		returned_html += " - [opposing_force.build_html_panel_entry()]"
 
-	returned_html += "Unsubmitted"
+	returned_html += "未提交"
 	for(var/datum/opposing_force/opposing_force in unsubmitted_applications)
 		returned_html += " - [opposing_force.build_html_panel_entry()]"
 

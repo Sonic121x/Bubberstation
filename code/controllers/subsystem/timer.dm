@@ -15,7 +15,7 @@
  * and next references for the respective elements in that bucket's list.
  */
 SUBSYSTEM_DEF(timer)
-	name = "Timer"
+	name = "定时器"
 	wait = 1 // SS_TICKER subsystem, so wait is in ticks
 	priority = FIRE_PRIORITY_TIMER
 	ss_flags = SS_TICKER|SS_NO_INIT
@@ -96,7 +96,7 @@ SUBSYSTEM_DEF(timer)
 	// and throw a warning and reset buckets if this is true
 	if(lit && lit < last_check && head_offset < last_check && last_invoke_warning < last_check)
 		last_invoke_warning = world.time
-		var/msg = "No regular timers processed in the last [BUCKET_LEN * 1.5] ticks[bucket_auto_reset ? ", resetting buckets" : ""]!"
+		var/msg = "过去[BUCKET_LEN * 1.5]个时刻内未处理任何常规定时器[bucket_auto_reset ? "，正在重置时间桶" : ""]！"
 		message_admins(msg)
 		WARNING(msg)
 		if(bucket_auto_reset)

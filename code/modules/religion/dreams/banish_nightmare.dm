@@ -1,17 +1,17 @@
 /datum/religion_rites/banish_nightmare
-	name = "Banish Nightmare"
-	desc = "Banish the corpse of a Nightmare (or its heart) back from whence it came. In protecting the dreams of \
-		the station, you will earn favor. If a heart is present, you will be rewarded with a special blessing."
+	name = "放逐梦魇"
+	desc = "将梦魇的尸体（或其心脏）放逐回它来自的地方。在守护空间站梦境的过程中，\
+		你将获得恩宠。若献上心脏，你将得到一份特殊祝福。"
 	favor_cost = 0
 	ritual_length = 20 SECONDS
 
 /datum/religion_rites/banish_nightmare/New()
 	. = ..()
 	ritual_invocations = list(
-		"We have bested a terrible Nightmare, a plague upon our station!..",
-		"With the power of [GLOB.deity], we cast it out!..",
-		"This invader of dreams has no place here...",
-		"May it trouble our flock no longer.",
+		"我们击败了可怕的梦魇，这肆虐我们空间站的灾祸！……",
+		"借 [GLOB.deity] 的力量，我们将它逐出！……",
+		"这个梦境的入侵者在此没有容身之地……",
+		"愿它不再侵扰我们的羊群。",
 	)
 
 /datum/religion_rites/banish_nightmare/perform_rite(mob/living/user, atom/religious_tool)
@@ -27,7 +27,7 @@
 			break
 
 	if(!has_nightmare)
-		to_chat(user, span_warning("There is no Nightmare corpse or heart to banish!"))
+		to_chat(user, span_warning("没有可放逐的梦魇尸体或心脏！"))
 		return FALSE
 
 	return ..()
@@ -63,19 +63,19 @@
 		for(var/i in 1 to give_heart)
 			new /obj/item/organ/heart/evolved/sacred/dreamer(get_turf(religious_tool))
 		playsound(religious_tool, 'sound/effects/pray.ogg', 50, TRUE, frequency = 0.5)
-		to_chat(user, span_hypnophrase("[GLOB.deity] blesses you."))
+		to_chat(user, span_hypnophrase("[GLOB.deity] 祝福了你。"))
 	else
-		to_chat(user, span_hypnophrase("[GLOB.deity] smiles upon you."))
+		to_chat(user, span_hypnophrase("[GLOB.deity] 对你微笑。"))
 	user.add_mood_event("banish_nightmare", /datum/mood_event/banish_nightmare)
 
 /datum/mood_event/banish_nightmare
 	mood_change = 4
-	description = "I banished a nightmare and protected our dreams!"
+	description = "我放逐了一个梦魇，守护了我们的梦境！"
 	timeout = 10 MINUTES
 
 /obj/item/organ/heart/evolved/sacred/dreamer
-	name = "blessed sacred heart"
-	desc = "Banish the shadows!"
+	name = "受祝福的神圣心脏"
+	desc = "放逐暗影！"
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 1.5
 	/// Magic charges we block
 	var/charges = 3

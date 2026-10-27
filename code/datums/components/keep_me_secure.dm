@@ -71,17 +71,17 @@
 /datum/component/keep_me_secure/proc/on_examine(mob/living/source, mob/examiner, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_boldnotice("[parent] should be secured at all times.")
+	examine_list += span_boldnotice("[parent]必须始终保持安全状态。")
 	if(is_secured())
-		examine_list += span_notice("Right now, it is.")
+		examine_list += span_notice("它目前处于安全状态。")
 	else
-		examine_list += span_warning("Right now, it isn't...")
-	examine_list += span_notice("Examine closer for more info.")
+		examine_list += span_warning("它目前并不安全……")
+	examine_list += span_notice("仔细查看可了解更多信息。")
 
 /// signal sent when parent is examined more
 /datum/component/keep_me_secure/proc/on_examine_more(mob/living/source, mob/examiner, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice("For [parent] to be secure, it needs to be:")
-	examine_list += span_notice("1. Always on the move, and...")
-	examine_list += span_notice("2. Held or dragged by someone.")
+	examine_list += span_notice("要让[parent]保持安全，必须满足以下条件：")
+	examine_list += span_notice("1. 始终保持移动，并且……")
+	examine_list += span_notice("2. 由某人拿着或拖动。")

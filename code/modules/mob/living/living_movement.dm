@@ -149,7 +149,7 @@
 /mob/living/can_z_move(direction, turf/start, turf/destination, z_move_flags = ZMOVE_FLIGHT_FLAGS, mob/living/rider)
 	if(z_move_flags & ZMOVE_INCAPACITATED_CHECKS && incapacitated)
 		if(z_move_flags & ZMOVE_FEEDBACK)
-			to_chat(rider || src, span_warning("[rider ? src : "You"] can't do that right now!"))
+			to_chat(rider || src, span_warning("[rider ? src : "你"] 现在不能这么做！"))
 		return FALSE
 	if(!buckled || !(z_move_flags & ZMOVE_ALLOW_BUCKLED))
 		if(!(z_move_flags & ZMOVE_FALL_CHECKS) && incorporeal_move && (!rider || rider.incorporeal_move))
@@ -167,7 +167,7 @@
 			if(!(z_move_flags & ZMOVE_CAN_FLY_CHECKS) && !buckled.anchored)
 				return buckled.can_z_move(direction, start, destination, z_move_flags, src)
 			if(z_move_flags & ZMOVE_FEEDBACK)
-				to_chat(src, span_warning("Unbuckle from [buckled] first."))
+				to_chat(src, span_warning("请先解开在 [buckled] 上的束缚。"))
 			return FALSE
 
 /mob/set_currently_z_moving(value)

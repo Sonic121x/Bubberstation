@@ -1,8 +1,8 @@
 /// Defines for extra info blurbs, for loadout items.
-#define TOOLTIP_NO_ARMOR "ARMORLESS"
-#define TOOLTIP_NO_DAMAGE "CEREMONIAL"
-#define TOOLTIP_RANDOM_COLOR "RANDOM COLOR"
-#define TOOLTIP_GREYSCALE "GREYSCALED"
+#define TOOLTIP_NO_ARMOR "无护甲"
+#define TOOLTIP_NO_DAMAGE "仪式用"
+#define TOOLTIP_RANDOM_COLOR "随机颜色"
+#define TOOLTIP_GREYSCALE "可自定义颜色"
 
 #define LOADOUT_OVERRIDE_JOB "Delete job items"
 #define LOADOUT_OVERRIDE_BACKPACK "Move job to backpack"

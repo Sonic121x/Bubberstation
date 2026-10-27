@@ -1,6 +1,6 @@
 /obj/item/ammo_box/magazine/internal/boltaction
-	name = "bolt action rifle internal magazine"
-	desc = "Oh god, this shouldn't be here"
+	name = "栓动步枪内置弹匣"
+	desc = "天哪，这东西不该出现在这里"
 	ammo_type = /obj/item/ammo_casing/strilka310
 	caliber = CALIBER_STRILKA310
 	max_ammo = 5
@@ -12,7 +12,7 @@
 	ammo_type = /obj/item/ammo_casing/strilka310/phasic
 
 /obj/item/ammo_box/magazine/internal/boltaction/pipegun
-	name = "pipegun internal magazine"
+	name = "管道枪内置弹匣"
 	caliber = CALIBER_JUNK
 	ammo_type = /obj/item/ammo_casing/junk
 	max_ammo = 1
@@ -21,14 +21,14 @@
 	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/internal/boltaction/pipegun/pistol
-	name = "pipe pistol internal magazine"
+	name = "管道手枪内置弹匣"
 	max_ammo = 3
 
 /obj/item/ammo_box/magazine/internal/boltaction/pipegun/pistol/empty
 	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/internal/boltaction/pipegun/prime
-	name = "regal pipegun internal magazine"
+	name = "皇家管道枪内置弹匣"
 	max_ammo = 4
 	ammo_type = /obj/item/ammo_casing/junk/reaper
 
@@ -36,7 +36,7 @@
 	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/internal/boltaction/pipegun/pistol/prime
-	name = "regal pipe pistol internal magazine"
+	name = "皇家管道手枪内置弹匣"
 	max_ammo = 6
 	ammo_type = /obj/item/ammo_casing/junk/reaper
 
@@ -54,13 +54,13 @@
 	max_ammo = 4
 
 /obj/item/ammo_box/magazine/internal/boltaction/rebarxbow/normal
-	name = "rebar crossbow magazine"
+	name = "钢筋弩弹匣"
 	max_ammo = 2
 	caliber = CALIBER_REBAR
 	ammo_type = /obj/item/ammo_casing/rebar
 
 /obj/item/ammo_box/magazine/internal/boltaction/rebarxbow/forced
-	name = "stressed rebar crossbow magazine"
+	name = "超载钢筋弩弹匣"
 	max_ammo = 3
 	caliber = CALIBER_REBAR
 	ammo_type = /obj/item/ammo_casing/rebar
@@ -72,8 +72,8 @@
 
 
 /obj/item/ammo_box/magazine/internal/sks
-	name = "\improper SKS rifle internal magazine"
-	desc = "Oh god, this shouldn't be here"
+	name = "\improper SKS 步枪内置弹匣"
+	desc = "天哪，这东西不该出现在这里"
 	ammo_type = /obj/item/ammo_casing/strilka310
 	caliber = CALIBER_STRILKA310
 	max_ammo = 10

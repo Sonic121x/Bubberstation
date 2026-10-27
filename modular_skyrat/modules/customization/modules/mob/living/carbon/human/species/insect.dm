@@ -1,5 +1,5 @@
 /datum/species/insect
-	name = "Insectoid"
+	name = "昆虫人"
 	id = SPECIES_INSECT
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
@@ -54,11 +54,11 @@
 
 // this isnt just moth eyes copy pasted trust
 /obj/item/organ/eyes/insect
-	name = "insect eyes"
-	desc = "Some kind of buggy eyeball things."
+	name = "昆虫眼"
+	desc = "某种虫类模样的眼球玩意儿。"
 	icon_state = "eyes_moth"
 	eye_icon = 'modular_skyrat/modules/organs/icons/insect_eyes.dmi'
 	blink_animation = FALSE
 	iris_overlay = null
 	pupils_name = "ommatidia" //yes i know compound eyes have no pupils shut up
-	penlight_message = "are bulbous and insectoid"
+	penlight_message = "呈球状，带有昆虫特征"

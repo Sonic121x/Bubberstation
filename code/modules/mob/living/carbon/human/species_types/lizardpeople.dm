@@ -1,7 +1,7 @@
 /datum/species/lizard
 	// Reptilian humanoids with scaled skin and tails.
-	name = "\improper Lizardperson"
-	plural_form = "Lizardfolk"
+	name = "\improper 蜥蜴人"
+	plural_form = "蜥蜴人"
 	id = SPECIES_LIZARD
 	inherent_traits = list(
 		TRAIT_COLD_BLOODED,
@@ -56,32 +56,32 @@
 //SKYRAT EDIT REMOVAL END
 
 /datum/species/lizard/get_physical_attributes()
-	return "Lizardpeople can withstand slightly higher temperatures than most species, but they are very vulnerable to the cold \
-		and can't regulate their body-temperature internally, making the vacuum of space extremely deadly to them."
+	return "蜥蜴人比大多数物种更能耐受略高的温度，但他们非常怕冷，\
+		且无法在体内调节体温，因此太空真空对他们极为致命。"
 
 /datum/species/lizard/get_species_description()
-	return "The militaristic Lizardpeople hail originally from Tizira, but have grown \
-		throughout their centuries in the stars to possess a large spacefaring \
-		empire: though now they must contend with their younger, more \
-		technologically advanced Human neighbours."
+	return "崇尚军事的蜥蜴人原本来自提兹拉，但在星际间度过的数个世纪中 \
+		不断壮大，建立起庞大的太空 \
+		帝国；不过如今他们必须应付更年轻、科技更先进的 \
+		人类邻居。"
 
 /datum/species/lizard/get_species_lore()
 	return list(
-		"The face of conspiracy theory was changed forever the day mankind met the lizards.",
+		"人类与蜥蜴人相遇的那一天，阴谋论的面貌被永远改变了。",
 
-		"Hailing from the arid world of Tizira, lizards were travelling the stars back when mankind was first discovering how neat trains could be. \
-		However, much like the space-fable of the space-tortoise and space-hare, lizards have rejected their kin's motto of \"slow and steady\" \
-		in favor of resting on their laurels and getting completely surpassed by 'bald apes', due in no small part to their lack of access to plasma.",
+		"蜥蜴人来自干旱的提兹拉世界，当人类才刚刚发现火车有多棒时，他们已在星际间航行。\
+		然而，就像太空龟与太空兔的太空寓言那样，蜥蜴人抛弃了同族“稳扎稳打”的格言，\
+		转而躺在荣誉上吃老本，最终被“秃毛猿猴”彻底超越，这在很大程度上要归因于他们无法获得等离子体。",
 
-		"The history between lizards and humans has resulted in many conflicts that lizards ended on the losing side of, \
-		with the finale being an explosive remodeling of their moon. Today's lizard-human relations are seeing the continuance of a record period of peace.",
+		"蜥蜴人与人类的历史造就了许多冲突，而蜥蜴人总是以失败的一方收场，\
+		最终的结局是他们的卫星被炸得面目全非。如今蜥蜴人与人类的关系正处于持续创纪录的和平时期。",
 
-		"Lizard culture is inherently militaristic, though the influence the military has on lizard culture \
-		begins to lessen the further colonies lie from their homeworld - \
-		with some distanced colonies finding themselves subsumed by the cultural practices of other species nearby.",
+		"蜥蜴人的文化本质上崇尚军事，不过殖民地离母星越远，\
+		军方对蜥蜴人文化的影响就越弱——\
+		一些偏远的殖民地甚至被附近其他物种的文化习俗所同化。",
 
-		"On their homeworld, lizards celebrate their 16th birthday by enrolling in a mandatory 5 year military tour of duty. \
-		Roles range from combat to civil service and everything in between. As the old slogan goes: \"Your place will be found!\"",
+		"在母星上，蜥蜴人庆祝 16 岁生日的方式是加入为期 5 年的强制性兵役。\
+		职务从战斗到民政服务，涵盖其间的一切。正如那句老话所说：“总会找到你的位置！”",
 	)
 
 // Override for the default temperature perks, so we can give our specific "cold blooded" perk.
@@ -91,10 +91,10 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "thermometer-empty",
-		SPECIES_PERK_NAME = "Cold-blooded",
-		SPECIES_PERK_DESC = "Lizardpeople have higher tolerance for hot temperatures, but lower \
-			tolerance for cold temperatures. Additionally, they cannot self-regulate their body temperature - \
-			they are as cold or as warm as the environment around them is. Stay warm!",
+		SPECIES_PERK_NAME = "冷血",
+		SPECIES_PERK_DESC = "蜥蜴人对高温的耐受度更高，但对低温的 \
+			耐受度更低。此外，他们无法自行调节体温——\
+			周围环境多冷，他们就有多冷。注意保暖！",
 	))
 
 	return to_add
@@ -103,7 +103,7 @@
 Lizard subspecies: ASHWALKERS
 */
 /datum/species/lizard/ashwalker
-	name = "Ash Walker"
+	name = "灰行者"
 	id = SPECIES_LIZARD_ASH
 	examine_limb_id = SPECIES_LIZARD
 	mutantlungs = /obj/item/organ/lungs/lavaland
@@ -128,14 +128,14 @@ Lizard subspecies: ASHWALKERS
 	)
 
 /datum/species/lizard/ashwalker/get_physical_attributes()
-	return "Ash Walkers are identical to lizardpeople in almost all aspects. \
-		Unlike them, they're always digitigrade, they can breathe Lavaland's often noxious atmosphere and resist viruses. They are usually illiterate."
+	return "灰行者在几乎所有方面都与蜥蜴人相同。\
+		与他们不同的是，灰行者始终是趾行步态，能呼吸熔岩地带常有毒性的大气，并免疫病毒。他们通常不识字。"
 
 /*
 Lizard subspecies: SILVER SCALED
 */
 /datum/species/lizard/silverscale
-	name = "Silver Scale"
+	name = "银鳞者"
 	id = SPECIES_LIZARD_SILVER
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_REPTILE
 	inherent_traits = list(
@@ -158,9 +158,9 @@ Lizard subspecies: SILVER SCALED
 	var/old_mutcolor
 
 /datum/species/lizard/silverscale/get_physical_attributes()
-	return "Silver Scales are to lizardpeople what angels are to humans. \
-		Mostly identical, they are holy, don't breathe, don't get viruses, their hide cannot be pierced, love the taste of wine, \
-		and their tongue allows them to turn into a statue, for some reason."
+	return "银鳞者对蜥蜴人而言，就如同天使对人类。\
+		他们大体相同，但银鳞者是神圣的，不需呼吸，不会感染病毒，皮肤无法被刺穿，喜爱葡萄酒的味道，\
+		而且不知为何，他们的舌头能让他们变成雕像。"
 
 /datum/species/lizard/silverscale/on_species_gain(mob/living/carbon/human/new_silverscale, datum/species/old_species, pref_load, regenerate_icons)
 	old_mutcolor = new_silverscale.dna.features[FEATURE_MUTANT_COLOR]

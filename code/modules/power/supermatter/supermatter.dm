@@ -17,8 +17,8 @@
 GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal
-	name = "supermatter crystal"
-	desc = "A strangely translucent and iridescent crystal."
+	name = "超物质晶体"
+	desc = "一块奇异地半透明、泛着虹彩的晶体。"
 	icon = 'icons/obj/machines/engine/supermatter.dmi'
 	density = TRUE
 	anchored = TRUE
@@ -208,7 +208,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	radio.keyslot = new radio_key
 	radio.set_listening(FALSE)
 	radio.recalculateChannels()
-	investigate_log("has been created.", INVESTIGATE_ENGINE)
+	investigate_log("已生成。", INVESTIGATE_ENGINE)
 	if(is_main_engine)
 		GLOB.main_supermatter_engine = src
 
@@ -230,12 +230,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		switch(rand(1, 3))
 			if(1)
 				icon = 'modular_zubbers/icons/obj/machines/festive_supermatter.dmi'
-				name = "festive supermatter crystal"
-				desc = "A strangely translucent and festive crystal. If you stare at it long enough, some say you can hallucinate the distilled essence of the holidays staring back at you."
+				name = "节日超物质晶体"
+				desc = "一块奇异地半透明、充满节日气息的晶体。据说只要盯得够久，你就会幻觉到节日的精华正在回望你。"
 			if(2)
 				icon = 'modular_zubbers/icons/obj/machines/wintergreen_supermatter.dmi'
-				name = "wintergreen supermatter crystal"
-				desc = "A strangely translucent and iridescent crystal. Green doesn't make it run cooler."
+				name = "冬青超物质晶体"
+				desc = "一块奇异地半透明、泛着虹彩的晶体。绿色并不会让它运行得更凉快。"
 			if(3)
 				icon = 'icons/obj/machines/engine/supermatter.dmi'
 		// BUBBER EDIT ADDITION END
@@ -252,7 +252,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(warp)
 		vis_contents -= warp
 		QDEL_NULL(warp)
-	investigate_log("has been destroyed.", INVESTIGATE_ENGINE)
+	investigate_log("已被摧毁。", INVESTIGATE_ENGINE)
 	SSair.stop_processing_machine(src)
 	absorbed_gasmix = null
 	QDEL_NULL(radio)
@@ -274,15 +274,15 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/immune = HAS_MIND_TRAIT(user, TRAIT_MADNESS_IMMUNE)
 	if(isliving(user))
 		if (!immune && (get_dist(user, src) < SM_HALLUCINATION_RANGE(internal_energy)))
-			. += span_danger("You get headaches just from looking at it.")
+			. += span_danger("光是看着它，你就开始头疼。")
 		var/mob/living/living_user = user
 		if (HAS_TRAIT(user, TRAIT_REMOTE_TASTING))
-			to_chat(user, span_warning("The taste is overwhelming and indescribable!"))
+			to_chat(user, span_warning("那味道铺天盖地，难以形容！"))
 			living_user.electrocute_act(shock_damage = 15, source = src, flags = SHOCK_KNOCKDOWN | SHOCK_NOGLOVES)
-			. += span_notice("It could use a little more Sodium Chloride...")
+			. += span_notice("它或许还差一点氯化钠……")
 
 	if(holiday_lights)
-		. += span_notice("Radiating both festive cheer and actual radiation, it has a dazzling spectacle lights wrapped lovingly around the base transforming it from a potential doomsday device into a cosmic yuletide centerpiece.")
+		. += span_notice("它同时散发着节日的欢欣与真正的辐射；有人满怀爱意地在它的底座上缠了一圈耀眼的花灯，把一件潜在的末日装置变成了宇宙圣诞摆件。")
 
 	. += delamination_strategy.examine(src)
 	return .
@@ -298,7 +298,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(isclosedturf(local_turf))
 		var/turf/did_it_melt = local_turf.Melt()
 		if(!isclosedturf(did_it_melt)) //In case some joker finds way to place these on indestructible walls
-			visible_message(span_warning("[src] melts through [local_turf]!"))
+			visible_message(span_warning("[src] 熔穿了 [local_turf]！"))
 		return
 
 	// PART 2: GAS PROCESSING
@@ -476,7 +476,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		high_energy_bonus = (zap_transmission + additional_zap_bonus) * zap_power_multiplier - zap_transmission
 		var/list/zap_factor_si_derived_data = siunit_isolated(high_energy_bonus, "W", 2)
 		data["zap_transmission_factors"] += list(list(
-			"name" = "High Energy Bonus",
+			"name" = "高能加成",
 			"amount" = zap_factor_si_derived_data[SI_COEFFICIENT],
 			"unit" = zap_factor_si_derived_data[SI_UNIT],
 		))
@@ -563,7 +563,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal/proc/force_delam()
 	SIGNAL_HANDLER
-	investigate_log("was forcefully delaminated", INVESTIGATE_ENGINE)
+	investigate_log("被强制崩解", INVESTIGATE_ENGINE)
 	INVOKE_ASYNC(delamination_strategy, TYPE_PROC_REF(/datum/sm_delam, delaminate), src)
 
 /**
@@ -586,9 +586,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	INVOKE_ASYNC(src, PROC_REF(final_announcement)) // BUBBER EDIT ADDITION - DELAM SOUNDS
 
 	notify_ghosts(
-		"[src] has begun the delamination process!",
+		"[src] 已开始崩解过程！",
 		source = src,
-		header = "Meltdown Incoming",
+		header = "熔毁即将发生",
 	)
 
 	var/list/count_down_messages = delamination_strategy.count_down_messages()
@@ -606,8 +606,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		delamination_countdown_time = SUPERMATTER_SLIVER_REMOVED_COUNTDOWN_TIME
 		radio.talk_into(
 			src,
-			"WARNING: Projected time until full crystal delamination significantly lower than expected. \
-			Please inspect crystal for structural abnormalities or sabotage!",
+			"警告：晶体完全崩解的预计时间显著低于预期。 \
+			请检查晶体是否存在结构异常或人为破坏！",
 			emergency_channel,
 			list(SPAN_COMMAND)
 			)
@@ -719,7 +719,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	additive_power[SM_POWER_EXTERNAL_IMMEDIATE] = external_power_immediate
 	external_power_immediate = 0
 	additive_power[SM_POWER_HEAT] = gas_heat_power_generation * absorbed_gasmix.temperature * GAS_HEAT_POWER_SCALING_COEFFICIENT
-	additive_power[SM_POWER_HEAT] && log_activation(who = "environmental factors")
+	additive_power[SM_POWER_HEAT] && log_activation(who = "环境因素")
 
 	// I'm sorry for this, but we need to calculate power lost immediately after power gain.
 	// Helps us prevent cases when someone dumps superhothotgas into the SM and shoots the power to the moon for one tick.
@@ -766,11 +766,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		CRASH("Supermatter activated by an unknown source")
 
 	if(istext(who))
-		investigate_log("has been powered for the first time by [who][how ? " with [how]" : ""].", INVESTIGATE_ENGINE)
-		message_admins("[src] [ADMIN_JMP(src)] has been powered for the first time by [who][how ? " with [how]" : ""].")
+		investigate_log("首次由 [who][how ? " 使用 [how]" : ""] 供电。", INVESTIGATE_ENGINE)
+		message_admins("[src] [ADMIN_JMP(src)] 首次由 [who][how ? " 使用 [how]" : ""] 供电。")
 	else
-		investigate_log("has been powered for the first time by [key_name(who)][how ? " with [how]" : ""].", INVESTIGATE_ENGINE)
-		message_admins("[src] [ADMIN_JMP(src)] has been powered for the first time by [ADMIN_FULLMONTY(who)][how ? " with [how]" : ""].")
+		investigate_log("首次由 [key_name(who)][how ? " 使用 [how]" : ""] 供电。", INVESTIGATE_ENGINE)
+		message_admins("[src] [ADMIN_JMP(src)] 首次由 [ADMIN_FULLMONTY(who)][how ? " 使用 [how]" : ""] 供电。")
 	activation_logged = TRUE
 
 /**
@@ -1068,7 +1068,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		//There's no increase after that because the input power is effectivly capped at 10k
 		//Does 1.5 damage at the least
 		var/shock_damage = ((zap_flags & ZAP_MOB_DAMAGE) ? (power_level / 200) - 10 : rand(5,10))
-		creature.electrocute_act(shock_damage, "Supermatter Discharge Bolt", 1,  ((zap_flags & ZAP_MOB_STUN) ? SHOCK_TESLA : SHOCK_NOSTUN))
+		creature.electrocute_act(shock_damage, "超物质放电电弧", 1,  ((zap_flags & ZAP_MOB_STUN) ? SHOCK_TESLA : SHOCK_NOSTUN))
 		zap_str /= 1.5 //Meatsacks are conductive, makes working in pairs more destructive
 
 	else
@@ -1124,7 +1124,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /// Adds the hat flavor text when examined
 /obj/machinery/power/supermatter_crystal/proc/holiday_hat_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_info("There's a santa hat placed atop it. How it got there without being dusted is a mystery.")
+	examine_list += span_info("它顶上放着一顶圣诞帽。这帽子是怎么没被化为灰烬就放上去的，至今仍是个谜。")
 
 // Warp Effect //
 

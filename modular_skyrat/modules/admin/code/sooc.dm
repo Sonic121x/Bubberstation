@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(ckey_to_sooc_name)
 GAME_VERB(/client, sooc, "SOOC", "OOC")
 	VERB_ARG(msg, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_danger("Speech is currently admin-disabled."))
+		to_chat(usr, span_danger("发言目前已被管理员禁用。"))
 		return
 
 	if(!mob)
@@ -24,16 +24,16 @@ GAME_VERB(/client, sooc, "SOOC", "OOC")
 	if(!holder)
 		var/job = mob?.mind.assigned_role.title
 		if(!job || !job_lookup[job])
-			to_chat(src, span_danger("You're not a security role!"))
+			to_chat(src, span_danger("你不是安保部门的角色！"))
 			return
 		if(!GLOB.sooc_allowed)
-			to_chat(src, span_danger("SOOC is globally muted."))
+			to_chat(src, span_danger("SOOC 已被全局静音。"))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, span_danger("You cannot use OOC (muted)."))
+			to_chat(src, span_danger("你无法使用 OOC（已被静音）。"))
 			return
 	if(is_banned_from(ckey, "OOC"))
-		to_chat(src, span_danger("You have been banned from OOC."))
+		to_chat(src, span_danger("你已被禁止使用 OOC。"))
 		return
 	if(QDELETED(src))
 		return
@@ -47,7 +47,7 @@ GAME_VERB(/client, sooc, "SOOC", "OOC")
 	msg = emoji_parse(msg)
 
 	if(!(prefs.chat_toggles & CHAT_OOC))
-		to_chat(src, span_danger("You have OOC muted."))
+		to_chat(src, span_danger("你已静音 OOC。"))
 		return
 
 	mob.log_talk(raw_msg, LOG_OOC, tag="SOOC")
@@ -58,7 +58,7 @@ GAME_VERB(/client, sooc, "SOOC", "OOC")
 	//Anonimity for players and deadminned admins
 	if(!holder || holder.deadmined)
 		if(!GLOB.ckey_to_sooc_name[key])
-			GLOB.ckey_to_sooc_name[key] = "Deputy [pick(GLOB.phonetic_alphabet)] [rand(1, 99)]"
+			GLOB.ckey_to_sooc_name[key] = "副警长 [pick(GLOB.phonetic_alphabet)] [rand(1, 99)]"
 		keyname = GLOB.ckey_to_sooc_name[key]
 		anon = TRUE
 
@@ -106,10 +106,10 @@ GAME_VERB(/client, sooc, "SOOC", "OOC")
 					listeners[iterated_mob.client] = TRUE
 	for(var/iterated_listener in listeners)
 		var/client/iterated_client = iterated_listener
-		to_chat(iterated_client, span_oocplain("<b>The SOOC channel has been globally [GLOB.sooc_allowed ? "enabled" : "disabled"].</b>"))
+		to_chat(iterated_client, span_oocplain("<b>SOOC 频道已在全局范围内[GLOB.sooc_allowed ? "启用" : "禁用"]。</b>"))
 
-ADMIN_VERB(togglesooc, R_ADMIN, "Toggle Security OOC", "Toggles Security OOC.", ADMIN_CATEGORY_SERVER)
+ADMIN_VERB(togglesooc, R_ADMIN, "切换安保 OOC", "切换安保 OOC。", ADMIN_CATEGORY_SERVER)
 	toggle_sooc()
-	log_admin("[key_name(usr)] toggled Security OOC.")
-	message_admins("[key_name_admin(usr)] toggled Security OOC.")
+	log_admin("[key_name(usr)] 切换了安保 OOC。")
+	message_admins("管理员 [key_name_admin(usr)] 切换了安保 OOC。")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Antag OOC", "[GLOB.sooc_allowed ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

@@ -10,7 +10,7 @@
 	/// The name of the upgrade item.
 	var/upgrade_name
 	/// Adds a prefix to the item, demonstrating that it is upgraded in some way.
-	var/upgrade_prefix = "reinforced"
+	var/upgrade_prefix = "强化的"
 	/// Tracks whether or not we've received an upgrade or not.
 	var/have_upgraded = FALSE
 	/// Abstract armor equipment we're using to take up the slot and show up in the mech UI
@@ -19,7 +19,7 @@
 /datum/armor/armor_plate
 	melee = 10
 
-/datum/component/armor_plate/Initialize(maxamount, obj/item/upgrade_item, datum/armor/armor_mod, upgrade_prefix = "reinforced")
+/datum/component/armor_plate/Initialize(maxamount, obj/item/upgrade_item, datum/armor/armor_mod, upgrade_prefix = "强化的")
 	if(!isobj(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -51,16 +51,16 @@
 	if(ismecha(parent))
 		if(amount)
 			if(amount < maxamount)
-				examine_list += span_notice("Its armor is enhanced with [amount] [upgrade_name].")
+				examine_list += span_notice("它的装甲由[amount]份[upgrade_name]强化。")
 			else
-				examine_list += span_notice("It's wearing a fearsome carapace entirely composed of [upgrade_name] - its pilot must be an experienced monster hunter.")
+				examine_list += span_notice("它披着完全由[upgrade_name]制成的骇人甲壳，驾驶员一定是经验丰富的怪物猎人。")
 		else
-			examine_list += span_notice("It has attachment points for strapping monster hide on for added protection.")
+			examine_list += span_notice("它带有可绑上怪物皮革的固定点，能够增强防护。")
 	else
 		if(amount)
-			examine_list += span_notice("It has been strengthened with [amount]/[maxamount] [upgrade_name].")
+			examine_list += span_notice("它已使用[amount]/[maxamount]份[upgrade_name]进行强化。")
 		else
-			examine_list += span_notice("It can be strengthened with up to [maxamount] [upgrade_name].")
+			examine_list += span_notice("它最多可以用[maxamount]份[upgrade_name]进行强化。")
 
 /datum/component/armor_plate/proc/applyplate(datum/source, obj/item/our_upgrade_item, mob/user, params)
 	SIGNAL_HANDLER
@@ -69,20 +69,20 @@
 		return
 
 	if(amount >= maxamount)
-		to_chat(user, span_warning("You can't improve [parent] any further!"))
+		to_chat(user, span_warning("你无法再强化[parent]了！"))
 		return
 
 	if(ismecha(parent) && !plate_component)
 		var/obj/vehicle/sealed/mecha/as_mecha = parent
 		if (LAZYLEN(as_mecha.equip_by_category[MECHA_ARMOR]) >= as_mecha.max_equip_by_category[MECHA_ARMOR])
-			to_chat(user, span_warning("[as_mecha] doesn't have any availible armor slots!"))
+			to_chat(user, span_warning("[as_mecha]没有可用的装甲槽位！"))
 			return
 
 	if(isstack(our_upgrade_item))
 		our_upgrade_item.use(1)
 	else
 		if(length(our_upgrade_item.contents))
-			to_chat(user, span_warning("[our_upgrade_item] cannot be used for armoring while there's something inside!"))
+			to_chat(user, span_warning("[our_upgrade_item]内部还有物品，无法用来强化装甲！"))
 			return
 		qdel(our_upgrade_item)
 
@@ -95,12 +95,12 @@
 		if(upgrade_prefix && !have_upgraded)
 			target_for_upgrading.name = "[upgrade_prefix] [target_for_upgrading.name]"
 			have_upgraded = TRUE
-		to_chat(user, span_info("You strengthen [target_for_upgrading], improving its resistance against attacks."))
+		to_chat(user, span_info("你强化了[target_for_upgrading]，提高了它抵御攻击的能力。"))
 		return
 
 	var/obj/vehicle/sealed/mecha/mecha_for_upgrading = target_for_upgrading
 	mecha_for_upgrading.update_appearance()
-	to_chat(user, span_info("You strengthen [mecha_for_upgrading], improving its resistance against attacks."))
+	to_chat(user, span_info("你强化了[mecha_for_upgrading]，提高了它抵御攻击的能力。"))
 	if (plate_component)
 		return
 	plate_component = new(mecha_for_upgrading)
@@ -130,6 +130,6 @@
 
 /// Abstract armor module used just to occupy a slot and show up in the UI
 /obj/item/mecha_parts/mecha_equipment/armor/armor_plate
-	name = "abstract armor"
-	desc = "Report this to a coder if you see this!"
+	name = "抽象装甲"
+	desc = "如果你看到这个，请报告给开发者！"
 	detachable = FALSE

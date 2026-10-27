@@ -1,10 +1,10 @@
 /datum/quirk/item_quirk/poster_boy
 	name = "Poster Boy"
-	desc = "You have some great posters! Hang them up and make everyone have a great time."
+	desc = "你有一些很棒的海报！把它们贴起来，让大家都开心。"
 	icon = FA_ICON_TAPE
 	value = 4
 	mob_trait = TRAIT_POSTERBOY
-	medical_record_text = "Patient reports a desire to cover walls with homemade objects."
+	medical_record_text = "患者自述想用自制物品贴满墙壁。"
 	mail_goodies = list(/obj/item/poster/random_official)
 
 /datum/quirk/item_quirk/poster_boy/add_unique()
@@ -14,8 +14,8 @@
 	give_item_to_holder(newbox, list(LOCATION_BACKPACK, LOCATION_HANDS))
 
 /obj/item/storage/box/posterbox
-	name = "Box of Posters"
-	desc = "You made them yourself!"
+	name = "海报盒"
+	desc = "这些都是你亲手制作的！"
 
 /// fills box of posters based on job, one neutral poster and 2 department posters
 /obj/item/storage/box/posterbox/proc/add_quirk_posters(datum/mind/posterboy)

@@ -1,11 +1,11 @@
 // Starthistle
 /obj/item/seeds/starthistle
-	name = "starthistle seed pack"
-	desc = "A robust species of weed that often springs up in-between the cracks of spaceship parking lots."
+	name = "星蓟种子包"
+	desc = "一种强健的杂草，常从飞船停车场的裂缝间冒出来。"
 	icon_state = "seed-starthistle"
 	plant_icon_offset = 3
 	species = "starthistle"
-	plantname = "Starthistle"
+	plantname = "星蓟"
 	lifespan = 70
 	endurance = 50 // damm pesky weeds
 	maturation = 5
@@ -33,11 +33,11 @@
 
 // Corpse flower
 /obj/item/seeds/starthistle/corpse_flower
-	name = "corpse flower seed pack"
-	desc = "A species of plant that emits a horrible odor. The odor stops being produced in difficult atmospheric conditions."
+	name = "尸花种子包"
+	desc = "一种会散发可怕气味的植物。在恶劣的大气条件下便不再产生这种气味。"
 	icon_state = "seed-corpse-flower"
 	species = "corpse-flower"
-	plantname = "Corpse flower"
+	plantname = "尸花"
 	production = 2
 	growing_icon = 'icons/obj/service/hydroponics/growing_flowers.dmi'
 	genes = list(/datum/plant_gene/trait/gas_production)
@@ -46,11 +46,11 @@
 
 //Galaxy Thistle
 /obj/item/seeds/galaxythistle
-	name = "galaxythistle seed pack"
-	desc = "An impressive species of weed that is thought to have evolved from the simple milk thistle. Contains flavolignans that can help repair a damaged liver."
+	name = "银河蓟种子包"
+	desc = "一种令人印象深刻的杂草，据信由普通水飞蓟演化而来。含有可帮助修复受损肝脏的黄木脂素。"
 	icon_state = "seed-galaxythistle"
 	species = "galaxythistle"
-	plantname = "Galaxythistle"
+	plantname = "银河蓟"
 	product = /obj/item/food/grown/galaxythistle
 	lifespan = 70
 	endurance = 40
@@ -68,10 +68,10 @@
 
 /obj/item/food/grown/galaxythistle
 	seed = /obj/item/seeds/galaxythistle
-	name = "galaxythistle flower head"
-	desc = "This spiny cluster of florets reminds you of the highlands."
+	name = "银河蓟花头"
+	desc = "这簇带刺的小花让你想起高地。"
 	icon_state = "galaxythistle"
 	bite_consumption_mod = 2
 	foodtypes = VEGETABLES
 	wine_power = 35
-	tastes = list("thistle" = 2, "artichoke" = 1)
+	tastes = list("蓟" = 2, "洋蓟" = 1)

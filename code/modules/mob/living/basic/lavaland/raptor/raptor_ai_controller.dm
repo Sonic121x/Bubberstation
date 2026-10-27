@@ -2,10 +2,10 @@
 	behavior_tree_json = "code/modules/mob/living/basic/lavaland/raptor/raptor_ai.bt.json"
 	blackboard = list(
 		BB_INTERACTIONS_WITH_OWNER = list(
-			"pecks",
-			"nuzzles",
-			"wags their tail against",
-			"playfully leans against"
+			"啄了啄",
+			"用鼻尖蹭了蹭",
+			"摇着尾巴蹭向",
+			"调皮地靠向"
 		),
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
@@ -21,10 +21,10 @@
 	ai_movement = /datum/ai_movement/basic_avoidance
 	blackboard = list(
 		BB_INTERACTIONS_WITH_OWNER = list(
-			"pecks",
-			"nuzzles",
-			"wags their tail against",
-			"playfully leans against"
+			"啄了啄",
+			"用鼻尖蹭了蹭",
+			"摇着尾巴蹭向",
+			"调皮地靠向"
 		),
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic/exact_match/ignore_friends,
 		BB_HUNT_TARGETING_STRATEGY = /datum/targeting_strategy/basic,

@@ -1,6 +1,6 @@
 /obj/item/lipstick/hypnosyndie
-	name = "hypno lipstick"
-	desc = "A potent lipstick capable of weakening and even hypnotizing the minds of those you kiss!"
+	name = "催眠口红"
+	desc = "强效口红，能削弱甚至催眠被你亲吻者的心智！"
 	icon_state = "slipstick"
 	base_icon_state = "slipstick"
 	lipstick_color = COLOR_SYNDIE_RED

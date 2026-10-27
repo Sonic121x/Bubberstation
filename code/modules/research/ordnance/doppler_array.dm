@@ -1,12 +1,12 @@
 /obj/machinery/doppler_array
-	name = "tachyon-doppler array"
-	desc = "A highly precise directional sensor array which measures the release of quants from decaying tachyons. The doppler shifting of the mirror-image formed by these quants can reveal the size, location and temporal affects of energetic disturbances within a large radius ahead of the array.\n"
+	name = "速子多普勒阵列"
+	desc = "一台高度精确的定向传感器阵列，用于测量衰变速子所释放的量子。这些量子形成的镜像所产生的多普勒频移，可以揭示阵列前方大范围内能量扰动的规模、位置与时间效应。\n"
 	circuit = /obj/item/circuitboard/machine/doppler_array
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "tdoppler"
 	base_icon_state = "tdoppler"
 	density = TRUE
-	verb_say = "states coldly"
+	verb_say = "冷淡地陈述"
 	var/cooldown = 10
 	var/next_announce = 0
 	var/max_dist = 150
@@ -34,7 +34,7 @@
 	AddElement(/datum/element/simple_rotation)
 
 /datum/data/tachyon_record
-	name = "Log Recording"
+	name = "日志记录"
 	var/timestamp
 	var/coordinates = ""
 	var/displacement = 0
@@ -46,14 +46,14 @@
 
 /obj/machinery/doppler_array/examine(mob/user)
 	. = ..()
-	. += span_notice("It is currently facing [dir2text(dir)]")
+	. += span_notice("它目前朝向[dir2text(dir)]。")
 
 /obj/machinery/doppler_array/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/disk/computer))
 		return NONE
 	eject_disk(user)
 	if(!user.transferItemToLoc(tool, src))
-		balloon_alert(user, "it's stuck to your hand!")
+		balloon_alert(user, "它卡在你手上了！")
 		return ITEM_INTERACT_BLOCKING
 	inserted_disk = tool
 	return ITEM_INTERACT_SUCCESS
@@ -76,7 +76,7 @@
 		return
 
 	var/datum/computer_file/data/ordnance/explosive/record_data = new
-	record_data.filename = "Doppler Array " + record.name //Doppler Array Log Recording #x
+	record_data.filename = "多普勒阵列 " + record.name //Doppler Array Log Recording #x
 	record_data.explosion_record = record
 	record_data.possible_experiments = apply_experiments(record)
 
@@ -168,8 +168,8 @@
 		return FALSE
 
 	var/datum/data/tachyon_record/new_record = new /datum/data/tachyon_record()
-	new_record.name = "Log Recording #[record_number]"
-	new_record.timestamp = "[server_timestamp(ic_time = TRUE)] (PT: [round_timestamp()])"
+	new_record.name = "日志记录 #[record_number]"
+	new_record.timestamp = "[server_timestamp(ic_time = TRUE)]（PT：[round_timestamp()]）"
 	new_record.coordinates = "[epicenter.x], [epicenter.y]"
 	new_record.displacement = took
 	new_record.factual_radius["epicenter_radius"] = devastation_range
@@ -178,14 +178,14 @@
 	new_record.reaction_results = fetched_reaction_results
 	new_record.explosion_identifier = explosion_index
 
-	var/list/messages = list("Explosive disturbance detected.",
-		"Epicenter at: grid ([epicenter.x], [epicenter.y]). Temporal displacement of tachyons: [took] seconds.",
-		"Factual: Epicenter radius: [devastation_range]. Outer radius: [heavy_impact_range]. Shockwave radius: [light_impact_range].",
+	var/list/messages = list("检测到爆炸性扰动。",
+		"爆心位于：网格（[epicenter.x], [epicenter.y]）。速子时间位移：[took] 秒。",
+		"实测：爆心半径 [devastation_range]。外圈半径 [heavy_impact_range]。冲击波半径 [light_impact_range]。",
 	)
 
 	// If the bomb was capped, say its theoretical size.
 	if(devastation_range < orig_dev_range || heavy_impact_range < orig_heavy_range || light_impact_range < orig_light_range)
-		messages += "Theoretical: Epicenter radius: [orig_dev_range]. Outer radius: [orig_heavy_range]. Shockwave radius: [orig_light_range]."
+		messages += "理论：爆心半径 [orig_dev_range]。外圈半径 [orig_heavy_range]。冲击波半径 [orig_light_range]。"
 		new_record.theory_radius["epicenter_radius"] = orig_dev_range
 		new_record.theory_radius["outer_radius"] = orig_heavy_range
 		new_record.theory_radius["shockwave_radius"] = orig_light_range
@@ -279,7 +279,7 @@
 				var/datum/gas_reaction/reaction_path = path
 				record_data["reaction_results"] += initial(reaction_path.name)
 			if(TANK_MERGE_OVERPRESSURE in reaction_data[TANK_RESULTS_MISC])
-				record_data["reaction_results"] += "Tank overpressurized before reaction"
+				record_data["reaction_results"] += "反应开始前储罐已超压"
 
 		data["records"] += list(record_data)
 	return data

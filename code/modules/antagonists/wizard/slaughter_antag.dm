@@ -1,5 +1,5 @@
 /datum/antagonist/slaughter
-	name = "\improper Slaughter Demon"
+	name = "\improper 屠戮恶魔"
 	roundend_category = "demons"
 	show_name_in_check_antagonists = TRUE
 	ui_name = "AntagInfoDemon"
@@ -7,8 +7,8 @@
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
 	antagpanel_category = ANTAG_GROUP_WIZARDS
-	var/fluff = "You're a Demon of Wrath, often dragged into reality by wizards to terrorize their enemies."
-	var/objective_verb = "Kill"
+	var/fluff = "你是愤怒恶魔，常被巫师拖入现实，去恐吓他们的敌人。"
+	var/objective_verb = "杀死"
 	var/datum/mind/summoner
 	/// consume count for statistics
 	var/consume_count = 0
@@ -20,19 +20,19 @@
 /datum/antagonist/slaughter/greet()
 	. = ..()
 	owner.announce_objectives()
-	to_chat(owner, span_warning("You have a powerful alt-attack that slams people backwards that you can activate by right-clicking your target!"))
+	to_chat(owner, span_warning("你拥有一种强力的备用攻击，可将人向后拍飞，右键点击目标即可发动！"))
 
 /datum/antagonist/slaughter/forge_objectives()
 	if(summoner)
 		var/datum/objective/assassinate/new_objective = new /datum/objective/assassinate
 		new_objective.owner = owner
 		new_objective.target = summoner
-		new_objective.explanation_text = "[objective_verb] [summoner.name], the one who summoned you."
+		new_objective.explanation_text = "[objective_verb][summoner.name]，那个召唤你的人。"
 		objectives += new_objective
 	var/datum/objective/new_objective2 = new /datum/objective
 	new_objective2.owner = owner
 	new_objective2.no_failure = TRUE
-	new_objective2.explanation_text = "[objective_verb] everyone[summoner ? " else while you're at it":""]."
+	new_objective2.explanation_text = "[objective_verb]所有人[summoner ? "，顺便也把其他人解决掉":""]。"
 	objectives += new_objective2
 
 /datum/antagonist/slaughter/ui_static_data(mob/user)
@@ -54,18 +54,18 @@
 		report += printobjectives(objectives)
 
 	if(consume_count > 0)
-		report += span_greentext("The [name] consumed a total of [consume_count] bodies!")
+		report += span_greentext("[name]共吞噬了 [consume_count] 具尸体！")
 	else
-		report += span_redtext("The [name] did not consume anyone! Shame!!")
+		report += span_redtext("[name]一个人都没吞噬！真丢脸！！")
 
 	if(isnull(owner.current) || owner.current.stat == DEAD) //demons delete on death but if someone makes like a subtype that doesnt we also check for stat
-		report += "<span class='redtext big'>The [name] was vanquished!</span>"
+		report += "<span class='redtext big'>[name]被击败了！</span>"
 	else
-		report += "<span class='greentext big'>The [name] survived!</span>"
+		report += "<span class='greentext big'>[name]存活了下来！</span>"
 
 	return report.Join("<br>")
 
 /datum/antagonist/slaughter/laughter
-	name = "Laughter demon"
-	objective_verb = "Hug and tickle"
-	fluff = "You're a Demon of Envy, sometimes dragged into reality by wizards as a way to cause wanton chaos."
+	name = "欢笑恶魔"
+	objective_verb = "拥抱并挠痒"
+	fluff = "你是嫉妒恶魔，有时会被巫师拖入现实，以此肆意制造混乱。"

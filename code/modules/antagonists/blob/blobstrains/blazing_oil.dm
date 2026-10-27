@@ -1,16 +1,16 @@
 
 //sets you on fire, does burn damage, explodes into flame when burnt, weak to water
 /datum/blobstrain/reagent/blazing_oil
-	name = "Blazing Oil"
-	description = "will do medium-high burn damage ignoring armor, and set targets on fire."
-	effectdesc = "will also release bursts of flame when burnt, but takes damage from water."
-	analyzerdescdamage = "Does medium-high burn damage and sets targets on fire."
-	analyzerdesceffect = "Releases fire when burnt, but takes damage from water and other extinguishing liquids."
+	name = "炽燃燃油"
+	description = "会造成中高额烧伤伤害且无视护甲，并点燃目标。"
+	effectdesc = "还会在燃烧时释放出阵阵烈焰，但会受到水造成的伤害。"
+	analyzerdescdamage = "造成中高额烧伤伤害，并点燃目标。"
+	analyzerdesceffect = "燃烧时释放火焰，但会受到水和其他灭火液体造成的伤害。"
 	color = "#B68D00"
 	complementary_color = "#BE5532"
-	blobbernaut_message = "splashes"
-	message = "The blob splashes you with burning oil"
-	message_living = ", and you feel your skin char and melt"
+	blobbernaut_message = "泼洒"
+	message = "变形菌将炽热的燃油泼向你"
+	message_living = "，你感觉自己的皮肤被烧焦、熔化"
 	reagent = /datum/reagent/blob/blazing_oil
 
 /datum/blobstrain/reagent/blazing_oil/extinguish_reaction(obj/structure/blob/B)
@@ -27,8 +27,8 @@
 	return ..()
 
 /datum/reagent/blob/blazing_oil
-	name = "Blazing Oil"
-	taste_description = "burning oil"
+	name = "炽燃燃油"
+	taste_description = "燃烧的燃油"
 	color = "#B68D00"
 
 /datum/reagent/blob/blazing_oil/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message, touch_protection, mob/eye/blob/overmind)

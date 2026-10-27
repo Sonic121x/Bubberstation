@@ -7,7 +7,7 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { batchThreeDisplay } from '../localization/batchThreeDisplay';
 export const GulagTeleporterConsole = (props) => {
   const { act, data } = useBackend();
   const {
@@ -100,7 +100,7 @@ export const GulagTeleporterConsole = (props) => {
               {prisoner.name || 'No Occupant'}
             </LabeledList.Item>
             <LabeledList.Item label="Criminal Status">
-              {prisoner.crimstat || 'No Status'}
+              {prisoner.crimstat ? batchThreeDisplay(prisoner.crimstat) : '无状态'}
             </LabeledList.Item>
           </LabeledList>
         </Section>

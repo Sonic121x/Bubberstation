@@ -4,9 +4,9 @@
  * A component that saves and loads a shell for the integrated circuit.
  */
 /obj/item/circuit_component/save_shell
-	display_name = "Save Shell"
-	desc = "A component that saves a shell."
-	category = "Admin"
+	display_name = "保存外壳"
+	desc = "保存外壳的元件。"
+	category = "管理员"
 	circuit_flags = CIRCUIT_FLAG_ADMIN
 
 	/// Returns the output from the proccall
@@ -55,7 +55,7 @@
 		return ..()
 
 	loaded_shell = new shell_type(drop_location())
-	log_admin_circuit("[parent.get_creator()] spawned in [shell_type] at [ADMIN_COORDJMP(loaded_shell)].")
+	log_admin_circuit("[parent.get_creator()] 在 [ADMIN_COORDJMP(loaded_shell)] 生成了 [shell_type]。")
 	if(!loaded_shell)
 		return
 	loaded_shell.datum_flags |= DF_VAR_EDITED

@@ -19,21 +19,21 @@
 		if(sm_gas.power_transmission)
 			var/list/si_derived_data = siunit_isolated(sm_gas.power_transmission * BASE_POWER_TRANSMISSION_RATE, "W/MeV", 2)
 			numeric_data += list(list(
-				"name" = "Power Transmission Bonus",
+				"name" = "电力传输加成",
 				"amount" = si_derived_data["coefficient"],
 				"unit" = si_derived_data["unit"],
 				"positive" = TRUE,
 			))
 		if(sm_gas.heat_modifier)
 			numeric_data += list(list(
-				"name" = "Waste Multiplier",
+				"name" = "废热倍率",
 				"amount" = 100 * sm_gas.heat_modifier,
 				"unit" = "%",
 				"positive" = FALSE,
 			))
 		if(sm_gas.heat_resistance)
 			numeric_data += list(list(
-				"name" = "Heat Resistance",
+				"name" = "耐热性",
 				"amount" = 100 * sm_gas.heat_resistance,
 				"unit" = "%",
 				"positive" = TRUE,
@@ -41,14 +41,14 @@
 		if(sm_gas.heat_power_generation)
 			var/list/si_derived_data = siunit_isolated(sm_gas.heat_power_generation * GAS_HEAT_POWER_SCALING_COEFFICIENT MEGA SECONDS / SSair.wait, "eV/K/s", 2)
 			numeric_data += list(list(
-				"name" = "Heat Power Gain",
+				"name" = "热能发电增益",
 				"amount" = si_derived_data["coefficient"],
 				"unit" = si_derived_data["unit"],
 				"positive" = TRUE,
 			))
 		if(sm_gas.powerloss_inhibition)
 			numeric_data += list(list(
-				"name" = "Power Decay Negation",
+				"name" = "功率衰减抑制",
 				"amount" = 100 * sm_gas.powerloss_inhibition,
 				"unit" = "%",
 				"positive" = TRUE,
@@ -97,7 +97,7 @@ GLOBAL_LIST_INIT(sm_gas_behavior, init_sm_gas())
 	heat_modifier = 1
 	heat_power_generation = 1
 	powerloss_inhibition = 1
-	desc = "When absorbed by the Supermatter and exposed to oxygen, Pluoxium will be generated."
+	desc = "被超物质吸收并与氧气接触时，会生成富氧气。"
 
 /// Can be on Oxygen or CO2, but better lump it here since CO2 is rarer.
 /datum/sm_gas/carbon_dioxide/extra_effects(obj/machinery/power/supermatter_crystal/sm)
@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(sm_gas_behavior, init_sm_gas())
 	heat_modifier = 4
 	power_transmission = -0.2
 	heat_power_generation = 1
-	desc = "Will emit nuclear particles at compositions above 40%"
+	desc = "浓度高于 40% 时会发射核粒子。"
 
 /// Start to emit radballs at a maximum of 30% chance per tick
 /datum/sm_gas/bz/extra_effects(obj/machinery/power/supermatter_crystal/sm)
@@ -167,7 +167,7 @@ GLOBAL_LIST_INIT(sm_gas_behavior, init_sm_gas())
 /datum/sm_gas/miasma
 	gas_path = /datum/gas/miasma
 	heat_power_generation = 0.5
-	desc = "Will be consumed by the Supermatter to generate power."
+	desc = "会被超物质消耗以产生电力。"
 
 ///Miasma is really just microscopic particulate. It gets consumed like anything else that touches the crystal.
 /datum/sm_gas/miasma/extra_effects(obj/machinery/power/supermatter_crystal/sm)
@@ -180,7 +180,7 @@ GLOBAL_LIST_INIT(sm_gas_behavior, init_sm_gas())
 		return
 	sm.absorbed_gasmix.adjust_gas(/datum/gas/miasma, -consumed_miasma)
 	sm.external_power_trickle += consumed_miasma * MIASMA_POWER_GAIN
-	sm.log_activation("miasma absorption")
+	sm.log_activation("瘴气吸收")
 
 /datum/sm_gas/freon
 	gas_path = /datum/gas/freon
@@ -213,7 +213,7 @@ GLOBAL_LIST_INIT(sm_gas_behavior, init_sm_gas())
 	heat_modifier = 7
 	power_transmission = 2
 	heat_power_generation = 1
-	desc = "Will generate electrical zaps."
+	desc = "会产生电弧放电。"
 
 /datum/sm_gas/zauker/extra_effects(obj/machinery/power/supermatter_crystal/sm)
 	if(!prob(sm.gas_percentage[/datum/gas/zauker] * 100))

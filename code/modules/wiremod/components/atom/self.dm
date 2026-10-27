@@ -4,9 +4,9 @@
  * Return the current shell.
  */
 /obj/item/circuit_component/self
-	display_name = "Self"
-	desc = "A component that returns the current shell."
-	category = "Entity"
+	display_name = "自身"
+	desc = "返回当前外壳的元件。"
+	category = "实体"
 
 	/// The shell this component is attached to.
 	var/datum/port/output/output

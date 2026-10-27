@@ -1,12 +1,12 @@
 #define MOB_SPAWN_MINIMUM 3
 
 /datum/round_event_control/vent_clog
-	name = "Ventilation Clog: Minor"
+	name = "通风管道堵塞：轻微"
 	typepath = /datum/round_event/vent_clog
 	weight = 25
 	earliest_start = 5 MINUTES
 	category = EVENT_CATEGORY_JANITORIAL
-	description = "Harmless mobs climb out of a vent."
+	description = "无害的生物从通风口爬出。"
 
 /datum/round_event_control/vent_clog/can_spawn_event(players_amt, allow_magic = FALSE)
 	. = ..()
@@ -39,7 +39,7 @@
 
 /datum/round_event/vent_clog/announce(fake)
 	var/area/event_area = fake ? pick(GLOB.teleportlocs) : get_area_name(vent)
-	priority_announce("Minor biological obstruction detected in the ventilation network. Blockage is believed to be in the [event_area].", "Custodial Notification")
+	priority_announce("通风网络中检测到轻微生物阻塞。堵塞位置据信位于 [event_area]。", "保洁通知")
 
 /datum/round_event/vent_clog/setup()
 	vent = get_vent()
@@ -138,7 +138,7 @@
 	clog_vent()
 
 	announce_to_ghosts(vent)
-	priority_announce("Lifesign readings have moved to a new location in the ventilation network. New Location: [prob(50) ? "Unknown.":"[get_area_name(vent)]."]", "Lifesign Notification")
+	priority_announce("生命信号读数已转移至通风网络中的新位置。新位置：[prob(50) ? "未知。":"[get_area_name(vent)]。"]", "生命信号通知")
 
 /**
  * Handles the production of our mob and adds it to our living_mobs list
@@ -158,7 +158,7 @@
 
 	var/mob/new_mob = new spawned_mob(vent_loc) // we spawn it early so we can actually use is_blocked_turf
 	living_mobs += WEAKREF(new_mob)
-	vent.visible_message(span_warning("[new_mob] crawls out of [vent]!"))
+	vent.visible_message(span_warning("[new_mob] 从 [vent] 中爬出！"))
 
 	var/list/potential_locations = list(vent_loc) // already confirmed to be accessable via the 2nd if check of the proc
 
@@ -183,12 +183,12 @@
 ///Handles the actual unclogging action and ends the event on completion.
 /datum/round_event/vent_clog/proc/attempt_unclog(mob/user)
 	if(vent.welded)
-		to_chat(user, span_notice("You cannot pump [vent] if it's welded shut!"))
+		to_chat(user, span_notice("如果 [vent] 被焊死了，你就无法用搋子疏通！"))
 		return
 
-	user.balloon_alert_to_viewers("plunging vent...", "plunging clogged vent...")
+	user.balloon_alert_to_viewers("正在疏通通风口……", "正在疏通堵塞的通风口……")
 	if(do_after(user, 6 SECONDS, target = vent))
-		user.balloon_alert_to_viewers("finished plunging")
+		user.balloon_alert_to_viewers("疏通完成")
 		clear_signals()
 		kill()
 
@@ -208,12 +208,12 @@
 	UnregisterSignal(vent, list(COMSIG_QDELETING, COMSIG_PLUNGER_ACT))
 
 /datum/round_event_control/vent_clog/major
-	name = "Ventilation Clog: Major"
+	name = "通风管道堵塞：严重"
 	typepath = /datum/round_event/vent_clog/major
 	weight = 12
 	max_occurrences = 5
 	earliest_start = 10 MINUTES
-	description = "Dangerous mobs climb out of a vent."
+	description = "危险的生物从通风口爬出。"
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 4
 
@@ -239,16 +239,16 @@
 
 /datum/round_event/vent_clog/major/announce(fake)
 	var/area/event_area = fake ? pick(GLOB.teleportlocs) : get_area_name(vent)
-	priority_announce("Major biological obstruction detected in the ventilation network. Blockage is believed to be in the [event_area] area.", "Infestation Alert")
+	priority_announce("通风网络中检测到严重生物阻塞。堵塞位置据信位于 [event_area] 区域。", "虫害警报")
 
 /datum/round_event_control/vent_clog/critical
-	name = "Ventilation Clog: Critical"
+	name = "通风管道堵塞：危急"
 	typepath = /datum/round_event/vent_clog/critical
 	weight = 8
 	min_players = 15
 	max_occurrences = 3
 	earliest_start = 25 MINUTES
-	description = "Really dangerous mobs climb out of a vent."
+	description = "极其危险的生物从通风口爬出。"
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 6
 
@@ -263,7 +263,7 @@
 
 /datum/round_event/vent_clog/critical/announce(fake)
 	var/area/event_area = fake ? pick(GLOB.teleportlocs) : get_area_name(vent)
-	priority_announce("Potentially hazardous lifesigns detected in the [event_area] ventilation network.", "Security Alert")
+	priority_announce("在 [event_area] 通风网络中检测到潜在危险的生命信号。", "安保警报")
 
 /datum/round_event/vent_clog/critical/get_mob()
 	var/static/list/mob_list = list(
@@ -274,11 +274,11 @@
 	return pick(mob_list)
 
 /datum/round_event_control/vent_clog/strange
-	name = "Ventilation Clog: Strange"
+	name = "通风管道堵塞：异常"
 	typepath = /datum/round_event/vent_clog/strange
 	weight = 5
 	max_occurrences = 2
-	description = "Strange mobs climb out of a vent, harmfulness varies."
+	description = "奇怪的生物从通风口爬出，危害程度不一。"
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 7
 
@@ -296,7 +296,7 @@
 
 /datum/round_event/vent_clog/strange/announce(fake)
 	var/area/event_area = fake ? pick(GLOB.teleportlocs) : get_area_name(vent)
-	priority_announce("Unusual lifesign readings detected in the [event_area] ventilation network.", "Lifesign Alert", ANNOUNCER_ALIENS)
+	priority_announce("在 [event_area] 通风网络中检测到异常生命信号读数。", "生命信号警报", ANNOUNCER_ALIENS)
 
 /datum/round_event/vent_clog/strange/get_mob()
 	var/static/list/mob_list = list(

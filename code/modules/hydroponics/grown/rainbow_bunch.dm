@@ -1,9 +1,9 @@
 /obj/item/seeds/rainbow_bunch
-	name = "rainbow bunch seed pack"
-	desc = "A pack of seeds that'll grow into a beautiful bush of various colored flowers."
+	name = "彩虹花种子包"
+	desc = "一包种子，会长成一丛色彩缤纷的美丽花朵。"
 	icon_state = "seed-rainbowbunch"
 	species = "rainbowbunch"
-	plantname = "Rainbow Flowers"
+	plantname = "彩虹花"
 	icon_harvest = "rainbowbunch-harvest"
 	product = /obj/item/food/grown/flower/rainbow_flower
 	lifespan = 25
@@ -21,8 +21,8 @@
 
 /obj/item/food/grown/flower/rainbow_flower
 	seed = /obj/item/seeds/rainbow_bunch
-	name = "rainbow flower"
-	desc = "A beautiful flower capable of being used for most dyeing processes."
+	name = "彩虹花"
+	desc = "一朵美丽的花，可用于大多数染色工艺。"
 	slot_flags = ITEM_SLOT_HEAD
 	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER
 	force = 0
@@ -50,39 +50,39 @@
 			set_greyscale("#c50b0b")
 			reagents.add_reagent(/datum/reagent/colorful_reagent/powder/red, 3)
 			dye_color = DYE_RED
-			desc += " This one is in a bright red color."
+			desc += " 这一朵是鲜红色的。"
 		if(2)
 			set_greyscale("#f76f07")
 			reagents.add_reagent(/datum/reagent/colorful_reagent/powder/orange, 3)
 			dye_color = DYE_ORANGE
-			desc += " This one is in a citrus orange color."
+			desc += " 这一朵是柑橘橙色。"
 		if(3)
 			set_greyscale("#d8ce13")
 			reagents.add_reagent(/datum/reagent/colorful_reagent/powder/yellow, 3)
 			dye_color = DYE_YELLOW
-			desc += " This one is in a bright yellow color."
+			desc += " 这一朵是明黄色的。"
 		if(4)
 			set_greyscale("#a0da23")
 			reagents.add_reagent(/datum/reagent/colorful_reagent/powder/green, 3)
 			dye_color = DYE_GREEN
-			desc += " This one is in a grassy green color."
+			desc += " 这一朵是草绿色的。"
 		if(5)
 			set_greyscale("#0862c1")
 			reagents.add_reagent(/datum/reagent/colorful_reagent/powder/blue, 3)
 			dye_color = DYE_BLUE
-			desc += " This one is in a soothing blue color."
+			desc += " 这一朵是令人舒缓的蓝色。"
 		if(6)
 			set_greyscale("#ad00cc")
 			reagents.add_reagent(/datum/reagent/colorful_reagent/powder/purple, 3)
 			dye_color = DYE_PURPLE
-			desc += " This one is in a vibrant purple color."
+			desc += " 这一朵是鲜艳的紫色。"
 		if(7)
 			set_greyscale("#161616")
 			reagents.add_reagent(/datum/reagent/colorful_reagent/powder/black, 3)
 			dye_color = DYE_BLACK
-			desc += " This one is in a midnight black color."
+			desc += " 这一朵是午夜黑色的。"
 		if(8)
 			set_greyscale(COLOR_WHITE)
 			reagents.add_reagent(/datum/reagent/colorful_reagent/powder/white, 3)
 			dye_color = DYE_WHITE
-			desc += " This one is in a pure white color."
+			desc += " 这一朵是纯白色的。"

@@ -2,15 +2,15 @@
 
 ///Pathfinder - Can fly the suit from a long distance to an implant installed in someone.
 /obj/item/mod/module/pathfinder
-	name = "MOD pathfinder module"
-	desc = "This module, brought to you by Nakamura Engineering, has two components. \
-		The first component is a series of thrusters and a computerized location subroutine installed into the \
-		very control unit of the suit, allowing it flight at highway speeds using the suit's access locks \
-		to navigate through the station, and to be able to locate the second part of the system; \
-		a pathfinding implant installed into the base of the user's spine, \
-		broadcasting their location to the suit and allowing them to recall it to their person at any time. \
-		The implant is stored in the module and needs to be injected in a human to function. \
-		Nakamura Engineering swears up and down there's airbrakes."
+	name = "MOD 寻路模块"
+	desc = "本模块由中村工程公司提供，包含两个部分。\
+		第一部分是一组推进器和一套计算机化定位子程序，安装在\
+		套装的控制单元之中，使套装能以高速公路般的速度飞行，并利用套装的权限锁\
+		在站内导航，同时还能定位系统的第二部分；\
+		即植入使用者脊柱底部的寻路植入体，\
+		它会将使用者的位置广播给套装，让他们随时把套装召回身边。\
+		植入体存放于模块内部，需注入人体才能生效。\
+		中村工程公司信誓旦旦地保证确实有减速板。"
 	icon_state = "pathfinder"
 	complexity = 1
 	module_type = MODULE_USABLE
@@ -54,23 +54,23 @@
 /obj/item/mod/module/pathfinder/examine(mob/user)
 	. = ..()
 	if(implant_inside)
-		. += span_notice("Use it on a human to implant them.")
+		. += span_notice("对人类使用以将其植入。")
 	else
-		. += span_warning("The implant is missing.")
+		. += span_warning("植入体不见了。")
 
 /obj/item/mod/module/pathfinder/attack(mob/living/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(!ishuman(target) || !implant_inside) // Not human, or no implant in module
 		return
 	if(!do_after(user, 1.5 SECONDS, target = target))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return
 	if(!implant.implant(target, user)) // If implant fails
-		balloon_alert(user, "can't implant!")
+		balloon_alert(user, "无法植入！")
 		return
 	if(target == user)
-		to_chat(user, span_notice("You implant yourself with [implant]."))
+		to_chat(user, span_notice("你将 [implant] 植入了自己体内。"))
 	else
-		target.visible_message(span_notice("[user] implants [target]."), span_notice("[user] implants you with [implant]."))
+		target.visible_message(span_notice("[user] 将植入体植入了 [target] 体内。"), span_notice("[user] 将 [implant] 植入了你体内。"))
 	playsound(src, 'sound/effects/spray.ogg', 30, TRUE, -6)
 
 /obj/item/mod/module/pathfinder/on_use(mob/activator)
@@ -79,7 +79,7 @@
 		try_implant(activator)
 		return
 	if(mod.wearer)
-		balloon_alert(activator, "suit already worn!")
+		balloon_alert(activator, "套装已被穿戴！")
 	else
 		recall(activator)
 
@@ -89,11 +89,11 @@
 	if(!ishuman(mod.wearer)) // Wearer isn't human
 		return
 	if(!implant.implant(mod.wearer, mod.wearer))
-		balloon_alert(activator, "can't implant!")
+		balloon_alert(activator, "无法植入！")
 		return
-	balloon_alert(activator, "implanted")
+	balloon_alert(activator, "已植入")
 	if(!(activator == mod.wearer)) // someone else implanted you
-		balloon_alert(mod.wearer, "tracker implanted!")
+		balloon_alert(mod.wearer, "追踪器已植入！")
 	playsound(src, 'sound/effects/spray.ogg', 30, TRUE, -6)
 
 /obj/item/mod/module/pathfinder/proc/attach(mob/living/user)
@@ -111,23 +111,23 @@
 
 /obj/item/mod/module/pathfinder/proc/recall(mob/recaller)
 	if(!implant)
-		balloon_alert(recaller, "no implant!")
+		balloon_alert(recaller, "没有植入体！")
 		return FALSE
 	if(recaller != implant.imp_in && !allow_suit_activation) // No pAI recalling
-		balloon_alert(recaller, "invalid user!")
+		balloon_alert(recaller, "用户无效！")
 		return FALSE
 	if(mod.open)
-		balloon_alert(recaller, "cover open!")
+		balloon_alert(recaller, "舱盖开启！")
 		return FALSE
 	if(in_transit)
-		balloon_alert(recaller, "suit in transit!")
+		balloon_alert(recaller, "套装正在传输！")
 		return FALSE
 	var/atom_on_turf = get_atom_on_turf(mod)
 	if(ismob(atom_on_turf))
 		if(atom_on_turf == recaller)
-			balloon_alert(recaller, "already worn!")
+			balloon_alert(recaller, "已经穿在身上了！")
 		else
-			recaller.balloon_alert(recaller, "suit is worn by somebody else!")
+			recaller.balloon_alert(recaller, "套装正被其他人穿着！")
 		return FALSE
 
 	in_transit = TRUE
@@ -135,16 +135,16 @@
 	mod.Shake(pixelshiftx = 1, pixelshifty = 1, duration = PATHFINDER_PRE_ANIMATE_TIME)
 	addtimer(CALLBACK(src, PROC_REF(do_recall), recaller), PATHFINDER_PRE_ANIMATE_TIME, TIMER_DELETE_ME)
 
-	balloon_alert(recaller, "suit recalled")
+	balloon_alert(recaller, "套装已召回")
 	if(!(recaller == mod.wearer))
-		balloon_alert(mod.wearer, "suit recalled")
+		balloon_alert(mod.wearer, "套装已召回")
 	return TRUE
 
 /// Pod-transport the suit to its owner
 /obj/item/mod/module/pathfinder/proc/do_recall(mob/recaller)
 	var/container = get_atom_on_turf(mod)
 	if(ismob(container))
-		balloon_alert(recaller, "launch interrupted!")
+		balloon_alert(recaller, "发射被打断！")
 		in_transit = FALSE
 		return
 
@@ -193,18 +193,18 @@
 
 
 /obj/item/implant/mod
-	name = "MOD pathfinder implant"
-	desc = "Lets you recall a MODsuit to you at any time."
+	name = "MOD 寻路植入体"
+	desc = "让你可以随时召回 MOD 模块化外骨骼。"
 	actions_types = list(/datum/action/item_action/mod_recall)
 	allow_multiple = TRUE // Surgrey is annoying if you loose your MOD
 	custom_materials = null
 	/// The pathfinder module we are linked to.
 	var/obj/item/mod/module/pathfinder/module
-	implant_info = "Activated manually. Allows for the recall of a Modular Outerwear Device by the implant owner at any time."
-	implant_lore = "Designed by Nakamura Industries, the MOD Pathfinder implant is the receiving end of the MOD pathfinder module, \
-		designed to be fabricated with its associated host module. It's designed to be implanted near the base of the spine: \
-		installing it anywhere else may result in the associated suit deploying incorrectly or failing to engage its airbrakes, \
-		which Nakamura Industries promises are actually present."
+	implant_info = "手动激活。植入体所有者可随时召回模块化外骨骼。"
+	implant_lore = "MOD 寻路植入体由中村工业公司设计，是 MOD 寻路模块的接收端，\
+		被设计为与其配套主机模块一同制造。它应被植入脊柱底部附近：\
+		植入到其他任何位置都可能导致配套套装部署错误，或无法启用减速板，\
+		而中村工业公司承诺减速板确实存在。"
 
 /obj/item/implant/mod/Initialize(mapload)
 	. = ..()
@@ -217,8 +217,8 @@
 	return ..()
 
 /datum/action/item_action/mod_recall
-	name = "Recall MOD"
-	desc = "Recall a MODsuit anyplace, anytime."
+	name = "召回 MOD"
+	desc = "随时随地召回 MOD 模块化外骨骼。"
 	check_flags = AB_CHECK_CONSCIOUS
 	background_icon_state = "bg_mod"
 	overlay_icon_state = "bg_mod_border"
@@ -236,10 +236,10 @@
 /datum/action/item_action/mod_recall/do_effect(trigger_flags)
 	var/obj/item/implant/mod/implant = target
 	if(!COOLDOWN_FINISHED(src, recall_cooldown))
-		implant.balloon_alert(owner, "on cooldown!")
+		implant.balloon_alert(owner, "冷却中！")
 		return
 	if(implant.module.recall(owner))
-		implant.balloon_alert(owner, "suit incoming...")
+		implant.balloon_alert(owner, "套装正在飞来……")
 		COOLDOWN_START(src, recall_cooldown, 5 SECONDS)
 
 /// Special pod subtype we use just to make insertion check easy

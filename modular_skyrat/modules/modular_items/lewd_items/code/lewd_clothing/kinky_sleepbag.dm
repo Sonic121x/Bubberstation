@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/straight_jacket/kinky_sleepbag
-	name = "latex sleeping bag"
-	desc = "A tight sleeping bag made of a shiny material. It would be dangerous to put it on yourself."
+	name = "乳胶睡袋"
+	desc = "一个由闪亮材料制成的紧身睡袋。自己穿上它可能会有危险。"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_suits.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_suit/sleepbag_normal.dmi'
 	worn_icon_digi = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_suit/sleepbag_digi.dmi'
@@ -52,7 +52,7 @@
 /obj/item/clothing/suit/straight_jacket/kinky_sleepbag/click_alt(mob/user)
 	var/mob/living/carbon/human/clicking_human = user
 	if(istype(clicking_human.wear_suit, /obj/item/clothing/suit/straight_jacket/kinky_sleepbag))
-		to_chat(user, span_warning("Your hands are stuck, you can't do this!"))
+		to_chat(user, span_warning("你的双手被困住了，做不了这个！"))
 		return CLICK_ACTION_BLOCKING
 	switch(color_changed)
 		if(FALSE)
@@ -68,12 +68,12 @@
 		if(TRUE)
 			if(bag_state == "deflated")
 				fold(user)
-				to_chat(user, span_notice("The sleeping bag now is [bag_fold? "folded." : "unfolded."]"))
+				to_chat(user, span_notice("睡袋现在是[bag_fold? "折叠状态。" : "展开状态。"]"))
 				update_icon()
 				update_icon_state()
 				return CLICK_ACTION_SUCCESS
 			else
-				to_chat(user, span_notice("You can't fold the bag while it's inflated!"))
+				to_chat(user, span_notice("睡袋充气时你无法把它折叠起来！"))
 				return CLICK_ACTION_BLOCKING
 
 /obj/item/clothing/suit/straight_jacket/kinky_sleepbag/proc/check_menu(mob/living/user)
@@ -113,11 +113,11 @@
 		time_to_sound_left = time_to_sound
 
 		if(bag_state == "inflated")
-			to_chat(affected_human, span_purple("You realize that you can't move even an inch. The inflated sleeping bag squeezes you from all sides!"))
+			to_chat(affected_human, span_purple("你发现自己连一寸都动不了。充气的睡袋从四面八方挤压着你！"))
 			affected_human.cut_overlay(affected_human.overlays_standing[HEAD_LAYER])
 			affected_human.cut_overlay(affected_human.overlays_standing[HAIR_LAYER])
 		if(bag_state == "deflated")
-			to_chat(affected_human, span_purple("You realize that moving now is much harder. You're fully restrained, any struggling is useless!"))
+			to_chat(affected_human, span_purple("你发现现在动弹起来困难多了。你被完全拘束住了，怎么挣扎都没用！"))
 	. = ..()
 
 //to inflate/deflate that thing
@@ -125,11 +125,11 @@
 	var/mob/living/carbon/human/affected_human = user
 	if(bag_fold == FALSE)
 		toggle_mode()
-		to_chat(affected_human, span_notice("The sleeping bag now is [bag_state? "inflated." : "deflated."]"))
+		to_chat(affected_human, span_notice("睡袋现在是[bag_state? "充气状态。" : "放气状态。"]"))
 		update_icon()
 		update_icon_state()
 	else
-		to_chat(affected_human, span_notice("You need to unfold the bag before inflating it!"))
+		to_chat(affected_human, span_notice("你需要先展开睡袋才能给它充气！"))
 
 /obj/item/clothing/suit/straight_jacket/kinky_sleepbag/proc/fold(mob/user)
 	bag_fold = !bag_fold
@@ -162,7 +162,7 @@
 	if(ishuman(user))
 		if(src == affected_human.wear_suit)
 			REMOVE_TRAIT(user, TRAIT_FLOORED, CLOTHING_TRAIT)
-			to_chat(user, span_purple("You are finally free! The bag is no longer constricting your movements."))
+			to_chat(user, span_purple("你终于自由了！睡袋不再束缚你的行动。"))
 
 			affected_human.add_overlay(affected_human.overlays_standing[SHOES_LAYER])
 			affected_human.update_worn_shoes()

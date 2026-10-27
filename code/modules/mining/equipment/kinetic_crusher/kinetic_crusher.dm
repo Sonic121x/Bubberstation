@@ -6,10 +6,10 @@
  * a good tradeoff and a decent playstyle.
  */
 /obj/item/kinetic_crusher
-	name = "proto-kinetic crusher"
-	desc = "An early design of the proto-kinetic accelerator, it is little more than a combination of various mining tools cobbled together, \
-		forming a high-tech club. While it is an effective mining tool, it did little to aid any but the most skilled and/or \
-		suicidal miners against local fauna."
+	name = "原型动能粉碎器"
+	desc = "原型动能加速器的早期设计，不过是将各种采矿工具拼凑起来组成的一根高科技棍棒。\
+		虽然它是有效的采矿工具，但除了技艺最精湛和（或）\
+		最不要命的矿工之外，它对付当地动物群几乎帮不上什么忙。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "crusher"
 	base_icon_state = "crusher"
@@ -26,8 +26,8 @@
 	armour_penetration = 10
 	custom_materials = list(/datum/material/iron=HALF_SHEET_MATERIAL_AMOUNT*1.15, /datum/material/glass=HALF_SHEET_MATERIAL_AMOUNT*2.075)
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
-	attack_verb_continuous = list("smashes", "crushes", "cleaves", "chops", "pulps")
-	attack_verb_simple = list("smash", "crush", "cleave", "chop", "pulp")
+	attack_verb_continuous = list("猛砸", "碾碎", "劈砍", "斩击", "捣烂")
+	attack_verb_simple = list("猛砸", "碾碎", "劈砍", "斩击", "捣烂")
 	sharpness = SHARP_EDGED
 	actions_types = list(/datum/action/item_action/toggle_light)
 	action_slots = ALL
@@ -97,11 +97,11 @@
 /obj/item/kinetic_crusher/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(!held_item)
-		context[SCREENTIP_CONTEXT_RMB] = "Detach trophy"
+		context[SCREENTIP_CONTEXT_RMB] = "取下战利品"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item) && held_item.tool_behaviour == TOOL_CROWBAR)
-		context[SCREENTIP_CONTEXT_LMB] = "Detach all trophies"
+		context[SCREENTIP_CONTEXT_LMB] = "取下所有战利品"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/kinetic_crusher/Destroy()
@@ -114,10 +114,10 @@
 
 /obj/item/kinetic_crusher/examine(mob/living/user)
 	. = ..()
-	. += span_notice("Mark a large creature with a destabilizing force with right-click, then hit them in melee to do <b>[force_wielded + detonation_damage]</b> damage.")
-	. += span_notice("Does <b>[force_wielded + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force_wielded + detonation_damage]</b>.")
+	. += span_notice("右键用失稳力标记一只大型生物，然后近战击中它，造成 <b>[force_wielded + detonation_damage]</b> 点伤害。")
+	. += span_notice("若背刺目标，则造成 <b>[force_wielded + detonation_damage + backstab_bonus]</b> 点伤害，而非 <b>[force_wielded + detonation_damage]</b> 点。")
 	for(var/obj/item/crusher_trophy/crusher_trophy as anything in trophies)
-		. += span_notice("It has \a [crusher_trophy] attached, which causes [crusher_trophy.effect_desc()].")
+		. += span_notice("它装有一个 [crusher_trophy]，效果为：[crusher_trophy.effect_desc()]。")
 
 /obj/item/kinetic_crusher/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/crusher_trophy))
@@ -128,9 +128,9 @@
 /obj/item/kinetic_crusher/crowbar_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(!LAZYLEN(trophies))
-		user.balloon_alert(user, "no trophies!")
+		user.balloon_alert(user, "没有战利品！")
 		return ITEM_INTERACT_BLOCKING
-	user.balloon_alert(user, "trophies removed")
+	user.balloon_alert(user, "战利品已取下")
 	tool.play_tool_sound(src)
 	for(var/obj/item/crusher_trophy/crusher_trophy as anything in trophies)
 		crusher_trophy.remove_from(src, user)
@@ -181,7 +181,7 @@
 	if(.)
 		return TRUE
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))
-		user.balloon_alert(user, "must be wielded!")
+		user.balloon_alert(user, "必须双手持握！")
 		return TRUE
 	return .
 
@@ -211,10 +211,10 @@
 
 /obj/item/kinetic_crusher/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))
-		balloon_alert(user, "wield it first!")
+		balloon_alert(user, "请先双手持握！")
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_with == user)
-		balloon_alert(user, "can't aim at yourself!")
+		balloon_alert(user, "不能瞄准自己！")
 		return ITEM_INTERACT_BLOCKING
 	fire_kinetic_blast(interacting_with, user, modifiers)
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -287,12 +287,12 @@
 		. += "[icon_state]_lit"
 
 /obj/item/kinetic_crusher/compact //for admins
-	name = "compact kinetic crusher"
+	name = "紧凑型动能粉碎器"
 	w_class = WEIGHT_CLASS_NORMAL
 
 //destablizing force
 /obj/projectile/destabilizer
-	name = "destabilizing force"
+	name = "失稳力"
 	damage = 0 //We're just here to mark people. This is still a melee weapon.
 	damage_type = BRUTE
 	armor_flag = BOMB

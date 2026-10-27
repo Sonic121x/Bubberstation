@@ -27,12 +27,12 @@
 #define MOLS_TO_SPAWN 4000
 
 /datum/way_destination/atmosphere
-	name = "The Clouds"
-	desc = "Little dares to tread the skies of the Mansus. There is little there, and what is found is quickly swept away by the Light, searing and burning. \
-	And yet, in one corner, outside of the eyes of even the Owl, lies a cluster of clouds of gasses both foreign and native to the mortal and nighttime planes."
-	glimpse = "A MISTY EXPANSE OF GREENREDBLUEWHITEPATTERNSZEBRASLIGHTAND DARK AND"
-	glimpse_heretic = "The Light catarizes the mist before you, creating a eldritch lightshow entrancing only to you."
-	spawn_text = "a whirlwind of multicolored clouds ejecting from it!"
+	name = "云海"
+	desc = "鲜有存在敢踏入漫宿的天空。那里空无几物，偶有事物出现，也会很快被光焚烧、卷走。\
+	然而，在连鸮也看不见的一个角落，聚集着一片气云，其中的气体有些属于凡世与夜境，有些则全然陌生。"
+	glimpse = "雾气弥漫绿红蓝白纹路斑马光与暗与"
+	glimpse_heretic = "光灼烧着眼前的雾气，形成一场只有你才会为之着迷的邪异光景。"
+	spawn_text = "五彩气云形成的旋风从中喷涌而出！"
 	var/static/list/spawnable_gasses = list(
 		// neutral/slightly negative
 		/datum/gas/nitrous_oxide = 50,
@@ -59,14 +59,14 @@
 #undef MOLS_TO_SPAWN
 
 /datum/way_destination/flesh_organs
-	name = "The Butchery"
-	desc = "Deep in the woods, hidden by thick underbrush, is a factory producing only the finest cuts of meat in the Mansus. Those with a certain taste \
-	find themselves travelling to this alcove to satisfy their more sinful tastes, and maybe pick up an extra arm or two on the way. Under the domain \
-	of the brutal god-from-steel Skinweaver, spirits and other malevolent forces often stay far away."
-	glimpse = "OH GOD! OH GOD!! SO MUCH BLOOD!! MEAT!! ORGANS!! EYES!! HUNG ON MEAT HOOKS!! I'M NEXT!! I'M NEXT"
-	glimpse_heretic = "A smiling butcher faces the now-open way, beckoning you closer. Its flesh-soaked cleaver shines in the Light, \
-	waiting to permeate your flesh and turn you into a divine meal..."
-	spawn_text = "a flurry of grotesque meat, viscera, and organs ejecting from it!"
+	name = "屠宰场"
+	desc = "密林深处，浓密灌木掩藏着一座工厂，只出产漫宿最上等的肉块。口味独特者\
+	会前往这处隐秘角落，满足更加罪恶的嗜好，也许顺便再带走一两条胳膊。此地由残暴的\
+	钢铁之神织皮者统治，幽灵与其他恶意存在往往敬而远之。"
+	glimpse = "天啊！天啊！！这么多血！！肉！！器官！！眼睛！！挂在肉钩上！！下一个就是我！！下一个就是我"
+	glimpse_heretic = "一名面带微笑的屠夫面对着敞开的通路，招手让你靠近。沾满血肉的屠刀在光中闪耀，\
+	等待着切入你的血肉，将你化为神圣的佳肴……"
+	spawn_text = "一阵骇人的血肉、内脏与器官从中喷出！"
 	var/static/list/potential_mob_spawns = list(
 		/mob/living/basic/heretic_summon/raw_prophet/ruins = 50,
 	)
@@ -101,14 +101,14 @@
 		new typepath(get_turf(way))
 
 /datum/way_destination/knowledgebooks
-	name = "The Ascendant Conservatorium"
-	desc = "Far, far high in the peaks of the Mansus, past the mountain of blades and the wormfeast, lies the forgotten and mind-forgettable \
-	conservatorium. Knowledge of all kinds is gathered here by spider-spirits, to be sealed away and never read. Any interloper foolish \
-	enough to trespass is immediately assailed by mirror-fiends, and those who walk too loud are snuffed out by the Watchwoman."
-	glimpse = "KNOWLEDGEKNOWLEDGEKNOWLEDGEKNWO%@LE^%%&%&%!%&^^!$$!"
-	glimpse_heretic = "A infinite torrent of knowledge flies through the gap in the veil, nearly blinding you with the sheer volume. You can't make \
-	heads or tails of it... but the Light is everpresent, even here."
-	spawn_text = "a torrent of raw knowledge and its guardians ejecting from it!"
+	name = "登临秘藏馆"
+	desc = "在漫宿群峰的极高处，越过刀山与蠕虫之宴，矗立着被遗忘、也令人无法记住的\
+	秘藏馆。蛛灵将各类知识收集于此，封存起来，永不阅读。任何愚蠢的闯入者\
+	都会立即遭到镜魔袭击，脚步过响者则会被守望女士抹杀。"
+	glimpse = "知识知识知识知%@识^%%&%&%!%&^^!$$!"
+	glimpse_heretic = "无穷无尽的知识洪流穿过帷幕的缝隙，庞大的数量几乎令你失明。你完全无法\
+	理解……但即便在这里，光也无处不在。"
+	spawn_text = "原始知识及其守护者的洪流从中喷涌而出！"
 	var/static/list/potential_book_spawns = list(
 		/obj/item/book/granter/crafting_recipe/death_sandwich = 500,
 		/obj/item/book/granter/crafting_recipe/trash_cannon = 500,
@@ -144,15 +144,15 @@
 		target_turf.air_update_turf(FALSE, FALSE)
 
 /datum/way_destination/clown_planet
-	name = "The Clown Abyss"
-	desc = "Deep, deep, deep, in nowhere, in the abyss, beneath the eyes of the living gods, beneath anyone and anything's perception---rests a \
-	dead god. Deader, colder than anything known to man and unman. Surrounded by darkness, yellow-orange, and its eternal, undying guards, rests \
-	a god of no name. Of no repute. Its only legacy... is... HONK."
-	glimpse = "HOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONK"
-	glimpse_heretic = "The titan-god lies before you, surrounded by its corrupt gold and guardians. They stare at you, forming a wall between \
-	this thin, unwelcome incursion and their charge. There is no Light here. There was never Light here. A shiver runs down your spine as you gaze \
-	into the abyss."
-	spawn_text = "an ear-splitting honk paving the way for an ejection of strange gold metal and gold-clad guardians!"
+	name = "小丑深渊"
+	desc = "在极深、极深、极深的无何有之地，在深渊之中，远离活神的目光，远离任何存在的感知——安息着\
+	一位死神。比人类与非人所知的一切都更死寂、更冰冷。黑暗、黄橙色和永恒不死的守卫簇拥着\
+	这位无名、无闻的神。祂唯一的遗产……便是……嘟。"
+	glimpse = "嘟——————————————"
+	glimpse_heretic = "巨神躺在你面前，周围环绕着腐化的黄金与守卫。守卫凝视着你，在\
+	这道不受欢迎的狭窄侵入口与受守护者之间筑起一道墙。这里没有光，从来都没有光。当你凝望\
+	深渊时，一阵寒意掠过脊背。"
+	spawn_text = "刺耳的喇叭声响起，随后喷出了奇异的金色金属与披金守卫！"
 	var/static/clowns_to_spawn = 6
 	var/static/bananium_sheet_size = 20
 
@@ -174,17 +174,17 @@
 			continue
 		if(honk_victim.soundbang_act(SOUNDBANG_NORMAL, stun_pwr = 5, damage_pwr = 15, deafen_pwr = 30)) //Ear protection will prevent these effects
 			honk_victim.set_jitter_if_lower(120 SECONDS)
-			to_chat(honk_victim, span_clown("HOOOOONK!"))
+			to_chat(honk_victim, span_clown("嘟————！"))
 
 /datum/way_destination/anomalies
-	name = "The Chaossphere"
-	desc = "Deep in the mansus, past the bone-gates, behind the mueseum of glass, lies a ethereal dome of everchanging conditions. \
-	Even the laws of the Mansus bend and shift in the incomprehensible chaos under the dome, bred by the Skinweaver for its own purposes. Only \
-	the native and the ascended have passed through the dome and come out unscathed. And yet few wish to speak of it."
-	glimpse = "YOUCANTMAKEOUTWHATYOURESEEINGYOUCANTMAKEITOUTYOUCANT*DESCRIBE*ITYOUCANTYOUCANTYOU" // yeah its utterly incomprehensible
-	glimpse_heretic = "Even for a mind as trained as your own, casting your gaze into the thin way into the chaos-dome is painful. And yet - through \
-	the shifting tides of chaos, thousands, thousands of universes, you catch a glimpse of it. The Light."
-	spawn_text = "a pinch of chaos escaping the way before it finally shuts for good!"
+	name = "混沌穹域"
+	desc = "漫宿深处，越过骨门，在玻璃博物馆后方，有一座环境变幻不定的缥缈穹顶。\
+	穹顶内，织皮者为自身目的孕育了无法理解的混沌，连漫宿的法则都随之扭曲变化。只有\
+	原住者和飞升者能毫发无伤地穿过穹顶，却鲜有人愿意谈起其中所见。"
+	glimpse = "你看不懂你眼前的东西你看不懂你无法描述它你不能你不能你" // yeah its utterly incomprehensible
+	glimpse_heretic = "即使你的心智久经锤炼，透过狭窄通路望向混沌穹顶也令你痛苦。然而——在\
+	变幻的混沌潮汐、成千上万的宇宙之间，你瞥见了它。光。"
+	spawn_text = "一缕混沌在通路彻底关闭之前逸散而出！"
 	var/static/list/spawnable_anomalies = list(
 		/obj/effect/anomaly/pyro = 500,
 		/obj/effect/anomaly/grav/high = 500,
@@ -209,15 +209,15 @@
 // bad destinations - no benefit
 
 /datum/way_destination/heretic_mobs
-	name = "The Monstersmith"
-	desc = "Property of a long-dead god, the monstersmith continues its solemn duty under the charge of the new gods-from-steel. Perched \
-	on the precipice of an ancient abyss, defective beasts are sent off to be eaten by the ravenous abyss-vultures, while the rest are \
-	employed in a forver war - the purpose of which nobody, dead or alive, remembers."
-	glimpse = "THOUSANDS OF BEASTS AND TOOLS AND MEAT AND BONE! HORRIBLE CREATURES OF RUST AND BRAIN MATTER"
-	glimpse_heretic = "A vast expanse of regimented ogres, beasts, bone-ghouls expands before you, exposing thousands or millions of \
-	terrible monsters. In the distance, Light-shining god-steel tools get to work repurposing the flesh of recently deceased into these monstrosities. \
-	The work will continue."
-	spawn_text = "a torrent of horrible beasts and monsters escaping from it before it fully shuts!"
+	name = "铸怪工坊"
+	desc = "铸怪工坊曾属于一位逝去已久的神，如今在新生钢铁之神的掌管下继续履行肃穆的职责。它盘踞\
+	在远古深渊的绝壁上，有缺陷的野兽被丢下去喂食饥饿的渊鹫，其余的则\
+	投入永无止境的战争——无论死者还是生者，都不记得这场战争的目的。"
+	glimpse = "成千上万的野兽与工具与肉与骨！锈蚀和脑组织构成的恐怖怪物"
+	glimpse_heretic = "整齐排列的食人魔、野兽和白骨食尸鬼在你面前绵延开来，展现出成千上万甚至数百万只\
+	可怕的怪物。远处，闪耀着光的神钢工具正把新死者的血肉改造成这些畸形造物。\
+	工作仍将继续。"
+	spawn_text = "无数可怕的野兽和怪物在通路彻底关闭前逃了出来！"
 	var/static/list/potential_mob_spawns = list(
 		/mob/living/basic/heretic_summon/raw_prophet/ruins = 50,
 		/mob/living/basic/heretic_summon/ash_spirit = 50,
@@ -238,14 +238,14 @@
 		monster.set_faction(list(FACTION_HERETIC_WILD))
 
 /datum/way_destination/emp
-	name = "The Soulstorm"
-	desc = "Those that miss the bone-gates and find themselves lost in the Mansus may alternately find this maelstrom of eldritch energy. \
-	Under the patronage of the Aristocrat, the soulstorm is a manifestation of despair, dread, and the soul-void of these poor souls that were lost. \
-	Exceedingly dangerous. This way may not remain safe for long."
-	glimpse = "PURPLE MAELSTROMS OF SCREAMING AND LIGHTING AND AN EVERGROWING PRESENCE"
-	glimpse_heretic = "It's hard to look. Screaming, agonizing souls swirl in infinite circles, contorting and writing in every way imaginable. \
-	In the background, the void smiles. And yet... you still find a glimmer of Light."
-	spawn_text = "and just before it closes fully a strand from the soulstorm itself strikes the way, unleashing horrible energies!"
+	name = "魂之风暴"
+	desc = "错过骨门、迷失漫宿者，可能转而撞见这道邪异能量的漩涡。\
+	在贵胄的庇护下，魂之风暴化身为这些迷失者的绝望、恐惧与灵魂空洞。\
+	此地极度危险。这条通路恐怕无法长久维持安全。"
+	glimpse = "尖叫与闪电构成的紫色漩涡还有不断壮大的存在"
+	glimpse_heretic = "你难以直视。痛苦尖叫的灵魂绕着无尽圆环盘旋，以一切可想象的姿态扭曲挣扎。\
+	背景中的虚空微笑着。然而……你依然看见了一丝光。"
+	spawn_text = "就在彻底关闭前，魂之风暴的一缕支流击中了通路，释放出恐怖能量！"
 
 /datum/way_destination/emp/open(obj/effect/unopened_way/way, mob/living/opener)
 	empulse(get_turf(way), 3, 12, emp_source = way)

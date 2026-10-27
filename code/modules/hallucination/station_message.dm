@@ -23,17 +23,17 @@
 	require_hearing = TRUE
 
 /datum/hallucination/station_message/blob_alert/do_fake_alert()
-	priority_announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", \
-		"Biohazard Alert", ANNOUNCER_OUTBREAK5, players = list(hallucinator))
+	priority_announce("确认在 [station_name()] 上爆发 5 级生物危害。全体人员必须控制住疫情。", \
+		"生物危害警报", ANNOUNCER_OUTBREAK5, players = list(hallucinator))
 
 /datum/hallucination/station_message/shuttle_dock
 
 /datum/hallucination/station_message/shuttle_dock/do_fake_alert()
 	priority_announce(
-		text = "[SSshuttle.emergency] has docked with the station. You have [DisplayTimeText(SSshuttle.emergency_dock_time)] to board the emergency shuttle.",
-		title = "Emergency Shuttle Arrival",
+		text = "[SSshuttle.emergency] 已与空间站对接。你有 [DisplayTimeText(SSshuttle.emergency_dock_time)] 登上紧急穿梭机。",
+		title = "紧急穿梭机抵达",
 		sound = ANNOUNCER_SHUTTLEDOCK,
-		sender_override = "Emergency Shuttle Uplink Alert",
+		sender_override = "紧急穿梭机上行链路警报",
 		players = list(hallucinator),
 		color_override = "orange",
 	)
@@ -45,8 +45,8 @@
 	if(!(locate(/mob/living/silicon/ai) in GLOB.silicon_mobs))
 		return CANCEL_FAKE_ALERT
 
-	priority_announce("Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.", \
-		"Anomaly Alert", ANNOUNCER_AIMALF, players = list(hallucinator))
+	priority_announce("在所有空间站系统中检测到敌意运行时，请停用你的 AI，以防其道德核心受到可能的损害。", \
+		"异常警报", ANNOUNCER_AIMALF, players = list(hallucinator))
 
 /datum/hallucination/station_message/heretic
 	require_hearing = TRUE
@@ -54,23 +54,23 @@
 	/// Maybe if someone datumizes heretic paths or something this can be improved
 	var/static/list/ascension_bodies = list(
 		list(
-			"text" = "Fear the blaze, for the Ashlord, %FAKENAME% has ascended! The flames shall consume all!",
+			"text" = "畏惧烈焰吧，灰烬之主 %FAKENAME% 已飞升！火焰将吞噬一切！",
 			"sound" = 'sound/music/antag/heretic/ascend_blade.ogg',
 		),
 		list(
-			"text" = "Master of blades, the Torn Champion's disciple, %FAKENAME% has ascended! Their steel is that which will cut reality in a maelstom of silver!",
+			"text" = "刀刃之主、破碎冠军的门徒 %FAKENAME% 已飞升！其钢铁将在银色漩涡中劈开现实！",
 			"sound" = 'sound/music/antag/heretic/ascend_blade.ogg',
 		),
 		list(
-			"text" = "Ever coiling vortex. Reality unfolded. ARMS OUTREACHED, THE LORD OF THE NIGHT, %FAKENAME% has ascended! Fear the ever twisting hand!",
+			"text" = "永恒盘绕的漩涡。现实展开。双臂伸展，黑夜之主 %FAKENAME% 已飞升！畏惧那永不停歇的扭曲之手！",
 			"sound" = 'sound/music/antag/heretic/ascend_flesh.ogg',
 		),
 		list(
-			"text" = "Fear the decay, for the Rustbringer, %FAKENAME% has ascended! None shall escape the corrosion!",
+			"text" = "畏惧衰朽吧，锈蚀使者 %FAKENAME% 已飞升！无人能逃脱腐蚀！",
 			"sound" = 'sound/music/antag/heretic/ascend_rust.ogg',
 		),
 		list(
-			"text" = "The nobleman of void %FAKENAME% has arrived, stepping along the Waltz that ends worlds!",
+			"text" = "虚空贵族 %FAKENAME% 已降临，踏着终结世界的华尔兹而来！",
 			"sound" = 'sound/music/antag/heretic/ascend_void.ogg',
 		)
 	)
@@ -106,8 +106,8 @@
 	var/area/fake_summon_area = GLOB.areas_by_type[fake_summon_area_type]
 
 	priority_announce(
-		text = "Figments from an eldritch god are being summoned by [totally_real_cult_leader.real_name] into [fake_summon_area] from an unknown dimension. Disrupt the ritual at all costs!",
-		title = "[command_name()] Higher Dimensional Affairs",
+		text = "来自未知维度的邪异之神的幻影正被 [totally_real_cult_leader.real_name] 召唤至 [fake_summon_area]。不惜一切代价打断仪式！",
+		title = "[command_name()] 高维事务部",
 		sound = 'sound/music/antag/bloodcult/bloodcult_scribe.ogg',
 		has_important_message = TRUE,
 		players = list(hallucinator),
@@ -118,13 +118,13 @@
 	require_hearing = TRUE
 
 /datum/hallucination/station_message/meteors/do_fake_alert()
-	priority_announce("Meteors have been detected on collision course with the station.", "Meteor Alert", ANNOUNCER_METEORS, players = list(hallucinator))
+	priority_announce("检测到流星正朝空间站碰撞而来。", "流星警报", ANNOUNCER_METEORS, players = list(hallucinator))
 
 /datum/hallucination/station_message/supermatter_delam
 
 /datum/hallucination/station_message/supermatter_delam/do_fake_alert()
 	SEND_SOUND(hallucinator, 'sound/effects/magic/charge.ogg')
-	to_chat(hallucinator, span_bolddanger("You feel reality distort for a moment..."))
+	to_chat(hallucinator, span_bolddanger("你感到现实在一瞬间扭曲了……"))
 
 /datum/hallucination/station_message/clock_cult_ark
 	// Clock cult's long gone, but this stays for posterity.

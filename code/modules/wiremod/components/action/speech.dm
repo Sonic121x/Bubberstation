@@ -4,9 +4,9 @@
  * Sends a message. Requires a shell.
  */
 /obj/item/circuit_component/speech
-	display_name = "Speech"
-	desc = "A component that sends a message. Requires a shell."
-	category = "Action"
+	display_name = "语音"
+	desc = "一种发送消息的元件。需要外壳。"
+	category = "动作"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// The message to send
@@ -19,7 +19,7 @@
 
 /obj/item/circuit_component/speech/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Speech Cooldown: [DisplayTimeText(speech_cooldown)]", "orange", "stopwatch")
+	. += create_ui_notice("语音冷却：[DisplayTimeText(speech_cooldown)]", "orange", "stopwatch")
 
 /obj/item/circuit_component/speech/populate_ports()
 	message = add_input_port("Message", PORT_TYPE_STRING, trigger = null)

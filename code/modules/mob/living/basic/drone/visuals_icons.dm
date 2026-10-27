@@ -59,13 +59,13 @@
 /mob/living/basic/drone/proc/pickVisualAppearance()
 	picked = FALSE
 	var/list/drone_icons = list(
-		"Maintenance Drone" = image(icon = 'icons/mob/silicon/drone.dmi', icon_state = "[MAINTDRONE]_grey"),
-		"Repair Drone" = image(icon = 'icons/mob/silicon/drone.dmi', icon_state = REPAIRDRONE),
-		"Scout Drone" = image(icon = 'icons/mob/silicon/drone.dmi', icon_state = SCOUTDRONE)
+		"维护无人机" = image(icon = 'icons/mob/silicon/drone.dmi', icon_state = "[MAINTDRONE]_grey"),
+		"维修无人机" = image(icon = 'icons/mob/silicon/drone.dmi', icon_state = REPAIRDRONE),
+		"侦察无人机" = image(icon = 'icons/mob/silicon/drone.dmi', icon_state = SCOUTDRONE)
 		)
 	var/picked_icon = show_radial_menu(src, src, drone_icons, custom_check = CALLBACK(src, PROC_REF(check_menu)), radius = 38, require_near = TRUE)
 	switch(picked_icon)
-		if("Maintenance Drone")
+		if("维护无人机")
 			visualAppearance = MAINTDRONE
 			var/list/drone_colors = list(
 				"blue" = image(icon = 'icons/mob/silicon/drone.dmi', icon_state = "[visualAppearance]_blue"),
@@ -82,11 +82,11 @@
 			else
 				icon_state = "[visualAppearance]_grey"
 				icon_living = "[visualAppearance]_grey"
-		if("Repair Drone")
+		if("维修无人机")
 			visualAppearance = REPAIRDRONE
 			icon_state = visualAppearance
 			icon_living = visualAppearance
-		if("Scout Drone")
+		if("侦察无人机")
 			visualAppearance = SCOUTDRONE
 			icon_state = visualAppearance
 			icon_living = visualAppearance

@@ -1,6 +1,6 @@
 /obj/item/organ/xenohead
-	name = "xeno head"
-	desc = "How did you take that off?"
+	name = "异形头部"
+	desc = "你是怎么把它取下来的？"
 	icon_state = "random_fly_2"
 
 	mutantpart_key = "xenohead"

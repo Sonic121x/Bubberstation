@@ -1,8 +1,8 @@
 /obj/machinery/dish_drive
-	name = "dish drive"
-	desc = "A culinary marvel that uses matter-to-energy conversion to store dishes and shards. Convenient! \
-	Additional features include a vacuum function to suck in nearby dishes, and an automatic transfer beam that empties its contents into nearby disposal bins every now and then. \
-	Or you can just drop your plates on the floor, like civilized folk."
+	name = "餐盘存储机"
+	desc = "利用质能转换存储餐盘和碎片的厨房奇迹。真方便！ \
+	附带吸入附近餐盘的真空功能，以及定期将内容物清空至附近垃圾桶的自动传送光束。 \
+	或者，你也可以像文明人一样直接把盘子扔到地上。"
 	icon = 'icons/obj/machines/kitchen.dmi'
 	icon_state = "synthesizer"
 	base_icon_state = "synthesizer"
@@ -45,9 +45,9 @@
 /obj/machinery/dish_drive/examine(mob/user)
 	. = ..()
 	if(user.Adjacent(src))
-		. += span_notice("Alt-click it to beam its contents to any nearby disposal bins.")
+		. += span_notice("Alt点击可将内容物传送至附近的垃圾桶。")
 	if(!LAZYLEN(dish_drive_contents))
-		. += "[src] is empty!"
+		. += "[src]是空的！"
 		return
 	// Makes a list of all dishes in the drive, as well as what dish will be taken out next.
 	var/list/dish_list = list()
@@ -60,20 +60,20 @@
 		var/dish_amount = dish_types[dish_path]
 		// Handles plurals
 		var/obj/dish = dish_path
-		var/dish_name = dish_amount == 1 ? initial(dish.name) : "[initial(dish.name)][plural_s(initial(dish.name))]"
+		var/dish_name = initial(dish.name)
 		dish_list += list("[dish_amount] [dish_name]")
 
-	. += span_info("It contains [english_list(dish_list)].\n[peek(dish_drive_contents)] is at the top of the pile.")
+	. += span_info("内有[english_list(dish_list)]。\n[peek(dish_drive_contents)]位于最上方。")
 
 /obj/machinery/dish_drive/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(!LAZYLEN(dish_drive_contents))
-		balloon_alert(user, "drive empty")
+		balloon_alert(user, "存储机是空的")
 		return
 	var/obj/item/dish = LAZYACCESS(dish_drive_contents, LAZYLEN(dish_drive_contents)) //the most recently-added item
 	LAZYREMOVE(dish_drive_contents, dish)
 	user.put_in_hands(dish)
-	balloon_alert(user, "[dish] taken")
+	balloon_alert(user, "已取出[dish]")
 	playsound(src, 'sound/items/pshoom/pshoom.ogg', 50, TRUE)
 	flick("synthesizer_beam", src)
 
@@ -93,7 +93,7 @@
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		LAZYADD(dish_drive_contents, tool)
-		balloon_alert(user, "[tool] placed in drive")
+		balloon_alert(user, "已存入[tool]")
 		playsound(src, 'sound/items/pshoom/pshoom.ogg', 50, TRUE)
 		flick("synthesizer_beam", src)
 		return ITEM_INTERACT_SUCCESS
@@ -133,7 +133,7 @@
 		if(is_type_in_list(dish, collectable_items) && dish.loc != src && (!dish.reagents || !dish.reagents.total_volume) && (dish.contents.len < 1))
 			if(dish.Adjacent(src))
 				LAZYADD(dish_drive_contents, dish)
-				visible_message(span_notice("[src] beams up [dish]!"))
+				visible_message(span_notice("[src]将[dish]传送了进去！"))
 				dish.forceMove(src)
 				playsound(src, 'sound/items/pshoom/pshoom.ogg', 50, TRUE)
 				flick("synthesizer_beam", src)
@@ -143,7 +143,7 @@
 /obj/machinery/dish_drive/attack_ai(mob/living/user)
 	if(machine_stat)
 		return
-	balloon_alert(user, "disposal signal sent")
+	balloon_alert(user, "已发送清空信号")
 	do_the_dishes(TRUE)
 
 /obj/machinery/dish_drive/click_alt(mob/living/user)
@@ -153,25 +153,25 @@
 /obj/machinery/dish_drive/proc/do_the_dishes(manual)
 	if(!LAZYLEN(dish_drive_contents))
 		if(manual)
-			visible_message(span_notice("[src] is empty!"))
+			visible_message(span_notice("[src]是空的！"))
 		return
 	var/obj/machinery/disposal/bin/bin = locate() in view(binrange, src) //SKYRAT EDIT CHANGE
 	if(!bin)
 		if(manual)
-			visible_message(span_warning("[src] buzzes. There are no disposal bins in range!"))
+			visible_message(span_warning("[src]发出蜂鸣。范围内没有垃圾桶！"))
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
 		return
 	var/disposed = 0
 	for(var/obj/item/dish in dish_drive_contents)
 		if(is_type_in_list(dish, disposable_items))
 			if(!use_energy(active_power_usage, force = FALSE))
-				say("Not enough energy to continue!")
+				say("能量不足，无法继续！")
 				break
 			LAZYREMOVE(dish_drive_contents, dish)
 			dish.forceMove(bin)
 			disposed++
 	if (disposed)
-		visible_message(span_notice("[src] [pick("whooshes", "bwooms", "fwooms", "pshooms")] and beams [disposed] stored item\s into the nearby [bin.name]."))
+		visible_message(span_notice("[src]发出[pick("嗖嗖", "嗡嗡", "呼呼", "咻咻")]声，将[disposed]件存储物品传送至附近的[bin.name]。"))
 		playsound(src, 'sound/items/pshoom/pshoom.ogg', 50, TRUE)
 		playsound(bin, 'sound/items/pshoom/pshoom.ogg', 50, TRUE)
 		Beam(bin, icon_state = "rped_upgrade", time = 5)
@@ -179,6 +179,6 @@
 		flick("synthesizer_beam", src)
 	else
 		if(manual)
-			visible_message(span_notice("There are no disposable items in [src]!"))
+			visible_message(span_notice("[src]里没有可丢弃的物品！"))
 		return
 	COOLDOWN_START(src, time_since_dishes, 1 MINUTES)

@@ -1,7 +1,7 @@
 // File ordered by progression
 
 /datum/uplink_category/suits
-	name = "Space Suits"
+	name = "太空服"
 	weight = 3
 
 /datum/uplink_item/suits
@@ -11,27 +11,27 @@
 //---- SUITS
 
 /datum/uplink_item/suits/infiltrator_bundle
-	name = "Infiltrator MODsuit"
-	desc = "Developed by the Roseus Galactic Actors Guild in conjunction with the Gorlex Marauders to produce a functional suit for urban operations, \
-			this suit proves to be cheaper than your standard issue MODsuit, with none of the movement restrictions of the space suits employed by the company. \
-			However, this greater mobility comes at a cost, and the suit is ineffective at protecting the wearer from the vacuum of space. \
-			The suit does come pre-equipped with a special psi-emitter stealth module that makes it impossible to recognize the wearer \
-			as well as causing significant demoralization amongst Nanotrasen crew."
+	name = "渗透者 MOD 外骨骼"
+	desc = "由玫瑰银河演员公会与戈尔莱克斯掠夺者合作开发，用于城市作战的实用型套装， \
+			事实证明它比标准配发的 MOD 外骨骼更便宜，而且没有公司所用太空服的那些行动限制。 \
+			不过，这种更高的机动性是有代价的，这套外骨骼在太空中无法有效保护使用者免受真空伤害。 \
+			该套装预装了一个特殊的心灵发射隐形模块，使他人无法辨认使用者， \
+			同时还会在纳米传讯船员中造成严重的士气低落。"
 	item = /obj/item/mod/control/pre_equipped/infiltrator
 	cost = 6
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
 
 /datum/uplink_item/suits/space_suit
-	name = "Syndicate Space Suit"
-	desc = "This red and black Syndicate space suit is less encumbering than Nanotrasen variants, \
-			fits inside bags, and has a weapon slot. Nanotrasen crew members are trained to report red space suit \
-			sightings, however."
+	name = "辛迪加太空服"
+	desc = "这套红黑配色的辛迪加太空服比纳米传讯的款式更轻便， \
+			可以装进包里，还带有一个武器槽。不过，纳米传讯船员都受过训练， \
+			一旦看到红色太空服就要上报。"
 	item = /obj/item/storage/box/syndie_kit/space
 	cost = 4
 
 /datum/uplink_item/suits/modsuit
-	name = "Syndicate MODsuit"
-	desc = "The feared MODsuit of a Syndicate agent. Features armoring and a set of inbuilt modules."
+	name = "辛迪加 MOD 外骨骼"
+	desc = "辛迪加特工令人畏惧的 MOD 外骨骼。具备装甲和一整套内置模块。"
 	item = /obj/item/mod/control/pre_equipped/traitor
 	cost = 8
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS //you can't buy it in nuke, because the elite modsuit costs the same while being better
@@ -39,38 +39,38 @@
 //---- MODULES
 
 /datum/uplink_item/suits/thermal
-	name = "MODsuit Thermal Visor Module"
-	desc = "A visor for a MODsuit. Lets you see living beings through walls."
+	name = "MOD 外骨骼热成像护目镜模块"
+	desc = "一种用于 MOD 外骨骼的护目镜。能让你隔着墙壁看到活物。"
 	item = /obj/item/mod/module/visor/thermal
 	cost = 2
 
 /datum/uplink_item/suits/chameleon
-	name = "MODsuit Chameleon Module"
-	desc = "A MODsuit module that lets the suit disguise itself as other objects."
+	name = "MOD 外骨骼变色龙模块"
+	desc = "一种能让外骨骼伪装成其他物体的 MOD 外骨骼模块。"
 	item = /obj/item/mod/module/chameleon
 	cost = 1
 
 /datum/uplink_item/suits/plate_compression
-	name = "MODsuit Plate Compression Module"
-	desc = "A MODsuit module that lets the suit compress into a smaller size. Not compatible with storage modules or the Infiltrator MODsuit."
+	name = "MOD 外骨骼板材压缩模块"
+	desc = "一种能让外骨骼压缩成更小体积的 MOD 外骨骼模块。与储物模块和渗透者 MOD 外骨骼不兼容。"
 	item = /obj/item/mod/module/plate_compression
 	cost = 1
 
 /datum/uplink_item/suits/noslip
-	name = "MODsuit Anti-Slip Module"
-	desc = "A MODsuit module preventing the user from slipping on water."
+	name = "MOD 外骨骼防滑模块"
+	desc = "一种可防止使用者在水上滑倒的 MOD 外骨骼模块。"
 	item = /obj/item/mod/module/noslip
 	cost = 1
 
 /datum/uplink_item/suits/shock_absorber
-	name = "MODsuit Shock-Absorber Module"
-	desc = "A MODsuit module preventing the user from getting knocked down by batons."
+	name = "MOD 外骨骼电击吸收模块"
+	desc = "一种可防止使用者被警棍击倒的 MOD 外骨骼模块。"
 	item = /obj/item/mod/module/shock_absorber
 	cost = 1
 
 /datum/uplink_item/suits/modsuit/wraith
-	name = "MODsuit wraith cloaking module"
-	desc = "A MODsuit module that grants to the user Optical camouflage and the ability to overload light sources to recharge suit power. \
-		Incompatible with armored MODsuits."
+	name = "MOD 外骨骼怨灵隐形模块"
+	desc = "一种赋予使用者光学伪装、并能通过过载光源来为套装充能的 MOD 外骨骼模块。 \
+		与有装甲的 MOD 外骨骼不兼容。"
 	item = /obj/item/mod/module/stealth/wraith
 	cost = 2

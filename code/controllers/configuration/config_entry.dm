@@ -38,7 +38,7 @@
  */
 /datum/config_entry/proc/set_default()
 	if ((protection & CONFIG_ENTRY_LOCKED) && IsAdminAdvancedProcCall())
-		log_admin_private("[key_name(usr)] attempted to reset locked config entry [type] to its default")
+		log_admin_private("[key_name(usr)]试图将已锁定的配置项[type]恢复为默认值")
 		return
 	if (islist(default))
 		var/list/L = default
@@ -73,7 +73,7 @@
 /datum/config_entry/proc/VASProcCallGuard(str_val)
 	. = !((protection & CONFIG_ENTRY_LOCKED) && IsAdminAdvancedProcCall())
 	if(!.)
-		log_admin_private("[key_name(usr)] attempted to set locked config entry [type] to '[str_val]'")
+		log_admin_private("[key_name(usr)]试图将已锁定的配置项[type]设为“[str_val]”")
 
 /datum/config_entry/proc/ValidateAndSet(str_val)
 	VASProcCallGuard(str_val)
@@ -117,7 +117,7 @@
 	if(!isnull(temp))
 		config_entry_value = clamp(integer ? round(temp) : temp, min_val, max_val)
 		if(config_entry_value != temp && !(datum_flags & DF_VAR_EDITED))
-			log_config("Changing [name] from [temp] to [config_entry_value]!")
+			log_config("正在将[name]从[temp]改为[config_entry_value]！")
 		return TRUE
 	return FALSE
 
@@ -206,7 +206,7 @@
 /datum/config_entry/keyed_list/proc/parse_key_and_value(option_string)
 	// Blank or null option string? Bad mojo!
 	if(!option_string)
-		log_config("ERROR: Keyed list config tried to parse with no key or value data.")
+		log_config("错误：键值列表配置缺少键或值，无法解析。")
 		return null
 
 	var/list/config_entry_words = splittext(option_string, splitter)
@@ -239,7 +239,7 @@
 	else
 		// If config_entry_words only has 1 or 0 words in it and isn't value_mode == VALUE_MODE_FLAG then it's an invalid config entry.
 		if(length(config_entry_words) <= 1)
-			log_config("ERROR: Could not parse value from config entry string: [option_string]")
+			log_config("错误：无法从配置项字符串中解析值：[option_string]")
 			return null
 
 		config_value = pop(config_entry_words)
@@ -255,7 +255,7 @@
 
 	// If there are multiple splitters, it's definitely ambiguous and we'll warn about how we parsed it. Helps with debugging config issues.
 	if(is_ambiguous)
-		log_config("WARNING: Multiple splitter characters (\"[splitter]\") found. Using \"[config_key]\" as config key and \"[config_value]\" as config value.")
+		log_config("警告：发现多个分隔符（\"[splitter]\"）。将使用\"[config_key]\"作为配置键、\"[config_value]\"作为配置值。")
 
 	return list("config_key" = config_key, "config_value" = config_value)
 
@@ -270,7 +270,7 @@
 
 			var/key_path = text2path(key)
 			if(isnull(key_path))
-				log_config("ERROR: Invalid KEY_MODE_TYPE typepath. Is not a valid typepath: [key]")
+				log_config("错误：KEY_MODE_TYPE 的类型路径无效：[key]")
 				return
 
 			return key_path
@@ -287,7 +287,7 @@
 
 			var/value_num = text2num(value)
 			if(isnull(value_num))
-				log_config("ERROR: Invalid VALUE_MODE_NUM number. Could not parse a valid number: [value]")
+				log_config("错误：VALUE_MODE_NUM 的数值无效，无法解析为数字：[value]")
 				return
 
 			return value_num

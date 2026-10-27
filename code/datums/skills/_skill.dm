@@ -1,9 +1,9 @@
 GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
 
 /datum/skill
-	var/name = "Skilling"
-	var/title = "Skiller"
-	var/desc = "the art of doing things"
+	var/name = "技艺"
+	var/title = "技艺达人"
+	var/desc = "做事的艺术"
 	///Dictionary of modifier type - list of modifiers (indexed by level). 7 entries in each list for all 7 skill levels.
 	var/modifiers = list(SKILL_SPEED_MODIFIER = list(1, 1, 1, 1, 1, 1, 1)) //Dictionary of modifier type - list of modifiers (indexed by level). 7 entries in each list for all 7 skill levels.
 	///List Path pointing to the skill item reward that will appear when a user finishes leveling up a skill
@@ -22,20 +22,20 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
  */
 /datum/skill/New()
 	. = ..()
-	levelUpMessages = list(span_nicegreen("What the hell is [name]? Tell an admin if you see this message."), //This first index shouldn't ever really be used
-	span_nicegreen("I'm starting to figure out what [name] really is!"),
-	span_nicegreen("I'm getting a little better at [name]!"),
-	span_nicegreen("I'm getting much better at [name]!"),
-	span_nicegreen("I feel like I've become quite proficient at [name]!"),
-	span_nicegreen("After lots of practice, I've begun to truly understand the intricacies and surprising depth behind [name]. I now consider myself a master [title]."),
-	span_nicegreen("Through incredible determination and effort, I've reached the peak of my [name] abiltities. I'm finally able to consider myself a legendary [title]!") )
-	levelDownMessages = list(span_nicegreen("I have somehow completely lost all understanding of [name]. Please tell an admin if you see this."),
-	span_nicegreen("I'm starting to forget what [name] really even is. I need more practice..."),
-	span_nicegreen("I'm getting a little worse at [name]. I'll need to keep practicing to get better at it..."),
-	span_nicegreen("I'm getting a little worse at [name]..."),
-	span_nicegreen("I'm losing my [name] expertise ...."),
-	span_nicegreen("I feel like I'm losing my mastery of [name]."),
-	span_nicegreen("I feel as though my legendary [name] skills have deteriorated. I'll need more intense training to recover my lost skills.") )
+	levelUpMessages = list(span_nicegreen("[chinese_skyrat_primitive_skill_display(name)]到底是什么鬼？如果看到此消息，请告知管理员。"), //This first index shouldn't ever really be used
+	span_nicegreen("我开始理解[chinese_skyrat_primitive_skill_display(name)]究竟是什么了！"),
+	span_nicegreen("我的[chinese_skyrat_primitive_skill_display(name)]水平有所进步！"),
+	span_nicegreen("我的[chinese_skyrat_primitive_skill_display(name)]水平进步很大！"),
+	span_nicegreen("我觉得自己已经相当精通[chinese_skyrat_primitive_skill_display(name)]了！"),
+	span_nicegreen("经过大量练习，我开始真正理解[chinese_skyrat_primitive_skill_display(name)]的精妙与深奥。现在，我称得上大师级[title]了。"),
+	span_nicegreen("凭借非凡的决心与努力，我的[chinese_skyrat_primitive_skill_display(name)]能力已登峰造极。我终于能自称传奇[title]了！") )
+	levelDownMessages = list(span_nicegreen("不知为何，我完全忘记了[chinese_skyrat_primitive_skill_display(name)]。如果看到此消息，请告知管理员。"),
+	span_nicegreen("我开始忘记[chinese_skyrat_primitive_skill_display(name)]究竟是什么了。我需要更多练习……"),
+	span_nicegreen("我的[chinese_skyrat_primitive_skill_display(name)]水平有些退步。我需要继续练习来提高水平……"),
+	span_nicegreen("我的[chinese_skyrat_primitive_skill_display(name)]水平有些退步了……"),
+	span_nicegreen("我的[chinese_skyrat_primitive_skill_display(name)]专长正在退化……"),
+	span_nicegreen("我感觉自己对[chinese_skyrat_primitive_skill_display(name)]的精通程度正在下降。"),
+	span_nicegreen("我感觉自己传奇般的[chinese_skyrat_primitive_skill_display(name)]技艺有所退步。我需要更加刻苦地训练，找回失去的技艺。") )
 
 /**
  * level_gained: Gives skill levelup messages to the user
@@ -71,10 +71,10 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
 	if (new_level != SKILL_LEVEL_LEGENDARY)
 		return
 	if (!ispath(skill_item_path))
-		to_chat(mind.current, span_nicegreen("My legendary [name] skill is quite impressive, though it seems the Professional [title] Association doesn't have any status symbols to commemorate my abilities with. I should let Centcom know of this travesty, maybe they can do something about it."))
+		to_chat(mind.current, span_nicegreen("我的传奇[chinese_skyrat_primitive_skill_display(name)]技艺令人赞叹，但专业[title]协会似乎没有任何象征地位的奖品来纪念我的成就。我应该把这件荒唐事报告给中央指挥部，也许他们能想办法。"))
 		return
 	if (LAZYFIND(mind.skills_rewarded, src.type))
-		to_chat(mind.current, span_nicegreen("It seems the Professional [title] Association won't send me another status symbol."))
+		to_chat(mind.current, span_nicegreen("看来专业[title]协会不会再给我寄一份身份象征了。"))
 		return
 	podspawn(list(
 		"target" = get_turf(mind.current),
@@ -82,5 +82,5 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
 		"spawn" = skill_item_path,
 		"delays" = list(POD_TRANSIT = 150, POD_FALLING = 4, POD_OPENING = 30, POD_LEAVING = 30)
 	))
-	to_chat(mind.current, span_nicegreen("My legendary skill has attracted the attention of the Professional [title] Association. It seems they are sending me a status symbol to commemorate my abilities."))
+	to_chat(mind.current, span_nicegreen("我的传奇技艺引起了专业[title]协会的注意。他们似乎正寄来一件象征地位的奖品，以纪念我的成就。"))
 	LAZYADD(mind.skills_rewarded, src.type)

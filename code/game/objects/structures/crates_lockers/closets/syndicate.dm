@@ -1,6 +1,6 @@
 /obj/structure/closet/syndicate
-	name = "armory closet"
-	desc = "Why is this here?"
+	name = "军械柜"
+	desc = "这东西为什么会在这里？"
 	icon_state = "syndicate"
 	armor_type = /datum/armor/closet_syndicate
 	paint_jobs = null
@@ -15,7 +15,7 @@
 	acid = 70
 
 /obj/structure/closet/syndicate/personal
-	desc = "It's a personal storage unit for operative gear."
+	desc = "用于存放特工装备的个人储物柜。"
 
 /obj/structure/closet/syndicate/personal/PopulateContents()
 	..()
@@ -34,7 +34,7 @@
 	new /obj/item/mod/module/plasma_stabilizer(src)
 
 /obj/structure/closet/syndicate/nuclear
-	desc = "It's a storage unit for a Syndicate boarding party."
+	desc = "供辛迪加登舰小队使用的储物柜。"
 
 /obj/structure/closet/syndicate/nuclear/PopulateContents()
 	for(var/i in 1 to 5)
@@ -45,8 +45,8 @@
 	new /obj/item/modular_computer/pda/syndicate(src)
 
 /obj/structure/closet/syndicate/chemical
-	name = "chemical supplies closet"
-	desc = "full of omninous chemical supplies"
+	name = "化学用品柜"
+	desc = "装满了令人不安的化学用品。"
 	icon_state = "syndicate_chemical"
 
 /obj/structure/closet/syndicate/chemical/PopulateContents()
@@ -62,7 +62,7 @@
 	new /obj/item/reagent_containers/cup/bottle/acidic_buffer(src)
 
 /obj/structure/closet/syndicate/resources
-	desc = "An old, dusty locker."
+	desc = "一个老旧、满是灰尘的储物柜。"
 
 // A lot of this stuff is objective items, and it's also only used for debugging, so init times don't matter here.
 /obj/structure/closet/syndicate/resources/populate_contents_immediate()
@@ -78,8 +78,8 @@
 	//Sad trombone
 	if(pickednum == 1)
 		var/obj/item/paper/paper = new /obj/item/paper(src)
-		paper.name = "\improper IOU"
-		paper.add_raw_text("Sorry man, we needed the money so we sold your stash. It's ok, we'll double our money for sure this time!")
+		paper.name = "\improper 欠条"
+		paper.add_raw_text("抱歉伙计，我们缺钱，就把你的私藏卖了。没事的，这次肯定能把钱翻倍赚回来！")
 		paper.update_appearance()
 
 	//Iron (common ore)
@@ -127,7 +127,7 @@
 		new /obj/item/tank/jetpack/carbondioxide(src)
 
 /obj/structure/closet/syndicate/resources/everything
-	desc = "It's an emergency storage closet for repairs."
+	desc = "用于存放应急维修用品的储物柜。"
 	storage_capacity = 60 // This is gonna be used for debug.
 
 // A lot of this stuff is objective items, and it's also only used for debugging, so init times don't matter here.

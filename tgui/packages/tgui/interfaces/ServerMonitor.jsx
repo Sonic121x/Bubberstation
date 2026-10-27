@@ -13,7 +13,7 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { telecommsDisplay } from './common/telecommsDisplay';
 const PacketInfo = (props) => {
   const { act, data } = useBackend();
   const { packet } = props;
@@ -31,13 +31,13 @@ const PacketInfo = (props) => {
         </Flex.Item>
       </Flex>
       <LabeledList>
-        <LabeledList.Item label="Data Type">{packet.type}</LabeledList.Item>
-        <LabeledList.Item label="Source">
+        <LabeledList.Item label="数据类型">{telecommsDisplay(packet.type)}</LabeledList.Item>
+        <LabeledList.Item label="来源">
           {packet.source + (packet.job ? ` (${packet.job})` : '')}
         </LabeledList.Item>
-        <LabeledList.Item label="Class">{packet.race}</LabeledList.Item>
-        <LabeledList.Item label="Contents">{packet.message}</LabeledList.Item>
-        <LabeledList.Item label="Language">{packet.language}</LabeledList.Item>
+        <LabeledList.Item label="类别">{packet.race}</LabeledList.Item>
+        <LabeledList.Item label="内容">{packet.message}</LabeledList.Item>
+        <LabeledList.Item label="语言">{packet.language}</LabeledList.Item>
       </LabeledList>
       <Divider />
     </Stack.Item>
@@ -51,19 +51,19 @@ const ServerScreen = (props) => {
     <Stack fill vertical>
       <Stack.Item>
         <Section
-          title="Server Information"
+          title="服务器信息"
           buttons={
             <Button
-              content="Main Menu"
+              content="主菜单"
               icon="home"
               onClick={() => act('return_home')}
             />
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Network">{network}</LabeledList.Item>
-            <LabeledList.Item label="Server">{server.name}</LabeledList.Item>
-            <LabeledList.Item label="Total Recorded Traffic">
+            <LabeledList.Item label="网络">{telecommsDisplay(network)}</LabeledList.Item>
+            <LabeledList.Item label="服务器">{telecommsDisplay(server.name)}</LabeledList.Item>
+            <LabeledList.Item label="累计记录流量">
               {server.traffic >= 1024
                 ? `${server.traffic / 1024} TB`
                 : `${server.traffic} GB`}
@@ -72,7 +72,7 @@ const ServerScreen = (props) => {
         </Section>
       </Stack.Item>
       <Stack.Item grow>
-        <Section fill scrollable title="Stored Packets">
+        <Section fill scrollable title="已存储数据包">
           <Stack vertical>
             {server.packets?.map((p) => (
               <PacketInfo key={p.ref} packet={p} />
@@ -96,11 +96,11 @@ const MainScreen = (props) => {
           <Input
             value={networkId}
             onChange={setNetworkId}
-            placeholder="Network ID"
+            placeholder="网络 ID"
             onEnter={() => act('scan_network', { network_id: networkId })}
           />
           <Button
-            content="Scan"
+            content="扫描"
             onClick={() => act('scan_network', { network_id: networkId })}
           />
         </Section>
@@ -109,10 +109,10 @@ const MainScreen = (props) => {
         <Section
           fill
           scrollable
-          title="Detected Telecommunication Servers"
+          title="检测到的电信服务器"
           buttons={
             <Button
-              content="Clear Buffer"
+              content="清空缓冲区"
               icon="trash"
               color="red"
               disabled={servers.length === 0}
@@ -122,17 +122,17 @@ const MainScreen = (props) => {
         >
           <Table>
             <Table.Row header>
-              <Table.Cell>Address</Table.Cell>
-              <Table.Cell>Identification String</Table.Cell>
-              <Table.Cell>Name</Table.Cell>
+              <Table.Cell>地址</Table.Cell>
+              <Table.Cell>标识字符串</Table.Cell>
+              <Table.Cell>名称</Table.Cell>
             </Table.Row>
             {servers?.map((s) => (
               <Table.Row key={s.ref}>
                 <Table.Cell>{s.ref}</Table.Cell>
-                <Table.Cell>{s.id}</Table.Cell>
+                <Table.Cell>{telecommsDisplay(s.id)}</Table.Cell>
                 <Table.Cell>
                   <Button
-                    content={s.name}
+                    content={telecommsDisplay(s.name)}
                     onClick={() => act('view_server', { server: s.ref })}
                   />
                 </Table.Cell>

@@ -1,6 +1,6 @@
 /datum/quirk/death_consequences
 	name = DEATH_CONSEQUENCES_QUIRK_NAME
-	desc = "Every time you die, your body suffers long-term damage that can't easily be repaired."
+	desc = "你每次死亡都会对身体造成难以修复的长期损伤。"
 	medical_record_text = DEATH_CONSEQUENCES_QUIRK_DESC
 	icon = FA_ICON_DNA
 	value = 0 // due to its high customization, you can make it really inconsequential
@@ -20,11 +20,11 @@
 	if (!isnull(added_trauma))
 		added_trauma.update_variables(client_source)
 
-	to_chat(human_holder, span_danger("You suffer from [src]. By default, you will \
-		degrade every time you die, and recover very slowly while alive. This may be expedited by resting, sleeping, being buckled \
-		to something cozy, or using rezadone.\n\
-		As your degradation rises, so too will negative effects, such as stamina damage or a worsened crit threshold.\n\
-		You can alter your degradation on the fly via the Adjust death degradation verb, and change your settings via the Refresh death consequence variables verb."))
+	to_chat(human_holder, span_danger("你受到[chinese_quirk_display(name)]的影响。默认情况下，\
+		你每次死亡都会加重衰退，活着时则会十分缓慢地恢复。休息、睡觉、固定在舒适的\
+		物体上或使用雷扎酮可以加快恢复。\n\
+		衰退越严重，耐力损伤和重伤阈值恶化等负面效果也会越严重。\n\
+		你可以通过“调整死亡衰退”指令随时调整衰退程度，并通过“刷新死亡后遗症设置”指令更新设置。"))
 
 /datum/quirk/death_consequences/remove()
 	var/mob/living/carbon/human/human_holder = quirk_holder
@@ -32,45 +32,45 @@
 
 /// Adjusts the mob's linked death consequences trauma (see get_death_consequences_trauma())'s degradation by increment.
 //GAME_VERB(/mob, adjust_degradation, "Adjust death degradation", "IC", increment as num)
-GAME_VERB(/mob, adjust_degradation, "Adjust death degradation", "IC")
+GAME_VERB(/mob, adjust_degradation, "调整死亡衰退", "IC")
 	VERB_ARG(increment, VERB_ARG_TYPE_NUM, VERB_ARG_SOURCE_INPUT)
 	if (isnull(mind))
-		to_chat(usr, span_warning("You have no mind!"))
+		to_chat(usr, span_warning("你没有心智！"))
 		return
 
 	var/datum/brain_trauma/severe/death_consequences/linked_trauma = get_death_consequences_trauma()
 	var/mob/living/carbon/trauma_holder = linked_trauma?.owner
 	if (isnull(linked_trauma) || isnull(trauma_holder) || trauma_holder != mind.current) // sanity
-		to_chat(usr, span_warning("You don't have a body with death consequences!"))
+		to_chat(usr, span_warning("你的身体没有死亡后遗症！"))
 		return
 
 	if (!isnum(increment))
-		to_chat(usr, span_warning("You can artificially change the current level of your death degradation with this verb. \
-		You can use this to cause degradation in ways the customization cannot. <b>You need to enter a number to use this verb.</b>"))
+		to_chat(usr, span_warning("你可以用这个指令手动调整当前的死亡衰退程度。\
+		这样可以实现自定义设置无法造成的衰退。<b>使用此指令时必须输入一个数字。</b>"))
 		return
 
 	if (linked_trauma.permakill_if_at_max_degradation && ((linked_trauma.current_degradation + increment) >= linked_trauma.max_degradation))
-		if (tgui_alert(usr, "This will put you over/at your maximum degradation threshold and PERMANENTLY KILL YOU!!! Are you SURE you want to do this?", "WARNING", list("Yes", "No"), timeout = 7 SECONDS) != "Yes")
+		if (tgui_alert(usr, "这会使你达到或超过最大衰退阈值，导致永久死亡！！！你确定要这么做吗？", "警告", list("是", "否"), timeout = 7 SECONDS) != "是")
 			return
 
 	linked_trauma.adjust_degradation(increment)
-	to_chat(usr, span_notice("Degradation successfully adjusted!"))
+	to_chat(usr, span_notice("衰退程度已调整！"))
 
 /// Calls update_variables() on this mob's linked death consequences trauma. See that proc for further info.
 //GAME_VERB(/mob, refresh_death_consequences, "Refresh death consequence variables", "IC")
-GAME_VERB(/mob, refresh_death_consequences, "Refresh death consequence variables", "IC")
+GAME_VERB(/mob, refresh_death_consequences, "刷新死亡后遗症设置", "IC")
 	if (isnull(mind))
-		to_chat(usr, span_warning("You have no mind!"))
+		to_chat(usr, span_warning("你没有心智！"))
 		return
 
 	var/datum/brain_trauma/severe/death_consequences/linked_trauma = get_death_consequences_trauma()
 	var/mob/living/carbon/trauma_holder = linked_trauma?.owner
 	if (isnull(linked_trauma) || isnull(trauma_holder) || trauma_holder != mind.current) // sanity
-		to_chat(usr, span_warning("You don't have a body with death consequences!"))
+		to_chat(usr, span_warning("你的身体没有死亡后遗症！"))
 		return
 
 	linked_trauma.update_variables(client)
-	to_chat(usr, span_notice("Variables successfully updated!"))
+	to_chat(usr, span_notice("设置已更新！"))
 
 /// Searches mind.current for a death_consequences trauma. Allows this proc to be used on both ghosts and living beings to find their linked trauma.
 /mob/proc/get_death_consequences_trauma()

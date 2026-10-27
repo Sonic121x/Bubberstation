@@ -1,6 +1,6 @@
 /obj/item/storage/backpack/head_of_personnel
-	name = "head of personnel backpack"
-	desc = "A exclusive backpack issued to Nanotrasen's finest second."
+	name = "人事主管的背包"
+	desc = "一款专为纳米传讯最出色的二把手发放的专属背包。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi'
 	lefthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_lefthand.dmi'
@@ -9,8 +9,8 @@
 	inhand_icon_state = "backpack_hop"
 
 /obj/item/storage/backpack/satchel/head_of_personnel
-	name = "head of personnel satchel"
-	desc = "A exclusive satchel issued to Nanotrasen's finest second."
+	name = "人事主管的挎包"
+	desc = "一款专为纳米传讯最出色的二把手发放的专属挎包。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi'
 	lefthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_lefthand.dmi'
@@ -19,8 +19,8 @@
 	inhand_icon_state = "satchel_hop"
 
 /obj/item/storage/backpack/duffelbag/head_of_personnel
-	name = "head of personnel duffelbag"
-	desc = "A robust duffelbag issued to Nanotrasen's finest second."
+	name = "人事主管的行李袋"
+	desc = "一款专为纳米传讯最出色的二把手发放的结实行李袋。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi'
 	lefthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_lefthand.dmi'
@@ -29,8 +29,8 @@
 	inhand_icon_state = "duffel_hop"
 
 /obj/item/radio/headset/heads/hop/alt
-	name = "\proper the head of personnel's bowman headset"
-	desc = "The headset of the second. Protects ears from flashbangs."
+	name = "\proper 人事主管的 Bowman 耳机"
+	desc = "二把手的耳机。可保护耳朵免受闪光弹伤害。"
 	icon_state = "com_headset_alt"
 
 /obj/item/radio/headset/heads/hop/alt/Initialize(mapload)

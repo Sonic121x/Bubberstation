@@ -1,6 +1,6 @@
 /obj/structure/railing/wrestling
-	name = "wrestling ropes"
-	desc = "Ropes that are meant to go around a wrestling ring."
+	name = "摔跤擂台围绳"
+	desc = "围绕摔跤擂台设置的绳索。"
 	icon = 'modular_skyrat/modules/wrestlingring/icons/wrestling.dmi'
 	icon_state = "ropes"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5)
@@ -58,7 +58,7 @@
 //
 
 /obj/structure/wrestling_corner
-	name = "wrestling turnbuckle"
+	name = "摔跤擂台角柱"
 	icon = 'modular_skyrat/modules/wrestlingring/icons/wrestling.dmi'
 	icon_state = "turnbuckle"
 	density = TRUE
@@ -99,18 +99,18 @@
 			if(!I.tool_start_check(user, amount=0))
 				return
 
-			to_chat(user, span_notice("You begin repairing [src]..."))
+			to_chat(user, span_notice("你开始修理[src]……"))
 			if(I.use_tool(src, user, 40, volume=50))
 				atom_integrity = max_integrity
-				to_chat(user, span_notice("You repair [src]."))
+				to_chat(user, span_notice("你修好了[src]。"))
 		else
-			to_chat(user, span_warning("[src] is already in good condition!"))
+			to_chat(user, span_warning("[src]已经完好无损了！"))
 		return
 
 /obj/structure/wrestling_corner/wirecutter_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(!anchored)
-		to_chat(user, span_warning("You cut apart the turnbuckle."))
+		to_chat(user, span_warning("你剪开了擂台角柱。"))
 		tool.play_tool_sound(src, 100)
 		deconstruct()
 		return TRUE
@@ -123,10 +123,10 @@
 ///Implements behaviour that makes it possible to unanchor the railing.
 /obj/structure/wrestling_corner/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
-	to_chat(user, span_notice("You begin to [anchored ? "unfasten the turnbuckle from":"fasten the turnbuckle to"] the floor..."))
+	to_chat(user, span_notice("你开始[anchored ? "解除角柱与地面的固定":"将角柱固定到地面上"]……"))
 	if(tool.use_tool(src, user, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_anchored), anchored)))
 		set_anchored(!anchored)
-		to_chat(user, span_notice("You [anchored ? "fasten the turnbuckle to":"unfasten the turnbuckle from"] the floor."))
+		to_chat(user, span_notice("你[anchored ? "将角柱固定到地面上":"解除了角柱与地面的固定"]。"))
 	return TRUE
 
 /obj/structure/wrestling_corner/CanPass(atom/movable/mover, border_dir)

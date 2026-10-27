@@ -1,6 +1,6 @@
 /obj/machinery/primitive_stove
-	name = "stone stove"
-	desc = "You think you'll stick to just putting pots on this, the grill part looks very unsanitary."
+	name = "石灶"
+	desc = "你觉得还是只用它架锅比较好，烤架部分看起来很不卫生。"
 	icon = 'modular_skyrat/modules/primitive_cooking_additions/icons/stone_kitchen_machines.dmi'
 	icon_state = "stove_off"
 	base_icon_state = "stove"
@@ -20,7 +20,7 @@
 /obj/machinery/primitive_stove/examine(mob/user)
 	. = ..()
 
-	. += span_notice("It can be taken apart with a <b>crowbar</b>.")
+	. += span_notice("可用<b>撬棍</b>拆解。")
 
 // previously NO_DECONSTRUCTION
 /obj/machinery/primitive_stove/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/screwdriver)
@@ -30,7 +30,7 @@
 	return NONE
 
 /obj/machinery/primitive_stove/crowbar_act(mob/living/user, obj/item/tool)
-	user.balloon_alert_to_viewers("disassembling...")
+	user.balloon_alert_to_viewers("正在拆解……")
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 100))
 		return
 	new /obj/item/stack/sheet/mineral/stone(drop_location(), 5)

@@ -1,6 +1,6 @@
 /obj/item/electropack
-	name = "electropack"
-	desc = "Dance my monkeys! DANCE!!!"
+	name = "电击背包"
+	desc = "跳舞吧，我的猴子们！给我跳！！！"
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "electropack0"
 	inhand_icon_state = "electropack"
@@ -28,13 +28,13 @@
 	return ..()
 
 /obj/item/electropack/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] hooks [user.p_them()]self to the electropack and spams the trigger! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]把自己接上电击背包，疯狂按动触发器！看起来[user.p_they()]想要自杀！"))
 	return FIRELOSS
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/electropack/attack_hand(mob/user, list/modifiers)
 	if(user.get_item_by_slot(ITEM_SLOT_BACK) == src)
-		to_chat(user, span_warning("You need help taking this off!"))
+		to_chat(user, span_warning("你需要别人帮忙才能脱下它！"))
 		return
 	return ..()
 
@@ -42,7 +42,7 @@
 	if(!istype(tool, /obj/item/clothing/head/helmet))
 		return NONE
 	if(!user.temporarilyRemoveItemFromInventory(tool))
-		to_chat(user, span_warning("[tool] is stuck to your hand, you cannot attach it to [src]!"))
+		to_chat(user, span_warning("[tool]粘在你的手上，无法装到[src]上！"))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/assembly/shock_kit/torture_device = new /obj/item/assembly/shock_kit(user)
 	torture_device.icon = 'icons/obj/devices/assemblies.dmi'
@@ -72,7 +72,7 @@
 		var/mob/living/L = loc
 		step(L, pick(GLOB.cardinals))
 
-		to_chat(L, span_danger("You feel a sharp shock!"))
+		to_chat(L, span_danger("你感到一阵剧烈的电击！"))
 		do_sparks(3, TRUE, L)
 		L.Paralyze(100)
 

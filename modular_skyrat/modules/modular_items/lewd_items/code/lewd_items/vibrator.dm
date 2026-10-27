@@ -8,8 +8,8 @@
 
 //This code huge and blocky, but we're working on update for... my god, 4 months. If you can upgrade it - do it, but don't remove or break something, test carefully. This item is insertable.
 /obj/item/clothing/sextoy/vibrator
-	name = "vibrator"
-	desc = "Woah. What an... Interesting item. I wonder what this red button does..."
+	name = "振动棒"
+	desc = "哇，真是件……有趣的东西。不知道这个红色按钮是做什么的……"
 	icon_state = "vibrator_pink_off"
 	base_icon_state = "vibrator"
 	inhand_icon_state = "vibrator_pink"
@@ -48,12 +48,12 @@
 /obj/item/clothing/sextoy/vibrator/examine(mob/user)
 	. = ..()
 	if(!color_changed)
-		. += span_notice("Alt-click to change it's design.")
+		. += span_notice("按住 Alt 点击可更换款式。")
 
 /obj/item/clothing/sextoy/vibrator/click_alt(mob/user)
 	if(color_changed)
 		return
-	var/choice = show_radial_menu(user, src, vibrator_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
+	var/choice = chinese_skyrat_item_radial(user, src, vibrator_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 	if(!choice)
 		return CLICK_ACTION_BLOCKING
 	current_color = choice
@@ -124,33 +124,33 @@
 
 	var/message = ""
 	if(!toy_on)
-		to_chat(user, span_notice("[src] must be on to use it!"))
+		to_chat(user, span_notice("必须先开启 [src] 才能使用！"))
 		return
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("Looks like [target] don't want you to do that."))
+		to_chat(user, span_danger("[target] 似乎不愿意让你这么做。"))
 		return
 
 	var/vibration_adj = ""
 	switch(vibration_mode)
 		if(VIB_LOW)
-			vibration_adj = pick("gently", "delicately")
+			vibration_adj = pick("轻轻地", "轻柔地")
 		if(VIB_HIGH)
-			vibration_adj = pick("roughly", "aggressively")
+			vibration_adj = pick("粗暴地", "猛烈地")
 
 	switch(user.zone_selected) //to let code know what part of body we gonna vibe
 		if(BODY_ZONE_PRECISE_GROIN)
 			var/obj/item/organ/genital/penis = target.get_organ_slot(ORGAN_SLOT_PENIS)
 			var/obj/item/organ/genital/vagina = target.get_organ_slot(ORGAN_SLOT_VAGINA)
-			var/penis_message = (user == target) ? pick("massages their penis with the [src]",
-					"[vibration_adj] teases their penis with [src]") \
-				: pick("[vibration_adj] massages [target]'s penis with [src]",
-					"uses [src] to [vibration_adj] massage [target]'s penis",
-					"leans the massager against [target]'s penis")
-			var/vagina_message = (user == target) ? pick("massages their vagina with the [src]",
-						"[vibration_adj] teases their pussy with [src]") \
-					: pick("[vibration_adj] massages [target]'s vagina with [src]",
-						"uses [src] to [vibration_adj] massage [target]'s crotch",
-						"leans the massager against [target]'s pussy")
+			var/penis_message = (user == target) ? pick("用 [src] 按摩自己的阴茎",
+					"用 [src] [vibration_adj]挑逗自己的阴茎") \
+				: pick("用 [src] [vibration_adj]按摩 [target] 的阴茎",
+					"拿 [src] [vibration_adj]按摩 [target] 的阴茎",
+					"将按摩棒抵在 [target] 的阴茎上")
+			var/vagina_message = (user == target) ? pick("用 [src] 按摩自己的阴道",
+						"用 [src] [vibration_adj]挑逗自己的阴部") \
+					: pick("用 [src] [vibration_adj]按摩 [target] 的阴道",
+						"用 [src] [vibration_adj]按摩 [target] 的胯部",
+						"将按摩棒抵在 [target] 的阴部")
 			if(vagina?.is_exposed() && penis?.is_exposed())
 				message = pick(penis_message, vagina_message)
 			else if(vagina?.is_exposed())
@@ -158,7 +158,7 @@
 			else if(penis?.is_exposed())
 				message = penis_message
 			else
-				to_chat(user, span_danger("Looks like [target]'s groin is covered!"))
+				to_chat(user, span_danger("[target] 的胯部似乎被遮住了！"))
 				return
 
 			target.adjust_arousal(DEFAULT_AROUSAL_INCREASE)
@@ -170,14 +170,14 @@
 			var/obj/item/organ/genital/breasts = target.get_organ_slot(ORGAN_SLOT_BREASTS)
 			if(breasts?.is_exposed())
 				var/breasts_or_nipples = breasts ? ORGAN_SLOT_BREASTS : ORGAN_SLOT_NIPPLES
-				message = (user == target) ? pick("massages their [breasts_or_nipples] with the [src]",
-						"[vibration_adj] teases their tits with [src]") \
-					: pick("[vibration_adj] teases [target]'s [breasts_or_nipples] with [src]",
-						"uses [src] to [vibration_adj] massage [target]'s [breasts ? "tits" : ORGAN_SLOT_NIPPLES]",
-						"uses [src] to tease [target]'s [breasts ? "boobs" : ORGAN_SLOT_NIPPLES]",
-						"rubs [target]'s [breasts ? "tits" : ORGAN_SLOT_NIPPLES] with [src]")
+				message = (user == target) ? pick("用 [src] 按摩自己的[chinese_skyrat_item_label(breasts_or_nipples)]",
+						"用 [src] [vibration_adj]挑逗自己的乳房") \
+					: pick("用 [src] [vibration_adj]挑逗 [target] 的[chinese_skyrat_item_label(breasts_or_nipples)]",
+						"用 [src] [vibration_adj]按摩 [target] 的[breasts ? "乳房" : "乳头"]",
+						"用 [src] 挑逗 [target] 的[breasts ? "乳房" : "乳头"]",
+						"用 [src] 摩擦 [target] 的[breasts ? "乳房" : "乳头"]")
 			else
-				to_chat(user, span_danger("Looks like [target]'s chest is covered!"))
+				to_chat(user, span_danger("[target] 的胸部似乎被遮住了！"))
 				return
 
 			target.adjust_arousal(DEFAULT_AROUSAL_INCREASE)
@@ -193,13 +193,13 @@
 	toggle_mode()
 	switch(vibration_mode)
 		if(VIB_LOW)
-			to_chat(user, span_notice("Vibration mode now is low. Bzzz..."))
+			to_chat(user, span_notice("振动模式现为低档。嗡……"))
 		if(VIB_MEDIUM)
-			to_chat(user, span_notice("Vibration mode now is medium. Bzzzz!"))
+			to_chat(user, span_notice("振动模式现为中档。嗡嗡！"))
 		if(VIB_HIGH)
-			to_chat(user, span_notice("Vibration mode now is high. Careful with that thing."))
+			to_chat(user, span_notice("振动模式现为高档。小心使用。"))
 		if(VIB_OFF)
-			to_chat(user, span_notice("Vibrator turned off. Fun's over?"))
+			to_chat(user, span_notice("振动棒已关闭。欢乐时光结束了？"))
 	update_icon()
 	update_icon_state()
 

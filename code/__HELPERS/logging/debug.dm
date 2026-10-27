@@ -36,7 +36,7 @@
 			return
 #endif
 #ifdef MAP_TEST
-	message_admins("Mapping: [text]")
+	message_admins("地图：[text]")
 #else
 	logger.Log(LOG_CATEGORY_DEBUG_MAPPING, text)
 	if(skip_world_log)

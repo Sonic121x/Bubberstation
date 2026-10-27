@@ -18,7 +18,7 @@
 /datum/emote/living/lewd/lewdmoan
 	key = "lewdmoan"
 	key_third_person = "lewdmoans"
-	message = "moans lewdly!"
+	message = "发出淫荡的呻吟！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sound_volume = 35

@@ -1,6 +1,6 @@
 /obj/machinery/computer/bank_machine
-	name = "bank machine"
-	desc = "A machine used to deposit and withdraw station funds."
+	name = "银行终端"
+	desc = "用于存取空间站资金的机器。"
 	circuit = /obj/item/circuitboard/computer/bankmachine
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/bank_machine")
 	icon_screen = "vault"
@@ -37,7 +37,7 @@
 	synced_bank_account = SSeconomy.get_dep_account(account_department)
 
 	if(!mapload)
-		AddComponent(/datum/component/gps, "Forbidden Cash Signal")
+		AddComponent(/datum/component/gps, "非法现金信号")
 
 /obj/machinery/computer/bank_machine/Destroy()
 	QDEL_NULL(radio)
@@ -62,7 +62,7 @@
 		return NONE
 	if(synced_bank_account)
 		synced_bank_account.adjust_money(value)
-		say("[MONEY_NAME_CAPITALIZED] deposited! The [synced_bank_account.account_holder] is now [synced_bank_account.account_balance] [MONEY_SYMBOL].")
+		say("[MONEY_NAME_CAPITALIZED]已存入！[synced_bank_account.account_holder]当前余额为[synced_bank_account.account_balance] [MONEY_SYMBOL]。")
 	qdel(tool)
 	return ITEM_INTERACT_SUCCESS
 
@@ -72,12 +72,12 @@
 	if(!siphoning || !synced_bank_account)
 		return
 	if (machine_stat & (BROKEN | NOPOWER))
-		say("Insufficient power. Halting siphon.")
+		say("电力不足。停止抽取资金。")
 		end_siphon()
 		return
 	var/siphon_am = 100 * seconds_per_tick
 	if(!synced_bank_account.has_money(siphon_am))
-		say("[synced_bank_account.account_holder] depleted. Halting siphon.")
+		say("[synced_bank_account.account_holder]的资金已耗尽。停止抽取资金。")
 		end_siphon()
 		return
 
@@ -86,7 +86,7 @@
 	synced_bank_account.adjust_money(-siphon_am)
 	if(next_warning < world.time && prob(15))
 		var/area/A = get_area(loc)
-		var/message = "[unauthorized ? "Unauthorized c" : "C"]redit withdrawal underway in [initial(A.name)][unauthorized ? "!!" : "..."]"
+		var/message = "[chinese_area_display(initial(A.name))]正在进行[unauthorized ? "未经授权的" : ""]资金提取[unauthorized ? "！！" : "……"]"
 		radio.talk_into(src, message, radio_channel)
 		next_warning = world.time + minimum_time_between_warnings
 
@@ -114,20 +114,20 @@
 	switch(action)
 		if("siphon")
 			if(is_station_level(src.z) || is_centcom_level(src.z))
-				say("Siphon of station [MONEY_NAME] has begun!")
+				say("已开始抽取空间站的[MONEY_NAME]！")
 				start_siphon(ui.user)
 			else
-				say("Error: Console not in reach of station, withdrawal cannot begin.")
+				say("错误：控制台不在空间站范围内，无法开始提款。")
 			. = TRUE
 		if("halt")
-			say("Station [MONEY_NAME_SINGULAR] withdrawal halted.")
+			say("空间站[MONEY_NAME_SINGULAR]提款已停止。")
 			end_siphon()
 			. = TRUE
 
 /obj/machinery/computer/bank_machine/on_changed_z_level()
 	. = ..()
 	if(siphoning && !(is_station_level(src.z) || is_centcom_level(src.z)))
-		say("Error: Console not in reach of station. Siphon halted.")
+		say("错误：控制台不在空间站范围内。资金抽取已停止。")
 		end_siphon()
 
 /obj/machinery/computer/bank_machine/proc/end_siphon()

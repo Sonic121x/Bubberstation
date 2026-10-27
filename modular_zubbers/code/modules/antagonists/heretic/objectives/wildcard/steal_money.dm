@@ -1,6 +1,6 @@
 /datum/objective/heretic_wildcard/steal_money
-	name = "steal money"
-	finish_text = "While a rogue God, the Capitalist appreciates true entrepreneurs. As your wallet swells, so too does your mind."
+	name = "窃取钱财"
+	finish_text = "资本家虽是离经叛道的神，却欣赏真正的创业者。你的钱包愈发充盈，心智也随之拓展。"
 	knowledge_to_gain = list(/datum/heretic_knowledge/blood_to_money)
 	knowledge_per_progress = 2
 	max_progress = 1
@@ -13,7 +13,7 @@
 	update_explanation_text()
 
 /datum/objective/heretic_wildcard/steal_money/update_explanation_text()
-	explanation_text = "Steal at least [target_amount] credits from crew members using your rituals. You will only receive points once you reach the maximum."
+	explanation_text = "利用仪式从船员那里窃取至少[target_amount]信用点。只有达到目标金额后才会获得知识点。"
 
 /datum/objective/heretic_wildcard/steal_money/apply_to(datum/antagonist/heretic/our_heretic)
 	. = ..()

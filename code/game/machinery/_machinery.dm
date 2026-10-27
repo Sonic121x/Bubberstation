@@ -85,12 +85,12 @@
  * Compiled by Aygar
  */
 /obj/machinery
-	name = "machinery"
+	name = "机器"
 	icon = 'icons/obj/machines/fax.dmi'
-	desc = "Some kind of machine."
+	desc = "某种机器。"
 	abstract_type = /obj/machinery
-	verb_say = "beeps"
-	verb_yell = "blares"
+	verb_say = "哔哔地说"
+	verb_yell = "鸣响"
 	pressure_resistance = 15
 	pass_flags_self = PASSMACHINE | LETPASSCLICKS
 	max_integrity = 200
@@ -681,7 +681,7 @@
 		return FALSE
 
 	if((interaction_flags_machine & INTERACT_MACHINE_REQUIRES_SIGHT) && user.is_blind())
-		to_chat(user, span_warning("This machine requires sight to use."))
+		to_chat(user, span_warning("必须能看见才能使用这台机器。"))
 		return FALSE
 
 	// machines have their own lit up display screens and LED buttons so we don't need to check for light
@@ -717,7 +717,7 @@
 	add_fingerprint(user)
 	update_last_used(user)
 	if(isAI(user) && !SScameras.is_visible_by_cameras(get_turf(src))) //We check if they're an AI specifically here, so borgs/adminghosts/human wand can still access off-camera stuff.
-		to_chat(user, span_warning("You can no longer connect to this device!"))
+		to_chat(user, span_warning("你已无法连接这台设备！"))
 		return FALSE
 	return ..()
 
@@ -741,17 +741,17 @@
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 	var/damage = take_damage(damage_amount = 4, damage_type = BRUTE, damage_flag = MELEE, sound_effect = TRUE, attack_dir = get_dir(user, src))
 
-	var/hit_with_what_noun = "paws"
+	var/hit_with_what_noun = "爪子"
 	var/obj/item/bodypart/arm/arm = user.get_active_hand()
 	if(!isnull(arm))
-		hit_with_what_noun = arm.appendage_noun // hit with "their hand"
+		hit_with_what_noun = arm.appendage_noun == "hand" ? "手" : (arm.appendage_noun == "paw" ? "爪子" : arm.appendage_noun) // hit with "their hand"
 		if(user.usable_hands > 1)
-			hit_with_what_noun += plural_s(hit_with_what_noun) // hit with "their hands"
+			hit_with_what_noun = "双[hit_with_what_noun]" // hit with "their hands"
 
 	user.visible_message(
-		span_danger("[user] smashes [src] with [user.p_their()] [hit_with_what_noun][damage ? "." : ", [no_damage_feedback]!"]"),
-		span_danger("You smash [src] with your [hit_with_what_noun][damage ? "." : ", [no_damage_feedback]!"]"),
-		span_hear("You hear a [damage ? "smash" : "thud"]."),
+		span_danger("[user]用[hit_with_what_noun]猛砸[src][damage ? "。" : "，却[no_damage_feedback]！"]"),
+		span_danger("你用[hit_with_what_noun]猛砸[src][damage ? "。" : "，却[no_damage_feedback]！"]"),
+		span_hear("你听见一声[damage ? "撞击巨响" : "闷响"]。"),
 		COMBAT_MESSAGE_RANGE,
 	)
 	return TRUE
@@ -774,7 +774,7 @@
 		if(user_unbuckle_mob(buckled_mobs[1],user))
 			return TRUE
 
-	var/unbuckled = tgui_input_list(user, "Who do you wish to unbuckle?", "Unbuckle", sort_names(buckled_mobs))
+	var/unbuckled = tgui_input_list(user, "你想解开谁的束缚？", "解开束缚", sort_names(buckled_mobs))
 	if(isnull(unbuckled))
 		return FALSE
 	if(user_unbuckle_mob(unbuckled,user))
@@ -889,7 +889,7 @@
 		return deconstruct_on_fail ? default_deconstruction_crowbar(user, crowbar) : ITEM_INTERACT_BLOCKING
 
 	crowbar.play_tool_sound(src, 50)
-	user.visible_message(span_notice("[user] pries open [src]."), span_notice("You pry open [src]."))
+	user.visible_message(span_notice("[user]撬开了[src]。"), span_notice("你撬开了[src]。"))
 	open_machine(density_to_set = open_density)
 	if (close_after_pry) //Should it immediately close after prying? (If not, it must be closed elsewhere)
 		close_machine(density_to_set = closed_density)
@@ -1056,7 +1056,7 @@
 
 	screwdriver.play_tool_sound(src, 50)
 	toggle_panel_open()
-	balloon_alert(user, "maintenance hatch [panel_open ? "opened" : "closed"]")
+	balloon_alert(user, "检修盖已[panel_open ? "打开" : "关闭"]")
 	return ITEM_INTERACT_SUCCESS
 
 /**
@@ -1076,7 +1076,7 @@
 
 	wrench.play_tool_sound(src, 50)
 	setDir(turn(dir,-90))
-	to_chat(user, span_notice("You rotate [src]."))
+	to_chat(user, span_notice("你转动了[src]。"))
 	SEND_SIGNAL(src, COMSIG_MACHINERY_DEFAULT_ROTATE_WRENCH, user, wrench)
 	return ITEM_INTERACT_SUCCESS
 
@@ -1169,7 +1169,7 @@
 				physical_part = primary_part_base
 
 			replacer_tool.atom_storage.attempt_insert(physical_part, user, override = TRUE, force = STORAGE_SOFT_LOCKED, messages = FALSE)
-			to_chat(user, span_notice("[capitalize(physical_part.name)] replaced with [secondary_part_name]."))
+			to_chat(user, span_notice("已将[capitalize(physical_part.name)]更换为[secondary_part_name]。"))
 			shouldplaysound = TRUE //Only play the sound when parts are actually replaced!
 			break
 
@@ -1219,7 +1219,7 @@
 				part_count[component] = board.req_components[component]
 
 
-	var/text = span_notice("It contains the following parts:")
+	var/text = span_notice("它包含以下零件：")
 	for(var/component_part in part_count)
 		var/part_name
 		var/icon/html_icon
@@ -1236,26 +1236,26 @@
 			html_icon = part.icon
 			icon_state = part.icon_state
 		//merge icon & name into text
-		text += span_notice("[icon2html(html_icon, user, icon_state)] [part_count[component_part]] [part_name]\s.")
+		text += span_notice("[icon2html(html_icon, user, icon_state)] [part_count[component_part]]个[part_name]。")
 
 	return text
 
 /obj/machinery/examine(mob/user)
 	. = ..()
 	if(machine_stat & BROKEN)
-		. += span_notice("It looks broken and non-functional.")
+		. += span_notice("它似乎已损坏，无法运作。")
 	if(!(resistance_flags & INDESTRUCTIBLE))
 		var/healthpercent = (atom_integrity/max_integrity) * 100
 		switch(healthpercent)
 			if(50 to 99)
-				. += "It looks slightly damaged."
+				. += "它看起来有轻微损伤。"
 			if(25 to 50)
-				. += "It appears heavily damaged."
+				. += "它似乎严重受损。"
 			if(0 to 25)
-				. += span_warning("It's falling apart!")
+				. += span_warning("它快散架了！")
 
 /obj/machinery/examine_descriptor(mob/user)
-	return "machine"
+	return "机器"
 
 /obj/machinery/examine_more(mob/user)
 	. = ..()
@@ -1328,7 +1328,7 @@
  * However, the proc may also be used elsewhere.
  */
 /obj/machinery/proc/AI_notify_hack()
-	var/alertstr = span_userdanger("Network Alert: Hacking attempt detected[get_area(src)?" in [get_area_name(src, TRUE)]":". Unable to pinpoint location"].")
+	var/alertstr = span_userdanger("网络警报：检测到入侵尝试[get_area(src)?"，位于[chinese_area_display(get_area_name(src, TRUE))]":"，无法确定位置"]。")
 	for(var/mob/living/silicon/ai/AI in GLOB.player_list)
 		to_chat(AI, alertstr)
 

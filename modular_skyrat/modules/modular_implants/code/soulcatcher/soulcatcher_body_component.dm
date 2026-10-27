@@ -34,7 +34,7 @@
 	if(!target_soul || !target_soul.body_scan_needed)
 		return FALSE
 
-	to_chat(target_soul, span_cyan("Your body has scanned, revealing your true identity."))
+	to_chat(target_soul, span_cyan("你的躯体已被扫描，真实身份已经揭示。"))
 	target_soul.body_scan_needed = FALSE
 
 	SEND_SIGNAL(target_soul, COMSIG_CARRIER_MOB_REFRESH_APPEARANCE)

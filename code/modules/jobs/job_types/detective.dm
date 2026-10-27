@@ -1,7 +1,7 @@
 /datum/job/detective
 	title = JOB_DETECTIVE
-	description = "Investigate crimes, gather evidence, perform interrogations, \
-		look badass, smoke cigarettes."
+	description = "调查案件、收集证据、进行审讯，\
+		保持酷炫形象，抽抽香烟。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	faction = FACTION_STATION
 	total_positions = 1
@@ -40,7 +40,7 @@
 	)
 
 	family_heirlooms = list(/obj/item/reagent_containers/cup/glass/bottle/whiskey)
-	rpg_title = "Thiefcatcher" //I guess they caught them all rip thief...
+	rpg_title = "捕贼人" //I guess they caught them all rip thief...
 	job_flags = STATION_JOB_FLAGS | JOB_ANTAG_PROTECTED
 
 	job_tone = "objection"

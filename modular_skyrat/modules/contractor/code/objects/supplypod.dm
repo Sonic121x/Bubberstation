@@ -6,7 +6,7 @@
 /obj/structure/closet/supplypod/extractionpod/Destroy()
 	if(!receiving)
 		return ..()
-	to_chat(tied_contract.contract.owner, "<BR>[span_userdanger("Extraction pod destroyed. Contract aborted.")]")
+	to_chat(tied_contract.contract.owner, "<BR>[span_userdanger("撤离空投舱已损毁。合同已中止。")]")
 	var/contract_id = tied_contract.id
 	if (contract_hub.current_contract == tied_contract)
 		contract_hub.current_contract = null
@@ -19,7 +19,7 @@
 
 /obj/structure/closet/supplypod/extractionpod/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	if(receiving && (atom_integrity <= 0))
-		to_chat(tied_contract.contract.owner, "<BR>[span_userdanger("Extraction pod destroyed. Contract aborted.")]")
+		to_chat(tied_contract.contract.owner, "<BR>[span_userdanger("撤离空投舱已损毁。合同已中止。")]")
 		var/contract_id = tied_contract.id
 		if (contract_hub.current_contract == tied_contract)
 			contract_hub.current_contract = null

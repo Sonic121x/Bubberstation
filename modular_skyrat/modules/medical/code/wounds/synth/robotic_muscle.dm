@@ -5,12 +5,12 @@
 	required_limb_biostate = (BIO_METAL)
 
 /datum/wound/muscle/robotic/moderate
-	name = "Overworked Servo"
-	desc = "A servo has been overworked, and will operate with reduced efficiency until rested."
-	treat_text = "A tight splint on the affected limb, as well as plenty of rest and sleep."
-	examine_desc = "appears to be moving sluggishly"
-	occur_text = "jitters for a moment before moving sluggishly"
-	treat_text_short = "Gauze and rest"
+	name = "伺服过载"
+	desc = "一个伺服电机已超负荷运转，在休息之前将以降低的效率工作。"
+	treat_text = "在受伤肢体上紧紧打上夹板，并充分休息与睡眠。"
+	examine_desc = "动作显得迟缓"
+	occur_text = "抖动了一下，随后动作变得迟缓"
+	treat_text_short = "纱布包扎并休息"
 	severity = WOUND_SEVERITY_MODERATE
 	interaction_efficiency_penalty = 1.5
 	limp_slowdown = 2
@@ -25,13 +25,13 @@
 	threshold_minimum = 35
 
 /datum/wound/muscle/robotic/severe
-	name = "Exhausted Piston"
+	name = "活塞力竭"
 	sound_effect = 'sound/effects/wounds/blood2.ogg'
-	desc = "An important hydraulic piston has been critically overused, resulting in total dysfunction until it recovers."
-	treat_text = "A tight splint on the affected limb, as well as plenty of rest and sleep."
-	examine_desc = "is stiffly limp, the extremities splayed out widely"
-	occur_text = "goes completely stiff, seeming to lock into position"
-	treat_text_short = "Gauze and rest"
+	desc = "一个重要的液压活塞被严重过度使用，在恢复之前完全失去功能。"
+	treat_text = "在受伤肢体上紧紧打上夹板，并充分休息与睡眠。"
+	examine_desc = "僵硬地垂着，末端向外张开"
+	occur_text = "完全僵住，似乎锁死在了某个姿势"
+	treat_text_short = "纱布包扎并休息"
 	severity = WOUND_SEVERITY_SEVERE
 	interaction_efficiency_penalty = 2
 	limp_slowdown = 5

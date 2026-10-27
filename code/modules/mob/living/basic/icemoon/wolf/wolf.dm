@@ -1,14 +1,14 @@
 /mob/living/basic/mining/wolf
-	name = "white wolf"
-	desc = "Pack hunters of the Icemoon wastes. While a mere nuisance individually, they become fearsome foes in larger groups."
+	name = "白狼"
+	desc = "冰原荒地上的群猎者。单独一只不过是小麻烦，成群之后却会成为可怕的敌人。"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	icon_state = "whitewolf"
 	icon_living = "whitewolf"
 	icon_dead = "whitewolf_dead"
 	mouse_opacity = MOUSE_OPACITY_ICON
-	speak_emote = list("howls")
-	friendly_verb_continuous = "howls at"
-	friendly_verb_simple = "howl at"
+	speak_emote = list("嚎叫")
+	friendly_verb_continuous = "嚎叫着凑近"
+	friendly_verb_simple = "嚎叫着凑近"
 
 	butcher_results = list(
 		/obj/item/food/meat/slab = 2,
@@ -25,9 +25,9 @@
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	melee_attack_cooldown = 1.2 SECONDS
 
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
-	death_message = "snarls its last and perishes."
+	attack_verb_continuous = "撕咬"
+	attack_verb_simple = "撕咬"
+	death_message = "发出最后一声咆哮，死去了。"
 
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	move_force = MOVE_FORCE_WEAK
@@ -84,4 +84,4 @@
 	if(isnull(.))
 		return
 	SET_FACTION_AND_ALLIES_FROM(src, new_friend)
-	visible_message(span_notice("[src] lowers [src.p_their()] snout at [new_friend]'s offering and begins to wag [src.p_their()] tail."))
+	visible_message(span_notice("[src] 低下鼻尖凑向 [new_friend] 递来的食物，开始摇起尾巴。"))

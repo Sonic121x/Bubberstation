@@ -17,8 +17,8 @@ Nothing else in the console has ID requirements.
 
 */
 /obj/machinery/computer/rdconsole
-	name = "R&D Console"
-	desc = "A console used to interface with R&D tools."
+	name = "研发控制台"
+	desc = "用于操作研发工具的控制台。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/rdconsole")
 	icon_screen = "rdcomp"
 	icon_keyboard = "rd_key"
@@ -77,31 +77,31 @@ Nothing else in the console has ID requirements.
 
 	if(istype(tool, /obj/item/disk/tech_disk))
 		if(t_disk)
-			to_chat(user, span_warning("A technology disk is already loaded!"))
+			to_chat(user, span_warning("技术磁盘已装入！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning("[tool] is stuck to your hand!"))
+			to_chat(user, span_warning("[tool] 卡在你手上了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		t_disk = tool
-		to_chat(user, span_notice("You insert [tool] into \the [src]!"))
+		to_chat(user, span_notice("你把 [tool] 插入 \the [src]！"))
 		return ITEM_INTERACT_SUCCESS
 
 	if (!istype(tool, /obj/item/disk/design_disk))
-		to_chat(user, span_warning("Machine cannot accept disks in that format."))
+		to_chat(user, span_warning("机器无法接受该格式的磁盘。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(d_disk)
-		to_chat(user, span_warning("A design disk is already loaded!"))
+		to_chat(user, span_warning("设计磁盘已装入！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
-		to_chat(user, span_warning("[tool] is stuck to your hand!"))
+		to_chat(user, span_warning("[tool] 卡在你手上了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	d_disk = tool
-	to_chat(user, span_notice("You insert [tool] into \the [src]!"))
+	to_chat(user, span_notice("你把 [tool] 插入 \the [src]！"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/computer/rdconsole/multitool_act(mob/living/user, obj/item/multitool/tool)
@@ -112,38 +112,38 @@ Nothing else in the console has ID requirements.
 
 /obj/machinery/computer/rdconsole/proc/enqueue_node(id, mob/user)
 	if(!stored_research || !stored_research.available_nodes[id] || stored_research.researched_nodes[id])
-		say("Node enqueue failed: Either no techweb is found, node is already researched or is not available!")
+		say("节点加入队列失败：未找到科技网络，或节点已研究、不可用！")
 		return FALSE
 	stored_research.enqueue_node(id, user)
 	return TRUE
 
 /obj/machinery/computer/rdconsole/proc/dequeue_node(id, mob/user)
 	if(!stored_research || !stored_research.available_nodes[id] || stored_research.researched_nodes[id])
-		say("Node dequeue failed: Either no techweb is found, node is already researched or is not available!")
+		say("节点移出队列失败：未找到科技网络，或节点已研究、不可用！")
 		return FALSE
 	stored_research.dequeue_node(id, user)
 	return TRUE
 
 /obj/machinery/computer/rdconsole/proc/research_node(id, mob/user)
 	if(!stored_research || !stored_research.available_nodes[id] || stored_research.researched_nodes[id])
-		say("Node unlock failed: Either no techweb is found, node is already researched or is not available!")
+		say("节点解锁失败：未找到科技网络，或节点已研究、不可用！")
 		return FALSE
 	var/datum/techweb_node/TN = SSresearch.techweb_node_by_id(id)
 	if(!istype(TN))
-		say("Node unlock failed: Unknown error.")
+		say("节点解锁失败：未知错误。")
 		return FALSE
 	var/list/price = TN.get_price(stored_research)
 	if(stored_research.can_afford(price))
-		user.investigate_log("researched [id]([json_encode(price)]) on techweb id [stored_research.id].", INVESTIGATE_RESEARCH)
+		user.investigate_log("在科技网络 id [stored_research.id] 上研究了 [id]（[json_encode(price)]）。", INVESTIGATE_RESEARCH)
 		if(istype(stored_research, /datum/techweb/science))
 			SSblackbox.record_feedback("associative", "science_techweb_unlock", 1, list("id" = "[id]", "name" = TN.display_name, "price" = "[json_encode(price)]", "time" = ISOtime()))
 		if(stored_research.research_node_id(id, research_source = src))
-			say("Successfully researched [TN.display_name].")
-			var/logname = "Unknown"
+			say("已成功研究 [TN.display_name]。")
+			var/logname = "未知"
 			if(HAS_AI_ACCESS(user))
-				logname = "AI [user.name]"
+				logname = "人工智能 [user.name]"
 			if(iscyborg(user))
-				logname = "CYBORG [user.name]"
+				logname = "半机械人 [user.name]"
 			if(iscarbon(user))
 				var/obj/item/card/id/idcard = user.get_active_held_item()
 				if(istype(idcard))
@@ -163,16 +163,16 @@ Nothing else in the console has ID requirements.
 			))
 			return TRUE
 		else
-			say("Failed to research node: Internal database error!")
+			say("研究节点失败：内部数据库错误！")
 			return FALSE
-	say("Not enough research points...")
+	say("研究点不足……")
 	return FALSE
 
 /obj/machinery/computer/rdconsole/emag_act(mob/user, obj/item/card/emag/emag_card)
 	. = ..()
 	if (obj_flags & EMAGGED)
 		return
-	balloon_alert(user, "security protocols disabled")
+	balloon_alert(user, "安保协议已禁用")
 	playsound(src, SFX_SPARKS, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	obj_flags |= EMAGGED
 	var/obj/item/circuitboard/computer/rdconsole/board = circuit
@@ -368,18 +368,18 @@ Nothing else in the console has ID requirements.
 
 	// Check if the console is locked to block any actions occuring
 	if (board.locked && action != "toggleLock")
-		say("Console is locked, cannot perform further actions.")
+		say("控制台已锁定，无法执行后续操作。")
 		return TRUE
 
 	switch (action)
 		if ("toggleLock")
 			if(obj_flags & EMAGGED)
-				to_chat(usr, span_boldwarning("Security protocol error: Unable to access locking protocols."))
+				to_chat(usr, span_boldwarning("安保协议错误：无法访问锁定协议。"))
 				return TRUE
 			if(allowed(usr))
 				board.locked = !board.locked
 			else
-				to_chat(usr, span_boldwarning("Unauthorized Access."))
+				to_chat(usr, span_boldwarning("未经授权的访问。"))
 			return TRUE
 
 		if ("researchNode")
@@ -401,36 +401,36 @@ Nothing else in the console has ID requirements.
 		if ("uploadDisk")
 			if (params["type"] == RND_DESIGN_DISK)
 				if(QDELETED(d_disk))
-					say("No design disk inserted!")
+					say("未插入设计磁盘！")
 					return TRUE
 				for(var/D in d_disk.blueprints)
 					if(D)
 						stored_research.add_design(D, TRUE)
-				say("Uploading blueprints from disk.")
+				say("正在从磁盘上传蓝图。")
 				d_disk.on_upload(stored_research, src)
 				return TRUE
 			if (params["type"] == RND_TECH_DISK)
 				if(!COOLDOWN_FINISHED(src, cooldowncopy)) // prevents MC hang
-					say("Servers busy!")
+					say("服务器繁忙！")
 					return
 				if (QDELETED(t_disk))
-					say("No tech disk inserted!")
+					say("未插入技术磁盘！")
 					return TRUE
 				COOLDOWN_START(src, cooldowncopy, 5 SECONDS)
-				say("Uploading technology disk.")
+				say("正在上传技术磁盘。")
 				t_disk.stored_research.copy_research_to(stored_research)
 			return TRUE
 
 		//Tech disk-only action.
 		if ("loadTech")
 			if(!COOLDOWN_FINISHED(src, cooldowncopy)) // prevents MC hang
-				say("Servers busy!")
+				say("服务器繁忙！")
 				return
 			if(QDELETED(t_disk))
-				say("No tech disk inserted!")
+				say("未插入技术磁盘！")
 				return
 			COOLDOWN_START(src, cooldowncopy, 5 SECONDS)
-			say("Downloading to technology disk.")
+			say("正在下载至技术磁盘。")
 			stored_research.copy_research_to(t_disk.stored_research)
 			return TRUE
 

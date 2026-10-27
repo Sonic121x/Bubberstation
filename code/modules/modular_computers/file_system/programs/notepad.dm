@@ -1,9 +1,9 @@
 /datum/computer_file/program/notepad
 	filename = "notepad"
-	filedesc = "Notepad"
+	filedesc = "记事本"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	program_open_overlay = "generic"
-	extended_desc = "Jot down your work-safe thoughts and what not."
+	extended_desc = "随手记下你那些适合工作场合的想法之类的内容。"
 	size = 2
 	tgui_id = "NtosNotepad"
 	program_icon = "book"
@@ -12,16 +12,16 @@
 
 	var/opened_file_uid
 	var/opened_file_on_disk = FALSE
-	var/opened_file_name = "Untitled"
-	var/written_note = "Congratulations on your station upgrading to the new NtOS and Thinktronic based collaboration effort, \
-		bringing you the best in electronics and software since 2467!\n\
-		To help with navigation, we have provided the following definitions:\n\
-		Fore - Toward front of ship\n\
-		Aft - Toward back of ship\n\
-		Port - Left side of ship\n\
-		Starboard - Right side of ship\n\
-		Quarter - Either sides of Aft\n\
-		Bow - Either sides of Fore"
+	var/opened_file_name = "未命名"
+	var/written_note = "恭喜本站升级至全新的 NtOS 与 Thinktronic 合作成果，\
+		自 2467 年以来一直为你带来最优质的电子与软件产品！\n\
+		为便于导航，我们提供以下术语定义：\n\
+		船首（Fore）—— 朝船体前方\n\
+		船尾（Aft）—— 朝船体后方\n\
+		左舷（Port）—— 船体左侧\n\
+		右舷（Starboard）—— 船体右侧\n\
+		后侧两舷（Quarter）—— 船尾两侧\n\
+		前侧两舷（Bow）—— 船首两侧"
 
 /datum/computer_file/program/notepad/proc/get_target_disk(opened_on_disk)
 	if(opened_on_disk && computer?.inserted_disk)
@@ -58,7 +58,7 @@
 	new_file.calculate_size()
 	var/file_stored = target_disk ? target_disk.add_file(new_file) : computer.store_file(new_file, user)
 	if(!file_stored)
-		to_chat(user, span_warning("Error occured while saving the file!"))
+		to_chat(user, span_warning("保存文件时发生错误！"))
 		qdel(new_file)
 		return
 

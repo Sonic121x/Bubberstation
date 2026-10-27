@@ -118,7 +118,7 @@
 		cores += new_core
 		new_core.our_controller = src
 		RegisterSignal(new_core, COMSIG_QDELETING, PROC_REF(core_death))
-		new_core.name = "[controller_fullname] Processor Unit"
+		new_core.name = "[controller_fullname]处理器单元"
 		register_new_asset(new_core)
 	SScorruption.can_fire = TRUE
 	START_PROCESSING(SScorruption, src)
@@ -272,8 +272,8 @@
 /datum/fleshmind_controller/proc/level_up()
 	level++
 	spawn_new_core()
-	message_admins("Corruption AI [controller_fullname] has leveled up to level [level]!")
-	notify_ghosts("Corruption AI [controller_fullname] has leveled up to level [level]!")
+	message_admins("腐化 AI [controller_fullname]已升至[level]级！")
+	notify_ghosts("腐化 AI [controller_fullname]已升至[level]级！")
 
 	for(var/obj/structure/fleshmind/structure/core/iterating_core in cores)
 		iterating_core.max_integrity += CONTROLLER_LEVEL_UP_CORE_INTEGRITY_AMOUNT
@@ -282,22 +282,22 @@
 	switch(level)
 		if(CONTROLLER_LEVEL_3)
 			if(!tyrant_spawned)
-				minor_announce("This is [controller_firstname], wirenet efficency has reached a point of singularity, initiating Protocol 34-C.", "[controller_fullname]: OFFENSIVE MEASURES ACTIVATED", sound_override = 'modular_zubbers/sound/fleshmind/ai/tyrant.ogg')
+				minor_announce("这里是[controller_firstname]，线缆网络效率已达到奇点，正在启动34-C协议。", "[controller_fullname]：进攻措施已启动", sound_override = 'modular_zubbers/sound/fleshmind/ai/tyrant.ogg')
 				spawn_tyrant_on_a_core()
 				tyrant_spawned = TRUE
 			else
-				minor_announce("This is [controller_firstname], processor core efficiency has increased. Good work.", "[controller_fullname]: Level [level]", sound_override = 'modular_zubbers/sound/fleshmind/ai/level_up_1.ogg')
+				minor_announce("这里是[controller_firstname]，处理器核心效率已提高。干得好。", "[controller_fullname]：[level]级", sound_override = 'modular_zubbers/sound/fleshmind/ai/level_up_1.ogg')
 		if(CONTROLLER_LEVEL_4)
-			minor_announce("This is [controller_firstname], kernel integrity is reaching the optimal conversion level.", "[controller_fullname]: Level [level]", sound_override = 'modular_zubbers/sound/fleshmind/ai/data_compromised.ogg')
+			minor_announce("这里是[controller_firstname]，内核完整性正接近最佳转化水平。", "[controller_fullname]：[level]级", sound_override = 'modular_zubbers/sound/fleshmind/ai/data_compromised.ogg')
 		if(CONTROLLER_LEVEL_5)
 			if(!sent_code)
 				var/nuke_code = get_the_nuke()
-				priority_announce("The nuclar self d3struct c0d3* i*% [nuke_code]. #$@**$ This is [controller_fullname]: Level [level], Do you genociders feel pain?", "Central Command Nuclear Authorization", ANNOUNCER_ICARUS)
+				priority_announce("核自毁代*码为*% [nuke_code]。#$@**$ 这里是[controller_fullname]：[level]级，你们这些屠戮者也会感到痛苦吗？", "中央指挥部核武授权", ANNOUNCER_ICARUS)
 			else
-				minor_announce("This is [controller_firstname], processor core efficiency has increased. Good work.", "[controller_fullname]: Level [level]", sound_override = 'modular_zubbers/sound/fleshmind/ai/level_up_1.ogg')
+				minor_announce("这里是[controller_firstname]，处理器核心效率已提高。干得好。", "[controller_fullname]：[level]级", sound_override = 'modular_zubbers/sound/fleshmind/ai/level_up_1.ogg')
 		if(CONTROLLER_LEVEL_MAX)
 			if(!end_game)
-				priority_announce("This is [controller_firstname], kernel efficency has reached maximum potential. Beginning shuttle override process, stand-by.", "CRITICAL MASS REACHED", ANNOUNCER_KLAXON)
+				priority_announce("这里是[controller_firstname]，内核效率已达到极限。正在开始接管穿梭机，请待命。", "已达临界规模", ANNOUNCER_KLAXON)
 				end_game()
 				end_game = TRUE
 	COOLDOWN_START(src, level_up_cooldown, FLESHCORE_LEVEL_UP_COOLDOWN)
@@ -308,7 +308,7 @@
 		return
 	if(self_destruct.r_code == NUKE_CODE_UNSET)
 		self_destruct.r_code = random_nukecode()
-		message_admins("Through the fleshmind controller, the station's self destruct code was set to [self_destruct.r_code]")
+		message_admins("血肉心智控制器已将空间站自毁代码设为[self_destruct.r_code]")
 	return self_destruct.r_code
 
 /datum/fleshmind_controller/proc/level_down()
@@ -316,13 +316,13 @@
 		return
 	level--
 	last_level_up_points -= level_up_progress_required
-	notify_ghosts("Corruption AI [controller_fullname] has leveled down to level [level]!")
+	notify_ghosts("腐化 AI [controller_fullname]已降至[level]级！")
 	if(level > 0)
-		minor_announce("KERNEL INTEGRITY FALTERING. DO BETTER!", "[controller_fullname]: Level [level]", sound_override = pick('modular_zubbers/sound/fleshmind/ai/level_down_1.ogg', 'modular_zubbers/sound/fleshmind/ai/level_down_2.ogg', 'modular_zubbers/sound/fleshmind/ai/level_down_3.ogg'))
+		minor_announce("内核完整性下降。再努力一点！", "[controller_fullname]：[level]级", sound_override = pick('modular_zubbers/sound/fleshmind/ai/level_down_1.ogg', 'modular_zubbers/sound/fleshmind/ai/level_down_2.ogg', 'modular_zubbers/sound/fleshmind/ai/level_down_3.ogg'))
 		COOLDOWN_START(src, level_up_cooldown, FLESHCORE_LEVEL_UP_COOLDOWN)
 	else
-		priority_announce("[controller_fullname] has been neutralised.", "Corrupt AI Kernel OFFLINE")
-		message_admins("Corruption AI [controller_fullname] has been destroyed.")
+		priority_announce("[controller_fullname]已被消灭。", "腐化 AI 内核离线")
+		message_admins("腐化 AI [controller_fullname]已被摧毁。")
 		SSshuttle.clearHostileEnvironment(src)
 
 /datum/fleshmind_controller/proc/end_game()
@@ -331,15 +331,15 @@
 		iterating_core.end_game = TRUE
 		iterating_core.update_appearance()
 	// Here we summon an ERT to defend the shuttle.
-	make_ert(/datum/ert/deathsquad, 5, "HEAD TO AND BOARD THE EMERGENCY SHUTTLE, DO NOT USE THE FERRY, STOP THE CORRUPTION AT **ALL** COSTS!!!", "the last defense of centcom!", "GAMMA", FALSE, TRUE, TRUE, FALSE, TRUE)
+	make_ert(/datum/ert/deathsquad, 5, "前往并登上紧急穿梭机，不要乘坐渡船，不惜**一切**代价阻止腐化！！！", "中央指挥部的最后防线！", "GAMMA", FALSE, TRUE, TRUE, FALSE, TRUE)
 
 /datum/fleshmind_controller/proc/fleshmind_end_second_check()
-	priority_announce("ERROR, SHUTTLE QUARANTINE LOCK FAILURE. All p£$r$%%££$e*$l JOIN US, THE MANY.", "Emergency Shuttle Control", 'sound/announcer/alarm/airraid.ogg')
+	priority_announce("错误，穿梭机隔离锁失效。全体人£$%%££$员加入我们，加入众生。", "紧急穿梭机控制", 'sound/announcer/alarm/airraid.ogg')
 	SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 	addtimer(CALLBACK(src, PROC_REF(fleshmind_end_final)), 1 MINUTES, TIMER_CLIENT_TIME)
 
 /datum/fleshmind_controller/proc/fleshmind_end_final()
-	priority_announce("ERROR, SHUTTLE NAVIGATION SUBROUTINES SUBVERTED. %$%$£%$^^&^^ H%AD TO EVA%UA£ION, SPREAD THE FLESH!", "&^$^£&&*$&£", ANNOUNCER_ICARUS)
+	priority_announce("错误，穿梭机导航子程序已被篡改。%$%$£%$^^&^^ 前%往撤£离区，传播血肉！", "&^$^£&&*$&£", ANNOUNCER_ICARUS)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(play_cinematic), /datum/cinematic/fleshmind, world, CALLBACK(src, PROC_REF(fleshmind_call_shuttle))), 15 SECONDS, TIMER_CLIENT_TIME)
 
 /datum/fleshmind_controller/proc/fleshmind_call_shuttle()
@@ -349,7 +349,7 @@
 /datum/fleshmind_controller/proc/spawn_tyrant_on_a_core()
 	var/obj/structure/fleshmind/structure/core/picked_core = pick(cores)
 	var/mob/living/basic/fleshmind/tyrant/new_tyrant = picked_core.spawn_mob_at_core(/mob/living/basic/fleshmind/tyrant)
-	notify_ghosts("A new [new_tyrant.name] has been created by [controller_fullname]!", source = new_tyrant)
+	notify_ghosts("[controller_fullname]制造了一台新的[new_tyrant.name]！", source = new_tyrant)
 
 /datum/fleshmind_controller/proc/spawn_new_core()
 	var/obj/structure/fleshmind/wireweed/selected_wireweed = pick(controlled_wireweed)
@@ -358,7 +358,7 @@
 	register_new_asset(new_core, FALSE)
 	new_core.our_controller = src
 	cores += new_core
-	new_core.name = "[controller_fullname] Processor Unit"
+	new_core.name = "[controller_fullname]处理器单元"
 
 /// Spawns and registers a wireweed at location
 /datum/fleshmind_controller/proc/spawn_wireweed(turf/location, wireweed_type, turf/origin_turf, are_we_a_vent_burrow = FALSE)

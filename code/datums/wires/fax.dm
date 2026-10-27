@@ -1,6 +1,6 @@
 /datum/wires/fax
 	holder_type = /obj/machinery/fax
-	proper_name = "Fax Unit"
+	proper_name = "传真机"
 
 /datum/wires/fax/New(atom/holder)
 	wires = list(WIRE_SHOCK, WIRE_SIGNAL, WIRE_THROW, WIRE_LOADCHECK,)
@@ -20,10 +20,10 @@
 /datum/wires/fax/get_status()
 	var/obj/machinery/fax/machine = holder
 	var/list/status = list()
-	status += "A red light is [machine.seconds_electrified ? "blinking" : "off"]."
-	status += "The network light is [machine.visible_to_network ? "on" : "off"]."
-	status += "The output servo is [machine.hurl_contents ? "spinning rapidly" : "on"]."
-	status += "The input servo is [machine.allow_exotic_faxes ? "spinning rapidly" : "on"]."
+	status += "一盏红灯[machine.seconds_electrified ? "正在闪烁" : "熄灭"]。"
+	status += "网络指示灯[machine.visible_to_network ? "亮起" : "熄灭"]。"
+	status += "输出伺服电机[machine.hurl_contents ? "正在高速旋转" : "已启动"]。"
+	status += "输入伺服电机[machine.allow_exotic_faxes ? "正在高速旋转" : "已启动"]。"
 	return status
 
 /datum/wires/fax/on_pulse(wire)

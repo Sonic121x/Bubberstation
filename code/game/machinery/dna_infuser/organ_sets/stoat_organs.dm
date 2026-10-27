@@ -5,10 +5,10 @@
 	id = "organ_set_bonus_stoat"
 	tick_interval = 3 SECONDS
 	organs_needed = 4
-	bonus_activate_text = span_notice("Stoat DNA is deeply infused with you! \
-		Your instincts set in - you now feel fearless, as if you could take on any enemy, no matter the size difference.")
-	bonus_deactivate_text = span_notice("You are no longer majority stoat, \
-		and you realize larger enemies are quite intimidating after all.")
+	bonus_activate_text = span_notice("白鼬的 DNA 已与你深度融合！\
+		本能占据了上风——你现在无所畏惧，仿佛无论体型相差多大，都能迎战任何敌人。")
+	bonus_deactivate_text = span_notice("你不再以白鼬成分为主，\
+		这才意识到体型更大的敌人终究还是挺吓人的。")
 	bonus_traits = list(TRAIT_FEARLESS, TRAIT_NOFEAR_HOLDUPS)
 	COOLDOWN_DECLARE(big_attack_dodge_cd)
 
@@ -47,8 +47,8 @@
 
 	INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "spin")
 	owner.visible_message(
-		span_warning("[owner] instinctively dodges [the_attack] from [hit_by]!"),
-		span_warning("You instinctively dodge out of the way of [the_attack] from [hit_by]!"),
+		span_warning("[owner]本能地躲开了[hit_by]的[the_attack]！"),
+		span_warning("你本能地躲开了[hit_by]的[the_attack]！"),
 		vision_distance = COMBAT_MESSAGE_RANGE,
 	)
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/stoat_dodge)
@@ -116,14 +116,14 @@
 
 
 /obj/item/organ/heart/stoat
-	name = "mutated stoat-heart"
-	desc = "Stoat DNA infused into what was once a normal heart."
+	name = "突变白鼬心脏"
+	desc = "一颗原本正常的心脏，融合了白鼬的 DNA。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/organ/heart/stoat"
 	post_init_icon_state = "heart"
 	greyscale_config = /datum/greyscale_config/mutant_organ
 	greyscale_colors = STOAT_COLORS
-	beat_noise = "a fast-paced high-pitched pit-pat"
+	beat_noise = "急促而尖细的扑通声"
 	maxHealth = parent_type::maxHealth * 0.8 // weaker heart
 	organ_traits = list(TRAIT_TOO_TALL) //noodly boy
 
@@ -133,9 +133,9 @@
 	AddElement(/datum/element/update_icon_blocker)
 
 /obj/item/organ/tongue/stoat
-	name = "mutated stoat-tongue"
-	desc = "Stoat DNA infused into what was once a normal tongue."
-	say_mod = "chirps"
+	name = "突变白鼬舌头"
+	desc = "一条原本正常的舌头，融合了白鼬的 DNA。"
+	say_mod = "啾啾说道"
 	modifies_speech = TRUE
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/organ/tongue/rat"
@@ -197,8 +197,8 @@
 		extra_quality += LIKED_FOOD_QUALITY_CHANGE
 
 /obj/item/organ/eyes/stoat
-	name = "mutated stoat-eyes"
-	desc = "Stoat DNA infused into what was once a normal pair of eyes."
+	name = "突变白鼬眼睛"
+	desc = "一对原本正常的眼睛，融合了白鼬的 DNA。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/organ/eyes/stoat"
 	post_init_icon_state = "eyes"
@@ -208,16 +208,16 @@
 	eye_color_right = COLOR_BLACK
 	lighting_cutoff = LIGHTING_CUTOFF_LOW
 	maxHealth = parent_type::maxHealth * 0.8 // weaker eyes
-	penlight_message = "shine green"
+	penlight_message = "泛着绿光"
 
 /obj/item/organ/eyes/stoat/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/stoat)
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their eyes are black orbs.", zone)
+	AddElement(/datum/element/noticable_organ, "眼睛是乌黑的圆球。", zone)
 
 /obj/item/organ/ears/stoat
-	name = "mutated stoat-ears"
-	desc = "Stoat DNA infused into what was once a normal pair of ears."
+	name = "突变白鼬耳朵"
+	desc = "一对原本正常的耳朵，融合了白鼬的 DNA。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/organ/ears/stoat"
 	post_init_icon_state = "ears"
@@ -229,7 +229,7 @@
 /obj/item/organ/ears/stoat/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/stoat)
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their ears are furred, and twitch occasionally.", zone)
+	AddElement(/datum/element/noticable_organ, "耳朵覆着绒毛，偶尔抽动。", zone)
 
 /obj/item/organ/ears/stoat/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
@@ -240,7 +240,7 @@
 	organ_owner.eavesdrop_range -= 2
 
 /obj/item/organ/snout/stoat
-	name = "stoat snout"
+	name = "白鼬吻部"
 
 /obj/item/organ/snout/stoat/Initialize(mapload)
 	. = ..()
@@ -252,33 +252,33 @@
 	event_flags = MOOD_EVENT_FEAR
 
 /datum/mood_event/stoat/enemies_nearby/one
-	description = "My instincts say there's something dangerous nearby, better be careful."
+	description = "本能告诉我附近有危险的东西，最好小心点。"
 	mood_change = -1
 
 /datum/mood_event/stoat/enemies_nearby/multiple
-	description = "My instincts say there potential danger nearby, better be on edge."
+	description = "本能告诉我附近可能有危险，最好保持警惕。"
 	mood_change = -3
 
 /datum/mood_event/stoat/enemies_nearby/crowd
-	description = "My instincts say there are a lot of dangerous things nearby, I need to get out of here!"
+	description = "本能告诉我附近到处都是危险，我得离开这里！"
 	mood_change = -5
 
 /datum/mood_event/stoat/alone
-	description = "There is no one nearby, my instincts are at rest. I feel at peace."
+	description = "附近没有别人，我的本能放松了下来。我感到平静。"
 	mood_change = 1
 
 /datum/mood_event/stoat/friendlies_nearby
 	event_flags = MOOD_EVENT_FEAR
 
 /datum/mood_event/stoat/friendlies_nearby/one
-	description = "There is only one friend nearby, my instincts are at rest."
+	description = "附近只有一个朋友，我的本能放松了下来。"
 
 /datum/mood_event/stoat/friendlies_nearby/multiple
-	description = "My instincts say there are too many people nearby, I feel a little on edge."
+	description = "本能告诉我附近人太多了，我有些紧张。"
 	mood_change = -1
 
 /datum/mood_event/stoat/friendlies_nearby/crowd
-	description = "My instincts say there are too many people nearby, I need to get out of here!"
+	description = "本能告诉我附近人太多了，我得离开这里！"
 	mood_change = -3
 
 /datum/movespeed_modifier/stoat_dodge

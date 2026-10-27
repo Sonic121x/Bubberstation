@@ -1,8 +1,8 @@
 #define DISAPPEAR_REAPPEAR_TIME (2 SECONDS)
 
 /obj/structure/destructible/clockwork/sigil/research
-	name = "large sigil"
-	desc = "A very large, glowing sigil."
+	name = "大型符文"
+	desc = "一枚非常巨大、发光的符文。"
 	max_integrity = 10
 	icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_effects_96.dmi'
 	icon_state = "research_sigil"

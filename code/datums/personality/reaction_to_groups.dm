@@ -1,27 +1,27 @@
 /datum/personality/introvert
 	savefile_key = "introvert"
-	name = "Introverted"
-	desc = "I prefer to be alone, reading or painting in the library."
-	pos_gameplay_desc = "Likes being in the library"
+	name = "内向"
+	desc = "我更喜欢独自在图书馆里读书或画画。"
+	pos_gameplay_desc = "喜欢待在图书馆"
 	// neg_gameplay_desc = "Dislikes large groups"
 	personality_trait = TRAIT_INTROVERT
 	groups = list(PERSONALITY_GROUP_INTERACTION)
 
 /datum/personality/extrovert
 	savefile_key = "extrovert"
-	name = "Extroverted"
-	desc = "I prefer to be surrounded by people, having a drink at the Bar."
-	pos_gameplay_desc = "Likes being in the bar"
+	name = "外向"
+	desc = "我更喜欢被人群围绕，在酒吧里喝上一杯。"
+	pos_gameplay_desc = "喜欢待在酒吧"
 	// neg_gameplay_desc = "Dislikes being alone"
 	personality_trait = TRAIT_EXTROVERT
 	groups = list(PERSONALITY_GROUP_INTERACTION, PERSONALITY_GROUP_OTHERS)
 
 /datum/personality/paranoid
 	savefile_key = "paranoid"
-	name = "Paranoid"
-	desc = "Everyone and everything is out to get me! This place is a deathtrap!"
-	pos_gameplay_desc = "Likes being alone or in moderately-sized groups"
-	neg_gameplay_desc = "Stressed when with one other person, or in large groups"
+	name = "多疑"
+	desc = "所有人、所有东西都想害我！这地方就是个死亡陷阱！"
+	pos_gameplay_desc = "喜欢独处或待在人数适中的群体里"
+	neg_gameplay_desc = "与另一人单独相处或身处大群体时会感到紧张"
 	processes = TRUE
 	groups = list(PERSONALITY_GROUP_PEOPLE_FEAR)
 

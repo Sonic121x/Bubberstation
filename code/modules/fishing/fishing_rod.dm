@@ -1,6 +1,6 @@
 /obj/item/fishing_rod
-	name = "fishing rod"
-	desc = "You can fish with this."
+	name = "钓鱼竿"
+	desc = "你可以用它钓鱼。"
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "fishing_rod"
 	icon_angle = -45
@@ -18,7 +18,7 @@
 	/// Fishing minigame difficulty modifier (additive)
 	var/difficulty_modifier = 0
 	/// Explaination of rod functionality shown in the ui and the autowiki
-	var/ui_description = "A classic fishing rod, with no special qualities."
+	var/ui_description = "一根经典的钓鱼竿，没有任何特殊之处。"
 	/// More explaination shown in the wiki after ui_description
 	var/wiki_description = ""
 	/// Is this fishing rod shown in the wiki
@@ -95,14 +95,14 @@
 		damage_multiplier = 2.25, \
 		should_bane_callback = CALLBACK(src, PROC_REF(should_bane_fish_infusions)), \
 		on_bane_callback = CALLBACK(src, PROC_REF(on_bane_fish_infusions)), \
-		label_text = "fishpeople", \
+		label_text = "鱼人", \
 	)
 
 /obj/item/fishing_rod/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(src == held_item)
 		if(currently_hooked)
-			context[SCREENTIP_CONTEXT_LMB] = "Reel in"
-		context[SCREENTIP_CONTEXT_RMB] = "Modify"
+			context[SCREENTIP_CONTEXT_LMB] = "收线"
+		context[SCREENTIP_CONTEXT_RMB] = "改装"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
 
@@ -110,9 +110,9 @@
 	. = ..()
 	var/gone_fishing = GLOB.fishing_challenges_by_user[user]
 	if(currently_hooked || gone_fishing)
-		context[SCREENTIP_CONTEXT_LMB] = (gone_fishing && spin_frequency) ? "Spin" : "Reel in"
+		context[SCREENTIP_CONTEXT_LMB] = (gone_fishing && spin_frequency) ? "转动" : "收线"
 		if(!gone_fishing)
-			context[SCREENTIP_CONTEXT_RMB] = "Unhook"
+			context[SCREENTIP_CONTEXT_RMB] = "脱钩"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
 
@@ -126,20 +126,20 @@
 	if(bait)
 		equipped_stuff += "[icon2html(bait, user)] <b>[bait]</b>"
 	if(length(equipped_stuff))
-		. += span_notice("It has \a [english_list(equipped_stuff)] equipped.")
+		. += span_notice("它装配有：[english_list(equipped_stuff)]。")
 	if(!bait)
-		. += span_warning("It doesn't have a bait attached to it. Fishing will be more tedious!")
+		. += span_warning("它没有装上鱼饵。钓鱼会更加麻烦！")
 	if(HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FISH))
 		. += "" //add a new line
-		. += span_notice("Thanks to your fishing skills, you can examine it again for more in-depth information.")
+		. += span_notice("凭借你的钓鱼技巧，你可以再次检查它以获取更深入的信息。")
 		return
 	if(HAS_TRAIT(src, TRAIT_ROD_MANSUS_INFUSED))
 		if(IS_HERETIC(user))
-			. += span_purple("This rod has been <b>infused</b> by a heretic, improving its ability to catch glimpses of the Mansus. And fish.")
+			. += span_purple("这根鱼竿已被异教徒<b>灌注</b>，提升了它窥见漫宿的能力。还有鱼。")
 		else
-			. += span_purple("It's glowing an eerie purple...")
+			. += span_purple("它散发着诡异的紫光……")
 	else if(IS_HERETIC(user))
-		. += span_purple("As a Heretic, you can infuse this fishing rod with your <b>Mansus Grasp</b> by activating the spell while wielding it, to enhance its fishing power.")
+		. += span_purple("作为异教徒，你可以在持握这根钓鱼竿时激活 <b>漫宿之握</b> 法术来为其灌注，从而提升它的钓鱼之力。")
 
 /obj/item/fishing_rod/examine_more(mob/user)
 	. = ..()
@@ -148,35 +148,35 @@
 
 	var/list/block = list()
 	var/get_percent = HAS_MIND_TRAIT(user, TRAIT_EXAMINE_DEEPER_FISH)
-	block += span_info("You think you can cast it up to [get_cast_range()] tiles away.")
-	block += get_stat_info(get_percent, difficulty_modifier * 0.01, "Fishing will be", "easier", "harder", "with this fishing rod")
-	block += get_stat_info(get_percent, experience_multiplier - 1, "You will gain experience", "faster", "slower")
-	block += get_stat_info(get_percent, completion_speed_mult - 1, "The minigame completion speed is", "faster", "slower")
-	block += get_stat_info(get_percent, bait_speed_mult - 1, "Reeling is", "faster", "slower")
-	block += get_stat_info(get_percent, deceleration_mult - 1, "Deceleration is", "faster", "slower")
-	block += get_stat_info(get_percent, bounciness_mult - 1, "This fishing rod is ", "bouncier", "less bouncy", "than a normal one", less_is_better = TRUE)
-	block += get_stat_info(get_percent, gravity_mult - 1, "The lure will sink", "faster", "slower", span_info = TRUE)
+	block += span_info("你估计最远能把它抛到 [get_cast_range()] 格远的地方。")
+	block += get_stat_info(get_percent, difficulty_modifier * 0.01, "使用这根鱼竿钓鱼会", "更容易", "更困难", "")
+	block += get_stat_info(get_percent, experience_multiplier - 1, "获得经验会", "更快", "更慢")
+	block += get_stat_info(get_percent, completion_speed_mult - 1, "小游戏完成速度会", "更快", "更慢")
+	block += get_stat_info(get_percent, bait_speed_mult - 1, "收线速度会", "更快", "更慢")
+	block += get_stat_info(get_percent, deceleration_mult - 1, "减速效果会", "更快", "更慢")
+	block += get_stat_info(get_percent, bounciness_mult - 1, "这根钓鱼竿比普通鱼竿", "更弹", "更不弹", "", less_is_better = TRUE)
+	block += get_stat_info(get_percent, gravity_mult - 1, "鱼饵会", "下沉得更快", "下沉得更慢", "", span_info = TRUE)
 
 	list_clear_nulls(block)
 	. += boxed_message(block.Join("\n"))
 
 	block = list()
 	if(HAS_TRAIT(src, TRAIT_ROD_IGNORE_ENVIRONMENT))
-		block += span_info("Environment and light shouldn't be an issue with this rod.")
+		block += span_info("环境和光线对这根鱼竿都不会造成影响。")
 	if(HAS_TRAIT_NOT_FROM(src, TRAIT_ROD_REMOVE_FISHING_DUD, INNATE_TRAIT)) // Duds are innately removed by baits, we all know that.
-		block += span_info("You won't catch duds with this rod.")
+		block += span_info("用这根鱼竿不会钓到废物。")
 	if(HAS_TRAIT(src, TRAIT_ROD_LAVA_USABLE))
-		block += span_info("This fishing rod can be used to fish on lava.")
+		block += span_info("这根钓鱼竿可以在熔岩上钓鱼。")
 	if(length(block))
 		. += boxed_message(block.Join("\n"))
 
 ///Used in examine_more to reduce all the copypasta when getting more information about the various stats of the fishing rod.
-/obj/item/fishing_rod/proc/get_stat_info(get_percent, value, prefix, easier, harder, suffix = "with this fishing rod", span_info = FALSE, less_is_better = FALSE)
+/obj/item/fishing_rod/proc/get_stat_info(get_percent, value, prefix, easier, harder, suffix = "", span_info = FALSE, less_is_better = FALSE)
 	if(!value)
 		return
 	var/percent = get_percent ? "[abs(value * 100)]% " : ""
 	var/harder_easier = value > 0 ? easier : harder
-	. = "[prefix] [percent][harder_easier] [suffix]."
+	. = "[prefix] [percent][harder_easier][suffix]。"
 	if(span_info)
 		return span_info(.)
 	if(less_is_better ? value < 0 : value > 0)
@@ -258,7 +258,7 @@
 		return
 
 	if(currently_hooked.anchored || currently_hooked.move_resist >= MOVE_FORCE_STRONG)
-		balloon_alert(user, "[currently_hooked.p_they()] won't budge!")
+		balloon_alert(user, "[currently_hooked]纹丝不动！")
 		return
 
 	//About thirty minutes of non-stop reeling to get from zero to master... not worth it but hey, you do what you do.
@@ -376,7 +376,7 @@
 
 /obj/item/fishing_rod/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!hook)
-		balloon_alert(user, "install a hook first!")
+		balloon_alert(user, "先安装鱼钩！")
 		return ITEM_INTERACT_BLOCKING
 
 	// Reel in if able
@@ -402,7 +402,7 @@
 	if(casting || currently_hooked)
 		return
 	if(!hook)
-		balloon_alert(user, "install a hook first!")
+		balloon_alert(user, "先安装鱼钩！")
 		return
 	if(!COOLDOWN_FINISHED(src, casting_cd))
 		return
@@ -589,16 +589,16 @@
 	// Trying to remove the item
 	if(!new_item && current_item)
 		user.put_in_hands(current_item)
-		balloon_alert(user, "[slot] removed")
+		balloon_alert(user, "[slot]已移除")
 	// Trying to insert item into empty slot
 	else if(new_item && !current_item)
 		if(!slot_check(new_item, slot))
 			return
 		if(user.transferItemToLoc(new_item,src))
 			set_slot(new_item, slot)
-			balloon_alert(user, "[slot] installed")
+			balloon_alert(user, "[slot]已安装")
 		else
-			balloon_alert(user, "stuck to your hands!")
+			balloon_alert(user, "卡在你手上了！")
 			return
 	/// Trying to swap item
 	else if(new_item && current_item)
@@ -607,9 +607,9 @@
 		if(user.transferItemToLoc(new_item, src))
 			user.put_in_hands(current_item)
 			set_slot(new_item, slot)
-			balloon_alert(user, "[slot] swapped")
+			balloon_alert(user, "[slot]已替换")
 		else
-			balloon_alert(user, "stuck to your hands!")
+			balloon_alert(user, "卡在你手上了！")
 			return
 
 	update_icon()
@@ -664,9 +664,9 @@
 	show_in_wiki = FALSE
 
 /obj/item/fishing_rod/bone
-	name = "bone fishing rod"
-	desc = "A humble rod, made with whatever happened to be on hand."
-	ui_description = "A fishing rod crafted with leather, sinew and bones."
+	name = "骨制钓鱼竿"
+	desc = "一根简陋的鱼竿，用随手可得的材料拼凑而成。"
+	ui_description = "用皮革、筋腱和骨头制成的钓鱼竿。"
 	icon_state = "fishing_rod_bone"
 	reel_overlay = "reel_bone"
 	default_line_color = "red"
@@ -676,15 +676,15 @@
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/fishing_rod/telescopic
-	name = "telescopic fishing rod"
+	name = "伸缩钓鱼竿"
 	icon_state = "fishing_rod_telescopic"
-	desc = "A lightweight, ergonomic, easy to store telescopic fishing rod. "
+	desc = "一根轻巧、符合人体工学、易于收纳的伸缩钓鱼竿。"
 	inhand_icon_state = null
 	custom_price = PAYCHECK_CREW * 9
 	force = 0
 	w_class = WEIGHT_CLASS_NORMAL
-	ui_description = "A collapsible fishing rod that can fit within a backpack."
-	wiki_description = "<b>It has to be bought from Cargo</b>."
+	ui_description = "一根可以折叠收起的钓鱼竿，能装进背包里。"
+	wiki_description = "<b>必须从货运部购买</b>。"
 	reel_overlay = "reel_telescopic"
 	frame_state = "frame_telescopic"
 	completion_speed_mult = 1.1
@@ -703,13 +703,13 @@
 
 /obj/item/fishing_rod/telescopic/reason_we_cant_fish(datum/fish_source/target_fish_source)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
-		return "You need to extend your fishing rod before you can cast the line."
+		return "你需要先展开钓鱼竿才能抛线。"
 	return ..()
 
 /obj/item/fishing_rod/telescopic/cast_line(atom/target, mob/user, proximity_flag)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		if(!proximity_flag)
-			balloon_alert(user, "extend the rod first!")
+			balloon_alert(user, "先展开鱼竿！")
 		return
 	return ..()
 
@@ -738,7 +738,7 @@
 
 	inhand_icon_state = active ? "rod" : null // When inactive, there is no inhand icon_state.
 	if(user)
-		balloon_alert(user, active ? "extended" : "collapsed")
+		balloon_alert(user, active ? "已展开" : "已收起")
 	playsound(src, 'sound/items/weapons/batonextend.ogg', 50, TRUE)
 	update_appearance()
 	QDEL_NULL(fishing_line)
@@ -749,10 +749,10 @@
 	icon_state = "[initial(icon_state)][!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) ? "_collapsed" : ""]"
 
 /obj/item/fishing_rod/telescopic/master
-	name = "master fishing rod"
-	desc = "The mythical rod of a lost fisher king. Said to be imbued with unparalleled fishing power. There's writing on the back of the pole. \"中国航天制造\""
+	name = "大师钓鱼竿"
+	desc = "一位失落渔王的传奇鱼竿。据说它被灌注了无与伦比的钓鱼之力。竿身上写着字：“中国航天制造”"
 	difficulty_modifier = -10
-	ui_description = "A mythical telescopic fishing rod that makes fishing quite easier."
+	ui_description = "一根神话般的伸缩钓鱼竿，让钓鱼轻松不少。"
 	wiki_description = null
 	icon_state = "fishing_rod_master"
 	reel_overlay = "reel_master"
@@ -769,10 +769,10 @@
 	bait_height_mult = 1.4
 
 /obj/item/fishing_rod/tech
-	name = "advanced fishing rod"
-	desc = "An embedded universal constructor along with micro-fusion generator makes this marvel of technology never run out of bait. Interstellar treaties prevent using it outside of recreational fishing. And you can fish with this. "
-	ui_description = "A rod with an infinite supply of synthetic bait. Doubles as an Experi-Scanner for fish."
-	wiki_description = "<b>It requires the Advanced Fishing Technology Node to be researched to be printed.</b>"
+	name = "高级钓鱼竿"
+	desc = "内置通用建造机与微型聚变发电机，让这件科技奇迹永远不会用完鱼饵。星际条约禁止在休闲钓鱼之外使用它。而且你可以用它钓鱼。"
+	ui_description = "一根拥有无限合成鱼饵供应的鱼竿。还可兼作鱼类的实验扫描仪。"
+	wiki_description = "<b>需要研究“高级钓鱼技术”节点后才能打印。</b>"
 	icon_state = "fishing_rod_science"
 	reel_overlay = "reel_science"
 	frame_state = "frame_science"
@@ -801,7 +801,7 @@
 
 /obj/item/fishing_rod/tech/examine(mob/user)
 	. = ..()
-	. += span_notice("<b>Alt-Click</b> to access the Experiment Configuration UI")
+	. += span_notice("<b>Alt 点击</b>以打开实验配置界面")
 
 /obj/item/fishing_rod/tech/use_slot(slot, mob/user, obj/item/new_item)
 	if(slot == ROD_SLOT_BAIT)
@@ -809,22 +809,22 @@
 	return ..()
 
 /obj/item/fishing_rod/material
-	name = "material fishing rod" //name shown on the autowiki.
-	desc = "A custom fishing rod from your local autolathe."
+	name = "材料钓鱼竿" //name shown on the autowiki.
+	desc = "来自本地自动车床的定制钓鱼竿。"
 	icon_state = "fishing_rod_material"
 	reel_overlay = "reel_material"
 	frame_state = "frame_material"
-	ui_description = "An autolathe-printable fishing rod made of some material."
-	wiki_description = "Different materials can have different effects. They also catch fish made of the same material used to print the rod."
+	ui_description = "可由自动车床打印的钓鱼竿，由某种材料制成。"
+	wiki_description = "不同材料会带来不同效果。它们还能钓到与打印鱼竿所用相同材料制成的鱼。"
 	material_flags = MATERIAL_EFFECTS|MATERIAL_AFFECT_STATISTICS|MATERIAL_COLOR|MATERIAL_ADD_PREFIX
 
 /obj/item/fishing_rod/material/Initialize(mapload)
 	. = ..()
-	name = "fishing rod"
+	name = "钓鱼竿"
 
 /obj/item/fishing_rod/material/finalize_remove_material_effects(list/materials)
 	. = ..()
-	name = "fishing rod" //so it doesn't reset to "material fishing rod"
+	name = "钓鱼竿" //so it doesn't reset to "material fishing rod"
 
 /obj/item/fishing_rod/material/get_frame(datum/fishing_challenge/challenge)
 	var/mutable_appearance/frame = ..()
@@ -836,7 +836,7 @@
 #undef ROD_SLOT_HOOK
 
 /obj/projectile/fishing_cast
-	name = "fishing hook"
+	name = "鱼钩"
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "hook"
 	damage = 0

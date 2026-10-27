@@ -1,6 +1,6 @@
 /mob/living/basic/lizard/tegu
-	name = "tegu"
-	desc = "That's a tegu."
+	name = "泰加蜥"
+	desc = "是一只泰加蜥。"
 	icon = 'modular_skyrat/master_files/icons/mob/pets.dmi'
 	icon_state = "tegu"
 	icon_living = "tegu"
@@ -12,16 +12,16 @@
 	pass_flags = PASSTABLE
 
 /mob/living/basic/lizard/tegu/gus
-	name = "Gus"
-	real_name = "Gus"
-	desc = "The Research Department's beloved pet tegu."
+	name = "格斯"
+	real_name = "格斯"
+	desc = "科研部备受宠爱的宠物泰加蜥。"
 	gender = MALE
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/crab/shuffle
-	name = "Shuffle"
-	real_name = "Shuffle"
-	desc = "Oh no, it's him!"
+	name = "沙弗"
+	real_name = "沙弗"
+	desc = "哦不，是他！"
 	color = "#ff0000"
 	gender = MALE
 	gold_core_spawnable = NO_SPAWN
@@ -31,8 +31,8 @@
 	update_transform(0.5)
 
 /mob/living/basic/carp/mega/shorki
-	name = "Shorki"
-	desc = "A not so ferocious, fang bearing creature that resembles a shark. This one seems a little big for its tank."
+	name = "肖基"
+	desc = "一只不算太凶猛、长着尖牙的鲨鱼状生物。这一只对于它的水箱来说似乎有点太大了。"
 	faction = list(FACTION_NEUTRAL)
 	gender = MALE
 	gold_core_spawnable = NO_SPAWN
@@ -41,38 +41,38 @@
 /mob/living/basic/carp/mega/shorki/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/ai_retaliate)
-	AddElement(/datum/element/pet_bonus, "bloops happily!")
+	AddElement(/datum/element/pet_bonus, "开心地咕噜叫！")
 	name = initial(name)
 	real_name = initial(name)
 
 /mob/living/basic/pet/gondola/funky
-	name = "Funky"
-	real_name = "Funky"
-	desc = "Gondola is the silent walker. Having no hands he embodies the Taoist principle of wu-wei (non-action) while his smiling facial expression shows his utter and complete acceptance of the world as it is. Its hide is extremely valuable. This one seems a little skinny and attached to the Theater."
+	name = "放克"
+	real_name = "放克"
+	desc = "贡多拉是沉默的行者。他没有双手，因此体现了道家“无为”的原则；而那始终微笑的神情，则显露出他对世界本然的彻底接纳。它的皮毛极为贵重。这一只似乎有点瘦，而且总待在剧场里。"
 	loot = list(/obj/effect/decal/cleanable/blood/gibs)
 
 /mob/living/basic/pet/dog/dobermann/walter
-	name = "Walter"
-	real_name = "Walter"
-	desc = "It's Walter, he bites criminals just as well as he bites toddlers."
+	name = "沃尔特"
+	real_name = "沃尔特"
+	desc = "是沃尔特，他咬罪犯和咬小孩一样带劲。"
 
 /mob/living/basic/rabbit/daisy
-	name = "Daisy"
-	real_name = "Daisy"
-	desc = "The Curator's pet bnuuy."
+	name = "黛西"
+	real_name = "黛西"
+	desc = "馆长的宠物兔兔。"
 	gender = FEMALE
 
 /mob/living/basic/bear/wojtek
-	name = "Wojtek"
-	real_name = "Wojtek"
-	desc = "The bearer of Bluespace Artillery."
+	name = "沃伊泰克"
+	real_name = "沃伊泰克"
+	desc = "蓝空间火炮的持有者。"
 	faction = list(FACTION_NEUTRAL)
 	gender = MALE
 
 /mob/living/basic/chicken/teshari
-	name = "Teshari"
-	real_name = "Teshari"
-	desc = "A timeless classic."
+	name = "特沙利"
+	real_name = "特沙利"
+	desc = "永恒的经典。"
 	unsuitable_atmos_damage = 0
 	minimum_survivable_temperature = 0
 	maximum_survivable_temperature = 30000

@@ -1,7 +1,7 @@
 /obj/structure/sign/gym
-	name = "\improper Gym Encouragement Sign"
+	name = "\improper 健身房励志标牌"
 	sign_change_name = "gym_left"
-	desc = "A sign of a hulking green man encouraging you to 'Unleash Your Inner Hulk'."
+	desc = "牌子上画着一个魁梧的绿巨人，鼓励你“释放你内心的浩克”。"
 	icon_state = "gym-left"
 
 /obj/structure/sign/gym/right
@@ -14,17 +14,17 @@
 	icon_state = "gymmirror-right"
 
 /obj/structure/sign/xenobio_guide
-	name = "\improper Slime genealogy sign"
-	sign_change_name = "Xenobiology guide"
-	desc = "A sign depicting how the slime colors change with mutations, and the grey slime in the root."
+	name = "\improper 史莱姆谱系标牌"
+	sign_change_name = "异种生物学指南"
+	desc = "一块标牌，描绘了史莱姆的颜色如何随突变改变，以及位于根源的灰色史莱姆。"
 	icon_state = "xenobio-guide"
 	is_editable = TRUE
 
 /obj/structure/sign/chalkboard_menu
-	name = "chalkboard coffee menu"
+	name = "黑板咖啡菜单"
 	icon_state = "chalkboard_menu"
 	icon = 'icons/obj/machines/barsigns.dmi'
-	desc = "85cr for a iced lactose-free caramel frappe?! Who buys that?!"
+	desc = "一杯冰的无乳糖焦糖法布奇诺要 85cr？！谁会买这个？！"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/xenobio_guide, 32)
 
@@ -36,8 +36,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/xenobio_guide, 32)
 	var/datum/weakref/transport_ref
 	/// Serial number of the tram
 	var/tram_serial
-	name = "tram information plate"
-	sign_change_name = "Information - Tram Statistics"
+	name = "电车信息牌"
+	sign_change_name = "信息 - 电车统计"
 	icon_state = "tram_plate"
 	max_integrity = 150
 	armor_type = /datum/armor/tram_structure
@@ -54,7 +54,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/xenobio_guide, 32)
 /obj/structure/sign/tram_plate/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(isnull(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "View details"
+		context[SCREENTIP_CONTEXT_LMB] = "查看详情"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/sign/tram_plate/proc/link_tram()
@@ -69,12 +69,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/xenobio_guide, 32)
 		return
 
 	tram_serial = tram.tram_registration.serial_number
-	desc = "A plate showing details from the manufacturer about this Nakamura Engineering SkyyTram Mk VI, serial number [tram_serial].<br><br>We are not responsible for any injuries or fatalities caused by usage of the tram. \
-	Using the tram carries inherent risks, and we cannot guarantee the safety of all passengers. By using the tram, you assume, acknowledge, and accept all the risks and responsibilities. <br><br>\
-	Please be aware that riding the tram can cause a variety of injuries, including but not limited to: slips, trips, and falls; collisions with other passengers or objects; strains, sprains, and other musculoskeletal injuries; \
-	cuts, bruises, and lacerations; and more severe injuries such as head trauma, spinal cord injuries, and even death. These injuries can be caused by a variety of factors, including the movements of the tram, the behaviour \
-	of other passengers, and unforeseen circumstances such as foul play or mechanical issues.<br><br>\
-	By entering the tram, guideway, or crossings you agree Nanotrasen is not liable for any injuries, damages, or losses that may occur. If you do not agree to these terms, please do not use the tram.<br>"
+	desc = "一块展示制造商所提供信息的铭牌，介绍这台中村工程公司 SkyyTram Mk VI，序列号 [tram_serial]。<br><br>我们不对使用电车造成的任何伤害或死亡负责。 \
+	乘坐电车存在固有风险，我们无法保证所有乘客的安全。乘坐电车即表示您承担、知晓并接受所有风险与责任。<br><br>\
+	请注意，乘坐电车可能造成各种伤害，包括但不限于：滑倒、绊倒与跌落；与其他乘客或物体碰撞；扭伤、拉伤及其他肌肉骨骼损伤；\
+	割伤、瘀伤与撕裂伤；以及更严重的伤害，如头部创伤、脊髓损伤，甚至死亡。这些伤害可能由多种因素造成，包括电车的运动、其他乘客的行为，\
+	以及诸如恶意行为或机械故障之类的意外情况。<br><br>\
+	进入电车、导轨或道口即表示您同意纳米传讯不对可能发生的任何伤害、损坏或损失承担责任。若您不同意这些条款，请勿使用电车。<br>"
 
 /obj/structure/sign/tram_plate/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -111,16 +111,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/xenobio_guide, 32)
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/tram_plate, 32)
 
 /obj/structure/sign/nanotrasen
-	name = "\improper Nanotrasen logo sign"
-	sign_change_name = "Corporate Logo - Nanotrasen"
-	desc = "A sign with the Nanotrasen logo on it. Glory to Nanotrasen!"
+	name = "\improper 纳米传讯标志牌"
+	sign_change_name = "企业标志 - 纳米传讯"
+	desc = "一块印有纳米传讯标志的标牌。荣耀归于纳米传讯！"
 	icon_state = "nanotrasen"
 	is_editable = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/nanotrasen, 32)
 
 /obj/structure/sign/logo
-	name = "\improper Nanotrasen logo sign"
-	desc = "The Nanotrasen corporate logo."
+	name = "\improper 纳米传讯标志牌"
+	desc = "纳米传讯的企业标志。"
 	icon_state = "nanotrasen_sign1"
 	buildable_sign = FALSE

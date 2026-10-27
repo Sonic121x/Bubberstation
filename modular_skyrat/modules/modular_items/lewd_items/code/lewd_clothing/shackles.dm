@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/straight_jacket/shackles
-	name = "shackles"
-	desc = "Fancy shackles with a fake lock."
+	name = "镣铐"
+	desc = "一副花哨的镣铐，锁是假的。"
 	inhand_icon_state = null
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_suits.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_suit/lewd_suits.dmi'
@@ -71,7 +71,7 @@
 	. = ..()
 	var/mob/living/carbon/human/affected_mob = user
 	if(src == affected_mob.wear_suit)
-		to_chat(user, span_purple("The shackles are restraining your body, though the lock appears to be made of... Plastic?"))
+		to_chat(user, span_purple("镣铐正在束缚你的身体，不过这锁好像是……塑料做的？"))
 	else
 		return
 
@@ -80,7 +80,7 @@
 	. = ..()
 	var/mob/living/carbon/human/affected_mob = user
 	if(src == affected_mob.wear_suit)
-		to_chat(user, span_purple("The shackles are no longer restraining your body. It wasn't too hard, huh?"))
+		to_chat(user, span_purple("镣铐不再束缚你的身体了。也没那么难嘛，是吧？"))
 
 //reinforcing normal version by using handcuffs on it.
 /obj/item/clothing/suit/straight_jacket/shackles/attackby(obj/item/used_item, mob/user, params) //That part allows reinforcing this item with normal straightjacket
@@ -88,7 +88,7 @@
 		var/obj/item/clothing/suit/straight_jacket/shackles/reinforced/shackles = new()
 		remove_item_from_storage(user)
 		user.put_in_hands(shackles)
-		to_chat(user, span_notice("You reinforced the locks on [src] with [used_item]."))
+		to_chat(user, span_notice("你用 [used_item] 加固了 [src] 上的锁。"))
 		qdel(used_item)
 		qdel(src)
 		return TRUE
@@ -97,8 +97,8 @@
 
 //reinforced version.
 /obj/item/clothing/suit/straight_jacket/shackles/reinforced
-	name = "reinforced shackles"
-	desc = "Fancy shackles, but with a suspiciously sturdy lock..."
+	name = "加固镣铐"
+	desc = "一副花哨的镣铐，只是那把锁结实得可疑……"
 	clothing_flags = DANGEROUS_OBJECT
 	equip_delay_self = 100
 	strip_delay = 120
@@ -110,7 +110,7 @@
 	. = ..()
 	var/mob/living/carbon/human/affected_mob = user
 	if(src == affected_mob.wear_suit)
-		to_chat(user, span_purple("The shackles are restraining your body!"))
+		to_chat(user, span_purple("镣铐正在束缚你的身体！"))
 	else
 		return
 
@@ -119,4 +119,4 @@
 	. = ..()
 	var/mob/living/carbon/human/affected_mob = user
 	if(src == affected_mob.wear_suit)
-		to_chat(user, span_purple("The shackles are no longer restraining your body. You are free!"))
+		to_chat(user, span_purple("镣铐不再束缚你的身体了。你自由了！"))

@@ -45,7 +45,7 @@
 	var/melee_queue_distance = 4
 
 	///Fluff text for ranged mobs
-	var/ranged_message = "fires"
+	var/ranged_message = "开火"
 	///What the current cooldown on ranged attacks is, generally world.time + ranged_cooldown_time
 	var/ranged_cooldown = 0
 	///How long, in deciseconds, the cooldown of ranged attacks is
@@ -396,7 +396,7 @@
 /mob/living/simple_animal/hostile/proc/Aggro()
 	vision_range = aggro_vision_range
 	if(target && emote_taunt.len && prob(taunt_chance))
-		manual_emote("[pick(emote_taunt)] at [target].")
+		manual_emote("冲着 [target] [pick(emote_taunt)]。")
 		taunt_chance = max(taunt_chance-7,2)
 
 
@@ -443,7 +443,7 @@
 	if(CheckFriendlyFire(A))
 		return
 	if(!(simple_mob_flags & SILENCE_RANGED_MESSAGE))
-		visible_message(span_danger("<b>[src]</b> [ranged_message] at [A]!"))
+		visible_message(span_danger("<b>[src]</b> 向 [A] [ranged_message]！"))
 
 
 	if(rapid > 1)

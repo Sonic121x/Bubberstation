@@ -1,7 +1,7 @@
 
 /obj/item/book/granter/crafting_recipe/fletching
-	name = "Whittle Me This: Fletching for the Modern Spacer"
-	desc = "A how-to guide to crafting and maintaining wooden bows, fletching arrows, and... making violins?"
+	name = "削木问箭：现代太空人制箭指南"
+	desc = "介绍如何制作与维护木弓、给箭装羽，以及……制作小提琴的实用指南？"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/arrow,
 		/datum/crafting_recipe/blunted_arrow,// BUBBER EDIT ADDITION - Nonlethal arrows
@@ -15,10 +15,10 @@
 	icon_state = "book4"
 	uses = INFINITY
 	remarks = list(
-		"Okay, so the quality of the wood has some impact.",
-		"I feel like the violin chapter is in here as a joke, surely...",
-		"The author seems oddly proud about how many years they've been hunting in 'these parts'...",
-		"i really wish they'd stop with all the marriage euphemisms...",
-		"I need membership? Membership with what?",
-		"Okay, I think I get the point already...",
+		"好吧，木材质量确实有些影响。",
+		"小提琴那一章肯定是放进来开玩笑的吧……",
+		"作者似乎莫名地为自己在‘这一带’打猎多年的经历感到骄傲……",
+		"真希望作者别再说那些婚姻双关了……",
+		"我需要会员资格？哪里的会员？",
+		"好了，我想我已经明白要点了……",
 	)

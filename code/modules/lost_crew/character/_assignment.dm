@@ -35,7 +35,7 @@
 	working_undead.mind.set_assigned_role_with_greeting(new job_datum (), working_undead.client)
 
 /datum/corpse_assignment/engineer
-	job_lore = "I was employed as an engineer"
+	job_lore = "我曾受雇担任工程师。"
 	protected_job_stuffs = list(/obj/item/radio/headset/headset_eng)
 	recovered_job_stuffs = list(/obj/item/clothing/under/rank/engineering/engineer)
 	trim = /datum/id_trim/job/visiting_engineer
@@ -54,7 +54,7 @@
 		)
 
 /datum/corpse_assignment/medical
-	job_lore = "I was employed as a doctor"
+	job_lore = "我曾受雇担任医生。"
 	protected_job_stuffs = list(/obj/item/radio/headset/headset_med)
 	recovered_job_stuffs = list(/obj/item/clothing/under/rank/medical/doctor)
 	trim = /datum/id_trim/job/visiting_doctor
@@ -72,7 +72,7 @@
 		)
 
 /datum/corpse_assignment/security
-	job_lore = "I was employed as security"
+	job_lore = "我曾受雇担任安保人员。"
 	protected_job_stuffs = list(/obj/item/radio/headset/headset_sec)
 	recovered_job_stuffs = list(/obj/item/clothing/under/rank/security/officer)
 	trim = /datum/id_trim/job/visiting_security
@@ -96,7 +96,7 @@
 		)
 
 /datum/corpse_assignment/science
-	job_lore = "I was employed as a scientist"
+	job_lore = "我曾受雇担任科学家。"
 	protected_job_stuffs = list(/obj/item/radio/headset/headset_sci)
 	recovered_job_stuffs = list(/obj/item/clothing/under/rank/rnd/scientist)
 	trim = /datum/id_trim/job/visiting_scientist
@@ -114,7 +114,7 @@
 		)
 
 /datum/corpse_assignment/cargo
-	job_lore = "I was employed as a technician"
+	job_lore = "我曾受雇担任技术员。"
 	protected_job_stuffs = list(/obj/item/radio/headset/headset_cargo)
 	recovered_job_stuffs = list(/obj/item/clothing/under/rank/cargo/tech)
 	trim = /datum/id_trim/job/visiting_technician
@@ -132,7 +132,7 @@
 		)
 
 /datum/corpse_assignment/civillian
-	job_lore = "I was employed as a civllian"
+	job_lore = "我曾受雇担任平民。"
 	protected_job_stuffs = list(/obj/item/radio/headset)
 	recovered_job_stuffs = list(/obj/item/clothing/under/color/grey)
 	trim = /datum/id_trim/job/visiting_civillian

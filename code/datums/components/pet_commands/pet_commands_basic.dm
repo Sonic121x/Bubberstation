@@ -5,43 +5,43 @@
  * Tells a pet to resume its idle behaviour, usually staying put where you leave it
  */
 /datum/pet_command/idle
-	command_name = "Stay"
-	command_desc = "Command your pet to stay idle in this location."
+	command_name = "待命"
+	command_desc = "命令宠物留在此处待命。"
 	radial_icon_state = "halt"
 	speech_commands = list("sit", "stay", "stop")
-	command_feedback = "sits"
+	command_feedback = "坐下"
 
 /datum/pet_command/idle/execute_action(datum/ai_controller/controller)
 	controller.set_behavior_tree_override(SUBPLAN_ID_PET_COMMAND, /datum/bt_node/subtree/pet_command/stay)
 
 /datum/pet_command/idle/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to stay idle!"
+	return "示意[living_pet]原地待命！"
 
 /**
  * # Pet Command: Stop
  * Tells a pet to exit command mode and resume its normal behaviour
  */
 /datum/pet_command/free
-	command_name = "Loose"
-	command_desc = "Allow your pet to resume its natural behaviours."
+	command_name = "自由活动"
+	command_desc = "让宠物恢复自由行动。"
 	radial_icon_state = "free"
 	speech_commands = list("free", "loose")
-	command_feedback = "relaxes"
+	command_feedback = "放松下来"
 
 /datum/pet_command/free/execute_action(datum/ai_controller/controller)
 	controller.set_behavior_tree_override(SUBPLAN_ID_PET_COMMAND, null)
 	controller.clear_blackboard_key(BB_ACTIVE_PET_COMMAND)
 
 /datum/pet_command/free/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to go free!"
+	return "示意[living_pet]自由活动！"
 
 /**
  * # Pet Command: Follow
  * Tells a pet to follow you until you tell it to do something else
  */
 /datum/pet_command/follow
-	command_name = "Follow"
-	command_desc = "Command your pet to accompany you."
+	command_name = "跟随"
+	command_desc = "命令宠物跟随你。"
 	radial_icon_state = "follow"
 	speech_commands = list("heel", "follow")
 	callout_type = /datum/callout_option/move
@@ -55,7 +55,7 @@
 	set_command_target(parent, commander)
 
 /datum/pet_command/follow/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to follow!"
+	return "示意[living_pet]跟上！"
 
 /datum/pet_command/follow/execute_action(datum/ai_controller/controller)
 	controller.set_behavior_tree_override(SUBPLAN_ID_PET_COMMAND, follow_subtree)
@@ -77,8 +77,8 @@
  * Pretend to be dead for a random period of time
  */
 /datum/pet_command/play_dead
-	command_name = "Play Dead"
-	command_desc = "Play a macabre trick."
+	command_name = "装死"
+	command_desc = "表演一个阴森的小把戏。"
 	radial_icon_state = "play_dead"
 	speech_commands = list("play dead") // Don't get too creative here, people talk about dying pretty often
 
@@ -86,15 +86,15 @@
 	controller.set_behavior_tree_override(SUBPLAN_ID_PET_COMMAND, /datum/bt_node/subtree/pet_command/play_dead)
 
 /datum/pet_command/play_dead/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to play dead!"
+	return "示意[living_pet]装死！"
 
 /**
  * # Pet Command: Good Boy
  * React if complimented
  */
 /datum/pet_command/good_boy
-	command_name = "Good Boy"
-	command_desc = "Give your pet a compliment."
+	command_name = "真乖"
+	command_desc = "夸奖你的宠物。"
 	hidden = TRUE
 
 /datum/pet_command/good_boy/New(mob/living/parent)
@@ -135,23 +135,23 @@
 	controller.clear_blackboard_key(BB_ACTIVE_PET_COMMAND)
 
 /datum/pet_command/untargeted_ability/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to use an ability!"
+	return "示意[living_pet]使用技能！"
 
 /**
  * # Pet Command: Attack
  * Tells a pet to chase and bite the next thing you point at
  */
 /datum/pet_command/attack
-	command_name = "Attack"
-	command_desc = "Command your pet to attack things that you point out to it."
+	command_name = "攻击"
+	command_desc = "命令宠物攻击你指向的目标。"
 	radial_icon_state = "attack"
 	requires_pointing = TRUE
 	callout_type = /datum/callout_option/attack
 	speech_commands = list("attack", "sic", "kill")
-	command_feedback = "growl"
-	pointed_reaction = "and growls"
+	command_feedback = "低吼"
+	pointed_reaction = "，发出了低吼"
 	/// Balloon alert to display if providing an invalid target
-	var/refuse_reaction = "shakes head"
+	var/refuse_reaction = "摇头"
 	var/datum/bt_node/subtree/attack_subtree = /datum/bt_node/subtree/pet_command/attack
 
 // Refuse to target things we can't target, chiefly other friends
@@ -170,13 +170,13 @@
 	return ..()
 
 /datum/pet_command/attack/retrieve_command_text(atom/living_pet, atom/target)
-	return isnull(target) ? null : "signals [living_pet] to attack [target]!"
+	return isnull(target) ? null : "示意[living_pet]攻击[target]！"
 
 /// Display feedback about not targeting something
 /datum/pet_command/attack/proc/refuse_target(mob/living/parent, atom/target)
 	var/mob/living/living_parent = parent
 	living_parent.balloon_alert_to_viewers("[refuse_reaction]")
-	living_parent.visible_message(span_notice("[living_parent] refuses to attack [target]."))
+	living_parent.visible_message(span_notice("[living_parent]拒绝攻击[target]。"))
 
 /datum/pet_command/attack/execute_action(datum/ai_controller/controller)
 	controller.set_behavior_tree_override(SUBPLAN_ID_PET_COMMAND, attack_subtree)
@@ -185,8 +185,8 @@
  * # Breed command. breed with a partner!
  */
 /datum/pet_command/breed
-	command_name = "Breed"
-	command_desc = "Command your pet to attempt to breed with a partner."
+	command_name = "繁殖"
+	command_desc = "命令宠物尝试与伴侣繁殖。"
 	requires_pointing = TRUE
 	radial_icon_state = "breed"
 	speech_commands = list("breed", "consummate")
@@ -209,21 +209,21 @@
 	controller.set_behavior_tree_override(SUBPLAN_ID_PET_COMMAND, /datum/bt_node/subtree/pet_command/breed)
 
 /datum/pet_command/breed/retrieve_command_text(atom/living_pet, atom/target)
-	return isnull(target) ? null : "signals [living_pet] to breed with [target]!"
+	return isnull(target) ? null : "示意[living_pet]与[target]繁殖！"
 
 /**
  * # Pet Command: Targetted Ability
  * Tells a pet to use some kind of ability on the next thing you point at
  */
 /datum/pet_command/use_ability
-	command_name = "Use ability"
-	command_desc = "Command your pet to use one of its special skills on something that you point out to it."
+	command_name = "使用技能"
+	command_desc = "命令宠物对你指向的目标使用特殊技能。"
 	radial_icon = 'icons/mob/actions/actions_spells.dmi'
 	radial_icon_state = "projectile"
 	requires_pointing = TRUE
 	speech_commands = list("shoot", "blast", "cast")
-	command_feedback = "growl"
-	pointed_reaction = "and growls"
+	command_feedback = "低吼"
+	pointed_reaction = "，发出了低吼"
 	/// Blackboard key where a reference to some kind of mob ability is stored
 	var/pet_ability_key
 
@@ -238,11 +238,11 @@
 	controller.set_behavior_tree_override(SUBPLAN_ID_PET_COMMAND, /datum/bt_node/subtree/pet_command/targeted_ability)
 
 /datum/pet_command/use_ability/retrieve_command_text(atom/living_pet, atom/target)
-	return isnull(target) ? null : "signals [living_pet] to use an ability on [target]!"
+	return isnull(target) ? null : "示意[living_pet]对[target]使用技能！"
 
 /datum/pet_command/protect_owner
-	command_name = "Protect owner"
-	command_desc = "Your pet will run to your aid."
+	command_name = "保护主人"
+	command_desc = "宠物会赶来协助你。"
 	hidden = TRUE
 	callout_type = /datum/callout_option/guard
 	///the range our owner needs to be in for us to protect him
@@ -292,8 +292,8 @@
  * # Fish command: command the mob to fish at the next fishing spot you point at.
  */
 /datum/pet_command/fish
-	command_name = "Fish"
-	command_desc = "Command your pet to try fishing at a nearby fishing spot."
+	command_name = "捕鱼"
+	command_desc = "命令宠物尝试在附近的钓点捕鱼。"
 	requires_pointing = TRUE
 	radial_icon_state = "fish"
 	speech_commands = list("fish")
@@ -305,11 +305,11 @@
 	controller.set_behavior_tree_override(SUBPLAN_ID_PET_COMMAND, /datum/bt_node/subtree/pet_command/fish)
 
 /datum/pet_command/fish/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to go fish!"
+	return "示意[living_pet]去捕鱼！"
 
 /datum/pet_command/move
-	command_name = "Move"
-	command_desc = "Command your pet to move to a location!"
+	command_name = "移动"
+	command_desc = "命令宠物移动到指定位置！"
 	requires_pointing = TRUE
 	radial_icon_state = "move"
 	speech_commands = list("move", "walk")
@@ -323,4 +323,4 @@
 	controller.set_behavior_tree_override(SUBPLAN_ID_PET_COMMAND, /datum/bt_node/subtree/pet_command/move_to)
 
 /datum/pet_command/move/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to move!"
+	return "示意[living_pet]移动！"

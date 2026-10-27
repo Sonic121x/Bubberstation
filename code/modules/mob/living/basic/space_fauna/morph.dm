@@ -1,9 +1,9 @@
 /// The classic morph, Corpus Accipientis (or "The body of the recipient"). It's a blob that can disguise itself as other things simply put.
 /mob/living/basic/morph
-	name = "morph"
-	real_name = "morph"
-	desc = "A revolting, pulsating pile of flesh."
-	speak_emote = list("gurgles")
+	name = "拟态怪"
+	real_name = "拟态怪"
+	desc = "一堆令人作呕、不断搏动的血肉。"
+	speak_emote = list("咕噜作响")
 	icon = 'icons/mob/simple/animal.dmi'
 	icon_state = "morph"
 	icon_living = "morph"
@@ -28,8 +28,8 @@
 	lighting_cutoff_green = 35
 	lighting_cutoff_blue = 15
 
-	attack_verb_continuous = "glomps"
-	attack_verb_simple = "glomp"
+	attack_verb_continuous = "猛扑"
+	attack_verb_simple = "猛扑"
 	attack_sound = 'sound/effects/blob/blobattack.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE //nom nom nom
 	butcher_results = list(/obj/item/food/meat/slab = 2)
@@ -70,7 +70,7 @@
 		. = form_reference.examine(user)
 
 	if(get_dist(user, src) <= 3) // always add this because if the form_reference somehow nulls out we still want to have something look "weird" about an item when someone is close
-		. += span_warning("It doesn't look quite right...")
+		. += span_warning("它看起来有点不对劲……")
 
 /mob/living/basic/morph/med_hud_set_health()
 	if(isliving(form_typepath))
@@ -89,8 +89,8 @@
 /mob/living/basic/morph/death(gibbed)
 	if(HAS_TRAIT(src, TRAIT_DISGUISED))
 		visible_message(
-			span_warning("[src] twists and dissolves into a pile of green flesh!"),
-			span_userdanger("Your skin ruptures! Your flesh breaks apart! No disguise can ward off de--"),
+			span_warning("[src] 扭曲着溶解成一堆绿色血肉！"),
+			span_userdanger("你的皮肤破裂了！你的血肉四散分离！任何伪装都无法挡住死——"),
 		)
 
 	return ..()
@@ -112,8 +112,8 @@
 	med_hud_set_status() //we're an object honest
 
 	visible_message(
-		span_warning("[src] suddenly twists and changes shape, becoming a copy of [target]!"),
-		span_notice("You twist your body and assume the form of [target]."),
+		span_warning("[src] 突然扭动变形，变成了 [target] 的复制品！"),
+		span_notice("你扭动身体，变成了 [target] 的模样。"),
 	)
 
 	form_weakref = WEAKREF(target)
@@ -123,8 +123,8 @@
 /mob/living/basic/morph/proc/on_undisguise()
 	SIGNAL_HANDLER
 	visible_message(
-		span_warning("[src] suddenly collapses in on itself, dissolving into a pile of green flesh!"),
-		span_notice("You reform to your normal body."),
+		span_warning("[src] 突然向内塌陷，溶解成一堆绿色血肉！"),
+		span_notice("你恢复了原本的形态。"),
 	)
 
 	//Baseline stats
@@ -153,7 +153,7 @@
 		return
 
 	if(HAS_TRAIT(src, TRAIT_DISGUISED) && (melee_damage_disguised <= 0))
-		balloon_alert(src, "can't attack while disguised!")
+		balloon_alert(src, "伪装时无法攻击！")
 		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
 
 	if(isliving(target)) //Eat Corpses to regen health
@@ -182,15 +182,15 @@
 		return FALSE
 
 	if(HAS_TRAIT(src, TRAIT_DISGUISED) && !eat_while_disguised)
-		balloon_alert(src, "can't eat while disguised!")
+		balloon_alert(src, "伪装时无法进食！")
 		return FALSE
 
-	balloon_alert(src, "eating...")
+	balloon_alert(src, "进食中……")
 	if((delay > 0 SECONDS) && !do_after(src, delay, target = eatable))
 		return FALSE
 
-	log_combat(src, eatable, "ate", addition = "as morph")
-	visible_message(span_warning("[src] swallows [eatable] whole!"))
+	log_combat(src, eatable, "吃了", addition = "以拟态怪身份")
+	visible_message(span_warning("[src] 把 [eatable] 整个吞了下去！"))
 	eatable.forceMove(src)
 	if(update_health != 0)
 		adjust_health(update_health)

@@ -1,9 +1,9 @@
 /obj/item/organ/cyberimp/arm/toolkit/power_cord
-	name = "synth interfacing hardware"
-	desc = "Stores an interfacing tool that provides various functions for synths."
+	name = "合成人接口硬件"
+	desc = "收纳一件能为合成人提供多种功能的接口工具。"
 	items_to_create = list(/obj/item/synth_powercord)
-	attack_verb_continuous = list("pokes")
-	attack_verb_simple = list("poke")
+	attack_verb_continuous = list("戳")
+	attack_verb_simple = list("戳")
 	zone = BODY_ZONE_L_ARM
 	slot = ORGAN_SLOT_LEFT_ARM_AUG
 
@@ -11,8 +11,8 @@
 // Synth powercord -- plugs into APCs and charges with them
 //
 /obj/item/synth_powercord
-	name = "interfacing tool"
-	desc = "An interfacing tool used to pull charge from APCs and function as hardware for the user's virtual PDA. Try it out with the camera app!"
+	name = "接口工具"
+	desc = "可从区域电力控制器取电的接口工具，同时充当使用者虚拟PDA的硬件。试试相机应用吧！"
 	icon = 'icons/obj/clothing/modsuit/mod_modules.dmi'
 	icon_state = "shooting_assistant"
 	sharpness = SHARP_POINTY //this is just so that you can poke things with your poke finger really
@@ -69,20 +69,20 @@
 
 	var/obj/item/organ/stomach/synth/synth_cell = user.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(QDELETED(synth_cell) || !istype(synth_cell))
-		to_chat(user, span_warning("You plug into [target], but nothing happens! It seems you don't have an internal cell to charge."))
+		to_chat(user, span_warning("你接入[target]，却毫无反应！看来你没有可充电的内置电池。"))
 		return
 
 	if(nutrition_level_joules >= SYNTH_CHARGE_ALMOST_FULL)
-		user.balloon_alert(user, "cell fully charged!")
+		user.balloon_alert(user, "电池已充满！")
 		return
 
-	user.visible_message(span_notice("[user] inserts a power connector into [target]."), span_notice("You begin to draw power from [target]."))
+	user.visible_message(span_notice("[user]将电源接头插入[target]。"), span_notice("你开始从[target]取电。"))
 	do_power_draw(target, user)
 
 	if(QDELETED(target))
 		return
 
-	user.visible_message(span_notice("[user] unplugs from [target]."), span_notice("You unplug from [target]."))
+	user.visible_message(span_notice("[user]拔出了连接[target]的接头。"), span_notice("你拔出了连接[target]的接头。"))
 
 /**
  * Runs a loop to charge a synth cell (stomach) from a power cell or APC.
@@ -109,7 +109,7 @@
 	var/minimum_cell_charge = target_apc ? SYNTH_APC_MINIMUM_PERCENT : 0
 
 	if(!target_cell || target_cell.percent() < minimum_cell_charge)
-		user.balloon_alert(user, UNLINT("APC charge low!"))
+		user.balloon_alert(user, UNLINT("区域电力控制器电量低！"))
 		return
 
 	var/energy_needed
@@ -119,13 +119,13 @@
 		nutrition_level_joules = user.nutrition * SYNTH_JOULES_PER_NUTRITION
 		energy_needed = SYNTH_CHARGE_MAX - nutrition_level_joules
 		if(energy_needed < (SYNTH_CHARGE_MAX - SYNTH_CHARGE_ALMOST_FULL))
-			user.balloon_alert(user, "cell fully charged!")
+			user.balloon_alert(user, "电池已充满！")
 			break
 
 		// Check if the charge level of the cell is below the minimum.
 		// Prevents synths from overloading the cell.
 		if(target_cell.percent() < minimum_cell_charge)
-			user.balloon_alert(user, UNLINT("APC charge low!"))
+			user.balloon_alert(user, UNLINT("区域电力控制器电量低！"))
 			break
 
 		// Attempt to drain charge from the cell.
@@ -140,7 +140,7 @@
 			// The cell could be sabotaged, which causes it to explode and qdelete.
 			if(QDELETED(target_cell))
 				return
-			user.balloon_alert(user, UNLINT("APC failure!"))
+			user.balloon_alert(user, UNLINT("区域电力控制器故障！"))
 			break
 
 		// If charging was successful, then increase user nutrition and emit sparks.

@@ -1,7 +1,7 @@
 //cow
 /mob/living/basic/cow
-	name = "cow"
-	desc = "Known for their milk, just don't tip them over."
+	name = "奶牛"
+	desc = "以产奶闻名，只是别把它们推倒。"
 	icon = 'icons/mob/simple/cows.dmi'
 	icon_state = "cow"
 	icon_living = "cow"
@@ -9,17 +9,17 @@
 	icon_gib = "cow_gib"
 	gender = FEMALE
 	mob_biotypes = MOB_ORGANIC | MOB_BEAST
-	speak_emote = list("moos","moos hauntingly")
+	speak_emote = list("哞哞叫","幽怨地哞叫")
 	speed = 1.1
 	butcher_results = list(/obj/item/food/meat/slab/grassfed = 6)
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "kicks"
-	response_harm_simple = "kick"
-	attack_verb_continuous = "kicks"
-	attack_verb_simple = "kick"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "踢"
+	response_harm_simple = "踢"
+	attack_verb_continuous = "踢"
+	attack_verb_simple = "踢"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_KICK
 	health = 50
@@ -30,9 +30,9 @@
 	/// what this cow munches on, and what can be used to tame it.
 	var/list/food_types = list(/obj/item/food/grown/wheat)
 	/// message sent when tamed
-	var/tame_message = "lets out a happy moo"
+	var/tame_message = "开心地哞了一声"
 	/// singular version for player cows
-	var/self_tame_message = "let out a happy moo"
+	var/self_tame_message = "开心地哞了一声"
 	/// What kind of juice do we produce?
 	var/milked_reagent = /datum/reagent/consumable/milk
 
@@ -44,7 +44,7 @@
 /datum/emote/cow/moo
 	key = "moo"
 	key_third_person = "moos"
-	message = "moos happily!"
+	message = "开心地哞哞叫！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'sound/mobs/non-humanoids/cow/cow.ogg'
@@ -81,7 +81,7 @@
 
 /mob/living/basic/cow/tamed(mob/living/tamer, atom/food)
 	. = ..()
-	visible_message("[src] [tame_message] as it seems to bond with [tamer].", "You [self_tame_message], recognizing [tamer] as your new pal.")
+	visible_message("[src] 似乎与 [tamer] 建立了羁绊，[tame_message]。", "你[self_tame_message]，把 [tamer] 认作了新伙伴。")
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/cow)
 
 /*

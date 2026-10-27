@@ -2,8 +2,8 @@
 #define MENU_SURGERIES 2
 
 /obj/machinery/computer/operating
-	name = "operating computer"
-	desc = "Monitors patient vitals and displays surgery steps. Can be loaded with surgery disks to perform experimental procedures. Automatically syncs to operating tables within its line of sight for surgical tech advancement."
+	name = "手术计算机"
+	desc = "监控患者生命体征并显示手术步骤。可载入手术磁盘以开展实验性手术。会自动与视线内的手术台同步，以推进手术技术研究。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/crew")
 	icon_screen = "crew"
 	icon_keyboard = "med_key"
@@ -71,9 +71,9 @@
 /obj/machinery/computer/operating/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/disk/surgery))
 		user.visible_message(
-			span_notice("[user] begins to load [tool] in [src]..."),
-			span_notice("You begin to load a surgery protocol from [tool]..."),
-			span_hear("You hear the chatter of a floppy drive."),
+			span_notice("[user]开始将[tool]载入[src]……"),
+			span_notice("你开始从[tool]载入手术规程……"),
+			span_hear("你听到软盘驱动器运转的咔嗒声。"),
 		)
 		var/obj/item/disk/surgery/disky = tool
 		if(!do_after(user, 1 SECONDS, src))
@@ -81,7 +81,7 @@
 		advanced_surgeries |= disky.surgeries
 		update_static_data_for_all_viewers()
 		playsound(src, 'sound/machines/compiler/compiler-stage2.ogg', 50, FALSE, SILENCED_SOUND_EXTRARANGE)
-		balloon_alert(user, "surgeries loaded")
+		balloon_alert(user, "手术规程已载入")
 		return ITEM_INTERACT_SUCCESS
 
 	if((tool.item_flags & SURGICAL_TOOL) && !user.combat_mode)
@@ -171,20 +171,20 @@
 	var/mob/living/patient = table.patient
 
 	if(patient.stat == DEAD)
-		data["patient"]["stat"] = "Dead"
+		data["patient"]["stat"] = "死亡"
 		data["patient"]["statstate"] = "bad"
 	else if (patient.stat == HARD_CRIT || patient.stat == SOFT_CRIT)
-		data["patient"]["stat"] = "Critical"
+		data["patient"]["stat"] = "危急"
 		data["patient"]["statstate"] = patient.stat == HARD_CRIT ? "bad" : "average"
 	else if (IS_UNCONSCIOUS(patient))
-		data["patient"]["stat"] = "Unconscious"
+		data["patient"]["stat"] = "昏迷"
 		data["patient"]["statstate"] = "average"
 	else
-		data["patient"]["stat"] = "Stable"
+		data["patient"]["stat"] = "稳定"
 		data["patient"]["statstate"] = "good"
 
 	data["patient"]["health"] = patient.health
-	data["patient"]["blood_type"] = patient.get_bloodtype()?.name || "UNKNOWN"
+	data["patient"]["blood_type"] = patient.get_bloodtype()?.name || "未知"
 	data["patient"]["maxHealth"] = patient.maxHealth
 	data["patient"]["minHealth"] = HEALTH_THRESHOLD_DEAD
 	data["patient"]["bruteLoss"] = patient.get_brute_loss()
@@ -239,8 +239,8 @@
 
 	if(!any_recommended && table?.patient && !HAS_TRAIT(table.patient, TRAIT_READY_TO_OPERATE))
 		data["surgeries"] += list(list(
-			"name" = "Prepare for surgery",
-			"desc" = "Begin surgery by applying surgical drapes to the patient or by buckling the patient to the surgical table.",
+			"name" = "准备手术",
+			"desc" = "为患者铺上手术巾，或将患者固定在手术台上以开始手术。",
 			"tool_rec" = /obj/item/surgical_drapes::name,
 			"show_as_next" = TRUE,
 			"show_in_list" = FALSE,

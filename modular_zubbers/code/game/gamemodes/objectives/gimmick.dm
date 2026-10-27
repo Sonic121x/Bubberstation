@@ -1,32 +1,32 @@
 /datum/objective/gimmick
-	name = "Dastardly Act"
-	explanation_text = "Be dastardly as hell!"
+	name = "卑鄙勾当"
+	explanation_text = "尽情干坏事吧！"
 	var/list/gimmick_list
 
 /datum/objective/gimmick/New()
 	if(isnull(gimmick_list))
 		gimmick_list = list(
-			"Frame innocent crewmembers for various pretty crimes they did not do.",
-			"Rescue anyone caught and arrested by security.",
-			"Obstruct the flow of traffic around the station.",
-			"Wage a personal war against assistants, forcing them to get a real job.",
-			"Play increasingly more dangerous pranks on station.",
-			"Commit as many minor and/or moderate crimes as possible.",
-			"Start as many fights as you can on station. The more fistfights, the better.",
-			"Start a competing shady business that makes a chosen department redundant.",
-			"Seek out any non-security vigilantes on the station and prevent them from hunting others.",
-			"Try to become a supervillain by using costumes, treachery, and a lot of bluster and bravado.",
-			"Kidnap a pet or a crewmember and hold them for ransom.",
-			"Convert a secure area, such as the bridge, into something more \"fun\" for the crew.",
-			"Make as much of the station as possible accessible to the general public.",
-			"Start a worker's union and encourage your fellow workers to stop working and go on strike.",
-			"Steal things from crew members and attempt to auction them off for profit.",
-			"Steal high value items from the station and attempt to sell them back to the crew.",
-			"Attempt to monetize basic services the station provides.",
-			"Start a successful coup and depose the Captain or a chosen Head of Staff.",
-			"Perform a grand heist of the vault.",
-			"Take over a part of the station, then expand slowly and gradually into other areas.",
-			"Cause as many minor injures to crewmembers as possible."
+			"诬陷无辜船员，让他们背上并未犯下的各种轻罪。",
+			"救出所有被安保抓捕的人。",
+			"阻碍空间站内的通行。",
+			"对助理们发动一场个人战争，逼他们找份正经工作。",
+			"在空间站玩越来越危险的恶作剧。",
+			"尽可能多地犯下轻度或中度罪行。",
+			"尽可能多地挑起打斗。拳斗越多越好。",
+			"创办一家不正当的竞争企业，让选定的部门变得多余。",
+			"找出空间站上不属于安保的义警，阻止他们追捕他人。",
+			"用服装、阴谋诡计、虚张声势和逞强来成为超级反派。",
+			"绑架一只宠物或一名船员，索取赎金。",
+			"把舰桥等安全区域改造成让船员更“开心”的场所。",
+			"尽可能让空间站更多区域对公众开放。",
+			"成立工会，鼓励同事停工罢工。",
+			"偷走船员的物品，尝试拍卖获利。",
+			"偷走空间站的高价值物品，尝试转卖给船员。",
+			"尝试对空间站提供的基本服务收费。",
+			"发动成功的政变，罢黜舰长或选定的部门主管。",
+			"对金库实施一场惊天大劫案。",
+			"占领空间站的一部分，再缓慢向其他区域扩张。",
+			"尽可能多地让船员受到轻伤。"
 		)
 
 	explanation_text = pick(gimmick_list)

@@ -4,7 +4,7 @@
 #define FORMAT_CHEM_CHARGES_TEXT(charges) MAPTEXT("<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#dd66dd'>[round(charges)]</font></div>")
 
 /datum/antagonist/changeling
-	name = "\improper Changeling"
+	name = "变形怪"
 	roundend_category = "changelings"
 	antagpanel_category = "Changeling"
 	pref_flag = ROLE_CHANGELING
@@ -12,9 +12,9 @@
 	antag_hud_name = "changeling"
 	hijack_speed = 0.5
 	ui_name = "AntagInfoChangeling"
-	suicide_cry = "FOR THE HIVE!!"
+	suicide_cry = "为了虫巢！！"
 	can_assign_self_objectives = TRUE
-	default_custom_objective = "Consume the station's most valuable genomes."
+	default_custom_objective = "吞噬空间站上最有价值的基因组。"
 	hardcore_random_bonus = TRUE
 	stinger_sound = 'sound/music/antag/ling_alert.ogg'
 
@@ -49,7 +49,7 @@
 	/// The range this ling can sting things.
 	var/sting_range = 2
 	/// Changeling name, what other lings see over the hivemind when talking.
-	var/changelingID = "Changeling"
+	var/changelingID = "变形怪"
 	/// The number of genetics points (to buy powers) this ling currently has.
 	var/genetic_points = 10
 	/// The max number of genetics points (to buy powers) this ling can have..
@@ -157,7 +157,7 @@
 		return
 
 	var/mob/living/living_mob = mob_to_tweak
-	handle_clown_mutation(living_mob, "You have evolved beyond your clownish nature, allowing you to wield weapons without harming yourself.")
+	handle_clown_mutation(living_mob, "你已经超越了自己的小丑天性，可以随意使用武器而不会伤到自己。")
 	RegisterSignal(living_mob, COMSIG_MOB_LOGIN, PROC_REF(on_login))
 	RegisterSignal(living_mob, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 	RegisterSignal(living_mob, COMSIG_LIVING_POST_FULLY_HEAL, PROC_REF(on_fullhealed))
@@ -185,11 +185,11 @@
 /datum/antagonist/changeling/proc/generate_name()
 	var/honorific
 	if(owner.current.gender == FEMALE)
-		honorific = "Ms."
+		honorific = "女士"
 	else if(owner.current.gender == MALE)
-		honorific = "Mr."
+		honorific = "先生"
 	else
-		honorific = "Mx."
+		honorific = "阁下"
 
 	if(!possible_changeling_IDs)
 		possible_changeling_IDs = GLOB.greek_letters.Copy()
@@ -245,7 +245,7 @@
 
 /datum/antagonist/changeling/farewell()
 	if(owner.current)
-		to_chat(owner.current, span_userdanger("You grow weak and lose your powers! You are no longer a changeling and are stuck in your current form!"))
+		to_chat(owner.current, span_userdanger("你变得虚弱，并失去了自己的能力！你不再是变形怪，而且被固定在了当前形态！"))
 
 /*
  * Instantiate the cellular emporium for the changeling.
@@ -404,28 +404,28 @@
 		CRASH("Changeling purchase_power attempted to purchase an invalid typepath! (got: [sting_path])")
 
 	if(purchased_powers[sting_path])
-		to_chat(owner.current, span_warning("We have already evolved this ability!"))
+		to_chat(owner.current, span_warning("我们已经进化过这项能力了！"))
 		return FALSE
 
 	if(genetic_points < initial(sting_path.dna_cost))
-		to_chat(owner.current, span_warning("We have reached our capacity for abilities!"))
+		to_chat(owner.current, span_warning("我们的能力数量已达上限！"))
 		return FALSE
 
 	if(absorbed_count < initial(sting_path.req_dna))
-		to_chat(owner.current, span_warning("We lack the DNA to evolve this ability!"))
+		to_chat(owner.current, span_warning("我们缺少进化这项能力所需的 DNA！"))
 		return FALSE
 
 	if(true_absorbs < initial(sting_path.req_absorbs))
-		to_chat(owner.current, span_warning("We lack the absorbed DNA to evolve this ability!"))
+		to_chat(owner.current, span_warning("我们缺少进化这项能力所需的已吸收 DNA！"))
 		return FALSE
 
 	if(initial(sting_path.dna_cost) < 0)
-		to_chat(owner.current, span_warning("We cannot evolve this ability!"))
+		to_chat(owner.current, span_warning("我们无法进化这项能力！"))
 		return FALSE
 
 	//To avoid potential exploits by buying new powers while in stasis, which clears your verblist. // Probably not a problem anymore, but whatever.
 	if(HAS_TRAIT(owner.current, TRAIT_DEATHCOMA))
-		to_chat(owner.current, span_warning("We lack the energy to evolve new abilities right now!"))
+		to_chat(owner.current, span_warning("我们现在没有能量进化新能力！"))
 		return FALSE
 
 	var/success = give_power(sting_path)
@@ -447,12 +447,12 @@
 	var/datum/action/changeling/new_action = new power_path()
 
 	if(!new_action)
-		to_chat(owner.current, "This is awkward. Changeling power purchase failed, please report this bug to a coder!")
+		to_chat(owner.current, "这有点尴尬。变形怪能力购买失败，请向程序员报告此 bug！")
 		CRASH("Changeling give_power was unable to grant a new changeling action for path [power_path]!")
 
 	purchased_powers[power_path] = new_action
 	new_action.on_purchase(owner.current) // Grant() is ran in this proc, see changeling_powers.dm.
-	log_changeling_power("[key_name(owner)] adapted the [new_action.name] power")
+	log_changeling_power("[key_name(owner)] 适应了 [new_action.name] 能力")
 	SSblackbox.record_feedback("tally", "changeling_power_purchase", 1, new_action.name)
 
 	return TRUE
@@ -462,22 +462,22 @@
  */
 /datum/antagonist/changeling/proc/readapt()
 	if(!ishuman(owner.current) || ismonkey(owner.current))
-		to_chat(owner.current, span_warning("We can't remove our evolutions in this form!"))
+		to_chat(owner.current, span_warning("在这种形态下我们无法移除自己的进化！"))
 		return FALSE
 
 	if(HAS_TRAIT_FROM(owner.current, TRAIT_DEATHCOMA, CHANGELING_TRAIT))
-		to_chat(owner.current, span_warning("We are too busy reforming ourselves to readapt right now!"))
+		to_chat(owner.current, span_warning("我们正忙于重塑自身，现在无法重新适应！"))
 		return FALSE
 
 	if(!can_respec)
-		to_chat(owner.current, span_warning("You lack the power to readapt your evolutions!"))
+		to_chat(owner.current, span_warning("你缺少重新适应自身进化所需的力量！"))
 		return FALSE
 
-	to_chat(owner.current, span_notice("We have removed our evolutions from this form, and are now ready to readapt."))
+	to_chat(owner.current, span_notice("我们已从这种形态中移除了进化，现在可以重新适应了。"))
 	remove_changeling_powers()
 	can_respec -= 1
 	SSblackbox.record_feedback("tally", "changeling_power_purchase", 1, "Readapt")
-	log_changeling_power("[key_name(owner)] readapted their changeling powers")
+	log_changeling_power("[key_name(owner)] 重新适应了其变形怪能力")
 	return TRUE
 
 /*
@@ -513,32 +513,32 @@
 		var/datum/changeling_profile/top_profile = stored_profiles[1]
 		if(top_profile.dna.is_same_as(user.dna) && stored_profiles.len > dna_max)
 			if(verbose)
-				to_chat(user, span_warning("We have reached our capacity to store genetic information! We must transform before absorbing more."))
+				to_chat(user, span_warning("我们的遗传信息存储容量已达上限！必须先变形才能继续吸收。"))
 			return FALSE
 
 	if(!target.has_dna())
 		if(verbose)
-			to_chat(user, span_warning("[target] is not compatible with our biology."))
+			to_chat(user, span_warning("[target]与我们的生物构造不兼容。"))
 		return FALSE
 	if(has_profile_with_dna(target.dna))
 		if(verbose)
-			to_chat(user, span_warning("We already have this DNA in storage!"))
+			to_chat(user, span_warning("我们的库中已有这种 DNA！"))
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_NO_DNA_COPY))
 		if(verbose)
-			to_chat(user, span_warning("[target] is not compatible with our biology."))
+			to_chat(user, span_warning("[target]与我们的生物构造不兼容。"))
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_BADDNA))
 		if(verbose)
-			to_chat(user, span_warning("[target]'s DNA is ruined beyond usability!"))
+			to_chat(user, span_warning("[target]的 DNA 已损毁到无法使用！"))
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_HUSK))
 		if(verbose)
-			to_chat(user, span_warning("[target]'s body is ruined beyond usability!"))
+			to_chat(user, span_warning("[target]的身体已损毁到无法使用！"))
 		return FALSE
 	if(!ishuman(target) || ismonkey(target))//Absorbing monkeys is entirely possible, but it can cause issues with transforming. That's what lesser form is for anyway!
 		if(verbose)
-			to_chat(user, span_warning("We could gain no benefit from absorbing a lesser creature."))
+			to_chat(user, span_warning("吸收低等生物对我们毫无益处。"))
 		return FALSE
 
 	return TRUE
@@ -780,14 +780,14 @@
 /datum/antagonist/changeling/get_admin_commands()
 	. = ..()
 	if(stored_profiles.len && (owner.current.real_name != first_profile.name))
-		.["Transform to initial appearance."] = CALLBACK(src, PROC_REF(admin_restore_appearance))
+		.["变回初始外观。"] = CALLBACK(src, PROC_REF(admin_restore_appearance))
 
 /*
  * Restores the appearance of the changeling to the original DNA.
  */
 /datum/antagonist/changeling/proc/admin_restore_appearance(mob/admin)
 	if(!stored_profiles.len || !iscarbon(owner.current))
-		to_chat(admin, span_danger("Resetting DNA failed!"))
+		to_chat(admin, span_danger("重置 DNA 失败！"))
 		return
 
 	var/mob/living/carbon/carbon_owner = owner.current
@@ -1103,7 +1103,7 @@
 	// SKYRAT EDIT REMOVAL END
 
 	parts += printplayer(owner)
-	parts += "<b>Genomes Extracted:</b> [absorbed_count]<br>"
+	parts += "<b>已提取基因组：</b>[absorbed_count]<br>"
 
 	if(objectives.len)
 		var/count = 1
@@ -1114,7 +1114,7 @@
 				changeling_win = FALSE
 			parts += "<b>Objective #[count]</b>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
 			*/
-			parts += "<b>Objective #[count]</b>: [objective.explanation_text]"
+			parts += "<b>目标 #[count]</b>：[objective.explanation_text]"
 			// SKYRAT EDIT END - No greentext
 			count++
 
@@ -1160,7 +1160,7 @@
 
 // Changelings spawned from non-changeling headslugs (IE, due to being transformed into a headslug as a non-ling). Weaker than a normal changeling.
 /datum/antagonist/changeling/headslug
-	name = "\improper Headslug Changeling"
+	name = "头蛞蝓变形怪"
 	show_in_antagpanel = FALSE
 	give_objectives = FALSE
 	antag_flags = ANTAG_SKIP_GLOBAL_LIST
@@ -1172,12 +1172,12 @@
 
 /datum/antagonist/changeling/headslug/greet()
 	play_stinger()
-	to_chat(owner, span_bolddanger("You are a fresh changeling birthed from a headslug! \
-		You aren't as strong as a normal changeling, as you are newly born."))
+	to_chat(owner, span_bolddanger("你是由头蛞蝓诞生的新生变形怪！\
+		由于刚刚出生，你不像普通变形怪那样强大。"))
 
 
 /datum/antagonist/changeling/space
-	name = "\improper Space Changeling"
+	name = "太空变形怪"
 
 /datum/antagonist/changeling/space/get_preview_icon()
 	var/datum/universal_icon/final_icon = render_preview_outfit(/datum/outfit/changeling_space)
@@ -1185,17 +1185,17 @@
 
 /datum/antagonist/changeling/space/greet()
 	play_stinger()
-	to_chat(src, span_changeling("Our mind stirs to life, from the depths of an endless slumber..."))
+	to_chat(src, span_changeling("我们的心智从无尽沉睡的深处苏醒过来……"))
 
 /datum/outfit/changeling
-	name = "Changeling"
+	name = "变形怪"
 
 	head = /obj/item/clothing/head/helmet/changeling
 	suit = /obj/item/clothing/suit/armor/changeling
 	l_hand = /obj/item/melee/arm_blade
 
 /datum/outfit/changeling_space
-	name = "Changeling (Space)"
+	name = "变形怪（太空）"
 	l_hand = /obj/item/melee/arm_blade
 
 #undef FORMAT_CHEM_MAX_TEXT

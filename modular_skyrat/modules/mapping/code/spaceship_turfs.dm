@@ -41,7 +41,7 @@
 */
 
 /obj/structure/window/reinforced/shuttle/darkpod
-	name = "pod window"
+	name = "深色舱体窗户"
 	icon = 'modular_zubbers/icons/obj/smooth_structures/dark_pod_window.dmi'
 	icon_state = "dark_pod_window-0"
 	base_icon_state = "dark_pod_window"
@@ -51,7 +51,7 @@
 	obj_flags = CAN_BE_HIT
 
 /obj/effect/spawner/structure/window/darkpod
-	name = "dark pod window spawner"
+	name = "深色舱体窗户生成器"
 	icon_state = "podwindow_spawner"
 	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/shuttle/darkpod)
 

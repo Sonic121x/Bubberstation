@@ -1,11 +1,11 @@
 /datum/weather/void_storm
 	name = "void storm"
-	desc = "A rare and highly anomalous event often accompanied by unknown entities shredding spacetime continouum. We'd advise you to start running."
+	desc = "罕见且极度异常的事件，往往伴随着撕裂时空连续体的未知实体。我们建议你赶快逃跑。"
 
 	telegraph_duration = 2 SECONDS
 	telegraph_overlay = "light_snow"
 
-	weather_message = span_hypnophrase("You feel the air around you getting colder... and void's sweet embrace...")
+	weather_message = span_hypnophrase("你感到周围的空气渐渐变冷……还有虚空那甜美的拥抱……")
 	weather_overlay = "light_snow"
 	weather_color = COLOR_BLACK
 	weather_duration_lower = 1 MINUTES

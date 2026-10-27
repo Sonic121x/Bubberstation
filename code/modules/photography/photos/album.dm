@@ -2,8 +2,8 @@
  * Photo album
  */
 /obj/item/storage/photo_album
-	name = "photo album"
-	desc = "A big book used to store photos and mementos."
+	name = "相册"
+	desc = "一本用来存放照片和纪念品的大书。"
 	icon = 'icons/obj/art/camera.dmi'
 	icon_state = "album"
 	inhand_icon_state = "album"
@@ -84,7 +84,7 @@
 	save_everything()
 
 /obj/item/storage/photo_album/hos
-	name = "photo album (Head of Security)"
+	name = "相册（安保主管）"
 	icon_state = "album_blue"
 	persistence_id = "HoS"
 
@@ -93,7 +93,7 @@
 	REGISTER_REQUIRED_MAP_ITEM(1, 1)
 
 /obj/item/storage/photo_album/rd
-	name = "photo album (Research Director)"
+	name = "相册（科研主管）"
 	icon_state = "album_blue"
 	persistence_id = "RD"
 
@@ -102,7 +102,7 @@
 	REGISTER_REQUIRED_MAP_ITEM(1, 1)
 
 /obj/item/storage/photo_album/hop
-	name = "photo album (Head of Personnel)"
+	name = "相册（人事主管）"
 	icon_state = "album_blue"
 	persistence_id = "HoP"
 
@@ -111,7 +111,7 @@
 	REGISTER_REQUIRED_MAP_ITEM(1, 1)
 
 /obj/item/storage/photo_album/captain
-	name = "photo album (Captain)"
+	name = "相册（舰长）"
 	icon_state = "album_blue"
 	persistence_id = "Captain"
 
@@ -120,7 +120,7 @@
 	REGISTER_REQUIRED_MAP_ITEM(1, 1)
 
 /obj/item/storage/photo_album/cmo
-	name = "photo album (Chief Medical Officer)"
+	name = "相册（首席医疗官）"
 	icon_state = "album_blue"
 	persistence_id = "CMO"
 
@@ -129,7 +129,7 @@
 	REGISTER_REQUIRED_MAP_ITEM(1, 1)
 
 /obj/item/storage/photo_album/qm
-	name = "photo album (Quartermaster)"
+	name = "相册（货运主管）"
 	icon_state = "album_blue"
 	persistence_id = "QM"
 
@@ -138,7 +138,7 @@
 	REGISTER_REQUIRED_MAP_ITEM(1, 1)
 
 /obj/item/storage/photo_album/ce
-	name = "photo album (Chief Engineer)"
+	name = "相册（总工程师）"
 	icon_state = "album_blue"
 	persistence_id = "CE"
 
@@ -147,7 +147,7 @@
 	REGISTER_REQUIRED_MAP_ITEM(1, 1)
 
 /obj/item/storage/photo_album/bar
-	name = "photo album (Bar)"
+	name = "相册（酒吧）"
 	icon_state = "album_blue"
 	persistence_id = "bar"
 
@@ -156,12 +156,12 @@
 	REGISTER_REQUIRED_MAP_ITEM(1, 1)
 
 /obj/item/storage/photo_album/syndicate
-	name = "photo album (Syndicate)"
+	name = "相册（辛迪加）"
 	icon_state = "album_red"
 	persistence_id = "syndicate"
 
 /obj/item/storage/photo_album/library
-	name = "photo album (Library)"
+	name = "相册（图书馆）"
 	icon_state = "album_blue"
 	persistence_id = "library"
 
@@ -170,7 +170,7 @@
 	REGISTER_REQUIRED_MAP_ITEM(1, 1)
 
 /obj/item/storage/photo_album/chapel
-	name = "photo album (Chapel)"
+	name = "相册（礼拜堂）"
 	icon_state = "album_blue"
 	persistence_id = "chapel"
 
@@ -179,17 +179,17 @@
 	REGISTER_REQUIRED_MAP_ITEM(1, 1)
 
 /obj/item/storage/photo_album/listeningstation
-	name = "photo album (Listening Station)"
+	name = "相册（监听站）"
 	icon_state = "album_red"
 	persistence_id = "listeningstation"
 
 /obj/item/storage/photo_album/icemoonlisteningstation
-	name = "photo album (Icemoon Outpost)"
+	name = "相册（冰月前哨）"
 	icon_state = "album_red"
 	persistence_id = "icemooncomms"
 
 /obj/item/storage/photo_album/prison
-	name = "photo album (Prison)"
+	name = "相册（监狱）"
 	icon_state = "album_blue"
 	persistence_id = "prison"
 
@@ -201,6 +201,6 @@
 	icon_state = "album_green"
 
 /obj/item/storage/photo_album/hall_of_fame
-	name = "photo album (Hall of Fame)"
+	name = "相册（名人堂）"
 	icon_state = "album_red"
 	persistence_id = "hall_of_fame"

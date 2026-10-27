@@ -8,25 +8,25 @@
 	armor_type = /datum/armor/none
 
 /obj/item/clothing/accessory/armband/cargo/nonsec
-	name = "brown armband"
-	desc = "An armband, worn to signify proficiency in a skill or association with a department. This one is brown."
+	name = "棕色臂章"
+	desc = "一枚臂章，用来标示某项技能的精通或与某个部门的关联。这一枚是棕色的。"
 
 /obj/item/clothing/accessory/armband/engine/nonsec
-	name = "orange armband"
-	desc = "An armband, worn to signify proficiency in a skill or association with a department. This one is orange with a reflective strip!"
+	name = "橙色臂章"
+	desc = "一枚臂章，用来标示某项技能的精通或与某个部门的关联。这一枚是橙色，还带一条反光条！"
 
 /obj/item/clothing/accessory/armband/science/nonsec
-	name = "purple armband"
-	desc = "An armband, worn to signify proficiency in a skill or association with a department. This one is purple."
+	name = "紫色臂章"
+	desc = "一枚臂章，用来标示某项技能的精通或与某个部门的关联。这一枚是紫色的。"
 
 /obj/item/clothing/accessory/armband/hydro/nonsec
-	name = "green-blue armband"
-	desc = "An armband, worn to signify proficiency in a skill or association with a department. This one is green and blue."
+	name = "蓝绿臂章"
+	desc = "一枚臂章，用来标示某项技能的精通或与某个部门的关联。这一枚是绿色和蓝色相间的。"
 
 /obj/item/clothing/accessory/armband/med/nonsec
-	name = "white armband"
-	desc = "An armband, worn to signify proficiency in a skill or association with a department. This one is white."
+	name = "白色臂章"
+	desc = "一枚臂章，用来标示某项技能的精通或与某个部门的关联。这一枚是白色的。"
 
 /obj/item/clothing/accessory/armband/medblue/nonsec
-	name = "white-blue armband"
-	desc = "An armband, worn to signify proficiency in a skill or association with a department. This one is white and blue."
+	name = "白蓝臂章"
+	desc = "一枚臂章，用来标示某项技能的精通或与某个部门的关联。这一枚是白色和蓝色相间的。"

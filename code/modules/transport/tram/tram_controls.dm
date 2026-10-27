@@ -1,6 +1,6 @@
 /obj/machinery/computer/tram_controls
-	name = "tram controls"
-	desc = "An interface for the tram that lets you tell the tram where to go and hopefully it makes it there. I'm here to describe the controls to you, not to inspire confidence."
+	name = "电车控制台"
+	desc = "一个电车操作界面，让你告诉电车该往哪开，但愿它真能开过去。我只负责向你描述操作方式，不负责给你信心。"
 	icon_state = "tram_controls"
 	base_icon_state = "tram"
 	icon_screen = TRAMSTATION_LINE_1
@@ -279,11 +279,11 @@
 
 			switch(response_info)
 				if(NOT_IN_SERVICE)
-					tram.nav_beacon.say("The tram is not in service. Please contact the nearest engineer.")
+					tram.nav_beacon.say("电车当前停止服务。请联系最近的工程师。")
 				if(INVALID_PLATFORM)
-					tram.nav_beacon.say("Configuration error. Please contact the nearest engineer.")
+					tram.nav_beacon.say("配置错误。请联系最近的工程师。")
 				if(INTERNAL_ERROR)
-					tram.nav_beacon.say("Tram controller error. Please contact the nearest engineer or crew member with telecommunications access to reset the controller.")
+					tram.nav_beacon.say("电车控制器错误。请联系最近的工程师，或联系拥有电信权限的船员来重置控制器。")
 				else
 					return
 

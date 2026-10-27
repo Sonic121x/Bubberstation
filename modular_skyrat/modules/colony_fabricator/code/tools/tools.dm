@@ -1,10 +1,10 @@
 // Like the power drill, except no speed buff but has wirecutters as well? Just trust me on this one.
 
 /obj/item/screwdriver/omni_drill
-	name = "powered driver"
-	desc = "The ultimate in multi purpose construction tools. With heads for wire cutting, bolt driving, and driving \
-		screws, what's not to love? Well, the slow speed. Compared to other power drills these tend to be \
-		<b>not much quicker than unpowered tools</b>."
+	name = "电动螺丝刀"
+	desc = "终极多用途建造工具。配有剪线、拧螺栓和拧螺丝的批头，还有什么可挑剔的？\
+		好吧，就是速度慢。与其他电钻相比，这类工具\
+		<b>并不比无动力工具快多少</b>。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
 	icon_state = "drill"
 	post_init_icon_state = null
@@ -48,8 +48,8 @@
 
 /obj/item/screwdriver/omni_drill/examine(mob/user)
 	. = ..()
-	. += span_notice("Use <b>in hand</b> to switch configuration.\n")
-	. += span_notice("It functions as a <b>[tool_behaviour]</b> tool.")
+	. += span_notice("在<b>手中</b>使用以切换配置。\n")
+	. += span_notice("它可作为 <b>[tool_behaviour]</b> 工具使用。")
 
 /obj/item/screwdriver/omni_drill/update_icon_state()
 	. = ..()
@@ -98,8 +98,8 @@
 // Just a completely normal crowbar except its normal sized
 
 /obj/item/crowbar/large/doorforcer
-	name = "prybar"
-	desc = "A large, sturdy crowbar, painted orange. Nothing special, or unique about it. Waste of money, honestly."
+	name = "撬棍"
+	desc = "一把涂成橙色的大型坚固撬棍。没什么特别或独特之处。说实话，纯属浪费钱。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
 	icon_state = "prybar"
 	toolspeed = 1.3
@@ -116,8 +116,8 @@
 // Backpackable mining drill
 
 /obj/item/pickaxe/drill/compact
-	name = "compact mining drill"
-	desc = "A powered mining drill, it drills all over the place. Compact enough to hopefully fit in a backpack."
+	name = "紧凑型采矿钻机"
+	desc = "一台电动采矿钻机，到哪儿都能钻上一通。体积足够紧凑，希望能塞进背包里。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
 	icon_state = "drilla"
 	worn_icon_state = "drill"
@@ -135,10 +135,10 @@
 // Electric welder but not quite as strong
 
 /obj/item/weldingtool/electric/arc_welder
-	name = "arc welding tool"
-	desc = "A specialized welding tool utilizing high powered arcs of electricity to weld things together. \
-		Compared to other electrically-powered welders, this model is slow and highly power inefficient, \
-		but it still gets the job done and chances are you printed this bad boy off for free."
+	name = "电弧焊接工具"
+	desc = "一种专用焊接工具，利用高压电弧把东西焊在一起。\
+		与其他电动焊接器相比，这款型号速度慢、电能效率极低，\
+		但它照样能完成任务，而且这东西很可能是你免费打印出来的。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
 	icon_state = "arc_welder"
 	usesound = 'modular_skyrat/modules/colony_fabricator/sound/arc_welder/arc_welder.ogg'

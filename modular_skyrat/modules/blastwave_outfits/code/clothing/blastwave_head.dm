@@ -1,6 +1,6 @@
 /obj/item/clothing/head/blastwave
-	name = "blastwave helmet"
-	desc = "A plastic helmet with paint applied. Protects as much as cardboard box named 'Bomb Shelter'."
+	name = "冲击波头盔"
+	desc = "一顶刷了漆的塑料头盔。防护效果和一个写着“防空洞”的纸箱差不多。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "blastwave_helmet"
@@ -14,28 +14,28 @@
 	abstract_type = /datum/atom_skin/blastwave_helmet
 
 /datum/atom_skin/blastwave_helmet/default
-	preview_name = "Default (Purple)"
+	preview_name = "默认（紫色）"
 	new_icon_state = "blastwave_helmet"
 
 /datum/atom_skin/blastwave_helmet/red
-	preview_name = "Red"
+	preview_name = "红色"
 	new_icon_state = "blastwave_helmet_r"
 
 /datum/atom_skin/blastwave_helmet/green
-	preview_name = "Green"
+	preview_name = "绿色"
 	new_icon_state = "blastwave_helmet_g"
 
 /datum/atom_skin/blastwave_helmet/blue
-	preview_name = "Blue"
+	preview_name = "蓝色"
 	new_icon_state = "blastwave_helmet_b"
 
 /datum/atom_skin/blastwave_helmet/yellow
-	preview_name = "Yellow"
+	preview_name = "黄色"
 	new_icon_state = "blastwave_helmet_y"
 
 /obj/item/clothing/head/blastwave/officer
-	name = "blastwave peaked cap"
-	desc = "A simple, militaristic cap."
+	name = "冲击波大檐帽"
+	desc = "一顶简洁的军装大檐帽。"
 	icon_state = "blastwave_offcap"
 	flags_inv = 0
 
@@ -47,21 +47,21 @@
 	abstract_type = /datum/atom_skin/blastwave_officer_cap
 
 /datum/atom_skin/blastwave_officer_cap/default
-	preview_name = "Default (Purple)"
+	preview_name = "默认（紫色）"
 	new_icon_state = "blastwave_offcap"
 
 /datum/atom_skin/blastwave_officer_cap/red
-	preview_name = "Red"
+	preview_name = "红色"
 	new_icon_state = "blastwave_offcap_r"
 
 /datum/atom_skin/blastwave_officer_cap/green
-	preview_name = "Green"
+	preview_name = "绿色"
 	new_icon_state = "blastwave_offcap_g"
 
 /datum/atom_skin/blastwave_officer_cap/blue
-	preview_name = "Blue"
+	preview_name = "蓝色"
 	new_icon_state = "blastwave_offcap_b"
 
 /datum/atom_skin/blastwave_officer_cap/yellow
-	preview_name = "Yellow"
+	preview_name = "黄色"
 	new_icon_state = "blastwave_offcap_y"

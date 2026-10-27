@@ -1,6 +1,6 @@
 /obj/item/screwdriver
-	name = "screwdriver"
-	desc = "You can be totally screwy with this."
+	name = "螺丝刀"
+	desc = "有了它，你可以彻底拧个痛快。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/screwdriver"
 	post_init_icon_state = "screwdriver"
@@ -19,8 +19,8 @@
 	throw_speed = 3
 	throw_range = 5
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*0.75)
-	attack_verb_continuous = list("stabs")
-	attack_verb_simple = list("stab")
+	attack_verb_continuous = list("刺")
+	attack_verb_simple = list("刺")
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	usesound = list('sound/items/tools/screwdriver.ogg', 'sound/items/tools/screwdriver2.ogg')
 	operating_sound = 'sound/items/tools/screwdriver_operating.ogg'
@@ -53,7 +53,7 @@
 	acid = 30
 
 /obj/item/screwdriver/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is stabbing [src] into [user.p_their()] [pick("temple", "heart")]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正把[src]刺入自己的[pick("太阳穴", "心脏")]！看起来是想自杀！"))
 	return BRUTELOSS
 
 /obj/item/screwdriver/Initialize(mapload)
@@ -64,8 +64,8 @@
 	AddElement(/datum/element/falling_hazard, damage = force, wound_bonus = wound_bonus, hardhat_safety = TRUE, crushes = FALSE, impact_sound = hitsound)
 
 /obj/item/screwdriver/abductor
-	name = "alien screwdriver"
-	desc = "An ultrasonic screwdriver."
+	name = "外星螺丝刀"
+	desc = "一把超声波螺丝刀。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "screwdriver_a"
 	post_init_icon_state = null
@@ -83,8 +83,8 @@
 	return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "screwdriver_alien")
 
 /obj/item/screwdriver/power
-	name = "hand drill"
-	desc = "A simple powered hand drill."
+	name = "手持电钻"
+	desc = "一把简单的电动手持电钻。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "drill"
 	post_init_icon_state = null
@@ -98,8 +98,8 @@
 	throwforce = 8
 	throw_speed = 2
 	throw_range = 3//it's heavier than a screw driver/wrench, so it does more damage, but can't be thrown as far
-	attack_verb_continuous = list("drills", "screws", "jabs", "whacks")
-	attack_verb_simple = list("drill", "screw", "jab", "whack")
+	attack_verb_continuous = list("钻", "拧", "戳", "敲")
+	attack_verb_simple = list("钻", "拧", "戳", "敲")
 	hitsound = 'sound/items/tools/drill_hit.ogg'
 	usesound = 'sound/items/tools/drill_use.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
@@ -137,25 +137,25 @@
 
 	tool_behaviour = (active ? TOOL_WRENCH : TOOL_SCREWDRIVER)
 	if(user)
-		balloon_alert(user, "attached [active ? "bolt bit" : "screw bit"]")
+		balloon_alert(user, "已装上[active ? "螺栓批头" : "螺丝批头"]")
 	playsound(src, 'sound/items/tools/change_drill.ogg', 50, TRUE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
 /obj/item/screwdriver/power/examine()
 	. = ..()
-	. += "It's fitted with a [tool_behaviour == TOOL_SCREWDRIVER ? "screw" : "bolt"] bit."
+	. += "它装有[tool_behaviour == TOOL_SCREWDRIVER ? "螺丝" : "螺栓"]批头。"
 
 /obj/item/screwdriver/power/suicide_act(mob/living/user)
 	if(tool_behaviour == TOOL_SCREWDRIVER)
-		user.visible_message(span_suicide("[user] is putting [src] to [user.p_their()] temple. It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]正把[src]抵在自己太阳穴上。看起来是想自杀！"))
 	else
-		user.visible_message(span_suicide("[user] is pressing [src] against [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]正把[src]按在自己头上！看起来是想自杀！"))
 	playsound(loc, 'sound/items/tools/drill_use.ogg', 50, TRUE, -1)
 	return BRUTELOSS
 
 /obj/item/screwdriver/cyborg
-	name = "automated screwdriver"
-	desc = "A powerful automated screwdriver, designed to be both precise and quick."
+	name = "自动螺丝刀"
+	desc = "一把强力的自动螺丝刀，设计得既精准又迅捷。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_screwdriver"
 	post_init_icon_state = null

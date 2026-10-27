@@ -1,7 +1,7 @@
 //Pillow and pillow related items
 /obj/item/pillow
-	name = "pillow"
-	desc = "A soft and fluffy pillow. You can smack someone with this!"
+	name = "枕头"
+	desc = "一个柔软蓬松的枕头。你可以用它来拍人！"
 	icon = 'icons/obj/bed.dmi'
 	icon_state = "pillow_1_t"
 	inhand_icon_state = "pillow_t"
@@ -11,7 +11,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	damtype = STAMINA
 	///change the description based on the pillow tag
-	var/static/tag_desc = "This one seems to have its tag removed."
+	var/static/tag_desc = "这个好像标签被摘掉了。"
 	///pillow tag is attached to it
 	var/obj/item/clothing/neck/pillow_tag/pillow_trophy
 	///whoever last use this pillow
@@ -76,34 +76,34 @@
 	if(victim.is_mouth_covered() || !victim.get_bodypart(BODY_ZONE_HEAD))
 		return
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_notice("You can't bring yourself to harm [victim]"))
+		to_chat(user, span_notice("你下不了手伤害[victim]"))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(can_smother(victim, user))
-		user.visible_message("[user] starts to smother [victim]!", span_notice("You begin smothering [victim]!"), vision_distance = COMBAT_MESSAGE_RANGE)
+		user.visible_message("[user]开始闷住[victim]！", span_notice("你开始闷住[victim]！"), vision_distance = COMBAT_MESSAGE_RANGE)
 		INVOKE_ASYNC(src, PROC_REF(smothering), user, victim)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/pillow/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!bricked && istype(tool, /obj/item/stack/sheet/mineral/sandstone))
 		var/obj/item/stack/sheet/mineral/sandstone/brick = tool
-		balloon_alert(user, "inserting brick...")
+		balloon_alert(user, "正在塞入砖块……")
 		if(!do_after(user, 2 SECONDS, src))
 			return ITEM_INTERACT_BLOCKING
 		if(!brick.use(1))
-			balloon_alert(user, "not enough bricks!")
+			balloon_alert(user, "砖块不够！")
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, "bricked!")
+		balloon_alert(user, "塞好砖块了！")
 		become_bricked()
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/clothing/neck/pillow_tag))
 		if(pillow_trophy)
-			balloon_alert(user, "tag is intact.")
+			balloon_alert(user, "标签还在。")
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		pillow_trophy = tool
-		balloon_alert(user, "honor reclaimed!")
+		balloon_alert(user, "荣誉已夺回！")
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -112,24 +112,24 @@
 /obj/item/pillow/examine(mob/user)
 	. = ..()
 	if(bricked)
-		. += span_info("[p_They()] feel[p_s()] unnaturally heavy.")
+		. += span_info("它摸起来异常沉重。")
 	if(pillow_trophy)
-		. += span_notice("Alt-click to remove the tag!")
+		. += span_notice("按住 Alt 点击可取下标签！")
 
 /obj/item/pillow/click_alt(mob/user)
 	if(!user.can_hold_items(src))
 		return CLICK_ACTION_BLOCKING
 	if(!pillow_trophy)
-		balloon_alert(user, "no tag!")
+		balloon_alert(user, "没有标签！")
 		return CLICK_ACTION_BLOCKING
-	balloon_alert(user, "removing tag...")
+	balloon_alert(user, "正在取下标签……")
 	if(!do_after(user, 2 SECONDS, src))
 		return CLICK_ACTION_BLOCKING
 	if(last_fighter)
-		pillow_trophy.desc = "A pillow tag taken from [last_fighter] after a gruesome pillow fight."
+		pillow_trophy.desc = "从[last_fighter]身上取下的枕头标签，来自一场惨烈的枕头大战。"
 	user.put_in_hands(pillow_trophy)
 	pillow_trophy = null
-	balloon_alert(user, "tag removed")
+	balloon_alert(user, "标签已取下")
 	playsound(user,'sound/items/poster/poster_ripped.ogg', 50)
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
@@ -137,11 +137,11 @@
 /obj/item/pillow/update_appearance(updates)
 	. = ..()
 	if(!pillow_trophy)
-		desc = "A soft and fluffy pillow. You can smack someone with this! [tag_desc]"
+		desc = "一个柔软蓬松的枕头。你可以用它来拍人！[tag_desc]"
 		icon_state = "pillow_[variation]"
 		inhand_icon_state = "pillow_no_t"
 	else
-		desc = "A soft and fluffy pillow. You can smack someone with this!"
+		desc = "一个柔软蓬松的枕头。你可以用它来拍人！"
 		icon_state = "pillow_[variation]_t"
 		inhand_icon_state = "pillow_t"
 
@@ -162,7 +162,7 @@
 		if(!do_after(user, 1 SECONDS, victim))
 			break
 		victim.losebreath += 1
-	victim.visible_message("[victim] manages to escape being smothered!", span_notice("You break free!"), vision_distance = COMBAT_MESSAGE_RANGE)
+	victim.visible_message("[victim]挣脱了闷压！", span_notice("你挣脱了！"), vision_distance = COMBAT_MESSAGE_RANGE)
 
 /obj/item/pillow/random
 
@@ -175,8 +175,8 @@
 		become_bricked()
 
 /obj/item/clothing/suit/pillow_suit
-	name = "pillow suit"
-	desc = "Part man, part pillow. All CARNAGE!"
+	name = "枕头战衣"
+	desc = "半人，半枕头。全是杀戮！"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS|FEET
 	cold_protection = CHEST|GROIN|ARMS|LEGS //a pillow suit must be hella warm
 	allowed = list(/obj/item/pillow) //moar pillow carnage
@@ -201,8 +201,8 @@
 	QDEL_NULL(unstoppably_plushed)
 
 /obj/item/clothing/head/pillow_hood
-	name = "pillow hood"
-	desc = "The final piece of the pillow juggernaut"
+	name = "枕头兜帽"
+	desc = "枕头巨兽的最后一块拼图"
 	body_parts_covered = HEAD
 	icon = 'icons/obj/bed.dmi'
 	worn_icon = 'icons/mob/clothing/suits/pillow.dmi'
@@ -217,8 +217,8 @@
 	acid = 75
 
 /obj/item/clothing/neck/pillow_tag
-	name = "pillow tag"
-	desc = "A price tag for the pillow. It appears to have space to fill names in."
+	name = "枕头标签"
+	desc = "枕头的价格标签，上面似乎留有填写名字的空位。"
 	icon = 'icons/obj/bed.dmi'
 	icon_state = "pillow_tag"
 	worn_icon = 'icons/mob/clothing/neck.dmi'
@@ -226,13 +226,13 @@
 	body_parts_covered = NECK
 
 /obj/item/pillow/clown
-	name = "clown pillow"
-	desc = "Daww look at that little clown!"
+	name = "小丑枕头"
+	desc = "哎呀，看看这个小丑！"
 	icon_state = "pillow_5_t"
 	variation = 5
 
 /obj/item/pillow/mime
-	name = "mime pillow"
-	desc = "Daww look at that little mime!"
+	name = "默剧演员枕头"
+	desc = "哎呀，看看这个小默剧演员！"
 	icon_state = "pillow_6_t"
 	variation = 6

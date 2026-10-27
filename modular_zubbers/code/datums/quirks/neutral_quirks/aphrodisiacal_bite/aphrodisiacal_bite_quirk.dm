@@ -1,11 +1,11 @@
 /datum/quirk/aphrodisiacal_bite
 	name = "Aphrodisiacal Bite"
-	desc = "You have a aphrodisiacal gland, and can bite people to inject them with an aphrodisiac of your choosing."
+	desc = "你拥有催情腺，可以通过咬人注入你选择的催情剂。"
 	icon = FA_ICON_ICICLES
 	value = 0
-	gain_text = span_notice("You feel a aphrodisiacal gland in the back of your throat.")
-	lose_text = span_warning("Your aphrodisiacal gland vanishes.")
-	medical_record_text = "Patient possesses an aphrodisiacal gland."
+	gain_text = span_notice("你感觉喉咙深处长出了催情腺。")
+	lose_text = span_warning("你的催情腺消失了。")
+	medical_record_text = "患者拥有催情腺。"
 
 /datum/quirk/aphrodisiacal_bite/add(client/client_source)
 	var/datum/reagent/reagent = text2path(client_source?.prefs?.read_preference(/datum/preference/choiced/aphrodisiacal_bite_venom))
@@ -94,7 +94,7 @@
 
 		var/name = entry::name
 
-		titles["[entry]"] = "[name] ([inject]u, [cooldown / 10] second cooldown)"
+		titles["[entry]"] = "[name]（[inject]单位，冷却[cooldown / 10]秒）"
 
 	data[CHOICED_PREFERENCE_DISPLAY_NAMES] = titles
 

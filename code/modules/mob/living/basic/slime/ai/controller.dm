@@ -5,9 +5,9 @@
 		BB_SLIME_RABID = FALSE,
 		BB_SLIME_HUNGER_DISABLED = FALSE,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_SAY = list("Blorble...","Bzzt...",""),
-			BB_EMOTE_HEAR = list("blorbles."),
-			BB_EMOTE_SEE = list("lights up for a bit, then stops.","bounces in place.", "jiggles!","vibrates!"),
+			BB_EMOTE_SAY = list("咕噜……","兹兹……",""),
+			BB_EMOTE_HEAR = list("咕噜作响。"),
+			BB_EMOTE_SEE = list("亮了一下，随后又暗下去。","在原地弹跳。", "颤动着！","抖动着！"),
 			BB_SPEAK_CHANCE = 1,
 		),
 	)

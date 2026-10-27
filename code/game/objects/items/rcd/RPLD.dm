@@ -1,7 +1,7 @@
 ///The plumbing RCD. All the blueprints are located in _globalvars > lists > construction.dm
 /obj/item/construction/plumbing
-	name = "Plumbing Constructor"
-	desc = "An expertly modified RCD outfitted to construct plumbing machinery."
+	name = "管道建造器"
+	desc = "经过专业改造的快速建造装置，专门用于建造管道机械。"
 	icon_state = "plumberer2"
 	inhand_icon_state = "plumberer"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -106,8 +106,8 @@
 
 /obj/item/construction/plumbing/examine(mob/user)
 	. = ..()
-	. += "You can scroll your mouse wheel to change the piping layer."
-	. += "You can right click a fluid duct to set the Plumbing RPD to its color and layer."
+	. += "你可以滚动鼠标滚轮来切换管道层。"
+	. += "你可以右键点击流体管道，将此管道建造器设为该管道的颜色与层。"
 
 /obj/item/construction/plumbing/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -207,13 +207,13 @@
 	var/is_allowed = TRUE
 	if(!useResource(cost, user, TRUE) || !(is_allowed = canPlace(destination)))
 		if(!is_allowed)
-			balloon_alert(user, "tile is blocked!")
+			balloon_alert(user, "该格被阻挡！")
 		return FALSE
 	if(!build_delay(user, cost, target = destination))
 		return FALSE
 	if(!useResource(cost, user, TRUE) || !(is_allowed = canPlace(destination)))
 		if(!is_allowed)
-			balloon_alert(user, "tile is blocked!")
+			balloon_alert(user, "该格被阻挡！")
 		return FALSE
 
 	playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
@@ -247,13 +247,13 @@
 
 			var/obj/machinery/machine_target = interacting_with
 			if(machine_target.anchored)
-				balloon_alert(user, "unanchor first!")
+				balloon_alert(user, "请先解除固定！")
 				return ITEM_INTERACT_BLOCKING
 			if(do_after(user, 2 SECONDS, target = interacting_with))
 				var/design_cost = designs[machine_target.type]
 				var/to_return = min(design_cost, max_matter - matter) // Give back matter was used to create smth
 				if(to_return < design_cost)
-					balloon_alert(user, "storage full!")
+					balloon_alert(user, "储存已满！")
 				matter += to_return
 				machine_target.deconstruct()
 				playsound(src, 'sound/machines/click.ogg', 50, TRUE) //this is just such a great sound effect
@@ -273,7 +273,7 @@
 	if(duct.duct_layer && duct.duct_color)
 		current_color = GLOB.pipe_color_name[duct.duct_color]
 		current_layer = GLOB.plumbing_layer_names["[duct.duct_layer]"]
-		balloon_alert(user, "using [current_color], layer [current_layer]")
+		balloon_alert(user, "使用 [current_color]，第 [current_layer] 层")
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
 
@@ -298,11 +298,11 @@
 		if(current_loc < 1)
 			current_loc = GLOB.plumbing_layers.len
 		current_layer = GLOB.plumbing_layers[current_loc]
-	to_chat(source, span_notice("You set the layer to [current_layer]."))
+	to_chat(source, span_notice("你将层设为 [current_layer]。"))
 
 /obj/item/construction/plumbing/service
-	name = "service plumbing constructor"
-	desc = "A type of plumbing constructor designed to rapidly deploy the machines needed to make a brewery."
+	name = "服务管道建造器"
+	desc = "一种管道建造器，可快速部署酿造啤酒所需的机械。"
 	icon_state = "plumberer_service"
 	///Extra price because it appears in bartender's vendor
 	custom_premium_price = PAYCHECK_CREW * 6

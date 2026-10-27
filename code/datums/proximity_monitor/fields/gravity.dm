@@ -57,7 +57,7 @@
 	if(mob_ref_key in recently_warned)
 		return
 
-	location.balloon_alert(to_warn, "gravity [(location in modified_turfs) ? "shifts!" : "reverts..."]")
+	location.balloon_alert(to_warn, "重力[(location in modified_turfs) ? "改变了！" : "恢复了……"]")
 	LAZYADD(recently_warned, mob_ref_key)
 	addtimer(CALLBACK(src, PROC_REF(clear_recent_warning), mob_ref_key), 3 SECONDS)
 

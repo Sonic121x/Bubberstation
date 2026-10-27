@@ -1,6 +1,6 @@
 /mob/living/basic/blankbody
-	name = "blank body"
-	desc = "This looks human enough, but its flesh has an ashy texture, and it's face is featureless save an eerie smile."
+	name = "空白躯体"
+	desc = "它看起来足够像人类，但血肉有着灰烬般的质感，脸上毫无五官，只有一抹诡异的微笑。"
 	icon_state = "blank-body"
 	icon_living = "blank-body"
 	icon_dead = "blank-dead"
@@ -10,14 +10,14 @@
 	melee_damage_lower = 2
 	melee_damage_upper = 6
 	speed = 1
-	attack_verb_continuous = "punches"
-	attack_verb_simple = "punch"
+	attack_verb_continuous = "挥拳打"
+	attack_verb_simple = "挥拳打"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	melee_attack_cooldown = 1 SECONDS
 	faction = list(FACTION_NETHER)
-	speak_emote = list("screams")
-	death_message = "falls apart into a fine dust."
+	speak_emote = list("尖叫")
+	death_message = "崩解成细小的尘埃。"
 	unsuitable_atmos_damage = 0
 	unsuitable_cold_damage = 0
 	unsuitable_heat_damage = 0

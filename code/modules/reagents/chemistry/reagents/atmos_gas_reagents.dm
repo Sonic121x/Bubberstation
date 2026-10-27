@@ -1,9 +1,9 @@
 /datum/reagent/freon
-	name = "Freon"
-	description = "A powerful heat absorbent."
+	name = "氟利昂"
+	description = "一种强效吸热剂。"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM  // Because nitrium/freon/hypernoblium are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
-	taste_description = "burning"
+	taste_description = "灼烧感"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -16,11 +16,11 @@
 	breather.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/freon)
 
 /datum/reagent/halon
-	name = "Halon"
-	description = "A fire suppression gas that removes oxygen and cools down the area"
+	name = "哈龙"
+	description = "一种灭火气体，会移除氧气并降低周围温度"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	color = "90560B"
-	taste_description = "minty"
+	taste_description = "薄荷味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_RESISTHEAT)
@@ -34,11 +34,11 @@
 	breather.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/halon)
 
 /datum/reagent/healium
-	name = "Healium"
-	description = "A powerful sleeping agent with healing properties"
+	name = "愈合气"
+	description = "一种强效催眠气体，兼具治疗效果"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	color = "90560B"
-	taste_description = "rubbery"
+	taste_description = "橡胶味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -57,11 +57,11 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/hypernoblium
-	name = "Hyper-Noblium"
-	description = "A suppressive gas that stops gas reactions on those who inhale it."
+	name = "超惰性气体"
+	description = "一种抑制性气体，会阻止吸入者体内的气体反应。"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM // Because nitrium/freon/hyper-nob are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
-	taste_description = "searingly cold"
+	taste_description = "刺骨寒冷"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -71,11 +71,11 @@
 		breather.set_timed_status_effect(10 SECONDS * metabolization_ratio * seconds_per_tick, /datum/status_effect/hypernob_protection)
 
 /datum/reagent/nitrium_high_metabolization
-	name = "Nitrosyl plasmide"
-	description = "A highly reactive byproduct that stops you from sleeping, while dealing increasing toxin damage over time."
+	name = "亚硝酰质粒"
+	description = "一种高活性副产物，会阻止你入睡，并随时间造成越来越多的毒素伤害。"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM  // Because nitrium/freon/hypernoblium are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "E1A116"
-	taste_description = "sourness"
+	taste_description = "酸味"
 	ph = 1.8
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -91,11 +91,11 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/nitrium_low_metabolization
-	name = "Nitrium"
-	description = "A highly reactive gas that makes you feel faster."
+	name = "氮素气"
+	description = "一种高活性气体，会让你感觉更快。"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM // Because nitrium/freon/hypernoblium are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
-	taste_description = "burning"
+	taste_description = "灼烧感"
 	ph = 2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -109,11 +109,11 @@
 	breather.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/nitrium)
 
 /datum/reagent/pluoxium
-	name = "Pluoxium"
-	description = "A gas that is eight times more efficient than O2 at lung diffusion with organ healing properties on sleeping patients."
+	name = "富氧气"
+	description = "一种在肺部扩散方面效率是氧气八倍的气体，对睡眠中的患者具有器官治疗作用。"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	color = COLOR_GRAY
-	taste_description = "irradiated air"
+	taste_description = "受辐射的空气"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -130,11 +130,11 @@
 			. = UPDATE_MOB_HEALTH
 
 /datum/reagent/zauker
-	name = "Zauker"
-	description = "An unstable gas that is toxic to all living beings."
+	name = "灼蚀气"
+	description = "一种不稳定的气体，对所有生物都有毒。"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	color = "90560B"
-	taste_description = "bitter"
+	taste_description = "苦味"
 	chemical_flags = REAGENT_NO_RANDOM_RECIPE
 	affected_biotype = MOB_ORGANIC | MOB_MINERAL | MOB_PLANT // "toxic to all living beings"
 

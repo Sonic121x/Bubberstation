@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/butchering
-	name = "butchering gloves"
-	desc = "These gloves allow the user to rip apart bodies with precision and ease."
+	name = "屠宰手套"
+	desc = "这副手套让使用者能够精准而轻松地肢解尸体。"
 	icon_state = "black"
 	greyscale_colors = "#2f2e31"
 	cold_protection = HANDS

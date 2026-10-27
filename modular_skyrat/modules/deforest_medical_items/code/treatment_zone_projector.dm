@@ -1,8 +1,8 @@
 // Only for cosmetic reasons, there is no longer a proximity penalty for surgery.
 
 /obj/structure/holosign/treatment_zone_warning
-	name = "treatment zone indicator"
-	desc = "A massive glowing holosign warning you to keep out of it, there's probably some important stuff happening in there!"
+	name = "治疗区标识"
+	desc = "一个巨大的发光全息标识，警告你不要进入其中——里面大概正在处理什么要紧的事！"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/telegraph_96x96.dmi'
 	icon_state = "treatment_zone"
 	layer = BELOW_OBJ_LAYER
@@ -13,8 +13,8 @@
 // Projector for the above mentioned treatment zone signs
 
 /obj/item/holosign_creator/medical/treatment_zone
-	name = "emergency treatment zone projector"
-	desc = "A holographic projector that creates a large, clearly marked treatment zone hologram, which warns outsiders that they ought to stay out of it."
+	name = "应急治疗区投影器"
+	desc = "一种全息投影器，可投射出一个巨大而标示清晰的治疗区全息影像，警告外人不要进入其中。"
 	holosign_type = /obj/structure/holosign/treatment_zone_warning
 	creation_time = 1 SECONDS
 	max_signs = 1
@@ -22,8 +22,8 @@
 // Tech design for printing the projectors
 
 /datum/design/treatment_zone_projector
-	name = "Emergency Treatment Zone Projector"
-	desc = "A holographic projector that creates a large, clearly marked treatment zone hologram, which warns outsiders that they ought to stay out of it."
+	name = "应急治疗区投影器"
+	desc = "一种全息投影器，可投射出一个巨大而标示清晰的治疗区全息影像，警告外人不要进入其中。"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/holosign_creator/medical/treatment_zone
 	materials = list(

@@ -7,8 +7,8 @@
 	icon = 'icons/obj/machines/atmospherics/machines.dmi'
 	icon_state = "crystallizer-off"
 	base_icon_state = "crystallizer"
-	name = "crystallizer"
-	desc = "Used to crystallize or solidify gases."
+	name = "结晶器"
+	desc = "用于使气体结晶或固化。"
 	layer = ABOVE_MOB_LAYER
 	density = TRUE
 	max_integrity = 300
@@ -48,14 +48,14 @@
 
 /obj/machinery/atmospherics/components/binary/crystallizer/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_CTRL_LMB] = "Turn [on ? "off" : "on"]"
+	context[SCREENTIP_CONTEXT_CTRL_LMB] = "[on ? "关闭" : "开启"]"
 	if(!held_item)
 		return CONTEXTUAL_SCREENTIP_SET
 	switch(held_item.tool_behaviour)
 		if(TOOL_SCREWDRIVER)
-			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 		if(TOOL_WRENCH)
-			context[SCREENTIP_CONTEXT_LMB] = "Rotate"
+			context[SCREENTIP_CONTEXT_LMB] = "旋转"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/atmospherics/components/binary/crystallizer/screwdriver_act(mob/living/user, obj/item/tool)
@@ -89,11 +89,11 @@
 	if(!is_operational)
 		return CLICK_ACTION_BLOCKING
 	if(panel_open)
-		balloon_alert(user, "close panel!")
+		balloon_alert(user, "请先关闭面板！")
 		return CLICK_ACTION_BLOCKING
 	set_on(!on)
-	balloon_alert(user, "turned [on ? "on" : "off"]")
-	investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
+	balloon_alert(user, "[on ? "已开启" : "已关闭"]")
+	investigate_log("被 [key_name(user)] [on ? "开启" : "关闭"]", INVESTIGATE_ATMOS)
 	return CLICK_ACTION_SUCCESS
 
 ///Checks if the reaction temperature is inside the range of temperature + a little deviation
@@ -198,25 +198,25 @@
 	var/quality_control
 	switch(total_quality)
 		if(100)
-			quality_control = "Masterwork"
+			quality_control = "杰作"
 		if(95 to 99)
-			quality_control = "Supreme"
+			quality_control = "极品"
 		if(75 to 94)
-			quality_control = "Good"
+			quality_control = "优良"
 		if(65 to 74)
-			quality_control = "Decent"
+			quality_control = "尚可"
 		if(55 to 64)
-			quality_control = "Average"
+			quality_control = "普通"
 		if(35 to 54)
-			quality_control = "Ok"
+			quality_control = "还行"
 		if(15 to 34)
-			quality_control = "Poor"
+			quality_control = "劣质"
 		if(5 to 14)
-			quality_control = "Ugly"
+			quality_control = "粗劣"
 		if(1 to 4)
-			quality_control = "Cracked"
+			quality_control = "开裂"
 		if(0)
-			quality_control = "Oh God why"
+			quality_control = "天啊怎么会这样"
 
 	for(var/path in selected_recipe.products)
 		var/amount_produced = selected_recipe.products[path]
@@ -224,8 +224,8 @@
 			var/obj/creation = new path(get_step(src, SOUTH))
 			creation.name = "[quality_control] [creation.name]"
 			if(selected_recipe.dangerous)
-				investigate_log("[creation.name] has been created in the crystallizer.", INVESTIGATE_ENGINE)
-				message_admins("[creation.name] has been created in the crystallizer [ADMIN_JMP(src)].")
+				investigate_log("[creation.name] 已在结晶器中生成。", INVESTIGATE_ENGINE)
+				message_admins("[creation.name] 已在结晶器中生成 [ADMIN_JMP(src)]。")
 
 
 	quality_loss = 0
@@ -239,7 +239,7 @@
 
 /obj/machinery/atmospherics/components/binary/crystallizer/ui_static_data()
 	var/data = list()
-	data["selected_recipes"] = list(list("name" = "Nothing", "id" = ""))
+	data["selected_recipes"] = list(list("name" = "无", "id" = ""))
 	for(var/path in GLOB.gas_recipe_meta)
 		var/datum/gas_recipe/recipe = GLOB.gas_recipe_meta[path]
 		if(recipe.machine_type != "Crystallizer")
@@ -277,15 +277,15 @@
 
 	var/list/requirements
 	if(!selected_recipe)
-		requirements = list("Select a recipe to see the requirements")
+		requirements = list("选择配方以查看所需条件")
 	else
-		requirements = list("To create [selected_recipe.name] you will need:")
+		requirements = list("制作 [selected_recipe.name] 需要：")
 		for(var/gas_type in selected_recipe.requirements)
 			var/datum/gas/gas_required = gas_type
 			var/amount_consumed = selected_recipe.requirements[gas_type]
-			requirements += "-[amount_consumed] moles of [initial(gas_required.name)]"
-		requirements += "In a temperature range between [selected_recipe.min_temp] K and [selected_recipe.max_temp] K"
-		requirements += "The crystallization reaction will be [selected_recipe.energy_release ? (selected_recipe.energy_release > 0 ? "exothermic" : "endothermic") : "thermally neutral"]"
+			requirements += "-[amount_consumed] 摩尔 [initial(gas_required.name)]"
+		requirements += "温度需在 [selected_recipe.min_temp] K 至 [selected_recipe.max_temp] K 之间"
+		requirements += "结晶反应将是[selected_recipe.energy_release ? (selected_recipe.energy_release > 0 ? "放热" : "吸热") : "热中性"]的"
 	data["requirements"] = requirements.Join("\n")
 
 	var/temperature
@@ -305,7 +305,7 @@
 	switch(action)
 		if("power")
 			set_on(!on)
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
+			investigate_log("被 [key_name(usr)] [on ? "开启" : "关闭"]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("recipe")
 			selected_recipe = null
@@ -320,7 +320,7 @@
 				recipe_name = recipe.name
 				update_parents() //prevent the machine from stopping because of the recipe change and the pipenet not updating
 				moles_calculations()
-			investigate_log("was set to recipe [recipe_name ? recipe_name : "null"] by [key_name(usr)]", INVESTIGATE_ATMOS)
+			investigate_log("被 [key_name(usr)] 设为配方 [recipe_name ? recipe_name : "null"]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("gas_input")
 			var/_gas_input = params["gas_input"]

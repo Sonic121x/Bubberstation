@@ -1,8 +1,8 @@
 /datum/surgery_operation/limb/bionecrosis
-	name = "induce bionecrosis"
-	rnd_name = "Bionecroplasty (Necrotic Revival)"
-	desc = "Inject reagents that stimulate the growth of a Romerol tumor inside the patient's brain."
-	rnd_desc = "An experimental procedure which induces the growth of a Romerol tumor inside the patient's brain."
+	name = "诱发生物坏死"
+	rnd_name = "生物坏死成形术（坏死复苏）"
+	desc = "注射试剂，刺激病人大脑内长出罗梅罗尔肿瘤。"
+	rnd_desc = "一种实验性手术，可诱发病人大脑内长出罗梅罗尔肿瘤。"
 	implements = list(
 		/obj/item/reagent_containers/syringe = 1,
 		/obj/item/pen = 3.33,
@@ -21,16 +21,16 @@
 
 /datum/surgery_operation/limb/bionecrosis/all_required_strings()
 	. = ..()
-	. += "the limb must have a brain present"
+	. += "该肢体必须含有大脑"
 
 /datum/surgery_operation/limb/bionecrosis/any_required_strings()
 	. = ..()
 	for(var/datum/reagent/chem as anything in zombie_chems)
-		. += "the patient or tool must contain >1u [chem::name]"
+		. += "病人或工具中必须含有超过 1 单位 [chem::name]"
 
 /datum/surgery_operation/limb/bionecrosis/all_blocked_strings()
 	. = ..()
-	. += "the limb must not already have a Romerol tumor"
+	. += "该肢体不能已长出罗梅罗尔肿瘤"
 
 /datum/surgery_operation/limb/bionecrosis/state_check(obj/item/bodypart/limb)
 	if(locate(/obj/item/organ/zombie_infection) in limb)
@@ -51,21 +51,21 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to grow a romerol tumor in [limb.owner]'s brain..."),
-		span_notice("[surgeon] begins to tinker with [limb.owner]'s brain..."),
-		span_notice("[surgeon] begins to perform surgery on [limb.owner]'s brain."),
+		span_notice("你开始让 [limb.owner] 的大脑中长出罗梅罗尔肿瘤……"),
+		span_notice("[surgeon] 开始摆弄 [limb.owner] 的大脑……"),
+		span_notice("[surgeon] 开始对 [limb.owner] 的大脑施行手术。"),
 	)
-	display_pain(limb.owner, "Your head pounds with unimaginable pain!") // Same message as other brain surgeries
+	display_pain(limb.owner, "你的头阵阵作痛，痛得难以想象！") // Same message as other brain surgeries
 
 /datum/surgery_operation/limb/bionecrosis/on_success(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You succeed in growing a romerol tumor in [limb.owner]'s brain."),
-		span_notice("[surgeon] successfully grows a romerol tumor in [limb.owner]'s brain!"),
-		span_notice("[surgeon] completes the surgery on [limb.owner]'s brain."),
+		span_notice("你成功让 [limb.owner] 的大脑中长出了罗梅罗尔肿瘤。"),
+		span_notice("[surgeon] 成功让 [limb.owner] 的大脑中长出了罗梅罗尔肿瘤！"),
+		span_notice("[surgeon] 完成了对 [limb.owner] 大脑的手术。"),
 	)
-	display_pain(limb.owner, "Your head goes totally numb for a moment, the pain is overwhelming!")
+	display_pain(limb.owner, "你的头有一瞬间完全麻木了，疼痛铺天盖地！")
 	if(locate(/obj/item/organ/zombie_infection) in limb) // they got another one mid surgery? whatever
 		return
 	var/obj/item/organ/zombie_infection/z_infection = new()

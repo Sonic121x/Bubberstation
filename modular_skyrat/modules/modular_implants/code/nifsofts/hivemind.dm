@@ -2,12 +2,12 @@
 GLOBAL_LIST_EMPTY(hivemind_users)
 
 /obj/item/disk/nifsoft_uploader/hivemind
-	name = "Hivemind"
+	name = "蜂巢意识"
 	loaded_nifsoft = /datum/nifsoft/hivemind
 
 /datum/nifsoft/hivemind
-	name = "Hivemind"
-	program_desc = "Hivemind is a program developed as a more reliable simulacrum of the mysterious means of communication that some varieties of slime share. It's built on a specific configuration of the NIF capable of generating a localized subspace network; the content the user's very thoughts, serving as a high-tech means of telepathic communication between NIF users."
+	name = "蜂巢意识"
+	program_desc = "蜂巢意识是一套程序，旨在更可靠地模拟某些史莱姆之间共享的神秘交流方式。它基于 NIF 的一种特定配置构建，能够生成局部化的亚空间网络；传递的内容正是使用者本人的思维，作为 NIF 使用者之间高科技的心灵感应交流手段。"
 	activation_cost = 10
 	active_mode = TRUE
 	active_cost = 0.2
@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(hivemind_users)
 	. = ..()
 
 	user_network = linked_mob.AddComponent(/datum/component/mind_linker/active_linking/nif, \
-		network_name = "Hivemind Link", \
+		network_name = "蜂巢意识链接", \
 		linker_action_path = /datum/action/innate/hivemind_config, \
 	)
 
@@ -58,8 +58,8 @@ GLOBAL_LIST_EMPTY(hivemind_users)
 		hivemind.linked_mobs -= linked_mob
 		var/mob/living/hivemind_owner = hivemind.parent
 
-		to_chat(hivemind_owner, span_abductor("[linked_mob] has left your Hivemind."))
-		to_chat(linked_mob, span_abductor("You have left [hivemind_owner]'s Hivemind."))
+		to_chat(hivemind_owner, span_abductor("[linked_mob] 已离开你的蜂巢意识。"))
+		to_chat(linked_mob, span_abductor("你已离开 [hivemind_owner] 的蜂巢意识。"))
 
 	qdel(user_network)
 	return ..()
@@ -78,11 +78,11 @@ GLOBAL_LIST_EMPTY(hivemind_users)
 	linked_mob.put_in_hands(linked_keyboard)
 	linked_keyboard.source_user = linked_mob
 
-	linked_mob.visible_message(span_notice("The [linked_keyboard] materializes in [linked_mob]'s hands."), span_notice("The [linked_keyboard] appears in your hands."))
+	linked_mob.visible_message(span_notice("[linked_keyboard] 在 [linked_mob] 手中成形。"), span_notice("[linked_keyboard] 出现在你手中。"))
 	return TRUE
 
 /datum/action/innate/hivemind_config
-	name = "Hivemind Configuration Settings"
+	name = "蜂巢意识配置设置"
 	background_icon = 'modular_skyrat/master_files/icons/mob/actions/action_backgrounds.dmi'
 	background_icon_state = "android"
 	button_icon = 'modular_skyrat/master_files/icons/mob/actions/actions_nif.dmi'
@@ -92,39 +92,39 @@ GLOBAL_LIST_EMPTY(hivemind_users)
 	. = ..()
 	var/datum/component/mind_linker/active_linking/nif/link = target
 
-	var/choice = tgui_input_list(owner, "Chose your option", "Hivemind Configuration Menu", list("Link a user","Remove a user","Change Hivemind color","Change active Hivemind","Leave a Hivemind", "Toggle invites"))
+	var/choice = tgui_input_list(owner, "选择你的操作", "蜂巢意识配置菜单", list("链接用户","移除用户","更改蜂巢意识颜色","切换活动蜂巢意识","离开蜂巢意识", "切换邀请"))
 	if(!choice)
 		return
 
 	switch(choice)
-		if("Link a user")
+		if("链接用户")
 			link.invite_user()
 
-		if("Remove a user")
+		if("移除用户")
 			link.remove_user()
 
-		if("Leave a Hivemind")
+		if("离开蜂巢意识")
 			leave_hivemind()
 
-		if("Change active Hivemind")
+		if("切换活动蜂巢意识")
 			change_hivemind()
 
-		if("Change Hivemind color")
+		if("更改蜂巢意识颜色")
 			link.change_chat_color()
 
-		if("Toggle invites")
+		if("切换邀请")
 			toggle_invites()
 
 /datum/action/innate/hivemind_config/proc/change_hivemind()
 	var/mob/living/carbon/human/user = owner
 	var/datum/nifsoft/hivemind/hivemind = user.find_nifsoft(/datum/nifsoft/hivemind)
 
-	var/datum/component/mind_linker/active_linking/nif/new_active_hivemind = tgui_input_list(user, "Choose a Hivemind to set as active.", "Switch Hivemind", hivemind.network_list)
+	var/datum/component/mind_linker/active_linking/nif/new_active_hivemind = tgui_input_list(user, "选择要设为活动的蜂巢意识。", "切换蜂巢意识", hivemind.network_list)
 	if(!new_active_hivemind)
 		return FALSE
 
 	hivemind.active_network = new_active_hivemind
-	to_chat(user, span_abductor("You are now sending messages to [new_active_hivemind.name]."))
+	to_chat(user, span_abductor("你现在正向 [new_active_hivemind.name] 发送消息。"))
 
 	if(hivemind.active)
 		hivemind.activate()
@@ -137,12 +137,12 @@ GLOBAL_LIST_EMPTY(hivemind_users)
 	var/list/network_list = hivemind.network_list
 	network_list -= hivemind.user_network
 
-	var/datum/component/mind_linker/active_linking/nif/hivemind_to_leave = tgui_input_list(user, "Choose a Hivemind to disconnect from.", "Remove Hivemind", network_list)
+	var/datum/component/mind_linker/active_linking/nif/hivemind_to_leave = tgui_input_list(user, "选择要断开的蜂巢意识。", "移除蜂巢意识", network_list)
 	if(!hivemind_to_leave)
 		return FALSE
 
-	to_chat(hivemind_to_leave.parent, span_abductor("[user] has been removed from your Hivemind."))
-	to_chat(user, span_abductor("You have left [hivemind_to_leave.parent]'s Hivemind."))
+	to_chat(hivemind_to_leave.parent, span_abductor("[user] 已被移出你的蜂巢意识。"))
+	to_chat(user, span_abductor("你已离开 [hivemind_to_leave.parent] 的蜂巢意识。"))
 
 	hivemind.network_list -= hivemind_to_leave
 	hivemind_to_leave.linked_mobs -= user
@@ -152,14 +152,14 @@ GLOBAL_LIST_EMPTY(hivemind_users)
 	var/mob/living/carbon/human/user = owner
 	if(user in GLOB.hivemind_users)
 		GLOB.hivemind_users -= user
-		to_chat(user, span_abductor("You are now unable to receive invites."))
+		to_chat(user, span_abductor("你现在无法接收邀请。"))
 		return
 
 	GLOB.hivemind_users += user
-	to_chat(user, span_abductor("You are now able to receive invites."))
+	to_chat(user, span_abductor("你现在可以接收邀请。"))
 
 /datum/action/innate/hivemind_keyboard
-	name = "Hivemind Keyboard"
+	name = "蜂巢意识键盘"
 	background_icon = 'modular_skyrat/master_files/icons/mob/actions/action_backgrounds.dmi'
 	background_icon_state = "android"
 	button_icon = 'modular_skyrat/master_files/icons/mob/actions/actions_nif.dmi'
@@ -192,7 +192,7 @@ GLOBAL_LIST_EMPTY(hivemind_users)
 	. = ..()
 
 	var/mob/living/owner = parent
-	name = owner.name + "'s " + network_name
+	name = owner.name + " 的" + network_name
 
 ///Lets the user add someone to their Hivemind through a choice menu that shows everyone that has the Hivemind NIFSoft.
 /datum/component/mind_linker/active_linking/nif/proc/invite_user()
@@ -206,12 +206,12 @@ GLOBAL_LIST_EMPTY(hivemind_users)
 
 	hivemind_users -= owner
 
-	var/mob/living/carbon/human/person_to_add = tgui_input_list(owner, "Choose a person to invite to your Hivemind.", "Invite User", hivemind_users)
+	var/mob/living/carbon/human/person_to_add = tgui_input_list(owner, "选择要邀请加入你的蜂巢意识的人。", "邀请用户", hivemind_users)
 	if(!person_to_add)
 		return
 
-	if(tgui_alert(person_to_add, "[owner] wishes to add you to their Hivemind, do you accept?", "Incoming Hivemind Invite", list("Accept", "Reject")) != "Accept")
-		to_chat(owner, span_warning("[person_to_add] denied the request to join your Hivemind."))
+	if(tgui_alert(person_to_add, "[owner] 想将你加入其蜂巢意识，你接受吗？", "收到蜂巢意识邀请", list("接受", "拒绝")) != "接受")
+		to_chat(owner, span_warning("[person_to_add] 拒绝了加入你的蜂巢意识的请求。"))
 		return
 
 	linked_mobs += person_to_add
@@ -222,13 +222,13 @@ GLOBAL_LIST_EMPTY(hivemind_users)
 		return FALSE
 
 	target_hivemind.network_list += src
-	to_chat(person_to_add, span_abductor("You have now been added to [owner]'s Hivemind"))
-	to_chat(owner, span_abductor("[person_to_add] has now been added to your Hivemind"))
+	to_chat(person_to_add, span_abductor("你已被加入 [owner] 的蜂巢意识"))
+	to_chat(owner, span_abductor("[person_to_add] 已被加入你的蜂巢意识"))
 
 ///Removes a user from the list of connected people within a hivemind
 /datum/component/mind_linker/active_linking/nif/proc/remove_user()
 	var/mob/living/carbon/human/owner = parent
-	var/mob/living/carbon/human/person_to_remove = tgui_input_list(owner, "Choose a person to remove from your Hivemind.", "Remove User", linked_mobs)
+	var/mob/living/carbon/human/person_to_remove = tgui_input_list(owner, "选择要从你的蜂巢意识中移除的人。", "移除用户", linked_mobs)
 
 	if(!person_to_remove)
 		return
@@ -241,12 +241,12 @@ GLOBAL_LIST_EMPTY(hivemind_users)
 
 	linked_mobs -= person_to_remove
 	target_hivemind.network_list -= src
-	to_chat(person_to_remove, span_abductor("You have now been removed from [owner]'s Hivemind."))
-	to_chat(owner, span_abductor("[person_to_remove] has now been removed from your Hivemind."))
+	to_chat(person_to_remove, span_abductor("你已被移出 [owner] 的蜂巢意识。"))
+	to_chat(owner, span_abductor("[person_to_remove] 已被移出你的蜂巢意识。"))
 
 /datum/component/mind_linker/active_linking/nif/proc/change_chat_color()
 	var/mob/living/carbon/human/owner = parent
-	var/new_chat_color = tgui_color_picker(owner, "Pick new color", COLOR_ASSEMBLY_GREEN) // BUBBERSTATION EDIT: TGUI COLOR PICKER
+	var/new_chat_color = tgui_color_picker(owner, "选择新颜色", COLOR_ASSEMBLY_GREEN) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 
 	if(!new_chat_color)
 		return FALSE
@@ -254,8 +254,8 @@ GLOBAL_LIST_EMPTY(hivemind_users)
 	chat_color = new_chat_color
 
 /obj/item/hivemind_keyboard
-	name = "Hivemind Interface Device"
-	desc = "A holographic gesture controller, hooked to hand and finger signals of the user's own choice. This is paired with the Hivemind program itself, used as a means of filtering out unwanted thoughts from being added to the network, ensuring that only intentional thoughts of communication can go through."
+	name = "蜂巢意识接口装置"
+	desc = "一种全息手势控制器，可绑定使用者自选的手部与手指动作。它与蜂巢意识程序本身配对使用，用于过滤掉不想要的想法，确保只有刻意发送的交流思绪才能进入网络。"
 	icon = 'icons/obj/devices/remote.dmi'
 	icon_state = "designator_mining"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
@@ -277,12 +277,12 @@ GLOBAL_LIST_EMPTY(hivemind_users)
 /obj/item/hivemind_keyboard/proc/send_message(mob/living/carbon/human/user)
 	var/mob/living/carbon/human/kebyoard_owner = source_user
 	var/mob/living/carbon/human/network_owner = connected_network.parent
-	var/message = tgui_input_text(user, "Enter a message to transmit.", "[connected_network.network_name] Telepathy")
+	var/message = tgui_input_text(user, "输入要发送的消息。", "[connected_network.network_name] 心灵感应")
 	if(!message || QDELETED(src) || QDELETED(user) || user.stat == DEAD)
 		return
 
 	if(QDELETED(connected_network))
-		to_chat(user, span_warning("The link seems to have been severed."))
+		to_chat(user, span_warning("链接似乎已被切断。"))
 		return
 
 	var/datum/asset/spritesheet_batched/sheet = get_asset_datum(/datum/asset/spritesheet_batched/chat)
@@ -292,8 +292,8 @@ GLOBAL_LIST_EMPTY(hivemind_users)
 	if(tag)
 		hivemind_icon = tag
 
-	var/formatted_message = "<i><font color=[connected_network.chat_color]>\ [hivemind_icon][network_owner.real_name]'s [connected_network.network_name]\] <b>[kebyoard_owner]:</b> [message]</font></i>"
-	log_directed_talk(user, network_owner, message, LOG_SAY, "mind link ([connected_network.network_name])")
+	var/formatted_message = "<i><font color=[connected_network.chat_color]>\ [hivemind_icon][network_owner.real_name] 的[connected_network.network_name]\] <b>[kebyoard_owner]：</b> [message]</font></i>"
+	log_directed_talk(user, network_owner, message, LOG_SAY, "心灵链接（[connected_network.network_name]）")
 
 	var/list/all_who_can_hear = assoc_to_keys(connected_network.linked_mobs) + network_owner
 

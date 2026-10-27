@@ -1,9 +1,9 @@
 /datum/action/cooldown/spell/lichdom
-	name = "Bind Soul"
-	desc = "A spell that binds your soul to an item in your hands. \
-		Binding your soul to an item will turn you into an immortal Lich. \
-		So long as the item remains intact, you will revive from death, \
-		no matter the circumstances."
+	name = "缚魂"
+	desc = "一个把你的灵魂束缚到手中物品上的法术。\
+		将灵魂绑定到物品上会使你成为不死的巫妖。\
+		只要那件物品完好无损，无论遭遇什么情况，\
+		你都会从死亡中复活。"
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "skeleton"
 
@@ -23,7 +23,7 @@
 	// We call this here so we can get feedback if they try to cast it when they shouldn't.
 	if(!is_valid_target(owner))
 		if(feedback)
-			to_chat(owner, span_warning("You don't have a soul to bind!"))
+			to_chat(owner, span_warning("你没有可束缚的灵魂！"))
 		return FALSE
 
 	return TRUE
@@ -36,39 +36,39 @@
 	if(!marked_item || marked_item.item_flags & ABSTRACT)
 		return
 	if(HAS_TRAIT(marked_item, TRAIT_NODROP))
-		to_chat(cast_on, span_warning("[marked_item] is stuck to your hand - it wouldn't be a wise idea to place your soul into it."))
+		to_chat(cast_on, span_warning("[marked_item] 粘在你手上——把灵魂放进去可不明智。"))
 		return
 	// I ensouled the nuke disk once.
 	// But it's a really mean tactic, so we probably should disallow it.
 	if(SEND_SIGNAL(marked_item, COMSIG_ITEM_IMBUE_SOUL, src, cast_on) & COMPONENT_BLOCK_IMBUE)
-		to_chat(cast_on, span_warning("[marked_item] is not suitable for emplacement of your fragile soul."))
+		to_chat(cast_on, span_warning("[marked_item] 不适合安放你脆弱的灵魂。"))
 		return
 
 	//BUBBERSTATION CHANGE START: NERFS LICHDOM
 	if(marked_item.w_class < WEIGHT_CLASS_BULKY) //Can't cast on small items.
-		to_chat(cast_on, span_warning("[marked_item] is too small to contain your huge <s>ego</s> soul."))
+		to_chat(cast_on, span_warning("[marked_item] 太小了，装不下你那巨大的<s>自尊心</s>灵魂。"))
 		return
 
 	if(marked_item.resistance_flags & (INDESTRUCTIBLE|LAVA_PROOF|FIRE_PROOF)) //Can't cast on items that are indestructable and/or fire proof.
-		to_chat(cast_on, span_warning("[marked_item] is too resistant to your magic. Perhaps try on something that isn't fireproof?"))
+		to_chat(cast_on, span_warning("[marked_item] 对你的魔法抗力太强了。也许试试不防火的东西？"))
 		return
 	//BUBBERSTATION CHANGE END: NERFS LICHDOM
 
 	. = ..()
 	playsound(cast_on, 'sound/effects/pope_entry.ogg', 100)
 
-	to_chat(cast_on, span_green("You begin to focus your very being into [marked_item]..."))
+	to_chat(cast_on, span_green("你开始把自己的存在注入 [marked_item]……"))
 	if(!do_after(cast_on, 5 SECONDS, target = marked_item, timed_action_flags = IGNORE_HELD_ITEM))
-		to_chat(cast_on, span_warning("Your soul snaps back to your body as you stop ensouling [marked_item]!"))
+		to_chat(cast_on, span_warning("你停止了向 [marked_item] 注入灵魂，灵魂猛地弹回身体！"))
 		return
 
 	marked_item.AddComponent(/datum/component/phylactery, cast_on.mind)
 
 	cast_on.set_species(/datum/species/skeleton)
-	to_chat(cast_on, span_userdanger("With a hideous feeling of emptiness you watch in horrified fascination \
-		as skin sloughs off bone! Blood boils, nerves disintegrate, eyes boil in their sockets! \
-		As your organs crumble to dust in your fleshless chest you come to terms with your choice. \
-		You're a lich!"))
+	to_chat(cast_on, span_userdanger("伴随着一阵可怖的空虚感，你惊恐又着迷地看着\
+		皮肉从骨头上滑落！血液沸腾，神经崩解，眼球在眼眶里沸腾！\
+		当器官在无肉的胸腔里化为尘土，你接受了自己的选择。\
+		你是一名巫妖了！"))
 
 	if(iscarbon(cast_on))
 		var/mob/living/carbon/carbon_cast_on = cast_on

@@ -12,7 +12,7 @@
  * Can rupture explosively if overpressurized
  */
 /obj/item/tank
-	name = "tank"
+	name = "气罐"
 	icon = 'icons/obj/canisters.dmi'
 	icon_state = "generic"
 	inhand_icon_state = "generic_tank"
@@ -153,31 +153,31 @@
 		icon = loc
 	if(!in_range(src, user) && !isobserver(user))
 		if(icon == src)
-			. += span_notice("If you want any more information you'll need to get closer.")
+			. += span_notice("如果你想了解更多信息，需要靠近一些。")
 		return
 
-	. += span_notice("The pressure gauge reads [round(air_contents.return_pressure(),0.01)] kPa.")
+	. += span_notice("压力表读数为 [round(air_contents.return_pressure(),0.01)] kPa。")
 
 	var/celsius_temperature = air_contents.temperature-T0C
 	var/descriptive
 
 	if (celsius_temperature < 20)
-		descriptive = "cold"
+		descriptive = "冰冷"
 	else if (celsius_temperature < 40)
-		descriptive = "room temperature"
+		descriptive = "常温"
 	else if (celsius_temperature < 80)
-		descriptive = "lukewarm"
+		descriptive = "微温"
 	else if (celsius_temperature < 100)
-		descriptive = "warm"
+		descriptive = "温热"
 	else if (celsius_temperature < 300)
-		descriptive = "hot"
+		descriptive = "烫手"
 	else
-		descriptive = "furiously hot"
+		descriptive = "烫得吓人"
 
-	. += span_notice("It feels [descriptive].")
+	. += span_notice("它摸起来[descriptive]。")
 
 	if(tank_assembly)
-		. += span_warning("There is some kind of device [EXAMINE_HINT("rigged")] to the tank!")
+		. += span_warning("气罐上被[EXAMINE_HINT("改装")]了某种装置！")
 
 /obj/item/tank/atom_deconstruct(disassembled = TRUE)
 	var/atom/location = loc
@@ -188,7 +188,7 @@
 
 /obj/item/tank/suicide_act(mob/living/user)
 	var/mob/living/carbon/human/human_user = user
-	user.visible_message(span_suicide("[user] is putting [src]'s valve to [user.p_their()] lips! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正把[src]的阀门凑到自己嘴唇上！看起来是想自杀！"))
 	playsound(loc, 'sound/effects/spray.ogg', 10, TRUE, -3)
 	if(!QDELETED(human_user) && air_contents && air_contents.return_pressure() >= 1000)
 		var/obj/item/bodypart/head = human_user.get_bodypart(BODY_ZONE_HEAD)
@@ -196,7 +196,7 @@
 			ADD_TRAIT(head, TRAIT_DISFIGURED, TRAIT_GENERIC)
 		human_user.inflate_gib()
 		return MANUAL_SUICIDE
-	to_chat(user, span_warning("There isn't enough pressure in [src] to commit suicide with..."))
+	to_chat(user, span_warning("[src]里的压力不足以用来自杀……"))
 	return SHAME
 
 /obj/item/tank/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -204,7 +204,7 @@
 	if(!istype(tool, /obj/item/assembly_holder))
 		return NONE
 	if(tank_assembly)
-		balloon_alert(user, "something already attached!")
+		balloon_alert(user, "已经装了东西！")
 		return ITEM_INTERACT_BLOCKING
 	bomb_assemble(tool, user)
 	return ITEM_INTERACT_SUCCESS
@@ -218,12 +218,12 @@
 
 /obj/item/tank/welder_act(mob/living/user, obj/item/tool)
 	if(bomb_status)
-		balloon_alert(user, "already welded!")
+		balloon_alert(user, "已经焊接过了！")
 		return ITEM_INTERACT_BLOCKING
 	if(tool.use_tool(src, user, 0, volume=40))
 		bomb_status = TRUE
-		balloon_alert(user, "bomb armed")
-		log_bomber(user, "welded a single tank bomb,", src, "| Temp: [air_contents.temperature] Pressure: [air_contents.return_pressure()]")
+		balloon_alert(user, "炸弹已布设")
+		log_bomber(user, "焊接了一枚单罐炸弹，", src, "| Temp: [air_contents.temperature] Pressure: [air_contents.return_pressure()]")
 		add_fingerprint(user)
 		return ITEM_INTERACT_SUCCESS
 	return ..()
@@ -380,7 +380,7 @@
 
 	if(atom_integrity < 0) // So we don't play the alerts while we are exploding or rupturing.
 		return
-	visible_message(span_warning("[src] springs a leak!"))
+	visible_message(span_warning("[src]漏气了！"))
 	playsound(src, 'sound/effects/spray.ogg', 10, TRUE, -3)
 
 /// Handles rupturing and fragmenting
@@ -392,14 +392,14 @@
 	var/pressure = air_contents.return_pressure()
 	if(pressure > TANK_FRAGMENT_PRESSURE)
 		if(!istype(loc, /obj/item/transfer_valve))
-			log_bomber(get_mob_by_key(fingerprintslast), "was last key to touch", src, "which ruptured explosively")
+			log_bomber(get_mob_by_key(fingerprintslast), "是最后一个接触", src, "的人，该气罐发生了爆炸性破裂")
 		//Give the gas a chance to build up more pressure through reacting
 		air_contents.react(src)
 		pressure = air_contents.return_pressure()
 
 		// As of writing this this is calibrated to maxcap at 140L and 160atm.
 		var/power = (air_contents.volume * (pressure - TANK_FRAGMENT_PRESSURE)) / TANK_FRAGMENT_SCALE
-		log_atmos("[type] exploded with a power of [power] and a mix of ", air_contents)
+		log_atmos("[type] 以 [power] 的威力爆炸，气体组成为 ", air_contents)
 		dyn_explosion(src, power, flash_range = 1.5, ignorecap = FALSE)
 	return ..()
 
@@ -461,19 +461,19 @@
 		return
 
 	if(isitem(loc)) // we are in a storage item
-		balloon_alert(user, "can't reach!")
+		balloon_alert(user, "够不到！")
 		return
 
 	if((src in user.get_equipped_items(INCLUDE_POCKETS | INCLUDE_ACCESSORIES)) && !user.canUnEquip(src))
-		balloon_alert(user, "it's stuck!")
+		balloon_alert(user, "卡住了！")
 		return
 
 	if(!user.canUnEquip(assembly))
-		balloon_alert(user, "it's stuck!")
+		balloon_alert(user, "卡住了！")
 		return
 
 	if(!user.transferItemToLoc(assembly, src))
-		balloon_alert(user, "it's stuck!")
+		balloon_alert(user, "卡住了！")
 		return
 
 	tank_assembly = assembly //Tell the tank about its assembly part
@@ -481,13 +481,13 @@
 	assembly.on_attach()
 	update_weight_class(WEIGHT_CLASS_BULKY)
 
-	balloon_alert(user, "bomb assembled")
+	balloon_alert(user, "炸弹已组装")
 	update_appearance(UPDATE_OVERLAYS)
 
 /// Detaches an assembly holder from the tank, disarming the bomb
 /obj/item/tank/proc/bomb_disassemble(mob/user)
 	bomb_status = FALSE
-	balloon_alert(user, "bomb disarmed")
+	balloon_alert(user, "炸弹已拆除")
 	if(!tank_assembly)
 		CRASH("bomb_disassemble() called on a tank with no assembly!")
 	user.put_in_hands(tank_assembly)
@@ -572,7 +572,7 @@
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
-	log_atmos("[type] released its contents of ", removed)
+	log_atmos("[type] 释放了内容物，组成为 ", removed)
 	T.assume_air(removed)
 
 #undef ASSEMBLY_BOMB_BASE

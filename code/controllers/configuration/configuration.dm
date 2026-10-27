@@ -1,5 +1,5 @@
 /datum/controller/configuration
-	name = "Configuration"
+	name = "配置"
 
 	var/directory = "config"
 
@@ -70,14 +70,14 @@
 	if(IsAdminAdvancedProcCall() || !PreConfigReload())
 		return
 
-	log_admin("[key_name_admin(usr)] has forcefully reloaded the configuration from disk.")
-	message_admins("[key_name_admin(usr)] has forcefully reloaded the configuration from disk.")
+	log_admin("[key_name_admin(usr)]已强制从磁盘重新加载配置。")
+	message_admins("[key_name_admin(usr)]已强制从磁盘重新加载配置。")
 	full_wipe()
 	Load(world.params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
 /datum/controller/configuration/proc/PreConfigReload()
 	if(reload_in_progress)
-		to_chat(usr, span_warning("Another user is already reloading the config!"))
+		to_chat(usr, span_warning("已有其他用户正在重新加载配置！"))
 		return FALSE
 
 	reload_in_progress = TRUE
@@ -98,7 +98,7 @@
 		var/list/legacy_configs = list("game_options.txt", "dbconfig.txt", "comms.txt")
 		for(var/I in legacy_configs)
 			if(fexists("[directory]/[I]"))
-				log_config("No $include directives found in config.txt! Loading legacy [legacy_configs.Join("/")] files...")
+				log_config("config.txt 中未找到 $include 指令！正在加载旧版[legacy_configs.Join("/")]文件……")
 				for(var/J in legacy_configs)
 					LoadEntries(J)
 				break
@@ -168,7 +168,7 @@
 		var/esname = E.name
 		var/datum/config_entry/test = _entries[esname]
 		if(test)
-			log_config_error("Error: [test.type] has the same name as [E.type]: [esname]! Not initializing [E.type]!")
+			log_config_error("错误：[test.type]与[E.type]使用了相同的名称[esname]！将不初始化[E.type]！")
 			qdel(E)
 			continue
 		_entries[esname] = E
@@ -203,11 +203,11 @@
 
 	var/filename_to_test = world.system_type == MS_WINDOWS ? LOWER_TEXT(filename) : filename
 	if(filename_to_test in stack)
-		log_config_error("Warning: Config recursion detected ([english_list(stack)]), breaking!")
+		log_config_error("警告：检测到配置循环引用（[english_list(stack)]），已中止！")
 		return
 	stack = stack + filename_to_test
 
-	log_config("Loading config file [filename]...")
+	log_config("正在加载配置文件[filename]……")
 	var/list/lines = world.file2list("[directory]/[filename]")
 	var/list/_entries = entries
 	for(var/L in lines)
@@ -238,7 +238,7 @@
 
 		if(entry == "$include")
 			if(!value)
-				log_config_error("Warning: Invalid $include directive: [value]")
+				log_config_error("警告：无效的 $include 指令：[value]")
 			else
 				LoadEntries("[subfolder][value]", stack)
 				++.
@@ -248,15 +248,15 @@
 		if (entry == "$reset")
 			var/datum/config_entry/resetee = _entries[LOWER_TEXT(value)]
 			if (!value || !resetee)
-				log_config_error("Warning: invalid $reset directive: [value]")
+				log_config_error("警告：无效的 $reset 指令：[value]")
 				continue
 			resetee.set_default()
-			log_config("Reset configured value for [value] to original defaults")
+			log_config("已将[value]的配置值恢复为原始默认值")
 			continue
 
 		var/datum/config_entry/E = _entries[entry]
 		if(!E)
-			log_config("Unknown setting in configuration: '[entry]'")
+			log_config("配置中存在未知设置：“[entry]”")
 			continue
 
 		if(lockthis)
@@ -266,9 +266,9 @@
 			var/datum/config_entry/new_ver = entries_by_type[E.deprecated_by]
 			var/new_value = E.DeprecationUpdate(value)
 			var/good_update = istext(new_value)
-			log_config("Entry [entry] is deprecated and will be removed soon. Migrate to [new_ver.name]![good_update ? " Suggested new value is: [new_value]" : ""]")
+			log_config("配置项[entry]已弃用，即将移除。请迁移到[new_ver.name]！[good_update ? " 建议的新值为：[new_value]" : ""]")
 			if(!warned_deprecated_configs)
-				DelayedMessageAdmins("This server is using deprecated configuration settings. Please check the logs and update accordingly.")
+				DelayedMessageAdmins("本服务器正在使用已弃用的配置设置。请检查日志并进行相应更新。")
 				warned_deprecated_configs = TRUE
 			if(good_update)
 				value = new_value
@@ -278,12 +278,12 @@
 
 		var/validated = E.ValidateAndSet(value)
 		if(!validated)
-			var/log_message = "Failed to validate setting \"[value]\" for [entry]"
+			var/log_message = "配置项[entry]的值\"[value]\"未通过验证"
 			log_config(log_message)
 			stack_trace(log_message)
 		else
 			if(E.modified && !E.dupes_allowed && E.resident_file == filename)
-				log_config_error("Duplicate setting for [entry] ([value], [E.resident_file]) detected! Using latest.")
+				log_config_error("检测到[entry]的重复设置（[value]，[E.resident_file]）！将使用最新设置。")
 
 		E.resident_file = filename
 
@@ -300,7 +300,7 @@
 	return !(var_name in banned_edits) && ..()
 
 /datum/controller/configuration/stat_entry(msg)
-	msg = "Edit"
+	msg = "编辑"
 	return msg
 
 /datum/controller/configuration/proc/Get(entry_type)
@@ -312,7 +312,7 @@
 	if(!E)
 		CRASH("Missing config entry for [entry_type]!")
 	if((E.protection & CONFIG_ENTRY_HIDDEN) && IsAdminAdvancedProcCall() && GLOB.LastAdminCalledProc == "Get" && GLOB.LastAdminCalledTargetRef == "[REF(src)]")
-		log_admin_private("Config access of [entry_type] attempted by [key_name(usr)]")
+		log_admin_private("[key_name(usr)]试图访问配置项[entry_type]")
 		return
 	return E.config_entry_value
 
@@ -325,7 +325,7 @@
 	if(!E)
 		CRASH("Missing config entry for [entry_type]!")
 	if((E.protection & CONFIG_ENTRY_LOCKED) && IsAdminAdvancedProcCall() && GLOB.LastAdminCalledProc == "Set" && GLOB.LastAdminCalledTargetRef == "[REF(src)]")
-		log_admin_private("Config rewrite of [entry_type] to [new_val] attempted by [key_name(usr)]")
+		log_admin_private("[key_name(usr)]试图将配置项[entry_type]改写为[new_val]")
 		return
 	return E.ValidateAndSet("[new_val]")
 
@@ -340,8 +340,8 @@
 		if (fexists("[directory]/[motd_file]"))
 			motd_contents += file2text("[directory]/[motd_file]")
 		else
-			log_config("MOTD file [motd_file] didn't exist")
-			DelayedMessageAdmins("MOTD file [motd_file] didn't exist")
+			log_config("每日公告文件[motd_file]不存在")
+			DelayedMessageAdmins("每日公告文件[motd_file]不存在")
 
 	motd = motd_contents.Join("\n")
 
@@ -372,13 +372,13 @@ Example config:
 	if(rawpolicy)
 		var/parsed = safe_json_decode(rawpolicy)
 		if(!parsed)
-			log_config("JSON parsing failure for policy.json {[json_path]}")
-			DelayedMessageAdmins("JSON parsing failure for policy.json {[json_path]}")
+			log_config("policy.json 的 JSON 解析失败 {[json_path]}")
+			DelayedMessageAdmins("policy.json 的 JSON 解析失败 {[json_path]}")
 		else
 			policy = parsed
 
 /datum/controller/configuration/proc/loadmaplist(filename)
-	log_config("Loading config file [filename]...")
+	log_config("正在加载配置文件[filename]……")
 	filename = "[directory]/[filename]"
 	var/list/Lines = world.file2list(filename)
 
@@ -413,7 +413,7 @@ Example config:
 			if ("map")
 				currentmap = load_map_config(data, MAP_DIRECTORY_MAPS)
 				if(currentmap.defaulted)
-					var/error_message = "Failed to load map config for [data]!"
+					var/error_message = "无法加载[data]的地图配置！"
 					log_config(error_message)
 					log_mapping(error_message, TRUE)
 					currentmap = null
@@ -440,17 +440,17 @@ Example config:
 				if(currentmap.map_name == SSmapping.current_map.map_name)
 					SSmapping.current_map.mapping_url = data
 			else
-				log_config("Unknown command in map vote config: '[command]'")
+				log_config("地图投票配置中存在未知命令：“[command]”")
 
 /datum/controller/configuration/proc/LoadChatFilter()
 	if(!fexists("[directory]/word_filter.toml"))
 		load_legacy_chat_filter()
 		return
 
-	log_config("Loading config file word_filter.toml...")
+	log_config("正在加载配置文件 word_filter.toml……")
 	var/list/result = rustg_raw_read_toml_file("[directory]/word_filter.toml")
 	if(!result["success"])
-		var/message = "The word filter is not configured correctly! [result["content"]]"
+		var/message = "词语过滤器配置不正确！[result["content"]]"
 		log_config(message)
 		DelayedMessageAdmins(message)
 		return
@@ -469,7 +469,7 @@ Example config:
 	if (!fexists("[directory]/in_character_filter.txt"))
 		return
 
-	log_config("Loading config file in_character_filter.txt...")
+	log_config("正在加载配置文件 in_character_filter.txt……")
 
 	ic_filter_reasons = list()
 	ic_outside_pda_filter_reasons = list()
@@ -484,7 +484,7 @@ Example config:
 		if (findtextEx(line, "#", 1, 2))
 			continue
 		// The older filter didn't apply to PDA
-		ic_outside_pda_filter_reasons[line] = "No reason available"
+		ic_outside_pda_filter_reasons[line] = "未提供原因"
 
 	update_chat_filter_regexes()
 
@@ -503,7 +503,7 @@ Example config:
 	if (isnull(banned_words))
 		return list()
 	else if (!islist(banned_words))
-		var/message = "The word filter configuration's '[key]' key was invalid, contact someone with configuration access to make sure it's setup properly."
+		var/message = "词语过滤配置中的“[key]”键无效，请联系有配置权限的人员检查设置。"
 		log_config(message)
 		DelayedMessageAdmins(message)
 		return list()
@@ -541,16 +541,16 @@ Example config:
 /datum/controller/configuration/proc/validate_job_config()
 	var/config_toml = "[directory]/jobconfig.toml"
 	var/config_txt = "[directory]/jobs.txt"
-	var/message = "Notify Server Operators: "
-	log_config("Validating config file jobconfig.toml...")
+	var/message = "服务器运维通知："
+	log_config("正在验证配置文件 jobconfig.toml……")
 
 	if(!fexists(file(config_toml)))
 		SSjob.legacy_mode = TRUE
-		message += "jobconfig.toml not found, falling back to legacy mode (using jobs.txt). To suppress this warning, generate a jobconfig.toml by running the verb 'Generate Job Configuration' in the Server tab.\n\
-			From there, you can then add it to the /config folder of your server to have it take effect for future rounds."
+		message += "未找到 jobconfig.toml，正在回退到旧版模式（使用 jobs.txt）。要消除此警告，请在服务器选项卡中运行“生成职业配置”（Generate Job Configuration）指令以生成 jobconfig.toml。\n\
+			然后将该文件放入服务器的 /config 文件夹，即可在后续回合中生效。"
 
 		if(!fexists(file(config_txt)))
-			message += "\n\nFailed to set up legacy mode, jobs.txt not found! Codebase defaults will be used. If you do not wish to use this system, please disable it by commenting out the LOAD_JOBS_FROM_TXT config flag."
+			message += "\n\n旧版模式设置失败：未找到 jobs.txt！将使用代码中的默认值。如果不想使用此系统，请注释掉 LOAD_JOBS_FROM_TXT 配置标志以将其禁用。"
 
 		log_config(message)
 		DelayedMessageAdmins(span_notice(message))
@@ -558,7 +558,7 @@ Example config:
 
 	var/list/result = rustg_raw_read_toml_file(config_toml)
 	if(!result["success"])
-		message += "The job config (jobconfig.toml) is not configured correctly! [result["content"]]"
+		message += "职业配置（jobconfig.toml）设置不正确！[result["content"]]"
 		log_config(message)
 		DelayedMessageAdmins(span_notice(message))
 

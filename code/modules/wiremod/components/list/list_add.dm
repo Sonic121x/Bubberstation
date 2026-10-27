@@ -4,9 +4,9 @@
  * Adds an element to a list.
  */
 /obj/item/circuit_component/variable/list/listadd
-	display_name = "List Add"
-	desc = "Adds an element to a list variable."
-	category = "List"
+	display_name = "列表添加"
+	desc = "向列表变量添加一个元素。"
+	category = "列表"
 
 	/// Element to add to the list
 	var/datum/port/input/to_add
@@ -21,7 +21,7 @@
 
 /obj/item/circuit_component/variable/list/listadd/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Max List Size: [max_list_size]", "orange", "sitemap")
+	. += create_ui_notice("列表最大容量：[max_list_size]", "orange", "sitemap")
 
 /obj/item/circuit_component/variable/list/listadd/populate_ports()
 	to_add = add_input_port("To Add", PORT_TYPE_ANY)

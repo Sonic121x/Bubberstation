@@ -144,14 +144,14 @@
 /mob/proc/get_held_index_name(i)
 	var/list/hand = list()
 	if(i > 2)
-		hand += "upper "
+		hand += "上方"
 	var/num = 0
 	if(IS_RIGHT_INDEX(i))
 		num = i-2
-		hand += "right hand"
+		hand += "右手"
 	else
 		num = i-1
-		hand += "left hand"
+		hand += "左手"
 	num -= (num*0.5)
 	if(num > 1) //"upper left hand #1" seems weird, but "upper left hand #2" is A-ok
 		hand += " #[num]"
@@ -242,13 +242,13 @@
 		if (merge_stacks)
 			if (istype(active_stack) && active_stack.can_merge(item_stack, inhand = TRUE))
 				if (item_stack.merge(active_stack))
-					to_chat(usr, span_notice("Your [active_stack.name] stack now contains [active_stack.get_amount()] [active_stack.singular_name]\s."))
+					to_chat(usr, span_notice("你的[active_stack.name]堆叠现在包含 [active_stack.get_amount()] 个[active_stack.singular_name]。"))
 					return TRUE
 			else
 				var/obj/item/stack/inactive_stack = get_inactive_held_item()
 				if (istype(inactive_stack) && inactive_stack.can_merge(item_stack, inhand = TRUE))
 					if (item_stack.merge(inactive_stack))
-						to_chat(usr, span_notice("Your [inactive_stack.name] stack now contains [inactive_stack.get_amount()] [inactive_stack.singular_name]\s."))
+						to_chat(usr, span_notice("你的[inactive_stack.name]堆叠现在包含 [inactive_stack.get_amount()] 个[inactive_stack.singular_name]。"))
 						return TRUE
 
 	if(put_in_active_hand(I, forced, ignore_animation, visuals_only))
@@ -520,7 +520,7 @@
 		if(qdel_on_fail)
 			qdel(W)
 		else if(!disable_warning)
-			to_chat(src, span_warning("You are unable to equip that!"))
+			to_chat(src, span_warning("你无法装备那个物品！"))
 		return FALSE
 	equip_to_slot(W, slot, initial, redraw_mob, indirect_action = indirect_action) //This proc should not ever fail.
 	SEND_SIGNAL(src, COMSIG_MOB_POST_EQUIP, W, slot) //BUBBER EDIT ADDITION
@@ -636,7 +636,7 @@
 		if(gear?.atom_storage?.attempt_insert(src, user, messages = FALSE))
 			return TRUE
 
-	to_chat(user, span_warning("You are unable to equip that!"))
+	to_chat(user, span_warning("你无法装备那个物品！"))
 	return FALSE
 
 /// Attempts to put an item into storage located in a given slot
@@ -659,7 +659,7 @@ GAME_VERB_HIDDEN(/mob, quick_equip, "quick-equip")
 /mob/proc/execute_quick_equip()
 	var/obj/item/I = get_active_held_item()
 	if(!I)
-		to_chat(src, span_warning("You are not holding anything to equip!"))
+		to_chat(src, span_warning("你手上没有可以装备的东西！"))
 		return
 	if(!QDELETED(I))
 		I.equip_to_best_slot(src)

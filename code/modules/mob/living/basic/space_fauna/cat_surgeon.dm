@@ -5,8 +5,8 @@
  */
 
 /mob/living/basic/cat_butcherer
-	name = "Cat Surgeon"
-	desc = "A man with the quest of chasing endless feline tail."
+	name = "猫咪外科医生"
+	desc = "一个以追逐无尽猫尾为使命的男人。"
 	icon = 'icons/mob/simple/simple_human.dmi'
 	icon_state = "cat_butcher"
 	icon_living = "cat_butcher"
@@ -17,8 +17,8 @@
 	health = 100
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	attack_verb_continuous = "slashes at"
-	attack_verb_simple = "slash at"
+	attack_verb_continuous = "挥砍"
+	attack_verb_simple = "挥砍"
 	attack_sound = 'sound/items/weapons/circsawhit.ogg'
 	combat_mode = TRUE
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
@@ -59,8 +59,8 @@
 		return
 
 	visible_message(
-		span_warning("[src] severs [attacked]'s tail off in one swift swipe!"),
-		span_warning("You sever [attacked]'s tail off."),
+		span_warning("[src] 一挥之下就把 [attacked] 的尾巴割了下来！"),
+		span_warning("你割下了 [attacked] 的尾巴。"),
 	)
 	tail.Remove(attacked)
 	tail.forceMove(drop_location())

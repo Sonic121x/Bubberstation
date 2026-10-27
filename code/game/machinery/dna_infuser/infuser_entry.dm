@@ -12,19 +12,19 @@ GLOBAL_LIST_INIT(infuser_entries, prepare_infuser_entries())
 /datum/infuser_entry
 	//-- Vars for DNA Infusion Book --//
 	/// name of the mutant you become
-	var/name = "Mutant"
+	var/name = "突变体"
 	/// what you have to infuse to become it
-	var/infuse_mob_name = "some kind of mutant"
+	var/infuse_mob_name = "某种突变体"
 	/// general desc
-	var/desc = "The ignorants call you a mutant. I prefer to think of mutants as the future of mankind! They could use a guy like you on their team."
+	var/desc = "无知之人称你为突变体。我更愿意将突变体视为人类的未来！他们的队伍正需要你这样的人。"
 	/// desc of what passing the threshold gets you. if this is empty, there is no threshold, so this is also really a tally of whether this is a "meme" mutant or not
-	var/threshold_desc = "the DNA mess takes over, and you turn into a mutant freak!"
+	var/threshold_desc = "混乱的 DNA 占据主导，你变成了突变怪胎！"
 	/// List of personal attributes added by the mutation.
 	var/list/qualities = list(
-		"override this",
-		"puts pineapple on pizza",
-		"inspiration for birth control",
-		"just a weird guy",
+		"请覆盖此项",
+		"往披萨上放菠萝",
+		"让人深感避孕的必要",
+		"就是个怪人",
 	)
 	/// status effect type of the corresponding bonus, if it has one. tier zero won't ever set this.
 	var/status_effect_type
@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(infuser_entries, prepare_infuser_entries())
 	/// List of organs that the machine could spit out in relation
 	var/list/output_organs
 	///message the target gets while being infused
-	var/infusion_desc = "mutant-like"
+	var/infusion_desc = "像突变体"
 
 ///Returns a list of organs that can be infused into the target human. Useful for custom behavior for certain entries
 /datum/infuser_entry/proc/get_output_organs(mob/living/carbon/human/target, atom/movable/infused_from)

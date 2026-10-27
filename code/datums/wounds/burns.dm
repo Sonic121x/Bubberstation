@@ -4,13 +4,13 @@
 
 // TODO: well, a lot really, but specifically I want to add potential fusing of clothing/equipment on the affected area, and limb infections, though those may go in body part code
 /datum/wound/burn
-	name = "Burn Wound"
-	undiagnosed_name = "Burns"
+	name = "烧伤"
+	undiagnosed_name = "烧伤"
 	a_or_from = "from"
 	sound_effect = 'sound/effects/wounds/sizzle1.ogg'
 
 /datum/wound/burn/flesh
-	name = "Burn (Flesh) Wound"
+	name = "血肉烧伤"
 	a_or_from = "from"
 	processes = TRUE
 	threshold_penalty = 15
@@ -43,7 +43,7 @@
 	if(strikes_to_lose_limb <= 0) // we've already hit sepsis, nothing more to do
 		victim.adjust_tox_loss(0.25 * seconds_per_tick)
 		if(SPT_PROB(0.5, seconds_per_tick))
-			victim.visible_message(span_danger("The infection on the remnants of [victim]'s [limb.plaintext_zone] shift and bubble nauseatingly!"), span_warning("You can feel the infection on the remnants of your [limb.plaintext_zone] coursing through your veins!"), vision_distance = COMBAT_MESSAGE_RANGE)
+			victim.visible_message(span_danger("[victim]残存的[chinese_body_zone_display(limb.plaintext_zone)]上，感染组织翻涌起泡，令人作呕！"), span_warning("你感觉残存的[chinese_body_zone_display(limb.plaintext_zone)]上的感染正顺着血管蔓延！"), vision_distance = COMBAT_MESSAGE_RANGE)
 		return
 
 	for(var/datum/reagent/reagent as anything in victim.reagents.reagent_list)
@@ -73,7 +73,7 @@
 
 	// here's the check to see if we're cleared up
 	if((flesh_damage <= 0) && (infection <= WOUND_INFECTION_MODERATE))
-		to_chat(victim, span_green("The burns on your [limb.plaintext_zone] have cleared up!"))
+		to_chat(victim, span_green("你[chinese_body_zone_display(limb.plaintext_zone)]上的烧伤痊愈了！"))
 		qdel(src)
 		return
 
@@ -93,15 +93,15 @@
 			if(SPT_PROB(15, seconds_per_tick))
 				victim.adjust_tox_loss(0.2)
 				if(prob(6))
-					to_chat(victim, span_warning("The blisters on your [limb.plaintext_zone] ooze a strange pus..."))
+					to_chat(victim, span_warning("你[chinese_body_zone_display(limb.plaintext_zone)]上的水泡渗出奇怪的脓液……"))
 		if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
 			if(!disabling)
 				if(SPT_PROB(1, seconds_per_tick))
-					to_chat(victim, span_warning("<b>Your [limb.plaintext_zone] completely locks up, as you struggle for control against the infection!</b>"))
+					to_chat(victim, span_warning("<b>你的[chinese_body_zone_display(limb.plaintext_zone)]完全僵住了，你正拼命抵抗感染，试图恢复控制！</b>"))
 					set_disabling(TRUE)
 					return
 			else if(SPT_PROB(4, seconds_per_tick))
-				to_chat(victim, span_notice("You regain sensation in your [limb.plaintext_zone], but it's still in terrible shape!"))
+				to_chat(victim, span_notice("你的[chinese_body_zone_display(limb.plaintext_zone)]恢复了知觉，但状况仍十分糟糕！"))
 				set_disabling(FALSE)
 				return
 
@@ -111,17 +111,17 @@
 		if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
 			if(!disabling)
 				if(SPT_PROB(1.5, seconds_per_tick))
-					to_chat(victim, span_warning("<b>You suddenly lose all sensation of the festering infection in your [limb.plaintext_zone]!</b>"))
+					to_chat(victim, span_warning("<b>你突然完全感觉不到[chinese_body_zone_display(limb.plaintext_zone)]上溃烂的感染了！</b>"))
 					set_disabling(TRUE)
 					return
 			else if(SPT_PROB(1.5, seconds_per_tick))
-				to_chat(victim, span_notice("You can barely feel your [limb.plaintext_zone] again, and you have to strain to retain motor control!"))
+				to_chat(victim, span_notice("你的[chinese_body_zone_display(limb.plaintext_zone)]勉强恢复了知觉，必须竭尽全力才能控制其动作！"))
 				set_disabling(FALSE)
 				return
 
 			if(SPT_PROB(2.48, seconds_per_tick))
 				if(prob(20))
-					to_chat(victim, span_warning("You contemplate life without your [limb.plaintext_zone]..."))
+					to_chat(victim, span_warning("你开始思考失去[chinese_body_zone_display(limb.plaintext_zone)]后的生活……"))
 					victim.adjust_tox_loss(0.75)
 				else
 					victim.adjust_tox_loss(1)
@@ -131,50 +131,50 @@
 				strikes_to_lose_limb--
 				switch(strikes_to_lose_limb)
 					if(2 to INFINITY)
-						to_chat(victim, span_deadsay("<b>The infection in your [limb.plaintext_zone] is literally dripping off, you feel horrible!</b>"))
+						to_chat(victim, span_deadsay("<b>你[chinese_body_zone_display(limb.plaintext_zone)]上的感染组织正在滴落，你感觉糟透了！</b>"))
 					if(1)
-						to_chat(victim, span_deadsay("<b>Infection has just about completely claimed your [limb.plaintext_zone]!</b>"))
+						to_chat(victim, span_deadsay("<b>感染几乎完全吞噬了你的[chinese_body_zone_display(limb.plaintext_zone)]！</b>"))
 					if(0)
-						to_chat(victim, span_deadsay("<b>The last of the nerve endings in your [limb.plaintext_zone] wither away, as the infection completely paralyzes your joint connector.</b>"))
+						to_chat(victim, span_deadsay("<b>你[chinese_body_zone_display(limb.plaintext_zone)]中最后的神经末梢枯萎了，感染彻底瘫痪了关节连接处。</b>"))
 						threshold_penalty *= 2 // piss easy to destroy
 						set_disabling(TRUE)
 
 /datum/wound/burn/flesh/set_disabling(new_value)
 	. = ..()
 	if(new_value && strikes_to_lose_limb <= 0)
-		treat_text_short = "Amputate or augment limb immediately, or place the patient into cryogenics."
+		treat_text_short = "立即截肢、替换义肢，或为患者进行低温治疗。"
 	else
 		treat_text_short = initial(treat_text_short)
 
 /datum/wound/burn/flesh/get_wound_description(mob/user)
 	if(strikes_to_lose_limb <= 0)
-		return span_deadsay("<B>[victim.p_Their()] [limb.plaintext_zone] has locked up completely and is non-functional.</B>")
+		return span_deadsay("<B>[victim]的[chinese_body_zone_display(limb.plaintext_zone)]完全僵死，已无法使用。</B>")
 
-	var/list/condition = list("[victim.p_Their()] [limb.plaintext_zone] [examine_desc]")
+	var/list/condition = list("[victim]的[chinese_body_zone_display(limb.plaintext_zone)][examine_desc]")
 	var/obj/item/stack/medical/wrap/current_gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
 	if(current_gauze)
 		var/bandage_condition
 		switch(current_gauze.absorption_capacity)
 			if(0 to 1.25)
-				bandage_condition = "nearly ruined "
+				bandage_condition = "几乎报废的"
 			if(1.25 to 2.75)
-				bandage_condition = "badly worn "
+				bandage_condition = "严重破损的"
 			if(2.75 to 4)
-				bandage_condition = "slightly stained "
+				bandage_condition = "略有污渍的"
 			if(4 to INFINITY)
-				bandage_condition = "clean "
+				bandage_condition = "干净的"
 
-		condition += " underneath a dressing of [bandage_condition][current_gauze.name]."
+		condition += "，外面包着[bandage_condition][current_gauze.name]。"
 	else
 		switch(infection)
 			if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
-				condition += ", [span_deadsay("with early signs of infection.")]"
+				condition += "，[span_deadsay("出现了早期感染迹象。")]"
 			if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
-				condition += ", [span_deadsay("with growing clouds of infection.")]"
+				condition += "，[span_deadsay("感染正在不断蔓延。")]"
 			if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
-				condition += ", [span_deadsay("with streaks of rotten infection!")]"
+				condition += "，[span_deadsay("布满了腐烂感染的痕迹！")]"
 			if(WOUND_INFECTION_SEPTIC to INFINITY)
-				return span_deadsay("<B>[victim.p_Their()] [limb.plaintext_zone] is a mess of charred skin and infected rot!</B>")
+				return span_deadsay("<B>[victim]的[chinese_body_zone_display(limb.plaintext_zone)]已变成焦黑皮肤与腐烂感染组织混成的一团！</B>")
 			else
 				condition += "!"
 
@@ -182,46 +182,46 @@
 
 /datum/wound/burn/flesh/severity_text(simple = FALSE)
 	. = ..()
-	. += " Burn / "
+	. += "烧伤 / "
 	switch(infection)
 		if(-INFINITY to WOUND_INFECTION_MODERATE)
-			. += "No"
+			. += "无"
 		if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
-			. += "Moderate"
+			. += "中度"
 		if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
-			. += "<b>Severe</b>"
+			. += "<b>严重</b>"
 		if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
-			. += "<b>Critical</b>"
+			. += "<b>危急</b>"
 		if(WOUND_INFECTION_SEPTIC to INFINITY)
-			. += "<b>Total</b>"
-	. += " Infection"
+			. += "<b>全面</b>"
+	. += "感染"
 
 /datum/wound/burn/flesh/get_scanner_description(mob/user)
 	if(strikes_to_lose_limb <= 0) // Unclear if it can go below 0, best to not take the chance
-		var/oopsie = "Type: [name]<br>Severity: [severity_text()]"
-		oopsie += "<div class='ml-3'>Infection Level: [span_deadsay("The body part has suffered complete sepsis and must be removed. Amputate or augment limb immediately, or place the patient in a cryotube.")]</div>"
+		var/oopsie = "类型：[name]<br>严重程度：[severity_text()]"
+		oopsie += "<div class='ml-3'>感染程度：[span_deadsay("该部位已完全脓毒性坏死，必须移除。立即截肢、替换义肢，或将患者放入低温治疗舱。")]</div>"
 		return oopsie
 
 	. = ..()
 	. += "<div class='ml-3'>"
 
 	if(infection <= sanitization && flesh_damage <= flesh_healing)
-		. += "No further treatment required: Burns will heal shortly."
+		. += "无需进一步治疗：烧伤很快就会愈合。"
 	else
 		switch(infection)
 			if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
-				. += "Infection Level: Moderate\n"
+				. += "感染程度：中度\n"
 			if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
-				. += "Infection Level: Severe\n"
+				. += "感染程度：严重\n"
 			if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
-				. += "Infection Level: [span_deadsay("CRITICAL")]\n"
+				. += "感染程度：[span_deadsay("危急")]\n"
 			if(WOUND_INFECTION_SEPTIC to INFINITY)
-				. += "Infection Level: [span_deadsay("LOSS IMMINENT")]\n"
+				. += "感染程度：[span_deadsay("即将失去肢体")]\n"
 		if(infection > sanitization)
-			. += "\tSurgical debridement, antibiotics/sterilizers, or regenerative mesh will rid infection. Paramedic UV penlights are also effective.\n"
+			. += "\t手术清创、抗生素／消毒剂或再生网可消除感染。急救员紫外线笔灯也有效。\n"
 
 		if(flesh_damage > 0)
-			. += "Flesh damage detected: Application of ointment, regenerative mesh, Synthflesh, or ingestion of \"Miner's Salve\" will repair damaged flesh. Good nutrition, rest, and keeping the wound clean can also slowly repair flesh.\n"
+			. += "检测到血肉损伤：使用药膏、再生网、合成肉液，或服用“矿工药膏”可修复损伤。营养充足、休息和保持伤口清洁，也能让血肉缓慢恢复。\n"
 	. += "</div>"
 
 /*
@@ -239,13 +239,13 @@
 /// Paramedic UV penlights
 /datum/wound/burn/flesh/proc/uv(obj/item/flashlight/pen/paramedic/I, mob/user)
 	if(!COOLDOWN_FINISHED(I, uv_cooldown))
-		to_chat(user, span_notice("[I] is still recharging!"))
+		to_chat(user, span_notice("[I]还在充能！"))
 		return
 	if(infection <= 0 || infection < sanitization)
-		to_chat(user, span_notice("There's no infection to treat on [victim]'s [limb.plaintext_zone]!"))
+		to_chat(user, span_notice("[victim]的[chinese_body_zone_display(limb.plaintext_zone)]上没有需要治疗的感染！"))
 		return
 
-	user.visible_message(span_notice("[user] flashes the burns on [victim]'s [limb] with [I]."), span_notice("You flash the burns on [user == victim ? "your" : "[victim]'s"] [limb.plaintext_zone] with [I]."), vision_distance=COMBAT_MESSAGE_RANGE)
+	user.visible_message(span_notice("[user]用[I]照射[victim]的[limb]上的烧伤。"), span_notice("你用[I]照射[user == victim ? "自己" : "[victim]"]的[chinese_body_zone_display(limb.plaintext_zone)]上的烧伤。"), vision_distance=COMBAT_MESSAGE_RANGE)
 	sanitization += I.uv_power
 	COOLDOWN_START(I, uv_cooldown, I.uv_cooldown_length)
 
@@ -258,12 +258,12 @@
 	. = ..()
 	if(strikes_to_lose_limb <= 0) // we've already hit sepsis, nothing more to do
 		if(SPT_PROB(0.5, seconds_per_tick))
-			victim.visible_message(span_danger("The infection on the remnants of [victim]'s [limb.plaintext_zone] shift and bubble nauseatingly!"), span_warning("You can feel the infection on the remnants of your [limb.plaintext_zone] coursing through your veins!"), vision_distance = COMBAT_MESSAGE_RANGE)
+			victim.visible_message(span_danger("[victim]残存的[chinese_body_zone_display(limb.plaintext_zone)]上，感染组织翻涌起泡，令人作呕！"), span_warning("你感觉残存的[chinese_body_zone_display(limb.plaintext_zone)]上的感染正顺着血管蔓延！"), vision_distance = COMBAT_MESSAGE_RANGE)
 		return
 	if(flesh_healing > 0)
 		flesh_damage = max(flesh_damage - (0.1 * seconds_per_tick), 0)
 	if((flesh_damage <= 0) && (infection <= 1))
-		to_chat(victim, span_green("The burns on your [limb.plaintext_zone] have cleared up!"))
+		to_chat(victim, span_green("你[chinese_body_zone_display(limb.plaintext_zone)]上的烧伤痊愈了！"))
 		qdel(src)
 		return
 	if(sanitization > 0)
@@ -281,16 +281,16 @@
 	wound_series = WOUND_SERIES_FLESH_BURN_BASIC
 
 /datum/wound/burn/get_limb_examine_description()
-	return span_warning("The flesh on this limb appears badly cooked.")
+	return span_warning("这条肢体上的血肉似乎已被严重烧焦。")
 
 // we don't even care about first degree burns, straight to second
 /datum/wound/burn/flesh/moderate
-	name = "Second Degree Burns"
-	desc = "Patient is suffering considerable burns with mild skin penetration, weakening limb integrity and increased burning sensations."
-	treat_text = "Apply topical ointment or regenerative mesh to the wound."
-	treat_text_short = "Apply healing aid such as regenerative mesh."
-	examine_desc = "is badly burned and breaking out in blisters"
-	occur_text = "breaks out with violent red burns"
+	name = "二度烧伤"
+	desc = "患者受到较重烧伤，损伤轻度深入皮肤，使肢体强度下降，并加剧灼烧感。"
+	treat_text = "对伤口使用外用药膏或再生网。"
+	treat_text_short = "使用再生网等治疗用品。"
+	examine_desc = "烧伤严重，起满了水泡"
+	occur_text = "出现了鲜红的严重烧伤"
 	severity = WOUND_SEVERITY_MODERATE
 	damage_multiplier_penalty = 1.1
 	series_threshold_penalty = 30 // burns cause significant decrease in limb integrity compared to other wounds
@@ -298,9 +298,9 @@
 	flesh_damage = 5
 	scar_keyword = "burnmoderate"
 
-	simple_desc = "Patient's skin is burned, weakening the limb and multiplying perceived damage!"
-	simple_treat_text = "Ointment will speed up recovery, as will regenerative mesh. Risk of infection is negligible."
-	homemade_treat_text = "Healthy tea will speed up recovery. Salt, or preferably a salt-water mixture, will sanitize the wound, but the former will cause skin irritation, increasing the risk of infection."
+	simple_desc = "患者皮肤烧伤，肢体强度下降，受到伤害时的感受也会加剧！"
+	simple_treat_text = "药膏和再生网都能加快恢复。感染风险可忽略不计。"
+	homemade_treat_text = "有益健康的茶能加快恢复。盐或更合适的盐水可对伤口消毒，但干盐会刺激皮肤，增加感染风险。"
 
 /datum/wound_pregen_data/flesh_burn/second_degree
 	abstract = FALSE
@@ -310,15 +310,15 @@
 	threshold_minimum = 40
 
 /datum/wound/burn/flesh/severe
-	name = "Third Degree Burns"
-	desc = "Patient is suffering extreme burns with full skin penetration, creating serious risk of infection and greatly reduced limb integrity."
-	treat_text = "Swiftly apply healing aids such as Synthflesh or regenerative mesh to the wound. \
-		Disinfect the wound and surgically debride any infected skin, and wrap in clean gauze / use ointment to prevent further infection. \
-		If the limb has locked up, it must be amputated, augmented or treated with cryogenics."
-	treat_text_short = "Apply healing aid such as regenerative mesh, Synthflesh, or cryogenics and disinfect / debride. \
-		Clean gauze or ointment will slow infection rate."
-	examine_desc = "appears seriously charred, with aggressive red splotches"
-	occur_text = "chars rapidly, exposing ruined tissue and spreading angry red burns"
+	name = "三度烧伤"
+	desc = "患者受到极其严重的烧伤，损伤贯穿全层皮肤，感染风险很高，肢体强度大幅下降。"
+	treat_text = "迅速对伤口使用合成肉液或再生网等治疗用品。\
+		对伤口消毒，并手术清除感染皮肤，再包上干净纱布或使用药膏，防止进一步感染。\
+		如果肢体已经僵死，必须截肢、替换义肢或进行低温治疗。"
+	treat_text_short = "使用再生网、合成肉液或低温治疗，并消毒／清创。\
+		干净纱布或药膏能减缓感染。"
+	examine_desc = "严重焦黑，布满了鲜红的斑块"
+	occur_text = "迅速焦化，露出毁坏的组织，鲜红的烧伤蔓延开来"
 	severity = WOUND_SEVERITY_SEVERE
 	damage_multiplier_penalty = 1.2
 	series_threshold_penalty = 40
@@ -328,9 +328,9 @@
 	flesh_damage = 12.5
 	scar_keyword = "burnsevere"
 
-	simple_desc = "Patient's skin is badly burned, significantly weakening the limb and compounding further damage!!"
-	simple_treat_text = "<b>Bandages will speed up recovery</b>, as will <b>ointment or regenerative mesh</b>. <b>Spaceacilin, sterilizine, and 'Miner's Salve'</b> will help with infection."
-	homemade_treat_text = "<b>Healthy tea</b> will speed up recovery. <b>Salt</b>, or preferably a <b>salt-water</b> mixture, will sanitize the wound, but the former especially will cause skin irritation and dehydration, speeding up infection. <b>Space Cleaner</b> can be used as disinfectant in a pinch."
+	simple_desc = "患者皮肤严重烧伤，肢体显著脆弱，后续伤害会进一步加重！！"
+	simple_treat_text = "<b>包扎能加快恢复</b>，<b>药膏或再生网</b>也有效。<b>太空青霉素、消毒灵和“矿工药膏”</b>有助于控制感染。"
+	homemade_treat_text = "<b>有益健康的茶</b>能加快恢复。<b>盐</b>或更合适的<b>盐水</b>可对伤口消毒，但尤其是干盐，会刺激皮肤并导致脱水，加速感染。紧急情况下可用<b>太空清洁剂</b>消毒。"
 
 /datum/wound_pregen_data/flesh_burn/third_degree
 	abstract = FALSE
@@ -340,15 +340,15 @@
 	threshold_minimum = 80
 
 /datum/wound/burn/flesh/critical
-	name = "Catastrophic Burns"
-	desc = "Patient is suffering near complete loss of tissue and significantly charred muscle and bone, creating life-threatening risk of infection and negligible limb integrity."
-	treat_text = "Immediately apply healing aids such as Synthflesh or regenerative mesh to the wound. \
-		Disinfect the wound and surgically debride any infected skin, and wrap in clean gauze / use ointment to prevent further infection. \
-		If the limb has locked up, it must be amputated, augmented or treated with cryogenics."
-	treat_text_short = "Apply healing aid such as regenerative mesh, Synthflesh, or cryogenics and disinfect / debride. \
-		Clean gauze or ointment will slow infection rate."
-	examine_desc = "is a ruined mess of blanched bone, melted fat, and charred tissue"
-	occur_text = "vaporizes as flesh, bone, and fat melt together in a horrifying mess"
+	name = "灾难性烧伤"
+	desc = "患者组织几乎完全缺损，肌肉和骨骼严重炭化，感染风险危及生命，肢体几乎不再具有结构强度。"
+	treat_text = "立即对伤口使用合成肉液或再生网等治疗用品。\
+		对伤口消毒，并手术清除感染皮肤，再包上干净纱布或使用药膏，防止进一步感染。\
+		如果肢体已经僵死，必须截肢、替换义肢或进行低温治疗。"
+	treat_text_short = "使用再生网、合成肉液或低温治疗，并消毒／清创。\
+		干净纱布或药膏能减缓感染。"
+	examine_desc = "已变成惨白骨骼、融化脂肪和焦黑组织混成的一团"
+	occur_text = "被汽化，血肉、骨骼和脂肪融成了骇人的一团"
 	severity = WOUND_SEVERITY_CRITICAL
 	damage_multiplier_penalty = 1.3
 	sound_effect = 'sound/effects/wounds/sizzle2.ogg'
@@ -359,9 +359,9 @@
 	flesh_damage = 20
 	scar_keyword = "burncritical"
 
-	simple_desc = "Patient's skin is destroyed and tissue charred, leaving the limb with almost <b>no integrity<b> and a drastic chance of <b>infection<b>!!!"
-	simple_treat_text = "Immediately <b>bandage</b> the wound and treat it with <b>ointment or regenerative mesh</b>. <b>Spaceacilin, sterilizine, or 'Miner's Salve'</b> will stave off infection. Seek professional care <b>immediately</b>, before sepsis sets in and the wound becomes untreatable."
-	homemade_treat_text = "<b>Healthy tea</b> will help with recovery. A <b>salt-water mixture</b>, topically applied, might help stave off infection in the short term, but pure table salt is NOT recommended. <b>Space Cleaner</b> can be used as disinfectant in a pinch."
+	simple_desc = "患者皮肤毁坏、组织炭化，肢体几乎<b>毫无结构强度<b>，且极易发生<b>感染<b>！！！"
+	simple_treat_text = "立即<b>包扎</b>伤口，并使用<b>药膏或再生网</b>治疗。<b>太空青霉素、消毒灵或“矿工药膏”</b>可抑制感染。在发生脓毒性坏死、伤口无法治疗前，<b>立即</b>寻求专业医疗。"
+	homemade_treat_text = "<b>有益健康的茶</b>有助于恢复。外用<b>盐水</b>可能短暂抑制感染，但不建议使用纯食盐。紧急情况下可用<b>太空清洁剂</b>消毒。"
 
 /datum/wound_pregen_data/flesh_burn/fourth_degree
 	abstract = FALSE
@@ -372,11 +372,11 @@
 
 ///special severe wound caused by sparring interference or other god related punishments.
 /datum/wound/burn/flesh/severe/brand
-	name = "Holy Brand"
-	desc = "Patient is suffering extreme burns from a strange brand marking, creating serious risk of infection and greatly reduced limb integrity."
-	examine_desc = "appears to have holy symbols painfully branded into their flesh, leaving severe burns."
-	occur_text = "chars rapidly into a strange pattern of holy symbols, burned into the flesh."
-	simple_desc = "Patient's skin has had strange markings burned onto it, significantly weakening the limb and compounding further damage!!"
+	name = "神圣烙印"
+	desc = "奇怪的烙印使患者受到极其严重的烧伤，感染风险很高，肢体强度大幅下降。"
+	examine_desc = "似乎被痛苦地烙上了神圣符号，留下严重烧伤"
+	occur_text = "迅速焦化，奇怪的神圣符号被烙进血肉之中"
+	simple_desc = "患者皮肤上被烙下了奇怪的印记，肢体显著脆弱，后续伤害会进一步加重！！"
 
 /datum/wound_pregen_data/flesh_burn/third_degree/holy
 	abstract = FALSE
@@ -386,13 +386,13 @@
 /// special severe wound caused by the cursed slot machine.
 
 /datum/wound/burn/flesh/severe/cursed_brand
-	name = "Ancient Brand"
-	desc = "Patient is suffering extreme burns with oddly ornate brand markings, creating serious risk of infection and greatly reduced limb integrity."
-	examine_desc = "appears to have ornate symbols painfully branded into their flesh, leaving severe burns"
-	occur_text = "chars rapidly into a pattern that can only be described as an agglomeration of several financial symbols, burned into the flesh"
+	name = "远古烙印"
+	desc = "患者受到极其严重的烧伤，留下异常华丽的烙印，感染风险很高，肢体强度大幅下降。"
+	examine_desc = "似乎被痛苦地烙上了华丽的符号，留下严重烧伤"
+	occur_text = "迅速焦化，数种金融符号混成的图案被烙进血肉之中"
 
 /datum/wound/burn/flesh/severe/cursed_brand/get_limb_examine_description()
-	return span_warning("The flesh on this limb has several ornate symbols burned into it, with pitting throughout.")
+	return span_warning("这条肢体的血肉上烙着几个华丽的符号，周围布满凹坑。")
 
 /datum/wound_pregen_data/flesh_burn/third_degree/cursed_brand
 	abstract = FALSE

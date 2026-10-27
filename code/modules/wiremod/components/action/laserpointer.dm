@@ -4,9 +4,9 @@
  * Points a laser at a tile or mob
  */
 /obj/item/circuit_component/laserpointer
-	display_name = "Laser Pointer"
-	desc = "A component that shines a high powered light at a target."
-	category = "Action"
+	display_name = "激光指示器"
+	desc = "向目标照射高功率光束的元件。"
+	category = "动作"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// The input port
@@ -21,7 +21,7 @@
 
 /obj/item/circuit_component/laserpointer/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Range: [max_range] tiles", "orange", "info")
+	. += create_ui_notice("最大范围：[max_range] 格", "orange", "info")
 
 /obj/item/circuit_component/laserpointer/populate_options()
 	var/static/component_options = list(
@@ -55,9 +55,9 @@
 	// only has cyborg flashing since felinid moving spikes time dilation when spammed and the other two features of laserpointers would be unbalanced when spammed
 	if(iscyborg(target))
 		var/mob/living/silicon/silicon = target
-		log_combat(shell, silicon, "shone in the sensors", src)
+		log_combat(shell, silicon, "用激光照射了其传感器", src)
 		silicon.flash_act(affect_silicon = TRUE) /// no stunning, just a blind
-		to_chat(silicon, span_danger("Your sensors were overloaded by a weakened laser shone by [shell]!"))
+		to_chat(silicon, span_danger("[shell]照射的弱化激光让你的传感器过载了！"))
 
 	var/mutable_appearance/laser_location = mutable_appearance('icons/obj/weapons/guns/projectiles.dmi', "[pointer_icon_state]_laser")
 

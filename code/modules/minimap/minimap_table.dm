@@ -1,8 +1,8 @@
 
 /obj/machinery/minimap_table
-	name = "reconnaissance platform"
-	desc = "This holographic projector displays a constant stream of tactical information, enabling cinematic planning and strategizing. \
-		Currently, it appears to be monitoring a nearby station and tracking key targets for a clandestine operation."
+	name = "侦察平台"
+	desc = "这台全息投影仪持续显示战术信息流，让使用者能够进行电影般的作战规划与谋略。\
+		目前，它似乎正在监视附近的一座空间站，并追踪一场秘密行动的关键目标。"
 	icon = 'icons/obj/machines/minimap_table.dmi'
 	icon_state = "off"
 	processing_flags = START_PROCESSING_MANUALLY

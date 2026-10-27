@@ -50,17 +50,17 @@
 		if(maybe_name)
 			deserialize_vrdb(data)
 		else
-			to_chat(usr, span_warning("Unable to load belly, missing '[VORE_BELLY_KEY]' signature and cannot detect VRBD"))
+			to_chat(usr, span_warning("无法加载腹腔：缺少‘[VORE_BELLY_KEY]’标记，且无法识别 VRDB 格式"))
 		return
 	if(data[VORE_BELLY_KEY] != VORE_BELLY_VERSION)
 		apply_migrations(data)
-	name = permissive_sanitize_name(data["name"]) || "(Bad Name)"
-	desc = STRIP_HTML_SIMPLE(data["desc"], MAX_FLAVOR_LEN) || "(Bad Desc)"
+	name = permissive_sanitize_name(data["name"]) || "（无效名称）"
+	desc = STRIP_HTML_SIMPLE(data["desc"], MAX_FLAVOR_LEN) || "（无效描述）"
 	digest_mode = GLOB.digest_modes[sanitize_text(data["digest_mode"])] || GLOB.digest_modes[DIGEST_MODE_SAFE]
 
 	can_taste = sanitize_integer(data["can_taste"], FALSE, TRUE, TRUE)
-	insert_verb = STRIP_HTML_SIMPLE(data["insert_verb"], MAX_VERB_LENGTH) || "ingest"
-	release_verb = STRIP_HTML_SIMPLE(data["release_verb"], MAX_VERB_LENGTH) || "expels"
+	insert_verb = STRIP_HTML_SIMPLE(data["insert_verb"], MAX_VERB_LENGTH) || "吞入"
+	release_verb = STRIP_HTML_SIMPLE(data["release_verb"], MAX_VERB_LENGTH) || "排出"
 
 	brute_damage = sanitize_integer(data["brute_damage"], 0, MAX_BRUTE_DAMAGE, 0)
 	burn_damage = sanitize_integer(data["burn_damage"], 0, MAX_BURN_DAMAGE, 1)
@@ -100,14 +100,14 @@
 /// Special handler that tries to deserialize as much of a VRDB save as it can
 /obj/vore_belly/proc/deserialize_vrdb(list/data)
 	var/maybe_name = data["name"]
-	to_chat(usr, span_warning("Attempting to load VRDB belly '[maybe_name]'..."))
-	name = permissive_sanitize_name(maybe_name) || "(Bad Name)"
-	desc = STRIP_HTML_SIMPLE(data["desc"], MAX_FLAVOR_LEN) || "(Bad Desc)"
+	to_chat(usr, span_warning("正在尝试加载 VRDB 腹腔‘[maybe_name]’……"))
+	name = permissive_sanitize_name(maybe_name) || "（无效名称）"
+	desc = STRIP_HTML_SIMPLE(data["desc"], MAX_FLAVOR_LEN) || "（无效描述）"
 	digest_mode = GLOB.digest_modes[sanitize_text(data["mode"])] || GLOB.digest_modes[DIGEST_MODE_SAFE]
 
 	can_taste = sanitize_integer(data["can_taste"], FALSE, TRUE, TRUE)
-	insert_verb = STRIP_HTML_SIMPLE(data["vore_verb"], MAX_VERB_LENGTH) || "ingest"
-	release_verb = STRIP_HTML_SIMPLE(data["release_verb"], MAX_VERB_LENGTH) || "expels"
+	insert_verb = STRIP_HTML_SIMPLE(data["vore_verb"], MAX_VERB_LENGTH) || "吞入"
+	release_verb = STRIP_HTML_SIMPLE(data["release_verb"], MAX_VERB_LENGTH) || "排出"
 
 	escape_chance = sanitize_integer(data["escapechance"], 0, 100, 100)
 	escape_time = sanitize_integer(data["escapetime"], MIN_ESCAPE_TIME, MAX_ESCAPE_TIME, DEFAULT_ESCAPE_TIME)

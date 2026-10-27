@@ -21,9 +21,9 @@
 #define POSITIVE_INSTABILITY_MAJOR 35
 
 /datum/mutation
-	var/name = "mutation"
+	var/name = "突变"
 	/// Description of the mutation
-	var/desc = "A mutation."
+	var/desc = "一种基因突变。"
 	/// Is this mutation currently locked?
 	var/locked
 	/// Quality of the mutation
@@ -123,7 +123,7 @@
 		return FALSE
 	// SKYRAT EDIT ADDITION
 	if(acquirer.has_borer())
-		to_chat(acquirer, span_warning("Something inside holds dearly to your humanity!"))
+		to_chat(acquirer, span_warning("你体内的某种东西正在竭力保住你的人性！"))
 	// SKYRAT EDIT END
 	if(LAZYLEN(species_allowed) && !LAZYFIND(species_allowed, acquirer.dna.species.id))
 		return FALSE

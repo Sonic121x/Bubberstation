@@ -11,7 +11,7 @@ import type { BooleanLike } from 'tgui-core/react';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
-
+import { chineseDisplay, chineseDropdownOptions } from '../localization/zhDisplay';
 export type Data = {
   locked: BooleanLike;
   siliconUser: BooleanLike;
@@ -40,7 +40,7 @@ export type NavBeaconStaticControl = {
 export const NavBeacon = (props) => {
   const { act, data } = useBackend();
   return (
-    <Window title="Nagivational Beacon" width={400} height={350}>
+    <Window title="导航信标" width={400} height={350}>
       <Window.Content>
         <NavBeaconContent />
       </Window.Content>
@@ -65,49 +65,49 @@ export const NavBeaconControlSection = (props: DisabledProps) => {
   const { act, data } = useBackend<Data>();
   const { controls, static_controls } = data;
   return (
-    <Section title="Controls">
+    <Section title="控制">
       <LabeledList>
-        <LabeledList.Item label="Location">
+        <LabeledList.Item label="位置">
           <Button
             fluid
-            content={controls.location ?? 'None set'}
+            content={controls.location ?? '未设置'}
             icon="pencil-alt"
             disabled={props.disabled}
             onClick={() => act('set_location')}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Enable as Patrol Beacon">
+        <LabeledList.Item label="启用巡逻信标">
           <Button.Checkbox
             fluid
             checked={controls.patrol_enabled}
-            content={controls.patrol_enabled ? 'Enabled' : 'Disabled'}
+            content={controls.patrol_enabled ? '已启用' : '已禁用'}
             disabled={props.disabled}
             onClick={() => act('toggle_patrol')}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Next patrol">
+        <LabeledList.Item label="下一巡逻点">
           <Button
             fluid
-            content={controls.patrol_next ?? 'No next patrol location'}
+            content={controls.patrol_next ?? '无下一巡逻点'}
             icon="pencil-alt"
             disabled={props.disabled}
             onClick={() => act('set_patrol_next')}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Enable as Delivery Beacon">
+        <LabeledList.Item label="启用配送信标">
           <Button.Checkbox
             fluid
             checked={controls.delivery_enabled}
-            content={controls.delivery_enabled ? 'Enabled' : 'Disabled'}
+            content={controls.delivery_enabled ? '已启用' : '已禁用'}
             disabled={props.disabled}
             onClick={() => act('toggle_delivery')}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Delivery Direction">
+        <LabeledList.Item label="配送方向">
           <Dropdown
             disabled={!!props.disabled}
-            options={static_controls.direction_options}
-            selected={controls.delivery_direction}
+            options={chineseDropdownOptions(static_controls.direction_options)}
+            selected={controls.delivery_direction} displayText={chineseDisplay(controls.delivery_direction)}
             onSelected={(value) =>
               act('set_delivery_direction', {
                 direction: value,
@@ -124,25 +124,25 @@ export const NavBeaconMaintenanceSection = (props: DisabledProps) => {
   const { act, data } = useBackend<Data>();
   const { controls, static_controls } = data;
   return (
-    <Section title="Maintenance">
+    <Section title="维护">
       <LabeledList>
-        <LabeledList.Item label="Reset codes">
+        <LabeledList.Item label="重置代码">
           {!!static_controls.has_codes && (
             <Button
               fluid
-              content={'Reset'}
+              content={'重置'}
               icon="power-off"
               disabled={props.disabled}
               onClick={() => act('reset_codes')}
             />
           )}
-          {!static_controls.has_codes && <Box>No backup codes found</Box>}
+          {!static_controls.has_codes && <Box>未找到备份代码</Box>}
         </LabeledList.Item>
-        <LabeledList.Item label="Maintenance hatch cover">
+        <LabeledList.Item label="维护舱盖">
           <Button.Checkbox
             fluid
             checked={controls.cover_locked}
-            content={controls.cover_locked ? 'Locked' : 'Unlocked'}
+            content={controls.cover_locked ? '已锁定' : '已解锁'}
             disabled={props.disabled}
             onClick={() => act('toggle_cover')}
           />

@@ -1,6 +1,6 @@
 /obj/item/borg/apparatus
-	name = "unknown storage apparatus"
-	desc = "This device seems nonfunctional."
+	name = "未知储存装置"
+	desc = "这个装置似乎无法使用。"
 	icon = 'icons/mob/silicon/robot_items.dmi'
 	icon_state = "hugmodule"
 	/// The item stored inside of this apparatus
@@ -32,7 +32,7 @@
 	return ..()
 
 ///A right-click verb, for those not using hotkey mode.
-GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "Drop", null)
+GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "放下", null)
 
 	if(usr != loc || !stored)
 		return
@@ -97,8 +97,8 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "Drop", null)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/borg/apparatus/beaker
-	name = "beaker storage apparatus"
-	desc = "A special apparatus for carrying beakers, bottles, and test tubes without spilling their contents."
+	name = "烧杯储存装置"
+	desc = "一种特殊装置，可携带烧杯、瓶子与试管而不会洒出其中的内容物。"
 	icon_state = "borg_beaker_apparatus"
 	storable = list(
 		/obj/item/reagent_containers/cup/beaker,
@@ -123,14 +123,14 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "Drop", null)
 	. = ..()
 	if(stored)
 		var/obj/item/reagent_containers/reagent_container = stored
-		. += "The apparatus currently has [reagent_container] secured, which contains:"
+		. += "装置目前固定着[reagent_container]，其中含有："
 		if(length(reagent_container.reagents.reagent_list))
 			for(var/datum/reagent/reagent in reagent_container.reagents.reagent_list)
-				. += "[reagent.volume] units of [reagent.name]"
+				. += "[reagent.volume] 单位的[reagent.name]"
 		else
-			. += "Nothing."
+			. += "无。"
 
-	. += span_notice(" <i>Alt-click</i> will drop the currently stored beaker. ")
+	. += span_notice(" <i>按住 Alt 点击</i>可丢下当前储存的烧杯。 ")
 
 /obj/item/borg/apparatus/beaker/update_overlays()
 	. = ..()
@@ -149,12 +149,12 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "Drop", null)
 	. += arm
 
 /obj/item/borg/apparatus/beaker/extra
-	name = "secondary beaker storage apparatus"
-	desc = "A supplementary beaker storage apparatus."
+	name = "次级烧杯储存装置"
+	desc = "一种辅助用的烧杯储存装置。"
 
 /obj/item/borg/apparatus/beaker/service
-	name = "beverage storage apparatus"
-	desc = "A special apparatus for carrying drinks and condiment packets without spilling their contents. Will resynthesize any drinks (or other nutritional liquids) you pour out of glasses!"
+	name = "饮料储存装置"
+	desc = "一种特殊装置，可携带饮品与调料包而不会洒出其中的内容物。你从杯子里倒出的任何饮品（或其他营养液体）都会被重新合成！"
 	icon_state = "borg_beaker_apparatus"
 	storable = list(
 		/obj/item/reagent_containers/cup/glass,
@@ -184,8 +184,8 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "Drop", null)
 
 ///Used by the service borg drink apparatus upgrade, holds drink-related items
 /obj/item/borg/apparatus/beaker/drink
-	name = "secondary beverage storage apparatus"
-	desc = "A special apparatus for carrying drinks and condiment packets without spilling their contents. Will NOT resynthesize drinks unlike your standard apparatus."
+	name = "次级饮料储存装置"
+	desc = "一种特殊装置，可携带饮品与调料包而不会洒出其中的内容物。与你的标准装置不同，它不会重新合成饮品。"
 	icon_state = "borg_beaker_apparatus"
 	storable = list(
 		/obj/item/reagent_containers/cup/glass,
@@ -200,8 +200,8 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "Drop", null)
 
 /// allows medical cyborgs to manipulate organs without hands
 /obj/item/borg/apparatus/organ_storage
-	name = "organ storage bag"
-	desc = "A container for holding body parts."
+	name = "器官储存袋"
+	desc = "用于存放身体部位的容器。"
 	icon = 'icons/obj/storage/storage.dmi'
 	icon_state = "evidenceobj"
 	item_flags = SURGICAL_TOOL
@@ -227,28 +227,28 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "Drop", null)
 
 /obj/item/borg/apparatus/organ_storage/examine()
 	. = ..()
-	. += "The organ bag currently contains:"
+	. += "器官袋目前装有："
 	if(stored)
 		var/obj/item/organ = stored
 		. += organ.name
 	else
-		. += "Nothing."
-	. += span_notice(" <i>Alt-click</i> will drop the currently stored organ. ")
+		. += "无。"
+	. += span_notice(" <i>按住 Alt 点击</i>可丢下当前储存的器官。 ")
 
 /obj/item/borg/apparatus/organ_storage/click_alt(mob/living/silicon/robot/user)
 	if(!stored)
-		to_chat(user, span_notice("[src] is empty."))
+		to_chat(user, span_notice("[src]是空的。"))
 		return CLICK_ACTION_BLOCKING
 
 	var/obj/item/organ = stored
-	user.visible_message(span_notice("[user] dumps [organ] from [src]."), span_notice("You dump [organ] from [src]."))
+	user.visible_message(span_notice("[user]把[organ]从[src]里倒了出来。"), span_notice("你把[organ]从[src]里倒了出来。"))
 	organ.forceMove(drop_location())
 	return CLICK_ACTION_SUCCESS
 
 ///Apparatus to allow Engineering/Sabo borgs to manipulate any material sheets.
 /obj/item/borg/apparatus/sheet_manipulator
-	name = "material manipulation apparatus"
-	desc = "An apparatus for carrying, deploying, and manipulating sheets of material. The device can also carry custom floor tiles and various rods."
+	name = "材料操作装置"
+	desc = "用于携带、铺设和操作材料板的装置。该设备还能携带定制地砖和各种杆件。"
 	icon_state = "borg_stack_apparatus"
 	storable = list(/obj/item/stack/sheet,
 					/obj/item/stack/tile,
@@ -278,13 +278,13 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "Drop", null)
 /obj/item/borg/apparatus/sheet_manipulator/examine()
 	. = ..()
 	if(stored)
-		. += "The apparatus currently has [stored] secured."
-	. += span_notice(" <i>Alt-click</i> will drop the currently stored sheets. ")
+		. += "装置目前固定着[stored]。"
+	. += span_notice(" <i>按住 Alt 点击</i>可丢下当前储存的材料板。 ")
 
 ///Apparatus allowing Engineer/Sabo borgs to manipulate circuit boards and more
 /obj/item/borg/apparatus/engineering
-	name = "engineering apparatus"
-	desc = "A special apparatus for carrying and manipulating circuit boards, lights and power cells."
+	name = "工程装置"
+	desc = "一种特殊装置，可携带和操作电路板、灯具与电池。"
 	icon_state = "borg_hardware_apparatus"
 	storable = list(
 		/obj/item/circuitboard,
@@ -319,24 +319,24 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "Drop", null)
 /obj/item/borg/apparatus/engineering/examine()
 	. = ..()
 	if(stored)
-		. += "The apparatus currently has [stored] secured."
-	. += span_notice(" <i>Alt-click</i> will drop the currently stored item. ")
+		. += "装置目前固定着[stored]。"
+	. += span_notice(" <i>按住 Alt 点击</i>可丢下当前储存的物品。 ")
 
 /obj/item/borg/apparatus/engineering/pre_attack(atom/atom, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(istype(atom, /obj/item/ai_module/law) && !stored) //If an admin wants a borg to upload laws, who am I to stop them? Otherwise, we can hint that it fails
-		to_chat(user, span_warning("This circuit board doesn't seem to have standard robot apparatus pin holes. You're unable to pick it up."))
+		to_chat(user, span_warning("这块电路板似乎没有标准机器人装置所需的针孔。你无法把它拿起来。"))
 		return TRUE
 	return ..()
 
 // stops them from cell interactions with other borgos
 /obj/item/borg/apparatus/engineering/interact_with_atom(atom/movable/interacting_with, mob/living/user, list/modifiers)
 	if(iscyborg(user) && iscyborg(interacting_with))
-		balloon_alert(user, "your manipulator isn't dexterous enough to interact with this properly.")
+		balloon_alert(user, "你的机械臂不够灵活，无法正确地操作这个。")
 		return ITEM_INTERACT_FAILURE
 
 /obj/item/borg/apparatus/service
-	name = "service apparatus"
-	desc = "A special apparatus for carrying food, seeds, grafts, bowls, plates, oven trays, soup pots and paper."
+	name = "服务装置"
+	desc = "一种特殊装置，可携带食物、种子、嫁接枝条、碗、盘子、烤箱托盘、汤锅和纸张。"
 	icon_state = "borg_service_apparatus"
 	storable = list(
 		/obj/item/food,
@@ -370,5 +370,5 @@ GAME_VERB(/obj/item/borg/apparatus, verb_dropHeld, "Drop", null)
 /obj/item/borg/apparatus/service/examine()
 	. = ..()
 	if(stored)
-		. += "The apparatus currently has [stored] secured."
-	. += span_notice("<i>Alt-click</i> will drop the currently secured item.")
+		. += "装置目前固定着[stored]。"
+	. += span_notice("<i>按住 Alt 点击</i>可丢下当前固定的物品。")

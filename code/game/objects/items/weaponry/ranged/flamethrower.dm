@@ -1,6 +1,6 @@
 /obj/item/flamethrower
-	name = "flamethrower"
-	desc = "You are a firestarter!"
+	name = "火焰喷射器"
+	desc = "你就是个纵火犯！"
 	icon = 'icons/obj/weapons/flamethrower.dmi'
 	icon_state = "flamethrowerbase"
 	inhand_icon_state = "flamethrower_0"
@@ -85,13 +85,13 @@
 	if (!ptank)
 		return NONE
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning("You can't bring yourself to fire \the [src]! You don't want to risk harming anyone..."))
-		log_combat(user, interacting_with, "attempted to flamethrower", src, "with gas mixture: {[print_gas_mixture(ptank.return_analyzable_air())]}, flamethrower: \"[name]\" ([src]), igniter: \"[igniter.name]\", tank: \"[ptank.name]\" and tank distribution pressure: \"[siunit(1000 * ptank.distribute_pressure, unit = "Pa", maxdecimals = 9)]\"" + (lit ? " while lit" : "" + " but failed due to pacifism."))
+		to_chat(user, span_warning("你实在无法对[src]扣下扳机！你不想冒险伤到任何人……"))
+		log_combat(user, interacting_with, "试图用火焰喷射器攻击", src, "气体混合物：{[print_gas_mixture(ptank.return_analyzable_air())]}，火焰喷射器：\"[name]\" ([src])，点火器：\"[igniter.name]\"，储气罐：\"[ptank.name]\"，储气罐分配压力：\"[siunit(1000 * ptank.distribute_pressure, unit = "Pa", maxdecimals = 9)]\"" + (lit ? "，此时已点燃" : "" + "，但因和平主义而失败。"))
 		return ITEM_INTERACT_BLOCKING
 	var/turf/target_turf = get_turf(interacting_with)
 	if(target_turf)
 		var/turflist = get_line(user, target_turf)
-		log_combat(user, interacting_with, "flamethrowered", src, "with gas mixture: {[print_gas_mixture(ptank.return_analyzable_air())]}, flamethrower: \"[name]\", igniter: \"[igniter.name]\", tank: \"[ptank.name]\" and tank distribution pressure: \"[siunit(1000 * ptank.distribute_pressure, unit = "Pa", maxdecimals = 9)]\"" + (lit ? " while lit." : "."))
+		log_combat(user, interacting_with, "用火焰喷射器攻击", src, "气体混合物：{[print_gas_mixture(ptank.return_analyzable_air())]}，火焰喷射器：\"[name]\"，点火器：\"[igniter.name]\"，储气罐：\"[ptank.name]\"，储气罐分配压力：\"[siunit(1000 * ptank.distribute_pressure, unit = "Pa", maxdecimals = 9)]\"" + (lit ? "，此时已点燃。" : "。"))
 		flame_turf(turflist)
 	return ITEM_INTERACT_SUCCESS
 
@@ -117,7 +117,7 @@
 	if(igniter && !lit)
 		tool.play_tool_sound(src)
 		status = !status
-		to_chat(user, span_notice("[igniter] is now [status ? "secured" : "unsecured"]!"))
+		to_chat(user, span_notice("[igniter]现在[status ? "已固定" : "未固定"]！"))
 		update_appearance()
 		return TRUE
 
@@ -132,7 +132,7 @@
 			return ITEM_INTERACT_BLOCKING
 		igniter = inserting_igniter
 		update_appearance()
-		balloon_alert(user, "attached")
+		balloon_alert(user, "已安装")
 		return ITEM_INTERACT_SUCCESS
 	if(istype(tool, /obj/item/tank/internals/plasma))
 		if(ptank)
@@ -140,7 +140,7 @@
 				return ITEM_INTERACT_BLOCKING
 			ptank.forceMove(get_turf(src))
 			ptank = tool
-			to_chat(user, span_notice("You swap the plasma tank in [src]!"))
+			to_chat(user, span_notice("你更换了[src]中的等离子体罐！"))
 			return ITEM_INTERACT_SUCCESS
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
@@ -165,29 +165,29 @@
 
 	user.put_in_hands(ptank)
 	ptank = null
-	to_chat(user, span_notice("You remove the plasma tank from [src]!"))
+	to_chat(user, span_notice("你取出了[src]中的等离子体罐！"))
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/flamethrower/examine(mob/user)
 	. = ..()
 	if(ptank)
-		. += span_notice("\The [src] has \a [ptank] attached. Alt-click to remove it.")
+		. += span_notice("[src]上装有一个[ptank]。按住 Alt 点击可将其取下。")
 
 /obj/item/flamethrower/proc/toggle_igniter(mob/user)
 	if(!ptank)
-		to_chat(user, span_notice("Attach a plasma tank first!"))
+		to_chat(user, span_notice("请先安装等离子体罐！"))
 		return
 	if(!status)
-		to_chat(user, span_notice("Secure the igniter first!"))
+		to_chat(user, span_notice("请先固定点火器！"))
 		return
-	to_chat(user, span_notice("You [lit ? "extinguish" : "ignite"] [src]!"))
+	to_chat(user, span_notice("你[lit ? "熄灭" : "点燃"]了[src]！"))
 	lit = !lit
 	if(lit)
 		playsound(loc, acti_sound, 50, TRUE)
 		START_PROCESSING(SSobj, src)
 		if(!warned_admins)
-			message_admins("[ADMIN_LOOKUPFLW(user)] has lit a flamethrower.")
+			message_admins("[ADMIN_LOOKUPFLW(user)] 点燃了一支火焰喷射器。")
 			warned_admins = TRUE
 	else
 		playsound(loc, deac_sound, 50, TRUE)
@@ -269,7 +269,7 @@
 	create_with_tank = TRUE
 
 /obj/item/flamethrower/proc/intercepted_bullet_reaction(mob/living/holder, obj/projectile/bullet)
-	holder.visible_message(span_danger("\The [bullet] hits the fuel tank on [holder]'s [name], rupturing it! What a shot!"))
+	holder.visible_message(span_danger("[bullet]击中了[holder]的[name]上的燃料罐，将其击穿！好枪法！"))
 	var/turf/target_turf = get_turf(holder)
 	holder.log_message("held a flamethrower tank detonated by a projectile ([bullet])", LOG_GAME)
 	igniter.ignite_turf(src,target_turf, release_amount = 100)

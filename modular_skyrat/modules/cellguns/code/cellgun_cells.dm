@@ -1,6 +1,6 @@
 /obj/item/weaponcell
-	name = "default weaponcell"
-	desc = "used to add ammo types to guns"
+	name = "默认武器电池"
+	desc = "用于为枪械添加弹药类型。"
 	icon = 'modular_skyrat/modules/cellguns/icons/obj/guns/mediguns/medicells.dmi'
 	icon_state = "Oxy1"
 	w_class = WEIGHT_CLASS_SMALL
@@ -36,16 +36,16 @@
 /obj/item/weaponcell/examine(mob/user)
 	. = ..()
 	if(shot_name)
-		. += span_noticealien("Using this on a cell based gun will unlock the [shot_name] firing mode")
+		. += span_noticealien("将此物用于电池驱动的枪械，可解锁 [shot_name] 射击模式")
 
 	if(!toggle_modes) //Doesn't show a description if it can't be toggled in the first place.
 		return
 
 	if(medicell_examine)
-		. += span_notice("The safety measures on the Medicell, preventing clone damage, are [is_toggled ? "enabled" : "disabled"]")
+		. += span_notice("医疗电池上防止克隆损伤的安全措施已[is_toggled ? "启用" : "禁用"]")
 		return
 	else
-		. += span_notice("[src] is using the [is_toggled ? "primary" : "secondary"] mode.")
+		. += span_notice("[src] 正在使用[is_toggled ? "主" : "副"]模式。")
 
 	return .
 
@@ -58,10 +58,10 @@
 	playsound(loc,is_toggled ? 'sound/machines/defib/defib_SaftyOn.ogg' : 'sound/machines/defib/defib_SaftyOff.ogg', 50)
 
 	if(medicell_examine)
-		balloon_alert(user, "safety [is_toggled ? "enabled" : "disabled"]")
+		balloon_alert(user, "安全措施已[is_toggled ? "启用" : "禁用"]")
 		return
 	else if(refresh_shot_name())
-		balloon_alert(user, "set to [shot_name]")
+		balloon_alert(user, "已切换至 [shot_name]")
 
 	return
 

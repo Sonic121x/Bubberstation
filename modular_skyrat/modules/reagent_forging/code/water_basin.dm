@@ -1,6 +1,6 @@
 /obj/structure/reagent_dispensers/reagent_smithing_basin
-	name = "smithing trough"
-	desc = "A basin meant to quench heated smithing equipment and cool it."
+	name = "锻造淬火槽"
+	desc = "用于冷却灼热锻件并进行淬火的水槽。"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_structures.dmi'
 	icon_state = "water_basin"
 	anchored = TRUE
@@ -47,11 +47,11 @@
 /obj/structure/reagent_dispensers/reagent_smithing_basin/examine(mob/user)
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
-		. += span_notice("Dipping smithed items in this trough will imbue it with its chemicals!")
+		. += span_notice("将锻造物品浸入此槽，即可向其中注入槽内的化学试剂！")
 	else
-		. += span_notice("You could use this for imbuing reagents into equipment if you knew the right trick...")
-	. += span_notice("You could secure or unsecure it with a wrench.")
-	. += span_notice("You could pry it apart with a crowbar.")
+		. += span_notice("如果掌握正确技巧，就能用它向装备注入试剂……")
+	. += span_notice("你可以用扳手固定或解除固定。")
+	. += span_notice("你可以用撬棍将它拆开。")
 
 //heat from the contained reagents need to go into the atmosphere over time
 /obj/structure/reagent_dispensers/reagent_smithing_basin/process(seconds_per_tick)
@@ -75,7 +75,7 @@
 /obj/structure/reagent_dispensers/reagent_smithing_basin/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
 	set_anchored(!anchored)
-	balloon_alert_to_viewers(anchored ? "secured" : "unsecured")
+	balloon_alert_to_viewers(anchored ? "已固定" : "已解除固定")
 	return TRUE
 
 /obj/structure/reagent_dispensers/reagent_smithing_basin/crowbar_act(mob/living/user, obj/item/tool)
@@ -85,9 +85,9 @@
 	tool.play_tool_sound(src)
 
 	if (reagents.total_volume < 75)
-		to_chat(user, span_notice("You begin to pry apart \the [src]..."))
+		to_chat(user, span_notice("你开始撬开 [src]……"))
 	else
-		to_chat(user, span_warning("As you begin prying apart \the [src] you notice that it's full of fluid... maybe you should reconsider?"))
+		to_chat(user, span_warning("你开始撬开 [src] 时发现里面盛满了液体……也许该重新考虑一下？"))
 
 	if(!do_after(user, 5 SECONDS, src, interaction_key = DOAFTER_SMITHING_WATER_BASIN))
 		return FALSE
@@ -101,14 +101,14 @@
 /obj/structure/reagent_dispensers/tong_act(mob/living/user, obj/item/tool)
 	var/obj/item/tongs_contents = locate(/obj/item) in tool.contents
 	if(!tongs_contents)
-		to_chat(user, span_notice("No item to dip!"))
+		to_chat(user, span_notice("没有可以浸入的物品！"))
 		return ITEM_INTERACT_BLOCKING
 	else
 		. = attackby(tongs_contents, user)
 
 /// Fishing source for fishing out of basins that have been upgraded, contains saltwater fish (lizard fish fall under this too!)
 /datum/fish_source/water_basin
-	catalog_description = "Filled Blacksmithing Quenching Troughs"
+	catalog_description = "装满液体的铁匠淬火槽"
 	fish_table = list(
 		/obj/item/fish/clownfish = 15,
 		/obj/item/fish/pufferfish = 10,

@@ -1,13 +1,13 @@
 /mob/living/basic/bot/secbot/beepsky
-	name = "Commander Beep O'sky"
-	desc = "It's Commander Beep O'sky! Officially the superior officer of all bots on station, Beepsky remains as humble and dedicated to the law as the day he was first fabricated."
+	name = "毕普·奥斯基指挥官"
+	desc = "这是毕普·奥斯基指挥官！作为站内所有机器人的正式上级，他依旧像刚被制造出来那天一样谦逊而忠于法律。"
 	bot_mode_flags = BOT_MODE_ON | BOT_MODE_AUTOPATROL | BOT_MODE_REMOTE_ENABLED
 	commissioned = TRUE
 
 
 /mob/living/basic/bot/secbot/beepsky/officer
-	name = "Officer Beepsky"
-	desc = "It's Officer Beepsky! Powered by a potato and a shot of whiskey, and with a sturdier reinforced chassis, too."
+	name = "毕普斯基警官"
+	desc = "这是毕普斯基警官！靠一颗土豆和一杯威士忌驱动，机身还做了加固，更加结实。"
 	health = 45
 
 /mob/living/basic/bot/secbot/beepsky/officer/Initialize(mapload)
@@ -21,20 +21,20 @@
 	ai_controller?.insert_blackboard_key_lazylist(BB_BASIC_MOB_RETALIATE_LIST, user)
 
 /mob/living/basic/bot/secbot/beepsky/ofitser
-	name = "Prison Ofitser"
-	desc = "Powered by the tears and sweat of laborers."
+	name = "监狱警官"
+	desc = "以劳工的血汗为动力。"
 	bot_mode_flags = ~(BOT_MODE_CAN_BE_SAPIENT|BOT_MODE_AUTOPATROL)
 
 /mob/living/basic/bot/secbot/beepsky/armsky
-	name = "Sergeant-At-Armsky"
-	desc = "It's Sergeant-At-Armsky! He's a disgruntled assistant to the warden that would probably shoot you if he had hands."
+	name = "阿姆斯基军士长"
+	desc = "这是阿姆斯基军士长！他是典狱长手下一位满腹牢骚的助手，要是他有手的话，大概会开枪打你。"
 	health = 45
 	bot_mode_flags = ~(BOT_MODE_CAN_BE_SAPIENT|BOT_MODE_AUTOPATROL)
 	security_mode_flags = SECBOT_DECLARE_ARRESTS | SECBOT_CHECK_IDS | SECBOT_CHECK_RECORDS | SECBOT_CHECK_WEAPONS
 
 /mob/living/basic/bot/secbot/beepsky/jr
-	name = "Officer Pipsqueak"
-	desc = "It's Commander Beep O'sky's smaller, just-as aggressive cousin, Pipsqueak."
+	name = "小不点警官"
+	desc = "这是毕普·奥斯基指挥官那个个子更小、却同样凶悍的表亲——小不点。"
 	commissioned = FALSE
 
 /mob/living/basic/bot/secbot/beepsky/jr/Initialize(mapload)
@@ -42,16 +42,16 @@
 	update_transform(0.8)
 
 /mob/living/basic/bot/secbot/pingsky
-	name = "Officer Pingsky"
-	desc = "It's Officer Pingsky! Delegated to satellite guard duty for harbouring anti-human sentiment."
+	name = "平斯基警官"
+	desc = "这是平斯基警官！因为怀有反人类情绪，他被派去负责卫星站守卫任务。"
 	light_color = "#62baf5"
 	radio_channel = RADIO_CHANNEL_AI_PRIVATE
 	bot_mode_flags = ~(BOT_MODE_CAN_BE_SAPIENT|BOT_MODE_AUTOPATROL)
 	security_mode_flags = SECBOT_DECLARE_ARRESTS | SECBOT_CHECK_IDS | SECBOT_CHECK_RECORDS
 
 /mob/living/basic/bot/secbot/genesky
-	name = "Officer Genesky"
-	desc = "A beefy variant of the standard securitron model."
+	name = "基因斯基警官"
+	desc = "标准安保机器人机型中体格壮硕的一个变体。"
 	health = 50
 	faction = list(FACTION_NANOTRASEN_PRIVATE)
 	bot_mode_flags = BOT_MODE_ON

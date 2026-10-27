@@ -19,7 +19,7 @@
 /mob/living/basic/alien/drone/proc/set_drone_type(drone_type_to_set)
 	switch(drone_type_to_set)
 		if(ALIEN_DRONE)
-			name = "alien drone"
+			name = "异形雄蜂"
 			icon_state = "aliendrone"
 			icon_living = "aliendrone"
 			icon_dead = "aliendrone_dead"
@@ -28,7 +28,7 @@
 			melee_damage_lower = 15
 			melee_damage_upper = 15
 		if(ALIEN_WARRIOR)
-			name = "alien warrior"
+			name = "异形战士"
 			icon_state = "alienwarrior"
 			icon_living = "alienwarrior"
 			icon_dead = "alienwarrior_dead"
@@ -36,7 +36,7 @@
 			maxHealth = 175
 			mob_size = MOB_SIZE_LARGE
 		if(ALIEN_RUNNER)
-			name = "alien runner"
+			name = "异形奔袭者"
 			icon_state = "alienrunner"
 			icon_living = "alienrunner"
 			icon_dead = "alienrunner_dead"
@@ -45,7 +45,7 @@
 			melee_damage_lower = 10
 			melee_damage_upper = 15
 		if(ALIEN_DEFENDER)
-			name = "alien defender"
+			name = "异形防御者"
 			icon_state = "aliendefender"
 			icon_living = "aliendefender"
 			icon_dead = "aliendefender_dead"
@@ -55,7 +55,7 @@
 			melee_damage_upper = 15
 			mob_size = MOB_SIZE_LARGE
 		if(ALIEN_RAVAGER)
-			name = "alien ravager"
+			name = "异形蹂躏者"
 			icon_state = "alienravager"
 			icon_living = "alienravager"
 			icon_dead = "alienravager_dead"

@@ -7,7 +7,7 @@ import {
   Table,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
-
+import { chineseDisplay, chineseDropdownOptions } from 'tgui/localization/zhDisplay';
 import { useBackend } from '../../backend';
 import { useModifyState } from './hooks';
 import { type Book, type LibraryAdminData, ModifyTypes } from './types';
@@ -69,8 +69,8 @@ export function SearchAndDisplay(props) {
             </Stack.Item>
             <Stack.Item>
               <Dropdown
-                options={search_categories}
-                selected={category}
+                options={chineseDropdownOptions(search_categories)}
+                selected={category} displayText={chineseDisplay(category)}
                 onSelected={(value) =>
                   act('set_search_category', {
                     category: value,
@@ -182,7 +182,7 @@ export function SearchAndDisplay(props) {
                 {book.id}
               </Button>
             </Table.Cell>
-            <Table.Cell>{book.category}</Table.Cell>
+            <Table.Cell>{chineseDisplay(book.category)}</Table.Cell>
             <Table.Cell>{book.title}</Table.Cell>
             <Table.Cell>{book.author}</Table.Cell>
             <Table.Cell>{book.author_ckey}</Table.Cell>

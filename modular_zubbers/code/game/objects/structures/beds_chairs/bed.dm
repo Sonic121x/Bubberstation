@@ -1,5 +1,5 @@
 /obj/structure/bed/wood
-	name = "wood bed"
+	name = "木床"
 	icon = 'modular_zubbers/icons/obj/bed.dmi'
 	icon_state = "bed_wooden"
 	build_stack_type = /obj/item/stack/sheet/mineral/wood

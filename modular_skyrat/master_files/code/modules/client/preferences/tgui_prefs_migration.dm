@@ -94,7 +94,7 @@ MUTANT_SYNTH_CHASSIS, \
 						write_preference(preference, colors)
 						continue
 
-	to_chat(parent, custom_boxed_message("green_box", span_greentext("Preference migration successful! You may safely interact with the preferences menu.")))
+	to_chat(parent, custom_boxed_message("green_box", span_greentext("偏好设置迁移成功！你现在可以安全地操作偏好设置菜单了。")))
 	tgui_prefs_migration = TRUE
 	skyrat_data["tgui_prefs_migration"] = tgui_prefs_migration
 

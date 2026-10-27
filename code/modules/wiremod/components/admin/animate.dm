@@ -2,9 +2,9 @@
 #define COMP_ANIMATE_FILTER "Filter"
 
 /obj/item/circuit_component/begin_animation
-	display_name = "Begin Animation"
-	desc = "Begins an animation on the target. Create animation steps by chaining \"Animation Step\" components off of the \"Perform Animation\" port."
-	category = "Admin"
+	display_name = "开始动画"
+	desc = "在目标上开始一段动画。将“动画步骤”元件串联到“执行动画”端口上，即可创建动画步骤。"
+	category = "管理员"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_INSTANT|CIRCUIT_FLAG_ADMIN
 
 	/// Whether we are animating an atom or a filter on the atom
@@ -83,7 +83,7 @@
 	if(parallel.value)
 		extra_flags |= ANIMATION_PARALLEL
 
-	log_admin_circuit("[parent.get_creator()] performed an animation on [target_atom].")
+	log_admin_circuit("[parent.get_creator()] 对 [target_atom] 执行了一段动画。")
 	var/list/first_step = popleft(result["animation_steps"])
 	animate(target_for_animation, time = first_step["time"], first_step["vars"], loop = animation_loops.value, easing = first_step["easing"], flags = first_step["flags"]|extra_flags)
 	for(var/list/step as anything in result["animation_steps"])
@@ -95,9 +95,9 @@
 					filter_params[param] = step["vars"][param]
 
 /obj/item/circuit_component/animation_step
-	display_name = "Animation Step"
-	desc = "Perform a single animation step. The input of this component should be connected, directly or indirectly, to the \"Perform Animation\" port of a \"Begin Animation\" component."
-	category = "Admin"
+	display_name = "动画步骤"
+	desc = "执行一个动画步骤。此元件的输入端应直接或间接连接到“开始动画”元件的“执行动画”端口。"
+	category = "管理员"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 

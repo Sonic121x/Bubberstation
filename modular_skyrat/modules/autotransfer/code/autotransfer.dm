@@ -1,7 +1,7 @@
 #define NO_MAXVOTES_CAP -1
 
 SUBSYSTEM_DEF(autotransfer)
-	name = "Autotransfer Vote"
+	name = "自动船员转移投票"
 	ss_flags = SS_KEEP_TIMING | SS_BACKGROUND
 	wait = 1 MINUTES
 
@@ -34,7 +34,7 @@ SUBSYSTEM_DEF(autotransfer)
 	if(!isnull(SSvote.current_vote))
 		return
 	if(maxvotes == NO_MAXVOTES_CAP || maxvotes > curvotes)
-		SSvote.initiate_vote(/datum/vote/transfer_vote, "automatic transfer", forced = TRUE)
+		SSvote.initiate_vote(/datum/vote/transfer_vote, "系统自动", forced = TRUE)
 		targettime = targettime + voteinterval
 		curvotes++
 	else
@@ -50,7 +50,7 @@ SUBSYSTEM_DEF(autotransfer)
 	var/init_vote = CONFIG_GET(number/vote_autotransfer_initial) // Check if an admin has manually set an override in the pre-game lobby
 	starttime = real_round_start_time
 	targettime = starttime + init_vote
-	log_game("Autotransfer enabled, first vote in [DisplayTimeText(targettime - starttime)]")
-	message_admins("Autotransfer enabled, first vote in [DisplayTimeText(targettime - starttime)]")
+	log_game("自动船员转移已启用，首次投票将在 [DisplayTimeText(targettime - starttime)] 后进行")
+	message_admins("自动船员转移已启用，首次投票将在 [DisplayTimeText(targettime - starttime)] 后进行")
 
 #undef NO_MAXVOTES_CAP

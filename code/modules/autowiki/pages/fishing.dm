@@ -33,16 +33,16 @@
 		if(fish::fillet_type != /obj/item/food/fishmeat)
 			var/obj/item/fillet = fish::fillet_type
 			if(!fillet)
-				extra_info += "Cannot be butchered."
+				extra_info += "无法被屠宰。"
 			else
-				extra_info += "When butchered, it'll yield [initial(fillet.name)]."
+				extra_info += "屠宰后会产出 [initial(fillet.name)]。"
 		var/datum/reagent/food = fish::food
 		if(food != def_food)
-			extra_info += "It has to be fed <b>[initial(food.name)]</b> instead of [def_food_name]"
+			extra_info += "它必须以 <b>[initial(food.name)]</b> 为食，而非 [def_food_name]"
 		if(fish::feeding_frequency != def_feeding)
-			extra_info += "It has to be fed every <b>[DisplayTimeText(fish::feeding_frequency)]</b> instead of [def_feeding_text]"
+			extra_info += "它必须每 <b>[DisplayTimeText(fish::feeding_frequency)]</b> 喂食一次，而非 [def_feeding_text]"
 		if(fish::breeding_timeout != def_breeding)
-			extra_info += "It takes <b>[DisplayTimeText(fish::breeding_timeout)]</b> to reproduce instead of [def_breeding_text]"
+			extra_info += "繁殖需要 <b>[DisplayTimeText(fish::breeding_timeout)]</b>，而非 [def_breeding_text]"
 		if(length(extra_info))
 			description += "<br>[extra_info.Join("<br>")]"
 
@@ -52,7 +52,7 @@
 			"description" = description,
 			"size_weight" = "[fish::average_size] cm / [fish::average_weight] kiloclam",
 			"fluid" = escape_value(fish::required_fluid_type),
-			"temperature" = "Doesn't matter",
+			"temperature" = "无关紧要",
 			"stable_population" = fish::stable_population,
 			"traits" = generate_traits(properties[FISH_PROPERTIES_TRAITS]),
 			"favorite_baits" = generate_baits(properties[FISH_PROPERTIES_FAV_BAIT]),
@@ -71,7 +71,7 @@
 /datum/autowiki/fish/proc/generate_baits(list/baits, bad = FALSE)
 	var/list/list = list()
 	if(!length(baits))
-		return list("None")
+		return list("无")
 
 	for (var/identifier in baits)
 		if(ispath(identifier)) //Just a path
@@ -84,7 +84,7 @@
 				list += english_list(bitfield_to_list(special_identifier["Value"], FOOD_FLAGS_IC))
 			if("Reagent")
 				var/datum/reagent/reagent = special_identifier["Value"]
-				list += "[reagent::name][bad ? "" : "(At least [special_identifier["Amount"]] units)"]"
+				list += "[reagent::name][bad ? "" : "（至少 [special_identifier["Amount"]] 单位）"]"
 
 	return list
 
@@ -113,7 +113,7 @@
 			var/incompatible = list()
 			for(var/datum/fish_trait/bad as anything in trait.incompatible_traits)
 				incompatible += span_bold(initial(bad.name))
-			desc += "<br>Incompatible with [english_list(incompatible)]."
+			desc += "<br>与 [english_list(incompatible)] 不兼容。"
 		output += include_template("Autowiki/FishAllTraits", list(
 			"name" = escape_value(trait.name),
 			"description" = escape_value(trait.catalog_description),
@@ -136,21 +136,21 @@
 
 		var/filename = SANITIZE_FILENAME("[bait::icon_state]_wiki_bait")
 
-		var/quality = "Bland"
+		var/quality = "平淡"
 
 		var/list/foodtypes
 		if(ispath(bait, /obj/item/food/bait/doughball/synthetic))
-			foodtypes = list("Don't worry about it")
+			foodtypes = list("不必在意")
 		else
-			foodtypes = bitfield_to_list(bait::foodtypes, FOOD_FLAGS_IC) || list("None")
+			foodtypes = bitfield_to_list(bait::foodtypes, FOOD_FLAGS_IC) || list("无")
 
 		switch(bait::bait_quality)
 			if(TRAIT_BASIC_QUALITY_BAIT)
-				quality = "Basic"
+				quality = "基础"
 			if(TRAIT_GOOD_QUALITY_BAIT)
-				quality = "Good"
+				quality = "优良"
 			if(TRAIT_GREAT_QUALITY_BAIT)
-				quality = "Great"
+				quality = "极佳"
 
 		output += "\n\n" + include_template("Autowiki/FishBait", list(
 			"name" = full_capitalize(escape_value(bait::name)),
@@ -167,32 +167,32 @@
 	var/filename = SANITIZE_FILENAME(/obj/item/stock_parts/power_store/cell/lead::icon_state)
 
 	var/lead_desc = /obj/item/stock_parts/power_store/cell/lead::desc
-	lead_desc += " You probably shouldn't use it unless you're trying to catch a zipzap."
+	lead_desc += " 除非你想钓到电击鱼，否则大概不该用它。"
 	output += "\n\n" + include_template("Autowiki/FishBait", list(
 		"name" = full_capitalize(escape_value(/obj/item/stock_parts/power_store/cell/lead::name)),
 		"icon" = filename,
 		"description" = lead_desc,
-		"foodtypes" = "None",
-		"quality" = "Poisonous",
+		"foodtypes" = "无",
+		"quality" = "有毒",
 	))
 
 	upload_icon(icon(/obj/item/stock_parts/power_store/cell/lead::icon, /obj/item/stock_parts/power_store/cell/lead::icon_state), filename)
 
 	var/obj/needletype = /obj/item/fish/needlefish
 	output += "\n\n" + include_template("Autowiki/FishBait", list(
-		"name" = "Baitfish",
+		"name" = "饵鱼",
 		"icon" = FISH_AUTOWIKI_FILENAME(needletype),
-		"description" = "Smaller fish such as goldfish, needlefish, armorfish and lavaloops can also be used as bait, It's a fish eat fish world.",
-		"foodtypes" = "Seafood?",
-		"quality" = "Good",
+		"description" = "金鱼、针鱼、甲鱼和熔岩环鱼等较小的鱼也可以用作鱼饵。这是个鱼吃鱼的世界。",
+		"foodtypes" = "海鲜？",
+		"quality" = "优良",
 	))
 
 	output += "\n\n" + include_template("Autowiki/FishBait", list(
-		"name" = "Food",
+		"name" = "食物",
 		"icon" = "plain_bread",
-		"description" = "In absence of baits, food can be used as a substitute.",
-		"foodtypes" = "Depends",
-		"quality" = "Bland most of the times",
+		"description" = "在没有鱼饵的情况下，可以用食物作为替代。",
+		"foodtypes" = "视情况而定",
+		"quality" = "多数情况下平淡",
 	))
 
 	upload_icon(icon(/obj/item/food/bread/plain::icon, /obj/item/food/bread/plain::icon_state), "plain_bread")
@@ -354,7 +354,7 @@
 		var/name = initial(type.name)
 		//snowflake case because the default holographic fish is called goldfish but we don't want to confuse readers.
 		if(type == /obj/item/fish/holo)
-			name = "holographic Fish"
+			name = "全息鱼"
 		output += include_template("Autowiki/FishScanRequirements", list(
 			"name" = full_capitalize(escape_value(name)),
 			"amount" = scan.required_atoms[type],
@@ -370,10 +370,10 @@
 	for(var/datum/experiment/unlock as anything in scan.next_experiments)
 		unlocks += initial(unlock.name)
 	output += include_template("Autowiki/FishScanRewards", list(
-		"name" = full_capitalize(escape_value("[reward.radial_name] Dimension")),
+		"name" = full_capitalize(escape_value("[reward.radial_name] 维度")),
 		"icon" = filename,
 		"points" = scan.get_points_reward_text(),
-		"unlock" = english_list(unlocks, nothing_text = "Nothing"),
+		"unlock" = english_list(unlocks, nothing_text = "无"),
 	))
 
 	if(!generated_icons[filename])

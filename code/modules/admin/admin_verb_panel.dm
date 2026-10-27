@@ -1,4 +1,4 @@
-ADMIN_VERB(admin_verb_panel, R_NONE, "Admin Verb Panel", "Browse and invoke admin verbs.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(admin_verb_panel, R_NONE, "管理指令面板", "浏览并调用管理指令。", ADMIN_CATEGORY_EVENTS)
 	if(user.admin_verb_panel)
 		var/datum/tgui/existing = SStgui.get_open_ui(user.mob, user.admin_verb_panel)
 		if(existing)
@@ -43,7 +43,7 @@ ADMIN_VERB(admin_verb_panel, R_NONE, "Admin Verb Panel", "Browse and invoke admi
 			"type" = "[verb_type]",
 			"name" = verb.name,
 			"description" = verb.description,
-			"category" = verb.category || "Unsorted",
+			"category" = verb.category || "未分类",
 			"arguments" = list(),
 		)
 
@@ -59,7 +59,7 @@ ADMIN_VERB(admin_verb_panel, R_NONE, "Admin Verb Panel", "Browse and invoke admi
 			verb_entry["arguments"] += list(arg_entry)
 
 		verbs_data += list(verb_entry)
-		categories |= list(verb.category || "Unsorted")
+		categories |= list(verb.category || "未分类")
 
 	data["verbs"] = verbs_data
 	data["categories"] = categories

@@ -4,9 +4,9 @@
  * Does a toggle between true and false on trigger
  */
 /obj/item/circuit_component/compare/toggle
-	display_name = "Toggle"
-	desc = "A component that toggles between on and off when triggered. All input ports (except for set toggle) will trigger the component."
-	category = "Math"
+	display_name = "切换"
+	desc = "被触发时在开与关之间切换的元件。除“Set Toggle State”外的所有输入端口都会触发该元件。"
+	category = "数学"
 
 	/// A signal to reset the toggle back to 0
 	var/datum/port/input/toggle_set

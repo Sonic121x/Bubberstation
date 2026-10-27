@@ -1,7 +1,7 @@
 // Base yellow carwo case
 
 /obj/item/storage/toolbox/guncase/skyrat/carwo_large_case
-	desc = "A thick yellow gun case with foam inserts laid out to fit a weapon, magazines, and gear securely."
+	desc = "一个厚实的黄色枪箱，内部泡沫衬垫可稳妥收纳武器、弹匣和装备。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/gunsets.dmi'
 	icon_state = "case_carwo"
@@ -22,7 +22,7 @@
 // Sindano in a box, how innovative!
 
 /obj/item/storage/toolbox/guncase/skyrat/carwo_large_case/sindano
-	name = "\improper Carwo 'Sindano' gunset"
+	name = "\improper 卡沃“针刺”枪械套装"
 
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/sol_smg/no_mag
 	extra_to_spawn = /obj/item/ammo_box/magazine/c35sol_pistol/stendo
@@ -43,14 +43,14 @@
 // Boxed grenade launcher, grenades sold seperately on this one
 
 /obj/item/storage/toolbox/guncase/skyrat/carwo_large_case/kiboko_magless
-	name = "\improper Carwo 'Kiboko' gunset"
+	name = "\improper 卡沃“河马”枪械套装"
 
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/sol_grenade_launcher/no_mag
 	extra_to_spawn = /obj/item/ammo_box/magazine/c980_grenade/starts_empty
 
 
 /obj/structure/closet/secure_closet/armory_kiboko
-	name = "heavy equipment locker"
+	name = "重型装备柜"
 	req_access = list(ACCESS_ARMORY)
 	icon_state = "shotguncase"
 
@@ -65,7 +65,7 @@
 	), src)
 
 /obj/structure/closet/secure_closet/armory_kiboko_but_evil
-	name = "heavy equipment locker"
+	name = "重型装备柜"
 	icon = 'modular_skyrat/master_files/icons/obj/closet.dmi'
 	icon_door = "riot"
 	icon_state = "riot"

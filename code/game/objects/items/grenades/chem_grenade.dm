@@ -1,6 +1,6 @@
 /obj/item/grenade/chem_grenade
-	name = "chemical grenade"
-	desc = "A custom made grenade."
+	name = "化学手榴弹"
+	desc = "一枚自制手榴弹。"
 	icon_state = "chemg"
 	base_icon_state = "chemg"
 	inhand_icon_state = "flashbang"
@@ -24,7 +24,7 @@
 	/// How much to scale the reagents by when the grenade detonates. Used by advanced grenades to make them slightly more worthy.
 	var/threatscale = 1
 	/// The description when examining empty casings.
-	var/casedesc = "This basic model accepts both beakers and bottles. It heats contents by 10 K upon ignition."
+	var/casedesc = "基础型号，可装入烧杯和瓶子。点火时会使内容物升温10 K。"
 	/// Whether or not the grenade is currently acting as a landmine.
 	var/obj/item/assembly/prox_sensor/landminemode = null
 
@@ -53,31 +53,31 @@
 		if (stage == GRENADE_READY || !(length(beakers)))
 			return
 		if (length(beakers) == 2 && beakers[1].name == beakers[2].name)
-			. += span_notice("You see two [beakers[1].name]s inside the grenade.")
+			. += span_notice("你看到手榴弹里装着两个[beakers[1].name]。")
 			return
 
 		for (var/obj/item/beaker as anything in beakers)
-			. += span_notice("You see a [beaker.name] inside the grenade.")
+			. += span_notice("你看到手榴弹里装着一个[beaker.name]。")
 
 	if (!length(beakers))
-		. += span_notice("You scan the grenade, but detect nothing.")
+		. += span_notice("你扫描了手榴弹，但没有检测到任何物质。")
 		return
 
-	. += span_notice("You scan the grenade and detect the following reagents:")
+	. += span_notice("你扫描手榴弹，检测到以下试剂：")
 
 	for (var/obj/item/beaker as anything in beakers)
 		for (var/datum/reagent/reagent in beaker.reagents.reagent_list)
-			. += span_notice("[reagent.volume] units of [reagent.name] in \the [beaker].")
+			. += span_notice("[beaker]中有[reagent.volume]单位的[reagent.name]。")
 
 	if (length(beakers) == 1)
-		. += span_notice("You detect no second beaker in the grenade.")
+		. += span_notice("你没有在手榴弹里检测到第二个烧杯。")
 
 /obj/item/grenade/chem_grenade/update_name(updates)
 	switch (stage)
 		if (GRENADE_EMPTY)
-			name = "[initial(name)] casing"
+			name = "[initial(name)]外壳"
 		if (GRENADE_WIRED)
-			name = "unsecured [initial(name)]"
+			name = "未固定的[initial(name)]"
 		if (GRENADE_READY)
 			name = initial(name)
 	return ..()
@@ -85,9 +85,9 @@
 /obj/item/grenade/chem_grenade/update_desc(updates)
 	switch (stage)
 		if (GRENADE_EMPTY)
-			desc = "A do it yourself [initial(name)]! [initial(casedesc)]"
+			desc = "自己动手制作[initial(name)]！[initial(casedesc)]"
 		if (GRENADE_WIRED)
-			desc = "An unsecured [initial(name)] assembly."
+			desc = "尚未固定的[initial(name)]组装件。"
 		if (GRENADE_READY)
 			desc = initial(desc)
 	return ..()
@@ -117,33 +117,33 @@
 
 /obj/item/grenade/chem_grenade/screwdriver_act(mob/living/user, obj/item/tool)
 	if (dud_flags & GRENADE_USED)
-		balloon_alert(user, "resetting trigger...")
+		balloon_alert(user, "正在重置触发器……")
 		if (!do_after(user, 2 SECONDS, src))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, "trigger reset")
+		balloon_alert(user, "触发器已重置")
 		dud_flags &= ~GRENADE_USED
 		return ITEM_INTERACT_SUCCESS
 
 	if (stage == GRENADE_WIRED)
 		if (length(beakers))
 			stage_change(GRENADE_READY)
-			to_chat(user, span_notice("You lock the [initial(name)] assembly."))
+			to_chat(user, span_notice("你固定好了[initial(name)]组装件。"))
 			tool.play_tool_sound(src, 25)
 			return ITEM_INTERACT_SUCCESS
 
 		if (!landminemode || !(landminemode.scanning || landminemode.timing))
-			to_chat(user, span_warning("You need to add at least one beaker before locking the [initial(name)] assembly!"))
+			to_chat(user, span_warning("固定[initial(name)]组装件前，必须至少放入一个烧杯！"))
 			return ITEM_INTERACT_BLOCKING
 
 		landminemode.timing = FALSE
 		landminemode.toggle_scan(FALSE)
-		to_chat(user, span_notice("You disarm \the [landminemode]."))
+		to_chat(user, span_notice("你解除了[landminemode]的触发状态。"))
 		tool.play_tool_sound(src, 25)
 		return ITEM_INTERACT_SUCCESS
 
 	if (stage != GRENADE_READY)
-		to_chat(user, span_warning("You need to add a wire!"))
+		to_chat(user, span_warning("你需要接上线缆！"))
 		return ITEM_INTERACT_BLOCKING
 
 	det_time = det_time == 5 SECONDS ? 3 SECONDS : 5 SECONDS
@@ -151,7 +151,7 @@
 		landminemode.time = det_time * 0.1 //overwrites the proxy sensor activation timer
 
 	tool.play_tool_sound(src, 25)
-	to_chat(user, span_notice("You modify the time delay. It's set for [DisplayTimeText(det_time)]."))
+	to_chat(user, span_notice("你调整了引爆延迟，现在设为[DisplayTimeText(det_time)]。"))
 	return TRUE
 
 /obj/item/grenade/chem_grenade/wirecutter_act(mob/living/user, obj/item/tool)
@@ -160,7 +160,7 @@
 
 	tool.play_tool_sound(src)
 	stage_change(GRENADE_WIRED)
-	to_chat(user, span_notice("You unlock the [initial(name)] assembly."))
+	to_chat(user, span_notice("你松开了[initial(name)]组装件。"))
 	return TRUE
 
 /obj/item/grenade/chem_grenade/wrench_act(mob/living/user, obj/item/tool)
@@ -172,16 +172,16 @@
 		wires.detach_assembly(wires.get_wire(1))
 		new /obj/item/stack/cable_coil(get_turf(src), 1)
 		stage_change(GRENADE_EMPTY)
-		to_chat(user, span_notice("You remove the activation mechanism from the [initial(name)] assembly."))
+		to_chat(user, span_notice("你拆下了[initial(name)]组装件的触发机构。"))
 		return ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_notice("You open the [initial(name)] assembly and remove the payload."))
+	to_chat(user, span_notice("你打开[initial(name)]组装件，取出了装药。"))
 	for(var/obj/item/beaker as anything in beakers)
 		beaker.forceMove(drop_location())
 		if(!beaker.reagents)
 			continue
 		var/reagent_list = pretty_string_from_reagent_list(beaker.reagents.reagent_list)
-		user.log_message("removed [beaker] ([reagent_list]) from [src]", LOG_GAME)
+		user.log_message("从[src]中取出了[beaker]（[reagent_list]）", LOG_GAME)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/grenade/chem_grenade/item_interaction(mob/living/user, obj/item/item, list/modifiers)
@@ -192,12 +192,12 @@
 	if (stage == GRENADE_EMPTY && istype(item, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = item
 		if (!coil.use(1))
-			to_chat(user, span_warning("You need one length of coil to wire the assembly!"))
+			to_chat(user, span_warning("为组装件接线需要一段线缆！"))
 			return ITEM_INTERACT_BLOCKING
 
 		det_time = 5 SECONDS // In case the cable_coil was removed and readded.
 		stage_change(GRENADE_WIRED)
-		to_chat(user, span_notice("You rig the [initial(name)] assembly."))
+		to_chat(user, span_notice("你为[initial(name)]组装件接好了线。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if (stage != GRENADE_WIRED)
@@ -207,20 +207,20 @@
 		return NONE
 
 	if(is_type_in_list(item, banned_containers))
-		to_chat(user, span_warning("[src] is too small to fit [item]!")) // this one hits home huh anon?
+		to_chat(user, span_warning("[src]太小，装不下[item]！")) // this one hits home huh anon?
 		return ITEM_INTERACT_BLOCKING
 
 	if (length(beakers) == 2)
-		to_chat(user, span_warning("[src] can not hold more containers!"))
+		to_chat(user, span_warning("[src]装不下更多容器了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(item, src))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You add [item] to the [initial(name)] assembly."))
+	to_chat(user, span_notice("你将[item]放入了[initial(name)]组装件。"))
 	beakers += item
 	var/reagent_list = pretty_string_from_reagent_list(item.reagents.reagent_list)
-	user.log_message("inserted [item] ([reagent_list]) into [src]", LOG_GAME)
+	user.log_message("将[item]（[reagent_list]）装入了[src]", LOG_GAME)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/grenade/chem_grenade/Exited(atom/movable/gone, direction)
@@ -243,9 +243,9 @@
 			reagent_string += " ([exploded_beaker.name] [beaker_number++] : " + pretty_string_from_reagent_list(exploded_beaker.reagents.reagent_list) + ");"
 
 	if(landminemode)
-		log_bomber(user, "activated a proxy", src, "containing:[reagent_string]", message_admins = !dud_flags)
+		log_bomber(user, "启动了接近感应式", src, "，内含：[reagent_string]", message_admins = !dud_flags)
 	else
-		log_bomber(user, "primed a", src, "containing:[reagent_string]", message_admins = !dud_flags)
+		log_bomber(user, "启动了", src, "，内含：[reagent_string]", message_admins = !dud_flags)
 
 /obj/item/grenade/chem_grenade/arm_grenade(mob/user, delayoverride, msg = TRUE, volume = 60)
 	log_grenade(user) //Inbuilt admin procs already handle null users
@@ -253,9 +253,9 @@
 		add_fingerprint(user)
 		if (msg)
 			if (landminemode)
-				to_chat(user, span_warning("You prime [src], activating its proximity sensor."))
+				to_chat(user, span_warning("你启动了[src]，激活了它的接近传感器。"))
 			else
-				to_chat(user, span_warning("You prime [src]! [DisplayTimeText(det_time)]!"))
+				to_chat(user, span_warning("你启动了[src]！[DisplayTimeText(det_time)]后引爆！"))
 
 	active = TRUE
 	update_icon_state()
@@ -281,16 +281,16 @@
 	var/turf/detonation_turf = get_turf(src)
 	if (chem_splash(detonation_turf, reagents, affected_area, reactants, ignition_temp, threatscale))
 		// logs from custom assemblies priming are handled by the wire component
-		log_game("A grenade detonated at [AREACOORD(detonation_turf)]")
+		log_game("一枚手榴弹在[AREACOORD(detonation_turf)]引爆。")
 
 	active = FALSE
 	update_appearance()
 
 //Large chem grenades accept slime cores and use the appropriately.
 /obj/item/grenade/chem_grenade/large
-	name = "large grenade"
-	desc = "A custom made large grenade. Larger splash range and increased ignition temperature compared to basic grenades. Fits exotic and bluespace based containers."
-	casedesc = "This casing affects a larger area than the basic model and can fit exotic containers, including slime cores and bluespace beakers. Heats contents by 25 K upon ignition."
+	name = "大型手榴弹"
+	desc = "自制的大型手榴弹。与基础型号相比，泼溅范围更大，点火温度更高。可装入特殊容器和蓝空间容器。"
+	casedesc = "比基础型号的作用范围更大，可装入特殊容器，包括史莱姆核心和蓝空间烧杯。点火时会使内容物升温25 K。"
 	icon_state = "large_grenade"
 	base_icon_state = "large_grenade"
 	allowed_containers = list(/obj/item/reagent_containers/cup, /obj/item/reagent_containers/condiment, /obj/item/reagent_containers/cup/glass, /obj/item/slime_extract)
@@ -351,9 +351,9 @@
 	return ..()
 
 /obj/item/grenade/chem_grenade/cryo // Intended for rare cryogenic mixes. Cools the area moderately upon detonation.
-	name = "cryo grenade"
-	desc = "A custom made cryogenic grenade. Rapidly cools contents upon ignition."
-	casedesc = "Upon ignition, it rapidly cools contents by 100 K. Smaller splash range than regular casings."
+	name = "低温手榴弹"
+	desc = "自制的低温手榴弹，点火时会迅速冷却内容物。"
+	casedesc = "点火时会使内容物迅速降温100 K。泼溅范围小于普通外壳。"
 	icon_state = "cryog"
 	base_icon_state = "cryog"
 	affected_area = 2
@@ -361,18 +361,18 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/grenade/chem_grenade/pyro // Intended for pyrotechnical mixes. Produces a small fire upon detonation, igniting potentially flammable mixtures.
-	name = "pyro grenade"
-	desc = "A custom made pyrotechnical grenade. Heats up contents upon ignition."
-	casedesc = "Upon ignition, it rapidly heats contents by 500 K."
+	name = "高温手榴弹"
+	desc = "自制的高温手榴弹，点火时会加热内容物。"
+	casedesc = "点火时会使内容物迅速升温500 K。"
 	icon_state = "pyrog"
 	base_icon_state = "pyrog"
 	ignition_temp = 500 // This is enough to expose a hotspot.
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT, /datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/grenade/chem_grenade/adv_release // Intended for weaker, but longer lasting effects. Could have some interesting uses.
-	name = "advanced release grenade"
-	desc = "A custom made advanced release grenade. It is able to be detonated more than once. Can be configured using a multitool."
-	casedesc = "This casing is able to detonate more than once. Can be configured using a multitool."
+	name = "高级分次释放手榴弹"
+	desc = "自制的高级分次释放手榴弹，可多次引爆。可使用多功能工具配置。"
+	casedesc = "这种外壳可多次引爆，可使用多功能工具配置。"
 	icon_state = "timeg"
 	base_icon_state = "timeg"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT)
@@ -382,12 +382,12 @@
 	if (active)
 		return ITEM_INTERACT_BLOCKING
 
-	var/newspread = tgui_input_number(user, "Please enter a new spread amount", "Grenade Spread", 5, 100, 5)
+	var/newspread = tgui_input_number(user, "请输入每次释放的量", "手榴弹释放量", 5, 100, 5)
 	if(!newspread || QDELETED(user) || QDELETED(src) || !usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return ITEM_INTERACT_BLOCKING
 
 	unit_spread = newspread
-	to_chat(user, span_notice("You set the time release to [unit_spread] units per detonation."))
+	to_chat(user, span_notice("你将分次释放量设为了每次引爆[unit_spread]单位。"))
 	return ..()
 
 /obj/item/grenade/chem_grenade/adv_release/detonate(mob/living/lanced_by)
@@ -419,13 +419,13 @@
 	var/turf/detonated_turf = get_turf(src)
 	chem_splash(detonated_turf, reagents, affected_area, list(reactants), ignition_temp, threatscale)
 	addtimer(CALLBACK(src, PROC_REF(detonate)), det_time)
-	log_game("A grenade detonated at [AREACOORD(detonated_turf)]")
+	log_game("一枚手榴弹在[AREACOORD(detonated_turf)]引爆。")
 
 // Premade grenades
 
 /obj/item/grenade/chem_grenade/metalfoam
-	name = "metal foam grenade"
-	desc = "Used for emergency sealing of hull breaches."
+	name = "金属泡沫手榴弹"
+	desc = "用于紧急封堵船体破口。"
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/metalfoam/Initialize(mapload)
@@ -442,8 +442,8 @@
 
 
 /obj/item/grenade/chem_grenade/smart_metal_foam
-	name = "smart metal foam grenade"
-	desc = "Used for emergency sealing of hull breaches, while keeping areas accessible."
+	name = "智能金属泡沫手榴弹"
+	desc = "用于紧急封堵船体破口，同时保留区域的通行能力。"
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/smart_metal_foam/Initialize(mapload)
@@ -460,8 +460,8 @@
 
 
 /obj/item/grenade/chem_grenade/incendiary
-	name = "incendiary grenade"
-	desc = "Used for clearing rooms of living things."
+	name = "燃烧手榴弹"
+	desc = "用于清除房间内的活物。"
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/incendiary/Initialize(mapload)
@@ -478,8 +478,8 @@
 
 
 /obj/item/grenade/chem_grenade/antiweed
-	name = "weedkiller grenade"
-	desc = "Used for purging large areas of invasive plant species. Contents under pressure. Do not directly inhale contents."
+	name = "除草手榴弹"
+	desc = "用于大范围清除入侵植物。内容物处于加压状态，请勿直接吸入。"
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/antiweed/Initialize(mapload)
@@ -497,8 +497,8 @@
 
 
 /obj/item/grenade/chem_grenade/cleaner
-	name = "cleaner grenade"
-	desc = "BLAM!-brand foaming space cleaner. In a special applicator for rapid cleaning of wide areas."
+	name = "清洁手榴弹"
+	desc = "砰洁牌泡沫太空清洁剂，配有特殊施用装置，可迅速清洁大片区域。"
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/cleaner/Initialize(mapload)
@@ -516,8 +516,8 @@
 
 
 /obj/item/grenade/chem_grenade/ez_clean
-	name = "cleaner grenade"
-	desc = "Waffle Corp. brand foaming space cleaner. In a special applicator for rapid cleaning of wide areas."
+	name = "清洁手榴弹"
+	desc = "华夫公司出品的泡沫太空清洁剂，配有特殊施用装置，可迅速清洁大片区域。"
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/ez_clean/Initialize(mapload)
@@ -535,8 +535,8 @@
 
 
 /obj/item/grenade/chem_grenade/teargas
-	name = "teargas grenade"
-	desc = "Used for nonlethal riot control. Contents under pressure. Do not directly inhale contents."
+	name = "催泪手榴弹"
+	desc = "用于非致命防暴。内容物处于加压状态，请勿直接吸入。"
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/teargas/Initialize(mapload)
@@ -558,8 +558,8 @@
 		return INITIALIZE_HINT_QDEL
 
 /obj/item/grenade/chem_grenade/facid
-	name = "acid grenade"
-	desc = "Used for melting armoured opponents."
+	name = "强酸手榴弹"
+	desc = "用于溶解身披护甲的敌人。"
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/facid/Initialize(mapload)
@@ -578,8 +578,8 @@
 
 
 /obj/item/grenade/chem_grenade/colorful
-	name = "colorful grenade"
-	desc = "Used for wide scale painting projects."
+	name = "彩色手榴弹"
+	desc = "用于大规模涂装工程。"
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/colorful/Initialize(mapload)
@@ -596,8 +596,8 @@
 	beakers += beaker_two
 
 /obj/item/grenade/chem_grenade/glitter
-	name = "white glitter grenade"
-	desc = "For that somnolent glittery look."
+	name = "白色闪粉手榴弹"
+	desc = "营造朦胧闪耀的效果。"
 	stage = GRENADE_READY
 	var/glitter_colors = list(COLOR_WHITE = 100)
 
@@ -615,18 +615,18 @@
 	beakers += beaker_two
 
 /obj/item/grenade/chem_grenade/glitter/pink
-	name = "pink glitter bomb"
-	desc = "For that HOT glittery look."
+	name = "粉色闪粉炸弹"
+	desc = "营造热辣闪耀的效果。"
 	glitter_colors = list("#ff8080" = 100)
 
 /obj/item/grenade/chem_grenade/glitter/blue
-	name = "blue glitter bomb"
-	desc = "For that COOL glittery look."
+	name = "蓝色闪粉炸弹"
+	desc = "营造酷炫闪耀的效果。"
 	glitter_colors = list("#4040ff" = 100)
 
 /obj/item/grenade/chem_grenade/clf3
-	name = "clf3 grenade"
-	desc = "BURN!-brand foaming clf3. In a special applicator for rapid purging of wide areas."
+	name = "三氟化氯手榴弹"
+	desc = "燃尽牌泡沫三氟化氯，配有特殊施用装置，可迅速焚净大片区域。"
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/clf3/Initialize(mapload)
@@ -643,8 +643,8 @@
 	beakers += beaker_two
 
 /obj/item/grenade/chem_grenade/bioterrorfoam
-	name = "Bio terror foam grenade"
-	desc = "Tiger Cooperative chemical foam grenade. Causes temporary irritation, blindness, confusion, mutism, and mutations to carbon based life forms. Contains additional spore toxin."
+	name = "生化恐怖泡沫手榴弹"
+	desc = "猛虎合作社出品的化学泡沫手榴弹，可使碳基生命体暂时出现刺激反应、失明、意识混乱、失语和突变。另含孢子毒素。"
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/bioterrorfoam/Initialize(mapload)
@@ -663,8 +663,8 @@
 	beakers += beaker_two
 
 /obj/item/grenade/chem_grenade/tuberculosis
-	name = "Fungal tuberculosis grenade"
-	desc = "WARNING: GRENADE WILL RELEASE DEADLY SPORES CONTAINING ACTIVE AGENTS. SEAL SUIT AND AIRFLOW BEFORE USE."
+	name = "真菌性结核病手榴弹"
+	desc = "警告：此手榴弹会释放含活性病原体的致命孢子。使用前请密封防护服并隔绝气流。"
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/tuberculosis/Initialize(mapload)
@@ -682,8 +682,8 @@
 	beakers += beaker_two
 
 /obj/item/grenade/chem_grenade/holy
-	name = "holy hand grenade"
-	desc = "A vessel of concentrated religious might."
+	name = "神圣手榴弹"
+	desc = "浓缩宗教神力的容器。"
 	icon_state = "holy_grenade"
 	base_icon_state = "holy_grenade"
 	stage = GRENADE_READY

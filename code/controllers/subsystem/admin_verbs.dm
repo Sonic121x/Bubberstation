@@ -1,7 +1,7 @@
 GENERAL_PROTECT_DATUM(/datum/controller/subsystem/admin_verbs)
 
 SUBSYSTEM_DEF(admin_verbs)
-	name = "Admin Verbs"
+	name = "管理员指令"
 	ss_flags = SS_NO_FIRE
 	init_stage = INITSTAGE_EARLY
 	/// A list of all admin verbs indexed by their type.
@@ -97,7 +97,7 @@ SUBSYSTEM_DEF(admin_verbs)
 
 /datum/controller/subsystem/admin_verbs/proc/dynamic_invoke_verb(client/admin, datum/admin_verb/verb_type, ...)
 	if(IsAdminAdvancedProcCall())
-		message_admins("PERMISSION ELEVATION: [key_name_admin(admin)] attempted to dynamically invoke admin verb '[verb_type]'.")
+		message_admins("权限提升：[key_name_admin(admin)]试图动态调用管理员指令“[verb_type]”。")
 		return
 
 	if(ismob(admin))
@@ -114,7 +114,7 @@ SUBSYSTEM_DEF(admin_verbs)
 		CRASH("Attempted to dynamically invoke admin verb '[verb_type]' that doesn't exist.")
 
 	if(!admin.holder.check_for_rights(verb_singleton.permissions))
-		to_chat(admin, span_adminnotice("You lack the permissions to do this."))
+		to_chat(admin, span_adminnotice("你没有执行此操作的权限。"))
 		return
 
 	var/list/extra_args = args.Copy(3)
@@ -142,7 +142,7 @@ SUBSYSTEM_DEF(admin_verbs)
 		return
 
 	if(!isnull(admins_pending_subsytem_init)) // if the list exists we are still initializing
-		to_chat(admin, span_big(span_green("Admin Verbs are still initializing. Please wait and you will be automatically assigned your verbs when it is complete.")))
+		to_chat(admin, span_big(span_green("管理员指令仍在初始化。请稍候，初始化完成后将自动为你分配可用指令。")))
 		admins_pending_subsytem_init |= list(admin.ckey)
 		return
 

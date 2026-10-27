@@ -29,8 +29,8 @@
 	assignment = JOB_NAVAL_FLEET_ADMIRAL
 
 /obj/item/card/id/advanced/lizardgas
-	name = "Lizard Gas Employee Card"
-	desc = "A rainbow ID card, promoting fun in a 'business proper' sense!"
+	name = "蜥蜴燃气员工卡"
+	desc = "一张彩虹色ID卡，以“商务得体”的方式宣传欢乐！"
 	icon_state = "card_rainbow"
 	trim = /datum/id_trim/away/lizardgas
 	wildcard_slots = WILDCARD_LIMIT_GREY

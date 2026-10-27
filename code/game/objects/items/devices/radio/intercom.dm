@@ -1,6 +1,6 @@
 /obj/item/radio/intercom //ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
-	name = "station intercom"
-	desc = "A trusty station intercom, ready to spring into action even when the headsets go silent."
+	name = "空间站对讲机"
+	desc = "可靠的空间站对讲机，即使耳机全都沉默，也能随时派上用场。"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "intercom"
 	anchored = TRUE
@@ -23,8 +23,8 @@
 	unscrewed = TRUE
 
 /obj/item/radio/intercom/prison
-	name = "receive-only intercom"
-	desc = "A station intercom. It looks like it has been modified to not broadcast."
+	name = "只收对讲机"
+	desc = "空间站对讲机。看起来经过改装，无法发送广播。"
 	icon_state = "intercom_prison"
 	icon_off = "intercom_prison-p"
 
@@ -48,51 +48,51 @@
 
 /obj/item/radio/intercom/examine(mob/user)
 	. = ..()
-	. += span_notice("Use [MODE_TOKEN_INTERCOM] when nearby to speak into it.")
+	. += span_notice("在附近使用[MODE_TOKEN_INTERCOM]即可通过它讲话。")
 	if(!unscrewed)
-		. += span_notice("It's <b>screwed</b> and secured to the wall.")
+		. += span_notice("它用<b>螺丝</b>固定在墙上。")
 	else
-		. += span_notice("It's <i>unscrewed</i> from the wall, and can be <b>detached</b>.")
+		. += span_notice("固定在墙上的螺丝已经<i>松开</i>，可以将其<b>拆下</b>。")
 
 	if(anonymize)
-		. += span_notice("Speaking through this intercom will anonymize your voice.")
+		. += span_notice("通过这台对讲机讲话会隐藏你的声音特征。")
 
 	if(freqlock == RADIO_FREQENCY_UNLOCKED)
 		if((obj_flags & EMAGGED) && initial(freqlock) == RADIO_FREQENCY_EMAGGABLE_LOCK)
-			. += span_warning("Its frequency lock has been shorted...")
+			. += span_warning("它的频率锁已经短路……")
 	else
-		. += span_notice("It has a frequency lock set to [frequency/10].")
+		. += span_notice("其频率被锁定为[frequency/10]。")
 
 	if(keylock == RADIO_KEYSLOT_UNLOCKED)
 		if((obj_flags & EMAGGED) && initial(keylock) == RADIO_KEYSLOT_EMAGGABLE_LOCK)
-			. += span_warning("Its keyslot's security screws have been uplifted...")
+			. += span_warning("其密钥槽的防拆螺丝已经被撬开……")
 	else
-		. += span_notice("The screws in its keyslot are [keylock == RADIO_KEYSLOT_LOCKED ? "stripped" : "fastened tight"], \
-			preventing the removal of its encryption key[keylock == RADIO_KEYSLOT_LOCKED ? "" : " without some kind of magnet"].")
+		. += span_notice("密钥槽的螺丝[keylock == RADIO_KEYSLOT_LOCKED ? "已经滑丝" : "拧得很紧"]，\
+			[keylock == RADIO_KEYSLOT_LOCKED ? "无法取出加密密钥" : "没有磁性工具就无法取出加密密钥"]。")
 
 /obj/item/radio/intercom/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(held_item?.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_RMB] = unscrewed ? "Secure to wall" : "Unscrew from wall"
-		context[SCREENTIP_CONTEXT_LMB] = isnull(keyslot) ? context[SCREENTIP_CONTEXT_RMB] : "Remove encryption key" // sometimes same behavior
+		context[SCREENTIP_CONTEXT_RMB] = unscrewed ? "固定到墙上" : "拧松墙上固定螺丝"
+		context[SCREENTIP_CONTEXT_LMB] = isnull(keyslot) ? context[SCREENTIP_CONTEXT_RMB] : "移除加密密钥" // sometimes same behavior
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item?.tool_behaviour == TOOL_WRENCH && unscrewed)
-		context[SCREENTIP_CONTEXT_RMB] = "Detach from wall"
+		context[SCREENTIP_CONTEXT_RMB] = "从墙上拆下"
 		context[SCREENTIP_CONTEXT_LMB] = context[SCREENTIP_CONTEXT_LMB] // same behavior
 		. = CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/radio/intercom/screwdriver_act_secondary(mob/living/user, obj/item/tool)
 	if(unscrewed)
-		user.visible_message(span_notice("[user] starts tightening [src]'s screws..."), span_notice("You start screwing in [src]..."))
+		user.visible_message(span_notice("[user]开始拧紧[src]的螺丝……"), span_notice("你开始拧紧[src]的螺丝……"))
 		if(tool.use_tool(src, user, 30, volume=50))
-			user.visible_message(span_notice("[user] tightens [src]'s screws!"), span_notice("You tighten [src]'s screws."))
+			user.visible_message(span_notice("[user]拧紧了[src]的螺丝！"), span_notice("你拧紧了[src]的螺丝。"))
 			unscrewed = FALSE
 			update_appearance(UPDATE_OVERLAYS)
 	else
-		user.visible_message(span_notice("[user] starts loosening [src]'s screws..."), span_notice("You start unscrewing [src]..."))
+		user.visible_message(span_notice("[user]开始拧松[src]的螺丝……"), span_notice("你开始拧松[src]的螺丝……"))
 		if(tool.use_tool(src, user, 40, volume=50))
-			user.visible_message(span_notice("[user] loosens [src]'s screws!"), span_notice("You unscrew [src], loosening it from the wall."))
+			user.visible_message(span_notice("[user]拧松了[src]的螺丝！"), span_notice("你拧松[src]的螺丝，使它与墙面松脱。"))
 			unscrewed = TRUE
 			update_appearance(UPDATE_OVERLAYS)
 	return ITEM_INTERACT_SUCCESS
@@ -104,12 +104,12 @@
 
 /obj/item/radio/intercom/wrench_act(mob/living/user, obj/item/tool)
 	if(!unscrewed)
-		to_chat(user, span_warning("You need to unscrew [src] from the wall first!"))
+		to_chat(user, span_warning("你需要先拧松[src]与墙面连接的螺丝！"))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice("[user] starts unsecuring [src]..."), span_notice("You start unsecuring [src]..."))
+	user.visible_message(span_notice("[user]开始拆卸[src]……"), span_notice("你开始拆卸[src]……"))
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 80))
-		user.visible_message(span_notice("[user] unsecures [src]!"), span_notice("You detach [src] from the wall."))
+		user.visible_message(span_notice("[user]拆下了[src]！"), span_notice("你从墙上拆下了[src]。"))
 		playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 		deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
@@ -174,23 +174,23 @@
 		return .
 
 	if(!freqlock && !keylock)
-		balloon_alert(user, "no locks to break!")
+		balloon_alert(user, "没有可以破坏的锁！")
 		return .
 
 	var/message = ""
 	if(freqlock == RADIO_FREQENCY_EMAGGABLE_LOCK && keylock == RADIO_KEYSLOT_EMAGGABLE_LOCK)
-		message = "frequency and key lock"
+		message = "频率锁和密钥锁"
 	else if(freqlock == RADIO_FREQENCY_EMAGGABLE_LOCK)
-		message = "frequency lock"
+		message = "频率锁"
 	else if(keylock == RADIO_KEYSLOT_EMAGGABLE_LOCK)
-		message = "key lock"
+		message = "密钥锁"
 
 	if(!message)
-		balloon_alert(user, "can't break lock[(freqlock && keylock) ? "s" : ""]!")
+		balloon_alert(user, "无法破坏锁！")
 		playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, FALSE, SILENCED_SOUND_EXTRARANGE)
 		return .
 
-	balloon_alert(user, "[message] broken")
+	balloon_alert(user, "[message]已破坏")
 	playsound(src, SFX_SPARKS, 75, TRUE, SILENCED_SOUND_EXTRARANGE)
 	if(freqlock == RADIO_FREQENCY_EMAGGABLE_LOCK)
 		freqlock = RADIO_FREQENCY_UNLOCKED
@@ -227,8 +227,8 @@
 
 //Created through the autolathe or through deconstructing intercoms. Can be applied to wall to make a new intercom on it!
 /obj/item/wallframe/intercom
-	name = "intercom frame"
-	desc = "A ready-to-go intercom. Just slap it on a wall and screw it in!"
+	name = "对讲机框架"
+	desc = "准备就绪的对讲机。贴到墙上拧紧螺丝就能用！"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "intercom"
 	result_path = /obj/item/radio/intercom/unscrewed
@@ -237,8 +237,8 @@
 
 // Used in the confessional booth in the chapel, locked to the confessional frequency and hides voices
 /obj/item/radio/intercom/chapel
-	name = "Confessional intercom"
-	desc = "Talk through this... to confess your many sins. Conceals your voice, to keep them secret."
+	name = "忏悔室对讲机"
+	desc = "对着它诉说……忏悔你犯下的诸多罪过。它会隐藏你的声音，替你保密。"
 	anonymize = TRUE
 	freqlock = RADIO_FREQENCY_EMAGGABLE_LOCK
 
@@ -249,8 +249,8 @@
 
 // Special type of intercom for use in the bridge that can tune into any frequency and has loudmic (NOT FOR PUBLIC AREAS)
 /obj/item/radio/intercom/command
-	name = "command intercom"
-	desc = "The command's special free-frequency intercom. It's a versatile tool that can be tuned to any frequency, granting you access to channels you're not supposed to be on. Plus, it comes equipped with a built-in voice amplifier for crystal-clear communication."
+	name = "指挥对讲机"
+	desc = "指挥部专用的自由调频对讲机。可调至任意频率，让你接入原本无权使用的频道。内置语音放大器，让通讯清晰响亮。"
 	icon_state = "intercom_command"
 	freerange = TRUE
 	command = TRUE
@@ -258,7 +258,7 @@
 
 // Set of intercoms for use in interrogation. Interior one starts broadcasting, exterior one hides voices.
 /obj/item/radio/intercom/interrogation
-	name = "interrogation intercom"
+	name = "审讯对讲机"
 	abstract_type = /obj/item/radio/intercom/interrogation
 	freqlock = RADIO_FREQENCY_LOCKED
 
@@ -267,7 +267,7 @@
 	set_frequency(FREQ_INTERROGATION)
 
 /obj/item/radio/intercom/interrogation/inside
-	desc = "An intercom that broadcasts any ongoing interrogation to someone that's probably taking notes."
+	desc = "将正在进行的审讯广播给某个大概正在做笔录之人的对讲机。"
 
 /obj/item/radio/intercom/interrogation/inside/Initialize(mapload)
 	. = ..()
@@ -275,18 +275,18 @@
 	set_listening(FALSE)
 
 /obj/item/radio/intercom/interrogation/outside
-	desc = "An intercom that allows communication with the inside of the interrogation room, while scrambling voices for \"privacy\"."
+	desc = "可与审讯室内通话的对讲机，会扰乱声音来保护‘隐私’。"
 	anonymize = TRUE
 
 // Subtype that simply has freerange enabled
 /obj/item/radio/intercom/freerange
-	name = "free-range intercom"
-	desc = "A special intercom that can be tuned to any frequency, bypassing encryption."
+	name = "全频对讲机"
+	desc = "可绕过加密，调至任意频率的特殊对讲机。"
 	freerange = TRUE
 
 // For use in the AI core to allow the AI to tune into any encrypted frequency if comms are down
 /obj/item/radio/intercom/freerange/ai_core
-	name = "\improper AI free-range intercom"
+	name = "\improper AI全频对讲机"
 
 /obj/item/radio/intercom/freerange/ai_core/Initialize(mapload)
 	. = ..()
@@ -294,8 +294,8 @@
 
 // Intercom with loudmic and innate syndicate channel access
 /obj/item/radio/intercom/syndicate
-	name = "syndicate intercom"
-	desc = "Talk smack through this."
+	name = "辛迪加对讲机"
+	desc = "用它放狠话。"
 	icon_state = "intercom_syndicate"
 	command = TRUE
 	icon_off = "intercom_syndicate-p"
@@ -303,18 +303,18 @@
 
 // Syndicate intercom that also has freefrange on top of syndicate channel
 /obj/item/radio/intercom/syndicate/freerange
-	name = "syndicate wide-band intercom"
-	desc = "A custom-made Syndicate-issue intercom used to transmit on all Nanotrasen frequencies. Particularly expensive."
+	name = "辛迪加宽频对讲机"
+	desc = "辛迪加配发的定制对讲机，可在所有纳米传讯频率上发送通讯。价格极其昂贵。"
 	freerange = TRUE
 
 /obj/item/radio/intercom/mi13
-	name = "intercom"
-	desc = "Talk through this to talk to whoever is in this facility with you."
+	name = "对讲机"
+	desc = "通过它与同处这座设施的人交谈。"
 	freerange = TRUE
 
 /obj/item/radio/intercom/ai_private
-	name = "\improper AI private intercom"
-	desc = "An intercom primarily used for a private line directly to the station's AI."
+	name = "\improper AI专线对讲机"
+	desc = "主要用于通过专线直接联系空间站AI的对讲机。"
 
 /obj/item/radio/intercom/ai_private/Initialize(mapload)
 	. = ..()
@@ -329,7 +329,7 @@
 
 // For use in AI chambers: Tuned to AI private, free-range allowed, otherwise doesn't broadcast or relay
 /obj/item/radio/intercom/ai_private/freerange
-	desc = parent_type::desc + " This one can be tuned to any frequency, bypassing encryption."
+	desc = parent_type::desc + "此款可绕过加密，调至任意频率。"
 	freerange = TRUE
 
 /obj/item/radio/intercom/ai_private/freerange/Initialize(mapload)
@@ -345,7 +345,7 @@
 
 // Subtype that spawns with an encryption key and has a key lock
 /obj/item/radio/intercom/departmental
-	desc = "A station intercom primarily intended for speaking with members of a department."
+	desc = "主要用于与部门成员通话的空间站对讲机。"
 	keylock = RADIO_KEYSLOT_EMAGGABLE_LOCK
 	abstract_type = /obj/item/radio/intercom/departmental
 	var/stripe_color = null
@@ -364,37 +364,37 @@
 	. += stripe
 
 /obj/item/radio/intercom/departmental/cargo
-	name = "cargo intercom"
+	name = "货运对讲机"
 	keyslot = /obj/item/encryptionkey/headset_cargo
 	stripe_color = "#956929"
 
 /obj/item/radio/intercom/departmental/command
-	name = "command intercom"
+	name = "指挥对讲机"
 	keyslot = /obj/item/encryptionkey/headset_com
 	stripe_color = "#486091"
 
 /obj/item/radio/intercom/departmental/engineering
-	name = "engineering intercom"
+	name = "工程对讲机"
 	keyslot = /obj/item/encryptionkey/headset_eng
 	stripe_color = "#EFB341"
 
 /obj/item/radio/intercom/departmental/medical
-	name = "medical intercom"
+	name = "医疗对讲机"
 	keyslot = /obj/item/encryptionkey/headset_med
 	stripe_color = "#52B4E9"
 
 /obj/item/radio/intercom/departmental/science
-	name = "science intercom"
+	name = "科研对讲机"
 	keyslot = /obj/item/encryptionkey/headset_sci
 	stripe_color = "#D381C9"
 
 /obj/item/radio/intercom/departmental/security
-	name = "security intercom"
+	name = "安保对讲机"
 	keyslot = /obj/item/encryptionkey/headset_sec
 	stripe_color = "#DE3A3A"
 
 /obj/item/radio/intercom/departmental/service
-	name = "service intercom"
+	name = "服务对讲机"
 	keyslot = /obj/item/encryptionkey/headset_service
 	stripe_color = "#83ca41"
 
@@ -404,32 +404,32 @@
 	command = TRUE
 
 /obj/item/radio/intercom/departmental/head/ce
-	name = "\proper the chief engineer's intercom"
+	name = "\proper 总工程师对讲机"
 	keyslot = /obj/item/encryptionkey/heads/ce
 	stripe_color = "#EFB341"
 
 /obj/item/radio/intercom/departmental/head/cmo
-	name = "\proper the chief medical officer's intercom"
+	name = "\proper 首席医疗官对讲机"
 	keyslot = /obj/item/encryptionkey/heads/cmo
 	stripe_color = "#52B4E9"
 
 /obj/item/radio/intercom/departmental/head/hop
-	name = "\proper the head of personnel's intercom"
+	name = "\proper 人事主管对讲机"
 	keyslot = /obj/item/encryptionkey/heads/hop
 	stripe_color = "#83ca41"
 
 /obj/item/radio/intercom/departmental/head/hos
-	name = "\proper the head of security's intercom"
+	name = "\proper 安保主管对讲机"
 	keyslot = /obj/item/encryptionkey/heads/hos
 	stripe_color = "#DE3A3A"
 
 /obj/item/radio/intercom/departmental/head/qm
-	name = "\proper the quartermaster's intercom"
+	name = "\proper 货运主管对讲机"
 	keyslot = /obj/item/encryptionkey/heads/qm
 	stripe_color = "#956929"
 
 /obj/item/radio/intercom/departmental/head/rd
-	name = "\proper the research director's intercom"
+	name = "\proper 科研主管对讲机"
 	keyslot = /obj/item/encryptionkey/heads/rd
 	stripe_color = "#D381C9"
 

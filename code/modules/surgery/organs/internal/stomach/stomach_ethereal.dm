@@ -1,7 +1,7 @@
 /obj/item/organ/stomach/ethereal
-	name = "biological battery"
+	name = "生物电池"
 	icon_state = "stomach-p" //Welp. At least it's more unique in functionaliy.
-	desc = "A crystal-like organ that stores the electric charge of ethereals."
+	desc = "一种水晶般的器官，储存以太人的电荷。"
 	organ_traits = list(TRAIT_NOHUNGER, TRAIT_ETHEREAL_METABOLISM) // We have our own hunger mechanic.
 	/// Where the energy of the stomach is stored.
 	var/obj/item/stock_parts/power_store/cell
@@ -49,7 +49,7 @@
 	if(flags & SHOCK_ILLUSION)
 		return
 	adjust_charge(shock_damage * siemens_coeff * 2)
-	to_chat(owner, span_notice("You absorb some of the shock into your body!"))
+	to_chat(owner, span_notice("你将一部分电击能量吸收进了体内！"))
 
 /obj/item/organ/stomach/ethereal/proc/on_multitool_act(atom/source, mob/user, obj/item/tool)
 	SIGNAL_HANDLER
@@ -73,9 +73,9 @@
 	// It's as if the multitool is mistaking the ethereal/biological battery for a cable.
 	var/power_info
 	if(cell.charge > 0)
-		power_info = span_danger("Total power: [display_power(cell.charge)]\nLoad: [(owner && (owner.stat != DEAD)) ? display_power(ETHEREAL_DISCHARGE_RATE) : 0]\nExcess power: [display_power(max(0, (cell.charge - ETHEREAL_CHARGE_FULL)))]")
+		power_info = span_danger("总电量：[display_power(cell.charge)]\n负载：[(owner && (owner.stat != DEAD)) ? display_power(ETHEREAL_DISCHARGE_RATE) : 0]\n过剩电量：[display_power(max(0, (cell.charge - ETHEREAL_CHARGE_FULL)))]")
 	else
-		power_info = span_danger("The [owner ? owner.name : name] is not powered.")
+		power_info = span_danger("[owner ? owner.name : name] 没有电力。")
 
 	to_chat(user, power_info)
 	return ITEM_INTERACT_SUCCESS
@@ -122,8 +122,8 @@
 			carbon.clear_alert(ALERT_ETHEREAL_OVERCHARGE)
 
 /obj/item/organ/stomach/ethereal/proc/discharge_process(mob/living/carbon/carbon)
-	to_chat(carbon, span_warning("You begin to lose control over your charge!"))
-	carbon.visible_message(span_danger("[carbon] begins to spark violently!"))
+	to_chat(carbon, span_warning("你开始失去对电荷的控制！"))
+	carbon.visible_message(span_danger("[carbon] 开始剧烈迸出火花！"))
 
 	var/static/mutable_appearance/overcharge //shameless copycode from lightning spell
 	overcharge = overcharge || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
@@ -141,11 +141,11 @@
 		// Only a small amount of the energy gets discharged as the zap. The rest dissipates as heat. Keeps the damage and energy from the zap the same regardless of what STANDARD_CELL_CHARGE is.
 		var/discharged_energy = -adjust_charge(ETHEREAL_CHARGE_FULL - cell.charge()) * min(7500 / STANDARD_CELL_CHARGE, 1)
 		tesla_zap(source = carbon, zap_range = 2, power = discharged_energy, cutoff = 1 KILO JOULES, zap_flags = ZAP_OBJ_DAMAGE | ZAP_LOW_POWER_GEN | ZAP_ALLOW_DUPLICATES)
-		carbon.visible_message(span_danger("[carbon] violently discharges energy!"), span_warning("You violently discharge energy!"))
+		carbon.visible_message(span_danger("[carbon] 猛烈释放了能量！"), span_warning("你猛烈释放了能量！"))
 
 		if(prob(10)) //chance of developing heart disease to dissuade overcharging oneself
 			carbon.apply_status_effect(/datum/status_effect/heart_attack)
-			to_chat(carbon, span_userdanger("You're pretty sure you just felt your heart stop for a second there.."))
+			to_chat(carbon, span_userdanger("你很确定刚才心脏停跳了一瞬……"))
 			carbon.playsound_local(carbon, 'sound/effects/singlebeat.ogg', 100, 0)
 
 		carbon.Paralyze(100)

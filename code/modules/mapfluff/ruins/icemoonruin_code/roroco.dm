@@ -1,43 +1,43 @@
 /obj/machinery/door/puzzle/keycard/roro
-	name = "Fabric Processing"
-	desc = "A dusty, scratched door with a thick lock attached."
+	name = "布料加工区"
+	desc = "一扇布满灰尘、满是划痕的门，上面挂着一把厚重的锁。"
 	puzzle_id = "roroco"
 
 /obj/item/keycard/roro
-	name = "Fabric Processing keycard"
+	name = "布料加工区门禁卡"
 	desc = ""
 	color = "#b1634c"
 	puzzle_id = "roroco"
 
 /area/ruin/roroco
-	name = "\improper RoroCo Primary Hallway"
+	name = "\improper 罗罗公司主走廊"
 
 /area/ruin/roroco/management
-	name = "\improper RoroCo Management Office"
+	name = "\improper 罗罗公司管理办公室"
 
 /area/ruin/roroco/packing
-	name = "\improper RoroCo Packing Room"
+	name = "\improper 罗罗公司包装室"
 
 /area/ruin/roroco/extraction
-	name = "\improper RoroCo Product Extraction"
+	name = "\improper 罗罗公司产品提取区"
 
 /area/ruin/roroco/harvesting
-	name = "\improper RoroCo Harvesting Room"
+	name = "\improper 罗罗公司收获室"
 
 /area/ruin/roroco/maintenance
-	name = "\improper RoroCo Maintenance Hallway"
+	name = "\improper 罗罗公司维护走廊"
 
 /area/ruin/roroco/janitor
-	name = "\improper RoroCo Janitor's Closet"
+	name = "\improper 罗罗公司清洁工具间"
 
 /obj/item/card/id/away/roroco
-	name = "\improper RoroCo ID Card"
-	desc = "A plastic card that identifies its bearer as an employee of RoroCo. There are electronic chips embedded to communicate with airlocks and other machines. It does not have a name attached."
+	name = "\improper 罗罗公司 ID 卡"
+	desc = "一张塑料卡，证明持卡人是罗罗公司的员工。卡内嵌有电子芯片，可与气闸及其他机器通信。卡上没有署名。"
 	icon_state = "card_roro"
 	trim = /datum/id_trim/away/roroco
 
 /obj/item/card/id/away/roroco/boss
-	desc = "A plastic card that identifies its bearer as a senior employee of RoroCo with enhanced access to secure areas. There are electronic chips embedded to communicate with airlocks and other machines. It does not have a name attached."
+	desc = "一张塑料卡，证明持卡人是罗罗公司的高级员工，拥有进入安全区域的更高权限。卡内嵌有电子芯片，可与气闸及其他机器通信。卡上没有署名。"
 	icon_state = "card_roroboss"
 	trim = /datum/id_trim/away/roroco/boss
 
@@ -45,8 +45,8 @@
 	icon_state = "cardboard_roroco"
 
 /obj/item/clothing/suit/toggle/labcoat/roroco
-	name = "\improper RoroCo labcoat"
-	desc = "A suit that protects against minor chemical spills, though the deep red colour makes them hard to see. Great for hiding blood stains, though..."
+	name = "\improper 罗罗公司实验服"
+	desc = "一件能防止轻微化学溅洒的套装，不过深红色让人很难看清污渍。倒是很适合掩盖血迹……"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/toggle/labcoat/roroco"
 	post_init_icon_state = "labcoat_job"
@@ -73,11 +73,11 @@
 	id = /obj/item/card/id/away/roroco/boss
 
 /obj/effect/mob_spawn/corpse/human/roroco_packing
-	name = "Dead RoroCo Glove Packer"
-	mob_name = "Nameless Glove Packer"
+	name = "罗罗公司手套包装工尸体"
+	mob_name = "无名手套包装工"
 	outfit = /datum/outfit/roroco
 
 /obj/effect/mob_spawn/corpse/human/roroco_processing
-	name = "Dead Roroco Fabric Technician"
-	mob_name = "Nameless Fabric Technician"
+	name = "罗罗公司纺织技术员尸体"
+	mob_name = "无名纺织技术员"
 	outfit = /datum/outfit/roroco/processing

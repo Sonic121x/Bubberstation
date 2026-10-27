@@ -1,6 +1,6 @@
 /obj/item/gun/magic/wand
-	name = "wand"
-	desc = "You shouldn't have this."
+	name = "短杖"
+	desc = "你不该拥有这东西。"
 	ammo_type = /obj/item/ammo_casing/magic
 	icon_state = "nothingwand"
 	worn_icon = null
@@ -27,7 +27,7 @@
 
 /obj/item/gun/magic/wand/examine(mob/user)
 	. = ..()
-	. += "Has [charges] charge\s remaining."
+	. += "剩余 [charges] 次充能。"
 
 /obj/item/gun/magic/wand/update_icon_state()
 	icon_state = "[base_icon_state][charges ? null : "-drained"]"
@@ -44,7 +44,7 @@
 		return FALSE
 	if(target == user)
 		if(no_den_usage && istype(get_area(user), /area/centcom/wizard_station))
-			to_chat(user, span_warning("You know better than to violate the security of The Den, best wait until you leave to use [src]."))
+			to_chat(user, span_warning("你应该知道不该违反巢穴的安保规定，最好等离开后再使用 [src]。"))
 			return FALSE
 		zap_self(user)
 		. = TRUE
@@ -58,9 +58,9 @@
 
 /// Called if we poke ourselves with the wand
 /obj/item/gun/magic/wand/proc/zap_self(mob/living/user, suicide = FALSE)
-	user.visible_message(span_danger("[user] zaps [user.p_them()]self with [src]."))
+	user.visible_message(span_danger("[user] 用 [src] 电了自己一下。"))
 	playsound(user, fire_sound, 50, TRUE)
-	user.log_message("zapped [user.p_them()]self with a <b>[src]</b>", LOG_ATTACK)
+	user.log_message("用 <b>[src]</b> 电了自己一下", LOG_ATTACK)
 
 /obj/item/gun/magic/wand/do_suicide(mob/living/user)
 	zap_self(user, suicide = TRUE)
@@ -68,8 +68,8 @@
 
 /// Wand which kills people and heals skeletons
 /obj/item/gun/magic/wand/death
-	name = "wand of death"
-	desc = "This deadly wand overwhelms the victim's body with pure energy, slaying them without fail."
+	name = "死亡之杖"
+	desc = "这根致命短杖会用纯粹的能量冲垮受害者的身体，将其必定杀死。"
 	school = SCHOOL_NECROMANCY
 	fire_sound = 'sound/effects/magic/wandodeath.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/death
@@ -81,27 +81,27 @@
 	. = ..()
 	charges--
 	if(user.can_block_magic())
-		user.visible_message(span_warning("[src] has no effect on [user]!"))
+		user.visible_message(span_warning("[src] 对 [user] 毫无效果！"))
 		return
 	if(isliving(user))
 		if(user.mob_biotypes & MOB_UNDEAD) //negative energy heals the undead
 			user.revive(ADMIN_HEAL_ALL, force_grab_ghost = TRUE) // This heals suicides
 			if (!suicide)
-				to_chat(user, span_notice("You feel great!"))
+				to_chat(user, span_notice("你感觉好极了！"))
 			return
-	to_chat(user, span_warning("You irradiate yourself with pure negative energy! \
-	[pick("Do not pass go. Do not collect 200 zorkmids.","You feel more confident in your spell casting skills.","You die...","Do you want your possessions identified?")]"))
+	to_chat(user, span_warning("你用纯粹的负能量照射了自己！\
+	[pick("别想经过起点。别想领取 200 枚佐克米德。","你对施法技巧更有信心了。","你死了……","你想鉴定你的物品吗？")]"))
 	user.death(FALSE)
 
 /obj/item/gun/magic/wand/death/do_suicide(mob/living/user)
 	. = ..()
 	if (user.stat == DEAD)
 		return MANUAL_SUICIDE
-	user.visible_message(span_suicide("...but if anything [user.p_they()] look[user.p_s()] healthier than before."))
+	user.visible_message(span_suicide("……但真要说的话，[user] 看起来反而比以前更健康了。"))
 	return SHAME
 
 /obj/item/gun/magic/wand/death/debug
-	desc = "In some obscure circles, this is known as the 'cloning tester's friend'."
+	desc = "在某些冷门圈子里，它被称为“克隆测试员之友”。"
 	max_charges = 500
 	variable_charges = FALSE
 	self_charging = TRUE
@@ -110,8 +110,8 @@
 
 /// Wand which kills skeletons and heals people
 /obj/item/gun/magic/wand/resurrection
-	name = "wand of healing"
-	desc = "This wand uses healing magics to heal and revive. They are rarely utilized within the Wizard Federation for some reason."
+	name = "治愈之杖"
+	desc = "这根短杖运用治愈魔法来治疗与复活。不知为何，巫师联邦内部很少使用它们。"
 	school = SCHOOL_RESTORATION
 	ammo_type = /obj/item/ammo_casing/magic/heal
 	fire_sound = 'sound/effects/magic/staff_healing.ogg'
@@ -123,29 +123,29 @@
 	..()
 	charges--
 	if(user.can_block_magic())
-		user.visible_message(span_warning("[src] has no effect on [user]!"))
+		user.visible_message(span_warning("[src] 对 [user] 毫无效果！"))
 		return
 	if(isliving(user))
 		var/mob/living/L = user
 		if(L.mob_biotypes & MOB_UNDEAD) //positive energy harms the undead
-			to_chat(user, span_warning("You irradiate yourself with pure positive energy! \
-			[pick("Do not pass go. Do not collect 200 zorkmids.","You feel more confident in your spell casting skills.","You die...","Do you want your possessions identified?")]"))
-			user.investigate_log("has been killed by a bolt of resurrection.", INVESTIGATE_DEATHS)
+			to_chat(user, span_warning("你用纯粹的正能量照射了自己！\
+			[pick("别想经过起点。别想领取 200 枚佐克米德。","你对施法技巧更有信心了。","你死了……","你想鉴定你的物品吗？")]"))
+			user.investigate_log("被一道复生光束杀死。", INVESTIGATE_DEATHS)
 			user.death(FALSE)
 			return
 	user.revive(ADMIN_HEAL_ALL, force_grab_ghost = TRUE) // This heals suicides
 	if (!suicide)
-		to_chat(user, span_notice("You feel great!"))
+		to_chat(user, span_notice("你感觉好极了！"))
 
 /obj/item/gun/magic/wand/resurrection/do_suicide(mob/living/user)
 	. = ..()
 	if (user.stat == DEAD)
 		return MANUAL_SUICIDE
-	user.visible_message(span_suicide("...but if anything [user.p_they()] look[user.p_s()] healthier than before."))
+	user.visible_message(span_suicide("……但真要说的话，[user] 看起来反而比以前更健康了。"))
 	return SHAME
 
 /obj/item/gun/magic/wand/resurrection/debug //for testing
-	desc = "Is it possible for something to be even more powerful than regular magic? This wand is."
+	desc = "有可能存在比寻常魔法更强大的东西吗？这根短杖就是。"
 	max_charges = 500
 	variable_charges = FALSE
 	self_charging = TRUE
@@ -153,8 +153,8 @@
 
 /// Wand which turns mobs into other mobs
 /obj/item/gun/magic/wand/polymorph
-	name = "wand of polymorph"
-	desc = "This wand is attuned to chaos and will radically alter the victim's form."
+	name = "变形之杖"
+	desc = "这根短杖与混沌共鸣，会彻底改变受害者的形态。"
 	school = SCHOOL_TRANSMUTATION
 	ammo_type = /obj/item/ammo_casing/magic/change
 	icon_state = "polywand"
@@ -184,8 +184,8 @@
 
 /// Wand of go somewhere else
 /obj/item/gun/magic/wand/teleport
-	name = "wand of teleportation"
-	desc = "This wand will wrench targets through space and time to move them somewhere else."
+	name = "传送之杖"
+	desc = "这根短杖会将目标硬生生扯过时间与空间，把它们挪到别处。"
 	school = SCHOOL_TRANSLOCATION
 	ammo_type = /obj/item/ammo_casing/magic/teleport
 	fire_sound = 'sound/effects/magic/wand_teleport.ogg'
@@ -230,8 +230,8 @@
 
 /// Wand of go somewhere else which is safe-ish
 /obj/item/gun/magic/wand/safety
-	name = "wand of safety"
-	desc = "This wand will use the lightest of bluespace currents to gently place the target somewhere safe."
+	name = "安全之杖"
+	desc = "这根短杖会借助最轻柔的蓝空间洋流，将目标轻放到安全之处。"
 	school = SCHOOL_TRANSLOCATION
 	ammo_type = /obj/item/ammo_casing/magic/safety
 	fire_sound = 'sound/effects/magic/wand_teleport.ogg'
@@ -256,7 +256,7 @@
 	return SHAME // It's a safety wand sorry
 
 /obj/item/gun/magic/wand/safety/debug
-	desc = "This wand has 'find_safe_turf()' engraved into its blue wood. Perhaps it's a secret message?"
+	desc = "这根短杖的蓝色木身上刻着“find_safe_turf()”。也许是某种秘密讯息？"
 	max_charges = 500
 	variable_charges = FALSE
 	self_charging = TRUE
@@ -265,8 +265,8 @@
 
 /// Wand of making doors
 /obj/item/gun/magic/wand/door
-	name = "wand of door creation"
-	desc = "This particular wand can create doors in any wall for the unscrupulous wizard who shuns teleportation magics."
+	name = "开门之杖"
+	desc = "这根特别的短杖能在任何墙上造出门，专为不屑使用传送魔法的无良巫师准备。"
 	school = SCHOOL_TRANSMUTATION
 	ammo_type = /obj/item/ammo_casing/magic/door
 	icon_state = "doorwand"
@@ -276,7 +276,7 @@
 	no_den_usage = TRUE
 
 /obj/item/gun/magic/wand/door/zap_self(mob/living/user, suicide = FALSE)
-	to_chat(user, span_notice("You feel vaguely more open with your feelings."))
+	to_chat(user, span_notice("你隐约觉得自己的心扉敞开了一些。"))
 	charges--
 	return ..()
 
@@ -284,27 +284,27 @@
 	if (!iscarbon(user))
 		. = ..()
 		var/static/list/shared_feelings = list(
-			"I can't take it any more!!",
-			"I can't do this any more!!",
-			"I don't want to live in this world!!",
-			"I wish I was dead!!",
-			"Nothing matters to me any more!!",
-			"Someone please kill me!!",
-			"The pain is unbearable!!",
+			"我再也受不了了！！",
+			"我再也做不下去了！！",
+			"我不想活在这个世界上了！！",
+			"我真希望自己死了！！",
+			"对我来说什么都不重要了！！",
+			"谁来杀了我吧！！",
+			"这痛苦无法忍受！！",
 		)
 		user.say(pick(shared_feelings), forced = "failed wand suicide")
 		return SHAME
 	playsound(loc, fire_sound, 50, TRUE, -1)
 	var/mob/living/carbon/suicider = user
 	var/obj/item/bodypart/chest = suicider.get_bodypart(BODY_ZONE_CHEST) // I think it's impossible not to have a chest so we'll just assume they have one
-	user.visible_message(span_suicide("[user]'s chest swings open like a door!"))
+	user.visible_message(span_suicide("[user] 的胸腔像门一样敞开了！"))
 	chest.dismember(BRUTE, silent = FALSE, wounding_type = WOUND_SLASH)
 	return BRUTELOSS
 
 /// Wand of blowing shit up
 /obj/item/gun/magic/wand/fireball
-	name = "wand of fireball"
-	desc = "This wand shoots scorching balls of fire that explode into destructive flames."
+	name = "火球之杖"
+	desc = "这根短杖会射出灼热的火球，爆裂成毁灭性的烈焰。"
 	school = SCHOOL_EVOCATION
 	fire_sound = 'sound/effects/magic/fireball.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/fireball
@@ -319,37 +319,37 @@
 
 /// Wand of doing fuck all
 /obj/item/gun/magic/wand/nothing
-	name = "wand of nothing"
-	desc = "It's not just a stick, it's a MAGIC stick?"
+	name = "虚无之杖"
+	desc = "它不只是一根棍子，而是一根魔法棍子？"
 	ammo_type = /obj/item/ammo_casing/magic/nothing
 
 //disabler wand
 /obj/item/gun/magic/wand/disabler
-	name = "wand of non harmful incapasitation"
-	desc = "One of those magic wands you can buy from a costume vendor, this one however is not entirely useless, funny."
+	name = "无害制服之杖"
+	desc = "那种能在戏服商贩那里买到的魔法短杖，不过这一根并非完全没用，挺有意思。"
 	ammo_type = /obj/item/ammo_casing/energy/disabler/smoothbore
 	self_charging = TRUE
 
 
 //real magic missile wand
 /obj/item/gun/magic/wand/missile
-	name = "wand of MISSILE"
-	desc = "One of those magic wands you can buy from a costume vendor, this one however has a bunch of explosion/missile launcher stickers on it, its also obviously painted red."
+	name = "导弹之杖"
+	desc = "那种能在戏服商贩那里买到的魔法短杖，不过这一根上贴满了一堆爆炸/导弹发射器贴纸，而且显然被涂成了红色。"
 	ammo_type = /obj/item/ammo_casing/rocket/heap
 	color = "#FF0000"
 
 
 //arrow wand
 /obj/item/gun/magic/wand/arrow
-	name = "AWSOME WAND OF BULLET MURDER"
-	desc = "What the fuck? it looks like one of those wands that you buy from the costume vendor but it has a sticker on it that says 'AWSOME WAND OF BULLET MURDER'"
+	name = "超赞的子弹谋杀之杖"
+	desc = "搞什么鬼？它看起来就像那种能在戏服商贩那里买到的短杖，但上面贴着一张写着“超赞的子弹谋杀之杖”的贴纸"
 	ammo_type = /obj/item/ammo_casing/arrow
 
 
 //20mm wand
 /obj/item/gun/magic/wand/anti_tank
-	name = "wand of tank shell"
-	desc = "One of those magic wands you can buy from a costume vendor, this one reaks of gunpowder and has a different aura however, be careful where you aim this"
+	name = "坦克炮弹之杖"
+	desc = "那种能在戏服商贩那里买到的魔法短杖，不过这一根散发着火药味，气场也不同，小心你瞄准的方向"
 	ammo_type = /obj/item/ammo_casing/mm20x138
 	self_charging = TRUE
 
@@ -368,8 +368,8 @@
 
 /// Also wand of doing fuck all
 /obj/item/gun/magic/wand/nothing/fake_resurrection
-	name = "holy staff"
-	desc = "It's just a fancy staff so that holy clerics and priests look cool. What? You didn't think someone would leave a REAL magic artifact with a snowman out in the cold, did you?"
+	name = "神圣法杖"
+	desc = "它只是一根让圣职牧师和神父看起来很酷的花哨法杖。怎么？你不会真以为有人会把真正的魔法神器留给雪人，扔在冰天雪地里吧？"
 	fire_sound = 'sound/effects/magic/staff_healing.ogg'
 	icon_state = "revivewand"
 	base_icon_state = "revivewand"
@@ -380,8 +380,8 @@
 
 /// Wand of making things small
 /obj/item/gun/magic/wand/shrink
-	name = "wand of shrinking"
-	desc = "Feel the tiny eldritch terror of an itty... bitty... head!"
+	name = "缩小之杖"
+	desc = "感受那小小……小小的脑袋带来的微型邪异恐惧吧！"
 	ammo_type = /obj/item/ammo_casing/magic/shrink/wand
 	icon_state = "shrinkwand"
 	base_icon_state = "shrinkwand"
@@ -391,7 +391,7 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/gun/magic/wand/shrink/zap_self(mob/living/user, suicide = FALSE)
-	to_chat(user, span_notice("The world grows large..."))
+	to_chat(user, span_notice("世界变大了……"))
 	charges--
 	user.AddComponent(/datum/component/shrink, -1) // small forever
 	return ..()
@@ -399,7 +399,7 @@
 /obj/item/gun/magic/wand/shrink/do_suicide(mob/living/user)
 	playsound(user, fire_sound, 50, TRUE)
 	user.unequip_everything()
-	user.visible_message(span_suicide("[user] shrinks into nothing!"), span_suicide("You shrink into nothing!"))
+	user.visible_message(span_suicide("[user] 缩小至虚无！"), span_suicide("你缩小至虚无！"))
 	user.Stun(20 SECONDS, ignore_canstun = TRUE)
 	user.set_suicide(TRUE)
 	user.ghostize()
@@ -412,8 +412,8 @@
 #ifdef TESTING
 
 /obj/item/gun/magic/wand/antag
-	name = "wand of antag"
-	desc = "This wand uses the powers of bullshit to turn anyone it hits into an antag"
+	name = "反派之杖"
+	desc = "这根短杖运用胡扯之力，把击中的任何人变成反派"
 	school = SCHOOL_FORBIDDEN
 	ammo_type = /obj/item/ammo_casing/magic/antag
 	icon_state = "revivewand"
@@ -434,7 +434,7 @@
 	harmful = FALSE
 
 /obj/projectile/magic/antag
-	name = "bolt of antag"
+	name = "反派之弹"
 	icon_state = "ion"
 	var/antag = /datum/antagonist/traitor
 
@@ -453,8 +453,8 @@
 			to_chat(world, "added")
 
 /obj/item/gun/magic/wand/antag/heretic
-	name = "wand of antag heretic"
-	desc = "This wand uses the powers of bullshit to turn anyone it hits into an antag heretic"
+	name = "异教徒反派之杖"
+	desc = "这根短杖运用胡扯之力，把击中的任何人变成异教徒反派"
 	color = COLOR_GREEN
 	ammo_type = /obj/item/ammo_casing/magic/antag/heretic
 
@@ -462,13 +462,13 @@
 	projectile_type = /obj/projectile/magic/antag/heretic
 
 /obj/projectile/magic/antag/heretic
-	name = "bolt of antag heretic"
+	name = "异教徒反派之弹"
 	icon_state = "ion"
 	antag = /datum/antagonist/heretic
 
 /obj/item/gun/magic/wand/antag/cult
-	name = "wand of antag cultist"
-	desc = "This wand uses the powers of bullshit to turn anyone it hits into an antag cultist"
+	name = "血教徒反派之杖"
+	desc = "这根短杖运用胡扯之力，把击中的任何人变成血教徒反派"
 	color = COLOR_CULT_RED
 	ammo_type = /obj/item/ammo_casing/magic/antag/cult
 
@@ -476,7 +476,7 @@
 	projectile_type = /obj/projectile/magic/antag/cult
 
 /obj/projectile/magic/antag/cult
-	name = "bolt of antag cult"
+	name = "血教反派之弹"
 	icon_state = "ion"
 	antag = /datum/antagonist/cult
 

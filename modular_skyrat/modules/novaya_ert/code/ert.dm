@@ -1,17 +1,17 @@
 /datum/ert/nri
 	roles = list(/datum/antagonist/ert/nri, /datum/antagonist/ert/nri/medic, /datum/antagonist/ert/nri/engineer)
 	leader_role = /datum/antagonist/ert/nri/commander
-	rename_team = "Pan-Slavic border patrol"
+	rename_team = "泛斯拉夫边境巡逻队"
 	code = "Red"
-	mission = "Cooperate with the station, protect Commonwealth assets."
-	polldesc = "a squad of Pan-Slavic border patrolpeople"
+	mission = "与空间站合作，保护联邦资产。"
+	polldesc = "一支泛斯拉夫边境巡逻小队"
 	teamsize = 4
 
 /datum/antagonist/ert/nri
-	name = "Commonwealth border patrol"
-	role = "Private"
+	name = "联邦边境巡逻队员"
+	role = "列兵"
 	outfit = /datum/outfit/centcom/ert/nri
-	suicide_cry = "GOD, SAVE THE EMPRESS!!"
+	suicide_cry = "天佑女皇！！"
 
 /datum/antagonist/ert/nri/on_gain()
 	. = ..()
@@ -31,59 +31,59 @@
 	if(!ert_team)
 		return
 
-	to_chat(owner, span_boldwarning("<font size=3 color=yellow>You are the [name]</font>"))
+	to_chat(owner, span_boldwarning("<font size=3 color=yellow>你是[name]</font>"))
 
-	var/missiondesc = "Your squad is responding to an emergency situation of [station_name()], with the Pan-Slavic Commonwealth Defense Collegium's approval."
+	var/missiondesc = "经泛斯拉夫联邦国防委员会批准，你的小队正响应[station_name()]的紧急情况。"
 	if(leader) //If Squad Leader
-		missiondesc += "<BR><B>Lead your squad to ensure the completion of the mission. Board the shuttle when your team is ready.</B>"
+		missiondesc += "<BR><B>带领你的小队确保完成任务。队伍准备好后登上穿梭机。</B>"
 
-	missiondesc += "<BR><B><font size=3 color=red>You are NOT a Nanotrasen Employee. You work for Pan-Slavic Commonwealth's Defense Collegium.</font></B>"
-	missiondesc += "<BR><B><font size=3 color=red>You are NOT a deathsquad. You are here to assist the station's Security and Command with alien infestations or enemy activity for you own gain.</font></B>"
-	missiondesc += "<BR>You are responding to emergency calls from the station for immediate Commonwealth military intervention!\n"
-	missiondesc += "<BR><B>Your Mission</B>:"
-	missiondesc += "<BR> <B>1.</B> Minimise civillian casualties."
-	missiondesc += "<BR> <B>2.</B> Neutralise the threat."
-	missiondesc += "<BR> <B>3.</B> Stabilise the situation."
-	missiondesc += "<BR> <B>4.</B> Contact whoever called you and assist in resolving the matter."
-	missiondesc += "<BR> <B>5.</B> Protect, ensure, and uphold the rights of Pan-Slavic Commonwealth's, Kingdom of Agurkrral's and Free Teshari League's citizens on board [station_name()]. TerraGov citizens' wellbeing is up to your discretion."
-	missiondesc += "<BR> <B>6.</B> Attempt to subvert the station's crew in order to shift the station's territory under control of Pan-Slavic Commonwealth."
+	missiondesc += "<BR><B><font size=3 color=red>你不是纳米传讯员工。你为泛斯拉夫联邦国防委员会工作。</font></B>"
+	missiondesc += "<BR><B><font size=3 color=red>你不是死亡小队。你是为自身利益而来，协助空间站安保部和指挥部处理异形入侵或敌对活动。</font></B>"
+	missiondesc += "<BR>你正在响应空间站要求联邦立即进行军事干预的紧急呼叫！\n"
+	missiondesc += "<BR><B>你的任务</B>："
+	missiondesc += "<BR> <B>1.</B> 尽量减少平民伤亡。"
+	missiondesc += "<BR> <B>2.</B> 消除威胁。"
+	missiondesc += "<BR> <B>3.</B> 稳定局势。"
+	missiondesc += "<BR> <B>4.</B> 联系呼叫你们的人，协助解决问题。"
+	missiondesc += "<BR> <B>5.</B> 保护、保障并维护[station_name()]上泛斯拉夫联邦、阿古尔卡尔王国及自由特沙利联盟公民的权利。地球政府公民的福祉由你自行斟酌。"
+	missiondesc += "<BR> <B>6.</B> 尝试策反空间站船员，将空间站领土纳入泛斯拉夫联邦控制。"
 
-	missiondesc += span_warning("<BR><B>Your Mission</B>: [ert_team.mission.explanation_text]")
+	missiondesc += span_warning("<BR><B>你的任务</B>：[ert_team.mission.explanation_text]")
 	to_chat(owner,missiondesc)
 
 /datum/antagonist/ert/nri/commander
-	role = "Commander"
+	role = "指挥官"
 	outfit = /datum/outfit/centcom/ert/nri/commander
 
 /datum/antagonist/ert/nri/medic
-	role = "Corpsman"
+	role = "战地医护兵"
 	outfit = /datum/outfit/centcom/ert/nri/medic
 
 /datum/antagonist/ert/nri/engineer
-	role = "Combat Engineer"
+	role = "战斗工兵"
 	outfit = /datum/outfit/centcom/ert/nri/engineer
 
 /datum/ert/nri/diplomacy
 	roles = list(/datum/antagonist/ert/nri/diplomat/scientist, /datum/antagonist/ert/nri/diplomat/doctor)
 	leader_role = /datum/antagonist/ert/nri/diplomat/major
-	rename_team = "Pan-Slavic External Relationships Colleague"
+	rename_team = "泛斯拉夫对外关系委员会"
 	code = "Green"
-	mission = "Cooperate with the station's command, perform routine evaluation of Pan-Slavic Commonwealth citizens' wellbeing as well as Research and Medical departments' genetical and virological researches."
-	polldesc = "Pan-Slavic diplomatic mission"
+	mission = "与空间站指挥部合作，例行评估泛斯拉夫联邦公民的福祉，以及科研部和医疗部的遗传学与病毒学研究。"
+	polldesc = "泛斯拉夫外交使团"
 
 /datum/antagonist/ert/nri/diplomat
-	name = "Commonwealth ERC Diplomat"
-	role = "Diplomat"
+	name = "联邦对外关系委员会外交官"
+	role = "外交官"
 	outfit = /datum/outfit/centcom/ert/nri // no shit for generic role that won't even appear bruh
 
 /datum/antagonist/ert/nri/diplomat/major
-	role = "Major"
+	role = "少校"
 	outfit = /datum/outfit/centcom/ert/nri/major
 
 /datum/antagonist/ert/nri/diplomat/scientist
-	role = "Research Inspector"
+	role = "科研监察员"
 	outfit = /datum/outfit/centcom/ert/nri/scientist
 
 /datum/antagonist/ert/nri/diplomat/doctor
-	role = "Medical Inspector"
+	role = "医疗监察员"
 	outfit = /datum/outfit/centcom/ert/nri/doctor

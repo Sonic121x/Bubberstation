@@ -3,16 +3,16 @@
 
 //Malfunctioning cryostasis sleepers: Spawns in makeshift shelters in lavaland. Ghosts become hermits with knowledge of how they got to where they are now.
 /obj/effect/mob_spawn/ghost_role/human/hermit
-	name = "malfunctioning cryostasis sleeper"
-	desc = "A humming sleeper with a silhouetted occupant inside. Its stasis function is broken and it's likely being used as a bed."
-	prompt_name = "a stranded hermit"
+	name = "故障的低温休眠舱"
+	desc = "一台嗡嗡作响的休眠舱，里面有一个轮廓模糊的乘员。它的停滞功能已经损坏，多半被当作床在用。"
+	prompt_name = "一名被困的隐士"
 	icon = 'icons/obj/mining_zones/spawners.dmi'
 	icon_state = "cryostasis_sleeper"
 	outfit = /datum/outfit/hermit
-	you_are_text = "You've been stranded in this godless prison of a planet for longer than you can remember."
-	flavour_text = "Each day you barely scrape by, and between the terrible conditions of your makeshift shelter, \
-	the hostile creatures, and the ash drakes swooping down from the cloudless skies, all you can wish for is the feel of soft grass between your toes and \
-	the fresh air of Earth. These thoughts are dispelled by yet another recollection of how you got here... "
+	you_are_text = "你被困在这颗毫无神明的囚笼般的星球上，久到你已经记不清了。"
+	flavour_text = "你每天都只是勉强糊口，而在临时住所的恶劣条件、\
+	充满敌意的生物，以及从无云天空中俯冲而下的灰烬龙的夹击之下，你唯一渴望的，就是脚趾间柔软青草的感觉，\
+	还有地球的新鲜空气。可这些念头总会被又一次“你是怎么来到这里的”回忆所驱散…… "
 	spawner_job_path = /datum/job/hermit
 	allow_custom_character = ALL
 	quirks_enabled = TRUE // SKYRAT EDIT ADDITION - ghost role loadouts
@@ -24,26 +24,26 @@
 	var/arrpee = rand(1,4)
 	switch(arrpee)
 		if(1)
-			flavour_text += "you were a [pick("arms dealer", "shipwright", "docking manager")]'s assistant on a small trading station several sectors from here. Raiders attacked, and there was \
-			only one pod left when you got to the escape bay. You took it and launched it alone, and the crowd of terrified faces crowding at the airlock door as your pod's engines burst to \
-			life and sent you to this hell are forever branded into your memory."
+			flavour_text += "你曾是距此数个星区的一座小型贸易站上某位[pick("军火商", "船匠", "对接管理员")]的助手。劫掠者来袭，你赶到逃生舱区时只剩\
+			一个救生舱。你独自登上它并发射出去，当舱体引擎轰鸣着\
+			把你送往这地狱时，挤在气闸门口那一群惊恐的面孔永远烙印在你的记忆里。"
 			outfit.uniform = /obj/item/clothing/under/misc/assistantformal
 		if(2)
-			flavour_text += "you're an exile from the Tiger Cooperative. Their technological fanaticism drove you to question the power and beliefs of the Exolitics, and they saw you as a \
-			heretic and subjected you to hours of horrible torture. You were hours away from execution when a high-ranking friend of yours in the Cooperative managed to secure you a pod, \
-			scrambled its destination's coordinates, and launched it. You awoke from stasis when you landed and have been surviving - barely - ever since."
+			flavour_text += "你是猛虎合作社的流放者。他们的技术狂热让你开始质疑“外部派”的权力与信念，他们便视你为异端，对你施以数小时的可怕酷刑。\
+			就在处决前几小时，你在合作社的一位高层朋友设法为你弄到了一个救生舱，打乱了它的目的地坐标，\
+			然后将其发射。你着陆后从停滞中醒来，从此一直仅仅勉强维生。"
 			outfit.uniform = /obj/item/clothing/under/rank/prisoner
 			outfit.shoes = /obj/item/clothing/shoes/sneakers/orange
 		if(3)
-			flavour_text += "you were a doctor on one of Nanotrasen's space stations, but you left behind that damn corporation's tyranny and everything it stood for. From a metaphorical hell \
-			to a literal one, you find yourself nonetheless missing the recycled air and warm floors of what you left behind... but you'd still rather be here than there."
+			flavour_text += "你曾是纳米传讯某座空间站上的一名医生，但你抛下了那该死的公司的暴政以及它所代表的一切。从一个喻义上的地狱\
+			来到字面意义上的地狱，你发现自己竟然还会怀念身后那循环空气与温暖地板……不过你仍然宁愿待在这里，而不是那里。"
 			outfit.uniform = /obj/item/clothing/under/rank/medical/doctor
 			outfit.suit = /obj/item/clothing/suit/toggle/labcoat
 			outfit.back = /obj/item/storage/backpack/medic
 		if(4)
-			flavour_text += "you were always joked about by your friends for \"not playing with a full deck\", as they so kindly put it. It seems that they were right when you, on a tour \
-			at one of Nanotrasen's state-of-the-art research facilities, were in one of the escape pods alone and saw the red button. It was big and shiny, and it caught your eye. You pressed \
-			it, and after a terrifying and fast ride for days, you landed here. You've had time to wisen up since then, and you think that your old friends wouldn't be laughing now."
+			flavour_text += "你的朋友们总爱拿你开涮，好意地说你“脑子少了几根弦”。看来他们说得没错——\
+			在一次参观纳米传讯某座顶尖研究设施时，你独自待在一个逃生舱里，看到了那个红色按钮。\
+			它又大又亮，一下子吸引了你的目光。你按了下去，在惊心动魄地飞了几天之后，你降落到了这里。此后你有的是时间变得聪明些，你觉得你的老朋友现在大概笑不出来了。"
 
 /obj/effect/mob_spawn/ghost_role/human/hermit/Destroy()
 	new/obj/structure/fluff/empty_cryostasis_sleeper(get_turf(src))
@@ -60,26 +60,26 @@
 
 //Icebox version of hermit
 /obj/effect/mob_spawn/ghost_role/human/hermit/icemoon
-	name = "cryostasis bed"
-	desc = "A humming sleeper with a silhouetted occupant inside. Its stasis function is broken and it's likely being used as a bed."
-	prompt_name = "a grumpy old man"
+	name = "低温休眠床"
+	desc = "一台嗡嗡作响的休眠舱，里面有一个轮廓模糊的乘员。它的停滞功能已经损坏，多半被当作床在用。"
+	prompt_name = "一个脾气暴躁的老头"
 	icon = 'icons/obj/mining_zones/spawners.dmi'
 	icon_state = "cryostasis_sleeper"
 	outfit = /datum/outfit/hermit
-	you_are_text = "You've been hunting polar bears for 40 years now! What do these 'NaniteTrans' newcomers want?"
-	flavour_text = "You were fine hunting polar bears and taming wolves out here on your own, \
-		but now that there are corporate stooges around, you need to watch your step. "
+	you_are_text = "你猎捕北极熊已经有 40 年了！这些“纳米传讯”的新来者到底想干什么？"
+	flavour_text = "你本来一个人在这里猎北极熊、驯狼过得好好的，\
+		可现在周围来了些公司走狗，你可得留心脚下。 "
 	spawner_job_path = /datum/job/hermit
 
 //beach dome
 
 /obj/effect/mob_spawn/ghost_role/human/beach
-	prompt_name = "a beach bum"
-	name = "beach bum sleeper"
+	prompt_name = "一名海滩浪人"
+	name = "海滩浪人休眠舱"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	you_are_text = "You're, like, totally a dudebro, bruh."
-	flavour_text = "Ch'yea. You came here, like, on spring break, hopin' to pick up some bangin' hot chicks, y'knaw?"
+	you_are_text = "你，呃，就是个十足的哥们儿，兄弟。"
+	flavour_text = "那当然。你是趁着春假，呃，来这儿的，指望泡上几个火辣妹子，懂吧？"
 	spawner_job_path = /datum/job/beach_bum
 	outfit = /datum/outfit/beachbum
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE
@@ -87,9 +87,9 @@
 	random_appearance = FALSE // SKYRAT EDIT ADDITION
 
 /obj/effect/mob_spawn/ghost_role/human/beach/lifeguard
-	you_are_text = "You're a spunky lifeguard!"
-	flavour_text = "It's up to you to make sure nobody drowns or gets eaten by sharks and stuff."
-	name = "lifeguard sleeper"
+	you_are_text = "你是个活力十足的救生员！"
+	flavour_text = "确保没人溺水，也没人被鲨鱼什么的吃掉，就靠你了。"
+	name = "救生员休眠舱"
 	outfit = /datum/outfit/beachbum/lifeguard
 	allow_custom_character = NONE
 
@@ -118,12 +118,12 @@
 	uniform = /obj/item/clothing/under/shorts/red
 
 /obj/effect/mob_spawn/ghost_role/human/bartender
-	name = "bartender sleeper"
+	name = "酒保休眠舱"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	prompt_name = "a space bartender"
-	you_are_text = "You are a space bartender!"
-	flavour_text = "Time to mix drinks and change lives. Smoking space drugs makes it easier to understand your patrons' odd dialect."
+	prompt_name = "一名太空酒保"
+	you_are_text = "你是一名太空酒保！"
+	flavour_text = "该调酒、改变人生了。抽点太空毒品，会让你更容易听懂客人们古怪的方言。"
 	spawner_job_path = /datum/job/space_bartender
 	outfit = /datum/outfit/spacebartender
 	allow_custom_character = ALL
@@ -145,23 +145,23 @@
 	var/obj/item/card/id/id_card = bartender.wear_id
 	if(bartender.age < AGE_MINOR)
 		id_card.registered_age = AGE_MINOR
-		to_chat(bartender, span_notice("You're not technically old enough to access or serve alcohol, but your ID has been discreetly modified to display your age as [AGE_MINOR]. Try to keep that a secret!"))
+		to_chat(bartender, span_notice("严格来说你还没到可以接触或供应酒精的年龄，但你的 ID 已被悄悄修改为显示 [AGE_MINOR] 岁。尽量保守这个秘密！"))
 
 //Preserved terrarium/seed vault: Spawns in seed vault structures in lavaland. Ghosts become plantpeople and are advised to begin growing plants in the room near them.
 /obj/effect/mob_spawn/ghost_role/human/seed_vault
-	name = "preserved terrarium"
-	desc = "An ancient machine that seems to be used for storing plant matter. The glass is obstructed by a mat of vines."
-	prompt_name = "lifebringer"
+	name = "保存完好的生态箱"
+	desc = "一台古老的机器，似乎用于储存植物物质。玻璃被一层藤蔓遮住了。"
+	prompt_name = "生命使者"
 	icon = 'icons/obj/mining_zones/spawners.dmi'
 	icon_state = "terrarium"
 	density = TRUE
 	mob_species = /datum/species/pod
-	you_are_text = "You are a sentient ecosystem, an example of the mastery over life that your creators possessed."
-	flavour_text = "Your masters, benevolent as they were, created uncounted seed vaults and spread them across \
-	the universe to every planet they could chart. You are in one such seed vault. \
-	Your goal is to protect the vault you are assigned to, cultivate the seeds passed onto you, \
-	and eventually bring life to this desolate planet while waiting for contact from your creators. \
-	Estimated time of last contact: Deployment, 5000 millennia ago."
+	you_are_text = "你是一个有感知的生态系统，是你创造者掌控生命之技艺的范例。"
+	flavour_text = "你的主人虽然仁慈，却创造了数不清的种子库，把它们散布到\
+	宇宙中每一颗他们能标注的星球上。你就在这样一座种子库中。\
+	你的目标是保护分配给你的种子库，培育传给你们的种子，\
+	最终为这颗荒芜的星球带来生命，同时等待与你的创造者取得联系。\
+	预计上次联系的时刻：部署时，5000 个千年前。"
 	spawner_job_path = /datum/job/lifebringer
 	restricted_species = list(/datum/species/pod) //SKYRAT EDIT ADDITION
 	random_appearance = FALSE // SKYRAT EDIT ADDITION
@@ -169,8 +169,8 @@
 
 /obj/effect/mob_spawn/ghost_role/human/seed_vault/Initialize(mapload)
 	. = ..()
-	mob_name = pick("Tomato", "Potato", "Broccoli", "Carrot", "Ambrosia", "Pumpkin", "Ivy", "Kudzu", "Banana", "Moss", "Flower", "Bloom", "Root", "Bark", "Glowshroom", "Petal", "Leaf", \
-	"Venus", "Sprout","Cocoa", "Strawberry", "Citrus", "Oak", "Cactus", "Pepper", "Juniper")
+	mob_name = pick("番茄", "土豆", "西兰花", "胡萝卜", "仙草", "南瓜", "常春藤", "葛藤", "香蕉", "苔藓", "花朵", "绽放", "根", "树皮", "荧光菇", "花瓣", "叶子", \
+	"维纳斯", "新芽", "可可", "草莓", "柑橘", "橡树", "仙人掌", "辣椒", "杜松")
 
 /obj/effect/mob_spawn/ghost_role/human/seed_vault/Destroy()
 	new/obj/structure/fluff/empty_terrarium(get_turf(src))
@@ -179,8 +179,8 @@
 //Ash walker eggs: Spawns in ash walker dens in lavaland. Ghosts become unbreathing lizards that worship the Necropolis and are advised to retrieve corpses to create more ash walkers.
 
 /obj/structure/ash_walker_eggshell
-	name = "ash walker egg"
-	desc = "A man-sized yellow egg, spawned from some unfathomable creature. A humanoid silhouette lurks within. The egg shell looks resistant to temperature but otherwise rather brittle."
+	name = "灰行者蛋"
+	desc = "一枚人形大小的黄色蛋，由某种难以理解的生物产下。里面隐约有一个人形轮廓。蛋壳看起来耐温，但其他方面相当脆弱。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "large_egg"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | FREEZE_PROOF
@@ -216,19 +216,19 @@
 	return ..()
 
 /obj/effect/mob_spawn/ghost_role/human/ash_walker
-	name = "ash walker egg"
-	desc = "A man-sized yellow egg, spawned from some unfathomable creature. A humanoid silhouette lurks within."
-	prompt_name = "necropolis ash walker"
+	name = "灰行者蛋"
+	desc = "一枚人形大小的黄色蛋，由某种难以理解的生物产下。里面隐约有一个人形轮廓。"
+	prompt_name = "死灵之都灰行者"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "large_egg"
 	mob_species = /datum/species/lizard/ashwalker
 	outfit = /datum/outfit/ashwalker
 	move_resist = MOVE_FORCE_NORMAL
 	density = FALSE
-	you_are_text = "You are an ash walker. Your tribe worships the Necropolis."
-	flavour_text = "The wastes are sacred ground, its monsters a blessed bounty. \
-	You have seen lights in the distance... they foreshadow the arrival of outsiders that seek to tear apart the Necropolis and its domain. \
-	Fresh sacrifices for your nest."
+	you_are_text = "你是一名灰行者。你的部族崇拜死灵之都。"
+	flavour_text = "荒原是神圣的土地，其中的怪物是受祝福的恩赐。\
+	你看见远处有灯光……它们预示着外来者的到来，那些人想要拆毁死灵之都及其领地。\
+	为你的巢穴带来新鲜的祭品吧。"
 	spawner_job_path = /datum/job/ash_walker
 	var/datum/team/ashwalkers/team
 	var/obj/structure/ash_walker_eggshell/eggshell
@@ -246,7 +246,7 @@
 	if(!(user.ckey in team.players_spawned))//one per person unless you get a bonus spawn
 		return TRUE
 	if(!silent)
-		to_chat(user, span_warning("You have exhausted your usefulness to the Necropolis."))
+		to_chat(user, span_warning("你对死灵之都的用处已经耗尽了。"))
 	return FALSE
 
 /obj/effect/mob_spawn/ghost_role/human/ash_walker/special(mob/living/carbon/human/spawned_human, mob/mob_possessor, apply_prefs)
@@ -256,7 +256,7 @@
 	// SKYRAT EDIT ADDITION END
 	. = ..()
 	spawned_human.fully_replace_character_name(null, spawned_human.generate_random_mob_name(TRUE))
-	to_chat(spawned_human, "<b>Drag the corpses of men and beasts to your nest. It will absorb them to create more of your kind. Invade the strange structure of the outsiders if you must. Do not cause unnecessary destruction, as littering the wastes with ugly wreckage is certain to not gain you favor. Glory to the Necropolis!</b>")
+	to_chat(spawned_human, "<b>把人兽的尸体拖回你的巢穴。巢穴会吸收它们，孕育出更多你的同类。必要时可以入侵外来者那奇怪的建筑。不要造成不必要的破坏，因为用丑陋的残骸弄脏荒原绝不会为你赢得眷顾。死灵之都万岁！</b>")
 
 	spawned_human.mind.add_antag_datum(/datum/antagonist/ashwalker, team)
 
@@ -274,9 +274,9 @@
 	src.forceMove(eggshell)
 	if(spawner_area)
 		notify_ghosts(
-			"An ash walker egg is ready to hatch in \the [spawner_area.name].",
+			"一枚灰行者蛋已在 \the [spawner_area.name] 中准备孵化。",
 			source = src,
-			header = "Ash Walker Egg",
+			header = "灰行者蛋",
 			click_interact = TRUE,
 			ignore_key = POLL_IGNORE_ASHWALKER,
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
@@ -294,13 +294,13 @@
 ///Syndicate Listening Post
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate
-	name = "Syndicate Bioweapon Scientist"
+	name = "辛迪加生化武器科学家"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	prompt_name = "a syndicate science technician"
-	you_are_text = "You are a syndicate science technician, employed in a top secret research facility developing biological weapons."
-	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Continue your research as best you can, and try to keep a low profile."
-	important_text = "The base is rigged with explosives, DO NOT abandon it or let it fall into enemy hands!"
+	prompt_name = "一名辛迪加科学技术员"
+	you_are_text = "你是一名辛迪加科学技术员，受雇于一座研发生物武器的绝密研究设施。"
+	flavour_text = "不幸的是，你们憎恶的敌人纳米传讯已开始在这一星区采矿。尽力继续你的研究，并尽量保持低调。"
+	important_text = "基地内布满了炸药，绝不要弃守，也绝不要让它落入敌手！"
 	outfit = /datum/outfit/lavaland_syndicate
 	spawner_job_path = /datum/job/lavaland_syndicate
 	loadout_enabled = TRUE // SKYRAT EDIT ADDITION - ghost role loadouts
@@ -314,11 +314,11 @@
 	new_spawn.grant_language(/datum/language/codespeak, source = LANGUAGE_SPAWNER) // SKYRAT EDIT CHANGE - ORIGINAL: new_spawn.grant_language(/datum/language/codespeak, source = LANGUAGE_MIND)
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/comms
-	name = "Syndicate Comms Agent"
-	prompt_name = "a syndicate comms agent"
-	you_are_text = "You are a syndicate comms agent, employed in a top secret research facility developing biological weapons."
-	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Do not let the base fall into enemy hands!"
-	important_text = "DO NOT abandon the base."
+	name = "辛迪加通讯特工"
+	prompt_name = "一名辛迪加通讯特工"
+	you_are_text = "你是一名辛迪加通讯特工，受雇于一座研发生物武器的绝密研究设施。"
+	flavour_text = "不幸的是，你们憎恶的敌人纳米传讯已开始在这一星区采矿。尽力监视敌方动向，并尽量保持低调。利用通讯设备为任何外勤特工提供支援，并散布虚假情报，让纳米传讯摸不清你的踪迹。不要让基地落入敌手！"
+	important_text = "绝不要弃守基地。"
 	outfit = /datum/outfit/lavaland_syndicate/comms
 
 /datum/outfit/lavaland_syndicate
@@ -357,14 +357,14 @@
 
 /obj/item/clothing/mask/chameleon/gps/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/gps, "Encrypted Signal")
+	AddComponent(/datum/component/gps, "加密信号")
 
 ///Icemoon Syndicate Comms Agent
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/comms/icemoon
-	name = "Icemoon Comms Agent"
-	prompt_name = "a syndicate comms agent"
-	you_are_text = "You are a syndicate comms agent, assigned in an underground secret listening post close to your enemy's facility."
-	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Do not let the outpost fall into enemy hands!"
-	important_text = "Do NOT let the outpost fall into enemy hands"
+	name = "冰月通讯特工"
+	prompt_name = "一名辛迪加通讯特工"
+	you_are_text = "你是一名辛迪加通讯特工，被派驻在敌方设施附近的一座地下秘密监听站。"
+	flavour_text = "不幸的是，你们憎恶的敌人纳米传讯已开始在这一星区采矿。尽力监视敌方动向，并尽量保持低调。利用通讯设备为任何外勤特工提供支援，并散布虚假情报，让纳米传讯摸不清你的踪迹。不要让前哨站落入敌手！"
+	important_text = "绝不要让前哨站落入敌手"
 	outfit = /datum/outfit/lavaland_syndicate/comms/icemoon

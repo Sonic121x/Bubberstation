@@ -165,9 +165,9 @@ GLOBAL_LIST_INIT(rdd_designs, list(
 ))
 
 /obj/item/construction/rdd
-	name = "rapid-decoration-device (RDD)"
-	desc = "A device used to rapidly deploy plastic decorative flora. \
-		Internally synthesizes cheap plastic replicas of natural scenery."
+	name = "快速装饰装置（RDD）"
+	desc = "一种用于快速部署塑料装饰性植物的装置。\
+		其内部可合成廉价塑料制成的自然景观复制品。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rdd"
 	worn_icon_state = "RCD"
@@ -203,7 +203,7 @@ GLOBAL_LIST_INIT(rdd_designs, list(
 
 /obj/item/construction/rdd/examine(mob/user)
 	. = ..()
-	. += span_info("Currently set to produce: [span_bold(initial(selected_decoration.name))].")
+	. += span_info("当前设定为生成：[span_bold(initial(selected_decoration.name))]。")
 
 /obj/item/construction/rdd/attack_self(mob/user)
 	. = ..()
@@ -275,14 +275,14 @@ GLOBAL_LIST_INIT(rdd_designs, list(
 		return ITEM_INTERACT_BLOCKING
 
 	if(target_turf.is_blocked_turf(exclude_mobs = TRUE))
-		balloon_alert(user, "tile is blocked!")
+		balloon_alert(user, "地砖被挡住了！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/decoration_count = 0
 	for(var/obj/structure/decoration/existing in target_turf.contents)
 		decoration_count++
 		if(decoration_count >= 3)
-			balloon_alert(user, "too many decorations here!")
+			balloon_alert(user, "这里的装饰太多了！")
 			return ITEM_INTERACT_BLOCKING
 
 	var/cost = RDD_COST_MULTIPLIER
@@ -299,7 +299,7 @@ GLOBAL_LIST_INIT(rdd_designs, list(
 	new selected_decoration(target_turf)
 	useResource(cost, user)
 
-	log_tool("[key_name(user)] used [src] to create [initial(selected_decoration.name)] at [AREACOORD(target_turf)]")
+	log_tool("[key_name(user)] 使用 [src] 在 [AREACOORD(target_turf)] 创建了 [initial(selected_decoration.name)]")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/construction/rdd/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
@@ -319,11 +319,11 @@ GLOBAL_LIST_INIT(rdd_designs, list(
 	playsound(target_turf, 'sound/items/deconstruct.ogg', 50, TRUE)
 	qdel(found)
 
-	log_tool("[key_name(user)] used [src] to deconstruct [found] at [AREACOORD(target_turf)]")
+	log_tool("[key_name(user)] 使用 [src] 在 [AREACOORD(target_turf)] 拆除了 [found]")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/construction/rdd/borg
-	desc = "A device used to rapidly deploy plastic decorative flora. Uses the cyborg's internal cell."
+	desc = "一种用于快速部署塑料装饰性植物的装置。使用半机械人内部的电池。"
 	custom_materials = null
 	/// energy usage per decoration
 	var/energyfactor = 0.1 * STANDARD_CELL_CHARGE
@@ -342,10 +342,10 @@ GLOBAL_LIST_INIT(rdd_designs, list(
 	if(!iscyborg(borgy))
 		return FALSE
 	if(!borgy.cell)
-		balloon_alert(user, "no cell found!")
+		balloon_alert(user, "未找到电池！")
 		return FALSE
 	if(borgy.cell.charge < amount * energyfactor)
-		balloon_alert(user, "insufficient charge!")
+		balloon_alert(user, "电量不足！")
 		return FALSE
 	if(!dry_run)
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)

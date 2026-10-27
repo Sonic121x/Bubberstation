@@ -1,6 +1,6 @@
 /datum/job/cook
 	title = JOB_COOK
-	description = "Serve food, cook meat, keep the crew fed."
+	description = "供应食物，烹制肉类，让船员们吃饱。"
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -46,7 +46,7 @@
 		/obj/item/knife/butcher = 2,
 	)
 
-	rpg_title = "Tavern Chef"
+	rpg_title = "酒馆主厨"
 	alternate_titles = list(
 		JOB_CHEF,
 	)

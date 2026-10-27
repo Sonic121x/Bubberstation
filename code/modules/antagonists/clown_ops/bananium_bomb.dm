@@ -1,6 +1,6 @@
 /obj/machinery/nuclearbomb/syndicate/bananium
-	name = "bananium fission explosive"
-	desc = "You probably shouldn't stick around to see if this is armed."
+	name = "香蕉矿裂变爆炸装置"
+	desc = "你大概不该待在这儿看它到底有没有被启动。"
 	icon_state = "bananiumbomb_base"
 	base_icon_state = "bananiumbomb"
 

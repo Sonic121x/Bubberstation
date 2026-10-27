@@ -1,14 +1,14 @@
 /obj/item/disk/surgery
-	name = "surgery procedure disk"
-	desc = "A disk that contains advanced surgery procedures, must be loaded into an Operating Console."
+	name = "手术程序磁盘"
+	desc = "内含高级手术程序的磁盘，必须载入手术控制台。"
 	icon_state = "datadisk1"
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass=SMALL_MATERIAL_AMOUNT)
 	/// List of surgical operations contained on this disk
 	var/list/surgeries
 
 /obj/item/disk/surgery/debug
-	name = "debug surgery disk"
-	desc = "A disk that contains all existing surgery procedures."
+	name = "调试手术磁盘"
+	desc = "内含所有现有手术程序的磁盘。"
 	icon_state = "datadisk1"
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass=SMALL_MATERIAL_AMOUNT)
 
@@ -19,8 +19,8 @@
 		surgeries += operation.type
 
 /obj/item/disk/surgery/advanced_plastic_surgery
-	name = "advanced plastic surgery disk"
-	desc = "Provides instructions on how to perform more intricate plastic surgeries."
+	name = "高级整形手术磁盘"
+	desc = "提供如何执行更复杂的整形手术的说明。"
 
 	surgeries = list(
 		/datum/surgery_operation/limb/add_plastic,
@@ -28,31 +28,31 @@
 
 /obj/item/disk/surgery/advanced_plastic_surgery/examine(mob/user)
 	. = ..()
-	. += span_info("Unlocks the <b>[/datum/surgery_operation/limb/add_plastic::name]</b> surgical operation.")
-	. += span_info("Performing this before a <i>[/datum/surgery_operation/limb/plastic_surgery::name]</i> upgrades the operation, \
-		allowing you to copy the appearance of any individual - \
-		provided you have a photo of them in your offhand during the surgery.")
+	. += span_info("解锁<b>[/datum/surgery_operation/limb/add_plastic::name]</b>手术。")
+	. += span_info("在<i>[/datum/surgery_operation/limb/plastic_surgery::name]</i>之前执行此操作可升级该手术，\
+		让你能复制任何人的外貌——\
+		只要手术期间副手持有他们的照片。")
 
 /obj/item/disk/surgery/advanced_plastic_surgery/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/examine_lore, \
-		lore = "Most forms of plastic surgery became obsolete due in no small part to advances in genetics technology. \
-			Very basic methods still remain in use, but scarcely, and primarily to reverse a patient's disfigurements. \
-			As a consequence, this item became an antique to many collectors - \
-			though some back alley surgeons still seek one out for its now uncommon knowledge." \
+		lore = "由于基因技术的进步，大多数整形手术都已过时。\
+			非常基础的方法仍在使用，但已十分罕见，主要用于修复患者的外貌损伤。\
+			因此，这件物品成了许多收藏家眼中的古董——\
+			不过仍有一些后巷外科医生会为了它那如今罕见的学识而四处寻找。" \
 	)
 
 /obj/item/disk/surgery/brainwashing
-	name = "brainwashing surgery disk"
-	desc = "Provides instructions on how to impress an order on a brain, making it the primary objective of the patient."
+	name = "洗脑手术磁盘"
+	desc = "提供如何向大脑植入命令、使其成为患者首要目标的说明。"
 	surgeries = list(
 		/datum/surgery_operation/organ/brainwash,
 		/datum/surgery_operation/organ/brainwash/mechanic,
 	)
 
 /obj/item/disk/surgery/sleeper_protocol
-	name = "suspicious surgery disk"
-	desc = "Provides instructions on how to convert a patient into a sleeper agent for the Syndicate."
+	name = "可疑手术磁盘"
+	desc = "提供如何将患者转化为辛迪加沉睡特工的说明。"
 	surgeries = list(
 		/datum/surgery_operation/organ/brainwash/sleeper,
 		/datum/surgery_operation/organ/brainwash/sleeper/mechanic,

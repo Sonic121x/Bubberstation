@@ -2,7 +2,7 @@
 GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 
 /datum/controller/global_vars
-	name = "Global Variables"
+	name = "全局变量"
 
 	var/static/list/gvars_datum_protected_varlist
 	var/list/gvars_datum_in_built_vars
@@ -31,7 +31,7 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 	return QDEL_HINT_IWILLGC
 
 /datum/controller/global_vars/stat_entry(msg)
-	msg = "Edit"
+	msg = "编辑"
 	return msg
 
 /datum/controller/global_vars/vv_edit_var(var_name, var_value)

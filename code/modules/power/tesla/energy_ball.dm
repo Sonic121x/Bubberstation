@@ -12,8 +12,8 @@
 
 /// The Tesla engine
 /obj/energy_ball
-	name = "energy ball"
-	desc = "An energy ball."
+	name = "能量球"
+	desc = "一个能量球。"
 	icon = 'icons/obj/machines/engine/energy_ball.dmi'
 	icon_state = "energy_ball"
 	anchored = TRUE
@@ -49,8 +49,8 @@
 		set_light(10, 7, "#5e5edd")
 
 		var/turf/spawned_turf = get_turf(src)
-		message_admins("A tesla has been created at [ADMIN_VERBOSEJMP(spawned_turf)].")
-		investigate_log("was created at [AREACOORD(spawned_turf)].", INVESTIGATE_ENGINE)
+		message_admins("一颗特斯拉能量球已在 [ADMIN_VERBOSEJMP(spawned_turf)] 生成。")
+		investigate_log("在 [AREACOORD(spawned_turf)] 生成。", INVESTIGATE_ENGINE)
 
 /obj/energy_ball/Destroy()
 	if(orbiting && istype(orbiting.parent, /obj/energy_ball))
@@ -91,7 +91,7 @@
 /obj/energy_ball/examine(mob/user)
 	. = ..()
 	if(orbiting_balls.len)
-		. += "There are [orbiting_balls.len] mini-balls orbiting it."
+		. += "有 [orbiting_balls.len] 颗迷你能量球在环绕它。"
 
 /obj/energy_ball/proc/move(move_amount)
 	var/list/dirs = GLOB.alldirs.Copy()
@@ -162,12 +162,12 @@
 	if(!iscarbon(user))
 		return
 	var/mob/living/carbon/jedi = user
-	to_chat(jedi, span_userdanger("That was a shockingly dumb idea."))
+	to_chat(jedi, span_userdanger("这主意蠢得让人触电。"))
 	var/obj/item/organ/brain/rip_u = locate(/obj/item/organ/brain) in jedi.organs
 	jedi.ghostize(jedi)
 	if(rip_u)
 		qdel(rip_u)
-	jedi.investigate_log("had [jedi.p_their()] brain dusted by touching [src] with telekinesis.", INVESTIGATE_DEATHS)
+	jedi.investigate_log("因用念力触碰 [src] 导致自己的大脑化为灰烬。", INVESTIGATE_DEATHS)
 	jedi.death()
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -198,7 +198,7 @@
 		if(GR.anchored)
 			return
 	var/mob/living/carbon/C = A
-	C.investigate_log("has been dusted by an energy ball.", INVESTIGATE_DEATHS)
+	C.investigate_log("被能量球化为灰烬。", INVESTIGATE_DEATHS)
 	C.dust()
 
 /proc/tesla_zap(atom/source, zap_range = 3, power, cutoff = 4e5, zap_flags = ZAP_DEFAULT_FLAGS, list/shocked_targets = list())

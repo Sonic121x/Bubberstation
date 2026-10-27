@@ -35,14 +35,14 @@
 
 /datum/outfit/deathmatch_loadout/naked
 	name = "Deathmatch: Naked"
-	display_name = "Unarmed, Butt-naked"
-	desc = "Naked man craves for bloodshed."
+	display_name = "赤手空拳，一丝不挂"
+	desc = "赤裸的男人渴望着杀戮。"
 	shoes = null
 
 /datum/outfit/deathmatch_loadout/assistant
 	name = "Deathmatch: Assistant loadout"
-	display_name = "Assistant"
-	desc = "A simple assistant loadout: greyshirt and a toolbox"
+	display_name = "助理"
+	desc = "简单的助理装备：灰衫和一只工具箱"
 	l_hand = /obj/item/storage/toolbox/mechanical
 	uniform = /obj/item/clothing/under/color/grey
 	back = /obj/item/storage/backpack
@@ -51,14 +51,14 @@
 
 /datum/outfit/deathmatch_loadout/assistant/weaponless
 	name = "Deathmatch: Assistant loadout (Weaponless)"
-	display_name = "Assistant (Unarmed)"
-	desc = "What is an assistant without a toolbox? Nothing!"
+	display_name = "助理（赤手空拳）"
+	desc = "没有工具箱的助理算什么？什么也不是！"
 	l_hand = null
 
 /datum/outfit/deathmatch_loadout/operative
 	name = "Deathmatch: Operative"
-	display_name = "Operative"
-	desc = "A syndicate operative."
+	display_name = "特工"
+	desc = "一名辛迪加特工。"
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/combat
@@ -67,16 +67,16 @@
 
 /datum/outfit/deathmatch_loadout/operative/ranged
 	name = "Deathmatch: Ranged Operative"
-	display_name = "Ranged Operative"
-	desc = "A syndicate operative with a gun and a knife."
+	display_name = "远程特工"
+	desc = "一名持枪带刀的辛迪加特工。"
 	l_hand = /obj/item/gun/ballistic/automatic/pistol
 	l_pocket = /obj/item/knife/combat
 	backpack_contents = list(/obj/item/ammo_box/magazine/m9mm = 5)
 
 /datum/outfit/deathmatch_loadout/operative/melee
 	name = "Deathmatch: Melee Operative"
-	display_name = "Melee Operative"
-	desc = "A syndicate operative with multiple knives."
+	display_name = "近战特工"
+	desc = "一名带着多把刀的辛迪加特工。"
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/vest
 	head = /obj/item/clothing/head/helmet
@@ -86,8 +86,8 @@
 
 /datum/outfit/deathmatch_loadout/securing_sec
 	name = "Deathmatch: Security Officer"
-	display_name = "Security Officer"
-	desc = "A security officer."
+	display_name = "安保官"
+	desc = "一名安保官。"
 	uniform = /datum/outfit/job/security::uniform
 	suit = /datum/outfit/job/security::suit
 	suit_store = /datum/outfit/job/security::suit_store
@@ -105,14 +105,14 @@
 
 /datum/outfit/deathmatch_loadout/assistant/instagib
 	name = "DM: Instagib"
-	display_name = "Instagib"
-	desc = "Assistant with an instakill rifle."
+	display_name = "秒杀"
+	desc = "手持秒杀步枪的助理。"
 	l_hand = /obj/item/gun/energy/laser/instakill
 
 /datum/outfit/deathmatch_loadout/operative/sniper
 	name = "Deathmatch: Sniper"
-	display_name = "Sniper"
-	desc = "You know what do you need to do"
+	display_name = "狙击手"
+	desc = "你知道自己该做什么"
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/sniper_rounds = 3,
 	)
@@ -124,8 +124,8 @@
 
 /datum/outfit/deathmatch_loadout/chef
 	name = "Deathmatch: Chef"
-	display_name = "Chef"
-	desc = "He love pizza."
+	display_name = "厨师"
+	desc = "他爱披萨。"
 	uniform = /obj/item/clothing/under/costume/buttondown/slacks/service
 	suit = /obj/item/clothing/suit/toggle/chef
 	head = /obj/item/clothing/head/utility/chefhat
@@ -138,8 +138,8 @@
 
 /datum/outfit/deathmatch_loadout/samurai
 	name = "Deathmatch: Samurai"
-	display_name = "Samurai"
-	desc = "Bare-footed man craves to bloodshed."
+	display_name = "武士"
+	desc = "赤足的男人渴望着杀戮。"
 	l_hand = /obj/item/katana
 	uniform = /obj/item/clothing/under/costume/gi
 
@@ -147,8 +147,8 @@
 
 /datum/outfit/deathmatch_loadout/battler
 	name = "Deathmatch: Battler Base"
-	display_name = "Battler"
-	desc = "What is a battler without weapons?"
+	display_name = "战斗者"
+	desc = "没有武器的战斗者算什么？"
 
 	shoes = /obj/item/clothing/shoes/combat
 	uniform = /obj/item/clothing/under/syndicate
@@ -158,8 +158,8 @@
 
 /datum/outfit/deathmatch_loadout/battler/soldier
 	name = "Deathmatch: Soldier"
-	display_name = "Soldier"
-	desc = "Ready for combat."
+	display_name = "士兵"
+	desc = "随时准备战斗。"
 	l_hand = /obj/item/gun/ballistic/rifle/boltaction
 	l_pocket = /obj/item/knife/combat
 	uniform = /obj/item/clothing/under/syndicate/rus_army
@@ -173,8 +173,8 @@
 
 /datum/outfit/deathmatch_loadout/battler/druid
 	name = "Deathmatch: Druid"
-	display_name = "Druid"
-	desc = "How can plants help you?"
+	display_name = "德鲁伊"
+	desc = "植物能怎么帮你？"
 
 	species_override = /datum/species/pod
 	l_hand = /obj/item/gun/ballistic/bow
@@ -202,8 +202,8 @@
 
 /datum/outfit/deathmatch_loadout/battler/northstar
 	name = "Deathmatch: North Star"
-	display_name = "North Star"
-	desc = "flip flip flip"
+	display_name = "北极星"
+	desc = "翻 翻 翻"
 	uniform = /obj/item/clothing/under/suit/carpskin
 	head = /obj/item/clothing/head/fedora/carpskin
 	gloves = /obj/item/clothing/gloves/rapid
@@ -214,8 +214,8 @@
 
 /datum/outfit/deathmatch_loadout/battler/janitor
 	name = "Deathmatch: Janitor"
-	display_name = "Janitor"
-	desc = "Regular work"
+	display_name = "清洁工"
+	desc = "日常活儿"
 	uniform = /obj/item/clothing/under/rank/civilian/janitor
 	suit = /obj/item/clothing/suit/caution
 	head = /obj/item/reagent_containers/cup/bucket
@@ -230,8 +230,8 @@
 
 /datum/outfit/deathmatch_loadout/battler/surgeon
 	name = "Deathmatch: Surgeon"
-	display_name = "Surgeon"
-	desc = "Treatment has come"
+	display_name = "外科医生"
+	desc = "治疗来了"
 	uniform = /obj/item/clothing/under/rank/medical/scrubs/blue
 	suit = /obj/item/clothing/suit/apron/surgical
 	head = /obj/item/clothing/head/utility/surgerycap
@@ -247,8 +247,8 @@
 
 /datum/outfit/deathmatch_loadout/battler/raider
 	name = "Deathmatch: Raider"
-	display_name = "Raider"
-	desc = "Not from Shadow Legends"
+	display_name = "掠夺者"
+	desc = "不是来自暗影传说"
 	l_hand = /obj/item/nullrod/claymore/chainsaw_sword
 	r_pocket = /obj/item/switchblade
 	uniform = /obj/item/clothing/under/costume/jabroni
@@ -258,8 +258,8 @@
 
 /datum/outfit/deathmatch_loadout/battler/clown
 	name = "DM: Clown"
-	display_name = "Clown (Man Of Honk)"
-	desc = "Who called this honking clown"
+	display_name = "小丑（鸣笛之人）"
+	desc = "谁叫了这个鸣笛小丑"
 	uniform = /datum/outfit/job/clown::uniform
 	belt = /datum/outfit/job/clown::belt
 	shoes = /datum/outfit/job/clown::shoes
@@ -281,8 +281,8 @@
 
 /datum/outfit/deathmatch_loadout/battler/tgcoder //tg doesnt stand for tgstation dont ask
 	name = "Deathmatch: Coder"
-	display_name = "Coder"
-	desc = "What"
+	display_name = "程序员"
+	desc = "什么"
 	l_hand = /obj/item/toy/katana
 	uniform = /obj/item/clothing/under/costume/seifuku
 	suit = /obj/item/clothing/suit/costume/joker
@@ -294,8 +294,8 @@
 
 /datum/outfit/deathmatch_loadout/battler/enginer
 	name = "Deathmatch: Engineer"
-	display_name = "Engineer"
-	desc = "Meet the engineer"
+	display_name = "工程师"
+	desc = "来见见工程师"
 	l_hand = /obj/item/storage/toolbox/emergency/turret
 	uniform = /obj/item/clothing/under/rank/engineering/engineer
 	shoes = /obj/item/clothing/shoes/magboots
@@ -305,8 +305,8 @@
 
 /datum/outfit/deathmatch_loadout/battler/scientist
 	name = "Deathmatch: Scientist"
-	display_name = "Scientist"
-	desc = "What a nerd"
+	display_name = "科学家"
+	desc = "真是个书呆子"
 	uniform = /obj/item/clothing/under/rank/rnd/scientist
 	suit = /obj/item/clothing/suit/armor/reactive/stealth
 	mask = /obj/item/clothing/mask/gas
@@ -331,8 +331,8 @@
 
 /datum/outfit/deathmatch_loadout/battler/bloodminer
 	name = "Deathmatch: Blood Miner"
-	display_name = "Blood Miner"
-	desc = "Rip and tear!!!"
+	display_name = "嗜血矿工"
+	desc = "撕碎！撕裂！！！"
 
 	l_hand = /obj/item/melee/cleaving_saw
 	r_hand = /obj/item/gun/energy/recharge/kinetic_accelerator
@@ -346,8 +346,8 @@
 
 /datum/outfit/deathmatch_loadout/battler/ripper
 	name = "Deathmatch: Ripper"
-	display_name = "Ripper"
-	desc = "Die die die!!!"
+	display_name = "撕裂者"
+	desc = "死！死！死！！！"
 	l_hand = /obj/item/gun/ballistic/shotgun/hook
 	r_hand = /obj/item/gun/ballistic/shotgun/hook
 	uniform = /obj/item/clothing/under/costume/skeleton
@@ -359,8 +359,8 @@
 
 /datum/outfit/deathmatch_loadout/battler/cowboy
 	name = "Deathmatch: Cowboy"
-	display_name = "Cowboy"
-	desc = "Yeehaw partner"
+	display_name = "牛仔"
+	desc = "咿哈，伙计"
 
 	r_hand  = /obj/item/cigarette/cigar
 	l_hand = /obj/item/melee/curator_whip
@@ -375,8 +375,8 @@
 
 /datum/outfit/deathmatch_loadout/wizard
 	name = "Deathmatch: Wizard"
-	display_name = "Wizard"
-	desc = "It's wizard time, motherfucker! FIREBALL!!"
+	display_name = "巫师"
+	desc = "巫师时间到了，混蛋！火球术！！"
 
 	l_hand = /obj/item/staff
 	uniform = /datum/outfit/wizard::uniform
@@ -391,8 +391,8 @@
 
 /datum/outfit/deathmatch_loadout/wizard/pyro
 	name = "Deathmatch: Pyromancer"
-	display_name = "Pyromancer"
-	desc = "Burninating the station-side! Burninating all the wizards!"
+	display_name = "炎术士"
+	desc = "烧遍站区！烧遍所有巫师！"
 
 	suit = /obj/item/clothing/suit/wizrobe/red
 	head = /obj/item/clothing/head/wizard/red
@@ -404,8 +404,8 @@
 
 /datum/outfit/deathmatch_loadout/wizard/electro
 	name = "Deathmatch: Electromancer"
-	display_name = "Electromancer"
-	desc = "Batons are so last century."
+	display_name = "雷术士"
+	desc = "电棍早就过时了。"
 
 	suit = /obj/item/clothing/suit/wizrobe/magusred
 	head = /obj/item/clothing/head/wizard/magus
@@ -416,8 +416,8 @@
 
 /datum/outfit/deathmatch_loadout/wizard/necromancer
 	name = "Deathmatch: Necromancer"
-	display_name = "Necromancer"
-	desc = "I've got a BONE to pick- Yeah, sorry."
+	display_name = "死灵法师"
+	desc = "我有根骨头要跟你算算账——呃，抱歉。"
 
 	species_override = /datum/species/skeleton
 	suit = /obj/item/clothing/suit/wizrobe/black
@@ -429,8 +429,8 @@
 
 /datum/outfit/deathmatch_loadout/wizard/larp
 	name = "Deathmatch: LARPer"
-	display_name = "LARPer"
-	desc = "Lightning bolt! Lightning bolt! Lightning bolt!"
+	display_name = "现实扮演者"
+	desc = "闪电箭！闪电箭！闪电箭！"
 
 	l_hand = /obj/item/staff/stick
 	suit = /obj/item/clothing/suit/wizrobe/fake
@@ -443,8 +443,8 @@
 
 /datum/outfit/deathmatch_loadout/wizard/chuuni
 	name = "Deathmatch: Chuuni"
-	display_name = "Chuunibyou"
-	desc = "Darkness blacker than black and darker than dark, I beseech thee..."
+	display_name = "中二病"
+	desc = "比黑更黑、比暗更暗的黑暗啊，我向你祈求……"
 
 	l_hand = /obj/item/staff/broom
 	suit = /obj/item/clothing/suit/wizrobe/marisa
@@ -457,8 +457,8 @@
 
 /datum/outfit/deathmatch_loadout/wizard/battle
 	name = "Deathmatch: Battlemage"
-	display_name = "Battlemage"
-	desc = "Have you heard of the High Elves?"
+	display_name = "战斗法师"
+	desc = "你听说过高等精灵吗？"
 
 	l_hand = /obj/item/mjollnir
 	suit = /obj/item/clothing/suit/wizrobe/magusblue
@@ -469,8 +469,8 @@
 
 /datum/outfit/deathmatch_loadout/wizard/apprentice
 	name = "Deathmatch: Apprentice"
-	display_name = "Apprentice"
-	desc = "You feel severely under-leveled for this encounter..."
+	display_name = "学徒"
+	desc = "你觉得自己在这场遭遇中等级严重不足……"
 
 	l_hand = null
 	spells_to_add = list(
@@ -479,8 +479,8 @@
 
 /datum/outfit/deathmatch_loadout/wizard/gunmancer
 	name = "Deathmatch: Gunmancer"
-	display_name = "Gunmancer"
-	desc = "Magic is lame."
+	display_name = "枪械法师"
+	desc = "魔法太逊了。"
 
 	l_hand = /obj/item/gun/ballistic/automatic/pistol/m1911
 	suit = /obj/item/clothing/suit/wizrobe/tape
@@ -493,8 +493,8 @@
 
 /datum/outfit/deathmatch_loadout/wizard/chaos
 	name = "Deathmatch: Chaos"
-	display_name = "Chaosmancer"
-	desc = "Hardcore Random Body ONLY!"
+	display_name = "混沌法师"
+	desc = "仅限硬核随机身体！"
 
 	l_hand = /obj/item/gun/magic/staff/chaos
 	uniform = /obj/item/clothing/under/color/rainbow
@@ -508,8 +508,8 @@
 
 /datum/outfit/deathmatch_loadout/wizard/clown
 	name = "Deathmatch: Clown"
-	display_name = "Funnymancer"
-	desc = "Honk NATH!"
+	display_name = "滑稽法师"
+	desc = "鸣笛 NATH！"
 
 	l_hand = /obj/item/gun/magic/staff/honk
 	uniform = /obj/item/clothing/under/rank/civilian/clown
@@ -522,8 +522,8 @@
 
 /datum/outfit/deathmatch_loadout/wizard/monkey
 	name = "Deathmatch: Monkey"
-	display_name = "Monkeymancer"
-	desc = "Ook eek aaa ooo eee!"
+	display_name = "猴子法师"
+	desc = "呜克 伊克 啊啊 呜 伊！"
 
 	species_override = /datum/species/monkey
 	l_hand = /obj/item/food/grown/banana
@@ -537,8 +537,8 @@
 
 /datum/outfit/deathmatch_loadout/head_of_security
 	name = "Deathmatch: Head of Security"
-	display_name = "Head of Security"
-	desc = "Finally, nobody to stop the power from going to your head."
+	display_name = "安保主管"
+	desc = "终于，没人能阻止你被权力冲昏头脑了。"
 
 	head = /datum/outfit/job/hos::head
 	ears = 	/datum/outfit/job/hos::ears
@@ -557,8 +557,8 @@
 
 /datum/outfit/deathmatch_loadout/captain
 	name = "Deathmatch: Captain"
-	display_name = "Captain"
-	desc = "Draw your sword and show the syndicate scum no quarter."
+	display_name = "舰长"
+	desc = "拔出你的剑，别给辛迪加人渣任何活路。"
 
 	head = /obj/item/clothing/head/hats/caphat/parade
 	ears = /obj/item/radio/headset/heads/captain/alt
@@ -576,8 +576,8 @@
 
 /datum/outfit/deathmatch_loadout/traitor
 	name = "Deathmatch: Traitor"
-	display_name = "Traitor"
-	desc = "The classic; energy sword & energy bow, donning a reflector trenchcoat (stolen)."
+	display_name = "叛徒"
+	desc = "经典配置：能量剑与能量弓，外加一件（偷来的）反射风衣。"
 
 	head = /obj/item/clothing/head/chameleon
 	uniform = /obj/item/clothing/under/chameleon
@@ -594,8 +594,8 @@
 
 /datum/outfit/deathmatch_loadout/nukie
 	name = "Deathmatch: Nuclear Operative"
-	display_name = "Nuclear Operative"
-	desc = "Gear afforded to Lone Operatives. Your mission is simple."
+	display_name = "核爆特工"
+	desc = "孤身特工的装备配置。你的任务很简单。"
 
 	uniform = /obj/item/clothing/under/syndicate/tacticool
 	back = /obj/item/mod/control/pre_equipped/nuclear
@@ -614,8 +614,8 @@
 
 /datum/outfit/deathmatch_loadout/pete
 	name = "Deathmatch: Cuban Pete"
-	display_name = "Disciple of Pete"
-	desc = "You took a lesson from Cuban Pete."
+	display_name = "皮特的门徒"
+	desc = "你从古巴皮特那儿学了一课。"
 
 	back = /obj/item/storage/backpack/santabag
 	head = /obj/item/clothing/head/collectable/petehat
@@ -634,8 +634,8 @@
 
 /datum/outfit/deathmatch_loadout/tider
 	name = "Deathmatch: Tider"
-	display_name = "Tider"
-	desc = "A very high power level Assistant."
+	display_name = "潮人"
+	desc = "战力极高的助理。"
 
 	back = /obj/item/melee/baton/security/cattleprod
 	r_hand = /obj/item/fireaxe
@@ -649,8 +649,8 @@
 
 /datum/outfit/deathmatch_loadout/abductor
 	name = "Deathmatch: Abductor"
-	display_name = "Abductor"
-	desc = "We come in peace."
+	display_name = "绑架者"
+	desc = "我们为和平而来。"
 
 	species_override = /datum/species/abductor
 	uniform = /obj/item/clothing/under/abductor
@@ -664,8 +664,8 @@
 
 /datum/outfit/deathmatch_loadout/battler/clown/upgraded
 	name = "Deathmatch: Clown (Syndicate Gear)"
-	display_name = "Clown Commando"
-	desc = "They were bound to show up sooner or later."
+	display_name = "小丑突击兵"
+	desc = "他们迟早都会出现。"
 
 	shoes = /obj/item/clothing/shoes/clown_shoes/combat
 	r_hand = /obj/item/pneumatic_cannon/pie/selfcharge
@@ -684,7 +684,7 @@
 
 /datum/outfit/deathmatch_loadout/mime
 	name = "Deathmatch: Mime"
-	display_name = "Mime"
+	display_name = "默剧演员"
 	desc = "..."
 
 	uniform = /datum/outfit/job/mime::uniform
@@ -718,8 +718,8 @@
 
 /datum/outfit/deathmatch_loadout/chef/upgraded
 	name = "Deathmatch: Master Chef"
-	display_name = "Master Chef"
-	desc = "Let him cook."
+	display_name = "主厨"
+	desc = "让他下厨。"
 
 	belt = /obj/item/gun/magic/hook
 	uniform = /obj/item/clothing/under/costume/buttondown/slacks/service
@@ -740,8 +740,8 @@
 
 /datum/outfit/deathmatch_loadout/humanity
 	name = "Deathmatch: Human Species"
-	display_name = "Humanity"
-	desc = "The most ambitious and successful species. Or just the most rapacious, depending on who you ask."
+	display_name = "人类"
+	desc = "最雄心勃勃、最成功的物种。或者，看你问谁——也可能是最贪婪的。"
 	species_override = /datum/species/human
 
 	head = /obj/item/clothing/head/soft/black
@@ -762,8 +762,8 @@
 
 /datum/outfit/deathmatch_loadout/lizardkind
 	name = "Deathmatch: Lizard Species"
-	display_name = "Lizardfolk"
-	desc = "They may be heavily discriminated against, they may be most often seen doing menial activities, but at least they, uh, uhh..."
+	display_name = "蜥蜴人"
+	desc = "他们可能饱受歧视，他们可能最常出现在杂务岗位上，但至少他们，呃，呃……"
 	species_override = /datum/species/lizard
 
 	head = /obj/item/clothing/head/soft/purple
@@ -786,8 +786,8 @@
 
 /datum/outfit/deathmatch_loadout/mothman
 	name = "Deathmatch: Moth Species"
-	display_name = "Mothmen"
-	desc = "An innocent and fluffy visage hides the combat ability of a particularly hairy kitten."
+	display_name = "蛾人"
+	desc = "一副天真毛茸茸的外表之下，藏着堪比一只特别多毛小猫的战斗能力。"
 	species_override = /datum/species/moth
 
 	head = /obj/item/clothing/head/utility/head_mirror
@@ -813,8 +813,8 @@
 // Roboticist??
 /datum/outfit/deathmatch_loadout/ethereal
 	name = "Deathmatch: Ethereal Species"
-	display_name = "Etherealkind"
-	desc = "Prepare to be SHOCKED as you are reminded of this species's existence."
+	display_name = "以太人"
+	desc = "准备好被电击吧，因为你将想起这个物种的存在。"
 	species_override = /datum/species/ethereal
 
 	head = /obj/item/clothing/head/soft/black
@@ -837,8 +837,8 @@
 
 /datum/outfit/deathmatch_loadout/plasmamen
 	name = "Deathmatch: Plasmaman Species"
-	display_name = "Plasmamen"
-	desc = "Burn baby burn!"
+	display_name = "等离子人"
+	desc = "烧吧宝贝烧吧！"
 	species_override = /datum/species/plasmaman
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/atmospherics
@@ -868,8 +868,8 @@
 
 /datum/outfit/deathmatch_loadout/felinid
 	name = "Deathmatch: Felinid Species"
-	display_name = "Felinids"
-	desc = "Strictly inferior to humans in every way."
+	display_name = "猫人族"
+	desc = "各方面都严格劣于人类。"
 	species_override = /datum/species/human/felinid
 
 	head = /obj/item/clothing/head/soft/rainbow
@@ -888,8 +888,8 @@
 
 /datum/outfit/deathmatch_loadout/lattice_battles
 	name = "Deathmatch: Lattice loadout"
-	display_name = "Lattice Battler"
-	desc = "Snip the catwalks under everyone else and win! You're pacifist, so no punching."
+	display_name = "格栅战士"
+	desc = "剪断别人脚下的栈桥就能赢！你是和平主义者，所以不能用拳头。"
 
 	uniform = /obj/item/clothing/under/pants/jeans
 	suit = /obj/item/clothing/suit/costume/wellworn_shirt/graphic
@@ -915,8 +915,8 @@
 
 /datum/outfit/deathmatch_loadout/cultish/invoker
 	name = "Deathmatch: Cultist Invoker"
-	display_name = "Cultist Invoker"
-	desc = "Prove Nar'sie's superiority with your well-balanced set of equipment."
+	display_name = "血教召唤师"
+	desc = "用你那份均衡的装备证明纳尔西的优越性。"
 	//species_override = /datum/species/plasmaman
 
 	head = /obj/item/clothing/head/hooded/cult_hoodie/cult_shield
@@ -943,8 +943,8 @@
 
 /datum/outfit/deathmatch_loadout/cultish/artificer
 	name = "Deathmatch: Cultist Artificer"
-	display_name = "Cultist Artificer"
-	desc = "Prove Nar'sie's superiority with your well-balanced blood magicks."
+	display_name = "血教工匠"
+	desc = "用你那份均衡的血魔法证明纳尔西的优越性。"
 	//species_override = /datum/species/plasmaman
 
 	head = /obj/item/clothing/head/hooded/cult_hoodie
@@ -998,8 +998,8 @@
 
 /datum/outfit/deathmatch_loadout/heresy/warrior
 	name = "Deathmatch: Heretic Warrior"
-	display_name = "Heretic Warrior"
-	desc = "Prove the furious strength of the Mansus!"
+	display_name = "异教徒战士"
+	desc = "证明漫宿的狂怒之力！"
 
 	head = /obj/item/clothing/head/hooded/cult_hoodie/eldritch/blade
 	neck = /obj/item/clothing/neck/heretic_focus
@@ -1042,8 +1042,8 @@
 
 /datum/outfit/deathmatch_loadout/heresy/scribe
 	name = "Deathmatch: Heretic Scribe"
-	display_name = "Heretic Scribe"
-	desc = "Reveal the forgotten knowledge of the Mansus."
+	display_name = "异教徒抄写员"
+	desc = "揭示漫宿被遗忘的知识。"
 
 	head = /obj/item/clothing/head/helmet/chaplain/witchunter_hat
 	mask = /obj/item/clothing/mask/madness_mask
@@ -1083,8 +1083,8 @@
 
 /datum/outfit/deathmatch_loadout/holy_crusader
 	name = "Deathmatch: Holy Crusader"
-	display_name = "Holy Crusader"
-	desc = "Smite the heathens!!"
+	display_name = "神圣十字军"
+	desc = "痛击异教徒！！"
 	//species_override = /datum/species/plasmaman
 
 	head = /obj/item/clothing/head/helmet/chaplain
@@ -1114,8 +1114,8 @@
 
 /datum/outfit/deathmatch_loadout/clock_cult
 	name = "Deathmatch: Clock Cultist"
-	display_name = "Rat'var Apostate"
-	desc = "You're in a fight between the servants of gods, and yours is dead. Good luck?"
+	display_name = "拉特瓦叛徒"
+	desc = "你正身处诸神仆从的厮杀之中，而你的神已经死了。祝你好运？"
 
 	head = /obj/item/clothing/head/costume/bronze
 	suit = /obj/item/clothing/suit/costume/bronze
@@ -1132,8 +1132,8 @@
 
 /datum/outfit/deathmatch_loadout/syndicate_spaceman
 	name = "DM: Syndicate Spaceman"
-	display_name = "Syndicate Spaceman"
-	desc = "A syndicate operative suited up for some space reconnaissance."
+	display_name = "辛迪加太空人"
+	desc = "一名为太空侦察而全副武装的辛迪加特工。"
 
 	uniform = /obj/item/clothing/under/syndicate
 	belt = /obj/item/storage/belt/holster
@@ -1168,8 +1168,8 @@
 
 /datum/outfit/deathmatch_loadout/cargo_spaceman
 	name = "DM: Spaceman"
-	display_name = "Spaceman"
-	desc = "A spaceman from spacestation 13 equipped for space."
+	display_name = "太空人"
+	desc = "一名来自空间站 13、为太空环境装备齐全的太空人。"
 
 	uniform = /obj/item/clothing/under/rank/cargo/tech
 	belt = /obj/item/storage/belt/utility/full
@@ -1200,8 +1200,8 @@
 
 /datum/outfit/deathmatch_loadout/spacetider
 	name = "DM: Assistant (Spaceworthy)"
-	display_name = "Assistant (Spaceworthy)"
-	desc = "A spacetiding assistant."
+	display_name = "助理（适航型）"
+	desc = "一名太空潮人助理。"
 
 	uniform = /obj/item/clothing/under/color/grey
 	mask = /obj/item/clothing/mask/breath

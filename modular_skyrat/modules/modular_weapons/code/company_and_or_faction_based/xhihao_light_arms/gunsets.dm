@@ -15,7 +15,7 @@
 // Contains the Bogseo submachinegun, excellent for breaking shoulders
 
 /obj/item/storage/toolbox/guncase/skyrat/xhihao_large_case/bogseo
-	name = "\improper Xhihao 'Bogseo' gunset"
+	name = "\improper 希豪“拳师”枪械套装"
 
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/xhihao_smg/no_mag
 	extra_to_spawn = /obj/item/ammo_box/magazine/c585trappiste_pistol

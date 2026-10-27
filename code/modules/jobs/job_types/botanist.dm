@@ -1,6 +1,6 @@
 /datum/job/botanist
 	title = JOB_BOTANIST
-	description = "Grow plants for the cook, for medicine, and for recreation."
+	description = "为厨师、医疗和娱乐用途种植植物。"
 	faction = FACTION_STATION
 	total_positions = 3
 	spawn_positions = 2
@@ -36,7 +36,7 @@
 	)
 
 	job_flags = STATION_JOB_FLAGS
-	rpg_title = "Gardener"
+	rpg_title = "园丁"
 
 /datum/outfit/job/botanist
 	name = "Botanist"

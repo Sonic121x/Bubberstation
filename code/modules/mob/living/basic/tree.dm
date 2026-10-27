@@ -1,6 +1,6 @@
 /mob/living/basic/tree
-	name = "pine tree"
-	desc = "A pissed off tree-like alien. It seems annoyed with the festivities..."
+	name = "松树"
+	desc = "一棵怒火中烧的树形外星生物。它似乎被节日气氛惹恼了……"
 	icon = 'icons/obj/fluff/flora/pinetrees.dmi'
 	icon_state = "pine_1"
 	icon_living = "pine_1"
@@ -12,10 +12,10 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	basic_mob_flags = DEL_ON_DEATH
 
-	response_help_continuous = "brushes"
-	response_help_simple = "brush"
-	response_disarm_continuous = "pushes"
-	response_disarm_simple = "push"
+	response_help_continuous = "轻抚"
+	response_help_simple = "轻抚"
+	response_disarm_continuous = "推开"
+	response_disarm_simple = "推开"
 
 	mob_size = MOB_SIZE_LARGE
 	pixel_x = -16
@@ -26,20 +26,20 @@
 	health = 250
 	melee_damage_lower = 8
 	melee_damage_upper = 12
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "啃咬"
+	attack_verb_simple = "啃咬"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 
 	faction = list(FACTION_HOSTILE)
-	speak_emote = list("pines")
+	speak_emote = list("低声叹息")
 
 	habitable_atmos = list("min_oxy" = 2, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 2.5
 	minimum_survivable_temperature = 0
 	maximum_survivable_temperature = 1200
 
-	death_message = "is hacked into pieces!"
+	death_message = "被砍成了碎片！"
 
 	ai_controller = /datum/ai_controller/basic_controller/tree
 
@@ -57,7 +57,7 @@
 	AddComponent(/datum/component/seethrough_mob)
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_PINE, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 5)
 	AddElement(/datum/element/death_drops, /obj/item/stack/sheet/mineral/wood)
-	AddComponent(/datum/component/aggro_emote, emote_list = string_list(list("growls")), emote_chance = 20)
+	AddComponent(/datum/component/aggro_emote, emote_list = string_list(list("低吼")), emote_chance = 20)
 
 /mob/living/basic/tree/Life(seconds_per_tick = SSMOBS_DT)
 	. = ..()
@@ -95,8 +95,8 @@
 	if(prob(paralyze_prob + boost))
 		victim.Paralyze(paralyze_value + boost)
 		victim.visible_message(
-			span_danger("[src] knocks down [victim]!"),
-			span_userdanger("[src] knocks you down!"),
+			span_danger("[src] 撞倒了 [victim]！"),
+			span_userdanger("[src] 把你撞倒了！"),
 		)
 
 /datum/ai_controller/basic_controller/tree
@@ -104,7 +104,7 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_SEE = list("photosynthesizes angrily."),
+			BB_EMOTE_SEE = list("愤怒地进行光合作用。"),
 			BB_SPEAK_CHANCE = 3,
 		),
 	)

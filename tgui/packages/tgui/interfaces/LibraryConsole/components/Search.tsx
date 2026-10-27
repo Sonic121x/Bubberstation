@@ -7,7 +7,7 @@ import {
   Stack,
   Table,
 } from 'tgui-core/components';
-
+import { chineseDisplay, chineseDropdownOptions } from 'tgui/localization/zhDisplay';
 import type { LibraryConsoleData } from '../types';
 
 export function SearchAndDisplay(props) {
@@ -56,8 +56,8 @@ function SearchTabs(props) {
             <Stack.Item>
               <Dropdown
                 width="120px"
-                options={search_categories}
-                selected={category}
+                options={chineseDropdownOptions(search_categories)}
+                selected={category} displayText={chineseDisplay(category)}
                 onSelected={(value) =>
                   act('set_search_category', {
                     category: value,
@@ -151,7 +151,7 @@ function SearchResults(props) {
                 {record.id}
               </Button>
             </Table.Cell>
-            <Table.Cell>{record.category}</Table.Cell>
+            <Table.Cell>{chineseDisplay(record.category)}</Table.Cell>
             <Table.Cell>{record.title}</Table.Cell>
             <Table.Cell>{record.author}</Table.Cell>
           </Table.Row>

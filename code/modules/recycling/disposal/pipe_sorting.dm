@@ -1,8 +1,8 @@
 // A three-way junction that sorts objects based on check_sorting(H) proc
 // This is a base type, use subtypes on the map.
 /obj/structure/disposalpipe/sorting
-	name = "sorting disposal pipe"
-	desc = "An underfloor disposal pipe with a sorting mechanism."
+	name = "分拣垃圾管道"
+	desc = "带分拣机制的地板下垃圾管道。"
 	icon_state = "pipe-j1s"
 	initialize_dirs = DISP_DIR_RIGHT | DISP_DIR_FLIP
 
@@ -49,11 +49,11 @@
 /obj/structure/disposalpipe/sorting/mail/examine(mob/user)
 	. = ..()
 	if(sortTypes.len)
-		. += "It is tagged with the following tags:"
+		. += "它标有以下标签："
 		for(var/t in sortTypes)
-			. += "\t[GLOB.TAGGERLOCATIONS[t]]."
+			. += "\t[GLOB.TAGGERLOCATIONS[t]]。"
 	else
-		. += "It has no sorting tags set."
+		. += "它没有设置任何分拣标签。"
 
 /obj/structure/disposalpipe/sorting/mail/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/dest_tagger))
@@ -64,10 +64,10 @@
 		return ITEM_INTERACT_BLOCKING
 	if(relevant_tag in sortTypes)
 		sortTypes -= relevant_tag
-		to_chat(user, span_notice("Removed \"[GLOB.TAGGERLOCATIONS[relevant_tag]]\" filter."))
+		to_chat(user, span_notice("移除了“[GLOB.TAGGERLOCATIONS[relevant_tag]]”过滤器。"))
 	else
 		sortTypes |= relevant_tag
-		to_chat(user, span_notice("Added \"[GLOB.TAGGERLOCATIONS[relevant_tag]]\" filter."))
+		to_chat(user, span_notice("添加了“[GLOB.TAGGERLOCATIONS[relevant_tag]]”过滤器。"))
 	playsound(src, 'sound/machines/beep/twobeep_high.ogg', 100, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -79,7 +79,7 @@
 
 // Wrap sorting junction, sorts objects destined for the mail office mail table (tomail = TRUE)
 /obj/structure/disposalpipe/sorting/wrap
-	desc = "An underfloor disposal pipe which sorts wrapped and unwrapped objects."
+	desc = "一条在地板下分拣已包装和未包装物品的垃圾管道。"
 	flip_type = /obj/structure/disposalpipe/sorting/wrap/flip
 	initialize_dirs = DISP_DIR_RIGHT | DISP_DIR_FLIP
 

@@ -25,12 +25,12 @@
 #define ELECTRICAL_DAMAGE_CLOTTING_PROGRESS_MULT 0.5
 
 /datum/wound/electrical_damage
-	name = "Electrical (Wires) Wound"
+	name = "电损伤（线路）"
 
-	simple_treat_text = "<b>Replacing</b> of broken wiring, or <b>repairing</b> via a wirecutter. <b>Bandaging</b> binds the wiring and reduces intensity buildup, \
-	as does <b>firmly grasping</b> the limb - both the victim and someone else can do this. <b>Roboticists/Engineers</b> get a bonus to treatment, as do <b>diagnostic HUDs</b>."
-	homemade_treat_text = "<b>Sutures</b> can repair the wiring at reduced efficiency, as can <b>retractors</b>. In a pinch, <b>high temperatures</b> can repair the wiring!"
-	treat_text_short = "Replace wiring or apply wirecutters."
+	simple_treat_text = "<b>更换</b>损坏的线路，或用剪线钳<b>修理</b>。<b>包扎</b>能束缚线路并降低强度积累，\
+	<b>牢牢抓住</b>肢体也有同样效果——受害者本人和旁人都可以这么做。<b>机器人学家/工程师</b>以及<b>诊断 HUD</b>可获得治疗加成。"
+	homemade_treat_text = "<b>缝合器</b>能以较低效率修复线路，<b>牵开器</b>也可以。紧急情况下，<b>高温</b>也能修复线路！"
+	treat_text_short = "更换线路或使用剪线钳。"
 
 	wound_flags = (ACCEPTS_GAUZE|CAN_BE_GRASPED|SPLINT_OVERLAY)
 
@@ -113,7 +113,7 @@
 	return list("[BIO_METAL]") // wire scars dont exist so we can just use metal
 
 /datum/wound/burn/electrical_damage/slash/get_limb_examine_description()
-	return span_warning("The wiring on this limb is slashed open.")
+	return span_warning("这条肢体上的线路被割开了。")
 
 /datum/wound/electrical_damage/handle_process(seconds_per_tick, times_fired)
 	. = ..()
@@ -236,7 +236,7 @@
 /datum/wound/electrical_damage/proc/get_heat_healing(do_message = prob(heat_heal_message_chance))
 	var/healing_amount = max((victim.bodytemperature - heat_thresh_to_heal), 0) * heat_differential_healing_mult
 	if (do_message && healing_amount)
-		to_chat(victim, span_notice("You feel the solder within your [limb.plaintext_zone] reform and repair your [name]..."))
+		to_chat(victim, span_notice("你感觉[chinese_body_zone_display(limb.plaintext_zone)]内的焊锡重新凝固，修复了你的[name]……"))
 
 	return healing_amount
 
@@ -268,34 +268,34 @@
 	if (intensity_mult < 0.2 || (victim.stat == DEAD))
 		return
 
-	. += ", and "
+	. += "，并且"
 
 	var/extra
 	switch (intensity_mult)
 		if (0.2 to 0.4)
-			extra += "[span_deadsay("is letting out some sparks")]"
+			extra += "[span_deadsay("冒出了些许火花")]"
 		if (0.4 to 0.6)
-			extra += "[span_deadsay("is sparking quite a bit")]"
+			extra += "[span_deadsay("火花四溅")]"
 		if (0.6 to 0.8)
-			extra += "[span_deadsay("is practically hemorrhaging sparks")]"
+			extra += "[span_deadsay("几乎在喷涌火花")]"
 		if (0.8 to 1)
-			extra += "[span_deadsay("has golden bolts of electricity constantly striking the surface")]"
+			extra += "[span_deadsay("表面不断被金色电弧击中")]"
 
 	. += extra
 
 /datum/wound/electrical_damage/get_scanner_description(mob/user)
 	. = ..()
 
-	. += "\nWound status: [get_wound_status_info()]"
+	. += "\n伤口状态：[get_wound_status_info()]"
 
 /datum/wound/electrical_damage/get_simple_scanner_description(mob/user)
 	. = ..()
 
-	. += "\nWound status: [get_wound_status_info()]"
+	. += "\n伤口状态：[get_wound_status_info()]"
 
 /// Returns a string with our fault intensity and threshold to removal for use in health analyzers.
 /datum/wound/electrical_damage/proc/get_wound_status_info()
-	return "Fault intensity is currently at [span_bold("[get_intensity_mult() * 100]")]%. It must be reduced to [span_blue("<b>[minimum_intensity]</b>")]% to remove the wound."
+	return "故障强度目前为 [span_bold("[get_intensity_mult() * 100]")]%。必须降至 [span_blue("<b>[minimum_intensity]</b>")]% 才能消除伤口。"
 
 // this wound is unaffected by cryoxadone and pyroxadone
 /datum/wound/electrical_damage/on_xadone(power)
@@ -357,27 +357,27 @@
 /// Does a while loop that repairs us with cables. A proc for containing runtimes and allowing trait removal at all times.
 /datum/wound/electrical_damage/proc/do_suture_repairs(obj/item/stack/suturing_item, mob/living/carbon/human/user, change, delay_mult)
 	var/is_suture = (istype(suturing_item, /obj/item/stack/medical/suture))
-	var/their_or_other = (user == victim ? "[user.p_their()]" : "[victim]'s")
-	var/your_or_other = (user == victim ? "your" : "[victim]'s")
-	var/replacing_or_suturing = (is_suture ? "repairing some" : "replacing")
+	var/their_or_other = (user == victim ? "自己的" : "[victim]的")
+	var/your_or_other = (user == victim ? "你的" : "[victim]的")
+	var/replacing_or_suturing = (is_suture ? "修复一些" : "更换")
 	while (suturing_item.tool_start_check())
-		user?.visible_message(span_danger("[user] begins [replacing_or_suturing] wiring within [their_or_other] [limb.plaintext_zone] with [suturing_item]..."), \
-			span_notice("You begin [replacing_or_suturing] wiring within [your_or_other] [limb.plaintext_zone] with [suturing_item]..."))
+		user?.visible_message(span_danger("[user] 开始用 [suturing_item] [replacing_or_suturing][their_or_other][chinese_body_zone_display(limb.plaintext_zone)]内的线路……"), \
+			span_notice("你开始用 [suturing_item] [replacing_or_suturing][your_or_other][chinese_body_zone_display(limb.plaintext_zone)]内的线路……"))
 		if (!suturing_item.use_tool(target = victim, user = user, delay = ELECTRICAL_DAMAGE_SUTURE_WIRE_BASE_DELAY * delay_mult, amount = 1, volume = 50, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 			return
 
 		if (user != victim && user.combat_mode)
-			user?.visible_message(span_danger("[user] mangles some of [their_or_other] [limb.plaintext_zone]'s wiring!"), \
-				span_danger("You mangle some of [your_or_other] [limb.plaintext_zone]'s wiring!"), ignored_mobs = victim)
-			to_chat(victim, span_userdanger("[capitalize(your_or_other)] mangles some of your [limb.plaintext_zone]'s wiring!"))
+			user?.visible_message(span_danger("[user] 把[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]的线路扯坏了一些！"), \
+				span_danger("你把[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]的线路扯坏了一些！"), ignored_mobs = victim)
+			to_chat(victim, span_userdanger("你的[chinese_body_zone_display(limb.plaintext_zone)]的线路被扯坏了一些！"))
 			adjust_intensity(change * 2)
 		else
-			var/repairs_or_replaces = (is_suture ? "repairs" : "replaces")
-			var/repair_or_replace = (is_suture ? "repair" : "replace")
-			user?.visible_message(span_notice("[user] [repairs_or_replaces] some of [their_or_other] [limb.plaintext_zone]'s wiring!"), \
-				span_notice("You [repair_or_replace] some of [your_or_other] [limb.plaintext_zone]'s wiring!"))
+			var/repairs_or_replaces = (is_suture ? "修复" : "更换")
+			var/repair_or_replace = (is_suture ? "修复" : "更换")
+			user?.visible_message(span_notice("[user] [repairs_or_replaces]了[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]的一些线路！"), \
+				span_notice("你[repair_or_replace]了[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]的一些线路！"))
 			adjust_intensity(-change)
-			victim?.balloon_alert(user, "intensity reduced to [get_intensity_mult() * 100]%")
+			victim?.balloon_alert(user, "强度降至 [get_intensity_mult() * 100]%")
 
 		if (fixed())
 			return
@@ -422,24 +422,24 @@
 
 /// Does a while loop that repairs us with a wirecutter. A proc for containing runtimes and allowing trait removal at all times.
 /datum/wound/electrical_damage/proc/do_wirecutter_repairs(obj/item/wirecutting_tool, mob/living/carbon/human/user, change, delay_mult)
-	var/their_or_other = (user == victim ? "[user.p_their()]" : "[victim]'s")
-	var/your_or_other = (user == victim ? "your" : "[victim]'s")
+	var/their_or_other = (user == victim ? "自己的" : "[victim]的")
+	var/your_or_other = (user == victim ? "你的" : "[victim]的")
 	while (wirecutting_tool.tool_start_check())
-		user?.visible_message(span_danger("[user] begins resetting misplaced wiring within [their_or_other] [limb.plaintext_zone]..."), \
-			span_notice("You begin resetting misplaced wiring within [your_or_other] [limb.plaintext_zone]..."))
+		user?.visible_message(span_danger("[user] 开始复位[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]内错位的线路……"), \
+			span_notice("你开始复位[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]内错位的线路……"))
 		if (!wirecutting_tool.use_tool(target = victim, user = user, delay = ELECTRICAL_DAMAGE_WIRECUTTER_BASE_DELAY * delay_mult, volume = 50, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 			return
 
 		if (user != victim && user.combat_mode)
-			user?.visible_message(span_danger("[user] mangles some of [their_or_other] [limb.plaintext_zone]'s wiring!"), \
-				span_danger("You mangle some of [your_or_other] [limb.plaintext_zone]'s wiring!"), ignored_mobs = victim)
-			to_chat(victim, span_userdanger("[capitalize(your_or_other)] mangles some of your [limb.plaintext_zone]'s wiring!"))
+			user?.visible_message(span_danger("[user] 把[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]的线路扯坏了一些！"), \
+				span_danger("你把[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]的线路扯坏了一些！"), ignored_mobs = victim)
+			to_chat(victim, span_userdanger("你的[chinese_body_zone_display(limb.plaintext_zone)]的线路被扯坏了一些！"))
 			adjust_intensity(change * 2)
 		else
-			user?.visible_message(span_notice("[user] resets some of [their_or_other] [limb.plaintext_zone]'s wiring!"), \
-				span_notice("You reset some of [your_or_other] [limb.plaintext_zone]'s wiring!"))
+			user?.visible_message(span_notice("[user] 复位了[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]的一些线路！"), \
+				span_notice("你复位了[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]的一些线路！"))
 			adjust_intensity(-change)
-			victim?.balloon_alert(user, "intensity reduced to [get_intensity_mult() * 100]%")
+			victim?.balloon_alert(user, "强度降至 [get_intensity_mult() * 100]%")
 
 		if (fixed())
 			return
@@ -447,7 +447,7 @@
 /// If fixed() is true, we remove ourselves and return TRUE. FALSE otherwise.
 /datum/wound/electrical_damage/proc/remove_if_fixed()
 	if (fixed())
-		to_chat(victim, span_green("Your [limb.plaintext_zone] has recovered from its [name]!"))
+		to_chat(victim, span_green("你的[chinese_body_zone_display(limb.plaintext_zone)]已从[name]中恢复！"))
 		remove_wound()
 		return TRUE
 	return FALSE
@@ -486,7 +486,7 @@
 	if (!message)
 		flags |= SHOCK_SUPPRESS_MESSAGE
 		if (tell_victim_if_no_message && target == victim)
-			to_chat(target, span_warning("Your [limb.plaintext_zone] short-circuits and zaps you!"))
+			to_chat(target, span_warning("你的[chinese_body_zone_display(limb.plaintext_zone)]短路并电了你一下！"))
 	if (ignore_immunity)
 		flags |= SHOCK_IGNORE_IMMUNITY
 	if (delay_stun)
@@ -504,15 +504,15 @@
 // Fast to rise, but lower damage overall
 // Also a bit easy to treat
 /datum/wound/electrical_damage/slash
-	simple_desc = "Wiring has been slashed open, resulting in a fault that <b>quickly</b> intensifies!"
+	simple_desc = "线路被割开，形成一处会<b>迅速</b>加剧的故障！"
 
 /datum/wound/electrical_damage/slash/moderate
-	name = "Frayed Wiring"
-	desc = "Internal wiring has suffered a slight abrasion, causing a slow electrical fault that will intensify over time."
-	occur_text = "lets out a few sparks, as a few frayed wires stick out"
-	examine_desc = "has a few frayed wires sticking out"
-	treat_text = "Replacing of damaged wiring, though repairs via wirecutting instruments or sutures may suffice, albeit at limited efficiency. In case of emergency, \
-				subject may be subjected to high temperatures to allow solder to reset."
+	name = "线路磨损"
+	desc = "内部线路受到轻微磨损，造成一个会随时间加剧的缓慢电气故障。"
+	occur_text = "冒出几点火花，几根磨损的线头翘了出来"
+	examine_desc = "有几根磨损的线头翘出来"
+	treat_text = "更换受损线路，不过用剪线工具或缝合器修理或许也能凑合，只是效率有限。紧急情况下，\
+				可以给对象施加高温，让焊锡重新凝固。"
 
 	sound_effect = 'modular_skyrat/modules/medical/sound/robotic_slash_T1.ogg'
 
@@ -551,12 +551,12 @@
 	threshold_minimum = 35
 
 /datum/wound/electrical_damage/slash/severe
-	name = "Severed Conduits"
-	desc = "A number of wires have been completely cut, resulting in electrical faults that will intensify at a worrying rate."
-	occur_text = "sends some electrical fiber in the direction of the blow, beginning to profusely spark"
-	examine_desc = "has multiple severed wires visible to the outside"
-	treat_text = "Containment of damaged wiring via gauze, then application of fresh wiring/sutures, or resetting of displaced wiring via wirecutter/retractor."
-	treat_text_short = "Apply gauze and replace wiring."
+	name = "导管断裂"
+	desc = "多根线路被完全切断，造成的电气故障将以令人担忧的速度加剧。"
+	occur_text = "朝攻击方向溅出一些导电纤维，开始大量冒火花"
+	examine_desc = "有多根断裂的线路露在外面"
+	treat_text = "先用纱布固定受损线路，然后敷上新线路/缝合，或用剪线钳/牵开器把错位的线路复位。"
+	treat_text_short = "包扎纱布并更换线路。"
 
 	sound_effect = 'modular_skyrat/modules/medical/sound/robotic_slash_T2.ogg'
 
@@ -595,13 +595,13 @@
 	threshold_minimum = 60
 
 /datum/wound/electrical_damage/slash/critical
-	name = "Systemic Fault"
-	desc = "A significant portion of the power distribution network has been cut open, resulting in massive power loss and runaway electrocution."
-	occur_text = "lets out a violent \"zhwarp\" sound as angry electric arcs attack the surrounding air"
-	examine_desc = "has lots of mauled wires sticking out"
-	treat_text = "Immediate securing via gauze, followed by emergency cable replacement and securing via wirecutters or retractor. \
-		If the fault has become uncontrollable, extreme heat therapy is recommended."
-	treat_text_short = "Apply gauze, replace wires, and use wirecutters or a retractor."
+	name = "系统性故障"
+	desc = "配电网络的很大一部分被割开，造成大量电力流失和失控的电击。"
+	occur_text = "随着愤怒的电弧撕扯周围的空气，发出剧烈的“滋啪”声"
+	examine_desc = "有许多被撕烂的线路翘出来"
+	treat_text = "立即用纱布固定，然后紧急更换线缆，并用剪线钳或牵开器固定。\
+		若故障已无法控制，建议采用极端高温疗法。"
+	treat_text_short = "包扎纱布、更换线路，并使用剪线钳或牵开器。"
 
 	severity = WOUND_SEVERITY_CRITICAL
 	wound_flags = (ACCEPTS_GAUZE|MANGLES_EXTERIOR|CAN_BE_GRASPED|SPLINT_OVERLAY)

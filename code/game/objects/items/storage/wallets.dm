@@ -1,6 +1,6 @@
 /obj/item/storage/wallet
-	name = "wallet"
-	desc = "It can hold a few small and personal things."
+	name = "钱包"
+	desc = "可以装下几样小巧的私人物品。"
 	icon_state = "wallet"
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
@@ -81,14 +81,14 @@
 
 /obj/item/storage/wallet/proc/update_label()
 	if(front_id)
-		name = "[src::name] displaying [front_id]"
+		name = "[src::name]，展示着[front_id]"
 	else
 		name = src::name
 
 /obj/item/storage/wallet/examine()
 	. = ..()
 	if(front_id)
-		. += span_notice("Alt-click to remove the id.")
+		. += span_notice("按住 Alt 点击可取出 ID 卡。")
 
 /obj/item/storage/wallet/get_id_examine_strings(mob/user)
 	. = ..()
@@ -133,7 +133,7 @@
 
 ///Used by the toilet fish source.
 /obj/item/storage/wallet/money
-	desc = "It can hold a few small and personal things. This one reeks of toilet water."
+	desc = "可以装下几样小巧的私人物品。这一个散发着马桶水的臭味。"
 
 /obj/item/storage/wallet/money/PopulateContents()
 	for(var/iteration in 1 to pick(3, 4))

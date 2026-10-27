@@ -1,8 +1,8 @@
 // Tarkon M6 PDW //
 
 /obj/item/gun/ballistic/automatic/m6pdw
-	name = "\improper M6 Personal Defense Weapon"
-	desc = "A PDW designed to be used within close to medium range. Its slide seems to stick a bit, having years of dust accumulation, And its manufacturer stamp and symbols have been scratched out."
+	name = "\improper M6个人防卫武器"
+	desc = "适用于中近距离的个人防卫武器。经年积尘令其枪机有些卡顿，制造商印记与标志都已被刮掉。"
 	icon = 'modular_skyrat/modules/tarkon/icons/obj/guns/m6pdw.dmi'
 	icon_state = "m6_pdw"
 	inhand_icon_state = "m6_pdw"

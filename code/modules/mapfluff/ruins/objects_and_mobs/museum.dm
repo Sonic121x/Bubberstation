@@ -1,14 +1,14 @@
 /obj/machinery/computer/terminal/museum
-	name = "exhibit info terminal"
-	desc = "A relatively low-tech info board. Not as low-tech as an actual sign though. Appears to be quite old."
-	upperinfo = "Nanotrasen Museum Exhibit Info"
+	name = "展品信息终端"
+	desc = "一块技术含量相当低的信息板。不过还没低到一块真正展牌的程度。看起来相当古老。"
+	upperinfo = "纳米传讯博物馆展品信息"
 	icon_state = MAP_SWITCH("plaque", "/obj/machinery/computer/terminal/museum")
 	icon_screen = "plaque_screen"
 	icon_keyboard = null
 
 /obj/effect/replica_spawner //description and name are intact, better to make a new fluff object for stuff that is not actually ingame as an object
-	name = "replica creator"
-	desc = "This creates a fluff object that looks exactly like the input, but like obviously a replica. Do not for the love of god use with stuff that has Initialize side effects."
+	name = "复制品生成器"
+	desc = "这会生成一个外观与输入目标完全一致的填充物件，但显然只是个复制品。看在上帝的份上，千万别用在那类带有 Initialize 副作用的东西上。"
 	icon = 'icons/hud/screen_gen.dmi'
 	icon_state = "x2"
 	invisibility = INVISIBILITY_ABSTRACT //nope, can't see this
@@ -31,8 +31,8 @@
 	new_replica.copy_overlays(appearance_object.appearance, cut_old = TRUE)
 	new_replica.density = appearance_object.density //for like nondense showers and stuff
 
-	new_replica.name = "[appearance_object.name][obvious_replica ? " replica" : ""]"
-	new_replica.desc = "[appearance_object.desc][obvious_replica ? " ..except this one is a replica.": ""]"
+	new_replica.name = "[appearance_object.name][obvious_replica ? "（复制品）" : ""]"
+	new_replica.desc = "[appearance_object.desc][obvious_replica ? "……只不过这一件是复制品。" : ""]"
 
 	new_replica.pixel_y = pixel_y
 	new_replica.pixel_x = pixel_x
@@ -42,22 +42,22 @@
 	return INITIALIZE_HINT_QDEL
 
 /obj/structure/fluff/dnamod
-	name = "DNA Modifier"
-	desc = "DNA Manipulator replica. Essentially just a box of cool lights."
+	name = "DNA 改造器"
+	desc = "DNA 操纵器的复制品。本质上只是一个装着几盏酷炫灯光的盒子。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "dnamod"
 	density = TRUE
 
 /obj/structure/fluff/preserved_borer
-	name = "preserved borer exhibit"
-	desc = "A preserved cortical borer. Probably been there long enough to not last long outside the exhibit."
+	name = "皮层钻虫标本展品"
+	desc = "一件皮层钻虫标本。它在这儿待的时间大概已经久到，一旦离开展柜就撑不了多久。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "preservedborer"
 	density = TRUE
 
 /obj/structure/fluff/balloon_nuke
-	name = "nuclear balloon explosive"
-	desc = "You probably shouldn't stick around to see if this is inflated."
+	name = "核弹气球"
+	desc = "你大概不该留下来看看它到底有没有充好气。"
 	icon = /obj/machinery/nuclearbomb::icon
 	icon_state = /obj/machinery/nuclearbomb::icon_state
 	density = TRUE
@@ -114,8 +114,8 @@
 	traits_to_add = list(ZTRAIT_NOPARALLAX = TRUE, ZTRAIT_NOXRAY = TRUE, ZTRAIT_NOPHASE = TRUE, ZTRAIT_BASETURF = /turf/open/indestructible/plating, ZTRAIT_SECRET = TRUE)
 
 /obj/effect/smooths_with_walls
-	name = "effect that smooths with walls"
-	desc = "to supplement /turf/open/mirage."
+	name = "与墙壁平滑过渡的效果"
+	desc = "用于补充 /turf/open/mirage。"
 	icon = 'icons/hud/screen_gen.dmi'
 	icon_state = "x2"
 	invisibility = INVISIBILITY_ABSTRACT
@@ -125,29 +125,29 @@
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 
 /obj/item/paper/fluff/museum/noend
-	name = "scrambled note"
-	default_raw_text = {"this place,
-	<br>god whose idea was to build a museum in the void in the middle of god knows where there is no reason we should have done this
-	<br>and those mannequins why do they stare back where the fuck did you get these from
-	<br>how would we even get visitors here
-	<br>sometimes i can catch them moving
+	name = "涂乱的便条"
+	default_raw_text = {"这地方，
+	<br>天啊，到底是谁出的主意，要在虚空之中、天知道什么地方的正中央建一座博物馆，我们根本没有理由干这种事
+	<br>还有那些人偶，它们为什么老是盯着人回看，你们他妈从哪儿弄来的这些玩意儿
+	<br>我们甚至要怎么让游客找到这儿来
+	<br>有时候我能抓到它们在动
 	<br>
-	<br>we should have never come here"}
+	<br>我们当初就不该来这儿"}
 
 /obj/item/paper/fluff/museum/chefs_ultimatum
-	name = "old note"
-	default_raw_text = {"I messed it up big times.
-	<br>I broke the button and now I'm stuck.
-	<br>Anyway, I don't have the key on me. I flushed it down.
-	<br>Hell knows where it's now, shit's like all linked together here."}
+	name = "旧便条"
+	default_raw_text = {"我把它搞砸了，砸得一塌糊涂。
+	<br>我把按钮弄坏了，现在我被困住了。
+	<br>总之，钥匙不在我身上。我把它冲进马桶了。
+	<br>鬼知道它现在在哪儿，这地方的东西好像全都连在一起。"}
 
 /obj/item/paper/fluff/museum/numbers_on_walls
-	name = "reprimanding note"
-	default_raw_text = "Please refraim from writing the pass all over the place. I know you've the memory of a goldfish, but, like, just put it on a piece of paper, no?"
+	name = "斥责便条"
+	default_raw_text = "请不要再把密码写到到处都是。我知道你的记性跟金鱼差不多，但是，呃，写在纸上不就行了吗？"
 
 /obj/effect/mob_spawn/corpse/human/skeleton/museum_chef
-	name = "Dead Museum Cafeteria Chef"
-	mob_name = "Nameless Chef"
+	name = "博物馆食堂死亡厨师"
+	mob_name = "无名厨师"
 	outfit = /datum/outfit/museum_chef
 
 /datum/outfit/museum_chef
@@ -177,10 +177,10 @@
 		SSqueuelinks.add_to_queue(src, CAFE_KEYCARD_TOILETS)
 
 /obj/item/keycard/cafeteria
-	name = "museum cafeteria keycard"
+	name = "博物馆食堂钥匙卡"
 	color = COLOR_OLIVE
 	puzzle_id = "museum_cafeteria"
-	desc = "The key to the cafeteria, as the name implies."
+	desc = "顾名思义，就是食堂的钥匙。"
 
 /obj/item/keycard/cafeteria/Initialize(mapload)
 	. = ..()

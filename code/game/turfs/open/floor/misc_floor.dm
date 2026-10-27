@@ -85,10 +85,10 @@
 	initial_gas_mix = TCOMMS_ATMOS
 
 /turf/open/floor/circuit/telecomms/mainframe
-	name = "mainframe base"
+	name = "主机基座"
 
 /turf/open/floor/circuit/telecomms/server
-	name = "server base"
+	name = "服务器基座"
 
 /turf/open/floor/circuit/green
 	icon_state = "gcircuit"
@@ -111,7 +111,7 @@
 	initial_gas_mix = TCOMMS_ATMOS
 
 /turf/open/floor/circuit/green/telecomms/mainframe
-	name = "mainframe base"
+	name = "主机基座"
 
 /turf/open/floor/circuit/red
 	icon_state = "rcircuit"
@@ -137,7 +137,7 @@
 	initial_gas_mix = TCOMMS_ATMOS
 
 /turf/open/floor/noslip
-	name = "high-traction floor"
+	name = "高摩擦地板"
 	icon_state = "noslip"
 	floor_tile = /obj/item/stack/tile/noslip
 	slowdown = -0.3
@@ -167,20 +167,20 @@
 /turf/open/floor/bluespace
 	slowdown = -1
 	icon_state = "bluespace"
-	desc = "Through a series of micro-teleports these tiles let people move at incredible speeds."
+	desc = "通过一系列微型传送，这些地砖能让人以惊人的速度移动。"
 	floor_tile = /obj/item/stack/tile/bluespace
 
 
 /turf/open/floor/sepia
 	slowdown = 2
 	icon_state = "sepia"
-	desc = "Time seems to flow very slowly around these tiles."
+	desc = "在这片地砖周围，时间似乎流动得非常缓慢。"
 	floor_tile = /obj/item/stack/tile/sepia
 
 
 /turf/open/floor/bronze
-	name = "bronze floor"
-	desc = "Some heavy bronze tiles."
+	name = "青铜地板"
+	desc = "一些沉重的青铜地砖。"
 	icon_state = "clockwork_floor"
 	floor_tile = /obj/item/stack/tile/bronze
 
@@ -201,21 +201,21 @@
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 
 /turf/open/floor/white
-	name = "white floor"
-	desc = "A tile in a pure white color."
+	name = "白色地板"
+	desc = "一块纯白色的地砖。"
 	icon_state = "pure_white"
 
 /turf/open/floor/black
-	name = "black floor"
+	name = "黑色地板"
 	icon_state = "black"
 
 /turf/open/floor/greenscreen
-	name = "greenscreen"
+	name = "绿幕"
 	icon_state = "green"
 
 /turf/open/floor/plastic
-	name = "plastic floor"
-	desc = "Cheap, lightweight flooring. Melts easily."
+	name = "塑料地板"
+	desc = "廉价而轻便的地板。很容易熔化。"
 	icon_state = "plastic"
 	thermal_conductivity = 0.1
 	heat_capacity = 900
@@ -226,8 +226,8 @@
 	return list("plastic-damaged1","plastic-damaged2")
 
 /turf/open/floor/eighties
-	name = "retro floor"
-	desc = "This one takes you back."
+	name = "复古地板"
+	desc = "这一款能把你带回过去。"
 	icon_state = "eighties"
 	floor_tile = /obj/item/stack/tile/eighties
 	rust_resistance = RUST_RESISTANCE_BASIC
@@ -236,8 +236,8 @@
 	return list("eighties_damaged")
 
 /turf/open/floor/eighties/red
-	name = "red retro floor"
-	desc = "Totally RED-ICAL!"
+	name = "红色复古地板"
+	desc = "简直红到爆！"
 	icon_state = "eightiesred"
 	floor_tile = /obj/item/stack/tile/eighties/red
 
@@ -275,13 +275,13 @@
 	AddElement(/datum/element/rust)
 
 /turf/open/floor/stone
-	name = "stone brick floor"
-	desc = "Odd, really, how it looks exactly like the iron walls yet is stone instead of iron. Now, if that's really more of a complaint about\
-		the ironness of walls or the stoneness of the floors, that's really up to you. But have you really ever seen iron that dull? I mean, it\
-		makes sense for the station to have dull metal walls but we're talking how a rudimentary iron wall would be. Medieval ages didn't even\
-		use iron walls, iron walls are actually not even something that exists because iron is an expensive and not-so-great thing to build walls\
-		out of. It only makes sense in the context of space because you're trying to keep a freezing vacuum out. Is anyone following me on this? \
-		The idea of a \"rudimentary\" iron wall makes no sense at all! Is anything i'm even saying here true? Someone's gotta fact check this!"
+	name = "石砖地板"
+	desc = "说真的，挺奇怪的：它看起来和铁墙一模一样，却是石头而不是铁。那么，这究竟是在抱怨\
+		墙太有铁味还是地板太有石头味，就完全由你判断了。可你真的见过那么暗淡的铁吗？我是说，\
+		空间站有暗淡的金属墙还算合理，但我们说的是一堵简陋铁墙该有的样子。中世纪的人甚至根本不用铁\
+		墙，铁墙其实根本不存在，因为铁是一种昂贵又不怎么适合用来造墙的东西。它只在太空环境\
+		下才有意义，因为你要把冰冷的真空挡在外面。有人跟上我的思路了吗？\
+		所谓“简陋的”铁墙这个概念根本说不通！我说的这些到底有哪一句是真的？得有人去核实一下！"
 	icon_state = "stone_floor"
 
 /turf/open/floor/stone/lavaland
@@ -289,36 +289,36 @@
 
 /turf/open/floor/stone/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
-	name = "stone brick floor"
-	desc = "Odd, really, how it looks exactly like the iron walls yet is stone instead of iron. Now, if that's really more of a complaint about\
-		the ironness of walls or the stoneness of the floors, that's really up to you. But have you really ever seen iron that dull? I mean, it\
-		makes sense for the station to have dull metal walls but we're talking how a rudimentary iron wall would be. Medieval ages didn't even\
-		use iron walls, iron walls are actually not even something that exists because iron is an expensive and not-so-great thing to build walls\
-		out of. It only makes sense in the context of space because you're trying to keep a freezing vacuum out. Is anyone following me on this? \
-		The idea of a \"rudimentary\" iron wall makes no sense at all! Is anything i'm even saying here true? Someone's gotta fact check this!"
+	name = "石砖地板"
+	desc = "说真的，挺奇怪的：它看起来和铁墙一模一样，却是石头而不是铁。那么，这究竟是在抱怨\
+		墙太有铁味还是地板太有石头味，就完全由你判断了。可你真的见过那么暗淡的铁吗？我是说，\
+		空间站有暗淡的金属墙还算合理，但我们说的是一堵简陋铁墙该有的样子。中世纪的人甚至根本不用铁\
+		墙，铁墙其实根本不存在，因为铁是一种昂贵又不怎么适合用来造墙的东西。它只在太空环境\
+		下才有意义，因为你要把冰冷的真空挡在外面。有人跟上我的思路了吗？\
+		所谓“简陋的”铁墙这个概念根本说不通！我说的这些到底有哪一句是真的？得有人去核实一下！"
 	icon_state = "stone_floor"
 
 /turf/open/floor/vault
-	name = "strange floor"
-	desc = "You feel a strange nostalgia from looking at this..."
+	name = "奇怪的地板"
+	desc = "看着它，你感到一种奇怪的怀旧感……"
 	icon_state = "rockvault"
 	base_icon_state = "rockvault"
 
 /turf/open/floor/vault/rock
-	name = "rocky floor"
+	name = "岩石地板"
 
 /turf/open/floor/vault/alien
-	name = "alien floor"
+	name = "异形地板"
 	icon_state = "alienvault"
 	base_icon_state = "alienvault"
 
 /turf/open/floor/vault/sandstone
-	name = "sandstone floor"
+	name = "砂岩地板"
 	icon_state = "sandstonevault"
 	base_icon_state = "sandstonevault"
 
 /turf/open/floor/cult
-	name = "engraved floor"
+	name = "铭刻地板"
 	icon_state = "cult"
 	base_icon_state = "cult"
 	floor_tile = /obj/item/stack/tile/cult
@@ -333,7 +333,7 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/material/meat
-	name = "living floor"
+	name = "活体地板"
 	icon_state = "grey"
 	baseturfs = /turf/open/misc/asteroid
 	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
@@ -347,16 +347,16 @@
 	baseturfs = /turf/open/misc/asteroid/airless
 
 /turf/open/floor/iron/tgmcemblem
-	name = "TGMC Emblem"
-	desc = "The symbol of the Terran Government."
+	name = "TGMC 徽记"
+	desc = "地球政府的标志。"
 	icon_state = "tgmc_emblem"
 
 /turf/open/floor/iron/tgmcemblem/center
 	icon_state = "tgmc_center"
 
 /turf/open/floor/asphalt
-	name = "asphalt"
-	desc = "Melted down oil can, in some cases, be used to pave road surfaces."
+	name = "沥青"
+	desc = "熔化后的石油沥青在某些情况下可用于铺设路面。"
 	icon_state = "asphalt"
 
 /turf/open/floor/asphalt/outdoors

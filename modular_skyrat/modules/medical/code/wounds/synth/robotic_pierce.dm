@@ -3,7 +3,7 @@
 // Hard-ish to fix
 /datum/wound/electrical_damage/pierce
 	heat_differential_healing_mult = 0.01
-	simple_desc = "Electrical conduits have been pierced open, resulting in a fault that <b>slowly</b> intensifies, but with <b>extreme</b> maximum voltage!"
+	simple_desc = "电缆管道被刺穿，形成一处会<b>缓慢</b>加剧的故障，但最大电压<b>极高</b>！"
 
 /datum/wound_pregen_data/electrical_damage/pierce
 	abstract = TRUE
@@ -11,16 +11,16 @@
 	required_wounding_type = WOUND_PIERCE
 
 /datum/wound/burn/electrical_damage/pierce/get_limb_examine_description()
-	return span_warning("The metal on this limb is pierced open.")
+	return span_warning("这条肢体上的金属被刺穿了。")
 
 /datum/wound/electrical_damage/pierce/moderate
-	name = "Punctured Capacitor"
-	desc = "A major capacitor has been broken open, causing slow but noticable electrical damage."
-	occur_text = "shoots out a short stream of sparks"
-	examine_desc = "is shuddering gently, movements a little weak"
-	treat_text = "Replacing of damaged wiring, though repairs via wirecutting instruments or sutures may suffice, albeit at limited efficiency. In case of emergency, \
-				subject may be subjected to high temperatures to allow solder to reset."
-	treat_text_short = "Replace damaged wiring."
+	name = "电容被击穿"
+	desc = "一个主要电容被击穿，造成缓慢但明显的电损伤。"
+	occur_text = "喷出一小串火花"
+	examine_desc = "轻微颤抖，动作有些无力"
+	treat_text = "更换受损线路，不过用剪线工具或缝合器修理或许也能凑合，只是效率有限。紧急情况下，\
+				可以给对象施加高温，让焊锡重新凝固。"
+	treat_text_short = "更换受损线路。"
 
 	sound_effect = 'modular_skyrat/modules/medical/sound/robotic_slash_T1.ogg'
 
@@ -59,12 +59,12 @@
 	threshold_minimum = 40
 
 /datum/wound/electrical_damage/pierce/severe
-	name = "Penetrated Transformer"
-	desc = "A major transformer has been pierced, causing slow-to-progess but eventually intense electrical damage."
-	occur_text = "sputters and goes limp for a moment as it ejects a stream of sparks"
-	examine_desc = "is shuddering significantly, its servos briefly giving way in a rythmic pattern"
-	treat_text = "Containment of damaged wiring via gauze, then application of fresh wiring/sutures, or resetting of displaced wiring via wirecutter/retractor."
-	treat_text_short = "Apply gauze and replace wires."
+	name = "变压器被穿透"
+	desc = "一个主要变压器被穿透，造成进展缓慢但最终猛烈的电损伤。"
+	occur_text = "噼啪作响并短暂瘫软，同时喷出一串火花"
+	examine_desc = "剧烈颤抖，伺服电机有节奏地短暂失灵"
+	treat_text = "先用纱布固定受损线路，然后敷上新线路/缝合，或用剪线钳/牵开器把错位的线路复位。"
+	treat_text_short = "包扎纱布并更换线路。"
 
 	sound_effect = 'modular_skyrat/modules/medical/sound/robotic_slash_T2.ogg'
 
@@ -103,13 +103,13 @@
 	threshold_minimum = 60
 
 /datum/wound/electrical_damage/pierce/critical
-	name = "Ruptured PSU"
-	desc = "The local PSU of this limb has suffered a core rupture, causing a progressive power failure that will slowly intensify into massive electrical damage."
-	occur_text = "flashes with radiant blue, emitting a noise not unlike a Jacob's Ladder"
-	examine_desc = "'s PSU is visible, with a sizable hole in the center"
-	treat_text = "Immediate securing via gauze, followed by emergency cable replacement and securing via wirecutters or hemostat. \
-		If the fault has become uncontrollable, extreme heat therapy is recommended."
-	treat_text_short = "Apply gauze, replace wires, and use wirecutters or a hemostat."
+	name = "PSU 破裂"
+	desc = "这条肢体的本地 PSU 发生了核心破裂，导致逐步发展的供电故障，最终会缓慢加剧为猛烈的电损伤。"
+	occur_text = "闪出耀眼的蓝光，发出的声响颇像雅各布天梯"
+	examine_desc = "的 PSU 清晰可见，中间有一个相当大的洞"
+	treat_text = "立即用纱布固定，然后紧急更换线缆，并用剪线钳或止血钳固定。\
+		若故障已无法控制，建议采用极端高温疗法。"
+	treat_text_short = "包扎纱布、更换线路，并使用剪线钳或止血钳。"
 
 	severity = WOUND_SEVERITY_CRITICAL
 	wound_flags = (ACCEPTS_GAUZE|MANGLES_EXTERIOR|CAN_BE_GRASPED|SPLINT_OVERLAY)

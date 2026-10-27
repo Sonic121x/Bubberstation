@@ -49,7 +49,7 @@
 			return
 
 	// they are actually trying to shoot something
-	user.balloon_alert(user, "the safety disengages!")
+	user.balloon_alert(user, "保险已解除！")
 	toggle_safeties(user)
 	return COMPONENT_CANCEL_GUN_FIRE
 
@@ -70,18 +70,18 @@
 
 	playsound(parent, 'sound/items/weapons/empty.ogg', 100, TRUE)
 	user.visible_message(
-		span_notice("[user] toggles [parent]'s safety [safety_currently_on ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>"]."),
-		span_notice("You toggle [parent]'s safety [safety_currently_on ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>"].")
+		span_notice("[user] 将 [parent] 的保险切换为[safety_currently_on ? "<font color='#00ff15'>开</font>" : "<font color='#ff0000'>关</font>"]。"),
+		span_notice("你将 [parent] 的保险切换为[safety_currently_on ? "<font color='#00ff15'>开</font>" : "<font color='#ff0000'>关</font>"]。")
 	)
 
 /// Adds the gun safety's current status to the gun's examine
 /datum/component/gun_safety/proc/on_examine(obj/item/source, mob/examiner, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += "<span>The safety is [safety_currently_on ? "<font color='#00ff15'>ON</font>" : "<font color='#ff0000'>OFF</font>"].</span>"
+	examine_list += "<span>保险当前处于[safety_currently_on ? "<font color='#00ff15'>开启</font>" : "<font color='#ff0000'>关闭</font>"]状态。</span>"
 	var/keybinding = examiner.client?.prefs?.key_bindings?["toggle_safety"]?[1]
 	if (!isnull(keybinding))
-		examine_list += "Press [span_notice("[keybinding]")] with it in hand to toggle the safety."
+		examine_list += "手持该武器时按 [span_notice("[keybinding]")] 切换保险。"
 
 /// Small proc to update the actio button's icon, just so I can not have to copypaste the same thing several times.
 /datum/component/gun_safety/proc/update_action_button_state()
@@ -93,6 +93,6 @@
 
 // The actual action, used by the component
 /datum/action/item_action/gun_safety_toggle
-	name = "Toggle Gun Safety"
+	name = "切换枪械保险"
 	button_icon = 'modular_skyrat/modules/gun_safety/icons/actions.dmi'
 	button_icon_state = "safety_on"

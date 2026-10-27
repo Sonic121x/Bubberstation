@@ -1,5 +1,5 @@
 /obj/effect/spawner/random/hecu_smg
-	name = "HECU SMG drops"
+	name = "HECU 冲锋枪掉落物"
 	spawn_all_loot = FALSE
 	loot = list(/obj/item/gun/ballistic/automatic/sol_smg = 15,
 				/obj/item/ammo_box/magazine/c35sol_pistol/stendo = 25,
@@ -9,7 +9,7 @@
 				/obj/item/clothing/shoes/combat = 15)
 
 /obj/effect/spawner/random/hecu_deagle
-	name = "HECU Deagle drops"
+	name = "HECU 沙漠之鹰掉落物"
 	spawn_all_loot = FALSE
 	loot = list(/obj/item/gun/ballistic/automatic/pistol/deagle = 15,
 				/obj/item/ammo_box/magazine/m50 = 25,

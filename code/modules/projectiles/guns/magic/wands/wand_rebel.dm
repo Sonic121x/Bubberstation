@@ -3,8 +3,8 @@
  * Stop hitting yourself. Stop hitting yourself.
  */
 /obj/item/gun/magic/wand/rebel
-	name = "wand of rebellion"
-	desc = "The dark power of this wand turns the victim's body against itself."
+	name = "叛逆魔杖"
+	desc = "这根魔杖的黑暗力量会让受害者的身体反噬自身。"
 	school = SCHOOL_NECROMANCY
 	ammo_type = /obj/item/ammo_casing/magic/rebellion
 	icon_state = "necrowand"
@@ -31,7 +31,7 @@
 	projectile_type = /obj/projectile/magic/rebellion
 
 /obj/projectile/magic/rebellion
-	name = "bolt of rebellion"
+	name = "叛逆魔弹"
 	icon_state = "soulslash"
 	damage = 15
 	damage_type = BRUTE

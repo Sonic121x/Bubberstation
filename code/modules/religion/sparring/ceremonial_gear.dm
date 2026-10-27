@@ -1,7 +1,7 @@
 ///ritual weapons. they're really bad, but they become normal weapons when sparring.
 /obj/item/ceremonial_blade
-	name = "ceremonial blade"
-	desc = "A blade created to spar with. It seems weak, but if you spar with it...?"
+	name = "仪式之刃"
+	desc = "为切磋而打造的刀刃。它看起来似乎很弱，但如果你用它切磋……？"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/ceremonial_blade"
 	post_init_icon_state = "default"
@@ -20,8 +20,8 @@
 	throwforce = 1 //10
 	wound_bonus = CANT_WOUND // bad for sparring
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb_continuous = list("attacks", "slashes", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("attack", "slash", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	attack_verb_continuous = list("攻击", "斩击", "切割", "撕裂", "划伤", "扯裂", "削切", "砍击")
+	attack_verb_simple = list("攻击", "斩击", "切割", "撕裂", "划伤", "扯裂", "削切", "砍击")
 	block_chance = 3 //30
 	block_sound = 'sound/items/weapons/parry.ogg'
 	sharpness = SHARP_EDGED
@@ -29,8 +29,8 @@
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE //doesn't affect stats of the weapon as to avoid gamering your opponent with a dope weapon
 	armor_type = /datum/armor/item_ceremonial_blade
 	resistance_flags = FIRE_PROOF
-	var/list/alt_continuous = list("stabs", "pierces", "impales")
-	var/list/alt_simple = list("stab", "pierce", "impale")
+	var/list/alt_continuous = list("刺击", "贯穿", "捅穿")
+	var/list/alt_simple = list("刺击", "贯穿", "捅穿")
 
 /datum/armor/item_ceremonial_blade
 	fire = 100
@@ -58,7 +58,7 @@
 	force = old_force
 	throwforce = old_throwforce
 
-/obj/item/ceremonial_blade/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/ceremonial_blade/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "这次攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type != MELEE_ATTACK || !ishuman(hitby.loc))
 		return ..()
 	if(HAS_TRAIT(hitby.loc, TRAIT_SPARRING))

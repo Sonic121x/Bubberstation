@@ -24,13 +24,13 @@
 		wound_clothing = TRUE,
 	)
 	if(shielded)
-		balloon_alert_to_viewers("ineffective!")
+		balloon_alert_to_viewers("无效！")
 		return FALSE
 	return ..()
 
 /obj/structure/xen_pylon
-	name = "shield plant"
-	desc = "It seems to be some kind of force field generator."
+	name = "护盾植物"
+	desc = "它似乎是某种力场发生器。"
 	icon = 'modular_skyrat/modules/black_mesa/icons/plants.dmi'
 	icon_state = "crystal_pylon"
 	max_integrity = 70

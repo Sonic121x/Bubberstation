@@ -4,8 +4,8 @@
  * Repulsion wand throws things backwards, might hurt them if they ram something
  */
 /obj/item/gun/magic/wand/repulse
-	name = "rod of repulsion"
-	desc = "A wand which blasts things away from you."
+	name = "排斥之杖"
+	desc = "一根能把东西从你身边轰飞的魔杖。"
 	school = SCHOOL_TRANSLOCATION
 	ammo_type = /obj/item/ammo_casing/magic/repulse
 	icon_state = "repulsionwand"
@@ -15,7 +15,7 @@
 
 /obj/item/gun/magic/wand/repulse/zap_self(mob/living/user, suicide = FALSE)
 	. = ..()
-	user.visible_message(span_warning("[user] blasts [user.p_themselves()] into the ground!"))
+	user.visible_message(span_warning("[user] 把自己轰进了地里！"))
 	user.adjust_brute_loss(30)
 	user.Paralyze(10 SECONDS)
 
@@ -46,7 +46,7 @@
 	projectile_type = /obj/projectile/magic/repulse
 
 /obj/projectile/magic/repulse
-	name = "bolt of repulsion"
+	name = "排斥魔弹"
 	icon_state = "blastwave"
 
 /obj/projectile/magic/repulse/on_hit(atom/target, blocked = 0, pierce_hit)

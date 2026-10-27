@@ -1,11 +1,11 @@
 /obj/item/modular_computer/pda/expeditionary_corps
 	greyscale_colors = "#891417#000099"
 	icon_state = "/obj/item/modular_computer/pda/expeditionary_corps"
-	name = "surplus military PDA"
+	name = "剩余军用 PDA"
 
 /obj/item/storage/box/expeditionary_survival
-	name = "expedition survival pack"
-	desc = "A box filled with useful items for your expedition!"
+	name = "远征生存包"
+	desc = "一箱为你的远征准备的有用物品！"
 	icon_state = "survival_pack"
 	icon = 'modular_skyrat/modules/exp_corps/icons/survival_pack.dmi'
 	illustration = null

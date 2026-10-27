@@ -1,6 +1,6 @@
 /obj/item/organ/xenodorsal
-	name = "dorsal spines"
-	desc = "How did that even fit on them...?"
+	name = "背棘"
+	desc = "这东西到底是怎么长在他们身上的……？"
 	icon_state = "random_fly_2"
 
 	mutantpart_key = "xenodorsal"

@@ -214,14 +214,14 @@
 	var/panel_height = 620
 	if(edit_id)
 		panel_height = 240
-	var/datum/browser/panel = new(usr, "banpanel", "Banning Panel", 910, panel_height)
+	var/datum/browser/panel = new(usr, "banpanel", "封禁面板", 910, panel_height)
 	panel.add_stylesheet("admin_panelscss", 'html/admin/admin_panels.css')
 	panel.add_stylesheet("banpanelcss", 'html/admin/banpanel.css')
 	panel.add_stylesheet("admin_panelscss3", 'html/admin/admin_panels_css3.css')
 	panel.add_script("banpaneljs", 'html/admin/banpanel.js')
 	var/list/output = list("<form method='get' action='?src=[REF(src)]'>[HrefTokenFormField()]")
 	output += {"<input type='hidden' name='src' value='[REF(src)]'>
-	<label class='inputlabel checkbox'>Key:
+	<label class='inputlabel checkbox'>账号：
 	<input type='checkbox' id='keycheck' name='keycheck' value='1'[player_key ? " checked": ""]>
 	<div class='inputbox'></div></label>
 	<input type='text' name='keytext' size='26' value='[player_key]'>
@@ -234,79 +234,79 @@
 	<div class='inputbox'></div></label>
 	<input type='text' name='cidtext' size='14' value='[player_cid]'>
 	<br>
-	<label class='inputlabel checkbox'>Use IP and CID from last connection of key
+	<label class='inputlabel checkbox'>使用该账号上次连接时的IP和CID
 	<input type='checkbox' id='lastconn' name='lastconn' value='1' [(isnull(duration) && !player_ip) || (!player_cid) ? " checked": ""]>
 	<div class='inputbox'></div></label>
-	<label class='inputlabel checkbox'>Applies to Admins
+	<label class='inputlabel checkbox'>适用于管理员
 	<input type='checkbox' id='applyadmins' name='applyadmins' value='1'[applies_to_admins ? " checked": ""]>
 	<div class='inputbox'></div></label>
-	<input type='submit' value='Submit'>
+	<input type='submit' value='提交'>
 	<br>
 	<div class='row'>
 		<div class='column left'>
-			Duration type
+			时长类型
 			<br>
-			<label class='inputlabel radio'>Permanent
+			<label class='inputlabel radio'>永久
 			<input type='radio' id='permanent' name='radioduration' value='permanent'[isnull(duration) ? " checked" : ""]>
 			<div class='inputbox'></div></label>
 			<br>
-			<label class='inputlabel radio'>Temporary
+			<label class='inputlabel radio'>临时
 			<input type='radio' id='temporary' name='radioduration' value='temporary'[duration ? " checked" : ""]>
 			<div class='inputbox'></div></label>
 			<input type='text' name='duration' size='7' value='[duration]'>
 			<div class="select">
 				<select name='intervaltype'>
-					<option value='SECOND'>Seconds</option>
-					<option value='MINUTE' selected>Minutes</option>
-					<option value='HOUR'>Hours</option>
-					<option value='DAY'>Days</option>
-					<option value='WEEK'>Weeks</option>
-					<option value='MONTH'>Months</option>
-					<option value='YEAR'>Years</option>
+					<option value='SECOND'>秒</option>
+					<option value='MINUTE' selected>分钟</option>
+					<option value='HOUR'>小时</option>
+					<option value='DAY'>天</option>
+					<option value='WEEK'>周</option>
+					<option value='MONTH'>月</option>
+					<option value='YEAR'>年</option>
 				</select>
 			</div>
 		</div>
 		<div class='column middle'>
-			Ban type
+			封禁类型
 			<br>
-			<label class='inputlabel radio'>Server
+			<label class='inputlabel radio'>服务器
 			<input type='radio' id='server' name='radioban' value='server'[role == "Server" ? " checked" : ""][edit_id ? " disabled" : ""]>
 			<div class='inputbox'></div></label>
 			<br>
-			<label class='inputlabel radio'>Role
+			<label class='inputlabel radio'>角色
 			<input type='radio' id='role' name='radioban' value='role'[role == "Server" ? "" : " checked"][edit_id ? " disabled" : ""]>
 			<div class='inputbox'></div></label>
 		</div>
 		<div class='column middle'>
-			Severity
+			严重程度
 			<br>
-			<label class='inputlabel radio'>None
+			<label class='inputlabel radio'>无
 			<input type='radio' id='none' name='radioseverity' value='none'[edit_id ? " disabled" : ""]>
 			<div class='inputbox'></div></label>
-			<label class='inputlabel radio'>Medium
+			<label class='inputlabel radio'>中等
 			<input type='radio' id='medium' name='radioseverity' value='medium'[edit_id ? " disabled" : ""]>
 			<div class='inputbox'></div></label>
 			<br>
-			<label class='inputlabel radio'>Minor
+			<label class='inputlabel radio'>轻微
 			<input type='radio' id='minor' name='radioseverity' value='minor'[edit_id ? " disabled" : ""]>
 			<div class='inputbox'></div></label>
-			<label class='inputlabel radio'>High
+			<label class='inputlabel radio'>严重
 			<input type='radio' id='high' name='radioseverity' value='high'[edit_id ? " disabled" : ""]>
 			<div class='inputbox'></div></label>
 		</div>
 		<div class='column right'>
-			Location
+			适用范围
 			<br>
-			<label class='inputlabel radio'>Local
+			<label class='inputlabel radio'>本服
 			<input type='radio' id='servban' name='radioservban' value='local'[isnull(global_ban) ? " checked" : ""]>
 			<div class='inputbox'></div></label>
 			<br>
-			<label class='inputlabel radio'>Global
+			<label class='inputlabel radio'>全局
 			<input type='radio' id='servban' name='radioservban' value='global'[(global_ban) ? " checked" : ""]>
 			<div class='inputbox'></div></label>
 		</div>
 		<div class='column'>
-			Reason
+			原因
 			<br>
 			<textarea class='reason' name='reason' maxlength='[MAX_REASON_LENGTH]'>[reason]</textarea>
 		</div>
@@ -314,7 +314,7 @@
 	"}
 
 	if(edit_id)
-		output += /* SKYRAT EDIT CHANGE - MULTISERVER */{"<label class='inputlabel checkbox'>Mirror edits to matching bans
+		output += /* SKYRAT EDIT CHANGE - MULTISERVER */{"<label class='inputlabel checkbox'>将修改同步到匹配的封禁
 		<input type='checkbox' id='mirroredit' name='mirroredit' value='1'>
 		<div class='inputbox'></div></label>
 		<input type='hidden' name='editid' value='[edit_id]'>
@@ -329,7 +329,7 @@
 		<input type='hidden' name='adminkey' value='[admin_key]'>
 		<input type='hidden' name='role' value='[role]'>
 		<br>
-		When ticked, edits here will also affect bans created with matching ckey, IP, CID and time. Use this to edit all role bans which were made at the same time.
+		勾选后，此处的修改也会影响ckey、IP、CID及创建时间相同的封禁。可用来同时修改同一时间创建的所有角色封禁。
 		"}
 	else
 		output += "<input type='hidden' name='roleban_delimiter' value='1'>"
@@ -358,7 +358,7 @@
 			var/label_class = department.get_label_class()
 			var/department_name = department.department_name
 			output += "<div class='column'><label class='rolegroup [label_class]' style='background-color: [department.ui_color];'><input type='checkbox' name='[label_class]' class='hidden' onClick='header_click_all_checkboxes(this)'> \
-			[department_name]</label><div class='content'>"
+			[chinese_department_display(department_name)]</label><div class='content'>"
 			for(var/datum/job/job_datum as anything in department.get_jobban_jobs())
 				if(break_counter > 0 && (break_counter % 3 == 0))
 					output += "<br>"
@@ -369,13 +369,13 @@
 					var/department_index = job_datum.departments_list.Find(department.type)
 					if(!department_index)
 						stack_trace("Failed to find a department index for [department.type] in the departments_list of [job_datum.type]")
-					output += {"<label class='inputlabel checkbox'>[job_name]
+					output += {"<label class='inputlabel checkbox'>[chinese_job_display(job_name)]
 						<input type='checkbox' id='[job_name]_[department_index]' name='[job_name]' class='[label_class]' value='1'
 						onClick='toggle_other_checkboxes(this, \"[length(job_datum.departments_list)]\", \"[department_index]\")'">
 						<div class='inputbox[(job_name in banned_from) ? " banned" : ""]'></div></label>
 						"}
 				else
-					output += {"<label class='inputlabel checkbox'>[job_name]
+					output += {"<label class='inputlabel checkbox'>[chinese_job_display(job_name)]
 							<input type='checkbox' name='[job_name]' class='[label_class]' value='1'>
 							<div class='inputbox[(job_name in banned_from) ? " banned" : ""]'></div></label>
 							"}
@@ -386,12 +386,12 @@
 			"Abstract" = list("Appearance", "Emote", "Deadchat", "OOC", "Urgent Adminhelp"),
 			)
 		for(var/department in other_job_lists)
-			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' onClick='header_click_all_checkboxes(this)'>[department]</label><div class='content'>"
+			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' onClick='header_click_all_checkboxes(this)'>[chinese_batch_four_admin_display(department)]</label><div class='content'>"
 			break_counter = 0
 			for(var/job in other_job_lists[department])
 				if(break_counter > 0 && (break_counter % 3 == 0))
 					output += "<br>"
-				output += {"<label class='inputlabel checkbox'>[job]
+				output += {"<label class='inputlabel checkbox'>[chinese_batch_four_admin_display(job)]
 							<input type='checkbox' name='[job]' class='[department]' value='1'>
 							<div class='inputbox[(job in banned_from) ? " banned" : ""]'></div></label>
 				"}
@@ -459,12 +459,12 @@
 			), // SKYRAT EDIT ADDITION - EXTRA_BANS
 		)
 		for(var/department in long_job_lists)
-			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' onClick='header_click_all_checkboxes(this)'>[department]</label><div class='content'>"
+			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' onClick='header_click_all_checkboxes(this)'>[chinese_batch_four_admin_display(department)]</label><div class='content'>"
 			break_counter = 0
 			for(var/job in long_job_lists[department])
 				if(break_counter > 0 && (break_counter % 10 == 0))
 					output += "<br>"
-				output += {"<label class='inputlabel checkbox'>[job]
+				output += {"<label class='inputlabel checkbox'>[chinese_batch_four_admin_display(job)]
 							<input type='checkbox' name='[job]' class='[department]' value='1'>
 							<div class='inputbox[(job in banned_from) ? " banned" : ""]'></div></label>
 				"}
@@ -480,7 +480,7 @@
 	if(!check_rights(R_BAN))
 		return
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger("Failed to establish database connection."), confidential = TRUE)
+		to_chat(usr, span_danger("无法建立数据库连接。"), confidential = TRUE)
 		return
 	var/list/error_state = list()
 	var/player_key
@@ -509,7 +509,7 @@
 	if(href_list["keycheck"])
 		player_key = href_list["keytext"]
 		if(!player_key)
-			error_state += "Key was ticked but none was provided."
+			error_state += "已勾选账号，但未填写账号。"
 	if(href_list["ipcheck"])
 		ip_check = TRUE
 	if(href_list["cidcheck"])
@@ -521,15 +521,15 @@
 		if(ip_check)
 			player_ip = href_list["iptext"]
 			if(!player_ip && !use_last_connection)
-				error_state += "IP was ticked but none was provided."
+				error_state += "已勾选IP，但未填写IP。"
 		if(cid_check)
 			player_cid = href_list["cidtext"]
 			if(!player_cid && !use_last_connection)
-				error_state += "CID was ticked but none was provided."
+				error_state += "已勾选CID，但未填写CID。"
 	if(!use_last_connection && !player_ip && !player_cid && !player_key)
-		error_state += "At least a key, IP or CID must be provided."
+		error_state += "必须至少填写账号、IP或CID中的一项。"
 	if(use_last_connection && !ip_check && !cid_check)
-		error_state += "Use last connection was ticked, but neither IP nor CID was."
+		error_state += "已勾选使用上次连接信息，但未勾选IP或CID。"
 	if(href_list["applyadmins"])
 		applies_to_admins = TRUE
 	switch(href_list["radioservban"])  // SKYRAT EDIT ADDITION BEGIN - MULTISERVER
@@ -544,14 +544,14 @@
 			duration = href_list["duration"]
 			interval = href_list["intervaltype"]
 			if(!duration)
-				error_state += "Temporary ban was selected but no duration was provided."
+				error_state += "已选择临时封禁，但未填写时长。"
 		else
-			error_state += "No duration was selected."
+			error_state += "未选择封禁时长。"
 	reason = href_list["reason"]
 	if(!reason)
-		error_state += "No reason was provided."
+		error_state += "未填写原因。"
 	if(length(reason) > MAX_REASON_LENGTH)
-		error_state += "Reason cannot be more than [MAX_REASON_LENGTH] characters."
+		error_state += "原因不能超过[MAX_REASON_LENGTH]个字符。"
 	if(href_list["editid"])
 		edit_id = href_list["editid"]
 		if(href_list["mirroredit"])
@@ -563,27 +563,27 @@
 		page = href_list["page"]
 		admin_key = href_list["adminkey"]
 		if(player_key != old_key)
-			changes += list("Key" = "[old_key] to [player_key]")
+			changes += list("Key" = "[old_key]改为[player_key]")
 		if(global_ban != old_globalban) // SKYRAT EDIT ADDITION - MULTISERVER
-			changes += list("Ban Location" = "[old_globalban] to [global_ban]") // SKYRAT EDIT ADDITION - MULTISERVER
+			changes += list("Ban Location" = "[old_globalban]改为[global_ban]") // SKYRAT EDIT ADDITION - MULTISERVER
 		if(player_ip != old_ip)
-			changes += list("IP" = "[old_ip] to [player_ip]")
+			changes += list("IP" = "[old_ip]改为[player_ip]")
 		if(player_cid != old_cid)
-			changes += list("CID" = "[old_cid] to [player_cid]")
+			changes += list("CID" = "[old_cid]改为[player_cid]")
 		old_applies = text2num(href_list["oldapplies"])
 		if(applies_to_admins != old_applies)
-			changes += list("Applies to admins" = "[old_applies] to [applies_to_admins]")
+			changes += list("Applies to admins" = "[old_applies]改为[applies_to_admins]")
 		if(duration != href_list["oldduration"])
-			changes += list("Duration" = "[href_list["oldduration"]] MINUTE to [duration] [interval]")
+			changes += list("Duration" = "[href_list["oldduration"]]分钟改为[duration][chinese_batch_four_admin_display(interval)]")
 		if(reason != href_list["oldreason"])
-			changes += list("Reason" = "[href_list["oldreason"]]<br>to<br>[reason]")
+			changes += list("Reason" = "[href_list["oldreason"]]<br>改为<br>[reason]")
 		if(!changes.len)
-			error_state += "No changes were detected."
+			error_state += "未检测到任何修改。"
 		roles_to_ban += href_list["role"]
 	else
 		severity = href_list["radioseverity"]
 		if(!severity)
-			error_state += "No severity was selected."
+			error_state += "未选择严重程度。"
 		switch(href_list["radioban"])
 			if("server")
 				roles_to_ban += "Server"
@@ -591,17 +591,17 @@
 				href_list.Remove("Command", "Security", "Engineering", "Medical", "Science", "Supply", "Silicon", "Abstract", "Service", "Ghost and Other Roles", "Antagonist Positions") //remove the role banner hidden input values
 				var/delimiter_pos = href_list.Find("roleban_delimiter")
 				if(href_list.len == delimiter_pos)
-					error_state += "Role ban was selected but no roles to ban were selected."
+					error_state += "已选择角色封禁，但未选择要封禁的角色。"
 				else if(delimiter_pos == 0)
-					error_state += "roleban_delimiter not found in href. Report this to coders."
+					error_state += "href中未找到roleban_delimiter。请向开发人员报告。"
 				else
 					href_list.Cut(1, delimiter_pos+1)//remove every list element before and including roleban_delimiter so we have a list of only the roles to ban
 					for(var/key in href_list) //flatten into a list of only unique keys
 						roles_to_ban |= key
 			else
-				error_state += "No ban type was selected."
+				error_state += "未选择封禁类型。"
 	if(error_state.len)
-		to_chat(usr, span_danger("Ban not [edit_id ? "edited" : "created"] because the following errors were present:\n[error_state.Join("\n")]"), confidential = TRUE)
+		to_chat(usr, span_danger("由于以下错误，封禁未能[edit_id ? "修改" : "创建"]：\n[error_state.Join("\n")]"), confidential = TRUE)
 		return
 	if(edit_id)
 		edit_ban(edit_id, player_key, ip_check, player_ip, cid_check, player_cid, use_last_connection, applies_to_admins, duration, interval, reason, global_ban, mirror_edit, old_key, old_ip, old_cid, old_applies, page, admin_key, changes, roles_to_ban[1] == "Server") // SKYRAT EDIT CHANGE - MULTISERVER
@@ -612,7 +612,7 @@
 	if(!check_rights(R_BAN))
 		return
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger("Failed to establish database connection."), confidential = TRUE)
+		to_chat(usr, span_danger("无法建立数据库连接。"), confidential = TRUE)
 		return
 	var/player_ckey = ckey(player_key)
 	if(player_ckey)
@@ -631,11 +631,11 @@
 					player_cid = query_create_ban_get_player.item[3]
 		else
 			if(use_last_connection)
-				if(tgui_alert(usr, "[player_key]/([player_ckey]) has not been seen before, unable to use IP and CID from last connection. Are you sure you want to create a ban for them?", "Unknown key", list("Yes", "No", "Cancel")) != "Yes")
+				if(tgui_alert(usr, "没有[player_key]/([player_ckey])的连接记录，无法使用上次连接的IP和CID。确定要为其创建封禁吗？", "未知账号", list("是", "否", "取消")) != "是")
 					qdel(query_create_ban_get_player)
 					return
 			else
-				if(tgui_alert(usr, "[player_key]/([player_ckey]) has not been seen before, are you sure you want to create a ban for them?", "Unknown key", list("Yes", "No", "Cancel")) != "Yes")
+				if(tgui_alert(usr, "没有[player_key]/([player_ckey])的连接记录，确定要为其创建封禁吗？", "未知账号", list("是", "否", "取消")) != "是")
 					qdel(query_create_ban_get_player)
 					return
 		qdel(query_create_ban_get_player)
@@ -647,11 +647,11 @@
 	duration = text2num(duration)
 	if (!(interval in list("SECOND", "MINUTE", "HOUR", "DAY", "WEEK", "MONTH", "YEAR")))
 		interval = "MINUTE"
-	var/time_message = "[duration] [LOWER_TEXT(interval)]" //no DisplayTimeText because our duration is of variable interval type
+	var/time_message = "[duration][chinese_batch_four_admin_display(interval)]" //no DisplayTimeText because our duration is of variable interval type
 	if(duration > 1) //pluralize the interval if necessary
-		time_message += "s"
+		time_message += ""
 	var/is_server_ban = (roles_to_ban[1] == "Server")
-	var/note_reason = "Banned from [is_server_ban ? "the server" : " Roles: [roles_to_ban.Join(", ")]"] [isnull(duration) ? "permanently" : "for [time_message]"] - [reason]"
+	var/note_reason = "禁止[is_server_ban ? "进入服务器" : "使用角色：[chinese_batch_four_admin_list_display(roles_to_ban)]"]，期限：[isnull(duration) ? "永久" : time_message] - [reason]"
 	var/list/clients_online = GLOB.clients.Copy()
 	var/list/admins_online = list()
 	for(var/client/C in clients_online)
@@ -693,16 +693,16 @@
 	if(!SSdbcore.MassInsert(format_table_name("ban"), sql_ban, warn = TRUE, special_columns = special_columns))
 		return
 	var/target = ban_target_string(player_key, player_ip, player_cid)
-	var/msg = "has created a [global_ban ? "global" : "local"] [isnull(duration) ? "permanent" : "temporary [time_message]"] [applies_to_admins ? "admin " : ""][is_server_ban ? "server ban" : "role ban from [roles_to_ban.len] roles"] for [target]." // SKYRAT EDIT CHANGE - MULTISERVER
+	var/msg = "已为[target]创建[global_ban ? "全局" : "本服"]封禁，期限：[isnull(duration) ? "永久" : time_message]；[applies_to_admins ? "适用于管理员；" : ""][is_server_ban ? "禁止进入服务器" : "禁止使用[roles_to_ban.len]个角色"]。" // SKYRAT EDIT CHANGE - MULTISERVER
 	log_admin_private("[kn] [msg][is_server_ban ? "" : " Roles: [roles_to_ban.Join(", ")]"] Reason: [reason]")
-	message_admins("[kna] [msg][is_server_ban ? "" : " Roles: [roles_to_ban.Join("\n")]"]\nReason: [reason]")
+	message_admins("[kna] [msg][is_server_ban ? "" : " 角色：[chinese_batch_four_admin_list_display(roles_to_ban, "\n")]"]\n原因：[reason]")
 	if(applies_to_admins)
 		send2adminchat("BAN ALERT","[kn] [msg]")
 	if(player_ckey)
 		create_message("note", player_ckey, admin_ckey, note_reason, null, null, 0, 0, null, 0, severity)
 
-	var/player_ban_notification = span_boldannounce("You have been [applies_to_admins ? "admin " : ""]banned by [usr.client.key] from [is_server_ban ? "the server" : " Roles: [roles_to_ban.Join(", ")]"].\nReason: [reason]</span><br>[span_danger("This ban is [isnull(duration) ? "permanent." : "temporary, it will be removed in [time_message]."] The round ID is [GLOB.round_id].")]")
-	var/other_ban_notification = span_boldannounce("Another player sharing your IP or CID has been banned by [usr.client.key] from [is_server_ban ? "the server" : " Roles: [roles_to_ban.Join(", ")]"].\nReason: [reason]</span><br>[span_danger("This ban is [isnull(duration) ? "permanent." : "temporary, it will be removed in [time_message]."] The round ID is [GLOB.round_id].")]")
+	var/player_ban_notification = span_boldannounce("[usr.client.key]已禁止你[is_server_ban ? "进入服务器" : "使用角色：[chinese_batch_four_admin_list_display(roles_to_ban)]"][applies_to_admins ? "（此封禁适用于管理员）" : ""]。\n原因：[reason]</span><br>[span_danger("此封禁[isnull(duration) ? "永久有效。" : "将在[time_message]后解除。"]回合ID为[GLOB.round_id]。")]")
+	var/other_ban_notification = span_boldannounce("与你共用IP或CID的另一名玩家已被[usr.client.key]禁止[is_server_ban ? "进入服务器" : "使用角色：[chinese_batch_four_admin_list_display(roles_to_ban)]"]。\n原因：[reason]</span><br>[span_danger("此封禁[isnull(duration) ? "永久有效。" : "将在[time_message]后解除。"]回合ID为[GLOB.round_id]。")]")
 
 	notify_all_banned_players(player_ckey, player_ip, player_cid, player_ban_notification, other_ban_notification, is_server_ban, applies_to_admins)
 
@@ -723,18 +723,18 @@
 	if(!check_rights(R_BAN))
 		return
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger("Failed to establish database connection."), confidential = TRUE)
+		to_chat(usr, span_danger("无法建立数据库连接。"), confidential = TRUE)
 		return
-	var/datum/browser/unban_panel = new(usr, "unbanpanel", "Unbanning Panel", 850, 600)
+	var/datum/browser/unban_panel = new(usr, "unbanpanel", "解除封禁面板", 850, 600)
 	unban_panel.add_stylesheet("unbanpanelcss", 'html/admin/unbanpanel.css')
 	var/list/output = list("<div class='searchbar'>")
 	output += {"<form method='get' action='?src=[REF(src)]'>[HrefTokenFormField()]
 	<input type='hidden' name='src' value='[REF(src)]'>
-	Key:<input type='text' name='searchunbankey' size='18' value='[player_key]'>
-	Admin Key:<input type='text' name='searchunbanadminkey' size='18' value='[admin_key]'>
+	账号：<input type='text' name='searchunbankey' size='18' value='[player_key]'>
+	管理员账号：<input type='text' name='searchunbanadminkey' size='18' value='[admin_key]'>
 	IP:<input type='text' name='searchunbanip' size='12' value='[player_ip]'>
 	CID:<input type='text' name='searchunbancid' size='10' value='[player_cid]'>
-	<input type='submit' value='Search'>
+	<input type='submit' value='搜索'>
 	</form>
 	</div>
 	<div class='main'>
@@ -764,7 +764,7 @@
 			bancount = text2num(query_unban_count_bans.item[1])
 		qdel(query_unban_count_bans)
 		if(bancount > bansperpage)
-			output += "<b>Page: </b>"
+			output += "<b>页码：</b>"
 			var/pagecount = 1
 			var/list/pagelist = list()
 			while(bancount > 0)
@@ -843,24 +843,24 @@
 			var/unban_round_id = query_unban_search_bans.item[17]
 			var/target = ban_target_string(banned_player_key, banned_player_ip, banned_player_cid)
 
-			output += "<div class='banbox'><div class='header [unban_datetime ? "unbanned" : "banned"]'><b>[target]</b>[applies_to_admins ? " <b>ADMIN</b>" : ""] banned by <b>[banning_admin_key]</b> from <b>[role]</b> on <b>[ban_datetime]</b> during round <b>#[ban_round_id]</b>.<br>"
+			output += "<div class='banbox'><div class='header [unban_datetime ? "unbanned" : "banned"]'><b>[target]</b>[applies_to_admins ? " <b>适用于管理员</b>" : ""]于<b>[ban_datetime]</b>、回合<b>#[ban_round_id]</b>被<b>[banning_admin_key]</b>封禁：<b>[chinese_batch_four_admin_display(role)]</b>。<br>"
 			if(!expiration_time)
-				output += "<b>Permanent ban</b>."
+				output += "<b>永久封禁</b>。"
 			else
-				output += "Duration of <b>[DisplayTimeText(text2num(duration) MINUTES)]</b>, <b>[expired ? "expired" : "expires"]</b> on <b>[expiration_time]</b>."
+				output += "期限为<b>[DisplayTimeText(text2num(duration) MINUTES)]</b>，<b>[expired ? "已于" : "将于"]</b><b>[expiration_time]</b>到期。"
 			if(unban_datetime)
-				output += "<br>Unbanned by <b>[unban_key]</b> on <b>[unban_datetime]</b> during round <b>#[unban_round_id]</b>."
+				output += "<br>由<b>[unban_key]</b>于<b>[unban_datetime]</b>、回合<b>#[unban_round_id]</b>解除封禁。"
 			output += "</div><div class='container'><div class='reason'>[reason]</div><div class='edit'>"
 
 			var/un_or_reban_href
 			if(unban_datetime)
-				un_or_reban_href = "<a href='byond://?_src_=holder;[HrefToken()];rebanid=[ban_id];applies_to_admins=[applies_to_admins];rebankey=[banned_player_key];rebanadminkey=[banning_admin_key];rebanip=[banned_player_ip];rebancid=[banned_player_cid];rebanrole=[role];rebanpage=[page]'>Reban</a>"
+				un_or_reban_href = "<a href='byond://?_src_=holder;[HrefToken()];rebanid=[ban_id];applies_to_admins=[applies_to_admins];rebankey=[banned_player_key];rebanadminkey=[banning_admin_key];rebanip=[banned_player_ip];rebancid=[banned_player_cid];rebanrole=[role];rebanpage=[page]'>恢复封禁</a>"
 			else
-				un_or_reban_href = "<a href='byond://?_src_=holder;[HrefToken()];unbanid=[ban_id];unbankey=[banned_player_key];unbanadminkey=[banning_admin_key];unbanip=[banned_player_ip];unbancid=[banned_player_cid];unbanrole=[role];unbanpage=[page]'>Unban</a>"
-			output += "<a href='byond://?_src_=holder;[HrefToken()];editbanid=[ban_id];editbankey=[banned_player_key];editbanip=[banned_player_ip];editbancid=[banned_player_cid];editbanrole=[role];editbanduration=[duration];editbanadmins=[applies_to_admins];editbanreason=[url_encode(reason)];editbanpage=[page];editbanadminkey=[banning_admin_key]'>Edit</a><br>[un_or_reban_href]"
+				un_or_reban_href = "<a href='byond://?_src_=holder;[HrefToken()];unbanid=[ban_id];unbankey=[banned_player_key];unbanadminkey=[banning_admin_key];unbanip=[banned_player_ip];unbancid=[banned_player_cid];unbanrole=[role];unbanpage=[page]'>解除封禁</a>"
+			output += "<a href='byond://?_src_=holder;[HrefToken()];editbanid=[ban_id];editbankey=[banned_player_key];editbanip=[banned_player_ip];editbancid=[banned_player_cid];editbanrole=[role];editbanduration=[duration];editbanadmins=[applies_to_admins];editbanreason=[url_encode(reason)];editbanpage=[page];editbanadminkey=[banning_admin_key]'>编辑</a><br>[un_or_reban_href]"
 
 			if(edits)
-				output += "<br><a href='byond://?_src_=holder;[HrefToken()];unbanlog=[ban_id]'>Edit log</a>"
+				output += "<br><a href='byond://?_src_=holder;[HrefToken()];unbanlog=[ban_id]'>修改记录</a>"
 			output += "</div></div></div>"
 		qdel(query_unban_search_bans)
 		output += "</div>"
@@ -871,15 +871,15 @@
 	if(!check_rights(R_BAN))
 		return
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger("Failed to establish database connection."), confidential = TRUE)
+		to_chat(usr, span_danger("无法建立数据库连接。"), confidential = TRUE)
 		return
 	var/target = ban_target_string(player_key, player_ip, player_cid)
 	// Make sure the only input that doesn't early return is "Yes" - This is the only situation in which we want the unban to proceed.
-	if(tgui_alert(usr, "Please confirm unban of [target] from [role].", "Unban confirmation", list("Yes", "No")) != "Yes")
+	if(tgui_alert(usr, "确认解除[target]的[chinese_batch_four_admin_display(role)]封禁？", "解除封禁确认", list("是", "否")) != "是")
 		return
 	var/kn = key_name(usr)
 	var/kna = key_name_admin(usr)
-	var/change_message = "[usr.client.key] unbanned [target] from [role] on [ISOtime()] during round #[GLOB.round_id]<hr>"
+	var/change_message = "[usr.client.key]于[ISOtime()]、回合#[GLOB.round_id]解除了[target]的[chinese_batch_four_admin_display(role)]封禁<hr>"
 	var/datum/db_query/query_unban = SSdbcore.NewQuery({"
 		UPDATE [format_table_name("ban")] SET
 			unbanned_datetime = NOW(),
@@ -895,15 +895,15 @@
 		return
 	qdel(query_unban)
 	log_admin_private("[kn] has unbanned [target] from [role].")
-	message_admins("[kna] has unbanned [target] from [role].")
+	message_admins("[kna]已解除[target]的[chinese_batch_four_admin_display(role)]封禁。")
 	var/client/C = GLOB.directory[player_key]
 	if(C)
 		build_ban_cache(C)
-		to_chat(C, span_boldannounce("[usr.client.key] has removed a ban from [role] for your key."), confidential = TRUE)
+		to_chat(C, span_boldannounce("[usr.client.key]已解除你账号上的[chinese_batch_four_admin_display(role)]封禁。"), confidential = TRUE)
 	for(var/client/i in GLOB.clients - C)
 		if(i.address == player_ip || i.computer_id == player_cid)
 			build_ban_cache(i)
-			to_chat(i, span_boldannounce("[usr.client.key] has removed a ban from [role] for your IP or CID."), confidential = TRUE)
+			to_chat(i, span_boldannounce("[usr.client.key]已解除你IP或CID上的[chinese_batch_four_admin_display(role)]封禁。"), confidential = TRUE)
 	unban_panel(player_key, admin_key, player_ip, player_cid, page)
 
 /// Sometimes an admin did not intend to unban a player. This proc undoes an unbanning operation by setting the unbanned_ keys in the DB back to null.
@@ -911,12 +911,12 @@
 	if(!check_rights(R_BAN))
 		return
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger("Failed to establish database connection."), confidential = TRUE)
+		to_chat(usr, span_danger("无法建立数据库连接。"), confidential = TRUE)
 		return
 
 	var/target = ban_target_string(player_key, player_ip, player_cid)
 	// Make sure the only input that doesn't early return is "Yes" - This is the only situation in which we want the unban to proceed.
-	if(tgui_alert(usr, "Please confirm undoing of unban of [target] from [role].", "Reban confirmation", list("Yes", "No")) != "Yes")
+	if(tgui_alert(usr, "确认撤销解封，恢复[target]的[chinese_batch_four_admin_display(role)]封禁？", "恢复封禁确认", list("是", "否")) != "是")
 		return
 
 	if(applies_to_admins && !can_place_additional_admin_ban(usr.client.ckey))
@@ -924,7 +924,7 @@
 
 	var/kn = key_name(usr)
 	var/kna = key_name_admin(usr)
-	var/change_message = "[usr.client.key] re-activated ban of [target] from [role] on [ISOtime()] during round #[GLOB.round_id]<hr>"
+	var/change_message = "[usr.client.key]于[ISOtime()]、回合#[GLOB.round_id]恢复了[target]的[chinese_batch_four_admin_display(role)]封禁<hr>"
 	var/datum/db_query/query_reban = SSdbcore.NewQuery({"
 		UPDATE [format_table_name("ban")] SET
 			unbanned_datetime = NULL,
@@ -940,10 +940,10 @@
 		return
 	qdel(query_reban)
 	log_admin_private("[kn] has rebanned [target] from [role].")
-	message_admins("[kna] has rebanned [target] from [role].")
+	message_admins("[kna]已恢复[target]的[chinese_batch_four_admin_display(role)]封禁。")
 
-	var/banned_player_message = span_boldannounce("[usr.client.key] has re-activated a removed ban from [role] for your key.")
-	var/banned_other_message = span_boldannounce("[usr.client.key] has re-activated a removed ban from [role] for your IP or CID.")
+	var/banned_player_message = span_boldannounce("[usr.client.key]已恢复你账号上曾解除的[chinese_batch_four_admin_display(role)]封禁。")
+	var/banned_other_message = span_boldannounce("[usr.client.key]已恢复你IP或CID上曾解除的[chinese_batch_four_admin_display(role)]封禁。")
 	var/kick_banned_players = (role == "Server")
 
 	notify_all_banned_players(ckey(player_key), player_ip, player_cid, banned_player_message, banned_other_message, kick_banned_players, applies_to_admins)
@@ -953,7 +953,7 @@
 	if(!check_rights(R_BAN))
 		return
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger("Failed to establish database connection."), confidential = TRUE)
+		to_chat(usr, span_danger("无法建立数据库连接。"), confidential = TRUE)
 		return
 	var/player_ckey = ckey(player_key)
 	var/bantime
@@ -980,11 +980,11 @@
 					player_cid = query_edit_ban_get_player.item[4]
 		else
 			if(use_last_connection)
-				if(tgui_alert(usr, "[player_key]/([player_ckey]) has not been seen before, unable to use IP and CID from last connection. Are you sure you want to edit a ban for them?", "Unknown key", list("Yes", "No", "Cancel")) != "Yes")
+				if(tgui_alert(usr, "没有[player_key]/([player_ckey])的连接记录，无法使用上次连接的IP和CID。确定要修改其封禁吗？", "未知账号", list("是", "否", "取消")) != "是")
 					qdel(query_edit_ban_get_player)
 					return
 			else
-				if(tgui_alert(usr, "[player_key]/([player_ckey]) has not been seen before, are you sure you want to edit a ban for them?", "Unknown key", list("Yes", "No", "Cancel")) != "Yes")
+				if(tgui_alert(usr, "没有[player_key]/([player_ckey])的连接记录，确定要修改其封禁吗？", "未知账号", list("是", "否", "取消")) != "是")
 					qdel(query_edit_ban_get_player)
 					return
 		qdel(query_edit_ban_get_player)
@@ -998,9 +998,9 @@
 	var/list/changes_text = list()
 	var/list/changes_keys = list()
 	for(var/i in changes)
-		changes_text += "[i]: [changes[i]]"
-		changes_keys += i
-	var/change_message = "[usr.client.key] edited the following [jointext(changes_text, ", ")]<hr>"
+		changes_text += "[chinese_batch_four_admin_display(i)]：[changes[i]]"
+		changes_keys += chinese_batch_four_admin_display(i)
+	var/change_message = "[usr.client.key]修改了以下内容：[jointext(changes_text, "、")]<hr>"
 
 	var/list/arguments = list(
 		"duration" = duration || null,
@@ -1051,12 +1051,12 @@
 	var/kn = key_name(usr)
 	var/kna = key_name_admin(usr)
 	log_admin_private("[kn] has edited the [changes_keys_text] of a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"].") //if a ban doesn't have a key it must have an ip and/or a cid to have reached this point normally
-	message_admins("[kna] has edited the [changes_keys_text] of a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"].")
+	message_admins("[kna]修改了[old_key ? "[old_key]" : "[old_ip]-[old_cid]"]封禁的[changes_keys_text]。")
 	if(changes["Applies to admins"])
-		send2adminchat("BAN ALERT","[kn] has edited a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"] to [applies_to_admins ? "" : "not"]affect admins")
+		send2adminchat("BAN ALERT","[kn]已将[old_key ? "[old_key]" : "[old_ip]-[old_cid]"]的封禁改为[applies_to_admins ? "适用" : "不适用"]于管理员")
 
-	var/player_edit_message = span_boldannounce("[usr.client.key] has edited the [changes_keys_text] of a ban for your key.")
-	var/other_edit_message = span_boldannounce("[usr.client.key] has edited the [changes_keys_text] of a ban for your IP or CID.")
+	var/player_edit_message = span_boldannounce("[usr.client.key]修改了你账号封禁的[changes_keys_text]。")
+	var/other_edit_message = span_boldannounce("[usr.client.key]修改了你IP或CID封禁的[changes_keys_text]。")
 
 	var/kick_banned_players = (is_server_ban && (changes["Key"] || changes["IP"] || changes["CID"]))
 
@@ -1068,7 +1068,7 @@
 	if(!check_rights(R_BAN))
 		return
 	if(!SSdbcore.Connect())
-		to_chat(usr, span_danger("Failed to establish database connection."), confidential = TRUE)
+		to_chat(usr, span_danger("无法建立数据库连接。"), confidential = TRUE)
 		return
 	var/datum/db_query/query_get_ban_edits = SSdbcore.NewQuery({"
 		SELECT edits FROM [format_table_name("ban")] WHERE id = :ban_id
@@ -1078,7 +1078,7 @@
 		return
 	if(query_get_ban_edits.NextRow())
 		var/edits = query_get_ban_edits.item[1]
-		var/datum/browser/edit_log = new(usr, "baneditlog", "Ban edit log")
+		var/datum/browser/edit_log = new(usr, "baneditlog", "封禁修改记录")
 		edit_log.set_content(edits)
 		edit_log.open()
 	qdel(query_get_ban_edits)
@@ -1127,7 +1127,7 @@
 		if(check_rights(R_PERMISSIONS, show_msg = FALSE) && (can_edit_rights_flags() & R_EVERYTHING) == R_EVERYTHING) //edit rights are a more effective way to check hierarchical rank since many non-headmins have R_PERMISSIONS now
 			max_adminbans = MAX_ADMINBANS_PER_HEADMIN
 		if(adminban_count >= max_adminbans)
-			to_chat(usr, span_danger("You've already logged [max_adminbans] admin ban(s) or more. Do not abuse this function!"), confidential = TRUE)
+			to_chat(usr, span_danger("你已创建至少[max_adminbans]项适用于管理员的封禁。请勿滥用此功能！"), confidential = TRUE)
 			qdel(query_check_adminban_count)
 			return FALSE
 	qdel(query_check_adminban_count)
@@ -1153,13 +1153,13 @@
 /datum/admins/proc/notify_all_banned_players(banned_player_ckey, banned_player_ip, banned_player_cid, banned_player_message, banned_other_message, kick_banned_players, applies_to_admins)
 	var/client/player_client = GLOB.directory[banned_player_ckey]
 
-	var/appeal_url = "No ban appeal url set!"
+	var/appeal_url = "未设置封禁申诉网址！"
 	appeal_url = CONFIG_GET(string/banappeals)
 
 	var/is_admin = FALSE
 	if(player_client)
 		build_ban_cache(player_client)
-		to_chat(player_client, span_boldannounce("[banned_player_message]<br><span class='danger'>To appeal this ban go to [appeal_url]"), confidential = TRUE)
+		to_chat(player_client, span_boldannounce("[banned_player_message]<br><span class='danger'>如需申诉此封禁，请前往[appeal_url]"), confidential = TRUE)
 		if(GLOB.admin_datums[player_client.ckey] || GLOB.deadmins[player_client.ckey])
 			is_admin = TRUE
 		if(kick_banned_players && (!is_admin || (is_admin && applies_to_admins)))
@@ -1168,7 +1168,7 @@
 	for(var/client/other_player_client in GLOB.clients - player_client)
 		if(other_player_client.address == banned_player_ip || other_player_client.computer_id == banned_player_cid)
 			build_ban_cache(other_player_client)
-			to_chat(other_player_client, span_boldannounce("[banned_other_message]<br><span class='danger'>To appeal this ban go to [appeal_url]"), confidential = TRUE)
+			to_chat(other_player_client, span_boldannounce("[banned_other_message]<br><span class='danger'>如需申诉此封禁，请前往[appeal_url]"), confidential = TRUE)
 			if(GLOB.admin_datums[other_player_client.ckey] || GLOB.deadmins[other_player_client.ckey])
 				is_admin = TRUE
 			if(kick_banned_players && (!is_admin || (is_admin && applies_to_admins)))

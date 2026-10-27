@@ -1,10 +1,10 @@
 /datum/round_event_control/wizard/rpgtitles //its time to adventure on boys
-	name = "RPG Titles"
+	name = "RPG 头衔"
 	weight = 3
 	typepath = /datum/round_event/wizard/rpgtitles
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
-	description = "Everyone gains an RPG title hovering below them."
+	description = "每个人都会获得一个悬浮在头顶下方的 RPG 头衔。"
 	min_wizard_trigger_potency = 4
 	max_wizard_trigger_potency = 7
 
@@ -52,15 +52,15 @@ GLOBAL_DATUM(rpgtitle_controller, /datum/rpgtitle_controller)
 	var/list/biotype_titles = list(
 		null, //organic is too common to be a descriptor
 		null, //mineral is only used with carbons
-		list("Mechanical", "Robot"),
-		list("Reanimated", "Undead"),
-		list("Bipedal", "Humanoid"),
-		list("Insectile", "Bug"),
-		list("Beastly", "Beast"),
-		list("Monstrous", "Megafauna"),
-		list("Reptilian", "Lizard"),
-		list("Paranormal", "Spirit"),
-		list("Flowering", "Plant"),
+		list("机械", "机器人"),
+		list("复生", "亡灵"),
+		list("双足", "人形"),
+		list("昆虫", "虫子"),
+		list("野兽", "猛兽"),
+		list("怪异", "巨型动物"),
+		list("爬行", "蜥蜴"),
+		list("超自然", "幽灵"),
+		list("开花", "植物"),
 	)
 
 	var/maptext_title = ""
@@ -76,7 +76,7 @@ GLOBAL_DATUM(rpgtitle_controller, /datum/rpgtitle_controller)
 				if(biotype_titles[biotype_flag_position+1]) //if there is a fitting verbage for this biotype...
 					applicable_biotypes += list(biotype_titles[biotype_flag_position+1])//...add it to the list of applicable biotypes
 		if(!applicable_biotypes.len) //there will never be an adjective anomaly because anomaly is only added when there are no choices
-			applicable_biotypes += list(null, "Anomaly")
+			applicable_biotypes += list(null, "异常体")
 
 		//shuffle it to allow for some cool combinations of adjectives and nouns
 		applicable_biotypes = shuffle(applicable_biotypes)
@@ -90,7 +90,7 @@ GLOBAL_DATUM(rpgtitle_controller, /datum/rpgtitle_controller)
 			maptext_title += "[applicable_biotypes[iteration][1]] "
 
 	//mother of all strings...
-	new_crewmember.maptext = MAPTEXT_TINY_UNICODE("<span style='text-align: center; vertical-align: top; -dm-text-outline: 1px #0005'><span style='color: [new_crewmember.chat_color || rgb(rand(100,255), rand(100,255), rand(100,255))]'>Level [rand(1, 100)] [maptext_title]</span></span>")
+	new_crewmember.maptext = MAPTEXT_TINY_UNICODE("<span style='text-align: center; vertical-align: top; -dm-text-outline: 1px #0005'><span style='color: [new_crewmember.chat_color || rgb(rand(100,255), rand(100,255), rand(100,255))]'>等级 [rand(1, 100)] [maptext_title]</span></span>")
 
 	if(!(job.job_flags & JOB_CREW_MEMBER))
 		return
@@ -98,8 +98,8 @@ GLOBAL_DATUM(rpgtitle_controller, /datum/rpgtitle_controller)
 	var/obj/item/card/id/card = new_crewmember.get_idcard()
 	if(!card)//since this is called on current crew, some may not have IDs. shame on them for missing out!
 		return
-	card.name = "adventuring license"
-	card.desc = "A written license from the adventuring guild. You're good to go!"
+	card.name = "冒险执照"
+	card.desc = "由冒险者公会签发的书面执照。你可以出发了！"
 	card.icon_state = "card_rpg"
 	card.assignment = job.rpg_title
 	if(istype(card, /obj/item/card/id/advanced))

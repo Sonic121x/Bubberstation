@@ -1,10 +1,10 @@
 /mob/living/silicon
 	gender = NEUTER
 	abstract_type = /mob/living/silicon
-	verb_say = "states"
-	verb_ask = "queries"
-	verb_exclaim = "declares"
-	verb_yell = "alarms"
+	verb_say = "陈述道"
+	verb_ask = "询问道"
+	verb_exclaim = "宣告道"
+	verb_yell = "发出警报"
 	initial_language_holder = /datum/language_holder/synthetic/silicon
 	bubble_icon = "machine"
 	mob_biotypes = MOB_ROBOTIC
@@ -119,7 +119,7 @@
 	if(isAI(src))
 		job_name = "AI"
 	if(ispAI(src))
-		job_name = "pAI Messenger"
+		job_name = "个人 AI 信使"
 
 	modularInterface.layer = ABOVE_HUD_PLANE
 	SET_PLANE_EXPLICIT(modularInterface, ABOVE_HUD_PLANE, src)
@@ -162,9 +162,9 @@
 
 		var/msg = "--- "
 		for(var/alarm_type in alarm_types_show)
-			msg += "[uppertext(alarm_type)]: [alarm_types_show[alarm_type]] alarms detected. - "
+			msg += "[uppertext(alarm_type)]：检测到 [alarm_types_show[alarm_type]] 个警报。 - "
 
-		msg += "<A href=byond://?src=[REF(src)];showalerts=1'>\[Show Alerts\]</a>"
+		msg += "<A href=byond://?src=[REF(src)];showalerts=1'>\[显示警报\]</a>"
 		to_chat(src, msg)
 
 	if(length(alarms_to_clear) < 3)
@@ -175,9 +175,9 @@
 		var/msg = "--- "
 
 		for(var/alarm_type in alarm_types_clear)
-			msg += "[uppertext(alarm_type)]: [alarm_types_clear[alarm_type]] alarms cleared. - "
+			msg += "[uppertext(alarm_type)]：[alarm_types_clear[alarm_type]] 个警报已解除。 - "
 
-		msg += "<A href=byond://?src=[REF(src)];showalerts=1'>\[Show Alerts\]</a>"
+		msg += "<A href=byond://?src=[REF(src)];showalerts=1'>\[显示警报\]</a>"
 		to_chat(src, msg)
 
 
@@ -194,7 +194,7 @@
 /mob/living/silicon/try_inject(mob/user, target_zone, injection_flags)
 	. = ..()
 	if(!. && (injection_flags & INJECT_TRY_SHOW_ERROR_MESSAGE))
-		to_chat(user, span_alert("[p_Their()] outer shell is too tough."))
+		to_chat(user, span_alert("[p_Their()] 外壳太坚硬了。"))
 
 /proc/islinked(mob/living/silicon/robot/bot, mob/living/silicon/ai/ai)
 	if(!istype(bot) || !istype(ai))
@@ -209,13 +209,13 @@
 
 	if (href_list["printlawtext"]) // this is kinda backwards
 		if (href_list["dead"] && (!isdead(usr) && !usr.client.holder)) // do not print deadchat law notice if the user is now alive
-			to_chat(usr, span_warning("You cannot view law changes that were made while you were dead."))
+			to_chat(usr, span_warning("你无法查看自己死亡期间产生的法则变更。"))
 			return
 		to_chat(usr, href_list["printlawtext"])
 
 	if(href_list["track"])
 		if(!can_track(href_list["track"]))
-			to_chat(src, span_info("This person is not currently on cameras."))
+			to_chat(src, span_info("此人目前不在摄像头范围内。"))
 			return
 		var/mob/living/silicon/ai/AI
 		var/mob/living/silicon/robot/shell/shell
@@ -243,11 +243,11 @@
 
 /mob/living/silicon/proc/set_autosay() //For allowing the AI and borgs to set the radio behavior of auto announcements (state laws, arrivals).
 	if(!radio)
-		to_chat(src, span_alert("Radio not detected."))
+		to_chat(src, span_alert("未检测到无线电。"))
 		return
 
 	//Ask the user to pick a channel from what it has available.
-	var/chosen_channel = tgui_input_list(usr, "Select a channel", "Channel Selection", list("Default","None") + radio.channels)
+	var/chosen_channel = tgui_input_list(usr, "选择频道", "频道选择", list("Default","None") + radio.channels)
 	if(isnull(chosen_channel))
 		return
 	if(chosen_channel == "Default") //Autospeak on whatever frequency to which the radio is set, usually Common.
@@ -261,7 +261,7 @@
 				radiomod = ":" + key
 				break
 
-	to_chat(src, span_notice("Automatic announcements [chosen_channel == "None" ? "will not use the radio." : "set to [chosen_channel]."]"))
+	to_chat(src, span_notice("自动播报[chosen_channel == "None" ? "将不使用无线电。" : "已设为 [chosen_channel]。"]"))
 
 /mob/living/silicon/put_in_hand_check() // This check is for borgs being able to receive items, not put them in others' hands.
 	return FALSE
@@ -285,11 +285,11 @@
 		return
 	sensors_on = !sensors_on
 	if (!sensors_on)
-		to_chat(src, span_notice("Sensor overlay deactivated."))
+		to_chat(src, span_notice("传感器叠加显示已关闭。"))
 		remove_sensors()
 		return
 	add_sensors()
-	to_chat(src, span_notice("Sensor overlay activated."))
+	to_chat(src, span_notice("传感器叠加显示已开启。"))
 
 /mob/living/silicon/proc/GetPhoto(mob/user)
 	if (aicamera)
@@ -370,7 +370,7 @@
 ///Places laws on the status panel for silicons
 /mob/living/silicon/get_status_tab_items()
 	. = ..()
-	var/list/law_list = list("Obey these laws:")
+	var/list/law_list = list("遵守以下法则：")
 	law_list += laws.get_law_list(include_zeroth = TRUE, render_html = FALSE)
 	for(var/borg_laws in law_list)
 		. += borg_laws

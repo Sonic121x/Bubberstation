@@ -5,8 +5,8 @@ CONTAINS:
 */
 
 /obj/item/ai_module/law/core/full/damaged
-	name = "damaged Core AI Module"
-	desc = "An AI Module for programming laws to an AI. It looks slightly damaged."
+	name = "受损的 AI 核心模块"
+	desc = "用于向 AI 写入法则的模块。看起来有些受损。"
 
 /obj/item/ai_module/law/core/full/damaged/Initialize(mapload)
 	. = ..()
@@ -21,18 +21,18 @@ CONTAINS:
 	gen_laws()
 
 /obj/item/ai_module/law/core/full/damaged/multitool_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, "repairing ion damage..?")
+	balloon_alert(user, "正在修复离子损伤……？")
 	if(!tool.use_tool(ismachinery(loc) ? loc : src, user, 4 SECONDS, volume = 25, extra_checks = CALLBACK(src, PROC_REF(multitool_cb), loc, user, tool)))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "module repaired..?")
+	balloon_alert(user, "模块已修复……？")
 	if(ismachinery(loc))
 		gen_laws()
 		update_rack_laws()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/ai_module/law/toy_ai // -- Incoming //No actual reason to inherit from ion boards here, either. *sigh* ~Miauw
-	name = "toy AI"
-	desc = "A little toy model AI core with real law uploading action!" //Note: subtle tell
+	name = "玩具 AI"
+	desc = "小巧的玩具 AI 核心模型，具有真正的法则上传功能！" //Note: subtle tell
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "AI"
 	laws = list("")
@@ -44,6 +44,6 @@ CONTAINS:
 	. = TRUE
 	laws.Cut()
 	laws[generate_ion_law()] = TRUE
-	to_chat(user, span_notice("You press the button on [src]."))
+	to_chat(user, span_notice("你按下了[src]上的按钮。"))
 	playsound(user, 'sound/machines/click.ogg', 20, TRUE)
 	src.loc.visible_message(span_warning("[icon2html(src, viewers(loc))] [laws[1]]"))

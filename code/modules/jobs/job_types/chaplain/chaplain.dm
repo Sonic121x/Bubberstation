@@ -1,7 +1,7 @@
 /datum/job/chaplain
 	title = JOB_CHAPLAIN
-	description = "Hold services and funerals, cremate people, preach your \
-		religion, protect the crew against cults."
+	description = "主持礼拜与葬礼，火化亡者，宣讲你的\
+		宗教，保护船员免受邪教侵害。"
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -31,7 +31,7 @@
 		/obj/item/toy/plush/narplush = 2,
 		/obj/item/toy/plush/ratplush = 1
 	)
-	rpg_title = "Paladin"
+	rpg_title = "圣骑士"
 	job_flags = STATION_JOB_FLAGS
 
 	voice_of_god_power = 2 //Chaplains are very good at speaking with the voice of god
@@ -55,7 +55,7 @@
 			holy_bible.icon_state = GLOB.bible_icon_state
 		if(GLOB.bible_inhand_icon_state)
 			holy_bible.inhand_icon_state = GLOB.bible_inhand_icon_state
-		to_chat(human_spawned, span_boldnotice("There is already an established religion onboard the station. You are an acolyte of [GLOB.deity]. Defer to the Chaplain."))
+		to_chat(human_spawned, span_boldnotice("空间站上已经有既定的宗教了。你是 [GLOB.deity] 的侍僧。听从牧师的安排。"))
 		human_spawned.equip_to_storage(holy_bible, ITEM_SLOT_BACK, indirect_action = TRUE, del_on_fail = TRUE)
 		var/nrt = GLOB.holy_weapon_type || /obj/item/nullrod
 		var/obj/item/nullrod/nullrod = new nrt(human_spawned)
@@ -73,30 +73,30 @@
 	holy_bible.deity_name = new_deity
 	switch(LOWER_TEXT(new_religion))
 		if("homosexuality", "gay", "penis", "ass", "cock", "cocks")
-			new_bible = pick("Guys Gone Wild","Coming Out of The Closet","War of Cocks")
+			new_bible = pick("猛男狂欢","出柜","雄鸡之战")
 			switch(new_bible)
-				if("War of Cocks")
-					holy_bible.deity_name = pick("Dick Powers", "King Cock")
+				if("雄鸡之战")
+					holy_bible.deity_name = pick("迪克·鲍尔斯", "雄鸡之王")
 				else
-					holy_bible.deity_name = pick("Gay Space Jesus", "Gandalf", "Dumbledore")
+					holy_bible.deity_name = pick("太空同志耶稣", "甘道夫", "邓布利多")
 			human_spawned.adjust_organ_loss(ORGAN_SLOT_BRAIN, 100) // starts off brain damaged as fuck
 		if("lol", "wtf", "poo", "badmin", "shitmin", "deadmin", "meme", "memes", "skibidi")
-			new_bible = pick("Woody's Got Wood: The Aftermath", "Sweet Bro and Hella Jeff: Expanded Edition","F.A.T.A.L. Rulebook", "Toilet Humor")
+			new_bible = pick("伍迪有木头：余波", "甜哥与地狱杰夫：扩展版","F.A.T.A.L. 规则书", "厕所幽默")
 			switch(new_bible)
-				if("Woody's Got Wood: The Aftermath")
-					holy_bible.deity_name = pick("Woody", "Andy", "Cherry Flavored Lube")
-				if("Sweet Bro and Hella Jeff: Expanded Edition")
-					holy_bible.deity_name = pick("Sweet Bro", "Hella Jeff", "Stairs", "AH")
-				if("F.A.T.A.L. Rulebook")
-					holy_bible.deity_name = "Twenty Ten-Sided Dice"
-				if("Toilet Humor")
-					holy_bible.deity_name = pick("Skibidi Toilet", "Skibidi Wizard", "Skibidi Bathtub", "John Skibidi", "Skibidi Skibidi", "G-Toilet 1.0", "John Freeman")
+				if("伍迪有木头：余波")
+					holy_bible.deity_name = pick("伍迪", "安迪", "樱桃味润滑液")
+				if("甜哥与地狱杰夫：扩展版")
+					holy_bible.deity_name = pick("甜哥", "地狱杰夫", "楼梯", "啊")
+				if("F.A.T.A.L. 规则书")
+					holy_bible.deity_name = "二十颗十面骰"
+				if("厕所幽默")
+					holy_bible.deity_name = pick("斯基比迪马桶", "斯基比迪巫师", "斯基比迪浴缸", "约翰·斯基比迪", "斯基比迪斯基比迪", "G 马桶 1.0", "约翰·弗里曼")
 			human_spawned.adjust_organ_loss(ORGAN_SLOT_BRAIN, 100) // also starts off brain damaged as fuck
 		if("servicianism", "partying")
-			holy_bible.desc = "Happy, Full, Clean. Live it and give it."
+			holy_bible.desc = "快乐、饱足、洁净。亲身践行，并传播出去。"
 		if("weeaboo","kawaii")
-			new_bible = pick("Fanfiction Compendium","Japanese for Dummies","The Manganomicon","Establishing Your O.T.P")
-			holy_bible.deity_name = "Anime"
+			new_bible = pick("同人小说汇编","傻瓜日语","漫画死灵书","确立你的本命配对")
+			holy_bible.deity_name = "动漫"
 		else
 			if(new_bible == DEFAULT_BIBLE)
 				new_bible = DEFAULT_BIBLE_REPLACE(new_bible)

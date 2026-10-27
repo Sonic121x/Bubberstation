@@ -12,23 +12,23 @@
 	return // It's in a bowl
 
 /obj/item/food/bowled/wish
-	name = "wish soup"
-	desc = "I wish this was soup."
+	name = "许愿汤"
+	desc = "真希望这是汤。"
 	icon_state = "wishsoup"
 	food_reagents = list(/datum/reagent/water = 10)
-	tastes = list("wishes" = 1)
+	tastes = list("愿望" = 1)
 	trash_type = /obj/item/reagent_containers/cup/bowl
 
 /obj/item/food/bowled/wish/Initialize(mapload)
 	. = ..()
 	if(prob(25))
-		desc = "A wish come true!"
+		desc = "愿望成真了！"
 		reagents.add_reagent(/datum/reagent/consumable/nutriment, 9)
 		reagents.add_reagent(/datum/reagent/consumable/nutriment/vitamin, 1)
 
 /obj/item/food/bowled/mammi
-	name = "mammi"
-	desc = "A bowl of mushy bread and milk. It reminds you, not too fondly, of a bowel movement."
+	name = "麦米粥"
+	desc = "一碗糊状的面包加牛奶。它会让你不太愉快地想起排泄物。"
 	icon_state = "mammi"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 11,
@@ -38,8 +38,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/bowled/spacylibertyduff
-	name = "spacy liberty duff"
-	desc = "Jello gelatin, from Alfred Hubbard's cookbook."
+	name = "太空自由布丁"
+	desc = "果冻凝胶，出自阿尔弗雷德·哈伯德的食谱。"
 	icon_state = "spacylibertyduff"
 	bite_consumption = 3
 	food_reagents = list(
@@ -49,13 +49,13 @@
 	)
 	trash_type = /obj/item/reagent_containers/cup/bowl
 
-	tastes = list("jelly" = 1, "mushroom" = 1)
+	tastes = list("果冻" = 1, "蘑菇" = 1)
 	foodtypes = VEGETABLES
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/bowled/amanitajelly
-	name = "amanita jelly"
-	desc = "Looks curiously toxic."
+	name = "毒蝇伞果冻"
+	desc = "看起来就毒得让人好奇。"
 	icon_state = "amanitajelly"
 	bite_consumption = 3
 	food_reagents = list(
@@ -67,6 +67,6 @@
 	trash_type = /obj/item/reagent_containers/cup/bowl
 
 
-	tastes = list("jelly" = 1, "mushroom" = 1)
+	tastes = list("果冻" = 1, "蘑菇" = 1)
 	foodtypes = VEGETABLES | TOXIC
 	crafting_complexity = FOOD_COMPLEXITY_2

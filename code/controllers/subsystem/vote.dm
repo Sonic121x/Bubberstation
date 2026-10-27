@@ -2,7 +2,7 @@
 //#define vote_font(text) ("<font color='purple'>" + text + "</font>") // BUBBER EDIT REMOVAL - Moved to code/__DEFINES/~~bubber_defines/span.dm - Why TG didn't define this properly, it is a mystery
 
 SUBSYSTEM_DEF(vote)
-	name = "Vote"
+	name = "投票"
 	wait = 1 SECONDS
 	ss_flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
@@ -210,7 +210,7 @@ SUBSYSTEM_DEF(vote)
 	// No valid vote found? No vote
 	if(!istype(to_vote))
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning("Invalid voting choice."))
+			to_chat(vote_initiator, span_warning("无效的投票选项。"))
 		return FALSE
 
 	// Vote can't be initiated in our circumstances? No vote
@@ -237,13 +237,13 @@ SUBSYSTEM_DEF(vote)
 
 	log_vote(to_display)
 	to_chat(world, custom_boxed_message("purple_box center", span_infoplain(vote_font("[span_bold(to_display)]<br>\
-		Type <b>vote</b> or click <a href='byond://winset?command=vote'>here</a> to place your votes.\n\
-		You have [DisplayTimeText(duration)] to vote."))))
+		输入<b>vote</b>或点击<a href='byond://winset?command=vote'>此处</a>投票。\n\
+		投票将在[DisplayTimeText(duration)]后结束。"))))
 
 	// And now that it's going, give everyone a voter action
 	for(var/client/new_voter as anything in GLOB.clients)
 		var/datum/action/vote/voting_action = new()
-		voting_action.name = "Vote: [current_vote.override_question || current_vote.name]"
+		voting_action.name = "投票：[current_vote.override_question || current_vote.name]"
 		voting_action.Grant(new_voter.mob)
 
 		new_voter.persistent_client.player_actions += voting_action
@@ -265,7 +265,7 @@ SUBSYSTEM_DEF(vote)
 	// Even if it's forced we can't vote before we're set up
 	if(!MC_RUNNING(init_stage))
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning("You cannot start a vote now, the server is not done initializing."))
+			to_chat(vote_initiator, span_warning("服务器尚未完成初始化，现在无法发起投票。"))
 		return FALSE
 
 	if(forced)
@@ -274,12 +274,12 @@ SUBSYSTEM_DEF(vote)
 	var/next_allowed_time = last_vote_time + CONFIG_GET(number/vote_delay)
 	if(next_allowed_time > world.time)
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning("A vote was initiated recently. You must wait [DisplayTimeText(next_allowed_time - world.time)] before a new vote can be started!"))
+			to_chat(vote_initiator, span_warning("最近刚发起过投票。你必须等待[DisplayTimeText(next_allowed_time - world.time)]才能发起新投票！"))
 		return FALSE
 
 	if(current_vote)
 		if(vote_initiator)
-			to_chat(vote_initiator, span_warning("There is already a vote in progress! Please wait for it to finish."))
+			to_chat(vote_initiator, span_warning("已有投票正在进行！请等待其结束。"))
 		return FALSE
 
 	return TRUE
@@ -289,7 +289,7 @@ SUBSYSTEM_DEF(vote)
 	CONFIG_SET(flag/no_dead_vote, switch_deadvote_config)
 	var/text_verb = !switch_deadvote_config ? "enabled" : "disabled"
 	log_admin("[key_name(toggle_initiator)] [text_verb] Dead Vote.")
-	message_admins("[key_name_admin(toggle_initiator)] [text_verb] Dead Vote.")
+	message_admins("[key_name_admin(toggle_initiator)][!switch_deadvote_config ? "启用" : "禁用"]了死亡玩家投票。")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Dead Vote", text_verb))
 	update_static_data_for_all_viewers()
 
@@ -375,30 +375,30 @@ SUBSYSTEM_DEF(vote)
 	switch(action)
 		if("cancel")
 			if(!voter.client?.holder)
-				message_admins("[key_name(voter)] tried to cancel the current vote while having no admin holder, \
-					this is potentially a malicious exploit and worth noting.")
+				message_admins("[key_name(voter)]在没有管理员身份的情况下试图取消当前投票，\
+					这可能是恶意利用漏洞的行为，请留意。")
 				return
 
 			voter.log_message("cancelled a vote.", LOG_ADMIN)
-			message_admins("[key_name_admin(voter)] has cancelled the current vote.")
+			message_admins("[key_name_admin(voter)]取消了当前投票。")
 			reset()
 			return TRUE
 
 		if("endNow")
 			if(!voter.client?.holder)
-				message_admins("[key_name(voter)] tried to end the current vote while having no admin holder, \
-					this is potentially a malicious exploit and worth noting.")
+				message_admins("[key_name(voter)]在没有管理员身份的情况下试图结束当前投票，\
+					这可能是恶意利用漏洞的行为，请留意。")
 				return
 
 			voter.log_message("ended the current vote early", LOG_ADMIN)
-			message_admins("[key_name_admin(voter)] has ended the current vote.")
+			message_admins("[key_name_admin(voter)]结束了当前投票。")
 			end_vote()
 			return TRUE
 
 		if("toggleDeadVote")
 			if(!check_rights_for(voter.client, R_ADMIN))
-				message_admins("[key_name(voter)] tried to toggle vote abillity for ghosts while having improper rights, \
-					this is potentially a malicious exploit and worth noting.")
+				message_admins("[key_name(voter)]在权限不足的情况下试图切换幽灵投票权限，\
+					这可能是恶意利用漏洞的行为，请留意。")
 				return
 
 			toggle_dead_voting(voter)
@@ -409,8 +409,8 @@ SUBSYSTEM_DEF(vote)
 			if(!istype(selected))
 				return
 			if(!check_rights_for(voter.client, R_ADMIN))
-				message_admins("[key_name(voter)] tried to toggle vote availability while having improper rights, \
-					this is potentially a malicious exploit and worth noting.")
+				message_admins("[key_name(voter)]在权限不足的情况下试图切换投票可用状态，\
+					这可能是恶意利用漏洞的行为，请留意。")
 				return
 
 			return selected.toggle_votable()
@@ -437,8 +437,8 @@ SUBSYSTEM_DEF(vote)
 
 		if("resetCooldown")
 			if(!voter.client.holder)
-				message_admins("[key_name(voter)] tried to reset the vote cooldown while having no admin holder, \
-					this is potentially a malicious exploit and worth noting.")
+				message_admins("[key_name(voter)]在没有管理员身份的情况下试图重置投票冷却时间，\
+					这可能是恶意利用漏洞的行为，请留意。")
 				return
 
 			last_vote_time = -INFINITY
@@ -451,14 +451,14 @@ SUBSYSTEM_DEF(vote)
 GAME_VERB(/mob, vote, "Vote", "OOC")
 
 	if(!SSvote.initialized)
-		to_chat(usr, span_notice("<i>Voting is not set up yet!</i>"))
+		to_chat(usr, span_notice("<i>投票尚未准备就绪！</i>"))
 		return
 
 	SSvote.ui_interact(usr)
 
 /// Datum action given to mobs that allows players to vote on the current vote.
 /datum/action/vote
-	name = "Vote!"
+	name = "投票！"
 	button_icon_state = "vote"
 	show_to_observers = FALSE
 

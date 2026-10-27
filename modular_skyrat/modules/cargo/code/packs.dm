@@ -5,23 +5,23 @@
 */
 
 /datum/supply_pack/critter/doublecrab
-	name = "Crab Crate"
-	desc = "Contains two crabs. Get your crab on!"
+	name = "螃蟹板条箱"
+	desc = "内含两只螃蟹。来点螃蟹吧！"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(
 		/mob/living/basic/crab,
 		/mob/living/basic/crab,
 	)
-	crate_name = "look sir free crabs"
+	crate_name = "看哪长官，免费螃蟹"
 
 /datum/supply_pack/critter/mouse
-	name = "Mouse Crate"
-	desc = "Good for snakes and lizards of all ages. Contains six feeder mice."
+	name = "老鼠板条箱"
+	desc = "适合各个年龄段的蛇与蜥蜴。内含六只饲料鼠。"
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(
 		/mob/living/basic/mouse,
 	)
-	crate_name = "mouse crate"
+	crate_name = "老鼠箱"
 
 /datum/supply_pack/critter/mouse/generate(crate_override)
 	. = ..()
@@ -29,13 +29,13 @@
 		new /mob/living/basic/mouse(.)
 
 /datum/supply_pack/critter/chinchilla
-	name = "Chinchilla Crate"
-	desc = "Contains four chinchillas. Dust not included."
+	name = "龙猫板条箱"
+	desc = "内含四只龙猫。不含浴沙。"
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(
 		/mob/living/basic/pet/chinchilla,
 	)
-	crate_name = "chinchilla crate"
+	crate_name = "龙猫箱"
 
 /datum/supply_pack/critter/chinchilla/generate(crate_override)
 	. = ..()
@@ -44,22 +44,22 @@
 
 
 /datum/supply_pack/critter/fennec
-	name = "Fennec Crate"
-	desc = "For when you need someone that can really listen to you. \
-		Contains two fennecs. \
-		Warning, does not mean the fennecs will actually listen to you."
+	name = "耳廓狐板条箱"
+	desc = "当你需要一个真正会听你说话的对象时。 \
+		内含两只耳廓狐。 \
+		警告：这并不代表耳廓狐真的会听你的话。"
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(/mob/living/basic/pet/cat/fennec = 2)
-	crate_name = "fennec crate"
+	crate_name = "耳廓狐箱"
 
 /datum/supply_pack/critter/pitbull/pimpy
-	name = "Pedigree Stud Pitbull Crate"
-	desc = "Contains three pitbulls. Verified at the top of Mount Bullmore to be Pedigree Studs.."
+	name = "纯种种犬比特犬板条箱"
+	desc = "内含三只比特犬。经公牛山山顶认证为纯种种犬。"
 	cost = CARGO_CRATE_VALUE * 9
 	contains = list(
 		/mob/living/basic/pet/dog/pitbull,
 	)
-	crate_name = "pedigree stud pitbull crate"
+	crate_name = "纯种种犬比特犬箱"
 
 /datum/supply_pack/critter/pitbull/generate(crate_override)
 	. = ..()
@@ -67,22 +67,22 @@
 		new /mob/living/basic/pet/dog/pitbull(.)
 
 /datum/supply_pack/critter/redpanda
-	name = "Red Panda Crate"
-	desc = "Your station needs a little more Wah? Some more red tails? Order this. You'll never escape your sadness."
+	name = "小熊猫板条箱"
+	desc = "你的空间站需要多一点“哇”？更多红尾巴？订购这个吧。你永远逃不出你的悲伤。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(
 		/mob/living/basic/pet/fox/redpanda,
 		/mob/living/basic/pet/fox/redpanda,
 	)
-	crate_name = "wah crate"
+	crate_name = "哇箱"
 
 /*
 *	MEDICAL
 */
 
 /datum/supply_pack/medical/anesthetics
-	name = "Anesthetics Crate"
-	desc = "Contains two of the following: Morphine bottles, syringes, breath masks, and anesthetic tanks. Requires Medical Access to open."
+	name = "麻醉剂板条箱"
+	desc = "内含以下各两件：吗啡瓶、注射器、呼吸面罩和麻醉气罐。需要医疗权限才能打开。"
 	access = ACCESS_MEDICAL
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(
@@ -95,11 +95,11 @@
 		/obj/item/tank/internals/anesthetic,
 		/obj/item/tank/internals/anesthetic,
 	)
-	crate_name = "anesthetics crate"
+	crate_name = "麻醉剂箱"
 
 /datum/supply_pack/medical/bodybags
-	name = "Bodybags"
-	desc = "For when the bodies hit the floor. Contains 4 boxes of bodybags."
+	name = "尸体袋"
+	desc = "适合尸体躺满地的时候。内含 4 盒尸体袋。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(
 		/obj/item/storage/box/bodybags,
@@ -107,11 +107,11 @@
 		/obj/item/storage/box/bodybags,
 		/obj/item/storage/box/bodybags,
 	)
-	crate_name = "bodybag crate"
+	crate_name = "尸体袋箱"
 
 /datum/supply_pack/medical/firstaidmixed
-	name = "Mixed Medical Kits"
-	desc = "Contains one of each medical kits for dealing with a variety of injured crewmembers."
+	name = "混合医疗包"
+	desc = "内含各类医疗包各一个，可应对各种受伤的船员。"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(
 		/obj/item/storage/medkit/toxin,
@@ -120,46 +120,46 @@
 		/obj/item/storage/medkit/fire,
 		/obj/item/storage/medkit/regular,
 	)
-	crate_name = "medical kit crate"
+	crate_name = "医疗包箱"
 
 /datum/supply_pack/medical/medipens
-	name = "Epinephrine Medipens"
-	desc = "Contains two boxes of epinephrine medipens. Each box contains seven pens."
+	name = "肾上腺素注射笔"
+	desc = "内含两盒肾上腺素注射笔。每盒七支。"
 	cost = CARGO_CRATE_VALUE * 4.5
 	contains = list(
 		/obj/item/storage/box/medipens,
 		/obj/item/storage/box/medipens,
 	)
-	crate_name = "medipen crate"
+	crate_name = "注射笔箱"
 
 /datum/supply_pack/medical/modsuit_medical
-	name = "Medical MODsuit Crate"
-	desc = "Contains a single MODsuit, built to standard medical specifications."
+	name = "医疗 MOD 外骨骼板条箱"
+	desc = "内含一套按医疗标准规格制造的 MOD 外骨骼。"
 	cost = CARGO_CRATE_VALUE * 13
 	access = ACCESS_MEDICAL
 	contains = list(/obj/item/mod/control/pre_equipped/medical)
-	crate_name = "medical MODsuit crate"
+	crate_name = "医疗 MOD 外骨骼箱"
 	crate_type = /obj/structure/closet/crate/secure //No medical varient with security locks.
 
 /datum/supply_pack/medical/compact_defib
-	name = "Compact Defibrillator Crate"
-	desc = "Contains a single compact defibrillator. Capable of being worn as a belt."
+	name = "便携除颤器板条箱"
+	desc = "内含一台便携除颤器。可像腰带一样佩戴。"
 	cost = CARGO_CRATE_VALUE * 5
 	access = ACCESS_MEDICAL
 	contains = list(/obj/item/defibrillator/compact)
-	crate_name = "compact defibrillator crate"
+	crate_name = "便携除颤器箱"
 
 /datum/supply_pack/medical/medigun
-	name = "CWM-479 Medigun"
-	desc = "Contains a single VeyMedical CWM-479 model medical gun; cells not included."
+	name = "CWM-479 医疗枪"
+	desc = "内含一把 VeyMedical 出品的 CWM-479 型医疗枪；不含电池。"
 	cost = CARGO_CRATE_VALUE * 30
 	access = ACCESS_MEDICAL
 	contains = list(/obj/item/storage/briefcase/medicalgunset/standard)
-	crate_name = "CWM-479 medigun crate"
+	crate_name = "CWM-479 医疗枪箱"
 
 /datum/supply_pack/medical/medicells
-	name = "Medicell Replacement Crate"
-	desc = "Contains the tier I Medigun cells."
+	name = "医疗电池替换板条箱"
+	desc = "内含 I 级医疗枪电池。"
 	cost = CARGO_CRATE_VALUE * 5
 	access = ACCESS_MEDICAL
 	contains = list(
@@ -167,23 +167,23 @@
 		/obj/item/weaponcell/medical/tier_1/burn,
 		/obj/item/weaponcell/medical/tier_1/toxin,
 	)
-	crate_name = "medicell replacement crate"
+	crate_name = "医疗电池替换箱"
 
 /*
 *	SECURITY
 */
 
 /datum/supply_pack/security/MODsuit_security
-	name = "Security MODsuit Crate"
-	desc = "Contains a single armored up MODsuit, built to standard security specifications."
+	name = "安保 MOD 外骨骼板条箱"
+	desc = "内含一套加装装甲、按安保标准规格制造的 MOD 外骨骼。"
 	cost = CARGO_CRATE_VALUE * 16
 	access_view = ACCESS_SECURITY
 	contains = list(/obj/item/mod/control/pre_equipped/security)
-	crate_name = "security MODsuit crate"
+	crate_name = "安保 MOD 外骨骼箱"
 
 /datum/supply_pack/security/armor_skyrat
-	name = "Armor Crate"
-	desc = "Three vests of well-rounded, decently-protective armor."
+	name = "护甲板条箱"
+	desc = "三件防护均衡、防护性尚可的护甲背心。"
 	cost = CARGO_CRATE_VALUE * 2.5
 	access_view = ACCESS_SECURITY
 	contains = list(
@@ -191,32 +191,32 @@
 		/obj/item/clothing/suit/armor/vest/alt,
 		/obj/item/clothing/suit/armor/vest/alt,
 	)
-	crate_name = "armor crate"
+	crate_name = "护甲箱"
 
 /datum/supply_pack/security/helmets_skyrat
-	name = "Helmets Crate"
-	desc = "Contains three standard-issue brain buckets."
+	name = "头盔板条箱"
+	desc = "内含三个标准配发头盔。"
 	cost = CARGO_CRATE_VALUE * 2.5
 	contains = list(/obj/item/clothing/head/helmet/sec = 3)
-	crate_name = "helmet crate"
+	crate_name = "头盔箱"
 
 /datum/supply_pack/security/deployablebarricades
-	name = "C.U.C.K.S Deployable Barricades"
-	desc = "Two cases of deployable barricades, for all your fortification needs."
+	name = "C.U.C.K.S 可部署路障"
+	desc = "两箱可部署路障，满足你所有的筑防需求。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(
 		/obj/item/storage/barricade,
 		/obj/item/storage/barricade,
 	)
-	crate_name = "C.U.C.K.S Crate"
+	crate_name = "C.U.C.K.S 箱"
 
 /*
 *	ENGINEERING
 */
 
 /datum/supply_pack/engineering/material_pouches
-	name = "Material Pouches Crate"
-	desc = "Contains three material pouches."
+	name = "材料袋板条箱"
+	desc = "内含三个材料袋。"
 	access_view = ACCESS_ENGINE_EQUIP
 	contains = list(
 		/obj/item/storage/pouch/material,
@@ -224,11 +224,11 @@
 		/obj/item/storage/pouch/material,
 	)
 	cost = CARGO_CRATE_VALUE * 15
-	crate_name = "material pouches crate"
+	crate_name = "材料袋箱"
 
 /datum/supply_pack/engineering/doublecap_tanks
-	name = "Double Extended Emergency Tank Crate"
-	desc = "Contains four double extended-capacity emergency tanks."
+	name = "双倍延长应急气罐板条箱"
+	desc = "内含四个双倍延长容量的应急气罐。"
 	access_view = ACCESS_ENGINE_EQUIP
 	contains = list(
 		/obj/item/tank/internals/emergency_oxygen/double,
@@ -237,11 +237,11 @@
 		/obj/item/tank/internals/emergency_oxygen/double,
 	)
 	cost = CARGO_CRATE_VALUE * 15
-	crate_name = "double extended emergency tank crate"
+	crate_name = "双倍延长应急气罐箱"
 
 /datum/supply_pack/engineering/advanced_extinguisher
-	name = "Advanced Foam Extinguisher Crate"
-	desc = "Contains advanced fire extinguishers which use foam as extinguishing agent."
+	name = "高级泡沫灭火器板条箱"
+	desc = "内含以泡沫为灭火剂的高级灭火器。"
 	access_view = ACCESS_ENGINE_EQUIP
 	contains = list(
 		/obj/item/extinguisher/advanced,
@@ -249,49 +249,49 @@
 		/obj/item/extinguisher/advanced,
 	)
 	cost = CARGO_CRATE_VALUE * 18
-	crate_name = "advanced extinguisher crate"
+	crate_name = "高级灭火器箱"
 
 /datum/supply_pack/engineering/modsuit_engineering
-	name = "Engineering MODsuit Crate"
-	desc = "Contains a single MODsuit, built to standard engineering specifications."
+	name = "工程 MOD 外骨骼板条箱"
+	desc = "内含一套按工程标准规格制造的 MOD 外骨骼。"
 	access = ACCESS_ENGINE_EQUIP
 	contains = list(/obj/item/mod/control/pre_equipped/engineering)
 	cost = CARGO_CRATE_VALUE * 13
-	crate_name = "engineering MODsuit crate"
+	crate_name = "工程 MOD 外骨骼箱"
 	crate_type = /obj/structure/closet/crate/secure/engineering
 
 /datum/supply_pack/engineering/modsuit_atmospherics
-	name = "Atmospherics MODsuit Crate"
-	desc = "Contains a single MODsuit, built to standard atmospherics specifications."
+	name = "大气 MOD 外骨骼板条箱"
+	desc = "内含一套按大气标准规格制造的 MOD 外骨骼。"
 	access = ACCESS_ENGINE_EQUIP
 	contains = list(/obj/item/mod/control/pre_equipped/atmospheric)
 	cost = CARGO_CRATE_VALUE * 16
-	crate_name = "atmospherics MODsuit crate"
+	crate_name = "大气 MOD 外骨骼箱"
 	crate_type = /obj/structure/closet/crate/secure/engineering
 
 /datum/supply_pack/engineering/engi_inducers
-	name = "NT-150 Industrial Power Inducers Crate"
-	desc = "An improved model over the NT-75 EPI, the NT-150 charges at double the rate and contains an improved powercell. Contains two engineering-spec Inducers."
+	name = "NT-150 工业感应充电器板条箱"
+	desc = "作为 NT-75 EPI 的改进型号，NT-150 的充电速度提升一倍，并配有改进型电池。内含两台工程规格的感应充电器。"
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(
 		/obj/item/inducer,
 		/obj/item/inducer,
 	)
-	crate_name = "engineering inducer crate"
+	crate_name = "工程感应充电器箱"
 	crate_type = /obj/structure/closet/crate/engineering/electrical
 
 /datum/supply_pack/engineering/gas_miner
-	name = "Gas Miner Delivery Beacon Crate"
-	desc = "Contains a single gas miner delivery beacon, for the ordering of one gas miner."
+	name = "气体采集器投送信标板条箱"
+	desc = "内含一个气体采集器投送信标，可订购一台气体采集器。"
 	access = ACCESS_ATMOSPHERICS
 	contains = list(/obj/item/summon_beacon/gas_miner)
 	cost = CARGO_CRATE_VALUE * 50
-	crate_name = "gas miner delivery beacon crate"
+	crate_name = "气体采集器投送信标箱"
 	crate_type = /obj/structure/closet/crate/secure/engineering
 
 /datum/supply_pack/engineering/improved_rcd
-	name = "Improved RCD Crate"
-	desc = "Contains 3 upgraded RCDs featuring superior material storage. Each comes with complimentary frames and circuitry upgrades to boot!"
+	name = "改进型快速建造装置板条箱"
+	desc = "内含 3 台升级版快速建造装置，拥有更出色的材料储量。每台还附赠框架与电路升级！"
 	access = ACCESS_ENGINE_EQUIP
 	cost = CARGO_CRATE_VALUE * 18
 	contains = list(
@@ -299,7 +299,7 @@
 		/obj/item/construction/rcd/improved,
 		/obj/item/construction/rcd/improved,
 	)
-	crate_name = "improved RCD crate"
+	crate_name = "改进型快速建造装置箱"
 	crate_type = /obj/structure/closet/crate/secure/engineering
 
 /*
@@ -307,15 +307,15 @@
 */
 
 /datum/supply_pack/misc/speedbike //If you see this bought in game, its time to nerf a cargo exploit.
-	name = "Speedbike"
-	desc = "Put your shades on, saddle up, and ride off directly into the sun on this turbo deluxe space-cruising speedbike."
+	name = "极速摩托"
+	desc = "戴上墨镜，跨上坐垫，骑着这台涡轮豪华太空巡航极速摩托直奔太阳而去。"
 	cost = 1000000 //Special case, we don't want to make this in terms of crates because having bikes be a million credits is the whole meme.
 	contains = list(/obj/vehicle/ridden/speedbike)
-	crate_name = "speedbike crate"
+	crate_name = "极速摩托箱"
 
 /datum/supply_pack/misc/painting
-	name = "Advanced Art Supplies"
-	desc = "Bring out your artistic spirit with these advanced art supplies. Contains coloring supplies, cloth for canvas, and two easels to work with!"
+	name = "高级美术用品"
+	desc = "用这些高级美术用品激发你的艺术灵感。内含上色工具、画布用布料，以及两个可供创作的画架！"
 	cost = CARGO_CRATE_VALUE * 2.2
 	contains = list(
 		/obj/structure/easel,
@@ -331,17 +331,17 @@
 		/obj/item/stack/sheet/cloth/ten,
 		/obj/item/stack/sheet/cloth/ten,
 	)
-	crate_name = "advanced art supplies"
+	crate_name = "高级美术用品"
 
 /datum/supply_pack/service/paintcan
-	name = "Adaptive Paintcan"
-	desc = "Give things a splash of color with this experimental color-changing can of paint! Sellers note: We are not responsible for lynchings carried out by angry janitors, security officers, or any other crewmembers as a result of you using this."
+	name = "自适应油漆罐"
+	desc = "用这罐实验性变色油漆给万物添上一抹色彩！卖家提醒：若你因使用本产品而被愤怒的清洁工、安保人员或其他船员私刑，我们概不负责。"
 	cost = CARGO_CRATE_VALUE * 15
 	contains = list(/obj/item/paint/anycolor)
 
 /datum/supply_pack/misc/coloredsheets
-	name = "Bedsheet Crate"
-	desc = "Give your night life a splash of color with this crate filled with bedsheets! Contains a total of nine different-colored sheets."
+	name = "床单板条箱"
+	desc = "用这箱床单给你的夜生活添点色彩！共含九条不同颜色的床单。"
 	cost = CARGO_CRATE_VALUE * 2.5
 	contains = list(
 		/obj/item/bedsheet/blue,
@@ -354,22 +354,22 @@
 		/obj/item/bedsheet/black,
 		/obj/item/bedsheet/rainbow,
 	)
-	crate_name = "colored bedsheet crate"
+	crate_name = "彩色床单箱"
 
 /datum/supply_pack/misc/candles
-	name = "Candle Crate"
-	desc = "Set up a romantic dinner or host a séance with these extra candles and crayons."
+	name = "蜡烛板条箱"
+	desc = "用这些多余的蜡烛和蜡笔安排一顿浪漫晚餐，或举办一场降神会。"
 	cost = CARGO_CRATE_VALUE * 1.5
 	contains = list(
 		/obj/item/storage/fancy/candle_box,
 		/obj/item/storage/fancy/candle_box,
 		/obj/item/storage/box/matches,
 	)
-	crate_name = "candle crate"
+	crate_name = "蜡烛箱"
 
 /datum/supply_pack/misc/vanguard_surplus
-	name = "Expeditionary Corps Surplus"
-	desc = "Contains an assortment of surplus equipment from the now-defunct Vanguard Expeditionary Corps."
+	name = "远征军剩余物资"
+	desc = "内含来自现已解散的先锋远征军的各类剩余装备。"
 	cost = CARGO_CRATE_VALUE * 19
 	contains = list(
 		/obj/item/storage/box/expeditionary_survival,
@@ -394,9 +394,9 @@
 		new item(filled_crate)
 
 /datum/supply_pack/misc/gravity_harness
-	name = "Gravity Suspension Harness"
-	desc = "A back-mounted suspensor harness powered by cells, designed by Deep Spacer tribes to either nullify or amplify gravity. \
-		While it's a pretty cheap bootleg of the personal gravitic engines used by the Skrell, this one's been fitted with straps and a basic storage module."
+	name = "重力悬挂背带"
+	desc = "一种背挂式悬吊背带，由电池供电，由深空部落设计，可抵消或增强重力。 \
+		虽然它只是斯克雷尔人所用个人重力引擎的廉价仿制品，但这一件加装了绑带和一个基础储存模块。"
 	cost = CARGO_CRATE_VALUE * 6 // 1200 credits
 	contains = list(/obj/item/gravity_harness)
 
@@ -405,8 +405,8 @@
 */
 
 /datum/supply_pack/organic/combomeal
-	name = "Burger Combo Crate"
-	desc = "We value our customers at the Greasy Griddle, so much so that we're willing to deliver -just for you.- Contains two combo meals, consisting of a Burger, Fries, and pack of chicken nuggets!"
+	name = "汉堡套餐板条箱"
+	desc = "在油腻铁板餐厅，我们非常重视顾客，重视到愿意专门为你配送。内含两份套餐，每份包括一个汉堡、一份薯条和一包鸡块！"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(
 		/obj/item/food/burger/cheese,
@@ -416,12 +416,12 @@
 		/obj/item/storage/fancy/nugget_box,
 		/obj/item/storage/fancy/nugget_box,
 	)
-	crate_name = "burger-n-nuggs combo meal"
+	crate_name = "汉堡与鸡块套餐"
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/organic/fiestatortilla
-	name = "Fiesta Crate"
-	desc = "Spice up the kitchen with this fiesta themed food order! Contains 8 tortilla based food items and some hot-sauce."
+	name = "嘉年华板条箱"
+	desc = "用这份嘉年华主题食材给厨房添点辣味！内含 8 份玉米饼类食物和一些辣酱。"
 	cost = CARGO_CRATE_VALUE * 4.5
 	contains = list(
 		/obj/item/food/taco,
@@ -434,11 +434,11 @@
 		/obj/item/food/cheesyburrito,
 		/obj/item/reagent_containers/cup/bottle/capsaicin,
 	)
-	crate_name = "fiesta crate"
+	crate_name = "嘉年华箱"
 
 /datum/supply_pack/organic/fakemeat
-	name = "Meat Crate 'Synthetic'"
-	desc = "Run outta meat already? Keep the lizards content with this freezer filled with cruelty-free and chemically compounded meat! Contains 12 slabs of meat product, and 4 slabs of *carp*."
+	name = "肉类板条箱“合成”"
+	desc = "肉这么快就吃完了？用这台装满无残酷化学合成肉的冷冻箱让蜥蜴人们满意吧！内含 12 块肉制品和 4 块*鲤鱼*肉。"
 	cost = CARGO_CRATE_VALUE * 2.25
 	contains = list(
 		/obj/item/food/meat/slab/meatproduct,
@@ -458,12 +458,12 @@
 		/obj/item/food/fishmeat/carp/imitation,
 		/obj/item/food/fishmeat/carp/imitation,
 	)
-	crate_name = "meaty crate"
+	crate_name = "肉箱"
 	crate_type = /obj/structure/closet/crate/freezer
 
 /datum/supply_pack/organic/mixedboxes
-	name = "Mixed Ingredient Boxes"
-	desc = "Get overwhelmed with inspiration by ordering these boxes of surprise ingredients! Get four boxes filled with an assortment of products!"
+	name = "混合食材盒"
+	desc = "订购这些惊喜食材盒，让灵感把你淹没！共四盒，装满各式各样的产品！"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(
 		/obj/item/storage/box/ingredients/wildcard,
@@ -471,12 +471,12 @@
 		/obj/item/storage/box/ingredients/wildcard,
 		/obj/item/storage/box/ingredients/wildcard,
 	)
-	crate_name = "wildcard food crate"
+	crate_name = "随机食材箱"
 	crate_type = /obj/structure/closet/crate/freezer
 
 /datum/supply_pack/organic/fcsurplus
-	name = "Fine Cuisine Assortment Value Pack"
-	desc = "Chef slop boring? Have high-maintenance crewmembers that with wings? Maybe you just want to revel in the sinful delight that are Cheese Curds? The Finest of our trade union has made the pack for you, containing a mix of fine oils, vinegar, and exceptionally rare ingredients."
+	name = "精致料理精选超值包"
+	desc = "吃腻了厨师的糊糊？有长翅膀又难伺候的船员？还是你只想沉溺于奶酪凝块那种罪恶的美味？我们工会里最出色的师傅为你打造了这个包，内含多种优质油、醋和格外稀有的食材。"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(
 		/obj/item/reagent_containers/condiment/olive_oil,
@@ -492,12 +492,12 @@
 		/obj/item/food/canned/larvae,
 		/obj/item/food/moonfish_eggs,
 	)
-	crate_name = "fine cuisine assortment pack"
+	crate_name = "精致料理精选包"
 	crate_type = /obj/structure/closet/crate/freezer
 
 /datum/supply_pack/organic/qualityoilbulk
-	name = "Quality Oil Bulk Pack"
-	desc = "Normal cooking oil not cutting it? Chef throw all the quality stuff in the frier because they thought it was funny? Well, We got you covered, Introducing a bulk pack of Ten (10) bottles of our finest oils, blended for the perfect taste in cold recipes, and a resistance for going acrid when cooking."
+	name = "优质食用油整箱装"
+	desc = "普通食用油不够用？厨师觉得好笑，把好油全倒进油锅了？别担心，我们为你准备了整箱十（10）瓶最优质的油，调和得在冷食配方中风味绝佳，且烹调时不易发苦。"
 	cost = CARGO_CRATE_VALUE * 9
 	contains = list(
 		/obj/item/reagent_containers/condiment/olive_oil,
@@ -511,12 +511,12 @@
 		/obj/item/reagent_containers/condiment/olive_oil,
 		/obj/item/reagent_containers/condiment/olive_oil,
 	)
-	crate_name = "bulk quality oil pack"
+	crate_name = "优质食用油整箱装"
 	crate_type = /obj/structure/closet/crate/freezer
 
 /datum/supply_pack/organic/vinegarbulk
-	name = "Vinegar Bulk Pack"
-	desc = "Mothic Cuisine night? The winged fellows in port? Well, We'll have you cooking in no time. Refined from several rich wines and cultivated for just the right bite, This pack Ten (10) Bottles of vinegar for the perfect dressings and sauces."
+	name = "食醋整箱装"
+	desc = "蛾族料理之夜？有翅膀的朋友们靠港了？我们会让你马上开火做饭。本箱十（10）瓶食醋由数种醇厚葡萄酒精制而成，酸度恰到好处，最适合调制完美的沙拉汁与酱料。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(
 		/obj/item/reagent_containers/condiment/vinegar,
@@ -530,12 +530,12 @@
 		/obj/item/reagent_containers/condiment/vinegar,
 		/obj/item/reagent_containers/condiment/vinegar,
 	)
-	crate_name = "bulk vinegar pack"
+	crate_name = "食醋整箱装"
 	crate_type = /obj/structure/closet/crate/freezer
 
 /datum/supply_pack/organic/bulkcanmoff
-	name = "Bulk Mothic Canned Goods"
-	desc = "Trying your hand at pestos and sauces? Cant just grow the stuff and can it yourself? Well, No matters, No worries, We here have you covered with Five (5) cans of tomatoes and pine nuts to help care for your winged friends."
+	name = "蛾族罐头整箱装"
+	desc = "想试试做青酱和酱汁？没法自己种也没法自己装罐？没关系，不用担心，这里有五（5）罐番茄和松子，帮你照顾好长翅膀的朋友。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(
 		/obj/item/food/canned/tomatoes,
@@ -549,12 +549,12 @@
 		/obj/item/food/canned/pine_nuts,
 		/obj/item/food/canned/pine_nuts,
 	)
-	crate_name = "bulk moffic pack"
+	crate_name = "蛾族罐头整箱装"
 	crate_type = /obj/structure/closet/crate/freezer
 
 /datum/supply_pack/organic/bulkcanliz
-	name = "Bulk Lizard Goods"
-	desc = "Having some devious tastes? One of your scalie friends wanting something that isn't fried mystery meat? Well you're just one order away from from the perfect pleaser. Containing Three (3) Cans of our finest-sourced canned jellyfish, snails and bee larvae, An addition of Three (3) packs of cruelty free Moonfish eggs might get their hearts."
+	name = "蜥蜴人佳品整箱装"
+	desc = "口味有点刁钻？你的鳞片朋友想要点不是油炸神秘肉的东西？只差一次订购就能完美讨好对方。内含三（3）罐我们最优质来源的水母、蜗牛和蜂幼虫罐头，另外还有三（3）包无残酷月鱼鱼子，也许能赢得他们的心。"
 	cost = CARGO_CRATE_VALUE * 3.5
 	contains = list(
 		/obj/item/food/canned/jellyfish,
@@ -570,7 +570,7 @@
 		/obj/item/food/canned/larvae,
 		/obj/item/food/canned/larvae,
 	)
-	crate_name = "bulk lizard pack"
+	crate_name = "蜥蜴人整箱装"
 	crate_type = /obj/structure/closet/crate/freezer
 
 /*
@@ -578,8 +578,8 @@
 */
 
 /datum/supply_pack/service/buildabar
-	name = "Build a Bar Crate"
-	desc = "Looking to set up your own little safe haven? Get a jump-start on it with this handy kit. Contains circuitboards for bar equipment, some parts, and some basic bartending supplies."
+	name = "自建酒吧板条箱"
+	desc = "想开设自己的小小避风港？用这套便捷套装抢先起步。内含酒吧设备电路板、一些部件和基础调酒用品。"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(
 		/obj/item/storage/box/drinkingglasses = 3,
@@ -600,32 +600,32 @@
 		/obj/item/screwdriver,
 		/obj/item/wrench,
 	)
-	crate_name = "build a bar crate"
+	crate_name = "自建酒吧箱"
 
 /datum/supply_pack/service/janitor/janpimp
-	name = "Custodial Cruiser"
-	desc = "Clown steal your ride? Assistant lock it in the dorms? Order a new one and get back to cleaning in style!"
+	name = "清洁巡逻车"
+	desc = "小丑偷了你的车？助手把它锁在宿舍里？订购一台新的，继续有格调地打扫吧！"
 	cost = CARGO_CRATE_VALUE * 4
 	access = ACCESS_JANITOR
 	contains = list(
 		/obj/vehicle/ridden/janicart,
 		/obj/item/key/janitor,
 	)
-	crate_name = "janitor ride crate"
+	crate_name = "清洁车箱"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/service/janitor/janpimpkey
-	name = "Cruiser Keys"
-	desc = "Replacement Keys for the Custodial Cruiser."
+	name = "巡逻车钥匙"
+	desc = "清洁巡逻车的备用钥匙。"
 	cost = CARGO_CRATE_VALUE * 1.5
 	access = ACCESS_JANITOR
 	contains = list(/obj/item/key/janitor)
-	crate_name = "key crate"
+	crate_name = "钥匙箱"
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/service/janitor/janpremium
-	name = "Janitor Supplies (Premium)"
-	desc = "For when the mess is too big for a mop to handle. Contains, several cleaning grenades, some spare bottles of ammonia, two bars of soap, and an MCE (or Massive Cleaning Explosive)."
+	name = "清洁工用品（高级）"
+	desc = "当污渍大到拖把无能为力时使用。内含数枚清洁手榴弹、几瓶备用氨水、两块肥皂，以及一枚 MCE（巨型清洁炸药）。"
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(
 		/obj/item/soap/nanotrasen,
@@ -638,11 +638,11 @@
 		/obj/item/reagent_containers/cup/bottle/ammonia,
 		/obj/item/reagent_containers/cup/bottle/ammonia,
 	)
-	crate_name = "premium janitorial crate"
+	crate_name = "高级清洁用品箱"
 
 /datum/supply_pack/service/lamplight
-	name = "Lamp Light Crate"
-	desc = "Dealing with brownouts? Lights out across the station? Brighten things up with a pack of four lamps and flashlights."
+	name = "灯具板条箱"
+	desc = "遇到电压不稳？全站熄灯？用这套四盏台灯加手电筒照亮一切吧。"
 	cost = CARGO_CRATE_VALUE * 1.75
 	contains = list(
 		/obj/item/flashlight/lamp,
@@ -654,11 +654,11 @@
 		/obj/item/flashlight,
 		/obj/item/flashlight,
 	)
-	crate_name = "lamp light crate"
+	crate_name = "灯具箱"
 
 /datum/supply_pack/service/medieval
-	name = "Authentic Renaissance Faire Crate"
-	desc = "Contains two authentic suits of armor, swords, and two bows and cuirass' for the cowards hiding in the back."
+	name = "正宗文艺复兴集市板条箱"
+	desc = "内含两套正宗盔甲、若干剑，以及给躲在后面的胆小鬼准备的两把弓和胸甲。"
 	cost = CARGO_CRATE_VALUE * 30
 	order_flags = ORDER_CONTRABAND
 	contains = list(
@@ -682,11 +682,11 @@
 		/obj/item/clothing/head/helmet/knight/blue,
 		/obj/item/food/bread/plain,
 	)
-	crate_name = "vintage crate"
+	crate_name = "复古箱"
 
 /datum/supply_pack/organic/lavalandsamples
-	name = "Planetary Flora Samples"
-	desc = "A box of samples taken from the surface of Lavaland. Requires Hydroponics access to open."
+	name = "行星植物样本"
+	desc = "一箱采自熔岩地表的样本。需要水培权限才能打开。"
 	cost = CARGO_CRATE_VALUE * 36 // unfortunately these sell for a lot and we can't have an infinite money exploit
 	access_view = ACCESS_HYDROPONICS
 	contains = list(
@@ -698,27 +698,27 @@
 		/obj/item/seeds/lavaland/fireblossom,
 		/obj/item/seeds/lavaland/cactus,
 	)
-	crate_name = "planetary seeds crate"
+	crate_name = "行星种子箱"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
 /datum/supply_pack/service/MODsuit_cargo
-	name = "Cargo Loader MODsuit Crate"
-	desc = "Contains a single quad-armed MODsuit, built to standard cargo specifications."
+	name = "货运装卸型 MOD 外骨骼板条箱"
+	desc = "内含一套四臂 MOD 外骨骼，按货运标准规格制造。"
 	cost = CARGO_CRATE_VALUE * 13
 	access_view = ACCESS_CARGO
 	contains = list(/obj/item/mod/control/pre_equipped/loader)
-	crate_name = "cargo MODsuit crate"
+	crate_name = "货运 MOD 外骨骼箱"
 
 /datum/supply_pack/service/snowmobile
-	name = "Snowmobile kit"
-	desc = "Trapped on a frigid wasteland? Need to get around fast? Purchase a refurbished snowmobile with a FREE 10 microsecond warranty!"
+	name = "雪地摩托套装"
+	desc = "被困在苦寒荒野？需要快速移动？购买一台翻新雪地摩托，附赠 10 微秒免费保修！"
 	cost = CARGO_CRATE_VALUE * 7.5
 	contains = list(
 		/obj/vehicle/ridden/atv/snowmobile = 1,
 		/obj/item/key/atv = 1,
 		/obj/item/clothing/mask/gas/explorer = 1,
 	)
-	crate_name = "snowmobile kit"
+	crate_name = "雪地摩托套装"
 	crate_type = /obj/structure/closet/crate/large
 
 /*
@@ -726,11 +726,11 @@
 */
 
 /datum/supply_pack/materials/rawlumber
-	name = "20 Towercap Logs"
-	desc = "Set up a cookout or a classy beachside bonfire with these terrific towercaps!"
+	name = "20 根塔盖菇原木"
+	desc = "用这些绝妙的塔盖菇木料办一场野炊，或在海边点起一堆有格调的篝火！"
 	cost = CARGO_CRATE_VALUE * 3.5
 	contains = list(/obj/item/grown/log)
-	crate_name = "lumber crate"
+	crate_name = "原木箱"
 
 /datum/supply_pack/materials/rawlumber/generate(crate_override)
 	. = ..()
@@ -738,8 +738,8 @@
 		new /obj/item/grown/log(.)
 
 /datum/supply_pack/imports/cin_surplus
-	name = "CIN Military Surplus Crate"
-	desc = "A collection of surplus equipment sourced from the Coalition of Independent Nations' military stockpiles. Likely to contain old and outdated equipment, as is the nature of surplus."
+	name = "独立国家联盟军事剩余物资板条箱"
+	desc = "一批来自独立国家联盟军事库存的剩余装备。很可能包含老旧过时的装备——剩余物资本就如此。"
 	order_flags = ORDER_CONTRABAND
 	cost = CARGO_CRATE_VALUE * 9
 	contains = list(
@@ -770,13 +770,13 @@
 */
 
 /datum/supply_pack/vending/dorms
-	name = "LustWish Supply Crate"
-	desc = "This crate contains a single refill for the LustWish vendor."
+	name = "LustWish 用品箱"
+	desc = "此箱内含 LustWish 自动售货机的一次补充装。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/vending_refill/lustwish)
 
 /datum/supply_pack/vending/barber
-	name = "Fab-O-Vend Supply Crate"
-	desc = "Contains a single restock for the Fab-O-Vend, great for those who are indecisive about their looks."
+	name = "Fab-O-Vend 用品箱"
+	desc = "内含 Fab-O-Vend 的一次补货，非常适合那些对自己的造型犹豫不决的人。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/vending_refill/barbervend)

@@ -1,5 +1,5 @@
 /obj/item/organ/horns
-	desc = "Why do some people even have horns? Well, this one obviously doesn't."
+	desc = "为什么有些人竟然会长角？嗯，这位显然没有。"
 	mutantpart_key = "horns"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Simple", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"))
 	organ_flags = ORGAN_EXTERNAL

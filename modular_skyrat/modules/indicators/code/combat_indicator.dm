@@ -31,7 +31,7 @@ GLOBAL_VAR_INIT(combat_indicator_overlay, GenerateCombatOverlay())
 			vehicle_next_combat_popup = world.time + COMBAT_NOTICE_COOLDOWN
 			playsound(src, 'sound/machines/chime.ogg', vol = 10, vary = FALSE, extrarange = -6, falloff_exponent = 4, frequency = null, channel = 0, pressure_affected = FALSE, ignore_walls = FALSE, falloff_distance = 1)
 			flick_emote_popup_on_obj("combat", 20)
-			visible_message(span_boldwarning("[src] prepares for combat!"))
+			visible_message(span_boldwarning("[src] 做好了战斗准备！"))
 		combat_indicator_vehicle = TRUE
 	else
 		combat_indicator_vehicle = FALSE
@@ -85,26 +85,26 @@ GLOBAL_VAR_INIT(combat_indicator_overlay, GenerateCombatOverlay())
 			if(get_active_held_item())
 				ciweapon = get_active_held_item()
 				if(istype(ciweapon, /obj/item/gun))
-					visible_message(span_boldwarning("[src] raises \the [ciweapon] with their finger on the trigger, ready for combat!"))
+					visible_message(span_boldwarning("[src] 手指扣在 \the [ciweapon] 的扳机上举起武器，准备战斗！"))
 				else
-					visible_message(span_boldwarning("[src] readies \the [ciweapon] with a tightened grip and offensive stance, ready for combat!"))
+					visible_message(span_boldwarning("[src] 握紧 \the [ciweapon]，摆出进攻姿态，准备战斗！"))
 			else
 				if(issilicon(src))
-					visible_message(span_boldwarning("<b>[src] shifts its armour plating into a defensive stance, ready for combat!"))
+					visible_message(span_boldwarning("<b>[src] 将装甲板调整为防御姿态，准备战斗！"))
 				if(ishuman(src))
-					visible_message(span_boldwarning("[src] raises [p_their()] fists in an offensive stance, ready for combat!"))
+					visible_message(span_boldwarning("[src] 举起双拳，摆出进攻姿态，准备战斗！"))
 				if(isalien(src))
-					visible_message(span_boldwarning("[src] hisses in a terrifying stance, claws raised and ready for combat!"))
+					visible_message(span_boldwarning("[src] 发出嘶嘶声，举起爪子摆出骇人的姿态，准备战斗！"))
 				else
-					visible_message(span_boldwarning("[src] gets ready for combat!"))
+					visible_message(span_boldwarning("[src] 做好了战斗准备！"))
 		combat_indicator = TRUE
 		apply_status_effect(/datum/status_effect/grouped/surrender, src)
-		log_message("<font color='red'>has turned ON the combat indicator!</font>", LOG_ATTACK)
+		log_message("<font color='red'>开启了战斗指示器！</font>", LOG_ATTACK)
 		RegisterSignal(src, COMSIG_LIVING_STATUS_UNCONSCIOUS, PROC_REF(combat_indicator_unconscious_signal)) //From now on, whenever this mob falls unconcious, the referenced proc will fire.
 	else
 		combat_indicator = FALSE
 		remove_status_effect(/datum/status_effect/grouped/surrender, src)
-		log_message("<font color='blue'>has turned OFF the combat indicator!</font>", LOG_ATTACK)
+		log_message("<font color='blue'>关闭了战斗指示器！</font>", LOG_ATTACK)
 		UnregisterSignal(src, COMSIG_LIVING_STATUS_UNCONSCIOUS) //combat_indicator_unconcious_signal will no longer be fired if this mob is unconcious.
 	update_appearance(UPDATE_ICON|UPDATE_OVERLAYS)
 
@@ -170,8 +170,8 @@ GLOBAL_VAR_INIT(combat_indicator_overlay, GenerateCombatOverlay())
 /datum/keybinding/living/combat_indicator
 	hotkey_keys = list("C")
 	name = "combat_indicator"
-	full_name = "Combat Indicator"
-	description = "Indicates that you're escalating to mechanics. YOU NEED TO USE THIS"
+	full_name = "战斗指示器"
+	description = "表示你正在升级到战斗行为。你必须使用此功能"
 	keybind_signal = COMSIG_KB_LIVING_COMBAT_INDICATOR
 
 /datum/keybinding/living/combat_indicator/down(client/user)
@@ -185,10 +185,10 @@ GLOBAL_VAR_INIT(combat_indicator_overlay, GenerateCombatOverlay())
 
 // Surrender shit
 /atom/movable/screen/alert/status_effect/surrender/
-	desc = "You're either in combat or being held up. Click here to surrender and show that you don't wish to fight. You will be incapacitated. (You can also say '*surrender' at any time to do this.)"
+	desc = "你正处于战斗状态，或正被人持械威胁。点击这里投降，表明你不想战斗。你会被制服。（你也可以随时输入 *surrender 来这么做。）"
 
 /datum/emote/living/surrender
-	message = "drops to the floor and raises their hands defensively! They surrender%s!"
+	message = "扑倒在地，防御性地举起双手！他们投降了！"
 	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/surrender/run_emote(mob/user, params, type_override, intentional)
@@ -200,5 +200,5 @@ GLOBAL_VAR_INIT(combat_indicator_overlay, GenerateCombatOverlay())
 /datum/emote/living/surrender/select_message_type(mob/user, intentional)
 	var/mob/living/living_mob = user
 	if(living_mob?.body_position == LYING_DOWN)
-		return "raises their hands defensively! They surrender%s!"
+		return "防御性地举起双手！他们投降了！"
 	. = ..()

@@ -1,6 +1,6 @@
-#define RESKIN_CHARCOAL "Charcoal"
-#define RESKIN_NT "NT Blue"
-#define RESKIN_SYNDIE "Syndicate Red"
+#define RESKIN_CHARCOAL "炭黑"
+#define RESKIN_NT "纳米传讯蓝"
+#define RESKIN_SYNDIE "辛迪加红"
 
 /obj/item/clothing/under/syndicate
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/syndicate_digi.dmi' // Anything that was in the syndicate.dmi, should be in the syndicate_digi.dmi
@@ -23,8 +23,8 @@
 //This is an overwrite, not a fully new item, but still fits best here.
 
 /obj/item/clothing/under/syndicate/tacticool //Overwrites the 'fake' one. Zero armor, sensors, and default blue. More Balanced to make station-available.
-	name = "tacticool turtleneck"
-	desc = "A snug turtleneck, in fabulous Nanotrasen-blue. Just looking at it makes you want to buy a NT-certifed coffee, go into the office, and -work-."
+	name = "战术潮高领衫"
+	desc = "一件贴身高领衫，耀眼的纳米传讯蓝。光是看着它，就让人想买一杯纳米传讯认证咖啡，走进办公室，然后——工作——。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/syndicate.dmi' //Since its an overwrite it needs new icon linking. Woe.
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/syndicate.dmi'
 	icon_state = "tactifool_blue"
@@ -54,12 +54,12 @@
 /obj/item/clothing/under/syndicate/tacticool/proc/on_reskin()
 	SIGNAL_HANDLER
 	if(icon_state == "tactifool")
-		desc = "Just looking at it makes you want to buy an SKS, go into the woods, and -operate-."
+		desc = "光是看着它，就让人想买一支 SKS 步枪，走进树林，然后——行动——。"
 		inhand_icon_state = "bl_suit"
 
 /obj/item/clothing/under/syndicate/tacticool/skirt //Overwrites the 'fake' one. Zero armor, sensors, and default blue. More Balanced to make station-available.
-	name = "tacticool skirtleneck"
-	desc = "A snug skirtleneck, in fabulous Nanotrasen-blue. Just looking at it makes you want to buy a NT-certifed coffee, go into the office, and -work-."
+	name = "战术潮高领短裙"
+	desc = "一件贴身高领短裙，耀眼的纳米传讯蓝。光是看着它，就让人想买一杯纳米传讯认证咖啡，走进办公室，然后——工作——。"
 	icon_state = "tactifool_blue_skirt"
 	armor_type = /datum/armor/clothing_under
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -88,8 +88,8 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/syndicate/skyrat/baseball
-	name = "syndicate baseball tee"
-	desc = "Aaand the Syndicate Snakes are up to bat, ready for one of their signature nuclear home-runs! Lets show these corpos a good time." //NT pitches their plasma/bluespace(something)
+	name = "辛迪加棒球衫"
+	desc = "接下来上场击球的是辛迪加毒蛇队，准备来一记他们的招牌核爆全垒打！让这些公司狗好好开开眼。" //NT pitches their plasma/bluespace(something)
 	icon_state = "syndicate_baseball"
 
 /*
@@ -98,8 +98,8 @@
 //The red alts, for BLATANTLY syndicate stuff (Like DS2)
 // (Multiple non-syndicate things use the base tactical turtleneck, they cant have it red nor reskinnable. OUR version, however, can be.)
 /obj/item/clothing/under/syndicate/skyrat/tactical
-	name = "tactical turtleneck"
-	desc = "A snug syndicate-red turtleneck with charcoal-black cargo pants. Good luck arguing allegiance with this on."
+	name = "战术高领衫"
+	desc = "一件贴身的辛迪加红高领衫配炭黑色工装裤。穿着这身去辩解自己的立场，祝你好运。"
 	icon_state = "syndicate_red"
 	inhand_icon_state = "r_suit"
 	can_adjust = TRUE
@@ -126,12 +126,12 @@
 /obj/item/clothing/under/syndicate/skyrat/tactical/proc/on_reskin()
 	SIGNAL_HANDLER
 	if(icon_state == "syndicate")
-		desc = "A non-descript and slightly suspicious looking turtleneck with digital camouflage cargo pants."
+		desc = "一件不起眼却略显可疑的高领衫，配数码迷彩工装裤。"
 		inhand_icon_state = "bl_suit"
 
 /obj/item/clothing/under/syndicate/skyrat/tactical/skirt
-	name = "tactical skirtleneck"
-	desc = "A snug syndicate-red skirtleneck with a charcoal-black skirt. Good luck arguing allegiance with this on."
+	name = "战术高领短裙"
+	desc = "一件贴身的辛迪加红高领短裙配炭黑色短裙。穿着这身去辩解自己的立场，祝你好运。"
 	icon_state = "syndicate_red_skirt"
 	inhand_icon_state = "r_suit"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -156,28 +156,28 @@
 /obj/item/clothing/under/syndicate/skyrat/tactical/skirt/on_reskin()
 	. = ..()
 	if(icon_state == "syndicate_skirt")
-		desc = "A non-descript and slightly suspicious looking skirtleneck."
+		desc = "一件不起眼却略显可疑的高领短裙。"
 		inhand_icon_state = "bl_suit"
 
 /*
 *	ENCLAVE
 */
 /obj/item/clothing/under/syndicate/skyrat/enclave
-	name = "neo-American sergeant uniform"
-	desc = "Throughout the stars, rumors of mad scientists and angry drill sergeants run rampant; of creatures in armor black as night, being led by men or women wearing this uniform. They share one thing: a deep, natonalistic zeal of the dream of America."
+	name = "新美国中士制服"
+	desc = "在群星之间，关于疯狂科学家和暴躁教官的传闻四处流传；还有那些披着漆黑如夜铠甲的生物，由身穿这身制服的男人或女人率领。他们有一个共同点：对“美国梦”怀着深沉而狂热的民族主义热忱。"
 	icon_state = "enclave"
 	can_adjust = TRUE
 	armor_type = /datum/armor/clothing_under
 
 /obj/item/clothing/under/syndicate/skyrat/enclave/officer
-	name = "neo-American officer uniform"
+	name = "新美国军官制服"
 	icon_state = "enclaveo"
 
 /obj/item/clothing/under/syndicate/skyrat/enclave/real
 	armor_type = /datum/armor/clothing_under/syndicate
 
 /obj/item/clothing/under/syndicate/skyrat/enclave/real/officer
-	name = "neo-American officer uniform"
+	name = "新美国军官制服"
 	icon_state = "enclaveo"
 
 #undef RESKIN_CHARCOAL

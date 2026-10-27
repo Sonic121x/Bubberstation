@@ -4,9 +4,9 @@
  * A component that emits a sound when it receives an input.
  */
 /obj/item/circuit_component/soundemitter
-	display_name = "Sound Emitter"
-	desc = "A component that emits a sound when it receives an input. The frequency is a multiplier which determines the speed at which the sound is played"
-	category = "Action"
+	display_name = "声音发生器"
+	desc = "一种在收到输入时发出声音的元件。频率是一个倍率，决定声音播放的速度。"
+	category = "动作"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// Sound to play
@@ -40,9 +40,9 @@
 
 /obj/item/circuit_component/soundemitter/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Sound Cooldown: [DisplayTimeText(sound_cooldown)]", "orange", "stopwatch")
+	. += create_ui_notice("声音冷却：[DisplayTimeText(sound_cooldown)]", "orange", "stopwatch")
 	if(CONFIG_GET(flag/disallow_circuit_sounds))
-		. += create_ui_notice("Non-functional", "red", "exclamation")
+		. += create_ui_notice("无法使用", "red", "exclamation")
 		update_ui_alerts(new_flag=CIRCUIT_FLAG_DISABLED)
 	else
 		update_ui_alerts(remove_flag=CIRCUIT_FLAG_DISABLED)

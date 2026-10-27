@@ -1,9 +1,9 @@
 /datum/computer_file/program/botanical_encyclopedia
 	filename = "botanyapp"
-	filedesc = "Botanical Encyclopedia"
+	filedesc = "植物百科全书"
 	downloader_category = PROGRAM_CATEGORY_SERVICE
 	program_open_overlay = "bountyboard"
-	extended_desc = "A program for browsing knowledge about plants."
+	extended_desc = "用于查阅植物知识的程序。"
 	size = 2
 	tgui_id = "NtosBotanicalEncyclopedia"
 	program_icon = FA_ICON_SEEDLING

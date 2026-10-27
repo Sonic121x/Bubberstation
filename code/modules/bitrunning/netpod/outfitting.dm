@@ -26,5 +26,5 @@
 			if(path == outfit["path"])
 				return path
 
-	message_admins("[usr]:[usr.ckey] attempted to select an unavailable outfit from a netpod")
+	message_admins("[usr]:[usr.ckey] 试图从网络舱中选择一个不可用的装备方案")
 	return

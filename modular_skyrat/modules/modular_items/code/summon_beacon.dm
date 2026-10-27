@@ -1,6 +1,6 @@
 /obj/item/summon_beacon
-	name = "summoner beacon"
-	desc = "Summons a thing. Probably shouldn't use this one, though."
+	name = "召唤信标"
+	desc = "召唤某样东西。不过这个大概还是别用为好。"
 	icon = 'icons/obj/devices/remote.dmi'
 	icon_state = "generic_delivery"
 	inhand_icon_state = "generic_delivery"
@@ -25,15 +25,15 @@
 	var/atom/selected_atom = null
 
 	/// Descriptor of what area it should work in
-	var/area_string = "any"
+	var/area_string = "任意区域"
 
 	/// If the supply pod should stay or not
 	var/supply_pod_stay = FALSE
 
 /obj/item/summon_beacon/examine()
 	. = ..()
-	. += span_warning("Caution: Only works in [area_string].")
-	. += span_notice("Currently selected: [selected_atom ? initial(selected_atom.name) : "None"].")
+	. += span_warning("注意：仅在 [area_string] 内有效。")
+	. += span_notice("当前已选择：[selected_atom ? initial(selected_atom.name) : "无"]。")
 
 /obj/item/summon_beacon/attack_self(mob/user)
 	if(!can_use_beacon(user))
@@ -79,23 +79,23 @@
 
 /obj/item/summon_beacon/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!selected_atom)
-		balloon_alert(user, "no choice selected!")
+		balloon_alert(user, "尚未选择目标！")
 		return NONE
 	var/turf/target_turf = get_turf(interacting_with)
 	var/area/target_area = get_area(interacting_with)
 	if(!target_turf || !target_area || !is_type_in_list(target_area, allowed_areas))
-		balloon_alert(user, "can't call here!")
+		balloon_alert(user, "无法在此处召唤！")
 		return NONE
 
-	var/confirmed = tgui_alert(user, "Are you sure you want to call [initial(selected_atom.name)] here?", "Confirmation", list("Yes", "No"))
-	if(confirmed != "Yes")
+	var/confirmed = tgui_alert(user, "你确定要在此处召唤 [initial(selected_atom.name)] 吗？", "确认", list("是", "否"))
+	if(confirmed != "是")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!uses)
 		return ITEM_INTERACT_BLOCKING
 
 	uses -= 1
-	balloon_alert(user, "[uses] use[uses == 1 ? "" : "s"] left!")
+	balloon_alert(user, "剩余 [uses] 次使用！")
 
 	podspawn(list(
 		"target" = target_turf,
@@ -107,10 +107,10 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		if(istype(human_user.ears, /obj/item/radio/headset))
-			to_chat(user, span_notice("You hear something crackle in your ears for a moment before a voice speaks. \
-				\"Please stand by for a message from Central Command.  Message as follows: \
-				[span_bold("Request received. Pod inbound, please stand back from the landing site.")] \
-				Message ends.\""))
+			to_chat(user, span_notice("你的耳中响起一阵噼啪声，随后一个声音说道：\
+				“来自中央指挥部的消息，请稍候。 消息如下：\
+				[span_bold("请求已收到。投放舱正在途中，请远离着陆点。")] \
+				消息结束。”"))
 
 	if(!uses)
 		qdel(src)
@@ -122,8 +122,8 @@
 	bluespace = FALSE
 
 /obj/item/storage/box/gas_miner_beacons
-	name = "box of gas miner delivery beacons"
-	desc = "Contains two beacons for delivery of atmospheric gas miners."
+	name = "气体采矿机投放信标盒"
+	desc = "内含两个用于投放大气气体采矿机的信标。"
 
 /obj/item/storage/box/gas_miner_beacons/PopulateContents()
 	new /obj/item/summon_beacon/gas_miner(src)
@@ -133,8 +133,8 @@
 // Actual beacons start here
 
 /obj/item/summon_beacon/gas_miner
-	name = "gas miner beacon"
-	desc = "Once a gas miner type is selected, delivers a gas miner to the target location."
+	name = "气体采矿机信标"
+	desc = "选定一种气体采矿机后，会将其投放到目标地点。"
 
 	allowed_areas = list(
 		/area/station/engineering/atmos,
@@ -151,4 +151,4 @@
 		/obj/machinery/atmospherics/miner/water_vapor,
 	)
 
-	area_string = "atmospherics"
+	area_string = "大气区域"

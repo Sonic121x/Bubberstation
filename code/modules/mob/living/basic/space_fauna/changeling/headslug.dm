@@ -4,8 +4,8 @@
  * Player-controlled slugs that arise from a changeling ability in order to live on in an extremely limited capacity until they can find a suitable corpse to inhabit.
  */
 /mob/living/basic/headslug
-	name = "headslug"
-	desc = "A small, slug-like creature with a large, gaping maw. It's covered in a thick, slimy mucus."
+	name = "头蛞蝓"
+	desc = "一种形似蛞蝓的小型生物，长着一张张开的巨口。它浑身覆盖着黏稠的黏液。"
 	icon_state = "headslug"
 	icon_living = "headslug"
 	icon_dead = "headslug_dead"
@@ -18,15 +18,15 @@
 	max_stamina = 120
 	melee_damage_lower = 5
 	melee_damage_upper = 5
-	attack_verb_continuous = "chomps"
-	attack_verb_simple = "chomp"
+	attack_verb_continuous = "撕咬"
+	attack_verb_simple = "撕咬"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	mob_biotypes = MOB_ORGANIC|MOB_SPECIAL
 	faction = list(FACTION_CREATURE)
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	speak_emote = list("squeaks")
+	speak_emote = list("吱吱叫")
 
 	ai_controller = /datum/ai_controller/basic_controller/headslug
 
@@ -46,11 +46,11 @@
 	. = ..()
 	if(stat != DEAD)
 		if(isnull(client))
-			. += span_notice("It appears to be moving around listlessly.")
+			. += span_notice("它似乎无精打采地四处爬动。")
 		else
-			. += span_warning("It's moving around intelligently!")
+			. += span_warning("它的动作带着几分灵性！")
 	if (egg_lain)
-		. += span_notice("Its reproductive equipment appears to have withered.")
+		. += span_notice("它的生殖器官似乎已经萎缩了。")
 
 /// Signal Handler proc that runs on every attack and checks to see if this is a valid target for implantation. If so, it implants the egg and starts the countdown to death.
 /mob/living/basic/headslug/proc/check_and_implant(mob/living/basic/attacker, atom/target)
@@ -63,16 +63,16 @@
 	if(victim.stat != DEAD)
 		return
 	if(HAS_TRAIT(victim, TRAIT_XENO_HOST))
-		target.balloon_alert(src, "already pregnant!") // Maybe the worst balloon alert in the codebase
+		target.balloon_alert(src, "已经怀孕了！") // Maybe the worst balloon alert in the codebase
 		return
 
 	if(!infect(victim))
-		target.balloon_alert(src, "failed to implant egg!")
+		target.balloon_alert(src, "植入卵失败！")
 		stack_trace("[key] in [src] failed to implant egg in [victim], despite all checks suggesting it should have worked!")
 		return
 
 	egg_lain = TRUE
-	to_chat(src, span_userdanger("With our egg laid, our death approaches rapidly..."))
+	to_chat(src, span_userdanger("卵已产下，我们的死亡正迅速逼近……"))
 	addtimer(CALLBACK(src, PROC_REF(death)), 10 SECONDS)
 
 /// Simply infects the target corpse with our changeling eggs. This shouldn't fail, because all checks should have been done in check_and_implant()
@@ -86,8 +86,8 @@
 		target.forceMove(egg)
 
 	visible_message(
-		span_warning("[src] plants something in [victim]'s flesh!"),
-		span_danger("We inject our egg into [victim]'s body!"),
+		span_warning("[src] 在 [victim] 的血肉里种下了什么东西！"),
+		span_danger("我们把卵注入了 [victim] 的身体！"),
 	)
 
 	return TRUE

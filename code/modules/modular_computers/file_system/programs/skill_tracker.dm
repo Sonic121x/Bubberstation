@@ -1,9 +1,9 @@
 /datum/computer_file/program/skill_tracker
 	filename = "skilltracker"
-	filedesc = "ExperTrak Skill Tracker"
+	filedesc = "ExperTrak 技能追踪器"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	program_open_overlay = "generic"
-	extended_desc = "Scan and view your current marketable job skills."
+	extended_desc = "扫描并查看你当前可供谋生的职业技能。"
 	size = 2
 	tgui_id = "NtosSkillTracker"
 	program_icon = "medal"
@@ -28,7 +28,7 @@
 				xp_req_to_level = SKILL_EXP_LIST[lvl_num+1] - SKILL_EXP_LIST[lvl_num]
 
 			var/list/skilldata = list(
-				"name" = skill.name,
+				"name" = chinese_skyrat_primitive_skill_display(skill.name),
 				"desc" = skill.desc,
 				"title" = skill.title,
 				"lvl_name" = lvl_name
@@ -45,7 +45,7 @@
 /datum/computer_file/program/skill_tracker/proc/find_skilltype(name)
 	for(var/type in GLOB.skill_types)
 		var/datum/skill/skill = GetSkillRef(type)
-		if(skill.name == name)
+		if(chinese_skyrat_primitive_skill_display(skill.name) == name)
 			return type
 
 	return null

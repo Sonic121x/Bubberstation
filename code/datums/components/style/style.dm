@@ -4,21 +4,21 @@
 #define STYLE_ABSOLUTE 4
 #define STYLE_SPACED 5
 
-#define ACTION_KILL "KILL"
-#define ACTION_MINOR_KILL "MINOR KILL"
-#define ACTION_MAJOR_KILL "MAJOR KILL"
-#define ACTION_DISRESPECT "DISRESPECT"
-#define ACTION_MELEED "MELEE'D"
-#define ACTION_ORE_MINED "ORE MINED"
-#define ACTION_TRAPPER "TRAPPER"
-#define ACTION_PARRIED "PARRIED"
-#define ACTION_PROJECTILE_BOOST "PROJECTILE BOOST"
-#define ACTION_GIBTONITE_HIT "GIBTONITE HIT"
-#define ACTION_GIBTONITE_BOOM "GIBTONITE BOOM"
-#define ACTION_GIBTONITE_DEFUSED "GIBTONITE DEFUSED"
-#define ACTION_MARK_DETONATED "MARK DETONATED"
-#define ACTION_GEYSER_MARKED "GEYSER MARKED"
-#define ACTION_VENT_TAPPED "VENT TAPPED"
+#define ACTION_KILL "击杀"
+#define ACTION_MINOR_KILL "小型猎物击杀"
+#define ACTION_MAJOR_KILL "大型猎物击杀"
+#define ACTION_DISRESPECT "蔑视"
+#define ACTION_MELEED "近战命中"
+#define ACTION_ORE_MINED "开采矿石"
+#define ACTION_TRAPPER "陷阱猎手"
+#define ACTION_PARRIED "成功弹反"
+#define ACTION_PROJECTILE_BOOST "投射物加速"
+#define ACTION_GIBTONITE_HIT "击中爆裂矿"
+#define ACTION_GIBTONITE_BOOM "引爆爆裂矿"
+#define ACTION_GIBTONITE_DEFUSED "解除爆裂矿"
+#define ACTION_MARK_DETONATED "引爆标记"
+#define ACTION_GEYSER_MARKED "标记间歇泉"
+#define ACTION_VENT_TAPPED "采掘喷口"
 
 /datum/component/style
 	/// Amount of style we have.
@@ -199,11 +199,11 @@
 
 			if((rank < hotswap_rank) && (rank_changed >= hotswap_rank))
 				var/mob/mob_parent = parent
-				mob_parent.balloon_alert(mob_parent, "hotswapping enabled")
+				mob_parent.balloon_alert(mob_parent, "快速换装已启用")
 
 			else if((rank >= hotswap_rank) && (rank_changed < hotswap_rank))
 				var/mob/mob_parent = parent
-				mob_parent.balloon_alert(mob_parent, "hotswapping disabled")
+				mob_parent.balloon_alert(mob_parent, "快速换装已禁用")
 
 			rank = rank_changed
 
@@ -250,21 +250,21 @@
 /datum/component/style/proc/rank_to_string(new_rank)
 	switch(new_rank)
 		if(STYLE_DULL)
-			return "DULL"
+			return "平庸"
 		if(STYLE_COOL)
-			return "COOL"
+			return "酷炫"
 		if(STYLE_BRUTAL)
-			return "BRUTAL"
+			return "残暴"
 		if(STYLE_ABSOLUTE)
-			return "ABSOLUTE"
+			return "绝对"
 		if(STYLE_SPACED)
-			return "SPACED!"
+			return "太空无双！"
 
 /datum/component/style/proc/format_rank_string(new_rank)
 	return MAPTEXT_PIXELLARI("<font color='[rank_to_color(new_rank)]'>[rank_to_string(new_rank)]</font>")
 
 /datum/component/style/proc/generate_multiplier()
-	return "<br>" + MAPTEXT_GRAND9K("MULTIPLIER: [permanent_multiplier + point_multiplier]X")
+	return "<br>" + MAPTEXT_GRAND9K("倍率：[permanent_multiplier + point_multiplier]X")
 
 /datum/component/style/proc/generate_actions()
 	var/action_string = ""
@@ -322,13 +322,13 @@
 /datum/component/style/proc/hotswap_interact(mob/living/source, obj/item/weapon, atom/target, list/modifiers)
 	var/datum/storage/atom_storage = target.loc.atom_storage
 	if(!atom_storage.can_insert(weapon, source, messages = FALSE))
-		source.balloon_alert(source, "unable to hotswap!")
+		source.balloon_alert(source, "无法快速换装！")
 		return
 
 	if (atom_storage.attempt_insert(weapon, source, override = TRUE) && source.put_in_hands(target))
-		source.visible_message(span_notice("[source] quickly swaps [weapon] out with [target]!"), span_notice("You quickly swap [weapon] with [target]."))
+		source.visible_message(span_notice("[source]迅速将[weapon]换成[target]！"), span_notice("你迅速将[weapon]换成[target]。"))
 	else
-		source.balloon_alert(source, "unable to hotswap!")
+		source.balloon_alert(source, "无法快速换装！")
 
 /// Increase our permanent multiplier based on the modifier.
 /datum/component/style/proc/adjust_permanent_multiplier(modifier)

@@ -1,6 +1,6 @@
 /obj/machinery/power/manufacturing/crafter
-	name = "manufacturing assembling machine"
-	desc = "Assembles (crafts) the set recipe until it runs out of resources. Only resources on it will be used."
+	name = "制造装配机"
+	desc = "按设定的配方进行组装（制作），直到资源耗尽。只会使用其上的资源。"
 	icon_state = "crafter"
 	density = FALSE
 	circuit = /obj/item/circuitboard/machine/manucrafter
@@ -26,21 +26,21 @@
 
 /obj/machinery/power/manufacturing/crafter/examine(mob/user)
 	. = ..()
-	. += span_notice("It is currently manufacturing <b>[isnull(recipe) ? "nothing. Use a multitool to set it" : recipe.name]</b>.")
+	. += span_notice("它当前正在制造 <b>[isnull(recipe) ? "无。使用多功能工具进行设置" : recipe.name]</b>。")
 	if(isnull(recipe))
 		return
-	. += span_notice("It needs:")
+	. += span_notice("它需要：")
 	for(var/valid_type in recipe.reqs)
 		// Check if they're datums, specifically reagents.
 		var/datum/reagent/reagent_ingredient = valid_type
 		if(istype(reagent_ingredient))
 			var/amount = recipe.reqs[reagent_ingredient]
-			. += "[amount] unit[amount > 1 ? "s" : ""] of [initial(reagent_ingredient.name)]"
+			. += "[amount] 单位 [initial(reagent_ingredient.name)]"
 
 		var/atom/ingredient = valid_type
 		var/amount = recipe.reqs[ingredient]
 
-		. += "[amount > 1 ? ("[amount]" + " of") : "a"] [initial(ingredient.name)]"
+		. += "[initial(ingredient.name)] ×[amount]"
 
 /obj/machinery/power/manufacturing/crafter/receive_resource(obj/receiving, atom/from, receive_dir)
 	var/turf/machine_turf = get_turf(src)
@@ -55,11 +55,11 @@
 		var/obj/as_obj = potential_recipe.result
 		if(ispath(as_obj, /obj) && !ispath(as_obj, /obj/effect) && !initial(as_obj.anchored))
 			available += potential_recipe
-	var/result = tgui_input_list(user, "Recipe", "Select Recipe", available)
+	var/result = tgui_input_list(user, "配方", "选择配方", available)
 	if(isnull(result) || result == recipe || !user.can_perform_action(src))
 		return ITEM_INTERACT_FAILURE
 	recipe = result
-	balloon_alert(user, "set")
+	balloon_alert(user, "已设定")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/power/manufacturing/crafter/Destroy()
@@ -76,7 +76,7 @@
 		else
 			deltimer(craft_timer)
 			craft_timer = null
-			say("Power failure!")
+			say("电力故障！")
 		return
 	if(isnull(recipe) || !craftsman.check_contents(src, recipe, craftsman.get_surroundings(src)))
 		return
@@ -102,7 +102,7 @@
 	var/list/prediff = get_overfloor_objects()
 	var/result = craftsman.construct_item(src, recipe)
 	if(istext(result))
-		say("Crafting failed[result]")
+		say("制作失败[result]")
 		return
 	if(isstack(result)) //it doesn't have hands to pick up stacks so let's try to merge them instead
 		var/obj/item/stack/stack = result
@@ -118,6 +118,6 @@
 	send_withheld()
 
 /obj/machinery/power/manufacturing/crafter/cooker
-	name = "manufacturing cooking machine" // maybe this shouldnt be available dont wanna make chef useless, though otherwise it would need a sprite
-	desc = "Cooks the set recipe until it runs out of resources. Inputs irrelevant to the recipe are ignored."
+	name = "制造烹饪机" // maybe this shouldnt be available dont wanna make chef useless, though otherwise it would need a sprite
+	desc = "按设定的配方进行烹饪，直到资源耗尽。与配方无关的输入会被忽略。"
 	cooking = TRUE

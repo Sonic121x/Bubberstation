@@ -1,23 +1,23 @@
 /obj/item/book/granter/martial/spider_bite
 	martial = /datum/martial_art/spiders_bite
 
-	name = "mysterious scroll"
-	martial_name = "spider's bite"
-	desc = "A scroll filled with strange markings. It seems to be drawings of some sort of martial art."
-	greet = span_sciradio("You have learned the Spider Clan's historic technique, The Spider's Bite. \
-		You are now able to kick standing targets who are staggered, potentially disarming them of their weapons. \
-		You can also tackle targets with great effectiveness, and have more solid grabs.")
+	name = "神秘卷轴"
+	martial_name = "蛛咬拳"
+	desc = "一卷布满奇怪符号的卷轴，似乎画着某种武术招式。"
+	greet = span_sciradio("你学会了蜘蛛氏族世代传承的技艺——蛛咬拳。\
+		现在，你可以踢击站立但步履踉跄的目标，并有机会踢掉其武器。\
+		你还可以更有效地扑倒目标，并进行更牢固的抓握。")
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state = "sleepingcarp"
 	worn_icon_state = "scroll"
 	remarks = list(
-		"Float like spider silk, sting like a spider's bite.",
-		"I must be one with the spider.",
-		"I've never seen this language in my life. At least it has pictures.",
-		"The Flow of Gravity technique... can I harness the power of gravity?",
-		"The Jump and Climb technique... is my body that flexible?",
-		"The Many Legged Spider technique... are my kicks really that powerful?",
-		"The Wrap in Web technique... I just need to wrap my targets in my arms?",
+		"轻若蛛丝，狠如蛛噬。",
+		"我必须与蜘蛛融为一体。",
+		"我这辈子从没见过这种语言。至少还有插图。",
+		"引力流转之术……我能驾驭重力的力量吗？",
+		"腾跃攀爬之术……我的身体有那么灵活吗？",
+		"多足蛛之术……我的踢击真有那么强吗？",
+		"蛛网缠缚之术……只要用双臂缠住目标就行？",
 	)
 
 /obj/item/book/granter/martial/spider_bite/on_reading_finished(mob/living/carbon/user)
@@ -27,8 +27,8 @@
 /obj/item/book/granter/martial/spider_bite/update_appearance(updates)
 	. = ..()
 	if(uses <= 0)
-		name = "empty scroll"
-		desc = "It's completely blank."
+		name = "空白卷轴"
+		desc = "上面一片空白。"
 		icon_state = "blankscroll"
 	else
 		name = initial(name)

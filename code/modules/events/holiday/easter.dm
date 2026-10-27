@@ -1,28 +1,28 @@
 /datum/round_event_control/easter
-	name = "Easter Eggselence"
+	name = "复活节彩蛋盛典"
 	holidayID = EASTER
 	typepath = /datum/round_event/easter
 	weight = -1
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
 	category = EVENT_CATEGORY_HOLIDAY
-	description = "Hides surprise filled easter eggs in maintenance."
+	description = "在维修区藏起装满惊喜的复活节彩蛋。"
 
 /datum/round_event/easter/announce(fake)
-	priority_announce(pick("Hip-hop into Easter!","Find some Bunny's stash!","Today is National 'Hunt a Wabbit' Day.","Be kind, give Chocolate Eggs!"))
+	priority_announce(pick("蹦跳着迎接复活节！","去找兔子藏的宝贝吧！","今天是全国‘猎捕兔兔’日。","行行好，送点巧克力蛋吧！"))
 
 
 /datum/round_event_control/rabbitrelease
-	name = "Release the Rabbits!"
+	name = "放兔出笼！"
 	holidayID = EASTER
 	typepath = /datum/round_event/rabbitrelease
 	weight = 5
 	max_occurrences = 10
 	category = EVENT_CATEGORY_HOLIDAY
-	description = "Summons a wave of cute rabbits."
+	description = "召唤一波可爱的兔子。"
 
 /datum/round_event/rabbitrelease/announce(fake)
-	priority_announce("Unidentified furry objects detected coming aboard [station_name()]. Beware of Adorable-ness.", "Fluffy Alert", ANNOUNCER_ALIENS)
+	priority_announce("检测到不明毛茸茸物体正在登上 [station_name()]。请当心可爱度超标。", "毛球警报", ANNOUNCER_ALIENS)
 
 
 /datum/round_event/rabbitrelease/start()
@@ -45,22 +45,22 @@
 
 //Easter Baskets
 /obj/item/storage/basket/easter
-	name = "Easter Basket"
+	name = "复活节篮子"
 	storage_type = /datum/storage/basket/easter
 
 //Bunny Suit
 /obj/item/clothing/head/costume/bunnyhead
-	name = "Easter Bunny head"
+	name = "复活节兔头套"
 	icon_state = "bunnyhead"
 	inhand_icon_state = null
-	desc = "Considerably more cute than 'Frank'."
+	desc = "比“弗兰克”可爱得多。"
 	slowdown = -0.3
 	clothing_flags = THICKMATERIAL | SNUG_FIT
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 
 /obj/item/clothing/suit/costume/bunnysuit
-	name = "easter bunny suit"
-	desc = "Hop Hop Hop!"
+	name = "复活节兔子套装"
+	desc = "蹦，蹦，蹦！"
 	icon_state = "bunnysuit"
 	icon = 'icons/obj/clothing/suits/costume.dmi'
 	worn_icon = 'icons/mob/clothing/suits/costume.dmi'
@@ -72,15 +72,15 @@
 
 //Bunny bag!
 /obj/item/storage/backpack/satchel/bunnysatchel
-	name = "easter bunny satchel"
-	desc = "Good for your eyes."
+	name = "复活节兔子挎包"
+	desc = "对眼睛有好处。"
 	icon_state = "satchel_carrot"
 	inhand_icon_state = null
 
 //Egg prizes and egg spawns!
 /obj/item/surprise_egg
-	name = "wrapped egg"
-	desc = "A chocolate egg containing a little something special. Unwrap and enjoy!"
+	name = "包裹好的彩蛋"
+	desc = "一枚巧克力蛋，里面装着点特别的小东西。拆开享用吧！"
 	icon_state = "egg"
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_TINY
@@ -120,23 +120,23 @@
 
 /obj/item/surprise_egg/attack_self(mob/user)
 	..()
-	to_chat(user, span_notice("You unwrap [src] and find a prize inside!"))
+	to_chat(user, span_notice("你拆开 [src]，发现里面有一份奖品！"))
 	dispensePrize(get_turf(src))
 	qdel(src)
 
 //Easter Recipes + food
 /obj/item/food/hotcrossbun
-	name = "hot cross bun"
-	desc = "The cross represents the Assistants that died for your sins."
+	name = "十字面包"
+	desc = "上面的十字代表那些为你的罪孽而死的助手们。"
 	icon_state = "hotcrossbun"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/sugar = 1)
 	foodtypes = SUGAR | GRAIN | BREAKFAST
-	tastes = list("pastry" = 1, "easter" = 1)
+	tastes = list("酥皮" = 1, "复活节" = 1)
 	bite_consumption = 2
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /datum/crafting_recipe/food/hotcrossbun
-	name = "Hot Cross Bun"
+	name = "十字面包"
 	reqs = list(
 		/obj/item/food/breadslice/plain = 1,
 		/datum/reagent/consumable/sugar = 1
@@ -147,7 +147,7 @@
 	meal_category = MEAL_SNACK
 
 /datum/crafting_recipe/food/briochecake
-	name = "Brioche cake"
+	name = "布里欧修蛋糕"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/datum/reagent/consumable/sugar = 2
@@ -157,8 +157,8 @@
 	meal_category = MEAL_DESSERT
 
 /obj/item/food/scotchegg
-	name = "scotch egg"
-	desc = "A boiled egg wrapped in a delicious, seasoned meatball."
+	name = "苏格兰蛋"
+	desc = "一枚水煮蛋，外面裹着调味过的美味肉丸。"
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "scotchegg"
 	bite_consumption = 3
@@ -168,7 +168,7 @@
 	foodtypes = MEAT|EGG
 
 /datum/crafting_recipe/food/scotchegg
-	name = "Scotch egg"
+	name = "苏格兰蛋"
 	reqs = list(
 		/datum/reagent/consumable/salt = 1,
 		/datum/reagent/consumable/blackpepper = 1,
@@ -181,7 +181,7 @@
 	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/mammi
-	name = "Mammi"
+	name = "曼米"
 	reqs = list(
 		/obj/item/food/bread/plain = 1,
 		/obj/item/food/chocolatebar = 1,
@@ -193,15 +193,15 @@
 	meal_category = MEAL_DESSERT
 
 /obj/item/food/chocolatebunny
-	name = "chocolate bunny"
-	desc = "Contains less than 10% real rabbit!"
+	name = "巧克力兔子"
+	desc = "真兔子含量低于 10%！"
 	icon_state = "chocolatebunny"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/coco = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
 	crafting_complexity = FOOD_COMPLEXITY_1
 	foodtypes = JUNKFOOD | SUGAR
 
 /datum/crafting_recipe/food/chocolatebunny
-	name = "Chocolate bunny"
+	name = "巧克力兔子"
 	reqs = list(
 		/datum/reagent/consumable/sugar = 2,
 		/obj/item/food/chocolatebar = 1

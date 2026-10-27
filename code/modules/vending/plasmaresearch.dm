@@ -1,7 +1,7 @@
 //This one's from bay12
 /obj/machinery/vending/plasmaresearch
-	name = "\improper Bombuddy 3000"
-	desc = "All the fine parts you need in one vending machine!"
+	name = "\improper 炸弹伙伴 3000"
+	desc = "所有上等零件，都装在这一台售货机里！"
 	products = list(
 		/obj/item/assembly/igniter = 6,
 		/obj/item/assembly/prox_sensor = 6,
@@ -19,5 +19,5 @@
 	payment_department = ACCOUNT_SCI
 
 /obj/item/vending_refill/plasmaresearch
-	machine_name = "Bombuddy 3000"
+	machine_name = "炸弹伙伴 3000"
 	icon_state = "refill_bombuddy"

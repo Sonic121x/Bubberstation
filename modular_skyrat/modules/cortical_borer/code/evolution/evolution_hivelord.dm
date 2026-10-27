@@ -3,9 +3,9 @@
 
 // T1
 /datum/borer_evolution/hivelord/produce_offspring
-	name = "Produce Offspring"
-	desc = "Produce an egg, which your host will vomit up."
-	gain_text = "The way that a Cortical Borer produces an egg is a strange one. So far, we have not seen how it produces one, or it doing so outside a host."
+	name = "产出后代"
+	desc = "产下一枚虫卵，由你的宿主吐出来。"
+	gain_text = "皮层钻虫产卵的方式十分古怪。到目前为止，我们既没见过它如何产卵，也没见过它在宿主之外产卵。"
 	tier = 1
 	unlocked_evolutions = list(/datum/borer_evolution/hivelord/blood_chemical)
 	evo_cost = 1
@@ -17,9 +17,9 @@
 
 // T2
 /datum/borer_evolution/hivelord/blood_chemical
-	name = "Learn Blood Chemical"
-	desc = "Learn a synthesizable chemical from the blood of your host."
-	gain_text = "As we were dissecting a former host monkey's fecal matter, I noticed a high concentration of banana matter, despite us not feeding them any for the past week."
+	name = "习得血液化学物质"
+	desc = "从宿主的血液中学会一种可合成的化学物质。"
+	gain_text = "我们在解剖一只曾当过宿主的猴子的粪便时，发现其中香蕉物质的浓度很高，尽管过去一周我们都没喂过它香蕉。"
 	tier = 2
 	unlocked_evolutions = list(/datum/borer_evolution/hivelord/movespeed)
 
@@ -30,9 +30,9 @@
 
 // T3
 /datum/borer_evolution/hivelord/movespeed
-	name = "Increased Energy"
-	desc = "Boost your speed by a large amount."
-	gain_text = "And as I watched, the Cortical Borer was able to complete the course in just over half the time it had last week."
+	name = "精力提升"
+	desc = "大幅提升你的速度。"
+	gain_text = "在我注视下，那只皮层钻虫跑完全程所用的时间，只有上周的一半多一点。"
 	mutually_exclusive = TRUE
 	tier = 3
 	unlocked_evolutions = list(/datum/borer_evolution/hivelord/stealth_mode)
@@ -43,9 +43,9 @@
 
 // T4
 /datum/borer_evolution/hivelord/stealth_mode
-	name = "Stealth Mode"
-	desc = "While in stealth mode, your presence is much less noticable in hosts, but you do not gain passive benefits."
-	gain_text = "As I was writing my report one day, I noticed that one of the worms had slipped out of its cage and into a monkey without so much as a sound. Fascinating how they seem to know the importance of sound."
+	name = "潜行模式"
+	desc = "处于潜行模式时，你在宿主体内的存在感会大幅降低，但你无法获得被动收益。"
+	gain_text = "有一天我在写报告时，注意到其中一条虫子悄无声息地从笼子里溜出来，钻进了一只猴子体内。它们似乎懂得安静的重要性，真是奇妙。"
 	tier = 4
 	unlocked_evolutions = list(/datum/borer_evolution/hivelord/produce_offspring_alone)
 
@@ -56,9 +56,9 @@
 
 // T5
 /datum/borer_evolution/hivelord/produce_offspring_alone
-	name = "Produce Offspring II"
-	desc = "Allows you to produce eggs outside a host, in exchange for health and chemicals."
-	gain_text = "One of the worms seems to have taken an... Alpha position in the hive, producing more eggs than the others. Most worryingly, eggs have shown up without them having a host, but I haven't *seen* them lay any..."
+	name = "产出后代 II"
+	desc = "允许你在宿主之外产卵，代价是损失生命与化学物质。"
+	gain_text = "其中一条虫子似乎在巢中取得了……首领地位，产的卵比其他都多。最令人担忧的是，在没有宿主的情况下也出现了虫卵，可我并没有*看到*它们产卵……"
 	evo_cost = 3
 	tier = 5
 	unlocked_evolutions = list(

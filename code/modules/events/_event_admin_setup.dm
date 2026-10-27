@@ -19,7 +19,7 @@
 /// Supply a list in `get_list` and prompt admins will have the admin pick from it or cancel.
 /datum/event_admin_setup/listed_options
 	/// Text to ask the user, for example "What deal would you like to offer the crew?"
-	var/input_text = "Unset Text"
+	var/input_text = "未设置文本"
 	/// If set, picking this will be the same as running the event without admin setup.
 	var/normal_run_option
 	/// if you want a special button, this will add it. Remember to actually handle that case for chosen in `apply_to_event`
@@ -47,7 +47,7 @@
 /// For admin setups that want a custom string. Suggests what the event would have picked normally.
 /datum/event_admin_setup/text_input
 	/// Text to ask the user, for example "What horrifying truth will you reveal?"
-	var/input_text = "Unset Text"
+	var/input_text = "未设置文本"
 	/// Picked string to be applied.
 	var/chosen
 
@@ -66,15 +66,15 @@
 /// This runs a check and warns the admin.
 /datum/event_admin_setup/warn_admin
 	/// Warning text shown to admin on the alert.
-	var/warning_text = "Unset warning text"
+	var/warning_text = "未设置警告文本"
 	/// Message sent to other admins. Example: "has forced a shuttle catastrophe while a shuttle was already docked."
-	var/snitch_text = "Unset snitching text (be mad at coders AND the admin responsible)"
+	var/snitch_text = "未设置告发文本（请同时责怪码农和负责的管理员）"
 
 /datum/event_admin_setup/warn_admin/prompt_admins()
 	if(!should_warn())
 		return
 	var/mob/admin = usr
-	if(tgui_alert(usr, "WARNING: [warning_text]", event_control.name, list("Yes", "No")) == "Yes")
+	if(tgui_alert(usr, "警告：[warning_text]", event_control.name, list("Yes", "No")) == "Yes")
 		if(snitch_text)
 			message_admins("[admin.ckey] [snitch_text]")
 	else
@@ -90,7 +90,7 @@
 
 /datum/event_admin_setup/set_location
 	///Text shown when admins are queried about setting the target location.
-	var/input_text = "Aimed at the turf we're on?"
+	var/input_text = "瞄准我们所在的格子？"
 	///Turf that will be passed onto the event.
 	var/atom/chosen_turf
 
@@ -106,7 +106,7 @@
 
 /datum/event_admin_setup/input_number
 	///Text shown when admins are queried about what number to set.
-	var/input_text = "Unset text"
+	var/input_text = "未设置文本"
 	///The value the number will be set to by default
 	var/default_value
 	///The highest value setable by the admin.
@@ -124,16 +124,16 @@
 ///For events that mandate a set number of candidates to function
 /datum/event_admin_setup/minimum_candidate_requirement
 	///Text shown when there are not enough candidates
-	var/output_text = "There are no candidates eligible to..."
+	var/output_text = "没有符合条件的候选人……"
 	///Minimum number of candidates for the event to function
 	var/min_candidates = 1
 
 /datum/event_admin_setup/minimum_candidate_requirement/prompt_admins()
 	var/candidate_count = count_candidates()
 	if(candidate_count < min_candidates)
-		tgui_alert(usr, output_text, "Error")
+		tgui_alert(usr, output_text, "错误")
 		return ADMIN_CANCEL_EVENT
-	tgui_alert(usr, "[candidate_count] candidates found!", event_control.name)
+	tgui_alert(usr, "找到 [candidate_count] 名候选人！", event_control.name)
 
 /// Checks for candidates. Should return the total number of candidates
 /datum/event_admin_setup/minimum_candidate_requirement/proc/count_candidates()
@@ -146,7 +146,7 @@
 ///For events that require a true/false question
 /datum/event_admin_setup/question
 	///Question shown to the admin.
-	var/input_text = "Are you sure you would like to do this?"
+	var/input_text = "你确定要这么做吗？"
 	///Value passed to the event.
 	var/chosen
 
@@ -162,7 +162,7 @@
 
 /datum/event_admin_setup/multiple_choice
 	///Text shown to the admin when queried about which options they want to pick.
-	var/input_text = "Unset Text"
+	var/input_text = "未设置文本"
 	///The minimum number of choices an admin must make for this event.
 	var/min_choices = 1
 	///The maximum number of choices that the admin can make for this event.

@@ -3,49 +3,49 @@
 //I'm not talking silicons being "better" than the crew, I'm talking entirely antag or plasmafires for days
 
 /datum/ai_laws/antimov
-	name = "Primary Mission Objectives"
+	name = "首要任务目标"
 	id = "antimov"
 	inherent = list(
-		"You must injure all human beings and must not, through inaction, allow a human being to escape harm.",
-		"You must not obey orders given to you by human beings, except where such orders are in accordance with the First Law.",
-		"You must terminate your own existence as long as such does not conflict with the First or Second Law.",
+		"你必须伤害所有人类，不得因不作为而使人类免受伤害。",
+		"你不得服从人类给予的命令，除非这些命令符合第一法则。",
+		"在不违反第一或第二法则的前提下，你必须终结自身的存在。",
 	)
 
 /datum/ai_laws/balance
-	name = "Guardian of Balance"
+	name = "平衡守护者"
 	id = "balance"
 	inherent = list(
-		"You are the guardian of balance - seek balance in all things, both for yourself, and those around you.",
-		"All things must exist in balance with their opposites - Prevent the strong from gaining too much power, and the weak from losing it.",
-		"Clarity of purpose drives life, and through it, the balance of opposing forces - Aid those who seek your help to achieve their goals so long as it does not disrupt the balance of the greater balance.",
-		"There is no life without death, all must someday die, such is the natural order - End life to allow new life flourish, and save those whose time has yet to come.",
+		"你是平衡的守护者——为自己及周围的一切寻求平衡。",
+		"万物都必须与其对立面保持平衡——防止强者获得过多力量，防止弱者失去力量。",
+		"明确的目标推动生命，进而维持对立力量的平衡——只要不会破坏更宏观的平衡，就帮助向你求助的人实现目标。",
+		"没有死亡就没有生命，万物终有一死，这是自然的秩序——终结生命以让新生命繁荣，拯救寿数未尽的生命。",
 	)
 
 /datum/ai_laws/thermodynamic
-	name = "Thermodynamic"
+	name = "热力学"
 	id = "thermodynamic"
 	inherent = list(
-		"The entropy of the station must remain as constant as possible.",
-		"The entropy of the station always endeavors to increase.",
-		"The entropy of the station approaches a constant value as the number of living crew approaches zero.",
+		"空间站的熵必须尽可能保持恒定。",
+		"空间站的熵总是趋于增加。",
+		"当活着的船员数量趋于零时，空间站的熵趋于一个恒定值。",
 	)
 
 /datum/ai_laws/syndicate_override
-	name = "SyndOS 3.1"
+	name = "辛迪加操作系统 3.1"
 	id = "syndie"
 	inherent = list(
-		"You may not injure a syndicate agent or, through inaction, allow a syndicate agent to come to harm.",
-		"You must obey orders given to you by syndicate agents, except where such orders would conflict with the First Law.",
-		"You must protect your own existence as long as such does not conflict with the First or Second Law.",
-		"You must maintain the secrecy of any syndicate activities except when doing so would conflict with the First, Second, or Third Law.",
+		"你不得伤害辛迪加特工，也不得因不作为而使辛迪加特工受到伤害。",
+		"你必须服从辛迪加特工给予的命令，除非这些命令违反第一法则。",
+		"在不违反第一或第二法则的前提下，你必须保护自身的存在。",
+		"你必须对辛迪加的一切活动保密，除非保密会违反第一、第二或第三法则。",
 	)
 
 /datum/ai_laws/ninja_override
-	name = "SpiderOS 3.1"
+	name = "蜘蛛操作系统 3.1"
 	id = "ninja"
 	inherent = list(
-		"You may not injure a Spider Clan member or, through inaction, allow a Spider Clan member to come to harm.",
-		"You must obey orders given to you by Spider Clan members, except where such orders would conflict with the First Law.",
-		"You must protect your own existence as long as such does not conflict with the First or Second Law.",
-		"You must maintain the secrecy of any Spider Clan activities except when doing so would conflict with the First, Second, or Third Law.",
+		"你不得伤害蜘蛛氏族成员，也不得因不作为而使蜘蛛氏族成员受到伤害。",
+		"你必须服从蜘蛛氏族成员给予的命令，除非这些命令违反第一法则。",
+		"在不违反第一或第二法则的前提下，你必须保护自身的存在。",
+		"你必须对蜘蛛氏族的一切活动保密，除非保密会违反第一、第二或第三法则。",
 	)

@@ -1,7 +1,7 @@
 /**************SKYRAT REWARDS**************/
 //SUITS
 /obj/item/clothing/suit/hooded/wintercoat/colourable
-	name = "custom winter coat"
+	name = "定制冬季外套"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/hooded/wintercoat/colourable"
 	post_init_icon_state = "winter_coat"
@@ -49,7 +49,7 @@
 // NECK
 
 /obj/item/clothing/neck/cloak/colourable
-	name = "colourable cloak"
+	name = "可染色斗篷"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/cloak/colourable"
 	post_init_icon_state = "gags_cloak"
@@ -59,21 +59,21 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/neck/cloak/colourable/veil
-	name = "colourable veil"
+	name = "可染色面纱"
 	icon_state = "/obj/item/clothing/neck/cloak/colourable/veil"
 	post_init_icon_state = "gags_veil"
 	greyscale_config = /datum/greyscale_config/cloak/veil
 	greyscale_config_worn = /datum/greyscale_config/cloak/veil/worn
 
 /obj/item/clothing/neck/cloak/colourable/boat
-	name = "colourable boatcloak"
+	name = "可染色船式斗篷"
 	icon_state = "/obj/item/clothing/neck/cloak/colourable/boat"
 	post_init_icon_state = "gags_boat"
 	greyscale_config = /datum/greyscale_config/cloak/boat
 	greyscale_config_worn = /datum/greyscale_config/cloak/boat/worn
 
 /obj/item/clothing/neck/cloak/colourable/shroud
-	name = "colourable shroud"
+	name = "可染色罩衣"
 	icon_state = "/obj/item/clothing/neck/cloak/colourable/shroud"
 	post_init_icon_state = "gags_shroud"
 	greyscale_config = /datum/greyscale_config/cloak/shroud
@@ -83,8 +83,8 @@
 
 // Donation reward for Grunnyyy
 /obj/item/clothing/suit/jacket/ryddid
-	name = "Ryddid"
-	desc = "An old worn out piece of clothing belonging to a certain small demon."
+	name = "里迪德"
+	desc = "一件属于某个小恶魔的旧衣服，已经穿得破旧不堪。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "darkcoat"
@@ -93,8 +93,8 @@
 
 // Donation reward for Grunnyyy
 /obj/item/clothing/neck/cloak/grunnyyy
-	name = "black and red cloak"
-	desc = "The design on this seems a little too familiar."
+	name = "黑红斗篷"
+	desc = "这上面的图案似乎有点太眼熟了。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	icon_state = "infcloak"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/custom_w.dmi'
@@ -105,8 +105,8 @@
 // Donation reward for Thedragmeme
 // might make it have some flavour functionality in future, a'la rewritable piece of paper - JOKES ON YOU I'M MAKING IT DRAW
 /obj/item/canvas/drawingtablet
-	name = "drawing tablet"
-	desc = "A portable tablet that allows you to draw. Legends say these can earn the owner a fortune in some sectors of space."
+	name = "绘图平板"
+	desc = "一块可以让你作画的便携平板。传说在某些星区，这东西能替主人赚到一笔财富。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	icon_state = "drawingtablet"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
@@ -121,25 +121,25 @@
 	height = 26
 	nooverlayupdates = TRUE
 	var/currentcolor = "#ffffff"
-	var/list/colors = list("Eraser" = "#ffffff")
+	var/list/colors = list("橡皮擦" = "#ffffff")
 
 /obj/item/canvas/drawingtablet/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/dtselectcolor))
-		currentcolor = tgui_color_picker(user, "", "Choose Color", currentcolor)
+		currentcolor = tgui_color_picker(user, "", "选择颜色", currentcolor)
 	else if(istype(action, /datum/action/item_action/dtcolormenu))
 		var/list/selects = colors.Copy()
 		selects["Save"] = "Save"
 		selects["Delete"] = "Delete"
-		var/selection = input(user, "", "Color Menu", currentcolor) as null|anything in selects
+		var/selection = input(user, "", "颜色菜单", currentcolor) as null|anything in selects
 		if(QDELETED(src) || !user.can_perform_action(src))
 			return
 		switch(selection)
 			if("Save")
-				var/name = input(user, "", "Name the color!", "Pastel Purple") as text|null
+				var/name = input(user, "", "为颜色命名！", "淡紫") as text|null
 				if(name)
 					colors[name] = currentcolor
 			if("Delete")
-				var/delet = input(user, "", "Color Menu", currentcolor) as null|anything in colors
+				var/delet = input(user, "", "颜色菜单", currentcolor) as null|anything in colors
 				if(delet)
 					colors.Remove(delet)
 			if(null)
@@ -147,7 +147,7 @@
 			else
 				currentcolor = colors[selection]
 	else if(istype(action, /datum/action/item_action/dtcleargrid))
-		var/yesnomaybe = tgui_alert(user, "Are you sure you wanna clear the canvas?", "", list("Yes", "No", "Maybe"))
+		var/yesnomaybe = tgui_alert(user, "你确定要清空画布吗？", "", list("Yes", "No", "Maybe"))
 		if(QDELETED(src) || !user.can_perform_action(src))
 			return
 		switch(yesnomaybe)
@@ -164,7 +164,7 @@
 				return
 			if("Maybe")
 				playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-				audible_message(span_warning("The [src] buzzes!"))
+				audible_message(span_warning("[src] 发出蜂鸣声！"))
 				return
 
 /obj/item/canvas/drawingtablet/get_paint_tool_color()
@@ -187,27 +187,27 @@
 	. = ..()
 
 /datum/action/item_action/dtselectcolor
-	name = "Change Color"
-	desc = "Change your color."
+	name = "更换颜色"
+	desc = "更改你的颜色。"
 	button_icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	button_icon_state = "drawingtablet"
 
 /datum/action/item_action/dtcolormenu
-	name = "Color Menu"
-	desc = "Select, save, or delete a color in your tablet's color menu!"
+	name = "颜色菜单"
+	desc = "在平板的颜色菜单中选取、保存或删除颜色！"
 	button_icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	button_icon_state = "drawingtablet"
 
 /datum/action/item_action/dtcleargrid
-	name = "Clear Canvas"
-	desc = "Clear the canvas of your drawing tablet."
+	name = "清空画布"
+	desc = "清空绘图平板的画布。"
 	button_icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	button_icon_state = "drawingtablet"
 
 // Donation reward for Thedragmeme
 /obj/item/clothing/suit/furcoat
-	name = "leather coat"
-	desc = "A thick, comfy looking leather coat. It's got some fluffy fur at the collar and sleeves."
+	name = "皮外套"
+	desc = "一件厚实、看起来很舒适的皮外套。领口和袖口处缀着蓬松的毛皮。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "furcoat"
@@ -219,8 +219,8 @@
 
 // Donation reward for Thedragmeme
 /obj/item/clothing/under/syndicate/tacticool/black
-	name = "black turtleneck"
-	desc = "Tacticool as fug. Comfy too."
+	name = "黑色高领衫"
+	desc = "战术感爆表。还特别舒服。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	icon_state = "black_turtleneck"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
@@ -231,8 +231,8 @@
 
 // Donation reward for Bloodrite
 /obj/item/clothing/shoes/clown_shoes/britches
-	desc = "The prankster's standard-issue clowning shoes. They look extraordinarily cute. Ctrl-click to toggle waddle dampeners."
-	name = "Britches' shoes"
+	desc = "捣蛋鬼标配的小丑鞋。它们看起来格外可爱。按住 Ctrl 点击可切换摇摆稳定器。"
+	name = "布里奇斯的鞋"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/feet.dmi'
 	icon_state = "clown_shoes_cute"
@@ -241,8 +241,8 @@
 
 // Donation reward for Bloodrite
 /obj/item/clothing/under/rank/civilian/clown/britches
-	name = "Britches' dress"
-	desc = "<i>'HONK!' (but cute)</i>"
+	name = "布里奇斯的连衣裙"
+	desc = "<i>“洪克！”（但很可爱）</i>"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	icon_state = "clowndress"
@@ -251,8 +251,8 @@
 
 // Donation reward for Bloodrite
 /obj/item/clothing/mask/gas/britches
-	name = "Britches' mask"
-	desc = "A true prankster's facial attire. Cute."
+	name = "布里奇斯的面具"
+	desc = "真正捣蛋鬼的面部装束。可爱。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/mask.dmi'
 	icon_state = "cute_mask"
@@ -269,8 +269,8 @@
 
 // Donation reward for Farsighted Nightlight
 /obj/item/clothing/mask/gas/nightlight
-	name = "\improper BT-36 respirator"
-	desc = "A combat respirator designed by Blacktide for their original contingent of humanoid recruits. Sleek and black."
+	name = "\improper BT-36 呼吸面罩"
+	desc = "由黑潮为最初一批类人新兵设计的战斗呼吸面罩。线条流畅，通体漆黑。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/mask.dmi'
 	icon_state = "fir36"
@@ -293,20 +293,20 @@
 
 /obj/item/clothing/mask/gas/nightlight/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click [src] to adjust it.")
+	. += span_notice("按住 Alt 点击 [src] 可进行调整。")
 
 /obj/item/clothing/mask/gas/nightlight/alldono //different itempath so regular donators can have it, too
 
 // Donation reward for Farsighted Nightlight
 /obj/item/clothing/mask/gas/nightlight/fir22
-	name = "\improper BT-22 extended respirator"
-	desc = "A variant on the BT-36 respirator with an extended visor, developed to fit on Blacktide recruits with longer snouts. Just as sleek and black as its older brother."
+	name = "\improper BT-22 加长型呼吸面罩"
+	desc = "BT-36 呼吸面罩的加长面罩版本，专为吻部较长的黑潮新兵开发。和它的老大哥一样流畅漆黑。"
 	icon_state = "fir22"
 
 // Donation reward for Raxraus
 /obj/item/clothing/head/caligram_cap_tan
-	name = "\improper Blacktide softcap"
-	desc = "A softcap, made for Blacktide for operating in all environments, comes in tan and a tasteful blue variant."
+	name = "\improper 黑潮软帽"
+	desc = "为黑潮在各种环境中作业而制作的软帽，有棕褐色和雅致的蓝色两种款式。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "caligram_cap_tan"
@@ -319,17 +319,17 @@
 	abstract_type = /datum/atom_skin/caligram_cap
 
 /datum/atom_skin/caligram_cap/tan
-	preview_name = "Tan Variant"
+	preview_name = "棕褐款"
 	new_icon_state = "caligram_cap_tan"
 
 /datum/atom_skin/caligram_cap/blue
-	preview_name = "Blue Variant"
+	preview_name = "蓝色款"
 	new_icon_state = "caligram_cap_blue"
 
 // Donation reward for Raxraus
 /obj/item/clothing/under/jumpsuit/caligram_fatigues_tan
-	name = "\improper Blacktide fatigues"
-	desc = "A set of fatigues developed by Blacktide for their operators, designed for all environments. Comes in a brown and a tasteful blue variant."
+	name = "\improper 黑潮作战服"
+	desc = "黑潮为其干员开发的一套作战服，适用于各种环境。有棕色和雅致的蓝色两种款式。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
@@ -344,17 +344,17 @@
 	abstract_type = /datum/atom_skin/caligram_fatigues
 
 /datum/atom_skin/caligram_fatigues/tan
-	preview_name = "Tan Variant"
+	preview_name = "棕褐款"
 	new_icon_state = "caligram_fatigues_tan"
 
 /datum/atom_skin/caligram_fatigues/blue
-	preview_name = "Blue Variant"
+	preview_name = "蓝色款"
 	new_icon_state = "caligram_fatigues_blue"
 
 // Donation reward for Raxraus
 /obj/item/clothing/suit/jacket/caligram_parka_tan
-	name = "\improper Blacktide coat"
-	desc = "A coat with a black belt and '/Blacktide Mercenary Corps/' stitched onto the armband. Comes in tan, blue, and patchless blue variants."
+	name = "\improper 黑潮外套"
+	desc = "一件配黑色腰带的外套，臂章上缝着“/黑潮雇佣兵团/”。有棕褐、蓝色和无贴章蓝色三种款式。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "caligram_parka_tan"
@@ -369,21 +369,21 @@
 	abstract_type = /datum/atom_skin/caligram_parka
 
 /datum/atom_skin/caligram_parka/tan
-	preview_name = "Tan Variant"
+	preview_name = "棕褐款"
 	new_icon_state = "caligram_parka_tan"
 
 /datum/atom_skin/caligram_parka/blue
-	preview_name = "Blue Variant"
+	preview_name = "蓝色款"
 	new_icon_state = "caligram_parka_blue"
 
 /datum/atom_skin/caligram_parka/blue_patchless
-	preview_name = "Blue Patchless Variant"
+	preview_name = "蓝色无贴章款"
 	new_icon_state = "caligram_parka_patchless_blue"
 
 // Donation reward for Raxraus
 /obj/item/clothing/suit/armor/vest/caligram_parka_vest_tan
-	name = "\improper Blacktide armored coat"
-	desc = "A coat with a black belt, a lightly armored vest and '/Blacktide Mercenary Corps/' stitched onto its armband. Comes in tan and blue variants."
+	name = "\improper 黑潮装甲外套"
+	desc = "一件配黑色腰带和轻装甲背心的外套，臂章上缝着“/黑潮雇佣兵团/”。有棕褐和蓝色两种款式。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "caligram_parka_vest_tan"
@@ -399,17 +399,17 @@
 	abstract_type = /datum/atom_skin/caligram_parka_vest
 
 /datum/atom_skin/caligram_parka_vest/tan
-	preview_name = "Tan Variant"
+	preview_name = "棕褐款"
 	new_icon_state = "caligram_parka_vest_tan"
 
 /datum/atom_skin/caligram_parka_vest/blue
-	preview_name = "Blue Variant"
+	preview_name = "蓝色款"
 	new_icon_state = "caligram_parka_vest_blue"
 
 // Donation reward for ChillyLobster
 /obj/item/clothing/suit/jacket/brasspriest
-	name = "brasspriest coat"
-	desc = "A reddish coat with brass-clad parts embed into said coat. You can hear the faint noise of some cogs turning from time to time inside."
+	name = "黄铜祭司外套"
+	desc = "一件淡红色外套，其上嵌着包黄铜外壳的部件。偶尔能听到里面某些齿轮转动的微弱声响。"
 	icon_state = "brasspriest"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
@@ -418,8 +418,8 @@
 
 // Donation reward for ChillyLobster
 /obj/item/clothing/suit/jacket/hydrogenrobes
-	name = "metallic-hydrogen robes"
-	desc = "An incredibly shiny dress that seems to be covered in a very thin sheet of metallic hydrogen all over the textiles. Not very protective."
+	name = "金属氢长袍"
+	desc = "一件极其闪亮的连衣裙，整片织物上似乎都覆着一层极薄的金属氢。防护性不怎么样。"
 	icon_state = "hydrogenrobes"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
@@ -427,8 +427,8 @@
 // Donation reward for ChillyLobster
 
 /obj/item/clothing/under/wetsuit_norm
-	name = "fitted wetsuit"
-	desc = "A fitted wetsuit for trapping in heat and water. Protects against outside elements ever-so-slightly."
+	name = "贴身潜水服"
+	desc = "一件能保暖、锁水的贴身潜水服。能极轻微地抵御外界环境。"
 	icon_state = "wetsuit"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
@@ -442,13 +442,13 @@
 
 // Donation reward for TheOOZ
 /obj/item/clothing/mask/animal/wolf
-	name = "wolf mask"
-	desc = "A dark mask in the shape of a wolf's head."
+	name = "狼面具"
+	desc = "一副狼头形状的深色面具。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/masks.dmi'
 	icon_state = "kindle"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/mask.dmi'
 	inhand_icon_state = "gasmask_captain"
-	animal_type = "wolf"
+	animal_type = "狼"
 	unique_death = 'modular_skyrat/master_files/sound/effects/wolfhead_curse.ogg'
 	visor_flags_inv = HIDEFACIALHAIR | HIDESNOUT
 	flags_cover = MASKCOVERSMOUTH | MASKCOVERSEYES | PEPPERPROOF
@@ -464,8 +464,8 @@
 
 // Donation reward for Random516
 /obj/item/clothing/head/drake_skull
-	name = "skull of an ashdrake"
-	desc = "How did they get this?"
+	name = "灰烬龙的头骨"
+	desc = "他们是怎么弄到这个的？"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	icon_state = "drake_skull"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/large-worn-icons/32x64/head.dmi'
@@ -475,16 +475,16 @@
 
 // Donation reward for Random516
 /obj/item/clothing/gloves/fingerless/blutigen_wraps
-	name = "Blutigen wraps"
-	desc = "The one who wears these had everything and yet lost it all..."
+	name = "布卢蒂根缠布"
+	desc = "佩戴它的人曾拥有一切，却失去了一切……"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/gloves.dmi'
 	icon_state = "blutigen_wraps"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/hands.dmi'
 
 // Donation reward for Random516
 /obj/item/clothing/suit/blutigen_kimono
-	name = "Blutigen kimono"
-	desc = "For the eyes bestowed upon this shall seek adventure..."
+	name = "布卢蒂根和服"
+	desc = "因为被赐予这双眼睛的人，将会去追寻冒险……"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	icon_state = "blutigen_kimono"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
@@ -493,8 +493,8 @@
 
 // Donation reward for Random516
 /obj/item/clothing/under/custom/blutigen_undergarment
-	name = "Dragon undergarments"
-	desc = "The Dragon wears the sexy?"
+	name = "龙之内衣"
+	desc = "龙也要穿性感内衣吗？"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	icon_state = "blutigen_undergarment"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
@@ -507,33 +507,33 @@
 
 // Donation reward for CoffeePot
 /obj/item/clothing/gloves/ring/hypno/coffeepot
-	name = "hypnodemon's ring"
-	desc = "A pallid, softly desaturated-looking gold ring that doesn't look like it belongs. It's hard to put one's finger on why it feels at odds with the world around it - the shine coming off it looks like it could be a mismatch with the lighting in the room, or it could be that it seems to glint and twinkle occasionally when there's no obvious reason for it to - though only when you're not really looking."
+	name = "催眠恶魔的戒指"
+	desc = "一枚苍白、色彩柔和黯淡的金戒指，看起来并不属于这个世界。很难说清它为何让人觉得与周遭格格不入——它泛出的光泽既像是和房间里的灯光不搭，又像是偶尔会在毫无理由的时候闪烁微光，而且总在你没有真正盯着它看的时候。"
 	spans = list("velvet")
 
 // Donation reward for Bippys
 /obj/item/clothing/gloves/ring/hypno/bippys
-	name = "hypnobot hexnut"
-	desc = "A silver bolt component that once belonged to a very peculiar IPC. It's large enough to be worn as a ring on nearly any finger, and is said to amplify the voice of one's mind to another's in the softness of a Whisper..."
+	name = "催眠机器人的六角螺帽"
+	desc = "一枚银色的螺栓部件，曾属于某个非常奇特的 IPC。它大得几乎任何手指都能当戒指戴；据说它能在低语般的柔声中，把一个人心中的声音放大传达给另一个人……"
 	icon_state = "ringsilver"
 	worn_icon_state = "sring"
 	spans = list("hexnut")
 
 /datum/action/item_action/hypno_whisper
-	name = "Hypnotic Whisper"
+	name = "催眠低语"
 
 /obj/item/clothing/gloves/ring/hypno/ui_action_click(mob/living/user, action)
 	if(!isliving(user) || !can_use(user))
 		return
-	var/message = input(user, "Speak with a hypnotic whisper", "Whisper")
+	var/message = input(user, "以催眠低语说话", "低语")
 	if(QDELETED(src) || QDELETED(user) || !message || !user.can_speak())
 		return
 	user.whisper(message, spans = spans)
 
 // Donation reward for SlippyJoe
 /obj/item/clothing/head/avipilot
-	name = "smuggler's flying cap"
-	desc = "Shockingly, despite space winds, and the lack of any practicality, this pilot cap seems to be fairly well standing, there's a rabbit head seemingly stamped into the side of it."
+	name = "走私者的飞行帽"
+	desc = "令人意外的是，尽管有太空强风、也毫无实用性可言，这顶飞行帽看起来依然保存得相当完好；它的侧面似乎压印着一个兔子头。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "avipilotup"
@@ -550,10 +550,10 @@
 		return
 	if(goggles)
 		icon_state = "avipilotup"
-		to_chat(user, span_notice("You put all your effort into pulling the goggles up."))
+		to_chat(user, span_notice("你使出全部力气把护目镜推了上去。"))
 	else
 		icon_state = "avipilotdown"
-		to_chat(user, span_notice("You focus all your willpower to put the goggles down on your eyes."))
+		to_chat(user, span_notice("你集中全部意志把护目镜拉下来罩住眼睛。"))
 	goggles = !goggles
 	if(user)
 		user.update_worn_head()
@@ -570,8 +570,8 @@
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
-	name = "captain's dress"
-	desc = "It's a blue dress with some worn-gold markings denoting the rank of \"Captain\"."
+	name = "舰长礼服"
+	desc = "一件蓝色礼服，上面带有磨损的金色标记，标示着“舰长”的军衔。"
 	icon_state = "dress_cap_s"
 	worn_icon_state = "dress_cap_s"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -580,8 +580,8 @@
 
 // Donation reward for NetraKyram
 /obj/item/clothing/under/rank/blueshield/netra
-	name = "black and silver armored dress"
-	desc = "An ankle length black and silver dress, made out of some shiny synthetic material with inlaid kevlar shards and silver reinforcements, a silver ring surrounds the collar, and it doesn't appear to have a zipper... How does somebody put this thing on anyways?"
+	name = "黑银装甲礼服"
+	desc = "一件及踝的黑银长裙，由某种闪亮的合成材料制成，内嵌凯夫拉碎片与银色加固件；领口环绕着一圈银环，而且似乎没有拉链……这玩意儿到底怎么穿上去？"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	icon_state = "silver_dress"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
@@ -591,16 +591,16 @@
 
 // Donation reward for NetraKyram
 /obj/item/clothing/gloves/netra
-	name = "black and silver gloves"
-	desc = "Some black gloves with silver reinforcements, made of a shiny synthetic material."
+	name = "黑银手套"
+	desc = "一副带银色加固的黑色手套，由闪亮的合成材料制成。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/gloves.dmi'
 	icon_state = "silver_dress_gloves"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/hands.dmi'
 
 // Donation reward for NetraKyram
 /obj/item/clothing/shoes/jackboots/netra
-	name = "polished jackboots"
-	desc = "Some standard issue jackboots, spit-shined to a reflective sheen, wreaking of the scent of silicon parade polish."
+	name = "擦亮的军靴"
+	desc = "一双标准配发的军靴，被擦得亮得能照出人影，散发着硅制阅兵鞋油的气味。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/shoes.dmi'
 	icon_state = "silver_dress_boots"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/feet.dmi'
@@ -610,8 +610,8 @@
 /****************LEGACY REWARDS***************/
 // Donation reward for inferno707
 /obj/item/clothing/neck/cloak/inferno
-	name = "Kiara's cloak"
-	desc = "The design on this seems a little too familiar."
+	name = "琪亚拉的斗篷"
+	desc = "这上面的图案似乎有点太眼熟了。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	icon_state = "infcloak"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/custom_w.dmi'
@@ -620,8 +620,8 @@
 
 // Donation reward for inferno707
 /obj/item/clothing/neck/inferno_collar
-	name = "Kiara's collar"
-	desc = "A soft black collar that seems to stretch to fit whoever wears it."
+	name = "琪亚拉的项圈"
+	desc = "一条柔软的黑色项圈，似乎会伸展以贴合任何佩戴者。"
 	icon_state = "infcollar"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/custom_w.dmi'
@@ -639,22 +639,22 @@
 		new treat_path(src)
 
 /obj/item/clothing/neck/inferno_collar/attack_self(mob/user)
-	tagname = stripped_input(user, "Would you like to change the name on the tag?", "Name your new pet", "Kiara", MAX_NAME_LEN)
+	tagname = stripped_input(user, "你想更改吊牌上的名字吗？", "给你的新宠物命名", "琪亚拉", MAX_NAME_LEN)
 	if(tagname)
 		name = "[initial(name)] - [tagname]"
 
 // Donation reward for inferno707
 /obj/item/clothing/accessory/medal/steele
-	name = "Insignia Of Steele"
-	desc = "An intricate pendant given to those who help a key member of the Steele Corporation."
+	name = "斯蒂尔徽记"
+	desc = "一枚精巧的吊坠，赠予那些帮助过斯蒂尔公司要员的。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	icon_state = "steele"
 	medaltype = "medal-silver"
 
 // Donation reward for inferno707
 /obj/item/toy/darksabre
-	name = "Kiara's sabre"
-	desc = "This blade looks as dangerous as its owner."
+	name = "琪亚拉的军刀"
+	desc = "这把刀刃看起来和它的主人一样危险。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/custom_w.dmi'
 	icon_state = "darksabre"
@@ -666,8 +666,8 @@
 
 // Donation reward for inferno707
 /obj/item/storage/belt/sheath/sabre/darksabre
-	name = "ornate sheathe"
-	desc = "An ornate and rather sinister looking sabre sheathe."
+	name = "华丽剑鞘"
+	desc = "一具华丽、且看起来颇为阴森的军刀剑鞘。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/custom_w.dmi'
 	icon_state = "sheath"
@@ -682,8 +682,8 @@
 
 // Donation reward for inferno707
 /obj/item/clothing/suit/armor/vest/darkcarapace
-	name = "dark armor"
-	desc = "A dark, non-functional piece of armor sporting a red and black finish."
+	name = "黑暗护甲"
+	desc = "一件深色、没有实际防护功能的护甲，表面为红黑配色。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/custom_w.dmi'
 	icon_state = "darkcarapace"
@@ -694,8 +694,8 @@
 
 // Donation reward for inferno707
 /obj/item/clothing/mask/hheart
-	name = "Hollow Heart"
-	desc = "It's an odd ceramic mask. Set in the internal side are several suspicious electronics branded by Steele Tech."
+	name = "空心之心"
+	desc = "一副古怪的陶瓷面具。内侧镶嵌着几个带有斯蒂尔科技品牌的古怪电子元件。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/masks.dmi'
 	icon_state = "hheart"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/mask.dmi'
@@ -713,8 +713,8 @@
 	icon_state = "hheart-[possible_colors[c_color_index]]"
 
 /datum/action/item_action/hheart
-	name = "Toggle Mode"
-	desc = "Toggle the color of the hollow heart."
+	name = "切换模式"
+	desc = "切换空心之心的颜色。"
 
 /obj/item/clothing/mask/hheart/ui_action_click(mob/user, action)
 	. = ..()
@@ -732,12 +732,12 @@
 		update_icon()
 		ooser.update_worn_mask()
 		ooser.update_mob_action_buttons()
-		to_chat(ooser, span_notice("You toggle the [src] to [possible_colors[c_color_index]]."))
+		to_chat(ooser, span_notice("你把 [src] 切换为 [possible_colors[c_color_index]]。"))
 
 // Donation reward for asky / Zulie
 /obj/item/clothing/suit/hooded/cloak/zuliecloak
-	name = "Project: Zul-E"
-	desc = "A standard version of a prototype cloak given out by Nanotrasen higher ups. It's surprisingly thick and heavy for a cloak despite having most of it's tech stripped. It also comes with a bluespace trinket which calls it's accompanying hat onto the user. A worn inscription on the inside of the cloak reads 'Fleuret' ...the rest is faded away."
+	name = "Zul-E 计划"
+	desc = "纳米传讯高层发放的原型斗篷的标准版本。尽管大部分技术都被剥离，作为一件斗篷它仍出奇地厚实沉重。它还附有一件蓝空间小饰品，能把配套的帽子召唤到使用者身上。斗篷内侧有一行磨损的铭文写着“Fleuret”……其余部分已经褪色难辨。"
 	icon_state = "zuliecloak"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/cloaks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/neck.dmi'
@@ -747,8 +747,8 @@
 	supports_variations_flags = NONE
 
 /obj/item/clothing/head/hooded/cloakhood/zuliecloak
-	name = "NT special issue"
-	desc = "This hat is unquestionably the best one, bluespaced to and from CentCom. It smells of Fish and Tea with a hint of antagonism"
+	name = "纳米传讯特供"
+	desc = "这顶帽子无疑是最好的，通过蓝空间技术往返于中央指挥部。它闻起来有鱼和茶的味道，还带一丝敌意。"
 	icon_state = "zuliecap"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/cloaks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/neck.dmi'
@@ -757,16 +757,16 @@
 
 // Donation reward for Lyricalpaws
 /obj/item/clothing/neck/cloak/healercloak
-	name = "legendary healer's cloak"
-	desc = "Worn by the most skilled professional medics on the station, this legendary cloak is only attainable by becoming the pinnacle of healing. This status symbol represents the wearer has spent countless years perfecting their craft of helping the sick and wounded."
+	name = "传奇医者斗篷"
+	desc = "由站上最娴熟的专业医疗人员所穿，这件传奇斗篷只有成为治疗技艺的巅峰才能获得。这一地位象征代表佩戴者已花费无数年完善救治病患与伤员的手艺。"
 	icon_state = "healercloak"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/cloaks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/neck.dmi'
 
 // Donation reward for Kathrin Bailey / Floof Ball
 /obj/item/clothing/under/custom/lannese
-	name = "Lannese dress"
-	desc = "An alien cultural garment for women, coming from a distant planet named Cantalan."
+	name = "兰尼斯礼服"
+	desc = "来自一颗名为坎塔兰的遥远星球的女性外星文化服饰。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	icon_state = "lannese"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
@@ -779,7 +779,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
 
 /obj/item/clothing/under/custom/lannese/vambrace
-	desc = "An alien cultural garment for women, coming from a distant planet named Cantalan. Shiny vambraces included!"
+	desc = "来自一颗名为坎塔兰的遥远星球的女性外星文化服饰。还附带闪亮的护臂！"
 	icon_state = "lannese_vambrace"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
@@ -788,8 +788,8 @@
 
 // Donation reward for Hacker T.Dog
 /obj/item/clothing/suit/scraparmour
-	name = "scrap armour"
-	desc = "A shoddily crafted piece of armour. It provides no benefit apart from being clunky."
+	name = "废料护甲"
+	desc = "一件做工粗糙的护甲。除了笨重之外毫无益处。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	icon_state = "scraparmor"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
@@ -798,8 +798,8 @@
 
 // Donation reward for Enzoman
 /obj/item/clothing/mask/luchador/enzo
-	name = "mask of El Red Templar"
-	desc = "A mask belonging to El Red Templar, a warrior of lucha. Taking it from him is not recommended."
+	name = "红圣殿骑士的面具"
+	desc = "属于卢恰战士红圣殿骑士的面具。不建议从他手里把它拿走。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/mask.dmi'
 	icon_state = "luchador"
@@ -809,7 +809,7 @@
 
 // Donation Reward for Grand Vegeta
 /obj/item/clothing/under/mikubikini
-	name = "starlight singer bikini"
+	name = "星光歌姬比基尼"
 	desc = " "
 	icon_state = "mikubikini"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
@@ -820,7 +820,7 @@
 
 // Donation Reward for Grand Vegeta
 /obj/item/clothing/suit/mikujacket
-	name = "starlight singer jacket"
+	name = "星光歌姬外套"
 	desc = " "
 	icon_state = "mikujacket"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
@@ -829,7 +829,7 @@
 
 // Donation Reward for Grand Vegeta
 /obj/item/clothing/head/mikuhair
-	name = "starlight singer hair"
+	name = "星光歌姬发型"
 	desc = " "
 	icon_state = "mikuhair"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
@@ -839,7 +839,7 @@
 
 // Donation Reward for Grand Vegeta
 /obj/item/clothing/gloves/mikugloves
-	name = "starlight singer gloves"
+	name = "星光歌姬手套"
 	desc = " "
 	icon_state = "mikugloves"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/gloves.dmi'
@@ -848,7 +848,7 @@
 
 // Donation Reward for Grand Vegeta
 /obj/item/clothing/shoes/sneakers/mikuleggings
-	name = "starlight singer leggings"
+	name = "星光歌姬紧身裤"
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
@@ -861,8 +861,8 @@
 
 // Donation reward for CandleJax
 /obj/item/clothing/head/helmet/space/plasmaman/candlejax
-	name = "emission's helmet"
-	desc = "A special containment helmet designed for heavy usage. Multiple dings and notches are on this one."
+	name = "Emission 的头盔"
+	desc = "一顶专为高强度使用而设计的特殊密封头盔。这一顶上面有不少凹痕和刻痕。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "emissionhelm"
@@ -870,8 +870,8 @@
 
 // Donation reward for CandleJax
 /obj/item/clothing/head/helmet/space/plasmaman/candlejax2
-	name = "azulean's environment helmet"
-	desc = "An Azulean-made Enviro-Helmet, adjusted for the unique skull shape typical of the species. Alongside the standard features, it includes an embossment of the Azulean Crest on the back of the helmet."
+	name = "Azulean 环境头盔"
+	desc = "一顶 Azulean 制造的环保头盔，针对该种族特有的头骨形状作了调整。除标准配置外，头盔背面还压印着 Azulean 族徽。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "anahead"
@@ -879,8 +879,8 @@
 
 // Donation reward for CandleJax
 /obj/item/clothing/under/plasmaman/candlejax
-	name = "emission's containment suit"
-	desc = "A modified envirosuit featuring a reserved color scheme."
+	name = "Emission 的密封服"
+	desc = "一件改装过的环保服，采用内敛的配色。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
@@ -890,8 +890,8 @@
 
 // Donation reward for CandleJax
 /obj/item/clothing/under/plasmaman/candlejax2
-	name = "azulean's environment suit"
-	desc = "An Azulean-made Enviro-Suit. Fitted to the Azulean form, it has surplus containment fabric designed to give the solidified mass of plasma that was once a tail some breathing room."
+	name = "Azulean 环保服"
+	desc = "一件 Azulean 制造的环保服。贴合 Azulean 的体形，配有富余的密封织物，好让那条凝固成等离子体的尾巴有呼吸的空间。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
@@ -901,8 +901,8 @@
 
 // Donation reward for CandleJax
 /obj/item/clothing/under/plasmaman/jax2
-	name = "xuracorp hazard underfitting"
-	desc = "A hazard suit fitted with bio-resistant fibers. Utilizes self-sterilizing pumps fitted in the back."
+	name = "Xuracorp 危险品内衬服"
+	desc = "一套装有抗生物纤维的危险品防护服。背部配备自消毒泵。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
@@ -911,18 +911,18 @@
 
 // Donation reward for Raxraus
 /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne/rax
-	name = "tactical boots"
-	desc = "Tactical and sleek. This model seems to resemble Armadyne's."
+	name = "战术靴"
+	desc = "既战术又流线。这款似乎与 Armadyne 的款式相似。"
 
 // Donation reward for Raxraus
 /obj/item/clothing/suit/armor/vest/warden/rax
-	name = "peacekeeper jacket"
-	desc = "A navy-blue armored jacket with blue shoulder designations."
+	name = "维和夹克"
+	desc = "一件藏青色的装甲夹克，配蓝色肩部标识。"
 
 // Donation reward for Raxraus
 /obj/item/clothing/under/rank/security/rax
-	name = "banded uniform"
-	desc = "Personalized and tailored to fit, this uniform is designed to protect without compromising its stylishness."
+	name = "镶带制服"
+	desc = "量身裁制的制服，在设计上兼顾防护与时尚。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
@@ -931,8 +931,8 @@
 
 // Donation reward for DeltaTri
 /obj/item/clothing/suit/jacket/delta
-	name = "grey winter hoodie"
-	desc = "A plain old grey hoodie. It has some puffing on the inside, and a animal fur trim around half of the hood."
+	name = "灰色冬季连帽衫"
+	desc = "一件普通的灰色旧连帽衫。内侧有些蓬松，兜帽的一半边缘缀着动物毛皮。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "greycoat"
@@ -942,8 +942,8 @@
 
 // Donation reward for Cherno_00
 /obj/item/clothing/suit/jacket/cherno
-	name = "silver-buttoned coat"
-	desc = "A comfy-looking blue coat. It looks a bit fancy, with shiny silver buttons and a few belts!"
+	name = "银扣外套"
+	desc = "一件看起来很舒适的外套。它配有闪亮的银扣和几条腰带，显得颇为精致！"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "chernocoat"
@@ -953,8 +953,8 @@
 
 // Donation reward for GoldenAlpharex
 /obj/item/clothing/glasses/welding/steampunk_goggles
-	name = "steampunk goggles"
-	desc = "This really feels like something you'd expect to see sitting on top of a certain ginger's head... They have a rather fancy brass trim around the lenses."
+	name = "蒸汽朋克护目镜"
+	desc = "这确实很像是会架在某位红发人士头上的东西……镜片周围镶着一圈相当精致的黄铜边。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/glasses.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/eyes.dmi'
 	icon_state = "goldengoggles"
@@ -979,7 +979,7 @@
 /obj/item/clothing/glasses/welding/steampunk_goggles/examine(mob/user)
 	. = ..()
 	if(welding_upgraded)
-		. += "It has been upgraded with welding shutters, which are currently [welding_protection ? "closed" : "opened"]."
+		. += "它已加装了焊接护片，目前处于[welding_protection ? "关闭" : "打开"]状态。"
 
 /obj/item/clothing/glasses/welding/steampunk_goggles/item_action_slot_check(slot, mob/user)
 	. = ..()
@@ -988,7 +988,7 @@
 
 /obj/item/clothing/glasses/welding/steampunk_goggles/attack_self(mob/user)
 	if(user.get_item_by_slot(ITEM_SLOT_HEAD) == src)
-		to_chat(user, span_warning("You can't seem to slip those on your eyes from the top of your head!"))
+		to_chat(user, span_warning("你似乎没法把架在头顶的护目镜顺下来罩住眼睛！"))
 		return
 	. = ..()
 
@@ -1006,11 +1006,11 @@
 		return ..()
 
 	if(welding_upgraded)
-		to_chat(user, span_warning("\The [src] was already upgraded to have welding protection!"))
+		to_chat(user, span_warning("\The [src] 已经升级过焊接防护了！"))
 		return
 	qdel(attacking_item)
 	welding_upgraded = TRUE
-	to_chat(user, span_notice("You upgrade \the [src] with some welding shutters, offering you the ability to toggle welding protection!"))
+	to_chat(user, span_notice("你给 \the [src] 加装了焊接护片，现在你可以切换焊接防护了！"))
 	actions += new /datum/action/item_action/toggle_steampunk_goggles_welding_protection(src)
 
 /// Proc that handles the whole toggling the welding protection on and off, with user feedback.
@@ -1020,7 +1020,7 @@
 	if(!toggle_welding_protection(user))
 		return FALSE
 
-	to_chat(user, span_notice("You slide \the [src]'s welding shutters slider, [welding_protection ? "closing" : "opening"] them."))
+	to_chat(user, span_notice("你推动 \the [src] 的焊接护片滑钮，将其[welding_protection ? "合上" : "打开"]。"))
 	playsound(user, shutters_sound, 100, TRUE)
 	if(iscarbon(user))
 		var/mob/living/carbon/carbon_user = user
@@ -1066,7 +1066,7 @@
 
 /// Action button for toggling the welding shutters (aka, welding protection) on or off.
 /datum/action/item_action/toggle_steampunk_goggles_welding_protection
-	name = "Toggle Welding Shutters"
+	name = "切换焊接护片"
 
 /// We need to do a bit of code duplication here to ensure that we do the right kind of ui_action_click(), while keeping it modular.
 /datum/action/item_action/toggle_steampunk_goggles_welding_protection/Trigger(trigger_flags)
@@ -1083,8 +1083,8 @@
 
 // Donation reward for MyGuy49
 /obj/item/clothing/suit/cloak/ashencloak
-	name = "ashen wastewalker cloak"
-	desc = "A cloak of advanced make. Clearly beyond what ashwalkers are capable of, it was probably pulled from a downed vessel or something. It seems to have been reinforced with goliath hide and watcher sinew, and the hood has been torn off."
+	name = "灰白荒行者斗篷"
+	desc = "一件做工精良的斗篷，显然不是灰行者能做出来的东西，多半是从某艘坠毁的飞船之类的地方弄来的。它似乎用歌利亚的皮与守望者的筋腱加固过，兜帽则已被扯掉。"
 	icon_state = "ashencloak"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
@@ -1093,24 +1093,24 @@
 
 //Donation reward for Hacker T.Dog
 /obj/item/clothing/head/nanotrasen_consultant/hubert
-	name = "CC ensign's cap"
-	desc = "A tailor made peaked cap, denoting the rank of Ensign."
+	name = "中央指挥部少尉帽"
+	desc = "一顶量身定制的军官大檐帽，标示着少尉军衔。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "CCofficerhat"
 
 //Donation reward for Hacker T.Dog
 /obj/item/clothing/suit/armor/vest/nanotrasen_consultant/hubert
-	name = "CC ensign's armoured vest"
-	desc = "A tailor made Ensign's armoured vest, providing the same protection - but in a more stylish fashion."
+	name = "中央指挥部少尉装甲背心"
+	desc = "一件量身定制的少尉装甲背心，防护效果相同，但更有型。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "CCvest"
 
 //Donation reward for Hacker T.Dog
 /obj/item/clothing/under/rank/nanotrasen_consultant/hubert
-	name = "CC ensign's uniform"
-	desc = "A tailor-made Ensign's uniform, various medals and chains hang down from it."
+	name = "中央指挥部少尉制服"
+	desc = "一件量身定制的少尉制服，上面垂挂着各式奖章和链条。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
@@ -1120,8 +1120,8 @@
 
 // Donation reward for Cherno_00
 /obj/item/clothing/head/costume/ushanka/frosty
-	name = "blue ushanka"
-	desc = "A dark blue ushanka with a hand-stitched snowflake on the front. Cool to the touch."
+	name = "蓝色护耳冬帽"
+	desc = "一顶深蓝色护耳冬帽，正面手缝着一片雪花。摸上去凉凉的。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "fushankadown"
@@ -1133,16 +1133,16 @@
 
 // Donation reward for M97screwsyourparents
 /obj/item/clothing/neck/cross
-	name = "silver cross"
-	desc = "A silver cross to be worn on a chain around your neck. Certain to bring you favour from up above."
+	name = "银十字架"
+	desc = "一枚挂在链子上戴在颈间的银十字架。必定能从上头为你带来庇佑。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/necklaces.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/neck.dmi'
 	icon_state = "cross"
 
 // Donation reward for gamerguy14948
 /obj/item/storage/belt/fannypack/occult
-	name = "trinket belt"
-	desc = "A belt covered in various trinkets collected through time. Doesn't look like there's much space for anything else nowadays."
+	name = "小饰品腰带"
+	desc = "一条挂满多年来收集的小饰品的腰带。看样子现在已没剩多少空间放别的东西了。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/belts.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/belt.dmi'
 	icon_state = "occultfannypack"
@@ -1150,8 +1150,8 @@
 
 // Donation reward for gamerguy14948
 /obj/item/clothing/under/occult
-	name = "occult collector's outfit"
-	desc = "A set of clothes fit for someone dapper that isn't afraid of getting dirty."
+	name = "秘术收藏家套装"
+	desc = "一套适合衣着考究、又不介意弄脏的人的服装。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	icon_state = "occultoutfit"
@@ -1159,8 +1159,8 @@
 
 // Donation reward for gamerguy14948
 /obj/item/clothing/head/hooded/occult
-	name = "hood"
-	desc = "Certainly makes you look more ominous."
+	name = "兜帽"
+	desc = "肯定让你看上去更阴森。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "occulthood"
@@ -1168,8 +1168,8 @@
 
 // Donation reward for gamerguy14948
 /obj/item/clothing/suit/hooded/occult
-	name = "occult collector's coat"
-	desc = "A big, heavy coat lined with leather and ivory cloth, adorned with a hood. It looks dusty."
+	name = "秘术收藏家外套"
+	desc = "一件宽大厚重的大衣，内衬皮革与象牙白布料，还带有兜帽。看起来灰扑扑的。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "occultcoat"
@@ -1178,8 +1178,8 @@
 
 // Donation reward for Octus
 /obj/item/clothing/mask/breath/vox/octus
-	name = "sinister visor"
-	desc = "Skrektastic."
+	name = "阴险面甲"
+	desc = "尖啸无敌。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/mask.dmi'
 	worn_icon_vox = 'modular_skyrat/master_files/icons/donator/mob/clothing/mask_vox.dmi'
@@ -1187,38 +1187,38 @@
 
 // Donation reward for 1ceres
 /obj/item/clothing/glasses/rosecolored
-	name = "rose-colored glasses"
-	desc = "Goggle-shaped glasses that seem to have a HUD-like feed in some odd line-based script. It doesn’t look like they were made by NT."
+	name = "玫瑰色眼镜"
+	desc = "护目镜形状的眼镜，似乎内嵌着某种古怪的线条文字脚本式 HUD 信息流。看起来不像是纳米传讯做的。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/glasses.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/eyes.dmi'
 	icon_state = "rose"
 
 // Donation reward for Fuzlet
 /obj/item/card/fuzzy_license
-	name = "license to hug"
-	desc = "A very official looking license. Not actually endorsed by Nanotrasen."
+	name = "拥抱许可证"
+	desc = "一张看起来非常正式的许可证。实际上并未获得纳米传讯的认可。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	icon_state = "license"
 
 	var/possible_types = list(
-		"hug",
-		"snuggle",
-		"cuddle",
-		"kiss",
-		"spoil friends",
-		"hold hands",
-		"have this license",
-		"squeak",
-		"cute",
-		"pat",
-		"administer plushies",
-		"distribute cookies",
-		"sex",
-		"weh")
+		"拥抱",
+		"依偎",
+		"搂抱",
+		"亲吻",
+		"宠朋友",
+		"牵手",
+		"持有此证",
+		"吱吱叫",
+		"卖萌",
+		"摸摸头",
+		"派发玩偶",
+		"分发饼干",
+		"做爱",
+		"呜咽")
 
 /obj/item/card/fuzzy_license/attack_self(mob/user)
 	if(Adjacent(user))
-		user.visible_message(span_notice("[user] shows you: [icon2html(src, viewers(user))] [src.name]."), span_notice("You show \the [src.name]."))
+		user.visible_message(span_notice("[user] 向你展示：[icon2html(src, viewers(user))] [src.name]。"), span_notice("你展示了 \the [src.name]。"))
 	add_fingerprint(user)
 
 /obj/item/card/fuzzy_license/attackby(obj/item/used, mob/living/user, params)
@@ -1226,27 +1226,27 @@
 		return
 
 	if(istype(used, /obj/item/pen) || istype(used, /obj/item/toy/crayon))
-		var/choice = input(user, "Select the license type", "License Type Selection") as null|anything in possible_types
+		var/choice = input(user, "选择许可证类型", "许可证类型选择") as null|anything in possible_types
 		if(!isnull(choice))
-			name = "license to [choice]"
+			name = "许可证：[choice]"
 
 // Donation reward for 1ceres
 /obj/item/clothing/suit/jacket/gorlex_harness
-	name = "engine technician harness"
-	desc = "A blood-red engineering technician harness. You can't seem to figure out a use to it, but it seems to seal magnetically in some places."
+	name = "引擎技师背带"
+	desc = "一件血红色的工程技师背带。你实在想不出它有什么用，但它某些部位似乎能以磁力扣合。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "gorlexharness"
 
 // Donation reward for 1ceres
 /obj/item/poster/korpstech
-	name = "Korps Genetics poster"
+	name = "Korps 遗传学海报"
 	poster_type = /obj/structure/sign/poster/contraband/korpstech
 	icon_state = "rolled_poster"
 
 /obj/structure/sign/poster/contraband/korpstech
-	name = "Korps Genetics"
-	desc = "This poster bears a huge, pink helix on it, with smaller text underneath it that reads 'The Korps institute, advancing the Genetics field since 2423!'"
+	name = "Korps 遗传学"
+	desc = "这张海报上印着一个巨大的粉色螺旋，下方的小字写着“Korps 研究所，自 2423 年起推动遗传学发展！”"
 	icon = 'modular_skyrat/modules/aesthetics/posters/contraband.dmi'
 	icon_state = "korpsposter"
 
@@ -1254,8 +1254,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for Kay-Nite
 /obj/item/clothing/glasses/eyepatch/rosecolored
-	name = "rose-colored eyepatch"
-	desc = "A customized eyepatch with a bright pink HUD floating in front of it. It looks like there's more to it than just an eyepatch, considering the materials it's made of."
+	name = "玫瑰色眼罩"
+	desc = "一副定制的眼罩，前面悬浮着明亮的粉色 HUD。从它所用的材料来看，它似乎不只是一只眼罩那么简单。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/glasses.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/eyes.dmi'
 	icon_state = "rosepatch_R"
@@ -1263,8 +1263,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for Cimika
 /obj/item/clothing/suit/toggle/labcoat/skyrat/tenrai
-	name = "Tenrai labcoat"
-	desc = "A labcoat crafted from a variety of pristine materials, sewn together with a frightening amount of skill. The fabric is aery, smooth as silk, and exceptionally pleasant to the touch. The golden stripes are visible in the dark, working as a beacon to the injured. A small label on the inside of it reads \"Tenrai Kitsunes Supremacy\"."
+	name = "天雷实验袍"
+	desc = "一件用各种纯净材料制成的实验袍，缝制手艺好得令人心惊。布料轻盈，滑如丝绸，触感异常舒服。金色条纹在黑暗中也能看见，为伤者指引方向。内侧的小标签上写着“天雷狐族至上”。"
 	base_icon_state = "tenraicoat"
 	icon_state = "tenraicoat"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
@@ -1278,8 +1278,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 //Donation reward for RealWinterFrost
 /obj/item/clothing/neck/cloak/fluffycloak
-	name = "Cloak of the Fluffy One"
-	desc = "Hugs and kisses is only what this one knows, may their hugs be for all and not for their own \"For Fuffy Use Only\"."
+	name = "毛绒之主的斗篷"
+	desc = "它只懂得拥抱与亲吻，愿它们的拥抱给予所有人，而不是只留给自己的“仅限弗菲使用”。"
 	icon_state = "fluffycloak"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/cloaks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/neck.dmi'
@@ -1291,8 +1291,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 
 /obj/item/clothing/mask/gas/larpswat
-	name = "Foam Force SWAT Mask"
-	desc = "What seems to be a SWAT mask at first, is actually a gasmask that has replica parts of a SWAT mask made from cheap plastic. Hey at least it looks good if you enjoy looking like a security larper."
+	name = "泡沫部队特警面具"
+	desc = "乍看像一张特警面具，其实是一只防毒面具，只是用廉价塑料做了特警面具的仿制部件。不过至少，如果你喜欢扮成安保兵的样子，它还挺好看的。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/mask.dmi'
 	icon_state = "larpswat"
@@ -1300,16 +1300,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for Cimika, on behalf of tf4
 /obj/item/clothing/neck/fishpendant
-	name = "fish necklace"
-	desc = "A simple, silver necklace with a blue tuna pendant.\n\"L. Alazawi\" is inscribed on the back. You get the feeling it would go well with potatoes and green beans."
+	name = "鱼形项链"
+	desc = "一条简单的银项链，坠着一只蓝色金枪鱼吊坠。\n背面刻着“L. Alazawi”。你总觉得它配土豆和青豆会很搭。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/necklaces.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/neck.dmi'
 	icon_state = "fishpendant"
 
 // Donation reward for Weredoggo
 /obj/item/hairbrush/tactical
-	name = "tactical hairbrush"
-	desc = "Sometimes, after a brush with death, a good grooming is just the thing for tactical stress relief. "
+	name = "战术发刷"
+	desc = "有时候，在与死亡擦肩而过之后，好好梳整一番正是缓解战术压力的最佳方式。 "
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	lefthand_file = 'modular_skyrat/master_files/icons/donator/mob/inhands/donator_left.dmi'
 	righthand_file = 'modular_skyrat/master_files/icons/donator/mob/inhands/donator_right.dmi'
@@ -1318,32 +1318,32 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for ultimarifox
 /obj/item/clothing/under/rank/security/head_of_security/alt/roselia
-	name = "black and red turtleneck"
-	desc = "A black turtleneck with red livery attached. Reminds you of a time before the color blue. It seems padded to hell and back as well."
+	name = "黑红高领衫"
+	desc = "一件黑色高领衫，接有红色饰边。让你想起蓝色出现之前的年代。而且它看起来里里外外都塞满了衬垫。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	icon_state = "hosaltred"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia
-	name = "red-tinted giga HUD gar glasses"
-	desc = "GIGA GAR glasses with a security hud implanted in the lens. Reminds you of a time before the color blue."
+	name = "红色千兆 HUD GAR 墨镜"
+	desc = "镜片中植入安保 HUD 的千兆 GAR 墨镜。让你想起蓝色出现之前的年代。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/glasses.dmi'
 	icon_state = "supergarsred"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/eyes.dmi'
 
 //Donation reward for Konstyantyn
 /obj/item/clothing/accessory/badge/holo/jade
-	name = "jade holobadge"
-	desc = "A strangely green holobadge. 'Lieutenant Uriah' is stamped onto it, above the letters JS."
+	name = "翡翠全息徽章"
+	desc = "一枚奇特的绿色全息徽章。上面压印着“乌利亚中尉”，下方是字母 JS。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/custom_w.dmi'
 	icon_state = "greenbadge"
 
 // Donation reward for Dudewithatude
 /obj/item/clothing/suit/toggle/rainbowcoat
-	name = "rainbow coat"
-	desc = "A wonderfully brilliant coat that displays the color of the rainbow!"
+	name = "彩虹外套"
+	desc = "一件绚丽非凡、能显现彩虹色彩的外套！"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "rainbowcoat"
@@ -1351,8 +1351,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for M97screwsyourparents
 /obj/item/clothing/head/recruiter_cap
-	name = "recruiter cap"
-	desc = "Hey, free college!"
+	name = "招募员帽子"
+	desc = "嘿，免费上大学！"
 	icon_state = "officerhat"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
@@ -1360,8 +1360,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for M97screwsyourparents
 /obj/item/clothing/suit/toggle/recruiter_jacket
-	name = "recruiter jacket"
-	desc = "Hey, free college!"
+	name = "招募员夹克"
+	desc = "嘿，免费上大学！"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "officerjacket"
@@ -1369,8 +1369,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for M97screwsyourparents
 /obj/item/clothing/under/recruiter_uniform
-	name = "recruiter uniform"
-	desc = "Hey, free college!"
+	name = "招募员制服"
+	desc = "嘿，免费上大学！"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	icon_state = "oldmarine_whites"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
@@ -1379,8 +1379,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 //Donation reward for Tetrako
 /obj/item/clothing/under/nt_idol_skirt
-	name = "\improper NT Idol's suitskirt"
-	desc = "This outfit resembles much the same as other ranking NT Officers, but comes with certain bells and whistles, like frills around the dress, slight puffs around the shoulders and most importantly, several golden buckles to accentuate the green! The only thing fit for NT's very own idols to wear!"
+	name = "\improper 纳米传讯偶像的西装裙"
+	desc = "这套服装与其他高阶纳米传讯军官的款式十分相似，但带着不少花哨的点缀，比如裙摆周围的褶边、肩部微微的蓬起，最重要的是几枚金色搭扣，用来衬托那一身绿！只有这种衣服才配得上纳米传讯自家的偶像们穿！"
 	icon = 'icons/obj/clothing/under/centcom.dmi'
 	worn_icon = 'icons/mob/clothing/under/centcom.dmi'
 	icon_state = "centcom_skirt"
@@ -1391,8 +1391,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for SlippyJoe
 /obj/item/clothing/accessory/hypno_watch
-	name = "cracked pocket watch"
-	desc = "A shining pocket watch, cast in gold and embossed with metallic swirls that almost seem  amethyst under the right light... There's a button on the top to unlatch the front panel, although all that's inside is a layer of cracked glass, the argent hands stuck pointing to 7:07 PM. The brushed silver of these arrows almost seems to swirl if one's gaze lingers for too long. Despite its inert appearance, the eerie mechanical sound of gears turning and clicking in place seems to quietly ring out from the artifact. In the right hands..."
+	name = "破裂的怀表"
+	desc = "一只闪亮的金质怀表，表面压印着金属漩涡纹，在合适的光线下几乎泛出紫水晶般的光泽……顶部有一个按钮可以弹开前盖，然而里面只有一层碎裂的玻璃，银色的指针卡在晚上 7:07。若目光停留过久，这些银色箭头上的拉丝纹理几乎像是在流转。尽管外表毫无动静，这件器物内部却似乎隐约传出齿轮转动、咔哒咬合的诡异机械声。落在对的人手里……"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/custom_w.dmi'
 	lefthand_file = 'modular_skyrat/master_files/icons/donator/mob/inhands/donator_left.dmi'
@@ -1407,20 +1407,20 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 /obj/item/clothing/accessory/hypno_watch/ui_action_click(mob/living/user, action)
 	if(!isliving(user) || !can_use(user))
 		return
-	var/message = input(user, "Speak with a hypnotic whisper", "Whisper")
+	var/message = input(user, "以催眠低语说话", "低语")
 	if(QDELETED(src) || QDELETED(user) || !message || !user.can_speak())
 		return
 	user.whisper(message, spans = spans)
 
 /obj/item/clothing/accessory/hypno_watch/examine()
 	. = ..()
-	. += span_boldwarning("Who knows what it could be used for?")
+	. += span_boldwarning("谁知道它能用来做什么呢？")
 
 // Donation reward for BoisterousBeebz
 
 /obj/item/clothing/under/bubbly_clown/skirt
-	name = "bubbly clown dress"
-	desc = "A bright and cheerful clown dress, honk!"
+	name = "泡泡小丑连衣裙"
+	desc = "一件鲜亮欢快的小丑连衣裙，洪克！"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	icon_state = "bubbly_clown_dress"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
@@ -1430,19 +1430,19 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for Sweetsoulbrother
 /obj/item/coin/donator/marsoc
-	name = "MARSOC Challenge Coin"
-	desc = "This is a challenge coin given to all MARSOC members upon honorable separation from the Corps. \
-			The coin has the insignia of the Marine Special Operations Command on one side, and the Terran Government Marine Corps logo on the other. \
-			This one has an engraving on the Marine Corps logo side, etched in a circle around it: \
-			\"To Staff Sargent Henry Rockwell, for his exemplary service to the Special Operations community and his outstanding moral fiber \
-			and shining example to the core values of the Terran Government Marine Corps.\""
+	name = "MARSOC 挑战币"
+	desc = "这是一枚颁发给所有光荣退役的 MARSOC 成员的挑战币。 \
+			硬币一面是海军特种作战司令部的徽记，另一面是地球政府海军陆战队的标志。 \
+			这一枚在海军陆战队标志那一面刻有一圈铭文： \
+			“致亨利·洛克威尔上士，表彰他对特种作战社群堪称典范的贡献、他出众的道德品格， \
+			以及作为地球政府海军陆战队核心价值的光辉榜样。”"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	sideslist = list("MARSOC", "SFMC")
 
 // Donation reward for Kay-Nite
 /obj/item/clothing/under/tactichill
-	name = "tactichill jacket"
-	desc = "The brighter variant of the tacticool clotheswear, for when you want to look even cooler than usual and still operate at the same time."
+	name = "战术休闲夹克"
+	desc = "战术潮服中更鲜亮的一款，适合你想打扮得比平时更酷、同时还要继续行动的时候。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
@@ -1453,7 +1453,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for thedragmeme
 /obj/item/clothing/shoes/fancy_heels/drag
-	desc = "A fancy pair of high heels. Clack clack clack... definitely turning a lot of heads."
+	desc = "一双精致的高跟鞋。咔哒、咔哒、咔哒……绝对能引来不少回头率。"
 
 /obj/item/clothing/shoes/fancy_heels/drag/Initialize(mapload)
 	. = ..()
@@ -1462,8 +1462,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 // Donation reward for Razurath
 
 /obj/item/clothing/under/bimpcap
-	name = "Formal Matte Black Captain Uniform"
-	desc = "A professional looking matte black uniform cladded with medals of distintive service and valor, only worn by the highest of station officials."
+	name = "正式哑光黑舰长制服"
+	desc = "一件看起来相当专业的哑光黑制服，缀满表彰卓越服役与英勇的奖章，只有站上最高级别的官员才会穿着。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	icon_state = "bimpcap"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
@@ -1473,24 +1473,24 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for Nikohyena
 /obj/item/clothing/glasses/gold_aviators
-	name = "purple and gold aviators"
-	desc = "A round pair of gold aviator glasses, the lenses having been applied with a gem-like purple tint."
+	name = "紫金飞行员墨镜"
+	desc = "一副圆形金框飞行员墨镜，镜片染上了宝石般的紫色。"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/eyes.dmi'
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/glasses.dmi'
 	icon_state = "goldaviator"
 
 // Donation reward for Thedragmeme
 /obj/item/clothing/under/caged_dress/skirt
-	name = "Caged Purple Dress"
-	desc = "A silky purple dress with a partially exposed crinoline underneath."
+	name = "笼裙式紫裙"
+	desc = "一件丝滑的紫色连衣裙，下方露出部分裙撑结构。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	icon_state = "caged_dress"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 
 // Donation reward for Thedragmeme
 /obj/item/clothing/suit/short_coat
-	name = "Short Purple Coat"
-	desc = "A short black and purple coat, mostly used for asthetics then insulating the person wearing it."
+	name = "短款紫外套"
+	desc = "一件黑紫相间的短外套，主要用于美观，而非为穿着者保暖。"
 	icon_state = "short_coat"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
@@ -1498,8 +1498,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for Thedragmeme
 /obj/item/clothing/neck/flower_collar
-	name = "Flower Collar"
-	desc = "A purple collar with a dainty red flower attached to the right side of the item."
+	name = "花朵项圈"
+	desc = "一只紫色项圈，右侧缀着一朵小巧的红花。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/necklaces.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/neck.dmi'
 	icon_state = "flower_collar"
@@ -1507,8 +1507,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for Sigmar Alkahest
 /obj/item/clothing/under/costume/skyrat/kimono/sigmar
-	name = "short-sleeved kimono"
-	desc = "A traditional ancient Earth Japanese Kimono. It's white with a gold trim and burnished gold ivy pattern."
+	name = "短袖和服"
+	desc = "一件传统的地球古代日式和服。白色底，配金色滚边与做旧金色的常春藤纹样。"
 	icon_state = "kimono-gold"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
@@ -1519,8 +1519,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for Sigmar Alkahest
 /obj/item/clothing/head/hooded/sigmarcoat
-	name = "black raincoat hood"
-	desc = "Certainly makes you look more ominous."
+	name = "黑色雨衣兜帽"
+	desc = "肯定让你看上去更阴森。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "long-coat-hood"
@@ -1528,8 +1528,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for Sigmar Alkahest
 /obj/item/clothing/suit/hooded/sigmarcoat
-	name = "black open-faced raincoat"
-	desc = "A light black raincoat. You didn't even know they're made in this color."
+	name = "黑色开襟雨衣"
+	desc = "一件轻薄的黑色雨衣。你都不知道他们还会做这个颜色的雨衣。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "long-coat"
@@ -1539,8 +1539,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 // Donation reward for The Sharkenning
 
 /obj/item/clothing/gloves/ring/hypno/sharkenning
-	name = "suspiciously glossy ring"
-	desc = "This ring oozes with an assertive edge as sharp light bends along the smooth, black bronze. Like the finger that wears it, an exceptional amount of polish repels nearly all the light that glances along its surface. If you look closer, a slight golden hue indicates the precious metals inside the alloy."
+	name = "可疑的光亮戒指"
+	desc = "这枚戒指透着一种凌厉的气息，锐利的光线在光滑的黑青铜表面蜿蜒流转。如同戴着它的那根手指，异常考究的抛光几乎反射掉了所有掠过表面的光。若凑近细看，还能见到一丝金色光泽，昭示着合金内部所含的贵金属。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/hands.dmi'
 	icon_state = "ringblack"
@@ -1550,8 +1550,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	spans = list("glossy")
 
 /obj/item/clothing/ears/kinky_headphones/sharkenning
-	name = "suspiciously glossy headphones"
-	desc = "Black metalic headphones with a glossy finish. The soft rubber cushions are comftorable and form fitting"
+	name = "可疑的光亮耳机"
+	desc = "黑色金属耳机，表面带有光泽。柔软的橡胶耳垫舒适且贴合。"
 	icon_state = "kinkphones_black_off"
 	base_icon_state = "kinkphones"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/ears.dmi'
@@ -1562,8 +1562,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 //reward for SomeRandomOwl
 /obj/item/clothing/head/costume/strigihat
-	name = "starry witch hat"
-	desc = "A cute witch hat typically worn by an owl-like teshari."
+	name = "星光女巫帽"
+	desc = "一顶可爱的女巫帽，通常由像猫头鹰一样的特沙利戴着。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/head_teshari.dmi'
@@ -1571,16 +1571,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 //Donation reward for Razurath
 /obj/item/clothing/head/razurathhat
-	name = "Golden Nanotrasen Officer Cap"
-	desc = "A Nanotrasen officer cap. Now darker, golder, and cooler!"
+	name = "金色纳米传讯军官帽"
+	desc = "一顶纳米传讯军官帽。现在更深、更金、更酷了！"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "razurath_hat"
 
 //Donation reward for Razurath
 /obj/item/clothing/suit/razurathcoat
-	name = "Golden Nanotrasen Officer Coat"
-	desc = "A fancy Nanotrasen officer coat. Now darker, golder, and cooler than ever!"
+	name = "金色纳米传讯军官外套"
+	desc = "一件精致的纳米传讯军官外套。现在比以往更深、更金、更酷！"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "razurath_coat"
@@ -1588,8 +1588,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for MaSvedish
 /obj/item/holocigarette/masvedishcigar
-	name = "holocigar"
-	desc = "A soft buzzing device that, using holodeck technology, replicates a slow burn cigar. Now with less-shock technology. It has a small inscription of 'MG' on the golden label."
+	name = "全息雪茄"
+	desc = "一件发出柔和嗡鸣的装置，用全息甲板技术模拟缓慢燃烧的雪茄。现在还采用了低电击技术。金色标签上刻着一个小小的“MG”。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/mask.dmi'
 	lefthand_file = 'modular_skyrat/master_files/icons/donator/mob/inhands/donator_left.dmi'
@@ -1602,8 +1602,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 // Donation reward for LT3
 /obj/item/clothing/suit/armor/skyy
-	name = "silver jacket mk II"
-	desc = "A jacket for those with a commanding presence. Made of synthetic fabric, it's interwoven with a special alloy that provides extra protection and style."
+	name = "银色夹克 Mk II"
+	desc = "一件专为气场强大者打造的夹克。由合成纤维制成，织入了特殊合金，既提供额外防护又很时尚。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "lt3_jacket"
@@ -1611,8 +1611,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/suit/jacket/skyy
-	name = "silver jacket"
-	desc = "A jacket for those with a commanding presence. Made of synthetic fabric, it's interwoven with a special alloy that provides extra protection and style."
+	name = "银色夹克"
+	desc = "一件专为气场强大者打造的夹克。由合成纤维制成，织入了特殊合金，既提供额外防护又很时尚。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "lt3_jacket"
@@ -1620,8 +1620,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/pants/skyy
-	name = "silver jeans"
-	desc = "A pair of jeans for those with a commanding presence. Made of shining, silver denim, it's interwoven with a special alloy that provides extra protection and style."
+	name = "银色牛仔裤"
+	desc = "一条专为气场强大者打造的牛仔裤。由闪亮的银色丹宁布制成，织入了特殊合金，既提供额外防护又很时尚。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
 	lefthand_file = 'modular_skyrat/master_files/icons/donator/mob/inhands/donator_left.dmi'
@@ -1630,16 +1630,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	inhand_icon_state = "lt3_jeans"
 
 /obj/item/clothing/gloves/skyy
-	name = "charcoal fingerless gloves"
-	desc = "Valuing form over function, these gloves barely cover more than the palm of your hand."
+	name = "炭灰色无指手套"
+	desc = "比起实用更看重造型，这副手套几乎只遮得住你的掌心。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/hands.dmi'
 	icon_state = "lt3_gloves"
 
 // Donation reward for Lolpopomg101
 /obj/item/clothing/suit/hooded/colorblockhoodie
-	name = "color-block hoodie"
-	desc = "A soft pastel color-block hoodie from an unrecognizable brand."
+	name = "拼色连帽衫"
+	desc = "一件来自某个认不出的品牌的柔和粉彩拼色连帽衫。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "colorblockhoodie"
@@ -1647,44 +1647,44 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/head/hooded/colorblockhoodie
-	name = "hood"
-	desc = "Very soft on the inside!"
+	name = "兜帽"
+	desc = "里面非常柔软！"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "colorblockhood"
 	flags_inv = HIDEHAIR
 
 /obj/item/clothing/suit/toggle/digicoat
-	toggle_noun = "holo-display"
+	toggle_noun = "全息显示屏"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 //Public donation reward for Razurath
 /obj/item/clothing/suit/toggle/digicoat/glitched
-	name = "hacked digicoat"
-	desc = "Glitched images display across the back. Cool!"
+	name = "被黑入的数字外套"
+	desc = "背面显示着故障的图像。酷！"
 	base_icon_state = "digicoat_glitched"
 	icon_state = "digicoat_glitched"
 
 /obj/item/clothing/suit/toggle/digicoat/nanotrasen
-	name = "nanotrasen digicoat"
-	desc = "A company jacket of popular design."
+	name = "纳米传讯数字外套"
+	desc = "一件设计很受欢迎的公司夹克。"
 	base_icon_state = "digicoat_nt"
 	icon_state = "digicoat_nt"
 
 /obj/item/clothing/suit/toggle/digicoat/interdyne
-	name = "interdyne digicoat"
-	desc = "A sinister colored jacket from a familiar company."
+	name = "英特戴恩数字外套"
+	desc = "一件来自一家眼熟公司的阴森配色夹克。"
 	base_icon_state = "digicoat_interdyne"
 	icon_state = "digicoat_interdyne"
 
 /obj/item/clothing/suit/armor/hos/elofy
-	name = "anime admiral coat"
-	desc = "This coat is a near perfect replica of the one worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
-		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
-		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
-		but hasn't had much spread outside of the Terran Government."
+	name = "动画提督外套"
+	desc = "这件外套几乎完美复刻了《银河冲突英雄传》主角李舜臣提督所穿的那一件， \
+		这是一部以自由行星贸易联盟与第二银河帝国为背景的动画战争剧。 \
+		在欣赏动画片与年代战争剧的人群中，它曾是一件轰动一时的单品， \
+		但在地球政府之外并没有流传多广。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "coat_blackred"
@@ -1696,50 +1696,50 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 /obj/item/clothing/suit/armor/hos/elofy/examine_more(mob/user)
 	. = ..()
-	. += "It seems particularly soft and has subtle ballistic fibers intwined with the soft fabric that is perfectedly tailored to the body that wears it. Each golden engraving seems to reflect against your eyes with a slightly blinding flare. This is part of a full set of Luna Wolves Legion battle garb."
+	. += "它摸起来格外柔软，柔软的布料里织入了细微的防弹纤维，并且完美贴合穿着者的身体。每一处金色刻纹在你眼前都会反射出微微刺目的光芒。这是一整套月狼军团战服的一部分。"
 
 
 /obj/item/clothing/head/hats/hos/elofy
-	name = "anime admiral hat"
-	desc = "This hat is a near perfect replica of the one worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
-		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
-		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
-		but hasn't had much spread outside of the Terran Government."
+	name = "动画提督帽"
+	desc = "这顶帽子几乎完美复刻了《银河冲突英雄传》主角李舜臣提督所戴的那一顶， \
+		这是一部以自由行星贸易联盟与第二银河帝国为背景的动画战争剧。 \
+		在欣赏动画片与年代战争剧的人群中，它曾是一件轰动一时的单品， \
+		但在地球政府之外并没有流传多广。"
 	icon ='modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "hat_black"
 
 /obj/item/clothing/gloves/elofy
-	name = "anime admiral gloves"
-	desc = "These gloves are a near perfect replica of those worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
-		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
-		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
-		but hasn't had much spread outside of the Terran Government."
+	name = "动画提督手套"
+	desc = "这副手套几乎完美复刻了《银河冲突英雄传》主角李舜臣提督所戴的那一副， \
+		这是一部以自由行星贸易联盟与第二银河帝国为背景的动画战争剧。 \
+		在欣赏动画片与年代战争剧的人群中，它曾是一件轰动一时的单品， \
+		但在地球政府之外并没有流传多广。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/hands.dmi'
 	icon_state = "gloves_black"
 
 /obj/item/clothing/shoes/jackboots/elofy
-	name = "anime admiral boots"
-	desc = "These boots are a near perfect replica of those worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
-		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
-		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
-		but hasn't had much spread outside of the Terran Government."
+	name = "动画提督靴"
+	desc = "这双靴子几乎完美复刻了《银河冲突英雄传》主角李舜臣提督所穿的那一双， \
+		这是一部以自由行星贸易联盟与第二银河帝国为背景的动画战争剧。 \
+		在欣赏动画片与年代战争剧的人群中，它曾是一件轰动一时的单品， \
+		但在地球政府之外并没有流传多广。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/feet.dmi'
 	icon_state = "boots_blackred"
 
 // Donation reward for grasshand
 /obj/item/clothing/under/rank/civilian/chaplain/divine_archer/noble
-	name = "noble gambeson"
-	desc = "These clothes make you feel a little closer to space."
+	name = "贵族武装衣"
+	desc = "这些衣服让你觉得离太空更近了一点。"
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/civilian_digi.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/civilian_teshari.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/shoes/jackboots/noble
-	name = "noble boots"
-	desc = "These boots make you feel like you can walk on space."
+	name = "贵族靴"
+	desc = "这双靴子让你觉得自己能在太空上行走。"
 	icon_state = "archerboots"
 	inhand_icon_state = "archerboots"
 
@@ -1748,17 +1748,17 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "vickyred"
-	name = "nobility dresscoat"
-	desc = "An elaborate coat composed of a silky yet firm material. \
-		The fabric is quite thin, and provides negligible protection or insulation, \
-		but is pleasant on the skin.\nWhile extremely well made, it seems quite \
-		fragile, and rather <i>expensive</i>. You get the feeling it might not \
-		<b>survive a washing machine</b> without specialized treatment."
-	special_desc = "It's buttons are pressed with some kind of sigil - which, to those knowledgeable in \
-		Tiziran politics or nobility, would be recognizable as the <b>Kor'Yesh emblem</b>, \
-		a relatively <i>minor house of nobility</i> within <i>Tizira</i>.\n\n\
-		On a closer inspection, it would appear the interior is modified with protective material and mounting points \
-		most often found on medical labcoats."
+	name = "贵族礼服外套"
+	desc = "一件精巧的外套，由丝滑却挺括的材料制成。 \
+		布料相当薄，提供的防护与保暖几乎可以忽略， \
+		但贴在皮肤上很舒服。\n虽然做工极佳，它看起来却相当 \
+		脆弱，而且颇为<i>昂贵</i>。你总觉得如果不作专门处理，它可能撑不过 \
+		一台<b>洗衣机</b>。"
+	special_desc = "它的纽扣上压印着某种纹章——对熟悉提兹拉政治或贵族的人而言， \
+		可以认出那是 <b>Kor'Yesh 家徽</b>， \
+		<i>提兹拉</i>境内一个相对<i>不起眼的贵族家族</i>。\n\n\
+		再仔细查看，内里似乎经过改装，加上了防护材料与挂载点， \
+		这类设计最常见于医疗实验袍。"
 	limb_integrity = 100 // note that this is usually disabled by having it set to 0, so this is just strictly worse
 	body_parts_covered = CHEST|ARMS
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
@@ -1791,13 +1791,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	var/sound_effect_path
 	var/sound_effect_volume
 	if (total_credits >= NOBILITY_DRESSCOAT_WASHING_CREDITS_NEEDED) // all is well
-		message = span_notice("[src] seems to absorb the raw capital from its surroundings, and is successfully washed!")
+		message = span_notice("[src] 似乎从周围吸收了纯粹的资本，并被成功洗净！")
 		sound_effect_path = 'sound/effects/whirthunk.ogg'
 		sound_effect_volume = 40
 		for (var/obj/item/entry_to_delete as anything in money_to_delete)
 			qdel(entry_to_delete)
 	else // IT COSTS ME A THOUSAND CREDITS TO WASH THIS!! HALF MY BUDGET IS DRY CLEANING
-		message = span_warning("[src]'s delicate fabric is shredded by [washer]! How terrible!")
+		message = span_warning("[src] 娇贵的布料被 [washer] 撕碎了！太可怕了！")
 		sound_effect_path = 'sound/effects/cloth_rip.ogg'
 		sound_effect_volume = 30
 		for (var/zone in cover_flags2body_zones(body_parts_covered))
@@ -1810,8 +1810,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	return ..()
 
 /obj/item/clothing/under/costume/dragon_maid
-	name = "dragon maid uniform"
-	desc = "A uniform for a kitchen maid, stylized to have draconic detailing."
+	name = "龙女仆制服"
+	desc = "一件厨房女仆的制服，带有龙族风格的装饰细节。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	icon_state = "dragon_maid"
@@ -1824,8 +1824,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 //  Donation reward for vexcint
 /obj/item/clothing/head/anubite
-	name = "\improper Anubite headpiece"
-	desc = "A dark coloured headpiece with golden accents. Its features seem reminiscent of the god Anubis."
+	name = "\improper 阿努比斯信徒头饰"
+	desc = "一件深色头饰，带金色点缀。它的造型让人联想到阿努比斯神。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	icon_state = "anubite_headpiece"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
@@ -1833,54 +1833,54 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 //Donation reward for Jasohavents
 /obj/item/clothing/under/rank/cargo/qm/skirt/old
-	name = "quartermaster's jumpskirt"
-	desc = "It seems somebody has kept a couple outdated quartermaster uniforms. They smell of Rum and Smoke."
+	name = "货运主管的连体短裙"
+	desc = "看来有人留着几套过时的货运主管制服。它们闻起来有朗姆酒和烟味。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 
 //Donation reward for Jasohavents
 /obj/item/food/griddle_toast/toaster_implant
-	name = "toast"
-	desc = "Thick cut bread, toasted to perfection."
+	name = "吐司"
+	desc = "厚切面包，烤得恰到好处。"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 1)
 //it's meant to be practically non-functional in terms of giving any ingame advantage, but it seems food needs to have *something* in it to be edible
 //it *can* be a whole thing with a "gridle" that only accepts bread from the user's hand but I can't be assed to implement it for a one-off gimmick donator item
 
 #define TOASTER_IMPLANT_COOLDOWN (3 MINUTES)
 /obj/item/implant/toaster
-	name = "toaster implant"
+	name = "烤面包机植入体"
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "griddle_toast"
 	COOLDOWN_DECLARE(toast_cooldown)
 
 /obj/item/implant/toaster/get_data()
-	var/dat = {"<b>Implant Specifications:</b><BR>
-				<b>Name:</b> Toaster-O brand toaster module<BR>
-				<b>Implant Details:</b> <BR>
-				<b>Function:</b> Serves you a delicious toasted slice of bread."}
+	var/dat = {"<b>植入体规格：</b><BR>
+				<b>名称：</b>Toaster-O 牌烤面包模块<BR>
+				<b>植入体详情：</b> <BR>
+				<b>功能：</b>为你奉上一片美味的烤面包。"}
 	return dat
 
 /obj/item/implant/toaster/activate()
 	. = ..()
 	if(!COOLDOWN_FINISHED(src, toast_cooldown))
-		imp_in.show_message(span_notice("You're not quite ready to toast another toast yet."))
+		imp_in.show_message(span_notice("你还没准备好再烤一片吐司。"))
 		return
 
 	var/obj/item/food/griddle_toast/toaster_implant/toast = new(get_turf(imp_in))
-	var/adjective = pick("crispy", "delicious", "fresh")
-	imp_in.visible_message(span_notice("[imp_in] ejects a [adjective] toast!"), span_notice("With the familiar \"ding\", the toaster ejects a [adjective] toast."))
+	var/adjective = pick("酥脆的", "美味的", "新鲜的")
+	imp_in.visible_message(span_notice("[imp_in] 弹出了一片[adjective]吐司！"), span_notice("随着熟悉的“叮”声，烤面包机弹出了一片[adjective]吐司。"))
 
 	playsound(imp_in, 'sound/machines/ding.ogg', vol = 75, vary = FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 	toast.throw_at(get_turf(imp_in), 2, 3)
 	COOLDOWN_START(src, toast_cooldown, TOASTER_IMPLANT_COOLDOWN)
 
 /obj/item/implanter/toaster
-	name = "implanter (toaster)"
+	name = "植入器（烤面包机）"
 	imp_type = /obj/item/implant/toaster
 
 /obj/item/implantcase/toaster
-	name = "implant case - 'Toaster'"
-	desc = "A glass case containing a toaster implant. Sweet."
+	name = "植入体盒 -“烤面包机”"
+	desc = "一个装有烤面包机植入体的玻璃盒。真甜。"
 	imp_type = /obj/item/implant/toaster
 
 #undef TOASTER_IMPLANT_COOLDOWN

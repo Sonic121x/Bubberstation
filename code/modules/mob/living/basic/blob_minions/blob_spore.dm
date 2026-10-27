@@ -2,8 +2,8 @@
  * A floating fungus which turns people into zombies and explodes into reagent clouds upon death.
  */
 /mob/living/basic/blob_minion/spore
-	name = "blob spore"
-	desc = "A floating, fragile spore."
+	name = "变形菌孢子"
+	desc = "一颗漂浮着的脆弱孢子。"
 	icon = 'icons/mob/nonhuman-player/blob.dmi'
 	icon_state = "blobpod"
 	base_icon_state = "blobpod"
@@ -11,17 +11,17 @@
 	health_doll_icon = "blobpod"
 	health = BLOBMOB_SPORE_HEALTH
 	maxHealth = BLOBMOB_SPORE_HEALTH
-	verb_say = "psychically pulses"
-	verb_ask = "psychically probes"
-	verb_exclaim = "psychically yells"
-	verb_yell = "psychically screams"
+	verb_say = "发出心灵脉动"
+	verb_ask = "以心灵感应探问"
+	verb_exclaim = "发出心灵尖啸"
+	verb_yell = "发出心灵尖叫"
 	melee_damage_lower = BLOBMOB_SPORE_DMG_LOWER
 	melee_damage_upper = BLOBMOB_SPORE_DMG_UPPER
 	obj_damage = 10
-	attack_verb_continuous = "batters"
-	attack_verb_simple = "batter"
+	attack_verb_continuous = "猛击"
+	attack_verb_simple = "猛击"
 	attack_sound = 'sound/items/weapons/genhit1.ogg'
-	death_message = "explodes into a cloud of gas!"
+	death_message = "爆成一团气体！"
 	gold_core_spawnable = HOSTILE_SPAWN
 	basic_mob_flags = DEL_ON_DEATH
 	ai_controller = /datum/ai_controller/basic_controller/blob_spore
@@ -50,7 +50,7 @@
 
 /// Become a zombie
 /mob/living/basic/blob_minion/spore/proc/zombify(mob/living/carbon/human/target)
-	visible_message(span_warning("The corpse of [target.name] suddenly rises!"))
+	visible_message(span_warning("[target.name] 的尸体突然站了起来！"))
 	var/mob/living/basic/blob_minion/zombie/blombie = change_mob_type(zombie_type, loc, new_name = initial(zombie_type.name))
 	blombie.pass_flags |= PASSBLOB //No way to pass the blob_borne info through change_mob_type() to Initilize(), so we just circumvent it here.
 	APPLY_FACTION_AND_ALLIES_FROM(blombie, src) //inherit the spore's faction in case it was spawned with a different one (eg gold core)
@@ -104,7 +104,7 @@
 
 /// Weakened spore spawned by distributed neurons, can't zombify people and makes a teeny explosion
 /mob/living/basic/blob_minion/spore/minion/weak
-	name = "fragile blob spore"
+	name = "脆弱变形菌孢子"
 	health = BLOBMOB_SPORE_HEALTH / 2
 	maxHealth = BLOBMOB_SPORE_HEALTH / 2
 	melee_damage_lower = BLOBMOB_SPORE_DMG_LOWER / 2
@@ -139,5 +139,5 @@
 	)
 
 /mob/living/basic/blob_minion/spore/independent/proc/on_assumed_control()
-	to_chat(src, span_blobannounce("You are a spore born free from the shackles of an overmind.\n\nHowever this strange predicament has not muted the hostility you feel towards creatures that are not your kin, this base instinct appears to be a part of your true self."))
+	to_chat(src, span_blobannounce("你是一颗摆脱了主脑枷锁、生而自由的孢子。\n\n然而，这离奇的处境并没有压制你对非我族类的敌意，这种原始本能似乎是你真正自我的一部分。"))
 	SEND_SOUND(src, sound('sound/music/antag/blobalert.ogg', volume = 50))

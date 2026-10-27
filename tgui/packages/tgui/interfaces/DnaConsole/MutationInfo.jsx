@@ -10,7 +10,7 @@ import {
 } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
-import {
+import { chromosomeDisplay } from '../../localization/batchThreeDisplay'; import {
   CHROMOSOME_NEVER,
   CHROMOSOME_NONE,
   CHROMOSOME_USED,
@@ -31,22 +31,22 @@ const ChromosomeInfo = (props) => {
   const { mutation, disabled } = props;
   const { data, act } = useBackend();
   if (mutation.CanChromo === CHROMOSOME_NEVER) {
-    return <Box color="label">No compatible chromosomes</Box>;
+    return <Box color="label">没有兼容的染色体</Box>;
   }
   if (mutation.CanChromo === CHROMOSOME_NONE) {
     if (disabled) {
-      return <Box color="label">No chromosome applied.</Box>;
+      return <Box color="label">尚未应用染色体。</Box>;
     }
     return (
       <>
         <Dropdown
           width="240px"
-          options={mutation.ValidStoredChromos}
+          options={mutation.ValidStoredChromos.map((value) => ({ value, displayText: chromosomeDisplay(value) }))}
           disabled={mutation.ValidStoredChromos.length === 0}
           selected={
             mutation.ValidStoredChromos.length === 0
-              ? 'No Suitable Chromosomes'
-              : 'Select a chromosome'
+              ? '没有合适的染色体'
+              : '选择染色体'
           }
           onSelected={(e) =>
             act('apply_chromo', {
@@ -56,14 +56,14 @@ const ChromosomeInfo = (props) => {
           }
         />
         <Box color="label" mt={1}>
-          Compatible with: {mutation.ValidChromos}
+          兼容：{mutation.ValidChromos.split(', ').map(chromosomeDisplay).join('、')}
         </Box>
       </>
     );
   }
   if (mutation.CanChromo === CHROMOSOME_USED) {
     return (
-      <Box color="label">Applied chromosome: {mutation.AppliedChromo}</Box>
+      <Box color="label">已应用染色体：{chromosomeDisplay(mutation.AppliedChromo)}</Box>
     );
   }
   return null;
@@ -83,7 +83,7 @@ const MutationCombiner = (props) => {
       width="240px"
       options={mutations.map((mutation) => mutation.Name)}
       disabled={mutations.length === 0}
-      selected="Combine mutations"
+      selected="组合突变"
       onSelected={(value) =>
         act(`combine_${source.Source}`, {
           firstref: brefFromName(value),
@@ -109,12 +109,12 @@ export const MutationInfo = (props) => {
   const mutationStorage = data.storage.console ?? [];
   const advInjectors = data.storage.injector ?? [];
   if (!mutation) {
-    return <Box color="label">Nothing to show.</Box>;
+    return <Box color="label">没有可显示的内容。</Box>;
   }
   if (mutation.Source === 'occupant' && !mutation.Discovered) {
     return (
       <LabeledList>
-        <LabeledList.Item label="Name">{mutation.Alias}</LabeledList.Item>
+        <LabeledList.Item label="名称">{mutation.Alias}</LabeledList.Item>
       </LabeledList>
     );
   }
@@ -129,15 +129,15 @@ export const MutationInfo = (props) => {
   return (
     <>
       <LabeledList>
-        <LabeledList.Item label="Name">
+        <LabeledList.Item label="名称">
           <Box inline color={MUT_COLORS[mutation.Quality]}>
             {mutation.Name}
           </Box>
         </LabeledList.Item>
-        <LabeledList.Item label="Description">
+        <LabeledList.Item label="描述">
           {mutation.Description}
         </LabeledList.Item>
-        <LabeledList.Item label="Instability">
+        <LabeledList.Item label="不稳定性">
           {mutation.Instability}
         </LabeledList.Item>
       </LabeledList>
@@ -163,7 +163,7 @@ export const MutationInfo = (props) => {
                   width="240px"
                   options={advInjectors.map((injector) => injector.name)}
                   disabled={advInjectors.length === 0 || !mutation.Active}
-                  selected="Add to advanced injector"
+                  selected="添加到高级注射器"
                   onSelected={(value) =>
                     act('add_advinj_mut', {
                       mutref: mutation.ByondRef,
@@ -187,7 +187,7 @@ export const MutationInfo = (props) => {
                         })
                       }
                     >
-                      Print Activator
+                      打印激活剂
                     </Button>
                   </Stack.Item>
                   <Stack.Item>
@@ -202,7 +202,7 @@ export const MutationInfo = (props) => {
                         })
                       }
                     >
-                      Print Mutator
+                      打印突变剂
                     </Button>
                   </Stack.Item>
                   <Stack.Item>
@@ -231,7 +231,7 @@ export const MutationInfo = (props) => {
                 <Button
                   icon="save"
                   disabled={savedToConsole || !mutation.Active}
-                  content="Save to Console"
+                  content="保存到控制台"
                   onClick={() =>
                     act('save_console', {
                       mutref: mutation.ByondRef,
@@ -252,7 +252,7 @@ export const MutationInfo = (props) => {
                     diskReadOnly ||
                     !mutation.Active
                   }
-                  content="Save to Disk"
+                  content="保存到磁盘"
                   onClick={() =>
                     act('save_disk', {
                       mutref: mutation.ByondRef,
@@ -267,7 +267,7 @@ export const MutationInfo = (props) => {
                 <Button
                   icon="times"
                   color="red"
-                  content={`Delete from ${mutation.Source}`}
+                  content={`从${({ console: '控制台', disk: '磁盘', injector: '注射器' })[mutation.Source] || mutation.Source}删除`}
                   onClick={() =>
                     act(`delete_${mutation.Source}_mut`, {
                       mutref: mutation.ByondRef,
@@ -280,7 +280,7 @@ export const MutationInfo = (props) => {
               (!!mutation.Scrambled && mutation.Source === 'occupant')) && (
               <Stack.Item>
                 <Button
-                  content="Nullify"
+                  content="消除突变"
                   onClick={() =>
                     act('nullify', {
                       mutref: mutation.ByondRef,

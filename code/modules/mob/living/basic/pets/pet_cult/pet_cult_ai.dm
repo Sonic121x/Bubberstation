@@ -2,7 +2,7 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic/cultist,
 		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic/cultist,
-		BB_FRIENDLY_MESSAGE = "eagerly awaits your command...",
+		BB_FRIENDLY_MESSAGE = "热切地等待着你的命令……",
 	)
 
 	ai_movement = /datum/ai_movement/basic_avoidance
@@ -26,12 +26,12 @@
 
 ///command ability to draw runes
 /datum/pet_command/untargeted_ability/draw_rune
-	command_name = "Draw Rune"
-	command_desc = "Draw a revival rune."
+	command_name = "绘制符文"
+	command_desc = "绘制一枚复活符文。"
 	radial_icon = 'icons/obj/antags/cult/rune.dmi'
 	radial_icon_state = "1"
 	speech_commands = list("rune", "revival")
 	ability_key = BB_RUNE_ABILITY
 
 /datum/pet_command/untargeted_ability/draw_rune/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to draw a rune!"
+	return "示意 [living_pet] 绘制一枚符文！"

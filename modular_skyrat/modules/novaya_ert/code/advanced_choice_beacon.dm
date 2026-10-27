@@ -1,6 +1,6 @@
 /obj/item/advanced_choice_beacon
-	name = "advanced choice beacon"
-	desc = "A beacon that will send whatever your heart desires, providing Nanotrasen approves it."
+	name = "高级自选信标"
+	desc = "只要纳米传讯批准，这个信标就能送来你想要的东西。"
 	icon = 'icons/obj/devices/remote.dmi'
 	icon_state = "designator_syndicate"
 	inhand_icon_state = "nukietalkie"
@@ -59,8 +59,8 @@
 
 
 /obj/item/advanced_choice_beacon/nri
-	name = "\improper PSC Defense Collegium supply beacon"
-	desc = "Used to request your job supplies, use in hand to do so!"
+	name = "\improper 泛斯拉夫联邦国防委员会补给信标"
+	desc = "用于申请职责所需的补给，拿在手中使用即可！"
 
 /obj/item/advanced_choice_beacon/nri/get_available_options()
 	var/list/options = list()
@@ -77,14 +77,14 @@
 	return options
 
 /obj/item/advanced_choice_beacon/nri/engineer
-	name = "\improper PSC Defense Collegium engineering supply beacon"
-	desc = "Used to request your job supplies, use in hand to do so!"
+	name = "\improper 泛斯拉夫联邦国防委员会工程补给信标"
+	desc = "用于申请职责所需的补给，拿在手中使用即可！"
 
 	possible_choices = list(/obj/structure/closet/crate/secure/weapon/nri/engineer/defense, /obj/structure/closet/crate/secure/weapon/nri/engineer/offense)
 
 /obj/item/advanced_choice_beacon/nri/heavy
-	name = "\improper PSC Defense Collegium heavy armaments supply beacon"
-	desc = "Used to request your job supplies, use in hand to do so!"
+	name = "\improper 泛斯拉夫联邦国防委员会重武器补给信标"
+	desc = "用于申请职责所需的补给，拿在手中使用即可！"
 
 	possible_choices = list(/obj/structure/closet/crate/secure/weapon/nri/heavy/defense,/obj/structure/closet/crate/secure/weapon/nri/heavy/offense)
 
@@ -92,8 +92,8 @@
 	amount = 50
 
 /obj/item/storage/toolbox/emergency/turret/nri
-	name = "PSC stationary defense deployment system"
-	desc = "You feel a strange urge to hit this with a wrench."
+	name = "泛斯拉夫联邦固定防御部署系统"
+	desc = "你莫名地想拿扳手敲它一下。"
 	icon = 'modular_skyrat/modules/novaya_ert/icons/turret_deployable.dmi'
 	icon_state = "inventory"
 	inhand_icon_state = "held"
@@ -111,8 +111,8 @@
 
 /obj/item/storage/toolbox/emergency/turret/nri/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_WRENCH && user.combat_mode)
-		user.visible_message(span_danger("[user] bashes [src] with [I]!"), \
-			span_danger("You bash [src] with [I]!"), null, COMBAT_MESSAGE_RANGE)
+		user.visible_message(span_danger("[user]用[I]敲击[src]！"), \
+			span_danger("你用[I]敲击[src]！"), null, COMBAT_MESSAGE_RANGE)
 		playsound(src, "sound/items/tools/drill_use.ogg", 80, TRUE, -1)
 		var/obj/machinery/porta_turret/syndicate/pod/toolbox/nri/turret = new(get_turf(loc))
 		turret.add_faction(FACTION_NEUTRAL, FACTION_ERT)
@@ -138,15 +138,15 @@
 	faction = list(FACTION_NEUTRAL, FACTION_ERT)
 
 /obj/item/grenade/spawnergrenade/manhacks/nri
-	name = "imperial viscerator delivery grenade"
+	name = "帝国剖脏机投送手榴弹"
 	spawner_type = /mob/living/basic/viscerator/nri
 	deliveryamt = 10
 
 /obj/structure/closet/crate/secure/weapon/nri
-	name = "military supplies crate"
-	desc = "A secure military-grade crate. According to the markings, -as well as mixed Cyrillics-, it was shipped and provided by the Pan-Slavic Defense Collegium."
+	name = "军用补给箱"
+	desc = "一个安全的军用级箱子。根据标记及其中混杂的西里尔字母，它由泛斯拉夫国防委员会提供并运送。"
 	req_access = list(ACCESS_CENT_GENERAL)
-	var/loadout_desc = "Whoever picks this is might be busy debugging this copypasted code."
+	var/loadout_desc = "选择这个的人大概正忙着调试这段复制粘贴的代码。"
 
 //base, don't use this, but leaving it for admin spawns is probably a good call? (no because it's literally freaking empty lmfao)
 /obj/structure/closet/crate/secure/weapon/nri/PopulateContents()
@@ -154,9 +154,9 @@
 
 //defensive engineering loadout
 /obj/structure/closet/crate/secure/weapon/nri/engineer/defense
-	name = "defensive engineering supplies"
-	loadout_desc = "An assortment of engineering supplies finely tuned for quick fortification. \
-		Features barricades, building materials, extra large fuel tank and 5.6mm defensive autoturrets."
+	name = "防御工程补给"
+	loadout_desc = "一套专为快速构筑防御工事准备的工程补给。\
+		包含路障、建筑材料、超大燃料罐和5.6毫米防御自动炮塔。"
 
 /obj/structure/closet/crate/secure/weapon/nri/engineer/defense/PopulateContents()
 	new /obj/item/storage/barricade(src)
@@ -179,9 +179,9 @@
 
 //offensive engineering loadout
 /obj/structure/closet/crate/secure/weapon/nri/engineer/offense
-	name = "offensive engineering supplies"
-	loadout_desc = "An assortment of engineering supplies finely tuned for rapid approach defortification and area suppression. \
-		Features way less barricades and building materials than its more defensive analogue, but includes Pan-Slavic-issued viscerator grenades and a combat RCD."
+	name = "进攻工程补给"
+	loadout_desc = "一套专为快速推进、拆除工事和区域压制准备的工程补给。\
+		路障和建材远少于防御型补给，但包含泛斯拉夫配发的剖脏机手榴弹与战斗型快速建造装置。"
 
 /obj/structure/closet/crate/secure/weapon/nri/engineer/offense/PopulateContents()
 	new /obj/item/storage/barricade(src)
@@ -198,10 +198,10 @@
 
 //defensive heavy loadout
 /obj/structure/closet/crate/secure/weapon/nri/heavy/defense
-	name = "defensive heavy supplies"
-	loadout_desc = "An assortment of heavy soldier supplies finely tuned for stationary fire suppression and explosive fortifications. \
-		Features a fifty calibre heavy machinegun with a lot of ammo to spare, as well as a bunch of explosive landmines. \
-		And some bonus frag grenades."
+	name = "防御重装补给"
+	loadout_desc = "一套专为固定阵地火力压制和爆炸物防御工事准备的重装士兵补给。\
+		包含一挺.50口径重机枪及大量备用弹药，还有一批爆炸地雷。\
+		另赠几枚破片手榴弹。"
 
 /obj/structure/closet/crate/secure/weapon/nri/heavy/defense/PopulateContents()
 	new /obj/item/mounted_machine_gun_folded(src)
@@ -222,9 +222,9 @@
 
 //offensive heavy loadout
 /obj/structure/closet/crate/secure/weapon/nri/heavy/offense
-	name = "offensive heavy supplies"
-	loadout_desc = "An assortment of heavy soldier supplies finely tuned for rapid approach and munition support. \
-		Features Scarborough's standard LMG with a spare ammo box, as well as ammunition for Krinkov and PP-542."
+	name = "进攻重装补给"
+	loadout_desc = "一套专为快速推进和弹药支援准备的重装士兵补给。\
+		包含斯卡伯勒制式轻机枪与备用弹药箱，以及克林科夫和PP-542的弹药。"
 
 /obj/structure/closet/crate/secure/weapon/nri/heavy/offense/PopulateContents()
 	new /obj/item/gun/ballistic/automatic/l6_saw/unrestricted(src)

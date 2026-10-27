@@ -76,7 +76,7 @@
 	else
 		result = new result_type (location)
 		if(location != source.loc)
-			result.visible_message(span_boldnotice("\A [result] jumps out of [source.loc]!"))
+			result.visible_message(span_boldnotice("[result]从[source.loc]中跳了出来！"))
 			playsound(result, 'sound/effects/fish_splash.ogg', 60)
 		if(isbasicmob(result))
 			for(var/trait_type in source.fish_traits)
@@ -86,8 +86,8 @@
 			addtimer(CALLBACK(result, TYPE_PROC_REF(/mob/living/basic, hop_on_nearby_turf)), 0.1 SECONDS)
 
 	if(is_evo || location == source.loc)
-		var/message_verb = del_on_grow ? "grows into" : "lays"
-		location.visible_message(span_notice("[source] [message_verb] \a [result]."), vision_distance = 3)
+		var/message_verb = del_on_grow ? "长成了" : "产下了"
+		location.visible_message(span_notice("[source][message_verb][result]。"), vision_distance = 3)
 
 	if(inherit_name && HAS_TRAIT(source, TRAIT_WAS_RENAMED))
 		if(ismob(result))

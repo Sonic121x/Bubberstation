@@ -23,32 +23,32 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 )))
 
 /datum/round_event_control/sentience
-	name = "Random Human-level Intelligence"
+	name = "随机人类级智能"
 	typepath = /datum/round_event/ghost_role/sentience
 	weight = 10
 	category = EVENT_CATEGORY_FRIENDLY
-	description = "An animal or robot becomes sentient!"
+	description = "一只动物或机器人获得了知觉！"
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 7
 
 
 /datum/round_event/ghost_role/sentience
 	minimum_required = 1
-	role_name = "random animal"
+	role_name = "随机动物"
 	var/animals = 1
-	var/one = "one"
+	var/one = "其中一只"
 	fakeable = TRUE
 
 /datum/round_event/ghost_role/sentience/announce(fake)
 	var/sentience_report = ""
 
-	var/data = pick("scans from our long-range sensors", "our sophisticated probabilistic models", "our omnipotence", "the communications traffic on your station", "energy emissions we detected", "\[REDACTED\]")
-	var/pets = pick("animals/bots", "bots/animals", "pets", "simple animals", "lesser lifeforms", "\[REDACTED\]")
-	var/strength = pick("human", "moderate", "lizard", "security", "command", "clown", "low", "very low", "\[REDACTED\]")
+	var/data = pick("我方远程传感器的扫描结果", "我方精密的概率模型", "我方的全知全能", "你所在空间站的通信流量", "我们探测到的能量排放", "\[机密\]")
+	var/pets = pick("动物/机器人", "机器人/动物", "宠物", "简单动物", "低等生命形式", "\[机密\]")
+	var/strength = pick("人类", "中等", "蜥蜴", "安保", "指挥", "小丑", "低", "极低", "\[机密\]")
 
-	sentience_report += "Based on [data], we believe that [one] of the station's [pets] has developed [strength] level intelligence, and the ability to communicate."
+	sentience_report += "基于[data]，我们认为空间站的[one][pets]已经发展出[strength]级别的智能，并具备了交流能力。"
 
-	priority_announce(sentience_report,"[command_name()] Medium-Priority Update")
+	priority_announce(sentience_report,"[command_name()] 中等优先级通告")
 
 /datum/round_event/ghost_role/sentience/spawn_role()
 	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates(check_jobban = ROLE_SENTIENCE, role = ROLE_SENTIENCE, alert_pic = /obj/item/slimepotion/sentience, role_name_text = role_name)
@@ -103,10 +103,10 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 		selected.health = selected.maxHealth
 		spawned_mobs += selected
 
-		to_chat(selected, span_userdanger("Hello world!"))
-		to_chat(selected, span_warning("Due to freak radiation and/or chemicals \
-			and/or lucky chance, you have gained human level intelligence \
-			and the ability to speak and understand human language!"))
+		to_chat(selected, span_userdanger("你好，世界！"))
+		to_chat(selected, span_warning("由于异常的辐射和/或化学物质 \
+			和/或纯粹的运气，你获得了人类级别的智能， \
+			并能够说出和理解人类语言！"))
 
 	return SUCCESSFUL_SPAWN
 
@@ -123,13 +123,13 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 		low += checked_mob
 
 /datum/round_event_control/sentience/all
-	name = "Station-wide Human-level Intelligence"
+	name = "全站人类级智能"
 	typepath = /datum/round_event/ghost_role/sentience/all
 	weight = 0
 	category = EVENT_CATEGORY_FRIENDLY
-	description = "ALL animals and robots become sentient, provided there is enough ghosts."
+	description = "只要幽灵数量足够，所有动物和机器人都会获得知觉。"
 
 /datum/round_event/ghost_role/sentience/all
-	one = "all"
+	one = "所有"
 	animals = INFINITY // as many as there are ghosts and animals
 	// cockroach pride, station wide

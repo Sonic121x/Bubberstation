@@ -3,8 +3,8 @@
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"))
 
 /obj/item/organ/ears/mutant
-	name = "fluffy ears"
-	desc = "Wait, there's two pairs of these?"
+	name = "毛茸茸的耳朵"
+	desc = "等等，这玩意儿有两对？"
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	icon_state = "kitty"
 	bodypart_overlay = /datum/bodypart_overlay/mutant/ears

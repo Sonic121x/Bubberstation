@@ -1,6 +1,6 @@
 /datum/species/zombie
 	// 1spooky
-	name = "High-Functioning Zombie"
+	name = "高功能僵尸"
 	id = SPECIES_ZOMBIE
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | ERT_SPAWN
 	mutanttongue = /obj/item/organ/tongue/zombie // not necessary as status effect gives it, but for tests
@@ -19,14 +19,14 @@
 	human_who_lost_species.remove_status_effect(/datum/status_effect/zombie/uninfected)
 
 /datum/species/zombie/get_physical_attributes()
-	return "Zombies are undead, and thus completely immune to any environmental hazard, or any physical threat besides blunt force trauma and burns. \
-		Their limbs are easy to pop off their joints, but they can somehow just slot them back in."
+	return "僵尸是不死生物，因此完全免疫任何环境危害，也免疫钝器创伤与灼烧之外的任何物理威胁。\
+		他们的肢体很容易从关节上脱落，但他们总能莫名其妙地把它装回去。"
 
 /datum/species/zombie/get_species_description()
-	return "A rotting zombie! They descend upon Space Station Thirteen Every year to spook the crew! \"Sincerely, the Zombies!\""
+	return "一具腐烂的僵尸！他们每年都会降临十三号空间站，吓唬船员们！“谨上，僵尸们！”"
 
 /datum/species/zombie/get_species_lore()
-	return list("Zombies have long lasting beef with Botanists. Their last incident involving a lawn with defensive plants has left them very unhinged.")
+	return list("僵尸与植物学家之间积怨已久。上次那起涉及防御性植物草坪的事件，让他们一直心神不宁。")
 
 // Override for the default temperature perks, so we can establish that they don't care about temperature very much
 /datum/species/zombie/create_pref_temperature_perks()
@@ -35,11 +35,11 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "thermometer-half",
-		SPECIES_PERK_NAME = "No Body Temperature",
-		SPECIES_PERK_DESC = "Having long since departed, Zombies do not have anything \
-			regulating their body temperature anymore. This means that \
-			the environment decides their body temperature - which they don't mind at \
-			all, until it gets a bit too hot.",
+		SPECIES_PERK_NAME = "没有体温",
+		SPECIES_PERK_DESC = "僵尸早已离世，不再有东西 \
+			调节他们的体温。这意味着 \
+			环境决定了他们的体温——他们对此毫不介意，\
+			直到天气变得有点太热为止。",
 	))
 
 	return to_add

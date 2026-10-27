@@ -1,11 +1,11 @@
 /datum/quirk/hydra
-	name = "Hydra Heads"
-	desc = "You are a tri-headed creature. To use, format name like (Rucks-Sucks-Ducks)"
+	name = "九头蛇之首"
+	desc = "你是一个三头生物。使用时，请将名字按（Rucks-Sucks-Ducks）的格式书写。"
 	value = 0
 	mob_trait = TRAIT_HYDRA_HEADS
-	gain_text = span_notice("You hear two other voices inside of your head(s).")
-	lose_text = span_danger("All of your minds become singular.")
-	medical_record_text = "There are multiple heads and personalities affixed to one body."
+	gain_text = span_notice("你听到脑海中有另外两个声音。")
+	lose_text = span_danger("你的所有意识合而为一。")
+	medical_record_text = "同一具身体上附有多个头部与人格。"
 	icon = FA_ICON_HORSE_HEAD
 	// remember what the name was before activation
 	var/original_name
@@ -53,8 +53,8 @@
 	return FALSE
 
 /datum/action/innate/hydra_head
-	name = "Switch head"
-	desc = "Switch between each of the heads on your body."
+	name = "切换头部"
+	desc = "在你身体的各个头部之间切换。"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "art_summon"
 
@@ -65,12 +65,12 @@
 		hydra_quirk.original_name = hydra.real_name
 
 	if(!hydra_quirk.check_heads())
-		to_chat(hydra, "Please set up all of your head names in the quirk menu to use this ability.")
+		to_chat(hydra, "请先在特质菜单中设置好你所有头部的名字，才能使用此能力。")
 		return
-	var/selhead = tgui_input_list(hydra, "Who would you like to speak as?", "Head Selection", hydra_quirk.heads)
+	var/selhead = tgui_input_list(hydra, "你想以谁的身份说话？", "选择头部", hydra_quirk.heads)
 	hydra.real_name = selhead
-	hydra.visible_message(span_notice("[hydra.name] pulls the rest of their heads back; and puts [selhead]'s forward."), \
-							span_notice("You are now talking as [selhead]!"), ignored_mobs=owner)
+	hydra.visible_message(span_notice("[hydra.name] 将其他头部向后收回，把 [selhead] 探到前面。"), \
+							span_notice("你现在以 [selhead] 的身份说话！"), ignored_mobs=owner)
 
 /datum/quirk/hydra/proc/check_heads()
 	if(heads_checked)
@@ -87,8 +87,8 @@
 	return TRUE
 
 /datum/action/innate/hydra_reset
-	name = "Reset Speech"
-	desc = "Go back to speaking as a whole."
+	name = "重置说话身份"
+	desc = "恢复为作为一个整体说话。"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "art_summon"
 
@@ -98,5 +98,5 @@
 	if(!hydra_quirk.original_name) // sets the archived 'real' name if not set.
 		hydra_quirk.original_name = hydra.real_name
 	hydra.real_name = hydra_quirk.original_name
-	hydra.visible_message(span_notice("[hydra.name] pushes all three heads forwards; they seem to be talking as a collective."), \
-							span_notice("You are now talking as [hydra_quirk.original_name]!"), ignored_mobs=owner)
+	hydra.visible_message(span_notice("[hydra.name] 将三个头一起向前探出，似乎正作为一个整体说话。"), \
+							span_notice("你现在以 [hydra_quirk.original_name] 的身份说话！"), ignored_mobs=owner)

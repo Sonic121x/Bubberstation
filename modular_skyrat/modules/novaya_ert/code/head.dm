@@ -1,6 +1,6 @@
 /obj/item/clothing/head/beret/sec/nri
-	name = "commander's beret"
-	desc = "Za rodinu!!"
+	name = "指挥官贝雷帽"
+	desc = "为了祖国！！"
 	armor_type = /datum/armor/sec_nri
 
 /datum/armor/sec_nri
@@ -14,8 +14,8 @@
 	wound = 20
 
 /obj/item/clothing/head/helmet/space/hev_suit/nri
-	name = "\improper VOSKHOD powered combat armor helmet"
-	desc = "A composite graphene-plasteel helmet with a ballistic nylon inner padding, complete with a deployable airtight polycarbonate visor and respirator system. 'НРИ - Оборонная Коллегия' is imprinted on the back."
+	name = "\improper 旭日动力战斗装甲头盔"
+	desc = "一顶石墨烯与塑钢复合头盔，内衬防弹尼龙，配有可展开的气密聚碳酸酯面罩和呼吸系统。后方印着“新俄罗斯帝国——国防委员会”。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/helmet.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/head_muzzled.dmi'
@@ -35,18 +35,18 @@
 	slowdown = 1
 
 /obj/item/clothing/head/helmet/space/hev_suit/nri/captain
-	name = "\improper VOSKHOD-2 powered combat armor helmet"
-	desc = "A black composite polyurea coated graphene-plastitanium helmet with durathread inner padding, complete with a deployable airtight tinted plasmaglass visor and a kevlar-lined respirator system. 'НРИ - Оборонная Коллегия' is imprinted on the back."
+	name = "\improper 旭日-2动力战斗装甲头盔"
+	desc = "一顶黑色石墨烯与塑钛复合头盔，带聚脲涂层和耐久纤维内衬，配有可展开的气密染色等离子玻璃面罩和凯夫拉衬里的呼吸系统。后方印着“新俄罗斯帝国——国防委员会”。"
 	icon_state = "nri_captain"
 
 /obj/item/clothing/head/helmet/space/hev_suit/nri/medic
-	name = "\improper VOSKHOD-KH powered combat armor helmet"
-	desc = "A combat medic's composite graphene-titanium helmet with bio-resistant padding, complete with a deployable airtight polycarbonate visor and optimized respirator system. 'НРИ - Оборонная Коллегия' is imprinted on the back."
+	name = "\improper 旭日-KH动力战斗装甲头盔"
+	desc = "战地医护兵使用的石墨烯与钛复合头盔，内衬可抵御生物危害，配有可展开的气密聚碳酸酯面罩和优化的呼吸系统。后方印着“新俄罗斯帝国——国防委员会”。"
 	icon_state = "nri_medic"
 
 /obj/item/clothing/head/helmet/space/hev_suit/nri/engineer
-	name = "\improper VOSKHOD-IN powered combat armor helmet"
-	desc = "A composite tungsten-plasteel helmet with a lead-lined ballistic nylon inner padding, complete with a deployable airtight polycarbonate visor and respirator system. 'НРИ - Оборонная Коллегия' is imprinted on the back."
+	name = "\improper 旭日-IN动力战斗装甲头盔"
+	desc = "一顶钨与塑钢复合头盔，带有铅衬层的防弹尼龙内衬，配有可展开的气密聚碳酸酯面罩和呼吸系统。后方印着“新俄罗斯帝国——国防委员会”。"
 	icon_state = "nri_engineer"
 
 

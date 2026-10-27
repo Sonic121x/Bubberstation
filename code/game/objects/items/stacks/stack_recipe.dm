@@ -93,7 +93,7 @@
 	if(desc)
 		src.desc = desc
 	if(required_noun)
-		src.desc += span_boldnotice("[desc ? " - ":""]Requires: [req_amount] [required_noun]\s.")
+		src.desc += span_boldnotice("[desc ? " - ":""]需要：[req_amount] [required_noun]。")
 
 	return ..()
 

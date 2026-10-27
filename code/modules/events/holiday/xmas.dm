@@ -1,27 +1,27 @@
 /obj/item/toy/xmas_cracker
-	name = "xmas cracker"
+	name = "圣诞拉炮"
 	icon = 'icons/obj/holiday/christmas.dmi'
 	icon_state = "cracker"
-	desc = "Directions for use: Requires two people, one to pull each end."
+	desc = "使用说明：需要两个人，各拉一端。"
 	w_class = WEIGHT_CLASS_TINY
 	/// The crack state of the toy. If set to TRUE, you can no longer crack it by attacking.
 	var/cracked = FALSE
 
 /obj/item/toy/xmas_cracker/attack(mob/target, mob/user)
 	if( !cracked && ishuman(target) && (!IS_UNCONSCIOUS_OR_CRIT(target)) && !target.get_active_held_item() )
-		target.visible_message(span_notice("[user] and [target] pop \an [src]! *pop*"), span_notice("You pull \an [src] with [target]! *pop*"), span_hear("You hear a pop."))
+		target.visible_message(span_notice("[user] 和 [target] 拉开了 [src]！*啪*"), span_notice("你和 [target] 拉开了 [src]！*啪*"), span_hear("你听到一声爆响。"))
 		var/obj/item/paper/joke_paper = new /obj/item/paper(user.loc)
-		joke_paper.name = "[pick("awful","terrible","unfunny")] joke"
-		joke_paper.add_raw_text(pick("What did one snowman say to the other?\n\n<i>'Is it me or can you smell carrots?'</i>",
-			"Why couldn't the snowman get laid?\n\n<i>He was frigid!</i>",
-			"Where are Santa's helpers educated?\n\n<i>Nowhere, they're ELF-taught.</i>",
-			"What happened to the man who stole advent calanders?\n\n<i>He got 25 days.</i>",
-			"What does Santa get when he gets stuck in a chimney?\n\n<i>Claus-trophobia.</i>",
-			"Where do you find chili beans?\n\n<i>The north pole.</i>",
-			"What do you get from eating tree decorations?\n\n<i>Tinsilitis!</i>",
-			"What do snowmen wear on their heads?\n\n<i>Ice caps!</i>",
-			"Why is Christmas just like life on ss13?\n\n<i>You do all the work and the fat guy gets all the credit.</i>",
-			"Why doesn't Santa have any children?\n\n<i>Because he only comes down the chimney.</i>"))
+		joke_paper.name = "[pick("糟糕","极烂","毫无笑点")]笑话"
+		joke_paper.add_raw_text(pick("一个雪人对另一个雪人说了什么？\n\n<i>“是我出了问题，还是你闻到了胡萝卜味？”</i>",
+			"雪人为什么没人要？\n\n<i>因为他太冷淡了！</i>",
+			"圣诞老人的帮手在哪里上学？\n\n<i>哪里都不上，他们都是精灵自学的。</i>",
+			"偷走降临节日历的人后来怎样了？\n\n<i>他得到了 25 天。</i>",
+			"圣诞老人卡在烟囱里会得什么？\n\n<i>幽闭恐惧症（Claus-trophobia）。</i>",
+			"你在哪里能找到辣椒豆？\n\n<i>北极。</i>",
+			"吃了圣诞树装饰会得什么？\n\n<i>金属丝炎（Tinsilitis）！</i>",
+			"雪人头上戴什么？\n\n<i>冰帽！</i>",
+			"圣诞节为什么和空间站 13 上的生活一样？\n\n<i>活都是你干的，功劳全归那个胖子。</i>",
+			"圣诞老人为什么没有孩子？\n\n<i>因为他只会从烟囱下来。</i>"))
 		joke_paper.update_appearance()
 		new /obj/item/clothing/head/costume/festive(target.loc)
 		user.update_icons()
@@ -36,15 +36,15 @@
 	return ..()
 
 /obj/item/clothing/head/costume/festive
-	name = "festive paper hat"
+	name = "节日纸帽"
 	icon_state = "xmashat"
-	desc = "A crappy paper hat that you are REQUIRED to wear."
+	desc = "一顶你必须戴着的破烂纸帽。"
 	flags_inv = 0
 	armor_type = /datum/armor/none
 	dog_fashion = /datum/dog_fashion/head/festive
 
 /obj/effect/spawner/xmastree
-	name = "christmas tree spawner"
+	name = "圣诞树生成器"
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "x2"
 	layer = FLY_LAYER
@@ -63,29 +63,29 @@
 		new festive_tree(get_turf(src))
 
 /obj/effect/spawner/xmastree/rdrod
-	name = "festivus pole spawner"
+	name = "节日杆生成器"
 	festive_tree = /obj/structure/festivus
 	christmas_tree = null
 
 /datum/round_event_control/santa
-	name = "Visit by Santa"
+	name = "圣诞老人来访"
 	holidayID = CHRISTMAS
 	typepath = /datum/round_event/ghost_role/santa
 	weight = 20
 	max_occurrences = 1
 	earliest_start = 30 MINUTES
 	category = EVENT_CATEGORY_HOLIDAY
-	description = "Spawns Santa, who shall roam the station, handing out gifts."
+	description = "生成圣诞老人，他会在站内四处游荡并派发礼物。"
 
 /datum/round_event/ghost_role/santa
-	role_name = "Santa"
+	role_name = "圣诞老人"
 	var/mob/living/carbon/human/santa //who is our santa?
 
 /datum/round_event/ghost_role/santa/announce(fake)
-	priority_announce("Santa is coming to town!", "Unknown Transmission")
+	priority_announce("圣诞老人进城了！", "未知传输")
 
 /datum/round_event/ghost_role/santa/start()
-	var/mob/chosen_one = SSpolling.poll_ghost_candidates("Santa is coming to town! Do you want to be [span_notice("Santa")]?", poll_time = 15 SECONDS, alert_pic = /obj/item/clothing/head/costume/santa, role_name_text = "Santa", amount_to_pick = 1)
+	var/mob/chosen_one = SSpolling.poll_ghost_candidates("圣诞老人进城了！你想成为[span_notice("圣诞老人")]吗？", poll_time = 15 SECONDS, alert_pic = /obj/item/clothing/head/costume/santa, role_name_text = "圣诞老人", amount_to_pick = 1)
 	if(isnull(chosen_one))
 		return NOT_ENOUGH_PLAYERS
 	santa = new /mob/living/carbon/human(pick(GLOB.blobstart))

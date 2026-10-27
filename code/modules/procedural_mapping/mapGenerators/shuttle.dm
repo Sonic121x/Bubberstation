@@ -9,8 +9,8 @@
 	modules = list(/datum/map_generator_module/bottom_layer/shuttle_floor, \
 		/datum/map_generator_module/border/shuttle_walls,\
 		/datum/map_generator_module/bottom_layer/repressurize)
-	buildmode_name = "Pattern: Shuttle Room"
+	buildmode_name = "图案：穿梭机房间"
 
 /datum/map_generator/shuttle/floor
 	modules = list(/datum/map_generator_module/bottom_layer/shuttle_floor)
-	buildmode_name = "Block: Shuttle Floor"
+	buildmode_name = "区块：穿梭机地板"

@@ -1,8 +1,8 @@
 #define WASH_PERIOD 3 SECONDS
 
 /mob/living/basic/bot/hygienebot
-	name = "\improper Hygienebot"
-	desc = "A flying cleaning robot, he'll chase down people who can't shower properly!"
+	name = "\improper 卫生机器人"
+	desc = "一台会飞的清洁机器人，它会追捕那些不好好洗澡的人！"
 	icon = 'icons/mob/silicon/aibots.dmi'
 	icon_state = "hygienebot"
 	base_icon_state = "hygienebot"
@@ -19,7 +19,7 @@
 	radio_channel = RADIO_CHANNEL_SERVICE
 	bot_type = HYGIENE_BOT
 	additional_access = /datum/id_trim/job/janitor
-	hackables = "cleaning service protocols"
+	hackables = "清洁服务协议"
 	ai_controller = /datum/ai_controller/basic_controller/bot/hygienebot
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3.3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
 

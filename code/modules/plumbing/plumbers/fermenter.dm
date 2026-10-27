@@ -1,6 +1,6 @@
 /obj/machinery/plumbing/fermenter
-	name = "chemical fermenter"
-	desc = "Turns plants into various types of booze."
+	name = "化学发酵机"
+	desc = "把植物转化成各式各样的酒。"
 	icon_state = "fermenter"
 	layer = ABOVE_ALL_MOB_LAYER
 	plane = ABOVE_GAME_PLANE

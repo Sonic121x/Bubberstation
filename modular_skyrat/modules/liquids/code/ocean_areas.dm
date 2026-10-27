@@ -1,5 +1,5 @@
 /area/ocean
-	name = "Ocean"
+	name = "海洋"
 	icon = 'icons/area/areas_station.dmi'
 	icon_state = "explored"
 	requires_power = TRUE
@@ -18,7 +18,7 @@
 
 /area/ocean/trench
 	area_flags_mapping = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
-	name = "The Trench"
+	name = "海沟"
 
 /area/ocean/trench/generated
 	icon_state = "unexplored"
@@ -28,16 +28,16 @@
 	default_gravity = STANDARD_GRAVITY
 
 /area/ruin/ocean/listening_outpost
-	name = "Listening Station"
+	name = "监听站"
 
 /area/ruin/ocean/bunker
-	name = "Bunker"
+	name = "地堡"
 
 /area/ruin/ocean/bioweapon_research
-	name = "Syndicate Ocean Base"
+	name = "辛迪加海底基地"
 
 /area/ruin/ocean/mining_site
-	name = "Mining Site"
+	name = "采矿场"
 
 /area/ruin/ocean/saddam_hole
-	name = "Cave Hideout"
+	name = "洞穴藏身处"

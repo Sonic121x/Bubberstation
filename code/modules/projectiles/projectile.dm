@@ -5,7 +5,7 @@
 #define MUZZLE_EFFECT_PIXEL_INCREMENT 17
 
 /obj/projectile
-	name = "projectile"
+	name = "投射物"
 	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "bullet"
 	abstract_type = /obj/projectile
@@ -406,10 +406,10 @@
 	get_embed()?.try_embed_projectile(src, target, hit_limb_zone, blocked, pierce_hit)
 	var/reagent_note
 	if(reagents?.reagent_list)
-		reagent_note = "REAGENTS: [pretty_string_from_reagent_list(reagents.reagent_list)]"
+		reagent_note = "试剂：[pretty_string_from_reagent_list(reagents.reagent_list)]"
 
 	if(ismob(firer) && !do_not_log)
-		log_combat(firer, living_target, "shot", src, reagent_note)
+		log_combat(firer, living_target, "射击了", src, reagent_note)
 		return BULLET_ACT_HIT
 
 	if(isvehicle(firer))
@@ -419,11 +419,11 @@
 			logging_mobs = firing_vehicle.return_drivers()
 		if(!do_not_log)
 			for(var/mob/logged_mob as anything in logging_mobs)
-				log_combat(logged_mob, living_target, "shot", src, "from inside [firing_vehicle][logging_mobs.len > 1 ? " with multiple occupants" : null][reagent_note ? " and contained [reagent_note]" : null]")
+				log_combat(logged_mob, living_target, "射击了", src, "从 [firing_vehicle] 内部[logging_mobs.len > 1 ? "，车内有多名乘员" : null][reagent_note ? "，内含 [reagent_note]" : null]")
 		return BULLET_ACT_HIT
 
 	if(!do_not_log)
-		living_target.log_message("has been shot by [firer] with [src][reagent_note ? " containing [reagent_note]" : null]", LOG_ATTACK, color="orange")
+		living_target.log_message("被 [firer] 用 [src] 射中[reagent_note ? "，内含 [reagent_note]" : null]", LOG_ATTACK, color="orange")
 	return BULLET_ACT_HIT
 
 /obj/projectile/proc/vol_by_damage()
@@ -793,7 +793,7 @@
 		if (firer != original)
 			RegisterSignal(original, COMSIG_QDELETING, PROC_REF(original_deleted))
 	if (!log_override && firer && original && !do_not_log)
-		log_combat(firer, original, "fired at", src, "from [get_area_name(src, TRUE)]")
+		log_combat(firer, original, "朝其开火", src, "来自 [get_area_name(src, TRUE)]")
 			//note: mecha projectile logging is handled in /obj/item/mecha_parts/mecha_equipment/weapon/action(). try to keep these messages roughly the sameish just for consistency's sake.
 	if (direct_target && (get_dist(direct_target, get_turf(src)) <= 1)) // point blank shots
 		impact(direct_target)

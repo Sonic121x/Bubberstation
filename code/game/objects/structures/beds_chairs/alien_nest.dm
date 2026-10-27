@@ -1,8 +1,8 @@
 //Alium nests. Essentially beds with an unbuckle delay that only aliums can buckle mobs to.
 
 /obj/structure/bed/nest
-	name = "alien nest"
-	desc = "It's a gruesome pile of thick, sticky resin shaped like a nest."
+	name = "异形巢穴"
+	desc = "一堆厚厚的、黏稠的树脂堆成的巢状物，令人生畏。"
 	icon = 'icons/obj/smooth_structures/alien/nest.dmi'
 	icon_state = "nest-0"
 	base_icon_state = "nest"
@@ -28,28 +28,28 @@
 /obj/structure/bed/nest/buckle_feedback(mob/living/being_buckled, mob/buckler)
 	if(being_buckled == buckler)
 		being_buckled.visible_message(
-			span_notice("[buckler] lays down on [src], wrapping [buckler.p_them()]self in a thick, sticky resin."),
-			span_notice("You lay down on [src], wrapping yourself in a thick, sticky resin."),
+			span_notice("[buckler]在[src]上躺下，用厚厚的黏稠树脂包裹住自己。"),
+			span_notice("你在[src]上躺下，用厚厚的黏稠树脂包裹住自己。"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_buckled.visible_message(
-			span_notice("[buckler] lays [being_buckled] down on [src], wrapping [being_buckled.p_them()] in a thick, sticky resin."),
-			span_notice("[buckler] lays you down on [src], wrapping you in a thick, sticky resin."),
+			span_notice("[buckler]把[being_buckled]放倒在[src]上，用厚厚的黏稠树脂将其包裹。"),
+			span_notice("[buckler]把你放倒在[src]上，用厚厚的黏稠树脂将你包裹。"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
 /obj/structure/bed/nest/unbuckle_feedback(mob/living/being_unbuckled, mob/unbuckler)
 	if(being_unbuckled == unbuckler)
 		being_unbuckled.visible_message(
-			span_notice("[unbuckler] pulls [unbuckler.p_them()]self free from the sticky nest!"),
-			span_notice("You pull yourself free from the sticky nest!"),
+			span_notice("[unbuckler]把自己从黏稠的巢中挣脱出来！"),
+			span_notice("你把自己从黏稠的巢中挣脱出来！"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_unbuckled.visible_message(
-			span_notice("[unbuckler] pulls [being_unbuckled] free from the sticky nest!"),
-			span_notice("[unbuckler] pulls you free from the sticky nest!"),
+			span_notice("[unbuckler]把[being_unbuckled]从黏稠的巢中拉了出来！"),
+			span_notice("[unbuckler]把你从黏稠的巢中拉了出来！"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
@@ -63,25 +63,25 @@
 		return
 
 	if(captive != hero)
-		captive.visible_message(span_notice("[hero.name] pulls [captive.name] free from the sticky nest!"),
-			span_notice("[hero.name] pulls you free from the gelatinous resin."),
-			span_hear("You hear squelching..."))
+		captive.visible_message(span_notice("[hero.name]把[captive.name]从黏稠的巢中拉了出来！"),
+			span_notice("[hero.name]把你从胶质树脂中拉了出来。"),
+			span_hear("你听到黏糊糊的挤压声……"))
 		unbuckle_mob(captive)
 		add_fingerprint(hero)
 		return
 
-	captive.visible_message(span_warning("[captive.name] struggles to break free from the gelatinous resin!"),
-		span_notice("You struggle to break free from the gelatinous resin... (Stay still for about a minute and a half.)"),
-		span_hear("You hear squelching..."))
+	captive.visible_message(span_warning("[captive.name]挣扎着想从胶质树脂中脱身！"),
+		span_notice("你挣扎着想从胶质树脂中脱身……（保持不动约一分半钟。）"),
+		span_hear("你听到黏糊糊的挤压声……"))
 
 	if(!do_after(captive, 100 SECONDS, target = src, cog_icon = null))
 		if(captive.buckled)
-			to_chat(captive, span_warning("You fail to unbuckle yourself!"))
+			to_chat(captive, span_warning("你没能解开束缚！"))
 		return
 
-	captive.visible_message(span_warning("[captive.name] breaks free from the gelatinous resin!"),
-		span_notice("You break free from the gelatinous resin!"),
-		span_hear("You hear squelching..."))
+	captive.visible_message(span_warning("[captive.name]从胶质树脂中挣脱了！"),
+		span_notice("你从胶质树脂中挣脱了！"),
+		span_hear("你听到黏糊糊的挤压声……"))
 
 	unbuckle_mob(captive)
 	add_fingerprint(hero)
@@ -99,9 +99,9 @@
 		unbuckle_all_mobs()
 
 	if(buckle_mob(M))
-		M.visible_message(span_notice("[user.name] secretes a thick vile goo, securing [M.name] into [src]!"),\
-			span_danger("[user.name] drenches you in a foul-smelling resin, trapping you in [src]!"),\
-			span_hear("You hear squelching..."))
+		M.visible_message(span_notice("[user.name]分泌出厚厚的恶臭黏液，把[M.name]牢牢固定在[src]上！"),\
+			span_danger("[user.name]用恶臭的树脂把你浸透，把你困在[src]里！"),\
+			span_hear("你听到黏糊糊的挤压声……"))
 
 /obj/structure/bed/nest/post_buckle_mob(mob/living/M)
 	ADD_TRAIT(M, TRAIT_HANDS_BLOCKED, type)

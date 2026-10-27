@@ -3,7 +3,7 @@
 /////////////////////////
 
 /obj/item/mecha_parts
-	name = "mecha part"
+	name = "机甲部件"
 	icon = 'icons/mob/rideables/mech_construct.dmi'
 	icon_state = "blank"
 	abstract_type = /obj/item/mecha_parts
@@ -15,16 +15,16 @@
 
 /obj/item/mecha_parts/proc/try_attach_part(mob/user, obj/vehicle/sealed/mecha/M, attach_right = FALSE) //For attaching parts to a finished mech
 	if(!user.transferItemToLoc(src, M))
-		to_chat(user, span_warning("\The [src] is stuck to your hand, you cannot put it in \the [M]!"))
+		to_chat(user, span_warning("[src] 粘在你手上，你无法把它放进 [M]！"))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice("[user] attaches [src] to [M]."), span_notice("You attach [src] to [M]."))
+	user.visible_message(span_notice("[user] 将 [src] 安装到 [M] 上。"), span_notice("你将 [src] 安装到 [M] 上。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/mecha_parts/part/try_attach_part(mob/user, obj/vehicle/sealed/mecha/M, attach_right = FALSE)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/mecha_parts/chassis
-	name = "Mecha Chassis"
+	name = "机甲底盘"
 	icon_state = "backbone"
 	interaction_flags_item = NONE //Don't pick us up!!
 	var/construct_type
@@ -37,130 +37,130 @@
 /////////// Ripley
 
 /obj/item/mecha_parts/chassis/ripley
-	name = "\improper Ripley chassis"
+	name = "\improper 雷普利底盘"
 	construct_type = /datum/component/construction/unordered/mecha_chassis/ripley
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 
 /obj/item/mecha_parts/part/ripley_torso
-	name = "\improper Ripley torso"
-	desc = "A torso part of Ripley APLU. Contains power unit, processing core and life support systems."
+	name = "\improper 雷普利躯干"
+	desc = "雷普利 APLU 的躯干部件。内含动力单元、处理核心与生命维持系统。"
 	icon_state = "ripley_harness"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 3.75)
 
 /obj/item/mecha_parts/part/ripley_left_arm
-	name = "\improper Ripley left arm"
-	desc = "A Ripley APLU left arm. Data and power sockets are compatible with most exosuit tools."
+	name = "\improper 雷普利左臂"
+	desc = "雷普利 APLU 的左臂。数据与电源接口兼容大多数机甲工具。"
 	icon_state = "ripley_l_arm"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5)
 
 /obj/item/mecha_parts/part/ripley_right_arm
-	name = "\improper Ripley right arm"
-	desc = "A Ripley APLU right arm. Data and power sockets are compatible with most exosuit tools."
+	name = "\improper 雷普利右臂"
+	desc = "雷普利 APLU 的右臂。数据与电源接口兼容大多数机甲工具。"
 	icon_state = "ripley_r_arm"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5)
 
 /obj/item/mecha_parts/part/ripley_left_leg
-	name = "\improper Ripley left leg"
-	desc = "A Ripley APLU left leg. Contains somewhat complex servodrives and balance maintaining systems."
+	name = "\improper 雷普利左腿"
+	desc = "雷普利 APLU 的左腿。内含较为复杂的伺服驱动与平衡维持系统。"
 	icon_state = "ripley_l_leg"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5)
 
 /obj/item/mecha_parts/part/ripley_right_leg
-	name = "\improper Ripley right leg"
-	desc = "A Ripley APLU right leg. Contains somewhat complex servodrives and balance maintaining systems."
+	name = "\improper 雷普利右腿"
+	desc = "雷普利 APLU 的右腿。内含较为复杂的伺服驱动与平衡维持系统。"
 	icon_state = "ripley_r_leg"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5)
 
 ///////// Odysseus
 
 /obj/item/mecha_parts/chassis/odysseus
-	name = "\improper Odysseus chassis"
+	name = "\improper 奥德修斯底盘"
 	construct_type = /datum/component/construction/unordered/mecha_chassis/odysseus
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 
 /obj/item/mecha_parts/part/odysseus_head
-	name = "\improper Odysseus head"
-	desc = "An Odysseus head. Contains an integrated medical HUD scanner."
+	name = "\improper 奥德修斯头部"
+	desc = "奥德修斯的头部。内含集成医疗 HUD 扫描仪。"
 	icon_state = "odysseus_head"
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 5, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 3)
 
 /obj/item/mecha_parts/part/odysseus_torso
-	name = "\improper Odysseus torso"
-	desc="A torso part of Odysseus. Contains power unit, processing core and life support systems along with an attachment port for a mounted sleeper."
+	name = "\improper 奥德修斯躯干"
+	desc="奥德修斯的躯干部件。内含动力单元、处理核心与生命维持系统，以及用于安装睡眠舱的连接口。"
 	icon_state = "odysseus_torso"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6)
 
 /obj/item/mecha_parts/part/odysseus_left_arm
-	name = "\improper Odysseus left arm"
-	desc = "An Odysseus left arm. Data and power sockets are compatible with specialized medical equipment."
+	name = "\improper 奥德修斯左臂"
+	desc = "奥德修斯的左臂。数据与电源接口兼容专业医疗设备。"
 	icon_state = "odysseus_l_arm"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3)
 
 /obj/item/mecha_parts/part/odysseus_right_arm
-	name = "\improper Odysseus right arm"
-	desc = "An Odysseus right arm. Data and power sockets are compatible with specialized medical equipment."
+	name = "\improper 奥德修斯右臂"
+	desc = "奥德修斯的右臂。数据与电源接口兼容专业医疗设备。"
 	icon_state = "odysseus_r_arm"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3)
 
 /obj/item/mecha_parts/part/odysseus_left_leg
-	name = "\improper Odysseus left leg"
-	desc = "An Odysseus left leg. Contains complex servodrives and balance maintaining systems to maintain stability for critical patients."
+	name = "\improper 奥德修斯左腿"
+	desc = "奥德修斯的左腿。内含复杂的伺服驱动与平衡维持系统，为危重病人保持稳定。"
 	icon_state = "odysseus_l_leg"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3.5)
 
 /obj/item/mecha_parts/part/odysseus_right_leg
-	name = "\improper Odysseus right leg"
-	desc = "An odysseus right leg. Contains complex servodrives and balance maintaining systems to maintain stability for critical patients."
+	name = "\improper 奥德修斯右腿"
+	desc = "奥德修斯的右腿。内含复杂的伺服驱动与平衡维持系统，为危重病人保持稳定。"
 	icon_state = "odysseus_r_leg"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3.5)
 
 ///////// Gygax
 
 /obj/item/mecha_parts/chassis/gygax
-	name = "\improper Gygax chassis"
+	name = "\improper 吉盖克斯底盘"
 	construct_type = /datum/component/construction/unordered/mecha_chassis/gygax
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 
 /obj/item/mecha_parts/part/gygax_torso
-	name = "\improper Gygax torso"
-	desc = "A torso part of Gygax. Contains power unit, processing core and life support systems."
+	name = "\improper 吉盖克斯躯干"
+	desc = "吉盖克斯的躯干部件。内含动力单元、处理核心与生命维持系统。"
 	icon_state = "gygax_harness"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 5, /datum/material/gold = SHEET_MATERIAL_AMOUNT, /datum/material/silver = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/mecha_parts/part/gygax_head
-	name = "\improper Gygax head"
-	desc = "A Gygax head. Houses advanced surveillance and targeting sensors."
+	name = "\improper 吉盖克斯头部"
+	desc = "吉盖克斯的头部。装设先进的监视与瞄准传感器。"
 	icon_state = "gygax_head"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/gold = SHEET_MATERIAL_AMOUNT, /datum/material/silver = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/mecha_parts/part/gygax_left_arm
-	name = "\improper Gygax left arm"
-	desc = "A Gygax left arm. Data and power sockets are compatible with most exosuit tools and weapons."
+	name = "\improper 吉盖克斯左臂"
+	desc = "吉盖克斯的左臂。数据与电源接口兼容大多数机甲工具与武器。"
 	icon_state = "gygax_l_arm"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/mecha_parts/part/gygax_right_arm
-	name = "\improper Gygax right arm"
-	desc = "A Gygax right arm. Data and power sockets are compatible with most exosuit tools and weapons."
+	name = "\improper 吉盖克斯右臂"
+	desc = "吉盖克斯的右臂。数据与电源接口兼容大多数机甲工具与武器。"
 	icon_state = "gygax_r_arm"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/mecha_parts/part/gygax_left_leg
-	name = "\improper Gygax left leg"
-	desc = "A Gygax left leg. Constructed with advanced servomechanisms and actuators to enable faster speed."
+	name = "\improper 吉盖克斯左腿"
+	desc = "吉盖克斯的左腿。采用先进的伺服机构与致动器，可实现更快的速度。"
 	icon_state = "gygax_l_leg"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/mecha_parts/part/gygax_right_leg
-	name = "\improper Gygax right leg"
-	desc = "A Gygax right leg. Constructed with advanced servomechanisms and actuators to enable faster speed."
+	name = "\improper 吉盖克斯右腿"
+	desc = "吉盖克斯的右腿。采用先进的伺服机构与致动器，可实现更快的速度。"
 	icon_state = "gygax_r_leg"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/mecha_parts/part/gygax_armor
 	gender = PLURAL
-	name = "\improper Gygax armor plates"
-	desc = "A set of armor plates designed for the Gygax. Designed to effectively deflect damage with a lightweight construction."
+	name = "\improper 吉盖克斯装甲板"
+	desc = "一套为吉盖克斯设计的装甲板。轻量化结构可有效弹开来袭伤害。"
 	icon_state = "gygax_armor"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 5, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 5)
 
@@ -168,124 +168,124 @@
 //////////// Durand
 
 /obj/item/mecha_parts/chassis/durand
-	name = "\improper Durand chassis"
+	name = "\improper 杜兰德底盘"
 	construct_type = /datum/component/construction/unordered/mecha_chassis/durand
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 12.5)
 
 /obj/item/mecha_parts/part/durand_torso
-	name = "\improper Durand torso"
-	desc = "A torso part of Durand. Contains power unit, processing core and life support systems within a robust protective frame."
+	name = "\improper 杜兰德躯干"
+	desc = "杜兰德的躯干部件。在坚固的防护框架内装有动力单元、处理核心与生命维持系统。"
 	icon_state = "durand_harness"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 12.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/mecha_parts/part/durand_head
-	name = "\improper Durand head"
-	desc = "A Durand head. Houses advanced surveillance and targeting sensors."
+	name = "\improper 杜兰德头部"
+	desc = "杜兰德的头部。装设先进的监视与瞄准传感器。"
 	icon_state = "durand_head"
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/mecha_parts/part/durand_left_arm
-	name = "\improper Durand left arm"
-	desc = "A Durand left arm. Data and power sockets are compatible with most exosuit tools and weapons. Packs a really mean punch as well."
+	name = "\improper 杜兰德左臂"
+	desc = "杜兰德的左臂。数据与电源接口兼容大多数机甲工具与武器。出拳也格外凶猛。"
 	icon_state = "durand_l_arm"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/mecha_parts/part/durand_right_arm
-	name = "\improper Durand right arm"
-	desc = "A Durand right arm. Data and power sockets are compatible with most exosuit tools and weapons. Packs a really mean punch as well."
+	name = "\improper 杜兰德右臂"
+	desc = "杜兰德的右臂。数据与电源接口兼容大多数机甲工具与武器。出拳也格外凶猛。"
 	icon_state = "durand_r_arm"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/mecha_parts/part/durand_left_leg
-	name = "\improper Durand left leg"
-	desc = "A Durand left leg. Built particularly sturdy to support the Durand's heavy weight and defensive needs."
+	name = "\improper 杜兰德左腿"
+	desc = "杜兰德的左腿。结构格外坚固，以支撑杜兰德沉重的重量与防御需求。"
 	icon_state = "durand_l_leg"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/mecha_parts/part/durand_right_leg
-	name = "\improper Durand right leg"
-	desc = "A Durand right leg. Built particularly sturdy to support the Durand's heavy weight and defensive needs."
+	name = "\improper 杜兰德右腿"
+	desc = "杜兰德的右腿。结构格外坚固，以支撑杜兰德沉重的重量与防御需求。"
 	icon_state = "durand_r_leg"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/mecha_parts/part/durand_armor
 	gender = PLURAL
-	name = "\improper Durand armor plates"
-	desc = "A set of armor plates for the Durand. Built heavy to resist an incredible amount of brute force."
+	name = "\improper 杜兰德装甲板"
+	desc = "一套杜兰德专用装甲板。厚重的结构足以抵抗极大的钝击力量。"
 	icon_state = "durand_armor"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 30, /datum/material/uranium = SHEET_MATERIAL_AMOUNT * 12.5, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 10)
 
 ////////// Clarke
 
 /obj/item/mecha_parts/chassis/clarke
-	name = "\improper Clarke chassis"
+	name = "\improper 克拉克底盘"
 	construct_type = /datum/component/construction/unordered/mecha_chassis/clarke
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 
 /obj/item/mecha_parts/part/clarke_torso
-	name = "\improper Clarke torso"
-	desc = "A torso part of Clarke. Contains power unit, processing core and life support systems."
+	name = "\improper 克拉克躯干"
+	desc = "克拉克的躯干部件。内含动力单元、处理核心与生命维持系统。"
 	icon_state = "clarke_harness"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 3.75)
 
 /obj/item/mecha_parts/part/clarke_head
-	name = "\improper Clarke head"
-	desc = "A Clarke head. Contains an integrated diagnostic HUD scanner."
+	name = "\improper 克拉克头部"
+	desc = "克拉克的头部。内含集成诊断 HUD 扫描仪。"
 	icon_state = "clarke_head"
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 5, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 3)
 
 /obj/item/mecha_parts/part/clarke_left_arm
-	name = "\improper Clarke left arm"
-	desc = "A Clarke left arm. Data and power sockets are compatible with most exosuit tools."
+	name = "\improper 克拉克左臂"
+	desc = "克拉克的左臂。数据与电源接口兼容大多数机甲工具。"
 	icon_state = "clarke_l_arm"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5)
 
 /obj/item/mecha_parts/part/clarke_right_arm
-	name = "\improper Clarke right arm"
-	desc = "A Clarke right arm. Data and power sockets are compatible with most exosuit tools."
+	name = "\improper 克拉克右臂"
+	desc = "克拉克的右臂。数据与电源接口兼容大多数机甲工具。"
 	icon_state = "clarke_r_arm"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5)
 
 ////////// HONK
 
 /obj/item/mecha_parts/chassis/honker
-	name = "\improper H.O.N.K chassis"
+	name = "\improper H.O.N.K 底盘"
 	construct_type = /datum/component/construction/unordered/mecha_chassis/honker
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 
 /obj/item/mecha_parts/part/honker_torso
-	name = "\improper H.O.N.K torso"
-	desc = "A torso part of H.O.N.K. Contains chuckle unit, bananium core and honk support systems."
+	name = "\improper H.O.N.K 躯干"
+	desc = "H.O.N.K 的躯干部件。内含窃笑单元、香蕉矿核心与洪克维持系统。"
 	icon_state = "honker_harness"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 5, /datum/material/bananium = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/mecha_parts/part/honker_head
-	name = "\improper H.O.N.K head"
-	desc = "A H.O.N.K head. Appears to lack a face plate."
+	name = "\improper H.O.N.K 头部"
+	desc = "H.O.N.K 的头部。似乎缺少面板。"
 	icon_state = "honker_head"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/bananium = SHEET_MATERIAL_AMOUNT * 2.5)
 
 /obj/item/mecha_parts/part/honker_left_arm
-	name = "\improper H.O.N.K left arm"
-	desc = "A H.O.N.K left arm. With unique sockets that accept odd weaponry designed by clown scientists."
+	name = "\improper H.O.N.K 左臂"
+	desc = "H.O.N.K 的左臂。独特的接口可接受小丑科学家设计的古怪武器。"
 	icon_state = "honker_l_arm"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/bananium = SHEET_MATERIAL_AMOUNT * 2.5)
 
 /obj/item/mecha_parts/part/honker_right_arm
-	name = "\improper H.O.N.K right arm"
-	desc = "A H.O.N.K right arm. With unique sockets that accept odd weaponry designed by clown scientists."
+	name = "\improper H.O.N.K 右臂"
+	desc = "H.O.N.K 的右臂。独特的接口可接受小丑科学家设计的古怪武器。"
 	icon_state = "honker_r_arm"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/bananium = SHEET_MATERIAL_AMOUNT * 2.5)
 
 /obj/item/mecha_parts/part/honker_left_leg
-	name = "\improper H.O.N.K left leg"
-	desc = "A H.O.N.K left leg. The foot appears just large enough to fully accommodate a clown shoe."
+	name = "\improper H.O.N.K 左腿"
+	desc = "H.O.N.K 的左腿。脚部看起来刚好能完全容纳一只小丑鞋。"
 	icon_state = "honker_l_leg"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/bananium = SHEET_MATERIAL_AMOUNT * 2.5)
 
 /obj/item/mecha_parts/part/honker_right_leg
-	name = "\improper H.O.N.K right leg"
-	desc = "A H.O.N.K right leg. The foot appears just large enough to fully accommodate a clown shoe."
+	name = "\improper H.O.N.K 右腿"
+	desc = "H.O.N.K 的右腿。脚部看起来刚好能完全容纳一只小丑鞋。"
 	icon_state = "honker_r_leg"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/bananium = SHEET_MATERIAL_AMOUNT * 2.5)
 
@@ -293,105 +293,105 @@
 ////////// Phazon
 
 /obj/item/mecha_parts/chassis/phazon
-	name = "\improper Phazon chassis"
+	name = "\improper 相位行者底盘"
 	construct_type = /datum/component/construction/unordered/mecha_chassis/phazon
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 
 /obj/item/mecha_parts/part/phazon_torso
-	name="\improper Phazon torso"
-	desc="A Phazon torso part. The socket for the ectoplasmic core that powers the exosuit's unique phase drives is located in the middle."
+	name="\improper 相位行者躯干"
+	desc="相位行者的躯干部件。中央设有插槽，用于安装为机甲独特相位驱动供能的灵质核心。"
 	icon_state = "phazon_harness"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 17.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 10, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/mecha_parts/part/phazon_head
-	name="\improper Phazon head"
-	desc="A Phazon head. Its sensors are carefully calibrated to provide vision and data even when the exosuit is phasing."
+	name="\improper 相位行者头部"
+	desc="相位行者的头部。其传感器经过精心校准，即使机甲处于相位状态也能提供视野与数据。"
 	icon_state = "phazon_head"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5)
 
 /obj/item/mecha_parts/part/phazon_left_arm
-	name="\improper Phazon left arm"
-	desc="A Phazon left arm. Several microtool arrays are located under the armor plating, which can be adjusted to the situation at hand."
+	name="\improper 相位行者左臂"
+	desc="相位行者的左臂。装甲板下装有若干微型工具阵列，可根据实际情况调整。"
 	icon_state = "phazon_l_arm"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/mecha_parts/part/phazon_right_arm
-	name="\improper Phazon right arm"
-	desc="A Phazon right arm. Several microtool arrays are located under the armor plating, which can be adjusted to the situation at hand."
+	name="\improper 相位行者右臂"
+	desc="相位行者的右臂。装甲板下装有若干微型工具阵列，可根据实际情况调整。"
 	icon_state = "phazon_r_arm"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/mecha_parts/part/phazon_left_leg
-	name="\improper Phazon left leg"
-	desc="A Phazon left leg. It contains the unique phase drives that allow the exosuit to phase through solid matter when engaged."
+	name="\improper 相位行者左腿"
+	desc="相位行者的左腿。内含独特的相位驱动器，启动后可使机甲穿过固体物质。"
 	icon_state = "phazon_l_leg"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/mecha_parts/part/phazon_right_leg
-	name="\improper Phazon right leg"
-	desc="A Phazon right leg. It contains the unique phase drives that allow the exosuit to phase through solid matter when engaged."
+	name="\improper 相位行者右腿"
+	desc="相位行者的右腿。内含独特的相位驱动器，启动后可使机甲穿过固体物质。"
 	icon_state = "phazon_r_leg"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/mecha_parts/part/phazon_armor
-	name="Phazon armor"
-	desc="Phazon armor plates. They are layered with plasma to protect the pilot from the stress of phasing and have unusual properties."
+	name="相位行者装甲"
+	desc="相位行者装甲板。以等离子体分层，保护驾驶员免受相位压力的影响，并具有不寻常的特性。"
 	icon_state = "phazon_armor"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 12.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 10, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 10)
 
 // Savannah-Ivanov
 
 /obj/item/mecha_parts/chassis/savannah_ivanov
-	name = "\improper Savannah-Ivanov chassis"
+	name = "\improper 萨凡纳-伊万诺夫底盘"
 	construct_type = /datum/component/construction/unordered/mecha_chassis/savannah_ivanov
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 12.5)
 
 /obj/item/mecha_parts/part/savannah_ivanov_torso
-	name="\improper Savannah-Ivanov torso"
-	desc="A Savannah-Ivanov torso part. It's missing a huge chunk of space..."
+	name="\improper 萨凡纳-伊万诺夫躯干"
+	desc="萨凡纳-伊万诺夫的躯干部件。它缺了一大块空间……"
 	icon_state = "savannah_ivanov_harness"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 12.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/mecha_parts/part/savannah_ivanov_head
-	name="\improper Savannah-Ivanov head"
-	desc="A Savannah-Ivanov head. It's sensors have been adjusted to support graceful landings."
+	name="\improper 萨凡纳-伊万诺夫头部"
+	desc="萨凡纳-伊万诺夫的头部。其传感器经过调整，以支持优雅的着陆。"
 	icon_state = "savannah_ivanov_head"
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/mecha_parts/part/savannah_ivanov_left_arm
-	name="\improper Savannah-Ivanov left arm"
-	desc="A Savannah-Ivanov left arm. Hidden rocket fabrication included in the wrists."
+	name="\improper 萨凡纳-伊万诺夫左臂"
+	desc="萨凡纳-伊万诺夫的左臂。腕部内置隐藏式火箭制造装置。"
 	icon_state = "savannah_ivanov_l_arm"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/mecha_parts/part/savannah_ivanov_right_arm
-	name="\improper Savannah-Ivanov right arm"
-	desc="A Savannah-Ivanov left arm. Hidden rocket fabrication included in the wrists."
+	name="\improper 萨凡纳-伊万诺夫右臂"
+	desc="萨凡纳-伊万诺夫的左臂。腕部内置隐藏式火箭制造装置。"
 	icon_state = "savannah_ivanov_r_arm"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/mecha_parts/part/savannah_ivanov_left_leg
-	name="\improper Savannah-Ivanov left leg"
-	desc="A Savannah-Ivanov left leg. In production they were designed to carry more than two passengers, so the leaping functionality was added as to not waste potential."
+	name="\improper 萨凡纳-伊万诺夫左腿"
+	desc="萨凡纳-伊万诺夫的左腿。在生产设计中，它们本要搭载两名以上乘员，因此加入了跳跃功能，以免浪费潜力。"
 	icon_state = "savannah_ivanov_l_leg"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/mecha_parts/part/savannah_ivanov_right_leg
-	name="\improper Savannah-Ivanov right leg"
-	desc="A Savannah-Ivanov left leg. In production they were designed to carry more than two passengers, so the leaping functionality was added as to not waste potential."
+	name="\improper 萨凡纳-伊万诺夫右腿"
+	desc="萨凡纳-伊万诺夫的左腿。在生产设计中，它们本要搭载两名以上乘员，因此加入了跳跃功能，以免浪费潜力。"
 	icon_state = "savannah_ivanov_r_leg"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/mecha_parts/part/savannah_ivanov_armor
-	name="Savannah-Ivanov armor"
-	desc="Savannah-Ivanov armor plates. They are uniquely shaped and reinforced to deal with the stresses of two pilots, grandiose leaps, and missiles."
+	name="萨凡纳-伊万诺夫装甲"
+	desc="萨凡纳-伊万诺夫装甲板。其形状独特并经过强化，以承受双驾驶员、夸张的跳跃与导弹带来的压力。"
 	icon_state = "savannah_ivanov_armor"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 30, /datum/material/uranium = SHEET_MATERIAL_AMOUNT * 12.5, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 10)
 
 ///////// Circuitboards
 
 /obj/item/circuitboard/mecha
-	name = "exosuit circuit board"
+	name = "机甲电路板"
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "std_mod"
 	inhand_icon_state = "electronic"
@@ -405,88 +405,88 @@
 	throw_range = 7
 
 /obj/item/circuitboard/mecha/ripley/peripherals
-	name = "Ripley Peripherals Control module (Exosuit Board)"
+	name = "雷普利外围控制模块（机甲电路板）"
 	icon_state = "mcontroller"
 
 /obj/item/circuitboard/mecha/ripley/main
-	name = "Ripley Central Control module (Exosuit Board)"
+	name = "雷普利中央控制模块（机甲电路板）"
 	icon_state = "mainboard"
 
 
 /obj/item/circuitboard/mecha/gygax/peripherals
-	name = "Gygax Peripherals Control module (Exosuit Board)"
+	name = "吉盖克斯外围控制模块（机甲电路板）"
 	icon_state = "mcontroller"
 
 /obj/item/circuitboard/mecha/gygax/targeting
-	name = "Gygax Weapon Control and Targeting module (Exosuit Board)"
+	name = "吉盖克斯武器控制与瞄准模块（机甲电路板）"
 	icon_state = "mcontroller"
 
 /obj/item/circuitboard/mecha/gygax/main
-	name = "Gygax Central Control module (Exosuit Board)"
+	name = "吉盖克斯中央控制模块（机甲电路板）"
 	icon_state = "mainboard"
 
 /obj/item/circuitboard/mecha/durand/peripherals
-	name = "Durand Peripherals Control module (Exosuit Board)"
+	name = "杜兰德外围控制模块（机甲电路板）"
 	icon_state = "mcontroller"
 
 /obj/item/circuitboard/mecha/durand/targeting
-	name = "Durand Weapon Control and Targeting module (Exosuit Board)"
+	name = "杜兰德武器控制与瞄准模块（机甲电路板）"
 	icon_state = "mcontroller"
 
 /obj/item/circuitboard/mecha/durand/main
-	name = "Durand Central Control module (Exosuit Board)"
+	name = "杜兰德中央控制模块（机甲电路板）"
 	icon_state = "mainboard"
 
 /obj/item/circuitboard/mecha/honker/peripherals
-	name = "H.O.N.K Peripherals Control module (Exosuit Board)"
+	name = "H.O.N.K 外围控制模块（机甲电路板）"
 	icon_state = "mcontroller"
 
 /obj/item/circuitboard/mecha/honker/targeting
-	name = "H.O.N.K Weapon Control and Targeting module (Exosuit Board)"
+	name = "H.O.N.K 武器控制与瞄准模块（机甲电路板）"
 	icon_state = "mcontroller"
 
 /obj/item/circuitboard/mecha/honker/main
-	name = "H.O.N.K Central Control module (Exosuit Board)"
+	name = "H.O.N.K 中央控制模块（机甲电路板）"
 	icon_state = "mainboard"
 
 /obj/item/circuitboard/mecha/odysseus/peripherals
-	name = "Odysseus Peripherals Control module (Exosuit Board)"
+	name = "奥德修斯外围控制模块（机甲电路板）"
 	icon_state = "mcontroller"
 
 /obj/item/circuitboard/mecha/odysseus/main
-	name = "Odysseus Central Control module (Exosuit Board)"
+	name = "奥德修斯中央控制模块（机甲电路板）"
 	icon_state = "mainboard"
 
 /obj/item/circuitboard/mecha/phazon/peripherals
-	name = "Phazon Peripherals Control module (Exosuit Board)"
+	name = "相位行者外围控制模块（机甲电路板）"
 	icon_state = "mcontroller"
 	custom_materials = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT)
 
 /obj/item/circuitboard/mecha/phazon/targeting
-	name = "Phazon Weapon Control and Targeting module (Exosuit Board)"
+	name = "相位行者武器控制与瞄准模块（机甲电路板）"
 	icon_state = "mcontroller"
 	custom_materials = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT)
 
 /obj/item/circuitboard/mecha/phazon/main
-	name = "Phazon Central Control module (Exosuit Board)"
+	name = "相位行者中央控制模块（机甲电路板）"
 	custom_materials = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT)
 
 /obj/item/circuitboard/mecha/clarke/peripherals
-	name = "Clarke Peripherals Control module (Exosuit Board)"
+	name = "克拉克外围控制模块（机甲电路板）"
 	icon_state = "mcontroller"
 
 /obj/item/circuitboard/mecha/clarke/main
-	name = "Clarke Central Control module (Exosuit Board)"
+	name = "克拉克中央控制模块（机甲电路板）"
 	icon_state = "mainboard"
 
 /obj/item/circuitboard/mecha/savannah_ivanov/peripherals
-	name = "Savannah Peripherals Control module (Exosuit Board)"
+	name = "萨凡纳外围控制模块（机甲电路板）"
 	icon_state = "mcontroller"
 
 /obj/item/circuitboard/mecha/savannah_ivanov/targeting
-	name = "Ivanov Weapon Control and Targeting module (Exosuit Board)"
+	name = "伊万诺夫武器控制与瞄准模块（机甲电路板）"
 	icon_state = "mcontroller"
 
 /obj/item/circuitboard/mecha/savannah_ivanov/main
-	name = "Savannah-Ivanov Combination Control Lock module (Exosuit Board)"
+	name = "萨凡纳-伊万诺夫组合控制锁模块（机甲电路板）"
 	icon_state = "mainboard"

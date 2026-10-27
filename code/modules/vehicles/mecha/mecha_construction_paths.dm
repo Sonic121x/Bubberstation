@@ -73,7 +73,7 @@
 	. = user.transferItemToLoc(I, parent)
 	if(.)
 		var/atom/parent_atom = parent
-		user.balloon_alert_to_viewers("connected [I]")
+		user.balloon_alert_to_viewers("已连接 [I]")
 		parent_atom.add_overlay(I.icon_state+"+o")
 		qdel(I)
 
@@ -89,30 +89,30 @@
 	return list(
 		list(
 			"key" = TOOL_WRENCH,
-			"desc" = "The hydraulic systems can be connected with a <b>wrench</b>.",
-			"forward_message" = "connected the hydraulic systems",
+			"desc" = "液压系统可以用<b>扳手</b>连接。",
+			"forward_message" = "已连接液压系统",
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_WRENCH,
-			"desc" = "The hydraulic systems are connected, and can be activated with a <b>screwdriver</b>.",
-			"forward_message" = "activated the hydraulic systems",
-			"backward_message" = "disconnected the hydraulic systems",
+			"desc" = "液压系统已连接，可以用<b>螺丝刀</b>激活。",
+			"forward_message" = "已激活液压系统",
+			"backward_message" = "已断开液压系统",
 		),
 		list(
 			"key" = /obj/item/stack/cable_coil,
 			"amount" = 5,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "The hydraulic systems are active, and the frame can be <b>wired</b>.",
-			"forward_message" = "added wiring",
-			"backward_message" = "deactivated the hydraulic systems",
+			"desc" = "液压系统已激活，可以为框架<b>布线</b>。",
+			"forward_message" = "已添加线路",
+			"backward_message" = "已停用液压系统",
 		),
 		list(
 			"key" = TOOL_WIRECUTTER,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "The wiring is added, and can be adjusted with <b>wirecutters</b>.",
-			"forward_message" = "adjusted wiring",
-			"backward_message" = "removed wiring",
+			"desc" = "线路已添加，可以用<b>剪线钳</b>调整。",
+			"forward_message" = "已调整线路",
+			"backward_message" = "已移除线路",
 		)
 	)
 
@@ -124,31 +124,31 @@
 			"key" = circuit_control,
 			"action" = ITEM_DELETE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "The wiring is adjusted, and the <b>central control module</b> slot has opened.",
-			"forward_message" = "added central control module",
-			"backward_message" = "disconnected wiring",
+			"desc" = "线路已调整，<b>中央控制模块</b>插槽已打开。",
+			"forward_message" = "已添加中央控制模块",
+			"backward_message" = "已断开线路",
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Central control module is installed, and can be <b>screwed</b> into place.",
-			"forward_message" = "secured central control module",
-			"backward_message" = "removed central control module",
+			"desc" = "中央控制模块已安装，可以用<b>螺丝刀</b>固定。",
+			"forward_message" = "已固定中央控制模块",
+			"backward_message" = "已移除中央控制模块",
 		),
 		list(
 			"key" = circuit_periph,
 			"action" = ITEM_DELETE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Central control module is secured, and the <b>peripheral control module</b> slot has opened.",
-			"forward_message" = "added peripheral control module",
-			"backward_message" = "unsecured central control module",
+			"desc" = "中央控制模块已固定，<b>外围控制模块</b>插槽已打开。",
+			"forward_message" = "已添加外围控制模块",
+			"backward_message" = "已松开中央控制模块",
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Peripheral control module is installed, and can be <b>screwed</b> into place.",
-			"forward_message" = "secured peripheral control module",
-			"backward_message" = "removed peripheral control module",
+			"desc" = "外围控制模块已安装，可以用<b>螺丝刀</b>固定。",
+			"forward_message" = "已固定外围控制模块",
+			"backward_message" = "已移除外围控制模块",
 		)
 	)
 
@@ -163,16 +163,16 @@
 			"key" = circuit_weapon,
 			"action" = ITEM_DELETE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Peripherals control module is secured, and the <b>weapon control module</b> slot has opened.",
-			"forward_message" = "added weapon control module",
-			"backward_message" = "unsecured peripheral control module",
+			"desc" = "外围控制模块已固定，<b>武器控制模块</b>插槽已打开。",
+			"forward_message" = "已添加武器控制模块",
+			"backward_message" = "已松开外围控制模块",
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Weapon control module is installed, and can be <b>screwed</b> into place.",
-			"forward_message" = "secured weapon control module",
-			"backward_message" = "removed weapon control module",
+			"desc" = "武器控制模块已安装，可以用<b>螺丝刀</b>固定。",
+			"forward_message" = "已固定武器控制模块",
+			"backward_message" = "已移除武器控制模块",
 		)
 	)
 
@@ -180,69 +180,69 @@
 // Default proc for stock part installation
 // Third set of steps by default
 /datum/component/construction/mecha/proc/get_stockpart_steps()
-	var/prevstep_text = circuit_weapon ? "Weapon control module is secured" : "Peripherals control module is secured"
-	prevstep_text += ", and the <b>scanning module</b> can be added."
-	var/backward_text = circuit_weapon ? "unsecured weapon control module" : "unsecured peripheral module"
+	var/prevstep_text = circuit_weapon ? "武器控制模块已固定" : "外围控制模块已固定"
+	prevstep_text += "，可以添加<b>扫描模块</b>。"
+	var/backward_text = circuit_weapon ? "已松开武器控制模块" : "已松开外围模块"
 	return list(
 		list(
 			"key" = /obj/item/stock_parts/scanning_module,
 			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_SCREWDRIVER,
 			"desc" = prevstep_text,
-			"forward_message" = "added scanning module",
+			"forward_message" = "已添加扫描模块",
 			"backward_message" = backward_text,
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Scanning module is installed, and can be <b>screwed</b> into place.",
-			"forward_message" = "secured scanning module",
-			"backward_message" = "removed scanning module",
+			"desc" = "扫描模块已安装，可以用<b>螺丝刀</b>固定。",
+			"forward_message" = "已固定扫描模块",
+			"backward_message" = "已移除扫描模块",
 		),
 		list(
 			"key" = /obj/item/stock_parts/capacitor,
 			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Scanning module is secured, the <b>capacitor</b> can be added.",
-			"forward_message" = "added capacitor",
-			"backward_message" = "unscecured scanning module",
+			"desc" = "扫描模块已固定，可以添加<b>电容</b>。",
+			"forward_message" = "已添加电容",
+			"backward_message" = "已松开扫描模块",
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Capacitor is installed, and can be <b>screwed</b> into place.",
-			"forward_message" = "secured capacitor",
-			"backward_message" = "removed capacitor",
+			"desc" = "电容已安装，可以用<b>螺丝刀</b>固定。",
+			"forward_message" = "已固定电容",
+			"backward_message" = "已移除电容",
 		),
 		list(
 			"key" = /obj/item/stock_parts/servo,
 			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Scanning module is secured, the <b>servo</b> can be added.",
-			"forward_message" = "added servo",
-			"backward_message" = "unsecured capacitor",
+			"desc" = "扫描模块已固定，可以添加<b>伺服电机</b>。",
+			"forward_message" = "已添加伺服电机",
+			"backward_message" = "已松开电容",
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Servo is installed, and can be <b>screwed</b> into place.",
-			"forward_message" = "secured servo",
-			"backward_message" = "removed servo",
+			"desc" = "伺服电机已安装，可以用<b>螺丝刀</b>固定。",
+			"forward_message" = "已固定伺服电机",
+			"backward_message" = "已移除伺服电机",
 		),
 		list(
 			"key" = /obj/item/stock_parts/power_store/cell,
 			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Servo is secured, and the <b>power cell</b> can be added.",
-			"forward_message" = "added power cell",
-			"backward_message" = "unsecured servo",
+			"desc" = "伺服电机已固定，可以添加<b>电池</b>。",
+			"forward_message" = "已添加电池",
+			"backward_message" = "已松开伺服电机",
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "The power cell is installed, and can be <b>screwed</b> into place.",
-			"forward_message" = "secured power cell",
-			"backward_message" = "removed power cell",
+			"desc" = "电池已安装，可以用<b>螺丝刀</b>固定。",
+			"forward_message" = "已固定电池",
+			"backward_message" = "已移除电池",
 		)
 	)
 
@@ -256,9 +256,9 @@
 				"key" = inner_plating,
 				"amount" = inner_plating_amount,
 				"back_key" = TOOL_SCREWDRIVER,
-				"desc" = "The power cell is secured, [inner_plating_amount] sheets of [initial(inner_plating.name)] can be used as inner plating.",
-				"forward_message" = "installed internal armor layer",
-				"backward_message" = "unsecured power cell",
+				"desc" = "电池已固定，可以用 [inner_plating_amount] 片[initial(inner_plating.name)]作为内层装甲。",
+				"forward_message" = "已安装内部装甲层",
+				"backward_message" = "已松开电池",
 			)
 		)
 	else
@@ -267,9 +267,9 @@
 				"key" = inner_plating,
 				"action" = ITEM_DELETE,
 				"back_key" = TOOL_SCREWDRIVER,
-				"desc" = "The power cell is secured, [initial(inner_plating.name)] can be used as inner plating.",
-				"forward_message" = "installed internal armor layer",
-				"backward_message" = "unsecured power cell",
+				"desc" = "电池已固定，可以用[initial(inner_plating.name)]作为内层装甲。",
+				"forward_message" = "已安装内部装甲层",
+				"backward_message" = "已松开电池",
 			)
 		)
 
@@ -277,16 +277,16 @@
 		list(
 			"key" = TOOL_WRENCH,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Inner plating is installed, and can be <b>wrenched</b> into place.",
-			"forward_message" = "secured internal armor layer",
-			"backward_message" = "pried off internal armor layer",
+			"desc" = "内层装甲已安装，可以用<b>扳手</b>固定。",
+			"forward_message" = "已固定内部装甲层",
+			"backward_message" = "已撬下内部装甲层",
 		),
 		list(
 			"key" = TOOL_WELDER,
 			"back_key" = TOOL_WRENCH,
-			"desc" = "Inner plating is wrenched, and can be <b>welded</b>.",
-			"forward_message" = "welded internal armor layer",
-			"backward_message" = "unfastened internal armor layer",
+			"desc" = "内层装甲已用扳手固定，可以进行<b>焊接</b>。",
+			"forward_message" = "已焊接内部装甲层",
+			"backward_message" = "已松开内部装甲层",
 		)
 	)
 
@@ -300,9 +300,9 @@
 				"key" = outer_plating,
 				"amount" = outer_plating_amount,
 				"back_key" = TOOL_WELDER,
-				"desc" = "Inner plating is welded, [outer_plating_amount] sheets of [initial(outer_plating.name)] can be used as external armor.",
-				"forward_message" = "installed external armor layer",
-				"backward_message" = "cut off internal armor layer",
+				"desc" = "内层装甲已焊接，可以用 [outer_plating_amount] 片[initial(outer_plating.name)]作为外部装甲。",
+				"forward_message" = "已安装外部装甲层",
+				"backward_message" = "已切下内部装甲层",
 			)
 		)
 	else
@@ -311,9 +311,9 @@
 				"key" = outer_plating,
 				"action" = ITEM_DELETE,
 				"back_key" = TOOL_WELDER,
-				"desc" = "Inner plating is welded, [initial(outer_plating.name)] can be used as external armor.",
-				"forward_message" = "installed external armor layer",
-				"backward_message" = "cut off internal armor layer",
+				"desc" = "内层装甲已焊接，可以用[initial(outer_plating.name)]作为外部装甲。",
+				"forward_message" = "已安装外部装甲层",
+				"backward_message" = "已切下内部装甲层",
 			)
 		)
 
@@ -321,16 +321,16 @@
 		list(
 			"key" = TOOL_WRENCH,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "External armor is installed, and can be <b>wrenched</b> into place.",
-			"forward_message" = "secured external armor layer",
-			"backward_message" = "pried off external armor layer",
+			"desc" = "外部装甲已安装，可以用<b>扳手</b>固定。",
+			"forward_message" = "已固定外部装甲层",
+			"backward_message" = "已撬下外部装甲层",
 		),
 		list(
 			"key" = TOOL_WELDER,
 			"back_key" = TOOL_WRENCH,
-			"desc" = "External armor is wrenched, and can be <b>welded</b>.",
-			"forward_message" = "welded external armor layer",
-			"backward_message" = "unfastened external armor layer",
+			"desc" = "外部装甲已用扳手固定，可以进行<b>焊接</b>。",
+			"forward_message" = "已焊接外部装甲层",
+			"backward_message" = "已松开外部装甲层",
 		)
 	)
 
@@ -380,9 +380,9 @@
 /datum/component/construction/mecha/ripley/get_outer_plating_steps()
 	// we yoink the first step of adding plating and modify the flavor a bit
 	var/list/first_step = ..()[1]
-	first_step["desc"] = "Plating is welded, and 10 <b>rods</b> can be used to install the cockpit."
-	first_step["forward_message"] = "installed cockpit"
-	first_step["backward_message"] = "cut off plating"
+	first_step["desc"] = "装甲已焊接，可以用 10 根<b>金属杆</b>安装驾驶舱。"
+	first_step["forward_message"] = "已安装驾驶舱"
+	first_step["backward_message"] = "已切下装甲"
 
 	// then we add our own second step for welding the cockpit in place
 	return list(
@@ -390,9 +390,9 @@
 		list(
 			"key" = TOOL_WELDER,
 			"back_key" = TOOL_WIRECUTTER,
-			"desc" = "Cockpit wire screen is installed, and can be <b>welded</b>.",
-			"forward_message" = "welded cockpit",
-			"backward_message" = "cut off cockpit",
+			"desc" = "驾驶舱防撞网已安装，可以进行<b>焊接</b>。",
+			"forward_message" = "已焊接驾驶舱",
+			"backward_message" = "已切下驾驶舱",
 		)
 	)
 
@@ -455,37 +455,37 @@
 		list(
 			"key" = /obj/item/stack/conveyor,
 			"amount" = 4,
-			"desc" = "The treads can be added using 4 sheets of conveyor belts.",
-			"forward_message" = "added tread systems",
+			"desc" = "可以使用 4 片传送带添加履带。",
+			"forward_message" = "已添加履带系统",
 		),
 		list(
 			"key" = TOOL_WRENCH,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "The treads are installed, and the hydraulic systems can be connected with a <b>wrench</b>.",
-			"forward_message" = "connected the hydraulic systems",
-			"backward_message" = "removed tread systems"
+			"desc" = "履带已安装，液压系统可以用<b>扳手</b>连接。",
+			"forward_message" = "已连接液压系统",
+			"backward_message" = "已移除履带系统"
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_WRENCH,
-			"desc" = "The hydraulic systems are connected, and can be activated with a <b>screwdriver</b>.",
-			"forward_message" = "activated hydraulic systems",
-			"backward_message" = "disconnected hydraulic systems"
+			"desc" = "液压系统已连接，可以用<b>螺丝刀</b>激活。",
+			"forward_message" = "已激活液压系统",
+			"backward_message" = "已断开液压系统"
 		),
 		list(
 			"key" = /obj/item/stack/cable_coil,
 			"amount" = 5,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "The hydraulic systems are active, and the frame can be <b>wired</b>.",
-			"forward_message" = "added wiring",
-			"backward_message" = "deactivated hydraulic systems"
+			"desc" = "液压系统已激活，可以为框架<b>布线</b>。",
+			"forward_message" = "已添加线路",
+			"backward_message" = "已停用液压系统"
 		),
 		list(
 			"key" = TOOL_WIRECUTTER,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "The wiring is added, and can be adjusted with <b>wirecutters</b>.",
-			"forward_message" = "adjusted wiring",
-			"backward_message" = "removed wiring"
+			"desc" = "线路已添加，可以用<b>剪线钳</b>调整。",
+			"forward_message" = "已调整线路",
+			"backward_message" = "已移除线路"
 		)
 	)
 
@@ -511,8 +511,8 @@
 		list(
 			"key" = /obj/item/circuitboard/mecha/honker/main,
 			"action" = ITEM_DELETE,
-			"desc" = "Fun <b>central board</b> can be added!",
-			"forward_message" = "added fun"
+			"desc" = "可以添加滑稽<b>中央电路板</b>！",
+			"forward_message" = "已添加滑稽"
 
 		),
 		list(
@@ -522,8 +522,8 @@
 		list(
 			"key" = /obj/item/circuitboard/mecha/honker/peripherals,
 			"action" = ITEM_DELETE,
-			"desc" = "Joke <b>peripheral board</b> can be added!",
-			"forward_message" = "added joke"
+			"desc" = "可以添加玩笑<b>外围电路板</b>！",
+			"forward_message" = "已添加玩笑"
 		),
 		list(
 			"key" = /obj/item/bikehorn,
@@ -532,8 +532,8 @@
 		list(
 			"key" = /obj/item/circuitboard/mecha/honker/targeting,
 			"action" = ITEM_DELETE,
-			"desc" = "Prank <b>targeting board</b> can be added!",
-			"forward_message" = "added prank"
+			"desc" = "可以添加恶作剧<b>瞄准电路板</b>！",
+			"forward_message" = "已添加恶作剧"
 		),
 		list(
 			"key" = /obj/item/bikehorn,
@@ -542,8 +542,8 @@
 		list(
 			"key" = /obj/item/stock_parts/scanning_module,
 			"action" = ITEM_MOVE_INSIDE,
-			"desc" = "Silly <b>scanning</b> module can be added!",
-			"forward_message" = "added silly"
+			"desc" = "可以添加傻气<b>扫描</b>模块！",
+			"forward_message" = "已添加傻气"
 		),
 		list(
 			"key" = /obj/item/bikehorn,
@@ -552,8 +552,8 @@
 		list(
 			"key" = /obj/item/stock_parts/capacitor,
 			"action" = ITEM_MOVE_INSIDE,
-			"desc" = "Humor <b>capacitor</b> can be added!",
-			"forward_message" = "added humor"
+			"desc" = "可以添加幽默<b>电容</b>！",
+			"forward_message" = "已添加幽默"
 		),
 		list(
 			"key" = /obj/item/bikehorn,
@@ -562,8 +562,8 @@
 		list(
 			"key" = /obj/item/stock_parts/servo,
 			"action" = ITEM_MOVE_INSIDE,
-			"desc" = "Humor <b>servo</b> can be added!",
-			"forward_message" = "added smile"
+			"desc" = "可以添加幽默<b>伺服电机</b>！",
+			"forward_message" = "已添加笑容"
 		),
 		list(
 			"key" = /obj/item/bikehorn,
@@ -572,8 +572,8 @@
 		list(
 			"key" = /obj/item/stock_parts/power_store/cell,
 			"action" = ITEM_MOVE_INSIDE,
-			"desc" = "Laughter <b>cell</b> can be added!",
-			"forward_message" = "added laughter"
+			"desc" = "可以添加欢笑<b>电池</b>！",
+			"forward_message" = "已添加欢笑"
 		),
 		list(
 			"key" = /obj/item/bikehorn,
@@ -582,8 +582,8 @@
 		list(
 			"key" = /obj/item/clothing/mask/gas/clown_hat,
 			"action" = ITEM_DELETE,
-			"desc" = "Clown mask can be ceremoniously added!",
-			"forward_message" = "added mask"
+			"desc" = "可以隆重地添加小丑面具！",
+			"forward_message" = "已添加面具"
 		),
 		list(
 			"key" = /obj/item/bikehorn,
@@ -592,12 +592,12 @@
 		list(
 			"key" = /obj/item/clothing/shoes/clown_shoes,
 			"action" = ITEM_DELETE,
-			"desc" = "Clown shoes can be reverently added!",
-			"forward_message" = "added shoes"
+			"desc" = "可以虔诚地添加小丑鞋！",
+			"forward_message" = "已添加鞋子"
 		),
 		list(
 			"key" = /obj/item/bikehorn,
-			"desc" = "Honk again, if you are brave enough."
+			"desc" = "如果你足够勇敢，就再按一次喇叭。"
 		),
 	)
 
@@ -679,7 +679,7 @@
 		return FALSE
 
 	if(istype(I, /obj/item/assembly/signaler/anomaly) && !istype(I, required_core))
-		to_chat(user, span_warning("The anomaly core socket only accepts \a [initial(required_core.name)]!"))
+		to_chat(user, span_warning("异常核心插槽只接受 [initial(required_core.name)]！"))
 		return FALSE
 
 	return TRUE
@@ -690,87 +690,87 @@
 			"key" = /obj/item/stock_parts/scanning_module,
 			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Weapon control module is secured, and the <b>scanning module</b> can be added.",
-			"forward_message" = "added scanning module",
-			"backward_message" = "unsecured weapon control module",
+			"desc" = "武器控制模块已固定，可以添加<b>扫描模块</b>。",
+			"forward_message" = "已添加扫描模块",
+			"backward_message" = "已松开武器控制模块",
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Scanning module is installed, and can be <b>screwed</b> into place.",
-			"forward_message" = "secured scanning module",
-			"backward_message" = "removed scanning module",
+			"desc" = "扫描模块已安装，可以用<b>螺丝刀</b>固定。",
+			"forward_message" = "已固定扫描模块",
+			"backward_message" = "已移除扫描模块",
 		),
 		list(
 			"key" = /obj/item/stock_parts/capacitor,
 			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Scanning module is secured, and the <b>capacitor</b> can be added.",
-			"forward_message" = "added capacitor",
-			"backward_message" = "unsecured scanning module",
+			"desc" = "扫描模块已固定，可以添加<b>电容</b>。",
+			"forward_message" = "已添加电容",
+			"backward_message" = "已松开扫描模块",
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" =  "Capacitor is installed, and can be <b>screwed</b> into place.",
-			"forward_message" = "secured capacitor",
-			"backward_message" = "removed capacitor",
+			"desc" =  "电容已安装，可以用<b>螺丝刀</b>固定。",
+			"forward_message" = "已固定电容",
+			"backward_message" = "已移除电容",
 		),
 		list(
 			"key" = /obj/item/stock_parts/servo,
 			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Capacitor is secured, the <b>servo</b> can be added.",
-			"forward_message" = "added servo",
-			"backward_message" = "unsecured capacitor",
+			"desc" = "电容已固定，可以添加<b>伺服电机</b>。",
+			"forward_message" = "已添加伺服电机",
+			"backward_message" = "已松开电容",
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Servo is installed, and can be <b>screwed</b> into place.",
-			"forward_message" = "secured servo",
-			"backward_message" = "removed servo",
+			"desc" = "伺服电机已安装，可以用<b>螺丝刀</b>固定。",
+			"forward_message" = "已固定伺服电机",
+			"backward_message" = "已移除伺服电机",
 		),
 		list(
 			"key" = /obj/item/stack/ore/bluespace_crystal,
 			"amount" = 1,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Servo is secured, and the <b>bluespace crystal</b> can be added.",
-			"forward_message" = "added bluespace crystal",
-			"backward_message" = "unsecured servo",
+			"desc" = "伺服电机已固定，可以添加<b>蓝空间水晶</b>。",
+			"forward_message" = "已添加蓝空间水晶",
+			"backward_message" = "已松开伺服电机",
 		),
 		list(
 			"key" = /obj/item/stack/cable_coil,
 			"amount" = 5,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "The bluespace crystal is installed, and can be <b>wired</b> to the mech systems.",
-			"forward_message" = "connected bluespace crystal",
-			"backward_message" = "removed bluespace crystal",
+			"desc" = "蓝空间水晶已安装，可以<b>接线</b>到机甲系统。",
+			"forward_message" = "已连接蓝空间水晶",
+			"backward_message" = "已移除蓝空间水晶",
 			"icon_state" = "phazon19",
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_WIRECUTTER,
-			"desc" = "The bluespace crystal is connected, and the system can be engaged with a <b>screwdriver</b>.",
-			"forward_message" = "engaded bluespace crystal",
-			"backward_message" = "disconnected bluespace crystal",
+			"desc" = "蓝空间水晶已连接，可以用<b>螺丝刀</b>启动系统。",
+			"forward_message" = "已启动蓝空间水晶",
+			"backward_message" = "已断开蓝空间水晶",
 			"icon_state" = "phazon20",
 		),
 		list(
 			"key" = /obj/item/stock_parts/power_store/cell,
 			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "The bluespace crystal is engaged, and the <b>power cell</b> can be added.",
-			"forward_message" = "added power cell",
-			"backward_message" = "disengaged bluespace crystal",
+			"desc" = "蓝空间水晶已启动，可以添加<b>电池</b>。",
+			"forward_message" = "已添加电池",
+			"backward_message" = "已停用蓝空间水晶",
 			"icon_state" = "phazon21",
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "The power cell is installed, and can be <b>screwed</b> into place.",
-			"forward_message" = "secured power cell",
-			"backward_message" = "removed power cell",
+			"desc" = "电池已安装，可以用<b>螺丝刀</b>固定。",
+			"forward_message" = "已固定电池",
+			"backward_message" = "已移除电池",
 			"icon_state" = "phazon21",
 		)
 	)
@@ -781,9 +781,9 @@
 			"key" = required_core,
 			"action" = ITEM_DELETE,
 			"back_key" = TOOL_WELDER,
-			"desc" = "The external armor is welded, and the <b>[initial(required_core.name)]</b> socket is open.",
-			"forward_message" = "inserted [initial(required_core.name)]",
-			"backward_message" = "cut off external armor",
+			"desc" = "外部装甲已焊接，<b>[initial(required_core.name)]</b>插槽已打开。",
+			"forward_message" = "已插入[initial(required_core.name)]",
+			"backward_message" = "已切下外部装甲",
 			"skip_state" = TRUE,
 		)
 	)

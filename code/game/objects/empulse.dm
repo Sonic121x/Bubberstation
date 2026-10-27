@@ -6,7 +6,7 @@
 		epicenter = get_turf(epicenter.loc)
 
 	if(emp_source)
-		message_admins("EMP with size ([heavy_range], [light_range]) in [ADMIN_VERBOSEJMP(epicenter)], caused by [emp_source] ")
+		message_admins("[emp_source]在[ADMIN_VERBOSEJMP(epicenter)]引发了范围为（[heavy_range]，[light_range]）的电磁脉冲。")
 		log_game("EMP with size ([heavy_range], [light_range]) in [ADMIN_VERBOSEJMP(epicenter)], caused by [emp_source] ")
 
 	if(heavy_range > 1)

@@ -17,8 +17,8 @@
  */
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald
-	name = "herald"
-	desc = "A monstrous beast which fires deadly projectiles at threats and prey."
+	name = "传令官"
+	desc = "一头会朝威胁与猎物发射致命投射物的怪物。"
 	icon = 'icons/mob/simple/lavaland/lavaland_elites_64.dmi'
 	icon_state = "herald"
 	icon_living = "herald"
@@ -33,15 +33,15 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 20
 	mob_biotypes = MOB_ORGANIC|MOB_MINING
-	attack_verb_continuous = "preaches to"
-	attack_verb_simple = "preach to"
+	attack_verb_continuous = "布道"
+	attack_verb_simple = "布道"
 	attack_sound = 'sound/effects/magic/clockwork/ratvar_attack.ogg'
-	throw_message = "doesn't affect the purity of"
+	throw_message = "未能玷污其纯净，伤不到"
 	speed = 2
 	move_to_delay = 10
 	mouse_opacity = MOUSE_OPACITY_ICON
 	death_sound = 'sound/effects/magic/demon_dies.ogg'
-	death_message = "begins to shudder as it becomes transparent..."
+	death_message = "开始颤抖，身体逐渐变得透明……"
 	loot_drop = /obj/item/clothing/neck/cloak/herald_cloak
 
 	can_talk = 1
@@ -71,27 +71,27 @@
 	playsound(src, 'sound/effects/magic/clockwork/invoke_general.ogg', 20, TRUE)
 
 /datum/action/innate/elite_attack/herald_trishot
-	name = "Triple Shot"
+	name = "三重射击"
 	button_icon_state = "herald_trishot"
-	chosen_message = span_boldwarning("You are now firing three shots in your chosen direction.")
+	chosen_message = span_boldwarning("你现在会朝选定的方向连射三次。")
 	chosen_attack_num = HERALD_TRISHOT
 
 /datum/action/innate/elite_attack/herald_directionalshot
-	name = "Circular Shot"
+	name = "环形射击"
 	button_icon_state = "herald_directionalshot"
-	chosen_message = span_boldwarning("You are firing projectiles in all directions.")
+	chosen_message = span_boldwarning("你正向四面八方发射投射物。")
 	chosen_attack_num = HERALD_DIRECTIONALSHOT
 
 /datum/action/innate/elite_attack/herald_teleshot
-	name = "Teleport Shot"
+	name = "传送射击"
 	button_icon_state = "herald_teleshot"
-	chosen_message = span_boldwarning("You will now fire a shot which teleports you where it lands.")
+	chosen_message = span_boldwarning("你现在会发射一发命中落点后将你传送过去的弹幕。")
 	chosen_attack_num = HERALD_TELESHOT
 
 /datum/action/innate/elite_attack/herald_mirror
-	name = "Summon Mirror"
+	name = "召唤镜像"
 	button_icon_state = "herald_mirror"
-	chosen_message = span_boldwarning("You will spawn a mirror which duplicates your attacks.")
+	chosen_message = span_boldwarning("你会召唤一面能复制你攻击的镜像。")
 	chosen_attack_num = HERALD_MIRROR
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald/OpenFire()
@@ -199,15 +199,15 @@
 	SET_FACTION_AND_ALLIES_FROM(my_mirror, src)
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald/mirror
-	name = "herald's mirror"
-	desc = "This fiendish work of magic copies the herald's attacks.  Seems logical to smash it."
+	name = "传令官的镜像"
+	desc = "这件邪门的魔法造物会复制传令官的攻击。把它砸烂似乎才合乎情理。"
 	health = 60
 	maxHealth = 60
 	icon_state = "herald_mirror"
 	icon_aggro = "herald_mirror"
 	pixel_x = -16
 	base_pixel_x = -16
-	death_message = "shatters violently!"
+	death_message = "猛烈地碎裂开来！"
 	death_sound = 'sound/effects/glass/glassbr1.ogg'
 	del_on_death = TRUE
 	is_mirror = TRUE
@@ -225,7 +225,7 @@
 	. = ..()
 
 /obj/projectile/herald
-	name ="death bolt"
+	name ="死亡光矢"
 	icon_state= "chronobolt"
 	damage = 20
 	armour_penetration = 60
@@ -249,7 +249,7 @@
 		rock_target.gets_drilled()
 
 /obj/projectile/herald/teleshot
-	name = "golden bolt"
+	name = "金色弩矢"
 	damage = 0
 	color = rgb(255,255,102)
 
@@ -261,8 +261,8 @@
 //Herald's loot: Cloak of the Prophet
 
 /obj/item/clothing/neck/cloak/herald_cloak
-	name = "cloak of the prophet"
-	desc = "A cloak which protects you from the heresy of the world."
+	name = "先知斗篷"
+	desc = "一件能保护你不受世间异端侵害的斗篷。"
 	icon = 'icons/obj/mining_zones/elite_trophies.dmi'
 	icon_state = "herald_cloak"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -281,11 +281,11 @@
 	H.firer = owner
 	H.fire(set_angle)
 
-/obj/item/clothing/neck/cloak/herald_cloak/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/neck/cloak/herald_cloak/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "这次攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	. = ..()
 	if(prob(hit_reaction_chance))
 		return
-	owner.visible_message(span_danger("[owner]'s [src] emits a loud noise as [owner] is struck!"))
+	owner.visible_message(span_danger("[owner] 被击中的那一刻，[owner] 的 [src] 发出一声巨响！"))
 	var/static/list/directional_shot_angles = list(0, 45, 90, 135, 180, 225, 270, 315)
 	playsound(get_turf(owner), 'sound/effects/magic/clockwork/invoke_general.ogg', 20, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(reactionshot), owner), 1 SECONDS)

@@ -5,8 +5,8 @@
 
 ///We take a constant input of reagents, and produce a pill once a set volume is reached
 /obj/machinery/plumbing/pill_press
-	name = "chemical press"
-	desc = "A press that makes pills, patches and bottles."
+	name = "化学压片机"
+	desc = "一台压制药片、贴片和瓶装药剂的压机。"
 	icon_state = "pill_press"
 
 	/// selected size of the product
@@ -15,7 +15,7 @@
 	var/max_volume = 100 // BUBBER EDIT CHANGE - Original: 50
 	buffer = 100 // BUBBER EDIT CHANGE - you need to have a buffer now or it won't fill the 100u bottles, since the default buffer is 50u
 	/// prefix for the product name
-	var/product_name = "factory"
+	var/product_name = "工厂"
 	/// Selected duration of produced pills, if they're selected
 	var/pill_duration = 3
 	/// All packaging types wrapped up in 1 big list
@@ -68,18 +68,18 @@
 	var/suffix
 	switch(packaging_category)
 		if(CAT_PILLS)
-			suffix = "pill"
+			suffix = "药片"
 		if(CAT_PATCHES)
-			suffix = "patch"
+			suffix = "贴片"
 		//SKYRAT EDIT ADDITION BEGIN - HYPOVIALS
 		if(CAT_HYPOS)
-			suffix = "vial"
+			suffix = "小瓶"
 		//SKYRAT EDIT ADDITION END - HYPOVIALS
 		if(CAT_PEN_INJECTORS)
 		// BUBBER EDIT for pen_medipens
-			suffix = "injector"
+			suffix = "注射器"
 		else
-			suffix = "bottle"
+			suffix = "药瓶"
 	container.name = "[product_name] [suffix]"
 	reagents.trans_to(container, current_volume)
 	if (istype(container, /obj/item/reagent_containers/applicator/pill))

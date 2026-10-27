@@ -1,6 +1,6 @@
 
 /// Verb to open the create command report window and send command reports.
-ADMIN_VERB(dynamic_tester, R_DEBUG, "Dynamic Tester", "See dynamic probabilities.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(dynamic_tester, R_DEBUG, "动态模式测试器", "查看动态模式的概率。", ADMIN_CATEGORY_DEBUG)
 	BLACKBOX_LOG_ADMIN_VERB("Dynamic Tester")
 	var/datum/dynamic_tester/tgui = new()
 	tgui.ui_interact(user.mob)
@@ -91,10 +91,10 @@ ADMIN_VERB(dynamic_tester, R_DEBUG, "Dynamic Tester", "See dynamic probabilities
 		var/comment = ""
 		if(istype(ruleset, /datum/dynamic_ruleset/roundstart/revolution))
 			var/datum/dynamic_ruleset/roundstart/revolution/revs = ruleset
-			comment = " (Assuming [initial(revs.heads_necessary)] heads of staff)"
+			comment = "（假定有 [initial(revs.heads_necessary)] 名部门主管）"
 
 		roundstart_ruleset_report[ruleset] = list(
-			"name" = ruleset.name,
+			"name" = chinese_batch_four_admin_display(ruleset.name),
 			"weight" = ruleset.get_weight(num_players, tier),
 			"max_candidates" = ruleset.get_antag_cap(num_players, ruleset.max_antag_cap || ruleset.min_antag_cap),
 			"min_candidates" = ruleset.get_antag_cap(num_players, ruleset.min_antag_cap),
@@ -106,7 +106,7 @@ ADMIN_VERB(dynamic_tester, R_DEBUG, "Dynamic Tester", "See dynamic probabilities
 	for(var/datum/dynamic_ruleset/midround/ruleset as anything in midround_rulesets)
 		var/list/list_to_add = ruleset.midround_type == LIGHT_MIDROUND ? light_midround_ruleset_report : heavy_midround_ruleset_report
 		list_to_add[ruleset] = list(
-			"name" = ruleset.name,
+			"name" = chinese_batch_four_admin_display(ruleset.name),
 			"weight" = ruleset.get_weight(num_players, tier),
 			"max_candidates" = ruleset.get_antag_cap(num_players, ruleset.max_antag_cap || ruleset.min_antag_cap),
 			"min_candidates" = ruleset.get_antag_cap(num_players, ruleset.min_antag_cap),

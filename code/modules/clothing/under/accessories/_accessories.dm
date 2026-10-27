@@ -9,8 +9,8 @@
  * The rest are still shown on examine, but this may create unfair circumstances when you can't examine someone.
  */
 /obj/item/clothing/accessory
-	name = "Accessory"
-	desc = "Something has gone wrong!"
+	name = "配饰"
+	desc = "有地方出错了！"
 	icon = 'icons/obj/clothing/accessories.dmi'
 	worn_icon = 'icons/mob/clothing/accessories.dmi'
 	icon_state = "plasma"
@@ -42,17 +42,17 @@
 
 	if(atom_storage && attach_to.atom_storage)
 		if(user)
-			attach_to.balloon_alert(user, "isn't compatible!")
+			attach_to.balloon_alert(user, "不兼容！")
 		return FALSE
 
 	if(attachment_slot && !(attach_to.body_parts_covered & attachment_slot))
 		if(user)
-			attach_to.balloon_alert(user, "can't attach there!")
+			attach_to.balloon_alert(user, "无法装在那里！")
 		return FALSE
 
 	if(length(attach_to.attached_accessories) >= attach_to.max_number_of_accessories)
 		if(user)
-			attach_to.balloon_alert(user, "too many accessories!")
+			attach_to.balloon_alert(user, "配饰太多了！")
 		return FALSE
 
 	return TRUE
@@ -192,7 +192,7 @@
 		return
 
 	forceMove(source.drop_location()) //This calls remove_accessory()
-	source.visible_message(span_warning("[src] falls off of [source]!"))
+	source.visible_message(span_warning("[src] 从 [source] 上掉了下来！"))
 
 /// Signal proc for [COMSIG_ATOM_UPDATE_OVERLAYS] on the uniform we're pinned to to add our overlays to the inventory icon
 /obj/item/clothing/accessory/proc/on_uniform_update(obj/item/source, list/overlays)
@@ -205,18 +205,18 @@
 		return
 	if(user.can_perform_action(src, NEED_DEXTERITY))
 		above_suit = !above_suit
-		balloon_alert(user, "wearing [above_suit ? "above" : "below"] suits")
+		balloon_alert(user, "穿在套装[above_suit ? "外面" : "里面"]")
 		return TRUE
 
 /obj/item/clothing/accessory/examine(mob/user)
 	. = ..()
-	. += "It can be attached to a uniform."
-	. += "It can be worn above or below your suit. Right-click to toggle."
+	. += "它可以装在制服上。"
+	. += "它可以穿在你的套装外面或里面。右键点击切换。"
 
 /obj/item/clothing/accessory/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(held_item != source)
 		return .
 
-	context[SCREENTIP_CONTEXT_RMB] = "Wear [above_suit ? "below" : "above"] suit"
+	context[SCREENTIP_CONTEXT_RMB] = "穿在套装[above_suit ? "里面" : "外面"]"
 	return CONTEXTUAL_SCREENTIP_SET

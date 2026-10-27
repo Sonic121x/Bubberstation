@@ -4,10 +4,10 @@
 
 /datum/quirk/oversized
 	name = "Oversized"
-	desc = "You, for whatever reason, are FAR too tall, and will encounter some rough situations because of it."
-	gain_text = span_notice("That airlock looks small...")
-	lose_text = span_notice("Is it still the same size...?") //Lol
-	medical_record_text = "Patient is abnormally tall."
+	desc = "不知为何，你长得实在太高了，也因此会遇到一些麻烦。"
+	gain_text = span_notice("那扇气闸看起来真小……")
+	lose_text = span_notice("它的大小没变吧……？") //Lol
+	medical_record_text = "患者身高异常。"
 	value = 0
 	mob_trait = TRAIT_OVERSIZED
 	icon = FA_ICON_EXPAND_ARROWS_ALT
@@ -61,7 +61,7 @@
 		leg.unarmed_effectiveness = initial(leg.unarmed_effectiveness)
 
 	for(var/obj/item/bodypart/bodypart as anything in human_holder.bodyparts)
-		bodypart.name = replacetext(bodypart.name, "oversized ", "")
+		bodypart.name = replacetext(replacetext(bodypart.name, "oversized ", ""), "超大号", "")
 
 	UnregisterSignal(human_holder, COMSIG_CARBON_POST_ATTACH_LIMB)
 
@@ -77,7 +77,7 @@
 /datum/quirk/oversized/proc/on_gain_limb(datum/source, obj/item/bodypart/gained, special)
 	SIGNAL_HANDLER
 
-	if(findtext(gained.name, "oversized"))
+	if(findtext(gained.name, "oversized") || findtext(gained.name, "超大号"))
 		return
 
 	// Oversized arms have a higher damage maximum. Pretty simple.
@@ -90,7 +90,7 @@
 		var/obj/item/bodypart/leg/new_leg = gained
 		new_leg.unarmed_effectiveness = initial(new_leg.unarmed_effectiveness) + OVERSIZED_KICK_EFFECTIVENESS_BONUS
 
-	gained.name = "oversized " + gained.name
+	gained.name = "超大号" + gained.name
 
 /datum/movespeed_modifier/oversized
 	multiplicative_slowdown = OVERSIZED_SPEED_SLOWDOWN

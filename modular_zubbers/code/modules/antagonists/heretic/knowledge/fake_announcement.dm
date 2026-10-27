@@ -9,10 +9,10 @@
 	return base
 
 /datum/heretic_knowledge/fake_announcement
-	name = "Voice of the Mansus"
-	desc = "Sacrifice a radio to create a fake announcement. Can only be invoked once before it must be researched again."
-	gain_text = "Even in our dreams, and indeed, in our dreams first and fore-most, the thrums of the Mansus claim our attention. \
-	Knock, and it will heed."
+	name = "漫宿之声"
+	desc = "献祭一台无线电，发出一则虚假公告。只能施展一次，之后必须重新研究。"
+	gain_text = "即使在梦中——确切地说，最先也是最深切地在梦中——漫宿的低鸣也会吸引我们的注意。\
+	叩门，它便会倾听。"
 	required_atoms = list(/obj/item/radio = 1)
 	drafting_tier = 1
 	drafting_cost = 0.5

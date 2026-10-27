@@ -1,8 +1,8 @@
 /// Yes. This is a lot of code frankensteining. I am not proud of my work but damned am i proud it works... Atleast if you're seeing this it works.
 
 /obj/item/gun/energy/recharge/resonant_system
-	name = "A.R.C.S Resonator"
-	desc = "The \"Advanced Resonance Control System\" or \"A.R.C.S\" is an advanced, ranged version of a mining resonator. While its main case looks nothing more fancy than a modified proto-kinetic accelerator... One could guess thats not far off the truth. The lugs for a bayonette are missing, but atleast you can play with the new adjustment dial on the side."
+	name = "A.R.C.S共振器"
+	desc = "“先进共振控制系统”，简称“A.R.C.S”，是一种先进的远程采矿共振器。外壳看起来不过是改装过的原型动能加速器……这种猜测离真相并不远。虽然没有刺刀座，但至少可以玩玩侧面新增的调节旋钮。"
 	icon = 'modular_skyrat/modules/tarkon/icons/misc/ARCS.dmi'
 	righthand_file = 'modular_skyrat/modules/tarkon/icons/mob/guns/ARCS/righthand.dmi'
 	lefthand_file = 'modular_skyrat/modules/tarkon/icons/mob/guns/ARCS/lefthand.dmi'
@@ -34,10 +34,10 @@
 
 /obj/item/gun/energy/recharge/resonant_system/attack_self(mob/user)
 	if(mode == RESONATOR_MODE_AUTO)
-		to_chat(user, span_info("You set the resonator's fields to detonate only after you hit one with it."))
+		to_chat(user, span_info("你将共振器的能量场设为仅在再次命中时引爆。"))
 		mode = RESONATOR_MODE_MANUAL
 	else
-		to_chat(user, span_info("You set the resonator's fields to automatically detonate after 2 seconds."))
+		to_chat(user, span_info("你将共振器的能量场设为2秒后自动引爆。"))
 		mode = RESONATOR_MODE_AUTO
 
 /obj/item/gun/energy/recharge/resonant_system/proc/modify_projectile(obj/projectile/resonant_bolt/bolt)
@@ -56,7 +56,7 @@
 		firer.modify_projectile(loaded_projectile)
 
 /obj/projectile/resonant_bolt
-	name = "resonating pulse"
+	name = "共振脉冲"
 	icon_state = "pulse1"
 	damage = 0 //Damage will be done via delayed blast
 	damage_type = BRUTE
@@ -153,7 +153,7 @@
 	if(creator)
 		log_combat(creator, owner, "used a resonator field on", "resonator")
 		SEND_SIGNAL(creator, COMSIG_LIVING_RESONATOR_BURST, creator, owner)
-	to_chat(owner, span_userdanger("[src] detonated with you in it!"))
+	to_chat(owner, span_userdanger("共振场在你身上爆发了！"))
 	owner.apply_damage(resonance_damage, BRUTE)
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/resonance)
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/resonance), 10 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)

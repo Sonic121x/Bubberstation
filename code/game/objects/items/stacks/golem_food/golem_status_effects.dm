@@ -17,7 +17,7 @@
 	/// Icon state to display to represent the alert
 	var/alert_icon_state = "sheet-monkey"
 	/// Tooltip to display when hovering over the alert
-	var/alert_desc = "Something went wrong and this tooltip is not displaying correctly."
+	var/alert_desc = "出现了某种错误，此提示未能正确显示。"
 	/// If we are not a golem what color does the filter glow?
 	var/filter_color = LIGHT_COLOR_DEFAULT
 	/// If TRUE, then this status effect is exclusive to other golem status effects and cannot be stacked with them.
@@ -28,8 +28,8 @@
 	var/minimum_duration_mult = 0.1
 
 /atom/movable/screen/alert/status_effect/golem_status
-	name = "Metamorphic %SOMETHING%"
-	desc = "You've enjoyed a tasty meal and are now experiencing a bug."
+	name = "蜕变的 %SOMETHING%"
+	desc = "你享用了一顿美味的餐食，现在却出了个差错。"
 	icon_state = "template"
 	/// Overlay we show on top of the template icon
 	var/mutable_appearance/mineral_overlay
@@ -140,14 +140,14 @@
 
 /datum/status_effect/golem/on_remove()
 	if(mineral_name)
-		to_chat(owner, span_warning("The effect of the [mineral_name] fades."))
+		to_chat(owner, span_warning("[mineral_name]的效果消退了。"))
 	QDEL_LIST(active_overlays)
 	owner.remove_filter("[id]_filter")
 	return ..()
 
 /datum/status_effect/golem/get_examine_text()
 	if(mineral_name)
-		return span_notice("[owner.p_Their()] body has been augmented with veins of [mineral_name].")
+		return span_notice("[owner]的身体已被[mineral_name]的矿脉强化。")
 
 /// Body part overlays applied by golem status effects
 /datum/bodypart_overlay/simple/golem_overlay
@@ -174,10 +174,10 @@
 /// Freezes hunger for the duration
 /datum/status_effect/golem/uranium
 	overlay_state_prefix = "uranium"
-	mineral_name = "uranium"
-	applied_fluff = "Glowing crystals sprout from your body. You feel energised!"
+	mineral_name = "铀"
+	applied_fluff = "发光的晶体从你体内长出，你感到精力充沛！"
 	alert_icon_state = "sheet-uranium"
-	alert_desc = "Internal radiation is providing all of your nutritional needs."
+	alert_desc = "体内的辐射正在提供你所需的全部营养。"
 	filter_color = LIGHT_COLOR_GREEN
 
 /datum/status_effect/golem/uranium/on_apply()
@@ -196,10 +196,10 @@
 /// Magic immunity
 /datum/status_effect/golem/silver
 	overlay_state_prefix = "silver"
-	mineral_name = "silver"
-	applied_fluff = "Shining plates grace your shoulders. You feel holy!"
+	mineral_name = "银"
+	applied_fluff = "闪亮的甲片覆盖你的双肩，你感到神圣！"
 	alert_icon_state = "sheet-silver"
-	alert_desc = "Your body repels supernatural influences."
+	alert_desc = "你的身体能排斥超自然力量的影响。"
 	filter_color = LIGHT_COLOR_FAINT_BLUE
 
 /datum/status_effect/golem/silver/on_apply()
@@ -221,10 +221,10 @@
 /// Heat immunity, turns heat damage into local power
 /datum/status_effect/golem/plasma
 	overlay_state_prefix = "plasma"
-	mineral_name = "plasma"
-	applied_fluff = "Plasma cooling rods sprout from your body. You can take the heat!"
+	mineral_name = "等离子体"
+	applied_fluff = "等离子冷却棒从你体内长出，你能承受高温！"
 	alert_icon_state = "sheet-plasma"
-	alert_desc = "You are protected from high pressure and can convert heat damage into power."
+	alert_desc = "你免受高压伤害，并能将高温伤害转化为电能。"
 	filter_color = LIGHT_COLOR_PINK
 
 /datum/status_effect/golem/plasma/on_apply()
@@ -273,10 +273,10 @@
 /// Makes you spaceproof
 /datum/status_effect/golem/plasteel
 	overlay_state_prefix = "iron"
-	mineral_name = "plasteel"
-	applied_fluff = "Plasteel plates seal you tight. You feel insulated!"
+	mineral_name = "塑钢"
+	applied_fluff = "塑钢甲片将你严密封闭，你感到保温良好！"
 	alert_icon_state = "sheet-plasteel"
-	alert_desc = "You are sealed against the cold, and against low pressure environments."
+	alert_desc = "你被密封保护，可抵御寒冷与低压环境。"
 	filter_color = LIGHT_COLOR_DEFAULT
 
 /datum/status_effect/golem/plasteel/on_apply()
@@ -293,10 +293,10 @@
 /// Makes you reflect energy projectiles
 /datum/status_effect/golem/gold
 	overlay_state_prefix = "gold"
-	mineral_name = "gold"
-	applied_fluff = "Shining plates form across your body. You feel reflective!"
+	mineral_name = "金"
+	applied_fluff = "闪亮的甲片遍布你的全身，你感到光芒四射！"
 	alert_icon_state = "sheet-gold_2"
-	alert_desc = "Your shining body reflects energy weapons."
+	alert_desc = "你闪亮的身体能反射能量武器。"
 	filter_color = LIGHT_COLOR_DIM_YELLOW
 
 /datum/status_effect/golem/gold/on_apply()
@@ -313,11 +313,11 @@
 /// Makes you hard to see
 /datum/status_effect/golem/diamond
 	overlay_state_prefix = "diamond"
-	mineral_name = "diamonds"
-	applied_fluff = "Sparkling gems bend light around you. You feel stealthy!"
+	mineral_name = "钻石"
+	applied_fluff = "闪亮的宝石在你身边弯折光线，你感到身形隐秘！"
 	tick_interval = 0.25 SECONDS
 	alert_icon_state = "sheet-diamond"
-	alert_desc = "Light is bending around you, making you hard to see while still and faster while moving."
+	alert_desc = "光线在你身边弯折，静止时难以被看见，移动时则更为迅捷。"
 	filter_color = LIGHT_COLOR_ELECTRIC_CYAN
 	/// Alpha to remove per second while stood still
 	var/alpha_per_tick = 20
@@ -399,10 +399,10 @@
 /// Makes you tougher
 /datum/status_effect/golem/titanium
 	overlay_state_prefix = "platinum"
-	mineral_name = "titanium"
-	applied_fluff = "Titanium rings burst from your arms. You feel ready to take on the world!"
+	mineral_name = "钛"
+	applied_fluff = "钛环从你的双臂迸出，你感到足以对抗整个世界！"
 	alert_icon_state = "sheet-titanium"
-	alert_desc = "You are more resistant to physical blows, and pack more of a punch yourself."
+	alert_desc = "你对物理打击更具抗性，而你的拳头也更有力。"
 	filter_color = LIGHT_COLOR_HALOGEN
 	/// Amount to reduce brute damage by
 	var/brute_modifier = 0.8 // golems already have an innate 0.5 brute resistance - this is multiplicate on top of that
@@ -465,10 +465,10 @@
 /// Makes you slippery
 /datum/status_effect/golem/bananium
 	overlay_state_prefix = "banana"
-	mineral_name = "bananium"
-	applied_fluff = "Bananium veins ooze from your crags. You feel a little funny!"
+	mineral_name = "香蕉矿"
+	applied_fluff = "香蕉矿脉从你的岩缝中渗出，你觉得自己有点滑稽！"
 	alert_icon_state = "sheet-bananium"
-	alert_desc = "You feel kind of funny."
+	alert_desc = "你觉得自己有点滑稽。"
 	filter_color = LIGHT_COLOR_BRIGHT_YELLOW
 	/// The slipperiness component which we have applied
 	var/datum/component/slippery/slipperiness
@@ -516,14 +516,14 @@
 	. = ..()
 	if (!.)
 		return
-	to_chat(owner, span_notice("You start to emit a healthy glow."))
+	to_chat(owner, span_notice("你开始散发出健康的光芒。"))
 	lightbulb = owner.mob_light(glow_range, glow_power, glow_color)
 	owner.add_filter(LIGHTBULB_FILTER, 2, list("type" = "outline", "color" = glow_color, "alpha" = 60, "size" = 1))
 
 /datum/status_effect/golem/lightbulb/on_remove()
 	QDEL_NULL(lightbulb)
 	owner.remove_filter(LIGHTBULB_FILTER)
-	to_chat(owner, span_warning("Your glow fades."))
+	to_chat(owner, span_warning("你的光芒消退了。"))
 	return ..()
 
 #undef LIGHTBULB_FILTER

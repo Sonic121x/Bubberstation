@@ -1,8 +1,8 @@
 /datum/quirk/isotropic_stability
 	name = "Isotropic Stability"
-	desc = "Nuka Cola lovers rejoice! Radiation burns are 75% less likely, and you can be irradiated without vomiting, mutating, or losing hair. Being irradiated causes 5x toxin damage, but only when you remain near sources of dangerous radiation."
+	desc = "核子可乐爱好者欢呼吧！你受到辐射灼伤的概率降低75%，照射也不会让你呕吐、突变或脱发。不过，持续靠近危险辐射源时，你会受到5倍毒素伤害。"
 	value = 6
-	medical_record_text = "Patient's body is highly resistant to radiation poisoning."
+	medical_record_text = "患者身体对辐射中毒有很强的抵抗力。"
 	icon = FA_ICON_ATOM
 	// Blacklisted for species which are already immune to radiation
 	species_blacklist = list(

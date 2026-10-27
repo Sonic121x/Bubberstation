@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(liquids)
-	name = "Liquid Turfs"
+	name = "液体地格"
 	wait = 1 SECONDS
 	ss_flags = SS_KEEP_TIMING | SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
@@ -119,5 +119,5 @@ SUBSYSTEM_DEF(liquids)
 		if(T.lgroup)
 			T.lgroup.amount_of_active_turfs--
 
-ADMIN_VERB(toggle_liquid_debug, R_DEBUG, "Liquid Groups Color Debug", "Liquid Groups Color Debug.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(toggle_liquid_debug, R_DEBUG, "液体分组颜色调试", "液体分组颜色调试。", ADMIN_CATEGORY_DEBUG)
 	GLOB.liquid_debug_colors = !GLOB.liquid_debug_colors

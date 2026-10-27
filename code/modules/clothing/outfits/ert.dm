@@ -1,5 +1,5 @@
 /datum/outfit/centcom
-	name = "CentCom Base"
+	name = "中央指挥部基础"
 
 /datum/outfit/centcom/post_equip(mob/living/carbon/human/centcom_member, visuals_only = FALSE)
 	if(visuals_only)
@@ -8,7 +8,7 @@
 	mindshield.implant(centcom_member, null, silent = TRUE)
 
 /datum/outfit/centcom/ert
-	name = "ERT Common"
+	name = "紧急响应小队通用装备"
 
 	uniform = /obj/item/clothing/under/rank/centcom/officer
 	ears = /obj/item/radio/headset/headset_cent/alt
@@ -36,7 +36,7 @@
 	return ..()
 
 /datum/outfit/centcom/ert/commander
-	name = "ERT Commander"
+	name = "紧急响应小队指挥官"
 
 	id = /obj/item/card/id/advanced/centcom/ert/commander
 	back = /obj/item/mod/control/pre_equipped/responsory/commander
@@ -52,7 +52,7 @@
 	additional_radio = /obj/item/encryptionkey/heads/captain
 
 /datum/outfit/centcom/ert/commander/alert
-	name = "ERT Commander - High Alert"
+	name = "紧急响应小队指挥官——高度警戒"
 
 	l_hand = /obj/item/gun/energy/disabler/smg
 	backpack_contents = list(
@@ -64,7 +64,7 @@
 	suit_store = /obj/item/gun/energy/laser/assault
 
 /datum/outfit/centcom/ert/security
-	name = "ERT Security"
+	name = "紧急响应小队安保"
 
 	id = /obj/item/card/id/advanced/centcom/ert/security
 	back = /obj/item/mod/control/pre_equipped/responsory/security
@@ -80,7 +80,7 @@
 	additional_radio = /obj/item/encryptionkey/heads/hos
 
 /datum/outfit/centcom/ert/security/alert
-	name = "ERT Security - High Alert"
+	name = "紧急响应小队安保——高度警戒"
 
 	l_hand = /obj/item/gun/energy/pulse/carbine/loyalpin
 	backpack_contents = list(
@@ -89,7 +89,7 @@
 	)
 
 /datum/outfit/centcom/ert/medic
-	name = "ERT Medic"
+	name = "紧急响应小队医疗"
 
 	id = /obj/item/card/id/advanced/centcom/ert/medical
 	back = /obj/item/mod/control/pre_equipped/responsory/medic
@@ -110,7 +110,7 @@
 	skillchips = list(/obj/item/skillchip/entrails_reader)
 
 /datum/outfit/centcom/ert/medic/alert
-	name = "ERT Medic - High Alert"
+	name = "紧急响应小队医疗——高度警戒"
 
 	backpack_contents = list(
 		/obj/item/gun/energy/e_gun/mini, // /obj/item/gun/energy/pulse/pistol/loyalpin = 1, - BUBBER EDIT
@@ -122,7 +122,7 @@
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 
 /datum/outfit/centcom/ert/engineer
-	name = "ERT Engineer"
+	name = "紧急响应小队工程"
 
 	id = /obj/item/card/id/advanced/centcom/ert/engineer
 	back = /obj/item/mod/control/pre_equipped/responsory/engineer
@@ -142,7 +142,7 @@
 	skillchips = list(/obj/item/skillchip/job/engineer)
 
 /datum/outfit/centcom/ert/engineer/alert
-	name = "ERT Engineer - High Alert"
+	name = "紧急响应小队工程——高度警戒"
 
 	backpack_contents = list(
 		/obj/item/construction/rcd/combat = 1,
@@ -152,7 +152,7 @@
 	)
 
 /datum/outfit/centcom/centcom_official
-	name = "CentCom Official"
+	name = "中央指挥部官员"
 
 	id = /obj/item/card/id/advanced/centcom
 	id_trim = /datum/id_trim/centcom/official
@@ -185,14 +185,14 @@
 	return ..()
 
 /datum/outfit/centcom/ert/commander/inquisitor
-	name = "Inquisition Commander"
+	name = "审判庭指挥官"
 
 	back = /obj/item/mod/control/pre_equipped/responsory/inquisitory/commander
 	r_hand = /obj/item/nullrod/claymore/talking/chainsword
 	backpack_contents = null
 
 /datum/outfit/centcom/ert/security/inquisitor
-	name = "Inquisition Security"
+	name = "审判庭安保"
 
 	back = /obj/item/mod/control/pre_equipped/responsory/inquisitory/security
 	backpack_contents = list(
@@ -202,7 +202,7 @@
 	)
 
 /datum/outfit/centcom/ert/medic/inquisitor
-	name = "Inquisition Medic"
+	name = "审判庭医疗"
 
 	back = /obj/item/mod/control/pre_equipped/responsory/inquisitory/medic
 	backpack_contents = list(
@@ -213,7 +213,7 @@
 	)
 
 /datum/outfit/centcom/ert/chaplain
-	name = "ERT Chaplain"
+	name = "紧急响应小队牧师"
 
 	id = /obj/item/card/id/advanced/centcom/ert/chaplain
 	back = /obj/item/mod/control/pre_equipped/responsory/chaplain
@@ -227,7 +227,7 @@
 	additional_radio = /obj/item/encryptionkey/heads/hop
 
 /datum/outfit/centcom/ert/chaplain/inquisitor
-	name = "Inquisition Chaplain"
+	name = "审判庭牧师"
 
 	back = /obj/item/mod/control/pre_equipped/responsory/inquisitory/chaplain
 	backpack_contents = list(
@@ -237,7 +237,7 @@
 	belt = /obj/item/storage/belt/soulstone/full/chappy
 
 /datum/outfit/centcom/ert/janitor
-	name = "ERT Janitor"
+	name = "紧急响应小队清洁工"
 
 	id = /obj/item/card/id/advanced/centcom/ert/janitor
 	back = /obj/item/mod/control/pre_equipped/responsory/janitor
@@ -257,7 +257,7 @@
 	additional_radio = /obj/item/encryptionkey/heads/hop
 
 /datum/outfit/centcom/ert/janitor/heavy
-	name = "ERT Janitor - Heavy Duty"
+	name = "紧急响应小队清洁工——重型作业"
 
 	backpack_contents = list(
 		/obj/item/grenade/clusterbuster/cleaner = 3,
@@ -268,7 +268,7 @@
 	r_hand = /obj/item/reagent_containers/spray/chemsprayer/janitor
 
 /datum/outfit/centcom/ert/clown
-	name = "ERT Clown"
+	name = "紧急响应小队小丑"
 
 	id = /obj/item/card/id/advanced/centcom/ert/clown
 	back = /obj/item/mod/control/pre_equipped/responsory/clown
@@ -294,7 +294,7 @@
 	H.dna.add_mutation(/datum/mutation/clumsy, MUTATION_SOURCE_CLOWN_CLUMSINESS)
 
 /datum/outfit/centcom/centcom_intern
-	name = "CentCom Intern"
+	name = "中央指挥部实习生"
 
 	id = /obj/item/card/id/advanced/centcom
 	id_trim = /datum/id_trim/centcom/intern
@@ -321,7 +321,7 @@
 	return ..()
 
 /datum/outfit/centcom/centcom_intern/unarmed
-	name = "CentCom Intern (Unarmed)"
+	name = "中央指挥部实习生（无武装）"
 
 	belt = null
 	l_pocket = null
@@ -329,7 +329,7 @@
 	l_hand = null
 
 /datum/outfit/centcom/centcom_intern/leader
-	name = "CentCom Head Intern"
+	name = "中央指挥部实习生主管"
 
 	suit = /obj/item/clothing/suit/armor/vest
 	suit_store = /obj/item/gun/ballistic/rifle/boltaction
@@ -338,14 +338,14 @@
 	l_hand = /obj/item/megaphone
 
 /datum/outfit/centcom/centcom_intern/leader/unarmed // i'll be nice and let the leader keep their baton and vest
-	name = "CentCom Head Intern (Unarmed)"
+	name = "中央指挥部实习生主管（无武装）"
 
 	suit_store = null
 	l_pocket = null
 	r_pocket = null
 
 /datum/outfit/centcom/ert/janitor/party
-	name = "ERP Cleaning Service"
+	name = "ERP 清洁服务"
 
 	uniform = /obj/item/clothing/under/misc/overalls
 	suit = /obj/item/clothing/suit/apron
@@ -364,7 +364,7 @@
 	l_hand = /obj/item/storage/bag/trash
 
 /datum/outfit/centcom/ert/security/party
-	name = "ERP Bouncer"
+	name = "ERP 保安"
 
 	uniform = /obj/item/clothing/under/misc/bouncer
 	suit = /obj/item/clothing/suit/armor/vest
@@ -379,7 +379,7 @@
 	r_pocket = /obj/item/storage/wallet
 
 /datum/outfit/centcom/ert/engineer/party
-	name = "ERP Constructor"
+	name = "ERP 建筑工"
 
 	uniform = /obj/item/clothing/under/rank/engineering/engineer/hazard
 	suit = /obj/item/clothing/suit/hazardvest
@@ -398,7 +398,7 @@
 	l_hand = /obj/item/blueprints
 
 /datum/outfit/centcom/ert/clown/party
-	name = "ERP Comedian"
+	name = "ERP 喜剧演员"
 
 	uniform = /obj/item/clothing/under/rank/civilian/clown
 	suit = /obj/item/clothing/suit/chameleon
@@ -412,7 +412,7 @@
 	head = /obj/item/clothing/head/chameleon
 
 /datum/outfit/centcom/ert/commander/party
-	name = "ERP Coordinator"
+	name = "ERP 协调员"
 
 	uniform = /obj/item/clothing/under/misc/coordinator
 	suit = /obj/item/clothing/suit/coordinator
@@ -428,7 +428,7 @@
 	l_hand = /obj/item/toy/balloon
 
 /datum/outfit/centcom/death_commando
-	name = "Death Commando"
+	name = "死亡突击队员"
 
 	id = /obj/item/card/id/advanced/black/deathsquad
 	id_trim = /datum/id_trim/centcom/deathsquad
@@ -473,7 +473,7 @@
 	return ..()
 
 /datum/outfit/centcom/death_commando/officer
-	name = "Death Commando Officer"
+	name = "死亡突击队军官"
 
 	back = /obj/item/mod/control/pre_equipped/apocryphal/officer
 	ears = /obj/item/radio/headset/headset_cent/alt/leader
@@ -490,7 +490,7 @@
 	squaddie.update_clothing(helmet.slot_flags)
 
 /datum/outfit/centcom/ert/marine
-	name = "Marine Commander"
+	name = "陆战队指挥官"
 
 	id = /obj/item/card/id/advanced/centcom/ert/commander
 	suit = /obj/item/clothing/suit/armor/vest/marine
@@ -507,7 +507,7 @@
 	additional_radio = /obj/item/encryptionkey/heads/captain
 
 /datum/outfit/centcom/ert/marine/security
-	name = "Marine Heavy"
+	name = "陆战队重装兵"
 
 	id = /obj/item/card/id/advanced/centcom/ert/security
 	suit = /obj/item/clothing/suit/armor/vest/marine/security
@@ -517,7 +517,7 @@
 	additional_radio = /obj/item/encryptionkey/heads/hos
 
 /datum/outfit/centcom/ert/marine/medic
-	name = "Marine Medic"
+	name = "陆战队医疗兵"
 
 	id = /obj/item/card/id/advanced/centcom/ert/medical
 	suit = /obj/item/clothing/suit/armor/vest/marine/medic
@@ -538,7 +538,7 @@
 	skillchips = list(/obj/item/skillchip/entrails_reader)
 
 /datum/outfit/centcom/ert/marine/engineer
-	name = "Marine Engineer"
+	name = "陆战队工程师"
 
 	id = /obj/item/card/id/advanced/centcom/ert/engineer
 	suit = /obj/item/clothing/suit/armor/vest/marine/engineer
@@ -554,7 +554,7 @@
 	skillchips = list(/obj/item/skillchip/job/engineer)
 
 /datum/outfit/centcom/militia
-	name = "Militia Man"
+	name = "民兵"
 
 	id = /obj/item/card/id/advanced/centcom/ert/militia
 	belt = /obj/item/storage/belt/holster/energy/smoothbore
@@ -576,7 +576,7 @@
 	)
 
 /datum/outfit/centcom/militia/general
-	name = "Militia General"
+	name = "民兵将军"
 
 	id = /obj/item/card/id/advanced/centcom/ert/militia/general
 	belt = /obj/item/gun/energy/disabler/smoothbore/prime
@@ -585,7 +585,7 @@
 	suit_store = /obj/item/gun/energy/laser/musket/prime
 
 /datum/outfit/centcom/ert/medical_commander
-	name = "Chief EMT"
+	name = "首席急救员"
 	id = /obj/item/card/id/advanced/centcom/ert/medical
 	uniform = /obj/item/clothing/under/rank/medical/chief_medical_officer
 	l_pocket = /obj/item/healthanalyzer/advanced
@@ -610,7 +610,7 @@
 	suit_store = /obj/item/tank/internals/oxygen
 
 /datum/outfit/centcom/ert/medical_technician
-	name = "EMT Paramedic"
+	name = "急救护理员"
 	id = /obj/item/card/id/advanced/centcom/ert/medical
 	uniform = /obj/item/clothing/under/rank/medical/scrubs/blue
 	l_pocket = /obj/item/healthanalyzer

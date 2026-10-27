@@ -1,11 +1,11 @@
 /datum/job/ai
 	title = JOB_AI
-	description = "Assist the crew, follow your laws, coordinate your cyborgs."
+	description = "协助船员，遵守你的法则，协调你的半机械人。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "your laws"
+	supervisors = "你的法则"
 	spawn_type = /mob/living/silicon/ai
 	req_admin_notify = TRUE
 	minimal_player_age = 30
@@ -53,14 +53,14 @@
 			continue
 		sync_target.notify_ai(AI_NOTIFICATION_CYBORG_DISCONNECTED)
 		sync_target.set_connected_ai(ai_spawn)
-		log_combat(ai_spawn, sync_target, "synced cyborg [sync_target] to [ai_spawn] (AI spawn syncage)") // BUBBER EDIT - PUBLIC LOGS CLEANUP
+		log_combat(ai_spawn, sync_target, "将半机械人 [sync_target] 同步至 [ai_spawn]（AI 生成同步）") // BUBBER EDIT - PUBLIC LOGS CLEANUP
 		if(sync_target.shell)
 			sync_target.undeploy()
 			sync_target.notify_ai(AI_NOTIFICATION_AI_SHELL)
 		else
 			sync_target.notify_ai(TRUE)
-		sync_target.visible_message(span_notice("[sync_target] gently chimes."), span_notice("LawSync protocol engaged."))
-		log_combat(ai_spawn, sync_target, "forcibly synced cyborg laws via spawning in")
+		sync_target.visible_message(span_notice("[sync_target] 发出轻柔的鸣响。"), span_notice("法则同步协议已启动。"))
+		log_combat(ai_spawn, sync_target, "通过生成强制同步了半机械人法则")
 		sync_target.lawsync()
 		sync_target.lawupdate = TRUE
 		sync_target.show_laws()
@@ -119,14 +119,14 @@
 /datum/job/ai/announce_job(mob/living/joining_mob)
 	. = ..()
 	if(SSticker.HasRoundStarted())
-		minor_announce("[joining_mob] has been downloaded to an empty bluespace-networked AI core at [AREACOORD(joining_mob)].")
+		minor_announce("[joining_mob] 已被下载至 [AREACOORD(joining_mob)] 的一台空的蓝空间联网 AI 核心。")
 
 
 /datum/job/ai/config_check()
 	return CONFIG_GET(flag/allow_ai)
 
 /datum/job/ai/get_radio_information()
-	return "<b>Prefix your message with :b to speak with cyborgs and other AIs.</b>"
+	return "<b>在消息前加上 :b 即可与半机械人及其他 AI 通话。</b>"
 
 /datum/job/ai/on_respawn(mob/new_character)
 	new_character.AIize()

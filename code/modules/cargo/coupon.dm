@@ -46,8 +46,8 @@
 	return coupon
 
 /obj/item/coupon
-	name = "coupon"
-	desc = "It doesn't matter if you didn't want it before, what matters now is that you've got a coupon for it!"
+	name = "优惠券"
+	desc = "以前你想不想要并不重要，重要的是你现在有它的优惠券！"
 	icon_state = "data_1"
 	icon = 'icons/obj/card.dmi'
 	item_flags = NOBLUDGEON
@@ -74,24 +74,24 @@
 			update_name()
 		return
 
-	name = "coupon - fuck you"
-	desc = "The small text reads, 'You will be slaughtered'... That doesn't sound right, does it?"
+	name = "优惠券 - 去你的"
+	desc = "小字写着“你将被屠杀”……这听起来不太对劲吧？"
 
 	var/mob/cursed = user || loc
 	if(!ismob(cursed))
 		return FALSE
 
-	to_chat(cursed, span_warning("The coupon reads '<b>fuck you</b>' in large, bold text... is- is that a prize, or?"))
+	to_chat(cursed, span_warning("优惠券上用粗大字体写着“<b>去你的</b>”……这、这算是奖品吗？"))
 
 	if(!cursed.GetComponent(/datum/component/omen))
 		cursed.AddComponent(/datum/component/omen, src, 1)
 		return TRUE
 	if(HAS_TRAIT(cursed, TRAIT_CURSED))
-		to_chat(cursed, span_warning("What a horrible night... To have a curse!"))
+		to_chat(cursed, span_warning("多么可怕的夜晚……竟被诅咒了！"))
 	addtimer(CALLBACK(src, PROC_REF(curse_heart), cursed), 5 SECONDS, TIMER_UNIQUE | TIMER_STOPPABLE)
 
 /obj/item/coupon/update_name()
-	name = "coupon - [round(discount_pct_off * 100)]% off [initial(discounted_pack.name)]"
+	name = "优惠券 - [round(discount_pct_off * 100)]% 折扣 [initial(discounted_pack.name)]"
 	return ..()
 
 /// Play stupid games, win stupid prizes
@@ -103,26 +103,26 @@
 
 	var/mob/living/carbon/player = cursed
 	INVOKE_ASYNC(player, TYPE_PROC_REF(/mob, emote), "scream")
-	to_chat(player, span_mind_control("What could that coupon mean?"))
-	to_chat(player, span_userdanger("...The suspense is killing you!"))
+	to_chat(player, span_mind_control("那张优惠券到底是什么意思？"))
+	to_chat(player, span_userdanger("……这种悬念正在要你的命！"))
 	player.set_heartattack(status = TRUE)
 	burn_evilly()
 
 /obj/item/coupon/proc/burn_evilly()
-	visible_message(span_warning("[src] burns up in a sinister flash, taking an evil energy with it..."))
+	visible_message(span_warning("[src] 在邪恶的闪光中烧毁，带着一股邪恶能量一同消散……"))
 	burn()
 
 /obj/item/coupon/attack_atom(obj/attacked_obj, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(!istype(attacked_obj, /obj/machinery/computer/cargo))
 		return ..()
 	if(discount_pct_off == COUPON_OMEN)
-		to_chat(user, span_warning("\The [attacked_obj] validates the coupon as authentic, but refuses to accept it..."))
-		attacked_obj.say("Coupon fulfillment already in progress...")
+		to_chat(user, span_warning("[attacked_obj] 验证优惠券为真券，却拒绝接受它……"))
+		attacked_obj.say("优惠券兑换已在进行中……")
 		return
 
 	inserted_console = attacked_obj
 	LAZYADD(inserted_console.loaded_coupons, src)
-	inserted_console.say("Coupon for [initial(discounted_pack.name)] applied!")
+	inserted_console.say("[initial(discounted_pack.name)] 的优惠券已生效！")
 	forceMove(inserted_console)
 
 /obj/item/coupon/Destroy()

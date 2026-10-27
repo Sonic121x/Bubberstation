@@ -1,7 +1,7 @@
 /datum/job/telecomms_specialist
 	title = JOB_TELECOMMS_SPECIALIST
-	description = "Monitor, configure, and maintain all station communications \
-		and assist with light engineering work."
+	description = "监控、配置并维护空间站全部通讯系统，\
+		并协助进行简单的工程工作。"
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -40,7 +40,7 @@
 		/obj/item/banhammer = 8,
 		/obj/item/disk/computer/maintenance = 1,
 	)
-	rpg_title = "Code Whisperer"
+	rpg_title = "代码低语者"
 	job_flags = STATION_JOB_FLAGS
 	alt_titles = list(
 		"Telecomms Specialist",
@@ -56,7 +56,7 @@
 	icon_state = "Engineering Guard"
 
 /datum/outfit/job/telecomms_specialist
-	name = "Telecomms Specialist"
+	name = "电信专家"
 	jobtype = /datum/job/telecomms_specialist
 
 	id_trim = /datum/id_trim/job/telecomms_specialist
@@ -84,7 +84,7 @@
 	)
 
 /obj/item/modular_computer/pda/telecomms
-	name = "telecomms PDA"
+	name = "电信PDA"
 	icon_state = "/obj/item/modular_computer/pda/telecomms"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_split
 	greyscale_colors = "#3267B1#3D83E3#D99A2E"

@@ -1,8 +1,8 @@
 /datum/techweb_node/basic_arms
 	id = TECHWEB_NODE_BASIC_ARMS
 	starting_node = TRUE
-	display_name = "Basic Arms"
-	description = "Ballistics can be unpredictable in space."
+	display_name = "基础武器"
+	description = "在太空中，弹道可是难以预测的。"
 	design_ids = list(
 		"toy_armblade",
 		"toy_katana",
@@ -21,8 +21,8 @@
 
 /datum/techweb_node/sec_equip
 	id = TECHWEB_NODE_SEC_EQUIP
-	display_name = "Security Equipment"
-	description = "All the essentials to subdue a mime."
+	display_name = "安保装备"
+	description = "制服默剧演员所需的一切必备品。"
 	prereq_ids = list(TECHWEB_NODE_BASIC_ARMS)
 	design_ids = list(
 		"secdata",
@@ -47,8 +47,8 @@
 
 /datum/techweb_node/riot_supression
 	id = TECHWEB_NODE_RIOT_SUPRESSION
-	display_name = "Riot Supression"
-	description = "When you are on the opposing side of a revolutionary movement."
+	display_name = "防暴镇压"
+	description = "当你站在革命运动的对立面时。"
 	prereq_ids = list(TECHWEB_NODE_SEC_EQUIP)
 	design_ids = list(
 		"clown_firing_pin",
@@ -64,8 +64,8 @@
 
 /datum/techweb_node/explosives
 	id = TECHWEB_NODE_EXPLOSIVES
-	display_name = "Explosives"
-	description = "For once, intentional explosions."
+	display_name = "爆炸物"
+	description = "这一回，是故意的爆炸。"
 	prereq_ids = list(TECHWEB_NODE_RIOT_SUPRESSION)
 	design_ids = list(
 		"large_grenade",
@@ -78,8 +78,8 @@
 
 /datum/techweb_node/exotic_ammo
 	id = TECHWEB_NODE_EXOTIC_AMMO
-	display_name = "Exotic Ammunition"
-	description = "Specialized bullets designed to ignite, freeze, and inflict various other effects on targets, expanding combat capabilities."
+	display_name = "特殊弹药"
+	description = "专为点燃、冻结以及给目标施加各种其他效果而设计的子弹，拓展了作战能力。"
 	prereq_ids = list(TECHWEB_NODE_EXPLOSIVES)
 	design_ids = list(
 		"c38_hotshot",
@@ -99,8 +99,8 @@
 
 /datum/techweb_node/electric_weapons
 	id = TECHWEB_NODE_ELECTRIC_WEAPONS
-	display_name = "Electric Weaponry"
-	description = "Energy-based weaponry designed for both lethal and non-lethal applications."
+	display_name = "电击武器"
+	description = "为致命与非致命用途而设计的能量武器。"
 	prereq_ids = list(TECHWEB_NODE_RIOT_SUPRESSION)
 	design_ids = list(
 		"stunrevolver",
@@ -113,8 +113,8 @@
 
 /datum/techweb_node/beam_weapons
 	id = TECHWEB_NODE_BEAM_WEAPONS
-	display_name = "Advanced Beam Weaponry"
-	description = "So advanced, even engineers are baffled by its operational principles."
+	display_name = "高级光束武器"
+	description = "先进到连工程师都摸不透它的运作原理。"
 	prereq_ids = list(TECHWEB_NODE_ELECTRIC_WEAPONS)
 	design_ids = list(
 		"xray_laser",

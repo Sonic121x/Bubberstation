@@ -43,7 +43,7 @@
 /obj/item/bodypart/arm/left/mutant
 	icon_greyscale = BODYPART_ICON_MAMMAL
 	limb_id = SPECIES_MAMMAL
-	unarmed_attack_verbs = list("slash")
+	unarmed_attack_verbs = list("挥爪")
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/items/weapons/slash.ogg'
 	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
@@ -52,7 +52,7 @@
 /obj/item/bodypart/arm/right/mutant
 	icon_greyscale = BODYPART_ICON_MAMMAL
 	limb_id = SPECIES_MAMMAL
-	unarmed_attack_verbs = list("slash")
+	unarmed_attack_verbs = list("挥爪")
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/items/weapons/slash.ogg'
 	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'

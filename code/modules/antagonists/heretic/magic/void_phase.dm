@@ -1,8 +1,8 @@
 /datum/action/cooldown/spell/pointed/void_phase
-	name = "Void Phase"
-	desc = "Lets you blink to your pointed destination, causes 3x3 aoe damage bubble \
-		around your pointed destination and your current location. \
-		It has a minimum range of 3 tiles and a maximum range of 9 tiles."
+	name = "虚空相位"
+	desc = "让你闪现到所指定的位置，并在所指目的地周围造成 3x3 的范围伤害气泡， \
+		同时也会在你当前位置造成同样的效果。 \
+		最小射程为 3 格，最大射程为 9 格。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -12,7 +12,7 @@
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 20 SECONDS
 
-	invocation = "RE'L'TY PH'S'E."
+	invocation = "现'实'相'位"
 	invocation_type = INVOCATION_WHISPER
 	spell_requirements = NONE
 
@@ -28,7 +28,7 @@
 		return
 
 	if(owner && get_dist(get_turf(owner), get_turf(cast_on)) < min_cast_range)
-		cast_on.balloon_alert(owner, "too close!")
+		cast_on.balloon_alert(owner, "太近了！")
 		return . | SPELL_CANCEL_CAST
 
 /datum/action/cooldown/spell/pointed/void_phase/cast(atom/cast_on)

@@ -4,8 +4,8 @@
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	icon = 'icons/obj/devices/remote.dmi'
-	name = "tram remote"
-	desc = "A remote control that can be linked to a tram. This can only go well."
+	name = "电车遥控器"
+	desc = "一个可以连接到电车上的遥控器。这肯定不会出问题。"
 	w_class = WEIGHT_CLASS_TINY
 	options = RAPID_MODE
 	///desired tram destination
@@ -21,12 +21,12 @@
 /obj/item/assembly/control/transport/remote/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = NONE
 	if(!specific_transport_id)
-		context[SCREENTIP_CONTEXT_LMB] = "Link tram"
+		context[SCREENTIP_CONTEXT_LMB] = "连接电车"
 		return CONTEXTUAL_SCREENTIP_SET
-	context[SCREENTIP_CONTEXT_LMB] = "Dispatch tram"
-	context[SCREENTIP_CONTEXT_RMB] = "Select destination"
-	context[SCREENTIP_CONTEXT_CTRL_LMB] = "Toggle door safeties"
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "Change tram"
+	context[SCREENTIP_CONTEXT_LMB] = "调度电车"
+	context[SCREENTIP_CONTEXT_RMB] = "选择目的地"
+	context[SCREENTIP_CONTEXT_CTRL_LMB] = "切换车门安全装置"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "更换电车"
 	return CONTEXTUAL_SCREENTIP_SET
 
 //set tram destination
@@ -35,14 +35,14 @@
 	for(var/obj/effect/landmark/transport/nav_beacon/tram/platform/platform as anything in SStransport.nav_beacons[specific_transport_id])
 		LAZYADD(available_platforms, platform.name)
 
-	var/selected_platform = tgui_input_list(user, "Available destinations", "Where to?", available_platforms)
+	var/selected_platform = tgui_input_list(user, "可用目的地", "去哪里？", available_platforms)
 	for(var/obj/effect/landmark/transport/nav_beacon/tram/platform/potential_platform as anything in SStransport.nav_beacons[specific_transport_id])
 		if(potential_platform.name == selected_platform)
 			destination = potential_platform.platform_code
 			break
 
-	balloon_alert(user, "set [selected_platform]")
-	to_chat(user, span_notice("You change the platform ID on [src] to [selected_platform]."))
+	balloon_alert(user, "设置 [selected_platform]")
+	to_chat(user, span_notice("你把 [src] 上的站台 ID 改为 [selected_platform]。"))
 
 ///set safety bypass
 /obj/item/assembly/control/transport/remote/item_ctrl_click(mob/user)
@@ -52,24 +52,24 @@
 		if(RAPID_MODE)
 			options &= ~RAPID_MODE
 	update_appearance()
-	balloon_alert(user, "mode: [options ? "fast" : "safe"]")
+	balloon_alert(user, "模式：[options ? "快速" : "安全"]")
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/assembly/control/transport/remote/examine(mob/user)
 	. = ..()
 	if(!specific_transport_id)
-		. += "There is an X showing on the display."
-		. += "Left-click to link to a tram."
+		. += "显示屏上显示着一个 X。"
+		. += "左键点击以连接电车。"
 		return
-	. += "The rapid mode light is [options ? "on" : "off"]."
+	. += "快速模式指示灯[options ? "亮着" : "熄灭"]。"
 	if(cooldown)
-		. += "The number on the display shows [DisplayTimeText(cooldown, 1)]."
+		. += "显示屏上的数字显示为 [DisplayTimeText(cooldown, 1)]。"
 	else
-		. += "The display indicates ready."
-	. += "Left-click to dispatch tram."
-	. += "Right-click to set destination."
-	. += "Ctrl-click to toggle safety bypass."
-	. += "Alt-click to change configured tram."
+		. += "显示屏显示已就绪。"
+	. += "左键点击以调度电车。"
+	. += "右键点击以设置目的地。"
+	. += "Ctrl 点击以切换安全旁路。"
+	. += "Alt 点击以更换已配置的电车。"
 
 /obj/item/assembly/control/transport/remote/update_icon_state()
 	. = ..()
@@ -91,7 +91,7 @@
 		return
 
 	if(cooldown)
-		balloon_alert(user, "cooldown: [DisplayTimeText(cooldown, 1)]")
+		balloon_alert(user, "冷却中：[DisplayTimeText(cooldown, 1)]")
 		return
 
 	activate(user)
@@ -100,10 +100,10 @@
 ///send our selected commands to the tram
 /obj/item/assembly/control/transport/remote/activate(mob/user)
 	if(!specific_transport_id)
-		balloon_alert(user, "no tram linked!")
+		balloon_alert(user, "未连接电车！")
 		return
 	if(!destination)
-		balloon_alert(user, "no destination!")
+		balloon_alert(user, "未设置目的地！")
 		return
 
 	SEND_SIGNAL(src, COMSIG_TRANSPORT_REQUEST, specific_transport_id, destination, options)
@@ -118,11 +118,11 @@
 	for(var/datum/transport_controller/linear/tram/tram as anything in SStransport.transports_by_type[TRANSPORT_TYPE_TRAM])
 		LAZYADD(transports_available, tram.specific_transport_id)
 
-	specific_transport_id = tgui_input_list(user, "Available transports", "Select a transport", transports_available)
+	specific_transport_id = tgui_input_list(user, "可用运输工具", "选择运输工具", transports_available)
 
 	if(specific_transport_id)
-		balloon_alert(user, "tram linked")
+		balloon_alert(user, "电车已连接")
 	else
-		balloon_alert(user, "link failed!")
+		balloon_alert(user, "连接失败！")
 
 	update_appearance()

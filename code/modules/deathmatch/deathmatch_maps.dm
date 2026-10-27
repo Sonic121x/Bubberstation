@@ -18,8 +18,8 @@
 	var/template_in_use = FALSE
 
 /datum/lazy_template/deathmatch/ragecage
-	name = "Ragecage"
-	desc = "Fun for the whole family, the classic ragecage."
+	name = "愤怒牢笼"
+	desc = "全家人都能乐在其中，经典的愤怒牢笼。"
 	max_players = 4
 	automatic_gameend_time = 4 MINUTES // its a 10x10 cage what are you guys doing in there
 	allowed_loadouts = list(/datum/outfit/deathmatch_loadout/assistant)
@@ -27,32 +27,32 @@
 	key = "ragecage"
 
 /datum/lazy_template/deathmatch/maintenance
-	name = "Maint Mania"
-	desc = "Dark maintenance tunnels, floor pills, improvised weaponry and a bloody beatdown. Welcome to assistant utopia."
+	name = "维护区狂潮"
+	desc = "幽暗的维护隧道、地板上散落的药丸、临时拼凑的武器，还有一场血腥的痛殴。欢迎来到助手的天堂。"
 	max_players = 8
 	allowed_loadouts = list(/datum/outfit/deathmatch_loadout/assistant)
 	map_name = "maint_mania"
 	key = "maint_mania"
 
 /datum/lazy_template/deathmatch/osha_violator
-	name = "OSHA Violator"
-	desc = "What would Engineering be without an overly complicated engine, with conveyor belts, emitters and shield generators sprinkled about? That's right, not Engineering."
+	name = "职业安全违规者"
+	desc = "如果没有一台过分复杂的引擎，再加上四处散落的传送带、发射器和护盾发生器，工程部还叫什么工程部？没错，就不叫工程部了。"
 	max_players = 10
 	allowed_loadouts = list(/datum/outfit/deathmatch_loadout/assistant)
 	map_name = "OSHA_violator"
 	key = "OSHA_violator"
 
 /datum/lazy_template/deathmatch/the_brig
-	name = "The Brig"
-	desc = "A recreation of MetaStation Brig."
+	name = "禁闭室"
+	desc = "元站禁闭室的复刻版。"
 	max_players = 12
 	allowed_loadouts = list(/datum/outfit/deathmatch_loadout/assistant)
 	map_name = "meta_brig"
 	key = "meta_brig"
 
 /datum/lazy_template/deathmatch/shooting_range
-	name = "Shooting Range"
-	desc = "A simple room with a bunch of wooden barricades."
+	name = "射击场"
+	desc = "一个简单的房间，摆着一堆木制路障。"
 	max_players = 6
 	allowed_loadouts = list(
 		/datum/outfit/deathmatch_loadout/operative/ranged,
@@ -62,56 +62,56 @@
 	key = "shooting_range"
 
 /datum/lazy_template/deathmatch/securing
-	name = "SecuRing"
-	desc = "Presenting the Security Ring, ever wanted to shoot people with disablers? Well now you can."
+	name = "安保擂台"
+	desc = "隆重推出安保擂台，一直想用瘫痪枪射击别人？现在你可以了。"
 	max_players = 4
 	allowed_loadouts = list(/datum/outfit/deathmatch_loadout/securing_sec)
 	map_name = "secu_ring"
 	key = "secu_ring"
 
 /datum/lazy_template/deathmatch/instagib
-	name = "Instagib"
-	desc = "EVERYONE GETS AN INSTAKILL RIFLE!"
+	name = "一击必杀"
+	desc = "每个人都有一把一击必杀步枪！"
 	max_players = 8
 	allowed_loadouts = list(/datum/outfit/deathmatch_loadout/assistant/instagib)
 	map_name = "instagib"
 	key = "instagib"
 
 /datum/lazy_template/deathmatch/mech_madness
-	name = "Mech Madness"
-	desc = "Do you hate mechs? Yeah? Don't care! Go fight each other!"
+	name = "机甲狂潮"
+	desc = "你讨厌机甲吗？是吧？我不在乎！去互相打吧！"
 	max_players = 4
 	allowed_loadouts = list(/datum/outfit/deathmatch_loadout/operative)
 	map_name = "mech_madness"
 	key = "mech_madness"
 
 /datum/lazy_template/deathmatch/sniper_elite
-	name = "Sniper Elite"
-	desc = "Sound of gunfire and screaming people make my day"
+	name = "精英狙击手"
+	desc = "枪声和惨叫声让我心情愉快"
 	max_players = 8
 	allowed_loadouts = list(/datum/outfit/deathmatch_loadout/operative/sniper)
 	map_name = "sniper_elite"
 	key = "sniper_elite"
 
 /datum/lazy_template/deathmatch/meatower
-	name = "Meat Tower"
-	desc = "There can only be one chef in this kitchen"
+	name = "肉塔"
+	desc = "这个厨房里只能有一位厨师"
 	max_players = 8
 	allowed_loadouts = list(/datum/outfit/deathmatch_loadout/chef)
 	map_name = "meat_tower"
 	key = "meat_tower"
 
 /datum/lazy_template/deathmatch/sunrise
-	name = "Sunrise"
-	desc = "DEHUMANIZE YOURSELF AND FACE TO BLOODSHED DEHUMANIZE YOURSELF AND FACE TO BLOODSHED DEHUMANIZE YOURSELF AND FACE TO BLOODSHED DEHUMANIZE YOURSELF AND FACE TO BLOODSHED"
+	name = "日出"
+	desc = "去人性化自身，直面血肉横飞 去人性化自身，直面血肉横飞 去人性化自身，直面血肉横飞 去人性化自身，直面血肉横飞"
 	max_players = 8
 	allowed_loadouts = list(/datum/outfit/deathmatch_loadout/samurai)
 	map_name = "sunrise"
 	key = "sunrise"
 
 /datum/lazy_template/deathmatch/starwars
-	name = "Arena Station"
-	desc = "Choose your battler!"
+	name = "竞技站"
+	desc = "选择你的战斗者！"
 	max_players = 10
 	allowed_loadouts = list(
 		/datum/outfit/deathmatch_loadout/battler/soldier, // First because its a good and easy loadout and is picked by default
@@ -133,8 +133,8 @@
 	key = "arena_station"
 
 /datum/lazy_template/deathmatch/underground_thunderdome
-	name = "Underground Thunderdome"
-	desc = "An illegal underground thunderdome, for larger amounts of murder."
+	name = "地下雷霆竞技场"
+	desc = "一个非法的地下雷霆竞技场，供更大规模的杀戮之用。"
 	max_players = 15
 	allowed_loadouts = list(
 		/datum/outfit/deathmatch_loadout/operative,
@@ -144,8 +144,8 @@
 	key = "underground_arena"
 
 /datum/lazy_template/deathmatch/backalley
-	name = "Backalley"
-	desc = "You are not built for these streets."
+	name = "后巷"
+	desc = "你可不是为这种街头而生的。"
 	max_players = 8
 	allowed_loadouts = list(
 		/datum/outfit/deathmatch_loadout/assistant,
@@ -155,8 +155,8 @@
 	key = "backalley"
 
 /datum/lazy_template/deathmatch/raginmages
-	name = "Ragin' Mages"
-	desc = "Greetings! We're the wizards of the wizard federation!"
+	name = "狂暴巫师"
+	desc = "问候！我们是巫师联邦的巫师！"
 	max_players = 8
 	automatic_gameend_time = 4 MINUTES // ill be surprised if this lasts more than two minutes
 	allowed_loadouts = list(
@@ -177,8 +177,8 @@
 	key = "ragin_mages"
 
 /datum/lazy_template/deathmatch/train
-	name = "Trainship Hijack"
-	desc = "Trouble stirs in Tizira..."
+	name = "列车劫持"
+	desc = "提兹拉正酝酿着麻烦……"
 	max_players = 8
 	allowed_loadouts = list(/datum/outfit/deathmatch_loadout/battler/cowboy)
 	map_name = "train"
@@ -186,8 +186,8 @@
 	turf_reservation_type = /datum/turf_reservation/indestructible_plating
 
 /datum/lazy_template/deathmatch/finaldestination
-	name = "Final Destination"
-	desc = "1v1v1v1, 1 Stock, Final Destination."
+	name = "终极目的地"
+	desc = "1v1v1v1，1 命，终极目的地。"
 	max_players = 8
 	allowed_loadouts = list(
 		/datum/outfit/deathmatch_loadout/captain,
@@ -205,8 +205,8 @@
 	key = "finaldestination"
 
 /datum/lazy_template/deathmatch/species_warfare
-	name = "Species Warfare"
-	desc = "Choose your favorite species and prove its superiority against all the other, lamer species. And also anyone else of your own."
+	name = "种族战争"
+	desc = "选择你最喜欢的种族，向所有其他更逊的种族证明其优越性。当然，也包括你自己种族里的其他人。"
 	max_players = 8
 	allowed_loadouts = list(
 		/datum/outfit/deathmatch_loadout/humanity,
@@ -220,8 +220,8 @@
 	key = "species_warfare"
 
 /datum/lazy_template/deathmatch/lattice_battles
-	name = "Lattice Battles"
-	desc = "Tired of fisticuffs all the time? Just snip the catwalk underneath instead!"
+	name = "格栅大战"
+	desc = "厌倦了老是拳脚相向？那就在脚下把格栅剪断吧！"
 	max_players = 8
 	allowed_loadouts = list(
 		/datum/outfit/deathmatch_loadout/lattice_battles,
@@ -230,8 +230,8 @@
 	key = "lattice_battles"
 
 /datum/lazy_template/deathmatch/ragnarok
-	name = "Ragnarok"
-	desc = "Cultists, heretics, and chaplains all duking it out in the jungle to retrieve the McGuffin."
+	name = "诸神黄昏"
+	desc = "邪教徒、异端与牧师齐聚丛林，为了夺取麦高芬而大打出手。"
 	max_players = 8
 	allowed_loadouts = list(
 		/datum/outfit/deathmatch_loadout/cultish/invoker,
@@ -248,8 +248,8 @@
 	turf_type = /turf/open/indestructible/plating //a little hacky but i guess it has to be done
 
 /datum/lazy_template/deathmatch/deep_space
-	name = "Deep Space"
-	desc = "A deep-space cargo shipping station has fallen under attack by a Syndicate boarding party."
+	name = "深空"
+	desc = "一座深空货运站遭到辛迪加登舰小队的袭击。"
 	max_players = 8
 	automatic_gameend_time = 15 MINUTES //its a pretty big map
 	allowed_loadouts = list(/datum/outfit/deathmatch_loadout/cargo_spaceman, /datum/outfit/deathmatch_loadout/syndicate_spaceman, /datum/outfit/deathmatch_loadout/spacetider)

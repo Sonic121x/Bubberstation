@@ -1,6 +1,6 @@
 /obj/machinery/computer/robotics
-	name = "robotics control console"
-	desc = "Used to remotely lockdown linked Cyborgs and Drones."
+	name = "机器人控制台"
+	desc = "用于远程锁定已连接的半机械人和无人机。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/robotics")
 	icon_screen = "robot"
 	icon_keyboard = "rd_key"
@@ -60,7 +60,7 @@
 			locked_down = R.lockcharge,
 			status = R.stat,
 			charge = R.cell ? round(R.cell.percent()) : null,
-			module = R.model ? "[R.model.name] Model" : "No Model Detected",
+			module = R.model ? "[R.model.name]型号" : "未检测到型号",
 			synchronization = R.connected_ai,
 			emagged = R.emagged,
 			ref = REF(R)
@@ -98,7 +98,7 @@
 								R.ai_lockdown = FALSE
 								lock_unlock_borg(R)
 							else
-								to_chat(usr, span_danger("Cyborg locked by an user with superior permissions."))
+								to_chat(usr, span_danger("此半机械人已被权限更高的用户锁定。"))
 						else
 							R.ai_lockdown = TRUE
 							lock_unlock_borg(R)
@@ -114,11 +114,11 @@
 							R.ai_lockdown = FALSE
 							lock_unlock_borg(R)
 						else if(R.lockcharge&&locked_down_borg!=R)
-							to_chat(usr, span_danger("The cyborg was locked by a different console."))
+							to_chat(usr, span_danger("此半机械人已被另一台控制台锁定。"))
 						else
-							to_chat(usr, span_danger("You can lock down only one cyborg at a time."))
+							to_chat(usr, span_danger("你一次只能锁定一个半机械人。"))
 			else
-				to_chat(usr, span_danger("Access Denied."))
+				to_chat(usr, span_danger("访问被拒绝。"))
 			if(!isnull(locked_down_borg))
 				use_power = ACTIVE_POWER_USE
 			else
@@ -143,7 +143,7 @@
 				var/mob/living/silicon/robot/R = locate(params["ref"]) in GLOB.silicon_mobs
 				if(istype(R) && !R.emagged && (R.connected_ai == usr || isAdminGhostAI(usr)) && !R.scrambledcodes && can_control(usr, R))
 					log_silicon("[key_name(usr)] emagged [key_name(R)] using robotic console!")
-					message_admins("[ADMIN_LOOKUPFLW(usr)] emagged cyborg [key_name_admin(R)] using robotic console!")
+					message_admins("[ADMIN_LOOKUPFLW(usr)]使用机器人控制台电磁破解了半机械人[key_name_admin(R)]！")
 					R.SetEmagged(TRUE)
 					R.logevent("WARN: root privleges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].") //random eight digit hex value. Two are used because rand(1,4294967295) throws an error
 
@@ -151,13 +151,13 @@
 			if(allowed(usr))
 				var/mob/living/basic/drone/drone = locate(params["ref"]) in GLOB.mob_list
 				if(drone.hacked)
-					to_chat(usr, span_danger("ERROR: [drone] is not responding to external commands."))
+					to_chat(usr, span_danger("错误：[drone]没有响应外部指令。"))
 				else
 					var/turf/T = get_turf(drone)
-					message_admins("[ADMIN_LOOKUPFLW(usr)] detonated [key_name_admin(drone)] at [ADMIN_VERBOSEJMP(T)]!")
+					message_admins("[ADMIN_LOOKUPFLW(usr)]在[ADMIN_VERBOSEJMP(T)]引爆了[key_name_admin(drone)]！")
 					log_silicon("[key_name(usr)] detonated [key_name(drone)]!")
 					do_sparks(3, TRUE< drone)
-					drone.visible_message(span_danger("\the [drone] self-destructs!"))
+					drone.visible_message(span_danger("[drone]自毁了！"))
 					drone.investigate_log("has been gibbed by a robotics console.", INVESTIGATE_DEATHS)
 					drone.gib()
 
@@ -167,15 +167,15 @@
 	if(R.lockcharge && locked_down_borg == R)
 		UnregisterSignal(locked_down_borg, COMSIG_QDELETING)
 		locked_down_borg = null
-	message_admins(span_notice("[ADMIN_LOOKUPFLW(usr)] [!R.lockcharge ? "locked down" : "released"] [ADMIN_LOOKUPFLW(R)]!"))
+	message_admins(span_notice("[ADMIN_LOOKUPFLW(usr)][!R.lockcharge ? "锁定了" : "解除了锁定："][ADMIN_LOOKUPFLW(R)]！"))
 	log_silicon("[key_name(usr)] [!R.lockcharge ? "locked down" : "released"] [key_name(R)]!")
 	log_combat(usr, R, "[!R.lockcharge ? "locked down" : "released"] cyborg")
 	R.SetLockdown(!R.lockcharge)
-	to_chat(R, !R.lockcharge ? span_notice("Your lockdown has been lifted!") : span_alert("You have been locked down!"))
+	to_chat(R, !R.lockcharge ? span_notice("你的锁定已解除！") : span_alert("你已被锁定！"))
 	if(!isnull(console_location))
-		to_chat(R, span_alert("The approximate location of the console that is keeping you locked down is [console_location]"))
+		to_chat(R, span_alert("锁定你的控制台大致位于[chinese_area_display(console_location)]。"))
 	if(R.connected_ai)
-		to_chat(R.connected_ai, "[!R.lockcharge ? span_notice("NOTICE - Cyborg lockdown lifted") : span_alert("ALERT - Cyborg lockdown detected")]: <a href='byond://?src=[REF(R.connected_ai)];track=[html_encode(R.name)]'>[R.name]</a><br>")
+		to_chat(R.connected_ai, "[!R.lockcharge ? span_notice("通知——半机械人锁定已解除") : span_alert("警告——检测到半机械人被锁定")]：<a href='byond://?src=[REF(R.connected_ai)];track=[html_encode(R.name)]'>[R.name]</a><br>")
 
 /obj/machinery/computer/robotics/proc/borg_destroyed()
 	SIGNAL_HANDLER

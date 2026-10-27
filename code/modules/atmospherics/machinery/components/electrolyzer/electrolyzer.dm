@@ -7,8 +7,8 @@
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN
 	icon = 'icons/obj/pipes_n_cables/atmos.dmi'
 	icon_state = "electrolyzer-off"
-	name = "space electrolyzer"
-	desc = "Thanks to the fast and dynamic response of our electrolyzers, on-site hydrogen production is guaranteed. Warranty void if used by clowns"
+	name = "太空电解机"
+	desc = "得益于我们电解机快速而灵敏的响应，现场制氢得到了保障。被小丑使用则保修失效。"
 	max_integrity = 250
 	armor_type = /datum/armor/machinery_electrolyzer
 	circuit = /obj/item/circuitboard/machine/electrolyzer
@@ -42,14 +42,14 @@
 
 /obj/machinery/electrolyzer/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "Turn [on ? "off" : "on"]"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "[on ? "关闭" : "开启"]"
 	if(!held_item)
 		return CONTEXTUAL_SCREENTIP_SET
 	switch(held_item.tool_behaviour)
 		if(TOOL_SCREWDRIVER)
-			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 		if(TOOL_WRENCH)
-			context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Unan" : "An"]chor"
+			context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "解除固定" : "固定"]"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/electrolyzer/Destroy()
@@ -65,16 +65,16 @@
 
 /obj/machinery/electrolyzer/examine(mob/user)
 	. = ..()
-	. += "\The [src] is [on ? "on" : "off"], and the panel is [panel_open ? "open" : "closed"]."
+	. += "[src] 处于[on ? "开启" : "关闭"]状态，面板[panel_open ? "已打开" : "已关闭"]。"
 
 	if(cell)
-		. += "The charge meter reads [cell ? round(cell.percent(), 1) : 0]%."
+		. += "电量计读数为 [cell ? round(cell.percent(), 1) : 0]%。"
 	else
-		. += "There is no power cell installed."
+		. += "未安装电池。"
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("<b>Alt-click</b> to toggle [on ? "off" : "on"].")
-		. += span_notice("<b>Anchor</b> to drain power from APC instead of cell")
-	. += span_notice("It will drain power from the [anchored ? "area's APC" : "internal power cell"].")
+		. += span_notice("<b>Alt 点击</b>以[on ? "关闭" : "开启"]。")
+		. += span_notice("<b>固定</b>后将从 APC 而非电池取电")
+	. += span_notice("它将从[anchored ? "区域 APC" : "内部电池"]取电。")
 
 
 /obj/machinery/electrolyzer/update_icon_state()
@@ -148,7 +148,7 @@
 /obj/machinery/electrolyzer/screwdriver_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src, 50)
 	toggle_panel_open()
-	balloon_alert(user, "[panel_open ? "opened" : "closed"] panel")
+	balloon_alert(user, "[panel_open ? "已打开" : "已关闭"]面板")
 	update_appearance(UPDATE_ICON)
 	return TRUE
 
@@ -166,11 +166,11 @@
 		return NONE
 
 	if(!panel_open)
-		balloon_alert(user, "open panel!")
+		balloon_alert(user, "请先打开面板！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(cell)
-		balloon_alert(user, "cell inside!")
+		balloon_alert(user, "里面已有电池！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
@@ -178,25 +178,25 @@
 
 	cell = tool
 	tool.add_fingerprint(usr)
-	balloon_alert(user, "inserted cell")
+	balloon_alert(user, "已插入电池")
 	SStgui.update_uis(src)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/electrolyzer/click_alt(mob/user)
 	if(panel_open)
-		balloon_alert(user, "close panel!")
+		balloon_alert(user, "请先关闭面板！")
 		return CLICK_ACTION_BLOCKING
 	toggle_power(user)
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/electrolyzer/proc/toggle_power(mob/user)
 	if(!anchored && !cell)
-		balloon_alert(user, "insert cell or anchor!")
+		balloon_alert(user, "请插入电池或固定机器！")
 		return
 	on = !on
 	mode = ELECTROLYZER_MODE_STANDBY
 	update_appearance(UPDATE_ICON)
-	balloon_alert(user, "turned [on ? "on" : "off"]")
+	balloon_alert(user, "已[on ? "开启" : "关闭"]")
 	if(on)
 		SSair.start_processing_machine(src)
 

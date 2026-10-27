@@ -20,8 +20,8 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 
 /// Exploration drone
 /obj/item/exodrone
-	name = "exploration drone"
-	desc = "A long range, semi-autonomous exploration drone."
+	name = "探索无人机"
+	desc = "一架长程半自主探索无人机。"
 	icon = 'icons/obj/exploration.dmi'
 	icon_state = "drone"
 	w_class = WEIGHT_CLASS_BULKY
@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 	/// Id of travel timer
 	var/travel_timer_id
 	/// Message that will show up on busy screen
-	var/busy_message = "Doing something..."
+	var/busy_message = "正在处理……"
 	/// When we entered busy state
 	var/busy_start_time
 	/// How long will busy state last
@@ -89,11 +89,11 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 /obj/item/exodrone/proc/ui_description()
 	switch(drone_status)
 		if(EXODRONE_TRAVEL)
-			return travel_target ? "Traveling to [travel_target.display_name()]." : "Traveling back to station."
+			return travel_target ? "正在前往 [travel_target.display_name()]。" : "正在返回空间站。"
 		if(EXODRONE_EXPLORATION, EXODRONE_ADVENTURE, EXODRONE_BUSY)
-			return "Exploring [location?.display_name() || "ERROR"]." // better safe than sorry.
+			return "正在探索 [location?.display_name() || "错误"]。" // better safe than sorry.
 		if(EXODRONE_IDLE)
-			return "Idle."
+			return "空闲。"
 
 // Searches for blacklisted items hidden inside containers
 /obj/item/exodrone/proc/check_blacklist()
@@ -111,9 +111,9 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 		pad.fuel_up(src)
 		pad.launch_effect()
 		last_pad = WEAKREF(pad)
-		drone_log("Launched from [pad.name] and set course for [target_site.display_name()]")
+		drone_log("从 [pad.name] 发射，航向 [target_site.display_name()]")
 	else
-		drone_log("Launched from [location.display_name()] and set course for [target_site ? target_site.display_name() : station_name()]")
+		drone_log("从 [location.display_name()] 发射，航向 [target_site ? target_site.display_name() : station_name()]")
 	set_status(EXODRONE_TRAVEL)
 	moveToNullspace()
 	var/distance_to_travel = target_site ? target_site.distance : location.distance //If we're going home distance is distance of our current location
@@ -135,10 +135,10 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 		var/obj/machinery/exodrone_launcher = find_landing_pad()
 		if(exodrone_launcher)
 			forceMove(get_turf(exodrone_launcher))
-			drone_log("Arrived at [station_name()]. Landing at [exodrone_launcher].")
+			drone_log("已抵达 [station_name()]。正在 [exodrone_launcher] 降落。")
 		else
 			var/turf/drop_zone = drop_somewhere_on_station()
-			drone_log("Arrived at [station_name()]. Emergency landing at [drop_zone.loc.name].")
+			drone_log("已抵达 [station_name()]。紧急降落在 [drop_zone.loc.name]。")
 		set_status(EXODRONE_IDLE)
 
 /obj/item/exodrone/proc/set_status(new_status)
@@ -172,15 +172,15 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 	for(var/obj/cargo in contents)
 		. += list(list("type"="cargo","name"=cargo.name, "ref"=ref(cargo)))
 	for(var/_ in 1 to space_left())
-		. += list(list("type"="empty","name"="Free space"))
+		. += list(list("type"="empty","name"="空位"))
 
 /// Tries to add loot to drone cargo while respecting space left
 /obj/item/exodrone/proc/try_transfer(obj/loot, delete_on_failure=TRUE)
 	if(space_left())
 		loot.forceMove(src)
-		drone_log("Acquired [loot.name].")
+		drone_log("获得 [loot.name]。")
 	else
-		drone_log("Abandoned [loot.name] due to lack of space.")
+		drone_log("因空间不足，丢弃了 [loot.name]。")
 		if(delete_on_failure)
 			qdel(loot)
 
@@ -211,7 +211,7 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 				continue
 			events_to_encounter += event
 		if(!length(events_to_encounter))
-			drone_log("It seems there's nothing interesting left around [location.name].")
+			drone_log("[location.name] 附近似乎已经没有有趣的东西了。")
 			return
 		var/datum/exploration_event/encountered_event = pick(events_to_encounter)
 		encountered_event.encounter(src)
@@ -322,15 +322,15 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 		if(EXODRONE_IDLE)
 			var/obj/machinery/exodrone_launcher/pad = locate() in loc
 			if(!pad)
-				return "No launcher"
+				return "没有发射台"
 			if(!pad.fuel_canister)
-				return "No fuel in launcher"
+				return "发射台中没有燃料"
 			if(pad.fuel_canister.uses <= 0)
-				return "Launcher fuel used up"
+				return "发射台燃料已耗尽"
 			return FALSE
 		if(EXODRONE_EXPLORATION)
 			if(current_event_ui_data)
-				return "Busy"
+				return "忙碌中"
 			return FALSE
 		else
 			return ""
@@ -338,7 +338,7 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 /// Deals damage in adventures/events.
 /obj/item/exodrone/proc/damage(amount)
 	take_damage(amount)
-	drone_log("Sustained [amount] damage.")
+	drone_log("受到 [amount] 点损伤。")
 
 /obj/item/exodrone/proc/drone_log(message)
 	if(length(drone_log) > EXODRONE_LOG_SIZE)
@@ -350,8 +350,8 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 
 /// Exploration drone launcher
 /obj/machinery/exodrone_launcher
-	name = "exploration drone launcher"
-	desc = "A launch pad designed to send exploration drones into the great beyond."
+	name = "探索无人机发射台"
+	desc = "一座专为将探索无人机送入广袤深空而设计的发射台。"
 	icon = 'icons/obj/exploration.dmi'
 	icon_state = "launcher"
 	/// Loaded fuel pellet.
@@ -364,12 +364,12 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 /obj/machinery/exodrone_launcher/examine(user)
 	. = ..()
 	if(fuel_canister)
-		. += span_notice("You can remove the [fuel_canister] with a <b>prying tool</b>.")
+		. += span_notice("你可以用<b>撬棍类工具</b>取下 [fuel_canister]。")
 
 /obj/machinery/exodrone_launcher/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/fuel_pellet))
 		if(fuel_canister)
-			to_chat(user, span_warning("There's already fuel loaded inside [src]!"))
+			to_chat(user, span_warning("[src] 内已经装好燃料了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
@@ -391,7 +391,7 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 	if(!fuel_canister)
 		return
 
-	to_chat(user, span_notice("You remove [fuel_canister] from [src]."))
+	to_chat(user, span_notice("你从 [src] 中取出了 [fuel_canister]。"))
 	fuel_canister.forceMove(drop_location())
 	fuel_canister = null
 	update_icon()
@@ -462,8 +462,8 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 			return travel_cost_coeff
 
 /obj/item/fuel_pellet
-	name = "standard fuel pellet"
-	desc = "A compressed fuel pellet for long-distance drone flight."
+	name = "标准燃料块"
+	desc = "一块为无人机长途飞行准备的压缩燃料块。"
 	icon = 'icons/obj/exploration.dmi'
 	icon_state = "fuel_basic"
 	/// The type of fuel this pellet has within.
@@ -477,12 +477,12 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 		qdel(src)
 
 /obj/item/fuel_pellet/advanced
-	name = "advanced fuel pellet"
+	name = "高级燃料块"
 	fuel_type = FUEL_ADVANCED
 	icon_state = "fuel_advanced"
 
 /obj/item/fuel_pellet/exotic
-	name = "exotic fuel pellet"
+	name = "异种燃料块"
 	fuel_type = FUEL_EXOTIC
 	icon_state = "fuel_exotic"
 

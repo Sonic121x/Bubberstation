@@ -1,6 +1,6 @@
 /datum/species/xeno
 	// A cloning mistake, crossing human and xenomorph DNA
-	name = "Xenomorph Hybrid"
+	name = "\improper 异形杂交体"
 	id = SPECIES_XENO
 	family_heirlooms = list(/obj/item/toy/plush/rouny, /obj/item/clothing/mask/facehugger/toy)
 	inherent_traits = list(
@@ -104,7 +104,7 @@
 
 /datum/action/cooldown/alien/make_structure/plant_weeds/Activate(atom/target)
 	if(build_duration && !do_after(owner, build_duration))
-		owner.balloon_alert(owner, "interrupted!")
+		owner.balloon_alert(owner, "被打断了！")
 		return
 	return ..()
 

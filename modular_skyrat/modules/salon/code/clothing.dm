@@ -1,6 +1,6 @@
 /obj/item/clothing/under/rank/barber
-	desc = "Stark white pants and a fancy hot-pink shirt with a low neckline, though its preferred to wear it even lower. It's the hottest new trend, darling!"
-	name = "barber's uniform"
+	desc = "雪白的长裤配上艳粉色低领衬衫，不过人们更喜欢把领口穿得再低些。亲爱的，这可是最热门的新潮流！"
+	name = "理发师制服"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/civilian.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/civilian.dmi'
 	icon_state = "barber"

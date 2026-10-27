@@ -9,8 +9,8 @@ import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
-type Data = {
+import { recordDisplay, type BatchDisplayData } from '../localization/batchThreeDisplay';
+type Data = BatchDisplayData & {
   linked_scanner: BooleanLike;
   linked_pod: BooleanLike;
   is_scanning: BooleanLike;
@@ -61,7 +61,7 @@ export const ExperimentalCloner = (props: any) => {
         >
           {record_name ? (
             <Stack.Item>
-              {record_name} ({record_species ?? 'Unknown'})
+              {record_name} ({recordDisplay(record_species ?? 'Unknown', data)})
             </Stack.Item>
           ) : (
             'No stored DNA on record.'
@@ -78,7 +78,7 @@ export const ExperimentalCloner = (props: any) => {
                     {scanner_occupant && (
                       <Stack vertical>
                         <Stack.Item bold>Occupant Species:</Stack.Item>
-                        <Stack.Item>{scanner_species ?? 'Unknown'}</Stack.Item>
+                        <Stack.Item>{recordDisplay(scanner_species ?? 'Unknown', data)}</Stack.Item>
                         <Divider />
                         <Button
                           color="good"
@@ -105,7 +105,7 @@ export const ExperimentalCloner = (props: any) => {
                     <Stack vertical>
                       <Stack.Item bold>Currently Cloning:</Stack.Item>
                       <Stack.Item>
-                        {cloning_name} ({cloning_species ?? 'Unknown'})
+                        {cloning_name} ({recordDisplay(cloning_species ?? 'Unknown', data)})
                       </Stack.Item>
                       <Stack.Item>
                         <ProgressBar

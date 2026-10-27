@@ -6,54 +6,54 @@
 /datum/chemical_reaction/drink/synthanol
 	results = list(/datum/reagent/consumable/ethanol/synthanol = 3)
 	required_reagents = list(/datum/reagent/lube = 1, /datum/reagent/toxin/plasma = 1, /datum/reagent/fuel = 1)
-	mix_message = "The chemicals mix to create shiny, blue substance."
+	mix_message = "化学物质混合，生成了一种闪亮的蓝色物质。"
 
 /datum/chemical_reaction/drink/robottears
 	results = list(/datum/reagent/consumable/ethanol/synthanol/robottears = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol/synthanol = 1, /datum/reagent/fuel/oil = 1, /datum/reagent/consumable/sodawater = 1)
-	mix_message = "The ingredients combine into a stiff, dark goo."
+	mix_message = "这些原料混合成了一种黏稠的深色胶状物。"
 
 /datum/chemical_reaction/drink/trinary
 	results = list(/datum/reagent/consumable/ethanol/synthanol/trinary = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol/synthanol = 1, /datum/reagent/consumable/limejuice = 1, /datum/reagent/consumable/orangejuice = 1)
-	mix_message = "The ingredients mix into a colorful substance."
+	mix_message = "这些原料混合成了一种色彩斑斓的物质。"
 
 /datum/chemical_reaction/drink/servo
 	results = list(/datum/reagent/consumable/ethanol/synthanol/servo = 4)
 	required_reagents = list(/datum/reagent/consumable/ethanol/synthanol = 2, /datum/reagent/consumable/cream = 1, /datum/reagent/consumable/hot_coco = 1)
-	mix_message = "The ingredients mix into a dark brown substance."
+	mix_message = "这些原料混合成了一种深棕色的物质。"
 
 /datum/chemical_reaction/drink/uplink
 	results = list(/datum/reagent/consumable/ethanol/synthanol/uplink = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/synthanol = 1, /datum/reagent/consumable/ethanol/rum = 1, /datum/reagent/consumable/ethanol/vodka = 1, /datum/reagent/consumable/ethanol/tequila = 1, /datum/reagent/consumable/ethanol/whiskey = 1)
-	mix_message = "The chemicals mix to create a shiny, orange substance."
+	mix_message = "化学物质混合，生成了一种闪亮的橙色物质。"
 
 /datum/chemical_reaction/drink/synthncoke
 	results = list(/datum/reagent/consumable/ethanol/synthanol/synthncoke = 2)
 	required_reagents = list(/datum/reagent/consumable/ethanol/synthanol = 1, /datum/reagent/consumable/space_cola = 1)
-	mix_message = "The chemicals mix to create a smooth, fizzy substance."
+	mix_message = "化学物质混合，生成了一种顺滑起泡的物质。"
 
 /datum/chemical_reaction/drink/synthignon
 	results = list(/datum/reagent/consumable/ethanol/synthanol/synthignon = 2)
 	required_reagents = list(/datum/reagent/consumable/ethanol/synthanol = 1, /datum/reagent/consumable/ethanol/wine = 1)
-	mix_message = "The chemicals mix to create a fine, red substance."
+	mix_message = "化学物质混合，生成了一种细腻的红色物质。"
 
 // Other Booze
 
 /datum/chemical_reaction/drink/gunfire
 	results = list(/datum/reagent/consumable/ethanol/gunfire = 4)
 	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 1, /datum/reagent/consumable/tea = 3)
-	mix_message = "A loud popping begins to fill the air as the drink is mixed."
+	mix_message = "饮品混合时，空气中开始响起响亮的爆裂声。"
 
 /datum/chemical_reaction/drink/hellfire
 	results = list(/datum/reagent/consumable/ethanol/hellfire = 4)
 	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 2, /datum/reagent/consumable/ice = 1, /datum/reagent/consumable/ethanol/crevice_spike = 1)
-	mix_message = "The liquid begins to churn as it changes to an amber orange and catches on fire."
+	mix_message = "液体开始翻腾，变成琥珀橙色并燃烧起来。"
 
 /datum/chemical_reaction/drink/sins_delight
 	results = list(/datum/reagent/consumable/ethanol/sins_delight = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/demonsblood = 2, /datum/reagent/consumable/ethanol/triple_sec = 1, /datum/reagent/consumable/ethanol/martini = 1, /datum/reagent/consumable/ethanol/changelingsting = 1)
-	mix_message = "The liquid starts swirling, before forming a pink cloud that dissipates in the air."
+	mix_message = "液体开始旋转，随后形成一团粉色云雾，消散在空气中。"
 
 /datum/chemical_reaction/drink/daiquiri/strawberry
 	results = list(/datum/reagent/consumable/ethanol/daiquiri/strawberry = 10)
@@ -78,7 +78,7 @@
 /datum/chemical_reaction/drink/coggrog
 	results = list(/datum/reagent/consumable/ethanol/coggrog = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol/cognac = 1, /datum/reagent/fuel = 1, /datum/reagent/consumable/ethanol/screwdrivercocktail = 1)
-	mix_message = "You hear faint sounds of gears turning as it mixes."
+	mix_message = "混合时，你听到隐约的齿轮转动声。"
 	mix_sound = 'sound/machines/clockcult/steam_whoosh.ogg'
 
 /datum/chemical_reaction/drink/badtouch
@@ -112,31 +112,31 @@
 /datum/chemical_reaction/drink/blizzard_brew
 	results = list(/datum/reagent/consumable/ethanol/blizzard_brew = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol/iced_beer = 1, /datum/reagent/consumable/ice = 1, /datum/reagent/inverse/cryostylane = 1)
-	mix_message = "You hear crackling ice as it mixes."
+	mix_message = "混合时，你听到冰块的噼啪声。"
 	mix_sound = 'sound/effects/ice_shovel.ogg'
 
 /datum/chemical_reaction/drink/molten_mead
 	results = list(/datum/reagent/consumable/ethanol/molten_mead = 3)
 	required_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 2, /datum/reagent/consumable/ethanol/mead = 2, /datum/reagent/consumable/ethanol/mauna_loa = 1)
-	mix_message = "You hear sizzling flesh and angry wasps buzzing as it mixes."
+	mix_message = "混合时，你听到皮肉滋滋作响和愤怒黄蜂的嗡嗡声。"
 	mix_sound = 'sound/effects/wounds/sizzle2.ogg'
 
 /datum/chemical_reaction/drink/hippie_hooch
 	results = list(/datum/reagent/consumable/ethanol/hippie_hooch = 5)
 	required_reagents = list(/datum/reagent/medicine/antihol = 1, /datum/reagent/consumable/ethanol/crevice_spike = 3, /datum/reagent/medicine/earthsblood = 1)
-	mix_message = "You hear wood flutes and nature as it mixes."
+	mix_message = "混合时，你听到木笛声与自然的声音。"
 	mix_sound = 'modular_skyrat/modules/emotes/sound/voice/hoot.ogg'
 
 /datum/chemical_reaction/drink/research_rum
 	results = list(/datum/reagent/consumable/ethanol/research_rum = 4)
 	required_reagents = list(/datum/reagent/consumable/ethanol/bananahonk = 2, /datum/reagent/inverse/neurine = 1, /datum/reagent/consumable/ethanol/grog = 1)
-	mix_message = "You hear gurgling and dinging as it mixes."
+	mix_message = "混合时，你听到咕嘟声和叮当声。"
 	mix_sound = 'sound/machines/microwave/microwave-end.ogg'
 
 /datum/chemical_reaction/drink/golden_grog
 	results = list(/datum/reagent/consumable/ethanol/golden_grog = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/goldschlager = 10, /datum/reagent/gold = 1, /datum/reagent/silver = 1, /datum/reagent/cellulose = 1, /datum/reagent/spraytan = 1)
-	mix_message = "You hear golden coins and snobby rich laughing as it mixes."
+	mix_message = "混合时，你听到金币的响声和势利富人得意的笑声。"
 	mix_sound = 'sound/items/coinflip.ogg'
 
 // RACE SPECIFIC DRINKS
@@ -216,19 +216,19 @@
 /datum/chemical_reaction/drink/beerbatter
 	results = list(/datum/reagent/consumable/ethanol/beerbatter = 4)
 	required_reagents = list(/datum/reagent/consumable/nutriment/fat/oil = 1, /datum/reagent/consumable/ethanol/beer = 1, /datum/reagent/consumable/flour = 1)
-	mix_message = "Sizzling and cracking is heard as you beat the mixture into submission."
+	mix_message = "你把混合物搅打得服服帖帖时，能听到滋滋作响和噼啪声。"
 
 /datum/chemical_reaction/drink/shakiri_spritz
 	results = list(/datum/reagent/consumable/ethanol/shakiri_spritz = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol/shakiri = 1, /datum/reagent/consumable/sodawater = 1, /datum/reagent/consumable/orangejuice = 1)
-	mix_message = "The liquids combine to create a pleasant orange mixture."
+	mix_message = "液体混合成了一种怡人的橙色混合物。"
 
 /datum/chemical_reaction/drink/crimson_hurricane
 	results = list(/datum/reagent/consumable/ethanol/crimson_hurricane = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/shakiri = 1, /datum/reagent/consumable/ethanol/rum = 2, /datum/reagent/consumable/grenadine = 1, /datum/reagent/consumable/limejuice = 1)
-	mix_message = "The mixture develops into a rich red color."
+	mix_message = "混合物呈现出浓郁的绯红色。"
 
 /datum/chemical_reaction/drink/shakiri_rogers
 	results = list(/datum/reagent/consumable/ethanol/shakiri_rogers = 10)
 	required_reagents = list(/datum/reagent/consumable/ethanol/shakiri = 1, /datum/reagent/consumable/space_cola = 5, /datum/reagent/consumable/ice = 2)
-	mix_message = "Bubbles of carbonation rise and pop at the surface of the dark mixture."
+	mix_message = "碳酸气泡在深色混合物的表面升起并破裂。"

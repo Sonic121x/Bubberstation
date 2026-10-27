@@ -7,8 +7,8 @@
 // Reels
 
 /obj/item/fishing_line
-	name = "fishing line reel"
-	desc = "A fishing line. In spite of its simplicity, the added length will make fishing a speck easier."
+	name = "钓线圈"
+	desc = "一卷钓线。尽管简单，多出的长度能让钓鱼轻松那么一点点。"
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "reel_blue"
 	w_class = WEIGHT_CLASS_SMALL
@@ -17,16 +17,16 @@
 	/// Color of the fishing line
 	var/line_color = COLOR_GRAY
 	///The description given to the autowiki
-	var/wiki_desc = "A generic fishing line. <b>Without one, the casting range of the rod will be significantly hampered.</b>"
+	var/wiki_desc = "普通的钓线。<b>没有它，钓竿的抛竿距离会大幅缩短。</b>"
 	///The amount of range this fishing line adds to casting
 	var/cast_range = 2
 
 /obj/item/fishing_line/reinforced
-	name = "reinforced fishing line reel"
-	desc = "Essential for fishing in extreme environments."
+	name = "加固钓线圈"
+	desc = "在极端环境中钓鱼的必需品。"
 	icon_state = "reel_green"
 	line_color = "#2aae34"
-	wiki_desc = "Allows you to fish in lava and plasma rivers and lakes."
+	wiki_desc = "让你能在熔岩与等离子河流湖泊中钓鱼。"
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
 /obj/item/fishing_line/reinforced/Initialize(mapload)
@@ -43,29 +43,29 @@
 	REMOVE_TRAIT(rod, TRAIT_ROD_LAVA_USABLE, REF(src))
 
 /obj/item/fishing_line/cloaked
-	name = "cloaked fishing line reel"
-	desc = "Even harder to notice than the common variety."
+	name = "隐蔽钓线圈"
+	desc = "比普通款式更难被察觉。"
 	icon_state = "reel_white"
 	fishing_line_traits = FISHING_LINE_CLOAKED
 	line_color = "#82cfdd20" //low alpha channel value, harder to see.
-	wiki_desc = "Fishing anxious and wary fish will be easier with this equipped."
+	wiki_desc = "装备后更容易钓到焦虑、警觉的鱼。"
 
 /obj/item/fishing_line/bouncy
-	name = "flexible fishing line reel"
-	desc = "This specialized line is much harder to snap."
+	name = "柔韧钓线圈"
+	desc = "这种特制钓线更难崩断。"
 	icon_state = "reel_red"
 	fishing_line_traits = FISHING_LINE_BOUNCY
 	line_color = "#af221f"
-	wiki_desc = "It reduces the progression loss during the fishing minigame."
+	wiki_desc = "它能减少钓鱼小游戏中的进度损失。"
 	cast_range = 3
 
 /obj/item/fishing_line/sinew
-	name = "fishing sinew"
-	desc = "An all-natural fishing line made of stretched out sinew. A bit stiff, but usable to fish in extreme enviroments."
+	name = "筋腱钓线"
+	desc = "用拉伸的筋腱制成的全天然钓线。有点僵硬，但能在极端环境中钓鱼。"
 	icon_state = "reel_sinew"
 	fishing_line_traits = FISHING_LINE_STIFF
 	line_color = "#d1cca3"
-	wiki_desc = "Crafted from sinew. It allows you to fish in lava and plasma like the reinforced line, but it'll make the minigame harder."
+	wiki_desc = "由筋腱制成。它能像加固钓线一样在熔岩和等离子中钓鱼，但会让小游戏变得更难。"
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
 /obj/item/fishing_line/sinew/Initialize(mapload)
@@ -87,14 +87,14 @@
  * It may also work on mobs if the right hook is attached.
  */
 /obj/item/fishing_line/auto_reel
-	name = "fishing line auto-reel"
-	desc = "A fishing line that automatically spins lures and begins reeling in fish the moment it bites. Also good for hurling things towards you."
+	name = "自动收线钓线圈"
+	desc = "一种钓线，会自动转动拟饵，并在鱼咬钩的瞬间开始收线。也很适合把东西拽向你。"
 	icon_state = "reel_auto"
 	fishing_line_traits = FISHING_LINE_AUTOREEL
 	line_color = "#F88414"
-	wiki_desc = "Automatically starts the minigame and helps guide the bait a little. It also spin fishing lures for you without need of an input. \
-		It can also be used to snag in objects from a distance and throw them in your direction.<br>\
-		<b>It requires the Advanced Fishing Technology Node to be researched to be printed.</b>"
+	wiki_desc = "会自动开始小游戏，并稍微帮你引导鱼饵。它还能在你无需操作的情况下自动转动拟饵。\
+		它也可以用来从远处勾住物体并把它们朝你的方向抛来。<br>\
+		<b>需要研究高级钓鱼技术节点才能打印。</b>"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 3, /datum/material/silver = SMALL_MATERIAL_AMOUNT * 3)
 
 /obj/item/fishing_line/auto_reel/Initialize(mapload)
@@ -145,22 +145,22 @@
 	UnregisterSignal(item, COMSIG_MOVABLE_PRE_IMPACT)
 
 /obj/item/fishing_line/bluespace
-	name = "bluespace fishing line"
+	name = "蓝空间钓线"
 	icon_state = "reel_bluespace"
-	desc = "A fishing line capable of phasing through the very fabric of reality, along with any hook, bait or anything attached to it."
+	desc = "一种能穿透现实本身的钓线，连同其上的鱼钩、鱼饵或任何附着物一起。"
 	pass_flags = ALL //It can pass through anything :p
 	fishing_line_traits = FISHING_LINE_PHASE
 	line_color = COLOR_BLUE
 	cast_range = 6
-	wiki_desc = "It can be used to reach distant fishing spots as well as other things that a normal fishing line cannot, with the exception of reinforced walls. <br>\
-		<b>It requires the Marine Utility Node to be researched to be printed.</b>"
+	wiki_desc = "它能让你够到远处的钓点，以及其他普通钓线够不到的地方，加固墙壁除外。<br>\
+		<b>需要研究海洋实用节点才能打印。</b>"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 3, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 3)
 
 // Hooks
 
 /obj/item/fishing_hook
-	name = "simple fishing hook"
-	desc = "A simple fishing hook. Don't expect to hook onto anything without one."
+	name = "简易鱼钩"
+	desc = "一个简单的鱼钩。没有它别指望能钩到任何东西。"
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "hook"
 	w_class = WEIGHT_CLASS_TINY
@@ -173,7 +173,7 @@
 	/// What subtype of `/datum/chasm_detritus` do we fish out of chasms? Defaults to `/datum/chasm_detritus`.
 	var/chasm_detritus_type = /datum/chasm_detritus
 	///The description given to the autowiki
-	var/wiki_desc = "A generic fishing hook. <b>You won't be able to fish without one.</b>"
+	var/wiki_desc = "普通的鱼钩。<b>没有它就钓不了鱼。</b>"
 
 /**
  * Simple getter proc for hooks to implement special hook bonuses for
@@ -214,12 +214,12 @@
 
 
 /obj/item/fishing_hook/magnet
-	name = "magnetic hook"
-	desc = "Won't make catching fish any easier, but it might help with looking for other things."
+	name = "磁力鱼钩"
+	desc = "不会让钓鱼更容易，但也许有助于找到其他东西。"
 	icon_state = "treasure"
 	rod_overlay_icon_state = "hook_treasure_overlay"
 	chasm_detritus_type = /datum/chasm_detritus/restricted/objects
-	wiki_desc = "It vastly improves the chances of catching things other than fish."
+	wiki_desc = "它大幅提高钓到鱼以外东西的几率。"
 
 /obj/item/fishing_hook/magnet/Initialize(mapload)
 	. = ..()
@@ -242,10 +242,10 @@
 	return MAGNET_HOOK_BONUS_MULTIPLIER
 
 /obj/item/fishing_hook/shiny
-	name = "shiny lure hook"
+	name = "闪亮拟饵钩"
 	icon_state = "gold_shiny"
 	rod_overlay_icon_state = "hook_shiny_overlay"
-	wiki_desc = "It's used to attract shiny-loving fish and make them easier to catch."
+	wiki_desc = "用于吸引喜爱闪亮之物的鱼，让它们更容易上钩。"
 
 /obj/item/fishing_hook/shiny/Initialize(mapload)
 	. = ..()
@@ -261,10 +261,10 @@
 	REMOVE_TRAIT(rod, TRAIT_ROD_ATTRACT_SHINY_LOVERS, REF(src))
 
 /obj/item/fishing_hook/anomaly
-	name = "anomalous lure hook"
+	name = "异常拟饵钩"
 	icon_state = "anom"
-	wiki_desc = "You can slot in an active anomaly core to add a variety of effects to the fishing rod. \
-		Most (but not all) cores will have a unique effect."
+	wiki_desc = "你可以装入一枚活跃的异常核心，为钓竿添加各种效果。\
+		大多数（但并非全部）核心都有独特效果。"
 	/// The actual anomaly core slotted in
 	var/obj/item/assembly/signaler/anomaly/core
 
@@ -276,18 +276,18 @@
 /obj/item/fishing_hook/anomaly/examine(mob/user)
 	. = ..()
 	if(!isnull(core))
-		. += span_info("There's \a [core] slotted into it.")
+		. += span_info("里面装着 [core]。")
 
 /obj/item/fishing_hook/anomaly/examine_more(mob/user)
 	. = ..()
-	. += "&bull; A [/obj/item/assembly/signaler/anomaly/dimensional::name] adds a chance for your catch to have its materials altered."
-	. += "&bull; A [/obj/item/assembly/signaler/anomaly/bioscrambler::name] adds a chance for your catch to have its traits or stats altered."
-	. += "&bull; A [/obj/item/assembly/signaler/anomaly/pyro::name] adds a chance for your catch to be cooked."
-	. += "&bull; A [/obj/item/assembly/signaler/anomaly/ectoplasm::name] adds a chance to catch haunted fish."
-	. += "&bull; A [/obj/item/assembly/signaler/anomaly/hallucination::name] adds a chance to cause your catches to randomly grow or shrink in size."
-	. += "&bull; A [/obj/item/assembly/signaler/anomaly/grav::name] reduces the gravity of the bobber, causing it to fall slower."
-	. += "&bull; A [/obj/item/assembly/signaler/anomaly/vortex::name] reduces the bobber's overall bounciness."
-	. += "&bull; Unmentioned cores likely have no unique effect when applied."
+	. += "&bull; 装入 [/obj/item/assembly/signaler/anomaly/dimensional::name] 后有几率改变渔获的材质。"
+	. += "&bull; 装入 [/obj/item/assembly/signaler/anomaly/bioscrambler::name] 后有几率改变渔获的特质或属性。"
+	. += "&bull; 装入 [/obj/item/assembly/signaler/anomaly/pyro::name] 后有几率把渔获直接烤熟。"
+	. += "&bull; 装入 [/obj/item/assembly/signaler/anomaly/ectoplasm::name] 后有几率钓到幽灵鱼。"
+	. += "&bull; 装入 [/obj/item/assembly/signaler/anomaly/hallucination::name] 后有几率让渔获的体型随机变大或变小。"
+	. += "&bull; 装入 [/obj/item/assembly/signaler/anomaly/grav::name] 后会降低浮标的引力，使其下落更慢。"
+	. += "&bull; 装入 [/obj/item/assembly/signaler/anomaly/vortex::name] 后会降低浮标的整体弹跳性。"
+	. += "&bull; 未列出的核心装入后大概没有独特效果。"
 
 /obj/item/fishing_hook/anomaly/proc/on_fishing_rod_slotted(datum/source, obj/item/fishing_rod/rod, slot)
 	SIGNAL_HANDLER
@@ -308,7 +308,7 @@
 		if(/obj/item/assembly/signaler/anomaly/vortex)
 			rod.bounciness_mult *= 0.2
 		else
-			rod.balloon_alert_to_viewers("no core effect!", vision_distance = 2)
+			rod.balloon_alert_to_viewers("核心无效果！", vision_distance = 2)
 
 /obj/item/fishing_hook/anomaly/proc/on_fishing_rod_unslotted(datum/source, obj/item/fishing_rod/rod, slot)
 	SIGNAL_HANDLER
@@ -413,8 +413,8 @@
 	caught.AddComponent(/datum/component/haunted_item, \
 		haunt_color = "#52336e", \
 		haunt_duration = 6 MINUTES, \
-		spawn_message = span_revenwarning("[caught] slowly rises upward, flopping menacingly in the air..."), \
-		despawn_message = span_revenwarning("[caught] settles to the floor, looking like a normal fish again..."), \
+		spawn_message = span_revenwarning("[caught] 缓缓升向空中，充满威胁地扑腾着……"), \
+		despawn_message = span_revenwarning("[caught] 落回地面，看起来又像一条普通的鱼了……"), \
 	)
 
 /obj/item/fishing_hook/anomaly/proc/hallucination_catch_effect(obj/item/fishing_rod/rod, obj/item/caught, mob/living/user)
@@ -429,7 +429,7 @@
 	if(!istype(tool, /obj/item/assembly/signaler/anomaly))
 		return NONE
 	if(!isnull(core))
-		balloon_alert(user, "already has a core!")
+		balloon_alert(user, "已经装有核心！")
 		return ITEM_INTERACT_BLOCKING
 	if(user.is_holding(tool))
 		if(!user.transferItemToLoc(tool, src))
@@ -438,7 +438,7 @@
 		tool.forceMove(src)
 
 	core = tool
-	balloon_alert(user, "core installed")
+	balloon_alert(user, "核心已安装")
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	update_appearance(UPDATE_OVERLAYS)
 	return ITEM_INTERACT_SUCCESS
@@ -456,7 +456,7 @@
 		core.forceMove(drop_location())
 
 	core = null
-	balloon_alert(user, "core removed")
+	balloon_alert(user, "核心已取下")
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	update_appearance(UPDATE_OVERLAYS)
 	return TRUE
@@ -477,20 +477,20 @@
 	. += core_emissive
 
 /obj/item/fishing_hook/weighted
-	name = "weighted hook"
+	name = "配重鱼钩"
 	icon_state = "weighted"
 	fishing_hook_traits = FISHING_HOOK_WEIGHTED
 	rod_overlay_icon_state = "hook_weighted_overlay"
-	wiki_desc = "It reduces the bounce that happens when you hit the boundaries of the minigame bar."
+	wiki_desc = "减少撞到小游戏进度条边界时的反弹。"
 
 /obj/item/fishing_hook/rescue
-	name = "rescue hook"
-	desc = "An unwieldy hook meant to help with the rescue of those that have fallen down in chasms. You can tell there's no way you'll catch any fish with this, and that it won't be of any use outside of chasms."
+	name = "救援钩"
+	desc = "一个笨重的鱼钩，用于救援掉入裂隙的人。你一眼就能看出用它绝不可能钓到鱼，而且在裂隙之外毫无用处。"
 	icon_state = "rescue"
 	rod_overlay_icon_state = "hook_rescue_overlay"
 	chasm_detritus_type = /datum/chasm_detritus/restricted/bodies
-	wiki_desc = "A hook used to rescue bodies whom have fallen into chasms. \
-		You won't catch fish with it, nor it can't be used for fishing outside of chasms, though it can still be used to reel in people and items from unreachable locations.."
+	wiki_desc = "用于救援掉入裂隙者的鱼钩。\
+		它钓不到鱼，也无法在裂隙之外钓鱼，但仍可用于把够不到的地方的人和物品拽过来。"
 
 /obj/item/fishing_hook/rescue/can_be_hooked(atom/target)
 	return ..() || isliving(target)
@@ -505,7 +505,7 @@
 	if(istype(target_fish_source, /datum/fish_source/chasm))
 		return ..()
 
-	return "The hook on your fishing rod wasn't meant for traditional fishing, rendering it useless at doing so!"
+	return "你钓竿上的鱼钩并不是用来进行传统钓鱼的，因此派不上用场！"
 
 
 /obj/item/fishing_hook/rescue/get_hook_bonus_multiplicative(fish_type)
@@ -517,36 +517,36 @@
 
 
 /obj/item/fishing_hook/bone
-	name = "bone hook"
-	desc = "A simple hook carved from sharpened bone"
+	name = "骨制鱼钩"
+	desc = "用磨尖的骨头削成的简易鱼钩"
 	icon_state = "hook_bone"
-	wiki_desc = "A generic fishing hook carved out of sharpened bone. Bone fishing rods come pre-equipped with it."
+	wiki_desc = "用磨尖的骨头削成的普通鱼钩。骨制钓竿出厂即配备。"
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/fishing_hook/stabilized
-	name = "gyro-stabilized hook"
-	desc = "A quirky hook that grants the user a better control of the tool, allowing them to move the bait both and up and down when reeling in, otherwise keeping it in place."
+	name = "陀螺稳定鱼钩"
+	desc = "一种古怪的鱼钩，让使用者能更好地控制渔具，收线时可以让鱼饵上下移动，否则就让它停在原地。"
 	icon_state = "gyro"
 	fishing_hook_traits = FISHING_HOOK_BIDIRECTIONAL
 	rod_overlay_icon_state = "hook_gyro_overlay"
-	wiki_desc = "It allows you to move both up (left-click) and down (right-click) during the minigame while negating gravity.<br>\
-		<b>It requires the Advanced Fishing Technology Node to be researched to be printed.</b>"
+	wiki_desc = "让你在小游戏中可以向上（左键）和向下（右键）移动，同时抵消引力。<br>\
+		<b>需要研究高级钓鱼技术节点才能打印。</b>"
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 3, /datum/material/titanium = SMALL_MATERIAL_AMOUNT * 2)
 
 /obj/item/fishing_hook/stabilized/examine(mob/user)
 	. = ..()
-	. += span_notice("While fishing, you can hold the <b>Right</b> Mouse Button to move the bait down, rather than up.")
+	. += span_notice("钓鱼时，你可以按住<b>鼠标右键</b>让鱼饵向下移动，而不是向上。")
 
 /obj/item/fishing_hook/jaws
-	name = "jawed hook"
-	desc = "Despite hints of rust, this gritty beartrap-looking hook looks even more threatening than the real thing. May neptune have mercy of whatever gets caught in its jaws."
+	name = "颚夹鱼钩"
+	desc = "尽管略有锈迹，这个粗糙的捕兽夹状鱼钩看起来比真家伙还吓人。愿海神怜悯任何被它夹住的东西。"
 	icon_state = "jaws"
 	w_class = WEIGHT_CLASS_NORMAL
 	fishing_hook_traits = FISHING_HOOK_NO_ESCAPE|FISHING_HOOK_NO_ESCAPE|FISHING_HOOK_KILL
 	rod_overlay_icon_state = "hook_jaws_overlay"
-	wiki_desc = "A beartrap-looking hook that makes losing the fishing minigame impossible (Unless you drop the rod or get stunned). However it'll hurt the fish and eventually kill it. \
-		Funnily enough, you can snag in people with it too. It won't hurt them like a actual beartrap, but it'll still slow them down.<br>\
-		<b>It has to be bought from the black market uplink.</b>"
+	wiki_desc = "捕兽夹状的鱼钩，让钓鱼小游戏不可能失败（除非你丢下钓竿或被击晕）。不过它会伤到鱼，最终把鱼弄死。\
+		有趣的是，你也可以用它勾住人。它不会像真正的捕兽夹那样伤人，但仍会让人行动变慢。<br>\
+		<b>必须从黑市上行链路购买。</b>"
 
 /obj/item/fishing_hook/jaws/can_be_hooked(atom/target)
 	return ..() || isliving(target)
@@ -558,41 +558,41 @@
 
 ///Used to give the average player info about fishing stuff that's unknown to many.
 /obj/item/paper/paperslip/fishing_tip
-	name = "fishing tip"
-	desc = "A slip of paper containing a pearl of wisdom about fishing within it, though you wish it were an actual pearl."
+	name = "钓鱼小贴士"
+	desc = "一张纸条，上面写着一句关于钓鱼的至理名言，不过你倒希望那是颗真的珍珠。"
 
 /obj/item/paper/paperslip/fishing_tip/Initialize(mapload)
 	default_raw_text = pick(GLOB.fishing_tips)
 	return ..()
 
 /obj/item/paper/lures_instructions
-	name = "instructions paper"
+	name = "说明书"
 	icon_state = "slipfull"
 	show_written_words = FALSE
-	desc = "A piece of grey paper with a how-to for dummies about fishing lures printed on it. Smells cheap."
-	default_raw_text =  "<b>Thank you for buying this set.</b><br>\
-		This a simple non-exhaustive set of instructions on how to use fishing lures, some information may \
-		be slightly incorrect or oversimplified.<br><br>\
+	desc = "一张灰纸，上面印着给傻瓜看的拟饵使用指南。闻起来很廉价。"
+	default_raw_text =  "<b>感谢您购买本套装。</b><br>\
+		这是一份简单且并不详尽的拟饵使用说明，其中部分信息可能\
+		略有错误或过于简化。<br><br>\
 
-		First and foremost, fishing lures are <b>inedible, artificial baits</b> sturdy enough to not end up being \
-		consumed by the hungry fish. However, they need to be <b>spun at intervals</b> to replicate \
-		the motion of a prey or organic bait and tempt the fish, since a piece of plastic and metal ins't \
-		all that appetitizing by itself. <b>Different lures</b> can be used to catch <b>different fish</b>.<br><br>\
+		首先，拟饵是<b>不可食用的模拟鱼饵</b>，足够结实，不会被饥饿的鱼\
+		吃掉。但它们需要<b>间歇性地转动</b>，以模仿\
+		猎物或天然鱼饵的动作来诱惑鱼，毕竟一块塑料加金属本身\
+		可没那么诱人。<b>不同的拟饵</b>可用来钓<b>不同的鱼</b>。<br><br>\
 
-		To help you, each lure comes with a <b>small light</b> diode that's attached to the <b>float</b> of your fishing rod. \
-		A float is basically the thing bobbing up'n'down above the fishing spot. \
-		The light will flash <b>green</b> and a <b>sound</b> cue will be played when the lure is <b>ready</b> to be spun. \
-		Do <b>not</b> spin while the light is still <b>red</b>.<br><br>\
-		That's all, best of luck to your angling journey."
+		为了帮助你，每个拟饵都配有一个<b>小灯</b>二极管，装在你钓竿的<b>浮标</b>上。\
+		浮标基本上就是钓点上方上下浮动的那玩意儿。\
+		当拟饵<b>可以</b>转动时，灯会闪<b>绿光</b>并播放<b>提示音</b>。\
+		灯还是<b>红色</b>时<b>不要</b>转动。<br><br>\
+		就这些了，祝你的垂钓之旅好运。"
 
 ///A modified mining capsule from the black market and sometimes random loot.
 /obj/item/survivalcapsule/fishing
-	name = "fishing spot capsule"
-	desc = "An illegally modified mining capsule containing a small fishing spot connected to some faraway place."
+	name = "钓点胶囊"
+	desc = "非法改装的采矿胶囊，内含一个连通某处远方的小型钓点。"
 	icon_state = "capsule_fishing"
 	initial_language_holder = /datum/language_holder/speaking_machine
-	verb_say = "beeps"
-	verb_yell = "blares"
+	verb_say = "发出哔哔声"
+	verb_yell = "发出刺耳鸣响"
 	voice_filter = "alimiter=0.9,acompressor=threshold=0.3:ratio=40:attack=15:release=350:makeup=1.5,highpass=f=1000,rubberband=pitch=1.5"
 	template_id = "fishing_default"
 	yeet_back = FALSE
@@ -605,22 +605,22 @@
 
 /obj/item/survivalcapsule/fishing/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(!held_item || held_item == src)
-		context[SCREENTIP_CONTEXT_RMB] = "Change fishing spot"
+		context[SCREENTIP_CONTEXT_RMB] = "更换钓点"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/survivalcapsule/fishing/examine(mob/user)
 	. = ..()
-	. += span_info("[EXAMINE_HINT("Right-Click")] to change the selected fishing spot when held.")
+	. += span_info("持有时按 [EXAMINE_HINT("右键")] 可更换所选钓点。")
 
 /obj/item/survivalcapsule/fishing/examine_more(mob/user)
 	. = ..()
-	. += span_tinynotice("A tiny print on the side reads: \"Use a cryptographic sequencer to disable safeties\".")
+	. += span_tinynotice("侧面印着一行小字：\"使用密码序列器即可解除安全装置\"。")
 
 /obj/item/survivalcapsule/fishing/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "safeties disabled")
+	balloon_alert(user, "安全装置已解除")
 	playsound(src, SFX_SPARKS, 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
 
@@ -643,7 +643,7 @@
 		return
 	template_id = spot_ids_by_name[choice]
 	template = SSmapping.shelter_templates[template_id]
-	to_chat(user, span_notice("You change [src]'s selected fishing spot to [choice]."))
+	to_chat(user, span_notice("你把 [src] 的所选钓点改为 [choice]。"))
 	playsound(src, 'sound/items/pen_click.ogg', 20, TRUE, -3)
 	return
 
@@ -655,15 +655,15 @@
 /obj/item/survivalcapsule/fishing/fail_feedback(status)
 	switch(status)
 		if(SHELTER_DEPLOY_BAD_AREA)
-			say("I refuse to deploy in this area.")
+			say("我拒绝在这个区域展开。")
 		if(SHELTER_DEPLOY_BAD_TURFS)
-			say("The walls are too close! I need [template.width]x[template.height] area to deploy.")
+			say("墙壁太近了！我需要 [template.width]x[template.height] 的空间才能展开。")
 		if(SHELTER_DEPLOY_ANCHORED_OBJECTS)
-			say("Get these anchored objects out of the way! I need [template.width]x[template.height] area to deploy.")
+			say("把这些固定住的物体挪开！我需要 [template.width]x[template.height] 的空间才能展开。")
 		if(SHELTER_DEPLOY_BANNED_OBJECTS)
-			say("Remove all cables and pipes around me in a [template.width]x[template.height] area or I won't deploy.")
+			say("把我周围 [template.width]x[template.height] 范围内的所有线缆和管道都清掉，否则我不展开。")
 		if(SHELTER_DEPLOY_OUTSIDE_MAP)
-			say("For fucks sake, deploy me somewhere less far fatched!")
+			say("见鬼，把我展开到个不那么离谱的地方去！")
 
 /obj/item/survivalcapsule/fishing/trigger_admin_alert(mob/triggerer, turf/trigger_loc)
 	var/datum/map_template/shelter/fishing/spot = template
@@ -673,8 +673,8 @@
 	var/area/area = get_area(src)
 
 	if(!area.outdoors)
-		message_admins("[ADMIN_LOOKUPFLW(triggerer)] activated an unsafe fishing capsule at [ADMIN_VERBOSEJMP(trigger_loc)]")
-	log_admin("[key_name(triggerer)] activated an unsafe fishing capsule at [AREACOORD(trigger_loc)]")
+		message_admins("[ADMIN_LOOKUPFLW(triggerer)] 在 [ADMIN_VERBOSEJMP(trigger_loc)] 激活了不安全的钓鱼胶囊")
+	log_admin("[key_name(triggerer)] 在 [AREACOORD(trigger_loc)] 激活了不安全的钓鱼胶囊")
 
 /obj/item/survivalcapsule/fishing/hacked
 	obj_flags = parent_type::obj_flags | EMAGGED
@@ -683,8 +683,8 @@
 #undef RESCUE_HOOK_FISH_MULTIPLIER
 
 /obj/item/storage/bag/fishing
-	name = "fishing bag"
-	desc = "A vibrant bag for storing caught fish."
+	name = "钓鱼包"
+	desc = "一个鲜艳的包，用于存放钓到的鱼。"
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "fishing_bag"
 	worn_icon_state = "fishing_bag"
@@ -701,8 +701,8 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, fishing_modifier, ITEM_SLOT_HANDS)
 
 /obj/item/storage/bag/fishing/carpskin
-	name = "carpskin fishing bag"
-	desc = "A dapper fishing bag made from carpskin. You can store quite a lot of fishing gear in the small pockets formed by larger scales."
+	name = "鲤鱼皮钓鱼包"
+	desc = "用鲤鱼皮制成的漂亮钓鱼包。较大的鳞片形成的小口袋里能装下不少渔具。"
 	icon_state = "fishing_bag_carpskin"
 	worn_icon_state = "fishing_bag_carpskin"
 	resistance_flags = ACID_PROOF
@@ -711,7 +711,7 @@
 
 ///An item that allows the user to add and remove traits from a fish at their own discretion.
 /obj/item/fish_genegun
-	name = "fish gene-gun"
+	name = "鱼类基因枪"
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "fish_gun"
 	base_icon_state = "fish_gun"
@@ -719,12 +719,12 @@
 	worn_icon_state = "gun"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
-	desc = "A device designed to inject or extract traits to and from fish. It takes an empty syringe, which is converted into a fish gene injector once the trait is extracted. Repeated applications may kill the fish."
+	desc = "用于向鱼类注入或从鱼类提取特质的装置。它需要装入一支空注射器，提取特质后注射器会转化为鱼类基因注射器。反复使用可能会使鱼死亡。"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 7
 	throwforce = 5
-	attack_verb_continuous = list("pricked", "stabbed", "poked")
-	attack_verb_simple = list("prick", "stab", "poke")
+	attack_verb_continuous = list("刺", "扎", "戳")
+	attack_verb_simple = list("刺", "扎", "戳")
 	hitsound = 'sound/items/hypospray.ogg'
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 4, /datum/material/titanium = SMALL_MATERIAL_AMOUNT * 3, /datum/material/diamond = SMALL_MATERIAL_AMOUNT * 2)
 	//This can be an empty syringe or a gene injector
@@ -738,13 +738,13 @@
 	. = ..()
 
 	if(!loaded_injector)
-		. += span_info("It's currently unloaded. Insert a syringe or fish gene injector.")
+		. += span_info("目前未装填。请装入注射器或鱼类基因注射器。")
 		return
-	var/info =  span_info("It's currently loaded with [loaded_injector]. Use it to ")
+	var/info =  span_info("目前装填的是 [loaded_injector]。用它来")
 	if(istype(loaded_injector, /obj/item/reagent_containers/syringe))
-		info += span_info("[EXAMINE_HINT("extract")] a gene from a fish or aquatic lifeform.")
+		info += span_info("[EXAMINE_HINT("提取")]鱼类或水生生物的一个基因。")
 	else
-		info += span_info("[EXAMINE_HINT("inject")] the gene in a fish or aquatic lifeform.")
+		info += span_info("向鱼类或水生生物[EXAMINE_HINT("注入")]基因。")
 	. += info
 
 /obj/item/fish_genegun/update_icon_state()
@@ -756,13 +756,13 @@
 
 /obj/item/fish_genegun/attack_self(mob/user)
 	if(!loaded_injector)
-		balloon_alert(user, "gene-gun is empty!")
+		balloon_alert(user, "基因枪是空的！")
 		return
 	var/obj/item/loaded = loaded_injector
 	loaded.forceMove(drop_location()) //this will unset the loaded_injector variable
 	if(IsReachableBy(user)) //check that the user can actually reach the loaded injector (telekinesis yadda yadda)
 		user.put_in_hands(loaded)
-	balloon_alert(user, "gene-gun unloaded")
+	balloon_alert(user, "基因枪已卸下")
 	playsound(src, 'sound/items/weapons/gun/general/magazine_remove_full.ogg', 30, TRUE)
 
 /obj/item/fish_genegun/Exited(atom/movable/gone)
@@ -776,15 +776,15 @@
 	if(!is_syringe && !istype(item, /obj/item/fish_gene))
 		return NONE
 	if(loaded_injector)
-		to_chat(user, span_warning("[src] already has [loaded_injector] loaded in it."))
+		to_chat(user, span_warning("[src] 里已经装填了 [loaded_injector]。"))
 		return ITEM_INTERACT_BLOCKING
 	if(is_syringe && item.reagents.total_volume)
-		to_chat(user, span_warning("[src] cannot accept a syringe that isn't empty. Empty it first."))
+		to_chat(user, span_warning("[src] 无法装入未清空的注射器。请先清空。"))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(item, src))
-		to_chat(user, span_warning("[item] is stuck to your hands."))
+		to_chat(user, span_warning("[item] 粘在你手上了。"))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_info("You load [item] into [src]."))
+	to_chat(user, span_info("你把 [item] 装入 [src]。"))
 	loaded_injector = item
 	update_appearance(UPDATE_ICON)
 	playsound(src, 'sound/items/weapons/gun/general/magazine_insert_full.ogg', 30, TRUE)
@@ -794,39 +794,39 @@
 	if(!isfish(interacting_with))
 		return NONE
 	if(!loaded_injector)
-		balloon_alert(user, "gene-gun is empty!")
+		balloon_alert(user, "基因枪是空的！")
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_with.flags_1 & HOLOGRAM_1)
-		to_chat(user, span_warning("[interacting_with] is incompatible with [src]"))
+		to_chat(user, span_warning("[interacting_with] 与 [src] 不兼容"))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/fish/fish = interacting_with
 	var/is_syringe = istype(loaded_injector, /obj/item/reagent_containers/syringe)
 	if(fish.status == FISH_DEAD)
-		to_chat(user, span_warning("[src] cannot [is_syringe ? "extract traits from" : "inject traits into"] the deceased [fish.name]."))
+		to_chat(user, span_warning("[src] 无法对已死亡的 [fish.name] [is_syringe ? "提取" : "注入"]特质。"))
 		return ITEM_INTERACT_BLOCKING
 	if(!is_syringe)
 		var/obj/item/fish_gene/injector = loaded_injector
 		return injector.inject_into_fish(fish, user, src)
 
 	if(!length(fish.fish_traits))
-		to_chat(user, span_warning("[fish] has no traits that can be extracted from!"))
+		to_chat(user, span_warning("[fish] 没有可提取的特质！"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/list/choices = list()
 	for(var/datum/fish_trait/trait_type as anything in fish.fish_traits)
 		choices[trait_type::name] = trait_type
-	var/choice = tgui_input_list(user, "Choose a trait to extract", "Fish Trait Extraction", choices)
+	var/choice = tgui_input_list(user, "选择要提取的特质", "鱼类特质提取", choices)
 	if(!choice || QDELETED(fish) || !user.is_holding(src) || !fish.IsReachableBy(user))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!istype(loaded_injector, /obj/item/reagent_containers/syringe)) //The syringe was taken out
-		to_chat(user, span_warning("[src] is not loaded with an syringe to extract fish traits with."))
+		to_chat(user, span_warning("[src] 没有装填可用于提取鱼类特质的注射器。"))
 		return ITEM_INTERACT_BLOCKING
 	if(fish.status == FISH_DEAD)
-		to_chat(user, span_warning("[src] cannot extract traits from the deceased [fish.name]."))
+		to_chat(user, span_warning("[src] 无法从死亡的 [fish.name] 身上提取特质。"))
 		return ITEM_INTERACT_BLOCKING
 	if(!(choices[choice] in fish.fish_traits))
-		to_chat(user, span_warning("[fish] doesn't seem to have the \"[choice]\" trait anymore."))
+		to_chat(user, span_warning("[fish] 似乎已经没有 \"[choice]\" 特质了。"))
 		return ITEM_INTERACT_BLOCKING
 
 	QDEL_NULL(loaded_injector)
@@ -835,7 +835,7 @@
 	trait.remove_from_fish(fish)
 	loaded_injector = new /obj/item/fish_gene(src, trait_type)
 
-	user.visible_message(span_notice("[user] injects [fish] with [src]."), span_notice("You extract the \"[trait_type::name]\" trait into [fish]."))
+	user.visible_message(span_notice("[user] 用 [src] 给 [fish] 注射。"), span_notice("你把 \"[trait_type::name]\" 特质提取并注入 [fish]。"))
 	if(HAS_TRAIT(fish, TRAIT_FISH_GENEGUNNED))
 		fish.set_status(FISH_DEAD)
 	ADD_TRAIT(fish, TRAIT_FISH_GENEGUNNED, TRAIT_GENERIC)
@@ -845,10 +845,10 @@
 
 ///The injector for the fish trait. Can be used on its own without a fish gene-gun as well.
 /obj/item/fish_gene
-	name = "fish trait injector"
+	name = "鱼类特质注射器"
 	icon = 'icons/obj/fishing.dmi'
 	icon_state = "fish_trait_injector"
-	desc = "A single-use injector containing a specific trait that can be used on any (living) fish compatible with it."
+	desc = "一次性注射器，内含某种特定特质，可用于任何与其兼容的（活着的）鱼。"
 	w_class = WEIGHT_CLASS_TINY
 	inhand_icon_state = "dnainjector"
 	worn_icon_state = "pen"
@@ -867,26 +867,26 @@
 
 /obj/item/fish_gene/update_name()
 	. = ..()
-	name = "fish trait injector ([trait_type::name])"
+	name = "鱼类特质注射器（[trait_type::name]）"
 
 /obj/item/fish_gene/interact_with_atom(obj/interacting_with, mob/living/user, list/modifiers)
 	if(!isfish(interacting_with))
 		return NONE
 	if(interacting_with.flags_1 & HOLOGRAM_1)
-		to_chat(user, span_warning("[interacting_with] is incompatible with [src]"))
+		to_chat(user, span_warning("[interacting_with] 与 [src] 不兼容"))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/fish/fish = interacting_with
 	if(fish.status == FISH_DEAD)
-		to_chat(user, span_warning("[src] cannot inject traits into the deceased [fish.name]."))
+		to_chat(user, span_warning("[src] 无法向死亡的 [fish.name] 注入特质。"))
 		return ITEM_INTERACT_BLOCKING
 	return inject_into_fish(fish, user, src)
 
 /obj/item/fish_gene/proc/inject_into_fish(obj/item/fish/fish, mob/living/user, obj/item/tool = src)
 	var/datum/fish_trait/trait = GLOB.fish_traits[trait_type]
 	if(!trait.apply_to_fish(fish, initial = FALSE))
-		to_chat(user, span_warning("You can't inject the \"[trait_type::name]\" trait into [fish]. [fish.p_They()] either [fish.p_have()] it or [fish.p_are()] incompatible with it."))
+		to_chat(user, span_warning("你无法将 \"[trait_type::name]\" 特质注入 [fish]。它要么已经拥有该特质，要么与其不兼容。"))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice("[user] injects [fish] with [tool]."), span_notice("You inject the \"[trait_type::name]\" trait into [fish]."))
+	user.visible_message(span_notice("[user] 用 [tool] 给 [fish] 注射。"), span_notice("你将 \"[trait_type::name]\" 特质注入 [fish]。"))
 	qdel(src)
 	if(HAS_TRAIT(fish, TRAIT_FISH_GENEGUNNED))
 		fish.set_status(FISH_DEAD)

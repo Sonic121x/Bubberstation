@@ -2,10 +2,10 @@
 
 /datum/computer_file/program/power_monitor
 	filename = "ampcheck"
-	filedesc = "AmpCheck"
+	filedesc = "安培检测"
 	downloader_category = PROGRAM_CATEGORY_ENGINEERING
 	program_open_overlay = "power_monitor"
-	extended_desc = "This program connects to sensors around the station to provide information about electrical systems"
+	extended_desc = "该程序会连接站内各处的传感器，提供电力系统信息"
 	ui_header = "power_norm.gif"
 	download_access = list(ACCESS_ENGINEERING)
 	can_run_on_flags = PROGRAM_CONSOLE

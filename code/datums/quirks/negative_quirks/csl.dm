@@ -1,14 +1,14 @@
 /datum/quirk/csl
 	name = "Common Second Language"
-	desc = "Common is not your native tongue - it's something you had to pick up along the way. \
-		Some words in common will sound foreign, and you may drift back to your native tongue \
-		when you are anxious or upset."
+	desc = "通用语并非你的母语，而是你后来不得不学会的语言。\
+		某些通用语词汇对你来说仍很陌生，\
+		焦虑或烦躁时，你可能不自觉地改说母语。"
 	icon = FA_ICON_LANDMARK_DOME
 	quirk_flags = QUIRK_HIDE_FROM_SCAN
 	value = -2
-	gain_text = span_danger("You have difficulty parsing Common.")
-	lose_text = span_notice("Common starts to click for you.")
-	medical_record_text = "Patient is CSL."
+	gain_text = span_danger("你难以理解通用语。")
+	lose_text = span_notice("你开始熟悉通用语了。")
+	medical_record_text = "患者以通用语为第二语言。"
 	/// What language typepath is our primary language?
 	VAR_PRIVATE/native_language
 

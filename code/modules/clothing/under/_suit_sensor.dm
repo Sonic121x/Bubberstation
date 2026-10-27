@@ -1,7 +1,7 @@
 ///The item representing suit sensors when removed from a suit or dress (obj/item/clothing/under)
 /obj/item/suit_sensor
-	name = "suit sensor"
-	desc = "That thingamabob medbay keeps telling you to set to 'Tracking Beacon'. It needs to be attached to a worn suit or dress to work."
+	name = "服装传感器"
+	desc = "医疗部总让你调到“追踪信标”的那个玩意儿。它需要装在一件穿着中的服装或连衣裙上才能工作。"
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "suit_sensor"
 	base_icon_state = "suit_sensor"
@@ -21,9 +21,9 @@
 /obj/item/suit_sensor/examine(mob/user)
 	. = ..()
 	if(broken)
-		. += span_warning("It's currently broken. You can use a piece of [EXAMINE_HINT("cable")] to fix it.")
+		. += span_warning("它目前坏了。你可以用一段 [EXAMINE_HINT("电缆")] 把它修好。")
 	else
-		. += span_notice("It's currently set on '[GLOB.suit_sensor_mode_to_defines.Find(sensor_mode + 1)]'.")
+		. += span_notice("它目前设置为“[GLOB.suit_sensor_mode_to_defines.Find(sensor_mode + 1)]”。")
 
 /obj/item/suit_sensor/update_overlays()
 	. = ..()
@@ -49,15 +49,15 @@
 	if(!(user.mobility_flags & MOBILITY_USE) || !IsReachableBy(user))
 		return FALSE
 	if(broken)
-		balloon_alert(user, "fix it first!")
+		balloon_alert(user, "先把它修好！")
 		return
 	var/current_mode_text = GLOB.suit_sensor_mode_to_defines[sensor_mode + 1]
-	var/new_mode = tgui_input_list(user, "Select a sensor mode", "Suit Sensors", GLOB.suit_sensor_mode_to_defines, current_mode_text)
+	var/new_mode = tgui_input_list(user, "选择一种传感器模式", "服装传感器", GLOB.suit_sensor_mode_to_defines, current_mode_text)
 	if(isnull(new_mode) || broken|| !(user.mobility_flags & MOBILITY_USE) || !IsReachableBy(user))
-		user.balloon_alert(user, "can't do that now!")
+		user.balloon_alert(user, "现在不能这么做！")
 		return
 	set_mode(GLOB.suit_sensor_mode_to_defines[new_mode])
-	balloon_alert(user, "sensor set to '[LOWER_TEXT(new_mode)]'")
+	balloon_alert(user, "传感器已设置为“[LOWER_TEXT(new_mode)]”")
 
 /obj/item/suit_sensor/emp_act(severity)
 	. = ..()
@@ -74,11 +74,11 @@
 	if(!istype(tool, /obj/item/stack/cable_coil))
 		return ..()
 	if(!broken)
-		balloon_alert(user, "not broken!")
+		balloon_alert(user, "它没坏！")
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/stack/cable_coil/cabling = tool
 	cabling.use(1)
-	balloon_alert(user, "suit sensor repaired")
+	balloon_alert(user, "服装传感器已修复")
 	broken = FALSE
 	update_appearance(UPDATE_OVERLAYS)
 	return ITEM_INTERACT_SUCCESS

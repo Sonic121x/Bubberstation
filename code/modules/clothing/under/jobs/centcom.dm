@@ -4,38 +4,38 @@
 	abstract_type = /obj/item/clothing/under/rank/centcom
 
 /obj/item/clothing/under/rank/centcom/commander
-	name = "\improper CentCom commander's suit"
-	desc = "It's a suit worn by CentCom's highest-tier Commanders."
+	name = "\improper 中央指挥部指挥官制服"
+	desc = "这是中央指挥部最高阶指挥官所穿的制服。"
 	icon_state = "centcom"
 	inhand_icon_state = "dg_suit"
 
 /obj/item/clothing/under/rank/centcom/official
-	name = "\improper CentCom official's suit"
-	desc = "A suit worn by CentCom Officials, with a silver belt buckle to indicate their rank from a glance."
+	name = "\improper 中央指挥部官员制服"
+	desc = "中央指挥部官员所穿的制服，配有银色腰带扣，一眼便能看出其级别。"
 	icon_state = "official"
 	inhand_icon_state = "dg_suit"
 
 /obj/item/clothing/under/rank/centcom/intern
-	name = "\improper CentCom intern's jumpsuit"
-	desc = "It's a jumpsuit worn by those interning for CentCom. The top is styled after a polo shirt for easy identification."
+	name = "\improper 中央指挥部实习生连体服"
+	desc = "这是为中央指挥部实习人员所穿的连体服。上衣采用马球衫款式，便于识别。"
 	icon_state = "intern"
 	inhand_icon_state = "dg_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/centcom/officer
-	name = "\improper CentCom turtleneck suit"
-	desc = "A casual, yet refined green turtleneck, used by CentCom Officers. It has a fragrance of aloe."
+	name = "\improper 中央指挥部高领制服"
+	desc = "一件休闲而精致的绿色高领衫，供中央指挥部军官穿着。散发着芦荟的清香。"
 	icon_state = "officer"
 	inhand_icon_state = "dg_suit"
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/centcom/officer/replica
-	name = "\improper CentCom turtleneck replica"
-	desc = "A cheap copy of the CentCom turtleneck! A Donk Co. logo can be seen on the collar."
+	name = "\improper 中央指挥部高领制服仿品"
+	desc = "中央指挥部高领衫的廉价仿制品！衣领上可以看到咚克公司的标志。"
 
 /obj/item/clothing/under/rank/centcom/officer_skirt
-	name = "\improper CentCom turtleneck skirt"
-	desc = "A skirt version of the CentCom turtleneck, rarer and more sought after than the original."
+	name = "\improper 中央指挥部高领裙装"
+	desc = "中央指挥部高领衫的裙装版本，比原版更加稀有，也更受追捧。"
 	icon_state = "officer_skirt"
 	inhand_icon_state = "dg_suit"
 	alt_covers_chest = TRUE
@@ -45,12 +45,12 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/centcom/officer_skirt/replica
-	name = "\improper CentCom turtleneck skirt replica"
-	desc = "A cheap copy of the CentCom turtleneck skirt! A Donk Co. logo can be seen on the collar."
+	name = "\improper 中央指挥部高领裙装仿品"
+	desc = "中央指挥部高领裙装的廉价仿制品！衣领上可以看到咚克公司的标志。"
 
 /obj/item/clothing/under/rank/centcom/centcom_skirt
-	name = "\improper CentCom commander's suitskirt"
-	desc = "It's a suitskirt worn by CentCom's highest-tier Commanders."
+	name = "\improper 中央指挥部指挥官裙装制服"
+	desc = "这是中央指挥部最高阶指挥官所穿的裙装制服。"
 	icon_state = "centcom_skirt"
 	inhand_icon_state = "dg_suit"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -59,8 +59,8 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/centcom/military
-	name = "tactical combat uniform"
-	desc = "A dark colored uniform worn by CentCom's conscripted military forces."
+	name = "战术战斗制服"
+	desc = "中央指挥部征召部队所穿的深色制服。"
 	icon_state = "military"
 	inhand_icon_state = "bl_suit"
 	can_adjust = FALSE
@@ -73,6 +73,6 @@
 	wound = 10
 
 /obj/item/clothing/under/rank/centcom/military/eng
-	name = "tactical engineering uniform"
-	desc = "A dark colored uniform worn by CentCom's regular military engineers."
+	name = "战术工程制服"
+	desc = "中央指挥部正规军事工程师所穿的深色制服。"
 	icon_state = "military_eng"

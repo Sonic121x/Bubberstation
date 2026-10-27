@@ -1,18 +1,18 @@
 /datum/weather/particle/rain_storm
 	name = "rain"
-	desc = "Heavy thunderstorms rain down below, drenching anyone caught in it."
+	desc = "猛烈的雷雨倾泻而下，将暴露在外的人淋得湿透。"
 
 	particle_type = /particles/weather/rain_storm
 	min_severity = 30
 
-	telegraph_message = span_danger("Thunder rumbles far above. You hear droplets drumming against the canopy.")
+	telegraph_message = span_danger("高空中雷声隆隆。你听到雨点敲打遮蔽物的声音。")
 	telegraph_overlay = "rain_low"
 	telegraph_duration = 30 SECONDS
 
-	weather_message = span_userdanger("<i>Rain pours down around you!</i>")
+	weather_message = span_userdanger("<i>大雨在你周围倾盆而下！</i>")
 	weather_overlay = "rain_high"
 
-	end_message = span_bolddanger("The downpour gradually slows to a light shower.")
+	end_message = span_bolddanger("倾盆大雨逐渐转为小雨。")
 	end_overlay = "rain_low"
 	end_duration = 30 SECONDS
 
@@ -54,7 +54,7 @@
 	// change the message for if rain is triggered inside the station (no canopy of course)
 	for(var/z in impacted_z_levels)
 		if(is_station_level(z))
-			telegraph_message = span_warning("Thunder rumbles from above. You hear droplets hitting the floor around you.")
+			telegraph_message = span_warning("头顶传来隆隆雷声。你听到雨点落在周围地面上的声音。")
 			break
 
 	return ..()
@@ -106,18 +106,18 @@
 	probability = 0 // admeme event
 
 /datum/weather/particle/rain_storm/acid
-	desc = "The planet's thunderstorms are by nature acidic, and will incinerate anyone standing beneath them without protection."
+	desc = "这颗行星上的雷雨天然带有酸性，会将毫无防护地暴露其中的人灼伤焚毁。"
 
 	telegraph_duration = 40 SECONDS
-	telegraph_message = span_warning("Thunder rumbles far above. You hear acidic droplets hissing against the canopy. Seek shelter!")
+	telegraph_message = span_warning("高空中雷声隆隆。酸性雨滴落在遮蔽物上，发出嘶嘶声。快寻找掩蔽！")
 	telegraph_sound = 'sound/effects/siren.ogg'
 
-	weather_message = span_userdanger("<i>Acidic rain pours down around you! Get inside!</i>")
+	weather_message = span_userdanger("<i>酸雨在你周围倾盆而下！快进室内！</i>")
 	weather_duration_lower = 1 MINUTES
 	weather_duration_upper = 2 MINUTES
 
 	end_duration = 10 SECONDS
-	end_message = span_bolddanger("The downpour gradually slows to a light shower. It should be safe outside now.")
+	end_message = span_bolddanger("倾盆大雨逐渐转为小雨。现在外面应该安全了。")
 
 	// these are weighted by acidpwr which causes more damage the higher it is
 	whitelist_weather_reagents = list(
@@ -129,9 +129,9 @@
 
 /datum/weather/particle/rain_storm/wizard
 	name = "magical rain"
-	desc = "A magical thunderstorm rains down below, drenching anyone caught in it with mysterious rain."
+	desc = "一场魔法雷雨倾泻而下，将暴露在外的人浸透在神秘的雨水中。"
 
-	telegraph_message = span_danger("A magical rain cloud appears above. You hear droplets falling down.")
+	telegraph_message = span_danger("一片魔法雨云出现在头顶。你听到了雨滴落下的声音。")
 	protected_areas = /datum/weather/rad_storm::protected_areas
 
 	// same time durations as floor_is_lava event

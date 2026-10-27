@@ -2,8 +2,8 @@
 
 /// The actual organ that the changeling headslug implants into a dead host.
 /obj/item/organ/body_egg/changeling_egg
-	name = "changeling egg"
-	desc = "Twitching and disgusting."
+	name = "变形怪卵"
+	desc = "不断抽搐，令人作呕。"
 	/// The mind of the original changeling that gave forth to the headslug mob.
 	var/datum/mind/origin
 	/// When we're expected to hatch.
@@ -44,7 +44,7 @@
 		changeling_datum.purchased_powers[transform.type] = transform
 		changeling_datum.regain_powers()
 
-	owner.investigate_log("has been gibbed by a changeling egg burst.", INVESTIGATE_DEATHS)
+	owner.investigate_log("被变形怪卵爆体而亡。", INVESTIGATE_DEATHS)
 	owner.gib(DROP_ALL_REMAINS)
 	qdel(src)
 

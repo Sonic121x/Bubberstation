@@ -21,7 +21,7 @@
 		/datum/component/toggle_attached_clothing,\
 		deployable_type = hoodtype,\
 		equipped_slot = ITEM_SLOT_HEAD,\
-		action_name = "Toggle Hood",\
+		action_name = "切换兜帽",\
 		destroy_on_removal = alternative_mode,\
 		parent_icon_state_suffix = hood_up_affix,\
 		down_overlay_state_suffix = hood_down_overlay_suffix, \
@@ -63,7 +63,7 @@
 /obj/item/clothing/suit/toggle
 	abstract_type = /obj/item/clothing/suit/toggle
 	/// The noun that is displayed to the user on toggle. EX: "Toggles the suit's [buttons]".
-	var/toggle_noun = "buttons"
+	var/toggle_noun = "纽扣"
 
 /obj/item/clothing/suit/toggle/Initialize(mapload)
 	. = ..()

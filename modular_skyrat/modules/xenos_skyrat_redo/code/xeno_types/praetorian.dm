@@ -1,8 +1,8 @@
 /// SKYRAT MODULE SKYRAT_XENO_REDO
 
 /mob/living/carbon/alien/adult/skyrat/praetorian
-	name = "alien praetorian"
-	desc = "An alien that looks like the awkward half-way point between a queen and a drone, in fact that's likely what it is."
+	name = "异形禁卫"
+	desc = "看起来像女王与雄蜂之间尴尬过渡形态的异形，事实上多半确实如此。"
 	caste = "praetorian"
 	maxHealth = 400
 	health = 400
@@ -36,8 +36,8 @@
 	add_movespeed_modifier(/datum/movespeed_modifier/alien_big)
 
 /datum/action/cooldown/alien/skyrat/heal_aura/juiced
-	name = "Strong Healing Aura"
-	desc = "Friendly xenomorphs in a longer range around yourself will receive passive healing."
+	name = "强效治疗光环"
+	desc = "周围较大范围内的友方异形会持续获得治疗。"
 	button_icon_state = "healaura_juiced"
 	plasma_cost = 100
 	cooldown_time = 90 SECONDS
@@ -46,8 +46,8 @@
 	aura_healing_color = COLOR_RED_LIGHT
 
 /datum/action/cooldown/spell/aoe/repulse/xeno/skyrat_tailsweep/hard_throwing
-	name = "Flinging Tail Sweep"
-	desc = "Throw back attackers with a sweep of your tail that is much stronger than other aliens."
+	name = "击飞扫尾"
+	desc = "以远强于其他异形的尾巴横扫攻击者，将其击飞。"
 
 	aoe_radius = 2
 	repulse_force = MOVE_FORCE_OVERPOWERING //Fuck everyone who gets hit by this tail in particular
@@ -65,8 +65,8 @@
 	icon_state = "throw_tail_anim"
 
 /datum/action/cooldown/alien/acid/skyrat/spread
-	name = "Spit Neurotoxin Spread"
-	desc = "Spits a spread neurotoxin at someone, exhausting them."
+	name = "散射神经毒素"
+	desc = "向目标散射神经毒素，使其精疲力竭。"
 	plasma_cost = 50
 	acid_projectile = null
 	acid_casing = /obj/item/ammo_casing/xenospit
@@ -74,7 +74,7 @@
 	cooldown_time = 10 SECONDS
 
 /obj/item/ammo_casing/xenospit //This is probably really bad, however I couldn't find any other nice way to do this
-	name = "big glob of neurotoxin"
+	name = "大团神经毒素"
 	projectile_type = /obj/projectile/neurotoxin/skyrat/spitter_spread
 	pellets = 3
 	variance = 20
@@ -87,33 +87,33 @@
 	return FALSE
 
 /obj/projectile/neurotoxin/skyrat/spitter_spread //Slightly nerfed because its a shotgun spread of these
-	name = "neurotoxin spit"
+	name = "神经毒素液团"
 	icon_state = "neurotoxin"
 	damage = 25
 
 /datum/action/cooldown/alien/acid/skyrat/spread/lethal
-	name = "Spit Acid Spread"
-	desc = "Spits a spread of acid at someone, burning them."
+	name = "散射酸液"
+	desc = "向目标散射酸液，造成灼伤。"
 	acid_projectile = null
 	acid_casing = /obj/item/ammo_casing/xenospit/spread/lethal
 	button_icon_state = "acidspit_0"
-	projectile_name = "acid"
+	projectile_name = "酸液"
 	button_base_icon = "acidspit"
 
 /obj/item/ammo_casing/xenospit/spread/lethal
-	name = "big glob of acid"
+	name = "大团酸液"
 	projectile_type = /obj/projectile/neurotoxin/skyrat/acid/spitter_spread
 	pellets = 4
 	variance = 30
 
 /obj/projectile/neurotoxin/skyrat/acid/spitter_spread
-	name = "acid spit"
+	name = "酸液团"
 	icon_state = "toxin"
 	damage = 15
 	damage_type = BURN
 
 /obj/item/organ/alien/neurotoxin/spitter
-	name = "large neurotoxin gland"
+	name = "大型神经毒素腺"
 	icon_state = "neurotox"
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = ORGAN_SLOT_XENO_NEUROTOXINGLAND

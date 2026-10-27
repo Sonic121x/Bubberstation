@@ -4,23 +4,23 @@
 #define VOICE_SENSOR_MODE 4
 
 /obj/item/assembly/voice
-	name = "voice analyzer"
-	desc = "A small electronic device able to record a voice sample, and send a signal when that sample is repeated."
+	name = "声音分析仪"
+	desc = "一个小型电子装置，能够录下一段声音样本，并在该样本被重复时发出信号。"
 	icon_state = "voice"
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*5, /datum/material/glass=SMALL_MATERIAL_AMOUNT*0.5)
 	assembly_behavior = ASSEMBLY_TOGGLEABLE_INPUT
-	verb_say = "beeps"
-	verb_ask = "beeps"
-	verb_exclaim = "beeps"
+	verb_say = "哔哔作响"
+	verb_ask = "哔哔作响"
+	verb_exclaim = "哔哔作响"
 	var/listening = FALSE
 	/// The activation message is tracked using this var.
 	var/recorded = ""
 	var/mode = INCLUSIVE_MODE
 	var/static/list/modes = list(
-		"inclusive",
-		"exclusive",
-		"recognizer",
-		"voice sensor",
+		"包含式",
+		"排除式",
+		"声纹识别",
+		"声音感应",
 	)
 	drop_sound = 'sound/items/handling/component_drop.ogg'
 	pickup_sound = 'sound/items/handling/component_pickup.ogg'
@@ -31,7 +31,7 @@
 
 /obj/item/assembly/voice/examine(mob/user)
 	. = ..()
-	. += span_notice("Use a multitool to swap between \"inclusive\", \"exclusive\", \"recognizer\", and \"voice sensor\" mode.")
+	. += span_notice("用多功能工具在“包含式”“排除式”“声纹识别”与“声音感应”模式之间切换。")
 
 /obj/item/assembly/voice/Hear(atom/movable/speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), message_range)
 	. = ..()
@@ -56,15 +56,15 @@
 		if(INCLUSIVE_MODE)
 			recorded = raw_message
 			listening = FALSE
-			say("Activation message is '[recorded]'.", sanitize = FALSE, language = message_language)
+			say("激活信息为“[recorded]”。", sanitize = FALSE, language = message_language)
 		if(EXCLUSIVE_MODE)
 			recorded = raw_message
 			listening = FALSE
-			say("Activation message is '[recorded]'.", sanitize = FALSE, language = message_language)
+			say("激活信息为“[recorded]”。", sanitize = FALSE, language = message_language)
 		if(RECOGNIZER_MODE)
 			recorded = speaker.get_voice()
 			listening = FALSE
-			say("Your voice pattern is saved.", language = message_language)
+			say("你的声纹已保存。", language = message_language)
 		if(VOICE_SENSOR_MODE)
 			if(length(raw_message))
 				send_pulse()
@@ -90,7 +90,7 @@
 	return FALSE
 
 /obj/item/assembly/voice/proc/send_pulse()
-	visible_message("clicks.", visible_message_flags = EMOTE_MESSAGE)
+	visible_message("咔哒响了一声。", visible_message_flags = EMOTE_MESSAGE)
 	playsound(src, 'sound/effects/whirthunk.ogg', 30)
 	addtimer(CALLBACK(src, PROC_REF(pulse)), 2 SECONDS)
 
@@ -98,7 +98,7 @@
 	..()
 	mode %= modes.len
 	mode++
-	to_chat(user, span_notice("You set [src] into [modes[mode]] mode."))
+	to_chat(user, span_notice("你把[src]设置为 [modes[mode]] 模式。"))
 	listening = FALSE
 	recorded = ""
 	return TRUE
@@ -107,7 +107,7 @@
 	if(!secured || holder)
 		return FALSE
 	listening = !listening
-	say("[listening ? "Now" : "No longer"] recording input.")
+	say("[listening ? "开始" : "停止"]录制输入。")
 	return TRUE
 
 /obj/item/assembly/voice/attack_self(mob/user)

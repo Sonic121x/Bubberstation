@@ -506,7 +506,7 @@
 		total_transfered_amount += transfered_amount
 		if(!copy_only)
 			reagent.volume -= transfer_amount
-		transfer_log += "[reagent.type] ([transfered_amount]u, [reagent.purity] purity)"
+		transfer_log += "[reagent.type]（[transfered_amount]u，纯度 [reagent.purity]）"
 
 		if(!isnull(target_id))
 			break
@@ -527,7 +527,7 @@
 		log_target.add_hiddenprint(transferred_by) //log prints so admins can figure out who touched it last.
 
 		//logging reagents
-		log_combat(transferred_by, log_target, "transferred reagents to", my_atom, "which had [english_list(transfer_log)]")
+		log_combat(transferred_by, log_target, "向其转移了试剂", my_atom, "其中含有 [english_list(transfer_log)]")
 
 	if(!no_react)
 		target_holder.handle_reactions()
@@ -810,11 +810,11 @@
 /// Outputs a log-friendly list of reagents based on the internal reagent_list.
 /datum/reagents/proc/get_reagent_log_string()
 	if(!length(reagent_list))
-		return "no reagents"
+		return "无试剂"
 
 	var/list/data = list()
 
 	for(var/datum/reagent/reagent as anything in reagent_list)
-		data += "[reagent.type] [reagent.volume]u, [reagent.purity] purity)"
+		data += "[reagent.type] [reagent.volume]u，纯度 [reagent.purity]）"
 
 	return english_list(data)

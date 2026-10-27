@@ -1,4 +1,4 @@
-ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "Select Equipment", /mob)
+ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "选择装备", /mob)
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	var/datum/select_equipment/ui = new(user, target)
 	ui.ui_interact(user.mob)
@@ -38,14 +38,14 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "Select Equipment", /mob)
 	user = CLIENT_FROM_VAR(_user)
 
 	if(!ishuman(target) && !isobserver(target))
-		tgui_alert(usr,"Invalid mob")
+		tgui_alert(usr,"无效的生物")
 		return
 	target_mob = target
 
 /datum/select_equipment/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "SelectEquipment", "Select Equipment")
+		ui = new(user, src, "SelectEquipment", "选择装备")
 		ui.open()
 		ui.set_autoupdate(FALSE)
 
@@ -88,8 +88,8 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "Select Equipment", /mob)
 
 /datum/select_equipment/proc/outfit_entry(category, identifier, name, priority=FALSE, custom_entry=FALSE)
 	if(custom_entry)
-		return list("category" = category, "ref" = identifier, "name" = name, "priority" = priority)
-	return list("category" = category, "path" = identifier, "name" = name, "priority" = priority)
+		return list("category" = category, "ref" = identifier, "name" = chinese_outfit_display(name), "priority" = priority)
+	return list("category" = category, "path" = identifier, "name" = chinese_outfit_display(name), "priority" = priority)
 
 /datum/select_equipment/proc/make_outfit_entries(category="General", list/outfit_list)
 	var/list/entries = list()
@@ -203,7 +203,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "Select Equipment", /mob)
 
 /client/proc/admin_apply_outfit(mob/target, dresscode)
 	if(!ishuman(target) && !isobserver(target))
-		tgui_alert(usr,"Invalid mob")
+		tgui_alert(usr,"无效的生物")
 		return
 
 	if(!dresscode)
@@ -216,7 +216,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "Select Equipment", /mob)
 	else
 		human_target = target
 		if(human_target.l_store || human_target.r_store || human_target.s_store) //saves a lot of time for admins and coders alike
-			if(tgui_alert(usr,"Do you need the items in your pockets?", "Pocket Items", list("Delete Them", "Drop Them")) == "Delete Them")
+			if(tgui_alert(usr,"你需要口袋里的物品吗？", "口袋物品", list("Delete Them", "Drop Them")) == "Delete Them")
 				delete_pocket = TRUE
 
 	BLACKBOX_LOG_ADMIN_VERB("Select Equipment")
@@ -234,7 +234,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "Select Equipment", /mob)
 
 	human_target.regenerate_icons()
 
-	log_admin("[key_name(usr)] changed the equipment of [key_name(human_target)] to [dresscode].")
-	message_admins(span_adminnotice("[key_name_admin(usr)] changed the equipment of [ADMIN_LOOKUPFLW(human_target)] to [dresscode]."))
+	log_admin("[key_name(usr)] 将 [key_name(human_target)] 的装备更换为 [dresscode]。")
+	message_admins(span_adminnotice("[key_name_admin(usr)] 将 [ADMIN_LOOKUPFLW(human_target)] 的装备更换为 [dresscode]。"))
 
 	return dresscode

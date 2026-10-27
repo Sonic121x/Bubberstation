@@ -28,12 +28,12 @@
 #define EXECUTIVE_MODE_HEAT 9
 
 /datum/greyscale_config/guard_hudsunglasses
-	name = "Guard HUDsunglasses"
+	name = "警卫 HUD 墨镜"
 	icon_file = 'modular_skyrat/modules/goofsec/icons/guard_hudsunglasses.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/guard_hudsunglasses/guard_hudsunglasses.json'
 
 /datum/greyscale_config/guard_hudsunglasses/worn
-	name = "Guard HUDsunglasses (Worn)"
+	name = "警卫 HUD 墨镜（穿戴）"
 	icon_file = 'modular_skyrat/modules/goofsec/icons/guard_hudsunglasses_worn.dmi'
 
 /datum/client_colour/glass_colour/guard/medical
@@ -62,8 +62,8 @@
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard
 	gender = PLURAL
-	name = "guard HUDsunglasses"
-	desc = "Sunglasses with a security HUD. The mirrored grey lenses are perfect for acquiring strange developer items you aren't supposed to have."
+	name = "警卫 HUD 墨镜"
+	desc = "带安保 HUD 的墨镜。灰色镜面镜片最适合用来弄到那些你不该拥有的奇怪开发者物品。"
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
 	icon_state = "/obj/item/clothing/glasses/hud/security/sunglasses/guard"
 	post_init_icon_state = "guard_hudsunglasses"
@@ -101,8 +101,8 @@
 	return
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/medical
-	name = "medsec HUDsunglasses"
-	desc = "Sunglasses with a combined medical and security HUD. The ice blue mirror lenses are perfect for knowing precisely how hard to beat someone without landing yourself a malpractice suit."
+	name = "医安 HUD 墨镜"
+	desc = "兼具医疗与安保 HUD 的墨镜。冰蓝色镜面镜片能让你精确判断下手该多重，才不至于惹上医疗事故官司。"
 	icon_state = "/obj/item/clothing/glasses/hud/security/sunglasses/guard/medical"
 	clothing_traits = list(TRAIT_SECURITY_HUD, TRAIT_MEDICAL_HUD)
 	greyscale_colors = "#585858#1d8fec"
@@ -110,8 +110,8 @@
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.8, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/science
-	name = "scisec HUDsunglasses"
-	desc = "Sunglasses with a combined research and security HUD. The deep purple mirror lenses are perfect for working out exactly how far away you should be from whatever station-killing disaster the lab boys are cooking up today."
+	name = "科安 HUD 墨镜"
+	desc = "兼具科研与安保 HUD 的墨镜。深紫色镜面镜片能让你准确算出，今天实验室那帮人搞出的灭站灾难该离多远才安全。"
 	icon_state = "/obj/item/clothing/glasses/hud/security/sunglasses/guard/science"
 	clothing_traits = list(TRAIT_SECURITY_HUD, TRAIT_RESEARCH_SCANNER, TRAIT_REAGENT_SCANNER)
 	greyscale_colors = "#585858#9900ff"
@@ -119,8 +119,8 @@
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.85, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 1)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering
-	name = "meson HUDsunglasses"
-	desc = "Sunglasses with a combined meson and security HUD. The forest green mirror lenses see straight through walls, which turns out to be less useful for catching criminals than you'd hope."
+	name = "介子 HUD 墨镜"
+	desc = "兼具介子与安保 HUD 的墨镜。森绿色镜面镜片能直接看穿墙壁，不过事实证明，用来抓罪犯远没有你期望的那么有用。"
 	icon_state = "/obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering"
 	clothing_traits = list(TRAIT_SECURITY_HUD, TRAIT_MADNESS_IMMUNE)
 	greyscale_colors = "#585858#1a7a3e"
@@ -138,16 +138,16 @@
 	wearer.update_sight()
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/service
-	name = "service HUDsunglasses"
-	desc = "Sunglasses with a combined bartending and security HUD. The amber mirror lenses are perfect for figuring out what the clown just spiked all the drinks with."
+	name = "服务部 HUD 墨镜"
+	desc = "兼具调酒与安保 HUD 的墨镜。琥珀色镜面镜片最适合用来查清小丑刚刚往所有饮料里加了什么。"
 	icon_state = "/obj/item/clothing/glasses/hud/security/sunglasses/guard/service"
 	clothing_traits = list(TRAIT_SECURITY_HUD, TRAIT_BOOZE_SLIDER, TRAIT_REAGENT_SCANNER)
 	greyscale_colors = "#585858#cc6633"
 	glass_colour_type = /datum/client_colour/glass_colour/guard/service
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/customs
-	name = "customs HUDsunglasses"
-	desc = "Sunglasses with a combined appraisal and security HUD. The steely blue mirror lenses are scientifically proven to intimidate 20% of assistants out of smuggling plasma."
+	name = "海关 HUD 墨镜"
+	desc = "兼具估价与安保 HUD 的墨镜。钢铁蓝镜面镜片经科学证明，能吓得 20% 的助理放弃走私等离子体。"
 	icon_state = "/obj/item/clothing/glasses/hud/security/sunglasses/guard/customs"
 	greyscale_colors = "#585858#4d7ea8"
 	glass_colour_type = /datum/client_colour/glass_colour/guard/customs
@@ -162,8 +162,8 @@
 	qdel(wearer.GetComponent(/datum/component/money_sense/customs))
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command
-	name = "executive HUDsunglasses"
-	desc = "Sunglasses that incorporate a security HUD, along with every other possible HUD, and then two more nobody asked for. The gold mirror lenses cycle through eleven proprietary Nanotrasen sensor suites at the touch of a button and are perfect for letting people know you're the king. They're worth as much as some frontier colonies and twice as fragile, so don't accidentally sit on them."
+	name = "高管 HUD 墨镜"
+	desc = "内置安保 HUD 的墨镜，此外还塞进了所有想得到的 HUD，外加两套没人要的。金色镜面镜片按一下按钮，就能在纳米传讯的十一套专有传感器套件之间切换，最适合让人知道你就是老大。它们价值堪比某些边疆殖民地，脆弱程度还翻了一倍，所以别一屁股坐上去。"
 	icon_state = "/obj/item/clothing/glasses/hud/security/sunglasses/guard/command"
 	greyscale_colors = "#585858#d4a23a"
 	glass_colour_type = /datum/client_colour/glass_colour/guard/command
@@ -194,35 +194,35 @@
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/examine(mob/user)
 	. = ..()
 	if(depleted)
-		. += span_warning("The battery is dead; you can remove the cell with a <b>screwdriver</b>.")
+		. += span_warning("电池已经耗尽；你可以用<b>螺丝刀</b>取出电池。")
 		return
-	. += span_notice("Auxiliary suite: [get_mode_name()].")
+	. += span_notice("辅助套件：[get_mode_name()]。")
 	if(cell)
-		. += span_notice("The glasses' battery level is [round(cell.percent())]%. You can eject the cell with a <b>screwdriver</b>.")
+		. += span_notice("墨镜电池电量为 [round(cell.percent())]%。你可以用<b>螺丝刀</b>弹出电池。")
 	else
-		. += span_warning("There is no cell installed!")
+		. += span_warning("没有安装电池！")
 	if(malfunctioning)
-		. += span_warning("The suite selector is glitching out...")
+		. += span_warning("套件选择器正在乱跳……")
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/proc/get_mode_name()
 	switch(mode)
 		if(EXECUTIVE_MODE_DIAGNOSTIC)
-			return "Diagnostic"
+			return "诊断"
 		if(EXECUTIVE_MODE_RESEARCH)
-			return "Research"
+			return "科研"
 		if(EXECUTIVE_MODE_REAGENT)
-			return "Reagent"
+			return "试剂"
 		if(EXECUTIVE_MODE_MESON)
-			return "Structural"
+			return "结构"
 		if(EXECUTIVE_MODE_BOOZE)
-			return "Refreshment Locator"
+			return "饮品定位器"
 		if(EXECUTIVE_MODE_FORTUNE)
-			return "Asset Locator"
+			return "资产定位器"
 		if(EXECUTIVE_MODE_APPRAISAL)
-			return "Appraisal"
+			return "估价"
 		if(EXECUTIVE_MODE_HEAT)
-			return "Thermal"
-	return "Medical"
+			return "热成像"
+	return "医疗"
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/update_extras(mob/living/wearer)
 	if(!iscarbon(wearer))
@@ -313,10 +313,10 @@
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/proc/on_action(mob/living/carbon/wearer)
 	if(depleted)
-		balloon_alert(wearer, "cell flat!")
+		balloon_alert(wearer, "电池没电！")
 		return
 	if(malfunctioning)
-		balloon_alert(wearer, "selector glitching!")
+		balloon_alert(wearer, "选择器故障！")
 		return
 	if(!COOLDOWN_FINISHED(src, switch_cooldown))
 		return
@@ -336,7 +336,7 @@
 	playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, vary = TRUE)
 	var/mob/living/carbon/human/wearer = loc
 	if(istype(wearer) && wearer.glasses == src)
-		to_chat(wearer, span_warning("[src] fizzes and starts flipping through suites on its own."))
+		to_chat(wearer, span_warning("[src] 发出滋滋声，开始自行翻换套件。"))
 	addtimer(CALLBACK(src, PROC_REF(settle)), EXECUTIVE_MALFUNCTION_TIME)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/proc/settle()
@@ -345,7 +345,7 @@
 	malfunctioning = FALSE
 	var/mob/living/carbon/human/wearer = loc
 	if(istype(wearer) && wearer.glasses == src)
-		balloon_alert(wearer, "selector settled")
+		balloon_alert(wearer, "选择器已恢复")
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/process(seconds_per_tick)
 	var/mob/living/carbon/human/wearer = loc
@@ -376,20 +376,20 @@
 		clear_extras(wearer)
 		for(var/trait in clothing_traits)
 			REMOVE_CLOTHING_TRAIT(wearer, trait)
-		balloon_alert(wearer, "cell flat")
-		to_chat(wearer, span_warning("[src] powers down. They're just sunglasses until you replace the cell."))
+		balloon_alert(wearer, "电池没电")
+		to_chat(wearer, span_warning("[src] 断电了。在换上新电池之前，它就只是一副普通墨镜。"))
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ITEM_INTERACT_BLOCKING
 	if(!cell)
-		balloon_alert(user, "no cell to remove!")
+		balloon_alert(user, "没有电池可取出！")
 		return
 	tool.play_tool_sound(src)
 	var/obj/item/stock_parts/power_store/cell/removed = cell
 	cell = null
 	removed.forceMove(drop_location())
 	if(user.put_in_hands(removed))
-		balloon_alert(user, "cell removed")
+		balloon_alert(user, "电池已取出")
 	var/mob/living/carbon/human/wearer = loc
 	if(istype(wearer) && wearer.glasses == src)
 		update_extras(wearer)
@@ -399,12 +399,12 @@
 	if(!istype(attacking_item, /obj/item/stock_parts/power_store/cell))
 		return ..()
 	if(cell)
-		balloon_alert(user, "already has a cell!")
+		balloon_alert(user, "已经装有电池！")
 		return TRUE
 	if(!user.transferItemToLoc(attacking_item, src))
 		return TRUE
 	cell = attacking_item
-	balloon_alert(user, "cell installed")
+	balloon_alert(user, "电池已装入")
 	if(cell.charge > 0)
 		depleted = FALSE
 	var/mob/living/carbon/human/wearer = loc
@@ -418,12 +418,12 @@
 	if(heat_unlocked)
 		return .
 	heat_unlocked = TRUE
-	balloon_alert(user, "thermal suite unlocked")
+	balloon_alert(user, "热成像套件已解锁")
 	playsound(src, 'sound/machines/terminal/terminal_select.ogg', 25, vary = TRUE)
 	return TRUE
 
 /datum/action/item_action/toggle/executive_hud
-	name = "Cycle Sensor Suite"
+	name = "切换传感器套件"
 
 /datum/action/item_action/toggle/executive_hud/do_effect(trigger_flags)
 	var/obj/item/clothing/glasses/hud/security/sunglasses/guard/command/shades = target
@@ -474,12 +474,12 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	icon_state = "pinonnull"
 
 /atom/movable/screen/alert/status_effect/agent_pinpointer/executive/booze
-	name = "Refreshment Locator"
-	desc = "A proprietary Nanotrasen sensor suite. It points, unerringly, at the nearest alcohol."
+	name = "饮品定位器"
+	desc = "纳米传讯的专有传感器套件。它会毫无偏差地指向最近的酒精饮料。"
 
 /atom/movable/screen/alert/status_effect/agent_pinpointer/executive/fortune
-	name = "Asset Locator"
-	desc = "A proprietary Nanotrasen sensor suite. It points, unerringly, at the nearest loose credits."
+	name = "资产定位器"
+	desc = "纳米传讯的专有传感器套件。它会毫无偏差地指向最近的无主信用点。"
 
 /datum/status_effect/agent_pinpointer/executive
 	alert_type = /atom/movable/screen/alert/status_effect/agent_pinpointer/executive
@@ -541,8 +541,8 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	return TRUE
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/blueshield
-	name = "blueshield HUDsunglasses"
-	desc = "Sunglasses with a security HUD. The midnight blue mirror lenses are perfect for reflecting the terrified faces of your victims, right up until Central Command court-martials you for dereliction of your duty to LARP as a SWAT officer instead of a bodyguard. A threat detection suite flags anyone holding a gun."
+	name = "蓝盾 HUD 墨镜"
+	desc = "带安保 HUD 的墨镜。午夜蓝镜面镜片最适合映出受害者惊恐的脸——直到中央指挥部以你擅离职守、跑去扮演特警而不是当保镖为由，把你送上军事法庭。威胁探测套件会标记任何持枪的人。"
 	icon_state = "/obj/item/clothing/glasses/hud/security/sunglasses/guard/blueshield"
 	greyscale_colors = "#585858#3f52a8"
 	glass_colour_type = /datum/client_colour/glass_colour/guard/blueshield
@@ -553,7 +553,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/blueshield/examine(mob/user)
 	. = ..()
-	. += span_notice("The threat detection suite is [threat_detection ? "armed" : "standing down"].")
+	. += span_notice("威胁探测套件当前[threat_detection ? "已启动" : "已关闭"]。")
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/blueshield/update_extras(mob/living/wearer)
 	if(!display_active || !threat_detection)
@@ -567,11 +567,11 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/blueshield/proc/toggle_threat_detection(mob/living/wearer)
 	threat_detection = !threat_detection
 	update_extras(wearer)
-	balloon_alert(wearer, threat_detection ? "threat detection armed" : "threat detection off")
+	balloon_alert(wearer, threat_detection ? "威胁探测已启动" : "威胁探测已关闭")
 	playsound(src, 'sound/machines/terminal/terminal_select.ogg', 25, vary = TRUE)
 
 /datum/action/item_action/toggle/blueshield_tds
-	name = "Toggle Threat Detection"
+	name = "切换威胁探测"
 
 /datum/action/item_action/toggle/blueshield_tds/do_effect(trigger_flags)
 	var/obj/item/clothing/glasses/hud/security/sunglasses/guard/blueshield/shades = target
@@ -581,8 +581,8 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	return TRUE
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/silly
-	name = "silly HUDsunglasses"
-	desc = "Sunglasses with a security HUD. The mirrored pink lenses are the clearest available evidence of an absent or malevolent god."
+	name = "滑稽 HUD 墨镜"
+	desc = "带安保 HUD 的墨镜。粉色镜面镜片是“神明要么缺席、要么心怀恶意”这一说法目前最清楚的证据。"
 	icon_state = "/obj/item/clothing/glasses/hud/security/sunglasses/guard/silly"
 	greyscale_colors = "#585858#ff69b4"
 	glass_colour_type = /datum/client_colour/glass_colour/guard/silly
@@ -597,23 +597,23 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	. = ..()
 	if(!.)
 		return
-	balloon_alert(user, "safety interlock removed")
+	balloon_alert(user, "安全联锁已解除")
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/silly/attack_self(mob/user, modifiers)
 	. = ..()
 	playsound(src, 'sound/items/bikehorn.ogg', 50, vary = TRUE)
-	user.visible_message(span_warning("[user] adjusts [src]. The lenses honk."), span_notice("You adjust [src]. The lenses honk. This is, somehow, load-bearing."))
+	user.visible_message(span_warning("[user] 调整了 [src]。镜片发出了喇叭声。"), span_notice("你调整了 [src]。镜片发出了喇叭声。不知怎的，这一步竟然不可或缺。"))
 
 // the sechud status field routes here while these are worn
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/silly/proc/issue_gag(mob/living/clown, mob/living/victim)
 	if(!display_active)
-		balloon_alert(clown, "hud disabled")
+		balloon_alert(clown, "HUD 已关闭")
 		return
 	if(!COOLDOWN_FINISHED(src, honk_cooldown))
-		balloon_alert(clown, "recharging")
+		balloon_alert(clown, "正在充能")
 		return
 
-	var/chosen_gag = tgui_input_list(clown, "Specify a new criminal status for this person.", "Security HUD", list(HONK_GAG_HONK, HONK_GAG_SLIP))
+	var/chosen_gag = tgui_input_list(clown, "为这个人指定新的犯罪状态。", "安保 HUD", list(HONK_GAG_HONK, HONK_GAG_SLIP))
 	if(!chosen_gag || !COOLDOWN_FINISHED(src, honk_cooldown))
 		return
 	if(QDELETED(victim) || !(victim in view(clown)))
@@ -660,9 +660,9 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	playsound(owner, 'sound/items/bikehorn.ogg', 70, vary = TRUE)
 	if(gag == HONK_GAG_SLIP)
 		owner.slip(HONK_CURSE_KNOCKDOWN, lube_flags = SLIDE | GALOSHES_DONT_HELP, paralyze = HONK_CURSE_PARALYZE, force_drop = TRUE)
-		owner.visible_message(span_warning("[owner] slips on absolutely nothing."), span_userdanger("You slip on absolutely nothing."))
+		owner.visible_message(span_warning("[owner] 踩到了完全不存在的东西，滑倒了。"), span_userdanger("你踩到了完全不存在的东西，滑倒了。"))
 	else
-		owner.visible_message(span_warning("[owner] honks. Involuntarily. From somewhere."), span_userdanger("You honk. You do not know how, and you do not know why."))
+		owner.visible_message(span_warning("[owner] 发出了喇叭声。不由自主，来源不明。"), span_userdanger("你发出了喇叭声。你不知道怎么做到的，也不知道为什么。"))
 	qdel(src)
 
 // flags anyone in view holding a gun, wearer only. the clown is always a threat
@@ -725,11 +725,11 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 
 	var/obj/examined_obj = target
 	if(HAS_TRAIT(examined_obj, TRAIT_CONTRABAND))
-		to_chat(parent, span_danger("Warning: contraband detected. Document this item and surrender it to Security immediately."))
+		to_chat(parent, span_danger("警告：检测到违禁品。请记录此物品并立即上交安保部。"))
 		return
 
 	if(isgun(examined_obj))
-		to_chat(parent, span_warning("Firearm detected. Check the registration against the manifest."))
+		to_chat(parent, span_warning("检测到枪械。请核对登记信息与货物清单。"))
 		return
 
 	var/contraband_inside = FALSE
@@ -745,12 +745,12 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 			break
 
 	if(contraband_inside)
-		to_chat(parent, span_danger("Warning: contraband detected inside [examined_obj]. Document the container and surrender it to Security immediately."))
+		to_chat(parent, span_danger("警告：在 [examined_obj] 内检测到违禁品。请记录该容器并立即上交安保部。"))
 	if(firearm_inside)
-		to_chat(parent, span_warning("Firearm detected inside [examined_obj]. Check the registration against the manifest."))
+		to_chat(parent, span_warning("在 [examined_obj] 内检测到枪械。请核对登记信息与货物清单。"))
 
 /datum/crafting_recipe/hudsunguardmed
-	name = "Medsec HUDsunglasses"
+	name = "医安 HUD 墨镜"
 	result = /obj/item/clothing/glasses/hud/security/sunglasses/guard/medical
 	time = 2 SECONDS
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -764,7 +764,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/hudsunguardsci
-	name = "Scisec HUDsunglasses"
+	name = "科安 HUD 墨镜"
 	result = /obj/item/clothing/glasses/hud/security/sunglasses/guard/science
 	time = 2 SECONDS
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -777,7 +777,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/hudsunguardengi
-	name = "Meson HUDsunglasses"
+	name = "介子 HUD 墨镜"
 	result = /obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering
 	time = 2 SECONDS
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -791,7 +791,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/hudsunguardsrv
-	name = "Service HUDsunglasses"
+	name = "服务部 HUD 墨镜"
 	result = /obj/item/clothing/glasses/hud/security/sunglasses/guard/service
 	time = 2 SECONDS
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -804,7 +804,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/hudsunguardcargo
-	name = "Customs HUDsunglasses"
+	name = "海关 HUD 墨镜"
 	result = /obj/item/clothing/glasses/hud/security/sunglasses/guard/customs
 	time = 2 SECONDS
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -818,7 +818,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/hudsunguardsilly
-	name = "Silly HUDsunglasses"
+	name = "滑稽 HUD 墨镜"
 	result = /obj/item/clothing/glasses/hud/security/sunglasses/guard/silly
 	time = 2 SECONDS
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -872,32 +872,32 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	var/list/extra_parts
 
 /datum/crafting_recipe/hudsunguard_removal/med
-	name = "Medsec HUD removal"
-	desc = "Strips the medical suite out of a medsec pair, leaving a bare security HUD, the donor health HUD and the sunglasses."
+	name = "拆除医安 HUD"
+	desc = "从一副医安墨镜中拆出医疗套件，留下一副基础的安保 HUD、作为供体的生命扫描 HUD 和墨镜。"
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/medical = 1)
 	extra_parts = list(/obj/item/clothing/glasses/hud/health = 1, /obj/item/clothing/glasses/sunglasses = 1)
 
 /datum/crafting_recipe/hudsunguard_removal/sci
-	name = "Scisec HUD removal"
-	desc = "Strips the science suite out of a scisec pair, leaving a bare security HUD and the donor science glasses."
+	name = "拆除科安 HUD"
+	desc = "从一副科安墨镜中拆出科研套件，留下一副基础的安保 HUD 和作为供体的科研眼镜。"
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/science = 1)
 	extra_parts = list(/obj/item/clothing/glasses/sunglasses/chemical = 1)
 
 /datum/crafting_recipe/hudsunguard_removal/engi
-	name = "Meson HUD removal"
-	desc = "Strips the meson suite out of a meson pair, leaving a bare security HUD, the donor meson scanner and the sunglasses."
+	name = "拆除介子 HUD"
+	desc = "从一副介子墨镜中拆出介子套件，留下一副基础的安保 HUD、作为供体的光学介子扫描仪和墨镜。"
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering = 1)
 	extra_parts = list(/obj/item/clothing/glasses/meson = 1, /obj/item/clothing/glasses/sunglasses = 1)
 
 /datum/crafting_recipe/hudsunguard_removal/srv
-	name = "Service HUD removal"
-	desc = "Strips the service suite out of a service pair, leaving a bare security HUD and the donor reagent glasses."
+	name = "拆除服务部 HUD"
+	desc = "从一副服务部墨镜中拆出服务套件，留下一副基础的安保 HUD 和作为供体的啤酒护目镜。"
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/service = 1)
 	extra_parts = list(/obj/item/clothing/glasses/sunglasses/reagent = 1)
 
 /datum/crafting_recipe/hudsunguard_removal/cargo
-	name = "Customs HUD removal"
-	desc = "Strips the appraisal suite out of a customs pair, leaving a bare security HUD, the donor scanner and the sunglasses."
+	name = "拆除海关 HUD"
+	desc = "从一副海关墨镜中拆出估价套件，留下一副基础的安保 HUD、作为供体的通用扫描仪和墨镜。"
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/customs = 1)
 	extra_parts = list(/obj/item/universal_scanner = 1, /obj/item/clothing/glasses/sunglasses = 1)
 

@@ -1,6 +1,6 @@
 /mob/living/basic/zombie/cheesezombie
-	name = "Cheese Zombie"
-	desc = "Oh God it stinks!!"
+	name = "奶酪僵尸"
+	desc = "天啊，太臭了！！"
 	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
 	icon_state = "cheesezomb"
 	icon_living = "cheesezomb"

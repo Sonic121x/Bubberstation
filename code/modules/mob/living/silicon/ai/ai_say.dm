@@ -17,7 +17,7 @@
 	// AIs cannot speak if silent AI is on.
 	// Unless forced is set, as that's probably stating laws or something.
 	if(!forced && CONFIG_GET(flag/silent_ai))
-		to_chat(src, span_danger("The ability for AIs to speak is currently disabled via server config."))
+		to_chat(src, span_danger("AI 的说话能力目前已被服务器配置禁用。"))
 		return FALSE
 
 	return ..()
@@ -26,7 +26,7 @@
 	if(incapacitated)
 		return FALSE
 	if(!radio_enabled) //AI cannot speak if radio is disabled (via intellicard) or depowered.
-		to_chat(src, span_danger("Your radio transmitter is offline!"))
+		to_chat(src, span_danger("你的无线电发射器已离线！"))
 		return FALSE
 	. = ..()
 	if(.)
@@ -54,7 +54,7 @@
 	var/obj/machinery/holopad/active_pad = current
 	// Only continue if there is a hologram and its master is the user.
 	if(!istype(active_pad) || !active_pad.masters[src])
-		to_chat(src, span_alert("No holopad connected."))
+		to_chat(src, span_alert("没有连接的全息投影台。"))
 		return
 
 	var/obj/effect/overlay/holo_pad_hologram/ai_holo = active_pad.masters[src]

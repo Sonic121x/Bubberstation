@@ -56,7 +56,7 @@
 	select_name = "Launcher"
 
 /obj/projectile/beam/cybersun_laser/granata
-	name = "plasma grenade"
+	name = "等离子榴弹"
 	icon_state = "grenade"
 	damage = 50
 	speed = 0.5
@@ -84,7 +84,7 @@
 	qdel(shrapnel_maker)
 
 /obj/projectile/beam/cybersun_laser/granata_shrapnel
-	name = "plasma globule"
+	name = "等离子团"
 	icon_state = "flare"
 	damage = 10
 	speed = 0.4
@@ -172,7 +172,7 @@
 	select_name = "Flare"
 
 /obj/projectile/beam/cybersun_laser/flare
-	name = "plasma flare"
+	name = "等离子照明弹"
 	icon_state = "flare"
 	damage = 40
 	speed = 0.5
@@ -199,8 +199,8 @@
 	return ..()
 
 /obj/item/flashlight/flare/plasma_projectile
-	name = "plasma flare"
-	desc = "A burning glob of green plasma, makes an effective temporary lighting source."
+	name = "等离子照明弹"
+	desc = "一团燃烧的绿色等离子体，是有效的临时光源。"
 	light_range = 4
 	anchored = TRUE
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/saibasan/projectiles.dmi'

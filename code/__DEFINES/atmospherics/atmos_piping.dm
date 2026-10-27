@@ -109,7 +109,7 @@
 #define VENTCRAWL_CAN_SEE (1<<2)
 
 DEFINE_BITFIELD(vent_movement, list(
-	"Ventcrawl Allowed" = VENTCRAWL_ALLOWED,
-	"Ventcrawl Entrance Allowed" = VENTCRAWL_ENTRANCE_ALLOWED,
-	"Ventcrawl Can See" = VENTCRAWL_CAN_SEE,
+	"允许管道爬行" = VENTCRAWL_ALLOWED,
+	"允许进出管道" = VENTCRAWL_ENTRANCE_ALLOWED,
+	"管道爬行时可见" = VENTCRAWL_CAN_SEE,
 ))

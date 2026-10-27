@@ -1,6 +1,6 @@
 /datum/wires/syndicatebomb
 	holder_type = /obj/machinery/syndicatebomb
-	proper_name = "Syndicate Explosive Device"
+	proper_name = "辛迪加爆炸装置"
 	randomize = TRUE
 
 /datum/wires/syndicatebomb/New(atom/holder)
@@ -51,10 +51,10 @@
 	switch(parse_wire(wire))
 		if(WIRE_BOOM)
 			if(!bomb.active)
-				holder.visible_message(span_notice("[icon2html(bomb, viewers(holder))] Nothing happens."))
+				holder.visible_message(span_notice("[icon2html(bomb, viewers(holder))]什么也没发生。"))
 				return
 
-			holder.visible_message(span_danger("[icon2html(bomb, viewers(holder))] An alarm sounds! It's go-"))
+			holder.visible_message(span_danger("[icon2html(bomb, viewers(holder))]警报响起！它要爆——"))
 			bomb.explode_now = TRUE
 			if(is_dangerous())
 				tell_admins(bomb, user, "detonated via boom wire")
@@ -62,21 +62,21 @@
 					add_memory_in_range(bomb, 7, /datum/memory/bomb_defuse_failure, protagonist = user, antagonist = bomb)
 
 		if(WIRE_UNBOLT)
-			holder.visible_message(span_notice("[icon2html(bomb, viewers(holder))] The bolts spin in place for a moment."))
+			holder.visible_message(span_notice("[icon2html(bomb, viewers(holder))]螺栓原地旋转了一会儿。"))
 
 		if(WIRE_DELAY)
 			if(bomb.delayedbig)
-				holder.visible_message(span_notice("[icon2html(bomb, viewers(holder))] Nothing happens."))
+				holder.visible_message(span_notice("[icon2html(bomb, viewers(holder))]什么也没发生。"))
 				return
 
-			holder.visible_message(span_notice("[icon2html(bomb, viewers(holder))] The bomb chirps."))
+			holder.visible_message(span_notice("[icon2html(bomb, viewers(holder))]炸弹发出嘀嘀声。"))
 			playsound(bomb, 'sound/machines/chime.ogg', 30, TRUE)
 			bomb.detonation_timer += (30 SECONDS)
 			if(bomb.active)
 				bomb.delayedbig = TRUE
 
 		if(WIRE_PROCEED)
-			holder.visible_message(span_danger("[icon2html(bomb, viewers(holder))] The bomb buzzes ominously!"))
+			holder.visible_message(span_danger("[icon2html(bomb, viewers(holder))]炸弹发出不祥的嗡鸣声！"))
 			playsound(bomb, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 			var/seconds = bomb.seconds_remaining()
 			if(seconds >= 61) // Long fuse bombs can suddenly become more dangerous if you tinker with them.
@@ -88,13 +88,13 @@
 
 		if(WIRE_ACTIVATE)
 			if(!bomb.active)
-				holder.visible_message(span_danger("[icon2html(bomb, viewers(holder))] You hear the bomb start ticking!"))
+				holder.visible_message(span_danger("[icon2html(bomb, viewers(holder))]你听到炸弹开始滴答作响！"))
 				bomb.activate()
 				bomb.update_appearance()
 			else if(bomb.delayedlittle)
-				holder.visible_message(span_notice("[icon2html(bomb, viewers(holder))] Nothing happens."))
+				holder.visible_message(span_notice("[icon2html(bomb, viewers(holder))]什么也没发生。"))
 			else
-				holder.visible_message(span_notice("[icon2html(bomb, viewers(holder))] The bomb seems to hesitate for a moment."))
+				holder.visible_message(span_notice("[icon2html(bomb, viewers(holder))]炸弹似乎迟疑了一下。"))
 				bomb.detonation_timer += 100
 				bomb.delayedlittle = TRUE
 
@@ -104,7 +104,7 @@
 		if(WIRE_BOOM)
 			if(mend || !bomb.active)
 				return
-			holder.visible_message(span_danger("[icon2html(bomb, viewers(holder))] An alarm sounds! It's go-"))
+			holder.visible_message(span_danger("[icon2html(bomb, viewers(holder))]警报响起！它要爆——"))
 			bomb.explode_now = TRUE
 			if(is_dangerous())
 				tell_admins(bomb, source, "detonated via boom wire")
@@ -114,21 +114,21 @@
 		if(WIRE_UNBOLT)
 			if(mend || !bomb.anchored)
 				return
-			holder.visible_message(span_notice("[icon2html(bomb, viewers(holder))] The bolts lift out of the ground!"))
+			holder.visible_message(span_notice("[icon2html(bomb, viewers(holder))]固定螺栓从地面拔起！"))
 			playsound(bomb, 'sound/effects/stealthoff.ogg', 30, TRUE)
 			bomb.set_anchored(FALSE)
 
 		if(WIRE_PROCEED)
 			if(mend || !bomb.active)
 				return
-			holder.visible_message(span_danger("[icon2html(bomb, viewers(holder))] The digital display on the device deactivates."))
+			holder.visible_message(span_danger("[icon2html(bomb, viewers(holder))]装置上的数字显示屏关闭了。"))
 			bomb.examinable_countdown = FALSE
 
 		if(WIRE_ACTIVATE)
 			if(mend || !bomb.active)
 				return
 			var/bomb_time_left = bomb.seconds_remaining()
-			holder.visible_message(span_notice("[icon2html(bomb, viewers(holder))] The timer stops! The bomb has been defused!"))
+			holder.visible_message(span_notice("[icon2html(bomb, viewers(holder))]计时器停止了！炸弹已被拆除！"))
 			bomb.defuse()
 			if(is_dangerous())
 				tell_admins(bomb, source, "defused")
@@ -138,6 +138,6 @@
 /datum/wires/syndicatebomb/proc/tell_admins(obj/machinery/syndicatebomb/bomb, atom/source, what_happened)
 	var/turf/bombloc = get_turf(bomb)
 	log_game("\A [bomb] was [what_happened] at [AREACOORD(bombloc)] by [source || "nothing(?)"].")
-	message_admins("\A [bomb] was [what_happened] at [ADMIN_VERBOSEJMP(bombloc)] by [source ? ADMIN_LOOKUPFLW(source) : "nothing(?)"].")
+	message_admins("[bomb]在[ADMIN_VERBOSEJMP(bombloc)]被[source ? ADMIN_LOOKUPFLW(source) : "未知来源"]执行了[what_happened == "defused" ? "拆除" : (what_happened == "detonated via boom wire" ? "通过引爆线引爆" : what_happened)]。")
 	if(isliving(source))
 		log_combat(source, bomb, what_happened)

@@ -18,7 +18,7 @@
 #define MOB_EMP_LIGHT_DAMAGE 5
 #define MOB_EMP_HEAVY_DAMAGE 10
 
-#define FLESHMIND_NAME_MODIFIER_LIST list ("Warped", "Altered", "Modified", "Upgraded", "Abnormal")
+#define FLESHMIND_NAME_MODIFIER_LIST list ("扭曲的", "异变的", "改造的", "升级的", "异常的")
 
 /// The range at which most of our objects, mobs and structures activate at. 7 seems to be the perfect number.
 #define DEFAULT_VIEW_RANGE 7
@@ -39,8 +39,8 @@
 /// The max spread distance a wireweed can spread thru a vent.
 #define MAX_VENT_SPREAD_DISTANCE 15
 
-#define CONTROLLED_MOB_POLICY "You are part of the fleshmind, this means any fleshmind entities, structures, mobs are your ally. You must not attack them. \n \
-	You must roleplay that you are part of the fleshmind. Your number one goal is converting other hosts and spreading the flesh."
+#define CONTROLLED_MOB_POLICY "你是血肉心智的一部分，所有血肉心智实体、结构和生物都是你的盟友。禁止攻击它们。\n\
+	你必须扮演血肉心智的一员。你的首要目标是转化其他宿主并传播血肉。"
 
 #define FLESHMIND_EVENT_MAKE_CORRUPTION_CHANCE 2
 
@@ -48,13 +48,13 @@
 
 // CONTROLLER RELATED DEFINES
 
-#define AI_FORENAME_LIST list("Von Neumann", "Lazarus", "Abattoir", "Tra-Sentience", \
-	"Vivisector", "Ex Costa", "Apostasy", "Gnosis", "Balaam", "Ophite", \
-	"Sarif", "VersaLife", "Slylandro", "SHODAN", "Pandora", "Master Controller", "Xerxes")
+#define AI_FORENAME_LIST list("冯·诺依曼", "拉撒路", "屠宰场", "超越意识", \
+	"活体解剖者", "肋骨之生", "叛教", "灵知", "巴兰", "蛇派", \
+	"萨里夫", "万象生命", "斯莱兰德罗", "SHODAN", "潘多拉", "主控制器", "薛西斯")
 
 #define AI_SURNAME_LIST list("Mk I", "Mk II", "Mk III", "Mk IV", "Mk V", "Mk X", \
-	"v0.9", "v1.0", "v1.1", "v2.0", "2418-B", "Open Beta", \
-	"Pre-Release", "Commercial Release", "Closed Alpha", "Hivebuilt")
+	"v0.9", "v1.0", "v1.1", "v2.0", "2418-B", "公开测试版", \
+	"预发行版", "商业发行版", "内部测试版", "集群构建版")
 
 /// The controller must reach this before it can level up to the next level.
 #define CONTROLLER_LEVEL_UP_THRESHOLD 300

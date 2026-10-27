@@ -29,14 +29,14 @@
 	RESET_INITIAL_IF_SET(clear_from, inhand_y_dimension, new_inhandy)
 
 /datum/atom_skin/crusher_skin/sword
-	new_name = "proto-kinetic sword"
-	preview_name = "Sword"
+	new_name = "原型动能剑"
+	preview_name = "剑"
 	new_icon_state = "crusher_sword"
 	new_inhand_icon_state = "crusher_sword"
 
 /datum/atom_skin/crusher_skin/harpoon
-	new_name = "proto-kinetic harpoon"
-	preview_name = "Harpoon"
+	new_name = "原型动能鱼叉"
+	preview_name = "鱼叉"
 	new_icon_state = "crusher_harpoon"
 	new_inhand_icon_state = "crusher_harpoon"
 	new_projectile_icon_state = "pulse_harpoon"
@@ -57,8 +57,8 @@
 		animation_override += ATTACK_ANIMATION_PIERCE
 
 /datum/atom_skin/crusher_skin/dagger
-	new_name = "proto-kinetic dual dagger and blaster"
-	preview_name = "Dagger and Blaster"
+	new_name = "原型动能双匕首与爆能枪"
+	preview_name = "匕首与爆能枪"
 	new_icon_state = "crusher_dagger"
 	new_inhand_icon_state = "crusher_dagger"
 
@@ -100,8 +100,8 @@
 		user.do_item_attack_animation(target, used_item = source)
 
 /datum/atom_skin/crusher_skin/glaive
-	new_name = "proto-kinetic glaive"
-	preview_name = "Glaive"
+	new_name = "原型动能战刃"
+	preview_name = "战刃"
 	new_icon_state = "crusher_glaive"
 	new_inhand_icon_state = "crusher_glaive"
 	new_lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
@@ -114,15 +114,15 @@
 	abstract_type = /datum/atom_skin/crusher_skin/locked
 
 /datum/atom_skin/crusher_skin/locked/ashen_skull
-	preview_name = "Skull"
+	preview_name = "骷髅"
 	new_icon_state = "crusher_skull"
 	new_inhand_icon_state = "crusher_skull"
 	new_projectile_icon_state = "pulse_skull"
 
 /// Unlockable (or forced) skins
 /obj/item/crusher_trophy/retool_kit
-	name = "crusher retool kit"
-	desc = "A toolkit for changing the crusher's appearance without affecting the device's function."
+	name = "粉碎器改装套件"
+	desc = "一套用于改变粉碎器外观而不影响设备功能的工具包。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "retool_kit"
 	denied_type = /obj/item/crusher_trophy/retool_kit
@@ -131,7 +131,7 @@
 	var/datum/atom_skin/crusher_skin/forced_skin
 
 /obj/item/crusher_trophy/retool_kit/effect_desc()
-	return "the crusher to have the appearance of \a [forced_skin::preview_name]"
+	return "使粉碎器的外观变为 \a [forced_skin::preview_name]"
 
 /obj/item/crusher_trophy/retool_kit/add_to(obj/item/kinetic_crusher/pkc, mob/user)
 	. = ..()
@@ -145,10 +145,10 @@
 	return ..()
 
 /obj/item/crusher_trophy/retool_kit/ashenskull
-	name = "ashen skull"
-	desc = "It burns with the flame of the necropolis, whispering in your ear. It demands to be bound to a suitable weapon."
+	name = "灰烬骷髅"
+	desc = "它燃烧着死灵之都的火焰，在你耳边低语。它要求被绑定到一件合适的武器上。"
 	icon_state = "retool_kit_skull"
 	forced_skin = /datum/atom_skin/crusher_skin/locked/ashen_skull
 
 /obj/item/crusher_trophy/retool_kit/ashenskull/effect_desc()
-	return "the crusher to appear corrupted by infernal powers"
+	return "使粉碎器看起来被地狱力量腐蚀"

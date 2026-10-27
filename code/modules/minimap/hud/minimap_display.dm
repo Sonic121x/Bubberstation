@@ -162,7 +162,7 @@
 	hide_minimap_element(nearest)
 	qdel(nearest)
 	sync_visible_objects(minimap?.z)
-	log_minimap_drawing("[key_name(user)] removed a minimap label")
+	log_minimap_drawing("[key_name(user)] 移除了一条小地图标注")
 
 /atom/movable/screen/minimap_display/MouseEntered(location, control, params)
 	MouseMove(location, control, params)
@@ -442,10 +442,10 @@
 	if(!can_draw)
 		return
 	drawing.clear_canvas(minimap?.base_map)
-	log_minimap_drawing("[key_name(user)] cleared the minimap canvas on z-level [minimap?.z]")
-	to_chat(user, span_warning("Cleared all minimap drawings."))
+	log_minimap_drawing("[key_name(user)] 清除了 Z 层 [minimap?.z] 的小地图画布")
+	to_chat(user, span_warning("已清除所有小地图绘制。"))
 
-/atom/movable/screen/minimap_display/proc/clear_all_annotations(mob/user, annotation_type = /atom/movable/screen/minimap_element/label, annotation_type_name = "label")
+/atom/movable/screen/minimap_display/proc/clear_all_annotations(mob/user, annotation_type = /atom/movable/screen/minimap_element/label, annotation_type_name = "标签")
 	var/alist/annotation_store = GLOB.minimap_annotations[annotation_share_tag]
 	var/alist/items_by_z = annotation_store?[annotation_type]
 	if(isnull(items_by_z))
@@ -458,9 +458,9 @@
 	items_by_z[current_z] = list()
 	refresh_visible_annotations()
 	sync_visible_objects(current_z)
-	var/user_name = user ? key_name(user) : "System"
-	to_chat(user, span_warning("Cleared all [annotation_type_name] annotations on z-level [current_z]."))
-	log_minimap_drawing("[user_name] has cleared all [annotation_type_name] annotations on z-level [current_z]")
+	var/user_name = user ? key_name(user) : "系统"
+	to_chat(user, span_warning("已清除 Z 层 [current_z] 上的所有标注（[annotation_type_name]）。"))
+	log_minimap_drawing("[user_name] 清除了 Z 层 [current_z] 上的所有标注（[annotation_type_name]）")
 
 /atom/movable/screen/minimap_display/proc/async_place_label(mob/user, icon_x, icon_y)
 	var/x = clamp(MINIMAP_ICON_TO_WORLD(icon_x, minimap.min_x), 1, world.maxx)
@@ -470,12 +470,12 @@
 		var/turf/hovered_loc = locate(x, y, minimap.z)
 		area_name = "[hovered_loc?.loc?.name]"
 		minimap.map_position_to_name["[x]:[y]"] = area_name
-	var/label_text = tgui_input_text(user, "What would you like the label at [area_name] to say?", "Add Label", max_length = 25)
+	var/label_text = tgui_input_text(user, "你希望 [area_name] 处的标注写些什么？", "添加标注", max_length = 25)
 	if(!label_text || QDELETED(src))
 		return
 	var/list/filter_result = is_ic_filtered(label_text)
 	if(filter_result)
-		to_chat(user, span_warning("That label contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[label_text]\"</span>"))
+		to_chat(user, span_warning("该标注包含 IC 聊天中禁止使用的词语！请考虑查阅服务器规则。\n<span replaceRegex='show_filtered_ic_chat'>“[label_text]”</span>"))
 		SSblackbox.record_feedback("tally", "ic_blocked_words", 1, LOWER_TEXT(config.ic_filter_regex.match))
 		REPORT_CHAT_FILTER_TO_USER(src, filter_result)
 		log_filter("IC", label_text, filter_result)
@@ -495,7 +495,7 @@
 	var/list/labels_for_z = get_or_create_annotation_list(/atom/movable/screen/minimap_element/label, minimap.z)
 	labels_for_z += new_label
 	sync_visible_objects(minimap?.z)
-	log_minimap_drawing("[key_name(user)] placed label '[label_text]' at [area_name]")
+	log_minimap_drawing("[key_name(user)] 在 [area_name] 放置了标注“[label_text]”")
 
 /atom/movable/screen/minimap_display/proc/get_or_create_annotation_list(annotation_type, z_level)
 	var/alist/annotation_store = GLOB.minimap_annotations[annotation_share_tag]

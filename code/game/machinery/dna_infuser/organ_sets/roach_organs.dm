@@ -9,10 +9,10 @@
 /datum/status_effect/organ_set_bonus/roach
 	id = "organ_set_bonus_roach"
 	organs_needed = 4
-	bonus_activate_text = span_notice("Roach DNA is deeply infused with you! \
-		You feel increasingly resistant to explosives, radiation, and viral agents.")
-	bonus_deactivate_text = span_notice("You are no longer majority roach, \
-		and you feel much more vulnerable to nuclear apocalypses.")
+	bonus_activate_text = span_notice("蟑螂的 DNA 已与你深度融合！\
+		你感到自己对爆炸、辐射和病毒的抵抗力越来越强。")
+	bonus_deactivate_text = span_notice("你不再以蟑螂成分为主，\
+		感觉自己在核末日面前脆弱多了。")
 	// - Immunity to nuke gibs
 	// - Nukes come with radiation (not actually but yknow)
 	bonus_traits = list(TRAIT_NUKEIMMUNE, TRAIT_RADIMMUNE, TRAIT_VIRUS_RESISTANCE)
@@ -40,8 +40,8 @@
 /// Reduces damage taken from brute attacks from behind,
 /// but increases duration of knockdowns
 /obj/item/organ/heart/roach
-	name = "mutated roach-heart"
-	desc = "Roach DNA infused into what was once a normal heart."
+	name = "突变蟑螂心脏"
+	desc = "一颗原本正常的心脏，融合了蟑螂的 DNA。"
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 
 	icon = 'icons/map_icons/items/_item.dmi'
@@ -57,7 +57,7 @@
 
 /obj/item/organ/heart/roach/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_They %PRONOUN_have hardened, somewhat translucent skin.")
+	AddElement(/datum/element/noticable_organ, "皮肤坚硬，略显半透明。")
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/roach)
 	AddElement(/datum/element/update_icon_blocker)
 	roach_shell = new()
@@ -121,7 +121,7 @@
 		return
 
 	if(COOLDOWN_FINISHED(src, harden_effect_cd))
-		source.visible_message(span_warning("[source]'s back hardens against the blow!"))
+		source.visible_message(span_warning("[source]的背部硬化，抵御了这一击！"))
 		playsound(source, 'sound/effects/constructform.ogg', 25, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 
 	COOLDOWN_START(src, harden_effect_cd, 5 SECONDS) // Cooldown resets EVERY time we get hit
@@ -160,8 +160,8 @@
 /// Makes disgust a non-issue, very slightly worse at passing off reagents
 /// Also makes you more hungry
 /obj/item/organ/stomach/roach
-	name = "mutated roach-stomach"
-	desc = "Roach DNA infused into what was once a normal stomach."
+	name = "突变蟑螂胃"
+	desc = "一个原本正常的胃，融合了蟑螂的 DNA。"
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 	disgust_metabolism = 32 // Demolishes any disgust we have
 	metabolism_efficiency = 0.033 // Slightly worse at transferring reagents
@@ -180,8 +180,8 @@
 /// Roach liver:
 /// Purges toxins at a higher threshold, but takes more damage from them if not purged
 /obj/item/organ/liver/roach
-	name = "mutated roach-liver"
-	desc = "Roach DNA infused into what was once a normal liver."
+	name = "突变蟑螂肝脏"
+	desc = "一颗原本正常的肝脏，融合了蟑螂的 DNA。"
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 	toxTolerance = 5 // More tolerance for toxins
 	liver_resistance = 0.25 // But if they manage to get in you're screwed
@@ -215,8 +215,8 @@
 /// Roach appendix:
 /// No appendicitus! weee!
 /obj/item/organ/appendix/roach
-	name = "mutated roach-appendix"
-	desc = "Roach DNA infused into what was once a normal appendix. It could get <i>worse</i>?"
+	name = "突变蟑螂阑尾"
+	desc = "一条原本正常的阑尾，融合了蟑螂的 DNA。居然还能变得<i>更糟</i>？"
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 
 	icon = 'icons/map_icons/items/_item.dmi'

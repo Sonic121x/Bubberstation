@@ -8,7 +8,7 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 	GLOB.total_runtimes++
 
 	if(!istype(E)) //Something threw an unusual exception
-		log_world("uncaught runtime error: [E]")
+		log_world("未捕获的运行时错误：[E]")
 		return ..()
 
 	//this is snowflake because of a byond bug (ID:2306577), do not attempt to call non-builtin procs in this block OR BEFORE IT
@@ -29,21 +29,21 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 		for (var/i in 1 to split.len)
 			if (split[i] != "" || copytext(split[1], 1, 2) != "  ")
 				split[i] = "  [split[i]]"
-		split += "--Stack Info [crashed ? "(Crashed, may be missing info)" : ""]:"
+		split += "--堆栈信息 [crashed ? "(已崩溃，信息可能缺失)" : ""]:"
 		for(var/path in proc_path_to_count)
 			split += "  [path] = [proc_path_to_count[path]]"
 		E.desc = jointext(split, "\n")
-		SEND_TEXT(world.log, "\[[time2text(world.timeofday,"hh:mm:ss")]\] Runtime Error: [E.name]\n[E.desc]")
+		SEND_TEXT(world.log, "\[[time2text(world.timeofday,"hh:mm:ss")]\] 运行时错误：[E.name]\n[E.desc]")
 		//log to world while intentionally triggering the byond bug. this does not DO anything, it just errors
 		//(seemingly because of the extra proc call to logger inside log_world interestingly enough)
-		log_world("runtime error: [E.name]\n[E.desc]")
+		log_world("运行时错误：[E.name]\n[E.desc]")
 		//if we got to here without silently ending, the byond bug has been fixed.
-		log_world("The \"bug\" with recursion runtimes has been fixed. Please remove the snowflake check from world/Error in [__FILE__]:[__LINE__]")
+		log_world("递归运行时错误对应的“bug”已被修复。请移除 [__FILE__]:[__LINE__] 中 world/Error 的特殊检查")
 		return //this will never happen.
 
 	// Proc calls are allowed past this point
 	else if(copytext(E.name, 1, 18) == "Out of resources!")//18 == length() of that string + 1
-		log_world("BYOND out of memory. Restarting ([E?.file]:[E?.line])")
+		log_world("BYOND 内存不足，正在重启（[E?.file]:[E?.line]）")
 		TgsEndProcess()
 		. = ..()
 		Reboot(reason = 1)
@@ -110,7 +110,7 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 			var/skipcount = abs(error_cooldown[erroruid]) - 1
 			error_cooldown[erroruid] = 0
 			if(skipcount > 0)
-				SEND_TEXT(world.log, "\[[server_timestamp()]] Skipped [skipcount] runtimes in [E.file],[E.line].")
+				SEND_TEXT(world.log, "\[[server_timestamp()]] 已在 [E.file],[E.line] 跳过 [skipcount] 个运行时错误。")
 				GLOB.error_cache.log_error(E, skip_count = skipcount)
 
 	error_last_seen[erroruid] = world.time
@@ -154,11 +154,11 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 		SSlua.log_involved_runtime(E, desclines, lua_stacks)
 #endif
 	if(silencing)
-		desclines += "  (This error will now be silenced for [DisplayTimeText(configured_error_silence_time)])"
+		desclines += "  （此错误将被静默 [DisplayTimeText(configured_error_silence_time)]）"
 	if(GLOB.error_cache)
 		GLOB.error_cache.log_error(E, desclines)
 
-	var/main_line = "\[[server_timestamp()]] Runtime in [E.file],[E.line]: [E]"
+	var/main_line = "\[[server_timestamp()]] 运行时错误于 [E.file],[E.line]：[E]"
 	SEND_TEXT(world.log, main_line)
 	for(var/line in desclines)
 		SEND_TEXT(world.log, line)
@@ -173,7 +173,7 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 		to_chat(world, span_alertwarning("[main_line]"), type = MESSAGE_TYPE_DEBUG)
 
 	// This writes the regular format (unwrapping newlines and inserting timestamps as needed).
-	log_runtime("runtime error: [E.name]\n[E.desc]")
+	log_runtime("运行时错误：[E.name]\n[E.desc]")
 #endif
 
 #undef ERROR_USEFUL_LEN

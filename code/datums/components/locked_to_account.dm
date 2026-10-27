@@ -36,10 +36,10 @@
 	SIGNAL_HANDLER
 	// BUBBER EDIT ADDITION BEGIN - departmental locks open for a whole department, so say so
 	if(istype(buyer_account, /datum/bank_account/department))
-		examine_list += span_warning("An account lock prevents this from opening except by [buyer_account.account_holder] personnel.")
+		examine_list += span_warning("账户锁限制只有[buyer_account.account_holder]的人员才能将其打开。")
 		return
 	// BUBBER EDIT ADDITION END
-	examine_list += span_warning("An account lock prevents this from opening except by the purchasing account holder.")
+	examine_list += span_warning("账户锁限制只有购买账户的持有人才能将其打开。")
 
 // BUBBER EDIT ADDITION BEGIN - the crate's own lock needs this check too, see modular_zubbers/code/modules/cargo/account_crates.dm
 /**
@@ -55,12 +55,12 @@
 	var/obj/item/card/id/id_card = user.get_idcard(TRUE)
 	if(isnull(id_card))
 		if(!silent)
-			deny(source, user, "No ID detected!")
+			deny(source, user, "未检测到 ID 卡！")
 		return FALSE
 
 	if(!id_card.registered_account)
 		if(!silent)
-			deny(source, user, "No linked bank account detected!")
+			deny(source, user, "未检测到关联的银行账户！")
 		return FALSE
 
 	if(istype(buyer_account, /datum/bank_account/department))
@@ -71,7 +71,7 @@
 		return TRUE
 
 	if(!silent)
-		deny(source, user, "Bank account does not match with buyer!")
+		deny(source, user, "银行账户与买家不符！")
 	return FALSE
 // BUBBER EDIT ADDITION END
 
@@ -91,11 +91,11 @@
 
 	var/obj/item/card/id/id_card = user.get_idcard(TRUE) // the ID card the user is holding/wearing, used to check their linked bank account
 	if(isnull(id_card))
-		deny(source, user, "No ID detected!")
+		deny(source, user, "未检测到 ID 卡！")
 		return BLOCK_OPEN
 
 	if(!id_card.registered_account)
-		deny(source, user, "No linked bank account detected!")
+		deny(source, user, "未检测到关联的银行账户！")
 		return BLOCK_OPEN
 
 	var/is_department = istype(buyer_account, /datum/bank_account/department) // department orders check the user's paycheck department instead of a personal account match.  TRUE if this user is allowed to open the crate
@@ -105,7 +105,7 @@
 		: (id_card.registered_account == buyer_account)
 
 	if(!account_matches)
-		deny(source, user, "Bank account does not match with buyer!")
+		deny(source, user, "银行账户与买家不符！")
 		return BLOCK_OPEN
 	*/ // BUBBER EDIT REMOVAL END
 	if(!account_matches(user, source, silent = FALSE))
@@ -126,13 +126,13 @@
 /// emag skips this whole check and goes straight to remove_lock
 /datum/component/locked_to_account/proc/on_emag(obj/structure/closet/source, mob/emagger)
 	SIGNAL_HANDLER
-	emagger.balloon_alert(emagger, "account lock bypassed")
+	emagger.balloon_alert(emagger, "已绕过账户锁")
 	remove_lock(source, emagger)
 
 /// unlocks the crate  and removes this component
 /datum/component/locked_to_account/proc/remove_lock(obj/structure/closet/source, mob/user)
-	source.visible_message(span_notice("[source]'s account lock disengages with a soft click."))
-	to_chat(user, span_notice("You unlock [source]."))
+	source.visible_message(span_notice("[source]的账户锁轻响一声，解除了锁定。"))
+	to_chat(user, span_notice("你解锁了[source]。"))
 	source.update_appearance()
 	qdel(src)
 

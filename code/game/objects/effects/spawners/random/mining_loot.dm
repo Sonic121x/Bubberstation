@@ -2,7 +2,7 @@
 /// For spawning loot from necropolis chests or other sources, this randomly chooses one of the following entries to spawn.
 /obj/effect/spawner/random/mining_loot
 	name = "random mining loot"
-	desc = "Spawns one random mining loot."
+	desc = "生成一件随机采矿战利品。"
 	icon = 'icons/obj/storage/crates.dmi'
 	icon_state = "necrocrate"
 	loot = list(
@@ -28,7 +28,7 @@
 
 /obj/effect/spawner/random/mining_loot/demonic
 	name = "random demonic mining loot"
-	desc = "Spawns one random mining loot from the demonic list."
+	desc = "从恶魔列表中生成一件随机采矿战利品。"
 	icon = 'icons/obj/storage/crates.dmi'
 	icon_state = "necrocrate"
 	loot = list(
@@ -54,7 +54,7 @@
 /// For spawning a rare PKA modkit
 /obj/effect/spawner/random/mining_loot/pka_mod
 	name = "random rare PKA modkits"
-	desc = "Spawns one random rare PKA modkits."
+	desc = "生成一件随机稀有原型动能加速器改装套件。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "modkit"
 	loot = list(

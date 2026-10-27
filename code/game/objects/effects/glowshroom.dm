@@ -2,8 +2,8 @@
 GLOBAL_VAR_INIT(glowshrooms, 0)
 
 /obj/structure/glowshroom
-	name = "glowshroom"
-	desc = "Mycena Bregprox, a species of mushroom that glows in the dark."
+	name = "荧光菇"
+	desc = "布雷格普罗克斯小菇，一种会在黑暗中发光的蘑菇。"
 	anchored = TRUE
 	opacity = FALSE
 	density = FALSE
@@ -39,14 +39,14 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 	))
 
 /obj/structure/glowshroom/glowcap
-	name = "glowcap"
-	desc = "Mycena Ruthenia, a species of mushroom that, while it does glow in the dark, is not actually bioluminescent."
+	name = "辉光菇"
+	desc = "鲁塞尼亚小菇，一种虽会在黑暗中发光，却并非通过生物发光机制产生光的蘑菇。"
 	icon_state = "glowcap"
 	myseed = /obj/item/seeds/glowshroom/glowcap
 
 /obj/structure/glowshroom/shadowshroom
-	name = "shadowshroom"
-	desc = "Mycena Umbra, a species of mushroom that emits shadow instead of light."
+	name = "暗影菇"
+	desc = "暗影小菇，一种散发阴影而非光芒的蘑菇。"
 	icon_state = "shadowshroom"
 	myseed = /obj/item/seeds/glowshroom/shadowshroom
 
@@ -61,14 +61,14 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 	return
 
 /obj/structure/glowshroom/brownshroom
-	name = "brownshroom"
-	desc = "Not technically a single species, but a cluster of various mushroom flora amalgamated into a single mycological patch."
+	name = "褐菇"
+	desc = "严格来说并非单一物种，而是多种蘑菇混生在一起形成的菌群。"
 	icon_state = "brownshroom"
 	myseed = /obj/item/seeds/reishi //Just to have something since these aren't a new growable mushroom.
 
 /obj/structure/glowshroom/examine(mob/user)
 	. = ..()
-	. += "This is a [generation]\th generation [name]!"
+	. += "这是第[generation]代[name]！"
 
 /**
  * Creates a new glowshroom structure.
@@ -120,8 +120,8 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 
 	var/static/list/hovering_item_typechecks = list(
 		/obj/item/plant_analyzer = list(
-			SCREENTIP_CONTEXT_LMB = "Scan shroom stats",
-			SCREENTIP_CONTEXT_RMB = "Scan shroom chemicals"
+			SCREENTIP_CONTEXT_LMB = "扫描蘑菇属性",
+			SCREENTIP_CONTEXT_RMB = "扫描蘑菇成分"
 		),
 	)
 
@@ -261,9 +261,9 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 	take_damage(5, BURN, 0, 0)
 
 /obj/structure/glowshroom/acid_act(acidpwr, acid_volume)
-	visible_message(span_danger("[src] melts away!"))
+	visible_message(span_danger("[src]融化了！"))
 	var/obj/effect/decal/cleanable/molten_object/I = new (get_turf(src))
-	I.desc = "Looks like this was \an [src] some time ago."
+	I.desc = "看起来不久前还是[src]。"
 	qdel(src)
 	return TRUE
 

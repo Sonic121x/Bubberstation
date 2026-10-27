@@ -30,7 +30,7 @@
 		to_chat(src, "<div class=\"motd\">[motd]</div>", handle_whitespace=FALSE)
 
 	if(GLOB.admin_notice)
-		to_chat(src, span_notice("<b>Admin Notice:</b>\n \t [GLOB.admin_notice]"))
+		to_chat(src, span_notice("<b>管理员公告：</b>\n \t [GLOB.admin_notice]"))
 
 	//SKYRAT EDIT ADDITION
 	var/soft_player_cap = CONFIG_GET(number/player_soft_cap)
@@ -40,7 +40,7 @@
 
 	var/spc = CONFIG_GET(number/soft_popcap)
 	if(spc && living_player_count() >= spc)
-		to_chat(src, span_notice("<b>Server Notice:</b>\n \t [CONFIG_GET(string/soft_popcap_message)]"))
+		to_chat(src, span_notice("<b>服务器公告：</b>\n \t [CONFIG_GET(string/soft_popcap_message)]"))
 
 	add_sight(SEE_TURFS)
 
@@ -60,13 +60,13 @@
 
 	if(SSticker.current_state < GAME_STATE_SETTING_UP)
 		var/tl = SSticker.GetTimeLeft()
-		to_chat(src, "Please set up your character and select \"Ready\". The game will start [tl > 0 ? "in about [DisplayTimeText(tl)]" : "soon"].")
+		to_chat(src, "请设置好你的角色并选择“准备就绪”。游戏将在 [tl > 0 ? "大约 [DisplayTimeText(tl)] 后" : "即将"] 开始。")
 
 	if(GLOB.unrecommended_builds[num2text(client.byond_build)])
 		INVOKE_ASYNC(src, PROC_REF(unrcommended_build_alert))
 
 /mob/dead/new_player/proc/unrcommended_build_alert()
-	var/warning = "Hey! The build of byond you are running ([client.byond_build]) has one or more potential issues that may cause major gameplay disruptions.\n\n\
-		You may continue to play, but be aware you may encounter the following issue while playing:\n\"[GLOB.unrecommended_builds[num2text(client.byond_build)]]\"\n\n\
-		If possible, we recommend updating your BYOND version.\nIf you are on the latest version, download an earlier release instead from www.byond.com/download/build."
-	alert(src, warning, "Bad BYOND Build", "OK")
+	var/warning = "嘿！你正在运行的 BYOND 版本（[client.byond_build]）存在一个或多个可能导致严重游戏中断的潜在问题。\n\n\
+		你可以继续游玩，但请注意，游玩过程中可能会遇到以下问题：\n“[GLOB.unrecommended_builds[num2text(client.byond_build)]]”\n\n\
+		如果可能，我们建议你更新 BYOND 版本。\n如果你已在使用最新版本，请改为从 www.byond.com/download/build 下载较早的发行版。"
+	alert(src, warning, "BYOND 版本不佳", "确定")

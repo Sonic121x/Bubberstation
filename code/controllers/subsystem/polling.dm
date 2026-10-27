@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(polling)
-	name = "Polling"
+	name = "角色招募"
 	ss_flags = SS_BACKGROUND | SS_NO_INIT
 	wait = 1 SECONDS
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
@@ -60,9 +60,9 @@ SUBSYSTEM_DEF(polling)
 	if(role && !role_name_text)
 		role_name_text = role
 	if(role_name_text && !question)
-		question = "Do you want to play as [span_notice(role_name_text)]?"
+		question = "你想扮演[span_notice(role_name_text)]吗？"
 	if(!question)
-		question = "Do you want to play as a special role?"
+		question = "你想扮演特殊角色吗？"
 	log_ghost_poll("Candidate poll started.", data = list(
 		"role name" = role_name_text,
 		"poll question" = question,
@@ -152,11 +152,11 @@ SUBSYSTEM_DEF(polling)
 		var/custom_link_style_start = "<style>a:visited{color:Crimson !important}</style>"
 		var/custom_link_style_end = "style='color:DodgerBlue;font-weight:bold;-dm-text-outline: 1px black'"
 		if(isatom(alert_pic) && isobserver(candidate_mob))
-			act_jump = "[custom_link_style_start]<a href='byond://?src=[REF(poll_alert_button)];jump=1'[custom_link_style_end]>\[Teleport\]</a>"
-		var/act_signup = "[custom_link_style_start]<a href='byond://?src=[REF(poll_alert_button)];signup=1'[custom_link_style_end]>\[[start_signed_up ? "Opt out" : "Sign Up"]\]</a>"
+			act_jump = "[custom_link_style_start]<a href='byond://?src=[REF(poll_alert_button)];jump=1'[custom_link_style_end]>\[传送\]</a>"
+		var/act_signup = "[custom_link_style_start]<a href='byond://?src=[REF(poll_alert_button)];signup=1'[custom_link_style_end]>\[[start_signed_up ? "退出报名" : "报名"]\]</a>"
 		var/act_never = ""
 		if(ignore_category)
-			act_never = "[custom_link_style_start]<a href='byond://?src=[REF(poll_alert_button)];never=1'[custom_link_style_end]>\[Never For This Round\]</a>"
+			act_never = "[custom_link_style_start]<a href='byond://?src=[REF(poll_alert_button)];never=1'[custom_link_style_end]>\[本回合不再提示\]</a>"
 
 		if(!duplicate_message_check(alert_poll)) //Only notify people once. They'll notice if there are multiple and we don't want to spam people.
 
@@ -301,7 +301,7 @@ SUBSYSTEM_DEF(polling)
 
 	//SKYRAT EDIT ADDITION BEGIN
 	if(is_banned_from(potential_candidate.ckey, BAN_GHOST_TAKEOVER) || is_banned_from(potential_candidate.ckey, BAN_ANTAGONIST))
-		to_chat(potential_candidate, "There was a ghost prompt for: [role], unfortunately you are banned from ghost takeovers.")
+		to_chat(potential_candidate, "刚才有一条[role]的幽灵角色招募提示，但你已被禁止接管幽灵角色。")
 		return FALSE
 	//SKYRAT EDIT END
 
@@ -334,10 +334,10 @@ SUBSYSTEM_DEF(polling)
 	QDEL_IN(finishing_poll, 0.5 SECONDS)
 
 /datum/controller/subsystem/polling/stat_entry(msg)
-	msg = "\n  Active: [length(currently_polling)] | Total: [total_polls]"
+	msg = "\n  进行中：[length(currently_polling)] | 总计：[total_polls]"
 	var/datum/candidate_poll/soonest_to_complete = get_next_poll_to_finish()
 	if(soonest_to_complete)
-		msg += " | Next: [DisplayTimeText(soonest_to_complete.time_left())] ([length(soonest_to_complete.signed_up)] candidates)"
+		msg += " | 下一项：[DisplayTimeText(soonest_to_complete.time_left())]（[length(soonest_to_complete.signed_up)]名候选人）"
 	return ..()
 
 ///Is there a multiple of the given event type running right now?

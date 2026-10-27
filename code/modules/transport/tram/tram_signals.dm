@@ -1,7 +1,7 @@
 /// Pedestrian crossing signal for tram
 /obj/machinery/transport/crossing_signal
-	name = "crossing signal"
-	desc = "Indicates to pedestrians if it's safe to cross the tracks. Connects to sensors down the track."
+	name = "道口信号灯"
+	desc = "向行人指示是否可以安全通过轨道。与轨道上的传感器相连。"
 	icon = 'icons/obj/tram/crossing_signal.dmi'
 	icon_state = "crossing-inbound"
 	base_icon_state = "crossing-inbound"
@@ -68,8 +68,8 @@
 	pixel_y = 20
 
 /obj/machinery/static_signal
-	name = "crossing signal"
-	desc = "Indicates to pedestrians if it's safe to cross the tracks."
+	name = "道口信号灯"
+	desc = "向行人指示是否可以安全通过轨道。"
 	icon = 'icons/obj/tram/crossing_signal.dmi'
 	icon_state = "crossing-inbound"
 	layer = TRAM_SIGNAL_LAYER
@@ -127,39 +127,39 @@
 	. = ..()
 	if(panel_open)
 		if(held_item?.tool_behaviour == TOOL_WRENCH)
-			context[SCREENTIP_CONTEXT_ALT_LMB] = "rotate signal"
-			context[SCREENTIP_CONTEXT_RMB] = "flip signal"
+			context[SCREENTIP_CONTEXT_ALT_LMB] = "旋转信号灯"
+			context[SCREENTIP_CONTEXT_RMB] = "翻转信号灯"
 
 	if(istype(held_item, /obj/item/card/emag) && !(obj_flags & EMAGGED))
-		context[SCREENTIP_CONTEXT_LMB] = "disable sensors"
+		context[SCREENTIP_CONTEXT_LMB] = "禁用传感器"
 
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/transport/crossing_signal/examine(mob/user)
 	. = ..()
-	. += span_notice("The maintenance panel is [panel_open ? "open" : "closed"].")
+	. += span_notice("维护面板[panel_open ? "已打开" : "已关闭"]。")
 	if(panel_open)
-		. += span_notice("It can be flipped or rotated with a [EXAMINE_HINT("wrench.")]")
+		. += span_notice("可以用[EXAMINE_HINT("扳手")]翻转或旋转。")
 	switch(operating_status)
 		if(TRANSPORT_REMOTE_WARNING)
-			. += span_notice("The orange [EXAMINE_HINT("remote warning")] light is on.")
-			. += span_notice("The status display reads: Check track sensor.")
+			. += span_notice("橙色[EXAMINE_HINT("远程警告")]指示灯亮着。")
+			. += span_notice("状态显示屏显示：检查轨道传感器。")
 		if(TRANSPORT_REMOTE_FAULT)
-			. += span_notice("The blue [EXAMINE_HINT("telecoms failure")] light is on.")
-			. += span_notice("The status display reads: Check telecommunications network.")
+			. += span_notice("蓝色[EXAMINE_HINT("电信故障")]指示灯亮着。")
+			. += span_notice("状态显示屏显示：检查电信网络。")
 		if(TRANSPORT_LOCAL_FAULT)
-			. += span_notice("The red [EXAMINE_HINT("local fault")] light is on.")
-			. += span_notice("The status display reads: Repair required.")
+			. += span_notice("红色[EXAMINE_HINT("本地故障")]指示灯亮着。")
+			. += span_notice("状态显示屏显示：需要维修。")
 	switch(dir)
 		if(NORTH, SOUTH)
-			. += span_notice("The tram configuration display shows EAST/WEST.")
+			. += span_notice("电车配置显示屏显示 东/西。")
 		if(EAST, WEST)
-			. += span_notice("The tram configuration display shows NORTH/SOUTH.")
+			. += span_notice("电车配置显示屏显示 北/南。")
 
 /obj/machinery/transport/crossing_signal/emag_act(mob/living/user)
 	if(obj_flags & EMAGGED)
 		return FALSE
-	balloon_alert(user, "disabled motion sensors")
+	balloon_alert(user, "已禁用运动传感器")
 	operating_status = TRANSPORT_LOCAL_FAULT
 	obj_flags |= EMAGGED
 	return TRUE
@@ -171,7 +171,7 @@
 
 	tool.play_tool_sound(src, 50)
 	setDir(turn(dir,-90))
-	balloon_alert(user, "rotated")
+	balloon_alert(user, "已旋转")
 	find_uplink()
 	return CLICK_ACTION_SUCCESS
 
@@ -184,7 +184,7 @@
 		if(OUTBOUND)
 			sign_dir = INBOUND
 
-	to_chat(user, span_notice("You flip directions on [src]."))
+	to_chat(user, span_notice("你翻转了 [src] 的方向。"))
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
@@ -462,10 +462,10 @@
 	. += emissive_appearance(icon, "[base_icon_state]-s0", offset_spokesman = src, alpha = src.alpha)
 
 /obj/machinery/transport/guideway_sensor
-	name = "guideway sensor"
+	name = "导轨传感器"
 	icon = 'icons/obj/tram/tram_sensor.dmi'
 	icon_state = "sensor-base"
-	desc = "Uses an infrared beam to detect passing trams. Works when paired with a sensor on the other side of the track."
+	desc = "使用红外光束探测经过的电车。与轨道另一侧的传感器配对后即可工作。"
 	layer = TRAM_RAIL_LAYER
 	plane = FLOOR_PLANE
 	use_power = NO_POWER_USE
@@ -488,28 +488,28 @@
 	. = ..()
 	if(panel_open)
 		if(held_item?.tool_behaviour == TOOL_WRENCH)
-			context[SCREENTIP_CONTEXT_RMB] = "rotate sensor"
+			context[SCREENTIP_CONTEXT_RMB] = "旋转传感器"
 
 	if(istype(held_item, /obj/item/card/emag) && !(obj_flags & EMAGGED))
-		context[SCREENTIP_CONTEXT_LMB] = "disable sensor"
+		context[SCREENTIP_CONTEXT_LMB] = "禁用传感器"
 
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/transport/guideway_sensor/examine(mob/user)
 	. = ..()
-	. += span_notice("The maintenance panel is [panel_open ? "open" : "closed"].")
+	. += span_notice("维护面板[panel_open ? "已打开" : "已关闭"]。")
 	if(panel_open)
-		. += span_notice("It can be rotated with a [EXAMINE_HINT("wrench.")]")
+		. += span_notice("可以用[EXAMINE_HINT("扳手")]旋转。")
 	switch(operating_status)
 		if(TRANSPORT_REMOTE_WARNING)
-			. += span_notice("The orange [EXAMINE_HINT("remote warning")] light is on.")
-			. += span_notice("The status display reads: Check paired sensor.")
+			. += span_notice("橙色[EXAMINE_HINT("远程警告")]指示灯亮着。")
+			. += span_notice("状态显示屏显示：检查配对传感器。")
 		if(TRANSPORT_REMOTE_FAULT)
-			. += span_notice("The blue [EXAMINE_HINT("remote fault")] light is on.")
-			. += span_notice("The status display reads: Paired sensor not found.")
+			. += span_notice("蓝色[EXAMINE_HINT("远程故障")]指示灯亮着。")
+			. += span_notice("状态显示屏显示：未找到配对传感器。")
 		if(TRANSPORT_LOCAL_FAULT)
-			. += span_notice("The red [EXAMINE_HINT("local fault")] light is on.")
-			. += span_notice("The status display reads: Repair required.")
+			. += span_notice("红色[EXAMINE_HINT("本地故障")]指示灯亮着。")
+			. += span_notice("状态显示屏显示：需要维修。")
 
 /obj/machinery/transport/guideway_sensor/screwdriver_act(mob/living/user, obj/item/tool)
 	return default_deconstruction_screwdriver(user, tool)

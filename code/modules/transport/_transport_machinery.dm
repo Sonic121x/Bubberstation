@@ -9,14 +9,14 @@
 	var/list/methods_to_fix = list()
 	var/list/repair_signals
 	var/static/list/how_do_we_fix_it = list(
-		"try turning it off and on again with a multitool" = TOOL_MULTITOOL,
-		"try forcing an unexpected reboot with a multitool" = TOOL_MULTITOOL,
-		"patch the system's call table with a multitool" = TOOL_MULTITOOL,
-		"gently reset the invalid memory with a crowbar" = TOOL_CROWBAR,
-		"secure its ground connection with a wrench" = TOOL_WRENCH,
-		"tighten some screws with a screwdriver" = TOOL_SCREWDRIVER,
-		"check its wire voltages with a multitool" = TOOL_MULTITOOL,
-		"cut some excess wires with wirecutters" = TOOL_WIRECUTTER,
+		"试着用多功能工具把它关掉再打开" = TOOL_MULTITOOL,
+		"试着用多功能工具强制进行一次意外重启" = TOOL_MULTITOOL,
+		"用多功能工具修补系统的调用表" = TOOL_MULTITOOL,
+		"用撬棍轻轻重置无效内存" = TOOL_CROWBAR,
+		"用扳手固定它的接地连接" = TOOL_WRENCH,
+		"用螺丝刀拧紧几颗螺丝" = TOOL_SCREWDRIVER,
+		"用多功能工具检查线路电压" = TOOL_MULTITOOL,
+		"用线缆剪剪掉多余的线缆" = TOOL_WIRECUTTER,
 	)
 	var/malfunctioning = FALSE
 
@@ -35,16 +35,16 @@
 
 /obj/machinery/transport/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(held_item?.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_RMB] = panel_open ? "close panel" : "open panel"
+		context[SCREENTIP_CONTEXT_RMB] = panel_open ? "关闭面板" : "打开面板"
 
 	if(panel_open)
 		if(malfunctioning || methods_to_fix.len)
-			context[SCREENTIP_CONTEXT_LMB] = "repair electronics"
+			context[SCREENTIP_CONTEXT_LMB] = "修理电子设备"
 		if(held_item?.tool_behaviour == TOOL_CROWBAR)
-			context[SCREENTIP_CONTEXT_RMB] = "deconstruct"
+			context[SCREENTIP_CONTEXT_RMB] = "拆解"
 
 	if(held_item?.tool_behaviour == TOOL_WELDER)
-		context[SCREENTIP_CONTEXT_LMB] = "repair frame"
+		context[SCREENTIP_CONTEXT_LMB] = "修理框架"
 
 	return CONTEXTUAL_SCREENTIP_SET
 
@@ -101,9 +101,9 @@
 	. = ..()
 	if(methods_to_fix)
 		for(var/tool_method in methods_to_fix)
-			. += span_warning("It needs someone to [EXAMINE_HINT(tool_method)].")
+			. += span_warning("需要有人来[EXAMINE_HINT(tool_method)]。")
 	if(panel_open)
-		. += span_notice("It can be deconstructed with a [EXAMINE_HINT("crowbar.")]")
+		. += span_notice("可以用[EXAMINE_HINT("撬棍")]拆解。")
 
 /**
  * Signal proc for [COMSIG_ATOM_TOOL_ACT], from a variety of signals, registered on the machinery.
@@ -120,13 +120,13 @@
 /obj/machinery/transport/proc/try_fix_machine(obj/machinery/transport/machine, mob/living/user, obj/item/tool)
 	SHOULD_CALL_PARENT(TRUE)
 
-	machine.balloon_alert(user, "percussive maintenance...")
+	machine.balloon_alert(user, "敲击维护中……")
 	if(!tool.use_tool(machine, user, 7 SECONDS, volume = 50))
-		machine.balloon_alert(user, "interrupted!")
+		machine.balloon_alert(user, "被打断了！")
 		return FALSE
 
 	playsound(src, 'sound/machines/synth/synth_yes.ogg', 75, use_reverb = TRUE)
-	machine.balloon_alert(user, "success!")
+	machine.balloon_alert(user, "成功了！")
 	UnregisterSignal(src, repair_signals)
 	LAZYNULL(repair_signals)
 	methods_to_fix = list()
@@ -140,12 +140,12 @@
 	if(user.combat_mode)
 		return
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, "it doesn't need repairs!")
+		balloon_alert(user, "它不需要修理！")
 		return TRUE
-	balloon_alert(user, "repairing...")
+	balloon_alert(user, "修理中……")
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 0, volume=50))
 		return TRUE
-	balloon_alert(user, "repaired")
+	balloon_alert(user, "已修理")
 	atom_integrity = max_integrity
 	set_machine_stat(machine_stat & ~BROKEN)
 	update_appearance()

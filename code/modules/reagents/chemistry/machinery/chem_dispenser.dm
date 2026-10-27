@@ -1,6 +1,6 @@
 /obj/machinery/chem_dispenser
-	name = "chem dispenser"
-	desc = "Creates and dispenses chemicals."
+	name = "化学分配器"
+	desc = "可制造并分配化学物质。"
 	density = TRUE
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "dispenser"
@@ -154,12 +154,12 @@
 /obj/machinery/chem_dispenser/examine(mob/user)
 	. = ..()
 	if(panel_open)
-		. += span_notice("[src]'s maintenance hatch is open!")
+		. += span_notice("[src] 的维修舱门是打开的！")
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads:\n\
-		Recharge rate: <b>[display_power(recharge_amount, convert = FALSE)]</b>.\n\
-		Energy cost: <b>[siunit(power_cost, "J/u", 3)]</b>.")
-	. += span_notice("Use <b>RMB</b> to eject a stored beaker.")
+		. += span_notice("状态显示屏显示：\n\
+		充电速率：<b>[display_power(recharge_amount, convert = FALSE)]</b>。\n\
+		能量消耗：<b>[siunit(power_cost, "J/u", 3)]</b>。")
+	. += span_notice("使用 <b>右键</b> 取出存放的烧杯。")
 
 /obj/machinery/chem_dispenser/on_set_is_operational(old_value)
 	if(old_value) //Turned off
@@ -199,9 +199,9 @@
 
 /obj/machinery/chem_dispenser/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, "already emagged!")
+		balloon_alert(user, "已被电磁篡改！")
 		return FALSE
-	balloon_alert(user, "safeties shorted out")
+	balloon_alert(user, "安全装置已短路")
 	dispensable_reagents |= emagged_reagents//add the emagged reagents to the dispensable ones
 	obj_flags |= EMAGGED
 	return TRUE
@@ -327,10 +327,10 @@
 					var/datum/reagents/holder = beaker.reagents
 					var/to_dispense = max(0, min(amount, holder.maximum_volume - holder.total_volume))
 					if(!to_dispense)
-						say("The container is full!")
+						say("容器已满！")
 						return
 					if(!cell.use(to_dispense * power_cost))
-						say("Not enough energy to complete operation!")
+						say("能量不足以完成操作！")
 						return
 					beaker.add_hiddenprint(ui.user)
 					holder.add_reagent(reagent, to_dispense, reagtemp = dispensed_temperature, added_purity = base_reagent_purity)
@@ -380,7 +380,7 @@
 					if(!to_dispense)
 						continue
 					if(!cell.use(to_dispense * power_cost))
-						say("Not enough energy to complete operation!")
+						say("能量不足以完成操作！")
 						return
 					beaker.add_hiddenprint(ui.user)
 					holder.add_reagent(reagent, to_dispense, reagtemp = dispensed_temperature, added_purity = base_reagent_purity)
@@ -390,7 +390,7 @@
 			return TRUE
 
 		if("clear_recipes")
-			if(is_operational && tgui_alert(ui.user, "Clear all recipes?", "Clear?", list("Yes", "No")) == "Yes")
+			if(is_operational && tgui_alert(ui.user, "要清除所有配方吗？", "清除？", list("Yes", "No")) == "Yes")
 				saved_recipes = list()
 				return TRUE
 
@@ -402,17 +402,17 @@
 		if("save_recording")
 			if(!is_operational)
 				return
-			var/name = tgui_input_text(ui.user, "What do you want to name this recipe?", "Recipe Name", max_length = MAX_NAME_LEN, encode = FALSE)
+			var/name = tgui_input_text(ui.user, "你想给这个配方起什么名字？", "配方名称", max_length = MAX_NAME_LEN, encode = FALSE)
 			if(!ui.user.can_perform_action(src, ALLOW_SILICON_REACH))
 				return
-			if(saved_recipes[name] && tgui_alert(ui.user, "\"[name]\" already exists, do you want to overwrite it?",, list("Yes", "No")) == "No")
+			if(saved_recipes[name] && tgui_alert(ui.user, "“[name]”已存在，要覆盖它吗？",, list("Yes", "No")) == "No")
 				return
 			if(name && recording_recipe)
 				for(var/reagent in recording_recipe)
 					var/reagent_id = GLOB.name2reagent[reagent]
 					if(!dispensable_reagents.Find(reagent_id))
-						visible_message(span_warning("[src] buzzes."), span_hear("You hear a faint buzz."))
-						to_chat(ui.user, span_warning("[src] cannot find <b>[reagent]</b>!"))
+						visible_message(span_warning("[src] 发出蜂鸣声。"), span_hear("你听到一阵微弱的蜂鸣声。"))
+						to_chat(ui.user, span_warning("[src] 找不到 <b>[reagent]</b>！"))
 						playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 						return
 				saved_recipes[name] = recording_recipe
@@ -426,11 +426,11 @@
 		// BUBBER EDIT ADDITION BEGIN - CHEMISTRY QOL
 		if("custom_amount")
 			if(!beaker)
-				to_chat(usr, span_warning("Insert a container first!"))
+				to_chat(usr, span_warning("请先放入一个容器！"))
 				return
 			if(customTransferAmount)
 				transferAmounts -= customTransferAmount
-			customTransferAmount = clamp(input(usr, "Please enter your desired transfer amount.", "Transfer amount", 0) as num|null, 0, beaker.volume)
+			customTransferAmount = clamp(input(usr, "请输入你想要的转移量。", "转移量", 0) as num|null, 0, beaker.volume)
 			transferAmounts += customTransferAmount
 			return TRUE
 		// BUBBER EDIT ADDITION END
@@ -495,7 +495,7 @@
 	cell.use(total * power_cost)
 	cell.emp_act(severity)
 	work_animation()
-	visible_message(span_danger("[src] malfunctions, spraying chemicals everywhere!"))
+	visible_message(span_danger("[src] 发生故障，化学物质四处喷溅！"))
 
 /obj/machinery/chem_dispenser/RefreshParts()
 	. = ..()
@@ -606,7 +606,7 @@
 			var/num_alts = 0
 			while(new_reaction_list[index])
 				num_alts++
-				index = "[result_datum.name] (Alt[num_alts == 1 ? "" : " #[num_alts]"])"
+				index = "[result_datum.name]（备选[num_alts == 1 ? "" : " #[num_alts]"]）"
 
 			new_reaction_list[index] = new_info
 
@@ -636,8 +636,8 @@
 	return info
 
 /obj/machinery/chem_dispenser/drinks
-	name = "soda dispenser"
-	desc = "Contains a large reservoir of soft drinks."
+	name = "汽水分配器"
+	desc = "内置一个大型软饮料储罐。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "soda_dispenser"
 	base_icon_state = "soda_dispenser"
@@ -736,7 +736,7 @@
 	return b_o
 
 /obj/machinery/chem_dispenser/drinks/fullupgrade //fully ugpraded stock parts, emagged
-	desc = "Contains a large reservoir of soft drinks. This model has had its safeties shorted out."
+	desc = "内置一个大型软饮料储罐。此型号的安全装置已被短路。"
 	obj_flags = CAN_BE_HIT | EMAGGED
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/drinks/fullupgrade
 
@@ -745,8 +745,8 @@
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
 
 /obj/machinery/chem_dispenser/drinks/beer
-	name = "booze dispenser"
-	desc = "Contains a large reservoir of the good stuff."
+	name = "酒类分配器"
+	desc = "内置一个大型美酒储罐。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "booze_dispenser"
 	base_icon_state = "booze_dispenser"
@@ -799,7 +799,7 @@
 	. = ..()
 
 /obj/machinery/chem_dispenser/drinks/beer/fullupgrade //fully ugpraded stock parts, emagged
-	desc = "Contains a large reservoir of the good stuff. This model has had its safeties shorted out."
+	desc = "内置一个大型美酒储罐。此型号的安全装置已被短路。"
 	obj_flags = CAN_BE_HIT | EMAGGED
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/drinks/beer/fullupgrade
 
@@ -808,8 +808,8 @@
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
 
 /obj/machinery/chem_dispenser/mutagen
-	name = "mutagen dispenser"
-	desc = "Creates and dispenses mutagen."
+	name = "突变原分配器"
+	desc = "可制造并分配突变原。"
 	/// The default list of reagents dispensable by mutagen chem dispenser
 	var/static/list/mutagen_dispensable_reagents = list(/datum/reagent/toxin/mutagen)
 	upgrade_reagents = null
@@ -822,8 +822,8 @@
 	. = ..()
 
 /obj/machinery/chem_dispenser/mutagensaltpeter
-	name = "botanical chemical dispenser"
-	desc = "Creates and dispenses chemicals useful for botany."
+	name = "植物学化学品分配器"
+	desc = "可制造并分配对植物学有用的化学物质。"
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/mutagensaltpeter
 	shown_reaction_tags = BOTANIST_REACTION_TAGS
 	hidden_reaction_tags = REACTION_TAG_ACTIVE
@@ -852,7 +852,7 @@
 	. = ..()
 
 /obj/machinery/chem_dispenser/fullupgrade //fully ugpraded stock parts, emagged
-	desc = "Creates and dispenses chemicals. This model has had its safeties shorted out."
+	desc = "可制造并分配化学物质。此型号的安全装置已被短路。"
 	obj_flags = CAN_BE_HIT | EMAGGED
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/fullupgrade
 
@@ -861,8 +861,8 @@
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
 
 /obj/machinery/chem_dispenser/abductor
-	name = "reagent synthesizer"
-	desc = "Synthesizes a variety of reagents using proto-matter."
+	name = "试剂合成器"
+	desc = "利用原物质合成多种试剂。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "chem_dispenser"
 	base_icon_state = "chem_dispenser"

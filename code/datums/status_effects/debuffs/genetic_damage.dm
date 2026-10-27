@@ -51,15 +51,15 @@
 
 	var/message = ""
 	if(scanpower >= SCANPOWER_ADVANCED)
-		message = "Genetic damage: [round(total_damage / minimum_before_tox_damage * 100, 0.1)]%"
+		message = "基因损伤：[round(total_damage / minimum_before_tox_damage * 100, 0.1)]%"
 	else if(total_damage >= minimum_before_tox_damage)
-		message = "Severe genetic damage detected."
+		message = "检测到严重基因损伤。"
 	else
-		message = "Minor genetic damage detected."
+		message = "检测到轻微基因损伤。"
 
 	if(message)
 		render_list += "<span class='alert ml-1'>"
-		render_list += conditional_tooltip("[message]", "Irreparable under normal circumstances - will decay over time.", tochat)
+		render_list += conditional_tooltip("[message]", "通常无法修复，会随时间逐渐消退。", tochat)
 		render_list += "</span><br>"
 
 #undef GORILLA_MUTATION_CHANCE_PER_SECOND

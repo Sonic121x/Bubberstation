@@ -54,7 +54,7 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 	if (istype(back_to))
 		. += back_to.make_link("<b>&lt;&lt;&lt;</b>", null, linear)
 
-	. += "[make_link("Refresh")]<br><br>"
+	. += "[make_link("刷新")]<br><br>"
 
 /datum/error_viewer/proc/show_to(user, datum/error_viewer/back_to, linear)
 	// Specific to each child type
@@ -80,16 +80,16 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 
 /datum/error_viewer/error_cache/show_to(user, datum/error_viewer/back_to, linear)
 	var/html = build_header()
-	html += "<b>[GLOB.total_runtimes]</b> runtimes, <b>[GLOB.total_runtimes_skipped]</b> skipped<br><br>"
+	html += "<b>[GLOB.total_runtimes]</b> 次运行时错误，已跳过 <b>[GLOB.total_runtimes_skipped]</b> 次<br><br>"
 	if (!linear)
-		html += "organized | [make_link("linear", null, 1)]<hr>"
+		html += "按来源整理 | [make_link("线性", null, 1)]<hr>"
 		var/datum/error_viewer/error_source/error_source
 		for (var/erroruid in error_sources)
 			error_source = error_sources[erroruid]
 			html += "[error_source.make_link(null, src)] x [error_source.errors.len]<br>" //SKYRAT EDIT - RUNTIME TRANSPARENCY
 
 	else
-		html += "[make_link("organized", null)] | linear<hr>"
+		html += "[make_link("按来源整理", null)] | 线性<hr>"
 		for (var/datum/error_viewer/error_entry/error_entry in errors)
 			html += "[error_entry.make_link(null, src, 1)]<br>"
 
@@ -115,7 +115,7 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 	// Show the error to admins with debug messages turned on, but only if one
 	//  from the same source hasn't been shown too recently
 	if (error_source.next_message_at <= world.time)
-		var/const/viewtext = "\[view]" // Nesting these in other brackets went poorly
+		var/const/viewtext = "\[查看]" // Nesting these in other brackets went poorly
 		//log_debug("Runtime in <b>[e.file]</b>, line <b>[e.line]</b>: <b>[html_encode(e.name)]</b> [error_entry.make_link(viewtext)]")
 		var/err_msg_delay
 		if(config?.loaded)
@@ -131,10 +131,10 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 
 /datum/error_viewer/error_source/New(exception/e)
 	if (!istype(e))
-		name = "\[[server_timestamp()]] Uncaught exceptions"
+		name = "\[[server_timestamp()]] 未捕获的异常"
 		return
 
-	name = "<b>\[[server_timestamp()]]</b> Runtime in <b>[e.file]</b>, line <b>[e.line]</b>: <b>[html_encode(e.name)]</b>"
+	name = "<b>\[[server_timestamp()]]</b> 运行时错误位于 <b>[e.file]</b>，第 <b>[e.line]</b> 行：<b>[html_encode(e.name)]</b>"
 
 /datum/error_viewer/error_source/show_to(user, datum/error_viewer/back_to, linear)
 	if (!istype(back_to))
@@ -156,15 +156,15 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 
 /datum/error_viewer/error_entry/New(exception/e, list/desclines, skip_count)
 	if (!istype(e))
-		name = "<b>\[[server_timestamp()]]</b> Uncaught exception: <b>[html_encode(e.name)]</b>"
+		name = "<b>\[[server_timestamp()]]</b> 未捕获的异常：<b>[html_encode(e.name)]</b>"
 		return
 
 	if(skip_count)
-		name = "\[[server_timestamp()]] Skipped [skip_count] runtimes in [e.file],[e.line]."
+		name = "\[[server_timestamp()]] 已在 [e.file],[e.line] 跳过 [skip_count] 次运行时错误。"
 		is_skip_count = TRUE
 		return
 
-	name = "<b>\[[server_timestamp()]]</b> Runtime in <b>[e.file]</b>, line <b>[e.line]</b>: <b>[html_encode(e.name)]</b>"
+	name = "<b>\[[server_timestamp()]]</b> 运行时错误位于 <b>[e.file]</b>，第 <b>[e.line]</b> 行：<b>[html_encode(e.name)]</b>"
 	exc = e
 	if (istype(desclines))
 		for (var/line in desclines)
@@ -184,7 +184,7 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 	if (usr_ref)
 		html += "<br><b>usr</b>: <a href='byond://?_src_=vars;[HrefToken()];Vars=[usr_ref]'>VV</a>"
 		html += " <a href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[usr_ref]'>PP</a>"
-		html += " <a href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[usr_ref]'>Follow</a>"
+		html += " <a href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[usr_ref]'>跟随</a>"
 		if (istype(usr_loc))
 			html += "<br><b>usr.loc</b>: <a href='byond://?_src_=vars;[HrefToken()];Vars=[REF(usr_loc)]'>VV</a>"
 			html += " <a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[usr_loc.x];Y=[usr_loc.y];Z=[usr_loc.z]'>JMP</a>"

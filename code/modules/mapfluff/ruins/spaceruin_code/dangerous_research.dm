@@ -1,87 +1,87 @@
 /// Paper Fluff Lore
 /obj/item/paper/fluff/ruins/dangerous_research/manifest
-	name = "ASRC Manifest"
-	default_raw_text = "<B>Alternate Sciences Research Center</B><BR><BR>Doctor Elias Valentin - Head Occultist<BR>Researcher Mike R. Smith - Chemist<BR>Researcher Jexa Armstrong - Esotericist<BR>Doctor Dreams-of-Beaches - Medical Assistant<BR>Doctor Whitner Jay Greyham - Surgeon<BR>Officer Brianna Simes - Outpost Protection Agent<BR>John Doe - Research Volunteer"
+	name = "ASRC 名单"
+	default_raw_text = "<B>替代科学研究中心</B><BR><BR>伊莱亚斯·瓦伦丁博士——首席神秘学者<BR>研究员迈克·R·史密斯——化学家<BR>研究员杰莎·阿姆斯特朗——秘术师<BR>海滩之梦博士——医疗助理<BR>惠特纳·杰伊·格雷汉姆博士——外科医生<BR>布里安娜·西姆斯警官——前哨保卫特工<BR>约翰·多伊——研究志愿者"
 
 /obj/item/paper/fluff/ruins/dangerous_research/head_occultist_note
-	name = "Frantically Scrawled Note"
-	default_raw_text = "John's been speaking to me recently, so I had Greyham take his tongue.<BR> He was looking at me, so the Doctor took his eyes.<BR>He won't stop talking and staring. He just wants a few things, he says.<BR>All the research, so close to fruition, would it be wrong to let him finish the rune?"
+	name = "狂乱涂写的便条"
+	default_raw_text = "约翰最近一直在跟我说话，所以我让格雷汉姆取走了他的舌头。<BR> 他一直在看我，所以医生取走了他的眼睛。<BR>他还是不肯停下说话和凝视。他说，他只想要几样东西。<BR>所有研究都已如此接近成果，让他完成那道符文，会错吗？"
 
 /obj/item/paper/fluff/ruins/dangerous_research/smith
-	name = "A Traitor's Memo"
-	default_raw_text = "The Syndicate is up to something strange here; they've hired these people, most totally unaware of their true employers.<BR>I've sent the collected data to Nanotrasen, and I'm going to try to disrupt the test tomorrow, allowing this to continue isn't right.<BR>They're keeping the patient semi-lucid, so some stims should wake him up."
+	name = "叛徒的备忘录"
+	default_raw_text = "辛迪加在这里搞着某种奇怪的勾当；他们雇了这些人，其中大多数完全不知道自己真正的雇主是谁。<BR>我已经把收集到的数据发给了纳米传讯，我打算明天设法破坏试验，让这一切继续下去是不对的。<BR>他们让病人保持着半清醒状态，所以一些兴奋剂应该能把他弄醒。"
 	///Dream-Of-Beaches Journal
 /obj/item/paper/fluff/ruins/dangerous_research/beaches_journal_1
-	name = "Journal of Dreams-Of-Beaches - Day 1"
-	default_raw_text = "Well, the food is greasy, there's one bathroom for six of us to share, and I think the Head Occultist is a little crazy, but I'm finally off Tizira!<BR> Not much of a believer in this occult nonsense, but the pay is good and aside from the boss, everyone is really friendly!<BR> Doctor Grey(Gray?)Ham will be my partner for keeping the patient safe."
+	name = "海滩之梦的日志——第 1 天"
+	default_raw_text = "嗯，伙食油腻，六个人共用一个卫生间，而且我觉得那位首席神秘学者有点疯，但我终于离开提兹拉了！<BR> 我不太信这些神秘学的鬼话，但报酬不错，而且除了老板，大家都很友善！<BR> 格雷（格瑞？）汉姆博士会和我搭档，一起保障病人的安全。"
 
 /obj/item/paper/fluff/ruins/dangerous_research/beaches_journal_2
-	name = "Journal of Dreams-Of-Beaches - Day 33"
-	default_raw_text = "Something odd is going on. John has been blinded and muted for a time now but he's still moving around in that central chamber, drawing something. Elias, Smith, and Whitner seem to have some idea about what's going on and won't answer my questions.<BR>I'm going to sneak into the lab tonight to get a look at those drawings."
+	name = "海滩之梦的日志——第 33 天"
+	default_raw_text = "有些不对劲。约翰被弄瞎、弄哑已经有一段时间了，但他仍在中央舱室里活动，画着什么东西。伊莱亚斯、史密斯和惠特纳似乎对正在发生的事有所了解，却不肯回答我的问题。<BR>今晚我要溜进实验室，看看那些画。"
 
 /obj/item/paper/fluff/ruins/dangerous_research/beaches_journal_3
-	name = "Journal of Dreams-Of-Beaches - Day 52"
-	default_raw_text = "Smith was in the chamber, gone in an instant.<BR> I don't know what happened to the doctor or Elias, I just heard flesh tearing and glass shattering.<BR> When my eyes opened, the room was painted in red and rust.<BR>Simes was there, but she just flashed away, all that was left was the gun.<BR>Armstrong grabbed me and we somehow made it out, boarded it up with the tables in the lobby.<BR>Took two of the suits, we'll send out a distress signal when we're out there."
+	name = "海滩之梦的日志——第 52 天"
+	default_raw_text = "史密斯当时在舱室里，一瞬之间就没了。<BR> 我不知道医生和伊莱亚斯出了什么事，我只听到皮肉撕裂和玻璃碎裂的声音。<BR> 等我睁开眼，房间里已染满了红色与锈色。<BR> 西姆斯当时在那儿，但她一闪就消失了，只留下那把枪。<BR> 阿姆斯特朗抓住我，我们不知怎么逃了出来，用大厅里的桌子把门堵上了。<BR> 我们带走了两套太空服，等到了外面就发出求救信号。"
 	/// Armstrong Memos
 /obj/item/paper/fluff/ruins/dangerous_research/armstrong_memo_1
-	name = "Jexa Armstrong's Notes - Day 18"
-	default_raw_text = "I wasn't excited to hear that Interdyne would be sticking me on this rock, but this John Doe absolutely has me interested.<BR>He's the only other person I've met with a link to the Mansus, and theirs is <B>astoundingly</B> strong.<BR>Here I thought I was a freak of nature for being able to draw a few working runes. The subject is capable of achieving a perfect link to the Mansus, even <B>with</B> Elias ordering all of those surgeries."
+	name = "杰莎·阿姆斯特朗的笔记——第 18 天"
+	default_raw_text = "听说英特戴恩要把我扔到这块石头上时，我并不怎么兴奋，但这个约翰·多伊彻底引起了我的兴趣。<BR>他是我遇到的唯一另一个与漫宿有联系的人，而且他们的联系强得<B>惊人</B>。<BR>我还以为能画出几道生效符文的自己已经是个天生的怪胎了。这名受试者甚至<B>在</B>伊莱亚斯下令做了那么多手术的情况下，仍能达成与漫宿的完美联系。"
 
 /obj/item/paper/fluff/ruins/dangerous_research/armstrong_memo_2
-	name = "Jexa Armstrong's Notes - Day 47"
-	default_raw_text = "Elias is going to get us all killed, I swear. The surgeries have been intensifying, he's pushing the subject WAY past what's safe.<BR>Greyham's a loyal mutt, Smith doesn't give a shit, and Beaches is a coward. Nobody else was going to tell the HO that fucking with the pineal gland was dangerous.<BR>Apparently, tests are now going faster but I'm also locked in my room for the next few days. He doesn't know what he's messing with."
+	name = "杰莎·阿姆斯特朗的笔记——第 47 天"
+	default_raw_text = "我发誓，伊莱亚斯会把我们全害死。手术越来越频繁，他把受试者推到了远超安全范围的地步。<BR>格雷汉姆是条忠犬，史密斯毫不在乎，而海滩是个懦夫。除了我，没人会去告诉首席，乱动松果体很危险。<BR>据说现在试验进展更快了，但接下来几天我也被锁在自己房间里。他根本不知道自己招惹的是什么。"
 
 /obj/item/paper/fluff/ruins/dangerous_research/armstrong_memo_3
-	name = "Containment Memo - Safety"
-	default_raw_text = "<B>DO NOT:</B><BR>-Allow the subject out of their cell at any point without the HO's approval<BR>-Stay by the subject for extended periods of time. Dr Greyham and I have confirmed that long-term exposure can lead to headaches, anemia, and loss of sleep.<BR>-Forget to keep the patient's sedative supply constant. Ensure their IV drip (3:3:1 ratio of B Negative Blood, Saline, and Morphine) is topped up whenever they're not in a test.<BR><BR>Elias, the radio in the patient's room stays ON, and the toy stays in there. I know its not protocol but he starts crying if we remove them, and we all need to sleep."
+	name = "收容备忘录——安全"
+	default_raw_text = "<B>严禁：</B><BR>——未经首席批准，在任何时候让受试者离开其牢房<BR>——长时间待在受试者身边。格雷汉姆博士和我已确认，长期接触会导致头痛、贫血和失眠。<BR>——忘记保持病人的镇静剂供应稳定。确保他们不参与试验时，其静脉滴注（B 型阴性血、生理盐水与吗啡按 3:3:1 配比）始终充足。<BR><BR>伊莱亚斯，病人房间里的收音机要一直开着，玩具也要留在里面。我知道这不合规程，但我们一拿走他就会哭，而我们都得睡觉。"
 /// Lore Terminals
 /obj/machinery/computer/terminal/dangerous_research/front_desk
-	upperinfo = "ISSUE REPORT - Officer Simes"
-	content = list("<B>Day 003 - Code 201</B> -> Three days into the 100 day mission, Doctor Greyham and Researcher Smith got into a minor dispute over the owner of a biopsy tool. Both were separated and reprimanded by the Head Occultist.<BR>\
-	<B>Day 014 - Code 104</B> -> Another issue with Researcher Smith, who was found to be using the chem dispensers to produce low-grade stimulants. Head Occultist Valentin seemed incredibly upset at the relatively harmless drugs, and has banned all production of stimulants.<BR>\
-	<B>Day 022 - Code ???</B> -> The HO and Armstrong are bickering, unsure about what, but since what Armstrong's suggesting will stop that horrific noise, I'm siding with them. The HO gave me a nasty look when I spoke up about the lack of sleep.<BR>\
-	<B>Day 034 - Code 109</B> -> Doctor Beaches apparently entered a restricted area during the off hours to check on a research sample without the Head Occultist's permission. A curfew has been installed.<BR>\
-	<B>Day 047 - Code 311</B> -> Researcher Armstrong w... okay, the HO stopped watching, Elias is fucking losing it. I'm not allowed in the research labs unless there's an incident, but you can HEAR screaming from the lobby. Everyone is on edge. Jexa has been bolted into their room for protesting something, not sure.<BR>\
-	<B>Day 051 - Code ???</B> -> The Head Occultist has been acting strange again, he's up at night in the lab, not eating, not sleeping. He's been giving the team these speeches about how close we are, I'm not paid enough to know what we're close to though.<BR>\
-	<B>Day 052 - Ongoing Incident</B> -> Explosion from the research lab, going to check on it now. I think I hear Dreams-of-Beaches screaming.")
+	upperinfo = "事件报告——西姆斯警官"
+	content = list("<B>第 003 天 - 代码 201</B> -> 100 天任务进行到第三天，格雷汉姆博士和研究员史密斯因为一把活检工具的归属发生了小争执。两人被分开，并受到首席神秘学者的训斥。<BR>\
+	<B>第 014 天 - 代码 104</B> -> 又是研究员史密斯的麻烦，他被发现用化学分配器制造劣质兴奋剂。首席神秘学者瓦伦丁似乎对这些相对无害的药物极为不满，已禁止一切兴奋剂生产。<BR>\
+	<B>第 022 天 - 代码 ？？？</B> -> 首席和阿姆斯特朗在拌嘴，不知道为了什么，但既然阿姆斯特朗提议的办法能止住那可怕的噪音，我站他们那边。我提到睡眠不足时，首席狠狠瞪了我一眼。<BR>\
+	<B>第 034 天 - 代码 109</B> -> 海滩博士似乎在下班时间未经首席神秘学者许可进入限制区域查看研究样本。现已实行宵禁。<BR>\
+	<B>第 047 天 - 代码 311</B> -> 研究员阿姆斯特朗……好吧，首席没在看了，伊莱亚斯他妈彻底失控了。除非发生事故，否则我不准进入研究实验室，但你在门厅就能听见尖叫声。所有人都绷紧了神经。杰莎因为抗议什么事被关在房间里，不清楚具体情况。<BR>\
+	<B>第 051 天 - 代码 ？？？</B> -> 首席神秘学者又开始举止古怪了，他夜里待在实验室，不吃东西也不睡觉。他一直在给团队讲那些我们离目标有多近的演讲，可我的工资不够让我知道我们到底离什么近。<BR>\
+	<B>第 052 天 - 持续事件</B> -> 研究实验室发生爆炸，我现在去看看。我想我听到海滩之梦在尖叫。")
 
 /obj/machinery/computer/terminal/dangerous_research/lab_recording
-	upperinfo = "SECURITY CAMERA LOG - 052"
-	content = list("There is a log of archived footage from the test period, you pull up the last logged entries.<BR>\
-	<B>03:32 AM</B> - An older human wearing a red-white labcoat paces back and forth in the lab, staring at a half drawn rune in the containment zone. He soon leaves, muttering to himself.<BR>\
-	<B>03:38 AM</B> - The camera pans to see the rune spark to life, sickly green light ignites the lab for a moment, and then shuts down.<BR>\
-	<B>08:29 AM</B> - The doors to the lab opens, the red-labcoat from earlier, and another doctorly looking man enter, they're deep in conversation. A third, younger human in an orange labcoat enters, and the discussion stops. The researchers mill about, soon joined by another human, and a lizardperson.<BR>\
-	<B>9:03 AM</B> - An emaciated and masked man is brought into the center of the lab onto the rune. His restraints are removed, and he goes to the rune, drawing at it with a glowing finger.<BR>\
-	<B>9:04 AM</B> - The man in orange enters the cell, to the visible shock of the research team. He injects the emaciated man with a syringe.<BR>\
-	<B>9:05 AM</B> - All hell breaks loose, the man in orange is dead on the spot, torn into shreds by whips of eldritch flame. Rust creeps across the lab, and skittering creatures drag the red-labcoat off camera.<BR>\
-	<B>9:06 AM</B> - A security guard enters and draws their weapon, but the ground under their feet erupts into flames. From off-camera, a beast of arms tears at the doctorly man.<BR>\
-	<B>9:07 AM</B> - The remaining scientist grabs the cowering lizardperson, and the two leave the lab. The emaciated man seems to be in pain as camera-distoring energy racks their body. An explosion is heard, and the camera goes dark.<BR>\
-	<B>END OF AVAILABLE FOOTAGE</B>")
+	upperinfo = "安防摄像头日志——052"
+	content = list("这里存有试验期间的存档录像日志，你调出了最后几条记录。<BR>\
+	<B>凌晨 03:32</B> —— 一名穿着红白相间实验服的年长人类在实验室里来回踱步，盯着收容区里一道画了一半的符文。他很快就离开了，嘴里自言自语。<BR>\
+	<B>凌晨 03:38</B> —— 镜头摇过去，只见符文忽然亮起，病态的绿光短暂照亮了实验室，随后熄灭。<BR>\
+	<B>上午 08:29</B> —— 实验室的门打开，先前那名穿红实验服的人和另一个看起来像医生的人走了进来，两人正在深入交谈。第三个穿着橙色实验服的年轻人类走进来，谈话随即停止。研究员们四处走动，很快又有一名人类和一名蜥蜴人加入。<BR>\
+	<B>上午 9:03</B> —— 一个消瘦、戴面具的男人被带到实验室中央的符文上。他的束缚被解开，他走向符文，用发光的手指在上面描画。<BR>\
+	<B>上午 9:04</B> —— 穿橙色衣服的男人走进牢房，研究团队明显大为震惊。他用注射器给那个消瘦的男人注射了药物。<BR>\
+	<B>上午 9:05</B> —— 场面彻底失控，穿橙衣的男人当场死亡，被邪异火焰的长鞭撕成碎片。锈蚀在实验室里蔓延，窸窣作响的生物把穿红实验服的人拖出了镜头。<BR>\
+	<B>上午 9:06</B> —— 一名安保警卫进入并拔出武器，但他脚下的地面猛然喷出火焰。镜头之外，一只由手臂构成的野兽撕扯着那个像医生的男人。<BR>\
+	<B>上午 9:07</B> —— 剩下的那名科学家抓起蜷缩的蜥蜴人，两人一起离开了实验室。那个消瘦的男人似乎在痛苦中，扭曲镜头的能量折磨着他的身体。传来一声爆炸，摄像头随即黑屏。<BR>\
+	<B>可用录像结束</B>")
 
 /obj/machinery/computer/terminal/dangerous_research/greyham_report
-	upperinfo = "MEDICAL LOG - Doctor Whitner Jay Greyham"
-	content = list("<B>001 - Light</B> Treated minor paper-cut on Researcher Armstrong.<BR>\
-	<B>003 - Light</B> Treated minor bruising on Doctor Greyham and Researcher Smith with ice packs.<BR>\
-	<B>004 - Medium</B> Testing begins, insertion of permanent IV into subject.<BR>\
-	<B>006 - Heavy</B> Removal of subject's vision. Surgically severed subject's optical nerves.<BR>\
-	<B>007 - Light</B> Head Occultist Valentin treated for symptoms of mild headaches with paracetamol.<BR>\
-	<B>010 - Heavy</B> Removal of subject's vision. Surgically removed subject's eyes, optical nerves cauterized.<BR>\
-	<B>011 - Medium</B> Treated all staff for iron deficiency. Head Occultist Valentin given additional dosage of paracetamol.<BR>\
-	<B>015 - Heavy</B> Prefrontal leukotomy performed on subject. Subject awoke and stared at medical staff during operation.<BR>\
-	<B>015 - Heavy</B> Removal of subject's vision. Surgically removed subject's eyes, optical nerves cauterized.<BR>\
-	<B>016 - Medium</B> Treated all staff for sleep loss (Diphenhydramine, 10u)<BR>\
-	<B>DATA CORRUPTED</B><BR>\
-	<B>047 - Heavy</B> Insertion of nerve stimulator into patient's pineal gland.<BR>\
-	<B>049 - Heavy</B>Removal of subject's vision. Surgically removed subject's eyes, optical nerves cauterized.<BR>\
-	<B>050 - Heavy</B>Removal of subject's ability to speak. Surgically removed subject's tongue, wound cauterized.<BR>")
+	upperinfo = "医疗日志——惠特纳·杰伊·格雷汉姆博士"
+	content = list("<B>001 - 轻度</B> 治疗了研究员阿姆斯特朗的轻微纸割伤。<BR>\
+	<B>003 - 轻度</B> 用冰袋治疗了格雷汉姆博士和研究员史密斯的轻微瘀伤。<BR>\
+	<B>004 - 中度</B> 试验开始，为受试者插入永久性静脉滴注。<BR>\
+	<B>006 - 重度</B> 摘除受试者视力。手术切断了受试者的视神经。<BR>\
+	<B>007 - 轻度</B> 首席神秘学者瓦伦丁因轻微头痛症状服用扑热息痛。<BR>\
+	<B>010 - 重度</B> 摘除受试者视力。手术摘除受试者双眼，视神经已烧灼封闭。<BR>\
+	<B>011 - 中度</B> 为全体人员治疗缺铁。首席神秘学者瓦伦丁额外服用了一剂扑热息痛。<BR>\
+	<B>015 - 重度</B> 对受试者实施前额叶脑白质切断术。手术期间受试者醒来并盯着医护人员。<BR>\
+	<B>015 - 重度</B> 摘除受试者视力。手术摘除受试者双眼，视神经已烧灼封闭。<BR>\
+	<B>016 - 中度</B> 为全体人员治疗睡眠不足（苯海拉明，10u）<BR>\
+	<B>数据损坏</B><BR>\
+	<B>047 - 重度</B> 将神经刺激器植入病人的松果体。<BR>\
+	<B>049 - 重度</B>摘除受试者视力。手术摘除受试者双眼，视神经已烧灼封闭。<BR>\
+	<B>050 - 重度</B>摘除受试者说话能力。手术摘除受试者舌头，伤口已烧灼封闭。<BR>")
 
 // Lore ID cards
 /obj/item/card/id/away/dangerous_research
-	name = "Mike R. Smith"
-	desc = "An older ID card, it has a label reading \"Researcher\"."
+	name = "迈克·R·史密斯"
+	desc = "一张旧 ID 卡，上面贴着写着“研究员”的标签。"
 	trim = /datum/id_trim/away/dangerous_research
 
 /obj/item/card/id/away/dangerous_research/head_occultist
-	name = "Elias Valentin"
-	desc = "An older ID card, it has a label reading \"Head Occultist\". It's smeared with dried blood."
+	name = "伊莱亚斯·瓦伦丁"
+	desc = "一张旧 ID 卡，上面贴着写着“首席神秘学者”的标签。卡片上沾着干涸的血迹。"
 	trim = /datum/id_trim/away/dangerous_research/head_occultist

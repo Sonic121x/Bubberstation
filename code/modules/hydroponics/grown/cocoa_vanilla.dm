@@ -1,10 +1,10 @@
 // Cocoa Pod
 /obj/item/seeds/cocoapod
-	name = "cocoa pod seed pack"
-	desc = "These seeds grow into cacao trees. They look fattening." //SIC: cocoa is the seeds. The trees are spelled cacao.
+	name = "可可豆荚种子包"
+	desc = "这些种子会长成可可树。看起来很容易让人发胖。" //SIC: cocoa is the seeds. The trees are spelled cacao.
 	icon_state = "seed-cocoapod"
 	species = "cocoapod"
-	plantname = "Cocao Tree"
+	plantname = "可可树"
 	product = /obj/item/food/grown/cocoapod
 	lifespan = 20
 	maturation = 5
@@ -21,8 +21,8 @@
 
 /obj/item/food/grown/cocoapod
 	seed = /obj/item/seeds/cocoapod
-	name = "cocoa pod"
-	desc = "Fattening... Mmmmm... chucklate."
+	name = "可可豆荚"
+	desc = "让人发胖……嗯……巧克力。"
 	icon_state = "cocoapod"
 	bite_consumption_mod = 2
 	foodtypes = FRUIT
@@ -31,11 +31,11 @@
 
 // Vanilla Pod
 /obj/item/seeds/cocoapod/vanillapod
-	name = "vanilla pod seed pack"
-	desc = "These seeds grow into vanilla trees. They look fattening."
+	name = "香草豆荚种子包"
+	desc = "这些种子会长成香草树。看起来很容易让人发胖。"
 	icon_state = "seed-vanillapod"
 	species = "vanillapod"
-	plantname = "Vanilla Tree"
+	plantname = "香草树"
 	product = /obj/item/food/grown/vanillapod
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	mutatelist = null
@@ -43,8 +43,8 @@
 
 /obj/item/food/grown/vanillapod
 	seed = /obj/item/seeds/cocoapod/vanillapod
-	name = "vanilla pod"
-	desc = "Fattening... Mmmmm... vanilla."
+	name = "香草豆荚"
+	desc = "让人发胖……嗯……香草。"
 	icon_state = "vanillapod"
 	bite_consumption_mod = 2
 	foodtypes = FRUIT
@@ -52,12 +52,12 @@
 	distill_reagent = /datum/reagent/consumable/vanilla //Takes longer, but you can get even more vanilla from it.
 
 /obj/item/seeds/cocoapod/bungotree
-	name = "bungo tree seed pack"
-	desc = "These seeds grow into bungo trees. They appear to be heavy and almost perfectly spherical."
+	name = "邦戈树种子包"
+	desc = "这些种子会长成邦戈树。果实看起来沉甸甸的，几乎完美球形。"
 	icon_state = "seed-bungotree"
 	plant_icon_offset = 4
 	species = "bungotree"
-	plantname = "Bungo Tree"
+	plantname = "邦戈树"
 	product = /obj/item/food/grown/bungofruit
 	lifespan = 30
 	maturation = 4
@@ -74,8 +74,8 @@
 
 /obj/item/food/grown/bungofruit
 	seed = /obj/item/seeds/cocoapod/bungotree
-	name = "bungo fruit"
-	desc = "A strange fruit, tough leathery skin protects its juicy flesh and large poisonous seed."
+	name = "邦戈果"
+	desc = "一种奇怪的水果，坚韧如皮革的外皮保护着多汁的果肉和一颗硕大的有毒种子。"
 	icon_state = "bungo"
 	bite_consumption_mod = 2
 	trash_type = /obj/item/food/grown/bungopit
@@ -88,10 +88,10 @@
 
 /obj/item/food/grown/bungopit
 	seed = /obj/item/seeds/cocoapod/bungotree
-	name = "bungo pit"
+	name = "邦戈果核"
 	icon_state = "bungopit"
 	bite_consumption_mod = 5
-	desc = "A large seed, it is said to be potent enough to be able to stop a mans heart."
+	desc = "一颗硕大的种子，据说其效力足以让人的心脏停跳。"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 5
 	throw_speed = 3

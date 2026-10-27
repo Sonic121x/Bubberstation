@@ -39,4 +39,4 @@
 
 	if(backfired)
 		backfired = FALSE
-		. += " Counterfeit paperwork was detected in this shipment. A fine has been taken from your budget as a result."
+		. += " 本批货物中检测到伪造文书。已因此从您的预算中扣除罚款。"

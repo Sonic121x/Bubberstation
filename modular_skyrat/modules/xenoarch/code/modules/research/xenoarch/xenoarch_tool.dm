@@ -1,12 +1,12 @@
 /obj/item/xenoarch
-	name = "parent dev item"
+	name = "开发用父类物品"
 	icon = 'modular_skyrat/modules/xenoarch/icons/xenoarch_items.dmi'
 
 // HAMMERS
 
 /obj/item/xenoarch/hammer
-	name = "parent dev item"
-	desc = "A hammer that can be used to remove dirt from strange rocks."
+	name = "开发用父类物品"
+	desc = "用于清除奇异岩石上泥土的锤子。"
 	tool_behaviour = TOOL_HAMMER
 	var/dig_amount = 1
 	var/dig_speed = 1 SECONDS
@@ -15,17 +15,17 @@
 /obj/item/xenoarch/hammer/examine(mob/user)
 	. = ..()
 	if(advanced)
-		. += span_notice("This is an advanced hammer. It can change its digging depth from 1 to 30. Click to change depth.")
+		. += span_notice("这是一把高级锤子，挖掘深度可在 1 至 30 厘米之间调整。点击可更改深度。")
 
-	. += span_notice("Current Digging Depth: [dig_amount]cm")
+	. += span_notice("当前挖掘深度：[dig_amount] 厘米")
 
 /obj/item/xenoarch/hammer/attack_self(mob/user, modifiers)
 	. = ..()
 	if(!advanced)
-		to_chat(user, span_warning("This is not an advanced hammer, it cannot change its digging depth."))
+		to_chat(user, span_warning("这不是高级锤子，无法调整挖掘深度。"))
 		return
 
-	var/user_choice = input(user, "Choose the digging depth. 1 to 30", "Digging Depth Selection") as null|num
+	var/user_choice = input(user, "选择挖掘深度：1 至 30 厘米", "挖掘深度选择") as null|num
 	if(!user_choice)
 		dig_amount = 1
 		dig_speed = 1
@@ -44,59 +44,59 @@
 
 	dig_amount = round_dig
 	dig_speed = round_dig * 0.5
-	to_chat(user, span_notice("You change the hammer's digging depth to [round_dig]cm."))
+	to_chat(user, span_notice("你将锤子的挖掘深度设为 [round_dig] 厘米。"))
 
 /obj/item/xenoarch/hammer/cm1
-	name = "hammer (1cm)"
+	name = "锤子（1 厘米）"
 	icon_state = "hammer1"
 	dig_amount = 1
 	dig_speed = 0.5 SECONDS
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/hammer/cm2
-	name = "hammer (2cm)"
+	name = "锤子（2 厘米）"
 	icon_state = "hammer2"
 	dig_amount = 2
 	dig_speed = 1 SECONDS
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/hammer/cm3
-	name = "hammer (3cm)"
+	name = "锤子（3 厘米）"
 	icon_state = "hammer3"
 	dig_amount = 3
 	dig_speed = 1.5 SECONDS
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/hammer/cm4
-	name = "hammer (4cm)"
+	name = "锤子（4 厘米）"
 	icon_state = "hammer4"
 	dig_amount = 4
 	dig_speed = 2 SECONDS
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/hammer/cm5
-	name = "hammer (5cm)"
+	name = "锤子（5 厘米）"
 	icon_state = "hammer5"
 	dig_amount = 5
 	dig_speed = 2.5 SECONDS
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/hammer/cm6
-	name = "hammer (6cm)"
+	name = "锤子（6 厘米）"
 	icon_state = "hammer6"
 	dig_amount = 6
 	dig_speed = 3 SECONDS
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/hammer/cm10
-	name = "hammer (10cm)"
+	name = "锤子（10 厘米）"
 	icon_state = "hammer10"
 	dig_amount = 10
 	dig_speed = 5 SECONDS
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/hammer/adv
-	name = "advanced hammer"
+	name = "高级锤子"
 	icon_state = "adv_hammer"
 	dig_amount = 1
 	dig_speed = 1
@@ -106,14 +106,14 @@
 // BRUSHES
 
 /obj/item/xenoarch/brush
-	name = "brush"
-	desc = "A brush that is used to uncover the secrets of the past from strange rocks."
+	name = "刷子"
+	desc = "用于从奇异岩石中揭开往昔秘密的刷子。"
 	var/dig_speed = 3 SECONDS
 	icon_state = "brush"
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/brush/adv
-	name = "advanced brush"
+	name = "高级刷子"
 	dig_speed = 0.5 SECONDS
 	icon_state = "adv_brush"
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT)
@@ -121,29 +121,29 @@
 // MISC.
 
 /obj/item/xenoarch/tape_measure
-	name = "measuring tape"
-	desc = "A measuring tape specifically produced to measure the depth that has been dug into strange rocks."
+	name = "卷尺"
+	desc = "专为测量奇异岩石已挖掘深度而制造的卷尺。"
 	icon_state = "tape"
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/handheld_scanner
-	name = "handheld scanner"
-	desc = "A handheld scanner for strange rocks. It tags the depths to the rock."
+	name = "手持扫描仪"
+	desc = "用于奇异岩石的手持扫描仪，能在岩石上标注深度。"
 	icon_state = "scanner"
 	var/scanning_speed = 3 SECONDS
 	var/scan_advanced = FALSE
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/handheld_scanner/advanced
-	name = "advanced handheld scanner"
+	name = "高级手持扫描仪"
 	icon_state = "adv_scanner"
 	scanning_speed = 0.5 SECONDS
 	scan_advanced = TRUE
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/handheld_recoverer
-	name = "handheld recoverer"
-	desc = "An item that has the capabilities to recover items lost due to time."
+	name = "手持修复器"
+	desc = "能够复原被岁月侵蚀的物品的装置。"
 	icon_state = "recoverer"
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
@@ -191,8 +191,8 @@
 	return NONE
 
 /obj/item/storage/belt/utility/xenoarch
-	name = "xenoarch toolbelt"
-	desc = "Holds tools."
+	name = "异星考古工具腰带"
+	desc = "用于收纳工具。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/xenoarch_items.dmi'
 	icon_state = "xenoarch_belt"
 	content_overlays = FALSE
@@ -215,8 +215,8 @@
 		))
 
 /obj/item/storage/bag/xenoarch
-	name = "xenoarch mining satchel"
-	desc = "This little bugger can be used to store and transport rocks and relics."
+	name = "异星考古采集袋"
+	desc = "这个小家伙可以储存并搬运岩石和遗物。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/xenoarch_items.dmi'
 	icon_state = "satchel"
 	worn_icon_state = "satchel"
@@ -277,19 +277,19 @@
 
 			else
 				if(!spam_protection)
-					to_chat(user, span_warning("Your [name] is full and can't hold any more!"))
+					to_chat(user, span_warning("你的[name]已经满了，装不下更多东西！"))
 					spam_protection = TRUE
 					continue
 
 	if(show_message)
 		playsound(user, SFX_RUSTLE, 50, TRUE)
-		user.visible_message(span_notice("[user] scoops up the items beneath [user.p_them()]."), \
-			span_notice("You scoop up the items beneath you with your [name]."))
+		user.visible_message(span_notice("[user]捡起脚下的物品。"), \
+			span_notice("你用[name]收起了脚下的物品。"))
 
 	spam_protection = FALSE
 
 /obj/item/storage/bag/xenoarch/adv
-	name = "advanced xenoarch mining satchel"
+	name = "高级异星考古采集袋"
 	icon_state = "adv_satchel"
 	insert_speed = 0.1 SECONDS
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT)
@@ -299,7 +299,7 @@
 	atom_storage.max_slots = 50
 
 /obj/structure/closet/xenoarch
-	name = "xenoarchaeology equipment locker"
+	name = "异星考古装备柜"
 	icon_state = "science"
 
 /obj/structure/closet/xenoarch/PopulateContents()
@@ -321,19 +321,19 @@
 	new /obj/item/paper/fluff/xenoarch_guide(src)
 
 /obj/structure/closet/xenoarch/ashwalker_version
-	name = "dusty xenoarchaeology equipment locker"
+	name = "积尘的异星考古装备柜"
 
 /obj/structure/closet/xenoarch/ashwalker_version/PopulateContents()
 	. = ..()
 	new /obj/item/xenoarch/handheld_recoverer(src)
 
 /obj/item/skillchip/xenoarch_magnifier
-	name = "R3T3N-T1VE skillchip"
-	desc = "This biochip integrates with user's brain to enable the mastery of a specific skill. Consult certified Nanotrasen neurosurgeon before use. \
-	There's a little face etched into the back of the skillchip, with buck teeth and goofy-looking glasses."
+	name = "R3T3N-T1VE 技能芯片"
+	desc = "这种生物芯片与使用者的大脑整合，使其精通某项技能。使用前请咨询纳米传讯认证神经外科医生。\
+	芯片背面刻着一张小脸，有着龅牙，还戴着傻乎乎的眼镜。"
 	auto_traits = list(TRAIT_XENOARCH_QUALIFIED)
-	skill_name = "Xenoarchaeological Analysis"
-	skill_description = "Allows for the more thorough magnification and notice of details on freshly-excavated xenoarchaeological garbage."
+	skill_name = "异星考古分析"
+	skill_description = "能够更仔细地放大观察刚出土的异星考古废物，并发现其中细节。"
 	skill_icon = "magnifying-glass"
-	activate_message = span_notice("You feel the gleaned knowledge of a xenoarchaeological digsite internship reveal itself to your mind.")
-	deactivate_message = span_notice("The knowledge from a digsite internship fades away into jumbled coffee orders from ungrateful supervisors.")
+	activate_message = span_notice("你感到在异星考古发掘场实习中积累的知识浮现在脑海。")
+	deactivate_message = span_notice("发掘场实习的知识渐渐消散，只剩下那些不知感恩的主管杂乱的咖啡订单。")

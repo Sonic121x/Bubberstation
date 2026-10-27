@@ -36,7 +36,7 @@
 		var/obj/structure/simple_farm/locate_farm = locate() in get_turf(atom_parent)
 
 		if(one_per_turf && locate_farm)
-			atom_parent.balloon_alert_to_viewers("cannot plant more seeds here!")
+			atom_parent.balloon_alert_to_viewers("这里不能再种更多种子了！")
 			return
 
 		locate_farm = new(get_turf(atom_parent))
@@ -50,7 +50,7 @@
 		attacking_item.forceMove(locate_farm)
 		locate_farm.planted_seed = attacking_item
 		locate_farm.attached_atom = atom_parent
-		atom_parent.balloon_alert_to_viewers("seed has been planted!")
+		atom_parent.balloon_alert_to_viewers("种子已种下！")
 		locate_farm.update_appearance()
 		locate_farm.late_setup()
 
@@ -58,7 +58,7 @@
  * check_examine is meant to listen for the COMSIG_ATOM_EXAMINE signal, where it will put additional information in the examine
  */
 /datum/component/simple_farm/proc/check_examine(datum/source, mob/user, list/examine_list)
-	examine_list += span_notice("<br>You are able to plant seeds here!")
+	examine_list += span_notice("<br>你可以在这里种植种子！")
 
 /**
  * delete_farm is meant to be called when the parent of this component has been deleted-- thus deleting the ability to grow the simple farm
@@ -72,8 +72,8 @@
 		qdel(locate_farm)
 
 /obj/structure/simple_farm
-	name = "simple farm"
-	desc = "A small little plant that has adapted to the surrounding environment."
+	name = "简易农田"
+	desc = "一株适应了周围环境的小植物。"
 	//it needs to be able to be walked through
 	density = FALSE
 	//it should not be pulled by anything
@@ -118,11 +118,11 @@
 
 /obj/structure/simple_farm/examine(mob/user)
 	. = ..()
-	. += span_notice("<br>[src] will be ready for harvest in [DisplayTimeText(COOLDOWN_TIMELEFT(src, harvest_timer))]")
+	. += span_notice("<br>[src] 将在 [DisplayTimeText(COOLDOWN_TIMELEFT(src, harvest_timer))] 后可以采收")
 	if(farm_level < SKILL_LEVEL_LEGENDARY)
-		. += span_notice("<br>You can use <b>worm fertilizer</b> to increase the level of the farm.")
+		. += span_notice("<br>你可以使用<b>蠕虫肥料</b>来提升农田等级。")
 	if(stored_worms < 5)
-		. += span_notice("<br>You can use <b>worms</b> to increase the performance of the farm.")
+		. += span_notice("<br>你可以使用<b>蠕虫</b>来提升农田的产出表现。")
 
 /obj/structure/simple_farm/process(seconds_per_tick)
 	update_appearance()
@@ -144,13 +144,13 @@
 
 	else
 		icon_state = "[planted_seed.icon_grow]1"
-		name = LOWER_TEXT("harvested [planted_seed.plantname]")
+		name = LOWER_TEXT("已采收的[planted_seed.plantname]")
 
 	return ..()
 
 /obj/structure/simple_farm/attack_hand(mob/living/user, list/modifiers)
 	if(!COOLDOWN_FINISHED(src, harvest_timer))
-		balloon_alert(user, "plant not ready for harvest!")
+		balloon_alert(user, "植物尚未成熟，不能采收！")
 		return
 
 	COOLDOWN_START(src, harvest_timer, harvest_cooldown)
@@ -163,7 +163,7 @@
 	//if its a shovel or knife, dismantle
 	if(attacking_item.tool_behaviour == TOOL_SHOVEL || attacking_item.tool_behaviour == TOOL_KNIFE)
 		var/turf/src_turf = get_turf(src)
-		src_turf.balloon_alert_to_viewers("the plant crumbles!")
+		src_turf.balloon_alert_to_viewers("植物碎成了渣！")
 		Destroy()
 		return
 
@@ -182,14 +182,14 @@
 	else if(istype(attacking_item, /obj/item/stack/worm_fertilizer))
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		if(farm_level >= SKILL_LEVEL_LEGENDARY)
-			balloon_alert(user, "farm already max level!")
+			balloon_alert(user, "农田已达最高等级！")
 			return
 
 		var/obj/item/stack/worm_fertilizer/fertilizer = attacking_item
 		if(!fertilizer.use(1))
 			return
 
-		balloon_alert(user, "increased farm level")
+		balloon_alert(user, "农田等级已提升")
 		farm_level++
 		return
 
@@ -197,10 +197,10 @@
 	else if(istype(attacking_item, /obj/item/food/bait/worm))
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		if(stored_worms >= 5)
-			balloon_alert(user, "plant already full on worms!")
+			balloon_alert(user, "这株植物已经有足够的蠕虫了！")
 			return
 
-		balloon_alert(user, "applied worm")
+		balloon_alert(user, "已施加蠕虫")
 		qdel(attacking_item)
 		stored_worms++
 		return
@@ -246,7 +246,7 @@
 				add_atom_colour(color_matrix_were_rich, FIXED_COLOUR_PRIORITY)
 				bonus_potency += 20
 				harvest_cooldown -= 15 SECONDS
-				balloon_alert_to_viewers("[src] gains a golden glow!")
+				balloon_alert_to_viewers("[src] 泛起了金色的光芒！")
 
 
 /**
@@ -284,7 +284,7 @@
 		if(prob(15) && length(planted_seed.mutatelist))
 			var/type = pick(planted_seed.mutatelist)
 			seed = new type
-			balloon_alert_to_viewers("something special drops!")
+			balloon_alert_to_viewers("有什么特别的东西掉了下来！")
 		else
 			seed = new planted_seed.type(null)
 

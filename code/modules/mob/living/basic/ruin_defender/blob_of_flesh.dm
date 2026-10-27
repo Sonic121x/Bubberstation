@@ -9,8 +9,8 @@
 	ai_movement = /datum/ai_movement/basic_avoidance
 
 /mob/living/basic/fleshblob
-	name = "mass of flesh"
-	desc = "A moving slithering mass of flesh, seems to be very much in pain. Better avoid. It has no mouth and it must scream."
+	name = "肉块"
+	desc = "一团缓慢蠕动的肉块，看起来痛苦万分。最好躲远点。它没有嘴，却必须尖叫。"
 	icon = 'icons/mob/simple/animal.dmi'
 	icon_state = "fleshblob"
 	icon_living = "fleshblob"
@@ -25,8 +25,8 @@
 	maxHealth = 160
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SMASH
-	attack_verb_continuous = "attempts to assimilate"
-	attack_verb_simple = "attempt to assimilate"
+	attack_verb_continuous = "试图同化"
+	attack_verb_simple = "试图同化"
 	mob_biotypes = MOB_ORGANIC
 	speed = 8
 	combat_mode = TRUE
@@ -65,5 +65,5 @@
 	consume.Trigger() // subtrees wouldve spammed this shit repeatedly anyway
 
 /datum/action/consume/fleshblob
-	devour_verb = "assimilate"
+	devour_verb = "同化"
 	devour_time = 3 SECONDS

@@ -1,8 +1,8 @@
 // .35 Sol pistol magazines
 
 /obj/item/ammo_box/magazine/c35sol_pistol
-	name = "\improper Sol pistol magazine"
-	desc = "A standard size magazine for TerraGov pistols, holds twelve rounds."
+	name = "\improper 太阳手枪弹匣"
+	desc = "地球政府手枪使用的标准尺寸弹匣，可容纳十二发子弹。"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "pistol_35_standard"
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
@@ -14,8 +14,8 @@
 	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/c35sol_pistol/stendo
-	name = "\improper Sol extended pistol magazine"
-	desc = "An extended magazine for TerraGov pistols, holds twenty-four rounds."
+	name = "\improper 太阳手枪扩容弹匣"
+	desc = "地球政府手枪使用的扩容弹匣，可容纳二十四发子弹。"
 	icon_state = "pistol_35_stended"
 	max_ammo = 24
 
@@ -25,8 +25,8 @@
 // .40 Sol rifle magazines
 
 /obj/item/ammo_box/magazine/c40sol_rifle
-	name = "\improper Sol rifle short magazine"
-	desc = "A shortened magazine for TerraGov rifles, holds fifteen rounds."
+	name = "\improper 太阳步枪短弹匣"
+	desc = "地球政府步枪使用的缩短型弹匣，可容纳十五发子弹。"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "rifle_short"
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
@@ -38,8 +38,8 @@
 	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/c40sol_rifle/standard
-	name = "\improper Sol rifle magazine"
-	desc = "A standard size magazine for TerraGov rifles, holds thirty rounds."
+	name = "\improper 太阳步枪弹匣"
+	desc = "地球政府步枪使用的标准尺寸弹匣，可容纳三十发子弹。"
 	icon_state = "rifle_standard"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_ammo = 30
@@ -49,8 +49,8 @@
 
 
 /obj/item/ammo_box/magazine/c40sol_rifle/drum
-	name = "\improper Sol rifle drum magazine"
-	desc = "A massive drum magazine for TerraGov rifles, holds sixty rounds."
+	name = "\improper 太阳步枪弹鼓"
+	desc = "地球政府步枪使用的大型弹鼓，可容纳六十发子弹。"
 	icon_state = "rifle_drum"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_ammo = 60
@@ -61,8 +61,8 @@
 // .980 grenade magazines
 
 /obj/item/ammo_box/magazine/c980_grenade
-	name = "\improper Kiboko grenade box"
-	desc = "A standard size box for .980 grenades, holds four shells."
+	name = "\improper 河马榴弹弹匣"
+	desc = "装载.980榴弹的标准尺寸弹匣，可容纳四发榴弹。"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "granata_standard"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
@@ -76,8 +76,8 @@
 	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/c980_grenade/drum
-	name = "\improper Kiboko grenade drum"
-	desc = "A drum for .980 grenades, holds six shells."
+	name = "\improper 河马榴弹弹鼓"
+	desc = "装载.980榴弹的弹鼓，可容纳六发榴弹。"
 	icon_state = "granata_drum"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_ammo = 6
@@ -89,8 +89,8 @@
 // Rifle caliber caseless ammo that kills people good
 
 /obj/item/ammo_casing/c40sol
-	name = ".40 Sol Long lethal bullet casing"
-	desc = "A TerraGov standard caseless lethal rifle round."
+	name = ".40太阳长型致命弹"
+	desc = "一发地球政府制式无壳致命步枪弹。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "40sol"
@@ -106,7 +106,7 @@
 
 
 /obj/projectile/bullet/c40sol
-	name = ".40 Sol Long bullet"
+	name = ".40太阳长型子弹"
 	damage = 35
 
 	wound_bonus = -30
@@ -114,8 +114,8 @@
 
 
 /obj/item/ammo_box/c40sol
-	name = "ammo box (.40 Sol Long lethal)"
-	desc = "A box of .40 Sol Long rifle rounds, holds thirty bullets."
+	name = "弹药盒（.40太阳长型致命弹）"
+	desc = "一盒.40太阳长型步枪弹，可容纳三十发。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "40box"
@@ -132,8 +132,8 @@
 // .40 Sol fragmentation rounds, embeds shrapnel in the target almost every time at close to medium range. Teeeechnically less lethals.
 
 /obj/item/ammo_casing/c40sol/fragmentation
-	name = ".40 Sol Long fragmentation bullet casing"
-	desc = "A TerraGov standard caseless fragmentation rifle round. Shatters upon impact, ejecting sharp shrapnel that can potentially incapacitate targets."
+	name = ".40太阳长型破片弹"
+	desc = "一发地球政府制式无壳破片步枪弹。撞击时破碎，飞散的锋利破片可能使目标失去行动能力。"
 
 	icon_state = "40sol_disabler"
 
@@ -145,7 +145,7 @@
 
 
 /obj/projectile/bullet/c40sol/fragmentation
-	name = ".40 Sol Long fragmentation bullet"
+	name = ".40太阳长型破片子弹"
 	damage = 15
 	stamina = 30
 
@@ -171,8 +171,8 @@
 	rip_time = 0.5 SECONDS
 
 /obj/item/ammo_box/c40sol/fragmentation
-	name = "ammo box (.40 Sol Long fragmentation)"
-	desc = "A box of .40 Sol Long rifle rounds, holds thirty bullets. The blue stripe indicates this should hold less lethal ammunition."
+	name = "弹药盒（.40太阳长型破片弹）"
+	desc = "一盒.40太阳长型步枪弹，可容纳三十发。蓝色条纹表示盒内应为低致命性弹药。"
 
 	icon_state = "40box_disabler"
 
@@ -182,10 +182,10 @@
 // .40 Sol match grade, bounces a lot, and if there's less than 20 bullet armor on wherever these hit, it'll go completely through the target and out the other side
 
 /obj/item/ammo_casing/c40sol/pierce
-	name = ".40 Sol Long match bullet casing"
-	desc = "A TerraGov standard caseless match grade rifle round. Fires at a higher pressure and thus fires slightly faster projectiles. \
-		Rumors say you can do sick ass wall bounce trick shots with these, though the official suggestion is to just shoot your target and \
-		not the wall next to them."
+	name = ".40太阳长型竞赛弹"
+	desc = "一发地球政府制式无壳竞赛级步枪弹。采用更高膛压，因此弹丸飞行速度略快。\
+		传闻这种子弹能打出酷炫的墙面跳弹，不过官方建议直接射击目标，\
+		别打目标旁边的墙。"
 
 	icon_state = "40sol_pierce"
 
@@ -196,7 +196,7 @@
 
 
 /obj/projectile/bullet/c40sol/pierce
-	name = ".40 Sol match bullet"
+	name = ".40太阳竞赛子弹"
 
 	icon_state = "gaussphase"
 
@@ -232,8 +232,8 @@
 
 
 /obj/item/ammo_box/c40sol/pierce
-	name = "ammo box (.40 Sol Long match)"
-	desc = "A box of .40 Sol Long rifle rounds, holds thirty bullets. The yellow stripe indicates this should hold high performance ammuniton."
+	name = "弹药盒（.40太阳长型竞赛弹）"
+	desc = "一盒.40太阳长型步枪弹，可容纳三十发。黄色条纹表示盒内应为高性能弹药。"
 
 	icon_state = "40box_pierce"
 
@@ -243,8 +243,8 @@
 // .40 Sol incendiary
 
 /obj/item/ammo_casing/c40sol/incendiary
-	name = ".40 Sol Long incendiary bullet casing"
-	desc = "A TerraGov standard caseless incendiary rifle round. Leaves no flaming trail, only igniting targets on impact."
+	name = ".40太阳长型燃烧弹"
+	desc = "一发地球政府制式无壳燃烧步枪弹。不留火焰轨迹，只在命中时点燃目标。"
 
 	icon_state = "40sol_flame"
 
@@ -255,7 +255,7 @@
 
 
 /obj/projectile/bullet/c40sol/incendiary
-	name = ".40 Sol Long incendiary bullet"
+	name = ".40太阳长型燃烧子弹"
 	icon_state = "redtrac"
 
 	damage = 25
@@ -274,8 +274,8 @@
 
 
 /obj/item/ammo_box/c40sol/incendiary
-	name = "ammo box (.40 Sol Long incendiary)"
-	desc = "A box of .40 Sol Long rifle rounds, holds thirty bullets. The orange stripe indicates this should hold incendiary ammunition."
+	name = "弹药盒（.40太阳长型燃烧弹）"
+	desc = "一盒.40太阳长型步枪弹，可容纳三十发。橙色条纹表示盒内应为燃烧弹药。"
 
 	icon_state = "40box_flame"
 

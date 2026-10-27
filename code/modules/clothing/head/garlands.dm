@@ -1,6 +1,6 @@
 /obj/item/clothing/head/costume/garland
-	name = "floral garland"
-	desc = "Someone, somewhere, is starving while wearing this. And it's definitely not you."
+	name = "花环"
+	desc = "在某个地方，有人戴着这玩意儿还饿着肚子。而那个人绝对不是你。"
 	icon_state = "garland"
 	worn_icon_state = "garland"
 
@@ -14,8 +14,8 @@
 	user.clear_mood_event("garland")
 
 /obj/item/clothing/head/costume/garland/rainbowbunch
-	name = "rainbow flower crown"
-	desc = "A flower crown made out of the flowers of the rainbow bunch plant."
+	name = "彩虹花冠"
+	desc = "由彩虹花丛的花朵编成的花冠。"
 	icon_state = "rainbow_bunch_crown_1"
 	base_icon_state = "rainbow_bunch_crown"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.3) //tied together with cable coil
@@ -26,31 +26,31 @@
 	icon_state = "[base_icon_state]_[crown_type]"
 	switch(crown_type)
 		if(1)
-			desc += " This one has red, yellow, and white flowers."
+			desc += " 这一顶有红、黄、白色的花。"
 		if(2)
-			desc += " This one has blue, yellow, green, and white flowers."
+			desc += " 这一顶有蓝、黄、绿、白色的花。"
 		if(3)
-			desc += " This one has red, blue, purple, and pink flowers."
+			desc += " 这一顶有红、蓝、紫、粉色的花。"
 		if(4)
-			desc += " This one has yellow, green, and white flowers."
+			desc += " 这一顶有黄、绿、白色的花。"
 
 /obj/item/clothing/head/costume/garland/sunflower
-	name = "sunflower crown"
-	desc = "A bright flower crown made out sunflowers that is sure to brighten up anyone's day!"
+	name = "向日葵花冠"
+	desc = "一顶由向日葵编成的明亮花冠，肯定能让任何人的一天都亮起来！"
 	icon_state = "sunflower_crown"
 	worn_icon_state = "sunflower_crown"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.3) //tied together with cable coil
 
 /obj/item/clothing/head/costume/garland/poppy
-	name = "poppy crown"
-	desc = "A flower crown made out of a string of bright red poppies."
+	name = "罂粟花冠"
+	desc = "一顶用一串鲜红罂粟花编成的花冠。"
 	icon_state = "poppy_crown"
 	worn_icon_state = "poppy_crown"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.3) //tied together with cable coil
 
 /obj/item/clothing/head/costume/garland/lily
-	name = "lily crown"
-	desc = "A leafy flower crown with a cluster of large white lilies at the front."
+	name = "百合花冠"
+	desc = "一顶枝叶繁茂的花冠，正面簇拥着大朵白百合。"
 	icon_state = "lily_crown"
 	worn_icon_state = "lily_crown"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.3) //tied together with cable coil

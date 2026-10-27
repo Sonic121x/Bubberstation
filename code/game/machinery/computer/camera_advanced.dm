@@ -1,6 +1,6 @@
 /obj/machinery/computer/camera_advanced
-	name = "advanced camera console"
-	desc = "Used to access the various cameras on the station."
+	name = "高级监控控制台"
+	desc = "用于访问空间站的各个摄像头。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/security")
 	icon_screen = "cameras"
 	icon_keyboard = "security_key"
@@ -161,7 +161,7 @@
 	if(isnull(user.client))
 		return
 	if(!QDELETED(current_user))
-		to_chat(user, span_warning("The console is already in use!"))
+		to_chat(user, span_warning("控制台已有人使用！"))
 		return
 
 	if(eyeobj)
@@ -171,7 +171,7 @@
 	/* We're attempting to initialize the eye past this point */
 
 	if(!CreateEye())
-		to_chat(user, span_warning("\The [src] flashes a bunch of never-ending errors on the display. Something is really wrong."))
+		to_chat(user, span_warning("[src]的屏幕上不断闪现错误信息。看来出了严重故障。"))
 		return
 
 	SEND_SIGNAL(src, COMSIG_ADVANCED_CAMERA_EYE_CREATED, eyeobj)
@@ -210,7 +210,7 @@
 	return //AIs would need to disable their own camera procs to use the console safely. Bugs happen otherwise.
 
 /datum/action/innate/camera_off
-	name = "End Camera View"
+	name = "结束监控视角"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "camera_off"
 
@@ -222,7 +222,7 @@
 	console.remove_eye_control(owner)
 
 /datum/action/innate/camera_jump
-	name = "Jump To Camera"
+	name = "跳转至摄像头"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "camera_jump"
 
@@ -235,7 +235,7 @@
 	var/list/cameras_by_tag = SScameras.get_available_camera_by_tag_list(origin.networks, origin.z_lock)
 
 	playsound(origin, 'sound/machines/terminal/terminal_prompt.ogg', 25, FALSE)
-	var/camera = tgui_input_list(usr, "Camera to view", "Cameras", cameras_by_tag)
+	var/camera = tgui_input_list(usr, "选择要查看的摄像头", "摄像头", cameras_by_tag)
 	if(isnull(camera))
 		return
 
@@ -252,7 +252,7 @@
 	owner.clear_fullscreen("flash", 3) //Shorter flash than normal since it's an ~~advanced~~ console!
 
 /datum/action/innate/camera_multiz_up
-	name = "Move up a floor"
+	name = "上移一层"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "move_up"
 
@@ -261,12 +261,12 @@
 		return
 	var/mob/eye/camera/remote/remote_eye = owner.remote_control
 	if(remote_eye.zMove(UP))
-		to_chat(owner, span_notice("You move upwards."))
+		to_chat(owner, span_notice("你向上移动。"))
 	else
-		to_chat(owner, span_notice("You can't move upwards!"))
+		to_chat(owner, span_notice("你无法向上移动！"))
 
 /datum/action/innate/camera_multiz_down
-	name = "Move down a floor"
+	name = "下移一层"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "move_down"
 
@@ -275,12 +275,12 @@
 		return
 	var/mob/eye/camera/remote/remote_eye = owner.remote_control
 	if(remote_eye.zMove(DOWN))
-		to_chat(owner, span_notice("You move downwards."))
+		to_chat(owner, span_notice("你向下移动。"))
 	else
-		to_chat(owner, span_notice("You can't move downwards!"))
+		to_chat(owner, span_notice("你无法向下移动！"))
 
 /obj/machinery/computer/camera_advanced/human_ai/screwdriver_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, "repackaging...")
+	balloon_alert(user, "正在重新打包……")
 	if(!do_after(user, 5 SECONDS, src))
 		return ITEM_INTERACT_BLOCKING
 	tool.play_tool_sound(src, 40)
@@ -336,8 +336,8 @@
 /// Advanced camera component
 
 /obj/item/circuit_component/advanced_camera
-	display_name = "Advanced Camera Console"
-	desc = "Gets the position being viewed through the console."
+	display_name = "高级监控控制台"
+	desc = "获取控制台当前查看的位置。"
 
 	var/datum/port/output/eye_x
 	var/datum/port/output/eye_y
@@ -389,8 +389,8 @@
 /// Advanced camera target intercept component
 
 /obj/item/circuit_component/advanced_camera_intercept
-	display_name = "Advanced Camera Target Intercept"
-	desc = "Allows the user to target an entity or position with the console."
+	display_name = "高级监控目标捕获器"
+	desc = "允许使用者通过控制台指定实体或位置。"
 
 	var/datum/port/input/enabled
 

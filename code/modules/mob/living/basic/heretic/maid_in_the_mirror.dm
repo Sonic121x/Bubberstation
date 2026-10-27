@@ -1,12 +1,12 @@
 /// Scout and assassin who can appear and disappear from glass surfaces. Damaged by being examined.
 /mob/living/basic/heretic_summon/maid_in_the_mirror
-	name = "\improper Maid in the Mirror"
-	real_name = "Maid in the Mirror"
-	desc = "A floating and flowing wisp of chilled air. Glancing at it causes it to shimmer slightly."
+	name = "\improper 镜中女仆"
+	real_name = "镜中女仆"
+	desc = "一缕漂浮流动的冰冷空气。瞥它一眼就会让它微微闪烁。"
 	icon = 'icons/mob/simple/mob.dmi'
 	icon_state = "stand"
 	icon_living = "stand" // Placeholder sprite... still
-	speak_emote = list("whispers")
+	speak_emote = list("低语道")
 	movement_type = FLOATING
 	status_flags = CANSTUN | CANPUSH
 	attack_sound = SFX_SHATTER
@@ -15,7 +15,7 @@
 	melee_damage_lower = 12
 	melee_damage_upper = 16
 	sight = SEE_MOBS | SEE_OBJS | SEE_TURFS
-	death_message = "shatters and vanishes, releasing a gust of cold air."
+	death_message = "碎裂消散，释放出一阵冷风。"
 	/// Whether we take damage when someone looks at us
 	var/harmed_by_examine = TRUE
 	/// How often being examined by a specific mob can hurt us
@@ -44,7 +44,7 @@
 		antiquated_names = GLOB.mirror_maid_names.Copy()
 
 	antiquated_name = pick_n_take(antiquated_names)
-	name = "Mirror Maid [antiquated_name]"
+	name = "镜中女仆 [antiquated_name]"
 	real_name = name
 
 /mob/living/basic/heretic_summon/maid_in_the_mirror/death(gibbed)
@@ -65,8 +65,8 @@
 	// If we have health, we take some damage
 	if(health > (maxHealth * 0.02))
 		visible_message(
-				span_warning("[src] seems to fade in and out slightly."),
-				span_userdanger("[user]'s gaze pierces your every being!"),
+				span_warning("[src] 似乎微微地明灭不定。"),
+				span_userdanger("[user] 的目光刺穿了你的每一寸存在！"),
 		)
 
 		recent_examiner_refs += user_ref
@@ -79,8 +79,8 @@
 	// If we're examined on low enough health we die straight up
 	else
 		visible_message(
-				span_danger("[src] vanishes from existence!"),
-				span_userdanger("[user]'s gaze shatters your form, destroying you!"),
+				span_danger("[src] 从现实中消失了！"),
+				span_userdanger("[user] 的目光击碎了你的形体，将你摧毁！"),
 		)
 
 		death()

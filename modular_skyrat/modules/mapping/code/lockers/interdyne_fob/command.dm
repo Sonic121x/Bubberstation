@@ -1,16 +1,16 @@
 /obj/structure/closet/secure_closet/interdynefob/sa_locker
 	icon_door = "cap"
 	icon_state = "cap"
-	name = "\proper station admiral's locker"
+	name = "\proper 空间站上将的储物柜"
 
 /obj/item/clothing/accessory/medal/gold/admiral
-	name = "medal of admiralty"
-	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. \
-		It signifies the codified responsibilities of an Admiral to the Sothran Syndicate, and their undisputable authority over their crew."
+	name = "上将勋章"
+	desc = "一枚金质勋章，仅授予晋升至舰长军衔的人。\
+		它象征着一名上将对索斯兰辛迪加所负的成文职责，以及对其船员的无可争议的权威。"
 
 /obj/item/storage/bag/garment/station_admiral
-	name = "station admiral's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the station admiral."
+	name = "空间站上将的衣物袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个是空间站上将的。"
 
 /obj/item/storage/bag/garment/station_admiral/PopulateContents()
 	new /obj/item/clothing/head/hats/hos/cap/syndicate(src)
@@ -30,25 +30,25 @@
 /obj/structure/closet/secure_closet/interdynefob/maa_locker
 	icon_door = "warden"
 	icon_state = "warden"
-	name = "master at arms' locker"
+	name = "纠察长储物柜"
 	req_access = list("syndicate_leader")
 
 /obj/item/clothing/accessory/medal/silver/maa_medal
-	name = "military excellence medal"
-	desc = "The Sothran Syndicate's dictionary defines excellence as \"the ability to crush NT scum under one's boot\". \
-		This is awarded to those rare operatives who fit that definition."
+	name = "军事卓越勋章"
+	desc = "索斯兰辛迪加的词典将卓越定义为“把纳米传讯的渣滓踩在靴底的能力”。\
+		这枚勋章授予那些少数符合该定义的干员。"
 
 /obj/item/clothing/suit/armor/hos/maa_greatcoat
-	name = "Master at Arms' armored greatcoat"
-	desc = "A greatcoat enhanced with a special alloy for some extra protection and style for those with a likely chance to get bullied for being outside of the brig"
+	name = "纠察长装甲大衣"
+	desc = "一件用特殊合金强化过的大衣，能为那些因为不待在禁闭室里而很可能被欺负的人添上额外的防护与风度。"
 
 /obj/item/clothing/suit/armor/hos/trenchcoat/maa_greatcoat
-	name = "Master at Arms' armored trenchcoat"
-	desc = "A trenchcoat enhanced with a special lightweight kevlar. It has little Syndicate logos sewn onto the shoulder badges with the letters 'MAA' just under it."
+	name = "纠察长装甲风衣"
+	desc = "一件用特殊轻质凯夫拉强化过的风衣。肩章上缝着小号的辛迪加标志，正下方还绣着字母“MAA”。"
 
 /obj/item/storage/bag/garment/master_arms
-	name = "master at arms' garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the master at arms."
+	name = "纠察长的衣物袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个是纠察长的。"
 
 /obj/item/storage/bag/garment/master_arms/PopulateContents()
 	new /obj/item/clothing/accessory/medal/silver/maa_medal(src)
@@ -76,16 +76,16 @@
 /obj/structure/closet/secure_closet/interdynefob/cl_locker
 	icon_door = "hop"
 	icon_state = "hop"
-	name = "\proper corporate liaison's locker"
+	name = "\proper 企业联络官的储物柜"
 	req_access = list("syndicate_leader")
 
 /obj/item/clothing/neck/chaplain/black/cl_cloak
-	name = "corporate liaison's cloak"
-	desc = "A unique cloak that shimmers with the Corporate Liaison's emblem."
+	name = "企业联络官的披风"
+	desc = "一件独特的披风，上面企业联络官的徽记隐隐闪烁。"
 
 /obj/item/storage/bag/garment/corprate_liaison
-	name = "corprate liaison's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the corprate liaison."
+	name = "企业联络官的衣物袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个是企业联络官的。"
 
 /obj/item/storage/bag/garment/corprate_liaison/PopulateContents()
 	new /obj/item/clothing/under/syndicate/skyrat/baseball(src)

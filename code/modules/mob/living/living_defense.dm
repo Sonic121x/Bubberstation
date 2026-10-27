@@ -17,17 +17,17 @@
 		if(penetrated_text)
 			to_chat(src, span_userdanger("[penetrated_text]"))
 		else
-			to_chat(src, span_userdanger("Your armor was penetrated!"))
+			to_chat(src, span_userdanger("你的护甲被击穿了！"))
 	else if(our_armor >= 100)
 		if(absorb_text)
 			to_chat(src, span_notice("[absorb_text]"))
 		else
-			to_chat(src, span_notice("Your armor absorbs the blow!"))
+			to_chat(src, span_notice("你的护甲吸收了这次攻击！"))
 	else
 		if(soften_text)
 			to_chat(src, span_warning("[soften_text]"))
 		else
-			to_chat(src, span_warning("Your armor softens the blow!"))
+			to_chat(src, span_warning("你的护甲减轻了这次攻击！"))
 	return our_armor
 
 /mob/living/proc/getarmor(def_zone, type)
@@ -133,16 +133,16 @@
 	var/hit_limb_zone = check_hit_limb_zone_name(def_zone)
 	var/organ_hit_text = ""
 	if (hit_limb_zone)
-		organ_hit_text = " in \the [parse_zone_with_bodypart(hit_limb_zone)]"
+		organ_hit_text = "，部位是[parse_zone_with_bodypart(hit_limb_zone)]"
 
 	switch (proj.suppressed)
 		if (SUPPRESSED_QUIET)
-			to_chat(src, span_userdanger("You're shot by \a [proj][organ_hit_text]!"))
+			to_chat(src, span_userdanger("你被 \a [proj] 击中[organ_hit_text]！"))
 		if (SUPPRESSED_NONE)
-			visible_message(span_danger("[src] is hit by \a [proj][organ_hit_text]!"), \
-					span_userdanger("You're hit by \a [proj][organ_hit_text]!"), null, COMBAT_MESSAGE_RANGE)
+			visible_message(span_danger("[src] 被 \a [proj] 击中[organ_hit_text]！"), \
+					span_userdanger("你被 \a [proj] 击中[organ_hit_text]！"), null, COMBAT_MESSAGE_RANGE)
 			if(is_blind())
-				to_chat(src, span_userdanger("You feel something hit you[organ_hit_text]!"))
+				to_chat(src, span_userdanger("你感觉有东西击中了你[organ_hit_text]！"))
 
 	if(proj.is_hostile_projectile())
 		apply_projectile_effects(proj, def_zone, blocked)
@@ -251,9 +251,9 @@
 		else
 			playsound(loc, 'sound/items/weapons/genhit.ogg', 50, TRUE, -1) //Item sounds are handled in the item itself
 			if(!isvendor(AM) && !iscarbon(AM)) //Vendors have special interactions, while carbon mobs already generate visible messages!
-				visible_message(span_danger("[src] is hit by [AM]!"), \
-							span_userdanger("You're hit by [AM]!"))
-		log_combat(AM, src, "hit ")
+				visible_message(span_danger("[src] 被 [AM] 击中！"), \
+							span_userdanger("你被 [AM] 击中！"))
+		log_combat(AM, src, "击中")
 		return ..()
 
 	var/obj/item/thrown_item = AM
@@ -276,8 +276,8 @@
 		log_hit_combat(throwingdatum?.get_thrower(), thrown_item)
 		return ..()
 
-	visible_message(span_danger("[src] is hit by [thrown_item]!"),
-		span_userdanger("You're hit by [thrown_item]!"))
+	visible_message(span_danger("[src] 被 [thrown_item] 击中！"),
+		span_userdanger("你被 [thrown_item] 击中！"))
 	if(!thrown_item.throwforce)
 		log_hit_combat(throwingdatum?.get_thrower(), thrown_item)
 		return
@@ -285,8 +285,8 @@
 	var/armor = run_armor_check(
 		zone,
 		MELEE,
-		"Your armor has protected your [parse_zone_with_bodypart(zone)].",
-		"Your armor has softened hit to your [parse_zone_with_bodypart(zone)].",
+		"你的护甲保护了你的[parse_zone_with_bodypart(zone)]。",
+		"你的护甲减轻了对你[parse_zone_with_bodypart(zone)]的冲击。",
 		thrown_item.armour_penetration,
 		"",
 		FALSE,
@@ -304,8 +304,8 @@
 
 /mob/living/proc/log_hit_combat(mob/thrown_by, obj/item/thrown_item)
 	if(thrown_by)
-		return log_combat(thrown_by, src, "threw and hit", thrown_item)
-	return log_combat(thrown_item, src, "hit ")
+		return log_combat(thrown_by, src, "扔出并击中", thrown_item)
+	return log_combat(thrown_item, src, "击中")
 
 ///The core of catching thrown items, which non-carbons cannot without the help of items or abilities yet, as they've no throw mode.
 /mob/living/proc/try_catch_item(obj/item/item, skip_throw_mode_check = FALSE, try_offhand = FALSE)
@@ -315,8 +315,8 @@
 		return FALSE
 	INVOKE_ASYNC(item, TYPE_PROC_REF(/obj/item, attempt_pickup), src, TRUE)
 	if(get_active_held_item() == item) //if our attack_hand() picks up the item...
-		visible_message(span_warning("[src] catches [item]!"), \
-						span_userdanger("You catch [item] in mid-air!"))
+		visible_message(span_warning("[src] 接住了 [item]！"), \
+						span_userdanger("你在半空中接住了 [item]！"))
 		return TRUE
 
 ///Checks the requites for catching a throw item.
@@ -340,7 +340,7 @@
 		return GRAB_SKIP
 	if(SEND_SIGNAL(src, COMSIG_LIVING_GRAB, target) & (COMPONENT_CANCEL_ATTACK_CHAIN|COMPONENT_SKIP_ATTACK))
 		return GRAB_FAILURE
-	if(target.check_block(src, 0, "[src]'s grab", UNARMED_ATTACK))
+	if(target.check_block(src, 0, "[src] 的抓取", UNARMED_ATTACK))
 		return GRAB_FAILURE
 	target.grabbedby(src)
 	return GRAB_SUCCESS
@@ -357,11 +357,11 @@
 		return
 
 	if(!(status_flags & CANPUSH) || HAS_TRAIT(src, TRAIT_PUSHIMMUNE))
-		to_chat(user, span_warning("[src] can't be grabbed more aggressively!"))
+		to_chat(user, span_warning("没法更用力地抓取 [src] 了！"))
 		return FALSE
 
 	if(user.grab_state >= GRAB_AGGRESSIVE && HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning("You don't want to risk hurting [src]!"))
+		to_chat(user, span_warning("你不想冒险伤到 [src]！"))
 		return FALSE
 
 	grippedby(user)
@@ -382,14 +382,14 @@
 	if(user.grab_state) //only the first upgrade is instantaneous
 		var/old_grab_state = user.grab_state
 		var/grab_upgrade_time = instant ? 0 : 30
-		visible_message(span_danger("[user] starts to tighten [user.p_their()] grip on [src]!"), \
-						span_userdanger("[user] starts to tighten [user.p_their()] grip on you!"), span_hear("You hear aggressive shuffling!"), null, user)
-		to_chat(user, span_danger("You start to tighten your grip on [src]!"))
+		visible_message(span_danger("[user] 开始收紧对 [src] 的抓握！"), \
+						span_userdanger("[user] 开始收紧对你的抓握！"), span_hear("你听到粗暴的推搡声！"), null, user)
+		to_chat(user, span_danger("你开始收紧对 [src] 的抓握！"))
 		switch(user.grab_state)
 			if(GRAB_AGGRESSIVE)
-				log_combat(user, src, "attempted to neck grab", addition="neck grab")
+				log_combat(user, src, "试图锁喉", addition="锁喉")
 			if(GRAB_NECK)
-				log_combat(user, src, "attempted to strangle", addition="kill grab")
+				log_combat(user, src, "试图勒死", addition="致命抓握")
 		if(!do_after(user, grab_upgrade_time, src))
 			return FALSE
 		if(!user.pulling || user.pulling != src || user.grab_state != old_grab_state)
@@ -399,28 +399,28 @@
 		if(GRAB_AGGRESSIVE)
 			var/add_log = ""
 			if(HAS_TRAIT(user, TRAIT_PACIFISM))
-				visible_message(span_danger("[user] firmly grips [src]!"),
-								span_danger("[user] firmly grips you!"), span_hear("You hear aggressive shuffling!"), null, user)
-				to_chat(user, span_danger("You firmly grip [src]!"))
-				add_log = " (pacifist)"
+				visible_message(span_danger("[user] 牢牢抓住了 [src]！"),
+								span_danger("[user] 牢牢抓住了你！"), span_hear("你听到粗暴的推搡声！"), null, user)
+				to_chat(user, span_danger("你牢牢抓住了 [src]！"))
+				add_log = "（和平主义者）"
 			else
-				visible_message(span_danger("[user] grabs [src] aggressively!"), \
-								span_userdanger("[user] grabs you aggressively!"), span_hear("You hear aggressive shuffling!"), null, user)
-				to_chat(user, span_danger("You grab [src] aggressively!"))
+				visible_message(span_danger("[user] 凶狠地抓住了 [src]！"), \
+								span_userdanger("[user] 凶狠地抓住了你！"), span_hear("你听到粗暴的推搡声！"), null, user)
+				to_chat(user, span_danger("你凶狠地抓住了 [src]！"))
 			stop_pulling()
-			log_combat(user, src, "grabbed", addition="aggressive grab[add_log]")
+			log_combat(user, src, "抓住", addition="凶狠抓握[add_log]")
 		if(GRAB_NECK)
-			log_combat(user, src, "grabbed", addition="neck grab")
-			visible_message(span_danger("[user] grabs [src] by the neck!"),\
-							span_userdanger("[user] grabs you by the neck!"), span_hear("You hear aggressive shuffling!"), null, user)
-			to_chat(user, span_danger("You grab [src] by the neck!"))
+			log_combat(user, src, "抓住", addition="锁喉")
+			visible_message(span_danger("[user] 掐住了 [src] 的脖子！"),\
+							span_userdanger("[user] 掐住了你的脖子！"), span_hear("你听到粗暴的推搡声！"), null, user)
+			to_chat(user, span_danger("你掐住了 [src] 的脖子！"))
 			if(!buckled && !density)
 				Move(user.loc)
 		if(GRAB_KILL)
-			log_combat(user, src, "strangled", addition="kill grab")
-			visible_message(span_danger("[user] is strangling [src]!"), \
-							span_userdanger("[user] is strangling you!"), span_hear("You hear aggressive shuffling!"), null, user)
-			to_chat(user, span_danger("You're strangling [src]!"))
+			log_combat(user, src, "勒住", addition="致命抓握")
+			visible_message(span_danger("[user] 正勒住 [src] 的脖子！"), \
+							span_userdanger("[user] 正勒住你的脖子！"), span_hear("你听到粗暴的推搡声！"), null, user)
+			to_chat(user, span_danger("你正勒住 [src] 的脖子！"))
 			if(!buckled && !density)
 				Move(user.loc)
 	user.set_pull_offsets(src, user.grab_state)
@@ -434,20 +434,20 @@
 	if(user.melee_damage_upper == 0)
 		if(user != src)
 			visible_message(
-				span_notice("[user] [user.friendly_verb_continuous] [src]!"),
-				span_notice("[user] [user.friendly_verb_continuous] you!"),
+				span_notice("[user] [user.friendly_verb_continuous] [src]！"),
+				span_notice("[user] [user.friendly_verb_continuous] 你！"),
 				vision_distance = COMBAT_MESSAGE_RANGE,
 				ignored_mobs = user,
 			)
-			to_chat(user, span_notice("You [user.friendly_verb_simple] [src]!"))
+			to_chat(user, span_notice("你 [user.friendly_verb_simple] [src]！"))
 		return FALSE
 
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning("You don't want to hurt anyone!"))
+		to_chat(user, span_warning("你不想伤害任何人！"))
 		return FALSE
 
 	var/damage = rand(user.melee_damage_lower, user.melee_damage_upper)
-	if(check_block(user, damage, "[user]'s [user.attack_verb_simple]", UNARMED_ATTACK, user.armour_penetration, user.melee_damage_type))
+	if(check_block(user, damage, "[user] 的[user.attack_verb_simple]", UNARMED_ATTACK, user.armour_penetration, user.melee_damage_type))
 		return FALSE
 
 	if(user.attack_sound)
@@ -455,8 +455,8 @@
 
 	user.do_attack_animation(src)
 	visible_message(
-		span_danger("[user] [user.attack_verb_continuous] [src]!"),
-		span_userdanger("[user] [user.attack_verb_continuous] you!"),
+		span_danger("[user] [user.attack_verb_continuous] [src]！"),
+		span_userdanger("[user] [user.attack_verb_continuous] 你！"),
 		null,
 		COMBAT_MESSAGE_RANGE,
 		user,
@@ -468,7 +468,7 @@
 
 	var/armor_block = run_armor_check(user.zone_selected, MELEE, armour_penetration = user.armour_penetration)
 
-	to_chat(user, span_danger("You [user.attack_verb_simple] [src]!"))
+	to_chat(user, span_danger("你 [user.attack_verb_simple] [src]！"))
 	var/damage_done = apply_damage(
 		damage = damage,
 		damagetype = user.melee_damage_type,
@@ -479,7 +479,7 @@
 		sharpness = user.sharpness,
 		attack_direction = get_dir(user, src),
 	)
-	log_combat(user, src, "attacked")
+	log_combat(user, src, "攻击了")
 	return damage_done
 
 /mob/living/attack_hand(mob/living/carbon/human/user, list/modifiers)
@@ -499,87 +499,87 @@
 	if (!user.combat_mode)
 		return FALSE
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning("You don't want to hurt anyone!"))
+		to_chat(user, span_warning("你不想伤害任何人！"))
 		return FALSE
 
 	if(!user.get_bodypart(BODY_ZONE_HEAD))
 		return FALSE
 	if(user.is_mouth_covered(ITEM_SLOT_MASK))
-		to_chat(user, span_warning("You can't bite with your mouth covered!"))
+		to_chat(user, span_warning("你嘴巴被遮住时没法咬人！"))
 		return FALSE
 
-	if(check_block(user, 1, "[user]'s bite", UNARMED_ATTACK, 0, BRUTE))
+	if(check_block(user, 1, "[user] 的啃咬", UNARMED_ATTACK, 0, BRUTE))
 		return FALSE
 
 	user.do_attack_animation(src, ATTACK_EFFECT_BITE)
 	if (HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER) || prob(75))
-		log_combat(user, src, "attacked")
+		log_combat(user, src, "攻击了")
 		playsound(loc, 'sound/items/weapons/bite.ogg', 50, TRUE, -1)
-		visible_message(span_danger("[user.name] bites [src]!"), \
-						span_userdanger("[user.name] bites you!"), span_hear("You hear a chomp!"), COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, span_danger("You bite [src]!"))
+		visible_message(span_danger("[user.name] 咬了 [src]！"), \
+						span_userdanger("[user.name] 咬了你！"), span_hear("你听到咬合声！"), COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_danger("你咬了 [src]！"))
 		return TRUE
 	else
-		visible_message(span_danger("[user.name]'s bite misses [src]!"), \
-						span_danger("You avoid [user.name]'s bite!"), span_hear("You hear the sound of jaws snapping shut!"), COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, span_warning("Your bite misses [src]!"))
+		visible_message(span_danger("[user.name] 没咬中 [src]！"), \
+						span_danger("你躲开了 [user.name] 的啃咬！"), span_hear("你听到下颚猛然合上的声音！"), COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_warning("你没咬中 [src]！"))
 
 	return FALSE
 
 /mob/living/attack_larva(mob/living/carbon/alien/larva/L, list/modifiers)
 	if(L.combat_mode)
 		if(HAS_TRAIT(L, TRAIT_PACIFISM))
-			to_chat(L, span_warning("You don't want to hurt anyone!"))
+			to_chat(L, span_warning("你不想伤害任何人！"))
 			return FALSE
 
-		if(check_block(L, 1, "[L]'s bite", UNARMED_ATTACK, 0, BRUTE))
+		if(check_block(L, 1, "[L] 的啃咬", UNARMED_ATTACK, 0, BRUTE))
 			return FALSE
 
 		L.do_attack_animation(src)
 		if(prob(90))
-			log_combat(L, src, "attacked")
-			visible_message(span_danger("[L.name] bites [src]!"), \
-							span_userdanger("[L.name] bites you!"), span_hear("You hear a chomp!"), COMBAT_MESSAGE_RANGE, L)
-			to_chat(L, span_danger("You bite [src]!"))
+			log_combat(L, src, "攻击了")
+			visible_message(span_danger("[L.name] 咬了 [src]！"), \
+							span_userdanger("[L.name] 咬了你！"), span_hear("你听到咬合声！"), COMBAT_MESSAGE_RANGE, L)
+			to_chat(L, span_danger("你咬了 [src]！"))
 			playsound(loc, 'sound/items/weapons/bite.ogg', 50, TRUE, -1)
 			return TRUE
 		else
-			visible_message(span_danger("[L.name]'s bite misses [src]!"), \
-							span_danger("You avoid [L.name]'s bite!"), span_hear("You hear the sound of jaws snapping shut!"), COMBAT_MESSAGE_RANGE, L)
-			to_chat(L, span_warning("Your bite misses [src]!"))
+			visible_message(span_danger("[L.name] 没咬中 [src]！"), \
+							span_danger("你躲开了 [L.name] 的啃咬！"), span_hear("你听到下颚猛然合上的声音！"), COMBAT_MESSAGE_RANGE, L)
+			to_chat(L, span_warning("你没咬中 [src]！"))
 			return FALSE
 
-	visible_message(span_notice("[L.name] rubs its head against [src]."), \
-					span_notice("[L.name] rubs its head against you."), null, null, L)
-	to_chat(L, span_notice("You rub your head against [src]."))
+	visible_message(span_notice("[L.name] 用头蹭了蹭 [src]。"), \
+					span_notice("[L.name] 用头蹭了蹭你。"), null, null, L)
+	to_chat(L, span_notice("你用头蹭了蹭 [src]。"))
 	return FALSE
 
 /mob/living/attack_alien(mob/living/carbon/alien/adult/user, list/modifiers)
 	SEND_SIGNAL(src, COMSIG_MOB_ATTACK_ALIEN, user, modifiers)
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
-		if(check_block(user, 0, "[user]'s tackle", UNARMED_ATTACK, 0, BRUTE))
+		if(check_block(user, 0, "[user] 的扑击", UNARMED_ATTACK, 0, BRUTE))
 			return FALSE
 		user.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 		return TRUE
 
 	if(user.combat_mode)
 		if(HAS_TRAIT(user, TRAIT_PACIFISM))
-			to_chat(user, span_warning("You don't want to hurt anyone!"))
+			to_chat(user, span_warning("你不想伤害任何人！"))
 			return FALSE
-		if(check_block(user, user.melee_damage_upper, "[user]'s slash", UNARMED_ATTACK, 0, BRUTE))
+		if(check_block(user, user.melee_damage_upper, "[user] 的挥砍", UNARMED_ATTACK, 0, BRUTE))
 			return FALSE
 		user.do_attack_animation(src)
 		return TRUE
 
-	visible_message(span_notice("[user] caresses [src] with its scythe-like arm."), \
-					span_notice("[user] caresses you with its scythe-like arm."), null, null, user)
-	to_chat(user, span_notice("You caress [src] with your scythe-like arm."))
+	visible_message(span_notice("[user] 用镰刀般的手臂抚过 [src]。"), \
+					span_notice("[user] 用镰刀般的手臂抚过你。"), null, null, user)
+	to_chat(user, span_notice("你用镰刀般的手臂抚过 [src]。"))
 	return FALSE
 
 /mob/living/attack_hulk(mob/living/carbon/human/user)
 	..()
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning("You don't want to hurt [src]!"))
+		to_chat(user, span_warning("你不想伤害 [src]！"))
 		return FALSE
 	return TRUE
 
@@ -612,9 +612,9 @@
 		adjust_stamina_loss(shock_damage)
 	if(!(flags & SHOCK_SUPPRESS_MESSAGE))
 		visible_message(
-			span_danger("[src] was shocked by \the [source]!"), \
-			span_userdanger("You feel a powerful shock coursing through your body!"), \
-			span_hear("You hear a heavy electrical crack.") \
+			span_danger("[src] 被 \the [source] 电击了！"), \
+			span_userdanger("你感到一股强烈的电流贯穿全身！"), \
+			span_hear("你听到沉重的电弧爆裂声。") \
 		)
 	return shock_damage
 
@@ -628,8 +628,8 @@
 
 ///Logs, gibs and returns point values of whatever mob is unfortunate enough to get eaten.
 /mob/living/singularity_act()
-	investigate_log("has been consumed by the singularity.", INVESTIGATE_ENGINE) //Oh that's where the clown ended up!
-	investigate_log("has been gibbed by the singularity.", INVESTIGATE_DEATHS)
+	investigate_log("被奇点吞噬了。", INVESTIGATE_ENGINE) //Oh that's where the clown ended up!
+	investigate_log("被奇点碾成了肉泥。", INVESTIGATE_DEATHS)
 	gib()
 	return 20
 
@@ -658,7 +658,7 @@
 			if(4)
 				new /mob/living/basic/construct/proteon/hostile(get_turf(src))
 	spawn_dust()
-	investigate_log("has been gibbed by Nar'Sie.", INVESTIGATE_DEATHS)
+	investigate_log("被纳尔西碾成了肉泥。", INVESTIGATE_DEATHS)
 	gib()
 	return TRUE
 
@@ -708,12 +708,12 @@
 		SEND_SOUND(src, sound('sound/items/weapons/flash_ring.ogg',0, 1, 0, 250))
 
 	if(ears.damage >= 15 && prob(ears.damage - 5))
-		to_chat(src, span_userdanger("You can't hear anything!"))
+		to_chat(src, span_userdanger("你什么也听不见！"))
 		// Makes you deaf, enough that you need a proper source of healing, it won't self heal
 		// you need earmuffs, inacusiate, or replacement
 		ears.set_organ_damage(ears.maxHealth)
 	else if(ears.damage >= 5)
-		to_chat(src, span_warning("Your ears start to ring[ears.damage >= 15 ? " badly!":"!"]"))
+		to_chat(src, span_warning("你的耳朵开始嗡嗡作响[ears.damage >= 15 ? "，非常严重！":"！"]"))
 
 
 //to damage the clothes worn by a mob
@@ -827,10 +827,10 @@
 			return
 		if((shove_flags & SHOVE_BLOCKED) && !(shove_flags & (SHOVE_KNOCKDOWN_BLOCKED|SHOVE_CAN_KICK_SIDE)))
 			var/knocked_down = target.Knockdown(SHOVE_KNOCKDOWN_SOLID, daze_amount = 3 SECONDS)
-			target.visible_message(span_danger("[name] shoves [target.name][knocked_down ? ", knocking [target.p_them()] down" : ""]!"),
-				span_userdanger("You[knocked_down ? "'re knocked down" : " resist falling down"] from a shove by [name]!"), span_hear("You hear aggressive shuffling [knocked_down ? "followed by a loud thud!" : ""]"), COMBAT_MESSAGE_RANGE, src)
-			to_chat(src, span_danger("You shove [target.name][knocked_down ? ", knocking [target.p_them()] down" : ""]!"))
-			log_combat(src, target, "shoved", "[knocked_down ? "knocking them down[weapon ? " with [weapon]" : ""]" : ""]")
+			target.visible_message(span_danger("[name] 推了 [target.name] 一把[knocked_down ? "，将对方推倒在地" : ""]！"),
+				span_userdanger("你被 [name] 推了一把[knocked_down ? "，摔倒在地" : "，但没有摔倒"]！"), span_hear("你听到粗暴的推搡声[knocked_down ? "，紧接着一声闷响！" : ""]"), COMBAT_MESSAGE_RANGE, src)
+			to_chat(src, span_danger("你推了 [target.name] 一把[knocked_down ? "，将对方推倒在地" : ""]！"))
+			log_combat(src, target, "推倒", "[knocked_down ? "将其推倒[weapon ? "，使用 [weapon]" : ""]" : ""]")
 			if(ishuman(target))
 				var/mob/living/carbon/human/human_target = target
 				human_target.force_say()
@@ -839,29 +839,29 @@
 	if(shove_flags & SHOVE_CAN_KICK_SIDE) //KICK HIM IN THE NUTS
 		if(target.Paralyze(SHOVE_CHAIN_PARALYZE))
 			target.apply_status_effect(/datum/status_effect/no_side_kick)
-			target.visible_message(span_danger("[name] kicks [target.name] onto [target.p_their()] side!"),
-							span_userdanger("You're kicked onto your side by [name]!"), span_hear("You hear aggressive shuffling followed by a loud thud!"), COMBAT_MESSAGE_RANGE, src)
-			to_chat(src, span_danger("You kick [target.name] onto [target.p_their()] side!"))
+			target.visible_message(span_danger("[name] 把 [target.name] 踢倒在地，使其侧躺！"),
+							span_userdanger("你被 [name] 踢倒在地，侧身躺着！"), span_hear("你听到粗暴的推搡声，紧接着一声闷响！"), COMBAT_MESSAGE_RANGE, src)
+			to_chat(src, span_danger("你把 [target.name] 踢倒在地，使其侧躺！"))
 			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, SetKnockdown), 0), SHOVE_CHAIN_PARALYZE)
-			log_combat(src, target, "kicks", "onto their side (paralyzing)")
+			log_combat(src, target, "踢倒", "使其侧躺（麻痹）")
 			return
 
 	target.get_shoving_message(src, weapon, shove_flags)
 
 	//Take their lunch money
 	var/target_held_item = target.get_active_held_item()
-	var/append_message = weapon ? " with [weapon]" : ""
+	var/append_message = weapon ? "，使用 [weapon]" : ""
 	// If it's in our typecache, they're staggered and it exists, disarm. If they're knocked down, disarm too.
 	if(target_held_item && target.get_timed_status_effect_duration(/datum/status_effect/staggered) && is_type_in_typecache(target_held_item, GLOB.shove_disarming_types) || target_held_item && target.body_position == LYING_DOWN)
 		target.dropItemToGround(target_held_item)
-		append_message = "causing [target.p_them()] to drop [target_held_item]"
-		target.visible_message(span_danger("[target.name] drops \the [target_held_item]!"),
-			span_warning("You drop \the [target_held_item]!"), null, COMBAT_MESSAGE_RANGE)
+		append_message = "，使其掉落了 [target_held_item]"
+		target.visible_message(span_danger("[target.name] 掉落了 \the [target_held_item]！"),
+			span_warning("你掉落了 \the [target_held_item]！"), null, COMBAT_MESSAGE_RANGE)
 
 	if(shove_flags & SHOVE_CAN_STAGGER)
 		target.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, 10 SECONDS)
 
-	log_combat(src, target, "shoved", append_message)
+	log_combat(src, target, "推了", append_message)
 
 ///Check if the universal conditions for disarming/shoving are met.
 /mob/living/proc/can_disarm(mob/living/target)
@@ -880,11 +880,11 @@
 
 ///Send the chat feedback message for shoving
 /mob/living/proc/get_shoving_message(mob/living/shover, obj/item/weapon, shove_flags)
-	visible_message(span_danger("[shover] shoves [name][weapon ? " with [weapon]" : ""]!"),
-		span_userdanger("You're shoved by [shover][weapon ? " with [weapon]" : ""]!"), span_hear("You hear aggressive shuffling!"), COMBAT_MESSAGE_RANGE, shover)
-	to_chat(shover, span_danger("You shove [name][weapon ? " with [weapon]" : ""]!"))
+	visible_message(span_danger("[shover] 推了 [name] 一把[weapon ? "，使用 [weapon]" : ""]！"),
+		span_userdanger("你被 [shover] 推了一把[weapon ? "，对方使用 [weapon]" : ""]！"), span_hear("你听到粗暴的推搡声！"), COMBAT_MESSAGE_RANGE, shover)
+	to_chat(shover, span_danger("你推了 [name] 一把[weapon ? "，使用 [weapon]" : ""]！"))
 
-/mob/living/proc/check_block(atom/hit_by, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0, damage_type = BRUTE)
+/mob/living/proc/check_block(atom/hit_by, damage, attack_text = "这次攻击", attack_type = MELEE_ATTACK, armour_penetration = 0, damage_type = BRUTE)
 	if(SEND_SIGNAL(src, COMSIG_LIVING_CHECK_BLOCK, hit_by, damage, attack_text, attack_type, armour_penetration, damage_type) & SUCCESSFUL_BLOCK)
 		return SUCCESSFUL_BLOCK
 

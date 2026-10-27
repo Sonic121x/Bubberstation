@@ -3,8 +3,8 @@
 #define SIGNIFICANT_AMOUNT_OF_MOLES 10
 
 /obj/machinery/atmospherics/components/binary/tank_compressor
-	name = "Tank Compressor"
-	desc = "Heavy duty shielded air compressor designed to pressurize tanks above the safe limit."
+	name = "储罐压缩机"
+	desc = "重型屏蔽式空气压缩机，设计用于将储罐加压至安全上限以上。"
 	circuit = /obj/item/circuitboard/machine/tank_compressor
 	icon = 'icons/obj/machines/research.dmi'
 	base_icon_state = "tank_compressor"
@@ -31,8 +31,8 @@
 
 /obj/machinery/atmospherics/components/binary/tank_compressor/examine()
 	. = ..()
-	. += "This one is rated for up to [TANK_COMPRESSOR_PRESSURE_LIMIT] kPa."
-	. += "Can be opened with a screwdriver and rotated with a wrench. The green port is the input, the red one is the output."
+	. += "这一台额定承压上限为 [TANK_COMPRESSOR_PRESSURE_LIMIT] kPa。"
+	. += "可用螺丝刀打开，用扳手旋转。绿色接口为输入，红色接口为输出。"
 
 /// Stores the record of the gas data for a significant enough tank leak
 /datum/data/compressor_record
@@ -49,7 +49,7 @@
 	if(istype(tool, /obj/item/disk/computer))
 		eject_disk(user)
 		if(!user.transferItemToLoc(tool, src))
-			balloon_alert(user, "it's stuck to your hand!")
+			balloon_alert(user, "它卡在你手上了！")
 			return ITEM_INTERACT_BLOCKING
 		inserted_disk = tool
 		return ITEM_INTERACT_SUCCESS
@@ -59,11 +59,11 @@
 
 	if(inserted_tank)
 		if(!eject_tank(user))
-			balloon_alert(user, "it's stuck inside!")
+			balloon_alert(user, "它卡在里面了！")
 			return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
-		balloon_alert(user, "it's stuck to your hand!")
+		balloon_alert(user, "它卡在你手上了！")
 		return ITEM_INTERACT_BLOCKING
 
 	inserted_tank = tool
@@ -145,7 +145,7 @@
 /// Use this to absorb explosions.
 /obj/machinery/atmospherics/components/binary/tank_compressor/proc/explosion_handle(atom/source, list/arguments)
 	SIGNAL_HANDLER
-	say("Internal explosion detected and absorbed.")
+	say("检测到内部爆炸并已吸收。")
 	SSexplosions.shake_the_room(get_turf(src), 1, 8, 0.5, 0.25, FALSE)
 	return COMSIG_CANCEL_EXPLOSION
 
@@ -159,23 +159,23 @@
 	if(leaked_gas_buffer.total_moles() > SIGNIFICANT_AMOUNT_OF_MOLES)
 		record_data()
 	else
-		say("Buffer data discarded. Required moles for storage: [SIGNIFICANT_AMOUNT_OF_MOLES] moles.")
+		say("缓冲数据已丢弃。记录所需摩尔数：[SIGNIFICANT_AMOUNT_OF_MOLES] 摩尔。")
 	var/datum/gas_mixture/removed = leaked_gas_buffer.remove_ratio(1)
 	airs[1].merge(removed)
-	say("Gas stored in buffer flushed to output port. Compressor ready to start the next experiment.")
+	say("缓冲中储存的气体已排至输出端口。压缩机已准备好开始下一次实验。")
 
 /// This proc should be called whenever we want to store our buffer data.
 /obj/machinery/atmospherics/components/binary/tank_compressor/proc/record_data()
 	var/datum/data/compressor_record/new_record = new()
-	new_record.name = "Log Recording #[record_number]"
+	new_record.name = "日志记录 #[record_number]"
 	new_record.experiment_source = inserted_tank.name
-	new_record.timestamp = "[server_timestamp(ic_time = TRUE)] (PT: [round_timestamp()])"
+	new_record.timestamp = "[server_timestamp(ic_time = TRUE)]（PT：[round_timestamp()]）"
 	for(var/gas_path, amount in leaked_gas_buffer.moles)
 		new_record.gas_data[gas_path] = amount
 
 	compressor_record += new_record
 	record_number += 1
-	say("Buffer data stored.")
+	say("缓冲数据已存储。")
 
 /obj/machinery/atmospherics/components/binary/tank_compressor/proc/apply_experiments(datum/data/compressor_record/record)
 	var/list/passed_experiments = list()
@@ -193,7 +193,7 @@
 		return
 
 	var/datum/computer_file/data/ordnance/gaseous/record_data = new
-	record_data.filename = "Gas Compressor " + record.name //Gas Compressor Log Recording #x
+	record_data.filename = "气体压缩机 " + record.name //Gas Compressor Log Recording #x
 	record_data.gas_record = record
 	record_data.possible_experiments = apply_experiments(record)
 

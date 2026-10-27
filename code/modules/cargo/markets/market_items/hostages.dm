@@ -19,13 +19,13 @@
 		var/mob/living/carbon/human/humie = mob
 		specimen = humie.dna.species.name
 	desc = pick(list(
-		"If you're looking for a recently stolen [specimen], you've come to the right place.",
-		"We've recently acquired a fine [specimen] from a station around here, eheh...",
-		"For a limited time, we're offering this [specimen] for you to buy (back).",
+		"如果你正在寻找一位最近被偷走的[specimen]，那你可来对地方了。",
+		"我们最近从附近的空间站弄到了一位不错的[specimen]，嘿嘿……",
+		"限时优惠，我们正在出售（或者说回售）这位[specimen]。",
 	))
-	desc += " DISCLAIMER: The offer will expire once the creature is returned to the station."
+	desc += " 免责声明：一旦该生物被送回空间站，此报价便会失效。"
 	if(humie_mob)
-		desc += "[mob.p_They()] may be delivered handcuffed, for safety of course."
+		desc += "出于安全考虑，[mob.p_They()] 送达时可能会戴着手铐。"
 
 	price = new_price
 	RegisterSignal(mob, COMSIG_LIVING_RETURN_FROM_CAPTURE, PROC_REF(on_return_from_capture))
@@ -48,7 +48,7 @@
 	signaler.set_frequency(sanitize_frequency(rand(MIN_FREE_FREQ, MAX_FREE_FREQ)))
 	signaler.code = rand(1, 100)
 	buyer.put_in_hands(signaler)
-	to_chat(buyer, span_notice("A [signaler] appears [buyer.is_holding(signaler) ? "in your hands" : "at your feet"]!"))
+	to_chat(buyer, span_notice("[signaler] 出现在[buyer.is_holding(signaler) ? "你手中" : "你脚边"]！"))
 
 /datum/market_item/hostage/proc/clear_signaler_ref(datum/source)
 	SIGNAL_HANDLER
@@ -58,7 +58,7 @@
 	var/mob/living/mob = item
 	UnregisterSignal(mob, COMSIG_LIVING_RETURN_FROM_CAPTURE)
 	if(!IS_UNCONSCIOUS(mob))
-		to_chat(mob, span_boldnicegreen("You have been <u>bought</u> back to the station. Be grateful to whoever got you out of the holding facility early."))
+		to_chat(mob, span_boldnicegreen("你已被<u>买</u>回空间站。对那位提前把你从拘留设施里弄出来的人心怀感激吧。"))
 	if(!ishuman(item))
 		return ..()
 	var/mob/living/carbon/human/humie = item

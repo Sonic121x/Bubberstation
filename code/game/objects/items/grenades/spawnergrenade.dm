@@ -1,6 +1,6 @@
 /obj/item/grenade/spawnergrenade
-	desc = "It will unleash an unspecified anomaly in the surrounding vicinity."
-	name = "delivery grenade"
+	desc = "会在周围释放某种不明异常物。"
+	name = "投送手榴弹"
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "delivery"
 	inhand_icon_state = "flashbang"
@@ -38,44 +38,44 @@
 	return
 
 /obj/item/grenade/spawnergrenade/manhacks
-	name = "viscerator delivery grenade"
+	name = "剖腹无人机投送手榴弹"
 	spawner_type = /mob/living/basic/viscerator
 	deliveryamt = 10
 
 /obj/item/grenade/spawnergrenade/spesscarp
-	name = "carp delivery grenade"
+	name = "太空鲤鱼投送手榴弹"
 	spawner_type = /mob/living/basic/carp
 	deliveryamt = 5
 
 /obj/item/grenade/spawnergrenade/syndiesoap
-	name = "Mister Scrubby"
+	name = "擦洗先生"
 	spawner_type = /obj/item/soap/syndie
 
 /obj/item/grenade/spawnergrenade/buzzkill
-	name = "Buzzkill grenade"
-	desc = "The label reads: \"WARNING: DEVICE WILL RELEASE LIVE SPECIMENS UPON ACTIVATION. SEAL SUIT BEFORE USE.\" It is warm to the touch and vibrates faintly."
+	name = "扫兴蜂手榴弹"
+	desc = "标签上写着：“警告：启动此装置会释放活体标本。使用前请密封防护服。”它摸起来温热，还在微微振动。"
 	icon_state = "holy_grenade"
 	spawner_type = /mob/living/basic/bee/toxin
 	deliveryamt = 10
 
 /obj/item/grenade/spawnergrenade/clown
 	name = "C.L.U.W.N.E."
-	desc = "A sleek device often given to clowns on their 10th birthdays for protection. You can hear faint scratching coming from within."
+	desc = "光滑精巧的装置，常在小丑十岁生日时作为防身礼物赠送。你能听到里面传来轻微的抓挠声。"
 	icon_state = "clown_ball"
 	inhand_icon_state = null
 	spawner_type = list(/mob/living/basic/clown/fleshclown, /mob/living/basic/clown/clownhulk, /mob/living/basic/clown/longface, /mob/living/basic/clown/clownhulk/chlown, /mob/living/basic/clown/clownhulk/honkmunculus, /mob/living/basic/clown/mutant/glutton, /mob/living/basic/clown/banana, /mob/living/basic/clown/honkling, /mob/living/basic/clown/lube)
 	deliveryamt = 1
 
 /obj/item/grenade/spawnergrenade/clown_broken
-	name = "stuffed C.L.U.W.N.E."
-	desc = "A sleek device often given to clowns on their 10th birthdays for protection. While a typical C.L.U.W.N.E only holds one creature, sometimes foolish young clowns try to cram more in, often to disastrous effect."
+	name = "塞满的 C.L.U.W.N.E."
+	desc = "光滑精巧的装置，常在小丑十岁生日时作为防身礼物赠送。普通型号只容纳一只生物，但愚蠢的小小丑有时会往里多塞几只，结果往往不堪设想。"
 	icon_state = "clown_broken"
 	inhand_icon_state = null
 	spawner_type = /mob/living/basic/clown/mutant
 	deliveryamt = 5
 
 /obj/item/grenade/spawnergrenade/cat
-	name = "Catnade"
-	desc = "You can hear faint meowing and the sounds of claws on metal coming from within."
+	name = "猫咪手榴弹"
+	desc = "你能听到里面传来微弱的猫叫，以及爪子刮擦金属的声音。"
 	spawner_type = /mob/living/basic/pet/cat/feral
 	deliveryamt = 5

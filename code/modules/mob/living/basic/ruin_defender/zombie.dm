@@ -1,7 +1,7 @@
 /// Everyone knows what a zombie is
 /mob/living/basic/zombie
-	name = "Shambling Corpse"
-	desc = "When there is no more room in hell, the dead will walk in outer space."
+	name = "蹒跚尸体"
+	desc = "当地狱再也塞不下人时，死者将在太空中行走。"
 	icon = 'icons/mob/simple/simple_human.dmi'
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	sentience_type = SENTIENCE_HUMANOID
@@ -9,14 +9,14 @@
 	health = 100
 	melee_damage_lower = 21
 	melee_damage_upper = 21
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
 	attack_sound = 'sound/effects/hallucinations/growl1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	combat_mode = TRUE
 	speed = 4
 	status_flags = CANPUSH | CANSTUN
-	death_message = "rapidly decays into a pile of bones!"
+	death_message = "迅速腐烂成一堆白骨！"
 	unsuitable_atmos_damage = 0
 	unsuitable_cold_damage = 0
 	faction = list(FACTION_HOSTILE)
@@ -44,8 +44,8 @@
 
 /// Weaker variant used if you want to put more of them in one place, won't attack obstacles
 /mob/living/basic/zombie/rotten
-	name = "Rotting Carcass"
-	desc = "This undead fiend looks to be badly decomposed."
+	name = "腐烂残尸"
+	desc = "这个亡灵恶徒看起来已经严重腐烂。"
 	health = 60
 	melee_damage_lower = 11
 	melee_damage_upper = 11
@@ -74,8 +74,8 @@
 		BB_TARGET_MINIMUM_STAT = HARD_CRIT,
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_HEAR = list("groans.", "moans.", "grunts."),
-			BB_EMOTE_SEE = list("twitches.", "shudders."),
+			BB_EMOTE_HEAR = list("呻吟着。", "低吟着。", "咕哝着。"),
+			BB_EMOTE_SEE = list("抽搐着。", "颤抖着。"),
 			BB_SPEAK_CHANCE = 3,
 		),
 	)

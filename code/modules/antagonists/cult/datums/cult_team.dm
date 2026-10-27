@@ -1,5 +1,5 @@
 /datum/team/cult
-	name = "\improper Cult"
+	name = "\improper 血教"
 
 	///The blood mark target
 	var/atom/blood_target
@@ -56,19 +56,19 @@
 		for(var/datum/mind/mind as anything in members)
 			if(mind.current)
 				SEND_SOUND(mind.current, 'sound/music/antag/bloodcult/bloodcult_eyes.ogg')
-				to_chat(mind.current, span_cult_large(span_warning("The veil weakens as your cult grows, your eyes begin to glow...")))
+				to_chat(mind.current, span_cult_large(span_warning("随着你的教派壮大，帷幕逐渐削弱，你的双眼开始发光……")))
 				mind.current.AddElement(/datum/element/cult_eyes)
 		cult_risen = TRUE
-		log_game("The blood cult has risen with [cultplayers] players.")
+		log_game("血教已随 [cultplayers] 名玩家崛起。")
 
 	if(ratio > CULT_ASCENDENT && !cult_ascendent)
 		for(var/datum/mind/mind as anything in members)
 			if(mind.current)
 				SEND_SOUND(mind.current, 'sound/music/antag/bloodcult/bloodcult_halos.ogg')
-				to_chat(mind.current, span_cult_large(span_warning("Your cult is ascendant and the red harvest approaches - you cannot hide your true nature for much longer!!")))
+				to_chat(mind.current, span_cult_large(span_warning("你的教派正在飞升，血色丰收即将来临——你再也无法长久隐藏自己的真面目！！")))
 				mind.current.apply_status_effect(/datum/status_effect/cult_halo)
 		cult_ascendent = TRUE
-		log_game("The blood cult has ascended with [cultplayers] players.")
+		log_game("血教已随 [cultplayers] 名玩家飞升。")
 #endif
 
 /datum/team/cult/add_member(datum/mind/new_member)
@@ -111,21 +111,21 @@
 	var/victory = check_cult_victory()
 
 	if(victory == CULT_NARSIE_KILLED) // Epic failure, you summoned your god and then someone killed it.
-		parts += "<span class='redtext big'>Nar'sie has been killed! The cult will haunt the universe no longer!</span>"
+		parts += "<span class='redtext big'>纳尔西已被杀死！血教将不再侵扰宇宙！</span>"
 	else if(victory)
-		parts += "<span class='greentext big'>The cult has succeeded! Nar'Sie has snuffed out another torch in the void!</span>"
+		parts += "<span class='greentext big'>血教成功了！纳尔西在虚空中又熄灭了一支火把！</span>"
 	else
-		parts += "<span class='redtext big'>The staff managed to stop the cult! Dark words and heresy are no match for Nanotrasen's finest!</span>"
+		parts += "<span class='redtext big'>职员们成功阻止了血教！黑暗的言辞与异端终究敌不过纳米传讯最优秀的员工！</span>"
 
 	if(objectives.len)
-		parts += "<b>The cultists' objectives were:</b>"
+		parts += "<b>血教徒的目标是：</b>"
 		var/count = 1
 		for(var/datum/objective/objective in objectives)
-			parts += "<b>Objective #[count]</b>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
+			parts += "<b>目标 #[count]</b>：[objective.explanation_text] [objective.get_roundend_success_suffix()]"
 			count++
 
 	if(members.len)
-		parts += span_header("The cultists were:")
+		parts += span_header("血教徒为：")
 		if(length(true_cultists))
 			parts += printplayerlist(true_cultists)
 		else
@@ -164,7 +164,7 @@
 		if(cultist.current.stat == DEAD || !cultist.current.client)
 			continue
 
-		to_chat(cultist.current, span_bold(span_cult_large("[marker] has marked [blood_target] in \the [target_area] as the cult's top priority, get there immediately!")))
+		to_chat(cultist.current, span_bold(span_cult_large("[marker]已将[target_area]的[blood_target]标记为教派的最高优先目标，立刻前往！")))
 		SEND_SOUND(cultist.current, sound(SFX_HALLUCINATION_OVER_HERE, 0, 1, 75))
 		cultist.current.client.images += blood_target_image
 		if (cultist.current.hud_used)
@@ -186,9 +186,9 @@
 			continue
 
 		if(QDELETED(blood_target))
-			to_chat(cultist.current, span_bold(span_cult_large("The blood mark's target is lost!")))
+			to_chat(cultist.current, span_bold(span_cult_large("血印的目标已丢失！")))
 		else
-			to_chat(cultist.current, span_bold(span_cult_large("The blood mark has expired!")))
+			to_chat(cultist.current, span_bold(span_cult_large("血印已过期！")))
 		cultist.current.client.images -= blood_target_image
 
 	UnregisterSignal(blood_target, COMSIG_QDELETING)

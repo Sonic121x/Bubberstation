@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(cargo_shuttle_flaps_landmarks)
 
 
 SUBSYSTEM_DEF(shuttle)
-	name = "Shuttle"
+	name = "穿梭机"
 	wait = 1 SECONDS
 	dependencies = list(
 		/datum/controller/subsystem/mapping,
@@ -178,13 +178,13 @@ SUBSYSTEM_DEF(shuttle)
 		//Adds access requirements to the end of each description.
 		if(pack.access && pack.access_view)
 			if(pack.access == pack.access_view)
-				pack.desc += " Requires [SSid_access.get_access_desc(pack.access)] access to open or purchase."
+				pack.desc += " 打开或购买需要[SSid_access.get_access_desc(pack.access)]权限。"
 			else
-				pack.desc += " Requires [SSid_access.get_access_desc(pack.access)] access to open, or [SSid_access.get_access_desc(pack.access_view)] access to purchase."
+				pack.desc += " 打开需要[SSid_access.get_access_desc(pack.access)]权限，购买需要[SSid_access.get_access_desc(pack.access_view)]权限。"
 		else if(pack.access)
-			pack.desc += " Requires [SSid_access.get_access_desc(pack.access)] access to open."
+			pack.desc += " 打开需要[SSid_access.get_access_desc(pack.access)]权限。"
 		else if(pack.access_view)
-			pack.desc += " Requires [SSid_access.get_access_desc(pack.access_view)] access to purchase."
+			pack.desc += " 购买需要[SSid_access.get_access_desc(pack.access_view)]权限。"
 
 		supply_packs[pack.id] = pack
 
@@ -270,15 +270,15 @@ SUBSYSTEM_DEF(shuttle)
 		return //no players no autoevac
 
 	if(alive / total <= threshold)
-		var/msg = "Automatically dispatching emergency shuttle due to crew death."
+		var/msg = "因船员大量死亡，自动派遣紧急穿梭机。"
 		message_admins(msg)
 		log_shuttle("[msg] Alive: [alive], Roundstart: [total], Threshold: [threshold]")
 		emergency_no_recall = TRUE
 		priority_announce(
-			text = "Catastrophic casualties detected: crisis shuttle protocols activated - jamming recall signals across all frequencies.",
-			title = "Emergency Shuttle Dispatched",
+			text = "检测到灾难性伤亡：危机穿梭机协议已启动——正在干扰所有频率的召回信号。",
+			title = "紧急穿梭机已派遣",
 			sound = ANNOUNCER_SHUTTLECALLED,
-			sender_override = "Emergency Shuttle Uplink Alert",
+			sender_override = "紧急穿梭机上行链路警报",
 			color_override = "orange",
 		)
 		if(EMERGENCY_IDLE_OR_RECALLED || emergency.timeLeft(1) > emergency_call_time * ALERT_COEFF_AUTOEVAC_CRITICAL)
@@ -289,10 +289,10 @@ SUBSYSTEM_DEF(shuttle)
 		CRASH("Emergency shuttle block was called, but missing a value for the lockout duration")
 	if(admin_emergency_no_recall)
 		priority_announce(
-			text = "Emergency shuttle uplink interference detected, shuttle call disabled while the system reinitializes. Estimated restore in [DisplayTimeText(lockout_timer, round_seconds_to = 60)].",
-			title = "Uplink Interference",
+			text = "检测到紧急穿梭机上行链路受干扰，系统重新初始化期间无法呼叫穿梭机。预计将在[DisplayTimeText(lockout_timer, round_seconds_to = 60)]后恢复。",
+			title = "上行链路受干扰",
 			sound = ANNOUNCER_SHUTTLE, // SKYRAT EDIT CHANGE - Announcer Sounds - ORIGINAL: sound = 'sound/announcer/announcement/announce_dig.ogg',
-			sender_override = "Emergency Shuttle Uplink Alert",
+			sender_override = "紧急穿梭机上行链路警报",
 			color_override = "grey",
 		)
 		addtimer(CALLBACK(src, PROC_REF(unblock_recall)), lockout_timer)
@@ -303,10 +303,10 @@ SUBSYSTEM_DEF(shuttle)
 /datum/controller/subsystem/shuttle/proc/unblock_recall()
 	if(admin_emergency_no_recall)
 		priority_announce(
-			text= "Emergency shuttle uplink services are now back online.",
-			title = "Uplink Restored",
+			text= "紧急穿梭机上行链路服务现已恢复。",
+			title = "上行链路已恢复",
 			sound = ANNOUNCER_SHUTTLE, // SKYRAT EDIT CHANGE - Announcer Sounds - ORIGINAL: sound = 'sound/announcer/announcement/announce_dig.ogg',
-			sender_override = "Emergency Shuttle Uplink Alert",
+			sender_override = "紧急穿梭机上行链路警报",
 			color_override = "green",
 		)
 		return
@@ -329,21 +329,21 @@ SUBSYSTEM_DEF(shuttle)
 /datum/controller/subsystem/shuttle/proc/canEvac()
 	var/shuttle_refuel_delay = CONFIG_GET(number/shuttle_refuel_delay)
 	if(world.time - SSticker.round_start_time < shuttle_refuel_delay)
-		return "The emergency shuttle is refueling. Please wait [DisplayTimeText(shuttle_refuel_delay - (world.time - SSticker.round_start_time))] before attempting to call."
+		return "紧急穿梭机正在补充燃料。请等待[DisplayTimeText(shuttle_refuel_delay - (world.time - SSticker.round_start_time))]后再尝试呼叫。"
 
 	switch(emergency.mode)
 		if(SHUTTLE_RECALL)
-			return "The emergency shuttle may not be called while returning to CentCom."
+			return "紧急穿梭机返回中央指挥部期间无法呼叫。"
 		if(SHUTTLE_CALL)
-			return "The emergency shuttle is already on its way."
+			return "紧急穿梭机已经在路上了。"
 		if(SHUTTLE_DOCKED)
-			return "The emergency shuttle is already here."
+			return "紧急穿梭机已经抵达。"
 		if(SHUTTLE_IGNITING)
-			return "The emergency shuttle is firing its engines to leave."
+			return "紧急穿梭机正在启动引擎准备离开。"
 		if(SHUTTLE_ESCAPE)
-			return "The emergency shuttle is moving away to a safe distance."
+			return "紧急穿梭机正在撤离至安全距离。"
 		if(SHUTTLE_STRANDED)
-			return "The emergency shuttle has been disabled by CentCom."
+			return "中央指挥部已停用紧急穿梭机。"
 
 	return TRUE
 
@@ -383,19 +383,19 @@ SUBSYSTEM_DEF(shuttle)
 		return
 
 	if(length(trim(call_reason)) < CALL_SHUTTLE_REASON_LENGTH && SSsecurity_level.get_current_level_as_number() > SEC_LEVEL_GREEN)
-		to_chat(user, span_alert("You must provide a reason."))
+		to_chat(user, span_alert("你必须提供理由。"))
 		return
 
 	var/area/signal_origin = get_area(user)
 	call_evac_shuttle(call_reason, signal_origin)
 
 	log_shuttle("[key_name(user)] has called the emergency shuttle.")
-	deadchat_broadcast(" has called the shuttle at [span_name("[signal_origin.name]")].", span_name("[user.real_name]"), user, message_type=DEADCHAT_ANNOUNCEMENT)
+	deadchat_broadcast("在[span_name("[signal_origin.name]")]呼叫了穿梭机。", span_name("[user.real_name]"), user, message_type=DEADCHAT_ANNOUNCEMENT)
 	if(call_reason)
 		SSblackbox.record_feedback("text", "shuttle_reason", 1, "[call_reason]")
 		log_shuttle("Shuttle call reason: [call_reason]")
 		SSticker.emergency_reason = call_reason
-	message_admins("[ADMIN_LOOKUPFLW(user)] has called the shuttle. (<A href='byond://?_src_=holder;[HrefToken()];trigger_centcom_recall=1'>TRIGGER CENTCOM RECALL</A>)")
+	message_admins("[ADMIN_LOOKUPFLW(user)]呼叫了穿梭机。（<A href='byond://?_src_=holder;[HrefToken()];trigger_centcom_recall=1'>触发中央指挥部召回</A>）")
 
 /// Call the emergency shuttle.
 /// If you are doing this on behalf of a player, use requestEvac instead.
@@ -406,7 +406,7 @@ SUBSYSTEM_DEF(shuttle)
 
 	call_reason = trim(html_encode(call_reason))
 
-	var/emergency_reason = "\n\nNature of emergency:\n[call_reason]"
+	var/emergency_reason = "\n\n紧急情况说明：\n[call_reason]"
 
 	emergency.request(
 		signal_origin = signal_origin,
@@ -432,16 +432,16 @@ SUBSYSTEM_DEF(shuttle)
 
 	if(!admiral_message)
 		admiral_message = pick(GLOB.admiral_messages)
-	var/intercepttext = "<font size = 3><b>Nanotrasen Update</b>: Request For Shuttle.</font><hr>\
-						To whom it may concern:<br><br>\
-						We have taken note of the situation upon [station_name()] and have come to the \
-						conclusion that it does not warrant the abandonment of the station.<br>\
-						If you do not agree with our opinion we suggest that you open a direct \
-						line with us and explain the nature of your crisis.<br><br>\
-						<i>This message has been automatically generated based upon readings from long \
-						range diagnostic tools. To assure the quality of your request every finalized report \
-						is reviewed by an on-call rear admiral.<br>\
-						<b>Rear Admiral's Notes:</b> \
+	var/intercepttext = "<font size = 3><b>纳米传讯通告</b>：穿梭机申请。</font><hr>\
+						致有关人员：<br><br>\
+						我们已了解[station_name()]的情况，经评估认为\
+						目前尚不足以构成放弃空间站的理由。<br>\
+						如果你们不同意这一判断，建议直接与我们\
+						建立通信，说明所面临危机的具体情况。<br><br>\
+						<i>本信息根据远程诊断工具的\
+						读数自动生成。为确保妥善处理你们的请求，所有最终报告\
+						均由值班少将审核。<br>\
+						<b>少将批注：</b> \
 						[admiral_message]"
 	print_command_report(intercepttext, announce = TRUE)
 
@@ -463,9 +463,9 @@ SUBSYSTEM_DEF(shuttle)
 	var/area/signal_origin = hide_origin ? null : get_area(user)
 	emergency.cancel(signal_origin)
 	log_shuttle("[key_name(user)] has recalled the shuttle.")
-	message_admins("[ADMIN_LOOKUPFLW(user)] has recalled the shuttle.")
+	message_admins("[ADMIN_LOOKUPFLW(user)]召回了穿梭机。")
 	if(!hide_origin)
-		deadchat_broadcast(" has recalled the shuttle from [span_name("[get_area_name(user, TRUE)]")].", span_name("[user.real_name]"), user, message_type = DEADCHAT_ANNOUNCEMENT)
+		deadchat_broadcast("在[span_name("[get_area_name(user, TRUE)]")]召回了穿梭机。", span_name("[user.real_name]"), user, message_type = DEADCHAT_ANNOUNCEMENT)
 	return TRUE
 
 /// Can this user recall the emergency shuttle? Returns TRUE if they can, otherwise returns FALSE.
@@ -516,11 +516,11 @@ SUBSYSTEM_DEF(shuttle)
 	if(admin_emergency_no_recall)
 		var/admin_no_recall_alert = tgui_alert(
 			user,
-			"An administrator has disabled the emergency shuttle recall function, are you sure you want to proceed with the recall?",
-			"Admin Level Recall Confirmation",
-			list("Yes", "No"),
+			"有管理员禁用了紧急穿梭机的召回功能，你确定要继续召回吗？",
+			"管理员召回确认",
+			list("是", "否"),
 		)
-		if(admin_no_recall_alert == "Yes")
+		if(admin_no_recall_alert == "是")
 			admin_emergency_no_recall = FALSE
 			return TRUE
 		return FALSE
@@ -528,11 +528,11 @@ SUBSYSTEM_DEF(shuttle)
 	if(emergency_no_recall)
 		var/general_no_recall_alert = tgui_alert(
 			user,
-			"The emergency shuttle recall function is currently disabled by game code, are you sure you want to proceed with the recall?",
-			"Recall Confirmation",
-			list("Yes", "No"),
+			"游戏代码当前禁用了紧急穿梭机的召回功能，你确定要继续召回吗？",
+			"召回确认",
+			list("是", "否"),
 		)
-		if(general_no_recall_alert == "Yes")
+		if(general_no_recall_alert == "是")
 			// we will not unset emergency_no_recall here, as it's game code enforced and I want it to stay active, admins can transiently override it through this though.
 			// they can always edit the variable on SSshuttle if desperate.
 			return TRUE
@@ -567,7 +567,7 @@ SUBSYSTEM_DEF(shuttle)
 		if(EMERGENCY_IDLE_OR_RECALLED)
 			emergency.request(null, set_coefficient = ALERT_COEFF_AUTOEVAC_NORMAL)
 			log_shuttle("There is no means of calling the emergency shuttle anymore. Shuttle automatically called.")
-			message_admins("All the communications consoles were destroyed and all AIs are inactive. Shuttle called.")
+			message_admins("所有通信控制台均被摧毁，且所有 AI 均无法运作。已呼叫穿梭机。")
 
 /datum/controller/subsystem/shuttle/proc/registerHostileEnvironment(datum/bad)
 	hostile_environments[bad] = TRUE
@@ -612,20 +612,20 @@ SUBSYSTEM_DEF(shuttle)
 		emergency.timer = null
 		emergency.sound_played = FALSE
 		priority_announce(
-			text = "Departure has been postponed indefinitely pending conflict resolution.",
-			title = "Hostile Environment Detected",
+			text = "离站已无限期推迟，等待冲突解决。",
+			title = "检测到敌对环境",
 			sound = 'sound/announcer/notice/notice1.ogg',
-			sender_override = "Emergency Shuttle Uplink Alert",
+			sender_override = "紧急穿梭机上行链路警报",
 			color_override = "grey",
 		)
 	if(!emergency_no_escape && (emergency.mode == SHUTTLE_STRANDED || emergency.mode == SHUTTLE_DOCKED))
 		emergency.mode = SHUTTLE_DOCKED
 		emergency.setTimer(emergency_dock_time)
 		priority_announce(
-			text = "You have [DisplayTimeText(emergency_dock_time)] to board the emergency shuttle.",
-			title = "Hostile Environment Resolved",
+			text = "你们有[DisplayTimeText(emergency_dock_time)]的时间登上紧急穿梭机。",
+			title = "敌对环境已解除",
 			sound = 'sound/announcer/announcement/announce_dig.ogg',
-			sender_override = "Emergency Shuttle Uplink Alert",
+			sender_override = "紧急穿梭机上行链路警报",
 			color_override = "green",
 		)
 
@@ -767,7 +767,7 @@ SUBSYSTEM_DEF(shuttle)
 
 	var/obj/docking_port/stationary/transit/new_transit_dock = new(midpoint)
 	new_transit_dock.reserved_area = proposal
-	new_transit_dock.name = "Transit for [M.shuttle_id]/[M.name]"
+	new_transit_dock.name = "[M.shuttle_id]/[M.name]的中转区"
 	new_transit_dock.owner = M
 	new_transit_dock.assigned_area = new_area
 
@@ -1033,7 +1033,7 @@ SUBSYSTEM_DEF(shuttle)
 			if(istype(port, /obj/docking_port/stationary))
 				log_mapping("Shuttle Template [loading_template.mappath] has a stationary docking port.")
 	if(!found)
-		var/msg = "load_template(): Shuttle Template [loading_template.mappath] has no mobile docking port. Aborting import."
+		var/msg = "load_template()：穿梭机模板[loading_template.mappath]没有移动停靠端口。已中止导入。"
 		for(var/affected_turfs in affected)
 			var/turf/T0 = affected_turfs
 			T0.empty()
@@ -1084,7 +1084,7 @@ SUBSYSTEM_DEF(shuttle)
 				"templates" = list())
 
 		var/list/L = list()
-		L["name"] = S.name
+		L["name"] = chinese_template_display(S.name)
 		L["shuttle_id"] = S.shuttle_id
 		L["port_id"] = S.port_id
 		L["description"] = S.description
@@ -1110,7 +1110,7 @@ SUBSYSTEM_DEF(shuttle)
 		L["timer"] = M.timer
 		L["timeleft"] = M.getTimerStr()
 		if (timeleft > 1 HOURS)
-			L["timeleft"] = "Infinity"
+			L["timeleft"] = "无限"
 		L["can_fast_travel"] = M.timer && timeleft >= 50
 		L["can_fly"] = TRUE
 		if(istype(M, /obj/docking_port/mobile/emergency))
@@ -1167,7 +1167,7 @@ SUBSYSTEM_DEF(shuttle)
 				if(M.shuttle_id == params["id"] && M.timer && M.timeLeft(1) >= 50)
 					M.setTimer(50)
 					. = TRUE
-					message_admins("[key_name_admin(usr)] fast travelled [M]")
+					message_admins("[key_name_admin(usr)]快速移动了[M]")
 					log_admin("[key_name(usr)] fast travelled [M]")
 					SSblackbox.record_feedback("text", "shuttle_manipulator", 1, "[M.name]")
 					break
@@ -1180,7 +1180,7 @@ SUBSYSTEM_DEF(shuttle)
 				var/obj/docking_port/mobile/mdp = action_load(S)
 				if(mdp)
 					user.forceMove(get_turf(mdp))
-					message_admins("[key_name_admin(usr)] loaded [mdp] with the shuttle manipulator.")
+					message_admins("[key_name_admin(usr)]使用穿梭机管理器加载了[mdp]。")
 					log_admin("[key_name(usr)] loaded [mdp] with the shuttle manipulator.</span>")
 					SSblackbox.record_feedback("text", "shuttle_manipulator", 1, "[mdp.name]")
 				shuttle_loading = FALSE
@@ -1210,13 +1210,13 @@ SUBSYSTEM_DEF(shuttle)
 				var/obj/docking_port/mobile/mdp = action_load(S, replace = TRUE)
 				if(mdp)
 					user.forceMove(get_turf(mdp))
-					message_admins("[key_name_admin(usr)] load/replaced [mdp] with the shuttle manipulator.")
+					message_admins("[key_name_admin(usr)]使用穿梭机管理器加载或替换了[mdp]。")
 					log_admin("[key_name(usr)] load/replaced [mdp] with the shuttle manipulator.</span>")
 					SSblackbox.record_feedback("text", "shuttle_manipulator", 1, "[mdp.name]")
 				shuttle_loading = FALSE
 				if(emergency == mdp) //you just changed the emergency shuttle, there are events in game + captains that can change your snowflake choice.
-					var/set_purchase = tgui_alert(usr, "Do you want to also disable shuttle purchases/random events that would change the shuttle?", "Butthurt Admin Prevention", list("Yes, disable purchases/events", "No, I want to possibly get owned"))
-					if(set_purchase == "Yes, disable purchases/events")
+					var/set_purchase = tgui_alert(usr, "是否同时禁用会改变穿梭机的购买行为和随机事件？", "防止管理员破防", list("是，禁用购买和事件", "否，我愿意冒被打脸的风险"))
+					if(set_purchase == "是，禁用购买和事件")
 						SSshuttle.shuttle_purchased = SHUTTLEPURCHASE_FORCED
 
 /datum/controller/subsystem/shuttle/proc/init_has_purchase_shuttle_access()

@@ -1,5 +1,5 @@
 /datum/smite/hitsplat
-	name = "Hitsplat"
+	name = "伤害数字"
 
 /datum/smite/hitsplat/effect(client/user, mob/living/target)
 	. = ..()
@@ -8,7 +8,7 @@
 
 // Dragon dagger spec spam.
 /datum/smite/hitsplat/stackout
-	name = "Stackout (Hitsplat)"
+	name = "连击（伤害数字）"
 
 /datum/smite/hitsplat/stackout/effect(client/user, mob/living/target)
 	. = ..()

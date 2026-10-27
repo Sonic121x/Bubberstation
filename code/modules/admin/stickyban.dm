@@ -21,13 +21,13 @@
 			ban["ckey"] = ckey
 
 			if (get_stickyban_from_ckey(ckey))
-				to_chat(usr, span_adminnotice("Error: Can not add a stickyban: User already has a current sticky ban"), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：无法添加粘性封禁：该用户当前已有粘性封禁"), confidential = TRUE)
 				return
 
 			if (data["reason"])
 				ban["message"] = data["reason"]
 			else
-				var/reason = input(usr,"Reason","Reason","Ban Evasion") as text|null
+				var/reason = input(usr,"原因","原因","规避封禁") as text|null
 				if (!reason)
 					return
 				ban["message"] = "[reason]"
@@ -49,8 +49,8 @@
 			ban["pending_matches_this_round"] = list()
 			SSstickyban.cache[ckey] = ban
 
-			log_admin_private("[key_name(usr)] has stickybanned [ckey].\nReason: [ban["message"]]")
-			message_admins(span_adminnotice("[key_name_admin(usr)] has stickybanned [ckey].\nReason: [ban["message"]]"))
+			log_admin_private("[key_name(usr)] 已对 [ckey] 施加粘性封禁。\n原因：[ban["message"]]")
+			message_admins(span_adminnotice("[key_name_admin(usr)] 已对 [ckey] 施加粘性封禁。\n原因：[ban["message"]]"))
 
 		if ("remove")
 			if (!data["ckey"])
@@ -59,12 +59,12 @@
 
 			var/ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice("Error: No sticky ban for [ckey] found!"), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：未找到 [ckey] 的粘性封禁！"), confidential = TRUE)
 				return
-			if (tgui_alert(usr,"Are you sure you want to remove the sticky ban on [ckey]?","Are you sure",list("Yes","No")) == "No")
+			if (tgui_alert(usr,"确定要移除 [ckey] 的粘性封禁吗？","确认",list("Yes","No")) == "No")
 				return
 			if (!get_stickyban_from_ckey(ckey))
-				to_chat(usr, span_adminnotice("Error: The ban disappeared."), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：该封禁消失了。"), confidential = TRUE)
 				return
 			world.SetConfig("ban",ckey, null)
 			SSstickyban.cache -= ckey
@@ -78,8 +78,8 @@
 				), warn = TRUE, qdel = TRUE)
 
 
-			log_admin_private("[key_name(usr)] removed [ckey]'s stickyban")
-			message_admins(span_adminnotice("[key_name_admin(usr)] removed [ckey]'s stickyban"))
+			log_admin_private("[key_name(usr)] 已移除 [ckey] 的粘性封禁")
+			message_admins(span_adminnotice("[key_name_admin(usr)] 已移除 [ckey] 的粘性封禁"))
 
 		if ("remove_alt")
 			if (!data["ckey"])
@@ -90,27 +90,27 @@
 			var/alt = ckey(data["alt"])
 			var/ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice("Error: No sticky ban for [ckey] found!"), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：未找到 [ckey] 的粘性封禁！"), confidential = TRUE)
 				return
 
 			var/key = LAZYACCESS(ban["keys"], alt)
 			if (!key)
-				to_chat(usr, span_adminnotice("Error: [alt] is not linked to [ckey]'s sticky ban!"), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：[alt] 未与 [ckey] 的粘性封禁关联！"), confidential = TRUE)
 				return
 
-			if (tgui_alert(usr,"Are you sure you want to disassociate [alt] from [ckey]'s sticky ban? \nNote: Nothing stops byond from re-linking them, Use \[E] to exempt them","Are you sure",list("Yes","No")) == "No")
+			if (tgui_alert(usr,"确定要解除 [alt] 与 [ckey] 粘性封禁的关联吗？\n注意：没有什么能阻止 byond 重新将它们关联起来，可使用 \[E] 将其豁免","确认",list("Yes","No")) == "No")
 				return
 
 			//we have to do this again incase something changes
 			ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice("Error: The ban disappeared."), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：该封禁消失了。"), confidential = TRUE)
 				return
 
 			key = LAZYACCESS(ban["keys"], alt)
 
 			if (!key)
-				to_chat(usr, span_adminnotice("Error: [alt] link to [ckey]'s sticky ban disappeared."), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：[alt] 与 [ckey] 粘性封禁的关联消失了。"), confidential = TRUE)
 				return
 
 			LAZYREMOVE(ban["keys"], alt)
@@ -126,8 +126,8 @@
 				query_remove_stickyban_alt.warn_execute()
 				QDEL_NULL(query_remove_stickyban_alt)
 
-			log_admin_private("[key_name(usr)] has disassociated [alt] from [ckey]'s sticky ban")
-			message_admins(span_adminnotice("[key_name_admin(usr)] has disassociated [alt] from [ckey]'s sticky ban"))
+			log_admin_private("[key_name(usr)] 已解除 [alt] 与 [ckey] 粘性封禁的关联")
+			message_admins(span_adminnotice("[key_name_admin(usr)] 已解除 [alt] 与 [ckey] 粘性封禁的关联"))
 
 		if ("edit")
 			if (!data["ckey"])
@@ -135,16 +135,16 @@
 			var/ckey = data["ckey"]
 			var/ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice("Error: No sticky ban for [ckey] found!"), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：未找到 [ckey] 的粘性封禁！"), confidential = TRUE)
 				return
 			var/oldreason = ban["message"]
-			var/reason = input(usr,"Reason","Reason","[ban["message"]]") as text|null
+			var/reason = input(usr,"原因","原因","[ban["message"]]") as text|null
 			if (!reason || reason == oldreason)
 				return
 			//we have to do this again incase something changed while we waited for input
 			ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice("Error: The ban disappeared."), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：该封禁消失了。"), confidential = TRUE)
 				return
 			ban["message"] = "[reason]"
 
@@ -160,8 +160,8 @@
 				query_edit_stickyban.warn_execute()
 				QDEL_NULL(query_edit_stickyban)
 
-			log_admin_private("[key_name(usr)] has edited [ckey]'s sticky ban reason from [oldreason] to [reason]")
-			message_admins(span_adminnotice("[key_name_admin(usr)] has edited [ckey]'s sticky ban reason from [oldreason] to [reason]"))
+			log_admin_private("[key_name(usr)] 已将 [ckey] 的粘性封禁原因从 [oldreason] 修改为 [reason]")
+			message_admins(span_adminnotice("[key_name_admin(usr)] 已将 [ckey] 的粘性封禁原因从 [oldreason] 修改为 [reason]"))
 
 		if ("exempt")
 			if (!data["ckey"])
@@ -172,27 +172,27 @@
 			var/alt = ckey(data["alt"])
 			var/ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice("Error: No sticky ban for [ckey] found!"), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：未找到 [ckey] 的粘性封禁！"), confidential = TRUE)
 				return
 
 			var/key = LAZYACCESS(ban["keys"], alt)
 			if (!key)
-				to_chat(usr, span_adminnotice("Error: [alt] is not linked to [ckey]'s sticky ban!"), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：[alt] 未与 [ckey] 的粘性封禁关联！"), confidential = TRUE)
 				return
 
-			if (tgui_alert(usr,"Are you sure you want to exempt [alt] from [ckey]'s sticky ban?","Are you sure",list("Yes","No")) == "No")
+			if (tgui_alert(usr,"确定要将 [alt] 从 [ckey] 的粘性封禁中豁免吗？","确认",list("Yes","No")) == "No")
 				return
 
 			//we have to do this again incase something changes
 			ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice("Error: The ban disappeared."), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：该封禁消失了。"), confidential = TRUE)
 				return
 
 			key = LAZYACCESS(ban["keys"], alt)
 
 			if (!key)
-				to_chat(usr, span_adminnotice("Error: [alt]'s link to [ckey]'s sticky ban disappeared."), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：[alt] 与 [ckey] 粘性封禁的关联消失了。"), confidential = TRUE)
 				return
 			LAZYREMOVE(ban["keys"], alt)
 			key["exempt"] = TRUE
@@ -210,8 +210,8 @@
 				query_exempt_stickyban_alt.warn_execute()
 				QDEL_NULL(query_exempt_stickyban_alt)
 
-			log_admin_private("[key_name(usr)] has exempted [alt] from [ckey]'s sticky ban")
-			message_admins(span_adminnotice("[key_name_admin(usr)] has exempted [alt] from [ckey]'s sticky ban"))
+			log_admin_private("[key_name(usr)] 已豁免 [alt]，使其不受 [ckey] 的粘性封禁影响")
+			message_admins(span_adminnotice("[key_name_admin(usr)] 已豁免 [alt]，使其不受 [ckey] 的粘性封禁影响"))
 
 		if ("unexempt")
 			if (!data["ckey"])
@@ -222,26 +222,26 @@
 			var/alt = ckey(data["alt"])
 			var/ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice("Error: No sticky ban for [ckey] found!"), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：未找到 [ckey] 的粘性封禁！"), confidential = TRUE)
 				return
 
 			var/key = LAZYACCESS(ban["whitelist"], alt)
 			if (!key)
-				to_chat(usr, span_adminnotice("Error: [alt] is not exempt from [ckey]'s sticky ban!"), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：[alt] 并未从 [ckey] 的粘性封禁中获得豁免！"), confidential = TRUE)
 				return
 
-			if (tgui_alert(usr,"Are you sure you want to unexempt [alt] from [ckey]'s sticky ban?","Are you sure",list("Yes","No")) == "No")
+			if (tgui_alert(usr,"确定要取消 [alt] 在 [ckey] 粘性封禁中的豁免吗？","确认",list("Yes","No")) == "No")
 				return
 
 			//we have to do this again incase something changes
 			ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice("Error: The ban disappeared."), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：该封禁消失了。"), confidential = TRUE)
 				return
 
 			key = LAZYACCESS(ban["whitelist"], alt)
 			if (!key)
-				to_chat(usr, span_adminnotice("Error: [alt]'s exemption from [ckey]'s sticky ban disappeared."), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：[alt] 对 [ckey] 粘性封禁的豁免消失了。"), confidential = TRUE)
 				return
 
 			LAZYREMOVE(ban["whitelist"], alt)
@@ -260,23 +260,23 @@
 				query_unexempt_stickyban_alt.warn_execute()
 				QDEL_NULL(query_unexempt_stickyban_alt)
 
-			log_admin_private("[key_name(usr)] has unexempted [alt] from [ckey]'s sticky ban")
-			message_admins(span_adminnotice("[key_name_admin(usr)] has unexempted [alt] from [ckey]'s sticky ban"))
+			log_admin_private("[key_name(usr)] 已取消 [alt] 在 [ckey] 粘性封禁中的豁免")
+			message_admins(span_adminnotice("[key_name_admin(usr)] 已取消 [alt] 在 [ckey] 粘性封禁中的豁免"))
 
 		if ("timeout")
 			if (!data["ckey"])
 				return
 			if (!SSdbcore.Connect())
-				to_chat(usr, span_adminnotice("No database connection!"), confidential = TRUE)
+				to_chat(usr, span_adminnotice("数据库未连接！"), confidential = TRUE)
 				return
 
 			var/ckey = data["ckey"]
 
-			if (tgui_alert(usr,"Are you sure you want to put [ckey]'s stickyban on timeout until next round (or removed)?","Are you sure",list("Yes","No")) == "No")
+			if (tgui_alert(usr,"确定要让 [ckey] 的粘性封禁进入超时状态，直到下一回合（或被移除）吗？","确认",list("Yes","No")) == "No")
 				return
 			var/ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice("Error: No sticky ban for [ckey] found!"), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：未找到 [ckey] 的粘性封禁！"), confidential = TRUE)
 				return
 
 			ban["timeout"] = TRUE
@@ -287,18 +287,18 @@
 			if (cachedban)
 				cachedban["timeout"] = TRUE
 
-			log_admin_private("[key_name(usr)] has put [ckey]'s sticky ban on timeout.")
-			message_admins(span_adminnotice("[key_name_admin(usr)] has put [ckey]'s sticky ban on timeout."))
+			log_admin_private("[key_name(usr)] 已将 [ckey] 的粘性封禁设为超时。")
+			message_admins(span_adminnotice("[key_name_admin(usr)] 已将 [ckey] 的粘性封禁设为超时。"))
 
 		if ("untimeout")
 			if (!data["ckey"])
 				return
 			if (!SSdbcore.Connect())
-				to_chat(usr, span_adminnotice("No database connection!"), confidential = TRUE)
+				to_chat(usr, span_adminnotice("数据库未连接！"), confidential = TRUE)
 				return
 			var/ckey = data["ckey"]
 
-			if (tgui_alert(usr,"Are you sure you want to lift the timeout on [ckey]'s stickyban?","Are you sure",list("Yes","No")) == "No")
+			if (tgui_alert(usr,"确定要解除 [ckey] 粘性封禁的超时吗？","确认",list("Yes","No")) == "No")
 				return
 
 			var/ban = get_stickyban_from_ckey(ckey)
@@ -307,7 +307,7 @@
 				cachedban["timeout"] = FALSE
 			if (!ban)
 				if (!cachedban)
-					to_chat(usr, span_adminnotice("Error: No sticky ban for [ckey] found!"), confidential = TRUE)
+					to_chat(usr, span_adminnotice("错误：未找到 [ckey] 的粘性封禁！"), confidential = TRUE)
 					return
 				ban = cachedban
 
@@ -315,27 +315,27 @@
 
 			world.SetConfig("ban",ckey,list2stickyban(ban))
 
-			log_admin_private("[key_name(usr)] has taken [ckey]'s sticky ban off of timeout.")
-			message_admins(span_adminnotice("[key_name_admin(usr)] has taken [ckey]'s sticky ban off of timeout."))
+			log_admin_private("[key_name(usr)] 已解除 [ckey] 粘性封禁的超时状态。")
+			message_admins(span_adminnotice("[key_name_admin(usr)] 已解除 [ckey] 粘性封禁的超时状态。"))
 
 
 		if ("revert")
 			if (!data["ckey"])
 				return
 			var/ckey = data["ckey"]
-			if (tgui_alert(usr,"Are you sure you want to revert the sticky ban on [ckey] to its state at round start (or last edit)?","Are you sure",list("Yes","No")) == "No")
+			if (tgui_alert(usr,"确定要将 [ckey] 的粘性封禁恢复到回合开始（或上次编辑）时的状态吗？","确认",list("Yes","No")) == "No")
 				return
 			var/ban = get_stickyban_from_ckey(ckey)
 			if (!ban)
-				to_chat(usr, span_adminnotice("Error: No sticky ban for [ckey] found!"), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：未找到 [ckey] 的粘性封禁！"), confidential = TRUE)
 				return
 			var/cached_ban = SSstickyban.cache[ckey]
 			if (!cached_ban)
-				to_chat(usr, span_adminnotice("Error: No cached sticky ban for [ckey] found!"), confidential = TRUE)
+				to_chat(usr, span_adminnotice("错误：未找到 [ckey] 的缓存的粘性封禁！"), confidential = TRUE)
 			world.SetConfig("ban",ckey,null)
 
-			log_admin_private("[key_name(usr)] has reverted [ckey]'s sticky ban to its state at round start.")
-			message_admins(span_adminnotice("[key_name_admin(usr)] has reverted [ckey]'s sticky ban to its state at round start."))
+			log_admin_private("[key_name(usr)] 已将 [ckey] 的粘性封禁恢复到回合开始时的状态。")
+			message_admins(span_adminnotice("[key_name_admin(usr)] 已将 [ckey] 的粘性封禁恢复到回合开始时的状态。"))
 			//revert is mostly used when shit goes rouge, so we have to set it to null
 			// and wait a byond tick before assigning it to ensure byond clears its shit.
 			sleep(world.tick_lag)
@@ -350,19 +350,19 @@
 	if (SSdbcore.Connect())
 		timeout = "<a href='byond://?_src_=holder;[HrefToken()];stickyban=[(ban["timeout"] ? "untimeout" : "timeout")]&ckey=[ckey]'>\[[(ban["timeout"] ? "untimeout" : "timeout" )]\]</a>"
 	else
-		timeout = "<a href='byond://?_src_=holder;[HrefToken()];stickyban=revert&ckey=[ckey]'>\[revert\]</a>"
+		timeout = "<a href='byond://?_src_=holder;[HrefToken()];stickyban=revert&ckey=[ckey]'>\[回退\]</a>"
 	. = list({"
 		<a href='byond://?_src_=holder;[HrefToken()];stickyban=remove&ckey=[ckey]'>\[-\]</a>
 		[timeout]
 		<b>[ckey]</b>
 		<br />"
-		[ban["message"]] <b><a href='byond://?_src_=holder;[HrefToken()];stickyban=edit&ckey=[ckey]'>\[Edit\]</a></b><br />
+		[ban["message"]] <b><a href='byond://?_src_=holder;[HrefToken()];stickyban=edit&ckey=[ckey]'>\[编辑\]</a></b><br />
 	"})
 	if (ban["admin"])
 		. += "[ban["admin"]]<br />"
 	else
-		. += "LEGACY<br />"
-	. += "Caught keys<br />\n<ol>"
+		. += "旧版记录<br />"
+	. += "已捕获的账号<br />\n<ol>"
 	for (var/key in ban["keys"])
 		if (ckey(key) == ckey)
 			continue
@@ -387,10 +387,10 @@
 
 	var/html = {"
 	<head>
-		<title>Sticky Bans</title>
+		<title>粘性封禁</title>
 	</head>
 	<body>
-		<h2>All Sticky Bans:</h2> <a href='byond://?_src_=holder;[HrefToken()];stickyban=add'>\[+\]</a><br>
+		<h2>全部粘性封禁：</h2> <a href='byond://?_src_=holder;[HrefToken()];stickyban=add'>\[+\]</a><br>
 		[banhtml.Join("")]
 	</body>
 	"}
@@ -481,5 +481,5 @@
 
 	. = list2params(.)
 
-ADMIN_VERB(panel_sticky_ban, R_BAN, "Sticky Ban Panel", "List and manage sticky bans.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(panel_sticky_ban, R_BAN, "粘性封禁面板", "列出并管理粘性封禁。", ADMIN_CATEGORY_MAIN)
 	user.holder.stickyban_show()

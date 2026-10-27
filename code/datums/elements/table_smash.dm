@@ -42,8 +42,8 @@
 		user.Move_Pulled(source_obj)
 
 		if (user.pulling.loc == source_obj.loc)
-			user.visible_message(span_notice("[user] places [user.pulling] onto [source_obj]."),
-				span_notice("You place [user.pulling] onto [source_obj]."))
+			user.visible_message(span_notice("[user]将[user.pulling]放在[source_obj]上。"),
+				span_notice("你将[user.pulling]放在[source_obj]上。"))
 			user.stop_pulling()
 
 		return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -54,7 +54,7 @@
 			//Already buckled to the object, you probably meant to unbuckle them
 			return
 
-		to_chat(user, span_warning("[pushed_mob] is buckled to [pushed_mob.buckled]!"))
+		to_chat(user, span_warning("[pushed_mob]被固定在[pushed_mob.buckled]上！"))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	INVOKE_ASYNC(src, PROC_REF(perform_table_smash), source_obj, user)
@@ -66,7 +66,7 @@
 	if (user.combat_mode)
 		switch(user.grab_state)
 			if (GRAB_PASSIVE)
-				to_chat(user, span_warning("You need a better grip to do that!"))
+				to_chat(user, span_warning("你得抓得更牢才能这么做！"))
 				return
 			if (GRAB_AGGRESSIVE)
 				if (gentle_push)
@@ -76,8 +76,8 @@
 			if (GRAB_NECK to GRAB_KILL)
 				tablelimbsmash(user, pushed_mob, table)
 	else
-		pushed_mob.visible_message(span_notice("[user] begins to place [pushed_mob] onto [table]..."), \
-							span_userdanger("[user] begins to place [pushed_mob] onto [table]..."))
+		pushed_mob.visible_message(span_notice("[user]开始将[pushed_mob]放到[table]上……"), \
+							span_userdanger("[user]开始将[pushed_mob]放到[table]上……"))
 		if (do_after(user, 3.5 SECONDS, target = pushed_mob))
 			tableplace(user, pushed_mob, table)
 		else
@@ -111,17 +111,17 @@
 	var/skills_space = ""
 	if (HAS_TRAIT(user, TRAIT_QUICKER_CARRY))
 		tableplace_delay = 2 SECONDS
-		skills_space = " expertly"
+		skills_space = "熟练地"
 	else if (HAS_TRAIT(user, TRAIT_QUICK_CARRY))
 		tableplace_delay = 2.75 SECONDS
-		skills_space = " quickly"
+		skills_space = "迅速地"
 
 	var/obj/item/organ/cyberimp/chest/spine/potential_spine = user.get_organ_slot(ORGAN_SLOT_SPINE)
 	if (istype(potential_spine))
 		tableplace_delay *= potential_spine.athletics_boost_multiplier
 
-	carried_mob.visible_message(span_notice("[user] begins to[skills_space] place [carried_mob] onto [table]..."),
-		span_userdanger("[user] begins to[skills_space] place [carried_mob] onto [table]..."))
+	carried_mob.visible_message(span_notice("[user]开始[skills_space]将[carried_mob]放到[table]上……"),
+		span_userdanger("[user]开始[skills_space]将[carried_mob]放到[table]上……"))
 	if (!do_after(user, tableplace_delay, target = carried_mob))
 		return ITEM_INTERACT_BLOCKING
 	user.unbuckle_mob(carried_mob)
@@ -132,14 +132,14 @@
 /datum/element/table_smash/proc/tableplace(mob/living/user, mob/living/pushed_mob, obj/structure/table/table)
 	pushed_mob.forceMove(table.loc)
 	pushed_mob.set_resting(TRUE, TRUE)
-	pushed_mob.visible_message(span_notice("[user] places [pushed_mob] onto [table]."), \
-		span_notice("[user] places [pushed_mob] onto [table]."))
-	log_combat(user, pushed_mob, "placed", null, "onto [table]")
+	pushed_mob.visible_message(span_notice("[user]将[pushed_mob]放到了[table]上。"), \
+		span_notice("[user]将[pushed_mob]放到了[table]上。"))
+	log_combat(user, pushed_mob, "放下了", null, "在[table]上")
 
 /// Aggressively smash the mob onto the table
 /datum/element/table_smash/proc/tablepush(mob/living/user, mob/living/pushed_mob, obj/structure/table/table)
 	if (HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_danger("Throwing [pushed_mob] onto the table might hurt them!"))
+		to_chat(user, span_danger("将[pushed_mob]摔到桌上可能会使其受伤！"))
 		return
 
 	var/passtable_key = REF(user)
@@ -157,9 +157,9 @@
 	pushed_mob.apply_damage(10, BRUTE)
 	pushed_mob.apply_damage(40, STAMINA)
 	playsound(pushed_mob, 'sound/effects/tableslam.ogg', 90, TRUE)
-	pushed_mob.visible_message(span_danger("[user] slams [pushed_mob] onto \the [table]!"), \
-		span_userdanger("[user] slams you onto \the [table]!"))
-	log_combat(user, pushed_mob, "tabled", null, "onto [table]")
+	pushed_mob.visible_message(span_danger("[user]将[pushed_mob]猛摔在[table]上！"), \
+		span_userdanger("[user]将你猛摔在[table]上！"))
+	log_combat(user, pushed_mob, "摔在了桌上", null, "目标桌子：[table]")
 	pushed_mob.add_mood_event("table", /datum/mood_event/table)
 	SEND_SIGNAL(user, COMSIG_LIVING_TABLE_SLAMMING, pushed_mob, table)
 	if(after_smash_proccall)
@@ -175,9 +175,9 @@
 	pushed_mob.apply_damage(30, BRUTE, banged_limb, wound_bonus = extra_wound)
 	pushed_mob.apply_damage(60, STAMINA)
 	playsound(pushed_mob, 'sound/effects/bang.ogg', 90, TRUE)
-	pushed_mob.visible_message(span_danger("[user] smashes [pushed_mob]'s [banged_limb.plaintext_zone] against \the [table]!"),
-		span_userdanger("[user] smashes your [banged_limb.plaintext_zone] against \the [table]"))
-	log_combat(user, pushed_mob, "head slammed", null, "against [table]")
+	pushed_mob.visible_message(span_danger("[user]将[pushed_mob]的[chinese_body_zone_display(banged_limb.plaintext_zone)]猛撞向[table]！"),
+		span_userdanger("[user]将你的[chinese_body_zone_display(banged_limb.plaintext_zone)]猛撞向[table]！"))
+	log_combat(user, pushed_mob, "将头猛撞向", null, "[table]")
 	pushed_mob.add_mood_event("table", /datum/mood_event/table_limbsmash, banged_limb)
 	table.take_damage(50)
 	SEND_SIGNAL(user, COMSIG_LIVING_TABLE_LIMB_SLAMMING, pushed_mob, table)
@@ -190,11 +190,11 @@
 	if((shove_flags & SHOVE_KNOCKDOWN_BLOCKED) || !(shove_flags & SHOVE_BLOCKED))
 		return
 	target.Knockdown(SHOVE_KNOCKDOWN_TABLE, daze_amount = 3 SECONDS)
-	target.visible_message(span_danger("[shover.name] shoves [target.name] onto \the [src]!"),
-		span_userdanger("You're shoved onto \the [src] by [shover.name]!"), span_hear("You hear aggressive shuffling followed by a loud thud!"), COMBAT_MESSAGE_RANGE, shover)
-	to_chat(shover, span_danger("You shove [target.name] onto \the [src]!"))
+	target.visible_message(span_danger("[shover.name]将[target.name]推到了[src]上！"),
+		span_userdanger("[shover.name]将你推到了[src]上！"), span_hear("你听见激烈的推搡声，随后是一声重响！"), COMBAT_MESSAGE_RANGE, shover)
+	to_chat(shover, span_danger("你将[target.name]推到了[src]上！"))
 	target.throw_at(src, 1, 1, null, FALSE) //1 speed throws with no spin are basically just forcemoves with a hard collision check
-	log_combat(shover, target, "shoved", "onto [src] (table)[weapon ? " with [weapon]" : ""]")
+	log_combat(shover, target, "推到了", "[src]（桌子）上[weapon ? "，使用[weapon]" : ""]")
 	after_smash(target)
 	return COMSIG_LIVING_SHOVE_HANDLED
 

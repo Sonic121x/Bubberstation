@@ -43,7 +43,7 @@
 	temp.undeletable = undeletable
 	temp.size = size
 	if(rename)
-		temp.filename = filename + "(Copy)"
+		temp.filename = filename + "（副本）"
 	else
 		temp.filename = filename
 	temp.filetype = filetype
@@ -97,6 +97,6 @@
 /datum/computer_file/program/proc/event_networkfailure(background)
 	kill_program()
 	if(background)
-		computer.visible_message(span_danger("\The [computer]'s screen displays a \"Process [filename].[filetype] (PID [rand(100,999)]) terminated - Network Error\" error"))
+		computer.visible_message(span_danger("\The [computer] 的屏幕上显示“进程 [filename].[filetype]（PID [rand(100,999)]）已终止——网络错误”的错误"))
 	else
-		computer.visible_message(span_danger("\The [computer]'s screen briefly freezes and then shows \"NETWORK ERROR - NTNet connection lost. Please retry. If problem persists contact your system administrator.\" error."))
+		computer.visible_message(span_danger("\The [computer] 的屏幕短暂卡住，随后显示“网络错误——NTNet 连接已丢失。请重试。若问题持续出现，请联系系统管理员。”的错误。"))

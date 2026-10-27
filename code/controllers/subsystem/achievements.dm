@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(achievements)
-	name = "Achievements"
+	name = "成就"
 	ss_flags = SS_NO_FIRE
 	var/achievements_enabled = FALSE
 
@@ -104,7 +104,7 @@ SUBSYSTEM_DEF(achievements)
 
 	var/list/orphaned_keys = get_orphaned_keys(FALSE)
 	if(orphaned_keys.len)
-		message_admins("Achievement metadata found without matching achievement, use Achievements-Admin-Panel verb to cleanup if necessary")
+		message_admins("发现没有对应成就的成就元数据，如有需要，请使用成就管理面板（Achievements-Admin-Panel）指令清理")
 
 /// returns list of metadata keys and versions in db with no matching achievement datum, either deleted achievements, or from server with code ahead of us.
 /datum/controller/subsystem/achievements/proc/get_orphaned_keys(include_archived = TRUE)

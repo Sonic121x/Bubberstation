@@ -36,12 +36,12 @@
 	. = ..()
 
 	if(master_mind)
-		linked_alert.desc += " You are an eldritch monster reanimated to serve its master, [master_mind]."
+		linked_alert.desc += " 你是一头被复生以侍奉其主人[master_mind]的邪异怪物。"
 	if(isnum(new_max_health))
 		if(new_max_health > initial(new_owner.maxHealth))
-			linked_alert.desc += " You are stronger in this form."
+			linked_alert.desc += " 在此形态下你更加强壮。"
 		else
-			linked_alert.desc += " You are more fragile in this form."
+			linked_alert.desc += " 在此形态下你更加脆弱。"
 
 /datum/status_effect/ghoul/on_apply()
 	if(!ishuman(owner))
@@ -103,7 +103,7 @@
 		qdel(src)
 
 /atom/movable/screen/alert/status_effect/ghoul
-	name = "Flesh Servant"
-	desc = "You are a Ghoul!"
+	name = "血肉仆从"
+	desc = "你是一名食尸鬼！"
 	icon_state = "heretic_template"
 	overlay_state = "mind_control"

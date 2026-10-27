@@ -1,6 +1,6 @@
 /datum/mafia_ability
-	var/name = "Mafia Ability"
-	var/ability_action = "brutally murder"
+	var/name = "黑手党能力"
+	var/ability_action = "残忍地谋杀"
 
 	///The priority level this action must be sent at. Setting this to null will prevent it from being triggered automatically.
 	///(COMSIG_MAFIA_NIGHT_PRE_ACTION_PHASE|COMSIG_MAFIA_NIGHT_ACTION_PHASE|COMSIG_MAFIA_NIGHT_KILL_PHASE)
@@ -59,26 +59,26 @@
 	if(host_role.mafia_game_controller.phase != valid_use_period)
 		return FALSE
 	if(host_role.role_flags & ROLE_ROLEBLOCKED)
-		host_role.send_message_to_player(span_warning("You were roleblocked!"))
+		host_role.send_message_to_player(span_warning("你被封锁了行动！"))
 		return FALSE
 
 	if(potential_target)
 		if(use_flags & CAN_USE_ON_DEAD)
 			if(potential_target.game_status != MAFIA_DEAD)
 				if(!silent)
-					host_role.send_message_to_player(span_notice("This can only be used on dead players."))
+					host_role.send_message_to_player(span_notice("此能力只能对死者使用。"))
 				return FALSE
 		else if(potential_target.game_status == MAFIA_DEAD)
 			if(!silent)
-				host_role.send_message_to_player(span_notice("This can only be used on living players."))
+				host_role.send_message_to_player(span_notice("此能力只能对生者使用。"))
 			return FALSE
 		if(!(use_flags & CAN_USE_ON_SELF) && (potential_target == host_role))
 			if(!silent)
-				host_role.send_message_to_player(span_notice("This can only be used on others."))
+				host_role.send_message_to_player(span_notice("此能力只能对他人使用。"))
 			return FALSE
 		if(!(use_flags & CAN_USE_ON_OTHERS) && (potential_target != host_role))
 			if(!silent)
-				host_role.send_message_to_player(span_notice("This can only be used on yourself."))
+				host_role.send_message_to_player(span_notice("此能力只能对自己使用。"))
 			return FALSE
 	return TRUE
 
@@ -100,7 +100,7 @@
 
 	if(target_role)
 		if(SEND_SIGNAL(target_role, COMSIG_MAFIA_ON_VISIT, game, host_role) & MAFIA_VISIT_INTERRUPTED) //visited a warden. something that prevents you by visiting that person
-			host_role.send_message_to_player(span_danger("Your [name] was interrupted!"))
+			host_role.send_message_to_player(span_danger("你的[name]被打断了！"))
 			return FALSE
 
 	return TRUE
@@ -116,20 +116,20 @@
 	if(!validate_action_target(new_target))
 		return FALSE
 
-	var/feedback_text = "You will %WILL_PERFORM% [ability_action]%SELF%"
+	var/feedback_text = "你%WILL_PERFORM%[ability_action]%SELF%"
 	if(use_flags & CAN_USE_ON_SELF)
-		feedback_text = replacetext(feedback_text, "%SELF%", ".")
+		feedback_text = replacetext(feedback_text, "%SELF%", "。")
 	else
-		feedback_text = replacetext(feedback_text, "%SELF%", " [new_target.body].")
+		feedback_text = replacetext(feedback_text, "%SELF%", " [new_target.body]。")
 
 	if(target_role == new_target)
 		using_ability = FALSE
 		target_role = null
-		feedback_text = replacetext(feedback_text, "%WILL_PERFORM%", "not")
+		feedback_text = replacetext(feedback_text, "%WILL_PERFORM%", "不再")
 	else
 		using_ability = TRUE
 		target_role = new_target
-		feedback_text = replacetext(feedback_text, "%WILL_PERFORM%", "now")
+		feedback_text = replacetext(feedback_text, "%WILL_PERFORM%", "现在将")
 
 	host_role.send_message_to_player(span_notice(feedback_text))
 	return TRUE

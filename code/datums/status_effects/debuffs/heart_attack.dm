@@ -38,7 +38,7 @@
 		return
 
 	if(time_until_stoppage > ATTACK_CURE_THRESHOLD)
-		owner.visible_message(span_nicegreen("[owner] relaxes [owner.p_their()] body and stops clutching at [owner.p_their()] chest!"), span_nicegreen("The pain in your chest has subsided. You're cured!"))
+		owner.visible_message(span_nicegreen("[owner]放松了身体，不再紧捂胸口！"), span_nicegreen("你胸口的疼痛消退了。你痊愈了！"))
 		qdel(src)
 		return
 
@@ -61,13 +61,13 @@
 			owner.med_hud_set_status()
 			visible = TRUE //We do not reset this status until it's fully cured. Once it's been made apparent, there's no reason to hide it again until it is resolved. It will only confuse players.
 		if(SPT_PROB(15, seconds_between_ticks))
-			to_chat(owner, span_danger("You feel a sharp pain in your chest!"))
+			to_chat(owner, span_danger("你的胸口传来一阵剧痛！"))
 			if(SPT_PROB(15, seconds_between_ticks))
 				human_owner.vomit(VOMIT_CATEGORY_DEFAULT, lost_nutrition = 95)
 			owner.emote("cough")
 			oxyloss_sum += 1
 		if(SPT_PROB(8, seconds_between_ticks))
-			to_chat(owner, span_danger("You feel very weak and dizzy..."))
+			to_chat(owner, span_danger("你感到非常虚弱，头晕目眩……"))
 			owner.adjust_confusion_up_to(6 SECONDS, 10 SECONDS)
 			owner.adjust_stamina_loss(20)
 			owner.emote("cough")
@@ -76,7 +76,7 @@
 	if(time_until_stoppage <= ATTACK_STAGE_FOUR) //And now we compound it with even worse effects.
 
 		if(SPT_PROB(5, seconds_between_ticks))
-			to_chat(owner, span_userdanger("It feels like you're shutting down..."))
+			to_chat(owner, span_userdanger("你感觉身体正在停止运转……"))
 			owner.adjust_dizzy_up_to(4 SECONDS, 10 SECONDS)
 			owner.adjust_eye_blur_up_to(4 SECONDS, 20 SECONDS)
 			owner.adjust_stamina_loss(20)
@@ -84,10 +84,10 @@
 		if(SPT_PROB(5, seconds_between_ticks))
 			owner.emote("cough")
 			if(SPT_PROB(5, seconds_between_ticks))
-				to_chat(owner, span_userdanger("You cough. Everything goes dark. You're going to die soon."))
+				to_chat(owner, span_userdanger("你咳嗽了一声。眼前一片漆黑。你快要死了。"))
 				owner.adjust_temp_blindness(10 SECONDS) //Are you panicking yet? You should be panicking by now.
 			else
-				to_chat(owner, span_userdanger("As you cough, your chest surges in pain and darkness closes in around your sight."))
+				to_chat(owner, span_userdanger("你咳嗽时，胸口一阵剧痛，黑暗逐渐吞噬了视野。"))
 				owner.adjust_temp_blindness(2 SECONDS)
 				owner.adjust_eye_blur_up_to(4 SECONDS, 20 SECONDS)
 			oxyloss_sum += 8
@@ -99,7 +99,7 @@
 
 	if(time_until_stoppage <= 0)
 		if(!IS_UNCONSCIOUS_OR_CRIT(owner))
-			to_chat(owner, span_userdanger("You feel a terrible pain in your chest, as if your heart has stopped!"))
+			to_chat(owner, span_userdanger("你的胸口剧痛无比，仿佛心脏停止了跳动！"))
 		owner.adjust_eye_blur(20 SECONDS)
 		human_owner.set_heartattack(TRUE)
 		owner.apply_status_effect(/datum/status_effect/heart_desperation) // To give the victim a final chance to shock their heart before losing consciousness
@@ -126,7 +126,7 @@
 		return
 	var/mob/living/carbon/human/human_owner = owner
 	var/cannot_grasp = (human_owner.usable_hands <= 0 || owner.incapacitated & INCAPABLE_RESTRAINTS || HAS_TRAIT(owner, TRAIT_HANDS_BLOCKED))
-	return span_warning("[owner.p_they()] look[owner.p_s()] to be doubling over" +"[cannot_grasp ? " in pain!" : ", clutching [owner.p_their()] chest in pain!"]")
+	return span_warning("[owner]似乎痛得弯下了腰" +"[cannot_grasp ? "！" : "，双手紧紧捂着胸口！"]")
 
 /datum/status_effect/heart_attack/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_DISEASELIKE_SEVERITY_HIGH, type)
@@ -144,20 +144,20 @@
 	SIGNAL_HANDLER
 	time_until_stoppage += 18 //Good for keeping yourself up. Won't be easy to get over the cure threshold by yourself. You're going to need security beating the crap out of you with stunbatons, but it'll work.
 	if(prob(50)) //Also good for crafty solos who want to stunbaton themselves back to health. Timing will be key.
-		to_chat(owner, span_nicegreen("Something about being shocked makes the pain in your chest ease up!"))
+		to_chat(owner, span_nicegreen("电击似乎缓解了你胸口的疼痛！"))
 
 ///Makes major progress towards curing the attack.
 /datum/status_effect/heart_attack/proc/defib_shock(obj/item/shockpaddles/source)
 	SIGNAL_HANDLER
 	time_until_stoppage += 50 //Three shocks should save pretty much anyone.
-	owner.visible_message(span_nicegreen("[owner] seems to be relieved of their pain as they're shocked by the [source]!"), span_nicegreen("The [source] shocks your heart awake, and you feel the pain in your chest ease up!"))
+	owner.visible_message(span_nicegreen("[source]电击[owner]后，疼痛似乎减轻了！"), span_nicegreen("[source]的电击唤醒了你的心脏，你感到胸口的疼痛减轻了！"))
 
 ///Slightly reduces your timer, just like the minor shock signal. Slightly more relief because these use cases are generally more dangerous.
 /datum/status_effect/heart_attack/proc/electrocuted(datum/source, shock_damage)
 	SIGNAL_HANDLER
 	time_until_stoppage += (20 + shock_damage * 1.15)
 	if(prob(50))
-		to_chat(owner, span_nicegreen("Something about being electrocuted makes the pain in your chest ease up!"))
+		to_chat(owner, span_nicegreen("触电似乎缓解了你胸口的疼痛！"))
 
 ///Alternative to penthrite that keeps you up for a few seconds after having a heart attack. Gives a bit of time to call for help regardless of when/where you've collapsed.
 /datum/status_effect/heart_desperation

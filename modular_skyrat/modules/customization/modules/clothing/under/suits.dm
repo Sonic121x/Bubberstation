@@ -1,7 +1,7 @@
 
 /obj/item/clothing/under/suit/fancy
-	name = "fancy suit"
-	desc = "A fancy suit and jacket with an elegant shirt."
+	name = "华丽西装"
+	desc = "一套精致的西装和夹克，配有一件优雅的衬衫。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/suit/fancy"
 	post_init_icon_state = "fancy_suit"

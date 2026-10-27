@@ -20,7 +20,7 @@
 	. = ..()
 	if(istype(attacking_item, /obj/item/baton_upgrade))
 		add_upgrade(attacking_item)
-		balloon_alert(user, "[attacking_item] attached")
+		balloon_alert(user, "[attacking_item] 已装上")
 	if(!(upgrade_flags & BATON_CUFF_UPGRADE))
 		return
 	if(!istype(attacking_item, /obj/item/restraints/handcuffs/cable))
@@ -29,10 +29,10 @@
 	for(var/obj/item/restraints/handcuffs/cuff in src.contents)
 		cuffcount++
 	if(cuffcount >= CUFF_MAXIMUM)
-		balloon_alert(user, "baton at maximum cuffs")
+		balloon_alert(user, "警棍手铐已达上限")
 		return
 	attacking_item.forceMove(src)
-	balloon_alert(user, "[attacking_item] inserted")
+	balloon_alert(user, "[attacking_item] 已插入")
 
 /obj/item/melee/baton/telescopic/contractor_baton/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -56,7 +56,7 @@
 /obj/item/melee/baton/telescopic/contractor_baton/examine(mob/user)
 	. = ..()
 	if(upgrade_flags && lists_upgrades)
-		. += "<br><br>[span_boldnotice("[src] has the following upgrades attached:")]"
+		. += "<br><br>[span_boldnotice("[src] 已安装以下升级：")]"
 	for(var/obj/item/baton_upgrade/upgrade in contents)
 		. += "<br>[span_notice("[upgrade].")]"
 
@@ -66,7 +66,7 @@
 		upgrade.forceMove(src)
 
 /obj/item/melee/baton/telescopic/contractor_baton/upgraded
-	desc = "A compact, specialised baton assigned to Syndicate contractors. Applies light electrical shocks to targets. This one seems to have unremovable parts."
+	desc = "一种配发给辛迪加承包商的专业紧凑型警棍。对目标施加轻微电击。这一把似乎带有无法拆卸的部件。"
 
 /obj/item/melee/baton/telescopic/contractor_baton/upgraded/Initialize(mapload)
 	. = ..()
@@ -85,20 +85,20 @@
 	var/upgrade_flag
 
 /obj/item/baton_upgrade/cuff
-	name = "handcuff baton upgrade"
-	desc = "Allows the user to apply restraints to a target via baton, requires to be loaded with up to three prior."
+	name = "警棍手铐升级件"
+	desc = "允许使用者通过警棍对目标施加束缚，需预先装入至多三副手铐。"
 	icon_state = "cuff_upgrade"
 	upgrade_flag = BATON_CUFF_UPGRADE
 
 /obj/item/baton_upgrade/mute
-	name = "mute baton upgrade"
-	desc = "Use of the baton on a target will mute them for a short period."
+	name = "警棍沉默升级件"
+	desc = "用警棍击中目标会使其短暂无法说话。"
 	icon_state = "mute_upgrade"
 	upgrade_flag = BATON_MUTE_UPGRADE
 
 /obj/item/baton_upgrade/focus
-	name = "focus baton upgrade"
-	desc = "Use of the baton on a target, should they be the subject of your contract, will be extra exhausted."
+	name = "警棍专注升级件"
+	desc = "用警棍击中目标时，若对方是你要处理的目标，会额外消耗其体力。"
 	icon_state = "focus_upgrade"
 	upgrade_flag = BATON_FOCUS_UPGRADE
 

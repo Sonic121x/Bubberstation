@@ -2,8 +2,8 @@
  * Double-Bladed Energy Swords - Cheridan
  */
 /obj/item/dualsaber
-	name = "double-bladed energy sword"
-	desc = "Handle with care."
+	name = "双刃能量剑"
+	desc = "请小心使用。"
 	icon = 'icons/obj/weapons/transforming_energy.dmi'
 	icon_state = "dualsaber0"
 	inhand_icon_state = "dualsaber0"
@@ -22,8 +22,8 @@
 	light_range = 6 //TWICE AS BRIGHT AS A REGULAR ESWORD
 	light_color = LIGHT_COLOR_ELECTRIC_GREEN
 	light_on = FALSE
-	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	attack_verb_continuous = list("攻击", "斩击", "刺击", "切割", "撕裂", "划伤", "撕扯", "切块", "砍削")
+	attack_verb_simple = list("攻击", "斩", "刺", "切", "撕", "划", "扯", "切块", "砍")
 	block_chance = 75
 	block_sound = 'sound/items/weapons/block_blade.ogg'
 	max_integrity = 200
@@ -32,7 +32,7 @@
 	wound_bonus = -10
 	exposed_wound_bonus = 20
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE_TOY // BUBBER EDIT ADDITION
-	special_desc = "A double bladed energy sword employed by the Syndicate in raids" // BUBBER EDIT ADDITION
+	special_desc = "辛迪加在突袭行动中使用的双刃能量剑" // BUBBER EDIT ADDITION
 	demolition_mod = 1.5 //1.5x damage to objects, robots, etc.
 	item_flags = NO_BLOOD_ON_ITEM
 	var/w_class_on = WEIGHT_CLASS_BULKY
@@ -60,10 +60,10 @@
 /// Specific hulk checks due to reflection chance for balance issues and switches hitsounds.
 /obj/item/dualsaber/proc/on_wield(obj/item/source, mob/living/carbon/user)
 	if(user && HAS_TRAIT(user, TRAIT_HULK))
-		to_chat(user, span_warning("You lack the grace to wield this!"))
+		to_chat(user, span_warning("你缺乏挥舞它的优雅！"))
 		return COMPONENT_TWOHANDED_BLOCK_WIELD
 	if(HAS_TRAIT_FROM(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT))
-		to_chat(user, span_warning("You can't seem to hold [src] properly!"))
+		to_chat(user, span_warning("你似乎无法正确握住[src]！"))
 		return COMPONENT_TWOHANDED_BLOCK_WIELD
 	update_weight_class(w_class_on)
 	hitsound = 'sound/items/weapons/blade1.ogg'
@@ -89,7 +89,7 @@
 
 /obj/item/dualsaber/suicide_act(mob/living/user)
 	if(HAS_TRAIT(src, TRAIT_WIELDED))
-		user.visible_message(span_suicide("[user] begins spinning way too fast! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]开始以极快的速度旋转！看来这是想自杀了！"))
 
 		var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)//stole from chainsaw code
 		var/obj/item/organ/brain/mybrain = user.get_organ_slot(ORGAN_SLOT_BRAIN)
@@ -106,11 +106,11 @@
 					myhead.drop_limb()
 				sleep(0.3 SECONDS)
 			else
-				user.visible_message(span_suicide("[user] panics and starts choking to death!"))
+				user.visible_message(span_suicide("[user]惊慌失措，开始窒息而死！"))
 				return OXYLOSS
 
 	else
-		user.visible_message(span_suicide("[user] begins beating [user.p_them()]self to death with \the [src]'s handle! It probably would've been cooler if [user.p_they()] turned it on first!"))
+		user.visible_message(span_suicide("[user]开始用[src]的握柄把自己打到断气！要是先把剑打开，估计会酷得多！"))
 	return BRUTELOSS
 
 /obj/item/dualsaber/Initialize(mapload)
@@ -133,7 +133,7 @@
 
 /obj/item/dualsaber/attack(mob/target, mob/living/carbon/human/user)
 	if(HAS_TRAIT(user, TRAIT_HULK))
-		to_chat(user, span_warning("You grip the blade too hard and accidentally drop it!"))
+		to_chat(user, span_warning("你握得太用力，不小心把它弄掉了！"))
 		if(HAS_TRAIT(src, TRAIT_WIELDED))
 			user.dropItemToGround(src, force=TRUE)
 			return
@@ -151,7 +151,7 @@
 	dance_rotate(user, CALLBACK(user, TYPE_PROC_REF(/mob, dance_flip)))
 
 /obj/item/dualsaber/proc/impale(mob/living/user)
-	to_chat(user, span_warning("You twirl around a bit before losing your balance and impaling yourself on [src]."))
+	to_chat(user, span_warning("你转了几圈，随后失去平衡，被[src]刺穿了。"))
 	if(HAS_TRAIT(src, TRAIT_WIELDED))
 		user.take_bodypart_damage(20,25,check_armor = TRUE)
 	else
@@ -195,8 +195,8 @@
 		return ""
 	var/in_mouth = ""
 	if(iscarbon(user) && user.get_item_by_slot(ITEM_SLOT_MASK))
-		in_mouth = ", barely missing [user.p_their()] nose"
-	. = span_rose("[user] swings [user.p_their()] [name][in_mouth]. [user.p_They()] light[user.p_s()] [A.loc == user ? "[user.p_their()] [A.name]" : A] in the process.")
+		in_mouth = "，堪堪擦过鼻子"
+	. = span_rose("[user]挥动[name][in_mouth]，并顺势点燃了[A.loc == user ? "自己的[A.name]" : A]。")
 	playsound(loc, hitsound, get_clamped_volume(), TRUE, -1)
 	add_fingerprint(user)
 	// Light your candles while spinning around the room
@@ -216,7 +216,7 @@
 
 /obj/item/dualsaber/multitool_act(mob/living/user, obj/item/tool)
 	if(hacked)
-		to_chat(user, span_warning("It's starting to look like a triple rainbow - no, nevermind."))
+		to_chat(user, span_warning("开始有点像三重彩虹了——不，算了。"))
 		return ITEM_INTERACT_BLOCKING
 	hacked = TRUE
 	to_chat(user, span_warning("2XRNBW_ENGAGE"))

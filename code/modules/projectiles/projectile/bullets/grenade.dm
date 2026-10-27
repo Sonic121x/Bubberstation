@@ -1,8 +1,8 @@
 // 40mm (Grenade Launcher
 
 /obj/projectile/bullet/a40mm
-	name ="40mm grenade"
-	desc = "USE A WEEL GUN"
+	name ="40mm 榴弹"
+	desc = "用把真枪吧。"
 	icon_state= "bolter"
 	damage = 60
 	embed_type = null
@@ -31,8 +31,8 @@
 		new /obj/effect/temp_visual/crit(get_turf(living_target))
 
 /obj/projectile/bullet/a40mm/incendiary
-	name = "40mm incendiary grenade"
-	desc = "Hell is approaching."
+	name = "40mm 燃烧榴弹"
+	desc = "地狱正在逼近。"
 	damage = 10 // About the only mercy you're getting.
 	ex_light_range = 1
 	ex_flame_range = 4
@@ -46,8 +46,8 @@
 		new /obj/effect/hotspot(nearby_turf)
 
 /obj/projectile/bullet/a40mm/tear_gas
-	name = "40mm tear gas grenade"
-	desc = "MY EYES!!"
+	name = "40mm 催泪瓦斯榴弹"
+	desc = "我的眼睛！！"
 	damage = 10
 	ex_light_range = 0
 	ex_flame_range = 0

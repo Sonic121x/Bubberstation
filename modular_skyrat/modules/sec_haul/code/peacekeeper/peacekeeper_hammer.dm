@@ -1,6 +1,6 @@
 /obj/item/melee/breaching_hammer
-	name = "D-4 tactical hammer"
-	desc = "A metallic-plastic composite breaching hammer, looks like a whack with this would severly harm or tire someone."
+	name = "D-4战术锤"
+	desc = "金属与塑料复合材质的破门锤，挨上一锤看起来会让人重伤或精疲力竭。"
 	icon = 'modular_skyrat/modules/sec_haul/icons/peacekeeper/peacekeeper_items.dmi'
 	icon_state = "peacekeeper_hammer"
 	inhand_icon_state = "peacekeeper_hammer"
@@ -11,8 +11,8 @@
 	force = 15
 	throwforce = 10
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb_continuous = list("whacks","breaches","bulldozes","flings","thwachs")
-	attack_verb_simple = list("breach","hammer","whack","slap","thwach","fling")
+	attack_verb_continuous = list("猛击","击破","碾压","抛击","重击")
+	attack_verb_simple = list("击破","锤击","猛击","拍击","重击","抛击")
 	obj_flags = 0
 
 	/// Delay between door hits
@@ -34,7 +34,7 @@
 /obj/item/melee/breaching_hammer/proc/remove_track(mob/living/carbon/human/user)
 	REMOVE_TRAIT(user, TRAIT_AIRLOCK_SHOCKIMMUNE, REF(src))
 	breaching = FALSE
-	user.balloon_alert(user, "you put your hammer down!")
+	user.balloon_alert(user, "你放下了锤子！")
 	breacher = null
 
 /obj/item/melee/breaching_hammer/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
@@ -56,7 +56,7 @@
 	breaching = TRUE
 	breacher = user
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/item/melee/breaching_hammer, breaching_loop), user, target)
-	user.balloon_alert(user, "you begin breaching the door!")
+	user.balloon_alert(user, "你开始破门！")
 
 /// Keeps looping until the door is breached or conditions fail
 /obj/item/melee/breaching_hammer/proc/breaching_loop(mob/living/user, obj/target)
@@ -67,7 +67,7 @@
 			break
 		target.take_damage(force * breaching_multipler)
 		playsound(target, 'sound/items/weapons/sonic_jackhammer.ogg', 70)
-		target.visible_message(span_warning("[target] begins to cave in and deform with each blow from [src]!"), span_warning("We are breaching [target]."), \
-		span_hear("you hear a thud of metal against metal."))
+		target.visible_message(span_warning("[target]在[src]的一次次重击下逐渐凹陷变形！"), span_warning("正在破开[target]。"), \
+		span_hear("你听见金属碰撞的闷响。"))
 		user.do_attack_animation(target, used_item = src)
 	remove_track(user)

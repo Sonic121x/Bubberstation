@@ -1,11 +1,11 @@
 /mob/living/basic/pet/cat
-	name = "cat"
-	desc = "Kitty!!"
+	name = "猫"
+	desc = "小猫咪！！"
 	icon = 'icons/mob/simple/pets.dmi'
 	icon_state = "cat2"
 	icon_living = "cat2"
 	icon_dead = "cat2_dead"
-	speak_emote = list("purrs", "meows")
+	speak_emote = list("呼噜噜", "喵喵叫")
 	pass_flags = PASSTABLE
 	mob_size = MOB_SIZE_SMALL
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
@@ -16,18 +16,18 @@
 		/obj/item/organ/tail/cat = 1,
 		/obj/item/stack/sheet/animalhide/cat = 1
 	)
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "kicks"
-	response_harm_simple = "kick"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "踢"
+	response_harm_simple = "踢"
 	mobility_flags = MOBILITY_FLAGS_REST_CAPABLE_DEFAULT
 	gold_core_spawnable = FRIENDLY_SPAWN
 	ai_controller = /datum/ai_controller/basic_controller/cat
 	held_state = "cat2"
-	attack_verb_continuous = "claws"
-	attack_verb_simple = "claw"
+	attack_verb_continuous = "抓挠"
+	attack_verb_simple = "抓挠"
 	attack_sound = 'sound/items/weapons/slash.ogg'
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 	///icon of the collar we can wear
@@ -69,7 +69,7 @@
 /datum/emote/living/petmeow // BUBBER EDIT CHANGE - Original: /datum/emote/cat/meow
 	key = "petmeow" // BUBBER EDIT CHANGE - 'meow' used by /datum/emote/living/meow
 	key_third_person = null // BUBBER EDIT CHANGE - 'purr' used by /datum/emote/living/purr
-	message = "meows!"
+	message = "喵喵叫！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sound = SFX_CAT_MEOW
@@ -77,7 +77,7 @@
 /datum/emote/living/petpurr // BUBBER EDIT CHANGE - Original: /datum/emote/cat/purr
 	key = "petpurr" // BUBBER EDIT CHANGE - 'purr' used by /datum/emote/living/purr
 	key_third_person = null // BUBBER EDIT CHANGE - 'purr' used by /datum/emote/living/purr
-	message = "purrs."
+	message = "发出呼噜声。"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sound = SFX_CAT_PURR
@@ -168,8 +168,8 @@
 	)
 
 /mob/living/basic/pet/cat/space
-	name = "space cat"
-	desc = "They're a cat... in space!"
+	name = "太空猫"
+	desc = "它是一只猫……在太空里！"
 	icon_state = "spacecat"
 	icon_living = "spacecat"
 	icon_dead = "spacecat_dead"
@@ -179,8 +179,8 @@
 	held_state = "spacecat"
 
 /mob/living/basic/pet/cat/breadcat
-	name = "bread cat"
-	desc = "They're a cat... with a bread!"
+	name = "面包猫"
+	desc = "它是一只猫……还带着一块面包！"
 	icon_state = "breadcat"
 	icon_living = "breadcat"
 	icon_dead = "breadcat_dead"
@@ -201,8 +201,8 @@
 	return
 
 /mob/living/basic/pet/cat/original
-	name = "Batsy"
-	desc = "The product of alien DNA and bored geneticists."
+	name = "巴齐"
+	desc = "外星 DNA 与无聊的基因学家共同造就的产物。"
 	gender = FEMALE
 	icon_state = "original"
 	icon_living = "original"
@@ -214,8 +214,8 @@
 	return
 
 /mob/living/basic/pet/cat/kitten
-	name = "kitten"
-	desc = "D'aaawwww."
+	name = "小猫"
+	desc = "哎哟喂——太可爱了。"
 	icon_state = "kitten"
 	icon_living = "kitten"
 	icon_dead = "kitten_dead"
@@ -238,8 +238,8 @@
 	unique_pet = TRUE
 
 /mob/living/basic/pet/cat/jerry //Holy shit we left jerry on donut ~ Arcane ~Fikou
-	name = "Jerry"
-	desc = "Tom is VERY amused."
+	name = "杰瑞"
+	desc = "汤姆开心极了。"
 	gender = MALE
 
 /mob/living/basic/pet/cat/tabby

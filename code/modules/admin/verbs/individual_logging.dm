@@ -9,40 +9,40 @@
 	if(M.ckey)
 		dat += "<center><p>Ckey</p></center>"
 		dat += "<center>"
-		dat += individual_logging_panel_link(M, INDIVIDUAL_GAME_LOG, LOGSRC_CKEY, "Game Log", source, ntype)
+		dat += individual_logging_panel_link(M, INDIVIDUAL_GAME_LOG, LOGSRC_CKEY, "游戏日志", source, ntype)
 		dat += " | "
-		dat += individual_logging_panel_link(M, INDIVIDUAL_ATTACK_LOG, LOGSRC_CKEY, "Attack Log", source, ntype)
+		dat += individual_logging_panel_link(M, INDIVIDUAL_ATTACK_LOG, LOGSRC_CKEY, "攻击日志", source, ntype)
 		dat += " | "
-		dat += individual_logging_panel_link(M, INDIVIDUAL_SAY_LOG, LOGSRC_CKEY, "Say Log", source, ntype)
+		dat += individual_logging_panel_link(M, INDIVIDUAL_SAY_LOG, LOGSRC_CKEY, "说话日志", source, ntype)
 		dat += " | "
-		dat += individual_logging_panel_link(M, INDIVIDUAL_EMOTE_LOG, LOGSRC_CKEY, "Emote Log", source, ntype)
+		dat += individual_logging_panel_link(M, INDIVIDUAL_EMOTE_LOG, LOGSRC_CKEY, "表情日志", source, ntype)
 		dat += " | "
-		dat += individual_logging_panel_link(M, INDIVIDUAL_COMMS_LOG, LOGSRC_CKEY, "Comms Log", source, ntype)
+		dat += individual_logging_panel_link(M, INDIVIDUAL_COMMS_LOG, LOGSRC_CKEY, "通讯日志", source, ntype)
 		dat += " | "
-		dat += individual_logging_panel_link(M, INDIVIDUAL_OOC_LOG, LOGSRC_CKEY, "OOC Log", source, ntype)
+		dat += individual_logging_panel_link(M, INDIVIDUAL_OOC_LOG, LOGSRC_CKEY, "OOC 日志", source, ntype)
 		dat += " | "
-		dat += individual_logging_panel_link(M, INDIVIDUAL_SHOW_ALL_LOG, LOGSRC_CKEY, "Show All", source, ntype)
+		dat += individual_logging_panel_link(M, INDIVIDUAL_SHOW_ALL_LOG, LOGSRC_CKEY, "显示全部", source, ntype)
 		dat += "</center>"
 	else
-		dat += "<p> No ckey attached to mob </p>"
+		dat += "<p> 该生物未绑定 ckey </p>"
 
 	dat += "<hr style='background:#000000; border:0; height:1px'>"
-	dat += "<center><p>Mob</p></center>"
+	dat += "<center><p>生物</p></center>"
 	//Add the links for the mob specific log
 	dat += "<center>"
-	dat += individual_logging_panel_link(M, INDIVIDUAL_GAME_LOG, LOGSRC_MOB, "Game Log", source, ntype)
+	dat += individual_logging_panel_link(M, INDIVIDUAL_GAME_LOG, LOGSRC_MOB, "游戏日志", source, ntype)
 	dat += " | "
-	dat += individual_logging_panel_link(M, INDIVIDUAL_ATTACK_LOG, LOGSRC_MOB, "Attack Log", source, ntype)
+	dat += individual_logging_panel_link(M, INDIVIDUAL_ATTACK_LOG, LOGSRC_MOB, "攻击日志", source, ntype)
 	dat += " | "
-	dat += individual_logging_panel_link(M, INDIVIDUAL_SAY_LOG, LOGSRC_MOB, "Say Log", source, ntype)
+	dat += individual_logging_panel_link(M, INDIVIDUAL_SAY_LOG, LOGSRC_MOB, "说话日志", source, ntype)
 	dat += " | "
-	dat += individual_logging_panel_link(M, INDIVIDUAL_EMOTE_LOG, LOGSRC_MOB, "Emote Log", source, ntype)
+	dat += individual_logging_panel_link(M, INDIVIDUAL_EMOTE_LOG, LOGSRC_MOB, "表情日志", source, ntype)
 	dat += " | "
-	dat += individual_logging_panel_link(M, INDIVIDUAL_COMMS_LOG, LOGSRC_MOB, "Comms Log", source, ntype)
+	dat += individual_logging_panel_link(M, INDIVIDUAL_COMMS_LOG, LOGSRC_MOB, "通讯日志", source, ntype)
 	dat += " | "
-	dat += individual_logging_panel_link(M, INDIVIDUAL_OOC_LOG, LOGSRC_MOB, "OOC Log", source, ntype)
+	dat += individual_logging_panel_link(M, INDIVIDUAL_OOC_LOG, LOGSRC_MOB, "OOC 日志", source, ntype)
 	dat += " | "
-	dat += individual_logging_panel_link(M, INDIVIDUAL_SHOW_ALL_LOG, LOGSRC_MOB, "Show All", source, ntype)
+	dat += individual_logging_panel_link(M, INDIVIDUAL_SHOW_ALL_LOG, LOGSRC_MOB, "显示全部", source, ntype)
 	dat += "</center>"
 
 	dat += "<hr style='background:#000000; border:0; height:1px'>"
@@ -65,7 +65,7 @@
 		dat += concatenated_logs.Join("<br>")
 		dat += "</font>"
 
-	var/datum/browser/popup = new(usr, "invidual_logging_[key_name(M)]", "Individual Logs", 600, 600)
+	var/datum/browser/popup = new(usr, "invidual_logging_[key_name(M)]", "个人日志", 600, 600)
 	popup.set_content(dat.Join())
 	popup.open()
 

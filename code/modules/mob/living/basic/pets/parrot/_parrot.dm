@@ -8,8 +8,8 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 
 /// Parrots! Klepto bastards that imitate your speech and hoard your shit.
 /mob/living/basic/parrot
-	name = "parrot"
-	desc = "The parrot squawks, \"They're a Parrot! BAWWK!\""
+	name = "鹦鹉"
+	desc = "鹦鹉尖叫着：“我是一只鹦鹉！呱——！”"
 	icon = 'icons/mob/simple/animal.dmi'
 	icon_state = "parrot_fly"
 	icon_living = "parrot_fly"
@@ -23,18 +23,18 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 	melee_damage_upper = 10
 	melee_damage_lower = 5
 
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently moves aside"
-	response_disarm_simple = "gently move aside"
-	response_harm_continuous = "swats"
-	response_harm_simple = "swat"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻挪开"
+	response_disarm_simple = "轻轻挪开"
+	response_harm_continuous = "拍打"
+	response_harm_simple = "拍打"
 	combat_mode = TRUE //parrots now start "aggressive" since only player parrots will nuzzle.
-	attack_verb_continuous = "chomps"
-	attack_verb_simple = "chomp"
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
 	attack_vis_effect = ATTACK_EFFECT_BITE
-	friendly_verb_continuous = "grooms"
-	friendly_verb_simple = "groom"
+	friendly_verb_continuous = "用喙梳理"
+	friendly_verb_simple = "用喙梳理"
 	mob_size = MOB_SIZE_SMALL
 	gold_core_spawnable = FRIENDLY_SPAWN
 
@@ -127,22 +127,22 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 /mob/living/basic/parrot/examine(mob/user)
 	. = ..()
 	var/obj/item/held_item = get_active_held_item()
-	. += "It appears to [isnull(held_item) ? "not be holding anything." : "be holding \a [held_item]."]"
+	. += "它看起来[isnull(held_item) ? "什么都没拿着。" : "拿着 \a [held_item]。"]"
 
 	if(stat != DEAD)
 		return
 
 	if(HAS_MIND_TRAIT(user, TRAIT_NAIVE))
 		. += span_notice(pick(
-			"It seems tired and shagged out after a long squawk.",
-			"It seems to be pining for the fjords.",
-			"It's resting. It's a beautiful bird. Lovely plumage.",
+			"它似乎在一阵长长的尖叫之后累得筋疲力尽。",
+			"它似乎正在思念峡湾。",
+			"它只是在休息。它是一只漂亮的鸟。羽毛真好看。",
 		))
 	else
 		. += span_danger(pick(
-			"This is a late parrot.",
-			"This is an ex-parrot.",
-			"This parrot is no more.",
+			"这是一只已故的鹦鹉。",
+			"这是一只前鹦鹉。",
+			"这只鹦鹉已经不存在了。",
 		))
 
 /mob/living/basic/parrot/say_dead(message)
@@ -178,7 +178,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 /mob/living/basic/parrot/mouse_drop_dragged(atom/over, mob/user, src_location, over_location, params)
 	. = ..()
 	if(!start_perching(over))
-		balloon_alert(user, "not a perching spot!")
+		balloon_alert(user, "这里不能栖息！")
 
 /// Proc that handles sending the signal and returning a valid phrase to say. Will not do anything if we don't have a stat or if we're cliented.
 /// Will return either a string or null.
@@ -209,7 +209,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 /// Returns TRUE if we started perching, FALSE otherwise.
 /mob/living/basic/parrot/proc/start_perching(atom/target)
 	if(HAS_TRAIT(src, TRAIT_PARROT_PERCHED))
-		balloon_alert(src, "already perched!")
+		balloon_alert(src, "已经栖息着了！")
 		return FALSE
 
 	if(ishuman(target))
@@ -233,14 +233,14 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 /// Proc that will perch us on a human. Returns TRUE if we perched, FALSE otherwise.
 /mob/living/basic/parrot/proc/perch_on_human(mob/living/carbon/human/target)
 	if(LAZYLEN(target.buckled_mobs) >= target.max_buckled_mobs)
-		balloon_alert(src, "can't perch on them!")
+		balloon_alert(src, "没法停在它身上！")
 		return FALSE
 
 	forceMove(get_turf(target))
 	if(!target.buckle_mob(src, TRUE))
 		return FALSE
 
-	to_chat(src, span_notice("You sit on [target]'s shoulder."))
+	to_chat(src, span_notice("你坐到了 [target] 的肩膀上。"))
 	toggle_perched(perched = TRUE)
 	RegisterSignal(src, COMSIG_LIVING_SET_BUCKLED, PROC_REF(on_unbuckle))
 	return TRUE
@@ -279,7 +279,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 /// Picks up an item from the ground and puts it in our claws. Returns TRUE if we picked it up, FALSE otherwise.
 /mob/living/basic/parrot/put_in_hand_check(obj/item/item_to_pick_up)
 	if(item_to_pick_up.w_class > WEIGHT_CLASS_SMALL)
-		balloon_alert(src, "too big to pick up!")
+		balloon_alert(src, "太大了，拿不起来！")
 		return FALSE
 
 	return ..()
@@ -292,16 +292,16 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 
 	if(..())
 		visible_message(
-			span_notice("[src] grabs [target]!"),
-			span_notice("You grab [target]!"),
-			span_hear("You hear the sounds of wings flapping furiously."),
+			span_notice("[src] 抓住了 [target]！"),
+			span_notice("你抓住了 [target]！"),
+			span_hear("你听到翅膀拼命拍打的声音。"),
 		)
 	return TRUE
 
 /// Looks for an item that we can snatch and puts it in our claws. Returns TRUE if we picked it up, FALSE otherwise.
 /mob/living/basic/parrot/proc/steal_from_mob(mob/living/carbon/victim)
 	if(!isnull(get_active_held_item()))
-		balloon_alert(src, "already holding something!")
+		balloon_alert(src, "已经拿着东西了！")
 		return FALSE
 
 	for(var/obj/item/stealable in victim.held_items)
@@ -313,9 +313,9 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 
 		dropItemToGround(stealable)
 		visible_message(
-			span_notice("[src] wrestles [stealable] out of [victim]'s hand!"),
-			span_notice("You wrestles [stealable] out of [victim]'s hand!"),
-			span_hear("You hear the sounds of wings flapping furiously."),
+			span_notice("[src] 从 [victim] 手里抢走了 [stealable]！"),
+			span_notice("你从 [victim] 手里抢走了 [stealable]！"),
+			span_hear("你听到翅膀拼命拍打的声音。"),
 		)
 		return TRUE
 
@@ -334,7 +334,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 /// We don't qdel the item here, we assume the invoking proc will have handled that somehow.
 /// Returns TRUE if we ate the thing.
 /mob/living/basic/parrot/proc/consume_cracker(obj/item/thing)
-	to_chat(src, span_notice("[src] eagerly devours \the [thing]."))
+	to_chat(src, span_notice("[src] 迫不及待地吞下了 \the [thing]。"))
 	if(!istype(thing, /obj/item/food/cracker))
 		return TRUE // we still ate it
 
@@ -362,7 +362,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 /// Handles dropping items we're holding. Gently is a special modifier we can use for special interactions.
 /mob/living/basic/parrot/proc/drop_held_item(gently = TRUE)
 	if(get_num_held_items() == 0)
-		balloon_alert(src, "nothing to drop!")
+		balloon_alert(src, "没有东西可丢！")
 		return
 
 	if(IS_UNCONSCIOUS_OR_CRIT(src)) // don't gotta do shit
@@ -370,12 +370,12 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 
 	if(!gently && isgrenade(get_active_held_item()))
 		var/obj/item/grenade/bomb = get_active_held_item()
-		balloon_alert(src, "bombs away!") // you'll likely die too so we can get away with the `!` here
+		balloon_alert(src, "炸弹来啦！") // you'll likely die too so we can get away with the `!` here
 		bomb.forceMove(drop_location())
 		bomb.detonate()
 		return
 
-	balloon_alert(src, "dropped item")
+	balloon_alert(src, "已丢下物品")
 	drop_all_held_items(drop_location())
 
 /mob/living/basic/parrot/vv_edit_var(var_name, vval)
@@ -398,10 +398,10 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 /// Gets a static list of phrases we wish to pass to the element.
 /mob/living/basic/parrot/proc/get_static_list_of_phrases()
 	var/static/list/default_phrases = list(
-		"BAWWWWK george mellons griffing me!",
-		"Cracker?",
-		"Hello!",
-		"Hi!",
+		"呱啊啊啊啊，乔治·梅隆抢我东西！",
+		"有饼干吗？",
+		"你好！",
+		"嗨！",
 	)
 
 	return default_phrases

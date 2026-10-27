@@ -7,8 +7,8 @@
  *
  */
 /mob/living/basic/rabbit
-	name = "rabbit"
-	desc = "The hippiest hop around."
+	name = "兔子"
+	desc = "最会蹦跶的嬉皮士。"
 	icon = 'icons/mob/simple/rabbit.dmi'
 	icon_state = "rabbit_white"
 	icon_living = "rabbit_white"
@@ -20,17 +20,17 @@
 	mob_size = MOB_SIZE_SMALL
 	density = FALSE
 	gold_core_spawnable = FRIENDLY_SPAWN
-	speak_emote = list("sniffles", "twitches")
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
+	speak_emote = list("抽着鼻子", "抽动")
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_KICK
-	response_harm_continuous = "kicks"
-	response_harm_simple = "kick"
-	attack_verb_continuous = "kicks"
-	attack_verb_simple = "kick"
+	response_harm_continuous = "踢"
+	response_harm_simple = "踢"
+	attack_verb_continuous = "踢"
+	attack_verb_simple = "踢"
 	butcher_results = list(/obj/item/food/meat/slab/grassfed = 1)
 	unsuitable_cold_damage = 0.5 // Cold damage is 0.5 here to account for low health on the rabbit.
 	unsuitable_heat_damage = 0.5 // Heat damage is 0.5 here to account for low health on the rabbit.
@@ -46,7 +46,7 @@
 /datum/emote/rabbit/hop
 	key = "hop"
 	key_third_person = "hops"
-	message = "hops around happily!"
+	message = "开心地四处蹦跳！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /mob/living/basic/rabbit/Initialize(mapload)
@@ -57,16 +57,16 @@
 	AddElement(/datum/element/can_be_held)
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_RABBIT, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 5)
 	if(prob(20)) // bunny
-		name = "bunny"
+		name = "小兔"
 
 /datum/ai_controller/basic_controller/rabbit
 	behavior_tree_json = "code/modules/mob/living/basic/farm_animals/rabbit.bt.json"
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_SAY = list("Mrrp.", "CHIRP!", "Mrrp?"),
-			BB_EMOTE_HEAR = list("hops."),
-			BB_EMOTE_SEE = list("hops around.", "bounces up and down."),
+			BB_EMOTE_SAY = list("咪咪。", "啾！", "咪咪？"),
+			BB_EMOTE_HEAR = list("蹦跳着。"),
+			BB_EMOTE_SEE = list("四处蹦跳。", "上上下下地弹跳。"),
 			BB_SPEAK_CHANCE = 10,
 		),
 	)
@@ -90,12 +90,12 @@
 	. = ..()
 	//passed to the egg_layer component as how many eggs it gets when it eats something.
 	var/eggs_added_from_eating = rand(1, 4)
-	var/list/feed_messages = list("[p_they()] nibble[p_s()] happily.", "[p_they()] nom[p_s()] happily.")
+	var/list/feed_messages = list("[p_they()] 开心地啃着。", "[p_they()] 开心地大嚼着。")
 	AddComponent(/datum/component/egg_layer,\
 		/obj/item/surprise_egg,\
 		list(/obj/item/food/grown/carrotlike/carrot),\
 		feed_messages,\
-		list("hides an egg.","scampers around suspiciously.","begins making a huge racket.","begins shuffling."),\
+		list("藏起了一颗蛋。","鬼鬼祟祟地乱窜。","开始弄出巨大的动静。","开始拖沓地挪动。"),\
 		initial_egg_amount,\
 		eggs_added_from_eating,\
 		max_eggs_held,\
@@ -105,9 +105,9 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_SAY = list("Hop into Easter!", "Come get your eggs!", "Prizes for everyone!"),
-			BB_EMOTE_HEAR = list("hops."),
-			BB_EMOTE_SEE = list("hops around.", "bounces up and down."),
+			BB_EMOTE_SAY = list("来参加复活节吧！", "快来拿你的蛋！", "人人都有奖品！"),
+			BB_EMOTE_HEAR = list("蹦跳着。"),
+			BB_EMOTE_SEE = list("四处蹦跳。", "上上下下地弹跳。"),
 			BB_SPEAK_CHANCE = 10,
 		),
 	)
@@ -129,9 +129,9 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_SAY = list("Hmph mmph mmmph!", "Mmphe mmphe mmphe!", "Hmm mmm mmm!"),
-			BB_EMOTE_HEAR = list("hops."),
-			BB_EMOTE_SEE = list("hops around.", "bounces up and down."),
+			BB_EMOTE_SAY = list("唔唔唔！", "唔姆唔姆！", "嗯嗯嗯！"),
+			BB_EMOTE_HEAR = list("蹦跳着。"),
+			BB_EMOTE_SEE = list("四处蹦跳。", "上上下下地弹跳。"),
 			BB_SPEAK_CHANCE = 10,
 		),
 	)

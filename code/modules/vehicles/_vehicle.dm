@@ -1,6 +1,6 @@
 /obj/vehicle
-	name = "generic vehicle"
-	desc = "Yell at coderbus."
+	name = "通用载具"
+	desc = "去朝程序员巴士吼吧。"
 	icon = 'icons/mob/rideables/vehicles.dmi'
 	icon_state = "error"
 	abstract_type = /obj/vehicle
@@ -77,11 +77,11 @@
 	var/integrity = atom_integrity/max_integrity * 100
 	switch(integrity)
 		if(50 to 99)
-			examine_text = "It looks slightly damaged."
+			examine_text = "它看起来有轻微损坏。"
 		if(25 to 50)
-			examine_text = "It appears heavily damaged."
+			examine_text = "它看起来损坏得很严重。"
 		if(0 to 25)
-			examine_text = span_warning("It's falling apart!")
+			examine_text = span_warning("它快散架了！")
 
 	return examine_text
 

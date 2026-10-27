@@ -1,13 +1,13 @@
 
 /datum/crafting_recipe/stake
-	name = "Stake"
+	name = "木桩"
 	result = /obj/item/stake
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 3)
 	time = 8 SECONDS
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/hardened_stake
-	name = "Hardened Stake"
+	name = "硬化木桩"
 	result = /obj/item/stake/hardened
 	tool_behaviors = list(TOOL_WELDER)
 	reqs = list(/obj/item/stack/rods = 1)
@@ -15,7 +15,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/silver_stake
-	name = "Silver Stake"
+	name = "银桩"
 	result = /obj/item/stake/hardened/silver
 	tool_behaviors = list(TOOL_WELDER)
 	reqs = list(
@@ -28,7 +28,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/stunstaff
-	name = "Stun Staff"
+	name = "电击长杖"
 	result = /obj/item/melee/baton/security/staff
 	reqs = list(
 		/obj/item/melee/baton/security = 2,
@@ -48,7 +48,7 @@
 	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/stunstaff_prime
-	name = "Magna-staff"
+	name = "磁能长杖"
 	result = /obj/item/melee/baton/security/staff/prime
 	reqs = list(
 		/obj/item/melee/baton/security/staff = 1,

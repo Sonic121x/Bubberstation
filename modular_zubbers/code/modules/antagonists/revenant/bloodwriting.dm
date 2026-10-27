@@ -1,8 +1,8 @@
 #define INFINITE_CHARGES -1
 
 /datum/action/cooldown/spell/pointed/revenant/bloodwriting
-	name = "Bloodwriting"
-	desc = "Write messages on the ground. In BLOOD!!"
+	name = "血书"
+	desc = "在地上写下讯息。用鲜血写！！"
 	button_icon = 'icons/effects/blood.dmi'
 	button_icon_state = "bubblegumfoot"
 	antimagic_flags = MAGIC_RESISTANCE_HOLY
@@ -13,8 +13,8 @@
 	var/obj/item/toy/crayon/revenant/blood_crayon
 	var/obj/item/toy/crayon/revenant/active_blood_crayon
 	///used to check if the ability is active
-	active_msg = "You start writing in blood."
-	deactive_msg = "You stop writing in blood."
+	active_msg = "你开始用鲜血书写。"
+	deactive_msg = "你停止用鲜血书写。"
 	aim_assist = FALSE
 	unset_after_click = FALSE
 	var/list/click_params
@@ -61,8 +61,8 @@
 
 //Crayon stuff neccessary for this
 /obj/item/toy/crayon/revenant
-	name = "bloodwriting"
-	desc = "If you're reading this, something went wrong. yell at coders."
+	name = "血书"
+	desc = "如果你看到了这段话，说明出了问题。去找程序员反馈吧。"
 	icon = null
 	icon_state = null
 	charges = INFINITE_CHARGES

@@ -2,7 +2,7 @@
 //Consumable or one-use items like the magic D20 and gluttony's blessing are omitted
 /datum/export/lavaland
 	abstract_type = /datum/export/lavaland
-	unit_name = "lava planet artifact"
+	unit_name = "熔岩行星遗物"
 	/// Prefix to add to our unit name after generation
 	var/prefix = null
 
@@ -10,18 +10,18 @@
 	. = ..()
 	switch (SSmapping.current_map.minetype)
 		if (MINETYPE_NONE)
-			unit_name = "unknown artifact"
+			unit_name = "未知遗物"
 		if (MINETYPE_LAVALAND)
-			unit_name = "lava planet artifact"
+			unit_name = "熔岩行星遗物"
 		if (MINETYPE_ICE)
-			unit_name = "ice moon artifact"
+			unit_name = "冰月遗物"
 
 	if (prefix)
 		unit_name = "[prefix] [unit_name]"
 
 /datum/export/lavaland/minor
 	cost = CARGO_CRATE_VALUE * 20
-	prefix = "minor"
+	prefix = "次级"
 	export_types = list(
 		/obj/item/immortality_talisman,
 		/obj/item/book_of_babel,
@@ -66,7 +66,7 @@
 
 /datum/export/lavaland/megafauna
 	cost = CARGO_CRATE_VALUE * 80
-	prefix = "major"
+	prefix = "高级"
 	export_types = list(
 		/obj/item/hierophant_club,
 		/obj/item/melee/cleaving_saw,
@@ -87,4 +87,4 @@
 /datum/export/lavaland/megafauna/total_printout(datum/export_report/ex, notes = TRUE) //in the unlikely case a miner feels like selling megafauna loot
 	. = ..()
 	if(. && notes)
-		. += " On behalf of the Nanotrasen RnD division: Thank you for your hard work."
+		. += " 代表纳米传讯研发部：感谢您的辛勤工作。"

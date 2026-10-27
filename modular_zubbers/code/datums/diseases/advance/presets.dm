@@ -38,7 +38,7 @@
 			if(!chosen_letter_pos)
 				chosen_letter_pos = 1
 				break
-			var/chosen_letter = copytext(S.name,chosen_letter_pos,chosen_letter_pos+1)
+			var/chosen_letter = copytext_char(copytext(S.name,chosen_letter_pos),1,2)
 			if(chosen_letter)
 				name = "[name][chosen_letter]"
 				use_vowel = !use_vowel
@@ -47,7 +47,7 @@
 		name = acceptable_characters.Replace(name,"")
 
 	if(!name)
-		name = "Coder's Disease"
+		name = "程序员病"
 	else
 		if(!use_vowel) //Last letter was a vowel
 			name = "[name]sis"

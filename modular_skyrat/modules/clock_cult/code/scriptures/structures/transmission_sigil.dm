@@ -1,7 +1,7 @@
 /datum/scripture/create_structure/sigil_transmission
-	name = "Sigil of Transmission"
-	desc = "Summons a sigil of transmission, required to power clockwork structures. Will also drain power from charged objects."
-	tip = "Power structures using this."
+	name = "传输符文"
+	desc = "召唤一枚传输符文，是驱动发条结构所必需的。它也会从带电物体中汲取电力。"
+	tip = "用它为结构供能。"
 	button_icon_state = "Sigil of Transmission"
 	power_cost = 100
 	invocation_time = 5 SECONDS

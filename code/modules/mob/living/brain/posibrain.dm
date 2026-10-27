@@ -1,8 +1,8 @@
 GLOBAL_VAR(posibrain_notify_cooldown)
 
 /obj/item/mmi/posibrain
-	name = "positronic brain"
-	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves."
+	name = "正电子脑"
+	desc = "一块四英寸见方的闪亮金属立方体，表面布满浅浅的沟槽。"
 	icon = 'icons/obj/devices/assemblies.dmi'
 	icon_state = "posibrain"
 	base_icon_state = "posibrain"
@@ -12,17 +12,17 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.85, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.67, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 	///Message sent to the user when polling ghosts
-	var/begin_activation_message = span_notice("You carefully locate the manual activation switch and start the positronic brain's boot process.")
+	var/begin_activation_message = span_notice("你小心地找到手动激活开关，启动了正电子脑的开机流程。")
 	///Message sent as a visible message on success
-	var/success_message = span_notice("The positronic brain pings, and its lights start flashing. Success!")
+	var/success_message = span_notice("正电子脑发出“叮”的一声，指示灯开始闪烁。成功了！")
 	///Message sent as a visible message on failure
-	var/fail_message = span_notice("The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?")
+	var/fail_message = span_notice("正电子脑轻轻嗡鸣，金色灯光随之黯淡下去。也许你可以再试一次？")
 	///Visible message sent when a player possesses the brain
-	var/new_mob_message = span_notice("The positronic brain chimes quietly.")
+	var/new_mob_message = span_notice("正电子脑悄然响起清脆的鸣音。")
 	///Examine message when the posibrain has no mob
-	var/dead_message = span_deadsay("It appears to be completely inactive. The reset light is blinking.")
+	var/dead_message = span_deadsay("它看起来完全没有活动。重置指示灯正在闪烁。")
 	///Examine message when the posibrain cannot poll ghosts due to cooldown
-	var/recharge_message = span_warning("The positronic brain isn't ready to activate again yet! Give it some time to recharge.")
+	var/recharge_message = span_warning("正电子脑尚未准备好再次激活！给它一点时间充能吧。")
 
 	///Can be set to tell ghosts what the brain will be used for
 	var/ask_role = ""
@@ -45,9 +45,9 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 /obj/item/mmi/posibrain/proc/ping_ghosts(msg, newlymade)
 	if(newlymade || GLOB.posibrain_notify_cooldown <= world.time)
 		notify_ghosts(
-			"[name] [msg] in [get_area(src)]! [ask_role ? "Personality requested: \[[ask_role]\]" : ""]",
+			"[name] 在 [get_area(src)] 中[msg]！[ask_role ? "所需人格：\[[ask_role]\]" : ""]",
 			source = src,
-			header = "Ghost in the Machine",
+			header = "机器中的幽灵",
 			click_interact = TRUE,
 			ghost_sound = !newlymade ? 'sound/effects/ghost2.ogg':null,
 			ignore_key = POLL_IGNORE_POSIBRAIN,
@@ -61,26 +61,26 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(!brainmob)
 		set_brainmob(new /mob/living/brain(src))
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_SILICONS))
-		to_chat(user, span_warning("Central Command has temporarily outlawed posibrain sentience in this sector..."))
+		to_chat(user, span_warning("中央指挥部已暂时在本星区禁止正电子脑获得意识……"))
 	if(is_occupied())
-		to_chat(user, span_warning("This [name] is already active!"))
+		to_chat(user, span_warning("[name] 已经处于激活状态！"))
 		return
 	if(next_ask > world.time)
 		to_chat(user, recharge_message)
 		return
 	//Start the process of requesting a new ghost.
 	to_chat(user, begin_activation_message)
-	ping_ghosts("requested", FALSE)
+	ping_ghosts("发出请求", FALSE)
 	next_ask = world.time + ask_delay
 	searching = TRUE
 	update_appearance()
 	addtimer(CALLBACK(src, PROC_REF(check_success)), ask_delay)
 
 /obj/item/mmi/posibrain/click_alt(mob/living/user)
-	var/input_seed = tgui_input_text(user, "Enter a personality seed", "Enter seed", ask_role, max_length = MAX_NAME_LEN)
+	var/input_seed = tgui_input_text(user, "输入人格种子", "输入种子", ask_role, max_length = MAX_NAME_LEN)
 	if(isnull(input_seed) || !user.can_perform_action(src))
 		return CLICK_ACTION_BLOCKING
-	to_chat(user, span_notice("You set the personality seed to \"[input_seed]\"."))
+	to_chat(user, span_notice("你将人格种子设置为“[input_seed]”。"))
 	ask_role = input_seed
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
@@ -114,17 +114,17 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(QDELETED(brainmob))
 		return
 	if(user.ckey in ckeys_entered)
-		to_chat(user, span_warning("You cannot re-enter [src] a second time!"))
+		to_chat(user, span_warning("你不能第二次进入 [src]！"))
 		return
 	if(is_occupied() || is_banned_from(user.ckey, ROLE_POSIBRAIN) || QDELETED(src) || QDELETED(user))
 		return
 	//BUBBER EDIT BEGIN: SILICON FLAVOR TEXT
 	if(CONFIG_GET(flag/min_flavor_text))
 		if((length_char(user.client?.prefs.read_preference(/datum/preference/text/silicon_flavor_text))) <= CONFIG_GET(number/silicon_flavor_text_character_requirement))
-			to_chat(user, span_warning("Your silicon flavor text needs to be at least [CONFIG_GET(number/silicon_flavor_text_character_requirement)] characters to play this role. Head to the character creator and write more!"))
+			to_chat(user, span_warning("要扮演该角色，你的硅基角色风味文本至少需要 [CONFIG_GET(number/silicon_flavor_text_character_requirement)] 个字符。请前往角色创建器补充内容！"))
 			return
 	//BUBBER EDIT END: SILICON FLAVOR TEXT
-	var/posi_ask = tgui_alert(user, "Become a [name]? (Warning, You can no longer be revived, and all past lives will be forgotten!)", "Confirm", list("Yes","No"))
+	var/posi_ask = tgui_alert(user, "成为 [name] 吗？（警告：你将无法再被复活，所有前世都会被遗忘！）", "确认", list("Yes","No"))
 	if(posi_ask != "Yes" || QDELETED(src))
 		return
 	if(HAS_TRAIT(brainmob, TRAIT_SUICIDED)) //clear suicide status if the old occupant suicided.
@@ -155,7 +155,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(QDELETED(brainmob))
 		return
 	if(is_occupied()) //Prevents hostile takeover if two ghosts get the prompt or link for the same brain.
-		to_chat(candidate, span_warning("This [name] was taken over before you could get to it! Perhaps it might be available later?"))
+		to_chat(candidate, span_warning("[name] 在你来得及操作之前就已被接管了！也许稍后还会有机会？"))
 		return FALSE
 	if(candidate.mind && !isobserver(candidate))
 		candidate.mind.transfer_to(brainmob)
@@ -181,14 +181,14 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 		switch(brainmob.stat)
 			if(STABLE)
 				if(!brainmob.client)
-					. += "It appears to be in stand-by mode." //afk
+					. += "它似乎处于待机模式。" //afk
 			if(DEAD)
-				. += span_deadsay("It appears to be completely inactive.")
+				. += span_deadsay("它看起来完全没有活动。")
 	else
 		. += "[dead_message]"
 		if(ask_role)
-			. += span_notice("Current consciousness seed: \"[ask_role]\"")
-		. += span_boldnotice("Alt-click to set a consciousness seed, specifying what [src] will be used for. This can help generate a personality interested in that role.")
+			. += span_notice("当前意识种子：“[ask_role]”")
+		. += span_boldnotice("按住 Alt 点击可设置意识种子，说明 [src] 将用于何种用途。这有助于生成对此角色感兴趣的人格。")
 
 /obj/item/mmi/posibrain/Initialize(mapload, autoping = TRUE)
 	. = ..()
@@ -203,7 +203,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	brainmob.forceMove(src)
 	brainmob.container = src
 	if(autoping)
-		ping_ghosts("created", TRUE)
+		ping_ghosts("刚刚成型", TRUE)
 
 /obj/item/mmi/posibrain/update_icon_state()
 	. = ..()
@@ -226,17 +226,17 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	return
 
 /obj/item/mmi/posibrain/display
-	name = "display positronic brain"
-	desc = "A small positronic brain that doesn't allow the downloading of personalities."
+	name = "展示用正电子脑"
+	desc = "一具小型正电子脑，不允许下载人格。"
 
 /obj/item/mmi/posibrain/display/is_occupied()
 	return TRUE
 
 /// Posibrains but spherical. They can roll around and you can kick them
 /obj/item/mmi/posibrain/sphere
-	name = "positronic sphere"
-	desc = "Recent developments on cost-cutting measures have allowed us to cut positronic brain cubes into twice-as-cheap spheres. \
-	Unfortunately, it also allows them to move around the lab via rolling maneuvers."
+	name = "正电子球"
+	desc = "近来的降本措施让我们能把正电子脑方块切成成本减半的球体。\
+	不幸的是，这也让它们能在实验室里靠滚动四处移动。"
 	icon_state = "spheribrain"
 	base_icon_state = "spheribrain"
 	immobilize = FALSE

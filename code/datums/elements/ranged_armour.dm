@@ -19,7 +19,7 @@
 	below_projectile_multiplier = 0,
 	list/vulnerable_projectile_types = list(),
 	minimum_thrown_force = 0,
-	throw_blocked_message = "bounces off",
+	throw_blocked_message = "被弹开，未能击伤",
 )
 	. = ..()
 	if (!isatom(target))
@@ -45,10 +45,10 @@
 	if (bullet.damage >= minimum_projectile_force || (bullet.damage_type in vulnerable_projectile_types))
 		return
 	if (below_projectile_multiplier == 0)
-		parent.visible_message(span_danger("[parent] seems unharmed by [bullet]!"))
+		parent.visible_message(span_danger("[parent]似乎完全没有被[bullet]伤到！"))
 		return PROJECTILE_INTERRUPT_HIT
 	bullet.damage *= below_projectile_multiplier
-	parent.visible_message(span_danger("[parent] seems resistant to [bullet]!"))
+	parent.visible_message(span_danger("[parent]似乎能抵抗[bullet]的伤害！"))
 
 /// Ignore thrown damage based on projectile properties. There's no elegant way to multiply the damage because throwforce is persistent.
 /datum/element/ranged_armour/proc/pre_thrown_impact(atom/parent, obj/item/hit_atom, datum/thrownthing/throwingdatum)
@@ -57,5 +57,5 @@
 		return
 	if (hit_atom.throwforce >= minimum_thrown_force)
 		return
-	parent.visible_message(span_danger("[hit_atom] [throw_blocked_message] [parent]!"))
+	parent.visible_message(span_danger("[hit_atom][throw_blocked_message][parent]！"))
 	return COMSIG_HIT_PREVENTED

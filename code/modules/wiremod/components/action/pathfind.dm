@@ -4,9 +4,9 @@
  * Calcualtes a path, returns a list of entities. Each entity is the next step in the path. Can be used with the direction component to move.
  */
 /obj/item/circuit_component/pathfind
-	display_name = "Pathfinder"
-	desc = "When triggered, the next step to the target's location as an entity. This can be used with the direction component and the drone shell to make it move on its own. The Id Card input port is for considering ID access when pathing, it does not give the shell actual access."
-	category = "Action"
+	display_name = "寻路器"
+	desc = "触发时，输出通往目标位置的下一步实体。可与方向元件及无人机外壳配合，让它自行移动。ID 卡输入端口仅用于在寻路时考虑 ID 权限，并不会真正赋予外壳权限。"
+	category = "动作"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	var/datum/port/input/input_X
@@ -31,8 +31,8 @@
 /obj/item/circuit_component/pathfind/get_ui_notices()
 	. = ..()
 	// Not necessary to show the same path cooldown, since it doesn't change much for the player
-	. += create_ui_notice("Pathfinding Cooldown: [DisplayTimeText(different_path_cooldown)]", "orange", "stopwatch")
-	. += create_ui_notice("Maximum Range: [max_range] tiles", "orange", "info")
+	. += create_ui_notice("寻路冷却：[DisplayTimeText(different_path_cooldown)]", "orange", "stopwatch")
+	. += create_ui_notice("最大范围：[max_range] 格", "orange", "info")
 
 /obj/item/circuit_component/pathfind/populate_ports()
 	input_X = add_input_port("Target X", PORT_TYPE_NUMBER, trigger = null)
@@ -62,7 +62,7 @@
 		access = id.GetAccess()
 	else if (id_card.value)
 		failed.set_output(COMPONENT_SIGNAL)
-		reason_failed.set_output("Object marked is not an ID! Using no ID instead.")
+		reason_failed.set_output("标记的对象不是 ID 卡！将不使用 ID。")
 
 	// Get both the current turf and the destination's turf
 	var/turf/current_turf = get_location()
@@ -94,7 +94,7 @@
 
 		if(destination != old_dest && TIMER_COOLDOWN_RUNNING(parent, COOLDOWN_CIRCUIT_PATHFIND_DIF))
 			failed.set_output(COMPONENT_SIGNAL)
-			reason_failed.set_output("Cooldown still active!")
+			reason_failed.set_output("冷却尚未结束！")
 			return
 
 		TIMER_COOLDOWN_END(parent, COOLDOWN_CIRCUIT_PATHFIND_SAME)
@@ -104,7 +104,7 @@
 		if(length(path) == 0 || !path)// Check if we can even path there
 			next_turf = null
 			failed.set_output(COMPONENT_SIGNAL)
-			reason_failed.set_output("Can't go there!")
+			reason_failed.set_output("无法前往该位置！")
 			return
 		else
 			TIMER_COOLDOWN_START(parent, COOLDOWN_CIRCUIT_PATHFIND_DIF, different_path_cooldown)

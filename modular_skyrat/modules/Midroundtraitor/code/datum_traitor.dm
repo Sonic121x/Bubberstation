@@ -1,5 +1,5 @@
 /datum/antagonist/traitor/lone_infiltrator
-	name = "Syndicate Boarder"
+	name = "辛迪加登船者"
 	var/infil_outfit = /datum/outfit/syndicateinfiltrator
 	preview_outfit = /datum/outfit/lone_infiltrator_preview
 	pref_flag = ROLE_SYNDICATE_BOARDER

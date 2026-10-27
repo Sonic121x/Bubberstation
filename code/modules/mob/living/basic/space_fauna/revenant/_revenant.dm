@@ -5,8 +5,8 @@
 /// Can hear deadchat, but are NOT normal ghosts and do NOT have x-ray vision
 /// Admin-spawn or random event
 /mob/living/basic/revenant
-	name = "revenant"
-	desc = "A malevolent spirit."
+	name = "亡魂"
+	desc = "一个满怀恶意的幽灵。"
 	icon = 'icons/mob/simple/mob.dmi'
 	icon_state = "revenant_idle"
 	mob_biotypes = MOB_SPIRIT | MOB_UNDEAD
@@ -23,14 +23,14 @@
 	lighting_cutoff_green = 15
 	lighting_cutoff_blue = 35
 
-	friendly_verb_continuous = "touches"
-	friendly_verb_simple = "touch"
-	response_help_continuous = "passes through"
-	response_help_simple = "pass through"
-	response_disarm_continuous = "swings through"
-	response_disarm_simple = "swing through"
-	response_harm_continuous = "punches through"
-	response_harm_simple = "punch through"
+	friendly_verb_continuous = "轻触"
+	friendly_verb_simple = "轻触"
+	response_help_continuous = "穿过"
+	response_help_simple = "穿过"
+	response_disarm_continuous = "挥过"
+	response_disarm_simple = "挥过"
+	response_harm_continuous = "挥拳穿过"
+	response_harm_simple = "挥拳穿过"
 	unsuitable_atmos_damage = 0
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, STAMINA = 0, OXY = 0) //I don't know how you'd apply those, but revenants no-sell them anyway.
 	habitable_atmos = null
@@ -185,10 +185,10 @@
 
 /mob/living/basic/revenant/get_status_tab_items()
 	. = ..()
-	. += "Current Essence: [essence >= max_essence ? essence : "[essence] / [max_essence]"] E"
-	. += "Total Essence Stolen: [essence_accumulated] SE"
-	. += "Unused Stolen Essence: [essence_excess] SE"
-	. += "Perfect Souls Stolen: [perfectsouls]"
+	. += "当前精华：[essence >= max_essence ? essence : "[essence] / [max_essence]"] E"
+	. += "累计窃取精华：[essence_accumulated] SE"
+	. += "未使用的窃取精华：[essence_excess] SE"
+	. += "窃取的完美灵魂：[perfectsouls]"
 
 /mob/living/basic/revenant/update_health_hud()
 	if(isnull(hud_used))
@@ -219,7 +219,7 @@
 
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, span_boldwarning("You cannot send IC messages (muted)."))
+			to_chat(src, span_boldwarning("你无法发送 IC 消息（已被禁言）。"))
 			return
 		if (!(ignore_spam || forced) && client.handle_spam_prevention(message, MUTE_IC))
 			return
@@ -228,7 +228,7 @@
 		message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 
 	log_talk(message, LOG_SAY)
-	var/rendered = span_deadsay("<b>UNDEAD: [src]</b> says, \"[message]\"")
+	var/rendered = span_deadsay("<b>亡灵：[src]</b>说道：“[message]”")
 	relay_to_list_and_observers(rendered, GLOB.revenant_relay_mobs, src)
 
 /mob/living/basic/revenant/ClickOn(atom/A, params) //revenants can't interact with the world directly, so we gotta do some wacky override stuff
@@ -346,8 +346,8 @@
 	update_ability_status()
 
 	visible_message(
-		span_warning("[src] lets out a waning screech as violet mist swirls around its dissolving body!"),
-		span_revendanger("NO! No... it's too late, you can feel your essence [pick("breaking apart", "drifting away")]..."),
+		span_warning("[src] 发出一声渐弱的尖啸，紫色的雾气在它消散的身躯周围盘旋！"),
+		span_revendanger("不！不……太迟了，你能感觉到自己的精华正在[pick("四分五裂", "飘散而去")]……"),
 	)
 
 	SetInvisibility(INVISIBILITY_NONE, id=type)
@@ -362,14 +362,14 @@
 	if(QDELETED(src) || !dormant) // something fucky happened, abort. we MUST be dormant to go inside the ectoplasm.
 		return
 
-	visible_message(span_danger("[src]'s body breaks apart into a fine pile of blue dust."))
+	visible_message(span_danger("[src] 的身体碎裂成一堆细腻的蓝色尘埃。"))
 
 	new /obj/item/ectoplasm/revenant(get_turf(src), src) // the ectoplasm will handle moving us out of dormancy
 
 /mob/living/basic/revenant/proc/on_move(datum/source, atom/entering_loc)
 	SIGNAL_HANDLER
 	if(HAS_TRAIT(src, TRAIT_NO_TRANSFORM)) // just in case it occurs, need to provide some feedback
-		balloon_alert(src, "can't move!")
+		balloon_alert(src, "无法移动！")
 		return
 
 	if(isnull(orbiting) || incorporeal_move_check(entering_loc))
@@ -383,13 +383,13 @@
 /mob/living/basic/revenant/proc/create_login_string()
 	RETURN_TYPE(/list)
 	var/list/returnable_list = list()
-	returnable_list += span_deadsay(span_boldbig("You are a revenant."))
-	returnable_list += span_bold("Your formerly mundane spirit has been infused with alien energies and empowered into a revenant.")
-	returnable_list += span_bold("You are not dead, not alive, but somewhere in between. You are capable of limited interaction with both worlds.")
-	returnable_list += span_bold("You are invincible and invisible to everyone but other ghosts. Most abilities will reveal you, rendering you vulnerable.")
-	returnable_list += span_bold("To function, you are to drain the life essence from humans. This essence is a resource, as well as your health, and will power all of your abilities.")
-	returnable_list += span_bold("<i>You do not remember anything of your past lives, nor will you remember anything about this one after your death.</i>")
-	returnable_list += span_bold("Be sure to read <a href=\"https://tgstation13.org/wiki/Revenant\">the wiki page</a> to learn more.")
+	returnable_list += span_deadsay(span_boldbig("你是一名亡魂。"))
+	returnable_list += span_bold("你原本平凡的灵魂被注入了异星能量，并被强化成了一名亡魂。")
+	returnable_list += span_bold("你既非生者，也非死者，而是处于两者之间。你能够与两个世界进行有限的互动。")
+	returnable_list += span_bold("除了其他幽灵之外，没有人能看见你或伤害你。大多数能力都会使你现形，让你变得脆弱。")
+	returnable_list += span_bold("为了维持存在，你需要从人类身上吸取生命精华。这种精华既是资源，也是你的生命，还将为你所有能力提供能量。")
+	returnable_list += span_bold("<i>你不记得前世的任何事，死后也不会记得这一世的任何经历。</i>")
+	returnable_list += span_bold("请务必阅读<a href=\"https://tgstation13.org/wiki/Revenant\">维基页面</a>以了解更多。")
 	return returnable_list
 
 /mob/living/basic/revenant/generate_random_mob_name()
@@ -403,8 +403,8 @@
 /mob/living/basic/revenant/proc/on_baned(obj/item/weapon, mob/living/user)
 	SIGNAL_HANDLER
 	visible_message(
-		span_warning("[src] violently flinches!"),
-		span_revendanger("As [weapon] passes through you, you feel your essence draining away!"),
+		span_warning("[src] 剧烈地抽搐了一下！"),
+		span_revendanger("当 [weapon] 穿过你时，你感到精华正在流失！"),
 	)
 	apply_status_effect(/datum/status_effect/revenant/inhibited, 3 SECONDS)
 
@@ -415,17 +415,17 @@
 		return TRUE // what? whatever let it happen
 
 	if(step_turf.turf_flags & NOJAUNT)
-		to_chat(src, span_warning("Some strange aura is blocking the way."))
+		to_chat(src, span_warning("某种古怪的灵气挡住了去路。"))
 		return FALSE
 
 	if(locate(/obj/effect/decal/cleanable/food/salt) in step_turf)
-		balloon_alert(src, "blocked by salt!")
+		balloon_alert(src, "被盐挡住了！")
 		apply_status_effect(/datum/status_effect/revenant/revealed, 2 SECONDS)
 		apply_status_effect(/datum/status_effect/incapacitating/paralyzed/revenant, 2 SECONDS)
 		return FALSE
 
 	if(HAS_TRAIT(step_turf, TRAIT_TURF_BLESSED))
-		to_chat(src, span_warning("Holy energies block your path!"))
+		to_chat(src, span_warning("神圣能量挡住了你的去路！"))
 		return FALSE
 
 	return TRUE
@@ -443,17 +443,17 @@
 	essence_cost = abs(essence_cost) * -1
 	if(-essence_cost > essence)
 		if(!silent)
-			to_chat(src, span_revenwarning("You lack the essence to use that ability!"))
+			to_chat(src, span_revenwarning("你的精华不足以使用该能力！"))
 		return FALSE
 
 	if(dormant)
 		if(!silent)
-			to_chat(src, span_revenwarning("Your powers lie dormant right now!"))
+			to_chat(src, span_revenwarning("你的力量目前正处于休眠状态！"))
 		return SPELL_CANCEL_CAST
 
 	if(HAS_TRAIT(src, TRAIT_REVENANT_INHIBITED))
 		if(!silent)
-			to_chat(src, span_revenwarning("Your powers have been suppressed by a nullifying energy!"))
+			to_chat(src, span_revenwarning("你的力量被某种消解能量压制住了！"))
 		return FALSE
 
 	if(ability_density_locked)
@@ -471,14 +471,14 @@
 	var/turf/current = get_turf(src)
 	if(isclosedturf(current))
 		if(!silent)
-			to_chat(src, span_revenwarning("You cannot use abilities from inside of a wall."))
+			to_chat(src, span_revenwarning("你无法在墙体内部使用能力。"))
 		return TRUE
 
 	for(var/obj/thing in current)
 		if(!thing.density || thing.CanPass(src, get_dir(current, src)))
 			continue
 		if(!silent)
-			to_chat(src, span_revenwarning("You cannot use abilities inside of a dense object."))
+			to_chat(src, span_revenwarning("你无法在致密物体内部使用能力。"))
 		return TRUE
 	return FALSE
 
@@ -520,9 +520,9 @@
 	update_ability_status()
 	if(!silent)
 		if(essence_to_change_by > 0)
-			to_chat(src, span_revennotice("Gained [essence_to_change_by]E [source ? "from [source]":""]."))
+			to_chat(src, span_revennotice("获得 [essence_to_change_by]E [source ? "来自 [source]":""]。"))
 		else
-			to_chat(src, span_revenminor("Lost [essence_to_change_by]E [source ? "from [source]":""]."))
+			to_chat(src, span_revenminor("失去 [essence_to_change_by]E [source ? "来自 [source]":""]。"))
 	return TRUE
 
 /mob/living/basic/revenant/mob_negates_gravity()
@@ -553,17 +553,17 @@
 		apply_wibbly_filters(reflection)
 
 /mob/living/basic/revenant/proc/get_new_user()
-	message_admins("A poll for the reforming revenant was created.")
-	var/mob/chosen_one = SSpolling.poll_ghosts_for_target("Do you want to be [span_notice(name)] (reforming)?", check_jobban = ROLE_REVENANT, role = ROLE_REVENANT, poll_time = 5 SECONDS, checked_target = src, alert_pic = src, role_name_text = "reforming revenant", chat_text_border_icon = src)
+	message_admins("已创建重塑亡魂的幽灵投票。")
+	var/mob/chosen_one = SSpolling.poll_ghosts_for_target("你想成为 [span_notice(name)]（重塑中）吗？", check_jobban = ROLE_REVENANT, role = ROLE_REVENANT, poll_time = 5 SECONDS, checked_target = src, alert_pic = src, role_name_text = "重塑中的亡魂", chat_text_border_icon = src)
 	if(!chosen_one)
-		message_admins("No candidates were found for the new revenant.")
-		visible_message(span_revenwarning("A blue dust appears from thin air and settles down."))
+		message_admins("没有找到愿意成为新亡魂的候选者。")
+		visible_message(span_revenwarning("一团蓝色尘埃凭空出现，缓缓落定。"))
 		new /obj/item/ectoplasm/revenant(get_turf(src)) // inert
 		qdel(src)
 		return
 
 	PossessByPlayer(chosen_one.key)
-	message_admins("[chosen_one.key] has been made into the reformed revenant via poll.")
+	message_admins("[chosen_one.key] 经投票被塑造为重塑后的亡魂。")
 	qdel(chosen_one)
 
 /mob/living/basic/revenant/proc/reform(cause)
@@ -575,7 +575,7 @@
 		INVOKE_ASYNC(src, PROC_REF(get_new_user))
 		return TRUE
 
-	message_admins("[client.ckey] has been remade into a revenant.")
-	log_message("was remade as a revenant.", LOG_GAME)
+	message_admins("[client.ckey] 已被重塑为亡魂。")
+	log_message("被重塑为亡魂。", LOG_GAME)
 	return TRUE
 #undef REVENANT_STUNNED_TRAIT

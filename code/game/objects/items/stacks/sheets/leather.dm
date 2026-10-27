@@ -1,6 +1,6 @@
 /obj/item/stack/sheet/animalhide
-	name = "hide"
-	desc = "Something went wrong."
+	name = "兽皮"
+	desc = "出了点问题。"
 	icon_state = "sheet-hide"
 	inhand_icon_state = null
 	worn_icon_state = null
@@ -48,15 +48,15 @@
 	return null
 
 /obj/item/stack/sheet/animalhide/carbon/human
-	name = "human skin"
-	desc = "The by-product of human farming."
-	singular_name = "human skin piece"
+	name = "人皮"
+	desc = "人皮养殖业的下脚料。"
+	singular_name = "人皮块"
 	novariants = FALSE
 	merge_type = /obj/item/stack/sheet/animalhide/carbon/human
 
 GLOBAL_LIST_INIT(human_recipes, list( \
-	new/datum/stack_recipe("bloated human costume", /obj/item/clothing/suit/hooded/bloated_human, 5, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("human skin hat", /obj/item/clothing/head/fedora/human_leather, 1, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("浮肿人皮套装", /obj/item/clothing/suit/hooded/bloated_human, 5, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("人皮帽", /obj/item/clothing/head/fedora/human_leather, 1, crafting_flags = NONE, category = CAT_CLOTHING), \
 	))
 
 /obj/item/stack/sheet/animalhide/carbon/human/get_main_recipes()
@@ -67,16 +67,16 @@ GLOBAL_LIST_INIT(human_recipes, list( \
 	amount = 5
 
 /obj/item/stack/sheet/animalhide/generic
-	name = "skin"
-	desc = "A piece of skin."
-	singular_name = "skin piece"
+	name = "皮"
+	desc = "一块皮。"
+	singular_name = "皮块"
 	novariants = FALSE
 	merge_type = /obj/item/stack/sheet/animalhide/generic
 
 /obj/item/stack/sheet/animalhide/corgi
-	name = "corgi hide"
-	desc = "The by-product of corgi farming."
-	singular_name = "corgi hide piece"
+	name = "柯基皮"
+	desc = "柯基养殖业的下脚料。"
+	singular_name = "柯基皮块"
 	icon_state = "sheet-corgi"
 	inhand_icon_state = null
 	merge_type = /obj/item/stack/sheet/animalhide/corgi
@@ -85,9 +85,9 @@ GLOBAL_LIST_INIT(human_recipes, list( \
 	amount = 5
 
 /obj/item/stack/sheet/animalhide/mothroach
-	name = "mothroach hide"
-	desc = "A thin layer of mothroach hide."
-	singular_name = "mothroach hide piece"
+	name = "蛾蟑皮"
+	desc = "薄薄一层蛾蟑皮。"
+	singular_name = "蛾蟑皮块"
 	icon_state = "sheet-mothroach"
 	inhand_icon_state = null
 	merge_type = /obj/item/stack/sheet/animalhide/mothroach
@@ -96,15 +96,15 @@ GLOBAL_LIST_INIT(human_recipes, list( \
 	amount = 5
 
 GLOBAL_LIST_INIT(gondola_recipes, list ( \
-	new/datum/stack_recipe("gondola mask", /obj/item/clothing/mask/gondola, 1, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("gondola suit", /obj/item/clothing/under/costume/gondola, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("gondola bedsheet", /obj/item/bedsheet/gondola, 1, crafting_flags = NONE, category = CAT_FURNITURE), \
+	new/datum/stack_recipe("贡多拉面具", /obj/item/clothing/mask/gondola, 1, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("贡多拉套装", /obj/item/clothing/under/costume/gondola, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("贡多拉床单", /obj/item/bedsheet/gondola, 1, crafting_flags = NONE, category = CAT_FURNITURE), \
 	))
 
 /obj/item/stack/sheet/animalhide/gondola
-	name = "gondola hide"
-	desc = "The extremely valuable product of gondola hunting."
-	singular_name = "gondola hide piece"
+	name = "贡多拉皮"
+	desc = "猎杀贡多拉所得的价值极高的产物。"
+	singular_name = "贡多拉皮块"
 	icon_state = "sheet-gondola"
 	inhand_icon_state = null
 	merge_type = /obj/item/stack/sheet/animalhide/gondola
@@ -114,7 +114,7 @@ GLOBAL_LIST_INIT(gondola_recipes, list ( \
 	. += GLOB.gondola_recipes
 
 GLOBAL_LIST_INIT(corgi_recipes, list ( \
-	new/datum/stack_recipe("corgi costume", /obj/item/clothing/suit/hooded/ian_costume, 3, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("柯基套装", /obj/item/clothing/suit/hooded/ian_costume, 3, crafting_flags = NONE, category = CAT_CLOTHING), \
 	))
 
 /obj/item/stack/sheet/animalhide/corgi/get_main_recipes()
@@ -122,9 +122,9 @@ GLOBAL_LIST_INIT(corgi_recipes, list ( \
 	. += GLOB.corgi_recipes
 
 /obj/item/stack/sheet/animalhide/cat
-	name = "cat hide"
-	desc = "The by-product of cat farming."
-	singular_name = "cat hide piece"
+	name = "猫皮"
+	desc = "猫养殖业的下脚料。"
+	singular_name = "猫皮块"
 	icon_state = "sheet-cat"
 	inhand_icon_state = null
 	merge_type = /obj/item/stack/sheet/animalhide/cat
@@ -133,16 +133,16 @@ GLOBAL_LIST_INIT(corgi_recipes, list ( \
 	amount = 5
 
 /obj/item/stack/sheet/animalhide/carbon/monkey
-	name = "monkey hide"
-	desc = "The by-product of monkey farming."
-	singular_name = "monkey hide piece"
+	name = "猴皮"
+	desc = "猴子养殖业的下脚料。"
+	singular_name = "猴皮块"
 	icon_state = "sheet-monkey"
 	inhand_icon_state = null
 	merge_type = /obj/item/stack/sheet/animalhide/carbon/monkey
 
 GLOBAL_LIST_INIT(monkey_recipes, list ( \
-	new/datum/stack_recipe("monkey mask", /obj/item/clothing/mask/gas/monkeymask, 1, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("monkey suit", /obj/item/clothing/suit/costume/monkeysuit, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("猴子面具", /obj/item/clothing/mask/gas/monkeymask, 1, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("猴子套装", /obj/item/clothing/suit/costume/monkeysuit, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
 	))
 
 /obj/item/stack/sheet/animalhide/carbon/monkey/get_main_recipes()
@@ -153,9 +153,9 @@ GLOBAL_LIST_INIT(monkey_recipes, list ( \
 	amount = 5
 
 /obj/item/stack/sheet/animalhide/carbon/lizard
-	name = "lizard skin"
-	desc = "Sssssss..."
-	singular_name = "lizard skin piece"
+	name = "蜥蜴皮"
+	desc = "嘶嘶嘶嘶……"
+	singular_name = "蜥蜴皮块"
 	icon_state = "sheet-lizard"
 	inhand_icon_state = null
 	merge_type = /obj/item/stack/sheet/animalhide/carbon/lizard
@@ -168,16 +168,16 @@ GLOBAL_LIST_INIT(monkey_recipes, list ( \
 	amount = 5
 
 /obj/item/stack/sheet/animalhide/xeno
-	name = "alien chitin"
-	singular_name = "alien chitin piece"
-	desc = "The skin of a terrible creature."
+	name = "异形甲壳"
+	singular_name = "异形甲壳块"
+	desc = "一种可怕生物的皮。"
 	icon_state = "sheet-xeno"
 	inhand_icon_state = null
 	merge_type = /obj/item/stack/sheet/animalhide/xeno
 
 GLOBAL_LIST_INIT(xeno_recipes, list ( \
-	new/datum/stack_recipe("alien helmet", /obj/item/clothing/head/costume/xenos, 1, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("alien suit", /obj/item/clothing/suit/costume/xenos, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("异形头盔", /obj/item/clothing/head/costume/xenos, 1, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("异形套装", /obj/item/clothing/suit/costume/xenos, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
 	))
 
 /obj/item/stack/sheet/animalhide/xeno/get_main_recipes()
@@ -188,20 +188,20 @@ GLOBAL_LIST_INIT(xeno_recipes, list ( \
 	amount = 5
 
 /obj/item/stack/sheet/animalhide/carp
-	name = "carp scales"
-	desc = "The scaly skin of a space carp. It looks quite beautiful when detached from the foul creature who once wore it."
-	singular_name = "carp scale"
+	name = "鲤鱼鳞"
+	desc = "太空鲤鱼的鳞状皮肤。从当初披着它的那头恶臭生物身上剥下来后，看着倒挺漂亮。"
+	singular_name = "鲤鱼鳞片"
 	icon_state = "sheet-carp"
 	inhand_icon_state = null
 	merge_type = /obj/item/stack/sheet/animalhide/carp
 
 GLOBAL_LIST_INIT(carp_recipes, list ( \
-	new/datum/stack_recipe("carp costume", /obj/item/clothing/suit/hooded/carp_costume, 4, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("carp mask", /obj/item/clothing/mask/gas/carp, 1, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("carpskin chair", /obj/structure/chair/comfy/carp, 2, crafting_flags = NONE, category = CAT_FURNITURE), \
-	new/datum/stack_recipe("carpskin suit", /obj/item/clothing/under/suit/carpskin, 3, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("carpskin fedora", /obj/item/clothing/head/fedora/carpskin, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("carpskin fishing bag", /obj/item/storage/bag/fishing/carpskin, 3, crafting_flags = NONE, category = CAT_CONTAINERS), \
+	new/datum/stack_recipe("鲤鱼套装", /obj/item/clothing/suit/hooded/carp_costume, 4, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("鲤鱼面具", /obj/item/clothing/mask/gas/carp, 1, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("鲤鱼皮椅子", /obj/structure/chair/comfy/carp, 2, crafting_flags = NONE, category = CAT_FURNITURE), \
+	new/datum/stack_recipe("鲤鱼皮西装", /obj/item/clothing/under/suit/carpskin, 3, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("鲤鱼皮软呢帽", /obj/item/clothing/head/fedora/carpskin, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("鲤鱼皮钓鱼包", /obj/item/storage/bag/fishing/carpskin, 3, crafting_flags = NONE, category = CAT_CONTAINERS), \
 	))
 
 /obj/item/stack/sheet/animalhide/carp/get_main_recipes()
@@ -212,8 +212,8 @@ GLOBAL_LIST_INIT(carp_recipes, list ( \
 	amount = 5
 
 /obj/item/xenos_claw
-	name = "alien claw"
-	desc = "The claw of a terrible creature."
+	name = "异形爪"
+	desc = "一种可怕生物的爪子。"
 	icon = 'icons/mob/nonhuman-player/alien.dmi'
 	icon_state = "claw"
 
@@ -221,9 +221,9 @@ GLOBAL_LIST_INIT(carp_recipes, list ( \
  * Leather SHeet
  */
 /obj/item/stack/sheet/leather
-	name = "leather"
-	desc = "The by-product of mob grinding."
-	singular_name = "leather piece"
+	name = "皮革"
+	desc = "生物研磨业的下脚料。"
+	singular_name = "皮革片"
 	icon_state = "sheet-leather"
 	worn_icon_state = null
 	inhand_icon_state = null
@@ -232,39 +232,39 @@ GLOBAL_LIST_INIT(carp_recipes, list ( \
 	drop_sound = 'sound/items/handling/materials/skin_drop.ogg'
 
 GLOBAL_LIST_INIT(leather_recipes, list ( \
-	new/datum/stack_recipe("wallet", /obj/item/storage/wallet, 1, crafting_flags = NONE, category = CAT_CONTAINERS), \
-	new/datum/stack_recipe("muzzle", /obj/item/clothing/mask/muzzle, 2, crafting_flags = NONE, category = CAT_ENTERTAINMENT), \
-	new/datum/stack_recipe("basketball", /obj/item/toy/basketball, 20, crafting_flags = NONE, category = CAT_ENTERTAINMENT), \
-	new/datum/stack_recipe("baseball", /obj/item/toy/beach_ball/baseball, 3, crafting_flags = NONE, category = CAT_ENTERTAINMENT), \
-	new/datum/stack_recipe("saddle", /obj/item/goliath_saddle, 5, crafting_flags = NONE, category = CAT_EQUIPMENT), \
-	new/datum/stack_recipe("leather shoes", /obj/item/clothing/shoes/laceup, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("cowboy boots", /obj/item/clothing/shoes/cowboy, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("botany gloves", /obj/item/clothing/gloves/botanic_leather, 3, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("leather satchel", /obj/item/storage/backpack/satchel/leather, 5, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("sheriff vest", /obj/item/clothing/accessory/vest_sheriff, 4, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("leather jacket", /obj/item/clothing/suit/jacket/leather, 7, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("biker jacket", /obj/item/clothing/suit/jacket/leather/biker, 7, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("leather loincloth", /obj/item/clothing/under/costume/loincloth, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe_list("belts", list( \
-		new/datum/stack_recipe("tool belt", /obj/item/storage/belt/utility, 4, crafting_flags = NONE, category = CAT_CONTAINERS), \
-		new/datum/stack_recipe("botanical belt", /obj/item/storage/belt/plant, 2, crafting_flags = NONE, category = CAT_CONTAINERS), \
-		new/datum/stack_recipe("janitorial belt", /obj/item/storage/belt/janitor, 2, crafting_flags = NONE, category = CAT_CONTAINERS), \
-		new/datum/stack_recipe("medical belt", /obj/item/storage/belt/medical, 2, crafting_flags = NONE, category = CAT_CONTAINERS), \
-		new/datum/stack_recipe("security belt", /obj/item/storage/belt/security, 2, crafting_flags = NONE, category = CAT_CONTAINERS), \
-		new/datum/stack_recipe("shoulder holster", /obj/item/storage/belt/holster, 3, crafting_flags = NONE, category = CAT_CONTAINERS), \
-		new/datum/stack_recipe("bandolier", /obj/item/storage/belt/bandolier, 5, crafting_flags = NONE, category = CAT_CONTAINERS), \
+	new/datum/stack_recipe("钱包", /obj/item/storage/wallet, 1, crafting_flags = NONE, category = CAT_CONTAINERS), \
+	new/datum/stack_recipe("口套", /obj/item/clothing/mask/muzzle, 2, crafting_flags = NONE, category = CAT_ENTERTAINMENT), \
+	new/datum/stack_recipe("篮球", /obj/item/toy/basketball, 20, crafting_flags = NONE, category = CAT_ENTERTAINMENT), \
+	new/datum/stack_recipe("棒球", /obj/item/toy/beach_ball/baseball, 3, crafting_flags = NONE, category = CAT_ENTERTAINMENT), \
+	new/datum/stack_recipe("鞍座", /obj/item/goliath_saddle, 5, crafting_flags = NONE, category = CAT_EQUIPMENT), \
+	new/datum/stack_recipe("皮鞋", /obj/item/clothing/shoes/laceup, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("牛仔靴", /obj/item/clothing/shoes/cowboy, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("植物学手套", /obj/item/clothing/gloves/botanic_leather, 3, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("皮革挎包", /obj/item/storage/backpack/satchel/leather, 5, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("警长背心", /obj/item/clothing/accessory/vest_sheriff, 4, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("皮夹克", /obj/item/clothing/suit/jacket/leather, 7, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("机车夹克", /obj/item/clothing/suit/jacket/leather/biker, 7, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("皮革腰布", /obj/item/clothing/under/costume/loincloth, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe_list("腰带", list( \
+		new/datum/stack_recipe("工具腰带", /obj/item/storage/belt/utility, 4, crafting_flags = NONE, category = CAT_CONTAINERS), \
+		new/datum/stack_recipe("植物学腰带", /obj/item/storage/belt/plant, 2, crafting_flags = NONE, category = CAT_CONTAINERS), \
+		new/datum/stack_recipe("清洁腰带", /obj/item/storage/belt/janitor, 2, crafting_flags = NONE, category = CAT_CONTAINERS), \
+		new/datum/stack_recipe("医疗腰带", /obj/item/storage/belt/medical, 2, crafting_flags = NONE, category = CAT_CONTAINERS), \
+		new/datum/stack_recipe("安保腰带", /obj/item/storage/belt/security, 2, crafting_flags = NONE, category = CAT_CONTAINERS), \
+		new/datum/stack_recipe("肩挂枪套", /obj/item/storage/belt/holster, 3, crafting_flags = NONE, category = CAT_CONTAINERS), \
+		new/datum/stack_recipe("子弹带", /obj/item/storage/belt/bandolier, 5, crafting_flags = NONE, category = CAT_CONTAINERS), \
 	)),
-	new/datum/stack_recipe_list("cowboy hats", list( \
-		new/datum/stack_recipe("sheriff hat", /obj/item/clothing/head/cowboy/brown, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
-		new/datum/stack_recipe("desperado hat", /obj/item/clothing/head/cowboy/black, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
-		new/datum/stack_recipe("ten-gallon hat", /obj/item/clothing/head/cowboy/white, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
-		new/datum/stack_recipe("deputy hat", /obj/item/clothing/head/cowboy/red, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
-		new/datum/stack_recipe("drifter hat", /obj/item/clothing/head/cowboy/grey, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe_list("牛仔帽", list( \
+		new/datum/stack_recipe("警长帽", /obj/item/clothing/head/cowboy/brown, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
+		new/datum/stack_recipe("亡命徒帽", /obj/item/clothing/head/cowboy/black, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
+		new/datum/stack_recipe("十加仑帽", /obj/item/clothing/head/cowboy/white, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
+		new/datum/stack_recipe("副警长帽", /obj/item/clothing/head/cowboy/red, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
+		new/datum/stack_recipe("流浪者帽", /obj/item/clothing/head/cowboy/grey, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
 	)),
-	new/datum/stack_recipe_list("sword sheaths", list( \
-		new/datum/stack_recipe("katana sheath", /obj/item/storage/belt/sheath/katana/empty, 3, crafting_flags = NONE, category = CAT_CLOTHING), \
-		new/datum/stack_recipe("hanzo katana sheath", /obj/item/storage/belt/sheath/hanzo_katana/empty, 3, crafting_flags = NONE, category = CAT_CLOTHING), \
-		new/datum/stack_recipe("toy katana sheath", /obj/item/storage/belt/sheath/katana/toy/empty, 3, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe_list("刀鞘", list( \
+		new/datum/stack_recipe("武士刀刀鞘", /obj/item/storage/belt/sheath/katana/empty, 3, crafting_flags = NONE, category = CAT_CLOTHING), \
+		new/datum/stack_recipe("半藏武士刀刀鞘", /obj/item/storage/belt/sheath/hanzo_katana/empty, 3, crafting_flags = NONE, category = CAT_CLOTHING), \
+		new/datum/stack_recipe("玩具武士刀刀鞘", /obj/item/storage/belt/sheath/katana/toy/empty, 3, crafting_flags = NONE, category = CAT_CLOTHING), \
 	)),
 ))
 
@@ -279,10 +279,10 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
  * Sinew
  */
 /obj/item/stack/sheet/sinew
-	name = "watcher sinew"
+	name = "守望者肌腱"
 	icon = 'icons/obj/mining.dmi'
-	desc = "Long stringy filaments which presumably came from a watcher's wings."
-	singular_name = "watcher sinew"
+	desc = "细长的丝状纤维，大概取自守望者的翅膀。"
+	singular_name = "守望者肌腱"
 	icon_state = "sinew"
 	novariants = TRUE
 	merge_type = /obj/item/stack/sheet/sinew
@@ -309,32 +309,32 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 	)
 
 /obj/item/stack/sheet/sinew/icewing
-	name = "icewing watcher sinew"
-	desc = "Ice-cold filaments which presumably came from an icewing watcher's wings."
-	singular_name = "icewing watcher sinew"
+	name = "冰翼守望者肌腱"
+	desc = "冰冷的丝状纤维，大概取自冰翼守望者的翅膀。"
+	singular_name = "冰翼守望者肌腱"
 	icon_state = "sinew_icewing"
 	novariants = TRUE
 	merge_type = /obj/item/stack/sheet/sinew/icewing
 	trophy_type = /datum/crafting_recipe/crusher_trophy/icewing_watcher_wing
 
 /obj/item/stack/sheet/sinew/magmawing
-	name = "magmawing watcher sinew"
-	desc = "Fiery filaments which presumably came from a magmawing watcher's wings."
-	singular_name = "magmawing watcher sinew"
+	name = "熔岩翼守望者肌腱"
+	desc = "炽热的丝状纤维，大概取自熔岩翼守望者的翅膀。"
+	singular_name = "熔岩翼守望者肌腱"
 	icon_state = "sinew_magmawing"
 	novariants = TRUE
 	merge_type = /obj/item/stack/sheet/sinew/magmawing
 	trophy_type = /datum/crafting_recipe/crusher_trophy/magmawing_watcher_wing
 
 /obj/item/stack/sheet/sinew/wolf
-	name = "wolf sinew"
-	desc = "Long stringy filaments which came from the insides of a wolf."
-	singular_name = "wolf sinew"
+	name = "狼肌腱"
+	desc = "细长的丝状纤维，取自狼的体内。"
+	singular_name = "狼肌腱"
 	merge_type = /obj/item/stack/sheet/sinew/wolf
 	trophy_type = null
 
 GLOBAL_LIST_INIT(sinew_recipes, list ( \
-	new/datum/stack_recipe("sinew restraints", /obj/item/restraints/handcuffs/cable/sinew, 1, crafting_flags = NONE, category = CAT_EQUIPMENT), \
+	new/datum/stack_recipe("肌腱束具", /obj/item/restraints/handcuffs/cable/sinew, 1, crafting_flags = NONE, category = CAT_EQUIPMENT), \
 ))
 
 /obj/item/stack/sheet/sinew/get_main_recipes()
@@ -343,11 +343,11 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 
 /*Plates*/
 /obj/item/stack/sheet/animalhide/goliath_hide
-	name = "goliath hide plates"
-	desc = "Pieces of a goliath's rocky hide, these might be able to make your suit a bit more durable to attack from the local fauna."
+	name = "歌利亚皮板"
+	desc = "歌利亚岩石般皮肤上的碎片，或许能让你的套装更耐当地动物的袭击。"
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "goliath_hide"
-	singular_name = "hide plate"
+	singular_name = "皮板"
 	max_amount = 6
 	novariants = FALSE
 	item_flags = NOBLUDGEON
@@ -357,18 +357,18 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/animalhide/goliath_hide
 
 /obj/item/stack/sheet/animalhide/goliath_hide/polar_bear_hide
-	name = "polar bear hides"
-	desc = "Pieces of a polar bear's fur, these might be able to make your suit a bit more durable to attack from the local fauna."
+	name = "北极熊皮"
+	desc = "北极熊皮毛上的碎片，或许能让你的套装更耐当地动物的袭击。"
 	icon_state = "polar_bear_hide"
-	singular_name = "polar bear hide"
+	singular_name = "北极熊皮"
 	merge_type = /obj/item/stack/sheet/animalhide/goliath_hide/polar_bear_hide
 
 /obj/item/stack/sheet/animalhide/ashdrake
-	name = "ash drake hide"
-	desc = "The strong, scaled hide of an ash drake."
+	name = "灰烬龙皮"
+	desc = "灰烬龙坚韧的鳞状皮肤。"
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "dragon_hide"
-	singular_name = "drake plate"
+	singular_name = "龙皮板"
 	max_amount = 10
 	novariants = FALSE
 	item_flags = NOBLUDGEON
@@ -387,16 +387,16 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 	)
 
 /obj/item/stack/sheet/animalhide/bear
-	name = "bear hide"
-	desc = "Fuzzy pelts from a bear. Imagine how warm you could be, wrapped up in a coat of this stuff."
+	name = "熊皮"
+	desc = "熊身上毛茸茸的皮。想想裹上这么一件外套会有多暖和。"
 	icon_state = "bear_hide" //change
-	singular_name = "bear pelt"
+	singular_name = "熊皮"
 	merge_type = /obj/item/stack/sheet/animalhide/bear
 	novariants = FALSE
 
 GLOBAL_LIST_INIT(bear_pelt_recipes, list ( \
-	new/datum/stack_recipe("bear costume", /obj/item/clothing/suit/costume/bear_suit, 5, crafting_flags = NONE, category = CAT_CLOTHING), \
-	new/datum/stack_recipe("bear hat", /obj/item/clothing/head/costume/bearpelt, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("熊套装", /obj/item/clothing/suit/costume/bear_suit, 5, crafting_flags = NONE, category = CAT_CLOTHING), \
+	new/datum/stack_recipe("熊皮帽", /obj/item/clothing/head/costume/bearpelt, 2, crafting_flags = NONE, category = CAT_CLOTHING), \
 ))
 
 /obj/item/stack/sheet/animalhide/bear/get_main_recipes()
@@ -408,24 +408,24 @@ GLOBAL_LIST_INIT(bear_pelt_recipes, list ( \
 	if(!tool.get_sharpness())
 		return ..()
 	playsound(loc, 'sound/items/weapons/slice.ogg', 50, TRUE, -1)
-	user.visible_message(span_notice("[user] starts cutting hair off \the [src]."), span_notice("You start cutting the hair off \the [src]..."), span_hear("You hear the sound of a knife rubbing against flesh."))
+	user.visible_message(span_notice("[user]开始刮掉[src]上的毛。"), span_notice("你开始刮掉[src]上的毛……"), span_hear("你听见刀刃摩擦血肉的声音。"))
 	if(!do_after(user, 5 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You cut the hair from [src.name]."))
+	to_chat(user, span_notice("你刮掉了[src.name]上的毛。"))
 	new /obj/item/stack/sheet/hairlesshide(user.drop_location(), amount)
 	use(amount)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/stack/sheet/animalhide/examine(mob/user)
 	. = ..()
-	. += span_notice("You can remove the hair with any sharp object.")
+	. += span_notice("你可以用任何锋利物品去掉皮毛。")
 
 //Step two - washing..... it's actually in washing machine code.
 
 /obj/item/stack/sheet/hairlesshide
-	name = "hairless hide"
-	desc = "This hide was stripped of its hair, but still needs washing and tanning."
-	singular_name = "hairless hide piece"
+	name = "无毛皮"
+	desc = "这张皮已经被去掉了毛，但仍需要清洗和鞣制。"
+	singular_name = "无毛皮块"
 	icon_state = "sheet-hairlesshide"
 	worn_icon_state = null
 	inhand_icon_state = null
@@ -435,13 +435,13 @@ GLOBAL_LIST_INIT(bear_pelt_recipes, list ( \
 
 /obj/item/stack/sheet/hairlesshide/examine(mob/user)
 	. = ..()
-	. += span_notice("You can clean it up by washing in the water.")
+	. += span_notice("把它放进水里清洗即可。")
 
 //Step three - drying
 /obj/item/stack/sheet/wethide
-	name = "wet hide"
-	desc = "This hide has been cleaned but still needs to be dried."
-	singular_name = "wet hide piece"
+	name = "湿皮"
+	desc = "这张皮已经清洗过，但仍需要烘干。"
+	singular_name = "湿皮块"
 	icon_state = "sheet-wetleather"
 	worn_icon_state = null
 	inhand_icon_state = null
@@ -455,7 +455,7 @@ GLOBAL_LIST_INIT(bear_pelt_recipes, list ( \
 
 /obj/item/stack/sheet/wethide/examine(mob/user)
 	. = ..()
-	. += span_notice("You can dry it up to make leather.")
+	. += span_notice("你可以把它烘干制成皮革。")
 
 /obj/item/stack/sheet/wethide/Initialize(mapload, new_amount, merge = TRUE, list/mat_override=null, mat_amt=1)
 	. = ..()
@@ -466,7 +466,7 @@ GLOBAL_LIST_INIT(bear_pelt_recipes, list ( \
 	AddComponent(/datum/component/bakeable, /obj/item/stack/sheet/leather, rand(15 SECONDS, 20 SECONDS), TRUE, TRUE)
 
 /obj/item/stack/sheet/wethide/burn()
-	visible_message(span_notice("[src] dries up!"))
+	visible_message(span_notice("[src]干透了！"))
 	new /obj/item/stack/sheet/leather(loc, amount) // all the sheets to incentivize not losing your whole stack by accident
 	qdel(src)
 

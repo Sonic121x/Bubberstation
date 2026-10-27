@@ -1,6 +1,6 @@
 /// Anything you can pick up and hold.
 /obj/item
-	name = "item"
+	name = "物品"
 	icon = 'icons/obj/anomaly.dmi'
 	abstract_type = /obj/item
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
@@ -446,16 +446,16 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "Move To Top", null)
 	.[weight_class_to_text(w_class)] = weight_class_to_tooltip(w_class)
 
 	if(item_flags & CRUEL_IMPLEMENT)
-		.[span_red("morbid")] = "It seems quite practical for particularly morbid procedures and experiments."
+		.[span_red("病态")] = "似乎特别适用于某些令人毛骨悚然的操作和实验。"
 	if(item_flags & BLUESPACE_INTERFERENCE)
-		.["bluespace-active"] = "It is highly active in bluespace and will cause malfunctions in teleporters."
+		.["蓝空间活跃"] = "其蓝空间活性很高，会导致传送机故障。"
 	if (siemens_coefficient == 0)
-		.["insulated"] = "It is made from a robust electrical insulator and will block any electricity passing through it!"
+		.["绝缘"] = "由优质电绝缘材料制成，能阻断一切通过它的电流！"
 	else if (siemens_coefficient <= 0.5)
-		.["partially insulated"] = "It is made from a poor insulator that will dampen (but not fully block) electric shocks passing through it."
+		.["部分绝缘"] = "由较差的绝缘材料制成，可以减弱但无法完全阻断通过它的电击。"
 
 /obj/item/examine_descriptor(mob/user)
-	return "item"
+	return "物品"
 
 /obj/item/examine(mob/user)
 	// lazily initialize the weapon description element if it hasn't been already
@@ -471,7 +471,7 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "Move To Top", null)
 
 /obj/item/proc/research_scan(mob/user)
 	/// Research prospects, including boostable nodes and point values. Deliver to a console to know whether the boosts have already been used.
-	var/list/research_msg = list("<font color='purple'>Research prospects:</font> ")
+	var/list/research_msg = list("<font color='purple'>研究价值：</font> ")
 	///Separator between the items on the list
 	var/sep = ""
 	///Nodes that can be boosted
@@ -483,26 +483,26 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "Move To Top", null)
 				continue
 			research_msg += sep
 			research_msg += node.display_name
-			sep = ", "
+			sep = "、"
 	var/list/points = techweb_item_point_check(src)
 	if (length(points))
-		sep = ", "
+		sep = "、"
 		research_msg += techweb_point_display_generic(points)
 
 	if (!sep) // nothing was shown
-		research_msg += "None"
+		research_msg += "无"
 
 	// Extractable materials. Only shows the names, not the amounts.
-	research_msg += ".<br><font color='purple'>Extractable materials:</font> "
+	research_msg += "。<br><font color='purple'>可提取材料：</font> "
 	if (length(custom_materials))
 		sep = ""
 		for(var/mat in custom_materials)
 			research_msg += sep
 			research_msg += CallMaterialName(mat)
-			sep = ", "
+			sep = "、"
 	else
-		research_msg += "None"
-	research_msg += "."
+		research_msg += "无"
+	research_msg += "。"
 	return research_msg.Join()
 
 /obj/item/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -531,12 +531,12 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "Move To Top", null)
 				else
 					suffixes[affix_choice.name] = affix_choice
 		//making it more presentable here
-		var/list/affixes = list("---PREFIXES---")
+		var/list/affixes = list("---前缀---")
 		affixes.Add(prefixes)
-		affixes.Add("---SUFFIXES---")
+		affixes.Add("---后缀---")
 		affixes.Add(suffixes)
 		//admin picks, cleanup the ones we didn't do and handle chosen
-		var/picked_affix_name = tgui_input_list(usr, "Affix to add to [src]", "Enchant [src]", affixes)
+		var/picked_affix_name = tgui_input_list(usr, "为[src]添加的词缀", "为[src]附魔", affixes)
 		if(isnull(picked_affix_name))
 			return
 		if(!affixes[picked_affix_name] || QDELETED(src))
@@ -555,11 +555,11 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "Move To Top", null)
 		var/announce = FALSE
 		//Apply fantasy with affix. failing this should never happen, but if it does it should not be silent.
 		if(AddComponent(/datum/component/fantasy, fantasy_quality, list(affix), canFail, announce) == COMPONENT_INCOMPATIBLE)
-			to_chat(usr, span_warning("Fantasy component not compatible with [src]."))
+			to_chat(usr, span_warning("奇幻组件与[src]不兼容。"))
 			CRASH("fantasy component incompatible with object of type: [type]")
-		to_chat(usr, span_notice("[before_name] now has [picked_affix_name]!"))
+		to_chat(usr, span_notice("[before_name]现在拥有[picked_affix_name]词缀！"))
 		log_admin("[key_name(usr)] has added [picked_affix_name] fantasy affix to [before_name]")
-		message_admins(span_notice("[key_name(usr)] has added [picked_affix_name] fantasy affix to [before_name]"))
+		message_admins(span_notice("[key_name(usr)]为[before_name]添加了[picked_affix_name]奇幻词缀。"))
 
 /obj/item/attack_hand(mob/user, list/modifiers)
 	. = ..()
@@ -593,7 +593,7 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "Move To Top", null)
 		var/grav = user.has_gravity()
 		if(grav > STANDARD_GRAVITY)
 			var/grav_power = min(3,grav - STANDARD_GRAVITY)
-			to_chat(user,span_notice("You start picking up [src]..."))
+			to_chat(user,span_notice("你开始拾取[src]……"))
 			if(!do_after(user, 30 * grav_power, src))
 				return
 
@@ -642,7 +642,7 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "Move To Top", null)
 	if(!ayy.can_hold_items(src))
 		if(src in ayy.contents) // To stop Aliens having items stuck in their pockets
 			ayy.dropItemToGround(src)
-		to_chat(user, span_warning("Your claws aren't capable of such fine manipulation!"))
+		to_chat(user, span_warning("你的爪子做不了这么精细的操作！"))
 		return
 	attack_paw(ayy, modifiers)
 
@@ -655,12 +655,12 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "Move To Top", null)
 
 // afterattack() and attack() prototypes moved to _onclick/item_attack.dm for consistency
 
-/obj/item/proc/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/proc/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, owner, hitby, attack_text, final_block_chance, damage, attack_type, damage_type) & COMPONENT_HIT_REACTION_BLOCK)
 		return TRUE
 
 	if(prob(final_block_chance))
-		owner.visible_message(span_danger("[owner] blocks [attack_text] with [src]!"))
+		owner.visible_message(span_danger("[owner]用[src]挡住了[attack_text]！"))
 		var/owner_turf = get_turf(owner)
 		new block_effect(owner_turf, COLOR_YELLOW)
 		playsound(src, block_sound, BLOCK_SOUND_VOLUME, vary = TRUE)
@@ -1003,7 +1003,7 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "Pick up", null)
 /// If an object can successfully be used as a fire starter it will return a message
 /obj/item/proc/ignition_effect(atom/A, mob/user)
 	if(get_temperature() >= FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
-		. = span_notice("[user] lights [A] with [src].")
+		. = span_notice("[user]用[src]点燃了[A]。")
 	else
 		. = ""
 
@@ -1025,7 +1025,7 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "Pick up", null)
 		if(w_class == WEIGHT_CLASS_HUGE || w_class == WEIGHT_CLASS_GIGANTIC)
 			ash_type = /obj/effect/decal/cleanable/ash/large
 		var/obj/effect/decal/cleanable/ash/A = new ash_type(T)
-		A.desc += "\nLooks like this used to be \an [name] some time ago."
+		A.desc += "\n看起来不久前还是[name]。"
 		..()
 
 /obj/item/acid_melt()
@@ -1034,7 +1034,7 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "Pick up", null)
 		var/obj/effect/decal/cleanable/molten_object/MO = new(T)
 		MO.pixel_x = rand(-16,16)
 		MO.pixel_y = rand(-16,16)
-		MO.desc = "Looks like this was \an [src] some time ago."
+		MO.desc = "看起来不久前还是[src]。"
 		..()
 
 /obj/item/proc/microwave_act(obj/machinery/microwave/microwave_source, mob/microwaver, randomize_pixel_offset)
@@ -1169,28 +1169,28 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "Pick up", null)
 /obj/item/proc/set_force_string()
 	switch(force)
 		if(0 to 4)
-			force_string = "very low"
+			force_string = "很低"
 		if(4 to 7)
-			force_string = "low"
+			force_string = "低"
 		if(7 to 10)
-			force_string = "medium"
+			force_string = "中等"
 		if(10 to 11)
-			force_string = "high"
+			force_string = "高"
 		if(11 to 20) //12 is the force of a toolbox
-			force_string = "robust"
+			force_string = "强劲"
 		if(20 to 25)
-			force_string = "very robust"
+			force_string = "非常强劲"
 		else
-			force_string = "exceptionally robust"
+			force_string = "极其强劲"
 	last_force_string_check = force
 
 /obj/item/proc/openTip(location, control, params, user)
 	if(last_force_string_check != force && !(item_flags & FORCE_STRING_OVERRIDE))
 		set_force_string()
 	if(!(item_flags & FORCE_STRING_OVERRIDE))
-		openToolTip(user,src,params,title = name,content = "[desc]<br>[force ? "<b>Force:</b> [force_string]" : ""]",theme = "")
+		openToolTip(user,src,params,title = name,content = "[desc]<br>[force ? "<b>攻击力：</b> [force_string]" : ""]",theme = "")
 	else
-		openToolTip(user,src,params,title = name,content = "[desc]<br><b>Force:</b> [force_string]",theme = "")
+		openToolTip(user,src,params,title = name,content = "[desc]<br><b>攻击力：</b> [force_string]",theme = "")
 
 /obj/item/MouseEntered(location, control, params)
 	. = ..()
@@ -1395,7 +1395,7 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "Pick up", null)
 		return
 	user.dropItemToGround(src, silent = TRUE)
 	if(throwforce && (HAS_TRAIT(user, TRAIT_PACIFISM)) || HAS_TRAIT(user, TRAIT_NO_THROWING))
-		to_chat(user, span_notice("You set [src] down gently on the ground."))
+		to_chat(user, span_notice("你将[src]轻轻放在地上。"))
 		return
 	return src
 
@@ -1422,8 +1422,8 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "Pick up", null)
 /obj/item/proc/on_accidental_consumption(mob/living/carbon/victim, mob/living/carbon/user, obj/item/source_item, discover_after = TRUE)
 	if(get_sharpness() && force >= 5) //if we've got something sharp with a decent force (ie, not plastic)
 		INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob, emote), "scream")
-		victim.visible_message(span_warning("[victim] looks like [victim.p_theyve()] just bit something they shouldn't have!"), \
-							span_boldwarning("OH GOD! Was that a crunch? That didn't feel good at all!!"))
+		victim.visible_message(span_warning("[victim]看起来咬到了不该咬的东西！"), \
+							span_boldwarning("天啊！刚才是咔嚓一声吗？感觉糟透了！！"))
 
 		victim.apply_damage(max(15, force), BRUTE, BODY_ZONE_HEAD, wound_bonus = 10, sharpness = TRUE)
 		victim.losebreath += 2
@@ -1456,8 +1456,8 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "Pick up", null)
 			if(prob(66)) //66% chance to break it
 				// The glass shard that is spawned into the source item
 				var/obj/item/shard/broken_glass = new /obj/item/shard(loc)
-				broken_glass.name = "broken [name]"
-				broken_glass.desc = "This used to be \a [name], but it sure isn't anymore."
+				broken_glass.name = "破碎的[name]"
+				broken_glass.desc = "这以前是[name]，但现在肯定不是了。"
 				playsound(victim, SFX_SHATTER, 25, TRUE)
 				qdel(src)
 				if(QDELETED(source_item))
@@ -1467,18 +1467,18 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "Pick up", null)
 			discover_after = FALSE
 
 		victim.adjust_disgust(33)
-		victim.visible_message(span_warning("[victim] looks like [victim.p_theyve()] just bitten into something hard."), \
-						span_warning("Eugh! Did I just bite into something?"))
+		victim.visible_message(span_warning("[victim]看起来咬到了什么硬东西。"), \
+						span_warning("呃！我刚才是不是咬到了什么？"))
 		return discover_after
 
 	if(w_class > WEIGHT_CLASS_TINY) //small items like soap or toys that don't have mat datums
-		to_chat(victim, span_warning("[source_item? "Something strange was in \the [source_item]..." : "I just bit something strange..."] "))
+		to_chat(victim, span_warning("[source_item? "[source_item]里有奇怪的东西……" : "我刚咬到了奇怪的东西……"] "))
 		return discover_after
 
 	var/obj/item/organ/stomach/stomach = victim.get_organ_by_type(/obj/item/organ/stomach)
 	if (stomach?.consume_thing(src))
 		victim.losebreath += 2
-		to_chat(victim, span_warning("You swallow hard. [source_item? "Something small was in \the [source_item]..." : ""]"))
+		to_chat(victim, span_warning("你费力地咽了下去。[source_item? "[source_item]里有个小东西……" : ""]"))
 		return FALSE
 
 	// victim's chest (for cavity implanting the item)
@@ -1486,12 +1486,12 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "Pick up", null)
 	if(victim_cavity.cavity_item)
 		victim.vomit(vomit_flags = (MOB_VOMIT_MESSAGE | MOB_VOMIT_HARM), lost_nutrition = 5, distance = 0)
 		forceMove(drop_location())
-		to_chat(victim, span_warning("You vomit up a [name]! [source_item? "Was that in \the [source_item]?" : ""]"))
+		to_chat(victim, span_warning("你吐出了[name]！[source_item? "这东西原来在[source_item]里面？" : ""]"))
 		return FALSE
 
 	victim.transferItemToLoc(src, victim, TRUE)
 	victim.losebreath += 2
-	to_chat(victim, span_warning("You swallow hard. [source_item? "Something small was in \the [source_item]..." : ""]"))
+	to_chat(victim, span_warning("你费力地咽了下去。[source_item? "[source_item]里有个小东西……" : ""]"))
 	return FALSE
 
 #undef MAX_MATS_PER_BITE
@@ -1822,7 +1822,7 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "Pick up", null)
 
 /// Common proc used by painting tools like spraycans and palettes that can access the entire 24 bits color space.
 /obj/item/proc/pick_painting_tool_color(mob/user, default_color)
-	var/chosen_color = tgui_color_picker(user, "Pick new color", "[src]", default_color)
+	var/chosen_color = tgui_color_picker(user, "选择新颜色", "[src]", default_color)
 	if(!chosen_color || QDELETED(src) || user.incapacitated || !user.is_holding(src))
 		return
 	set_painting_tool_color(chosen_color)
@@ -1868,15 +1868,15 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "Pick up", null)
 	if(show_visible_message)
 		if(HAS_TRAIT(equipping, TRAIT_DANGEROUS_OBJECT))
 			target.visible_message(
-				span_danger("[user] tries to put [equipping] on [target]."),
-				span_userdanger("[user] tries to put [equipping] on you."),
+				span_danger("[user]试图为[target]穿上[equipping]。"),
+				span_userdanger("[user]试图为你穿上[equipping]。"),
 				ignored_mobs = user,
 			)
 
 		else
 			target.visible_message(
-				span_notice("[user] tries to put [equipping] on [target]."),
-				span_notice("[user] tries to put [equipping] on you."),
+				span_notice("[user]试图为[target]穿上[equipping]。"),
+				span_notice("[user]试图为你穿上[equipping]。"),
 				ignored_mobs = user,
 			)
 
@@ -1884,14 +1884,14 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "Pick up", null)
 			var/mob/living/carbon/human/victim_human = target
 			if(victim_human.key && !victim_human.client) // AKA braindead
 				if(!IS_UNCONSCIOUS(victim_human) && LAZYLEN(victim_human.afk_thefts) <= AFK_THEFT_MAX_MESSAGES)
-					var/list/new_entry = list(list(user.name, "tried equipping you with [equipping]", world.time))
+					var/list/new_entry = list(list(user.name, "试图为你穿上[equipping]", world.time))
 					LAZYADD(victim_human.afk_thefts, new_entry)
 
 			else if(victim_human.is_blind())
-				to_chat(target, span_userdanger("You feel someone trying to put something on you."))
+				to_chat(target, span_userdanger("你感觉有人正试图往你身上穿戴东西。"))
 	user.do_item_attack_animation(target, used_item = equipping, animation_type = ATTACK_ANIMATION_BLUNT)
 
-	to_chat(user, span_notice("You try to put [equipping] on [target]..."))
+	to_chat(user, span_notice("你试图为[target]穿上[equipping]……"))
 
 	user.log_message("is putting [equipping] on [key_name(target)]", LOG_ATTACK, color="red")
 	target.log_message("is having [equipping] put on them by [key_name(user)]", LOG_VICTIM, color="orange", log_globally=FALSE)
@@ -2242,10 +2242,10 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "Pick up", null)
 	. = ..()
 	. += {"
 		<br><font size='1'>
-			DAMTYPE: <font size='1'><a href='byond://?_src_=vars;[HrefToken()];item_to_tweak=[REF(src)];var_tweak=damtype' id='damtype'>[uppertext(damtype)]</a>
-			FORCE: <font size='1'><a href='byond://?_src_=vars;[HrefToken()];item_to_tweak=[REF(src)];var_tweak=force' id='force'>[force]</a>
-			WOUND: <font size='1'><a href='byond://?_src_=vars;[HrefToken()];item_to_tweak=[REF(src)];var_tweak=wound' id='wound'>[wound_bonus]</a>
-			BARE WOUND: <font size='1'><a href='byond://?_src_=vars;[HrefToken()];item_to_tweak=[REF(src)];var_tweak=bare wound' id='bare wound'>[exposed_wound_bonus]</a>
+			伤害类型：<font size='1'><a href='byond://?_src_=vars;[HrefToken()];item_to_tweak=[REF(src)];var_tweak=damtype' id='damtype'>[uppertext(damtype)]</a>
+			攻击力：<font size='1'><a href='byond://?_src_=vars;[HrefToken()];item_to_tweak=[REF(src)];var_tweak=force' id='force'>[force]</a>
+			创伤加成：<font size='1'><a href='byond://?_src_=vars;[HrefToken()];item_to_tweak=[REF(src)];var_tweak=wound' id='wound'>[wound_bonus]</a>
+			无防护创伤加成：<font size='1'><a href='byond://?_src_=vars;[HrefToken()];item_to_tweak=[REF(src)];var_tweak=bare wound' id='bare wound'>[exposed_wound_bonus]</a>
 		</font>
 	"}
 

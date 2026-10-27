@@ -19,7 +19,7 @@
 
 	var/mob/pawn_mob = controller.pawn
 	pawn_mob.face_atom(target)
-	pawn_mob.balloon_alert_to_viewers("stops and stares...")
+	pawn_mob.balloon_alert_to_viewers("停下来凝视……")
 	// Returning a long cooldown keeps this leaf RUNNING (and thus the mob standing still) for the stare.
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 

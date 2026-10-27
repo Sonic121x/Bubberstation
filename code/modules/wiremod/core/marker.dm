@@ -1,7 +1,7 @@
 /obj/item/multitool/circuit
-	name = "circuit multitool"
-	desc = "A circuit multitool. Used to mark entities which can then be uploaded to components by pressing the upload button on a port. \
-	Acts as a normal multitool otherwise. Use in hand to clear marked entity so that you can mark another entity."
+	name = "电路多功能工具"
+	desc = "电路多功能工具。用于标记实体，之后可在端口上按下上传按钮，把标记的实体上传到元件中。 \
+	其余功能与普通多功能工具相同。手持使用可清除已标记的实体，以便再标记另一个实体。"
 	icon_state = "multitool_circuit"
 	apc_scanner = FALSE // would conflict with mark clearing
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT)
@@ -15,7 +15,7 @@
 
 /obj/item/multitool/circuit/examine(mob/user)
 	. = ..()
-	. += span_notice("It has [marked_atom? "a" : "no"] marked entity registered.")
+	. += span_notice("它[marked_atom? "已" : "尚未"]登记标记实体。")
 
 /obj/item/multitool/circuit/attack_self(mob/user, modifiers)
 	. = ..()
@@ -24,7 +24,7 @@
 	if(!marked_atom)
 		return
 
-	say("Cleared marked targets.")
+	say("已清除标记目标。")
 	clear_marked_atom()
 	return TRUE
 
@@ -41,7 +41,7 @@
 	mark_target(target)
 
 /obj/item/multitool/circuit/proc/mark_target(atom/target)
-	say("Marked [target].")
+	say("已标记 [target]。")
 	marked_atom = target
 	RegisterSignal(marked_atom, COMSIG_QDELETING, PROC_REF(cleanup_marked_atom))
 	update_icon()
@@ -93,7 +93,7 @@
 	if(chosen == target || (chosen in (carbon_target ? carbon_target.get_visible_items() : target.get_equipped_items(INCLUDE_HELD))))
 		mark_target(chosen)
 	else
-		balloon_alert(user, "cannot mark entity")
+		balloon_alert(user, "无法标记该实体")
 
 /obj/item/multitool/circuit/proc/check_menu(mob/user, mob/living/target)
 	return !marked_atom && user.is_holding(src) && user.Adjacent(target)

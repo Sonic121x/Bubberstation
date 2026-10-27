@@ -1,10 +1,10 @@
 /obj/machinery/shuttle_manipulator
-	name = "shuttle manipulator"
-	desc = "I shall be telling this with a sigh\n\
-		Somewhere ages and ages hence:\n\
-		Two roads diverged in a wood, and I,\n\
-		I took the one less traveled by,\n\
-		And that has made all the difference."
+	name = "穿梭机操纵器"
+	desc = "我将叹息着讲述这一切\n\
+		在很久很久以后的某处：\n\
+		树林里分出两条路，而我，\n\
+		我选择了人迹更少的那一条，\n\
+		从此一切都截然不同。"
 
 	icon = 'icons/obj/machines/shuttle_manipulator.dmi'
 	icon_state = "holograph_on"

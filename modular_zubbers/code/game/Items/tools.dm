@@ -22,8 +22,8 @@
 
 // Proto Nitrate Tools
 /obj/item/crowbar/power/protonitrate
-	name = "proto nitrate jaws of life"
-	desc = "Hydraulic tool combined with Proto Nitrate Crystal for increased efficeincy."
+	name = "原硝气液压救援钳"
+	desc = "结合原硝气晶体以提升效率的液压工具。"
 	icon = 'modular_zubbers/icons/obj/equipment/equipment.dmi'
 	icon_state = "pn_jaws"
 	toolspeed = 0.5
@@ -38,7 +38,7 @@
 
 	tool_behaviour = (active ? second_tool_behavior : first_tool_behavior)
 	if(user)
-		balloon_alert(user, "attached [tool_behaviour == first_tool_behavior ? inactive_text : active_text]")
+		balloon_alert(user, "已装上[tool_behaviour == first_tool_behavior ? inactive_text : active_text]")
 	playsound(src, 'sound/items/tools/change_jaws.ogg', 50, TRUE)
 	if(tool_behaviour != TOOL_WIRECUTTER)
 		RemoveElement(/datum/element/cuffsnapping, snap_time_weak_handcuffs, snap_time_strong_handcuffs)
@@ -54,8 +54,8 @@
 	return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "pn_jaws_on")
 
 /obj/item/crowbar/power/protonitrate/science
-	name = "proto nitrate hybrid cutters" // hybrid between crowbar and wirecutters
-	desc = "Hybrid cutters combined with Proto Nitrate Crystal for increased efficeincy but without the hydraulic force required to pry open doors."
+	name = "原硝气复合剪钳" // hybrid between crowbar and wirecutters
+	desc = "结合原硝气晶体以提升效率的复合剪钳，但缺乏撬开门所需的液压力。"
 	icon_state = "pn_jaws_sci"
 	inhand_icon_state = "jaws_sci"
 	force_opens = FALSE
@@ -66,8 +66,8 @@
 	return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "pn_sci_jaws_on")
 
 /obj/item/screwdriver/power/protonitrate
-	name = "proto nitrate hand drill"
-	desc = "Hand drill combined with Proto Nitrate Crystal for increased efficeincy."
+	name = "原硝气手钻"
+	desc = "结合原硝气晶体以提升效率的手钻。"
 	icon = 'modular_zubbers/icons/obj/equipment/equipment.dmi'
 	icon_state = "pn_drill"
 	toolspeed = 0.25
@@ -86,8 +86,8 @@
 	return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "pn_sci_drill_on")
 
 /obj/item/weldingtool/experimental/protonitrate
-	name = "proto nitrate welding tool"
-	desc = "An experimental welder further enchanced by combining it with Proto Nitrate Crystal."
+	name = "原硝气焊接工具"
+	desc = "结合原硝气晶体进一步强化的实验型焊接工具。"
 	icon = 'modular_zubbers/icons/obj/equipment/equipment.dmi'
 	icon_state = "pn_welder"
 	toolspeed = 0.25

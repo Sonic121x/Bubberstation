@@ -2,9 +2,9 @@
 	//name = "A Chest of Doubloons"
 	name = null
 	var/id = null // For blacklisting purposes, all ruins need an id
-	var/description = "In the middle of a clearing in the rockface, there's a chest filled with gold coins with Spanish engravings. \
-	How is there a wooden container filled with 18th century coinage in the middle of a lavawracked hellscape? \
-	It is clearly a mystery."
+	var/description = "岩壁间的一片空地中央，放着一只装满西班牙铭文金币的箱子。\
+	这个岩浆肆虐的地狱般世界里，怎么会有一只装满十八世纪钱币的木箱？\
+	这显然是个谜。"
 
 	///If TRUE these won't be placed automatically (can still be forced or loaded with another ruin)
 	var/unpickable = FALSE

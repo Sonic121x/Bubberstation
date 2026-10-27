@@ -4,9 +4,9 @@
  * Returns the materials of an atom
  */
 /obj/item/circuit_component/matscanner
-	display_name = "Material Scanner"
-	desc = "Outputs the material composition of the inputted entity."
-	category = "Entity"
+	display_name = "材料扫描器"
+	desc = "输出输入实体的材料组成。"
+	category = "实体"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -21,7 +21,7 @@
 
 /obj/item/circuit_component/matscanner/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Range: [max_range] tiles", "orange", "info")
+	. += create_ui_notice("最大范围：[max_range] 格", "orange", "info")
 
 /obj/item/circuit_component/matscanner/populate_ports()
 	input_port = add_input_port("Entity", PORT_TYPE_ATOM)

@@ -1,15 +1,15 @@
 //to either get inside, or out, of a host
 /datum/action/cooldown/mob_cooldown/borer/choosing_host
-	name = "Inhabit/Uninhabit Host"
+	name = "寄宿/脱离宿主"
 	cooldown_time = 10 SECONDS
 	button_icon_state = "host"
 
 /datum/action/cooldown/mob_cooldown/borer/choosing_host/Activate(atom/target)
 	if(!owner.Adjacent(target))
-		owner.balloon_alert(owner, "too far")
+		owner.balloon_alert(owner, "太远了")
 		return FALSE
 	if(!ishuman(target))
-		owner.balloon_alert(owner, "not human")
+		owner.balloon_alert(owner, "不是人类")
 		return FALSE
 	var/mob/living/basic/cortical_borer/cortical_owner = owner
 	cortical_owner.face_atom(target)

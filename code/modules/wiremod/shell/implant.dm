@@ -1,14 +1,14 @@
 /obj/item/implant/circuit
-	name = "circuit implant"
+	name = "电路植入体"
 	actions_types = null
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
 
-	implant_info = "Functions as a shell for integrated circuits. Activation conditions and effects are defined by the installed circuit."
+	implant_info = "用作集成电路的外壳。激活条件与效果由所安装的电路定义。"
 
-	implant_lore = "The Subdermal Circuit Housing is a common implant design manufactured primarily by DIY electronics enthusiasts. \
-	Similar in concept to Brain-Computer Interfaces, these devices accept an integrated circuit, and support components that allow the \
-	user to trigger other installed components. What it gains in the ability to be implanted in non-humanoid hosts, it loses in physical \
-	capacity and support for various neural interfacing capabilities."
+	implant_lore = "皮下电路外壳是一种常见的植入体设计，主要由 DIY 电子爱好者制造。 \
+	在概念上类似脑机接口，这类装置可容纳一块集成电路，并配有让 \
+	使用者触发其他已安装元件的组件。它能植入非人形宿主，但代价是物理 \
+	容量较小，且对各类神经接口能力的支持有限。"
 
 /obj/item/implant/circuit/Initialize(mapload)
 	. = ..()
@@ -36,7 +36,7 @@
 	var/mob/living/user = arguments[2]
 	var/force = arguments[4]
 	if(!force)
-		source.balloon_alert(user, "duplicate implant present!")
+		source.balloon_alert(user, "已存在重复的植入体！")
 		return COMPONENT_STOP_IMPLANTING
 
 /obj/item/implant/circuit/ui_host(mob/user)
@@ -45,8 +45,8 @@
 	return ..()
 
 /obj/item/circuit_component/implant_core
-	display_name = "Implant Core"
-	desc = "Controls the core operations of the implant."
+	display_name = "植入体核心"
+	desc = "控制植入体的核心运作。"
 
 	/// A reference to the action button to look at charge/get info
 	var/datum/action/innate/implant_charge_action/charge_action
@@ -146,7 +146,7 @@
 	if (implant.imp_in.stat == DEAD)
 		return
 
-	to_chat(implant.imp_in, "<i>You hear a strange, robotic voice in your head...</i> \"[span_robot("[html_encode(sent_message)]")]\"")
+	to_chat(implant.imp_in, "<i>你脑海中响起一个怪异、机械的声音……</i>“[span_robot("[html_encode(sent_message)]")]”")
 
 /obj/item/circuit_component/implant_core/proc/on_borg_charge(datum/source, datum/callback/charge_cell, seconds_per_tick)
 	SIGNAL_HANDLER
@@ -166,13 +166,13 @@
 		return
 
 	parent.cell.give(shock_damage * 2)
-	to_chat(source, span_notice("You absorb some of the shock into your [parent.name]!"))
+	to_chat(source, span_notice("你吸收了一部分电击，为你的 [parent.name] 补充了电量！"))
 
 /obj/item/circuit_component/implant_core/proc/on_examine(datum/source, mob/mob, list/examine_text)
 	SIGNAL_HANDLER
 
 	if (isobserver(mob))
-		examine_text += span_notice("[source.p_They()] [source.p_have()] <a href='byond://?src=[REF(src)];open_implant=1'>\a [parent] implanted in [source.p_them()]</a>.")
+		examine_text += span_notice("其体内植入了<a href='byond://?src=[REF(src)];open_implant=1'>\a [parent]</a>。")
 
 /obj/item/circuit_component/implant_core/Topic(href, list/href_list)
 	..()
@@ -184,7 +184,7 @@
 		parent.attack_ghost(usr)
 
 /datum/action/innate/implant_charge_action
-	name = "Check Implant Charge"
+	name = "查看植入体电量"
 	check_flags = NONE
 	button_icon = 'icons/obj/machines/cell_charger.dmi'
 	button_icon_state = "cell"
@@ -220,10 +220,10 @@
 	var/obj/item/stock_parts/power_store/cell/cell = circuit_component.parent.cell
 
 	if (isnull(cell))
-		to_chat(owner, span_boldwarning("[circuit_component.parent] has no power cell."))
+		to_chat(owner, span_boldwarning("[circuit_component.parent] 没有电池。"))
 	else
-		to_chat(owner, span_info("[circuit_component.parent]'s [cell.name] has <b>[cell.percent()]%</b> charge left."))
-		to_chat(owner, span_info("You can recharge it by using a cyborg recharging station."))
+		to_chat(owner, span_info("[circuit_component.parent] 的 [cell.name] 剩余 <b>[cell.percent()]%</b> 电量。"))
+		to_chat(owner, span_info("你可以使用半机械人充电站为其充电。"))
 
 /datum/action/innate/implant_charge_action/process(seconds_per_tick)
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
@@ -234,6 +234,6 @@
 	button.maptext = cell ? MAPTEXT("[cell.percent()]%") : ""
 
 /obj/item/implantcase/circuit
-	name = "implant case - 'Circuit'"
-	desc = "A glass case containing a circuit implant shell."
+	name = "植入体盒 - “电路”"
+	desc = "一个装有电路植入体外壳的玻璃盒。"
 	imp_type = /obj/item/implant/circuit

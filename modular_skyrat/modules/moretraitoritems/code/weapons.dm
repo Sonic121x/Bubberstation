@@ -1,21 +1,21 @@
 #define CALIBRE_14MM "14mm"
 
 /obj/item/gun/ballistic/revolver/ocelot
-	name = "Colt Peacemaker revolver"
-	desc = "A modified Peacemaker revolver that chambers .357 ammo. Less powerful than the regular .357, but ricochets a lot more." // We need tension...conflict. The world today has become too soft. We're living in an age where true feelings are suppressed. So we're going to shake things up a bit. We'll create a world dripping with tension... ...a world filled with greed and suspicion, bravery and cowardice.
+	name = "柯尔特和平缔造者左轮手枪"
+	desc = "一把改装的和平缔造者左轮手枪，使用.357弹药。威力小于普通.357弹，但更容易跳弹。" // We need tension...conflict. The world today has become too soft. We're living in an age where true feelings are suppressed. So we're going to shake things up a bit. We'll create a world dripping with tension... ...a world filled with greed and suspicion, bravery and cowardice.
 	// this could probably be made funnier by reducing its damage multiplier but also making it so that every fired bullet has the wacky ricochets
 	// but that's a different plate of cookies for a different glass of milk
 	icon_state = "c38_panther"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder
 
 /obj/item/ammo_casing/c357/peacemaker
-	name = ".357 Peacemaker bullet casing"
-	desc = "A .357 Peacemaker bullet casing."
+	name = ".357和平缔造者子弹"
+	desc = "一发.357和平缔造者子弹。"
 	caliber = CALIBER_357
 	projectile_type = /obj/projectile/bullet/c357/peacemaker
 
 /obj/projectile/bullet/c357/peacemaker
-	name = ".357 Peacemaker bullet"
+	name = ".357和平缔造者子弹"
 	damage = 25
 	wound_bonus = 0
 	ricochets_max = 6
@@ -26,7 +26,7 @@
 	ricochet_decay_chance = 1
 
 /datum/design/c357/peacemaker
-	name = "Speed Loader (.357 Peacemaker)"
+	name = "快速装弹器（.357和平缔造者）"
 	id = "a357PM"
 	build_type = AUTOLATHE
 	materials = list(
@@ -39,8 +39,8 @@
 	)
 
 /obj/item/ammo_box/speedloader/c357/peacemaker
-	name = "speed loader (.357 Peacemaker)"
-	desc = "Designed to quickly reload revolvers."
+	name = "快速装弹器（.357和平缔造者）"
+	desc = "用于快速为左轮手枪装弹。"
 	icon_state = "357"
 	ammo_type = /obj/item/ammo_casing/c357/peacemaker
 	max_ammo = 7
@@ -52,8 +52,8 @@
 
 
 /obj/item/clothing/head/hats/sus_bowler
-	name = "odd bowler"
-	desc = "A deep black bowler. Inside the hat, there is a sleek red S, with a smaller X insignia embroidered within. On closer inspection, the brim feels oddly weighted..."
+	name = "古怪的圆顶礼帽"
+	desc = "一顶深黑色圆顶礼帽。帽内有一个精致的红色S，其中绣着更小的X标志。仔细查看时，帽檐的重量显得有些不对劲……"
 	icon_state = "bowler"
 	force = 10
 	throwforce = 45
@@ -62,8 +62,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 	armour_penetration = 30 //5 points less then a double esword!
 	sharpness = SHARP_POINTY
-	attack_verb_continuous = list("slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	attack_verb_continuous = list("劈砍", "刺击", "切开", "撕扯", "割伤", "撕裂", "剁切", "切割")
+	attack_verb_simple = list("劈砍", "刺击", "切开", "撕扯", "割伤", "撕裂", "剁切", "切割")
 
 ///obj/item/clothing/head/hats/sus_bowler/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	//var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
@@ -85,9 +85,9 @@
 */
 
 /obj/item/gun/ballistic/automatic/pistol/robohand
-	name = "Malorian Arms 3516"
-	desc = "The Malorian Arms 3516 is a 14mm heavy pistol, sporting a titanium frame and unique wooden grip. A custom Dyna-porting and \
-	direct integral cyber-interlink means only someone with a cyberarm and smartgun link can take full advantage of the pistol's features."
+	name = "马洛里安武器公司3516"
+	desc = "马洛里安武器公司3516是一款14毫米重型手枪，采用钛制枪身和独特的木制握把。定制的动力泄气孔与\
+	一体式直接义体接口，意味着只有配备义肢和智能枪链接的人才能充分发挥这把手枪的功能。"
 	icon = 'modular_skyrat/modules/moretraitoritems/icons/3516.dmi'
 	icon_state = "3516"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -101,7 +101,7 @@
 	vary_fire_sound = FALSE
 	rack_sound = 'modular_skyrat/modules/moretraitoritems/sound/slide.ogg'
 	fire_sound_volume = 100
-	bolt_wording = "fuckin' slide"
+	bolt_wording = "该死的套筒"
 	var/unrestricted = FALSE
 
 /obj/item/gun/ballistic/automatic/pistol/robohand/unrestricted
@@ -125,20 +125,20 @@
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/bodypart/selected_hand = user.get_active_hand()
 	if(IS_ORGANIC_LIMB(selected_hand))
-		to_chat(user, span_warning("You can't seem to figure out how to use [src], perhaps you need to check the manual?"))
+		to_chat(user, span_warning("你似乎弄不明白怎么使用[src]，或许该看看说明书？"))
 		return ITEM_INTERACT_BLOCKING
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/gun/ballistic/automatic/pistol/robohand/insert_magazine(mob/user, obj/item/ammo_box/magazine/inserted_mag, display_message)
 	if(!istype(inserted_mag, accepted_magazine_type))
-		to_chat(user, span_warning("\The [inserted_mag] doesn't seem to fit into \the [src]..."))
+		to_chat(user, span_warning("[inserted_mag]似乎装不进[src]……"))
 		return FALSE
 	if(!user.transferItemToLoc(inserted_mag, src))
-		to_chat(user, span_warning("You cannot seem to get \the [src] out of your hands!"))
+		to_chat(user, span_warning("你似乎无法松开手中的[src]！"))
 		return FALSE
 	magazine = inserted_mag
 	if(display_message)
-		to_chat(user, span_notice("You load a new [magazine_wording] into \the [src]."))
+		to_chat(user, span_notice("你为[src]装上了一个新弹匣。"))
 	playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
 	if(bolt_type == BOLT_TYPE_OPEN && !bolt_locked)
 		chamber_round(TRUE)
@@ -160,16 +160,16 @@
 	var/obj/item/ammo_box/magazine/old_mag = magazine
 	if(tac_load)
 		if (insert_magazine(user, tac_load, FALSE))
-			to_chat(user, span_notice("You perform an elite tactical reload on \the [src]."))
+			to_chat(user, span_notice("你为[src]进行了一次精英级战术换弹。"))
 		else
-			to_chat(user, span_warning("You dropped the old [magazine_wording], but the new one doesn't fit. How embarassing."))
+			to_chat(user, span_warning("你扔掉了旧弹匣，新的却装不上。真尴尬。"))
 			magazine = null
 	else
 		magazine = null
 	user.put_in_hands(old_mag)
 	old_mag.update_appearance()
 	if(display_message)
-		to_chat(user, span_notice("You pull the [magazine_wording] out of \the [src]."))
+		to_chat(user, span_notice("你从[src]中拔出了弹匣。"))
 	update_appearance()
 	animate(src, transform = turn(matrix(), 120), time = 0.2 SECONDS, loop = 1) //Le johnny robohand again
 	animate(transform = turn(matrix(), 240), time = 0.2 SECONDS)
@@ -177,7 +177,7 @@
 
 //Magazine stuff
 /obj/item/ammo_box/magazine/m14mm
-	name = "pistol magazine (14mm)"
+	name = "手枪弹匣（14毫米）"
 	icon = 'modular_skyrat/modules/moretraitoritems/icons/3516_mag.dmi'
 	icon_state = "14mm"
 	base_icon_state = "14mm"
@@ -187,13 +187,13 @@
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/ammo_casing/c14mm
-	name = "14mm bullet casing"
-	desc = "A 14mm bullet casing. Badass."
+	name = "14毫米子弹"
+	desc = "一发14毫米子弹。够狠。"
 	caliber = CALIBRE_14MM
 	projectile_type = /obj/projectile/bullet/c14mm
 
 /obj/projectile/bullet/c14mm
-	name = "14mm bullet"
+	name = "14毫米子弹"
 	damage = 60
 	embed_type = /datum/embedding/c14mm
 	dismemberment = 50
@@ -212,7 +212,7 @@
 
 //nullrod katana
 /obj/item/katana/weak/curator //This has the same stats as the curator's claymore
-	desc = "An ancient Katana. Forged by... Well, it doesn't really say, but surely it's authentic! And sharp to boot!"
+	desc = "一把古老的武士刀，由……好吧，上面没写，但肯定是真货！而且还很锋利！"
 	force = 15
 	block_chance = 30
 	armour_penetration = 5

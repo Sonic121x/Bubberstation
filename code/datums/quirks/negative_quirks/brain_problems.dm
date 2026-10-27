@@ -5,12 +5,12 @@
 	 */
 /datum/quirk/item_quirk/brainproblems
 	name = "Brain Tumor"
-	desc = "You have a little friend in your brain that is slowly destroying it. Better bring some mannitol!"
+	desc = "你的脑袋里有个正在慢慢摧毁大脑的小伙伴。最好带些甘露醇！"
 	icon = FA_ICON_BRAIN
 	value = -12
-	gain_text = span_danger("You feel smooth.")
-	lose_text = span_notice("You feel wrinkled again.")
-	medical_record_text = "Patient has a tumor in their brain that is slowly driving them to brain death."
+	gain_text = span_danger("你感觉大脑变光滑了。")
+	lose_text = span_notice("你感觉大脑又有褶皱了。")
+	medical_record_text = "患者脑内有肿瘤，正逐步导致脑死亡。"
 	hardcore_value = 12
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES
 	mail_goodies = list(/obj/item/storage/pill_bottle/mannitol/braintumor)
@@ -29,7 +29,7 @@
 			LOCATION_BACKPACK,
 			LOCATION_HANDS,
 		),
-		flavour_text = "These will keep you alive until you can secure a supply of medication. Don't rely on them too much!",
+		flavour_text = "在找到稳定药源前，这些可以帮你保命。别太依赖它们！",
 		notify_player = TRUE,
 	)
 

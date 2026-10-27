@@ -1,6 +1,6 @@
 /datum/wires/holopad
 	holder_type = /obj/machinery/holopad
-	proper_name = "holopad"
+	proper_name = "全息平台"
 
 /datum/wires/holopad/interactable(mob/user)
 	var/obj/machinery/holopad/holopad = holder
@@ -17,8 +17,8 @@
 /datum/wires/holopad/get_status()
 	var/obj/machinery/holopad/holopad = holder
 	var/list/status = list()
-	status += "The purple light is [holopad.loop_mode ? "on" : "off"]."
-	status += "The red light is [holopad.replay_mode ? "on" : "off"]."
+	status += "紫灯[holopad.loop_mode ? "亮起" : "熄灭"]。"
+	status += "红灯[holopad.replay_mode ? "亮起" : "熄灭"]。"
 	return status
 
 /datum/wires/holopad/on_pulse(wire)

@@ -32,8 +32,8 @@
 	bio = 50
 
 /obj/item/clothing/head/ash_headdress
-	name = "ash headdress"
-	desc = "A headdress that shows the dominance of the walkers of ash."
+	name = "灰烬头饰"
+	desc = "一顶彰显灰行者统治地位的头饰。"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_clothing.dmi'
 	worn_icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_clothing_mob.dmi'
 	icon_state = "headdress"
@@ -48,7 +48,7 @@
 	greyscale_config_worn = null
 
 /datum/crafting_recipe/ash_recipe/ash_headdress
-	name = "Ash Headdress"
+	name = "灰烬头饰"
 	result = /obj/item/clothing/head/ash_headdress
 	category = CAT_CLOTHING
 	//recipe given to ashwalkers as part of their spawner/team setting
@@ -59,17 +59,17 @@
 	AddComponent(/datum/component/armor_plate, 2, /obj/item/stack/sheet/animalhide/goliath_hide, list(MELEE = 5, BULLET = 2, LASER = 2))
 
 /obj/item/clothing/head/ash_headdress/winged
-	name = "winged ash headdress"
+	name = "带翼灰烬头饰"
 	icon_state = "wing_headdress"
 
 /datum/crafting_recipe/ash_recipe/ash_headdress/winged
-	name = "Winged Ash Headdress"
+	name = "带翼灰烬头饰"
 	result = /obj/item/clothing/head/ash_headdress/winged
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /obj/item/clothing/under/costume/gladiator/ash_walker/ash_robes
-	name = "ash robes"
-	desc = "A set of hand-made robes. The bones still seem to have some muscle still attached."
+	name = "灰烬长袍"
+	desc = "一套手工缝制的长袍。上面的骨头似乎还连着些肌肉。"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_clothing.dmi'
 	worn_icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_clothing_mob.dmi'
 	icon_state = "robes"
@@ -83,7 +83,7 @@
 	greyscale_config_worn = null
 
 /datum/crafting_recipe/ash_recipe/ash_robes
-	name = "Ash Robes"
+	name = "灰烬长袍"
 	result = /obj/item/clothing/under/costume/gladiator/ash_walker/ash_robes
 	category = CAT_CLOTHING
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
@@ -93,8 +93,8 @@
 	AddComponent(/datum/component/armor_plate, 2, /obj/item/stack/sheet/animalhide/goliath_hide, list(MELEE = 5, BULLET = 2, LASER = 2))
 
 /obj/item/clothing/under/costume/gladiator/ash_walker/ash_plates
-	name = "ash combat plates"
-	desc = "A combination of bones and hides, strung together by watcher sinew."
+	name = "灰烬战斗护甲片"
+	desc = "由骨头与皮革拼接而成，用守望者的肌腱串在一起。"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_clothing.dmi'
 	worn_icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_clothing_mob.dmi'
 	icon_state = "combat_plates"
@@ -109,7 +109,7 @@
 	greyscale_config_worn = null
 
 /datum/crafting_recipe/ash_recipe/ash_plates
-	name = "Ash Combat Plates"
+	name = "灰烬战斗护甲片"
 	result = /obj/item/clothing/under/costume/gladiator/ash_walker/ash_plates
 	category = CAT_CLOTHING
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
@@ -119,18 +119,18 @@
 	AddComponent(/datum/component/armor_plate, 2, /obj/item/stack/sheet/animalhide/goliath_hide, list(MELEE = 5, BULLET = 2, LASER = 2))
 
 /obj/item/clothing/under/costume/gladiator/ash_walker/ash_plates/decorated
-	name = "decorated ash combat plates"
+	name = "装饰过的灰烬战斗护甲片"
 	icon_state = "dec_breastplate"
 
 /datum/crafting_recipe/ash_recipe/ash_plates/decorated
-	name = "Decorated Ash Combat Plates"
+	name = "装饰过的灰烬战斗护甲片"
 	result = /obj/item/clothing/under/costume/gladiator/ash_walker/ash_plates/decorated
 	category = CAT_CLOTHING
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /obj/item/clothing/shoes/bone_greaves
-	name = "bone greaves"
-	desc = "For when you're expecting to step on spiky things. Offers modest protection to your feet."
+	name = "骨制护胫"
+	desc = "适合在预计会踩到尖东西的时候穿。为双脚提供适度的保护。"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/shoes.dmi'
 	worn_icon = 'modular_skyrat/modules/ashwalkers/icons/feet.dmi'
 	worn_icon_digi = 'modular_skyrat/modules/ashwalkers/icons/feet_digi.dmi'
@@ -142,7 +142,7 @@
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 2)
 
 /datum/crafting_recipe/ash_recipe/bone_greaves
-	name = "Bone Greaves"
+	name = "骨制护胫"
 	result = /obj/item/clothing/shoes/bone_greaves
 	reqs = list(
 		/obj/item/stack/sheet/bone = 2,

@@ -1,5 +1,5 @@
 /obj/machinery/chem_heater
-	name = "reaction chamber" //Maybe this name is more accurate?
+	name = "反应室" //Maybe this name is more accurate?
 	density = TRUE
 	pass_flags_self = PASSMACHINE | LETPASSTHROW
 	icon = 'icons/obj/medical/chemical.dmi'
@@ -44,20 +44,20 @@
 
 	if(!QDELETED(beaker))
 		if(istype(held_item, /obj/item/reagent_containers/dropper) || istype(held_item, /obj/item/reagent_containers/syringe))
-			context[SCREENTIP_CONTEXT_LMB] = "Inject"
+			context[SCREENTIP_CONTEXT_LMB] = "注入"
 			return CONTEXTUAL_SCREENTIP_SET
 		if(held_item.is_chem_container())
-			context[SCREENTIP_CONTEXT_LMB] = "Replace beaker"
+			context[SCREENTIP_CONTEXT_LMB] = "更换烧杯"
 			return CONTEXTUAL_SCREENTIP_SET
 	else if(held_item.is_chem_container())
-		context[SCREENTIP_CONTEXT_LMB] = "Insert beaker"
+		context[SCREENTIP_CONTEXT_LMB] = "放入烧杯"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "Open panel"
+		context[SCREENTIP_CONTEXT_LMB] = "打开面板"
 		return CONTEXTUAL_SCREENTIP_SET
 	else if(panel_open && held_item.tool_behaviour == TOOL_CROWBAR)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return NONE
@@ -65,19 +65,19 @@
 /obj/machinery/chem_heater/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Heating reagents at <b>[heater_coefficient * 1000]%</b> speed.")
+		. += span_notice("状态显示屏显示：正在以 <b>[heater_coefficient * 1000]%</b> 的速度加热试剂。")
 		if(!QDELETED(beaker))
-			. += span_notice("It has a beaker of [beaker.reagents.total_volume] units capacity.")
+			. += span_notice("它装有一个容量为 [beaker.reagents.total_volume] 单位的烧杯。")
 			if(beaker.reagents.is_reacting)
-				. += span_notice("Its contents are currently reacting.")
+				. += span_notice("其内容物正在发生反应。")
 		else
-			. += span_warning("There is no beaker inserted.")
-		. += span_notice("Its heating is turned [on ? "On" : "Off"].")
-		. += span_notice("The status display reads: Heating reagents at <b>[heater_coefficient * 1000]%</b> speed.")
+			. += span_warning("未插入烧杯。")
+		. += span_notice("其加热功能已[on ? "开启" : "关闭"]。")
+		. += span_notice("状态显示屏显示：正在以 <b>[heater_coefficient * 1000]%</b> 的速度加热试剂。")
 		if(panel_open)
-			. += span_notice("Its panel is open and can now be [EXAMINE_HINT("pried")] apart.")
+			. += span_notice("其面板已打开，现在可以[EXAMINE_HINT("撬开")]拆解。")
 		else
-			. += span_notice("Its panel can be [EXAMINE_HINT("pried")] open")
+			. += span_notice("其面板可以[EXAMINE_HINT("撬开")]。")
 
 /obj/machinery/chem_heater/update_icon_state()
 	icon_state = "[base_icon_state][(beaker && !panel_open) ? 1 : 0]b"
@@ -103,7 +103,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	ui_interact(user)
-	balloon_alert(user, "beaker added")
+	balloon_alert(user, "已放入烧杯")
 
 	return ITEM_INTERACT_SUCCESS
 
@@ -361,14 +361,14 @@
 
 	//no beaker
 	if(QDELETED(beaker))
-		say("No beaker found!")
+		say("未找到烧杯！")
 		return FALSE
 
 	//trying to absorb buffer from currently inserted beaker
 	if(volume < 0)
 		if(!beaker.reagents.has_reagent(buffer_type))
 			var/name = initial(buffer_type.name)
-			say("Unable to find [name] in beaker to draw from! Please insert a beaker containing [name].")
+			say("无法在烧杯中找到可抽取的 [name]！请插入装有 [name] 的烧杯。")
 			return FALSE
 		beaker.reagents.trans_to(src, (reagents.maximum_volume / 2) - reagents.get_reagent_amount(buffer_type), target_id = buffer_type)
 		return TRUE
@@ -379,8 +379,8 @@
 
 //Has a lot of buffer and is upgraded
 /obj/machinery/chem_heater/debug
-	name = "Debug Reaction Chamber"
-	desc = "Now with even more buffers!"
+	name = "调试反应室"
+	desc = "现在含有更多缓冲液！"
 
 /obj/machinery/chem_heater/debug/Initialize(mapload)
 	. = ..()
@@ -391,7 +391,7 @@
 
 //map load types
 /obj/machinery/chem_heater/withbuffer
-	desc = "This Reaction Chamber comes with a bit of buffer to help get you started."
+	desc = "这台反应室附带少量缓冲液，方便你上手。"
 
 /obj/machinery/chem_heater/withbuffer/Initialize(mapload)
 	. = ..()

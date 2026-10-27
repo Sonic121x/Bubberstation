@@ -86,7 +86,7 @@
 
 		var/markstring
 		if(!(VV_MARKED_DATUM in restricted_classes))
-			markstring = "[VV_MARKED_DATUM] (CURRENT: [(istype(holder) && istype(holder.marked_datum))? holder.marked_datum.type : "NULL"])"
+			markstring = "[VV_MARKED_DATUM] (当前：[(istype(holder) && istype(holder.marked_datum))? holder.marked_datum.type : "NULL"])"
 			classes += markstring
 
 		var/list/tagstrings = new
@@ -104,7 +104,7 @@
 		if(extra_classes)
 			classes += extra_classes
 
-		.["class"] = input(src, "What kind of data?", "Variable Type", default_class) as null|anything in classes
+		.["class"] = input(src, "要哪种类型的数据？", "变量类型", default_class) as null|anything in classes
 		if(holder && holder.marked_datum && .["class"] == markstring)
 			.["class"] = VV_MARKED_DATUM
 
@@ -116,25 +116,25 @@
 
 	switch(.["class"])
 		if(VV_TEXT)
-			.["value"] = input("Enter new text:", "Text", current_value) as null|text
+			.["value"] = input("输入新文本：", "文本", current_value) as null|text
 			if(.["value"] == null)
 				.["class"] = null
 				return
 		if(VV_MESSAGE)
-			.["value"] = input("Enter new text:", "Text", current_value) as null|message
+			.["value"] = input("输入新文本：", "文本", current_value) as null|message
 			if(.["value"] == null)
 				.["class"] = null
 				return
 
 
 		if(VV_NUM)
-			.["value"] = input("Enter new number:", "Num", current_value) as null|num
+			.["value"] = input("输入新数字：", "数字", current_value) as null|num
 			if(.["value"] == null)
 				.["class"] = null
 				return
 
 		if(VV_BITFIELD)
-			.["value"] = input_bitfield(usr, "Editing bitfield: [var_name]", var_name, current_value)
+			.["value"] = input_bitfield(usr, "编辑位域：[var_name]", var_name, current_value)
 			if(.["value"] == null)
 				.["class"] = null
 				return
@@ -155,11 +155,11 @@
 			var/type = current_value
 			var/error = ""
 			do
-				type = input("Enter type:[error]", "Type", type) as null|text
+				type = input("输入类型：[error]", "类型", type) as null|text
 				if(!type)
 					break
 				type = text2path(type)
-				error = "\nType not found, Please try again"
+				error = "\n未找到该类型，请重试"
 			while(!type)
 			if(!type)
 				.["class"] = null
@@ -173,7 +173,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input("Select reference:", "Reference", current_value) as null|anything in things
+			var/value = input("选择引用：", "引用", current_value) as null|anything in things
 			if(!value)
 				.["class"] = null
 				return
@@ -186,7 +186,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input("Select reference:", "Reference", current_value) as null|anything in things
+			var/value = input("选择引用：", "引用", current_value) as null|anything in things
 			if(!value)
 				.["class"] = null
 				return
@@ -199,7 +199,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input("Select reference:", "Reference", current_value) as null|anything in things
+			var/value = input("选择引用：", "引用", current_value) as null|anything in things
 			if(!value)
 				.["class"] = null
 				return
@@ -212,26 +212,26 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input("Select reference:", "Reference", current_value) as null|anything in things
+			var/value = input("选择引用：", "引用", current_value) as null|anything in things
 			if(!value)
 				.["class"] = null
 				return
 			.["value"] = WEAKREF(things[value])
 
 		if(VV_CLIENT)
-			.["value"] = input("Select reference:", "Reference", current_value) as null|anything in GLOB.clients
+			.["value"] = input("选择引用：", "引用", current_value) as null|anything in GLOB.clients
 			if(.["value"] == null)
 				.["class"] = null
 				return
 
 		if(VV_FILE)
-			.["value"] = input("Pick file:", "File") as null|file
+			.["value"] = input("选择文件：", "文件") as null|file
 			if(.["value"] == null)
 				.["class"] = null
 				return
 
 		if(VV_ICON)
-			.["value"] = input("Pick icon:", "Icon") as null|icon
+			.["value"] = input("选择图标：", "图标") as null|icon
 			if(.["value"] == null)
 				.["class"] = null
 				return
@@ -279,11 +279,11 @@
 			var/type = current_value
 			var/error = ""
 			do
-				type = input("Enter type:[error]", "Type", type) as null|text
+				type = input("输入类型：[error]", "类型", type) as null|text
 				if(!type)
 					break
 				type = text2path(type)
-				error = "\nType not found, Please try again"
+				error = "\n未找到该类型，请重试"
 			while(!type)
 			if(!type)
 				.["class"] = null
@@ -298,7 +298,7 @@
 			.["type"] = /list
 			var/list/value = list()
 
-			var/expectation = alert("Would you like to populate the list", "Populate List?", "Yes", "No")
+			var/expectation = alert("要填充这个列表吗", "填充列表？", "Yes", "No")
 			if(!expectation || expectation == "No")
 				.["value"] = value
 				return .
@@ -316,22 +316,22 @@
 		if(VV_TEXT_LOCATE)
 			var/datum/D
 			do
-				var/ref = input("Enter reference:", "Reference") as null|text
+				var/ref = input("输入引用：", "引用") as null|text
 				if(!ref)
 					break
 				D = locate(ref)
 				if(!D)
-					tgui_alert(usr,"Invalid ref!")
+					tgui_alert(usr,"无效的引用！")
 					continue
 				if(!D.can_vv_mark())
-					tgui_alert(usr,"Datum can not be marked!")
+					tgui_alert(usr,"该数据对象无法被标记！")
 					continue
 			while(!D)
 			.["type"] = D.type
 			.["value"] = D
 
 		if(VV_COLOR)
-			.["value"] = tgui_color_picker(src, "Enter new color:", "Color", current_value) // BUBBERSTATION EDIT: TGUI COLOR PICKER
+			.["value"] = tgui_color_picker(src, "输入新颜色：", "颜色", current_value) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 			if(.["value"] == null)
 				.["class"] = null
 				return

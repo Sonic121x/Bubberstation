@@ -158,29 +158,29 @@
 	var/fibertext
 	var/item_multiplier = isitem(parent) ? ITEM_FIBER_MULTIPLIER : NON_ITEM_FIBER_MULTIPLIER
 	if(suspect.wear_suit)
-		fibertext = "Material from \a [suspect.wear_suit]."
+		fibertext = "来自 [suspect.wear_suit] 的材质。"
 		if(prob(10 * item_multiplier) && !LAZYACCESS(fibers, fibertext))
 			LAZYSET(fibers, fibertext, fibertext)
 		if(!(suspect.wear_suit.body_parts_covered & CHEST))
 			if(suspect.w_uniform)
-				fibertext = "Fibers from \a [suspect.w_uniform]."
+				fibertext = "来自 [suspect.w_uniform] 的纤维。"
 				if(prob(12 * item_multiplier) && !LAZYACCESS(fibers, fibertext)) //Wearing a suit means less of the uniform exposed.
 					LAZYSET(fibers, fibertext, fibertext)
 		if(!(suspect.wear_suit.body_parts_covered & HANDS))
 			if(suspect.gloves)
-				fibertext = "Material from a pair of [suspect.gloves.name]."
+				fibertext = "来自一双 [suspect.gloves.name] 的材质。"
 				if(prob(20 * item_multiplier) && !LAZYACCESS(fibers, fibertext))
 					LAZYSET(fibers, fibertext, fibertext)
 	else if(suspect.w_uniform)
-		fibertext = "Fibers from \a [suspect.w_uniform]."
+		fibertext = "来自 [suspect.w_uniform] 的纤维。"
 		if(prob(15 * item_multiplier) && !LAZYACCESS(fibers, fibertext))
 			LAZYSET(fibers, fibertext, fibertext)
 		if(suspect.gloves)
-			fibertext = "Material from a pair of [suspect.gloves.name]."
+			fibertext = "来自一双 [suspect.gloves.name] 的材质。"
 			if(prob(20 * item_multiplier) && !LAZYACCESS(fibers, fibertext))
 				LAZYSET(fibers, fibertext, fibertext)
 	else if(suspect.gloves)
-		fibertext = "Material from a pair of [suspect.gloves.name]."
+		fibertext = "来自一双 [suspect.gloves.name] 的材质。"
 		if(prob(20 * item_multiplier) && !LAZYACCESS(fibers, fibertext))
 			LAZYSET(fibers, fibertext, fibertext)
 	return TRUE

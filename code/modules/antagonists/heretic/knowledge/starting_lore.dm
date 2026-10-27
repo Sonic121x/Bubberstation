@@ -17,16 +17,16 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
  * The base heretic knowledge. Grants the Mansus Grasp spell.
  */
 /datum/heretic_knowledge/spell/basic
-	name = "Break of Dawn"
-	desc = "Starts your journey into the Mansus.<br>\
-		Grants you the Mansus Grasp, a powerful and upgradable disabling spell."
+	name = "破晓"
+	desc = "开启你踏入漫宿的旅程。<br>\
+		赋予你漫宿之握，一个强大且可升级的制服法术。"
 	action_to_add = /datum/action/cooldown/spell/touch/mansus_grasp
 	cost = 0
 	is_starting_knowledge = TRUE
 	max_charges = 8
 	focus_recharge_amount = 0.25
 	holywater_drain_amount = 0.125
-	transmute_text = "Tapping influences and completing sacrifices will recharge the spell."
+	transmute_text = "汲取影响力并完成献祭将为该法术充能。"
 
 // Heretics can enhance their fishing rods to fish better - fishing content.
 // Lasts until successfully fishing something up.
@@ -55,7 +55,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 
 	INVOKE_ASYNC(cast_on, TYPE_PROC_REF(/atom/movable, say), message = "R'CH T'H F'SH!", forced = "fishing rod infusion invocation")
 	playsound(cast_on, /datum/action/cooldown/spell/touch/mansus_grasp::sound, 15)
-	cast_on.visible_message(span_notice("[cast_on] snaps [cast_on.p_their()] fingers next to [held_rod], covering it in a burst of purple flames!"))
+	cast_on.visible_message(span_notice("[cast_on]在[held_rod]旁打了个响指，一阵紫色火焰将其包裹！"))
 
 	ADD_TRAIT(held_rod, TRAIT_ROD_MANSUS_INFUSED, REF(held_rod))
 	held_rod.difficulty_modifier -= 20
@@ -84,10 +84,10 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
  * Also includes a ritual to turn their heart into a living heart.
  */
 /datum/heretic_knowledge/living_heart
-	name = "The Living Heart"
-	desc = "Grants you a Living Heart, allowing you to track sacrifice targets."
-	transmute_text = "Should you lose your heart, you can transmute a poppy and a pool of blood\
-		with some plasma to awaken your heart into a Living Heart." // BUBBER EDIT
+	name = "活体心脏"
+	desc = "赋予你一颗活体心脏，让你能够追踪献祭目标。"
+	transmute_text = "若你失去了心脏，可以用一朵罂粟花、一滩血迹\
+		和一些等离子体嬗变，将你的心脏唤醒为活体心脏。" // BUBBER EDIT
 	required_atoms = list(
 		/obj/effect/decal/cleanable/blood = 1,
 		/obj/item/food/grown/flower/poppy = 1,
@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	research_tree_icon_path = 'icons/obj/antags/eldritch.dmi'
 	research_tree_icon_state = "living_heart"
 	research_tree_icon_frame = 1
-	notice = "If your heart is Cybernetic, you will be unable to reawaken it."
+	notice = "如果你的心脏是机械心脏，你将无法将其唤醒。"
 
 /datum/heretic_knowledge/living_heart/on_research(mob/user, datum/antagonist/heretic/our_heretic)
 	. = ..()
@@ -126,18 +126,18 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 			// We found a replacement place to put our heart
 			where_to_put_our_heart = look_for_backup
 			our_heretic.living_heart_organ_slot = backup_slot
-			to_chat(user, span_boldnotice("As your species does not have a heart, your Living Heart is located in your [look_for_backup.name]."))
+			to_chat(user, span_boldnotice("由于你的种族没有心脏，你的活体心脏位于你的[look_for_backup.name]中。"))
 			break
 
 	if(where_to_put_our_heart)
 		where_to_put_our_heart.AddComponent(/datum/component/living_heart)
-		desc = "Grants you a Living Heart, tied to your [where_to_put_our_heart.name], allowing you to track sacrifice targets."
-		transmute_text = "Should you lose your [where_to_put_our_heart.name], you can transmute a poppy and a pool of blood \
-			to awaken your [where_to_put_our_heart.name] into a Living Heart. \
-			Cybernetic [where_to_put_our_heart.name]\s will block the ritual!"
+		desc = "赋予你一颗与你的[where_to_put_our_heart.name]相连的活体心脏，让你能够追踪献祭目标。"
+		transmute_text = "若你失去了你的[where_to_put_our_heart.name]，可以用一朵罂粟花和一滩血迹 \
+			嬗变，将你的[where_to_put_our_heart.name]唤醒为活体心脏。 \
+			机械的[where_to_put_our_heart.name]会阻断仪式！"
 
 	else
-		to_chat(user, span_boldnotice("You don't have a heart, or any chest organs for that matter. You didn't get a Living Heart because of it."))
+		to_chat(user, span_boldnotice("你没有心脏，也没有任何胸腔器官。因此你没能获得活体心脏。"))
 
 /datum/heretic_knowledge/living_heart/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
 	var/obj/item/organ/our_living_heart = user.get_organ_slot(our_heretic.living_heart_organ_slot)
@@ -155,14 +155,14 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	var/obj/item/organ/our_living_heart = user.get_organ_slot(our_heretic.living_heart_organ_slot)
 	// No heart, nothing to give living heart to
 	if(QDELETED(our_living_heart))
-		loc.balloon_alert(user, "ritual failed, no [our_heretic.living_heart_organ_slot]!")
+		loc.balloon_alert(user, "仪式失败，没有[our_heretic.living_heart_organ_slot]！")
 		return FALSE
 
 	// For sanity's sake, check if they've got a living heart -
 	// even though it's not invokable if you already have one,
 	// they may have gained one unexpectantly in between now and then
 	if(HAS_TRAIT(our_living_heart, TRAIT_LIVING_HEART))
-		loc.balloon_alert(user, "ritual failed, already have a living heart!")
+		loc.balloon_alert(user, "仪式失败，已经拥有活体心脏！")
 		return FALSE
 
 	// By this point they are making a new heart
@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	if(is_valid_heart(our_living_heart))
 		return TRUE
 
-	loc.balloon_alert(user, "ritual failed, [our_heretic.living_heart_organ_slot] can't be awakened!") // "heart can't be awakened!"
+	loc.balloon_alert(user, "仪式失败，[our_heretic.living_heart_organ_slot]无法被唤醒！") // "heart can't be awakened!"
 	return FALSE
 
 /datum/heretic_knowledge/living_heart/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
@@ -180,7 +180,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	selected_atoms -= our_new_heart
 	// Make it the living heart
 	our_new_heart.AddComponent(/datum/component/living_heart)
-	to_chat(user, span_warning("You feel your [our_new_heart.name] begin pulse faster and faster as it awakens!"))
+	to_chat(user, span_warning("你感觉你的[our_new_heart.name]在苏醒时跳动得越来越快！"))
 	playsound(user, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 	return TRUE
 
@@ -194,14 +194,14 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	return TRUE
 
 /datum/heretic_knowledge/feast_of_owls
-	name = "Feast of Owls"
-	desc = "Allows you to undergo a ritual that grants you five knowledge points, but locks you out of ascension."
-	gain_text = "Under the soft glow of unreason there is a beast that stalks the night. I shall bring it forth and let it enter my presence. It will feast upon my amibitions and leave knowledge in its wake."
+	name = "猫头鹰之宴"
+	desc = "允许你进行一场仪式，获得五点知识，但会失去升格资格。"
+	gain_text = "在非理性的柔光之下，有一头野兽在夜色中潜行。我将把它召来，让它进入我的面前。它将以我的野心为食，并在身后留下知识。"
 	is_starting_knowledge = TRUE
 	required_atoms = list()
 	research_tree_icon_path = 'icons/mob/actions/actions_animal.dmi'
 	research_tree_icon_state = "god_transmit"
-	notice = "This can only be done once and cannot be reverted."
+	notice = "此仪式只能进行一次，且无法撤销。"
 	/// amount of research points granted
 	var/reward = 5
 
@@ -209,7 +209,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	return !invoker.feast_of_owls
 
 /datum/heretic_knowledge/feast_of_owls/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
-	var/alert = tgui_alert(user,"Do you really want to forsake your ascension? This action cannot be reverted.", "Feast of Owls", list("Yes I'm sure", "No"), 30 SECONDS)
+	var/alert = tgui_alert(user,"你真的想放弃你的升格吗？此操作无法撤销。", "猫头鹰之宴", list("Yes I'm sure", "No"), 30 SECONDS)
 	if(alert != "Yes I'm sure" || QDELETED(user) || QDELETED(src) || get_dist(user, loc) > 2)
 		return FALSE
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
@@ -228,13 +228,13 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 		playsound(loc, 'sound/items/eatfood.ogg', 100, TRUE)
 		heretic_datum.adjust_knowledge_points(1)
 
-		to_chat(user, span_danger("You feel something invisible tearing away at your very essence!"))
+		to_chat(user, span_danger("你感到某种无形之物正在撕扯你的本质！"))
 		user.do_jitter_animation()
 		sleep(1 SECONDS)
 		if(QDELETED(user) || QDELETED(heretic_datum))
 			return FALSE
 
-	to_chat(user, span_danger(span_big("Your ambition is ravaged, but something powerful remains in its wake...")))
+	to_chat(user, span_danger(span_big("你的野心被摧残殆尽，但它的残骸中留下了某种强大的东西……")))
 	var/drain_message = pick_list(HERETIC_INFLUENCE_FILE, "drain_message")
 	to_chat(user, span_hypnophrase(span_big("[drain_message]")))
 	return .

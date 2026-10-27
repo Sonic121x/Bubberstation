@@ -1,12 +1,12 @@
 /// Open all of the doors
 /datum/grand_finale/all_access
-	name = "Connection"
-	desc = "The ultimate use of your gathered power! Unlock every single door that they have! Nobody will be able to keep you out now, or anyone else for that matter!"
+	name = "联结"
+	desc = "对所汇集力量的最极致运用！解锁他们所有的门！现在没人能把你挡在外面，也没人能挡住其他任何人！"
 	icon = 'icons/mob/actions/actions_spells.dmi'
 	icon_state = "knock"
 
 /datum/grand_finale/all_access/trigger(mob/living/carbon/human/invoker)
-	message_admins("[key_name(invoker)] removed all door access requirements")
+	message_admins("[key_name(invoker)] 移除了所有门的通行权限要求")
 	for(var/obj/machinery/door/target_door as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/door))
 		if(is_station_level(target_door.z))
 			target_door.unlock()

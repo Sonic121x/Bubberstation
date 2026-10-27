@@ -1,19 +1,19 @@
 
 /datum/action/cooldown/spell/pointed/projectile/flesh_restraints
-	name = "fleshy restraints"
-	desc = "Launch at your prey to immobilize them."
+	name = "血肉束缚"
+	desc = "向猎物发射，使其无法行动。"
 	button_icon = 'icons/obj/weapons/restraints.dmi'
 	button_icon_state = "flesh_snare"
 
 	cooldown_time = 6 SECONDS
 	spell_requirements = NONE
 
-	active_msg = "You prepare to throw a restraint at your target!"
+	active_msg = "你准备好向目标投出束缚物！"
 	cast_range = 8
 	projectile_type = /obj/projectile/mega_arachnid
 
 /obj/projectile/mega_arachnid
-	name = "flesh snare"
+	name = "血肉套索"
 	icon_state = "tentacle_end"
 	damage = 0
 
@@ -25,8 +25,8 @@
 	restraint.spring_trap(target)
 
 /obj/item/restraints/legcuffs/beartrap/mega_arachnid
-	name = "fleshy restraints"
-	desc = "Used by mega arachnids to immobilize their prey."
+	name = "血肉束缚"
+	desc = "巨型蛛用它来让猎物无法行动。"
 	flags_1 = NONE
 	item_flags = DROPDEL
 	icon_state = "flesh_snare"
@@ -38,10 +38,10 @@
 
 
 /datum/action/cooldown/mob_cooldown/secrete_acid
-	name = "Secrete Acid"
+	name = "分泌酸液"
 	button_icon = 'icons/effects/acid.dmi'
 	button_icon_state = "default"
-	desc = "Secrete a slippery acid!"
+	desc = "分泌出滑溜的酸液！"
 	cooldown_time = 15 SECONDS
 	click_to_activate = FALSE
 
@@ -64,7 +64,7 @@
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
 /obj/effect/slippery_acid
-	name = "slippery acid"
+	name = "滑溜酸液"
 	icon = 'icons/effects/acid.dmi'
 	icon_state = "default"
 	layer = BELOW_MOB_LAYER

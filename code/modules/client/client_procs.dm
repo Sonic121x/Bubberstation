@@ -3,13 +3,13 @@
 	////////////
 
 GLOBAL_LIST_INIT(blacklisted_builds, list(
-	"1622" = "Bug breaking rendering can lead to wallhacks.",
+	"1622" = "渲染相关的 bug 可能导致透视外挂。",
 ))
 GLOBAL_LIST_INIT(unrecommended_builds, list(
-	"1670" = "Bug breaking in-world text rendering.",
-	"1671" = "Bug breaking in-world text rendering.",
-	"1675" = "Frequent crashing.",
-	"1676" = "Frequent crashing.",
+	"1670" = "破坏世界内文本渲染的 bug。",
+	"1671" = "破坏世界内文本渲染的 bug。",
+	"1675" = "频繁崩溃。",
+	"1676" = "频繁崩溃。",
 ))
 #define LIMITER_SIZE 5
 #define CURRENT_SECOND 1
@@ -70,12 +70,12 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 			topiclimiter[MINUTE_COUNT] = 0
 		topiclimiter[MINUTE_COUNT] += 1
 		if (topiclimiter[MINUTE_COUNT] > mtl)
-			var/msg = "Your previous action was ignored because you've done too many in a minute."
+			var/msg = "你上一个操作被忽略了，因为你一分钟内做得太多了。"
 			if (minute != topiclimiter[ADMINSWARNED_AT]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
 				topiclimiter[ADMINSWARNED_AT] = minute
-				msg += " Administrators have been informed."
-				log_game("[key_name(src)] Has hit the per-minute topic limit of [mtl] topic calls in a given game minute")
-				message_admins("[ADMIN_LOOKUPFLW(usr)] [ADMIN_KICK(usr)] Has hit the per-minute topic limit of [mtl] topic calls in a given game minute")
+				msg += " 管理员已收到通知。"
+				log_game("[key_name(src)] 在游戏内一分钟里达到了每分钟 [mtl] 次 topic 调用的上限")
+				message_admins("[ADMIN_LOOKUPFLW(usr)] [ADMIN_KICK(usr)] 在游戏内一分钟里达到了每分钟 [mtl] 次 topic 调用的上限")
 			to_chat(src, span_danger("[msg]"))
 			return
 
@@ -89,7 +89,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 			topiclimiter[SECOND_COUNT] = 0
 		topiclimiter[SECOND_COUNT] += 1
 		if (topiclimiter[SECOND_COUNT] > stl)
-			to_chat(src, span_danger("Your previous action was ignored because you've done too many in a second"))
+			to_chat(src, span_danger("你上一个操作被忽略了，因为你一秒钟内做得太多了"))
 			return
 
 	// Tgui Topic middleware
@@ -104,7 +104,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 
 	//byond bug ID:2256651
 	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
-		to_chat(src, span_danger("An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)"))
+		to_chat(src, span_danger("检测到你的客户端在接收资源时出现了错误。正在尝试修正……（如果你一直看到这条消息，建议关闭 byond 并重新连接）"))
 		src << browse("...", "window=asset_cache_browser")
 		return
 	if (href_list["asset_cache_preload_data"])
@@ -133,7 +133,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 
 	// TGUIless adminhelp
 	if(href_list["tguiless_adminhelp"])
-		no_tgui_adminhelp(input(src, "Enter your ahelp", "Ahelp") as null|message)
+		no_tgui_adminhelp(input(src, "输入你的求助内容", "求助") as null|message)
 		return
 
 	if(href_list["commandbar_typing"])
@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 
 /client/proc/is_content_unlocked()
 	if(!prefs.unlock_content)
-		to_chat(src, "Become a BYOND member to access member-perks and features, as well as support the engine that makes this game possible. Only 10 bucks for 3 months! <a href=\"https://secure.byond.com/membership\">Click Here to find out more</a>.")
+		to_chat(src, "成为 BYOND 会员即可使用会员特权与功能，并支持让这款游戏得以实现的引擎。3 个月仅需 10 美元！<a href=\"https://secure.byond.com/membership\">点击此处了解更多</a>。")
 		return FALSE
 	return TRUE
 
@@ -230,13 +230,13 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 
 		src.last_message_count++
 		if(src.last_message_count >= SPAM_TRIGGER_AUTOMUTE)
-			to_chat(src, span_danger("You have exceeded the spam filter limit for identical messages. A mute was automatically applied for the current round. Contact admins to request its removal."))
+			to_chat(src, span_danger("你已超过相同消息的垃圾信息过滤上限。当前回合已被自动禁言。请联系管理员申请解除。"))
 			cmd_admin_mute(src, mute_type, 1)
 			return TRUE
 		if(src.last_message_count >= SPAM_TRIGGER_WARNING)
 			//"auto-ban" sends the message that the cold and uncaring gamecode has been designed to quiash you like a bug in short measure should you continue, and it's quite intentional that the user isn't told exactly what that entails.
-			to_chat(src, span_userdanger("You are nearing the auto-ban limit for identical messages."))
-			mob.balloon_alert(mob, "stop spamming!")
+			to_chat(src, span_userdanger("你的相同消息数量即将达到自动封禁上限。"))
+			mob.balloon_alert(mob, "停止刷屏！")
 			return FALSE
 	else
 		last_message = message
@@ -249,10 +249,10 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	if (holder)
 		var/admin_max_file_size = CONFIG_GET(number/upload_limit_admin)
 		if(filelength > admin_max_file_size)
-			to_chat(src, span_warning("Error: AllowUpload(): File Upload too large. Upload Limit: [admin_max_file_size/1024]KiB."))
+			to_chat(src, span_warning("错误：AllowUpload()：上传文件过大。上传上限：[admin_max_file_size/1024]KiB。"))
 			return FALSE
 	else if(filelength > client_max_file_size)
-		to_chat(src, span_warning("Error: AllowUpload(): File Upload too large. Upload Limit: [client_max_file_size/1024]KiB."))
+		to_chat(src, span_warning("错误：AllowUpload()：上传文件过大。上传上限：[client_max_file_size/1024]KiB。"))
 		return FALSE
 	return TRUE
 
@@ -343,7 +343,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 				matched_ip = "IP [address]"
 
 			if(joined_player_preferences.last_id == computer_id)
-				matched_cid = "Computer ID [computer_id]"
+				matched_cid = "计算机 ID [computer_id]"
 				alert_mob_dupe_login = TRUE
 
 			if(isnull(matched_ip) && isnull(matched_cid))
@@ -358,15 +358,15 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 				alert_admin_multikey = TRUE
 
 			var/list/concatables = list()
-			concatables += span_danger(span_bold("[double_match ? "MULTIKEY" : "Notice"]:"))
-			concatables += "<span class='notice'>Connecting player [key_name_admin(src)] has the same"
+			concatables += span_danger(span_bold("[double_match ? "多重登录" : "提示"]："))
+			concatables += "<span class='notice'>连接中的玩家 [key_name_admin(src)] 拥有相同的"
 			if(double_match)
-				concatables += "!BOTH! [matched_ip] and [matched_cid]"
+				concatables += "！同时为！[matched_ip] 和 [matched_cid]"
 			else
 				concatables += (!isnull(matched_ip) ? matched_ip : matched_cid)
-			concatables += "as [isnull(potential_match) ? "[joined_player_ckey] (no longer logged in)" : "[key_name_admin(potential_match)]"]"
+			concatables += "，与 [isnull(potential_match) ? "[joined_player_ckey]（已不再登录）" : "[key_name_admin(potential_match)]"]"
 			if(same_round)
-				concatables += span_bold("in the current round")
+				concatables += span_bold("在本轮内")
 
 			concatables += "</span>"
 
@@ -396,14 +396,14 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 		if(!GLOB.admin_datums[ckey])
 			var/list/autoadmin_ranks = ranks_from_rank_name(CONFIG_GET(string/autoadmin_rank))
 			if (autoadmin_ranks.len == 0)
-				to_chat(world, "Autoadmin rank not found")
+				to_chat(world, "未找到自动管理员等级")
 			else
 				new /datum/admins(autoadmin_ranks, ckey)
 
 	if(CONFIG_GET(flag/enable_localhost_rank) && !connecting_admin && is_localhost())
 		var/datum/admin_rank/localhost_rank = new("!localhost!", RANK_SOURCE_LOCAL, R_EVERYTHING, R_DBRANKS, R_EVERYTHING) //+EVERYTHING -DBRANKS *EVERYTHING
 		if(QDELETED(localhost_rank))
-			to_chat(world, "Local admin rank creation failed, somehow?")
+			to_chat(world, "本地管理员等级的创建不知为何失败了？")
 			return
 		new /datum/admins(list(localhost_rank), ckey, 1, 1)
 
@@ -413,19 +413,19 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 			restore_stickybans()
 
 	if (!byond_build)
-		message_admins(span_adminnotice("[key_name(src)] has been detected as spoofing their BYOND version. Connection rejected."))
-		add_system_note("Spoofed-BYOND-Version", "Detected as using a spoofed BYOND version.")
-		log_suspicious_login("Failed Login: [key] - Spoofed BYOND version")
+		message_admins(span_adminnotice("[key_name(src)] 被检测到伪造其 BYOND 版本。连接已拒绝。"))
+		add_system_note("Spoofed-BYOND-Version", "检测到使用伪造的 BYOND 版本。")
+		log_suspicious_login("登录失败：[key] - 伪造的 BYOND 版本")
 		qdel(src)
 		return
 
 	if (num2text(byond_build) in GLOB.blacklisted_builds)
-		log_access("Failed login: [key] - blacklisted BYOND version")
-		to_chat_immediate(src, span_userdanger("Your version of BYOND is blacklisted."))
-		to_chat_immediate(src, span_danger("BYOND build [byond_build] ([byond_version].[byond_build]) has been blacklisted for the following reason: [GLOB.blacklisted_builds[num2text(byond_build)]]."))
-		to_chat_immediate(src, span_danger("Please download a new version of BYOND. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
+		log_access("登录失败：[key] - BYOND 版本被列入黑名单")
+		to_chat_immediate(src, span_userdanger("你的 BYOND 版本已被列入黑名单。"))
+		to_chat_immediate(src, span_danger("BYOND 构建 [byond_build] ([byond_version].[byond_build]) 因以下原因被列入黑名单：[GLOB.blacklisted_builds[num2text(byond_build)]]。"))
+		to_chat_immediate(src, span_danger("请下载新版本的 BYOND。如果 [byond_build] 已经是最新版本，你可以前往 <a href=\"https://secure.byond.com/download/build\">BYOND 官网</a> 下载其他版本。"))
 		if(connecting_admin)
-			to_chat_immediate(src, "As an admin, you are being allowed to continue using this version, but please consider changing BYOND versions.")
+			to_chat_immediate(src, "由于你是管理员，允许你继续使用这个版本，但请考虑更换 BYOND 版本。")
 		else
 			qdel(src)
 			return
@@ -453,16 +453,16 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	if(alert_mob_dupe_login && !holder)
 		// Notify admins if the connecting player's CID is configured to be ignored by stickybans
 		if (SSstickyban && (computer_id in SSstickyban.ignored_cids))
-			message_admins("<B>MULTIKEYING: </B></span><span class='notice'>[key_name_admin(src)] Connecting player joined with IGNORED CID [computer_id].")
-			log_admin_private("MULTIKEYING: [key_name(src)] Connecting player joined with IGNORED CID [computer_id].")
+			message_admins("<B>多重登录：</B></span><span class='notice'>[key_name_admin(src)] 连接玩家使用了被忽略的 CID [computer_id] 加入。")
+			log_admin_private("多重登录：[key_name(src)] 连接玩家使用了被忽略的 CID [computer_id] 加入。")
 		else
 			// If the CID is not ignored, notify the player with the pop-up.
-			var/dupe_login_message = "Your ComputerID has already logged in with another key this round, please log out of this one NOW or risk being banned!"
+			var/dupe_login_message = "你的计算机 ID 本轮已经用另一个 key 登录过了，请立即登出当前这个账号，否则可能被封禁！"
 			// Notify admins if the connecting player's CID is a duplicate of another player's CID
 			if (alert_admin_multikey)
-				dupe_login_message += "\nAdmins have been informed."
-				message_admins(span_danger("<B>MULTIKEYING: </B></span><span class='notice'>[key_name_admin(src)] has a matching CID+IP with another player and is clearly multikeying. They have been warned to leave the server or risk getting banned."))
-				log_admin_private("MULTIKEYING: [key_name(src)] has a matching CID+IP with another player and is clearly multikeying. They have been warned to leave the server or risk getting banned.")
+				dupe_login_message += "\n管理员已收到通知。"
+				message_admins(span_danger("<B>多重登录：</B></span><span class='notice'>[key_name_admin(src)] 的 CID+IP 与另一名玩家相同，明显属于多重登录。已警告其离开服务器，否则可能被封禁。"))
+				log_admin_private("多重登录：[key_name(src)] 的 CID+IP 与另一名玩家相同，明显属于多重登录。已警告其离开服务器，否则可能被封禁。")
 			spawn(0.5 SECONDS) //needs to run during world init, do not convert to add timer
 				alert(mob, dupe_login_message) //players get banned if they don't see this message, do not convert to tgui_alert (or even tg_alert) please.
 				to_chat_immediate(mob, span_danger(dupe_login_message))
@@ -478,38 +478,38 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	var/warn_build = CONFIG_GET(number/client_warn_build)
 
 	if (byond_version < breaking_version || (byond_version == breaking_version && byond_build < breaking_build)) //Out of date client.
-		to_chat_immediate(src, span_danger("<b>Your version of BYOND is too old:</b>"))
+		to_chat_immediate(src, span_danger("<b>你的 BYOND 版本过旧：</b>"))
 		to_chat_immediate(src, CONFIG_GET(string/client_error_message))
-		to_chat_immediate(src, "Your version: [byond_version].[byond_build]")
-		to_chat_immediate(src, "Required version: [breaking_version].[breaking_build] or later")
-		to_chat_immediate(src, "Visit <a href=\"https://secure.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.")
+		to_chat_immediate(src, "你的版本：[byond_version].[byond_build]")
+		to_chat_immediate(src, "所需版本：[breaking_version].[breaking_build] 或更高")
+		to_chat_immediate(src, "访问 <a href=\"https://secure.byond.com/download\">BYOND 官网</a> 获取最新版本的 BYOND。")
 		if (connecting_admin)
-			to_chat_immediate(src, "Because you are an admin, you are being allowed to walk past this limitation, But it is still STRONGLY suggested you upgrade")
+			to_chat_immediate(src, "因为你是管理员，允许你越过这一限制，但仍强烈建议你升级版本")
 		else
 			qdel(src)
 			return
 	else if (byond_version < warn_version || (byond_version == warn_version && byond_build < warn_build)) //We have words for this client.
 		if(CONFIG_GET(flag/client_warn_popup))
-			var/msg = "<b>Your version of byond may be getting out of date:</b><br>"
+			var/msg = "<b>你的 byond 版本可能即将过时：</b><br>"
 			msg += CONFIG_GET(string/client_warn_message) + "<br><br>"
-			msg += "Your version: [byond_version].[byond_build]<br>"
-			msg += "Required version to remove this message: [warn_version].[warn_build] or later<br>"
-			msg += "Visit <a href=\"https://secure.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.<br>"
+			msg += "你的版本：[byond_version].[byond_build]<br>"
+			msg += "消除此提示所需的版本：[warn_version].[warn_build] 或更高<br>"
+			msg += "访问 <a href=\"https://secure.byond.com/download\">BYOND 官网</a> 获取最新版本的 BYOND。<br>"
 			src << browse(HTML_SKELETON(msg), "window=warning_popup")
 		else
-			to_chat(src, span_danger("<b>Your version of byond may be getting out of date:</b>"))
+			to_chat(src, span_danger("<b>你的 byond 版本可能即将过时：</b>"))
 			to_chat(src, CONFIG_GET(string/client_warn_message))
-			to_chat(src, "Your version: [byond_version].[byond_build]")
-			to_chat(src, "Required version to remove this message: [warn_version].[warn_build] or later")
-			to_chat(src, "Visit <a href=\"https://secure.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.")
+			to_chat(src, "你的版本：[byond_version].[byond_build]")
+			to_chat(src, "消除此提示所需的版本：[warn_version].[warn_build] 或更高")
+			to_chat(src, "访问 <a href=\"https://secure.byond.com/download\">BYOND 官网</a> 获取最新版本的 BYOND。")
 
 	if (connection == "web" && !connecting_admin)
 		if (!CONFIG_GET(flag/allow_webclient))
-			to_chat_immediate(src, "Web client is disabled")
+			to_chat_immediate(src, "网页客户端已禁用")
 			qdel(src)
 			return
 		if (CONFIG_GET(flag/webclient_only_byond_members) && !IsByondMember())
-			to_chat_immediate(src, "Sorry, but the web client is restricted to byond members only.")
+			to_chat_immediate(src, "抱歉，网页客户端仅限 BYOND 会员使用。")
 			qdel(src)
 			return
 
@@ -525,7 +525,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 		var/stealth_admin = mob.client?.holder?.fakekey
 		var/announce_leave = mob.client?.prefs?.read_preference(/datum/preference/toggle/broadcast_login_logout)
 		if (!stealth_admin)
-			deadchat_broadcast(" has reconnected.", "<b>[mob][mob.get_realname_string()]</b>", follow_target = mob, turf_target = get_turf(mob), message_type = DEADCHAT_LOGIN_LOGOUT, admin_only=!announce_leave)
+			deadchat_broadcast(" 已重新连接。", "<b>[mob][mob.get_realname_string()]</b>", follow_target = mob, turf_target = get_turf(mob), message_type = DEADCHAT_LOGIN_LOGOUT, admin_only=!announce_leave)
 	add_verbs_from_config()
 
 	// This needs to be before the client age from db is updated as it'll be updated by then.
@@ -545,25 +545,25 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	var/nnpa = CONFIG_GET(number/notify_new_player_age)
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
 		if (nnpa >= 0)
-			log_admin_private("New login: [key_name(key, FALSE, TRUE)] (IP: [address], ID: [computer_id]) logged onto the servers for the first time.")
-			message_admins("New user: [key_name_admin(src)] is connecting here for the first time.")
+			log_admin_private("新登录：[key_name(key, FALSE, TRUE)]（IP：[address]，ID：[computer_id]）首次登录服务器。")
+			message_admins("新用户：[key_name_admin(src)] 首次连接到这里。")
 			if (CONFIG_GET(flag/irc_first_connection_alert))
 				var/new_player_alert_role = CONFIG_GET(string/new_player_alert_role_id)
 				send2tgs_adminless_only(
 					"New-user",
-					"[key_name(src)] is connecting for the first time![new_player_alert_role ? " <@&[new_player_alert_role]>" : ""]"
+					"[key_name(src)] 首次连接到这里！[new_player_alert_role ? " <@&[new_player_alert_role]>" : ""]"
 				)
 	else if (isnum(cached_player_age) && cached_player_age < nnpa)
-		message_admins("New user: [key_name_admin(src)] just connected with an age of [cached_player_age] day[(player_age == 1?"":"s")]")
+		message_admins("新用户：[key_name_admin(src)] 刚刚连接，账号年龄为 [cached_player_age] 天")
 	if(CONFIG_GET(flag/use_account_age_for_jobs) && account_age >= 0)
 		player_age = account_age
 	if(account_age >= 0 && account_age < nnpa)
-		message_admins("[key_name_admin(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age == 1?"":"s")] old, created on [account_join_date].")
+		message_admins("[key_name_admin(src)]（IP：[address]，ID：[computer_id]）是一个新的 BYOND 账号，已存在 [account_age] 天，创建于 [account_join_date]。")
 		if (CONFIG_GET(flag/irc_first_connection_alert))
 			var/new_player_alert_role = CONFIG_GET(string/new_player_alert_role_id)
 			send2tgs_adminless_only(
 				"new_byond_user",
-				"[key_name(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age == 1?"":"s")] old, created on [account_join_date].[new_player_alert_role ? " <@&[new_player_alert_role]>" : ""]"
+				"[key_name(src)]（IP：[address]，ID：[computer_id]）是一个新的 BYOND 账号，已存在 [account_age] 天，创建于 [account_join_date]。[new_player_alert_role ? " <@&[new_player_alert_role]>" : ""]"
 			)
 	scream_about_watchlists(src)
 	validate_key_in_db()
@@ -577,7 +577,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	apply_clickcatcher()
 
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
-		to_chat(src, span_info("You have unread updates in the changelog."))
+		to_chat(src, span_info("更新日志中有未读的更新。"))
 		if(CONFIG_GET(flag/aggressive_changelog))
 			changelog()
 
@@ -590,7 +590,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 		convert_notes_sql(ckey)
 	display_admin_messages(src)
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
-		to_chat(src, span_warning("Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you."))
+		to_chat(src, span_warning("无法访问资源缓存浏览器。如果你正在使用自定义皮肤文件，请允许 DS 下载更新版本；如果没有使用，请提交 bug 报告。这不是严重问题，但可能导致资源下载异常，因为无法得知额外资源何时送达。"))
 
 	update_ambience_pref(prefs.read_preference(/datum/preference/numeric/volume/sound_ambience_volume))
 	check_ip_intel()
@@ -631,7 +631,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 		var/stealth_admin = mob.client?.holder?.fakekey
 		var/announce_join = mob.client?.prefs?.read_preference(/datum/preference/toggle/broadcast_login_logout)
 		if (!stealth_admin)
-			deadchat_broadcast(" has disconnected.", "<b>[mob][mob.get_realname_string()]</b>", follow_target = mob, turf_target = get_turf(mob), message_type = DEADCHAT_LOGIN_LOGOUT, admin_only=!announce_join)
+			deadchat_broadcast(" 已断开连接。", "<b>[mob][mob.get_realname_string()]</b>", follow_target = mob, turf_target = get_turf(mob), message_type = DEADCHAT_LOGIN_LOGOUT, admin_only=!announce_join)
 		mob.become_uncliented()
 
 	GLOB.clients -= src
@@ -744,18 +744,18 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	if(!client_is_in_db)
 		//SKYRAT EDIT ADDITION BEGIN - PANICBUNKER
 		if (CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.deadmins[ckey] && !(ckey in GLOB.bunker_passthrough))
-			log_access("Failed Login: [key] - [address] - New account attempting to connect during panic bunker")
-			message_admins("<span class='adminnotice'>Failed Login: [key] - [address] - New account attempting to connect during panic bunker</span>")
+			log_access("登录失败：[key] - [address] - 新账号试图在恐慌地堡期间连接")
+			message_admins("<span class='adminnotice'>登录失败：[key] - [address] - 新账号试图在恐慌地堡期间连接</span>")
 			//BUBBER EDIT ADDITION BEGIN - PANICBUNKER TEXT
 			//BUBBER TODO: Make the to_chat a config thing and present it to skyrat
 			var/forumurl = CONFIG_GET(string/forumurl)
-			to_chat_immediate(src, {"<span class='notice'>Hi! This server is whitelist-enabled. <br> <br> To join our community, check out our Discord! To gain full access to the game server, read the rules and open a ticket in the #get-whitelisted channel under the \"Whitelist\" category in the Discord server linked here: <a href=' [forumurl] '>[forumurl]</a></span>"})
+			to_chat_immediate(src, {"<span class='notice'>你好！本服务器启用了白名单。<br> <br> 想要加入我们的社区，请查看我们的 Discord！要获得游戏服务器的完整访问权限，请阅读规则，并在此处链接的 Discord 服务器中“白名单”分类下的 #get-whitelisted 频道中提交工单：<a href=' [forumurl] '>[forumurl]</a></span>"})
 			//BUBBER EDIT ADDITION END - PANICBUNKER TEXT
 			var/list/connectiontopic_a = params2list(connectiontopic)
 			var/list/panic_addr = CONFIG_GET(string/panic_server_address)
 			if(panic_addr && !connectiontopic_a["redirect"])
 				var/panic_name = CONFIG_GET(string/panic_server_name)
-				to_chat(src, "<span class='notice'>Sending you to [panic_name ? panic_name : panic_addr].</span>")
+				to_chat(src, "<span class='notice'>正在将你发送到 [panic_name ? panic_name : panic_addr]。</span>")
 				winset(src, null, "command=.options")
 				src << link("[panic_addr]?redirect=1")
 			qdel(query_client_in_db)
@@ -832,7 +832,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 /client/proc/findJoinDate()
 	var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")
 	if(!http)
-		log_world("Failed to connect to byond member page to age check [ckey]")
+		log_world("无法连接 byond 会员页面以查询账号年龄 [ckey]")
 		return
 	var/F = file2text(http["CONTENT"])
 	if(F)
@@ -857,7 +857,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	if(key != sql_key)
 		var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")
 		if(!http)
-			log_world("Failed to connect to byond member page to get changed key for [ckey]")
+			log_world("无法连接 byond 会员页面以获取 [ckey] 变更后的 key")
 			return
 		var/F = file2text(http["CONTENT"])
 		if(F)
@@ -934,17 +934,17 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 		clicklimiter[MINUTE_COUNT] += 1 + (ab)
 
 		if (clicklimiter[MINUTE_COUNT] > mcl)
-			var/msg = "Your previous click was ignored because you've done too many in a minute."
+			var/msg = "你上一个点击被忽略了，因为你一分钟内点得太多了。"
 			if (minute != clicklimiter[ADMINSWARNED_AT]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
 				clicklimiter[ADMINSWARNED_AT] = minute
 
-				msg += " Administrators have been informed."
+				msg += " 管理员已收到通知。"
 				if (ab)
-					log_game("[key_name(src)] is using the middle click aimbot exploit")
-					message_admins("[ADMIN_LOOKUPFLW(usr)] [ADMIN_KICK(usr)] is using the middle click aimbot exploit</span>")
-					add_system_note("aimbot", "Is using the middle click aimbot exploit")
-				log_game("[key_name(src)] Has hit the per-minute click limit of [mcl] clicks in a given game minute")
-				message_admins("[ADMIN_LOOKUPFLW(usr)] [ADMIN_KICK(usr)] Has hit the per-minute click limit of [mcl] clicks in a given game minute")
+					log_game("[key_name(src)] 正在使用中键自动瞄准外挂")
+					message_admins("[ADMIN_LOOKUPFLW(usr)] [ADMIN_KICK(usr)] 正在使用中键自动瞄准外挂</span>")
+					add_system_note("aimbot", "正在使用中键自动瞄准外挂")
+				log_game("[key_name(src)] 在游戏内一分钟里达到了每分钟 [mcl] 次点击的上限")
+				message_admins("[ADMIN_LOOKUPFLW(usr)] [ADMIN_KICK(usr)] 在游戏内一分钟里达到了每分钟 [mcl] 次点击的上限")
 			to_chat(src, span_danger("[msg]"))
 			return
 
@@ -961,7 +961,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 		clicklimiter[SECOND_COUNT] += 1 + (!!ab)
 
 		if (clicklimiter[SECOND_COUNT] > scl)
-			to_chat(src, span_danger("Your previous click was ignored because you've done too many in a second"))
+			to_chat(src, span_danger("你上一个点击被忽略了，因为你一秒钟内点得太多了"))
 			return
 
 	//check if the server is overloaded and if it is then queue up the click for next tick
@@ -1133,7 +1133,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	var/new_duration = world.realtime + duration
 	if(prefs.hearted_until > new_duration)
 		return
-	to_chat(src, span_nicegreen("Someone awarded you a heart!"))
+	to_chat(src, span_nicegreen("有人送了你一颗心！"))
 	prefs.hearted_until = new_duration
 	prefs.hearted = TRUE
 	prefs.save_preferences()
@@ -1172,7 +1172,7 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 /client/proc/check_panel_loaded()
 	if(stat_panel.is_ready())
 		return
-	to_chat(src, span_userdanger("Statpanel failed to load, click <a href='byond://?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
+	to_chat(src, span_userdanger("状态面板加载失败，点击<a href='byond://?src=[REF(src)];reload_statbrowser=1'>此处</a>重新加载面板 "))
 
 /client/proc/open_filter_editor(atom/in_atom)
 	if(holder)
@@ -1246,12 +1246,12 @@ GLOBAL_LIST_INIT(unrecommended_builds, list(
 	var/mob/dead/observer/observer = mob
 	observer.ManualFollow(target)
 
-GAME_VERB_DESC(/client, stop_client_sounds, "Stop Sounds", "Stop Current Sounds", "OOC")
+GAME_VERB_DESC(/client, stop_client_sounds, "停止声音", "停止当前声音", "OOC")
 	SEND_SOUND(usr, sound(null))
 	tgui_panel?.stop_music()
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Stop Self Sounds"))
 
-GAME_VERB(/client, toggle_fullscreen, "Toggle Fullscreen", "OOC")
+GAME_VERB(/client, toggle_fullscreen, "切换全屏", "OOC")
 
 	var/is_on = prefs.read_preference(/datum/preference/toggle/fullscreen_mode)
 	prefs.write_preference(GLOB.preference_entries[/datum/preference/toggle/fullscreen_mode], !is_on)
@@ -1282,24 +1282,24 @@ GAME_VERB(/client, toggle_fullscreen, "Toggle Fullscreen", "OOC")
 
 	if (isnull(cheesy_messages))
 		cheesy_messages = list(
-			"Forever alone :(",
-			"I have no admins online!",
-			"I need a hug :(",
-			"I need someone on me :(",
-			"I want a man :(",
-			"I'm all alone :(",
-			"I'm feeling lonely :(",
-			"I'm so lonely :(",
-			"Someone come hold me :(",
-			"What happened? Where has everyone gone?",
-			"Where has everyone gone?",
-			"Why does nobody love me? :(",
+			"永远孤独 :(",
+			"我线上没有管理员！",
+			"我需要一个拥抱 :(",
+			"我需要有人陪着我 :(",
+			"我想要个男人 :(",
+			"我孤零零一个人 :(",
+			"我感觉好寂寞 :(",
+			"我好寂寞 :(",
+			"谁来抱抱我 :(",
+			"发生什么了？大家都去哪了？",
+			"大家都去哪了？",
+			"为什么没人爱我？ :(",
 		)
 
 	message_to_send += pick(cheesy_messages)
-	message_to_send += "(No admins online)"
+	message_to_send += "（无管理员在线）"
 
-	send2adminchat("Server", jointext(message_to_send, " "))
+	send2adminchat("服务器", jointext(message_to_send, " "))
 
 /// This grabs the DPI of the user per their skin
 /client/proc/acquire_dpi()

@@ -6,8 +6,8 @@
 #define MODPAINT_MIN_OVERALL_COLORS 1.5
 
 /obj/item/mod/paint
-	name = "MOD paint kit"
-	desc = "This kit will repaint your MODsuit to something unique."
+	name = "MOD 喷漆套件"
+	desc = "这套工具能把你的 MOD 模块化外骨骼重新喷涂成独一无二的样子。"
 	icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
 	icon_state = "paintkit"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 5)
@@ -21,8 +21,8 @@
 
 /obj/item/mod/paint/examine(mob/user)
 	. = ..()
-	. += span_notice("<b>Left-click</b> a MODsuit to change skin.")
-	. += span_notice("<b>Right-click</b> a MODsuit to recolor.")
+	. += span_notice("<b>左键点击</b> MOD 模块化外骨骼可更换外观。")
+	. += span_notice("<b>右键点击</b> MOD 模块化外骨骼可重新着色。")
 
 /obj/item/mod/paint/ui_interact(mob/user, datum/tgui/ui)
 	if(!editing_mod)
@@ -79,43 +79,43 @@
 			var/green_value = current_color[2] + current_color[6] + current_color[10] //rg + gg + bg
 			var/blue_value = current_color[3] + current_color[7] + current_color[11] //rb + gb + bb
 			if(red_value > MODPAINT_MAX_SECTION_COLORS)
-				balloon_alert(usr, "total red too high! ([red_value*100]%/[MODPAINT_MAX_SECTION_COLORS*100]%)")
+				balloon_alert(usr, "红色总量过高！（[red_value*100]%/[MODPAINT_MAX_SECTION_COLORS*100]%）")
 				return
 			else if(red_value < MODPAINT_MIN_SECTION_COLORS)
-				balloon_alert(usr, "total red too low! ([red_value*100]%/[MODPAINT_MIN_SECTION_COLORS*100]%)")
+				balloon_alert(usr, "红色总量过低！（[red_value*100]%/[MODPAINT_MIN_SECTION_COLORS*100]%）")
 				return
 			if(green_value > MODPAINT_MAX_SECTION_COLORS)
-				balloon_alert(usr, "total green too high! ([green_value*100]%/[MODPAINT_MAX_SECTION_COLORS*100]%)")
+				balloon_alert(usr, "绿色总量过高！（[green_value*100]%/[MODPAINT_MAX_SECTION_COLORS*100]%）")
 				return
 			else if(green_value < MODPAINT_MIN_SECTION_COLORS)
-				balloon_alert(usr, "total green too low! ([green_value*100]%/[MODPAINT_MIN_SECTION_COLORS*100]%)")
+				balloon_alert(usr, "绿色总量过低！（[green_value*100]%/[MODPAINT_MIN_SECTION_COLORS*100]%）")
 				return
 			if(blue_value > MODPAINT_MAX_SECTION_COLORS)
-				balloon_alert(usr, "total blue too high! ([blue_value*100]%/[MODPAINT_MAX_SECTION_COLORS*100]%)")
+				balloon_alert(usr, "蓝色总量过高！（[blue_value*100]%/[MODPAINT_MAX_SECTION_COLORS*100]%）")
 				return
 			else if(blue_value < MODPAINT_MIN_SECTION_COLORS)
-				balloon_alert(usr, "total blue too low! ([blue_value*100]%/[MODPAINT_MIN_SECTION_COLORS*100]%)")
+				balloon_alert(usr, "蓝色总量过低！（[blue_value*100]%/[MODPAINT_MIN_SECTION_COLORS*100]%）")
 				return
 			for(var/color_value in total_colors)
 				total_color_value += color_value
 				if(color_value > MODPAINT_MAX_COLOR_VALUE)
-					balloon_alert(usr, "one of colors too high! ([color_value*100]%/[MODPAINT_MAX_COLOR_VALUE*100]%")
+					balloon_alert(usr, "颜色分量过高！（[color_value*100]%/[MODPAINT_MAX_COLOR_VALUE*100]%")
 					return
 				else if(color_value < MODPAINT_MIN_COLOR_VALUE)
-					balloon_alert(usr, "one of colors too low! ([color_value*100]%/[MODPAINT_MIN_COLOR_VALUE*100]%")
+					balloon_alert(usr, "颜色分量过低！（[color_value*100]%/[MODPAINT_MIN_COLOR_VALUE*100]%")
 					return
 			if(total_color_value > MODPAINT_MAX_OVERALL_COLORS)
-				balloon_alert(usr, "total colors too high! ([total_color_value*100]%/[MODPAINT_MAX_OVERALL_COLORS*100]%)")
+				balloon_alert(usr, "颜色总量过高！（[total_color_value*100]%/[MODPAINT_MAX_OVERALL_COLORS*100]%）")
 				return
 			else if(total_color_value < MODPAINT_MIN_OVERALL_COLORS)
-				balloon_alert(usr, "total colors too low! ([total_color_value*100]%/[MODPAINT_MIN_OVERALL_COLORS*100]%)")
+				balloon_alert(usr, "颜色总量过低！（[total_color_value*100]%/[MODPAINT_MIN_OVERALL_COLORS*100]%）")
 				return
 			editing_mod.set_mod_color(current_color)
 			SStgui.close_uis(src)
 
 /obj/item/mod/paint/proc/paint_skin(obj/item/mod/control/mod, mob/user)
 	if(length(mod.theme.variants) <= 1)
-		balloon_alert(user, "no alternate skins!")
+		balloon_alert(user, "没有可替换的外观！")
 		return
 	var/list/skins = list()
 	for(var/mod_skin_name in mod.theme.variants)
@@ -123,7 +123,7 @@
 		skins[mod_skin_name] = image(icon = mod_skin[MOD_ICON_OVERRIDE] || mod.icon, icon_state = "[mod_skin_name]-control")
 	var/pick = show_radial_menu(user, mod, skins, custom_check = CALLBACK(src, PROC_REF(check_menu), mod, user), require_near = TRUE)
 	if(!pick)
-		balloon_alert(user, "no skin picked!")
+		balloon_alert(user, "未选择外观！")
 		return
 	mod.theme.set_skin(mod, pick)
 
@@ -140,33 +140,33 @@
 #undef MODPAINT_MIN_OVERALL_COLORS
 
 /obj/item/mod/skin_applier
-	name = "MOD skin applier"
-	desc = "This one-use skin applier will add a skin to MODsuits of a specific type. Must be used on an inactive control unit."
+	name = "MOD 外观涂装器"
+	desc = "这种一次性外观涂装器可为特定类型的 MOD 模块化外骨骼添加一款外观。必须用于未启动的控制单元。"
 	icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
 	icon_state = "skinapplier"
 	var/skin = "civilian"
 
 /obj/item/mod/skin_applier/Initialize(mapload)
 	. = ..()
-	name = "MOD [skin] skin applier"
+	name = "MOD [skin] 外观涂装器"
 
 /obj/item/mod/skin_applier/interact_with_atom(atom/attacked_atom, mob/living/user, params)
 	if(!istype(attacked_atom, /obj/item/mod/control))
 		return NONE
 	var/obj/item/mod/control/mod = attacked_atom
 	if(mod.active || mod.activating)
-		balloon_alert(user, "unit active!")
+		balloon_alert(user, "单元运行中！")
 		return ITEM_INTERACT_BLOCKING
 	if(!(skin in mod.theme.variants))
-		balloon_alert(user, "wrong theme for skin!")
+		balloon_alert(user, "外观与主题不符！")
 		return ITEM_INTERACT_BLOCKING
 	mod.theme.set_skin(mod, skin)
-	balloon_alert(user, "skin applied")
+	balloon_alert(user, "外观已应用")
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/mod/skin_applier/honkerative
-	desc = /obj/item/mod/skin_applier::desc + " Additionally, this kit attempts to install a waddling module. Honk!"
+	desc = /obj/item/mod/skin_applier::desc + " 此外，这套工具还会尝试安装一个摇摆模块。洪克！"
 	skin = "honkerative"
 
 /obj/item/mod/skin_applier/honkerative/interact_with_atom(obj/item/mod/control/controlunit, mob/living/user, params)

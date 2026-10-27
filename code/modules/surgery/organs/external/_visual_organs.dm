@@ -103,8 +103,8 @@ Unlike normal organs, we're actually inside a persons limbs at all times
 
 ///The horns of a lizard!
 /obj/item/organ/horns
-	name = "horns"
-	desc = "Why do lizards even have horns? Well, this one obviously doesn't."
+	name = "角"
+	desc = "蜥蜴为什么会长角呢？好吧，这一只显然没有。"
 	icon_state = "horns"
 
 	zone = BODY_ZONE_HEAD
@@ -131,8 +131,8 @@ Unlike normal organs, we're actually inside a persons limbs at all times
 
 ///The frills of a lizard (like weird fin ears)
 /obj/item/organ/frills
-	name = "frills"
-	desc = "Ear-like external organs often seen on aquatic reptilians."
+	name = "颈褶"
+	desc = "常见于水生爬行动物的耳状外器官。"
 	icon_state = "frills"
 
 	zone = BODY_ZONE_HEAD
@@ -180,8 +180,8 @@ Unlike normal organs, we're actually inside a persons limbs at all times
 
 ///Guess what part of the lizard this is?
 /obj/item/organ/snout
-	name = "snout" // SKYRAT EDIT - ORIGINAL: name = "lizard snout"
-	desc = "Take a closer look at that snout!"
+	name = "口鼻" // SKYRAT EDIT - ORIGINAL: name = "lizard snout"
+	desc = "仔细看看那个口鼻！"
 	icon_state = "snout"
 
 	zone = BODY_ZONE_HEAD
@@ -225,8 +225,8 @@ Unlike normal organs, we're actually inside a persons limbs at all times
 
 ///A moth's antennae
 /obj/item/organ/antennae
-	name = "moth antennae"
-	desc = "A moths antennae. What is it telling them? What are they sensing?"
+	name = "蛾类触角"
+	desc = "蛾子的触角。它在向它们传达什么？它们又在感知什么？"
 	icon_state = "antennae"
 
 	zone = BODY_ZONE_HEAD
@@ -260,7 +260,7 @@ Unlike normal organs, we're actually inside a persons limbs at all times
 	SIGNAL_HANDLER
 
 	if(!burnt && human.bodytemperature >= 800 && human.fire_stacks > 0) //do not go into the extremely hot light. you will not survive
-		to_chat(human, span_danger("Your precious antennae burn to a crisp!"))
+		to_chat(human, span_danger("你宝贵的触角被烧焦了！"))
 
 		burn_antennae()
 		human.update_body_parts()
@@ -310,8 +310,8 @@ Unlike normal organs, we're actually inside a persons limbs at all times
 
 ///The leafy hair of a podperson
 /obj/item/organ/pod_hair
-	name = "podperson hair"
-	desc = "Base for many-o-salads."
+	name = "豆荚人头发"
+	desc = "许多沙拉的基础材料。"
 
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EXTERNAL_POD_HAIR

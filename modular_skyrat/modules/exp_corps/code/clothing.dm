@@ -1,6 +1,6 @@
 /obj/item/clothing/under/rank/expeditionary_corps
-	name = "expeditionary corps uniform"
-	desc = "A rugged uniform for those who see the worst at the edges of the galaxy."
+	name = "远征军团制服"
+	desc = "一套结实的制服，专为那些在银河边缘见证最黑暗事物的人而制。"
 	icon_state = "exp_corps"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/uniforms.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/uniform.dmi'
@@ -15,8 +15,8 @@
 	acid = 15
 
 /obj/item/storage/belt/military/expeditionary_corps
-	name = "expeditionary corps chest rig"
-	desc = "A set of tactical webbing worn by expeditionary corps."
+	name = "远征军团胸挂"
+	desc = "一套由远征军团穿戴的战术织带。"
 	icon_state = "webbing_exp_corps"
 	worn_icon_state = "webbing_exp_corps"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
@@ -30,15 +30,15 @@
 	abstract_type = /datum/atom_skin/exp_corps_webbing
 
 /datum/atom_skin/exp_corps_webbing/webbing
-	preview_name = "Webbing"
+	preview_name = "织带"
 	new_icon_state = "webbing_exp_corps"
 
 /datum/atom_skin/exp_corps_webbing/belt
-	preview_name = "Belt"
+	preview_name = "腰带"
 	new_icon_state = "belt_exp_corps"
 
 /obj/item/storage/belt/military/expeditionary_corps/combat_tech
-	name = "combat tech's chest rig"
+	name = "战斗技术员胸挂"
 
 /obj/item/storage/belt/military/expeditionary_corps/combat_tech/PopulateContents()
 	new /obj/item/screwdriver(src)
@@ -50,7 +50,7 @@
 	new /obj/item/stack/cable_coil(src)
 
 /obj/item/storage/belt/military/expeditionary_corps/field_medic
-	name = "field medic's chest rig"
+	name = "战地医疗兵胸挂"
 
 /obj/item/storage/belt/military/expeditionary_corps/field_medic/PopulateContents()
 	new /obj/item/scalpel(src)
@@ -62,7 +62,7 @@
 	new /obj/item/bonesetter(src)
 
 /obj/item/storage/belt/military/expeditionary_corps/pointman
-	name = "pointman's chest rig"
+	name = "尖兵胸挂"
 
 /obj/item/storage/belt/military/expeditionary_corps/pointman/PopulateContents()
 	new /obj/item/reagent_containers/cup/glass/bottle/whiskey(src)
@@ -70,7 +70,7 @@
 	new /obj/item/reagent_containers/cup/bottle/morphine(src)
 
 /obj/item/storage/belt/military/expeditionary_corps/marksman
-	name = "marksman's chest rig"
+	name = "射手胸挂"
 
 /obj/item/storage/belt/military/expeditionary_corps/marksman/PopulateContents()
 	new /obj/item/binoculars(src)
@@ -79,15 +79,15 @@
 	new /obj/item/clothing/mask/bandana/skull(src)
 
 /obj/item/clothing/shoes/combat/expeditionary_corps
-	name = "expeditionary corps boots"
-	desc = "High speed, low drag combat boots."
+	name = "远征军团靴"
+	desc = "高速低阻的战斗靴。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
 	icon_state = "exp_corps"
 	inhand_icon_state = "jackboots"
 
 /obj/item/clothing/gloves/color/black/expeditionary_corps
-	name = "expeditionary corps gloves"
+	name = "远征军团手套"
 	icon_state = "exp_corps"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
@@ -98,7 +98,7 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/gloves/chief_engineer/expeditionary_corps
-	name = "expeditionary corps insulated gloves"
+	name = "远征军团绝缘手套"
 	icon_state = "exp_corps_eng"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
@@ -115,7 +115,7 @@
 	acid = 50
 
 /obj/item/clothing/gloves/latex/nitrile/expeditionary_corps
-	name = "expeditionary corps medic gloves"
+	name = "远征军团医疗手套"
 	icon_state = "exp_corps_med"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
@@ -132,8 +132,8 @@
 	acid = 50
 
 /obj/item/storage/backpack/duffelbag/expeditionary_corps
-	name = "expeditionary corps bag"
-	desc = "A large bag for holding extra tactical supplies."
+	name = "远征军团背包"
+	desc = "一个大号背包，用于存放额外战术补给。"
 	icon_state = "exp_corps"
 	inhand_icon_state = "backpack"
 	icon = 'modular_skyrat/modules/exp_corps/icons/backpack.dmi'
@@ -147,16 +147,16 @@
 	abstract_type = /datum/atom_skin/exp_corps_bag
 
 /datum/atom_skin/exp_corps_bag/backpack
-	preview_name = "Backpack"
+	preview_name = "背包"
 	new_icon_state = "exp_corps"
 
 /datum/atom_skin/exp_corps_bag/belt
-	preview_name = "Belt"
+	preview_name = "腰带"
 	new_icon_state = "exp_corps_satchel"
 
 /obj/item/clothing/suit/armor/vest/expeditionary_corps
-	name = "expeditionary corps armor vest"
-	desc = "An armored vest that provides okay protection against most types of damage."
+	name = "远征军团护甲背心"
+	desc = "一件护甲背心，对大多数伤害类型提供尚可的防护。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "exp_corps"
@@ -190,8 +190,8 @@
 	wound = 10
 
 /obj/item/clothing/head/helmet/expeditionary_corps
-	name = "expeditionary corps helmet"
-	desc = "A robust helmet worn by Expeditionary Corps troopers. Alt+click it to toggle the NV system."
+	name = "远征军团头盔"
+	desc = "远征军团士兵佩戴的坚固头盔。按住 Alt 点击可切换夜视系统。"
 	icon_state = "exp_corps"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/helmet.dmi'
@@ -212,7 +212,7 @@
 	wound = 10
 
 /datum/action/item_action/toggle_nv_helmet
-	name = "Toggle Nightvision"
+	name = "切换夜视"
 
 /datum/action/item_action/toggle_nv_helmet/Trigger(trigger_flags)
 	if(!..())
@@ -222,10 +222,10 @@
 		return
 	my_helmet.nightvision = !my_helmet.nightvision
 	if(my_helmet.nightvision)
-		to_chat(owner, span_notice("You flip the NV goggles down."))
+		to_chat(owner, span_notice("你拉下夜视镜。"))
 		my_helmet.enable_nv()
 	else
-		to_chat(owner, span_notice("You flip the NV goggles up."))
+		to_chat(owner, span_notice("你推上夜视镜。"))
 		my_helmet.disable_nv()
 	my_helmet.update_appearance()
 
@@ -256,10 +256,10 @@
 
 	nightvision = !nightvision
 	if(nightvision)
-		to_chat(user, span_notice("You flip the NV goggles down."))
+		to_chat(user, span_notice("你拉下夜视镜。"))
 		enable_nv()
 	else
-		to_chat(user, span_notice("You flip the NV goggles up."))
+		to_chat(user, span_notice("你推上夜视镜。"))
 		disable_nv()
 	update_appearance()
 	return CLICK_ACTION_SUCCESS

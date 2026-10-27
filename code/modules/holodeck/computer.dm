@@ -30,8 +30,8 @@ and clear when youre done! if you dont i will use :newspaper2: on you
 GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf/open/floor/holofloor, /turf/closed)))
 
 /obj/machinery/computer/holodeck
-	name = "holodeck control console"
-	desc = "A computer used to control a nearby holodeck."
+	name = "全息甲板控制台"
+	desc = "一台用于控制附近全息甲板的计算机。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/holodeck")
 	icon_screen = "holocontrol"
 
@@ -182,7 +182,7 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 				emergency_shutdown()
 			nerf(obj_flags & EMAGGED,FALSE)
 			obj_flags ^= EMAGGED
-			say("Safeties reset. Restarting...")
+			say("安全协议已重置。正在重启……")
 			usr.log_message("disabled Holodeck safeties.", LOG_GAME)
 
 ///this is what makes the holodeck not spawn anything on broken tiles (space and non engine plating / non holofloors)
@@ -202,7 +202,7 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 		force = TRUE
 
 	if (!force && (!COOLDOWN_FINISHED(src, holodeck_cooldown) || spawning_simulation))
-		say("ERROR. Recalibrating projection apparatus.")
+		say("错误。正在重新校准投影设备。")
 		return
 
 	if(spawning_simulation)
@@ -225,12 +225,12 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 
 	if(template.restricted)
 		usr.log_message("loaded a restricted Holodeck program: [program].", LOG_GAME)
-		message_admins("[ADMIN_LOOKUPFLW(usr)] loaded a restricted Holodeck program: [program].")
+		message_admins("[ADMIN_LOOKUPFLW(usr)] 加载了一个受限的全息甲板程序：[program]。")
 
 	spawned = template.created_atoms //populate the spawned list with the atoms belonging to the holodeck
 
 	if(istype(template, /datum/map_template/holodeck/thunderdome1218) && !SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_MEDISIM])
-		say("Special note from \"1218 AD\" developer: I see you too are interested in the REAL dark ages of humanity! I've made this program also unlock some interesting shuttle designs on any communication console around. Have fun!")
+		say("来自“1218 年”开发者的特别留言：看来你也对人类真正的黑暗时代感兴趣！我让这个程序同时在附近所有通讯控制台上解锁了一些有趣的穿梭机设计。玩得开心！")
 		SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_MEDISIM] = TRUE
 
 	nerf(!(obj_flags & EMAGGED))
@@ -347,9 +347,9 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 	if(istype(holo_atom, /obj/item/organ))
 		var/obj/item/organ/holo_organ = holo_atom
 		if(holo_organ.owner) // a mob has the holo organ inside them... oh dear
-			to_chat(holo_organ.owner, span_warning("\The [holo_organ] inside of you fades away!"))
+			to_chat(holo_organ.owner, span_warning("你体内的 [holo_organ] 消散了！"))
 	if(!silent)
-		visible_message(span_notice("[holo_atom] fades away!"))
+		visible_message(span_notice("[holo_atom] 消散了！"))
 
 	if(is_type_in_list(holo_atom.loc, special_locs))
 		qdel(holo_atom.loc)
@@ -376,7 +376,7 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 	if(!floorcheck()) //if any turfs in the floor of the holodeck are broken
 		emergency_shutdown()
 		damaged = TRUE
-		visible_message("The holodeck overloads!")
+		visible_message("全息甲板过载了！")
 		for(var/turf/holo_turf in linked)
 			if(prob(30))
 				do_sparks(2, 1, holo_turf)
@@ -436,17 +436,17 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 	if(obj_flags & EMAGGED)
 		return FALSE
 	if(!LAZYLEN(emag_programs))
-		balloon_alert(user, "no card swipe port!")
+		balloon_alert(user, "没有刷卡接口！")
 		return FALSE
 	playsound(src, SFX_SPARKS, 75, TRUE)
 	obj_flags |= EMAGGED
 	if (user)
-		balloon_alert(user, "safety protocols destroyed") // im gonna keep this once since this perfectly describes it
-		to_chat(user, span_warning("You override the safety and security protocols."))
+		balloon_alert(user, "安全协议已摧毁") // im gonna keep this once since this perfectly describes it
+		to_chat(user, span_warning("你覆盖了安全与安保协议。"))
 		user.log_message("emagged the Holodeck Control Console.", LOG_GAME)
-		message_admins("[ADMIN_LOOKUPFLW(user)] emagged the Holodeck Control Console.")
+		message_admins("[ADMIN_LOOKUPFLW(user)] 用电磁卡破解了全息甲板控制台。")
 
-	say("Warning. Automatic shutoff and derezzing protocols have been corrupted. Please call Nanotrasen maintenance and do not use the simulator.")
+	say("警告。自动关闭与消散协议已损坏。请联系纳米传讯维修部门，并请勿使用模拟器。")
 	nerf(!(obj_flags & EMAGGED),FALSE)
 	return TRUE
 

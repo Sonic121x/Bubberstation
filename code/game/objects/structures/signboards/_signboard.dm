@@ -4,8 +4,8 @@
 #define MAX_SIGN_LEN 106
 
 /obj/structure/signboard
-	name = "sign"
-	desc = "A foldable sign."
+	name = "牌子"
+	desc = "一块可折叠的牌子。"
 	icon = 'icons/obj/signboards.dmi'
 	icon_state = "sign"
 	base_icon_state = "sign"
@@ -30,7 +30,7 @@
 	. = ..()
 	if(sign_text)
 		set_text(sign_text, force = TRUE)
-		investigate_log("had its text set on load to \"[sign_text]\"", INVESTIGATE_SIGNBOARD)
+		investigate_log("载入时文字被设为 \"[sign_text]\"", INVESTIGATE_SIGNBOARD)
 	update_appearance()
 	register_context()
 
@@ -43,27 +43,27 @@
 	if(is_locked(user))
 		return
 	if(held_item?.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = anchored ? "Unsecure" : "Secure"
+		context[SCREENTIP_CONTEXT_LMB] = anchored ? "松开固定" : "固定"
 		return CONTEXTUAL_SCREENTIP_SET
 	if((edit_by_hand || istype(held_item, /obj/item/pen)) && (anchored || show_while_unanchored))
-		context[SCREENTIP_CONTEXT_LMB] = "Set Displayed Text"
+		context[SCREENTIP_CONTEXT_LMB] = "设置显示文字"
 		if(sign_text)
-			context[SCREENTIP_CONTEXT_ALT_RMB] = "Clear Sign"
+			context[SCREENTIP_CONTEXT_ALT_RMB] = "清空牌面"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/signboard/examine(mob/user)
 	. = ..()
 	if(!edit_by_hand)
-		. += span_notice("You can write on the sign with a <b>pen.</b>")
+		. += span_notice("你可以用<b>笔</b>在牌子上写字。")
 	if(anchored)
-		. += span_notice("It's secured to the floor, you could use a <b>wrench</b> to unsecure and move it.")
+		. += span_notice("它被固定在地面上，你可以用<b>扳手</b>松开固定并移动它。")
 	else
-		. += span_notice("It's unsecured, you could use a <b>wrench</b> to secure it in place.")
+		. += span_notice("它尚未固定，你可以用<b>扳手</b>把它固定到位。")
 	if(sign_text)
-		. += span_boldnotice("\nIt currently displays the following:")
+		. += span_boldnotice("\n它目前显示以下内容：")
 		. += span_info(html_encode(sign_text))
 	else
-		. += span_notice("\nIt's blank.")
+		. += span_notice("\n上面是空白的。")
 
 /obj/structure/signboard/update_icon_state()
 	. = ..()
@@ -88,7 +88,7 @@
 	if(.)
 		return
 	if(!edit_by_hand && !user.is_holding_item_of_type(/obj/item/pen))
-		balloon_alert(user, "need a pen!")
+		balloon_alert(user, "需要一支笔！")
 		return TRUE
 	if(try_set_text(user))
 		return TRUE
@@ -101,7 +101,7 @@
 		return FALSE
 	var/new_text = tgui_input_text(
 		user,
-		message = "What would you like to set this sign's text to?",
+		message = "你想把这块牌子的文字设置成什么？",
 		title = full_capitalize(name),
 		default = sign_text,
 		max_length = max_length,
@@ -116,13 +116,13 @@
 		return FALSE
 	var/list/soft_filter_result = CAN_BYPASS_FILTER(user) ? null : is_soft_ic_filtered(new_text)
 	if(soft_filter_result)
-		if(tgui_alert(user, "Your message contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to say it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+		if(tgui_alert(user, "你的信息中包含 \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\"。\"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\"，你确定要这样说吗？", "软性屏蔽词", list("Yes", "No")) != "Yes")
 			return FALSE
-		message_admins("[ADMIN_LOOKUPFLW(user)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" when writing to the sign at [ADMIN_VERBOSEJMP(src)], they may be using a disallowed term. Sign text: \"[html_encode(new_text)]\"")
-		log_admin_private("[key_name(user)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" when writing to the sign at [loc_name(src)], they may be using a disallowed term. Sign text: \"[new_text]\"")
+		message_admins("[ADMIN_LOOKUPFLW(user)] 在 [ADMIN_VERBOSEJMP(src)] 处的牌子上写字时通过了软性屏蔽词 \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\"，其可能正在使用不被允许的词汇。牌面文字：\"[html_encode(new_text)]\"")
+		log_admin_private("[key_name(user)] 在 [loc_name(src)] 处的牌子上写字时通过了软性屏蔽词 \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\"，其可能正在使用不被允许的词汇。牌面文字：\"[new_text]\"")
 	if(set_text(new_text))
-		balloon_alert(user, "set text")
-		investigate_log("([key_name(user)]) set text to \"[sign_text || "(none)"]\"", INVESTIGATE_SIGNBOARD)
+		balloon_alert(user, "已设置文字")
+		investigate_log("([key_name(user)]) 将文字设为 \"[sign_text || "(无)"]\"", INVESTIGATE_SIGNBOARD)
 		return TRUE
 
 /obj/structure/signboard/click_alt_secondary(mob/user)
@@ -130,13 +130,13 @@
 	if(!sign_text || !can_interact(user) || !user.can_perform_action(src, NEED_DEXTERITY))
 		return
 	if(!edit_by_hand && !user.is_holding_item_of_type(/obj/item/pen))
-		balloon_alert(user, "need a pen!")
+		balloon_alert(user, "需要一支笔！")
 		return
 	if(check_locked(user))
 		return
 	if(set_text(null))
-		balloon_alert(user, "cleared text")
-		investigate_log("([key_name(user)]) cleared the text", INVESTIGATE_SIGNBOARD)
+		balloon_alert(user, "已清空文字")
+		investigate_log("([key_name(user)]) 清空了文字", INVESTIGATE_SIGNBOARD)
 
 /obj/structure/signboard/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -161,7 +161,7 @@
 /obj/structure/signboard/proc/check_locked(mob/user, silent = FALSE)
 	. = is_locked(user)
 	if(. && !silent)
-		balloon_alert(user, "locked!")
+		balloon_alert(user, "已锁定！")
 
 /obj/structure/signboard/proc/should_display_text()
 	if(QDELETED(src) || !isturf(loc) || !sign_text)

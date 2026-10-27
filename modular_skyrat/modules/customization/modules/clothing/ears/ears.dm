@@ -1,6 +1,6 @@
 /obj/item/clothing/ears/headphones
-	name = "headphones"
-	desc = "Unce unce unce unce. Boop!"
+	name = "耳机"
+	desc = "咚次咚次咚次咚次。哔！"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/accessories.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/ears.dmi'
 	icon_state = "headphones"
@@ -23,11 +23,11 @@
 /obj/item/clothing/ears/headphones/proc/toggle(owner)
 	headphones_on = !headphones_on
 	update_icon()
-	to_chat(owner, span_notice("You turn the music [headphones_on? "on. Untz Untz Untz!" : "off."]"))
+	to_chat(owner, span_notice("你把音乐[headphones_on? "打开。咚次咚次咚次！" : "关掉了。"]"))
 
 /datum/action/item_action/toggle_headphones
-	name = "Toggle Headphones"
-	desc = "UNTZ UNTZ UNTZ"
+	name = "切换耳机"
+	desc = "咚次咚次咚次"
 
 /datum/action/item_action/toggle_headphones/Trigger(trigger_flags)
 	if(!..())

@@ -1,8 +1,8 @@
 #define CART_HAS_MINIMUM_REAGENT_VOLUME !(reagents.total_volume < 1)
 
 /obj/structure/mop_bucket
-	name = "mop bucket"
-	desc = "Fill it with water, but don't forget a mop!"
+	name = "拖把桶"
+	desc = "往里灌水，但别忘了带上拖把！"
 	icon = 'icons/obj/service/janitor.dmi'
 	icon_state = "mopbucket"
 	density = TRUE
@@ -19,11 +19,11 @@
 	. = ..()
 
 	if(istype(held_item, /obj/item/mop))
-		context[SCREENTIP_CONTEXT_RMB] = "Wet [held_item]"
+		context[SCREENTIP_CONTEXT_RMB] = "浸湿[held_item]"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/reagent_containers))
-		context[SCREENTIP_CONTEXT_LMB] = "Fill mop bucket"
+		context[SCREENTIP_CONTEXT_LMB] = "往拖把桶里注水"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return .
@@ -31,15 +31,15 @@
 /obj/structure/mop_bucket/item_interaction_secondary(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/mop))
 		if(tool.reagents.total_volume >= tool.reagents.maximum_volume)
-			balloon_alert(user, "already soaked!")
+			balloon_alert(user, "已经浸透了！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!CART_HAS_MINIMUM_REAGENT_VOLUME)
-			balloon_alert(user, "empty!")
+			balloon_alert(user, "空的！")
 			return ITEM_INTERACT_BLOCKING
 
 		reagents.trans_to(tool, tool.reagents.maximum_volume, transferred_by = user)
-		balloon_alert(user, "doused mop")
+		balloon_alert(user, "已浸湿拖把")
 		playsound(src, 'sound/effects/slosh.ogg', 25, vary = TRUE)
 		return ITEM_INTERACT_SUCCESS
 
@@ -51,8 +51,8 @@
 		. += water_icon
 
 /obj/structure/mop_bucket/janitorialcart
-	name = "janitorial cart"
-	desc = "This is the alpha and omega of sanitation."
+	name = "清洁车"
+	desc = "这是卫生事业的起点与终点。"
 	icon_state = "cart"
 	water_icon = "cart_water"
 	var/obj/item/storage/bag/trash/mybag
@@ -114,7 +114,7 @@
 /obj/structure/mop_bucket/janitorialcart/examine(mob/user)
 	. = ..()
 	if(contents.len)
-		. += span_bold(span_info("\nIt is carrying:"))
+		. += span_bold(span_info("\n它装着："))
 		for(var/thing in sort_names(contents))
 			if(thing in held_signs)
 				continue //we'll do this after.
@@ -125,51 +125,51 @@
 				. += "\t[icon2html(sign_obj, user)] [convert_integer_to_words(length(held_signs))] [sign_obj.name]\s"
 			else
 				. += "\t[icon2html(sign_obj, user)] \a [sign_obj]"
-		. += span_notice("\n<b>Left-click</b> to [contents.len > 1 ? "search [src]" : "remove [contents[1]]"].")
+		. += span_notice("\n<b>左键点击</b>以[contents.len > 1 ? "翻找 [src]" : "取出 [contents[1]]"]。")
 		if(mybag)
-			. += span_notice("<b>Right-click</b> with a <b>[weight_class_to_text(mybag.atom_storage.max_specific_storage)] item</b> to put it in [mybag].")
+			. += span_notice("<b>右键点击</b>，手持<b>[weight_class_to_text(mybag.atom_storage.max_specific_storage)]物品</b>，可将其放入[mybag]。")
 		if(mymop)
-			. += span_notice("<b>Right-click</b> to quickly remove [mymop].")
+			. += span_notice("<b>右键点击</b>可快速取出[mymop]。")
 	if(CART_HAS_MINIMUM_REAGENT_VOLUME)
-		. += span_notice("<b>Right-click</b> with a <b>mop</b> to wet it.")
-		. += span_info("<b>Crowbar</b> it to dump its mop bucket onto [get_turf(src)].")
+		. += span_notice("<b>右键点击</b>手持<b>拖把</b>可将其浸湿。")
+		. += span_info("用<b>撬棍</b>撬开它，把拖把桶里的水倒在[get_turf(src)]。")
 
 /obj/structure/mop_bucket/janitorialcart/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
 
 	if(isnull(held_item) && contents.len)
 		if(mymop)
-			context[SCREENTIP_CONTEXT_RMB] = "Remove [mymop]"
+			context[SCREENTIP_CONTEXT_RMB] = "取出[mymop]"
 			. = CONTEXTUAL_SCREENTIP_SET
 		if(contents.len == 1)
-			context[SCREENTIP_CONTEXT_LMB] = "Remove [contents[1]]"
+			context[SCREENTIP_CONTEXT_LMB] = "取出[contents[1]]"
 			. = CONTEXTUAL_SCREENTIP_SET
-		context[SCREENTIP_CONTEXT_LMB] = "Search cart"
+		context[SCREENTIP_CONTEXT_LMB] = "翻找车斗"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/mop) && !mymop)
-		context[SCREENTIP_CONTEXT_LMB] = "Insert [held_item]"
+		context[SCREENTIP_CONTEXT_LMB] = "插入[held_item]"
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/pushbroom) && !mybroom)
-		context[SCREENTIP_CONTEXT_LMB] = "Insert [held_item]"
+		context[SCREENTIP_CONTEXT_LMB] = "插入[held_item]"
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/storage/bag/trash) && !mybag)
-		context[SCREENTIP_CONTEXT_LMB] = "Insert [held_item]"
+		context[SCREENTIP_CONTEXT_LMB] = "插入[held_item]"
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/reagent_containers/spray/cleaner) && !myspray)
-		context[SCREENTIP_CONTEXT_LMB] = "Insert [held_item]"
+		context[SCREENTIP_CONTEXT_LMB] = "插入[held_item]"
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/clothing/suit/caution) && held_signs.len < max_signs)
-		context[SCREENTIP_CONTEXT_LMB] = "Insert [held_item]"
+		context[SCREENTIP_CONTEXT_LMB] = "插入[held_item]"
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/lightreplacer) && !myreplacer)
-		context[SCREENTIP_CONTEXT_LMB] = "Insert [held_item]"
+		context[SCREENTIP_CONTEXT_LMB] = "插入[held_item]"
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item) && held_item.tool_behaviour == TOOL_CROWBAR && CART_HAS_MINIMUM_REAGENT_VOLUME)
-		context[SCREENTIP_CONTEXT_LMB] = "Dump [src]'s mop bucket on [get_turf(src)]"
+		context[SCREENTIP_CONTEXT_LMB] = "把[src]的拖把桶倒在[get_turf(src)]"
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(!isnull(held_item) && mybag?.atom_storage?.max_specific_storage >= held_item.w_class)
-		context[SCREENTIP_CONTEXT_RMB] = "Insert [held_item] into [mybag]"
+		context[SCREENTIP_CONTEXT_RMB] = "把[held_item]放入[mybag]"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	return . || NONE
@@ -177,86 +177,86 @@
 /obj/structure/mop_bucket/janitorialcart/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/mop))
 		if(mymop)
-			balloon_alert(user, "already has \a [mymop]!")
+			balloon_alert(user, "上面已经放着[mymop]了！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, "placed [tool]")
+		balloon_alert(user, "已放置[tool]")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/pushbroom))
 		if(mybroom)
-			balloon_alert(user, "already has \a [mybroom]!")
+			balloon_alert(user, "上面已经放着[mybroom]了！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, "placed [tool]")
+		balloon_alert(user, "已放置[tool]")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/storage/bag/trash))
 		if(mybag)
-			balloon_alert(user, "already has \a [mybag]!")
+			balloon_alert(user, "上面已经放着[mybag]了！")
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/storage/bag/trash/insert = tool
 		if(!insert.insertable)
-			balloon_alert(user, "cannot be inserted!")
+			balloon_alert(user, "无法插入！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, "attached [tool]")
+		balloon_alert(user, "已挂上[tool]")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/reagent_containers/spray/cleaner))
 		if(myspray)
-			balloon_alert(user, "already has \a [myspray]!")
+			balloon_alert(user, "上面已经放着[myspray]了！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, "placed [tool]")
+		balloon_alert(user, "已放置[tool]")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/lightreplacer))
 		if(myreplacer)
-			balloon_alert(user, "already has \a [myreplacer]!")
+			balloon_alert(user, "上面已经放着[myreplacer]了！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, "placed [tool]")
+		balloon_alert(user, "已放置[tool]")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/clothing/suit/caution))
 		if(held_signs.len >= max_signs)
-			balloon_alert(user, "sign rack is full!")
+			balloon_alert(user, "警示牌架已满！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, "placed [tool]")
+		balloon_alert(user, "已放置[tool]")
 		return ITEM_INTERACT_SUCCESS
 
 	return ..()
 
 /obj/structure/mop_bucket/janitorialcart/crowbar_act(mob/living/user, obj/item/tool)
 	if(!CART_HAS_MINIMUM_REAGENT_VOLUME)
-		balloon_alert(user, "mop bucket is empty!")
+		balloon_alert(user, "拖把桶是空的！")
 		return ITEM_INTERACT_SUCCESS
-	user.balloon_alert_to_viewers("starts dumping [src]...", "started dumping [src]...")
-	user.visible_message(span_notice("[user] begins to dumping the contents of [src]'s mop bucket."), span_notice("You begin to dump the contents of [src]'s mop bucket..."))
+	user.balloon_alert_to_viewers("开始倾倒[src]……", "开始倾倒[src]……")
+	user.visible_message(span_notice("[user]开始倾倒[src]拖把桶里的东西。"), span_notice("你开始倾倒[src]拖把桶里的东西……"))
 	if(tool.use_tool(src, user, 5 SECONDS, volume = 50))
-		balloon_alert(user, "dumped [src]")
-		to_chat(user, span_notice("You dumped the contents of [src]'s mop bucket onto the floor."))
+		balloon_alert(user, "已倾倒[src]")
+		to_chat(user, span_notice("你把[src]拖把桶里的东西倒在了地板上。"))
 		reagents.expose(loc)
 		reagents.clear_reagents()
 		update_appearance(UPDATE_OVERLAYS)
@@ -306,36 +306,36 @@
 		if("Trash bag")
 			if(!mybag)
 				return
-			balloon_alert(user, "detached [mybag]")
+			balloon_alert(user, "已取下[mybag]")
 			user.put_in_hands(mybag)
 		if("Mop")
 			if(!mymop)
 				return
-			balloon_alert(user, "removed [mymop]")
+			balloon_alert(user, "已取出[mymop]")
 			user.put_in_hands(mymop)
 		if("Broom")
 			if(!mybroom)
 				return
-			balloon_alert(user, "removed [mybroom]")
+			balloon_alert(user, "已取出[mybroom]")
 			user.put_in_hands(mybroom)
 		if("Spray bottle")
 			if(!myspray)
 				return
-			balloon_alert(user, "removed [myspray]")
+			balloon_alert(user, "已取出[myspray]")
 			user.put_in_hands(myspray)
 		if("Light replacer")
 			if(!myreplacer)
 				return
-			balloon_alert(user, "removed [myreplacer]")
+			balloon_alert(user, "已取出[myreplacer]")
 			user.put_in_hands(myreplacer)
 		if("Sign")
 			if(!held_signs.len)
 				return
 			var/obj/item/clothing/suit/caution/removed_sign = held_signs[1]
 			if(length(held_signs) > 1)
-				balloon_alert(user, "removed \a [removed_sign]")
+				balloon_alert(user, "已取出[removed_sign]")
 			else
-				balloon_alert(user, "removed [removed_sign]")
+				balloon_alert(user, "已取出[removed_sign]")
 			user.put_in_hands(removed_sign)
 		else
 			return
@@ -343,7 +343,7 @@
 /obj/structure/mop_bucket/janitorialcart/attack_hand_secondary(mob/user, list/modifiers)
 	if(!mymop)
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
-	balloon_alert(user, "removed [mymop]")
+	balloon_alert(user, "已取出[mymop]")
 	user.put_in_hands(mymop)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 

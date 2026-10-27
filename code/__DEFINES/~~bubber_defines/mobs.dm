@@ -39,11 +39,11 @@
 #define BLOOD_TYPE_COPPER "CU"
 #define BLOOD_TYPE_NANITE_SLURRY "NS"
 
-#define AI_HOLOGRAM_MOTHROACH "Mothroach"
-#define	AI_HOLOGRAM_STOAT "Stoat"
-#define	AI_HOLOGRAM_BEE "Bee"
-#define	AI_HOLOGRAM_REDPANDA "Red Panda"
-#define	AI_HOLOGRAM_FENNEC "Fennec"
+#define AI_HOLOGRAM_MOTHROACH "蛾蟑"
+#define	AI_HOLOGRAM_STOAT "白鼬"
+#define	AI_HOLOGRAM_BEE "蜜蜂"
+#define	AI_HOLOGRAM_REDPANDA "小熊猫"
+#define	AI_HOLOGRAM_FENNEC "耳廓狐"
 
 #define BODYPART_ICON_GAS 'modular_skyrat/modules/bodyparts/icons/serpentid_parts_greyscale.dmi'
 

@@ -24,7 +24,7 @@
 	if(antag_team)
 		antag_team.add_member(src)
 	INVOKE_ASYNC(A, TYPE_PROC_REF(/datum/antagonist, on_gain))
-	log_game("[key_name(src)] has gained antag datum [A.name]([A.type]).")
+	log_game("[key_name(src)]获得了反派角色[A.name]（[A.type]）。")
 	handle_exploitables() //SKYRAT EDIT ADDITION - EXPLOITABLES MENU
 	return A
 
@@ -37,7 +37,7 @@
 
 	antag.on_removal()
 	qdel(antag)
-	current?.log_message("has lost antag datum [antag] ([antag.type]).", LOG_GAME)
+	current?.log_message("失去了反派角色[antag]（[antag.type]）。", LOG_GAME)
 	return TRUE
 
 /datum/mind/proc/remove_all_antag_datums() //For the Lazy amongst us.
@@ -45,7 +45,7 @@
 		antag.on_removal()
 		qdel(antag)
 
-	current?.log_message("has lost all antag datums.", LOG_GAME)
+	current?.log_message("失去了所有反派角色。", LOG_GAME)
 
 /datum/mind/proc/has_antag_datum(datum_type, check_subtypes = TRUE)
 	if(!datum_type)
@@ -132,7 +132,7 @@
 	var/cant_speak = (HAS_TRAIT(traitor_mob, TRAIT_MUTE) || is_mime_job(assigned_role))
 	if(uplink_spawn_location == UPLINK_RADIO && cant_speak)
 		if(!silent)
-			to_chat(current, span_warning("You have been deemed ineligible for a radio uplink. Supplying standard uplink instead."))
+			to_chat(current, span_warning("你不符合使用无线电上行链路的条件，将改为提供标准上行链路。"))
 		uplink_spawn_location = UPLINK_PDA
 
 	if(uplink_spawn_location != UPLINK_IMPLANT)
@@ -144,7 +144,7 @@
 		var/obj/item/implant/uplink/starting/new_implant = new(traitor_mob)
 		new_implant.implant(traitor_mob, null, silent = TRUE)
 		if(!silent)
-			to_chat(current, span_boldnotice("Your Syndicate Uplink has been cunningly implanted in you, for a small TC fee. Simply trigger the uplink to access it."))
+			to_chat(current, span_boldnotice("花费少量传送水晶后，你的辛迪加上行链路已被巧妙地植入体内。触发上行链路即可使用。"))
 		add_memory(/datum/memory/key/traitor_uplink/implant, uplink_loc = "implant")
 		return new_implant
 
@@ -158,18 +158,18 @@
 	new_uplink.uplink_handler.assigned_role = traitor_mob.mind.assigned_role.title
 	new_uplink.uplink_handler.assigned_species = traitor_mob.dna.species.id
 
-	unlock_text = "Your Uplink is cunningly disguised as your [uplink_loc.name]. "
+	unlock_text = "你的上行链路巧妙地伪装成了[uplink_loc.name]。"
 	if(istype(uplink_loc, /obj/item/modular_computer/pda))
-		unlock_text += "Simply enter the code \"[new_uplink.unlock_code]\" into the ring tone selection to unlock its hidden features."
+		unlock_text += "只需在铃声选择处输入密码\"[new_uplink.unlock_code]\"，即可解锁隐藏功能。"
 		add_memory(/datum/memory/key/traitor_uplink, uplink_loc = "PDA", uplink_code = new_uplink.unlock_code)
 
 	else if(istype(uplink_loc, /obj/item/radio))
-		unlock_text += "Simply speak \"[new_uplink.unlock_code]\" into frequency [RADIO_TOKEN_UPLINK] to unlock its hidden features."
+		unlock_text += "只需通过频道[RADIO_TOKEN_UPLINK]说出\"[new_uplink.unlock_code]\"，即可解锁隐藏功能。"
 		add_memory(/datum/memory/key/traitor_uplink, uplink_loc = uplink_loc.name, uplink_code = new_uplink.unlock_code)
 
 	else if(istype(uplink_loc, /obj/item/pen))
 		var/instructions = english_list(new_uplink.unlock_code)
-		unlock_text += "Simply twist the top of the pen [instructions] from its starting position to unlock its hidden features."
+		unlock_text += "只需从初始位置按照[instructions]转动笔帽，即可解锁隐藏功能。"
 		add_memory(/datum/memory/key/traitor_uplink, uplink_loc = uplink_loc.name, uplink_code = instructions)
 
 	new_uplink.unlock_text = unlock_text
@@ -203,12 +203,12 @@
 	current.add_faction(creator.get_faction())
 	current.add_ally(current)
 
-	current.log_message("has been enslaved to [key_name(creator)].", LOG_GAME)
-	log_admin("[key_name(current)] has been enslaved to [key_name(creator)].")
+	current.log_message("已成为[key_name(creator)]的仆从。", LOG_GAME)
+	log_admin("[key_name(current)]已成为[key_name(creator)]的仆从。")
 
 	if(creator.is_antag())
-		message_admins("[ADMIN_LOOKUPFLW(current)] has been created by [ADMIN_LOOKUPFLW(creator)], an antagonist.")
-		to_chat(current, span_userdanger("Despite your creator's current allegiances, your true master remains [creator.real_name]. If their loyalties change, so do yours. This will never change unless your creator's body is destroyed."))
+		message_admins("[ADMIN_LOOKUPFLW(current)]由反派[ADMIN_LOOKUPFLW(creator)]创造。")
+		to_chat(current, span_userdanger("无论创造者目前效忠谁，你真正的主人始终是[creator.real_name]。如果其立场改变，你也必须随之改变。除非创造者的身体被摧毁，否则这一点永远不会改变。"))
 
 /datum/mind/proc/get_all_objectives()
 	var/list/all_objectives = list()
@@ -218,7 +218,7 @@
 
 /datum/mind/proc/announce_objectives()
 	var/obj_count = 1
-	to_chat(current, span_notice("Your current objectives:"))
+	to_chat(current, span_notice("你目前的目标："))
 	for(var/datum/objective/objective as anything in get_all_objectives())
 		to_chat(current, "<B>[objective.objective_name] #[obj_count]</B>: [objective.explanation_text]")
 		obj_count++

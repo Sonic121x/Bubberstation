@@ -21,7 +21,7 @@
 /datum/component/mindless_killer/proc/examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_danger("It has an awful gleam against those who cannot think.")
+	examine_list += span_danger("面对没有思维的生物时，它会泛起可怕的光泽。")
 
 /datum/component/mindless_killer/proc/deal_smite(datum/source, mob/living/target_mob, mob/user, proximity_flag, list/modifiers)
 	SIGNAL_HANDLER

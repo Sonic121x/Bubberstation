@@ -1,7 +1,7 @@
 /obj/item/storage/toolbox/emergency/turret/mag_fed/cerberus
-	name = "\improper T.I.B.S Cerberus Kit"
-	desc = "A \"Tarkon Industries Blackrust Salvage\" \"Cerberus\" Turret Deployment Kit, it deploys a turret feeding from provided magazines. \
-	This model comes with 3 adjustable magazine slots, supporting most commonly available magazines."
+	name = "\improper 塔肯黑锈地狱三头犬套件"
+	desc = "“塔肯工业黑锈打捞”的“地狱三头犬”炮塔部署套件，可部署一台由所装弹匣供弹的炮塔。\
+	此型号配有三个可调弹匣槽，兼容大多数常见弹匣。"
 	icon = 'modular_skyrat/modules/tarkon/icons/obj/turret.dmi'
 	icon_state = "cerberus_toolbox"
 	righthand_file = 'modular_skyrat/modules/tarkon/icons/mob/inhands/righthand.dmi'
@@ -24,9 +24,9 @@
 	)
 
 /obj/item/storage/toolbox/emergency/turret/mag_fed/hoplite
-	name = "\improper Tarkon Industries Hoplite Kit"
-	desc = "A \"Tarkon Industries\" \"Hoplite\" Turret Deployment Kit, it deploys a turret feeding from provided magazines. \
-	This model comes with 2 adjustable magazine slots, supporting 4.6x30mm magazines as well as Cesarzowa and Trappiste."
+	name = "\improper 塔肯工业重装步兵套件"
+	desc = "“塔肯工业”的“重装步兵”炮塔部署套件，可部署一台由所装弹匣供弹的炮塔。\
+	此型号配有两个可调弹匣槽，兼容4.6×30毫米、女皇和特拉比斯特弹匣。"
 	icon = 'modular_skyrat/modules/tarkon/icons/obj/turret.dmi'
 	icon_state = "hoplite_toolbox"
 	righthand_file = 'modular_skyrat/modules/tarkon/icons/mob/inhands/righthand.dmi'
@@ -56,8 +56,8 @@
 
 ////// Turrets //////
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/cerberus
-	name = "\improper T.I.B.S \"Cerberus\" Guardian Turret"
-	desc = "A heavy-protection turret used in the Tarkon Industries Blackrust Salvage group to protect its workers in hazardous conditions."
+	name = "\improper 塔肯黑锈“地狱三头犬”守卫炮塔"
+	desc = "塔肯工业黑锈打捞部门使用的重型防护炮塔，用于保护危险环境中的工人。"
 	integrity_failure = 0
 	max_integrity = 200
 	icon = 'modular_skyrat/modules/tarkon/icons/obj/turret.dmi'
@@ -67,8 +67,8 @@
 	mag_box_type = /obj/item/storage/toolbox/emergency/turret/mag_fed/cerberus/pre_filled
 
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/hoplite
-	name = "\improper Tarkon Industries \"Hoplite\" Point-Defense Turret"
-	desc = "A protection turret used by Tarkon Industries for civilian installation protection."
+	name = "\improper 塔肯工业“重装步兵”点防御炮塔"
+	desc = "塔肯工业用于保护民用设施的防御炮塔。"
 	max_integrity = 120
 	icon = 'modular_skyrat/modules/tarkon/icons/obj/turret.dmi'
 	icon_state = "hoplite_off"
@@ -78,10 +78,10 @@
 	mag_box_type = /obj/item/storage/toolbox/emergency/turret/mag_fed/hoplite/pre_filled
 
 /obj/item/turret_assembly/cerberus
-	name = "cerberus plate assembly"
+	name = "地狱三头犬装甲板组件"
 	icon = 'modular_skyrat/modules/tarkon/icons/obj/turret.dmi'
 	icon_state = "cerberus_assembly"
-	desc = "A set of assembly parts for a magazine-fed turret, requiring a receiver, servo and sensor along with construction. This one is for a \"Cerberus\" model turret type."
+	desc = "弹匣供弹炮塔的组装部件，建造时还需要机匣、伺服机构和传感器。这套用于“地狱三头犬”型号。"
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 30,
 		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 20,
@@ -92,10 +92,10 @@
 	design = /obj/item/storage/toolbox/emergency/turret/mag_fed/cerberus
 
 /obj/item/turret_assembly/hoplite
-	name = "hoplite plate assembly"
+	name = "重装步兵装甲板组件"
 	icon = 'modular_skyrat/modules/tarkon/icons/obj/turret.dmi'
 	icon_state = "hoplite_assembly"
-	desc = "A set of assembly parts for a magazine-fed turret, requiring a receiver, servo and sensor along with construction. This one is for a \"Hoplite\" model turret type."
+	desc = "弹匣供弹炮塔的组装部件，建造时还需要机匣、伺服机构和传感器。这套用于“重装步兵”型号。"
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 25,
 		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 10,

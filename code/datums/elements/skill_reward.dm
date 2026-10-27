@@ -17,12 +17,12 @@
 
 /datum/element/skill_reward/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice("You notice a powerful aura about this item, suggesting that only the truly experienced may wield it.")
+	examine_list += span_notice("这件物品散发出强大的气场，似乎只有真正经验丰富的人才能驾驭它。")
 
 /datum/element/skill_reward/proc/on_attack_hand(datum/source, mob/living/user, list/modifiers)
 	SIGNAL_HANDLER
 	if(!LAZYACCESS(modifiers, CTRL_CLICK) && !check_equippable(user)) //Allows other players to drag it around at least.
-		to_chat(user, span_warning("You feel completely and utterly unworthy to even touch \the [source]."))
+		to_chat(user, span_warning("你感觉自己完全不配，连触碰[source]的资格都没有。"))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	return NONE
 
@@ -31,7 +31,7 @@
 	SIGNAL_HANDLER
 	if(check_equippable(user) || !(source in user.get_equipped_items(INCLUDE_POCKETS | INCLUDE_ACCESSORIES)))
 		return NONE
-	to_chat(user, span_warning("You feel completely and utterly unworthy to even touch \the [source]."))
+	to_chat(user, span_warning("你感觉自己完全不配，连触碰[source]的资格都没有。"))
 	user.dropItemToGround(source, TRUE)
 	return COMPONENT_EQUIPPED_FAILED
 

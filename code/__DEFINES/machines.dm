@@ -80,16 +80,16 @@
 // SKYRAT EDIT END
 
 GLOBAL_LIST_INIT(build_types_to_string, list(
-	"[IMPRINTER]" = "Circuit Imprinter",
-	"[PROTOLATHE]" = "Protolathe",
-	"[AUTOLATHE]" = "Autolathe",
-	"[MECHFAB]" = "Exosuit Fabricator",
-	"[BIOGENERATOR]" = "Biogenerator",
-	"[LIMBGROWER]" = "Limb Grower",
-	"[SMELTER]" = "Smelter",
-	"[AWAY_LATHE]" = "Off-Grid Protolathe",
-	"[AWAY_IMPRINTER]" = "Off-Grid Circuit Imprinter",
-	"[COMPONENT_PRINTER]" = "Component Printer",
+	"[IMPRINTER]" = "电路板印制机",
+	"[PROTOLATHE]" = "原型加工机",
+	"[AUTOLATHE]" = "自动加工机",
+	"[MECHFAB]" = "机甲制造机",
+	"[BIOGENERATOR]" = "生物质制造机",
+	"[LIMBGROWER]" = "肢体培育机",
+	"[SMELTER]" = "冶炼炉",
+	"[AWAY_LATHE]" = "离网原型加工机",
+	"[AWAY_IMPRINTER]" = "离网电路板印制机",
+	"[COMPONENT_PRINTER]" = "元件打印机",
 ))
 
 #define HYPERTORUS_INACTIVE 0 // No or minimal energy

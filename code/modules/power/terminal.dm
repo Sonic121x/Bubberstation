@@ -4,10 +4,10 @@
 // using this solves the problem of having the APC in a wall yet also inside an area
 
 /obj/machinery/power/terminal
-	name = "terminal"
+	name = "接线端子"
 	icon = 'icons/obj/pipes_n_cables/structures.dmi'
 	icon_state = "term"
-	desc = "It's an underfloor wiring terminal, used to draw power from the grid."
+	desc = "这是一个安装在地板下的接线端子，用于从电网中取电。"
 	layer = WIRE_TERMINAL_LAYER //a bit above wires
 	var/obj/machinery/power/master = null
 
@@ -26,9 +26,9 @@
 /obj/machinery/power/terminal/examine(mob/user)
 	. = ..()
 	if(!QDELETED(powernet))
-		. += span_notice("It's operating on the [LOWER_TEXT(GLOB.cable_layer_to_name["[cable_layer]"])].")
+		. += span_notice("它正在 [LOWER_TEXT(GLOB.cable_layer_to_name["[cable_layer]"])] 上运行。")
 	else
-		. += span_warning("It's disconnected from the [LOWER_TEXT(GLOB.cable_layer_to_name["[cable_layer]"])].")
+		. += span_warning("它与 [LOWER_TEXT(GLOB.cable_layer_to_name["[cable_layer]"])] 断开了连接。")
 
 /obj/machinery/power/terminal/should_have_node()
 	return TRUE
@@ -50,14 +50,14 @@
 	if(isturf(loc))
 		var/turf/T = loc
 		if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
-			balloon_alert(user, "must expose the cable terminal!")
+			balloon_alert(user, "必须露出接线端子！")
 			return
 
 	if(master && !master.can_terminal_dismantle())
 		return
 
-	user.visible_message(span_notice("[user.name] dismantles the cable terminal from [master]."))
-	balloon_alert(user, "cutting the cables...")
+	user.visible_message(span_notice("[user.name] 从 [master] 上拆下了接线端子。"))
+	balloon_alert(user, "正在剪断线缆……")
 
 	playsound(src.loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 	if(I.use_tool(src, user, 50))
@@ -70,7 +70,7 @@
 
 		var/obj/item/stack/cable_coil/cable = new (drop_location(), 10)
 		qdel(src)
-		cable.balloon_alert(user, "cable terminal dismantled")
+		cable.balloon_alert(user, "接线端子已拆下")
 
 /obj/machinery/power/terminal/wirecutter_act(mob/living/user, obj/item/I)
 	..()

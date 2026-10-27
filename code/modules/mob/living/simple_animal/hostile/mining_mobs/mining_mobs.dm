@@ -10,11 +10,11 @@
 	minbodytemp = 0
 	maxbodytemp = INFINITY
 	unsuitable_heat_damage = 20
-	response_harm_continuous = "strikes"
-	response_harm_simple = "strike"
+	response_harm_continuous = "击打"
+	response_harm_simple = "击打"
 	status_flags = 0
 	combat_mode = TRUE
-	var/throw_message = "bounces off of"
+	var/throw_message = "被弹开，未能伤及"
 	/// Is this mob subtype from a spawner (e.g. necropolis tendril, demonic portal)? Can be used to affect what it drops (e.g. legions force-dropping ashen skeletons).
 	var/from_spawner = FALSE
 	// Pale purple, should be red enough to see stuff on lavaland

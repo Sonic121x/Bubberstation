@@ -1,6 +1,6 @@
 /obj/item/clothing/glasses/nerve_staple
-	name = "\proper a nerve staple"
-	desc = "A horrific looking device that is stapled into your face"
+	name = "\proper 神经钉"
+	desc = "一个钉进你脸里的恐怖装置。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi'
 	icon_state = "nerve_staple"
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'

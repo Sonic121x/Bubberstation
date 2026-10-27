@@ -40,6 +40,6 @@
 		. += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_FISH,
-			SPECIES_PERK_NAME = "Waterbreathing",
-			SPECIES_PERK_DESC = "[plural_form] can breathe in water, making pools a lot safer to be in!",
+			SPECIES_PERK_NAME = "水下呼吸",
+			SPECIES_PERK_DESC = "[plural_form] 能在水中呼吸，让泳池安全了许多！",
 		))

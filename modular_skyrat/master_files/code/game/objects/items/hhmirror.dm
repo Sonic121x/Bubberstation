@@ -1,6 +1,6 @@
 /obj/item/hhmirror
-	name = "handheld mirror"
-	desc = "A handheld mirror."
+	name = "手持镜"
+	desc = "一面手持镜。"
 	icon = 'modular_skyrat/master_files/icons/obj/hhmirror.dmi'
 	icon_state = "hhmirror"
 
@@ -10,8 +10,8 @@
 		return
 
 /obj/item/hhmirror/fullmagic
-	name = "full handheld magic mirror"
-	desc = "A handheld mirror that allows you to change your... self?" // Later, maybe add a charge to the description.
+	name = "完整版手持魔法镜"
+	desc = "一面可以让你改变……自己的手持镜？" // Later, maybe add a charge to the description.
 	icon = 'modular_skyrat/master_files/icons/obj/hhmirror.dmi'
 	icon_state = "hhmirrormagic"
 	var/list/races_blacklist = list(SPECIES_SKELETON, "agent", "angel", SPECIES_ZOMBIE, "clockwork golem servant", SPECIES_MUSHROOM, "memezombie")
@@ -33,11 +33,11 @@
 		return
 	var/mob/living/carbon/human/human_user = user
 
-	var/choice = input(user, "Something to change?", "Magical Grooming") as null|anything in list("name", "race", "gender", "hair", "eyes")
+	var/choice = input(user, "要改变什么？", "魔法美容") as null|anything in list("name", "race", "gender", "hair", "eyes")
 
 	switch(choice)
 		if("name")
-			var/newname = reject_bad_name(stripped_input(human_user, "Who are we again?", "Name change", human_user.name, MAX_NAME_LEN))
+			var/newname = reject_bad_name(stripped_input(human_user, "我们又叫什么来着？", "改名", human_user.name, MAX_NAME_LEN))
 
 			if(!newname)
 				return
@@ -52,7 +52,7 @@
 
 		if("race")
 			var/newrace
-			var/racechoice = input(human_user, "What are we again?", "Race change") as null|anything in choosable_races
+			var/racechoice = input(human_user, "我们又是什么种族来着？", "种族变更") as null|anything in choosable_races
 			newrace = GLOB.species_list[racechoice]
 
 			if(!newrace)
@@ -62,7 +62,7 @@
 			human_user.set_species(newrace, icon_update = 0)
 
 			if(HAS_TRAIT(human_user, TRAIT_USES_SKINTONES))
-				var/new_s_tone = input(user, "Choose your skin tone:", "Race change")  as null|anything in GLOB.skin_tones
+				var/new_s_tone = input(user, "选择你的肤色：", "种族变更")  as null|anything in GLOB.skin_tones
 
 				if(new_s_tone)
 					human_user.skin_tone = new_s_tone
@@ -71,7 +71,7 @@
 			#define MIN_MCOLOR_VALUE 50
 
 			if(HAS_TRAIT(human_user, TRAIT_MUTANT_COLORS) && !HAS_TRAIT(human_user, TRAIT_FIXED_MUTANT_COLORS))
-				var/new_mutantcolor = tgui_color_picker(user, "Choose your skin color:", "Race change", human_user.dna.features[FEATURE_MUTANT_COLOR])
+				var/new_mutantcolor = tgui_color_picker(user, "选择你的肤色：", "种族变更", human_user.dna.features[FEATURE_MUTANT_COLOR])
 				if(new_mutantcolor)
 					var/mutantcolor_hsv = rgb2hsv(new_mutantcolor)
 
@@ -79,7 +79,7 @@
 						human_user.dna.features[FEATURE_MUTANT_COLOR] = sanitize_hexcolor(new_mutantcolor)
 
 					else
-						to_chat(human_user, span_notice("Invalid color. Your color is not bright enough."))
+						to_chat(human_user, span_notice("颜色无效。你的颜色不够明亮。"))
 
 			#undef MIN_MCOLOR_VALUE
 
@@ -91,41 +91,41 @@
 			if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 				return
 			if(human_user.gender == "male")
-				if(alert(human_user, "Become a Witch?", "Confirmation", "Yes", "No") == "Yes")
+				if(alert(human_user, "成为女巫？", "确认", "Yes", "No") == "Yes")
 					human_user.gender = "female"
-					to_chat(human_user, span_notice("Man, you feel like a woman!"))
+					to_chat(human_user, span_notice("天哪，你感觉自己像个女人！"))
 				else
 					return
 
 			else
-				if(alert(human_user, "Become a Warlock?", "Confirmation", "Yes", "No") == "Yes")
+				if(alert(human_user, "成为男巫？", "确认", "Yes", "No") == "Yes")
 					human_user.gender = "male"
-					to_chat(human_user, span_notice("Whoa man, you feel like a man!"))
+					to_chat(human_user, span_notice("哇，你感觉自己像个男人！"))
 				else
 					return
 			human_user.dna.update_ui_block(/datum/dna_block/identity/gender)
 			human_user.update_body()
 
 		if("hair")
-			var/hairchoice = tgui_alert(human_user, "Hair style or hair color?", "Change Hair", list("Style", "Color"))
+			var/hairchoice = tgui_alert(human_user, "发型还是发色？", "更换头发", list("样式", "颜色"))
 			if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 				return
-			if(hairchoice == "Style") // So you just want to use a mirror then?
+			if(hairchoice == "样式") // So you just want to use a mirror then?
 				..()
 			else
-				var/new_hair_color = tgui_color_picker(human_user, "Choose your hair color", "Hair Color", human_user.hair_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
+				var/new_hair_color = tgui_color_picker(human_user, "选择你的发色", "发色", human_user.hair_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 				if(new_hair_color)
 					human_user.hair_color = sanitize_hexcolor(new_hair_color)
 					human_user.dna.update_ui_block(/datum/dna_block/identity/hair_color)
 				if(human_user.gender == "male")
-					var/new_face_color = tgui_color_picker(human_user, "Choose your facial hair color", "Hair Color", human_user.facial_hair_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
+					var/new_face_color = tgui_color_picker(human_user, "选择你的面部毛发颜色", "发色", human_user.facial_hair_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 					if(new_face_color)
 						human_user.facial_hair_color = sanitize_hexcolor(new_face_color)
 						human_user.dna.update_ui_block(/datum/dna_block/identity/facial_color)
 				human_user.update_body_parts()
 
 		if(BODY_ZONE_PRECISE_EYES)
-			var/new_eye_color = tgui_color_picker(human_user, "Choose your eye color", "Eye Color", human_user.eye_color_left) // BUBBERSTATION EDIT: TGUI COLOR PICKER
+			var/new_eye_color = tgui_color_picker(human_user, "选择你的眼睛颜色", "眼睛颜色", human_user.eye_color_left) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 			if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 				return TRUE
 			if(new_eye_color)
@@ -134,8 +134,8 @@
 				human_user.update_body()
 
 /obj/item/hhmirror/wracemagic
-	name = "raceless handheld magic mirror"
-	desc = "A handheld mirror that allows you to change your... self?" // Later, maybe add a charge to the description.
+	name = "无种族限制的手持魔法镜"
+	desc = "一面可以让你改变……自己的手持镜？" // Later, maybe add a charge to the description.
 	icon = 'modular_skyrat/master_files/icons/obj/hhmirror.dmi'
 	icon_state = "hhmirrormagic"
 	var/charges = 4
@@ -149,11 +149,11 @@
 	if(!charges == 0) // Later, should also have a lock
 		var/mob/living/carbon/human/human_user = user
 
-		var/choice = input(user, "Something to change?", "Magical Grooming") as null|anything in list("name", "gender", "hair", "eyes")
+		var/choice = input(user, "要改变什么？", "魔法美容") as null|anything in list("name", "gender", "hair", "eyes")
 
 		switch(choice)
 			if("name")
-				var/newname = reject_bad_name(stripped_input(human_user, "Who are we again?", "Name change", human_user.name, MAX_NAME_LEN))
+				var/newname = reject_bad_name(stripped_input(human_user, "我们又叫什么来着？", "改名", human_user.name, MAX_NAME_LEN))
 
 				if(!newname)
 					return
@@ -172,41 +172,41 @@
 				if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 					return
 				if(human_user.gender == "male")
-					if(alert(human_user, "Become a Witch?", "Confirmation", "Yes", "No") == "Yes")
+					if(alert(human_user, "成为女巫？", "确认", "Yes", "No") == "Yes")
 						human_user.gender = "female"
-						to_chat(human_user, span_notice("Man, you feel like a woman!"))
+						to_chat(human_user, span_notice("天哪，你感觉自己像个女人！"))
 					else
 						return
 
 				else
-					if(alert(human_user, "Become a Warlock?", "Confirmation", "Yes", "No") == "Yes")
+					if(alert(human_user, "成为男巫？", "确认", "Yes", "No") == "Yes")
 						human_user.gender = "male"
-						to_chat(human_user, span_notice("Whoa man, you feel like a man!"))
+						to_chat(human_user, span_notice("哇，你感觉自己像个男人！"))
 					else
 						return
 				human_user.dna.update_ui_block(/datum/dna_block/identity/gender)
 				human_user.update_body()
 
 			if("hair")
-				var/hairchoice = tgui_alert(human_user, "Hair style or hair color?", "Change Hair", list("Style", "Color"))
+				var/hairchoice = tgui_alert(human_user, "发型还是发色？", "更换头发", list("样式", "颜色"))
 				if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 					return
-				if(hairchoice == "Style") // So you just want to use a mirror then?
+				if(hairchoice == "样式") // So you just want to use a mirror then?
 					..()
 				else
-					var/new_hair_color = tgui_color_picker(human_user, "Choose your hair color", "Hair Color", human_user.hair_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
+					var/new_hair_color = tgui_color_picker(human_user, "选择你的发色", "发色", human_user.hair_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 					if(new_hair_color)
 						human_user.hair_color = sanitize_hexcolor(new_hair_color)
 						human_user.dna.update_ui_block(/datum/dna_block/identity/hair_color)
 					if(human_user.gender == "male")
-						var/new_face_color = tgui_color_picker(human_user, "Choose your facial hair color", "Hair Color", human_user.facial_hair_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
+						var/new_face_color = tgui_color_picker(human_user, "选择你的面部毛发颜色", "发色", human_user.facial_hair_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 						if(new_face_color)
 							human_user.facial_hair_color = sanitize_hexcolor(new_face_color)
 							human_user.dna.update_ui_block(/datum/dna_block/identity/facial_color)
 					human_user.update_body_parts()
 
 			if(BODY_ZONE_PRECISE_EYES)
-				var/new_eye_color = tgui_color_picker(human_user, "Choose your eye color", "Eye Color", human_user.eye_color_left) // BUBBERSTATION EDIT: TGUI COLOR PICKER
+				var/new_eye_color = tgui_color_picker(human_user, "选择你的眼睛颜色", "眼睛颜色", human_user.eye_color_left) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 				if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 					return TRUE
 				if(new_eye_color)
@@ -216,4 +216,4 @@
 		charges--
 	if(charges == 0)
 		qdel(src)
-		to_chat(user, "The mirror crumbles to dust within your hands.")
+		to_chat(user, "镜子在你手中化为尘土。")

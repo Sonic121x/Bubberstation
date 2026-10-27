@@ -105,7 +105,7 @@
  * * handler - The bounty handler that is handling this bounty.
  */
 /datum/spy_bounty/proc/clear_bounty(datum/spy_bounty_handler/handler)
-	ASSERT(initalized, "Trying to clear an uninitialized bounty!")
+	ASSERT(initalized, "试图清除一个未初始化的悬赏！")
 
 	// another chance to return unclaimed reward items to the bounty pool
 	if(!claimed && reward_item && prob(40))
@@ -296,8 +296,8 @@
 		return FALSE
 
 	desired_item = pick(valid_possible_items)
-	name = "[desired_item.name] [difficulty == SPY_DIFFICULTY_HARD ? "Grand ":""]Theft"
-	help = "Steal [desired_item.name][desired_item.steal_hint ? ": [desired_item.steal_hint]" : "."]"
+	name = "[desired_item.name][difficulty == SPY_DIFFICULTY_HARD ? "重大" : ""]窃案"
+	help = "窃取[desired_item.name][desired_item.steal_hint ? "：[desired_item.steal_hint]" : "。"]"
 	return TRUE
 
 /datum/spy_bounty/objective_item/is_stealable(atom/movable/stealing)
@@ -399,8 +399,8 @@
 			original_options_weakrefs += WEAKREF(other_machine)
 
 	location_type = machine_area.type
-	name ||= "[machine.name] Burglary"
-	help ||= "Steal \a [machine] found in [machine_area]."
+	name ||= "[machine.name]入室盗窃案"
+	help ||= "窃取一台位于[machine_area]的[machine]。"
 	return TRUE
 
 /datum/spy_bounty/machine/is_stealable(atom/movable/stealing)
@@ -579,21 +579,21 @@
 	if(IS_WEAKREF_OF(stealing, target_original_desired_ref))
 		return ..()
 
-	ASSERT(ishuman(stealing), "[type] called clean_up_stolen_item with something that isn't a human and isn't the original item.")
+	ASSERT(ishuman(stealing), "[type] 调用 clean_up_stolen_item 时传入的对象既不是人类，也不是原始物品。")
 
 	do_sparks(2, FALSE, stealing)
 	var/mob/living/carbon/human/stolen_from = stealing
 	var/obj/item/real_stolen_item = find_desired_thing(stealing)
 	stolen_from.Unconscious(10 SECONDS)
-	to_chat(stolen_from, span_warning("You feel something missing where your [real_stolen_item.name] once was."))
+	to_chat(stolen_from, span_warning("你感觉[real_stolen_item.name]原本在的地方少了点什么。"))
 	return ..(real_stolen_item, spy)
 
 /datum/spy_bounty/targets_person/some_item/target_found(mob/crewmember)
 	var/obj/item/desired_thing = find_desired_thing(crewmember)
 	target_original_desired_ref = WEAKREF(desired_thing)
-	name = "[crewmember.real_name]'s [desired_thing.name]"
-	help = "Steal [desired_thing] from [crewmember.real_name]. \
-		You can accomplish this via brute force, or by scanning them with your uplink while they are incapacitated."
+	name = "[crewmember.real_name]的[desired_thing.name]"
+	help = "从[crewmember.real_name]身上窃取[desired_thing]。\
+		你可以强行夺取，也可以趁其失去行动能力时用上行链路扫描对方。"
 	return TRUE
 
 /// Finds the desired item type in the target crewmember.
@@ -613,7 +613,7 @@
 
 /datum/spy_bounty/targets_person/some_item/id/target_found(mob/crewmember)
 	. = ..()
-	name = "[crewmember.real_name]'s ID Card"
+	name = "[crewmember.real_name]的 ID 卡"
 
 // Steal someone's PDA
 /datum/spy_bounty/targets_person/some_item/pda
@@ -628,7 +628,7 @@
 
 /datum/spy_bounty/targets_person/some_item/pda/target_found(mob/crewmember)
 	. = ..()
-	name = "[crewmember.real_name]'s PDA"
+	name = "[crewmember.real_name]的 PDA"
 
 // Steal someone's heirloom
 /datum/spy_bounty/targets_person/some_item/heirloom
@@ -641,7 +641,7 @@
 
 /datum/spy_bounty/targets_person/some_item/heirloom/target_found(mob/crewmember)
 	. = ..()
-	name = "[crewmember.real_name]'s heirloom"
+	name = "[crewmember.real_name]的传家宝"
 
 // Steal a limb or organ off someone
 /datum/spy_bounty/targets_person/some_item/limb_or_organ
@@ -680,8 +680,8 @@
 
 /datum/spy_bounty/some_bot/finish_cleanup(mob/living/basic/bot/stealing)
 	if(stealing.client)
-		to_chat(stealing, span_deadsay("You've been stolen! You are shipped off to the black market and taken apart for spare parts..."))
-		stealing.investigate_log("was stolen by a spy (and deleted)", INVESTIGATE_DEATHS)
+		to_chat(stealing, span_deadsay("你被偷走了！你被运往黑市，拆成备用零件……"))
+		stealing.investigate_log("被间谍偷走（并被删除）", INVESTIGATE_DEATHS)
 		stealing.ghostize()
 	return ..()
 
@@ -706,8 +706,8 @@
 
 	var/mob/living/picked = pick(possible_bots)
 	target_bot_ref = WEAKREF(picked)
-	name ||= "[picked.name] Abduction"
-	help ||= "Abduct the station's robot assistant [picked.name]."
+	name ||= "[picked.name]绑架案"
+	help ||= "绑架空间站的机器人助手[picked.name]。"
 	return TRUE
 
 /datum/spy_bounty/some_bot/is_stealable(atom/movable/stealing)
@@ -716,28 +716,28 @@
 /datum/spy_bounty/some_bot/beepsky
 	difficulty = SPY_DIFFICULTY_MEDIUM // gotta get him to stand still
 	bot_type = /mob/living/basic/bot/secbot/beepsky/officer
-	help = "Abduct Officer Beepsky - commonly found patrolling the station. \
-		Watch out, they may not take kindly to being scanned."
+	help = "绑架毕普斯基警官——常见于在空间站内巡逻。\
+		小心，它们可能不太乐意被扫描。"
 
 /datum/spy_bounty/some_bot/ofitser
 	difficulty = SPY_DIFFICULTY_EASY
 	bot_type = /mob/living/basic/bot/secbot/beepsky/ofitser
-	help = "Abduct Prison Ofitser - commonly found guarding the Gulag."
+	help = "绑架监狱官 Ofitser——常见于看守古拉格。"
 
 /datum/spy_bounty/some_bot/armsky
 	difficulty = SPY_DIFFICULTY_HARD
 	bot_type = /mob/living/basic/bot/secbot/beepsky/armsky
-	help = "Abduct Sergeant-At-Armsky - commonly found guarding the station's Armory."
+	help = "绑架军械军士 Armasksy——常见于看守空间站的军械库。"
 
 /datum/spy_bounty/some_bot/pingsky
 	difficulty = SPY_DIFFICULTY_HARD
 	bot_type = /mob/living/basic/bot/secbot/pingsky
-	help = "Abduct Officer Pingsky - commonly found protecting the station's AI."
+	help = "绑架平斯基警官——常见于保护空间站的 AI。"
 
 /datum/spy_bounty/some_bot/scrubs
 	difficulty = SPY_DIFFICULTY_EASY
 	bot_type = /mob/living/basic/bot/cleanbot/medbay
-	help = "Abduct Scrubs, MD - commonly found mopping up blood in Medbay."
+	help = "绑架 Scrubs 医生——常见于在医疗舱拖洗血迹。"
 
 /datum/spy_bounty/some_bot/scrubs/can_claim(mob/user)
 	return !(user.mind?.assigned_role.departments_bitflags & DEPARTMENT_BITFLAG_MEDICAL)

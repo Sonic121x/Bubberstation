@@ -11,7 +11,7 @@
 		return FALSE
 
 	if (!istype(equipping, /obj/item/radio/headset))
-		to_chat(user, span_warning("[equipping] won't fit!"))
+		to_chat(user, span_warning("[equipping] 装不上去！"))
 		return FALSE
 
 	return TRUE
@@ -34,7 +34,7 @@
 
 	parrot_source.ears = radio
 
-	to_chat(user, span_notice("You fit [radio] onto [source]."))
+	to_chat(user, span_notice("你把 [radio] 戴到了 [source] 头上。"))
 
 /datum/strippable_item/parrot_headset/start_unequip(atom/source, mob/user)
 	. = ..()
@@ -47,7 +47,7 @@
 
 	if (!IS_UNCONSCIOUS_OR_CRIT(parrot_source))
 		var/list/list_of_channels = parrot_source.get_available_channels()
-		parrot_source.say("[list_of_channels ? "[pick(list_of_channels)] " : null]BAWWWWWK LEAVE THE HEADSET BAWKKKKK!", forced = "attempted headset removal")
+		parrot_source.say("[list_of_channels ? "[pick(list_of_channels)] " : null]BAWWWWWK 别碰我的耳机 BAWKKKKK！", forced = "attempted headset removal")
 
 	return TRUE
 

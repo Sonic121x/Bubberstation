@@ -1,6 +1,6 @@
 /datum/mood_event/drunk
 	mood_change = 3
-	description = "Everything just feels better after a drink or two."
+	description = "喝上一两杯，感觉一切都好多了。"
 	/// The blush overlay to display when the owner is drunk
 	var/datum/bodypart_overlay/simple/emote/blush_overlay
 
@@ -18,22 +18,22 @@
 	switch(drunkness)
 		if(0 to 30)
 			mood_change = 3
-			description = "Everything just feels better after a drink or two."
+			description = "喝上一两杯，感觉一切都好多了。"
 		if(30 to 45)
 			mood_change = 4
-			description = "Is it getting hotter, or is it just me? I need another drink to cool down."
+			description = "是不是越来越热了，还是只有我这么觉得？得再喝一杯凉快一下。"
 		if(45 to 60)
 			mood_change = 5
-			description = "Who keeps moving the floor? I'm going to talk to them... after this drink."
+			description = "谁一直在晃地板？我要找他们谈谈……等我喝完这一杯。"
 		if(60 to 90)
 			mood_change = 6
-			description = "I'm noooot drunk, you're drunk! In fact... I need another drink!"
+			description = "我才没——醉，你才醉了！其实……我还得再来一杯！"
 		if(90 to INFINITY)
 			mood_change = 3 // crash out
-			description = "You're my BESSST frien'... You and me agains' th' world, buddy. Le's get another drink."
+			description = "你是我最——好的朋、朋友……咱俩一起闯天下，伙计。再来一杯。"
 	if(HAS_PERSONALITY(owner, /datum/personality/teetotal))
 		mood_change *= -1.5
-		description = "I don't like drinking... It makes me feel horrible."
+		description = "我不喜欢喝酒……这感觉糟透了。"
 	if(HAS_PERSONALITY(owner, /datum/personality/bibulous))
 		mood_change *= 1.5
 	if(old_mood != mood_change)
@@ -44,55 +44,55 @@
 
 /datum/mood_event/drunk_after
 	mood_change = 2
-	description = "The buzz might be gone, but I still feel good."
+	description = "酒劲也许过去了，但我仍然感觉很好。"
 	timeout = 5 MINUTES
 
 /datum/mood_event/wrong_brandy
-	description = "I hate that type of drink."
+	description = "我讨厌那种饮料。"
 	mood_change = -2
 	timeout = 6 MINUTES
 
 /datum/mood_event/quality_revolting
-	description = "That drink was the worst thing I've ever consumed."
+	description = "那是我喝过最难喝的东西。"
 	mood_change = -8
 	timeout = 7 MINUTES
 
 /datum/mood_event/quality_nice
-	description = "That drink wasn't bad at all."
+	description = "那杯饮料还挺不错。"
 	mood_change = 2
 	timeout = 7 MINUTES
 
 /datum/mood_event/quality_good
-	description = "That drink was pretty good."
+	description = "那杯饮料相当不错。"
 	mood_change = 4
 	timeout = 7 MINUTES
 
 /datum/mood_event/quality_verygood
-	description = "That drink was great!"
+	description = "那杯饮料真棒！"
 	mood_change = 6
 	timeout = 7 MINUTES
 
 /datum/mood_event/quality_fantastic
-	description = "That drink was amazing!"
+	description = "那杯饮料棒极了！"
 	mood_change = 8
 	timeout = 7 MINUTES
 
 /datum/mood_event/amazingtaste
-	description = "Amazing taste!"
+	description = "味道绝了！"
 	mood_change = 50
 	timeout = 10 MINUTES
 
 /datum/mood_event/wellcheers
-	description = "What a tasty can of Wellcheers! The salty grape flavor is a great pick-me-up."
+	description = "这罐威尔奇真好喝！咸葡萄风味让人精神一振。"
 	mood_change = 3
 	timeout = 7 MINUTES
 
 /datum/mood_event/sweetcoffee
-	description = "The bitter sweet taste of coffee was not too bad"
+	description = "咖啡苦中带甜的味道还不错。"
 	mood_change = 2
 	timeout = 5 MINUTES
 
 /datum/mood_event/sweettea
-	description = "Let your worries dissolve like sugar in tea."
+	description = "让烦恼像茶里的糖一样慢慢融化吧。"
 	mood_change = 4
 	timeout = 2.5 MINUTES

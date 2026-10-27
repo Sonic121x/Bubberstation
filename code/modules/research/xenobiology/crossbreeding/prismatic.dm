@@ -3,10 +3,10 @@ Prismatic extracts:
 	Becomes an infinite-use paintbrush.
 */
 /obj/item/slimecross/prismatic
-	name = "prismatic extract"
-	desc = "It's constantly wet with a semi-transparent, colored goo."
+	name = "棱彩提取物"
+	desc = "它总是湿漉漉的，覆着一层半透明的彩色黏液。"
 	effect = "prismatic"
-	effect_desc = "When used it paints whatever it hits."
+	effect_desc = "使用时会把命中的东西涂上颜色。"
 	icon_state = "prismatic"
 	var/paintcolor = COLOR_WHITE
 
@@ -20,7 +20,7 @@ Prismatic extracts:
 
 /obj/item/slimecross/prismatic/grey
 	colour = SLIME_TYPE_GREY
-	desc = "It's constantly wet with a pungent-smelling, clear chemical."
+	desc = "它总是湿漉漉的，覆着一层气味刺鼻的透明化学液体。"
 
 /obj/item/slimecross/prismatic/grey/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(isturf(interacting_with) && interacting_with.color != initial(interacting_with.color))
@@ -115,7 +115,7 @@ Prismatic extracts:
 	colour = SLIME_TYPE_RAINBOW
 
 /obj/item/slimecross/prismatic/rainbow/attack_self(mob/user)
-	var/newcolor = tgui_color_picker(user, "Choose the slime color:", "Color change", paintcolor)
+	var/newcolor = tgui_color_picker(user, "选择史莱姆颜色：", "颜色更改", paintcolor)
 	if(user.get_active_held_item() != src || IS_UNCONSCIOUS_OR_CRIT(user) || HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
 		return
 	if(!newcolor)

@@ -11,12 +11,12 @@ GLOBAL_LIST_INIT(mansus_eye_commands_regex, list(
 	return our_regex
 
 /datum/heretic_knowledge/limited_amount/mansus_eye
-	name = "Watching Eye"
-	desc = "Transmute a pair of eyes, a sheet of plasmaglass, and a blindfold into a Watching Eye, a small item that you can look through as if it \
-	was a camera with x-ray vision. While the eye is not contained within anything, you can utter a phrase out of a small list - such as blind, deafen - \
-	to create a localized effect on targets the eye could see without x-ray vision. Only one eye can exist at a time - be careful with it."
-	gain_text = "It is said the Owl gifted mankind sight. Humans could see far more, once, until the Owl realized its mistake and plucked out our \
-	third eye. But through an elaborate process, one can still obtain - and open, that missing eye."
+	name = "窥视之眼"
+	desc = "将一对眼球、一块等离子玻璃和一条眼罩转化为窥视之眼。你能透过这件小物品观察周围，\
+	如同使用带透视功能的摄像头。眼睛未被收纳时，说出 blind（致盲）、deafen（致聋）等指定词语，\
+	即可对眼睛不依靠透视就能看见的目标施加局部效果。同时只能存在一只眼睛，请小心使用。"
+	gain_text = "据说是鸮赋予了人类视觉。曾经，人类能看见远比现在更多的东西，直到鸮意识到自己的错误，摘去了我们的\
+	第三只眼。但通过一套复杂的程序，人仍能重新获得并睁开那只失去的眼睛。"
 	research_tree_icon_path = 'modular_zubbers/icons/obj/heretic_misc.dmi'
 	research_tree_icon_state = "watching_eye_open"
 	required_atoms = list(/obj/item/organ/eyes = 1, /obj/item/stack/sheet/plasmaglass = 1, /obj/item/clothing/glasses/blindfold = 1)
@@ -25,8 +25,8 @@ GLOBAL_LIST_INIT(mansus_eye_commands_regex, list(
 	drafting_tier = 2
 
 /obj/item/mansus_eye
-	name = "watching eye"
-	desc = "An eerie eye stares back at you, unblinking, tracking your every movement."
+	name = "窥视之眼"
+	desc = "一只诡异的眼睛回望着你，不曾眨动，追踪着你的一举一动。"
 	icon = 'modular_zubbers/icons/obj/heretic_misc.dmi'
 	icon_state = "watching_eye_open"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -63,20 +63,20 @@ GLOBAL_LIST_INIT(mansus_eye_commands_regex, list(
 /obj/item/mansus_eye/examine(mob/user)
 	. = ..()
 
-	. += span_warning("Allows its user to view its surroundings with x-ray vision, and create localized negative effects on those nearby.")
-	. += span_boldnotice("This item is heavily limited. If stored in a secure place, its owner is unlikely to get a new one.")
+	. += span_warning("使用者能借它透视周围环境，并对附近的人施加局部负面效果。")
+	. += span_boldnotice("这件物品数量限制严格。将其封存于安全地点，通常能使主人无法再获得一只。")
 
 	if (owner == null && IS_HERETIC_OR_MONSTER(user))
-		. += span_hypnophrase("Use the eye in-hand to bind to it, enabling its use.")
+		. += span_hypnophrase("拿在手中使用，即可与眼睛绑定并启用它。")
 
 /obj/item/mansus_eye/proc/on_view_enabled(client/owner_client)
 	var/mob/living/curr_mob = owner.resolve()
 	if (isnull(curr_mob))
 		return
-	owner_client.setup_popup("heretic_eye_popup", 18, 18, 1, "Mind's Eye")
+	owner_client.setup_popup("heretic_eye_popup", 18, 18, 1, "心灵之眼")
 	cam_screen.display_to(curr_mob)
-	to_chat(curr_mob, span_warning("You blink twice, and look through your distant eye."))
-	to_chat(curr_mob, span_boldnotice("Speaking certain phrases will cause localized effects around your eye. Check your ability description for info."))
+	to_chat(curr_mob, span_warning("你眨了两次眼，开始透过远方的眼睛观察。"))
+	to_chat(curr_mob, span_boldnotice("说出特定词语，可在眼睛周围产生局部效果。详情请查看能力说明。"))
 	RegisterSignal(owner_client, COMSIG_POPUP_CLEARED, PROC_REF(on_screen_clear))
 	RegisterSignal(owner_client.mob, COMSIG_MOVABLE_SAY_QUOTE, PROC_REF(intercept_commands))
 	update_view()
@@ -110,13 +110,13 @@ GLOBAL_LIST_INIT(mansus_eye_commands_regex, list(
 	if (!COOLDOWN_FINISHED(src, ability_cooldown))
 		if (isnull(owner_mob))
 			return
-		to_chat(owner_mob, span_warning("Your eye is still recovering from its last use..."))
-		balloon_alert(owner_mob, "on cooldown!")
+		to_chat(owner_mob, span_warning("你的眼睛尚未从上一次使用中恢复……"))
+		balloon_alert(owner_mob, "冷却中！")
 		return
 
 	if (!isturf(loc))
 		if (!isnull(owner_mob))
-			to_chat(owner_mob, span_warning("Your eye can't act while in a container!"))
+			to_chat(owner_mob, span_warning("你的眼睛在容器内，无法施展能力！"))
 		return
 
 	var/list/spec = GLOB.mansus_eye_commands_regex[found_regex]
@@ -124,8 +124,8 @@ GLOBAL_LIST_INIT(mansus_eye_commands_regex, list(
 	animate(src, alpha = 255, time = 2 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(become_invisible)), spec[2])
 	if (!isnull(owner_mob))
-		balloon_alert(owner_mob, "success!")
-		to_chat(owner_mob, span_warning("You speak, and the eye obeys."))
+		balloon_alert(owner_mob, "成功！")
+		to_chat(owner_mob, span_warning("你发出命令，眼睛随即服从。"))
 
 	var/list/targets = get_hearers_in_view(cam_range, src)
 
@@ -135,42 +135,42 @@ GLOBAL_LIST_INIT(mansus_eye_commands_regex, list(
 				if (IS_HERETIC_OR_MONSTER(iter_living))
 					continue
 				if (iter_living.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND))
-					to_chat(iter_living, span_warning("You feel something gazing at you, but its quickly deflected by your antimagic."))
+					to_chat(iter_living, span_warning("你感到有什么在凝视你，但这股力量很快被反魔法防护弹开。"))
 					continue
 				iter_living.adjust_silence_up_to(30 SECONDS, 60 SECONDS)
-				to_chat(iter_living, span_userdanger("You feel an invisible thread come over your lips! Something within view is staring at you!"))
+				to_chat(iter_living, span_userdanger("你感到一根无形的线缝住了双唇！视野中的某个东西正在盯着你！"))
 		if ("blind")
 			for (var/mob/living/iter_living in targets)
 				if (IS_HERETIC_OR_MONSTER(iter_living))
 					continue
 				if (iter_living.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND))
-					to_chat(iter_living, span_warning("You feel something gazing at you, but its quickly deflected by your antimagic."))
+					to_chat(iter_living, span_warning("你感到有什么在凝视你，但这股力量很快被反魔法防护弹开。"))
 					continue
 				iter_living.adjust_temp_blindness_up_to(15 SECONDS, 60 SECONDS)
-				to_chat(iter_living, span_userdanger("You suddenly lose the ability to see! Something within view is staring at you!"))
+				to_chat(iter_living, span_userdanger("你突然失去了视力！视野中的某个东西正在盯着你！"))
 		if ("deafen")
 			for (var/mob/living/carbon/iter_living in targets)
 				if (IS_HERETIC_OR_MONSTER(iter_living))
 					continue
 				if (iter_living.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND))
-					to_chat(iter_living, span_warning("You feel something gazing at you, but its quickly deflected by your antimagic."))
+					to_chat(iter_living, span_warning("你感到有什么在凝视你，但这股力量很快被反魔法防护弹开。"))
 					continue
 				var/obj/item/organ/ears/ears = iter_living.get_organ_slot(ORGAN_SLOT_EARS)
 				if (isnull(ears))
 					return
 				ears.adjust_temporary_deafness(30 SECONDS)
-				to_chat(iter_living, span_userdanger("You suddenly lose the ability to hear! Something within view is staring at you!"))
+				to_chat(iter_living, span_userdanger("你突然失去了听力！视野中的某个东西正在盯着你！"))
 		if ("sleep")
 			for (var/mob/living/carbon/iter_living in targets)
 				if (IS_HERETIC_OR_MONSTER(iter_living))
 					continue
 				if (iter_living.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND))
-					to_chat(iter_living, span_warning("You feel something gazing at you, but its quickly deflected by your antimagic."))
+					to_chat(iter_living, span_warning("你感到有什么在凝视你，但这股力量很快被反魔法防护弹开。"))
 					continue
 				iter_living.adjust_drowsiness_up_to(15 SECONDS, 120 SECONDS)
 				iter_living.adjust_eye_blur_up_to(30 SECONDS, 120 SECONDS)
 				iter_living.adjust_stamina_loss(20)
-				to_chat(iter_living, span_userdanger("Something within your view gazes at you, and you suddenly feel tired..."))
+				to_chat(iter_living, span_userdanger("视野中的某个东西凝视着你，你突然感到疲惫……"))
 
 /obj/item/mansus_eye/proc/become_invisible()
 	animate(src, alpha = initial(src.alpha), time = 2 SECONDS)
@@ -188,15 +188,15 @@ GLOBAL_LIST_INIT(mansus_eye_commands_regex, list(
 
 	if (!IS_HERETIC_OR_MONSTER(living_user))
 		living_user.adjust_temp_blindness_up_to(3 SECONDS, 10 SECONDS)
-		to_chat(living_user, span_userdanger("The eye stares back!"))
+		to_chat(living_user, span_userdanger("眼睛回瞪着你！"))
 		return TRUE
 
 	if (isnull(owner?.resolve()))
 		set_new_owner(living_user)
 		return TRUE
 
-	to_chat(living_user, span_warning("This eye is already claimed by an Acolyte!"))
-	balloon_alert(living_user, "already claimed!")
+	to_chat(living_user, span_warning("这只眼睛已经属于另一名侍徒！"))
+	balloon_alert(living_user, "已有主人！")
 	return TRUE
 
 /obj/item/mansus_eye/proc/set_new_owner(mob/living/carbon/new_owner, silent = FALSE)
@@ -209,18 +209,18 @@ GLOBAL_LIST_INIT(mansus_eye_commands_regex, list(
 	owner = WEAKREF(new_owner)
 	action.Grant(new_owner)
 	if (!silent)
-		to_chat(new_owner, span_notice("The eye binds to you, and you sense its cognition behind your own..."))
+		to_chat(new_owner, span_notice("眼睛与你绑定，你感觉到它的意识潜藏在自己的意识之后……"))
 
 /datum/action/cooldown/mansus_eye
-	name = "watching eye"
-	desc = "Activates your third, distant eye, and allows you to look through it. While the window is open, speaking certain phrases will have \
-	certain effects. \n\
-	<b>Silence</b>: Mutes everyone in view for a brief period.\n\
-	<b>Deafen</b>: Deafens everyone in view for a brief period.\n\
-	<b>Blind</b>: Blinds everyone in view for a brief period.\n\
-	<b>Sleep</b>: Afflicts everoyne in view with drowsiness and eye blur.\n\
-	Every time a phrase is uttered, the eye will briefly become visible and will also go on cooldown for some time.\
-	The effects only apply if the eye could see the target without x-ray vision."
+	name = "窥视之眼"
+	desc = "激活你远方的第三只眼，让你透过它观察。窗口开启时，说出以下英文词语，\
+	即可触发相应效果。\n\
+	<b>Silence（噤声）</b>：使视野中的所有人短暂失声。\n\
+	<b>Deafen（致聋）</b>：使视野中的所有人短暂失聪。\n\
+	<b>Blind（致盲）</b>：使视野中的所有人短暂失明。\n\
+	<b>Sleep（睡眠）</b>：使视野中的所有人昏昏欲睡、视野模糊。\n\
+	每次发出命令，眼睛都会短暂显形，并进入一段时间的冷却。\
+	只有眼睛不依靠透视就能看见的目标才会受到影响。"
 	button_icon = 'modular_zubbers/icons/obj/heretic_misc.dmi'
 	button_icon_state = "watching_eye_open"
 	background_icon_state = "bg_heretic"

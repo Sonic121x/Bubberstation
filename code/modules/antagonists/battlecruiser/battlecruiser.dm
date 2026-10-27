@@ -1,6 +1,6 @@
 /datum/team/battlecruiser
-	name = "\improper Battlecruiser Crew"
-	member_name = "crewmember"
+	name = "\improper 战列巡洋舰船员"
+	member_name = "船员"
 	/// The central objective of this battlecruiser
 	var/core_objective = /datum/objective/nuclear
 	/// The assigned nuke of this team
@@ -13,10 +13,10 @@
 		objectives += objective
 
 /datum/antagonist/battlecruiser
-	name = "Battlecruiser Crewmember"
+	name = "战列巡洋舰船员"
 	show_to_ghosts = TRUE
 	roundend_category = "battlecruiser syndicate operatives"
-	suicide_cry = "FOR THE SYNDICATE!!!"
+	suicide_cry = "为了辛迪加！！！"
 	antag_hud_name = "battlecruiser_crew"
 	antagpanel_category = ANTAG_GROUP_SYNDICATE
 	pref_flag = ROLE_BATTLECRUISER_CREW
@@ -29,15 +29,15 @@
 
 /datum/antagonist/battlecruiser/greet()
 	play_stinger()
-	to_chat(owner, span_big("You are a [name]!"))
+	to_chat(owner, span_big("你是[name]！"))
 	owner.announce_objectives()
 
 /datum/antagonist/battlecruiser/ally
-	name = "Battlecruiser Ally"
+	name = "战列巡洋舰盟友"
 	show_to_ghosts = FALSE
 
 /datum/antagonist/battlecruiser/captain
-	name = "Battlecruiser Captain"
+	name = "战列巡洋舰舰长"
 	antag_hud_name = "battlecruiser_lead"
 	pref_flag = ROLE_BATTLECRUISER_CAPTAIN
 
@@ -58,7 +58,7 @@
 	objectives |= battlecruiser_team.objectives
 	if(battlecruiser_team.nuke)
 		var/obj/machinery/nuclearbomb/nuke = battlecruiser_team.nuke
-		antag_memory += "<B>[nuke] Code</B>: [nuke.r_code]<br>"
+		antag_memory += "<B>[nuke] 密码</B>：[nuke.r_code]<br>"
 		owner.add_memory(/datum/memory/key/nuke_code, nuclear_code = nuke.r_code)
-		to_chat(owner, "The nuclear authorization code is: <B>[nuke.r_code]</B>")
+		to_chat(owner, "核弹授权密码为：<B>[nuke.r_code]</B>")
 	return ..()

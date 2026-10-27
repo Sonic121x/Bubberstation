@@ -1,6 +1,6 @@
 /obj/item/melee/tomahawk
-	name = "expeditionary tomahawk"
-	desc = "A somewhat dulled axe blade upon a short fibremetal handle."
+	name = "远征战斧"
+	desc = "斧刃略显钝拙，装在短纤维金属柄上。"
 	icon = 'modular_skyrat/modules/exp_corps/icons/tomahawk.dmi'
 	icon_state = "tomahawk"
 	inhand_icon_state = "tomahawk"
@@ -14,8 +14,8 @@
 	throw_speed = 4
 	throw_range = 8
 	embed_type = /datum/embedding/tomahawk
-	attack_verb_continuous = list("chops", "tears", "lacerates", "cuts")
-	attack_verb_simple = list("chop", "tear", "lacerate", "cut")
+	attack_verb_continuous = list("劈砍", "撕裂", "割裂", "切砍")
+	attack_verb_simple = list("劈砍", "撕裂", "割裂", "切砍")
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 

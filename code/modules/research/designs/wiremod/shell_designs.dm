@@ -5,57 +5,57 @@
 	)
 
 /datum/design/wiremod_shell/compact_remote
-	name = "Compact Remote Shell"
-	desc = "A handheld shell with one big button."
+	name = "紧凑遥控器外壳"
+	desc = "一种带有一个大按钮的手持外壳。"
 	id = "compact_remote_shell"
 	build_path = /obj/item/compact_remote
 	materials = list(/datum/material/glass =SHEET_MATERIAL_AMOUNT, /datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5)
 
 /datum/design/wiremod_shell/controller
-	name = "Controller Shell"
-	desc = "A handheld shell with several buttons."
+	name = "控制器外壳"
+	desc = "一种带有多个按钮的手持外壳。"
 	id = "controller_shell"
 	build_path = /obj/item/controller
 	materials = list(/datum/material/glass =SHEET_MATERIAL_AMOUNT, /datum/material/iron = SHEET_MATERIAL_AMOUNT*3.5)
 
 /datum/design/wiremod_shell/scanner
-	name = "Scanner Shell"
-	desc = "A handheld scanner shell that can scan entities."
+	name = "扫描器外壳"
+	desc = "一种可扫描实体的手持扫描器外壳。"
 	id = "scanner_shell"
 	build_path = /obj/item/wiremod_scanner
 	materials = list(/datum/material/glass =SHEET_MATERIAL_AMOUNT, /datum/material/iron = SHEET_MATERIAL_AMOUNT*3.5)
 
 /datum/design/wiremod_shell/keyboard
-	name = "Keyboard Shell"
-	desc = "A handheld shell that allows the user to input a string"
+	name = "键盘外壳"
+	desc = "一种可让用户输入字符串的手持外壳。"
 	id = "keyboard_shell"
 	build_path = /obj/item/keyboard_shell
 	materials = list(/datum/material/glass =SHEET_MATERIAL_AMOUNT, /datum/material/iron = SHEET_MATERIAL_AMOUNT*5)
 
 /datum/design/wiremod_shell/gun
-	name = "Gun Shell"
-	desc = "A handheld shell that can fire projectiles to output entities."
+	name = "枪械外壳"
+	desc = "一种可发射弹丸、将实体作为信号输出的手持外壳。"
 	id = "gun_shell"
 	build_path = /obj/item/gun/energy/wiremod_gun
 	materials = list(/datum/material/glass =SHEET_MATERIAL_AMOUNT, /datum/material/iron = SHEET_MATERIAL_AMOUNT*5, /datum/material/plasma =SMALL_MATERIAL_AMOUNT)
 
 /datum/design/wiremod_shell/bot
-	name = "Bot Shell"
-	desc = "An immobile shell that can store more components. Has a USB port to be able to connect to computers and machines."
+	name = "机器人外壳"
+	desc = "一种无法移动、可容纳更多元件的外壳。配有 USB 接口，可连接电脑与机器。"
 	id = "bot_shell"
 	build_path = /obj/item/shell/bot
 	materials = list(/datum/material/glass =SHEET_MATERIAL_AMOUNT, /datum/material/iron = SHEET_MATERIAL_AMOUNT*5)
 
 /datum/design/wiremod_shell/money_bot
-	name = "Money Bot Shell"
-	desc = "An immobile shell that is similar to a regular bot shell, but accepts monetary inputs and can also dispense money."
+	name = "金钱机器人外壳"
+	desc = "一种无法移动的外壳，与普通机器人外壳类似，但能接收金额输入，也能分发金钱。"
 	id = "money_bot_shell"
 	build_path = /obj/item/shell/money_bot
 	materials = list(/datum/material/glass =SHEET_MATERIAL_AMOUNT, /datum/material/iron = SHEET_MATERIAL_AMOUNT*5, /datum/material/gold =SMALL_MATERIAL_AMOUNT*0.5)
 
 /datum/design/wiremod_shell/drone
-	name = "Drone Shell"
-	desc = "A shell with the ability to move itself around."
+	name = "无人机外壳"
+	desc = "一种能够自行移动的外壳。"
 	id = "drone_shell"
 	build_path = /obj/item/shell/drone
 	materials = list(
@@ -65,8 +65,8 @@
 	)
 
 /datum/design/wiremod_shell/server
-	name = "Server Shell"
-	desc = "A very large shell that cannot be moved around. Stores the most components."
+	name = "服务器外壳"
+	desc = "一种体型巨大、无法移动的外壳。可容纳最多的元件。"
 	id = "server_shell"
 	materials = list(
 		/datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5,
@@ -76,8 +76,8 @@
 	build_path = /obj/item/shell/server
 
 /datum/design/wiremod_shell/airlock
-	name = "Airlock Shell"
-	desc = "A door shell that cannot be moved around when assembled."
+	name = "气闸外壳"
+	desc = "一种组装后无法移动的门外壳。"
 	id = "door_shell"
 	materials = list(
 		/datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5,
@@ -86,8 +86,8 @@
 	build_path = /obj/item/shell/airlock
 
 /datum/design/wiremod_shell/dispenser
-	name = "Dispenser Shell"
-	desc = "A dispenser shell that can dispense items."
+	name = "售货机外壳"
+	desc = "一种可分发物品的售货机外壳。"
 	id = "dispenser_shell"
 	materials = list(
 		/datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5,
@@ -96,8 +96,8 @@
 	build_path = /obj/item/shell/dispenser
 
 /datum/design/wiremod_shell/bci
-	name = "Brain-Computer Interface Shell"
-	desc = "An implant that can be placed in a user's head to control circuits using their brain."
+	name = "脑机接口外壳"
+	desc = "一种可植入使用者头部、让其用大脑控制电路的植入体。"
 	id = "bci_shell"
 	materials = list(
 		/datum/material/glass =SHEET_MATERIAL_AMOUNT,
@@ -106,8 +106,8 @@
 	build_path = /obj/item/shell/bci
 
 /datum/design/wiremod_shell/scanner_gate
-	name = "Scanner Gate Shell"
-	desc = "A scanner gate shell that performs mid-depth scans on people when they pass through it."
+	name = "扫描门外壳"
+	desc = "一种扫描门外壳，可在人员通过时对其进行中等深度的扫描。"
 	id = "scanner_gate_shell"
 	materials = list(
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT*2,
@@ -116,22 +116,22 @@
 	build_path = /obj/item/shell/scanner_gate
 
 /datum/design/wiremod_shell/assembly
-	name = "Assembly Shell"
-	desc = "An assembly shell that can be attached to wires and other assemblies."
+	name = "装配件外壳"
+	desc = "一种可附着在电线与其他装配件上的装配件外壳。"
 	id = "assembly_shell"
 	materials = list(/datum/material/glass =SHEET_MATERIAL_AMOUNT, /datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5)
 	build_path = /obj/item/assembly/wiremod
 
 /datum/design/wiremod_shell/mod_module
-	name = "MOD Module Shell"
-	desc = "A module shell that allows a circuit to be inserted into, and interface with, a MODsuit."
+	name = "MOD 模块外壳"
+	desc = "一种模块外壳，可让电路插入 MOD 外骨骼并与之交互。"
 	id = "module_shell"
 	materials = list(/datum/material/glass =SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/mod/module/circuit
 
 /datum/design/wiremod_shell/undertile
-	name = "Under-tile Shell"
-	desc = "A small shell that can fit under the floor."
+	name = "地板下外壳"
+	desc = "一种可安装在地板下的小型外壳。"
 	id = "undertile_shell"
 	materials = list(
 		/datum/material/glass=HALF_SHEET_MATERIAL_AMOUNT,
@@ -141,8 +141,8 @@
 
 
 /datum/design/wiremod_shell/wallmount
-	name = "Wall-mounted Shell"
-	desc = "A large shell that can be mounted on a wall."
+	name = "壁挂外壳"
+	desc = "一种可安装在墙上的大型外壳。"
 	id = "wallmount_shell"
 	materials = list(
 		/datum/material/glass=SHEET_MATERIAL_AMOUNT,
@@ -151,8 +151,8 @@
 	build_path = /obj/item/wallframe/circuit
 
 /datum/design/wiremod_shell/implant
-	name = "Implant Shell Case"
-	desc = "A tiny shell that can be implanted in a living being."
+	name = "植入体外壳盒"
+	desc = "一种可植入生物体内的小型外壳。"
 	id = "implant_shell"
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5,
@@ -166,8 +166,8 @@
 
 //This design has a different path but it's still a wiremod design.
 /datum/design/board/bci_implanter
-	name = "Brain-Computer Interface Manipulation Chamber"
-	desc = "A machine that, when given a brain-computer interface, will implant it into an occupant. Otherwise, will remove any brain-computer interfaces they already have."
+	name = "脑机接口操作舱"
+	desc = "一种机器，装入脑机接口后可将其植入舱内人员体内；若没有，则会取出其已有的脑机接口。"
 	id = "bci_implanter"
 	build_path = /obj/item/circuitboard/machine/bci_implanter
 	build_type = COMPONENT_PRINTER

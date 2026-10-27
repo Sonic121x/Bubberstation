@@ -7,7 +7,7 @@
 /datum/chemical_reaction/krokodil
 	results = list(/datum/reagent/drug/krokodil = 6)
 	required_reagents = list(/datum/reagent/medicine/diphenhydramine = 1, /datum/reagent/medicine/morphine = 1, /datum/reagent/space_cleaner = 1, /datum/reagent/potassium = 1, /datum/reagent/phosphorus = 1, /datum/reagent/fuel = 1)
-	mix_message = "The mixture dries into a pale blue powder."
+	mix_message = "混合物干燥成淡蓝色粉末。"
 	required_temp = 380
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_DRUG
 	thermic_constant = 50
@@ -64,7 +64,7 @@
 	var/inside_msg
 	if(ismob(holder.my_atom))
 		var/mob/M = holder.my_atom
-		inside_msg = " inside [ADMIN_LOOKUPFLW(M)]"
+		inside_msg = " 位于 [ADMIN_LOOKUPFLW(M)] 体内"
 		return
 	var/lastkey = holder.my_atom.fingerprintslast
 	var/touch_msg = "N/A"
@@ -72,8 +72,8 @@
 		var/mob/toucher = get_mob_by_key(lastkey)
 		touch_msg = "[ADMIN_LOOKUPFLW(toucher)]"
 	if(!istype(holder.my_atom, /obj/machinery/plumbing)) //excludes standard plumbing equipment from spamming admins with this shit
-		message_admins("Reagent explosion reaction occurred at [ADMIN_VERBOSEJMP(T)][inside_msg]. Last Fingerprint: [touch_msg].")
-	log_game("Reagent explosion reaction occurred at [AREACOORD(T)]. Last Fingerprint: [lastkey ? lastkey : "N/A"]." )
+		message_admins("试剂爆炸反应发生于 [ADMIN_VERBOSEJMP(T)][inside_msg]。最后指纹：[touch_msg]。")
+	log_game("试剂爆炸反应发生于 [AREACOORD(T)]。最后指纹：[lastkey ? lastkey : "N/A"]。" )
 	var/datum/effect_system/reagents_explosion/expl = new(T, power)
 	expl.start(holder.my_atom)
 	holder.clear_reagents()

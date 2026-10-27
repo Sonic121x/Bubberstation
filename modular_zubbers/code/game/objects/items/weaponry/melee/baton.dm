@@ -1,6 +1,6 @@
 /obj/item/melee/baton/security/staff
-	name = "stun staff"
-	desc = "An advanced Secure Apprehension Device in the form of a quarterstaff. Debatably more effective at incapacitating targets."
+	name = "电击长棍"
+	desc = "长棍形态的先进安全拘捕装置。或许能更有效地使目标丧失行动能力。"
 	icon = 'modular_zubbers/icons/obj/weapons/baton.dmi'
 	icon_state = "stunstaff"
 	base_icon_state = "stunstaff"
@@ -32,7 +32,7 @@
 /obj/item/melee/baton/security/staff/proc/jedi_spin(mob/living/user)
 	dance_rotate(user, CALLBACK(user, TYPE_PROC_REF(/mob, dance_flip)))
 
-/obj/item/melee/baton/security/staff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/melee/baton/security/staff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == LEAP_ATTACK)
 		final_block_chance -= 30 //It's still worse than a shield and a baton but it's for the cool factor and to not make it that terrible in comparison
 	if(attack_type == PROJECTILE_ATTACK)
@@ -48,8 +48,8 @@
 	return
 
 /obj/item/melee/baton/security/staff/prime
-	name = "\improper Magna-staff"
-	desc = "An absolutely brutal feat of less-lethal engineering. The unique construction allows it to recharge between shocks incredibly quickly. Definitely more effective at incapacitating targets and posesses exceptional blocking capabilities."
+	name = "\improper 强能长棍"
+	desc = "低致命性武器工程中极其凶猛的杰作。独特结构使其能够在电击间隙极速充能。它能更有效地使目标丧失行动能力，且格挡能力出众。"
 	icon_state = "stunstaff_prime"
 	base_icon_state = "stunstaff_prime"
 	inhand_icon_state = "stunstaff_prime"
@@ -73,7 +73,7 @@
 	. = ..()
 	AddComponent(/datum/component/boomerang, throw_range + 2, TRUE)
 
-/obj/item/melee/baton/security/staff/prime/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/melee/baton/security/staff/prime/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == LEAP_ATTACK)
 		final_block_chance -= 45 //effective 30
 	if(attack_type == PROJECTILE_ATTACK)

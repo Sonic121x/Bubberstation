@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(market)
-	name = "Market"
+	name = "市场"
 	ss_flags = SS_BACKGROUND
 	dependencies = list(
 		/datum/controller/subsystem/atoms,
@@ -7,10 +7,10 @@ SUBSYSTEM_DEF(market)
 
 	/// Descriptions for each shipping methods.
 	var/shipping_method_descriptions = list(
-		SHIPPING_METHOD_LAUNCH = "Launches the item at the station from space, with free shipping! However, you'll need to risk a spacewalk to receive your goods.",
-		SHIPPING_METHOD_LTSRBT = "Long-To-Short-Range-Bluespace-Transceiver, a machine that receives items outside the station and then teleports them to the location of the uplink.",
-		SHIPPING_METHOD_TELEPORT = "Teleports the item in a random area in the station, you get 60 seconds to get there first though.",
-		SHIPPING_METHOD_SUPPLYPOD = "Ships the item inside a supply pod at your exact location. Showy, speedy and expensive.",
+		SHIPPING_METHOD_LAUNCH = "从太空向空间站发射物品，免运费！不过，你需要冒险太空行走才能收货。",
+		SHIPPING_METHOD_LTSRBT = "远近程蓝空间收发器：在空间站外接收物品，再将其传送至上行链路所在位置的机器。",
+		SHIPPING_METHOD_TELEPORT = "将物品传送到站内随机区域，不过你有 60 秒时间提前赶到。",
+		SHIPPING_METHOD_SUPPLYPOD = "通过补给舱将物品精准投送到你的位置。高调、迅速且昂贵。",
 	)
 
 	/// List of all existing markets.
@@ -88,7 +88,7 @@ SUBSYSTEM_DEF(market)
 
 				lowest_cd_pad.add_to_queue(purchase)
 
-				to_chat(buyer, span_notice("[purchase.uplink] flashes a message noting that the order is being processed by [lowest_cd_pad]."))
+				to_chat(buyer, span_notice("[purchase.uplink] 闪出一条消息，提示订单正由 [lowest_cd_pad] 处理。"))
 
 			// Get random area, throw it somewhere there.
 			if(SHIPPING_METHOD_TELEPORT)
@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(market)
 					continue
 				queued_purchases -= purchase
 
-				to_chat(buyer, span_notice("[purchase.uplink] flashes a message noting that the order is being teleported to [get_area(targetturf)] in 60 seconds."))
+				to_chat(buyer, span_notice("[purchase.uplink] 闪出一条消息，提示货物将在 60 秒后传送至 [get_area(targetturf)]。"))
 
 				// do_teleport does not want to teleport items from nullspace, so it just forceMoves and does sparks.
 				addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/controller/subsystem/market, fake_teleport), purchase, targetturf), 60 SECONDS)
@@ -114,7 +114,7 @@ SUBSYSTEM_DEF(market)
 				purchase.post_purchase_effects(item)
 				delivery_pod.throw_at(purchase.uplink, 3, 3, spin = FALSE)
 
-				to_chat(buyer, span_notice("[purchase.uplink] flashes a message noting the order is being launched at the station from [dir2text(startSide)]."))
+				to_chat(buyer, span_notice("[purchase.uplink] 闪出一条消息，提示货物正从空间站的 [dir2text(startSide)] 方向发射而来。"))
 				qdel(purchase)
 
 			if(SHIPPING_METHOD_SUPPLYPOD)
@@ -124,7 +124,7 @@ SUBSYSTEM_DEF(market)
 				))
 				purchase.entry.spawn_item(spawned_pod, purchase)
 
-				to_chat(buyer, span_notice("[purchase.uplink] flashes a message noting the order is being launched at your location. Right here, right now!"))
+				to_chat(buyer, span_notice("[purchase.uplink] 闪出一条消息，提示货物正向你的位置发射。就是这里，就在此刻！"))
 				qdel(purchase)
 
 		if(MC_TICK_CHECK)
@@ -150,7 +150,7 @@ SUBSYSTEM_DEF(market)
 
 ///A proc that restocks one or more markets, or all if the market_whitelist is null.
 /datum/controller/subsystem/market/proc/restock(list/market_whitelist)
-	var/market_name = "Markets"
+	var/market_name = "市场"
 	if(market_whitelist && !islist(market_whitelist))
 		var/datum/market/market_path = market_whitelist
 		market_name = market_path::name
@@ -167,5 +167,5 @@ SUBSYSTEM_DEF(market)
 		initialize_item(path, market_whitelist)
 
 	for(var/obj/machinery/ltsrbt/pad as anything in telepads)
-		pad.say("[market_name] restocked!")
+		pad.say("[market_name] 已补货！")
 		playsound(src, 'sound/effects/cashregister.ogg', 40, FALSE)

@@ -31,7 +31,7 @@
 
 /datum/component/itembound/proc/on_examined(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice("If you hold it up to your ear, you can hear the screams of the damned.")
+	examine_list += span_notice("将它贴近耳边，就能听到受诅咒者的惨叫。")
 
 /// Ensure that when we move, we still are in the container. If not in the container, remove all the traits.
 /datum/component/itembound/proc/verify_containment()

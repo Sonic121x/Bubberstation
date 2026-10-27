@@ -91,7 +91,7 @@
 			thing.update_greyscale()
 
 /datum/greyscale_config/proc/EnableAutoRefresh(live_type)
-	message_admins("Config auto refresh has been enabled for '[live_type]' with configuration [DebugName()]. Expect heavy lag.")
+	message_admins("已为'[live_type]'启用配置[DebugName()]的自动刷新。预计会产生严重延迟。")
 	if(live_type)
 		if(!live_edit_types)
 			live_edit_types = list()
@@ -101,7 +101,7 @@
 /datum/greyscale_config/proc/DisableAutoRefresh(live_type, remove_all=FALSE)
 	if(!remove_all && !(live_type in live_edit_types))
 		return
-	message_admins("Config auto refresh has been disabled for '[live_type]' with configuration [DebugName()]")
+	message_admins("已为'[live_type]'禁用配置[DebugName()]的自动刷新")
 	if(remove_all)
 		live_edit_types = null
 	else if(live_type && live_edit_types)

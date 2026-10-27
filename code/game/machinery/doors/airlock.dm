@@ -80,7 +80,7 @@
 #define DOOR_VISION_DISTANCE 11 ///The maximum distance a door will see out to
 
 /obj/machinery/door/airlock
-	name = "Airlock"
+	name = "气闸"
 	icon = 'icons/obj/doors/airlocks/station/public.dmi'
 	icon_state = "closed"
 	base_icon_state = null
@@ -267,7 +267,7 @@
 		return
 	set_bolt(TRUE)
 	playsound(src,boltDown,30,FALSE,3)
-	audible_message(span_hear("You hear a click from the bottom of the door."), null,  1)
+	audible_message(span_hear("你听见门底传来咔嗒声。"), null,  1)
 	update_appearance()
 
 /obj/machinery/door/airlock/proc/set_bolt(should_bolt)
@@ -285,7 +285,7 @@
 		return
 	set_bolt(FALSE)
 	playsound(src,boltUp,30,FALSE,3)
-	audible_message(span_hear("You hear a click from the bottom of the door."), null,  1)
+	audible_message(span_hear("你听见门底传来咔嗒声。"), null,  1)
 	update_appearance()
 
 /obj/machinery/door/airlock/narsie_act()
@@ -706,55 +706,55 @@
 /obj/machinery/door/airlock/examine(mob/user)
 	. = ..()
 	if(closeOtherId)
-		. += span_warning("This airlock cycles on ID: [sanitize(closeOtherId)].")
+		. += span_warning("此气闸的联锁 ID 为：[sanitize(closeOtherId)]。")
 	else if(cyclelinkedairlock)
-		. += span_warning("This airlock cycles with: [cyclelinkedairlock.name].")
+		. += span_warning("此气闸与[cyclelinkedairlock.name]联锁。")
 	else
-		. += span_warning("This airlock does not cycle.")
+		. += span_warning("此气闸未设置联锁。")
 	if(obj_flags & EMAGGED)
-		. += span_warning("Its access panel is smoking slightly.")
+		. += span_warning("它的维护面板正冒着缕缕烟雾。")
 	if(note)
 		if(!in_range(user, src))
-			. += "There's a [note.name] pinned to the front. You can't read it from here."
+			. += "正面钉着[note.name]。你在这里看不清内容。"
 		else
-			. += "There's a [note.name] pinned to the front..."
+			. += "正面钉着[note.name]……"
 			. += note.examine(user)
-		. += span_notice("The attached [note.name] can be taken down with some [EXAMINE_HINT("wirecutters")].")
+		. += span_notice("可以用[EXAMINE_HINT("剪线钳")]取下附着的[note.name]。")
 	if(seal)
-		. += "It's been braced with \a [seal]."
+		. += "它已用[seal]加固封闭。"
 	if(welded)
-		. += "It's welded shut."
+		. += "它被焊死了。"
 	if(panel_open)
 		switch(security_level)
 			if(AIRLOCK_SECURITY_NONE)
-				. += "Its wires are exposed!"
+				. += "它的电线暴露在外！"
 			if(AIRLOCK_SECURITY_IRON)
-				. += "Its wires are hidden behind a welded iron cover."
+				. += "它的电线藏在焊接的铁盖后。"
 			if(AIRLOCK_SECURITY_PLASTEEL_I_S)
-				. += "There is some shredded plasteel inside."
+				. += "内部有一些碎裂的塑钢。"
 			if(AIRLOCK_SECURITY_PLASTEEL_I)
-				. += "Its wires are behind an inner layer of plasteel."
+				. += "它的电线位于内层塑钢后。"
 			if(AIRLOCK_SECURITY_PLASTEEL_O_S)
-				. += "There is some shredded plasteel inside."
+				. += "内部有一些碎裂的塑钢。"
 			if(AIRLOCK_SECURITY_PLASTEEL_O)
-				. += "There is a welded plasteel cover hiding its wires."
+				. += "焊接的塑钢盖遮住了它的电线。"
 			if(AIRLOCK_SECURITY_PLASTEEL)
-				. += "There is a protective grille over its panel."
+				. += "它的面板上覆有防护格栅。"
 	else if(security_level)
 		if(security_level == AIRLOCK_SECURITY_IRON)
-			. += "It looks a bit stronger."
+			. += "它看起来稍微坚固了些。"
 		else
-			. += "It looks very robust."
+			. += "它看起来非常坚固。"
 
 	var/active_reta = has_active_reta_access()
 	if(active_reta)
-		. += span_nicegreen("Emergency Temporary Access is enabled for [EXAMINE_HINT(active_reta)] ID cards.")
+		. += span_nicegreen("已为[EXAMINE_HINT(chinese_department_display(active_reta))] ID 卡启用紧急临时通行权限。")
 
 	if(issilicon(user) && !(machine_stat & BROKEN))
-		. += span_notice("Shift-click [src] to [ density ? "open" : "close"] it.")
-		. += span_notice("Ctrl-click [src] to [ locked ? "raise" : "drop"] its bolts.")
-		. += span_notice("Alt-click [src] to [ secondsElectrified ? "un-electrify" : "permanently electrify"] it.")
-		. += span_notice("Ctrl-Shift-click [src] to [ emergency ? "disable" : "enable"] emergency access.")
+		. += span_notice("按住 Shift 点击[src]可[ density ? "打开" : "关闭"]它。")
+		. += span_notice("按住 Ctrl 点击[src]可[ locked ? "升起" : "落下"]门闩。")
+		. += span_notice("按住 Alt 点击[src]可[ secondsElectrified ? "解除通电" : "永久通电"]。")
+		. += span_notice("按住 Ctrl-Shift 点击[src]可[ emergency ? "禁用" : "启用"]紧急通行。")
 
 /obj/machinery/door/airlock/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -763,11 +763,11 @@
 		if(!(machine_stat & BROKEN))
 			var/ui = SStgui.try_update_ui(user, src)
 			if(!ui && !held_item)
-				context[SCREENTIP_CONTEXT_LMB] = "Open UI"
-			context[SCREENTIP_CONTEXT_SHIFT_LMB] = density ? "Open" : "Close"
-			context[SCREENTIP_CONTEXT_CTRL_LMB] = locked ? "Unbolt" : "Bolt"
-			context[SCREENTIP_CONTEXT_ALT_LMB] = isElectrified() ? "Unelectrify" : "Electrify"
-			context[SCREENTIP_CONTEXT_CTRL_SHIFT_LMB] = emergency ? "Unset emergency access" : "Set emergency access"
+				context[SCREENTIP_CONTEXT_LMB] = "打开界面"
+			context[SCREENTIP_CONTEXT_SHIFT_LMB] = density ? "打开" : "关闭"
+			context[SCREENTIP_CONTEXT_CTRL_LMB] = locked ? "升起门闩" : "落下门闩"
+			context[SCREENTIP_CONTEXT_ALT_LMB] = isElectrified() ? "解除通电" : "通电"
+			context[SCREENTIP_CONTEXT_CTRL_SHIFT_LMB] = emergency ? "取消紧急通行" : "设置紧急通行"
 			. = CONTEXTUAL_SCREENTIP_SET
 
 	if(!isliving(user))
@@ -779,36 +779,36 @@
 	switch (held_item?.tool_behaviour)
 		if (TOOL_SCREWDRIVER)
 			if(has_access_panel)
-				context[SCREENTIP_CONTEXT_LMB] = panel_open ? "Close panel" : "Open panel"
+				context[SCREENTIP_CONTEXT_LMB] = panel_open ? "关闭面板" : "打开面板"
 				return CONTEXTUAL_SCREENTIP_SET
 		if (TOOL_CROWBAR)
 			if (panel_open)
 				if (security_level == AIRLOCK_SECURITY_PLASTEEL_O_S || security_level == AIRLOCK_SECURITY_PLASTEEL_I_S)
-					context[SCREENTIP_CONTEXT_LMB] = "Remove shielding"
+					context[SCREENTIP_CONTEXT_LMB] = "移除护板"
 					return CONTEXTUAL_SCREENTIP_SET
 				else if (should_try_removing_electronics())
-					context[SCREENTIP_CONTEXT_LMB] = "Remove electronics"
+					context[SCREENTIP_CONTEXT_LMB] = "移除电子组件"
 					return CONTEXTUAL_SCREENTIP_SET
 
 			// Not always contextually true, but is contextually false in ways that make gameplay interesting.
 			// For example, trying to pry open an airlock, only for the bolts to be down and the lights off.
-			context[SCREENTIP_CONTEXT_LMB] = "Pry open"
+			context[SCREENTIP_CONTEXT_LMB] = "撬开"
 
 			return CONTEXTUAL_SCREENTIP_SET
 		if (TOOL_WELDER)
-			context[SCREENTIP_CONTEXT_RMB] = "Weld shut"
+			context[SCREENTIP_CONTEXT_RMB] = "焊死"
 
 			if (panel_open)
 				switch (security_level)
 					if (AIRLOCK_SECURITY_IRON, AIRLOCK_SECURITY_PLASTEEL_I, AIRLOCK_SECURITY_PLASTEEL_O)
-						context[SCREENTIP_CONTEXT_LMB] = "Cut shielding"
+						context[SCREENTIP_CONTEXT_LMB] = "切开护板"
 						return CONTEXTUAL_SCREENTIP_SET
 
-			context[SCREENTIP_CONTEXT_LMB] = "Repair"
+			context[SCREENTIP_CONTEXT_LMB] = "修理"
 			return CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/wrench/bolter))
 		if(locked)
-			context[SCREENTIP_CONTEXT_LMB] = "Raise bolts"
+			context[SCREENTIP_CONTEXT_LMB] = "升起门闩"
 			return CONTEXTUAL_SCREENTIP_SET
 
 		return CONTEXTUAL_SCREENTIP_SET
@@ -820,9 +820,9 @@
 			hack(user)
 			return
 		else
-			to_chat(user, span_warning("Airlock AI control has been blocked with a firewall. Unable to hack."))
+			to_chat(user, span_warning("气闸的 AI 控制被防火墙阻断，无法入侵。"))
 	if(obj_flags & EMAGGED)
-		to_chat(user, span_warning("Unable to interface: Airlock is unresponsive."))
+		to_chat(user, span_warning("无法连接：气闸无响应。"))
 		return
 
 	ui_interact(user)
@@ -830,17 +830,17 @@
 ///Performs basic checks to make sure we are still able to hack an airlock. If control is restored early through outside means, opens the airlock's control interface.
 /obj/machinery/door/airlock/proc/check_hacking(mob/user, success_message)
 	if(QDELETED(src))
-		to_chat(user, span_warning("Connection lost! Unable to locate airlock on network."))
+		to_chat(user, span_warning("连接丢失！无法在网络中找到气闸。"))
 		aiHacking = FALSE
 		return FALSE
 	if(canAIControl(user))
-		to_chat(user, span_notice("Alert cancelled. Airlock control has been restored without our assistance."))
+		to_chat(user, span_notice("警报已取消。气闸控制已自行恢复，无需我们协助。"))
 		aiHacking = FALSE
 		if(user)
 			attack_ai(user) //bring up airlock dialog
 		return
 	else if(!canAIHack())
-		to_chat(user, span_warning("Connection lost! Unable to hack airlock."))
+		to_chat(user, span_warning("连接丢失！无法入侵气闸。"))
 		aiHacking = FALSE
 		return
 	if(success_message)
@@ -852,33 +852,33 @@
 	set waitfor = 0
 	if(!aiHacking)
 		aiHacking = TRUE
-		to_chat(user, span_warning("Airlock AI control has been blocked. Beginning fault-detection."))
+		to_chat(user, span_warning("气闸 AI 控制已被阻断。开始故障检测。"))
 		sleep(5 SECONDS)
 
-		if(!check_hacking(user, "Fault confirmed: airlock control wire disabled or cut."))
+		if(!check_hacking(user, "故障已确认：气闸控制线已禁用或被剪断。"))
 			return
 		sleep(2 SECONDS)
 
-		if(!check_hacking(user, "Attempting to hack into airlock. This may take some time."))
+		if(!check_hacking(user, "尝试入侵气闸。这可能需要一些时间。"))
 			return
 		sleep(20 SECONDS)
 
-		if(!check_hacking(user, "Upload access confirmed. Loading control program into airlock software."))
+		if(!check_hacking(user, "上传权限已确认。正在向气闸软件加载控制程序。"))
 			return
 		sleep(17 SECONDS)
 
-		if(!check_hacking(user,"Transfer complete. Forcing airlock to execute program."))
+		if(!check_hacking(user,"传输完成。正在强制气闸执行程序。"))
 			return
 		sleep(5 SECONDS)
 
-		if(!check_hacking(user, "Receiving control information from airlock."))
+		if(!check_hacking(user, "正在接收气闸控制信息。"))
 			return
 		aiControlDisabled = AI_WIRE_HACKED //disable blocked control
 		sleep(1 SECONDS)
 
 		aiHacking = FALSE
 		if(QDELETED(src))
-			to_chat(user, span_warning("Connection lost! Unable to locate airlock on network."))
+			to_chat(user, span_warning("连接丢失！无法在网络中找到气闸。"))
 			return
 		if(user)
 			attack_ai(user) //bring up airlock dialog
@@ -904,16 +904,16 @@
 		if((HAS_TRAIT(H, TRAIT_DUMB)) && Adjacent(user))
 			playsound(src, 'sound/effects/bang.ogg', 25, TRUE)
 			if(!istype(H.head, /obj/item/clothing/head/helmet))
-				H.visible_message(span_danger("[user] headbutts the airlock."), \
-									span_userdanger("You headbutt the airlock!"))
+				H.visible_message(span_danger("[user]用头撞向气闸。"), \
+									span_userdanger("你用头撞向气闸！"))
 				H.Paralyze(100)
 				H.apply_damage(10, BRUTE, BODY_ZONE_HEAD)
 			else
-				visible_message(span_danger("[user] headbutts the airlock. Good thing [user.p_theyre()] wearing a helmet."))
+				visible_message(span_danger("[user]用头撞向气闸。幸好戴着头盔。"))
 
 /obj/machinery/door/airlock/attempt_wire_interaction(mob/user)
 	if(security_level)
-		to_chat(user, span_warning("Wires are protected!"))
+		to_chat(user, span_warning("电线受到保护！"))
 		return WIRE_INTERACTION_FAIL
 	return ..()
 
@@ -934,10 +934,10 @@
 
 /obj/machinery/door/airlock/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!has_access_panel)
-		to_chat(user, span_warning("[src] has no maintenance panel!"))
+		to_chat(user, span_warning("[src]没有维护面板！"))
 		return ITEM_INTERACT_SUCCESS
 	toggle_panel_open()
-	to_chat(user, span_notice("You [panel_open ? "open":"close"] the maintenance panel of the airlock."))
+	to_chat(user, span_notice("你[panel_open ? "打开":"关闭"]了气闸的维护面板。"))
 	tool.play_tool_sound(src)
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -949,20 +949,20 @@
 	if(panel_open && security_level == AIRLOCK_SECURITY_PLASTEEL)
 		if(hasPower() && shock(user, 60)) // Protective grille of wiring is electrified
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice("You start cutting through the outer grille."))
+		to_chat(user, span_notice("你开始剪开外层格栅。"))
 		if(!tool.use_tool(src, user, 10, volume=100))
 			return ITEM_INTERACT_BLOCKING
 		if(!panel_open)  // double check it wasn't closed while we were trying to snip
 			return ITEM_INTERACT_BLOCKING
-		user.visible_message(span_notice("[user] cut through [src]'s outer grille."),
-							span_notice("You cut through [src]'s outer grille."))
+		user.visible_message(span_notice("[user]剪开了[src]的外层格栅。"),
+							span_notice("你剪开了[src]的外层格栅。"))
 		security_level = AIRLOCK_SECURITY_PLASTEEL_O
 		return ITEM_INTERACT_SUCCESS
 	if(note)
 		if(IsReachableBy(user))
-			user.visible_message(span_notice("[user] cuts down [note] from [src]."), span_notice("You remove [note] from [src]."))
+			user.visible_message(span_notice("[user]从[src]上剪下了[note]。"), span_notice("你从[src]上取下了[note]。"))
 		else //telekinesis
-			visible_message(span_notice("[tool] cuts down [note] from [src]."))
+			visible_message(span_notice("[tool]从[src]上剪下了[note]。"))
 		tool.play_tool_sound(src)
 		note.forceMove(tool.drop_location())
 		note = null
@@ -980,23 +980,23 @@
 
 	switch(security_level)
 		if(AIRLOCK_SECURITY_PLASTEEL_O_S)
-			layer_flavor = "outer layer of shielding"
+			layer_flavor = "外层护板"
 			next_level = AIRLOCK_SECURITY_PLASTEEL_I
 
 		if(AIRLOCK_SECURITY_PLASTEEL_I_S)
-			layer_flavor = "inner layer of shielding"
+			layer_flavor = "内层护板"
 			next_level = AIRLOCK_SECURITY_NONE
 		else
 			return ITEM_INTERACT_SUCCESS
 
-	user.visible_message(span_notice("You start prying away [src]'s [layer_flavor]."))
+	user.visible_message(span_notice("你开始撬下[src]的[layer_flavor]。"))
 	if(!tool.use_tool(src, user, 40, volume=100))
 		return ITEM_INTERACT_SUCCESS
 	if(!panel_open || security_level != starting_level)
 		// if the plating's already been broken, don't break it again
 		return ITEM_INTERACT_SUCCESS
-	user.visible_message(span_notice("[user] removes [src]'s shielding."),
-							span_notice("You remove [src]'s [layer_flavor]."))
+	user.visible_message(span_notice("[user]拆下了[src]的护板。"),
+							span_notice("你拆下了[src]的[layer_flavor]。"))
 	security_level = next_level
 	spawn_atom_to_turf(/obj/item/stack/sheet/plasteel, user.loc, 1)
 	if(next_level == AIRLOCK_SECURITY_NONE)
@@ -1009,14 +1009,14 @@
 	if(!locked)
 		return
 	if(!panel_open)
-		balloon_alert(user, "panel is closed!")
+		balloon_alert(user, "面板未打开！")
 		return
 	if(security_level != AIRLOCK_SECURITY_NONE)
-		balloon_alert(user, "airlock is reinforced!")
+		balloon_alert(user, "气闸已加固！")
 		return
 
 	if(istype(tool, /obj/item/wrench/bolter))
-		balloon_alert(user, "raising bolts...")
+		balloon_alert(user, "正在升起门闩……")
 		if(!do_after(user, 5 SECONDS, src))
 			return
 		unbolt()
@@ -1037,15 +1037,15 @@
 
 	switch(security_level)
 		if(AIRLOCK_SECURITY_IRON)
-			layer_flavor = "panel's shielding"
+			layer_flavor = "面板护板"
 			next_level = AIRLOCK_SECURITY_NONE
 			material_to_spawn = /obj/item/stack/sheet/iron
 			amount_to_spawn = 2
 		if(AIRLOCK_SECURITY_PLASTEEL_O)
-			layer_flavor = "outer layer of shielding"
+			layer_flavor = "外层护板"
 			next_level = AIRLOCK_SECURITY_PLASTEEL_O_S
 		if(AIRLOCK_SECURITY_PLASTEEL_I)
-			layer_flavor = "inner layer of shielding"
+			layer_flavor = "内层护板"
 			next_level = AIRLOCK_SECURITY_PLASTEEL_I_S
 		else
 			return ITEM_INTERACT_SUCCESS
@@ -1053,7 +1053,7 @@
 	if(!tool.tool_start_check(user, amount=1))
 		return ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_notice("You begin cutting the [layer_flavor]..."))
+	to_chat(user, span_notice("你开始切开[layer_flavor]……"))
 
 	if(!tool.use_tool(src, user, 4 SECONDS, volume=50))
 		return ITEM_INTERACT_SUCCESS
@@ -1063,9 +1063,9 @@
 		return ITEM_INTERACT_SUCCESS
 
 	user.visible_message(
-		span_notice("[user] cuts through [src]'s shielding."),  // passers-by don't get the full picture
-		span_notice("You cut through [src]'s [layer_flavor]."),
-		span_hear("You hear welding.")
+		span_notice("[user]切开了[src]的护板。"),  // passers-by don't get the full picture
+		span_notice("你切开了[src]的[layer_flavor]。"),
+		span_hear("你听见焊接声。")
 	)
 
 	security_level = next_level
@@ -1082,15 +1082,15 @@
 	if(!HAS_SILICON_ACCESS(user) && isElectrified() && shock(user, 75))
 		return ITEM_INTERACT_BLOCKING
 	if(material.get_amount() < amt_required)
-		to_chat(user, span_warning("You need at least [amt_required] sheets of [material] to reinforce [src]."))
+		to_chat(user, span_warning("你至少需要 [amt_required] 张[material]才能加固[src]。"))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You start reinforcing [src]."))
+	to_chat(user, span_notice("你开始加固[src]。"))
 	if(!do_after(user, 2 SECONDS, src))
 		return ITEM_INTERACT_BLOCKING
 	if(!panel_open || !material.use(amt_required))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice("[user] reinforces [src] with [material]."),
-						span_notice("You reinforce [src] with [material]."))
+	user.visible_message(span_notice("[user]用[material]加固了[src]。"),
+						span_notice("你用[material]加固了[src]。"))
 	security_level = new_security_level
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -1133,26 +1133,26 @@
 	if(istype(tool, /obj/item/door_seal)) //adding the seal
 		var/obj/item/door_seal/airlockseal = tool
 		if(!density)
-			to_chat(user, span_warning("[src] must be closed before you can seal it!"))
+			to_chat(user, span_warning("必须先关闭[src]才能封闭它！"))
 			return ITEM_INTERACT_BLOCKING
 		if(seal)
-			to_chat(user, span_warning("[src] has already been sealed!"))
+			to_chat(user, span_warning("[src]已经封闭了！"))
 			return ITEM_INTERACT_BLOCKING
-		user.visible_message(span_notice("[user] begins sealing [src]."), span_notice("You begin sealing [src]."))
+		user.visible_message(span_notice("[user]开始封闭[src]。"), span_notice("你开始封闭[src]。"))
 		playsound(src, 'sound/items/tools/jaws_pry.ogg', 30, TRUE)
 		if(!do_after(user, airlockseal.seal_time, target = src))
 			return ITEM_INTERACT_BLOCKING
 		if(!density)
-			to_chat(user, span_warning("[src] must be closed before you can seal it!"))
+			to_chat(user, span_warning("必须先关闭[src]才能封闭它！"))
 			return ITEM_INTERACT_BLOCKING
 		if(seal)
-			to_chat(user, span_warning("[src] has already been sealed!"))
+			to_chat(user, span_warning("[src]已经封闭了！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(airlockseal, src))
-			to_chat(user, span_warning("For some reason, you can't attach [airlockseal]!"))
+			to_chat(user, span_warning("不知为何，你无法装上[airlockseal]！"))
 			return ITEM_INTERACT_BLOCKING
 		playsound(src, 'sound/machines/airlock/airlockforced.ogg', 30, TRUE)
-		user.visible_message(span_notice("[user] finishes sealing [src]."), span_notice("You finish sealing [src]."))
+		user.visible_message(span_notice("[user]完成了对[src]的封闭。"), span_notice("你完成了对[src]的封闭。"))
 		seal = airlockseal
 		modify_max_integrity(max_integrity * AIRLOCK_SEAL_MULTIPLIER)
 		update_appearance()
@@ -1160,12 +1160,12 @@
 
 	if(istype(tool, /obj/item/paper) || istype(tool, /obj/item/photo))
 		if(note)
-			to_chat(user, span_warning("There's already something pinned to this airlock! Use wirecutters to remove it."))
+			to_chat(user, span_warning("这个气闸上已经钉着东西了！用剪线钳将其取下。"))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning("For some reason, you can't attach [tool]!"))
+			to_chat(user, span_warning("不知为何，你无法装上[tool]！"))
 			return ITEM_INTERACT_BLOCKING
-		user.visible_message(span_notice("[user] pins [tool] to [src]."), span_notice("You pin [tool] to [src]."))
+		user.visible_message(span_notice("[user]将[tool]钉在了[src]上。"), span_notice("你将[tool]钉在了[src]上。"))
 		note = tool
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
@@ -1176,35 +1176,35 @@
 /obj/machinery/door/airlock/try_to_weld(obj/item/weldingtool/W, mob/living/user)
 	if(!operating && density)
 		if(seal)
-			to_chat(user, span_warning("[src] is blocked by a seal!"))
+			to_chat(user, span_warning("[src]被密封装置封住了！"))
 			return
 
 		if(atom_integrity < max_integrity)
 			if(!W.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 				return
-			user.visible_message(span_notice("[user] begins welding the airlock."), \
-							span_notice("You begin repairing the airlock..."), \
-							span_hear("You hear welding."))
+			user.visible_message(span_notice("[user]开始焊接气闸。"), \
+							span_notice("你开始修理气闸……"), \
+							span_hear("你听见焊接声。"))
 			if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, PROC_REF(weld_checks), W, user)))
 				atom_integrity = max_integrity
 				set_machine_stat(machine_stat & ~BROKEN)
-				user.visible_message(span_notice("[user] finishes welding [src]."), \
-									span_notice("You finish repairing the airlock."))
+				user.visible_message(span_notice("[user]完成了对[src]的焊接。"), \
+									span_notice("你修好了气闸。"))
 				update_appearance()
 		else
-			to_chat(user, span_notice("The airlock doesn't need repairing."))
+			to_chat(user, span_notice("这个气闸不需要修理。"))
 
 /obj/machinery/door/airlock/try_to_weld_secondary(obj/item/weldingtool/tool, mob/user)
 	if(!tool.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return
-	user.visible_message(span_notice("[user] begins [welded ? "unwelding":"welding"] the airlock."), \
-		span_notice("You begin [welded ? "unwelding":"welding"] the airlock..."), \
-		span_hear("You hear welding."))
+	user.visible_message(span_notice("[user]开始[welded ? "切开气闸的焊缝":"焊死气闸"]。"), \
+		span_notice("你开始[welded ? "切开气闸的焊缝":"焊死气闸"]……"), \
+		span_hear("你听见焊接声。"))
 	if(!tool.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, PROC_REF(weld_checks), tool, user)))
 		return
 	welded = !welded
-	user.visible_message(span_notice("[user] [welded? "welds shut":"unwelds"] [src]."), \
-		span_notice("You [welded ? "weld the airlock shut":"unweld the airlock"]."))
+	user.visible_message(span_notice("[user][welded? "焊死了[src]":"切开了[src]的焊缝"]。"), \
+		span_notice("你[welded ? "焊死了气闸":"切开了气闸的焊缝"]。"))
 	user.log_message("[welded ? "welded":"unwelded"] airlock [src] with [tool].", LOG_GAME)
 	update_appearance()
 
@@ -1224,9 +1224,9 @@
 		return FALSE
 	var/obj/item/door_seal/airlockseal = seal
 	if(!ishuman(user))
-		to_chat(user, span_warning("You don't have the dexterity to remove the seal!"))
+		to_chat(user, span_warning("你的动作不够灵巧，无法拆除密封装置！"))
 		return TRUE
-	user.visible_message(span_notice("[user] begins removing the seal from [src]."), span_notice("You begin removing [src]'s pneumatic seal."))
+	user.visible_message(span_notice("[user]开始拆除[src]的密封装置。"), span_notice("你开始拆除[src]的气动密封装置。"))
 	playsound(src, 'sound/machines/airlock/airlockforced.ogg', 30, TRUE)
 	if(!do_after(user, airlockseal.unseal_time, target = src))
 		return TRUE
@@ -1234,7 +1234,7 @@
 		return TRUE
 	playsound(src, 'sound/items/tools/jaws_pry.ogg', 30, TRUE)
 	airlockseal.forceMove(get_turf(user))
-	user.visible_message(span_notice("[user] finishes removing the seal from [src]."), span_notice("You finish removing [src]'s pneumatic seal."))
+	user.visible_message(span_notice("[user]拆除了[src]的密封装置。"), span_notice("你拆除了[src]的气动密封装置。"))
 	seal = null
 	modify_max_integrity(max_integrity / AIRLOCK_SEAL_MULTIPLIER)
 	update_appearance()
@@ -1267,21 +1267,21 @@
 
 /obj/machinery/door/airlock/try_to_crowbar(obj/item/tool, mob/living/user, forced = FALSE)
 	if(!isnull(tool) && tool.tool_behaviour == TOOL_CROWBAR && should_try_removing_electronics() && !operating)
-		user.visible_message(span_notice("[user] removes the electronics from the airlock assembly."), \
-			span_notice("You start to remove electronics from the airlock assembly..."))
+		user.visible_message(span_notice("[user]从气闸框架中拆除电子组件。"), \
+			span_notice("你开始从气闸框架中拆除电子组件……"))
 
 		if(tool.use_tool(src, user, 40, volume = 100))
 			deconstruct(TRUE, user)
 			return
 
 	if(seal)
-		to_chat(user, span_warning("Remove the seal first!"))
+		to_chat(user, span_warning("请先拆除密封装置！"))
 		return
 	if(locked)
-		to_chat(user, span_warning("The airlock's bolts prevent it from being forced!"))
+		to_chat(user, span_warning("气闸的门闩阻止了强行开门！"))
 		return
 	if(welded)
-		to_chat(user, span_warning("It's welded, it won't budge!"))
+		to_chat(user, span_warning("它被焊死了，纹丝不动！"))
 		return
 
 	if(!hasPower())
@@ -1289,14 +1289,14 @@
 			return
 
 		if(istype(tool, /obj/item/fireaxe) && !HAS_TRAIT(tool, TRAIT_WIELDED)) //being fireaxe'd
-			to_chat(user, span_warning("You need to be wielding [tool] to do that!"))
+			to_chat(user, span_warning("你需要双手握持[tool]才能这么做！"))
 			return
 
 		INVOKE_ASYNC(src, density ? PROC_REF(open) : PROC_REF(close), BYPASS_DOOR_CHECKS)
 		return
 
 	if(!forced)
-		to_chat(user, span_warning("The airlock's motors resist your efforts to force it!"))
+		to_chat(user, span_warning("气闸的电机抵抗着你强行开门的动作！"))
 		return
 
 	var/check_electrified = isElectrified() //setting this so we can check if the mob got shocked during the do_after below
@@ -1330,7 +1330,7 @@
 	open(BYPASS_DOOR_CHECKS)
 	take_damage(AIRLOCK_PRY_DAMAGE, BRUTE, 0, 0) // Enough to sometimes spark
 	if(density && !open(BYPASS_DOOR_CHECKS))
-		to_chat(user, span_warning("Despite your attempts, [src] refuses to open."))
+		to_chat(user, span_warning("尽管你竭尽全力，[src]仍然无法打开。"))
 
 /obj/machinery/door/airlock/open(forced = DEFAULT_DOOR_CHECKS)
 	if(cycle_pump && !operating && !welded && !seal && locked && density)
@@ -1505,7 +1505,7 @@
 		return
 
 	// reads from the airlock painter's `available paintjob` list. lets the player choose a paint option, or cancel painting
-	var/current_paintjob = tgui_input_list(user, "Paintjob for this airlock", "Customize", sort_list(painter.available_paint_jobs))
+	var/current_paintjob = tgui_input_list(user, "选择此气闸的涂装", "自定义", sort_list(painter.available_paint_jobs))
 	if(isnull(current_paintjob) || !in_range(src, user) || !painter.can_use(user)) // if the user clicked cancel on the popup, or moved away, or ran out of ink, return
 		return
 
@@ -1514,7 +1514,7 @@
 	var/obj/structure/door_assembly/assembly = initial(airlock.assemblytype)
 
 	if(airlock_material == "glass" && initial(assembly.noglass)) // prevents painting glass airlocks with a paint job that doesn't have a glass version, such as the freezer
-		to_chat(user, span_warning("This paint job can only be applied to non-glass airlocks."))
+		to_chat(user, span_warning("这种涂装只能用于非玻璃气闸。"))
 		return
 
 	// applies the user-chosen airlock's icon, overlays and assemblytype to the src airlock
@@ -1568,13 +1568,13 @@
 	if(user.combat_mode)
 		return ..()
 	if(locked || welded || seal) //Extremely generic, as aliens only understand the basics of how airlocks work.
-		to_chat(user, span_warning("[src] refuses to budge!"))
+		to_chat(user, span_warning("[src]纹丝不动！"))
 		user.log_message("Tried to pry open [src], located at [loc_name(src)], but failed due to the airlock being sealed.", LOG_GAME)
 		return
 	add_fingerprint(user)
-	user.visible_message(span_warning("[user] begins prying open [src]."),\
-						span_noticealien("You begin digging your claws into [src] with all your might!"),\
-						span_warning("You hear groaning metal..."))
+	user.visible_message(span_warning("[user]开始撬开[src]。"),\
+						span_noticealien("你开始使出全力，将利爪嵌入[src]！"),\
+						span_warning("你听见金属扭曲的呻吟声……"))
 	user.log_message("Started prying open [src], located at [loc_name(src)].", LOG_GAME)
 	var/time_to_open = 5 //half a second
 	if(hasPower())
@@ -1583,7 +1583,7 @@
 
 	if(do_after(user, time_to_open, src))
 		if(density && !open(BYPASS_DOOR_CHECKS)) //The airlock is still closed, but something prevented it opening. (Another player noticed and bolted/welded the airlock in time!)
-			to_chat(user, span_warning("Despite your efforts, [src] managed to resist your attempts to open it!"))
+			to_chat(user, span_warning("尽管你竭尽全力，[src]仍然没有被打开！"))
 			user.log_message("Tried and failed to pry open [src], located at [loc_name(src)], due to the airlock getting sealed during the do_after.", LOG_GAME)
 			return
 		user.log_message("Successfully pried open [src], located at [loc_name(src)].", LOG_GAME)
@@ -1694,10 +1694,10 @@
 	switch(the_rcd.mode)
 		if(RCD_DECONSTRUCT)
 			if(seal)
-				to_chat(user, span_notice("[src]'s seal needs to be removed first."))
+				to_chat(user, span_notice("需要先拆除[src]的密封装置。"))
 				return FALSE
 			if(security_level != AIRLOCK_SECURITY_NONE)
-				to_chat(user, span_notice("[src]'s reinforcement needs to be removed first."))
+				to_chat(user, span_notice("需要先拆除[src]的加固结构。"))
 				return FALSE
 			return list("delay" = 5 SECONDS, "cost" = 32)
 	return FALSE
@@ -1786,14 +1786,14 @@
 				loseMainPower()
 				update_appearance()
 			else
-				to_chat(usr, span_warning("Main power is already offline."))
+				to_chat(usr, span_warning("主电源已离线。"))
 			. = TRUE
 		if("disrupt-backup")
 			if(!backup_power_timer)
 				loseBackupPower()
 				update_appearance()
 			else
-				to_chat(usr, span_warning("Backup power is already offline."))
+				to_chat(usr, span_warning("备用电源已离线。"))
 			. = TRUE
 		if("shock-restore")
 			shock_restore(usr)
@@ -1834,7 +1834,7 @@
 	if(!user_allowed(user))
 		return
 	if(wires.is_cut(WIRE_SHOCK))
-		to_chat(user, span_warning("Can't un-electrify the airlock - The electrification wire is cut."))
+		to_chat(user, span_warning("无法解除气闸通电——通电控制线已被剪断。"))
 	else if(isElectrified())
 		set_electrified(MACHINE_NOT_ELECTRIFIED, user)
 
@@ -1842,7 +1842,7 @@
 	if(!user_allowed(user))
 		return
 	if(wires.is_cut(WIRE_SHOCK))
-		to_chat(user, span_warning("The electrification wire has been cut."))
+		to_chat(user, span_warning("通电控制线已被剪断。"))
 	else
 		set_electrified(MACHINE_DEFAULT_ELECTRIFY_TIME, user)
 
@@ -1850,7 +1850,7 @@
 	if(!user_allowed(user))
 		return
 	if(wires.is_cut(WIRE_SHOCK))
-		to_chat(user, span_warning("The electrification wire has been cut."))
+		to_chat(user, span_warning("通电控制线已被剪断。"))
 	else
 		set_electrified(MACHINE_ELECTRIFIED_PERMANENT, user)
 
@@ -1858,11 +1858,11 @@
 	if(!user_allowed(user))
 		return
 	if(wires.is_cut(WIRE_BOLTS))
-		to_chat(user, span_warning("The door bolt drop wire is cut - you can't toggle the door bolts."))
+		to_chat(user, span_warning("门闩控制线已被剪断——你无法切换门闩状态。"))
 		return
 	if(locked)
 		if(!hasPower())
-			to_chat(user, span_warning("The door has no power - you can't raise the door bolts."))
+			to_chat(user, span_warning("门没有电——你无法升起门闩。"))
 		else
 			unbolt()
 			log_combat(user, src, "unbolted")
@@ -1880,9 +1880,9 @@
 	if(!user_allowed(user))
 		return
 	if(welded)
-		to_chat(user, span_warning("The airlock has been welded shut!"))
+		to_chat(user, span_warning("气闸已被焊死！"))
 	else if(locked)
-		to_chat(user, span_warning("The door bolts are down!"))
+		to_chat(user, span_warning("门闩已落下！"))
 	else if(!density)
 		close()
 	else
@@ -1949,85 +1949,85 @@
 	SIGNAL_HANDLER
 	if(locked)
 		unbolt()
-		say("Link broken, unbolting.")
+		say("连接断开，正在升起门闩。")
 	cycle_pump = null
 
 // Station Airlocks Regular
 
 /obj/machinery/door/airlock/command
-	name = "command airlock"
+	name = "指挥部气闸"
 	icon = 'icons/obj/doors/airlocks/station/command.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_com
 	normal_integrity = 450
 
 /obj/machinery/door/airlock/security
-	name = "security airlock"
+	name = "安保气闸"
 	icon = 'icons/obj/doors/airlocks/station/security.dmi'
 	var/id = null
 	assemblytype = /obj/structure/door_assembly/door_assembly_sec
 	normal_integrity = 450
 
 /obj/machinery/door/airlock/engineering
-	name = "engineering airlock"
+	name = "工程气闸"
 	icon = 'icons/obj/doors/airlocks/station/engineering.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_eng
 
 /obj/machinery/door/airlock/medical
-	name = "medical airlock"
+	name = "医疗气闸"
 	icon = 'icons/obj/doors/airlocks/station/medical.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_med
 
 /obj/machinery/door/airlock/hydroponics	//Hydroponics front doors!
-	name = "hydroponics airlock"
+	name = "水培室气闸"
 	icon = 'icons/obj/doors/airlocks/station/hydroponics.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_hydro
 
 /obj/machinery/door/airlock/maintenance
-	name = "maintenance access"
+	name = "维护通道入口"
 	icon = 'icons/obj/doors/airlocks/station/maintenance.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_mai
 	normal_integrity = 250
 
 /obj/machinery/door/airlock/maintenance/external
-	name = "external airlock access"
+	name = "外部气闸入口"
 	icon = 'icons/obj/doors/airlocks/station/maintenanceexternal.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_extmai
 
 /obj/machinery/door/airlock/mining
-	name = "mining airlock"
+	name = "采矿气闸"
 	icon = 'icons/obj/doors/airlocks/station/mining.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_min
 
 /obj/machinery/door/airlock/atmos
-	name = "atmospherics airlock"
+	name = "大气气闸"
 	icon = 'icons/obj/doors/airlocks/station/atmos.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_atmo
 
 /obj/machinery/door/airlock/research
-	name = "research airlock"
+	name = "研究气闸"
 	icon = 'icons/obj/doors/airlocks/station/research.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_research
 
 /obj/machinery/door/airlock/freezer
-	name = "freezer airlock"
+	name = "冷库气闸"
 	icon = 'icons/obj/doors/airlocks/station/freezer.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_fre
 	can_be_glass = FALSE
 
 /obj/machinery/door/airlock/science
-	name = "science airlock"
+	name = "科研气闸"
 	icon = 'icons/obj/doors/airlocks/station/science.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_science
 
 /obj/machinery/door/airlock/virology
-	name = "virology airlock"
+	name = "病毒学气闸"
 	icon = 'icons/obj/doors/airlocks/station/virology.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_viro
 
 // Station Airlocks Glass
 
 /obj/machinery/door/airlock/glass
-	name = "glass airlock"
+	name = "玻璃气闸"
 	opacity = FALSE
 	glass = TRUE
 
@@ -2037,21 +2037,21 @@
 	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/door/airlock/glass/incinerator/syndicatelava_interior
-	name = "Turbine Interior Airlock"
+	name = "涡轮机内侧气闸"
 	id_tag = INCINERATOR_SYNDICATELAVA_AIRLOCK_INTERIOR
 
 /obj/machinery/door/airlock/glass/incinerator/syndicatelava_exterior
-	name = "Turbine Exterior Airlock"
+	name = "涡轮机外侧气闸"
 	id_tag = INCINERATOR_SYNDICATELAVA_AIRLOCK_EXTERIOR
 
 /obj/machinery/door/airlock/command/glass
-	name = "command glass airlock"
+	name = "指挥部玻璃气闸"
 	opacity = FALSE
 	glass = TRUE
 	normal_integrity = 400
 
 /obj/machinery/door/airlock/engineering/glass
-	name = "engineering glass airlock"
+	name = "工程玻璃气闸"
 	opacity = FALSE
 	glass = TRUE
 
@@ -2059,23 +2059,23 @@
 	critical_machine = TRUE //stops greytide virus from opening & bolting doors in critical positions, such as the SM chamber.
 
 /obj/machinery/door/airlock/security/glass
-	name = "security glass airlock"
+	name = "安保玻璃气闸"
 	opacity = FALSE
 	glass = TRUE
 	normal_integrity = 400
 
 /obj/machinery/door/airlock/medical/glass
-	name = "medical glass airlock"
+	name = "医疗玻璃气闸"
 	opacity = FALSE
 	glass = TRUE
 
 /obj/machinery/door/airlock/hydroponics/glass //Uses same icon as medical/glass, maybe update it with its own unique icon one day?
-	name = "hydroponics glass airlock"
+	name = "水培室玻璃气闸"
 	opacity = FALSE
 	glass = TRUE
 
 /obj/machinery/door/airlock/research/glass
-	name = "research glass airlock"
+	name = "研究玻璃气闸"
 	opacity = FALSE
 	glass = TRUE
 
@@ -2084,20 +2084,20 @@
 	heat_proof = TRUE
 
 /obj/machinery/door/airlock/research/glass/incinerator/ordmix_interior
-	name = "Mixing Room Interior Airlock"
+	name = "混气室内侧气闸"
 	id_tag = INCINERATOR_ORDMIX_AIRLOCK_INTERIOR
 
 /obj/machinery/door/airlock/research/glass/incinerator/ordmix_exterior
-	name = "Mixing Room Exterior Airlock"
+	name = "混气室外侧气闸"
 	id_tag = INCINERATOR_ORDMIX_AIRLOCK_EXTERIOR
 
 /obj/machinery/door/airlock/mining/glass
-	name = "mining glass airlock"
+	name = "采矿玻璃气闸"
 	opacity = FALSE
 	glass = TRUE
 
 /obj/machinery/door/airlock/atmos/glass
-	name = "atmospheric glass airlock"
+	name = "大气玻璃气闸"
 	opacity = FALSE
 	glass = TRUE
 
@@ -2105,22 +2105,22 @@
 	critical_machine = TRUE //stops greytide virus from opening & bolting doors in critical positions, such as the SM chamber.
 
 /obj/machinery/door/airlock/science/glass
-	name = "science glass airlock"
+	name = "科研玻璃气闸"
 	opacity = FALSE
 	glass = TRUE
 
 /obj/machinery/door/airlock/virology/glass
-	name = "virology glass airlock"
+	name = "病毒学玻璃气闸"
 	opacity = FALSE
 	glass = TRUE
 
 /obj/machinery/door/airlock/maintenance/glass
-	name = "maintenance glass airlock"
+	name = "维护通道玻璃气闸"
 	opacity = FALSE
 	glass = TRUE
 
 /obj/machinery/door/airlock/maintenance/external/glass
-	name = "maintenance external glass airlock"
+	name = "维护通道外部玻璃气闸"
 	opacity = FALSE
 	glass = TRUE
 	normal_integrity = 200
@@ -2128,7 +2128,7 @@
 // Station Airlocks Mineral
 
 /obj/machinery/door/airlock/gold
-	name = "gold airlock"
+	name = "黄金气闸"
 	icon = 'icons/obj/doors/airlocks/station/gold.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_gold
 
@@ -2151,7 +2151,7 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/silver
-	name = "silver airlock"
+	name = "白银气闸"
 	icon = 'icons/obj/doors/airlocks/station/silver.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_silver
 
@@ -2160,7 +2160,7 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/diamond
-	name = "diamond airlock"
+	name = "钻石气闸"
 	icon = 'icons/obj/doors/airlocks/station/diamond.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_diamond
 	normal_integrity = 1000
@@ -2172,7 +2172,7 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/uranium
-	name = "uranium airlock"
+	name = "铀气闸"
 	icon = 'icons/obj/doors/airlocks/station/uranium.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_uranium
 	var/last_event = 0
@@ -2205,8 +2205,8 @@
 	actually_radioactive = FALSE
 
 /obj/machinery/door/airlock/plasma
-	name = "plasma airlock"
-	desc = "No way this can end badly."
+	name = "等离子气闸"
+	desc = "这肯定不会出什么岔子。"
 	icon = 'icons/obj/doors/airlocks/station/plasma.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_plasma
 	material_flags = MATERIAL_EFFECTS
@@ -2224,8 +2224,8 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/bananium
-	name = "bananium airlock"
-	desc = "Honkhonkhonk"
+	name = "香蕉矿气闸"
+	desc = "滑稽滑稽滑稽"
 	icon = 'icons/obj/doors/airlocks/station/bananium.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_bananium
 	doorOpen = 'sound/items/bikehorn.ogg'
@@ -2235,7 +2235,7 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/sandstone
-	name = "sandstone airlock"
+	name = "砂岩气闸"
 	icon = 'icons/obj/doors/airlocks/station/sandstone.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_sandstone
 
@@ -2244,7 +2244,7 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/wood
-	name = "wooden airlock"
+	name = "木制气闸"
 	icon = 'icons/obj/doors/airlocks/station/wood.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_wood
 
@@ -2253,7 +2253,7 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/titanium
-	name = "shuttle airlock"
+	name = "穿梭机气闸"
 	assemblytype = /obj/structure/door_assembly/door_assembly_titanium
 	icon = 'icons/obj/doors/airlocks/shuttle/shuttle.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/shuttle/overlays.dmi'
@@ -2265,7 +2265,7 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/bronze
-	name = "bronze airlock"
+	name = "青铜气闸"
 	icon = 'icons/obj/doors/airlocks/clockwork/pinion_airlock.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/clockwork/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_bronze
@@ -2279,13 +2279,13 @@
 // Public Airlocks
 
 /obj/machinery/door/airlock/public
-	name = "public airlock"
+	name = "公共气闸"
 	icon = 'icons/obj/doors/airlocks/public/glass.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/public/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_public
 
 /obj/machinery/door/airlock/public/glass
-	name = "public glass airlock"
+	name = "公共玻璃气闸"
 	opacity = FALSE
 	glass = TRUE
 
@@ -2294,17 +2294,17 @@
 	heat_proof = TRUE
 
 /obj/machinery/door/airlock/public/glass/incinerator/atmos_interior
-	name = "Turbine Interior Airlock"
+	name = "涡轮机内侧气闸"
 	id_tag = INCINERATOR_ATMOS_AIRLOCK_INTERIOR
 
 /obj/machinery/door/airlock/public/glass/incinerator/atmos_exterior
-	name = "Turbine Exterior Airlock"
+	name = "涡轮机外侧气闸"
 	id_tag = INCINERATOR_ATMOS_AIRLOCK_EXTERIOR
 
 // External Airlocks
 
 /obj/machinery/door/airlock/external
-	name = "external airlock"
+	name = "外部气闸"
 	icon = 'icons/obj/doors/airlocks/external/external.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/external/overlays.dmi'
 	note_overlay_file = 'icons/obj/doors/airlocks/external/overlays.dmi'
@@ -2328,7 +2328,7 @@
 /obj/machinery/door/airlock/external/examine(mob/user)
 	. = ..()
 	if(space_dir)
-		. += span_notice("It has labels indicating that it has an emergency mechanism to open from the [dir2text(space_dir)] side with <b>just your hands</b> even if there's no power.")
+		. += span_notice("标签说明它带有应急机构，即使断电，也能从[chinese_direction_display(dir2text(space_dir))]侧<b>徒手</b>打开。")
 
 /obj/machinery/door/airlock/external/cyclelinkairlock()
 	. = ..()
@@ -2340,7 +2340,7 @@
 /obj/machinery/door/airlock/external/try_safety_unlock(mob/user)
 	if(space_dir && density)
 		if(!hasPower())
-			to_chat(user, span_notice("You begin unlocking the airlock safety mechanism..."))
+			to_chat(user, span_notice("你开始解锁气闸的安全机构……"))
 			if(do_after(user, 15 SECONDS, target = src))
 				try_to_crowbar(null, user, TRUE)
 				return TRUE
@@ -2356,7 +2356,7 @@
 /obj/machinery/door/airlock/external/ruin
 
 /obj/machinery/door/airlock/external/glass
-	name = "external glass airlock"
+	name = "外部玻璃气闸"
 	opacity = FALSE
 	glass = TRUE
 
@@ -2383,7 +2383,7 @@
 // Vault Airlocks
 
 /obj/machinery/door/airlock/vault
-	name = "vault door"
+	name = "金库门"
 	icon = 'icons/obj/doors/airlocks/vault/vault.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/vault/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_vault
@@ -2396,7 +2396,7 @@
 // Hatch Airlocks
 
 /obj/machinery/door/airlock/hatch
-	name = "airtight hatch"
+	name = "气密舱门"
 	icon = 'icons/obj/doors/airlocks/hatch/centcom.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	note_overlay_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
@@ -2404,7 +2404,7 @@
 	can_be_glass = FALSE
 
 /obj/machinery/door/airlock/maintenance_hatch
-	name = "maintenance hatch"
+	name = "维护舱门"
 	icon = 'icons/obj/doors/airlocks/hatch/maintenance.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	note_overlay_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
@@ -2414,7 +2414,7 @@
 // High Security Airlocks
 
 /obj/machinery/door/airlock/highsecurity
-	name = "high tech security airlock"
+	name = "高科技安保气闸"
 	icon = 'icons/obj/doors/airlocks/highsec/highsec.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/highsec/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_highsecurity
@@ -2431,7 +2431,7 @@
 // Shuttle Airlocks
 
 /obj/machinery/door/airlock/shuttle
-	name = "shuttle airlock"
+	name = "穿梭机气闸"
 	icon = 'icons/obj/doors/airlocks/shuttle/shuttle.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/shuttle/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_shuttle
@@ -2441,8 +2441,8 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/abductor
-	name = "alien airlock"
-	desc = "With humanity's current technological level, it could take years to hack this advanced airlock... or maybe we should give a screwdriver a try?"
+	name = "外星气闸"
+	desc = "以人类目前的科技水平，破解这个先进气闸可能需要数年……要不先拿螺丝刀试试？"
 	icon = 'icons/obj/doors/airlocks/abductor/abductor_airlock.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/abductor/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_abductor
@@ -2458,7 +2458,7 @@
 // Cult Airlocks
 
 /obj/machinery/door/airlock/cult
-	name = "cult airlock"
+	name = "邪教气闸"
 	icon = 'icons/obj/doors/airlocks/cult/runed/cult.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/cult/runed/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_cult
@@ -2509,8 +2509,8 @@
 /obj/machinery/door/airlock/cult/proc/conceal()
 	icon = 'icons/obj/doors/airlocks/station/maintenance.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
-	name = "Airlock"
-	desc = "It opens and closes."
+	name = "气闸"
+	desc = "它能打开和关闭。"
 	stealthy = TRUE
 	update_appearance()
 
@@ -2552,8 +2552,8 @@
 	friendly = TRUE
 
 /obj/machinery/door/airlock/cult/weak
-	name = "brittle cult airlock"
-	desc = "An airlock hastily corrupted by blood magic, it is unusually brittle in this state."
+	name = "脆弱的邪教气闸"
+	desc = "被血魔法匆忙腐化的气闸，在这种状态下异常脆弱。"
 	normal_integrity = 150
 	damage_deflection = 5
 	armor_type = /datum/armor/none
@@ -2561,7 +2561,7 @@
 // Material Airlocks
 
 /obj/machinery/door/airlock/material
-	name = "Airlock"
+	name = "气闸"
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE | MATERIAL_AFFECT_STATISTICS
 	greyscale_config = /datum/greyscale_config/material_airlock
 	assemblytype = /obj/structure/door_assembly/door_assembly_material
@@ -2598,8 +2598,8 @@
 	set_bounds()
 
 /obj/structure/fluff/airlock_filler
-	name = "airlock fluff"
-	desc = "You shouldn't be able to see this fluff!"
+	name = "气闸附属物"
+	desc = "你本不该看见这个附属物！"
 	icon = null
 	icon_state = null
 	density = TRUE

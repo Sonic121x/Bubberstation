@@ -19,10 +19,10 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 
 /obj/item/melee/energy/sword/opor
 	resistance_flags = INDESTRUCTIBLE
-	name = "\improper Opór Energy Sword"
-	desc = "An old Szot Dynamica military energy sword, recognizable by its green beam and replaceable power cell. \
-		Though eclipsed by newer designs in raw damage and efficiency, the Opór remains every bit as dangerous as its \
-		reputation suggests. Etching on the hilt reads \"Za wolność naszą i waszą\", \"For our freedom and yours.\""
+	name = "\improper 抵抗者能量剑"
+	desc = "绍特动力公司的老式军用能量剑，以绿色剑刃和可更换电池为特征。\
+		虽然新式设计在伤害和效率上更胜一筹，抵抗者仍然如其名声所说，\
+		危险无比。剑柄上的铭文写着：\"为了我们与你们的自由。\""
 	icon = 'modular_zubbers/icons/obj/szot_opor.dmi'
 	icon_state = "opor"
 	base_icon_state = "opor"
@@ -85,36 +85,36 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 
 /obj/item/melee/energy/sword/opor/examine(mob/user)
 	. = ..()
-	. += span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src].")
+	. += span_notice("你可以[EXAMINE_HINT("仔细查看")]，了解更多有关[src]的信息。")
 	if(isnull(cell))
-		. += span_notice("There is no power cell installed.")
+		. += span_notice("未安装电池。")
 	else
-		. += span_notice("The power cell reads [round(cell.percent())]%. It can be <b>screwed</b> out.")
+		. += span_notice("电池电量为[round(cell.percent())]%。可以用<b>螺丝刀</b>将其卸下。")
 	if(overclocked)
-		. += span_warning("The regulator has been bypassed. It draws power far faster than it ought to.")
+		. += span_warning("调节器已被旁路，耗电速度远超正常水平。")
 
 /obj/item/melee/energy/sword/opor/examine_more(mob/user)
 	. = ..()
 
-	. += "The 'Opór' entered service during a period in which the states that would later form the CIN were still \
-		defining themselves through resistance to foreign domination, corporate interference, and the considerably \
-		better armed people who tended to accompany both. Szot Dynamica's original proposal was unusually dry, \
-		describing a compact close-combat energy weapon for officers, boarding parties, and personnel expected to \
-		continue fighting after the loss of conventional arms. CIN propagandists were rather more enthusiastic. By the \
-		time the Opór entered widespread service, recruiting material had taken to describing it as a sword for \
-		soldiers who could not afford the luxury of surrender."
+	. += "‘抵抗者’服役时，后来组成CIN的各国仍在通过抵抗外国统治、\
+		企业干涉以及通常伴随两者出现、武装更为精良的敌人，\
+		确立自身地位。绍特动力公司最初的提案相当平淡，\
+		将其描述为一种紧凑的近战能量武器，供军官、登舰部队以及\
+		失去常规武器后仍须继续战斗的人员使用。CIN的宣传人员则热情得多。\
+		抵抗者大规模列装时，征兵材料已将它描述为一把专为\
+		那些连投降都负担不起的士兵打造的剑。"
 
-	. += "For its time, the design was exceptional. A self-contained emitter and replaceable power cell allowed the \
-		Opór to deliver a full-strength energy blade from a package small enough to wear at the hip. Modern weapons \
-		have since surpassed it through advances in compact power generation and exotic emitter materials, but while \
-		the design eventually left frontline service, large numbers survived in arsenals, ceremonial collections, and \
-		later military-surplus markets; and those developments did not make the antiques floating around the second \
-		hand market any less deadly. Many are still maintained today, helped by Szot's unusually stubborn insistence \
-		on user replaceable components wherever possible."
+	. += "以当时的标准来看，这种设计十分出色。独立发射器与可更换电池，\
+		让抵抗者能以可挂在腰间的紧凑体积产生全功率能量剑刃。\
+		现代武器凭借紧凑发电技术和特殊发射器材料的进步超越了它，\
+		但即使这款武器最终退出前线，仍有大量存放于军械库、仪仗收藏中，\
+		后来又流入军品剩余物资市场。技术进步并未让二手市场上流通的\
+		这些老古董变得不那么致命。绍特执拗地坚持尽可能使用用户可自行更换的部件，\
+		也让许多抵抗者直到今天仍能得到维护。"
 
-	. += "Its name means 'resistance'. Old CIN recruiting material preferred a more elaborate interpretation: \
-		resistance to invasion, resistance to tyranny, and resistance to the suggestion that circumstances had \
-		already decided the outcome."
+	. += "它的原名意为‘抵抗’。旧时CIN的征兵材料更喜欢详尽的解读：\
+		抵抗侵略，抵抗暴政，\
+		也抵抗那种认为局势已经注定结局的论调。"
 
 	return .
 
@@ -124,21 +124,21 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 
 /obj/item/melee/energy/sword/opor/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) && !cell?.use(swing_cost()))
-		balloon_alert(user, "cell dead!")
+		balloon_alert(user, "电池没电了！")
 		attack_self(user)
 		return TRUE
 	return ..()
 
 /obj/item/melee/energy/sword/opor/attack_atom(atom/attacked_atom, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) && !cell?.use(swing_cost()))
-		balloon_alert(user, "cell dead!")
+		balloon_alert(user, "电池没电了！")
 		attack_self(user)
 		return TRUE
 	return ..()
 
 /obj/item/melee/energy/sword/opor/attack_self(mob/user)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) && (!cell || cell.charge < swing_cost()))
-		balloon_alert(user, "no charge!")
+		balloon_alert(user, "电量不足！")
 		return
 	return ..()
 
@@ -149,15 +149,15 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 
 /obj/item/melee/energy/sword/opor/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!cell)
-		balloon_alert(user, "no cell!")
+		balloon_alert(user, "没有电池！")
 		return ITEM_INTERACT_BLOCKING
 	if(HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
-		balloon_alert(user, "switch it off first!")
+		balloon_alert(user, "请先关闭！")
 		return ITEM_INTERACT_BLOCKING
 	user.put_in_hands(cell)
 	cell = null
 	update_appearance()
-	balloon_alert(user, "cell removed")
+	balloon_alert(user, "已取出电池")
 	tool.play_tool_sound(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -166,16 +166,16 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 	if(!istype(tool, /obj/item/stock_parts/power_store/cell))
 		return ..()
 	if(HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
-		balloon_alert(user, "switch it off first!")
+		balloon_alert(user, "请先关闭！")
 		return ITEM_INTERACT_BLOCKING
 	if(cell)
-		balloon_alert(user, "unscrew the old one first!")
+		balloon_alert(user, "请先卸下旧电池！")
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 	cell = tool
 	update_appearance()
-	balloon_alert(user, "cell installed")
+	balloon_alert(user, "已装入电池")
 	playsound(src, 'sound/machines/click.ogg', 40, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -210,7 +210,7 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 
 /obj/item/melee/energy/sword/opor/multitool_act(mob/living/user, obj/item/tool)
 	rainbow = !rainbow
-	balloon_alert(user, rainbow ? "RNBW_ENGAGE" : "RNBW_DISENGAGE")
+	balloon_alert(user, rainbow ? "彩虹模式已启用" : "彩虹模式已关闭")
 	update_blade_colour()
 	apply_inhand_mode()
 	return ITEM_INTERACT_SUCCESS
@@ -238,13 +238,13 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 
 /obj/item/melee/energy/sword/opor/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(overclocked)
-		balloon_alert(user, "already bypassed!")
+		balloon_alert(user, "已被旁路！")
 		return FALSE
 	overclocked = TRUE
 	wound_bonus = 15
-	balloon_alert(user, "regulator bypassed")
-	to_chat(user, span_warning("WARNING: emitter regulator bypassed. Output limiter disengaged. This voids your \
-		warranty, and probably several treaties."))
+	balloon_alert(user, "调节器已旁路")
+	to_chat(user, span_warning("警告：发射器调节器已旁路，输出限制已解除。这会使保修\
+		失效，大概还违反了好几项条约。"))
 	playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, TRUE)
 	return TRUE
 
@@ -255,14 +255,14 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 // Something the quartermaster's predecessor left in the case, or claims to have.
 
 /obj/item/clothing/head/beret/szot_surplus
-	name = "surplus officer's beret"
+	name = "军品剩余军官贝雷帽"
 	icon = 'icons/map_icons/clothing/head/beret.dmi'
 	icon_state = "/obj/item/clothing/head/beret"
 	post_init_icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
-	desc = "A once noble beret that may or may not have commanded respect and authority at some point \
-		from the CIN, or was it the NRI? Oh who remembers..?"
+	desc = "一顶曾经高贵的贝雷帽，也许曾在CIN象征着尊重与权威，\
+		又或许是NRI？唉，谁还记得呢……？"
 	greyscale_colors = "#2E2E33#9A9AA2"
 	armor_type = /datum/armor/cosmetic_sec
 
@@ -272,16 +272,16 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 
 /obj/item/clothing/head/beret/szot_surplus/examine(mob/user)
 	. = ..()
-	. += span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src].")
+	. += span_notice("你可以[EXAMINE_HINT("仔细查看")]，了解更多有关[src]的信息。")
 
 /obj/item/clothing/head/beret/szot_surplus/examine_more(mob/user)
 	. = ..()
 
-	. += "The badge identifies this as an officer's beret from one of the old Coalition militaries, though \
-		nobody seems able to agree which one. Depending on the seller, it was worn by revolutionary officers, \
-		copied from something worn by revolutionary officers, or merely found in the same warehouse."
+	. += "徽章表明它属于旧联盟某支军队的军官，不过\
+		究竟是哪支，众说纷纭。不同卖家分别声称它曾被革命军官佩戴，\
+		仿自革命军官的帽子，或只是恰巧在同一个仓库里找到的。"
 
-	. += "Its actual provenance is hopelessly unclear. The revolutionary reputation, however, appears to \
-		have survived intact."
+	. += "它的真正来历已经无从考证。不过，革命的名声似乎\
+		完好地保留了下来。"
 
 	return .

@@ -1,7 +1,7 @@
 /datum/language/gutter
 	name = "Plutonian"
-	desc = "Plutonian Franco-Castilian is a constructed Romance language that was developed early on out of necessity for communication between Pluto's first colonists. \
-		It comes off as elegant but is an ugly Mediterannean creole, often correlated with criminal groups. Today, it is a core part of the planet's culture."
+	desc = "冥王星法兰西-卡斯蒂利亚语是一门人造罗曼语，最初是为满足冥王星首批殖民者之间的交流需求而发展出来的。 \
+		它听起来颇为优雅，实则是一种丑陋的地中海克里奥尔语，常与犯罪团伙联系在一起。如今，它已成为这颗星球文化的核心部分。"
 	key = "G"
 	flags = LANGUAGE_TONGUELESS_SPEECH
 	syllables = list (

@@ -8,13 +8,13 @@
  */
 
 /obj/item/circuitboard/computer/order_console/tarkon
-	name = "Tarkon Produce Orders Console"
+	name = "塔肯食材订购控制台"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/computer/order_console/cook/tarkon
 
 /obj/machinery/computer/order_console/cook/tarkon
-	name = "Tarkon produce orders console"
-	desc = "An interface for ordering fresh produce and other."
+	name = "塔肯食材订购控制台"
+	desc = "用于订购新鲜食材等物资的终端。"
 	circuit = /obj/item/circuitboard/computer/order_console/tarkon
 	blackbox_key = null
 	forced_express = TRUE
@@ -35,10 +35,10 @@
 
 /obj/machinery/computer/order_console/cook/tarkon/purchase_items(obj/item/card/id/card, express = FALSE)
 	if(!synced_bank_account)
-		say("Error, no department account found.")
+		say("错误：未找到部门账户。")
 		return FALSE
 	var/final_cost = round(get_total_cost() * (express ? express_cost_multiplier : cargo_cost_multiplier))
-	if(synced_bank_account.adjust_money(-final_cost, "[name]: Purchase"))
+	if(synced_bank_account.adjust_money(-final_cost, "[name]：采购"))
 		return TRUE
-	say("Sorry, but you do not have enough [credit_type].")
+	say("抱歉，你的[credit_type]不足。")
 	return FALSE

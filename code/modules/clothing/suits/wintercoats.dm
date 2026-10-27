@@ -1,7 +1,7 @@
 // Wintercoat
 /obj/item/clothing/suit/hooded/wintercoat
-	name = "winter coat"
-	desc = "A heavy jacket made from 'synthetic' animal furs."
+	name = "冬季外套"
+	desc = "一件用“合成”动物毛皮制成的厚重夹克。"
 	icon = 'icons/obj/clothing/suits/wintercoat.dmi'
 	icon_state = "coatwinter"
 	worn_icon = 'icons/mob/clothing/suits/wintercoat.dmi'
@@ -47,7 +47,7 @@
 /obj/item/clothing/suit/hooded/wintercoat/examine(mob/user)
 	. = ..()
 	if(can_altclick_zip)
-		. += span_notice("<b>Alt-click</b> to [zipped ? "un" : ""]zip.")
+		. += span_notice("按 <b>Alt 左键</b> 来[zipped ? "拉开" : "拉上"]拉链。")
 
 
 /obj/item/clothing/suit/hooded/wintercoat/click_alt(mob/user)
@@ -56,7 +56,7 @@
 	zipped = !zipped
 	playsound(src, 'sound/items/zip/zip_up.ogg', 30, TRUE, -3)
 	worn_icon_state = "[initial(post_init_icon_state) || initial(icon_state)][zipped ? "_t" : ""]"
-	balloon_alert(user, "[zipped ? "" : "un"]zipped")
+	balloon_alert(user, "[zipped ? "已拉上" : "已拉开"]拉链")
 
 	if(ishuman(loc))
 		var/mob/living/carbon/human/wearer = loc
@@ -64,8 +64,8 @@
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/clothing/head/hooded/winterhood
-	name = "winter hood"
-	desc = "A cozy winter hood attached to a heavy winter jacket."
+	name = "冬季兜帽"
+	desc = "一顶舒适的冬季兜帽，连在厚重的冬季夹克上。"
 	icon = 'icons/obj/clothing/head/winterhood.dmi'
 	icon_state = "hood_winter"
 	worn_icon = 'icons/mob/clothing/head/winterhood.dmi'
@@ -82,8 +82,8 @@
 	bio = 10
 
 /obj/item/clothing/suit/hooded/wintercoat/eva
-	name = "\proper Endotherm winter coat"
-	desc = "A thickly padded winter coat to keep the wearer well insulated no matter the circumstances. It has a harness for a larger oxygen tank attached to the back."
+	name = "\proper 恒温冬季外套"
+	desc = "一件填充厚实的冬季外套，无论身处何种环境都能让穿着者保持良好保温。背面附有用于固定大型氧气罐的背带。"
 	icon_state = "coateva"
 	w_class = WEIGHT_CLASS_BULKY
 	slowdown = 0.75
@@ -109,8 +109,8 @@
 	allowed += /obj/item/tank/internals
 
 /obj/item/clothing/head/hooded/winterhood/eva
-	name = "\proper Endotherm winter hood"
-	desc = "A thickly padded hood attached to an even thicker coat."
+	name = "\proper 恒温冬季兜帽"
+	desc = "一顶填充厚实的兜帽，连在更加厚实的外套上。"
 	icon_state = "hood_eva"
 	armor_type = /datum/armor/winterhood_eva
 	min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
@@ -128,8 +128,8 @@
 	acid = 20
 
 /obj/item/clothing/suit/hooded/wintercoat/centcom
-	name = "centcom winter coat"
-	desc = "A luxurious winter coat woven in the bright green and gold colours of Central Command. It has a small pin in the shape of the Nanotrasen logo for a zipper."
+	name = "中央指挥部冬季外套"
+	desc = "一件豪华的冬季外套，织有中央指挥部亮绿与金色的配色。它的拉链头是一枚纳米传讯标志形状的小别针。"
 	icon_state = "coatcentcom"
 	inhand_icon_state = null
 	armor_type = /datum/armor/wintercoat_centcom
@@ -165,10 +165,10 @@
 	acid = 60
 
 /obj/item/clothing/suit/hooded/wintercoat/captain
-	name = "captain's winter coat"
-	desc = "A luxurious winter coat, stuffed with the down of the endangered Uka bird and trimmed with genuine sable. The fabric is an indulgently soft micro-fiber, \
-			and the deep ultramarine colour is only one that could be achieved with minute amounts of crystalline bluespace dust woven into the thread between the plectrums. \
-			Extremely lavish, and extremely durable."
+	name = "舰长冬季外套"
+	desc = "一件豪华的冬季外套，内填濒危乌卡鸟的绒羽，并以真紫貂皮滚边。面料是柔软得令人沉溺的超细纤维， \
+			而那种深邃的群青色，只有把微量结晶蓝空间尘织进纤维之间才能得到。 \
+			极其奢华，也极其耐用。"
 	icon_state = "coatcaptain"
 	inhand_icon_state = "coatcaptain"
 	armor_type = /datum/armor/wintercoat_captain
@@ -200,8 +200,8 @@
 	acid = 50
 
 /obj/item/clothing/suit/hooded/wintercoat/hop
-	name = "head of personnel's winter coat"
-	desc = "A cozy winter coat, covered in thick fur. The breast features a proud yellow chevron, reminding everyone that you're the second banana."
+	name = "人事主管冬季外套"
+	desc = "一件覆满厚实毛皮的舒适冬季外套。胸前有一枚傲然的黄色 V 形条纹，提醒所有人你才是二把手。"
 	icon_state = "coathop"
 	inhand_icon_state = null
 	armor_type = /datum/armor/wintercoat_hop
@@ -229,21 +229,21 @@
 
 // Botanist
 /obj/item/clothing/suit/hooded/wintercoat/hydro
-	name = "hydroponics winter coat"
-	desc = "A green and blue winter coat. The zipper tab looks like the flower from a member of Rosa Hesperrhodos, a pretty pink-and-white rose. The colours absolutely clash."
+	name = "水培冬季外套"
+	desc = "一件绿蓝相间的冬季外套。拉链头做成了一朵 Rosa Hesperrhodos 的花形，那是一种漂亮的粉白色玫瑰。这些颜色完全不搭。"
 	icon_state = "coathydro"
 	inhand_icon_state = "coathydro"
 	allowed = /obj/item/clothing/suit/apron::allowed
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/hydro
 
 /obj/item/clothing/head/hooded/winterhood/hydro
-	desc = "A green winter coat hood."
+	desc = "一顶绿色冬季外套兜帽。"
 	icon_state = "hood_hydro"
 
 // Janitor
 /obj/item/clothing/suit/hooded/wintercoat/janitor
-	name = "janitors winter coat"
-	desc = "A purple-and-beige winter coat that smells of space cleaner."
+	name = "清洁工冬季外套"
+	desc = "一件紫米相间的冬季外套，闻起来有太空清洁剂的味道。"
 	icon_state = "coatjanitor"
 	inhand_icon_state = null
 	allowed = list(
@@ -259,13 +259,13 @@
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/janitor
 
 /obj/item/clothing/head/hooded/winterhood/janitor
-	desc = "A purple hood that smells of space cleaner."
+	desc = "一顶紫色兜帽，闻起来有太空清洁剂的味道。"
 	icon_state = "hood_janitor"
 
 // Security Officer
 /obj/item/clothing/suit/hooded/wintercoat/security
-	name = "security winter jacket"
-	desc = "A red, armour-padded winter coat. It glitters with a mild ablative coating and a robust air of authority.  The zipper tab is a pair of jingly little handcuffs that get annoying after the first ten seconds."
+	name = "安保冬季夹克"
+	desc = "一件红色的加护冬季外套。它带着轻微的烧蚀涂层光泽，以及一股稳重的权威气场。拉链头是一副叮当作响的小手铐，十秒之后就让人烦。"
 	icon_state = "coatsecurity"
 	inhand_icon_state = "coatsecurity"
 	armor_type = /datum/armor/wintercoat_security
@@ -284,7 +284,7 @@
 	allowed += GLOB.security_wintercoat_allowed
 
 /obj/item/clothing/head/hooded/winterhood/security
-	desc = "A red, armour-padded winter hood. Definitely not bulletproof, especially not the part where your face goes."
+	desc = "一顶红色的加护冬季兜帽。绝对防不了子弹，尤其是脸对着的那部分。"
 	icon_state = "hood_security"
 	armor_type = /datum/armor/winterhood_security
 
@@ -298,8 +298,8 @@
 	acid = 45
 
 /obj/item/clothing/suit/hooded/wintercoat/medical
-	name = "medical winter coat"
-	desc = "An arctic white winter coat with a small blue caduceus instead of a plastic zipper tab. Snazzy."
+	name = "医疗冬季外套"
+	desc = "一件北极白色的冬季外套，拉链头不是塑料件，而是一枚小小的蓝色双蛇杖。很时髦。"
 	icon_state = "coatmedical"
 	inhand_icon_state = "coatmedical"
 	allowed = list(
@@ -326,7 +326,7 @@
 	acid = 20
 
 /obj/item/clothing/head/hooded/winterhood/medical
-	desc = "A white winter coat hood."
+	desc = "一顶白色冬季外套兜帽。"
 	icon_state = "hood_medical"
 	armor_type = /datum/armor/winterhood_medical
 
@@ -337,8 +337,8 @@
 
 // Chief Medical Officer
 /obj/item/clothing/suit/hooded/wintercoat/medical/cmo
-	name = "chief medical officer's winter coat"
-	desc = "A winter coat in a vibrant shade of blue with a small silver caduceus instead of a plastic zipper tab. The normal liner is replaced with an exceptionally thick, soft layer of fur."
+	name = "首席医疗官冬季外套"
+	desc = "一件鲜艳蓝色的冬季外套，拉链头不是塑料件，而是一枚小小的银色双蛇杖。内衬换成了极其厚实柔软的毛皮。"
 	icon_state = "coatcmo"
 	inhand_icon_state = null
 	armor_type = /datum/armor/medical_cmo
@@ -357,14 +357,14 @@
 	)
 
 /obj/item/clothing/head/hooded/winterhood/medical/cmo
-	desc = "A blue winter coat hood."
+	desc = "一顶蓝色冬季外套兜帽。"
 	icon_state = "hood_cmo"
 	armor_type = /datum/armor/medical_cmo
 
 // Chemist
 /obj/item/clothing/suit/hooded/wintercoat/medical/chemistry
-	name = "chemistry winter coat"
-	desc = "A lab-grade winter coat made with acid resistant polymers. For the enterprising chemist who was exiled to a frozen wasteland on the go."
+	name = "化学冬季外套"
+	desc = "一件实验室级冬季外套，以耐酸聚合物制成。送给那位被流放到冰封荒原、却仍充满干劲的化学家。"
 	icon_state = "coatchemistry"
 	inhand_icon_state = null
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/medical/chemistry
@@ -374,13 +374,13 @@
 	allowed += /obj/item/storage/bag/chemistry
 
 /obj/item/clothing/head/hooded/winterhood/medical/chemistry
-	desc = "A white winter coat hood."
+	desc = "一顶白色冬季外套兜帽。"
 	icon_state = "hood_chemistry"
 
 // Coroner
 /obj/item/clothing/suit/hooded/wintercoat/medical/coroner
-	name = "coroner winter coat"
-	desc = "A winter coat made with acid resistant polymers, used when the cold dead bodies are too much."
+	name = "验尸官冬季外套"
+	desc = "一件以耐酸聚合物制成的冬季外套，在冰冷的尸体让人受不了时派上用场。"
 	icon_state = "coatcoroner"
 	inhand_icon_state = null
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/medical/coroner
@@ -396,13 +396,13 @@
 	)
 
 /obj/item/clothing/head/hooded/winterhood/medical/coroner
-	desc = "A white winter coat hood."
+	desc = "一顶白色冬季外套兜帽。"
 	icon_state = "hood_coroner"
 
 // Virologist
 /obj/item/clothing/suit/hooded/wintercoat/medical/viro
-	name = "virology winter coat"
-	desc = "A white winter coat with green markings. Warm, but won't fight off the common cold or any other disease. Might make people stand far away from you in the hallway. The zipper tab looks like an oversized bacteriophage."
+	name = "病毒学冬季外套"
+	desc = "一件带绿色标记的白色冬季外套。很保暖，但挡不住普通感冒或任何其他疾病。可能会让走廊里的人离你远远的。拉链头看起来像一只超大号的噬菌体。"
 	icon_state = "coatviro"
 	inhand_icon_state = null
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/medical/viro
@@ -412,13 +412,13 @@
 	allowed += /obj/item/storage/bag/bio
 
 /obj/item/clothing/head/hooded/winterhood/medical/viro
-	desc = "A white winter coat hood with green markings."
+	desc = "一顶带绿色标记的白色冬季外套兜帽。"
 	icon_state = "hood_viro"
 
 // Paramedic
 /obj/item/clothing/suit/hooded/wintercoat/medical/paramedic
-	name = "paramedic winter coat"
-	desc = "A winter coat with blue markings. Warm, but probably won't protect from biological agents. For the cozy doctor on the go."
+	name = "急救员冬季外套"
+	desc = "一件带蓝色标记的冬季外套。很保暖，但大概挡不住生物制剂。送给四处奔波的舒适医生。"
 	icon_state = "coatparamed"
 	inhand_icon_state = null
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/medical/paramedic
@@ -429,13 +429,13 @@
 	allowed += /obj/item/crowbar/power/paramedic
 
 /obj/item/clothing/head/hooded/winterhood/medical/paramedic
-	desc = "A white winter coat hood with blue markings."
+	desc = "一顶带蓝色标记的白色冬季外套兜帽。"
 	icon_state = "hood_paramed"
 
 // Scientist
 /obj/item/clothing/suit/hooded/wintercoat/science
-	name = "science winter coat"
-	desc = "A white winter coat with an outdated atomic model instead of a plastic zipper tab."
+	name = "科研冬季外套"
+	desc = "一件白色冬季外套，拉链头不是塑料件，而是一个过时的原子模型。"
 	icon_state = "coatscience"
 	inhand_icon_state = "coatscience"
 	allowed = list(
@@ -461,7 +461,7 @@
 	fire = 20
 
 /obj/item/clothing/head/hooded/winterhood/science
-	desc = "A white winter coat hood. This one will keep your brain warm. About as much as the others, really."
+	desc = "一顶白色冬季外套兜帽。这一顶能让你的大脑保持温暖。其实和其他几顶差不多。"
 	icon_state = "hood_science"
 	armor_type = /datum/armor/winterhood_science
 
@@ -471,8 +471,8 @@
 	fire = 20
 
 /obj/item/clothing/suit/hooded/wintercoat/science/rd
-	name = "research director's winter coat"
-	desc = "A thick arctic winter coat with an outdated atomic model instead of a plastic zipper tab. Most in the know are heavily aware that Bohr's model of the atom was outdated by the time of the 1930s when the Heisenbergian and Schrodinger models were generally accepted for true. Nevertheless, we still see its use in anachronism, roleplaying, and, in this case, as a zipper tab. At least it should keep you warm on your ivory pillar."
+	name = "科研主管冬季外套"
+	desc = "一件厚实的北极冬季外套，拉链头不是塑料件，而是一个过时的原子模型。多数内行人都很清楚，玻尔的原子模型在 1930 年代海森堡与薛定谔模型被普遍认可为真时就已过时。尽管如此，我们仍能在时代错置、角色扮演，以及此处这种拉链头上看到它的身影。至少它能在你的象牙塔上让你保持温暖。"
 	icon_state = "coatrd"
 	inhand_icon_state = null
 	armor_type = /datum/armor/science_rd
@@ -489,26 +489,26 @@
 	)
 
 /obj/item/clothing/head/hooded/winterhood/science/rd
-	desc = "A white winter coat hood. It smells faintly of hair gel."
+	desc = "一顶白色冬季外套兜帽。隐约有发胶的味道。"
 	icon_state = "hood_rd"
 	armor_type = /datum/armor/science_rd
 
 // Roboticist
 /obj/item/clothing/suit/hooded/wintercoat/science/robotics
-	name = "robotics winter coat"
-	desc = "A black winter coat with a badass flaming robotic skull for the zipper tab. This one has bright red designs and a few useless buttons."
+	name = "机器人学冬季外套"
+	desc = "一件黑色冬季外套，拉链头是一颗霸气燃烧的机械骷髅。这一件还有鲜红色的图案和几颗没用的纽扣。"
 	icon_state = "coatrobotics"
 	inhand_icon_state = null
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/science/robotics
 
 /obj/item/clothing/head/hooded/winterhood/science/robotics
-	desc = "A black winter coat hood. You can pull it down over your eyes and pretend that you're an outdated, late 1980s interpretation of a futuristic mechanized police force. They'll fix you. They fix everything."
+	desc = "一顶黑色冬季外套兜帽。你可以把它拉下来盖住眼睛，假装自己是 1980 年代末对未来机械化警察部队的过时想象。他们会修好你。他们什么都能修。"
 	icon_state = "hood_robotics"
 
 // Geneticist
 /obj/item/clothing/suit/hooded/wintercoat/science/genetics
-	name = "genetics winter coat"
-	desc = "A white winter coat with a DNA helix for the zipper tab."
+	name = "遗传学冬季外套"
+	desc = "一件白色冬季外套，拉链头是一个 DNA 双螺旋。"
 	icon_state = "coatgenetics"
 	inhand_icon_state = null
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/science/genetics
@@ -518,13 +518,13 @@
 	allowed += /obj/item/sequence_scanner
 
 /obj/item/clothing/head/hooded/winterhood/science/genetics
-	desc = "A white winter coat hood. It's warm."
+	desc = "一顶白色冬季外套兜帽。很暖和。"
 	icon_state = "hood_genetics"
 
 // Station Engineer
 /obj/item/clothing/suit/hooded/wintercoat/engineering
-	name = "engineering winter coat"
-	desc = "A surprisingly heavy yellow winter coat with reflective orange stripes. It has a small wrench for its zipper tab, and the inside layer is covered with a radiation-resistant silver-nylon blend. Because you're worth it."
+	name = "工程冬季外套"
+	desc = "一件意外地沉重的黄色冬季外套，带反光橙色条纹。拉链头是一把小扳手，内层覆有抗辐射的银尼龙混纺材料。因为你值得。"
 	icon_state = "coatengineer"
 	inhand_icon_state = "coatengineer"
 	allowed = list(
@@ -551,7 +551,7 @@
 		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha, effect_type = EMISSIVE_SPECULAR)
 
 /obj/item/clothing/head/hooded/winterhood/engineering
-	desc = "A yellow winter coat hood. Definitely not a replacement for a hard hat."
+	desc = "一顶黄色冬季外套兜帽。绝对不能代替安全帽。"
 	icon_state = "hood_engineer"
 	armor_type = /datum/armor/winterhood_engineering
 
@@ -565,8 +565,8 @@
 
 // Chief Engineer
 /obj/item/clothing/suit/hooded/wintercoat/engineering/ce
-	name = "chief engineer's winter coat"
-	desc = "A white winter coat with reflective green and yellow stripes. Stuffed with asbestos, treated with fire retardant PBDE, lined with a micro thin sheet of lead foil and snugly fitted to your body's measurements. This baby's ready to save you from anything except the thyroid cancer and systemic fibrosis you'll get from wearing it. The zipper tab is a tiny golden wrench."
+	name = "总工程师冬季外套"
+	desc = "一件带反光绿色与黄色条纹的白色冬季外套。内填石棉，经阻燃 PBDE 处理，衬里是一层极薄的铅箔，并按你的身材尺寸贴身剪裁。这宝贝能让你免受一切伤害，除了穿上它后你会得的甲状腺癌与全身性纤维化。拉链头是一把小小的金色扳手。"
 	icon_state = "coatce"
 	inhand_icon_state = null
 	armor_type = /datum/armor/engineering_ce
@@ -583,26 +583,26 @@
 	)
 
 /obj/item/clothing/head/hooded/winterhood/engineering/ce
-	desc = "A white winter coat hood. Feels surprisingly heavy. The tag says that it's not child safe."
+	desc = "一顶白色冬季外套兜帽。意外地沉。标签上写着它不适合儿童使用。"
 	icon_state = "hood_ce"
 	armor_type = /datum/armor/engineering_ce
 
 // Atmospherics Technician
 /obj/item/clothing/suit/hooded/wintercoat/engineering/atmos
-	name = "atmospherics winter coat"
-	desc = "A yellow and blue winter coat. The zipper pull-tab is made to look like a miniature breath mask."
+	name = "大气冬季外套"
+	desc = "一件黄蓝相间的冬季外套。拉链头做成了一只微型呼吸面罩的样子。"
 	icon_state = "coatatmos"
 	inhand_icon_state = "coatatmos"
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/engineering/atmos
 
 /obj/item/clothing/head/hooded/winterhood/engineering/atmos
-	desc = "A yellow and blue winter coat hood."
+	desc = "一顶黄蓝相间的冬季外套兜帽。"
 	icon_state = "hood_atmos"
 
 // Cargo Technician
 /obj/item/clothing/suit/hooded/wintercoat/cargo
-	name = "cargo winter coat"
-	desc = "A tan-and-grey winter coat. The zipper tab is a small pin resembling a MULE. It fills you with the warmth of a fierce independence."
+	name = "货运冬季外套"
+	desc = "一件棕灰相间的冬季外套。拉链头是一枚形似 MULE 的小别针。它以猛烈独立精神的暖意充盈着你。"
 	icon_state = "coatcargo"
 	inhand_icon_state = "coatcargo"
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/cargo
@@ -613,13 +613,13 @@
 	)
 
 /obj/item/clothing/head/hooded/winterhood/cargo
-	desc = "A grey hood for a winter coat."
+	desc = "一顶灰色冬季外套兜帽。"
 	icon_state = "hood_cargo"
 
 // Quartermaster
 /obj/item/clothing/suit/hooded/wintercoat/cargo/qm
-	name = "quartermaster's winter coat"
-	desc = "A dark brown winter coat that has a golden crate pin for its zipper pully."
+	name = "货运主管冬季外套"
+	desc = "一件深棕色冬季外套，拉链拉手是一枚金色的板条箱别针。"
 	icon_state = "coatqm"
 	inhand_icon_state = null
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/cargo/qm
@@ -631,13 +631,13 @@
 	)
 
 /obj/item/clothing/head/hooded/winterhood/cargo/qm
-	desc = "A dark brown winter hood"
+	desc = "一顶深棕色冬季兜帽"
 	icon_state = "hood_qm"
 
 // Shaft Miner
 /obj/item/clothing/suit/hooded/wintercoat/miner
-	name = "mining winter coat"
-	desc = "A dusty button up winter coat. The zipper tab looks like a tiny pickaxe."
+	name = "采矿冬季外套"
+	desc = "一件沾满灰尘的纽扣式冬季外套。拉链头看起来像一把小小的镐。"
 	icon_state = "coatminer"
 	inhand_icon_state = "coatminer"
 	allowed = list(
@@ -658,7 +658,7 @@
 	melee = 10
 
 /obj/item/clothing/head/hooded/winterhood/miner
-	desc = "A dusty winter coat hood."
+	desc = "一顶沾满灰尘的冬季外套兜帽。"
 	icon_state = "hood_miner"
 	armor_type = /datum/armor/winterhood_miner
 
@@ -666,8 +666,8 @@
 	melee = 10
 
 /obj/item/clothing/suit/hooded/wintercoat/custom
-	name = "tailored winter coat"
-	desc = "A heavy jacket made from 'synthetic' animal furs, with custom colors."
+	name = "定制冬季外套"
+	desc = "一件用“合成”动物毛皮制成的厚重夹克，可自定义颜色。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/hooded/wintercoat/custom"
 	post_init_icon_state = "coatwinter"
@@ -696,15 +696,15 @@
 	hood.set_greyscale(new_coat_colors) //Adopt the suit's grayscale coloring for visual clarity.
 
 /obj/item/clothing/head/hooded/winterhood/custom
-	name = "tailored winter coat hood"
-	desc = "A heavy jacket hood made from 'synthetic' animal furs, with custom colors."
+	name = "定制冬季外套兜帽"
+	desc = "一顶用“合成”动物毛皮制成的厚重夹克兜帽，可自定义颜色。"
 	greyscale_config = /datum/greyscale_config/winter_hoods
 	greyscale_config_worn = /datum/greyscale_config/winter_hoods/worn
 	flags_1 = NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/clothing/suit/hooded/wintercoat/pullover
-	name = "pullover"
-	desc = "A colorable pullover hoodie."
+	name = "套头衫"
+	desc = "一件可染色的套头连帽衫。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/hooded/wintercoat/pullover"
 	post_init_icon_state = "pullover"
@@ -724,8 +724,8 @@
 	return
 
 /obj/item/clothing/head/hooded/winterhood/pullover
-	name = "pullover hood"
-	desc = "A colorable pullover hoodie."
+	name = "套头衫兜帽"
+	desc = "一件可染色的套头连帽衫。"
 	icon_state = "hood_pullover"
 	worn_icon_state = "hood_pullover"
 	hair_mask = /datum/hair_mask/hoodie
@@ -748,8 +748,8 @@
 	hood.set_greyscale(coat_colors)
 
 /obj/item/clothing/suit/hooded/wintercoat/zipup
-	name = "zipup"
-	desc = "A colorable zipup hoodie."
+	name = "拉链衫"
+	desc = "一件可染色的拉链连帽衫。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/hooded/wintercoat/zipup"
 	post_init_icon_state = "zipup"
@@ -771,8 +771,8 @@
 	. += mutable_appearance(icon_file, state, -SUIT_LAYER)
 
 /obj/item/clothing/head/hooded/winterhood/zipup
-	name = "zipup hood"
-	desc = "A colorable zipup hoodie."
+	name = "拉链衫兜帽"
+	desc = "一件可染色的拉链连帽衫。"
 	icon_state = "hood_zipup"
 	worn_icon_state = "hood_zipup"
 	hair_mask = /datum/hair_mask/hoodie

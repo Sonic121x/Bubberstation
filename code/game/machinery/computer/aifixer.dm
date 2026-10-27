@@ -1,6 +1,6 @@
 /obj/machinery/computer/aifixer
-	name = "\improper AI system integrity restorer"
-	desc = "Used with intelliCards containing nonfunctional AIs to restore them to working order."
+	name = "\improper AI 系统完整性修复器"
+	desc = "配合装有故障 AI 的智能卡使用，可将 AI 恢复至正常工作状态。"
 	req_access = list(ACCESS_CAPTAIN, ACCESS_ROBOTICS, ACCESS_COMMAND)
 	circuit = /obj/item/circuitboard/computer/aifixer
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/aifixer")
@@ -16,9 +16,9 @@
 /obj/machinery/computer/aifixer/screwdriver_act(mob/living/user, obj/item/I)
 	if(occupier)
 		if(machine_stat & (NOPOWER|BROKEN))
-			to_chat(user, span_warning("The screws on [name]'s screen won't budge."))
+			to_chat(user, span_warning("[name]屏幕上的螺丝纹丝不动。"))
 		else
-			to_chat(user, span_warning("The screws on [name]'s screen won't budge and it emits a warning beep."))
+			to_chat(user, span_warning("[name]屏幕上的螺丝纹丝不动，机器发出一声警告提示音。"))
 	else
 		return ..()
 
@@ -36,7 +36,7 @@
 	data["AI_present"] = FALSE
 	data["error"] = null
 	if(!occupier)
-		data["error"] = "Please transfer an AI unit."
+		data["error"] = "请传入一个 AI 单元。"
 	else
 		data["AI_present"] = TRUE
 		data["name"] = occupier.name
@@ -58,15 +58,15 @@
 	switch(action)
 		if("PRG_beginReconstruction")
 			if(occupier?.health < 100)
-				to_chat(usr, span_notice("Reconstruction in progress. This will take several minutes."))
+				to_chat(usr, span_notice("正在重建。这需要几分钟。"))
 				playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 25, FALSE)
 				restoring = TRUE
-				occupier.notify_revival("Your core files are being restored!", source = src)
+				occupier.notify_revival("你的核心文件正在修复！", source = src)
 				. = TRUE
 
 /obj/machinery/computer/aifixer/proc/Fix()
 	if(!use_energy(active_power_usage, force = TRUE))
-		say("Not enough energy. Restoration cancelled.")
+		say("能量不足。修复已取消。")
 		return FALSE
 	var/need_mob_update = FALSE
 	need_mob_update += occupier.adjust_oxy_loss(-5, updating_health = FALSE)
@@ -78,7 +78,7 @@
 		occupier.revive()
 		if(!occupier.radio_enabled)
 			occupier.radio_enabled = TRUE
-			to_chat(occupier, span_warning("Your Subspace Transceiver has been enabled!"))
+			to_chat(occupier, span_warning("你的子空间收发器已启用！"))
 	return occupier.health < 100
 
 /obj/machinery/computer/aifixer/process()
@@ -112,29 +112,29 @@
 	//Downloading AI from card to terminal.
 	if(interaction == AI_TRANS_FROM_CARD)
 		if(machine_stat & (NOPOWER|BROKEN))
-			to_chat(user, span_alert("[src] is offline and cannot take an AI at this time."))
+			to_chat(user, span_alert("[src]已离线，目前无法接收 AI。"))
 			return
 		AI.forceMove(src)
 		occupier = AI
 		AI.set_control_disabled(TRUE)
 		AI.radio_enabled = FALSE
-		to_chat(AI, span_alert("You have been uploaded to a stationary terminal. Sadly, there is no remote access from here."))
-		to_chat(user, "[span_notice("Transfer successful")]: [AI.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed.")
+		to_chat(AI, span_alert("你已上传至固定终端。遗憾的是，这里无法进行远程访问。"))
+		to_chat(user, "[span_notice("传输成功")]：[AI.name]（[rand(1000,9999)].exe）已成功安装并运行。本地副本已删除。")
 		card.AI = null
 		update_appearance()
 
 	else //Uploading AI from terminal to card
 		if(occupier && !restoring)
-			to_chat(occupier, span_notice("You have been downloaded to a mobile storage device. Still no remote access."))
-			to_chat(user, "[span_notice("Transfer successful")]: [occupier.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory.")
+			to_chat(occupier, span_notice("你已下载到移动储存设备。仍然无法进行远程访问。"))
+			to_chat(user, "[span_notice("传输成功")]：[occupier.name]（[rand(1000,9999)].exe）已从主终端移除，并存入本地内存。")
 			occupier.forceMove(card)
 			card.AI = occupier
 			occupier = null
 			update_appearance()
 		else if (restoring)
-			to_chat(user, span_alert("ERROR: Reconstruction in progress."))
+			to_chat(user, span_alert("错误：正在重建。"))
 		else if (!occupier)
-			to_chat(user, span_alert("ERROR: Unable to locate artificial intelligence."))
+			to_chat(user, span_alert("错误：无法找到人工智能。"))
 
 /obj/machinery/computer/aifixer/Destroy()
 	if(occupier)

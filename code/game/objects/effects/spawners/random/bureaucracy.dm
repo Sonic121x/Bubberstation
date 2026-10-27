@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/bureaucracy
 	name = "bureaucracy loot spawner"
-	desc = "For the exotic art of paper shuffling."
+	desc = "为倒腾公文这门奇妙艺术而准备。"
 
 /obj/effect/spawner/random/bureaucracy/pen
 	name = "pen spawner"

@@ -1,12 +1,12 @@
 /obj/effect/mob_spawn/ghost_role/human/ancient_milsim
-	name = "Bitrunning SNPC CIN Operative"
-	prompt_name = "a weird compound operative"
+	name = "比特潜行 SNPC CIN 特工"
+	prompt_name = "一名古怪的驻地特工"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "psykerpod"
 	outfit = /datum/outfit/cin_soldier_player
-	you_are_text = "You are a smart NPC guarding the exit of a simulated combat domain."
-	flavour_text = "You are a smart NPC loaded into the domain as a means of slowing down the bitrunning contestants' progression one way or another, be it combat or drawn out dialogues."
-	important_text = "Generally speaking, 'play fair'. Only allowed species is humans."
+	you_are_text = "你是一名智能 NPC，负责守卫一个模拟战斗域的出口。"
+	flavour_text = "你是一名被载入该域的智能 NPC，任务是想方设法拖慢比特潜行参赛者的进度，无论是靠战斗还是靠冗长的对话。"
+	important_text = "总的来说，请“公平游戏”。唯一允许的种族是人类。"
 	restricted_species = list(/datum/species/human)
 	random_appearance = FALSE
 

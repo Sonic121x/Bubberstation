@@ -1,11 +1,11 @@
 /datum/quirk/deviant_tastes
 	name = "Deviant Tastes"
-	desc = "You dislike food that most people enjoy, and find delicious what they don't."
+	desc = "你不喜欢大多数人爱吃的食物，却觉得他们不爱吃的东西很美味。"
 	icon = FA_ICON_GRIN_TONGUE_SQUINT
 	value = 0
-	gain_text = span_notice("You start craving something that tastes strange.")
-	lose_text = span_notice("You feel like eating normal food again.")
-	medical_record_text = "Patient demonstrates irregular nutrition preferences."
+	gain_text = span_notice("你开始渴望某种味道古怪的东西。")
+	lose_text = span_notice("你又想吃正常的食物了。")
+	medical_record_text = "患者表现出不同寻常的饮食偏好。"
 	mail_goodies = list(/obj/item/food/urinalcake, /obj/item/food/badrecipe) // Mhhhmmm yummy
 
 /datum/quirk/deviant_tastes/add(client/client_source)

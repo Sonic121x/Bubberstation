@@ -1,6 +1,6 @@
 /obj/item/storage/belt/erpbelt
-	name = "leather belt"
-	desc = "Used to hold sex toys. Looks pretty good."
+	name = "皮质腰带"
+	desc = "用来装性玩具。看起来相当不错。"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_belts.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_belts.dmi'
 	lefthand_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_left.dmi'

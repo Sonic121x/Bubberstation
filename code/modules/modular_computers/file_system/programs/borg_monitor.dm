@@ -1,10 +1,10 @@
 /datum/computer_file/program/borg_monitor
 	filename = "siliconnect"
-	filedesc = "SiliConnect"
+	filedesc = "硅连接"
 	downloader_category = PROGRAM_CATEGORY_SCIENCE
 	ui_header = "borg_mon.gif"
 	program_open_overlay = "generic"
-	extended_desc = "This program allows for remote monitoring of station cyborgs."
+	extended_desc = "该程序可用于远程监控站内的半机械人。"
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	download_access = list(ACCESS_ROBOTICS)
 	size = 5
@@ -33,13 +33,13 @@
 	DL_source = borgo
 	DL_progress = 0
 
-	var/username = "unknown user"
+	var/username = "未知用户"
 	var/obj/item/card/id/stored_card = computer.GetID()
 	if(istype(stored_card) && stored_card.registered_name)
-		username = "user [stored_card.registered_name]"
-	to_chat(borgo, span_userdanger("Request received from [username] for the system log file. Upload in progress."))//Damning evidence may be contained, so warn the borg
-	borgo.logevent("File request by [username]: /var/logs/syslog")
-	borgo.balloon_alert(user, "downloading logs")
+		username = "用户 [stored_card.registered_name]"
+	to_chat(borgo, span_userdanger("已收到来自 [username] 的系统日志文件请求，正在上传。"))//Damning evidence may be contained, so warn the borg
+	borgo.logevent("来自 [username] 的文件请求：/var/logs/syslog")
+	borgo.balloon_alert(user, "正在下载日志")
 	return TRUE
 
 /datum/computer_file/program/borg_monitor/process_tick(seconds_per_tick)
@@ -50,18 +50,18 @@
 	var/turf/here = get_turf(computer)
 	var/turf/there = get_turf(DL_source)
 	if(!here.Adjacent(there))//If someone walked away, cancel the download
-		to_chat(DL_source, span_danger("Log upload failed: general connection error."))//Let the borg know the upload stopped
+		to_chat(DL_source, span_danger("日志上传失败：一般连接错误。"))//Let the borg know the upload stopped
 		DL_source = null
 		DL_progress = -1
 		return
 
 	if(DL_progress == 100)
 		if(!DL_source || !DL_source.modularInterface) //sanity check, in case the borg or their modular tablet poofs somehow
-			loglist = list("System log of unit [DL_source.name]")
-			loglist += "Error -- Download corrupted."
+			loglist = list("单位 [DL_source.name] 的系统日志")
+			loglist += "错误——下载已损坏。"
 		else
 			loglist = DL_source.modularInterface.borglog.Copy()
-			loglist.Insert(1,"System log of unit [DL_source.name]")
+			loglist.Insert(1,"单位 [DL_source.name] 的系统日志")
 		DL_progress = -1
 		DL_source = null
 		return
@@ -95,7 +95,7 @@
 			status = R.stat,
 			shell_discon = shell,
 			charge = R.cell ? round(R.cell.percent()) : null,
-			module = R.model ? "[R.model.name] Model" : "No Model Detected",
+			module = R.model ? "[R.model.name] 型号" : "未检测到型号",
 			upgrades = upgrade,
 			ref = REF(R)
 		)
@@ -121,9 +121,9 @@
 	if(!ID)
 		return FALSE
 	if(robot.stat == DEAD) //Dead borgs will listen to you no longer
-		to_chat(user, span_warning("Error -- Could not open a connection to unit:[robot]"))
+		to_chat(user, span_warning("错误——无法与单位 [robot] 建立连接。"))
 		return FALSE
-	var/message = tgui_input_text(user, "Message to be sent to remote cyborg", "Send Message", max_length = MAX_MESSAGE_LEN)
+	var/message = tgui_input_text(user, "要发送给远程半机械人的消息", "发送消息", max_length = MAX_MESSAGE_LEN)
 	if(!message)
 		return FALSE
 	send_message(message, robot, user)
@@ -134,15 +134,15 @@
 		return FALSE
 	if(robot.stat == DEAD) //Dead borgs will listen to you no longer
 		if(user)
-			to_chat(user, span_warning("Error -- Could not open a connection to unit:[robot]"))
+			to_chat(user, span_warning("错误——无法与单位 [robot] 建立连接。"))
 			return FALSE
-	to_chat(robot, "<br><br>[span_notice("Message from [ID] -- \"[message]\"")]<br>")
+	to_chat(robot, "<br><br>[span_notice("来自 [ID] 的消息——“[message]”")]<br>")
 	if(user)
-		to_chat(user, "Message sent to [robot]: [message]")
-	robot.logevent("Message from [ID] -- \"[message]\"")
+		to_chat(user, "已向 [robot] 发送消息：[message]")
+	robot.logevent("来自 [ID] 的消息——“[message]”")
 	SEND_SOUND(robot, 'sound/machines/beep/twobeep_high.ogg')
 	if(robot.connected_ai)
-		to_chat(robot.connected_ai, "<br><br>[span_notice("Message from [ID] to [robot] -- \"[message]\"")]<br>")
+		to_chat(robot.connected_ai, "<br><br>[span_notice("来自 [ID] 发给 [robot] 的消息——“[message]”")]<br>")
 		SEND_SOUND(robot.connected_ai, 'sound/machines/beep/twobeep_high.ogg')
 	user?.log_talk(message, LOG_PDA, tag = "Cyborg Monitor Program: ID name \"[ID]\" to [robot]")
 	return TRUE
@@ -168,11 +168,11 @@
 
 /datum/computer_file/program/borg_monitor/syndicate
 	filename = "roboverlord"
-	filedesc = "Roboverlord"
+	filedesc = "机械霸主"
 	downloader_category = PROGRAM_CATEGORY_SCIENCE
 	ui_header = "borg_mon.gif"
 	program_open_overlay = "generic"
-	extended_desc = "This program allows for remote monitoring of mission-assigned cyborgs."
+	extended_desc = "该程序可用于远程监控执行任务的半机械人。"
 	program_flags = PROGRAM_ON_SYNDINET_STORE
 	download_access = null
 	circuit_comp_type = /obj/item/circuit_component/mod_program/borg_monitor/syndie
@@ -185,7 +185,7 @@
 	return TRUE
 
 /datum/computer_file/program/borg_monitor/syndicate/checkID()
-	return "\[CLASSIFIED\]" //no ID is needed for the syndicate version's message function, and the borg will see "[CLASSIFIED]" as the message sender.
+	return "\[机密\]" //no ID is needed for the syndicate version's message function, and the borg will see "[CLASSIFIED]" as the message sender.
 
 /obj/item/circuit_component/mod_program/borg_monitor
 	associated_program = /datum/computer_file/program/borg_monitor

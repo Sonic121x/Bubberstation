@@ -3,8 +3,8 @@
 	var/atom/movable/screen/wanted/wanted_lvl
 
 /atom/movable/screen/wanted
-	name = "Space Police Alertness"
-	desc = "Shows the current level of hostility the space police is planning to rain down on you. Better be careful."
+	name = "太空警察警戒度"
+	desc = "显示太空警察打算朝你倾泻的敌意等级。最好小心一点。"
 	icon = 'icons/obj/antags/gang/wanted_160x32.dmi'
 	icon_state = "wanted_0"
 	base_icon_state = "wanted"

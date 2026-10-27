@@ -1,6 +1,6 @@
 /datum/design/satchel_holding
-	name = "Inert Satchel of Holding"
-	desc = "A block of metal ready to be transformed into a satchel of holding with a bluespace anomaly core."
+	name = "惰性次元挎包"
+	desc = "一块金属，安装蓝空间异常核心后即可转变为次元挎包。"
 	id = "satchel_holding"
 	build_type = PROTOLATHE
 	materials = list(
@@ -16,8 +16,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/duffel_holding
-	name = "Inert Duffel Bag of Holding"
-	desc = "A block of metal ready to be transformed into a duffel bag of holding with a bluespace anomaly core."
+	name = "惰性次元行李袋"
+	desc = "一块金属，安装蓝空间异常核心后即可转变为次元行李袋。"
 	id = "duffel_holding"
 	build_type = PROTOLATHE
 	materials = list(

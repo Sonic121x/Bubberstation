@@ -107,9 +107,9 @@
 	/// Crew specific
 	lock_ref,
 	major_disabilities = "None",
-	major_disabilities_desc = "No disabilities have been diagnosed at the moment.",
+	major_disabilities_desc = "目前尚未诊断出任何残疾。",
 	minor_disabilities = "None",
-	minor_disabilities_desc = "No disabilities have been diagnosed at the moment.",
+	minor_disabilities_desc = "目前尚未诊断出任何残疾。",
 	physical_status = PHYSICAL_ACTIVE,
 	mental_status = MENTAL_STABLE,
 	quirk_notes,
@@ -261,7 +261,7 @@
 
 	var/datum/picture/picture = new
 	picture.picture_name = name
-	picture.picture_desc = "This is [name]."
+	picture.picture_desc = "这是[name]。"
 	picture.picture_image = picture_image
 
 	var/obj/item/photo/new_photo = new(null, picture)
@@ -270,38 +270,38 @@
 	return new_photo
 
 /// Returns a paper printout of the current record's crime data.
-/datum/record/crew/proc/get_rapsheet(alias, header = "Rapsheet", description = "No further details.")
+/datum/record/crew/proc/get_rapsheet(alias, header = "犯罪记录", description = "无更多详情。")
 	var/print_count = ++GLOB.manifest.print_count
 	var/obj/item/paper/printed_paper = new
 	var/final_paper_text = "<center><b>SR-[print_count]: [header]</b></center><br>"
 
-	final_paper_text += "Name: [name]<br>Gender: [gender]<br>Age: [age]<br>"
-	final_paper_text += "Chronological Age: [chrono_age]<br>" // SKYRAT EDIT ADDITION - Chronological age
+	final_paper_text += "姓名：[name]<br>性别：[chinese_record_value_display(gender)]<br>年龄：[age]<br>"
+	final_paper_text += "实际年龄：[chrono_age]<br>" // SKYRAT EDIT ADDITION - Chronological age
 	if(alias != name)
-		final_paper_text += "Alias: [alias]<br>"
+		final_paper_text += "别名：[alias]<br>"
 
-	final_paper_text += "Species: [species]<br>Fingerprint: [fingerprint]<br>Wanted Status: [wanted_status]<br><br>"
+	final_paper_text += "种族：[chinese_footprint_species_display(species)]<br>指纹：[fingerprint]<br>通缉状态：[chinese_record_value_display(wanted_status)]<br><br>"
 
 	//SKYRAT EDIT ADD - RP RECORDS
 	if(past_general_records != "")
-		final_paper_text += "<br><B>General Records:</B>"
+		final_paper_text += "<br><B>一般档案：</B>"
 		final_paper_text += "<br>[past_general_records]<br>"
 	//SKYRAT EDIT ADD END
-	final_paper_text += "<center><B>Security Data</B></center><br><br>"
+	final_paper_text += "<center><B>安保资料</B></center><br><br>"
 
 	//SKYRAT EDIT ADDITION START - RP RECORDS
 	if(past_security_records != "")
-		final_paper_text += "<B>Security Records:</B>"
+		final_paper_text += "<B>安保档案：</B>"
 		final_paper_text += "<br>[past_security_records]<br>"
 	//SKYRAT EDIT END
 
-	final_paper_text += "Crimes:<br>"
+	final_paper_text += "罪行：<br>"
 	final_paper_text += {"<table style="text-align:center;" border="1" cellspacing="0" width="100%">
 						<tr>
-						<th>Crime</th>
-						<th>Details</th>
-						<th>Author</th>
-						<th>Time Added</th>
+						<th>罪行</th>
+						<th>详情</th>
+						<th>记录人</th>
+						<th>添加时间</th>
 						</tr>"}
 	for(var/datum/crime/crime in crimes)
 		if(crime.valid)
@@ -311,18 +311,18 @@
 			final_paper_text += "<td>[crime.time]</td>"
 		else
 			for(var/i in 1 to 4)
-				final_paper_text += "<td>--REDACTED--</td>"
+				final_paper_text += "<td>--已删改--</td>"
 		final_paper_text += "</tr>"
 	final_paper_text += "</table><br><br>"
 
-	final_paper_text += "Citations:<br>"
+	final_paper_text += "罚单：<br>"
 	final_paper_text  += {"<table style="text-align:center;" border="1" cellspacing="0" width="100%">
 						<tr>
-						<th>Citation</th>
-						<th>Details</th>
-						<th>Author</th>
-						<th>Time Added</th>
-						<th>Fine</th>
+						<th>罚单</th>
+						<th>详情</th>
+						<th>记录人</th>
+						<th>添加时间</th>
+						<th>罚款</th>
 						</tr><br>"}
 	for(var/datum/crime/citation/warrant in citations)
 		final_paper_text += "<tr><td>[warrant.name]</td>"
@@ -333,7 +333,7 @@
 		final_paper_text += "</tr>"
 	final_paper_text += "</table><br><br>"
 
-	final_paper_text += "<center>Important Notes:</center><br>"
+	final_paper_text += "<center>重要备注：</center><br>"
 	if(security_note)
 		final_paper_text += "- [security_note]<br>"
 	if(description)

@@ -28,7 +28,7 @@
 		return
 	var/time_remaining_desc = ""
 	if (minimum_time >= world.time - SSticker.round_start_time)
-		time_remaining_desc = " <i>This ritual will be available to begin invoking in [DisplayTimeText(minimum_time - world.time - SSticker.round_start_time)]</i>"
+		time_remaining_desc = " <i>该仪式还需 [DisplayTimeText(minimum_time - world.time - SSticker.round_start_time)] 才能开始吟唱</i>"
 	var/datum/radial_menu_choice/choice = new()
 	choice.name = name
 	choice.image = image(icon = icon, icon_state = icon_state)
@@ -57,10 +57,10 @@
 	var/datum/objective/assassinate/wizard_murder = new
 	wizard_murder.owner = aggrieved_crewmate
 	wizard_murder.target = wizard
-	wizard_murder.explanation_text = "Kill [wizard.current.name], the one who did this."
+	wizard_murder.explanation_text = "杀死[wizard.current.name]，这一切的始作俑者。"
 	antag_datum.objectives += wizard_murder
 
-	to_chat(aggrieved_crewmate.current, span_warning("No! This isn't right!"))
+	to_chat(aggrieved_crewmate.current, span_warning("不！这不对！"))
 	aggrieved_crewmate.announce_objectives()
 
 /**
@@ -68,7 +68,7 @@
  * This doesn't preclude other people choosing to want to kill the wizard, just these people are rewarded for it.
  */
 /datum/antagonist/wizard_prank_vendetta
-	name = "\improper Wizard Prank Victim"
+	name = "\improper 巫师恶作剧受害者"
 	roundend_category = "wizard prank victims"
 	show_in_antagpanel = FALSE
 	antagpanel_category = ANTAG_GROUP_CREW
@@ -78,11 +78,11 @@
 
 /// Give everyone magic items, its so simple it feels pointless to give it its own file
 /datum/grand_finale/magic
-	name = "Evolution"
-	desc = "The ultimate use of your gathered power! Give the crew their own magic, they'll surely realise that right and wrong have no meaning when you hold ultimate power!"
+	name = "进化"
+	desc = "你积聚力量的终极运用！赋予船员们属于他们自己的魔法，他们肯定会意识到，当你掌握终极力量时，对与错毫无意义！"
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state = "scroll"
 
 /datum/grand_finale/magic/trigger(mob/living/carbon/human/invoker)
-	message_admins("[key_name(invoker)] summoned magic")
+	message_admins("[key_name(invoker)]召唤了魔法")
 	summon_magic(survivor_probability = 20) // Wow, this one was easy!

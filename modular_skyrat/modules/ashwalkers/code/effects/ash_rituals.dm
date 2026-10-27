@@ -1,6 +1,6 @@
 /datum/ash_ritual/summon_staff
-	name = "Summon Ash Staff"
-	desc = "Summon a staff that is imbued with the power of the tendril. Requires permission from the mother tendril."
+	name = "召唤灰烬法杖"
+	desc = "召唤一根注入触须之力的法杖。需要母触须的许可。"
 	required_components = list(
 		"north" = /obj/item/stack/sheet/mineral/wood,
 		"south" = /obj/item/organ/monster_core/regenerative_core,
@@ -14,8 +14,8 @@
 	)
 
 /datum/ash_ritual/summon_necklace
-	name = "Summon Draconic Necklace"
-	desc = "Summons a necklace that imbues the wearer with the knowledge of our tongue."
+	name = "召唤龙裔项链"
+	desc = "召唤一条项链，使佩戴者通晓我们的语言。"
 	required_components = list(
 		"north" = /obj/item/stack/sheet/bone,
 		"south" = /obj/item/organ/monster_core/regenerative_core,
@@ -32,8 +32,8 @@
 	)
 
 /datum/ash_ritual/summon_key
-	name = "Summon Skeleton Key"
-	desc = "Summons a key that opens the chests from fallen tendrils."
+	name = "召唤骷髅钥匙"
+	desc = "召唤一把钥匙，可打开倒下的触须留下的宝箱。"
 	required_components = list(
 		"north" = /obj/item/stack/sheet/bone,
 		"south" = /obj/item/stack/sheet/bone,
@@ -48,8 +48,8 @@
 	)
 
 /datum/ash_ritual/summon_cursed_knife
-	name = "Summon Cursed Ash Knife"
-	desc = "Summons a knife that places a tracking curse on unsuspecting miners who destroy our marked tendrils."
+	name = "召唤诅咒灰烬匕首"
+	desc = "召唤一把匕首，对毁坏我们标记触须的、毫无防备的矿工施加追踪诅咒。"
 	required_components = list(
 		"north" = /obj/item/organ/monster_core/regenerative_core,
 		"south" = /obj/item/melee/forged_reagent_weapon/dagger,
@@ -67,8 +67,8 @@
 	)
 
 /datum/ash_ritual/summon_cursed_carver
-	name = "Summon Cursed Ash Carver"
-	desc = "Summons a weapon that mimics the invader's tools, allowing us to collect trophies from the hunt."
+	name = "召唤诅咒灰烬切割器"
+	desc = "召唤一件模仿入侵者工具的武器，让我们能在狩猎中收集战利品。"
 	required_components = list(
 		"north" = /obj/item/organ/monster_core/regenerative_core,
 		"south" = /obj/item/cursed_dagger,
@@ -86,8 +86,8 @@
 	)
 
 /datum/ash_ritual/summon_tendril_seed
-	name = "Summon Tendril Seed"
-	desc = "Summons a seed that, when used in the hand, will cause a tendril to come through at your location."
+	name = "召唤触须种子"
+	desc = "召唤一颗种子，在手中使用后会使一根触须从你所在的位置破土而出。"
 	required_components = list(
 		"north" = /obj/item/organ/monster_core/regenerative_core,
 		"south" = /obj/item/cursed_dagger,
@@ -105,8 +105,8 @@
 	)
 
 /datum/ash_ritual/incite_megafauna
-	name = "Incite Megafauna"
-	desc = "Causes a horrible, unrecognizable sound that will attract the large fauna from around the planet."
+	name = "煽动巨兽"
+	desc = "发出一种可怕而无法辨认的声音，吸引行星各处的大型动物。"
 	required_components = list(
 		"north" = /mob/living/carbon/human,
 		"south" = /obj/item/ash_seed/tendril,
@@ -124,7 +124,7 @@
 		if(select_mob.z != success_rune.z)
 			continue
 
-		to_chat(select_mob, span_userdanger("The planet stirs... another monster has arrived!"))
+		to_chat(select_mob, span_userdanger("行星躁动起来……又一只怪物降临了！"))
 		playsound(get_turf(select_mob), 'sound/effects/magic/demon_attack1.ogg', 50, TRUE)
 		flash_color(select_mob, flash_color = "#FF0000", flash_time = 3 SECONDS)
 
@@ -153,8 +153,8 @@
 	new chosen_megafauna(spawning_turf)
 
 /datum/ash_ritual/ash_ceremony
-	name = "Ashen Age Ceremony"
-	desc = "Those who partake in the ceremony and are ready will age, increasing their value to the kin."
+	name = "灰烬成年仪式"
+	desc = "参与仪式且已准备就绪的族人会成长，从而提升自己在亲族中的价值。"
 	required_components = list(
 		"north" = /mob/living/carbon/human,
 		"south" = /obj/item/organ/monster_core/regenerative_core,
@@ -174,8 +174,8 @@
 		SEND_SIGNAL(human_target, COMSIG_RUNE_EVOLUTION)
 
 /datum/ash_ritual/summon_lavaland_creature
-	name = "Summon Lavaland Creature"
-	desc = "Summons a random, wild monster from another region in space."
+	name = "召唤熔岩地带生物"
+	desc = "从太空中另一片区域召唤一只随机的野生怪物。"
 	required_components = list(
 		"north" = /obj/item/organ/monster_core/regenerative_core,
 		"south" = /mob/living/basic/mining/ice_whelp,
@@ -199,8 +199,8 @@
 	new mob_type(success_rune.loc)
 
 /datum/ash_ritual/summon_icemoon_creature
-	name = "Summon Icemoon Creature"
-	desc = "Summons a random, wild monster from another region in space."
+	name = "召唤冰月生物"
+	desc = "从太空中另一片区域召唤一只随机的野生怪物。"
 	required_components = list(
 		"north" = /obj/item/organ/monster_core/regenerative_core,
 		"south" = /obj/item/food/grown/surik,
@@ -224,8 +224,8 @@
 	new mob_type(success_rune.loc)
 
 /datum/ash_ritual/uncover_rocks
-	name = "Uncover Strange Rocks"
-	desc = "All the mysterious rocks that are in the center of the rune will try to uncover themselves."
+	name = "揭露奇异岩石"
+	desc = "符文中央所有神秘的岩石都会尝试自行显露。"
 	required_components = list(
 		"north" = /obj/item/stack/ore/bluespace_crystal,
 		"south" = /obj/item/stack/sheet/animalhide/goliath_hide,
@@ -247,8 +247,8 @@
 		found_rock.try_uncover()
 
 /datum/ash_ritual/share_damage
-	name = "Share Victim's Damage"
-	desc = "The damage from the central victim will be shared amongst the rest of the surrounding, living kin."
+	name = "分担受害者伤害"
+	desc = "中央受害者所受的伤害将由周围其余活着的亲族分担。"
 	required_components = list(
 		"north" = /obj/item/stack/sheet/bone,
 		"south" = /obj/item/stack/sheet/sinew,
@@ -287,8 +287,8 @@
 	human_victim.heal_overall_damage(human_victim.get_brute_loss(), human_victim.get_fire_loss())
 
 /datum/ash_ritual/banish_kin
-	name = "Banish Kin"
-	desc = "Some kin are not fit for the tribe, this can solve that issue through democracy."
+	name = "放逐亲族"
+	desc = "有些亲族不适合部落，这能通过民主方式解决这个问题。"
 	required_components = list()
 	consumed_components = list()
 
@@ -314,10 +314,10 @@
 
 		asked_voters += poll_human
 
-	var/list/yes_voters = SSpolling.poll_candidates("Do you wish to banish [find_banished.name]?", poll_time = 10 SECONDS, group = asked_voters)
+	var/list/yes_voters = SSpolling.poll_candidates("你希望放逐 [find_banished.name] 吗？", poll_time = 10 SECONDS, group = asked_voters)
 
 	if(length(yes_voters) < length(asked_voters))
-		find_banished.balloon_alert_to_viewers("banishment failed!")
+		find_banished.balloon_alert_to_viewers("放逐失败！")
 		return
 
 	var/turf/teleport_turf = locate(rand(1,255), rand(1,255), success_rune.z)
@@ -331,8 +331,8 @@
 	find_banished.forceMove(teleport_turf)
 
 /datum/ash_ritual/revive_animal
-	name = "Revive Animal"
-	desc = "Revives a simple animal that will then become friendly."
+	name = "复活动物"
+	desc = "复活一只简单动物，之后它会变得友善。"
 	required_components = list(
 		"north" = /obj/item/organ/monster_core/regenerative_core,
 		"south" = /obj/item/organ/monster_core/regenerative_core,

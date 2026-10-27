@@ -5,9 +5,9 @@
  */
 
 /obj/item/circuit_component/view_sensor
-	display_name = "View Sensor"
-	desc = "Outputs a list with all movable objects in it's view. Requires a shell. Max range of 5 tiles."
-	category = "Sensor"
+	display_name = "视野传感器"
+	desc = "输出其视野内所有可移动对象组成的列表。需要外壳。最大范围 5 格。"
+	category = "传感器"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -31,7 +31,7 @@
 
 /obj/item/circuit_component/view_sensor/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Scan Cooldown: [DisplayTimeText(view_cooldown)]", "orange", "stopwatch")
+	. += create_ui_notice("扫描冷却：[DisplayTimeText(view_cooldown)]", "orange", "stopwatch")
 
 /obj/item/circuit_component/view_sensor/input_received(datum/port/input/port)
 	if(!parent.shell)

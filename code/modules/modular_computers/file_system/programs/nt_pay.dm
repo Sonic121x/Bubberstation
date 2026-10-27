@@ -7,10 +7,10 @@
 
 /datum/computer_file/program/nt_pay
 	filename = "ntpay"
-	filedesc = "Nanotrasen Pay System"
+	filedesc = "纳米传讯支付系统"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	program_open_overlay = "generic"
-	extended_desc = "An application that locally (in your sector) helps to transfer money or track your expenses and profits."
+	extended_desc = "一款在你所在星区本地帮助你转账或追踪收支的应用。"
 	size = 2
 	tgui_id = "NtosPay"
 	program_icon = "money-bill-wave"
@@ -34,10 +34,10 @@
 			for(var/account in SSeconomy.bank_accounts_by_id)
 				var/datum/bank_account/acc = SSeconomy.bank_accounts_by_id[account]
 				if(acc.account_holder == params["wanted_name"])
-					wanted_token = "Token: [acc.pay_token]"
+					wanted_token = "令牌：[acc.pay_token]"
 					break
 			if(!wanted_token)
-				return wanted_token = "Account \"[params["wanted_name"]]\" not found."
+				return wanted_token = "未找到账户“[params["wanted_name"]]”。"
 
 /datum/computer_file/program/nt_pay/ui_data(mob/user)
 	var/list/data = list()
@@ -62,28 +62,28 @@
 /datum/computer_file/program/nt_pay/proc/_pay(token, money_to_send, mob/user)
 	var/area/user_area = get_area(user)
 	if(user_area && is_area_virtual(user_area))
-		to_chat(user, span_notice("You cannot send virtual money to real accounts."))
+		to_chat(user, span_notice("你无法向真实账户发送虚拟货币。"))
 		return NT_PAY_STATUS_NO_ACCOUNT
 
 	money_to_send = round(money_to_send)
 
 	if(IS_DEPARTMENTAL_ACCOUNT(current_user))
 		if(user)
-			to_chat(user, span_notice("The app is unable to withdraw from that card."))
+			to_chat(user, span_notice("本应用无法从该卡取款。"))
 		return NT_PAY_STATUS_DEPT_ACCOUNT
 
 	var/datum/bank_account/recipient
 	if(!token)
 		if(user)
-			to_chat(user, span_notice("You need to enter your transfer target's pay token."))
+			to_chat(user, span_notice("你需要输入转账对象的支付令牌。"))
 		return NT_PAY_STATUS_INVALID_TOKEN
 	if(money_to_send <= 0)
 		if(user)
-			to_chat(user, span_notice("You need to specify how much you're sending."))
+			to_chat(user, span_notice("你需要指定要发送的金额。"))
 		return NT_PAY_STATUS_INVALID_MONEY
 	if(token == current_user.pay_token)
 		if(user)
-			to_chat(user, span_notice("You can't send [MONEY_NAME] to yourself."))
+			to_chat(user, span_notice("你不能向自己发送 [MONEY_NAME]。"))
 		return NT_PAY_SATUS_SENDER_IS_RECEIVER
 
 	for(var/account in SSeconomy.bank_accounts_by_id)
@@ -94,18 +94,18 @@
 
 	if(!recipient)
 		if(user)
-			to_chat(user, span_notice("The app can't find who you're trying to pay. Did you enter the pay token right?"))
+			to_chat(user, span_notice("本应用找不到你要付款的对象。支付令牌输入正确了吗？"))
 		return NT_PAY_STATUS_INVALID_TOKEN
 	if(!current_user.has_money(money_to_send) || money_to_send < 1)
-		current_user.bank_card_talk("You cannot afford it.")
+		current_user.bank_card_talk("你的余额不足。")
 		return NT_PAY_STATUS_INVALID_MONEY
 
-	recipient.bank_card_talk("You received [money_to_send] [MONEY_NAME](s). Reason: transfer from [current_user.account_holder]")
+	recipient.bank_card_talk("你收到 [money_to_send] [MONEY_NAME]。原因：来自 [current_user.account_holder] 的转账")
 	recipient.transfer_money(current_user, money_to_send)
 	for(var/obj/item/card/id/id_card as anything in recipient.bank_cards)
 		SEND_SIGNAL(id_card, COMSIG_ID_CARD_NTPAY_MONEY_RECEIVED, computer, money_to_send)
 
-	current_user.bank_card_talk("You send [money_to_send] [MONEY_NAME](s) to [recipient.account_holder]. Now you have [current_user.account_balance] [MONEY_NAME](s)")
+	current_user.bank_card_talk("你已向 [recipient.account_holder] 发送 [money_to_send] [MONEY_NAME]。你现在有 [current_user.account_balance] [MONEY_NAME]")
 
 	return NT_PAY_STATUS_SUCCESS
 
@@ -162,14 +162,14 @@
 
 /obj/item/circuit_component/mod_program/nt_pay/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Outputs require inserted ID", "orange")
-	. += create_ui_notice("NT-Pay Statuses:")
-	. += create_ui_notice("Success - [NT_PAY_STATUS_SUCCESS]", "green")
-	. += create_ui_notice("Fail (No Account) - [NT_PAY_STATUS_NO_ACCOUNT]", "red")
-	. += create_ui_notice("Fail (Dept Account) - [NT_PAY_STATUS_DEPT_ACCOUNT]", "red")
-	. += create_ui_notice("Fail (Invalid Token) - [NT_PAY_STATUS_INVALID_TOKEN]", "red")
-	. += create_ui_notice("Fail (Sender = Receiver) - [NT_PAY_SATUS_SENDER_IS_RECEIVER]", "red")
-	. += create_ui_notice("Fail (Invalid Amount) - [NT_PAY_STATUS_INVALID_MONEY]", "red")
+	. += create_ui_notice("输出端口需要插入 ID 卡", "orange")
+	. += create_ui_notice("NT-Pay 状态值：")
+	. += create_ui_notice("成功 - [NT_PAY_STATUS_SUCCESS]", "green")
+	. += create_ui_notice("失败（无账户）- [NT_PAY_STATUS_NO_ACCOUNT]", "red")
+	. += create_ui_notice("失败（部门账户）- [NT_PAY_STATUS_DEPT_ACCOUNT]", "red")
+	. += create_ui_notice("失败（无效令牌）- [NT_PAY_STATUS_INVALID_TOKEN]", "red")
+	. += create_ui_notice("失败（发送方 = 接收方）- [NT_PAY_SATUS_SENDER_IS_RECEIVER]", "red")
+	. += create_ui_notice("失败（无效金额）- [NT_PAY_STATUS_INVALID_MONEY]", "red")
 
 /obj/item/circuit_component/mod_program/nt_pay/input_received(datum/port/port)
 	var/datum/computer_file/program/nt_pay/program = associated_program

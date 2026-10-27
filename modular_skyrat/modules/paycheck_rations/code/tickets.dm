@@ -1,9 +1,9 @@
 /obj/item/paper/paperslip/ration_ticket
-	name = "ration ticket - standard"
-	desc = "A little slip of paper that'll slot right into any cargo console and put your alotted food ration on the next shuttle to the station."
+	name = "标准配给券"
+	desc = "可插入任意货运控制台的小纸券，使用后，分配给你的食物会搭乘下一班穿梭机送到空间站。"
 	icon = 'modular_skyrat/modules/paycheck_rations/icons/tickets.dmi'
 	icon_state = "ticket_food"
-	default_raw_text = "Redeem this ticket in the nearest supply console to receive benefits."
+	default_raw_text = "请在附近的物资控制台兑换此券，领取配给。"
 	color = COLOR_OFF_WHITE
 	show_written_words = FALSE
 	/// The finalized list of items we send once the ticket is used, don't define here, the procs will do it
@@ -32,10 +32,10 @@
 		"Glucose Medipens" = image(icon = 'modular_skyrat/modules/food_replicator/icons/medicine.dmi', icon_state = "glupen"),
 	)
 
-	var/meats_choice = show_radial_menu(user, object_we_attack, radial_meat_options, require_near = TRUE)
+	var/meats_choice = chinese_skyrat_rations_radial(user, object_we_attack, radial_meat_options)
 
 	if(!meats_choice)
-		object_we_attack.balloon_alert(user, "no selection made")
+		object_we_attack.balloon_alert(user, "未作选择")
 		forceMove(drop_location(object_we_attack))
 		playsound(object_we_attack, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 		return
@@ -64,10 +64,10 @@
 		"Ethereal Produce" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "plants_ethereal"),
 	)
 
-	var/produce_choice = show_radial_menu(user, object_we_attack, radial_produce_options, require_near = TRUE)
+	var/produce_choice = chinese_skyrat_rations_radial(user, object_we_attack, radial_produce_options)
 
 	if(!produce_choice)
-		object_we_attack.balloon_alert(user, "no selection made")
+		object_we_attack.balloon_alert(user, "未作选择")
 		// Reset the list if we fail
 		items_we_deliver = list()
 		forceMove(drop_location(object_we_attack))
@@ -95,10 +95,10 @@
 		"Ethereal Stock" = image(icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi', icon_state = "stock_ethereal"),
 	)
 
-	var/flour_choice = show_radial_menu(user, object_we_attack, radial_flour_options, require_near = TRUE)
+	var/flour_choice = chinese_skyrat_rations_radial(user, object_we_attack, radial_flour_options)
 
 	if(!flour_choice)
-		object_we_attack.balloon_alert(user, "no selection made")
+		object_we_attack.balloon_alert(user, "未作选择")
 		// Reset the list if we fail
 		items_we_deliver = list()
 		forceMove(drop_location(object_we_attack))
@@ -142,7 +142,7 @@
 	var/datum/supply_order/new_order = new(
 		pack = ration_pack,
 		orderer = user,
-		orderer_rank = "Ration Ticket",
+		orderer_rank = "配给券",
 		orderer_ckey = user.ckey,
 		reason = "",
 		paying_account = null,
@@ -152,28 +152,28 @@
 		manifest_can_fail = FALSE,
 		can_be_cancelled = FALSE,
 	)
-	object_we_attack.say("Ration order placed! It will arrive on the next cargo shuttle!")
+	object_we_attack.say("配给订单已提交！将随下一班货运穿梭机抵达！")
 	SSshuttle.shopping_list += new_order
 	qdel(src)
 
 /datum/supply_pack/custom/ration_pack
-	name = "rations order"
-	crate_name = "ration delivery crate"
+	name = "配给订单"
+	crate_name = "配给配送箱"
 	access = list()
 	crate_type = /obj/structure/closet/crate/cardboard
 
 /datum/supply_pack/custom/ration_pack/New(purchaser, cost, list/contains)
 	. = ..()
-	name = "[purchaser]'s Rations Order"
-	crate_name = "[purchaser]'s ration delivery crate"
+	name = "[purchaser]的配给订单"
+	crate_name = "[purchaser]的配给配送箱"
 	src.cost = cost
 	src.contains = contains
 
 // Ticket for some luxury items, which you get every second paycheck
 
 /obj/item/paper/paperslip/ration_ticket/luxury
-	name = "ration ticket - luxury"
-	desc = "A little slip of paper that'll slot right into any cargo console and put your alotted ration of luxury goods on the next cargo shuttle to the station."
+	name = "奢侈品配给券"
+	desc = "可插入任意货运控制台的小纸券，使用后，分配给你的奢侈品会搭乘下一班货运穿梭机送到空间站。"
 	icon_state = "ticket_luxury"
 
 /// Attempts to fill out the order list with items of the user's choosing, will stop in its tracks if it fails
@@ -191,10 +191,10 @@
 		"Soda and Lemonade" = image(icon = 'modular_skyrat/master_files/icons/obj/drinks.dmi', icon_state = "soda_water")
 	)
 
-	var/alcohol_choice = show_radial_menu(user, object_we_attack, radial_alcohol_options, require_near = TRUE)
+	var/alcohol_choice = chinese_skyrat_rations_radial(user, object_we_attack, radial_alcohol_options)
 
 	if(!alcohol_choice)
-		object_we_attack.balloon_alert(user, "no selection made")
+		object_we_attack.balloon_alert(user, "未作选择")
 		forceMove(drop_location(object_we_attack))
 		return
 
@@ -226,10 +226,10 @@
 		"Mixed Gum Pack" = image(icon = 'modular_skyrat/modules/food_replicator/icons/rationpack.dmi', icon_state = "bubblegum"),
 	)
 
-	var/consumables_choice = show_radial_menu(user, object_we_attack, radial_consumables_options, require_near = TRUE)
+	var/consumables_choice = chinese_skyrat_rations_radial(user, object_we_attack, radial_consumables_options)
 
 	if(!consumables_choice)
-		object_we_attack.balloon_alert(user, "no selection made")
+		object_we_attack.balloon_alert(user, "未作选择")
 		// Reset the list if we fail
 		items_we_deliver = list()
 		forceMove(drop_location(object_we_attack))

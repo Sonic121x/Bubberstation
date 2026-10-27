@@ -21,8 +21,8 @@
 
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "撕咬"
+	attack_verb_simple = "撕咬"
 
 	minimum_survivable_temperature = T0C - 100
 	maximum_survivable_temperature = T0C + 100
@@ -249,12 +249,12 @@
 	// Checks if we still have a host since setBruteLoss() can kill us, causing us to leave our host.
 	if (!already_ejecting && cached_blood_volume <= get_eject_volume_threshold())
 		// Sent before leave_host() for the correct message order in chat
-		to_chat_self(span_userdanger("You run out of blood to control your host with!"))
+		to_chat_self(span_userdanger("你没有足够的血液来操控宿主了！"))
 
 		leave_host()
 
 		// Has to be sent after the forceMove() in leave_host()
-		balloon_alert_self("out_of_blood!")
+		balloon_alert_self("血液不足！")
 
 /// Gets BLOOD_WORM_EJECT_THRESHOLD as an actionable blood volume threshold.
 /mob/living/basic/blood_worm/proc/get_eject_volume_threshold()
@@ -270,8 +270,8 @@
 	icon_state = "invade-[effect_name]"
 
 /mob/living/basic/blood_worm/hatchling
-	name = "hatchling blood worm"
-	desc = "A freshly hatched blood worm. It looks hungry and weak, requiring blood to grow further."
+	name = "血虫幼体"
+	desc = "一只刚孵化的血虫。它看起来又饿又虚弱，需要血液才能继续生长。"
 
 	icon_state = "hatchling"
 	icon_living = "hatchling"
@@ -316,8 +316,8 @@
 	AddElement(/datum/element/pressure_sensitive, min_pressure = 20, max_pressure = 0, low_pressure_damage = 0.5, high_pressure_damage = 0)
 
 /mob/living/basic/blood_worm/juvenile
-	name = "juvenile blood worm"
-	desc = "A mid-sized blood worm. It looks bloodthirsty and has numerous long and extremely sharp teeth."
+	name = "幼年血虫"
+	desc = "一只中等体型的血虫。它看起来嗜血成性，长着众多极长且极其锋利的牙齿。"
 
 	icon_state = "juvenile"
 	icon_living = "juvenile"
@@ -361,8 +361,8 @@
 	AddElement(/datum/element/pressure_sensitive, min_pressure = 20, max_pressure = 0, low_pressure_damage = 1, high_pressure_damage = 0)
 
 /mob/living/basic/blood_worm/adult
-	name = "adult blood worm"
-	desc = "A monstrosity of a blood worm. It'd probably be better to put your head in an industrial shredder rather than its maw."
+	name = "成年血虫"
+	desc = "一只庞然怪物的血虫。把你的脑袋伸进工业碎木机，大概都比伸进它的大嘴要好。"
 
 	icon = 'icons/mob/nonhuman-player/blood_worm_32x48.dmi'
 
@@ -390,8 +390,8 @@
 	wound_bonus = 0 // Able to cause critical wounds.
 	sharpness = SHARP_POINTY
 
-	attack_verb_simple = "gore"
-	attack_verb_continuous = "gores"
+	attack_verb_simple = "顶撞"
+	attack_verb_continuous = "顶撞"
 
 	speed = 0.5
 

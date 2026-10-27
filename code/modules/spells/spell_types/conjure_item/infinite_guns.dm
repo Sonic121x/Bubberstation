@@ -23,20 +23,20 @@
 	return new item_type(caster.loc)
 
 /datum/action/cooldown/spell/conjure_item/infinite_guns/gun
-	name = "Lesser Summon Guns"
-	desc = "Why reload when you have infinite guns? \
-		Summons an unending stream of bolt action rifles that deal little damage, \
-		but will knock targets down. Requires both hands free to use. \
-		Learning this spell makes you unable to learn Arcane Barrage."
+	name = "次级召唤枪械"
+	desc = "既然有无限的枪，为什么还要换弹？ \
+		召唤出不间断的栓动步枪洪流，伤害不高，但能击倒目标。 \
+		使用时需要双手空闲。 \
+		学会此法术后将无法学习奥术弹幕。"
 	button_icon_state = "bolt_action"
 
 	item_type = /obj/item/gun/ballistic/rifle/enchanted
 
 /datum/action/cooldown/spell/conjure_item/infinite_guns/arcane_barrage
-	name = "Arcane Barrage"
-	desc = "Fire a torrent of arcane energy at your foes with this (powerful) spell. \
-		Deals much more damage than Lesser Summon Guns, but won't knock targets down. Requires both hands free to use. \
-		Learning this spell makes you unable to learn Lesser Summon Gun."
+	name = "奥术弹幕"
+	desc = "用这个（强大的）法术向敌人倾泻奥术能量的洪流。 \
+		伤害远高于次级召唤枪械，但不会击倒目标。使用时需要双手空闲。 \
+		学会此法术后将无法学习次级召唤枪械。"
 	button_icon_state = "arcane_barrage"
 
 	item_type = /obj/item/gun/magic/wand/arcane_barrage

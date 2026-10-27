@@ -1,13 +1,13 @@
 #define BOOK_OPEN_RANGE 2
 
 /obj/structure/destructible/clockwork/gear_base/technologists_lectern
-	name = "technologist's lectern"
-	desc = "A small pedestal with a glowing book floating over it.."
-	clockwork_desc = "A small pedestal, glowing with a divine energy. Used to research new abilities and objects."
+	name = "技师讲台"
+	desc = "一座小基座，上方悬浮着一本发光的书。"
+	clockwork_desc = "一座散发着神圣能量的小基座。用于研究新的能力与物品。"
 	base_icon_state = "lectern"
 	icon_state = "lectern"
 	anchored = TRUE
-	break_message = "<span class='warning'>The lectern collapses.</span>"
+	break_message = "<span class='warning'>讲台倒塌了。</span>"
 	can_unwrench = FALSE
 	max_integrity = 400
 	/// If the last process() found a clock cultist in range
@@ -63,12 +63,12 @@
 		deltimer(research_timer_id)
 		researching = FALSE
 		primary_researcher = FALSE
-		log_game("A research ritual of [selected_research] was cancelled by deconstruction of [src].")
-		send_clock_message(null, "A research ritual has been disrupted in [get_area(src)]! All research data has been lost.", msg_ghosts = FALSE)
-		notify_ghosts("A research ritual was disrupted in [get_area(src)]",
+		log_game("因 [src] 被拆解，[selected_research] 的研究仪式被取消。")
+		send_clock_message(null, "位于 [get_area(src)] 的研究仪式被打断！所有研究数据均已丢失。", msg_ghosts = FALSE)
+		notify_ghosts("位于 [get_area(src)] 的研究仪式被打断",
 			source = get_turf(src),
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
-			header = "Research ritual cancelled",
+			header = "研究仪式已取消",
 		)
 
 	return ..()
@@ -77,7 +77,7 @@
 /obj/structure/destructible/clockwork/gear_base/technologists_lectern/examine(mob/user)
 	. = ..()
 	if(researching && IS_CLOCK(user))
-		. += span_brass("The researching of [selected_research.name] will take another [DisplayTimeText(timeleft(research_timer_id))].")
+		. += span_brass("对 [selected_research.name] 的研究还需 [DisplayTimeText(timeleft(research_timer_id))]。")
 
 
 /obj/structure/destructible/clockwork/gear_base/technologists_lectern/process(seconds_per_tick)
@@ -86,7 +86,7 @@
 			new /obj/effect/temp_visual/steam_release(get_turf(src))
 
 		if(SPT_PROB(2, seconds_per_tick))
-			var/text = pick("[src]'s book flips a page as it hums away.", "[src] makes a creaking noise.", "[src] whirrs lightly.", "A faint clank is heard from inside [src].")
+			var/text = pick("[src] 的书本嗡嗡作响，翻过一页。", "[src] 发出吱呀的响声。", "[src] 轻轻嗡鸣。", "从 [src] 内部传来一声微弱的金属碰撞声。")
 			visible_message(span_brass(text))
 
 	var/mob_nearby = FALSE
@@ -109,7 +109,7 @@
 		return
 
 	if(!anchored)
-		balloon_alert(user, "not fastened!")
+		balloon_alert(user, "尚未固定！")
 		return
 
 	ui_interact(user)
@@ -275,11 +275,11 @@
 		if(istype(nearby_turf, /turf/open/floor))
 			continue
 
-		owner.balloon_alert(owner, "not enough room!")
+		owner.balloon_alert(owner, "空间不足！")
 		return
 
 	if(researching)
-		owner.balloon_alert(owner, "already researching!")
+		owner.balloon_alert(owner, "已经在研究了！")
 		return
 
 	INVOKE_ASYNC(src, PROC_REF(begin_research), owner, target_turf)
@@ -297,24 +297,24 @@
 
 	playsound(target_turf, 'sound/machines/clockcult/ark_deathrattle.ogg', 80, FALSE, pressure_affected = FALSE)
 	research_sigil = new(target_turf)
-	send_clock_message(null, "A research ritual has begun in [get_area(src)], ensure nobody stops it until it is completed in [DisplayTimeText(selected_research.time_to_research)]!", msg_ghosts = FALSE)
-	notify_ghosts("[owner] has begun a research ritual in [get_area(src)]",
+	send_clock_message(null, "位于 [get_area(src)] 的研究仪式已经开始，请确保在 [DisplayTimeText(selected_research.time_to_research)] 内完成之前无人打断它！", msg_ghosts = FALSE)
+	notify_ghosts("[owner] 在 [get_area(src)] 开始了一场研究仪式",
 		source = src,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
-		header = "Research ritual"
+		header = "研究仪式"
 	)
-	log_game("[owner] began a research ritual of [selected_research.name] in [get_area(src)].")
+	log_game("[owner] 在 [get_area(src)] 开始了对 [selected_research.name] 的研究仪式。")
 
 	research_timer_id = addtimer(CALLBACK(src, PROC_REF(finish_research), owner), selected_research.time_to_research, TIMER_STOPPABLE)
 
 	sleep(10 SECONDS)
 
-	send_message("You hear the echoing of cogs ")
+	send_message("你听到齿轮的回响，")
 
-	addtimer(CALLBACK(src, PROC_REF(send_message), "The echoing of cogs returns, even louder, "), (selected_research.time_to_research / 2), 9 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(send_message), "齿轮的回响再次传来，更加响亮，"), (selected_research.time_to_research / 2), 9 SECONDS)
 
 /// Send a message to everyone on the Z level with directions to the lectern
-/obj/structure/destructible/clockwork/gear_base/technologists_lectern/proc/send_message(initial_message = "You hear the echoing of cogs ", volume = 70)
+/obj/structure/destructible/clockwork/gear_base/technologists_lectern/proc/send_message(initial_message = "你听到齿轮的回响，", volume = 70)
 	for(var/mob/living/living_mob as anything in GLOB.mob_living_list)
 		if((living_mob.z != z) || IS_CLOCK(living_mob) || !HAS_TRAIT(living_mob, TRAIT_DEAF))
 			continue
@@ -326,13 +326,13 @@
 		var/message = initial_message
 		switch(dist)
 			if (0 to 15)
-				message += "very nearby, to your [dir2text(dir)]!"
+				message += "就在极近处，在你的[chinese_direction_display(dir2text(dir))]方！"
 			if (16 to 31)
-				message += "nearby, to your [dir2text(dir)]!"
+				message += "就在附近，在你的[chinese_direction_display(dir2text(dir))]方！"
 			if (32 to 127)
-				message += "far away, to your [dir2text(dir)]!"
+				message += "在远处，在你的[chinese_direction_display(dir2text(dir))]方！"
 			else
-				message += "very far, to your [dir2text(dir)]!"
+				message += "在极远处，在你的[chinese_direction_display(dir2text(dir))]方！"
 
 		living_mob.playsound_local(get_turf(src), 'modular_skyrat/modules/clock_cult/sound/machinery/research_notice.ogg', volume, FALSE, pressure_affected = FALSE)
 		to_chat(living_mob, span_brass(message))
@@ -343,13 +343,13 @@
 	if(QDELETED(src) || QDELETED(research_sigil))
 		return
 
-	send_clock_message(null, "The research ritual in [get_area(src)] has completed, rejoice!", msg_ghosts = FALSE)
-	notify_ghosts("A research ritual in [get_area(src)] has been completed",
+	send_clock_message(null, "[get_area(src)] 的研究仪式已经完成，欢呼吧！", msg_ghosts = FALSE)
+	notify_ghosts("[get_area(src)] 的研究仪式已经完成",
 		source = src,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
-		header = "Research ritual completed",
+		header = "研究仪式已完成",
 	)
-	log_game("Finished a research ritual of [selected_research.name] in [get_area(src)].")
+	log_game("在 [get_area(src)] 完成了对 [selected_research.name] 的研究仪式。")
 
 	researching = FALSE
 	primary_researcher = FALSE
@@ -368,7 +368,7 @@
 
 	research_sigil.finish_research()
 
-	priority_announce("An outburst of anomalous energy has been detected at [get_area(src)]. Please ensure the safety of any nearby crew.")
+	priority_announce("在 [get_area(src)] 检测到异常能量爆发。请确保附近船员的安全。")
 
 	addtimer(CALLBACK(src, PROC_REF(side_effect)), 10 SECONDS)
 
@@ -412,7 +412,7 @@
 					qdel(nearby_atom)
 
 		if(11 to 20) // Spawn 4 ai-controlled marauders to fuck shit up
-			visible_message(span_warning("A group of clockwork marauders appear, before being obscured by a cloud of smoke!"))
+			visible_message(span_warning("一群发条掠夺者出现了，随后被一团烟雾遮蔽！"))
 
 			for(var/direction in list(NORTH, SOUTH, EAST, WEST))
 				var/turf/tile = get_step(src, direction)
@@ -421,7 +421,7 @@
 				do_smoke(4, holder = src, location = src)
 
 		if(21 to 30) // Fuck up the power
-			priority_announce("A fatal power outage has occurred. Please ensure that all on-board devices are connected to an appropriate power generator.")
+			priority_announce("发生了致命的停电事故。请确保所有船上设备都连接到合适的发电机。")
 
 			apc_loop:
 				for(var/obj/machinery/power/apc/controller as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power/apc))
@@ -445,9 +445,9 @@
 					continue
 
 				if(IS_CLOCK(living_mob))
-					to_chat(living_mob, span_brass("You feel as if something powerful is watching over you, as you feel the power in your Clockwork Slab increase."))
+					to_chat(living_mob, span_brass("你感到某种强大的存在正注视着你，同时你感到发条石板中的力量在增长。"))
 				else
-					to_chat(living_mob, span_brass("You feel as if something powerful is watching over you as a low hum of machinery fills your mind."))
+					to_chat(living_mob, span_brass("你感到某种强大的存在正注视着你，一阵低沉的机械嗡鸣充满了你的脑海。"))
 
 /obj/effect/lectern_light
 	icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_objects.dmi'

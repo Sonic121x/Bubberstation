@@ -9,15 +9,15 @@
 	var/datum/weakref/previous_body
 
 /// Checks if the mob wants to leave the soulcatcher. If they do and are able to leave, they are booted out.
-GAME_VERB(/mob/living/soulcatcher_soul, leave_soulcatcher, "Leave Soulcatcher", "IC")
+GAME_VERB(/mob/living/soulcatcher_soul, leave_soulcatcher, "离开灵魂捕手", "IC")
 	if(!able_to_leave)
-		to_chat(src, span_warning("You are unable to leave the soulcatcher."))
+		to_chat(src, span_warning("你无法离开灵魂捕手。"))
 		return FALSE
 
-	if(tgui_alert(src, "Are you sure you wish to leave the soulcatcher? IF you had a body, this will return you to your body", "Soulcatcher", list("Yes", "No")) != "Yes")
+	if(tgui_alert(src, "你确定要离开灵魂捕手吗？如果你有躯体，这会将你送回自己的躯体。", "灵魂捕手", list("是", "否")) != "是")
 		return FALSE
 
-	if(tgui_alert(src, "Are you really sure about this?", "Soulcatcher", list("Yes", "No")) != "Yes")
+	if(tgui_alert(src, "你真的确定吗？", "灵魂捕手", list("是", "否")) != "是")
 		return FALSE
 
 	return_to_body()
@@ -81,7 +81,7 @@ GAME_VERB(/mob/living/soulcatcher_soul, leave_soulcatcher, "Leave Soulcatcher", 
 		target_body.grab_ghost(TRUE)
 
 /mob/living/soulcatcher_soul/Destroy()
-	log_message("[key_name(src)] has exited a soulcatcher.", LOG_GAME)
+	log_message("[key_name(src)] 已离开一个灵魂捕手。", LOG_GAME)
 	var/datum/component/carrier_user/soul_component = GetComponent(/datum/component/carrier_user)
 	if(soul_component && soul_component.current_room)
 		var/datum/carrier_room/room = soul_component.current_room.resolve()
@@ -96,7 +96,7 @@ GAME_VERB(/mob/living/soulcatcher_soul, leave_soulcatcher, "Leave Soulcatcher", 
 	mob_type_blacklist_typecache = list(/mob/living/brain, /mob/living/soulcatcher_soul)
 
 /datum/action/innate/leave_carrier
-	name = "Leave Soulcatcher"
+	name = "离开灵魂捕手"
 	background_icon = 'modular_skyrat/master_files/icons/mob/actions/action_backgrounds.dmi'
 	background_icon_state = "android"
 	button_icon = 'modular_skyrat/master_files/icons/mob/actions/actions_nif.dmi'

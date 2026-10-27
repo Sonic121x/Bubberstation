@@ -3,7 +3,7 @@
 
 /obj/effect/spawner/random/maintenance
 	name = "maintenance loot spawner"
-	desc = "Come on Lady Luck, spawn me a pair of sunglasses."
+	desc = "拜托了幸运女神，给我生成一副太阳镜吧。"
 	icon_state = "loot"
 	remove_if_cant_spawn = FALSE //don't remove stuff from the global maint list, which other can use.
 	/// The global loot list we are going to use to spawn loot from
@@ -21,7 +21,7 @@
 
 /obj/effect/spawner/random/maintenance/examine(mob/user)
 	. = ..()
-	. += span_info("This spawner has an effective loot count of [get_effective_lootcount()].")
+	. += span_info("此生成器的有效战利品数量为[get_effective_lootcount()]。")
 
 /obj/effect/spawner/random/maintenance/Initialize(mapload)
 	switch(loot_table)

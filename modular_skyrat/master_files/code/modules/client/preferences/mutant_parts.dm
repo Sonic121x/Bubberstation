@@ -478,7 +478,7 @@
 
 /datum/preference/choiced/mutant_choice/ipc_screen
 	savefile_key = "feature_ipc_screen"
-	main_feature_name = "IPC Screen"
+	main_feature_name = "IPC 屏幕"
 	category = PREFERENCE_CATEGORY_FEATURES
 	relevant_mutant_bodypart = MUTANT_SYNTH_SCREEN
 	default_accessory_type = /datum/sprite_accessory/screen/none
@@ -561,7 +561,7 @@
 
 /datum/preference/choiced/mutant_choice/synth_chassis
 	savefile_key = "feature_ipc_chassis"
-	main_feature_name = "Chassis Appearance"
+	main_feature_name = "机体外观"
 	category = PREFERENCE_CATEGORY_FEATURES
 	relevant_mutant_bodypart = MUTANT_SYNTH_CHASSIS
 	default_accessory_type = /datum/sprite_accessory/synth_chassis/default
@@ -604,7 +604,7 @@
 
 /datum/preference/choiced/mutant_choice/synth_head
 	savefile_key = "feature_ipc_head"
-	main_feature_name = "Head Appearance"
+	main_feature_name = "头部外观"
 	category = PREFERENCE_CATEGORY_FEATURES
 	relevant_mutant_bodypart = MUTANT_SYNTH_HEAD
 	default_accessory_type = /datum/sprite_accessory/synth_head/default
@@ -860,7 +860,7 @@
 
 /datum/preference/choiced/mutant_choice/pod_hair
 	savefile_key = "feature_pod_hair"
-	main_feature_name = "Hairstyle"
+	main_feature_name = "发型"
 	category = PREFERENCE_CATEGORY_FEATURES
 	relevant_mutant_bodypart = FEATURE_POD_HAIR
 	default_accessory_type = /datum/sprite_accessory/pod_hair/ivy

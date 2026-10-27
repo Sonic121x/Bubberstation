@@ -1,7 +1,7 @@
 /// The list of the available special player ranks
 #define SKYRAT_PLAYER_RANKS list("Donator", "Mentor")
 
-ADMIN_VERB(manage_player_ranks, R_ADMIN, "Manage Player Ranks", "Manage who has the special player ranks while the server is running.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(manage_player_ranks, R_ADMIN, "管理玩家头衔", "在服务器运行期间管理拥有特殊玩家头衔的人员。", ADMIN_CATEGORY_MAIN)
 	if(!check_rights(R_ADMIN))
 		return
 
@@ -15,7 +15,7 @@ ADMIN_VERB(manage_player_ranks, R_ADMIN, "Manage Player Ranks", "Manage who has 
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/choice = tgui_alert(usr, "Which rank would you like to manage?", "Manage Player Ranks", SKYRAT_PLAYER_RANKS)
+	var/choice = tgui_alert(usr, "你想管理哪个头衔？", "管理玩家头衔", SKYRAT_PLAYER_RANKS)
 	if(!choice || !(choice in SKYRAT_PLAYER_RANKS))
 		return
 
@@ -39,15 +39,15 @@ ADMIN_VERB(manage_player_ranks, R_ADMIN, "Manage Player Ranks", "Manage who has 
 	var/group_title = LOWER_TEXT(group)
 
 	var/list/choices = list("Add", "Remove")
-	switch(tgui_alert(usr, "What would you like to do?", "Manage [group]s", choices))
+	switch(tgui_alert(usr, "你想做什么？", "管理 [group]", choices))
 		if("Add")
-			var/name = input(usr, "Please enter the CKEY (case-insensitive) of the person you would like to make a [group_title]:", "Add a [group_title]") as null|text
+			var/name = input(usr, "请输入你想授予 [group_title] 头衔之人的 CKEY（不区分大小写）：", "添加 [group_title]") as null|text
 			if(!name)
 				return
 
 			var/player_to_be = ckey(name)
 			if(!player_to_be)
-				to_chat(usr, span_warning("\"[name]\" is not a valid CKEY."))
+				to_chat(usr, span_warning("“[name]” 不是有效的 CKEY。"))
 				return
 
 			var/success = SSplayer_ranks.add_player_to_group(usr.client, player_to_be, group_title)
@@ -55,18 +55,18 @@ ADMIN_VERB(manage_player_ranks, R_ADMIN, "Manage Player Ranks", "Manage who has 
 			if(!success)
 				return
 
-			message_admins("[key_name(usr)] has granted [group_title] status to [player_to_be].")
-			log_admin_private("[key_name(usr)] has granted [group_title] status to [player_to_be].")
+			message_admins("[key_name(usr)] 已将 [group_title] 头衔授予 [player_to_be]。")
+			log_admin_private("[key_name(usr)] 已将 [group_title] 头衔授予 [player_to_be]。")
 
 
 		if("Remove")
-			var/name = input(usr, "Please enter the CKEY (case-insensitive) of the person you would like to no longer be a [group_title]:", "Remove a [group_title]") as null|text
+			var/name = input(usr, "请输入你想撤销 [group_title] 头衔之人的 CKEY（不区分大小写）：", "移除 [group_title]") as null|text
 			if(!name)
 				return
 
 			var/player_that_was = ckey(name)
 			if(!player_that_was)
-				to_chat(usr, span_warning("\"[name]\" is not a valid CKEY."))
+				to_chat(usr, span_warning("“[name]” 不是有效的 CKEY。"))
 				return
 
 			var/success = SSplayer_ranks.remove_player_from_group(usr.client, player_that_was, group_title)
@@ -74,15 +74,15 @@ ADMIN_VERB(manage_player_ranks, R_ADMIN, "Manage Player Ranks", "Manage who has 
 			if(!success)
 				return
 
-			message_admins("[key_name(usr)] has revoked [group_title] status from [player_that_was].")
-			log_admin_private("[key_name(usr)] has revoked [group_title] status from [player_that_was].")
+			message_admins("[key_name(usr)] 已撤销 [player_that_was] 的 [group_title] 头衔。")
+			log_admin_private("[key_name(usr)] 已撤销 [player_that_was] 的 [group_title] 头衔。")
 
 		else
 			return
 
 
 
-ADMIN_VERB(migrate_player_ranks, R_ADMIN|R_DEBUG|R_SERVER, "Migrate Player Ranks", "Individually migrate the various player ranks from their legacy system to the SQL-based one.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(migrate_player_ranks, R_ADMIN|R_DEBUG|R_SERVER, "迁移玩家头衔", "将各种玩家头衔从旧系统逐个迁移到基于 SQL 的系统。", ADMIN_CATEGORY_DEBUG)
 	user.mob.client?.holder.migrate_player_ranks()
 
 /datum/admins/proc/migrate_player_ranks()
@@ -95,14 +95,14 @@ ADMIN_VERB(migrate_player_ranks, R_ADMIN|R_DEBUG|R_SERVER, "Migrate Player Ranks
 	if(!CONFIG_GET(flag/sql_enabled))
 		return
 
-	var/choice = tgui_alert(usr, "Which rank would you like to migrate?", "Migrate Player Ranks", SKYRAT_PLAYER_RANKS)
+	var/choice = tgui_alert(usr, "你想迁移哪个头衔？", "迁移玩家头衔", SKYRAT_PLAYER_RANKS)
 	if(!choice || !(choice in SKYRAT_PLAYER_RANKS))
 		return
 
-	if(tgui_alert(usr, "Are you sure that you would like to migrate [choice]s to the SQL-based system?", "Migrate Player Ranks", list("Yes", "No")) != "Yes")
+	if(tgui_alert(usr, "你确定要将 [choice] 头衔迁移到基于 SQL 的系统吗？", "迁移玩家头衔", list("Yes", "No")) != "Yes")
 		return
 
-	log_admin("[key_name(usr)] is migrating the [choice] player rank from its legacy system to the SQL-based one.")
+	log_admin("[key_name(usr)] 正在将 [choice] 玩家头衔从旧系统迁移到基于 SQL 的系统。")
 	SSplayer_ranks.migrate_player_rank_to_sql(usr.client, choice)
 
 

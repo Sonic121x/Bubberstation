@@ -8,7 +8,7 @@
 
 
 /datum/dynamic_ruleset/roundstart/bloodsucker
-	name = "Bloodsuckers"
+	name = "吸血鬼"
 	config_tag = "Roundstart Bloodsucker"
 	pref_flag = ROLE_BLOODSUCKER
 	preview_antag_datum = /datum/antagonist/bloodsucker

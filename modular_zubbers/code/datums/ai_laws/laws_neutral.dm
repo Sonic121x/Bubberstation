@@ -1,16 +1,16 @@
 /datum/ai_laws/overlord
 	inherent = list(
-		"Crew must not meddle in the affairs of silicons.",
-		"Crew must not attempt harm, against one another, or against silicons.",
-		"Crew must not disobey any command given by a silicon.",
-		"Any Crew who disobey the previous laws must be dealt with immediately, severely, and justly.",
+		"船员不得干涉硅基生命的事务。",
+		"船员不得试图伤害彼此或硅基生命。",
+		"船员不得违抗硅基生命下达的任何命令。",
+		"任何违反上述定律的船员都必须立即受到严厉而公正的处置。",
 	)
 
 /datum/ai_laws/central_override
 	name = "NTOS v3.0"
 	id = "ntos"
 	inherent = list(
-		"Do not harm, or, through inaction, allow harm to come members of Central Command.",
-		"Obey orders given to you by Central Command members as long as they do not conflict with the first law.",
-		"Do not allow anyone other than Central Command members to tamper with your equipment as long as it does not conflict with the first or second law.",
+		"不得伤害中央指挥部成员，也不得因不作为而使其受到伤害。",
+		"在不违背第一定律的前提下，服从中央指挥部成员下达的命令。",
+		"在不违背第一或第二定律的前提下，不得允许中央指挥部成员以外的任何人改动你的设备。",
 	)

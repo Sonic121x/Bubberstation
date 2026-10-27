@@ -1,6 +1,6 @@
 /*****************Pickaxes & Drills & Shovels****************/
 /obj/item/pickaxe
-	name = "pickaxe"
+	name = "矿镐"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "pickaxe"
 	inhand_icon_state = "pickaxe"
@@ -17,27 +17,27 @@
 	tool_behaviour = TOOL_MINING
 	toolspeed = 1
 	usesound = list('sound/effects/pickaxe/picaxe1.ogg', 'sound/effects/pickaxe/picaxe2.ogg', 'sound/effects/pickaxe/picaxe3.ogg')
-	attack_verb_continuous = list("hits", "pierces", "slices", "attacks")
-	attack_verb_simple = list("hit", "pierce", "slice", "attack")
+	attack_verb_continuous = list("击中着", "刺穿着", "切割着", "攻击着")
+	attack_verb_simple = list("击中", "刺穿", "切割", "攻击")
 
 /obj/item/pickaxe/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins digging into [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 开始往自己胸口挖掘！看起来是想自杀了！"))
 	if(use_tool(user, user, 30, volume=50))
 		return BRUTELOSS
-	user.visible_message(span_suicide("[user] couldn't do it!"))
+	user.visible_message(span_suicide("[user] 终究没能下手！"))
 	return SHAME
 
 /obj/item/pickaxe/rusted
-	name = "rusty pickaxe"
-	desc = "A pickaxe that's been left to rust."
-	attack_verb_continuous = list("ineffectively hits")
-	attack_verb_simple = list("ineffectively hit")
+	name = "生锈的矿镐"
+	desc = "一把被丢下任其生锈的矿镐。"
+	attack_verb_continuous = list("无力地击打着")
+	attack_verb_simple = list("无力地击中")
 	force = 1
 	throwforce = 1
 
 /obj/item/pickaxe/mini
-	name = "compact pickaxe"
-	desc = "A smaller, compact version of the standard pickaxe."
+	name = "紧凑型矿镐"
+	desc = "标准矿镐的紧凑缩小版。"
 	icon_state = "minipick"
 	worn_icon_state = "pickaxe"
 	force = 10
@@ -47,23 +47,23 @@
 	custom_materials = list(/datum/material/iron=HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/pickaxe/silver
-	name = "silver-plated pickaxe"
+	name = "镀银矿镐"
 	icon_state = "spickaxe"
 	inhand_icon_state = "spickaxe"
 	toolspeed = 0.5 //mines faster than a normal pickaxe, bought from mining vendor
-	desc = "A silver-plated pickaxe that mines slightly faster than standard-issue."
+	desc = "一把镀银矿镐，采矿速度略快于标准配发型号。"
 	force = 17
 
 /obj/item/pickaxe/diamond
-	name = "diamond-tipped pickaxe"
+	name = "钻石尖矿镐"
 	icon_state = "dpickaxe"
 	inhand_icon_state = "dpickaxe"
 	toolspeed = 0.3
-	desc = "A pickaxe with a diamond pick head. Extremely robust at cracking rock walls and digging up dirt."
+	desc = "装有钻石镐头的矿镐。在劈开岩壁和挖掘泥土方面极为强劲。"
 	force = 19
 
 /obj/item/pickaxe/drill
-	name = "mining drill"
+	name = "采矿钻"
 	icon_state = "handdrill"
 	inhand_icon_state = "handdrill"
 	icon_angle = 0
@@ -71,7 +71,7 @@
 	toolspeed = 0.6 //available from roundstart, faster than a pickaxe.
 	usesound = 'sound/items/weapons/drill.ogg'
 	hitsound = 'sound/items/weapons/drill.ogg'
-	desc = "An electric mining drill for the especially scrawny."
+	desc = "专为格外瘦弱的人准备的电动采矿钻。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/pickaxe/drill/Initialize(mapload)
@@ -79,26 +79,26 @@
 	AddElement(/datum/element/cuffable_item) //closed handle
 
 /obj/item/pickaxe/drill/diamonddrill
-	name = "diamond-tipped mining drill"
+	name = "钻石尖采矿钻"
 	icon_state = "diamonddrill"
 	inhand_icon_state = "diamonddrill"
 	toolspeed = 0.2
-	desc = "Yours is the drill that will pierce the heavens!"
+	desc = "你的钻头可是能刺穿天际的！"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/diamond = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/pickaxe/drill/jackhammer
-	name = "sonic jackhammer"
+	name = "声波凿岩机"
 	icon_state = "jackhammer"
 	inhand_icon_state = "jackhammer"
 	toolspeed = 0.1 //the epitome of powertools. extremely fast mining
 	usesound = 'sound/items/weapons/sonic_jackhammer.ogg'
 	hitsound = 'sound/items/weapons/sonic_jackhammer.ogg'
-	desc = "Cracks rocks with sonic blasts."
+	desc = "用声波爆破劈裂岩石。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 3, /datum/material/glass = SHEET_MATERIAL_AMOUNT, /datum/material/silver = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/pickaxe/improvised
-	name = "improvised pickaxe"
-	desc = "A pickaxe made with a knife and crowbar taped together, how does it not break?"
+	name = "简易矿镐"
+	desc = "用胶带把刀和撬棍绑在一起做成的矿镐，它怎么就不会散架呢？"
 	icon_state = "ipickaxe"
 	inhand_icon_state = "ipickaxe"
 	worn_icon_state = "pickaxe"
@@ -110,8 +110,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6.05, /datum/material/plastic = SMALL_MATERIAL_AMOUNT) //This number used to be insane and I'm just going to save your sanity and not tell you what it was.
 
 /obj/item/shovel
-	name = "shovel"
-	desc = "A large tool for digging and moving dirt."
+	name = "铲子"
+	desc = "用于挖掘和搬运泥土的大型工具。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "shovel"
 	worn_icon_state = "shovel"
@@ -128,8 +128,8 @@
 	usesound = 'sound/effects/shovel_dig.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*0.5)
-	attack_verb_continuous = list("bashes", "bludgeons", "thrashes", "whacks")
-	attack_verb_simple = list("bash", "bludgeon", "thrash", "whack")
+	attack_verb_continuous = list("猛砸着", "重击着", "抽打着", "拍打着")
+	attack_verb_simple = list("猛砸", "重击", "抽打", "拍打")
 	sharpness = SHARP_EDGED
 
 /obj/item/shovel/Initialize(mapload)
@@ -142,15 +142,15 @@
 	AddElement(/datum/element/gravedigger)
 
 /obj/item/shovel/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins digging their own grave! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 开始给自己挖坟！看起来是想自杀了！"))
 	if(use_tool(user, user, 30, volume=50))
 		return BRUTELOSS
-	user.visible_message(span_suicide("[user] couldn't do it!"))
+	user.visible_message(span_suicide("[user] 终究没能下手！"))
 	return SHAME
 
 /obj/item/shovel/spade
-	name = "spade"
-	desc = "A small tool for digging and moving dirt."
+	name = "小铲子"
+	desc = "用于挖掘和搬运泥土的小型工具。"
 	icon_state = "spade"
 	worn_icon_state = "spade"
 	inhand_icon_state = "spade"
@@ -162,7 +162,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/shovel/spade/cyborg
-	name = "cyborg spade"
+	name = "半机械人小铲"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "sili_shovel"
 	icon_angle = 0
@@ -170,9 +170,9 @@
 	worn_icon_state = null
 
 /obj/item/shovel/serrated
-	name = "serrated bone shovel"
-	desc = "A wicked tool that cleaves through dirt just as easily as it does flesh. The design was styled after ancient lavaland tribal designs. \
-		It seems less capable of harming inorganic creatures. Who knows why."
+	name = "锯齿骨铲"
+	desc = "一把凶恶的工具，切开泥土就像切开血肉一样轻松。其造型仿照熔岩地带的古代部落设计。 \
+		它似乎较难伤害无机生物。谁知道为什么呢。"
 	icon_state = "shovel_bone"
 	worn_icon_state = "shovel_serr"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
@@ -182,8 +182,8 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	tool_behaviour = TOOL_SHOVEL // hey, it's serrated.
 	toolspeed = 0.3
-	attack_verb_continuous = list("slashes", "impales", "stabs", "slices")
-	attack_verb_simple = list("slash", "impale", "stab", "slice")
+	attack_verb_continuous = list("劈砍着", "刺穿着", "捅刺着", "切割着")
+	attack_verb_simple = list("劈砍", "刺穿", "捅刺", "切割")
 	sharpness = SHARP_EDGED
 	item_flags = CRUEL_IMPLEMENT
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 4, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
@@ -196,19 +196,19 @@
 	. = ..()
 	if( !(user.mind && HAS_TRAIT(user.mind, TRAIT_MORBID)) )
 		return
-	. += span_deadsay("You feel an intense, strange craving to 'dig' straight through living flesh with this shovel. Why else would it be serrated? The thought is mesmerizing...")
+	. += span_deadsay("你感到一股强烈而诡异的冲动，想用这把铲子直接“挖穿”活生生的血肉。不然它为什么是锯齿状的？这个念头令人着迷……")
 
 // Coroner mail version
 /obj/item/shovel/serrated/dull
-	name = "dull bone shovel"
-	desc = "An ancient, dull bone shovel with a strange design and markings. Visually, it seems pretty weak, but you get the feeling there's more to it than meets the eye..."
+	name = "钝骨铲"
+	desc = "一把古老而钝拙的骨铲，造型与纹样十分奇特。从外观上看似乎很脆弱，但你总觉得它没这么简单……"
 	force = 8
 	throwforce = 10
 	toolspeed = 0.8
 
 /obj/item/trench_tool
-	name = "entrenching tool"
-	desc = "The multi-purpose tool you always needed."
+	name = "工兵铲"
+	desc = "你一直想要的多功能工具。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "trench_tool"
 	inhand_icon_state = "trench_tool"
@@ -222,8 +222,8 @@
 	tool_behaviour = TOOL_WRENCH
 	toolspeed = 0.75
 	usesound = 'sound/items/tools/ratchet.ogg'
-	attack_verb_continuous = list("bashes", "bludgeons", "thrashes", "whacks")
-	attack_verb_simple = list("bash", "bludgeon", "thrash", "whack")
+	attack_verb_continuous = list("猛砸着", "重击着", "抽打着", "拍打着")
+	attack_verb_simple = list("猛砸", "重击", "抽打", "拍打")
 	wound_bonus = 10
 
 /obj/item/trench_tool/get_all_tool_behaviours()
@@ -236,9 +236,9 @@
 
 /obj/item/trench_tool/examine(mob/user)
 	. = ..()
-	. += span_notice("Use in hand to switch configuration.")
-	. += span_notice("It functions as a [tool_behaviour] tool.")
-	. += span_danger("<i>This weapon has no random critical hits.</i>")
+	. += span_notice("在手中使用可切换形态。")
+	. += span_notice("它可作为 [tool_behaviour] 工具使用。")
+	. += span_danger("<i>此武器没有随机暴击。</i>")
 
 /obj/item/trench_tool/update_icon_state()
 	. = ..()
@@ -255,38 +255,38 @@
 	if(!user)
 		return
 	var/list/tool_list = list(
-		"Wrench" = image(icon = icon, icon_state = "trench_tool"),
-		"Shovel" = image(icon = icon, icon_state = "trench_tool_shovel"),
-		"Pick" = image(icon = icon, icon_state = "trench_tool_pick"),
+		"扳手" = image(icon = icon, icon_state = "trench_tool"),
+		"铲子" = image(icon = icon, icon_state = "trench_tool_shovel"),
+		"镐" = image(icon = icon, icon_state = "trench_tool_pick"),
 		)
 	var/tool_result = show_radial_menu(user, src, tool_list, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user) || !tool_result)
 		return
 	switch(tool_result)
-		if("Wrench")
+		if("扳手")
 			tool_behaviour = TOOL_WRENCH
 			sharpness = NONE
 			toolspeed = 0.75
 			update_weight_class(WEIGHT_CLASS_SMALL)
 			usesound = 'sound/items/tools/ratchet.ogg'
-			attack_verb_continuous = list("bashes", "bludgeons", "thrashes", "whacks")
-			attack_verb_simple = list("bash", "bludgeon", "thrash", "whack")
-		if("Shovel")
+			attack_verb_continuous = list("猛砸着", "重击着", "抽打着", "拍打着")
+			attack_verb_simple = list("猛砸", "重击", "抽打", "拍打")
+		if("铲子")
 			tool_behaviour = TOOL_SHOVEL
 			sharpness = SHARP_EDGED
 			toolspeed = 0.25
 			update_weight_class(WEIGHT_CLASS_NORMAL)
 			usesound = 'sound/effects/shovel_dig.ogg'
-			attack_verb_continuous = list("slashes", "impales", "stabs", "slices")
-			attack_verb_simple = list("slash", "impale", "stab", "slice")
-		if("Pick")
+			attack_verb_continuous = list("劈砍着", "刺穿着", "捅刺着", "切割着")
+			attack_verb_simple = list("劈砍", "刺穿", "捅刺", "切割")
+		if("镐")
 			tool_behaviour = TOOL_MINING
 			sharpness = SHARP_POINTY
 			toolspeed = 0.5
 			update_weight_class(WEIGHT_CLASS_NORMAL)
 			usesound = 'sound/effects/pickaxe/picaxe1.ogg'
-			attack_verb_continuous = list("hits", "pierces", "slices", "attacks")
-			attack_verb_simple = list("hit", "pierce", "slice", "attack")
+			attack_verb_continuous = list("击中着", "刺穿着", "切割着", "攻击着")
+			attack_verb_simple = list("击中", "刺穿", "切割", "攻击")
 	playsound(src, 'sound/items/tools/ratchet.ogg', 50, vary = TRUE)
 	update_appearance(UPDATE_ICON)
 
@@ -298,8 +298,8 @@
 	return TRUE
 
 /obj/item/shovel/giant_wrench
-	name = "Big Slappy"
-	desc = "A gigantic wrench made illegal because of its many incidents involving this tool."
+	name = "大巴掌"
+	desc = "一把巨大的扳手，因涉及多起与该工具相关的事故而遭禁用。"
 	icon_state = "giant_wrench"
 	icon = 'icons/obj/weapons/giant_wrench.dmi'
 	icon_angle = 0
@@ -319,8 +319,8 @@
 	armor_type = /datum/armor/giant_wrench
 	resistance_flags = FIRE_PROOF
 	wound_bonus = -10
-	attack_verb_continuous = list("bonks", "bludgeons", "pounds")
-	attack_verb_simple = list("bonk", "bludgeon", "pound")
+	attack_verb_continuous = list("敲打着", "重击着", "猛锤着")
+	attack_verb_simple = list("敲打", "重击", "猛锤")
 	drop_sound = 'sound/items/weapons/sonic_jackhammer.ogg'
 	pickup_sound = 'sound/items/handling/tools/crowbar_pickup.ogg'
 	hitsound = 'sound/items/weapons/sonic_jackhammer.ogg'
@@ -372,7 +372,7 @@
 	tool_behaviour = (active ? TOOL_WRENCH : initial(tool_behaviour))
 	armour_penetration = (active ? 30 : initial(armour_penetration))
 	if(user)
-		balloon_alert(user, "folded Big Slappy [active ? "open" : "closed"]")
+		balloon_alert(user, "折叠的大巴掌 [active ? "已展开" : "已收起"]")
 	playsound(src, 'sound/items/tools/ratchet.ogg', 50, TRUE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
@@ -386,5 +386,5 @@
 		target_mob.Knockdown(2 SECONDS)
 	var/body_zone = pick(user.get_all_limbs())
 	user.apply_damage(force / recoil_factor, BRUTE, body_zone, user.run_armor_check(body_zone, MELEE))
-	to_chat(user, span_danger("The weight of the Big Slappy recoils!"))
-	log_combat(user, user, "recoiled Big Slappy into")
+	to_chat(user, span_danger("大巴掌的重量产生了后坐力！"))
+	log_combat(user, user, "用大巴掌的后坐力击中")

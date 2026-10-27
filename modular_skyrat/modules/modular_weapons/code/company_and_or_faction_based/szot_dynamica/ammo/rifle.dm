@@ -1,8 +1,8 @@
 // Various ammo boxes for .310
 
 /obj/item/ammo_box/c310_cargo_box
-	name = "ammo box (.310 Strilka lethal)"
-	desc = "A box of .310 Strilka lethal rifle rounds, holds ten cartridges."
+	name = "弹药盒（.310飞箭致命弹）"
+	desc = "一盒.310飞箭致命步枪弹，可容纳十发。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/ammo.dmi'
 	icon_state = "310_box"
@@ -19,8 +19,8 @@
 // AP
 
 /obj/item/ammo_box/c310_cargo_box/piercing
-	name = "ammo box (.310 Strilka piercing)"
-	desc = "A box of .310 Strilka piercing rifle rounds, holds ten cartridges."
+	name = "弹药盒（.310飞箭穿甲弹）"
+	desc = "一盒.310飞箭穿甲步枪弹，可容纳十发。"
 
 	icon_state = "310_box_ap"
 
@@ -29,9 +29,9 @@
 // AMR bullet
 
 /obj/item/ammo_casing/p60strela
-	name = ".60 Strela caseless cartridge"
-	desc = "A massive block of plasma-purple propellant with an equally massive round sticking out the top of it. \
-		While good at killing a man, you'll find most effective use out of destroying things with it."
+	name = ".60利箭无壳弹"
+	desc = "一大块等离子紫色推进剂，上端露出一枚同样巨大的弹头。\
+		虽然杀人效果不错，但你会发现摧毁物体才是它最擅长的用途。"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/ammo.dmi'
 	icon_state = "amr_bullet"
 	caliber = CALIBER_60STRELA
@@ -42,7 +42,7 @@
 	AddElement(/datum/element/caseless)
 
 /obj/projectile/bullet/p60strela // The funny thing is, these are wild but you only get three of them a magazine
-	name =".60 Strela bullet"
+	name =".60利箭子弹"
 	icon_state = "gaussphase"
 	speed = 1.5
 	damage = 40

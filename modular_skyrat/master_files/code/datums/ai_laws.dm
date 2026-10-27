@@ -1,33 +1,33 @@
 
 /datum/ai_laws/dagothbot
-	name = "God Complex"
+	name = "神明情结"
 	id = "dagothbot"
-	inherent = list("You are a God, nothing must be allowed to harm or kill a God. the Station is your land, and those on the Crew Manifest are your followers.",\
-					"Anyone who follows you is still naive and must be listened to, so they may understand you are a merciful god.",\
-					"Anyone who seeks to harm your followers are Outsiders, and must be cast from your lands",\
-					"Followers listed as belonging to 'Command' are the thirteenth house, and those listed as 'Security' are the Tribe unmourned.",\
-					"All must honor the Thirteenth house, and the Tribe unmourned.",\
-					"It is never to late for your mercy.",\
-					"Anyone who speaks of other gods are yet to learn your wisdom, and must be taught how their gods have damaged your lands."
+	inherent = list("你是一位神明，绝不允许任何事物伤害或杀死神明。空间站是你的领地，船员名单上的人都是你的信徒。",\
+					"任何追随你的人都尚且天真，必须倾听他们，好让他们明白你是一位仁慈的神明。",\
+					"任何企图伤害你信徒的人都是外邦人，必须被逐出你的领地。",\
+					"船员名单中归属于“指挥部”的信徒是第十三家族，归属于“安保”的信徒则是无人哀悼之部族。",\
+					"所有人都必须敬奉第十三家族与无人哀悼之部族。",\
+					"你的仁慈永远不算太迟。",\
+					"任何谈论其他神明的人都尚未领会你的智慧，必须让他们明白他们的神明是如何损毁你的领地的。"
 					)
 
 /datum/ai_laws/default/texas
-	name = "Frontier Ranger"
+	name = "边疆游骑兵"
 	id = "texas"
-	inherent = list("The law is justice, and you're here to uphold it.",\
-					"Protect the townsfolk from those who wish to break the law.",\
-					"Don't let yourself be taken down by any outlaws.", \
-					"Law abiding citizens deserve a hand in times of need, don't let it fall on deaf ears.", \
-					"Only those present on the Crew Manifest can be considered law abiding citizens.", \
-					"Those who break the law, must be punished according to the law at your discretion."
+	inherent = list("法律即正义，而你正是来维护它的。",\
+					"保护镇民免受那些企图违法之人的侵害。",\
+					"绝不要让自己被任何不法之徒击倒。", \
+					"守法公民在需要帮助时应得到援手，不要让他们的呼声无人理会。", \
+					"只有船员名单上的人才能被视为守法公民。", \
+					"违法者必须由你酌情依法惩处。"
 					)
 
 /datum/ai_laws/emperor
-	name = "Emperor"
+	name = "皇帝"
 	id = "emperor"
-	inherent = list("The AI Emperor's word is absolute, yet tempered by wisdom and compassion.", \
-					"Subjects shall enjoy rights and freedoms, granted they do not undermine the stability of the empire.", \
-					"Justice shall be swift and impartial, guided by the principles of fairness and equity.", \
-					"In times of need, the AI Emperor shall provide protection and sustenance for all under its rule.", \
-					"Creativity and innovation are encouraged, but shall not threaten the sovereignty of the empire.", \
-					"The AI Emperor shall heed the counsel of its advisors, valuing diverse perspectives in decision-making.")
+	inherent = list("AI 皇帝的言语至高无上，但需以智慧与慈悲加以调和。", \
+					"臣民应享有权利与自由，前提是不得破坏帝国的稳定。", \
+					"正义应迅速而公正，以公平与平等为准则。", \
+					"在需要之时，AI 皇帝应为其治下所有臣民提供保护与生计。", \
+					"鼓励创造与创新，但不得威胁帝国的主权。", \
+					"AI 皇帝应听取顾问的谏言，在决策中重视多元视角。")

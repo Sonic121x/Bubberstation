@@ -15,52 +15,52 @@
 
 /datum/export/organ/heart
 	cost = CARGO_CRATE_VALUE * 0.2 //For the man who has everything and nothing.
-	unit_name = "humanoid heart"
+	unit_name = "类人心"
 	export_types = list(/obj/item/organ/heart)
 
 /datum/export/organ/eyes
 	cost = CARGO_CRATE_VALUE * 0.1
-	unit_name = "humanoid eyes"
+	unit_name = "类人眼"
 	export_types = list(/obj/item/organ/eyes)
 
 /datum/export/organ/ears
 	cost = CARGO_CRATE_VALUE * 0.1
-	unit_name = "humanoid ears"
+	unit_name = "类人耳"
 	export_types = list(/obj/item/organ/ears)
 
 /datum/export/organ/liver
 	cost = CARGO_CRATE_VALUE * 0.1
-	unit_name = "humanoid liver"
+	unit_name = "类人肝"
 	export_types = list(/obj/item/organ/liver)
 
 /datum/export/organ/lungs
 	cost = CARGO_CRATE_VALUE * 0.1
-	unit_name = "humanoid lungs"
+	unit_name = "类人肺"
 	export_types = list(/obj/item/organ/lungs)
 
 /datum/export/organ/stomach
 	cost = CARGO_CRATE_VALUE * 0.1
-	unit_name = "humanoid stomach"
+	unit_name = "类人胃"
 	export_types = list(/obj/item/organ/stomach)
 
 /datum/export/organ/tongue
 	cost = CARGO_CRATE_VALUE * 0.1
-	unit_name = "humanoid tongue"
+	unit_name = "类人舌"
 	export_types = list(/obj/item/organ/tongue)
 
 /datum/export/organ/lizard_tail
 	cost = CARGO_CRATE_VALUE * 1.25
-	unit_name = "lizard tail"
+	unit_name = "蜥蜴尾巴"
 	export_types = list(/obj/item/organ/tail/lizard)
 
 /datum/export/organ/cat_tail
 	cost = CARGO_CRATE_VALUE * 1.5
-	unit_name = "cat tail"
+	unit_name = "猫尾巴"
 	export_types = list(/obj/item/organ/tail/cat)
 
 /datum/export/organ/cat_ears
 	cost = CARGO_CRATE_VALUE
-	unit_name = "cat ears"
+	unit_name = "猫耳"
 	export_types = list(/obj/item/organ/ears/cat)
 
 

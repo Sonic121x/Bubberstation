@@ -1,20 +1,20 @@
 //does brute, burn, and toxin damage, and cools targets down
 /datum/blobstrain/reagent/cryogenic_poison
-	name = "Cryogenic Poison"
-	description = "will inject targets with a freezing poison, applying little impact damage but dealing high damage over time."
-	analyzerdescdamage = "Injects targets with a freezing poison that will gradually solidify the target's internal organs."
+	name = "低温毒剂"
+	description = "会向目标注入冻寒毒剂，造成的直接冲击伤害较低，但会持续造成高额伤害。"
+	analyzerdescdamage = "向目标注入冻寒毒剂，会逐渐使目标的内脏凝固。"
 	color = "#8BA6E9"
 	complementary_color = "#7D6EB4"
-	blobbernaut_message = "injects"
-	message = "The blob stabs you"
-	message_living = ", and you feel like your insides are solidifying"
+	blobbernaut_message = "注入"
+	message = "变形菌刺向你"
+	message_living = "，你感觉自己的内脏正在凝固"
 	reagent = /datum/reagent/blob/cryogenic_poison
 
 /datum/reagent/blob/cryogenic_poison
-	name = "Cryogenic Poison"
-	description = "A freezing poison that does high damage over time. Cryogenic poison blobs inject this into their victims."
+	name = "低温毒剂"
+	description = "一种冻寒毒剂，会持续造成高额伤害。低温毒剂变形菌会将其注入受害者体内。"
 	color = "#8BA6E9"
-	taste_description = "brain freeze"
+	taste_description = "脑仁冻僵"
 
 /datum/reagent/blob/cryogenic_poison/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message, touch_protection, mob/eye/blob/overmind)
 	. = ..()

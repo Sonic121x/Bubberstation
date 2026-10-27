@@ -5,7 +5,7 @@
  */
 INITIALIZE_IMMEDIATE(/atom/movable/screen/map_view)
 /atom/movable/screen/map_view
-	name = "screen"
+	name = "屏幕"
 	// Map view has to be on the lowest plane to enable proper lighting
 	layer = GAME_PLANE
 	plane = GAME_PLANE

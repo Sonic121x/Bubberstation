@@ -1,8 +1,8 @@
 /datum/heretic_knowledge/open_way
-	name = "Knock of the Twin-Finger"
-	desc = "Allows you to open Ways towards the Mansus, breaching the thin veil between dawn and dusk and allowing you a glimpse of Light. \
-	Ways tend to form in high-traffic and high-importance areas, and require a number of items to open. You can use this ritual to open a way (provided the transmutation rune is under the way), \
-	or list all ways and their requirements (if performed without being under a way). Opening a way takes 30 seconds and performs an announcement detailing the ritual's location halfway through!"
+	name = "双指叩门"
+	desc = "让你能开启通往漫宿的通路，突破晨昏之间的薄纱，窥见光芒。\
+	通路常形成于人流密集或重要的区域，需要若干物品才能开启。转化符文位于通路下方时，此仪式可将其开启；\
+	否则，仪式会列出所有通路及其所需材料。开启通路耗时30秒，进行到一半时会发出公告，揭示仪式地点！"
 	research_tree_icon_path = 'icons/effects/eldritch.dmi'
 	research_tree_icon_state = "emark7"
 	is_starting_knowledge = TRUE
@@ -34,7 +34,7 @@
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
 
 	if(heretic_datum.has_living_heart() != HERETIC_HAS_LIVING_HEART)
-		loc.balloon_alert(user, "ritual failed, no living heart!")
+		loc.balloon_alert(user, "仪式失败，没有活体心脏！")
 		return FALSE
 
 	// TODO - if no ways are unopened, generate more (up to a point)
@@ -104,7 +104,7 @@
 			var/list/req_text_list = list()
 			for(var/atom/possible_type as anything in req_type_list)
 				req_text_list += parse_required_item(possible_type)
-			formatted_thing += english_list(req_text_list, and_text = " or ")
+			formatted_thing += english_list(req_text_list, and_text = "或")
 
 		else
 			formatted_thing = parse_required_item(req_type)
@@ -113,9 +113,9 @@
 
 	if (what_are_we_missing.len)
 		// Let them know it screwed up
-		loc.balloon_alert(user, "ritual failed, missing components!")
+		loc.balloon_alert(user, "仪式失败，缺少材料！")
 		// Then let them know what they're missing
-		to_chat(user, span_hierophant_warning("You are missing [english_list(what_are_we_missing)] in order to open the way."))
+		to_chat(user, span_hierophant_warning("开启通路还缺少[english_list(what_are_we_missing, and_text = "和")]。"))
 		return FALSE
 
 	return TRUE
@@ -140,38 +140,38 @@
 					var/list/req_text_list = list()
 					for(var/atom/possible_type as anything in req_type_list)
 						req_text_list += parse_required_item(possible_type)
-					formatted_thing += english_list(req_text_list, and_text = "or")
+					formatted_thing += english_list(req_text_list, and_text = "或")
 				else
 					formatted_thing = parse_required_item(req_type)
 
 				what_are_we_missing += formatted_thing
 
 			var/area/target_area = get_area(far_away_way)
-			to_chat(user, span_notice("There is a way in [target_area.name], and will require [english_list(what_are_we_missing)]."))
+			to_chat(user, span_notice("[chinese_area_display(target_area.name)]有一条通路，需要[english_list(what_are_we_missing, and_text = "和")]。"))
 
 		return TRUE
 
 	for (var/mob/living/iter_living in get_hearers_in_range(20, user))
 		if (iter_living == user)
 			continue
-		to_chat(iter_living, span_warning("Reality shimmers around you. Someone in close proxmity is about to unleash a catastrophy...!"))
-	to_chat(user, span_warning("You begin to open the way... you can move around during this, and defend yourself!"))
+		to_chat(iter_living, span_warning("周围的现实闪烁起来。附近有人即将释放一场灾难……！"))
+	to_chat(user, span_warning("你开始开启通路……期间你可以移动并保护自己！"))
 	if (!do_after(user, 15 SECONDS, loc, IGNORE_HELD_ITEM|IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(prox_check), user, loc)))
-		to_chat(user, span_boldwarning("Failure! The way remain closed."))
+		to_chat(user, span_boldwarning("失败！通路仍然紧闭。"))
 		return FALSE
 
-	to_chat(user, span_warning("Reality begins to crack. Just a bit more..."))
+	to_chat(user, span_warning("现实开始破裂。再坚持一下……"))
 	if (way.give_pre_open_announcement && COOLDOWN_FINISHED(way, open_warning_antispam))
 		var/area/target_area = get_area(way)
 		priority_announce(
-			"Reality flux values in [target_area.name] exceeding normal parameters. Please investigate with haste.",
-			"CentCom Thaumatergy Monitor",
+			"[chinese_area_display(target_area.name)]的现实波动值超出正常范围。请立即前往调查。",
+			"中央指挥部奇术监测系统",
 			ANNOUNCER_ANOMALIES,
 		)
 		COOLDOWN_START(way, open_warning_antispam, 300 SECONDS)
 
 	if (!do_after(user, 15 SECONDS, loc, IGNORE_HELD_ITEM|IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(prox_check), user, loc)))
-		to_chat(user, span_boldwarning("Failure! The way remain closed."))
+		to_chat(user, span_boldwarning("失败！通路仍然紧闭。"))
 		return FALSE
 
 	way.open(user)

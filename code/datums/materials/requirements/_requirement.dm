@@ -16,21 +16,21 @@
 	for (var/flag in bitfield_to_list(required_flags))
 		flag_strings += GLOB.material_flags_to_string[flag]
 	for (var/flag in bitfield_to_list(blacklisted_flags))
-		flag_strings += "not [GLOB.material_flags_to_string[flag]]"
+		flag_strings += "非[GLOB.material_flags_to_string[flag]]"
 	if (!length(property_minimums) && !length(property_maximums))
-		return "[capitalize(english_list(flag_strings, and_text = " or "))] material"
+		return "[capitalize(english_list(flag_strings, and_text = "或"))]"
 
 	var/list/prop_reqs = list()
 	for (var/prop_id in (property_minimums || list()) | (property_maximums || list()))
 		var/datum/material_property/property = SSmaterials.properties[prop_id]
 		if (property_minimums && property_maximums && !isnull(property_minimums[prop_id]) && !isnull(property_maximums[prop_id]))
-			prop_reqs += "[LOWER_TEXT(property.name)] between [property_minimums[prop_id]] and [property_maximums[prop_id]]"
+			prop_reqs += "[LOWER_TEXT(property.name)]介于[property_minimums[prop_id]]至[property_maximums[prop_id]]之间"
 		else if (property_minimums && !isnull(property_minimums[prop_id]))
-			prop_reqs += "[LOWER_TEXT(property.name)] equal to or above [property_minimums[prop_id]]"
+			prop_reqs += "[LOWER_TEXT(property.name)]不低于[property_minimums[prop_id]]"
 		else
-			prop_reqs += "[LOWER_TEXT(property.name)] equal to or below [property_maximums[prop_id]]"
+			prop_reqs += "[LOWER_TEXT(property.name)]不高于[property_maximums[prop_id]]"
 
-	return "[capitalize(english_list(flag_strings, and_text = " or "))] material with [english_list(prop_reqs)]"
+	return "[capitalize(english_list(flag_strings, and_text = "或"))]，且[english_list(prop_reqs)]"
 
 /datum/material_requirement/proc/valid_material(datum/material/material)
 	if (required_flags && !(material.mat_flags & required_flags))

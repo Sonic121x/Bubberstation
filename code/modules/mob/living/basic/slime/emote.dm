@@ -6,22 +6,22 @@
 /datum/emote/slime/bounce
 	key = "bounce"
 	key_third_person = "bounces"
-	message = "bounces in place."
+	message = "在原地弹跳。"
 
 /datum/emote/slime/jiggle
 	key = "jiggle"
 	key_third_person = "jiggles"
-	message = "jiggles!"
+	message = "颤动着！"
 
 /datum/emote/slime/light
 	key = "light"
 	key_third_person = "lights"
-	message = "lights up for a bit, then stops."
+	message = "亮了一下，随后又暗下去。"
 
 /datum/emote/slime/vibrate
 	key = "vibrate"
 	key_third_person = "vibrates"
-	message = "vibrates!"
+	message = "抖动着！"
 
 /datum/emote/slime/mood
 	key = "moodnone"

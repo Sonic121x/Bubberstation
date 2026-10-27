@@ -21,12 +21,12 @@ GLOBAL_LIST_INIT(petsplosion_candidates, typecacheof(list(
 )))
 
 /datum/round_event_control/wizard/petsplosion //the horror
-	name = "Petsplosion"
+	name = "宠物爆殖"
 	weight = 0 //SKYRAT EDIT CHANGE - WIZARD CHANGE - ORIGINAL weight = 2
 	typepath = /datum/round_event/wizard/petsplosion
 	max_occurrences = 1 //Exponential growth is nothing to sneeze at!
 	earliest_start = 0 MINUTES
-	description = "Rapidly multiplies the animals on the station."
+	description = "迅速增殖空间站上的动物。"
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 4
 	/// Number of mobs we're going to duplicate

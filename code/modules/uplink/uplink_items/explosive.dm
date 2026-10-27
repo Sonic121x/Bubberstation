@@ -1,37 +1,37 @@
 /datum/uplink_category/explosives
-	name = "Explosives"
+	name = "爆炸物"
 	weight = 6
 
 /datum/uplink_item/explosives
 	category = /datum/uplink_category/explosives
 
 /datum/uplink_item/explosives/soap_clusterbang
-	name = "Slipocalypse Clusterbang"
-	desc = "A traditional clusterbang grenade with a payload consisting entirely of Syndicate soap. Useful in any scenario!"
+	name = "滑倒末日集束弹"
+	desc = "一枚传统的集束手榴弹，装药全部由辛迪加肥皂组成。在任何场合都很有用！"
 	item = /obj/item/grenade/clusterbuster/soap
 	cost = 1
 
 /datum/uplink_item/explosives/c4
-	name = "Composition C-4"
-	desc = "C-4 is plastic explosive of the common variety Composition C. You can use it to breach walls, sabotage equipment, or connect \
-			an assembly to it in order to alter the way it detonates. It can be attached to almost all objects and has a modifiable timer with a \
-			minimum setting of 10 seconds."
+	name = "C-4 塑性炸药"
+	desc = "C-4 是常见的 C 型塑性炸药。你可以用它炸开墙壁、破坏设备，或者给它接上 \
+			引爆组件来改变引爆方式。它可以附着在几乎所有物体上，计时器可调， \
+			最短设置为 10 秒。"
 	item = /obj/item/grenade/c4
 	cost = 1
 
 /datum/uplink_item/explosives/x4
-	name = "Composition X-4"
-	desc = "Similar to C4, but with a stronger blast that is directional instead of circular. X-4 can be placed on a solid surface, such as a wall or window, \
-		and it will blast through the wall, injuring anything on the opposite side, while being safer to the user. For when you want a controlled explosion that \
-		leaves a wider, deeper, hole."
+	name = "X-4 塑性炸药"
+	desc = "与 C4 类似，但爆炸更强，且为定向而非环形。X-4 可以贴在墙壁或窗户等 \
+		实体表面上，炸穿墙壁并伤及另一侧的任何东西，同时对使用者更安全。 \
+		适用于你需要一场可控爆炸，并且想留下更宽、更深洞口的场合。"
 	item = /obj/item/grenade/c4/x4
 	cost = 2
 	limited_stock = 5
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS //nukies get their own version
 
 /datum/uplink_item/explosives/c4bag
-	name = "Bag of C-4 explosives"
-	desc = "Because sometimes quantity is quality. Contains 10 C-4 plastic explosives."
+	name = "一袋 C-4 炸药"
+	desc = "因为有时候数量就是质量。内含 10 块 C-4 塑性炸药。"
 	item = /obj/item/storage/backpack/duffelbag/syndie/c4
 	cost = 5 // 50% discount!
 	cant_discount = TRUE
@@ -39,8 +39,8 @@
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS //nukies get their own version
 
 /datum/uplink_item/explosives/frag
-	name = "Frag Grenade"
-	desc = "A frag grenade. Pop the pin. Throw towards enemy. Keep clear of the shrapnel. Easy!"
+	name = "破片手榴弹"
+	desc = "一枚破片手榴弹。拔掉保险销，扔向敌人，远离弹片。就这么简单！"
 	item = /obj/item/grenade/frag
 	cost = 1
 	limited_stock = 10
@@ -57,9 +57,9 @@
 	restricted = TRUE
 */ // SKYRAT EDIT REMOVAL END
 /datum/uplink_item/explosives/emp
-	name = "EMP Grenades and Implanter Kit"
-	desc = "A box that contains five EMP grenades and an EMP implant with three uses. Useful to disrupt communications, \
-			security's energy weapons and silicon lifeforms when you're in a tight spot."
+	name = "EMP 手榴弹与植入器套件"
+	desc = "一个装有五枚 EMP 手榴弹和一个可使用三次的 EMP 植入体的箱子。当你陷入困境时， \
+			可用于瘫痪通讯、安保的能量武器以及硅基生命体。"
 	item = /obj/item/storage/box/syndie_kit/emp
 	cost = 2
 
@@ -69,16 +69,16 @@
 		cost *= 3
 
 /datum/uplink_item/explosives/smoke
-	name = "Smoke Grenades"
-	desc = "A box that contains five smoke grenades a smoke implant with three uses and a gas smask. For when you want to sow discord, vanish \
-		without a trace, or run with your arms awkwardly trailing behind you."
+	name = "烟雾手榴弹"
+	desc = "一个装有五枚烟雾手榴弹、一个可使用三次的烟雾植入体和一副防毒面具的箱子。适合用来散播混乱、 \
+		不留痕迹地消失，或者抱着手臂姿势怪异地逃跑。"
 	item = /obj/item/storage/box/syndie_kit/smoke
 	cost = 2
 
 /datum/uplink_item/explosives/pizza_bomb
-	name = "Pizza Bomb"
-	desc = "A pizza box with a bomb cunningly attached to the lid. The timer needs to be set by opening the box; afterwards, \
-			opening the box again will trigger the detonation after the timer has elapsed. Comes with free pizza, for you or your target!"
+	name = "披萨炸弹"
+	desc = "一个披萨盒，盒盖上巧妙地装着一枚炸弹。需要打开盒子来设定计时器；此后， \
+			计时结束后再次打开盒子就会引爆。附赠免费披萨，给你或者你的目标！"
 	item = /obj/item/pizzabox/bomb
 	cost = 2
 	limited_stock = 4
@@ -86,9 +86,9 @@
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS /// Ops get their own version.
 
 /datum/uplink_item/explosives/syndicate_minibomb
-	name = "Syndicate Minibomb"
-	desc = "The minibomb is a grenade with a five-second fuse. Upon detonation, it will create a small hull breach \
-			in addition to dealing high amounts of damage to nearby personnel."
+	name = "辛迪加迷你炸弹"
+	desc = "迷你炸弹是一枚引信为五秒的手榴弹。引爆时，除了对附近人员造成大量伤害之外， \
+			还会在船体上炸出一个小破口。"
 	progression_minimum = 30 MINUTES
 	item = /obj/item/grenade/syndieminibomb
 	cost = 2
@@ -96,8 +96,8 @@
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS /// Ops get their own version.
 
 /datum/uplink_item/explosives/syndicate_bomb/emp
-	name = "Syndicate EMP Bomb"
-	desc = "A variation of the syndicate bomb designed to produce a large EMP effect."
+	name = "辛迪加 EMP 炸弹"
+	desc = "辛迪加炸弹的一种变体，旨在产生大范围的 EMP 效果。"
 	item = /obj/item/sbeacondrop/emp
 	cost = 7
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS /// Ops get their own version.
@@ -109,13 +109,13 @@
 		cost *= 2
 
 /datum/uplink_item/explosives/syndicate_bomb
-	name = "Syndicate Bomb"
-	desc = "The Syndicate bomb is a fearsome device capable of massive destruction. It has an adjustable timer, \
-		with a minimum of %MIN_BOMB_TIMER seconds, and can be bolted to the floor with a wrench to prevent \
-		movement. The bomb is bulky and cannot be moved; upon ordering this item, a smaller beacon will be \
-		transported to you that will teleport the actual bomb to it upon activation. Note that this bomb can \
-		be defused, and some crew may attempt to do so. \
-		The bomb core can be pried out and manually detonated with other explosives."
+	name = "辛迪加炸弹"
+	desc = "辛迪加炸弹是一种可怕的装置，能造成大规模破坏。它配有可调节的计时器， \
+		最短为 %MIN_BOMB_TIMER 秒，并且可以用扳手固定在地面上以防 \
+		移动。炸弹体积笨重，无法搬动；订购此物品时，会有一个较小的信标 \
+		被传送到你身边，激活后会把真正的炸弹传送到信标处。请注意，这枚炸弹 \
+		可以被拆除，有些船员可能会尝试这么做。 \
+		炸弹核心可以被撬出来，并用其他爆炸物手动引爆。"
 	progression_minimum = 30 MINUTES
 	item = /obj/item/sbeacondrop/bomb
 	cost = 11
@@ -123,10 +123,10 @@
 	limited_discount_stock = 4
 
 /datum/uplink_item/explosives/earthcracker
-	name = "E-2 Earthcracker"
-	desc = "The E-2 Earthcracker makes for a great partner to any conventional explosive. Set the device up on any station hull, arm, and activate.\
-		What remains is a conventionally dangerous weakpoint, that will crack open a random pattern of floors upon being hit with an explosive force.\
-		That pattern of cracks will in-turn also create additional cracks, ad-finimum if not repaired. It can also be used for mining out rock, though that's less advised."
+	name = "E-2 裂地锤"
+	desc = "E-2 裂地锤是任何常规爆炸物的绝佳搭档。把这台装置装到任意空间站船体上，开启，然后激活。\
+		留下的会是一个常规意义上的危险薄弱点，一旦受到爆炸冲击，就会以随机图案裂开地板。\
+		这种裂纹图案又会继续产生更多裂纹，若不修补便会无限蔓延。它也可以用来挖开岩石，不过不太建议这么做。"
 	item = /obj/item/earthcracker
 	cost = 2
 	limited_discount_stock = 2
@@ -136,8 +136,8 @@
 	desc = replacetext(desc, "%MIN_BOMB_TIMER", SYNDIEBOMB_MIN_TIMER_SECONDS)
 
 /datum/uplink_item/dangerous/cat
-	name = "Feral Cat Grenade Box"
-	desc = "This box contains 5 grenades filled with 5 feral cats in stasis. Upon activation, the feral cats are awoken and unleashed unto unlucky bystanders. WARNING: The cats are not trained to discern friend from foe!"
+	name = "野猫手榴弹盒"
+	desc = "这个箱子装有 5 枚手榴弹，每枚里面封印着 5 只在静滞状态下的野猫。激活后，野猫会被唤醒并扑向倒霉的路人。警告：这些猫没有受过分辨敌友的训练！"
 	cost = 5
 	item = /obj/item/storage/box/syndie_kit/feral_cat_grenades
 	surplus = 30

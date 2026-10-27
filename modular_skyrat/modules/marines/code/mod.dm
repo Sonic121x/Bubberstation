@@ -1,13 +1,13 @@
 // 1 2 3 4 marine corps marine corps
 
 /datum/mod_theme/marines
-	name = "marine"
-	desc = "Developed by Nanotrasen in collaboration with multiple high-profile contractors, this specialized suit is made for high-intensity combat."
-	extended_desc = "A black and blue suit of Nanotrasen design made to be utilized by corporate space marines \
-		in active combat situations where standard gear won't cut it. Lightweight composite armor plating over \
-		a strong exoskeleton ensures that no speed is sacrificed for protection, and a variety of unique \
-		modules keep the wearer efficient during active combat situations. When response teams fail, \
-		you're the backup's backup - the desperate measures."
+	name = "陆战队"
+	desc = "由纳米传讯与多家知名承包商合作开发，这套特化套装专为高强度战斗打造。"
+	extended_desc = "一套纳米传讯设计的黑蓝配色套装，供企业太空陆战队在标准装备 \
+		应付不来的实战环境中使用。轻量复合装甲板包覆在 \
+		坚固的外骨骼之上，确保不因防护而牺牲速度，另有多种独特的 \
+		模块让穿着者在实战中保持高效。当响应小队失手时， \
+		你就是后援的后援——最后的手段。"
 	default_skin = "marine"
 	armor_type = /datum/armor/mod_theme_marines
 	atom_flags = PREVENT_CONTENTS_EXPLOSION_1

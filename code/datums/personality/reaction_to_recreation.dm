@@ -1,8 +1,8 @@
 /datum/personality/gambler
 	savefile_key = "gambler"
-	name = "Gambler"
-	desc = "Throwing the dice is always worth it!"
-	pos_gameplay_desc = "Likes gambling and card games, and content with losing when gambling"
+	name = "赌徒"
+	desc = "掷一把骰子永远值得！"
+	pos_gameplay_desc = "喜欢赌博与纸牌游戏，赌输了也能欣然接受"
 
 /datum/personality/slacking
 	/// Areas which are considered "slacking off"
@@ -38,18 +38,18 @@
 
 /datum/personality/slacking/lazy
 	savefile_key = "lazy"
-	name = "Lazy"
-	desc = "I don't really feel like working today."
-	pos_gameplay_desc = "Happy in the bar or recreation areas"
+	name = "懒散"
+	desc = "我今天实在不想工作。"
+	pos_gameplay_desc = "待在酒吧或娱乐区域会感到开心"
 	mood_event_type = /datum/mood_event/slacking_off_lazy
 	groups = list(PERSONALITY_GROUP_RECREATION, PERSONALITY_GROUP_WORK, PERSONALITY_GROUP_ATHLETICS)
 
 /datum/personality/slacking/diligent
 	savefile_key = "diligent"
-	name = "Diligent"
-	desc = "Things need to get done around here!"
-	pos_gameplay_desc = "Happy when in their department"
-	neg_gameplay_desc = "Unhappy when slacking off in the bar or recreation areas"
+	name = "勤奋"
+	desc = "这里还有事情等着人去做呢！"
+	pos_gameplay_desc = "待在所属部门会感到开心"
+	neg_gameplay_desc = "在酒吧或娱乐区域偷懒会感到不快"
 	mood_event_type = /datum/mood_event/slacking_off_diligent
 	groups = list(PERSONALITY_GROUP_RECREATION)
 
@@ -73,37 +73,37 @@
 
 /datum/personality/industrious
 	savefile_key = "industrious"
-	name = "Industrious"
-	desc = "Everyone needs to be working - otherwise we're all wasting our time."
-	neg_gameplay_desc = "Dislikes playing games"
+	name = "埋头苦干"
+	desc = "每个人都得干活——不然大家就是在浪费时间。"
+	neg_gameplay_desc = "不喜欢玩游戏"
 	groups = list(PERSONALITY_GROUP_WORK)
 
 /datum/personality/athletic
 	savefile_key = "athletic"
-	name = "Athletic"
-	desc = "Can't just sit around all day! Have to keep moving."
-	pos_gameplay_desc = "Likes exercising"
-	neg_gameplay_desc = "Dislikes being lazy"
+	name = "热爱运动"
+	desc = "不能整天坐着！得动起来。"
+	pos_gameplay_desc = "喜欢锻炼"
+	neg_gameplay_desc = "不喜欢偷懒"
 	groups = list(PERSONALITY_GROUP_ATHLETICS)
 
 /datum/personality/erudite
 	savefile_key = "erudite"
-	name = "Erudite"
-	desc = "Knowledge is power. Especially this deep in space."
-	pos_gameplay_desc = "Likes reading books"
+	name = "博学"
+	desc = "知识就是力量，尤其是在如此遥远的太空。"
+	pos_gameplay_desc = "喜欢读书"
 	groups = list(PERSONALITY_GROUP_READING)
 
 /datum/personality/uneducated
 	savefile_key = "uneducated"
-	name = "Uneducated"
-	desc = "I don't care much for books - I already know everything I need to know."
-	neg_gameplay_desc = "Dislikes reading books"
+	name = "不爱读书"
+	desc = "我对书没什么兴趣——该知道的我都知道了。"
+	neg_gameplay_desc = "不喜欢读书"
 	groups = list(PERSONALITY_GROUP_READING)
 
 /datum/personality/spiritual
 	savefile_key = "spiritual"
-	name = "Spiritual"
-	desc = "I believe in a higher power."
-	pos_gameplay_desc = "Likes the Chapel and the Chaplain, and has special prayers"
-	neg_gameplay_desc = "Dislikes unholy things"
+	name = "虔诚"
+	desc = "我相信有更高的力量存在。"
+	pos_gameplay_desc = "喜欢教堂和牧师，并能进行特殊祈祷"
+	neg_gameplay_desc = "不喜欢邪秽之物"
 	personality_trait = TRAIT_SPIRITUAL

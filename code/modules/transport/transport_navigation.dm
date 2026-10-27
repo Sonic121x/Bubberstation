@@ -2,7 +2,7 @@
  * transport_controller landmarks. used to map specific destinations on the map.
  */
 /obj/effect/landmark/transport/nav_beacon/tram
-	name = "tram destination" //the tram buttons will mention this.
+	name = "电车目的地" //the tram buttons will mention this.
 	icon_state = "tram"
 	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 	/// the looping sound effect that is played while moving
@@ -27,7 +27,7 @@
 	return ..()
 
 /obj/effect/landmark/transport/nav_beacon/tram/nav
-	name = "tram nav beacon"
+	name = "电车导航信标"
 	invisibility = INVISIBILITY_MAXIMUM // nav aids can't be abstract since they stay with the tram
 
 /**
@@ -35,7 +35,7 @@
  * it sets its specific_transport_id to that landmark. allows you to have multiple trams and multiple objects linking to their specific tram
  */
 /obj/effect/landmark/transport/transport_id
-	name = "transport init landmark"
+	name = "运输初始化地标"
 	icon_state = "lift_id"
 	///what specific id we give to the tram we're placed on, should explicitely set this if its a subtype, or weird things might happen
 	var/specific_transport_id
@@ -46,26 +46,26 @@
 	specific_transport_id = TRAMSTATION_LINE_1
 
 /obj/effect/landmark/transport/nav_beacon/tram/nav/tramstation/main
-	name = "tram announcement system"
+	name = "电车播报系统"
 	specific_transport_id = TRAM_NAV_BEACONS
 	dir = WEST
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/tramstation/west
-	name = "Arrivals"
+	name = "到达站"
 	platform_code = TRAMSTATION_WEST
-	tgui_icons = list("Arrivals" = "plane-arrival", "Command" = "bullhorn", "Security" = "gavel")
+	tgui_icons = list("到达" = "plane-arrival", "指挥" = "bullhorn", "安保" = "gavel")
 	arrival_sound = 'sound/machines/tram/arrivals_line_processed.ogg'
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/tramstation/central
-	name = "Medical"
+	name = "医疗站"
 	platform_code = TRAMSTATION_CENTRAL
-	tgui_icons = list("Service" = "cocktail", "Medical" = "plus", "Engineering" = "wrench")
+	tgui_icons = list("服务" = "cocktail", "医疗" = "plus", "工程" = "wrench")
 	arrival_sound = 'sound/machines/tram/medical_line_processed.ogg'
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/tramstation/east
-	name = "Escape"
+	name = "撤离站"
 	platform_code = TRAMSTATION_EAST
-	tgui_icons = list("Departures" = "plane-departure", "Cargo" = "box", "Science" = "flask")
+	tgui_icons = list("出发" = "plane-departure", "货运" = "box", "科研" = "flask")
 	arrival_sound = 'sound/machines/tram/escape_line_processed.ogg'
 
 //birdshot
@@ -87,35 +87,35 @@
 	dir = WEST
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/birdshot/sec_wing
-	name = "Security"
+	name = "安保"
 	specific_transport_id = BIRDSHOT_LINE_1
 	platform_code = BIRDSHOT_SECURITY_WING
-	tgui_icons = list("Security" = "gavel")
+	tgui_icons = list("安保" = "gavel")
 	arrival_sound = 'sound/machines/tram/medical_line_processed.ogg'
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/birdshot/prison_wing
-	name = "Prison"
+	name = "监狱"
 	specific_transport_id = BIRDSHOT_LINE_1
 	platform_code = BIRDSHOT_PRISON_WING
-	tgui_icons = list("Prison" = "box")
+	tgui_icons = list("监狱" = "box")
 	arrival_sound = 'sound/machines/tram/other_line_processed.ogg'
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/birdshot/maint_left
-	name = "Escape"
+	name = "撤离站"
 	specific_transport_id = BIRDSHOT_LINE_2
 	platform_code = BIRDSHOT_MAINTENANCE_LEFT
-	tgui_icons = list("Port Platform" = "plane-departure")
+	tgui_icons = list("左舷站台" = "plane-departure")
 	arrival_sound = 'sound/machines/tram/escape_line_processed.ogg'
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/birdshot/maint_right
-	name = "Arrivals"
+	name = "到达站"
 	specific_transport_id = BIRDSHOT_LINE_2
 	platform_code = BRIDSHOT_MAINTENANCE_RIGHT
-	tgui_icons = list("Starboard Platform" = "plane-arrival")
+	tgui_icons = list("右舷站台" = "plane-arrival")
 	arrival_sound = 'sound/machines/tram/arrivals_line_processed.ogg'
 
 //map-agnostic landmarks
 
 /obj/effect/landmark/transport/nav_beacon/tram/nav/immovable_rod
-	name = "DESTINATION/NOT/FOUND"
+	name = "目的地/未/找到"
 	specific_transport_id = IMMOVABLE_ROD_DESTINATIONS

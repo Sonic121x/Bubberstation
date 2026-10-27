@@ -1,7 +1,7 @@
 /obj/item/clothing/suit/hooded/cloak/godslayer
-	name = "godslayer armour"
+	name = "屠神者护甲"
 	icon_state = "godslayer"
-	desc = "A suit of armour fashioned from the remnants of a knight's armor, and parts of a wendigo."
+	desc = "一套用骑士护甲残片与温迪戈身体部件制成的护甲。"
 	armor_type = /datum/armor/cloak_godslayer
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
 	hoodtype = /obj/item/clothing/head/hooded/cloakhood/godslayer
@@ -39,7 +39,7 @@
 /obj/item/clothing/suit/hooded/cloak/godslayer/examine(mob/user)
 	. = ..()
 	if(loc == user && !COOLDOWN_FINISHED(src, effect_cooldown))
-		. += "You feel like the revival effect will be able to occur again in [COOLDOWN_TIMELEFT(src, effect_cooldown) / 10] seconds."
+		. += "你感觉复活效果大约还要 [COOLDOWN_TIMELEFT(src, effect_cooldown) / 10] 秒才能再次触发。"
 
 /obj/item/clothing/suit/hooded/cloak/godslayer/equipped(mob/user, slot)
 	. = ..()
@@ -57,15 +57,15 @@
 	if(new_stat != STABLE && new_stat != DEAD && COOLDOWN_FINISHED(src, effect_cooldown))
 		COOLDOWN_START(src, effect_cooldown, effect_cooldown_time) //This needs to happen first, otherwise there's an infinite loop
 		user.heal_ordered_damage(heal_amount, damage_heal_order)
-		user.visible_message(span_notice("[user] suddenly revives, as their armor swirls with demonic energy!"), span_notice("You suddenly feel invigorated!"))
+		user.visible_message(span_notice("[user] 突然复活，其护甲翻涌着恶魔能量！"), span_notice("你突然感到充满活力！"))
 		playsound(user.loc, 'sound/effects/magic/clockwork/ratvar_attack.ogg', 50)
 
 /obj/item/clothing/head/hooded/cloakhood/godslayer
-	name = "godslayer helm"
+	name = "屠神者头盔"
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	icon_state = "godslayer"
-	desc = "The horns and skull of a wendigo, held together by the remaining icy energy of a demonic miner."
+	desc = "温迪戈的双角与头骨，被一名恶魔矿工残存的寒冰能量维系在一起。"
 	armor_type = /datum/armor/cloak_godslayer
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SNUG_FIT
 	cold_protection = HEAD

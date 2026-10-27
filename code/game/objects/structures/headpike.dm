@@ -1,6 +1,6 @@
 /obj/structure/headpike
-	name = "spooky head on a spear"
-	desc = "When you really want to send a message."
+	name = "长矛上的恐怖人头"
+	desc = "当你真的想传递某种信息时。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "headpike"
 	density = FALSE
@@ -44,7 +44,7 @@
 	update_appearance()
 
 /obj/structure/headpike/update_name()
-	name = "[victim.get_face_name()] on a [spear.name]"
+	name = "[spear.name]上的[victim.get_face_name()]"
 	return ..()
 
 /obj/structure/headpike/update_overlays()
@@ -82,5 +82,5 @@
 	. = ..()
 	if(.)
 		return
-	to_chat(user, span_notice("You take down [src]."))
+	to_chat(user, span_notice("你取下了[src]。"))
 	deconstruct(TRUE)

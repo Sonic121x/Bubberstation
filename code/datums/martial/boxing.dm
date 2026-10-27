@@ -14,10 +14,10 @@
 #define NO_COMBO ""
 
 /datum/martial_art/boxing
-	name = "Boxing"
+	name = "拳击"
 	id = MARTIALART_BOXING
 	pacifist_style = TRUE
-	help_verb = "Focus on your Form"
+	help_verb = "专注拳击架势"
 	/// Boolean on whether we are sportsmanlike in our tussling; TRUE means we have restrictions
 	var/honorable_boxer = TRUE
 	/// Can we perform grabs even if it would be dishonorable?
@@ -88,7 +88,7 @@
 
 /datum/martial_art/boxing/grab_act(mob/living/attacker, mob/living/defender)
 	if(honorable_boxer && !ignore_grab_restriction)
-		attacker.balloon_alert(attacker, "no grabbing while boxing!")
+		attacker.balloon_alert(attacker, "拳击时不可抓取！")
 		return MARTIAL_ATTACK_FAIL
 	return MARTIAL_ATTACK_INVALID //UNLESS YOU'RE EVIL
 
@@ -103,7 +103,7 @@
 
 	if(honorable_boxer) //Being a good sport, you never hit someone on the ground or already knocked down. It shows you're the better person.
 		if((defender.body_position == LYING_DOWN && defender.get_stamina_loss() >= 100) || IS_UNCONSCIOUS(defender)) //If they're in stamcrit or unconscious, don't bloody punch them
-			attacker.balloon_alert(attacker, "unsportsmanlike behaviour!")
+			attacker.balloon_alert(attacker, "有违体育精神！")
 			return FALSE
 
 	var/obj/item/bodypart/arm/active_arm = attacker.get_active_hand()
@@ -136,18 +136,18 @@
 	var/damage = rand(lower_force, upper_force)
 
 	// Attack verbs for our visible chat messages.
-	var/current_atk_verb = "punches"
-	var/current_atk_verbed = "punched"
+	var/current_atk_verb = "拳击了"
+	var/current_atk_verbed = "拳击了"
 
-	if(defender.check_block(attacker, damage, "[attacker]'s punch", UNARMED_ATTACK))
+	if(defender.check_block(attacker, damage, "[attacker]的拳击", UNARMED_ATTACK))
 		return FALSE
 
 	// Similar to a normal punch, should we have a value of 0 for our lower force, we simply miss outright.
 	if(!lower_force)
 		playsound(defender.loc, active_arm.unarmed_miss_sound, 25, TRUE, -1)
-		defender.visible_message(span_warning("[attacker]'s punch misses [defender]!"), \
-			span_danger("You avoid [attacker]'s punch!"), span_hear("You hear a swoosh!"), COMBAT_MESSAGE_RANGE, attacker)
-		to_chat(attacker, span_warning("Your punch misses [defender]!"))
+		defender.visible_message(span_warning("[attacker]的拳头没有击中[defender]！"), \
+			span_danger("你避开了[attacker]的拳击！"), span_hear("你听到一声呼啸！"), COMBAT_MESSAGE_RANGE, attacker)
+		to_chat(attacker, span_warning("你的拳头没有击中[defender]！"))
 		log_combat(attacker, defender, "attempted to hit", "punch (boxing) ")
 		return FALSE
 
@@ -166,51 +166,51 @@
 
 		switch(streak_augmentation)
 			if(STRAIGHT_PUNCH)
-				current_atk_verb = "straight punches"
-				current_atk_verbed = "straight punched"
+				current_atk_verb = "以直拳击中了"
+				current_atk_verbed = "以直拳击中了"
 				combo_multiplier = 1
 
 			if(LIGHT_JAB)
-				current_atk_verb = "light jabs"
-				current_atk_verbed = "light jabbed"
+				current_atk_verb = "以轻刺拳击中了"
+				current_atk_verbed = "以轻刺拳击中了"
 				combo_multiplier = 1
 
 			if(LEFT_HOOK)
-				current_atk_verb = "left hooks"
-				current_atk_verbed = "left hooked"
+				current_atk_verb = "以左勾拳击中了"
+				current_atk_verbed = "以左勾拳击中了"
 				combo_multiplier = 1.5
 				attacker.changeNext_move(CLICK_CD_MELEE * 1.5)
 
 			if(RIGHT_HOOK)
-				current_atk_verb = "right hooks"
-				current_atk_verbed = "right hooked"
+				current_atk_verb = "以右勾拳击中了"
+				current_atk_verbed = "以右勾拳击中了"
 				combo_multiplier = 1.5
 				attacker.changeNext_move(CLICK_CD_MELEE * 1.5)
 
 			if(UPPERCUT)
-				current_atk_verb = "uppercuts"
-				current_atk_verbed = "uppercutted"
+				current_atk_verb = "以上勾拳击中了"
+				current_atk_verbed = "以上勾拳击中了"
 				base_unarmed_effectiveness *= 1.5
 				combo_multiplier = 1
 				attacker.changeNext_move(CLICK_CD_MELEE * 1.5)
 
 			if(DISCOMBOBULATE)
-				current_atk_verb = "discombobulates"
-				current_atk_verbed = "discombobulated"
+				current_atk_verb = "以扰乱拳击中了"
+				current_atk_verbed = "以扰乱拳击中了"
 				affecting = defender.get_bodypart(defender.get_random_valid_zone(BODY_ZONE_HEAD))
 				defender.adjust_confusion_up_to(20 SECONDS, 50 SECONDS)
 				defender.adjust_dizzy_up_to(20 SECONDS, 50 SECONDS)
 				combo_multiplier = 1
 
 			if(BLIND_JAB)
-				current_atk_verb = "blind jabs"
-				current_atk_verbed = "blind jabbed"
+				current_atk_verb = "以盲刺拳击中了"
+				current_atk_verbed = "以盲刺拳击中了"
 				combo_multiplier = 0.5
 				attacker.changeNext_move(CLICK_CD_MELEE * 1.5)
 
 			if(CRAVEN_BLOW)
-				current_atk_verb = "sucker punches"
-				current_atk_verbed = "sucker punch"
+				current_atk_verb = "出其不意地重击了"
+				current_atk_verbed = "出其不意地重击了"
 				possible_wound_bonus = damage
 				combo_multiplier = 2
 				possible_wound_bonus *= 1.5
@@ -230,14 +230,14 @@
 	playsound(defender, attack_sound, 25, TRUE, -1)
 
 	defender.visible_message(
-		span_danger("[attacker] [current_atk_verb] [defender]!"),
-		span_userdanger("You're [current_atk_verbed] by [attacker]!"),
-		span_hear("You hear a sickening sound of flesh hitting flesh!"),
+		span_danger("[attacker][current_atk_verb][defender]！"),
+		span_userdanger("[attacker][current_atk_verbed]你！"),
+		span_hear("你听到了令人作呕的肉体撞击声！"),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
 
-	to_chat(attacker, span_danger("You [current_atk_verbed] [defender]!"))
+	to_chat(attacker, span_danger("你[current_atk_verbed][defender]！"))
 
 	// Determines the total amount of experience earned per punch
 	var/experience_earned = round(damage/4, 1)
@@ -278,26 +278,26 @@
 /datum/martial_art/boxing/proc/crit_effect(mob/living/attacker, mob/living/defender, armor_block = 0, damage_type = STAMINA, damage = 0)
 	if(defender.get_timed_status_effect_duration(/datum/status_effect/staggered))
 		defender.visible_message(
-			span_danger("[attacker] knocks [defender] out with a haymaker!"),
-			span_userdanger("You're knocked unconscious by [attacker]!"),
-			span_hear("You hear a sickening sound of flesh hitting flesh!"),
+			span_danger("[attacker]一记大摆拳击昏了[defender]！"),
+			span_userdanger("[attacker]将你打昏了！"),
+			span_hear("你听到了令人作呕的肉体撞击声！"),
 			COMBAT_MESSAGE_RANGE,
 			attacker,
 		)
-		to_chat(attacker, span_danger("You knock [defender] out with a haymaker!"))
+		to_chat(attacker, span_danger("你一记大摆拳击昏了[defender]！"))
 		defender.apply_effect(20 SECONDS, EFFECT_KNOCKDOWN, armor_block)
 		defender.SetSleeping(10 SECONDS)
 		log_combat(attacker, defender, "knocked out (boxing) ")
 	else
 		defender.visible_message(
-			span_danger("[attacker] staggers [defender] with a haymaker!"),
-			span_userdanger("You're nearly knocked off your feet by [attacker]!"),
-			span_hear("You hear a sickening sound of flesh hitting flesh!"),
+			span_danger("[attacker]一记大摆拳打得[defender]踉跄起来！"),
+			span_userdanger("[attacker]差点将你打倒在地！"),
+			span_hear("你听到了令人作呕的肉体撞击声！"),
 			COMBAT_MESSAGE_RANGE,
 			attacker,
 		)
 		defender.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, 10 SECONDS)
-		to_chat(attacker, span_danger("You stagger [defender] with a haymaker!"))
+		to_chat(attacker, span_danger("你一记大摆拳打得[defender]踉跄起来！"))
 		log_combat(attacker, defender, "staggered (boxing) ")
 
 	if(attacker.pulling == defender && attacker.grab_state >= GRAB_AGGRESSIVE) // dubious a normal boxer will be in a state where this happens, buuuut.
@@ -366,8 +366,8 @@
 		perform_extra_effect(boxer, attacker)
 
 	boxer.visible_message(
-		span_danger("[boxer] [block_text]s [attack_text]!"),
-		span_userdanger("You [block_text] [attack_text]!"),
+		span_danger("[boxer][block_text == "evade" ? "闪避" : "格挡"]了[attack_text]！"),
+		span_userdanger("你[block_text == "evade" ? "闪避" : "格挡"]了[attack_text]！"),
 	)
 	if(block_text == "evade")
 		playsound(boxer.loc, active_arm.unarmed_miss_sound, 25, TRUE, -1)
@@ -382,16 +382,16 @@
 /datum/martial_art/boxing/get_style_help()
 	. = list()
 
-	. += "<b><i>You focus on your form, visualizing how best to throw a punch.</i></b>"
-	. += "<b><i>What moves you perform depend on what mouse buttons you click, and whether the last button clicked matches which hand you have selected when you throw the last punch.</i></b>"
+	. += "<b><i>你专注于拳击架势，在脑海中演练最佳出拳方式。</i></b>"
+	. += "<b><i>招式取决于你点击的鼠标按键，以及最后一拳时所选的手是否与最后点击的按键同侧。</i></b>"
 
-	. += "[span_notice("Straight Punch")]: Left Left/Right Right with the matching hand. Regular damage."
-	. += "[span_notice("Jab")]: Left Left/Right Right with the opposite hand. Regular damage. If you're blind, you'll make a blind jab instead."
-	. += "[span_notice("Left/Right Hook")]: Left Right/Right Left with the matching hand. Does extra damage, but slows your next hit."
-	. += "[span_notice("Uppercut")]: Left Right/Right Left with the opposite hand. Has a higher probability to knock out the target, but slows your next hit.</b>"
+	. += "[span_notice("直拳")]：左键、左键或右键、右键，使用同侧的手。造成普通伤害。"
+	. += "[span_notice("刺拳")]：左键、左键或右键、右键，使用另一侧的手。造成普通伤害；失明时改为盲刺拳。"
+	. += "[span_notice("左／右勾拳")]：左键、右键或右键、左键，使用同侧的手。造成额外伤害，但会延缓下一次攻击。"
+	. += "[span_notice("上勾拳")]：左键、右键或右键、左键，使用另一侧的手。更容易击昏目标，但会延缓下一次攻击。</b>"
 
-	. += "<b><i>While in Throw Mode, you can block incoming punches and return a bit of damage back to an attacker. Blocking attacks this way causes you to lose some stamina damage.</i></b>"
-	. += "<b><i>Your boxing abilities are only able to be used on other boxers.</i></b>"
+	. += "<b><i>在投掷模式下，你可以格挡来袭的拳头，并对攻击者造成少量反击伤害。这种格挡还能恢复部分耐力。</i></b>"
+	. += "<b><i>你的拳击能力只能对其他拳击手使用。</i></b>"
 	return .
 
 // Boxing Variants!
@@ -400,60 +400,60 @@
 /// Grants Strength and Stimmed to speed up any experience gain.
 
 /datum/martial_art/boxing/evil
-	name = "Evil Boxing"
+	name = "邪道拳击"
 	id = MARTIALART_EVIL_BOXING
 	pacifist_style = FALSE
-	help_verb = "Focus on Brawling"
+	help_verb = "专注斗殴"
 	honorable_boxer = FALSE
 	boxing_traits = list(TRAIT_BOXING_READY, TRAIT_STRENGTH, TRAIT_STIMMED)
 
 /datum/martial_art/boxing/evil/get_style_help()
 	. = list()
 
-	. += "<b><i>You contemplate on the violence ahead, visualizing how best to throw a punch.</i></b>"
-	. += "<b><i>What moves you perform depend on what mouse buttons you click, and whether the last button clicked matches which hand you have selected when you throw the last punch.</i></b>"
+	. += "<b><i>你思索着即将到来的暴力，在脑海中演练最佳出拳方式。</i></b>"
+	. += "<b><i>招式取决于你点击的鼠标按键，以及最后一拳时所选的手是否与最后点击的按键同侧。</i></b>"
 
-	. += "[span_notice("Straight Punch")]: Left Left/Right Right with the matching hand. Regular damage."
-	. += "[span_notice("Jab")]: Left Left/Right Right with the opposite hand. Regular damage. If you're blind, you'll make a blind jab instead."
-	. += "[span_notice("Left/Right Hook")]: Left Right/Right Left with the matching hand. Does extra damage, but slows your next hit."
-	. += "[span_notice("Uppercut")]: Left Right/Right Left with the opposite hand. Has a higher probability to knock out the target, but slows your next hit."
-	. += "[span_notice("Sucker Punch")]: Any combination done to a vulnerable target becomes a sucker punch. This could knock them out in one!.</b>"
+	. += "[span_notice("直拳")]：左键、左键或右键、右键，使用同侧的手。造成普通伤害。"
+	. += "[span_notice("刺拳")]：左键、左键或右键、右键，使用另一侧的手。造成普通伤害；失明时改为盲刺拳。"
+	. += "[span_notice("左／右勾拳")]：左键、右键或右键、左键，使用同侧的手。造成额外伤害，但会延缓下一次攻击。"
+	. += "[span_notice("上勾拳")]：左键、右键或右键、左键，使用另一侧的手。更容易击昏目标，但会延缓下一次攻击。"
+	. += "[span_notice("偷袭拳")]：对毫无防备的目标施展任何连招都会变为偷袭拳，有可能一拳将其击昏！</b>"
 
-	. += "<b><i>While in Throw Mode, you can block incoming punches and return a bit of damage back to an attacker. Blocking attacks this way causes you to lose some stamina damage.</i></b>"
+	. += "<b><i>在投掷模式下，你可以格挡来袭的拳头，并对攻击者造成少量反击伤害。这种格挡还能恢复部分耐力。</i></b>"
 	return .
 
 /// Hunter Boxing: for the uncaring, completely deranged one-spacer ecological disaster.
 /// The honor check accepts boxing ready targets, OR various biotypes as valid targets. Uses a special crit effect rather than the standard one (against monsters).
 /// I guess technically, this allows for lethal boxing. If you want.
 /datum/martial_art/boxing/hunter
-	name = "Hunter Boxing"
+	name = "猎手拳击"
 	id = MARTIALART_HUNTER_BOXING
 	pacifist_style = FALSE
-	help_verb = "Focus on the Hunt"
+	help_verb = "专注狩猎"
 	default_damage_type = BRUTE
 	boxing_traits = list(TRAIT_BOXING_READY)
 	ignore_grab_restriction = TRUE
 	/// The mobs we are looking for to pass the honor check
 	var/honorable_mob_biotypes = MOB_BEAST | MOB_SPECIAL | MOB_PLANT | MOB_BUG | MOB_MINING | MOB_CRUSTACEAN | MOB_REPTILE
 	/// Our crit shout words. First word is then paired with a second word to form an attack name.
-	var/list/first_word_strike = list("Extinction", "Brutalization", "Explosion", "Adventure", "Thunder", "Lightning", "Sonic", "Atomizing", "Whirlwind", "Tornado", "Shark", "Falcon")
-	var/list/second_word_strike = list(" Punch", " Pawnch", "-punch", " Jab", " Hook", " Fist", " Uppercut", " Straight", " Strike", " Lunge")
+	var/list/first_word_strike = list("灭绝", "暴虐", "爆裂", "冒险", "雷霆", "闪电", "音速", "粉碎", "旋风", "龙卷", "狂鲨", "猎隼")
+	var/list/second_word_strike = list("重拳", "猛拳", "冲拳", "刺拳", "勾拳", "神拳", "上勾拳", "直拳", "打击", "突刺")
 
 /datum/martial_art/boxing/hunter/get_style_help()
 	. = list()
 
-	. += "<b><i>You focus on your Fists. You focus on Adventure. You focus on the Hunt.</i></b>"
-	. += "<b><i>What moves you perform depend on what mouse buttons you click, and whether the last button clicked matches which hand you have selected when you throw the last punch.</i></b>"
+	. += "<b><i>你专注于双拳，专注于冒险，专注于狩猎。</i></b>"
+	. += "<b><i>招式取决于你点击的鼠标按键，以及最后一拳时所选的手是否与最后点击的按键同侧。</i></b>"
 
-	. += "[span_notice("Straight Punch")]: Left Left/Right Right with the matching hand. Regular damage."
-	. += "[span_notice("Jab")]: Left Left/Right Right with the opposite hand. Regular damage. If you're blind, you'll make a blind jab instead."
-	. += "[span_notice("Left/Right Hook")]: Left Right/Right Left with the matching hand. Does extra damage, but slows your next hit."
-	. += "[span_notice("Uppercut")]: Left Right/Right Left with the opposite hand. Has a higher probability to critically hit the target, but slows your next hit.</b>"
+	. += "[span_notice("直拳")]：左键、左键或右键、右键，使用同侧的手。造成普通伤害。"
+	. += "[span_notice("刺拳")]：左键、左键或右键、右键，使用另一侧的手。造成普通伤害；失明时改为盲刺拳。"
+	. += "[span_notice("左／右勾拳")]：左键、右键或右键、左键，使用同侧的手。造成额外伤害，但会延缓下一次攻击。"
+	. += "[span_notice("上勾拳")]：左键、右键或右键、左键，使用另一侧的手。更容易暴击目标，但会延缓下一次攻击。</b>"
 
-	. += "<b><i>While in Throw Mode, you can block incoming punches and return a bit of damage back to an attacker. Blocking attacks this way causes you to lose some stamina damage.</i></b>"
-	. += "<b><i>Stringing together effective combos restores some of your health and deals even more damage.</i></b>"
+	. += "<b><i>在投掷模式下，你可以格挡来袭的拳头，并对攻击者造成少量反击伤害。这种格挡还能恢复部分耐力。</i></b>"
+	. += "<b><i>成功打出连招可以恢复部分生命值，并造成更多伤害。</i></b>"
 
-	. += "<b><i>Your hunter boxing abilities are only able to be used on the various flora, fauna and unnatural creatures that reside in this universe. Against normal humanoids, you are just a boxer.</i></b>"
+	. += "<b><i>猎手拳击的能力只能用于宇宙中的各种动植物及超自然生物。面对普通类人生物时，你只是一名普通拳击手。</i></b>"
 	return .
 
 /datum/martial_art/boxing/hunter/honor_check(mob/living/possible_boxer)
@@ -478,13 +478,13 @@
 	var/second_word_pick = pick(second_word_strike)
 
 	defender.visible_message(
-		span_danger("[attacker] knocks the absolute bajeezus out of [defender] utilizing the terrifying [first_word_pick][second_word_pick]!!!"),
-		span_userdanger("You have the absolute bajeezus knocked out of you by [attacker]!!!"),
-		span_hear("You hear a sickening sound of flesh hitting flesh!"),
+		span_danger("[attacker]使出恐怖的[first_word_pick][second_word_pick]，将[defender]打得魂飞魄散！！！"),
+		span_userdanger("[attacker]将你打得魂飞魄散！！！"),
+		span_hear("你听到了令人作呕的肉体撞击声！"),
 		COMBAT_MESSAGE_RANGE,
 		attacker,
 	)
-	to_chat(attacker, span_danger("You knock the absolute bajeezus out of [defender] out with the terrifying [first_word_pick][second_word_pick]!!!"))
+	to_chat(attacker, span_danger("你使出恐怖的[first_word_pick][second_word_pick]，将[defender]打得魂飞魄散！！！"))
 	if(ishuman(attacker))
 		var/mob/living/carbon/human/human_attacker = attacker
 		human_attacker.force_say()

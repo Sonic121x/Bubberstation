@@ -1,7 +1,7 @@
 /// Nanotrasen Private Security forces
 /mob/living/basic/trooper/nanotrasen
-	name = "\improper Nanotrasen Private Security Officer"
-	desc = "An officer of Nanotrasen's private security force. Seems rather unpleased to meet you."
+	name = "\improper 纳米传讯私人安保官"
+	desc = "纳米传讯私人安保部队的安保官。见到你似乎让他很不高兴。"
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	faction = list(ROLE_DEATHSQUAD)
@@ -48,8 +48,8 @@
 	ranged_cooldown = 3 SECONDS
 
 /mob/living/basic/trooper/nanotrasen/ranged/assault
-	name = "Nanotrasen Assault Officer"
-	desc = "Nanotrasen Assault Officer. Contact CentCom if you saw him on your station. Prepare to die, if you've been found near Syndicate property."
+	name = "纳米传讯突击官"
+	desc = "纳米传讯突击官。如果你在站内看到他，请联系中央指挥部。如果你被发现在辛迪加资产附近，就准备受死吧。"
 
 	casingtype = /obj/item/ammo_casing/a223/weak
 	burst_shots = 4
@@ -60,8 +60,8 @@
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/nanotrasenassaultsoldier
 
 /mob/living/basic/trooper/nanotrasen/ranged/elite
-	name = "Nanotrasen Elite Assault Officer"
-	desc = "Pray for your life, syndicate. Run while you can."
+	name = "纳米传讯精英突击官"
+	desc = "祈祷你能活命吧，辛迪加。趁还能跑就快跑。"
 	maxHealth = 150
 	health = 150
 	habitable_atmos = null
@@ -77,7 +77,7 @@
 
 /// A more peaceful variant that will only attack when attacked, or when another Nanotrasen officer calls for help.
 /mob/living/basic/trooper/nanotrasen/peaceful
-	desc = "An officer of Nanotrasen's private security force."
+	desc = "纳米传讯私人安保部队的安保官。"
 	ai_controller = /datum/ai_controller/basic_controller/trooper/peaceful
 
 /mob/living/basic/trooper/nanotrasen/peaceful/Initialize(mapload)
@@ -86,7 +86,7 @@
 	AddComponent(/datum/component/ai_retaliate_advanced, retaliate_callback)
 
 /mob/living/basic/trooper/nanotrasen/ranged/smg/peaceful
-	desc = "An officer of Nanotrasen's private security force."
+	desc = "纳米传讯私人安保部队的安保官。"
 	ai_controller = /datum/ai_controller/basic_controller/trooper/ranged/burst/peaceful_burst
 
 /mob/living/basic/trooper/nanotrasen/ranged/smg/peaceful/Initialize(mapload)

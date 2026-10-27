@@ -42,21 +42,21 @@
 	var/half_max_charge = cell.max_charge() / 2
 	// Ethereals can't drain APCs under half charge, so that they are forced to look to alternative power sources if the station is running low
 	if(cell.charge() < half_max_charge)
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), user, "safeties prevent draining!"), ETHEREAL_APC_ALERT_DELAY)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), user, "保险装置禁止抽取！"), ETHEREAL_APC_ALERT_DELAY)
 		return
 
 	var/obj/item/stock_parts/power_store/stomach_cell = used_stomach.cell
 	used_stomach.drain_time = world.time + ETHEREAL_APC_DRAIN_TIME
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), user, "draining power..."), ETHEREAL_APC_ALERT_DELAY)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), user, "正在抽取电力……"), ETHEREAL_APC_ALERT_DELAY)
 	while(do_after(user, ETHEREAL_APC_DRAIN_TIME, target = src))
 		if(isnull(used_stomach) || (used_stomach != user.get_organ_slot(ORGAN_SLOT_STOMACH)))
-			balloon_alert(user, "stomach removed!?")
+			balloon_alert(user, "胃被取走了！？")
 			return
 		if(isnull(cell))
-			balloon_alert(user, "cell removed!")
+			balloon_alert(user, "电池被取走了！")
 			return
 		if(cell.charge() < half_max_charge)
-			balloon_alert(user, "safeties kicked in!")
+			balloon_alert(user, "保险装置启动了！")
 			return
 
 		var/our_available_charge = cell.charge() - half_max_charge
@@ -67,31 +67,31 @@
 		used_stomach.adjust_charge(energy_drained)
 
 		if(stomach_cell.used_charge() <= 0)
-			balloon_alert(user, "your charge is full!")
+			balloon_alert(user, "你的电量已满！")
 			return
 		if(cell.charge() <= 0)
-			balloon_alert(user, "apc is empty!")
+			balloon_alert(user, "APC 已空！")
 			return
 
 /// Handles charging our internal cell from an ethereal and their stomach
 /obj/machinery/power/apc/proc/charge_from_ethereal(mob/living/carbon/human/user, obj/item/organ/stomach/ethereal/used_stomach)
 	if(cell.charge() >= cell.max_charge())
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), user, "apc full!"), ETHEREAL_APC_ALERT_DELAY)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), user, "APC 已满！"), ETHEREAL_APC_ALERT_DELAY)
 		return
 	var/obj/item/stock_parts/power_store/stomach_cell = used_stomach.cell
 	if(stomach_cell.charge() <= 0)
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), user, "charge is too low!"), ETHEREAL_APC_ALERT_DELAY)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), user, "电量太低了！"), ETHEREAL_APC_ALERT_DELAY)
 		return
 
 	used_stomach.drain_time = world.time + ETHEREAL_APC_DRAIN_TIME
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), user, "transferring power..."), ETHEREAL_APC_ALERT_DELAY)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), user, "正在传输电力……"), ETHEREAL_APC_ALERT_DELAY)
 	if(!do_after(user, ETHEREAL_APC_DRAIN_TIME, target = src))
 		return
 	if(isnull(used_stomach) || (used_stomach != user.get_organ_slot(ORGAN_SLOT_STOMACH)))
-		balloon_alert(user, "stomach removed!?")
+		balloon_alert(user, "胃被取走了！？")
 		return
 	if(isnull(cell))
-		balloon_alert(user, "cell removed!")
+		balloon_alert(user, "电池被取走了！")
 		return
 
 	var/stomach_charge = stomach_cell.charge()
@@ -102,10 +102,10 @@
 	cell.give(-energy_drained)
 
 	if(cell.used_charge() <= 0)
-		balloon_alert(user, "apc is full!")
+		balloon_alert(user, "APC 已满！")
 		return
 	if(stomach_cell.charge() <= 0)
-		balloon_alert(user, "out of charge!")
+		balloon_alert(user, "电量耗尽！")
 		return
 
 
@@ -117,8 +117,8 @@
 
 	if(opened && (!issilicon(user)))
 		if(cell)
-			user.visible_message(span_notice("[user] removes \the [cell] from [src]!"))
-			balloon_alert(user, "cell removed")
+			user.visible_message(span_notice("[user] 从 [src] 里取出了 \the [cell]！"))
+			balloon_alert(user, "已取出电池")
 			user.put_in_hands(cell)
 		return
 	if((machine_stat & MAINT) && !opened) //no board; no interface
@@ -152,7 +152,7 @@
 		else if(istype(malfai) && !(malfai == user || (user in malfai.connected_robots)))
 			. = FALSE
 	if (!. && !loud)
-		balloon_alert(user, "it's disabled!")
+		balloon_alert(user, "它已被禁用！")
 	return .
 
 /obj/machinery/power/apc/shock(mob/living/shocking, chance, shock_source, siemens_coeff)

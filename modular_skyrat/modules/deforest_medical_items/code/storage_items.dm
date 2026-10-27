@@ -1,7 +1,7 @@
 // Bottle of painkiller pills
 /obj/item/storage/pill_bottle/painkiller
-	name = "amollin pill bottle"
-	desc = "It's an airtight container for storing medication. This one is all-white and has labels for containing amollin, a blend of Miner's Salve and Lidocaine."
+	name = "阿莫林药瓶"
+	desc = "一个用于存放药物的密封容器。这一瓶通体白色，标签表明里面装的是阿莫林——矿工药膏与利多卡因的混合物。"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/storage.dmi'
 	icon_state = "painkiller_bottle"
 	custom_price = PAYCHECK_CREW * 1.5
@@ -9,8 +9,8 @@
 	spawn_count = 7
 
 /obj/item/reagent_containers/applicator/pill/amollin
-	name = "amollin pill"
-	desc = "Neutralizes many common pains and ailments. A blend of Miner's Salve and Lidocaine."
+	name = "阿莫林药片"
+	desc = "可中和许多常见的疼痛与不适。由矿工药膏与利多卡因混合而成。"
 	icon_state = "pill9"
 	layers_remaining = 1
 	list_reagents = list(
@@ -21,8 +21,8 @@
 
 // Narcolepsy quirk medicines
 /obj/item/storage/pill_bottle/prescription_stimulant
-	name = "alifil pill bottle"
-	desc = "A special miniaturized pill bottle with an insert resembling a revolver cylinder, fitted for the inside of a 'civil defense'-class shell medkit. Holds five alifil pills, and is designed only to accept their proprietary DeForest(tm) shape. A big, bold yellow warning label on the side reads: 'FOLLOW DOSAGE DIRECTIONS'."
+	name = "阿利非药瓶"
+	desc = "一种特殊的小型药瓶，内部插片形似左轮弹巢，专为“民防”级外壳医疗包的内部空间而设计。可装五片阿利非药片，且只接受其专用的德福雷斯特(tm) 形状。侧面贴着一张醒目的大号黄色警告标签：“请遵照剂量说明”。"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/storage.dmi'
 	icon_state = "painkiller_bottle"
 	w_class = WEIGHT_CLASS_TINY // this is fine because we hard limit what can go in this thing
@@ -38,8 +38,8 @@
 	))
 
 /obj/item/reagent_containers/applicator/pill/prescription_stimulant
-	name = "alifil pill"
-	desc = "Used to treat symptoms of drowsiness and sudden loss of consciousness. Contains a mix of sugar, synaptizine and modafinil. A warning label reads: <b>Take in moderation</b>."
+	name = "阿利非药片"
+	desc = "用于治疗嗜睡和突发性意识丧失的症状。含有糖、突触嗪和莫达非尼的混合物。警告标签写道：<b>请适量服用</b>。"
 	icon_state = "pill15"
 	list_reagents = list(
 		/datum/reagent/consumable/sugar = 5,
@@ -49,13 +49,13 @@
 
 // Pre-packed civil defense medkit, with items to heal low damages inside
 /obj/item/storage/medkit/civil_defense
-	name = "civil defense medical kit"
+	name = "民防医疗包"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/storage.dmi'
 	icon_state = "poisoning_kit"
 	lefthand_file = 'modular_skyrat/modules/deforest_medical_items/icons/inhands/cases_lefthand.dmi'
 	righthand_file = 'modular_skyrat/modules/deforest_medical_items/icons/inhands/cases_righthand.dmi'
 	inhand_icon_state = "poisoning_kit"
-	desc = "A small medical kit that can only fit autoinjectors in it, these typically come with supplies to treat low level harm."
+	desc = "一个小型医疗包，里面只能装自动注射器；通常配有处理轻度伤害的补给。"
 	w_class = WEIGHT_CLASS_SMALL
 	drop_sound = 'sound/items/handling/ammobox_drop.ogg'
 	pickup_sound = 'sound/items/handling/ammobox_pickup.ogg'
@@ -82,8 +82,8 @@
 
 // Variant on the civil defense medkit for spacer planetside personnel (or other people suffering from chronic illnesses)
 /obj/item/storage/medkit/civil_defense/comfort
-	name = "civil defense symptom support kit"
-	desc = "A small, pocket-sized kit that can typically only fit autoinjectors in it. This variant on the classic 'cheese' civil defense kit contains supplies to address hindering symptomatic burden associated with common chronic diseases or adaptation syndromes, such as gravity sickness."
+	name = "民防症状缓解包"
+	desc = "一个小巧、可放进口袋的包，里面通常只能装自动注射器。这一经典“奶酪”民防包的变体装有补给，用于缓解常见慢性疾病或适应综合征（如重力病）所带来的症状负担。"
 	icon_state = "symptom_kit"
 
 /obj/item/storage/medkit/civil_defense/comfort/stocked
@@ -97,9 +97,9 @@
 
 // Pre-packed frontier medkit, with supplies to repair most common frontier health issues
 /obj/item/storage/medkit/frontier
-	name = "frontier medical kit"
-	desc = "A handy roll-top waterproof medkit often seen alongside those on the frontier, where medical support is less than optimal. \
-		It has a clip for hooking onto your belt, handy!"
+	name = "边疆医疗包"
+	desc = "一种便捷的卷顶式防水医疗包，在前沿地区医疗支援不够理想时常能见到。 \
+		它带有一个可挂在腰带上的夹扣，很方便！"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/storage.dmi'
 	icon_state = "frontier"
 	lefthand_file = 'modular_skyrat/modules/deforest_medical_items/icons/inhands/cases_lefthand.dmi'
@@ -127,8 +127,8 @@
 
 // Pre-packed combat surgeon medkit, with items for fixing more specific injuries and wounds
 /obj/item/storage/medkit/combat_surgeon
-	name = "combat surgeon medical kit"
-	desc = "A folding kit that is ideally filled with surgical tools and specialized treatment options for many harder-to-treat wounds."
+	name = "战地外科医疗包"
+	desc = "一个可折叠的医疗包，理想情况下装有外科工具与针对许多较难处理伤口的专门治疗方案。"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/storage.dmi'
 	icon_state = "surgeon"
 	lefthand_file = 'modular_skyrat/modules/deforest_medical_items/icons/inhands/cases_lefthand.dmi'
@@ -154,8 +154,8 @@
 
 // Big medical kit that can be worn like a bag, holds a LOT of medical items but works like a duffelbag
 /obj/item/storage/backpack/duffelbag/deforest_medkit
-	name = "satchel medical kit"
-	desc = "A large orange satchel able to hold just about any piece of small medical equipment you could think of, you can even wear it on your back or belt!"
+	name = "挎包式医疗包"
+	desc = "一个橙色大挎包，几乎能装下你能想到的任何小型医疗设备，甚至还能背在背上或挂在腰带上！"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/storage.dmi'
 	icon_state = "satchel"
 	lefthand_file = 'modular_skyrat/modules/deforest_medical_items/icons/inhands/cases_lefthand.dmi'
@@ -256,8 +256,8 @@
 
 // Big surgical kit that can be worn like a bag, holds 14 normal items (more than what a backpack can do!) but works like a duffelbag
 /obj/item/storage/backpack/duffelbag/deforest_surgical
-	name = "first responder surgical kit"
-	desc = "A large bag able to hold all the surgical tools and first response healing equipment you can think of, you can even wear it!"
+	name = "急救外科医疗包"
+	desc = "一个大包，能装下你能想到的所有外科工具和急救治疗设备，甚至还能穿戴在身上！"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/storage.dmi'
 	icon_state = "super_surgery"
 	lefthand_file = 'modular_skyrat/modules/deforest_medical_items/icons/inhands/cases_lefthand.dmi'
@@ -372,8 +372,8 @@
 
 // Midrange bag for paramedics, hypospray and more flexible item wise than surgical, but restricted to small items only
 /obj/item/storage/backpack/duffelbag/deforest_paramedic
-	name = "medical technician kit"
-	desc = "A belt equippable kit with a suite of medical gear. Compared to its sibling the first responder surgical kit, this variant is equipped with a hypospray hit for roving paramedics."
+	name = "医疗技术员医疗包"
+	desc = "一套可挂在腰带上的医疗装备包。与其同类的急救外科医疗包相比，这一款为四处巡诊的急救员配备了无针注射器。"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/storage.dmi'
 	icon_state = "technician"
 	lefthand_file = 'modular_skyrat/modules/deforest_medical_items/icons/inhands/cases_lefthand.dmi'
@@ -473,7 +473,7 @@
 	))
 
 /datum/design/deforest_medical
-	name = "Satchel Medical Bag"
+	name = "挎包式医疗包"
 	id = "satchel_medical"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -489,7 +489,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/deforest_technician
-	name = "Medical Technician Bag"
+	name = "医疗技术员背包"
 	id = "satchel_tech"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -505,7 +505,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/deforest_surgical
-	name = "First Responder Surgical Bag"
+	name = "急救外科背包"
 	id = "satchel_surgical"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(

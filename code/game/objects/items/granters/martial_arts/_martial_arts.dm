@@ -12,18 +12,18 @@
 	if(!isliving(user))
 		return FALSE
 	if(locate(martial) in user.martial_arts)
-		to_chat(user, span_warning("You already know [martial_name]!"))
+		to_chat(user, span_warning("你已经学会[martial_name]了！"))
 		return FALSE
 	return TRUE
 
 /obj/item/book/granter/martial/on_reading_start(mob/user)
-	to_chat(user, span_notice("You start reading about [martial_name]..."))
+	to_chat(user, span_notice("你开始阅读有关[martial_name]的内容……"))
 	return TRUE
 
 /obj/item/book/granter/martial/on_reading_finished(mob/user)
 	if(user.mind)
 		if(!user.mind.AddComponent(/datum/component/mindbound_martial_arts, martial))
-			to_chat(user, span_warning("You attempt to learn [martial_name] from [src], but it doesn't stick."))
+			to_chat(user, span_warning("你试图从[src]中学习[martial_name]，却怎么也学不会。"))
 			uses += 1 // Return the use
 			return
 	else

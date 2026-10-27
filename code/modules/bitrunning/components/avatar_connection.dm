@@ -221,8 +221,8 @@
 		/atom/movable/screen/alert/bitrunning,
 		new_master = intruder,
 	)
-	alert.name = "Netpod Breached"
-	alert.desc = "Someone is prying open the netpod. Find an exit."
+	alert.name = "网舱遭撬开"
+	alert.desc = "有人正在撬开网舱。快找个出口。"
 
 
 /// Triggers when the netpod is taking damage and is under 50%
@@ -235,8 +235,8 @@
 		/atom/movable/screen/alert/bitrunning,
 		new_master = source,
 	)
-	alert.name = "Integrity Compromised"
-	alert.desc = "The netpod is damaged. Find an exit."
+	alert.name = "完整性受损"
+	alert.desc = "网舱已受损。快找个出口。"
 
 
 //if your bitrunning avatar somehow manages to acquire and consume a red pill, they will be ejected from the Matrix
@@ -271,8 +271,8 @@
 		/atom/movable/screen/alert/bitrunning,
 		new_master = hackerman,
 	)
-	alert.name = "Domain Rebooting"
-	alert.desc = "The domain is rebooting. Find an exit."
+	alert.name = "虚拟域重启中"
+	alert.desc = "虚拟域正在重启。快找个出口。"
 
 
 /// Triggers whenever an antag steps onto an exit turf and the server is emagged
@@ -286,8 +286,8 @@
 		/atom/movable/screen/alert/bitrunning,
 		new_master = source,
 	)
-	alert.name = "Security Breach"
-	alert.desc = "A hostile entity is breaching the safehouse. Find an exit."
+	alert.name = "安保突破"
+	alert.desc = "敌对实体正在闯入安全屋。快找个出口。"
 
 
 /// Server has spawned a ghost role threat
@@ -300,8 +300,8 @@
 		/atom/movable/screen/alert/bitrunning,
 		new_master = source,
 	)
-	alert.name = "Threat Detected"
-	alert.desc = "Data stream abnormalities present."
+	alert.name = "检测到威胁"
+	alert.desc = "数据流出现异常。"
 
 
 /// Returns the mind to the old body

@@ -4,8 +4,8 @@
  * Base spawner for generating loot contents in abandoned crates
  */
 /obj/effect/spawner/abandoned_crate
-	name = "abandoned crate loot spawner"
-	desc = "i feel lucky"
+	name = "废弃板条箱战利品生成器"
+	desc = "我感觉运气不错"
 	/// Associative list with actual loot: item_type = quantity
 	var/list/loot
 
@@ -91,7 +91,7 @@
 
 	for(var/obj/item/gibtonite/free_bomb in loc)
 		free_bomb.quality = rand(GIBTONITE_QUALITY_LOW, GIBTONITE_QUALITY_HIGH)
-		free_bomb.GibtoniteReaction(null, "A secure loot closet has spawned a live")
+		free_bomb.GibtoniteReaction(null, "一个安全战利品柜生成了一枚活的")
 
 /obj/effect/spawner/abandoned_crate/bluespace_crystal
 	loot = list(

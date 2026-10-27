@@ -1,8 +1,8 @@
 #define AIRALARM_WARNING_COOLDOWN (10 SECONDS)
 
 /obj/machinery/airalarm
-	name = "air alarm"
-	desc = "A machine that monitors atmosphere levels. Goes off if the area is dangerous."
+	name = "空气警报器"
+	desc = "一台监测大气水平的机器。当区域变得危险时会报警。"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "alarmp"
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.05
@@ -99,7 +99,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 		set_panel_open(TRUE)
 
 	if(name == initial(name))
-		name = "[get_area_name(src)] Air Alarm"
+		name = "[get_area_name(src)] 空气警报器"
 
 	tlv_collection = list()
 	tlv_collection["pressure"] = new /datum/tlv/pressure
@@ -186,7 +186,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 
 /obj/machinery/airalarm/update_name(updates)
 	. = ..()
-	name = "[get_area_name(my_area)] Air Alarm"
+	name = "[get_area_name(my_area)] 空气警报器"
 
 /obj/machinery/airalarm/on_exit_area(datum/source, area/area_to_unregister)
 	//we cannot unregister from an area we never registered to in the first place
@@ -200,15 +200,15 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 	. = ..()
 	switch(buildstage)
 		if(AIR_ALARM_BUILD_NO_CIRCUIT)
-			. += span_notice("It is missing air alarm electronics.")
+			. += span_notice("它缺少空气警报器电子元件。")
 		if(AIR_ALARM_BUILD_NO_WIRES)
-			. += span_notice("It is missing wiring.")
+			. += span_notice("它缺少线路。")
 		if(AIR_ALARM_BUILD_COMPLETE)
-			. += span_notice("Right-click to [locked ? "unlock" : "lock"] the interface.")
+			. += span_notice("右键点击以[locked ? "解锁" : "锁定"]界面。")
 
 /obj/machinery/airalarm/ui_status(mob/user, datum/ui_state/state)
 	if(HAS_SILICON_ACCESS(user) && aidisabled)
-		to_chat(user, "AI control has been disabled.")
+		to_chat(user, "AI 控制已被禁用。")
 	else if(!shorted)
 		return ..()
 	return UI_CLOSE
@@ -223,14 +223,14 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 		var/obj/machinery/air_sensor/sensor = multi_tool.buffer
 
 		if(!allow_link_change)
-			balloon_alert(user, "linking disabled")
+			balloon_alert(user, "链接已禁用")
 			return ITEM_INTERACT_BLOCKING
 		if(connected_sensor || sensor.connected_airalarm)
-			balloon_alert(user, "sensor already connected!")
+			balloon_alert(user, "传感器已连接！")
 			return ITEM_INTERACT_BLOCKING
 
 		connect_sensor(sensor)
-		balloon_alert(user, "connected sensor")
+		balloon_alert(user, "已连接传感器")
 		return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/airalarm/ui_interact(mob/user, datum/tgui/ui)
@@ -272,16 +272,16 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 	data["envData"] = list()
 	if(connected_sensor)
 		data["envData"] += list(list(
-			"name" = "Linked area",
+			"name" = "链接区域",
 			"value" = my_area.name
 		))
 	data["envData"] += list(list(
-		"name" = "Pressure",
+		"name" = "压力",
 		"value" = "[round(pressure, 0.01)] kPa",
 		"danger" = tlv_collection["pressure"].check_value(pressure)
 	))
 	data["envData"] += list(list(
-		"name" = "Temperature",
+		"name" = "温度",
 		"value" = "[round(temp, 0.01)] Kelvin / [round(temp, 0.01) - T0C] Celcius",
 		"danger" = tlv_collection["temperature"].check_value(temp),
 	))
@@ -299,10 +299,10 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 		var/datum/tlv/tlv = tlv_collection[threshold]
 		var/list/singular_tlv = list()
 		if(threshold == "pressure")
-			singular_tlv["name"] = "Pressure"
+			singular_tlv["name"] = "压力"
 			singular_tlv["unit"] = "kPa"
 		else if (threshold == "temperature")
-			singular_tlv["name"] = "Temperature"
+			singular_tlv["name"] = "温度"
 			singular_tlv["unit"] = "K"
 		else
 			singular_tlv["name"] = GLOB.meta_gas_info[META_GAS_NAME][threshold]
@@ -431,14 +431,14 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			var/new_pressure = clamp(text2num(params["value"]), 0, ATMOS_PUMP_MAX_PRESSURE)
 			vent.internal_pressure_bound = new_pressure
 			if (old_pressure != new_pressure)
-				vent.investigate_log("internal pressure was set to [new_pressure] by [key_name(user)]", INVESTIGATE_ATMOS)
+				vent.investigate_log("内部压力被 [key_name(user)] 设为 [new_pressure]", INVESTIGATE_ATMOS)
 		if ("reset_internal_pressure")
 			if (isnull(vent))
 				return TRUE
 
 			if (vent.internal_pressure_bound != 0)
 				vent.internal_pressure_bound = 0
-				vent.investigate_log("internal pressure was reset by [key_name(user)]", INVESTIGATE_ATMOS)
+				vent.investigate_log("内部压力被 [key_name(user)] 重置", INVESTIGATE_ATMOS)
 		if ("set_external_pressure")
 			if (isnull(vent))
 				return TRUE
@@ -450,7 +450,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 				return TRUE
 
 			vent.external_pressure_bound = new_pressure
-			vent.investigate_log("external pressure was set to [new_pressure] by [key_name(user)]", INVESTIGATE_ATMOS)
+			vent.investigate_log("外部压力被 [key_name(user)] 设为 [new_pressure]", INVESTIGATE_ATMOS)
 			vent.update_appearance(UPDATE_ICON)
 		if ("reset_external_pressure")
 			if (isnull(vent))
@@ -460,7 +460,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 				return TRUE
 
 			vent.external_pressure_bound = ATMOS_PUMP_MAX_PRESSURE
-			vent.investigate_log("internal pressure was reset by [key_name(user)]", INVESTIGATE_ATMOS)
+			vent.investigate_log("内部压力被 [key_name(user)] 重置", INVESTIGATE_ATMOS)
 			vent.update_appearance(UPDATE_ICON)
 		if ("scrubbing")
 			if (isnull(scrubber))
@@ -479,7 +479,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			scrubber.toggle_filters(params["val"])
 		if ("mode")
 			select_mode(user, text2path(params["mode"]))
-			investigate_log("was turned to [selected_mode.name] mode by [key_name(user)]", INVESTIGATE_ATMOS)
+			investigate_log("被 [key_name(user)] 切换为 [selected_mode.name] 模式", INVESTIGATE_ATMOS)
 
 		if ("set_threshold")
 			var/threshold = text2path(params["threshold"]) || params["threshold"]
@@ -489,7 +489,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			var/threshold_type = params["threshold_type"]
 			var/value = params["value"]
 			tlv.set_value(threshold_type, value)
-			investigate_log("threshold value for [threshold]:[threshold_type] was set to [value] by [key_name(user)]", INVESTIGATE_ATMOS)
+			investigate_log("[threshold]:[threshold_type] 的阈值被 [key_name(user)] 设为 [value]", INVESTIGATE_ATMOS)
 
 			check_enviroment()
 
@@ -500,7 +500,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 				return
 			var/threshold_type = params["threshold_type"]
 			tlv.reset_value(threshold_type)
-			investigate_log("threshold value for [threshold]:[threshold_type] was reset by [key_name(user)]", INVESTIGATE_ATMOS)
+			investigate_log("[threshold]:[threshold_type] 的阈值被 [key_name(user)] 重置", INVESTIGATE_ATMOS)
 
 			check_enviroment()
 
@@ -607,28 +607,28 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 		var/is_low_temp = tlv_collection["temperature"].hazard_min != TLV_VALUE_IGNORE && temp <= tlv_collection["temperature"].hazard_min
 
 		if(is_low_pressure && is_low_temp)
-			warning_message = "Danger! Low pressure and temperature detected."
+			warning_message = "危险！检测到低气压和低温。"
 			return
 		if(is_low_pressure && is_high_temp)
-			warning_message = "Danger! Low pressure and high temperature detected."
+			warning_message = "危险！检测到低气压和高温。"
 			return
 		if(is_high_pressure && is_high_temp)
-			warning_message = "Danger! High pressure and temperature detected."
+			warning_message = "危险！检测到高气压和高温。"
 			return
 		if(is_high_pressure && is_low_temp)
-			warning_message = "Danger! High pressure and low temperature detected."
+			warning_message = "危险！检测到高气压和低温。"
 			return
 		if(is_low_pressure)
-			warning_message = "Danger! Low pressure detected."
+			warning_message = "危险！检测到低气压。"
 			return
 		if(is_high_pressure)
-			warning_message = "Danger! High pressure detected."
+			warning_message = "危险！检测到高气压。"
 			return
 		if(is_low_temp)
-			warning_message = "Danger! Low temperature detected."
+			warning_message = "危险！检测到低温。"
 			return
 		if(is_high_temp)
-			warning_message = "Danger! High temperature detected."
+			warning_message = "危险！检测到高温。"
 			return
 		else
 			warning_message = null
@@ -679,22 +679,22 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/airalarm, 27)
 
 ///Used for engine_access air alarm helper, which set air alarm's required access to away_general_access.
 /obj/machinery/airalarm/proc/give_engine_access()
-	name = "engine air alarm"
+	name = "引擎空气警报器"
 	locked = FALSE
 	req_access = null
 	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_ENGINEERING)
 
 ///Used for mixingchamber_access air alarm helper, which set air alarm's required access to away_general_access.
 /obj/machinery/airalarm/proc/give_mixingchamber_access()
-	name = "chamber air alarm"
+	name = "腔室空气警报器"
 	locked = FALSE
 	req_access = null
 	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_ORDNANCE)
 
 ///Used for all_access air alarm helper, which set air alarm's required access to null.
 /obj/machinery/airalarm/proc/give_all_access()
-	name = "all-access air alarm"
-	desc = "This particular atmos control unit appears to have no access restrictions."
+	name = "全权限空气警报器"
+	desc = "这个特定的大气控制单元似乎没有任何权限限制。"
 	locked = FALSE
 	req_access = null
 	req_one_access = null
@@ -724,10 +724,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/airalarm, 27)
 			sensor = target
 			break
 	if(isnull(sensor))
-		log_mapping("[src] at [AREACOORD(src)] tried to connect to a sensor, but no sensor with chamber_id:[air_sensor_chamber_id] found!")
+		log_mapping("[src] 在 [AREACOORD(src)] 试图连接到一个传感器，但没有找到 chamber_id 为 [air_sensor_chamber_id] 的传感器！")
 		return
 	if(connected_sensor)
-		log_mapping("[src] at [AREACOORD(src)] tried to connect to more than one sensor!")
+		log_mapping("[src] 在 [AREACOORD(src)] 试图连接到不止一个传感器！")
 		return
 	connect_sensor(sensor)
 

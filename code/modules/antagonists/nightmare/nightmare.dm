@@ -1,12 +1,12 @@
 /datum/antagonist/nightmare
-	name = "\improper Nightmare"
+	name = "\improper 梦魇"
 	antagpanel_category = ANTAG_GROUP_ABOMINATIONS
 	pref_flag = ROLE_NIGHTMARE
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
 	ui_name = "AntagInfoNightmare"
-	suicide_cry = "FOR THE DARKNESS!!"
+	suicide_cry = "为了黑暗！！"
 	preview_outfit = /datum/outfit/nightmare
 
 /datum/antagonist/nightmare/greet()
@@ -26,7 +26,7 @@
 	nightmare.mob_mood.mood_modifier += 1
 
 /datum/outfit/nightmare
-	name = "Nightmare (Preview only)"
+	name = "梦魇（仅供预览）"
 
 /datum/outfit/nightmare/post_equip(mob/living/carbon/human/human, visuals_only)
 	human.set_species(/datum/species/shadow/nightmare)
@@ -35,13 +35,13 @@
 
 /datum/objective/nightmare_fluff/New()
 	var/list/explanation_texts = list(
-		"Consume the last glimmer of light from the space station.",
-		"Bring judgment upon the daywalkers.",
-		"Extinguish the flame of this hellscape.",
-		"Reveal the true nature of the shadows.",
-		"From the shadows, all shall perish.",
-		"Conjure nightfall by blade or by flame.",
-		"Bring the darkness to the light."
+		"吞噬空间站中最后一缕光芒。",
+		"对白日行者降下审判。",
+		"熄灭这片地狱景象中的火焰。",
+		"揭示阴影的真实本质。",
+		"自阴影之中，万物皆将消亡。",
+		"以刀刃或火焰召来夜幕。",
+		"将黑暗带到光明之中。"
 	)
 	explanation_text = pick(explanation_texts)
 	..()

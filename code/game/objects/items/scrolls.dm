@@ -1,6 +1,6 @@
 /obj/item/teleportation_scroll
-	name = "scroll of teleportation"
-	desc = "A scroll for moving around."
+	name = "传送卷轴"
+	desc = "一卷用于四处移动的卷轴。"
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state = "scroll"
 	worn_icon_state = "scroll"
@@ -31,17 +31,17 @@
 	uses--
 	if(uses > 0)
 		return
-	to_chat(cast_on, span_warning("[src] runs out of uses and crumbles to dust!"))
+	to_chat(cast_on, span_warning("[src]耗尽了使用次数，化为尘土！"))
 	qdel(src)
 
 /obj/item/teleportation_scroll/apprentice
-	name = "lesser scroll of teleportation"
+	name = "次级传送卷轴"
 	uses = 1
 
 /obj/item/teleportation_scroll/examine(mob/user)
 	. = ..()
 	if(uses > 0)
-		. += "It has [uses] use\s remaining."
+		. += "还剩 [uses] 次使用次数。"
 
 /obj/item/teleportation_scroll/attack_self(mob/user)
 	. = ..()
@@ -57,7 +57,7 @@
 		return
 	var/datum/action/cooldown/spell/teleport/area_teleport/wizard/scroll/teleport = locate() in actions
 	if(!teleport)
-		to_chat(user, span_warning("[src] seems to be a faulty teleportation scroll, and has no magic associated."))
+		to_chat(user, span_warning("[src]似乎是一卷有缺陷的传送卷轴，并未附带任何魔法。"))
 		return
 	if(!teleport.Activate(user))
 		return

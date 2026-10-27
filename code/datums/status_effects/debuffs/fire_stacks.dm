@@ -152,7 +152,7 @@
 	if(owner.on_fire)
 		return
 
-	return "[owner.p_They()] [owner.p_are()] covered in something flammable."
+	return "[owner]身上沾满了某种易燃物。"
 
 /datum/status_effect/fire_handler/fire_stacks/proc/owner_touched_sparks()
 	SIGNAL_HANDLER
@@ -255,7 +255,7 @@
 
 	on_fire = TRUE
 	if(!silent)
-		owner.visible_message(span_warning("[owner] catches fire!"), span_userdanger("You're set on fire!"))
+		owner.visible_message(span_warning("[owner]着火了！"), span_userdanger("你着火了！"))
 
 	if(moblight_type)
 		if(moblight)
@@ -408,7 +408,7 @@ BUBBER EDIT RESET THIS TG BACK TO MASTER ONCE YOU GET FISH INFUSION*/
 	REMOVE_TRAIT(owner, TRAIT_NO_SLIP_WATER, TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/fire_handler/wet_stacks/get_examine_text()
-	return "[owner.p_They()] look[owner.p_s()] a little soaked."
+	return "[owner]看起来有些湿漉漉的。"
 
 /datum/status_effect/fire_handler/wet_stacks/tick(seconds_between_ticks)
 	var/decay = HAS_TRAIT(owner, TRAIT_WET_FOR_LONGER) ? -0.035 : -0.5

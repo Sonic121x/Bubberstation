@@ -72,8 +72,8 @@
 #define SCANNER_MUTATION_CLASS_OTHER 3
 
 /obj/machinery/computer/dna_console
-	name = "DNA Console"
-	desc = "From here you can research mysteries of the DNA!"
+	name = "DNA控制台"
+	desc = "你可以在这里研究DNA的奥秘！"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/dna_console")
 	icon_screen = "dna"
 	icon_keyboard = "med_key"
@@ -187,7 +187,7 @@
 	if (istype(tool, /obj/item/chromosome))
 		tool.forceMove(src)
 		stored_chromosomes += tool
-		to_chat(user, span_notice("You insert [tool]."))
+		to_chat(user, span_notice("你插入了[tool]。"))
 		return ITEM_INTERACT_SUCCESS
 
 	// Insert data disk if console disk slot is empty
@@ -201,7 +201,7 @@
 			eject_disk(user)
 		// Set the new diskette.
 		diskette = tool
-		to_chat(user, span_notice("You insert [tool]."))
+		to_chat(user, span_notice("你插入了[tool]。"))
 		return ITEM_INTERACT_SUCCESS
 
 	// Recycle non-activator used injectors
@@ -211,21 +211,21 @@
 		if(!activator.used)
 			//recycle unused activators
 			qdel(tool)
-			to_chat(user, span_notice("Recycled unused [tool]."))
+			to_chat(user, span_notice("已回收未使用的[tool]。"))
 			return ITEM_INTERACT_SUCCESS
 		if(activator.research && activator.filled)
 			if(prob(60))
 				var/c_typepath = generate_chromosome()
 				var/obj/item/chromosome/CM = new c_typepath (src)
 				stored_chromosomes += CM
-				to_chat(user,span_notice("[capitalize(CM.name)] added to storage."))
+				to_chat(user,span_notice("[CM.name]已存入存储区。"))
 			else
-				to_chat(user, span_notice("There was not enough genetic data to extract a viable chromosome."))
+				to_chat(user, span_notice("遗传数据不足，无法提取可用的染色体。"))
 		if(activator.crispr_charge)
 			crispr_charges++
-			to_chat(user, span_notice("CRISPR charge added."))
+			to_chat(user, span_notice("已增加一次CRISPR使用次数。"))
 		qdel(tool)
-		to_chat(user,span_notice("Recycled [tool]."))
+		to_chat(user,span_notice("已回收[tool]。"))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -467,7 +467,7 @@
 			scanner_occupant.dna.remove_all_mutations()
 			scanner_occupant.dna.generate_dna_blocks()
 			scramble_ready = world.time + SCRAMBLE_TIMEOUT
-			to_chat(usr,span_notice("DNA scrambled."))
+			to_chat(usr,span_notice("DNA已打乱。"))
 			scanner_occupant.apply_status_effect(/datum/status_effect/genetic_damage, GENETIC_DAMAGE_STRENGTH_MULTIPLIER*50/(connected_scanner.damage_coeff ** 2))
 			if(connected_scanner)
 				connected_scanner.use_energy(connected_scanner.active_power_usage)
@@ -545,7 +545,7 @@
 			// GUARD CHECK - Is the occupant currently undergoing some form of
 			//  transformation? If so, we don't want to be pulsing genes.
 			if(scanner_occupant.transformation_timer)
-				to_chat(usr,span_warning("Gene pulse failed: The scanner occupant undergoing a transformation."))
+				to_chat(usr,span_warning("基因脉冲失败：扫描仪内的对象正在变形。"))
 				return
 
 			// Resolve mutation's BYOND path from the alias
@@ -704,7 +704,7 @@
 			var/datum/mutation/target_mutation = get_mut_by_ref(bref, search_flags)
 
 			// Prompt for modifier string
-			var/new_sequence_input = tgui_input_text(usr, "Enter a replacement sequence", "Inherent Gene Replacement", max_length = 32, encode = FALSE)
+			var/new_sequence_input = tgui_input_text(usr, "输入替换序列", "固有基因替换", max_length = 32, encode = FALSE)
 			// Drop out if the string is the wrong length
 			if(length(new_sequence_input) != 32)
 				return
@@ -853,7 +853,7 @@
 			// Activators are also called "research" injectors and are used to create
 			//  chromosomes by recycling at the DNA Console
 			if(is_activator)
-				injector.name = "[mutation.name] activator"
+				injector.name = "[mutation.name]激活剂"
 				injector.research = TRUE
 				// If there's an operational connected scanner, we can use its upgrades
 				//  to improve our injector's genetic damage generation
@@ -869,7 +869,7 @@
 
 				injector_ready = world.time + (base_cd_time * cd_reduction_mult)
 			else
-				injector.name = "[mutation.name] mutator"
+				injector.name = "[mutation.name]诱变剂"
 				injector.force_mutate = TRUE
 				// If there's an operational connected scanner, we can use its upgrades
 				//  to improve our injector's genetic damage generation
@@ -920,12 +920,12 @@
 
 			// Saving temporary or unobtainable mutations leads to gratuitous abuse
 			if(length(mutation.sources) && get_mutation_class(mutation) == SCANNER_MUTATION_CLASS_OTHER)
-				say("ERROR: This mutation is anomalous, and cannot be saved.")
+				say("错误：此突变存在异常，无法保存。")
 				return
 
 			var/datum/mutation/stored = mutation.make_copy()
 			stored_mutations += stored
-			to_chat(usr,span_notice("Mutation successfully stored."))
+			to_chat(usr,span_notice("突变已成功存储。"))
 			return
 
 		// Save a mutation to the diskette's storage buffer.
@@ -943,13 +943,13 @@
 
 			// GUARD CHECK - Make sure the disk is not full
 			if(LAZYLEN(diskette.mutations) >= diskette.max_mutations)
-				to_chat(usr,span_warning("Disk storage is full."))
+				to_chat(usr,span_warning("磁盘存储空间已满。"))
 				return
 
 			// GUARD CHECK - Make sure the disk isn't set to read only, as we're
 			//  attempting to write to it
 			if(diskette.read_only)
-				to_chat(usr,span_warning("Disk is set to read only mode."))
+				to_chat(usr,span_warning("磁盘已设为只读模式。"))
 				return
 
 			var/search_flags = 0
@@ -973,7 +973,7 @@
 				return
 
 			diskette.mutations += original.make_copy()
-			to_chat(usr,span_notice("Mutation successfully stored to disk."))
+			to_chat(usr,span_notice("突变已成功存入磁盘。"))
 			return
 
 		// Completely removes a MUTATION_SOURCE_MUTATOR mutation or mutation with corrupt gene
@@ -1031,7 +1031,7 @@
 			// GUARD CHECK - Make sure the disk isn't set to read only, as we're
 			//  attempting to write to it (via deletion)
 			if(diskette.read_only)
-				to_chat(usr,span_warning("Disk is set to read only mode."))
+				to_chat(usr,span_warning("磁盘已设为只读模式。"))
 				return
 
 			var/bref = params["mutref"]
@@ -1091,7 +1091,7 @@
 
 			// If we got a new type, add it to our storage
 			stored_mutations += new result_path()
-			to_chat(usr, span_boldnotice("Success! New mutation has been added to console storage."))
+			to_chat(usr, span_boldnotice("成功！新突变已存入控制台。"))
 
 			// If it's already discovered, end here. Otherwise, add it to the list of
 			//  discovered mutations.
@@ -1101,7 +1101,7 @@
 
 			var/datum/mutation/HM = GET_INITIALIZED_MUTATION(result_path)
 			stored_research.discovered_mutations += result_path
-			say("Successfully mutated [HM.name].")
+			say("成功生成突变：[HM.name]。")
 			if(connected_scanner)
 				connected_scanner.use_energy(connected_scanner.active_power_usage)
 			else
@@ -1121,13 +1121,13 @@
 
 			// GUARD CHECK - Make sure the disk is not full.
 			if(LAZYLEN(diskette.mutations) >= diskette.max_mutations)
-				to_chat(usr,span_warning("Disk storage is full."))
+				to_chat(usr,span_warning("磁盘存储空间已满。"))
 				return
 
 			// GUARD CHECK - Make sure the disk isn't set to read only, as we're
 			//  attempting to write to it
 			if(diskette.read_only)
-				to_chat(usr,span_warning("Disk is set to read only mode."))
+				to_chat(usr,span_warning("磁盘已设为只读模式。"))
 				return
 
 			// GUARD CHECK - We're running a research-type operation. If, for some
@@ -1157,7 +1157,7 @@
 
 			// If we got a new type, add it to our storage
 			diskette.mutations += new result_path()
-			to_chat(usr, span_boldnotice("Success! New mutation has been added to the disk."))
+			to_chat(usr, span_boldnotice("成功！新突变已存入磁盘。"))
 
 			// If it's already discovered, end here. Otherwise, add it to the list of
 			//  discovered mutations
@@ -1167,7 +1167,7 @@
 
 			var/datum/mutation/HM = GET_INITIALIZED_MUTATION(result_path)
 			stored_research.discovered_mutations += result_path
-			say("Successfully mutated [HM.name].")
+			say("成功生成突变：[HM.name]。")
 			if(connected_scanner)
 				connected_scanner.use_energy(connected_scanner.active_power_usage)
 			else
@@ -1205,7 +1205,7 @@
 			// GUARD CHECK - Make sure the disk isn't set to read only, as we're
 			//  attempting to write to it
 			if(diskette.read_only)
-				to_chat(usr,span_warning("Disk is set to read only mode."))
+				to_chat(usr,span_warning("磁盘已设为只读模式。"))
 				return
 
 			// Convert the index to a number and clamp within the array range
@@ -1254,7 +1254,7 @@
 			// GUARD CHECK - Make sure the disk isn't set to read only, as we're
 			//  attempting to write (via deletion) to it
 			if(diskette.read_only)
-				to_chat(usr,span_warning("Disk is set to read only mode."))
+				to_chat(usr,span_warning("磁盘已设为只读模式。"))
 				return
 
 			diskette.genetic_makeup_buffer.Cut()
@@ -1278,7 +1278,7 @@
 
 			// Set the new information
 			genetic_makeup_buffer[buffer_index] = list(
-				"label"="Slot [buffer_index]:[scanner_occupant.real_name]",
+				"label"="槽位[buffer_index]：[scanner_occupant.real_name]",
 				"UI"=scanner_occupant.dna.unique_identity,
 				"UE"=scanner_occupant.dna.unique_enzymes,
 				"UF"=scanner_occupant.dna.unique_features,
@@ -1330,7 +1330,7 @@
 			// Convert the index to a number and clamp within the array range, then copy the data from the disk to that buffer
 			var/buffer_index = clamp(text2num(params["index"]), 1, NUMBER_OF_BUFFERS)
 			if(!make_cosmetic_dna_injector(dna_injector_type_to_flag(params["type"]), genetic_makeup_buffer[buffer_index]))
-				to_chat(usr, span_warning("Genetic data corrupted, unable to create injector."))
+				to_chat(usr, span_warning("遗传数据损坏，无法制造注射器。"))
 				return
 			injector_ready = world.time + MISC_INJECTOR_TIMEOUT
 			if(connected_scanner)
@@ -1527,7 +1527,7 @@
 
 			// Force apply any mutations, this is functionality similar to mutators
 			injector.force_mutate = TRUE
-			injector.name = "Advanced [inj_name] injector"
+			injector.name = "高级[inj_name]注射器"
 
 			// If there's an operational connected scanner, we can use its upgrades
 			//  to improve our injector's genetic damage generation
@@ -1562,7 +1562,7 @@
 
 			// GUARD CHECK - Make sure we limit the number of mutations appropriately
 			if(LAZYLEN(injector_selection[adv_inj]) >= max_injector_mutations)
-				to_chat(usr,span_warning("Advanced injector mutation storage is full."))
+				to_chat(usr,span_warning("高级注射器的突变存储空间已满。"))
 				return
 
 			var/mut_source = params["source"]
@@ -1602,13 +1602,13 @@
 
 			// If this would take us over the max instability, we inform the user.
 			if(instability_total > max_injector_instability)
-				to_chat(usr,span_warning("Extra mutation would make the advanced injector too instable."))
+				to_chat(usr,span_warning("继续添加突变会使高级注射器过于不稳定。"))
 				return
 
 			// If we've got here, all our checks are passed and we can successfully
 			// add the mutation to the advanced injector.
 			injector_selection[adv_inj] += original.make_copy()
-			to_chat(usr,span_notice("Mutation successfully added to advanced injector."))
+			to_chat(usr,span_notice("突变已成功加入高级注射器。"))
 			if(connected_scanner)
 				connected_scanner.use_energy(connected_scanner.active_power_usage)
 			else
@@ -1672,7 +1672,7 @@
 			//  However, if this is the case, we can't make a complete injector and
 			//  this catches that edge case
 			if(!buffer_slot["UI"])
-				to_chat(usr,span_warning("Genetic data corrupted, unable to apply genetic data."))
+				to_chat(usr,span_warning("遗传数据损坏，无法应用遗传数据。"))
 				return FALSE
 			COOLDOWN_START(src, enzyme_copy_timer, ENZYME_COPY_BASE_COOLDOWN)
 			scanner_occupant.dna.unique_identity = buffer_slot["UI"]
@@ -1685,7 +1685,7 @@
 			//  However, if this is the case, we can't make a complete injector and
 			//  this catches that edge case
 			if(!buffer_slot["UF"])
-				to_chat(usr,span_warning("Genetic data corrupted, unable to apply genetic data."))
+				to_chat(usr,span_warning("遗传数据损坏，无法应用遗传数据。"))
 				return FALSE
 			COOLDOWN_START(src, enzyme_copy_timer, ENZYME_COPY_BASE_COOLDOWN)
 			scanner_occupant.dna.unique_features = buffer_slot["UF"]
@@ -1698,7 +1698,7 @@
 			//  However, if this is the case, we can't make a complete injector and
 			//  this catches that edge case
 			if(!buffer_slot["name"] || !buffer_slot["UE"] || !buffer_slot["blood_type"])
-				to_chat(usr,span_warning("Genetic data corrupted, unable to apply genetic data."))
+				to_chat(usr,span_warning("遗传数据损坏，无法应用遗传数据。"))
 				return FALSE
 			COOLDOWN_START(src, enzyme_copy_timer, ENZYME_COPY_BASE_COOLDOWN)
 			scanner_occupant.real_name = buffer_slot["name"]
@@ -1713,7 +1713,7 @@
 			//  However, if this is the case, we can't make a complete injector and
 			//  this catches that edge case
 			if(!buffer_slot["UI"] || !buffer_slot["name"] || !buffer_slot["UE"] || !buffer_slot["UF"] || !buffer_slot["blood_type"])
-				to_chat(usr,span_warning("Genetic data corrupted, unable to apply genetic data."))
+				to_chat(usr,span_warning("遗传数据损坏，无法应用遗传数据。"))
 				return FALSE
 			COOLDOWN_START(src, enzyme_copy_timer, ENZYME_COPY_BASE_COOLDOWN)
 			scanner_occupant.dna.unique_identity = buffer_slot["UI"]
@@ -1893,7 +1893,7 @@
 		var/type = delayed_action["type"]
 		var/buffer_slot = delayed_action["buffer_slot"]
 		if(apply_genetic_makeup(type, buffer_slot))
-			to_chat(connected_scanner.occupant, span_notice("[src] activates!"))
+			to_chat(connected_scanner.occupant, span_notice("[src]启动了！"))
 		delayed_action = null
 
 /**
@@ -2205,7 +2205,7 @@
 	if(stored_research && !(path in stored_research.discovered_mutations))
 		var/datum/mutation/HM = GET_INITIALIZED_MUTATION(path)
 		stored_research.discovered_mutations += path
-		say("Successfully discovered [HM.name].")
+		say("成功发现了[HM.name]。")
 		return TRUE
 
 	return FALSE
@@ -2350,7 +2350,7 @@
 	if(!diskette)
 		return
 
-	to_chat(user, span_notice("You eject [diskette] from [src]."))
+	to_chat(user, span_notice("你从[src]中取出[diskette]。"))
 
 	// Reset the state to console storage.
 	tgui_view_state["storageMode"] = "console"

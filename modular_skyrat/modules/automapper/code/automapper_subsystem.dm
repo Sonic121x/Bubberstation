@@ -13,7 +13,7 @@
  */
 
 SUBSYSTEM_DEF(automapper)
-	name = "Automapper"
+	name = "自动映射"
 	ss_flags = SS_NO_FIRE
 	dependents = list(
 		/datum/controller/subsystem/mapping
@@ -53,19 +53,19 @@ SUBSYSTEM_DEF(automapper)
 
 		var/list/coordinates = selected_template["coordinates"]
 		if(LAZYLEN(coordinates) != 3)
-			CRASH("Invalid coordinates for automap template [template]!")
+			CRASH("自动映射模板 [template] 的坐标无效！")
 
 		var/desired_z = SSmapping.levels_by_trait(selected_template["trait_name"])[coordinates[3]]
 
 		var/turf/load_turf = locate(coordinates[1], coordinates[2], desired_z)
 
 		if(!LAZYLEN(selected_template["map_files"]))
-			CRASH("Could not find any valid map files for automap template [template]!")
+			CRASH("找不到自动映射模板 [template] 的任何有效地图文件！")
 
 		var/map_file = selected_template["directory"] + pick(selected_template["map_files"])
 
 		if(!fexists(map_file))
-			CRASH("[template] could not find map file [map_file]!")
+			CRASH("[template] 找不到地图文件 [map_file]！")
 
 		var/datum/map_template/automap_template/map = new(map_file, template, required_map, load_turf)
 		preloaded_map_templates += map
@@ -84,8 +84,8 @@ SUBSYSTEM_DEF(automapper)
 		else if(!(iterating_template.required_map in map_names))
 			continue
 		if(iterating_template.load(iterating_template.load_turf, FALSE))
-			add_startup_message("Loaded [iterating_template.name] at [iterating_template.load_turf.x], [iterating_template.load_turf.y], [iterating_template.load_turf.z]!")
-			log_world("AUTOMAPPER: Successfully loaded map template [iterating_template.name] at [iterating_template.load_turf.x], [iterating_template.load_turf.y], [iterating_template.load_turf.z]!")
+			add_startup_message("已在 [iterating_template.load_turf.x], [iterating_template.load_turf.y], [iterating_template.load_turf.z] 加载 [iterating_template.name]！")
+			log_world("自动映射：已成功在 [iterating_template.load_turf.x], [iterating_template.load_turf.y], [iterating_template.load_turf.z] 加载地图模板 [iterating_template.name]！")
 
 /**
  * CentCom atoms aren't initialized but already exist, so must be properly initialized and then qdel'd.

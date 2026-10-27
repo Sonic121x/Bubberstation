@@ -1,13 +1,13 @@
 /// Modular Map Loader doesnt like subfolders
 /datum/lazy_template/virtual_domain/ancient_milsim
-	name = "Ancient Military Simulator"
+	name = "古代军事模拟器"
 	announce_to_ghosts = TRUE
 	cost = BITRUNNER_COST_HIGH
-	desc = "Recreate the events of the Border War's 'hot' part-long-gone as a Solarian strike team sweeping CIN compounds; sponsored by the SolFed recreation enthusiasts. \
-	Multiplayer playthrough and proper preparation highly recommended."
+	desc = "重温边境战争早已逝去的“热”战阶段，扮演太阳联邦突击队清扫 CIN 营地；由太阳联邦复古爱好者赞助。 \
+	强烈建议多人游玩并做好充分准备。"
 	completion_loot = list(/obj/item/stack/spacecash/c200 = 3) //Sponsored
 	difficulty = BITRUNNER_DIFFICULTY_HIGH
-	help_text = "The last part of this domain has a chance to be very PvP-centric. It's best if you don't come alone, and smuggle some ability and gear disks."
+	help_text = "本域的最后阶段有可能会非常偏向玩家对战。最好别独自前来，并偷偷带些能力磁盘和装备磁盘。"
 	forced_outfit = /datum/outfit/solfed_bitrun
 	key = "ancient_milsim"
 	map_name = "skyrat_ancientmilsim"

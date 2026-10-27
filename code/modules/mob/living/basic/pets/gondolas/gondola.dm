@@ -4,12 +4,12 @@
 #define GONDOLA_EYES pick(list("gondola_eyes_close", "gondola_eyes_far"))
 
 /mob/living/basic/pet/gondola
-	name = "gondola"
-	real_name = "gondola"
-	desc = "Gondola is the silent walker. \
-		Having no hands he embodies the Taoist principle of wu-wei (non-action) while his smiling \
-		facial expression shows his utter and complete acceptance of the world as it is. \
-		Its hide is extremely valuable."
+	name = "贡多拉"
+	real_name = "贡多拉"
+	desc = "贡多拉是沉默的行者。 \
+		他没有双手，因此体现了道家“无为”的原则；而那始终微笑的 \
+		神情，则显露出他对世界本然的彻底接纳。 \
+		它的皮毛极为贵重。"
 	icon = 'icons/mob/simple/gondolas.dmi'
 	icon_state = "gondola"
 	icon_living = "gondola"
@@ -17,12 +17,12 @@
 	maxHealth = 200
 	health = 200
 	faction = list(FACTION_GONDOLA)
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "bops"
-	response_disarm_simple = "bop"
-	response_harm_continuous = "kicks"
-	response_harm_simple = "kick"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻拍"
+	response_disarm_simple = "轻拍"
+	response_harm_continuous = "踢"
+	response_harm_simple = "踢"
 	ai_controller = /datum/ai_controller/basic_controller/gondola
 
 	//Gondolas aren't affected by cold.

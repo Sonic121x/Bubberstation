@@ -5,7 +5,7 @@ These materials call on_applied() on whatever item they are applied to, common e
 
 */
 SUBSYSTEM_DEF(materials)
-	name = "Materials"
+	name = "材料"
 	ss_flags = SS_NO_FIRE | SS_NO_INIT
 	/// Dictionary of material.id || material ref
 	var/list/materials
@@ -17,13 +17,13 @@ SUBSYSTEM_DEF(materials)
 	var/list/list/material_combos
 	/// List of stackcrafting recipes for materials using base recipes
 	var/list/base_stack_recipes = list(
-		new /datum/stack_recipe("Chair", /obj/structure/chair/greyscale, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_SKIP_MATERIALS_PARITY, category = CAT_FURNITURE),
-		new /datum/stack_recipe("Toilet", /obj/structure/toilet/greyscale, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_SKIP_MATERIALS_PARITY, category = CAT_FURNITURE),
-		new /datum/stack_recipe("Sink Frame", /obj/item/wallframe/sinkframe, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_SKIP_MATERIALS_PARITY, category = CAT_FURNITURE),
-		new /datum/stack_recipe("Material floor tile", /obj/item/stack/tile/material, 1, 4, 20, crafting_flags = CRAFT_SKIP_MATERIALS_PARITY, category = CAT_TILES),
-		new /datum/stack_recipe("Material airlock assembly", /obj/structure/door_assembly/door_assembly_material, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_SKIP_MATERIALS_PARITY, category = CAT_DOORS),
-		new /datum/stack_recipe("Material platform", /obj/structure/platform/material, 2, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_SKIP_MATERIALS_PARITY, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75, category = CAT_STRUCTURE), \
-		new /datum/stack_recipe("Carving block", /obj/structure/carving_block, 5, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_SKIP_MATERIALS_PARITY, category = CAT_STRUCTURE),
+		new /datum/stack_recipe("椅子", /obj/structure/chair/greyscale, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_SKIP_MATERIALS_PARITY, category = CAT_FURNITURE),
+		new /datum/stack_recipe("马桶", /obj/structure/toilet/greyscale, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_SKIP_MATERIALS_PARITY, category = CAT_FURNITURE),
+		new /datum/stack_recipe("水槽框架", /obj/item/wallframe/sinkframe, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_SKIP_MATERIALS_PARITY, category = CAT_FURNITURE),
+		new /datum/stack_recipe("材料地砖", /obj/item/stack/tile/material, 1, 4, 20, crafting_flags = CRAFT_SKIP_MATERIALS_PARITY, category = CAT_TILES),
+		new /datum/stack_recipe("材料气闸门组件", /obj/structure/door_assembly/door_assembly_material, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_SKIP_MATERIALS_PARITY, category = CAT_DOORS),
+		new /datum/stack_recipe("材料平台", /obj/structure/platform/material, 2, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_SKIP_MATERIALS_PARITY, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75, category = CAT_STRUCTURE), \
+		new /datum/stack_recipe("雕刻坯料", /obj/structure/carving_block, 5, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_SKIP_MATERIALS_PARITY, category = CAT_STRUCTURE),
 	)
 	/// List of stackcrafting recipes for materials using rigid recipes (none yet)
 	var/list/rigid_stack_recipes = list(

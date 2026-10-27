@@ -3,7 +3,7 @@
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /atom/movable/screen/robot/module
-	name = "cyborg module"
+	name = "半机械人模块"
 	icon_state = "nomod"
 
 /atom/movable/screen/robot/Click(location, control, params)
@@ -32,7 +32,7 @@
 	return TRUE
 
 /atom/movable/screen/robot/module_slot
-	name = "module"
+	name = "模块"
 	icon_state = "inv1"
 	base_icon_state = "inv1"
 	/// Slot number of the module
@@ -40,7 +40,7 @@
 
 /atom/movable/screen/robot/module_slot/proc/set_slot(slot_num)
 	src.slot_num = slot_num
-	name = "module[slot_num]"
+	name = "模块[slot_num]"
 	base_icon_state = "inv[slot_num]"
 	icon_state = base_icon_state
 
@@ -59,7 +59,7 @@
 	R.toggle_module(slot_num)
 
 /atom/movable/screen/robot/radio
-	name = "radio"
+	name = "无线电"
 	icon_state = "radio"
 	screen_loc = ui_borg_radio
 
@@ -70,7 +70,7 @@
 	R.radio.interact(R)
 
 /atom/movable/screen/robot/lamp
-	name = "headlamp"
+	name = "头灯"
 	icon_state = "lamp_off"
 	base_icon_state = "lamp"
 	screen_loc = ui_borg_lamp
@@ -88,7 +88,7 @@
 	return ..()
 
 /atom/movable/screen/robot/modpc
-	name = "Modular Interface"
+	name = "模块化界面"
 	icon_state = "template"
 	screen_loc = ui_borg_tablet
 
@@ -100,7 +100,7 @@
 	user.modularInterface?.interact(user)
 
 /atom/movable/screen/robot/alerts
-	name = "Alert Panel"
+	name = "警报面板"
 	icon = 'icons/hud/screen_ai.dmi'
 	icon_state = "alerts"
 	screen_loc = ui_borg_alerts

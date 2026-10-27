@@ -6,7 +6,7 @@
 	name = ROLE_ASSAULT_OPERATIVE
 	pref_flag = ROLE_ASSAULT_OPERATIVE
 	roundend_category = "assault operatives"
-	antagpanel_category = "Assault Operatives"
+	antagpanel_category = "突击特工"
 	antag_hud_name = "synd"
 	antag_moodlet = /datum/mood_event/focused
 	show_to_ghosts = TRUE
@@ -25,10 +25,10 @@
 	var/send_to_spawnpoint = TRUE
 	//If not assigned a team by default ops will try to join existing ones, set this to TRUE to always create new team.
 	var/always_new_team = FALSE
-	var/spawn_text = "Your mission is to assault NTSS13 and get all of the GoldenEye keys that you can from the heads of staff that reside there. \
-	Use your pinpointer to locate these after you have extracted the GoldenEye key from the head of staff. It will be sent in by droppod. \
-	You must then upload the key to the GoldenEye upload terminal on this GoldenEye station. After you have completed your mission, \
-	The GoldenEye defence network will fall, and we will gain access to Nanotrasen's military systems. Good luck agent."
+	var/spawn_text = "你的任务是突袭 NTSS13，并从驻守在那里的各部门主管身上尽可能取得所有的黄金眼钥匙。 \
+	从主管身上取出黄金眼钥匙后，用你的定位器找到它们。钥匙会通过空投舱送达。 \
+	随后你必须把钥匙上传到这座黄金眼站上的黄金眼上传终端。完成你的任务后， \
+	黄金眼防御网络将会陷落，我们就能进入纳米传讯的军事系统。祝你好运，特工。"
 	/// A link to our internal pinpointer.
 	var/datum/status_effect/goldeneye_pinpointer/pinpointer
 
@@ -44,7 +44,7 @@
 
 /datum/antagonist/assault_operative/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'modular_skyrat/modules/assault_operatives/sound/assault_operatives_greet.ogg', 30, 0, use_reverb = FALSE)
-	to_chat(owner, span_big("You are an assault operative!"))
+	to_chat(owner, span_big("你是一名突击特工！"))
 	to_chat(owner, span_red(spawn_text))
 	owner.announce_objectives()
 
@@ -141,7 +141,7 @@
 		objectives |= assault_team.objectives
 
 /datum/antagonist/assault_operative/proc/give_alias()
-	var/chosen_name = sanitize_text(tgui_input_text(owner.current, "Please input your desired name!", "Name", "Randy Random"))
+	var/chosen_name = sanitize_text(tgui_input_text(owner.current, "请输入你想要的名字！", "姓名", "兰迪·兰登"))
 	if(!chosen_name)
 		owner.current.real_name = owner.current.generate_random_mob_name(TRUE)
 		return
@@ -155,7 +155,7 @@
 
 	if(human_target.dna.species.id == "plasmaman" )
 		human_target.set_species(/datum/species/human)
-		to_chat(human_target, span_userdanger("You are now a human!"))
+		to_chat(human_target, span_userdanger("你现在是人类了！"))
 
 	for(var/obj/item/item in human_target.get_equipped_items(TRUE))
 		qdel(item)
@@ -219,30 +219,30 @@
 
 /datum/team/assault_operatives/roundend_report()
 	var/list/parts = list()
-	parts += "<span class='header'>Assault Operatives:</span>"
+	parts += "<span class='header'>突击特工：</span>"
 
 	switch(get_result())
 		if(ASSAULT_RESULT_WIN)
-			parts += span_greentext("Assault Operatives Major Victory!")
-			parts += "<B>The Assault Operatives have successfully subverted and activated GoldenEye, and they all survived!</B>"
+			parts += span_greentext("突击特工大胜！")
+			parts += "<B>突击特工成功颠覆并激活了黄金眼，而且全员生还！</B>"
 		if(ASSAULT_RESULT_PARTIAL_WIN)
-			parts += span_greentext("Assault Operatives Minor Victory!")
-			parts += "<B>The Assault Operatives have successfully subverted and activated GoldenEye, but only some survived!</B>"
+			parts += span_greentext("突击特工小胜！")
+			parts += "<B>突击特工成功颠覆并激活了黄金眼，但只有部分成员生还！</B>"
 		if(ASSAULT_RESULT_HEARTY_WIN)
-			parts += span_greentext("Assault Operatives Hearty Victory!")
-			parts += "<B>The Assault Operatives have successfully subverted and activated GoldenEye, but they all died!</B>"
+			parts += span_greentext("突击特工惨胜！")
+			parts += "<B>突击特工成功颠覆并激活了黄金眼，但全员阵亡！</B>"
 		if(ASSAULT_RESULT_LOSS)
-			parts += span_redtext("Crew Victory!")
-			parts += "<B>The Research Staff of [station_name()] have killed all of the assault operatives and stopped them activating GoldenEye!</B>"
+			parts += span_redtext("船员胜利！")
+			parts += "<B>[station_name()] 的科研人员击杀了所有突击特工，阻止了他们激活黄金眼！</B>"
 		if(ASSAULT_RESULT_STALEMATE)
-			parts += "<span class='neutraltext big'>Stalemate!</span>"
-			parts += "<B>The assault operatives have failed to activate GoldenEye and are still alive!</B>"
+			parts += "<span class='neutraltext big'>僵局！</span>"
+			parts += "<B>突击特工未能激活黄金眼，但仍然存活！</B>"
 		else
-			parts += "<span class='neutraltext big'>Neutral Victory</span>"
-			parts += "<B>Mission aborted!</B>"
-	parts += span_redtext("GoldenEye keys uploaded: [SSgoldeneye.uploaded_keys]/[SSgoldeneye.required_keys]")
+			parts += "<span class='neutraltext big'>中立胜利</span>"
+			parts += "<B>任务中止！</B>"
+	parts += span_redtext("黄金眼钥匙已上传：[SSgoldeneye.uploaded_keys]/[SSgoldeneye.required_keys]")
 
-	var/text = "<br><span class='header'>The assault operatives were:</span>"
+	var/text = "<br><span class='header'>突击特工有：</span>"
 	text += printplayerlist(members)
 	text += "<br>"
 

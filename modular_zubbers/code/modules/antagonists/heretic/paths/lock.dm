@@ -1,12 +1,12 @@
 /obj/item/heretic_labyrinth_handbook/examine(mob/user)
 	. = ..()
 
-	. += span_notice("Can be used to generate impenetrable barriers. Lasts for 8 seconds, 5 charges at a time.")
+	. += span_notice("可用于生成无法穿透的屏障。持续8秒，同时拥有5次充能。")
 
 /datum/heretic_knowledge_tree_column/lock
 	description = list(
-		"The Path of Lock revolves around access, area denial, theft and gadgets.",
-		"Pick this path if you are new to heretic, or want a less confrontational playstyle and more interested in being a slippery rat.",
+		"启锁之道侧重于通行权限、区域封锁、盗窃和各种工具。",
+		"如果你初次游玩异教徒，或希望少些正面对抗、更喜欢四处钻空子，就选择这条道路。",
 	)
 
 /obj/effect/lock_portal/Initialize(mapload, target, invert = FALSE)
@@ -17,25 +17,25 @@
 /obj/effect/lock_portal/examine(mob/user)
 	. = ..()
 
-	. += span_notice("If a non-acolyte walks through the door, they will be teleported somewhere random. Acolytes, however, will be teleported to a second portal somewhere else.")
-	. += span_notice("Can be removed with antimagic weaponry (holymelons/nullrods) or by removing the airlock.")
+	. += span_notice("非侍徒穿过这扇门时会被随机传送；侍徒则会被传送到另一处配对的传送门。")
+	. += span_notice("可用反魔法武器（圣西瓜或虚无之杖）驱散，也可通过拆除气闸将其清除。")
 
 /obj/effect/lock_portal/proc/on_holy_attack(datum/source, obj/item/weapon)
 	SIGNAL_HANDLER
 
-	visible_message(span_warning("[weapon] dispels [src]!"))
+	visible_message(span_warning("[weapon]驱散了[src]！"))
 	qdel(src)
 
 /datum/status_effect/caretaker_refuge
 	duration = 60 SECONDS
 
 /datum/action/cooldown/spell/caretaker
-	name = "Caretaker's Last Refuge"
-	desc = "Shifts you into the Caretaker's Refuge, rendering you translucent and intangible. \
-		While in the Refuge your movement is unrestricted, but you cannot use your hands or cast any spells. \
-		You cannot enter the Refuge while near other sentient beings, \
-		and you can be removed from it upon contact with antimagical artifacts. \
-		Lasts for one minute."
+	name = "看守者的最后庇护"
+	desc = "将你移入看守者的庇护所，使你半透明且没有实体。\
+		在庇护所中可以自由移动，但无法使用双手或施放任何法术。\
+		附近有其他有意识的生物时，无法进入庇护所；\
+		接触反魔法物品会将你逐出。\
+		持续一分钟。"
 
 /datum/action/cooldown/spell/pointed/burglar_finesse/before_cast(atom/cast_on)
 	. = ..()
@@ -44,5 +44,5 @@
 
 	var/turf/in_LOS = get_hearers_in_LOS(cast_range, owner)
 	if (!(cast_on in in_LOS))
-		owner.balloon_alert(owner, "need line of sight!")
+		owner.balloon_alert(owner, "必须看得到目标！")
 		return SPELL_CANCEL_CAST

@@ -9,8 +9,8 @@
 //Barricades/cover
 
 /obj/structure/barricade
-	name = "chest high wall"
-	desc = "Looks like this would make good cover."
+	name = "齐胸矮墙"
+	desc = "看起来是个不错的掩体。"
 	anchored = TRUE
 	density = TRUE
 	max_integrity = 100
@@ -36,15 +36,15 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, "already full integrity!")
+		balloon_alert(user, "已经完好无损！")
 		return ITEM_INTERACT_BLOCKING
 
-	user.balloon_alert_to_viewers("repairing [src]...", "repairing...")
+	user.balloon_alert_to_viewers("正在修理[src]……", "正在修理……")
 
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 10, volume=50))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "repaired")
+	balloon_alert(user, "已修好")
 	repair_damage(20)
 	return ITEM_INTERACT_SUCCESS
 
@@ -64,8 +64,8 @@
 
 /////BARRICADE TYPES///////
 /obj/structure/barricade/wooden
-	name = "wooden barricade"
-	desc = "This space is blocked off by a wooden barricade."
+	name = "木制路障"
+	desc = "木制路障挡住了这片空间。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "woodenbarricade"
 	resistance_flags = FLAMMABLE
@@ -77,25 +77,25 @@
 /obj/structure/barricade/wooden/Initialize(mapload)
 	. = ..()
 
-	var/static/list/tool_behaviors = list(TOOL_CROWBAR = list(SCREENTIP_CONTEXT_LMB = "Deconstruct"))
+	var/static/list/tool_behaviors = list(TOOL_CROWBAR = list(SCREENTIP_CONTEXT_LMB = "拆解"))
 	AddElement(/datum/element/contextual_screentip_tools, tool_behaviors)
 	register_context()
 
 	AddElement(/datum/element/uses_girder_wall_recipes)
 
 /obj/structure/barricade/wooden/crowbar_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, "deconstructing barricade...")
+	balloon_alert(user, "正在拆解路障……")
 	if(!tool.use_tool(src, user, 2 SECONDS, volume=50))
 		return
-	loc.balloon_alert(user, "barricade deconstructed")
+	loc.balloon_alert(user, "路障已拆解")
 	tool.play_tool_sound(src)
 	new /obj/item/stack/sheet/mineral/wood(get_turf(src), drop_amount)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/barricade/wooden/crude
-	name = "crude plank barricade"
-	desc = "This space is blocked off by a crude assortment of planks."
+	name = "简陋木板路障"
+	desc = "粗糙拼凑的木板挡住了这片空间。"
 	icon_state = "plankbarricade"
 	drop_amount = 1
 	max_integrity = 50
@@ -103,7 +103,7 @@
 	layer = SIGN_LAYER
 
 /obj/structure/barricade/wooden/crude/snow
-	desc = "This space is blocked off by a crude assortment of planks. It seems to be covered in a layer of snow."
+	desc = "粗糙拼凑的木板挡住了这片空间，上面似乎覆盖着一层雪。"
 	icon_state = "plankbarricade_snow"
 	max_integrity = 75
 
@@ -111,8 +111,8 @@
 	new /obj/item/stack/sheet/mineral/wood(get_turf(src), drop_amount)
 
 /obj/structure/barricade/sandbags
-	name = "sandbags"
-	desc = "Bags of sand. Self explanatory."
+	name = "沙袋"
+	desc = "装着沙子的袋子。顾名思义。"
 	icon = 'icons/obj/smooth_structures/sandbags.dmi'
 	icon_state = "sandbags-0"
 	base_icon_state = "sandbags"
@@ -130,8 +130,8 @@
 	AddElement(/datum/element/elevation, pixel_shift = 12)
 
 /obj/structure/barricade/security
-	name = "security barrier"
-	desc = "A deployable barrier. Provides good cover in fire fights."
+	name = "安保护栏"
+	desc = "可部署的护栏，能在交火中提供良好掩护。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "barrier1"
 	max_integrity = 180
@@ -147,8 +147,8 @@
 	fire = 10
 
 /obj/item/grenade/barrier
-	name = "barrier grenade"
-	desc = "Instant cover."
+	name = "护栏手榴弹"
+	desc = "即用即得的掩体。"
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "wallbang"
 	inhand_icon_state = "flashbang"
@@ -157,7 +157,7 @@
 
 /obj/item/grenade/barrier/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click to toggle modes.")
+	. += span_notice("Alt点击可切换模式。")
 
 /obj/item/grenade/barrier/click_alt(mob/living/carbon/user)
 	toggle_mode(user)
@@ -172,7 +172,7 @@
 		if(HORIZONTAL)
 			mode = SINGLE
 
-	to_chat(user, span_notice("[src] is now in [mode] mode."))
+	to_chat(user, span_notice("[src]现处于[mode == SINGLE ? "单个" : mode == VERTICAL ? "纵向" : "横向"]模式。"))
 
 /obj/item/grenade/barrier/detonate(mob/living/lanced_by)
 	. = ..()
@@ -203,8 +203,8 @@
 	toggle_mode(user)
 
 /obj/item/deployable_turret_folded
-	name = "folded heavy machine gun"
-	desc = "A folded and unloaded heavy machine gun, ready to be deployed and used."
+	name = "折叠重机枪"
+	desc = "已折叠且未装弹的重机枪，可部署后使用。"
 	icon = 'icons/obj/weapons/turrets.dmi'
 	icon_state = "folded_hmg"
 	inhand_icon_state = "folded_hmg"

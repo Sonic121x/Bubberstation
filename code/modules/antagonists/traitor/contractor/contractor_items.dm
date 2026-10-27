@@ -1,43 +1,43 @@
 /obj/item/pinpointer/crew/contractor
-	name = "contractor pinpointer"
-	desc = "A handheld tracking device that locks onto certain signals. Ignores suit sensors, but is much less accurate."
+	name = "承包商指示器"
+	desc = "一种锁定特定信号的手持追踪设备。会忽略宇航服传感器，但精度低得多。"
 	icon_state = "pinpointer_syndicate"
 	worn_icon_state = "pinpointer_black"
 	minimum_range = 25
 	ignore_suit_sensor_level = TRUE
 
 /obj/item/paper/contractor_guide
-	name = "Contractor Guide"
-	default_raw_text = {"Welcome agent, congratulations on your new position as contractor. On top of your already assigned objectives,\
-		this kit will provide you contracts to take on for TC payments.\
-		<p>Provided within, we give your specialist contractor space suit. It's even more compact, being able to fit into a pocket, and faster than the \
-		Syndicate space suit available to you on the uplink. We also provide your chameleon jumpsuit and mask, both of which can be changed \
-		to any form you need for the moment. The cigarettes are a special blend - it'll heal your injuries slowly overtime.</p>\
-		<p>Your standard issue contractor baton hits harder than the ones you might be used to, and likely be your go to weapon for kidnapping your \
-		targets.</p>\
-		<p>The contractor hub, available at the top right of the uplink, will provide you unique items and abilities. These are bought using Contractor Rep, \
-		with two Rep being provided each time you complete a contract.</p>\
-		<h3>Using the tablet</h3>\
+	name = "承包商指南"
+	default_raw_text = {"欢迎，特工，恭喜你就任承包商这一新职位。除了你已经分配到的目标之外，\
+		这套装备还会为你提供可用于换取 TC 报酬的合同。\
+		<p>我们随附提供了你的专家级承包商太空服。它更加紧凑，可以装进口袋，而且比上行链路中提供的\
+		辛迪加太空服更快。我们还提供了你的变色龙连体服和面具，两者都能在需要时变成\
+		你所需的任何形态。香烟是特制配方——它会随时间缓慢治愈你的伤势。</p>\
+		<p>你的标准承包商电击棍比你可能习惯的那些打得更狠，很可能会成为你绑架目标时的\
+		首选武器。</p>\
+		<p>承包商中枢位于上行链路右上角，会为你提供独特的物品与能力。这些需要用承包商声望购买，\
+		每完成一份合同可获得两点声望。</p>\
+		<h3>使用平板</h3>\
 		<ol>\
-			<li>Open the Syndicate Contract Uplink program.</li>\
-			<li>Here, you can accept a contract, and redeem your TC payments from completed contracts.</li>\
-			<li>The payment number shown in brackets is the bonus you'll receive when bringing your target <b>alive</b>. You receive the \
-			other number regardless of if they were alive or dead.</li>\
-			<li>Contracts are completed by bringing the target to designated dropoff, calling for extraction, and putting them \
-			inside the pod.</li>\
+			<li>打开辛迪加合同上行链路程序。</li>\
+			<li>在这里，你可以接受合同，并兑换已完成合同的 TC 报酬。</li>\
+			<li>括号中显示的数字是当你把目标<b>活着</b>带回来时可获得的额外奖励。无论目标是死是活，\
+			你都会拿到另一个数字。</li>\
+			<li>把目标带到指定投放点、呼叫撤离，并将其放进\
+			撤离舱，即可完成合同。</li>\
 		</ol>\
-		<p>Be careful when accepting a contract. While you'll be able to see the location of the dropoff point, cancelling will make it \
-		unavailable to take on again.</p>\
-		<p>The tablet can also be recharged at any cell charger.</p>\
-		<h3>Extracting</h3>\
+		<p>接受合同时要小心。虽然你能看到投放点的位置，但取消合同会使它\
+		无法再次承接。</p>\
+		<p>平板也可以在任何电池充电器上充电。</p>\
+		<h3>撤离</h3>\
 		<ol>\
-			<li>Make sure both yourself and your target are at the dropoff.</li>\
-			<li>Call the extraction, and stand back from the drop point.</li>\
-			<li>If it fails, make sure your target is inside, and there's a free space for the pod to land.</li>\
-			<li>Grab your target, and drag them into the pod.</li>\
+			<li>确保你和你的目标都位于投放点。</li>\
+			<li>呼叫撤离，然后远离投放点。</li>\
+			<li>如果撤离失败，请确认你的目标在里面，并且有足够的空位让撤离舱降落。</li>\
+			<li>抓住你的目标，把他们拖进撤离舱。</li>\
 		</ol>\
-		<h3>Ransoms</h3>\
-		<p>We need your target for our own reasons, but we ransom them back to your mission area once their use is served. They will return back
-		from where you sent them off from in several minutes time. Don't worry, we give you a cut of what we get paid. We pay this into whatever \
-		ID card you have equipped, on top of the TC payment we give.</p>\
-		<p>Good luck agent. You can burn this document with the supplied lighter.</p>"}
+		<h3>赎金</h3>\
+		<p>我们出于自己的理由需要你的目标，但在其价值用尽后，我们会把他们赎回到你的任务区域。他们会在几分钟后
+		从你送走他们的地方回来。别担心，我们会把所得款项分你一份。这笔钱除了我们给你的 TC 报酬之外，\
+		还会打进你所装备的 ID 卡里。</p>\
+		<p>祝你好运，特工。你可以用附赠的打火机烧掉这份文件。</p>"}

@@ -1,14 +1,14 @@
 /obj/machinery/vending/hydroseeds
-	name = "\improper MegaSeed Servitor"
-	desc = "When you need seeds fast!"
-	product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the station!;Also certain mushroom varieties available, more for experts! Get certified today!"
-	product_ads = "We like plants!;Grow some crops!;Grow, baby, growww!;Aw h'yeah son!"
+	name = "\improper 超级种子伺服机"
+	desc = "当你急需种子的时候！"
+	product_slogans = "种子就住在这儿！自己拿吧！;绝对是站上最好的种子选择！;还有某些蘑菇品种，更多是给老手准备的！今天就去拿张资格证吧！"
+	product_ads = "我们喜欢植物！;种点庄稼吧！;长啊，宝贝，长长长！;哦耶，小子！"
 	icon_state = "seeds"
 	panel_type = "panel2"
 	light_mask = "seeds-light-mask"
 	product_categories = list(
 		list(
-			"name" = "Fruits",
+			"name" = "水果",
 			"icon" = "apple-whole",
 			"products" = list (
 				/obj/item/seeds/apple = 3,
@@ -35,7 +35,7 @@
 		),
 
 		list(
-			"name" = "Vegetables",
+			"name" = "蔬菜",
 			"icon" = "carrot",
 			"products" = list(
 				/obj/item/seeds/cabbage = 3,
@@ -56,7 +56,7 @@
 		),
 
 		list(
-			"name" = "Flowers",
+			"name" = "花卉",
 			"icon" = "leaf",
 			"products" = list(
 				/obj/item/seeds/aloe = 3,
@@ -68,7 +68,7 @@
 		),
 
 		list(
-			"name" = "Miscellaneous",
+			"name" = "杂项",
 			"icon" = "question",
 			"products" = list(
 				/obj/item/seeds/chanter = 3,
@@ -108,5 +108,5 @@
 	allow_custom = TRUE
 
 /obj/item/vending_refill/hydroseeds
-	machine_name = "MegaSeed Servitor"
+	machine_name = "超级种子伺服机"
 	icon_state = "refill_plant"

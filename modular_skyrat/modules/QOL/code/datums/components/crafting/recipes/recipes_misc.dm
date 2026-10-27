@@ -1,5 +1,5 @@
 /datum/crafting_recipe/mop
-	name = "Mop"
+	name = "拖把"
 	result = /obj/item/mop
 	reqs = list(/obj/item/stack/rods = 1,
 				/obj/item/stack/sheet/cloth = 2,
@@ -8,7 +8,7 @@
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/mop
-	name = "Tribal Mop"
+	name = "部落拖把"
 	result = /obj/item/mop/tribal
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 1,
 				/obj/item/stack/sheet/cloth = 2,
@@ -17,7 +17,7 @@
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/doubletank
-	name = "Double emergency oxygen tank"
+	name = "双联应急氧气罐"
 	reqs = list(
 		/obj/item/tank/internals/emergency_oxygen/engi = 2,
 		/obj/item/stack/medical/wrap/sticky_tape = 1,

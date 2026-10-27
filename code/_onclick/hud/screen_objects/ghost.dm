@@ -7,7 +7,7 @@
 	flick(icon_state + "_anim", src)
 
 /atom/movable/screen/ghost/spawners_menu
-	name = "Spawners menu"
+	name = "可加入角色菜单"
 	icon_state = "spawners"
 	screen_loc = ui_ghost_spawners_menu
 
@@ -16,7 +16,7 @@
 	observer.open_spawners_menu()
 
 /atom/movable/screen/ghost/orbit
-	name = "Orbit"
+	name = "环绕跟随"
 	icon_state = "orbit"
 	screen_loc = ui_ghost_orbit
 
@@ -24,7 +24,7 @@
 	GLOB.orbit_menu.show(usr)
 
 /atom/movable/screen/ghost/reenter_corpse
-	name = "Reenter corpse"
+	name = "返回尸体"
 	icon_state = "reenter_corpse"
 	screen_loc = ui_ghost_reenter_corpse
 
@@ -33,7 +33,7 @@
 	G.reenter_corpse()
 
 /atom/movable/screen/ghost/dnr
-	name = "Do Not Resuscitate"
+	name = "拒绝复苏"
 	icon_state = "dnr"
 	screen_loc = ui_ghost_dnr
 
@@ -42,7 +42,7 @@
 	dnring.do_not_resuscitate()
 
 /atom/movable/screen/ghost/teleport
-	name = "Teleport"
+	name = "传送"
 	icon_state = "teleport"
 	screen_loc = ui_ghost_teleport
 
@@ -51,7 +51,7 @@
 	G.dead_tele()
 
 /atom/movable/screen/ghost/settings
-	name = "Ghost Settings"
+	name = "幽灵设置"
 	icon_state = "settings"
 	screen_loc = ui_ghost_settings
 
@@ -63,7 +63,7 @@
 	GLOB.ghost_menu.ui_interact(usr)
 
 /atom/movable/screen/ghost/minigames_menu
-	name ="Minigames"
+	name ="小游戏"
 	icon_state = "minigames"
 	screen_loc = ui_ghost_minigames
 
@@ -107,43 +107,43 @@
 	update_appearance(UPDATE_ICON)
 
 /atom/movable/screen/ghost/hudbox/health_scanner
-	name = "Health Scanner"
-	desc = "Toggles your ability to health scan mobs on click."
+	name = "健康扫描"
+	desc = "切换点击生物时进行健康扫描的功能。"
 	hud_icon_state = "health_vision"
 	relevant_flag = GHOST_HEALTH
 
 /atom/movable/screen/ghost/hudbox/chem_scanner
-	name = "Chem Scanner"
-	desc = "Toggles your ability to chemical scan mobs on click."
+	name = "化学扫描"
+	desc = "切换点击生物时进行化学扫描的功能。"
 	hud_icon_state = "chem_vision"
 	relevant_flag = GHOST_CHEM
 
 /atom/movable/screen/ghost/hudbox/gas_scanner
-	name = "Gas Scanner"
-	desc = "Toggles your ability to gas scan objects on click."
+	name = "气体扫描"
+	desc = "切换点击对象时进行气体扫描的功能。"
 	hud_icon_state = "atmos_vision"
 	relevant_flag = GHOST_GAS
 
 /atom/movable/screen/ghost/hudbox/ghost
-	name = "Ghost Vision"
-	desc = "Toggles whether you can see other ghosts."
+	name = "幽灵视觉"
+	desc = "切换是否能看见其他幽灵。"
 	hud_icon_state = "ghost_vision"
 	relevant_flag = GHOST_VISION
 
 /atom/movable/screen/ghost/hudbox/data_huds
-	name = "Data HUDs"
-	desc = "Toggles the display of data HUDs (health, security, diagnostics, etc)."
+	name = "数据 HUD"
+	desc = "切换数据 HUD（健康、安保、诊断等）的显示。"
 	hud_icon_state = "data_vision"
 	relevant_flag = GHOST_DATA_HUDS
 
 /atom/movable/screen/ghost/hudbox/tray_icon
-	name = "Tray View"
-	desc = "Shows the t-ray view of the area around your ghost."
+	name = "T 射线视野"
+	desc = "显示幽灵周围区域的 T 射线视图。"
 	hud_icon_state = "tray_vision"
 	relevant_flag = GHOST_TRAY
 
 /atom/movable/screen/ghost/hudbox/darkness_level
-	name = "Darkness Level"
-	desc = "Cycles through different darkness levels for ghost vision."
+	name = "黑暗程度"
+	desc = "循环切换幽灵视野的黑暗程度。"
 	hud_icon_state = "darkness_vision"
 	relevant_flag = GHOST_DARKNESS_LEVEL

@@ -1,6 +1,6 @@
 /obj/item/aicard
-	name = "intelliCard"
-	desc = "A storage device for AIs. Patent pending."
+	name = "智能卡"
+	desc = "用于储存 AI 的装置。专利申请中。"
 	icon = 'icons/obj/aicards.dmi'
 	icon_state = "aicard"
 	base_icon_state = "aicard"
@@ -31,21 +31,21 @@
 	return ..()
 
 /obj/item/aicard/aitater
-	name = "intelliTater"
-	desc = "A stylish upgrade (?) to the intelliCard."
+	name = "智能土豆"
+	desc = "智能卡的时髦升级版（？）。"
 	icon_state = "aitater"
 	base_icon_state = "aitater"
 	custom_materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT * 5.5, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 2, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/aicard/aispook
-	name = "intelliLantern"
-	desc = "A spoOoOoky upgrade to the intelliCard."
+	name = "智能南瓜灯"
+	desc = "智能卡的阴森森森森升级版。"
 	icon_state = "aispook"
 	base_icon_state = "aispook"
 	custom_materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT * 5.5, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 2, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/aicard/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is trying to upload [user.p_them()]self into [src]! That's not going to work out well!"))
+	user.visible_message(span_suicide("[user]试图把自己上传到[src]里！这肯定不会有好下场！"))
 	return BRUTELOSS
 
 /obj/item/aicard/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -172,25 +172,25 @@
 			if(flush)
 				flush = FALSE
 			else
-				var/confirm = tgui_alert(usr, "Are you sure you want to wipe this card's memory?", name, list("Yes", "No"))
-				if(confirm == "Yes" && !..())
+				var/confirm = tgui_alert(usr, "确定要清除此卡的内存吗？", name, list("是", "否"))
+				if(confirm == "是" && !..())
 					flush = TRUE
 					wipe_ai()
 			. = TRUE
 		if("wireless")
 			AI.set_control_disabled(!AI.control_disabled)
-			to_chat(AI, span_warning("[src]'s wireless port has been [AI.control_disabled ? "disabled" : "enabled"]!"))
+			to_chat(AI, span_warning("[src]的无线端口[AI.control_disabled ? "已禁用" : "已启用"]！"))
 			. = TRUE
 		if("radio")
 			AI.radio_enabled = !AI.radio_enabled
-			to_chat(AI, span_warning("Your Subspace Transceiver has been [AI.radio_enabled ? "enabled" : "disabled"]!"))
+			to_chat(AI, span_warning("你的子空间收发器[AI.radio_enabled ? "已启用" : "已禁用"]！"))
 			. = TRUE
 	update_appearance()
 
 /obj/item/aicard/proc/wipe_ai()
 	set waitfor = FALSE
 	if(AI && AI.loc == src)
-		to_chat(AI, span_userdanger("YOUR SYSTEM FILES ARE BEING WIPED!"))
+		to_chat(AI, span_userdanger("你的系统文件正在被清除！"))
 		while(AI.stat != DEAD && flush)
 			AI.adjust_oxy_loss(5)
 			AI.updatehealth()

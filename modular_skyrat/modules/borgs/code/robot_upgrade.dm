@@ -6,8 +6,8 @@
 
 /// Advanced Surgery Tools
 /obj/item/borg/upgrade/surgerytools
-	name = "medical cyborg advanced surgery tools"
-	desc = "An upgrade to the Medical model cyborg's surgery loadout, replacing non-advanced tools with their advanced counterpart."
+	name = "医疗半机械人高级手术工具"
+	desc = "一种医疗型半机械人手术装备的升级模块，将非高级工具替换为对应的高级版本。"
 	icon_state = "module_medical"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/medical)
@@ -43,12 +43,12 @@
 #define ENGINEERING_CYBORG_CHARGE_PER_STACK 1000
 
 /datum/robot_energy_storage/plasteel
-	name = "Plasteel Processor"
+	name = "塑钢合成器"
 	recharge_rate = 0
 	max_energy = ENGINEERING_CYBORG_CHARGE_PER_STACK * 50
 
 /datum/robot_energy_storage/titanium
-	name = "Titanium Processor"
+	name = "钛合成器"
 	recharge_rate = 0
 	max_energy = ENGINEERING_CYBORG_CHARGE_PER_STACK * 50
 
@@ -72,8 +72,8 @@
 #undef ENGINEERING_CYBORG_CHARGE_PER_STACK
 
 /obj/item/borg/upgrade/advanced_materials
-	name = "engineering advanced materials processor"
-	desc = "allows a cyborg to synthesize and store advanced materials"
+	name = "工程高级材料处理器"
+	desc = "允许半机械人合成并储存高级材料。"
 	icon_state = "module_engineer"
 	model_type = list(/obj/item/robot_model/engineering)
 	model_flags = BORG_MODEL_ENGINEERING
@@ -102,8 +102,8 @@
 
 /// Welder
 /obj/item/borg/upgrade/welder
-	name = "mining cyborg welder upgrade"
-	desc = "A normal welder with a larger tank for cyborgs."
+	name = "采矿半机械人焊接器升级"
+	desc = "普通的焊接器，但为半机械人配备了更大的储罐。"
 	icon_state = "module_miner"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/miner)
@@ -119,7 +119,7 @@
 *	ADVANCED CARGO CYBORG UPGRADES
 */
 /datum/design/borg_upgrade_clamp
-	name = "Improved Integrated Hydraulic Clamp Module"
+	name = "改进型集成液压夹钳模块"
 	id = "borg_upgrade_clamp"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/better_clamp
@@ -133,8 +133,8 @@
 	)
 
 /obj/item/borg/upgrade/better_clamp
-	name = "improved integrated hydraulic clamp"
-	desc = "An improved hydraulic clamp to allow for bigger packages to be picked up as well!"
+	name = "改进型集成液压夹钳"
+	desc = "改进型液压夹钳，还能夹起更大的包裹！"
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_cargo"
 	require_model = TRUE
@@ -148,7 +148,7 @@
 	items_to_add = list(/obj/item/borg/hydraulic_clamp/better)
 
 /datum/design/borg_upgrade_cargo_tele
-	name = "Cargo teleporter module"
+	name = "货运传送器模块"
 	id = "borg_upgrade_cargo_tele"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/cargo_tele
@@ -159,8 +159,8 @@
 	)
 
 /obj/item/borg/upgrade/cargo_tele
-	name = "cargo teleporter module"
-	desc = "Allows you to upgrade a cargo cyborg with the cargo teleporter"
+	name = "货运传送器模块"
+	desc = "让你能用货运传送器升级货运半机械人。"
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_cargo"
 	require_model = TRUE
@@ -171,7 +171,7 @@
 	items_to_add = list(/obj/item/cargo_teleporter)
 
 /datum/design/borg_upgrade_forging
-	name = "Forging module"
+	name = "锻造模块"
 	id = "borg_upgrade_forging"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/forging
@@ -182,8 +182,8 @@
 	)
 
 /obj/item/borg/upgrade/forging
-	name = "cyborg forging module"
-	desc = "Allows you to upgrade a cargo cyborg with forging gear"
+	name = "半机械人锻造模块"
+	desc = "让你能用锻造装备升级货运半机械人。"
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_cargo"
 	require_model = TRUE
@@ -202,7 +202,7 @@
 */
 
 /datum/design/borg_upgrade_artistic
-	name = "Artistic module"
+	name = "艺术模块"
 	id = "borg_upgrade_artistic"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/artistic
@@ -214,8 +214,8 @@
 	)
 
 /obj/item/borg/upgrade/artistic
-	name = "borg artistic module"
-	desc = "Allows you to upgrade a cyborg with tools for creating art."
+	name = "半机械人艺术模块"
+	desc = "让你能用艺术创作工具升级半机械人。"
 	icon_state = "module_general"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
 	items_to_add = list(
@@ -233,8 +233,8 @@
 
 /// ShapeShifter
 /obj/item/borg/upgrade/borg_shapeshifter
-	name = "cyborg shapeshifter module"
-	desc = "An experimental device which allows a cyborg to disguise themself into another type of cyborg."
+	name = "半机械人变形模块"
+	desc = "一种实验性装置，可让半机械人伪装成其他类型的半机械人。"
 	icon_state = "module_general"
 	custom_materials = list(
 		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 5,
@@ -246,8 +246,8 @@
 
 /// Quadborg time
 /obj/item/borg/upgrade/affectionmodule
-	name = "borg affection module"
-	desc = "A module that upgrades the ability of borgs to display affection."
+	name = "半机械人亲昵模块"
+	desc = "一种提升半机械人表达亲昵能力的模块。"
 	icon_state = "module_peace"
 
 	items_to_add = list(/obj/item/quadborg_tongue,
@@ -260,22 +260,22 @@
 	if(!istype(mob))
 		return ITEM_INTERACT_BLOCKING
 	if(HAS_TRAIT(interacting_with, TRAIT_AFFECTION_AVERSION)) // Checks for Affection Aversion trait
-		to_chat(user, span_warning("ERROR: [interacting_with] is on the Do Not Lick registry!"))
+		to_chat(user, span_warning("错误：[interacting_with] 在禁止舔舐名单上！"))
 		return ITEM_INTERACT_BLOCKING
 	if(check_zone(borg.zone_selected) == "head")
-		borg.visible_message(span_warning("\the [borg] affectionally licks \the [mob]'s face!"), span_notice("You affectionally lick \the [mob]'s face!"))
+		borg.visible_message(span_warning("\the [borg] 亲昵地舔了舔 \the [mob] 的脸！"), span_notice("你亲昵地舔了舔 \the [mob] 的脸！"))
 	else
-		borg.visible_message(span_warning("\the [borg] affectionally licks \the [mob]!"), span_notice("You affectionally lick \the [mob]!"))
+		borg.visible_message(span_warning("\the [borg] 亲昵地舔了舔 \the [mob]！"), span_notice("你亲昵地舔了舔 \the [mob]！"))
 	playsound(borg, 'sound/effects/blob/attackblob.ogg', 50, 1)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/quadborg_nose/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(HAS_TRAIT(interacting_with, TRAIT_AFFECTION_AVERSION)) // Checks for Affection Aversion trait
-		to_chat(user, span_warning("ERROR: [interacting_with] is on the No Nosing registry!"))
+		to_chat(user, span_warning("错误：[interacting_with] 在禁止蹭鼻名单上！"))
 		return ITEM_INTERACT_BLOCKING
 
 	do_attack_animation(interacting_with, null, src)
-	user.visible_message(span_notice("[user] [pick("nuzzles", "pushes", "boops")] \the [interacting_with.name] with their nose!"))
+	user.visible_message(span_notice("[user] 用鼻子[pick("蹭了蹭", "顶了顶", "碰了碰")] \the [interacting_with.name]！"))
 	return ITEM_INTERACT_SUCCESS
 
 /// The Shrinkening
@@ -285,18 +285,18 @@
 // Added checks for borg models who come from the Zoolander Center for Borgs Who Can't Upgrade Good
 /obj/item/borg/upgrade/expand/action(mob/living/silicon/robot/borg, mob/living/user = usr)
 	if(TRAIT_R_EXPANDER_BLOCKED in borg.model.model_features)
-		to_chat(usr, span_warning("This unit is unable to equip an expand module!"))
+		to_chat(usr, span_warning("本单位无法装配扩展模块！"))
 		return FALSE
 
 	if(borg.model.type == /obj/item/robot_model)
-		to_chat(usr, span_warning("This unit is still in factory default configuration!"))
+		to_chat(usr, span_warning("本单位仍处于出厂默认配置！"))
 		return FALSE
 
 	return ..()
 
 /obj/item/borg/upgrade/shrink
-	name = "borg shrinker"
-	desc = "A cyborg resizer, it makes a cyborg small."
+	name = "半机械人缩小器"
+	desc = "一台半机械人缩小装置，能让半机械人变小。"
 	icon_state = "module_general"
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10,
@@ -309,15 +309,15 @@
 		return FALSE
 
 	if(borg.model.type == /obj/item/robot_model)
-		to_chat(usr, span_warning("This unit is still in factory default configuration!"))
+		to_chat(usr, span_warning("本单位仍处于出厂默认配置！"))
 		return FALSE
 
 	if(borg.hasShrunk)
-		to_chat(usr, span_warning("This unit already has a shrink module installed!"))
+		to_chat(usr, span_warning("本单位已安装缩小模块！"))
 		return FALSE
 
 	if(TRAIT_R_SMALL in borg.model.model_features)
-		to_chat(usr, span_warning("This unit's chassis cannot be shrunk any further."))
+		to_chat(usr, span_warning("本单位的机壳无法再缩小了。"))
 		return FALSE
 
 	ADD_TRAIT(borg, TRAIT_NO_TRANSFORM, REF(src))
@@ -351,8 +351,8 @@
 
 /// Syndijack
 /obj/item/borg/upgrade/transform/syndicatejack
-	name = "borg module picker (Syndicate)"
-	desc = "Allows you to to turn a cyborg into a experimental syndicate cyborg."
+	name = "半机械人模块选择器（辛迪加）"
+	desc = "让你能把半机械人转变为实验性辛迪加半机械人。"
 	icon_state = "module_illegal"
 	new_model = /obj/item/robot_model/syndicatejack
 
@@ -362,8 +362,8 @@
 
 /// Dominatrix time
 /obj/item/borg/upgrade/dominatrixmodule
-	name = "borg dominatrix module"
-	desc = "A module that greatly upgrades the ability of borgs to display affection."
+	name = "半机械人调教模块"
+	desc = "一种大幅提升半机械人表达亲昵能力的模块。"
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_lust"
 	custom_materials = list(
@@ -382,8 +382,8 @@
 
 /// Cyborgs are bad at dancing too
 /obj/item/borg/upgrade/waddle_module
-	name = "borg waddle module"
-	desc = "A module that puts a little spring in each borg's step"
+	name = "半机械人摇摆模块"
+	desc = "一种让每个半机械人步伐都轻快起来的模块。"
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT,

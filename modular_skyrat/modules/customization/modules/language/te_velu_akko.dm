@@ -1,8 +1,8 @@
 /datum/language/akulan
 	name = "Te Velu Akko"
-	desc = "The flowing, rhythmic language of the Akula, a language created in their distant times by one of their first leaders. \
-		The older form has much more flow and cadence, while the current popular form is more quick and harsh, making it easy to find most Old Nobles and hardliners just by dialect. \
-		One could compare the sound of Akko to that of the Terran Maori language."
+	desc = "阿库拉人流畅而富有韵律的语言，由他们远古时代最早的一批首领之一所创造。 \
+		古老的形式更加流畅、更有韵律，而如今流行的形式则更急促、更粗硬，因此仅凭口音就能轻易辨认出大多数旧贵族与强硬派。 \
+		人们可以把阿科语的发音与地球的毛利语相比。"
 	key = "Z"
 	flags = LANGUAGE_TONGUELESS_SPEECH
 	space_chance = 70

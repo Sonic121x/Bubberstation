@@ -5,8 +5,8 @@
 //Bottles now knockdown and break when smashed on people's heads. - Giacom
 
 /obj/item/reagent_containers/cup/glass/bottle
-	name = "glass bottle"
-	desc = "This blank bottle is unyieldingly anonymous, offering no clues to its contents."
+	name = "玻璃瓶"
+	desc = "这个空白瓶子倔强地匿着名，对内容物毫不透露。"
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "glassbottle"
 	worn_icon_state = "bottle"
@@ -40,13 +40,13 @@
 	if(message_in_a_bottle)
 		return NONE
 	if(istype(held_item, /obj/item/paper) || istype(held_item, /obj/item/stack/spacecash) || istype(held_item, /obj/item/photo))
-		context[SCREENTIP_CONTEXT_LMB] = "Insert message"
+		context[SCREENTIP_CONTEXT_LMB] = "放入信件"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
 
 /obj/item/reagent_containers/cup/glass/bottle/add_item_context(obj/item/source, list/context, atom/target, mob/living/user)
 	if(message_in_a_bottle && HAS_TRAIT(target, TRAIT_MESSAGE_IN_A_BOTTLE_LOCATION))
-		context[SCREENTIP_CONTEXT_RMB] = "Toss message"
+		context[SCREENTIP_CONTEXT_RMB] = "投出信件"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
 
@@ -71,9 +71,9 @@
 /obj/item/reagent_containers/cup/glass/bottle/examine(mob/user)
 	. = ..()
 	if(message_in_a_bottle)
-		. += span_info("there's \a [message_in_a_bottle] inside it. Break it to take it out, or find a beach or ocean and toss it with [EXAMINE_HINT("right-click")].")
+		. += span_info("里面有一个 \a [message_in_a_bottle]。打破它就能取出，或者找片海滩或海洋，用[EXAMINE_HINT("右键点击")]把它扔出去。")
 	else if(isGlass)
-		. += span_tinynoticeital("you could place a paper, photo or space cash inside it...")
+		. += span_tinynoticeital("你可以往里面放一张纸、一张照片或一些太空现金……")
 
 /obj/item/reagent_containers/cup/glass/bottle/update_overlays()
 	. = ..()
@@ -86,9 +86,9 @@
 	if(user.combat_mode || !HAS_TRAIT(target, TRAIT_MESSAGE_IN_A_BOTTLE_LOCATION))
 		return ..()
 	if(!user.temporarilyRemoveItemFromInventory(src))
-		balloon_alert(user, "it's stuck to your hand!")
+		balloon_alert(user, "它粘在你手上了！")
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice("[user] tosses [src] in [target]"), span_notice("You toss [src] in [target]"), span_notice("you hear a splash."))
+	user.visible_message(span_notice("[user] 把 [src] 扔进了 [target]"), span_notice("你把 [src] 扔进了 [target]"), span_notice("你听到了水花声。"))
 	SSpersistence.save_message_bottle(message_in_a_bottle, type)
 	playsound(target, 'sound/effects/bigsplash.ogg', 70)
 	qdel(src)
@@ -100,12 +100,12 @@
 	if(!istype(item, /obj/item/paper) && !istype(item, /obj/item/stack/spacecash) && !istype(item, /obj/item/photo))
 		return NONE
 	if(message_in_a_bottle)
-		balloon_alert(user, "has a message already!")
+		balloon_alert(user, "里面已经有信件了！")
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(item, src))
-		balloon_alert(user, "it's stuck to your hand!")
+		balloon_alert(user, "它粘在你手上了！")
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "message inserted")
+	balloon_alert(user, "信件已放入")
 	message_in_a_bottle = item
 	update_icon(UPDATE_OVERLAYS)
 	return ITEM_INTERACT_SUCCESS
@@ -119,8 +119,8 @@
 		return "cash_in_bottle"
 
 /obj/item/reagent_containers/cup/glass/bottle/small
-	name = "small glass bottle"
-	desc = "This blank bottle is unyieldingly anonymous, offering no clues to its contents."
+	name = "小玻璃瓶"
+	desc = "这个空白瓶子倔强地匿着名，对内容物毫不透露。"
 	icon_state = "glassbottlesmall"
 	volume = 50
 	custom_price = PAYCHECK_CREW * 0.9
@@ -154,14 +154,14 @@
 	// Displays a custom message which follows the attack
 	if(target == user)
 		user.visible_message(
-			span_warning("[user] smashes [src] [head_hitter ? "over [user.p_their()] head" : "against [user.p_them()]selves"]!"),
-			span_warning("You smash [src] [head_hitter ? "over your head" : "against yourself"]!"),
+			span_warning("[user] 把 [src] [head_hitter ? "砸在自己头上" : "砸在自己身上"]！"),
+			span_warning("你把 [src] [head_hitter ? "砸在自己头上" : "砸在自己身上"]！"),
 		)
 
 	else
 		user.visible_message(
-			span_warning("[user] smashes [src] [head_hitter ? "over [target]'s head" : "against [target]"]!"),
-			span_warning("You smash [src] [head_hitter ? "over [target]'s head" : "against [target]"]!"),
+			span_warning("[user] 把 [src] [head_hitter ? "砸在 [target] 头上" : "砸向 [target]"]！"),
+			span_warning("你把 [src] [head_hitter ? "砸在 [target] 头上" : "砸向 [target]"]！"),
 		)
 
 	// Finally, smash the bottle. This kills (del) the bottle and also does all the logging for us
@@ -184,7 +184,7 @@
 	var/amount_lost = intensity * 5
 	reagents.remove_all(amount_lost)
 
-	visible_message(span_warning("Some of [name]'s contents are let loose!"))
+	visible_message(span_warning("[name] 里的一部分内容物喷了出来！"))
 	var/intensity_state = null
 	switch(intensity)
 		if(1)
@@ -202,8 +202,8 @@
 
 //Keeping this here for now, I'll ask if I should keep it here.
 /obj/item/broken_bottle
-	name = "broken bottle"
-	desc = "A bottle with a sharp broken bottom."
+	name = "破碎的瓶子"
+	desc = "一个底部破碎、边缘锋利的瓶子。"
 	icon = 'icons/obj/drinks/drink_effects.dmi'
 	icon_state = "broken_bottle"
 	force = 9
@@ -216,8 +216,8 @@
 	lefthand_file = 'icons/mob/inhands/items/drinks_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/drinks_righthand.dmi'
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
-	attack_verb_continuous = list("stabs", "slashes", "attacks")
-	attack_verb_simple = list("stab", "slash", "attack")
+	attack_verb_continuous = list("刺", "劈", "攻击")
+	attack_verb_simple = list("刺", "劈", "攻击")
 	sharpness = SHARP_EDGED
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT)
 	///The mask image for mimicking a broken-off bottom of the bottle
@@ -239,7 +239,7 @@
 	icon_state = to_mimic.icon_state
 	var/icon/drink_icon = new(to_mimic.icon, icon_state)
 	if(break_top) //if the bottle breaks its top off instead of the bottom
-		desc = "A bottle with its neck smashed off."
+		desc = "一个瓶口被打碎的瓶子。"
 		drink_icon.Blend(flipped_broken_outline, ICON_OVERLAY, rand(5), 0)
 	else
 		drink_icon.Blend(broken_outline, ICON_OVERLAY, rand(5), 1)
@@ -249,17 +249,17 @@
 	if(istype(to_mimic, /obj/item/reagent_containers/cup/glass/bottle/juice))
 		force = 0
 		throwforce = 0
-		desc = "A carton with the bottom half burst open. Might give you a papercut."
+		desc = "一个下半部分裂开的纸盒。说不定能给你划出个纸割伤。"
 	else
 		if(prob(33))
 			new /obj/item/shard(to_mimic.drop_location())
 		playsound(src, SFX_SHATTER, 70, TRUE)
-	name = "broken [to_mimic.name]"
+	name = "破碎的[to_mimic.name]"
 	to_mimic.transfer_fingerprints_to(src)
 
 /obj/item/reagent_containers/cup/glass/bottle/beer
-	name = "space beer"
-	desc = "Beer. In space."
+	name = "太空啤酒"
+	desc = "啤酒。在太空里。"
 	icon_state = "beer"
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 30)
@@ -270,15 +270,15 @@
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 1)
 
 /obj/item/reagent_containers/cup/glass/bottle/beer/light
-	name = "Carp Lite"
-	desc = "Brewed with \"Pure Ice Asteroid Spring Water\"."
+	name = "鲤鱼淡啤"
+	desc = "采用“纯冰小行星泉水”酿造。"
 	icon_state = "litebeer"
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/light = 30)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/rootbeer
-	name = "Two-Time root beer"
-	desc = "A popular, old-fashioned brand of root beer, known for its extremely sugary formula. Might make you want a nap afterwards."
+	name = "两届冠军根汁汽水"
+	desc = "一个受欢迎的老式根汁汽水品牌，以含糖量极高而闻名。喝完可能会让你想小睡一会儿。"
 	icon_state = "twotime"
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/rootbeer = 30)
@@ -287,8 +287,8 @@
 	custom_premium_price = PAYCHECK_CREW * 2
 
 /obj/item/reagent_containers/cup/glass/bottle/ale
-	name = "Magm-Ale"
-	desc = "A true dorf's drink of choice."
+	name = "岩浆艾尔啤酒"
+	desc = "真正矮人的首选饮品。"
 	icon_state = "alebottle"
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/ethanol/ale = 30)
@@ -296,91 +296,91 @@
 	custom_price = PAYCHECK_CREW
 
 /obj/item/reagent_containers/cup/glass/bottle/gin
-	name = "Griffeater gin"
-	desc = "A bottle of high quality gin, produced in the New London Space Station."
+	name = "狮鹫吞噬者金酒"
+	desc = "一瓶高品质金酒，产自新伦敦空间站。"
 	icon_state = "ginbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/gin = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/whiskey
-	name = "Uncle Git's special reserve"
-	desc = "A premium single-malt whiskey, gently matured inside the tunnels of a nuclear shelter. TUNNEL WHISKEY RULES."
+	name = "吉特叔叔珍藏威士忌"
+	desc = "一款优质单一麦芽威士忌，在核避难所的隧道里温和熟成。隧道威士忌最棒。"
 	icon_state = "whiskeybottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/whiskey = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/kong
-	name = "Kong"
-	desc = "Makes You Go Ape!&#174;"
+	name = "金刚"
+	desc = "让你变身猿猴！&#174;"
 	list_reagents = list(/datum/reagent/consumable/ethanol/whiskey/kong = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/candycornliquor
-	name = "candy corn liquor"
-	desc = "Like they drank in 2D speakeasies."
+	name = "玉米糖利口酒"
+	desc = "就像 2D 地下酒吧里喝的那种。"
 	list_reagents = list(/datum/reagent/consumable/ethanol/whiskey/candycorn = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/vodka
-	name = "Tunguska triple distilled"
-	desc = "Aah, vodka. Prime choice of drink AND fuel by Russians worldwide."
+	name = "通古斯三重蒸馏伏特加"
+	desc = "啊，伏特加。全世界俄罗斯人的饮品兼燃料首选。"
 	icon_state = "vodkabottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/vodka = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/vodka/badminka
-	name = "Badminka vodka"
-	desc = "The label's written in Cyrillic. All you can make out is the name and a word that looks vaguely like 'Vodka'."
+	name = "巴德明卡伏特加"
+	desc = "标签上是西里尔字母。你只认得出名字，还有一个隐约像“伏特加”的词。"
 	icon_state = "badminka"
 	list_reagents = list(/datum/reagent/consumable/ethanol/vodka = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/tequila
-	name = "Caccavo guaranteed quality tequila"
-	desc = "Made from premium petroleum distillates, pure thalidomide and other fine quality ingredients!"
+	name = "卡卡沃品质保证龙舌兰酒"
+	desc = "由优质石油馏出物、纯沙利度胺和其他上等原料制成！"
 	icon_state = "tequilabottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/tequila = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/bottleofnothing
-	name = "bottle of nothing"
-	desc = "A bottle filled with nothing."
+	name = "空无一物之瓶"
+	desc = "一只装满了“无”的瓶子。"
 	icon_state = "bottleofnothing"
 	list_reagents = list(/datum/reagent/consumable/nothing = 100)
 	age_restricted = FALSE
 
 /obj/item/reagent_containers/cup/glass/bottle/patron
-	name = "Wrapp Artiste Patron"
-	desc = "Silver laced tequila, served in space night clubs across the galaxy."
+	name = "Wrapp Artiste 培恩龙舌兰"
+	desc = "银丝点缀的龙舌兰酒，在银河各处的太空夜店里供应。"
 	icon_state = "patronbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/patron = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/rum
-	name = "Captain Pete's Cuban spiced rum"
-	desc = "This isn't just rum, oh no. It's practically GRIFF in a bottle."
+	name = "皮特船长古巴香料朗姆酒"
+	desc = "这可不只是朗姆酒，哦不。这简直就是一瓶子的“白送”。"
 	icon_state = "rumbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/rum = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/rum/aged
-	name = "Captain Pete's Vintage spiced rum"
-	desc = "Shiver me timbers, a vintage edition of Captain Pete's rum. It's pratically GRIFF in a bottle from over 50 years ago."
+	name = "皮特船长陈年香料朗姆酒"
+	desc = "我的老天，这是皮特船长朗姆酒的陈年版。这简直就是五十多年前的一瓶子“白送”。"
 	icon_state = "rumbottle_gold"
 	list_reagents = list(/datum/reagent/consumable/ethanol/rum/aged = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/maltliquor
-	name = "\improper Rabid Bear malt liquor"
-	desc = "A 40 full of malt liquor. Kicks stronger than, well, a rabid bear."
+	name = "\improper 狂熊麦芽酒"
+	desc = "一瓶 40 盎司的麦芽酒。劲儿比……比狂熊还大。"
 	icon_state = "maltliquorbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/maltliquor = 100)
 	custom_price = PAYCHECK_CREW
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/holywater
-	name = "flask of holy water"
-	desc = "A flask of the chaplain's holy water."
+	name = "圣水酒壶"
+	desc = "一壶牧师的圣水。"
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "holyflask"
 	worn_icon_state = "holyflask"
@@ -392,41 +392,41 @@
 	return //looks too weird...
 
 /obj/item/reagent_containers/cup/glass/bottle/holywater/hell
-	desc = "A flask of holy water...it's been sitting in the Necropolis a while though."
+	desc = "一壶圣水……不过它在死灵之都里放了挺久。"
 	icon_state = "unholyflask"
 	list_reagents = list(/datum/reagent/hellwater = 100)
 
 /obj/item/reagent_containers/cup/glass/bottle/vermouth
-	name = "Goldeneye vermouth"
-	desc = "Sweet, sweet dryness~"
+	name = "金眼味美思"
+	desc = "甜啊，甜得干爽～"
 	icon_state = "vermouthbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/vermouth = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/kahlua
-	name = "Robert Robust's coffee liqueur"
-	desc = "A widely known, Mexican coffee-flavoured liqueur. In production since 1936, HONK."
+	name = "罗伯特·罗巴斯特咖啡利口酒"
+	desc = "一款广为人知的墨西哥咖啡风味利口酒。自 1936 年起生产，洪克。"
 	icon_state = "kahluabottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/kahlua = 100)
 	drink_type = VEGETABLES
 
 /obj/item/reagent_containers/cup/glass/bottle/goldschlager
-	name = "College Girl goldschlager"
-	desc = "Because they are the only ones who will drink 100 proof cinnamon schnapps."
+	name = "女大学生金箔酒"
+	desc = "因为只有她们才会喝 100 度的肉桂烈酒。"
 	icon_state = "goldschlagerbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/goldschlager = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/cognac
-	name = "Chateau de Baton premium cognac"
-	desc = "A sweet and strongly alchoholic drink, made after numerous distillations and years of maturing. You might as well not scream 'SHITCURITY' this time."
+	name = "巴顿庄园特级干邑"
+	desc = "一种甜美而烈度很高的酒，经过多次蒸馏与多年陈酿。这次你最好别再喊“破安保”了。"
 	icon_state = "cognacbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/cognac = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/wine
-	name = "Doublebeard's bearded special wine"
-	desc = "A faint aura of unease and asspainery surrounds the bottle."
+	name = "双胡子特酿葡萄酒"
+	desc = "瓶子周围萦绕着一种淡淡的不安与蛋疼气息。"
 	icon_state = "winebottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/wine = 100)
 	drink_type = FRUIT | ALCOHOL
@@ -439,35 +439,35 @@
 		LAZYSET(located_wine.data, "vintage", wine_info)
 
 /obj/item/reagent_containers/cup/glass/bottle/wine/proc/generate_vintage()
-	return "[CURRENT_STATION_YEAR] Nanotrasen Light Red"
+	return "[CURRENT_STATION_YEAR] 纳米传讯淡红"
 
 /obj/item/reagent_containers/cup/glass/bottle/wine/unlabeled
-	name = "unlabeled wine bottle"
-	desc = "There's no label on this wine bottle."
+	name = "无标签葡萄酒瓶"
+	desc = "这个葡萄酒瓶上没有标签。"
 
 /obj/item/reagent_containers/cup/glass/bottle/wine/unlabeled/generate_vintage()
 	var/year = rand(CURRENT_STATION_YEAR - 50, CURRENT_STATION_YEAR)
 	var/type = pick(
-		"Bold Red",
-		"Dessert",
-		"Dry White",
-		"Light Red",
-		"Medium Red",
-		"Rich White",
-		"Rose",
-		"Sparkling",
-		"Sweet White",
+		"醇厚红",
+		"甜点酒",
+		"干白",
+		"淡红",
+		"中等红",
+		"醇白",
+		"桃红",
+		"起泡酒",
+		"甜白",
 	)
 	var/origin = pick(
-		"Local",
-		"Nanotrasen",
-		"Syndicate",
+		"本地",
+		"纳米传讯",
+		"辛迪加",
 	)
 	return "[year] [origin] [type]"
 
 /obj/item/reagent_containers/cup/glass/bottle/absinthe
-	name = "Extra-strong absinthe"
-	desc = "A strong alcoholic drink brewed and distributed by"
+	name = "特烈苦艾酒"
+	desc = "一种烈性酒精饮料，由"
 	icon_state = "absinthebottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/absinthe = 100)
 	drink_type = ALCOHOL
@@ -481,22 +481,22 @@
 	// in absinthe. Ergo, this is why the name generation is now so
 	// complicated. Judge us kindly.
 	var/shortname = pick_weight(
-		list("T&T" = 1, "A&A" = 1, "Generic" = 1))
+		list("T&T" = 1, "A&A" = 1, "通用" = 1))
 	var/fullname
 	switch(shortname)
 		if("T&T")
-			fullname = "Teal and Tealer"
+			fullname = "青绿与更青绿"
 		if("A&A")
-			fullname = "Ash and Asher"
-		if("Generic")
-			fullname = "Nanotrasen Cheap Imitations"
+			fullname = "灰烬与灰烬者"
+		if("通用")
+			fullname = "纳米传讯廉价仿制品"
 	var/removals = list(
-		"\[REDACTED\]",
-		"\[EXPLETIVE DELETED\]",
-		"\[EXPUNGED\]",
-		"\[INFORMATION ABOVE YOUR SECURITY CLEARANCE\]",
-		"\[MOVE ALONG CITIZEN\]",
-		"\[NOTHING TO SEE HERE\]",
+		"\[已删节\]",
+		"\[脏话已删除\]",
+		"\[已抹除\]",
+		"\[信息高于你的安全许可等级\]",
+		"\[继续前进，公民\]",
+		"\[这里没什么好看的\]",
 	)
 	var/chance = 50
 
@@ -513,12 +513,12 @@
 
 	// Actually finally setting the new name and desc
 	name = "[shortname] [name]"
-	desc = "[desc] [fullname] Inc."
+	desc = "[desc] [fullname] 公司"
 
 
 /obj/item/reagent_containers/cup/glass/bottle/absinthe/premium
-	name = "Gwyn's premium absinthe"
-	desc = "A potent alcoholic beverage, almost makes you forget the ash in your lungs."
+	name = "格温特级苦艾酒"
+	desc = "一种烈性酒精饮料，几乎能让你忘记肺里的灰烬。"
 	icon_state = "absinthepremium"
 	drink_type = ALCOHOL
 
@@ -526,49 +526,49 @@
 	return
 
 /obj/item/reagent_containers/cup/glass/bottle/lizardwine
-	name = "bottle of lizard wine"
-	desc = "An alcoholic beverage from Space China, made by infusing lizard tails in ethanol. Inexplicably popular among command staff."
+	name = "瓶装蜥蜴葡萄酒"
+	desc = "一种来自太空中国的酒精饮料，用乙醇浸泡蜥蜴尾巴制成。在指挥层中莫名其妙地受欢迎。"
 	icon_state = "lizardwine"
 	list_reagents = list(/datum/reagent/consumable/ethanol/lizardwine = 100)
 	drink_type = FRUIT | ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/hcider
-	name = "Jian Hard Cider"
-	desc = "Apple juice for adults."
+	name = "剑牌烈性苹果酒"
+	desc = "成年人的苹果汁。"
 	icon_state = "hcider"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/ethanol/hcider = 50)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/amaretto
-	name = "Luini Amaretto"
-	desc = "A gentle, syrupy drink that tastes of almonds and apricots."
+	name = "卢伊尼杏仁利口酒"
+	desc = "一种温和的糖浆状饮品，带有杏仁和杏的味道。"
 	icon_state = "disaronno"
 	list_reagents = list(/datum/reagent/consumable/ethanol/amaretto = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/grappa
-	name = "Phillipes well-aged Grappa"
-	desc = "Bottle of Grappa."
+	name = "菲利普陈年格拉帕"
+	desc = "一瓶格拉帕。"
 	icon_state = "grappabottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/grappa = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/sake
-	name = "Ryo's traditional sake"
-	desc = "Sweet as can be, and burns like fire going down."
+	name = "凉氏传统清酒"
+	desc = "甜得不能再甜，下咽时却像火一样烧。"
 	icon_state = "sakebottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/sake = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/sake/Initialize(mapload)
 	if(prob(10))
-		name = "Fluffy Tail Sake"
-		desc += " On the bottle is a picture of a kitsune with nine touchable tails."
+		name = "蓬松尾巴清酒"
+		desc += " 瓶上画着一只长着九条可摸尾巴的狐仙。"
 		icon_state = "sakebottle_k"
 	else if(prob(10))
-		name = "Inubashiri's Home Brew"
-		desc += " Awoo."
+		name = "犬走家的自酿酒"
+		desc += " 嗷呜。"
 		icon_state = "sakebottle_i"
 	return ..()
 
@@ -578,15 +578,15 @@
 	return ..()
 
 /obj/item/reagent_containers/cup/glass/bottle/fernet
-	name = "Fernet Bronca"
-	desc = "A bottle of pure Fernet Bronca, produced in Cordoba Space Station"
+	name = "布龙卡费内特"
+	desc = "一瓶纯正布龙卡费内特，产自科尔多瓦空间站"
 	icon_state = "fernetbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/fernet = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/bitters
-	name = "Andromeda Bitters"
-	desc = "An aromatic addition to any drink. Made in New Trinidad, now and forever."
+	name = "仙女座苦酒"
+	desc = "任何饮品都能加的芳香点缀。新特立尼达制造，过去、现在与永远。"
 	icon_state = "bitters_bottle"
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/ethanol/bitters = 30)
@@ -596,8 +596,8 @@
 	amount_per_transfer_from_this = 5
 
 /obj/item/reagent_containers/cup/glass/bottle/curacao
-	name = "Beekhof Blauw Curaçao"
-	desc = "Still produced on the island of Curaçao, after all these years."
+	name = "比克霍夫蓝橙利口酒"
+	desc = "这么多年过去，它依然在库拉索岛上生产。"
 	icon_state = "curacao_bottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/curacao = 100)
 	drink_type = ALCOHOL
@@ -606,15 +606,15 @@
 	return //doesn't fit the sprite
 
 /obj/item/reagent_containers/cup/glass/bottle/navy_rum
-	name = "Pride of the Union Navy-Strength Rum"
-	desc = "Ironically named, given it's made in Bermuda."
+	name = "联邦之傲海军烈性朗姆酒"
+	desc = "名字起得挺讽刺，毕竟它产自百慕大。"
 	icon_state = "navy_rum_bottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/navy_rum = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/grenadine
-	name = "Jester Grenadine"
-	desc = "Contains 0% real cherries!"
+	name = "弄臣石榴糖浆"
+	desc = "真实樱桃含量 0%！"
 	custom_price = PAYCHECK_CREW
 	icon_state = "grenadine"
 	list_reagents = list(/datum/reagent/consumable/grenadine = 100)
@@ -622,24 +622,24 @@
 	age_restricted = FALSE
 
 /obj/item/reagent_containers/cup/glass/bottle/applejack
-	name = "Buckin' Bronco's Applejack"
-	desc = "Kicks like a horse, tastes like an apple!"
+	name = "烈马苹果白兰地"
+	desc = "踢起来像马，尝起来像苹果！"
 	custom_price = PAYCHECK_CREW
 	icon_state = "applejack_bottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/applejack = 100)
 	drink_type = FRUIT
 
 /obj/item/reagent_containers/cup/glass/bottle/wine_voltaic
-	name = "Voltaic Yellow Wine"
-	desc = "Electrically infused wine! Recharges ethereals, safe for consumption."
+	name = "伏打黄葡萄酒"
+	desc = "注入电能的葡萄酒！可为以太人充能，可安全饮用。"
 	custom_price = PAYCHECK_CREW
 	icon_state = "wine_voltaic_bottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/wine_voltaic = 100)
 	drink_type = FRUIT
 
 /obj/item/reagent_containers/cup/glass/bottle/champagne
-	name = "Eau d' Dandy Brut Champagne"
-	desc = "Finely sourced from only the most pretentious French vineyards."
+	name = "花花公子之水干型香槟"
+	desc = "精心采购自最自命不凡的法国葡萄园。"
 	icon_state = "champagne_bottle"
 	base_icon_state = "champagne_bottle"
 	initial_reagent_flags = TRANSPARENT
@@ -659,7 +659,7 @@
 /obj/item/reagent_containers/cup/glass/bottle/champagne/attack_self(mob/user)
 	if(is_open_container())
 		return ..()
-	balloon_alert(user, "fiddling with cork...")
+	balloon_alert(user, "正在摆弄软木塞……")
 	if(do_after(user, 1 SECONDS, src))
 		return pop_cork(user, sabrage = FALSE, froth_severity = pick(0, 1))
 
@@ -674,15 +674,15 @@
 		return NONE
 
 	if(tool != user.get_active_held_item()) //no TK allowed
-		to_chat(user, span_userdanger("Such a feat is beyond your skills of telekinesis!"))
+		to_chat(user, span_userdanger("这种壮举超出了你的念力技巧！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(tool.force < 5)
-		balloon_alert(user, "not strong enough!")
+		balloon_alert(user, "强度不够！")
 		return ITEM_INTERACT_BLOCKING
 
 	playsound(user, 'sound/items/unsheath.ogg', 25, TRUE)
-	balloon_alert(user, "preparing to swing...")
+	balloon_alert(user, "准备挥砍……")
 	if(!do_after(user, 2 SECONDS, src)) //takes longer because you are supposed to take the foil off the bottle first
 		return ITEM_INTERACT_BLOCKING
 
@@ -711,8 +711,8 @@
 		return pop_cork(user, sabrage = TRUE, froth_severity = severity_to_pass) ? ITEM_INTERACT_SUCCESS : ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_danger("[user] fumbles the sabrage and cuts [src] in half, spilling it over themselves!"),
-		span_danger("You fail your stunt and cut [src] in half, spilling it over you!"),
+		span_danger("[user] 香槟刀法失手，把 [src] 斩成了两半，酒全洒在了自己身上！"),
+		span_danger("你的表演失败了，把 [src] 斩成了两半，酒全洒在了自己身上！"),
 		)
 	user.add_mood_event("sabrage_fail", /datum/mood_event/sabrage_fail)
 	return smash(target = user, break_top = TRUE) ? ITEM_INTERACT_SUCCESS : ITEM_INTERACT_BLOCKING
@@ -730,14 +730,14 @@
 /obj/item/reagent_containers/cup/glass/bottle/champagne/proc/pop_cork(mob/living/user, sabrage, froth_severity)
 	if(!sabrage)
 		user.visible_message(
-			span_danger("[user] loosens the cork of [src], causing it to pop out of the bottle with great force."),
-			span_nicegreen("You elegantly loosen the cork of [src], causing it to pop out of the bottle with great force."),
+			span_danger("[user] 拧松了 [src] 的软木塞，塞子带着巨力从瓶中弹了出来。"),
+			span_nicegreen("你优雅地拧松了 [src] 的软木塞，塞子带着巨力从瓶中弹了出来。"),
 			)
 	else
 		sabraged = TRUE
 		user.visible_message(
-			span_danger("[user] cleanly slices off the cork of [src], causing it to fly off the bottle with great force."),
-			span_nicegreen("You elegantly slice the cork off of [src], causing it to fly off the bottle with great force."),
+			span_danger("[user] 干净利落地削掉了 [src] 的软木塞，塞子带着巨力飞了出去。"),
+			span_nicegreen("你优雅地削掉了 [src] 的软木塞，塞子带着巨力飞了出去。"),
 			)
 		for(var/mob/living/carbon/stunt_witness in view(7, user))
 			stunt_witness.clear_mood_event("sabrage_success")
@@ -760,7 +760,7 @@
 	return TRUE
 
 /obj/projectile/bullet/champagne_cork
-	name = "champagne cork"
+	name = "香槟软木塞"
 	icon = 'icons/obj/drinks/drink_effects.dmi'
 	icon_state = "champagne_cork"
 	hitsound = 'sound/items/weapons/genhit.ogg'
@@ -787,7 +787,7 @@
 	drop_type = /obj/item/trash/champagne_cork/sabrage
 
 /obj/item/trash/champagne_cork
-	name = "champagne cork"
+	name = "香槟软木塞"
 	icon = 'icons/obj/drinks/drink_effects.dmi'
 	icon_state = "champagne_cork"
 
@@ -795,23 +795,23 @@
 	icon_state = "champagne_cork_sabrage"
 
 /obj/item/reagent_containers/cup/glass/bottle/blazaam
-	name = "Ginbad's Blazaam"
-	desc = "You feel like you should give the bottle a good rub before opening."
+	name = "金巴德的布拉赞"
+	desc = "你觉得自己应该在开瓶前好好擦一擦它。"
 	icon_state = "blazaambottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/blazaam = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/trappist
-	name = "Mont de Requin Trappistes Bleu"
-	desc = "Brewed in space-Belgium. Fancy!"
+	name = "鲨山蓝标特拉皮斯特"
+	desc = "在太空比利时酿造。高级！"
 	icon_state = "trappistbottle"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/ethanol/trappist = 50)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/hooch
-	name = "hooch bottle"
-	desc = "A bottle of rotgut. Its owner has applied some street wisdom to cleverly disguise it as a brown paper bag."
+	name = "私酿酒瓶"
+	desc = "一瓶劣质烈酒。它的主人运用街头智慧，巧妙地把它伪装成了一个牛皮纸袋。"
 	icon_state = "hoochbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/hooch = 100)
 	drink_type = ALCOHOL
@@ -820,8 +820,8 @@
 	return //doesn't fit the sprite
 
 /obj/item/reagent_containers/cup/glass/bottle/moonshine
-	name = "moonshine jug"
-	desc = "It is said that the ancient Appalachians used these stoneware jugs to capture lightning in a bottle."
+	name = "月光酒罐"
+	desc = "据说古代阿巴拉契亚人用这种陶罐把闪电装进瓶里。"
 	icon_state = "moonshinebottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/moonshine = 100)
 	drink_type = ALCOHOL
@@ -830,8 +830,8 @@
 	return //doesn't fit the sprite
 
 /obj/item/reagent_containers/cup/glass/bottle/mushi_kombucha
-	name = "Solzara Brewing Company Mushi Kombucha"
-	desc = "Best drunk over ice to savour the mushroomy flavour."
+	name = "索尔扎拉酿造公司虫菇康普茶"
+	desc = "最好加冰饮用，以品味那股蘑菇风味。"
 	icon_state = "shroomy_bottle"
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/ethanol/mushi_kombucha = 30)
@@ -839,57 +839,57 @@
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/hakka_mate
-	name = "Hakka-Mate"
-	desc = "Hakka-Mate: it's an acquired taste."
+	name = "客家马黛茶"
+	desc = "客家马黛茶：这味道得慢慢习惯。"
 	icon_state = "hakka_mate_bottle"
 	list_reagents = list(/datum/reagent/consumable/hakka_mate = 30)
 
 /obj/item/reagent_containers/cup/glass/bottle/shochu
-	name = "Shu-Kouba Straight Shochu"
-	desc = "A boozier form of shochu designed for mixing. Comes straight from Mars' Dusty City itself, Shu-Kouba."
+	name = "酒工场纯烧酎"
+	desc = "一种酒精度更高、专为调酒而生的烧酎。直接来自火星的“尘城”酒工场。"
 	icon_state = "shochu_bottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/shochu = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/yuyake
-	name = "Moonlabor Yūyake"
-	desc = "The distilled essence of disco and flared pants, captured like lightning in a bottle."
+	name = "月作夕烧"
+	desc = "迪斯科与喇叭裤的蒸馏精华，如同被装进瓶中的闪电。"
 	icon_state = "yuyake_bottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/yuyake = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/coconut_rum
-	name = "Breezy Shoals Coconut Rum"
-	desc = "Live the breezy life with Breezy Shoals, made with only the *finest Caribbean rum."
+	name = "微风浅滩椰子朗姆酒"
+	desc = "与微风浅滩一起享受微风般的生活，只选用*最上等的加勒比朗姆酒。"
 	icon_state = "coconut_rum_bottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/coconut_rum = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/aperitivo
-	name = "Camillo Aperitivo Rosso"
-	desc = "The bottle that led to the creation of the modern Camillo Group beverage conglomerate. Despite what you might expect, there's a good chance that whoever makes your favorite liquor is at least in part owned by Camillo."
+	name = "卡米洛红开胃酒"
+	desc = "正是这瓶酒催生了如今的卡米洛集团饮料帝国。不管你信不信，你最爱的那款酒，背后很可能就有卡米洛的部分持股。"
 	icon_state = "aperitivo_bottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/aperitivo = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/herbal_liqueur
-	name = "Bellarmine D.O.P Herbal Liqueur"
-	desc = "An almost millenia old herbal liqueur made from a secret recipe passed down over generations of monks. It's not great to know that the herbs and spices used in this are a better-kept secret than the codes to Nanotrasen's nuclear arsenal."
+	name = "贝拉明 D.O.P 草本利口酒"
+	desc = "一款已有近千年历史的草本利口酒，配方由一代代修士秘密传承至今。令人不安的是，它所使用的香草与香料，保密程度竟然高于纳米传讯核武库的密码。"
 	icon_state = "herbal_liqueur_bottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/herbal_liqueur = 100)
 	drink_type = ALCOHOL
 
 /obj/item/reagent_containers/cup/glass/bottle/maraschino
-	name = "Dalmazia Originale Maraschino Liqueur"
-	desc = "A small note on the back of the bottle instructs all customers who complain about a lack of cherry flavor to direct their concerns to what appears to be a defunct phone number."
+	name = "达尔马齐亚原酿樱桃利口酒"
+	desc = "瓶背有一张小纸条，指示所有抱怨樱桃味不足的顾客，把意见拨打到一个似乎已经停用的电话号码。"
 	icon_state = "maraschino_bottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/maraschino = 100)
 	drink_type = ALCOHOL
 
 ////////////////////////// MOLOTOV ///////////////////////
 /obj/item/reagent_containers/cup/glass/bottle/molotov
-	name = "molotov cocktail"
-	desc = "A throwing weapon used to ignite things, typically filled with an accelerant. Recommended highly by rioters and revolutionaries. Light and toss."
+	name = "燃烧瓶"
+	desc = "一种用来点火的投掷武器，通常装满助燃剂。暴乱者和革命者强烈推荐。点燃，然后扔出去。"
 	icon_state = "vodkabottle"
 	list_reagents = list()
 	heatable = FALSE
@@ -912,7 +912,7 @@
 	icon_state = bottle.icon_state
 	bottle.reagents.trans_to(src, 100, copy_only = TRUE)
 	if(istype(bottle, /obj/item/reagent_containers/cup/glass/bottle/juice))
-		desc += " You're not sure if making this out of a carton was the brightest idea."
+		desc += " 你不确定用纸盒做这东西是不是最聪明的点子。"
 		isGlass = FALSE
 	return ..()
 
@@ -937,9 +937,9 @@
 		return NONE
 
 	active = TRUE
-	log_bomber(user, "has primed a", src, "for detonation")
+	log_bomber(user, "为", src, "设好了引爆")
 
-	to_chat(user, span_info("You light [src] on fire."))
+	to_chat(user, span_info("你点燃了 [src]。"))
 	add_overlay(custom_fire_overlay() || GLOB.fire_overlay)
 	if(!isGlass)
 		addtimer(CALLBACK(src, PROC_REF(explode)), 5 SECONDS)
@@ -960,17 +960,17 @@
 /obj/item/reagent_containers/cup/glass/bottle/molotov/attack_self(mob/user)
 	if(active)
 		if(!isGlass)
-			to_chat(user, span_danger("The flame's spread too far on it!"))
+			to_chat(user, span_danger("火焰已经在上面蔓延得太厉害了！"))
 			return
-		to_chat(user, span_info("You snuff out the flame on [src]."))
+		to_chat(user, span_info("你掐灭了 [src] 上的火焰。"))
 		cut_overlay(custom_fire_overlay() || GLOB.fire_overlay)
 		active = FALSE
 		return
 	return ..()
 
 /obj/item/reagent_containers/cup/glass/bottle/pruno
-	name = "pruno mix"
-	desc = "A trash bag filled with fruit, sugar, yeast, and water, pulped together into a pungent slurry to be fermented in an enclosed space, traditionally the toilet. Security would love to confiscate this, one of the many things wrong with them."
+	name = "监狱酒原料"
+	desc = "一袋装满水果、糖、酵母和水的垃圾袋，被捣成刺鼻的糊状物，在封闭空间里发酵——传统上是在马桶里。安保肯定很想没收这东西，这不过是他们众多毛病之一。"
 	icon = 'icons/obj/service/janitor.dmi'
 	icon_state = "trashbag"
 	list_reagents = list(/datum/reagent/consumable/prunomix = 50)
@@ -1016,12 +1016,12 @@
 		reagents.add_reagent(/datum/reagent/consumable/ethanol/pruno, 35)
 	else
 		reagents.add_reagent(/datum/reagent/consumable/ethanol/pruno, 50)
-	name = "bag of pruno"
-	desc = "Fermented prison wine made from fruit, sugar, and despair. You probably shouldn't drink this around Security."
+	name = "一袋监狱酒"
+	desc = "用水果、糖和绝望酿成的监狱酒。你最好别在安保面前喝这个。"
 	icon_state = "trashbag1" // pruno releases air as it ferments, we don't want to simulate this in atmos, but we can make it look like it did
 	for (var/mob/living/M in view(2, get_turf(src))) // letting people and/or narcs know when the pruno is done
 		if(HAS_TRAIT(M, TRAIT_ANOSMIA))
-			to_chat(M, span_info("A pungent smell emanates from [src], like fruit puking out its guts."))
+			to_chat(M, span_info("[src] 散发出刺鼻的气味，就像水果把内脏都吐了出来。"))
 		playsound(get_turf(src), 'sound/effects/bubbles/bubbles2.ogg', 25, TRUE)
 
 /**
@@ -1039,72 +1039,72 @@
 	custom_materials = list(/datum/material/cardboard = SHEET_MATERIAL_AMOUNT * 1.5)
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/orangejuice
-	name = "orange juice"
-	desc = "Full of vitamins and deliciousness!"
+	name = "橙汁"
+	desc = "富含维生素，美味十足！"
 	icon = 'icons/obj/drinks/boxes.dmi'
 	icon_state = "orangejuice"
 	list_reagents = list(/datum/reagent/consumable/orangejuice = 100)
 	drink_type = FRUIT | BREAKFAST
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/lemonjuice
-	name = "lemon juice"
-	desc = "Some like to pour a few drops of this over their fish."
+	name = "柠檬汁"
+	desc = "有人喜欢往鱼上滴几滴这个。"
 	icon = 'icons/obj/drinks/boxes.dmi'
 	icon_state = "lemonjuice"
 	list_reagents = list(/datum/reagent/consumable/lemonjuice = 100)
 	drink_type = FRUIT
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/cream
-	name = "milk cream"
-	desc = "It's cream. Made from milk. What else did you think you'd find in there?"
+	name = "牛奶奶油"
+	desc = "是奶油。用牛奶做的。你还以为里面会有什么？"
 	icon = 'icons/obj/drinks/boxes.dmi'
 	icon_state = "cream"
 	list_reagents = list(/datum/reagent/consumable/cream = 100)
 	drink_type = DAIRY
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/eggnog
-	name = "eggnog"
-	desc = "For enjoying the most wonderful time of the year."
+	name = "蛋奶酒"
+	desc = "用来享受一年中最美好的时光。"
 	icon = 'icons/obj/drinks/boxes.dmi'
 	icon_state = "nog2"
 	list_reagents = list(/datum/reagent/consumable/ethanol/eggnog = 100)
 	drink_type = FRUIT
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/dreadnog
-	name = "eggnog"
-	desc = "For when you want some nondescript soda inside of your eggnog!"
+	name = "蛋奶酒"
+	desc = "适合想在蛋奶酒里喝到某种说不上来的汽水的你！"
 	icon = 'icons/obj/drinks/boxes.dmi'
 	icon_state = "dreadnog"
 	list_reagents = list(/datum/reagent/consumable/ethanol/dreadnog = 100)
 	drink_type = FRUIT | GROSS
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/tomatojuice
-	name = "tomato juice"
-	desc = "Well, at least it LOOKS like tomato juice. You can't tell with all that redness."
+	name = "番茄汁"
+	desc = "好吧，至少它看起来像番茄汁。红成那样，谁也说不清。"
 	icon = 'icons/obj/drinks/boxes.dmi'
 	icon_state = "tomatojuice"
 	list_reagents = list(/datum/reagent/consumable/tomatojuice = 100)
 	drink_type = VEGETABLES
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/limejuice
-	name = "lime juice"
-	desc = "Sweet-sour goodness."
+	name = "青柠汁"
+	desc = "酸甜可口。"
 	icon = 'icons/obj/drinks/boxes.dmi'
 	icon_state = "limejuice"
 	list_reagents = list(/datum/reagent/consumable/limejuice = 100)
 	drink_type = FRUIT
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/pineapplejuice
-	name = "pineapple juice"
-	desc = "Extremely tart, yellow juice."
+	name = "菠萝汁"
+	desc = "极其酸爽的黄色果汁。"
 	icon = 'icons/obj/drinks/boxes.dmi'
 	icon_state = "pineapplejuice"
 	list_reagents = list(/datum/reagent/consumable/pineapplejuice = 100)
 	drink_type = FRUIT | PINEAPPLE
 
 /obj/item/reagent_containers/cup/glass/bottle/juice/menthol
-	name = "menthol"
-	desc = "Tastes naturally minty, and imparts a very mild numbing sensation."
+	name = "薄荷醇"
+	desc = "天然带有薄荷味，会带来非常轻微的麻木感。"
 	list_reagents = list(/datum/reagent/consumable/menthol = 100)
 	age_restricted = TRUE
 

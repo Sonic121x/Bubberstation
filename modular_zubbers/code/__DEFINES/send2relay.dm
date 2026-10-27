@@ -5,12 +5,12 @@
 #define EU_RELAY_ADDR "byond://germany.bubberstation.org:3000"
 #define NO_RELAY_ADDR "byond://direct.bubberstation.org:3000"
 
-#define US_EAST_RELAY "Connect to US-East (Virginia)"
-#define US_WEST_RELAY "Connect to US-West (Oregon)"
-#define SYDNEY_RELAY "Connect to Australia (Sydney)"
-#define SINGAPORE_RELAY "Connect to Singapore (Singapore)"
-#define EU_RELAY "Connect to Germany (Frankfurt)"
-#define NO_RELAY "No Relay (Direct Connect)"
+#define US_EAST_RELAY "连接至美国东部（弗吉尼亚）"
+#define US_WEST_RELAY "连接至美国西部（俄勒冈）"
+#define SYDNEY_RELAY "连接至澳大利亚（悉尼）"
+#define SINGAPORE_RELAY "连接至新加坡"
+#define EU_RELAY "连接至德国（法兰克福）"
+#define NO_RELAY "不使用中继（直接连接）"
 
 /client/verb/go2relay()
 	var/static/list/relays = list(
@@ -20,7 +20,7 @@
 		EU_RELAY,
 		NO_RELAY,
 	)
-	var/choice = tgui_input_list(usr, "Which relay do you wish to use?", "Relay Select", relays)
+	var/choice = tgui_input_list(usr, "你想使用哪个中继服务器？", "选择中继", relays)
 	var/destination
 	switch(choice)
 		if(US_EAST_RELAY)
@@ -40,7 +40,7 @@
 		sleep(1 SECONDS)
 		winset(usr, null, "command=.quit")
 	else
-		usr << "You didn't select a relay."
+		usr << "你没有选择中继服务器。"
 
 #undef US_EAST_RELAY_ADDR
 #undef US_WEST_RELAY_ADDR

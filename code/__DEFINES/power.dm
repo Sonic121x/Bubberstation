@@ -1,10 +1,10 @@
 #define CABLE_LAYER_ALL ALL
 #define CABLE_LAYER_1 (1<<0)
-	#define CABLE_LAYER_1_NAME "Red Power Line"
+	#define CABLE_LAYER_1_NAME "红色电力线"
 #define CABLE_LAYER_2 (1<<1)
-	#define CABLE_LAYER_2_NAME "Yellow Power Line"
+	#define CABLE_LAYER_2_NAME "黄色电力线"
 #define CABLE_LAYER_3 (1<<2)
-	#define CABLE_LAYER_3_NAME "Blue Power Line"
+	#define CABLE_LAYER_3_NAME "蓝色电力线"
 
 #define SOLAR_TRACK_OFF 0
 #define SOLAR_TRACK_TIMED 1

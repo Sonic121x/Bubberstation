@@ -1,11 +1,11 @@
 
 /obj/machinery/vending/cola
-	name = "\improper Robust Softdrinks"
-	desc = "A soft drinks vendor provided by Robust Industries, LLC."
+	name = "\improper 强劲汽水"
+	desc = "由罗伯斯特工业有限责任公司提供的汽水售货机。"
 	icon_state = "Cola_Machine"
 	panel_type = "panel2"
-	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
-	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
+	product_slogans = "强劲汽水：比脑袋上挨一工具箱还强劲！"
+	product_ads = "清爽解渴！;希望你正渴着！;已售出超过一百万瓶！;渴了？为什么不来瓶可乐？;请喝一杯！;喝光它！;太空中最好的饮料。"
 	products = list(
 		/obj/item/reagent_containers/cup/soda_cans/cola = 10,
 		/obj/item/reagent_containers/cup/soda_cans/space_mountain_wind = 10,
@@ -74,7 +74,7 @@
 	REMOVE_TRAIT(vended_item, TRAIT_SILENT_REACTIONS, VENDING_MACHINE_TRAIT)
 
 /obj/item/vending_refill/cola
-	machine_name = "Robust Softdrinks"
+	machine_name = "强劲汽水"
 	icon_state = "refill_cola"
 
 /obj/machinery/vending/cola/blue
@@ -90,27 +90,27 @@
 
 /obj/machinery/vending/cola/red
 	icon_state = "red_cola"
-	name = "\improper Space Cola Vendor"
-	desc = "It vends cola, in space."
-	product_slogans = "Cola in space!"
+	name = "\improper 太空可乐售货机"
+	desc = "它在太空中出售可乐。"
+	product_slogans = "太空里的可乐！"
 	light_mask = "red_cola-light-mask"
 	light_color = COLOR_DARK_RED
 	allow_custom = FALSE
 
 /obj/machinery/vending/cola/space_up
 	icon_state = "space_up"
-	name = "\improper Space-up! Vendor"
-	desc = "Indulge in an explosion of flavor."
-	product_slogans = "Space-up! Like a hull breach in your mouth."
+	name = "\improper 太空七喜售货机"
+	desc = "沉浸在风味的爆炸中。"
+	product_slogans = "太空七喜！就像你嘴里发生了船体破裂。"
 	light_mask = "space_up-light-mask"
 	light_color = COLOR_DARK_MODERATE_LIME_GREEN
 	allow_custom = FALSE
 
 /obj/machinery/vending/cola/starkist
 	icon_state = "starkist"
-	name = "\improper Star-kist Vendor"
-	desc = "The taste of a star in liquid form."
-	product_slogans = "Drink the stars! Star-kist!"
+	name = "\improper 星吻售货机"
+	desc = "液态的星辰滋味。"
+	product_slogans = "喝下星辰！星吻！"
 	panel_type = "panel7"
 	light_mask = "starkist-light-mask"
 	light_color = COLOR_LIGHT_ORANGE
@@ -125,16 +125,16 @@
 
 /obj/machinery/vending/cola/pwr_game
 	icon_state = "pwr_game"
-	name = "\improper Pwr Game Vendor"
-	desc = "You want it, we got it. Brought to you in partnership with Vlad's Salads."
-	product_slogans = "The POWER that gamers crave! PWR GAME!"
+	name = "\improper 电玩能量售货机"
+	desc = "你想要，我们就有。与弗拉德沙拉联合推出。"
+	product_slogans = "玩家渴望的能量！电玩能量！"
 	light_mask = "pwr_game-light-mask"
 	light_color = COLOR_STRONG_VIOLET
 	allow_custom = FALSE
 
 /obj/machinery/vending/cola/shamblers
-	name = "\improper Shambler's Vendor"
-	desc = "~Shake me up some of that Shambler's Juice!~"
+	name = "\improper 蹒跚者售货机"
+	desc = "~给我摇一杯那蹒跚者果汁！~"
 	icon_state = "shamblers_juice"
 	products = list(
 		/obj/item/reagent_containers/cup/soda_cans/cola = 10,
@@ -148,15 +148,15 @@
 		/obj/item/reagent_containers/cup/soda_cans/shamblers = 10,
 		/obj/item/reagent_containers/cup/soda_cans/wellcheers = 5,
 		)
-	product_slogans = "~Shake me up some of that Shambler's Juice!~"
-	product_ads = "Refreshing!;Thirsty for DNA? Satiate your craving!;Over 1 trillion souls drank!;Made with real DNA!;The hivemind demands your thirst!;Drink up!;Absorb your thirst."
+	product_slogans = "~给我摇一杯那蹒跚者果汁！~"
+	product_ads = "清爽解渴！;渴求 DNA？满足你的欲望吧！;超过一万亿个灵魂喝过！;使用真实 DNA 制成！;蜂巢意识要求你口渴！;喝光它！;吸收你的口渴。"
 	light_mask = "shamblers-light-mask"
 	refill_canister = /obj/item/vending_refill/cola/shamblers
 	light_color = COLOR_MOSTLY_PURE_PINK
 
 
 /obj/item/vending_refill/cola/shamblers
-	machine_name = "Shambler's Vendor"
+	machine_name = "蹒跚者售货机"
 	icon_state = "refill_shamblers"
 
 /obj/machinery/vending/cola/shamblers/Initialize(mapload)

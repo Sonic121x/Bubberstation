@@ -1,8 +1,8 @@
 // Ambrosia - base type
 /obj/item/food/grown/ambrosia
 	seed = /obj/item/seeds/ambrosia
-	name = "ambrosia branch"
-	desc = "This is a plant."
+	name = "仙草枝"
+	desc = "这是一株植物。"
 	icon_state = "ambrosiavulgaris"
 	slot_flags = ITEM_SLOT_HEAD
 	bite_consumption_mod = 3
@@ -11,12 +11,12 @@
 
 // Ambrosia Vulgaris
 /obj/item/seeds/ambrosia
-	name = "ambrosia vulgaris seed pack"
-	desc = "These seeds grow into common ambrosia, a plant grown by and from medicine."
+	name = "普通仙草种子包"
+	desc = "这些种子会长成普通仙草，一种由药物培育、也用于制药的植物。"
 	icon_state = "seed-ambrosiavulgaris"
 	plant_icon_offset = 0
 	species = "ambrosiavulgaris"
-	plantname = "Ambrosia Vulgaris"
+	plantname = "普通仙草"
 	product = /obj/item/food/grown/ambrosia/vulgaris
 	lifespan = 60
 	endurance = 25
@@ -30,17 +30,17 @@
 
 /obj/item/food/grown/ambrosia/vulgaris
 	seed = /obj/item/seeds/ambrosia
-	name = "ambrosia vulgaris branch"
-	desc = "This is a plant containing various healing chemicals."
+	name = "普通仙草枝"
+	desc = "这是一株含有多种治疗化学物质的植物。"
 	wine_power = 30
 
 // Ambrosia Deus
 /obj/item/seeds/ambrosia/deus
-	name = "ambrosia deus seed pack"
-	desc = "These seeds grow into ambrosia deus. Could it be the food of the gods..?"
+	name = "神授仙草种子包"
+	desc = "这些种子会长成神授仙草。难道这就是众神的食物……？"
 	icon_state = "seed-ambrosiadeus"
 	species = "ambrosiadeus"
-	plantname = "Ambrosia Deus"
+	plantname = "神授仙草"
 	product = /obj/item/food/grown/ambrosia/deus
 	mutatelist = list(/obj/item/seeds/ambrosia/gaia)
 	reagents_add = list(/datum/reagent/medicine/omnizine = 0.15, /datum/reagent/medicine/synaptizine = 0.15, /datum/reagent/drug/space_drugs = 0.1, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.05)
@@ -48,18 +48,18 @@
 
 /obj/item/food/grown/ambrosia/deus
 	seed = /obj/item/seeds/ambrosia/deus
-	name = "ambrosia deus branch"
-	desc = "Eating this makes you feel immortal!"
+	name = "神授仙草枝"
+	desc = "吃下它会让你觉得自己长生不老！"
 	icon_state = "ambrosiadeus"
 	wine_power = 50
 
 //Ambrosia Gaia
 /obj/item/seeds/ambrosia/gaia
-	name = "ambrosia gaia seed pack"
-	desc = "These seeds grow into ambrosia gaia, filled with infinite potential."
+	name = "大地仙草种子包"
+	desc = "这些种子会长成大地仙草，蕴含着无限的潜能。"
 	icon_state = "seed-ambrosia_gaia"
 	species = "ambrosia_gaia"
-	plantname = "Ambrosia Gaia"
+	plantname = "大地仙草"
 	product = /obj/item/food/grown/ambrosia/gaia
 	mutatelist = list(/obj/item/seeds/ambrosia/deus)
 	reagents_add = list(/datum/reagent/medicine/earthsblood = 0.05, /datum/reagent/consumable/nutriment = 0.06, /datum/reagent/consumable/nutriment/vitamin = 0.05)
@@ -69,8 +69,8 @@
 	weed_chance = 100
 
 /obj/item/food/grown/ambrosia/gaia
-	name = "ambrosia gaia branch"
-	desc = "Eating this <i>makes</i> you immortal."
+	name = "大地仙草枝"
+	desc = "吃下它<i>确实</i>会让你长生不老。"
 	icon_state = "ambrosia_gaia"
 	light_system = OVERLAY_LIGHT
 	light_range = 3
@@ -78,4 +78,4 @@
 	light_color = "#ffff00"
 	seed = /obj/item/seeds/ambrosia/gaia
 	wine_power = 70
-	wine_flavor = "the earthmother's blessing"
+	wine_flavor = "大地母亲的祝福"

@@ -7,20 +7,20 @@ Difficulty: Hard
 */
 
 /mob/living/simple_animal/hostile/megafauna/wendigo
-	name = "wendigo"
-	desc = "A mythological man-eating legendary creature, the sockets of its eyes track you with an unsatiated hunger."
+	name = "温迪戈"
+	desc = "一种神话中食人的传说生物，那空洞的眼窝带着永不满足的饥饿追随着你。"
 	health = 2500
 	maxHealth = 2500
 	icon_state = "wendigo"
 	icon_living = "wendigo"
 	icon_dead = "wendigo_dead"
 	icon = 'icons/mob/simple/icemoon/64x64megafauna.dmi'
-	attack_verb_continuous = "claws"
-	attack_verb_simple = "claw"
+	attack_verb_continuous = "挥爪"
+	attack_verb_simple = "挥爪"
 	attack_sound = 'sound/effects/magic/demon_attack1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 	weather_immunities = list(TRAIT_SNOWSTORM_IMMUNE)
-	speak_emote = list("roars")
+	speak_emote = list("咆哮")
 	armour_penetration = 40
 	melee_damage_lower = 40
 	melee_damage_upper = 40
@@ -31,7 +31,7 @@ Difficulty: Hard
 	ranged = TRUE
 	pixel_x = -16
 	base_pixel_x = -16
-	gps_name = "Berserk Signal"
+	gps_name = "狂战信号"
 	loot = list()
 	butcher_results = list()
 	guaranteed_butcher_results = list(/obj/item/wendigo_blood = 1, /obj/item/wendigo_skull = 1)
@@ -42,10 +42,10 @@ Difficulty: Hard
 	achievement_type = /datum/award/achievement/boss/wendigo_kill
 	crusher_achievement_type = /datum/award/achievement/boss/wendigo_crusher
 	score_achievement_type = /datum/award/score/wendigo_score
-	death_message = "falls to the ground in a bloody heap, shaking the arena."
+	death_message = "带着血淋淋的一团瘫倒在地，震得整个竞技场都在晃动。"
 	death_sound = 'sound/effects/gravhit.ogg'
 	footstep_type = FOOTSTEP_MOB_HEAVY
-	summon_line = "GwaHOOOOOOOOOOOOOOOOOOOOO"
+	summon_line = "呜嗷嗷嗷嗷嗷嗷嗷嗷嗷！"
 	/// Saves the turf the megafauna was created at (spawns exit portal here)
 	var/turf/starting
 	/// Range for wendigo stomping when it moves
@@ -155,7 +155,7 @@ Difficulty: Hard
 	animate(pixel_z = -pixel_shift, time = 1, flags = ANIMATION_RELATIVE)
 	for(var/mob/living/dizzy_target in get_hearers_in_view(7, owner) - owner)
 		dizzy_target.set_dizzy_if_lower(12 SECONDS)
-		to_chat(dizzy_target, span_danger("[owner] screams loudly!"))
+		to_chat(dizzy_target, span_danger("[owner] 发出震耳欲聋的尖啸！"))
 	SLEEP_CHECK_DEATH(1 SECONDS, owner)
 
 /proc/wendigo_slam(mob/owner, range, delay, throw_range)
@@ -172,7 +172,7 @@ Difficulty: Hard
 			for(var/mob/living/hit_mob in stomp_turf)
 				if(hit_mob == owner || hit_mob.throwing)
 					continue
-				to_chat(hit_mob, span_userdanger("[owner]'s ground slam shockwave sends you flying!"))
+				to_chat(hit_mob, span_userdanger("[owner] 的地面猛击冲击波把你掀飞了！"))
 				var/turf/thrownat = get_ranged_target_turf_direct(owner, hit_mob, throw_range, rand(-10, 10))
 				hit_mob.throw_at(thrownat, 8, 2, null, TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
 				hit_mob.apply_damage(20, BRUTE, wound_bonus=CANT_WOUND)
@@ -197,7 +197,7 @@ Difficulty: Hard
 	exit.set_light(20, 1, COLOR_SOFT_RED)
 
 /obj/projectile/colossus/wendigo_shockwave
-	name = "wendigo shockwave"
+	name = "温迪戈冲击波"
 	speed = 0.5
 
 	/// Amount the angle changes every pixel move

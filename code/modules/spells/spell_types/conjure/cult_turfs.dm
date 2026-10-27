@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/conjure/cult_floor
-	name = "Summon Cult Floor"
-	desc = "This spell constructs a cult floor."
+	name = "召唤血教地板"
+	desc = "此法术会构造一块血教地板。"
 	background_icon_state = "bg_cult"
 	overlay_icon_state = "bg_cult_border"
 
@@ -16,8 +16,8 @@
 	summon_type = list(/turf/open/floor/engine/cult)
 
 /datum/action/cooldown/spell/conjure/cult_wall
-	name = "Summon Cult Wall"
-	desc = "This spell constructs a cult wall."
+	name = "召唤血教墙壁"
+	desc = "此法术会构造一面血教墙壁。"
 	background_icon_state = "bg_cult"
 	overlay_icon_state = "bg_cult_border"
 

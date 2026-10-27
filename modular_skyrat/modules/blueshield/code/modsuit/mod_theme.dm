@@ -1,13 +1,13 @@
 /datum/mod_theme/blueshield
-	name = "praetorian"
-	desc = "A prototype of the Magnate-class suit issued to station Blueshields, still boasting exceptional protection worthy of an honor guard."
-	extended_desc = "A prototype of the Magnate-class suit issued for use with the station Blueshields, \
-		it boasts the exceptional protection of it's successor, while sacrificing some of the module capacity.\
-		All of the protection of the Magnate, with none of the comfort! The visor uses blue-light to obscure \
-		the face of it's wearer, adding to it's imposing figure. Compared to the sleek and luxurious design \
-		that came after it, this suit does nothing to hide it's purpose, the reinforced plating layered \
-		over the insulated inner armor granting it protection against corrosive liquids, explosive blasts, \
-		fires, electrical shocks, and contempt from the rest of the crew."
+	name = "禁卫"
+	desc = "配发给站内蓝盾的巨头级套装原型，至今仍具备堪比仪仗卫队的卓越防护。"
+	extended_desc = "配发给站内蓝盾使用的巨头级套装原型，\
+		它拥有与后继型号同样卓越的防护性能，代价是牺牲了一部分模块容量。\
+		巨头级的全部防护，舒适度一点也没有！面甲用蓝光遮住\
+		佩戴者的面容，使它看上去更加威压逼人。与后来那套流畅奢华的\
+		设计相比，这套套装毫不掩饰自己的用途：绝缘内衬护甲之上\
+		层层叠加的加固装甲板，为它提供对腐蚀性液体、爆炸冲击、\
+		火焰、电击以及其余船员轻蔑目光的防护。"
 
 	default_skin = "praetorian"
 	armor_type = /datum/armor/mod_theme_blueshield

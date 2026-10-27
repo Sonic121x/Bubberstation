@@ -24,7 +24,7 @@
 	/// The user who opened the window
 	var/client/client
 	/// Injury phrases to blurt out
-	var/static/list/hurt_phrases = list("GACK!", "GLORF!", "OOF!", "AUGH!", "OW!", "URGH!", "HRNK!")
+	var/static/list/hurt_phrases = list("呃啊！", "咕噜！", "哎哟！", "啊！", "呜！", "呃！", "哼哧！")
 	/// Max message length
 	var/max_length = MAX_MESSAGE_LEN
 	/// The modal window
@@ -96,7 +96,7 @@
 	if(payload["channel"] != OOC_CHANNEL && payload["channel"] != ADMIN_CHANNEL && payload["channel"] != PRAY_CHANNEL && payload["channel"] != LOOC_CHANNEL) // SKYRAT EDIT CHANGE (Add LOOC_CHANNEL)
 		start_thinking()
 	if(!client.typing_indicators)
-		log_speech_indicators("[key_name(client)] started typing at [loc_name(client.mob)], indicators DISABLED.")
+		log_speech_indicators("[key_name(client)] 在 [loc_name(client.mob)] 开始输入，指示器已禁用。")
 	return TRUE
 
 /**
@@ -107,7 +107,7 @@
 	window_open = FALSE
 	stop_thinking()
 	if(!client.typing_indicators)
-		log_speech_indicators("[key_name(client)] stopped typing at [loc_name(client.mob)], indicators DISABLED.")
+		log_speech_indicators("[key_name(client)] 在 [loc_name(client.mob)] 停止输入，指示器已禁用。")
 
 /**
  * The equivalent of ui_act, this waits on messages from the window

@@ -1,10 +1,10 @@
 /datum/round_event_control/falsealarm
-	name = "False Alarm"
+	name = "假警报"
 	typepath = /datum/round_event/falsealarm
 	weight = 20
 	max_occurrences = 5
 	category = EVENT_CATEGORY_BUREAUCRATIC
-	description = "Fakes an event announcement."
+	description = "伪造一次事件公告。"
 	admin_setup = list(/datum/event_admin_setup/listed_options/false_alarm)
 
 /datum/round_event_control/falsealarm/can_spawn_event(players_amt, allow_magic = FALSE)
@@ -55,13 +55,13 @@
 	if(istype(picked_trigger, /datum/round_event_control))
 		var/datum/round_event_control/event_control = picked_trigger
 		var/datum/round_event/fake_event = new event_control.typepath()
-		message_admins("False Alarm: [fake_event]")
+		message_admins("假警报：[fake_event]")
 		fake_event.kill() //do not process this event - no starts, no ticks, no ends
 		fake_event.announce(TRUE) //just announce it like it's happening
 
 	else if(istype(picked_trigger, /datum/dynamic_ruleset/midround))
 		var/datum/dynamic_ruleset/midround/ruleset = picked_trigger
-		message_admins("False Alarm: [ruleset]")
+		message_admins("假警报：[ruleset]")
 		ruleset.false_alarm()
 		qdel(ruleset)
 
@@ -81,7 +81,7 @@
 		. += midround
 
 /datum/event_admin_setup/listed_options/false_alarm
-	normal_run_option = "Random Fake Event"
+	normal_run_option = "随机假事件"
 
 /datum/event_admin_setup/listed_options/false_alarm/get_list()
 	return get_potential_false_alarm()

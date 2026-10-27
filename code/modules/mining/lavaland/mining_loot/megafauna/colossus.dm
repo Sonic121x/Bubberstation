@@ -1,8 +1,8 @@
 // Divine vocal cords
 
 /obj/item/organ/vocal_cords/colossus
-	name = "divine vocal cords"
-	desc = "They carry the voice of an ancient god."
+	name = "神性声带"
+	desc = "它们承载着远古神明的声音。"
 	icon_state = "voice_of_god"
 	actions_types = list(/datum/action/item_action/organ_action/colossus)
 	var/next_command = 0
@@ -11,7 +11,7 @@
 	spans = list("colossus","yell")
 
 /datum/action/item_action/organ_action/colossus
-	name = "Voice of God"
+	name = "神之音"
 	var/obj/item/organ/vocal_cords/colossus/cords = null
 
 /datum/action/item_action/organ_action/colossus/New()
@@ -23,27 +23,27 @@
 		return FALSE
 	if(world.time < cords.next_command)
 		if (feedback)
-			owner.balloon_alert(owner, "wait [DisplayTimeText(cords.next_command - world.time)]!")
+			owner.balloon_alert(owner, "需等待 [DisplayTimeText(cords.next_command - world.time)]！")
 		return FALSE
 	if(isliving(owner))
 		var/mob/living/living = owner
 		if(!living.can_speak())
 			if (feedback)
-				owner.balloon_alert(owner, "can't speak!")
+				owner.balloon_alert(owner, "无法说话！")
 			return FALSE
 	if((check_flags & AB_CHECK_CONSCIOUS) && IS_UNCONSCIOUS_OR_CRIT(owner))
 		if (feedback)
 			if(owner.stat == DEAD)
-				owner.balloon_alert(owner, "dead!")
+				owner.balloon_alert(owner, "已死亡！")
 			else if(IS_UNCONSCIOUS(owner))
-				owner.balloon_alert(owner, "unconscious!")
+				owner.balloon_alert(owner, "昏迷中！")
 			else
-				owner.balloon_alert(owner, "in critical!")
+				owner.balloon_alert(owner, "濒死中！")
 		return FALSE
 	return TRUE
 
 /datum/action/item_action/organ_action/colossus/do_effect(trigger_flags)
-	var/command = tgui_input_text(owner, "Speak with the Voice of God", "Command", max_length = MAX_MESSAGE_LEN)
+	var/command = tgui_input_text(owner, "以神之音说话", "号令", max_length = MAX_MESSAGE_LEN)
 	if(!command)
 		return FALSE
 	if(QDELETED(src) || QDELETED(owner))
@@ -56,7 +56,7 @@
 		return FALSE
 
 	if(world.time < next_command)
-		to_chat(owner, span_notice("You must wait [DisplayTimeText(next_command - world.time)] before Speaking again."))
+		to_chat(owner, span_notice("你必须等待 [DisplayTimeText(next_command - world.time)] 才能再次发声。"))
 		return FALSE
 
 	return owner.can_speak()
@@ -71,20 +71,20 @@
 
 // Anomalous crystal
 
-#define ACTIVATE_TOUCH "touch"
-#define ACTIVATE_SPEECH "speech"
-#define ACTIVATE_HEAT "heat"
-#define ACTIVATE_BULLET "bullet"
-#define ACTIVATE_ENERGY "energy"
-#define ACTIVATE_BOMB "bomb"
-#define ACTIVATE_MOB_BUMP "bumping"
-#define ACTIVATE_WEAPON "weapon"
-#define ACTIVATE_MAGIC "magic"
+#define ACTIVATE_TOUCH "触碰"
+#define ACTIVATE_SPEECH "说话"
+#define ACTIVATE_HEAT "高温"
+#define ACTIVATE_BULLET "子弹"
+#define ACTIVATE_ENERGY "能量"
+#define ACTIVATE_BOMB "爆炸"
+#define ACTIVATE_MOB_BUMP "撞击"
+#define ACTIVATE_WEAPON "武器"
+#define ACTIVATE_MAGIC "魔法"
 
 /obj/machinery/anomalous_crystal
-	name = "anomalous crystal"
-	desc = "A strange chunk of crystal, being in the presence of it fills you with equal parts excitement and dread."
-	var/observer_desc = "Anomalous crystals have descriptions that only observers can see. But this one hasn't been changed from the default."
+	name = "异常晶体"
+	desc = "一块奇特的晶体，待在它旁边会让你同时充满兴奋与恐惧。"
+	var/observer_desc = "异常晶体的描述只有观察者能看到。但这块晶体还没有被改成专门的描述。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "anomaly_crystal"
 	light_range = 8
@@ -114,7 +114,7 @@
 	. = ..()
 	if(isobserver(user))
 		. += observer_desc
-		. += "It is activated by [activation_method]."
+		. += "它的激活方式为 [activation_method]。"
 
 /obj/machinery/anomalous_crystal/Hear(atom/movable/speaker, message_langs, raw_message, radio_freq, radio_freq_name, radio_freq_color, spans, list/message_mods = list(), message_range)
 	. = ..()
@@ -154,14 +154,14 @@
 		charge_animation()
 	COOLDOWN_START(src, cooldown_timer, cooldown_add)
 	playsound(user, activation_sound, 100, TRUE)
-	log_game("[src] activated by [key_name(user)] in [AREACOORD(src)]. The last fingerprints on the [src] was [fingerprintslast].")
+	log_game("[key_name(user)] 在 [AREACOORD(src)] 激活了 [src]。最后留在 [src] 上的指纹是 [fingerprintslast]。")
 	return TRUE
 
 /obj/machinery/anomalous_crystal/proc/charge_animation()
 	icon_state = "anomaly_crystal_charging"
 	active = TRUE
 	set_anchored(TRUE)
-	balloon_alert_to_viewers("charging...")
+	balloon_alert_to_viewers("充能中……")
 	playsound(src, 'sound/effects/magic/disable_tech.ogg', 50, TRUE)
 	sleep(use_time)
 	icon_state = initial(icon_state)
@@ -179,7 +179,7 @@
 	return TRUE
 
 /obj/machinery/anomalous_crystal/honk //Revives the dead, but strips and equips them as a clown
-	observer_desc = "This crystal revives targets around it as clowns. Oh, that's horrible...."
+	observer_desc = "这块晶体将周围的目标复活为小丑。哦，太可怕了……"
 	activation_method = ACTIVATE_TOUCH
 	activation_sound = 'sound/items/bikehorn.ogg'
 	use_time = 3 SECONDS
@@ -219,7 +219,7 @@
 
 /// Transforms the area to look like a new one
 /obj/machinery/anomalous_crystal/theme_warp
-	observer_desc = "This crystal warps the area around it to a theme."
+	observer_desc = "这块晶体把周围区域扭曲成某种主题。"
 	activation_method = ACTIVATE_TOUCH
 	cooldown_add = 20 SECONDS
 	use_time = 5 SECONDS
@@ -231,7 +231,7 @@
 /obj/machinery/anomalous_crystal/theme_warp/Initialize(mapload)
 	. = ..()
 	terrain_theme = SSmaterials.dimensional_themes[pick(subtypesof(/datum/dimension_theme))]
-	observer_desc = "This crystal changes the area around it to match the theme of \"[terrain_theme.name]\"."
+	observer_desc = "这块晶体把周围区域变成“[terrain_theme.name]”的主题。"
 
 /obj/machinery/anomalous_crystal/theme_warp/ActivationReaction(mob/user, method)
 	. = ..()
@@ -250,14 +250,14 @@
 	return ..()
 
 /obj/machinery/anomalous_crystal/emitter //Generates a projectile when interacted with
-	observer_desc = "This crystal generates a projectile when activated."
+	observer_desc = "这块晶体激活时会生成一枚投射物。"
 	activation_method = ACTIVATE_TOUCH
 	cooldown_add = 5 SECONDS
 	var/obj/projectile/generated_projectile = /obj/projectile/colossus
 
 /obj/machinery/anomalous_crystal/emitter/Initialize(mapload)
 	. = ..()
-	observer_desc = "This crystal generates \a [initial(generated_projectile.name)] when activated."
+	observer_desc = "这块晶体激活时会生成 \a [initial(generated_projectile.name)]。"
 
 /obj/machinery/anomalous_crystal/emitter/ActivationReaction(mob/user, method)
 	if(..())
@@ -266,7 +266,7 @@
 		proj.fire(dir2angle(dir))
 
 /obj/machinery/anomalous_crystal/dark_reprise //Revives anyone nearby, but turns them into shadowpeople and renders them uncloneable, so the crystal is your only hope of getting up again if you go down.
-	observer_desc = "When activated, this crystal revives anyone nearby, but turns them into Shadowpeople and makes them unclonable, making the crystal their only hope of getting up again."
+	observer_desc = "激活时，这块晶体能复活附近所有人，但会把它们变成暗影人，并使他们无法被克隆，于是这块晶体便成了他们重新站起来的唯一希望。"
 	activation_method = ACTIVATE_TOUCH
 	activation_sound = 'sound/effects/hallucinations/growl1.ogg'
 	use_time = 3 SECONDS
@@ -298,7 +298,7 @@
 	return TRUE
 
 /obj/machinery/anomalous_crystal/helpers //Lets ghost spawn as helpful creatures that can only heal people slightly. Incredibly fragile and they can't converse with humans
-	observer_desc = "This crystal allows ghosts to turn into a fragile creature that can heal people."
+	observer_desc = "这块晶体允许幽灵变成一种能治疗他人的脆弱生物。"
 	activation_method = ACTIVATE_TOUCH
 	activation_sound = 'sound/effects/ghost2.ogg'
 	use_time = 5 SECONDS
@@ -309,9 +309,9 @@
 		SSpoints_of_interest.make_point_of_interest(src)
 		ready_to_deploy = TRUE
 		notify_ghosts(
-			"An anomalous crystal has been activated in [get_area(src)]! This crystal can always be used by ghosts hereafter.",
+			"在 [get_area(src)] 有一块异常晶体被激活了！此后幽灵可以随时使用这块晶体。",
 			source = src,
-			header = "Anomalous crystal activated",
+			header = "异常晶体已激活",
 			click_interact = TRUE,
 			ghost_sound = 'sound/effects/ghost2.ogg',
 		)
@@ -321,13 +321,13 @@
 	if(.)
 		return
 	if(ready_to_deploy)
-		var/be_helper = tgui_alert(usr, "Become a Lightgeist? (Warning, You can no longer be revived!)", "Lightgeist Deployment", list("Yes", "No"))
-		if((be_helper == "Yes") && !QDELETED(src) && isobserver(user))
+		var/be_helper = tgui_alert(usr, "成为光魂？（警告：你将无法再被复活！）", "光魂部署", list("是", "否"))
+		if((be_helper == "是") && !QDELETED(src) && isobserver(user))
 			var/mob/living/basic/lightgeist/deployable = new(get_turf(loc))
 			deployable.PossessByPlayer(user.key)
 
 /obj/machinery/anomalous_crystal/possessor //Allows you to bodyjack small animals, then exit them at your leisure, but you can only do this once per activation. Because they blow up. Also, if the bodyjacked animal dies, SO DO YOU.
-	observer_desc = "When activated, this crystal allows you to take over small animals, and then exit them at the possessors leisure. Exiting the animal kills it, and if you die while possessing the animal, you die as well."
+	observer_desc = "激活时，这块晶体允许你接管小动物，然后在你乐意时离开它们。离开会使动物爆体而亡，而如果你在操控动物期间死亡，你也会一同死去。"
 	activation_method = ACTIVATE_TOUCH
 	use_time = 1 SECONDS
 
@@ -361,8 +361,8 @@
 
 
 /obj/structure/closet/stasis
-	name = "quantum entanglement stasis warp field"
-	desc = "You can hardly comprehend this thing... which is why you can't see it."
+	name = "量子纠缠停滞曲速场"
+	desc = "你几乎无法理解这东西……所以你根本看不见它。"
 	icon_state = null //This shouldn't even be visible, so if it DOES show up, at least nobody will notice
 	enable_door_overlay = FALSE //For obvious reasons
 	density = TRUE
@@ -392,13 +392,13 @@
 	for(var/mob/living/possessor in src)
 		possessor.remove_traits(list(TRAIT_UNDENSE, TRAIT_NO_TRANSFORM, TRAIT_GODMODE), STASIS_MUTE)
 		if(kill || !isanimal_or_basicmob(loc))
-			possessor.investigate_log("has died from [src].", INVESTIGATE_DEATHS)
+			possessor.investigate_log("因 [src] 而死亡。", INVESTIGATE_DEATHS)
 			possessor.death(FALSE)
 		if(holder_animal)
 			holder_animal.mind.transfer_to(possessor)
 			possessor.mind.grab_ghost(force = TRUE)
 			possessor.forceMove(get_turf(holder_animal))
-			holder_animal.investigate_log("has been gibbed by [src].", INVESTIGATE_DEATHS)
+			holder_animal.investigate_log("被 [src] 碎尸了。", INVESTIGATE_DEATHS)
 			holder_animal.gib(DROP_ALL_REMAINS)
 			return ..()
 	return ..()
@@ -412,8 +412,8 @@
 	dump_contents()
 
 /datum/action/exit_possession
-	name = "Exit Possession"
-	desc = "Exits the body you are possessing. They will explode violently when this occurs."
+	name = "退出附身"
+	desc = "离开你正在附身的躯体。离开时它会猛烈爆炸。"
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "exit_possession"
 

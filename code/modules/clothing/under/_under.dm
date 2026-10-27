@@ -77,32 +77,32 @@
 	var/changed = FALSE
 
 	if(has_sensor == HAS_SENSORS && (isnull(held_item) || held_item == src))
-		context[SCREENTIP_CONTEXT_RMB] = "Toggle suit sensors"
-		context[SCREENTIP_CONTEXT_CTRL_LMB] = "Set suit sensors to tracking"
+		context[SCREENTIP_CONTEXT_RMB] = "切换服装传感器"
+		context[SCREENTIP_CONTEXT_CTRL_LMB] = "将服装传感器设为追踪"
 		changed = TRUE
 
 	if(istype(held_item, /obj/item/clothing/accessory) && length(attached_accessories) < max_number_of_accessories)
-		context[SCREENTIP_CONTEXT_LMB] = "Attach accessory"
+		context[SCREENTIP_CONTEXT_LMB] = "挂上饰物"
 		changed = TRUE
 
 	if(LAZYLEN(attached_accessories))
-		context[SCREENTIP_CONTEXT_ALT_RMB] = "Remove accessory"
+		context[SCREENTIP_CONTEXT_ALT_RMB] = "取下饰物"
 		changed = TRUE
 
 	if(has_sensor == BROKEN_SENSORS && istype(held_item, /obj/item/stack/cable_coil))
-		context[SCREENTIP_CONTEXT_LMB] = "Repair suit sensors"
+		context[SCREENTIP_CONTEXT_LMB] = "修复服装传感器"
 		changed = TRUE
 
 	if(has_sensor == NO_SENSORS)
 		if(istype(held_item, /obj/item/suit_sensor))
-			context[SCREENTIP_CONTEXT_LMB] = "Install suit sensors"
+			context[SCREENTIP_CONTEXT_LMB] = "安装服装传感器"
 			changed = TRUE
 	else if(held_item?.tool_behaviour == TOOL_WIRECUTTER)
-		context[SCREENTIP_CONTEXT_LMB] = "Cut suit sensors"
+		context[SCREENTIP_CONTEXT_LMB] = "剪下服装传感器"
 		changed = TRUE
 
 	if(can_adjust && adjusted != DIGITIGRADE_STYLE)
-		context[SCREENTIP_CONTEXT_ALT_LMB] =  "Wear [adjusted == ALT_STYLE ? "normally" : "casually"]"
+		context[SCREENTIP_CONTEXT_ALT_LMB] =  "[adjusted == ALT_STYLE ? "正常" : "随意"]穿着"
 		changed = TRUE
 
 	return changed ? CONTEXTUAL_SCREENTIP_SET : .
@@ -136,7 +136,7 @@
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/stack/cable_coil/cabling = tool
 		cabling.use(1)
-		cabling.visible_message(span_notice("[user] repairs the suit sensors on [src] with [cabling]."))
+		cabling.visible_message(span_notice("[user] 用 [cabling] 修好了 [src] 上的服装传感器。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/clothing/accessory))
@@ -144,9 +144,9 @@
 
 	if(istype(tool, /obj/item/suit_sensor))
 		if(has_sensor != NO_SENSORS)
-			balloon_alert(user, "already has sensors!")
+			balloon_alert(user, "已经有传感器了！")
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert(user, "installing sensors...")
+		balloon_alert(user, "正在安装传感器……")
 		if(!do_after(user, 5 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/suit_sensor/sensor = tool
@@ -156,7 +156,7 @@
 			set_has_sensor(HAS_SENSORS)
 			set_sensor_mode(sensor.sensor_mode)
 		qdel(tool)
-		balloon_alert(user, "sensors installed")
+		balloon_alert(user, "传感器已安装")
 		playsound(source = src, soundin = 'sound/effects/sparks/sparks4.ogg', vol = 50, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
 		return ITEM_INTERACT_SUCCESS
 
@@ -164,9 +164,9 @@
 
 /obj/item/clothing/under/wirecutter_act(mob/living/user, obj/item/tool)
 	if(has_sensor == NO_SENSORS)
-		balloon_alert(user, "doesn't have sensors!")
+		balloon_alert(user, "没有传感器！")
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "cutting out sensors...")
+	balloon_alert(user, "正在剪下传感器……")
 	if(!do_after(user, 5 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/suit_sensor/sensor = new (drop_location())
@@ -251,7 +251,7 @@
 	if(has_sensor == BROKEN_SENSORS || has_sensor == NO_SENSORS)
 		return
 
-	visible_message(span_warning("[src]'s medical sensors short out!"), blind_message = span_warning("The [src] makes an electronic sizzling sound!"), vision_distance = COMBAT_MESSAGE_RANGE)
+	visible_message(span_warning("[src] 的医疗传感器短路了！"), blind_message = span_warning("[src] 发出电子嘶嘶声！"), vision_distance = COMBAT_MESSAGE_RANGE)
 	set_has_sensor(BROKEN_SENSORS)
 	sensor_malfunction()
 
@@ -262,7 +262,7 @@
 /obj/item/clothing/under/proc/repair_sensors(mob/user)
 	if(has_sensor != BROKEN_SENSORS)
 		if(user)
-			balloon_alert(user, "sensors [has_sensor == NO_SENSORS ? "missing" : "not broken"]!")
+			balloon_alert(user, "传感器[has_sensor == NO_SENSORS ? "缺失" : "未损坏"]！")
 		return FALSE
 
 	playsound(source = src, soundin = 'sound/effects/sparks/sparks4.ogg', vol = 100, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
@@ -345,20 +345,20 @@ BUBBERSTATION CHANGE END */
  */
 /obj/item/clothing/under/proc/get_sensor_text(silent = TRUE)
 	if(has_sensor == BROKEN_SENSORS)
-		return "<font color='#ffcc33'>Non-Functional: Repair with cable coil</font>"
+		return "<font color='#ffcc33'>功能失效：可用电缆线圈修复</font>"
 
 	if(silent)
 		return ""
 
 	switch(has_sensor)
 		if(NO_SENSORS)
-			return "Not Present"
+			return "不存在"
 
 		if(LOCKED_SENSORS)
-			return "Functional, Locked"
+			return "功能正常，已锁定"
 
 		if(HAS_SENSORS)
-			return "Functional"
+			return "功能正常"
 
 // End suit sensor handling
 
@@ -377,7 +377,7 @@ BUBBERSTATION CHANGE END */
 	accessory.attach(src)
 
 	if(user && attach_message)
-		balloon_alert(user, "accessory attached")
+		balloon_alert(user, "已挂上饰物")
 
 	update_appearance()
 	return TRUE
@@ -392,7 +392,7 @@ BUBBERSTATION CHANGE END */
 
 	user.put_in_hands(popped_accessory)
 	if(attach_message)
-		popped_accessory.balloon_alert(user, "accessory removed")
+		popped_accessory.balloon_alert(user, "已取下饰物")
 
 /// Removes the passed accesory from our accessories list
 /obj/item/clothing/under/proc/remove_accessory(obj/item/clothing/accessory/removed, update = TRUE)
@@ -434,26 +434,26 @@ BUBBERSTATION CHANGE END */
 /obj/item/clothing/under/examine(mob/user)
 	. = ..()
 	if(can_adjust)
-		. += "Alt-click on [src] to wear it [adjusted == ALT_STYLE ? "normally" : "casually"]."
+		. += "Alt 点击 [src] 可[adjusted == ALT_STYLE ? "正常" : "随意"]穿着它。"
 	if(has_sensor == BROKEN_SENSORS)
-		. += span_warning("The medical sensors appear to be shorted out. You could repair it with some cabling.")
+		. += span_warning("医疗传感器似乎短路了。你可以用一些电缆修复它。")
 	else if(has_sensor > NO_SENSORS)
 		switch(sensor_mode)
 			if(SENSOR_OFF)
-				. += "Its sensors appear to be disabled."
+				. += "它的传感器似乎处于禁用状态。"
 			if(SENSOR_LIVING)
-				. += "Its binary life sensors appear to be enabled."
+				. += "它的二进制生命传感器似乎处于启用状态。"
 			if(SENSOR_VITALS)
-				. += "Its vital tracker appears to be enabled."
+				. += "它的生命体征追踪器似乎处于启用状态。"
 			if(SENSOR_COORDS)
-				. += "Its vital tracker and tracking beacon appear to be enabled."
+				. += "它的生命体征追踪器和追踪信标似乎处于启用状态。"
 	else
-		. += span_tooltip("You can always get new suit sensors to install from a lathe.", "It isn't equipped with medical sensors.")
+		. += span_tooltip("你随时可以从车床取得新的服装传感器来安装。", "它没有配备医疗传感器。")
 
 	if(LAZYLEN(attached_accessories))
 		var/list/accessories = list_accessories_with_icon(user)
-		. += "It has [english_list(accessories)] attached."
-		. += "Alt-Right-Click to remove [attached_accessories[1]]."
+		. += "它挂有 [english_list(accessories)]。"
+		. += "Alt 右键点击可取下 [attached_accessories[1]]。"
 
 /// Helper to list out all accessories with an icon besides it, for use in examine
 /obj/item/clothing/under/proc/list_accessories_with_icon(mob/user)
@@ -463,13 +463,13 @@ BUBBERSTATION CHANGE END */
 
 	return all_accessories
 
-GAME_VERB_SRC(/obj/item/clothing/under, toggle, usr, "Adjust Suit Sensors", null)
+GAME_VERB_SRC(/obj/item/clothing/under, toggle, usr, "调整服装传感器", null)
 	var/mob/user_mob = usr
 	if(!can_toggle_sensors(user_mob))
 		return
 
 	var/current_mode_text = GLOB.suit_sensor_mode_to_defines[sensor_mode + 1]
-	var/new_mode = tgui_input_list(user_mob, "Select a sensor mode", "Suit Sensors", GLOB.suit_sensor_mode_to_defines, current_mode_text)
+	var/new_mode = tgui_input_list(user_mob, "选择一种传感器模式", "服装传感器", GLOB.suit_sensor_mode_to_defines, current_mode_text)
 	if(isnull(new_mode))
 		return
 	if(!can_toggle_sensors(user_mob))
@@ -479,20 +479,20 @@ GAME_VERB_SRC(/obj/item/clothing/under, toggle, usr, "Adjust Suit Sensors", null
 	if (loc == user_mob)
 		switch(sensor_mode)
 			if(SENSOR_OFF)
-				to_chat(user_mob, span_notice("You disable your suit's remote sensing equipment."))
+				to_chat(user_mob, span_notice("你关闭了服装的远程传感设备。"))
 			if(SENSOR_LIVING)
-				to_chat(user_mob, span_notice("Your suit will now only report whether you are alive or dead."))
+				to_chat(user_mob, span_notice("你的服装现在只会报告你是死是活。"))
 			if(SENSOR_VITALS)
-				to_chat(user_mob, span_notice("Your suit will now only report your exact vital lifesigns."))
+				to_chat(user_mob, span_notice("你的服装现在只会报告你精确的生命体征。"))
 			if(SENSOR_COORDS)
-				to_chat(user_mob, span_notice("Your suit will now report your exact vital lifesigns as well as your coordinate position."))
+				to_chat(user_mob, span_notice("你的服装现在会报告你精确的生命体征以及坐标位置。"))
 
 /obj/item/clothing/under/item_ctrl_click(mob/user)
 	if(!can_toggle_sensors(user))
 		return CLICK_ACTION_BLOCKING
 
 	set_sensor_mode(SENSOR_COORDS)
-	balloon_alert(user, "set to tracking")
+	balloon_alert(user, "已设为追踪")
 	return CLICK_ACTION_SUCCESS
 
 /// Checks if the toggler is allowed to toggle suit sensors currently
@@ -500,25 +500,25 @@ GAME_VERB_SRC(/obj/item/clothing/under, toggle, usr, "Adjust Suit Sensors", null
 	if(!can_use(toggler) || toggler.stat == DEAD) //make sure they didn't hold the window open.
 		return FALSE
 	if(get_dist(toggler, src) > 1)
-		balloon_alert(toggler, "too far!")
+		balloon_alert(toggler, "太远了！")
 		return FALSE
 
 	switch(has_sensor)
 		if(LOCKED_SENSORS)
-			balloon_alert(toggler, "sensor controls locked!")
+			balloon_alert(toggler, "传感器控制已锁定！")
 			return FALSE
 		if(BROKEN_SENSORS)
-			balloon_alert(toggler, "sensors shorted!")
+			balloon_alert(toggler, "传感器短路了！")
 			return FALSE
 		if(NO_SENSORS)
-			balloon_alert(toggler, "no sensors to adjust!")
+			balloon_alert(toggler, "没有可调节的传感器！")
 			return FALSE
 
 	return TRUE
 
 /obj/item/clothing/under/click_alt(mob/user)
 	if(!can_adjust)
-		balloon_alert(user, "can't be adjusted!")
+		balloon_alert(user, "无法调整！")
 		return CLICK_ACTION_BLOCKING
 	if(!can_use(user))
 		return NONE
@@ -527,14 +527,14 @@ GAME_VERB_SRC(/obj/item/clothing/under, toggle, usr, "Adjust Suit Sensors", null
 
 /obj/item/clothing/under/click_alt_secondary(mob/user)
 	if(!LAZYLEN(attached_accessories))
-		balloon_alert(user, "no accessories to remove!")
+		balloon_alert(user, "没有可取下的饰物！")
 		return
 	pop_accessory(user)
 
-GAME_VERB_SRC(/obj/item/clothing/under, jumpsuit_adjust, usr, "Adjust Jumpsuit Style", null)
+GAME_VERB_SRC(/obj/item/clothing/under, jumpsuit_adjust, usr, "调整连体服样式", null)
 
 	if(!can_adjust)
-		balloon_alert(usr, "can't be adjusted!")
+		balloon_alert(usr, "无法调整！")
 		return
 	if(!can_use(usr))
 		return
@@ -542,9 +542,9 @@ GAME_VERB_SRC(/obj/item/clothing/under, jumpsuit_adjust, usr, "Adjust Jumpsuit S
 
 /obj/item/clothing/under/proc/rolldown()
 	if(toggle_jumpsuit_adjust())
-		to_chat(usr, span_notice("You adjust the suit to wear it more casually."))
+		to_chat(usr, span_notice("你把连体服调整得更随意了些。"))
 	else
-		to_chat(usr, span_notice("You adjust the suit back to normal."))
+		to_chat(usr, span_notice("你把连体服调回正常样式。"))
 
 	update_appearance()
 

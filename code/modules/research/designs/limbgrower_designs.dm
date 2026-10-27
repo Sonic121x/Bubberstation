@@ -3,7 +3,7 @@
 /////////////////////////////////////
 
 /datum/design/leftarm
-	name = "Left Arm"
+	name = "左臂"
 	id = "arm/left"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 25)
@@ -11,7 +11,7 @@
 	category = list(RND_CATEGORY_INITIAL, SPECIES_HUMAN, SPECIES_LIZARD, SPECIES_MOTH, SPECIES_PLASMAMAN, SPECIES_ETHEREAL)
 
 /datum/design/rightarm
-	name = "Right Arm"
+	name = "右臂"
 	id = "arm/right"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 25)
@@ -19,7 +19,7 @@
 	category = list(RND_CATEGORY_INITIAL, SPECIES_HUMAN, SPECIES_LIZARD, SPECIES_MOTH, SPECIES_PLASMAMAN, SPECIES_ETHEREAL)
 
 /datum/design/leftleg
-	name = "Left Leg"
+	name = "左腿"
 	id = "leg/left"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 25)
@@ -27,7 +27,7 @@
 	category = list(RND_CATEGORY_INITIAL, SPECIES_HUMAN, SPECIES_LIZARD, SPECIES_MOTH, SPECIES_PLASMAMAN, SPECIES_ETHEREAL, RND_CATEGORY_LIMBS_DIGITIGRADE)
 
 /datum/design/rightleg
-	name = "Right Leg"
+	name = "右腿"
 	id = "leg/right"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 25)
@@ -37,7 +37,7 @@
 //Non-limb limb designs
 
 /datum/design/heart
-	name = "Heart"
+	name = "心脏"
 	id = "heart"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 30)
@@ -45,7 +45,7 @@
 	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/lungs
-	name = "Lungs"
+	name = "肺"
 	id = "lungs"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)
@@ -53,7 +53,7 @@
 	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/liver
-	name = "Liver"
+	name = "肝脏"
 	id = "liver"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)
@@ -61,7 +61,7 @@
 	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/stomach
-	name = "Stomach"
+	name = "胃"
 	id = "stomach"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 15)
@@ -69,7 +69,7 @@
 	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/appendix
-	name = "Appendix"
+	name = "阑尾"
 	id = "appendix"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 5) //why would you need this
@@ -77,7 +77,7 @@
 	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/eyes
-	name = "Eyes"
+	name = "眼睛"
 	id = "eyes"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
@@ -85,7 +85,7 @@
 	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/ears
-	name = "Ears"
+	name = "耳朵"
 	id = "ears"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
@@ -93,7 +93,7 @@
 	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/tongue
-	name = "Tongue"
+	name = "舌头"
 	id = "tongue"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
@@ -102,7 +102,7 @@
 
 // Grows a fake lizard tail - not usable in lizard wine and other similar recipes.
 /datum/design/lizard_tail
-	name = "Lizard Tail"
+	name = "蜥蜴尾巴"
 	id = "liztail"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)
@@ -110,7 +110,7 @@
 	category = list(SPECIES_LIZARD)
 
 /datum/design/lizard_tongue
-	name = "Forked Tongue"
+	name = "分叉舌"
 	id = "liztongue"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)
@@ -118,7 +118,7 @@
 	category = list(SPECIES_LIZARD)
 
 /datum/design/monkey_tail
-	name = "Monkey Tail"
+	name = "猴子尾巴"
 	id = "monkeytail"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)
@@ -126,7 +126,7 @@
 	category = list(RND_CATEGORY_LIMBS_OTHER, RND_CATEGORY_INITIAL)
 
 /datum/design/cat_tail
-	name = "Cat Tail"
+	name = "猫尾巴"
 	id = "cattail"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)
@@ -134,7 +134,7 @@
 	category = list(SPECIES_HUMAN)
 
 /datum/design/cat_ears
-	name = "Cat Ears"
+	name = "猫耳"
 	id = "catears"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
@@ -142,7 +142,7 @@
 	category = list(SPECIES_HUMAN)
 
 /datum/design/cat_tongue
-	name = "Cat Tongue"
+	name = "猫舌"
 	id = "cattongue"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
@@ -150,7 +150,7 @@
 	category = list(SPECIES_HUMAN)
 
 /datum/design/plasmaman_lungs
-	name = "Plasma Filter"
+	name = "等离子过滤器"
 	id = "plasmamanlungs"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10, /datum/reagent/toxin/plasma = 20)
@@ -158,7 +158,7 @@
 	category = list(SPECIES_PLASMAMAN)
 
 /datum/design/plasmaman_tongue
-	name = "Plasma Bone Tongue"
+	name = "等离子骨舌"
 	id = "plasmamantongue"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10, /datum/reagent/toxin/plasma = 20)
@@ -166,7 +166,7 @@
 	category = list(SPECIES_PLASMAMAN)
 
 /datum/design/plasmaman_liver
-	name = "Reagent Processing Crystal"
+	name = "试剂处理晶体"
 	id = "plasmamanliver"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10, /datum/reagent/toxin/plasma = 20)
@@ -174,7 +174,7 @@
 	category = list(SPECIES_PLASMAMAN)
 
 /datum/design/plasmaman_stomach
-	name = "Digestive Crystal"
+	name = "消化晶体"
 	id = "plasmamanstomach"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10, /datum/reagent/toxin/plasma = 20)
@@ -182,7 +182,7 @@
 	category = list(SPECIES_PLASMAMAN)
 
 /datum/design/ethereal_stomach
-	name = "Biological Battery"
+	name = "生物电池"
 	id = "etherealstomach"
 	build_type = LIMBGROWER
 	reagents_list = list(
@@ -193,7 +193,7 @@
 	category = list(SPECIES_ETHEREAL)
 
 /datum/design/ethereal_tongue
-	name = "Electrical Discharger"
+	name = "放电器"
 	id = "etherealtongue"
 	build_type = LIMBGROWER
 	reagents_list = list(
@@ -204,7 +204,7 @@
 	category = list(SPECIES_ETHEREAL)
 
 /datum/design/ethereal_lungs
-	name = "Aeration Reticulum"
+	name = "透气网"
 	id = "ethereallungs"
 	build_type = LIMBGROWER
 	reagents_list = list(
@@ -216,7 +216,7 @@
 
 // Intentionally not growable by normal means - for balance conerns.
 /datum/design/ethereal_heart
-	name = "Crystal Core"
+	name = "水晶核心"
 	build_type = LIMBGROWER
 	reagents_list = list(
 		/datum/reagent/medicine/c2/synthflesh = 10,
@@ -226,7 +226,7 @@
 	category = list(SPECIES_ETHEREAL)
 
 /datum/design/armblade
-	name = "Arm Blade"
+	name = "合成臂刃"
 	id = "armblade"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 75)
@@ -235,8 +235,8 @@
 
 /// Design disks and designs - for adding limbs and organs to the limbgrower.
 /obj/item/disk/design_disk/limbs
-	name = "Limb Design Disk"
-	desc = "A disk containing limb and organ designs for a limbgrower."
+	name = "肢体设计磁盘"
+	desc = "一张包含肢体与器官设计、可供肢体培育机使用的磁盘。"
 	icon_state = "datadisk1"
 	/// List of all limb designs this disk contains.
 	var/list/limb_designs = list()
@@ -248,8 +248,8 @@
 		blueprints += new new_design
 
 /datum/design/limb_disk
-	name = "Limb Design Disk"
-	desc = "Contains designs for various limbs."
+	name = "肢体设计磁盘"
+	desc = "包含各种肢体的设计。"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass =SMALL_MATERIAL_AMOUNT)
 	build_path = /obj/item/disk/design_disk/limbs
@@ -259,7 +259,7 @@
 	departmental_flags = NONE // BUBBER EDIT CHANGE - ORIGINAL: DEPARTMENT_BITFLAG_MEDICAL
 
 /obj/item/disk/design_disk/limbs/felinid
-	name = "Felinid Organ Design Disk"
+	name = "猫人器官设计磁盘"
 	limb_designs = list(/datum/design/cat_tail, /datum/design/cat_ears, /datum/design/cat_tongue)
 // BUBBER EDIT REMOVE BEGIN - LIMB GROWERS INCLUDE ALL LIMB TYPES
 /*

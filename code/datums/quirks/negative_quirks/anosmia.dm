@@ -1,9 +1,9 @@
 /datum/quirk/item_quirk/anosmia
 	name = "Anosmia"
-	desc = "For some reason, you can't smell anything."
+	desc = "不知为何，你闻不到任何气味。"
 	icon = FA_ICON_HEAD_SIDE_COUGH_SLASH
 	value = -2
 	mob_trait = TRAIT_ANOSMIA
-	gain_text = span_notice("You find yourself unable to smell anything!")
-	lose_text = span_danger("Suddenly, you can smell again!")
-	medical_record_text = "Patient has lost their sensation of smell."
+	gain_text = span_notice("你发现自己闻不到任何气味了！")
+	lose_text = span_danger("突然间，你又能闻到气味了！")
+	medical_record_text = "患者已丧失嗅觉。"

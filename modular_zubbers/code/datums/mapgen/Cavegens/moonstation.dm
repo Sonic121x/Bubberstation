@@ -84,8 +84,8 @@
 
 /* Here lies dead code that I wish to get working again. Because of how changeturf works, this cannot work without causing runtimes. Maybe in the future this can be re-added.  ~ Burger
 /obj/effect/mapping_helpers/turf_spreader
-	name = "turf spreader"
-	desc = "Spread the love!"
+	name = "地块扩散器"
+	desc = "把爱传播出去！"
 
 	var/turf/desired_spread_type
 

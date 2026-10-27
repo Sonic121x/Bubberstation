@@ -2,8 +2,8 @@
 #define PAIN_DEFAULT 9
 
 /obj/item/bdsm_candle
-	name = "soy candle"
-	desc = "A candle with low melting temperature."
+	name = "大豆蜡烛"
+	desc = "一支低熔点蜡烛。"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
 	lefthand_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_left.dmi'
 	righthand_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_right.dmi'
@@ -111,13 +111,13 @@
 /obj/item/bdsm_candle/examine(mob/user)
 	. = ..()
 	if(!color_changed && !lit)
-		. += span_notice("Alt-click to change it's color.")
+		. += span_notice("按住 Alt 点击可更换颜色。")
 	else if(lit)
-		. += span_notice("Alt-click to snuff the flame out.")
+		. += span_notice("按住 Alt 点击可熄灭火焰。")
 
 /obj/item/bdsm_candle/click_alt(mob/user)
 	if(!lit && !color_changed)
-		var/choice = show_radial_menu(user, src, candle_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
+		var/choice = chinese_skyrat_item_radial(user, src, candle_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 		if(!choice)
 			return CLICK_ACTION_BLOCKING
 		current_color = choice
@@ -129,7 +129,7 @@
 	else
 		if(!put_out_candle())
 			return CLICK_ACTION_BLOCKING
-		user.visible_message(span_notice("[user] snuffs [src]."))
+		user.visible_message(span_notice("[user] 熄灭了 [src]。"))
 		return CLICK_ACTION_SUCCESS
 
 /*
@@ -145,26 +145,26 @@
 
 	var/message = ""
 	if(!attacked.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("It looks like [attacked] don't want you to do that."))
+		to_chat(user, span_danger("[attacked] 似乎不愿意让你这么做。"))
 		return
 	if(!lit)
-		to_chat(user, span_danger("[src] needs to be lit to produce wax!"))
+		to_chat(user, span_danger("必须点燃 [src] 才能产生蜡液！"))
 		return
 	switch(user.zone_selected) //to let code know what part of body we gonna wax
 		if(BODY_ZONE_PRECISE_GROIN)
 			var/obj/item/organ/genital/penis = attacked.get_organ_slot(ORGAN_SLOT_PENIS)
 			var/obj/item/organ/genital/vagina = attacked.get_organ_slot(ORGAN_SLOT_VAGINA)
-			var/penis_message = (user == attacked) ? pick("drips some wax on [attacked.p_their()] penis, causing [attacked.p_them()] to moan in pleasure.",
-						"drips some wax on [attacked.p_them()]self, letting it reach [attacked.p_their()] penis.") \
-					: pick("drips wax right on [attacked]'s penis. It slightly itches.",
-						"drips hot wax from [src] onto [attacked]'s penis, [attacked.p_they()] shivers slightly.",
-						"tilts the candle. Drops of wax, dripping from [src] onto [attacked]'s penis, made [attacked.p_them()] moan.")
+			var/penis_message = (user == attacked) ? pick("将蜡液滴在自己的阴茎上，愉悦地呻吟",
+						"将蜡液滴在自己身上，任其流到阴茎上") \
+					: pick("将蜡液直接滴在 [attacked] 的阴茎上，带来些许瘙痒",
+						"将 [src] 的热蜡滴在 [attacked] 的阴茎上，使其微微颤抖",
+						"倾斜蜡烛，让 [src] 的蜡液滴在 [attacked] 的阴茎上，使其呻吟")
 
-			var/vagina_message = (user == attacked) ? pick("drips some wax on [attacked.p_them()]self, letting it reach [attacked.p_their()] vagina.",
-						"drips some wax onto [attacked.p_their()] pussy as [attacked.p_they()] moan in pleasure") \
-					: pick("drips some wax on [attacked]'s vagina.",
-						"tilts the candle as the wax slowly drops down, reaching [attacked]'s vagina.",
-						"tilts the candle. Drops of wax, dripping from [src] onto [attacked]'s pussy, made [attacked.p_them()] moan.")
+			var/vagina_message = (user == attacked) ? pick("将蜡液滴在自己身上，任其流到阴道处",
+						"将蜡液滴在自己的阴部，愉悦地呻吟") \
+					: pick("将蜡液滴在 [attacked] 的阴道处",
+						"倾斜蜡烛，让蜡液缓缓滴到 [attacked] 的阴道处",
+						"倾斜蜡烛，让 [src] 的蜡液滴在 [attacked] 的阴部，使其呻吟")
 
 			if(vagina?.is_exposed() && penis?.is_exposed())
 				message = pick(penis_message, vagina_message)
@@ -173,13 +173,13 @@
 			else if(vagina?.is_exposed())
 				message = vagina_message
 			else if(attacked.is_bottomless())
-				message = (user == attacked) ? pick("drips some wax on [attacked.p_them()]self, letting it reach [attacked.p_their()] belly as [attacked.p_they()] moan in pleasure.",
-						"drips some wax on [attacked]'s tummy") \
-					: pick("drips some wax on [attacked]'s belly",
-						"tilts the candle as the wax slowly drops down, reaching [attacked]'s tummy.",
-						"tilts the candle. Drops of wax, dripping from [src] onto [attacked]'s groin, made [attacked.p_them()] moan.")
+				message = (user == attacked) ? pick("将蜡液滴在自己身上，任其流到腹部，愉悦地呻吟",
+						"将蜡液滴在自己的肚子上") \
+					: pick("将蜡液滴在 [attacked] 的腹部",
+						"倾斜蜡烛，让蜡液缓缓滴到 [attacked] 的肚子上",
+						"倾斜蜡烛，让 [src] 的蜡液滴在 [attacked] 的胯部，使其呻吟")
 			else
-				to_chat(user, span_danger("Looks like [attacked]'s groin is covered!"))
+				to_chat(user, span_danger("[attacked] 的胯部似乎被遮住了！"))
 				return
 			attacked.adjust_pain(PAIN_DEFAULT)
 
@@ -187,15 +187,15 @@
 			var/obj/item/organ/genital/breasts = attacked.get_organ_slot(ORGAN_SLOT_BREASTS)
 			if(breasts?.is_exposed())
 				var/breasts_or_nipples = breasts ? ORGAN_SLOT_BREASTS : ORGAN_SLOT_NIPPLES
-				message = (user == attacked) ? pick("drips some wax on [attacked.p_their()] [breasts_or_nipples], releasing all [attacked.p_their()] lustness",
-						"drips some wax right on [attacked.p_their()] [breasts ? "tits" : "chest"], making [attacked.p_their()] feel faint.") \
-					: pick("pours the wax that is slowly dripping from [src] onto [attacked]'s [breasts_or_nipples], [attacked.p_they()] shows pure enjoyment.",
-						"tilts the candle. Right in the moment when wax drips on [attacked]'s [breasts_or_nipples], [attacked.p_they()] shivers",
-						"tilts the candle. Just when hot drops of wax fell on [attacked]'s [breasts_or_nipples], [attacked.p_they()] quietly moans in pleasure")
+				message = (user == attacked) ? pick("将蜡液滴在自己的[chinese_skyrat_item_label(breasts_or_nipples)]上，尽情释放欲望",
+						"将蜡液直接滴在自己的[breasts ? "乳房" : "胸部"]上，感到一阵晕眩") \
+					: pick("将 [src] 缓缓滴落的蜡液倒在 [attacked] 的[chinese_skyrat_item_label(breasts_or_nipples)]上，使其露出享受的神情",
+						"倾斜蜡烛，蜡液刚滴到 [attacked] 的[chinese_skyrat_item_label(breasts_or_nipples)]上，对方便颤抖起来",
+						"倾斜蜡烛，热蜡刚滴到 [attacked] 的[chinese_skyrat_item_label(breasts_or_nipples)]上，对方便愉悦地轻声呻吟")
 				attacked.adjust_pain(PAIN_DEFAULT * 0.66)
 
 			else
-				to_chat(user, span_danger("Looks like [attacked]'s chest is covered!"))
+				to_chat(user, span_danger("[attacked] 的胸部似乎被遮住了！"))
 				return
 		else
 			return

@@ -2,13 +2,13 @@
 
 /datum/quirk/photophobia
 	name = "Photophobia"
-	desc = "Bright lights seem to bother you more than others. Maybe it's a medical condition."
+	desc = "明亮的光线似乎比其他人更容易让你不适。也许这是某种病症。"
 	icon = FA_ICON_ARROWS_TO_EYE
 	value = -4
-	gain_text = span_danger("The safety of light feels off...")
-	lose_text = span_notice("Enlightening.")
-	medical_record_text = "Patient has acute phobia of light, and insists it is physically harmful."
-	medical_symptom_text = "Exhibits heightened sensitivity to bright lights, leading to discomfort and avoidance behaviors."
+	gain_text = span_danger("光明带来的安全感似乎不太对劲……")
+	lose_text = span_notice("豁然开朗。")
+	medical_record_text = "患者有严重的畏光症，并坚称光线会造成身体伤害。"
+	medical_symptom_text = "对明亮光线高度敏感，导致不适与回避行为。"
 	hardcore_value = 4
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_TRAUMALIKE
 	mail_goodies = list(

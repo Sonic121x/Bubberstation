@@ -1,7 +1,7 @@
 /obj/item/pressure_plate
-	name = "pressure plate"
-	desc = "An electronic device that triggers when stepped on."
-	desc_controls = "Ctrl-Click to toggle the pressure plate off and on."
+	name = "压力板"
+	desc = "踩上去便会触发的电子装置。"
+	desc_controls = "按住Ctrl点击可开关压力板。"
 	icon = 'icons/obj/fluff/puzzle_small.dmi'
 	inhand_icon_state = "flashtool"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -53,7 +53,7 @@
 		return
 	if(trigger_mob && isliving(AM))
 		var/mob/living/L = AM
-		to_chat(L, span_warning("You feel something click beneath you!"))
+		to_chat(L, span_warning("你感觉脚下有什么东西咔哒响了一声！"))
 	else if(!trigger_item)
 		return
 	can_trigger = FALSE
@@ -69,18 +69,18 @@
 		return NONE
 	var/obj/item/assembly/new_assembly = tool
 	if(!(new_assembly.assembly_behavior & ASSEMBLY_FUNCTIONAL_OUTPUT))
-		to_chat(user, span_warning("\The [tool] doesn't seem like it would do much of anything inside of [src]..."))
+		to_chat(user, span_warning("把[tool]装进[src]里似乎起不到什么作用……"))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 	assembly = tool
 	SEND_SIGNAL(tool, COMSIG_ASSEMBLY_ADDED_TO_PRESSURE_PLATE, src, user)
-	to_chat(user, span_notice("You attach [tool] to [src]!"))
+	to_chat(user, span_notice("你把[tool]装到了[src]上！"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/pressure_plate/attack_self(mob/living/L)
 	if(removable_assembly && istype(assembly))
-		to_chat(L, span_notice("You remove [assembly] from [src]."))
+		to_chat(L, span_notice("你从[src]上拆下了[assembly]。"))
 		SEND_SIGNAL(assembly, COMSIG_ASSEMBLY_REMOVED_FROM_PRESSURE_PLATE, src, L)
 		if(!L.put_in_hands(assembly))
 			assembly.forceMove(get_turf(src))
@@ -89,13 +89,13 @@
 
 /obj/item/pressure_plate/item_ctrl_click(mob/user)
 	if(protected)
-		to_chat(user, span_warning("You can't quite seem to turn this pressure plate off..."))
+		to_chat(user, span_warning("你似乎无法关闭这块压力板……"))
 		return CLICK_ACTION_BLOCKING
 	active = !active
 	if (active)
-		to_chat(user, span_notice("You turn [src] on."))
+		to_chat(user, span_notice("你开启了[src]。"))
 	else
-		to_chat(user, span_notice("You turn [src] off."))
+		to_chat(user, span_notice("你关闭了[src]。"))
 	return CLICK_ACTION_SUCCESS
 
 ///Called from COMSIG_OBJ_HIDE to toggle the active part, because yeah im not making a special exception on the element to support it

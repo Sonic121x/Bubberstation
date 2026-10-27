@@ -16,18 +16,18 @@
 		var/datum/uplink_item/uplink_item = new taken_item.type()
 		var/discount = uplink_item.get_discount()
 		var/static/list/disclaimer = list(
-			"Void where prohibited.",
-			"Not recommended for children.",
-			"Contains small parts.",
-			"Check local laws for legality in region.",
-			"Do not taunt.",
-			"Not responsible for direct, indirect, incidental or consequential damages resulting from any defect, error or failure to perform.",
-			"Keep away from fire or flames.",
-			"Product is provided \"as is\" without any implied or expressed warranties.",
-			"As seen on TV.",
-			"For recreational use only.",
-			"Use only as directed.",
-			"16% sales tax will be charged for orders originating within Space Nebraska.",
+			"禁止地区无效。",
+			"不建议儿童使用。",
+			"内含小零件。",
+			"请查阅当地法律确认本地区的合法性。",
+			"请勿挑衅。",
+			"因任何缺陷、错误或性能故障导致的直接、间接、附带或后果性损害，本公司概不负责。",
+			"请远离火源与明火。",
+			"本产品按“现状”提供，不附带任何明示或暗示的担保。",
+			"电视同款。",
+			"仅供娱乐用途。",
+			"请严格按照说明使用。",
+			"太空内布拉斯加境内订单将加收 16% 销售税。",
 		)
 
 		//We want to limit the purchase amount of some items without adjusting the pricing.
@@ -45,8 +45,8 @@
 		uplink_item.stock_key = WEAKREF(uplink_item)
 		uplink_item.category = category
 		uplink_item.cost = max(round(uplink_item.cost * (1 - discount)),1)
-		uplink_item.name += " ([round(((initial(uplink_item.cost)-uplink_item.cost)/initial(uplink_item.cost))*100)]% off!)"
-		uplink_item.desc += " Normally costs [initial(uplink_item.cost)] TC. All sales final. [pick(disclaimer)]"
+		uplink_item.name += "（[round(((initial(uplink_item.cost)-uplink_item.cost)/initial(uplink_item.cost))*100)]% 折扣！）"
+		uplink_item.desc += " 原价 [initial(uplink_item.cost)] TC。售出概不退换。[pick(disclaimer)]"
 		uplink_item.item = taken_item.item
 		uplink_item.discounted = TRUE
 
@@ -60,11 +60,11 @@
 **/
 /datum/uplink_item
 	/// Name of the uplink item
-	var/name = "item name"
+	var/name = "物品名称"
 	/// Category of the uplink
 	var/datum/uplink_category/category
 	/// Description of the uplink
-	var/desc = "item description"
+	var/desc = "物品描述"
 	/// Path to the item to spawn.
 	var/item = null
 	/// Cost of the item.
@@ -149,7 +149,7 @@
 /// Spawns an item and logs its purchase
 /datum/uplink_item/proc/purchase(mob/user, datum/uplink_handler/uplink_handler, atom/movable/source)
 	var/atom/spawned_item = spawn_item(item, user, uplink_handler, source)
-	log_uplink("[key_name(user)] purchased [src] for [cost] telecrystals from [source]'s uplink")
+	log_uplink("[key_name(user)] 以 [cost] 传送水晶从 [source] 的上行链路购买了 [src]")
 	user.playsound_local(get_turf(user), 'sound/effects/kaching.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 	if(uplink_handler.purchase_log)
 		log_purchase(spawned_item, uplink_handler)
@@ -179,9 +179,9 @@
 			ADD_TRAIT(contained, TRAIT_CONTRABAND, INNATE_TRAIT)
 	var/mob/living/carbon/human/human_user = user
 	if(istype(human_user) && isitem(spawned_item) && human_user.put_in_hands(spawned_item))
-		to_chat(human_user, span_boldnotice("[spawned_item] materializes into your hands!"))
+		to_chat(human_user, span_boldnotice("[spawned_item] 在你手中成形！"))
 	else
-		to_chat(user, span_boldnotice("[spawned_item] materializes onto the floor!"))
+		to_chat(user, span_boldnotice("[spawned_item] 在地面上成形！"))
 	SEND_SIGNAL(uplink_handler, COMSIG_ON_UPLINK_PURCHASE, spawned_item, user)
 	return spawned_item
 
@@ -223,15 +223,15 @@
 	return TRUE
 
 /datum/uplink_category/discounts
-	name = "Discounted Gear"
+	name = "折扣装备"
 	weight = -1
 
 /datum/uplink_category/discount_team_gear
-	name = "Discounted Team Gear"
+	name = "团队折扣装备"
 	weight = -1
 
 /datum/uplink_category/limited_discount_team_gear
-	name = "Limited Stock Team Gear"
+	name = "限量团队装备"
 	weight = -2
 
 //Discounts (dynamically filled above)
@@ -240,14 +240,14 @@
 	purchasable_from = parent_type::purchasable_from & ~UPLINK_SPY // Probably not necessary but just in case
 
 /datum/uplink_category/objective_special
-	name = "Objective-Specific Equipment"
+	name = "目标专用装备"
 	weight = -3
 
 // Special equipment (Dynamically fills in uplink component)
 /datum/uplink_item/special_equipment
 	category = /datum/uplink_category/objective_special
-	name = "Objective-Specific Equipment"
-	desc = "Equipment necessary for accomplishing specific objectives. If you are seeing this, something has gone wrong."
+	name = "目标专用装备"
+	desc = "完成特定目标所必需的装备。如果你看到了这行字，那说明出问题了。"
 	limited_stock = 1
 	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
 	purchasable_from = parent_type::purchasable_from & ~UPLINK_SPY // Ditto

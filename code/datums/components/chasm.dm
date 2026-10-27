@@ -2,8 +2,8 @@
 /datum/component/chasm
 	var/turf/target_turf
 	var/obj/effect/abstract/chasm_storage/storage
-	var/fall_message = "GAH! Ah... where are you?"
-	var/oblivion_message = "You stumble and stare into the abyss before you. It stares back, and you fall into the enveloping dark."
+	var/fall_message = "啊！呃……你在哪里？"
+	var/oblivion_message = "你踉跄了一下，凝视着面前的深渊。深渊也回望着你，而你坠入了无边的黑暗。"
 
 	/// List of refs to falling objects -> how many levels deep we've fallen
 	var/static/list/falling_atoms
@@ -161,8 +161,8 @@
 			return
 
 		// send to the turf below
-		dropped_thing.visible_message(span_boldwarning("[dropped_thing] falls into [parent]!"), span_userdanger("[fall_message]"))
-		below_turf.visible_message(span_boldwarning("[dropped_thing] falls from above!"))
+		dropped_thing.visible_message(span_boldwarning("[dropped_thing]掉进了[parent]！"), span_userdanger("[fall_message]"))
+		below_turf.visible_message(span_boldwarning("[dropped_thing]从上方掉了下来！"))
 		dropped_thing.forceMove(below_turf)
 		if(isliving(dropped_thing))
 			var/mob/living/fallen = dropped_thing
@@ -180,7 +180,7 @@
 
 		if (HAS_MIND_TRAIT(falling_mob, TRAIT_NAIVE))
 			falling_mob.do_alert_animation()
-			dropped_thing.visible_message(span_boldwarning("[dropped_thing] kicks [dropped_thing.p_their()] legs in the air, as if running in place!"))
+			dropped_thing.visible_message(span_boldwarning("[dropped_thing]在空中蹬着双腿，仿佛在原地奔跑！"))
 			dropped_thing.Shake(1, 0, 2 SECONDS, 0.3 SECONDS)
 			sleep(3 SECONDS)
 
@@ -190,7 +190,7 @@
 			LAZYREMOVE(falling_atoms, falling_ref)
 			return
 
-	dropped_thing.visible_message(span_boldwarning("[dropped_thing] falls into [parent]!"), span_userdanger("[oblivion_message]"))
+	dropped_thing.visible_message(span_boldwarning("[dropped_thing]掉进了[parent]！"), span_userdanger("[oblivion_message]"))
 
 	var/oldtransform = dropped_thing.transform
 	var/oldcolor = dropped_thing.color
@@ -226,7 +226,7 @@
 	dropped_thing.pixel_y = oldoffset
 
 	if(!dropped_thing.forceMove(storage))
-		parent.visible_message(span_boldwarning("[parent] spits out [dropped_thing]!"))
+		parent.visible_message(span_boldwarning("[parent]吐出了[dropped_thing]！"))
 		dropped_thing.throw_at(get_edge_target_turf(parent, pick(GLOB.alldirs)), rand(1, 10), rand(1, 10))
 
 	else if(isliving(dropped_thing))
@@ -261,8 +261,8 @@ GLOBAL_LIST_EMPTY(chasm_fallen_mobs)
  * An abstract object which is basically just a bag that the chasm puts people inside
  */
 /obj/effect/abstract/chasm_storage
-	name = "chasm depths"
-	desc = "The bottom of a hole. You shouldn't be able to interact with this."
+	name = "深渊底部"
+	desc = "一个洞的底部。你本不应能与它互动。"
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
@@ -326,10 +326,10 @@ GLOBAL_LIST_EMPTY(chasm_fallen_mobs)
 	SIGNAL_HANDLER
 	var/turf/turf = get_turf(src)
 	if(turf.GetComponent(/datum/component/chasm))
-		turf.visible_message(span_boldwarning("After a long climb, [escapee] leaps out of [turf]!"))
+		turf.visible_message(span_boldwarning("经过漫长的攀爬，[escapee]从[turf]中跃出！"))
 	else
 		playsound(turf, 'sound/effects/bang.ogg', 50, TRUE)
-		turf.visible_message(span_boldwarning("[escapee] busts through [turf], leaping out of the chasm below"))
+		turf.visible_message(span_boldwarning("[escapee]冲破[turf]，从下方的深渊中跃出"))
 		turf.ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
 	ADD_TRAIT(escapee, TRAIT_MOVE_FLYING, CHASM_TRAIT) //Otherwise they instantly fall back in
 	escapee.forceMove(turf)

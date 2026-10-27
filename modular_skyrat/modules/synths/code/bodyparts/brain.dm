@@ -1,10 +1,10 @@
 /obj/item/organ/brain/synth
-	name = "compact positronic brain"
+	name = "紧凑型正电子脑"
 	slot = ORGAN_SLOT_BRAIN
 	zone = BODY_ZONE_CHEST
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
-	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves. It has an IPC serial number engraved on the top. It is usually slotted into the chest of synthetic crewmembers."
+	desc = "一块边长四英寸的闪亮金属立方体，表面布满浅槽，顶部刻着IPC序列号。通常安装在合成船员的胸腔中。"
 	icon = 'modular_skyrat/master_files/icons/obj/surgery.dmi'
 	icon_state = "posibrain-ipc"
 	/// The last time (in ticks) a message about brain damage was sent. Don't touch.
@@ -116,7 +116,7 @@
 
 /obj/item/organ/brain/synth/transfer_identity(mob/living/L)
 	if(L.mind && L.mind.current && !decoy_override)
-		to_chat(L, span_userdanger("Memories Corrupted, Positronic rerolling to most stable version, last version backup ERROR minutes ago, last attacker's: Unknown, unable to pinpoint features, please standby."))
+		to_chat(L, span_userdanger("记忆损坏，正电子系统正在回滚至最稳定版本。上次备份时间：错误，单位：分钟。最近攻击者：未知，无法识别特征。请稍候。"))
 	. = ..()
 
 
@@ -133,7 +133,7 @@
 				to_chat(owner, span_warning("01001001 00100111 01101101 00100000 01100110 01110101 01100011 01101011 01100101 01100100 00101110"))
 				apply_organ_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, SYNTH_EMP_BRAIN_DAMAGE_MAXIMUM, required_organ_flag = ORGAN_ROBOTIC)
 			if(EMP_LIGHT)
-				to_chat(owner, span_warning("Alert: Electromagnetic damage taken in central processing unit. Error Code: 401-YT"))
+				to_chat(owner, span_warning("警报：中央处理器遭受电磁损伤。错误代码：401-YT"))
 				apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, SYNTH_EMP_BRAIN_DAMAGE_MAXIMUM, required_organ_flag = ORGAN_ROBOTIC)
 
 /obj/item/organ/brain/synth/apply_organ_damage(damage_amount, maximum = maxHealth, required_organ_flag = NONE)
@@ -143,15 +143,15 @@
 		last_message_time = world.time
 
 		if(damage > BRAIN_DAMAGE_SEVERE)
-			to_chat(owner, span_warning("Alre: re oumtnin ilir tocorr:pa ni ne:cnrrpiioruloomatt cessingode: P1_1-H"))
+			to_chat(owner, span_warning("警……报：中……处理……严重……损坏……错误代码：P1_1-H"))
 			return
 
 		if(damage > BRAIN_DAMAGE_MILD)
-			to_chat(owner, span_warning("Alert: Minor corruption in central processing unit. Error Code: 001-HP"))
+			to_chat(owner, span_warning("警报：中央处理器轻度损坏。错误代码：001-HP"))
 
 /obj/item/organ/brain/synth/circuit
-	name = "compact AI circuit"
-	desc = "A compact and extremely complex circuit, It is usually slotted into the chest of synthetic crewmembers."
+	name = "紧凑型AI电路"
+	desc = "紧凑而极其复杂的电路，通常安装在合成船员的胸腔中。"
 	icon = 'modular_skyrat/master_files/icons/obj/alt_silicon_brains.dmi'
 	icon_state = "circuit-occupied"
 	inhand_icon_state = "electronic"
@@ -160,8 +160,8 @@
 	mmi_type = /obj/item/mmi/posibrain/circuit
 
 /obj/item/organ/brain/synth/mmi
-	name = "augmented brain"
-	desc = "A augmented organic brain"
+	name = "强化大脑"
+	desc = "经过强化改造的有机大脑。"
 	icon = /obj/item/organ/brain::icon
 	icon_state = "brain"
 	mmi_type = /obj/item/mmi

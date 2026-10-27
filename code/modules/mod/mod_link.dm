@@ -1,7 +1,7 @@
 /proc/make_link_visual_generic(datum/mod_link/mod_link, proc_path)
 	var/mob/living/user = mod_link.get_user_callback.Invoke()
 	var/obj/effect/overlay/link_visual = new()
-	link_visual.name = "holocall ([mod_link.id])"
+	link_visual.name = "全息通话 ([mod_link.id])"
 	link_visual.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	LAZYADD(mod_link.holder.update_on_z, link_visual)
 	link_visual.appearance_flags |= KEEP_TOGETHER
@@ -82,27 +82,27 @@
 	if(istype(tool.buffer, /datum/mod_link))
 		var/datum/mod_link/buffer_link = tool.buffer
 		tool_frequency = buffer_link.frequency
-		balloon_alert(user, "frequency set")
+		balloon_alert(user, "频率已设置")
 		. = ITEM_INTERACT_SUCCESS
 	if(!tool_frequency && mod_link.frequency)
 		tool.set_buffer(mod_link)
-		balloon_alert(user, "frequency copied")
+		balloon_alert(user, "频率已复制")
 		. = ITEM_INTERACT_SUCCESS
 	else if(tool_frequency && !mod_link.frequency)
 		mod_link.frequency = tool_frequency
 		. = ITEM_INTERACT_SUCCESS
 	else if(tool_frequency && mod_link.frequency)
-		var/response = tgui_alert(user, "Would you like to copy or imprint the frequency?", "MODlink Frequency", list("Copy", "Imprint"))
+		var/response = tgui_alert(user, "你想复制还是写入频率？", "MOD 链路频率", list("Copy", "Imprint"))
 		if(!user.is_holding(tool))
 			return ITEM_INTERACT_BLOCKING
 		switch(response)
 			if("Copy")
 				tool.set_buffer(mod_link)
-				balloon_alert(user, "frequency copied")
+				balloon_alert(user, "频率已复制")
 				. = ITEM_INTERACT_SUCCESS
 			if("Imprint")
 				mod_link.frequency = tool_frequency
-				balloon_alert(user, "frequency set")
+				balloon_alert(user, "频率已设置")
 				. = ITEM_INTERACT_SUCCESS
 
 /obj/item/mod/control/proc/can_call()
@@ -139,8 +139,8 @@
 	on_user_set_dir_generic(mod_link, newdir || SOUTH)
 
 /obj/item/clothing/neck/link_scryer
-	name = "\improper MODlink scryer"
-	desc = "An intricate piece of machinery that creates a holographic video call with another MODlink-compatible device. Essentially a video necklace."
+	name = "\improper MOD 链路窥视器"
+	desc = "一台精密的机械装置，能与另一台兼容 MOD 链路的设备建立全息视频通话。本质上就是一条视频项链。"
 	icon_state = "modlink"
 	actions_types = list(/datum/action/item_action/call_link)
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 3)
@@ -179,11 +179,11 @@
 		return
 	// SKYRAT EDIT NIFSOFT SCRYERS - END
 	if(cell)
-		. += span_notice("The battery charge reads [cell.percent()]%. <b>Right-click</b> with an empty hand to remove it.")
+		. += span_notice("电池电量为 [cell.percent()]%。用空手<b>右键点击</b>即可取出。")
 	else
-		. += span_notice("It is missing a battery, one can be installed by clicking with a power cell on it.")
-	. += span_notice("The MODlink ID is [mod_link.id], frequency is [mod_link.frequency || "unset"]. <b>Right-click</b> with multitool to copy/imprint frequency.")
-	. += span_notice("Use in hand to set name.")
+		. += span_notice("它缺少电池，可以用能量电池点击它来安装。")
+	. += span_notice("MOD 链路 ID 为 [mod_link.id]，频率为 [mod_link.frequency || "未设置"]。<b>右键点击</b>多功能工具可复制/写入频率。")
+	. += span_notice("在手中使用可设置名称。")
 
 /obj/item/clothing/neck/link_scryer/equipped(mob/living/user, slot)
 	. = ..()
@@ -195,14 +195,14 @@
 	mod_link?.end_call()
 
 /obj/item/clothing/neck/link_scryer/attack_self(mob/user, modifiers)
-	var/new_label = reject_bad_text(tgui_input_text(user, "Change the visible name", "Set Name", label, MAX_NAME_LEN))
+	var/new_label = reject_bad_text(tgui_input_text(user, "更改显示名称", "设置名称", label, MAX_NAME_LEN))
 	if(!user.is_holding(src))
 		return
 	if(!new_label)
-		balloon_alert(user, "invalid name!")
+		balloon_alert(user, "名称无效！")
 		return
 	label = new_label
-	balloon_alert(user, "name set")
+	balloon_alert(user, "名称已设置")
 	update_name()
 
 /obj/item/clothing/neck/link_scryer/process(seconds_per_tick)
@@ -218,7 +218,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	cell = tool
-	balloon_alert(user, "cell installed")
+	balloon_alert(user, "电池已安装")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/clothing/neck/link_scryer/update_name(updates)
@@ -233,7 +233,7 @@
 /obj/item/clothing/neck/link_scryer/attack_hand_secondary(mob/user, list/modifiers)
 	if(!cell)
 		return SECONDARY_ATTACK_CONTINUE_CHAIN
-	balloon_alert(user, "cell removed")
+	balloon_alert(user, "电池已卸下")
 	user.put_in_hands(cell)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -244,27 +244,27 @@
 	if(istype(tool.buffer, /datum/mod_link))
 		var/datum/mod_link/buffer_link = tool.buffer
 		tool_frequency = buffer_link.frequency
-		balloon_alert(user, "frequency set")
+		balloon_alert(user, "频率已设置")
 		. = ITEM_INTERACT_SUCCESS
 	if(!tool_frequency && mod_link.frequency)
 		tool.set_buffer(mod_link)
-		balloon_alert(user, "frequency copied")
+		balloon_alert(user, "频率已复制")
 		. = ITEM_INTERACT_SUCCESS
 	else if(tool_frequency && !mod_link.frequency)
 		mod_link.frequency = tool_frequency
 		. = ITEM_INTERACT_SUCCESS
 	else if(tool_frequency && mod_link.frequency)
-		var/response = tgui_alert(user, "Would you like to copy or imprint the frequency?", "MODlink Frequency", list("Copy", "Imprint"))
+		var/response = tgui_alert(user, "你想复制还是写入频率？", "MOD 链路频率", list("Copy", "Imprint"))
 		if(!user.is_holding(tool))
 			return ITEM_INTERACT_BLOCKING
 		switch(response)
 			if("Copy")
 				tool.set_buffer(mod_link)
-				balloon_alert(user, "frequency copied")
+				balloon_alert(user, "频率已复制")
 				. = ITEM_INTERACT_SUCCESS
 			if("Imprint")
 				mod_link.frequency = tool_frequency
-				balloon_alert(user, "frequency set")
+				balloon_alert(user, "频率已设置")
 				. = ITEM_INTERACT_SUCCESS
 
 /obj/item/clothing/neck/link_scryer/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
@@ -276,9 +276,9 @@
 	if(mod_link.link_call)
 		mod_link.end_call()
 	else if(QDELETED(cell))
-		user.balloon_alert(user, "no cell installed!")
+		user.balloon_alert(user, "未安装电池！")
 	else if(!cell.charge)
-		user.balloon_alert(user, "no charge!")
+		user.balloon_alert(user, "电量不足！")
 	else
 		call_link(user, mod_link)
 
@@ -338,7 +338,7 @@
 /// A MODlink datum, used to handle unique functions that will be used in the MODlink call.
 /datum/mod_link
 	/// Generic name for multitool buffers.
-	var/name = "MODlink"
+	var/name = "MOD 链路"
 	/// The frequency of the MODlink. You can only call other MODlinks on the same frequency.
 	var/frequency
 	/// The unique ID of the MODlink.
@@ -414,27 +414,27 @@
 	if(!frequency)
 		return
 	if(!istype(called))
-		holder.balloon_alert(user, "invalid target!")
+		holder.balloon_alert(user, "目标无效！")
 		return
 	var/mob/living/link_user = get_user_callback.Invoke()
 	if(!link_user)
 		return
 	if(HAS_TRAIT(link_user, TRAIT_IN_CALL))
-		holder.balloon_alert(user, "already calling!")
+		holder.balloon_alert(user, "已在通话中！")
 		return
 	var/mob/living/link_target = called.get_user_callback.Invoke()
 	if(!link_target)
-		holder.balloon_alert(user, "invalid target!")
+		holder.balloon_alert(user, "目标无效！")
 		return
 	if(HAS_TRAIT(link_target, TRAIT_IN_CALL))
-		holder.balloon_alert(user, "target already in call!")
+		holder.balloon_alert(user, "目标已在通话中！")
 		return
 	if(!can_call_callback.Invoke() || !called.can_call_callback.Invoke())
-		holder.balloon_alert(user, "can't call!")
+		holder.balloon_alert(user, "无法呼叫！")
 		return
 	link_target.playsound_local(get_turf(called.holder), 'sound/items/weapons/ring.ogg', 15, vary = TRUE)
 	var/atom/movable/screen/alert/modlink_call/alert = link_target.throw_alert("[REF(src)]_modlink", /atom/movable/screen/alert/modlink_call)
-	alert.desc = "[holder] ([id]) is calling you! Left-click this to accept the call. Right-click to deny it."
+	alert.desc = "[holder]（[id]）正在呼叫你！左键点击接听，右键点击拒绝。"
 	alert.link_caller_ref = WEAKREF(src)
 	alert.link_receiver_ref = WEAKREF(called)
 	alert.user_ref = WEAKREF(user)
@@ -508,20 +508,20 @@
 			continue
 		callers["[link.holder] ([id])"] = id
 	if(!length(callers))
-		calling_link.holder.balloon_alert(user, "no targets on freq [calling_link.frequency]!")
+		calling_link.holder.balloon_alert(user, "频率 [calling_link.frequency] 上没有目标！")
 		return
-	var/chosen_link = tgui_input_list(user, "Choose ID to call from [calling_link.frequency] frequency", "MODlink", callers)
+	var/chosen_link = tgui_input_list(user, "选择要呼叫的 ID（频率 [calling_link.frequency]）", "MOD 链路", callers)
 	if(!chosen_link)
 		return
 	calling_link.call_link(GLOB.mod_link_ids[callers[chosen_link]], user)
 
 /atom/movable/screen/alert/modlink_call
-	name = "MODlink Call Incoming"
-	desc = "Someone is calling you! Left-click this to accept the call. Right-click to deny it."
+	name = "MOD 链路来电"
+	desc = "有人在呼叫你！左键点击接听，右键点击拒绝。"
 	icon_state = "called"
 	timeout = 10 SECONDS
 	clickable_glow = TRUE
-	var/end_message = "call timed out!"
+	var/end_message = "呼叫超时！"
 	/// A weak reference to the MODlink that is calling.
 	var/datum/weakref/link_caller_ref
 	/// A weak reference to the MODlink that is being called.
@@ -541,10 +541,10 @@
 		return
 	var/list/modifiers = params2list(params)
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
-		end_message = "call denied!"
+		end_message = "呼叫已拒绝！"
 		owner.clear_alert("[REF(link_caller)]_modlink")
 		return
-	end_message = "call accepted"
+	end_message = "呼叫已接听"
 	new /datum/mod_link_call(link_caller, link_receiver)
 	owner.clear_alert("[REF(link_caller)]_modlink")
 

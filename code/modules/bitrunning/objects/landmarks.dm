@@ -1,41 +1,41 @@
 /obj/effect/landmark/bitrunning
-	name = "Generic bitrunning effect"
+	name = "通用比特潜行效果"
 	icon = 'icons/effects/bitrunning.dmi'
 	icon_state = "crate"
 
 /// In case you want to gate the crate behind a special condition.
 /obj/effect/landmark/bitrunning/loot_signal
-	name = "Mysterious aura"
+	name = "神秘光环"
 
 /// Where the exit hololadder spawns
 /obj/effect/landmark/bitrunning/hololadder_spawn
-	name = "Bitrunning hololadder spawn"
+	name = "比特潜行全息梯生成点"
 	icon_state = "hololadder"
 
 /// A permanent exit for the domain
 /obj/effect/landmark/bitrunning/permanent_exit
-	name = "Bitrunning permanent exit"
+	name = "比特潜行永久出口"
 	icon_state = "perm_exit"
 
 /// Where the crates need to be taken
 /obj/effect/landmark/bitrunning/cache_goal_turf
-	name = "Bitrunning goal turf"
+	name = "比特潜行目标地块"
 	icon_state = "goal"
 
 /// Where you want the crate to spawn
 /obj/effect/landmark/bitrunning/cache_spawn
-	name = "Bitrunning crate spawn"
+	name = "比特潜行板条箱生成点"
 	icon_state = "crate"
 
 /// Where you want secondary objectives to spawn
 /obj/effect/landmark/bitrunning/curiosity_spawn
-	name = "Bitrunning curiosity spawn"
+	name = "比特潜行奇物生成点"
 	icon_state = "crate"
 
 ///Swaps the locations of an encrypted crate in the area with another randomly selected crate.
 ///Randomizes names, so you have to inspect crates manually.
 /obj/effect/landmark/bitrunning/crate_replacer
-	name = "Bitrunning Goal Crate Randomizer"
+	name = "比特潜行目标板条箱随机器"
 	icon_state = "crate"
 
 /obj/effect/landmark/bitrunning/crate_replacer/Initialize(mapload)
@@ -54,10 +54,10 @@
 			for(var/obj/structure/closet/crate/crate_to_check in area_turf)
 				if(istype(crate_to_check, /obj/structure/closet/crate/secure/bitrunning/encrypted))
 					encrypted_crate = crate_to_check
-					crate_to_check.desc += span_hypnophrase(" This feels like the crate we're looking for!")
+					crate_to_check.desc += span_hypnophrase(" 这感觉就是我们要找的那个板条箱！")
 				else
 					crate_list += crate_to_check
-				crate_to_check.name = "Unidentified Crate"
+				crate_to_check.name = "未识别的板条箱"
 
 	if(!encrypted_crate)
 		stack_trace("Bitrunning Goal Crate Randomizer failed to find an encrypted crate to swap positions for.")
@@ -74,7 +74,7 @@
 
 /// A location for mobs to spawn.
 /obj/effect/landmark/bitrunning/mob_segment
-	name = "Bitrunning modular mob segment"
+	name = "比特潜行模块化生物段落"
 	icon_state = "mob_segment"
 
 /// Bitrunning safehouses. Typically 7x6 rooms with a single entrance.

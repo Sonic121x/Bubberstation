@@ -1,6 +1,6 @@
 /obj/item/organ/brain
-	name = "brain"
-	desc = "A piece of juicy meat found in a person's head."
+	name = "大脑"
+	desc = "一块从人脑袋里找到的多汁肉块。"
 	icon_state = "brain"
 	visual = TRUE
 	throw_speed = 3
@@ -9,8 +9,8 @@
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_BRAIN
 	organ_flags = ORGAN_ORGANIC | ORGAN_VITAL | ORGAN_PROMINENT
-	attack_verb_continuous = list("attacks", "slaps", "whacks")
-	attack_verb_simple = list("attack", "slap", "whack")
+	attack_verb_continuous = list("攻击", "扇打", "猛击")
+	attack_verb_simple = list("攻击", "扇打", "猛击")
 
 	///The brain's organ variables are significantly more different than the other organs, with half the decay rate for balance reasons, and twice the maxHealth
 	decay_factor = STANDARD_ORGAN_DECAY * 0.5 //30 minutes of decaying to result in a fully damaged brain, since a fast decay rate would be unfun gameplay-wise
@@ -47,7 +47,7 @@
 	/// Variance in brain traits removed by subtypes
 	var/variant_traits_removed
 	/// The color of this brain. Fluff, only used when repairing (shade of...).
-	var/shade_color = "pink"
+	var/shade_color = "粉色"
 
 /obj/item/organ/brain/Initialize(mapload)
 	. = ..()
@@ -64,7 +64,7 @@
 	// Special check for if you're trapped in a body you can't control because it's owned by a ling.
 	if(IS_CHANGELING(brain_owner) && !(movement_flags & NO_ID_TRANSFER))
 		if(brainmob && !IS_DEAD_OR_FAKING(brain_owner))
-			to_chat(brainmob, span_danger("You can't feel your body! You're still just a brain!"))
+			to_chat(brainmob, span_danger("你感觉不到自己的身体！你现在只是一颗大脑！"))
 		forceMove(brain_owner)
 		brain_owner.update_body_parts()
 		return
@@ -116,7 +116,7 @@
 	// Delete skillchips first as parent proc sets owner to null, and skillchips need to know the brain's owner.
 	if(!QDELETED(organ_owner) && length(skillchips))
 		if(!special)
-			to_chat(organ_owner, span_notice("You feel your skillchips enable emergency power saving mode, deactivating as your brain leaves your body..."))
+			to_chat(organ_owner, span_notice("你感到技能芯片启动了紧急省电模式，随着大脑离开你的身体而停用……"))
 			for(var/chip in skillchips)
 				var/obj/item/skillchip/skillchip = chip
 				// Run the try_ proc with force = TRUE.
@@ -138,7 +138,7 @@
 	return ..()
 
 /obj/item/organ/brain/proc/transfer_identity(mob/living/L)
-	name = "[L.name]'s [initial(name)]"
+	name = "[L.name]的[initial(name)]"
 	if(brainmob)
 		if(!decoy_override)
 			return
@@ -167,7 +167,7 @@
 
 	if(L.mind && L.mind.current && !decoy_override)
 		L.mind.transfer_to(brainmob)
-		to_chat(brainmob, span_notice("You feel slightly disoriented. That's normal when you're just a brain."))
+		to_chat(brainmob, span_notice("你感到有些失去方向感。当你只是一颗大脑时，这是正常的。"))
 
 /obj/item/organ/brain/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/borg/apparatus/organ_storage))
@@ -180,7 +180,7 @@
 	if(!length(skillchips) || tool.get_sharpness() != SHARP_EDGED)
 		return NONE
 
-	to_chat(user,span_notice("You begin to excise skillchips from [src]."))
+	to_chat(user,span_notice("你开始从 [src] 中挖出技能芯片。"))
 	if(!do_after(user, 15 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 
@@ -211,21 +211,21 @@
 		user.do_attack_animation(src)
 		playsound(loc, 'sound/effects/meatslap.ogg', 50)
 		set_organ_damage(maxHealth) //fails the brain as the brain was attacked, they're pretty fragile.
-		visible_message(span_danger("[user] hits [src] with [item]!"))
-		to_chat(user, span_danger("You hit [src] with [item]!"))
+		visible_message(span_danger("[user] 用 [item] 砸向 [src]！"))
+		to_chat(user, span_danger("你用 [item] 砸向 [src]！"))
 
 /obj/item/organ/brain/proc/check_for_repair(obj/item/item, mob/user)
 	if(damage && item.is_drainable() && item.reagents.has_reagent(/datum/reagent/medicine/mannitol) && (organ_flags & ORGAN_ORGANIC)) //attempt to heal the brain
 		if(brainmob?.health <= HEALTH_THRESHOLD_DEAD) //if the brain is fucked anyway, do nothing
-			to_chat(user, span_warning("[src] is far too damaged, there's nothing else we can do for it!"))
+			to_chat(user, span_warning("[src] 受损太严重了，我们已经无能为力了！"))
 			return TRUE
 
-		user.visible_message(span_notice("[user] starts to slowly pour the contents of [item] onto [src]."), span_notice("You start to slowly pour the contents of [item] onto [src]."))
+		user.visible_message(span_notice("[user] 开始慢慢把 [item] 里的东西倒在 [src] 上。"), span_notice("你开始慢慢把 [item] 里的东西倒在 [src] 上。"))
 		if(!do_after(user, 3 SECONDS, src))
-			to_chat(user, span_warning("You failed to pour the contents of [item] onto [src]!"))
+			to_chat(user, span_warning("你没能把 [item] 里的东西倒在 [src] 上！"))
 			return TRUE
-		var/and_bright_shade = !shade_color ? "" : " and turn a slightly brighter shade of [shade_color]"
-		user.visible_message(span_notice("[user] pours the contents of [item] onto [src], causing it to reform its original shape[and_bright_shade]."), span_notice("You pour the contents of [item] onto [src], causing it to reform its original shape[and_bright_shade]."))
+		var/and_bright_shade = !shade_color ? "" : "，并泛出更明亮的[shade_color]色调"
+		user.visible_message(span_notice("[user] 把 [item] 里的东西倒在 [src] 上，使它恢复原本的形状[and_bright_shade]。"), span_notice("你把 [item] 里的东西倒在 [src] 上，使它恢复原本的形状[and_bright_shade]。"))
 		var/amount = item.reagents.get_reagent_amount(/datum/reagent/medicine/mannitol)
 		var/healto = max(0, damage - amount * 2)
 		item.reagents.remove_all(ROUND_UP(item.reagents.total_volume / amount * (damage - healto) * 0.5)) //only removes however much solution is needed while also taking into account how much of the solution is mannitol
@@ -236,28 +236,28 @@
 /obj/item/organ/brain/examine(mob/user)
 	. = ..()
 	if(length(skillchips))
-		. += span_info("It has a skillchip embedded in it.")
+		. += span_info("里面嵌着一枚技能芯片。")
 	. += brain_damage_examine()
 	if (smooth_brain)
-		. += span_notice("All the pesky wrinkles are gone. Now it just needs a good drying...")
+		. += span_notice("那些烦人的褶皱全都不见了。现在只需要好好晾干……")
 	if(brain_size < 1)
-		. += span_notice("It is a bit on the smaller side...")
+		. += span_notice("它偏小了一点……")
 	if(brain_size > 1)
-		. += span_notice("It is bigger than average...")
+		. += span_notice("它比普通的大一些……")
 
 /// Needed so subtypes can override examine text while still calling parent
 /obj/item/organ/brain/proc/brain_damage_examine()
 	if(suicided)
-		return span_info("It's started turning slightly grey. They must not have been able to handle the stress of it all.")
+		return span_info("它开始微微发灰。他们一定是承受不住这一切的压力。")
 	if(brainmob && (decoy_override || brainmob.client || brainmob.get_ghost()))
 		if(organ_flags & ORGAN_FAILING)
-			return span_info("It seems to still have a bit of energy within it, but it's rather damaged... You may be able to restore it with some <b>mannitol</b>.")
+			return span_info("它内部似乎还残留着一点能量，但受损相当严重……你也许可以用一些<b>甘露醇</b>让它恢复。")
 		else if(damage >= maxHealth*0.5)
-			return span_info("You can feel the small spark of life still left in this one, but it's got some bruises. You may be able to restore it with some <b>mannitol</b>.")
+			return span_info("你能感觉到这一颗里还残留着一丝生命火花，不过它有些淤伤。你也许可以用一些<b>甘露醇</b>让它恢复。")
 		else
-			return span_info("You can feel the small spark of life still left in this one.")
+			return span_info("你能感觉到这一颗里还残留着一丝生命火花。")
 	else
-		return span_info("This one is completely devoid of life.")
+		return span_info("这一颗已经完全没有任何生命迹象。")
 
 /obj/item/organ/brain/get_status_appendix(scanpower, add_tooltips)
 	var/list/trauma_text
@@ -265,34 +265,34 @@
 		var/trauma_desc = ""
 		switch(trauma.resilience)
 			if(TRAUMA_RESILIENCE_BASIC)
-				trauma_desc = conditional_tooltip("Mild ", "Repair via brain surgery or medication such as [/datum/reagent/medicine/neurine::name].", add_tooltips)
+				trauma_desc = conditional_tooltip("轻度 ", "可通过脑外科手术或 [/datum/reagent/medicine/neurine::name] 等药物治疗。", add_tooltips)
 			if(TRAUMA_RESILIENCE_SURGERY)
-				trauma_desc = conditional_tooltip("Severe ", "Repair via brain surgery.", add_tooltips)
+				trauma_desc = conditional_tooltip("重度 ", "可通过脑外科手术治疗。", add_tooltips)
 			if(TRAUMA_RESILIENCE_LOBOTOMY)
-				trauma_desc = conditional_tooltip("Deep-rooted ", "Repair via advanced brain surgery.", add_tooltips) // BUBBER EDIT CHANGE - Original: Repair via Lobotomy
+				trauma_desc = conditional_tooltip("根深蒂固 ", "可通过高级脑外科手术治疗。", add_tooltips) // BUBBER EDIT CHANGE - Original: Repair via Lobotomy
 			if(TRAUMA_RESILIENCE_WOUND)
-				trauma_desc = conditional_tooltip("Fracture-derived ", "Repair via treatment of wounds afflicting the head.", add_tooltips)
+				trauma_desc = conditional_tooltip("骨折性 ", "可通过治疗头部创伤来治疗。", add_tooltips)
 			if(TRAUMA_RESILIENCE_MAGIC)
 				// BUBBER EDIT CHANGE BEGIN - Blessed neurectomy
-				trauma_desc = conditional_tooltip("Soul-bound ", "Repair via blessed brain surgery.", add_tooltips)
+				trauma_desc = conditional_tooltip("灵魂绑定 ", "可通过受祝福的脑外科手术治疗。", add_tooltips)
 				// BUBBER EDIT CHANGE END - Blessed neurectomy
 			if(TRAUMA_RESILIENCE_ABSOLUTE)
-				trauma_desc = conditional_tooltip("Permanent ", "Irreparable under normal circumstances.", add_tooltips)
+				trauma_desc = conditional_tooltip("永久性 ", "正常情况下无法修复。", add_tooltips)
 		trauma_desc += capitalize(trauma.scan_desc)
 		LAZYADD(trauma_text, trauma_desc)
 	if(LAZYLEN(trauma_text))
-		return "Mental trauma: [english_list(trauma_text, and_text = ", and ")]."
+		return "精神创伤：[english_list(trauma_text, and_text = "以及")]。"
 
 /obj/item/organ/brain/feel_for_damage(self_aware)
 	if(damage < low_threshold)
 		return ""
 	if(self_aware)
 		if(damage < high_threshold)
-			return span_warning("Your brain hurts a bit.")
-		return span_warning("Your brain hurts a lot.")
+			return span_warning("你的大脑有点疼。")
+		return span_warning("你的大脑疼得厉害。")
 	if(damage < high_threshold)
-		return span_warning("It feels a bit fuzzy.")
-	return span_warning("It aches incessantly.")
+		return span_warning("感觉有点模糊。")
+	return span_warning("它一直在隐隐作痛。")
 
 /obj/item/organ/brain/attack(mob/living/carbon/C, mob/user)
 	if(!istype(C))
@@ -306,7 +306,7 @@
 	var/target_has_brain = C.get_organ_by_type(/obj/item/organ/brain)
 
 	if(!target_has_brain && C.is_eyes_covered())
-		to_chat(user, span_warning("You're going to need to remove [C.p_their()] head cover first!"))
+		to_chat(user, span_warning("你得先摘掉 [C] 的头部护具！"))
 		return
 
 	//since these people will be dead M != usr
@@ -314,18 +314,18 @@
 	if(!target_has_brain)
 		if(!C.get_bodypart(BODY_ZONE_HEAD) || !user.temporarilyRemoveItemFromInventory(src))
 			return
-		var/msg = "[C] has [src] inserted into [C.p_their()] head by [user]."
+		var/msg = "[C] 的头部被 [user] 植入了 [src]。"
 		if(C == user)
-			msg = "[user] inserts [src] into [user.p_their()] head!"
+			msg = "[user] 把 [src] 植入了自己的头部！"
 
 		C.visible_message(span_danger("[msg]"),
 						span_userdanger("[msg]"))
 
 		if(C != user)
-			to_chat(C, span_notice("[user] inserts [src] into your head."))
-			to_chat(user, span_notice("You insert [src] into [C]'s head."))
+			to_chat(C, span_notice("[user] 把 [src] 植入了你的头部。"))
+			to_chat(user, span_notice("你把 [src] 植入了 [C] 的头部。"))
 		else
-			to_chat(user, span_notice("You insert [src] into your head.") )
+			to_chat(user, span_notice("你把 [src] 植入了自己的头部。") )
 
 		Insert(C)
 	else
@@ -345,8 +345,8 @@
 	if(HAS_TRAIT(src, TRAIT_BRAIN_DAMAGE_NODEATH))
 		return
 	if(damage >= maxHealth) //rip
-		to_chat(owner, span_userdanger("The last spark of life in your brain fizzles out..."))
-		owner.investigate_log("has been killed by brain damage.", INVESTIGATE_DEATHS)
+		to_chat(owner, span_userdanger("你大脑中最后一丝生命火花熄灭了……"))
+		owner.investigate_log("因脑损伤而死。", INVESTIGATE_DEATHS)
 		owner.death()
 
 /obj/item/organ/brain/on_bodypart_insert(obj/item/bodypart/limb)
@@ -433,11 +433,11 @@
 	// Conscious or soft-crit
 	var/brain_message
 	if(prev_damage < BRAIN_DAMAGE_MILD && damage >= BRAIN_DAMAGE_MILD)
-		brain_message = span_warning("You feel lightheaded.")
+		brain_message = span_warning("你感到头晕目眩。")
 	else if(prev_damage < BRAIN_DAMAGE_SEVERE && damage >= BRAIN_DAMAGE_SEVERE)
-		brain_message = span_warning("You feel less in control of your thoughts.")
+		brain_message = span_warning("你感到自己的想法越来越不受控制。")
 	else if(prev_damage < (maxHealth - 20) && damage >= (maxHealth - 20))
-		brain_message = span_warning("You can feel your mind flickering on and off...")
+		brain_message = span_warning("你能感到自己的意识忽明忽暗……")
 
 	if(.)
 		. += "\n[brain_message]"
@@ -496,15 +496,15 @@
 		set_organ_damage(maxHealth)
 
 /obj/item/organ/brain/alien
-	name = "alien brain"
-	desc = "We barely understand the brains of terrestial animals. Who knows what we may find in the brain of such an advanced species?"
+	name = "异形大脑"
+	desc = "我们连地球动物的大脑都几乎搞不懂。谁知道在如此高级的物种脑中会发现什么？"
 	icon_state = "brain-x"
 	variant_traits_removed = list(TRAIT_LITERATE, TRAIT_ADVANCEDTOOLUSER)
-	shade_color = "green"
+	shade_color = "绿色"
 
 /obj/item/organ/brain/primitive //No like books and stompy metal men
-	name = "primitive brain"
-	desc = "This juicy piece of meat has a clearly underdeveloped frontal lobe."
+	name = "原始大脑"
+	desc = "这块多汁的肉块明显额叶发育不全。"
 	variant_traits_removed = list(TRAIT_LITERATE)
 	variant_traits_added = list(
 		TRAIT_PRIMITIVE, // No literacy
@@ -517,18 +517,18 @@
 	)
 
 /obj/item/organ/brain/golem
-	name = "crystalline matrix"
-	desc = "This collection of sparkling gems somehow allows a golem to think."
+	name = "晶体矩阵"
+	desc = "这簇闪光的宝石不知怎么让魔像得以思考。"
 	icon_state = "adamantine_resonator"
 	can_smoothen_out = FALSE
 	color = COLOR_GOLEM_GRAY
-	shade_color = "teal"
+	shade_color = "青色"
 	organ_flags = ORGAN_MINERAL
 	variant_traits_added = list(TRAIT_ROCK_METAMORPHIC)
 
 /obj/item/organ/brain/lustrous
-	name = "lustrous brain"
-	desc = "This is your brain on bluespace dust. Not even once."
+	name = "流光大脑"
+	desc = "这就是吸了蓝空间粉尘后的你的大脑。一次都别试。"
 	icon_state = "random_fly_4"
 	can_smoothen_out = FALSE
 	shade_color = null
@@ -567,25 +567,25 @@
 	return ..()
 
 /obj/item/organ/brain/lizard
-	name = "lizard brain"
-	desc = "This juicy piece of meat has a oversized brain stem and cerebellum, with not much of a limbic system to speak of at all. You would expect its owner to be pretty cold blooded."
+	name = "蜥蜴大脑"
+	desc = "这块多汁的肉块有着过大的脑干和小脑，几乎谈不上有什么边缘系统。你会觉得它的主人相当冷血。"
 	variant_traits_added = list(TRAIT_TACKLING_TAILED_DEFENDER)
 
 /obj/item/organ/brain/ghost
-	name = "ghost brain"
-	desc = "How are you even able to hold this?"
+	name = "幽灵大脑"
+	desc = "你到底是怎么拿住它的？"
 	icon_state = "brain-ghost"
 	movement_type = PHASING
 	organ_flags = parent_type::organ_flags | ORGAN_GHOST
-	shade_color = "ectoplasmic white"
+	shade_color = "灵质白"
 
 /obj/item/organ/brain/abductor
-	name = "grey brain"
-	desc = "A piece of juicy meat found in an ayy lmao's head."
+	name = "小灰人大脑"
+	desc = "一块从小灰人脑袋里找到的多汁肉块。"
 	icon_state = "brain-x"
 	brain_size = 1.3
 	variant_traits_added = list(TRAIT_REMOTE_TASTING, TRAIT_ABDUCTOR_KNOWLEDGE)
-	shade_color = "grey"
+	shade_color = "灰色"
 
 /obj/item/organ/brain/abductor/on_mob_insert(mob/living/carbon/brain_owner, special = FALSE, movement_flags)
 	. = ..()
@@ -695,7 +695,7 @@
 		if(!actual_trauma.on_gain())
 			qdel(actual_trauma)
 			return null
-		log_game("[key_name_and_tag(owner)] has gained the following brain trauma: [trauma.type]")
+		log_game("[key_name_and_tag(owner)] 获得了以下脑创伤：[trauma.type]")
 	if(resilience)
 		actual_trauma.resilience = resilience
 	SSblackbox.record_feedback("tally", "traumas", 1, actual_trauma.type)
@@ -762,8 +762,8 @@
 	return Insert(new_owner, special = TRUE, movement_flags = NO_ID_TRANSFER | DELETE_IF_REPLACED)
 
 /obj/item/organ/brain/pod
-	name = "pod nucleus"
-	desc = "The brain of a pod person, it's a bit more plant-like than a human brain."
+	name = "荚人核"
+	desc = "荚人的大脑，比人类大脑更接近植物。"
 	foodtype_flags = PODPERSON_ORGAN_FOODTYPES
 	color = COLOR_LIME
-	shade_color = "lime"
+	shade_color = "青柠色"

@@ -3,7 +3,7 @@
 
 /// The subsystem used to tick [/datum/ai_controllers] instances. Handling the re-checking of plans.
 SUBSYSTEM_DEF(ai_controllers)
-	name = "AI Controller Ticker"
+	name = "AI 控制器调度"
 	ss_flags = SS_POST_FIRE_TIMING
 	priority = FIRE_PRIORITY_NPC
 	dependencies = list(
@@ -64,12 +64,12 @@ SUBSYSTEM_DEF(ai_controllers)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/ai_controllers/stat_entry(msg)
-	msg = "\n  Active:[length(SSai_controllers.ai_controllers_by_status[planning_status])]|Off:[length(SSai_controllers.ai_controllers_by_status[AI_STATUS_OFF])]"
-	msg += "\n  Pass:[pass_size - length(currentrun)]/[pass_size]|AvgPass:[round(average_pass_time * 0.1, 0.1)]s|WorstGap:[round(longest_tick_gap * 0.1, 0.1)]s"
+	msg = "\n  活跃：[length(SSai_controllers.ai_controllers_by_status[planning_status])]|关闭：[length(SSai_controllers.ai_controllers_by_status[AI_STATUS_OFF])]"
+	msg += "\n  遍历：[pass_size - length(currentrun)]/[pass_size]|平均耗时：[round(average_pass_time * 0.1, 0.1)]秒|最大间隔：[round(longest_tick_gap * 0.1, 0.1)]秒"
 	if(length(most_expensive))
-		msg += "\n  Top: [most_expensive.Join(" | ")]"
+		msg += "\n  开销最高：[most_expensive.Join(" | ")]"
 	if(worst_controller_name)
-		msg += "\n  Slowest bozo of the round: [worst_controller_name]"
+		msg += "\n  本回合最慢的家伙：[worst_controller_name]"
 	return ..()
 
 /datum/controller/subsystem/ai_controllers/fire(resumed)

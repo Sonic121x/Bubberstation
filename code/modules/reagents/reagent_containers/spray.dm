@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/spray
-	name = "spray bottle"
-	desc = "A spray bottle, with an unscrewable top."
+	name = "喷瓶"
+	desc = "一个喷瓶，瓶盖可以旋开。"
 	icon = 'icons/obj/service/janitor.dmi'
 	icon_state = "sprayer_large"
 	inhand_icon_state = "cleaner"
@@ -52,19 +52,19 @@
 	var/adjacent = user.Adjacent(target)
 	if((target.is_drainable() && !target.is_refillable()) && adjacent && can_fill_from_container)
 		if(!target.reagents.total_volume)
-			to_chat(user, span_warning("[target] is empty."))
+			to_chat(user, span_warning("[target] 是空的。"))
 			return FALSE
 
 		if(reagents.holder_full())
-			to_chat(user, span_warning("[src] is full."))
+			to_chat(user, span_warning("[src] 是满的。"))
 			return FALSE
 
 		var/trans = target.reagents.trans_to(src, 50, transferred_by = user) //transfer 50u , using the spray's transfer amount would take too long to refill
-		to_chat(user, span_notice("You fill \the [src] with [trans] units of the contents of \the [target]."))
+		to_chat(user, span_notice("你往 \the [src] 里装入了 [trans] 单位 \the [target] 里的东西。"))
 		return FALSE
 
 	if(reagents.total_volume < amount_per_transfer_from_this)
-		to_chat(user, span_warning("Not enough left!"))
+		to_chat(user, span_warning("剩下的不够了！"))
 		return FALSE
 
 	if(adjacent && (target.density || ismob(target)))
@@ -96,8 +96,8 @@
 	var/wait_step = max(round(2+3/range), 2)
 
 	var/puff_reagent_string = reagent_puff.reagents.get_reagent_log_string()
-	log_combat(user, start_turf, "fired a puff of reagents from", src, addition="with a range of \[[range]\], containing [puff_reagent_string].")
-	user.log_message("fired a puff of reagents from \a [src] with a range of \[[range]\] and containing [puff_reagent_string].", LOG_ATTACK)
+	log_combat(user, start_turf, "喷出一团试剂，来源为", src, addition="射程为 \[[range]\]，含有 [puff_reagent_string]。")
+	user.log_message("从 \a [src] 中喷出一团试剂，射程为 \[[range]\]，含有 [puff_reagent_string]。", LOG_ATTACK)
 
 	// do_spray includes a series of step_towards and sleeps. As a result, it will handle deletion of the chempuff.
 	do_spray(target, wait_step, reagent_puff, range, puff_reagent_left, user)
@@ -136,25 +136,25 @@
 		current_range = stream_range
 	else
 		current_range = spray_range
-	to_chat(user, span_notice("You switch the nozzle setting to [stream_mode ? "\"stream\"":"\"spray\""]."))
+	to_chat(user, span_notice("你把喷嘴设置为[stream_mode ? "“水流”":"“喷雾”"]。"))
 
-GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "Empty Spray Bottle", null)
+GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "倒空喷瓶", null)
 
 	if(usr.incapacitated)
 		return
-	if (tgui_alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", list("Yes", "No")) != "Yes")
+	if (tgui_alert(usr, "你确定要把它倒空吗？", "倒空瓶子：", list("是", "否")) != "是")
 		return
 	if(isturf(usr.loc) && src.loc == usr)
-		to_chat(usr, span_notice("You empty \the [src] onto the floor."))
+		to_chat(usr, span_notice("你把 \the [src] 倒在了地板上。"))
 		reagents.expose(usr.loc)
-		log_combat(usr, usr.loc, "emptied onto", src, addition="which had [reagents.get_reagent_log_string()]")
+		log_combat(usr, usr.loc, "倒空在了", src, addition="其中含有 [reagents.get_reagent_log_string()]")
 		src.reagents.clear_reagents()
 
 /obj/item/reagent_containers/spray/proc/on_mail_unwrap(atom/source, mob/user, obj/item/mail/traitor/letter)
 	SIGNAL_HANDLER
 	if(reagents.total_volume < amount_per_transfer_from_this)
 		return
-	to_chat(user, span_danger("As you open [letter], a mist spritzes out from inside!"))
+	to_chat(user, span_danger("你打开 [letter] 时，一团雾气从里面喷了出来！"))
 	spray(user, user)
 	playsound(user, spray_sound, 50, TRUE, -6)
 	forceMove(user.loc)
@@ -182,8 +182,8 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "Empty Spray Bottl
 
 //space cleaner
 /obj/item/reagent_containers/spray/cleaner
-	name = "space cleaner"
-	desc = "BLAM!-brand non-foaming space cleaner!"
+	name = "太空清洁剂"
+	desc = "BLAM! 牌无泡太空清洁剂！"
 	icon_state = "cleaner"
 	volume = 100
 	list_reagents = list(/datum/reagent/space_cleaner = 100)
@@ -191,31 +191,31 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "Empty Spray Bottl
 	possible_transfer_amounts = list(2,5)
 
 /obj/item/reagent_containers/spray/cleaner/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is putting the nozzle of \the [src] in [user.p_their()] mouth. It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正把 [src] 的喷嘴塞进自己嘴里。看来是想自杀！"))
 	if(do_after(user, 3 SECONDS, user))
 		if(reagents.total_volume >= amount_per_transfer_from_this)//if not empty
-			user.visible_message(span_suicide("[user] pulls the trigger!"))
+			user.visible_message(span_suicide("[user] 扣下了扳机！"))
 			spray(user, user)
 			return BRUTELOSS
 		else
-			user.visible_message(span_suicide("[user] pulls the trigger...but \the [src] is empty!"))
+			user.visible_message(span_suicide("[user] 扣下扳机……但 \the [src] 是空的！"))
 			return SHAME
 	else
-		user.visible_message(span_suicide("[user] decided life was worth living."))
+		user.visible_message(span_suicide("[user] 觉得生活还是值得的。"))
 		return MANUAL_SUICIDE_NONLETHAL
 
 //spray tan
 /obj/item/reagent_containers/spray/spraytan
-	name = "spray tan"
+	name = "美黑喷雾"
 	volume = 50
-	desc = "Gyaro brand spray tan. Do not spray near eyes or other orifices."
+	desc = "Gyaro 牌美黑喷雾。请勿在眼睛或其他孔洞附近喷洒。"
 	list_reagents = list(/datum/reagent/spraytan = 50)
 
 
 //pepperspray
 /obj/item/reagent_containers/spray/pepper
-	name = "pepperspray"
-	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly."
+	name = "胡椒喷雾"
+	desc = "由 UhangInc 制造，用于快速致盲并放倒对手。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "pepperspray"
 	inhand_icon_state = "pepperspray"
@@ -233,13 +233,13 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "Empty Spray Bottl
 	list_reagents = null
 
 /obj/item/reagent_containers/spray/pepper/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins huffing \the [src]! It looks like [user.p_theyre()] getting a dirty high!"))
+	user.visible_message(span_suicide("[user] 开始猛吸 [src]！看来是想吸个痛快！"))
 	return OXYLOSS
 
 //water flower
 /obj/item/reagent_containers/spray/waterflower
-	name = "water flower"
-	desc = "A seemingly innocent sunflower...with a twist."
+	name = "水花"
+	desc = "一朵看似无害的向日葵……不过另有玄机。"
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "sunflower"
 	inhand_icon_state = "sunflower"
@@ -258,8 +258,8 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "Empty Spray Bottl
 
 ///Subtype used for the lavaland clown ruin.
 /obj/item/reagent_containers/spray/waterflower/superlube
-	name = "clown flower"
-	desc = "A delightfully devilish flower... you've got a feeling where this is going."
+	name = "小丑花"
+	desc = "一朵愉快又邪恶的花……你已经预感到接下来会发生什么了。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "clownflower"
 	volume = 30
@@ -276,8 +276,8 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "Empty Spray Bottl
 	can_fill_from_container = FALSE
 
 /obj/item/reagent_containers/spray/waterflower/cyborg/hacked
-	name = "nova flower"
-	desc = "This doesn't look safe at all..."
+	name = "新星花"
+	desc = "这看起来一点也不安全……"
 	list_reagents = list(/datum/reagent/clf3 = 3)
 	volume = 3
 	generate_type = /datum/reagent/clf3
@@ -299,7 +299,7 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "Empty Spray Bottl
 	generate_reagents()
 
 /obj/item/reagent_containers/spray/waterflower/cyborg/empty()
-	to_chat(usr, span_warning("You can not empty this!"))
+	to_chat(usr, span_warning("你无法倒空这个！"))
 	return
 
 /obj/item/reagent_containers/spray/waterflower/cyborg/proc/generate_reagents()
@@ -307,8 +307,8 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "Empty Spray Bottl
 
 //chemsprayer
 /obj/item/reagent_containers/spray/chemsprayer
-	name = "chem sprayer"
-	desc = "A utility used to spray large amounts of reagents in a given area."
+	name = "化学喷雾器"
+	desc = "一种用于在指定区域喷洒大量试剂的工具。"
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "chemsprayer"
 	inhand_icon_state = "chemsprayer"
@@ -340,8 +340,8 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "Empty Spray Bottl
 
 
 /obj/item/reagent_containers/spray/chemsprayer/janitor
-	name = "janitor chem sprayer"
-	desc = "A utility used to spray large amounts of cleaning reagents in a given area. It regenerates space cleaner by itself but it's unable to be fueled by normal means."
+	name = "清洁工化学喷雾器"
+	desc = "一种用于在指定区域喷洒大量清洁试剂的工具。它能自行产生太空清洁剂，但无法用常规方式加注。"
 	icon_state = "chemsprayer_janitor"
 	inhand_icon_state = "chemsprayer_janitor"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -370,8 +370,8 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "Empty Spray Bottl
 	reagents.add_reagent(generate_type, generate_amount)
 
 /obj/item/reagent_containers/spray/chemsprayer/party
-	name = "party popper"
-	desc = "A small device used for celebrations and annoying the janitor."
+	name = "拉炮"
+	desc = "一种小装置，用于庆祝以及惹恼清洁工。"
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "party_popper"
 	inhand_icon_state = "party_popper"
@@ -397,8 +397,8 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "Empty Spray Bottl
 
 // Plant-B-Gone
 /obj/item/reagent_containers/spray/plantbgone // -- Skie
-	name = "Plant-B-Gone"
-	desc = "Kills those pesky weeds!"
+	name = "植物克星"
+	desc = "消灭那些讨厌的杂草！"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "plantbgone"
 	inhand_icon_state = "plantbgone"
@@ -408,8 +408,8 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "Empty Spray Bottl
 	list_reagents = list(/datum/reagent/toxin/plantbgone = 100)
 
 /obj/item/reagent_containers/spray/syndicate
-	name = "suspicious spray bottle"
-	desc = "A spray bottle, with a high performance plastic nozzle. The color scheme makes you feel slightly uneasy."
+	name = "可疑喷瓶"
+	desc = "一个喷瓶，配高性能塑料喷嘴。这配色让你隐隐感到不安。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "sprayer_sus_8"
 	inhand_icon_state = "sprayer_sus"
@@ -430,19 +430,19 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "Empty Spray Bottl
 	change_inhand_icon_state = TRUE
 
 /datum/atom_skin/med_spray/red
-	preview_name = "Red"
+	preview_name = "红色"
 	new_icon_state = "sprayer_med_red"
 
 /datum/atom_skin/med_spray/yellow
-	preview_name = "Yellow"
+	preview_name = "黄色"
 	new_icon_state = "sprayer_med_yellow"
 
 /datum/atom_skin/med_spray/blue
-	preview_name = "Blue"
+	preview_name = "蓝色"
 	new_icon_state = "sprayer_med_blue"
 
 /obj/item/reagent_containers/spray/medical
-	name = "medical spray bottle"
+	name = "医疗喷瓶"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "sprayer_med_red"
 	inhand_icon_state = "sprayer_med_red"
@@ -455,8 +455,8 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "Empty Spray Bottl
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/med_spray)
 
 /obj/item/reagent_containers/spray/hercuri
-	name = "medical spray (hercuri)"
-	desc = "A medical spray bottle. This one contains hercuri, a medicine used to negate the effects of dangerous high-temperature environments. Careful not to freeze the patient!"
+	name = "医疗喷雾（赫库里）"
+	desc = "一个医疗喷瓶。这瓶含有赫库里，一种用于抵消危险高温环境影响的药物。小心别把患者冻坏了！"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "sprayer_med_yellow"
 	list_reagents = list(/datum/reagent/medicine/c2/hercuri = 100)

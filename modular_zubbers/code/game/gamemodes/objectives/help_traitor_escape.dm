@@ -1,5 +1,5 @@
 /datum/objective/jailbreak/traitor
-	name = "help traitor escape"
+	name = "协助叛徒逃脱"
 
 /datum/objective/jailbreak/traitor/is_valid_target(datum/mind/possible_target)
 	. = ..()

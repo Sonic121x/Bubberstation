@@ -1,10 +1,10 @@
 GLOBAL_VAR_INIT(active_rbmk_machines, list())
 
 /obj/machinery/power/rbmk2
-	name = "\improper RB-MK2 reactor"
-	desc = "Radioscopical Bluespace Mark 2 reactor, or RB-MK2 for short, is a new state-of-the-art power generation technology that uses \"bluespace magic\" \
-	to directly convert small amounts of tritium atoms into large amounts of electrical energy with minimal heat generation. \
-	Note that having more than 4 RB-MK machines in close proximity increases tritium consumption."
+	name = "\improper RB-MK2 反应堆"
+	desc = "射线蓝空间二型反应堆，简称 RB-MK2，是采用尖端发电技术的全新设备，通过“蓝空间魔法”\
+	将少量氚原子直接转化为大量电能，同时仅产生少量热量。\
+	请注意，在相近位置放置超过4台 RB-MK 会增加氚消耗。"
 	icon = 'modular_zubbers/icons/obj/equipment/burger_reactor.dmi'
 	icon_state = "platform"
 	base_icon_state = "platform"
@@ -159,7 +159,7 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 
 	if(SSticker.IsRoundInProgress())
 		var/turf/T = get_turf(src)
-		message_admins("[src] deleted at [ADMIN_VERBOSEJMP(T)]")
+		message_admins("[src]在[ADMIN_VERBOSEJMP(T)]被删除")
 		log_game("[src] deleted at [AREACOORD(T)]")
 		investigate_log("deleted at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 
@@ -181,7 +181,7 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 		var/turf/T = get_turf(src)
 		if(criticality > 0)
 			var/explosion_power = (criticality/100)*8
-			message_admins("[src] exploded due to criticality at [ADMIN_VERBOSEJMP(T)]")
+			message_admins("[src]因临界事故在[ADMIN_VERBOSEJMP(T)]爆炸")
 			log_game("[src] exploded due to criticality [AREACOORD(T)]")
 			investigate_log("exploded due to criticality [AREACOORD(T)]", INVESTIGATE_ENGINE)
 			stored_rod.take_damage(1000,armour_penetration=100)
@@ -191,7 +191,7 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 			last_radiation_pulse = GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE*4 //It just keeps getting worse and worse.
 			radiation_pulse(src,last_radiation_pulse,threshold = RAD_FULL_INSULATION)
 		else
-			message_admins("[src] exploded due to damage at [ADMIN_VERBOSEJMP(T)]")
+			message_admins("[src]因损坏在[ADMIN_VERBOSEJMP(T)]爆炸")
 			log_game("[src] exploded due to damage [AREACOORD(T)]")
 			investigate_log("exploded due to damage [AREACOORD(T)]", INVESTIGATE_ENGINE)
 			stored_rod.take_damage(1000,armour_penetration=100)
@@ -210,7 +210,7 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 /obj/machinery/power/rbmk2/exchange_parts(mob/user, obj/item/storage/part_replacer/replacer_tool)
 
 	if(active)
-		balloon_alert(user, "turn off before upgrading!")
+		balloon_alert(user, "升级前先关机！")
 		return FALSE
 
 	. = ..()
@@ -228,12 +228,12 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 	if(attacking_item.use_tool(src, user, 4 SECONDS, volume = 50) && jam(user,FALSE))
 		if(prob(100-atom_integrity))
 			take_damage(damage_to_deal*0.5,armour_penetration=100)
-			balloon_alert(user, "unjam failed!")
+			balloon_alert(user, "解除卡死失败！")
 			return TRUE
 		take_damage(damage_to_deal,armour_penetration=100)
 		if(atom_integrity > 0)
 			src.Shake(duration=0.5 SECONDS)
-			balloon_alert(user, "unjammed!")
+			balloon_alert(user, "已解除卡死！")
 			if(meltdown) //You turned it off, but at what cost?
 				radiation_pulse(src,max_range=6,threshold = RAD_FULL_INSULATION, chance = 100)
 			toggle_active(user,FALSE,disable_jam=TRUE)
@@ -247,7 +247,7 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 		src.add_fingerprint(user)
 		stored_rod.add_fingerprint(user)
 		if(remove_rod(user))
-			balloon_alert(user, "rod removed!")
+			balloon_alert(user, "已取出反应堆棒！")
 		return TRUE
 
 /obj/machinery/power/rbmk2/proc/remove_rod(mob/living/user,do_throw=FALSE)
@@ -395,7 +395,7 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 
 	if(venting) //Can't change when they're already on.
 		if(user)
-			balloon_alert(user, "turn vents off first")
+			balloon_alert(user, "先关闭通风")
 		return FALSE
 
 	vent_reverse_direction = desired_state
@@ -403,7 +403,7 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 	if(user)
 		user.log_message("had vents set to [vent_reverse_direction ? "reverse" : "normal"] by [src]", LOG_GAME)
 		investigate_log("had vents set to [vent_reverse_direction ? "reverse" : "normal"] by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
-		balloon_alert(user, "vents switched to [vent_reverse_direction ? "pulling" : "pushing"]")
+		balloon_alert(user, "通风已切换为[vent_reverse_direction ? "吸气" : "排气"]")
 	else
 		var/turf/our_turf = get_turf(src)
 		log_game("[src] had vents set to [vent_reverse_direction ? "reverse" : "normal"] at [AREACOORD(our_turf)]")
@@ -511,7 +511,7 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 		if("autovent")
 			if(auto_vent_upgrade)
 				auto_vent = !auto_vent
-				balloon_alert(user, "auto venting is [auto_vent ? "on" : "off"]")
+				balloon_alert(user, "自动通风已[auto_vent ? "开启" : "关闭"]")
 			. = TRUE
 		if("activate")
 			toggle_active(user)
@@ -532,7 +532,7 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 			if(overclocked_upgrade)
 				var/turf/machine_turf = get_turf(src)
 				overclocked = !overclocked
-				balloon_alert(user, "overclocking is [overclocked ? "on" : "off"]")
+				balloon_alert(user, "超频已[overclocked ? "开启" : "关闭"]")
 				investigate_log("had the overclock turned [overclocked ? "on" : "off"] by [key_name(user)] at [AREACOORD(machine_turf)].", INVESTIGATE_ENGINE)
 				user.log_message("turned the overclock [overclocked ? "on" : "off"] of [src]", LOG_GAME)
 			. = TRUE
@@ -542,43 +542,43 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 
 	. = ..()
 
-	. += span_notice("A digital display on the side side says <b>MAX SAFE POWER: [display_power(safeties_max_power_generation)], WARRANTY VOID IF EXCEEDED</b>.")
+	. += span_notice("侧面的数字显示屏写着：<b>最高安全功率：[display_power(safeties_max_power_generation)]，超出即失去保修</b>。")
 
 
 	if(active)
-		. += span_notice("It's running.")
+		. += span_notice("它正在运行。")
 		if(HAS_TRAIT(user, TRAIT_CLUMSY))
-			. += span_clown("I better go catch it!")
+			. += span_clown("它在跑？我得赶紧抓住它！")
 	else
-		. += span_warning("It isn't running.")
+		. += span_warning("它没有运行。")
 
 	if(linked_supermatter)
-		. += span_notice("It is currently linked to an adjacent supermatter crystal, feeding power directly into it at high efficiency.")
+		. += span_notice("它已连接相邻的超物质晶体，正以高效率直接为其供能。")
 	else if(!power || !powernet)
-		. += span_warning("It is not connected to a power cable.")
+		. += span_warning("它没有连接电缆。")
 
 	if(!venting)
-		. += span_warning("The vents are closed.")
+		. += span_warning("通风口已关闭。")
 
 	if(!stored_rod)
-		. += span_warning("It it is missing an RB-MK2 reactor rod.")
+		. += span_warning("它缺少 RB-MK2 反应堆棒。")
 	else if(jammed)
-		. += span_danger("The reactor rod is jammed! <b>Pry</b> the rod back in to unjam in!")
+		. += span_danger("反应堆棒卡住了！将棒体<b>撬</b>回去以解除卡死！")
 	else if(meltdown)
-		. += span_danger("The reactor rod is leaping erractically! Lower the power output!")
+		. += span_danger("反应堆棒正无规律地弹跳！降低功率输出！")
 	else
-		. += span_notice("There is an RB-MK2 reactor rod installed. <b>Bolt</b> it down to activate, or remove it with ALT+CLICK.")
+		. += span_notice("已装有 RB-MK2 反应堆棒。用扳手<b>固定</b>到底即可启动，或按住 ALT 单击取出。")
 
 
 /obj/machinery/power/rbmk2/examine_more(mob/user)
 	. = ..()
-	. += span_notice("It is running at <b>[power_efficiency*100]%</b> power efficiency.")
-	. += span_notice("It can output in environments up to <b>[vent_pressure]kPa</b>.")
-	. += span_notice("It can handle an estimated power load of <b>[display_power(max_power_generation)]</b> before going critical.")
+	. += span_notice("当前发电效率为<b>[power_efficiency*100]%</b>。")
+	. += span_notice("它能在最高<b>[vent_pressure]千帕</b>的环境中排气。")
+	. += span_notice("预计达到<b>[display_power(max_power_generation)]</b>功率负载后将进入临界状态。")
 	if(!linked_supermatter)
-		. += span_notice("Is is not currently linked to an adjacent supermatter crystal.")
-		. += span_notice("Building an RB-MK2 reactor directly adjacent to a normal-sized supermatter crystal will link them together and supply energy to the supermatter crystal.")
-		. += span_notice("Doing this requires at least 30 moles of Hyper-Noblium present in the reactor rod, along with the normal tritium as fuel.")
+		. += span_notice("它目前没有连接相邻的超物质晶体。")
+		. += span_notice("紧贴正常尺寸的超物质晶体建造 RB-MK2 反应堆，即可将两者连接并为晶体供能。")
+		. += span_notice("这要求反应堆棒内除常规氚燃料外，至少还含有30摩尔超惰性气体。")
 
 
 

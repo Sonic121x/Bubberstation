@@ -7,12 +7,12 @@
 		return COMPONENT_INCOMPATIBLE
 
 	var/static/list/default_lines = list(
-		"CentCom's profligacy frays another thread.",
-		"Another tug at the weave.",
-		"Who knows when the stresses will finally shatter the form?",
-		"Even now a light shines through the cracks.",
-		"CentCom once more twists knowledge beyond its authority.",
-		"There is an uncertain air in the mansus.",
+		"中央指挥部的挥霍又磨断了一根丝线。",
+		"织物又被拉扯了一下。",
+		"谁知道这些压力何时会最终撕碎形体？",
+		"即便此刻，也有光从裂缝中透出。",
+		"中央指挥部再次越权扭曲了知识。",
+		"漫宿中弥漫着不安的气息。",
 		)
 	say_lines = text || default_lines
 

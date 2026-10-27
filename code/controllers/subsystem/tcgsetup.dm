@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(trading_card_game)
-	name = "Trading Card Game"
+	name = "集换式卡牌游戏"
 	ss_flags = SS_NO_FIRE
 	/// Base directory for all related string files
 	var/card_directory = "strings/tcg"
@@ -117,7 +117,7 @@ SUBSYSTEM_DEF(trading_card_game)
 ///Prints all the cards names
 /datum/controller/subsystem/trading_card_game/proc/printAllCards()
 	for(var/card_set in cached_cards)
-		message_admins("Printing the [card_set] set")
+		message_admins("正在列出[card_set]系列的卡牌")
 		for(var/card in cached_cards[card_set]["ALL"])
 			var/datum/card/toPrint = cached_cards[card_set]["ALL"][card]
 			message_admins(toPrint.name)
@@ -129,20 +129,20 @@ SUBSYSTEM_DEF(trading_card_game)
 		var/obj/item/cardpack/pack = new cardPack()
 		//Lets see if someone made a type yeah?
 		if(!cached_cards[pack.series])
-			toReturn += "[pack.series] does not have any cards in it\n"
+			toReturn += "[pack.series]中没有任何卡牌\n"
 			continue
 		for(var/card in cached_cards[pack.series]["ALL"])
 			var/datum/card/template = cached_cards[pack.series]["ALL"][card]
 			if(template.rarity == "ALL")
-				toReturn += "[pack.type] has a rarity [template.rarity] on the card [template.id] that needs to be changed to something that isn't \"ALL\"\n"
+				toReturn += "[pack.type]中的卡牌[template.id]稀有度为[template.rarity]，必须将其改为\"ALL\"以外的值\n"
 				continue
 			if(!(template.rarity in pack.rarity_table))
-				toReturn += "[pack.type] has a rarity [template.rarity] on the card [template.id] that does not exist\n"
+				toReturn += "[pack.type]中的卡牌[template.id]使用了不存在的稀有度[template.rarity]\n"
 				continue
 		//Lets run a check to see if all the rarities exist that we want to exist exist
 		for(var/pack_rarity in pack.rarity_table)
 			if(!cached_cards[pack.series][pack_rarity])
-				toReturn += "[pack.type] does not have the required rarity [pack_rarity]\n"
+				toReturn += "[pack.type]中没有所需的稀有度[pack_rarity]\n"
 		qdel(pack)
 
 	return toReturn
@@ -155,14 +155,14 @@ SUBSYSTEM_DEF(trading_card_game)
 		var/cards = cached_cards[series]["ALL"]
 		for(var/card in cards)
 			var/datum/card/target = cached_cards[series]["ALL"][card]
-			var/toAdd = "The card [target.id] in [series] has the following default variables:"
+			var/toAdd = "[series]中的卡牌[target.id]仍使用以下默认变量："
 			var/shouldAdd = FALSE
 			for(var/current_var in (target.vars ^ thing.vars))
 				if(current_var == "icon" && target.vars[current_var] == DEFAULT_TCG_DMI)
 					continue
 				if(target.vars[current_var] == initial(target.vars[current_var]))
 					shouldAdd = TRUE
-					toAdd += "\n[current_var] with a value of [target.vars[current_var]]"
+					toAdd += "\n[current_var]，值为[target.vars[current_var]]"
 			if(shouldAdd)
 				toReturn += toAdd
 	qdel(thing)
@@ -180,10 +180,10 @@ SUBSYSTEM_DEF(trading_card_game)
 		for(var/id in cards)
 			totalCards++
 			cardsByCount[id] += 1
-	var/toSend = "Out of [totalCards] cards"
+	var/toSend = "共[totalCards]张卡牌"
 	for(var/id in sort_list(cardsByCount, GLOBAL_PROC_REF(cmp_num_string_asc)))
 		if(id)
 			var/datum/card/template = cached_cards[pack.series]["ALL"][id]
-			toSend += "\nID:[id] [template.name] [(cardsByCount[id] * 100) / totalCards]% Total:[cardsByCount[id]]"
+			toSend += "\nID:[id] [template.name] [(cardsByCount[id] * 100) / totalCards]% 总数：[cardsByCount[id]]"
 	message_admins(toSend)
 	qdel(pack)

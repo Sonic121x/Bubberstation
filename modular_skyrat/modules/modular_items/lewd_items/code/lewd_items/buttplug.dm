@@ -1,6 +1,6 @@
 /obj/item/clothing/sextoy/buttplug
-	name = "buttplug"
-	desc = "I'm meant to put that WHERE?!"
+	name = "肛塞"
+	desc = "你说要把这东西塞到哪里？！"
 	icon_state = "buttplug_pink_small"
 	base_icon_state = "buttplug"
 	worn_icon_state = "buttplug_pink"
@@ -43,13 +43,13 @@
 /obj/item/clothing/sextoy/buttplug/examine(mob/user)
 	. = ..()
 	if(!color_changed)
-		. += span_notice("Alt-click to change it's colors.")
+		. += span_notice("按住 Alt 点击可更换颜色。")
 	else if(!form_changed)
-		. += span_notice("Alt-click to change it's size.")
+		. += span_notice("按住 Alt 点击可更改尺寸。")
 
 /obj/item/clothing/sextoy/buttplug/click_alt(mob/user)
 	if(!color_changed)
-		var/choice = show_radial_menu(user, src, buttplug_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
+		var/choice = chinese_skyrat_item_radial(user, src, buttplug_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 		if(!choice)
 			return CLICK_ACTION_BLOCKING
 		current_color = choice
@@ -61,7 +61,7 @@
 		return CLICK_ACTION_SUCCESS
 	else
 		if(!form_changed)
-			var/choice = show_radial_menu(user, src, buttplug_forms, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
+			var/choice = chinese_skyrat_item_radial(user, src, buttplug_forms, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 			if(!choice)
 				return CLICK_ACTION_BLOCKING
 			current_size = choice

@@ -2,8 +2,8 @@
  * Prank wand knocks you over as if pied and surrounds you with space lube
  */
 /obj/item/gun/magic/wand/prank
-	name = "wand of pratfalls"
-	desc = "A comedy wand which is sure to get a laugh out of you, if not its victims."
+	name = "跌跤魔杖"
+	desc = "一根喜剧魔杖，就算逗不笑受害者，也一定能让你自己笑出声。"
 	school = SCHOOL_CONJURATION
 	ammo_type = /obj/item/ammo_casing/magic/prank
 	icon_state = "bananawand"
@@ -20,7 +20,7 @@
 /obj/item/gun/magic/wand/prank/do_suicide(mob/living/user)
 	charges--
 	playsound(user, fire_sound, 50, TRUE)
-	user.visible_message("[user] covers [user.p_themselves()] with magical lube!")
+	user.visible_message("[user] 用魔法润滑液把自己浇了个透！")
 	var/datum/reagents/lube = new /datum/reagents(40)
 	lube.add_reagent(/datum/reagent/lube, 40)
 	lube.my_atom = get_turf(user)
@@ -34,7 +34,7 @@
 	harmful = FALSE
 
 /obj/projectile/magic/prank
-	name = "bolt of pratfalls"
+	name = "跌跤魔弹"
 	icon = 'icons/obj/food/piecake.dmi'
 	icon_state = "pie"
 

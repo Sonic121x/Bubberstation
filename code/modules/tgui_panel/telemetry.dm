@@ -44,10 +44,10 @@
  */
 /datum/tgui_panel/proc/analyze_telemetry(payload)
 	if(world.time > telemetry_requested_at + TGUI_TELEMETRY_RESPONSE_WINDOW)
-		message_admins("[key_name(client)] sent telemetry outside of the allocated time window.")
+		message_admins("[key_name(client)] 在分配的时间窗口之外发送了遥测数据。")
 		return
 	if(telemetry_analyzed_at)
-		message_admins("[key_name(client)] sent telemetry more than once.")
+		message_admins("[key_name(client)] 多次发送了遥测数据。")
 		return
 	telemetry_analyzed_at = world.time
 	if(!payload)
@@ -57,7 +57,7 @@
 	if(len == 0)
 		return
 	if(len > TGUI_TELEMETRY_MAX_CONNECTIONS)
-		message_admins("[key_name(client)] was kicked for sending a huge telemetry payload")
+		message_admins("[key_name(client)] 因发送过大的遥测数据包而被踢出")
 		qdel(client)
 		return
 
@@ -106,7 +106,7 @@
 
 	// This fucker has a history of playing on a banned account.
 	if(found)
-		var/msg = "[key_name(client)] has a banned account in connection history! (Matched: [found["ckey"]], [found["address"]], [found["computer_id"]])"
+		var/msg = "[key_name(client)] 的连接历史中有被封禁的账号！（匹配：[found["ckey"]]、[found["address"]]、[found["computer_id"]]）"
 		message_admins(msg)
 		send2tgs_adminless_only("Banned-user", msg)
 		log_admin_private(msg)

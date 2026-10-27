@@ -1,11 +1,11 @@
 /datum/quirk/pyrophobia
 	name = "Pyrophobia"
-	desc = "You are terrified of fire and flames."
+	desc = "你极度害怕火与烈焰。"
 	icon = FA_ICON_FIRE_EXTINGUISHER
 	value = -3
-	medical_record_text = "Patient demonstrates a fear of fire."
-	medical_symptom_text = "Experiences panic attacks and shortness of breath when near open flames. \
-		Medication such as Psicodine may lessen the severity of the reaction."
+	medical_record_text = "患者表现出对火的恐惧。"
+	medical_symptom_text = "靠近明火时会出现惊恐发作与呼吸急促。\
+		心定宁等药物或可减轻反应的严重程度。"
 	hardcore_value = 5
 	quirk_flags = QUIRK_TRAUMALIKE
 
@@ -22,7 +22,7 @@
 	quirk_holder.RemoveComponentSource(type, /datum/component/fearful)
 
 /datum/mood_event/pyrophobia
-	description = "I see fire, and I don't like it!"
+	description = "我看到火了，我可不喜欢这个！"
 	mood_change = -1
 	event_flags = MOOD_EVENT_FEAR
 

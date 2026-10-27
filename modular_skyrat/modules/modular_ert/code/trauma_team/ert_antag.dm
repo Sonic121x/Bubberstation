@@ -1,9 +1,9 @@
 /datum/antagonist/ert/traumateam
-	name = "Trauma Team Specialist"
+	name = "创伤小队专家"
 	outfit = /datum/outfit/centcom/ert/medic/traumateam
-	role = "Specialist"
+	role = "专家"
 
 /datum/antagonist/ert/traumateam/leader
-	name = "Trauma Team Leader"
+	name = "创伤小队长"
 	outfit = /datum/outfit/centcom/ert/medic/traumateam/leader
-	role = "Commander"
+	role = "指挥官"

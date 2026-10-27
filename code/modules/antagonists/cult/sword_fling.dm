@@ -1,7 +1,7 @@
 
 /datum/action/cooldown/spell/pointed/sword_fling
-	name = "Sword Fling"
-	desc = "Try to fling yourself around."
+	name = "掷剑"
+	desc = "试着用剑把自己甩来甩去。"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/cult_target.dmi'
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_cult_border"
@@ -15,7 +15,7 @@
 	spell_requirements = NONE
 
 	cast_range = 6
-	active_msg = "You ready yourself to attempt to leap!"
+	active_msg = "你调整姿态，准备起跳！"
 	var/obj/item/melee/cultblade/haunted/flinged_sword
 
 /datum/action/cooldown/spell/pointed/sword_fling/New(Target, to_fling)
@@ -40,23 +40,23 @@
 	if(ismob(sword_loc))
 		var/mob/loccer = sword_loc
 		var/resist_chance = 20
-		var/fail_text = "You struggle, but [loccer] keeps [loccer.p_their()] grip on you!"
+		var/fail_text = "你奋力挣扎，但 [loccer] 死死握着你！"
 		var/particle_to_spawn = null
 		if(IS_CULTIST_OR_CULTIST_MOB(loccer))
 			resist_chance = 5 // your mastahs
-			fail_text = "You struggle, but [loccer]'s grip is unnaturally hard to resist!"
+			fail_text = "你奋力挣扎，但 [loccer] 的握力异常地难以抗拒！"
 			particle_to_spawn = /obj/effect/temp_visual/cult/sparks
 		if(IS_HERETIC_OR_MONSTER(loccer) || IS_LUNATIC(loccer))
 			resist_chance = 10
-			fail_text = "You struggle, but [loccer] deftly handles the grip movement."
+			fail_text = "你奋力挣扎，但 [loccer] 灵巧地化解了你的抓握动作。"
 			particle_to_spawn = /obj/effect/temp_visual/eldritch_sparks
 		if(loccer.mind?.holy_role) // IS_PRIEST()
 			resist_chance = 6
-			fail_text = "You struggle, but [loccer]'s holy grip holds tight against your thrashing."
+			fail_text = "你奋力挣扎，但 [loccer] 神圣的握持牢牢压制住你的挣动。"
 			particle_to_spawn = /obj/effect/temp_visual/blessed
 		if(IS_WIZARD(loccer))
 			resist_chance = 3 // magic master
-			fail_text = "You struggle, but [loccer]'s handle on magic easily neutralizes your movement."
+			fail_text = "你奋力挣扎，但 [loccer] 对魔法的掌控轻易化解了你的动作。"
 			particle_to_spawn = /obj/effect/particle_effect/sparks/electricity
 
 		new particle_to_spawn(get_turf(loccer))
@@ -65,7 +65,7 @@
 
 		if(prob(resist_chance))
 			flinged_sword.forceMove(get_turf(loccer))
-			flinged_sword.visible_message(span_alert("\the [flinged_sword] yanks itself out of [loccer]'s grip!"))
+			flinged_sword.visible_message(span_alert("\the [flinged_sword] 从 [loccer] 的手中挣脱而出！"))
 			// flung by later code
 		else
 			to_chat(owner, span_warning(fail_text))
@@ -73,14 +73,14 @@
 
 	if(isitem(sword_loc))
 		flinged_sword.forceMove(get_turf(sword_loc))
-		flinged_sword.visible_message(span_alert("\the [flinged_sword] yanks itself out of [sword_loc]!"))
+		flinged_sword.visible_message(span_alert("\the [flinged_sword] 从 [sword_loc] 中挣脱而出！"))
 		// flung by later code
 
 	if(iscloset(sword_loc))
 		var/obj/structure/closet/sword_closet = sword_loc
 		if(!(sword_closet.open(owner, force = prob(5), special_effects = TRUE)))
 			sword_closet.container_resist_act(owner, loc_required = FALSE)
-		flinged_sword.visible_message(span_alert("\the [flinged_sword] yanks itself out of [sword_closet]!"))
+		flinged_sword.visible_message(span_alert("\the [flinged_sword] 从 [sword_closet] 中挣脱而出！"))
 
 	// no general struct/machinery check. imagine if someone put the sword in a vendor
 
@@ -88,7 +88,7 @@
 		new /obj/effect/temp_visual/sword_sparks(sword_loc)
 		flinged_sword.throw_at(cast_on, cast_range, flinged_sword.throw_speed, owner)
 		flinged_sword.visible_message(\
-			span_warning("\the [flinged_sword] lunges at \the [cast_on]!"))
+			span_warning("\the [flinged_sword] 向 \the [cast_on] 猛扑过去！"))
 		playsound(flinged_sword, 'sound/items/haunted/ghostitemattack.ogg', 100, TRUE)
 		flinged_sword.add_filter("cool_glow", 2, list("type" = "outline", "color" = COLOR_HERETIC_GREEN, "size" = 0.7))
 		addtimer(CALLBACK(flinged_sword, TYPE_PROC_REF(/datum, remove_filter), "cool_glow"), 0.7 SECONDS)

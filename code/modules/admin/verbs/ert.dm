@@ -82,25 +82,25 @@
 	var/list/settings = list(
 		"preview_callback" = CALLBACK(src, PROC_REF(makeERTPreviewIcon)),
 		"mainsettings" = list(
-		"template" = list("desc" = "Template", "callback" = CALLBACK(src, PROC_REF(makeERTTemplateModified)), "type" = "datum", "path" = "/datum/ert", "subtypesonly" = TRUE, "value" = ertemplate.type),
-		"teamsize" = list("desc" = "Team Size", "type" = "number", "value" = ertemplate.teamsize),
-		"mission" = list("desc" = "Mission", "type" = "string", "value" = ertemplate.mission),
-		"polldesc" = list("desc" = "Ghost poll description", "type" = "string", "value" = ertemplate.polldesc),
-		"enforce_human" = list("desc" = "Enforce human authority", "type" = "boolean", "value" = "[(human_authority_setting == HUMAN_AUTHORITY_ENFORCED ? "Yes" : "No")]"),
-		"open_armory" = list("desc" = "Open armory doors", "type" = "boolean", "value" = "[(ertemplate.opendoors ? "Yes" : "No")]"),
-		"leader_experience" = list("desc" = "Pick an experienced leader", "type" = "boolean", "value" = "[(ertemplate.leader_experience ? "Yes" : "No")]"),
-		"random_names" = list("desc" = "Randomize names", "type" = "boolean", "value" = "[(ertemplate.random_names ? "Yes" : "No")]"),
-		"spawn_admin" = list("desc" = "Spawn yourself as briefing officer", "type" = "boolean", "value" = "[(ertemplate.spawn_admin ? "Yes" : "No")]"),
-		"notify_players" = list("desc" = "Notify players that you have sent an ERT", "type" = "boolean", "value" = "[(ertemplate.notify_players ? "Yes" : "No")]"), //SKYRAT EDIT ADDITION
-		"use_custom_shuttle" = list("desc" = "Use the ERT's custom shuttle (if it has one)", "type" = "boolean", "value" = "[(ertemplate.use_custom_shuttle ? "Yes" : "No")]"),
-		"mob_type" = list("desc" = "Base Species", "callback" = CALLBACK(src, PROC_REF(makeERTTemplateModified)), "type" = "datum", "path" = "/mob/living/carbon/human", "subtypesonly" = TRUE, "value" = ertemplate.mob_type),
+		"template" = list("desc" = "模板", "callback" = CALLBACK(src, PROC_REF(makeERTTemplateModified)), "type" = "datum", "path" = "/datum/ert", "subtypesonly" = TRUE, "value" = ertemplate.type),
+		"teamsize" = list("desc" = "小队规模", "type" = "number", "value" = ertemplate.teamsize),
+		"mission" = list("desc" = "任务", "type" = "string", "value" = ertemplate.mission),
+		"polldesc" = list("desc" = "幽灵投票说明", "type" = "string", "value" = ertemplate.polldesc),
+		"enforce_human" = list("desc" = "强制人类权限", "type" = "boolean", "value" = "[(human_authority_setting == HUMAN_AUTHORITY_ENFORCED ? "Yes" : "No")]"),
+		"open_armory" = list("desc" = "打开军械库大门", "type" = "boolean", "value" = "[(ertemplate.opendoors ? "Yes" : "No")]"),
+		"leader_experience" = list("desc" = "挑选有经验的队长", "type" = "boolean", "value" = "[(ertemplate.leader_experience ? "Yes" : "No")]"),
+		"random_names" = list("desc" = "随机化姓名", "type" = "boolean", "value" = "[(ertemplate.random_names ? "Yes" : "No")]"),
+		"spawn_admin" = list("desc" = "将你生成为简报官", "type" = "boolean", "value" = "[(ertemplate.spawn_admin ? "Yes" : "No")]"),
+		"notify_players" = list("desc" = "通知玩家你已派出紧急响应小队", "type" = "boolean", "value" = "[(ertemplate.notify_players ? "Yes" : "No")]"), //SKYRAT EDIT ADDITION
+		"use_custom_shuttle" = list("desc" = "使用紧急响应小队的自定义穿梭机（若有）", "type" = "boolean", "value" = "[(ertemplate.use_custom_shuttle ? "Yes" : "No")]"),
+		"mob_type" = list("desc" = "基础种族", "callback" = CALLBACK(src, PROC_REF(makeERTTemplateModified)), "type" = "datum", "path" = "/mob/living/carbon/human", "subtypesonly" = TRUE, "value" = ertemplate.mob_type),
 		)
 	)
 
-	var/list/pref_return = present_pref_like_picker(usr, "Customize ERT", "Customize ERT", width = 600, timeout = 0, settings = settings)
+	var/list/pref_return = present_pref_like_picker(usr, "自定义紧急响应小队", "自定义紧急响应小队", width = 600, timeout = 0, settings = settings)
 
 	if (isnull(pref_return) || pref_return["button"] != 1)
-		message_admins("[key_name_admin(owner)] changed [owner.p_their()] mind and didn't create a CentCom response team.")
+		message_admins("[key_name_admin(owner)]改变了主意，没有创建中央指挥部响应小队。")
 		return FALSE
 
 	var/list/prefs = settings["mainsettings"]
@@ -126,10 +126,10 @@
 
 	var/list/spawn_points = GLOB.emergencyresponseteamspawn
 
-	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates("Do you wish to be considered for [span_notice(ertemplate.polldesc)]?", check_jobban = "deathsquad", alert_pic = /obj/item/card/id/advanced/centcom/ert/commander, role_name_text = "emergency response team")
+	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates("你希望被考虑加入[span_notice(ertemplate.polldesc)]吗？", check_jobban = "deathsquad", alert_pic = /obj/item/card/id/advanced/centcom/ert/commander, role_name_text = "紧急响应小队")
 
 	if(!length(candidates))
-		message_admins("[key_name_admin(owner)] tried to create a CentCom response team but [owner.p_they()] didn't find any candidates.")
+		message_admins("[key_name_admin(owner)]尝试创建中央指挥部响应小队，但没有找到任何候选人。")
 		return FALSE
 
 	// This list will take priority over spawn_points if not empty
@@ -139,17 +139,17 @@
 	var/turf/brief_spawn
 
 	if(ertemplate.use_custom_shuttle && ertemplate.ert_template)
-		to_chat(usr, span_boldnotice("Attempting to spawn ERT custom shuttle, this may take a few seconds..."))
+		to_chat(usr, span_boldnotice("正在尝试生成紧急响应小队的自定义穿梭机，这可能需要几秒钟……"))
 		var/datum/map_template/shuttle/ship = new ertemplate.ert_template
 		var/x = rand(TRANSITIONEDGE, world.maxx - TRANSITIONEDGE - ship.width)
 		var/y = rand(TRANSITIONEDGE, world.maxy - TRANSITIONEDGE - ship.height)
 		var/z = SSmapping.empty_space.z_value
 		var/turf/located_turf = locate(x, y, z)
 		if(!located_turf)
-			CRASH("ERT shuttle found no place to load in")
+			CRASH("紧急响应小队穿梭机找不到可加载的位置")
 
 		if(!ship.load(located_turf))
-			CRASH("Loading ERT shuttle failed!")
+			CRASH("加载紧急响应小队穿梭机失败！")
 
 		var/list/shuttle_turfs = ship.get_affected_turfs(located_turf)
 
@@ -161,7 +161,7 @@
 				brief_spawn = get_turf(locate(/obj/effect/landmark/ert_shuttle_brief_spawn) in affected_turf)
 
 		if(!length(spawn_turfs))
-			stack_trace("ERT shuttle loaded but found no spawn points, placing the ERT at wherever inside the shuttle instead.")
+			stack_trace("紧急响应小队穿梭机已加载，但未找到生成点，改为将小队放置在穿梭机内的任意位置。")
 
 			for(var/turf/open/floor/open_turf in shuttle_turfs)
 				if(!is_safe_turf(open_turf))
@@ -178,7 +178,7 @@
 			admin_officer.PossessByPlayer(usr.key)
 
 		else
-			to_chat(usr, span_warning("Could not spawn you in as briefing officer as you are not a ghost!"))
+			to_chat(usr, span_warning("你并非幽灵，无法将你作为简报官生成！"))
 
 	//Pick the (un)lucky players
 	var/numagents = min(ertemplate.teamsize, length(candidates))
@@ -252,7 +252,7 @@
 		ert_operative.mind.set_assigned_role(SSjob.get_job_type(ert_antag.ert_job_path))
 
 		//Logging and cleanup
-		ert_operative.log_message("has been selected as \a [ert_antag.name].", LOG_GAME)
+		ert_operative.log_message("已被选为[ert_antag.name]。", LOG_GAME)
 		numagents--
 
 	//Open the Armory doors
@@ -261,11 +261,11 @@
 			door.open()
 			CHECK_TICK
 
-	message_admins("[key_name_admin(owner)] created a CentCom response team.")
-	message_admins("[capitalize(ertemplate.polldesc)] has spawned with the mission: [ertemplate.mission]")
+	message_admins("[key_name_admin(owner)]创建了中央指挥部响应小队。")
+	message_admins("[capitalize(ertemplate.polldesc)]已生成，任务：[ertemplate.mission]")
 	// BUBBER EDIT ADDITION BEGIN
 	if(ertemplate.notify_players)
-		priority_announce("Central command has responded to your request for a CODE [uppertext(ertemplate.code)] Emergency Response Team and have confirmed one to be enroute.", "ERT Request", ANNOUNCER_ERTYES)
+		priority_announce("中央指挥部已回应你们对[chinese_ert_code_display(ertemplate.code)]级紧急响应小队的请求，并确认小队正在赶来。", "紧急响应小队请求", ANNOUNCER_ERTYES)
 		// shitcode begin!
 		if(istype(ertemplate, /datum/ert/deathsquad))
 			SSsecurity_level.set_level(SEC_LEVEL_EPSILON)
@@ -273,12 +273,12 @@
 
 	return TRUE
 
-ADMIN_VERB(summon_ert, R_FUN, "Summon ERT", "Summons an emergency response team.", ADMIN_CATEGORY_FUN)
-	message_admins("[key_name_admin(user)] is creating a CentCom response team...")
+ADMIN_VERB(summon_ert, R_FUN, "召唤紧急响应小队", "召唤一支紧急响应小队。", ADMIN_CATEGORY_FUN)
+	message_admins("[key_name_admin(user)]正在创建中央指挥部响应小队……")
 	if(user.holder?.make_emergency_response_team())
-		log_admin("[key_name(user)] created a CentCom response team.")
+		log_admin("[key_name(user)]创建了中央指挥部响应小队。")
 	else
-		log_admin("[key_name(user)] failed to create a CentCom response team.")
+		log_admin("[key_name(user)]创建中央指挥部响应小队失败。")
 
 #undef ERT_EXPERIENCED_LEADER_CHOOSE_TOP
 #undef DUMMY_HUMAN_SLOT_ADMIN

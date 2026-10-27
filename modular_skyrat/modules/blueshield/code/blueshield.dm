@@ -1,12 +1,12 @@
 /datum/job/blueshield
 	title = JOB_BLUESHIELD
-	rpg_title = "Guild Protectorate"
-	description = "Protect the Heads of Staff and get your hands dirty so they can keep theirs clean."
+	rpg_title = "公会守护者"
+	description = "保护各部门主管，并替他们弄脏双手，好让他们能保持双手干净。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "All Command Staff and Central Command when applicable"
+	supervisors = "所有指挥人员，以及适用情况下的中央指挥部"
 	minimal_player_age = 7
 	exp_requirements = 2400
 	exp_required_type = EXP_TYPE_CREW
@@ -84,7 +84,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/blueshield
 
 /obj/item/modular_computer/pda/blueshield
-	name = "blueshield PDA"
+	name = "蓝盾 PDA"
 	icon_state = "/obj/item/modular_computer/pda/blueshield"
 	greyscale_colors = "#2B356D#1E1E1E"
 	inserted_item = /obj/item/pen/red/security

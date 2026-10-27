@@ -5,16 +5,16 @@
 
 /datum/computer_file/program/civilianbounties
 	filename = "bountyapp"
-	filedesc = "Civilian Bounties"
+	filedesc = "民用赏金"
 	downloader_category = PROGRAM_CATEGORY_SUPPLY
 	program_open_overlay = "request"
-	extended_desc = "Nanotrasen Civilian Bounty Requisition Network interface for displaying wanted items."
+	extended_desc = "纳米传讯民用赏金征用网络界面，用于显示所需物品。"
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	can_run_on_flags = PROGRAM_LAPTOP | PROGRAM_PDA
 	size = 5
 	tgui_id = "NtosCivCargoHoldTerminal"
 	program_icon = FA_ICON_BOXES_STACKED
-	var/status_report = "Ready for delivery."
+	var/status_report = "可以交付。"
 	var/points = 0
 
 /datum/computer_file/program/civilianbounties/ui_data(mob/user)
@@ -58,10 +58,10 @@
 		return
 	if((id_account.civilian_bounty || id_account.bounties) && !COOLDOWN_FINISHED(id_account, bounty_timer))
 		var/time_left = DisplayTimeText(COOLDOWN_TIMELEFT(id_account, bounty_timer), round_seconds_to = 1)
-		computer.balloon_alert(user, "try again in [time_left]!")
+		computer.balloon_alert(user, "[time_left] 后再试！")
 		return FALSE
 	if(!computer.stored_id.trim)
-		computer.say("Requesting ID card has no job assignment registered!")
+		computer.say("申请用的 ID 卡未登记职务！")
 		return FALSE
 
 	var/list/datum/bounty/crumbs = computer.stored_id.trim.generate_bounty_list()

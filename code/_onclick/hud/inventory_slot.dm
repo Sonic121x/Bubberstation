@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(inventory_slot_datums, initialize_inventory_slots())
 /datum/inventory_slot
 	abstract_type = /datum/inventory_slot
 	/// Name assigned to the screen element
-	var/name = "error"
+	var/name = "错误"
 	/// Should the slot inherit HUD's ui_style?
 	var/inherit_style = TRUE
 	/// Slot ID of the element

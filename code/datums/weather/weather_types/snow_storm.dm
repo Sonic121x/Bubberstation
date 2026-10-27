@@ -1,22 +1,22 @@
 /datum/weather/snow_storm
 	name = "snow storm"
-	desc = "Harsh snowstorms roam the topside of this arctic planet, burying any area unfortunate enough to be in its path."
+	desc = "猛烈的暴风雪肆虐于这颗冰冻行星的地表，埋没沿途一切不幸遭遇它的地方。"
 	probability = 90
 
-	telegraph_message = span_warning("Drifting particles of snow begin to dust the surrounding area..")
+	telegraph_message = span_warning("飘散的雪花开始覆盖周围……")
 	telegraph_duration = 30 SECONDS
 	telegraph_overlay = "light_snow"
 	telegraph_sound = 'sound/ambience/weather/snowstorm/snow_start.ogg'
 	telegraph_sound_vol = /datum/looping_sound/snowstorm::volume + 10
 
-	weather_message = span_userdanger("<i>Harsh winds pick up as dense snow begins to fall from the sky! Seek shelter!</i>")
+	weather_message = span_userdanger("<i>狂风骤起，大雪开始从天而降！快寻找掩蔽！</i>")
 	weather_overlay = "snow_storm"
 	weather_duration_lower = 1 MINUTES
 	weather_duration_upper = 2.5 MINUTES
 	use_glow = FALSE
 
 	end_duration = 10 SECONDS
-	end_message = span_bolddanger("The snowfall dies down, it should be safe to go outside again.")
+	end_message = span_bolddanger("降雪减弱了，现在外面应该安全了。")
 	end_sound = 'sound/ambience/weather/snowstorm/snow_end.ogg'
 	end_sound_vol = /datum/looping_sound/snowstorm::volume + 10
 

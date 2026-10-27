@@ -78,4 +78,4 @@
 /datum/component/clothing_damaged_by_bullets/proc/on_examine(obj/item/source, mob/examiner, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += "<br>[span_warning("This will be <b>damaged</b> when it protects you from bullets, taking <b>[projectile_damage_multiplier]</b> times the damage that the bullet deals.")]"
+	examine_list += "<br>[span_warning("它在保护你免受子弹伤害时会<b>受损</b>，承受子弹伤害的<b>[projectile_damage_multiplier]</b>倍。")]"

@@ -44,7 +44,7 @@
 	var/list/data = list()
 	data["paintings"] = matching_paintings || SSpersistent_paintings.painting_ui_data(filter = PAINTINGS_FILTER_AI_PORTRAIT)
 	data["search_string"] = search_string
-	data["search_mode"] = search_mode == PAINTINGS_FILTER_SEARCH_TITLE ? "Title" : "Author"
+	data["search_mode"] = search_mode == PAINTINGS_FILTER_SEARCH_TITLE ? "标题" : "作者"
 	return data
 
 /datum/portrait_picker/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -82,15 +82,15 @@
 			MA.layer = FLOAT_LAYER
 
 			if(w == 23 || h == 23)
-				to_chat(ai, span_notice("Small note: 23x23 Portraits are accepted, but they do not fit perfectly inside the display frame."))
+				to_chat(ai, span_notice("小提示：23x23 的画像可以使用，但无法完美贴合显示框。"))
 				MA.pixel_w = 5
 				MA.pixel_z = 5
 			else if(w == 24 || h == 24)
-				to_chat(ai, span_notice("Portrait Accepted. Enjoy!"))
+				to_chat(ai, span_notice("画像已被接受。请欣赏！"))
 				MA.pixel_w = 4
 				MA.pixel_z = 4
 			else
-				to_chat(ai, span_warning("Sorry, only 23x23 and 24x24 Portraits are accepted."))
+				to_chat(ai, span_warning("抱歉，只接受 23x23 和 24x24 的画像。"))
 				return
 
 			ai.portrait_appearance = MA

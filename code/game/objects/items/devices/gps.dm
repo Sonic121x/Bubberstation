@@ -1,7 +1,7 @@
 
 /obj/item/gps
-	name = "global positioning system"
-	desc = "Helping lost spacemen find their way through the planets since 2016."
+	name = "全球定位系统"
+	desc = "自 2016 年起，帮助迷路的宇航员在各个星球上找到方向。"
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "gps-c"
 	inhand_icon_state = "electronic"
@@ -42,17 +42,17 @@
 /obj/item/gps/mining
 	icon_state = "gps-m"
 	gpstag = "MINE0"
-	desc = "A positioning system helpful for rescuing trapped or injured miners, keeping one on you at all times while mining might just save your life."
+	desc = "有助于救援受困或受伤矿工的定位系统。采矿时始终随身携带一个，可能会救你一命。"
 
 /obj/item/gps/cyborg
 	icon_state = "gps-b"
 	gpstag = "BORG0"
-	desc = "A mining cyborg internal positioning system. Used as a recovery beacon for damaged cyborg assets, or a collaboration tool for mining teams."
+	desc = "矿业半机械人的内置定位系统，可用作受损半机械人的回收信标，或采矿队的协作工具。"
 
 /obj/item/gps/mining/internal
 	icon_state = "gps-m"
 	gpstag = "MINER"
-	desc = "A positioning system helpful for rescuing trapped or injured miners, keeping one on you at all times while mining might just save your life."
+	desc = "有助于救援受困或受伤矿工的定位系统。采矿时始终随身携带一个，可能会救你一命。"
 
 /*
  * GPS for pAIS, which only allows access if it's contained within the user.
@@ -64,11 +64,11 @@
 	AddComponent(/datum/component/gps/item, gpstag, state = GLOB.inventory_state)
 
 /obj/item/gps/visible_debug
-	name = "visible GPS"
+	name = "坐标显示 GPS"
 	gpstag = "ADMIN"
-	desc = "This admin-spawn GPS unit leaves the coordinates visible \
-		on any turf that it passes over while being dragged on the floor. Especially useful \
-		for marking the area around the transition edges."
+	desc = "这台由管理员生成的 GPS 装置在地板上拖动时，会在经过的地块上\
+		显示坐标。尤其适合\
+		标记过渡边界周围的区域。"
 	tracking_on = FALSE
 	debug_mode = TRUE
 	overlay_icon = FALSE

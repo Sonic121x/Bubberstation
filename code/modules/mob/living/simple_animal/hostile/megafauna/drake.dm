@@ -30,12 +30,12 @@
  */
 
 /mob/living/simple_animal/hostile/megafauna/dragon
-	name = "ash drake"
-	desc = "Guardians of the necropolis."
+	name = "灰烬龙"
+	desc = "死灵之都的守护者。"
 	health = 2500
 	maxHealth = 2500
-	attack_verb_continuous = "chomps"
-	attack_verb_simple = "chomp"
+	attack_verb_continuous = "撕咬"
+	attack_verb_simple = "撕咬"
 	attack_sound = 'sound/effects/magic/demon_attack1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	icon = 'icons/mob/simple/lavaland/96x96megafauna.dmi'
@@ -43,9 +43,9 @@
 	icon_living = "dragon"
 	icon_dead = "dragon_dead"
 	health_doll_icon = "dragon"
-	friendly_verb_continuous = "stares down"
-	friendly_verb_simple = "stare down"
-	speak_emote = list("roars")
+	friendly_verb_continuous = "瞪视"
+	friendly_verb_simple = "瞪视"
+	speak_emote = list("咆哮")
 	armour_penetration = 40
 	melee_damage_lower = 40
 	melee_damage_upper = 40
@@ -64,14 +64,14 @@
 	initial_language_holder = /datum/language_holder/lizard/hear_common
 	var/swooping = NONE
 	var/player_cooldown = 0
-	gps_name = "Fiery Signal"
+	gps_name = "烈焰信号"
 	achievement_type = /datum/award/achievement/boss/drake_kill
 	crusher_achievement_type = /datum/award/achievement/boss/drake_crusher
 	score_achievement_type = /datum/award/score/drake_score
-	death_message = "collapses into a pile of bones, its flesh sloughing away."
+	death_message = "瘫倒成一堆白骨，血肉随之剥落。"
 	death_sound = 'sound/effects/magic/demon_dies.ogg'
 	footstep_type = FOOTSTEP_MOB_HEAVY
-	summon_line = "ROOOOOOOOAAAAAAAAAAAR!"
+	summon_line = "吼嗷嗷嗷嗷嗷嗷嗷嗷！"
 	/// Fire cone ability
 	var/datum/action/cooldown/mob_cooldown/fire_breath/cone/fire_cone
 	/// Meteors ability
@@ -153,7 +153,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/arena_escape_enrage() // you ran somehow / teleported away from my arena attack now i'm mad fucker
 	SLEEP_CHECK_DEATH(0, src)
-	visible_message(span_boldwarning("[src] starts to glow vibrantly as its wounds close up!"))
+	visible_message(span_boldwarning("[src] 随着伤口愈合，开始焕发出耀眼的光芒！"))
 	adjust_brute_loss(-250) // yeah you're gonna pay for that, don't run nerd
 	add_atom_colour(rgb(255, 255, 0), TEMPORARY_COLOUR_PRIORITY)
 	move_to_delay = move_to_delay / 2
@@ -224,9 +224,9 @@
 			continue
 		victim.adjust_fire_loss(10)
 		if(can_transform_turf)
-			to_chat(victim, span_userdanger("You fall directly into the pool of lava!"))
+			to_chat(victim, span_userdanger("你径直掉进了熔岩池里！"))
 		else
-			to_chat(victim, span_userdanger("You are set ablaze by a fireball from above!"))
+			to_chat(victim, span_userdanger("你被从上方落下的火球点燃了！"))
 
 	// deals damage to mechs
 	for(var/obj/vehicle/sealed/mecha/mech in our_turf)
@@ -243,8 +243,8 @@
 	addtimer(CALLBACK(our_turf, TYPE_PROC_REF(/turf, ChangeTurf), reset_turf, null, CHANGETURF_INHERIT_AIR), reset_time, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 /obj/effect/temp_visual/drakewall
-	desc = "An ash drakes true flame."
-	name = "Fire Barrier"
+	desc = "灰烬龙的真正火焰。"
+	name = "火焰屏障"
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "light"
 	anchored = TRUE
@@ -264,8 +264,8 @@
 /obj/effect/temp_visual/fireball
 	icon = 'icons/effects/magic.dmi'
 	icon_state = "fireball"
-	name = "fireball"
-	desc = "Get out of the way!"
+	name = "火球"
+	desc = "快躲开！"
 	layer = FLY_LAYER
 	plane = ABOVE_GAME_PLANE
 	randomdir = FALSE
@@ -304,13 +304,13 @@
 			continue
 		if(islist(flame_hit) && !flame_hit[L])
 			L.adjust_fire_loss(40)
-			to_chat(L, span_userdanger("You're hit by the drake's fire breath!"))
+			to_chat(L, span_userdanger("你被灰烬龙的火焰吐息击中了！"))
 			flame_hit[L] = TRUE
 		else
 			L.adjust_fire_loss(10) //if we've already hit them, do way less damage
 
 /mob/living/simple_animal/hostile/megafauna/dragon/lesser
-	name = "lesser ash drake"
+	name = "次级灰烬龙"
 	maxHealth = 200
 	health = 200
 	faction = list(FACTION_NEUTRAL)

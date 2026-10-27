@@ -18,9 +18,9 @@
 	///List of required access to download or file host the program. Any match will do.
 	var/list/download_access
 	/// User-friendly name of this program.
-	var/filedesc = "Unknown Program"
+	var/filedesc = "未知程序"
 	/// Short description of this program's function.
-	var/extended_desc = "N/A"
+	var/extended_desc = "无"
 	///What category this program can be found in within NTNetDownloader.
 	///This is required if PROGRAM_ON_NTNET_STORE or PROGRAM_ON_SYNDINET_STORE is on.
 	var/downloader_category = PROGRAM_CATEGORY_DEVICE
@@ -137,7 +137,7 @@
 /datum/computer_file/program/proc/is_supported_by_hardware(hardware_flag = NONE, loud = FALSE, mob/user)
 	if(!(hardware_flag & can_run_on_flags))
 		if(loud && computer && user)
-			to_chat(user, span_danger("\The [computer] flashes a \"Hardware Error - Incompatible software\" warning."))
+			to_chat(user, span_danger("\The [computer] 闪出“硬件错误——软件不兼容”的警告。"))
 		return FALSE
 	return TRUE
 
@@ -181,7 +181,7 @@
 
 		if(!accesscard)
 			if(loud && user)
-				to_chat(user, span_danger("\The [computer] flashes an \"RFID Error - Unable to scan ID\" warning."))
+				to_chat(user, span_danger("\The [computer] 闪出“RFID 错误——无法扫描 ID”的警告。"))
 			return FALSE
 		access = accesscard.GetAccess()
 
@@ -190,7 +190,7 @@
 			return TRUE
 
 	if(loud && user)
-		to_chat(user, span_danger("\The [computer] flashes an \"Access Denied\" warning."))
+		to_chat(user, span_danger("\The [computer] 闪出“访问被拒绝”的警告。"))
 	return FALSE
 
 /**
@@ -207,7 +207,7 @@
 		return FALSE
 	if(program_flags & PROGRAM_REQUIRES_NTNET)
 		var/obj/item/card/id/ID = computer.stored_id?.GetID()
-		generate_network_log("Connection opened -- Program ID:[filename] User:[ID?"[ID.registered_name]":"None"]")
+		generate_network_log("连接已开启——程序 ID：[filename] 用户：[ID?"[ID.registered_name]":"无"]")
 	SEND_SIGNAL(src, COMSIG_COMPUTER_PROGRAM_START, user)
 	return TRUE
 
@@ -233,7 +233,7 @@
 
 	if(program_flags & PROGRAM_REQUIRES_NTNET)
 		var/obj/item/card/id/ID = computer.stored_id?.GetID()
-		generate_network_log("Connection closed -- Program ID: [filename] User:[ID ? "[ID.registered_name]" : "None"]")
+		generate_network_log("连接已关闭——程序 ID：[filename] 用户：[ID ? "[ID.registered_name]" : "无"]")
 
 	computer.update_appearance(UPDATE_ICON)
 	SEND_SIGNAL(src, COMSIG_COMPUTER_PROGRAM_KILL, user)

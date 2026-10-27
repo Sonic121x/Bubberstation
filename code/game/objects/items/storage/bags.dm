@@ -25,8 +25,8 @@
 	storage_type = /datum/storage/bag
 
 /obj/item/storage/bag/trash
-	name = "trash bag"
-	desc = "It's the heavy-duty black polymer kind. Time to take out the trash!"
+	name = "垃圾袋"
+	desc = "这是那种重型黑色聚合物垃圾袋。该倒垃圾了！"
 	icon = 'icons/obj/service/janitor.dmi'
 	icon_state = "trashbag"
 	inhand_icon_state = "trashbag"
@@ -53,13 +53,13 @@
 	// Otherwise, we're gonna dump into the dest object
 	var/turf/dump_onto = get_turf(dest_object)
 	user.visible_message(
-		span_notice("[user] dumps the contents of [src] all out on \the [dump_onto]"),
-		span_notice("The remaining trash in \the [src] falls out onto \the [dump_onto]"),
+		span_notice("[user] 把 [src] 里的东西全都倒在了 [dump_onto] 上"),
+		span_notice("[src] 里剩下的垃圾掉落在 [dump_onto] 上"),
 	)
 	source.remove_all(dump_onto)
 
 /obj/item/storage/bag/trash/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] puts [src] over [user.p_their()] head and starts chomping at the insides! Disgusting!"))
+	user.visible_message(span_suicide("[user] 把 [src] 套在自己头上，开始啃咬里面的东西！真恶心！"))
 	playsound(loc, 'sound/items/eatfood.ogg', 50, TRUE, -1)
 	return TOXLOSS
 
@@ -82,8 +82,8 @@
 	update_icon_state()
 
 /obj/item/storage/bag/trash/bluespace
-	name = "trash bag of holding"
-	desc = "The latest and greatest in custodial convenience, a trashbag that is capable of holding vast quantities of garbage."
+	name = "次元垃圾袋"
+	desc = "清洁便利的最新巅峰之作，一只能够容纳海量垃圾的垃圾袋。"
 	icon_state = "bluetrashbag"
 	worn_icon_state = "bluetrashbag"
 	inhand_icon_state = "bluetrashbag"
@@ -95,8 +95,8 @@
 	insertable = FALSE
 
 /obj/item/storage/bag/ore
-	name = "mining satchel"
-	desc = "This little bugger can be used to store and transport ores."
+	name = "采矿挎包"
+	desc = "这个小家伙可以用来储存和运输矿石。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "satchel"
 	worn_icon_state = "satchel"
@@ -143,8 +143,8 @@
 
 /obj/item/storage/bag/ore/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/boulder))
-		to_chat(user, span_warning("You can't fit [tool] into [src]. \
-			Perhaps you should break it down first, or find an ore box."))
+		to_chat(user, span_warning("你无法把 [tool] 塞进 [src] 里。\
+			也许你该先把它砸碎，或者找一台矿石箱。"))
 		return ITEM_INTERACT_BLOCKING
 	return NONE
 
@@ -189,16 +189,16 @@
 	COOLDOWN_START(src, ore_bag_balloon_cooldown, ORE_BAG_BALOON_COOLDOWN)
 
 	if (box)
-		balloon_alert(user, "scoops ore into box")
+		balloon_alert(user, "把矿石舀进箱子里")
 		user.visible_message(
-			span_notice("[user] offloads the ores beneath [user.p_them()] into [box]."),
+			span_notice("[user] 把脚下的矿石卸进了 [box]。"),
 			ignored_mobs = user
 		)
 		return
 
-	balloon_alert(user, "scoops ore into bag")
+	balloon_alert(user, "把矿石舀进袋子里")
 	user.visible_message(
-		span_notice("[user] scoops up the ores beneath [user.p_them()]."),
+		span_notice("[user] 把脚下的矿石舀了起来。"),
 		ignored_mobs = user
 	)
 
@@ -223,7 +223,7 @@
 		return TRUE
 
 	if (!spam_protection)
-		balloon_alert(user, "bag full!")
+		balloon_alert(user, "袋子满了！")
 		spam_protection = TRUE
 	return FALSE
 
@@ -238,17 +238,17 @@
 		INVOKE_ASYNC(src, PROC_REF(pickup_ore), new_atom, listening_to)
 
 /obj/item/storage/bag/ore/cyborg
-	name = "cyborg mining satchel"
+	name = "半机械人采矿挎包"
 
 /obj/item/storage/bag/ore/holding //miners, your messiah has arrived
-	name = "mining satchel of holding"
-	desc = "A revolution in convenience, this satchel allows for huge amounts of ore storage. It's been outfitted with anti-malfunction safety measures."
+	name = "次元采矿挎包"
+	desc = "便利性的一次革命——这只挎包能够储存海量矿石，并配备了防故障安全措施。"
 	icon_state = "satchel_bspace"
 	storage_type = /datum/storage/bag/ore/holding
 	custom_materials = list(/datum/material/uranium = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 2.5)
 
 /obj/item/storage/bag/plants
-	name = "plant bag"
+	name = "植物袋"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "plantbag"
 	worn_icon_state = "plantbag"
@@ -256,8 +256,8 @@
 	storage_type = /datum/storage/bag/plants
 
 /obj/item/storage/bag/plants/portaseeder
-	name = "portable seed extractor"
-	desc = "For the enterprising botanist on the go. Less efficient than the stationary model, it creates one seed per plant."
+	name = "便携式种子提取器"
+	desc = "专为四处奔波的有为植物学家打造。效率不如固定型号，每株植物只能产出一颗种子。"
 	icon_state = "portaseeder"
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 4)
 
@@ -272,12 +272,12 @@
 	mob/living/user
 )
 
-	context[SCREENTIP_CONTEXT_CTRL_LMB] = "Make seeds"
+	context[SCREENTIP_CONTEXT_CTRL_LMB] = "制作种子"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/storage/bag/plants/portaseeder/examine(mob/user)
 	. = ..()
-	. += span_notice("Ctrl-click to activate seed extraction.")
+	. += span_notice("按住 Ctrl 点击即可启动种子提取。")
 
 /obj/item/storage/bag/plants/portaseeder/item_ctrl_click(mob/user)
 	for(var/obj/item/plant in contents)
@@ -285,24 +285,24 @@
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/storage/bag/plants/cyborg
-	name = "cyborg plant bag"
+	name = "半机械人植物袋"
 
 /obj/item/storage/bag/sheetsnatcher
-	name = "sheet snatcher"
-	desc = "A patented Nanotrasen storage system designed for any kind of mineral sheet."
+	name = "板材抓取袋"
+	desc = "一套获得专利的纳米传讯储存系统，适用于任何种类的矿物板材。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sheetsnatcher"
 	worn_icon_state = "satchel"
 	storage_type = /datum/storage/bag/sheet_snatcher
 
 /obj/item/storage/bag/sheetsnatcher/borg
-	name = "sheet snatcher 9000"
+	name = "板材抓取袋 9000"
 	desc = ""
 	storage_type = /datum/storage/bag/sheet_snatcher/borg
 
 /obj/item/storage/bag/sheetsnatcher/debug
-	name = "sheet snatcher EXTREME EDITION"
-	desc = "A Nanotrasen storage system designed which has been given post-market alterations to hold any type of sheet. Comes pre-populated with "
+	name = "板材抓取袋 极限版"
+	desc = "一套经过市场后改造、可容纳任何种类板材的纳米传讯储存系统。出厂时已预装 "
 	color = "#ff3737" // I'm too lazy to make a unique sprite
 	w_class = WEIGHT_CLASS_TINY
 	storage_type = /datum/storage/bag/sheet_snatcher_debug
@@ -341,8 +341,8 @@
 		new stack_type(src, amt, FALSE)
 
 /obj/item/storage/bag/books
-	name = "book bag"
-	desc = "A bag for books."
+	name = "书包"
+	desc = "用来装书的袋子。"
 	icon = 'icons/obj/service/library.dmi'
 	icon_state = "bookbag"
 	worn_icon_state = "bookbag"
@@ -350,11 +350,11 @@
 	storage_type = /datum/storage/bag/books
 
 /obj/item/storage/bag/tray
-	name = "serving tray"
+	name = "上菜托盘"
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "tray"
 	worn_icon_state = "tray"
-	desc = "A metal tray to lay food on."
+	desc = "用来摆放食物的金属托盘。"
 	force = 5
 	throwforce = 10
 	throw_speed = 3
@@ -421,23 +421,23 @@
 	update_appearance()
 
 /obj/item/storage/bag/tray/cafeteria
-	name = "cafeteria tray"
+	name = "食堂托盘"
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "foodtray"
-	desc = "A cheap metal tray to pile today's meal onto."
+	desc = "一个廉价的金属托盘，用来堆放今天的饭菜。"
 
 /obj/item/storage/bag/chemistry
-	name = "chemistry bag"
+	name = "化学袋"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "bag"
 	worn_icon_state = "chembag"
-	desc = "A bag for storing pills, patches, and bottles."
+	desc = "用于存放药片、贴片和药瓶的袋子。"
 	resistance_flags = FLAMMABLE
 	storage_type = /datum/storage/bag/chemistry
 
 /obj/item/storage/bag/money
-	name = "money bag"
-	desc = "A bag for storing your profits."
+	name = "钱袋"
+	desc = "用来存放你收益的袋子。"
 	icon_state = "moneybag"
 	worn_icon_state = "moneybag"
 	force = 10
@@ -470,36 +470,36 @@
 	new /obj/item/coin/adamantine/doubloon(src)
 
 /obj/item/storage/bag/bio
-	name = "bio bag"
+	name = "生化袋"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "biobag"
 	worn_icon_state = "biobag"
-	desc = "A bag for the safe transportation and disposal of biowaste and other virulent materials."
+	desc = "用于安全运输和处置生物废料及其他剧毒物质的袋子。"
 	resistance_flags = FLAMMABLE
 	storage_type = /datum/storage/bag/bio
 
 /obj/item/storage/bag/xeno
-	name = "science bag"
+	name = "科研袋"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "xenobag"
 	worn_icon_state = "xenobag"
-	desc = "A bag for the storage and transport of anomalous materials."
+	desc = "用于储存和运输异常材料的袋子。"
 	resistance_flags = FLAMMABLE
 	storage_type = /datum/storage/bag/xeno
 
 /obj/item/storage/bag/construction
-	name = "construction bag"
+	name = "建造袋"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "construction_bag"
 	worn_icon_state = "construction_bag"
-	desc = "A bag for storing small construction components."
+	desc = "用于存放小型建造部件的袋子。"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	resistance_flags = FLAMMABLE
 	storage_type = /datum/storage/bag/construction
 
 /obj/item/storage/bag/harpoon_quiver
-	name = "harpoon quiver"
-	desc = "A quiver for holding harpoons."
+	name = "鱼叉箭袋"
+	desc = "用来装鱼叉的箭袋。"
 	icon = 'icons/obj/weapons/bows/quivers.dmi'
 	icon_state = "quiver"
 	inhand_icon_state = null
@@ -511,12 +511,12 @@
 		new /obj/item/ammo_casing/harpoon(src)
 
 /obj/item/storage/bag/rebar_quiver
-	name = "rebar quiver"
+	name = "钢筋箭袋"
 	icon = 'icons/obj/weapons/bows/quivers.dmi'
 	icon_state = "rebar_quiver"
 	worn_icon_state = "rebar_quiver"
 	inhand_icon_state = "rebar_quiver"
-	desc = "A oxygen tank cut in half, used for holding sharpened rods for the rebar crossbow."
+	desc = "一只对半切开的氧气罐，用来装钢筋弩所用的磨尖钢筋。"
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_SUITSTORE|ITEM_SLOT_NECK
 	resistance_flags = FLAMMABLE
 	storage_type = /datum/storage/bag/rebar_quiver
@@ -534,15 +534,15 @@
 
 /obj/item/storage/bag/rebar_quiver/proc/reload_held_rebar(mob/user)
 	if(!contents.len)
-		user.balloon_alert(user, "no bolts left!")
+		user.balloon_alert(user, "没有弩箭了！")
 		return
 	var/obj/held_item = user.get_active_held_item()
 	if(!held_item || !istype(held_item, /obj/item/gun/ballistic/rifle/rebarxbow))
-		user.balloon_alert(user, "no held crossbow!")
+		user.balloon_alert(user, "手上没有弩！")
 		return
 	var/obj/item/gun/ballistic/rifle/rebarxbow/held_crossbow = held_item
 	if(held_crossbow.magazine.contents.len >= held_crossbow.magazine.max_ammo)
-		user.balloon_alert(user, "no more room!")
+		user.balloon_alert(user, "装不下了！")
 		return
 	if(!do_after(user, held_crossbow.reload_time, user,timed_action_flags = held_crossbow.doafter_flags))
 		return
@@ -554,8 +554,8 @@
 	icon_state = "syndie_quiver_0"
 	worn_icon_state = "syndie_quiver_0"
 	inhand_icon_state = "holyquiver"
-	desc = "A specialized quiver meant to hold any kind of bolts intended for use with the rebar crossbow. Allows moving while reloading.\
-		Clearly a better design than a cut up oxygen tank..."
+	desc = "一只专用箭袋，可容纳任何用于钢筋弩的弩箭。装填时仍可移动。\
+		显然比一只切开的氧气罐设计得好得多……"
 	slot_flags = ITEM_SLOT_NECK
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -579,8 +579,8 @@
 			icon_state = "syndie_quiver_3"
 
 /obj/item/storage/bag/quiver
-	name = "quiver"
-	desc = "Holds arrows for your bow. Good, because while pocketing arrows is possible, it surely can't be pleasant."
+	name = "箭袋"
+	desc = "用来装你的弓所需的箭。挺好，虽然箭也能塞进口袋，但那显然不会好受。"
 	icon = 'icons/obj/weapons/bows/quivers.dmi'
 	icon_state = "quiver"
 	inhand_icon_state = null
@@ -600,8 +600,8 @@
 		new arrow_path(src)
 
 /obj/item/storage/bag/quiver/holy
-	name = "divine quiver"
-	desc = "Holds arrows for your divine bow, where they wait to find their target."
+	name = "神圣箭袋"
+	desc = "为你神圣的弓装箭，箭在其中静候寻得目标。"
 	icon_state = "holyquiver"
 	inhand_icon_state = "holyquiver"
 	worn_icon_state = "holyquiver"
@@ -613,8 +613,8 @@
 		new arrow_path(src)
 
 /obj/item/storage/bag/quiver/endless
-	name = "endless quiver"
-	desc = "Holds arrows for your bow. A deep digital void is contained within."
+	name = "无尽箭袋"
+	desc = "用来装你的弓所需的箭。内部蕴含着一片深邃的数字虚空。"
 	storage_type = /datum/storage/bag/quiver/endless
 
 /obj/item/storage/bag/quiver/endless/PopulateContents()

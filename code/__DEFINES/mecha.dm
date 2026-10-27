@@ -58,16 +58,16 @@
 #define MECHA_SNOWFLAKE_ID_CLAW "lawclaw_snowflake"
 #define MECHA_SNOWFLAKE_ID_RCD "rcd_snowflake"
 
-#define MECHA_AMMO_INCENDIARY "Incendiary bullet"
-#define MECHA_AMMO_BUCKSHOT "Buckshot shell"
-#define MECHA_AMMO_LMG "LMG bullet"
-#define MECHA_AMMO_MISSILE_SRM "SRM missile"
-#define MECHA_AMMO_MISSILE_PEP "PEP missile"
-#define MECHA_AMMO_FLASHBANG "Flashbang"
-#define MECHA_AMMO_CLUSTERBANG "Clusterbang"
-#define MECHA_AMMO_PUNCHING_GLOVE "Punching glove"
-#define MECHA_AMMO_BANANA_PEEL "Banana peel"
-#define MECHA_AMMO_MOUSETRAP "Mousetrap"
+#define MECHA_AMMO_INCENDIARY "燃烧弹"
+#define MECHA_AMMO_BUCKSHOT "鹿弹"
+#define MECHA_AMMO_LMG "轻机枪子弹"
+#define MECHA_AMMO_MISSILE_SRM "短程导弹"
+#define MECHA_AMMO_MISSILE_PEP "脉冲能量弹"
+#define MECHA_AMMO_FLASHBANG "闪光震撼弹"
+#define MECHA_AMMO_CLUSTERBANG "集束闪光震撼弹"
+#define MECHA_AMMO_PUNCHING_GLOVE "拳击手套"
+#define MECHA_AMMO_BANANA_PEEL "香蕉皮"
+#define MECHA_AMMO_MOUSETRAP "捕鼠夹"
 
 /// Values to determine the effects on a mech should it suffer an EMP
 #define MECH_EMP_DAMAGE_LOWER 100

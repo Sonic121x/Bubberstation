@@ -1,6 +1,6 @@
 /datum/experiment/scanning/random/plants
-	name = "Botanical Scanning Experiment"
-	description = "Base experiment for scanning edible plant biomass."
+	name = "植物扫描实验"
+	description = "用于扫描可食用植物生物质的基础实验。"
 	exp_tag = "Plant Biomatter Scan"
 	total_requirement = 1
 	possible_types = list(/obj/item/food/grown)
@@ -18,7 +18,7 @@
 			required_genes[req_atom] = chosen_gene
 
 /datum/experiment/scanning/random/plants/serialize_progress_stage(atom/target, list/seen_instances)
-	return EXPERIMENT_PROG_INT("Scan samples of a harvested plant.", \
+	return EXPERIMENT_PROG_INT("扫描一株收获的植物的样本。", \
 		traits & EXPERIMENT_TRAIT_DESTRUCTIVE ? scanned[target] : seen_instances.len, required_atoms[target])
 
 /datum/experiment/scanning/random/plants/traits/final_contributing_index_checks(datum/component/experiment_handler/experiment_handler, atom/target, typepath)
@@ -27,14 +27,14 @@
 	var/obj/item/food/grown/crop = target
 	if(possible_plant_genes.len)
 		if(isnull(crop.seed.get_gene(required_genes[typepath])))
-			experiment_handler.announce_message("Scanned plant is missing required genetics. Please scan a plant with the proper genetics.")
+			experiment_handler.announce_message("被扫描的植物缺少所需的基因特性。请扫描具有正确基因特性的植物。")
 		return ..() && !isnull(crop.seed.get_gene(required_genes[typepath]))
 	return ..()
 
 /datum/experiment/scanning/random/plants/traits/serialize_progress_stage(atom/target, list/seen_instances)
 	if(possible_plant_genes.len)
 		var/datum/plant_gene/gene = required_genes[target]
-		return EXPERIMENT_PROG_INT("Scan samples of harvested plants with the trait: [initial(gene.name)].", \
+		return EXPERIMENT_PROG_INT("扫描具有以下特性的收获植物的样本：[initial(gene.name)]。", \
 			traits & EXPERIMENT_TRAIT_DESTRUCTIVE ? scanned[target] : seen_instances.len, required_atoms[target])
 
 /datum/experiment/scanning/random/plants/wild/final_contributing_index_checks(datum/component/experiment_handler/experiment_handler, atom/target, typepath)

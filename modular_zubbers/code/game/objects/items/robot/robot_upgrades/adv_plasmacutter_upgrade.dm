@@ -1,5 +1,5 @@
 /obj/item/gun/energy/plasmacutter/brg // Plasma cutter for Mining cyborg, recharges on power.
-	name = "advanced plasma cutter"
+	name = "高级等离子切割器"
 	icon_state = "adv_plasmacutter"
 	inhand_icon_state = "adv_plasmacutter"
 	force = 15
@@ -12,8 +12,8 @@
 	e_cost = 300 // This is based off of the cyborgs cell, soo each shot costs 300 power, needs balance checks
 
 /obj/item/borg/upgrade/advcutter
-	name = "mining cyborg advanced plasma cutter"
-	desc = "An upgrade for the mining cyborgs plasma cutter, bringing it to advanced operation."
+	name = "采矿半机械人高级等离子切割器"
+	desc = "将采矿半机械人的等离子切割器升级为高级型号。"
 	icon_state = "module_miner"
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
@@ -30,7 +30,7 @@
 	if(.)
 		var/obj/item/gun/energy/plasmacutter/brg/AC = locate() in R.model.modules
 		if(AC)
-			to_chat(user, span_warning("This unit is already equipped with A plasma Cutter!"))
+			to_chat(user, span_warning("此单位已经装备了等离子切割器！"))
 			return FALSE
 		AC = new(R.model)
 		R.model.basic_modules += AC

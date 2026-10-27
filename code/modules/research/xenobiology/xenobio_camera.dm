@@ -26,8 +26,8 @@
 #define SUCTION_TIME 2 DECISECONDS
 
 /obj/machinery/computer/camera_advanced/xenobio
-	name = "Slime management console"
-	desc = "A computer used for remotely handling slimes."
+	name = "史莱姆管理控制台"
+	desc = "一台用于远程操作史莱姆的计算机。"
 	networks = list(CAMERANET_NETWORK_SS13)
 	circuit = /obj/item/circuitboard/computer/xenobiology
 
@@ -80,16 +80,16 @@
 	. = ..()
 
 	if(istype(held_item, /obj/item/slimepotion/slime))
-		context[SCREENTIP_CONTEXT_LMB] = "[current_potion ? "Swap" : "Insert"] potion"
+		context[SCREENTIP_CONTEXT_LMB] = "[current_potion ? "替换" : "放入"]药水"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/food/monkeycube))
-		context[SCREENTIP_CONTEXT_LMB] = "Insert monkey cubes"
+		context[SCREENTIP_CONTEXT_LMB] = "放入猴子方块"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/storage/bag) || istype(held_item, /obj/item/storage/box/monkeycubes))
-		context[SCREENTIP_CONTEXT_LMB] = "Load monkey cubes"
+		context[SCREENTIP_CONTEXT_LMB] = "装填猴子方块"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/multitool))
-		context[SCREENTIP_CONTEXT_LMB] = "Link monkey recycler"
+		context[SCREENTIP_CONTEXT_LMB] = "链接猴子回收机"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/computer/camera_advanced/xenobio/Exited(atom/movable/gone, direction)
@@ -139,14 +139,14 @@
 /// Handles inserting a slime potion into the console, potentially swapping out an existing one.
 /obj/machinery/computer/camera_advanced/xenobio/proc/slimepotion_act(mob/living/user, obj/item/slimepotion/slime/used_potion)
 	if(!user.transferItemToLoc(used_potion, src))
-		balloon_alert(user, "can't insert!")
+		balloon_alert(user, "无法放入！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!QDELETED(current_potion))
 		try_put_in_hand(current_potion, user)
-		balloon_alert(user, "swapped")
+		balloon_alert(user, "已替换")
 	else
-		balloon_alert(user, "inserted")
+		balloon_alert(user, "已放入")
 
 	current_potion = used_potion
 	var/atom/movable/screen/xenobio_console/xeno_hud = user.hud_used?.screen_objects[HUD_XENOBIO_CONSOLE]
@@ -157,7 +157,7 @@
 /// Handles inserting a monkey cube into the console.
 /obj/machinery/computer/camera_advanced/xenobio/proc/monkeycube_act(mob/living/user, obj/item/food/monkeycube/used_cube)
 	stored_monkeys += 1
-	balloon_alert(user, "[stored_monkeys] cube\s stored")
+	balloon_alert(user, "已存储 [stored_monkeys] 个猴子方块")
 	var/atom/movable/screen/xenobio_console/xeno_hud = user.hud_used?.screen_objects[HUD_XENOBIO_CONSOLE]
 	if(xeno_hud)
 		xeno_hud.on_update_hud(LAZYLEN(stored_slimes), stored_monkeys, max_slimes)
@@ -173,10 +173,10 @@
 			stored_monkeys += 1
 			qdel(storage_item)
 	if(!loaded_any)
-		balloon_alert(user, "no monkey cubes!")
+		balloon_alert(user, "没有猴子方块！")
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "[stored_monkeys] cube\s stored")
+	balloon_alert(user, "已存储 [stored_monkeys] 个猴子方块")
 	var/atom/movable/screen/xenobio_console/xeno_hud = user.hud_used?.screen_objects[HUD_XENOBIO_CONSOLE]
 	if(xeno_hud)
 		xeno_hud.on_update_hud(LAZYLEN(stored_slimes), stored_monkeys, max_slimes)
@@ -186,26 +186,26 @@
 	if(!istype(tool)) // Needed as long as this uses a var on the multitool.
 		return NONE
 	if(QDELETED(tool.buffer))
-		balloon_alert(user, "buffer empty!")
+		balloon_alert(user, "缓冲区为空！")
 		return ITEM_INTERACT_BLOCKING
 	if(!istype(tool.buffer, /obj/machinery/monkey_recycler))
-		balloon_alert(user, "can only link recyclers!")
+		balloon_alert(user, "只能链接回收机！")
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "linked recycler")
+	balloon_alert(user, "已链接回收机")
 	connected_recycler_ref = WEAKREF(tool.buffer)
 	return ITEM_INTERACT_SUCCESS
 
 /// Validates whether the target turf can be interacted with.
 /obj/machinery/computer/camera_advanced/xenobio/proc/validate_turf(mob/living/user, turf/open/target_turf)
 	if(!SScameras.is_visible_by_cameras(target_turf))
-		target_turf.balloon_alert(user, "outside of view!")
+		target_turf.balloon_alert(user, "超出视野范围！")
 		return FALSE
 
 	var/area/turfarea = get_area(target_turf)
 	var/mob/eye/camera/remote/xenobio/remote_eye = user.remote_control
 	if(turfarea.name != remote_eye.allowed_area && !(turfarea.area_flags & XENOBIOLOGY_COMPATIBLE))
-		target_turf.balloon_alert(user, "invalid area!")
+		target_turf.balloon_alert(user, "区域无效！")
 		return FALSE
 
 	return TRUE
@@ -217,9 +217,9 @@
 		return
 
 	if(stored_slimes.len == 1)
-		target_turf.visible_message(span_notice("The slime is spat out!"))
+		target_turf.visible_message(span_notice("史莱姆被吐了出来！"))
 	else
-		target_turf.visible_message(span_notice("[stored_slimes.len] slimes are spat out!"))
+		target_turf.visible_message(span_notice("[stored_slimes.len] 只史莱姆被吐了出来！"))
 
 	for(var/mob/living/basic/slime/stored_slime in stored_slimes)
 		stored_slime.forceMove(target_turf)
@@ -239,17 +239,17 @@
 		return FALSE
 
 	if(stored_slimes.len >= max_slimes)
-		to_chat(user, span_warning("Slime storage is full."))
-		target_slime.balloon_alert(user, "storage full")
+		to_chat(user, span_warning("史莱姆存储已满。"))
+		target_slime.balloon_alert(user, "存储已满")
 		return TRUE
 
 	if(target_slime.ckey)
-		to_chat(user, span_warning("The slime wiggled free!"))
+		to_chat(user, span_warning("史莱姆扭动着挣脱了！"))
 		return FALSE
 
 	if(target_slime.buckled)
 		target_slime.stop_feeding(silent = TRUE)
-	target_slime.visible_message(span_notice("The slime gets sucked up!"))
+	target_slime.visible_message(span_notice("史莱姆被吸了进去！"))
 	suck_up(target_slime)
 	target_slime.forceMove(src)
 	stored_slimes += target_slime
@@ -263,13 +263,13 @@
 ///Places one monkey, if possible
 /obj/machinery/computer/camera_advanced/xenobio/proc/feed_slime(mob/living/user, turf/open/target_turf)
 	if(stored_monkeys < 1)
-		to_chat(user, span_warning("[src] needs to have at least 1 monkey stored. Currently has [stored_monkeys] monkeys stored."))
-		target_turf.balloon_alert(user, "not enough monkeys")
+		to_chat(user, span_warning("[src] 至少需要存储 1 只猴子。目前存储了 [stored_monkeys] 只猴子。"))
+		target_turf.balloon_alert(user, "猴子不够")
 		return
 
 	var/cap = CONFIG_GET(number/monkeycap)
 	if (LAZYLEN(SSmobs.cubemonkeys) >= cap)
-		to_chat(user, span_warning("Bluespace harmonics prevent the creation of more than [cap] monkeys on the station at one time!"))
+		to_chat(user, span_warning("蓝空间谐波限制空间站同一时间只能存在 [cap] 只猴子！"))
 		return
 
 	var/mob/living/carbon/human/species/monkey/food = new /mob/living/carbon/human/species/monkey(target_turf, null, TRUE)
@@ -291,9 +291,9 @@
 	PRIVATE_PROC(TRUE)
 	var/obj/machinery/monkey_recycler/connected_recycler = connected_recycler_ref?.resolve()
 	if(isnull(connected_recycler))
-		to_chat(user, span_warning("There is no connected monkey recycler. Use a multitool to link one."))
+		to_chat(user, span_warning("没有连接猴子回收机。使用多功能工具进行链接。"))
 		if(target_atom)
-			target_atom.balloon_alert(user, "no recycler linked!")
+			target_atom.balloon_alert(user, "未链接回收机！")
 		return FALSE
 	return TRUE
 
@@ -302,11 +302,11 @@
 	PRIVATE_PROC(TRUE)
 	if(!ismonkey(target_human))
 		if(user)
-			target_human.balloon_alert(user, "not a monkey!")
+			target_human.balloon_alert(user, "不是猴子！")
 		return FALSE
 	if(target_human.stat != DEAD)
 		if(user)
-			target_human.balloon_alert(user, "not dead!")
+			target_human.balloon_alert(user, "尚未死亡！")
 		return FALSE
 	return TRUE
 
@@ -341,7 +341,7 @@
 		return
 
 	suck_up(target_monkey)
-	target_monkey.visible_message(span_notice("The monkey shoots up as [target_monkey.p_theyre()] reclaimed for recycling!"))
+	target_monkey.visible_message(span_notice("这只猴子被向上吸走，送去回收了！"))
 	connected_recycler.use_energy(500 JOULES)
 	stored_monkeys += connected_recycler.cube_production
 	stored_monkeys = round(stored_monkeys, 0.1) //Prevents rounding errors
@@ -351,7 +351,7 @@
 	qdel(target_monkey)
 
 /datum/action/innate/slime_place
-	name = "Place Slimes"
+	name = "放置史莱姆"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "slime_down"
 
@@ -368,7 +368,7 @@
 	xeno_console.slime_place(eye_turf, owner)
 
 /datum/action/innate/slime_pick_up
-	name = "Pick up Slime"
+	name = "拾取史莱姆"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "slime_up"
 
@@ -387,7 +387,7 @@
 			break
 
 /datum/action/innate/feed_slime
-	name = "Feed Slimes"
+	name = "喂食史莱姆"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "monkey_down"
 
@@ -405,7 +405,7 @@
 
 
 /datum/action/innate/monkey_recycle
-	name = "Recycle Monkeys"
+	name = "回收猴子"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "monkey_up"
 
@@ -422,7 +422,7 @@
 	xeno_console.try_recycle_monkeys_on_turf(living_owner, eye_turf)
 
 /datum/action/innate/slime_scan
-	name = "Scan Slime"
+	name = "扫描史莱姆"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "slime_scan"
 
@@ -440,7 +440,7 @@
 		slime_scan(scanned_slime, living_owner)
 
 /datum/action/innate/feed_potion
-	name = "Apply Potion"
+	name = "施用药水"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "slime_potion"
 
@@ -456,7 +456,7 @@
 		return
 
 	if(QDELETED(xeno_console.current_potion))
-		to_chat(owner, span_warning("No potion loaded."))
+		to_chat(owner, span_warning("未装载药水。"))
 		return
 
 	for(var/mob/living/basic/slime/potioned_slime in eye_turf)
@@ -468,7 +468,7 @@
 		break
 
 /datum/action/innate/hotkey_help
-	name = "Hotkey Help"
+	name = "快捷键帮助"
 	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "hotkey_help"
 
@@ -477,11 +477,11 @@
 		return
 
 	var/render_list = list()
-	render_list += "<b>Click shortcuts:</b>"
-	render_list += "&bull; Shift-click a slime to pick it up, or the floor to drop all held slimes."
-	render_list += "&bull; Ctrl-click a slime to scan it."
-	render_list += "&bull; Alt-click a slime to feed it a potion."
-	render_list += "&bull; Ctrl-click or a dead monkey to recycle it, or the floor to place a new monkey."
+	render_list += "<b>点击快捷键：</b>"
+	render_list += "&bull; 按住 Shift 点击史莱姆将其拾取，或点击地面放下所有持有的史莱姆。"
+	render_list += "&bull; 按住 Ctrl 点击史莱姆进行扫描。"
+	render_list += "&bull; 按住 Alt 点击史莱姆喂它药水。"
+	render_list += "&bull; 按住 Ctrl 点击死猴子将其回收，或点击地面放置一只新猴子。"
 
 	to_chat(owner, boxed_message(jointext(render_list, "\n")))
 
@@ -501,7 +501,7 @@
 		return
 
 	if(QDELETED(current_potion))
-		to_chat(user, span_warning("No potion loaded."))
+		to_chat(user, span_warning("未装载药水。"))
 		return
 
 	spit_atom(current_potion, slime_turf)

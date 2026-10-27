@@ -1,6 +1,6 @@
 #define SHUTDOWN_QUERY_TIMELIMIT (1 MINUTES)
 SUBSYSTEM_DEF(dbcore)
-	name = "Database"
+	name = "数据库"
 	ss_flags = SS_TICKER
 	init_stage = INITSTAGE_FIRST
 	wait = 10 // Not seconds because we're running on SS_TICKER
@@ -55,9 +55,9 @@ SUBSYSTEM_DEF(dbcore)
 	//will queue properly with goonchat
 	switch(schema_mismatch)
 		if(1)
-			message_admins("Database schema ([db_major].[db_minor]) doesn't match the latest schema version ([DB_MAJOR_VERSION].[DB_MINOR_VERSION]), this may lead to undefined behaviour or errors")
+			message_admins("数据库结构版本（[db_major].[db_minor]）与最新版本（[DB_MAJOR_VERSION].[DB_MINOR_VERSION]）不匹配，可能导致未定义行为或错误")
 		if(2)
-			message_admins("Could not get schema version from database")
+			message_admins("无法从数据库获取结构版本")
 
 	return SS_INIT_SUCCESS
 
@@ -88,7 +88,7 @@ SUBSYSTEM_DEF(dbcore)
 			log_config("ERROR: POOLING_MAX_SQL_CONNECTIONS ([max_sql_connections]) is set lower than POOLING_MIN_SQL_CONNECTIONS ([min_sql_connections]). Please check your config or the code defaults for sanity")
 
 /datum/controller/subsystem/dbcore/stat_entry(msg)
-	msg = "\n  P:[length(all_queries)]|Active:[length(queries_active)]|Standby:[length(queries_standby)]"
+	msg = "\n  P:[length(all_queries)]|活动:[length(queries_active)]|待命:[length(queries_standby)]"
 	return ..()
 
 /// Resets the tracking numbers on the subsystem. Used by SStime_track.
@@ -377,7 +377,7 @@ SUBSYSTEM_DEF(dbcore)
 
 /datum/controller/subsystem/dbcore/proc/ErrorMsg()
 	if(!CONFIG_GET(flag/sql_enabled))
-		return "Database disabled by configuration"
+		return "数据库已在配置中禁用"
 	return last_error
 
 /datum/controller/subsystem/dbcore/proc/ReportError(error)
@@ -389,8 +389,8 @@ SUBSYSTEM_DEF(dbcore)
 		CRASH("Attempting to create a new db query during the world shutdown")
 
 	if(IsAdminAdvancedProcCall())
-		log_admin_private("ERROR: Advanced admin proc call led to sql query: [sql_query]. Query has been blocked")
-		message_admins("ERROR: Advanced admin proc call led to sql query. Query has been blocked")
+		log_admin_private("错误：管理员高级过程调用触发了 SQL 查询：[sql_query]。查询已被阻止")
+		message_admins("错误：管理员高级过程调用触发了 SQL 查询。查询已被阻止")
 		return FALSE
 	return new /datum/db_query(connection, sql_query, arguments)
 
@@ -605,7 +605,7 @@ Ignore_errors instructes mysql to continue inserting rows if some of them have e
 /datum/db_query/proc/warn_execute(async = TRUE)
 	. = Execute(async)
 	if(!.)
-		to_chat(usr, span_danger("A SQL error occurred during this operation, check the server logs."))
+		to_chat(usr, span_danger("此操作发生了 SQL 错误，请查看服务器日志。"))
 
 /datum/db_query/proc/Execute(async = TRUE, log_error = TRUE)
 	Activity("Execute")
@@ -684,7 +684,7 @@ Ignore_errors instructes mysql to continue inserting rows if some of them have e
 
 
 /datum/db_query/proc/slow_query_check()
-	message_admins("HEY! A database query timed out. Did the server just hang? <a href='byond://?_src_=holder;[HrefToken()];slowquery=yes'>\[YES\]</a>|<a href='byond://?_src_=holder;[HrefToken()];slowquery=no'>\[NO\]</a>")
+	message_admins("注意！一次数据库查询超时了。服务器刚才是否卡住了？<a href='byond://?_src_=holder;[HrefToken()];slowquery=yes'>\[是\]</a>|<a href='byond://?_src_=holder;[HrefToken()];slowquery=no'>\[否\]</a>")
 
 /datum/db_query/proc/NextRow(async = TRUE)
 	Activity("NextRow")

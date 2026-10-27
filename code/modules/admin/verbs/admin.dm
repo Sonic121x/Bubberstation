@@ -1,5 +1,5 @@
-ADMIN_VERB(show_tip, R_ADMIN, "Show Tip", "Sends a tip to all players.", ADMIN_CATEGORY_MAIN)
-	var/input = input(user, "Please specify your tip that you want to send to the players.", "Tip", "") as message|null
+ADMIN_VERB(show_tip, R_ADMIN, "显示小贴士", "向所有玩家发送一条小贴士。", ADMIN_CATEGORY_MAIN)
+	var/input = input(user, "请指定你想发送给玩家的小贴士。", "小贴士", "") as message|null
 	if(!input)
 		return
 
@@ -12,39 +12,39 @@ ADMIN_VERB(show_tip, R_ADMIN, "Show Tip", "Sends a tip to all players.", ADMIN_C
 	else
 		SSticker.selected_tip = input
 
-	message_admins("[key_name_admin(user)] sent a tip of the round.")
-	log_admin("[key_name(user)] sent \"[input]\" as the Tip of the Round.")
+	message_admins("[key_name_admin(user)] 发送了本回合小贴士。")
+	log_admin("[key_name(user)] 发送了“[input]”作为本回合小贴士。")
 	BLACKBOX_LOG_ADMIN_VERB("Show Tip")
 
-ADMIN_VERB(announce, R_ADMIN, "Announce", "Announce your desires to the world.", ADMIN_CATEGORY_MAIN)
-	var/message = input(user, "Global message to send:", "Admin Announce")  as message|null
+ADMIN_VERB(announce, R_ADMIN, "公告", "向全世界宣告你的意愿。", ADMIN_CATEGORY_MAIN)
+	var/message = input(user, "要发送的全局消息：", "管理员公告")  as message|null
 	if(!message)
 		return
 
 	if(!user.holder.check_for_rights(R_SERVER))
 		message = adminscrub(message,500)
-	send_ooc_announcement(message, "From [user.holder.fakekey ? "Administrator" : user.key]")
-	log_admin("Announce: [key_name(user)] : [message]")
+	send_ooc_announcement(message, "来自 [user.holder.fakekey ? "管理员" : user.key]")
+	log_admin("公告：[key_name(user)]：[message]")
 	BLACKBOX_LOG_ADMIN_VERB("Announce")
 
-ADMIN_VERB(unprison, R_ADMIN, "UnPrison", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
+ADMIN_VERB(unprison, R_ADMIN, "解除监禁", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
 	VERB_ARG_TYPED(prisoner, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	if(!is_centcom_level(prisoner.z))
-		tgui_alert(user, "[prisoner.name] is not prisoned.")
+		tgui_alert(user, "[prisoner.name] 并未被监禁。")
 		return
 
 	SSjob.send_to_late_join(prisoner)
-	message_admins("[key_name_admin(user)] has unprisoned [key_name_admin(prisoner)]")
-	log_admin("[key_name(user)] has unprisoned [key_name(prisoner)]")
+	message_admins("[key_name_admin(user)] 解除了 [key_name_admin(prisoner)] 的监禁")
+	log_admin("[key_name(user)] 解除了 [key_name(prisoner)] 的监禁")
 	BLACKBOX_LOG_ADMIN_VERB("Unprison")
 
-ADMIN_VERB(cmd_admin_check_player_exp, R_ADMIN, "Player Playtime", "View player playtime.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(cmd_admin_check_player_exp, R_ADMIN, "玩家游戏时长", "查看玩家的游戏时长。", ADMIN_CATEGORY_MAIN)
 	if(!CONFIG_GET(flag/use_exp_tracking))
-		to_chat(user, span_warning("Tracking is disabled in the server configuration file."), confidential = TRUE)
+		to_chat(user, span_warning("服务器配置文件中未启用追踪功能。"), confidential = TRUE)
 		return
 
 	var/list/msg = list()
-	msg += "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Playtime Report</title></head><body>Playtime:<BR><UL>"
+	msg += "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>游戏时长报告</title></head><body>游戏时长：<BR><UL>"
 	for(var/client/client in sort_list(GLOB.clients, GLOBAL_PROC_REF(cmp_playtime_asc)))
 		msg += "<LI> [ADMIN_PP(client.mob)] [key_name_admin(client)]: <A href='byond://?_src_=holder;[HrefToken()];getplaytimewindow=[REF(client.mob)]'>" + client.get_exp_living() + "</a></LI>"
 	msg += "</UL></BODY></HTML>"
@@ -54,7 +54,7 @@ ADMIN_VERB(cmd_admin_check_player_exp, R_ADMIN, "Player Playtime", "View player 
 	if(!check_rights(R_ADMIN))
 		return
 	var/message = pick(GLOB.admiral_messages)
-	message = input("Enter message from the on-call admiral to be put in the recall report.", "Admiral Message", message) as text|null
+	message = input("输入值班上将的消息，将写入召回报告中。", "上将消息", message) as text|null
 
 	if(!message)
 		return
@@ -62,18 +62,18 @@ ADMIN_VERB(cmd_admin_check_player_exp, R_ADMIN, "Player Playtime", "View player 
 	if(!SSshuttle.centcom_recall(usr, SSshuttle.emergency.timer, message)) // feedback handled within
 		return
 
-	message_admins("[key_name_admin(usr)] triggered a CentCom recall, with the admiral message of: [message]")
-	usr.log_message("triggered a CentCom recall, with the message of: [message]", LOG_GAME)
+	message_admins("[key_name_admin(usr)] 触发了一次中央指挥部召回，上将消息为：[message]")
+	usr.log_message("触发了一次中央指挥部召回，消息为：[message]", LOG_GAME)
 
 
 /datum/admins/proc/cmd_show_exp_panel(client/client_to_check)
 	if(!check_rights(R_ADMIN))
 		return
 	if(!client_to_check)
-		to_chat(usr, span_danger("ERROR: Client not found."), confidential = TRUE)
+		to_chat(usr, span_danger("错误：未找到客户端。"), confidential = TRUE)
 		return
 	if(!CONFIG_GET(flag/use_exp_tracking))
-		to_chat(usr, span_warning("Tracking is disabled in the server configuration file."), confidential = TRUE)
+		to_chat(usr, span_warning("服务器配置文件中未启用追踪功能。"), confidential = TRUE)
 		return
 
 	new /datum/job_report_menu(client_to_check, usr)
@@ -82,11 +82,11 @@ ADMIN_VERB(cmd_admin_check_player_exp, R_ADMIN, "Player Playtime", "View player 
 	if(!check_rights(R_ADMIN))
 		return
 	if(!C)
-		to_chat(usr, span_danger("ERROR: Client not found."), confidential = TRUE)
+		to_chat(usr, span_danger("错误：未找到客户端。"), confidential = TRUE)
 		return
 
 	if(!C.set_db_player_flags())
-		to_chat(usr, span_danger("ERROR: Unable read player flags from database. Please check logs."), confidential = TRUE)
+		to_chat(usr, span_danger("错误：无法从数据库读取玩家标记。请检查日志。"), confidential = TRUE)
 	var/dbflags = C.prefs.db_flags
 	var/newstate = FALSE
 	if(dbflags & DB_FLAG_EXEMPT)
@@ -95,10 +95,10 @@ ADMIN_VERB(cmd_admin_check_player_exp, R_ADMIN, "Player Playtime", "View player 
 		newstate = TRUE
 
 	if(C.update_flag_db(DB_FLAG_EXEMPT, newstate))
-		to_chat(usr, span_danger("ERROR: Unable to update player flags. Please check logs."), confidential = TRUE)
+		to_chat(usr, span_danger("错误：无法更新玩家标记。请检查日志。"), confidential = TRUE)
 	else
-		message_admins("[key_name_admin(usr)] has [newstate ? "activated" : "deactivated"] job exp exempt status on [key_name_admin(C)]")
-		log_admin("[key_name(usr)] has [newstate ? "activated" : "deactivated"] job exp exempt status on [key_name(C)]")
+		message_admins("[key_name_admin(usr)] [newstate ? "启用" : "停用"]了 [key_name_admin(C)] 的职业经验豁免状态")
+		log_admin("[key_name(usr)] [newstate ? "启用" : "停用"]了 [key_name(C)] 的职业经验豁免状态")
 
 /// Allow admin to add or remove traits of datum
 /datum/admins/proc/modify_traits(datum/D)
@@ -107,7 +107,7 @@ ADMIN_VERB(cmd_admin_check_player_exp, R_ADMIN, "Player Playtime", "View player 
 	if(!check_rights(R_VAREDIT))
 		return
 
-	var/add_or_remove = input("Remove/Add?", "Trait Remove/Add") as null|anything in list("Add","Remove")
+	var/add_or_remove = input("移除/添加？", "特质移除/添加") as null|anything in list("Add","Remove")
 	if(!add_or_remove)
 		return
 	var/list/available_traits = list()
@@ -124,7 +124,7 @@ ADMIN_VERB(cmd_admin_check_player_exp, R_ADMIN, "Player Playtime", "View player 
 				var/name = GLOB.admin_trait_name_map[trait] || trait
 				available_traits[name] = trait
 
-	var/chosen_trait = input("Select trait to modify", "Trait") as null|anything in sort_list(available_traits)
+	var/chosen_trait = input("选择要修改的特质", "特质") as null|anything in sort_list(available_traits)
 	if(!chosen_trait)
 		return
 	chosen_trait = available_traits[chosen_trait]
@@ -136,31 +136,31 @@ ADMIN_VERB(cmd_admin_check_player_exp, R_ADMIN, "Player Playtime", "View player 
 				D.AddElement(/datum/element/movetype_handler)
 			ADD_TRAIT(D,chosen_trait,source)
 		if("Remove")
-			var/specific = input("All or specific source ?", "Trait Remove/Add") as null|anything in list("All","Specific")
+			var/specific = input("所有来源还是特定来源？", "特质移除/添加") as null|anything in list("All","Specific")
 			if(!specific)
 				return
 			switch(specific)
 				if("All")
 					source = null
 				if("Specific")
-					source = input("Source to be removed","Trait Remove/Add") as null|anything in sort_list(GET_TRAIT_SOURCES(D, chosen_trait))
+					source = input("要移除的来源","特质移除/添加") as null|anything in sort_list(GET_TRAIT_SOURCES(D, chosen_trait))
 					if(!source)
 						return
 			REMOVE_TRAIT(D,chosen_trait,source)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
+ADMIN_VERB(drop_everything, R_ADMIN, "丢弃所有物品", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
 	VERB_ARG_TYPED(dropee, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob/living)
-	var/confirm = tgui_alert(user, "Make [dropee] drop everything?", "Message", list("Yes", "No"))
+	var/confirm = tgui_alert(user, "要让 [dropee] 丢弃所有物品吗？", "消息", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
 	dropee.drop_everything(del_on_drop = FALSE, force = TRUE, del_if_nodrop = TRUE)
 	dropee.regenerate_icons()
 
-	log_admin("[key_name(user)] made [key_name(dropee)] drop everything!")
-	var/msg = "[key_name_admin(user)] made [ADMIN_LOOKUPFLW(dropee)] drop everything!"
+	log_admin("[key_name(user)] 让 [key_name(dropee)] 丢弃了所有物品！")
+	var/msg = "[key_name_admin(user)] 让 [ADMIN_LOOKUPFLW(dropee)] 丢弃了所有物品！"
 	message_admins(msg)
 	admin_ticket_log(dropee, msg)
 	BLACKBOX_LOG_ADMIN_VERB("Drop Everything")
@@ -174,19 +174,19 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 	var/feedback_string
 	switch(mute_type)
 		if(MUTE_IC)
-			mute_string = "IC (say and emote)"
+			mute_string = "IC（发言与表情）"
 			feedback_string = "IC"
 		if(MUTE_OOC)
 			mute_string = "OOC"
 			feedback_string = "OOC"
 		if(MUTE_PRAY)
-			mute_string = "pray"
+			mute_string = "祈祷"
 			feedback_string = "Pray"
 		if(MUTE_ADMINHELP)
-			mute_string = "adminhelp, admin PM and ASAY"
+			mute_string = "管理员求助、管理员私信与 ASAY"
 			feedback_string = "Adminhelp"
 		if(MUTE_DEADCHAT)
-			mute_string = "deadchat and DSAY"
+			mute_string = "死亡聊天与 DSAY"
 			feedback_string = "Deadchat"
 		// SKYRAT EDIT ADDITION START - LOOC muting again.
 		if(MUTE_LOOC)
@@ -194,10 +194,10 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 			feedback_string = "LOOC"
 		// SKYRAT EDIT ADDITION END - LOOC muting again.
 		if(MUTE_INTERNET_REQUEST)
-			mute_string = "internet sound requests"
+			mute_string = "网络音效请求"
 			feedback_string = "Internet Sound Requests"
 		if(MUTE_ALL)
-			mute_string = "everything"
+			mute_string = "一切"
 			feedback_string = "Everything"
 		else
 			return
@@ -226,26 +226,26 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 			return
 
 	if(automute)
-		muteunmute = "auto-muted"
+		muteunmute = "禁言"
 		P.muted |= mute_type
-		log_admin("SPAM AUTOMUTE: [muteunmute] [key_name(whom)] from [mute_string]")
-		message_admins("SPAM AUTOMUTE: [muteunmute] [key_name_admin(whom)] from [mute_string].")
+		log_admin("垃圾信息自动禁言：[muteunmute] [key_name(whom)]，范围 [mute_string]")
+		message_admins("垃圾信息自动禁言：[muteunmute] [key_name_admin(whom)]，范围 [mute_string]。")
 		if(C)
-			to_chat(C, "You have been [muteunmute] from [mute_string] by the SPAM AUTOMUTE system. Contact an admin.", confidential = TRUE)
+			to_chat(C, "你已被垃圾信息自动禁言系统禁言：[mute_string]。请联系管理员。", confidential = TRUE)
 		SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Auto Mute [feedback_string]", "1")) // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
 		return
 
 	if(P.muted & mute_type)
-		muteunmute = "unmuted"
+		muteunmute = "解除禁言"
 		P.muted &= ~mute_type
 	else
-		muteunmute = "muted"
+		muteunmute = "禁言"
 		P.muted |= mute_type
 
-	log_admin("[key_name(usr)] has [muteunmute] [key_name(whom)] from [mute_string]")
-	message_admins("[key_name_admin(usr)] has [muteunmute] [key_name_admin(whom)] from [mute_string].")
+	log_admin("[key_name(usr)] 已对 [key_name(whom)] 执行[muteunmute]，范围 [mute_string]")
+	message_admins("[key_name_admin(usr)] 已对 [key_name_admin(whom)] 执行[muteunmute]，范围 [mute_string]。")
 	if(C)
-		to_chat(C, "You have been [muteunmute] from [mute_string] by [key_name(usr, include_name = FALSE)].", confidential = TRUE)
+		to_chat(C, "你已被 [key_name(usr, include_name = FALSE)] [muteunmute]，范围 [mute_string]。", confidential = TRUE)
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Mute [feedback_string]", "[P.muted & mute_type]")) // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
 
 /proc/immerse_player(mob/living/carbon/target, toggle=TRUE, remove=FALSE)

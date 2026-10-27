@@ -6,11 +6,11 @@
 #define TURBINE_MIN_SECONDS_BETWEEN_SOUNDS (0.33 SECONDS)
 
 /obj/item/portable_wind_turbine
-	name = "portable wind turbine"
+	name = "便携式风力涡轮机"
 	icon = 'icons/obj/wind_turbine.dmi'
 	icon_state = "icon"
 	base_icon_state = "icon"
-	desc = "A portable wind turbine that can charge attached energy based weaponry, PDAs, and other devices. As a safety mechanism after an unprecedented amount of amputations, only charges when attached to your back / the floor."
+	desc = "一台便携式风力涡轮机，可为连接的基于能量的武器、个人数字助理及其他设备充电。由于此前发生了数量空前的截肢事故，作为安全机制，它只有在固定于你的背部或地面时才会充电。"
 	worn_icon = 'icons/obj/wind_turbine.dmi'
 	worn_icon_state = "base_turbine"
 	inhand_icon_state = "wind_turbine"
@@ -177,7 +177,7 @@
 		return
 	user.Paralyze(5)
 	user.Knockdown(10)
-	user.visible_message(span_danger("[user] gets whacked in the head by the [src]'s spinning blades!"), span_userdanger("You get hit in the head by the [src] and fall over!"))
+	user.visible_message(span_danger("[user]被[src]旋转的叶片击中了头部！"), span_userdanger("你被[src]击中头部，摔倒在地！"))
 	// imaginary friends call sleep in their emotes
 	// even though imaginary friends can't put on a wind turbine I still have to do this
 	INVOKE_ASYNC(user, TYPE_PROC_REF(/mob/living/, emote), "scream")
@@ -197,33 +197,33 @@
 	. = ..()
 
 	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))
-		. += span_warning("You're too far away to examine [src]'s contents! You can still watch it spin so wonderfully though...")
+		. += span_warning("你离得太远，无法查看[src]内的物品！不过你仍然可以欣赏它转得如此美妙……")
 		if (charging && istype(charging,/obj/item/melee/baton/security/))
-			. += span_info("You can see the [charging] hanging precariously off the charging port...")
+			. += span_info("你能看到[charging]摇摇欲坠地挂在充电口上……")
 		return
 
 	if(cap)
-		. += span_info("Click it with a screwdriver to eject the [cap].")
-	. += span_info("Wrench it on a tile to anchor it and harness space wind.")
-	. += span_info("The wind turbine is currently storing [floor(available_power / 100) / 10]kJ.")
+		. += span_info("用螺丝刀点击它，以弹出[cap]。")
+	. += span_info("用扳手在格子上将其固定，以利用太空风。")
+	. += span_info("风力涡轮机当前储存了 [floor(available_power / 100) / 10]kJ。")
 	if(charging)
-		. += {"[span_notice("\The [src] contains:")]
-		[span_notice("- \A [charging].")]"}
+		. += {"[span_notice("[src] 内含：")]
+		[span_notice("- [charging]。")]"}
 
 /obj/item/portable_wind_turbine/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(charging)
-		user.balloon_alert(user, "remove the [charging] first!")
+		user.balloon_alert(user, "请先取出[charging]！")
 		return FALSE
 	if(cap)
 		tool.play_tool_sound(src, 50)
-		user.balloon_alert(user, "capacitor removed")
+		user.balloon_alert(user, "电容器已取出")
 		cap.forceMove(drop_location())
 		available_power = 0
 		cap = null
 		return TRUE
 	else
-		user.balloon_alert(user, "no capacitor!")
+		user.balloon_alert(user, "没有电容器！")
 		return FALSE
 
 /obj/item/portable_wind_turbine/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
@@ -246,26 +246,26 @@
 /obj/item/portable_wind_turbine/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/stock_parts/capacitor))
 		if (cap)
-			balloon_alert(user, "already has a capacitor!")
+			balloon_alert(user, "已装有电容器！")
 			return ITEM_INTERACT_BLOCKING
 		user.transferItemToLoc(tool, src)
 		cap = tool
-		balloon_alert(user, "inserted the [tool]")
+		balloon_alert(user, "已插入[tool]")
 		return ITEM_INTERACT_SUCCESS
 
 	if(!is_type_in_typecache(tool, allowed_devices))
 		return NONE
 
 	if(isnull(cap))
-		balloon_alert(user, "no capacitor inserted!")
+		balloon_alert(user, "未插入电容器！")
 		return ITEM_INTERACT_BLOCKING
 	if(charging)
-		balloon_alert(user, "already charging something!")
+		balloon_alert(user, "已在为其他设备充电！")
 		return ITEM_INTERACT_BLOCKING
 	if(istype(tool, /obj/item/gun/energy))
 		var/obj/item/gun/energy/energy_gun = tool
 		if(!energy_gun.can_charge)
-			balloon_alert(user, "not rechargable!")
+			balloon_alert(user, "不可充电！")
 			return ITEM_INTERACT_BLOCKING
 	user.transferItemToLoc(tool, src)
 	charging = tool
@@ -319,7 +319,7 @@
 				available_power -= power_to_give
 				if(charging_cell.charge == charging_cell.maxcharge)
 					playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
-					say("[charging] has finished recharging!")
+					say("[charging]已完成充电！")
 				else
 					using_power = TRUE
 		update_appearance()

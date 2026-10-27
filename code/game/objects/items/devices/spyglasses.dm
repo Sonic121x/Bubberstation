@@ -1,6 +1,6 @@
 //detective spyglasses. meant to be an example for map_popups.dm
 /obj/item/clothing/glasses/sunglasses/spy
-	desc = "Made by Nerd. Co's infiltration and surveillance department. Upon closer inspection, there's a small screen in each lens."
+	desc = "由书呆子公司渗透与监视部门制造。仔细观察就能发现每片镜片中都藏着一块小屏幕。"
 	actions_types = list(/datum/action/item_action/activate_remote_view)
 	var/obj/item/clothing/accessory/spy_bug/linked_bug
 
@@ -9,7 +9,7 @@
 	if(!cool_guy)
 		return
 	if(!linked_bug)
-		user.audible_message(span_warning("[src] lets off a shrill beep!"))
+		user.audible_message(span_warning("[src]发出了刺耳的哔声！"))
 		return
 	if(cool_guy.screen_maps["spypopup_map"]) //alright, the popup this object uses is already IN use, so the window is open. no point in doing any other work here, so we're good.
 		return
@@ -42,14 +42,14 @@
 	. = ..()
 
 /datum/action/item_action/activate_remote_view
-	name = "Activate Remote View"
-	desc = "Activates the Remote View of your spy sunglasses."
+	name = "开启远程视野"
+	desc = "开启间谍太阳镜的远程视野。"
 
 /obj/item/clothing/accessory/spy_bug
-	name = "pocket protector"
+	name = "口袋护套"
 	icon = 'icons/obj/clothing/accessories.dmi'
 	icon_state = "pocketprotector"
-	desc = "An advanced piece of espionage equipment in the shape of a pocket protector. It has a built in 360 degree camera for all your \"admirable\" needs. Microphone not included."
+	desc = "伪装成口袋护套的先进间谍设备。内置360度摄像头，满足你所有\"令人钦佩\"的需求。不含麦克风。"
 	/// The glasses that you can use to see what this can see
 	var/obj/item/clothing/glasses/sunglasses/spy/linked_glasses
 	/// Our camera display popup
@@ -79,17 +79,17 @@
 		cam_screen.vis_contents += visible_turf
 
 /obj/item/paper/fluff/nerddocs
-	name = "Espionage For Dummies"
+	name = "间谍活动傻瓜指南"
 	color = COLOR_YELLOW
-	desc = "An eye-gougingly yellow pamphlet with a badly designed image of a detective on it. The subtext says \"The latest way to violate privacy guidelines!\" "
+	desc = "一本黄得刺眼的小册子，上面画着一个设计拙劣的侦探形象。副标题写着\"违反隐私准则的最新方式！\" "
 	default_raw_text = @{"
 
-Thank you for your purchase of the Nerd Co SpySpeks <small>tm</small>, this paper will be your quick-start guide to violating the privacy of your crewmates in three easy steps!<br><br>Step One: Nerd Co SpySpeks <small>tm</small> upon your face. <br>
-Step Two: Place the included "ProfitProtektor <small>tm</small>" camera assembly in a place of your choosing - make sure to make heavy use of its inconspicous design!
+感谢购买书呆子公司的谍视镜<small>商标</small>！本快速入门指南将教你只用三步就能侵犯同事的隐私！<br><br>第一步：把书呆子公司的谍视镜<small>商标</small>戴在脸上。<br>
+第二步：把附带的“护利宝<small>商标</small>”摄像头组件放到选定的位置——务必充分利用它不起眼的设计！
 
-Step Three: Press the "Activate Remote View" Button on the side of your SpySpeks <small>tm</small> to open a movable camera display in the corner of your vision, it's just that easy!<br><br><br><center><b>TROUBLESHOOTING</b><br></center>
-My SpySpeks <small>tm</small> Make a shrill beep while attempting to use!
+第三步：按下谍视镜<small>商标</small>侧面的“开启远程视野”按钮，视野一角便会打开可移动的摄像画面，就这么简单！<br><br><br><center><b>故障排查</b><br></center>
+使用谍视镜<small>商标</small>时发出刺耳的哔声！
 
-A shrill beep coming from your SpySpeks means that they can't connect to the included ProfitProtektor <small>tm</small>, please make sure your ProfitProtektor is still active, and functional!
+谍视镜发出刺耳哔声意味着无法连接附带的护利宝<small>商标</small>。请确认护利宝仍已启用且运作正常！
 	"}
 

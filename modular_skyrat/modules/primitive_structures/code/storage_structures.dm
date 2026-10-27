@@ -1,7 +1,7 @@
 // Wooden shelves that force items placed on them to be visually placed them
 
 /obj/structure/rack/wooden
-	name = "shelf"
+	name = "木架"
 	icon_state = "shelf_wood"
 	icon = 'modular_skyrat/modules/primitive_structures/icons/storage.dmi'
 	resistance_flags = FLAMMABLE
@@ -20,7 +20,7 @@
 	return NONE
 
 /obj/structure/rack/wooden/crowbar_act(mob/living/user, obj/item/tool)
-	user.balloon_alert_to_viewers("disassembling...")
+	user.balloon_alert_to_viewers("正在拆卸……")
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 100))
 		return
 	deconstruct(TRUE)
@@ -34,8 +34,8 @@
 // Barrel but it works like a crate
 
 /obj/structure/closet/crate/wooden/storage_barrel
-	name = "storage barrel"
-	desc = "This barrel can't hold liquids, it can just hold things inside of it however!"
+	name = "储物桶"
+	desc = "这个桶装不了液体，但能装下各种物品！"
 	icon_state = "barrel"
 	base_icon_state = "barrel"
 	icon = 'modular_skyrat/modules/primitive_structures/icons/storage.dmi'
@@ -48,8 +48,8 @@
 //Wooden-storage "fridges"
 
 /obj/machinery/smartfridge/wooden
-	name = "Debug Wooden Smartfridge"
-	desc = "You shouldn't be seeing this!"
+	name = "调试用木制智能储物架"
+	desc = "你不应该看到这个！"
 	icon = 'modular_skyrat/modules/primitive_structures/icons/storage.dmi'
 	icon_state = "producebin"
 	base_icon_state = "producebin"
@@ -74,7 +74,7 @@
 	return NONE
 
 /obj/machinery/smartfridge/wooden/crowbar_act(mob/living/user, obj/item/tool)
-	user.balloon_alert_to_viewers("disassembling...")
+	user.balloon_alert_to_viewers("正在拆卸……")
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 100))
 		return
 	new /obj/item/stack/sheet/mineral/wood(drop_location(), 10)
@@ -82,14 +82,14 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/smartfridge/wooden/structure_examine()
-	. = span_info("The whole rack can be [EXAMINE_HINT("pried")] apart.")
+	. = span_info("整个架子都可以[EXAMINE_HINT("撬开")]拆卸。")
 
 /obj/machinery/smartfridge/wooden/produce_bin
-	name = "produce bin"
+	name = "农产品储物箱"
 	icon_state = "producebin"
 	base_icon_state = "producebin"
 	contents_overlay_icon = "produce"
-	desc = "A wooden hamper, used to hold plant products and try to keep them safe from pests."
+	desc = "一个木制储物箱，用于存放农产品，并尽量防止害虫侵扰。"
 	base_build_path = /obj/machinery/smartfridge/wooden/produce_bin
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 10)
 
@@ -103,8 +103,8 @@
 	return FALSE
 
 /obj/machinery/smartfridge/wooden/seed_shelf
-	name = "seedshelf"
-	desc = "A wooden shelf, used to hold seeds preventing them from germinating early."
+	name = "种子架"
+	desc = "一个用于存放种子的木架，可防止种子提前发芽。"
 	icon_state = "seedshelf"
 	base_icon_state = "seedshelf"
 	contents_overlay_icon = "seed"
@@ -117,8 +117,8 @@
 	return FALSE
 
 /obj/machinery/smartfridge/wooden/ration_shelf
-	name = "ration shelf"
-	desc = "A wooden shelf, used to store food... preferably preserved."
+	name = "口粮架"
+	desc = "一个储存食物的木架……最好是经过保鲜处理的食物。"
 	icon_state = "seedshelf"
 	base_icon_state = "seedshelf"
 	contents_overlay_icon = "ration"
@@ -135,8 +135,8 @@
 	return FALSE
 
 /obj/machinery/smartfridge/wooden/produce_display
-	name = "produce display"
-	desc = "A wooden table with awning, used to display produce items."
+	name = "农产品展示台"
+	desc = "一张带遮棚的木桌，用于展示农产品。"
 	icon_state = "producedisplay"
 	base_icon_state = "producedisplay"
 	contents_overlay_icon = "nonfood"

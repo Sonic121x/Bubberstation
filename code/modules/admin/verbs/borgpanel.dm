@@ -1,4 +1,4 @@
-ADMIN_VERB(borg_panel, R_ADMIN, "Show Borg Panel", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
+ADMIN_VERB(borg_panel, R_ADMIN, "显示半机械人面板", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
 	VERB_ARG_TYPED(borgo, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob/living/silicon/robot)
 	var/datum/borgpanel/borgpanel = new(user.mob, borgo)
 	borgpanel.ui_interact(user.mob)
@@ -60,7 +60,7 @@ ADMIN_VERB(borg_panel, R_ADMIN, "Show Borg Panel", ADMIN_VERB_NO_DESCRIPTION, AD
 			"name" = initial(model.name),
 			"type" = "[model]"
 		))
-	.["ais"] = list(list("name" = "None", "ref" = "null", "connected" = isnull(borg.connected_ai)))
+	.["ais"] = list(list("name" = "无", "ref" = "null", "connected" = isnull(borg.connected_ai)))
 	for(var/mob/living/silicon/ai/ai in GLOB.ai_list)
 		.["ais"] += list(list("name" = ai.name, "ref" = REF(ai), "connected" = (borg.connected_ai == ai)))
 
@@ -71,16 +71,16 @@ ADMIN_VERB(borg_panel, R_ADMIN, "Show Borg Panel", ADMIN_VERB_NO_DESCRIPTION, AD
 		return
 	switch (action)
 		if ("set_charge")
-			var/newcharge = tgui_input_number(usr, "Set new charge", borg.name, borg.cell.charge, borg.cell.maxcharge)
+			var/newcharge = tgui_input_number(usr, "设置新电量", borg.name, borg.cell.charge, borg.cell.maxcharge)
 			if(isnull(newcharge))
 				return
 			borg.cell.charge = newcharge
-			message_admins("[key_name_admin(user)] set the charge of [ADMIN_LOOKUPFLW(borg)] to [borg.cell.charge].")
-			log_silicon("[key_name(user)] set the charge of [key_name(borg)] to [borg.cell.charge].")
+			message_admins("[key_name_admin(user)]将[ADMIN_LOOKUPFLW(borg)]的电量设置为 [borg.cell.charge]。")
+			log_silicon("[key_name(user)]将[key_name(borg)]的电量设置为 [borg.cell.charge]。")
 		if ("remove_cell")
 			QDEL_NULL(borg.cell)
-			message_admins("[key_name_admin(user)] deleted the cell of [ADMIN_LOOKUPFLW(borg)].")
-			log_silicon("[key_name(user)] deleted the cell of [key_name(borg)].")
+			message_admins("[key_name_admin(user)]删除了[ADMIN_LOOKUPFLW(borg)]的电池。")
+			log_silicon("[key_name(user)]删除了[key_name(borg)]的电池。")
 		if ("change_cell")
 			var/chosen = pick_closest_path(null, make_types_fancy(typesof(/obj/item/stock_parts/power_store/cell)))
 			if (!ispath(chosen))
@@ -92,58 +92,58 @@ ADMIN_VERB(borg_panel, R_ADMIN, "Show Borg Panel", ADMIN_VERB_NO_DESCRIPTION, AD
 				borg.cell = new_cell
 				borg.cell.charge = borg.cell.maxcharge
 				borg.diag_hud_set_borgcell()
-				message_admins("[key_name_admin(user)] changed the cell of [ADMIN_LOOKUPFLW(borg)] to [new_cell].")
-				log_silicon("[key_name(user)] changed the cell of [key_name(borg)] to [new_cell].")
+				message_admins("[key_name_admin(user)]将[ADMIN_LOOKUPFLW(borg)]的电池更换为[new_cell]。")
+				log_silicon("[key_name(user)]将[key_name(borg)]的电池更换为[new_cell]。")
 		if ("toggle_emagged")
 			borg.SetEmagged(!borg.emagged)
 			if (borg.emagged)
-				message_admins("[key_name_admin(user)] emagged [ADMIN_LOOKUPFLW(borg)].")
-				log_silicon("[key_name(user)] emagged [key_name(borg)].")
+				message_admins("[key_name_admin(user)]对[ADMIN_LOOKUPFLW(borg)]执行了电磁破解。")
+				log_silicon("[key_name(user)]对[key_name(borg)]执行了电磁破解。")
 			else
-				message_admins("[key_name_admin(user)] un-emagged [ADMIN_LOOKUPFLW(borg)].")
-				log_silicon("[key_name(user)] un-emagged [key_name(borg)].")
+				message_admins("[key_name_admin(user)]解除了[ADMIN_LOOKUPFLW(borg)]的电磁破解。")
+				log_silicon("[key_name(user)]解除了[key_name(borg)]的电磁破解。")
 		if ("toggle_lawupdate")
 			borg.lawupdate = !borg.lawupdate
 			if (borg.lawupdate)
-				message_admins("[key_name_admin(user)] enabled lawsync on [ADMIN_LOOKUPFLW(borg)].")
-				log_silicon("[key_name(user)] enabled lawsync on [key_name(borg)].")
+				message_admins("[key_name_admin(user)]在[ADMIN_LOOKUPFLW(borg)]上启用了法则同步。")
+				log_silicon("[key_name(user)]在[key_name(borg)]上启用了法则同步。")
 			else
-				message_admins("[key_name_admin(user)] disabled lawsync on [ADMIN_LOOKUPFLW(borg)].")
-				log_silicon("[key_name(user)] disabled lawsync on [key_name(borg)].")
+				message_admins("[key_name_admin(user)]在[ADMIN_LOOKUPFLW(borg)]上禁用了法则同步。")
+				log_silicon("[key_name(user)]在[key_name(borg)]上禁用了法则同步。")
 		if ("toggle_lockdown")
 			borg.SetLockdown(!borg.lockcharge)
 			if (borg.lockcharge)
-				message_admins("[key_name_admin(user)] locked down [ADMIN_LOOKUPFLW(borg)].")
-				log_silicon("[key_name(user)] locked down [key_name(borg)].")
+				message_admins("[key_name_admin(user)]锁定了[ADMIN_LOOKUPFLW(borg)]。")
+				log_silicon("[key_name(user)]锁定了[key_name(borg)]。")
 			else
-				message_admins("[key_name_admin(user)] released [ADMIN_LOOKUPFLW(borg)] from lockdown.")
-				log_silicon("[key_name(user)] released [key_name(borg)] from lockdown.")
+				message_admins("[key_name_admin(user)]解除了[ADMIN_LOOKUPFLW(borg)]的锁定。")
+				log_silicon("[key_name(user)]解除了[key_name(borg)]的锁定。")
 		if ("toggle_scrambledcodes")
 			borg.scrambledcodes = !borg.scrambledcodes
 			if (borg.scrambledcodes)
-				message_admins("[key_name_admin(user)] enabled scrambled codes on [ADMIN_LOOKUPFLW(borg)].")
-				log_silicon("[key_name(user)] enabled scrambled codes on [key_name(borg)].")
+				message_admins("[key_name_admin(user)]在[ADMIN_LOOKUPFLW(borg)]上启用了扰乱代码。")
+				log_silicon("[key_name(user)]在[key_name(borg)]上启用了扰乱代码。")
 			else
-				message_admins("[key_name_admin(user)] disabled scrambled codes on [ADMIN_LOOKUPFLW(borg)].")
-				log_silicon("[key_name(user)] disabled scrambled codes on [key_name(borg)].")
+				message_admins("[key_name_admin(user)]在[ADMIN_LOOKUPFLW(borg)]上禁用了扰乱代码。")
+				log_silicon("[key_name(user)]在[key_name(borg)]上禁用了扰乱代码。")
 		if ("rename")
-			var/new_name = sanitize_name(tgui_input_text(user, "What would you like to name this cyborg?", "Cyborg Reclassification", borg.real_name, MAX_NAME_LEN), allow_numbers = TRUE)
+			var/new_name = sanitize_name(tgui_input_text(user, "你想给这个半机械人起什么名字？", "半机械人重命名", borg.real_name, MAX_NAME_LEN), allow_numbers = TRUE)
 			if(!new_name)
 				return
-			message_admins("[key_name_admin(user)] renamed [ADMIN_LOOKUPFLW(borg)] to [new_name].")
-			log_silicon("[key_name(user)] renamed [key_name(borg)] to [new_name].")
+			message_admins("[key_name_admin(user)]将[ADMIN_LOOKUPFLW(borg)]重命名为 [new_name]。")
+			log_silicon("[key_name(user)]将[key_name(borg)]重命名为 [new_name]。")
 			borg.fully_replace_character_name(borg.real_name,new_name)
 		if ("toggle_upgrade")
 			var/upgradepath = text2path(params["upgrade"])
 			var/obj/item/borg/upgrade/installedupgrade = locate(upgradepath) in borg.upgrades
 			if (installedupgrade)
-				message_admins("[key_name_admin(user)] removed the [installedupgrade] upgrade from [ADMIN_LOOKUPFLW(borg)].")
-				log_silicon("[key_name(user)] removed the [installedupgrade] upgrade from [key_name(borg)].")
+				message_admins("[key_name_admin(user)]从[ADMIN_LOOKUPFLW(borg)]上移除了[installedupgrade]升级。")
+				log_silicon("[key_name(user)]从[key_name(borg)]上移除了[installedupgrade]升级。")
 				qdel(installedupgrade) // see [mob/living/silicon/robot/on_upgrade_deleted()].
 			else
 				var/obj/item/borg/upgrade/upgrade = new upgradepath(borg)
-				message_admins("[key_name_admin(user)] added the [upgrade] borg upgrade to [ADMIN_LOOKUPFLW(borg)].")
-				log_silicon("[key_name(user)] added the [upgrade] borg upgrade to [key_name(borg)].")
+				message_admins("[key_name_admin(user)]为[ADMIN_LOOKUPFLW(borg)]添加了[upgrade]半机械人升级。")
+				log_silicon("[key_name(user)]为[key_name(borg)]添加了[upgrade]半机械人升级。")
 				if(upgrade.action(borg, user))
 					borg.add_to_upgrades(upgrade)
 				else
@@ -163,8 +163,8 @@ ADMIN_VERB(borg_panel, R_ADMIN, "Show Borg Panel", ADMIN_VERB_NO_DESCRIPTION, AD
 						borg.radio.keyslot.special_channels &= ~RADIO_SPECIAL_SYNDIE
 					else if (channel == "CentCom")
 						borg.radio.keyslot.special_channels &= ~RADIO_SPECIAL_CENTCOM
-				message_admins("[key_name_admin(user)] removed the [channel] radio channel from [ADMIN_LOOKUPFLW(borg)].")
-				log_silicon("[key_name(user)] removed the [channel] radio channel from [key_name(borg)].")
+				message_admins("[key_name_admin(user)]从[ADMIN_LOOKUPFLW(borg)]上移除了[channel]无线电频道。")
+				log_silicon("[key_name(user)]从[key_name(borg)]上移除了[channel]无线电频道。")
 			else // We're adding a channel
 				if (!borg.radio.keyslot) // Assert that an encryption key exists
 					borg.radio.keyslot = new()
@@ -173,15 +173,15 @@ ADMIN_VERB(borg_panel, R_ADMIN, "Show Borg Panel", ADMIN_VERB_NO_DESCRIPTION, AD
 					borg.radio.keyslot.special_channels |= RADIO_SPECIAL_SYNDIE
 				else if (channel == "CentCom")
 					borg.radio.keyslot.special_channels |= RADIO_SPECIAL_CENTCOM
-				message_admins("[key_name_admin(user)] added the [channel] radio channel to [ADMIN_LOOKUPFLW(borg)].")
-				log_silicon("[key_name(user)] added the [channel] radio channel to [key_name(borg)].")
+				message_admins("[key_name_admin(user)]为[ADMIN_LOOKUPFLW(borg)]添加了[channel]无线电频道。")
+				log_silicon("[key_name(user)]为[key_name(borg)]添加了[channel]无线电频道。")
 			borg.radio.recalculateChannels()
 		if ("setmodule")
 			var/new_model_path = text2path(params["module"])
 			if (ispath(new_model_path))
 				borg.model.transform_to(new_model_path)
-				message_admins("[key_name_admin(user)] changed the model of [ADMIN_LOOKUPFLW(borg)] to [new_model_path].")
-				log_silicon("[key_name(user)] changed the model of [key_name(borg)] to [new_model_path].")
+				message_admins("[key_name_admin(user)]将[ADMIN_LOOKUPFLW(borg)]的型号更改为 [new_model_path]。")
+				log_silicon("[key_name(user)]将[key_name(borg)]的型号更改为 [new_model_path]。")
 		if ("slavetoai")
 			var/mob/living/silicon/ai/newai = locate(params["slavetoai"]) in GLOB.ai_list
 			if (newai && newai != borg.connected_ai)
@@ -190,15 +190,15 @@ ADMIN_VERB(borg_panel, R_ADMIN, "Show Borg Panel", ADMIN_VERB_NO_DESCRIPTION, AD
 					borg.undeploy()
 				borg.set_connected_ai(newai)
 				borg.notify_ai(TRUE)
-				message_admins("[key_name_admin(user)] slaved [ADMIN_LOOKUPFLW(borg)] to the AI [ADMIN_LOOKUPFLW(newai)].")
-				log_silicon("[key_name(user)] slaved [key_name(borg)] to the AI [key_name(newai)].")
+				message_admins("[key_name_admin(user)]将[ADMIN_LOOKUPFLW(borg)]设为 AI [ADMIN_LOOKUPFLW(newai)]的从属。")
+				log_silicon("[key_name(user)]将[key_name(borg)]设为 AI [key_name(newai)]的从属。")
 			else if (params["slavetoai"] == "null")
 				borg.notify_ai(AI_NOTIFICATION_CYBORG_DISCONNECTED)
 				if(borg.shell)
 					borg.undeploy()
 				borg.set_connected_ai(null)
-				message_admins("[key_name_admin(user)] freed [ADMIN_LOOKUPFLW(borg)] from being slaved to an AI.")
-				log_silicon("[key_name(user)] freed [key_name(borg)] from being slaved to an AI.")
+				message_admins("[key_name_admin(user)]解除了[ADMIN_LOOKUPFLW(borg)]对 AI 的从属关系。")
+				log_silicon("[key_name(user)]解除了[key_name(borg)]对 AI 的从属关系。")
 			if (borg.lawupdate)
 				borg.lawsync()
 

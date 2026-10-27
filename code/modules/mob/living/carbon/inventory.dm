@@ -307,9 +307,9 @@
 	if (!target_tank)
 		return
 	if(internal || (is_external && external))
-		to_chat(src, span_notice("You switch your internals to [target_tank]."))
+		to_chat(src, span_notice("你将呼吸装置切换为 [target_tank]。"))
 	else
-		to_chat(src, span_notice("You open [target_tank] valve."))
+		to_chat(src, span_notice("你打开了 [target_tank] 的阀门。"))
 	return open_internals(target_tank, is_external)
 
 /**
@@ -323,14 +323,14 @@
 /mob/living/carbon/proc/toggle_close_internals(is_external = FALSE)
 	if (!internal && !external)
 		return
-	to_chat(src, span_notice("You close [is_external ? external : internal] valve."))
+	to_chat(src, span_notice("你关闭了 [is_external ? external : internal] 的阀门。"))
 	return close_internals(is_external)
 
 /// Prepares emergency disconnect from open air tanks and notifies in chat. Usually called after mob suddenly unequips breathing apparatus.
 /mob/living/carbon/proc/cutoff_internals()
 	if (!external && !internal)
 		return
-	to_chat(src, span_notice("Your internals disconnect from [external || internal] and the valve closes."))
+	to_chat(src, span_notice("你的呼吸装置与 [external || internal] 断开，阀门随之关闭。"))
 	close_all_airtanks()
 
 /**
@@ -416,8 +416,8 @@
 /// Returns the human readable name of where it placed the item, or null otherwise.
 /mob/living/carbon/proc/equip_conspicuous_item(obj/item/item, delete_item_if_failed = TRUE)
 	var/static/list/pockets = list(
-		"left pocket" = ITEM_SLOT_LPOCKET,
-		"right pocket" = ITEM_SLOT_RPOCKET
+		"左口袋" = ITEM_SLOT_LPOCKET,
+		"右口袋" = ITEM_SLOT_RPOCKET
 	)
 
 	var/placed_in = equip_in_one_of_slots(item, pockets, qdel_on_fail = FALSE, indirect_action = TRUE)

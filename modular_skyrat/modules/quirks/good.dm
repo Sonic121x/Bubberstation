@@ -2,31 +2,31 @@
 
 /datum/quirk/hard_soles
 	name = "Hardened Soles"
-	desc = "You're used to walking barefoot, and won't receive the negative effects of doing so."
+	desc = "你习惯赤脚行走，不会受到这样做带来的负面影响。"
 	value = 2
 	mob_trait = TRAIT_HARD_SOLES
-	gain_text = span_notice("The ground doesn't feel so rough on your feet anymore.")
-	lose_text = span_danger("You start feeling the ridges and imperfections on the ground.")
-	medical_record_text = "Patient's feet are more resilient against traction."
+	gain_text = span_notice("地面不再让你的脚感到粗糙难受。")
+	lose_text = span_danger("你开始感觉到地面上的棱角和凹凸。")
+	medical_record_text = "患者脚部更能承受摩擦。"
 	icon = FA_ICON_SHAPES
 
 /datum/quirk/linguist
 	name = "Linguist"
-	desc = "You're a student of numerous languages and come with an additional language point."
+	desc = "你研习过多种语言，拥有额外一个语言点。"
 	value = 2
 	mob_trait = TRAIT_LINGUIST
-	gain_text = span_notice("Your brain seems more equipped to handle different modes of conversation.")
-	lose_text = span_danger("Your grasp of the finer points of Draconic idioms fades away.")
-	medical_record_text = "Patient demonstrates a high brain plasticity in regards to language learning."
+	gain_text = span_notice("你的大脑似乎更擅长理解不同的交流方式了。")
+	lose_text = span_danger("你对龙语习语中微妙含义的理解逐渐消失了。")
+	medical_record_text = "患者在语言学习方面表现出很高的脑部可塑性。"
 	icon = FA_ICON_BOOK_ATLAS
 
 /datum/quirk/sharpclaws
 	name = "Sharp Claws"
-	desc = "Whether it's a hunter's inherent biology, or your stubborn refusal to clip your nails ahead of your Jiu-Jitsu classes, your unarmed attacks are sharper and will make people bleed."
+	desc = "无论是猎食者的天生构造，还是你在柔术课前坚决不肯剪指甲，你的徒手攻击都更加锐利，能让人流血。"
 	value = 2
-	gain_text = span_notice("Your palms hurt a bit from the sharpness of your nails.")
-	lose_text = span_danger("You feel a distinct emptiness as your nails dull; good luck scratching that itch.")
-	medical_record_text = "Patient ended up scratching through the examination table's cushions; recommended they look into clipping their claws."
+	gain_text = span_notice("尖锐的指甲让你的手掌有些刺痛。")
+	lose_text = span_danger("指甲变钝让你觉得少了些什么；现在挠痒可没那么方便了。")
+	medical_record_text = "患者抓破了检查台的软垫；建议修剪爪子。"
 	icon = FA_ICON_LINES_LEANING
 
 /datum/quirk/sharpclaws/add(client/client_source)
@@ -36,7 +36,7 @@
 
 	var/obj/item/bodypart/arm/left/left_arm = human_holder.get_bodypart(BODY_ZONE_L_ARM)
 	if(left_arm)
-		left_arm.unarmed_attack_verbs = list("slash")
+		left_arm.unarmed_attack_verbs = list("抓挠")
 		left_arm.unarmed_attack_effect = ATTACK_EFFECT_CLAW
 		left_arm.unarmed_attack_sound = 'sound/items/weapons/slash.ogg'
 		left_arm.unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
@@ -44,7 +44,7 @@
 
 	var/obj/item/bodypart/arm/right/right_arm = human_holder.get_bodypart(BODY_ZONE_R_ARM)
 	if(right_arm)
-		right_arm.unarmed_attack_verbs = list("slash")
+		right_arm.unarmed_attack_verbs = list("抓挠")
 		right_arm.unarmed_attack_effect = ATTACK_EFFECT_CLAW
 		right_arm.unarmed_attack_sound = 'sound/items/weapons/slash.ogg'
 		right_arm.unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
@@ -54,7 +54,7 @@
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	var/obj/item/bodypart/arm/left/left_arm = human_holder.get_bodypart(BODY_ZONE_L_ARM)
 	if(left_arm)
-		left_arm.unarmed_attack_verbs = list("punch")
+		left_arm.unarmed_attack_verbs = list("拳击")
 		left_arm.unarmed_attack_effect = initial(left_arm.unarmed_attack_effect)
 		left_arm.unarmed_attack_sound = initial(left_arm.unarmed_attack_sound)
 		left_arm.unarmed_miss_sound = initial(left_arm.unarmed_miss_sound)
@@ -62,7 +62,7 @@
 
 	var/obj/item/bodypart/arm/right/right_arm = human_holder.get_bodypart(BODY_ZONE_R_ARM)
 	if(right_arm)
-		right_arm.unarmed_attack_verbs = list("punch")
+		right_arm.unarmed_attack_verbs = list("拳击")
 		right_arm.unarmed_attack_effect = initial(right_arm.unarmed_attack_effect)
 		right_arm.unarmed_attack_sound = initial(right_arm.unarmed_attack_sound)
 		right_arm.unarmed_miss_sound = initial(right_arm.unarmed_miss_sound)
@@ -70,73 +70,73 @@
 
 /datum/quirk/water_breathing
 	name = "Water breathing"
-	desc = "You are able to breathe underwater!"
+	desc = "你能够在水下呼吸！"
 	value = 2
 	mob_trait = TRAIT_NODROWN
-	gain_text = span_notice("You become acutely aware of the moisture in your lungs and in the air. It feels nice.")
-	lose_text = span_danger("You suddenly realize the moisture in your lungs feels <i>really weird</i>, and you almost choke on it!")
-	medical_record_text = "Patient possesses biology compatible with aquatic respiration."
+	gain_text = span_notice("你清晰地感受到肺部和空气中的水分，感觉很舒服。")
+	lose_text = span_danger("你突然发现肺里的水分让你感觉<i>非常奇怪</i>，差点因此呛住！")
+	medical_record_text = "患者的生理构造适合水下呼吸。"
 	icon = FA_ICON_FISH
 
 // AdditionalEmotes *turf quirks
 /datum/quirk/water_aspect
 	name = "Water aspect (Emotes)"
-	desc = "(Aquatic innate) Underwater societies are home to you, space ain't much different. (Say *turf to cast)"
+	desc = "（水生生物天赋）水下社会就是你的家，太空也没什么不同。（说 *turf 来施展）"
 	value = 0
 	mob_trait = TRAIT_WATER_ASPECT
-	gain_text = span_notice("You feel like you can control water.")
-	lose_text = span_danger("Somehow, you've lost your ability to control water!")
-	medical_record_text = "Patient holds a collection of nanobots designed to synthesize H2O."
+	gain_text = span_notice("你觉得自己能够控制水。")
+	lose_text = span_danger("不知为何，你失去了控制水的能力！")
+	medical_record_text = "患者体内有一组用于合成水的纳米机器人。"
 	icon = FA_ICON_WATER
 
 /datum/quirk/webbing_aspect
 	name = "Webbing aspect (Emotes)"
-	desc = "(Insect innate) Insect folk capable of weaving aren't unfamiliar with receiving envy from those lacking a natural 3D printer. (Say *turf to cast)"
+	desc = "（昆虫天赋）能够织网的虫族早已习惯那些没有天生 3D 打印机的人投来的羡慕目光。（说 *turf 来施展）"
 	value = 0
 	mob_trait = TRAIT_WEBBING_ASPECT
-	gain_text = span_notice("You could easily spin a web.")
-	lose_text = span_danger("Somehow, you've lost your ability to weave.")
-	medical_record_text = "Patient has the ability to weave webs with naturally synthesized silk."
+	gain_text = span_notice("你能轻松地织出一张网。")
+	lose_text = span_danger("不知为何，你失去了织网的能力。")
+	medical_record_text = "患者能够用自身合成的丝织网。"
 	icon = FA_ICON_STICKY_NOTE
 
 /datum/quirk/floral_aspect
 	name = "Floral aspect (Emotes)"
-	desc = "(Podperson innate) Kudzu research isn't pointless, rapid photosynthesis technology is here! (Say *turf to cast)"
+	desc = "（豆荚人天赋）葛藤研究并非毫无意义，快速光合作用技术已经到来！（说 *turf 来施展）"
 	value = 0
 	mob_trait = TRAIT_FLORAL_ASPECT
-	gain_text = span_notice("You feel like you can grow vines.")
-	lose_text = span_danger("Somehow, you've lost your ability to rapidly photosynthesize.")
-	medical_record_text = "Patient can rapidly photosynthesize to grow vines."
+	gain_text = span_notice("你觉得自己能催生藤蔓。")
+	lose_text = span_danger("不知为何，你失去了快速进行光合作用的能力。")
+	medical_record_text = "患者能够通过快速光合作用催生藤蔓。"
 	icon = FA_ICON_PLANT_WILT
 
 /datum/quirk/ash_aspect
 	name = "Ash aspect (Emotes)"
-	desc = "(Lizard innate) The ability to forge ash and flame, a mighty power - yet mostly used for theatrics. (Say *turf to cast)"
+	desc = "（蜥蜴人天赋）制造灰烬和火焰的强大力量——却大多被用来表演。（说 *turf 来施展）"
 	value = 0
 	mob_trait = TRAIT_ASH_ASPECT
-	gain_text = span_notice("There is a forge smouldering inside of you.")
-	lose_text = span_danger("Somehow, you've lost your ability to breathe fire.")
-	medical_record_text = "Patients possess a fire breathing gland commonly found in lizard folk."
+	gain_text = span_notice("你的体内仿佛有一座熏燃的熔炉。")
+	lose_text = span_danger("不知为何，你失去了喷火的能力。")
+	medical_record_text = "患者具有蜥蜴人常见的喷火腺体。"
 	icon = FA_ICON_FIRE_ALT
 
 /datum/quirk/sparkle_aspect
 	name = "Sparkle aspect (Emotes)"
-	desc = "(Moth innate) Sparkle like the dust off of a moth's wing, or like a cheap red-light hook-up. (Say *turf to cast)"
+	desc = "（蛾人天赋）像蛾翼的鳞粉一样闪闪发亮，又像廉价红灯区约会中的亮片。（说 *turf 来施展）"
 	value = 0
 	mob_trait = TRAIT_SPARKLE_ASPECT
-	gain_text = span_notice("You're covered in sparkling dust!")
-	lose_text = span_danger("Somehow, you've completely cleaned yourself of glitter..")
-	medical_record_text = "Patient seems to be looking fabulous."
+	gain_text = span_notice("你浑身沾满了闪亮的粉尘！")
+	lose_text = span_danger("不知为何，你身上的闪粉已经彻底消失了……")
+	medical_record_text = "患者看起来光彩照人。"
 	icon = FA_ICON_HAND_SPARKLES
 
 /datum/quirk/no_appendix
 	name = "Appendicitis Survivor"
-	desc = "You had a run in with appendicitis in the past and no longer have an appendix."
+	desc = "你曾患过阑尾炎，现在已经没有阑尾了。"
 	icon = FA_ICON_NOTES_MEDICAL
 	value = 2
-	gain_text = span_notice("You no longer have an appendix.")
-	lose_text = span_danger("Your appendix has magically.. regrown?")
-	medical_record_text = "Patient had appendicitis in the past and has had their appendix surgically removed."
+	gain_text = span_notice("你已经没有阑尾了。")
+	lose_text = span_danger("你的阑尾竟然奇迹般地……重新长出来了？")
+	medical_record_text = "患者曾患阑尾炎，阑尾已通过手术切除。"
 	/// The mob's original appendix
 	var/obj/item/organ/appendix/old_appendix
 

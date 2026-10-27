@@ -1,9 +1,9 @@
 /datum/action/changeling/darkness_adaptation
-	name = "Darkness Adaptation"
-	desc = "Our skin pigmentation and eyes rapidly change to suit the darkness. \
-		Costs 15 chemicals to enable. Slows down chemical regeneration by 15% while active."
-	helptext = "Allows us to darken and change the translucency of our pigmentation, and adapt our eyes to see in dark conditions, \
-		The translucent effect works best in dark enviroments and garments. Can be toggled on and off."
+	name = "黑暗适应"
+	desc = "我们的皮肤色素与眼睛会迅速变化以适应黑暗。\
+		启用需消耗 15 点化学物质。启用期间化学物质再生速度降低 15%。"
+	helptext = "使我们能够加深并改变皮肤色素的透明度，并让眼睛适应在黑暗中视物，\
+		半透明效果在昏暗环境与深色衣物下效果最佳。可随时开启或关闭。"
 	button_icon_state = "darkness_adaptation"
 	category = "stealth"
 	dna_cost = 2
@@ -32,8 +32,8 @@
 		return
 
 	cling.visible_message(
-		span_warning("[cling]'s skin suddenly starts shifting and shimmering!"),
-		span_notice("We shift our skin to adapt to the darkness."),
+		span_warning("[cling]的皮肤突然开始流动、闪烁！"),
+		span_notice("我们改变皮肤以适应黑暗。"),
 	)
 	var/datum/antagonist/changeling/changeling_data = cling.mind?.has_antag_datum(/datum/antagonist/changeling)
 	changeling_data?.chem_recharge_slowdown -= recharge_slowdown //Slows down chem regeneration
@@ -43,8 +43,8 @@
 		return
 
 	cling.visible_message(
-		span_warning("[cling]'s skin goes from shimmering to normal."),
-		span_notice("We stop adapting our skin to the darkness."),
+		span_warning("[cling]的皮肤从闪烁恢复如常。"),
+		span_notice("我们的皮肤不再适应黑暗。"),
 	)
 	var/datum/antagonist/changeling/changeling_data = cling.mind?.has_antag_datum(/datum/antagonist/changeling)
 	changeling_data?.chem_recharge_slowdown += recharge_slowdown
@@ -88,7 +88,7 @@
 	SIGNAL_HANDLER
 
 	if(last_alpha > dark_color_threshold)
-		examine_list += span_warning("[owner.p_Their()] skin is shimmering unnaturally in the light.")
+		examine_list += span_warning("[owner]的皮肤在光线下不自然地闪烁着。")
 
 /datum/status_effect/darkness_adapted/proc/get_darkness()
 	var/turf/owner_turf = get_turf(owner)

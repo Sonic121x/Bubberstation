@@ -81,9 +81,9 @@
 
 	tgui_prefs_migration = save_data["tgui_prefs_migration"]
 	if(!tgui_prefs_migration && save_data["modular_version"] && save_data["modular_version"] < MODULAR_SAVEFILE_VERSION_MAX) // BUBBER EDIT - if we're missing version from migration, then the char is new. Won't be able to migrate either.
-		to_chat(parent, custom_boxed_message("red_box", span_bolddanger("PREFERENCE MIGRATION BEGINNING.\
-		\nDO NOT INTERACT WITH YOUR PREFERENCES UNTIL THIS PROCESS HAS BEEN COMPLETED.\
-		\nDO NOT DISCONNECT UNTIL THIS PROCESS HAS BEEN COMPLETED.\
+		to_chat(parent, custom_boxed_message("red_box", span_bolddanger("偏好设置迁移开始。\
+		\n在迁移完成前，请勿操作你的偏好设置。\
+		\n在迁移完成前，请勿断开连接。\
 		")))
 		migrate_skyrat(save_data)
 		addtimer(CALLBACK(src, PROC_REF(check_migration)), 10 SECONDS)
@@ -97,7 +97,7 @@
 
 /// Brings a savefile up to date with modular preferences. Called if savefile_needs_update_skyrat() returned a value higher than 0
 /datum/preferences/proc/update_character_skyrat(current_version, list/save_data)
-	to_chat(parent, custom_boxed_message("red_box", span_bolddanger("Updating preference values, if you don't see the second half of this message, ahelp immediately!")))
+	to_chat(parent, custom_boxed_message("red_box", span_bolddanger("正在更新偏好设置数值。如果你没有看到这条消息的后半部分，请立刻 ahelp！")))
 	if(current_version < VERSION_GENITAL_TOGGLES)
 		// removed genital toggles, with the new choiced prefs paths as assoc
 		var/static/list/old_toggles
@@ -276,12 +276,12 @@
 			save_augments[augment_name] = "/obj/item/organ[augment_path_string_stripped]"
 		load_augments(save_augments)
 
-	to_chat(parent, custom_boxed_message("green_box", span_greentext("Updated preferences!")))
+	to_chat(parent, custom_boxed_message("green_box", span_greentext("偏好设置已更新！")))
 
 /datum/preferences/proc/check_migration()
 	if(!tgui_prefs_migration)
-		to_chat(parent, custom_boxed_message("red_box", span_redtext("CRITICAL FAILURE IN PREFERENCE MIGRATION, REPORT THIS IMMEDIATELY.")))
-		message_admins("PREFERENCE MIGRATION: [ADMIN_LOOKUPFLW(parent)] has failed the process for migrating PREFERENCES. Check runtimes.")
+		to_chat(parent, custom_boxed_message("red_box", span_redtext("偏好设置迁移发生严重故障，请立即上报。")))
+		message_admins("偏好设置迁移：[ADMIN_LOOKUPFLW(parent)] 在迁移偏好设置的过程中失败。请检查运行时错误。")
 
 
 /// Saves the modular customizations of a character on the savefile

@@ -1,10 +1,10 @@
-ADMIN_VERB(admin_change_map, R_SERVER, "Change Map", "Set the next map.", ADMIN_CATEGORY_SERVER)
+ADMIN_VERB(admin_change_map, R_SERVER, "更换地图", "设置下一张地图。", ADMIN_CATEGORY_SERVER)
 	var/list/maprotatechoices = list()
 	for (var/map in config.maplist)
 		var/datum/map_config/virtual_map = config.maplist[map]
 		var/mapname = virtual_map.map_name
 		if (virtual_map == config.defaultmap)
-			mapname += " (Default)"
+			mapname += "（默认）"
 
 		if (virtual_map.config_min_users > 0 || virtual_map.config_max_users > 0)
 			mapname += " \["
@@ -20,21 +20,21 @@ ADMIN_VERB(admin_change_map, R_SERVER, "Change Map", "Set the next map.", ADMIN_
 			mapname += "\]"
 
 		maprotatechoices[mapname] = virtual_map
-	var/chosenmap = tgui_input_list(user, "Choose a map to change to", "Change Map", sort_list(maprotatechoices)|"Custom")
+	var/chosenmap = tgui_input_list(user, "选择要切换到哪张地图", "更换地图", sort_list(maprotatechoices)|"Custom")
 	if (isnull(chosenmap))
 		return
 
 	if(chosenmap == "Custom")
-		message_admins("[key_name_admin(user)] is changing the map to a custom map")
+		message_admins("[key_name_admin(user)]正在把地图更换为自定义地图")
 		log_admin("[key_name(user)] is changing the map to a custom map")
 		var/datum/map_config/virtual_map = new
 
-		var/map_file = input(user, "Pick file:", "Map File") as null|file
+		var/map_file = input(user, "选择文件：", "地图文件") as null|file
 		if(isnull(map_file))
 			return
 
 		if(copytext("[map_file]", -4) != ".dmm")//4 == length(".dmm")
-			to_chat(user, span_warning("Filename must end in '.dmm': [map_file]"))
+			to_chat(user, span_warning("文件名必须以 '.dmm' 结尾：[map_file]"))
 			return
 
 		if(fexists("_maps/custom/[map_file]"))
@@ -44,24 +44,24 @@ ADMIN_VERB(admin_change_map, R_SERVER, "Change Map", "Set the next map.", ADMIN_
 		// This is to make sure the map works so the server does not start without a map.
 		var/datum/parsed_map/M = new (map_file)
 		if(!M)
-			to_chat(user, span_warning("Map '[map_file]' failed to parse properly."))
+			to_chat(user, span_warning("地图‘[map_file]’无法正确解析。"))
 			return
 
 		if(!M.bounds)
-			to_chat(user, span_warning("Map '[map_file]' has non-existant bounds."))
+			to_chat(user, span_warning("地图‘[map_file]’的边界不存在。"))
 			qdel(M)
 			return
 
 		qdel(M)
 		var/config_file = null
 		var/list/json_value = list()
-		var/config = tgui_alert(user,"Would you like to upload an additional config for this map?", "Map Config", list("Yes", "No"))
+		var/config = tgui_alert(user,"你想为这张地图上传额外的配置吗？", "地图配置", list("Yes", "No"))
 		if(config == "Yes")
-			config_file = input(user, "Pick file:", "Config JSON File") as null|file
+			config_file = input(user, "选择文件：", "配置 JSON 文件") as null|file
 			if(isnull(config_file))
 				return
 			if(copytext("[config_file]", -5) != ".json")
-				to_chat(src, span_warning("Filename must end in '.json': [config_file]"))
+				to_chat(src, span_warning("文件名必须以 '.json' 结尾：[config_file]"))
 				return
 			if(fexists("data/custom_map_json/[config_file]"))
 				fdel("data/custom_map_json/[config_file]")
@@ -71,22 +71,22 @@ ADMIN_VERB(admin_change_map, R_SERVER, "Change Map", "Set the next map.", ADMIN_
 			json_value = virtual_map.LoadConfig("data/custom_map_json/[config_file]", TRUE)
 
 			if(!json_value)
-				to_chat(src, span_warning("Failed to load config: [config_file]. Check that the fields are filled out correctly. \"map_path\": \"custom\" and \"map_file\": \"your_map_name.dmm\""))
+				to_chat(src, span_warning("配置加载失败：[config_file]。请检查各字段是否正确填写：\"map_path\": \"custom\" 与 \"map_file\": \"your_map_name.dmm\""))
 				return
 		else
 			virtual_map = load_map_config()
-			virtual_map.map_name = input(user, "Choose the name for the map", "Map Name") as null|text
+			virtual_map.map_name = input(user, "为地图选择一个名称", "地图名称") as null|text
 			if(isnull(virtual_map.map_name))
-				virtual_map.map_name = "Custom"
+				virtual_map.map_name = "自定义"
 
-			var/shuttles = tgui_alert(user,"Do you want to modify the shuttles?", "Map Shuttles", list("Yes", "No"))
+			var/shuttles = tgui_alert(user,"你想修改穿梭机配置吗？", "地图穿梭机", list("Yes", "No"))
 			if(shuttles == "Yes")
 				for(var/s in virtual_map.shuttles)
-					var/shuttle = input(user, s, "Map Shuttles") as null|text
+					var/shuttle = input(user, s, "地图穿梭机") as null|text
 					if(!shuttle)
 						continue
 					if(!SSmapping.shuttle_templates[shuttle])
-						to_chat(user, span_warning("No such shuttle as '[shuttle]' exists, using default."))
+						to_chat(user, span_warning("不存在名为‘[shuttle]’的穿梭机，将使用默认值。"))
 						continue
 					virtual_map.shuttles[s] = shuttle
 
@@ -104,16 +104,16 @@ ADMIN_VERB(admin_change_map, R_SERVER, "Change Map", "Set the next map.", ADMIN_
 		text2file(json_encode(json_value), PATH_TO_NEXT_MAP_JSON)
 
 		if(SSmap_vote.set_next_map(virtual_map))
-			message_admins("[key_name_admin(user)] has changed the map to [virtual_map.map_name]")
+			message_admins("[key_name_admin(user)]已将地图更换为[virtual_map.map_name]")
 			SSmap_vote.admin_override = TRUE
 		fdel("data/custom_map_json/[config_file]")
 	else
 		var/datum/map_config/virtual_map = maprotatechoices[chosenmap]
-		message_admins("[key_name_admin(user)] is changing the map to [virtual_map.map_name]")
+		message_admins("[key_name_admin(user)]正在把地图更换为[virtual_map.map_name]")
 		log_admin("[key_name(user)] is changing the map to [virtual_map.map_name]")
 		if (SSmap_vote.set_next_map(virtual_map))
-			message_admins("[key_name_admin(user)] has changed the map to [virtual_map.map_name]")
+			message_admins("[key_name_admin(user)]已将地图更换为[virtual_map.map_name]")
 			SSmap_vote.admin_override = TRUE
 
-ADMIN_VERB(admin_revert_map, R_SERVER, "Revert Map Vote", "Revert the map vote, allowing a new vote.", ADMIN_CATEGORY_SERVER)
+ADMIN_VERB(admin_revert_map, R_SERVER, "撤销地图投票", "撤销地图投票，以便重新发起投票。", ADMIN_CATEGORY_SERVER)
 	SSmap_vote.revert_next_map(user)

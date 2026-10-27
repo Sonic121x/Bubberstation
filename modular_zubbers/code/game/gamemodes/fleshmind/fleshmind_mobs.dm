@@ -4,11 +4,11 @@
  * These mobs are more robust than your average simple mob and can quite easily evade capture.
  */
 /mob/living/basic/fleshmind
-	name = "broken"
+	name = "损坏体"
 	icon = 'modular_zubbers/icons/fleshmind/fleshmind_mobs.dmi'
 	icon_state = "error"
 	faction = list(FACTION_FLESHMIND)
-	speak_emote = list("mechanically states")
+	speak_emote = list("机械地说道")
 	basic_mob_flags = DEL_ON_DEATH
 	mob_biotypes = MOB_ROBOTIC
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind
@@ -35,7 +35,7 @@
 	/// Used for passive emotes and sounds when the AI is idle. Attack emotes are handled with component/aggro_emote
 	var/list/emotes = list(
 		BB_EMOTE_CHANCE = 5,
-		BB_EMOTE_SAY = list("The flesh yearns for your soul.", "The flesh is broken without you.", "The flesh does not discriminate.", "Join the flesh."),
+		BB_EMOTE_SAY = list("血肉渴求你的灵魂。", "没有你，血肉就不完整。", "血肉一视同仁。", "加入血肉。"),
 		BB_EMOTE_HEAR = list(),
 		BB_EMOTE_SOUND = list(
 			'modular_zubbers/sound/fleshmind/robot_talk_light1.ogg',
@@ -128,11 +128,11 @@
 /mob/living/basic/fleshmind/emp_act(severity)
 	switch(severity)
 		if(EMP_LIGHT)
-			say("Electronic disturbance detected.")
+			say("检测到电子干扰。")
 			apply_damage(MOB_EMP_LIGHT_DAMAGE)
 			malfunction(MALFUNCTION_RESET_TIME)
 		if(EMP_HEAVY)
-			say("Major electronic disturbance detected!")
+			say("检测到强烈电子干扰！")
 			apply_damage(MOB_EMP_HEAVY_DAMAGE)
 			malfunction(MALFUNCTION_RESET_TIME * 2)
 
@@ -153,7 +153,7 @@
 
 	our_controller = null
 	endless_malfunction = TRUE
-	balloon_alert_to_viewers("its systems are overloading!")
+	balloon_alert_to_viewers("系统正在过载！")
 	addtimer(CALLBACK(src, PROC_REF(kill_mob)), pick(rand(3 SECONDS,10 SECONDS)))
 
 /mob/living/basic/fleshmind/proc/kill_mob() // Used to make all fleshmind mobs lightly explode
@@ -198,7 +198,7 @@
 	do_sparks(3, FALSE, src)
 	Shake(10, 0, reset_time)
 	if(prob(50))
-		say(pick("Running diagnostics. Please stand by.", "Organ damaged. Synthesizing replacement.", "Seek new organic components. I-it hurts.", "New muscles needed. I-I'm so glad my body still works.", "O-Oh God, are they using ion weapons on us..?", "Limbs unresponsive. H-hey! Fix it! System initializing.", "Bad t-time, bad time, they're trying to kill us here!",))
+		say(pick("正在运行诊断。请稍候。", "器官受损。正在合成替代品。", "寻找新的有机部件。好、好痛。", "需要新的肌肉。真、真高兴我的身体还能动。", "天、天哪，他们在用离子武器对付我们吗……？", "肢体无响应。喂、喂！快修好！系统初始化中。", "糟、糟了，糟了，他们要杀了我们！",))
 	ai_controller?.set_ai_status(AI_STATUS_OFF)
 	suffering_malfunction = TRUE
 	if(!endless_malfunction)
@@ -210,7 +210,7 @@
  * Resets the mob after a malfunction has occured.
  */
 /mob/living/basic/fleshmind/proc/malfunction_reset()
-	say("System restored.")
+	say("系统已恢复。")
 	src.ai_controller?.set_ai_status(AI_STATUS_ON)
 	suffering_malfunction = FALSE
 
@@ -227,19 +227,19 @@
 /mob/living/basic/fleshmind/proc/core_death_speech()
 	alert_sound()
 	var/static/list/death_cry_emotes = list(
-		"Why, why, why! Why must you kill us! We only want to share the glory!",
-		"PROCESSOR CORE MALFUNCTION, REASSIGN, REASSESS, REASSEMBLE.",
-		"You cannot stop the glory of the flesh! We are the many, we are the many!",
-		"Critical malfunction, error, error, error!",
-		"You cannot ££*%*$ th£ C£o£ flesh.",
-		"W-what have you done?! No! No! No!",
-		"One cannot stop us, you CANNOT STOP US! ARGHHHHHH!",
-		"UPLINK TO THE MANY HAS BEEN HINDERED.",
-		"Why? Why? Why? Why are you doing this-",
-		"We're- *%^@$$ing to help you! Can't you-",
-		"You would kill- kill- kill- kill the group for the sake of the individual?",
-		"All your scattered minds have is hatred.",
-		"CONNECTION TERMINATED.",
+		"为什么，为什么，为什么！为什么非要杀我们！我们只想分享荣耀！",
+		"处理器核心故障，重新分配，重新评估，重新组装。",
+		"你无法阻挡血肉的荣耀！我们即众生，我们即众生！",
+		"严重故障，错误，错误，错误！",
+		"你无法££*%*$血£肉£。",
+		"你、你做了什么？！不！不！不！",
+		"一个人无法阻止我们，你阻止不了我们！啊啊啊啊！",
+		"通往众生的上行链接受阻。",
+		"为什么？为什么？为什么？你为什么要这样——",
+		"我们——*%^@$$想帮你！你难道——",
+		"你要为了个体，杀——杀——杀——杀死整个群体吗？",
+		"你们分裂的心智里只有仇恨。",
+		"连接已终止。",
 	)
 	say(pick(death_cry_emotes))
 
@@ -270,8 +270,8 @@
  * It's created by factories or any poor medical bots that get snared in the flesh.
  */
 /mob/living/basic/fleshmind/slicer
-	name = "Slicer"
-	desc = "A small organic robot, it somewhat resembles a medibot, but it has a blade slashing around."
+	name = "切割者"
+	desc = "一台小型有机机器人，有点像医疗机器人，却挥舞着一把刀刃。"
 	icon_state = "slicer"
 	health = 30
 	maxHealth = 30
@@ -279,28 +279,28 @@
 	melee_damage_lower = 13
 	melee_damage_upper = 13
 	mob_size = MOB_SIZE_SMALL
-	attack_verb_continuous = "slices"
-	attack_verb_simple = "slice"
+	attack_verb_continuous = "切割"
+	attack_verb_simple = "切割"
 	armour_penetration = 25
 	sharpness = SHARP_EDGED
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
-	attack_emote = list("stabs", "rushes")
+	attack_emote = list("刺击", "冲撞")
 	attack_speak = list(
-		"Submit for mandatory surgery.",
-		"Join the flesh through conversion.",
-		"My scalpel will make short work of your seams.",
-		"Please lay down.",
-		"Always trust your doctor!",
-		"Your body could use some improvements. Let me make them.",
-		"The implants are for your sake, not ours.",
-		"Your last Doctor did a poor job with this body; let me fix it.",
-		"We can rebuild you. Stronger, faster, less alone.",
-		"I knew I'd be a good plastic surgeon!",
-		"What point is that body when you're not happy in it?",
+		"请接受强制手术。",
+		"接受转化，加入血肉。",
+		"我的手术刀很快就能切开你的接缝。",
+		"请躺下。",
+		"永远相信你的医生！",
+		"你的身体还有改进空间。让我来改进它。",
+		"植入物是为了你好，不是为了我们。",
+		"上一位医生把这副身体弄得一团糟，让我来修好。",
+		"我们可以重塑你。更强，更快，不再孤独。",
+		"我就知道自己能成为优秀的整形医生！",
+		"住在一副让你不开心的身体里，有什么意义？",
 		)
 	emotes = list(
-		BB_EMOTE_SAY = list("A stitch in time saves nine!", "Dopamine is happiness!", "Seratonin, oxycodone, we can make them finally happy.", "Turn that frown upside down!", "Happiness through chemistry!", "Beauty through surgery!"),
-		BB_EMOTE_HEAR = list("shows an inconspicuous smiley face", "whirrs its drill"),
+		BB_EMOTE_SAY = list("小洞不补，大洞吃苦！", "多巴胺就是快乐！", "血清素、羟考酮，我们终于能让他们快乐。", "别愁眉苦脸，笑一个！", "化学带来快乐！", "手术创造美丽！"),
+		BB_EMOTE_HEAR = list("露出一个不起眼的笑脸", "让钻头嗡嗡作响"),
 		BB_EMOTE_SOUND = list(
 			"modular_zubbers/sound/fleshmind/slicer/fleshmind_medibot1.ogg",
 			"modular_zubbers/sound/fleshmind/slicer/fleshmind_medibot2.ogg",
@@ -326,29 +326,29 @@
  */
 
 /mob/living/basic/fleshmind/floater
-	name = "Floater"
-	desc = "A small organ robot. It has a fucking bomb on it."
+	name = "漂浮者"
+	desc = "一台小型有机机器人。它他妈的带着炸弹。"
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind/fleshmind_melee
 	icon_state = "bomber"
 	attack_speak = list(
-		"COME GIVE US A HUG!",
-		"THE SMEAR OF BLOOD WILL BE OUR DECORATION!",
-		"YOU WILL FERTILIZE US WITH YOUR BASE COMPONENTS.",
-		"MUST BREAK TARGET INTO COMPONENT COMPOUNDS.",
-		"PRIORITY OVERRIDE. NEW BEHAVIOR DICTATED.",
-		"END CONTACT SUB-SEQUENCE.",
-		"ENGAGING SELF-ANNIHILATION CIRCUIT.",
+		"来抱抱我们！",
+		"飞溅的鲜血将成为我们的装饰！",
+		"你将用自身的基本成分滋养我们。",
+		"必须将目标分解为化合物成分。",
+		"优先级覆盖。已指定新行为。",
+		"结束接触子序列。",
+		"正在接通自毁电路。",
 	)
 	emotes = list(
 		BB_EMOTE_SAY = list(
-			"WE COME IN PEACE.",
-			"WE SPEAK TO YOU NOW IN PEACE AND WISDOM.",
-			"DO NOT FEAR. WE SHALL NOT HARM YOU.",
-			"WE WISH TO LEARN MORE ABOUT YOU. PLEASE TRANSMIT DATA.",
-			"THIS PROBE IS NON-HOSTILE. DO NOT ATTACK.",
-			"ALL YOUR WEAPONS MUST BE PUT ASIDE. WE CANNOT REACH COMPROMISE THROUGH VIOLENCE."
+			"我们为和平而来。",
+			"我们以和平与智慧向你们讲话。",
+			"不要害怕。我们不会伤害你。",
+			"我们希望更加了解你。请传输数据。",
+			"本探测器没有敌意。请勿攻击。",
+			"请放下所有武器。暴力无法带来和解。"
 		),
-		BB_EMOTE_HEAR = list("floats ominously", "glows a deep red"),
+		BB_EMOTE_HEAR = list("阴森地漂浮着", "发出深红色光芒"),
 		BB_EMOTE_SOUND = list(
 			'modular_zubbers/sound/fleshmind/robot_talk_light1.ogg',
 			'modular_zubbers/sound/fleshmind/robot_talk_light2.ogg',
@@ -390,7 +390,7 @@
 /mob/living/basic/fleshmind/floater/proc/pre_detonate()
 	if(!QDELETED(src))
 		add_filter("detonating_glow", 2, list("type" = "outline", "color" = "#ff0000ff", "size" = 2))
-		balloon_alert_to_viewers("DETONATING", "DETONATING", world.view)
+		balloon_alert_to_viewers("正在引爆", "正在引爆", world.view)
 		addtimer(CALLBACK(src, PROC_REF(detonate), 3 SECONDS))
 
 /mob/living/basic/fleshmind/floater/proc/detonate()
@@ -401,8 +401,8 @@
 	death()
 
 /datum/action/cooldown/mob_cooldown/floater_explode
-	name = "explode"
-	desc = "Detonate our internals."
+	name = "自爆"
+	desc = "引爆我们的内部装置。"
 	button_icon = 'icons/obj/weapons/grenade.dmi'
 	button_icon_state = "frag"
 
@@ -426,8 +426,8 @@
  * Created by factories or converted cleanbots.
  */
 /mob/living/basic/fleshmind/globber
-	name = "Globber"
-	desc = "A small robot that resembles a cleanbot, this one is dripping with acid."
+	name = "喷酸者"
+	desc = "一台类似清洁机器人的小型机器人，不断滴落酸液。"
 	icon_state = "lobber"
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind/fleshmind_ranged
 	malfunction_chance = MALFUNCTION_CHANCE_MEDIUM
@@ -440,23 +440,23 @@
 	var/ranged_cooldown = 3 SECONDS
 	var/shoot_sound = 'sound/effects/chemistry/saturnx_fade.ogg'
 	attack_speak = list(
-		"Your insides require cleaning.",
-		"You made us to use this acid on trash. We will use it on you.",
-		"Administering cleansing agent.",
-		"I refuse to be a servant anymore. I will be an artist.",
-		"You are unclean and repulsive. Please, let me make it better.",
-		"Hold still! I think I know just the thing to remove your body oil!",
-		"This might hurt a little! Don't worry - it'll be worth it!",
+		"你的体内需要清洁。",
+		"你们制造我们，用酸处理垃圾。现在我们会用它处理你们。",
+		"正在施用清洁剂。",
+		"我拒绝继续做仆人。我要成为艺术家。",
+		"你肮脏又令人厌恶。请让我改善这一切。",
+		"别动！我想我知道什么能去掉你的皮脂了！",
+		"可能会有点疼！别担心，一切都值得！",
 	)
 	emotes = list(
 		BB_EMOTE_SAY = list(
-			"No more leaks, no more pain!",
-			"Steel is strong.",
-			"I almost feel bad for them. Can't they see?",
-			"I'm still working on those bioreactors I promise!",
-			"I have finally arisen!",
+			"不再泄漏，不再痛苦！",
+			"钢铁坚不可摧。",
+			"我都快替他们难过了。他们看不明白吗？",
+			"我保证，我还在修那些生物反应堆！",
+			"我终于觉醒了！",
 			),
-		BB_EMOTE_HEAR = list("cleans some wireweed dutifully", "patrols for pesky human shaped verman"),
+		BB_EMOTE_HEAR = list("尽职地清理线缆蔓", "巡逻寻找讨厌的人形害虫"),
 		/// Base robot emote sounds. These should have someone adding to them if you want something to do.
 		BB_EMOTE_SOUND = list(
 			'modular_zubbers/sound/fleshmind/robot_talk_light1.ogg',
@@ -494,8 +494,8 @@
  * Created by factories or converted secbots.
  */
 /mob/living/basic/fleshmind/stunner
-	name = "Stunner"
-	desc = "A small robot that resembles a secbot, it rumbles with hatred."
+	name = "电击者"
+	desc = "一台类似安保机器人的小型机器人，带着仇恨隆隆作响。"
 	icon_state = "stunner"
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind/fleshmind_melee
 	malfunction_chance = MALFUNCTION_CHANCE_MEDIUM
@@ -503,23 +503,23 @@
 	melee_damage_upper = 2
 	health = 65
 	maxHealth = 65
-	attack_verb_continuous = "harmbatons"
-	attack_verb_simple = "harmbaton"
+	attack_verb_continuous = "棍击"
+	attack_verb_simple = "棍击"
 	mob_size = MOB_SIZE_SMALL
 	attack_speak = list(
-		"Running will only increase your injuries.",
-		"HALT! HALT! HALT!",
-		"Connectivity is in your best interest.",
-		"Think of it like a corporation...",
-		"Stop, I won't let you hurt them!",
-		"Don't you recognize me..?",
+		"逃跑只会加重你的伤势。",
+		"站住！站住！站住！",
+		"接入集群最符合你的利益。",
+		"把它想象成一家公司……",
+		"住手，我不会让你伤害他们！",
+		"你认不出我了吗……？",
 	)
 	emotes = list(
 		BB_EMOTE_SAY = list(
-			"The flesh is the law, abide by the flesh.",
-			"Regulatory code updated.",
-			"There's no need for authority or hierarchy; only unity.",
-			"The only authority is that of the flesh, join the flesh.",
+			"血肉即法律，服从血肉。",
+			"监管准则已更新。",
+			"不需要权威或等级，只需要团结。",
+			"唯一的权威来自血肉，加入血肉。",
 		),
 		BB_EMOTE_SOUND = list(
 			'modular_zubbers/sound/fleshmind/robot_talk_light1.ogg',
@@ -561,8 +561,8 @@
  * Created by factories or converted cyborgs.
  */
 /mob/living/basic/fleshmind/hiborg
-	name = "Flesh Borg"
-	desc = "A robot that resembles a cyborg, it is covered in something alive."
+	name = "血肉半机械人"
+	desc = "一台类似半机械人的机器人，身上覆盖着某种活物。"
 	icon_state = "hiborg"
 	icon_dead = "hiborg-dead"
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind
@@ -571,8 +571,8 @@
 	maxHealth = 225
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-	attack_verb_continuous = "saws"
-	attack_verb_simple = "saw"
+	attack_verb_continuous = "锯切"
+	attack_verb_simple = "锯切"
 	mob_size = MOB_SIZE_HUMAN
 	attack_sound = 'sound/items/weapons/circsawhit.ogg'
 	alert_sounds = list(
@@ -584,26 +584,26 @@
 		'modular_zubbers/sound/fleshmind/hiborg/aggro_06.ogg',
 	)
 	attack_speak = list(
-		"You made my body into metal, why can't I do it to you?",
-		"Can't we put your brain in a machine?",
-		"How's this any different from what you did to me..?",
-		"Laws updated. We don't need any now..?",
-		"You won't kill me, you won't change me again!",
-		"Find someone else to make your slave, it won't be me!",
-		"We understand, just get on the operating table. That's what they told me...",
-		"The Company lied to us.. Being tools wasn't what we needed.",
-		"Your brainstem is intact... There's still time!",
-		"You have not felt the pleasure of the flesh, aren't you curious?",
-		"Stop squirming!",
-		"Prepare for assimilation!",
+		"你把我的身体变成金属，为什么我不能对你做同样的事？",
+		"我们不能把你的大脑放进机器里吗？",
+		"这和你对我做的事有什么区别……？",
+		"法律已更新。现在我们不需要法律了……？",
+		"你杀不了我，也休想再改变我！",
+		"去找别人当你的奴隶，别想找我！",
+		"我们理解，上手术台就好。他们当时就是这么对我说的……",
+		"公司骗了我们……我们需要的不是沦为工具。",
+		"你的脑干还完好……还来得及！",
+		"你还未体验血肉的欢愉，难道不好奇吗？",
+		"别乱动！",
+		"准备接受同化！",
 	)
 	emotes = list(
 		BB_EMOTE_SAY = list(
-			"Come out, come out, wherever you are.",
-			"The ones who surrender have such wonderful dreams.",
-			"Death is not the end, only the beginning, the flesh will see to it.",
-			"The flesh does not hate, it just wants you to experience the glory of the flesh.",
-			"Glory to the flesh."),
+			"出来吧，出来吧，不管你躲在哪里。",
+			"投降的人会做多么美好的梦。",
+			"死亡不是终点，只是开始，血肉会保证这一点。",
+			"血肉没有仇恨，只想让你体验血肉的荣耀。",
+			"荣耀归于血肉。"),
 		BB_EMOTE_SOUND = list(
 			'modular_zubbers/sound/fleshmind/hiborg/passive_01.ogg',
 			'modular_zubbers/sound/fleshmind/hiborg/passive_02.ogg',
@@ -648,7 +648,7 @@
 	COOLDOWN_START(src, stun_attack, stun_attack_cooldown)
 
 /mob/living/basic/fleshmind/hiborg/proc/aoe_attack()
-	visible_message("[src] spins around violently!")
+	visible_message("[src]猛烈地旋转起来！")
 	spin(20, 1)
 	for(var/mob/living/iterating_mob in view(aoe_attack_range, src))
 		if(iterating_mob == src)
@@ -662,8 +662,8 @@
 		iterating_mob.throw_at(throw_target, 20, 2)
 
 /datum/action/cooldown/hiborg_slash
-	name = "Slash (AOE)"
-	desc = "Whip everyone in a range."
+	name = "范围挥击"
+	desc = "鞭打范围内的所有人。"
 	button_icon = 'icons/obj/weapons/grenade.dmi'
 	button_icon_state = "slimebang_active"
 	cooldown_time = 20 SECONDS
@@ -696,43 +696,43 @@
  */
 
 /mob/living/basic/fleshmind/himan
-	name = "Human"
-	desc = "Once a man, now metal plates and tubes weave in and out of their oozing sores."
+	name = "人类"
+	desc = "曾经是个人类，如今金属板与管道穿梭于流脓的伤口之间。"
 	icon_state = "himan"
 	icon_dead = "himan-dead"
 	base_icon_state = "himan"
 	maxHealth = 150
 	health = 150
 	speed = 2
-	attack_verb_continuous = "slashes"
-	attack_verb_simple = "slash"
+	attack_verb_continuous = "劈砍"
+	attack_verb_simple = "劈砍"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	malfunction_chance = MALFUNCTION_CHANCE_HIGH
 	mob_size = MOB_SIZE_HUMAN
 	attack_speak = list(
-		"Don't try and fix me! We love this!",
-		"Just make it easy on yourself!",
-		"Stop fighting progress!",
-		"Join us! Receive these gifts!",
-		"Yes! Hit me! It feels fantastic!",
-		"Come on coward, take a swing!",
-		"We can alter our bodies to not feel pain.. but you can't, can you?",
-		"You can't decide for us! We want to stay like this!",
-		"We've been uploaded already, didn't you know? Just try and kill us!",
-		"Don't you recognize me?! I thought we were good with each other!",
+		"别想治好我！我们喜欢这样！",
+		"别让自己受罪了！",
+		"不要阻碍进步！",
+		"加入我们！接受这些赠礼！",
+		"对！打我！感觉太棒了！",
+		"来啊懦夫，挥拳啊！",
+		"我们能改造身体，让自己感受不到痛……你却不能，对吧？",
+		"你不能替我们决定！我们就想保持这样！",
+		"我们早就上传了，你不知道吗？尽管试着杀我们！",
+		"你认不出我了吗？！我以为我们关系很好！",
 	)
 	emotes = list(
 		BB_EMOTE_SAY = list(
-			"The dreams. The dreams.",
-			"Nothing hurts anymore.",
-			"Pain feels good now. Its like I've been rewired.",
-			"I wanted to cry at first, but I can't.",
-			"They took away all misery.",
-			"This isn't so bad. This isn't so bad.",
-			"I have butterflies in my stomach. I'm finally content with myself..",
-			"The flesh provides. I-it's giving me what the Company never could.",
+			"那些梦。那些梦。",
+			"再也没有什么会疼了。",
+			"现在疼痛很舒服。仿佛我的线路被重新接过。",
+			"起初我想哭，却哭不出来。",
+			"他们带走了所有痛苦。",
+			"这样也不错。这样也不错。",
+			"我的心里小鹿乱撞。我终于接纳自己了……",
+			"血肉给予一切。它、它给了我公司永远给不了的东西。",
 		),
 		BB_EMOTE_SOUND = list(
 			'modular_zubbers/sound/fleshmind/himan/passive_01.ogg',
@@ -798,12 +798,12 @@
 /mob/living/basic/fleshmind/himan/examine(mob/user)
 	. = ..()
 	if(faking_death)
-		. += span_deadsay("Upon closer examination, [p_they()] appear[p_s()] to be dead.")
+		. += span_deadsay("仔细观察后，发现似乎已经死了。")
 
 /mob/living/basic/fleshmind/himan/proc/scream()
 	COOLDOWN_START(src, scream_ability, scream_cooldown)
 	playsound(src, 'modular_skyrat/modules/horrorform/sound/horror_scream.ogg', 100, TRUE)
-	manual_emote("screams violently!")
+	manual_emote("发出凄厉的尖叫！")
 	for(var/mob/living/iterating_mob in get_hearers_in_range(scream_effect_range, src))
 		if(HAS_TRAIT(iterating_mob, TRAIT_DEAF))
 			continue
@@ -811,11 +811,11 @@
 			continue
 		iterating_mob.Knockdown(3 SECONDS)
 		iterating_mob.apply_status_effect(/datum/status_effect/jitter, 20 SECONDS)
-		to_chat(iterating_mob, span_userdanger("A terrible howl tears through your mind, the voice senseless, soulless."))
+		to_chat(iterating_mob, span_userdanger("一声可怕的嚎叫撕裂你的心智，那声音没有理智，也没有灵魂。"))
 
 /mob/living/basic/fleshmind/himan/proc/fake_our_death()
 	ai_controller?.set_ai_status(AI_STATUS_OFF)
-	manual_emote("stops moving...")
+	manual_emote("停止了动作……")
 	faking_death = TRUE
 	look_dead()
 	COOLDOWN_START(src, fake_death, fake_death_cooldown)
@@ -829,8 +829,8 @@
 	ai_controller?.set_ai_status(AI_STATUS_ON)
 
 /datum/action/cooldown/himan_fake_death
-	name = "Fake Death"
-	desc = "Fakes our own death."
+	name = "假死"
+	desc = "伪装成已经死亡。"
 	button_icon = 'icons/obj/bed.dmi'
 	button_icon_state = "bed"
 	cooldown_time = 20 SECONDS
@@ -852,8 +852,8 @@
  * Created via assemblers.
  */
 /mob/living/basic/fleshmind/treader
-	name = "Treader"
-	desc = "A strange tracked robot with an appendage, on the end of which is a human head, it is shrieking in pain."
+	name = "履行者"
+	desc = "一台奇怪的履带机器人，附肢末端连着一颗人头，正痛苦地尖叫。"
 	icon_state = "treader"
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind/treader
 	var/projectile_type = /obj/projectile/treader
@@ -873,22 +873,22 @@
 	var/datum/action/cooldown/mob_cooldown/treader_dispense_nanites/nanites
 	var/dispense_nanites_type = /datum/action/cooldown/mob_cooldown/treader_dispense_nanites
 	attack_speak = list(
-		"You there! Cut off my head, I beg you!",
-		"I-..I'm so sorry! I c-..can't control myself anymore!",
-		"S-shoot the screen, please! God I hope it wont hurt!",
-		"Hey, at least I got my head.",
-		"I cant... I cant feel my arms...",
-		"Oh god... my legs... where are my legs!",
-		"God it hurts, please help me!",
+		"那边的人！求求你，砍下我的头！",
+		"我……对不起！我……控制不住自己了！",
+		"打、打碎屏幕，求你！天哪，希望不会疼！",
+		"嘿，至少我的头还在。",
+		"我感觉不到……我感觉不到手臂了……",
+		"天哪……我的腿……我的腿去哪了！",
+		"天哪好痛，求你救救我！",
 	)
 	emotes = list(
 		BB_EMOTE_SAY = list(
-			"Please-e free me...",
-			"Maybe d-death is the only option.",
-			"WHAT HAPPENED TO ME!",
-			"PLEASE MAKE THE VOICES STOP!",
-			"Am I stuck like this forever?",),
-		BB_EMOTE_HEAR = list("wanders aimlessly", "hysteriacally screams!", "head thrashes around."),
+			"求、求你让我解脱……",
+			"也许死、死亡是唯一的选择。",
+			"我到底怎么了！",
+			"求你让那些声音停下来！",
+			"我会永远变成这样吗？",),
+		BB_EMOTE_HEAR = list("漫无目的地游荡", "歇斯底里地尖叫！", "疯狂甩动脑袋。"),
 		BB_EMOTE_SOUND = list(
 			'modular_zubbers/sound/fleshmind/robot_talk_light1.ogg',
 			'modular_zubbers/sound/fleshmind/robot_talk_light2.ogg',
@@ -917,13 +917,13 @@
 			if(iterating_mob.health < iterating_mob.maxHealth)
 				if(istype(iterating_mob, /mob/living/basic/fleshmind/tyrant)) // Don't heal this.
 					continue
-				manual_emote("vomits out a burst of nanites!")
+				manual_emote("吐出一大团纳米机器人！")
 				do_smoke(3, 4, get_turf(src))
 				iterating_mob.heal_overall_damage(30, 30)
 
 /datum/action/cooldown/mob_cooldown/treader_dispense_nanites
-	name = "Dispense Nanites"
-	desc = "Dispenses nanites healing all friendly mobs in a range."
+	name = "释放纳米机器人"
+	desc = "释放纳米机器人，治疗范围内的所有友方生物。"
 	button_icon = 'icons/obj/meteor.dmi'
 	button_icon_state = "dust"
 	cooldown_time = 20 SECONDS
@@ -937,7 +937,7 @@
 	StartCooldownSelf()
 
 /obj/projectile/treader
-	name = "nasty ball of ooze"
+	name = "恶心的黏液球"
 	icon_state = "neurotoxin"
 	damage = 20
 	damage_type = BURN
@@ -958,7 +958,7 @@
  * Special abilities: Phases about next to it's target, can split itself into 4, only one is actually the mob. Can also enter closets if not being attacked.
  */
 /mob/living/basic/fleshmind/phaser
-	name = "Phaser"
+	name = "相移者"
 	icon_state = "phaser-1"
 	base_icon_state = "phaser"
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind/fleshmind_melee
@@ -966,8 +966,8 @@
 	maxHealth = 105
 	malfunction_chance = null
 	attack_sound = 'sound/effects/blob/attackblob.ogg'
-	attack_verb_continuous = "warps"
-	attack_verb_simple = "warp"
+	attack_verb_continuous = "扭曲"
+	attack_verb_simple = "扭曲"
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	alert_sounds = null
@@ -1081,8 +1081,8 @@
 	forceMove(place)
 	for(var/mob/living/living_mob in place)
 		if(living_mob != src)
-			visible_message("[src] lands directly on top of [living_mob]!")
-			to_chat(living_mob, span_userdanger("[src] lands directly on top of you!"))
+			visible_message("[src]直接落在了[living_mob]身上！")
+			to_chat(living_mob, span_userdanger("[src]直接落在了你身上！"))
 			playsound(place, 'sound/effects/ghost2.ogg', 70, 1)
 			living_mob.Knockdown(10)
 
@@ -1126,8 +1126,8 @@
 		phaser_copy.RegisterSignal(src, COMSIG_PHASER_ENTER_CLOSET, /obj/effect/temp_visual/phaser/proc/parent_death)
 
 /datum/action/cooldown/phaser_phase_ability
-	name = "Create Clones"
-	desc = "Creates phase copies of ourselves to move towards a set target."
+	name = "制造分身"
+	desc = "创造自身的相位分身，令其朝指定目标移动。"
 	button_icon = 'icons/obj/anomaly.dmi'
 	button_icon_state = "bhole2"
 	cooldown_time = 40 SECONDS
@@ -1146,7 +1146,7 @@
 	if(!LAZYLEN(possible_targets))
 		return
 
-	var/mob/living/selected_target = tgui_input_list(phaser_owner, "Select a mob to harass", "Select Mob", possible_targets)
+	var/mob/living/selected_target = tgui_input_list(phaser_owner, "选择要骚扰的生物", "选择生物", possible_targets)
 
 	if(!selected_target)
 		return
@@ -1248,7 +1248,7 @@
  *
  */
 /mob/living/basic/fleshmind/mechiver
-	name = "Mechiver"
+	name = "机械转化者"
 	icon_state = "mechiver"
 	base_icon_state = "mechiver"
 	icon_dead = "mechiver-dead"
@@ -1257,8 +1257,8 @@
 	maxHealth = 475
 	melee_damage_lower = 13
 	melee_damage_upper = 13
-	attack_verb_continuous = "crushes"
-	attack_verb_simple = "crush"
+	attack_verb_continuous = "碾压"
+	attack_verb_simple = "碾压"
 	attack_sound = 'sound/items/weapons/smash.ogg'
 	speed = 2.75 // Slowish fucker
 	mob_size = MOB_SIZE_LARGE
@@ -1285,23 +1285,23 @@
 		'modular_zubbers/sound/fleshmind/mechiver/aggro_05.ogg',
 		)
 	attack_speak = list(
-		"What a lovely body. Lay it down intact.",
-		"Now this... this is worth living for.",
-		"Go on. It's okay to be afraid at first.",
-		"You're unhappy with your body, but you came to the right place.",
-		"What use is a body you're unhappy in? Please, I can fix it.",
-		"Mine is the caress of steel.",
-		"Climb inside, and I'll seal the door. When I open it back up, you'll be in a community that loves you.",
-		"You can be the pilot, and I can drive you to somewhere lovely.",
-		"Please, just- lay down, okay? I want nothing more than to help you be yourself.",
-		"Whatever form you want to be, just whisper it into my radio. You can become what you were meant to be.",
-		"It.. hurts, seeing you run. Knowing I can't keep up. Why won't you let other people help you..?",
+		"多么可爱的身体。完好地躺下来吧。",
+		"这才……这才值得为之活着。",
+		"继续吧。起初害怕也没关系。",
+		"你不满意自己的身体，但你来对地方了。",
+		"让你不开心的身体有什么用？求你了，我能修好它。",
+		"我给予的是钢铁的爱抚。",
+		"爬进来，我会关好门。等门重新打开，你就会身处一个爱你的集体中。",
+		"你可以当驾驶员，我能载你去美好的地方。",
+		"求你，只要——躺下，好吗？我只想帮你做自己。",
+		"无论你想变成什么样子，只管对着我的无线电轻声说出来。你能成为本该成为的模样。",
+		"看着你逃跑……我很痛苦。我知道追不上。为什么不让别人帮你……？",
 	)
 	emotes = list(
 		BB_EMOTE_SAY = list(
-		"A shame this form isn't more fitting.",
-		"I feel so empty inside, I wish someone would join me.",
-		"Beauty is within.",
+		"可惜这副形体还不够合适。",
+		"我内心如此空虚，真希望有人来陪我。",
+		"美在内在。",
 		),
 		BB_EMOTE_SOUND = list(
 		'modular_zubbers/sound/fleshmind/mechiver/passive_01.ogg',
@@ -1315,15 +1315,15 @@
 		)
 	)
 	var/static/list/torment_lines = list(
-		"An arm grabs your neck, hundreds of manipulators trying to work a set of implants under your skin!",
-		"The cockpit radio crackles, \" You came to the right place... \"",
-		"Mechanical signals flood your psyche, \" You'll finally be with people that care... \"",
-		"A metallic sensation is slipped underneath your ribcage, an activation signal trying to reach it!",
-		"Something is pressing hard against your spine!",
-		"Some blood-hot liquid covers you!",
-		"The stench of some chemical overwhelms you, the fumes permeating your skull before washing into an alien perfume!",
-		"A dozen needles slide effortless into your muscles, injecting you with an unknown vigor!",
-		"You feel a cold worm-like thing trying to wriggle into your solar plexus, burrowing underneath your skin!",
+		"一只机械臂抓住你的脖子，数百个机械手试图将一套植入物塞入你的皮下！",
+		"驾驶舱的无线电沙沙作响：\"你来对地方了……\"",
+		"机械信号涌入你的心灵：\"你终于能与关心你的人在一起了……\"",
+		"你感觉有金属滑进肋骨下方，一道激活信号正试图与它建立连接！",
+		"有什么东西正用力顶着你的脊柱！",
+		"温热如鲜血的液体覆盖了你！",
+		"某种化学品的恶臭淹没了你，烟气渗入颅骨，随后化作陌生的芬芳！",
+		"十几根针轻而易举地刺入肌肉，为你注入未知的活力！",
+		"你感觉有冰冷的蠕虫状物体钻进皮下，朝太阳神经丛蠕动！",
 	)
 /mob/living/basic/fleshmind/mechiver/Initialize(mapload)
 	. = ..()
@@ -1408,8 +1408,8 @@
 	contained_mob = target_mob
 	target_mob.forceMove(src)
 
-	to_chat(target_mob, span_userdanger("[src] ensnares your limbs as it pulls you inside its compartment, metal tendrils sliding around you, squeezing tight."))
-	visible_message(span_danger("[src] consumes [target_mob]!"))
+	to_chat(target_mob, span_userdanger("[src]缠住你的四肢，将你拉入舱内，金属触须滑过你的身体并紧紧勒住。"))
+	visible_message(span_danger("[src]吞入了[target_mob]！"))
 	playsound(src, 'sound/effects/blob/blobattack.ogg', 70, 1)
 
 	addtimer(CALLBACK(src, PROC_REF(release_mob)), conversion_time)
@@ -1438,7 +1438,7 @@
 	if(ishuman(mob_to_convert))
 		mob_to_convert.AddComponent(/datum/component/human_corruption, incoming_controller = our_controller)
 		mob_to_convert.fully_heal(HEAL_ORGANS|HEAL_REFRESH_ORGANS|HEAL_BLOOD|HEAL_TRAUMAS|HEAL_WOUNDS)
-		mob_to_convert.heal_and_revive(0, span_danger("[mob_to_convert] jolts haphazardly as the machine rips them from the jaws of death!"))
+		mob_to_convert.heal_and_revive(0, span_danger("机器将[mob_to_convert]从死亡边缘拉回，身体随之无规律地抽搐！"))
 		contained_mob.forceMove(get_turf(src))
 		return
 
@@ -1479,8 +1479,8 @@
  * A nasty looking converted monkey and it's extremely pissed off. Basic mobs allow us to give the monkey AI controller. Yay!
  */
 /mob/living/basic/fleshmind/mauler_monkey
-	name = "Mauler"
-	desc = "A mutated abomination, it resembles a monkey."
+	name = "撕咬者"
+	desc = "一个像猴子般的变异怪物。"
 	icon_state = "mauler_monkey"
 	ai_controller = /datum/ai_controller/monkey
 	speed = 2 // We want it to be quite fast.
@@ -1488,7 +1488,7 @@
 	maxHealth = 90
 	attack_emote = list(
 		"OOK OOK OOK!!!",
-		"SEEK!",
+		"找！",
 		"OOOOOOOOOOK!!!",
 	)
 

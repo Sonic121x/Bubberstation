@@ -8,29 +8,29 @@
 		icon_state = "[icon_state][rand(1,random_variants)]"
 
 /obj/structure/flora/ocean/glowweed
-	name = "glow weed"
+	name = "发光草"
 	icon_state = "glowweed"
-	desc = "A plant with glowing bulbs at the end of it."
+	desc = "一种末端长着发光球茎的植物。"
 	random_variants = 3
 	light_color = LIGHT_COLOR_CYAN
 	light_range = 1.5
 
 /obj/structure/flora/ocean/seaweed
-	name = "sea weed"
+	name = "海草"
 	icon_state = "seaweed"
-	desc = "Just your regular seaweed."
+	desc = "就是普通的海草。"
 	random_variants = 5
 
 /obj/structure/flora/ocean/longseaweed
-	name ="sea weed"
+	name ="海草"
 	icon_state = "longseaweed"
-	desc = "Less so regular seaweed. This one is very long."
+	desc = "不太算普通海草。这一株非常长。"
 	random_variants = 4
 
 /obj/structure/flora/ocean/coral
-	name = "coral"
+	name = "珊瑚"
 	icon_state = "coral"
-	desc = "Beautiful coral."
+	desc = "美丽的珊瑚。"
 	random_variants = 3
 	density = TRUE
 
@@ -41,8 +41,8 @@
 #define SCRAP_METAL_YIELD_HIGH 20
 
 /obj/structure/flora/scrap
-	name = "scrap metal"
-	desc = "A huge chunk of metal, rusted and worn. Perhaps it can still be salvaged into something useful."
+	name = "废金属"
+	desc = "一大块金属，锈迹斑斑、磨损严重。也许还能回收成有用的东西。"
 	icon = 'modular_skyrat/modules/liquids/icons/obj/flora/scrap.dmi'
 	icon_state = "scrap"
 	anchored = FALSE
@@ -63,11 +63,11 @@
 
 	playsound(src, 'sound/items/tools/welder2.ogg', 50, TRUE)
 	if(first)
-		to_chat(user, span_notice("You start slicing the [src]..."))
+		to_chat(user, span_notice("你开始切割 [src]……"))
 	if(I.use_tool(src, user, 2 SECONDS))
 		welds_remaining--
 		if(welds_remaining <= 0)
-			to_chat(user, span_notice("You successfully salvage [src]."))
+			to_chat(user, span_notice("你成功拆解了 [src]。"))
 			new /obj/item/stack/sheet/iron(get_turf(src), rand(SCRAP_METAL_YIELD_LOW, SCRAP_METAL_YIELD_HIGH))
 			qdel(src)
 		else
@@ -81,7 +81,7 @@
 #undef SCRAP_METAL_YIELD_HIGH
 
 /obj/effect/spawner/liquids_spawner
-	name = "Liquids Spawner (Water, Waist-Deep)"
+	name = "液体生成器（水，齐腰深）"
 	icon = 'modular_skyrat/modules/liquids/icons/obj/effects/liquid.dmi'
 	icon_state = "spawner"
 	color = "#AAAAAA77"
@@ -97,23 +97,23 @@
 	T.add_liquid_list(reagent_list, FALSE, temp)
 
 /obj/effect/spawner/liquids_spawner/puddle
-	name = "Liquids Spawner (Water, Puddle)"
+	name = "液体生成器（水，水洼）"
 	reagent_list = list(/datum/reagent/water = ONE_LIQUIDS_HEIGHT)
 
 /obj/effect/spawner/liquids_spawner/ankles
-	name = "Liquids Spawner (Water, Ankle-Deep)"
+	name = "液体生成器（水，齐踝深）"
 	reagent_list = list(/datum/reagent/water = ONE_LIQUIDS_HEIGHT*LIQUID_ANKLES_LEVEL_HEIGHT)
 
 /obj/effect/spawner/liquids_spawner/shoulders
-	name = "Liquids Spawner (Water, Shoulder-Deep)"
+	name = "液体生成器（水，齐肩深）"
 	reagent_list = list(/datum/reagent/water = ONE_LIQUIDS_HEIGHT*LIQUID_SHOULDERS_LEVEL_HEIGHT)
 
 /obj/effect/spawner/liquids_spawner/fulltile
-	name = "Liquids Spawner (Water, Fulltile)"
+	name = "液体生成器（水，满格）"
 	reagent_list = list(/datum/reagent/water = ONE_LIQUIDS_HEIGHT*LIQUID_FULLTILE_LEVEL_HEIGHT)
 
 /obj/effect/spawner/ocean_curio
-	name = "Ocean Curio Spawner"
+	name = "海洋杂物生成器"
 	var/default_1 = /obj/structure/flora/ocean/seaweed
 	var/default_2 = /obj/structure/flora/ocean/longseaweed
 	var/allowed_area_types = list(/area/ocean = TRUE, /area/ocean/generated = TRUE)

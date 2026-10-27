@@ -1,12 +1,12 @@
 #define PANCAKE_MAX_STACK 10
 
 /obj/item/food/pancakes
-	name = "pancake"
-	desc = "A fluffy pancake. The softer, superior relative of the waffle."
+	name = "煎饼"
+	desc = "一块松软的煎饼。华夫饼更柔软、更优越的亲戚。"
 	icon_state = "pancakes_1"
 	inhand_icon_state = null
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("pancakes" = 1)
+	tastes = list("煎饼" = 1)
 	foodtypes = GRAIN | SUGAR | BREAKFAST
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_CHEAP
@@ -15,11 +15,11 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/pancakes/raw
-	name = "goopy pancake"
-	desc = "A barely cooked mess that some may mistake for a pancake. It longs for the griddle."
+	name = "黏糊煎饼"
+	desc = "一团几乎没煮熟的糊状物，有些人可能会误以为是煎饼。它渴望着铁板。"
 	icon_state = "rawpancakes_1"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("milky batter" = 1)
+	tastes = list("奶香面糊" = 1)
 	stack_name = "rawpancakes"
 	crafting_complexity = FOOD_COMPLEXITY_1
 	foodtypes = GRAIN | SUGAR
@@ -39,48 +39,48 @@
 	var/newresult
 	if(istype(tool, /obj/item/food/grown/berries))
 		newresult = /obj/item/food/pancakes/blueberry
-		name = "raw blueberry pancake"
+		name = "生蓝莓煎饼"
 		icon_state = "rawbbpancakes_1"
 		stack_name = "rawbbpancakes"
 	else if(istype(tool, /obj/item/food/chocolatebar))
 		newresult = /obj/item/food/pancakes/chocolatechip
-		name = "raw chocolate chip pancake"
+		name = "生巧克力碎煎饼"
 		icon_state = "rawccpancakes_1"
 		stack_name = "rawccpancakes"
 	if(!newresult)
 		return ..()
 
 	qdel(tool)
-	to_chat(user, span_notice("You add [tool] to [src]."))
+	to_chat(user, span_notice("你把 [tool] 加进了 [src]。"))
 	AddComponent(/datum/component/grillable, cook_result = newresult)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/food/pancakes/raw/examine(mob/user)
 	. = ..()
 	if(name == initial(name))
-		. += span_notice("You can modify the pancake by adding <b>blueberries</b> or <b>chocolate</b> before finishing the griddle.")
+		. += span_notice("你可以在铁板上完成烹饪之前加入<b>蓝莓</b>或<b>巧克力</b>来改良煎饼。")
 
 /obj/item/food/pancakes/blueberry
-	name = "blueberry pancake"
-	desc = "A fluffy and delicious blueberry pancake."
+	name = "蓝莓煎饼"
+	desc = "一块松软美味的蓝莓煎饼。"
 	icon_state = "bbpancakes_1"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
 		/datum/reagent/consumable/nutriment/vitamin = 5,
 	)
-	tastes = list("pancakes" = 1, "blueberries" = 1)
+	tastes = list("煎饼" = 1, "蓝莓" = 1)
 	stack_name = "bbpancakes"
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pancakes/chocolatechip
-	name = "chocolate chip pancake"
-	desc = "A fluffy and delicious chocolate chip pancake."
+	name = "巧克力碎煎饼"
+	desc = "一块松软美味的巧克力碎煎饼。"
 	icon_state = "ccpancakes_1"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
 		/datum/reagent/consumable/nutriment/vitamin = 5,
 	)
-	tastes = list("pancakes" = 1, "chocolate" = 1)
+	tastes = list("煎饼" = 1, "巧克力" = 1)
 	stack_name = "ccpancakes"
 	crafting_complexity = FOOD_COMPLEXITY_3
 
@@ -89,7 +89,7 @@
 	update_appearance()
 
 /obj/item/food/pancakes/update_name()
-	name = contents.len ? "stack of pancakes" : initial(name)
+	name = contents.len ? "一叠煎饼" : initial(name)
 	return ..()
 
 /obj/item/food/pancakes/update_icon(updates = ALL)
@@ -110,30 +110,30 @@
 		if(0)
 			desc = initial(desc)
 		if(1 to 2)
-			desc = "A stack of fluffy pancakes."
+			desc = "一叠松软的煎饼。"
 		if(3 to 6)
-			desc = "A fat stack of fluffy pancakes!"
+			desc = "厚厚一叠松软的煎饼！"
 		if(7 to 9)
-			desc = "A grand tower of fluffy, delicious pancakes!"
+			desc = "一座松软美味的煎饼高塔！"
 		if(PANCAKE_MAX_STACK to INFINITY)
-			desc = "A massive towering spire of fluffy, delicious pancakes. It looks like it could tumble over!"
+			desc = "一座巨大耸立的松软美味煎饼尖塔。看起来随时会塌下来！"
 	. = ..()
 	if (pancakeCount)
 		for(var/obj/item/food/pancakes/ING in contents)
 			ingredients_listed += "[ING.name], "
-		. += "It contains [contents.len?"[ingredients_listed]":"no ingredient, "]on top of a [initial(name)]."
+		. += "它的[initial(name)]上面还放着 [contents.len?"[ingredients_listed]":"没有配料，"]。"
 
 /obj/item/food/pancakes/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/food/pancakes))
 		var/obj/item/food/pancakes/pancake = tool
 		if((contents.len >= PANCAKE_MAX_STACK) || ((pancake.contents.len + contents.len) > PANCAKE_MAX_STACK))
-			to_chat(user, span_warning("You can't add that many pancakes to [src]!"))
+			to_chat(user, span_warning("你不能往 [src] 里加这么多煎饼！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(pancake, src))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You add the [pancake] to the [src]."))
+		to_chat(user, span_notice("你把 [pancake] 加到了 [src] 上。"))
 		pancake.name = initial(pancake.name)
 		contents += pancake
 		update_snack_overlays(pancake)

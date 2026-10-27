@@ -1,8 +1,8 @@
 // .310 Strilka (Sakhno Rifle)
 
 /obj/item/ammo_casing/strilka310
-	name = ".310 Strilka bullet casing"
-	desc = "A .310 Strilka bullet casing. Casing is a bit of a fib; there is no case, it's just a block of red powder."
+	name = ".310 斯特里尔卡子弹壳"
+	desc = "一个 .310 斯特里尔卡子弹壳。说是弹壳其实有点牵强；它根本没有壳，只有一块红色火药。"
 	icon_state = "310-casing"
 	caliber = CALIBER_STRILKA310
 	projectile_type = /obj/projectile/bullet/strilka310
@@ -14,30 +14,30 @@
 	AddElement(/datum/element/caseless)
 
 /obj/item/ammo_casing/strilka310/surplus
-	name = ".310 Strilka surplus bullet casing"
-	desc = parent_type::desc + " Damp red powder at that."
+	name = ".310 斯特里尔卡军剩弹壳"
+	desc = parent_type::desc + " 而且还是受潮的红色火药。"
 	projectile_type = /obj/projectile/bullet/strilka310/surplus
 
 /obj/item/ammo_casing/strilka310/enchanted
 	projectile_type = /obj/projectile/bullet/strilka310/enchanted
 
 /obj/item/ammo_casing/strilka310/phasic
-	name = ".310 Strilka phasic bullet casing"
-	desc = "A phasic .310 Strilka bullet casing."
+	name = ".310 斯特里尔卡相位子弹壳"
+	desc = "一个相位 .310 斯特里尔卡子弹壳。"
 	projectile_type = /obj/projectile/bullet/strilka310/phasic
 
 // .223 (M-90gl Carbine)
 
 /obj/item/ammo_casing/a223
-	name = ".223 bullet casing"
-	desc = "A .223 bullet casing."
+	name = ".223 子弹壳"
+	desc = "一个 .223 子弹壳。"
 	icon_state = "223-casing"
 	caliber = CALIBER_A223
 	projectile_type = /obj/projectile/bullet/a223
 
 /obj/item/ammo_casing/a223/phasic
-	name = ".223 phasic bullet casing"
-	desc = "A .223 phasic bullet casing."
+	name = ".223 相位子弹壳"
+	desc = "一个 .223 相位子弹壳。"
 	projectile_type = /obj/projectile/bullet/a223/phasic
 
 /obj/item/ammo_casing/a223/weak
@@ -46,40 +46,40 @@
 // 40mm (Grenade Launcher)
 
 /obj/item/ammo_casing/a40mm
-	name = "40mm HE shell"
-	desc = "A cased high explosive grenade that can only be activated once fired out of a ballistic grenade launcher."
+	name = "40mm 高爆弹"
+	desc = "一枚带壳的高爆榴弹，只有从弹道榴弹发射器中射出时才会激活。"
 	caliber = CALIBER_40MM
 	icon_state = "40mmHE"
 	projectile_type = /obj/projectile/bullet/a40mm
 	newtonian_force = 1.25
 
 /obj/item/ammo_casing/a40mm/rubber
-	name = "40mm rubber shell"
-	desc = "A cased rubber puck. The big brother of the beanbag slug. Made for stopping someone dead in their tracks."
+	name = "40mm 橡胶弹"
+	desc = "一枚带壳的橡胶弹丸。豆袋弹的老大哥。专门用来让人当场停下脚步。"
 	projectile_type = /obj/projectile/bullet/shotgun_beanbag/a40mm
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 2)
 
 /obj/item/ammo_casing/a40mm/flak
-	name = "40mm titanium flak shell"
-	desc = "An oversized shotgun case. The big brother of buckshot, this shell launches dense titanium shells for immense damage to armor and flesh alike."
+	name = "40mm 钛合金破片弹"
+	desc = "一枚超大号霰弹。鹿弹的老大哥，会发射致密的钛合金弹丸，对装甲和血肉都能造成巨大伤害。"
 	pellets = 8
 	variance = 10
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot/milspec/flak
 
 /obj/item/ammo_casing/a40mm/incendiary
-	name = "40mm incendiary shell"
-	desc = "A cased incendiary explosive grenade that can only be activated once fired out of a ballistic grenade launcher. Creates a mighty conflagration. A favourite of inquisitors."
+	name = "40mm 燃烧弹"
+	desc = "一枚带壳的燃烧爆炸榴弹，只有从弹道榴弹发射器中射出时才会激活。会引发熊熊大火。审判官的最爱。"
 	projectile_type = /obj/projectile/bullet/a40mm/incendiary
 
 /obj/item/ammo_casing/a40mm/tear_gas
-	name = "40mm tear gas shell"
-	desc = "A cased tear gas grenade that can only be activated once fired out of a ballistic grenade launcher. Spreads a large amount of tear gas into the air upon impact. \
-		Great for suppressing riots, protests and birthday parties!"
+	name = "40mm 催泪弹"
+	desc = "一枚带壳的催泪榴弹，只有从弹道榴弹发射器中射出时才会激活。命中后会在空气中散布大量催泪瓦斯。\
+		非常适合镇压暴乱、抗议和生日派对！"
 	projectile_type = /obj/projectile/bullet/a40mm/tear_gas
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/plasma = SMALL_MATERIAL_AMOUNT * 2)
 
 /obj/item/disk/design_disk/tear_gas_40mm
-	name = "40mm riot suppression grenade shells design disk"
+	name = "40mm 防暴榴弹设计盘"
 
 /obj/item/disk/design_disk/liberator/Initialize(mapload)
 	. = ..()
@@ -89,8 +89,8 @@
 // Rebar Bolts
 
 /obj/item/ammo_casing/rebar
-	name = "Sharpened Iron Rod"
-	desc = "A Sharpened Iron rod. It's Pointy!"
+	name = "磨尖的铁棍"
+	desc = "一根磨尖的铁棍。很尖！"
 	caliber = CALIBER_REBAR
 	icon_state = "rod_sharp"
 	base_icon_state = "rod_sharp"
@@ -107,8 +107,8 @@
 	icon_state = "[base_icon_state]"
 
 /obj/item/ammo_casing/rebar/syndie
-	name = "Jagged Iron Rod"
-	desc = "An Iron rod, with notches cut into it. You really don't want this stuck in you."
+	name = "带锯齿的铁棍"
+	desc = "一根切出缺口的铁棍。你绝对不想被这东西扎进身体里。"
 	caliber = CALIBER_REBAR
 	icon_state = "rod_jagged"
 	base_icon_state = "rod_jagged"
@@ -117,24 +117,24 @@
 
 
 /obj/item/ammo_casing/rebar/zaukerite
-	name = "zaukerite sliver"
-	desc = "A sliver of a zaukerite crystal. Due to its irregular, jagged edges, removal of an embedded zaukerite sliver should only be done by trained surgeons."
+	name = "灼蚀晶体碎片"
+	desc = "一片灼蚀晶体碎片。由于其边缘不规则且带锯齿，取出嵌入体内的灼蚀晶体碎片只能由受过训练的外科医生进行。"
 	caliber = CALIBER_REBAR
 	icon_state = "rod_zaukerite"
 	base_icon_state = "rod_zaukerite"
 	projectile_type = /obj/projectile/bullet/rebar/zaukerite
 
 /obj/item/ammo_casing/rebar/hydrogen
-	name = "metallic hydrogen bolt"
-	desc = "An ultra-sharp rod made from pure metallic hydrogen. Armor may as well not exist."
+	name = "金属氢箭弹"
+	desc = "一根由纯金属氢制成的超锋利杆状弹。装甲简直形同虚设。"
 	caliber = CALIBER_REBAR
 	icon_state = "rod_hydrogen"
 	base_icon_state = "rod_hydrogen"
 	projectile_type = /obj/projectile/bullet/rebar/hydrogen
 
 /obj/item/ammo_casing/rebar/healium
-	name = "healium crystal bolt"
-	desc = "Who needs a syringe gun, anyway?"
+	name = "愈合气晶体箭弹"
+	desc = "说到底，谁还需要注射枪呢？"
 	caliber = CALIBER_REBAR
 	icon_state = "rod_healium"
 	base_icon_state =  "rod_healium"
@@ -202,16 +202,16 @@
 	can_sleep = TRUE
 
 /obj/item/ammo_casing/rebar/supermatter
-	name = "supermatter bolt"
-	desc = "Wait, how is the bow capable of firing this without dusting?"
+	name = "超物质箭弹"
+	desc = "等等，这把弓是怎么把它射出去还没把自己化为灰烬的？"
 	caliber = CALIBER_REBAR
 	icon_state = "rod_supermatter"
 	base_icon_state = "rod_supermatter"
 	projectile_type = /obj/projectile/bullet/rebar/supermatter
 
 /obj/item/ammo_casing/rebar/paperball
-	name = "paper ball"
-	desc = "Doink!"
+	name = "纸团"
+	desc = "咚！"
 	caliber = CALIBER_REBAR
 	icon_state = "paperball"
 	base_icon_state = "paperball"

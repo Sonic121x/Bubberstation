@@ -25,16 +25,16 @@
 			sleep(delay * 0.2)
 			delay -= delay * 0.2
 			beep_volume += 5
-#define PULL_SUIT "Pull it off"
-#define IGNORE_SUIT "Don't pull it off"
-#define DUMP_CONTENTS "Dump the storage box"
+#define PULL_SUIT "强行脱下"
+#define IGNORE_SUIT "不要脱下"
+#define DUMP_CONTENTS "倒出储物箱物品"
 /obj/item/mod/module/dna_lock/reinforced/proc/explode(mob/user, mob/owner)
 	if(!dna_check(user))
 		macro = new/obj/item/implant/explosive(src)
 		macro.modsuit_explosion()
 		owner.spasm_animation(600)
 	else
-		to_chat(user, "You feel safe knowing your modsuit did not blow up in your face.")
+		to_chat(user, "知道自己的MOD外骨骼没有在脸前爆炸，你感到安心。")
 
 /obj/item/mod/control/pre_equipped/contractor/doStrip(mob/living/carbon/stripper, mob/owner)
 	if(!istype(stripper, /mob/living/carbon))
@@ -43,8 +43,8 @@
 	var/alert
 	if(dna_lock)
 		alert = tgui_alert(stripper,
-			"As you go to pull the modsuit off of [owner], you spot a what appears to be a failsafe. \n If you pull any further, it looks like a fuse for a bomb will be pulled. Continue???",
-			"Are you REALLY SURE?",
+			"你试图从[owner]身上脱下MOD外骨骼时，发现了一个疑似防拆装置。\n继续拉扯似乎会扯动炸弹引信。还要继续吗？？？",
+			"你真的确定吗？",
 			list(PULL_SUIT, IGNORE_SUIT, DUMP_CONTENTS), 10 SECONDS, TRUE)
 
 
@@ -65,8 +65,8 @@
 	var/alert
 	if(dna_lock)
 		alert = tgui_alert(stripper,
-			"As you go to pull the modsuit off of [owner], you spot a what appears to be a failsafe. \n If you pull any further, it looks like a fuse for a bomb will be pulled. Continue???",
-			"Are you REALLY SURE?",
+			"你试图从[owner]身上脱下MOD外骨骼时，发现了一个疑似防拆装置。\n继续拉扯似乎会扯动炸弹引信。还要继续吗？？？",
+			"你真的确定吗？",
 			list(PULL_SUIT, IGNORE_SUIT, DUMP_CONTENTS), 10 SECONDS, TRUE)
 
 

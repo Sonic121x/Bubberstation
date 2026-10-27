@@ -23,8 +23,8 @@
 		return
 	title = reject_bad_text(trim(html_encode(_title), 30))
 
-/datum/book_info/proc/get_title(default="N/A") //Loads in an html decoded version of the title. Only use this for tgui menus, absolutely nothing else.
-	return html_decode(title) || "N/A"
+/datum/book_info/proc/get_title(default="无") //Loads in an html decoded version of the title. Only use this for tgui menus, absolutely nothing else.
+	return html_decode(title) || "无"
 
 /datum/book_info/proc/set_author(_author, trusted = FALSE)
 	if(trusted)
@@ -32,8 +32,8 @@
 		return
 	author = trim(html_encode(_author), MAX_NAME_LEN)
 
-/datum/book_info/proc/get_author(default="N/A")
-	return html_decode(author) || "N/A"
+/datum/book_info/proc/get_author(default="无")
+	return html_decode(author) || "无"
 
 /datum/book_info/proc/set_content(_content, trusted = FALSE)
 	if(trusted)
@@ -53,8 +53,8 @@
 	// We still trim to a more lenient length to avoid abuse.
 	content = trim(html_encode(raw_content), MAX_BOOK_LENGTH)
 
-/datum/book_info/proc/get_content(default="N/A")
-	return html_decode(content) || "N/A"
+/datum/book_info/proc/get_content(default="无")
+	return html_decode(content) || "无"
 
 ///Returns a copy of the book_info datum
 /datum/book_info/proc/return_copy()

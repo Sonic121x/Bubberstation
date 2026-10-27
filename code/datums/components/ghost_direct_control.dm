@@ -34,7 +34,7 @@
 		return COMPONENT_INCOMPATIBLE
 
 	src.ban_type = ban_type
-	src.assumed_control_message = assumed_control_message || "You are [parent]!"
+	src.assumed_control_message = assumed_control_message || "你现在是[parent]！"
 	src.extra_control_checks = extra_control_checks
 	src.after_assumed_control = after_assumed_control
 	src.joinable_mobs_title = joinable_mobs_title
@@ -71,7 +71,7 @@
 	var/mob/living/our_mob = parent
 	if (our_mob.stat == DEAD || our_mob.key || awaiting_ghosts)
 		return
-	examine_text += span_boldnotice("You could take control of this mob by clicking on it.")
+	examine_text += span_boldnotice("点击这个生物即可控制它。")
 
 /// Send out a request for a brain
 /datum/component/ghost_direct_control/proc/request_ghost_control(poll_question, role_name, poll_length, poll_ignore_key, poll_announce_chosen, poll_chat_border_icon)
@@ -103,47 +103,47 @@
 	if (!hopeful_ghost.client)
 		return
 	if (!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER))
-		to_chat(hopeful_ghost, span_warning("Ghost roles have been temporarily disabled!"))
+		to_chat(hopeful_ghost, span_warning("幽灵角色暂时已被禁用！"))
 		return
 	if (awaiting_ghosts)
-		to_chat(hopeful_ghost, span_warning("Ghost candidate selection currently in progress!"))
+		to_chat(hopeful_ghost, span_warning("正在挑选幽灵候选人！"))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	if (!SSticker.HasRoundStarted())
-		to_chat(hopeful_ghost, span_warning("You cannot assume control of this until after the round has started!"))
+		to_chat(hopeful_ghost, span_warning("回合开始后才能控制此角色！"))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	INVOKE_ASYNC(src, PROC_REF(attempt_possession), our_mob, hopeful_ghost)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /// We got far enough to establish that this mob is a valid target, let's try to posssess it
 /datum/component/ghost_direct_control/proc/attempt_possession(mob/our_mob, mob/dead/observer/hopeful_ghost)
-	var/ghost_asked = tgui_alert(usr, "Become [our_mob]?", "Are you sure?", list("Yes", "No"))
-	if (ghost_asked != "Yes" || QDELETED(our_mob))
+	var/ghost_asked = tgui_alert(usr, "成为[our_mob]？", "确定吗？", list("是", "否"))
+	if (ghost_asked != "是" || QDELETED(our_mob))
 		return
 	assume_direct_control(hopeful_ghost)
 
 /// Grant possession of our mob, component is now no longer required
 /datum/component/ghost_direct_control/proc/assume_direct_control(mob/harbinger)
 	if (QDELETED(src))
-		to_chat(harbinger, span_warning("Offer to possess creature has expired!"))
+		to_chat(harbinger, span_warning("附身此生物的邀请已过期！"))
 		return
 	if (is_banned_from(harbinger.ckey, list(ban_type)))
-		to_chat(harbinger, span_warning("You are banned from playing as this role!"))
+		to_chat(harbinger, span_warning("你已被禁止扮演此角色！"))
 		return
 	if (!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER))
-		to_chat(harbinger, span_warning("Ghost roles have been temporarily disabled!"))
+		to_chat(harbinger, span_warning("幽灵角色暂时已被禁用！"))
 		return
 	var/mob/living/new_body = parent
 	if (new_body.stat == DEAD)
-		to_chat(harbinger, span_warning("This body has passed away, it is of no use!"))
+		to_chat(harbinger, span_warning("这具身体已经死亡，无法使用了！"))
 		return
 	if (new_body.key)
-		to_chat(harbinger, span_warning("[parent] has already become sapient!"))
+		to_chat(harbinger, span_warning("[parent]已经拥有自主意识了！"))
 		qdel(src)
 		return
 	if (extra_control_checks && !extra_control_checks.Invoke(harbinger))
 		return
 
-	harbinger.log_message("took control of [new_body].", LOG_GAME)
+	harbinger.log_message("接管了[new_body]。", LOG_GAME)
 	// doesn't transfer mind because that transfers antag datum as well
 	new_body.PossessByPlayer(harbinger.ckey)
 

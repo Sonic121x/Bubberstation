@@ -1,6 +1,6 @@
 /// Subsystem for managing all POIs.
 SUBSYSTEM_DEF(points_of_interest)
-	name = "Points of Interest"
+	name = "关注目标"
 
 	ss_flags = SS_NO_FIRE | SS_NO_INIT
 
@@ -117,9 +117,9 @@ SUBSYSTEM_DEF(points_of_interest)
 		// Add the ghost/dead tag to the end of dead mob POIs.
 		if(append_dead_role && target_mob.stat == DEAD)
 			if(isobserver(target_mob))
-				name += " \[ghost\]"
+				name += " \[幽灵\]"
 			else
-				name += " \[dead\]"
+				name += " \[死亡\]"
 
 		pois[name] = target_mob
 

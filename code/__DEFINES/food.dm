@@ -77,29 +77,29 @@ DEFINE_BITFIELD(foodtypes, list(
 
 /// IC meaning (more or less) for food flags
 #define FOOD_FLAGS_IC list( \
-	"Meat", \
-	"Vegetables", \
-	"Raw food", \
-	"Junk food", \
-	"Grain", \
-	"Fruits", \
-	"Dairy products", \
-	"Fried food", \
-	"Alcohol", \
-	"Sugary food", \
-	"Gross food", \
-	"Toxic food", \
-	"Pineapples", \
-	"Breakfast food", \
-	"Clothing", \
-	"Nuts", \
-	"Seafood", \
-	"Oranges", \
-	"Bugs", \
-	"Gore", \
-	"Rocks", \
-	"Eggs", \
-	"Bloody", /* SKYRAT EDIT - Hemophage Food */ \
+	"肉类", \
+	"蔬菜", \
+	"生食", \
+	"垃圾食品", \
+	"谷物", \
+	"水果", \
+	"乳制品", \
+	"油炸食品", \
+	"酒精", \
+	"甜食", \
+	"恶心的食物", \
+	"有毒食物", \
+	"菠萝", \
+	"早餐食品", \
+	"衣物", \
+	"坚果", \
+	"海鲜", \
+	"橙子", \
+	"虫子", \
+	"血肉", \
+	"岩石", \
+	"蛋类", \
+	"血食", /* SKYRAT EDIT - Hemophage Food */ \
 )
 
 /// Food types assigned to all podperson organs
@@ -131,13 +131,13 @@ DEFINE_BITFIELD(foodtypes, list(
 
 /// Labels for food quality
 GLOBAL_ALIST_INIT(food_quality_description, alist(
-	FOOD_QUALITY_NORMAL = "okay",
-	FOOD_QUALITY_NICE = "nice",
-	FOOD_QUALITY_GOOD = "good",
-	FOOD_QUALITY_VERYGOOD = "very good",
-	FOOD_QUALITY_FANTASTIC = "fantastic",
-	FOOD_QUALITY_AMAZING = "amazing",
-	FOOD_QUALITY_TOP = "divine",
+	FOOD_QUALITY_NORMAL = "尚可",
+	FOOD_QUALITY_NICE = "不错",
+	FOOD_QUALITY_GOOD = "美味",
+	FOOD_QUALITY_VERYGOOD = "十分美味",
+	FOOD_QUALITY_FANTASTIC = "绝妙",
+	FOOD_QUALITY_AMAZING = "令人惊艳",
+	FOOD_QUALITY_TOP = "神级美味",
 ))
 
 /// Weighted lists of crafted food buffs randomly given according to crafting_complexity unless the food has a specific buff

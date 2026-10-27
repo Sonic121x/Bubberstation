@@ -5,8 +5,8 @@
 	icon_state = "manifold4w-3"
 	base_icon_state = "manifold4w"
 
-	name = "4-way pipe manifold"
-	desc = "A manifold composed of heat-exchanging pipes."
+	name = "四通管道歧管"
+	desc = "由热交换管道构成的歧管。"
 
 	initialize_directions = ALL_CARDINALS
 

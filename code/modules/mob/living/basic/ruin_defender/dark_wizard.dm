@@ -1,7 +1,7 @@
 /// Wizard-looking guy who basically just shoots you
 /mob/living/basic/dark_wizard
-	name = "Dark Wizard"
-	desc = "Killing amateurs since the dawn of times."
+	name = "黑暗巫师"
+	desc = "自远古以来就专杀菜鸟。"
 	icon = 'icons/mob/simple/simple_human.dmi'
 	icon_state = "dark_wizard"
 	icon_living = "dark_wizard"
@@ -11,10 +11,10 @@
 	melee_damage_upper = 5
 	obj_damage = 20
 	basic_mob_flags = DEL_ON_DEATH
-	attack_verb_continuous = "staves"
-	attack_verb_simple = "stave"
+	attack_verb_continuous = "用长杖击打"
+	attack_verb_simple = "用长杖击打"
 	combat_mode = TRUE
-	speak_emote = list("chants")
+	speak_emote = list("吟唱")
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	sentience_type = SENTIENCE_HUMANOID
@@ -66,7 +66,7 @@
 
 /// I don't know why an earth bolt freezes you but I guess it does
 /obj/projectile/temp/earth_bolt
-	name = "earth bolt"
+	name = "大地飞矢"
 	icon_state = "declone"
 	damage = 4
 	damage_type = BURN

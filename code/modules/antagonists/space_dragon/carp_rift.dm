@@ -6,8 +6,8 @@
 #define CHARGE_COMPLETED 2
 
 /datum/action/innate/summon_rift
-	name = "Summon Rift"
-	desc = "Summon a rift to bring forth a horde of space carp."
+	name = "召唤裂隙"
+	desc = "召唤一道裂隙，召来一群太空鲤鱼。"
 	background_icon_state = "bg_default"
 	overlay_icon_state = "bg_default_border"
 	button_icon = 'icons/mob/actions/actions_space_dragon.dmi'
@@ -21,18 +21,18 @@
 	for(var/obj/structure/carp_rift/rift as anything in dragon.rift_list)
 		var/area/used_location = get_area(rift)
 		if(used_location == rift_location)
-			owner.balloon_alert(owner, "already summoned a rift here!")
+			owner.balloon_alert(owner, "这里已经召唤过裂隙了！")
 			return
 
 	if(!(rift_location in dragon.chosen_rift_areas))
-		owner.balloon_alert(owner, "can't summon a rift here! check your objectives!")
+		owner.balloon_alert(owner, "无法在这里召唤裂隙！请查看你的目标！")
 		return
 
 	var/turf/rift_spawn_turf = get_turf(dragon)
 	if(isopenspaceturf(rift_spawn_turf))
-		owner.balloon_alert(dragon, "needs stable ground!")
+		owner.balloon_alert(dragon, "需要稳固的地面！")
 		return
-	owner.balloon_alert(owner, "opening rift...")
+	owner.balloon_alert(owner, "正在开启裂隙……")
 	if(!do_after(owner, 10 SECONDS, target = owner))
 		return
 	if(locate(/obj/structure/carp_rift) in owner.loc)
@@ -44,11 +44,11 @@
 	dragon.riftTimer = -1
 	new_rift.dragon = dragon
 	dragon.rift_list += new_rift
-	to_chat(owner, span_boldwarning("The rift has been summoned. Prevent the crew from destroying it at all costs!"))
+	to_chat(owner, span_boldwarning("裂隙已被召唤。不惜一切代价阻止船员摧毁它！"))
 	notify_ghosts(
-		"The Space Dragon has opened a rift!",
+		"太空龙开启了一道裂隙！",
 		source = new_rift,
-		header = "Carp Rift Opened",
+		header = "鲤鱼裂隙已开启",
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
 	)
 	ASSERT(dragon.rift_ability == src) // Badmin protection.
@@ -56,8 +56,8 @@
 
 /// Points towards a chosen location in which a rift can be placed
 /datum/action/innate/locate_rift
-	name = "Locate Rift"
-	desc = "Find out where a potential rift location is."
+	name = "定位裂隙"
+	desc = "查看一处可能的裂隙位置在哪里。"
 	background_icon_state = "bg_default"
 	overlay_icon_state = "bg_default_border"
 	button_icon = 'icons/mob/actions/actions_space_dragon.dmi'
@@ -69,34 +69,34 @@
 	if(!dragon_mob)
 		return
 	if(!is_station_level(dragon_mob.z))
-		dragon_mob.balloon_alert(dragon_mob, "too far offstation!")
+		dragon_mob.balloon_alert(dragon_mob, "离空间站太远了！")
 		return
 
-	var/area/chosen_area = tgui_input_list(owner, "Select the area you'd like to be pointed towards.", "Locate Rift", dragon_datum.chosen_rift_areas)
+	var/area/chosen_area = tgui_input_list(owner, "选择你想被指向的区域。", "定位裂隙", dragon_datum.chosen_rift_areas)
 	if(!chosen_area)
 		return
 	if(chosen_area == get_area(dragon_mob))
-		dragon_mob.balloon_alert(dragon_mob, "already here!")
+		dragon_mob.balloon_alert(dragon_mob, "已经在这里了！")
 		return
 
 	var/turf/chosen_turf = pick(get_area_turfs(chosen_area))
 
 	var/message = ""
 	if(chosen_turf.z != dragon_mob.z)
-		message = "[chosen_turf.z > dragon_mob.z ? "above" : "below"] you, "
+		message = "在你[chosen_turf.z > dragon_mob.z ? "上方" : "下方"]，"
 	else
 		switch(get_dist(dragon_mob, chosen_turf)) // Exact same numbers as the heretic heart tracker
 			if(0 to 15)
-				message = "very near, "
+				message = "非常近，"
 			if(16 to 31)
-				message = "near, "
+				message = "很近，"
 			if(32 to 127)
-				message = "far, "
+				message = "很远，"
 			else
-				message = "very far, "
+				message = "非常远，"
 
 	message += dir2text(get_dir(dragon_mob, chosen_turf))
-	message += "!"
+	message += "！"
 
 	dragon_mob.balloon_alert(dragon_mob, message)
 
@@ -110,8 +110,8 @@
  * Once it is fully charged, it becomes indestructible, and intermitently spawns non-sentient carp.  It is still destroyed if Space Dragon dies.
  */
 /obj/structure/carp_rift
-	name = "carp rift"
-	desc = "A rift akin to the ones space carp use to travel long distances."
+	name = "鲤鱼裂隙"
+	desc = "一道裂隙，与太空鲤鱼用于长途旅行的那种相似。"
 	armor_type = /datum/armor/structure_carp_rift
 	max_integrity = 300
 	icon = 'icons/obj/anomaly.dmi'
@@ -185,12 +185,12 @@
 /obj/structure/carp_rift/examine(mob/user)
 	. = ..()
 	if(time_charged < max_charge)
-		. += span_notice("It seems to be [(time_charged / max_charge) * 100]% charged.")
+		. += span_notice("它似乎已充能 [(time_charged / max_charge) * 100]%。")
 	else
-		. += span_warning("This one is fully charged. In this state, it is poised to transport a much larger amount of carp than normal.")
+		. += span_warning("这一道已完全充能。在这种状态下，它能运送远超平常数量的鲤鱼。")
 
 	if(isobserver(user))
-		. += span_notice("It has [carp_stored] carp available to spawn as.")
+		. += span_notice("它还有 [carp_stored] 个可化身鲤鱼的名额。")
 
 /obj/structure/carp_rift/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	playsound(src, 'sound/effects/magic/lightningshock.ogg', 50, TRUE)
@@ -199,7 +199,7 @@
 	STOP_PROCESSING(SSobj, src)
 	if(charge_state != CHARGE_COMPLETED)
 		if(dragon)
-			to_chat(dragon.owner.current, span_boldwarning("A rift has been destroyed! You have failed, and find yourself weakened."))
+			to_chat(dragon.owner.current, span_boldwarning("一道裂隙被摧毁了！你已失败，并感到自己变得虚弱。"))
 			dragon.destroy_rifts()
 	dragon = null
 	return ..()
@@ -247,9 +247,9 @@
 			set_light_color(LIGHT_COLOR_PURPLE)
 			update_light()
 		notify_ghosts(
-			"The carp rift can summon an additional carp!",
+			"鲤鱼裂隙可以额外召唤一条鲤鱼！",
 			source = src,
-			header = "Carp Spawn Available",
+			header = "可化身鲤鱼名额",
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		)
 		last_carp_inc -= carp_interval
@@ -258,7 +258,7 @@
 	if(time_charged >= max_charge)
 		charge_state = CHARGE_COMPLETED
 		var/area/location = get_area(src)
-		priority_announce("Spatial object has reached peak energy charge in [initial(location.name)], please stand-by.", "[command_name()] Wildlife Observations", has_important_message = TRUE)
+		priority_announce("位于[initial(location.name)]的空间物体已达到能量充能峰值，请待命。", "[command_name()] 野生动物观测", has_important_message = TRUE)
 		atom_integrity = INFINITY
 		icon_state = "carp_rift_charged"
 		set_light_color(LIGHT_COLOR_DIM_YELLOW)
@@ -283,7 +283,7 @@
 	if(charge_state < CHARGE_FINALWARNING && time_charged >= (max_charge * 0.5))
 		charge_state = CHARGE_FINALWARNING
 		var/area/A = get_area(src)
-		priority_announce("A rift is causing an unnaturally large energy flux in [initial(A.name)]. Stop it at all costs!", "[command_name()] Wildlife Observations", ANNOUNCER_SPANOMALIES)
+		priority_announce("一道裂隙正在[initial(A.name)]引发异常巨大的能量通量。不惜一切代价阻止它！", "[command_name()] 野生动物观测", ANNOUNCER_SPANOMALIES)
 
 /**
  * Used to create carp controlled by ghosts when the option is available.
@@ -300,14 +300,14 @@
 	var/is_listed = FALSE
 	if (user.ckey in ckey_list)
 		if(carp_stored == 1)
-			to_chat(user, span_warning("You've already become a carp using this rift! Either wait for a backlog of carp spawns or until the next rift!"))
+			to_chat(user, span_warning("你已经通过这道裂隙变成过鲤鱼了！要么等待鲤鱼名额积攒，要么等下一道裂隙！"))
 			return FALSE
 		is_listed = TRUE
-	var/carp_ask = tgui_alert(user, "Become a carp?", "Carp Rift", list("Yes", "No"))
+	var/carp_ask = tgui_alert(user, "要变成鲤鱼吗？", "鲤鱼裂隙", list("Yes", "No"))
 	if(carp_ask != "Yes" || QDELETED(src) || QDELETED(user))
 		return FALSE
 	if(carp_stored <= 0)
-		to_chat(user, span_warning("The rift already summoned enough carp!"))
+		to_chat(user, span_warning("这道裂隙已经召唤了足够的鲤鱼！"))
 		return FALSE
 
 	if(isnull(dragon))
@@ -315,7 +315,7 @@
 	var/mob/living/newcarp = new dragon.minion_to_spawn(loc)
 	SET_FACTION_AND_ALLIES_FROM(newcarp, dragon.owner.current)
 	newcarp.AddElement(/datum/element/nerfed_pulling, GLOB.typecache_general_bad_things_to_easily_move)
-	newcarp.AddElement(/datum/element/prevent_attacking_of_types, GLOB.typecache_general_bad_hostile_attack_targets, "this tastes awful!")
+	newcarp.AddElement(/datum/element/prevent_attacking_of_types, GLOB.typecache_general_bad_hostile_attack_targets, "这东西太难吃了！")
 	dragon.wavespeak?.link_mob(newcarp)
 
 	if(!is_listed)
@@ -325,7 +325,7 @@
 	var/datum/antagonist/space_carp/carp_antag = new(src)
 	newcarp.mind.add_antag_datum(carp_antag)
 	dragon.carp += newcarp.mind
-	to_chat(newcarp, span_boldwarning("You have arrived in order to assist the space dragon with securing the rifts. Do not jeopardize the mission, and protect the rifts at all costs!"))
+	to_chat(newcarp, span_boldwarning("你已抵达，前来协助太空龙守住裂隙。不要危及任务，并不惜一切代价保护裂隙！"))
 	carp_stored--
 	if(carp_stored <= 0 && charge_state < CHARGE_COMPLETED)
 		icon_state = "carp_rift"
@@ -336,7 +336,7 @@
 /obj/structure/carp_rift/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(HAS_TRAIT(attacking_item, TRAIT_TELEKINESIS_CONTROLLED))
 		if(user)
-			to_chat(user, span_warning("The gravitational field of [src] interferes with the telekenetic control of [user], nullifying the hit!"))
+			to_chat(user, span_warning("[src]的引力场干扰了[user]的念力控制，使这次攻击失效了！"))
 		return FALSE
 	. = ..()
 
@@ -344,7 +344,7 @@
 	if(HAS_TRAIT(hit_by, TRAIT_TELEKINESIS_CONTROLLED))
 		var/mob/thrower = throwingdatum.thrower?.resolve()
 		if(thrower && ismob(thrower))
-			to_chat(thrower, span_warning("The gravitational field of [src] interferes with the telekenetic control of [hit_by], nullifying the hit!"))
+			to_chat(thrower, span_warning("[src]的引力场干扰了对[hit_by]的念力控制，使这次攻击失效了！"))
 		return
 	. = ..()
 

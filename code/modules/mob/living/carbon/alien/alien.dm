@@ -1,12 +1,12 @@
 /mob/living/carbon/alien
 	abstract_type = /mob/living/carbon/alien
-	name = "alien"
+	name = "异形"
 	icon = 'icons/mob/nonhuman-player/alien.dmi'
 	gender = FEMALE //All xenos are girls!!
 	dna = null
 	faction = list(ROLE_ALIEN)
 	sight = SEE_MOBS
-	verb_say = "hisses"
+	verb_say = "嘶嘶地说道"
 	initial_language_holder = /datum/language_holder/alien
 	bubble_icon = "alien"
 	type_of_meat = /obj/item/food/meat/slab/xeno
@@ -22,7 +22,7 @@
 	var/alien_speed = 0
 	unique_name = TRUE
 
-	var/static/regex/alien_name_regex = new("alien (larva|sentinel|drone|hunter|praetorian|princess|queen)( \\(\\d+\\))?")
+	var/static/regex/alien_name_regex = new("(alien (larva|sentinel|drone|hunter|praetorian|princess|queen)|异形(幼虫|哨兵|雄蜂|猎手|禁卫|公主|女王))( \\(\\d+\\))?")
 	var/static/list/xeno_allowed_items = typecacheof(list(
 		/obj/item/clothing/mask/facehugger,
 		/obj/item/toy/basketball, // playing ball against a xeno is rigged since they cannot be disarmed, their game is out of this world
@@ -58,7 +58,7 @@
 	LoadComponent( \
 		/datum/component/itempicky, \
 		xeno_allowed_items, \
-		span_alien("Your claws lack the dexterity to hold %TARGET."), \
+		span_alien("你的爪子不够灵巧，握不住 %TARGET。"), \
 		CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_has_trait), src, TRAIT_ADVANCEDTOOLUSER))
 
 /mob/living/carbon/alien/proc/create_internal_organs()
@@ -128,15 +128,15 @@ Des: Removes all infected images from the alien.
 	return TRUE
 
 /mob/living/carbon/alien/get_visible_suicide_message()
-	return "[src] is thrashing wildly! It looks like [p_theyre()] trying to commit suicide."
+	return "[src] 疯狂地挣扎着！看起来[p_theyre()]正试图自杀。"
 
 /mob/living/carbon/alien/get_blind_suicide_message()
-	return "You hear thrashing."
+	return "你听到一阵挣扎的声响。"
 
 /mob/living/carbon/alien/proc/alien_evolve(mob/living/carbon/alien/new_xeno)
 	visible_message(
-		span_alertalien("[src] begins to twist and contort!"),
-		span_noticealien("You begin to evolve!"),
+		span_alertalien("[src] 开始扭曲、变形！"),
+		span_noticealien("你开始进化！"),
 	)
 
 	new_xeno.setDir(dir)

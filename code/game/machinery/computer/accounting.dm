@@ -3,8 +3,8 @@
 #define MAX_PAY_MOD 1.5
 
 /obj/machinery/computer/accounting
-	name = "account lookup console"
-	desc = "Used to view crew member accounts and purchases."
+	name = "账户查询控制台"
+	desc = "用于查看船员账户和购买记录。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/accounting")
 	icon_screen = "accounts"
 	icon_keyboard = "id_key"
@@ -29,7 +29,7 @@
 			continue
 		player_accounts += list(list(
 			"name" = current_bank_account.account_holder,
-			"job" = current_bank_account.account_job.title,
+			"job" = chinese_job_display(current_bank_account.account_job.title),
 			"balance" = round(current_bank_account.account_balance),
 			"modifier" = current_bank_account.payday_modifier,
 			"num_advances" = current_bank_account.paydays_to_skip,
@@ -64,16 +64,16 @@
 	switch(action)
 		if("paycheck_advance")
 			if(bank_account.paydays_to_skip < MAX_ADVANCES)
-				bank_account.payday(1, event = "Paycheck advance")
+				bank_account.payday(1, event = "预支工资")
 				bank_account.paydays_to_skip += 1
 			return TRUE
 		if("change_pay_mod")
 			var/old_modifier = bank_account.payday_modifier
 			bank_account.payday_modifier = clamp(round(text2num(params["pay_mod"]), 0.05), MIN_PAY_MOD, MAX_PAY_MOD)
 			var/new_check_total = bank_account.payday_modifier * bank_account.account_job.paycheck
-			var/raise_or_cut = new_check_total > old_modifier * bank_account.account_job.paycheck ? "raised" : "cut"
-			bank_account.bank_card_talk("Paycheck [raise_or_cut] to [new_check_total][MONEY_SYMBOL].", force = TRUE)
-			SSeconomy.add_audit_entry(bank_account, new_check_total, "Paycheck [raise_or_cut]")
+			var/raise_or_cut = new_check_total > old_modifier * bank_account.account_job.paycheck ? "上调" : "下调"
+			bank_account.bank_card_talk("工资已[raise_or_cut]至[new_check_total][MONEY_SYMBOL]。", force = TRUE)
+			SSeconomy.add_audit_entry(bank_account, new_check_total, "工资[raise_or_cut]")
 			return TRUE
 
 #undef MAX_ADVANCES

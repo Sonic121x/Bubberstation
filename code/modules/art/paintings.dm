@@ -12,8 +12,8 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 ///////////
 
 /obj/structure/easel
-	name = "easel"
-	desc = "Only for the finest of art!"
+	name = "画架"
+	desc = "只配得上最精美的艺术！"
 	icon = 'icons/obj/art/artstuff.dmi'
 	icon_state = "easel"
 	density = TRUE
@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 		user.transfer_item_to_turf(canvas, get_turf(src), silent = FALSE)
 		painting = canvas
 		canvas.layer = layer+0.1
-		user.visible_message(span_notice("[user] puts \the [canvas] on \the [src]."),span_notice("You place \the [canvas] on \the [src]."))
+		user.visible_message(span_notice("[user]把[canvas]放到了[src]上。"),span_notice("你把[canvas]放到了[src]上。"))
 		return ITEM_INTERACT_SUCCESS
 
 
@@ -43,8 +43,8 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 		painting = null
 
 /obj/item/canvas
-	name = "canvas"
-	desc = "Draw out your soul on this canvas!"
+	name = "画布"
+	desc = "在这块画布上画出你的灵魂！"
 	icon = 'icons/obj/art/artstuff.dmi'
 	icon_state = "11x11"
 	flags_1 = UNPAINTABLE_1
@@ -94,7 +94,7 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	)
 	RegisterSignal(workspace, COMSIG_SPRITE_EDITOR_VALIDATE_COLOR, PROC_REF(validate_color))
 	painting_metadata = new
-	painting_metadata.title = "Untitled Artwork"
+	painting_metadata.title = "无题作品"
 	painting_metadata.creation_round_id = GLOB.round_id
 	painting_metadata.width = width
 	painting_metadata.height = height
@@ -195,7 +195,7 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 				return
 			var/medium = get_paint_tool_medium(implement)
 			if(medium && painting_metadata.medium && painting_metadata.medium != medium)
-				painting_metadata.medium = "Mixed medium"
+				painting_metadata.medium = "混合媒材"
 			else
 				painting_metadata.medium = medium
 			used = TRUE
@@ -236,7 +236,7 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	if(finalized || painting_metadata.loaded_from_json)
 		return
 	if(!in_range(src, user))
-		user.balloon_alert(user, "too far away!")
+		user.balloon_alert(user, "太远了！")
 		return
 	if(!try_rename(user))
 		return
@@ -257,28 +257,28 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	if(!finalized || !isliving(user))
 		return
 	if(!painting_metadata.loaded_from_json)
-		if(tgui_alert(user, "The painting hasn't been archived yet and will be lost at the end of the shift if not placed in an elegible frame. Continue?","Unarchived Painting",list("Yes","No")) != "Yes")
+		if(tgui_alert(user, "这幅画作尚未存档，若不放进合格的画框，它会在班次结束时丢失。要继续吗？","未存档画作",list("Yes","No")) != "Yes")
 			return
 	var/mob/living/living_user = user
 	var/obj/item/card/id/id_card = living_user.get_idcard(TRUE)
 	if(!id_card)
-		to_chat(user, span_warning("You don't even have a id and you want to be an art patron?"))
+		to_chat(user, span_warning("你连张 ID 卡都没有，还想当艺术赞助人？"))
 		return
 	if(!id_card.can_be_used_in_payment(user))
-		to_chat(user, span_warning("No valid non-departmental account found."))
+		to_chat(user, span_warning("未找到有效的非部门账户。"))
 		return
 	var/datum/bank_account/account = id_card.registered_account
 	if(!account.has_money(painting_metadata.credit_value))
-		to_chat(user, span_warning("You can't afford this."))
+		to_chat(user, span_warning("你买不起这个。"))
 		return
 	var/sniped_amount = painting_metadata.credit_value
-	var/offer_amount = tgui_input_number(user, "How much do you want to offer?", "Patronage Amount", (painting_metadata.credit_value + 1), account.account_balance, painting_metadata.credit_value)
+	var/offer_amount = tgui_input_number(user, "你想出价多少？", "赞助金额", (painting_metadata.credit_value + 1), account.account_balance, painting_metadata.credit_value)
 	if(!offer_amount || QDELETED(user) || QDELETED(src) || !istype(loc, /obj/structure/sign/painting) || !user.can_perform_action(loc, FORBID_TELEKINESIS_REACH))
 		return
 	if(sniped_amount != painting_metadata.credit_value)
 		return
-	if(!account.adjust_money(-offer_amount, "Painting: Patron of [painting_metadata.title]"))
-		to_chat(user, span_warning("Transaction failure. Please try again."))
+	if(!account.adjust_money(-offer_amount, "绘画：赞助《[painting_metadata.title]》"))
+		to_chat(user, span_warning("交易失败，请重试。"))
 		return
 
 	var/datum/bank_account/service_account = SSeconomy.get_dep_account(ACCOUNT_SRV)
@@ -291,8 +291,8 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 			var/curator_cut = round(offer_amount * CURATOR_PERCENTILE_CUT / curators_length)
 			if(curator_cut)
 				for(var/datum/bank_account/curator as anything in curator_accounts)
-					curator.adjust_money(curator_cut, "Painting: Patronage cut")
-					curator.bank_card_talk("Cut on patronage received, account now holds [curator.account_balance] [MONEY_SYMBOL].")
+					curator.adjust_money(curator_cut, "绘画：赞助分成")
+					curator.bank_card_talk("已收到赞助分成，账户当前余额 [curator.account_balance] [MONEY_SYMBOL]。")
 
 	if(istype(loc, /obj/structure/sign/painting))
 		var/obj/structure/sign/painting/frame = loc
@@ -304,7 +304,7 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	painting_metadata.credit_value = offer_amount
 	last_patron = WEAKREF(user.mind)
 
-	to_chat(user, span_notice("Nanotrasen Trust Foundation thanks you for your contribution. You're now an official patron of this painting."))
+	to_chat(user, span_notice("纳米传讯信托基金会感谢你的捐助。你现在已是这幅画的正式赞助人。"))
 	if(HAS_PERSONALITY(user, /datum/personality/creative))
 		user.add_mood_event("creative_patronage", /datum/mood_event/creative_patronage)
 	if(HAS_PERSONALITY(user, /datum/personality/unimaginative))
@@ -312,7 +312,7 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	var/list/possible_frames = SSpersistent_paintings.get_available_frames(offer_amount)
 	if(possible_frames.len <= 1) // Not much room for choices here.
 		return
-	if(tgui_alert(user, "Do you want to change the frame appearance now? You can do so later this shift with Alt-Click as long as you're a patron.","Patronage Frame",list("Yes","No")) != "Yes")
+	if(tgui_alert(user, "你想现在更换画框外观吗？只要你是赞助人，本班次内随时可以用 Alt 点击更改。","赞助画框",list("Yes","No")) != "Yes")
 		return
 	if(!can_select_frame(user))
 		return
@@ -332,7 +332,7 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 		return
 	painting_metadata.frame_type = result
 	var/obj/structure/sign/painting/our_frame = loc
-	our_frame.balloon_alert(user, "frame set to [result]")
+	our_frame.balloon_alert(user, "画框已设为 [result]")
 	our_frame.update_appearance()
 
 /obj/item/canvas/proc/can_select_frame(mob/user)
@@ -431,38 +431,38 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	if(!painting_implement)
 		return
 	if(istype(painting_implement, /obj/item/paint_palette))
-		return "Oil on canvas"
+		return "布面油画"
 	else if(istype(painting_implement, /obj/item/toy/crayon/spraycan))
-		return "Spraycan on canvas"
+		return "布面喷漆"
 	else if(istype(painting_implement, /obj/item/toy/crayon))
-		return "Crayon on canvas"
+		return "布面蜡笔"
 	else if(istype(painting_implement, /obj/item/pen) || istype(painting_implement, /obj/item/airlock_painter/decal))
-		return "Ink on canvas"
+		return "布面墨水"
 	else if(istype(painting_implement, /obj/item/soap) || istype(painting_implement, /obj/item/rag))
 		return //These are just for cleaning, ignore them
 	else
-		return "Unknown medium"
+		return "未知媒材"
 
 /obj/item/canvas/proc/try_rename(mob/user)
 	if(painting_metadata.loaded_from_json) // No renaming old paintings
 		return TRUE
-	var/new_name = tgui_input_text(user, "What do you want to name the painting?", "Title Your Masterpiece", max_length = MAX_NAME_LEN)
+	var/new_name = tgui_input_text(user, "你想给这幅画起什么名字？", "为你的杰作命名", max_length = MAX_NAME_LEN)
 	new_name = reject_bad_name(new_name, allow_numbers = TRUE, ascii_only = FALSE, strict = TRUE, cap_after_symbols = FALSE)
 	if(isnull(new_name))
 		return FALSE
 	if(new_name != painting_metadata.title && user.can_perform_action(src))
 		painting_metadata.title = new_name
-	switch(tgui_alert(user, "Do you want to sign it or remain anonymous?", "Sign painting?", list("Yes", "No", "Cancel")))
+	switch(tgui_alert(user, "你想署名，还是保持匿名？", "为画作署名？", list("Yes", "No", "Cancel")))
 		if("Yes")
 			return TRUE
 		if("No")
-			painting_metadata.creator_name = "Anonymous"
+			painting_metadata.creator_name = "匿名"
 			return TRUE
 
 	return FALSE
 
 /obj/item/canvas/nineteen_nineteen
-	name = "canvas (19x19)"
+	name = "画布（19x19）"
 	icon_state = "19x19"
 	width = 19
 	height = 19
@@ -471,7 +471,7 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	framed_offset_y = 7
 
 /obj/item/canvas/twentythree_nineteen
-	name = "canvas (23x19)"
+	name = "画布（23x19）"
 	icon_state = "23x19"
 	width = 23
 	height = 19
@@ -481,7 +481,7 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	pixels_per_unit = 8
 
 /obj/item/canvas/twentythree_twentythree
-	name = "canvas (23x23)"
+	name = "画布（23x23）"
 	icon_state = "23x23"
 	width = 23
 	height = 23
@@ -491,8 +491,8 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	pixels_per_unit = 8
 
 /obj/item/canvas/twentyfour_twentyfour
-	name = "canvas (24x24) (AI Universal Standard)"
-	desc = "Besides being almost too large for a standard frame, the AI can accept these as a display from their internal database after you've hung it up."
+	name = "画布（24x24）（AI 通用标准）"
+	desc = "除了对标准画框来说几乎太大之外，AI 可以在你把它挂好后，从内部数据库中将它作为展品接收。"
 	icon_state = "24x24"
 	width = 24
 	height = 24
@@ -502,8 +502,8 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	pixels_per_unit = 8
 
 /obj/item/canvas/thirtysix_twentyfour
-	name = "canvas (36x24)"
-	desc = "A very large canvas to draw out your soul on. You'll need a larger frame to put it on a wall."
+	name = "画布（36x24）"
+	desc = "一块供你画出灵魂的超大画布。需要更大的画框才能挂到墙上。"
 	icon_state = "24x24" //The vending spritesheet needs the icons to be 32x32. We'll set the actual icon on Initialize.
 	width = 36
 	height = 24
@@ -522,8 +522,8 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	icon_state = "36x24"
 
 /obj/item/canvas/fortyfive_twentyseven
-	name = "canvas (45x27)"
-	desc = "The largest canvas available on the space market. You'll need a larger frame to put it on a wall."
+	name = "画布（45x27）"
+	desc = "太空市场上能买到的最大画布。需要更大的画框才能挂到墙上。"
 	icon_state = "24x24" //Ditto
 	width = 45
 	height = 27
@@ -542,8 +542,8 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	icon_state = "45x27"
 
 /obj/item/wallframe/painting
-	name = "painting frame"
-	desc = "The perfect showcase for your favorite deathtrap memories."
+	name = "画框"
+	desc = "为你最爱的死亡陷阱回忆提供完美展示。"
 	icon = 'icons/obj/signs.dmi'
 	custom_materials = list(/datum/material/wood =SHEET_MATERIAL_AMOUNT)
 	resistance_flags = FLAMMABLE
@@ -553,8 +553,8 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	pixel_shift = 30
 
 /obj/structure/sign/painting
-	name = "Painting"
-	desc = "Art or \"Art\"? You decide."
+	name = "画作"
+	desc = "艺术，还是“艺术”？由你判断。"
 	icon = 'icons/obj/signs.dmi'
 	icon_state = "frame-empty"
 	base_icon_state = "frame"
@@ -606,18 +606,18 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 /obj/structure/sign/painting/examine(mob/user)
 	. = ..()
 	if(persistence_id)
-		. += span_notice("Any painting placed here will be archived at the end of the shift.")
+		. += span_notice("放在这里的任何画作都会在班次结束时存档。")
 	if(current_canvas)
 		current_canvas.ui_interact(user)
-		. += span_notice("Use wirecutters to remove the painting.")
+		. += span_notice("使用剪线钳取下画作。")
 		if(IS_WEAKREF_OF(user?.mind, current_canvas.last_patron))
-			. += span_notice("<b>Alt-Click</b> to change select a new appearance for the frame of this painting.")
+			. += span_notice("<b>Alt 点击</b>为这幅画的画框选择新外观。")
 
 /obj/structure/sign/painting/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(current_canvas)
 		current_canvas.forceMove(drop_location())
-		to_chat(user, span_notice("You remove the painting from the frame."))
+		to_chat(user, span_notice("你把画作从画框里取了下来。"))
 		return TRUE
 
 /obj/structure/sign/painting/Exited(atom/movable/movable, atom/newloc)
@@ -637,13 +637,13 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 
 /obj/structure/sign/painting/proc/frame_canvas(mob/living/user, obj/item/canvas/new_canvas)
 	if(!(new_canvas.type in accepted_canvas_types))
-		to_chat(user, span_warning("[new_canvas] won't fit in this frame."))
+		to_chat(user, span_warning("[new_canvas]装不进这个画框。"))
 		return FALSE
 	if(user.transferItemToLoc(new_canvas,src))
 		current_canvas = new_canvas
 		if(!current_canvas.finalized)
 			current_canvas.finalize(user)
-		to_chat(user,span_notice("You frame [current_canvas]."))
+		to_chat(user,span_notice("你把[current_canvas]装进了画框。"))
 		add_art_element()
 		update_appearance()
 		if(HAS_PERSONALITY(user, /datum/personality/creative))
@@ -666,7 +666,7 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	icon = current_canvas?.generated_icon ? null : initial(icon)
 
 /obj/structure/sign/painting/update_name(updates)
-	name = current_canvas ? "painting - [current_canvas.painting_metadata.title]" : initial(name)
+	name = current_canvas ? "画作 - [current_canvas.painting_metadata.title]" : initial(name)
 	return ..()
 
 /obj/structure/sign/painting/update_desc(updates)
@@ -716,7 +716,7 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	new_canvas.generated_icon = I
 	new_canvas.icon_generated = TRUE
 	new_canvas.finalized = TRUE
-	new_canvas.name = "painting - [painting.title]"
+	new_canvas.name = "画作 - [painting.title]"
 	current_canvas = new_canvas
 	add_art_element()
 	current_canvas.update_appearance()
@@ -777,8 +777,8 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 			grid[y][x] = I.GetPixel(x,h-y)
 
 /obj/item/wallframe/painting/large
-	name = "large painting frame"
-	desc = "The perfect showcase for your favorite deathtrap memories. Make sure you have enough space to mount this one to the wall."
+	name = "大型画框"
+	desc = "为你最爱的死亡陷阱回忆提供完美展示。挂到墙上前请确认空间足够。"
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT*2)
 	icon_state = "frame-large-empty"
 	result_path = /obj/structure/sign/painting/large
@@ -793,10 +793,10 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 	var/check_dir = our_dir & (EAST|WEST) ? NORTH : EAST
 	var/turf/closed/wall/second_wall = get_step(on_wall, check_dir)
 	if(!istype(second_wall) || !second_wall.IsReachableBy(user))
-		to_chat(user, span_warning("You need a reachable wall to the [check_dir == EAST ? "right" : "left"] of this one to mount this frame!"))
+		to_chat(user, span_warning("你需要在它[check_dir == EAST ? "右边" : "左边"]有一面可触及的墙才能安装这个画框！"))
 		return FALSE
 	if(check_wall_item(second_wall, our_dir, wall_external))
-		to_chat(user, span_warning("There's already an item on the wall to the [check_dir == EAST ? "right" : "left"] of this one!"))
+		to_chat(user, span_warning("它[check_dir == EAST ? "右边" : "左边"]的墙上已经有东西了！"))
 		return FALSE
 
 /obj/item/wallframe/painting/large/after_attach(obj/object)
@@ -880,33 +880,33 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 
 //Presets for art gallery mapping, for paintings to be shared across stations
 /obj/structure/sign/painting/library
-	name = "\improper Public Painting Exhibit mounting"
-	desc = "For art pieces hung by the public."
-	desc_with_canvas = "A piece of art (or \"art\"). Anyone could've hung it."
+	name = "\improper 公共画作展位"
+	desc = "用于悬挂公众提供的艺术作品。"
+	desc_with_canvas = "一件艺术品（或者说“艺术”）。谁都可能把它挂上去。"
 	persistence_id = "library"
 
 /obj/structure/sign/painting/library_secure
-	name = "\improper Curated Painting Exhibit mounting"
-	desc = "For masterpieces hand-picked by the curator."
-	desc_with_canvas = "A masterpiece hand-picked by the curator, supposedly."
+	name = "\improper 精选画作展位"
+	desc = "用于悬挂馆长亲手挑选的杰作。"
+	desc_with_canvas = "据说是馆长亲手挑选的杰作。"
 	persistence_id = "library_secure"
 
 /obj/structure/sign/painting/library_private // keep your smut away from prying eyes, or non-librarians at least
-	name = "\improper Private Painting Exhibit mounting"
-	desc = "For art pieces deemed too subversive or too illegal to be shared outside of curators."
-	desc_with_canvas = "A painting hung away from lesser minds."
+	name = "\improper 私密画作展位"
+	desc = "用于悬挂那些被认为过于颠覆或过于违法、不宜向馆长之外的人展示的艺术作品。"
+	desc_with_canvas = "一幅被挂起来远离低等心智的画作。"
 	persistence_id = "library_private"
 
 /obj/structure/sign/painting/large/library
-	name = "\improper Large Painting Exhibit mounting"
-	desc = "For the bulkier art pieces, hand-picked by the curator."
-	desc_with_canvas = "A curated, large piece of art (or \"art\"). Hopefully the price of the canvas was worth it."
+	name = "\improper 大型画作展位"
+	desc = "用于悬挂馆长亲手挑选的较大幅艺术作品。"
+	desc_with_canvas = "一件精选的大型艺术品（或者说“艺术”）。希望画布的钱花得值。"
 	persistence_id = "library_large"
 
 /obj/structure/sign/painting/large/library_private
-	name = "\improper Private Painting Exhibit mounting"
-	desc = "For the privier and less tasteful compositions that oughtn't to be shown in a parlor nor to the masses."
-	desc_with_canvas = "A painting that oughn't to be shown to the less open-minded commoners."
+	name = "\improper 私密画作展位"
+	desc = "用于悬挂那些更私密、更没品味、不宜在会客厅或大众面前展示的构图。"
+	desc_with_canvas = "一幅不宜向不太开放的平民展示的画作。"
 	persistence_id = "library_large_private"
 
 
@@ -914,8 +914,8 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 
 /// Simple painting utility.
 /obj/item/paint_palette
-	name = "paint palette"
-	desc = "paintbrush included"
+	name = "调色盘"
+	desc = "含画笔"
 	icon = 'icons/obj/art/artstuff.dmi'
 	icon_state = "palette"
 	lefthand_file = 'icons/mob/inhands/equipment/palette_lefthand.dmi'

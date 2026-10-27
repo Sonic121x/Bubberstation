@@ -9,8 +9,8 @@
  * First Aid Kits
  */
 /obj/item/storage/medkit
-	name = "medkit"
-	desc = "It's an emergency medical kit for those serious boo-boos."
+	name = "医疗包"
+	desc = "这是一个应急医疗包，专治那些严重的擦伤碰伤。"
 	icon = 'icons/obj/storage/medkit.dmi'
 	icon_state = "medkit"
 	inhand_icon_state = "medkit"
@@ -33,10 +33,10 @@
 
 /obj/item/storage/medkit/regular
 	icon_state = "medkit"
-	desc = "A first aid kit with the ability to heal common types of injuries."
+	desc = "一个急救箱，能够治疗常见的伤病。"
 
 /obj/item/storage/medkit/regular/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins giving [user.p_them()]self aids with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]开始用[src]给自己急救！看起来是想自杀！"))
 	return BRUTELOSS
 
 /obj/item/storage/medkit/regular/PopulateContents()
@@ -54,8 +54,8 @@
 /obj/item/storage/medkit/emergency
 	icon_state = "medbriefcase"
 	inhand_icon_state = "medkit-emergency"
-	name = "emergency medkit"
-	desc = "A very simple first aid kit meant to secure and stabilize serious wounds for later treatment."
+	name = "应急医疗包"
+	desc = "一个非常简单的急救箱，用于固定并稳定严重伤口，以便后续治疗。"
 
 /obj/item/storage/medkit/emergency/PopulateContents()
 	if(empty)
@@ -71,10 +71,10 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/medkit/surgery
-	name = "surgical medkit"
+	name = "手术医疗包"
 	icon_state = "medkit_surgery"
 	inhand_icon_state = "medkit-surgical"
-	desc = "A high capacity aid kit for doctors, full of medical supplies and basic surgical equipment."
+	desc = "一个高容量医疗包，供医生使用，装满了医疗用品和基础手术器械。"
 	custom_premium_price = PAYCHECK_COMMAND * 6 // BUBBER EDIT ADDITION
 	storage_type = /datum/storage/medkit/surgery
 
@@ -95,8 +95,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/medkit/surgery_syndie
-	name = "suspicous surgical medkit"
-	desc = "An suspicous coloured medkit full of advanced medical equipment."
+	name = "可疑的手术医疗包"
+	desc = "一个颜色可疑的医疗包，里面装满了高级医疗设备。"
 	icon_state = "medkit_tactical_lite"
 	inhand_icon_state = "medkit-tactical-lite"
 	damagetype_healed = HEAL_ALL_DAMAGE
@@ -126,7 +126,7 @@
 
 /obj/item/storage/medkit/ancient
 	icon_state = "oldfirstaid"
-	desc = "A first aid kit with the ability to heal common types of injuries."
+	desc = "一个急救箱，能够治疗常见的伤病。"
 
 /obj/item/storage/medkit/ancient/PopulateContents()
 	if(empty)
@@ -138,12 +138,12 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/medkit/ancient/heirloom
-	desc = "A first aid kit with the ability to heal common types of injuries. You start thinking of the good old days just by looking at it."
+	desc = "一个急救箱，能够治疗常见的伤病。光是看着它，你就想起了过去的美好时光。"
 	empty = TRUE // long since been ransacked by hungry powergaming assistants breaking into med storage
 
 /obj/item/storage/medkit/fire
-	name = "burn treatment kit"
-	desc = "A specialized medical kit for when the ordnance lab <i>-spontaneously-</i> burns down."
+	name = "烧伤治疗包"
+	desc = "专用于军械实验室<i>——自发性——</i>烧毁时的专用医疗包。"
 	icon_state = "medkit_burn"
 	inhand_icon_state = "medkit-ointment"
 	damagetype_healed = BURN
@@ -152,7 +152,7 @@
 	return "burn"
 
 /obj/item/storage/medkit/fire/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins rubbing \the [src] against [user.p_them()]self! It looks like [user.p_theyre()] trying to start a fire!"))
+	user.visible_message(span_suicide("[user]开始用[src]摩擦自己的身体！看起来是想引火自焚！"))
 	return FIRELOSS
 
 /obj/item/storage/medkit/fire/PopulateContents()
@@ -166,8 +166,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/medkit/toxin
-	name = "toxin treatment kit"
-	desc = "Used to treat toxic blood content and radiation poisoning."
+	name = "毒素治疗包"
+	desc = "用于治疗血液毒素含量过高与辐射中毒。"
 	icon_state = "medkit_toxin"
 	inhand_icon_state = "medkit-toxin"
 	damagetype_healed = TOX
@@ -176,7 +176,7 @@
 	return "tox"
 
 /obj/item/storage/medkit/toxin/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins licking the lead paint off \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]开始舔[src]上的含铅油漆！看起来是想自杀！"))
 	return TOXLOSS
 
 
@@ -193,8 +193,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/medkit/o2
-	name = "oxygen deprivation treatment kit"
-	desc = "A box full of oxygen goodies."
+	name = "缺氧治疗包"
+	desc = "一整盒供氧好物。"
 	icon_state = "medkit_o2"
 	inhand_icon_state = "medkit-o2"
 	damagetype_healed = OXY
@@ -203,7 +203,7 @@
 	return "oxy"
 
 /obj/item/storage/medkit/o2/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins hitting [user.p_their()] neck with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]开始用[src]砸自己的脖子！看起来是想自杀！"))
 	return OXYLOSS
 
 /obj/item/storage/medkit/o2/PopulateContents()
@@ -217,8 +217,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/medkit/brute
-	name = "brute trauma treatment kit"
-	desc = "A first aid kit for when you get toolboxed."
+	name = "钝击创伤治疗包"
+	desc = "一个急救箱，专供你被工具箱砸得头破血流时使用。"
 	icon_state = "medkit_brute"
 	inhand_icon_state = "medkit-brute"
 	damagetype_healed = BRUTE
@@ -227,7 +227,7 @@
 	return "brute"
 
 /obj/item/storage/medkit/brute/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins beating [user.p_them()]self over the head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]开始用[src]猛砸自己的头！看起来是想自杀！"))
 	return BRUTELOSS
 
 /obj/item/storage/medkit/brute/PopulateContents()
@@ -243,8 +243,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/medkit/advanced
-	name = "advanced first aid kit"
-	desc = "An advanced kit to help deal with advanced wounds."
+	name = "高级急救箱"
+	desc = "一个高级医疗包，用于处理严重伤口。"
 	icon_state = "medkit_advanced"
 	inhand_icon_state = "medkit-advanced"
 	custom_premium_price = PAYCHECK_COMMAND * 6
@@ -264,7 +264,7 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/medkit/tactical_lite
-	name = "combat first aid kit"
+	name = "战斗急救箱"
 	icon_state = "medkit_tactical_lite"
 	inhand_icon_state = "medkit-tactical-lite"
 	damagetype_healed = HEAL_ALL_DAMAGE
@@ -285,8 +285,8 @@
 	generate_items_inside(items_inside, src)
 
 /obj/item/storage/medkit/tactical
-	name = "combat medical kit"
-	desc = "I hope you've got insurance."
+	name = "战斗医疗包"
+	desc = "希望你买了保险。"
 	icon_state = "medkit_tactical"
 	inhand_icon_state = "medkit-tactical"
 	damagetype_healed = HEAL_ALL_DAMAGE
@@ -316,8 +316,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/medkit/tactical/premium
-	name = "premium combat medical kit"
-	desc = "May or may not contain traces of lead."
+	name = "高级战斗医疗包"
+	desc = "可能含有也可能不含微量铅。"
 	icon_state = "medkit_tactical_premium"
 	inhand_icon_state = "medkit-tactical-premium"
 	storage_type = /datum/storage/medkit/tactical/premium
@@ -349,8 +349,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/medkit/coroner
-	name = "compact coroner's medkit"
-	desc = "A smaller medical kit designed primarily for assisting in dissecting the deceased, rather than treating the living."
+	name = "紧凑型验尸官医疗包"
+	desc = "一个较小的医疗包，主要用于协助解剖死者，而非治疗生者。"
 	icon = 'icons/obj/storage/medkit.dmi'
 	icon_state = "compact_coronerkit"
 	inhand_icon_state = "coronerkit"
@@ -374,12 +374,12 @@
 		return ..()
 	//Making a medibot!
 	if(contents.len >= 1)
-		balloon_alert(user, "items inside!")
+		balloon_alert(user, "里面有东西！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/bot_assembly/medbot/medbot_assembly = new(drop_location())
 	medbot_assembly.set_skin(get_medbot_skin())
-	medbot_assembly.balloon_alert(user, "arm added")
+	medbot_assembly.balloon_alert(user, "已装上手臂")
 	medbot_assembly.robot_arm = tool.type
 	medbot_assembly.medkit_type = type
 	qdel(tool)
@@ -395,8 +395,8 @@
 
 /// A box which takes in coolant and uses it to preserve organs and body parts
 /obj/item/storage/organbox
-	name = "organ transport box"
-	desc = "An advanced box with a cooling mechanism that uses cryostylane or other cold reagents to keep the organs or bodyparts inside preserved."
+	name = "器官运输箱"
+	desc = "一个带冷却机制的高级箱子，使用低温苯或其他低温试剂来保持内部器官或身体部位的鲜活。"
 	icon = 'icons/obj/storage/case.dmi'
 	icon_state = "organbox"
 	base_icon_state = "organbox"
@@ -456,13 +456,13 @@
 		var/obj/item/reagent_containers/RC = tool
 		var/units = RC.reagents.trans_to(src, RC.amount_per_transfer_from_this, transferred_by = user)
 		if(units)
-			balloon_alert(user, "[units]u transferred")
+			balloon_alert(user, "已转移 [units]u")
 			return ITEM_INTERACT_SUCCESS
 		return ITEM_INTERACT_BLOCKING
 	if(istype(tool, /obj/item/plunger))
-		balloon_alert(user, "plunging...")
+		balloon_alert(user, "正在疏通……")
 		if(do_after(user, 1 SECONDS, target = src))
-			balloon_alert(user, "plunged")
+			balloon_alert(user, "已疏通")
 			reagents.clear_reagents()
 		return ITEM_INTERACT_SUCCESS
 	return ..()
@@ -471,14 +471,14 @@
 	if(HAS_TRAIT(user, TRAIT_RESISTCOLD)) //if they're immune to cold, just do the box suicide
 		var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)
 		if(myhead)
-			user.visible_message(span_suicide("[user] puts [user.p_their()] head into \the [src] and begins closing it! It looks like [user.p_theyre()] trying to commit suicide!"))
+			user.visible_message(span_suicide("[user]把自己的头伸进[src]里并开始合上盖子！看起来是想自杀！"))
 			if (myhead.dismember())
 				myhead.forceMove(src) //force your enemies to kill themselves with your head collection box!
 			playsound(user, "desecration-01.ogg", 50, TRUE, -1)
 			return BRUTELOSS
-		user.visible_message(span_suicide("[user] is beating [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]正用[src]敲打自己！看起来是想自杀！"))
 		return BRUTELOSS
-	user.visible_message(span_suicide("[user] is putting [user.p_their()] head inside the [src], it looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正把自己的头伸进[src]里，看起来是想自杀！"))
 	user.adjust_bodytemperature(-300)
 	user.apply_status_effect(/datum/status_effect/freon)
 	return FIRELOSS
@@ -491,8 +491,8 @@
 	reagents.add_reagent(/datum/reagent/cryostylane, reagents.maximum_volume)
 
 /obj/item/storage/test_tube_rack
-	name = "test tube rack"
-	desc = "A wooden rack for storing test tubes."
+	name = "试管架"
+	desc = "一个用于存放试管的木制架子。"
 	icon_state = "rack"
 	base_icon_state = "rack"
 	icon = 'icons/obj/medical/chemical.dmi'

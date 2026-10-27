@@ -2,19 +2,19 @@ GLOBAL_LIST_INIT(mute_bits, list(
 	list(name = "IC", bitflag = MUTE_IC),
 	list(name = "OOC", bitflag = MUTE_OOC),
 	list(name = "LOOC", bitflag = MUTE_LOOC),
-	list(name = "Pray", bitflag = MUTE_PRAY),
-	list(name = "Ahelp", bitflag = MUTE_ADMINHELP),
-	list(name = "Deadchat", bitflag = MUTE_DEADCHAT)
+	list(name = "祈祷", bitflag = MUTE_PRAY),
+	list(name = "管理员求助", bitflag = MUTE_ADMINHELP),
+	list(name = "死者频道", bitflag = MUTE_DEADCHAT)
 ))
 
 GLOBAL_DATUM_INIT(admin_state, /datum/ui_state/admin_state, new)
 
 GLOBAL_LIST_INIT(pp_limbs, list(
-	"Head" 		= BODY_ZONE_HEAD,
-	"Left leg" 	= BODY_ZONE_L_LEG,
-	"Right leg" = BODY_ZONE_R_LEG,
-	"Left arm" 	= BODY_ZONE_L_ARM,
-	"Right arm" = BODY_ZONE_R_ARM
+	"头部" 		= BODY_ZONE_HEAD,
+	"左腿" 	= BODY_ZONE_L_LEG,
+	"右腿" = BODY_ZONE_R_LEG,
+	"左臂" 	= BODY_ZONE_L_ARM,
+	"右臂" = BODY_ZONE_R_ARM
 ))
 
 /datum/player_panel
@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "PlayerPanel", "[target_mob.real_name] Player Panel")
+		ui = new(user, src, "PlayerPanel", "[target_mob.real_name]的玩家面板")
 		ui.open()
 
 /datum/player_panel/ui_state(mob/user)
@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		target_client = target_mob.client
 		.["client_ckey"] = target_client.ckey
 		.["client_muted"] = target_client.prefs.muted
-		.["client_rank"] = target_client.holder ? target_client.holder.ranks : "Player"
+		.["client_rank"] = target_client.holder ? target_client.holder.ranks : "玩家"
 	else
 		target_client = null
 		.["client_ckey"] = null
@@ -91,10 +91,10 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 	// Status flags
 	.["glob_status_flags"] = list(
-		"Stun" = CANSTUN,
-		"Knockdown" = CANKNOCKDOWN,
-		"Unconscious" = CANUNCONSCIOUS,
-		"Push" = CANPUSH,
+		"眩晕" = CANSTUN,
+		"击倒" = CANKNOCKDOWN,
+		"昏迷" = CANUNCONSCIOUS,
+		"推动" = CANPUSH,
 		"Godmode" = "godmode" // Special string for godmode trait
 	)
 
@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 	)
 
 	if(target_client)
-		var/byond_version = "Unknown"
+		var/byond_version = "未知"
 		if(target_client.byond_version)
 			byond_version = "[target_client.byond_version].[target_client.byond_build ? target_client.byond_build : "xxx"]"
 		.["data_byond_version"] = byond_version
@@ -127,11 +127,11 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		*/
 		var/list/player_ranks = list()
 		if(SSplayer_ranks.is_donator(target_client, admin_bypass = FALSE))
-			player_ranks += "Donator"
+			player_ranks += "赞助者"
 		if(SSplayer_ranks.is_mentor(target_client, admin_bypass = FALSE))
-			player_ranks += "Mentor"
+			player_ranks += "导师"
 		if(SSplayer_ranks.is_vetted(target_client, admin_bypass = FALSE))
-			player_ranks += "Vetted"
+			player_ranks += "年龄已验证"
 		.["ranks"] = length(player_ranks) ? player_ranks.Join(", ") : null
 
 		if(CONFIG_GET(flag/use_exp_tracking))
@@ -167,13 +167,13 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			var/mob/latest_mob = get_mob_by_ckey(ckey)
 
 			if(!latest_mob)
-				to_chat(admin_client, span_warning("That ckey is not controlling a mob."))
+				to_chat(admin_client, span_warning("该ckey当前未控制任何生物。"))
 				return FALSE
 
 			if(target_mob == latest_mob)
 				return FALSE
 
-			to_chat(admin_client, span_notice("New mob found for player: [target_mob.ckey] ([latest_mob])."))
+			to_chat(admin_client, span_notice("已找到玩家的新生物：[target_mob.ckey]（[latest_mob]）。"))
 			SSadmin_verbs.dynamic_invoke_verb(admin_client, /datum/admin_verb/show_player_panel, latest_mob)
 			return TRUE
 
@@ -213,33 +213,33 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 		/// Subtly messages selected mob (requires target to have a headset)
 		if ("subtle_message")
-			var/list/subtle_message_options = list("Voice in head", RADIO_CHANNEL_CENTCOM, RADIO_CHANNEL_SYNDICATE)
-			var/sender = tgui_input_list(admin_client, "Choose the method of subtle messaging", "Subtle Message", subtle_message_options)
+			var/list/subtle_message_options = list("脑内声音", RADIO_CHANNEL_CENTCOM, RADIO_CHANNEL_SYNDICATE)
+			var/sender = chinese_admin_radio_choice(admin_client, "选择隐秘消息的传达方式", "隐秘消息", subtle_message_options)
 			if (!sender)
 				return FALSE
 
-			var/msg = input("Contents of the message", text("Subtle PM to [target_mob.key]")) as text
+			var/msg = input("消息内容", text("向[target_mob.key]发送隐秘私信")) as text
 			if (!msg)
 				return FALSE
 
-			if (sender == "Voice in head")
-				to_chat(target_mob, "<i>You hear a voice in your head... <b>[msg]</i></b>")
+			if (sender == "脑内声音")
+				to_chat(target_mob, "<i>你脑海中响起一个声音…… <b>[msg]</i></b>")
 			else
 				var/mob/living/carbon/human/selected_mob = target_mob
 
 				if(!istype(selected_mob))
-					to_chat(admin_client, "The person you are trying to contact is not human. Unsent message: [msg]")
+					to_chat(admin_client, "你要联系的目标不是人形生物。未发送的消息：[msg]")
 					return FALSE
 
 				if(!istype(selected_mob.ears, /obj/item/radio/headset))
-					to_chat(admin_client, "The person you are trying to contact is not wearing a headset. Unsent message: [msg]")
+					to_chat(admin_client, "你要联系的目标未佩戴耳机。未发送的消息：[msg]")
 					return FALSE
 
-				to_chat(selected_mob, "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from [sender == RADIO_CHANNEL_SYNDICATE ? "your benefactor" : "Central Command"].  Message as follows[sender == RADIO_CHANNEL_SYNDICATE ? ", agent." : ":"] <span class='bold'>[msg].</span> Message ends.\"")
+				to_chat(selected_mob, "耳边传来片刻杂音，随后一个声音说道：\"请准备接收来自[sender == RADIO_CHANNEL_SYNDICATE ? "你的资助者" : "中央指挥部"]的消息。[sender == RADIO_CHANNEL_SYNDICATE ? "特工，" : ""]内容如下：<span class='bold'>[msg]。</span>消息结束。\"")
 
 
-			log_admin("SubtlePM ([sender]): [key_name(admin_client)] -> [key_name(target_mob)] : [msg]")
-			msg = span_adminnotice("<b> SubtleMessage ([sender]): [key_name_admin(admin_client)] -> [key_name_admin(target_mob)] :</b> [msg]")
+			log_admin("隐秘私信（[chinese_radio_channel_display(sender)]）：[key_name(admin_client)] -> [key_name(target_mob)]：[msg]")
+			msg = span_adminnotice("<b>隐秘消息（[chinese_radio_channel_display(sender)]）：[key_name_admin(admin_client)] -> [key_name_admin(target_mob)]：</b>[msg]")
 			message_admins(msg)
 			admin_ticket_log(target_mob, msg)
 			return TRUE
@@ -257,9 +257,9 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		/// Forces selected player/client into ghost, disconnecting them from mob.
 		if ("ghost")
 			if(target_mob.client)
-				log_admin("[key_name(admin_client)] ejected [key_name(target_mob)] from their body.")
-				message_admins("[key_name_admin(admin_client)] ejected [key_name_admin(target_mob)] from their body.")
-				to_chat(target_mob, span_danger("An admin has ejected you from your body."))
+				log_admin("[key_name(admin_client)]将[key_name(target_mob)]逐出了身体。")
+				message_admins("[key_name_admin(admin_client)]将[key_name_admin(target_mob)]逐出了身体。")
+				to_chat(target_mob, span_danger("管理员将你逐出了身体。"))
 				target_mob.ghostize(FALSE)
 				return TRUE
 			return FALSE
@@ -282,8 +282,8 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			target_mob.ckey = admin_mob.ckey
 			qdel(admin_mob)
 
-			message_admins(span_adminnotice("[key_name_admin(admin_client)] took control of [target_mob]."))
-			log_admin("[key_name(admin_client)] took control of [target_mob].")
+			message_admins(span_adminnotice("[key_name_admin(admin_client)]接管了[target_mob]。"))
+			log_admin("[key_name(admin_client)]接管了[target_mob]。")
 			addtimer(CALLBACK(target_mob.mob_panel, TYPE_PROC_REF(/datum, ui_interact), target_mob), 0.1 SECONDS)
 			return TRUE
 
@@ -329,15 +329,15 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		/// Yeets target client to the lobby (only works on ghosts)
 		if ("lobby")
 			if(!isobserver(target_mob))
-				to_chat(admin_client, span_notice("You can only send ghost players back to the Lobby."))
+				to_chat(admin_client, span_notice("只能将幽灵玩家送回大厅。"))
 				return FALSE
 
 			if(!target_mob.client)
-				to_chat(admin_client, span_warning("[target_mob] doesn't seem to have an active client."))
+				to_chat(admin_client, span_warning("[target_mob]似乎没有连接中的客户端。"))
 				return FALSE
 
-			log_admin("[key_name(admin_client)] has sent [key_name(target_mob)] back to the Lobby.")
-			message_admins("[key_name(admin_client)] has sent [key_name(target_mob)] back to the Lobby.")
+			log_admin("[key_name(admin_client)]将[key_name(target_mob)]送回了大厅。")
+			message_admins("[key_name(admin_client)]将[key_name(target_mob)]送回了大厅。")
 
 			var/mob/dead/new_player/new_connected_player = new()
 			new_connected_player.ckey = target_mob.ckey
@@ -375,32 +375,32 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		/// Sends the offender to SUPERJAIL known as SPACE PRISON (admin prison)
 		if ("prison")
 			if(isAI(target_mob))
-				to_chat(admin_client, "This cannot be used on instances of type /mob/living/silicon/ai.")
+				to_chat(admin_client, "不能对/mob/living/silicon/ai类型的实例使用此功能。")
 				return FALSE
 
 			target_mob.forceMove(pick(GLOB.prisonwarp))
-			to_chat(target_mob, span_userdanger("You have been sent to Prison!"))
+			to_chat(target_mob, span_userdanger("你被送进监狱了！"))
 
-			log_admin("[key_name(admin_client)] has sent [key_name(target_mob)] to Prison!")
-			message_admins("[key_name_admin(admin_client)] has sent [key_name_admin(target_mob)] to Prison!")
+			log_admin("[key_name(admin_client)]将[key_name(target_mob)]送进了监狱！")
+			message_admins("[key_name_admin(admin_client)]将[key_name_admin(target_mob)]送进了监狱！")
 			return TRUE
 
 		/// Boots the offending client from the server
 		if ("kick")
 			if(!check_if_greater_rights_than(target_client))
-				to_chat(admin_client, span_danger("Error: They have more rights than you do."), confidential = TRUE)
+				to_chat(admin_client, span_danger("错误：对方的权限比你高。"), confidential = TRUE)
 				return FALSE
-			if(tgui_alert(admin_mob, "Kick [key_name(target_mob)]?", "Confirm", list("Yes", "No")) != "Yes")
+			if(tgui_alert(admin_mob, "踢出[key_name(target_mob)]？", "确认", list("是", "否")) != "是")
 				return FALSE
 			if(!target_mob)
-				to_chat(admin_client, span_danger("Error: [target_mob] no longer exists!"), confidential = TRUE)
+				to_chat(admin_client, span_danger("错误：[target_mob]已不存在！"), confidential = TRUE)
 				return FALSE
 			if(!target_client)
-				to_chat(admin_client, span_danger("Error: [target_mob] no longer has a client!"), confidential = TRUE)
+				to_chat(admin_client, span_danger("错误：[target_mob]已没有客户端！"), confidential = TRUE)
 				return FALSE
-			to_chat(target_mob, span_danger("You have been kicked from the server by [admin_client.holder.fakekey ? "an Administrator" : "[admin_client.key]"]."), confidential = TRUE)
-			log_admin("[key_name(admin_client)] kicked [key_name(target_mob)].")
-			message_admins(span_adminnotice("[key_name_admin(admin_client)] kicked [key_name_admin(target_mob)]."))
+			to_chat(target_mob, span_danger("你被[admin_client.holder.fakekey ? "一位管理员" : "[admin_client.key]"]踢出了服务器。"), confidential = TRUE)
+			log_admin("[key_name(admin_client)]踢出了[key_name(target_mob)]。")
+			message_admins(span_adminnotice("[key_name_admin(admin_client)]踢出了[key_name_admin(target_mob)]。"))
 			qdel(target_client)
 			return TRUE
 
@@ -410,7 +410,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			var/player_ip = target_mob.client?.address
 			var/player_cid = target_mob.client?.computer_id
 			if(!target_ckey)
-				to_chat(admin_client, span_warning("No ckey found for this mob."))
+				to_chat(admin_client, span_warning("未找到该生物的ckey。"))
 				return FALSE
 			admin_client.holder.ban_panel(target_ckey, player_ip, player_cid)
 			return TRUE
@@ -420,7 +420,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			var/list/ban_settings = list()
 			var/target_ckey = get_target_ckey()
 			if(!target_ckey)
-				to_chat(admin_client, span_warning("No ckey found for this mob."))
+				to_chat(admin_client, span_warning("未找到该生物的ckey。"))
 				return FALSE
 			ban_settings["ckey"] = target_ckey
 			admin_client.holder.stickyban("add", ban_settings)
@@ -430,7 +430,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		if ("notes")
 			var/target_ckey = get_target_ckey()
 			if(!target_ckey)
-				to_chat(admin_client, span_warning("No ckey found for this mob."))
+				to_chat(admin_client, span_warning("未找到该生物的ckey。"))
 				return FALSE
 			browse_messages(target_ckey = target_ckey)
 			return TRUE
@@ -447,7 +447,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 				return FALSE
 
 			target_mob.client.prefs.muted = text2num(params["mute_flag"])
-			log_admin("[key_name(admin_client)] set the mute flags for [key_name(target_mob)] to [target_mob.client.prefs.muted].")
+			log_admin("[key_name(admin_client)]将[key_name(target_mob)]的禁言标志设为[target_mob.client.prefs.muted]。")
 			return TRUE
 
 		/// MUTES EVERYBODY (NO ONE GETS TALKING STICK!!!)
@@ -458,7 +458,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			for(var/bit in GLOB.mute_bits)
 				target_mob.client.prefs.muted |= bit["bitflag"]
 
-			log_admin("[key_name(admin_client)] mass-muted [key_name(target_mob)].")
+			log_admin("[key_name(admin_client)]对[key_name(target_mob)]启用了全部禁言。")
 			return TRUE
 
 		/// Unmutes EVERYBODY
@@ -469,7 +469,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			for(var/bit in GLOB.mute_bits)
 				target_mob.client.prefs.muted &= ~bit["bitflag"]
 
-			log_admin("[key_name(admin_client)] mass-unmuted [key_name(target_mob)].")
+			log_admin("[key_name(admin_client)]解除了[key_name(target_mob)]的全部禁言。")
 			return TRUE
 
 		/// Showing linked discord_id
@@ -488,7 +488,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 				related_accounts = splittext(related_accounts, ", ")
 
-				var/list/dat = list("Related accounts by [params["related_thing"]]:")
+				var/list/dat = list("按[params["related_thing"]]查找的关联账号：")
 				dat += related_accounts
 				admin_client << browse(dat.Join("<br>"), "window=related_[target_mob.client];size=420x300")
 				return TRUE
@@ -498,7 +498,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		if ("transform")
 			var/choice = params["newType"]
 			if (choice == "/mob/living")
-				choice = tgui_input_list(admin_client, "What should this mob transform into", "Mob Transform", subtypesof(choice))
+				choice = tgui_input_list(admin_client, "要将该生物变成什么？", "生物变形", subtypesof(choice))
 				if (!choice)
 					return FALSE
 
@@ -561,8 +561,8 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 
 			var/turf/target_turf = get_turf(admin_mob)
-			message_admins("[ADMIN_LOOKUPFLW(admin_client)] created an admin [emp_mode ? "EMP" : "explosion"] at [ADMIN_VERBOSEJMP(target_turf)].")
-			log_admin("[key_name(admin_client)] created an admin [emp_mode ? "EMP" : "explosion"] at [admin_mob.loc].")
+			message_admins("[ADMIN_LOOKUPFLW(admin_client)]在[ADMIN_VERBOSEJMP(target_turf)]创建了管理员[emp_mode ? "电磁脉冲" : "爆炸"]。")
+			log_admin("[key_name(admin_client)]在[admin_mob.loc]创建了管理员[emp_mode ? "电磁脉冲" : "爆炸"]。")
 
 			if (emp_mode)
 				empulse(admin_mob, power, power / 2, TRUE)
@@ -580,14 +580,14 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 			if (params["mode_global"])
 				to_chat(world, "<span style='[styles]'>[params["message"]]</span>")
-				log_admin("GlobalNarrate: [key_name(admin_client)] : [params["message"]]")
-				message_admins(span_adminnotice("[key_name_admin(admin_client)] Sent a global narrate"))
+				log_admin("全局旁白：[key_name(admin_client)]：[params["message"]]")
+				message_admins(span_adminnotice("[key_name_admin(admin_client)]发送了全局旁白"))
 			else
 				for(var/mob/individual_mob in view(params["range"], admin_mob))
 					to_chat(individual_mob, "<span style='[styles]'>[params["message"]]</span>")
 
-				log_admin("LocalNarrate: [key_name(admin_client)] at [AREACOORD(admin_mob)]: [params["message"]]")
-				message_admins(span_adminnotice("<b> LocalNarrate: [key_name_admin(admin_client)] at [ADMIN_VERBOSEJMP(admin_mob)]:</b> [params["message"]]<BR>"))
+				log_admin("局部旁白：[key_name(admin_client)]位于[AREACOORD(admin_mob)]：[params["message"]]")
+				message_admins(span_adminnotice("<b>局部旁白：[key_name_admin(admin_client)]位于[ADMIN_VERBOSEJMP(admin_mob)]：</b>[params["message"]]<BR>"))
 			return TRUE
 
 		/// Opens languages panel for the selected player/client
@@ -614,7 +614,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		/// Opens the selected player/client's borg panel
 		if ("borg_panel")
 			if(!iscyborg(target_mob))
-				to_chat(admin_client, span_warning("This can only be used on cyborgs."))
+				to_chat(admin_client, span_warning("此功能只能对半机械人使用。"))
 				return FALSE
 			SSadmin_verbs.dynamic_invoke_verb(admin_client, /datum/admin_verb/borg_panel, target_mob)
 			return TRUE
@@ -627,19 +627,19 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		/// Forces a commendation to selected client/player
 		if ("commend")
 			if(!target_mob.ckey)
-				to_chat(admin_client, span_warning("This mob either no longer exists or no longer is being controlled by someone!"))
+				to_chat(admin_client, span_warning("该生物已不存在，或已无人控制！"))
 				return FALSE
 
-			switch(tgui_alert(admin_mob, "Would you like the effects to apply immediately or at the end of the round? Applying them now will make it clear it was an admin commendation.", "<3?", list("Apply now", "Apply at round end", "Cancel")))
-				if("Apply now")
+			switch(tgui_alert(admin_mob, "要立即生效还是回合结束时生效？立即生效会让对方知道这是管理员嘉奖。", "<3？", list("立即生效", "回合结束时生效", "取消")))
+				if("立即生效")
 					target_mob.receive_heart(admin_mob, instant = TRUE)
-				if("Apply at round end")
+				if("回合结束时生效")
 					target_mob.receive_heart(admin_mob)
 			return TRUE
 
 		/// Plays a selected sound to target client
 		if ("play_sound_to")
-			var/sound_file = input("", "Select a sound file",) as null|sound
+			var/sound_file = input("", "选择声音文件",) as null|sound
 
 			if(sound_file && target_mob)
 				SSadmin_verbs.dynamic_invoke_verb(admin_client, /datum/admin_verb/play_direct_mob_sound, sound_file, target_mob)
@@ -650,14 +650,14 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		if ("apply_client_quirks")
 			var/mob/living/carbon/human/specified_humanoid = target_mob
 			if(!istype(specified_humanoid))
-				to_chat(admin_client, "this can only be used on instances of type /mob/living/carbon/human.", confidential = TRUE)
+				to_chat(admin_client, "此功能只能对/mob/living/carbon/human类型的实例使用。", confidential = TRUE)
 				return FALSE
 			if(!specified_humanoid.client)
-				to_chat(admin_client, "[specified_humanoid] has no client!", confidential = TRUE)
+				to_chat(admin_client, "[specified_humanoid]没有客户端！", confidential = TRUE)
 				return FALSE
 			SSquirks.AssignQuirks(specified_humanoid, specified_humanoid.client)
-			log_admin("[key_name(admin_client)] applied client quirks to [key_name(specified_humanoid)].")
-			message_admins(span_adminnotice("[key_name_admin(admin_client)] applied client quirks to [key_name_admin(specified_humanoid)]."))
+			log_admin("[key_name(admin_client)]将客户端怪癖应用到了[key_name(specified_humanoid)]。")
+			message_admins(span_adminnotice("[key_name_admin(admin_client)]将客户端怪癖应用到了[key_name_admin(specified_humanoid)]。"))
 			return TRUE
 
 		/// Toggles a status flag on the selected mob
@@ -678,7 +678,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 					living_mob.status_flags |= numeric_flag
 				else
 					living_mob.status_flags &= ~numeric_flag
-				log_admin("[key_name(admin_client)] [enabled ? "enabled" : "disabled"] status flag [numeric_flag] on [key_name(target_mob)].")
+				log_admin("[key_name(admin_client)]为[key_name(target_mob)][enabled ? "启用" : "禁用"]了状态标志[numeric_flag]。")
 			return TRUE
 
 		/// Sets the movement speed of the selected mob
@@ -698,7 +698,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			if(diff != 0)
 				living_mob.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/admin_varedit, multiplicative_slowdown = diff)
 
-			log_admin("[key_name(admin_client)] set speed of [key_name(target_mob)] to [new_speed].")
+			log_admin("[key_name(admin_client)]将[key_name(target_mob)]的速度设为[new_speed]。")
 			return TRUE
 
 		/// Resets the movement speed
@@ -708,22 +708,22 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 				return FALSE
 
 			living_mob.remove_movespeed_modifier(/datum/movespeed_modifier/admin_varedit)
-			log_admin("[key_name(admin_client)] reset speed modifier of [key_name(target_mob)].")
+			log_admin("[key_name(admin_client)]重置了[key_name(target_mob)]的速度修正。")
 			return TRUE
 
 		/// Loads the client's preferences onto the selected human mob
 		if ("load_preferences")
 			var/mob/living/carbon/human/human_mob = target_mob
 			if(!istype(human_mob))
-				to_chat(admin_client, "This can only be used on humans.", confidential = TRUE)
+				to_chat(admin_client, "此功能只能对人形生物使用。", confidential = TRUE)
 				return FALSE
 			if(!human_mob.client)
-				to_chat(admin_client, "[human_mob] has no client!", confidential = TRUE)
+				to_chat(admin_client, "[human_mob]没有客户端！", confidential = TRUE)
 				return FALSE
 
 			human_mob.client.prefs.apply_prefs_to(human_mob)
-			log_admin("[key_name(admin_client)] loaded preferences onto [key_name(human_mob)].")
-			message_admins(span_adminnotice("[key_name_admin(admin_client)] loaded preferences onto [key_name_admin(human_mob)]."))
+			log_admin("[key_name(admin_client)]将偏好设置载入了[key_name(human_mob)]。")
+			message_admins(span_adminnotice("[key_name_admin(admin_client)]将偏好设置载入了[key_name_admin(human_mob)]。"))
 			return TRUE
 
 /// Gets the target mob's ckey, handling both active clients and stored ckeys
@@ -744,12 +744,12 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		return
 
 	if(!SSdbcore.IsConnected())
-		discord_id_cache = "Database not connected"
+		discord_id_cache = "数据库未连接"
 		return
 
 	var/target_ckey = get_target_ckey()
 	if(!target_ckey)
-		discord_id_cache = "No ckey found"
+		discord_id_cache = "未找到ckey"
 		return
 
 	var/datum/db_query/discord_query = SSdbcore.NewQuery(
@@ -760,8 +760,8 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		if(discord_query.NextRow())
 			discord_id_cache = discord_query.item[1]
 		else
-			discord_id_cache = "Not found"
+			discord_id_cache = "未找到"
 	else
-		discord_id_cache = "Database error"
+		discord_id_cache = "数据库错误"
 	qdel(discord_query)
 

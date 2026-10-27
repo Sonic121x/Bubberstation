@@ -25,7 +25,7 @@
 #define MAXIMUM_HOLDER_VOLUME 9000
 
 /obj/machinery/chem_recipe_debug
-	name = "chemical reaction tester"
+	name = "化学反应测试器"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "HPLC_debug"
 	density = TRUE
@@ -95,18 +95,18 @@
 
 	if(!QDELETED(container))
 		if(is_reagent_container(held_item)  && held_item.is_open_container())
-			context[SCREENTIP_CONTEXT_LMB] = "Replace container"
+			context[SCREENTIP_CONTEXT_LMB] = "更换容器"
 			return CONTEXTUAL_SCREENTIP_SET
 	else if(is_reagent_container(held_item)  && held_item.is_open_container())
-		context[SCREENTIP_CONTEXT_LMB] = "Insert container"
+		context[SCREENTIP_CONTEXT_LMB] = "放入容器"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/chem_recipe_debug/examine(mob/user)
 	. = ..()
 	if(!QDELETED(container))
-		. += span_notice("A container of [container.reagents.maximum_volume]u capacity is inside.")
+		. += span_notice("内部有一个容量为 [container.reagents.maximum_volume]u 的容器。")
 	else
-		. += span_notice("No container is present. A new will be created when ejecting.")
+		. += span_notice("当前没有容器。取出时会自动创建一个新的。")
 
 /obj/machinery/chem_recipe_debug/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -257,7 +257,7 @@
 	if(reactions_to_test.len)
 		current_reaction = reactions_to_test[current_reaction_index || 1]
 	if(isnull(current_reaction))
-		.["current_reaction_name"] = "N/A"
+		.["current_reaction_name"] = "无"
 	else
 		.["current_reaction_name"] = extract_reaction_name(current_reaction)
 	.["current_reaction_mode"] = current_reaction_mode
@@ -449,7 +449,7 @@
 			return TRUE
 
 		if("pick_reaction")
-			var/mode = tgui_alert(usr, "Play all or a specific reaction?","Select Reaction", list("All", "Specific"))
+			var/mode = tgui_alert(usr, "要测试全部反应还是指定反应？","选择反应", list("All", "Specific"))
 			if(mode == "All")
 				reactions_to_test.Cut()
 				for(var/reaction in all_reaction_list)
@@ -457,7 +457,7 @@
 				current_reaction_index = 0
 				return TRUE
 
-			var/selected_reaction = tgui_input_list(ui.user, "Select Reaction", "Reaction", all_reaction_list)
+			var/selected_reaction = tgui_input_list(ui.user, "选择反应", "反应", all_reaction_list)
 			if(!selected_reaction)
 				return
 
@@ -504,7 +504,7 @@
 						if(!reaction_names.len)
 							return
 
-						var/selected_reaction = tgui_input_list(ui.user, "Select Reaction", "Reaction", reaction_names)
+						var/selected_reaction = tgui_input_list(ui.user, "选择反应", "反应", reaction_names)
 						if(!selected_reaction)
 							return
 						for(var/i = 1; i <= reaction_names.len; i++)
@@ -571,7 +571,7 @@
 			return TRUE
 
 		if("edit_reaction")
-			var/selected_reaction = tgui_input_list(ui.user, "Select Reaction", "Reaction", all_reaction_list)
+			var/selected_reaction = tgui_input_list(ui.user, "选择反应", "反应", all_reaction_list)
 			if(!selected_reaction)
 				return
 
@@ -661,7 +661,7 @@
 
 			var/dest = "[GLOB.log_directory]/chem_parse.txt"
 			text2file(export, dest)
-			tgui_alert(ui.user, "Saved to [dest]")
+			tgui_alert(ui.user, "已保存至 [dest]")
 
 		if("eject")
 			//initialize a new container for us

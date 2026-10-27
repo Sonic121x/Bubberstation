@@ -1,6 +1,6 @@
 /obj/machinery/portable_atmospherics/pipe_scrubber
-	name = "pipe scrubber"
-	desc = "A machine for cleaning out pipes of lingering gases. It is a huge tank with a pump attached to it."
+	name = "管道净化器"
+	desc = "用于清除管道中残留气体的机器。它是一个巨大的储罐，附有一台泵。"
 	icon_state = "pipe_scrubber"
 	density = TRUE
 	max_integrity = 250
@@ -153,12 +153,12 @@
 			. = TRUE
 		if("reaction_suppression")
 			if(!internal_tank.nob_crystal_inserted)
-				message_admins("[ADMIN_LOOKUPFLW(usr)] tried to toggle reaction suppression on a pipe scrubber without a noblium crystal inside, possible href exploit attempt.")
+				message_admins("[ADMIN_LOOKUPFLW(usr)] 试图在未装入超惰性气体晶体的管道净化器上切换反应抑制，可能是 href 漏洞利用尝试。")
 				return
 			internal_tank.suppress_reactions = !internal_tank.suppress_reactions
 			SSair.start_processing_machine(internal_tank)
-			message_admins("[ADMIN_LOOKUPFLW(usr)] turned [internal_tank.suppress_reactions ? "on" : "off"] the [internal_tank] reaction suppression.")
-			usr.investigate_log("turned [internal_tank.suppress_reactions ? "on" : "off"] the [internal_tank] reaction suppression.", INVESTIGATE_ATMOS)
+			message_admins("[ADMIN_LOOKUPFLW(usr)] 将 [internal_tank] 的反应抑制[internal_tank.suppress_reactions ? "开启" : "关闭"]了。")
+			usr.investigate_log("将 [internal_tank] 的反应抑制[internal_tank.suppress_reactions ? "开启" : "关闭"]了。", INVESTIGATE_ATMOS)
 			. = TRUE
 	update_appearance()
 

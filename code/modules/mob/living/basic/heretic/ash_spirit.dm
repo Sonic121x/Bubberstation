@@ -2,9 +2,9 @@
  * Player-only mob which is fast, can jaunt a short distance, and is dangerous at close range
  */
 /mob/living/basic/heretic_summon/ash_spirit
-	name = "\improper Ash Spirit"
-	real_name = "Ashy"
-	desc = "A manifestation of ash, trailing a perpetual cloud of short-lived cinders."
+	name = "\improper 灰烬之灵"
+	real_name = "小灰"
+	desc = "灰烬的具现，身后永远拖着一团转瞬即逝的余烬。"
 	icon_state = "ash_walker"
 	icon_living = "ash_walker"
 	maxHealth = 75

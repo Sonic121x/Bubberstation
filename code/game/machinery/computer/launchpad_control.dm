@@ -1,6 +1,6 @@
 /obj/machinery/computer/launchpad
-	name = "launchpad control console"
-	desc = "Used to teleport objects to and from a launchpad."
+	name = "传送平台控制台"
+	desc = "用于通过传送平台传入或传出物体。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/launchpad")
 	icon_screen = "teleport"
 	icon_keyboard = "teleport_key"
@@ -16,8 +16,8 @@
 	AddComponent(/datum/component/usb_port, typecacheof(list(/obj/item/circuit_component/bluespace_launchpad/console), only_root_path = TRUE))
 
 /obj/item/circuit_component/bluespace_launchpad/console
-	display_name = "Bluespace Launchpad Console"
-	desc = "Teleports anything to and from any location on the station. Doesn't use actual GPS coordinates, but rather offsets from the launchpad itself. Can only go as far as the launchpad can go, which depends on its parts."
+	display_name = "蓝空间传送平台控制台"
+	desc = "将物体传送至空间站内的位置，或从该处传回。使用相对平台的偏移量，而非实际GPS坐标。传送距离受平台零件决定的有效范围限制。"
 
 	var/datum/port/input/launchpad_id
 
@@ -54,7 +54,7 @@
 	..()
 
 /obj/machinery/computer/launchpad/attack_paw(mob/user, list/modifiers)
-	to_chat(user, span_warning("You are too primitive to use this computer!"))
+	to_chat(user, span_warning("你太原始了，无法使用这台计算机！"))
 	return
 
 /obj/machinery/computer/launchpad/multitool_act(mob/living/user, obj/item/multitool/tool)
@@ -65,7 +65,7 @@
 	if(LAZYLEN(launchpads) < maximum_pads)
 		launchpads |= tool.buffer
 		tool.set_buffer(null)
-		to_chat(user, span_notice("You upload the data from the [tool] buffer."))
+		to_chat(user, span_notice("你上传了[tool]缓冲区内的数据。"))
 		return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/computer/launchpad/proc/pad_exists(number)
@@ -150,7 +150,7 @@
 				return
 			current_pad.display_name = new_name
 		if("remove")
-			if(usr && tgui_alert(usr, "Are you sure?", "Unlink Launchpad", list("I'm Sure", "Abort")) == "I'm Sure")
+			if(usr && tgui_alert(usr, "确定要断开连接吗？", "断开传送平台", list("确定", "取消")) == "确定")
 				launchpads -= current_pad
 				selected_id = null
 			. = TRUE
@@ -159,7 +159,7 @@
 			if(isnull(checks))
 				current_pad.doteleport(usr, TRUE)
 			else
-				to_chat(usr, span_warning(checks))
+				to_chat(usr, span_warning(chinese_launchpad_error_display(checks)))
 			. = TRUE
 
 		if("pull")
@@ -167,7 +167,7 @@
 			if(isnull(checks))
 				current_pad.doteleport(usr, FALSE)
 			else
-				to_chat(usr, span_warning(checks))
+				to_chat(usr, span_warning(chinese_launchpad_error_display(checks)))
 
 			. = TRUE
 	. = TRUE

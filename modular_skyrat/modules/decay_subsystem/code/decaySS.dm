@@ -16,7 +16,7 @@ These procs are incredibly expensive and should only really be run once. That's 
 #define NEST_PERCENT_CHANCE 1
 
 SUBSYSTEM_DEF(decay)
-	name = "Decay System"
+	name = "衰败系统"
 	ss_flags = SS_NO_FIRE
 	dependencies = list(
 		/datum/controller/subsystem/mapping,
@@ -38,13 +38,13 @@ SUBSYSTEM_DEF(decay)
 
 /datum/controller/subsystem/decay/Initialize()
 	if(CONFIG_GET(flag/ssdecay_disabled))
-		message_admins("SSDecay was disabled in config.")
-		log_world("SSDecay was disabled in config.")
+		message_admins("SSDecay 已在配置中被禁用。")
+		log_world("SSDecay 已在配置中被禁用。")
 		return SS_INIT_NO_NEED
 
 	if(SSmapping.current_map.map_name in station_filter)
-		message_admins("SSDecay was disabled due to map filter.")
-		log_world("SSDecay was disabled due to map filter.")
+		message_admins("SSDecay 因地图过滤而被禁用。")
+		log_world("SSDecay 因地图过滤而被禁用。")
 		return SS_INIT_NO_NEED
 
 	for(var/area/iterating_area as anything in GLOB.areas)
@@ -66,8 +66,8 @@ SUBSYSTEM_DEF(decay)
 	if(!severity_modifier || severity_modifier == 5)
 		severity_modifier = rand(1, 4)
 
-	message_admins("SSDecay severity modifier set to [severity_modifier]")
-	log_world("SSDecay severity modifier set to [severity_modifier]")
+	message_admins("SSDecay 严重度修正值设为 [severity_modifier]")
+	log_world("SSDecay 严重度修正值设为 [severity_modifier]")
 
 	do_common()
 

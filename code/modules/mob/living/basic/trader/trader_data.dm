@@ -20,53 +20,53 @@
 	///The speech data of the trader
 	var/list/say_phrases = list(
 		ITEM_REJECTED_PHRASE = list(
-			"Sorry, I'm not a fan of anything you're showing me. Give me something better and we'll talk.",
+			"抱歉，你给我看的东西我都不感兴趣。拿点更好的来，我们再谈。",
 		),
 		ITEM_SELLING_CANCELED_PHRASE = list(
-			"What a shame, tell me if you changed your mind.",
+			"真可惜，如果你改主意了告诉我。",
 		),
 		ITEM_SELLING_ACCEPTED_PHRASE = list(
-			"Pleasure doing business with you.",
+			"很高兴与你做交易。",
 		),
 		INTERESTED_PHRASE = list(
-			"Hey, you've got an item that interests me, I'd like to buy it, I'll give you some cash for it, deal?",
+			"嘿，你有件东西让我很感兴趣，我想买下它，我会付你现金，成交吗？",
 		),
 		BUY_PHRASE = list(
-			"Pleasure doing business with you.",
+			"很高兴与你做交易。",
 		),
 		NO_CASH_PHRASE = list(
-			"Sorry adventurer, I can't give credit! Come back when you're a little mmmmm... richer!",
+			"抱歉，冒险者，我可不能赊账！等你再……嗯……有钱一点再来吧！",
 		),
 		NO_STOCK_PHRASE = list(
-			"Sorry adventurer, but that item is not in stock at the moment.",
+			"抱歉，冒险者，那件商品目前没有现货。",
 		),
 		NOT_WILLING_TO_BUY_PHRASE = list(
-			"I don't want to buy that item for the time being, check back another time.",
+			"那件东西我暂时不想收，改天再来看看吧。",
 		),
 		ITEM_IS_WORTHLESS_PHRASE = list(
-			"This item seems to be worthless on a closer look, I won't buy this.",
+			"仔细一看，这东西似乎一文不值，我不收。",
 		),
 		TRADER_HAS_ENOUGH_ITEM_PHRASE = list(
-			"I already bought enough of this for the time being.",
+			"这种东西我暂时已经收够了。",
 		),
 		TRADER_LORE_PHRASE = list(
-			"Hello! I am the test trader.",
-			"Oooooooo~!",
+			"你好！我是测试商人。",
+			"哦哦哦哦哦哦～！",
 		),
 		TRADER_NOT_BUYING_ANYTHING = list(
-			"I'm currently buying nothing at the moment.",
+			"我目前什么都不收。",
 		),
 		TRADER_NOT_SELLING_ANYTHING = list(
-			"I'm currently selling nothing at the moment.",
+			"我目前什么都不卖。",
 		),
 		TRADER_BATTLE_START_PHRASE = list(
-			"Thief!",
+			"小偷！",
 		),
 		TRADER_BATTLE_END_PHRASE = list(
-			"That is a discount I call death.",
+			"这个折扣，我称之为“死亡”。",
 		),
 		TRADER_SHOP_OPENING_PHRASE = list(
-			"Welcome to my shop, friend!",
+			"欢迎光临我的商店，朋友！",
 		),
 	)
 
@@ -97,60 +97,60 @@
 
 	initial_wanteds = list(
 		/obj/item/reagent_containers/condiment/milk = list(PAYCHECK_CREW * 20, INFINITY, ""),
-		/obj/item/stack/sheet/bone = list(PAYCHECK_CREW * 8.4, INFINITY, ", per sheet of bone"),
+		/obj/item/stack/sheet/bone = list(PAYCHECK_CREW * 8.4, INFINITY, "，每片骨头"),
 	)
 
 	say_phrases = list(
 		ITEM_REJECTED_PHRASE = list(
-			"Sorry, I'm not a fan of anything you're showing me. Give me something better and we'll talk.",
+			"抱歉，你给我看的东西我都不感兴趣。拿点更好的来，我们再谈。",
 		),
 		ITEM_SELLING_CANCELED_PHRASE = list(
-			"What a shame, tell me if you changed your mind.",
+			"真可惜，如果你改主意了告诉我。",
 		),
 		ITEM_SELLING_ACCEPTED_PHRASE = list(
-			"Pleasure doing business with you.",
+			"很高兴与你做交易。",
 		),
 		INTERESTED_PHRASE = list(
-			"Hey, you've got an item that interests me, I'd like to buy it, I'll give you some cash for it, deal?",
+			"嘿，你有件东西让我很感兴趣，我想买下它，我会付你现金，成交吗？",
 		),
 		BUY_PHRASE = list(
-			"Bone appetit!",
+			"祝您胃口大开！",
 		),
 		NO_CASH_PHRASE = list(
-			"Sorry adventurer, I can't give credit! Come back when you're a little mmmmm... richer!",
+			"抱歉，冒险者，我可不能赊账！等你再……嗯……有钱一点再来吧！",
 		),
 		NO_STOCK_PHRASE = list(
-			"Sorry adventurer, but that item is not in stock at the moment.",
+			"抱歉，冒险者，那件商品目前没有现货。",
 		),
 		NOT_WILLING_TO_BUY_PHRASE = list(
-			"I don't want to buy that item for the time being, check back another time.",
+			"那件东西我暂时不想收，改天再来看看吧。",
 		),
 		ITEM_IS_WORTHLESS_PHRASE = list(
-			"This item seems to be worthless on a closer look, I won't buy this.",
+			"仔细一看，这东西似乎一文不值，我不收。",
 		),
 		TRADER_HAS_ENOUGH_ITEM_PHRASE = list(
-			"I already bought enough of this for the time being.",
+			"这种东西我暂时已经收够了。",
 		),
 		TRADER_LORE_PHRASE = list(
-			"Hello, I am Mr. Bones!",
-			"The ride never ends!",
-			"I'd really like a refreshing carton of milk!",
-			"I'm willing to play big prices for BONES! Need materials to make merch, eh?",
-			"It's a beautiful day outside. Birds are singing, Flowers are blooming... On days like these, kids like you... Should be buying my wares!",
+			"你好，我是骨头先生！",
+			"这趟旅程永无止境！",
+			"我真想喝一盒清爽的牛奶！",
+			"我愿意为骨头出大价钱！做周边商品总得有材料，对吧？",
+			"外面天气真好。鸟儿在歌唱，花儿在绽放……在这样的日子里，像你这样的孩子……就该来买我的货！",
 		),
 		TRADER_NOT_BUYING_ANYTHING = list(
-			"I'm currently buying nothing at the moment.",
+			"我目前什么都不收。",
 		),
 		TRADER_NOT_SELLING_ANYTHING = list(
-			"I'm currently selling nothing at the moment.",
+			"我目前什么都不卖。",
 		),
 		TRADER_BATTLE_START_PHRASE = list(
-			"The ride ends for you!",
+			"你的旅程到此为止了！",
 		),
 		TRADER_BATTLE_END_PHRASE = list(
-			"Mr. Bones never misses!",
+			"骨头先生从不失手！",
 		),
 		TRADER_SHOP_OPENING_PHRASE = list(
-			"My wild ride is open!",
+			"我的疯狂之旅开张了！",
 		),
 	)

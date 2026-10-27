@@ -15,7 +15,7 @@
 	qdel(cooler_robot)
 
 /datum/crafting_recipe/slapcraft_tester
-	name = "Cooler Robot"
+	name = "更酷机器人"
 	result = /obj/item/toy/mecha/reticence
 	reqs = list(
 		/obj/item/paper = 1,

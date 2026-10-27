@@ -1,165 +1,165 @@
 #define SPELLBOOK_CATEGORY_OFFENSIVE "Offensive"
 // Offensive wizard spells
 /datum/spellbook_entry/fireball
-	name = "Fireball"
-	desc = "Fires an explosive fireball at a target. Considered a classic among all wizards."
+	name = "火球术"
+	desc = "向目标发射一枚会爆炸的火球。被所有巫师视为经典。"
 	spell_type = /datum/action/cooldown/spell/pointed/projectile/fireball
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 
 /datum/spellbook_entry/spell_cards
-	name = "Spell Cards"
-	desc = "Blazing hot rapid-fire homing cards. Send your foes to the shadow realm with their mystical power!"
+	name = "法术卡牌"
+	desc = "炽热的高速追踪卡牌。用它们的玄妙力量把敌人送进暗影界吧！"
 	spell_type = /datum/action/cooldown/spell/pointed/projectile/spell_cards
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 
 /datum/spellbook_entry/rod_form
-	name = "Rod Form"
-	desc = "Take on the form of an immovable rod, destroying all in your path. Purchasing this spell multiple times will also increase the rod's damage and travel range."
+	name = "神杆形态"
+	desc = "化身为不可阻挡的神杆，摧毁路上的一切。多次购买此法术还会提升神杆的伤害与行进距离。"
 	spell_type = /datum/action/cooldown/spell/rod_form
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 
 /datum/spellbook_entry/disintegrate
-	name = "Smite"
-	desc = "Charges your hand with an unholy energy that can be used to cause a touched victim to violently explode."
+	name = "天罚"
+	desc = "以不洁之力充盈你的手掌，触碰到的受害者会猛烈炸开。"
 	spell_type = /datum/action/cooldown/spell/touch/smite
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 
 /datum/spellbook_entry/summon_simians
-	name = "Summon Simians"
-	desc = "This spell reaches deep into the elemental plane of bananas (the monkey one, not the clown one), and \
-		summons primal monkeys and lesser gorillas that will promptly flip out and attack everything in sight. Fun! \
-		Their lesser, easily manipulable minds will be convinced you are one of their allies, but only for a minute. Unless you also are a monkey."
+	name = "召唤猿猴"
+	desc = "此法术深入香蕉元素位面（是猴子那个，不是小丑那个），\
+		召唤出原始猴子和低等大猩猩，它们会立刻发狂并攻击视野内的一切。真有趣！\
+		它们那低等、易被操控的心智会相信你是它们的盟友，但只持续一分钟。除非你也是只猴子。"
 	spell_type = /datum/action/cooldown/spell/conjure/simian
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 
 /datum/spellbook_entry/blind
-	name = "Blind"
-	desc = "Temporarily blinds a single target."
+	name = "致盲"
+	desc = "暂时让单个目标失明。"
 	spell_type = /datum/action/cooldown/spell/pointed/blind
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 	cost = 1
 
 /datum/spellbook_entry/tie_shoes
-	name = "Tie Shoes"
-	desc = "This unassuming spell first unties, then knots the target's shoes. While weak at first glance, each upgrade quietens the spell, allowing it to untie laceless footwear and even summon shoes to knot!"
+	name = "系鞋带"
+	desc = "这个不起眼的法术会先解开目标的鞋带，再把它打上结。乍看很弱，但每次升级都会让法术更安静，使其能解开无鞋带的鞋子，甚至召唤鞋子来打结！"
 	spell_type = /datum/action/cooldown/spell/pointed/untie_shoes
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 	cost = 1
 
 /datum/spellbook_entry/mutate
-	name = "Mutate"
-	desc = "Causes you to turn into a hulk and gain laser vision for a short while."
+	name = "变异"
+	desc = "让你短暂变成绿巨人并获得激光视觉。"
 	spell_type = /datum/action/cooldown/spell/apply_mutations/mutate
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 
 /datum/spellbook_entry/fleshtostone
-	name = "Flesh to Stone"
-	desc = "Charges your hand with the power to turn victims into inert statues for a long period of time."
+	name = "化肉为石"
+	desc = "以石化之力充盈你的手掌，可将受害者变成无生命的雕像，持续很长时间。"
 	spell_type = /datum/action/cooldown/spell/touch/flesh_to_stone
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 
 /datum/spellbook_entry/teslablast
-	name = "Tesla Blast"
-	desc = "Charge up a tesla arc and release it at a random nearby target! You can move freely while it charges. The arc jumps between targets and can knock them down."
+	name = "特斯拉冲击"
+	desc = "蓄起一道特斯拉电弧，然后射向附近随机一个目标！蓄力时你可以自由移动。电弧会在目标之间跳跃，并能将其击倒。"
 	spell_type = /datum/action/cooldown/spell/charged/beam/tesla
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 
 /datum/spellbook_entry/lightningbolt
-	name = "Lightning Bolt"
-	desc = "Fire a lightning bolt at your foes! It will jump between targets, but can't knock them down."
+	name = "闪电箭"
+	desc = "向敌人射出一道闪电！它会在目标之间跳跃，但无法将其击倒。"
 	spell_type = /datum/action/cooldown/spell/pointed/projectile/lightningbolt
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 	cost = 1
 
 /datum/spellbook_entry/infinite_guns
-	name = "Lesser Summon Guns"
-	desc = "Why reload when you have infinite guns? Summons an unending stream of bolt action rifles that deal little damage, but will knock targets down. Requires both hands free to use. Learning this spell makes you unable to learn Arcane Barrage."
+	name = "次级召唤枪械"
+	desc = "既然有无限的枪，为什么还要换弹？召唤出不间断的栓动步枪洪流，伤害不高，但能击倒目标。使用时需要双手空闲。学会此法术后将无法学习奥术弹幕。"
 	spell_type = /datum/action/cooldown/spell/conjure_item/infinite_guns/gun
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 	cost = 3
 	no_coexistence_typecache = list(/datum/action/cooldown/spell/conjure_item/infinite_guns/arcane_barrage)
 
 /datum/spellbook_entry/arcane_barrage
-	name = "Arcane Barrage"
-	desc = "Fire a torrent of arcane energy at your foes with this (powerful) spell. Deals much more damage than Lesser Summon Guns, but won't knock targets down. Requires both hands free to use. Learning this spell makes you unable to learn Lesser Summon Gun."
+	name = "奥术弹幕"
+	desc = "用这个（强大的）法术向敌人倾泻奥术能量的洪流。伤害远高于次级召唤枪械，但不会击倒目标。使用时需要双手空闲。学会此法术后将无法学习次级召唤枪械。"
 	spell_type = /datum/action/cooldown/spell/conjure_item/infinite_guns/arcane_barrage
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 	cost = 3
 	no_coexistence_typecache = list(/datum/action/cooldown/spell/conjure_item/infinite_guns/gun)
 
 /datum/spellbook_entry/barnyard
-	name = "Barnyard Curse"
-	desc = "This spell dooms an unlucky soul to possess the speech and facial attributes of a barnyard animal."
+	name = "畜棚诅咒"
+	desc = "此法术会让一个倒霉蛋拥有畜棚动物的说话方式与面部特征。"
 	spell_type = /datum/action/cooldown/spell/pointed/barnyardcurse
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 
 /datum/spellbook_entry/splattercasting
-	name = "Splattercasting"
-	desc = "Dramatically lowers the cooldown on all spells, but each one will cost blood, as well as it naturally \
-		draining from you over time. You can replenish it from your victims, specifically their necks."
+	name = "溅血施法"
+	desc = "大幅降低所有法术的冷却时间，但每个法术都会消耗血液，而且血液还会随时间自然流失。\
+		你可以从受害者身上补充，具体来说是他们的脖子。"
 	spell_type =  /datum/action/cooldown/spell/splattercasting
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 	no_coexistence_typecache = list(/datum/action/cooldown/spell/lichdom, /datum/spellbook_entry/ghostliness)
 
 /datum/spellbook_entry/sanguine_strike
-	name = "Exsanguinating Strike"
-	desc = "Sanguine spell that enchants your next weapon strike to deal more damage, heal you for damage dealt, and refill blood."
+	name = "放血打击"
+	desc = "一种血系法术，为你下一次武器攻击附魔，使其造成更多伤害、按伤害量治疗你，并补充血液。"
 	spell_type =  /datum/action/cooldown/spell/sanguine_strike
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 
 /datum/spellbook_entry/scream_for_me
-	name = "Scream For Me"
-	desc = "Sadistic sanguine spell that inflicts numerous severe blood wounds all over the victim's body."
+	name = "为我尖叫"
+	desc = "残忍的血系法术，会在受害者全身造成大量严重的血液伤口。"
 	spell_type =  /datum/action/cooldown/spell/touch/scream_for_me
 	cost = 1
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 
 /datum/spellbook_entry/item/staffchaos
-	name = "Staff of Chaos"
-	desc = "A capricious tool that can fire all sorts of magic without any rhyme or reason. Using it on people you care about is not recommended."
+	name = "混沌法杖"
+	desc = "一件反复无常的工具，能毫无道理地发射各种魔法。不建议对你关心的人使用。"
 	item_path = /obj/item/gun/magic/staff/chaos
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 
 /datum/spellbook_entry/item/staffchange
-	name = "Staff of Change"
-	desc = "An artefact that spits bolts of coruscating energy which cause the target's very form to reshape itself."
+	name = "变化法杖"
+	desc = "一件远古造物，能射出闪耀的能量束，让目标的形体自行重塑。"
 	item_path = /obj/item/gun/magic/staff/change
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 
 /datum/spellbook_entry/item/mjolnir
-	name = "Mjolnir"
-	desc = "A mighty hammer on loan from Thor, God of Thunder. It crackles with barely contained power. Requires wielding it in both hands to unleash its true potential."
+	name = "妙尔尼尔"
+	desc = "雷神索尔借出的一把强大锤子。其中噼啪作响的力量几乎难以抑制。需双手持握才能发挥真正威力。"
 	item_path = /obj/item/mjollnir
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 
 /datum/spellbook_entry/item/singularity_hammer
-	name = "Singularity Hammer"
-	desc = "A hammer that creates an intensely powerful field of gravity where it strikes, pulling everything nearby to the point of impact. Requires wielding it in both hands to unleash its true potential."
+	name = "奇点锤"
+	desc = "一柄在击打处生成极强重力场的锤子，会把附近一切拉向撞击点。需双手持握才能发挥真正威力。"
 	item_path = /obj/item/singularityhammer
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 
 /datum/spellbook_entry/item/spellblade
-	name = "Spellblade"
-	desc = "A sword capable of firing blasts of energy which rip targets limb from limb."
+	name = "法术之刃"
+	desc = "一柄能射出能量束、把目标肢体一截截撕裂的剑。"
 	item_path = /obj/item/gun/magic/staff/spellblade
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 
 /datum/spellbook_entry/item/highfrequencyblade
-	name = "High Frequency Blade"
-	desc = "An incredibly swift enchanted blade resonating at a frequency high enough to be able to slice through anything."
+	name = "高频刀"
+	desc = "一柄极其迅捷的附魔刀刃，以高到能切开任何东西的频率振动着。"
 	item_path = /obj/item/highfrequencyblade/wizard
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 	cost = 3
 
 /datum/spellbook_entry/item/frog_contract
-	name = "Frog Contract"
-	desc = "Sign a pact with the frogs to have your own destructive pet guardian!"
+	name = "青蛙契约"
+	desc = "与青蛙签订契约，拥有一只属于你的破坏性宠物守护者！"
 	item_path = /obj/item/frog_contract
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 
 /datum/spellbook_entry/item/staffshrink
-	name = "Staff of Shrinking"
-	desc = "An artefact that can shrink anything for a reasonable duration. Small structures can be walked over, and small people are very vulnerable (often because their armour no longer fits)."
+	name = "缩小法杖"
+	desc = "一件远古造物，能把任何东西缩小一段合理的时间。小型建筑可以踩过去，而变小的人非常脆弱（通常是因为他们的护甲不再合身了）。"
 	item_path = /obj/item/gun/magic/staff/shrink
 	category = SPELLBOOK_CATEGORY_OFFENSIVE
 

@@ -5,11 +5,11 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 	var/datum/mind/owner //The primary owner of the objective. !!SOMEWHAT DEPRECATED!! Prefer using 'team' for new code.
 	var/datum/team/team //An alternative to 'owner': a team. Use this when writing new code.
 	var/name = "generic objective" //Name for admin prompts
-	var/explanation_text = "Nothing" //What that person is supposed to do.
+	var/explanation_text = "无" //What that person is supposed to do.
 	///if this objective doesn't print failure or success in the roundend report
 	var/no_failure = FALSE
 	///name used in printing this objective (Objective #1)
-	var/objective_name = "Objective"
+	var/objective_name = "目标"
 	var/team_explanation_text //For when there are multiple owners.
 	var/datum/mind/target = null //If they are focused on a particular person.
 	var/target_amount = 0 //If they are focused on a particular number. Steal objectives have their own counter.
@@ -44,19 +44,19 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 		if ((possible_target != src) && ishuman(possible_target.current))
 			possible_targets += possible_target.current
 
-	possible_targets = list("Free objective", "Random") + sort_names(possible_targets)
+	possible_targets = list("自由目标", "随机") + sort_names(possible_targets)
 
 
 	if(target?.current)
 		def_value = target.current
 
-	var/mob/new_target = input(admin,"Select target:", "Objective target", def_value) as null|anything in possible_targets
+	var/mob/new_target = input(admin,"选择目标：", "任务目标", def_value) as null|anything in possible_targets
 	if (!new_target)
 		return
 
-	if (new_target == "Free objective")
+	if (new_target == "自由目标")
 		target = null
-	else if (new_target == "Random")
+	else if (new_target == "随机")
 		find_target()
 	else
 		target = new_target.mind
@@ -103,7 +103,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/proc/get_roundend_success_suffix()
 	if(no_failure)
 		return "" // Just print the objective with no success/fail evaluation, as it has no mechanical backing
-	return check_completion() ? span_greentext("Success!") : span_redtext("Fail.")
+	return check_completion() ? span_greentext("成功！") : span_redtext("失败。")
 
 /datum/objective/proc/is_unique_objective(possible_target, dupe_search_range)
 	if(!islist(dupe_search_range))
@@ -202,8 +202,8 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 		receiver.try_give_equipment_fallback()
 
 /datum/action/special_equipment_fallback
-	name = "Request Objective-specific Equipment"
-	desc = "Call down a supply pod containing the equipment required for specific objectives."
+	name = "请求任务专用装备"
+	desc = "呼叫一个装有特定任务所需装备的补给舱。"
 	button_icon = 'icons/obj/devices/tracker.dmi'
 	button_icon_state = "beacon"
 
@@ -241,9 +241,9 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/assassinate/update_explanation_text()
 	..()
 	if(target?.current)
-		explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role.title : english_list(target.get_special_roles())] ONCE." // BUBBER EDIT ADDITION - Add ONCE
+		explanation_text = "暗杀[!target_role_type ? chinese_job_display(target.assigned_role.title) : english_list(target.get_special_roles())] [target.name]一次。" // BUBBER EDIT ADDITION - Add ONCE
 	else
-		explanation_text = "Free objective."
+		explanation_text = "自由目标。"
 
 /datum/objective/assassinate/admin_edit(mob/admin)
 	admin_simple_target_pick(admin)
@@ -261,7 +261,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 	var/warned_admins = FALSE
 
 /datum/objective/mutiny/proc/warn_admins()
-	message_admins("[ADMIN_LOOKUPFLW(target.current)] has gone AFK with a mutiny objective that involves them. They only have [COOLDOWN_TIMELEFT(src, disconnect_timer) / 10] seconds remaining before they are treated as if they were dead.")
+	message_admins("[ADMIN_LOOKUPFLW(target.current)]已挂机，而当前有涉及该玩家的叛乱目标。再过[COOLDOWN_TIMELEFT(src, disconnect_timer) / 10]秒，该玩家就会被视为死亡。")
 
 /datum/objective/mutiny/check_completion()
 	if(!target || !considered_alive(target) || considered_exiled(target))
@@ -291,9 +291,9 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/mutiny/update_explanation_text()
 	..()
 	if(target?.current)
-		explanation_text = "Assassinate or exile [target.name], the [!target_role_type ? target.assigned_role.title : english_list(target.get_special_roles())]."
+		explanation_text = "暗杀或流放[!target_role_type ? chinese_job_display(target.assigned_role.title) : english_list(target.get_special_roles())] [target.name]。"
 	else
-		explanation_text = "Free objective."
+		explanation_text = "自由目标。"
 
 /datum/objective/maroon
 	name = "maroon"
@@ -313,9 +313,9 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 
 /datum/objective/maroon/update_explanation_text()
 	if(target?.current)
-		explanation_text = "Prevent [target.name], the [!target_role_type ? target.assigned_role.title : english_list(target.get_special_roles())], from escaping alive."
+		explanation_text = "阻止[!target_role_type ? chinese_job_display(target.assigned_role.title) : english_list(target.get_special_roles())] [target.name]活着逃离。"
 	else
-		explanation_text = "Free objective."
+		explanation_text = "自由目标。"
 
 /datum/objective/maroon/admin_edit(mob/admin)
 	admin_simple_target_pick(admin)
@@ -344,9 +344,9 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/debrain/update_explanation_text()
 	..()
 	if(target?.current)
-		explanation_text = "Steal the brain of [target.name], the [!target_role_type ? target.assigned_role.title : english_list(target.get_special_roles())]."
+		explanation_text = "偷取[!target_role_type ? chinese_job_display(target.assigned_role.title) : english_list(target.get_special_roles())] [target.name]的大脑。"
 	else
-		explanation_text = "Free objective."
+		explanation_text = "自由目标。"
 
 /datum/objective/debrain/admin_edit(mob/admin)
 	admin_simple_target_pick(admin)
@@ -370,9 +370,9 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/protect/update_explanation_text()
 	..()
 	if(target?.current)
-		explanation_text = "Protect [target.name], the [!target_role_type ? target.assigned_role.title : english_list(target.get_special_roles())]."
+		explanation_text = "保护[!target_role_type ? chinese_job_display(target.assigned_role.title) : english_list(target.get_special_roles())] [target.name]。"
 	else
-		explanation_text = "Free objective."
+		explanation_text = "自由目标。"
 
 /datum/objective/protect/admin_edit(mob/admin)
 	admin_simple_target_pick(admin)
@@ -395,9 +395,9 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/jailbreak/update_explanation_text()
 	..()
 	if(target?.current)
-		explanation_text = "Ensure that [target.name], the [!target_role_type ? target.assigned_role.title : english_list(target.get_special_roles())] escapes alive and out of custody."
+		explanation_text = "确保[!target_role_type ? chinese_job_display(target.assigned_role.title) : english_list(target.get_special_roles())] [target.name]活着逃离，且未被拘押。"
 	else
-		explanation_text = "Free objective."
+		explanation_text = "自由目标。"
 
 /datum/objective/jailbreak/admin_edit(mob/admin)
 	admin_simple_target_pick(admin)
@@ -411,14 +411,14 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/jailbreak/detain/update_explanation_text()
 	..()
 	if(target?.current)
-		explanation_text = "Ensure that [target.name], the [!target_role_type ? target.assigned_role.title : english_list(target.get_special_roles())] is delivered to Nanotrasen alive and in custody."
+		explanation_text = "确保将[!target_role_type ? chinese_job_display(target.assigned_role.title) : english_list(target.get_special_roles())] [target.name]活着押送至纳米传讯。"
 	else
-		explanation_text = "Free objective."
+		explanation_text = "自由目标。"
 
 /datum/objective/hijack
 	name = "hijack"
-	explanation_text = "Hijack the emergency shuttle by hacking its navigational protocols through the control console (alt click emergency shuttle console)."
-	team_explanation_text = "Hijack the emergency shuttle by hacking its navigational protocols through the control console (alt click emergency shuttle console). Leave no team member behind."
+	explanation_text = "通过控制台入侵紧急撤离穿梭机的导航协议，劫持穿梭机（按住 Alt 点击紧急撤离穿梭机控制台）。"
+	team_explanation_text = "通过控制台入侵紧急撤离穿梭机的导航协议，劫持穿梭机（按住 Alt 点击紧急撤离穿梭机控制台）。不要落下任何队员。"
 	martyr_compatible = FALSE //Technically you won't get both anyway.
 	/// Overrides the hijack speed of any antagonist datum it is on ONLY, no other datums are impacted.
 	admin_grantable = TRUE
@@ -435,8 +435,8 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 
 /datum/objective/elimination
 	name = "elimination"
-	explanation_text = "Slaughter all loyalist crew aboard the shuttle. You, and any likeminded individuals, must be the only remaining people on the shuttle."
-	team_explanation_text = "Slaughter all loyalist crew aboard the shuttle. You, and any likeminded individuals, must be the only remaining people on the shuttle. Leave no team member behind."
+	explanation_text = "杀光穿梭机上所有忠于公司的船员。穿梭机上只能剩下你和志同道合者。"
+	team_explanation_text = "杀光穿梭机上所有忠于公司的船员。穿梭机上只能剩下你和志同道合者。不要落下任何队员。"
 	martyr_compatible = FALSE
 
 /datum/objective/elimination/check_completion()
@@ -450,7 +450,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 
 /datum/objective/elimination/highlander
 	name="highlander elimination"
-	explanation_text = "Escape on the shuttle alone. Ensure that nobody else makes it out."
+	explanation_text = "独自乘穿梭机逃离。确保没有其他人逃出去。"
 
 /datum/objective/elimination/highlander/check_completion()
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
@@ -463,7 +463,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 
 /datum/objective/block
 	name = "no organics on shuttle"
-	explanation_text = "Do not allow any organic lifeforms with sapience to escape on the shuttle alive."
+	explanation_text = "不允许任何有智慧的有机生命活着乘穿梭机逃离。"
 	martyr_compatible = 1
 
 /datum/objective/block/check_completion()
@@ -477,7 +477,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 
 /datum/objective/purge
 	name = "no mutants on shuttle"
-	explanation_text = "Ensure no nonhuman humanoid species with sapience are present aboard the escape shuttle."
+	explanation_text = "确保逃生穿梭机上没有任何具备智慧的非人类人形物种。"
 	martyr_compatible = TRUE
 
 /datum/objective/purge/check_completion()
@@ -492,7 +492,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 
 /datum/objective/robot_army
 	name = "robot army"
-	explanation_text = "Have at least eight active cyborgs synced to you."
+	explanation_text = "让至少八台正常运作的半机械人与你同步。"
 	martyr_compatible = FALSE
 
 /datum/objective/robot_army/check_completion()
@@ -509,8 +509,8 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 
 /datum/objective/escape
 	name = "escape"
-	explanation_text = "Escape on the shuttle or an escape pod alive and without being in custody."
-	team_explanation_text = "Have all members of your team escape on a shuttle or pod alive, without being in custody."
+	explanation_text = "活着乘穿梭机或逃生舱逃离，且未被拘押。"
+	team_explanation_text = "让所有队员活着乘穿梭机或逃生舱逃离，且未被拘押。"
 	admin_grantable = TRUE
 
 /datum/objective/escape/check_completion()
@@ -538,18 +538,18 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/escape/escape_with_identity/update_explanation_text()
 	if(target?.current)
 		target_real_name = target.current.real_name
-		explanation_text = "Escape on the shuttle or an escape pod with the identity of [target_real_name], the [target.assigned_role.title]"
+		explanation_text = "冒用[chinese_job_display(target.assigned_role.title)] [target_real_name]的身份乘穿梭机或逃生舱逃离"
 		var/mob/living/carbon/human/H
 		if(ishuman(target.current))
 			H = target.current
 		if(H && H.get_id_name() != target_real_name)
 			target_missing_id = 1
 		else
-			explanation_text += " while wearing their identification card"
-		explanation_text += "." //Proper punctuation is important!
+			explanation_text += "，并佩戴其身份卡"
+		explanation_text += "。" //Proper punctuation is important!
 
 	else
-		explanation_text = "Escape on the shuttle or an escape pod alive and without being in custody."
+		explanation_text = "活着乘穿梭机或逃生舱逃离，且未被拘押。"
 
 /datum/objective/escape/escape_with_identity/check_completion()
 	var/list/datum/mind/owners = get_owners()
@@ -568,7 +568,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 
 /datum/objective/survive
 	name = "survive"
-	explanation_text = "Stay alive until the end."
+	explanation_text = "活到最后。"
 	admin_grantable = TRUE
 
 /datum/objective/survive/check_completion()
@@ -580,7 +580,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 
 /datum/objective/survive/malf //Like survive, but for Malf AIs
 	name = "survive AI"
-	explanation_text = "Prevent your own deactivation."
+	explanation_text = "避免自己被停用。"
 	admin_grantable = FALSE
 
 /datum/objective/survive/malf/check_completion()
@@ -592,7 +592,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 
 /datum/objective/exile
 	name = "exile"
-	explanation_text = "Stay alive off station. Do not go to CentCom."
+	explanation_text = "在空间站外活下去。不要前往中央指挥部。"
 
 /datum/objective/exile/check_completion()
 	var/list/owners = get_owners()
@@ -605,7 +605,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 
 /datum/objective/martyr
 	name = "martyr"
-	explanation_text = "Die a glorious death."
+	explanation_text = "光荣地死去。"
 	admin_grantable = TRUE
 
 /datum/objective/martyr/check_completion()
@@ -619,7 +619,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 
 /datum/objective/nuclear
 	name = "nuclear"
-	explanation_text = "Destroy the station with a nuclear device."
+	explanation_text = "使用核装置摧毁空间站。"
 	martyr_compatible = TRUE
 	admin_grantable = TRUE
 
@@ -660,30 +660,30 @@ GLOBAL_LIST_EMPTY(possible_items)
 	if(item)
 		targetinfo = item
 		steal_target = targetinfo.targetitem
-		explanation_text = "Steal [targetinfo.name]."
+		explanation_text = "偷取[targetinfo.name]。"
 		give_special_equipment(targetinfo.special_equipment)
 		return steal_target
 	else
-		explanation_text = "Free objective."
+		explanation_text = "自由目标。"
 		return
 
 /datum/objective/steal/admin_edit(mob/admin)
 	var/list/possible_items_all = GLOB.possible_items
-	var/new_target = input(admin,"Select target:", "Objective target", steal_target) as null|anything in sort_names(possible_items_all)+"custom"
+	var/new_target = input(admin,"选择目标：", "任务目标", steal_target) as null|anything in sort_names(possible_items_all)+"自定义"
 	if (!new_target)
 		return
 
-	if (new_target == "custom") //Can set custom items.
-		var/custom_path = input(admin,"Search for target item type:","Type") as null|text
+	if (new_target == "自定义") //Can set custom items.
+		var/custom_path = input(admin,"搜索目标物品类型：","类型") as null|text
 		if (!custom_path)
 			return
 		var/obj/item/custom_target = pick_closest_path(custom_path, make_types_fancy(subtypesof(/obj/item)))
 		var/custom_name = initial(custom_target.name)
-		custom_name = stripped_input(admin,"Enter target name:", "Objective target", custom_name)
+		custom_name = stripped_input(admin,"输入目标名称：", "任务目标", custom_name)
 		if (!custom_name)
 			return
 		steal_target = custom_target
-		explanation_text = "Steal [custom_name]."
+		explanation_text = "偷取[custom_name]。"
 
 	else
 		set_target(new_target)
@@ -724,7 +724,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 /datum/objective/capture/update_explanation_text()
 	. = ..()
-	explanation_text = "Capture [target_amount] lifeform\s with an energy net. Live, rare specimens are worth more."
+	explanation_text = "使用能量网捕获[target_amount]个生命体。活体和稀有样本价值更高。"
 
 /datum/objective/capture/check_completion()//Basically runs through all the mobs in the area to determine how much they are worth.
 	var/captured_amount = 0
@@ -756,7 +756,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 	return captured_amount >= target_amount
 
 /datum/objective/capture/admin_edit(mob/admin)
-	var/count = input(admin,"How many mobs to capture ?","capture",target_amount) as num|null
+	var/count = input(admin,"要捕获多少个生物？","捕获",target_amount) as num|null
 	if(count)
 		target_amount = count
 	update_explanation_text()
@@ -773,9 +773,9 @@ GLOBAL_LIST_EMPTY(possible_items)
 /datum/objective/protect_object/update_explanation_text()
 	. = ..()
 	if(protect_target)
-		explanation_text = "Protect \the [protect_target] at all costs."
+		explanation_text = "不惜一切代价保护[protect_target]。"
 	else
-		explanation_text = "Free objective."
+		explanation_text = "自由目标。"
 
 /datum/objective/protect_object/check_completion()
 	return !isnull(protect_target)
@@ -810,10 +810,10 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 /datum/objective/absorb/update_explanation_text()
 	. = ..()
-	explanation_text = "Extract [target_amount] compatible genome\s."
+	explanation_text = "提取[target_amount]组兼容基因组。"
 
 /datum/objective/absorb/admin_edit(mob/admin)
-	var/count = input(admin,"How many people to absorb?","absorb",target_amount) as num|null
+	var/count = input(admin,"要吸收多少人？","吸收",target_amount) as num|null
 	if(count)
 		target_amount = count
 	update_explanation_text()
@@ -832,7 +832,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 /datum/objective/absorb_most
 	name = "absorb most"
-	explanation_text = "Extract more compatible genomes than any other Changeling."
+	explanation_text = "提取的兼容基因组数量要多于其他任何变形怪。"
 
 /datum/objective/absorb_most/check_completion()
 	var/list/datum/mind/owners = get_owners()
@@ -853,7 +853,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 /datum/objective/absorb_changeling
 	name = "absorb changeling"
-	explanation_text = "Absorb another Changeling."
+	explanation_text = "吸收另一个变形怪。"
 
 /datum/objective/absorb_changeling/check_completion()
 	var/list/datum/mind/owners = get_owners()
@@ -893,22 +893,22 @@ GLOBAL_LIST_EMPTY(possible_items)
 /datum/objective/destroy/update_explanation_text()
 	..()
 	if(target?.current)
-		explanation_text = "Destroy [target.name], the experimental AI."
+		explanation_text = "摧毁实验性 AI [target.name]。"
 	else
-		explanation_text = "Free objective."
+		explanation_text = "自由目标。"
 
 /datum/objective/destroy/admin_edit(mob/admin)
 	var/list/possible_targets = active_ais(1)
 	if(possible_targets.len)
-		var/mob/new_target = input(admin,"Select target:", "Objective target") as null|anything in sort_names(possible_targets)
+		var/mob/new_target = input(admin,"选择目标：", "任务目标") as null|anything in sort_names(possible_targets)
 		target = new_target.mind
 	else
-		to_chat(admin, span_boldwarning("No active AIs with minds."))
+		to_chat(admin, span_boldwarning("没有拥有心智且处于活动状态的 AI。"))
 	update_explanation_text()
 
 /datum/objective/steal_n_of_type
 	name = "steal five of"
-	explanation_text = "Steal some items!"
+	explanation_text = "偷取一些物品！"
 	//what types we want to steal
 	var/list/wanted_items = list()
 	//how many we want to steal
@@ -936,7 +936,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 /datum/objective/steal_n_of_type/summon_guns
 	name = "steal guns"
-	explanation_text = "Steal at least five guns!"
+	explanation_text = "偷取至少五把枪！"
 	wanted_items = list(/obj/item/gun)
 	amount = 5
 
@@ -946,7 +946,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 /datum/objective/steal_n_of_type/summon_magic
 	name = "steal magic"
-	explanation_text = "Steal at least five magical artefacts!"
+	explanation_text = "偷取至少五件魔法器物！"
 	wanted_items = list()
 	amount = 5
 
@@ -972,7 +972,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 /datum/objective/steal_n_of_type/organs
 	name = "steal organs"
-	explanation_text = "Steal at least 5 organic organs! They must be kept healthy."
+	explanation_text = "偷取至少五个有机器官！必须保持其健康状态。"
 	wanted_items = list(/obj/item/organ)
 	amount = 5 //i want this to be higher, but the organs must be fresh at roundend
 
@@ -1004,7 +1004,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 	no_failure = TRUE
 
 /datum/objective/custom/admin_edit(mob/admin)
-	var/expl = stripped_input(admin, "Custom objective:", "Objective", explanation_text)
+	var/expl = stripped_input(admin, "自定义目标：", "目标", explanation_text)
 	if(expl)
 		explanation_text = expl
 

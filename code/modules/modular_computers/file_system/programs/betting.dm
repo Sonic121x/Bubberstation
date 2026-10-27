@@ -7,10 +7,10 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 
 /datum/computer_file/program/betting
 	filename = "betting"
-	filedesc = "SpaceBet"
+	filedesc = "太空博彩"
 	downloader_category = PROGRAM_CATEGORY_GAMES
 	program_open_overlay = "gambling"
-	extended_desc = "A multi-platform network for placing requests across the station, with payment across the network being possible."
+	extended_desc = "一个多平台网络，可在空间站范围内发布请求，并可经由网络完成支付。"
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	can_run_on_flags = PROGRAM_PDA
 	size = 4
@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 	. = ..()
 	var/mob/user = ui.user
 	if(isnull(computer.stored_id))
-		to_chat(user, span_danger("\The [computer] flashes an \"RFID Error - Unable to scan ID\" warning."))
+		to_chat(user, span_danger("\The [computer] 闪出“RFID 错误——无法扫描 ID”的警告。"))
 		return
 	switch(action)
 		if("create_bet")
@@ -81,7 +81,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 				options += option
 				option = reject_bad_name(option, allow_numbers = TRUE, max_length = MAX_LENGTH_TITLE, cap_after_symbols = FALSE)
 			if(length(options) < 2)
-				to_chat(user, span_danger("2 options minimum required to start a bet."))
+				to_chat(user, span_danger("发起博彩至少需要 2 个选项。"))
 				return
 			created_bet = new(user, title, description, options)
 			return TRUE
@@ -94,7 +94,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 			if(isnull(bet_placed_on))
 				return
 			if(bet_placed_on == created_bet)
-				to_chat(user, span_danger("You can't bet on your own poll!"))
+				to_chat(user, span_danger("你不能给自己的博彩下注！"))
 				return
 			var/money_betting = params["money_betting"]
 			if(!isnum(money_betting))
@@ -184,15 +184,15 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 		return
 	// We'll only advertise it on the first bet of the round, as to not make this overly annoying.
 	var/should_alert = !length(betting_channel.messages)
-	newscaster_message = GLOB.news_network.submit_article("The bet [name] has started, place your bets now!", "NtOS Space Betting App", NEWSCASTER_SPACE_BETTING, null, update_alert = should_alert)
+	newscaster_message = GLOB.news_network.submit_article("博彩 [name] 已开始，快来下注吧！", "NtOS 太空博彩应用", NEWSCASTER_SPACE_BETTING, null, update_alert = should_alert)
 
 /// Reply to our previously placed advertisement feed article.
 /datum/active_bet/proc/reply_to_feed(winning_option)
 	if(isnull(newscaster_message))
 		return
 	GLOB.news_network.submit_comment(
-		comment_text = "The bet [name] has ended, the winner was [winning_option]!",
-		newscaster_username = "NtOS Betting Results",
+		comment_text = "博彩 [name] 已结束，获胜者是 [winning_option]！",
+		newscaster_username = "NtOS 博彩结果",
 		current_message = newscaster_message,
 	)
 
@@ -217,7 +217,7 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 		for(var/list/option in options)
 			for(var/list/existing_bets in options[option])
 				var/datum/bank_account/refunded_account = existing_bets[1]
-				refunded_account.adjust_money(text2num(existing_bets[2]), "Refund: [name] gamble cancelled.")
+				refunded_account.adjust_money(text2num(existing_bets[2]), "退款：[name] 的博彩已取消。")
 		return
 
 	reply_to_feed(winning_option)
@@ -230,11 +230,11 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 	for(var/list/winner in winners)
 		var/datum/bank_account/winner_account = winner[1]
 		var/money_won = text2num(winner[2]) + total_amount_bet / length(winners)
-		winner_account.adjust_money(money_won, "Won gamble: [name]") //give them their money back & whatever they won.
+		winner_account.adjust_money(money_won, "博彩获胜：[name]") //give them their money back & whatever they won.
 		//they only made their money back, don't tell them they won anything.
 		if((money_won - text2num(winner[2])) == 0)
 			continue
-		winner_account.bank_card_talk("You won [money_won][MONEY_SYMBOL] from having a correct guess on [name]!")
+		winner_account.bank_card_talk("你在 [name] 上猜对了，赢得了 [money_won][MONEY_SYMBOL]！")
 
 ///Puts a bank account's money bet on a given option.
 /datum/active_bet/proc/bet_money(datum/bank_account/better, money_betting, option_betting)
@@ -245,24 +245,24 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 			if(existing_bets[1] == better)
 				//We're already betting, but now we're betting on another one, clear our previous and we'll bet on the new.
 				if(option != option_betting)
-					better.adjust_money(text2num(existing_bets[2]), "Refunded: changed bet for [name].")
+					better.adjust_money(text2num(existing_bets[2]), "已退款：更改了对 [name] 的下注。")
 					options[option] -= list(existing_bets)
 				//We're already betting on the same one, we'll add it together instead of making it a separate bet, or the user is taking money out.
 				else
 					//putting more money in
 					if(text2num(existing_bets[2]) < money_betting)
 						var/money_adding_in = money_betting - text2num(existing_bets[2])
-						if(!better.adjust_money(-money_adding_in, "Gambling on [name]."))
+						if(!better.adjust_money(-money_adding_in, "在 [name] 上博彩。"))
 							return
 						total_amount_bet += money_adding_in
-						better.bank_card_talk("Additional [money_adding_in][MONEY_SYMBOL] deducted for your bet on [name].")
+						better.bank_card_talk("你为 [name] 的博彩追加扣除 [money_adding_in][MONEY_SYMBOL]。")
 						existing_bets[2] = "[money_betting]"
 						return
 					//taking it all out, we remove them from the list so they aren't a winner with bets of 0.
 					if(money_betting == 0)
 						var/money_taking_out = text2num(existing_bets[2])
 						total_amount_bet -= money_taking_out
-						better.adjust_money(money_taking_out, "Refunded: changed bet for [name].")
+						better.adjust_money(money_taking_out, "已退款：更改了对 [name] 的下注。")
 						options[option] -= list(existing_bets)
 						return
 					//taking money out
@@ -271,16 +271,16 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 							return
 						var/money_taking_out = text2num(existing_bets[2]) - money_betting
 						total_amount_bet -= money_taking_out
-						better.bank_card_talk("Refunded [money_taking_out][MONEY_SYMBOL] for taking money out of your bet on [name].")
-						better.adjust_money(money_taking_out, "Refund from gambling on [name].")
+						better.bank_card_talk("已退还 [money_taking_out][MONEY_SYMBOL]，因为你从 [name] 的博彩中撤出了资金。")
+						better.adjust_money(money_taking_out, "在 [name] 上博彩的退款。")
 						existing_bets[2] = "[money_betting]"
 						return
 
-	if(money_betting <= 0 || !better.adjust_money(-money_betting, "Gambling on [name]"))
+	if(money_betting <= 0 || !better.adjust_money(-money_betting, "在 [name] 上博彩。"))
 		return
 	total_amount_bet += money_betting
 	options[option_betting] += list(list(better, "[money_betting]"))
-	better.bank_card_talk("Deducted [money_betting][MONEY_SYMBOL] for your bet on [name].")
+	better.bank_card_talk("你为 [name] 的博彩扣除了 [money_betting][MONEY_SYMBOL]。")
 
 ///Cancels your bet, removing your bet and refunding your money.
 /datum/active_bet/proc/cancel_bet(datum/bank_account/better)
@@ -289,8 +289,8 @@ GLOBAL_LIST_EMPTY_TYPED(active_bets, /datum/active_bet)
 			if(existing_bets[1] == better)
 				var/money_refunding = text2num(existing_bets[2])
 				total_amount_bet -= money_refunding
-				better.bank_card_talk("Refunded [money_refunding][MONEY_SYMBOL] for cancelling your bet on [name].")
-				better.adjust_money(money_refunding, "Refunded: changed bet for [name].")
+				better.bank_card_talk("已退还 [money_refunding][MONEY_SYMBOL]，因为你取消了对 [name] 的博彩。")
+				better.adjust_money(money_refunding, "已退款：更改了对 [name] 的下注。")
 				options[option] -= list(existing_bets)
 
 #undef MAX_LENGTH_TITLE

@@ -1,6 +1,6 @@
 /obj/structure/plant_tank
-	name = "plant tank"
-	desc = "A small little glass tank that is used to grow plants; this tank promotes the nitrogen and oxygen cycle."
+	name = "植物罐"
+	desc = "一个小小的玻璃罐，用来种植植物；这个罐子能促进氮氧循环。"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/structures.dmi'
 	icon_state = "plant_tank_e"
 	anchored = FALSE
@@ -19,11 +19,11 @@
 
 /obj/structure/plant_tank/examine(mob/user)
 	. = ..()
-	. += span_notice("<br>Use food or worm fertilizer to allow nitrogen production and carbon dioxide processing!")
-	. += span_notice("There are [operation_number] cycles left!")
+	. += span_notice("<br>使用食物或蠕虫肥料即可让罐子制造氮气并处理二氧化碳！")
+	. += span_notice("还剩 [operation_number] 个循环！")
 	var/datum/component/simple_farm/find_farm = GetComponent(/datum/component/simple_farm)
 	if(!find_farm)
-		. += span_notice("<br>Use five sand to allow planting!")
+		. += span_notice("<br>使用五份沙子即可开始种植！")
 
 /obj/structure/plant_tank/attackby(obj/item/attacking_item, mob/user, params)
 	if(istype(attacking_item, /obj/item/food) || istype(attacking_item, /obj/item/stack/worm_fertilizer))
@@ -35,7 +35,7 @@
 		else
 			qdel(attacking_item)
 
-		balloon_alert(user, "[attacking_item] placed inside")
+		balloon_alert(user, "已将 [attacking_item] 放入")
 		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		operation_number += 2
 		if(prob(user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_PROBS_MODIFIER)))
@@ -44,7 +44,7 @@
 		return
 
 	if(istype(attacking_item, /obj/item/storage/bag/plants))
-		balloon_alert(user, "placing food inside")
+		balloon_alert(user, "正在放入食物")
 		var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		for(var/obj/item/food/selected_food in attacking_item.contents)
 			if(!do_after(user, 1 SECONDS * skill_modifier, src))
@@ -61,12 +61,12 @@
 	if(istype(attacking_item, /obj/item/stack/ore/glass))
 		var/datum/component/simple_farm/find_farm = GetComponent(/datum/component/simple_farm)
 		if(find_farm)
-			balloon_alert(user, "no more [attacking_item] required")
+			balloon_alert(user, "不再需要 [attacking_item]")
 			return
 
 		var/obj/item/stack/attacking_stack = attacking_item
 		if(!attacking_stack.use(5))
-			balloon_alert(user, "farms require five sand")
+			balloon_alert(user, "农田需要五份沙子")
 			return
 
 		AddComponent(/datum/component/simple_farm, TRUE, TRUE, list(0, 12))
@@ -100,17 +100,17 @@
 	src_mixture.moles[/datum/gas/nitrogen] += MOLES_CELLSTANDARD //the nitrogen cycle-- plants (and bacteria) participate in the nitrogen cycle
 
 /obj/structure/plant_tank/wrench_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, "[anchored ? "un" : ""]bolting")
+	balloon_alert(user, "[anchored ? "松开" : "拧紧"]螺栓中")
 	tool.play_tool_sound(src, 50)
 	if(!tool.use_tool(src, user, 2 SECONDS))
 		return TRUE
 
 	anchored = !anchored
-	balloon_alert(user, "[anchored ? "" : "un"]bolted")
+	balloon_alert(user, "[anchored ? "螺栓已固定" : "螺栓已松开"]")
 	return TRUE
 
 /obj/structure/plant_tank/screwdriver_act(mob/living/user, obj/item/tool)
-	balloon_alert(user, "deconstructing")
+	balloon_alert(user, "正在拆卸")
 	tool.play_tool_sound(src, 50)
 	if(!tool.use_tool(src, user, 2 SECONDS))
 		return TRUE
@@ -127,7 +127,7 @@
 	return ..()
 
 /datum/crafting_recipe/plant_tank
-	name = "Plant Tank"
+	name = "植物罐"
 	result = /obj/structure/plant_tank
 	reqs = list(
 		/obj/item/forging/complete/plate = 1,

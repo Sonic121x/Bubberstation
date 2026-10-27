@@ -1,8 +1,8 @@
 /datum/mutation/radioactive
-	name = "Radioactivity"
-	desc = "The subject emits deadly beta radiation, affecting both the host and their surroundings."
+	name = "放射性"
+	desc = "受试者释放致命的贝塔辐射，危及自身及周围环境。"
 	quality = NEGATIVE
-	text_gain_indication = span_warning("You can feel it in your bones!")
+	text_gain_indication = span_warning("你能感觉到它渗入了骨髓！")
 	instability = NEGATIVE_STABILITY_MAJOR
 	difficulty = 8
 	power_coeff = 1

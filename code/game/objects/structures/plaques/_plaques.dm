@@ -1,8 +1,8 @@
 /obj/structure/plaque //This is a plaque you can craft with gold, then permanently engrave a title and description on, with a fountain pen.
 	icon = 'icons/obj/signs.dmi'
 	icon_state = "blankplaque"
-	name = "blank plaque"
-	desc = "A blank plaque, use a fancy pen to engrave it. It can be detached from the wall with a wrench."
+	name = "空白牌匾"
+	desc = "一块空白牌匾，用一支精致的钢笔即可在上面铭刻。可以用扳手把它从墙上拆下来。"
 	anchored = TRUE
 	opacity = FALSE
 	density = FALSE
@@ -28,13 +28,13 @@
 	. = ..()
 	switch (held_item?.tool_behaviour)
 		if (TOOL_WELDER)
-			context[SCREENTIP_CONTEXT_LMB] = "Repair"
+			context[SCREENTIP_CONTEXT_LMB] = "修理"
 			return CONTEXTUAL_SCREENTIP_SET
 		if (TOOL_WRENCH)
-			context[SCREENTIP_CONTEXT_LMB] = "Unfasten"
+			context[SCREENTIP_CONTEXT_LMB] = "拆卸"
 			return CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/pen/fountain) && !engraved)
-		context[SCREENTIP_CONTEXT_LMB] = "Engrave"
+		context[SCREENTIP_CONTEXT_LMB] = "铭刻"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/plaque/attack_hand(mob/user, list/modifiers)
@@ -45,14 +45,14 @@
 
 /obj/structure/plaque/wrench_act(mob/living/user, obj/item/wrench/I)
 	. = ..()
-	user.visible_message(span_notice("[user] starts removing [src]..."), \
-		span_notice("You start unfastening [src]."))
+	user.visible_message(span_notice("[user]开始拆下[src]……"), \
+		span_notice("你开始卸下[src]。"))
 	I.play_tool_sound(src)
 	if(!I.use_tool(src, user, 4 SECONDS))
 		return TRUE
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
-	user.visible_message(span_notice("[user] unfastens [src]."), \
-		span_notice("You unfasten [src]."))
+	user.visible_message(span_notice("[user]卸下了[src]。"), \
+		span_notice("你卸下了[src]。"))
 	var/obj/item/plaque/unwrenched_plaque = new (get_turf(user))
 	if(engraved) //If it's still just a basic unengraved plaque, we can (and should) skip some of the below variable transfers.
 		unwrenched_plaque.name = name //Copy over the plaque structure variables to the plaque item we're creating when we unwrench it.
@@ -69,16 +69,16 @@
 	if(user.combat_mode)
 		return FALSE
 	if(atom_integrity == max_integrity)
-		to_chat(user, span_warning("This plaque is already in perfect condition."))
+		to_chat(user, span_warning("这块牌匾已经完好无损。"))
 		return TRUE
 	if(!I.tool_start_check(user, amount=1))
 		return TRUE
-	user.visible_message(span_notice("[user] starts repairing [src]..."), \
-		span_notice("You start repairing [src]."))
+	user.visible_message(span_notice("[user]开始修理[src]……"), \
+		span_notice("你开始修理[src]。"))
 	if(!I.use_tool(src, user, 4 SECONDS, volume = 50))
 		return TRUE
-	user.visible_message(span_notice("[user] finishes repairing [src]."), \
-			span_notice("You finish repairing [src]."))
+	user.visible_message(span_notice("[user]修好了[src]。"), \
+			span_notice("你修好了[src]。"))
 	atom_integrity = max_integrity
 	return TRUE
 
@@ -88,38 +88,38 @@
 
 	if(!istype(tool, /obj/item/pen/fountain))
 		if(engraved)
-			to_chat(user, span_warning("This plaque has already been engraved, and your pen isn't fancy enough to engrave it anyway! Find a fountain pen."))
+			to_chat(user, span_warning("这块牌匾已经被铭刻过了，而且你的笔也不够精致，根本刻不动！去找一支钢笔吧。"))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_warning("Your pen isn't fancy enough to engrave this! Find a fountain pen.")) //Go steal the Curator's.
+		to_chat(user, span_warning("你的笔不够精致，无法铭刻这个东西！去找一支钢笔吧。")) //Go steal the Curator's.
 		return ITEM_INTERACT_BLOCKING
 
 	if(engraved)
-		to_chat(user, span_warning("This plaque has already been engraved."))
+		to_chat(user, span_warning("这块牌匾已经被铭刻过了。"))
 		return ITEM_INTERACT_BLOCKING
 
-	var/namechoice = tgui_input_text(user, "Title this plaque. (e.g. 'Best HoP Award', 'Great Ashwalker War Memorial')", "Plaque Customization", max_length = MAX_NAME_LEN)
+	var/namechoice = tgui_input_text(user, "为这块牌匾命名。（例如：“最佳人事主管奖”、“灰行者战争纪念碑”）", "牌匾定制", max_length = MAX_NAME_LEN)
 	if(!namechoice)
 		return ITEM_INTERACT_BLOCKING
 
-	var/descriptionchoice = tgui_input_text(user, "Engrave this plaque's text", "Plaque Customization", max_length = MAX_PLAQUE_LEN)
+	var/descriptionchoice = tgui_input_text(user, "铭刻这块牌匾的文字", "牌匾定制", max_length = MAX_PLAQUE_LEN)
 	if(!descriptionchoice)
 		return ITEM_INTERACT_BLOCKING
 
 	if(!Adjacent(user)) //Make sure user is adjacent still
-		to_chat(user, span_warning("You need to stand next to the plaque to engrave it!"))
+		to_chat(user, span_warning("你需要站在牌匾旁边才能铭刻它！"))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice("[user] begins engraving [src]."), \
-						span_notice("You begin engraving [src]."))
+	user.visible_message(span_notice("[user]开始铭刻[src]。"), \
+						span_notice("你开始铭刻[src]。"))
 	if(!do_after(user, 4 SECONDS, target = src)) //This spits out a visible message that somebody is engraving a plaque, then has a delay.
 		return ITEM_INTERACT_BLOCKING
 
 	name = "\improper [namechoice]" //We want improper here so examine doesn't get weird if somebody capitalizes the plaque title.
-	desc = "The plaque reads: '[descriptionchoice]'"
+	desc = "牌匾上刻着：“[descriptionchoice]”"
 	engraved = TRUE //The plaque now has a name, description, and can't be altered again.
-	user.visible_message(span_notice("[user] engraves [src]."), \
-						span_notice("You engrave [src]."))
+	user.visible_message(span_notice("[user]铭刻了[src]。"), \
+						span_notice("你铭刻了[src]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/plaque //The item version of the above.
@@ -128,8 +128,8 @@
 	inhand_icon_state = "blankplaque"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
-	name = "blank plaque"
-	desc = "A blank plaque, use a fancy pen to engrave it. It can be placed on a wall."
+	name = "空白牌匾"
+	desc = "一块空白牌匾，用一支精致的钢笔即可在上面铭刻。可以安装在墙上。"
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_materials = list(/datum/material/gold =SHEET_MATERIAL_AMOUNT)
 	max_integrity = 200
@@ -149,16 +149,16 @@
 	if(user.combat_mode)
 		return FALSE
 	if(atom_integrity == max_integrity)
-		to_chat(user, span_warning("This plaque is already in perfect condition."))
+		to_chat(user, span_warning("这块牌匾已经完好无损。"))
 		return TRUE
 	if(!I.tool_start_check(user, amount=1))
 		return TRUE
-	user.visible_message(span_notice("[user] starts repairing [src]..."), \
-		span_notice("You start repairing [src]."))
+	user.visible_message(span_notice("[user]开始修理[src]……"), \
+		span_notice("你开始修理[src]。"))
 	if(!I.use_tool(src, user, 4 SECONDS, volume = 50))
 		return TRUE
-	user.visible_message(span_notice("[user] finishes repairing [src]."), \
-		span_notice("You finish repairing [src]."))
+	user.visible_message(span_notice("[user]修好了[src]。"), \
+		span_notice("你修好了[src]。"))
 	atom_integrity = max_integrity
 	return TRUE
 
@@ -169,38 +169,38 @@
 
 	if(!istype(tool, /obj/item/pen/fountain))
 		if(engraved)
-			to_chat(user, span_warning("This plaque has already been engraved, and your pen isn't fancy enough to engrave it anyway! Find a fountain pen."))
+			to_chat(user, span_warning("这块牌匾已经被铭刻过了，而且你的笔也不够精致，根本刻不动！去找一支钢笔吧。"))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_warning("Your pen isn't fancy enough to engrave this! Find a fountain pen.")) //Go steal the Curator's.
+		to_chat(user, span_warning("你的笔不够精致，无法铭刻这个东西！去找一支钢笔吧。")) //Go steal the Curator's.
 		return ITEM_INTERACT_BLOCKING
 
 	if(engraved)
-		to_chat(user, span_warning("This plaque has already been engraved."))
+		to_chat(user, span_warning("这块牌匾已经被铭刻过了。"))
 		return ITEM_INTERACT_BLOCKING
 
-	var/namechoice = tgui_input_text(user, "Title this plaque. (e.g. 'Best HoP Award', 'Great Ashwalker War Memorial')", "Plaque Customization", max_length = MAX_NAME_LEN)
+	var/namechoice = tgui_input_text(user, "为这块牌匾命名。（例如：“最佳人事主管奖”、“灰行者战争纪念碑”）", "牌匾定制", max_length = MAX_NAME_LEN)
 	if(!namechoice)
 		return ITEM_INTERACT_BLOCKING
 
-	var/descriptionchoice = tgui_input_text(user, "Engrave this plaque's text", "Plaque Customization", max_length = MAX_PLAQUE_LEN)
+	var/descriptionchoice = tgui_input_text(user, "铭刻这块牌匾的文字", "牌匾定制", max_length = MAX_PLAQUE_LEN)
 	if(!descriptionchoice)
 		return ITEM_INTERACT_BLOCKING
 
 	if(!Adjacent(user)) //Make sure user is adjacent still
-		to_chat(user, span_warning("You need to stand next to the plaque to engrave it!"))
+		to_chat(user, span_warning("你需要站在牌匾旁边才能铭刻它！"))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice("[user] begins engraving [src]."), \
-						span_notice("You begin engraving [src]."))
+	user.visible_message(span_notice("[user]开始铭刻[src]。"), \
+						span_notice("你开始铭刻[src]。"))
 	if(!do_after(user, 4 SECONDS, target = src)) //This spits out a visible message that somebody is engraving a plaque, then has a delay.
 		return ITEM_INTERACT_BLOCKING
 
 	name = "\improper [namechoice]" //We want improper here so examine doesn't get weird if somebody capitalizes the plaque title.
-	desc = "The plaque reads: '[descriptionchoice]'"
+	desc = "牌匾上刻着：“[descriptionchoice]”"
 	engraved = TRUE //The plaque now has a name, description, and can't be altered again.
-	user.visible_message(span_notice("[user] engraves [src]."), \
-						span_notice("You engrave [src]."))
+	user.visible_message(span_notice("[user]铭刻了[src]。"), \
+						span_notice("你铭刻了[src]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/plaque/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -219,8 +219,8 @@
 		placed_plaque.pixel_x = 32
 	else if(dir & WEST)
 		placed_plaque.pixel_x = -32
-	user.visible_message(span_notice("[user] fastens [src] to [target_turf]."), \
-		span_notice("You attach [src] to [target_turf]."))
+	user.visible_message(span_notice("[user]把[src]固定到了[target_turf]上。"), \
+		span_notice("你把[src]安装到了[target_turf]上。"))
 	playsound(target_turf, 'sound/items/deconstruct.ogg', 50, TRUE)
 	if(engraved)
 		placed_plaque.name = name

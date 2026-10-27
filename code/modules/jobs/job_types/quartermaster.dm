@@ -1,7 +1,7 @@
 /datum/job/quartermaster
 	title = JOB_QUARTERMASTER
-	description = "Coordinate cargo technicians and shaft miners, assist with \
-		economical purchasing."
+	description = "协调货运技术员与矿工，协助进行\
+		经济采购。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	head_announce = RADIO_CHANNEL_SUPPLY
 	faction = FACTION_STATION
@@ -32,7 +32,7 @@
 	mail_goodies = list(
 		/obj/item/circuitboard/machine/emitter = 3
 	)
-	rpg_title = "Steward"
+	rpg_title = "管家"
 	job_flags = STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS
 	voice_of_god_power = 1.4 //Command staff has authority
 	human_authority = JOB_AUTHORITY_NON_HUMANS_ALLOWED

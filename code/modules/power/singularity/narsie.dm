@@ -5,12 +5,12 @@
 #define NARSIE_MESMERIZE_EFFECT 60
 #define NARSIE_SINGULARITY_SIZE 12
 
-#define ADMIN_WARNING_MESSAGE "Invoking this will begin the Nar'Sie roundender. Assume that this WILL end the round in a few minutes. Are you sure?"
+#define ADMIN_WARNING_MESSAGE "执行此操作将启动纳尔西的回合终结程序。请假定这必然会在几分钟内结束本回合。你确定吗？"
 
 /// Nar'Sie, the God of the blood cultists
 /obj/narsie
-	name = "Nar'Sie"
-	desc = "Your mind begins to bubble and ooze as it tries to comprehend what it sees."
+	name = "纳尔西"
+	desc = "你的头脑在试图理解眼前之物时开始沸腾、渗流。"
 	icon = 'icons/obj/antags/cult/narsie.dmi'
 	icon_state = "narsie"
 	anchored = TRUE
@@ -67,16 +67,16 @@
 		singularity_size = NARSIE_SINGULARITY_SIZE, \
 	))
 
-	send_to_playing_players(span_narsie("NAR'SIE HAS RISEN"))
+	send_to_playing_players(span_narsie("纳尔西已降临"))
 	sound_to_playing_players('sound/music/antag/bloodcult/narsie_rises.ogg')
 
 	var/area/area = get_area(src)
 	if(area)
 		var/mutable_appearance/alert_overlay = mutable_appearance('icons/effects/cult.dmi', "ghostalertsie")
 		notify_ghosts(
-			"Nar'Sie has risen in [area]. Reach out to the Geometer to be given a new shell for your soul.",
+			"纳尔西已在 [area] 降临。向几何之神伸出手，为你的灵魂领取一具新的躯壳。",
 			source = src,
-			header = "Nar'Sie has risen!",
+			header = "纳尔西已降临！",
 			click_interact = TRUE,
 			alert_overlay = alert_overlay,
 		)
@@ -123,13 +123,13 @@
 			summon_objective.summoned = FALSE
 			summon_objective.killed = TRUE
 
-	send_to_playing_players(span_narsie(span_bold(pick("Nooooo...", "Not die. How-", "Die. Mort-", "Sas tyen re-"))))
+	send_to_playing_players(span_narsie(span_bold(pick("不——……", "不会死的。怎么会——", "死吧。凡人——", "萨斯·提恩·瑞——"))))
 	sound_to_playing_players('sound/effects/magic/demon_dies.ogg', 50)
 
 /obj/narsie/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "--- /narsie ---")
-	VV_DROPDOWN_OPTION(VV_HK_BEGIN_NARSIE_ROUNDEND, "Begin Nar'Sie Roundender")
+	VV_DROPDOWN_OPTION(VV_HK_BEGIN_NARSIE_ROUNDEND, "启动纳尔西回合终结")
 
 /obj/narsie/vv_do_topic(list/href_list)
 	. = ..()
@@ -140,16 +140,16 @@
 	if(!href_list[VV_HK_BEGIN_NARSIE_ROUNDEND] || !check_rights(R_FUN, show_msg = TRUE))
 		return
 
-	if(tgui_alert(usr, ADMIN_WARNING_MESSAGE, "Begin Nar'Sie Roundender", list("I'm Sure", "Abort")) != "I'm Sure")
+	if(tgui_alert(usr, ADMIN_WARNING_MESSAGE, "启动纳尔西回合终结", list("我确定", "中止")) != "我确定")
 		return
 
-	log_admin("[key_name(usr)] has triggered the Nar'Sie roundender.")
+	log_admin("[key_name(usr)] 触发了纳尔西回合终结。")
 	start_ending_the_round()
 
 /obj/narsie/attack_ghost(mob/dead/observer/user)
 	if(is_banned_from(user.ckey, ROLE_CULTIST))
 		return
-	if(tgui_alert(user, "Do you wish to become an occult harvester?", "Become Harvester?", list("Yes", "No"), timeout = 10 SECONDS) == "Yes")
+	if(tgui_alert(user, "你想成为神秘收割者吗？", "成为收割者？", list("是", "否"), timeout = 10 SECONDS) == "是")
 		make_new_construct(/mob/living/basic/construct/harvester, user, cultoverride = TRUE, loc_override = loc, ghost_activated = TRUE)
 
 /obj/narsie/process()
@@ -172,7 +172,7 @@
 	for (var/mob/living/carbon/victim in viewers(NARSIE_CONSUME_RANGE, src))
 		if (!IS_UNCONSCIOUS_OR_CRIT(victim))
 			if (!IS_CULTIST(victim))
-				to_chat(victim, span_cult("You feel conscious thought crumble away in an instant as you gaze upon [src]..."))
+				to_chat(victim, span_cult("当你凝视 [src] 时，你感到有意识的思维在瞬间土崩瓦解……"))
 				victim.apply_effect(NARSIE_MESMERIZE_EFFECT, EFFECT_STUN)
 
 /// Narsie rewards her cultists with being devoured first, then picks a ghost to follow.
@@ -219,12 +219,12 @@
 	if (food == old_target)
 		return
 
-	to_chat(old_target, span_cult("NAR'SIE HAS LOST INTEREST IN YOU."))
+	to_chat(old_target, span_cult("纳尔西已对你失去兴趣。"))
 	singularity_component.target = food
 	if(ishuman(food))
-		to_chat(food, span_cult("NAR'SIE HUNGERS FOR YOUR SOUL."))
+		to_chat(food, span_cult("纳尔西渴求你的灵魂。"))
 	else
-		to_chat(food, span_cult("NAR'SIE HAS CHOSEN YOU TO LEAD HER TO HER NEXT MEAL."))
+		to_chat(food, span_cult("纳尔西选中了你，要你引领她前往下一顿美餐。"))
 
 /// Called to make Nar'Sie convert objects to cult stuff, or to eat
 /obj/narsie/proc/consume(atom/target)
@@ -256,13 +256,13 @@
 ///First crew last second win check and flufftext for [/proc/begin_the_end()]
 /proc/narsie_end_begin_check()
 	if(QDELETED(GLOB.cult_narsie)) // uno
-		priority_announce("Status report? We detected an anomaly, but it disappeared almost immediately.","[command_name()] Higher Dimensional Affairs", 'sound/announcer/notice/notice1.ogg')
+		priority_announce("状态报告？我们检测到一次异常，但它几乎立刻消失了。","[command_name()] 高维事务部", 'sound/announcer/notice/notice1.ogg')
 		GLOB.cult_narsie = null
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cult_ending_helper), CULT_FAILURE_NARSIE_KILLED), 2 SECONDS)
 		return
 	priority_announce(
-		text = "An acausal dimensional event has been detected in your sector. Event has been flagged EXTINCTION-CLASS. Directing all available assets toward simulating solutions. SOLUTION ETA: 60 SECONDS.",
-		title = "[command_name()] Higher Dimensional Affairs",
+		text = "你的星区检测到一次非因果维度事件。该事件已被标记为灭绝级。现调动一切可用资源来模拟应对方案。方案预计抵达时间：60 秒。",
+		title = "[command_name()] 高维事务部",
 		sound = 'sound/announcer/alarm/airraid.ogg',
 	)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(narsie_end_second_check)), 50 SECONDS)
@@ -270,11 +270,11 @@
 ///Second crew last second win check and flufftext for [/proc/begin_the_end()]
 /proc/narsie_end_second_check()
 	if(QDELETED(GLOB.cult_narsie)) // dos
-		priority_announce("Simulations aborted, sensors report that the acasual event is normalizing. Good work, crew.","[command_name()] Higher Dimensional Affairs", 'sound/announcer/notice/notice1.ogg')
+		priority_announce("模拟已中止，传感器报告该非因果事件正在恢复正常。干得好，船员们。","[command_name()] 高维事务部", 'sound/announcer/notice/notice1.ogg')
 		GLOB.cult_narsie = null
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cult_ending_helper), CULT_FAILURE_NARSIE_KILLED), 2 SECONDS)
 		return
-	priority_announce("Simulations on acausal dimensional event complete. Deploying solution package now. Deployment ETA: ONE MINUTE. ","[command_name()] Higher Dimensional Affairs")
+	priority_announce("非因果维度事件模拟完成。正在投放解决方案包。投放预计时间：一分钟。 ","[command_name()] 高维事务部")
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(narsie_start_destroy_station)), 5 SECONDS)
 
 ///security level and shuttle lockdowns for [/proc/begin_the_end()]
@@ -287,7 +287,7 @@
 ///Third crew last second win check and flufftext for [/proc/begin_the_end()]
 /proc/narsie_apocalypse()
 	if(QDELETED(GLOB.cult_narsie)) // tres
-		priority_announce("Normalization detected! Abort the solution package!","[command_name()] Higher Dimensional Affairs", 'sound/announcer/notice/notice1.ogg')
+		priority_announce("检测到正常化！中止解决方案包！","[command_name()] 高维事务部", 'sound/announcer/notice/notice1.ogg')
 		SSshuttle.clearHostileEnvironment(GLOB.cult_narsie)
 		GLOB.cult_narsie = null
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(narsie_last_second_win)), 2 SECONDS)

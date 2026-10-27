@@ -3,8 +3,8 @@
 #define PANEL_EDGE_Z_OFFSET (PANEL_Z_OFFSET - 2)
 
 /obj/machinery/power/solar
-	name = "solar panel"
-	desc = "A solar panel. Generates electricity when in contact with sunlight."
+	name = "太阳能板"
+	desc = "一块太阳能板。受到阳光照射时即可发电。"
 	icon = 'icons/obj/machines/solar.dmi'
 	icon_state = "sp_base"
 	density = TRUE
@@ -102,7 +102,7 @@
 /obj/machinery/power/solar/crowbar_act(mob/user, obj/item/I)
 	if(I.use_tool(src, user, 0))
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-		user.visible_message(span_notice("[user] takes the glass off [src]."), span_notice("You take the glass off [src]."))
+		user.visible_message(span_notice("[user] 取下了 [src] 上的玻璃。"), span_notice("你取下了 [src] 上的玻璃。"))
 		deconstruct(TRUE)
 	return TRUE
 
@@ -257,8 +257,8 @@
 //
 
 /obj/item/solar_assembly
-	name = "solar panel assembly"
-	desc = "A solar panel assembly kit, allows constructions of a solar panel, or with a tracking circuit board, a solar tracker."
+	name = "太阳能板组件"
+	desc = "一套太阳能板组装套件，可用来建造太阳能板；若配合追踪电路板，还能建造太阳能追踪器。"
 	icon = 'icons/obj/machines/solar.dmi'
 	icon_state = "sp_base"
 	inhand_icon_state = "electropack"
@@ -296,17 +296,17 @@
 	if(tracker)
 		//prevent construction if something dense's on our tile
 		if(solarturf.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
-			balloon_alert(user, "something in the way!")
+			balloon_alert(user, "有东西挡住了！")
 			return ITEM_INTERACT_BLOCKING
 		if(!istype(tool, /obj/item/stack/sheet/glass))
-			to_chat(user, span_warning("The tracker only accepts standard, un-reinforced glass."))
+			to_chat(user, span_warning("追踪器只接受标准的、未加固的玻璃。"))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/stack/sheet/my_sheet = tool
 		if(!my_sheet.use(2))
-			to_chat(user, span_warning("You don't have enough glass to complete the tracker."))
+			to_chat(user, span_warning("你的玻璃不足以完成这个追踪器。"))
 			return ITEM_INTERACT_BLOCKING
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-		user.visible_message(span_notice("[user] places the glass on the solar assembly."),span_notice("You place the glass on the solar assembly."))
+		user.visible_message(span_notice("[user] 把玻璃放到了太阳能板组件上。"),span_notice("你把玻璃放到了太阳能板组件上。"))
 		new /obj/machinery/power/tracker/(get_turf(src), src)
 		return ITEM_INTERACT_SUCCESS
 
@@ -316,7 +316,7 @@
 		tracker = TRUE
 		update_appearance()
 		qdel(tool)
-		user.visible_message(span_notice("[user] inserts the electronics into the solar assembly."), span_notice("You insert the electronics into the solar assembly."))
+		user.visible_message(span_notice("[user] 将电子元件插入了太阳能板组件。"), span_notice("你将电子元件插入了太阳能板组件。"))
 		return ITEM_INTERACT_SUCCESS
 
 	//make a list of all the glass
@@ -331,18 +331,18 @@
 		//items that arent used above, or arent usable glass will make it here.
 		//so we check if its reinfocred glass, or some other item
 		if(istype(tool, /obj/item/stack/sheet/rglass) || istype(tool, /obj/item/stack/sheet/plasmarglass))
-			to_chat(user, span_warning("The solar array will only accept glass or glass alloys that have not been reinforced."))
+			to_chat(user, span_warning("太阳能阵列只接受未加固的玻璃或玻璃合金。"))
 		//an else statement can be put here if you want something to happen to all the misc items that make it this far
 		return ITEM_INTERACT_BLOCKING
 
 	//prevent construction if something dense's on our tile
 	if(solarturf.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
-		balloon_alert(user, "something in the way!")
+		balloon_alert(user, "有东西挡住了！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(is_glass_sheet(tool))
 		if(!anchored)
-			to_chat(user, span_warning("You need to secure the assembly before you can add glass."))
+			to_chat(user, span_warning("你需要先固定好组件，才能添加玻璃。"))
 			return ITEM_INTERACT_BLOCKING
 
 		var/list/glass_material_to_tier = list(
@@ -354,12 +354,12 @@
 
 		var/obj/item/stack/sheet/my_sheet = tool
 		if(!my_sheet.use(2))
-			to_chat(user, span_warning("You need at least two sheets of glass to complete a solar panel!"))
+			to_chat(user, span_warning("你至少需要两片玻璃才能完成一块太阳能板！"))
 			return ITEM_INTERACT_BLOCKING
 
 		var/datum/material/glass_material = my_sheet.material_type
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-		user.visible_message(span_notice("[user] places the glass on the solar assembly."), span_notice("You place the glass on the solar assembly."))
+		user.visible_message(span_notice("[user] 把玻璃放到了太阳能板组件上。"), span_notice("你把玻璃放到了太阳能板组件上。"))
 		var/obj/machinery/power/solar/mySolar = new /obj/machinery/power/solar(get_turf(src), src)
 		mySolar.power_tier = glass_material_to_tier[glass_material]
 		mySolar.material_type = glass_material
@@ -374,21 +374,21 @@
 	if(!isturf(loc))
 		return NONE
 	if(!solarturf.can_have_cabling()) //allows catwalks
-		balloon_alert(user, "can't secure in space!")
+		balloon_alert(user, "太空中无法固定！")
 		return ITEM_INTERACT_BLOCKING
 	for(var/obj/stuff_in_the_way in solarturf) //prevent anchoring on other machinery or solar assemblies
 		if(stuff_in_the_way == src)
 			continue
 		if(istype(stuff_in_the_way, /obj/item/solar_assembly) && stuff_in_the_way.anchored)
-			balloon_alert(user, "secured assembly in the way!")
+			balloon_alert(user, "有已固定的组件挡住了！")
 			return ITEM_INTERACT_BLOCKING
 		if((stuff_in_the_way.density) && !(stuff_in_the_way.flags_1 & ON_BORDER_1))
-			balloon_alert(user, "something in the way!")
+			balloon_alert(user, "有东西挡住了！")
 			return ITEM_INTERACT_BLOCKING
 	set_anchored(!anchored)
 	user.visible_message(
-		span_notice("[user] [anchored ? null : "un"]wrenches the solar assembly[anchored ? " into place" : null]."),
-		span_notice("You [anchored ? null : "un"]wrench the solar assembly[anchored ? " into place" : null]."),
+		span_notice("[user] [anchored ? "把太阳能板组件固定到位" : "把太阳能板组件的固定拆下"]。"),
+		span_notice("你[anchored ? "把太阳能板组件固定到位" : "把太阳能板组件的固定拆下"]。"),
 	)
 	tool.play_tool_sound(src, 75)
 	return ITEM_INTERACT_SUCCESS
@@ -399,8 +399,8 @@
 	new /obj/item/electronics/tracker(src.loc)
 	tracker = FALSE
 	update_appearance()
-	user.visible_message(span_notice("[user] takes out the electronics from the solar assembly."), \
-						span_notice("You take out the electronics from the solar assembly."))
+	user.visible_message(span_notice("[user] 从太阳能板组件中取出了电子元件。"), \
+						span_notice("你从太阳能板组件中取出了电子元件。"))
 	return ITEM_INTERACT_SUCCESS
 
 //
@@ -408,8 +408,8 @@
 //
 
 /obj/machinery/power/solar_control
-	name = "solar panel control"
-	desc = "A controller for solar panel arrays."
+	name = "太阳能板控制台"
+	desc = "用于控制太阳能板阵列的控制器。"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer"
 	density = TRUE
@@ -576,12 +576,12 @@
 		return ITEM_INTERACT_BLOCKING
 	var/obj/structure/frame/computer/new_computer = new /obj/structure/frame/computer(src.loc)
 	if (src.machine_stat & BROKEN)
-		to_chat(user, span_notice("The broken glass falls out."))
+		to_chat(user, span_notice("破碎的玻璃掉了出来。"))
 		new /obj/item/shard( src.loc )
 		new_computer.state = 3
 		new_computer.icon_state = "3"
 	else
-		to_chat(user, span_notice("You disconnect the monitor."))
+		to_chat(user, span_notice("你断开了显示器。"))
 		new_computer.state = 4
 		new_computer.icon_state = "4"
 	for (var/obj/within in src)
@@ -638,8 +638,8 @@
 //
 
 /obj/item/paper/guides/jobs/engi/solars
-	name = "paper- 'Going green! Setup your own solar array instructions.'"
-	default_raw_text = "<h1>Welcome</h1><p>At greencorps we love the environment, and space. With this package you are able to help mother nature and produce energy without any usage of fossil fuel or plasma! Singularity energy is dangerous while solar energy is safe, which is why it's better. Now here is how you setup your own solar array.</p><p>You can make a solar panel by wrenching the solar assembly onto a cable node. Adding a glass panel, any non reinforced glass will do, will finish the construction of your solar panel. It is that easy!</p><p>Now after setting up 19 more of these solar panels you will want to create a solar tracker to keep track of our mother nature's gift, the sun. These are the same steps as before except you insert the tracker equipment circuit into the assembly before performing the final step of adding the glass. You now have a tracker! Now the last step is to add a computer to calculate the sun's movements and to send commands to the solar panels to change direction with the sun. Setting up the solar computer is the same as setting up any computer, so you should have no trouble in doing that. You do need to put a wire node under the computer, and the wire needs to be connected to the tracker.</p><p>Congratulations, you should have a working solar array. If you are having trouble, here are some tips. Make sure all solar equipment are on a cable node, even the computer. You can always deconstruct your creations if you make a mistake.</p><p>That's all to it, be safe, be green!</p>"
+	name = "paper- 《走向绿色！自建太阳能阵列说明》"
+	default_raw_text = "<h1>欢迎</h1><p>在绿能公司，我们热爱环境，也热爱太空。有了这套组件，你就能帮助大自然母亲发电，而不必消耗任何化石燃料或等离子体！奇点能源危险，太阳能则安全可靠，这正是它更胜一筹的原因。下面就是自建太阳能阵列的方法。</p><p>用扳手把太阳能板组件固定到电缆节点上，你就能做出一块太阳能板。再加上一块玻璃板——任何未加固的玻璃都行——太阳能板就建造完成了。就是这么简单！</p><p>照这样再装好 19 块太阳能板之后，你会想要做一个太阳能追踪器，用来跟随大自然母亲的馈赠——太阳。步骤与前面相同，只是要在最后加装玻璃之前，先把追踪器设备的电路装入组件。这样你就有了一个追踪器！最后一步是加装一台电脑，用来计算太阳的运行轨迹，并向太阳能板发送指令，让它们随太阳改变朝向。安装太阳能电脑与安装其他任何电脑都一样，所以你不会有任何困难。不过你需要在电脑下方放置一个电线节点，并且这条电线必须连接到追踪器。</p><p>恭喜，你现在应该拥有一套能正常工作的太阳能阵列了。如果遇到问题，这里有几个提示：确保所有太阳能设备都接在电缆节点上，电脑也不例外。如果弄错了，你随时可以拆掉自己的作品重来。</p><p>就这些，注意安全，保持绿色！</p>"
 
 #undef SOLAR_GEN_RATE
 #undef PANEL_Z_OFFSET

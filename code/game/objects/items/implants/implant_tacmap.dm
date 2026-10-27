@@ -1,6 +1,6 @@
 /obj/item/implant/tacmap
-	name = "tactical map implant"
-	desc = "provides you with a map"
+	name = "战术地图植入体"
+	desc = "为你提供一张地图"
 	actions_types = list(/datum/action/minimap)
 	var/wearer_icon_state = null
 	/// Optional z-trait that resolves to the first z-level and locks the minimap there.
@@ -78,7 +78,7 @@
 /obj/item/implant/tacmap/nuclear/proc/deny_nukie_base_open(mob/living/user)
 	var/turf/user_turf = get_turf(user)
 	if(user_turf.onSyndieBase())
-		user.balloon_alert(user, "can't use implant in the base, go to the holotable!")
+		user.balloon_alert(user, "在基地内无法使用植入体，去全息投影台！")
 		return COMSIG_MINIMAP_ACTION_TRIGGER_CANCEL
 
 /obj/item/implant/tacmap/nuclear/cayenne // subtype used for cayenne and syndie sentience potions in general
@@ -107,14 +107,14 @@
 	return
 
 /obj/item/implanter/tacmap
-	name = "implanter (minimap)"
+	name = "植入器（小地图）"
 	imp_type = /obj/item/implant/tacmap
 
 /obj/item/implanter/tacmap/nuclear
-	name = "implanter (operative minimap)"
+	name = "植入器（特工小地图）"
 	imp_type = /obj/item/implant/tacmap/nuclear
 
 /obj/item/implantcase/tacmap
-	name = "implant case - 'Tactical Map'"
-	desc = "A glass case containing an implant with a virtual map."
+	name = "植入体盒 - “战术地图”"
+	desc = "一个玻璃盒，内装带有虚拟地图的植入体。"
 	imp_type = /obj/item/implant/tacmap

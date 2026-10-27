@@ -31,7 +31,7 @@
 GLOBAL_DATUM(the_one_and_only_punpun, /mob/living)
 
 /mob/living/carbon/human/species/monkey/punpun
-	name = "Pun Pun" //C A N O N
+	name = "潘潘" //C A N O N
 	unique_name = FALSE
 	use_random_name = FALSE
 	ai_controller = /datum/ai_controller/monkey/pun_pun
@@ -137,8 +137,8 @@ GLOBAL_DATUM(the_one_and_only_punpun, /mob/living)
 			name_to_use += " \Roman[ancestor_chain]"
 
 	else if(prob(10))
-		name_to_use = pick(list("Professor Bobo", "Deempisi's Revenge", "Furious George", "King Louie", "Dr. Zaius", "Jimmy Rustles", "Dinner", "Lanky"))
-		if(name_to_use == "Furious George")
+		name_to_use = pick(list("波波教授", "迪姆皮西的复仇", "暴怒乔治", "路易王", "扎乌斯博士", "吉米·拉索尔斯", "晚餐", "瘦长个"))
+		if(name_to_use == "暴怒乔治")
 			qdel(ai_controller)
 			ai_controller = new /datum/ai_controller/monkey/angry(src) //hes always mad
 #endif

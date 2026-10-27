@@ -5,8 +5,8 @@
 #define MAIL_CAPACITY 100
 
 /obj/machinery/mailsorter
-	name = "mail sorter"
-	desc = "A large mail sorting unit. Sorting mail since 1987!"
+	name = "邮件分拣机"
+	desc = "一台大型邮件分拣装置。自 1987 年起分拣邮件！"
 	icon = 'icons/obj/machines/mailsorter.dmi'
 	icon_state = "mailsorter"
 	base_icon_state = "mailsorter"
@@ -36,9 +36,9 @@
 		DEPARTMENT_COMMAND,
 	)
 	var/static/list/choices = list(
-		"Eject" = icon('icons/hud/radial.dmi', "radial_eject"),
-		"Dump" = icon('icons/hud/radial.dmi', "mail_dump"),
-		"Sort" = icon('icons/hud/radial.dmi', "mail_sort"),
+		"弹出" = icon('icons/hud/radial.dmi', "radial_eject"),
+		"倾倒" = icon('icons/hud/radial.dmi', "mail_dump"),
+		"分拣" = icon('icons/hud/radial.dmi', "mail_sort"),
 	)
 
 /// Steps one tile in the `output_dir`. Returns `turf`.
@@ -55,10 +55,10 @@
 
 /obj/machinery/mailsorter/examine(mob/user)
 	. = ..()
-	. += span_notice("There is[length(mail_list) < 100 ? " " : " no more "]space for <b>[length(mail_list) < 100 ? "[100 - length(mail_list)] " : ""]</b>envelope\s inside.")
-	. += span_notice("There [length(mail_list) >= 2 ? "are" : "is"] <b>[length(mail_list) ? length(mail_list) : "no"]</b> envelope\s inside.")
+	. += span_notice("里面[length(mail_list) < 100 ? "" : "已没"]有空位容纳 <b>[length(mail_list) < 100 ? "[100 - length(mail_list)] " : "0"]</b>个信封。")
+	. += span_notice("里面有 <b>[length(mail_list) ? length(mail_list) : "0"]</b> 个信封。")
 	if(panel_open)
-		. += span_notice("Alt-click to rotate the output direction.")
+		. += span_notice("按住 Alt 点击可旋转输出方向。")
 
 /obj/machinery/mailsorter/Destroy()
 	QDEL_LIST(mail_list)
@@ -100,7 +100,7 @@
 	if (currentstate != STATE_IDLE)
 		return
 	if (length(mail_list) == 0)
-		to_chat(user, span_warning("There's no mail inside!"))
+		to_chat(user, span_warning("里面没有邮件！"))
 		return
 	var/choice = show_radial_menu(
 		user,
@@ -112,18 +112,18 @@
 	if (!choice)
 		return
 	switch (choice)
-		if ("Eject")
+		if ("弹出")
 			pick_mail(user)
-		if ("Dump")
+		if ("倾倒")
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 20, TRUE)
-			to_chat(user, span_notice("[src] dumps [length(mail_list)] envelope\s on the floor."))
+			to_chat(user, span_notice("[src] 把 [length(mail_list)] 个信封倒在了地上。"))
 			dump_all_mail()
-		if ("Sort")
+		if ("分拣")
 			sort_mail(user)
 
 /// Prompts the player to select a department to sort the mail for. Returns if `null`.
 /obj/machinery/mailsorter/proc/sort_mail(mob/user)
-	var/sorting_dept = tgui_input_list(user, "Choose the department to sort mail for","Mail Sorting", sorting_departments)
+	var/sorting_dept = tgui_input_list(user, "选择要分拣邮件的部门","邮件分拣", sorting_departments)
 	if (!sorting_dept)
 		return
 	currentstate = STATE_SORTING
@@ -159,13 +159,13 @@
 		currentstate = STATE_NO
 		update_appearance(UPDATE_OVERLAYS)
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 20, TRUE)
-		say("No mail for the following department: [sorting_dept].")
+		say("以下部门没有邮件：[sorting_dept]。")
 	else
 		currentstate = STATE_YES
 		update_appearance(UPDATE_OVERLAYS)
-		say("[sorted] envelope\s sorted successfully.")
+		say("成功分拣 [sorted] 个信封。")
 		playsound(src, 'sound/machines/ping.ogg', 20, TRUE)
-		to_chat(user, span_notice("[src] ejects [length(sorted_mail)] envelope\s."))
+		to_chat(user, span_notice("[src] 弹出了 [length(sorted_mail)] 个信封。"))
 		var/turf/unload_turf = get_unload_turf()
 		for (var/obj/item/mail/mail_in_list in sorted_mail)
 			mail_in_list.forceMove(unload_turf)
@@ -177,10 +177,10 @@
 /obj/machinery/mailsorter/proc/check_sorted(mob/user, unable_to_sort, total_to_sort)
 	if (unable_to_sort > 0)
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 20, TRUE)
-		say("Couldn't sort [unable_to_sort] envelope\s.")
+		say("无法分拣 [unable_to_sort] 个信封。")
 	else
 		playsound(src, 'sound/machines/ping.ogg', 20, TRUE)
-		say("[total_to_sort] envelope\s processed.")
+		say("已处理 [total_to_sort] 个信封。")
 	addtimer(CALLBACK(src, PROC_REF(update_state_after_sorting)), 1 SECONDS)
 
 /obj/machinery/mailsorter/proc/update_state_after_sorting()
@@ -190,7 +190,7 @@
 /obj/machinery/mailsorter/item_interaction(mob/user, obj/item/thingy, params)
 	if (istype(thingy, /obj/item/storage/bag/mail))
 		if (length(thingy.contents) < 1)
-			to_chat(user, span_warning("The [thingy] is empty!"))
+			to_chat(user, span_warning("\the [thingy] 是空的！"))
 			return
 		var/loaded = 0
 		for (var/obj/item/mail in thingy.contents)
@@ -199,33 +199,33 @@
 				accept_check(mail) \
 			)
 				if (length(mail_list) + 1 > MAIL_CAPACITY )
-					to_chat(user, span_warning("There is no space for more mail in [src]!"))
+					to_chat(user, span_warning("[src] 里没有空间再放更多邮件了！"))
 					return FALSE
 				else if (load(mail, user))
 					loaded++
 					mail_list += mail
 		if(loaded)
-			user.visible_message(span_notice("[user] loads \the [src] with \the [thingy]."), \
-			span_notice("You load \the [src] with \the [thingy]."))
+			user.visible_message(span_notice("[user] 把 \the [thingy] 装入了 \the [src]。"), \
+			span_notice("你把 \the [thingy] 装入了 \the [src]。"))
 			if(length(thingy.contents))
-				to_chat(user, span_warning("Some items are refused."))
+				to_chat(user, span_warning("有些物品被拒收了。"))
 			return TRUE
 		else
-			to_chat(user, span_warning("There is nothing in \the [thingy] to put in the [src]!"))
+			to_chat(user, span_warning("\the [thingy] 里没有能放进 \the [src] 的东西！"))
 			return FALSE
 	else if (istype(thingy, /obj/item/mail))
 		if (length(mail_list) + 1 > MAIL_CAPACITY )
-			to_chat(user, span_warning("There is no space for more mail in [src]!"))
+			to_chat(user, span_warning("[src] 里没有空间再放更多邮件了！"))
 		else
 			thingy.forceMove(src)
 			mail_list += thingy
-			to_chat(user, span_notice("The [src] whizzles as it accepts the [thingy]."))
+			to_chat(user, span_notice("[src] 嗡嗡作响，收下了 \the [thingy]。"))
 
 /// Prompts the user to select an anvelope from the list of all the envelopes inside.
 /obj/machinery/mailsorter/proc/pick_mail(mob/user)
 	if(!length(mail_list))
 		return
-	var/obj/item/mail/mail_throw = tgui_input_list(user, "Choose the envelope to eject","Mail Sorting", mail_list)
+	var/obj/item/mail/mail_throw = tgui_input_list(user, "选择要弹出的信封","邮件分拣", mail_list)
 	if(!mail_throw)
 		return
 	currentstate = STATE_SORTING
@@ -235,7 +235,7 @@
 
 /// Ejects a single envelope the player has picked onto the `unload_turf`.
 /obj/machinery/mailsorter/proc/pick_envelope(mob/user, obj/item/mail/mail_throw)
-	to_chat(user, span_notice("[src] reluctantly spits out [mail_throw]."))
+	to_chat(user, span_notice("[src] 不情愿地吐出了 [mail_throw]。"))
 	var/turf/unload_turf = get_unload_turf()
 	mail_throw.forceMove(unload_turf)
 	mail_throw.throw_at(unload_turf, 2, 3)
@@ -248,7 +248,7 @@
 	if(ismob(thingy.loc))
 		var/mob/owner = thingy.loc
 		if(!owner.transferItemToLoc(thingy, src))
-			to_chat(owner, span_warning("\the [thingy] is stuck to your hand, you cannot put it in \the [src]!"))
+			to_chat(owner, span_warning("\the [thingy] 粘在你手上，你没法把它放进 \the [src]！"))
 			return FALSE
 		return TRUE
 	else
@@ -262,7 +262,7 @@
 	if(!panel_open)
 		return CLICK_ACTION_BLOCKING
 	output_dir = turn(output_dir, -90)
-	to_chat(user, span_notice("You change [src]'s I/O settings, setting the output to [dir2text(output_dir)]."))
+	to_chat(user, span_notice("你更改了 [src] 的输入/输出设置，将输出方向设为 [dir2text(output_dir)]。"))
 	update_appearance(UPDATE_OVERLAYS)
 	return CLICK_ACTION_SUCCESS
 

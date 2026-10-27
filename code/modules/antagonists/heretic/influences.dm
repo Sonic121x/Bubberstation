@@ -24,7 +24,7 @@
 /datum/reality_smash_tracker/Destroy(force)
 	if(GLOB.reality_smash_track == src)
 		stack_trace("[type] was deleted. Heretics may no longer access any influences. Fix it, or call coder support.")
-		message_admins("The [type] was deleted. Heretics may no longer access any influences. Fix it, or call coder support.")
+		message_admins("[type]被删除了，异教徒可能无法再接触任何异界影响。请修复或联系程序员协助。")
 	QDEL_LIST(smashes)
 	tracked_heretics.Cut()
 	return ..()
@@ -77,7 +77,7 @@
 	tracked_heretics -= heretic
 
 /obj/effect/visible_heretic_influence
-	name = "pierced reality"
+	name = "洞穿的现实"
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "pierced_illusion"
 	anchored = TRUE
@@ -156,16 +156,16 @@
 
 /obj/effect/visible_heretic_influence/examine(mob/living/user)
 	. = ..()
-	. += span_hypnophrase(pick_list(HERETIC_INFLUENCE_FILE, "examine"))
+	. += span_hypnophrase(chinese_batch_four_influence_display(pick_list(HERETIC_INFLUENCE_FILE, "examine")))
 	if(IS_HERETIC(user) || !ishuman(user))
 		return
 
-	. += span_userdanger("Your mind burns as you stare at the tear!")
+	. += span_userdanger("凝视裂隙时，你的心智如遭灼烧！")
 	user.adjust_organ_loss(ORGAN_SLOT_BRAIN, 10, 190)
 	user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
 
 /obj/effect/heretic_influence
-	name = "reality smash"
+	name = "现实裂隙"
 	icon = 'icons/effects/eldritch.dmi'
 	anchored = TRUE
 	interaction_flags_atom = INTERACT_ATOM_NO_FINGERPRINT_ATTACK_HAND|INTERACT_ATOM_NO_FINGERPRINT_INTERACT
@@ -204,7 +204,7 @@
 		return SECONDARY_ATTACK_CALL_NORMAL
 
 	if(being_drained)
-		loc.balloon_alert(user, "already being drained!")
+		loc.balloon_alert(user, "已经在汲取中！")
 	else
 		INVOKE_ASYNC(src, PROC_REF(drain_influence), user, 1)
 
@@ -235,17 +235,17 @@
 
 	// BUBBER EDIT ADDITION - inhibition/no heart = no draining
 	if (HAS_TRAIT(user, TRAIT_MANSUS_INHIBITION))
-		user.balloon_alert(user, "inhibited! cant drain!")
+		user.balloon_alert(user, "受到抑制，无法汲取！")
 		return
 
 	var/datum/antagonist/heretic/our_heretic = GET_HERETIC(user)
 	if (our_heretic.has_living_heart() != HERETIC_HAS_LIVING_HEART)
-		user.balloon_alert(user, "no living heart!")
+		user.balloon_alert(user, "没有活心！")
 		return
 	// BUBBER EDIT ADDITION END
 
 	being_drained = TRUE
-	loc.balloon_alert(user, "draining influence...")
+	loc.balloon_alert(user, "正在汲取异界影响……")
 
 	// Only gives you the dripping eye effect if you have faster drain speed than default
 	var/mutable_appearance/draining_overlay = mutable_appearance('icons/mob/effects/heretic_aura.dmi', "heretic_eye_dripping")
@@ -255,12 +255,12 @@
 
 	if(!do_after(user, drain_speed, src, cog_icon = null))
 		being_drained = FALSE
-		loc.balloon_alert(user, "interrupted!")
+		loc.balloon_alert(user, "被打断了！")
 		user.cut_overlay(draining_overlay)
 		return
 
 	// We don't need to set being_drained back since we delete after anyways
-	loc.balloon_alert(user, "influence drained")
+	loc.balloon_alert(user, "异界影响已汲取")
 	user.cut_overlay(draining_overlay)
 
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
@@ -275,11 +275,11 @@
  */
 /obj/effect/heretic_influence/proc/after_drain(mob/living/user)
 	if(user)
-		to_chat(user, span_hypnophrase(pick_list(HERETIC_INFLUENCE_FILE, "drain_message")))
-		to_chat(user, span_warning("[src] begins to fade into reality!"))
+		to_chat(user, span_hypnophrase(chinese_batch_four_influence_display(pick_list(HERETIC_INFLUENCE_FILE, "drain_message"))))
+		to_chat(user, span_warning("[src]开始逐渐显现在现实之中！"))
 
 	var/obj/effect/visible_heretic_influence/illusion = new /obj/effect/visible_heretic_influence(drop_location())
-	illusion.name = "\improper" + pick_list(HERETIC_INFLUENCE_FILE, "drained") + " " + format_text(name)
+	illusion.name = "\improper" + chinese_batch_four_influence_display(pick_list(HERETIC_INFLUENCE_FILE, "drained")) + " " + format_text(name)
 
 	GLOB.reality_smash_track.num_drained++
 	qdel(src)
@@ -288,7 +288,7 @@
  * Generates a random name for the influence.
  */
 /obj/effect/heretic_influence/proc/generate_name()
-	name = "\improper" + pick_list(HERETIC_INFLUENCE_FILE, "prefix") + " " + pick_list(HERETIC_INFLUENCE_FILE, "postfix")
+	name = "\improper" + chinese_batch_four_influence_display(pick_list(HERETIC_INFLUENCE_FILE, "prefix")) + " " + chinese_batch_four_influence_display(pick_list(HERETIC_INFLUENCE_FILE, "postfix"))
 
 #undef NUM_INFLUENCES_PER_HERETIC
 

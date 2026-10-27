@@ -5,7 +5,7 @@
  */
 /datum/paintable_decal_category
 	/// Human readable category name
-	var/category = "Generic"
+	var/category = "通用"
 	/// The type of paintable decal this category contains - should be a subtype of /datum/paintable_decal
 	var/paintable_decal_type
 	/// Color options for this category - formatted as readable label - color value
@@ -167,7 +167,7 @@
 // Basic tile decals
 /datum/paintable_decal_category/tile
 	paintable_decal_type = /datum/paintable_decal/tile
-	category = "Tiles"
+	category = "地砖"
 	default_alpha = /obj/effect/turf_decal/tile::alpha
 	possible_colors = list(
 		"Neutral" = "#d4d4d432", // very lazy way to do transparent decal, should be remade in future
@@ -188,13 +188,13 @@
 
 // Tile trimlines
 /datum/paintable_decal_category/tile/trimline
-	category = "Trimlines"
+	category = "饰线"
 	paintable_decal_type = /datum/paintable_decal/trimline
 
 // Generic warning stripes
 /datum/paintable_decal_category/warning
 	paintable_decal_type = /datum/paintable_decal/warning
-	category = "Warning Stripes"
+	category = "警示条纹"
 	possible_colors = list(
 		"Yellow" = "yellow",
 		"Red" = "red",
@@ -223,7 +223,7 @@
 // Plain colored siding
 /datum/paintable_decal_category/siding
 	paintable_decal_type = /datum/paintable_decal/colored_siding
-	category = "Colored Sidings"
+	category = "彩色侧边线"
 	possible_colors = list(
 		"Dim White" = /obj/effect/turf_decal/siding/white::color,
 		"White" = "#FFFFFF",
@@ -243,7 +243,7 @@
 // Sidings which are not colored / have a specific pattern, texture, etc
 /datum/paintable_decal_category/normal_siding
 	paintable_decal_type = /datum/paintable_decal/siding
-	category = "Normal Sidings"
+	category = "普通侧边线"
 	possible_colors = list(
 		"Default" = /obj/effect/turf_decal/siding/wood::color,
 	)
@@ -251,7 +251,7 @@
 // Plating sidings and all color variations
 /datum/paintable_decal_category/plating
 	paintable_decal_type = /datum/paintable_decal/plating
-	category = "Plating Sidings"
+	category = "铺板侧边线"
 	// BUBBER EDIT BEGIN: decal overrides
 	// Ideally we shouldn't have to modify this but a tg genius hardcoded the colors.
 	possible_colors = list(
@@ -294,46 +294,46 @@ GLOBAL_LIST_INIT(paintable_decals, init_subtypes(/datum/paintable_decal_category
 /datum/paintable_decal/tile
 
 /datum/paintable_decal/tile/four_corners
-	name = "4 Corners"
+	name = "四角"
 	icon_state = "tile_fourcorners"
 	directional = FALSE
 
 /datum/paintable_decal/tile/full
-	name = "Full Tile"
+	name = "整砖"
 	icon_state = "tile_full"
 	directional = FALSE
 
 /datum/paintable_decal/tile/corner
-	name = "Corner"
+	name = "角落"
 	icon_state = "tile_corner"
 
 /datum/paintable_decal/tile/half
-	name = "Half"
+	name = "半砖"
 	icon_state = "tile_half_contrasted"
 
 /datum/paintable_decal/tile/half_full
-	name = "Full Half"
+	name = "整半砖"
 	icon_state = "tile_half"
 
 /datum/paintable_decal/tile/opposing_corners
-	name = "Opposing Corners"
+	name = "对向角落"
 	icon_state = "tile_opposing_corners"
 
 /datum/paintable_decal/tile/anticorner
-	name = "3 Corners"
+	name = "三角"
 	icon_state = "tile_anticorner_contrasted"
 
 /datum/paintable_decal/tile/tram
-	name = "Tram"
+	name = "电车"
 	icon_state = "tile_tram"
 
 /datum/paintable_decal/tile/diagonal_centre
-	name = "Diagonal Centre"
+	name = "对角中心"
 	icon_state = "diagonal_centre"
 	directional = FALSE
 
 /datum/paintable_decal/tile/diagonal_edge
-	name = "Diagonal Edge"
+	name = "对角边缘"
 	icon_state = "diagonal_edge"
 	directional = FALSE
 
@@ -341,151 +341,151 @@ GLOBAL_LIST_INIT(paintable_decals, init_subtypes(/datum/paintable_decal_category
 /datum/paintable_decal/trimline
 
 /datum/paintable_decal/trimline/filled_box
-	name = "Trimline Filled Box"
+	name = "饰线实心方块"
 	icon_state = "trimline_box_fill"
 	directional = FALSE
 
 /datum/paintable_decal/trimline/filled_corner
-	name = "Trimline Filled Corner"
+	name = "饰线实心拐角"
 	icon_state = "trimline_corner_fill"
 
 /datum/paintable_decal/trimline/filled
-	name = "Trimline Filled"
+	name = "饰线实心"
 	icon_state = "trimline_fill"
 
 /datum/paintable_decal/trimline/filled_l
-	name = "Trimline Filled L"
+	name = "饰线实心 L 形"
 	icon_state = "trimline_fill__8" // 8 dir sprite
 
 /datum/paintable_decal/trimline/filled_end
-	name = "Trimline Filled End"
+	name = "饰线实心末端"
 	icon_state = "trimline_end_fill"
 
 /datum/paintable_decal/trimline/box
-	name = "Trimline Box"
+	name = "饰线方块"
 	icon_state = "trimline_box"
 	directional = FALSE
 
 /datum/paintable_decal/trimline/corner
-	name = "Trimline Corner"
+	name = "饰线拐角"
 	icon_state = "trimline_corner"
 
 /datum/paintable_decal/trimline/circle
-	name = "Trimline Circle"
+	name = "饰线圆形"
 	icon_state = "trimline"
 
 /datum/paintable_decal/trimline/l
-	name = "Trimline L"
+	name = "饰线 L 形"
 	icon_state = "trimline__8" // 8 dir sprite
 
 /datum/paintable_decal/trimline/end
-	name = "Trimline End"
+	name = "饰线末端"
 	icon_state = "trimline_end"
 
 /datum/paintable_decal/trimline/connector_l
-	name = "Trimline Connector L"
+	name = "饰线 L 形连接件"
 	icon_state = "trimline_shrink_cw"
 
 /datum/paintable_decal/trimline/connector_r
-	name = "Trimline Connector R"
+	name = "饰线 R 形连接件"
 	icon_state = "trimline_shrink_ccw"
 
 /datum/paintable_decal/trimline/arrow_l_filled
-	name = "Trimline Arrow L Filled"
+	name = "饰线 L 形箭头实心"
 	icon_state = "trimline_arrow_cw_fill"
 
 /datum/paintable_decal/trimline/arrow_r_filled
-	name = "Trimline Arrow R Filled"
+	name = "饰线 R 形箭头实心"
 	icon_state = "trimline_arrow_ccw_fill"
 
 /datum/paintable_decal/trimline/warn_filled
-	name = "Trimline Warn Filled"
+	name = "饰线警示实心"
 	icon_state = "trimline_warn_fill"
 
 /datum/paintable_decal/trimline/warn_filled_l
-	name = "Trimline Warn Filled L"
+	name = "饰线警示实心 L 形"
 	icon_state = "trimline_warn_fill__8" // 8 dir sprite
 
 /datum/paintable_decal/trimline/warn_filled_corner
-	name = "Trimline Warn Filled Corner"
+	name = "饰线警示实心拐角"
 	icon_state = "trimline_corner_warn_fill"
 
 /datum/paintable_decal/trimline/warn
-	name = "Trimline Warn"
+	name = "饰线警示"
 	icon_state = "trimline_warn"
 
 /datum/paintable_decal/trimline/warn_l
-	name = "Trimline Warn L"
+	name = "饰线警示 L 形"
 	icon_state = "trimline_warn__8" // 8 dir sprite
 
 /datum/paintable_decal/trimline/arrow_l
-	name = "Trimline Arrow L"
+	name = "饰线 L 形箭头"
 	icon_state = "trimline_arrow_cw"
 
 /datum/paintable_decal/trimline/arrow_r
-	name = "Trimline Arrow R"
+	name = "饰线 R 形箭头"
 	icon_state = "trimline_arrow_ccw"
 
 /datum/paintable_decal/trimline/mid_joiner
-	name = "Trimline Mid Joiner"
+	name = "饰线中段连接件"
 	icon_state = "trimline_mid"
 
 /datum/paintable_decal/trimline/mid_joiner_filled
-	name = "Trimline Mid Joiner Filled"
+	name = "饰线中段连接件实心"
 	icon_state = "trimline_mid_fill"
 
 /datum/paintable_decal/trimline/tram
-	name = "Trimline Tram"
+	name = "饰线电车"
 	icon_state = "trimline_tram"
 
 // Generic warning decals of each color
 /datum/paintable_decal/warning
 
 /datum/paintable_decal/warning/line
-	name = "Warning Line"
+	name = "警示线"
 	icon_state = "warningline"
 
 /datum/paintable_decal/warning/line_corner
-	name = "Warning Line Corner"
+	name = "警示线拐角"
 	icon_state = "warninglinecorner"
 
 /datum/paintable_decal/warning/caution
-	name = "Caution Label"
+	name = "小心标签"
 	icon_state = "caution"
 
 /datum/paintable_decal/warning/arrows
-	name = "Directional Arrows"
+	name = "方向箭头"
 	icon_state = "arrows"
 
 /datum/paintable_decal/warning/stand_clear
-	name = "Stand Clear Label"
+	name = "请勿靠近标签"
 	icon_state = "stand_clear"
 
 /datum/paintable_decal/warning/bot
-	name = "Bot"
+	name = "机器人"
 	icon_state = "bot"
 	directional = FALSE
 
 /datum/paintable_decal/warning/loading
-	name = "Loading Zone"
+	name = "装卸区"
 	icon_state = "loadingarea"
 
 /datum/paintable_decal/warning/box
-	name = "Box"
+	name = "方框"
 	icon_state = "box"
 	directional = FALSE
 
 /datum/paintable_decal/warning/box_corners
-	name = "Box Corner"
+	name = "方框拐角"
 	icon_state = "box_corners"
 
 /datum/paintable_decal/warning/delivery
-	name = "Delivery Marker"
+	name = "投递标记"
 	icon_state = "delivery"
 	directional = FALSE
 
 /datum/paintable_decal/warning/warn_full
-	name = "Warning Box"
+	name = "警示框"
 	icon_state = "warn_full"
 	directional = FALSE
 
@@ -493,19 +493,19 @@ GLOBAL_LIST_INIT(paintable_decals, init_subtypes(/datum/paintable_decal_category
 /datum/paintable_decal/colored_siding
 
 /datum/paintable_decal/colored_siding/line
-	name = "Siding"
+	name = "侧边线"
 	icon_state = "siding_plain"
 
 /datum/paintable_decal/colored_siding/line_corner
-	name = "Siding Corner"
+	name = "侧边线拐角"
 	icon_state = "siding_plain_corner"
 
 /datum/paintable_decal/colored_siding/line_end
-	name = "Siding End"
+	name = "侧边线末端"
 	icon_state = "siding_plain_end"
 
 /datum/paintable_decal/colored_siding/line_inner_corner
-	name = "Siding Inner Corner"
+	name = "侧边线内拐角"
 	icon_state = "siding_plain_corner_inner"
 
 // Sidings which are not colored / have a specific pattern, texture, etc
@@ -514,93 +514,93 @@ GLOBAL_LIST_INIT(paintable_decals, init_subtypes(/datum/paintable_decal_category
 /datum/paintable_decal/siding/wood
 
 /datum/paintable_decal/siding/wood/line
-	name = "Wood Siding"
+	name = "木质侧边线"
 	icon_state = "siding_wood"
 
 /datum/paintable_decal/siding/wood/line_corner
-	name = "Wood Siding Corner"
+	name = "木质侧边线拐角"
 	icon_state = "siding_wood_corner"
 
 /datum/paintable_decal/siding/wood/line_end
-	name = "Wood Siding End"
+	name = "木质侧边线末端"
 	icon_state = "siding_wood_end"
 
 /datum/paintable_decal/siding/wood/line_inner_corner
-	name = "Wood Siding Inner Corner"
+	name = "木质侧边线内拐角"
 	icon_state = "siding_wood__8" // 8 dir sprite
 
 // Thin plating sidings and all color variations
 /datum/paintable_decal/plating/thinplating
 
 /datum/paintable_decal/plating/thinplating/line
-	name = "Thin Plating Siding"
+	name = "薄板侧边线"
 	icon_state = "siding_thinplating"
 
 /datum/paintable_decal/plating/thinplating/line_corner
-	name = "Thin Plating Siding Corner"
+	name = "薄板侧边线拐角"
 	icon_state = "siding_thinplating_corner"
 
 /datum/paintable_decal/plating/thinplating/line_end
-	name = "Thin Plating Siding End"
+	name = "薄板侧边线末端"
 	icon_state = "siding_thinplating_end"
 
 /datum/paintable_decal/plating/thinplating/line_inner_corner
-	name = "Thin Plating Siding Inner Corner"
+	name = "薄板侧边线内拐角"
 	icon_state = "siding_thinplating__8" // 8 dir sprite
 
 // Alt / new thin plating sidings and all color variations
 /datum/paintable_decal/plating/thinplatingalt
 
 /datum/paintable_decal/plating/thinplatingalt/line
-	name = "Thin Plating Alt Siding"
+	name = "薄板替代侧边线"
 	icon_state = "siding_thinplating_new"
 
 /datum/paintable_decal/plating/thinplatingalt/line_corner
-	name = "Thin Plating Alt Siding Corner"
+	name = "薄板替代侧边线拐角"
 	icon_state = "siding_thinplating_new_corner"
 
 /datum/paintable_decal/plating/thinplatingalt/line_end
-	name = "Thin Plating Alt Siding End"
+	name = "薄板替代侧边线末端"
 	icon_state = "siding_thinplating_new_end"
 
 /datum/paintable_decal/plating/thinplatingalt/line_inner_corner
-	name = "Thin Plating Alt Siding Inner Corner"
+	name = "薄板替代侧边线内拐角"
 	icon_state = "siding_thinplating_new__8" // 8 dir sprite
 
 // Wide plating sidings and all color variations
 /datum/paintable_decal/plating/wideplating
 
 /datum/paintable_decal/plating/wideplating/line
-	name = "Wide Plating Siding"
+	name = "宽板侧边线"
 	icon_state = "siding_wideplating"
 
 /datum/paintable_decal/plating/wideplating/line_corner
-	name = "Wide Plating Siding Corner"
+	name = "宽板侧边线拐角"
 	icon_state = "siding_wideplating_corner"
 
 /datum/paintable_decal/plating/wideplating/line_end
-	name = "Wide Plating Siding End"
+	name = "宽板侧边线末端"
 	icon_state = "siding_wideplating_end"
 
 /datum/paintable_decal/plating/wideplating/line_inner_corner
-	name = "Wide Plating Siding Inner Corner"
+	name = "宽板侧边线内拐角"
 	icon_state = "siding_wideplating__8"  // 8 dir sprite
 
 // Alt / new wide plating sidings and all color variations
 /datum/paintable_decal/plating/wideplatingalt
 
 /datum/paintable_decal/plating/wideplatingalt/line
-	name = "Wide Plating Alt Siding"
+	name = "宽板替代侧边线"
 	icon_state = "siding_wideplating_new"
 
 /datum/paintable_decal/plating/wideplatingalt/line_corner
-	name = "Wide Plating Alt Siding Corner"
+	name = "宽板替代侧边线拐角"
 	icon_state = "siding_wideplating_new_corner"
 
 /datum/paintable_decal/plating/wideplatingalt/line_end
-	name = "Wide Plating Alt Siding End"
+	name = "宽板替代侧边线末端"
 	icon_state = "siding_wideplating_new_end"
 
 /datum/paintable_decal/plating/wideplatingalt/line_inner_corner
-	name = "Wide Plating Alt Siding Inner Corner"
+	name = "宽板替代侧边线内拐角"
 	icon_state = "siding_wideplating_new__8" // 8 dir sprite

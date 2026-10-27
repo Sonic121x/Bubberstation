@@ -1,6 +1,6 @@
 /datum/picture
-	var/picture_name = "picture"
-	var/picture_desc = "This is a picture."
+	var/picture_name = "照片"
+	var/picture_desc = "这是一张照片。"
 	/// List of weakrefs pointing at mobs that appear in this photo
 	var/list/mobs_seen = list()
 	/// List of weakrefs pointing at dead mobs that appear in this photo

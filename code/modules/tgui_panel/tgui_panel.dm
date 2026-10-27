@@ -64,7 +64,7 @@
  */
 /datum/tgui_panel/proc/on_initialize_timed_out()
 	// Currently does nothing but sending a message to old chat.
-	SEND_TEXT(client, span_userdanger("Failed to load fancy chat, click <a href='byond://?src=[REF(src)];reload_tguipanel=1'>HERE</a> to attempt to reload it."))
+	SEND_TEXT(client, span_userdanger("无法加载花式聊天，点击<a href='byond://?src=[REF(src)];reload_tguipanel=1'>此处</a>尝试重新加载。"))
 
 /**
  * private
@@ -96,7 +96,7 @@
 
 	if(type == "audio/protected")
 		if(!admins_warned)
-			message_admins(span_notice("Audio returned a protected playback error, likely due to being copyrighted."))
+			message_admins(span_notice("音频返回了受保护的播放错误，可能是因为受版权保护。"))
 			admins_warned = TRUE
 			addtimer(VARSET_CALLBACK(src, admins_warned, FALSE), 10 SECONDS)
 		return TRUE

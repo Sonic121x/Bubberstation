@@ -14,7 +14,7 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { skyratFaxDisplay } from '../localization/skyratSystemsDisplay';
 type Data = {
   faxes: string[];
   stamps: string[];
@@ -68,7 +68,7 @@ export function AdminFax(props) {
             placeholder="Choose fax machine..."
             fluid
             selected={fax}
-            options={faxes}
+            options={faxes.map((value) => ({ value, displayText: skyratFaxDisplay(value) }))}
             onSelected={setFax}
           />
         </Section>

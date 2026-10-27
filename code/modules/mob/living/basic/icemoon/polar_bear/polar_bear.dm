@@ -1,21 +1,21 @@
 // The taxonomy of polar vs space bear left to imagination of the reader
 /mob/living/basic/mining/polarbear
-	name = "polar bear"
-	desc = "An aggressive animal that defends its territory with incredible power. These beasts don't run from their enemies."
+	name = "北极熊"
+	desc = "一种攻击性极强的动物，会以惊人的力量保卫自己的领地。这些猛兽不会躲避敌人。"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	icon_state = "polarbear"
 	icon_living = "polarbear"
 	icon_dead = "polarbear_dead"
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST|MOB_MINING
 
-	friendly_verb_continuous = "growls at"
-	friendly_verb_simple = "growl at"
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	attack_verb_continuous = "claws"
-	attack_verb_simple = "claw"
+	friendly_verb_continuous = "低吼着警告"
+	friendly_verb_simple = "低吼着警告"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	attack_verb_continuous = "挥爪"
+	attack_verb_simple = "挥爪"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 
@@ -48,8 +48,8 @@
 	AddElement(/datum/element/footstep, footstep_type = FOOTSTEP_MOB_CLAW)
 
 /mob/living/basic/mining/polarbear/lesser
-	name = "magic polar bear"
-	desc = "It seems sentient somehow."
+	name = "魔法北极熊"
+	desc = "它似乎有某种知觉。"
 	faction = list(FACTION_NEUTRAL)
 
 /datum/ai_controller/basic_controller/polar

@@ -5,8 +5,8 @@
 GLOBAL_LIST_INIT(tendrils, list())
 
 /mob/living/basic/mining/tendril
-	name = "necropolis tendril"
-	desc = "A vile tendril of corruption, originating deep underground."
+	name = "死灵之都触须"
+	desc = "一条源自地底深处的邪恶腐蚀触须。"
 	icon = 'icons/mob/simple/lavaland/tendril.dmi'
 	icon_state = "tendril"
 	icon_living = "tendril"
@@ -19,18 +19,18 @@ GLOBAL_LIST_INIT(tendrils, list())
 	maxHealth = 800
 	health = 800
 
-	friendly_verb_continuous = "flails at"
-	friendly_verb_simple = "flail at"
-	speak_emote = list("resonates")
+	friendly_verb_continuous = "胡乱拍向"
+	friendly_verb_simple = "胡乱拍向"
+	speak_emote = list("发出共鸣")
 	obj_damage = 100
 	melee_damage_lower = 20
 	melee_damage_upper = 20
 	sharpness = SHARP_POINTY
 	wound_bonus = CANT_WOUND
 	attack_sound = 'sound/items/weapons/pierce.ogg'
-	attack_verb_continuous = "pierces through"
-	attack_verb_simple = "pierce through"
-	throw_blocked_message = "does nothing to the thick shell of"
+	attack_verb_continuous = "刺穿"
+	attack_verb_simple = "刺穿"
+	throw_blocked_message = "撞在厚壳上，未能伤及"
 	move_resist = INFINITY
 
 	light_range = 3
@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(tendrils, list())
 	GLOB.tendrils += src
 	AddElement(/datum/element/death_drops, /obj/structure/closet/crate/necropolis/tendril)
 	AddComponent(/datum/component/ai_target_timer)
-	AddComponent(/datum/component/gps, "Eerie Signal")
+	AddComponent(/datum/component/gps, "诡异信号")
 	AddComponent(/datum/component/basic_mob_attack_telegraph, display_telegraph_overlay = FALSE, telegraph_duration = 0.4 SECONDS)
 	AddComponent(/datum/component/regenerator, regeneration_delay = 30 SECONDS, brute_per_second = 20, outline_colour = COLOR_CULT_RED)
 	add_traits(list(TRAIT_BACKSTAB_IMMUNE, TRAIT_IMMOBILIZED), INNATE_TRAIT)

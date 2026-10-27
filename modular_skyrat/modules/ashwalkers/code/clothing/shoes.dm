@@ -1,6 +1,6 @@
 /obj/item/clothing/shoes/jackboots/ashwalker
-	name = "ash coated bronze boots"
-	desc = "Boots decorated with poorly forged metal."
+	name = "覆灰青铜靴"
+	desc = "装饰着锻造粗糙的金属的靴子。"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/shoes.dmi'
 	worn_icon = 'modular_skyrat/modules/ashwalkers/icons/feet.dmi'
 	icon_state = "legionmetal"
@@ -15,8 +15,8 @@
 /obj/item/clothing/shoes/wraps/ashwalker
 	icon = 'modular_skyrat/modules/ashwalkers/icons/shoes.dmi'
 	worn_icon = 'modular_skyrat/modules/ashwalkers/icons/feet.dmi'
-	name = "ash coated foot wraps"
-	desc = "May hurt for less than normal legs."
+	name = "覆灰裹脚布"
+	desc = "也许比普通的腿少受点罪。"
 	icon_state = "rag"
 	supports_variations_flags = NONE
 
@@ -24,8 +24,8 @@
 	icon = 'modular_skyrat/modules/ashwalkers/icons/shoes.dmi'
 	worn_icon = 'modular_skyrat/modules/ashwalkers/icons/feet.dmi'
 	worn_icon_digi = 'modular_skyrat/modules/ashwalkers/icons/feet_digi.dmi'
-	name = "ornate leg wraps"
-	desc = "An ornate set of leg wraps commonly worn by a shaman or chieftain."
+	name = "华丽裹腿"
+	desc = "萨满或酋长常戴的一套华丽裹腿。"
 	icon_state = "tribalcuffs"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
@@ -33,8 +33,8 @@
 	icon = 'modular_skyrat/modules/ashwalkers/icons/shoes.dmi'
 	worn_icon = 'modular_skyrat/modules/ashwalkers/icons/feet.dmi'
 	worn_icon_digi = 'modular_skyrat/modules/ashwalkers/icons/feet_digi.dmi'
-	name = "tribal leg wraps"
-	desc = "A mundane set of leg wraps often worn by tribal villagers."
+	name = "部落裹腿"
+	desc = "部落村民常戴的一套普通裹腿。"
 	icon_state = "mundanecuffs"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 

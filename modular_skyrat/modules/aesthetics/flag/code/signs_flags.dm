@@ -1,6 +1,6 @@
 /obj/structure/sign/flag
-	name = "blank flag"
-	desc = "The flag of nothing. It has nothing on it. Magnificient."
+	name = "空白旗帜"
+	desc = "虚空之旗。上面什么都没有。壮丽至极。"
 	icon = 'modular_skyrat/modules/aesthetics/flag/icons/flags.dmi'
 	icon_state = "flag_coder"
 	buildable_sign = FALSE
@@ -19,59 +19,59 @@
 			return
 		if(!user.can_perform_action(src, NEED_DEXTERITY))
 			return
-		user.visible_message(span_notice("[user] grabs and folds \the [src.name]."), span_notice("You grab and fold \the [src.name]."))
+		user.visible_message(span_notice("[user] 抓住[src.name]并将其折叠起来。"), span_notice("你抓住[src.name]并将其折叠起来。"))
 		var/obj/item/flag_item = new item_flag(loc)
 		TransferComponents(flag_item)
 		user.put_in_hands(flag_item)
 		qdel(src)
 
 /obj/structure/sign/flag/ssc
-	name = "flag of the Akula Democratic Union"
-	desc = "The flag of the Akula Democratic Union. A flag flown by a proud people, representing the oceans they came from, and will return to."
+	name = "阿库拉民主联盟旗帜"
+	desc = "阿库拉民主联盟的旗帜。一面由骄傲民族高举的旗帜，象征他们来自并将最终回归的海洋。"
 	icon_state = "flag_agurk"
 	item_flag = /obj/item/sign/flag/ssc
 
 /obj/structure/sign/flag/nanotrasen
-	name = "flag of Nanotrasen"
-	desc = "The official corporate flag of Nanotrasen. Mostly flown as a ceremonial piece, or to mark land on a new frontier."
+	name = "纳米传讯旗帜"
+	desc = "纳米传讯的官方企业旗帜。多用于仪式场合，或在新边疆宣示土地所有权。"
 	icon_state = "flag_nt"
 	item_flag = /obj/item/sign/flag/nanotrasen
 
 /obj/structure/sign/flag/tizira
-	name = "flag of the Republic of Northern Moghes"
-	desc = "The flag of the Great Republic of Northern Moghes. Depending on who you ask, it represents strength or being an ant in the hive."
+	name = "北莫格斯共和国旗帜"
+	desc = "北莫格斯大共和国的旗帜。取决于你问谁，它象征着力量，或是蜂巢中一只蚂蚁的存在。"
 	icon_state = "flag_tizira"
 	item_flag = /obj/item/sign/flag/tizira
 
 /obj/structure/sign/flag/mothic
-	name = "flag of the Grand Nomad Fleet"
-	desc = "The flag of the Mothic Grand Nomad Fleet. A classic naval ensign, its use has superceded the old national flag which can be seen in its canton."
+	name = "蛾族大游牧舰队旗帜"
+	desc = "蛾族大游牧舰队的旗帜。一面经典的海军军旗，其使用已取代旧国旗，旧国旗仍可在旗角看到。"
 	icon_state = "flag_mothic"
 	item_flag = /obj/item/sign/flag/mothic
 
 /obj/structure/sign/flag/mars
-	name = "flag of the Teshari League for Self-Determination"
-	desc = "The flag of the Teshari League for Self-Determination. Originally a revolutionary flag during the time of the Republic of the Golden Feather, it has since been adopted as the official flag of the planet, as a reminder of how Teshari fought for representation and independence."
+	name = "特沙利自决联盟旗帜"
+	desc = "特沙利自决联盟的旗帜。它最初是金羽共和国时期的革命旗帜，后来被采用为该星球的官方旗帜，以纪念特沙利人为代表权与独立而进行的抗争。"
 	icon_state = "flag_mars"
 	item_flag = /obj/item/sign/flag/mars
 
 /obj/structure/sign/flag/terragov
-	name = "flag of Terran Government"
-	desc = "The flag of Terran Government. It's a symbol of humanity no matter where they go, or how much they wish it wasn't."
+	name = "地球政府旗帜"
+	desc = "地球政府的旗帜。无论人类身在何处，也无论他们多么不愿承认，它都是人类的象征。"
 	icon_state = "flag_terragov"
 	item_flag = /obj/item/sign/flag/terragov
 
 /obj/structure/sign/flag/nri
-	name = "flag of the Pan-Slavic Commonwealth"
-	desc = "The flag of the Pan-Slavic Commonwealth. The Pan-Slavic colours, blue, white, and red, as defined all the way back in 1848 on Terra."
+	name = "泛斯拉夫联邦旗帜"
+	desc = "泛斯拉夫联邦的旗帜。蓝、白、红三色泛斯拉夫色，早在 1848 年就于地球确立。"
 	icon_state = "flag_nri"
 	item_flag = /obj/item/sign/flag/nri
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/nri, 32)
 
 /obj/structure/sign/flag/azulea
-	name = "banner of the Akula Democratic Union"
-	desc = "A banner often hung proudly by Akula with a great love of their people. Often hung in pairs in places of command."
+	name = "阿库拉民主联盟横幅"
+	desc = "阿库拉人常自豪悬挂的横幅，表达他们对本民族的热爱。常成对悬挂于指挥场所。"
 	icon_state = "flag_azulea"
 	item_flag = /obj/item/sign/flag/azulea
 
@@ -79,24 +79,24 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/azulea, 32)
 
 /// Please, for the love of God, use this in Black Mesa ONLY. NOWHERE ELSE. It's the only reason it was allowed in the game.
 /obj/structure/sign/flag/usa
-	name = "flag of the United States of America"
-	desc = "'Stars and Stripes', the flag of the United States of America. Its red color represents endurance and valor; blue one shows diligence, vigilance and justice, and the white one signs at pureness. Its thirteen red-and-white stripes show the initial thirteen founding colonies, and fifty stars designate the current fifty states."
+	name = "美利坚合众国国旗"
+	desc = "“星条旗”，美利坚合众国的国旗。红色代表坚韧与英勇；蓝色代表勤勉、警觉与正义；白色代表纯洁。十三道红白条纹代表最初建国的十三个殖民地，五十颗星代表当前的五十个州。"
 	icon_state = "flag_usa"
 	item_flag = /obj/item/sign/flag/usa
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/usa, 32)
 
 /obj/structure/sign/flag/syndicate
-	name = "flag of the Syndicate"
-	desc = "The flag of the Sothran Syndicate. Previously used by the Sothran people as a way of declaring opposition against the Nanotrasen, now it became an intergalactic symbol of the same, yet way more skewed purpose, as more groups of interest have joined the rebellion's side for their own gain."
+	name = "辛迪加旗帜"
+	desc = "索斯兰辛迪加的旗帜。它曾被索斯兰人用来表达对纳米传讯的反抗，如今已成为跨星系的同一象征，但目的已被大幅扭曲，因为越来越多利益集团为了自身利益加入了叛乱一方。"
 	icon_state = "flag_syndi"
 	item_flag = /obj/item/sign/flag/syndicate
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/syndicate, 32)
 
 /obj/item/sign/flag
-	name = "folded blank flag"
-	desc = "The folded flag of nothing. It has nothing on it. Beautiful."
+	name = "折叠的空白旗帜"
+	desc = "折叠的虚空之旗。上面什么都没有。美极了。"
 	icon = 'modular_skyrat/modules/aesthetics/flag/icons/flags.dmi'
 	icon_state = "folded_coder"
 	sign_path = /obj/structure/sign/flag
@@ -115,62 +115,62 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/syndicate, 32)
 	return
 
 /obj/item/sign/flag/nanotrasen
-	name = "folded flag of the Nanotrasen"
-	desc = "The folded flag of the Nanotrasen."
+	name = "折叠的纳米传讯旗帜"
+	desc = "折叠的纳米传讯旗帜。"
 	icon_state = "folded_nt"
 	sign_path = /obj/structure/sign/flag/nanotrasen
 
 /obj/item/sign/flag/ssc
-	name = "folded flag of the Akula Democratic Union"
-	desc = "The folded flag of the Akula Democratic Union."
+	name = "折叠的阿库拉民主联盟旗帜"
+	desc = "折叠的阿库拉民主联盟旗帜。"
 	icon_state = "folded_agurk"
 	sign_path = /obj/structure/sign/flag/ssc
 
 /obj/item/sign/flag/terragov
-	name = "folded flag of the Terran Government"
-	desc = "The folded flag of Terran Government."
+	name = "折叠的地球政府旗帜"
+	desc = "折叠的地球政府旗帜。"
 	icon_state = "folded_terragov"
 	sign_path = /obj/structure/sign/flag/terragov
 
 /obj/item/sign/flag/tizira
-	name = "folded flag of the Republic of Northern Moghes"
-	desc = "The folded flag of the Republic of Northern Moghes."
+	name = "折叠的北莫格斯共和国旗帜"
+	desc = "折叠的北莫格斯共和国旗帜。"
 	icon_state = "folded_tizira"
 	sign_path = /obj/structure/sign/flag/tizira
 
 /obj/item/sign/flag/mothic
-	name = "folded flag of the Grand Nomad Fleet"
-	desc = "The folded flag of the Grand Nomad Fleet."
+	name = "折叠的蛾族大游牧舰队旗帜"
+	desc = "折叠的蛾族大游牧舰队旗帜。"
 	icon_state = "folded_mothic"
 	sign_path = /obj/structure/sign/flag/mothic
 
 /obj/item/sign/flag/mars
-	name = "folded flag of the Teshari League for Self-Determination"
-	desc = "The folded flag of the Teshari League for Self-Determination."
+	name = "折叠的特沙利自决联盟旗帜"
+	desc = "折叠的特沙利自决联盟旗帜。"
 	icon_state = "folded_mars"
 	sign_path = /obj/structure/sign/flag/mars
 
 /obj/item/sign/flag/nri
-	name = "folded flag of the Pan-Slavic Commonwealth"
-	desc = "The folded flag of the Pan-Slavic Commonwealth."
+	name = "折叠的泛斯拉夫联邦旗帜"
+	desc = "折叠的泛斯拉夫联邦旗帜。"
 	icon_state = "folded_nri"
 	sign_path = /obj/structure/sign/flag/nri
 
 /obj/item/sign/flag/azulea
-	name = "folded banner of the Akula Democratic Union"
-	desc = "The folded banner of the Akula Democratic Union."
+	name = "折叠的阿库拉民主联盟横幅"
+	desc = "折叠的阿库拉民主联盟横幅。"
 	icon_state = "folded_azulea"
 	sign_path = /obj/structure/sign/flag/azulea
 
 /// Please, for the love of God, use this in Black Mesa ONLY. NOWHERE ELSE. It's the only reason it was allowed in the game.
 /obj/item/sign/flag/usa
-	name = "folded flag of the United States of America"
-	desc = "The folded flag of the United States of America."
+	name = "折叠的美利坚合众国国旗"
+	desc = "折叠的美利坚合众国国旗。"
 	icon_state = "folded_usa"
 	sign_path = /obj/structure/sign/flag/usa
 
 /obj/item/sign/flag/syndicate
-	name = "folded flag of the Syndicate"
-	desc = "The folded flag of the Sothran Syndicate."
+	name = "折叠的辛迪加旗帜"
+	desc = "折叠的索斯兰辛迪加旗帜。"
 	icon_state = "folded_syndi"
 	sign_path = /obj/structure/sign/flag/syndicate

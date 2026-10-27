@@ -1,11 +1,11 @@
 /obj/item/organ/tongue/synth
-	name = "synthetic voicebox"
-	desc = "A fully-functional synthetic tongue, encased in soft silicone. Features include high-resolution vocals and taste receptors."
+	name = "合成发声器"
+	desc = "包覆柔软硅胶、功能齐全的合成舌头，配有高保真发声系统和味觉感受器。"
 	icon = 'modular_skyrat/modules/organs/icons/cyber_tongue.dmi'
 	icon_state = "cybertongue"
-	say_mod = "beeps"
-	attack_verb_continuous = list("beeps", "boops")
-	attack_verb_simple = list("beep", "boop")
+	say_mod = "哔哔地说"
+	attack_verb_continuous = list("哔哔", "啵啵")
+	attack_verb_simple = list("哔哔", "啵啵")
 	modifies_speech = TRUE
 	taste_sensitivity = 25 // not as good as an organic tongue
 	liked_foodtypes = NONE
@@ -30,8 +30,8 @@
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
 
 /datum/design/synth_tongue
-	name = "Synthetic Tongue"
-	desc = "A fully-functional synthetic tongue, encased in soft silicone. Features include high-resolution vocals and taste receptors."
+	name = "合成舌头"
+	desc = "包覆柔软硅胶、功能齐全的合成舌头，配有高保真发声系统和味觉感受器。"
 	id = "synth_tongue"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS

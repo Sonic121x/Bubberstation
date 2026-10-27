@@ -104,9 +104,9 @@
 		return FALSE
 	client.tgui_say.force_say(alter_phrases, immediate)
 	if(client.typing_indicators)
-		log_speech_indicators("[key_name(client)] FORCED to stop typing, indicators enabled.")
+		log_speech_indicators("[key_name(client)] 被强制停止输入，指示器已启用。")
 	else
-		log_speech_indicators("[key_name(client)] FORCED to stop typing, indicators DISABLED.")
+		log_speech_indicators("[key_name(client)] 被强制停止输入，指示器已禁用。")
 	SEND_SIGNAL(src, COMSIG_HUMAN_FORCESAY, major)
 
 /**

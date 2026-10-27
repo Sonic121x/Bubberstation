@@ -1,9 +1,9 @@
 /datum/computer_file/program/signal_commander
 	filename = "signaler"
-	filedesc = "SignalCommander"
+	filedesc = "信号指挥官"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	program_open_overlay = "signal"
-	extended_desc = "A small built-in frequency app that sends out signaller signals with the appropriate hardware."
+	extended_desc = "一个小型内置频率应用，可配合相应硬件发送信号器信号。"
 	size = 2
 	tgui_id = "NtosSignaler"
 	program_icon = "satellite-dish"
@@ -72,12 +72,12 @@
 
 	if(!COOLDOWN_FINISHED(src, signal_cooldown))
 		if(user)
-			computer.balloon_alert(user, "cooling down!")
+			computer.balloon_alert(user, "冷却中！")
 		return
 
 	COOLDOWN_START(src, signal_cooldown, signal_cooldown_time)
 	if(user)
-		computer.balloon_alert(user, "signaled")
+		computer.balloon_alert(user, "已发送信号")
 
 	var/time = time2text(world.realtime,"hh:mm:ss", TIMEZONE_UTC)
 	var/turf/T = get_turf(computer)
@@ -86,7 +86,7 @@
 		user_deets = "[signaling.parent.get_creator()]"
 	else
 		user_deets = "[key_name(usr)]"
-	var/logging_data = "[time] <B>:</B> [user_deets] used the computer '[initial(computer.name)]' @ location ([T.x],[T.y],[T.z]) <B>:</B> [format_frequency(signal_frequency)]/[signal_code]"
+	var/logging_data = "[time] <B>:</B> [user_deets] 使用了电脑“[initial(computer.name)]” 位于 ([T.x],[T.y],[T.z]) <B>:</B> [format_frequency(signal_frequency)]/[signal_code]"
 	add_to_signaler_investigate_log(logging_data)
 
 	var/datum/signal/signal = new(list("code" = signal_code, "key" = signaling?.parent.owner_id), logging_data = logging_data)

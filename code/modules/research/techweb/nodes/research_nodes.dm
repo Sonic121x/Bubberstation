@@ -1,8 +1,8 @@
 /datum/techweb_node/fundamental_sci
 	id = TECHWEB_NODE_FUNDIMENTAL_SCI
 	starting_node = TRUE
-	display_name = "Fundamental Science"
-	description = "Establishing the bedrock of scientific understanding, paving the way for deeper exploration and theoretical inquiry."
+	display_name = "基础科学"
+	description = "奠定科学认知的基石，为更深入的探索与理论探究铺平道路。"
 	design_ids = list(
 		"rdserver",
 		"rdservercontrol",
@@ -21,8 +21,8 @@
 
 /datum/techweb_node/bluespace_theory
 	id = TECHWEB_NODE_BLUESPACE_THEORY
-	display_name = "Bluespace Theory"
-	description = "Basic studies into the mysterious alternate dimension known as bluespace."
+	display_name = "蓝空间理论"
+	description = "对被称为蓝空间的神秘异维度进行的基础研究。"
 	prereq_ids = list(TECHWEB_NODE_FUNDIMENTAL_SCI)
 	design_ids = list(
 		"bluespace_crystal",
@@ -32,8 +32,8 @@
 
 /datum/techweb_node/applied_bluespace
 	id = TECHWEB_NODE_APPLIED_BLUESPACE
-	display_name = "Applied Bluespace Research"
-	description = "With a heightened grasp of bluespace dynamics, sophisticated applications and technologies can be devised using data from bluespace crystal analyses."
+	display_name = "应用蓝空间研究"
+	description = "在对蓝空间动力学有了更深的把握之后，便可利用蓝空间晶体分析数据设计出精密的运用与技术。"
 	prereq_ids = list(TECHWEB_NODE_BLUESPACE_THEORY)
 	design_ids = list(
 		"ore_silo",
@@ -54,8 +54,8 @@
 
 /datum/techweb_node/bluespace_travel
 	id = TECHWEB_NODE_BLUESPACE_TRAVEL
-	display_name = "Bluespace Travel"
-	description = "Facilitate teleportation methods based on bluespace principles to revolutionize logistical efficiency."
+	display_name = "蓝空间旅行"
+	description = "基于蓝空间原理推广传送手段，以彻底革新后勤效率。"
 	prereq_ids = list(TECHWEB_NODE_APPLIED_BLUESPACE)
 	design_ids = list(
 		"teleconsole",
@@ -73,8 +73,8 @@
 
 /datum/techweb_node/anomaly_research
 	id = TECHWEB_NODE_ANOMALY_RESEARCH
-	display_name = "Anomaly Research"
-	description = "Delving into the study of mysterious anomalies to investigate methods to refine and harness their unpredictable energies."
+	display_name = "异常研究"
+	description = "深入研究神秘的异常现象，探索精炼并驾驭其不可预测能量的方法。"
 	prereq_ids = list(TECHWEB_NODE_APPLIED_BLUESPACE)
 	design_ids = list(
 		"anomaly_refinery",
@@ -87,8 +87,8 @@
 
 /datum/techweb_node/anomaly_shells
 	id = TECHWEB_NODE_ANOMALY_SHELLS
-	display_name = "Advanced Anomaly Shells"
-	description = "New shells designed to utilize anomaly cores, maximizing their potential in innovative ways."
+	display_name = "高级异常外壳"
+	description = "旨在利用异常核心的新型外壳，以创新的方式最大化其潜力。"
 	prereq_ids = list(TECHWEB_NODE_ANOMALY_RESEARCH)
 	design_ids = list(
 		"bag_holding",

@@ -37,14 +37,14 @@
 			effective_damage *= gauze.splint_factor
 		limb.receive_damage(effective_damage, wound_bonus = CANT_WOUND, damage_source = src)
 		if(effective_damage && prob(33))
-			var/gauze_text = (gauze?.splint_factor ? ", although the [gauze] helps to prevent some of the leakage" : "")
-			to_chat(victim, span_danger("Your [limb.plaintext_zone] sizzles as some gel leaks and warps the exterior metal[gauze_text]..."))
+			var/gauze_text = (gauze?.splint_factor ? "，不过 [gauze] 能帮忙减少一部分渗漏" : "")
+			to_chat(victim, span_danger("你的[chinese_body_zone_display(limb.plaintext_zone)]发出滋滋声，一些凝胶渗出并使外层金属变形[gauze_text]……"))
 
 		if(regen_time_elapsed > regen_time_needed)
 			if(!victim || !limb)
 				qdel(src)
 				return
-			to_chat(victim, span_green("The gel within your [limb.plaintext_zone] has fully hardened, allowing you to re-solder it!"))
+			to_chat(victim, span_green("你[chinese_body_zone_display(limb.plaintext_zone)]内的凝胶已完全硬化，现在可以重新焊接了！"))
 			gelled = FALSE
 			ready_to_resolder = TRUE
 			ready_to_secure_internals = FALSE
@@ -57,34 +57,34 @@
 
 	if (!LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)) // gauze covers it up
 		if (crowbarred_open)
-			. += ", [span_notice("and is violently torn open, internals visible to the outside")]"
+			. += "，[span_notice("并且被暴力撕开，内部结构暴露在外")]"
 			use_exclamation = TRUE
 		if (gelled)
-			. += ", [span_notice("with fizzling blue surgical gel leaking out of the cracks")]"
+			. += "，[span_notice("裂缝中渗出冒着气泡的蓝色手术凝胶")]"
 			use_exclamation = TRUE
 		if (use_exclamation)
-			. += "!"
+			. += "！"
 
 /datum/wound/blunt/robotic/secures_internals/get_scanner_description(mob/user)
 	. = ..()
 
 	var/to_add = get_wound_status()
 	if (!isnull(to_add))
-		. += "\nWound status: [to_add]"
+		. += "\n伤口状态：[to_add]"
 
 /datum/wound/blunt/robotic/secures_internals/get_simple_scanner_description(mob/user)
 	. = ..()
 
 	var/to_add = get_wound_status()
 	if (!isnull(to_add))
-		. += "\nWound status: [to_add]"
+		. += "\n伤口状态：[to_add]"
 
 /// Returns info specific to the dynamic state of the wound.
 /datum/wound/blunt/robotic/secures_internals/proc/get_wound_status(mob/user)
 	if (crowbarred_open)
-		. += "The limb has been torn open, allowing ease of access to internal components, but also disabling it. "
+		. += "肢体已被撕开，便于接触内部组件，但也使其残废。 "
 	if (gelled)
-		. += "Bone gel has been applied, causing progressive corrosion of the metal, but eventually securing the internals. "
+		. += "已涂抹骨胶，金属会逐渐腐蚀，但最终能固定内部结构。 "
 
 /datum/wound/blunt/robotic/secures_internals/item_can_treat(obj/item/potential_treater, mob/user)
 	if (potential_treater.tool_behaviour == TOOL_WELDER || potential_treater.tool_behaviour == TOOL_CAUTERY)
@@ -157,18 +157,18 @@
 	if (HAS_TRAIT(src, TRAIT_WOUND_SCANNED))
 		delay_mult *= CROWBAR_OPEN_WOUND_SCANNED_DELAY_MULT
 
-	var/their_or_other = (user == victim ? "[user.p_their()]" : "[victim]'s")
-	var/your_or_other = (user == victim ? "your" : "[victim]'s")
+	var/their_or_other = (user == victim ? "自己的" : "[victim]的")
+	var/your_or_other = (user == victim ? "你的" : "[victim]的")
 
 	var/limb_can_shock_pre_sleep = (victim.stat != DEAD && limb.biological_state & BIO_WIRED)
-	var/shock_or_not = (limb_can_shock_pre_sleep ? ", risking electrocution" : "")
-	var/self_message = span_warning("You start prying open [your_or_other] [limb.plaintext_zone] with [crowbarring_item][shock_or_not]...")
+	var/shock_or_not = (limb_can_shock_pre_sleep ? "，有触电风险" : "")
+	var/self_message = span_warning("你开始用 [crowbarring_item] 撬开[your_or_other][chinese_body_zone_display(limb.plaintext_zone)][shock_or_not]……")
 
-	user?.visible_message(span_bolddanger("[user] starts prying open [their_or_other] [limb.plaintext_zone] with [crowbarring_item]!"), self_message, ignored_mobs = list(victim))
+	user?.visible_message(span_bolddanger("[user] 开始用 [crowbarring_item] 撬开[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]！"), self_message, ignored_mobs = list(victim))
 
 	var/victim_message
 	if (user != victim) // this exists so we can do a userdanger
-		victim_message = span_userdanger("[user] starts prying open your [limb.plaintext_zone] with [crowbarring_item]!")
+		victim_message = span_userdanger("[user] 开始用 [crowbarring_item] 撬开你的[chinese_body_zone_display(limb.plaintext_zone)]！")
 	else
 		victim_message = self_message
 	to_chat(victim, victim_message)
@@ -203,10 +203,10 @@
 			electrocute_flags &= ~SHOCK_NO_HUMAN_ANIM
 			stunned = TRUE
 
-			message = span_boldwarning("[user] is shocked by [their_or_other] [limb.plaintext_zone], [user.p_their()] crowbar slipping as [user.p_they()] briefly convulse!")
-			self_message = span_userdanger("You are shocked by [your_or_other] [limb.plaintext_zone], causing your crowbar to slip out!")
+			message = span_boldwarning("[user] 被[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]电了一下，撬棍一滑，[user] 短暂地抽搐起来！")
+			self_message = span_userdanger("你被[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]电了一下，撬棍脱手了！")
 			if (user != victim)
-				victim_message = span_userdanger("[user] is shocked by your [limb.plaintext_zone] in [user.p_their()] efforts to tear it open!")
+				victim_message = span_userdanger("[user] 想撕开你的[chinese_body_zone_display(limb.plaintext_zone)]时被电了一下！")
 
 		var/shock_damage = CROWBAR_OPEN_SHOCK_POWER
 		var/obj/item/stack/medical/wrap/gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
@@ -218,15 +218,15 @@
 		var/other_shock_text = ""
 		var/self_shock_text = ""
 		if (!limb_can_shock)
-			other_shock_text = ", and is striken by golden bolts of electricity"
-			self_shock_text = ", but are immediately shocked by the electricity contained within"
-		message = span_boldwarning("[user] tears open [their_or_other] [limb.plaintext_zone] with [user.p_their()] crowbar[other_shock_text]!")
-		self_message = span_warning("You tear open [your_or_other] [limb.plaintext_zone] with your crowbar[self_shock_text]!")
+			other_shock_text = "，还被金色电弧击中"
+			self_shock_text = "，但立刻被其中蕴含的电流电了一下"
+		message = span_boldwarning("[user] 用撬棍撕开了[their_or_other][chinese_body_zone_display(limb.plaintext_zone)][other_shock_text]！")
+		self_message = span_warning("你用撬棍撕开了[your_or_other][chinese_body_zone_display(limb.plaintext_zone)][self_shock_text]！")
 		if (user != victim)
-			victim_message = span_userdanger("Your [limb.plaintext_zone] fragments and splinters as [user] tears it open with [user.p_their()] crowbar!")
+			victim_message = span_userdanger("你的[chinese_body_zone_display(limb.plaintext_zone)]在 [user] 用撬棍撕开时碎裂了！")
 
 		playsound(get_turf(crowbarring_item), 'sound/effects/bang.ogg', 35, TRUE) // we did it!
-		to_chat(user, span_green("You've torn [your_or_other] [limb.plaintext_zone] open, heavily damaging it but making it a lot easier to screwdriver the internals!"))
+		to_chat(user, span_green("你撕开了[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]，造成了严重损伤，但让用螺丝刀固定内部结构容易多了！"))
 		var/damage = CROWBAR_OPEN_BRUTE_DAMAGE
 		if (limb_essential()) // can't be disabled
 			damage *= CROWBAR_OPEN_ESSENTIAL_LIMB_DAMAGE_MULT
@@ -304,24 +304,24 @@
 
 	var/confused = (chance < SECURE_INTERNALS_CONFUSED_CHANCE_THRESHOLD) // generate chance beforehand, so we can use this var
 
-	var/their_or_other = (user == victim ? "[user.p_their()]" : "[victim]'s")
-	var/your_or_other = (user == victim ? "your" : "[victim]'s")
-	user?.visible_message(span_notice("[user] begins the delicate operation of securing the internals of [their_or_other] [limb.plaintext_zone]..."), \
-		span_notice("You begin the delicate operation of securing the internals of [your_or_other] [limb.plaintext_zone]..."))
+	var/their_or_other = (user == victim ? "自己的" : "[victim]的")
+	var/your_or_other = (user == victim ? "你的" : "[victim]的")
+	user?.visible_message(span_notice("[user] 开始进行固定[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]内部结构的精细操作……"), \
+		span_notice("你开始进行固定[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]内部结构的精细操作……"))
 	if (confused)
-		to_chat(user, span_warning("You are confused by the layout of [your_or_other] [limb.plaintext_zone]! A diagnostic hud would help, as would knowing robo/engi wires! You could also tear the limb open with a crowbar, or get someone else to help."))
+		to_chat(user, span_warning("你被[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]的布局弄糊涂了！诊断 HUD 会有帮助，了解机修/工程线路也有帮助！你也可以用撬棍把肢体撕开，或者找别人帮忙。"))
 
 	if (!securing_item.use_tool(target = victim, user = user, delay = (10 SECONDS * delay_mult), volume = 50, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return TRUE
 
 	if (prob(chance))
-		user?.visible_message(span_green("[user] finishes securing the internals of [their_or_other] [limb.plaintext_zone]!"), \
-			span_green("You finish securing the internals of [your_or_other] [limb.plaintext_zone]!"))
-		to_chat(user, span_green("[capitalize(your_or_other)] [limb.plaintext_zone]'s internals are now secure! Your next step is to weld/cauterize it."))
+		user?.visible_message(span_green("[user] 固定好了[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]的内部结构！"), \
+			span_green("你固定好了[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]的内部结构！"))
+		to_chat(user, span_green("[capitalize(your_or_other)][chinese_body_zone_display(limb.plaintext_zone)]的内部结构已固定！下一步是焊接/烧灼。"))
 		ready_to_secure_internals = FALSE
 		ready_to_resolder = TRUE
 	else
-		user?.visible_message(span_danger("[user] screws up and accidentally damages [their_or_other] [limb.plaintext_zone]!"))
+		user?.visible_message(span_danger("[user] 失手弄伤了[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]！"))
 		limb.receive_damage(brute = SECURE_INTERNALS_FAILURE_BRUTE_DAMAGE, damage_source = securing_item, wound_bonus = CANT_WOUND)
 
 	return TRUE
@@ -335,7 +335,7 @@
  */
 /datum/wound/blunt/robotic/secures_internals/proc/apply_gel(obj/item/stack/medical/bone_gel/gel, mob/user)
 	if (gelled)
-		to_chat(user, span_warning("[user == victim ? "Your" : "[victim]'s"] [limb.plaintext_zone] is already filled with bone gel!"))
+		to_chat(user, span_warning("[user == victim ? "你的" : "[victim]的"][chinese_body_zone_display(limb.plaintext_zone)]里已经灌满了骨胶！"))
 		return TRUE
 
 	var/delay_mult = 1
@@ -345,17 +345,17 @@
 	if (HAS_TRAIT(src, TRAIT_WOUND_SCANNED))
 		delay_mult *= 0.75
 
-	user.visible_message(span_danger("[user] begins hastily applying [gel] to [victim]'s [limb.plaintext_zone]..."), span_warning("You begin hastily applying [gel] to [user == victim ? "your" : "[victim]'s"] [limb.plaintext_zone], disregarding the acidic effect it seems to have on the metal..."))
+	user.visible_message(span_danger("[user] 开始匆忙地把 [gel] 涂到 [victim] 的[chinese_body_zone_display(limb.plaintext_zone)]上……"), span_warning("你开始匆忙地把 [gel] 涂到[user == victim ? "你的" : "[victim]的"][chinese_body_zone_display(limb.plaintext_zone)]上，不管它似乎会对金属产生酸性腐蚀……"))
 
 	if (!do_after(user, (6 SECONDS * delay_mult), target = victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return TRUE
 
 	gel.use(1)
 	if(user != victim)
-		user.visible_message(span_notice("[user] finishes applying [gel] to [victim]'s [limb.plaintext_zone], emitting a fizzing noise!"), span_notice("You finish applying [gel] to [victim]'s [limb.plaintext_zone]!"), ignored_mobs=victim)
-		to_chat(victim, span_userdanger("[user] finishes applying [gel] to your [limb.plaintext_zone], and you can hear the sizzling of the metal..."))
+		user.visible_message(span_notice("[user] 把 [gel] 涂完了 [victim] 的[chinese_body_zone_display(limb.plaintext_zone)]，发出嘶嘶声！"), span_notice("你把 [gel] 涂完了 [victim] 的[chinese_body_zone_display(limb.plaintext_zone)]！"), ignored_mobs=victim)
+		to_chat(victim, span_userdanger("[user] 把 [gel] 涂完了你的[chinese_body_zone_display(limb.plaintext_zone)]，你能听到金属嘶嘶作响……"))
 	else
-		victim.visible_message(span_notice("[victim] finishes applying [gel] to [victim.p_their()] [limb.plaintext_zone], emitting a funny fizzing sound!"), span_notice("You finish applying [gel] to your [limb.plaintext_zone], and you can hear the sizzling of the metal..."))
+		victim.visible_message(span_notice("[victim] 把 [gel] 涂完了自己的[chinese_body_zone_display(limb.plaintext_zone)]，发出滑稽的嘶嘶声！"), span_notice("你把 [gel] 涂完了自己的[chinese_body_zone_display(limb.plaintext_zone)]，你能听到金属嘶嘶作响……"))
 
 	gelled = TRUE
 	set_disabling(TRUE)
@@ -370,10 +370,10 @@
 	if (!welding_item.tool_start_check())
 		return TRUE
 
-	var/their_or_other = (user == victim ? "[user.p_their()]" : "[victim]'s")
-	var/your_or_other = (user == victim ? "your" : "[victim]'s")
-	victim.visible_message(span_notice("[user] begins re-soldering [their_or_other] [limb.plaintext_zone]..."), \
-		span_notice("You begin re-soldering [your_or_other] [limb.plaintext_zone]..."))
+	var/their_or_other = (user == victim ? "自己的" : "[victim]的")
+	var/your_or_other = (user == victim ? "你的" : "[victim]的")
+	victim.visible_message(span_notice("[user] 开始重新焊接[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]……"), \
+		span_notice("你开始重新焊接[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]……"))
 
 	var/delay_mult = 1
 	if (welding_item.tool_behaviour == TOOL_CAUTERY)
@@ -384,8 +384,8 @@
 	if (!welding_item.use_tool(target = victim, user = user, delay = 7 SECONDS * delay_mult, volume = 50,  extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return TRUE
 
-	victim.visible_message(span_green("[user] finishes re-soldering [their_or_other] [limb.plaintext_zone]!"), \
-		span_notice("You finish re-soldering [your_or_other] [limb.plaintext_zone]!"))
+	victim.visible_message(span_green("[user] 重新焊接好了[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]！"), \
+		span_notice("你重新焊接好了[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]！"))
 	remove_wound()
 	return TRUE
 
@@ -394,10 +394,10 @@
 	var/string
 
 	if (ready_to_resolder)
-		string = "Apply a welder/cautery to the limb to finalize repairs."
+		string = "使用焊接工具/烧灼器处理肢体，完成修复。"
 	else if (ready_to_secure_internals)
-		string = "Use a screwdriver/wrench to secure the internals of the limb. This step is best performed by a qualified technician. \
-		In absence of one, bone gel or a crowbar may be used."
+		string = "使用螺丝刀/扳手固定肢体的内部结构。这一步最好由合格技师操作。\
+		若没有技师，也可以使用骨胶或撬棍。"
 
 	return string
 
@@ -406,11 +406,11 @@
 
 	var/wound_step = get_wound_step_info()
 	if (wound_step)
-		. += "\n\n<b>Current step</b>: [span_notice(wound_step)]"
+		. += "\n\n<b>当前步骤</b>：[span_notice(wound_step)]"
 
 /datum/wound/blunt/robotic/secures_internals/get_simple_scanner_description(mob/user)
 	. = ..()
 
 	var/wound_step = get_wound_step_info()
 	if (wound_step)
-		. += "\n\n<b>Current step</b>: [span_notice(wound_step)]"
+		. += "\n\n<b>当前步骤</b>：[span_notice(wound_step)]"

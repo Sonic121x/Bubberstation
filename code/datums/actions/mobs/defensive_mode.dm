@@ -1,9 +1,9 @@
 /// An ability that allows the viper spider to get in an defensive mode at the cost of speed.
 /datum/action/cooldown/mob_cooldown/defensive_mode
-	name = "Change Mode"
+	name = "切换模式"
 	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	button_icon_state = "defensive_mode"
-	desc = "Activates a defensive mode to reduce damage but will make you slower."
+	desc = "开启防御模式，降低受到的伤害，但移动速度也会下降。"
 	cooldown_time = 5 SECONDS
 	click_to_activate = FALSE
 	/// If the defensive mode is activated or not.

@@ -46,19 +46,19 @@
 			continue
 		potential_targets["[human_to_check.real_name]"] = human_to_check
 
-	var/chosen_mob = tgui_input_list(user, "Select the victim you wish to curse.", name, sort_list(potential_targets, GLOBAL_PROC_REF(cmp_text_asc)))
+	var/chosen_mob = tgui_input_list(user, "选择你想要诅咒的受害者。", name, sort_list(potential_targets, GLOBAL_PROC_REF(cmp_text_asc)))
 	if(isnull(chosen_mob))
 		return FALSE
 
 	var/mob/living/carbon/human/to_curse = potential_targets[chosen_mob]
 	if(QDELETED(to_curse))
-		loc.balloon_alert(user, "ritual failed, invalid choice!")
+		loc.balloon_alert(user, "仪式失败，目标无效！")
 		return FALSE
 
 	// Yes, you COULD curse yourself, not sure why but you could
 	if(to_curse == user)
-		var/are_you_sure = tgui_alert(user, "Are you sure you want to curse yourself?", name, list("Yes", "No"))
-		if(are_you_sure != "Yes")
+		var/are_you_sure = tgui_alert(user, "确定要诅咒自己吗？", name, list("是", "否"))
+		if(are_you_sure != "是")
 			return FALSE
 
 	if(!ask_for_input(user))
@@ -66,21 +66,21 @@
 
 	var/turf/curse_turf = get_turf(to_curse)
 	if(!is_valid_z_level(curse_turf, loc) || get_dist(curse_turf, loc) > max_range * 1.5) // Give a bit of leeway on max range for people moving around
-		loc.balloon_alert(user, "ritual failed, too far!")
+		loc.balloon_alert(user, "仪式失败，距离太远！")
 		return FALSE
 
 	if(IS_HERETIC(to_curse) && to_curse != user)
-		to_chat(user, span_warning("[to_curse.p_their()] ties to the Mansus are too strong. You are unable to curse [to_curse]."))
+		to_chat(user, span_warning("[to_curse]与漫宿的联系太过强大，你无法诅咒[to_curse]。"))
 		return TRUE
 
 	if(to_curse.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_HOLY, charge_cost = 0))
-		to_chat(to_curse, span_warning("A ghastly chill envelops you for a moment, but then it passes."))
+		to_chat(to_curse, span_warning("一阵阴森的寒意笼罩了你，转瞬又消散了。"))
 		return TRUE
 
 	log_combat(user, to_curse, "cursed via heretic ritual", addition = "([name])")
 	var/obj/item/codex_cicatrix/morbus/cursed_book = locate() in selected_atoms
 	curse(to_curse, cursed_book)
-	to_chat(user, span_mansus("You cast a [name] upon [to_curse.real_name]."))
+	to_chat(user, span_mansus("你对[to_curse.real_name]施加了[name]。"))
 
 	fingerprints = null
 	blood_samples = null
@@ -135,12 +135,12 @@
 
 /datum/heretic_knowledge/curse/paralysis
 	abstract_type = /datum/heretic_knowledge/curse/paralysis
-	name = "Curse of Paralysis"
-	desc = "Casts a curse of immobility on a crew member.<br>\
-		While cursed, the victim will be unable to walk. You can additionally supply an item that a victim has touched \
-		or is covered in the victim's blood to make the curse last longer."
-	transmute_text = "Transmute a hatchet, and both a left and right leg."
-	gain_text = "The flesh of humanity is weak. Make them bleed. Show them their fragility."
+	name = "瘫痪诅咒"
+	desc = "对一名船员施加使其无法移动的诅咒。<br>\
+		诅咒期间，受害者将无法行走。额外提供受害者触碰过的物品\
+		或沾有其血液的物品，可以延长诅咒持续时间。"
+	transmute_text = "转化一把短柄斧，以及左腿和右腿各一条。"
+	gain_text = "人类的血肉不堪一击。让他们流血，让他们见识自己的脆弱。"
 
 	duration = 5 MINUTES
 	curse_color = "#f19a9a"
@@ -151,10 +151,10 @@
 
 /datum/heretic_knowledge/curse/paralysis/curse(mob/living/carbon/human/chosen_mob)
 	if(chosen_mob.usable_legs <= 0) // What're you gonna do, curse someone who already can't walk?
-		to_chat(chosen_mob, span_notice("You feel a slight pain for a moment, but it passes shortly. Odd."))
+		to_chat(chosen_mob, span_notice("你感到一阵轻微的疼痛，但很快就消失了。真奇怪。"))
 		return
 
-	to_chat(chosen_mob, span_danger("You suddenly lose feeling in your leg[chosen_mob.usable_legs == 1 ? "":"s"]!"))
+	to_chat(chosen_mob, span_danger("你的腿突然失去了知觉！"))
 	chosen_mob.add_traits(list(TRAIT_PARALYSIS_L_LEG, TRAIT_PARALYSIS_R_LEG), type)
 	return ..()
 
@@ -164,19 +164,19 @@
 
 	chosen_mob.remove_traits(list(TRAIT_PARALYSIS_L_LEG, TRAIT_PARALYSIS_R_LEG), type)
 	if(chosen_mob.usable_legs > 1)
-		to_chat(chosen_mob, span_green("You regain feeling in your leg[chosen_mob.usable_legs == 1 ? "":"s"]!"))
+		to_chat(chosen_mob, span_green("你的腿恢复了知觉！"))
 	return ..()
 
 //---- Curse of Corrosion
 
 /datum/heretic_knowledge/curse/corrosion
 	abstract_type = /datum/heretic_knowledge/curse/corrosion
-	name = "Curse of Corrosion"
-	desc = "Cast a curse of sickness on a crew member.<br>\
-		While cursed, the victim will repeatedly vomit while their organs will take constant damage. You can additionally supply an item \
-		that a victim has touched or is covered in the victim's blood to make the curse last longer."
-	transmute_text = "Transmute a pair of wirecutters, a pool of vomit, and a heart."
-	gain_text = "The body of humanity is temporary. Their weaknesses cannot be stopped, like iron falling to rust. Show them all."
+	name = "腐蚀诅咒"
+	desc = "对一名船员施加病痛诅咒。<br>\
+		诅咒期间，受害者会反复呕吐，器官也将持续受损。额外提供受害者触碰过的物品\
+		或沾有其血液的物品，可以延长诅咒持续时间。"
+	transmute_text = "转化一把剪线钳、一滩呕吐物和一颗心脏。"
+	gain_text = "人类的躯体转瞬即逝。他们的衰弱无法阻止，正如铁必将锈蚀。让所有人看清这一点。"
 
 	duration = 3 MINUTES
 	curse_color = "#c1ffc9"
@@ -185,7 +185,7 @@
 	research_tree_icon_state = "curse_corrosion"
 
 /datum/heretic_knowledge/curse/corrosion/curse(mob/living/carbon/human/chosen_mob)
-	to_chat(chosen_mob, span_danger("You feel very ill..."))
+	to_chat(chosen_mob, span_danger("你感到十分难受……"))
 	chosen_mob.apply_status_effect(/datum/status_effect/corrosion_curse)
 	return ..()
 
@@ -194,14 +194,14 @@
 		return
 
 	chosen_mob.remove_status_effect(/datum/status_effect/corrosion_curse)
-	to_chat(chosen_mob, span_green("You start to feel better."))
+	to_chat(chosen_mob, span_green("你开始感觉好些了。"))
 	return ..()
 
 //---- Curse of Transmutation
 
 /datum/heretic_knowledge/curse/transmutation
 	abstract_type = /datum/heretic_knowledge/curse/transmutation
-	name = "Curse of Transmutation"
+	name = "变形诅咒"
 	duration = 0 // Infinite curse, it breaks when our codex is destroyed
 	curse_color = NONE
 	/// What species we are going to turn our victim in to
@@ -211,9 +211,9 @@
 	var/list/chooseable_races = list()
 	for(var/datum/species/species_type as anything in subtypesof(/datum/species))
 		if(initial(species_type.changesource_flags) & RACE_SWAP)
-			chooseable_races[species_type.name] = species_type
+			chooseable_races["[chinese_footprint_species_display(species_type.name)] ([species_type.name])"] = species_type
 
-	var/species_name = tgui_input_list(user, "Choose a race", "Choose a race to turn your victim into", chooseable_races)
+	var/species_name = tgui_input_list(user, "选择一个物种", "选择要将受害者变成的物种", chooseable_races)
 	if(!species_name)
 		return FALSE
 	chosen_species = chooseable_races[species_name]
@@ -221,11 +221,11 @@
 
 /datum/heretic_knowledge/curse/transmutation/curse(mob/living/carbon/human/chosen_mob, obj/item/codex_cicatrix/morbus/cursing_book)
 	if(chosen_mob.dna.species == chosen_species)
-		to_chat(chosen_mob, span_warning("You feel your body morph into... itself?"))
+		to_chat(chosen_mob, span_warning("你感觉身体变成了……原来的样子？"))
 		return
 	chosen_mob.apply_status_effect(/datum/status_effect/race_swap, chosen_species)
 	cursing_book.transmuted_victims += WEAKREF(chosen_mob)
-	to_chat(chosen_mob, span_danger("You feel your body morph into a new shape"))
+	to_chat(chosen_mob, span_danger("你感觉身体变成了新的形态。"))
 	return ..()
 
 /datum/heretic_knowledge/curse/transmutation/uncurse(mob/living/carbon/human/chosen_mob)
@@ -269,7 +269,7 @@
 
 /datum/heretic_knowledge/curse/indulgence
 	abstract_type = /datum/heretic_knowledge/curse/indulgence
-	name = "Curse of Indulgence"
+	name = "纵欲诅咒"
 	duration = 8 MINUTES
 	curse_color = COLOR_MAROON
 

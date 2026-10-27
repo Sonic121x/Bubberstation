@@ -1,8 +1,8 @@
 ///Subtype for any kind of ballistic gun
 ///This has a shitload of vars on it, and I'm sorry for that, but it does make making new subtypes really easy
 /obj/item/gun/ballistic
-	name = "projectile gun"
-	desc = "Now comes in flavors like GUN. Uses 10mm ammo, for some reason."
+	name = "投射枪"
+	desc = "现在还有 GUN 这种口味。不知为何使用 10mm 弹药。"
 	icon_state = "debug"
 	abstract_type = /obj/item/gun/ballistic
 	w_class = WEIGHT_CLASS_NORMAL
@@ -90,11 +90,11 @@
 	///Whether the gun has an internal magazine or a detatchable one. Overridden by BOLT_TYPE_NO_BOLT.
 	var/internal_magazine = FALSE
 	///Phrasing of the bolt in examine and notification messages; ex: bolt, slide, etc.
-	var/bolt_wording = "bolt"
+	var/bolt_wording = "枪机"
 	///Phrasing of the magazine in examine and notification messages; ex: magazine, box, etx
-	var/magazine_wording = "magazine"
+	var/magazine_wording = "弹匣"
 	///Phrasing of the cartridge in examine and notification messages; ex: bullet, shell, dart, etc.
-	var/cartridge_wording = "bullet"
+	var/cartridge_wording = "子弹"
 	///length between individual racks
 	var/rack_delay = 5
 	///time of the most recent rack, used for cooldown purposes
@@ -242,7 +242,7 @@
 	else if(chambered) // if you don't have a magazine, is there something chambered?
 		return "\n[chambered.add_notes_ammo()]"
 	else // we have a very expensive mechanical paperweight.
-		return "\nThe lack of magazine and usable cartridge in chamber makes its usefulness questionable, at best."
+		return "\n既没有弹匣，膛内也没有可用弹药，它的实用价值往好里说也很成问题。"
 
 /obj/item/gun/ballistic/vv_edit_var(vname, vval)
 	. = ..()
@@ -323,11 +323,11 @@
 	if(!burst_fire_selection)
 		burst_size = 1
 		fire_delay = 0 SECONDS
-		balloon_alert(user, "switched to semi-automatic")
+		balloon_alert(user, "已切换到半自动")
 	else
 		burst_size = initial(burst_size)
 		fire_delay = initial(fire_delay)
-		balloon_alert(user, "switched to [burst_size]-round burst")
+		balloon_alert(user, "已切换到 [burst_size] 发点射")
 
 	if(burst_select_sound)
 		playsound(user, burst_select_sound, 50, TRUE)
@@ -374,39 +374,39 @@
 						if(CASING_CATCH_FAILED_SPICY)
 							hitting_ground = TRUE
 							wielder.visible_message(
-								span_warning("[wielder] reaches out for \the [casing] as it ejects from [src], and catches it... before fumbling it because it's a hot casing. Uncool!"),
-								span_warning("You reach out and catch \the [casing] as it ejects from [src]... before dropping it, because it's a hot casing! Ouch! Uncool!"),
-								span_notice("You hear someone reaching for something before a hiss of pain and the sound of something clattering."),
+								span_warning("[wielder] 伸手去接从 [src] 弹出的 \the [casing]，接住了……却因为弹壳太烫又失手掉了。真不酷！"),
+								span_warning("你伸手接住了从 [src] 弹出的 \the [casing]……结果因为弹壳太烫又掉了！好疼！真不酷！"),
+								span_notice("你听到有人伸手去抓什么东西，随后是一声吃痛的抽气，以及什么东西哐啷落地的声响。"),
 							)
 							var/obj/item/bodypart/affecting = wielder.get_inactive_hand()
 							wielder.apply_damage(2, BURN, affecting, wound_bonus = CANT_WOUND)
 						if(CASING_CATCH_FAILED_CLUMSY)
 							hitting_ground = TRUE
 							wielder.visible_message(
-								span_warning("[wielder] reaches out for \the [casing] as it ejects from [src]... before fumbling it in an incredibly unlikely, comical manner! Uncool!"),
-								span_warning("You reach out and catch \the [casing] as it ejects from [src]... before fumbling it in an incredibly unlikely, comical manner! Uncool!"),
-								span_notice("You hear someone reaching for something, shortly followed by an embarassingly loud, comedic clattering."),
+								span_warning("[wielder] 伸手去接从 [src] 弹出的 \the [casing]……却以一种离谱又滑稽的方式失手了！真不酷！"),
+								span_warning("你伸手接住了从 [src] 弹出的 \the [casing]……却以一种离谱又滑稽的方式失手了！真不酷！"),
+								span_notice("你听到有人伸手去抓什么东西，紧接着是一阵令人尴尬的响亮哐啷声。"),
 							)
 							if(!(world.time >= casing.shot_timestamp + CASING_HOT_DELAY))
 								var/obj/item/bodypart/affecting = wielder.get_inactive_hand()
-								to_chat(wielder, span_warning("As if to add insult to injury, \the [casing] lands in the perfect way... to burn your [affecting.plaintext_zone]."))
+								to_chat(wielder, span_warning("仿佛雪上加霜一般，[casing] 落地的角度堪称完美……正好烫伤了你的[chinese_body_zone_display(affecting.plaintext_zone)]。"))
 								wielder.apply_damage(5, BURN, affecting, wound_bonus = CANT_WOUND)
 						if(CASING_CATCH_FAILED_PLACEMENT)
 							hitting_ground = TRUE
 							wielder.visible_message(
-								span_warning("[wielder] reaches out for \the [casing] as it ejects from [src] and fumbles it due to [wielder.p_their()] full hands. Uncool!"),
-								span_warning("You try and reach out for \the [casing] as it ejects from [src], and fumble it because your hands are full. Uncool!"),
-								span_notice("You hear someone reaching for something, before a metallic clattering."),
+								span_warning("[wielder] 伸手去接从 [src] 弹出的 \the [casing]，却因为两手都占满了而失手。真不酷！"),
+								span_warning("你伸手去接从 [src] 弹出的 \the [casing]，却因为两手都占满了而失手。真不酷！"),
+								span_notice("你听到有人伸手去抓什么东西，随后传来金属碰撞的哐啷声。"),
 							)
 						if(CASING_CATCH_SUCCESSFUL)
 							hitting_ground = FALSE
 							casing.update_appearance()
-							to_chat(wielder, span_notice("You reach out and catch \the [casing] as it ejects from [src]. Awesome."))
+							to_chat(wielder, span_notice("你伸手接住了从 [src] 弹出的 \the [casing]。太棒了。"))
 						if(CASING_CATCH_SUCCESSFUL_OUCH)
 							hitting_ground = FALSE
 							casing.update_appearance()
 							var/obj/item/bodypart/affecting = wielder.get_inactive_hand()
-							to_chat(wielder, span_notice("You reach out and catch \the [casing] as it ejects from [src]. Awesome. Your [affecting.plaintext_zone] hurts, though."))
+							to_chat(wielder, span_notice("你伸手接住了从 [src] 弹出的 [casing]。太棒了。不过你的[chinese_body_zone_display(affecting.plaintext_zone)]好疼。"))
 							wielder.apply_damage(4, BURN, affecting, wound_bonus = CANT_WOUND)
 				if(hitting_ground)
 					casing.bounce_away(TRUE)
@@ -472,11 +472,11 @@
 	if (bolt_type == BOLT_TYPE_OPEN)
 		if(!bolt_locked) //If it's an open bolt, racking again would do nothing
 			if (user)
-				balloon_alert(user, "[bolt_wording] already cocked!")
+				balloon_alert(user, "[bolt_wording] 已经待击了！")
 			return
 		bolt_locked = FALSE
 	if (user)
-		balloon_alert(user, "[bolt_wording] racked")
+		balloon_alert(user, "[bolt_wording] 已拉动")
 	process_chamber(!chambered, FALSE)
 	if (bolt_type == BOLT_TYPE_LOCKING && !chambered)
 		bolt_locked = TRUE
@@ -489,7 +489,7 @@
 /obj/item/gun/ballistic/proc/drop_bolt(mob/user = null)
 	playsound(src, bolt_drop_sound, bolt_drop_sound_volume, FALSE)
 	if (user)
-		balloon_alert(user, "[bolt_wording] dropped")
+		balloon_alert(user, "[bolt_wording] 已释放")
 	chamber_round()
 	bolt_locked = FALSE
 	update_appearance()
@@ -497,12 +497,12 @@
 ///Handles all the logic needed for magazine insertion
 /obj/item/gun/ballistic/proc/insert_magazine(mob/user, obj/item/ammo_box/magazine/AM, display_message = TRUE)
 	if(!istype(AM, accepted_magazine_type))
-		balloon_alert(user, "[AM.name] doesn't fit!")
+		balloon_alert(user, "[AM.name] 装不进去！")
 		return FALSE
 	if(user.transferItemToLoc(AM, src))
 		magazine = AM
 		if (display_message)
-			balloon_alert(user, "[magazine_wording] loaded")
+			balloon_alert(user, "[magazine_wording]已装上")
 		if (magazine.ammo_count())
 			playsound(src, load_sound, load_sound_volume, load_sound_vary)
 		else
@@ -512,7 +512,7 @@
 		update_appearance()
 		return TRUE
 	else
-		to_chat(user, span_warning("You cannot seem to get [src] out of your hands!"))
+		to_chat(user, span_warning("你似乎没法把 [src] 从手里拿出来！"))
 		return FALSE
 
 ///Handles all the logic of magazine ejection, if tac_load is set that magazine will be tacloaded in the place of the old eject
@@ -527,12 +527,12 @@
 	magazine.forceMove(drop_location())
 	if (tac_load)
 		if (insert_magazine(user, tac_load, FALSE))
-			balloon_alert(user, "[magazine_wording] swapped")
+			balloon_alert(user, "[magazine_wording]已更换")
 		else
-			to_chat(user, span_warning("You dropped the old [magazine_wording], but the new one doesn't fit. How embarassing."))
+			to_chat(user, span_warning("你丢掉了旧的[magazine_wording]，但新的却装不进去。真尴尬。"))
 	user.put_in_hands(old_mag)
 	if (display_message)
-		balloon_alert(user, "[magazine_wording] unloaded")
+		balloon_alert(user, "[magazine_wording]已卸下")
 
 /obj/item/gun/ballistic/can_shoot()
 	return chambered?.loaded_projectile
@@ -551,7 +551,7 @@
 			eject_magazine(user, FALSE, tool)
 			return ITEM_INTERACT_SUCCESS
 
-		balloon_alert(user, "already loaded!")
+		balloon_alert(user, "已经装好了！")
 		return ITEM_INTERACT_FAILURE
 
 	if (isammocasing(tool) || istype(tool, /obj/item/ammo_box))
@@ -565,22 +565,22 @@
 
 	if(istype(tool, /obj/item/suppressor))
 		if(!can_suppress)
-			balloon_alert(user, "[tool.name] doesn't fit!")
+			balloon_alert(user, "[tool.name] 装不上！")
 			return ITEM_INTERACT_FAILURE
 
 		if(!user.is_holding(src))
-			balloon_alert(user, "not in hand!")
+			balloon_alert(user, "没拿在手上！")
 			return ITEM_INTERACT_FAILURE
 
 		if(suppressed)
-			balloon_alert(user, "already has a suppressor!")
+			balloon_alert(user, "已经装了消音器！")
 			return ITEM_INTERACT_FAILURE
 
 		if(!user.transferItemToLoc(tool, src))
-			balloon_alert(user, "cannot attach!")
+			balloon_alert(user, "无法安装！")
 			return ITEM_INTERACT_FAILURE
 
-		balloon_alert(user, "[tool.name] attached")
+		balloon_alert(user, "已装上 [tool.name]")
 		install_suppressor(tool)
 		return ITEM_INTERACT_SUCCESS
 
@@ -614,7 +614,7 @@
 /obj/item/gun/ballistic/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	var/could_it_misfire = can_misfire || chambered.can_misfire
 	if(target != user && chambered.loaded_projectile && could_it_misfire && prob(misfire_probability) && blow_up(user))
-		to_chat(user, span_userdanger("[src] misfires!"))
+		to_chat(user, span_userdanger("[src] 走火了！"))
 		return
 
 	if (sawn_off)
@@ -654,7 +654,7 @@
 		return CLICK_ACTION_BLOCKING
 	if(!user.is_holding(src))
 		return CLICK_ACTION_BLOCKING
-	balloon_alert(user, "[suppressor.name] removed")
+	balloon_alert(user, "已取下 [suppressor.name]")
 	user.put_in_hands(suppressor)
 	clear_suppressor()
 	return CLICK_ACTION_SUCCESS
@@ -718,11 +718,11 @@
 
 	if (!num_unloaded)
 		if (!forced)
-			balloon_alert(user, "it's empty!")
+			balloon_alert(user, "它是空的！")
 		return
 
 	if (!forced)
-		balloon_alert(user, "[num_unloaded] [cartridge_wording]\s unloaded")
+		balloon_alert(user, "已退出 [num_unloaded] 发[cartridge_wording]")
 	SEND_SIGNAL(src, COMSIG_UPDATE_AMMO_HUD) // BUBBER EDIT ADDITION - this is normally handled by eject_magazine() but internal magazines are a special case
 	playsound(user, eject_sound, eject_sound_volume, eject_sound_vary)
 	update_appearance()
@@ -730,21 +730,21 @@
 /obj/item/gun/ballistic/examine(mob/user)
 	. = ..()
 	var/count_chambered = !(bolt_type == BOLT_TYPE_NO_BOLT || bolt_type == BOLT_TYPE_OPEN)
-	. += "It has <b>[get_ammo(count_chambered)]</b> round\s remaining."
+	. += "里面还剩 <b>[get_ammo(count_chambered)]</b> 发弹药。"
 
 	if (!chambered && !hidden_chambered)
-		. += "It does not seem to have a round chambered."
+		. += "膛内似乎没有子弹。"
 	if (bolt_locked)
-		. += "The [bolt_wording] is locked back and needs to be released before firing or de-fouling."
+		. += "[bolt_wording]处于后锁状态，开火或排除故障前需要先释放。"
 	if (suppressor)
-		. += "It has a suppressor [can_unsuppress ? "attached that can be removed with <b>alt+click</b>." : "that is integral or can't otherwise be removed."]"
+		. += "它装有消音器[can_unsuppress ? "，可以用<b>Alt+点击</b>取下。" : "，它是一体式的，无法拆下。"]"
 	if(can_misfire)
-		. += span_danger("You get the feeling this might explode if you fire it...")
+		. += span_danger("你总觉得开火时它可能会炸……")
 		if(misfire_probability > 0)
-			. += span_danger("Given the state of the gun, there is a [misfire_probability]% chance it'll misfire.")
+			. += span_danger("就这把枪现在的状态而言，它有 [misfire_probability]% 的概率走火。")
 	else if(misfire_probability > 0)
-		. += span_warning("You get a feeling this might explode if you fire it with the wrong ammunitions...")
-		. += span_warning("Given the state of the gun, there is a [EXAMINE_HINT("[misfire_probability]%")] chance it'll misfire.")
+		. += span_warning("你总觉得用错弹药开火时它可能会炸……")
+		. += span_warning("就这把枪现在的状态而言，它有 [EXAMINE_HINT("[misfire_probability]%")] 的概率走火。")
 
 ///Gets the number of bullets in the gun
 /obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE)
@@ -770,12 +770,12 @@
 /obj/item/gun/ballistic/suicide_act(mob/living/user)
 	var/obj/item/organ/brain/B = user.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if (B && chambered && chambered.loaded_projectile && can_trigger_gun(user) && chambered.loaded_projectile.damage > 0)
-		user.visible_message(span_suicide("[user] is putting the barrel of [src] in [user.p_their()] mouth. It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user] 把 [src] 的枪管插进了嘴里。看来是想自杀！"))
 		sleep(2.5 SECONDS)
 		if(user.is_holding(src))
 			var/turf/T = get_turf(user)
 			process_fire(user, user, FALSE, null, BODY_ZONE_HEAD)
-			user.visible_message(span_suicide("[user] blows [user.p_their()] brain[user.p_s()] out with [src]!"))
+			user.visible_message(span_suicide("[user] 用 [src] 把自己的脑袋打开了花！"))
 			var/turf/target = get_ranged_target_turf(user, REVERSE_DIR(user.dir), BRAINS_BLOWN_THROW_RANGE)
 			B.Remove(user)
 			B.forceMove(T)
@@ -783,10 +783,10 @@
 			B.throw_at(target, BRAINS_BLOWN_THROW_RANGE, BRAINS_BLOWN_THROW_SPEED, callback=gibspawner)
 			return BRUTELOSS
 		else
-			user.visible_message(span_suicide("[user] panics and starts choking to death!"))
+			user.visible_message(span_suicide("[user] 惊慌失措，开始窒息而死！"))
 			return OXYLOSS
 	else
-		user.visible_message(span_suicide("[user] is pretending to blow [user.p_their()] brain[user.p_s()] out with [src]! It looks like [user.p_theyre()] trying to commit suicide!</b>"))
+		user.visible_message(span_suicide("[user] 假装要用 [src] 把自己的脑袋打开花！看来是想自杀！</b>"))
 		playsound(src, dry_fire_sound, 30, TRUE)
 		return OXYLOSS
 
@@ -804,28 +804,28 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 	if(!saw.get_sharpness() || (!is_type_in_typecache(saw, GLOB.gun_saw_types) && saw.tool_behaviour != TOOL_SAW)) //needs to be sharp. Otherwise turned off eswords can cut this.
 		return
 	if(sawn_off)
-		balloon_alert(user, "it's already shortened!")
+		balloon_alert(user, "它已经被锯短了！")
 		return
 	if (SEND_SIGNAL(src, COMSIG_GUN_BEING_SAWNOFF, user) & COMPONENT_CANCEL_SAWING_OFF)
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message(span_notice("[user] begins to shorten [src]."), span_notice("You begin to shorten [src]..."))
+	user.visible_message(span_notice("[user] 开始锯短 [src]。"), span_notice("你开始锯短 [src]……"))
 
 	//if there's any live ammo inside the gun, makes it go off
 	if(blow_up(user))
-		user.visible_message(span_danger("[src] goes off!"), span_danger("[src] goes off in your face!"))
+		user.visible_message(span_danger("[src] 走火了！"), span_danger("[src] 在你面前走火了！"))
 		return
 
 	if(!do_after(user, 3 SECONDS, target = src))
 		return
 	if(sawn_off)
 		return
-	user.visible_message(span_notice("[user] shortens [src]!"), span_notice("You shorten [src]."))
+	user.visible_message(span_notice("[user] 把 [src] 锯短了！"), span_notice("你把 [src] 锯短了。"))
 	sawn_off = TRUE
 	SEND_SIGNAL(src, COMSIG_GUN_SAWN_OFF)
 	if(!handle_modifications)
 		return TRUE
-	name = "sawn-off [src.name]"
+	name = "锯短版 [src.name]"
 	desc = sawn_desc
 	update_weight_class(WEIGHT_CLASS_NORMAL)
 	//The file might not have a "gun" icon, let's prepare for this
@@ -846,18 +846,18 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 		return
 
 	if(!user.is_holding(src))
-		balloon_alert(user, "hold to modify!")
+		balloon_alert(user, "需要手持才能改装！")
 		return TRUE
 
 	if(get_ammo())
-		balloon_alert(user, "can't modify while loaded!")
+		balloon_alert(user, "有弹药时无法改装！")
 		return
 
 	if(!bolt_locked && bolt_type == BOLT_TYPE_LOCKING)
-		balloon_alert(user, "the bolt is in the way!")
+		balloon_alert(user, "枪机挡着了！")
 		return
 
-	balloon_alert(user, "tinkering...")
+	balloon_alert(user, "正在鼓捣……")
 	I.play_tool_sound(src)
 	if(!I.use_tool(src, user, 3 SECONDS))
 		return TRUE
@@ -867,13 +867,13 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 		if(alternative_ammo_misfires)
 			can_misfire = TRUE
 		fire_sound = alternative_fire_sound
-		to_chat(user, span_notice("You modify [src]. Now it will fire [alternative_caliber] rounds."))
+		to_chat(user, span_notice("你改装了 [src]。现在它能发射 [alternative_caliber] 弹药了。"))
 	else
 		magazine.caliber = initial_caliber
 		if(alternative_ammo_misfires)
 			can_misfire = FALSE
 		fire_sound = initial_fire_sound
-		to_chat(user, span_notice("You reset [src]. Now it will fire [initial_caliber] rounds."))
+		to_chat(user, span_notice("你复位了 [src]。现在它能发射 [initial_caliber] 弹药了。"))
 
 ///used for sawing guns, causes the gun to fire without the input of the user
 /obj/item/gun/ballistic/proc/blow_up(mob/user)
@@ -908,8 +908,8 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 		rack()
 
 /obj/item/suppressor
-	name = "suppressor"
-	desc = "A syndicate small-arms suppressor for maximum espionage."
+	name = "消音器"
+	desc = "辛迪加出品的轻武器消音器，专为极致谍报而生。"
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "suppressor"
 	w_class = WEIGHT_CLASS_TINY

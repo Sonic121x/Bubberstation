@@ -1,6 +1,6 @@
 /obj/machinery/hydroponics/soil/soilbin //Just a big ol' tub of dirt.
-	name = "soilbin"
-	desc = "I've got a box of dirt! and guess what's inside it!... Yes, dirt."
+	name = "土壤种植箱"
+	desc = "我有一箱土！猜猜里面是什么！……没错，是土。"
 	icon = 'modular_skyrat/modules/primitive_structures/icons/storage.dmi'
 	icon_state = "soilbin"
 	gender = PLURAL
@@ -15,7 +15,7 @@
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 10, /datum/material/sandstone = SHEET_MATERIAL_AMOUNT * 5)
 
 /datum/crafting_recipe/soilbin
-	name = "Primitive soilbin"
+	name = "原始土壤种植箱"
 	result = /obj/machinery/hydroponics/soil/soilbin
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 10,
 				/obj/item/stack/sheet/mineral/sandstone = 5)
@@ -23,7 +23,7 @@
 	category = CAT_MISC
 
 /obj/machinery/hydroponics/soil/soilbin/crowbar_act(mob/living/user, obj/item/tool)
-	user.balloon_alert_to_viewers("disassembling...")
+	user.balloon_alert_to_viewers("正在拆解……")
 	if(!tool.use_tool(src, user, 10 SECONDS, volume = 100))
 		return
 	new /obj/item/stack/sheet/mineral/wood(drop_location(), 10)
@@ -32,8 +32,8 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/hydroponics/soil/soilbin/gaia //Just a big ol' tub of glowning dirt.
-	name = "gaian soilbin"
-	desc = "I've got a box of dirt! and guess what's inside it!... Yes, dirt AND Gaia."
+	name = "盖亚土壤种植箱"
+	desc = "我有一箱土！猜猜里面是什么！……没错，是土，还有盖亚。"
 	icon = 'modular_skyrat/modules/primitive_structures/icons/storage.dmi'
 	icon_state = "soilbin"
 	gender = PLURAL
@@ -57,7 +57,7 @@
 	update_use_power(NO_POWER_USE)
 
 /datum/crafting_recipe/soilbin/gaia
-	name = "Primitive gaian soilbin"
+	name = "原始盖亚土壤种植箱"
 	result = /obj/machinery/hydroponics/soil/soilbin/gaia
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 10,
 				/obj/item/stack/sheet/mineral/sandstone = 5,
@@ -66,7 +66,7 @@
 	category = CAT_MISC
 
 /obj/machinery/hydroponics/soil/soilbin/gaia/crowbar_act(mob/living/user, obj/item/tool)
-	user.balloon_alert_to_viewers("disassembling...")
+	user.balloon_alert_to_viewers("正在拆解……")
 	if(!tool.use_tool(src, user, 10 SECONDS, volume = 100))
 		return
 	new /obj/item/stack/sheet/mineral/wood(drop_location(), 10)
@@ -75,15 +75,15 @@
 	return ITEM_INTERACT_SUCCESS
 
 /datum/crafting_recipe/compostbin
-	name = "Primitive compost"
+	name = "原始堆肥箱"
 	result = /obj/machinery/compostbin
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 10)
 	time = 60
 	category = CAT_MISC
 
 /obj/machinery/compostbin
-	name = "compost bin"
-	desc = "A smelly structure made of wooden slats. Dump produce in, pull usable compost out."
+	name = "堆肥箱"
+	desc = "用木板条搭成、散发臭味的箱子。倒入农产品，就能取出可用的堆肥。"
 	icon = 'modular_skyrat/modules/primitive_structures/icons/storage.dmi'
 	icon_state = "compostbin"
 	base_icon_state = "compost"
@@ -107,8 +107,8 @@
 
 /obj/machinery/compostbin/examine(mob/user)
 	. = ..()
-	. += span_notice("The compost bin has: <b>[reagents.total_volume] units</b>.")
-	. += span_notice("The compost bin can hold: <b>[reagents.maximum_volume]</b> units.")
+	. += span_notice("堆肥箱中现有<b>[reagents.total_volume]单位</b>。")
+	. += span_notice("堆肥箱容量为<b>[reagents.maximum_volume]</b>单位。")
 
 /obj/machinery/compostbin/proc/visible_volume()
 	return reagents.total_volume
@@ -123,11 +123,11 @@
 	. = ITEM_INTERACT_BLOCKING
 	if(istype(tool, /obj/item/storage/bag))
 		if(reagents.total_volume >= reagents.maximum_volume)
-			to_chat(user, span_warning("\The [src] is already full of compost."))
+			to_chat(user, span_warning("[src]已经装满堆肥。"))
 			return
 
 		if(current_item_count >= max_items)
-			to_chat(user, span_warning("\The [src] is already full of produce! Wait for it to decompose."))
+			to_chat(user, span_warning("[src]已经装满农产品！请等待它们分解。"))
 			return
 
 		var/obj/item/storage/bag/bag = tool
@@ -140,35 +140,35 @@
 				current_item_count++
 
 		if(bag.contents.len == 0)
-			to_chat(user, span_info("You empty \the [bag] into \the [src]."))
+			to_chat(user, span_info("你将[bag]里的东西全部倒入[src]。"))
 
 		else if (current_item_count >= max_items)
-			to_chat(user, span_info("You fill \the [src] from \the [bag] to its capacity."))
+			to_chat(user, span_info("你用[bag]里的东西装满了[src]。"))
 
 		else
-			to_chat(user, span_info("You fill \the [src] from \the [bag]."))
+			to_chat(user, span_info("你将[bag]里的东西装入[src]。"))
 
 		start_process()
 		return ITEM_INTERACT_SUCCESS
 
 	else if(istype(tool, /obj/item/food))
 		if(reagents.total_volume >= reagents.maximum_volume)
-			to_chat(user, span_warning("\The [src] is already full of compost."))
+			to_chat(user, span_warning("[src]已经装满堆肥。"))
 			return
 
 		if(current_item_count >= max_items)
-			to_chat(user, span_warning("\The [src] is already full of produce! Wait for it to decompose."))
+			to_chat(user, span_warning("[src]已经装满农产品！请等待它们分解。"))
 
 		else
 			if(user.transferItemToLoc(tool, src))
 				current_item_count++
-				to_chat(user, span_info("You insert \the [tool] in \the [src]"))
+				to_chat(user, span_info("你将[tool]放入[src]。"))
 
 		start_process()
 		return ITEM_INTERACT_SUCCESS
 
 	else
-		to_chat(user, span_warning("You cannot put \the [tool] in \the [src]!"))
+		to_chat(user, span_warning("无法将[tool]放入[src]！"))
 		return
 
 /obj/machinery/compostbin/proc/start_process()
@@ -258,7 +258,7 @@
 	return
 
 /obj/machinery/compostbin/crowbar_act(mob/living/user, obj/item/tool)
-	user.balloon_alert_to_viewers("disassembling...")
+	user.balloon_alert_to_viewers("正在拆解……")
 	if(!tool.use_tool(src, user, 10 SECONDS, volume = 100))
 		return
 	new /obj/item/stack/sheet/mineral/wood(drop_location(), 10)
@@ -266,13 +266,13 @@
 	return ITEM_INTERACT_SUCCESS
 
 /datum/reagent/plantnutriment/eznutriment/compost //Basic compost (E-Z nutrients)
-	name = "Basic compost"
-	description = "Rotting plant matter, stinky."
+	name = "基础堆肥"
+	description = "腐烂的植物质，臭烘烘的。"
 	color = "#422813"
 
 /datum/reagent/plantnutriment/eznutriment/compost/enhanced //Saltpetre and diethymix (Slightly worse than both combined)
-	name = "Fertile compost"
-	description = "Very fertile, rotting plant matter, stinky."
+	name = "肥沃堆肥"
+	description = "肥力很强的腐烂植物质，臭烘烘的。"
 	color = "#6b963b"
 
 /datum/reagent/plantnutriment/eznutriment/compost/enhanced/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
@@ -286,13 +286,13 @@
 		myseed.adjust_instability(-round(volume))
 
 /datum/reagent/plantnutriment/left4zednutriment/compost //Left for Zed
-	name = "Reactive compost"
-	description = "A rancid smelling concoction that'll really change up your plants."
+	name = "活性堆肥"
+	description = "一份散发腐臭的混合物，能让你的植物发生显著变化。"
 	color = "#122b29"
 
 /datum/reagent/plantnutriment/endurogrow/compost //Endurogrow: Lifespan and Endurance up, yield and potency crippled.
-	name = "Hearty compost"
-	description = "A useful compost, while it might leave your plants stronger, it'll jeopardise your fruits."
+	name = "强健堆肥"
+	description = "一种实用的堆肥，能让植物更强壮，但会牺牲果实的表现。"
 	color = "#4f5010"
 
 /datum/chemical_reaction/compost
@@ -315,14 +315,14 @@
 
 
 /obj/item/secateurs/wooden
-	name = "primitive secateurs"
-	desc = "Some shoddy looking secateurs, they look sturdy enough to get a graft... or poke someone in both eyes at once!"
+	name = "原始修枝剪"
+	desc = "一把看起来粗制滥造的修枝剪，不过够结实，能剪取嫁接枝……也能同时戳中别人的两只眼睛！"
 	icon = 'modular_skyrat/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "woodensecateurs"
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 6, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
 
 /datum/crafting_recipe/secateur
-	name = "Primitive secateurs"
+	name = "原始修枝剪"
 	result = /obj/item/secateurs/wooden
 	reqs = list(/obj/item/stack/sheet/iron = 2,
 				/obj/item/stack/sheet/mineral/wood = 6)

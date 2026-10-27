@@ -7,9 +7,9 @@
  * Bonus: Causes blindness.
 */
 /datum/symptom/visionloss
-	name = "Hyphema"
-	desc = "Sufferers exhibit dangerously low levels of frames per second in the eyes, leading to damage and eventually blindness."
-	illness = "Diluted Pupils"
+	name = "前房积血"
+	desc = "患者双眼的每秒帧数降至危险水平，造成损伤并最终失明。"
+	illness = "瞳孔稀释症"
 	stealth = 0
 	resistance = -2
 	stage_speed = -3
@@ -22,8 +22,8 @@
 	symptom_cure = /datum/reagent/medicine/oculine
 	cure_color = "yellow"
 	threshold_descs = list(
-		"Resistance 12" = "Weakens extraocular muscles, eventually leading to complete detachment of the eyes.",
-		"Stealth 4" = "The symptom remains hidden until active.",
+		"抗性 12" = "削弱眼外肌，最终使眼球完全脱落。",
+		"隐蔽性 4" = "症状在发作前不会显露。",
 	)
 	/// At max stage: If FALSE, cause blindness. If TRUE, cause their eyes to fall out.
 	var/remove_eyes = FALSE
@@ -48,10 +48,10 @@
 	switch(source_disease.stage)
 		if(1, 2)
 			if(prob(base_message_chance) && !suppress_warning)
-				to_chat(infected_mob, span_warning("Your eyes itch."))
+				to_chat(infected_mob, span_warning("你的眼睛发痒。"))
 
 		if(3, 4)
-			to_chat(infected_mob, span_boldwarning("Your eyes burn!"))
+			to_chat(infected_mob, span_boldwarning("你的眼睛火辣辣地疼！"))
 			infected_mob.set_eye_blur_if_lower(20 SECONDS)
 			eyes.apply_organ_damage(1)
 
@@ -66,15 +66,15 @@
 			if(prob(eyes.damage - eyes.low_threshold + 1))
 				if(remove_eyes)
 					infected_mob.visible_message(
-						span_warning("[infected_mob]'s eyes fall out of their sockets!"),
-						span_userdanger("Your eyes fall out of their sockets!"),
+						span_warning("[infected_mob]的眼球从眼眶里掉了出来！"),
+						span_userdanger("你的眼球从眼眶里掉了出来！"),
 					)
 					eyes.Remove(infected_mob)
 					eyes.forceMove(get_turf(infected_mob))
 
 				else if(!infected_mob.is_blind_from(EYE_DAMAGE))
-					to_chat(infected_mob, span_userdanger("You go blind!"))
+					to_chat(infected_mob, span_userdanger("你失明了！"))
 					eyes.apply_organ_damage(eyes.maxHealth)
 
 			else
-				to_chat(infected_mob, span_userdanger("Your eyes burn horrifically!"))
+				to_chat(infected_mob, span_userdanger("你的双眼灼痛得难以忍受！"))

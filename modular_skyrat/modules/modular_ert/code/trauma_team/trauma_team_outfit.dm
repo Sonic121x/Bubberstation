@@ -38,8 +38,8 @@
 
 //A box of VeyGun cells, because storage is hell and these take up a LOT more than they're worth.
 /obj/item/storage/box/plastic/medicells
-	name = "box of medicells"
-	desc = "A box with a few basic Medicells, designed for VeyMedical CWM cell-powered Mediguns."
+	name = "医疗电池盒"
+	desc = "一盒基础医疗电池，专为 VeyMedical 的 CWM 电池驱动医疗枪设计。"
 	illustration = "medgel"
 
 /obj/item/storage/box/medicells/PopulateContents()
@@ -51,19 +51,19 @@
 	new /obj/item/weaponcell/medical/utility/bed(src)
 
 /datum/id_trim/centcom/ert/medical/ntrauma
-	assignment = "Trauma Team Specialist"
+	assignment = "创伤小队专家"
 	trim_state = "trim_highcleric"	//This is the CMO trim for the RPG Titles; considering its 'angelic' sprite, its fitting for these guardian angels
 	sechud_icon_state = SECHUD_SCRAMBLED
 
 /obj/item/card/id/advanced/centcom/ert/medical/ntrauma
-	registered_name = "Trauma Team Specialist"
+	registered_name = "创伤小队专家"
 	trim = /datum/id_trim/centcom/ert/medical/ntrauma
 	icon_state = "battlecruisercaller"	//Read desc
-	desc = "A semi-standard black Identification card rigged with what appears to be a small transmitter wired to a small disk - presumably filled with access tokens. Not NT standard, sure, but effectively the same card as their ERTs."
+	desc = "一张半标准黑色身份卡，上面似乎接着一个小型发射器，并与一个小圆盘相连——那大概装满了权限令牌。这确实不是纳米传讯的标准配置，但功能上等同于他们的紧急响应小队用卡。"
 
 /obj/item/storage/belt/military/ntrauma
-	name = "trauma chest rig"
-	desc = "A set of tactical webbing worn by Trauma Response Teams."
+	name = "创伤胸挂"
+	desc = "创伤响应小队佩戴的战术织带。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
 	icon_state = "ert_ntrauma"
@@ -78,8 +78,8 @@
 	new	/obj/item/reagent_containers/hypospray/combat(src)
 
 /obj/item/storage/medkit/tactical/ntrauma
-	name = "trauma medical kit"
-	desc = "I hope you've got insurance, because the Trauma Team's premiums are HIGH."
+	name = "创伤医疗包"
+	desc = "希望你买了保险，因为创伤小队的保费可是高得离谱。"
 
 /obj/item/storage/medkit/tactical/ntrauma/PopulateContents()
 	new /obj/item/stack/medical/wrap/gauze(src)
@@ -91,8 +91,8 @@
 	new	/obj/item/holosign_creator/medical (src)
 
 /obj/item/clothing/gloves/latex/nitrile/ntrauma
-	name = "trauma specialist gloves"
-	desc = "A pair of nitrile-alternative gloves used by Trauma Team specialists, sealable to protect from pressure and with a unique (and expensive) acid-repellent coating to prevent damage handling chemical hazards. Wont protect the rest of your body, though."
+	name = "创伤专家手套"
+	desc = "创伤小队专家使用的丁腈替代材质手套，可密封以抵御气压，并带有独特（且昂贵）的抗酸涂层，防止在处理化学危险品时受损。不过它可保护不了你身体的其他部位。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "ert_ntrauma"
@@ -101,8 +101,8 @@
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL //Combines with spacesuit
 
 /obj/item/clothing/suit/space/ntrauma
-	name = "trauma team softsuit"
-	desc = "A lightweight, minimally armored, entirely sterile softsuit, used by Trauma Teams to operate in potentially hazardous environments of all sorts. It's coated in acid-repellent chemicals."
+	name = "创伤小队软式宇航服"
+	desc = "一件轻量、低防护、完全无菌的软式宇航服，供创伤小队在各种潜在危险环境中作业。表面涂有抗酸化学涂层。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/spacesuit.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/spacesuit.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suits/spacesuit_digi.dmi'
@@ -125,8 +125,8 @@
 	acid = 80
 
 /obj/item/clothing/head/helmet/space/ntrauma
-	name = "trauma team helmet"
-	desc = "A faceless white helmet fit to seal with a softsuit, used by Trauma Teams to operate in potentially hazardous environments. It's coated in acid-repellent chemicals."
+	name = "创伤小队头盔"
+	desc = "一顶无面罩的白色头盔，可与软式宇航服密封连接，供创伤小队在潜在危险环境中作业。表面涂有抗酸化学涂层。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/helmet.dmi'
 	icon_state = "ert_ntrauma"

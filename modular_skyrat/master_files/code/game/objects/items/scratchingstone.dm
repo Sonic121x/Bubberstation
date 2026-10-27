@@ -1,7 +1,7 @@
 /obj/item/scratching_stone
-	name = "scratching stone"
+	name = "磨爪石"
 	icon = 'modular_skyrat/master_files/icons/obj/kitchen.dmi'
 	icon_state = "scratchingstone"
-	desc = "A specialized kind of whetstone, made of unknown alloys to hone a cyborg mercenary's claws to the best they can be. This one looks like a shitty second-hand sold by razorkids. It's got like, what, maybe one use left?"
+	desc = "一种特制磨刀石，由未知合金制成，用于将半机械人雇佣兵的利爪打磨到最佳状态。这一块看起来像是剃刀小子们倒卖的劣质二手货。它大概……还剩一次使用机会？"
 	force = 5
 	throwforce = 10 //Hey, you can at least use it as a brick.

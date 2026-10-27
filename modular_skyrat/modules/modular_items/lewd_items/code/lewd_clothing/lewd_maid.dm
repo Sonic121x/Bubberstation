@@ -1,6 +1,6 @@
 /obj/item/clothing/under/costume/lewdmaid
-	name = "latex maid costume"
-	desc = "A maid costume made of a thick latex."
+	name = "乳胶女仆装"
+	desc = "一件由厚乳胶制成的女仆装。"
 	icon_state = "lewdmaid"
 	inhand_icon_state = "lewdmaid"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_uniform.dmi'
@@ -15,8 +15,8 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/accessory/lewdapron
-	name = "shiny maid apron"
-	desc = "The best part of a maid costume. Now with different colors!"
+	name = "亮面女仆围裙"
+	desc = "女仆装最精彩的部分。现在还有多种颜色可选！"
 	icon_state = "lewdapron_pink"
 	base_icon_state = "lewdapron"
 	inhand_icon_state = "lewdapron_pink"
@@ -100,8 +100,8 @@
 
 //Not a maid, yeah. I dont care, it's going with the other lewd stuff, and there WONT be a whole new file just for it.
 /obj/item/clothing/under/costume/bunnylewd
-	name = "bunny suit"
-	desc = "Makes the wearer more attractive, even men."
+	name = "兔女郎装"
+	desc = "让穿戴者更具吸引力，即使是男性也一样。"
 	icon_state = "bunnysuit"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_uniform.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform.dmi'
@@ -111,6 +111,6 @@
 	alt_covers_chest = FALSE
 
 /obj/item/clothing/under/costume/bunnylewd/white
-	name = "white bunny suit"
+	name = "白色兔女郎装"
 	icon_state = "whitebunnysuit"
 	can_adjust = FALSE

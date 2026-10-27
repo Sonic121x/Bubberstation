@@ -1,10 +1,10 @@
 // A type of antagonist created by the moon ascension
 /datum/antagonist/lunatic
-	name = "\improper Lunatic"
+	name = "\improper 月狂者"
 	hijack_speed = 0
 	antagpanel_category = ANTAG_GROUP_HORRORS
 	show_in_antagpanel = FALSE
-	suicide_cry = "PRAISE THE RINGLEADER!!"
+	suicide_cry = "赞美头目！！"
 	antag_moodlet = /datum/mood_event/heretics/lunatic
 	antag_hud_name = "lunatic"
 	can_assign_self_objectives = FALSE
@@ -20,7 +20,7 @@
 	var/datum/action/cooldown/spell/touch/mansus_grasp/mad_touch
 
 /datum/antagonist/lunatic/on_gain()
-	owner.current.log_message("has become a Lunatic!", LOG_ATTACK, color="red")
+	owner.current.log_message("成为了月狂者！", LOG_ATTACK, color="red")
 	// Masters gain an objective before so we dont want duplicates
 	. = ..()
 	for(var/objective in objectives)
@@ -41,7 +41,7 @@
 	return ..()
 
 /datum/antagonist/lunatic/on_removal()
-	owner?.current?.log_message("lost their Lunatic status!", LOG_ATTACK, color="red")
+	owner?.current?.log_message("失去了月狂者身份！", LOG_ATTACK, color="red")
 	return ..()
 
 /// Runs when the moon heretic creates us, used to give the lunatic a master
@@ -52,11 +52,11 @@
 	lunatic_obj.master = heretic_master
 	lunatic_obj.update_explanation_text()
 
-	to_chat(owner, span_boldnotice("Ruin the lie, save the truth through obeying [heretic_master] the ringleader!"))
+	to_chat(owner, span_boldnotice("毁灭谎言，通过服从头目[heretic_master]来拯救真相！"))
 
 /datum/antagonist/lunatic/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/our_mob = mob_override || owner.current
-	handle_clown_mutation(our_mob, "Ancient knowledge from the moon has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
+	handle_clown_mutation(our_mob, "来自月亮的古老知识让你克服了小丑天性，使你能够使用武器而不伤害自己。")
 	our_mob.add_faction(FACTION_HERETIC)
 	add_team_hud(our_mob, /datum/antagonist/lunatic)
 	ADD_TRAIT(our_mob, TRAIT_MADNESS_IMMUNE, REF(src))
@@ -69,11 +69,11 @@
 
 // Mood event given to moon acolytes
 /datum/mood_event/heretics/lunatic
-	description = "THE TRUTH REVEALED, THE LIE SLAIN."
+	description = "真相已显，谎言已灭。"
 	mood_change = 10
 
 /datum/objective/lunatic
-	explanation_text = "Assist your ringleader. If you are seeing this, scroll up in chat for who that is and report this"
+	explanation_text = "协助你的头目。如果你看到这段文字，请向上翻聊天记录确认头目是谁，并报告此问题"
 	var/datum/mind/master
 	// If the person with this objective is a lunatic master
 	var/is_master = FALSE
@@ -81,13 +81,13 @@
 /datum/objective/lunatic/update_explanation_text()
 	. = ..()
 	if(is_master)
-		explanation_text = "Lead your lunatics to further your own goals!"
+		explanation_text = "率领你的月狂者们推进你自己的目标！"
 		return
-	explanation_text = "Assist your ringleader [master], do not harm fellow lunatics"
+	explanation_text = "协助你的头目[master]，不要伤害其他月狂者"
 
 // Lunatic master
 /datum/antagonist/lunatic/master
-	name = "\improper Ringleader"
+	name = "\improper 头目"
 	antag_hud_name = "lunatic_master"
 
 /datum/antagonist/lunatic/master/on_gain()

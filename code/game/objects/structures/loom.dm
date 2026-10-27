@@ -1,7 +1,7 @@
 ///This is a loom. It's usually made out of wood and used to weave fabric like durathread or cotton into their respective cloth types.
 /obj/structure/loom
-	name = "loom"
-	desc = "A simple device used to weave cloth and other thread-based fabrics together into usable material."
+	name = "织布机"
+	desc = "一种简单的装置，用于把布料和其他线状织物编织成可用的材料。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "loom"
 	density = TRUE
@@ -13,7 +13,7 @@
 
 	var/static/list/hovering_item_typechecks = list(
 		/obj/item/stack/sheet/cotton = list(
-			SCREENTIP_CONTEXT_LMB = "Weave",
+			SCREENTIP_CONTEXT_LMB = "编织",
 		),
 	)
 

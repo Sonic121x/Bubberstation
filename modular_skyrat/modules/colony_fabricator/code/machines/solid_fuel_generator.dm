@@ -1,12 +1,12 @@
 /obj/machinery/power/port_gen/pacman/solid_fuel
-	name = "\improper S.O.F.I.E.-type portable generator"
-	desc = "The second most common generator design in the galaxy, second only to the P.A.C.M.A.N. \
-		The S.O.F.I.E. (Stationary Operating Fuel Ignition Engine) is similar to other generators in \
-		burning sheets of plasma in order to produce power. \
-		Unlike other generators however, this one isn't as portable, or as safe to operate, \
-		but at least it makes a hell of a lot more power. Must be <b>bolted to the ground</b> \
-		and <b>attached to a wire</b> before use. A massive warning label wants you to know that this generator \
-		<b>outputs waste heat and gasses to the air around it</b>."
+	name = "\improper S.O.F.I.E. 型便携式发电机"
+	desc = "银河系中第二常见的发电机设计，仅次于 P.A.C.M.A.N.。\
+		S.O.F.I.E.（固定式运行燃料点火引擎）与其他发电机一样，\
+		通过燃烧等离子体板来发电。\
+		不过，与其它发电机不同，这一台既不算便携，操作起来也没那么安全，\
+		但至少它能发出多得多的电力。使用前必须<b>用螺栓固定在地面上</b>\
+		并<b>接上电线</b>。一张硕大的警告标签想让你知道，这台发电机\
+		会<b>向周围空气排放废热与废气</b>。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/machines.dmi'
 	icon_state = "fuel_generator_0"
 	base_icon_state = "fuel_generator"
@@ -50,7 +50,7 @@
 // Item for creating the generator or carrying it around
 
 /obj/item/flatpacked_machine/fuel_generator
-	name = "flat-packed S.O.F.I.E.-type portable generator"
+	name = "扁平包装 S.O.F.I.E. 型便携式发电机"
 	icon_state = "fuel_generator_packed"
 	type_to_deploy = /obj/machinery/power/port_gen/pacman/solid_fuel
 	custom_materials = list(

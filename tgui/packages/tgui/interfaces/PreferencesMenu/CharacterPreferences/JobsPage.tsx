@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
-
+import { displayRole, roleOption } from '../../../localization/roleDisplay';
 import {
   createSetPreference,
   type Job,
@@ -94,13 +94,13 @@ function PriorityHeaders() {
       <Stack>
         <Stack.Item grow />
 
-        <Stack.Item className={className}>Off</Stack.Item>
+        <Stack.Item className={className}>关</Stack.Item>
 
-        <Stack.Item className={className}>Low</Stack.Item>
+        <Stack.Item className={className}>低</Stack.Item>
 
-        <Stack.Item className={className}>Med</Stack.Item>
+        <Stack.Item className={className}>中</Stack.Item>
 
-        <Stack.Item className={className}>High</Stack.Item>
+        <Stack.Item className={className}>高</Stack.Item>
       </Stack>
     </Stack.Item>
   );
@@ -126,7 +126,7 @@ function PriorityButtons(props: PriorityButtonsProps) {
       {isOverflow ? (
         <>
           <PriorityButton
-            name="Off"
+            name="关闭"
             modifier="off"
             color="light-grey"
             enabled={!priority}
@@ -134,7 +134,7 @@ function PriorityButtons(props: PriorityButtonsProps) {
           />
 
           <PriorityButton
-            name="On"
+            name="开启"
             color="green"
             enabled={!!priority}
             onClick={createSetPriority(JobPriority.High)}
@@ -143,7 +143,7 @@ function PriorityButtons(props: PriorityButtonsProps) {
       ) : (
         <>
           <PriorityButton
-            name="Off"
+            name="关闭"
             modifier="off"
             color="light-grey"
             enabled={!priority}
@@ -151,21 +151,21 @@ function PriorityButtons(props: PriorityButtonsProps) {
           />
 
           <PriorityButton
-            name="Low"
+            name="低优先级"
             color="red"
             enabled={priority === JobPriority.Low}
             onClick={createSetPriority(JobPriority.Low)}
           />
 
           <PriorityButton
-            name="Medium"
+            name="中优先级"
             color="yellow"
             enabled={priority === JobPriority.Medium}
             onClick={createSetPriority(JobPriority.Medium)}
           />
 
           <PriorityButton
-            name="High"
+            name="高优先级"
             color="green"
             enabled={priority === JobPriority.High}
             onClick={createSetPriority(JobPriority.High)}
@@ -232,7 +232,7 @@ function JobRow(props: JobRowProps) {
     rightSide = (
       <Stack pr={1}>
         <Stack.Item grow textAlign="right" height="stretch">
-          <b>{hoursNeeded}h</b> as {experience_type}
+          {displayRole(experience_type)}：<b>{hoursNeeded}小时</b>
         </Stack.Item>
       </Stack>
     );
@@ -240,7 +240,7 @@ function JobRow(props: JobRowProps) {
     rightSide = (
       <Stack pr={1}>
         <Stack.Item grow textAlign="right" height="stretch">
-          <b>{daysLeft}</b> day{daysLeft === 1 ? '' : 's'} left
+          还需<b>{daysLeft}</b>天
         </Stack.Item>
       </Stack>
     );
@@ -248,7 +248,7 @@ function JobRow(props: JobRowProps) {
     rightSide = (
       <Stack pr={1}>
         <Stack.Item grow textAlign="right" height="stretch">
-          <b>Banned</b>
+          <b>已被封禁</b>
         </Stack.Item>
       </Stack>
     );
@@ -260,7 +260,7 @@ function JobRow(props: JobRowProps) {
     rightSide = (
       <Stack pr={1}>
         <Stack.Item grow textAlign="right" height="stretch">
-          <b>Bad species</b>
+          <b>种族不符合要求</b>
         </Stack.Item>
       </Stack>
     );
@@ -316,14 +316,14 @@ function JobRow(props: JobRowProps) {
               </Tooltip> */}
               {!job.alt_titles ? (
                 <Tooltip content={job.description} position="bottom-start">
-                  {name}
+                  {displayRole(name)}
                 </Tooltip>
               ) : (
                 <Tooltip content={job.description} position="bottom-start">
                   <Dropdown
                     width="100%"
-                    options={job.alt_titles}
-                    selected={alt_title_selected}
+                    options={job.alt_titles.map(roleOption)}
+                    selected={alt_title_selected} displayText={displayRole(alt_title_selected)}
                     onSelected={(value) =>
                       act('set_job_title', { job: name, new_title: value })
                     }
@@ -435,15 +435,15 @@ function JoblessRoleDropdown(props) {
 
   const options = [
     {
-      displayText: `Join as ${data.overflow_role} if unavailable`,
+      displayText: `无可用职位时以${displayRole(data.overflow_role)}加入`,
       value: JoblessRole.BeOverflow,
     },
     {
-      displayText: `Join as a random job if unavailable`,
+      displayText: `无可用职位时随机分配职业`,
       value: JoblessRole.BeRandomJob,
     },
     {
-      displayText: `Return to lobby if unavailable`,
+      displayText: `无可用职位时返回大厅`,
       value: JoblessRole.ReturnToLobby,
     },
   ];
@@ -490,8 +490,8 @@ function CharacterSection(props: CharacterSectionsProps) {
         >
           <Stack vertical p={1}>
             <Stack.Item textAlign="center">
-              Drag a character to a job to load that character if you are
-              selected for that job.
+              将角色拖到职位上，
+              被分配到该职位时将加载此角色。
             </Stack.Item>
             <Stack.Item>
               <Stack wrap>
@@ -527,7 +527,7 @@ function CharacterSection(props: CharacterSectionsProps) {
         onClick={() => setCharacterFloating(!characterFloating)}
         icon={'angle-down'}
       >
-        Show Characters
+        显示角色
       </Button>
     </Floating>
   );

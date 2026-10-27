@@ -285,7 +285,7 @@
 /proc/notify_ghosts(
 	message,
 	atom/source,
-	header = "Something Interesting!",
+	header = "有趣的东西！",
 	mutable_appearance/alert_overlay,
 	click_interact = FALSE,
 	custom_link = "",
@@ -322,8 +322,8 @@
 			to_chat(ghost, span_ghostalert(message))
 			continue
 
-		var/interact_link = click_interact ? " <a href='byond://?src=[REF(ghost)];play=[REF(source)]'>(Play)</a>" : ""
-		var/view_link = " <a href='byond://?src=[REF(ghost)];view=[REF(source)]'>(View)</a>"
+		var/interact_link = click_interact ? " <a href='byond://?src=[REF(ghost)];play=[REF(source)]'>（播放）</a>" : ""
+		var/view_link = " <a href='byond://?src=[REF(ghost)];view=[REF(source)]'>（查看）</a>"
 
 		to_chat(ghost, span_ghostalert("[message][custom_link][interact_link][view_link]"))
 
@@ -333,7 +333,7 @@
 		)
 		toast.add_overlay(alert_overlay)
 		toast.click_interact = click_interact
-		toast.desc = "Click to [click_interact ? "play" : "view"]."
+		toast.desc = "点击以[click_interact ? "播放" : "查看"]。"
 		toast.name = header
 		toast.target_ref = WEAKREF(source)
 
@@ -368,30 +368,30 @@
  */
 /proc/offer_control(mob/M)
 	if(isdead(M))
-		to_chat(usr, "You can't give ghosts control of a ghost. They're already ghosts.")
+		to_chat(usr, "你不能把幽灵的控制权交给幽灵。他们本来就是幽灵。")
 		return FALSE
 
-	to_chat(M, "Control of your mob has been offered to dead players.")
+	to_chat(M, "已向死亡玩家开放你的角色控制权。")
 	if(usr)
-		log_admin("[key_name(usr)] has offered control of ([key_name(M)]) to ghosts.")
-		message_admins("[key_name_admin(usr)] has offered control of ([ADMIN_LOOKUPFLW(M)]) to ghosts")
+		log_admin("[key_name(usr)] 已将（[key_name(M)]）的控制权提供给幽灵。")
+		message_admins("[key_name_admin(usr)] 已将（[ADMIN_LOOKUPFLW(M)]）的控制权提供给幽灵。")
 	var/whomst = span_danger(M.real_name)
 	if(M.mind && !is_unassigned_job(M.mind?.assigned_role))
-		whomst += "Job: [span_notice(M.mind.assigned_role.title)]."
+		whomst += "职业：[span_notice(M.mind.assigned_role.title)]。"
 	if(length(M.mind?.get_special_roles()))
-		whomst += "Status: [span_boldnotice(english_list(M.mind?.get_special_roles()))]."
-	var/mob/chosen_one = SSpolling.poll_ghosts_for_target("Do you want to play as [whomst]?", check_jobban = ROLE_PAI, poll_time = 10 SECONDS, checked_target = M, alert_pic = M, role_name_text = "ghost control")
+		whomst += "状态：[span_boldnotice(english_list(M.mind?.get_special_roles()))]。"
+	var/mob/chosen_one = SSpolling.poll_ghosts_for_target("你想扮演 [whomst] 吗？", check_jobban = ROLE_PAI, poll_time = 10 SECONDS, checked_target = M, alert_pic = M, role_name_text = "幽灵控制")
 
 	if(chosen_one)
-		to_chat(M, "Your mob has been taken over by a ghost!")
-		message_admins("[key_name_admin(chosen_one)] has taken control of ([ADMIN_LOOKUPFLW(M)])")
+		to_chat(M, "你的角色已被幽灵接管！")
+		message_admins("[key_name_admin(chosen_one)] 已接管（[ADMIN_LOOKUPFLW(M)]）的控制权。")
 		M.ghostize(FALSE)
 		M.PossessByPlayer(chosen_one.key)
 		M.client?.init_verbs()
 		return TRUE
 	else
-		to_chat(M, "There were no ghosts willing to take control.")
-		message_admins("No ghosts were willing to take control of [ADMIN_LOOKUPFLW(M)])")
+		to_chat(M, "没有幽灵愿意接管。")
+		message_admins("没有幽灵愿意接管 [ADMIN_LOOKUPFLW(M)]。")
 		return FALSE
 
 ///Clicks a random nearby mob with the source from this mob

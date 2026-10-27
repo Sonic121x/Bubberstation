@@ -1,13 +1,13 @@
 
 /obj/effect/meteor/meaty/changeling
-	name = "unsettlingly meaty meteor"
-	desc = "A tightly packed knit of flesh and skin, pulsating with life."
+	name = "令人不安的肉块陨石"
+	desc = "一团紧密交织的皮肉，随着生命搏动着。"
 	icon_state = "changeling"
 	heavy = FALSE
 	hits = 1 //Instantly splatters apart when it hits anything.
 	hitpwr = EXPLODE_LIGHT
 	threat = 100
-	signature = "xenobiological lifesign" //In the extremely unlikely one-in-a-million chance that one of these gets reported by the stray meteor event
+	signature = "异星生物生命信号" //In the extremely unlikely one-in-a-million chance that one of these gets reported by the stray meteor event
 	///Where we want our changeling to, by whatever means, end up at.
 	var/atom/landing_target
 
@@ -41,7 +41,7 @@
 	for(var/atom/movable/changeling in contents)
 		changeling.forceMove(get_turf(src))
 		changeling.throw_at(landing_target, 2, 2)
-		changeling.visible_message(span_warning("[changeling] is launched out from inside of \the [src]!"), span_changeling("Sensing that something is terribly wrong, we forcibly eject ourselves from \the [src]!"))
+		changeling.visible_message(span_warning("[changeling] 从 [src] 内部被弹射出来！"), span_changeling("察觉到情况严重不对，我们强行把自己从 [src] 中弹射出去！"))
 		playsound(changeling, 'sound/effects/splat.ogg', 50, pressure_affected = FALSE)
 
 //If the meteor misses the station and deletes itself, we make absolutely sure the changeling reaches the station.

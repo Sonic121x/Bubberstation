@@ -1,5 +1,5 @@
 /datum/crafting_recipe/pipe
-	name = "Smart pipe fitting"
+	name = "智能管道配件"
 	tool_behaviors = list(TOOL_WRENCH)
 	result = /obj/item/pipe/quaternary/pipe/crafted
 	reqs = list(/obj/item/stack/sheet/iron = 1)
@@ -7,7 +7,7 @@
 	category = CAT_ATMOSPHERIC
 
 /datum/crafting_recipe/igniter
-	name = "Igniter"
+	name = "点火器"
 	result = /obj/machinery/igniter
 	reqs = list(
 		/obj/item/stack/sheet/iron = 5,
@@ -19,7 +19,7 @@
 	category = CAT_ATMOSPHERIC
 
 /datum/crafting_recipe/air_sensor
-	name = "Monitored Air Sensor"
+	name = "受监测空气传感器"
 	result = /obj/item/air_sensor
 	reqs = list(
 		/obj/item/analyzer = 1,
@@ -29,7 +29,7 @@
 	category = CAT_ATMOSPHERIC
 
 /datum/crafting_recipe/portable_wind_turbine
-	name = "Portable Wind Turbine"
+	name = "便携式风力涡轮机"
 	result = /obj/item/portable_wind_turbine
 	tool_behaviors = list(TOOL_WELDER)
 	reqs = list(
@@ -53,7 +53,7 @@
 	return FALSE
 
 /datum/crafting_recipe/spec_pipe/layer_adapter
-	name = "Layer manifold fitting"
+	name = "跨层歧管配件"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/item/pipe/binary/layer_adapter
 	reqs = list(
@@ -65,7 +65,7 @@
 	pipe_type = /obj/machinery/atmospherics/pipe/layer_manifold
 
 /datum/crafting_recipe/spec_pipe/color_adapter
-	name = "Color adapter fitting"
+	name = "异色转接管配件"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/item/pipe/binary/color_adapter
 	reqs = list(
@@ -77,7 +77,7 @@
 	pipe_type = /obj/machinery/atmospherics/pipe/color_adapter
 
 /datum/crafting_recipe/spec_pipe/he_pipe
-	name = "H/E pipe fitting"
+	name = "热交换管道配件"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/item/pipe/quaternary/he_pipe
 	reqs = list(
@@ -89,7 +89,7 @@
 	pipe_type = /obj/machinery/atmospherics/pipe/heat_exchanging/manifold4w
 
 /datum/crafting_recipe/spec_pipe/he_junction
-	name = "H/E junction fitting"
+	name = "热交换接头配件"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/item/pipe/directional/he_junction
 	reqs = list(
@@ -101,7 +101,7 @@
 	pipe_type = /obj/machinery/atmospherics/pipe/heat_exchanging/junction
 
 /datum/crafting_recipe/spec_pipe/pressure_pump
-	name = "Pressure pump fitting"
+	name = "压力泵配件"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/item/pipe/binary/pressure_pump
 	reqs = list(
@@ -114,7 +114,7 @@
 	pipe_type = /obj/machinery/atmospherics/components/binary/pump
 
 /datum/crafting_recipe/spec_pipe/manual_valve
-	name = "Manual valve fitting"
+	name = "手动阀门配件"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/item/pipe/binary/manual_valve
 	reqs = list(
@@ -126,7 +126,7 @@
 	pipe_type = /obj/machinery/atmospherics/components/binary/valve
 
 /datum/crafting_recipe/spec_pipe/vent
-	name = "Vent pump fitting"
+	name = "通风泵配件"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/item/pipe/directional/vent
 	reqs = list(
@@ -139,7 +139,7 @@
 	pipe_type = /obj/machinery/atmospherics/components/unary/vent_pump
 
 /datum/crafting_recipe/spec_pipe/scrubber
-	name = "Scrubber fitting"
+	name = "空气洗涤器配件"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/item/pipe/directional/scrubber
 	reqs = list(
@@ -152,7 +152,7 @@
 	pipe_type = /obj/machinery/atmospherics/components/unary/vent_scrubber
 
 /datum/crafting_recipe/spec_pipe/filter
-	name = "Filter fitting"
+	name = "过滤器配件"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/item/pipe/trinary/flippable/filter
 	reqs = list(
@@ -165,7 +165,7 @@
 	pipe_type = /obj/machinery/atmospherics/components/trinary/filter
 
 /datum/crafting_recipe/spec_pipe/mixer
-	name = "Mixer fitting"
+	name = "混合器配件"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/item/pipe/trinary/flippable/mixer
 	reqs = list(
@@ -178,7 +178,7 @@
 	pipe_type = /obj/machinery/atmospherics/components/trinary/mixer
 
 /datum/crafting_recipe/spec_pipe/connector
-	name = "Portable connector fitting"
+	name = "便携设备连接口配件"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/item/pipe/directional/connector
 	reqs = list(
@@ -190,7 +190,7 @@
 	pipe_type = /obj/machinery/atmospherics/components/unary/portables_connector
 
 /datum/crafting_recipe/spec_pipe/passive_vent
-	name = "Passive vent fitting"
+	name = "被动通风口配件"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/item/pipe/directional/passive_vent
 	reqs = list(
@@ -202,7 +202,7 @@
 	pipe_type = /obj/machinery/atmospherics/components/unary/passive_vent
 
 /datum/crafting_recipe/spec_pipe/injector
-	name = "Outlet injector fitting"
+	name = "排气喷射器配件"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/item/pipe/directional/injector
 	reqs = list(
@@ -215,7 +215,7 @@
 	pipe_type = /obj/machinery/atmospherics/components/unary/outlet_injector
 
 /datum/crafting_recipe/spec_pipe/he_exchanger
-	name = "Heat exchanger fitting"
+	name = "热交换器配件"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/item/pipe/directional/he_exchanger
 	reqs = list(
@@ -227,7 +227,7 @@
 	pipe_type = /obj/machinery/atmospherics/components/unary/heat_exchanger
 
 /datum/crafting_recipe/steam_vent
-	name = "Steam Vent"
+	name = "蒸汽通风口"
 	result = /obj/structure/steam_vent
 	time = 0.8 SECONDS
 	reqs = list(
@@ -238,7 +238,7 @@
 	category = CAT_ATMOSPHERIC
 
 /datum/crafting_recipe/spec_pipe/airlock_pump
-	name = "External Airlock Pump"
+	name = "外置气闸泵"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/item/pipe/directional/airlock_pump
 	reqs = list(

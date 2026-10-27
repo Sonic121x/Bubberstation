@@ -1,10 +1,10 @@
 /obj/item/style_meter
-	name = "style meter attachment"
-	desc = "Attach this to a pair of glasses to install a style meter system in them. \
-		You get style points from performing stylish acts and lose them for breaking your style. \
-		The style affects the quality of your mining, with you being able to mine ore better during a good chain. \
-		A responsive data HUD gives you the ability to reflect lavaland-based projectiles by punching them with an empty hand. \
-		In addition, at high style, you are able to swap an item in your hand with one in your backpack by <b>hitting</b> one with another."
+	name = "华丽评分仪配件"
+	desc = "将它装在眼镜上，即可安装华丽评分系统。\
+		做出华丽动作可以获得评分，失误则会扣分。\
+		评分会影响采矿效果，连续做出华丽动作时采矿效率更高。\
+		灵敏的数据抬头显示系统让你能够空手击打熔岩地带的投射物，将其弹回。\
+		此外，评分较高时，用手中物品<b>敲击</b>背包中的物品，即可将两者互换。"
 	icon_state = "style_meter"
 	icon = 'icons/obj/clothing/glasses.dmi'
 	w_class = WEIGHT_CLASS_SMALL
@@ -28,7 +28,7 @@
 
 /obj/item/style_meter/examine(mob/user)
 	. = ..()
-	. += span_notice("You feel like a <b>multitool</b> could be used on this.")
+	. += span_notice("你觉得可以对它使用<b>多功能工具</b>。")
 
 /obj/item/style_meter/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!istype(interacting_with, /obj/item/clothing/glasses))
@@ -43,7 +43,7 @@
 	RegisterSignal(interacting_with, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(interacting_with, COMSIG_CLICK_ALT, PROC_REF(on_click_alt))
 	RegisterSignal(interacting_with, COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL), PROC_REF(redirect_multitool))
-	balloon_alert(user, "style meter attached")
+	balloon_alert(user, "已安装华丽评分仪")
 	playsound(src, 'sound/machines/click.ogg', 30, TRUE)
 	if(!ishuman(interacting_with.loc))
 		return .
@@ -88,8 +88,8 @@
 /obj/item/style_meter/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice("You feel like a <b>multitool</b> could be used on this.")
-	examine_list += span_notice("<b>Alt-click</b> to remove the style meter.")
+	examine_list += span_notice("你觉得可以对它使用<b>多功能工具</b>。")
+	examine_list += span_notice("<b>按住 Alt 点击</b>可拆下华丽评分仪。")
 
 
 /// Signal proc to remove from glasses
@@ -106,7 +106,7 @@
 
 /obj/item/style_meter/multitool_act(mob/living/user, obj/item/tool)
 	multitooled = !multitooled
-	balloon_alert(user, "meter [multitooled ? "" : "un"]hacked")
+	balloon_alert(user, "评分仪[multitooled ? "已破解" : "已解除破解"]")
 	style_meter?.multitooled = multitooled
 	return ITEM_INTERACT_SUCCESS
 

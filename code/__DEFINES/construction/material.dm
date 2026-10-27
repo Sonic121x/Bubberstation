@@ -51,13 +51,13 @@
 
 /// Assoc list of material flags used in designs to their display names
 GLOBAL_LIST_INIT(material_flags_to_string, alist(
-	MATERIAL_CLASS_RIGID = "rigid",
-	MATERIAL_CLASS_AMORPHOUS = "amorphous",
-	MATERIAL_CLASS_METAL = "metallic",
-	MATERIAL_CLASS_FABRIC = "fabric",
-	MATERIAL_CLASS_CRYSTAL = "crystalline",
-	MATERIAL_CLASS_ORGANIC = "organic",
-	MATERIAL_CLASS_POLYMER = "polymer",
+	MATERIAL_CLASS_RIGID = "刚性材料",
+	MATERIAL_CLASS_AMORPHOUS = "无定形材料",
+	MATERIAL_CLASS_METAL = "金属材料",
+	MATERIAL_CLASS_FABRIC = "织物",
+	MATERIAL_CLASS_CRYSTAL = "晶体材料",
+	MATERIAL_CLASS_ORGANIC = "有机材料",
+	MATERIAL_CLASS_POLYMER = "聚合物",
 ))
 
 // You can use a calculator at https://www.desmos.com/calculator/wbkx4ttj3j for easy property calculations

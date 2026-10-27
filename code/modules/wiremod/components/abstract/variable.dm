@@ -4,8 +4,8 @@
  * Abstract component for handling variables
  */
 /obj/item/circuit_component/variable
-	display_name = "Abstract Variable Component"
-	desc = "You shouldn't be seeing this."
+	display_name = "抽象变量元件"
+	desc = "你不该看到这个的。"
 
 	/// Variable name
 	var/datum/port/input/option/variable_name

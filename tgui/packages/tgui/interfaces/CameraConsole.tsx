@@ -14,8 +14,8 @@ import { createSearch } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
-type Data = {
+import { areaDisplay, type BatchDisplayData } from '../localization/batchThreeDisplay';
+type Data = BatchDisplayData & {
   activeCamera: Camera & { status: BooleanLike };
   cameras: Camera[];
   can_spy: BooleanLike;
@@ -67,12 +67,12 @@ const prevNextCamera = (
  *
  * Filters cameras, applies search terms and sorts the alphabetically.
  */
-const selectCameras = (cameras: Camera[], searchText = ''): Camera[] => {
+const selectCameras = (cameras: Camera[], searchText = '', data: BatchDisplayData = {}): Camera[] => {
   let queriedCameras = filter(cameras, (camera: Camera) => !!camera.name);
   if (searchText) {
     const testSearch = createSearch(
       searchText,
-      (camera: Camera) => camera.name,
+      (camera: Camera) => `${camera.name} ${areaDisplay(camera.name, data)}`,
     );
     queriedCameras = filter(queriedCameras, testSearch);
   }
@@ -110,7 +110,7 @@ const CameraSelector = (props) => {
   const { act, data } = useBackend<Data>();
   const { searchText, setSearchText } = props;
   const { activeCamera } = data;
-  const cameras = selectCameras(data.cameras, searchText);
+  const cameras = selectCameras(data.cameras, searchText, data);
 
   return (
     <Stack fill vertical>
@@ -131,7 +131,7 @@ const CameraSelector = (props) => {
             // would be absolutely abysmal (50+ ms for each re-render).
             <div
               key={camera.ref}
-              title={camera.name}
+              title={areaDisplay(camera.name, data)}
               className={classes([
                 'Button',
                 'Button--fluid',
@@ -147,7 +147,7 @@ const CameraSelector = (props) => {
                 })
               }
             >
-              {camera.name}
+              {areaDisplay(camera.name, data)}
             </div>
           ))}
         </Section>
@@ -161,7 +161,7 @@ const CameraControls = (props: { searchText: string }) => {
   const { activeCamera, can_spy, mapRef } = data;
   const { searchText } = props;
 
-  const cameras = selectCameras(data.cameras, searchText);
+  const cameras = selectCameras(data.cameras, searchText, data);
 
   const [prevCamera, nextCamera] = prevNextCamera(cameras, activeCamera);
 
@@ -172,7 +172,7 @@ const CameraControls = (props: { searchText: string }) => {
           <Stack fill>
             <Stack.Item grow>
               {activeCamera?.status ? (
-                <NoticeBox info>{activeCamera.name}</NoticeBox>
+                <NoticeBox info>{areaDisplay(activeCamera.name, data)}</NoticeBox>
               ) : (
                 <NoticeBox danger>No input signal</NoticeBox>
               )}

@@ -6,7 +6,7 @@
 /obj/structure/closet/secure_closet/interdynefob/mod_locker
 	icon_door = "syndicate"
 	icon_state = "syndicate"
-	name = "MODsuit module locker"
+	name = "MOD 外骨骼模块储物柜"
 	req_access = list("syndicate_leader")
 
 /obj/structure/closet/secure_closet/interdynefob/mod_locker/PopulateContents()

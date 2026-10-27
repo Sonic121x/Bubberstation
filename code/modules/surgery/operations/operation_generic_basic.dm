@@ -1,10 +1,10 @@
 // Some operations that mirror basic carbon state-moving operations but for basic mobs
 /// Incision of skin for basic mobs
 /datum/surgery_operation/basic/incise_skin
-	name = "make incision"
+	name = "切开皮肤"
 	// rnd_name = "Laparotomy / Craniotomy / Myotomy (Make Incision)" // Maybe we keep this one simple
-	desc = "Make an incision in the patient's skin to access internals. \
-		Causes \"cut skin\" surgical state."
+	desc = "在病人皮肤上做一道切口，以便接触内部器官。 \
+		造成“皮肤切开”手术状态。"
 	implements = list(
 		TOOL_SCALPEL = 1,
 		/obj/item/melee/energy/sword = 1.33,
@@ -22,10 +22,10 @@
 	target_zone = null
 
 /datum/surgery_operation/basic/incise_skin/get_any_tool()
-	return "Any sharp edged item"
+	return "任意带刃物品"
 
 /datum/surgery_operation/basic/incise_skin/all_blocked_strings()
-	return ..() + list("The patient must not have complex anatomy")
+	return ..() + list("病人不能具有复杂解剖结构")
 
 /datum/surgery_operation/basic/incise_skin/get_default_radial_image()
 	return image('icons/hud/surgery_radial.dmi', "make_incision")
@@ -46,20 +46,20 @@
 	display_results(
 		surgeon,
 		patient,
-		span_notice("You begin to make an incision in [patient]..."),
-		span_notice("[surgeon] begins to make an incision in [patient]."),
-		span_notice("[surgeon] begins to make an incision in [patient]."),
+		span_notice("你开始在 [patient] 身上做切口……"),
+		span_notice("[surgeon] 开始在 [patient] 身上做切口。"),
+		span_notice("[surgeon] 开始在 [patient] 身上做切口。"),
 	)
-	display_pain(patient, "You feel a sharp stabbing sensation!")
+	display_pain(patient, "你感到一阵尖锐的刺痛！")
 
 /datum/surgery_operation/basic/incise_skin/on_success(mob/living/patient, mob/living/surgeon, obj/item/tool, list/operation_args)
 	. = ..()
 	patient.apply_status_effect(/datum/status_effect/basic_surgery_state, SURGERY_SKIN_OPEN)
 
 /datum/surgery_operation/basic/saw_bone
-	name = "saw bone"
-	desc = "Saw through the patient's bones to access their internal organs. \
-		Causes \"bone sawed\" surgical state."
+	name = "锯开骨骼"
+	desc = "锯开病人的骨骼，以便接触其内部器官。 \
+		造成“骨骼锯开”手术状态。"
 	implements = list(
 		TOOL_SAW = 1,
 		/obj/item/shovel/serrated = 1.33,
@@ -85,10 +85,10 @@
 	target_zone = null
 
 /datum/surgery_operation/basic/saw_bone/get_any_tool()
-	return "Any sharp edged item with decent force"
+	return "任意有一定力度的带刃物品"
 
 /datum/surgery_operation/basic/saw_bone/all_blocked_strings()
-	return ..() + list("The patient must not have complex anatomy")
+	return ..() + list("病人不能具有复杂解剖结构")
 
 /datum/surgery_operation/basic/saw_bone/get_default_radial_image()
 	return image('icons/hud/surgery_radial.dmi', "mend_incision")
@@ -104,11 +104,11 @@
 	display_results(
 		surgeon,
 		patient,
-		span_notice("You begin to saw through [patient]'s bones..."),
-		span_notice("[surgeon] begins to saw through [patient]'s bones."),
-		span_notice("[surgeon] begins to saw through [patient]'s bones."),
+		span_notice("你开始锯开 [patient] 的骨骼……"),
+		span_notice("[surgeon] 开始锯开 [patient] 的骨骼。"),
+		span_notice("[surgeon] 开始锯开 [patient] 的骨骼。"),
 	)
-	display_pain(patient, "You feel a horrid ache spread through your insides!")
+	display_pain(patient, "你感觉一阵可怕的酸痛在体内蔓延开来！")
 
 /datum/surgery_operation/basic/saw_bone/on_success(mob/living/patient, mob/living/surgeon, obj/item/tool, list/operation_args)
 	. = ..()
@@ -117,17 +117,17 @@
 	display_results(
 		surgeon,
 		patient,
-		span_notice("You saw [patient] open."),
-		span_notice("[surgeon] saws [patient] open!"),
-		span_notice("[surgeon] saws [patient] open!"),
+		span_notice("你把 [patient] 锯开了。"),
+		span_notice("[surgeon] 把 [patient] 锯开了！"),
+		span_notice("[surgeon] 把 [patient] 锯开了！"),
 	)
-	display_pain(patient, "It feels like something just broke!")
+	display_pain(patient, "感觉好像有什么东西刚刚断裂了！")
 
 // Closing of skin for basic mobs
 /datum/surgery_operation/basic/close_skin
-	name = "mend incision"
-	desc = "Mend the incision in the patient's skin, closing it up. \
-		Clears most surgical states."
+	name = "闭合切口"
+	desc = "修补病人皮肤上的切口，将其闭合。 \
+		清除大多数手术状态。"
 	implements = list(
 		TOOL_CAUTERY = 1,
 		/obj/item/stack/medical/suture = 1,
@@ -148,10 +148,10 @@
 	target_zone = null
 
 /datum/surgery_operation/basic/close_skin/get_any_tool()
-	return "Any heat source"
+	return "任意热源"
 
 /datum/surgery_operation/basic/close_skin/all_blocked_strings()
-	return ..() + list("The patient must not have complex anatomy")
+	return ..() + list("病人不能具有复杂解剖结构")
 
 /datum/surgery_operation/basic/close_skin/get_default_radial_image()
 	return image(/obj/item/cautery)
@@ -173,11 +173,11 @@
 	display_results(
 		surgeon,
 		patient,
-		span_notice("You begin to mend the incision in [patient]..."),
-		span_notice("[surgeon] begins to mend the incision in [patient]."),
-		span_notice("[surgeon] begins to mend the incision in [patient]."),
+		span_notice("你开始修补 [patient] 身上的切口……"),
+		span_notice("[surgeon] 开始修补 [patient] 身上的切口。"),
+		span_notice("[surgeon] 开始修补 [patient] 身上的切口。"),
 	)
-	display_pain(patient, "You are being [istype(tool, /obj/item/stack/medical/suture) ? "pinched" : "burned"]!")
+	display_pain(patient, "你正被[istype(tool, /obj/item/stack/medical/suture) ? "夹住" : "灼烧"]！")
 
 /datum/surgery_operation/basic/close_skin/on_success(mob/living/patient, mob/living/surgeon, obj/item/tool, list/operation_args)
 	. = ..()

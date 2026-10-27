@@ -2,7 +2,7 @@
 
 // Reskinned soil to make it look like its turf, but its not!
 /obj/machinery/hydroponics/soil/fake_turf
-	desc = "A patch of fertile soil that you can plant stuff in."
+	desc = "一片可以种东西的肥沃土壤。"
 	icon = 'icons/turf/floors.dmi' // This makes it look like the dirt floor
 	icon_state = "dirt"
 	layer = LOW_FLOOR_LAYER
@@ -11,7 +11,7 @@
 	pixel_z = 0
 
 /turf/closed/indestructible/normal_wall
-	name = "wall"
+	name = "墙壁"
 	icon = 'modular_zubbers/icons/turf/walls/wall.dmi'
 	icon_state = "wall-0"
 	base_icon_state = "wall"
@@ -26,7 +26,7 @@
 	icon_state = /obj/machinery/door/poddoor::icon_state
 
 /turf/open/skyline
-	name = "long way down"
+	name = "深不见底"
 	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/background.dmi'
 	base_icon_state = "0,34"
 

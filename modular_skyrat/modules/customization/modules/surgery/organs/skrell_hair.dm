@@ -1,6 +1,6 @@
 /obj/item/organ/skrell_hair
-	name = "skrell_hair"
-	desc = "Hair isn't really the best way to describe it, but you really can't think of any other word that makes sense."
+	name = "斯克雷尔头发"
+	desc = "用“头发”来形容它其实不太准确，但你也实在想不出别的词了。"
 	icon_state = "random_fly_1"
 
 	mutantpart_key = "skrell_hair"

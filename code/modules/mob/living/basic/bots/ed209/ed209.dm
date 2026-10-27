@@ -1,6 +1,6 @@
 /mob/living/basic/bot/secbot/ed209
-	name = "\improper ED-209 Security Robot"
-	desc = "A security robot. He looks less than thrilled."
+	name = "\improper ED-209 安保机器人"
+	desc = "一台安保机器人。它看起来一点也不高兴。"
 	icon_state = "ed209"
 	base_icon_state = "ed209"
 	light_color = "#f84e4e"
@@ -12,7 +12,7 @@
 	mob_size = MOB_SIZE_LARGE
 	ai_controller = /datum/ai_controller/basic_controller/bot/ed209
 	bot_type = ADVANCED_SEC_BOT
-	hackables = "combat inhibitors"
+	hackables = "战斗抑制器"
 
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20.3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2.1)
 
@@ -49,7 +49,7 @@
 	AddComponent(/datum/component/defaceable, \
 		icon = 'icons/mob/silicon/aibot_faces.dmi', \
 		icon_states = list("ed209" = FALSE, "ed209_highlight" = TRUE), \
-		drawing_of = "a face", \
+		drawing_of = "一张脸", \
 	)
 	AddComponent(/datum/component/stun_n_cuff,\
 		stun_sound = 'sound/items/weapons/egloves.ogg',\
@@ -67,7 +67,7 @@
 	if(!sheriffized || !COOLDOWN_FINISHED(src, shoot_cry))
 		return
 	COOLDOWN_START(src, shoot_cry, 30 SECONDS)
-	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "YIPPIE-KI-YAY!")
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "呀呼——奇——耶！")
 
 /mob/living/basic/bot/secbot/ed209/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -76,7 +76,7 @@
 /mob/living/basic/bot/secbot/ed209/examine(mob/user)
 	. = ..()
 	if(sheriffized)
-		. += span_notice("Fastest hand in the west.")
+		. += span_notice("西部拔枪最快的手。")
 
 /mob/living/basic/bot/secbot/ed209/bot_reset(bypass_ai_reset = FALSE)
 	. = ..()
@@ -90,8 +90,8 @@
 	. = ..()
 	icon_state = "ed209[bot_mode_flags & BOT_MODE_ON]"
 	set_weapon()
-	balloon_alert(user, "safeties disabled")
-	audible_message(span_bolddanger("[src] buzzes menacingly!"))
+	balloon_alert(user, "安全装置已解除")
+	audible_message(span_bolddanger("[src] 发出威胁性的嗡鸣！"))
 	return TRUE
 
 /mob/living/basic/bot/secbot/ed209/proc/set_weapon()
@@ -150,8 +150,8 @@
 	QDEL_NULL(bot_charge)
 
 /mob/living/basic/bot/secbot/ed209/nukie
-	name = "\improper ED-209(+1) Syndicate Robot"
-	desc = "Wait this one's red? This cannot be good... right??"
+	name = "\improper ED-209(+1) 辛迪加机器人"
+	desc = "等等，这台是红色的？这可不太妙……对吧？？"
 	icon_state = "red209"
 	light_color = "#5c0909"
 	faction = list(ROLE_SYNDICATE)
@@ -165,7 +165,7 @@
 	radio_channel = RADIO_CHANNEL_SYNDICATE
 	ai_controller = /datum/ai_controller/basic_controller/bot/ed209/syndicate
 	bot_type = ADVANCED_SEC_BOT
-	hackables = "combat inhibitors"
+	hackables = "战斗抑制器"
 	projectile_sound = 'sound/items/weapons/gun/l6/shot.ogg'
 	projectile_type = /obj/projectile/bullet/a7mm
 	emagged_projectile_sound = 'sound/items/weapons/minebot_rocket.ogg'

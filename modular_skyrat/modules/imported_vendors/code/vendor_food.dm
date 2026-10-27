@@ -3,8 +3,8 @@
 /* TRASH */
 
 /obj/item/trash/empty_food_tray
-	name = "empty plastic food tray"
-	desc = "The condensation and what you can only hope are the leftovers of food make this a bit hard to reuse."
+	name = "空的塑料餐盘"
+	desc = "冷凝水，再加上那些你只能祈祷是食物残渣的东西，让它有点难以重复使用。"
 	icon = 'modular_skyrat/modules/imported_vendors/icons/imported_quick_foods.dmi'
 	icon_state = "foodtray_empty"
 	custom_materials = list(
@@ -12,8 +12,8 @@
 	)
 
 /obj/item/trash/empty_side_pack
-	name = "empty side wrapper"
-	desc = "Unfortunately, this no longer holds any sides to distract you from the other 'food'."
+	name = "空的配菜包装纸"
+	desc = "遗憾的是，这里面已经没有配菜能分散你对其他“食物”的注意力了。"
 	icon = 'modular_skyrat/modules/imported_vendors/icons/imported_quick_foods.dmi'
 	icon_state = "foodpack_generic_trash"
 	custom_materials = list(
@@ -39,13 +39,13 @@
 */
 
 /obj/item/food/vendor_tray_meal
-	name = "\improper NT-Meal: Steak and Macaroni"
-	desc = "A 'salisbury steak' drowning in something similar to a gravy, with a macaroni and cheese substitute mix sitting right beside it."
+	name = "\improper NT 餐：牛排通心粉"
+	desc = "一块浸在类似肉汁里的“索尔兹伯里肉饼”，旁边还配着一份通心粉与芝士的替代混合酱。"
 	icon = 'modular_skyrat/modules/imported_vendors/icons/imported_quick_foods.dmi'
 	icon_state = "foodtray_sad_steak"
 	trash_type = /obj/item/trash/empty_food_tray
 	food_reagents = list(/datum/reagent/consumable/nutriment = 8)
-	tastes = list("meat?" = 2, "cheese?" = 2, "laziness" = 1)
+	tastes = list("肉？" = 2, "芝士？" = 2, "慵懒" = 1)
 	foodtypes = MEAT | GRAIN | DAIRY
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
@@ -59,25 +59,25 @@
 
 /obj/item/food/vendor_tray_meal/examine_more(mob/user)
 	. = ..()
-	. += span_notice("<i>You browse the back of the box...</i>")
-	. += "\t[span_warning("Warning: Packaged in a factory where every allergen known is present.")]"
-	. += "\t[span_warning("Warning: Contents might be hot.")]"
-	. += "\t[span_info("Per 200g serving contains: 8g Sodium; 25g Fat, of which 22g are saturated; 2g Sugar.")]"
+	. += span_notice("<i>你翻看包装盒的背面……</i>")
+	. += "\t[span_warning("警告：本产品在存在已知所有过敏原的工厂中包装。")]"
+	. += "\t[span_warning("警告：内容物可能很烫。")]"
+	. += "\t[span_info("每 200 克含：钠 8 克；脂肪 25 克，其中饱和脂肪 22 克；糖 2 克。")]"
 	return .
 
 /obj/item/food/vendor_tray_meal/burger
-	name = "\improper NT-Meal: Cheeseburger"
-	desc = "A pretty sad looking burger with a kinda soggy bottom bun and highlighter yellow cheese."
+	name = "\improper NT 餐：芝士汉堡"
+	desc = "一个卖相相当凄惨的汉堡，底层面包有点发潮，芝士是荧光笔般的黄色。"
 	icon_state = "foodtray_burg"
-	tastes = list("bread" = 2, "meat?" = 2, "cheese?" = 2, "laziness" = 1)
+	tastes = list("面包" = 2, "肉？" = 2, "芝士？" = 2, "慵懒" = 1)
 	foodtypes = MEAT | GRAIN | DAIRY
 
 /obj/item/food/vendor_tray_meal/chicken_sandwich
-	name = "\improper NT-Meal: Spicy Chicken Sandwich"
-	desc = "A pretty sad looking chicken sandwich, the 'meat' patty is covered in so many manufactured spices that it has become an eerie red color."
+	name = "\improper NT 餐：香辣鸡肉三明治"
+	desc = "一个卖相相当凄惨的鸡肉三明治，那块“肉”饼裹满了人工香料，已经变成了诡异的红色。"
 	icon_state = "foodtray_chickie_sandwich"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/capsaicin = 10)
-	tastes = list("bread" = 2, "chicken?" = 2, "overwhelming spice" = 2, "laziness" = 1)
+	tastes = list("面包" = 2, "鸡肉？" = 2, "铺天盖地的辣味" = 2, "慵懒" = 1)
 	foodtypes = MEAT | GRAIN | DAIRY
 
 /*
@@ -85,24 +85,24 @@
 */
 
 /obj/item/food/vendor_tray_meal/ramen
-	name = "\improper Meinkosu: Homestyle Noodles"
-	desc = "A brick of the finest factory made ramen, with a small amount of rehydrated vegetables and herbs floating around."
+	name = "\improper 明科苏：家常面"
+	desc = "一块顶级工厂生产的拉面面饼，汤里漂着少量复水蔬菜和香草。"
 	icon_state = "foodtray_noodle"
-	tastes = list("cheap noodles" = 2, "laziness" = 1)
+	tastes = list("廉价面条" = 2, "慵懒" = 1)
 	foodtypes = GRAIN | VEGETABLES
 
 /obj/item/food/vendor_tray_meal/sushi
-	name = "\improper Meinkosu: Fresh Carp Rolls"
-	desc = "A pair of sushi rolls, the appearance of which would suggest that the label is lying to you."
+	name = "\improper 明科苏：鲜鲤鱼卷"
+	desc = "两卷寿司，从外观来看，标签大概在骗你。"
 	icon_state = "foodtray_gas_station_sushi"
-	tastes = list("imitation space carp" = 2, "stale rice" = 2, "laziness" = 1)
+	tastes = list("仿太空鲤鱼" = 2, "不新鲜的米饭" = 2, "慵懒" = 1)
 	foodtypes = GRAIN | SEAFOOD
 
 /obj/item/food/vendor_tray_meal/beef_rice
-	name = "\improper Meinkosu: Beef and Fried Rice"
-	desc = "A few slices of seemingly grilled beef, paired with a disproportionately large amount of rice."
+	name = "\improper 明科苏：牛肉炒饭"
+	desc = "几片看似烤过的牛肉，配着分量极不相称的一大堆米饭。"
 	icon_state = "foodtray_beef_n_rice"
-	tastes = list("cheap beef" = 1, "rice" = 3, "laziness" = 1)
+	tastes = list("廉价牛肉" = 1, "米饭" = 3, "慵懒" = 1)
 	foodtypes = GRAIN | MEAT
 
 /*
@@ -110,24 +110,24 @@
 */
 
 /obj/item/food/vendor_tray_meal/pesto_pizza
-	name = "\improper Main Course - Type M: Pesto Pizza"
-	desc = "A rectangular pizza with a suspiciously bright green pesto in place of the standard tomato sauce."
+	name = "\improper 主菜 - M 型：青酱披萨"
+	desc = "一块长方形披萨，本该是番茄酱的位置上铺着颜色鲜绿得可疑的青酱。"
 	icon_state = "foodtray_pesto_pizza"
-	tastes = list("tomato?" = 2, "cheese?" = 2, "herbs" = 1, "laziness" = 1)
+	tastes = list("番茄？" = 2, "芝士？" = 2, "香草" = 1, "慵懒" = 1)
 	foodtypes = GRAIN | DAIRY | VEGETABLES
 
 /obj/item/food/vendor_tray_meal/baked_rice
-	name = "\improper Main Course - Type M: Baked Rice and Grilled Cheese"
-	desc = "Some sub-par looking fleet style rice, with a very grilled chunk of cheese."
+	name = "\improper 主菜 - M 型：焗饭配烤芝士"
+	desc = "一些卖相欠佳的舰队风味米饭，配着一大块烤得焦硬的芝士。"
 	icon_state = "foodtray_rice_n_grilled_cheese"
-	tastes = list("rice" = 2, "peppers" = 2, "charred cheese" = 2, "laziness" = 1)
+	tastes = list("米饭" = 2, "胡椒" = 2, "焦芝士" = 2, "慵懒" = 1)
 	foodtypes = GRAIN | DAIRY | VEGETABLES
 
 /obj/item/food/vendor_tray_meal/fueljack
-	name = "\improper Main Course - Type M: Fueljack's Tray"
-	desc = "A flat chunk of fueljack's lunch, seemingly missing most of the usual variety in ingredients."
+	name = "\improper 主菜 - M 型：燃料工套餐"
+	desc = "一块扁平的燃料工午餐饼，配料似乎缺了惯有的多样性。"
 	icon_state = "foodtray_fuel_jacks_meal"
-	tastes = list("potato" = 2, "cabbage" = 2, "cheese?" = 2, "laziness" = 1)
+	tastes = list("土豆" = 2, "卷心菜" = 2, "芝士？" = 2, "慵懒" = 1)
 	foodtypes = DAIRY | VEGETABLES
 
 /*
@@ -135,31 +135,31 @@
 */
 
 /obj/item/food/vendor_tray_meal/moonfish_nizaya
-	name = "\improper Tizira Imports: Moonfish and Nizaya"
-	desc = "An almost synthetic looking cut of moonfish, paired with an equal helping of nizaya pasta."
+	name = "\improper 提兹拉进口：月鱼配尼扎亚面"
+	desc = "一块看起来几乎像人造的月鱼肉，配着等量的尼扎亚面。"
 	icon_state = "foodtray_moonfish_nizaya"
-	tastes = list("fish?" = 2, "cheap noodles" = 2, "laziness" = 1)
+	tastes = list("鱼？" = 2, "廉价面条" = 2, "慵懒" = 1)
 	foodtypes = VEGETABLES | NUTS | SEAFOOD
 
 /obj/item/food/vendor_tray_meal/emperor_roll
-	name = "\improper Tizira Imports: Emperor Roll"
-	desc = "A pretty sad looking emperor roll, if you can even call it that; it seems caviar wasn't in the budget."
+	name = "\improper 提兹拉进口：皇帝卷"
+	desc = "一个卖相相当凄惨的皇帝卷——如果你还能这么叫它的话；看来鱼子酱并不在预算之内。"
 	icon_state = "foodtray_emperor_roll"
-	tastes = list("bread" = 2, "cheese?" = 2, "liver?" = 2, "laziness" = 1)
+	tastes = list("面包" = 2, "芝士？" = 2, "肝脏？" = 2, "慵懒" = 1)
 	foodtypes = VEGETABLES | NUTS | MEAT | GORE
 
 /obj/item/food/vendor_tray_meal/mushroom_fry
-	name = "\improper Tizira Imports: Mushroom Stirfry"
-	desc = "A mix of what was likely mushrooms too low quality to be used in making actual food, lightly fried and tossed in a plastic container together."
+	name = "\improper 提兹拉进口：炒蘑菇"
+	desc = "几种大概率是因为品质太差、没法做成正经食物的蘑菇混在一起，稍微炒过之后就被倒进塑料盒里。"
 	icon_state = "foodtray_shroom_fry"
-	tastes = list("mushroom" = 4, "becoming rich" = 1, "laziness" = 1)
+	tastes = list("蘑菇" = 4, "变得富有" = 1, "慵懒" = 1)
 	foodtypes = VEGETABLES
 
 /* SIDES */
 
 /obj/effect/spawner/random/vendor_meal_sides
-	name = "random side spawner"
-	desc = "I hope I get one that actually matches my meal."
+	name = "随机配菜生成器"
+	desc = "希望我能拿到一份真正配得上我这顿饭的配菜。"
 	icon_state = "loot"
 
 /*
@@ -167,7 +167,7 @@
 */
 
 /obj/effect/spawner/random/vendor_meal_sides/nt
-	name = "random nt side spawner"
+	name = "随机 NT 配菜生成器"
 
 /obj/effect/spawner/random/vendor_meal_sides/nt/Initialize(mapload)
 	loot = list(
@@ -178,26 +178,26 @@
 	. = ..()
 
 /obj/item/food/vendor_tray_meal/side
-	name = "\improper NT-Side: Flatbread and Peanut Butter"
-	desc = "A small stack of tough flatbread, and a small spread of peanut butter for each."
+	name = "\improper NT 配菜：扁面包配花生酱"
+	desc = "一小叠硬邦邦的扁面包，每片配一小抹花生酱。"
 	icon_state = "foodpack_nt"
 	trash_type = /obj/item/trash/empty_side_pack/nt
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	tastes = list("tough bread" = 2, "peanut butter" = 2)
+	tastes = list("硬面包" = 2, "花生酱" = 2)
 	foodtypes = GRAIN
 	hot_and_steamy = FALSE
 	custom_price = PAYCHECK_LOWER * 2.5
 
 /obj/item/food/vendor_tray_meal/side/crackers_and_jam
-	name = "\improper NT-Side: Flatbread and Berry Jelly"
-	desc = "A small stack of tough flatbread, and a small spread of nondescript berry jelly for each."
-	tastes = list("tough bread" = 2, "berries" = 2)
+	name = "\improper NT 配菜：扁面包配浆果果酱"
+	desc = "一小叠硬邦邦的扁面包，每片配一小抹说不上是什么浆果的果酱。"
+	tastes = list("硬面包" = 2, "浆果" = 2)
 	foodtypes = GRAIN | FRUIT
 
 /obj/item/food/vendor_tray_meal/side/crackers_and_cheese
-	name = "\improper NT-Side: Flatbread and Cheese Spread"
-	desc = "A small stack of tough flatbread, and a small spread of cheese for each."
-	tastes = list("tough bread" = 2, "cheese" = 2)
+	name = "\improper NT 配菜：扁面包配芝士酱"
+	desc = "一小叠硬邦邦的扁面包，每片配一小抹芝士。"
+	tastes = list("硬面包" = 2, "芝士" = 2)
 	foodtypes = GRAIN | DAIRY
 
 /*
@@ -205,7 +205,7 @@
 */
 
 /obj/effect/spawner/random/vendor_meal_sides/yangyu
-	name = "random yangyu side spawner"
+	name = "随机火星洋语配菜生成器"
 
 /obj/effect/spawner/random/vendor_meal_sides/yangyu/Initialize(mapload)
 	loot = list(
@@ -216,27 +216,27 @@
 	. = ..()
 
 /obj/item/food/vendor_tray_meal/side/miso
-	name = "\improper Fukusai: Miso Soup"
-	desc = "This is quite literally just a plastic bag full of miso soup, opening it on any side other than the one indicated may result in spilled soup."
+	name = "\improper 福赛：味噌汤"
+	desc = "这真的就是一个装满味噌汤的塑料袋，若从非指定的一侧撕开，汤可能会洒出来。"
 	icon_state = "foodpack_yangyu"
 	trash_type = /obj/item/trash/empty_side_pack/yangyu
-	tastes = list("miso" = 2)
+	tastes = list("味噌" = 2)
 	foodtypes = VEGETABLES
 
 /obj/item/food/vendor_tray_meal/side/rice
-	name = "\improper Fukusai: White Rice"
-	desc = "A bag stuffed full of white rice, in case your meal didn't come with enough to sate your needs."
+	name = "\improper 福赛：白米饭"
+	desc = "一整袋白米饭，以防你的主食没能让你吃饱。"
 	icon_state = "foodpack_yangyu"
 	trash_type = /obj/item/trash/empty_side_pack/yangyu
-	tastes = list("old rice" = 2)
+	tastes = list("陈米饭" = 2)
 	foodtypes = GRAIN
 
 /obj/item/food/vendor_tray_meal/side/pickled_vegetables
-	name = "\improper Fukusai: Pickled Vegetables"
-	desc = "Contains a small assortment of vegetables pickled in a vinegar-like solution."
+	name = "\improper 福赛：腌菜"
+	desc = "里面装着几样用类似醋的溶液腌制的蔬菜。"
 	icon_state = "foodpack_yangyu"
 	trash_type = /obj/item/trash/empty_side_pack/yangyu
-	tastes = list("vinegar" = 4)
+	tastes = list("醋" = 4)
 	foodtypes = VEGETABLES
 
 /*
@@ -244,7 +244,7 @@
 */
 
 /obj/effect/spawner/random/vendor_meal_sides/moth
-	name = "random mothic side spawner"
+	name = "随机蛾族配菜生成器"
 
 /obj/effect/spawner/random/vendor_meal_sides/moth/Initialize(mapload)
 	loot = list(
@@ -255,27 +255,27 @@
 	. = ..()
 
 /obj/item/food/vendor_tray_meal/side/moffin
-	name = "\improper Side Course - Type M: Moffin"
-	desc = "The result of taking a perfectly fine moffin, and flattening it into a more wafer-like form."
+	name = "\improper 配菜 - M 型：蛾松饼"
+	desc = "把一个本来好好的蛾松饼压扁成更接近薄饼的形态后的产物。"
 	icon_state = "foodpack_moth"
 	trash_type = /obj/item/trash/empty_side_pack/moth
-	tastes = list("fabric?" = 2, "sugar" = 2)
+	tastes = list("布料？" = 2, "糖" = 2)
 	foodtypes = CLOTH | GRAIN | SUGAR
 
 /obj/item/food/vendor_tray_meal/side/cornbread
-	name = "\improper Side Course - Type M: Cornbread"
-	desc = "A flattened cut of sweetened cornbread, goes well with butter."
+	name = "\improper 配菜 - M 型：玉米面包"
+	desc = "一块压扁的甜玉米面包，配黄油更佳。"
 	icon_state = "foodpack_moth"
 	trash_type = /obj/item/trash/empty_side_pack/moth
-	tastes = list("cornbread" = 2, "sweetness" = 2)
+	tastes = list("玉米面包" = 2, "甜味" = 2)
 	foodtypes = GRAIN | SUGAR
 
 /obj/item/food/vendor_tray_meal/side/roasted_seeds
-	name = "\improper Side Course - Type M: Roasted Seeds"
-	desc = "A packet full of various oven roasted seeds."
+	name = "\improper 配菜 - M 型：烤种子"
+	desc = "一整包各式烤箱烘烤的种子。"
 	icon_state = "foodpack_moth"
 	trash_type = /obj/item/trash/empty_side_pack/moth
-	tastes = list("seeds" = 2, "char" = 2)
+	tastes = list("种子" = 2, "焦糊" = 2)
 	foodtypes = NUTS
 
 /*
@@ -283,7 +283,7 @@
 */
 
 /obj/effect/spawner/random/vendor_meal_sides/tizira
-	name = "random tiziran side spawner"
+	name = "随机提兹拉配菜生成器"
 
 /obj/effect/spawner/random/vendor_meal_sides/tizira/Initialize(mapload)
 	loot = list(
@@ -294,25 +294,25 @@
 	. = ..()
 
 /obj/item/food/vendor_tray_meal/side/root_crackers
-	name = "\improper Tizira Imports: Rootbread Crackers and Pate"
-	desc = "A small stack of rootbread crackers, with a small spread of meat pate for each."
+	name = "\improper 提兹拉进口：根面包饼干配肉酱"
+	desc = "一小叠根面包饼干，每片配一小抹肉酱。"
 	icon_state = "foodpack_tizira"
 	trash_type = /obj/item/trash/empty_side_pack/tizira
-	tastes = list("tough rootbread" = 2, "pate" = 2)
+	tastes = list("硬根面包" = 2, "肉酱" = 2)
 	foodtypes = VEGETABLES | NUTS | MEAT
 
 /obj/item/food/vendor_tray_meal/side/korta_brittle
-	name = "\improper Tizira Imports: Korta Brittle"
-	desc = "A perfectly rectangular portion of unsweetened korta brittle."
+	name = "\improper 提兹拉进口：科塔脆糖"
+	desc = "一份切得方方正正的无糖科塔脆糖。"
 	icon_state = "foodpack_tizira"
 	trash_type = /obj/item/trash/empty_side_pack/tizira
-	tastes = list("peppery heat" = 2)
+	tastes = list("胡椒般的辛辣" = 2)
 	foodtypes = NUTS
 
 /obj/item/food/vendor_tray_meal/side/crispy_headcheese
-	name = "\improper Tizira Imports: Crisped Headcheese"
-	desc = "A processed looking block of breaded headcheese."
+	name = "\improper 提兹拉进口：酥炸裹粉头肉冻"
+	desc = "一块裹了面包糠、看起来经过加工的头肉冻。"
 	icon_state = "foodpack_tizira"
 	trash_type = /obj/item/trash/empty_side_pack/tizira
-	tastes = list("cheese" = 1, "oil" = 1)
+	tastes = list("芝士" = 1, "油" = 1)
 	foodtypes = MEAT | VEGETABLES | NUTS | GORE

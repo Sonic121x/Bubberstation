@@ -22,47 +22,47 @@
 
 /datum/team/nuclear/roundend_report()
 	var/list/parts = list()
-	parts += span_header("[syndicate_name] Operatives:")
+	parts += span_header("[syndicate_name] 特工：")
 
 	switch(get_result())
 		if(NUKE_RESULT_FLUKE)
-			parts += "<span class='redtext big'>Humiliating Syndicate Defeat</span>"
-			parts += "<B>The crew of [station_name()] gave [syndicate_name] operatives back their bomb! The syndicate base was destroyed!</B> Next time, don't lose the nuke!"
+			parts += "<span class='redtext big'>辛迪加的可耻失败</span>"
+			parts += "<B>[station_name()]的船员把炸弹还给了[syndicate_name]特工！辛迪加基地被摧毁了！</B>下次别再弄丢核弹了！"
 		if(NUKE_RESULT_NUKE_WIN)
-			parts += "<span class='greentext big'>Syndicate Major Victory!</span>"
-			parts += "<B>[syndicate_name] operatives have destroyed [station_name()]!</B>"
+			parts += "<span class='greentext big'>辛迪加大胜！</span>"
+			parts += "<B>[syndicate_name]特工摧毁了[station_name()]！</B>"
 		if(NUKE_RESULT_NOSURVIVORS)
-			parts += "<span class='neutraltext big'>Total Annihilation!</span>"
-			parts += "<B>[syndicate_name] operatives destroyed [station_name()] but did not leave the area in time and got caught in the explosion.</B> Next time, don't lose the disk!"
+			parts += "<span class='neutraltext big'>彻底毁灭！</span>"
+			parts += "<B>[syndicate_name]特工摧毁了[station_name()]，却未能及时撤离，被卷入了爆炸。</B>下次别再弄丢磁盘了！"
 		if(NUKE_RESULT_WRONG_STATION)
-			parts += "<span class='redtext big'>Crew Minor Victory!</span>"
-			parts += "<B>[syndicate_name] operatives secured the authentication disk but blew up something that wasn't [station_name()].</B> Next time, don't do that!"
+			parts += "<span class='redtext big'>船员小胜！</span>"
+			parts += "<B>[syndicate_name]特工拿到了认证磁盘，却炸毁了某个并非[station_name()]的东西。</B>下次别这么干！"
 		if(NUKE_RESULT_WRONG_STATION_DEAD)
-			parts += "<span class='redtext big'>[syndicate_name] operatives have earned Darwin Award!</span>"
-			parts += "<B>[syndicate_name] operatives blew up something that wasn't [station_name()] and got caught in the explosion.</B> Next time, don't do that!"
+			parts += "<span class='redtext big'>[syndicate_name]特工荣获达尔文奖！</span>"
+			parts += "<B>[syndicate_name]特工炸毁了某个并非[station_name()]的东西，并被卷入爆炸。</B>下次别这么干！"
 		if(NUKE_RESULT_HIJACK_DISK)
-			parts += "<span class='greentext big'>Syndicate Miniscule Victory!</span>"
-			parts += "<B>[syndicate_name] operatives failed to destroy [station_name()], but they managed to secure the disk and hijack the emergency shuttle, causing it to land on the syndicate base. Good job?</B>"
+			parts += "<span class='greentext big'>辛迪加微不足道的胜利！</span>"
+			parts += "<B>[syndicate_name]特工未能摧毁[station_name()]，但设法拿到了磁盘并劫持了紧急穿梭机，使它降落在辛迪加基地。干得不错？</B>"
 		if(NUKE_RESULT_HIJACK_NO_DISK)
-			parts += "<span class='greentext big'>Syndicate Insignificant Victory!</span>"
-			parts += "<B>[syndicate_name] operatives failed to destroy [station_name()] or secure the disk, but they managed to hijack the emergency shuttle, causing it to land on the syndicate base. Good job?</B>"
+			parts += "<span class='greentext big'>辛迪加无足轻重的胜利！</span>"
+			parts += "<B>[syndicate_name]特工既未能摧毁[station_name()]，也没能拿到磁盘，但设法劫持了紧急穿梭机，使它降落在辛迪加基地。干得不错？</B>"
 		if(NUKE_RESULT_CREW_WIN_SYNDIES_DEAD)
-			parts += "<span class='redtext big'>Crew Major Victory!</span>"
-			parts += "<B>The Research Staff has saved the disk and killed the [syndicate_name] Operatives</B>"
+			parts += "<span class='redtext big'>船员大胜！</span>"
+			parts += "<B>科研人员保住了磁盘，并击杀了[syndicate_name]特工</B>"
 		if(NUKE_RESULT_CREW_WIN)
-			parts += "<span class='redtext big'>Crew Major Victory!</span>"
-			parts += "<B>The Research Staff has saved the disk and stopped the [syndicate_name] Operatives!</B>"
+			parts += "<span class='redtext big'>船员大胜！</span>"
+			parts += "<B>科研人员保住了磁盘，并阻止了[syndicate_name]特工！</B>"
 		if(NUKE_RESULT_DISK_LOST)
-			parts += "<span class='neutraltext big'>Neutral Victory!</span>"
-			parts += "<B>The Research Staff failed to secure the authentication disk but did manage to kill most of the [syndicate_name] Operatives!</B>"
+			parts += "<span class='neutraltext big'>中立胜利！</span>"
+			parts += "<B>科研人员未能保住认证磁盘，但成功击杀了大部分[syndicate_name]特工！</B>"
 		if(NUKE_RESULT_DISK_STOLEN)
-			parts += "<span class='greentext big'>Syndicate Minor Victory!</span>"
-			parts += "<B>[syndicate_name] operatives survived the assault but did not achieve the destruction of [station_name()].</B> Next time, don't lose the disk!"
+			parts += "<span class='greentext big'>辛迪加小胜！</span>"
+			parts += "<B>[syndicate_name]特工在突袭中幸存，但未能摧毁[station_name()]。</B>下次别再弄丢磁盘了！"
 		else
-			parts += "<span class='neutraltext big'>Neutral Victory</span>"
-			parts += "<B>Mission aborted!</B>"
+			parts += "<span class='neutraltext big'>中立胜利</span>"
+			parts += "<B>任务中止！</B>"
 
-	var/text = span_header("<br>The syndicate operatives were:")
+	var/text = span_header("<br>辛迪加特工有：")
 	var/purchases = ""
 	var/TC_uses = 0
 	LAZYINITLIST(GLOB.uplink_purchase_logs_by_key)
@@ -74,7 +74,7 @@
 			purchases += H.generate_render(show_key = FALSE)
 	text += printplayerlist(members)
 	text += "<br>"
-	text += "(Syndicates used [TC_uses] TC) [purchases]"
+	text += "（辛迪加共使用了 [TC_uses] TC）[purchases]"
 	if(TC_uses == 0 && GLOB.station_was_nuked && !are_all_operatives_dead())
 		text += "<BIG>[icon2html('icons/ui/antags/badass.dmi', world, "badass")]</BIG>"
 
@@ -84,12 +84,12 @@
 
 /datum/team/nuclear/antag_listing_name()
 	if(syndicate_name)
-		return "[syndicate_name] Syndicates"
+		return "[syndicate_name]辛迪加"
 	else
-		return "Syndicates"
+		return "辛迪加"
 
 /datum/team/nuclear/antag_listing_entry()
-	var/disk_report = "<b>Nuclear Disk(s)</b><br>"
+	var/disk_report = "<b>核认证磁盘</b><br>"
 	disk_report += "<table cellspacing=5>"
 	for(var/obj/item/disk/nuclear/N in SSpoints_of_interest.real_nuclear_disks)
 		disk_report += "<tr><td>[N.name], "
@@ -97,12 +97,12 @@
 		while(!isturf(disk_loc))
 			if(ismob(disk_loc))
 				var/mob/M = disk_loc
-				disk_report += "carried by <a href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[REF(M)]'>[M.real_name]</a> "
+				disk_report += "由 <a href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[REF(M)]'>[M.real_name]</a> 携带 "
 			if(isobj(disk_loc))
 				var/obj/O = disk_loc
-				disk_report += "in \a [O.name] "
+				disk_report += "位于[O.name]中 "
 			disk_loc = disk_loc.loc
-		disk_report += "in [disk_loc.loc] at ([disk_loc.x], [disk_loc.y], [disk_loc.z])</td><td><a href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(N)]'>FLW</a></td></tr>"
+		disk_report += "位于 [disk_loc.loc]，坐标 ([disk_loc.x], [disk_loc.y], [disk_loc.z])</td><td><a href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(N)]'>FLW</a></td></tr>"
 	disk_report += "</table>"
 
 	var/post_report
@@ -115,18 +115,18 @@
 	var/force_war_button = ""
 
 	if(war_declared)
-		post_report += "<b>War declared.</b>"
-		force_war_button = "\[Force war\]"
+		post_report += "<b>已宣战。</b>"
+		force_war_button = "\[强制宣战\]"
 	else
-		post_report += "<b>War not declared.</b>"
+		post_report += "<b>未宣战。</b>"
 		var/obj/item/nuclear_challenge/war_button = war_button_ref?.resolve()
 		if(war_button)
-			force_war_button = "<a href='byond://?_src_=holder;[HrefToken()];force_war=[REF(war_button)]'>\[Force war\]</a>"
+			force_war_button = "<a href='byond://?_src_=holder;[HrefToken()];force_war=[REF(war_button)]'>\[强制宣战\]</a>"
 		else
-			force_war_button = "\[Cannot declare war, challenge button missing!\]"
+			force_war_button = "\[无法宣战，挑战按钮缺失！\]"
 
 	post_report += "\n[force_war_button]"
-	post_report += "\n<a href='byond://?_src_=holder;[HrefToken()];give_reinforcement=[REF(src)]'>\[Send Reinforcement\]</a>"
+	post_report += "\n<a href='byond://?_src_=holder;[HrefToken()];give_reinforcement=[REF(src)]'>\[发送增援\]</a>"
 
 	var/final_report = ..()
 	final_report += disk_report
@@ -135,7 +135,7 @@
 
 /datum/team/nuclear/proc/rename_team(new_name)
 	syndicate_name = new_name
-	name = "[syndicate_name] Team"
+	name = "[syndicate_name]队伍"
 	for(var/datum/mind/synd_mind in members)
 		var/datum/antagonist/nukeop/synd_datum = synd_mind.has_antag_datum(/datum/antagonist/nukeop)
 		synd_datum?.give_alias()
@@ -146,15 +146,15 @@
 
 	var/infil_or_nukebase = tgui_alert(
 		admin,
-		"Spawn them at the nuke base, or in the Infiltrator?",
-		"Where to reinforce?",
+		"要在核弹基地生成他们，还是在渗透者号上生成？",
+		"在哪里增援？",
 		list(SPAWN_AT_BASE, SPAWN_AT_INFILTRATOR, "Cancel"),
 	)
 
 	if(!infil_or_nukebase || infil_or_nukebase == "Cancel")
 		return
 
-	var/tc_to_spawn = tgui_input_number(admin, "How much TC to spawn with?", "TC", 0, 100)
+	var/tc_to_spawn = tgui_input_number(admin, "要让他们携带多少 TC 生成？", "TC", 0, 100)
 
 	var/mob/chosen_one = SSpolling.poll_ghost_candidates(
 		check_jobban = ROLE_OPERATIVE,
@@ -162,12 +162,12 @@
 		poll_time = 30 SECONDS,
 		ignore_category = POLL_IGNORE_SYNDICATE,
 		alert_pic = /obj/structure/sign/poster/contraband/gorlex_recruitment,
-		role_name_text = "emergency syndicate reinforcement",
+		role_name_text = "辛迪加紧急增援",
 		amount_to_pick = 1,
 	)
 
 	if(isnull(chosen_one))
-		tgui_alert(admin, "No candidates found.", "Recruitment Shortage", list("OK"))
+		tgui_alert(admin, "未找到候选者。", "招募人数不足", list("确定"))
 		return
 
 
@@ -214,7 +214,7 @@
 	playsound(spawn_loc, SFX_SPARKS, 50, TRUE)
 	playsound(spawn_loc, 'sound/effects/phasein.ogg', 50, TRUE)
 
-	tgui_alert(admin, "Reinforcement spawned at [infil_or_nukebase] with [tc_to_spawn].", "Reinforcements have arrived", list("God speed"))
+	tgui_alert(admin, "增援已在 [infil_or_nukebase] 生成，携带 [tc_to_spawn]。", "增援已抵达", list("一路顺风"))
 
 /datum/team/nuclear/proc/is_disk_rescued()
 	for(var/obj/item/disk/nuclear/nuke_disk in SSpoints_of_interest.real_nuclear_disks)

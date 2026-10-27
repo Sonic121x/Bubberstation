@@ -24,13 +24,13 @@
 #define ADV_SPREAD_FORCED_HIGH 90
 
 /datum/round_event_control/disease_outbreak
-	name = "Disease Outbreak: Classic"
+	name = "疾病爆发：经典"
 	typepath = /datum/round_event/disease_outbreak
 	max_occurrences = 1
 	min_players = 10
 	weight = 5
 	category = EVENT_CATEGORY_HEALTH
-	description = "A 'classic' virus will infect some members of the crew."
+	description = "一种“经典”病毒会感染部分船员。"
 	min_wizard_trigger_potency = 2
 	max_wizard_trigger_potency = 6
 	admin_setup = list(/datum/event_admin_setup/minimum_candidate_requirement/disease_outbreak, /datum/event_admin_setup/listed_options/disease_outbreak)
@@ -46,13 +46,13 @@
 	// if(length(disease_candidates))
 	//	return TRUE
 	if(!SSjob.is_skeleton_medical(3))
-		log_public_file("Disease outbreak check passed medbay staffing parameters with 3 or more staff.")
+		log_public_file("疾病爆发检查通过医疗部人员配置参数，至少有 3 名人员。")
 		if(length(disease_candidates))
-			log_public_file("Disease outbreak check passed candidate parameters with [length(disease_candidates)] candidates.")
+			log_public_file("疾病爆发检查通过候选人参数，共有 [length(disease_candidates)] 名候选人。")
 			return TRUE
-		log_public_file("Disease outbreak check failed catastrophically. oh god how did we get here, there are zero candidates? this should never happen.")
+		log_public_file("疾病爆发检查灾难性失败。天啊，我们是怎么走到这一步的，一名候选人也没有？这绝不应该发生。")
 	else
-		log_public_file("Disease outbreak check failed medbay staffing parameters due to less than 3 staff.")
+		log_public_file("疾病爆发检查因医疗部人员少于 3 人而未通过人员配置参数。")
 	// BUBBER EDIT CHANGE END - DISEASE OUTBREAK UPDATES
 
 /**
@@ -85,7 +85,7 @@
 
 ///Handles checking and alerting admins about the number of valid candidates
 /datum/event_admin_setup/minimum_candidate_requirement/disease_outbreak
-	output_text = "There are no candidates eligible to receive a disease!"
+	output_text = "没有任何符合条件可感染疾病的候选人！"
 
 /datum/event_admin_setup/minimum_candidate_requirement/disease_outbreak/count_candidates()
 	var/datum/round_event_control/disease_outbreak/disease_control = event_control
@@ -95,7 +95,7 @@
 
 ///Handles actually selecting whicch disease will spawn.
 /datum/event_admin_setup/listed_options/disease_outbreak
-	input_text = "Select a specific disease? Warning: Some are EXTREMELY dangerous."
+	input_text = "要选择某种特定疾病吗？警告：有些疾病极其危险。"
 	normal_run_option = "Random Classic Disease (Safe)"
 	special_run_option = "Entirely Random Disease (Dangerous)"
 
@@ -143,7 +143,7 @@
 		)
 		var/datum/disease/fake_virus = pick(virus_candidates)
 		illness_type = initial(fake_virus.name)
-	priority_announce("Confirmed outbreak of level 7 viral biohazard aboard [station_name()]. All personnel must contain the outbreak.", "[illness_type] Alert", ANNOUNCER_OUTBREAK7)
+	priority_announce("确认 [station_name()] 上发生 7 级病毒生物危害爆发。全体人员必须控制住疫情。", "[illness_type] 警报", ANNOUNCER_OUTBREAK7)
 
 	// Set status displays to biohazard alert
 	send_status_display_biohazard_alert()
@@ -187,24 +187,24 @@
 	while(length(afflicted) && infected < to_infect) // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
 		victim = pick_n_take(afflicted)
 		if(victim.ForceContractDisease(new_disease, TRUE, infect_vector = "EVENT", final_infectivity = 100)) // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
-			message_admins("Event triggered: Disease Outbreak - [new_disease.name] starting with patient zero [ADMIN_LOOKUPFLW(victim)]!")
-			log_game("Event triggered: Disease Outbreak - [new_disease.name] starting with patient zero [key_name(victim)].")
+			message_admins("事件已触发：疾病爆发 —— [new_disease.name] 开始传播，零号病人为 [ADMIN_LOOKUPFLW(victim)]！")
+			log_game("事件已触发：疾病爆发 —— [new_disease.name] 开始传播，零号病人为 [key_name(victim)]。")
 			announce_to_ghosts(victim)
 			infected++ // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 			// return // BUBBER EDIT REMOVAL - DISEASE OUTBREAK UPDATES
 		CHECK_TICK //don't lag the server to death
 	if(isnull(victim))
-		message_admins("Event Disease Outbreak: Classic attempted to start, but failed to find a candidate target.")
-		log_game("Event Disease Outbreak: Classic attempted to start, but failed to find a candidate target")
+		message_admins("事件疾病爆发：经典 尝试启动，但未能找到候选目标。")
+		log_game("事件疾病爆发：经典 尝试启动，但未能找到候选目标")
 
 /datum/round_event_control/disease_outbreak/advanced
-	name = "Disease Outbreak: Advanced"
+	name = "疾病爆发：高级"
 	typepath = /datum/round_event/disease_outbreak/advanced
 	category = EVENT_CATEGORY_HEALTH
 	weight = 15
 	min_players = 35 // To avoid shafting lowpop
 	earliest_start = 15 MINUTES // give the chemist a chance
-	description = "An 'advanced' disease will infect some members of the crew."
+	description = "一种“高级”疾病会感染部分船员。"
 	min_wizard_trigger_potency = 2
 	max_wizard_trigger_potency = 6
 	admin_setup = list(
@@ -221,7 +221,7 @@
  */
 
 /datum/event_admin_setup/listed_options/disease_outbreak_advanced/severity
-	input_text = "Pick a severity!"
+	input_text = "选择严重程度！"
 	normal_run_option = "Random"
 
 /datum/event_admin_setup/listed_options/disease_outbreak_advanced/severity/get_list()
@@ -241,7 +241,7 @@
 			return ADMIN_CANCEL_EVENT
 
 /datum/event_admin_setup/listed_options/disease_outbreak_advanced/transmissibility
-	input_text = "Pick a transmissibility!"
+	input_text = "选择传播方式！"
 	normal_run_option = "Random"
 
 /datum/event_admin_setup/listed_options/disease_outbreak_advanced/transmissibility/get_list()
@@ -261,13 +261,13 @@
 			return ADMIN_CANCEL_EVENT
 
 /datum/event_admin_setup/input_number/disease_outbreak_advanced
-	input_text = "How many symptoms do you want your virus to have?"
+	input_text = "你希望病毒有多少种症状？"
 	default_value = 4
 	max_value = 7
 	min_value = 1
 
 /datum/event_admin_setup/input_number/disease_outbreak_advanced/prompt_admins()
-	var/customize_number_of_symptoms = tgui_alert(usr, "Select number of symptoms?", event_control.name, list("Default", "Custom"))
+	var/customize_number_of_symptoms = tgui_alert(usr, "要选择症状数量吗？", event_control.name, list("Default", "Custom"))
 	switch(customize_number_of_symptoms)
 		if("Custom")
 			return ..()
@@ -338,23 +338,23 @@
 	while(length(afflicted) && infected < to_infect) // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
 		victim = pick_n_take(afflicted)
 		if(victim.ForceContractDisease(advanced_disease, TRUE, infect_vector = "EVENT", final_infectivity = 100)) // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
-			message_admins("Event triggered: Disease Outbreak: Advanced - starting with patient zero [ADMIN_LOOKUPFLW(victim)]! Details: [advanced_disease.admin_details()] sp:[advanced_disease.spread_flags] ([advanced_disease.spread_text])")
-			log_game("Event triggered: Disease Outbreak: Advanced - starting with patient zero [key_name(victim)]. Details: [advanced_disease.admin_details()] sp:[advanced_disease.spread_flags] ([advanced_disease.spread_text])")
-			log_virus("Disease Outbreak: Advanced has triggered a custom virus outbreak of [advanced_disease.admin_details()] in [victim]!")
-			advanced_disease.log_virus_public("Event virus details: [advanced_disease.admin_details()]") // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+			message_admins("事件已触发：疾病爆发：高级 —— 开始传播，零号病人为 [ADMIN_LOOKUPFLW(victim)]！详情：[advanced_disease.admin_details()] sp:[advanced_disease.spread_flags] ([advanced_disease.spread_text])")
+			log_game("事件已触发：疾病爆发：高级 —— 开始传播，零号病人为 [key_name(victim)]。详情：[advanced_disease.admin_details()] sp:[advanced_disease.spread_flags] ([advanced_disease.spread_text])")
+			log_virus("疾病爆发：高级 已在 [victim] 体内触发了自定义病毒爆发：[advanced_disease.admin_details()]！")
+			advanced_disease.log_virus_public("事件病毒详情：[advanced_disease.admin_details()]") // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 			announce_to_ghosts(victim)
 			infected++ // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 			// return // BUBBER EDIT REMOVAL - DISEASE OUTBREAK UPDATES
 		CHECK_TICK //don't lag the server to death
 	if(isnull(victim))
-		message_admins("Event Disease Outbreak: Advanced attempted to start, but failed to find a candidate target.")
-		log_game("Event Disease Outbreak: Advanced attempted to start, but failed to find a candidate target.")
+		message_admins("事件疾病爆发：高级 尝试启动，但未能找到候选目标。")
+		log_game("事件疾病爆发：高级 尝试启动，但未能找到候选目标。")
 		return // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 
-	deadchat_broadcast("Disease Outbreak: Advanced starting with [advanced_disease.name]! Symptoms: [advanced_disease.symptoms_list()]") // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+	deadchat_broadcast("疾病爆发：高级 开始传播，病毒为 [advanced_disease.name]！症状：[advanced_disease.symptoms_list()]") // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 
 /datum/disease/advance/event // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
-	name = "Event Disease"
+	name = "事件性疾病"
 	copy_type = /datum/disease/advance
 	bypasses_disease_recovery = TRUE // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 	event_disease = TRUE // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
@@ -522,9 +522,9 @@
 
 	//If we have an advanced (high stage) disease, add it to the name.
 	if(properties["stage_rate"] >= 7)
-		name = "Advanced [name]"
+		name = "高级[name]"
 
-	cure_text = "If you can see this, something has gone wrong."
+	cure_text = "如果你能看到这段文字，说明出现了问题。"
 
 /**
  * Set the transmission methods on the generated virus
@@ -535,13 +535,13 @@
 	switch(spread_id)
 		if(DISEASE_SPREAD_CONTACT_FLUIDS)
 			update_spread_flags(DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS)
-			spread_text = "Fluids"
+			spread_text = "体液"
 		if(DISEASE_SPREAD_CONTACT_SKIN)
 			update_spread_flags(DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS | DISEASE_SPREAD_CONTACT_SKIN)
-			spread_text = "Skin contact"
+			spread_text = "皮肤接触"
 		if(DISEASE_SPREAD_AIRBORNE)
 			update_spread_flags(DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_AIRBORNE)
-			spread_text = "Respiration"
+			spread_text = "呼吸"
 
 #undef ADV_MIN_SYMPTOMS
 #undef ADV_MAX_SYMPTOMS

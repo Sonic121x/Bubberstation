@@ -1,6 +1,6 @@
 /obj/item/clothing/shoes/galoshes
-	desc = "A pair of yellow rubber boots, designed to prevent slipping on wet surfaces."
-	name = "galoshes"
+	desc = "一双黄色橡胶靴，旨在防止在潮湿表面上滑倒。"
+	name = "橡胶套靴"
 	icon_state = "galoshes"
 	inhand_icon_state = "galoshes"
 	clothing_traits = list(TRAIT_NO_SLIP_WATER)
@@ -20,8 +20,8 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, fishing_modifier)
 
 /obj/item/clothing/shoes/galoshes/dry
-	name = "absorbent galoshes"
-	desc = "A pair of purple rubber boots, designed to prevent slipping on wet surfaces while also drying them."
+	name = "吸水橡胶套靴"
+	desc = "一双紫色橡胶靴，旨在防止在潮湿表面上滑倒，同时还能把地面弄干。"
 	icon_state = "galoshes_dry"
 	fishing_modifier = -6
 

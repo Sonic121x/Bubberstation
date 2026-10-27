@@ -2,8 +2,8 @@
 
 // Extending the existing spraycan item was more trouble than it was worth, I don't want or need this to be able to draw arbitrary shapes.
 /obj/item/traitor_spraycan
-	name = "seditious spraycan"
-	desc = "This spraycan deploys a subversive pattern containing subliminal priming agents over a 3x3 area. Contains enough primer for just one final coating."
+	name = "煽动性喷漆罐"
+	desc = "这个喷漆罐能在 3x3 区域上喷出含有潜意识诱导剂的颠覆性图案。内含的底涂剂只够完成最后一次喷涂。"
 	icon = 'icons/obj/art/crayons.dmi'
 	icon_state = "deathcan"
 	worn_icon_state = "spraycan"
@@ -24,11 +24,11 @@
 		return NONE
 
 	if (expended)
-		user.balloon_alert(user, "all out of paint...")
+		user.balloon_alert(user, "漆用完了……")
 		return ITEM_INTERACT_BLOCKING
 
 	if (drawing_rune)
-		user.balloon_alert(user, "already busy!")
+		user.balloon_alert(user, "正忙着呢！")
 		return ITEM_INTERACT_BLOCKING
 
 	if (isturf(interacting_with))
@@ -52,7 +52,7 @@
 /obj/item/traitor_spraycan/proc/try_draw_new_rune(mob/living/user, turf/target_turf)
 	for(var/turf/nearby_turf as anything in RANGE_TURFS(1, target_turf))
 		if (!isopenturf(nearby_turf) || is_type_in_typecache(nearby_turf, no_draw_turfs))
-			user.balloon_alert(user, "you need a clear 3x3 area!")
+			user.balloon_alert(user, "需要一块空旷的 3x3 区域！")
 			return
 
 	draw_rune(user, target_turf)
@@ -65,7 +65,7 @@
  * * target_turf - the place the rune's being drawn
  */
 /obj/item/traitor_spraycan/proc/draw_rune(mob/living/user, turf/target_turf)
-	if (!try_draw_step("drawing outline...", user, target_turf))
+	if (!try_draw_step("正在绘制轮廓……", user, target_turf))
 		return
 	try_complete_rune(user, new /obj/effect/decal/cleanable/traitor_rune(target_turf))
 
@@ -86,7 +86,7 @@
 		wait_time *= 0.5
 
 	if(!do_after(user, wait_time, target, cog_icon = null, extra_checks = CALLBACK(src, PROC_REF(adjacency_check), user, target)))
-		user.balloon_alert(user, "interrupted!")
+		user.balloon_alert(user, "被打断了！")
 		drawing_rune = FALSE
 		return FALSE
 
@@ -109,39 +109,39 @@
 /obj/item/traitor_spraycan/proc/try_complete_rune(mob/living/user, obj/effect/decal/cleanable/traitor_rune/rune)
 	switch(rune.drawn_stage)
 		if (RUNE_STAGE_OUTLINE)
-			if (!try_draw_step("... finalising design...", user, rune))
+			if (!try_draw_step("……正在完成设计……", user, rune))
 				return
 			if (!rune)
-				user.balloon_alert(user, "graffiti was destroyed!")
+				user.balloon_alert(user, "涂鸦被摧毁了！")
 				return
 			rune.set_stage(RUNE_STAGE_COLOURED)
 			try_complete_rune(user, rune)
 
 		if (RUNE_STAGE_COLOURED)
-			if (!try_draw_step("... applying final coating...", user, rune))
+			if (!try_draw_step("……正在喷涂最后一层……", user, rune))
 				return
 			if (!rune)
-				user.balloon_alert(user, "graffiti was destroyed!")
+				user.balloon_alert(user, "涂鸦被摧毁了！")
 				return
-			user.balloon_alert(user, "finished!")
+			user.balloon_alert(user, "完成了！")
 			rune.set_stage(RUNE_STAGE_COMPLETE)
 			expended = TRUE
-			desc = "A suspicious looking spraycan, it's all out of paint."
+			desc = "一个看起来很可疑的喷漆罐，漆已经用完了。"
 			SEND_SIGNAL(src, COMSIG_TRAITOR_GRAFFITI_DRAWN, rune)
 
 		if (RUNE_STAGE_COMPLETE, RUNE_STAGE_REMOVABLE)
-			user.balloon_alert(user, "all done!")
+			user.balloon_alert(user, "全都搞定！")
 
 /// Copying the functionality from normal spraycans, but doesn't need all the optional checks
 /obj/item/traitor_spraycan/suicide_act(mob/living/user)
 	if(expended)
-		user.visible_message(span_suicide("[user] shakes up [src] with a rattle and lifts it to [user.p_their()] mouth, but nothing happens!"))
-		user.say("MEDIOCRE!!", forced="spraycan suicide")
+		user.visible_message(span_suicide("[user]摇晃[src]发出响声，把它举到自己嘴边，但什么也没发生！"))
+		user.say("平庸无奇！！", forced="spraycan suicide")
 		return SHAME
 
 	var/mob/living/carbon/human/suicider = user
-	user.visible_message(span_suicide("[user] shakes up [src] with a rattle and lifts it to [user.p_their()] mouth, spraying paint across [user.p_their()] teeth!"))
-	user.say("WITNESS ME!!", forced="spraycan suicide")
+	user.visible_message(span_suicide("[user]摇晃[src]发出响声，把它举到自己嘴边，对着自己的牙齿喷了一脸漆！"))
+	user.say("见证我吧！！", forced="spraycan suicide")
 	playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 5)
 	suicider.AddComponent(/datum/component/face_decal, "spray", list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER), paint_color)
 	return OXYLOSS
@@ -149,13 +149,13 @@
 ///Checks if the user is still adjacent to the target (used for do_after extra_checks)
 /obj/item/traitor_spraycan/proc/adjacency_check(mob/user, atom/target)
 	if(!user.Adjacent(target))
-		user.balloon_alert(user, "moved too far away!")
+		user.balloon_alert(user, "离得太远了！")
 		return FALSE
 	return TRUE
 
 /obj/effect/decal/cleanable/traitor_rune
-	name = "syndicate graffiti"
-	desc = "It looks like it's going to be... the Syndicate logo?"
+	name = "辛迪加涂鸦"
+	desc = "看起来它就要变成……辛迪加标志了？"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "traitor_rune_outline"
 	pixel_x = -32
@@ -213,16 +213,16 @@
 	switch(drawn_stage)
 		if (RUNE_STAGE_OUTLINE)
 			icon_state = "traitor_rune_outline"
-			desc = "It looks like it's going to be... the Syndicate logo?"
+			desc = "看起来它就要变成……辛迪加标志了？"
 
 		if (RUNE_STAGE_COLOURED, RUNE_STAGE_REMOVABLE)
 			icon_state = "traitor_rune_done"
-			desc = "A large depiction of the Syndicate logo."
+			desc = "一幅巨大的辛迪加标志图案。"
 			clean_proof = FALSE
 
 		if (RUNE_STAGE_COMPLETE)
 			icon_state = "traitor_rune_sheen"
-			desc = "A large depiction of the Syndicate logo. It looks slippery."
+			desc = "一幅巨大的辛迪加标志图案。看起来滑溜溜的。"
 			var/datum/demoralise_moods/graffiti/mood_category = new()
 			demoraliser = new(src, 7, TRUE, mood_category)
 			clean_proof = TRUE

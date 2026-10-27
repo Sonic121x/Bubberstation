@@ -142,7 +142,7 @@ export function createDropdownInput<T extends string | number = string>(
 
     return (
       <Dropdown
-        selected={choices[value] as string}
+        selected={String(value)} displayText={choices[value] as string}
         onSelected={handleSetValue}
         width="100%"
         options={sortChoices(Object.entries(choices)).map(

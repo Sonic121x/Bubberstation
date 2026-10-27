@@ -1,6 +1,6 @@
 /mob/living/basic/migo
-	name = "mi-go"
-	desc = "A pinkish, fungoid crustacean-like creature with clawed appendages and a head covered with waving antennae."
+	name = "米戈"
+	desc = "一种粉色的、形似甲壳类的真菌生物，肢体末端长着利爪，头上覆满不停摆动的触角。"
 	icon_state = "mi-go"
 	icon_living = "mi-go"
 	icon_dead = "mi-go-dead"
@@ -10,15 +10,15 @@
 	melee_damage_lower = 25
 	melee_damage_upper = 50
 	speed = 1
-	attack_verb_continuous = "lacerates"
-	attack_verb_simple = "lacerate"
+	attack_verb_continuous = "撕裂"
+	attack_verb_simple = "撕裂"
 	melee_attack_cooldown = 1 SECONDS
 	gold_core_spawnable = HOSTILE_SPAWN
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	faction = list(FACTION_NETHER)
-	speak_emote = list("screams", "clicks", "chitters", "barks", "moans", "growls", "meows", "reverberates", "roars", "squeaks", "rattles", "exclaims", "yells", "remarks", "mumbles", "jabbers", "stutters", "seethes")
-	death_message = "wails as its form turns into a pulpy mush."
+	speak_emote = list("尖叫", "咔哒作响", "吱吱叫", "吠叫", "呻吟", "低吼", "喵叫", "回声阵阵", "咆哮", "尖声吱叫", "咔咔作响", "惊呼", "大喊", "说道", "嘟囔", "叽里咕噜", "结巴", "嘶嘶作响")
+	death_message = "哀号着，身体化成一团烂泥。"
 	death_sound = 'sound/mobs/non-humanoids/hiss/hiss6.ogg'
 	unsuitable_atmos_damage = 0
 	unsuitable_cold_damage = 0
@@ -87,8 +87,8 @@
 
 /// The special hatsune miku themed mi-go.
 /mob/living/basic/migo/hatsune
-	name = "hatsune mi-go"
-	desc = parent_type::desc + " This one is wearing a bright blue wig."
+	name = "初音米戈"
+	desc = parent_type::desc + " 这只戴着一顶亮蓝色的假发。"
 	icon_state = "mi-go-h"
 	icon_living = "mi-go-h"
 

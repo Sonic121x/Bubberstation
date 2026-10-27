@@ -202,8 +202,8 @@ GLOBAL_LIST_INIT(mafia_role_by_alignment, setup_mafia_role_by_alignment())
 	create_bodies()
 	SEND_GLOBAL_SIGNAL(COMSIG_MAFIA_GAME_START, src)
 	start_day(can_vote = FALSE)
-	send_message(span_notice("<b>The selected map is [current_map.name]!</b></br> [current_map.description]"))
-	send_message("<b>Day [turn] started! There is no voting on the first day. Say hello to everybody!</b>")
+	send_message(span_notice("<b>本局所选地图是 [current_map.name]！</b></br> [current_map.description]"))
+	send_message("<b>第 [turn] 天开始了！第一天没有投票环节。和大家打个招呼吧！</b>")
 	next_phase_timer = addtimer(CALLBACK(src, PROC_REF(check_trial), FALSE), (FIRST_DAY_PERIOD_LENGTH / time_speedup), TIMER_STOPPABLE) //no voting period = no votes = instant night
 	for(var/datum/mafia_role/roles as anything in all_roles)
 		var/obj/item/modular_computer/modpc = roles.player_pda
@@ -228,10 +228,10 @@ GLOBAL_LIST_INIT(mafia_role_by_alignment, setup_mafia_role_by_alignment())
 	if(!time_speedup)//lets check if the game should be sped up, if not already.
 		if(living_roles.len < all_roles.len / 2)
 			time_speedup = MAFIA_SPEEDUP_INCREASE
-			send_message("<span class='bold notice'>With only [living_roles.len] living players left, the game timers have been sped up.</span>")
+			send_message("<span class='bold notice'>仅剩 [living_roles.len] 名存活玩家，游戏计时已经加速。</span>")
 
 	if(can_vote)
-		send_message("<b>Day [turn] started! Voting will start in 1 minute.</b>")
+		send_message("<b>第 [turn] 天开始了！投票将在 1 分钟后开始。</b>")
 		next_phase_timer = addtimer(CALLBACK(src, PROC_REF(start_voting_phase)), (DAY_PERIOD_LENGTH / time_speedup), TIMER_STOPPABLE)
 
 /**
@@ -244,7 +244,7 @@ GLOBAL_LIST_INIT(mafia_role_by_alignment, setup_mafia_role_by_alignment())
 /datum/mafia_controller/proc/start_voting_phase()
 	phase = MAFIA_PHASE_VOTING
 	next_phase_timer = addtimer(CALLBACK(src, PROC_REF(check_trial), TRUE), (VOTING_PERIOD_LENGTH / time_speedup), TIMER_STOPPABLE) //be verbose!
-	send_message("<b>Voting started! Vote for who you want to see on trial today.</b>")
+	send_message("<b>投票开始了！投出你今天想送上审判台的人吧。</b>")
 
 /**
  * Players have voted someone up, and now the person must defend themselves while the town votes innocent or guilty.
@@ -270,7 +270,7 @@ GLOBAL_LIST_INIT(mafia_role_by_alignment, setup_mafia_role_by_alignment())
 		for(var/datum/mafia_role/voters as anything in living_roles)
 			if(voters == loser)
 				continue
-			voters.mafia_alert.update_text("[loser.body.real_name] wins the day vote, Listen to their defense and vote INNOCENT or GUILTY!")
+			voters.mafia_alert.update_text("[loser.body.real_name] 赢得了当日投票，请听取其辩护并投出无罪或有罪！")
 			judgement_abstain_votes += voters
 
 		on_trial = loser
@@ -281,7 +281,7 @@ GLOBAL_LIST_INIT(mafia_role_by_alignment, setup_mafia_role_by_alignment())
 	else
 		lockdown()
 		if(verbose)
-			send_message("<b>Not enough people have voted to put someone on trial, nobody will be lynched today.</b>")
+			send_message("<b>投票人数不足以将任何人送上审判台，今天不会有人被处决。</b>")
 
 /**
  * Players have voted innocent or guilty on the person on trial, and that person is now killed or returned home.
@@ -292,24 +292,24 @@ GLOBAL_LIST_INIT(mafia_role_by_alignment, setup_mafia_role_by_alignment())
  */
 /datum/mafia_controller/proc/lynch()
 	for(var/datum/mafia_role/role as anything in judgement_abstain_votes)
-		send_message(span_comradio("[role.body.real_name] abstained."))
+		send_message(span_comradio("[role.body.real_name] 弃权了。"))
 
 	var/total_innocent_votes
 	for(var/datum/mafia_role/role as anything in judgement_innocent_votes)
-		send_message(span_green("[role.body.real_name] voted innocent."))
+		send_message(span_green("[role.body.real_name] 投了无罪。"))
 		total_innocent_votes += role.vote_power
 
 	var/total_guilty_votes
 	for(var/datum/mafia_role/role as anything in judgement_guilty_votes)
-		send_message(span_red("[role.body.real_name] voted guilty."))
+		send_message(span_red("[role.body.real_name] 投了有罪。"))
 		total_guilty_votes += role.vote_power
 
 	if(total_guilty_votes > total_innocent_votes) //strictly need majority guilty to lynch
-		send_message(span_red("<b>Guilty wins majority, [on_trial.body.real_name] has been lynched.</b>"))
+		send_message(span_red("<b>有罪票占多数，[on_trial.body.real_name] 已被处决。</b>"))
 		on_trial.kill(src, lynch = TRUE)
 		next_phase_timer = addtimer(CALLBACK(src, PROC_REF(send_home), on_trial), (LYNCH_PERIOD_LENGTH / time_speedup), TIMER_STOPPABLE)
 	else
-		send_message(span_green("<b>Innocent wins majority, [on_trial.body.real_name] has been spared.</b>"))
+		send_message(span_green("<b>无罪票占多数，[on_trial.body.real_name] 被赦免了。</b>"))
 		on_trial.body.forceMove(get_turf(on_trial.assigned_landmark))
 	on_trial = null
 	if(!check_victory())
@@ -370,20 +370,20 @@ GLOBAL_LIST_INIT(mafia_role_by_alignment, setup_mafia_role_by_alignment())
 	var/victory_message
 
 	if(living_mafia.len + living_town.len <= 0)
-		victory_message = "Draw!</span>" //this is in-case no neutrals won, but there's no town/mafia left.
+		victory_message = "平局！</span>" //this is in-case no neutrals won, but there's no town/mafia left.
 		for(var/datum/mafia_role/solo as anything in neutral_killers)
-			victory_message = "[uppertext(solo.name)] VICTORY!</span>"
+			victory_message = "[uppertext(solo.name)] 胜利！</span>"
 			if(!early_start)
 				award_role(solo.winner_award, solo)
 
 	else if(!living_mafia.len && !neutral_killers.len)
-		victory_message = "TOWN VICTORY!</span>"
+		victory_message = "镇民胜利！</span>"
 		if(!early_start)
 			for(var/datum/mafia_role/townie as anything in living_town)
 				award_role(townie.winner_award, townie)
 
 	else if((living_mafia.len >= anti_mafia_power) && !town_can_kill && !neutral_killers.len)
-		victory_message = "MAFIA VICTORY!</span>"
+		victory_message = "黑手党胜利！</span>"
 		if(!early_start)
 			for(var/datum/mafia_role/changeling as anything in living_mafia)
 				award_role(changeling.winner_award, changeling)
@@ -469,7 +469,7 @@ GLOBAL_LIST_INIT(mafia_role_by_alignment, setup_mafia_role_by_alignment())
  */
 /datum/mafia_controller/proc/start_night()
 	phase = MAFIA_PHASE_NIGHT
-	send_message("<b>Night [turn] started! Lockdown will end in 40 seconds.</b>")
+	send_message("<b>第 [turn] 夜开始了！封锁将在 40 秒后解除。</b>")
 	SEND_SIGNAL(src, COMSIG_MAFIA_SUNDOWN)
 	next_phase_timer = addtimer(CALLBACK(src, PROC_REF(resolve_night)), (NIGHT_PERIOD_LENGTH / time_speedup), TIMER_STOPPABLE)
 
@@ -515,13 +515,13 @@ GLOBAL_LIST_INIT(mafia_role_by_alignment, setup_mafia_role_by_alignment())
 		voter.body.maptext_x = initial(voter.body.maptext_x)
 		voter.body.maptext_width = initial(voter.body.maptext_width)
 		voter.body.maptext = null
-		send_message(span_notice("[voter.body.real_name] retracts their vote for [target.body.real_name]!"), team = teams)
+		send_message(span_notice("[voter.body.real_name] 撤回了对 [target.body.real_name] 的投票！"), team = teams)
 	else
 		voter.body.maptext_y = 12
 		voter.body.maptext_x = -16
 		voter.body.maptext_width = 64
 		voter.body.maptext = "<span class='maptext' style='text-align: center; vertical-align: top'>[target.body.real_name]</span>"
-		send_message(span_notice("[voter.body.real_name] voted for [target.body.real_name]!"), team = teams)
+		send_message(span_notice("[voter.body.real_name] 投给了 [target.body.real_name]！"), team = teams)
 	if(!teams)
 		target.body.update_appearance() //Update the vote display if it's a public vote
 		var/datum/mafia_role/old = old_vote
@@ -655,25 +655,25 @@ GLOBAL_LIST_INIT(mafia_role_by_alignment, setup_mafia_role_by_alignment())
  */
 /datum/mafia_controller/proc/signup_mafia(mob/user, client/ghost_client, obj/item/modular_computer/modpc)
 	if(!SSticker.HasRoundStarted())
-		to_chat(user, span_warning("Wait for the round to start."))
+		to_chat(user, span_warning("请等待回合开始。"))
 		return FALSE
 	if(isnull(modpc))
 		if(GLOB.mafia_signup[ghost_client.ckey])
 			GLOB.mafia_signup -= ghost_client.ckey
 			GLOB.mafia_early_votes -= ghost_client.ckey //Remove their early start vote as well
-			to_chat(user, span_notice("You unregister from Mafia."))
+			to_chat(user, span_notice("你已取消报名黑手党游戏。"))
 		else
 			GLOB.mafia_signup[ghost_client.ckey] = TRUE
-			to_chat(user, span_notice("You sign up for Mafia."))
+			to_chat(user, span_notice("你已报名黑手党游戏。"))
 	else
 		if(GLOB.pda_mafia_signup[modpc])
 			GLOB.pda_mafia_signup -= modpc
 			GLOB.mafia_early_votes -= modpc //Remove their early start vote as well
-			to_chat(user, span_notice("You unregister from Mafia."))
+			to_chat(user, span_notice("你已取消报名黑手党游戏。"))
 			return TRUE
 		else
 			GLOB.pda_mafia_signup[modpc] = TRUE
-			to_chat(user, span_notice("You sign up for Mafia."))
+			to_chat(user, span_notice("你已报名黑手党游戏。"))
 	if(phase == MAFIA_PHASE_SETUP)
 		check_signups()
 		try_autostart()
@@ -745,7 +745,7 @@ GLOBAL_LIST_INIT(mafia_role_by_alignment, setup_mafia_role_by_alignment())
 	var/players_needed = GLOB.mafia_signup.len + GLOB.pda_mafia_signup.len
 	var/list/filtered_keys_and_pdas = filter_players(players_needed)
 	if(!length(filtered_keys_and_pdas)) //If we have nobody signed up, we give up on starting
-		log_admin("Attempted to force a mafia game to start with nobody signed up!")
+		log_admin("试图在无人报名的情况下强制开始一局黑手党游戏！")
 		return
 
 	var/list/setup = generate_standard_setup(length(filtered_keys_and_pdas))
@@ -815,8 +815,8 @@ GLOBAL_LIST_INIT(mafia_role_by_alignment, setup_mafia_role_by_alignment())
 		if(!(unpicked in GLOB.mafia_signup))
 			continue
 		var/client/unpicked_client = GLOB.directory[unpicked]
-		to_chat(unpicked_client, span_danger("Sorry, the starting mafia game has too many players and you were not picked."))
-		to_chat(unpicked_client, span_warning("You're still signed up, getting messages from the current round, and have another chance to join when the one starting now finishes."))
+		to_chat(unpicked_client, span_danger("抱歉，即将开始的黑手党游戏人数过多，你没有入选。"))
+		to_chat(unpicked_client, span_warning("你仍处于报名状态，会收到当前回合的消息，等现在这局结束后还有机会加入。"))
 
 	return filtered_keys_and_pdas
 
@@ -854,8 +854,8 @@ GLOBAL_LIST_INIT(mafia_role_by_alignment, setup_mafia_role_by_alignment())
 #endif
 
 /datum/action/innate/mafia_panel
-	name = "Mafia Panel"
-	desc = "Use this to play."
+	name = "黑手党面板"
+	desc = "用它来参与游戏。"
 	button_icon = 'icons/obj/mafia.dmi'
 	button_icon_state = "board"
 	///The mafia controller that the button will use the UI of.

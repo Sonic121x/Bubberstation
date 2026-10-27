@@ -1,10 +1,10 @@
 // Proc taken from yogstation, credit to nichlas0010 for the original
-ADMIN_VERB_AND_CONTEXT_MENU(fix_air, R_ADMIN, "Fix Air", "Fixes air in a specified radius.", ADMIN_CATEGORY_GAME, /turf/open)
+ADMIN_VERB_AND_CONTEXT_MENU(fix_air, R_ADMIN, "修复空气", "修复指定半径内的空气。", ADMIN_CATEGORY_GAME, /turf/open)
 	VERB_ARG_TYPED(locale, VERB_ARG_TYPE_TURF, VERB_ARG_SOURCE_WORLD, /turf/open)
 	VERB_ARG(range, VERB_ARG_TYPE_NUM, VERB_ARG_SOURCE_INPUT)
 
-	message_admins("[key_name_admin(user)] fixed air with range [range] in area [locale.loc.name]")
-	user.mob.log_message("fixed air with range [range] in area [locale.loc.name]", LOG_ADMIN)
+	message_admins("[key_name_admin(user)] 修复了 [locale.loc.name] 区域内范围 [range] 的空气")
+	user.mob.log_message("修复了 [locale.loc.name] 区域内范围 [range] 的空气", LOG_ADMIN)
 
 	for(var/turf/open/valid_range_turf in range(range,locale))
 		if(valid_range_turf.blocks_air)

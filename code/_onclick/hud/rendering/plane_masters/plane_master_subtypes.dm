@@ -1,6 +1,6 @@
 /atom/movable/screen/plane_master/field_of_vision_blocker
-	name = "Field of vision blocker"
-	documentation = "This is one of those planes that's only used as a filter. It cuts out a portion of the game plate and does effects to it."
+	name = "视野遮挡层"
+	documentation = "此平面仅用作滤镜。它截取游戏渲染板的一部分并对其应用效果。"
 	plane = FIELD_OF_VISION_BLOCKER_PLANE
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	render_target = FIELD_OF_VISION_BLOCKER_RENDER_TARGET
@@ -34,9 +34,9 @@
 	hide_plane(source)
 
 /atom/movable/screen/plane_master/clickcatcher
-	name = "Click Catcher"
-	documentation = "Contains the screen object we use as a backdrop to catch clicks on portions of the screen that would otherwise contain nothing else. \
-		<br>Will always be below almost everything else"
+	name = "点击捕获层"
+	documentation = "包含用作背景的屏幕对象，用于捕获屏幕空白区域的点击。 \
+		<br>始终位于几乎所有其他内容下方。"
 	plane = CLICKCATCHER_PLANE
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	multiz_scaled = FALSE
@@ -55,9 +55,9 @@
 		hide_plane(home?.our_hud?.mymob)
 
 /atom/movable/screen/plane_master/parallax_white
-	name = "Parallax whitifier"
-	documentation = "Essentially a backdrop for the parallax plane. We're rendered just below it, so we'll be multiplied by its well, parallax.\
-		<br>If you want something to look as if it has parallax on it, draw it to this plane."
+	name = "视差白色底层"
+	documentation = "本质上是视差平面的背景。它在视差平面正下方渲染，再与视差效果进行正片叠底混合。\
+		<br>如果希望某个对象呈现视差效果，请将其绘制到此平面。"
 	plane = PLANE_SPACE
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	render_relay_planes = list(RENDER_PLANE_UNLIT_GAME, RENDER_PLANE_LIGHT_MASK)
@@ -99,11 +99,11 @@
 
 ///Contains space parallax
 /atom/movable/screen/plane_master/parallax
-	name = "Parallax"
-	documentation = "Contains parallax, or to be more exact the screen objects that hold parallax.\
-		<br>Note the BLEND_MULTIPLY. The trick here is how low our plane value is. Because of that, we draw below almost everything in the game.\
-		<br>We abuse this to ensure we multiply against the Parallax whitifier plane, or space's plane. It's set to full white, so when you do the multiply you just get parallax out where it well, makes sense to be.\
-		<br>Also notice that the parent parallax plane is mirrored down to all children. We want to support viewing parallax across all z levels at once."
+	name = "视差"
+	documentation = "包含视差效果，准确地说是承载视差效果的屏幕对象。\
+		<br>请注意 BLEND_MULTIPLY。此平面的数值很低，因此绘制在几乎所有游戏内容下方。\
+		<br>这样可以确保它与视差白色底层或太空平面进行正片叠底混合。底层设为纯白色，因此视差只出现在合适的位置。\
+		<br>父视差平面也会向下镜像到所有子平面，以支持同时查看所有 Z 层的视差。"
 	plane = PLANE_SPACE_PARALLAX
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	blend_mode = BLEND_MULTIPLY
@@ -215,10 +215,10 @@
 	animate(src, color = null, time = 8 SECONDS)
 
 /atom/movable/screen/plane_master/displacement
-	name = "Displacement"
-	documentation = "Ok so this one's fun. Basically, we want to be able to distort the game plane when a grav annom or similar is around.\
-		<br>So we draw the pattern we want to use to this plane, and it's then used as a render target by a distortion filter on the game plane.\
-		<br>Note the blend mode and lack of relay targets. This plane exists only to distort, it's never rendered anywhere."
+	name = "置换"
+	documentation = "此平面用于在引力异常等现象附近扭曲游戏画面。\
+		<br>所需图案绘制到此平面后，会作为游戏平面上扭曲滤镜的渲染目标。\
+		<br>请注意其混合模式以及没有中继目标这一点。此平面仅用于扭曲，不会直接绘制到任何地方。"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	plane = DISPLACEMENT_PLANE
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
@@ -246,15 +246,15 @@
 
 /// Contains just the floor
 /atom/movable/screen/plane_master/floor
-	name = "Floor"
-	documentation = "The well, floor. This is mostly used as a sorting mechanism, but it also lets us create a \"border\" around the game world plane, so its drop shadow will actually work."
+	name = "地板"
+	documentation = "地板平面。主要用于排序，也能在游戏世界平面周围建立边界，使投影效果正常生效。"
 	plane = FLOOR_PLANE
 	render_relay_planes = list(RENDER_PLANE_UNLIT_GAME, RENDER_PLANE_LIGHT_MASK)
 
 /atom/movable/screen/plane_master/transparent_floor
-	name = "Transparent Floor"
-	documentation = "Really just openspace, stuff that is a turf but has no color or alpha whatsoever.\
-		<br>We use this to draw to just the light mask plane, cause if it's not there we get holes of blackness over openspace"
+	name = "透明地板"
+	documentation = "实际上就是开放空间，即没有任何颜色或不透明度的地块。\
+		<br>它只绘制到光照遮罩平面；缺少它会导致开放空间上出现黑色空洞。"
 	plane = TRANSPARENT_FLOOR_PLANE
 	render_relay_planes = list(RENDER_PLANE_LIGHT_MASK)
 	// Needs to be critical or it uh, it'll look white
@@ -265,8 +265,8 @@
 	add_relay_to(GET_NEW_PLANE(RENDER_PLANE_EMISSIVE, offset), relay_layer = EMISSIVE_FLOOR_LAYER, relay_color = GLOB.em_block_color)
 
 /atom/movable/screen/plane_master/wall
-	name = "Wall"
-	documentation = "Holds all walls. We render this onto the game world. Separate so we can use this + space and floor planes as a guide for where byond blackness is NOT."
+	name = "墙壁"
+	documentation = "包含所有墙壁，并绘制到游戏世界。单独设置此平面，以便结合太空和地板平面判断哪些位置不属于 BYOND 的黑暗区域。"
 	plane = WALL_PLANE
 	render_relay_planes = list(RENDER_PLANE_GAME_WORLD, RENDER_PLANE_LIGHT_MASK)
 
@@ -275,20 +275,20 @@
 	add_relay_to(GET_NEW_PLANE(RENDER_PLANE_EMISSIVE, offset), relay_layer = EMISSIVE_WALL_LAYER, relay_color = GLOB.em_block_color)
 
 /atom/movable/screen/plane_master/game
-	name = "Game"
-	documentation = "Holds most non floor/wall things. Anything on this plane \"wants\" to interlayer depending on position."
+	name = "游戏"
+	documentation = "包含地板和墙壁之外的大多数内容。此平面上的对象需要根据位置相互交错分层。"
 	plane = GAME_PLANE
 	render_relay_planes = list(RENDER_PLANE_GAME_WORLD)
 
 /atom/movable/screen/plane_master/game_world_above
-	name = "Upper Game"
-	documentation = "For stuff you want to draw like the game plane, but not ever below its contents"
+	name = "游戏上层"
+	documentation = "用于按游戏平面的方式绘制、但始终位于其内容之上的对象。"
 	plane = ABOVE_GAME_PLANE
 	render_relay_planes = list(RENDER_PLANE_GAME_WORLD)
 
 /atom/movable/screen/plane_master/seethrough
-	name = "Seethrough"
-	documentation = "Holds the seethrough versions (done using image overrides) of large objects. Mouse transparent, so you can click through them."
+	name = "透视"
+	documentation = "包含大型对象的透视版本，通过图像覆盖实现。鼠标点击可穿透这些对象。"
 	plane = SEETHROUGH_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	render_relay_planes = list(RENDER_PLANE_GAME_WORLD)
@@ -301,23 +301,23 @@
  * This would allow us to control it and do fun things. But we can't because side map doesn't support it, so this is just a stub
  */
 /atom/movable/screen/plane_master/default
-	name = "Default"
-	documentation = "This is quite fiddly, so bear with me. By default (in byond) everything in the game is rendered onto plane 0. It's the default plane. \
-		<br>But, because we've moved everything we control off plane 0, all that's left is stuff byond internally renders. \
-		<br>What I'd like to do with this is capture byond blackness by giving mobs the SEE_BLACKNESS sight flag. \
-		<br>But we CAN'T because SEE_BLACKNESS does not work with our rendering format. So I just eat it I guess"
+	name = "默认"
+	documentation = "BYOND 默认将所有游戏内容绘制到平面 0，即默认平面。 \
+		<br>由于我们已将可控制的内容移出平面 0，此处只剩下 BYOND 内部绘制的内容。 \
+		<br>原本希望通过赋予生物 SEE_BLACKNESS 视野标志来捕获 BYOND 的黑暗区域。 \
+		<br>但 SEE_BLACKNESS 与当前渲染格式不兼容，因此暂时无法实现。"
 	plane = DEFAULT_PLANE
 	multiz_scaled = FALSE
 	start_hidden = TRUE // Doesn't DO anything, exists to hold this place
 
 /atom/movable/screen/plane_master/area
-	name = "Area"
-	documentation = "Holds the areas themselves, which ends up meaning it holds any overlays/effects we apply to areas. NOT snow or rad storms, those go on above lighting"
+	name = "区域"
+	documentation = "包含区域本身，也就是施加于区域的叠加图像和效果。不包括暴雪或辐射风暴，它们位于光照上方。"
 	plane = AREA_PLANE
 
 /atom/movable/screen/plane_master/weather
-	name = "Non-Particle Weather"
-	documentation = "Holds the main tiling 32x32 sprites of weather. We mask against walls that are on the edge of weather effects. Used when the player has particle weather disabled."
+	name = "非粒子天气"
+	documentation = "包含天气的主要 32×32 平铺图像，并使用天气效果边缘的墙壁作为遮罩。玩家禁用粒子天气时使用。"
 	plane = WEATHER_PLANE
 	start_hidden = TRUE
 	critical = PLANE_CRITICAL_DISPLAY
@@ -347,14 +347,14 @@
 		set_alpha(0)
 
 /atom/movable/screen/plane_master/weather/particle
-	name = "Particle Weather"
-	documentation = "Holds the main tiling 32x32 sprites of weather. Used when the player has particle weather enabled."
+	name = "粒子天气"
+	documentation = "包含天气的主要 32×32 平铺图像。玩家启用粒子天气时使用。"
 	plane = PARTICLE_WEATHER_PLANE
 	particle_weather = TRUE
 
 /atom/movable/screen/plane_master/weather_mask
-	name = "Weather Mask"
-	documentation = "Used to mask particle weather effects to cut out areas unaffected by weather."
+	name = "天气遮罩"
+	documentation = "用于遮罩粒子天气效果，排除不受天气影响的区域。"
 	plane = WEATHER_MASK_PLANE
 	appearance_flags = PLANE_MASTER | NO_CLIENT_COLOR
 	render_target = WEATHER_MASK_RENDER_TARGET
@@ -369,20 +369,20 @@
 	home.AddComponent(/datum/component/hide_weather_planes, src)
 
 /atom/movable/screen/plane_master/massive_obj
-	name = "Massive object"
-	documentation = "Huge objects need to render above everything else on the game plane, otherwise they'd well, get clipped and look not that huge. This does that."
+	name = "巨大物体"
+	documentation = "巨大物体需要绘制在游戏平面的所有其他内容之上，否则会被裁切，失去巨大的观感。此平面负责实现这一点。"
 	plane = MASSIVE_OBJ_PLANE
 
 /atom/movable/screen/plane_master/point
-	name = "Point"
-	documentation = "I mean like, what do you want me to say? Points draw over pretty much everything else, so they get their own plane. Remember we layer render relays to draw planes in their proper order on render plates."
+	name = "指示"
+	documentation = "指示标记绘制在几乎所有其他内容之上，因此使用独立平面。渲染中继通过分层，使各平面按正确顺序绘制到渲染板。"
 	plane = POINT_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 ///Contains all turf lighting
 /atom/movable/screen/plane_master/turf_lighting
-	name = "Turf Lighting"
-	documentation = "Contains all lighting drawn to turfs. Not so complex, draws directly onto the lighting plate."
+	name = "地块光照"
+	documentation = "包含绘制到地块上的全部光照，直接绘制到光照渲染板。"
 	plane = LIGHTING_PLANE
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	render_relay_planes = list(RENDER_PLANE_TURF_LIGHTING)
@@ -393,9 +393,9 @@
 /// This will not work through multiz, because of a byond bug with BLEND_MULTIPLY
 /// Bug report is up, waiting on a fix
 /atom/movable/screen/plane_master/o_light_visual
-	name = "Overlight light visual"
-	documentation = "Holds overlay lighting objects, or the sort of lighting that's a well, overlay stuck to something.\
-		<br>Exists because lighting updating is really slow, and movement needs to feel smooth (also being an overlay lets us muck with it easier)."
+	name = "叠加光照图像"
+	documentation = "包含叠加光照对象，即附着于其他对象上的光照叠加图像。\
+		<br>设置此平面是因为光照更新较慢，而移动需要保持流畅；使用叠加图像也更便于调整。"
 	plane = O_LIGHTING_VISUAL_PLANE
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -404,15 +404,15 @@
 	critical = PLANE_CRITICAL_DISPLAY
 
 /atom/movable/screen/plane_master/above_lighting
-	name = "Above lighting"
+	name = "光照上方"
 	plane = ABOVE_LIGHTING_PLANE
-	documentation = "Anything on the game plane that needs a space to draw on that will be above the lighting plane.\
-		<br>Mostly little alerts and effects, also sometimes contains things that are meant to look as if they glow."
+	documentation = "包含游戏平面中需要绘制在光照平面上方的内容。\
+		<br>主要是小型提示和效果，有时也包含需要呈现发光效果的对象。"
 	render_relay_planes = list(RENDER_PLANE_GAME)
 
 /atom/movable/screen/plane_master/weather_glow
-	name = "Weather Glow"
-	documentation = "Holds the glowing parts of the main tiling 32x32 sprites of weather."
+	name = "天气辉光"
+	documentation = "包含天气主要 32×32 平铺图像中的发光部分。"
 	plane = WEATHER_GLOW_PLANE
 	start_hidden = TRUE
 	critical = PLANE_CRITICAL_DISPLAY
@@ -428,10 +428,10 @@
  * Handles emissive overlays and emissive blockers.
  */
 /atom/movable/screen/plane_master/emissive
-	name = "Emissive"
-	documentation = "Holds things that will be used to mask the lighting plane later on. Masked by the Emissive Mask plane to ensure we don't emiss out under a wall.\
-		<br>Relayed onto the Emissive render plane to do the actual masking of lighting, since we need to be transformed and other emissive stuff needs to be transformed too.\
-		<br>Don't want to double scale now."
+	name = "自发光"
+	documentation = "包含后续用于遮罩光照平面的内容。自发光遮罩平面会遮挡此层，避免光从墙壁下方透出。\
+		<br>它被中继到自发光渲染平面以执行光照遮罩，因为自身和其他自发光内容都需要进行变换。\
+		<br>这样可以避免重复缩放。"
 	plane = EMISSIVE_PLANE
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -451,9 +451,9 @@
 	add_relay_to(GET_NEW_PLANE(RENDER_PLANE_SPECULAR_MASK, offset), relay_color = list(0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0, 1,1,1,0))
 
 /atom/movable/screen/plane_master/pipecrawl
-	name = "Pipecrawl"
-	documentation = "Holds pipecrawl images generated during well, pipecrawling.\
-		<br>Has a few effects and a funky color matrix designed to make things a bit more visually readable."
+	name = "管道爬行"
+	documentation = "包含在管道爬行时生成的图像。\
+		<br>使用若干效果和颜色矩阵，使画面更容易辨认。"
 	plane = PIPECRAWL_IMAGES_PLANE
 	start_hidden = TRUE
 	render_relay_planes = list(RENDER_PLANE_GAME)
@@ -468,9 +468,9 @@
 	mirror_parent_hidden()
 
 /atom/movable/screen/plane_master/camera_static
-	name = "Camera static"
-	documentation = "Holds camera static images. Usually only visible to people who can well, see static.\
-		<br>We use images rather then vis contents because they're lighter on maptick, and maptick sucks butt."
+	name = "摄像头雪花"
+	documentation = "包含摄像头雪花图像，通常只有能看到雪花画面的观察者才能看见。\
+		<br>使用图像而非 vis_contents，以减少地图更新的性能开销。"
 	plane = CAMERA_STATIC_PLANE
 	render_relay_planes = list(RENDER_PLANE_GAME)
 
@@ -505,24 +505,24 @@
 		unhide_plane(source.mymob)
 
 /atom/movable/screen/plane_master/high_game
-	name = "High Game"
-	documentation = "Holds anything that wants to be displayed above the rest of the game plane, and doesn't want to be clickable. \
-		<br>This includes atmos debug overlays, blind sound images, and mining scanners. \
-		<br>Really only exists for its layering potential, we don't use this for any vfx"
+	name = "游戏高层"
+	documentation = "包含需要显示在游戏平面其他内容之上、且不能被点击的对象。 \
+		<br>包括大气调试叠加图像、盲人声音图像和采矿扫描仪效果。 \
+		<br>此平面仅用于分层，不用于施加视觉特效。"
 	plane = HIGH_GAME_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	render_relay_planes = list(RENDER_PLANE_GAME)
 
 /atom/movable/screen/plane_master/ghost
-	name = "Ghost"
-	documentation = "Ghosts draw here, so they don't get mixed up in the visuals of the game world. Note, this is not how we HIDE ghosts from people, that's done with invisible and see_invisible."
+	name = "幽灵"
+	documentation = "幽灵在此处绘制，避免与游戏世界的画面混在一起。此平面不负责向玩家隐藏幽灵；隐藏由 invisible 和 see_invisible 实现。"
 	plane = GHOST_PLANE
 	render_relay_planes = list(RENDER_PLANE_NON_GAME)
 
 /atom/movable/screen/plane_master/fullscreen
-	name = "Fullscreen"
-	documentation = "Holds anything that applies to or above the full screen. \
-		<br>Note, it's still rendered underneath hud objects, but this lets us control the order that things like death/damage effects render in."
+	name = "全屏"
+	documentation = "包含作用于整个屏幕或其上方的内容。 \
+		<br>它仍绘制在 HUD 对象下方，用于控制死亡、受伤等效果的绘制顺序。"
 	plane = FULLSCREEN_PLANE
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	render_relay_planes = list(RENDER_PLANE_NON_GAME)
@@ -530,8 +530,8 @@
 	offsetting_flags = BLOCKS_PLANE_OFFSETTING|OFFSET_RELAYS_MATCH_HIGHEST
 
 /atom/movable/screen/plane_master/runechat
-	name = "Runechat"
-	documentation = "Holds runechat images, that text that pops up when someone say something. Uses a dropshadow to well, look nice."
+	name = "头顶聊天"
+	documentation = "包含头顶聊天图像，即角色说话时弹出的文字。使用投影改善观感。"
 	plane = RUNECHAT_PLANE
 	render_relay_planes = list(RENDER_PLANE_NON_GAME)
 
@@ -546,39 +546,39 @@
 		add_filter("AO", 1, outline_filter(size = 2, color = "#04080F20", flags = OUTLINE_SQUARE))
 
 /atom/movable/screen/plane_master/balloon_chat
-	name = "Balloon chat"
-	documentation = "Holds ballon chat images, those little text bars that pop up for a second when you do some things. NOT runechat."
+	name = "气泡提示"
+	documentation = "包含气泡提示图像，即执行某些操作时短暂出现的小文字条，不是头顶聊天文字。"
 	plane = BALLOON_CHAT_PLANE
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	render_relay_planes = list(RENDER_PLANE_NON_GAME)
 
 /atom/movable/screen/plane_master/hud
 	name = "HUD"
-	documentation = "Contains anything that want to be rendered on the hud. Typically is just screen elements."
+	documentation = "包含需要绘制到 HUD 上的内容，通常就是屏幕界面元素。"
 	plane = HUD_PLANE
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	render_relay_planes = list(RENDER_PLANE_NON_GAME)
 	offsetting_flags = BLOCKS_PLANE_OFFSETTING|OFFSET_RELAYS_MATCH_HIGHEST
 
 /atom/movable/screen/plane_master/above_hud
-	name = "Above HUD"
-	documentation = "Anything that wants to be drawn ABOVE the rest of the hud. Typically close buttons and other elements that need to be always visible. Think preventing draggable action button memes."
+	name = "HUD 上方"
+	documentation = "包含需要绘制在 HUD 其余内容之上的对象，通常是关闭按钮等必须始终可见的元素，以免被可拖动的动作按钮遮挡。"
 	plane = ABOVE_HUD_PLANE
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	render_relay_planes = list(RENDER_PLANE_NON_GAME)
 	offsetting_flags = BLOCKS_PLANE_OFFSETTING|OFFSET_RELAYS_MATCH_HIGHEST
 
 /atom/movable/screen/plane_master/splashscreen
-	name = "Splashscreen"
-	documentation = "Cinematics and the splash screen."
+	name = "开场画面"
+	documentation = "过场动画和开场画面。"
 	plane = SPLASHSCREEN_PLANE
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	render_relay_planes = list(RENDER_PLANE_NON_GAME)
 	offsetting_flags = BLOCKS_PLANE_OFFSETTING|OFFSET_RELAYS_MATCH_HIGHEST
 
 /atom/movable/screen/plane_master/escape_menu
-	name = "Escape Menu"
-	documentation = "Anything relating to the escape menu."
+	name = "退出菜单"
+	documentation = "与退出菜单相关的全部内容。"
 	plane = ESCAPE_MENU_PLANE
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	render_relay_planes = list(RENDER_PLANE_MASTER)

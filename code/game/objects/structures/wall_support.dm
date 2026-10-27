@@ -5,8 +5,8 @@
  * (/datum/component/atom_mounted)
 **/
 /obj/structure/wall_support
-	desc = "A temporary support structure for wall-mounted equipment. Allows you to safely deconstruct walls."
-	name = "Wall Support"
+	desc = "一种用于壁挂设备的临时支撑结构，可让你安全地拆除墙壁。"
+	name = "墙壁支撑"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "wall_support"
 	base_icon_state = "wall_support"
@@ -32,17 +32,17 @@
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
 	if(anchored)
-		. += span_notice("It's secured in place with [EXAMINE_HINT("screws")]. The rods look like they could be [EXAMINE_HINT("cut")] through.")
+		. += span_notice("它已用[EXAMINE_HINT("螺丝")]固定到位。这些杆子看起来可以被[EXAMINE_HINT("剪")]断。")
 	else
-		. += span_notice("The anchoring screws are [EXAMINE_HINT("unscrewed")]. The rods look like they could be [EXAMINE_HINT("cut")] through.")
+		. += span_notice("固定用的螺丝被[EXAMINE_HINT("拧下")]了。这些杆子看起来可以被[EXAMINE_HINT("剪")]断。")
 
 /obj/structure/wall_support/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(held_item?.tool_behaviour == TOOL_WIRECUTTER)
-		context[SCREENTIP_CONTEXT_RMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_RMB] = "拆除"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(held_item?.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Unanchor" : "Anchor"]"
+		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "解除固定" : "固定"]"
 		return CONTEXTUAL_SCREENTIP_SET
 	return .
 
@@ -59,8 +59,8 @@
 	if(!tool.use_tool(src, user, 0, volume=100))
 		return FALSE
 	set_anchored(!anchored)
-	user.visible_message(span_notice("[user] [anchored ? "fastens" : "unfastens"] [src]."), \
-		span_notice("You [anchored ? "fasten [src] to" : "unfasten [src] from"] the floor."))
+	user.visible_message(span_notice("[user][anchored ? "把[src]固定好了。" : "松开了[src]。"]"), \
+		span_notice("[anchored ? "你把[src]固定在地板上。" : "你把[src]从地板上松开。"]"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/wall_support/play_attack_sound(...)

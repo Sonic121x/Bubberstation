@@ -14,9 +14,9 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 
 /mob/eye/blob
-	name = "Blob Overmind"
-	real_name = "Blob Overmind"
-	desc = "The overmind. It controls the blob."
+	name = "变形菌主脑"
+	real_name = "变形菌主脑"
+	desc = "主脑。它控制着变形菌。"
 	icon = 'icons/mob/eyemob.dmi'
 	icon_state = "marker"
 	mouse_opacity = MOUSE_OPACITY_ICON
@@ -121,10 +121,10 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	blobstrain.on_gain()
 
 	if (had_strain)
-		to_chat(src, span_notice("Your strain is now: <b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font>!"))
-		to_chat(src, span_notice("The <b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font> strain [blobstrain.description]"))
+		to_chat(src, span_notice("你当前的菌株为：<b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font>！"))
+		to_chat(src, span_notice("这种<b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font>菌株[blobstrain.description]"))
 		if(blobstrain.effectdesc)
-			to_chat(src, span_notice("The <b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font> strain [blobstrain.effectdesc]"))
+			to_chat(src, span_notice("这种<b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font>菌株[blobstrain.effectdesc]"))
 	SEND_SIGNAL(src, COMSIG_BLOB_SELECTED_STRAIN, blobstrain)
 
 /mob/eye/blob/can_z_move(direction, turf/start, turf/destination, z_move_flags = NONE, mob/living/rider)
@@ -136,7 +136,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/turf/target_turf = .
 	if(!is_valid_turf(target_turf)) // Allows unplaced blobs to travel through station z-levels
 		if(z_move_flags & ZMOVE_FEEDBACK)
-			to_chat(src, span_warning("Your destination is invalid. Move somewhere else and try again."))
+			to_chat(src, span_warning("你的目的地无效。请换个地方再试。"))
 		return null
 
 /mob/eye/blob/proc/is_valid_turf(turf/tile)
@@ -149,8 +149,8 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	if(!blob_core)
 		if(!placed)
 			if(manualplace_min_time && world.time >= manualplace_min_time)
-				to_chat(src, span_boldnotice("You may now place your blob core."))
-				to_chat(src, span_bolddanger("You will automatically place your blob core in [DisplayTimeText(autoplace_max_time - world.time)]."))
+				to_chat(src, span_boldnotice("你现在可以放置变形菌核心了。"))
+				to_chat(src, span_bolddanger("你将在 [DisplayTimeText(autoplace_max_time - world.time)]后自动放置变形菌核心。"))
 				manualplace_min_time = 0
 			if(autoplace_max_time && world.time >= autoplace_max_time)
 				place_blob_core(BLOB_RANDOM_PLACEMENT)
@@ -166,14 +166,14 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		begin_victory()
 
 	else if(!free_strain_rerolls && (last_reroll_time + BLOB_POWER_REROLL_FREE_TIME<world.time))
-		to_chat(src, span_boldnotice("You have gained another free strain re-roll."))
+		to_chat(src, span_boldnotice("你又一次获得了免费的菌株重掷机会。"))
 		free_strain_rerolls = 1
 
 	if(!victory_in_progress && max_count < blobs_legit.len)
 		max_count = blobs_legit.len
 
 	if(announcement_time && (world.time >= announcement_time || blobs_legit.len >= announcement_size) && !has_announced)
-		priority_announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", ANNOUNCER_OUTBREAK5)
+		priority_announce("已确认[station_name()]上爆发 5 级生物危害。所有人员必须控制住疫情。", "生物危害警报", ANNOUNCER_OUTBREAK5)
 		SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_TOMBSTONE] = TRUE
 
 		// Set status displays to biohazard alert
@@ -198,7 +198,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 /// Announce the blob's victory! Tell everyone that they're about to explode and/or turn into biomass soup and give the overmind a victory lap.
 /mob/eye/blob/proc/begin_victory()
 	victory_in_progress = TRUE
-	priority_announce("Biohazard has reached critical mass. Station loss is imminent.", "Biohazard Alert")
+	priority_announce("生物危害已达到临界规模。空间站即将失守。", "生物危害警报")
 	SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 
 	// Set status displays to biohazard alert - critical level
@@ -207,7 +207,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		max_blob_points = INFINITY
 		blob_points = INFINITY
 	else
-		to_chat(src, span_blob("You've reached critical mass, but something feels terribly wrong, stopping you from expanding further. All you can do now is fight as long as you can..."))
+		to_chat(src, span_blob("你已达到临界规模，但有什么东西感觉极其不对劲，阻止你进一步扩张。现在你只能尽可能久地战斗下去……"))
 	addtimer(CALLBACK(src, PROC_REF(victory)), 45 SECONDS)
 
 /// Actually *do* the blob's victory: give them their greentext and, depending on the end_round_on_victory variable, decide if everyone dies or if it's just a jumpscare.
@@ -220,7 +220,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 			main_objective.completed = TRUE
 
 	if(end_round_on_victory)
-		to_chat(world, span_blobannounce("[real_name] consumed the station in an unstoppable tide!"))
+		to_chat(world, span_blobannounce("[real_name]以不可阻挡的狂潮吞噬了空间站！"))
 		SSticker.news_report = BLOB_WIN
 		SSticker.force_ending = FORCE_END_ROUND
 
@@ -228,9 +228,9 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		INVOKE_ASYNC(src, PROC_REF(victory_sequence))
 	else
 		// Is the station going boom? No. But is the station still going to get yelled at? Yes.
-		priority_announce("Experimental, classified, and very expensive emergency countermeasures have been activated to prevent total station loss, \
-			but the initial failure to contain the viral biohazard will be noted on the station's performance report. Expect further penalties.", \
-			"Emergency Biohazard Countermeasure Alert")
+		priority_announce("为防止空间站彻底损失，实验性的、机密的且极其昂贵的应急措施已被启动，\
+			但最初未能控制住病毒性生物危害一事将记录在空间站的绩效报告中。请做好接受进一步处罚的准备。", \
+			"紧急生物危害应对警报")
 
 /// Kill everyone who's still on the station area and not already part of the blob's faction, and cover every station area with blob icons. Everyone's soup now.
 /mob/eye/blob/proc/victory_sequence()
@@ -262,7 +262,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		if(!(check_area.area_flags & BLOBS_ALLOWED))
 			continue
 		check_area.color = blobstrain.color
-		check_area.name = "blob"
+		check_area.name = "变形菌"
 		check_area.icon = 'icons/mob/nonhuman-player/blob.dmi'
 		check_area.icon_state = "blob_shield"
 		check_area.layer = BELOW_MOB_LAYER
@@ -294,17 +294,17 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	. = ..()
 	if(!. || !client)
 		return FALSE
-	to_chat(src, span_blobannounce("You are the overmind!"))
+	to_chat(src, span_blobannounce("你就是主脑！"))
 	if(!placed && autoplace_max_time <= world.time)
-		to_chat(src, span_bolddanger("You will automatically place your blob core in [DisplayTimeText(autoplace_max_time - world.time)]."))
-		to_chat(src, span_bolddanger("You [manualplace_min_time ? "will be able to":"can"] manually place your blob core by pressing the Place Blob Core button in the bottom right corner of the screen."))
+		to_chat(src, span_bolddanger("你将在 [DisplayTimeText(autoplace_max_time - world.time)]后自动放置变形菌核心。"))
+		to_chat(src, span_bolddanger("你[manualplace_min_time ? "将可以" : "可以"]通过点击屏幕右下角的“放置变形菌核心”按钮来手动放置变形菌核心。"))
 	update_health_hud()
 	add_points(0)
 
 /mob/eye/blob/examine(mob/user)
 	. = ..()
 	if(blobstrain)
-		. += "Its strain is <font color=\"[blobstrain.color]\">[blobstrain.name]</font>."
+		. += "它的菌株是<font color=\"[blobstrain.color]\">[blobstrain.name]</font>。"
 
 /mob/eye/blob/update_health_hud()
 	if(!blob_core)
@@ -339,7 +339,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, span_boldwarning("You cannot send IC messages (muted)."))
+			to_chat(src, span_boldwarning("你无法发送 IC 消息（已被禁言）。"))
 			return
 		if (!(ignore_spam || forced) && src.client.handle_spam_prevention(message, MUTE_IC))
 			return
@@ -360,7 +360,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/adjusted_message = check_for_custom_say_emote(message, message_mods)
 	log_sayverb_talk(message, message_mods, tag = "blob hivemind telepathy")
 	var/messagepart = generate_messagepart(adjusted_message, message_mods = message_mods)
-	var/rendered = span_big(span_blob("<b>\[Blob Telepathy\] [name](<font color=\"[blobstrain.color]\">[blobstrain.name]</font>)</b> [messagepart]"))
+	var/rendered = span_big(span_blob("<b>\[变形菌心灵感应\] [name](<font color=\"[blobstrain.color]\">[blobstrain.name]</font>)</b> [messagepart]"))
 	relay_to_list_and_observers(rendered, GLOB.blob_telepathy_mobs, src, MESSAGE_TYPE_RADIO)
 
 /mob/eye/blob/blob_act(obj/structure/blob/B)
@@ -369,15 +369,15 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 /mob/eye/blob/get_status_tab_items()
 	. = ..()
 	if(blob_core)
-		. += "Core Health: [blob_core.get_integrity()]"
-		. += "Power Stored: [blob_points]/[max_blob_points]"
-		. += "Blobs to Win: [blobs_legit.len]/[blobwincount]"
+		. += "核心生命值：[blob_core.get_integrity()]"
+		. += "已储存能量：[blob_points]/[max_blob_points]"
+		. += "获胜所需变形菌数：[blobs_legit.len]/[blobwincount]"
 	if(free_strain_rerolls)
-		. += "You have [free_strain_rerolls] Free Strain Reroll\s Remaining"
+		. += "你还剩余 [free_strain_rerolls] 次免费菌株重掷"
 	if(!placed)
 		if(manualplace_min_time)
-			. += "Time Before Manual Placement: [max(round((manualplace_min_time - world.time)*0.1, 0.1), 0)]"
-		. += "Time Before Automatic Placement: [max(round((autoplace_max_time - world.time)*0.1, 0.1), 0)]"
+			. += "距手动放置还有：[max(round((manualplace_min_time - world.time)*0.1, 0.1), 0)]"
+		. += "距自动放置还有：[max(round((autoplace_max_time - world.time)*0.1, 0.1), 0)]"
 
 /mob/eye/blob/Move(NewLoc, Dir = 0)
 	if(placed)

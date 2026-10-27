@@ -1,7 +1,7 @@
 /obj/machinery/ore_silo/colony_lathe
-	name = "colony ore silo"
-	desc = "An all-in-one materials management solution. Connects resource-using machines \
-		through a network of distribution systems."
+	name = "殖民矿石筒仓"
+	desc = "一体化的材料管理方案。通过分配系统网络\
+		连接各类消耗资源的机器。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/ore_silo.dmi'
 	circuit = null
 	/// What this packs into
@@ -20,7 +20,7 @@
 
 // Item for deploying ore silos
 /obj/item/flatpacked_machine/ore_silo
-	name = "flat-packed ore silo"
+	name = "扁平包装矿石筒仓"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/ore_silo.dmi'
 	icon_state = "ore_silo"
 	type_to_deploy = /obj/machinery/ore_silo/colony_lathe

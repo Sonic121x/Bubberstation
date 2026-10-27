@@ -4,7 +4,7 @@
 /datum/controller/subsystem/shuttle/proc/autoEnd()
 	if(EMERGENCY_IDLE_OR_RECALLED)
 		SSshuttle.emergency.request()
-		log_game("Round end vote passed. Shuttle has been auto-called.")
-		message_admins("Round end vote passed. Shuttle has been auto-called.")
+		log_game("回合结束投票已通过，穿梭机已被自动呼叫。")
+		message_admins("回合结束投票已通过，穿梭机已被自动呼叫。")
 	emergency_no_recall = TRUE
 	endvote_passed = TRUE

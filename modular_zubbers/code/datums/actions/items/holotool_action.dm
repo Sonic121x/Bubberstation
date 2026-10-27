@@ -1,5 +1,5 @@
 /datum/action/item_action/change_tool
-	name = "Change Holotool Setting"
+	name = "更改全息工具设置"
 
 /datum/action/item_action/change_ht_color
-	name = "Change Holotool Color"
+	name = "更改全息工具颜色"

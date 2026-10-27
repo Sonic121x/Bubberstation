@@ -1,5 +1,5 @@
 /obj/effect/spawner/random/gizmo
-	name = "gizmo spawner"
+	name = "小装置生成器"
 	icon_state = "gizmo"
 	loot = list(
 		/obj/machinery/gizmo = 6,

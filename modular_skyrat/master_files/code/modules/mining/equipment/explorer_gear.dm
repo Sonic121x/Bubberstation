@@ -22,8 +22,8 @@
 	acid = 100
 
 /obj/item/clothing/suit/hifl_suit
-	name = "\improper H.I.F.L. suit"
-	desc = "The High-Impact Fauna Laminate Suit: A suit designed to withstand a wide variety of planetary hazards. There's an engraving on one of it's shoulders: \"Not for use in Hadean-grade planets.\". Cheap higher-ups."
+	name = "\improper H.I.F.L. 防护服"
+	desc = "高冲击动物群复合防护服：专为抵御各类行星危害而设计。它的一侧肩膀上刻着一行字：“冥古宙级行星请勿使用。”——抠门的高层。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
 	icon_state = "hifl_suit"
 	armor_type = /datum/armor/hifl_armor
@@ -58,7 +58,7 @@
 	AddComponent(/datum/component/toggle_attached_clothing, \
 		deployable_type = /obj/item/clothing/mask/hifl, \
 		equipped_slot = ITEM_SLOT_MASK, \
-		action_name = "Toggle Mask", \
+		action_name = "切换面罩", \
 		pre_creation_check = CALLBACK(src, PROC_REF(pre_creation_check)), \
 		on_deployed = CALLBACK(src, PROC_REF(make_sound)), \
 		on_removed = CALLBACK(src, PROC_REF(make_sound)), \
@@ -83,8 +83,8 @@
 
 
 /obj/item/clothing/mask/hifl
-	name = "\improper H.I.F.L. mask"
-	desc = "Just like the good ol' days."
+	name = "\improper H.I.F.L. 面罩"
+	desc = "就像过去的美好时光。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/masks.dmi'
 	icon_state = "hifl_mask"
 	armor_type = /datum/armor/hifl_armor

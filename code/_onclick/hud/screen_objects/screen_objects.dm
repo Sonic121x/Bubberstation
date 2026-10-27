@@ -111,7 +111,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	maptext_width = 480
 
 /atom/movable/screen/swap_hand
-	name = "swap hand"
+	name = "切换手部"
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /atom/movable/screen/swap_hand/Click()
@@ -129,7 +129,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	return 1
 
 /atom/movable/screen/navigate
-	name = "navigate"
+	name = "导航"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "navigate"
 	screen_loc = ui_navigate_menu
@@ -142,14 +142,14 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	navigator.navigate()
 
 /atom/movable/screen/craft
-	name = "crafting menu"
+	name = "制作菜单"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "craft"
 	screen_loc = ui_crafting
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /atom/movable/screen/area_creator
-	name = "create new area"
+	name = "创建新区域"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "area_edit"
 	screen_loc = ui_building
@@ -160,12 +160,12 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 		return TRUE
 	var/area/A = get_area(usr)
 	if(!A.outdoors)
-		to_chat(usr, span_warning("There is already a defined structure here."))
+		to_chat(usr, span_warning("此处已有定义好的建筑。"))
 		return TRUE
 	create_area(usr)
 
 /atom/movable/screen/language_menu
-	name = "language menu"
+	name = "语言菜单"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "talk_wheel"
 	screen_loc = ui_language_menu
@@ -175,7 +175,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	usr.get_language_holder().open_language_menu(usr)
 
 /atom/movable/screen/memories
-	name = "Memories"
+	name = "记忆"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "memories"
 	screen_loc = ui_memories_menu
@@ -310,7 +310,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	return TRUE
 
 /atom/movable/screen/close
-	name = "close"
+	name = "关闭"
 	plane = ABOVE_HUD_PLANE
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "storage_close"
@@ -329,7 +329,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	return TRUE
 
 /atom/movable/screen/drop
-	name = "drop"
+	name = "放下"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "act_drop"
 	mouse_over_pointer = MOUSE_HAND_POINTER
@@ -339,7 +339,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 		usr.dropItemToGround(usr.get_active_held_item())
 
 /atom/movable/screen/combattoggle
-	name = "toggle combat mode"
+	name = "切换战斗模式"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "combat_off"
 	screen_loc = ui_acti
@@ -391,7 +391,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	screen_loc = ui_borg_intents
 
 /atom/movable/screen/floor_changer
-	name = "change floor"
+	name = "切换楼层"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "floor_change"
 	screen_loc = ui_above_intent
@@ -436,7 +436,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	vertical = TRUE
 
 /atom/movable/screen/spacesuit
-	name = "Space suit cell status"
+	name = "太空服电池状态"
 	icon_state = "spacesuit_0"
 	screen_loc = ui_spacesuit
 	mouse_over_pointer = MOUSE_HAND_POINTER
@@ -498,7 +498,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 		. |= off_overlay
 
 /atom/movable/screen/mov_intent
-	name = "run/walk toggle"
+	name = "切换奔跑/行走"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "running"
 	mouse_over_pointer = MOUSE_HAND_POINTER
@@ -528,7 +528,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	user.toggle_move_intent()
 
 /atom/movable/screen/pull
-	name = "stop pulling"
+	name = "停止拖拽"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "pull"
 	base_icon_state = "pull"
@@ -549,7 +549,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	return ..()
 
 /atom/movable/screen/resist
-	name = "resist"
+	name = "挣脱"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "act_resist"
 	base_icon_state = "act_resist"
@@ -563,7 +563,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 		L.resist()
 
 /atom/movable/screen/rest
-	name = "rest"
+	name = "休息"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "act_rest"
 	base_icon_state = "act_rest"
@@ -587,7 +587,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	return ..()
 
 /atom/movable/screen/sleep
-	name = "sleep"
+	name = "睡觉"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "act_sleep"
 	base_icon_state = "act_sleep"
@@ -606,8 +606,8 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 		flick("[base_icon_state]_flick", src)
 		return
 
-	var/tgui_answer = tgui_alert(usr, "You sure you want to sleep for a while?", "Sleeping", list("Yes", "No"))
-	if(tgui_answer == "Yes" && !IS_UNCONSCIOUS(usr))
+	var/tgui_answer = tgui_alert(usr, "确定要睡一会儿吗？", "睡觉", list("是", "否"))
+	if(tgui_answer == "是" && !IS_UNCONSCIOUS(usr))
 		var/mob/living/L = usr
 		L.Sleeping(400)
 
@@ -619,7 +619,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 		L.Sleeping(400)
 
 /atom/movable/screen/storage
-	name = "storage"
+	name = "储物空间"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "storage_cell"
 	hud_group_key = HUD_GROUP_STORAGE
@@ -678,7 +678,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	icon_state = "storage_corner_bottomright"
 
 /atom/movable/screen/storage/rowjoin
-	name = "storage"
+	name = "储物空间"
 	icon_state = "storage_rowjoin_left"
 	alpha = 0
 
@@ -686,7 +686,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	icon_state = "storage_rowjoin_right"
 
 /atom/movable/screen/throw_catch
-	name = "throw/catch"
+	name = "投掷/接住"
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "act_throw"
 	mouse_over_pointer = MOUSE_HAND_POINTER
@@ -698,7 +698,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 		user.toggle_throw_mode()
 
 /atom/movable/screen/zone_sel
-	name = "damage zone"
+	name = "攻击部位"
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
 	mouse_over_pointer = MOUSE_HAND_POINTER
@@ -826,7 +826,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	icon = 'icons/hud/screen_cyborg.dmi'
 
 /atom/movable/screen/flash
-	name = "flash"
+	name = "闪光"
 	icon_state = "blank"
 	blend_mode = BLEND_ADD
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
@@ -836,7 +836,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 /atom/movable/screen/damageoverlay
 	icon = 'icons/hud/screen_full.dmi'
 	icon_state = "oxydamageoverlay0"
-	name = "dmg"
+	name = "伤害"
 	blend_mode = BLEND_MULTIPLY
 	screen_loc = "CENTER-7,CENTER-7"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -844,7 +844,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	plane = FULLSCREEN_PLANE
 
 /atom/movable/screen/healths
-	name = "health"
+	name = "健康"
 	icon_state = "health0"
 	screen_loc = ui_health
 
@@ -857,31 +857,31 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	screen_loc = ui_borg_health
 
 /atom/movable/screen/healths/blob
-	name = "blob health"
+	name = "变形菌生命值"
 	icon_state = "block"
 	screen_loc = ui_internal
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /atom/movable/screen/healths/blob/overmind
-	name = "overmind health"
+	name = "主脑生命值"
 	icon = 'icons/hud/blob.dmi'
 	icon_state = "corehealth"
 	screen_loc = ui_blobbernaut_overmind_health
 
 /atom/movable/screen/healths/guardian
-	name = "summoner health"
+	name = "召唤者生命值"
 	icon = 'icons/hud/guardian.dmi'
 	icon_state = "base"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /atom/movable/screen/healths/revenant
-	name = "essence"
+	name = "精魄"
 	icon = 'icons/mob/actions/backgrounds.dmi'
 	icon_state = "bg_revenant"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /atom/movable/screen/healthdoll
-	name = "health doll"
+	name = "身体健康示意图"
 	screen_loc = ui_healthdoll
 
 /atom/movable/screen/healthdoll/Click()
@@ -1020,7 +1020,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	vis_flags = VIS_INHERIT_ID | VIS_INHERIT_PLANE
 
 /atom/movable/screen/mood
-	name = "mood"
+	name = "心情"
 	icon_state = "mood5"
 	screen_loc = ui_mood
 	mouse_over_pointer = MOUSE_HAND_POINTER
@@ -1116,7 +1116,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	return ..()
 
 /atom/movable/screen/stamina
-	name = "stamina"
+	name = "耐力"
 	icon_state = "stamina0"
 	screen_loc = ui_stamina
 
@@ -1128,7 +1128,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 #define HUNGER_STATE_STARVING 0
 
 /atom/movable/screen/hunger
-	name = "hunger"
+	name = "饥饿"
 	icon_state = "hungerbar"
 	screen_loc = ui_hunger
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -1311,7 +1311,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
  * 2- Have their blood level changing every life tick (which is why we don't manually call updates).
  */
 /atom/movable/screen/blood_level
-	name = "Blood Level"
+	name = "血液储量"
 	icon_state = "blood_display"
 	screen_loc = ui_blooddisplay
 
@@ -1335,7 +1335,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 
 /// Used to show how many monkeys & slimes are in the console
 /atom/movable/screen/xenobio_console
-	name = "Monkey/Slime Storage"
+	name = "猴子/史莱姆储存"
 	icon_state = "xenobio_console"
 	screen_loc = ui_xenobiodisplay
 	var/atom/movable/screen/xenobio_potion/potion_hud
@@ -1374,7 +1374,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	return ..()
 
 /atom/movable/screen/xenobio_potion
-	name = "Monkey/Slime Storage"
+	name = "猴子/史莱姆储存"
 	screen_loc = ui_xenobiodisplay
 	/// If we have a potion stored or not
 	var/stored_potion = FALSE

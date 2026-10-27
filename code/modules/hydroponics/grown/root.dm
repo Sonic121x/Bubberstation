@@ -1,6 +1,6 @@
 /obj/item/food/grown/carrotlike
-	name = "carrot?"
-	desc = "What is this? It's not a carrot, that's for sure. You should tell someone about this."
+	name = "胡萝卜？"
+	desc = "这是什么？可以肯定，它不是胡萝卜。你该把这件事告诉别人。"
 	icon_state = "carrot"
 	abstract_type = /obj/item/food/grown/carrotlike
 	/// What do we get from inadequately sharpening this?
@@ -22,10 +22,10 @@
 	var/sword_chance = (max(0, seed.potency - potency_minimum) / 50)
 	if (prob(sword_chance))
 		blade = new blade_type
-		to_chat(user, span_notice("You sharpen \the [src] into a [blade_string] with [tool]."))
+		to_chat(user, span_notice("你用 [tool] 把 [src] 磨成了一把[blade_string]。"))
 	else
 		blade = new shiv_type
-		to_chat(user, span_notice("You sharpen \the [src] into a shiv with [tool]."))
+		to_chat(user, span_notice("你用 [tool] 把 [src] 磨成了一把小刀。"))
 	remove_item_from_storage(user)
 	qdel(src)
 	user.put_in_hands(blade)
@@ -33,11 +33,11 @@
 
 // Carrot
 /obj/item/seeds/carrot
-	name = "carrot seed pack"
-	desc = "These seeds grow into carrots."
+	name = "胡萝卜种子包"
+	desc = "这些种子会长成胡萝卜。"
 	icon_state = "seed-carrot"
 	species = "carrot"
-	plantname = "Carrots"
+	plantname = "胡萝卜"
 	product = /obj/item/food/grown/carrotlike/carrot
 	maturation = 10
 	production = 1
@@ -51,8 +51,8 @@
 
 /obj/item/food/grown/carrotlike/carrot
 	seed = /obj/item/seeds/carrot
-	name = "carrot"
-	desc = "It's good for the eyes!"
+	name = "胡萝卜"
+	desc = "对眼睛有好处！"
 	icon_state = "carrot"
 	bite_consumption_mod = 2
 	foodtypes = VEGETABLES
@@ -60,18 +60,18 @@
 
 	shiv_type = /obj/item/knife/shiv/carrot
 	blade_type = /obj/item/claymore/carrot
-	blade_string = "sword"
+	blade_string = "剑"
 
 /obj/item/food/grown/carrotlike/carrot/juice_typepath()
 	return /datum/reagent/consumable/carrotjuice
 
 // Parsnip
 /obj/item/seeds/carrot/parsnip
-	name = "parsnip seed pack"
-	desc = "These seeds grow into parsnips."
+	name = "欧防风种子包"
+	desc = "这些种子会长成欧防风。"
 	icon_state = "seed-parsnip"
 	species = "parsnip"
-	plantname = "Parsnip"
+	plantname = "欧防风"
 	product = /obj/item/food/grown/carrotlike/parsnip
 	icon_dead = "carrot-dead"
 	mutatelist = null
@@ -79,26 +79,26 @@
 
 /obj/item/food/grown/carrotlike/parsnip
 	seed = /obj/item/seeds/carrot/parsnip
-	name = "parsnip"
-	desc = "Closely related to carrots."
+	name = "欧防风"
+	desc = "与胡萝卜是近亲。"
 	icon_state = "parsnip"
 	foodtypes = VEGETABLES
 	wine_power = 35
 
 	shiv_type = /obj/item/knife/shiv/parsnip
 	blade_type = /obj/item/melee/parsnip_sabre
-	blade_string = "sabre"
+	blade_string = "军刀"
 
 /obj/item/food/grown/carrotlike/parsnip/juice_typepath()
 	return /datum/reagent/consumable/parsnipjuice
 
 // Cahn'root
 /obj/item/seeds/carrot/cahnroot
-	name = "cahn'root seed pack"
-	desc = "These seeds grow into cahn'roots."
+	name = "坎恩根种子包"
+	desc = "这些种子会长成坎恩根。"
 	icon_state = "seed-cahn'root"
 	species = "cahn'root"
-	plantname = "Cahn'root"
+	plantname = "坎恩根"
 	product = /obj/item/food/grown/carrotlike/cahnroot
 	genes = list(/datum/plant_gene/trait/soil_lover, /datum/plant_gene/trait/plant_type/weed_hardy)
 	endurance = 50
@@ -111,16 +111,16 @@
 
 /obj/item/food/grown/carrotlike/cahnroot
 	seed = /obj/item/seeds/carrot/cahnroot
-	name = "cahn'root"
-	desc = "Heavily modified version of terran carrot, originally made to survive the scarciest of environments by an enterprising scientist of Moth Flotilla, Cahn'Mang."
+	name = "坎恩根"
+	desc = "地球胡萝卜的重度改造版本，最初由蛾族船队中一位有进取心的科学家坎恩·芒格培育，用于在最贫瘠的环境中生存。"
 	icon_state = "cahn'root"
 	foodtypes = VEGETABLES
-	tastes = list("sweet dirt" = 1)
+	tastes = list("甜泥土" = 1)
 	distill_reagent = /datum/reagent/consumable/rootbeer
 
 	shiv_type = /obj/item/knife/shiv/root
 	blade_type = /obj/item/knife/combat/root
-	blade_string = "dagger"
+	blade_string = "匕首"
 	potency_minimum = 25
 
 /obj/item/food/grown/carrotlike/cahnroot/juice_typepath()
@@ -128,11 +128,11 @@
 
 // White-Beet
 /obj/item/seeds/whitebeet
-	name = "white-beet seed pack"
-	desc = "These seeds grow into sugary beet producing plants."
+	name = "白甜菜种子包"
+	desc = "这些种子会长成能产糖的甜菜植株。"
 	icon_state = "seed-whitebeet"
 	species = "whitebeet"
-	plantname = "White-Beet Plants"
+	plantname = "白甜菜植株"
 	product = /obj/item/food/grown/whitebeet
 	lifespan = 60
 	endurance = 50
@@ -146,8 +146,8 @@
 
 /obj/item/food/grown/whitebeet
 	seed = /obj/item/seeds/whitebeet
-	name = "white-beet"
-	desc = "You can't beat white-beet."
+	name = "白甜菜"
+	desc = "白甜菜，无人能敌。"
 	icon_state = "whitebeet"
 	bite_consumption_mod = 3
 	foodtypes = VEGETABLES
@@ -155,11 +155,11 @@
 
 // Red Beet
 /obj/item/seeds/redbeet
-	name = "redbeet seed pack"
-	desc = "These seeds grow into red beet producing plants."
+	name = "红甜菜种子包"
+	desc = "这些种子会长成能产红甜菜的植株。"
 	icon_state = "seed-redbeet"
 	species = "redbeet"
-	plantname = "Red-Beet Plants"
+	plantname = "红甜菜植株"
 	product = /obj/item/food/grown/redbeet
 	lifespan = 60
 	endurance = 50
@@ -173,8 +173,8 @@
 
 /obj/item/food/grown/redbeet
 	seed = /obj/item/seeds/redbeet
-	name = "red beet"
-	desc = "You can't beat red beet."
+	name = "红甜菜"
+	desc = "红甜菜，无人能敌。"
 	icon_state = "redbeet"
 	bite_consumption_mod = 2
 	foodtypes = VEGETABLES

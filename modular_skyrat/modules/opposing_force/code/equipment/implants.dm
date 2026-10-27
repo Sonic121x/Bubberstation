@@ -4,11 +4,11 @@
 //Skillchips
 /datum/opposing_force_equipment/implants/engichip
 	item_type = /obj/item/skillchip/job/engineer
-	description = "A skillchip that, when installed, allows the user to recognise airlock and APC wire layouts and understand their functionality at a glance. Highly valuable and sought after."
+	description = "安装后能让使用者一眼识别气闸和区域电力控制器线缆布局及功能的技能芯片。价值不菲，广受追捧。"
 
 /datum/opposing_force_equipment/implants/roboticist
 	item_type = /obj/item/skillchip/job/roboticist
-	description = "A skillchip that, when installed, allows the user to recognise cyborg wire layouts and understand their functionality at a glance."
+	description = "安装后能让使用者一眼识别半机械人线缆布局及功能的技能芯片。"
 
 /datum/opposing_force_equipment/implants/tacticool
 	item_type = /obj/item/skillchip/chameleon/reload
@@ -16,122 +16,122 @@
 //Implants
 /datum/opposing_force_equipment/implants/nodrop
 	item_type = /obj/item/autosurgeon/syndicate/nodrop
-	name = "Anti Drop Implant"
-	admin_note = "Allows the user to tighten their grip, their held items unable to be dropped by any cause. Hardstuns user for a longtime if hit with EMP."
-	description = "An implant that prevents you from dropping items in your hand involuntarily. Comes loaded in a syndicate autosurgeon."
+	name = "防脱手植入物"
+	admin_note = "允许使用者握紧物品，手中物品将无法因任何原因掉落。受到电磁脉冲时会使使用者长时间强制眩晕。"
+	description = "防止手中物品意外脱落的植入物，预装在辛迪加自动手术器中。"
 
 /datum/opposing_force_equipment/implants/hackerman
 	item_type = /obj/item/autosurgeon/syndicate/hackerman
-	name = "Hacking Arm Implant"
-	admin_note = "A simple tool arm, except it identifies all wire functions when hacking."
-	description = "An advanced arm implant that comes with cutting edge hacking tools. Perfect for the cybernetically enhanced wirerunners."
+	name = "黑客工具臂植入物"
+	admin_note = "普通工具臂，但入侵设备时能识别所有线缆功能。"
+	description = "配备尖端入侵工具的高级手臂植入物，十分适合经过义体强化的黑客。"
 
 /datum/opposing_force_equipment/implants/cns
-	name = "CNS Rebooter Implant"
+	name = "中枢神经重启植入物"
 	item_type = /obj/item/autosurgeon/syndicate/anti_stun
-	description = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
+	description = "该植入物会自动恢复你对中枢神经系统的控制，缩短被击晕后的失能时间。"
 
 /datum/opposing_force_equipment/implants/reviver
-	name = "Reviver Implant"
+	name = "复苏植入物"
 	item_type = /obj/item/autosurgeon/syndicate/reviver
-	description = "This implant will attempt to revive and heal you if you lose consciousness. For the faint of heart!"
+	description = "失去意识时，该植入物会尝试让你苏醒并进行治疗。专为心脏脆弱的人准备！"
 
 /datum/opposing_force_equipment/implants/sad_trombone
-	name = "Sad Trombone Implant"
+	name = "悲伤长号植入物"
 	item_type = /obj/item/implanter/sad_trombone
 
 /datum/opposing_force_equipment/implants/toolarm
-	name = "Tool Arm Implant"
-	admin_note = "Force 20 implanted combat knife on emag."
+	name = "工具臂植入物"
+	admin_note = "电磁解锁后提供伤害20的植入式战斗刀。"
 	item_type = /obj/item/autosurgeon/toolset
 
 /datum/opposing_force_equipment/implants/surgery
-	name = "Surgery Arm Implant"
-	admin_note = "Force 20 implanted combat knife on emag."
+	name = "手术臂植入物"
+	admin_note = "电磁解锁后提供伤害20的植入式战斗刀。"
 	item_type = /obj/item/autosurgeon/surgery
 
 /datum/opposing_force_equipment/implants/botany
-	name = "Botany Arm Implant"
-	admin_note = "Chainsaw arm on emag."
+	name = "园艺臂植入物"
+	admin_note = "电磁解锁后提供链锯臂。"
 	item_type = /obj/item/autosurgeon/botany
 
 /datum/opposing_force_equipment/implants/janitor
-	name = "Janitor Arm Implant"
+	name = "清洁臂植入物"
 	item_type = /obj/item/autosurgeon/janitor
 
 /datum/opposing_force_equipment/implants/armblade
-	name = "Blade Arm Implant"
-	admin_note = "Force 30 IF emagged."
+	name = "臂刃植入物"
+	admin_note = "仅在电磁解锁后伤害达到30。"
 	item_type = /obj/item/autosurgeon/armblade
 
 /datum/opposing_force_equipment/implants/muscle
-	name = "Muscle Arm Implant"
+	name = "肌肉臂植入物"
 	item_type = /obj/item/autosurgeon/muscle
 
 /datum/opposing_force_equipment/implants_illegal
 	category = OPFOR_EQUIPMENT_CATEGORY_IMPLANTS_ILLEGAL
 
 /datum/opposing_force_equipment/implants_illegal/stealth
-	name = "Stealth Implant"
+	name = "隐身植入物"
 	item_type = /obj/item/implanter/stealth
-	admin_note = "Allows the user to become completely invisible as long as they remain inside a cardboard box."
-	description = "An implanter that grants you the ability to wield the ultimate in invisible box technology. Best used in conjunction with a tape recorder playing Snake Eater."
+	admin_note = "只要使用者待在纸箱中，就能完全隐形。"
+	description = "让你能够使用终极隐形纸箱技术的植入器，最好配合播放《食蛇者》的录音机使用。"
 
 /datum/opposing_force_equipment/implants_illegal/radio
-	name = "Syndicate Radio Implant"
+	name = "辛迪加无线电植入物"
 	item_type = /obj/item/implanter/radio/syndicate
-	description = "An implanter that grants you inherent access to the Syndicate radio channel, in addition to being able to listen to all on-station channels."
+	description = "让你无需外部设备即可使用辛迪加无线电频道的植入器，还能收听空间站的所有频道。"
 
 /datum/opposing_force_equipment/implants_illegal/storage
-	name = "Storage Implant"
+	name = "储物植入物"
 	item_type = /obj/item/implanter/storage
-	admin_note = "Allows user to stow items without any sign of having a storage item."
-	description = "An implanter that grants you access to a small pocket of bluespace, capable of storing a few items."
+	admin_note = "允许使用者藏匿物品，且外表看不出携带了任何储物装备。"
+	description = "让你能够使用一小片蓝空间口袋的植入器，可以存放少量物品。"
 
 /datum/opposing_force_equipment/implants_illegal/freedom
-	name = "Freedom Implant"
+	name = "自由植入物"
 	item_type = /obj/item/implanter/freedom
-	admin_note = "Allows the user to break handcuffs or e-snares four times, after it will run out and become useless."
-	description = "An implanter that grants you the ability to break out of handcuffs a certain number of times."
+	admin_note = "允许使用者挣断手铐或能量束缚四次，之后耗尽并失效。"
+	description = "让你能够挣脱手铐一定次数的植入器。"
 
 /datum/opposing_force_equipment/implants_illegal/micro
-	name = "Microbomb Implant"
-	admin_note = "RRs the user."
+	name = "微型炸弹植入物"
+	admin_note = "会将使用者移出本轮。"
 	item_type = /obj/item/implanter/explosive
-	description = "An implanter that will make you explode on death in a decent-sized explosion."
+	description = "使你死亡时引发一次规模可观的爆炸的植入器。"
 
 /datum/opposing_force_equipment/implants_illegal/emp
-	name = "EMP Implant"
+	name = "电磁脉冲植入物"
 	item_type = /obj/item/implanter/emp
-	admin_note = "Gives the user a big EMP on an action button. Has three uses after which it becomes useless."
-	description = "An implanter that grants you the ability to create several EMP pulses, centered on you."
+	admin_note = "提供可用动作按钮释放的大范围电磁脉冲。可使用三次，之后失效。"
+	description = "让你能够以自身为中心释放数次电磁脉冲的植入器。"
 
 /datum/opposing_force_equipment/implants_illegal/xray
-	name = "X-Ray Eyes"
+	name = "X射线义眼"
 	item_type = /obj/item/autosurgeon/syndicate/xray_eyes
-	description = "These cybernetic eyes will give you X-ray vision. Blinking is futile."
+	description = "这些义眼将赋予你X射线透视能力。眨眼毫无意义。"
 
 /datum/opposing_force_equipment/implants_illegal/thermal
-	name = "Thermal Eyes"
+	name = "热成像义眼"
 	item_type = /obj/item/autosurgeon/syndicate/thermal_eyes
-	description = "These cybernetic eye implants will give you thermal vision. Vertical slit pupil included."
+	description = "这些义眼植入物将赋予你热成像视野，附带竖缝瞳孔。"
 
 /datum/opposing_force_equipment/implants_illegal/armlaser
-	name = "Arm-mounted Laser Implant"
+	name = "臂载激光植入物"
 	item_type = /obj/item/autosurgeon/syndicate/laser_arm
-	admin_note = "A basic laser gun, but no-drop."
-	description = "A variant of the arm cannon implant that fires lethal laser beams. The cannon emerges from the subject's arm and remains inside when not in use."
+	admin_note = "一把无法脱手的基础激光枪。"
+	description = "发射致命激光束的臂炮植入物变体。炮管会从手臂伸出，不用时则收纳在手臂内部。"
 
 /datum/opposing_force_equipment/implants_illegal/eswordarm
-	name = "Energy Sword Arm Implant"
+	name = "能量剑臂植入物"
 	item_type = /obj/item/autosurgeon/syndicate/esword_arm
-	admin_note = "Force 30 no-drop, extremely robust."
-	description = "It's an energy sword, in your arm. Pretty decent for getting past stop-searches and assassinating people. Comes loaded in a Syndicate brand autosurgeon to boot!"
+	admin_note = "伤害30，无法脱手，战斗力极强。"
+	description = "藏在你手臂里的能量剑，非常适合躲过拦截搜查并刺杀目标。而且已经预装在辛迪加牌自动手术器中！"
 
 /datum/opposing_force_equipment/implants_illegal/baton
-	name = "Baton Arm Implant"
+	name = "警棍臂植入物"
 	item_type = /obj/item/autosurgeon/syndicate/baton
 
 /datum/opposing_force_equipment/implants_illegal/flash
-	name = "Flash Arm Implant"
+	name = "闪光器臂植入物"
 	item_type = /obj/item/autosurgeon/syndicate/flash

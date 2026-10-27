@@ -20,13 +20,13 @@ DEFINE_BITFIELD(sign_features, list(
 #define TREND_RISING "rising"
 #define TREND_FALLING "falling"
 
-#define NAME_DELAM "delamination incident display"
-#define NAME_TRAM "tram incident display"
-#define NAME_DISEASE "epidemic display" // BUBBER EDIT ADDITION - Disease Counter
+#define NAME_DELAM "超物质崩解事故显示屏"
+#define NAME_TRAM "电车事故显示屏"
+#define NAME_DISEASE "疫情显示屏" // BUBBER EDIT ADDITION - Disease Counter
 
-#define DESC_DELAM "A signs describe how long it's been since the last delamination incident. Features an advert for SAFETY MOTH."
-#define DESC_TRAM "A display that provides the number of tram related safety incidents this shift."
-#define DESC_DISEASE "A display that provides the number of active disease outbreak cases on shift.<br/><span class='boldwarning'>Doctor-Patient confidentiality is not practised on this station.</span>" // BUBBER EDIT ADDITION - Disease Counter
+#define DESC_DELAM "显示距离上次超物质崩解事故经过了多久的标牌，附有安全蛾的宣传广告。"
+#define DESC_TRAM "显示本班次电车相关安全事故数量的显示屏。"
+#define DESC_DISEASE "显示本班次现存传染病病例数量的显示屏。<br/><span class='boldwarning'>本站不实行医患保密制度。</span>" // BUBBER EDIT ADDITION - Disease Counter
 
 #define DISPLAY_PIXEL_1_W 21
 #define DISPLAY_PIXEL_1_Z -2
@@ -44,9 +44,9 @@ DEFINE_BITFIELD(sign_features, list(
 	icon = 'icons/obj/machines/incident_display.dmi'
 	icon_preview = "display_normal"
 	icon_state = "display_normal"
-	verb_say = "beeps"
-	verb_ask = "bloops"
-	verb_exclaim = "blares"
+	verb_say = "哔哔说道"
+	verb_ask = "嘟嘟问道"
+	verb_exclaim = "鸣响道"
 	idle_power_usage = 450
 	max_integrity = 150
 	integrity_failure = 0.75
@@ -138,13 +138,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 	var/mob/living/living_user = user
 
 	if(held_item?.tool_behaviour == TOOL_WELDER && !living_user.combat_mode && atom_integrity < max_integrity)
-		context[SCREENTIP_CONTEXT_LMB] = "repair display"
+		context[SCREENTIP_CONTEXT_LMB] = "修理显示屏"
 
 	if(held_item?.tool_behaviour == TOOL_MULTITOOL && !living_user.combat_mode)
 		if(sign_features == DISPLAY_TRAM)
-			context[SCREENTIP_CONTEXT_LMB] = "change to delam mode"
+			context[SCREENTIP_CONTEXT_LMB] = "切换为崩解事故模式"
 		else
-			context[SCREENTIP_CONTEXT_LMB] = "change to tram mode"
+			context[SCREENTIP_CONTEXT_LMB] = "切换为电车事故模式"
 
 	return CONTEXTUAL_SCREENTIP_SET
 
@@ -153,14 +153,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 		return FALSE
 
 	if(atom_integrity >= max_integrity && !(machine_stat & BROKEN))
-		balloon_alert(user, "it doesn't need repairs!")
+		balloon_alert(user, "不需要修理！")
 		return TRUE
 
-	balloon_alert(user, "repairing display...")
+	balloon_alert(user, "正在修理显示屏……")
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 0, volume = 50))
 		return TRUE
 
-	balloon_alert(user, "repaired")
+	balloon_alert(user, "已修复")
 	atom_integrity = max_integrity
 	set_machine_stat(machine_stat & ~BROKEN)
 	update_appearance()
@@ -173,7 +173,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 
 	if(sign_features == DISPLAY_TRAM)
 		tool.play_tool_sound(src)
-		balloon_alert(user, "set to delam")
+		balloon_alert(user, "已设为崩解事故模式")
 		name = NAME_DELAM
 		desc = DESC_DELAM
 		sign_features = DISPLAY_DELAM
@@ -182,7 +182,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 		return TRUE
 	else
 		tool.play_tool_sound(src)
-		balloon_alert(user, "set to tram")
+		balloon_alert(user, "已设为电车事故模式")
 		name = NAME_TRAM
 		desc = DESC_TRAM
 		sign_features = DISPLAY_TRAM
@@ -424,43 +424,43 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 /obj/machinery/incident_display/examine(mob/user)
 	. = ..()
 	if(atom_integrity < max_integrity)
-		. += span_notice("It can be repaired with a [EXAMINE_HINT("welder")].")
+		. += span_notice("可以用[EXAMINE_HINT("焊枪")]修理它。")
 
 	if(sign_features & DISPLAY_DELAM)
-		. += span_notice("It can be changed to display tram hits with a [EXAMINE_HINT("multitool")].")
+		. += span_notice("可以用[EXAMINE_HINT("多功能工具")]切换为显示电车撞击次数。")
 		if(last_delam >= 0)
-			. += span_info("It has been [last_delam] shift\s since the last delamination event at this Nanotrasen facility.")
+			. += span_info("这座纳米传讯设施距离上次超物质崩解事故已过去 [last_delam] 个班次。")
 			switch(last_delam)
 				if(0)
-					. += span_info("Let's do better today.<br/>")
+					. += span_info("今天争取做得更好。<br/>")
 				if(1 to 5)
-					. += span_info("There's room for improvement.<br/>")
+					. += span_info("还有进步空间。<br/>")
 				if(6 to 10)
-					. += span_info("Good work!<br/>")
+					. += span_info("干得好！<br/>")
 				if(69)
-					. += span_info("Nice.<br/>")
+					. += span_info("不错。<br/>")
 				else
-					. += span_info("Incredible!<br/>")
+					. += span_info("难以置信！<br/>")
 		else
-			. += span_info("The supermatter crystal has delaminated, in case you didn't notice.")
+			. += span_info("提醒一下，超物质晶体已经崩解了。")
 
 	if(sign_features & DISPLAY_TRAM)
 		//. += span_notice("It can be changed to display delam-free shifts with a [EXAMINE_HINT("multitool")].")
-		. += span_notice("It can be changed to display disease infections with a [EXAMINE_HINT("multitool")].") // BUBBER EDIT CHANGE - Disease Counter
-		. += span_info("The station has had [hit_count] tram incident\s this shift.")
+		. += span_notice("可以用[EXAMINE_HINT("多功能工具")]切换为显示传染病例数。") // BUBBER EDIT CHANGE - Disease Counter
+		. += span_info("空间站本班次已发生 [hit_count] 起电车事故。")
 		switch(hit_count)
 			if(0)
-				. += span_info("Fantastic! Champions of safety.<br/>")
+				. += span_info("太棒了！安全模范。<br/>")
 			if(1)
-				. += span_info("Let's do better tomorrow.<br/>")
+				. += span_info("明天争取做得更好。<br/>")
 			if(2 to 5)
-				. += span_info("There's room for improvement.<br/>")
+				. += span_info("还有进步空间。<br/>")
 			if(6 to 10)
-				. += span_info("Good work! Nanotrasen's finest!<br/>")
+				. += span_info("干得好！纳米传讯的精英！<br/>")
 			if(69)
-				. += span_info("Nice.<br/>")
+				. += span_info("不错。<br/>")
 			else
-				. += span_info("Incredible! You're probably reading this from medbay.<br/>")
+				. += span_info("难以置信！你大概正躺在医疗区读这句话。<br/>")
 
 #undef DISPLAY_DELAM
 #undef DISPLAY_TRAM

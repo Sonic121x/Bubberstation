@@ -101,8 +101,8 @@
 	player_mind.transfer_to(new_changeling, force_key_move = TRUE)
 	player_mind.add_antag_datum(/datum/antagonist/changeling/space)
 	SEND_SOUND(new_changeling, 'sound/effects/magic/mutate.ogg')
-	message_admins("[ADMIN_LOOKUPFLW(new_changeling)] has been made into a space changeling by an event.")
-	new_changeling.log_message("was spawned as a midround space changeling by an event.", LOG_GAME)
+	message_admins("[ADMIN_LOOKUPFLW(new_changeling)] 被某个事件变成了太空变形怪。")
+	new_changeling.log_message("被某个事件作为回合中太空变形怪生成。", LOG_GAME)
 
 	var/datum/antagonist/changeling/changeling_datum = locate() in player_mind.antag_datums
 	changeling_datum.give_power(/datum/action/changeling/void_adaption)

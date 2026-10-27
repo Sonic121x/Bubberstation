@@ -1,11 +1,11 @@
 /datum/round_event_control/electrical_storm
-	name = "Electrical Storm"
+	name = "电风暴"
 	typepath = /datum/round_event/electrical_storm
 	earliest_start = 10 MINUTES
 	min_players = 5
 	weight = 20
 	category = EVENT_CATEGORY_ENGINEERING
-	description = "Destroys all lights in a large area."
+	description = "摧毁大片区域内的所有灯光。"
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 4
 
@@ -15,7 +15,7 @@
 	announce_when = 1
 
 /datum/round_event/electrical_storm/announce(fake)
-	priority_announce("An electrical storm has been detected in your area, please repair potential electronic overloads.", "Electrical Storm Alert", ANNOUNCER_ELECTRICALSTORM) //SKYRAT EDIT CHANGE
+	priority_announce("检测到你的区域内有电风暴，请修复可能出现的电子过载。", "电风暴警报", ANNOUNCER_ELECTRICALSTORM) //SKYRAT EDIT CHANGE
 
 
 /datum/round_event/electrical_storm/start()

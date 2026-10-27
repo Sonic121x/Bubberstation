@@ -1,6 +1,6 @@
 /datum/wires/autolathe
 	holder_type = /obj/machinery/autolathe
-	proper_name = "Autolathe"
+	proper_name = "自动车床"
 
 /datum/wires/autolathe/New(atom/holder)
 	wires = list(
@@ -20,8 +20,8 @@
 /datum/wires/autolathe/get_status()
 	var/obj/machinery/autolathe/A = holder
 	var/list/status = list()
-	status += "The red light is [A.disabled ? "on" : "off"]."
-	status += "The blue light is [A.hacked ? "on" : "off"]."
+	status += "红灯[A.disabled ? "亮起" : "熄灭"]。"
+	status += "蓝灯[A.hacked ? "亮起" : "熄灭"]。"
 	return status
 
 /datum/wires/autolathe/on_pulse(wire)

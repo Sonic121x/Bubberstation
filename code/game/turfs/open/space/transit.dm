@@ -1,6 +1,6 @@
 /turf/open/space/transit
-	name = "\proper hyperspace"
-	desc = "What is this, light-speed? We need to go to plaid speed!"  // spaceballs was a great movie
+	name = "\proper 超空间"
+	desc = "这算什么，光速？我们得进到格子速才行！"  // spaceballs was a great movie
 	icon_state = "black"
 	dir = SOUTH
 	baseturfs = /turf/open/space/transit

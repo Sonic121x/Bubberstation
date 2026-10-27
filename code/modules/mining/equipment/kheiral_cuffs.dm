@@ -1,9 +1,9 @@
 /**********************Kheiral Cuffs**********************/
 /// Acts as a GPS beacon & connects to station crew monitors from lavaland
 /obj/item/clothing/accessory/kheiral_cuffs
-	name = "\improper Kheiral cuffs"
-	desc = "A prototype wrist communicator powered by Kheiral Matter. When both ends are clamped to one wrist, acts as a signal range booster for your suit sensors.\n\
-		A small engraving on the inside reads, \"NOT HANDCUFFS\"."
+	name = "\improper 凯拉尔腕铐"
+	desc = "一种由凯拉尔物质驱动的原型腕部通讯器。将两端都扣在同一只手腕上时，可作为你宇航服传感器的信号范围增强器。\n\
+		内侧刻着一行小字：“不是手铐”。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "strand"
 	worn_icon = 'icons/mob/clothing/hands.dmi'
@@ -14,8 +14,8 @@
 	gender = PLURAL
 	throw_speed = 3
 	throw_range = 5
-	attack_verb_continuous = list("connects")
-	attack_verb_simple = list("connect")
+	attack_verb_continuous = list("连接")
+	attack_verb_simple = list("连接")
 	resistance_flags = FIRE_PROOF
 	attachment_slot = NONE // fits as accessory as long as there's an undersuit
 	icon_state_is_worn = FALSE
@@ -36,7 +36,7 @@
 /obj/item/clothing/accessory/kheiral_cuffs/examine(mob/user)
 	. = ..()
 	if(gps_enabled)
-		. += span_notice("The cuff's GPS signal is on.")
+		. += span_notice("腕铐的 GPS 信号已开启。")
 
 /obj/item/clothing/accessory/kheiral_cuffs/equipped(mob/user, slot, initial)
 	. = ..()
@@ -59,12 +59,12 @@
 		return
 	if(!on_wrist || !far_from_home)
 		return
-	var/gps_name = "Unknown"
+	var/gps_name = "未知"
 	var/obj/item/card/id/id_card = user.get_idcard(hand_first = FALSE)
 	if(id_card)
 		gps_name = id_card.registered_name
-	AddComponent(/datum/component/gps/kheiral_cuffs, "*[gps_name]'s Kheiral Link")
-	balloon_alert(user, "gps activated")
+	AddComponent(/datum/component/gps/kheiral_cuffs, "*[gps_name] 的凯拉尔链接")
+	balloon_alert(user, "GPS 已激活")
 	ADD_TRAIT(user, TRAIT_MULTIZ_SUIT_SENSORS, REF(src))
 	gps_enabled = TRUE
 
@@ -74,7 +74,7 @@
 		return
 	if(on_wrist && far_from_home)
 		return
-	balloon_alert(user, "gps de-activated") // GPS component deletes itself when we get on-Z
+	balloon_alert(user, "GPS 已停用") // GPS component deletes itself when we get on-Z
 	REMOVE_TRAIT(user, TRAIT_MULTIZ_SUIT_SENSORS, REF(src))
 	gps_enabled = FALSE
 
@@ -111,18 +111,18 @@
 
 /obj/item/clothing/accessory/kheiral_cuffs/suicide_act(mob/living/user)
 	if(!ishuman(user))
-		user.visible_message(span_suicide("[user] locks [src] around their neck, wrinkles forming across their face. It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user] 把 [src] 扣在自己脖子上，痛苦地皱起了脸。看起来是想自杀！"))
 		return OXYLOSS
 
 	var/mob/living/carbon/human/victim = user
-	victim.visible_message(span_suicide("[user] locks [src] around their neck, wrinkles forming across their face. It looks like [user.p_theyre()] trying to commit suicide!"))
+	victim.visible_message(span_suicide("[user] 把 [src] 扣在自己脖子上，痛苦地皱起了脸。看起来是想自杀！"))
 	for(var/mult in 1 to 5) // Rapidly age
 		if(!do_after(victim, 0.5 SECONDS)) // just to space out the aging, either way you still dust.
 			break
 		var/before_age = victim.age
 		victim.age = round((victim.age * 1.5),1)
-		to_chat(victim, span_danger("You age [(victim.age - before_age)] years!"))
+		to_chat(victim, span_danger("你衰老了 [(victim.age - before_age)] 岁！"))
 
-	to_chat(victim, span_danger("At the ripe age of [victim.age], your cells fail their cycle of mitosis, allowing the sands of time to wash over you."))
+	to_chat(victim, span_danger("在 [victim.age] 岁的高龄，你的细胞无法完成有丝分裂周期，时间的流沙将你彻底淹没。"))
 	victim.dust(TRUE, TRUE, TRUE)
 	return MANUAL_SUICIDE

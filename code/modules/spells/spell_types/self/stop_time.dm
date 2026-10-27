@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/timestop
-	name = "Stop Time"
-	desc = "This spell stops time for everyone except for you, \
-		allowing you to move freely while your enemies and even projectiles are frozen."
+	name = "时间停止"
+	desc = "该法术让除你之外的所有人时间停止，\
+		你可以自由行动，而敌人甚至飞来的投射物都会被冻结。"
 	button_icon_state = "time"
 
 	school = SCHOOL_FORBIDDEN // Fucking with time is not appreciated by anyone

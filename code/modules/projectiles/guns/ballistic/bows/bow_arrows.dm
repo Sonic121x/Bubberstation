@@ -1,7 +1,7 @@
 ///base arrow
 /obj/item/ammo_casing/arrow
-	name = "arrow"
-	desc = "Stabby Stabman!"
+	name = "箭"
+	desc = "刺刺侠！"
 	icon = 'icons/obj/weapons/bows/arrows.dmi'
 	icon_state = "arrow"
 	base_icon_state = "arrow"
@@ -26,8 +26,8 @@
 
 ///base arrow projectile
 /obj/projectile/bullet/arrow
-	name = "arrow"
-	desc = "Ow! Get it out of me!"
+	name = "箭"
+	desc = "哎哟！快把它从我身上弄出去！"
 	icon = 'icons/obj/weapons/bows/arrows.dmi'
 	icon_state = "arrow_projectile"
 	damage = 50
@@ -48,8 +48,8 @@
 
 /// sticky arrows
 /obj/item/ammo_casing/arrow/sticky
-	name = "sticky arrow"
-	desc = "A sticky arrow. Not sharp-ended, but ripping it off yourself once hit would be rather difficult and painful."
+	name = "黏性箭"
+	desc = "一支黏性箭。箭头并不锋利，但一旦被射中，想自己拔下来会相当困难、相当疼。"
 	icon_state = "sticky_arrow"
 	inhand_icon_state = "sticky_arrow"
 	base_icon_state = "sticky_arrow"
@@ -57,8 +57,8 @@
 
 ///sticky arrow projectile
 /obj/projectile/bullet/arrow/sticky
-	name = "sticky arrow"
-	desc = "Quite the sticky situation..."
+	name = "黏性箭"
+	desc = "真是棘手的局面……"
 	icon_state = "sticky_arrow_projectile"
 	damage = 30
 	speed = 1.3
@@ -77,8 +77,8 @@
 
 /// poison arrows
 /obj/item/ammo_casing/arrow/poison
-	name = "poisonous arrow"
-	desc = "A poisonous arrow."
+	name = "毒箭"
+	desc = "一支毒箭。"
 	icon_state = "poison_arrow"
 	inhand_icon_state = "poison_arrow"
 	base_icon_state = "poison_arrow"
@@ -86,8 +86,8 @@
 
 /// poison arrow projctile
 /obj/projectile/bullet/arrow/poison
-	name = "poisonous arrow"
-	desc = "Better to not get hit with this!"
+	name = "毒箭"
+	desc = "最好别被这东西射中！"
 	icon_state = "poison_arrow_projectile"
 	damage = 40
 	embed_type = /datum/embedding/arrow
@@ -102,8 +102,8 @@
 
 /// holy arrows
 /obj/item/ammo_casing/arrow/holy
-	name = "holy arrow"
-	desc = "A holy diver seeking its target."
+	name = "圣箭"
+	desc = "一支追寻目标的圣洁之箭。"
 	icon_state = "holy_arrow"
 	inhand_icon_state = "holy_arrow"
 	base_icon_state = "holy_arrow"
@@ -111,8 +111,8 @@
 
 /// holy arrow projectile
 /obj/projectile/bullet/arrow/holy
-	name = "holy arrow"
-	desc = "Here it comes, cultist scum!"
+	name = "圣箭"
+	desc = "来了，邪教徒渣滓！"
 	icon_state = "holy_arrow_projectile"
 
 /obj/projectile/bullet/arrow/holy/Initialize(mapload)
@@ -123,11 +123,11 @@
 /// plastic arrows
 // completely dogshit quality and they break when they hit something.
 /obj/item/ammo_casing/arrow/plastic
-	name = "plastic arrow"
-	desc = "The earliest mining teams within the Spinward Sector were the somewhat stout ancestors of the modern settlers. These teams \
-		found themselves often unable to access the quality materials they were digging up for equipment maintenance, all being sent off-site. \
-		Left with few options, and in need of a way to protect themselves in the hostile work environments of the Spinward, they turned \
-		to the one material they had in abundance."
+	name = "塑料箭"
+	desc = "顺旋星区最早的采矿队是现代定居者那些颇为壮实的祖先。这些队伍 \
+		常常发现自己挖出的优质材料全被运往外地，自己反倒无缘用来维护设备。 \
+		选择所剩无几，又需要在顺旋星区恶劣的工作环境中保护自己，他们只好转向 \
+		手上唯一充足的那种材料。"
 	icon_state = "plastic_arrow"
 	base_icon_state = "plastic_arrow"
 	projectile_type = /obj/projectile/bullet/arrow/plastic
@@ -136,8 +136,8 @@
 
 /// plastic arrow projectile
 /obj/projectile/bullet/arrow/plastic
-	name = "plastic arrow"
-	desc = "If this is about to kill you, you should feel genuine shame."
+	name = "塑料箭"
+	desc = "如果这东西就要了你的命，你真该感到由衷的耻辱。"
 	damage = 5
 	stamina = 50
 	weak_against_armour = TRUE
@@ -145,8 +145,8 @@
 
 /// special pyre sect arrow
 /obj/item/ammo_casing/arrow/holy/blazing
-	name = "blazing star arrow"
-	desc = "A holy diver seeking its target, blessed with fire. Will ignite on hit, destroying the arrow. But if you hit an already ignited target...?"
+	name = "炽星箭"
+	desc = "一支受火焰祝福、追寻目标的圣洁之箭。命中时它会燃起并烧毁箭矢。但要是射中一个已经在燃烧的目标……？"
 	icon_state = "flaming_arrow"
 	inhand_icon_state = "flaming_arrow"
 	base_icon_state = "flaming_arrow"
@@ -154,8 +154,8 @@
 	reusable = FALSE
 
 /obj/projectile/bullet/arrow/blazing
-	name = "blazing arrow"
-	desc = "THE UNMATCHED POWER OF THE SUN"
+	name = "炽燃箭"
+	desc = "无与伦比的太阳之力"
 	icon_state = "flaming_arrow_projectile"
 	damage_type = BURN
 	embed_type = null
@@ -166,17 +166,17 @@
 		return
 	var/mob/living/carbon/human/human_target = target
 	if(!human_target.on_fire)
-		to_chat(human_target, span_danger("[src] explodes into flames which quickly envelop you!"))
+		to_chat(human_target, span_danger("[src] 爆燃成一团火焰，迅速将你吞没！"))
 		human_target.adjust_fire_stacks(2)
 		human_target.ignite_mob()
 		return
-	to_chat(human_target, span_danger("[src] reacts with the flames enveloping you! Oh shit!"))
+	to_chat(human_target, span_danger("[src] 与你身上的火焰发生了反应！我靠！"))
 	explosion(src, light_impact_range = 1, flame_range = 2) //ow
 
 /// Ashen arrows
 /obj/item/ammo_casing/arrow/ashen
-	name = "ashen arrow"
-	desc = "An arrow made from watcher sinew and bone. Seems unusually lethal against the creatures it is made from."
+	name = "灰烬箭"
+	desc = "用守望者的筋腱与骨骼制成的箭。对制成它的那些生物似乎有着异常的杀伤力。"
 	icon_state = "ashen_arrow"
 	inhand_icon_state = "ashen_arrow"
 	base_icon_state = "ashen_arrow"
@@ -185,7 +185,7 @@
 
 /// ashen arrow projectile
 /obj/projectile/bullet/arrow/ashen
-	name = "ashen arrow"
+	name = "灰烬箭"
 	icon_state = "ashen_arrow_projectile"
 
 /obj/projectile/bullet/arrow/ashen/Initialize(mapload)

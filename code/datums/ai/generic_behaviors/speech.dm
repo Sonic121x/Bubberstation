@@ -46,82 +46,82 @@
 
 /datum/bt_node/ai_behavior/random_speech/mothroach
 	speech_chance = 15
-	emote_hear = list("flutters.")
+	emote_hear = list("扑扇着翅膀。")
 
 /datum/bt_node/ai_behavior/random_speech/mouse
 	speech_chance = 1
-	speak = list("Squeak!", "SQUEAK!", "Squeak?")
+	speak = list("吱！", "吱吱！", "吱？")
 	sound = list('sound/mobs/non-humanoids/mouse/mousesqueek.ogg')
-	emote_hear = list("squeaks.")
-	emote_see = list("runs in a circle.", "shakes.")
+	emote_hear = list("吱吱叫着。")
+	emote_see = list("跑着转圈。", "抖了抖。")
 
 /datum/bt_node/ai_behavior/random_speech/frog
 	speech_chance = 3
-	emote_see = list("jumps in a circle.", "shakes.")
+	emote_see = list("跳着转圈。", "抖了抖。")
 
 /datum/bt_node/ai_behavior/random_speech/lizard
 	speech_chance = 3
-	emote_hear = list("stamps around some.", "hisses a bit.")
-	emote_see = list("blehs the tongue.", "tilts the head.", "does a spin.")
+	emote_hear = list("跺了几下脚。", "发出几声嘶鸣。")
+	emote_see = list("吐了吐舌头。", "歪了歪头。", "转了一圈。")
 
 /datum/bt_node/ai_behavior/random_speech/faithless
 	speech_chance = 1
-	emote_see = list("wails.")
+	emote_see = list("哀嚎着。")
 
 /datum/bt_node/ai_behavior/random_speech/garden_gnome
 	speech_chance = 5
-	speak = list("Gnot a gnelf!", "Gnot a gnoblin!", "Howdy chum!")
-	emote_hear = list("snores.", "burps.")
-	emote_see = list("blinks.")
+	speak = list("俺不是精灵！", "俺不是哥布林！", "你好啊，老兄！")
+	emote_hear = list("打着呼噜。", "打了个嗝。")
+	emote_see = list("眨了眨眼。")
 
 /datum/bt_node/ai_behavior/random_speech/killer_tomato
 	speech_chance = 3
-	emote_hear = list("gnashes.", "growls lowly.", "snarls.")
-	emote_see = list("salivates.")
+	emote_hear = list("磨着牙。", "低声咆哮。", "龇牙低吼。")
+	emote_see = list("流着口水。")
 
 /datum/bt_node/ai_behavior/random_speech/ant
 	speech_chance = 1
-	speak = list("BZZZZT!", "CHTCHTCHT!", "Bzzz", "ChtChtCht")
+	speak = list("嗡嗡嗡！", "咔咔咔！", "嗡嗡", "咔咔咔")
 	sound = list('sound/mobs/non-humanoids/insect/chitter.ogg')
-	emote_hear = list("buzzes.", "clacks.")
-	emote_see = list("shakes their head.", "twitches their antennae.")
+	emote_hear = list("发出嗡鸣。", "发出咔嗒声。")
+	emote_see = list("摇了摇头。", "抖动着触角。")
 
 /datum/bt_node/ai_behavior/random_speech/fox
 	speech_chance = 1
-	speak = list("Ack-Ack", "Ack-Ack-Ack-Ackawoooo", "Geckers", "Awoo", "Tchoff")
-	emote_hear = list("howls.", "barks.", "screams.")
-	emote_see = list("shakes their head.", "shivers.")
+	speak = list("啊呜啊呜", "啊啊啊啊呜——", "咯咯咯", "嗷呜", "噗嗤")
+	emote_hear = list("嚎叫着。", "吠叫着。", "尖叫着。")
+	emote_see = list("摇了摇头。", "打了个寒战。")
 
 /datum/bt_node/ai_behavior/random_speech/crab
 	speech_chance = 1
 	sound = list('sound/mobs/non-humanoids/crab/claw_click.ogg')
-	emote_hear = list("clicks.")
-	emote_see = list("clacks.")
+	emote_hear = list("发出咔嗒声。")
+	emote_see = list("敲动着钳子。")
 
 /datum/bt_node/ai_behavior/random_speech/penguin
 	speech_chance = 5
-	speak = list("Gah Gah!", "NOOT NOOT!", "NOOT!", "Noot", "noot", "Prah!", "Grah!")
-	emote_hear = list("squawks", "gakkers")
+	speak = list("嘎嘎！", "嘟嘟！", "嘟！", "嘟", "嘟", "噗嘎！", "嘎！")
+	emote_hear = list("嘎嘎叫着", "咯咯叫着")
 
 /datum/bt_node/ai_behavior/random_speech/bear
 	speech_chance = 5
-	emote_hear = list("rawrs.", "grumbles.", "grawls.", "stomps!")
-	emote_see = list("stares ferociously.")
+	emote_hear = list("咆哮着。", "低声哼哼。", "低吼着。", "重重地跺脚！")
+	emote_see = list("凶狠地盯着前方。")
 
 /datum/bt_node/ai_behavior/random_speech/cats
 	speech_chance = 10
 	sound = list(SFX_CAT_MEOW)
-	emote_hear = list("meows.")
-	emote_see = list("meows.")
+	emote_hear = list("喵喵叫着。")
+	emote_see = list("喵喵叫着。")
 
 /// Make spooky sounds, if we have a corpse inside then impersonate them
 /datum/bt_node/ai_behavior/random_speech/legion
 	speech_chance = 1
-	speak = list("Come...", "Legion...", "Why...?")
-	emote_hear = list("groans.", "wails.", "whimpers.")
-	emote_see = list("twitches.", "shudders.")
+	speak = list("来吧……", "军团……", "为什么……？")
+	emote_hear = list("呻吟着。", "哀嚎着。", "呜咽着。")
+	emote_see = list("抽搐着。", "颤抖着。")
 	/// Stuff to specifically say into a radio
-	var/list/radio_speech = list("Come...", "Why...?")
+	var/list/radio_speech = list("来吧……", "为什么……？")
 
 /datum/bt_node/ai_behavior/random_speech/legion/speak(mob/living/pawn, datum/ai_controller/controller)
 	var/mob/living/carbon/human/victim = controller.blackboard[BB_LEGION_CORPSE]

@@ -1,5 +1,5 @@
 /datum/antagonist/blood_worm
-	name = "\improper Blood Worm"
+	name = "\improper 血虫"
 	roundend_category = "blood worms"
 	antagpanel_category = ANTAG_GROUP_BLOODY
 	pref_flag = ROLE_BLOOD_WORM
@@ -19,11 +19,11 @@
 /datum/antagonist/blood_worm/greet()
 	. = ..()
 
-	to_chat(owner, span_bold("A species of space-faring leech, massive in size and ferocious in hunting. \
-							Your origins are unknown to most, but to some, you are among their greatest creations. \
-							A failed Syndicate bioweapons project, snuffed out by benefactors after a \"lack of results\", and yet... \
-							here you find yourself. On a Nanotrasen space station. What a fitting habitat for you, isn't it?"))
-	to_chat(owner, span_bolddanger("KILL, CONSUME, MULTIPLY, CONQUER."))
+	to_chat(owner, span_bold("一种太空旅行的水蛭，体型巨大，狩猎凶猛。\
+							你的起源对大多数人而言是个谜，但对某些人来说，你是他们最伟大的造物之一。\
+							一个失败的辛迪加生物武器项目，因“缺乏成果”而被资助者终止，然而……\
+							你如今却在这里。在一座纳米传讯空间站上。这对你来说是多么合适的栖息地，不是吗？"))
+	to_chat(owner, span_bolddanger("杀戮、吞噬、增殖、征服。"))
 
 	owner.announce_objectives()
 

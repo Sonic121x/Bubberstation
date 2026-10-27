@@ -1,7 +1,7 @@
 /datum/job/curator
 	title = JOB_CURATOR
-	description = "Read and write books and hand them to people, stock \
-		bookshelves, report on station news."
+	description = "读书、写书并把书分发给他人，\
+		整理书架，报道空间站新闻。"
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -33,7 +33,7 @@
 	job_flags = STATION_JOB_FLAGS
 
 	voice_of_god_silence_power = 3
-	rpg_title = "Veteran Adventurer"
+	rpg_title = "资深冒险家"
 
 /datum/outfit/job/curator
 	name = "Curator"

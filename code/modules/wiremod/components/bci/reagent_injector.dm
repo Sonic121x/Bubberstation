@@ -6,9 +6,9 @@
  */
 
 /obj/item/circuit_component/reagent_injector
-	display_name = "Reagent Injector"
-	desc = "A component that can inject reagents from the circuit's reagent storage."
-	category = "Entity"
+	display_name = "试剂注射"
+	desc = "可以从电路的试剂储存中注射试剂的元件。"
+	category = "实体"
 	//SKYRAT EDIT CHANGE BEGIN - Add container type flag - This is required since we have two reagent components, and the BCI only allows one active
 	//circuit_flags = CIRCUIT_NO_DUPLICATES - SKYRAT EDIT - ORIGINAL
 	circuit_flags = CIRCUIT_NO_DUPLICATES|CIRCUIT_REAGENT_CONTAINER_TYPE
@@ -51,7 +51,7 @@
 	var/units = shell_item.reagents.trans_to(mob_to_inject.reagents, shell_item.reagents.total_volume, methods = INJECT)
 	if(units)
 		injected.set_output(COMPONENT_SIGNAL)
-		log_combat(mob_to_inject, mob_to_inject, "injected", shell_item, "which had [contained]")
+		log_combat(mob_to_inject, mob_to_inject, "注射", shell_item, "其中含有 [contained]")
 
 /obj/item/circuit_component/reagent_injector/register_shell(atom/movable/shell)
 	. = ..()

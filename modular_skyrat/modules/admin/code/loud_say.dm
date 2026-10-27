@@ -1,5 +1,5 @@
 //ADMIN_VERB(cmd_loud_admin_say, R_NONE, "loudAsay", "Send a message to other admins (loudly).", ADMIN_CATEGORY_MAIN)
-ADMIN_VERB(cmd_loud_admin_say, R_NONE, "loudAsay", "Send a message to other admins (loudly).", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(cmd_loud_admin_say, R_NONE, "loudAsay", "向其他管理员发送消息（大声地）。", ADMIN_CATEGORY_MAIN)
 	VERB_ARG(message, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	message = emoji_parse(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	if(!message)

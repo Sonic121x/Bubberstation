@@ -1,7 +1,7 @@
 
 /// Implant used by the traitor Battle Royale objective, is not active immediately
 /obj/item/implant/explosive/battle_royale
-	name = "rumble royale implant"
+	name = "乱斗大逃杀植入体"
 	actions_types = null
 	instant_explosion = FALSE
 	master_implant = TRUE
@@ -23,13 +23,13 @@
 	/// We will explode if we're not in here after a set time
 	var/list/limited_areas = list()
 
-	implant_info = "Forcibly inducts the host into televised bloodsport by threatening their life via electrically-detonated microexplosive. \
-		Detonates upon death, expiry of an internal timer, or attempted removal."
+	implant_info = "以电起爆微型炸药威胁宿主性命，强行将其拖入电视直播的血腥竞技。\
+		在宿主死亡、内部计时器耗尽或有人尝试取出时引爆。"
 
-	implant_lore = "The Donk Co. 'Rumble Royale' Contestant Motivation Implant is a licensed copy of the Robust Corp RX-78 Employee Management Implant, \
-		featuring the very same microbomb that has provided plausible deniability, evidence disposal, and equipment denial for numerous non-state actors. \
-		The Rumble Royale variant also features additional nervous system interception functionality, allowing for broadcasting the host's field of view \
-		to compatible entertainment monitors, and a GPS-compatible tracking beacon for the sake of allowing contestants to locate each other more easily."
+	implant_lore = "咚克公司“乱斗大逃杀”参赛者激励植入体，是罗伯斯特公司 RX-78 员工管理植入体的授权仿制品，\
+		搭载了与后者完全相同的微型炸弹——这枚炸弹曾为众多非国家行为体提供推诿空间、证据销毁与装备拒止能力。\
+		“乱斗大逃杀”型号还具备额外的神经系统拦截功能，可将宿主的视野范围广播至兼容的娱乐监视器，\
+		并配有兼容 GPS 的追踪信标，让参赛者更容易互相定位。"
 
 /obj/item/implant/explosive/battle_royale/on_death(datum/source, gibbed)
 	if (!battle_started)
@@ -46,8 +46,8 @@
 	name = "[name] - [imp_in.real_name]"
 	camera = target.AddComponent( \
 		/datum/component/simple_bodycam, \
-		camera_name = "rumble royale tracker", \
-		c_tag = "Competitor [target.real_name]", \
+		camera_name = "乱斗大逃杀追踪器", \
+		c_tag = "参赛者 [target.real_name]", \
 		network = BATTLE_ROYALE_CAMERA_NET, \
 		emp_proof = TRUE, \
 	)
@@ -62,7 +62,7 @@
 	if (has_exploded || QDELETED(src))
 		return
 	if (!special && prob(removed_explode_chance))
-		target.visible_message(span_boldwarning("[src] beeps ominously."))
+		target.visible_message(span_boldwarning("[src]发出不祥的蜂鸣声。"))
 		playsound(loc, 'sound/items/timer.ogg', 50, vary = FALSE)
 		explode(target)
 	target?.mind?.remove_antag_datum(/datum/antagonist/survivalist/battle_royale)
@@ -82,7 +82,7 @@
 		return
 	if (!source.itch() || prob(80))
 		return
-	to_chat(source, span_boldwarning("You feel a lump which shouldn't be there."))
+	to_chat(source, span_boldwarning("你摸到一个本不该存在的肿块。"))
 
 /// Start the battle royale
 /obj/item/implant/explosive/battle_royale/proc/start_battle(target_area_name, list/limited_areas)
@@ -95,12 +95,12 @@
 	name = "[name] - [imp_in.real_name]"
 	imp_in.AddComponent( \
 		/datum/component/simple_bodycam, \
-		camera_name = "rumble royale tracker", \
-		c_tag = "Competitor [imp_in.real_name]", \
+		camera_name = "乱斗大逃杀追踪器", \
+		c_tag = "参赛者 [imp_in.real_name]", \
 		network = BATTLE_ROYALE_CAMERA_NET, \
 		emp_proof = TRUE, \
 	)
-	AddComponent(/datum/component/gps, "Rumble Royale - [imp_in.real_name]")
+	AddComponent(/datum/component/gps, "乱斗大逃杀 - [imp_in.real_name]")
 	playsound(loc, 'sound/items/timer.ogg', 50, vary = FALSE)
 
 /// Limit the owner to the specified area
@@ -120,7 +120,7 @@
 	if (is_type_in_list(get_area(source), limited_areas))
 		return
 	playsound(imp_in, 'sound/items/timer.ogg', 50, vary = FALSE)
-	to_chat(imp_in, span_boldwarning("You are out of bounds! Get to the [target_area_name] quickly!"))
+	to_chat(imp_in, span_boldwarning("你离开了边界！快前往[target_area_name]！"))
 	addtimer(CALLBACK(src, PROC_REF(check_area_deadly)), 5 SECONDS, TIMER_DELETE_ME)
 
 /// After a grace period they're still out of bounds, killing time

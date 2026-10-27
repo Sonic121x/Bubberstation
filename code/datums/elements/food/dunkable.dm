@@ -22,13 +22,13 @@
 	if(!target.is_dunkable()) // container should be a valid target for dunking
 		return NONE
 	if(!target.is_drainable())
-		to_chat(user, span_warning("[target] is unable to be dunked in!"))
+		to_chat(user, span_warning("无法在[target]中浸蘸！"))
 		return ITEM_INTERACT_BLOCKING
 	if(target.reagents.trans_to(source, dunk_amount, transferred_by = user)) //if reagents were transferred, show the message
-		to_chat(user, span_notice("You dunk \the [target] into \the [target]."))
+		to_chat(user, span_notice("你将[target]浸入了[target]。"))
 		return ITEM_INTERACT_SUCCESS
 	if(!target.reagents.total_volume)
-		to_chat(user, span_warning("[target] is empty!"))
+		to_chat(user, span_warning("[target]是空的！"))
 	else
-		to_chat(user, span_warning("[source] is full!"))
+		to_chat(user, span_warning("[source]已经装满了！"))
 	return ITEM_INTERACT_BLOCKING

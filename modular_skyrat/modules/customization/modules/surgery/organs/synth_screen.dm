@@ -1,6 +1,6 @@
 /obj/item/organ/synth_screen
-	name = "synth screen"
-	desc = "Surely that's just a bunch of LEDs and not a retro-projected screen, right? Right...?"
+	name = "合成人屏幕"
+	desc = "这肯定只是一堆 LED 灯珠，而不是背投屏幕，对吧？对吧……？"
 	icon_state = "tonguerobot"
 
 	mutantpart_key = MUTANT_SYNTH_SCREEN

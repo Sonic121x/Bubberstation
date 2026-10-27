@@ -69,23 +69,23 @@ GLOBAL_LIST_INIT(terragov_responder_info, list(
 	)
 ))
 GLOBAL_LIST_INIT(call911_do_and_do_not, list(
-	EMERGENCY_RESPONSE_EMT = "You SHOULD call EMTs for:\n\
-		Large or excessive amounts of dead bodies, emergency medical situations that the station can't handle, etc.\n\
-		You SHOULD NOT call EMTs for:\n\
-		The Captain stubbing their toe, one or two dead bodies, minor viral outbreaks, etc.\n\
-		Are you sure you want to call EMTs?",
-	EMERGENCY_RESPONSE_POLICE = "You SHOULD call Marshals for:\n\
-		Security ignoring Command, Security violating civil rights, Security engaging in Mutiny, \
-		General Violation of Terran Government Citizen Rights by Command/Security, etc.\n\
-		You SHOULD NOT call Marshals for:\n\
-		Corporate affairs, manhunts, settling arguments, etc.\n\
-		Are you sure you want to call Marshals?",
-	EMERGENCY_RESPONSE_ATMOS = "You SHOULD call Advanced Atmospherics for:\n\
-		Stationwide atmospherics loss, wide-scale supermatter delamination related repairs, unending fires filling the hallways, or department-sized breaches with Engineering and Atmospherics unable to handle it, etc. \n\
-		You SHOULD NOT call Advanced Atmospherics for:\n\
-		A trashcan on fire in the library, a single breached room, heating issues, etc. - especially with capable Engineers/Atmos Techs.\n\
-		There is a response fee of [abs(GLOB.terragov_tech_charge)] credits per emergency responder.\n\
-		Are you sure you want to call Advanced Atmospherics?"
+	EMERGENCY_RESPONSE_EMT = "在下列情况下你“应当”呼叫急救医疗队：\n\
+		大量或过多的尸体、空间站无法处理的紧急医疗状况等等。\n\
+		在下列情况下你“不应当”呼叫急救医疗队：\n\
+		舰长撞到了脚趾、一具或两具尸体、小规模病毒爆发等等。\n\
+		你确定要呼叫急救医疗队吗？",
+	EMERGENCY_RESPONSE_POLICE = "在下列情况下你“应当”呼叫执法官：\n\
+		安保部无视指挥部、安保部侵犯公民权利、安保部参与哗变、 \
+		指挥部/安保部普遍侵犯地球政府公民权利等等。\n\
+		在下列情况下你“不应当”呼叫执法官：\n\
+		公司事务、追捕逃犯、调解争吵等等。\n\
+		你确定要呼叫执法官吗？",
+	EMERGENCY_RESPONSE_ATMOS = "在下列情况下你“应当”呼叫高级大气工程队：\n\
+		全站大气泄漏、需要大规模处理超物质崩解相关的维修、走廊里无尽的火势，或工程部与大气部无力应对的部门级破口等等。 \n\
+		在下列情况下你“不应当”呼叫高级大气工程队：\n\
+		图书馆里一个着火的垃圾桶、单个房间破口、供暖问题等等——尤其是在有能干的工程师/大气技术员在场时。\n\
+		每名应急响应人员会收取 [abs(GLOB.terragov_tech_charge)] 信用点的响应费用。\n\
+		你确定要呼叫高级大气工程队吗？"
 ))
 
 /// Internal. Polls ghosts and sends in a team of space cops according to the alert level, accompanied by an announcement.
@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	var/team_size
 	var/cops_to_send
 	var/announcement_message = "sussus amogus"
-	var/announcer = "Terran Government Marshal Department"
+	var/announcer = "地球政府执法部"
 	var/poll_question = "fuck you leatherman"
 	var/cell_phone_number = "911"
 	var/list_to_use = "911_responders"
@@ -101,49 +101,49 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		if(EMERGENCY_RESPONSE_POLICE)
 			team_size = 8
 			cops_to_send = /datum/antagonist/ert/request_911/police
-			announcement_message = "Crewmembers of [station_name()]. this is the Terran Government. We've received a request for immediate marshal support, and we are \
-				sending our best marshals to support your station.\n\n\
-				If the first responders request that they need SWAT support to do their job, or to report a faulty 911 call, we will send them in at additional cost to your station to the \
-				tune of $20,000.\n\n\
-				The transcript of the call is as follows:\n\
+			announcement_message = "[station_name()] 的船员们，这里是地球政府。我们收到了一份要求执法官立即支援的请求，现已派出 \
+				最优秀的执法官前往支援你们的空间站。\n\n\
+				如果首批响应人员认为执行任务需要特警支援，或需要举报一通虚假的 911 呼叫，我们会额外派出人员，费用由你站承担，金额为 \
+				20,000 美元。\n\n\
+				通话记录如下：\n\
 				[GLOB.call_911_msg]"
-			announcer = "Terran Government Marshal Department"
-			poll_question = "The station has called for the Marshals. Will you respond?"
+			announcer = "地球政府执法部"
+			poll_question = "空间站呼叫了执法官。你愿意响应吗？"
 		if(EMERGENCY_RESPONSE_ATMOS)
-			team_size = tgui_input_number(usr, "How many techs would you like dispatched?", "How badly did you screw up?", 3, 3, 1)
+			team_size = tgui_input_number(usr, "你想派出几名技术员？", "你捅的娄子有多大？", 3, 3, 1)
 			cops_to_send = /datum/antagonist/ert/request_911/atmos
-			announcement_message = "Crewmembers of [station_name()]. this is the Terran Government's 811 dispatch. We've received a report of stationwide structural damage, atmospherics loss, fire, or otherwise, and we are \
-				sending an Advanced Atmospherics team to support your station.\n\n\
-				The transcript of the call is as follows:\n\
+			announcement_message = "[station_name()] 的船员们，这里是地球政府 811 调度中心。我们收到报告称你站出现全站结构损伤、大气泄漏、火灾或其他情况，现已 \
+				派出一支高级大气工程队前往支援你们的空间站。\n\n\
+				通话记录如下：\n\
 				[GLOB.call_911_msg]"
-			announcer = "Terran Government 811 Dispatch - Advanced Atmospherics"
-			poll_question = "The station has called for an advanced engineering support team. Will you respond?"
+			announcer = "地球政府 811 调度中心——高级大气工程队"
+			poll_question = "空间站呼叫了高级工程支援小队。你愿意响应吗？"
 			cell_phone_number = "911"	//This needs to stay so they can communicate with SWAT
 		if(EMERGENCY_RESPONSE_EMT)
 			team_size = 8
 			cops_to_send = /datum/antagonist/ert/request_911/emt
-			announcement_message = "Crewmembers of [station_name()]. this is the Terran Government. We've received a request for immediate medical support, and we are \
-				sending our best emergency medical technicians to support your station.\n\n\
-				If the first responders request that they need SWAT support to do their job, or to report a faulty 911 call, we will send them in at additional cost to your station to the \
-				tune of $20,000.\n\n\
-				The transcript of the call is as follows:\n\
+			announcement_message = "[station_name()] 的船员们，这里是地球政府。我们收到了一份要求医疗立即支援的请求，现已派出 \
+				最优秀的急救医疗技术员前往支援你们的空间站。\n\n\
+				如果首批响应人员认为执行任务需要特警支援，或需要举报一通虚假的 911 呼叫，我们会额外派出人员，费用由你站承担，金额为 \
+				20,000 美元。\n\n\
+				通话记录如下：\n\
 				[GLOB.call_911_msg]"
-			announcer = "Terran Government EMTs"
-			poll_question = "The station has called for medical support. Will you respond?"
+			announcer = "地球政府急救医疗队"
+			poll_question = "空间站呼叫了医疗支援。你愿意响应吗？"
 		if(EMERGENCY_RESPONSE_EMAG)
 			team_size = 8
 			cops_to_send = /datum/antagonist/ert/pizza/false_call
-			announcement_message = "Thank you for ordering from Dogginos, [GLOB.pizza_order]! We're sending you that extra-large party package pizza delivery \
-				right away!\n\n\
-				Thank you for choosing our premium Fifteen Minutes or Less delivery option! Our pizza will be at your doorstep at [station_name()] as soon as possible thanks \
-				to our lightning-fast warp drives installed on all Dogginos delivery shuttles!\n\
-				Distance from your chosen Dogginos: 70,000 Lightyears"
-			announcer = "Dogginos"
-			poll_question = "The station has ordered $35,000 in pizza. Will you deliver?"
+			announcement_message = "感谢你向多吉诺披萨店下单，[GLOB.pizza_order]！我们马上就把那份超大派对套餐披萨 \
+				送过去！\n\n\
+				感谢你选择我们的尊享“十五分钟内送达”服务！得益于所有多吉诺配送穿梭机都安装的闪电般曲速引擎，我们的披萨将尽快 \
+				送到 [station_name()] 的门口！\n\
+				距你所选多吉诺门店的距离：70,000 光年"
+			announcer = "多吉诺披萨店"
+			poll_question = "空间站订购了价值 35,000 美元的披萨。你愿意去配送吗？"
 			cell_phone_number = "Dogginos"
 			list_to_use = "dogginos"
 	priority_announce(announcement_message, announcer, 'sound/effects/families_police.ogg', has_important_message=TRUE, color_override = "yellow")
-	var/list/candidates = SSpolling.poll_ghost_candidates(poll_question, check_jobban = "deathsquad", alert_pic = /obj/item/card/id/advanced/terragov, role_name_text = "Terran Government response team")
+	var/list/candidates = SSpolling.poll_ghost_candidates(poll_question, check_jobban = "deathsquad", alert_pic = /obj/item/card/id/advanced/terragov, role_name_text = "地球政府响应小队")
 
 	if(candidates.len)
 		//Pick the (un)lucky players
@@ -180,17 +180,17 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			else
 				var/obj/item/gangster_cellphone/phone = new() // biggest gang in the city
 				phone.gang_id = cell_phone_number
-				phone.name = "[cell_phone_number] branded cell phone"
+				phone.name = "[cell_phone_number] 品牌手机"
 				phone.w_class = WEIGHT_CLASS_SMALL	//They get that COMPACT phone hell yea
 				var/phone_equipped = phone.equip_to_best_slot(cop)
 				if(!phone_equipped)
-					to_chat(cop, "Your [phone.name] has been placed at your feet.")
+					to_chat(cop, "你的 [phone.name] 已被放在你的脚边。")
 					phone.forceMove(get_turf(cop))
 
 			//Logging and cleanup
-			log_game("[key_name(cop)] has been selected as an [ert_antag.name]")
+			log_game("[key_name(cop)] 已被选中担任 [ert_antag.name]。")
 			if(cops_to_send == /datum/antagonist/ert/request_911/atmos)
-				log_game("[abs(GLOB.terragov_tech_charge)] has been charged from the station budget for [key_name(cop)]")
+				log_game("已从空间站预算中为 [key_name(cop)] 扣除 [abs(GLOB.terragov_tech_charge)]。")
 			agents_number--
 	GLOB.cops_arrived = TRUE
 	return TRUE
@@ -200,7 +200,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		return FALSE
 
 	if (GLOB.cops_arrived)
-		to_chat(user, span_warning("911 has already been called this shift!"))
+		to_chat(user, span_warning("本班次已经呼叫过 911 了！"))
 		playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 		return FALSE
 
@@ -208,48 +208,48 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		var/obj/item/held_item = user.get_active_held_item()
 		var/obj/item/card/id/id_card = held_item?.GetID()
 		if (!istype(id_card))
-			to_chat(user, span_warning("You need to swipe your ID!"))
+			to_chat(user, span_warning("你需要刷一下你的 ID！"))
 			playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 			return FALSE
 		if (!(ACCESS_CAPTAIN in id_card.access))
-			to_chat(user, span_warning("You are not authorized to do this!"))
+			to_chat(user, span_warning("你无权这么做！"))
 			playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 			return FALSE
 	else
-		to_chat(user, "The console refuses to let you dial 911 as an AI or Cyborg!")
+		to_chat(user, "控制台拒绝让你以人工智能或半机械人的身份拨打 911！")
 		return FALSE
 	return TRUE
 
-/obj/machinery/computer/communications/proc/calling_911(mob/user, called_group_pretty = "EMTs", called_group = EMERGENCY_RESPONSE_EMT)
-	message_admins("[ADMIN_LOOKUPFLW(user)] is considering calling the Terran Government [called_group_pretty].")
-	var/call_911_msg_are_you_sure = "Are you sure you want to call 911? Faulty 911 calls results in a $20,000 fine and a 5 year superjail \
-		sentence."
-	if(tgui_alert(user, call_911_msg_are_you_sure, "Call 911", list("No", "Yes")) != "Yes")
+/obj/machinery/computer/communications/proc/calling_911(mob/user, called_group_pretty = "急救医疗队", called_group = EMERGENCY_RESPONSE_EMT)
+	message_admins("[ADMIN_LOOKUPFLW(user)] 正在考虑呼叫地球政府[called_group_pretty]。")
+	var/call_911_msg_are_you_sure = "你确定要拨打 911 吗？虚假的 911 呼叫会导致 20,000 美元罚款以及 5 年超级监狱 \
+		刑期。"
+	if(tgui_alert(user, call_911_msg_are_you_sure, "拨打 911", list("No", "Yes")) != "Yes")
 		return
-	message_admins("[ADMIN_LOOKUPFLW(user)] has acknowledged the faulty 911 call consequences.")
-	if(tgui_alert(user, GLOB.call911_do_and_do_not[called_group], "Call [called_group_pretty]", list("No", "Yes")) != "Yes")
+	message_admins("[ADMIN_LOOKUPFLW(user)] 已确认知晓虚假 911 呼叫的后果。")
+	if(tgui_alert(user, GLOB.call911_do_and_do_not[called_group], "呼叫[called_group_pretty]", list("No", "Yes")) != "Yes")
 		return
-	message_admins("[ADMIN_LOOKUPFLW(user)] has read and acknowleged the recommendations for what to call and not call [called_group_pretty] for.")
-	var/reason_to_call_911 = tgui_input_text(user, "What do you wish to call 911 [called_group_pretty] for?", "Call 911", null, MAX_MESSAGE_LEN)
+	message_admins("[ADMIN_LOOKUPFLW(user)] 已阅读并确认关于何时应当与不应当呼叫[called_group_pretty]的建议。")
+	var/reason_to_call_911 = tgui_input_text(user, "你想为了什么呼叫 911 [called_group_pretty]？", "拨打 911", null, MAX_MESSAGE_LEN)
 	if(!reason_to_call_911)
-		to_chat(user, "You decide not to call 911.")
+		to_chat(user, "你决定不拨打 911。")
 		return
 	GLOB.cops_arrived = TRUE
 	GLOB.call_911_msg = reason_to_call_911
 	GLOB.caller_of_911 = user.name
-	log_game("[key_name(user)] has called the Terran Government [called_group_pretty] for the following reason:\n[GLOB.call_911_msg]")
-	message_admins("[ADMIN_LOOKUPFLW(user)] has called the Terran Government [called_group_pretty] for the following reason:\n[GLOB.call_911_msg]")
-	deadchat_broadcast(" has called the Terran Government [called_group_pretty] for the following reason:\n[GLOB.call_911_msg]", span_name("[user.real_name]"), user, message_type = DEADCHAT_ANNOUNCEMENT)
+	log_game("[key_name(user)] 因以下原因呼叫了地球政府[called_group_pretty]：\n[GLOB.call_911_msg]")
+	message_admins("[ADMIN_LOOKUPFLW(user)] 因以下原因呼叫了地球政府[called_group_pretty]：\n[GLOB.call_911_msg]")
+	deadchat_broadcast(" 因以下原因呼叫了地球政府[called_group_pretty]：\n[GLOB.call_911_msg]", span_name("[user.real_name]"), user, message_type = DEADCHAT_ANNOUNCEMENT)
 
 	call_911(called_group)
-	to_chat(user, span_notice("Authorization confirmed. 911 call dispatched to the Terran Government [called_group_pretty]."))
+	to_chat(user, span_notice("授权已确认。911 呼叫已派往地球政府[called_group_pretty]。"))
 	playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 
 /datum/antagonist/ert/request_911
-	name = "911 Responder"
+	name = "911 响应人员"
 	antag_hud_name = "hud_spacecop"
-	suicide_cry = "FOR THE Terran Government!!"
-	var/department = "Some stupid shit"
+	suicide_cry = "为了地球政府！！"
+	var/department = "某堆破事"
 
 /datum/antagonist/ert/request_911/apply_innate_effects(mob/living/mob_override)
 	..()
@@ -272,18 +272,18 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 /datum/antagonist/ert/request_911/greet()
 	var/missiondesc =  ""
-	missiondesc += "<B><font size=5 color=red>You are NOT a Nanotrasen Employee. You work for the Terran Government as a [role].</font></B>"
-	missiondesc += "<BR>You are responding to emergency calls from the station for immediate TerraGov [department] assistance!\n"
-	missiondesc += "<BR>Use the Cell Phone in your backpack to confer with fellow first responders!\n"
-	missiondesc += "<BR><B>911 Transcript is as follows</B>:"
+	missiondesc += "<B><font size=5 color=red>你不是纳米传讯的员工。你为地球政府工作，职务是[role]。</font></B>"
+	missiondesc += "<BR>你正在响应空间站的紧急呼叫，为地球政府[department]提供即时援助！\n"
+	missiondesc += "<BR>使用背包里的手机与其他首批响应人员联络！\n"
+	missiondesc += "<BR><B>911 通话记录如下</B>："
 	missiondesc += "<BR> [GLOB.call_911_msg]"
-	missiondesc += "<BR><B>Your Mission</B>:"
-	missiondesc += "<BR> <B>1.</B> Contact [GLOB.caller_of_911] and assist them in resolving the matter."
-	missiondesc += "<BR> <B>2.</B> Protect, ensure, and uphold the rights of Terran Government citizens on board [station_name()]."
-	missiondesc += "<BR> <B>3.</B> If you believe yourself to be in danger, unable to do the job assigned to you due to a dangerous situation, \
-		or that the 911 call was made in error, you can use the S.W.A.T. Backup Caller in your backpack to vote on calling a S.W.A.T. team to assist in the situation."
-	missiondesc += "<BR> <B>4.</B> When you have finished with your work on the station, use the Beamout Tool in your backpack to beam out yourself \
-		along with anyone you are pulling."
+	missiondesc += "<BR><B>你的任务</B>："
+	missiondesc += "<BR> <B>1.</B> 联系 [GLOB.caller_of_911] 并协助他们解决问题。"
+	missiondesc += "<BR> <B>2.</B> 保护、确保并维护 [station_name()] 上地球政府公民的权利。"
+	missiondesc += "<BR> <B>3.</B> 如果你认为自己陷入危险、因危险状况无法完成被指派的工作， \
+		或认为这通 911 呼叫是误报，你可以使用背包里的特警支援呼叫器，投票请求派一支特警队来协助处理。"
+	missiondesc += "<BR> <B>4.</B> 当你在空间站上的工作结束后，使用背包里的传送离场工具，把你自己 \
+		以及你正在拖拽的人一起传送离场。"
 	to_chat(owner, missiondesc)
 	var/mob/living/greeted_mob = owner.current
 	greeted_mob.playsound_local(greeted_mob, 'sound/effects/families_police.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
@@ -310,8 +310,8 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		human_to_equip.update_ID_card()
 
 /obj/item/modular_computer/pda/request_911
-	name = "Terragov PDA"
-	desc = "A small experimental microcomputer, up to Terragov 911 Responder standards."
+	name = "地球政府 PDA"
+	desc = "一台小型实验性微型计算机，达到了地球政府 911 响应人员的标准。"
 	icon_state = "/obj/item/modular_computer/pda/request_911"
 	greyscale_config = /datum/greyscale_config/tablet/captain
 	greyscale_colors = "#EAEAEA#66CCFF#FFCC00#5F5F5F"
@@ -322,7 +322,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	)
 
 /obj/item/modular_computer/pda/request_911/police
-	name = "Terragov Marshal PDA"
+	name = "地球政府执法官 PDA"
 	icon_state = "/obj/item/modular_computer/pda/request_911/police"
 	greyscale_colors = "#EAEAEA#66CCFF#FFD900#CC5075"
 	inserted_item = /obj/item/pen/red/security
@@ -331,7 +331,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	)
 
 /obj/item/modular_computer/pda/request_911/atmos
-	name = "Terragov Atmospherics PDA"
+	name = "地球政府大气部 PDA"
 	icon_state = "/obj/item/modular_computer/pda/request_911/atmos"
 	greyscale_colors = "#EAEAEA#66CCFF#FFD900#7DDEFF"
 	starting_programs = list(
@@ -341,7 +341,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	)
 
 /obj/item/modular_computer/pda/request_911/emt
-	name = "Terragov Medical PDA"
+	name = "地球政府医疗部 PDA"
 	icon_state = "/obj/item/modular_computer/pda/request_911/emt"
 	greyscale_colors = "#EAEAEA#66CCFF#FFD900#7284D4"
 	starting_programs = list(
@@ -355,9 +355,9 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 */
 
 /datum/antagonist/ert/request_911/police
-	name = "Marshal"
-	role = "Marshal"
-	department = "Marshal"
+	name = "执法官"
+	role = "执法官"
+	department = "执法官"
 	outfit = /datum/outfit/request_911/police
 
 /datum/outfit/request_911/police
@@ -394,9 +394,9 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 */
 
 /datum/antagonist/ert/request_911/atmos
-	name = "Adv. Atmos Tech"
-	role = "Adv. Atmospherics Technician"
-	department = "Advanced Atmospherics"
+	name = "高级大气技术员"
+	role = "高级大气技术员"
+	department = "高级大气工程队"
 	outfit = /datum/outfit/request_911/atmos
 
 /datum/outfit/request_911/atmos
@@ -424,14 +424,14 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	id_trim = /datum/id_trim/terragov/atmos
 
 /obj/item/radio/headset/headset_terragov/atmos
-	name = "\improper TerraGov adv. atmos headset"
-	desc = "A headset used by the Terran Government response teams."
+	name = "\improper 地球政府高级大气耳机"
+	desc = "地球政府响应小队使用的耳机。"
 	icon_state = "med_headset"
 	keyslot = /obj/item/encryptionkey/headset_terragov/atmos
 	radiosound = 'modular_skyrat/modules/radiosound/sound/radio/security.ogg'
 
 /obj/item/encryptionkey/headset_terragov/atmos
-	name = "\improper TerraGov adv. atmos encryption key"
+	name = "\improper 地球政府高级大气加密密钥"
 	icon_state = "/obj/item/encryptionkey/headset_terragov/atmos"
 	post_init_icon_state = "cypherkey_medical"
 	special_channels = RADIO_SPECIAL_CENTCOM
@@ -444,9 +444,9 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 */
 
 /datum/antagonist/ert/request_911/emt
-	name = "Emergency Medical Technician"
-	role = "EMT"
-	department = "EMT"
+	name = "急救医疗技术员"
+	role = "急救员"
+	department = "急救医疗队"
 	outfit = /datum/outfit/request_911/emt
 
 /datum/outfit/request_911/emt
@@ -480,23 +480,23 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	id_trim = /datum/id_trim/terragov
 
 /datum/antagonist/ert/request_911/condom_destroyer
-	name = "Armed S.W.A.T. Officer"
-	role = "S.W.A.T. Officer"
-	department = "Police"
+	name = "武装特警"
+	role = "特警"
+	department = "警察"
 	outfit = /datum/outfit/request_911/condom_destroyer
 
 /datum/antagonist/ert/request_911/condom_destroyer/greet()
 	var/missiondesc =  ""
-	missiondesc += "<B><font size=5 color=red>You are NOT a Nanotrasen Employee. You work for the Terran Government as a [role].</font></B>"
-	missiondesc += "<BR>You are here to backup the 911 first responders, as they have reported for your assistance..\n"
-	missiondesc += "<BR><B>Your Mission</B>:"
-	missiondesc += "<BR> <B>1.</B> Contact the first responders using the Cell Phone in your backpack to figure out the situation."
-	missiondesc += "<BR> <B>2.</B> Arrest anyone who interferes the work of the first responders."
-	missiondesc += "<BR> <B>3.</B> Use lethal force in the arrest of the suspects if they will not comply, or the station refuses to comply."
-	missiondesc += "<BR> <B>4.</B> If you believe the station is engaging in treason and is firing upon first responders and S.W.A.T. members, use the \
-		Treason Reporter in your backpack to call the military."
-	missiondesc += "<BR> <B>5.</B> When you have finished with your work on the station, use the Beamout Tool in your backpack to beam out yourself \
-		along with anyone you are pulling."
+	missiondesc += "<B><font size=5 color=red>你不是纳米传讯的员工。你为地球政府工作，职务是[role]。</font></B>"
+	missiondesc += "<BR>你在这里是为 911 首批响应人员提供支援，因为他们已请求你的协助。\n"
+	missiondesc += "<BR><B>你的任务</B>："
+	missiondesc += "<BR> <B>1.</B> 使用背包里的手机联系首批响应人员，弄清当前状况。"
+	missiondesc += "<BR> <B>2.</B> 逮捕任何妨碍首批响应人员工作的人。"
+	missiondesc += "<BR> <B>3.</B> 若嫌疑人拒不就范，或空间站拒绝配合，可在逮捕中使用致命武力。"
+	missiondesc += "<BR> <B>4.</B> 如果你认为空间站正在从事叛国行为，并向首批响应人员和特警开火，请使用 \
+		背包里的叛国举报器呼叫军方。"
+	missiondesc += "<BR> <B>5.</B> 当你在空间站上的工作结束后，使用背包里的传送离场工具，把你自己 \
+		以及你正在拖拽的人一起传送离场。"
 	to_chat(owner, missiondesc)
 	var/mob/living/greeted_mob = owner.current
 	greeted_mob.playsound_local(greeted_mob, 'sound/effects/families_police.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
@@ -528,21 +528,21 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	id_trim = /datum/id_trim/terragov
 
 /datum/antagonist/ert/request_911/treason_destroyer
-	name = "Terran Government Peacekeeper"
-	role = "Private"
-	department = "Military"
+	name = "地球政府维和人员"
+	role = "列兵"
+	department = "军方"
 	outfit = /datum/outfit/request_911/treason_destroyer
 
 /datum/antagonist/ert/request_911/treason_destroyer/greet()
 	var/missiondesc =  ""
-	missiondesc += "<B><font size=5 color=red>You are NOT a Nanotrasen Employee. You work for the Terran Government as a [role].</font></B>"
-	missiondesc += "<BR>You are here to assume control of [station_name()] due to the occupants engaging in Treason as reported by our SWAT team.\n"
-	missiondesc += "<BR><B>Your Mission</B>:"
-	missiondesc += "<BR> <B>1.</B> Contact the SWAT Team and the First Responders via your cell phone to get the situation from them."
-	missiondesc += "<BR> <B>2.</B> Arrest all suspects involved in the treason attempt."
-	missiondesc += "<BR> <B>3.</B> Assume control of the station for the Terran Government, and initiate evacuation procedures to get non-offending citizens \
-		away from the scene."
-	missiondesc += "<BR> <B>4.</B> If you need to use lethal force, do so, but only if you must."
+	missiondesc += "<B><font size=5 color=red>你不是纳米传讯的员工。你为地球政府工作，职务是[role]。</font></B>"
+	missiondesc += "<BR>你在这里是为了接管 [station_name()]，因为据我们的特警队报告，站内人员正在从事叛国行为。\n"
+	missiondesc += "<BR><B>你的任务</B>："
+	missiondesc += "<BR> <B>1.</B> 通过手机联系特警队和首批响应人员，向他们了解情况。"
+	missiondesc += "<BR> <B>2.</B> 逮捕所有参与叛国行为的嫌疑人。"
+	missiondesc += "<BR> <B>3.</B> 代表地球政府接管空间站，并启动撤离程序，把未涉案的公民 \
+		带离现场。"
+	missiondesc += "<BR> <B>4.</B> 如果你需要使用致命武力，那就用，但只在必要时。"
 	to_chat(owner, missiondesc)
 	var/mob/living/greeted_mob = owner.current
 	greeted_mob.playsound_local(greeted_mob, 'sound/effects/families_police.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
@@ -574,8 +574,8 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	id_trim = /datum/id_trim/terragov
 
 /obj/item/terragov_reporter
-	name = "TerraGov reporter"
-	desc = "Use this in-hand to vote to call TerraGov backup. If half your team votes for it, SWAT will be dispatched."
+	name = "地球政府汇报器"
+	desc = "在手中使用，可投票请求地球政府支援。若你队伍中有一半人投票赞成，特警将被派出。"
 	icon = 'modular_skyrat/modules/goofsec/icons/reporter.dmi'
 	icon_state = "reporter_off"
 	w_class = WEIGHT_CLASS_SMALL
@@ -606,10 +606,10 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 /obj/item/terragov_reporter/proc/pre_checks(mob/user)
 	if(GLOB.terragov_responder_info[type_of_callers][TERRAGOV_AMT] == 0)
-		to_chat(user, span_warning("There are no responders. You likely spawned this in as an admin. Please don't do this."))
+		to_chat(user, span_warning("没有响应人员。你大概是用管理员权限把它刷出来的吧。请不要这么做。"))
 		return FALSE
 	if(!user.mind.has_antag_datum(type_to_check))
-		to_chat(user, span_warning("You don't know how to use this!"))
+		to_chat(user, span_warning("你不知道该怎么用这东西！"))
 		return FALSE
 	return TRUE
 
@@ -628,8 +628,8 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		GLOB.terragov_responder_info[type_of_callers][TERRAGOV_VOTES]++
 		var/current_votes = GLOB.terragov_responder_info[type_of_callers][TERRAGOV_VOTES]
 		var/amount_of_responders = GLOB.terragov_responder_info[type_of_callers][TERRAGOV_AMT]
-		to_chat(user, span_warning("You have activated the device. \
-		Current Votes: [current_votes]/[amount_of_responders] votes."))
+		to_chat(user, span_warning("你已激活该设备。 \
+		当前票数：[current_votes]/[amount_of_responders]。"))
 		if(current_votes >= amount_of_responders * 0.5)
 			GLOB.terragov_responder_info[type_of_callers][TERRAGOV_DECLARED] = TRUE
 			if(fine_station)
@@ -670,101 +670,101 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 					var/obj/item/gangster_cellphone/phone = new() // biggest gang in the city
 					phone.gang_id = cell_phone_number
-					phone.name = "[cell_phone_number] branded cell phone"
+					phone.name = "[cell_phone_number] 品牌手机"
 					var/phone_equipped = phone.equip_to_best_slot(cop)
 					if(!phone_equipped)
-						to_chat(cop, "Your [phone.name] has been placed at your feet.")
+						to_chat(cop, "你的 [phone.name] 已被放在你的脚边。")
 						phone.forceMove(get_turf(cop))
 
 					//Logging and cleanup
-					log_game("[key_name(cop)] has been selected as an [ert_antag.name]")
+					log_game("[key_name(cop)] 已被选中担任 [ert_antag.name]。")
 					agents_number--
 
 /obj/item/terragov_reporter/swat_caller
-	name = "S.W.A.T. backup caller"
-	desc = "Use this in-hand to vote to call TerraGov S.W.A.T. backup. If half your team votes for it, SWAT will be dispatched."
+	name = "特警支援呼叫器"
+	desc = "在手中使用，可投票请求地球政府特警支援。若你队伍中有一半人投票赞成，特警将被派出。"
 	type_to_check = /datum/antagonist/ert/request_911
 	type_of_callers = "911_responders"
-	announcement_source = "Terran Government S.W.A.T."
+	announcement_source = "地球政府特警"
 	fine_station = TRUE
-	ghost_poll_msg = "The Sol-Fed 911 services have requested a S.W.A.T. backup. Do you wish to become a S.W.A.T. member?"
+	ghost_poll_msg = "太阳联邦 911 服务部门请求了特警支援。你愿意成为特警队员吗？"
 	amount_to_summon = 6
 	type_to_summon = /datum/antagonist/ert/request_911/condom_destroyer
 	summoned_type = "swat"
-	announcement_message = "Hello, crewmembers. Our emergency services have requested S.W.A.T. backup, either for assistance doing their job due to crew \
-		impediment, or due to a fraudulent 911 call. We have billed the station $20,000 for this, to cover the expenses of flying a second emergency response to \
-		your station. Please comply with all requests by said S.W.A.T. members."
+	announcement_message = "各位船员，你们好。我们的应急服务部门请求了特警支援，原因可能是船员 \
+		妨碍他们执行任务，或是有人虚报 911 呼叫。我们已就此向空间站开出了 20,000 美元的账单，用以支付向 \
+		你站派出第二支应急响应队伍的开销。请配合上述特警队员的一切要求。"
 
 /obj/item/terragov_reporter/swat_caller/questions(mob/user)
-	var/question = "Does the situation require additional S.W.A.T. backup, involve the station impeding you from doing your job, \
-		or involve the station making a fraudulent 911 call and needing an arrest made on the caller?"
-	if(tgui_alert(user, question, "S.W.A.T. Backup Caller", list("No", "Yes")) != "Yes")
-		to_chat(user, "You decide not to request S.W.A.T. backup.")
+	var/question = "当前情况是否需要额外的特警支援、是否涉及空间站阻挠你执行任务， \
+		或涉及空间站虚报 911 呼叫并需要对报案人实施逮捕？"
+	if(tgui_alert(user, question, "特警支援呼叫器", list("No", "Yes")) != "Yes")
+		to_chat(user, "你决定不请求特警支援。")
 		return FALSE
-	message_admins("[ADMIN_LOOKUPFLW(user)] has voted to summon S.W.A.T backup.")
+	message_admins("[ADMIN_LOOKUPFLW(user)] 已投票请求召集特警支援。")
 	return TRUE
 
 /obj/item/terragov_reporter/treason_reporter
-	name = "treason reporter"
-	desc = "Use this in-hand to vote that the station is engaging in Treason. If half your team votes for it, the Military will handle the situation."
+	name = "叛国举报器"
+	desc = "在手中使用，可投票认定空间站正在从事叛国行为。若你队伍中有一半人投票赞成，军方将接手处理。"
 	type_to_check = /datum/antagonist/ert/request_911/condom_destroyer
 	type_of_callers = "swat"
-	announcement_source = "Terran Government National Guard"
+	announcement_source = "地球政府国民警卫队"
 	fine_station = FALSE
-	ghost_poll_msg = "The station has decided to engage in treason. Do you wish to join the Terran Government Military?"
+	ghost_poll_msg = "空间站已决定从事叛国行为。你愿意加入地球政府军队吗？"
 	amount_to_summon = 12
 	type_to_summon = /datum/antagonist/ert/request_911/treason_destroyer
 	summoned_type = "national_guard"
-	announcement_message = "Crewmembers of the station. You have refused to comply with first responders and SWAT officers, and have assaulted them, \
-		and they are unable to carry out the wills of the Terran Government, despite residing within Terran Government borders.\n\
-		As such, we are charging those responsible with Treason. The penalty of which is death, or no less than twenty-five years in Superjail.\n\
-		Treason is a serious crime. Our military forces are en route to your station. They will be assuming direct control of the station, and \
-		will be evacuating civilians from the scene.\n\
-		Non-offending citizens, prepare for evacuation. Comply with all orders given to you by Terran Government military personnel.\n\
-		To all those who are engaging in treason, lay down your weapons and surrender. Refusal to comply may be met with lethal force."
+	announcement_message = "空间站的船员们。你们拒绝配合首批响应人员与特警队的工作，并对他们发动了攻击， \
+		致使他们尽管身处地球政府疆域之内，却无法执行地球政府的意志。\n\
+		因此，我们以叛国罪指控责任人。其刑罚为死刑，或不少于二十五年的超级监狱监禁。\n\
+		叛国是重罪。我们的军队已在前往你站的途中。他们将直接接管空间站，并 \
+		从现场撤离平民。\n\
+		未涉案的公民，请做好撤离准备。服从地球政府军事人员下达的一切命令。\n\
+		所有正在从事叛国行为的人，放下武器投降。拒不配合者可能会遭到致命武力。"
 
 /obj/item/terragov_reporter/treason_reporter/questions(mob/user)
 	var/list/list_of_questions = list(
-		"Treason is the crime of attacking a state authority to which one owes allegiance. The station is located within Terran Government space, \
-			and owes allegiance to the Terran Government despite being owned by Nanotrasen. Did the station engage in this today?",
-		"Did station crewmembers assault you or the SWAT team at the direction of Security and/or Command?",
-		"Did station crewmembers actively prevent you and the SWAT team from accomplishing your objectives at the direction of Security and/or Command?",
-		"Were you and your fellow SWAT members unable to handle the issue on your own?",
-		"Are you absolutely sure you wish to declare the station as engaging in Treason? Misuse of this can and will result in \
-			administrative action against your account."
+		"叛国罪，是指攻击自己负有效忠义务的国家政权的罪行。本空间站位于地球政府疆域之内， \
+			尽管归纳米传讯所有，却对地球政府负有效忠义务。今天空间站是否犯下了这一罪行？",
+		"空间站船员是否在安保部和/或指挥部的指使下袭击了你或特警队？",
+		"空间站船员是否在安保部和/或指挥部的指使下主动阻挠你和特警队完成目标？",
+		"你和你的特警同伴是否无力独自处理该问题？",
+		"你绝对确定要宣布空间站从事叛国行为吗？误用此功能可能且将会导致 \
+			对你的账号采取管理措施。"
 	)
 	for(var/question in list_of_questions)
-		if(tgui_alert(user, question, "Treason Reporter", list("No", "Yes")) != "Yes")
-			to_chat(user, "You decide not to declare the station as treasonous.")
+		if(tgui_alert(user, question, "叛国举报器", list("No", "Yes")) != "Yes")
+			to_chat(user, "你决定不宣布空间站犯有叛国罪。")
 			return FALSE
-	message_admins("[ADMIN_LOOKUPFLW(user)] has acknowledged the consequences of a false claim of Treason administratively, \
-		and has voted that the station is engaging in Treason.")
+	message_admins("[ADMIN_LOOKUPFLW(user)] 已在管理层面确认知晓虚假叛国指控的后果， \
+		并投票认定空间站正在从事叛国行为。")
 	return TRUE
 
 /obj/item/terragov_reporter/pizza_managers
-	name = "Dogginos uncompliant customer reporter"
-	desc = "Use this in-hand to vote to call for Dogginos Regional Managers if the station refuses to pay for their pizza. \
-		If half your delivery squad votes for it, Dogginos Regional Managers will be dispatched."
+	name = "多吉诺不配合客户举报器"
+	desc = "在手中使用，若空间站拒绝支付其披萨费用，可投票请求多吉诺区域经理前来。 \
+		若你配送小队中有一半人投票赞成，多吉诺区域经理将被派出。"
 	type_to_check = /datum/antagonist/ert/pizza/false_call
 	type_of_callers = "dogginos"
-	announcement_message = "Hey there, custo-mores! Our delivery drivers have reported that you guys are having some issues with payment for your order that \
-		you placed at the Dogginos that's the seventh furthest Dogginos in the galaxy from your station, and we want to ensure maximum customer satisfaction and \
-		employee satisfaction as well.\n\
-		We've gone ahead and sent some some of our finest regional managers to handle the situation.\n\
-		We hope you enjoy your pizzas, and that we'll be able to receive the bill of $35,000 plus the fifteen percent tip for our drivers shortly!"
-	announcement_source = "Dogginos"
+	announcement_message = "各位尊敬的老主顾，你们好！我们的配送司机报告说，你们似乎对订单付款有些异议， \
+		而你们是在离你站距离排名银河第七远的那家多吉诺下的单。我们想要确保最高的客户满意度，同时也兼顾 \
+		员工满意度。\n\
+		我们已派出几位最优秀的区域经理前去处理此事。\n\
+		希望你们吃得开心，也希望我们很快就能收到 35,000 美元的账单，以及给我们司机的 15% 小费！"
+	announcement_source = "多吉诺披萨店"
 	fine_station = FALSE
-	ghost_poll_msg = "Dogginos is sending regional managers to get the station to pay up the pizza money they owe. Are you ready to do some Customer Relations?"
+	ghost_poll_msg = "多吉诺正派出区域经理，前去催促空间站付清拖欠的披萨钱。你准备好来做客户关系了吗？"
 	amount_to_summon = 8
 	type_to_summon = /datum/antagonist/ert/pizza/leader/false_call
 	summoned_type = "dogginos_manager"
 	cell_phone_number = "Dogginos"
 
 /obj/item/terragov_reporter/pizza_managers/questions(mob/user)
-	if(tgui_alert(user, "Is the station refusing to pay their bill of $35,000, including a fifteen percent tip for delivery drivers?", "Dogginos Uncompliant Customer Reporter", list("No", "Yes")) != "Yes")
-		to_chat(user, "You decide not to request management assist you with the delivery.")
+	if(tgui_alert(user, "空间站是否拒绝支付其 35,000 美元的账单，其中还包括给配送司机的 15% 小费？", "多吉诺不配合客户举报器", list("No", "Yes")) != "Yes")
+		to_chat(user, "你决定不请求管理层协助你的配送。")
 		return FALSE
-	message_admins("[ADMIN_LOOKUPFLW(user)] has voted to summon Dogginos management to resolve the lack of payment.")
+	message_admins("[ADMIN_LOOKUPFLW(user)] 已投票请求召集多吉诺管理层处理欠款问题。")
 	return TRUE
 
 /datum/antagonist/ert/pizza/false_call
@@ -782,28 +782,28 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 
 /datum/antagonist/ert/pizza/false_call/greet()
 	var/missiondesc =  ""
-	missiondesc += "<B><font size=5 color=red>You are NOT a Nanotrasen Employee. You work for Dogginos as a delivery person.</font></B>"
-	missiondesc += "<BR>You are here to deliver some pizzas from Dogginos!\n"
-	missiondesc += "<BR>Use the Cell Phone in your backpack to confer with fellow Dogginos employees!\n"
-	missiondesc += "<BR><B>Your Mission</B>:"
-	missiondesc += "<BR> <B>1.</B> Deliver the pizzas ordered by [GLOB.pizza_order]."
-	missiondesc += "<BR> <B>2.</B> Collect the bill, which totals to $35,000 plus a fifteen percent tip for delivery drivers."
-	missiondesc += "<BR> <B>3.</B> If they refuse to pay, you may summon the Dogginos Regional Managers to help resolve the issue."
+	missiondesc += "<B><font size=5 color=red>你不是纳米传讯的员工。你为多吉诺披萨店工作，是一名配送员。</font></B>"
+	missiondesc += "<BR>你来这里是为了配送多吉诺的披萨！\n"
+	missiondesc += "<BR>使用背包里的手机与其他多吉诺员工联络！\n"
+	missiondesc += "<BR><B>你的任务</B>："
+	missiondesc += "<BR> <B>1.</B> 配送 [GLOB.pizza_order] 订购的披萨。"
+	missiondesc += "<BR> <B>2.</B> 收取账单，共计 35,000 美元，另加给配送司机的 15% 小费。"
+	missiondesc += "<BR> <B>3.</B> 如果他们拒绝付款，你可以召集多吉诺区域经理来协助解决问题。"
 	to_chat(owner, missiondesc)
 
 /datum/antagonist/ert/pizza/leader/false_call/greet()
 	var/missiondesc =  ""
-	missiondesc += "<B><font size=5 color=red>You are NOT a Nanotrasen Employee. You work for Dogginos as a Regional Manager.</font></B>"
-	missiondesc += "<BR>You are here to resolve a dispute with some customers who refuse to pay their bill!\n"
-	missiondesc += "<BR>Use the Cell Phone in your backpack to confer with fellow Dogginos employees!\n"
-	missiondesc += "<BR><B>Your Mission</B>:"
-	missiondesc += "<BR> <B>1.</B> Collect the money owed by [GLOB.pizza_order], which amounts to $35,000 plus a fifteen percent tip for the delivery drivers."
-	missiondesc += "<BR> <B>2.</B> Use any means necessary to collect the owed funds. The thousand degree knife in your backpack will help in this task."
+	missiondesc += "<B><font size=5 color=red>你不是纳米传讯的员工。你为多吉诺披萨店工作，是一名区域经理。</font></B>"
+	missiondesc += "<BR>你来这里是为了解决与一些拒绝付款的顾客之间的纠纷！\n"
+	missiondesc += "<BR>使用背包里的手机与其他多吉诺员工联络！\n"
+	missiondesc += "<BR><B>你的任务</B>："
+	missiondesc += "<BR> <B>1.</B> 向 [GLOB.pizza_order] 收取欠款，共计 35,000 美元，另加给配送司机的 15% 小费。"
+	missiondesc += "<BR> <B>2.</B> 用一切必要手段收取欠款。你背包里那把千度高温刀会帮上忙。"
 	to_chat(owner, missiondesc)
 
 /obj/item/beamout_tool
-	name = "beam-out tool" // TODO, find a way to make this into drop pods cuz that's cooler visually
-	desc = "Use this to begin the lengthy beam-out  process to return to Terran Government space. It will bring anyone you are pulling with you."
+	name = "传送离场工具" // TODO, find a way to make this into drop pods cuz that's cooler visually
+	desc = "使用它以开始漫长的传送离场流程，返回地球政府空域。它会把你正在拖拽的人一起带走。"
 	icon = 'modular_skyrat/modules/goofsec/icons/reporter.dmi'
 	icon_state = "beam_me_up_scotty"
 	w_class = WEIGHT_CLASS_SMALL
@@ -811,22 +811,22 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 /obj/item/beamout_tool/attack_self(mob/user, modifiers)
 	. = ..()
 	if(!user.mind.has_antag_datum(/datum/antagonist/ert))
-		to_chat(user, span_warning("You don't understand how to use this device."))
+		to_chat(user, span_warning("你不明白该如何使用这个装置。"))
 		return
-	message_admins("[ADMIN_LOOKUPFLW(user)] has begun to beam-out using their beam-out tool.")
-	to_chat(user, "You have begun the beam-out process. Please wait for the beam to reach the station.")
-	user.balloon_alert(user, "begun beam-out")
+	message_admins("[ADMIN_LOOKUPFLW(user)] 已开始使用传送离场工具进行传送离场。")
+	to_chat(user, "你已开始传送离场流程。请等待光束抵达空间站。")
+	user.balloon_alert(user, "已开始传送离场")
 	if(do_after(user, 30 SECONDS))
-		to_chat(user, "You have completed the beam-out process and are returning to the Terran Government.")
-		message_admins("[ADMIN_LOOKUPFLW(user)] has beamed themselves out.")
+		to_chat(user, "你已完成传送离场流程，正在返回地球政府。")
+		message_admins("[ADMIN_LOOKUPFLW(user)] 已将自己传送离场。")
 		if(isliving(user))
 			var/mob/living/living_user = user
 			if(living_user.pulling)
 				if(ishuman(living_user.pulling))
 					var/mob/living/carbon/human/beamed_human = living_user.pulling
-					message_admins("[ADMIN_LOOKUPFLW(user)] has beamed out [ADMIN_LOOKUPFLW(beamed_human)] alongside them.")
+					message_admins("[ADMIN_LOOKUPFLW(user)] 已将 [ADMIN_LOOKUPFLW(beamed_human)] 一并传送离场。")
 				else
-					message_admins("[ADMIN_LOOKUPFLW(user)] has beamed out [living_user.pulling] alongside them.")
+					message_admins("[ADMIN_LOOKUPFLW(user)] 已将 [living_user.pulling] 一并传送离场。")
 				var/turf/pulling_turf = get_turf(living_user.pulling)
 				playsound(pulling_turf, 'sound/effects/magic/Repulse.ogg', 100, 1)
 				do_sparks(10, 1, pulling_turf)
@@ -836,7 +836,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			do_sparks(10, 1, user_turf)
 			qdel(user)
 	else
-		user.balloon_alert(user, "beam-out cancelled")
+		user.balloon_alert(user, "传送离场已取消")
 
 #undef TERRAGOV_AMT
 #undef TERRAGOV_VOTES

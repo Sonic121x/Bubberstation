@@ -110,7 +110,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 /datum/component/gps/item/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice("Alt-click to switch it [tracking ? "off":"on"].")
+	examine_list += span_notice("按住 Alt 点击以[tracking ? "关闭":"开启"]它。")
 
 ///Called on COMSIG_ATOM_EMP_ACT
 /datum/component/gps/item/proc/on_emp_act(datum/source, severity, protection)
@@ -143,16 +143,16 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	if(!user.can_perform_action(parent, ALLOW_RESTING | ALLOW_PAI))
 		return //user not valid to use gps
 	if(emped)
-		to_chat(user, span_warning("It's busted!"))
+		to_chat(user, span_warning("它坏了！"))
 		return
 	var/atom/A = parent
 	if(tracking)
 		A.cut_overlay("working")
-		to_chat(user, span_notice("[parent] is no longer tracking, or visible to other GPS devices."))
+		to_chat(user, span_notice("[parent]已停止定位，其他 GPS 设备也无法再发现它。"))
 		tracking = FALSE
 	else
 		A.add_overlay("working")
-		to_chat(user, span_notice("[parent] is now tracking, and visible to other GPS devices."))
+		to_chat(user, span_notice("[parent]已开始定位，其他 GPS 设备现在可以发现它。"))
 		tracking = TRUE
 
 	if(debug_mode)
@@ -164,7 +164,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 
 /datum/component/gps/item/ui_interact(mob/user, datum/tgui/ui)
 	if(emped)
-		to_chat(user, span_hear("[parent] fizzles weakly."))
+		to_chat(user, span_hear("[parent]发出微弱的滋滋声。"))
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -220,7 +220,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	switch(action)
 		if("rename")
 			var/atom/parentasatom = parent
-			var/a = tgui_input_text(usr, "Enter the desired tag", "GPS Tag", gpstag, max_length = 20)
+			var/a = tgui_input_text(usr, "输入想要的标识", "GPS 标识", gpstag, max_length = 20)
 			if (QDELETED(ui) || ui.status != UI_INTERACTIVE)
 				return
 			if (!a)
@@ -228,7 +228,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 
 			gpstag = a
 			. = TRUE
-			usr.log_message("renamed [parentasatom] to \"[initial(parentasatom.name)] ([gpstag])\".", LOG_GAME)
+			usr.log_message("将[parentasatom]重命名为\"[initial(parentasatom.name)] ([gpstag])\"。", LOG_GAME)
 			parentasatom.name = "[initial(parentasatom.name)] ([gpstag])"
 
 		if("power")

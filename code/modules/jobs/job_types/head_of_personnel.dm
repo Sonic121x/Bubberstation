@@ -1,7 +1,7 @@
 /datum/job/head_of_personnel
 	title = JOB_HEAD_OF_PERSONNEL
-	description = "Alter access on ID cards, manage the service department, \
-		protect Ian, run the station when the Captain dies."
+	description = "修改身份卡的通行权限，管理服务部门，\
+		保护伊恩，在舰长身亡时接管空间站。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	head_announce = RADIO_CHANNEL_SERVICE
 	faction = FACTION_STATION
@@ -38,7 +38,7 @@
 	)
 
 	family_heirlooms = list(/obj/item/reagent_containers/cup/glass/trophy/silver_cup)
-	rpg_title = "Guild Questgiver"
+	rpg_title = "公会委托人"
 	job_flags = STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS
 
 	human_authority = JOB_AUTHORITY_HUMANS_ONLY
@@ -47,7 +47,7 @@
 
 
 /datum/job/head_of_personnel/get_captaincy_announcement(mob/living/captain)
-	return "Due to staffing shortages, newly promoted Acting Captain [captain.real_name] on deck!"
+	return "由于人手不足，新晋代理舰长 [captain.real_name] 已到任！"
 
 /datum/job/head_of_personnel/generate_traitor_objective()
 	var/datum/objective/assassinate/captain_replacement/promotion = new()
@@ -66,7 +66,7 @@
 
 /datum/objective/assassinate/captain_replacement/update_explanation_text()
 	. = ..()
-	explanation_text = "Assassinate [target.name], the Captain, and steal [target.p_their()] ID card."
+	explanation_text = "暗杀舰长 [target.name]，并盗取其身份卡。"
 
 /datum/objective/assassinate/captain_replacement/check_completion()
 	if(completed)

@@ -1,5 +1,5 @@
 
-ADMIN_VERB(force_event, R_FUN, "Trigger Event", "Forces an event to occur.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(force_event, R_FUN, "触发事件", "强制使某个事件发生。", ADMIN_CATEGORY_EVENTS)
 	user.holder.forceEvent()
 
 ///Opens up the Force Event Panel
@@ -56,7 +56,7 @@ ADMIN_VERB(force_event, R_FUN, "Trigger Event", "Forces an event to occur.", ADM
 			))
 		//add event, with one value matching up the category
 		UNTYPED_LIST_ADD(events, list(
-			"name" = event_control.name,
+			"name" = chinese_batch_four_admin_display(event_control.name),
 			"description" = event_control.description,
 			"type" = event_control.type,
 			"category" = event_control.category,
@@ -90,5 +90,5 @@ ADMIN_VERB(force_event, R_FUN, "Trigger Event", "Forces an event to occur.", ADM
 			var/always_announce_chance = 100
 			var/no_announce_chance = 0
 			event.run_event(announce_chance_override = announce_event ? always_announce_chance : no_announce_chance, admin_forced = TRUE)
-			message_admins("[key_name_admin(usr)] has triggered an event. ([event.name])")
-			log_admin("[key_name(usr)] has triggered an event. ([event.name])")
+			message_admins("[key_name_admin(usr)] 触发了一个事件。（[chinese_batch_four_admin_display(event.name)]）")
+			log_admin("[key_name(usr)] 触发了一个事件。（[chinese_batch_four_admin_display(event.name)]）")

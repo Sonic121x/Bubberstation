@@ -6,17 +6,17 @@
 	specific_transport_id = TRAM_NAV_BEACONS
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/heretic/left
-	name = "Port"
+	name = "左舷"
 	specific_transport_id = HERETIC_LINE_1
 	platform_code = HERETIC_PORT
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/heretic/middle
-	name = "Central"
+	name = "中央"
 	specific_transport_id = HERETIC_LINE_1
 	platform_code = HERETIC_CENTRAL
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/heretic/right
-	name = "Starboard"
+	name = "右舷"
 	specific_transport_id = HERETIC_LINE_1
 	platform_code = HERETIC_STARBOARD
 

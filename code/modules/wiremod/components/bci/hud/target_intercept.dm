@@ -6,9 +6,9 @@
  */
 
 /obj/item/circuit_component/target_intercept
-	display_name = "Target Intercept"
-	desc = "Requires a BCI shell. When activated, this component will allow user to target an object using their brain and will output the reference to said object."
-	category = "BCI"
+	display_name = "脑机接口目标截取器"
+	desc = "需要脑机接口外壳。激活后，使用者可以用大脑指定一个物体，元件会输出该物体的引用。"
+	category = "脑机接口"
 
 	required_shells = list(/obj/item/organ/cyberimp/bci)
 
@@ -45,7 +45,7 @@
 	if(TIMER_COOLDOWN_RUNNING(parent.shell, COOLDOWN_CIRCUIT_TARGET_INTERCEPT))
 		return
 
-	to_chat(owner, "<B>Left-click to trigger target interceptor!</B>")
+	to_chat(owner, "<B>左键点击以触发目标截取器！</B>")
 	owner.client.click_intercept = src
 
 /obj/item/circuit_component/target_intercept/proc/on_organ_removed(datum/source, mob/living/carbon/owner)
@@ -63,4 +63,4 @@
 
 /obj/item/circuit_component/target_intercept/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Target Interception Cooldown: [DisplayTimeText(intercept_cooldown)]", "orange", "stopwatch")
+	. += create_ui_notice("目标截取冷却：[DisplayTimeText(intercept_cooldown)]", "orange", "stopwatch")

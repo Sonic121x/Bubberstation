@@ -6,9 +6,9 @@
  * They'll link to servers if bus is not present, with some delay added to it.
  */
 /obj/machinery/telecomms/processor
-	name = "processor unit"
+	name = "处理单元"
 	icon_state = "processor"
-	desc = "This machine is used to process large quantities of information."
+	desc = "用于处理海量信息的机器。"
 	telecomms_type = /obj/machinery/telecomms/processor
 	density = TRUE
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.01
@@ -68,4 +68,4 @@
 	autolinkers = list("processor4")
 
 /obj/machinery/telecomms/processor/preset_one/birdstation
-	name = "Processor"
+	name = "处理器"

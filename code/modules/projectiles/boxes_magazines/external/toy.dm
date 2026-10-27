@@ -1,12 +1,12 @@
 /obj/item/ammo_box/magazine/toy
-	name = "foam force META magazine"
-	desc = "A magazine specifically designed for foam force \"firearms\". Probably not great for actually killing your fellow spaceman."
+	name = "泡沫部队 META 弹匣"
+	desc = "一种专为泡沫部队“枪械”设计的弹匣。拿它去真正干掉同船伙伴大概不太行。"
 	abstract_type = /obj/item/ammo_box/magazine/toy
 	ammo_type = /obj/item/ammo_casing/foam_dart
 	caliber = CALIBER_FOAM
 
 /obj/item/ammo_box/magazine/toy/smg
-	name = "foam force SMG magazine"
+	name = "泡沫部队冲锋枪弹匣"
 	icon_state = "smg9mm"
 	base_icon_state = "smg9mm"
 	ammo_type = /obj/item/ammo_casing/foam_dart
@@ -20,7 +20,7 @@
 	ammo_type = /obj/item/ammo_casing/foam_dart/riot
 
 /obj/item/ammo_box/magazine/toy/pistol
-	name = "foam force pistol magazine"
+	name = "泡沫部队手枪弹匣"
 	icon_state = "9x19p"
 	max_ammo = 12
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
@@ -29,7 +29,7 @@
 	ammo_type = /obj/item/ammo_casing/foam_dart/riot
 
 /obj/item/ammo_box/magazine/toy/smgm45
-	name = "donksoft SMG magazine"
+	name = "咚克软冲锋枪弹匣"
 	icon_state = "c20r45-toy"
 	base_icon_state = "c20r45-toy"
 	caliber = CALIBER_FOAM
@@ -58,7 +58,7 @@
 	ammo_type = /obj/item/ammo_casing/foam_dart/riot
 
 /obj/item/ammo_box/magazine/toy/m762
-	name = "donksoft box magazine"
+	name = "咚克软盒式弹匣"
 	icon_state = "a7mm-toy"
 	base_icon_state = "a7mm"
 	ammo_type = /obj/item/ammo_casing/foam_dart

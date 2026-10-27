@@ -1,7 +1,7 @@
 /// Base pouch type. Fits in pockets, as its main gimmick.
 /obj/item/storage/pouch
-	name = "storage pouch"
-	desc = "It's a nondescript pouch made with dark fabric. It has a clip, for fitting in pockets."
+	name = "收纳袋"
+	desc = "一个用深色布料制成的普通小袋，带有一个夹子，可以别在口袋里。"
 	icon = 'modular_skyrat/modules/modular_items/icons/storage.dmi'
 	icon_state = "survival"
 	w_class = WEIGHT_CLASS_BULKY
@@ -14,8 +14,8 @@
 	atom_storage.max_slots = 5
 
 /obj/item/storage/pouch/ammo
-	name = "ammo pouch"
-	desc = "A pouch for your ammo that goes in your pocket."
+	name = "弹药袋"
+	desc = "用来装弹药的小袋，可以放进你的口袋。"
 	icon = 'modular_skyrat/modules/modular_items/icons/storage.dmi'
 	icon_state = "ammopouch"
 	custom_price = PAYCHECK_CREW * 4
@@ -34,18 +34,18 @@
 	abstract_type = /datum/atom_skin/ammo_pouch
 
 /datum/atom_skin/ammo_pouch/ammo
-	preview_name = "Ammo Pouch"
+	preview_name = "弹药袋"
 	new_icon_state = "ammopouch"
 
 /datum/atom_skin/ammo_pouch/casing
-	preview_name = "Casing Pouch"
+	preview_name = "弹壳袋"
 	new_icon_state = "casingpouch"
 
 /obj/item/storage/pouch/ammo/proc/on_reskin()
 	SIGNAL_HANDLER
 	if(icon_state == "casingpouch")
-		name = "casing pouch"
-		desc = "A pouch for your ammo that goes in your pocket, carefully segmented for holding shell casings and nothing else."
+		name = "弹壳袋"
+		desc = "用来装弹药的小袋，可以放进你的口袋；内部经过仔细分隔，只适合装弹壳。"
 		atom_storage.can_hold = typecacheof(list(/obj/item/ammo_casing))
 		atom_storage.max_specific_storage = WEIGHT_CLASS_TINY
 		atom_storage.numerical_stacking = TRUE
@@ -53,8 +53,8 @@
 		atom_storage.max_total_storage = WEIGHT_CLASS_TINY * 10
 
 /obj/item/storage/pouch/material
-	name = "material pouch"
-	desc = "A pouch for sheets and RCD ammunition that manages to hang where you would normally put things in your pocket."
+	name = "材料袋"
+	desc = "用来装板材和 RCD 弹药的小袋，恰好能挂在平时放口袋物品的位置。"
 	icon = 'modular_skyrat/modules/modular_items/icons/storage.dmi'
 	icon_state = "materialpouch"
 	custom_price = PAYCHECK_CREW * 4
@@ -69,8 +69,8 @@
 
 /// It's a pocket medkit. Use sparingly?
 /obj/item/storage/pouch/medical
-	name = "medkit pouch"
-	desc = "A standard medkit pouch compartmentalized for field medical care. Comes with a set of pocket clips."
+	name = "医疗袋"
+	desc = "标准医疗袋，内部分隔便于战地医疗护理。附有一组口袋夹。"
 	resistance_flags = FIRE_PROOF
 	icon_state = "medkit"
 	/// The list of things that medical pouches can hold. Stolen from what medkits can hold, but modified for things you would probably want at pocket-access.
@@ -117,12 +117,12 @@
 		/obj/item/healthanalyzer/simple = 1,
 	)
 	generate_items_inside(items_inside, src)
-	desc += " Repackaged with station-standard medical supplies."
+	desc += " 重新包装，内含空间站标准的医疗用品。"
 
 /// It's... not as egregious as a full pocket medkit.
 /obj/item/storage/pouch/medical/firstaid
-	name = "first aid pouch"
-	desc = "A standard nondescript first-aid pouch, compartmentalized for the bare essentials of field medical care. Comes with a pocket clip."
+	name = "急救袋"
+	desc = "标准普通急救袋，内部分隔仅容纳战地医疗护理的最基本用品。附有一个口袋夹。"
 	icon_state = "firstaid"
 
 /obj/item/storage/pouch/medical/firstaid/Initialize(mapload)
@@ -141,7 +141,7 @@
 
 /obj/item/storage/pouch/medical/firstaid/loaded/Initialize(mapload)
 	. = ..()
-	desc += " Repackaged with station-standard medical supplies."
+	desc += " 重新包装，内含空间站标准的医疗用品。"
 	var/static/items_inside = list(
 		/obj/item/stack/medical/suture = 1,
 		/obj/item/stack/medical/mesh = 1,
@@ -153,7 +153,7 @@
 
 /obj/item/storage/pouch/medical/firstaid/stabilizer/Initialize(mapload)
 	. = ..()
-	desc += " Repackaged with a wound stabilization-focused loadout."
+	desc += " 重新包装，内含以伤口稳定为重点的配置。"
 	var/static/items_inside = list(
 		/obj/item/cautery = 1,
 		/obj/item/bonesetter = 1,

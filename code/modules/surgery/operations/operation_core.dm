@@ -1,7 +1,7 @@
 /datum/surgery_operation/basic/core_removal
-	name = "extract core"
-	rnd_name = "Corectomy (Extract Core)" // source: i made it up
-	desc = "Remove the core from a slime."
+	name = "提取核心"
+	rnd_name = "核心摘除术（提取核心）" // source: i made it up
+	desc = "从史莱姆体内取出核心。"
 	implements = list(
 		TOOL_HEMOSTAT = 1,
 		TOOL_CROWBAR = 1,
@@ -15,7 +15,7 @@
 	return image(/mob/living/basic/slime)
 
 /datum/surgery_operation/basic/core_removal/all_required_strings()
-	return list("operate on a deceased slime") + ..()
+	return list("对已死亡的史莱姆施术") + ..()
 
 /datum/surgery_operation/basic/core_removal/state_check(mob/living/patient)
 	return isslime(patient) && patient.stat == DEAD
@@ -24,9 +24,9 @@
 	display_results(
 		surgeon,
 		patient,
-		span_notice("You begin to extract [patient]'s core..."),
-		span_notice("[surgeon] begins to extract [patient]'s core."),
-		span_notice("[surgeon] begins to extract [patient]'s core."),
+		span_notice("你开始提取[patient]的核心……"),
+		span_notice("[surgeon] 开始提取[patient]的核心。"),
+		span_notice("[surgeon] 开始提取[patient]的核心。"),
 	)
 
 /datum/surgery_operation/basic/core_removal/on_success(mob/living/basic/slime/patient, mob/living/surgeon, obj/item/tool, list/operation_args)
@@ -35,9 +35,9 @@
 		display_results(
 			surgeon,
 			patient,
-			span_notice("You successfully extract [core_count] core\s from [patient]."),
-			span_notice("[surgeon] successfully extracts [core_count] core\s from [patient]!"),
-			span_notice("[surgeon] successfully extracts [core_count] core\s from [patient]!"),
+			span_notice("你成功从[patient]体内取出了 [core_count] 个核心。"),
+			span_notice("[surgeon] 成功从[patient]体内取出了 [core_count] 个核心！"),
+			span_notice("[surgeon] 成功从[patient]体内取出了 [core_count] 个核心！"),
 		)
 	else
-		to_chat(surgeon, span_warning("There aren't any cores left in [patient]!"))
+		to_chat(surgeon, span_warning("[patient] 体内已经没有核心了！"))

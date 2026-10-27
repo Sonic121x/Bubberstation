@@ -4,25 +4,25 @@
  * Baby birds that grow into big chickens.
  */
 /mob/living/basic/chick
-	name = "\improper chick"
-	desc = "Adorable! They make such a racket though."
+	name = "\improper 小鸡"
+	desc = "太可爱了！不过它们吵得很。"
 	icon_state = "chick"
 	icon_living = "chick"
 	icon_dead = "chick_dead"
 	icon_gib = "chick_gib"
 	gender = FEMALE
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	speak_emote = list("cheeps")
+	speak_emote = list("叽叽叫")
 	density = FALSE
 	butcher_results = list(/obj/item/food/meat/slab/chicken = 1)
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "kicks"
-	response_harm_simple = "kick"
-	attack_verb_continuous = "kicks"
-	attack_verb_simple = "kick"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "踢"
+	response_harm_simple = "踢"
+	attack_verb_continuous = "踢"
+	attack_verb_simple = "踢"
 	health = 3
 	maxHealth = 3
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
@@ -43,7 +43,7 @@
 /datum/emote/chick/chirp
 	key = "chirp"
 	key_third_person = "chirps"
-	message = "chirps!"
+	message = "叽叽叫着！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'sound/mobs/non-humanoids/chicken/chick_peep.ogg'
@@ -86,9 +86,9 @@
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_FIND_MOM_TYPES = list(/mob/living/basic/chicken),
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_SAY =  list("Cherp.", "Cherp?", "Chirrup.", "Cheep!"),
-			BB_EMOTE_HEAR = list("cheeps."),
-			BB_EMOTE_SEE = list("pecks at the ground.","flaps her tiny wings."),
+			BB_EMOTE_SAY =  list("叽。", "叽？", "啾啾。", "叽叽！"),
+			BB_EMOTE_HEAR = list("叽叽叫着。"),
+			BB_EMOTE_SEE = list("啄着地面。","拍着小翅膀。"),
 			BB_EMOTE_SOUND = list('sound/mobs/non-humanoids/chicken/chick_peep.ogg'),
 			BB_SPEAK_CHANCE = 4,
 		),

@@ -20,7 +20,7 @@ GLOBAL_DATUM_INIT(food_prefs_menu, /datum/food_prefs_menu, new)
 
 	var/fail_reason = GLOB.food_prefs_menu.is_food_invalid(preferences)
 	if(fail_reason)
-		to_chat(preferences.parent, span_announce("Your food preferences can't be set because of [fail_reason] choices! Please check your preferences!")) // Sorry, but I don't want folk sleeping on this.
+		to_chat(preferences.parent, span_announce("由于[fail_reason]，你的食物偏好无法设置！请检查你的偏好设置！")) // Sorry, but I don't want folk sleeping on this.
 		return
 
 	var/obj/item/organ/tongue/target_tongue = target.get_organ_slot(ORGAN_SLOT_TONGUE)
@@ -48,7 +48,7 @@ GLOBAL_DATUM_INIT(food_prefs_menu, /datum/food_prefs_menu, new)
 /datum/food_prefs_menu/ui_interact(mob/dead/new_player/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "FoodPreferences", "Food Preferences")
+		ui = new(user, src, "FoodPreferences", "食物偏好")
 		ui.set_autoupdate(FALSE)
 		ui.open()
 
@@ -145,11 +145,11 @@ GLOBAL_DATUM_INIT(food_prefs_menu, /datum/food_prefs_menu, new)
 				toxic_food_length++
 
 	if(liked_food_length > MAXIMUM_LIKES)
-		return "too many liked choices"
+		return "喜欢的选项过多"
 	if(disliked_food_length + toxic_food_length < MINIMUM_REQUIRED_DISLIKES)
-		return "too few disliked choices"
+		return "不喜欢的选项过少"
 	if(toxic_food_length < MINIMUM_REQUIRED_TOXICS)
-		return "too few toxic choices"
+		return "有毒的选项过少"
 
 #undef MINIMUM_REQUIRED_TOXICS
 #undef MINIMUM_REQUIRED_DISLIKES

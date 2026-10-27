@@ -1,21 +1,21 @@
 /datum/action/cooldown/bloodsucker/targeted/trespass
-	name = "Trespass"
-	desc = "Become mist and advance two tiles in one direction. Useful for skipping past doors and barricades."
+	name = "化雾穿行"
+	desc = "化作迷雾，朝一个方向前进两格。适合越过门和路障。"
 	button_icon_state = "power_tres"
 	bloodsucker_check_flags = BP_CANT_USE_IN_TORPOR
 	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
 	bloodcost = 10
 	cooldown_time = 8 SECONDS
-	prefire_message = "Select a destination."
+	prefire_message = "选择目的地。"
 	target_range = 2
 	var/turf/target_turf // We need to decide where we're going based on where we clicked. It's not actually the tile we clicked.
 
 /datum/action/cooldown/bloodsucker/targeted/trespass/get_power_explanation_extended()
 	. = list()
-	. += "Click anywhere [target_range] tiles away from you to teleport."
-	. += "This power goes through all obstacles except Walls."
-	. += "Higher levels decrease the sound played from using the Power, and increase the speed of the transition."
-	. += "It takes [DisplayTimeText(GetTeleportDelay())] to teleport."
+	. += "点击[target_range]格范围内的位置即可传送。"
+	. += "此能力可以穿过除墙壁外的所有障碍物。"
+	. += "等级越高，使用时的声音越小，传送速度越快。"
+	. += "传送需要[DisplayTimeText(GetTeleportDelay())]。"
 
 /datum/action/cooldown/bloodsucker/targeted/trespass/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
@@ -50,8 +50,8 @@
 		from_turf = get_step(from_turf, this_dir)
 		// ERROR! Wall!
 		if(iswallturf(from_turf))
-			var/wallwarning = (i == 1) ? "in the way" : "at your destination"
-			owner.balloon_alert(owner, "there is a wall [wallwarning].")
+			var/wallwarning = (i == 1) ? "路径上" : "目的地"
+			owner.balloon_alert(owner, "[wallwarning]有墙壁")
 			return FALSE
 	// Done
 	target_turf = from_turf
@@ -66,8 +66,8 @@
 	var/turf/my_turf = get_turf(owner)
 
 	user.visible_message(
-		span_warning("[user]'s form dissipates into a cloud of mist!"),
-		span_notice("You disspiate into formless mist."),
+		span_warning("[user]的身形消散成一团迷雾！"),
+		span_notice("你消散成无形的迷雾。"),
 	)
 	// Effect Origin
 	var/sound_strength = max(60, 70 - level_current * 10)

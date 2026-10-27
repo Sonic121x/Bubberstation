@@ -25,14 +25,14 @@
 
 /datum/personality/nt/loyalist
 	savefile_key = "loyalist"
-	name = "Loyal"
-	desc = "I believe in the station and in Central Command, till the very end!"
-	pos_gameplay_desc = "Likes company posters and signs"
+	name = "忠诚"
+	desc = "我对空间站和中央指挥部的信念至死不渝！"
+	pos_gameplay_desc = "喜欢公司的海报和标牌"
 	mood_event_type = /datum/mood_event/nt_loyalist
 
 /datum/personality/nt/disillusioned
 	savefile_key = "disillusioned"
-	name = "Disillusioned"
-	desc = "Nanotrasen isn't what it used to be. This isn't what I signed up for."
-	neg_gameplay_desc = "Dislikes company posters and signs"
+	name = "理想破灭"
+	desc = "纳米传讯已经变了。这不是我当初加入时所期待的。"
+	neg_gameplay_desc = "不喜欢公司的海报和标牌"
 	mood_event_type = /datum/mood_event/nt_disillusioned

@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/conjure/the_traps
-	name = "The Traps!"
-	desc = "Summon a number of traps around you. They will damage and enrage any enemies that step on them."
+	name = "陷阱！"
+	desc = "在你周围召唤若干陷阱。踩到陷阱的敌人会受到伤害并被激怒。"
 	button_icon_state = "the_traps"
 
 	cooldown_time = 25 SECONDS

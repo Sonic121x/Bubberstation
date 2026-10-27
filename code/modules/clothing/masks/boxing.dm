@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/balaclava
-	name = "balaclava"
-	desc = "LOADSAMONEY"
+	name = "巴拉克拉瓦头套"
+	desc = "满载钞票"
 	icon_state = "balaclava"
 	inhand_icon_state = "balaclava"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
@@ -13,9 +13,9 @@
 	adjust_visor(user)
 
 /obj/item/clothing/mask/floortilebalaclava
-	name = "floortile balaclava"
-	desc = "The newest floortile camouflage balaclava used for hallway warfare. \
-		The best breathability, flexibility and comfort. Designed by Camo-J's."
+	name = "地砖纹头套"
+	desc = "最新款地砖迷彩头套，专为走廊战打造。\
+		透气性、灵活性与舒适度俱佳。由 Camo-J's 设计。"
 	icon_state = "floortile_balaclava"
 	inhand_icon_state = "balaclava"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
@@ -32,8 +32,8 @@
 	adjust_visor(user)
 
 /obj/item/clothing/mask/luchador
-	name = "Luchador Mask"
-	desc = "Worn by robust fighters, flying high to defeat their foes!"
+	name = "卢查多面具"
+	desc = "由强劲的格斗家佩戴，高高飞起击败敌人！"
 	icon_state = "luchag"
 	inhand_icon_state = null
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
@@ -44,18 +44,18 @@
 	AddComponent(/datum/component/speechmod, replacements = strings("luchador_replacement.json", "luchador"), end_string = " OLE!", end_string_chance = 25, uppercase = TRUE, slots = ITEM_SLOT_MASK)
 
 /obj/item/clothing/mask/luchador/tecnicos
-	name = "Tecnicos Mask"
-	desc = "Worn by robust fighters who uphold justice and fight honorably."
+	name = "技术派面具"
+	desc = "由维护正义、堂堂正正作战的强劲格斗家佩戴。"
 	icon_state = "luchador"
 
 /obj/item/clothing/mask/luchador/rudos
-	name = "Rudos Mask"
-	desc = "Worn by robust fighters who are willing to do anything to win."
+	name = "鲁多派面具"
+	desc = "由为取胜不择手段的强劲格斗家佩戴。"
 	icon_state = "luchar"
 
 /obj/item/clothing/mask/russian_balaclava
-	name = "russian balaclava"
-	desc = "Protects your face from snow."
+	name = "俄式头套"
+	desc = "保护你的脸免受风雪侵袭。"
 	icon_state = "rus_balaclava"
 	inhand_icon_state = "balaclava"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT

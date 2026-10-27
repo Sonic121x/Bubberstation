@@ -1,12 +1,12 @@
 /datum/job/security_officer
 	title = JOB_SECURITY_OFFICER
-	description = "Protect company assets, follow the Standard Operating \
-		Procedure, eat donuts."
+	description = "保护公司资产，遵守标准操作\
+		规程，吃甜甜圈。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	faction = FACTION_STATION
 	total_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
 	spawn_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
-	supervisors = "the Head of Security, and the head of your assigned department (if applicable)"
+	supervisors = "安保主管，以及你所属部门的负责人（如适用）"
 	minimal_player_age = 7
 	exp_requirements = 300
 	exp_required_type = EXP_TYPE_CREW
@@ -37,7 +37,7 @@
 		/obj/item/clothing/mask/whistle = 5,
 		/obj/item/melee/baton/security/boomerang/loaded = 1
 	)
-	rpg_title = "Guard"
+	rpg_title = "卫兵"
 	alternate_titles = list(
 		JOB_SECURITY_OFFICER_MEDICAL,
 		JOB_SECURITY_OFFICER_ENGINEERING,
@@ -171,9 +171,9 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 
 	if(player_client)
 		if(department)
-			to_chat(player_client, "<b>You have been assigned to [department]!</b>")
+			to_chat(player_client, "<b>你已被分配到[department]！</b>")
 		else
-			to_chat(player_client, "<b>You have not been assigned to any department. Patrol the halls and help where needed.</b>")
+			to_chat(player_client, "<b>你未被分配到任何部门。请在走廊巡逻，并在需要之处提供协助。</b>")
 
 	return department
 
@@ -213,8 +213,8 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 
 	// I thought it would be great, if AAS also modifies PDA messages. Especially because it's AASs message.
 	var/datum/signal/subspace/messaging/tablet_message/signal = new(announcement_system, list(
-		"fakename" = "Security Department Update",
-		"fakejob" = "Automated Announcement System",
+		"fakename" = "安保部动态",
+		"fakejob" = "自动播报系统",
 		"message" = announcement_system.compile_config_message(/datum/aas_config_entry/announce_officer, list(
 			"OFFICER" = officer.real_name,
 			"DEPARTMENT" = department,

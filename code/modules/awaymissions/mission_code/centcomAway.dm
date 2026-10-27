@@ -10,54 +10,54 @@
 	ambientsounds = list('sound/ambience/general/ambigen2.ogg')
 
 /area/awaymission/centcom_away/maint
-	name = "XCC-P5831 Maintenance"
+	name = "XCC-P5831 维修区"
 	icon_state = "away1"
 	ambientsounds = list('sound/ambience/engineering/ambisin1.ogg')
 
 /area/awaymission/centcom_away/thunderdome
-	name = "XCC-P5831 Thunderdome"
+	name = "XCC-P5831 雷霆竞技场"
 	icon_state = "away2"
 	ambientsounds = list('sound/ambience/engineering/ambisin2.ogg')
 
 /area/awaymission/centcom_away/cafe
-	name = "XCC-P5831 Kitchen Arena"
+	name = "XCC-P5831 厨房竞技场"
 	icon_state = "away3"
 	ambientsounds = list('sound/ambience/engineering/ambisin3.ogg')
 
 /area/awaymission/centcom_away/courtroom
-	name = "XCC-P5831 Courtroom"
+	name = "XCC-P5831 法庭"
 	icon_state = "away4"
 	ambientsounds = list('sound/ambience/engineering/ambisin4.ogg')
 
 /area/awaymission/centcom_away/hangar
-	name = "XCC-P5831 Hangars"
+	name = "XCC-P5831 机库"
 	icon_state = "away4"
 	ambientsounds = list('sound/ambience/general/ambigen4.ogg')
 
 //centcomAway items
 
 /obj/item/paper/pamphlet/centcom/visitor_info
-	name = "Visitor Info Pamphlet"
-	default_raw_text = "<b> XCC-P5831 Visitor Information </b><br>\
-	Greetings, visitor, to  XCC-P5831! As you may know, this outpost was once \
-	used as Nanotrasen's CENTRAL COMMAND STATION, organizing and coordinating company \
-	projects across the vastness of space. <br>\
-	Since the completion of the much more efficient CC-A5831 on March 8, 2553, XCC-P5831 no longer \
-	acts as NT's base of operations but still plays a very important role its corporate affairs; \
-	serving as a supply and repair depot, as well as being host to its most important legal proceedings\
-	and the thrilling pay-per-view broadcasts of <i>PLASTEEL CHEF</i> and <i>THUNDERDOME LIVE</i>.<br> \
-	We hope you enjoy your stay!"
+	name = "访客信息手册"
+	default_raw_text = "<b> XCC-P5831 访客信息 </b><br>\
+	访客您好，欢迎来到 XCC-P5831！您或许知道，这座前哨站曾是 \
+	纳米传讯的中央指挥部空间站，负责在浩瀚太空中组织并协调公司的 \
+	各项工程。<br>\
+	自 2553 年 3 月 8 日效率高得多的 CC-A5831 落成以来，XCC-P5831 便不再 \
+	作为纳米传讯的行动基地，但仍在公司事务中扮演着非常重要的角色； \
+	它既是补给与维修站，也是最重要的法律程序举办地，\
+	以及《塑钢主厨》和《雷霆竞技场直播》这两档精彩付费直播节目的拍摄地。<br> \
+	希望您在此过得愉快！"
 
 /obj/item/paper/fluff/awaymissions/centcom/gateway_memo
-	name = "Memo to XCC-P5831 QM"
-	default_raw_text = "<b>From: XCC-P5831 Management Office</b><br>\
-	<b>To: Rolf Ingram, XCC-P5831 Quartermaster</b><br>\
-	Hey, Rolf, once you pack that gateway into the ferry hangar, <i>make absolutely sure</i> \
-	to deactivate it! As you may know, SS13 has recently got its network up and running, \
-	which means that until we get this gate shipped off to the next colonization staging \
-	area, they'll be able to hop straight in here if its hooked up on our end.<br>\
-	Obviously, that's something I'd very much rather avoid. Our forensics and medical \
-	teams never did figure out what happened that last time... and I can't wrap my head \
-	around it myself. Why would a shuttle full of evacuees all snap and beat each other \
-	to death the moment they reached safety?<br>\
-	- D. Cereza"
+	name = "致 XCC-P5831 货运主管的备忘录"
+	default_raw_text = "<b>发件人：XCC-P5831 管理办公室</b><br>\
+	<b>收件人：罗尔夫·英格拉姆，XCC-P5831 货运主管</b><br>\
+	嘿，罗尔夫，等你把那台传送门装进渡船机库之后，<i>务必确认</i> \
+	把它关掉！你也许知道，SS13 最近把自己的网络架好了， \
+	这意味着在我们把这台门运去下一个殖民集结 \
+	区之前，只要它在我们这一端接上，他们就能直接跳到这儿来。<br>\
+	显然，这是我很想避免的情况。我们的法医和医疗 \
+	团队始终没弄清上一次到底发生了什么……我自己也 \
+	想不明白。为什么一整船撤离人员在抵达安全的 \
+	那一刻，会突然全都发疯把彼此打死？<br>\
+	—— D. 塞雷萨"

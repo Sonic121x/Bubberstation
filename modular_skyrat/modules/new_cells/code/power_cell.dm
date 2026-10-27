@@ -1,6 +1,6 @@
 /obj/item/stock_parts/power_store/cell/crank
-	name = "crank cell"
-	desc = "Go ahead, wind it up to charge it."
+	name = "手摇电池"
+	desc = "来吧，摇动手柄为它充电。"
 	icon = 'modular_skyrat/modules/new_cells/icons/power.dmi'
 	icon_state = "crankcell"
 	/// how much each crank will give the cell charge
@@ -12,7 +12,7 @@
 
 /obj/item/stock_parts/power_store/cell/crank/examine(mob/user)
 	. = ..()
-	. += span_notice("Click to start cranking the cell.")
+	. += span_notice("单击即可开始手摇充电。")
 
 /obj/item/stock_parts/power_store/cell/crank/Initialize(mapload, override_maxcharge)
 	. = ..()
@@ -33,8 +33,8 @@
 		playsound(src, 'modular_skyrat/modules/new_cells/sound/crank.ogg', 25, FALSE)
 
 /obj/item/stock_parts/power_store/cell/self_charge
-	name = "charging cell"
-	desc = "A special cell that will recharge itself over time."
+	name = "自充电池"
+	desc = "一种会随时间自行充电的特殊电池。"
 	icon = 'modular_skyrat/modules/new_cells/icons/power.dmi'
 	icon_state = "chargecell"
 	maxcharge = STANDARD_CELL_CHARGE * 2.5

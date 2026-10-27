@@ -1,6 +1,6 @@
 ///base consturctino console subtype for the mining aux base
 /obj/machinery/computer/camera_advanced/base_construction/aux
-	name = "aux base construction console"
+	name = "辅助基地建造控制台"
 	circuit = /obj/item/circuitboard/computer/base_construction/aux
 	structures = list("fans" = 0, "turrets" = 0)
 	allowed_area = /area/shuttle/auxiliary_base
@@ -28,6 +28,6 @@
 			aux_controller = potential_aux_console
 			break
 	if(!aux_controller)
-		say("ERROR: Unable to locate auxiliary base controller!")
+		say("错误：无法定位辅助基地控制器！")
 		return null
 	return aux_controller

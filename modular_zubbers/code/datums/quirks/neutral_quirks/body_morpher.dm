@@ -1,11 +1,11 @@
 // BODY MORPHER QUIRK - Partly ported from SPLURT with some fixes. It's a quirk alternative to the NIF polymorph, for goopy/slime characters
 /datum/quirk/body_morpher
 	name = "Body Morpher"
-	desc = "For one reason or another, you are able to shape your body into different forms, just like a slimeperson can."
+	desc = "出于某种原因，你能像史莱姆人一样将身体塑造成不同形态。"
 	value = 0
-	gain_text = span_notice("Your body feels more malleable.")
-	lose_text = span_notice("Your body returns to a normal consistency.")
-	medical_record_text = "Patient demonstrates ability to perform atypical voluntary plastic deformation."
+	gain_text = span_notice("你感觉身体变得更容易塑形。")
+	lose_text = span_notice("你的身体恢复了正常质地。")
+	medical_record_text = "患者表现出自主进行非典型塑性形变的能力。"
 	mob_trait = TRAIT_BODY_MORPHER
 	icon = FA_ICON_PEOPLE_ARROWS
 	mail_goodies = list (
@@ -17,9 +17,9 @@
 	)
 
 /datum/action/innate/alter_form/body_morpher
-	name = "Alter Form"
+	name = "改变形态"
 	slime_restricted = FALSE
-	shapeshift_text = "closes their eyes to focus, their body subtly shifting and contorting."
+	shapeshift_text = "闭上眼睛集中精神，身体微微扭动变形。"
 
 /datum/quirk/body_morpher/add(client/client_source)
 	// Define quirk mob
@@ -42,24 +42,24 @@
 		alterer,
 		alterer,
 		list(
-			"Body Colours" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "slime_rainbow"),
+			"身体颜色" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "slime_rainbow"),
 			"DNA" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "dna"),
-			"Hair" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "scissors"),
-			"Markings" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "rainbow_spraycan"),
-			"Character" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "alter_form")
+			"毛发" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "scissors"),
+			"花纹" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "rainbow_spraycan"),
+			"角色" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "alter_form")
 		),
 		tooltips = TRUE,
 	)
 	if(!selected_alteration)
 		return
 	switch(selected_alteration)
-		if("Body Colours")
+		if("身体颜色")
 			alter_colours(alterer)
 		if("DNA")
 			alter_dna(alterer)
-		if("Hair")
+		if("毛发")
 			alter_hair(alterer)
-		if("Markings")
+		if("花纹")
 			alter_markings(alterer)
-		if("Character")
+		if("角色")
 			begin_character_alteration(alterer)

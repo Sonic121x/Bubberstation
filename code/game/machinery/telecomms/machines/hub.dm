@@ -8,9 +8,9 @@
  * from Servers/Buses and sends that back to the relay, to then be broadcasted.
  */
 /obj/machinery/telecomms/hub
-	name = "telecommunication hub"
+	name = "电信集线器"
 	icon_state = "hub"
-	desc = "A mighty piece of hardware used to send/receive massive amounts of data."
+	desc = "用于收发海量数据的强大硬件。"
 	telecomms_type = /obj/machinery/telecomms/hub
 	density = TRUE
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.01

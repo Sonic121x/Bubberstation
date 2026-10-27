@@ -1,6 +1,6 @@
 /datum/job/roboticist
 	title = JOB_ROBOTICIST
-	description = "Build and repair the AI and cyborgs, create mechs."
+	description = "建造和维修人工智能与半机械人，制造机甲。"
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -30,7 +30,7 @@
 	)
 
 	family_heirlooms = list(/obj/item/toy/plush/pkplush)
-	rpg_title = "Necromancer"
+	rpg_title = "死灵法师"
 	job_flags = STATION_JOB_FLAGS
 
 

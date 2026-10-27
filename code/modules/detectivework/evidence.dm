@@ -1,8 +1,8 @@
 //CONTAINS: Evidence bags
 
 /obj/item/evidencebag
-	name = "evidence bag"
-	desc = "An empty evidence bag."
+	name = "证物袋"
+	desc = "一个空的证物袋。"
 	icon = 'icons/obj/storage/storage.dmi'
 	icon_state = "evidenceobj"
 	inhand_icon_state = ""
@@ -32,7 +32,7 @@
 		desc = src::desc
 		return
 	var/obj/item/inserted = locate(/obj/item) in atom_storage.real_location
-	desc = "An evidence bag containing [inserted]. [inserted.desc]"
+	desc = "一个装有 [inserted] 的证物袋。[inserted.desc]"
 
 /obj/item/evidencebag/update_icon_state()
 	. = ..()
@@ -67,9 +67,9 @@
 
 /obj/item/evidencebag/attack_self(mob/user)
 	if(!atom_storage.get_total_weight())
-		to_chat(user, span_notice("[src] is empty."))
+		to_chat(user, span_notice("[src] 是空的。"))
 		return
-	user.visible_message(span_notice("[user] empties [src]."), span_notice("You empty [src]."),\
-	span_hear("You hear someone rustle around in a plastic bag, and remove something."))
+	user.visible_message(span_notice("[user] 清空了 [src]。"), span_notice("你清空了 [src]。"),\
+	span_hear("你听到有人在塑料袋里翻弄，并取出了什么东西。"))
 	playsound(src,'sound/items/evidence_bag/evidence_bag_unzip.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)
 	atom_storage.remove_all()

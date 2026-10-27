@@ -2,17 +2,17 @@
 	behavior_tree_json = "code/modules/mob/living/basic/turtle/turtle.bt.json"
 	blackboard = list(
 		BB_HAPPY_EMOTIONS = list(
-			"wiggles its tree in excitement!",
-			"raises its head up high!",
-			"wags its tail enthusiastically!",
+			"兴奋地晃动树冠！",
+			"高高抬起头！",
+			"热情地摇尾巴！",
 		),
 		BB_MODERATE_EMOTIONS = list(
-			"keeps its head level, eyes half-closed.",
-			"basks in the light peacefully.",
+			"平视前方，眼睛半闭着。",
+			"安静地沐浴在光照中。",
 		),
 		BB_SAD_EMOTIONS = list(
-			"looks towards the floor in dissapointment...",
-			"the leaves on its tree droop...",
+			"失望地望向地面……",
+			"树上的叶子垂了下来……",
 		),
 	)
 	ai_movement = /datum/ai_movement/basic_avoidance

@@ -4,9 +4,9 @@
  * Return the species of a mob
  */
 /obj/item/circuit_component/species
-	display_name = "Get Species"
-	desc = "A component that returns the species of its input."
-	category = "Entity"
+	display_name = "获取种族"
+	desc = "返回其输入对象所属种族的元件。"
+	category = "实体"
 
 	/// The input port
 	var/datum/port/input/input_port

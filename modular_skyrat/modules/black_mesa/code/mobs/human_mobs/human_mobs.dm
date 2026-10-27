@@ -14,8 +14,8 @@
 	// Combat stats
 	speed = 0
 	combat_mode = TRUE
-	attack_verb_continuous = "punches"
-	attack_verb_simple = "punch"
+	attack_verb_continuous = "挥拳"
+	attack_verb_simple = "挥拳"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 
 	// Environmental resistances
@@ -60,8 +60,8 @@
 	return ..()
 
 /mob/living/basic/blackmesa/human/hecu
-	name = "HECU Grunt"
-	desc = "I didn't sign on for this shit. Monsters, sure, but civilians? Who ordered this operation anyway?"
+	name = "HECU 士兵"
+	desc = "我可没报名干这种破事。打怪物还行，可平民？这行动到底是谁下令的？"
 	icon = 'modular_skyrat/modules/black_mesa/icons/mobs.dmi'
 	icon_state = "hecu_melee"
 	icon_living = "hecu_melee"
@@ -123,8 +123,8 @@
 	)
 
 /mob/living/basic/blackmesa/human/sec
-	name = "Security Guard"
-	desc = "About that beer I owe'd ya!"
+	name = "安保警卫"
+	desc = "还欠你一瓶啤酒呢！"
 	icon = 'modular_skyrat/modules/black_mesa/icons/mobs.dmi'
 	icon_state = "security_guard_melee"
 	icon_living = "security_guard_melee"
@@ -168,8 +168,8 @@
 	)
 
 /mob/living/basic/blackmesa/human/blackops
-	name = "black operative"
-	desc = "Why do we always have to clean up a mess the grunts can't handle?"
+	name = "黑色行动队员"
+	desc = "为什么总是要我们来收拾那些大兵搞不定的烂摊子？"
 	icon = 'modular_skyrat/modules/black_mesa/icons/mobs.dmi'
 	icon_state = "blackops"
 	icon_living = "blackops"
@@ -179,8 +179,8 @@
 	health = 200
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-	attack_verb_continuous = "strikes"
-	attack_verb_simple = "strikes"
+	attack_verb_continuous = "重击"
+	attack_verb_simple = "重击"
 	attack_sound = 'sound/effects/woodhit.ogg'
 	faction = list(FACTION_BLACKOPS)
 	ai_controller = /datum/ai_controller/basic_controller/blackops

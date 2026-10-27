@@ -16,7 +16,7 @@ type Data = {
 };
 
 type Drawable = {
-  items: { item: string }[];
+  items: { item: string; label?: string }[];
   name: string;
 };
 
@@ -39,12 +39,12 @@ export const Crayon = (props) => {
     <Window width={600} height={600}>
       <Window.Content scrollable>
         {!!capOrChanges && (
-          <Section title="Basic">
+          <Section title="基本设置">
             <LabeledList>
-              <LabeledList.Item label="Cap">
+              <LabeledList.Item label="盖子">
                 <Button
                   icon={is_capped ? 'power-off' : 'times'}
-                  content={is_capped ? 'On' : 'Off'}
+                  content={is_capped ? '已盖上' : '已取下'}
                   selected={is_capped}
                   onClick={() => act('toggle_cap')}
                 />
@@ -52,17 +52,17 @@ export const Crayon = (props) => {
               <ColorItem />
               <LabeledList.Item>
                 <Button
-                  content="Custom color"
+                  content="自定义颜色"
                   onClick={() => act('custom_color')}
                 />
               </LabeledList.Item>
               <LabeledList.Item>
                 <Button
-                  content={washable_coloring_mode ? 'Washable paint' : 'Permanent paint'}
+                  content={washable_coloring_mode ? '可清洗油漆' : '永久油漆'}
                   onClick={() => act('change_color_mode')}
                 />
                 <Button
-                  content={remove_coloring ? 'Remove paint mode' : 'Paint mode'}
+                  content={remove_coloring ? '除漆模式' : '喷漆模式'}
                   selected={remove_coloring}
                   onClick={() => act('toggle_remove_coloring')}
                 />
@@ -70,7 +70,7 @@ export const Crayon = (props) => {
             </LabeledList>
           </Section>
         )}
-        <Section title="Stencil">
+        <Section title="模板">
           <LabeledList>
             {drawables.map((drawable) => {
               const items = drawable.items || [];
@@ -79,7 +79,7 @@ export const Crayon = (props) => {
                   {items.map((item) => (
                     <Button
                       key={item.item}
-                      content={item.item}
+                      content={item.label || item.item}
                       selected={item.item === selected_stencil}
                       onClick={() =>
                         act('select_stencil', {
@@ -94,13 +94,13 @@ export const Crayon = (props) => {
           </LabeledList>
         </Section>
         {!!is_literate_user && (
-          <Section title="Text">
+          <Section title="文字">
             <LabeledList>
-              <LabeledList.Item label="Current Buffer">
+              <LabeledList.Item label="待写内容">
                 {text_buffer}
               </LabeledList.Item>
             </LabeledList>
-            <Button content="New Text" onClick={() => act('enter_text')} />
+            <Button content="新文字" onClick={() => act('enter_text')} />
           </Section>
         )}
       </Window.Content>

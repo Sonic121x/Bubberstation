@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/pointed/crimson_cleave
-	name = "Crimson Cleave"
-	desc = "A targeted spell that heals you while damaging the enemy. \
-		It cleanses you of all wounds as well."
+	name = "猩红劈斩"
+	desc = "一种定向法术，在伤害敌人的同时治疗你。\
+		它还会清除你身上的所有伤口。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -43,14 +43,14 @@
 			continue
 		if(victim.can_block_magic(antimagic_flags))
 			victim.visible_message(
-				span_danger("[victim]'s flashes in a firey glow, but repels the blaze!"),
-				span_danger("Your body begins to flash a firey glow, but you are protected!!")
+				span_danger("[victim]身上闪过一团火光，但烈焰被驱散了！"),
+				span_danger("你的身体开始闪出火光，但你受到了保护！！")
 			)
 			continue
 
 		victim.visible_message(
-			span_danger("[victim]'s veins are shredded from within as an unholy blaze erupts from [victim.p_their()] blood!"),
-			span_danger("Your veins burst from within and unholy flame erupts from your blood!")
+			span_danger("[victim]的血管由内被撕碎，一股不洁的烈焰从其血液中喷涌而出！"),
+			span_danger("你的血管自内部爆裂，不洁的火焰从你的血液中喷涌而出！")
 		)
 
 		victim.apply_damage(15, BRUTE, wound_bonus = CANT_WOUND)

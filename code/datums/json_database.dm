@@ -14,7 +14,7 @@
 
 /datum/json_database/New(filepath)
 	if (IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix("json_database creation, linking to [html_encode(filepath)], was blocked."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("创建关联到[html_encode(filepath)]的 json_database 已被阻止。"), confidential = TRUE)
 		return
 
 	ASSERT(isnull(existing_json_database[filepath]), "[filepath] already has an associated json_database. You must expose it somehow and use that instead of making a new one.")

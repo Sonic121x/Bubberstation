@@ -1,6 +1,6 @@
 /datum/species/skeleton
 	// 2spooky
-	name = "Spooky Scary Skeleton"
+	name = "阴森恐怖的骷髅"
 	id = SPECIES_SKELETON
 	sexes = FALSE
 	meat = /obj/item/food/meat/slab/human/mutant/skeleton
@@ -51,18 +51,18 @@
 	return ..()
 
 /datum/species/skeleton/get_physical_attributes()
-	return "These humerus folk lack any fleshy biology, which allows them to resist pressure, temperature, radiation, asphyxiation and even toxins. \
-		However, due to that same fact, it is quite hard to heal them as well. The calcium found in common space milk is highly effective at treating their wounds. \
-		Their limbs are easy to pop off their joints, but they can somehow just slot them back in."
+	return "这些“肱骨”之友没有任何血肉生理结构，因此能抵抗压力、温度、辐射、窒息甚至毒素。\
+		然而也正因如此，治疗他们相当困难。常见太空牛奶中的钙质对治疗他们的伤口极为有效。\
+		他们的肢体很容易从关节上脱落，但他们总能莫名其妙地把它装回去。"
 
 /datum/species/skeleton/get_species_description()
-	return "A rattling skeleton! They descend upon Space Station 13 \
-		Every year to spook the crew! \"I've got a BONE to pick with you!\""
+	return "一具咔嗒作响的骷髅！他们每年都会降临十三号空间站，\
+		吓唬船员们！“我跟你还有一笔‘骨头账’要算！”"
 
 /datum/species/skeleton/get_species_lore()
 	return list(
-		"Skeletons want to be feared again! Their presence in media has been destroyed, \
-		or at least that's what they firmly believe. They're always the first thing fought in an RPG, \
-		they're Flanderized into pun rolling JOKES, and it's really starting to get to them. \
-		You could say they're deeply RATTLED. Hah."
+		"骷髅们想再次令人恐惧！他们在媒体中的形象已经被毁了，\
+		至少他们自己是这么坚信的。在 RPG 里他们总是第一个被打的东西，\
+		他们被塑造成了只会抖双关包袱的笑料，这真的开始让他们难以忍受。\
+		可以说他们真的被“震”得不轻。哈。"
 	)

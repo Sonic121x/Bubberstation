@@ -7,8 +7,8 @@ Stabilized extracts:
 //Status effect will automatically be applied while held, and lost on drop.
 
 /obj/item/slimecross/stabilized
-	name = "stabilized extract"
-	desc = "It seems inert, but anything it touches glows softly..."
+	name = "稳定提取物"
+	desc = "它看起来毫无活性，但被它触碰的东西都会泛起柔和的光……"
 	effect = "stabilized"
 	icon_state = "stabilized"
 	var/datum/status_effect/linked_effect
@@ -58,74 +58,74 @@ Stabilized extracts:
 //Colors and subtypes:
 /obj/item/slimecross/stabilized/grey
 	colour = SLIME_TYPE_GREY
-	effect_desc = "Makes slimes friendly to the owner"
+	effect_desc = "使史莱姆对持有者友好"
 
 /obj/item/slimecross/stabilized/orange
 	colour = SLIME_TYPE_ORANGE
-	effect_desc = "Passively tries to increase or decrease the owner's body temperature to normal"
+	effect_desc = "被动地尝试把持有者的体温升高或降低至正常水平"
 
 /obj/item/slimecross/stabilized/purple
 	colour = SLIME_TYPE_PURPLE
-	effect_desc = "Provides a regeneration effect"
+	effect_desc = "提供再生效果"
 
 /obj/item/slimecross/stabilized/blue
 	colour = SLIME_TYPE_BLUE
-	effect_desc = "Makes the owner immune to slipping on water, soap or foam. Space lube and ice are still too slippery."
+	effect_desc = "使持有者不会在水、肥皂或泡沫上滑倒。太空润滑油和冰仍然太滑。"
 
 /obj/item/slimecross/stabilized/metal
 	colour = SLIME_TYPE_METAL
-	effect_desc = "Every 30 seconds, adds a sheet of material to a random stack in the owner's backpack."
+	effect_desc = "每 30 秒向持有者背包中随机一堆材料添加一张。"
 
 /obj/item/slimecross/stabilized/yellow
 	colour = SLIME_TYPE_YELLOW
-	effect_desc = "Every ten seconds it recharges a device on the owner by 10%."
+	effect_desc = "每十秒为持有者身上的一件设备充能 10%。"
 
 /obj/item/slimecross/stabilized/darkpurple
 	colour = SLIME_TYPE_DARK_PURPLE
-	effect_desc = "Gives you burning fingertips, automatically cooking any microwavable food you hold."
+	effect_desc = "让指尖灼热，自动烹熟你手中的任何可微波食物。"
 
 /obj/item/slimecross/stabilized/darkblue
 	colour = SLIME_TYPE_DARK_BLUE
-	effect_desc = "Slowly extinguishes the owner if they are on fire, also wets items like monkey cubes, creating a monkey."
+	effect_desc = "若持有者身上着火，会缓慢将其熄灭；还会润湿猴子方块等物品，造出一只猴子。"
 
 /obj/item/slimecross/stabilized/silver
 	colour = SLIME_TYPE_SILVER
-	effect_desc = "Slows the rate at which the owner loses nutrition"
+	effect_desc = "减缓持有者营养流失的速度"
 
 /obj/item/slimecross/stabilized/bluespace
 	colour = SLIME_TYPE_BLUESPACE
-	effect_desc = "On a two minute cooldown, when the owner has taken enough damage, they are teleported to a safe place."
+	effect_desc = "冷却两分钟；当持有者受到足够伤害时，会将其传送到安全地点。"
 
 /obj/item/slimecross/stabilized/sepia
 	colour = SLIME_TYPE_SEPIA
-	effect_desc = "Randomly adjusts the owner's speed."
+	effect_desc = "随机调整持有者的速度。"
 
 /obj/item/slimecross/stabilized/cerulean
 	colour = SLIME_TYPE_CERULEAN
-	effect_desc = "Creates a duplicate of the owner. If the owner dies they will take control of the duplicate, unless the death was from beheading or gibbing."
+	effect_desc = "创造持有者的复制体。若持有者死亡，他们将接管复制体，除非死因是斩首或肢解。"
 
 /obj/item/slimecross/stabilized/pyrite
 	colour = SLIME_TYPE_PYRITE
-	effect_desc = "Randomly colors the owner every few seconds."
+	effect_desc = "每隔几秒随机改变持有者的颜色。"
 
 /obj/item/slimecross/stabilized/red
 	colour = SLIME_TYPE_RED
-	effect_desc = "Nullifies all equipment based speed change."
+	effect_desc = "抵消所有由装备导致的速度变化。"
 
 /obj/item/slimecross/stabilized/green
 	colour = SLIME_TYPE_GREEN
-	effect_desc = "Changes the owner's name and appearance while holding this extract."
+	effect_desc = "持有此提取物时改变持有者的名字与外貌。"
 
 /obj/item/slimecross/stabilized/pink
 	colour = SLIME_TYPE_PINK
-	effect_desc = "As long as no creatures are harmed in the owner's presense, they will not attack you. If the peace is broken it takes two minutes to restore."
+	effect_desc = "只要在持有者面前没有生物受到伤害，它们就不会攻击你。若和平被打破，需要两分钟才能恢复。"
 
 /obj/item/slimecross/stabilized/gold
 	colour = SLIME_TYPE_GOLD
-	effect_desc = "Creates a pet when held."
+	effect_desc = "持有时创造一只宠物。"
 	var/mob_type
 	var/datum/mind/saved_mind
-	var/mob_name = "Familiar"
+	var/mob_name = "魔宠"
 
 /obj/item/slimecross/stabilized/gold/proc/generate_mobtype()
 	var/static/list/mob_spawn_pets = list()
@@ -143,7 +143,7 @@ Stabilized extracts:
 	generate_mobtype()
 
 /obj/item/slimecross/stabilized/gold/attack_self(mob/user)
-	var/choice = tgui_input_list(user, "Which do you want to reset?", "Familiar Adjustment", sort_list(list("Familiar Location", "Familiar Species", "Familiar Sentience", "Familiar Name")))
+	var/choice = tgui_input_list(user, "你想重置哪一项？", "魔宠调整", sort_list(list("魔宠位置", "魔宠物种", "魔宠智慧", "魔宠名称")))
 	if(isnull(choice))
 		return
 	if(!user.can_perform_action(src))
@@ -152,43 +152,43 @@ Stabilized extracts:
 		var/mob/living/L = user
 		if(L.has_status_effect(/datum/status_effect/stabilized/gold))
 			L.remove_status_effect(/datum/status_effect/stabilized/gold)
-	if(choice == "Familiar Location")
-		to_chat(user, span_notice("You prod [src], and it shudders slightly."))
+	if(choice == "魔宠位置")
+		to_chat(user, span_notice("你戳了戳 [src]，它微微颤抖。"))
 		START_PROCESSING(SSobj, src)
-	if(choice == "Familiar Species")
-		to_chat(user, span_notice("You squeeze [src], and a shape seems to shift around inside."))
+	if(choice == "魔宠物种")
+		to_chat(user, span_notice("你捏了捏 [src]，里面似乎有什么形状在变化。"))
 		generate_mobtype()
 		START_PROCESSING(SSobj, src)
-	if(choice == "Familiar Sentience")
-		to_chat(user, span_notice("You poke [src], and it lets out a glowing pulse."))
+	if(choice == "魔宠智慧")
+		to_chat(user, span_notice("你碰了碰 [src]，它释放出一阵发光的脉冲。"))
 		saved_mind = null
 		START_PROCESSING(SSobj, src)
-	if(choice == "Familiar Name")
-		var/newname = sanitize_name(tgui_input_text(user, "Would you like to change the name of [mob_name]", "Name change", mob_name, MAX_NAME_LEN))
+	if(choice == "魔宠名称")
+		var/newname = sanitize_name(tgui_input_text(user, "你想更改 [mob_name] 的名字吗？", "更改名称", mob_name, MAX_NAME_LEN))
 		if(newname)
 			mob_name = newname
-		to_chat(user, span_notice("You speak softly into [src], and it shakes slightly in response."))
+		to_chat(user, span_notice("你对着 [src] 轻声低语，它微微晃动作为回应。"))
 		START_PROCESSING(SSobj, src)
 
 /obj/item/slimecross/stabilized/oil
 	colour = SLIME_TYPE_OIL
-	effect_desc = "The owner will violently explode when they die while holding this extract."
+	effect_desc = "持有者携带此提取物死亡时，会剧烈爆炸。"
 
 /obj/item/slimecross/stabilized/black
 	colour = SLIME_TYPE_BLACK
-	effect_desc = "While strangling someone, the owner's hands melt around their neck, draining their life in exchange for food and healing."
+	effect_desc = "掐住别人时，持有者的双手会融化并包住对方的脖子，汲取其生命来换取食物与治疗。"
 
 /obj/item/slimecross/stabilized/lightpink
 	colour = SLIME_TYPE_LIGHT_PINK
-	effect_desc = "The owner moves at high speeds while holding this extract, also stabilizes anyone in critical condition around you using Epinephrine."
+	effect_desc = "持有者携带此提取物时移动速度极快，还会用肾上腺素稳定你周围任何处于危急状态的人。"
 
 /obj/item/slimecross/stabilized/adamantine
 	colour = SLIME_TYPE_ADAMANTINE
-	effect_desc = "Owner gains a slight boost in damage resistance to all types."
+	effect_desc = "持有者对所有伤害类型的抗性获得小幅提升。"
 
 /obj/item/slimecross/stabilized/rainbow
 	colour = SLIME_TYPE_RAINBOW
-	effect_desc = "Accepts a regenerative extract and automatically uses it if the owner enters a critical condition."
+	effect_desc = "可装入再生提取物，并在持有者进入危急状态时自动使用。"
 	/// Regenerative crossbreed stored to be autoused on critted owner
 	var/obj/item/slimecross/regenerative/regencore
 
@@ -197,10 +197,10 @@ Stabilized extracts:
 		return NONE
 
 	if(regencore)
-		to_chat(user, span_warning("[src] already has a regenerative crossbreed stored in it!"))
+		to_chat(user, span_warning("[src] 中已经装入了一个再生杂交提取物！"))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You place [tool] in [src], prepping the extract for automatic application!"))
+	to_chat(user, span_notice("你把 [tool] 放入 [src]，让提取物准备好自动施用！"))
 	regencore = tool
 	tool.forceMove(src)
 	return ITEM_INTERACT_SUCCESS

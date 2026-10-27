@@ -99,15 +99,15 @@
 	SIGNAL_HANDLER
 
 	if(antimagic_flags == ALL_MAGIC_RESISTANCE)
-		examine_list["magic-proof"] = "It is thoroughly shielded against all known forms of magic."
+		examine_list["magic-proof"] = "它受到周全的保护，能够抵御所有已知形式的魔法。"
 		return
 
 	if(antimagic_flags & MAGIC_RESISTANCE)
-		examine_list["warded"] = "It possesses a general resistance to regular spells and magic."
+		examine_list["warded"] = "它对常规法术和魔法具有一定的抵抗力。"
 	if(antimagic_flags & MAGIC_RESISTANCE_MIND)
-		examine_list["telepathy-proof"] = "It appears to be insulated against telepathic or mental influence."
+		examine_list["telepathy-proof"] = "它似乎能够隔绝心灵感应或精神影响。"
 	if(antimagic_flags & MAGIC_RESISTANCE_HOLY)
-		examine_list["blessed"] = "It is protected by a divine shield against unholy and dark forms of magic."
+		examine_list["blessed"] = "神圣护盾保护着它，使其免受邪恶与黑暗魔法的侵害。"
 
 /datum/component/anti_magic/proc/on_equip(atom/movable/source, mob/equipper, slot)
 	SIGNAL_HANDLER
@@ -128,7 +128,7 @@
 		if(!(antimagic_flags & magic_spell.antimagic_flags))
 			continue
 
-		to_chat(equipper, span_warning("[parent] is interfering with your ability to cast magic!"))
+		to_chat(equipper, span_warning("[parent]正在干扰你的施法能力！"))
 		alert_caster_on_equip = FALSE
 		break
 

@@ -1,15 +1,15 @@
-GAME_VERB(/mob/living/carbon/human, climax_verb, "Climax", "IC")
+GAME_VERB(/mob/living/carbon/human, climax_verb, "高潮", "IC")
 	if(!has_status_effect(/datum/status_effect/climax_cooldown))
-		if(tgui_alert(usr, "Are you sure you want to cum?", "Climax", list("Yes", "No")) == "Yes")
+		if(tgui_alert(usr, "你确定要达到高潮吗？", "高潮", list("是", "否")) == "是")
 			if(IS_UNCONSCIOUS(usr))
-				to_chat(usr, span_warning("You can't climax right now..."))
+				to_chat(usr, span_warning("你现在无法达到高潮……"))
 				return
 			else
 				climax(TRUE)
 	else
-		to_chat(src, span_warning("You can't cum right now!"))
+		to_chat(src, span_warning("你现在无法达到高潮！"))
 
-GAME_VERB(/mob/living, reflexes_verb, "Toggle Reflexes", "IC")
+GAME_VERB(/mob/living, reflexes_verb, "切换触碰反射", "IC")
 	if(!HAS_TRAIT_FROM(src, TRAIT_QUICKREFLEXES, REF(src)))
 		ADD_TRAIT(src, TRAIT_QUICKREFLEXES, REF(src))
 		to_chat(src, span_notice("[get_reflexes_gain_text()]"))
@@ -18,16 +18,16 @@ GAME_VERB(/mob/living, reflexes_verb, "Toggle Reflexes", "IC")
 		to_chat(src, span_notice("[get_reflexes_lose_text()]"))
 
 /mob/living/proc/get_reflexes_gain_text()
-	return "You don't feel like being touched right now."
+	return "你现在不想被触碰。"
 
 /mob/living/proc/get_reflexes_lose_text()
-	return "You'll allow yourself to be touched now."
+	return "你现在允许别人触碰自己。"
 
 /mob/living/silicon/get_reflexes_gain_text()
-	return "Our systems will disallow platonic contact."
+	return "我们的系统将禁止友好触碰。"
 
 /mob/living/silicon/get_reflexes_lose_text()
-	return "Our systems will allow platonic contact."
+	return "我们的系统将允许友好触碰。"
 
 /mob/living/carbon/human/Initialize(mapload)
 	. = ..()
@@ -36,18 +36,18 @@ GAME_VERB(/mob/living, reflexes_verb, "Toggle Reflexes", "IC")
 	if(CONFIG_GET(flag/disable_lewd_items))
 		UNASSIGN_GAME_VERB(src, /mob/living/carbon/human, safeword)
 
-GAME_VERB_DESC(/mob/living/carbon/human, remove_lewd_items, "Remove Lewd Items", "Removes any and all lewd items from you.", "OOC")
+GAME_VERB_DESC(/mob/living/carbon/human, remove_lewd_items, "移除情趣物品", "移除你身上的所有情趣物品。", "OOC")
 	// literally just another way to safeword
 	safeword()
 
-GAME_VERB_DESC(/mob/living/carbon/human, safeword, "OOC Safe Word", "Removes any and all lewd items from you.", "OOC")
+GAME_VERB_DESC(/mob/living/carbon/human, safeword, "OOC安全词", "移除你身上的所有情趣物品。", "OOC")
 	SEND_SIGNAL(src, COMSIG_OOC_ESCAPE)
-	log_message("[key_name(src)] used the OOC Safe Word verb.", LOG_ATTACK)
+	log_message("[key_name(src)]使用了OOC安全词动作。", LOG_ATTACK)
 	for(var/obj/item/equipped_item in get_equipped_items())
 		if(!(equipped_item.type in GLOB.pref_checked_clothes))
 			continue
 
-		log_message("[equipped_item] was removed from [key_name(src)].", LOG_ATTACK)
+		log_message("已从[key_name(src)]身上移除[equipped_item]。", LOG_ATTACK)
 		dropItemToGround(equipped_item, TRUE)
 
 	// Leashes are treated a smidge different than the rest of the clothing; and need their own handling here.
@@ -61,30 +61,30 @@ GAME_VERB_DESC(/mob/living/carbon/human, safeword, "OOC Safe Word", "Removes any
 
 	return TRUE
 
-GAME_VERB(/mob/living/carbon/human, lick, "Lick", "IC")
+GAME_VERB(/mob/living/carbon/human, lick, "舔舐", "IC")
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_VIEW, /mob/living/carbon/human)
 	if(!istype(target) || !(target in get_adjacent_humans()))
 		return FALSE
 
 	var/taste = target?.dna?.features["taste"]
 	if(!taste)
-		to_chat(src, span_warning("[target] doesn't seem to have a taste."))
+		to_chat(src, span_warning("[target]似乎没有什么味道。"))
 		return FALSE
 
-	to_chat(src, span_notice("[target] tastes like [taste]."))
-	to_chat(target, span_notice("[src] licks you."))
+	to_chat(src, span_notice("[target]尝起来像[taste]。"))
+	to_chat(target, span_notice("[src]舔了舔你。"))
 
-GAME_VERB(/mob/living/carbon/human, smell, "Smell", "IC")
+GAME_VERB(/mob/living/carbon/human, smell, "嗅闻", "IC")
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_VIEW, /mob/living/carbon/human)
 	if(!istype(target) || !(target in get_adjacent_humans()))
 		return FALSE
 
 	var/smell = target?.dna?.features["smell"]
 	if(!smell)
-		to_chat(src, span_warning("[target] doesn't seem to have a smell."))
+		to_chat(src, span_warning("[target]似乎没有什么气味。"))
 		return FALSE
 
-	to_chat(src, span_notice("[target] smells like [smell]."))
+	to_chat(src, span_notice("[target]闻起来像[smell]。"))
 
 /// Returns a list containing all of the humans adjacent to the user.
 /mob/living/proc/get_adjacent_humans()

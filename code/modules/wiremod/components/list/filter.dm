@@ -4,9 +4,9 @@
  * Filters
  */
 /obj/item/circuit_component/filter_list
-	display_name = "Filter"
-	desc = "A component that loops through each element in a list and filters them."
-	category = "List"
+	display_name = "过滤列表"
+	desc = "遍历列表中每个元素并对其进行过滤的元件。"
+	category = "列表"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_INSTANT
 
 	/// The list type
@@ -76,7 +76,7 @@
 		index += 1
 		var/list/result = SScircuit_component.execute_instant_run()
 		if(!result)
-			balloon_alert_to_viewers("[src] starts to overheat!")
+			balloon_alert_to_viewers("[src] 开始过热了！")
 			on_failed.set_output(COMPONENT_SIGNAL)
 			return
 		if(result["accept_entry"])

@@ -2,7 +2,7 @@
 //machineryness
 
 /obj/structure/mineral_door
-	name = "iron door"
+	name = "铁门"
 	density = TRUE
 	anchored = TRUE
 	opacity = TRUE
@@ -167,38 +167,38 @@
 	if(I.tool_behaviour != TOOL_MINING)
 		return
 	. = TRUE
-	to_chat(user, span_notice("You start digging [src]..."))
+	to_chat(user, span_notice("你开始挖掘[src]……"))
 	if(I.use_tool(src, user, 40, volume=50))
-		to_chat(user, span_notice("You finish digging."))
+		to_chat(user, span_notice("你挖掘完毕。"))
 		deconstruct(TRUE)
 
 /obj/structure/mineral_door/welder_act(mob/living/user, obj/item/I) //override if the door is supposed to be flammable.
 	..()
 	. = TRUE
 	if(anchored)
-		to_chat(user, span_warning("[src] is still firmly secured to the ground!"))
+		to_chat(user, span_warning("[src] 仍被牢牢固定在地面上！"))
 		return
 
-	user.visible_message(span_notice("[user] starts to weld apart [src]!"), span_notice("You start welding apart [src]."))
+	user.visible_message(span_notice("[user] 开始焊开[src]！"), span_notice("你开始焊开[src]。"))
 	if(!I.use_tool(src, user, 60, 5, 50))
-		to_chat(user, span_warning("You failed to weld apart [src]!"))
+		to_chat(user, span_warning("你未能焊开[src]！"))
 		return
 
-	user.visible_message(span_notice("[user] welded [src] into pieces!"), span_notice("You welded apart [src]!"))
+	user.visible_message(span_notice("[user] 将[src]焊成了碎片！"), span_notice("你把[src]焊开了！"))
 	deconstruct(TRUE)
 
 /obj/structure/mineral_door/proc/crowbar_door(mob/living/user, obj/item/I) //if the door is flammable, call this in crowbar_act() so we can still decon it
 	. = TRUE
 	if(anchored)
-		to_chat(user, span_warning("[src] is still firmly secured to the ground!"))
+		to_chat(user, span_warning("[src] 仍被牢牢固定在地面上！"))
 		return
 
-	user.visible_message(span_notice("[user] starts to pry apart [src]!"), span_notice("You start prying apart [src]."))
+	user.visible_message(span_notice("[user] 开始撬开[src]！"), span_notice("你开始撬开[src]。"))
 	if(!I.use_tool(src, user, 60, volume = 50))
-		to_chat(user, span_warning("You failed to pry apart [src]!"))
+		to_chat(user, span_warning("你未能撬开[src]！"))
 		return
 
-	user.visible_message(span_notice("[user] pried [src] into pieces!"), span_notice("You pried apart [src]!"))
+	user.visible_message(span_notice("[user] 将[src]撬成了碎片！"), span_notice("你把[src]撬开了！"))
 	deconstruct(TRUE)
 
 
@@ -213,32 +213,32 @@
 		new sheetType(T, max(sheetAmount - 2, 1))
 
 /obj/structure/mineral_door/iron
-	name = "iron door"
+	name = "铁门"
 	max_integrity = 300
 	sheetAmount = 20
 
 /obj/structure/mineral_door/silver
-	name = "silver door"
+	name = "银门"
 	icon_state = "silver"
 	sheetType = /obj/item/stack/sheet/mineral/silver
 	max_integrity = 300
 	rad_insulation = RAD_HEAVY_INSULATION
 
 /obj/structure/mineral_door/gold
-	name = "gold door"
+	name = "金门"
 	icon_state = "gold"
 	sheetType = /obj/item/stack/sheet/mineral/gold
 	rad_insulation = RAD_HEAVY_INSULATION
 
 /obj/structure/mineral_door/uranium
-	name = "uranium door"
+	name = "铀门"
 	icon_state = "uranium"
 	sheetType = /obj/item/stack/sheet/mineral/uranium
 	max_integrity = 300
 	light_range = 2
 
 /obj/structure/mineral_door/sandstone
-	name = "sandstone door"
+	name = "砂岩门"
 	icon_state = "sandstone"
 	sheetType = /obj/item/stack/sheet/mineral/sandstone
 	max_integrity = 100
@@ -252,19 +252,19 @@
 	set_opacity(FALSE)
 
 /obj/structure/mineral_door/transparent/plasma
-	name = "plasma door"
+	name = "等离子门"
 	icon_state = "plasma"
 	sheetType = /obj/item/stack/sheet/mineral/plasma
 
 /obj/structure/mineral_door/transparent/diamond
-	name = "diamond door"
+	name = "钻石门"
 	icon_state = "diamond"
 	sheetType = /obj/item/stack/sheet/mineral/diamond
 	max_integrity = 1000
 	rad_insulation = RAD_EXTREME_INSULATION
 
 /obj/structure/mineral_door/wood
-	name = "wood door"
+	name = "木门"
 	icon_state = "wood"
 	openSound = 'sound/effects/doorcreaky.ogg'
 	closeSound = 'sound/effects/doorcreaky.ogg'
@@ -290,7 +290,7 @@
 	return ..()
 
 /obj/structure/mineral_door/paperframe
-	name = "paper frame door"
+	name = "纸框门"
 	icon_state = "paperframe"
 	openSound = 'sound/effects/doorcreaky.ogg'
 	closeSound = 'sound/effects/doorcreaky.ogg'
@@ -307,7 +307,7 @@
 /obj/structure/mineral_door/paperframe/examine(mob/user)
 	. = ..()
 	if(atom_integrity < max_integrity)
-		. += span_info("It looks a bit damaged, you may be able to fix it with some <b>paper</b>.")
+		. += span_info("它看起来有些损坏，也许可以用一些<b>纸</b>修补。")
 
 /obj/structure/mineral_door/paperframe/pickaxe_door(mob/living/user, obj/item/I)
 	return
@@ -324,12 +324,12 @@
 		return ITEM_INTERACT_SUCCESS
 
 	if(!user.combat_mode && istype(tool, /obj/item/paper) && (atom_integrity < max_integrity))
-		user.visible_message(span_notice("[user] starts to patch the holes in [src]."), span_notice("You start patching some of the holes in [src]!"))
+		user.visible_message(span_notice("[user] 开始修补[src]上的破洞。"), span_notice("你开始修补[src]上的一些破洞！"))
 		if(!do_after(user, 2 SECONDS, src))
 			return ITEM_INTERACT_BLOCKING
 		atom_integrity = min(atom_integrity+4,max_integrity)
 		qdel(tool)
-		user.visible_message(span_notice("[user] patches some of the holes in [src]."), span_notice("You patch some of the holes in [src]!"))
+		user.visible_message(span_notice("[user] 修补了[src]上的一些破洞。"), span_notice("你修补了[src]上的一些破洞！"))
 		return ITEM_INTERACT_SUCCESS
 
 	return ..()

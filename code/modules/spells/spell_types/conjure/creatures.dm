@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/conjure/creature
-	name = "Summon Creature Swarm"
-	desc = "This spell tears the fabric of reality, allowing horrific daemons to spill forth."
+	name = "召唤生物群"
+	desc = "此法术撕开现实的帷幕，让可怖的恶魔倾泻而出。"
 	sound = 'sound/effects/magic/summonitems_generic.ogg'
 
 	school = SCHOOL_CONJURATION

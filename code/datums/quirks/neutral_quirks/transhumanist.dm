@@ -15,13 +15,13 @@
 
 /datum/quirk/transhumanist
 	name = "Transhumanist"
-	desc = "You see silicon life as the perfect lifeform and despise organic flesh. You are happier around silicons, but get frustrated when around organics. You seek to replace your failing flesh with perfect silicon. You start with a robotic augmentation."
+	desc = "你认为硅基生命是完美的生命形式，鄙视有机血肉。与硅基生命相处会让你开心，身边有有机生命则让你烦躁。你渴望以完美的机械取代脆弱的血肉，开局时已有一处机械改造。"
 	icon = FA_ICON_ROBOT
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES|QUIRK_MOODLET_BASED
 	value = 0
-	gain_text = span_notice("You have a desire to ditch your feeble organic flesh and surround yourself with robots.")
-	lose_text = span_danger("Robots don't seem all that great anymore.")
-	medical_record_text = "Patient reports hating pathetic creatures of meat and bone."
+	gain_text = span_notice("你渴望抛弃脆弱的有机血肉，与机器人为伴。")
+	lose_text = span_danger("机器人似乎不再那么伟大了。")
+	medical_record_text = "患者表示憎恶可悲的血肉之躯。"
 	mail_goodies = list(
 		/obj/item/stock_parts/power_store/cell/potato,
 		/obj/item/stack/cable_coil,
@@ -161,11 +161,11 @@
 	if(!slot_string)
 		return
 	if(isbodypart(old_part))
-		to_chat(quirk_holder, span_bolddanger("Your [slot_string] has been replaced with a robotic limb. You need to use a welding tool and cables to repair it, instead of sutures and regenerative meshes."))
+		to_chat(quirk_holder, span_bolddanger("你的[chinese_body_zone_display(slot_string)]已被替换为机械肢体。你需要用焊接工具和电缆来修理它，而不是缝合线和再生网。"))
 	else if (old_part.name == "eyes")
-		to_chat(quirk_holder, span_bolddanger("You replaced your eyes with flashlights, not cameras. You can't see a thing!"))
+		to_chat(quirk_holder, span_bolddanger("你把眼睛换成了手电筒，而非摄像头。你什么也看不见！"))
 	else if (isorgan(old_part))
-		to_chat(quirk_holder, span_bolddanger("Your [slot_string] brings you one step closer to silicon perfection, but you feel you're not quite there yet."))
+		to_chat(quirk_holder, span_bolddanger("你的[slot_string]让你离硅基生命的完美更近了一步，但你觉得还差得远。"))
 
 /datum/quirk/transhumanist/process(seconds_per_tick)
 	var/organics_nearby = 0

@@ -1,5 +1,5 @@
 /datum/crafting_recipe/pn_jaws
-	name = "Proto Nitrate Jaws of Life"
+	name = "原硝气液压救援钳"
 	result = /obj/item/crowbar/power/protonitrate
 	time = 3 SECONDS
 	reqs = list(/obj/item/crowbar/power = 1,
@@ -7,7 +7,7 @@
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/pn_jaws/science
-	name = "Proto Nitrate Hybrid Cutters"
+	name = "原硝气复合剪切器"
 	result = /obj/item/crowbar/power/protonitrate/science
 	time = 3 SECONDS
 	reqs = list(/obj/item/crowbar/power/science = 1,
@@ -15,7 +15,7 @@
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/pn_drill
-	name = "Proto Nitrate Hand Drill"
+	name = "原硝气手钻"
 	result = /obj/item/screwdriver/power/protonitrate
 	time = 3 SECONDS
 	reqs = list(/obj/item/screwdriver/power = 1,
@@ -23,7 +23,7 @@
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/pn_drill/science
-	name = "Proto Nitrate Hand Drill"
+	name = "原硝气手钻"
 	result = /obj/item/screwdriver/power/protonitrate/science
 	time = 3 SECONDS
 	reqs = list(/obj/item/screwdriver/power/science = 1,
@@ -31,7 +31,7 @@
 	category = CAT_TOOLS
 
 /datum/crafting_recipe/pn_welder
-	name = "Proto Nitrate Welding Tool"
+	name = "原硝气焊接工具"
 	result = /obj/item/weldingtool/experimental/protonitrate
 	time = 3 SECONDS
 	reqs = list(/obj/item/weldingtool/experimental = 1,

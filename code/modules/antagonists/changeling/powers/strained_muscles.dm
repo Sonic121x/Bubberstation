@@ -2,9 +2,9 @@
 //Limited because of space suits and such; ideally, used for a quick getaway
 
 /datum/action/changeling/strained_muscles
-	name = "Strained Muscles"
-	desc = "We evolve the ability to reduce the acid buildup in our muscles, allowing us to move much faster."
-	helptext = "The strain will make us tired, and we will rapidly become fatigued. Standard weight restrictions, like space suits, still apply. Cannot be used in lesser form."
+	name = "紧绷肌肉"
+	desc = "我们进化出减少肌肉中酸性物质堆积的能力，使我们能移动得远为迅速。"
+	helptext = "这种紧绷会让我们疲惫，并很快陷入力竭。太空服等标准负重限制依然有效。无法在低等形态下使用。"
 	button_icon_state = "strained_muscles"
 	category = "utility"
 	chemical_cost = 0
@@ -18,12 +18,12 @@
 	..()
 	active = !active
 	if(active)
-		to_chat(user, span_notice("Our muscles tense and strengthen."))
+		to_chat(user, span_notice("我们的肌肉紧绷、变得强健。"))
 	else
 		user.remove_movespeed_modifier(/datum/movespeed_modifier/strained_muscles)
-		to_chat(user, span_notice("Our muscles relax."))
+		to_chat(user, span_notice("我们的肌肉放松下来。"))
 		if(stacks >= 10)
-			to_chat(user, span_danger("We collapse in exhaustion."))
+			to_chat(user, span_danger("我们力竭倒下。"))
 			user.Paralyze(60)
 			user.emote("gasp")
 
@@ -43,7 +43,7 @@
 		user.add_movespeed_modifier(/datum/movespeed_modifier/strained_muscles)
 		if(IS_UNCONSCIOUS_OR_CRIT(user) || user.staminaloss >= 90)
 			active = !active
-			to_chat(user, span_notice("Our muscles relax without the energy to strengthen them."))
+			to_chat(user, span_notice("我们的肌肉没了绷紧的力气，松弛下来。"))
 			user.Paralyze(40)
 			user.remove_movespeed_modifier(/datum/movespeed_modifier/strained_muscles)
 			break
@@ -53,7 +53,7 @@
 		user.adjust_stamina_loss(stacks * 1.3) //At first the changeling may regenerate stamina fast enough to nullify fatigue, but it will stack
 
 		if(stacks == 11) //Warning message that the stacks are getting too high
-			to_chat(user, span_warning("Our legs are really starting to hurt..."))
+			to_chat(user, span_warning("我们的腿真的开始疼了……"))
 
 		sleep(4 SECONDS)
 

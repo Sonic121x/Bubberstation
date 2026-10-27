@@ -170,18 +170,18 @@
 	mode.handle_click(user.client, params, object)
 	return TRUE // no doing underlying actions
 
-GAME_VERB_GLOBAL_PROC(togglebuildmode, "Toggle Build Mode", "", "Event")
+GAME_VERB_GLOBAL_PROC(togglebuildmode, "切换建造模式", "", "Event")
 	VERB_ARG_TYPED(M, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 
 	if(M.client)
 		if(istype(M.client.click_intercept,/datum/buildmode))
 			var/datum/buildmode/B = M.client.click_intercept
 			B.quit()
-			log_admin("[key_name(M)] has left build mode.")
+			log_admin("[key_name(M)] 已退出建造模式。")
 		else
 			new /datum/buildmode(M.client)
-			message_admins("[key_name_admin(M)] has entered build mode.")
-			log_admin("[key_name(M)] has entered build mode.")
+			message_admins("[key_name_admin(M)] 已进入建造模式。")
+			log_admin("[key_name(M)] 已进入建造模式。")
 
 #undef BM_SWITCHSTATE_NONE
 #undef BM_SWITCHSTATE_MODE

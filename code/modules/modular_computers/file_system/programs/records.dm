@@ -1,7 +1,7 @@
 /datum/computer_file/program/records
 	filename = "ntrecords"
-	filedesc = "Records"
-	extended_desc = "Allows the user to view several basic records from the crew."
+	filedesc = "档案"
+	extended_desc = "允许用户查看船员的若干基础档案。"
 	downloader_category = PROGRAM_CATEGORY_SECURITY
 	program_icon = "clipboard"
 	program_open_overlay = "crew"
@@ -14,18 +14,18 @@
 	var/mode
 
 /datum/computer_file/program/records/medical
-	filedesc = "Medical Records"
+	filedesc = "医疗档案"
 	filename = "medrecords"
 	program_icon = "book-medical"
-	extended_desc = "Allows the user to view several basic medical records from the crew."
+	extended_desc = "允许用户查看船员的若干基础医疗档案。"
 	download_access = list(ACCESS_MEDICAL, ACCESS_FLAG_COMMAND)
 	program_flags = PROGRAM_ON_NTNET_STORE
 	mode = "medical"
 
 /datum/computer_file/program/records/security
-	filedesc = "Security Records"
+	filedesc = "安保档案"
 	filename = "secrecords"
-	extended_desc = "Allows the user to view several basic security records from the crew."
+	extended_desc = "允许用户查看船员的若干基础安保档案。"
 	download_access = list(ACCESS_SECURITY, ACCESS_FLAG_COMMAND)
 	program_flags = PROGRAM_ON_NTNET_STORE
 	mode = "security"

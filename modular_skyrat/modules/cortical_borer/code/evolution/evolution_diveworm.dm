@@ -3,9 +3,9 @@
 
 // T1
 /datum/borer_evolution/diveworm/health_per_level
-	name = "Health Increase"
-	desc = "Increase the amount of health per level-up you gain."
-	gain_text = "Over time, some of the more aggressive worms became harder to dissect post-mortem. Their skin membrane has become up to thrice as thick."
+	name = "生命提升"
+	desc = "提高你每次升级时获得的健康上限。"
+	gain_text = "随着时间推移，一些更具攻击性的虫子死后越来越难解剖。它们的皮肤膜最厚可达原来的三倍。"
 	tier = 1
 	unlocked_evolutions = list(/datum/borer_evolution/diveworm/host_speed)
 	evo_cost = 1
@@ -17,9 +17,9 @@
 
 // T2
 /datum/borer_evolution/diveworm/host_speed
-	name = "Boring Speed"
-	desc = "Decrease the time it takes to enter a host when you are not hiding."
-	gain_text = "Once or twice, I would blink, and see the non-host monkeys be grappling with a worm that was cross the room just moments before."
+	name = "钻入速度"
+	desc = "缩短你在未躲藏状态下进入宿主所需的时间。"
+	gain_text = "有一两次，我一眨眼，就看到那些未被寄生的猴子正在和一条几秒前还在房间另一头的虫子扭打在一起。"
 	tier = 2
 	unlocked_evolutions = list(/datum/borer_evolution/diveworm/expanded_chemicals)
 
@@ -29,9 +29,9 @@
 
 // T3 + T1 path
 /datum/borer_evolution/diveworm/expanded_chemicals
-	name = "Expanded Chemical List"
-	desc = "Gain access to a new list of devious chemicals to the unlockable list."
-	gain_text = "Sometimes, I would just see a known host monkey... collapse, then get up, then collapse again. It was as if the worm was playing with it..."
+	name = "扩展化学品清单"
+	desc = "在可解锁清单中获得一批新的阴险化学物质。"
+	gain_text = "有时我会看到一只已知的宿主猴子……倒下，然后站起来，接着又倒下。就好像那条虫子在玩弄它……"
 	mutually_exclusive = TRUE
 	tier = 3
 	unlocked_evolutions = list(
@@ -54,22 +54,22 @@
 	cortical_owner.potential_chemicals |= added_chemicals
 
 /datum/borer_evolution/diveworm/health_per_level/t2
-	name = "Health Increase II"
+	name = "生命提升 II"
 	tier = -1
 	unlocked_evolutions = list(/datum/borer_evolution/diveworm/health_per_level/t3)
 	evo_cost = 2
 
 /datum/borer_evolution/diveworm/health_per_level/t3
-	name = "Health Increase III"
+	name = "生命提升 III"
 	tier = -1
 	unlocked_evolutions = list()
 	evo_cost = 2
 
 // T4 + its path
 /datum/borer_evolution/diveworm/harm_increase
-	name = "Toxins Increase"
-	desc = "Increase the passive and active damage you do to your host, and how often it occurs."
-	gain_text = "In captivity, some of the worms became more... brutish, larger. Most notably, hosts succumbed much quicker to them."
+	name = "毒素增量"
+	desc = "提高你对宿主的被动与主动伤害，以及伤害发生的频率。"
+	gain_text = "在囚养环境中，一些虫子变得更加……粗野、更大。最明显的是，宿主被它们折磨死得快多了。"
 	tier = 4
 	unlocked_evolutions = list(
 		/datum/borer_evolution/diveworm/harm_increase/t2,
@@ -81,22 +81,22 @@
 	cortical_owner.host_harm_multiplier += 0.25
 
 /datum/borer_evolution/diveworm/harm_increase/t2
-	name = "Toxins Increase II"
-	desc = "Further increase the passive and active damage you do to your host, and how often it occurs."
+	name = "毒素增量 II"
+	desc = "进一步提高你对宿主的被动与主动伤害，以及伤害发生的频率。"
 	tier = -1
 	unlocked_evolutions = list(/datum/borer_evolution/diveworm/harm_increase/t3)
 
 /datum/borer_evolution/diveworm/harm_increase/t3
-	name = "Toxins Increase III"
-	desc = "Further increase the passive and active damage you do to your host, and how often it occurs."
+	name = "毒素增量 III"
+	desc = "进一步提高你对宿主的被动与主动伤害，以及伤害发生的频率。"
 	tier = -1
 	unlocked_evolutions = list()
 
 // T5
 /datum/borer_evolution/diveworm/empowered_offspring
-	name = "Empowered Offspring"
-	desc = "Lay an egg in a deceased host, and after a delay an empowered borer will burst out."
-	gain_text = "Most eggs would be regurgitated through the throat from their hosts... but one did not. They exploded out the chest like a horror movie. What a worrying discovery."
+	name = "强化后代"
+	desc = "在已死亡的宿主体内产卵，一段时间后将有一只强化皮层钻虫破体而出。"
+	gain_text = "大多数虫卵会被宿主从喉咙里吐出来……但有一枚不是。它像恐怖电影里那样从胸口爆了出来。这可真是个令人担忧的发现。"
 	evo_cost = 3
 	tier = 5
 	unlocked_evolutions = list(

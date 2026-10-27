@@ -1,7 +1,7 @@
 /datum/job/station_engineer
 	title = JOB_STATION_ENGINEER
-	description = "Start the Supermatter, wire the solars, repair station hull \
-		and wiring damage."
+	description = "启动超物质反应堆、接通太阳能板线路，修复空间站船体 \
+		与线路损伤。"
 	faction = FACTION_STATION
 	total_positions = 5
 	spawn_positions = 5
@@ -35,7 +35,7 @@
 		/obj/item/wrench/bolter = 8,
 		/obj/item/clothing/head/utility/hardhat/red/upgraded = 1
 	)
-	rpg_title = "Crystallomancer"
+	rpg_title = "水晶术士"
 	job_flags = STATION_JOB_FLAGS
 
 

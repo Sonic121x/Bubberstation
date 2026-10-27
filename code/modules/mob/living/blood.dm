@@ -193,27 +193,27 @@
 	// Some effects are halved mid-combat.
 	var/determined_mod = has_status_effect(/datum/status_effect/determined) ? 0.5 : 1
 
-	var/word = pick("dizzy","woozy","faint")
+	var/word = pick("眩晕","恍惚","昏沉")
 	switch(modified_blood_volume)
 		// Way too much blood!
 		if(BLOOD_VOLUME_EXCESS to BLOOD_VOLUME_MAX_LETHAL)
 			if(SPT_PROB(7.5, seconds_per_tick))
-				to_chat(src, span_userdanger("Blood starts to tear your skin apart. You're going to burst!"))
-				investigate_log("has been gibbed by having too much blood.", INVESTIGATE_DEATHS)
+				to_chat(src, span_userdanger("血液开始把你的皮肤撑裂。你要爆开了！"))
+				investigate_log("因血液过多而爆体。", INVESTIGATE_DEATHS)
 				inflate_gib()
 		// Too much blood
 		if(BLOOD_VOLUME_MAXIMUM to BLOOD_VOLUME_EXCESS)
 			if(SPT_PROB(5, seconds_per_tick))
-				to_chat(src, span_warning("You feel terribly bloated."))
+				to_chat(src, span_warning("你感到腹胀得厉害。"))
 		// Low blood but not a big deal in the immediate
 		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 			if(SPT_PROB(2.5, seconds_per_tick))
 				set_eye_blur_if_lower(2 SECONDS * determined_mod)
 				if(prob(50))
-					to_chat(src, span_danger("You feel [word]. It's getting a bit hard to breathe."))
+					to_chat(src, span_danger("你感到[word]。呼吸有点困难了。"))
 					losebreath += 0.5 * determined_mod * seconds_per_tick
 				else if(get_stamina_loss() < 25 * determined_mod)
-					to_chat(src, span_danger("You feel [word]. It's getting a bit hard to focus."))
+					to_chat(src, span_danger("你感到[word]。注意力有点难以集中了。"))
 					adjust_stamina_loss(5 * determined_mod * seconds_per_tick)
 		// Pretty low blood, getting dangerous!
 		if(BLOOD_VOLUME_RISKY to BLOOD_VOLUME_OKAY)
@@ -221,10 +221,10 @@
 				set_eye_blur_if_lower(2 SECONDS * determined_mod)
 				set_dizzy_if_lower(2 SECONDS * determined_mod)
 				if(prob(50))
-					to_chat(src, span_bolddanger("You feel very [word]. It's getting hard to breathe!"))
+					to_chat(src, span_bolddanger("你感到非常[word]。呼吸变得困难了！"))
 					losebreath += 1 * determined_mod
 				else if(get_stamina_loss() < 40 * determined_mod)
-					to_chat(src, span_bolddanger("You feel very [word]. It's getting hard to stay awake!"))
+					to_chat(src, span_bolddanger("你感到非常[word]。越来越难以保持清醒了！"))
 					adjust_stamina_loss(7.5 * determined_mod)
 		// Very low blood, danger!!
 		if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_RISKY)
@@ -232,20 +232,20 @@
 				set_eye_blur_if_lower(4 SECONDS * determined_mod)
 				set_dizzy_if_lower(4 SECONDS * determined_mod)
 				if(prob(50))
-					to_chat(src, span_userdanger("You feel extremely [word]! It's getting very hard to breathe!"))
+					to_chat(src, span_userdanger("你感到极度[word]！呼吸变得非常困难了！"))
 					losebreath += 1.5 * determined_mod
 				else if(get_stamina_loss() < 80 * determined_mod)
-					to_chat(src, span_userdanger("You feel extremely [word]! It's getting very hard to stay awake!"))
+					to_chat(src, span_userdanger("你感到极度[word]！几乎无法保持清醒了！"))
 					adjust_stamina_loss(10 * determined_mod)
 		// Critically low blood, death is near! Adrenaline won't help you here.
 		if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 			if(SPT_PROB(7.5, seconds_per_tick))
 				Unconscious(rand(1 SECONDS, 2 SECONDS))
-				to_chat(src, span_userdanger("You black out for a moment!"))
+				to_chat(src, span_userdanger("你短暂地失去了意识！"))
 		// Instantly die upon this threshold
 		if(-INFINITY to BLOOD_VOLUME_SURVIVE)
 			if(!HAS_TRAIT(src, TRAIT_NODEATH))
-				investigate_log("has died of bloodloss.", INVESTIGATE_DEATHS)
+				investigate_log("因失血过多而死。", INVESTIGATE_DEATHS)
 				death()
 
 	// Blood ratio! if you have 280 blood, this equals 0.5 as that's half of the current value, 560.
@@ -318,23 +318,23 @@
 		if(-INFINITY to 0)
 			return
 		if(0 to 1)
-			bleeding_severity = "You feel light trickles of blood across your skin"
+			bleeding_severity = "你感到皮肤上有细细的血流淌过"
 			next_cooldown *= 2.5
 		if(1 to 3)
-			bleeding_severity = "You feel a small stream of blood running across your body"
+			bleeding_severity = "你感到一小股血液顺着身体流下"
 			next_cooldown *= 2
 		if(3 to 5)
-			bleeding_severity = "You skin feels clammy from the flow of blood leaving your body"
+			bleeding_severity = "随着血液流出体外，你的皮肤变得又湿又黏"
 			next_cooldown *= 1.7
 		if(5 to 7)
-			bleeding_severity = "Your body grows more and more numb as blood streams out"
+			bleeding_severity = "随着血液涌出，你的身体越来越麻木"
 			next_cooldown *= 1.5
 		if(7 to INFINITY)
-			bleeding_severity = "Your heartbeat thrashes wildly trying to keep up with your bloodloss"
+			bleeding_severity = "你的心脏疯狂跳动，拼命想弥补流失的血液"
 
-	var/rate_of_change = ", but it's getting better." // if there's no wounds actively getting bloodier or maintaining the same flow, we must be getting better!
+	var/rate_of_change = "，但情况正在好转。" // if there's no wounds actively getting bloodier or maintaining the same flow, we must be getting better!
 	if(HAS_TRAIT(src, TRAIT_COAGULATING)) // if we have coagulant, we're getting better quick
-		rate_of_change = ", but it's clotting up quickly!"
+		rate_of_change = "，但血很快就凝固了！"
 	else
 		// flick through our wounds to see if there are any bleeding ones getting worse or holding flow (maybe move this to handle_blood and cache it so we don't need to cycle through the wounds so much)
 		for(var/datum/wound/iter_wound as anything in all_wounds)
@@ -343,10 +343,10 @@
 			var/iter_wound_roc = iter_wound.get_bleed_rate_of_change()
 			switch(iter_wound_roc)
 				if(BLOOD_FLOW_INCREASING) // assume the worst, if one wound is getting bloodier, we focus on that
-					rate_of_change = ", <b>and it's getting worse!</b>"
+					rate_of_change = "，<b>而且还在恶化！</b>"
 					break
 				if(BLOOD_FLOW_STEADY) // our best case now is that our bleeding isn't getting worse
-					rate_of_change = ", and it's holding steady."
+					rate_of_change = "，而且保持稳定。"
 				if(BLOOD_FLOW_DECREASING) // this only matters if none of the wounds fit the above two cases, included here for completeness
 					continue
 

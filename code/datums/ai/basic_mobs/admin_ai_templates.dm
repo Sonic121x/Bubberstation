@@ -16,36 +16,36 @@
 /// Actually perform the process
 /datum/admin_ai_template/proc/apply(mob/living/target, client/user)
 	if (QDELETED(target) || !isliving(target))
-		to_chat(user, span_warning("Invalid target for AI controller."))
+		to_chat(user, span_warning("AI 控制器的目标无效。"))
 		return
 	if (gather_information(target, user))
 		apply_controller(target, user)
 
 /// Set up any stored variables before we actually apply the controller
 /datum/admin_ai_template/proc/gather_information(mob/living/target, client/user)
-	override_client = tgui_alert(user, "Would you like this controller to be active even while the mob has a client controlling it?", "Override Client?", list("Yes", "No"))
+	override_client = tgui_alert(user, "即使有玩家控制此生物，是否仍让该控制器运行？", "覆盖玩家控制？", list("是", "否"))
 	if (isnull(override_client))
 		return FALSE
-	override_client = override_client == "Yes"
+	override_client = override_client == "是"
 
-	idle_chance = tgui_input_number(user, "How likely (% chance per second) should this mob be to move to another tile when it's not doing anything else?", "Walk Chance", max_value = 100, min_value = 0)
+	idle_chance = tgui_input_number(user, "此生物空闲时，每秒移动到另一格的概率应为多少（百分比）？", "游走概率", max_value = 100, min_value = 0)
 	if (isnull(idle_chance))
 		return FALSE
 
 	if (isnull(make_hostile))
-		make_hostile = tgui_alert(user, "Do you want to override this mob's faction with the hostile faction?", "Override Faction?", list("Yes", "No"))
+		make_hostile = tgui_alert(user, "是否将此生物的阵营改为敌对阵营？", "覆盖阵营？", list("是", "否"))
 		if (isnull(make_hostile))
 			return FALSE
-		make_hostile = make_hostile == "Yes"
+		make_hostile = make_hostile == "是"
 
 	if (isnull(minimum_stat))
 		var/static/list/stat_types = list(
-			"Stable" = STABLE,
-			"Soft Crit" = SOFT_CRIT,
-			"Hard Crit" = HARD_CRIT,
-			"Dead (will probably get stuck punching a corpse forever)" = DEAD,
+			"稳定" = STABLE,
+			"轻度危重" = SOFT_CRIT,
+			"重度危重" = HARD_CRIT,
+			"死亡（可能会一直攻击尸体）" = DEAD,
 		)
-		var/selected_stat = tgui_input_list(user, "Attack targets at the maximum health level of...?", "Persistence Level", stat_types, "Soft Crit")
+		var/selected_stat = tgui_input_list(user, "目标最严重处于何种状态时仍继续攻击？", "追击程度", stat_types, "轻度危重")
 		if (isnull(selected_stat))
 			return FALSE
 		minimum_stat = stat_types[selected_stat]
@@ -54,7 +54,7 @@
 
 /datum/admin_ai_template/proc/apply_controller(mob/living/target, client/user)
 	if (QDELETED(target))
-		to_chat(user, span_warning("Target stopped existing while you were answering prompts :("))
+		to_chat(user, span_warning("你回答提示时，目标已经不存在了 :("))
 		return
 
 	QDEL_NULL(target.ai_controller)
@@ -73,12 +73,12 @@
 
 /// Walks at a guy and attacks
 /datum/admin_ai_template/hostile
-	name = "Hostile Melee"
+	name = "敌对近战"
 	controller_type = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
 
 /// Walks away from a guy and attacks
 /datum/admin_ai_template/hostile_ranged
-	name = "Hostile Ranged"
+	name = "敌对远程"
 	controller_type = /datum/ai_controller/basic_controller/simple/simple_ranged
 	/// When should we retreat?
 	var/min_range
@@ -112,39 +112,39 @@
 
 	var/static/list/all_projectiles = subtypesof(/obj/projectile)
 	// These don't really browsable user-friendly names because there's a lot of duplicates, sorry admins
-	projectile_type = tgui_input_list(user, "What projectile should we fire?", "Select ammo", all_projectiles)
+	projectile_type = tgui_input_list(user, "应发射哪种弹体？", "选择弹药", all_projectiles)
 	if (isnull(projectile_type))
 		return FALSE
 
-	fire_cooldown = tgui_input_number(user, "How many seconds between shots?", "Fire Rate", round_value = FALSE, max_value = 10, min_value = 0.2, default = 1)
+	fire_cooldown = tgui_input_number(user, "两次射击之间间隔多少秒？", "射击间隔", round_value = FALSE, max_value = 10, min_value = 0.2, default = 1)
 	if (isnull(fire_cooldown))
 		return FALSE
 	fire_cooldown = fire_cooldown SECONDS
 
-	burst_shots = tgui_input_number(user, "How many shots to fire per burst?", "Burst Count", max_value = 100, min_value = 1, default = 1)
+	burst_shots = tgui_input_number(user, "每轮连发射出多少发？", "连发数量", max_value = 100, min_value = 1, default = 1)
 	if (isnull(burst_shots))
 		return FALSE
 	if (burst_shots > 1)
-		burst_interval = tgui_input_number(user, "How many seconds delay between burst shots?", "Burst Rate", round_value = FALSE, max_value = 2, min_value = 0.1, default = 0.2)
+		burst_interval = tgui_input_number(user, "连发中各发之间间隔多少秒？", "连发间隔", round_value = FALSE, max_value = 2, min_value = 0.1, default = 0.2)
 		if (isnull(burst_interval))
 			return FALSE
 		burst_interval = burst_interval SECONDS
 
-	var/pick_sound = tgui_alert(user, "Select a firing sound effect?", "Select Sound", list("Yes", "No"))
+	var/pick_sound = tgui_alert(user, "是否选择射击音效？", "选择音效", list("是", "否"))
 	if (isnull(pick_sound))
 		return FALSE
-	if (pick_sound == "Yes")
-		projectile_sound = input("", "Select fire sound",) as null|sound
+	if (pick_sound == "是")
+		projectile_sound = input("", "选择射击音效",) as null|sound
 
 	return TRUE
 
 /// Decide our movement details
 /datum/admin_ai_template/hostile_ranged/proc/decide_min_max_range(mob/living/target, client/user)
-	min_range = tgui_input_number(user, "How far should this mob try to stay away from its target?", "Min Distance", max_value = 9, min_value = 0, default = 2)
+	min_range = tgui_input_number(user, "此生物应与目标保持至少多少格距离？", "最小距离", max_value = 9, min_value = 0, default = 2)
 	if (isnull(min_range))
 		return FALSE
 
-	max_range = tgui_input_number(user, "How close should this mob try to stay to its target?", "Max Distance", max_value = 9, min_value = 1, default = 6)
+	max_range = tgui_input_number(user, "此生物应与目标保持至多多少格距离？", "最大距离", max_value = 9, min_value = 1, default = 6)
 	if (isnull(max_range))
 		return FALSE
 
@@ -174,7 +174,7 @@
 
 /// Walks at a guy while shooting and attacks
 /datum/admin_ai_template/hostile_ranged/and_melee
-	name = "Hostile Ranged/Melee"
+	name = "敌对远程及近战"
 	controller_type = /datum/ai_controller/basic_controller/simple/simple_skirmisher
 
 /datum/admin_ai_template/hostile_ranged/and_melee/decide_min_max_range(mob/living/target, client/user)
@@ -182,7 +182,7 @@
 
 /// Maintain distance from a guy and use an ability on cooldown
 /datum/admin_ai_template/ability
-	name = "Hostile Ability User"
+	name = "敌对能力使用者"
 	controller_type = /datum/ai_controller/basic_controller/simple/simple_ability
 	/// What is our ability?
 	var/ability_type
@@ -203,7 +203,7 @@
 		for (var/datum/action/cooldown/mob_cooldown as anything in all_mob_actions)
 			actions_by_name["[initial(mob_cooldown.name)] ([mob_cooldown])"] = mob_cooldown
 
-	ability_type = tgui_input_list(user, "Which ability should it use?", "Select Ability", actions_by_name)
+	ability_type = tgui_input_list(user, "应使用哪种能力？", "选择能力", actions_by_name)
 	if (isnull(ability_type))
 		return FALSE
 
@@ -212,11 +212,11 @@
 
 /// Decide our movement details, some copy/paste here unfortunately
 /datum/admin_ai_template/ability/proc/decide_min_max_range(mob/living/target, client/user)
-	min_range = tgui_input_number(user, "How far should this mob try to stay away from its target?", "Min Distance", max_value = 9, min_value = 0, default = 2)
+	min_range = tgui_input_number(user, "此生物应与目标保持至少多少格距离？", "最小距离", max_value = 9, min_value = 0, default = 2)
 	if (isnull(min_range))
 		return FALSE
 
-	max_range = tgui_input_number(user, "How close should this mob try to stay to its target?", "Max Distance", max_value = 9, min_value = 1, default = 6)
+	max_range = tgui_input_number(user, "此生物应与目标保持至多多少格距离？", "最大距离", max_value = 9, min_value = 1, default = 6)
 	if (isnull(max_range))
 		return FALSE
 
@@ -237,7 +237,7 @@
 
 /// Walks at a guy and uses an ability on that guy
 /datum/admin_ai_template/ability/melee
-	name = "Hostile Ability User (Melee Attacks)"
+	name = "敌对能力使用者（近战攻击）"
 	controller_type = /datum/ai_controller/basic_controller/simple/simple_ability_melee
 
 /datum/admin_ai_template/ability/melee/decide_min_max_range(mob/living/target, client/user)
@@ -245,7 +245,7 @@
 
 /// Stays away from a guy and uses an ability on that guy
 /datum/admin_ai_template/hostile_ranged/ability
-	name = "Hostile Ability User (Ranged Attacks)"
+	name = "敌对能力使用者（远程攻击）"
 	controller_type = /datum/ai_controller/basic_controller/simple/simple_ability_ranged
 	/// What is our ability?
 	var/ability_type
@@ -262,7 +262,7 @@
 		for (var/datum/action/cooldown/mob_cooldown as anything in all_mob_actions)
 			actions_by_name["[initial(mob_cooldown.name)] ([mob_cooldown])"] = mob_cooldown
 
-	ability_type = tgui_input_list(user, "Which ability should it use?", "Select Ability", actions_by_name)
+	ability_type = tgui_input_list(user, "应使用哪种能力？", "选择能力", actions_by_name)
 	if (isnull(ability_type))
 		return FALSE
 	ability_type = actions_by_name[ability_type]
@@ -281,7 +281,7 @@
 
 /// Chill unless you throw hands
 /datum/admin_ai_template/retaliate
-	name = "Passive But Fights Back (Melee)"
+	name = "被动反击（近战）"
 	controller_type = /datum/ai_controller/basic_controller/simple/simple_retaliate
 	make_hostile = FALSE
 
@@ -292,7 +292,7 @@
 
 /// Shoots anyone who attacks them
 /datum/admin_ai_template/hostile_ranged/ability/retaliate
-	name = "Passive But Fights Back (Ranged Attacks)"
+	name = "被动反击（远程攻击）"
 	controller_type = /datum/ai_controller/basic_controller/simple/simple_ranged_retaliate
 	make_hostile = FALSE
 
@@ -303,7 +303,7 @@
 
 /// Uses their signature move on anyone who attacks them
 /datum/admin_ai_template/ability/retaliate
-	name = "Passive But Fights Back (Ability)"
+	name = "被动反击（能力）"
 	controller_type = /datum/ai_controller/basic_controller/simple/simple_ability_retaliate
 	make_hostile = FALSE
 
@@ -314,7 +314,7 @@
 
 /// Who knows what this guy will do, he's a loose cannon
 /datum/admin_ai_template/grumpy
-	name = "Gets Mad Unpredictably"
+	name = "随机发怒"
 	controller_type = /datum/ai_controller/basic_controller/simple/simple_capricious
 	make_hostile = FALSE
 	/// Chance per second to get pissed off
@@ -327,11 +327,11 @@
 	if (!.)
 		return FALSE
 
-	flipout_chance = tgui_input_number(user, "What's the % chance per second we'll get mad for no reason?", "Tantrum Chance", round_value = FALSE, max_value = 100, min_value = 0, default = 0.5)
+	flipout_chance = tgui_input_number(user, "每秒无故发怒的概率为多少（百分比）？", "发怒概率", round_value = FALSE, max_value = 100, min_value = 0, default = 0.5)
 	if (isnull(flipout_chance))
 		return FALSE
 
-	calm_down_chance = tgui_input_number(user, "What's the % chance per second we'll stop being mad?", "Zen Chance", round_value = FALSE, max_value = 100, min_value = 0, default = 10)
+	calm_down_chance = tgui_input_number(user, "每秒平息怒气的概率为多少（百分比）？", "冷静概率", round_value = FALSE, max_value = 100, min_value = 0, default = 10)
 	if (isnull(calm_down_chance))
 		return FALSE
 
@@ -348,14 +348,14 @@
 
 /// Coward
 /datum/admin_ai_template/fearful
-	name = "Runs Away"
+	name = "逃跑"
 	minimum_stat = STABLE
 	make_hostile = FALSE
 	controller_type = /datum/ai_controller/basic_controller/simple/simple_fearful
 
 /// Doesn't like violence
 /datum/admin_ai_template/skittish
-	name = "Runs Away From Attackers"
+	name = "躲避攻击者"
 	minimum_stat = STABLE
 	make_hostile = FALSE
 	controller_type = /datum/ai_controller/basic_controller/simple/simple_skittish
@@ -367,7 +367,7 @@
 
 /// You gottit boss
 /datum/admin_ai_template/goon
-	name = "Obeys Commands"
+	name = "服从指令"
 	controller_type = /datum/ai_controller/basic_controller/simple/simple_goon
 	/// Who is really in charge here?
 	var/mob/living/da_boss
@@ -377,10 +377,10 @@
 	if (!.)
 		return FALSE
 
-	var/find_a_mob = tgui_alert(user, "Make this mob a minion of a mob in your tile? (If you don't do this you will need to use the befriend proc)", "Set Master?", list("Yes", "No"))
+	var/find_a_mob = tgui_alert(user, "将此生物设为你所在格内某个生物的随从？（否则你需要使用 befriend 过程）", "设置主人？", list("是", "否"))
 	if (isnull(override_client))
 		return FALSE
-	find_a_mob = find_a_mob == "Yes"
+	find_a_mob = find_a_mob == "是"
 	if (!find_a_mob)
 		return TRUE
 
@@ -393,19 +393,19 @@
 		mobs_in_my_tile[dude.real_name] = dude
 
 	if (length(mobs_in_my_tile))
-		var/picked = tgui_input_list(user, "Select new master.", "Set Master", mobs_in_my_tile + "Try Again", "Try Again")
+		var/picked = tgui_input_list(user, "选择新主人。", "设置主人", mobs_in_my_tile + "重试", "重试")
 		if (isnull(picked))
 			return FALSE
-		if (picked == "Try Again")
+		if (picked == "重试")
 			return grab_mob(target, user)
 
 		da_boss = mobs_in_my_tile[picked]
 		return TRUE
 
-	var/find_a_mob = tgui_alert(user, "No applicable mobs found. Try again?", "Try Again?", list("Yes", "No"))
+	var/find_a_mob = tgui_alert(user, "未找到合适的生物。是否重试？", "重试？", list("是", "否"))
 	if (isnull(find_a_mob))
 		return FALSE
-	find_a_mob = find_a_mob == "Yes"
+	find_a_mob = find_a_mob == "是"
 	if (!find_a_mob)
 		return TRUE
 	return grab_mob(target, user)
@@ -429,7 +429,7 @@
 
 /// Whatever it was doing before we fucked with it (mostly, can't do this with total confidence)
 /datum/admin_ai_template/reset
-	name = "Reset"
+	name = "重置"
 
 /datum/admin_ai_template/reset/gather_information(mob/living/target, client/user)
 	return TRUE
@@ -441,7 +441,7 @@
 
 /// Like I'm doing nothing at all, nothing at all
 /datum/admin_ai_template/clear
-	name = "None"
+	name = "无"
 
 /datum/admin_ai_template/clear/gather_information(mob/living/target, client/user)
 	return TRUE

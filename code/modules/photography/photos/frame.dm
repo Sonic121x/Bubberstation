@@ -1,8 +1,8 @@
 // Picture frames
 
 /obj/item/wallframe/picture
-	name = "picture frame"
-	desc = "The perfect showcase for your favorite deathtrap memories."
+	name = "相框"
+	desc = "用来展示你最爱的死亡陷阱回忆的完美展架。"
 	icon = 'icons/obj/signs.dmi'
 	custom_materials = list(/datum/material/wood =SHEET_MATERIAL_AMOUNT)
 	resistance_flags = FLAMMABLE
@@ -16,7 +16,7 @@
 	if(!istype(tool, /obj/item/photo))
 		return NONE
 	if(displayed)
-		to_chat(user, span_warning("\The [src] already contains a photo."))
+		to_chat(user, span_warning("\The [src] 里已经有一张照片了。"))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
@@ -32,7 +32,7 @@
 	if(contents.len)
 		var/obj/item/I = pick(contents)
 		user.put_in_hands(I)
-		to_chat(user, span_notice("You carefully remove the photo from \the [src]."))
+		to_chat(user, span_notice("你小心地把照片从 \the [src] 里取了出来。"))
 		displayed = null
 		update_appearance()
 	return ..()
@@ -63,8 +63,8 @@
 		I.forceMove(PF)
 
 /obj/structure/sign/picture_frame
-	name = "picture frame"
-	desc = "Every time you look it makes you laugh."
+	name = "相框"
+	desc = "每次看到它都会让你发笑。"
 	icon = 'icons/obj/signs.dmi'
 	icon_state = "frame-overlay"
 	custom_materials = list(/datum/material/wood =SHEET_MATERIAL_AMOUNT)
@@ -122,10 +122,10 @@
 /obj/structure/sign/picture_frame/proc/try_deconstruct(mob/living/user, obj/item/tool)
 	if(!can_decon)
 		return FALSE
-	to_chat(user, span_notice("You start unsecuring [name]..."))
+	to_chat(user, span_notice("你开始松开 [name] 的固定……"))
 	if(tool.use_tool(src, user, 3 SECONDS, volume=50))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-		to_chat(user, span_notice("You unsecure [name]."))
+		to_chat(user, span_notice("你松开了 [name] 的固定。"))
 		deconstruct()
 	return TRUE
 
@@ -140,7 +140,7 @@
 		return FALSE
 	tool.play_tool_sound(src)
 	framed.forceMove(drop_location())
-	user.visible_message(span_warning("[user] cuts away [framed] from [src]!"))
+	user.visible_message(span_warning("[user] 把 [framed] 从 [src] 上割了下来！"))
 	set_and_save_framed(null)
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -150,7 +150,7 @@
 	if(!istype(tool, /obj/item/photo))
 		return NONE
 	if(framed)
-		to_chat(user, span_warning("\The [src] already contains a photo."))
+		to_chat(user, span_warning("\The [src] 里已经有一张照片了。"))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
@@ -181,8 +181,8 @@
 	showcase.update_appearance()
 
 /obj/structure/sign/picture_frame/showroom
-	name = "distinguished crew display"
-	desc = "A photo frame to commemorate crewmembers that distinguished themselves in the line of duty. WARNING: unauthorized tampering will be severely punished."
+	name = "杰出船员展示框"
+	desc = "用来纪念在执行公务中表现杰出的船员的相框。警告：未经许可擅自改动者将受到严厉惩处。"
 	can_decon = FALSE
 
 /// This used to be a plaque portrait of a monkey. Now it's been revamped into something more.
@@ -198,21 +198,21 @@
 	. = ..()
 	switch(rand(1,4))
 		if(1) // Deempisi
-			name = "\improper Mr. Deempisi portrait"
+			name = "\improper 迪姆皮西先生肖像"
 			icon_state = "frame-monkey"
-			desc = "Under the portrait a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'"
+			desc = "肖像下方的铭牌上写着：“绞肉机也许没能放过你，但别担心。你身上没有一处被浪费……你很好吃。”"
 		if(2) // A fruit
-			name = "picture of a fruit"
+			name = "水果画像"
 			icon_state = "frame-fruit"
-			desc = "<i>Ceci n'est pas une orange.</i>"
+			desc = "<i>这不是一颗橙子。</i>"
 		if(3) // Rat
-			name = "\improper Tom portrait"
-			desc = "Jerry the cat is still not amused."
+			name = "\improper 汤姆肖像"
+			desc = "杰瑞猫依然兴致寥寥。"
 			icon_state = "frame-rat"
 		if(4) // Ratvar
-			name = "portrait of the imprisoned god"
-			desc = "Under the portrait a plaque reads: 'In loving memory of Ratvar, ancient powerful entity and rival of Nar'Sie, \
-				ultimately struck down by NT bluespace artillery at the hands of Outpost 17 crew. Rust in peace.'" // common core lore.
+			name = "被囚之神的肖像"
+			desc = "肖像下方的铭牌上写着：“深切缅怀拉特瓦，古老而强大的存在，纳尔西的宿敌，\
+				最终在 17 号前哨站船员的手中，被纳米传讯的蓝空间火炮击倒。愿它安息于锈蚀之中。”" // common core lore.
 			icon_state = "frame-ratvar"
 	portrait_name = name
 	portrait_state = icon_state
@@ -235,14 +235,14 @@
 /obj/structure/sign/picture_frame/portrait/update_desc(updates)
 	. = ..()
 	if(framed)
-		desc = "Every time you look it makes you laugh."
+		desc = "每次看到它都会让你发笑。"
 	else
 		desc = portrait_desc
 
 /obj/structure/sign/picture_frame/portrait/examine_more(mob/user)
 	. = ..()
 	if(!framed)
-		. += span_notice("The frame and the picture are glued together, but you guess you could slip a photo between the two.")
+		. += span_notice("相框和画片被粘在了一起，不过你觉得也许还能把一张照片塞进两者之间。")
 
 //persistent frames, make sure the same ID doesn't appear more than once per map
 /obj/structure/sign/picture_frame/showroom/one

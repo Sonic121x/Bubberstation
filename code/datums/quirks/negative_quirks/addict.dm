@@ -1,8 +1,8 @@
 /datum/quirk/item_quirk/addict
 	name = "Addict"
-	desc = "You are addicted to something that doesn't exist. Suffer."
-	gain_text = span_danger("You suddenly feel the craving for... something? You're not sure what it is.")
-	medical_record_text = "Patient has a history with SOMETHING but he refuses to tell us what it is."
+	desc = "你对一种不存在的东西上瘾了。受着吧。"
+	gain_text = span_danger("你突然渴望……某种东西？你也说不清是什么。")
+	medical_record_text = "患者有某种物质的使用史，却拒绝透露具体是什么。"
 	abstract_type = /datum/quirk/item_quirk/addict
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES
 	no_process_traits = list(TRAIT_LIVERLESS_METABOLISM)
@@ -12,7 +12,7 @@
 	var/obj/item/drug_container_type //! If this is defined before pill generation, pill generation will be skipped. This is the type of the pill bottle.
 	var/where_accessory //! where the accessory spawned
 	var/obj/item/accessory_type //! If this is null, an accessory won't be spawned.
-	var/drug_flavour_text = "Better hope you don't run out... of what, exactly? You don't know."
+	var/drug_flavour_text = "最好别用完……到底是什么？你也不知道。"
 	var/process_interval = 90 SECONDS //! how frequently the quirk processes - BUBBER EDIT: Originally 30 Seconds.
 	COOLDOWN_DECLARE(next_process) //! ticker for processing
 
@@ -76,20 +76,20 @@
 	if(deleted || missing_addiction)
 		if(deleted)
 			reagent_instance = new reagent_type()
-		to_chat(quirk_holder, span_danger("You thought you kicked it, but you feel like you're falling back onto bad habits.."))
+		to_chat(quirk_holder, span_danger("你以为自己已经戒掉了，但现在似乎又开始故态复萌……"))
 		for(var/addiction in reagent_instance.addiction_types)
 			human_holder.last_mind?.add_addiction_points(addiction, 1000) ///Max that shit out
 
 /datum/quirk/item_quirk/addict/junkie
 	name = "Junkie"
-	desc = "You can't get enough of hard drugs."
+	desc = "你对烈性毒品欲罢不能。"
 	icon = FA_ICON_PILLS
 	value = -6
-	gain_text = span_danger("You suddenly feel the craving for drugs.")
-	medical_record_text = "Patient has a history of hard drugs."
+	gain_text = span_danger("你突然很想吸毒。")
+	medical_record_text = "患者有烈性毒品使用史。"
 	hardcore_value = 4
 	mail_goodies = list(/obj/effect/spawner/random/contraband/narcotics)
-	drug_flavour_text = "Better hope you don't run out..."
+	drug_flavour_text = "最好别用完……"
 
 /datum/quirk_constant_data/junkie
 	associated_typepath = /datum/quirk/item_quirk/addict/junkie
@@ -109,17 +109,17 @@
 
 /datum/quirk/item_quirk/addict/smoker
 	name = "Smoker"
-	desc = "Sometimes you just really want a smoke. Probably not great for your lungs."
+	desc = "有时候你就是特别想抽一根。这对肺恐怕不太好。"
 	icon = FA_ICON_SMOKING
 	value = -4
-	gain_text = span_danger("You could really go for a smoke right about now.")
-	lose_text = span_notice("You don't feel nearly as hooked to nicotine anymore.")
-	medical_record_text = "Patient is a current smoker."
+	gain_text = span_danger("你现在真想抽一根。")
+	lose_text = span_notice("你不再那么依赖尼古丁了。")
+	medical_record_text = "患者目前仍有吸烟习惯。"
 	reagent_type = /datum/reagent/drug/nicotine
 	accessory_type = /obj/item/lighter/greyscale
 	mob_trait = TRAIT_SMOKER
 	hardcore_value = 1
-	drug_flavour_text = "Make sure you get your favorite brand when you run out."
+	drug_flavour_text = "抽完后记得补充你最喜欢的牌子。"
 	mail_goodies = list(
 		/obj/effect/spawner/random/entertainment/cigarette_pack,
 		/obj/effect/spawner/random/entertainment/cigar,
@@ -167,17 +167,17 @@
 
 /datum/quirk/item_quirk/addict/alcoholic
 	name = "Alcoholic"
-	desc = "You just can't live without alcohol. Your liver is a machine that turns ethanol into acetaldehyde."
+	desc = "你就是离不开酒。你的肝脏是一台把乙醇转化为乙醛的机器。"
 	icon = FA_ICON_WINE_GLASS
 	value = -4
-	gain_text = span_danger("You really need a drink.")
-	lose_text = span_notice("Alcohol doesn't seem nearly as enticing anymore.")
-	medical_record_text = "Patient is an alcoholic."
+	gain_text = span_danger("你真的很需要喝一杯。")
+	lose_text = span_notice("酒精似乎不再那么诱人了。")
+	medical_record_text = "患者患有酒精依赖。"
 	reagent_type = /datum/reagent/consumable/ethanol
 	drug_container_type = /obj/item/reagent_containers/cup/glass/bottle/whiskey
 	mob_trait = TRAIT_HEAVY_DRINKER
 	hardcore_value = 1
-	drug_flavour_text = "Make sure you get your favorite type of drink when you run out."
+	drug_flavour_text = "喝完后记得补充你最喜欢的酒。"
 	mail_goodies = list(
 		/obj/effect/spawner/random/food_or_drink/booze,
 		/obj/item/book/bible/booze,

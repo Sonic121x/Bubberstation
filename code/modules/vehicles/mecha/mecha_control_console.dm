@@ -1,6 +1,6 @@
 /obj/machinery/computer/mecha
-	name = "exosuit control console"
-	desc = "Used to remotely locate or lockdown exosuits."
+	name = "机甲控制台"
+	desc = "用于远程定位或锁定机甲。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/mecha")
 	icon_screen = "mecha"
 	icon_keyboard = "tech_key"
@@ -56,11 +56,11 @@
 			var/obj/item/mecha_parts/mecha_tracking/our_mecha_tracker = locate(params["tracker_ref"])
 			if(!istype(our_mecha_tracker))
 				return
-			var/message = tgui_input_text(usr, "Input message", "Transmit message", max_length = MAX_MESSAGE_LEN)
+			var/message = tgui_input_text(usr, "输入消息", "发送消息", max_length = MAX_MESSAGE_LEN)
 			var/obj/vehicle/sealed/mecha/our_mecha = our_mecha_tracker.chassis
 			if(trim(message) && our_mecha)
 				to_chat(our_mecha.occupants, message)
-				to_chat(usr, span_notice("Message sent."))
+				to_chat(usr, span_notice("消息已发送。"))
 				. = TRUE
 		if("shock")
 			var/obj/item/mecha_parts/mecha_tracking/our_mecha_tracker = locate(params["tracker_ref"])
@@ -69,14 +69,14 @@
 			var/obj/vehicle/sealed/mecha/our_mecha = our_mecha_tracker.chassis
 			if(our_mecha)
 				our_mecha_tracker.remote_emp_triggered()
-				usr.log_message("has activated remote EMP on exosuit [our_mecha], located at [loc_name(our_mecha)], which is currently [LAZYLEN(our_mecha.occupants) ? "occupied by [our_mecha.occupants.Join(", ")]." : "without a pilot."]", LOG_ATTACK)
-				usr.log_message("has activated remote EMP on exosuit [our_mecha], located at [loc_name(our_mecha)], which is currently [LAZYLEN(our_mecha.occupants) ? "occupied by [our_mecha.occupants.Join(", ")]." : "without a pilot."]", LOG_GAME, log_globally = FALSE)
-				message_admins("[key_name_admin(usr)][ADMIN_FLW(usr)] has activated remote EMP on exosuit [our_mecha][ADMIN_JMP(our_mecha)], which is currently [LAZYLEN(our_mecha.occupants) ? "occupied by [our_mecha.occupants.Join(",")][ADMIN_FLW(our_mecha)]." : "without a pilot."]")
+				usr.log_message("对位于 [loc_name(our_mecha)] 的机甲 [our_mecha] 激活了远程 EMP，该机甲当前[LAZYLEN(our_mecha.occupants) ? "由 [our_mecha.occupants.Join(", ")] 驾驶。" : "无人驾驶。"]", LOG_ATTACK)
+				usr.log_message("对位于 [loc_name(our_mecha)] 的机甲 [our_mecha] 激活了远程 EMP，该机甲当前[LAZYLEN(our_mecha.occupants) ? "由 [our_mecha.occupants.Join(", ")] 驾驶。" : "无人驾驶。"]", LOG_GAME, log_globally = FALSE)
+				message_admins("[key_name_admin(usr)][ADMIN_FLW(usr)] 对机甲 [our_mecha][ADMIN_JMP(our_mecha)] 激活了远程 EMP，该机甲当前[LAZYLEN(our_mecha.occupants) ? "由 [our_mecha.occupants.Join(",")][ADMIN_FLW(our_mecha)] 驾驶。" : "无人驾驶。"]")
 				. = TRUE
 
 /obj/item/mecha_parts/mecha_tracking
-	name = "exosuit tracking beacon"
-	desc = "Device used to transmit exosuit data."
+	name = "机甲追踪信标"
+	desc = "用于传输机甲数据的装置。"
 	icon = 'icons/obj/devices/new_assemblies.dmi'
 	icon_state = "motion2"
 	w_class = WEIGHT_CLASS_SMALL
@@ -100,16 +100,16 @@
 	var/list/output = list()
 
 	var/cell_charge = chassis.get_charge()
-	output += "[span_bold("Name:")] [chassis.name]"
-	output += "[span_bold("Integrity:")] [round((chassis.get_integrity()/chassis.max_integrity * 100), 0.01)]%"
-	output += "[span_bold("Cell Charge:")] [isnull(cell_charge) ? "Not Found":"[chassis.cell.percent()]%"]"
-	output += "[span_bold("Cabin Pressure:")] [(chassis.mecha_flags & IS_ENCLOSED) ? "[round(chassis.return_pressure(), 0.01)] kPa" : "Not Sealed"]"
-	output += "[span_bold("Pilot:")] [english_list(chassis.return_drivers(), nothing_text = "None")]"
-	output += "[span_bold("Current Location:")] [get_area_name(chassis, TRUE) || "Unknown"]"
+	output += "[span_bold("名称：")] [chassis.name]"
+	output += "[span_bold("完整度：")] [round((chassis.get_integrity()/chassis.max_integrity * 100), 0.01)]%"
+	output += "[span_bold("电池电量：")] [isnull(cell_charge) ? "未找到":"[chassis.cell.percent()]%"]"
+	output += "[span_bold("座舱压力：")] [(chassis.mecha_flags & IS_ENCLOSED) ? "[round(chassis.return_pressure(), 0.01)] kPa" : "未密封"]"
+	output += "[span_bold("驾驶员：")] [english_list(chassis.return_drivers(), nothing_text = "无")]"
+	output += "[span_bold("当前位置：")] [get_area_name(chassis, TRUE) || "未知"]"
 
 	if(istype(chassis, /obj/vehicle/sealed/mecha/ripley))
 		var/obj/item/mecha_parts/mecha_equipment/ejector/cargo_holder = locate(/obj/item/mecha_parts/mecha_equipment/ejector) in chassis.equip_by_category[MECHA_UTILITY]
-		output += "[span_bold("Used Cargo Space:")] [round((cargo_holder.contents.len / cargo_holder.cargo_capacity * 100), 0.01)]%"
+		output += "[span_bold("已用货舱空间：")] [round((cargo_holder.contents.len / cargo_holder.cargo_capacity * 100), 0.01)]%"
 
 	return jointext(output, "\n")
 
@@ -122,12 +122,12 @@
 
 /obj/item/mecha_parts/mecha_tracking/try_attach_part(mob/user, obj/vehicle/sealed/mecha/mecha_to_attach, attach_right = FALSE)
 	if(!(mecha_to_attach.mecha_flags & flag_to_check))
-		to_chat(user, span_notice("[src] is incompatible with [mecha_to_attach]."))
+		to_chat(user, span_notice("[src] 与 [mecha_to_attach] 不兼容。"))
 		return
 
 	for(var/obj/item/mecha_parts/mecha_tracking/tracker as anything in mecha_to_attach.trackers)
 		if(tracker.flag_to_check == flag_to_check)
-			to_chat(user, span_notice("There already exists a version of [src] attached to [mecha_to_attach]."))
+			to_chat(user, span_notice("[mecha_to_attach] 上已经安装了 [src]。"))
 			return
 
 	if(!..())
@@ -155,8 +155,8 @@
 	recharging = FALSE
 
 /obj/item/mecha_parts/mecha_tracking/ai_control
-	name = "exosuit AI control beacon"
-	desc = "A device used to transmit exosuit data. Also allows active AI units to take control of said exosuit."
+	name = "机甲 AI 控制信标"
+	desc = "用于传输机甲数据的装置。同时允许活跃的 AI 单位接管该机甲。"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5, /datum/material/silver = SMALL_MATERIAL_AMOUNT * 2)
 	ai_beacon = TRUE
 	flag_to_check = BEACON_CONTROLLABLE

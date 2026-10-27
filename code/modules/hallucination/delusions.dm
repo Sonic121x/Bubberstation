@@ -102,7 +102,7 @@
 		hallucinator.client.images |= funny_image
 
 	if(play_wabbajack)
-		to_chat(hallucinator, span_hear("...wabbajack...wabbajack..."))
+		to_chat(hallucinator, span_hear("……瓦巴杰克……瓦巴杰克……"))
 		hallucinator.playsound_local(get_turf(hallucinator), 'sound/effects/magic/staff_change.ogg', 50, TRUE)
 
 	if(duration > 0)
@@ -209,7 +209,7 @@
 /datum/hallucination/delusion/preset/monkey
 	delusion_icon_file = 'icons/mob/human/human.dmi'
 	delusion_icon_state = "monkey"
-	delusion_name = "monkey"
+	delusion_name = "猴子"
 
 /datum/hallucination/delusion/preset/monkey/start()
 	delusion_name += " ([rand(1, 999)])"
@@ -218,32 +218,32 @@
 /datum/hallucination/delusion/preset/corgi
 	delusion_icon_file = 'icons/mob/simple/pets.dmi'
 	delusion_icon_state = "corgi"
-	delusion_name = "corgi"
+	delusion_name = "柯基"
 
 /datum/hallucination/delusion/preset/carp
 	delusion_icon_file = 'icons/mob/simple/carp.dmi'
 	delusion_icon_state = "carp"
-	delusion_name = "carp"
+	delusion_name = "鲤鱼"
 
 /datum/hallucination/delusion/preset/skeleton
 	delusion_icon_file = 'icons/mob/human/human.dmi'
 	delusion_icon_state = "skeleton"
-	delusion_name = "skeleton"
+	delusion_name = "骷髅"
 
 /datum/hallucination/delusion/preset/zombie
 	delusion_icon_file = 'icons/mob/human/human.dmi'
 	delusion_icon_state = "zombie"
-	delusion_name = "zombie"
+	delusion_name = "僵尸"
 
 /datum/hallucination/delusion/preset/demon
 	delusion_icon_file = 'icons/mob/simple/demon.dmi'
 	delusion_icon_state = "slaughter_demon"
-	delusion_name = "demon"
+	delusion_name = "恶魔"
 
 /datum/hallucination/delusion/preset/cyborg
 	delusion_icon_file = 'icons/mob/silicon/robots.dmi'
 	delusion_icon_state = "robot"
-	delusion_name = "cyborg"
+	delusion_name = "半机械人"
 	play_wabbajack = TRUE
 
 /datum/hallucination/delusion/preset/cyborg/make_delusion_image(mob/over_who)
@@ -253,7 +253,7 @@
 /datum/hallucination/delusion/preset/ghost
 	delusion_icon_file = 'icons/mob/simple/mob.dmi'
 	delusion_icon_state = "ghost"
-	delusion_name = "ghost"
+	delusion_name = "幽灵"
 	affects_others = TRUE
 
 /datum/hallucination/delusion/preset/ghost/make_delusion_image(mob/over_who)
@@ -265,7 +265,7 @@
 /datum/hallucination/delusion/preset/syndies
 	dynamic_delusion = TRUE
 	random_hallucination_weight = 1
-	delusion_name = "Syndicate"
+	delusion_name = "辛迪加"
 	affects_others = TRUE
 	affects_us = FALSE
 	hallucination_tier = HALLUCINATION_TIER_RARE
@@ -291,7 +291,7 @@
 /datum/hallucination/delusion/preset/seccies
 	dynamic_delusion = TRUE
 	random_hallucination_weight = 0
-	delusion_name = "Security"
+	delusion_name = "安保"
 	affects_others = TRUE
 	affects_us = FALSE
 
@@ -308,7 +308,7 @@
 /datum/hallucination/delusion/preset/mare
 	delusion_icon_file = 'icons/obj/clothing/masks.dmi'
 	delusion_icon_state = "horsehead"
-	delusion_name = "mare"
+	delusion_name = "母马"
 	affects_us = FALSE
 	affects_others = TRUE
 	random_hallucination_weight = 0
@@ -317,7 +317,7 @@
 /datum/hallucination/delusion/preset/moon
 	delusion_icon_file = 'icons/mob/nonhuman-player/eldritch_mobs.dmi'
 	delusion_icon_state = "moon_mass"
-	delusion_name = "moon"
+	delusion_name = "月亮"
 	duration = 15 SECONDS
 	affects_others = TRUE
 	random_hallucination_weight = 0
@@ -326,7 +326,7 @@
 /datum/hallucination/delusion/preset/heretic
 	dynamic_delusion = TRUE
 	random_hallucination_weight = 0
-	delusion_name = "Heretic"
+	delusion_name = "异教徒"
 	affects_others = TRUE
 	affects_us = FALSE
 	duration = 11 SECONDS
@@ -340,6 +340,6 @@
 	return ..()
 
 /datum/hallucination/delusion/preset/heretic/gate
-	delusion_name = "Mind Gate"
+	delusion_name = "心灵之门"
 	duration = 60 SECONDS
 	affects_us = TRUE

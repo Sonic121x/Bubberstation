@@ -30,12 +30,12 @@ GLOBAL_LIST_EMPTY(wizard_rain_reagents)
 
 /// admin verb to control thunder via the run_weather command
 GLOBAL_LIST_INIT(thunder_chance_options, list(
-	"Relentless - The Sky is Angry, Very Angry" = THUNDER_CHANCE_INSANE,
-	"Abundant - A shocking amount of thunder" = THUNDER_CHANCE_HIGH,
-	"Regular - Standard Storm Activity" = THUNDER_CHANCE_AVERAGE,
-	"Occasional - A polite amount of thunder" = THUNDER_CHANCE_RARE,
-	"Rare - Like finding a four-leaf clover, but in the sky" = THUNDER_CHANCE_VERY_RARE,
-	"None - Admin Safe Space (Thunder Disabled)" = 0,
+	"持续不断 - 天空震怒，怒不可遏" = THUNDER_CHANCE_INSANE,
+	"频繁 - 雷鸣多得令人震惊" = THUNDER_CHANCE_HIGH,
+	"正常 - 常规雷暴活动" = THUNDER_CHANCE_AVERAGE,
+	"偶尔 - 雷鸣适可而止" = THUNDER_CHANCE_RARE,
+	"罕见 - 犹如在天空中找到四叶草" = THUNDER_CHANCE_VERY_RARE,
+	"无 - 管理员安全区（禁用雷电）" = 0,
 ))
 
 //WEATHER FLAGS

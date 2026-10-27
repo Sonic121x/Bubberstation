@@ -1,7 +1,7 @@
 GLOBAL_DATUM(ctf_spawner, /obj/effect/landmark/ctf)
 
 /obj/effect/landmark/ctf
-	name = "CTF Map Spawner"
+	name = "CTF 地图生成点"
 	var/game_id = CTF_GHOST_CTF_GAME_ID
 	var/list/map_bounds
 
@@ -35,7 +35,7 @@ GLOBAL_DATUM(ctf_spawner, /obj/effect/landmark/ctf)
 		for(var/datum/map_template/ctf/map as anything in map_options)
 			var/mapname = initial(map.name)
 			map_choices[mapname] = map
-		chosen_map = tgui_input_list(user, "Select a map", "Choose CTF Map",list("Random")|sort_list(map_choices))
+		chosen_map = tgui_input_list(user, "选择一张地图", "选择 CTF 地图",list("Random")|sort_list(map_choices))
 		if (isnull(chosen_map))
 			return FALSE;
 		else
@@ -66,31 +66,31 @@ GLOBAL_DATUM(ctf_spawner, /obj/effect/landmark/ctf)
 
 /datum/map_template/ctf/classic
 	name = "Classic"
-	description = "The original CTF map."
+	description = "最初的 CTF 地图。"
 	mappath = "_maps/minigame/CTF/classic.dmm"
 
 /datum/map_template/ctf/four_side
 	name = "Four Side"
-	description = "A CTF map created to demonstrate 4 team CTF, features a single centred flag rather than one per team."
+	description = "一张为演示 4 队 CTF 而制作的地图，只有一面位于中央的旗帜，而不是每队各有一面。"
 	mappath = "_maps/minigame/CTF/fourSide.dmm"
 
 /datum/map_template/ctf/downtown
 	name = "Downtown"
-	description = "A CTF map that takes place in a terrestrial city."
+	description = "一张发生在地面城市中的 CTF 地图。"
 	mappath = "_maps/minigame/CTF/downtown.dmm"
 
 /datum/map_template/ctf/limbo
 	name = "Limbo"
-	description = "A KOTH map that takes place in a wizard den with looping hallways"
+	description = "一张发生在巫师巢穴中的 KOTH 地图，走廊首尾相连"
 	mappath = "_maps/minigame/CTF/limbo.dmm"
 	points_to_win = 180
 
 /datum/map_template/ctf/cruiser
 	name = "Crusier"
-	description = "A CTF map that takes place across multiple space ships, one carrying a powerful device that can accelerate those who obtain it"
+	description = "一张横跨多艘宇宙飞船的 CTF 地图，其中一艘载有一台强大的装置，能让获得它的人加速"
 	mappath = "_maps/minigame/CTF/cruiser.dmm"
 
 /datum/map_template/ctf/turbine
 	name = "Turbine"
-	description = "A CTF map that takes place in a familiar facility. Don't try to hold out mid- There's no sentries in this version."
+	description = "一张发生在熟悉的设施中的 CTF 地图。别想着死守中路——这个版本里没有哨兵。"
 	mappath = "_maps/minigame/CTF/turbine.dmm"

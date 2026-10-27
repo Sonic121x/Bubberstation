@@ -1,5 +1,5 @@
 
-#define TEXT_NO_TASTE "something indescribable"
+#define TEXT_NO_TASTE "某种难以名状的味道"
 
 //=============================== TASTE GRAPH ====================================
 //                                                                              //
@@ -70,12 +70,12 @@
 	var/list/taste_messages = list()
 
 	if(LAZYLEN(strong_tastes))
-		taste_messages += "the strong flavor of [english_list(strong_tastes, TEXT_NO_TASTE)]"
+		taste_messages += "[english_list(strong_tastes, TEXT_NO_TASTE)]的浓烈味道"
 	if(LAZYLEN(mild_tastes))
 		// Prefix "some " if there are strong flavors to avoid seeming like a strong flavor
-		taste_messages += "[LAZYLEN(strong_tastes) ? "some " : ""][english_list(mild_tastes, TEXT_NO_TASTE)]"
+		taste_messages += "[LAZYLEN(strong_tastes) ? "还有" : ""][english_list(mild_tastes, TEXT_NO_TASTE)]的淡淡味道"
 	if(LAZYLEN(weak_tastes))
-		taste_messages += "a hint of [english_list(weak_tastes, TEXT_NO_TASTE)]"
+		taste_messages += "[english_list(weak_tastes, TEXT_NO_TASTE)]的一丝气息"
 
 	return english_list(taste_messages, TEXT_NO_TASTE)
 

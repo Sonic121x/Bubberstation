@@ -3,29 +3,29 @@
 //Areas
 
 /area/awaymission/bmpship
-	name = "BMP Asteroids"
+	name = "BMP 小行星带"
 	icon_state = "away"
 
 
 /area/awaymission/bmpship/aft
-	name = "Aft Block"
+	name = "后部区块"
 	icon_state = "away1"
 	requires_power = TRUE
 
 /area/awaymission/bmpship/midship
-	name = "Midship Block"
+	name = "中段区块"
 	icon_state = "away2"
 	requires_power = TRUE
 
 /area/awaymission/bmpship/fore
-	name = "Fore Block"
+	name = "前部区块"
 	icon_state = "away3"
 	requires_power = TRUE
 
 // crashedship corpse
 
 /obj/effect/mob_spawn/corpse/human/laborer
-	name = "Crashed Survey Ship Laborer"
+	name = "坠毁勘测船劳工"
 	outfit = /datum/outfit/survey_laborer
 
 /datum/outfit/survey_laborer
@@ -42,17 +42,17 @@
 // crashedship items
 
 /obj/item/paper/fluff/ruins/crashedship/scribbled
-	name = "scribbled note"
-	default_raw_text = "The next person who takes one of my screwdrivers gets stabbed with one. They are MINE. - Love, Madsen"
+	name = "潦草的便条"
+	default_raw_text = "下一个拿我螺丝刀的人，我就用螺丝刀捅他。它们是我的。——爱你们的，马德森"
 
 /obj/item/paper/fluff/ruins/crashedship/captains_log
-	name = "Captain's log entry"
-	default_raw_text = "This has got to be the least interesting assignment ever. We are about halfway through the planets we've got to survey and most of them are lifeless rocks. That being said, this next planet seems promising. \
-	Fighting demons beats fighting boredom!"
+	name = "舰长日志条目"
+	default_raw_text = "这绝对是我接过最无聊的任务。要勘测的行星我们大概走了一半，其中大多数都是没有生命的石头。话虽如此，下一颗行星看起来很有希望。 \
+	打恶魔总比打发无聊强！"
 
 /obj/item/paper/fluff/ruins/crashedship/old_diary
-	name = "Old Diary"
-	default_raw_text = "DEAR DIARY: So we was on route to survey some magma planet, rumored to be home to literal demons, when our pilot done smashed the ship right into the biggest space rock he could find. \
-	Perhaps he took the hell planet talk too seriously. I was nappin' in the emergency supplies closet so I'm not wise to the details. I did peek out the door to see the whole engineering section gone. \
-	It ain't long until the lights in here sap all the power, and I think I can get to our teleporter room without bein' sucked out into space. If I don't make it, give my stuff to charity."
+	name = "旧日记"
+	default_raw_text = "亲爱的日记：我们当时正在前往某颗熔岩行星勘测，据说那里真住着恶魔，结果我们的驾驶员把船一头撞进了他能找到的最大的太空岩石里。 \
+	也许他把那套地狱星球的说法太当真了。我当时正在应急物资柜里打盹，所以不清楚细节。我确实从门缝往外瞄了一眼，看到整个工程舱段都没了。 \
+	这里的灯用不了多久就会把电耗光，我想我应该能赶到传送室，而不至于被吸进太空。如果我没能成功，把我的东西捐给慈善机构。"
 

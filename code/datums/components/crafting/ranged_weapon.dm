@@ -1,5 +1,5 @@
 /datum/crafting_recipe/bola
-	name = "Bola"
+	name = "流星索"
 	result = /obj/item/restraints/legcuffs/bola
 	reqs = list(
 		/obj/item/restraints/handcuffs/cable = 1,
@@ -9,7 +9,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/gonbola
-	name = "Gonbola"
+	name = "贡多拉流星索"
 	result = /obj/item/restraints/legcuffs/bola/gonbola
 	reqs = list(
 		/obj/item/restraints/handcuffs/cable = 1,
@@ -20,7 +20,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/receiver
-	name = "Modular Rifle Receiver"
+	name = "模块化步枪机匣"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
 	result = /obj/item/weaponcrafting/receiver
 	reqs = list(
@@ -33,7 +33,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/riflestock
-	name = "Wooden Rifle Stock"
+	name = "木制步枪枪托"
 	tool_paths = list(/obj/item/hatchet)
 	result = /obj/item/weaponcrafting/stock
 	reqs = list(
@@ -44,7 +44,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/gun_maint_kit
-	name = "Makeshift Gun Maintenance Kit"
+	name = "简易枪械维护套件"
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER, TOOL_SCREWDRIVER)
 	result = /obj/item/gun_maintenance_supplies/makeshift
 	reqs = list(
@@ -57,7 +57,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/advancedegun
-	name = "Advanced Energy Gun"
+	name = "高级能量枪"
 	result = /obj/item/gun/energy/e_gun/nuclear
 	reqs = list(
 		/obj/item/gun/energy/e_gun = 1,
@@ -71,7 +71,7 @@
 	return ..()
 
 /datum/crafting_recipe/tempgun
-	name = "Temperature Gun"
+	name = "温控枪"
 	result = /obj/item/gun/energy/temperature
 	reqs = list(
 		/obj/item/gun/energy/disabler = 1,
@@ -85,7 +85,7 @@
 	return ..()
 
 /datum/crafting_recipe/beam_rifle
-	name = "Event Horizon Anti-Existential Beam Rifle"
+	name = "事件视界反存在光束步枪"
 	result = /obj/item/gun/energy/event_horizon
 	reqs = list(
 		/obj/item/assembly/signaler/anomaly/flux = 2,
@@ -98,7 +98,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/ebow
-	name = "Energy Crossbow"
+	name = "能量弩"
 	result = /obj/item/gun/energy/recharge/ebow/large
 	reqs = list(
 		/obj/item/gun/energy/recharge/kinetic_accelerator = 1,
@@ -120,7 +120,7 @@
 	return ..()
 
 /datum/crafting_recipe/laser/xraylaser
-	name = "X-ray Laser Gun"
+	name = "X射线激光枪"
 	result = /obj/item/gun/energy/laser/xray
 	reqs = list(
 		/obj/item/gun/energy/laser = 1,
@@ -130,7 +130,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/laser/hellgun
-	name = "Hellfire Laser Gun"
+	name = "地狱火激光枪"
 	result = /obj/item/gun/energy/laser/hellgun
 	reqs = list(
 		/obj/item/gun/energy/laser = 1,
@@ -140,7 +140,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/laser/ioncarbine
-	name = "Ion Carbine"
+	name = "离子卡宾枪"
 	result = /obj/item/gun/energy/ionrifle/carbine
 	reqs = list(
 		/obj/item/gun/energy/laser = 1,
@@ -150,7 +150,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/teslacannon
-	name = "Tesla Cannon"
+	name = "特斯拉炮"
 	result = /obj/item/gun/energy/tesla_cannon
 	reqs = list(
 		/obj/item/assembly/signaler/anomaly/flux = 1,
@@ -160,7 +160,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/improvised_pneumatic_cannon //Pretty easy to obtain but
-	name = "Pneumatic Cannon"
+	name = "气动炮"
 	result = /obj/item/pneumatic_cannon/ghetto
 	tool_behaviors = list(TOOL_WELDER, TOOL_WRENCH)
 	reqs = list(
@@ -172,7 +172,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/flamethrower
-	name = "Flamethrower"
+	name = "火焰喷射器"
 	result = /obj/item/flamethrower
 	reqs = list(
 		/obj/item/weldingtool = 1,
@@ -188,7 +188,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/pipegun
-	name = "Pipegun"
+	name = "土制管枪"
 	result = /obj/item/gun/ballistic/rifle/boltaction/pipegun/empty
 	reqs = list(
 		/obj/item/weaponcrafting/receiver = 1,
@@ -202,7 +202,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/pipepistol
-	name = "Pipe Pistol"
+	name = "土制管手枪"
 	result = /obj/item/gun/ballistic/rifle/boltaction/pipegun/pistol/empty
 	reqs = list(
 		/obj/item/weaponcrafting/receiver = 1,
@@ -218,7 +218,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/rebarxbow
-	name = "Heated Rebar Crossbow"
+	name = "加热式钢筋弩"
 	result = /obj/item/gun/ballistic/rifle/rebarxbow
 	reqs = list(
 		/obj/item/stack/rods = 6,
@@ -233,8 +233,8 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/rebarxbowforced
-	name = "Forced Rebar Crossbow"
-	desc = "A much quicker reload... for a chance of shooting yourself when you fire it."
+	name = "强制装填钢筋弩"
+	desc = "装填速度快得多……代价是开火时可能射中自己。"
 	result = /obj/item/gun/ballistic/rifle/rebarxbow/forced
 	reqs = list(
 		/obj/item/gun/ballistic/rifle/rebarxbow = 1,
@@ -248,7 +248,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/pipegun_prime
-	name = "Regal Pipegun"
+	name = "皇家管枪"
 	result = /obj/item/gun/ballistic/rifle/boltaction/pipegun/prime/empty
 	reqs = list(
 		/obj/item/gun/ballistic/rifle/boltaction/pipegun = 1,
@@ -265,7 +265,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/deagle_prime //When you factor in the makarov (7 tc), the toolbox (1 tc), and the emag (3 tc), this comes to a total of 18 TC or thereabouts. Igorning the 20k pricetag, obviously.
-	name = "Regal Condor"
+	name = "皇家秃鹫"
 	result = /obj/item/gun/ballistic/automatic/pistol/deagle/regal/no_mag
 	reqs = list(
 		/obj/item/gun/ballistic/automatic/pistol = 1,
@@ -290,7 +290,7 @@
 	return ..()
 
 /datum/crafting_recipe/deagle_prime_mag
-	name = "Regal Condor Magazine (.45 Reaper)"
+	name = "皇家秃鹫弹匣（.45收割者）"
 	result = /obj/item/ammo_box/magazine/r45
 	reqs = list(
 		/obj/item/stack/sheet/iron = 10,
@@ -311,7 +311,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/pipe_organ_gun
-	name = "Pipe Organ Gun"
+	name = "管风琴枪"
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER)
 	result = /obj/structure/mounted_gun/organ_gun
 	reqs = list(
@@ -327,7 +327,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY
 
 /datum/crafting_recipe/ratvarian_repeater
-	name = "Emplaced Ratvarian Repeater"
+	name = "固定式拉特瓦连发弩"
 	tool_behaviors = list(TOOL_SCREWDRIVER,TOOL_WRENCH)
 	result = /obj/structure/mounted_gun/ratvarian_repeater
 	reqs = list(
@@ -343,7 +343,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY
 
 /datum/crafting_recipe/detached_ratvarian_repeater
-	name = "Iconoclast's Repeater"
+	name = "破像者连发弩"
 	tool_behaviors = list(TOOL_WELDER)
 	result = /obj/item/gun/energy/laser/musket/repeater
 	structures = list(
@@ -355,7 +355,7 @@
 
 
 /datum/crafting_recipe/large_ballista
-	name = "Improvised Ballista"
+	name = "简易弩炮"
 	tool_behaviors = list(TOOL_WELDER,TOOL_SCREWDRIVER,TOOL_WRENCH,TOOL_WIRECUTTER)
 	result = /obj/structure/mounted_gun/ballista
 	reqs = list(
@@ -368,7 +368,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY
 
 /datum/crafting_recipe/trash_cannon
-	name = "Trash Cannon"
+	name = "垃圾炮"
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER)
 	result = /obj/structure/cannon/trash
 	reqs = list(
@@ -382,7 +382,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/laser_musket
-	name = "Laser Musket"
+	name = "激光火枪"
 	result = /obj/item/gun/energy/laser/musket
 	reqs = list(
 		/obj/item/weaponcrafting/stock = 1,
@@ -397,7 +397,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/laser_musket_prime
-	name = "Heroic Laser Musket"
+	name = "英雄激光火枪"
 	result = /obj/item/gun/energy/laser/musket/prime
 	reqs = list(
 		/obj/item/gun/energy/laser/musket = 1,
@@ -413,7 +413,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/smoothbore_disabler
-	name = "Smoothbore Disabler"
+	name = "滑膛失能枪"
 	result = /obj/item/gun/energy/disabler/smoothbore
 	reqs = list(
 		/obj/item/weaponcrafting/stock = 1, //it becomes the grip
@@ -428,7 +428,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/smoothbore_disabler_prime
-	name = "Elite Smoothbore Disabler"
+	name = "精英滑膛失能枪"
 	result = /obj/item/gun/energy/disabler/smoothbore/prime
 	reqs = list(
 		/obj/item/gun/energy/disabler/smoothbore = 1,
@@ -442,7 +442,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/shortbow
-	name = "Shortbow"
+	name = "短弓"
 	result = /obj/item/gun/ballistic/bow/shortbow
 	reqs = list(
 		/obj/item/stack/sheet/mineral/wood = 4,
@@ -457,7 +457,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/ashenbow
-	name = "Ashen Bow"
+	name = "灰烬弓"
 	result = /obj/item/gun/ballistic/bow/ashenbow
 	reqs = list(
 		/obj/item/stack/sheet/bone = 6,
@@ -468,7 +468,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/photoncannon
-	name = "Photon Cannon"
+	name = "光子炮"
 	result = /obj/item/gun/energy/photon
 	reqs = list(
 		/obj/item/assembly/signaler/anomaly/flux = 1,
@@ -478,7 +478,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/sks
-	name = "Sakhno SKS semi-automatic rifle"
+	name = "萨赫诺SKS半自动步枪"
 	result = /obj/item/gun/ballistic/rifle/sks/empty
 	reqs = list(
 		/obj/item/weaponcrafting/stock = 1,
@@ -490,7 +490,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/dimensional_bombcore
-	name = "Multi-Dimensional Payload"
+	name = "多维载荷"
 	result = /obj/item/bombcore/dimensional
 	reqs = list(
 		/obj/item/gibtonite = 1,
@@ -501,5 +501,5 @@
 	time = 12 SECONDS
 	category = CAT_WEAPON_RANGED
 	steps = list(
-		"use high quality gibtonite and advanced release or large grenades for better yield",
+		"使用高品质爆裂矿及高级释放型或大型手榴弹以提高威力",
 	)

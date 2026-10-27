@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/decoration
 	name = "decoration loot spawner"
-	desc = "Time for some bling bling."
+	desc = "该来点闪亮装饰了。"
 	icon_state = "lamp"
 
 /obj/effect/spawner/random/decoration/material

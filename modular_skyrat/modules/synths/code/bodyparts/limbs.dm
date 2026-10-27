@@ -10,18 +10,18 @@
 #define SYNTH_BURN_MODIFIER 1.0
 
 /// Exmaine text for Synth limb damage
-#define SYNTH_LIGHT_BRUTE_MSG "marred"
-#define SYNTH_MEDIUM_BRUTE_MSG "dented"
-#define SYNTH_HEAVY_BRUTE_MSG "falling apart"
+#define SYNTH_LIGHT_BRUTE_MSG "有刮痕"
+#define SYNTH_MEDIUM_BRUTE_MSG "有凹陷"
+#define SYNTH_HEAVY_BRUTE_MSG "濒临散架"
 
-#define SYNTH_LIGHT_BURN_MSG "scorched"
-#define SYNTH_MEDIUM_BURN_MSG "charred"
-#define SYNTH_HEAVY_BURN_MSG "smoldering"
+#define SYNTH_LIGHT_BURN_MSG "有焦痕"
+#define SYNTH_MEDIUM_BURN_MSG "烧焦"
+#define SYNTH_HEAVY_BURN_MSG "冒着余烟"
 
 // Synth bois!
 /obj/item/bodypart/head/synth
-	name = "android head"
-	desc = "A standard base for an androids head, filled with various cameras and sensors with an optional slot for a posi-interface."
+	name = "仿生人头部"
+	desc = "仿生人头部的标准底座，内有各种摄像头和传感器，并提供可选的正电子接口插槽。"
 	inhand_icon_state = "buildpipe"
 	icon_static = BODYPART_ICON_IPC
 	icon = BODYPART_ICON_IPC
@@ -63,7 +63,7 @@
 	bodypart_flags = BODYPART_UNHUSKABLE
 
 /datum/design/synth_head
-	name = "Android Head Base"
+	name = "仿生人头部底座"
 	id = "synth_head"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
@@ -81,8 +81,8 @@
 /// Synth Chest, custom EMP effects go here to avoid stacking multiple. If they're alive they'll always have this, the rest go to organs.
 // Restrict to Synths only to avoid Mind related issues
 /obj/item/bodypart/chest/synth
-	name = "android torso"
-	desc = "A heavily customized robotic torso designed for androids, an armored core in the center holds their logic core."
+	name = "仿生人躯干"
+	desc = "为仿生人高度定制的机械躯干，中央的装甲舱保护着逻辑核心。"
 	inhand_icon_state = "buildpipe"
 	icon_static = BODYPART_ICON_IPC
 	icon = BODYPART_ICON_IPC
@@ -127,7 +127,7 @@
 	)
 
 /datum/design/synth_chest
-	name = "Android Torso Base"
+	name = "仿生人躯干底座"
 	id = "synth_chest"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
@@ -161,10 +161,10 @@
 		))
 
 /obj/item/bodypart/arm/left/synth
-	name = "android left arm"
-	desc = "A custom limb designed for androids, customizable to a degree your wallet agrees with."
+	name = "仿生人左臂"
+	desc = "为仿生人设计的定制肢体，能定制到什么程度取决于你的钱包。"
 	limb_id = SPECIES_SYNTH
-	attack_verb_simple = list("slapped", "punched")
+	attack_verb_simple = list("掌掴", "拳击")
 	inhand_icon_state = "buildpipe"
 	icon_static = BODYPART_ICON_IPC
 	icon = BODYPART_ICON_IPC
@@ -203,7 +203,7 @@
 	bodypart_flags = BODYPART_UNHUSKABLE
 
 /datum/design/synth_l_arm
-	name = "Android Left Arm Base"
+	name = "仿生人左臂底座"
 	id = "synth_l_arm"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
@@ -218,9 +218,9 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /obj/item/bodypart/arm/right/synth
-	name = "android right arm"
-	desc = "A custom limb designed for androids, customizable to a degree your wallet agrees with."
-	attack_verb_simple = list("slapped", "punched")
+	name = "仿生人右臂"
+	desc = "为仿生人设计的定制肢体，能定制到什么程度取决于你的钱包。"
+	attack_verb_simple = list("掌掴", "拳击")
 	inhand_icon_state = "buildpipe"
 	icon_static = BODYPART_ICON_IPC
 	icon = BODYPART_ICON_IPC
@@ -261,7 +261,7 @@
 	bodypart_flags = BODYPART_UNHUSKABLE
 
 /datum/design/synth_r_arm
-	name = "Android Right Arm Base"
+	name = "仿生人右臂底座"
 	id = "synth_r_arm"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
@@ -276,9 +276,9 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /obj/item/bodypart/leg/left/synth
-	name = "android left leg"
-	desc = "A custom leg designed for androids, customizable to a degree your wallet agrees with."
-	attack_verb_simple = list("kicked", "stomped")
+	name = "仿生人左腿"
+	desc = "为仿生人设计的定制腿部，能定制到什么程度取决于你的钱包。"
+	attack_verb_simple = list("踢击", "踩踏")
 	inhand_icon_state = "buildpipe"
 	icon_static = BODYPART_ICON_IPC
 	icon = BODYPART_ICON_IPC
@@ -320,7 +320,7 @@
 	bodypart_flags = BODYPART_UNHUSKABLE
 
 /datum/design/synth_l_leg
-	name = "Android Plantigrade Left Leg Base"
+	name = "仿生人跖行左腿底座"
 	id = "synth_l_leg"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
@@ -335,9 +335,9 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /obj/item/bodypart/leg/right/synth
-	name = "android right leg"
-	desc = "A custom leg designed for androids, customizable to a degree your wallet agrees with."
-	attack_verb_simple = list("kicked", "stomped")
+	name = "仿生人右腿"
+	desc = "为仿生人设计的定制腿部，能定制到什么程度取决于你的钱包。"
+	attack_verb_simple = list("踢击", "踩踏")
 	inhand_icon_state = "buildpipe"
 	icon_static = BODYPART_ICON_IPC
 	icon = BODYPART_ICON_IPC
@@ -379,7 +379,7 @@
 	bodypart_flags = BODYPART_UNHUSKABLE
 
 /datum/design/synth_r_leg
-	name = "Android Plantigrade Right Leg Base"
+	name = "仿生人跖行右腿底座"
 	id = "synth_r_leg"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
@@ -404,7 +404,7 @@
 	check_mutant_compatability()
 
 /datum/design/synth_l_d_leg
-	name = "Android Digitigrade Left Leg Base"
+	name = "仿生人趾行左腿底座"
 	id = "synth_l_d_leg"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
@@ -429,7 +429,7 @@
 	check_mutant_compatability()
 
 /datum/design/synth_r_d_leg
-	name = "Android Digitigrade Right Leg Base"
+	name = "仿生人趾行右腿底座"
 	id = "synth_r_d_leg"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS

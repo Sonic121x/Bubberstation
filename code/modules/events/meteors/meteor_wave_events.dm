@@ -1,14 +1,14 @@
 // Normal strength
 
 /datum/round_event_control/meteor_wave
-	name = "Meteor Wave: Normal"
+	name = "陨石波：普通"
 	typepath = /datum/round_event/meteor_wave
 	weight = 4
 	min_players = 15
 	max_occurrences = 3
 	earliest_start = 25 MINUTES
 	category = EVENT_CATEGORY_SPACE
-	description = "A regular meteor wave."
+	description = "一场普通的陨石波。"
 	map_flags = EVENT_SPACE_ONLY
 
 /datum/round_event/meteor_wave
@@ -50,42 +50,42 @@
 			kill()
 
 /datum/round_event/meteor_wave/announce(fake)
-	priority_announce("Meteors have been detected on collision course with the station.", "Meteor Alert", ANNOUNCER_METEORS)
+	priority_announce("检测到陨石正沿碰撞航线飞向空间站。", "陨石警报", ANNOUNCER_METEORS)
 
 /datum/round_event/meteor_wave/tick()
 	if(ISMULTIPLE(activeFor, 3))
 		spawn_meteors(5, wave_type) //meteor list types defined in gamemode/meteor/meteors.dm
 
 /datum/round_event_control/meteor_wave/threatening
-	name = "Meteor Wave: Threatening"
+	name = "陨石波：威胁级"
 	typepath = /datum/round_event/meteor_wave/threatening
 	weight = 5
 	min_players = 20
 	max_occurrences = 3
 	earliest_start = 35 MINUTES
-	description = "A meteor wave with higher chance of big meteors."
+	description = "一场出现大型陨石概率更高的陨石波。"
 
 /datum/round_event/meteor_wave/threatening
 	wave_name = "threatening"
 
 /datum/round_event_control/meteor_wave/catastrophic
-	name = "Meteor Wave: Catastrophic"
+	name = "陨石波：灾难级"
 	typepath = /datum/round_event/meteor_wave/catastrophic
 	weight = 7
 	min_players = 25
 	max_occurrences = 3
 	earliest_start = 45 MINUTES
-	description = "A meteor wave that might summon a tunguska class meteor."
+	description = "一场可能召唤通古斯级陨石的陨石波。"
 
 /datum/round_event/meteor_wave/catastrophic
 	wave_name = "catastrophic"
 
 /datum/round_event_control/meteor_wave/meaty
-	name = "Meteor Wave: Meaty"
+	name = "陨石波：肉块"
 	typepath = /datum/round_event/meteor_wave/meaty
 	weight = 2
 	max_occurrences = 1
-	description = "A meteor wave made of meat."
+	description = "一场由肉组成的陨石波。"
 
 /datum/round_event/meteor_wave/meaty
 	wave_name = "meaty"
@@ -96,10 +96,10 @@
 */// BUBBER EDIT REMOVAL FINISH
 
 /datum/round_event_control/meteor_wave/dust_storm
-	name = "Major Space Dust"
+	name = "大型太空尘埃"
 	typepath = /datum/round_event/meteor_wave/dust_storm
 	weight = 14
-	description = "The station is pelted by sand."
+	description = "空间站被沙尘拍打。"
 	earliest_start = 15 MINUTES
 	min_wizard_trigger_potency = 4
 	max_wizard_trigger_potency = 7
@@ -111,24 +111,24 @@
 /datum/round_event/meteor_wave/dust_storm/announce(fake)
 	var/list/reasons = list()
 
-	reasons += "[station_name()] is passing through a debris cloud, expect minor damage \
-		to external fittings and fixtures."
+	reasons += "[station_name()] 正穿过一片碎片云，外部装置和配件 \
+		可能会出现轻微损伤。"
 
-	reasons += "Nanotrasen Superweapons Division is testing a new prototype \
-		[pick("field","projection","nova","super-colliding","reactive")] \
-		[pick("cannon","artillery","tank","cruiser","\[REDACTED\]")], \
-		some mild debris is expected."
+	reasons += "纳米传讯超级武器部正在测试一种新型原型 \
+		[pick("场域","投影","新星","超级碰撞","反应式")] \
+		[pick("加农炮","火炮","坦克","巡洋舰","\[已删节\]")]， \
+		预计会有少量轻微碎片。"
 
-	reasons += "A neighbouring station is throwing rocks at you. (Perhaps they've \
-		grown tired of your messages.)"
+	reasons += "邻近的空间站正在朝你们扔石头。（也许他们 \
+		已经受够了你发的消息。）"
 
-	reasons += "[station_name()]'s orbit is passing through a cloud of remnants from an asteroid \
-		mining operation. Minor hull damage is to be expected."
+	reasons += "[station_name()] 的轨道正穿过一片来自小行星 \
+		采矿作业的残骸云。预计会出现轻微的船体损伤。"
 
-	reasons += "A large meteoroid on intercept course with [station_name()] has been demolished. \
-		Residual debris may impact the station exterior."
+	reasons += "一颗正拦截 [station_name()] 的大型流星体已被摧毁。 \
+		残留碎片可能会撞击空间站外壳。"
 
-	reasons += "[station_name()] has hit a particularly rough patch of space. \
-		Please mind any turbulence or damage from debris."
+	reasons += "[station_name()] 撞上了一片格外崎岖的太空区域。 \
+		请注意可能出现的颠簸或碎片造成的损伤。"
 
-	priority_announce(pick(reasons), "Collision Alert")
+	priority_announce(pick(reasons), "碰撞警报")
