@@ -1,5 +1,5 @@
 /datum/quirk/bodytemp
-	name = "异常体温"
+	name = "Abnormal body temperature"
 	desc = "你的体温与你所属种族的基础值不同，会向上或向下偏移一定幅度。不建议与冷血种族搭配选取。该特质可在 -40 到 +70 之间调整；由于你被送往空间站的方式，取极端数值时可能会造成轻度烧伤。"
 	value = 0
 	gain_text = span_danger("你的体温感觉不太对劲。")

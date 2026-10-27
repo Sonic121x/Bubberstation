@@ -2,7 +2,7 @@
 	name = "MKUltra"
 	description = "一种丝绒般醇厚的物质，一旦摄入，会增强其创造者声音对那些受其影响者的吸引力。"
 	color = "#660015"
-	taste_description = "合成巧克力，酒精的底调，以及玫瑰的高音"
+	taste_description = "合成巧克力、淡淡酒香和鲜明的玫瑰香"
 	metabolization_rate = REAGENTS_METABOLISM * 0.4
 	overdose_threshold = 50
 	ph = 10

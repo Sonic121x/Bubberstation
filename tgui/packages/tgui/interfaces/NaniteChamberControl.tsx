@@ -11,8 +11,8 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import * as nanite from '../localization/zhNaniteDisplay';
 import type { NaniteProgram } from './Nanites/types';
-
 export const NaniteChamberControl = (props, context) => {
   return (
     <Window width={380} height={570}>
@@ -230,9 +230,9 @@ export const NaniteChamberControlContent = () => {
                           {extra_settings.map((extra_setting) => (
                             <LabeledList.Item
                               key={extra_setting.name}
-                              label={extra_setting.name}
+                              label={nanite.display(extra_setting.name)}
                             >
-                              {extra_setting.value}
+                              {nanite.value(extra_setting)}
                             </LabeledList.Item>
                           ))}
                         </LabeledList>

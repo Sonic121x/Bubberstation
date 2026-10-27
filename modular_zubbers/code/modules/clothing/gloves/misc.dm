@@ -99,7 +99,7 @@
 
 //Metrocop Gloves by ... Dun dun dun, HL13 station.
 /obj/item/clothing/gloves/color/black/security/metrocop
-	name = "大都会警察手套"
+	name = "都市警察手套"
 	desc = "现在你可以捡起那个罐子了！采用先进的 GigaSlop 品牌矩阵，可实现不同变体！"
 	icon = 'modular_zubbers/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
@@ -113,11 +113,11 @@
 	abstract_type = /datum/atom_skin/metrocop_gloves
 
 /datum/atom_skin/metrocop_gloves/metro_cop
-	preview_name = "大都会警察"
+	preview_name = "Metro Cop"
 	new_icon_state = "civilprotection"
 
 /datum/atom_skin/metrocop_gloves/overwatch
-	preview_name = "监管者"
+	preview_name = "Overwatch"
 	new_icon_state = "overwatch"
 
 //MGS stuff sprited by Crumpaloo for onlyplateau, please credit when porting, which you obviously have permission to do.

@@ -71,7 +71,7 @@
 
 	var/important = job_is_CMD_or_SEC()
 	if(important)
-		if(tgui_alert(usr, "你是安保和/或指挥部成员，签出前请务必先 ahelp！如果你之后想重新签入，需要去找人事主管或安保主管。你确定要继续吗？", "[src]", list("No", "Yes")) != "Yes")
+		if(tgui_alert(usr, "你是安保和/或指挥部成员，签出前请务必先 ahelp！如果你之后想重新签入，需要去找人事主管或安保主管。你确定要继续吗？", "[src]", list("否", "是")) != "是")
 			return FALSE
 
 	if(istype(authenticated_card.trim, /datum/id_trim/job/prisoner))
@@ -93,7 +93,7 @@
 	SSjob.FreeRole(clocked_out_job.title)
 
 	var/obj/machinery/announcement_system/system = pick(GLOB.announcement_systems)
-	system.broadcast("[authenticated_card.registered_name]，[current_assignment] 已下班。", list())
+	system.broadcast("[authenticated_card.registered_name]，[chinese_job_display(current_assignment)] 已下班。", list())
 	computer.update_static_data_for_all_viewers()
 
 	SSid_access.apply_trim_to_card(authenticated_card, target_trim, TRUE)
@@ -117,7 +117,7 @@
 
 	var/datum/job/clocked_in_job = id_component.stored_trim.job
 	if(!SSjob.OccupyRole(clocked_in_job.title))
-		computer.say("[capitalize(clocked_in_job.title)] 没有空闲岗位，无法签入！")
+		computer.say("[chinese_job_display(clocked_in_job.title)] 没有空闲岗位，无法签入！")
 		return FALSE
 
 
@@ -128,7 +128,7 @@
 	message_admins("[ADMIN_LOOKUPFLW(usr)] 签到职位：[authenticated_card.get_trim_assignment()]。")
 
 	var/obj/machinery/announcement_system/system = pick(GLOB.announcement_systems)
-	system.broadcast("[authenticated_card.registered_name] 已回到岗位 [authenticated_card.assignment]。", list())
+	system.broadcast("[authenticated_card.registered_name] 已回到岗位 [chinese_job_display(authenticated_card.assignment)]。", list())
 	GLOB.manifest.modify(authenticated_card.registered_name, authenticated_card.assignment, authenticated_card.get_trim_assignment())
 
 	qdel(id_component)
@@ -304,12 +304,12 @@
 	data["stationAlertLevel"] = SSsecurity_level.get_current_level_as_text()
 	if(authenticated_card)
 		data["authIDName"] = authenticated_card.registered_name ? authenticated_card.registered_name : "-----"
-		data["authIDRank"] = authenticated_card.assignment ? authenticated_card.assignment : "未分配"
+		data["authIDRank"] = authenticated_card.assignment ? chinese_job_display(authenticated_card.assignment) : "未分配"
 		data["authCardHOPLocked"] = id_locked_check()
 		data["trimClockedOut"] = off_duty_check()
 		if(authenticated_card.trim)
 			var/datum/id_trim/card_trim = authenticated_card.trim
-			data["trimAssignment"] = card_trim.assignment ? card_trim.assignment : ""
+			data["trimAssignment"] = card_trim.assignment ? chinese_job_display(card_trim.assignment) : ""
 		else
 			data["trimAssignment"] = ""
 	else

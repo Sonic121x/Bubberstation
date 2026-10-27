@@ -135,7 +135,7 @@
 		to_chat(ghost, "[from_link] " + span_purple("<b>\[心灵感应\]</b> [from_mob_name] 传达：“[message]”") + " 至 [to_mob_name] [to_link]")
 
 /datum/quirk/telepathic
-	name = "心灵感应"
+	name = "Telepathic"
 	desc = "你能将自己的思绪传送给其他活着的生物。"
 	gain_text = span_purple("你的心智翻涌着灵能。")
 	lose_text = span_notice("凡俗再度侵入你的思绪。")
@@ -176,7 +176,7 @@
 	return ..()
 
 /datum/quirk/psionic_dampener
-	name = "灵能抑制者"
+	name = "Psionic Dampener"
 	desc = "你的心智对灵能侵入有异常的抗性。心灵感应通讯无法抵达你。"
 	gain_text = span_notice("只有你自己的思绪在心间回响；他人的低语尽数归于沉寂。")
 	lose_text = span_purple("远方异己思绪的嗡鸣再度归来，轻轻拂过你自己的思绪。")

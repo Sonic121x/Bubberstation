@@ -6,7 +6,7 @@
 	abstract_type = /datum/atom_skin/c4
 
 /datum/atom_skin/c4/moth
-	preview_name = "飞蛾"
+	preview_name = "Moth"
 	new_icon = 'modular_zubbers/icons/obj/equipment/mothbomb.dmi'
 	new_icon_state = "moffplush_bomb"
 

@@ -18,31 +18,31 @@
 	abstract_type = /datum/atom_skin/metrocop_helmet
 
 /datum/atom_skin/metrocop_helmet/metrocop
-	preview_name = "大都会警察"
+	preview_name = "Metrocop"
 	new_icon_state = "metrocopHelm"
 
 /datum/atom_skin/metrocop_helmet/medical
-	preview_name = "医疗警察"
+	preview_name = "Medical Cop"
 	new_icon_state = "medicalofficer"
 
 /datum/atom_skin/metrocop_helmet/green
-	preview_name = "绿色"
+	preview_name = "Green"
 	new_icon_state = "overseer"
 
 /datum/atom_skin/metrocop_helmet/puppet
-	preview_name = "傀儡"
+	preview_name = "Puppet"
 	new_icon_state = "dv_mask"
 
 /datum/atom_skin/metrocop_helmet/overwatch_white
-	preview_name = "白色监管者"
+	preview_name = "White Overwatch"
 	new_icon_state = "overwatch_white"
 
 /datum/atom_skin/metrocop_helmet/overwatch
-	preview_name = "监管者"
+	preview_name = "Overwatch"
 	new_icon_state = "overwatch"
 
 /datum/atom_skin/metrocop_helmet/overwatch_red
-	preview_name = "红色监管者"
+	preview_name = "Red Overwatch"
 	new_icon_state = "overwatch_red"
 
 /obj/item/clothing/head/helmet/abductor/fake
@@ -242,7 +242,7 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/bitrunner
-	name = "比特跑者兔耳"
+	name = "比特潜行者兔耳"
 	desc = "黑金双色，还沾着太空山地的污渍。卡罗塔电子竞技队的官方佩戴款。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "bitrunner"

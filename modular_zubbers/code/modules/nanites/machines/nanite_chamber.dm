@@ -93,7 +93,7 @@
 	set_busy(TRUE, "正在初始化清理协议……", "[initial(icon_state)]_raising")
 	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "正在分析宿主的生物结构……", "[initial(icon_state)]_active"), 20)
 	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "正在呼叫纳米机器人……", "[initial(icon_state)]_active"), 40)
-	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "正在启动优雅自毁程序……", "[initial(icon_state)]_active"), 70)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "正在启动有序自毁程序……", "[initial(icon_state)]_active"), 70)
 	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "正在清理残骸……", "[initial(icon_state)]_falling"), 110)
 	addtimer(CALLBACK(src, PROC_REF(complete_removal), locked_state), 130)
 

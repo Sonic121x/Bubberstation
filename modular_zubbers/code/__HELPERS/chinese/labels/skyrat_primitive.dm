@@ -30,8 +30,8 @@
 	return labels[value] || value
 
 /proc/chinese_skyrat_plant_skin_display(value, atom/target)
-	if(!istype(target, /obj/item/storage/bag/plants))
-		return value
+	if(!istype(target, /obj/item/storage/bag/plants) && !ispath(target, /obj/item/storage/bag/plants))
+		return chinese_zubbers_reskin_display(value)
 	var/static/list/labels = list("Original" = "原版", "Linen" = "亚麻")
 	return labels[value] || value
 

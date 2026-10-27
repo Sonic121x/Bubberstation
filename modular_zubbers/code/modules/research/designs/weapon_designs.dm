@@ -196,7 +196,7 @@
 /datum/design/m9mm_sec
 	name = "弹匣（9x25mm 墨菲）（致命）"
 	desc = "专为 9mm“墨菲”制式手枪的插拔装填而设计。更强的弹簧意味着更快的装填——那位把弹匣扔得砸碎窗户的警官也因此升职，\
-		而正是这一扔启发了研发团队进一步改进抛壳速度。"
+		而正是这一扔启发了研发团队进一步改进弹匣弹出速度。"
 	id = "m9mm_sec"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(

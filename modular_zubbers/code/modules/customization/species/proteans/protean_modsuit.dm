@@ -205,10 +205,10 @@
 	var/mob/living/carbon/human/protean_in_suit = protean_core?.linked_species.owner
 	var/obj/item/organ/brain/protean/brain = protean_core?.linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
 	var/obj/item/organ/stomach/protean/refactory = protean_core.linked_species.owner.get_organ_slot(ORGAN_SLOT_STOMACH)
-	var/t_He = protean_in_suit.p_They()
-	var/t_him = protean_in_suit.p_them()
-	var/t_has = protean_in_suit.p_have()
-	var/t_is = protean_in_suit.p_are()
+	// Chinese examine text does not require a subject pronoun.
+	// Chinese examine text does not require an object pronoun.
+	// Chinese examine text does not require a conjugated possession verb.
+	// Chinese examine text does not require a conjugated copula.
 	if(!isnull(brain) || istype(brain))
 		if(brain.dead)
 			if(!open)

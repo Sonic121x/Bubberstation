@@ -41,23 +41,23 @@
 	abstract_type = /datum/atom_skin/metrocop
 
 /datum/atom_skin/metrocop/metro
-	preview_name = "地铁警察"
+	preview_name = "MetroCop"
 	new_icon_state = "civilprotection"
 
 /datum/atom_skin/metrocop/red
-	preview_name = "红色"
+	preview_name = "Red"
 	new_icon_state = "divisionallead"
 
 /datum/atom_skin/metrocop/overwatch_white
-	preview_name = "白色守望"
+	preview_name = "White Overwatch"
 	new_icon_state = "overwatch_white"
 
 /datum/atom_skin/metrocop/overwatch
-	preview_name = "守望"
+	preview_name = "Overwatch"
 	new_icon_state = "overwatch"
 
 /datum/atom_skin/metrocop/overwatch_red
-	preview_name = "红色守望"
+	preview_name = "Red Overwatch"
 	new_icon_state = "overwatch_red"
 
 //MGS stuff sprited by Crumpaloo for onlyplateau, please credit when porting, which you obviously have permission to do.

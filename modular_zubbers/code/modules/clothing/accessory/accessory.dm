@@ -49,55 +49,55 @@
 	abstract_type = /datum/atom_skin/medal
 
 /datum/atom_skin/medal/bronze
-	preview_name = "青铜"
+	preview_name = "Bronze"
 	new_icon_state = "bronze"
 
 /datum/atom_skin/medal/bronze_heart
-	preview_name = "青铜之心"
+	preview_name = "Bronze Heart"
 	new_icon_state = "bronze_heart"
 
 /datum/atom_skin/medal/silver
-	preview_name = "白银"
+	preview_name = "Silver"
 	new_icon_state = "silver"
 
 /datum/atom_skin/medal/gold
-	preview_name = "黄金"
+	preview_name = "Gold"
 	new_icon_state = "gold"
 
 /datum/atom_skin/medal/plasma
-	preview_name = "等离子"
+	preview_name = "Plasma"
 	new_icon_state = "plasma"
 
 /datum/atom_skin/medal/cargo
-	preview_name = "货运"
+	preview_name = "Cargo"
 	new_icon_state = "cargo"
 
 /datum/atom_skin/medal/paperwork
-	preview_name = "文书"
+	preview_name = "Paperwork"
 	new_icon_state = "medal_paperwork"
 
 /datum/atom_skin/medal/medical_second_class
-	preview_name = "二级医疗"
+	preview_name = "Medical Second Class"
 	new_icon_state = "med_medal"
 
 /datum/atom_skin/medal/medical_first_class
-	preview_name = "一级医疗"
+	preview_name = "Medical First Class"
 	new_icon_state = "med_medal2"
 
 /datum/atom_skin/medal/atmosian
-	preview_name = "大气人"
+	preview_name = "Atmosian"
 	new_icon_state = "elderatmosian"
 
 /datum/atom_skin/medal/emergency_general
-	preview_name = "应急服务 - 通用"
+	preview_name = "Emergency Service - General"
 	new_icon_state = "emergencyservices"
 
 /datum/atom_skin/medal/emergency_engineering
-	preview_name = "应急服务 - 工程"
+	preview_name = "Emergency Service - Engineering"
 	new_icon_state = "emergencyservices_engi"
 
 /datum/atom_skin/medal/emergency_medical
-	preview_name = "应急服务 - 医疗"
+	preview_name = "Emergency Service - Medical"
 	new_icon_state = "emergencyservices_med"
 
 // Pride Pin Over-ride
@@ -113,51 +113,51 @@
 	abstract_type = /datum/atom_skin/pride
 
 /datum/atom_skin/pride/rainbow
-	preview_name = "彩虹骄傲"
+	preview_name = "Rainbow Pride"
 	new_icon_state = "pride"
 
 /datum/atom_skin/pride/bisexual
-	preview_name = "双性恋骄傲"
+	preview_name = "Bisexual Pride"
 	new_icon_state = "pride_bi"
 
 /datum/atom_skin/pride/pansexual
-	preview_name = "泛性恋骄傲"
+	preview_name = "Pansexual Pride"
 	new_icon_state = "pride_pan"
 
 /datum/atom_skin/pride/asexual
-	preview_name = "无性恋骄傲"
+	preview_name = "Asexual Pride"
 	new_icon_state = "pride_ace"
 
 /datum/atom_skin/pride/nonbinary
-	preview_name = "非二元骄傲"
+	preview_name = "Non-binary Pride"
 	new_icon_state = "pride_enby"
 
 /datum/atom_skin/pride/transgender
-	preview_name = "跨性别骄傲"
+	preview_name = "Transgender Pride"
 	new_icon_state = "pride_trans"
 
 /datum/atom_skin/pride/intersex
-	preview_name = "间性骄傲"
+	preview_name = "Intersex Pride"
 	new_icon_state = "pride_intersex"
 
 /datum/atom_skin/pride/lesbian
-	preview_name = "女同性恋骄傲"
+	preview_name = "Lesbian Pride"
 	new_icon_state = "pride_lesbian"
 
 /datum/atom_skin/pride/mlm
-	preview_name = "男同性恋 / 男同骄傲"
+	preview_name = "Man-Loving-Man / Gay Pride"
 	new_icon_state = "pride_mlm"
 
 /datum/atom_skin/pride/genderfluid
-	preview_name = "性别流动骄傲"
+	preview_name = "Genderfluid Pride"
 	new_icon_state = "pride_genderfluid"
 
 /datum/atom_skin/pride/genderqueer
-	preview_name = "性别酷儿骄傲"
+	preview_name = "Genderqueer Pride"
 	new_icon_state = "pride_genderqueer"
 
 /datum/atom_skin/pride/aromantic
-	preview_name = "无浪漫倾向骄傲"
+	preview_name = "Aromantic Pride"
 	new_icon_state = "pride_aromantic"
 
 // Dogtags
@@ -216,8 +216,8 @@ GLOBAL_LIST_EMPTY_TYPED(all_assigned_protean_match_tags, /obj/item/clothing/acce
 			return
 		if(MATCHED)
 			var/obj/item/clothing/accessory/dogtags/protean_match/paired_tag = paired_tag_weakref?.resolve()
-			var/safety = (tgui_alert(user, "你目前与[paired_tag?.assignee_name]配对。确定要解除认领你的牌子吗？这将同时解除两枚牌子的认领。", "解除牌子认领？", list("Unclaim", "Cancel")))
-			if(safety == "Cancel" || !in_range(src, user))
+			var/safety = (tgui_alert(user, "你目前与[paired_tag?.assignee_name]配对。确定要解除认领你的牌子吗？这将同时解除两枚牌子的认领。", "解除牌子认领？", list("解除认领", "取消")))
+			if(safety == "取消" || !in_range(src, user))
 				return
 			to_chat(user, "你按下牌子上的按钮，与[paired_tag?.assignee_name]解除配对，并退出普罗蒂安配对候选池。")
 			playsound(src, "modular_skyrat/modules/emotes/sound/emotes/synth_no.ogg", 20, FALSE)
@@ -234,8 +234,8 @@ GLOBAL_LIST_EMPTY_TYPED(all_assigned_protean_match_tags, /obj/item/clothing/acce
 		return
 	if(match_progress == MATCHED)
 		var/obj/item/clothing/accessory/dogtags/protean_match/paired_tag = paired_tag_weakref?.resolve()
-		var/safety = (tgui_alert(user, "你目前与[paired_tag?.assignee_name]配对。确定要尝试与池中的其他人配对吗？这将解除对方牌子的认领。", "重新配对牌子？", list("Re-match", "Cancel")))
-		if(safety == "Cancel" || !in_range(src, user))
+		var/safety = (tgui_alert(user, "你目前与[paired_tag?.assignee_name]配对。确定要尝试与池中的其他人配对吗？这将解除对方牌子的认领。", "重新配对牌子？", list("重新配对", "取消")))
+		if(safety == "取消" || !in_range(src, user))
 			return
 		unassign()
 		assign(user) //This comes before the paired tag is unassigned so that it doesn't consider the existing pairing as a valid candidate
@@ -568,43 +568,43 @@ Potential future ideas:
 	abstract_type = /datum/atom_skin/glowcrystal
 
 /datum/atom_skin/glowcrystal/crystal
-	preview_name = "水晶"
+	preview_name = "Crystal"
 	new_icon_state = "necklace_crystal"
 
 /datum/atom_skin/glowcrystal/bar
-	preview_name = "条形"
+	preview_name = "Bar"
 	new_icon_state = "necklace_bar"
 
 /datum/atom_skin/glowcrystal/bar_hollow
-	preview_name = "空心条形"
+	preview_name = "Hollow Bar"
 	new_icon_state = "necklace_bar_hollow"
 
 /datum/atom_skin/glowcrystal/diamond
-	preview_name = "钻石"
+	preview_name = "Diamond"
 	new_icon_state = "necklace_diamond"
 
 /datum/atom_skin/glowcrystal/diamond_hollow
-	preview_name = "空心钻石"
+	preview_name = "Hollow Diamond"
 	new_icon_state = "necklace_diamond_hollow"
 
 /datum/atom_skin/glowcrystal/shard
-	preview_name = "碎片"
+	preview_name = "Shard"
 	new_icon_state = "necklace_shard"
 
 /datum/atom_skin/glowcrystal/shard_hollow
-	preview_name = "空心碎片"
+	preview_name = "Hollow Shard"
 	new_icon_state = "necklace_shard_hollow"
 
 /datum/atom_skin/glowcrystal/triangle
-	preview_name = "三角形"
+	preview_name = "Triangle"
 	new_icon_state = "necklace_triangle"
 
 /datum/atom_skin/glowcrystal/triangle_hollow
-	preview_name = "空心三角形"
+	preview_name = "Hollow Triangle"
 	new_icon_state = "necklace_triangle_hollow"
 
 /datum/atom_skin/glowcrystal/circle
-	preview_name = "圆形"
+	preview_name = "Circle"
 	new_icon_state = "necklace_circle"
 
 /*

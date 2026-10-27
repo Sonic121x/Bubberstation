@@ -149,7 +149,7 @@
 
 /datum/supply_pack/security/armory/archery_kit
 	name = "射箭箱"
-	desc = "两把能击破护甲的硬光弓，以及一批致命箭与失能（或较轻失能）箭。"
+	desc = "两把能击破护甲的硬光弓，以及一批致命、非致命和低致命性箭矢。"
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(
 		/obj/item/gun/ballistic/bow/security,

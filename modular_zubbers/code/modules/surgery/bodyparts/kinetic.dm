@@ -7,7 +7,7 @@
 	limb_id = BODYPART_ID_KINETIC
 	bodytype = BODYTYPE_KINETIC
 	should_draw_greyscale = FALSE
-	attack_verb_simple = list("bashed", "slashed")
+	attack_verb_simple = list("猛击", "劈砍")
 	unarmed_damage_low = 1
 	unarmed_damage_high = 5
 	unarmed_effectiveness = 0
@@ -31,7 +31,7 @@
 	limb_id = BODYPART_ID_KINETIC
 	bodytype = BODYTYPE_KINETIC
 	should_draw_greyscale = FALSE
-	attack_verb_simple = list("bashed", "slashed")
+	attack_verb_simple = list("猛击", "劈砍")
 	unarmed_damage_low = 1
 	unarmed_damage_high = 5
 	unarmed_effectiveness = 0

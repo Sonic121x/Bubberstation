@@ -69,10 +69,10 @@
 /datum/nanite_rule/cloud_sync
 	name = "云同步"
 	desc = "检查纳米机器人的云同步是否启用。"
-	var/check_type = "已启用"
+	var/check_type = "Enabled"
 
 /datum/nanite_rule/cloud_sync/check_rule()
-	if(check_type == "已启用")
+	if(check_type == "Enabled")
 		return program.nanites.cloud_active
 	else
 		return !program.nanites.cloud_active
@@ -82,7 +82,7 @@
 	rule.check_type = check_type
 
 /datum/nanite_rule/cloud_sync/display()
-	return "[name]：[check_type]"
+	return "[name]：[check_type == "Enabled" ? "已启用" : "已禁用"]"
 
 /datum/nanite_rule/nanites
 	name = "纳米机器人容量"
@@ -144,4 +144,4 @@
 	rule.damage_type = damage_type
 
 /datum/nanite_rule/damage/display()
-	return "[damage_type] [above ? ">" : "<"] [threshold]"
+	return "[chinese_nanite_damage_display(damage_type)] [above ? ">" : "<"] [threshold]"

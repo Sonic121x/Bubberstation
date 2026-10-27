@@ -71,7 +71,7 @@ GLOBAL_VAR_INIT(vitezstvi_home_dock_original, null)
 		home_port.forceMove(target)
 		// shuttle rotates to match its dock, so a random facing varies the angle of entry
 		home_port.setDir(pick(GLOB.cardinals))
-		GLOB.vitezstvi_crash_area_name = crash_area?.name || "一个未知的舱室"
+		GLOB.vitezstvi_crash_area_name = chinese_area_display(crash_area?.name) || "一个未知的舱室"
 		return TRUE
 	return FALSE
 

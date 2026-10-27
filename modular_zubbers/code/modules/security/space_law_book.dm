@@ -46,7 +46,7 @@
 		return
 	credit_book_to_reader(user)
 	if(user.client.byond_version < 516) //Remove this once 516 is stable
-		if(tgui_alert(user, "本书页面将在你的浏览器中打开。你确定吗？", "打开 Wiki", list("Yes", "No")) != "Yes")
+		if(tgui_alert(user, "本书页面将在你的浏览器中打开。你确定吗？", "打开 Wiki", list("是", "否")) != "是")
 			return
 		DIRECT_OUTPUT(user, link("[wiki_url]/[page_link]"))
 	else

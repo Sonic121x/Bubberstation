@@ -49,8 +49,8 @@
 	name = "加油站经理"
 	prompt_name = "一名加油站经理"
 	outfit = /datum/outfit/lavaland_gasstation/manager
-	you_are_text = "你是采矿设施附近一家蜥蜴加油站的部门经理。"
-	flavour_text = "在蜥蜴加油站工作多年终于有了回报，你被提升为分部经理！遗憾的是，你的雇主没意识到这一带有敌对的巨型生物和部落，所以务必确保你能保护自己和你的员工。另外，偶尔也要卖点东西给客人。"
+	you_are_text = "你是采矿设施附近一家蜥蜴加油站的分店经理。"
+	flavour_text = "在蜥蜴加油站工作多年终于有了回报，你被提升为分店经理！遗憾的是，你的雇主没意识到这一带有敌对的巨型生物和部落，所以务必确保你能保护自己和你的员工。另外，偶尔也要卖点东西给客人。"
 	important_text = "照顾好你的员工，他们无可替代！绝不要让工作场所受损！也不要弃之不顾！身为经理，你要以更高的标准要求自己。"
 
 /datum/outfit/lavaland_gasstation/manager

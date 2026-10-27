@@ -109,7 +109,7 @@
 // Borg Advanced Xenoarchaeology Bag
 
 /obj/item/borg/upgrade/xenoarch/adv
-	name = "半机械人高级异种考古袋"
+	name = "半机械人高级异星考古袋"
 	desc = "一种改进型收纳袋，用于为科研拾取奇异的岩石。"
 	icon_state = "module_general"
 	require_model = TRUE

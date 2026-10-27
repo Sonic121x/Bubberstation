@@ -13,8 +13,8 @@
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/iron= SMALL_MATERIAL_AMOUNT * 0.5)
-	attack_verb_continuous = list("bludgeons", "whacks", "disciplines", "pummels")
-	attack_verb_simple = list("bludgeon", "whack", "discipline", "pummel")
+	attack_verb_continuous = list("猛击", "敲打", "惩戒", "狠揍")
+	attack_verb_simple = list("猛击", "敲打", "惩戒", "狠揍")
 	hitsound = 'sound/items/weapons/genhit3.ogg'
 
 	//open umbrella offsets for the inhands
@@ -59,8 +59,8 @@
 		hitsound_on = "sound/weapons/genhit1.ogg", \
 		w_class_on = WEIGHT_CLASS_BULKY, \
 		clumsy_check = FALSE, \
-		attack_verb_continuous_on = list("swooshes", "whacks", "fwumps"), \
-		attack_verb_simple_on = list("swoosh", "whack", "fwump"), \
+		attack_verb_continuous_on = list("挥打", "敲打", "扑打"), \
+		attack_verb_simple_on = list("挥打", "敲打", "扑打"), \
 	)
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 

@@ -1,5 +1,5 @@
 /datum/species/ghoul
-	name = "\improper 血仆"
+	name = "\improper 食尸鬼"
 	id = SPECIES_GHOUL
 	examine_limb_id = SPECIES_GHOUL
 	can_have_genitals = FALSE

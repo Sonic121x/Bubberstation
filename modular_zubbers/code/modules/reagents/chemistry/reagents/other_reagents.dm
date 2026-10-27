@@ -145,8 +145,8 @@
 		"嗡嗡嗡。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/ghoul
-	name = "血仆突变毒素"
-	description = "一种血仆毒素。"
+	name = "食尸鬼突变毒素"
+	description = "一种食尸鬼毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/ghoul
 	taste_description = "腐肉"

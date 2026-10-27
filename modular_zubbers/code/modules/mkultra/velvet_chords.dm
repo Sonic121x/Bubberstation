@@ -1,5 +1,5 @@
 /obj/item/organ/vocal_cords/velvet
-	name = "天鹅绒和弦"
+	name = "天鹅绒声带"
 	desc = "这声音让你想要恍神、入睡并服从。"
 	icon = 'modular_zubbers/icons/obj/vocal_cords.dmi'
 	icon_state = "velvet_chords"
@@ -7,7 +7,7 @@
 	spans = list("velvet")
 
 /datum/action/item_action/organ_action/velvet
-	name = "天鹅绒和弦"
+	name = "天鹅绒声带"
 	desc = "以魅惑的语调说话。右键查看所有命令。"
 	var/obj/item/organ/vocal_cords/velvet/chords
 

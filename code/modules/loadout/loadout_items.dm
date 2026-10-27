@@ -604,8 +604,8 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	for(var/datum/atom_skin/skin_path as anything in reskin_choices)
 		var/datum/atom_skin/atom_skin = atom_skins[skin_path]
 		UNTYPED_LIST_ADD(reskins, list(
-			"name" = skin_path::new_name || skin_path::preview_name,
-			"tooltip" = skin_path::preview_name,
+			"name" = skin_path::preview_name,
+			"tooltip" = chinese_skyrat_plant_skin_display(skin_path::preview_name, item_path),
 			"skin_icon" = skin_path::new_icon,
 			"skin_icon_state" = atom_skin?.get_preview_icon_state() || skin_path::new_icon
 		))

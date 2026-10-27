@@ -1,5 +1,5 @@
 /datum/quirk/robot_limb_detach
-	name = "义体肢体接口"
+	name = "Cybernetic Limb Mounts"
 	desc = "只要状态良好，你就能毫不费力地拆下并重新装上任何已安装的机械肢体。以某个肢体为目标时右键点击自己即可将其拆下。"
 	gain_text = span_notice("内部传感器报告：肢体脱离协议已就绪，随时可用。")
 	lose_text = span_notice("错误：肢体脱离协议离线。")

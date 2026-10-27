@@ -249,7 +249,7 @@ export type PreferencesMenuData = {
   // SKYRAT EDIT
   job_alt_titles: Record<string, string>;
 
-  robotic_styles: string[];
+  robotic_styles: string[]; robotic_style_labels?: Record<string, string>;
   limbs_data: Limb[];
   organs_data: Organ[];
   marking_presets: string[];

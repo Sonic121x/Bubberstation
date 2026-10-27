@@ -14,11 +14,11 @@
 	abstract_type = /datum/atom_skin/clicker
 
 /datum/atom_skin/clicker/pink
-	preview_name = "粉色"
+	preview_name = "Pink"
 	new_icon_state = "clicker_pink"
 
 /datum/atom_skin/clicker/teal
-	preview_name = "青色"
+	preview_name = "Teal"
 	new_icon_state = "clicker_teal"
 
 /obj/item/clicker/proc/click(atom/source, mob/user)

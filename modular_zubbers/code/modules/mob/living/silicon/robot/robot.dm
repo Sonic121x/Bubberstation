@@ -51,7 +51,7 @@
 		. += list(list("[connected_robot.name]: ",
 			"结构完整度：[connected_robot.health]% | \
 			电池：[connected_robot.cell ? "[display_energy(connected_robot.cell.charge)]/[display_energy(connected_robot.cell.maxcharge)]" : "空"] | \
-			型号：[connected_robot.designation] | 位置：[get_area_name(connected_robot, TRUE)] | \
+			型号：[connected_robot.designation] | 位置：[chinese_area_display(get_area_name(connected_robot, TRUE))] | \
 			状态：[robot_status]",
 			"src=[REF(src)];track_cyborg=[text_ref(connected_robot)]",
 		))

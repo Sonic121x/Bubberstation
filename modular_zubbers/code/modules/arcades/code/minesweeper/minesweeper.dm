@@ -69,7 +69,7 @@
 
 	data["board_data"] = board.board_data
 	data["game_status"] = board.game_status
-	data["difficulty"] = board.diff_text(board.difficulty)
+	data["difficulty"] = list("Beginner", "Intermediate", "Expert", "Custom")[board.difficulty]
 	data["current_difficulty"] = board.current_difficulty
 	data["emagged"] = obj_flags & EMAGGED
 	data["flag_mode"] = board.flag_mode
@@ -218,7 +218,7 @@
 
 	data["board_data"] = board.board_data
 	data["game_status"] = board.game_status
-	data["difficulty"] = board.diff_text(board.difficulty)
+	data["difficulty"] = list("Beginner", "Intermediate", "Expert", "Custom")[board.difficulty]
 	data["current_difficulty"] = board.current_difficulty
 	data["emagged"] = FALSE
 	data["flag_mode"] = board.flag_mode

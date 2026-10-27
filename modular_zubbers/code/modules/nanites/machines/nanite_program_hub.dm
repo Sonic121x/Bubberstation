@@ -139,7 +139,7 @@
 		var/datum/design/nanites/D = SSresearch.techweb_design_by_id(i)
 		if(!istype(D))
 			continue
-		var/cat_name = D.category[1] //just put them in the first category fuck it
+		var/cat_name = chinese_nanite_category_display(D.category[1]) //just put them in the first category fuck it
 		if(isnull(data["programs"][cat_name]))
 			data["programs"][cat_name] = list()
 		var/list/program_design = list()

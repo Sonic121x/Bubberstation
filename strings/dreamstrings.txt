@@ -45,7 +45,7 @@
 %A% %ADJECTIVE% 矿工
 %A% %ADJECTIVE% 猴子
 %A% %ADJECTIVE% 怪物
-%A% %ADJECTIVE% 蛾族人
+%A% %ADJECTIVE% 蛾人
 %A% %ADJECTIVE% 梦魇
 %A% %ADJECTIVE% 忍者
 %A% %ADJECTIVE% 海洋
@@ -93,7 +93,7 @@
 纳米传讯
 波利
 运行时
-一些 %ADJECTIVE% 邪教徒
+一些 %ADJECTIVE% 血教徒
 一些 %ADJECTIVE% 恋人
 一些 %ADJECTIVE% 甜瓜
 一些 %ADJECTIVE% 陌生人

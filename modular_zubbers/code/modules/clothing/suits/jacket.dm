@@ -469,8 +469,8 @@
 	greyscale_colors = null
 
 /obj/item/clothing/suit/toggle/labcoat/research_director/tailcoat
-	name = "研究主管的燕尾服"
-	desc = "一件利落的紫色外套，由兔兔主题首席研究员穿着。它由缴获的绑架者技术制成，看似大衣，实为护肩投射出的高级全息影像。手感也和真品毫无二致。"
+	name = "科研主管的燕尾服"
+	desc = "一件利落的紫色外套，由兔兔主题科研主管穿着。它由缴获的绑架者技术制成，看似大衣，实为护肩投射出的高级全息影像。手感也和真品毫无二致。"
 	icon_state = "rd"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'

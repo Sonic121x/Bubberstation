@@ -131,7 +131,7 @@ function LoadoutModifyButtons(props: ButtonsProps) {
                         />
                       ) : (
                         // Should never happen, hopefully
-                        <Box>{reskin.name}</Box>
+                        <Box>{reskin.tooltip}</Box>
                       )}
                     </Button>
                   </Flex.Item>

@@ -15,8 +15,8 @@
 			required_count = 3
 			wanted_types = list(/obj/item/gun/ballistic/automatic/miecz = TRUE)
 		if(3)
-			name = "CIN 剩余护甲背心"
-			description = "胜利军械雇的承包商比它备着的护甲还多。送四件 CIN 剩余护甲背心过来，好让实习生们不必再轮流穿。"
+			name = "CIN 军剩护甲背心"
+			description = "胜利军械雇的承包商比它备着的护甲还多。送四件 CIN 军剩护甲背心过来，好让实习生们不必再轮流穿。"
 			required_count = 4
 			wanted_types = list(/obj/item/clothing/suit/armor/vest/cin_surplus_vest = TRUE)
 	return ..()

@@ -34,8 +34,8 @@
 		var/codename
 		if(loadme == "是！")
 			ninja.client?.prefs?.safe_transfer_prefs_to(ninja)
-			codename = tgui_input_text(ninja.client, "你的代号应该是什么？", "特工姓名", "[pick("Master", "Legendary", "Agent", "Shinobi", "Ninja")] [ninja.dna.species.name]", 42, FALSE, TRUE, 300 SECONDS)
-			codename ? codename : (codename = "[pick("Master", "Legendary", "Agent", "Shinobi", "Ninja")] [ninja.dna.species.name]")
+			codename = tgui_input_text(ninja.client, "你的代号应该是什么？", "特工姓名", "[pick("大师", "传奇", "特工", "隐忍", "忍者")] [chinese_footprint_species_display(ninja.dna.species.name)]", 42, FALSE, TRUE, 300 SECONDS)
+			codename ? codename : (codename = "[pick("大师", "传奇", "特工", "隐忍", "忍者")] [chinese_footprint_species_display(ninja.dna.species.name)]")
 			ninja.name = codename
 			ninja.real_name = codename
 			ninja.dna.update_dna_identity()

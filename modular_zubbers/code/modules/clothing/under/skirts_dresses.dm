@@ -52,15 +52,15 @@
 	greyscale_item_path = /obj/item/clothing/under/dress/bubber/midnight_gown
 
 /datum/atom_skin/midnight_gown/right
-	preview_name = "右侧"
+	preview_name = "Right"
 	new_icon_state = "midnight_right"
 
 /datum/atom_skin/midnight_gown/left
-	preview_name = "左侧"
+	preview_name = "Left"
 	new_icon_state = "midnight_left"
 
 /datum/atom_skin/midnight_gown/middle
-	preview_name = "中间"
+	preview_name = "Middle"
 	new_icon_state = "midnight_mid"
 
 /datum/atom_skin/giant_scarf
@@ -68,47 +68,47 @@
 	greyscale_item_path = /obj/item/clothing/under/dress/bubber/giant_scarf
 
 /datum/atom_skin/giant_scarf/giant_scarf
-	preview_name = "素色"
+	preview_name = "Plain"
 	new_icon_state = "giant_scarf"
 
 /datum/atom_skin/giant_scarf/giant_scarf_crystal
-	preview_name = "水晶"
+	preview_name = "Crystal"
 	new_icon_state = "giant_scarf_crystal"
 
 /datum/atom_skin/giant_scarf/giant_scarf_stripe
-	preview_name = "条纹"
+	preview_name = "Stripe"
 	new_icon_state = "giant_scarf_stripe"
 
 /datum/atom_skin/giant_scarf/giant_scarf_twotone
-	preview_name = "双色"
+	preview_name = "Two-tone"
 	new_icon_state = "giant_scarf_twotone"
 
 /datum/atom_skin/giant_scarf/giant_scarf_arrow
-	preview_name = "箭头"
+	preview_name = "Arrow"
 	new_icon_state = "giant_scarf_arrow"
 
 /datum/atom_skin/giant_scarf/giant_scarf_fancy
-	preview_name = "华丽"
+	preview_name = "Fancy"
 	new_icon_state = "giant_scarf_fancy"
 
 /datum/atom_skin/giant_scarf/giant_scarf_sepharim
-	preview_name = "塞拉菲姆"
+	preview_name = "Sepharim"
 	new_icon_state = "giant_scarf_sepharim"
 
 /datum/atom_skin/giant_scarf/giant_scarf_bones
-	preview_name = "骨骼"
+	preview_name = "Bones"
 	new_icon_state = "giant_scarf_bones"
 
 /datum/atom_skin/giant_scarf/giant_scarf_lines
-	preview_name = "线条"
+	preview_name = "Lines"
 	new_icon_state = "giant_scarf_lines"
 
 /datum/atom_skin/giant_scarf/giant_scarf_runes
-	preview_name = "符文"
+	preview_name = "Runes"
 	new_icon_state = "giant_scarf_runes"
 
 /datum/atom_skin/giant_scarf/giant_scarf_heart
-	preview_name = "爱心"
+	preview_name = "Heart"
 	new_icon_state = "giant_scarf_heart"
 
 /obj/item/clothing/under/dress/bubber/giant_scarf
@@ -127,7 +127,7 @@
 
 /obj/item/clothing/under/dress/bubber/giant_scarf/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/giant_scarf, initial_skin = "素色")
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/giant_scarf, initial_skin = "Plain")
 
 /obj/item/clothing/under/dress/striped
 	greyscale_config_worn = /datum/greyscale_config/striped_dress/worn

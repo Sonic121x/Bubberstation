@@ -281,8 +281,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/rnd/research_director/bunnysuit
-	desc = "任何兔兔主题首席研究员的必备单品。先进技术让这套服装在穿上时能刺激出兔尾生长，不过它与标准棉球尾巴几乎无从分辨，且一脱下服装就会消失。"
-	name = "研究主管的兔兔装"
+	desc = "任何兔兔主题科研主管的必备单品。先进技术让这套服装在穿上时能刺激出兔尾生长，不过它与标准棉球尾巴几乎无从分辨，且一脱下服装就会消失。"
+	name = "科研主管的兔兔装"
 	icon_state = "bunnysuit_rd"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'

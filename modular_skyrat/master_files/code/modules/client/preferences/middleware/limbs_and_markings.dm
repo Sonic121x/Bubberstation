@@ -245,7 +245,7 @@
 		robotic_styles = list()
 		for(var/style_name in GLOB.robotic_styles_list)
 			robotic_styles += style_name
-	data["robotic_styles"] = robotic_styles
+	data["robotic_styles"] = robotic_styles; data["robotic_style_labels"] = chinese_zubbers_robotic_style_display(null, TRUE)
 	var/list/limbs_data = list()
 	for(var/limb in limbs_to_process)
 		if(!nice_aug_names[limb])

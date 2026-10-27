@@ -11,15 +11,15 @@
 	abstract_type = /datum/atom_skin/collared_vest
 
 /datum/atom_skin/collared_vest/red
-	preview_name = "红色图案"
+	preview_name = "Red Pattern"
 	new_icon_state = "vest_worn_red"
 
 /datum/atom_skin/collared_vest/neutral
-	preview_name = "中性图案"
+	preview_name = "Neutral Pattern"
 	new_icon_state = "vest_worn"
 
 /datum/atom_skin/collared_vest/blue
-	preview_name = "蓝色图案"
+	preview_name = "Blue Pattern"
 	new_icon_state = "vest_worn_blue"
 
 /obj/item/clothing/suit/armor/vest/collared_vest/Initialize(mapload)
@@ -128,31 +128,31 @@
 	abstract_type = /datum/atom_skin/metrocop_armor
 
 /datum/atom_skin/metrocop_armor/metro_cop
-	preview_name = "都市警察"
+	preview_name = "Metro Cop"
 	new_icon_state = "civilprotection"
 
 /datum/atom_skin/metrocop_armor/metro_coat
-	preview_name = "都市警察大衣"
+	preview_name = "MetroCop Coat"
 	new_icon_state = "cp_trenchcoat"
 
 /datum/atom_skin/metrocop_armor/medic
-	preview_name = "医疗兵"
+	preview_name = "Medic"
 	new_icon_state = "medicalofficer"
 
 /datum/atom_skin/metrocop_armor/red_trim
-	preview_name = "红色饰边"
+	preview_name = "Red Trim"
 	new_icon_state = "dv_vest"
 
 /datum/atom_skin/metrocop_armor/overwatch_white
-	preview_name = "白色监督者"
+	preview_name = "White Overwatch"
 	new_icon_state = "overwatch_white"
 
 /datum/atom_skin/metrocop_armor/overwatch
-	preview_name = "监督者"
+	preview_name = "Overwatch"
 	new_icon_state = "overwatch"
 
 /datum/atom_skin/metrocop_armor/overwatch_red
-	preview_name = "红色监督者"
+	preview_name = "Red Overwatch"
 	new_icon_state = "overwatch_red"
 
 // Virosec armor, sprites by axietheaxolotl

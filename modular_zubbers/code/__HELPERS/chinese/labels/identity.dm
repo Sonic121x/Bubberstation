@@ -1,4 +1,6 @@
 /proc/chinese_job_display(value, return_mapping = FALSE)
+	if(!return_mapping && istext(value) && findtextEx(value, "已下班 ") == 1)
+		return "已下班 [chinese_job_display(copytext_char(value, 5))]"
 	var/static/list/display_names
 	if(isnull(display_names))
 		display_names = list(
@@ -16,7 +18,6 @@
 		"Jannie" = "管理员打杂工", "Highlander" = "高地勇士", "CentCom Intern" = "中央指挥部实习生", "CentCom Head Intern" = "中央指挥部实习生主管", "Bounty Hunter" = "赏金猎人", "Emergency Response Team Intern" = "紧急响应小队实习生", "Frontier Militia" = "边疆民兵", "Frontier Militia General" = "边疆民兵将军", "Intern" = "实习生", "Busser" = "餐桌服务员",
 		"Captain-in-Training" = "见习舰长", "Chief Engineer-in-Training" = "见习总工程师", "Chief Medical Officer-in-Training" = "见习首席医疗官", "Head of Personnel-in-Training" = "见习人事主管", "Head of Security-in-Training" = "见习安保主管", "Quartermaster-in-Training" = "见习货运主管", "Research Director-in-Training" = "见习科研主管",
 		"Command Bodyguard" = "指挥保镖", "Executive Protection Agent" = "要员保护特工", "Command Security Specialist" = "指挥安保专家", "Command Protection Officer" = "指挥保护官", "Henchman" = "跟班",
-		"Stowaway" = "偷渡客", "Security Medic" = "安保医疗兵", "Security Medical" = "安保医疗兵",
 		"DS-2 Operative" = "DS-2 特工", "DS-2 Hostage" = "DS-2 人质", "DS-2 Mining Officer" = "DS-2 采矿官", "DS-2 General Staff" = "DS-2 参谋", "DS-2 Researcher" = "DS-2 研究员", "DS-2 Engine Technician" = "DS-2 引擎技术员", "DS-2 Medical Officer" = "DS-2 医疗官", "DS-2 Master At Arms" = "DS-2 纠察长", "DS-2 Brig Officer" = "DS-2 禁闭室军官", "DS-2 Corporate Liaison" = "DS-2 企业联络官", "DS-2 Admiral" = "DS-2 上将", "Interdyne Operative" = "英特戴恩特工", "Deck Officer" = "甲板军官",
 		"Reaper" = "收割者", "Mobster" = "黑帮成员", "VR Participant" = "虚拟现实参与者", "Syndicate VR Operative" = "辛迪加虚拟现实特工", "Tunnel Clown!" = "隧道小丑！", "Bit Avatar" = "比特化身", "Cyber Police" = "网络警察",
 		"Charlie Station Security Officer" = "查理站安保官", "Charlie Station Scientist" = "查理站科学家", "Charlie Station Engineer" = "查理站工程师", "Engine Equipment Access" = "引擎设备通行权限", "Cat Surgeon" = "猫科外科医生", "Head Researcher" = "首席研究员", "Lifeguard" = "救生员", "Space Bartender" = "太空调酒师", "Bridge Officer" = "舰桥军官", "Tradepost Officer" = "贸易站军官", "Nanotrasen Assault Force" = "纳米传讯突击部队", "Senior Station Engineer" = "高级空间站工程师",
@@ -26,6 +27,7 @@
 	)
 	display_names |= chinese_skyrat_items_job_display(null, TRUE)
 	display_names |= chinese_batch_ten_job_display(null, TRUE)
+	display_names |= chinese_zubbers_modules_job_display(null, TRUE)
 	display_names["Asset Protection"] = "资产保护"
 	display_names["Icemoon Dweller"] = "冰月居民"
 	if(return_mapping)

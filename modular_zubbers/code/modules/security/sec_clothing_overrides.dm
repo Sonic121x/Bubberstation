@@ -20,10 +20,10 @@
 	abstract_type = /datum/atom_skin/sec_belt
 
 /datum/atom_skin/sec_belt/standard
-	preview_name = "标准"
+	preview_name = "Standard"
 
 /datum/atom_skin/sec_belt/black
-	preview_name = "黑色"
+	preview_name = "Black"
 	new_icon = 'modular_zubbers/icons/obj/clothing/belts/belts.dmi'
 	new_worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
 	new_icon_state = "security_black"
@@ -73,10 +73,10 @@
 	abstract_type = /datum/atom_skin/sec_hud_sunglasses
 
 /datum/atom_skin/sec_hud_sunglasses/standard
-	preview_name = "标准"
+	preview_name = "Standard"
 
 /datum/atom_skin/sec_hud_sunglasses/sunglasses
-	preview_name = "太阳镜"
+	preview_name = "Sunglasses"
 	new_icon = 'icons/obj/clothing/glasses.dmi'
 	new_worn_icon = 'icons/mob/clothing/eyes.dmi'
 	new_icon_state = "sun"
@@ -257,10 +257,10 @@
 	abstract_type = /datum/atom_skin/sec_gloves
 
 /datum/atom_skin/sec_gloves/standard
-	preview_name = "标准"
+	preview_name = "Standard"
 
 /datum/atom_skin/sec_gloves/plain_black
-	preview_name = "纯黑色"
+	preview_name = "Plain Black"
 	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	new_icon_state = "combat"
@@ -292,19 +292,19 @@
 	abstract_type = /datum/atom_skin/hos_armor
 
 /datum/atom_skin/hos_armor/greatcoat
-	preview_name = "长大衣"
+	preview_name = "Greatcoat"
 	new_icon = 'icons/obj/clothing/suits/armor.dmi'
 	new_worn_icon = 'icons/mob/clothing/suits/armor.dmi'
 	new_icon_state = "hos"
 
 /datum/atom_skin/hos_armor/trenchcoat
-	preview_name = "风衣"
+	preview_name = "Trenchcoat"
 	new_icon = 'icons/obj/clothing/suits/armor.dmi'
 	new_worn_icon = 'icons/mob/clothing/suits/armor.dmi'
 	new_icon_state = "hostrench"
 
 /datum/atom_skin/hos_armor/trenchcloak
-	preview_name = "风衣斗篷"
+	preview_name = "Trenchcloak"
 	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
 	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
 	new_icon_state = "trenchcloak"

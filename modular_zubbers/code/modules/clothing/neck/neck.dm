@@ -661,31 +661,31 @@
 	abstract_type = /datum/atom_skin/pride_scarf
 
 /datum/atom_skin/pride_scarf/rainbow
-	preview_name = "彩虹围巾"
+	preview_name = "Rainbow Scarf"
 	new_icon_state = "scarf_rainbow"
 
 /datum/atom_skin/pride_scarf/bisexual
-	preview_name = "双性恋围巾"
+	preview_name = "Bisexual Scarf"
 	new_icon_state = "scarf_bi"
 
 /datum/atom_skin/pride_scarf/pansexual
-	preview_name = "泛性恋围巾"
+	preview_name = "Pansexual Scarf"
 	new_icon_state = "scarf_pan"
 
 /datum/atom_skin/pride_scarf/asexual
-	preview_name = "无性恋围巾"
+	preview_name = "Asexual Scarf"
 	new_icon_state = "scarf_ace"
 
 /datum/atom_skin/pride_scarf/gay
-	preview_name = "男同围巾"
+	preview_name = "Gay Scarf"
 	new_icon_state = "scarf_gay"
 
 /datum/atom_skin/pride_scarf/transgender
-	preview_name = "跨性别围巾"
+	preview_name = "Transgender Scarf"
 	new_icon_state = "scarf_trans"
 
 /datum/atom_skin/pride_scarf/lesbian
-	preview_name = "女同围巾"
+	preview_name = "Lesbian Scarf"
 	new_icon_state = "scarf_lesbian"
 
 //Shadekin Fur Scarf Sprites by Boviro of Bubberstation

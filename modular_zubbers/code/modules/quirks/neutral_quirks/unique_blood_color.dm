@@ -1,7 +1,7 @@
 //i dont enjoy this implementation, but we're also not going to figure out how to write a proper do-all replace_blood_type() without |some| help....
 
 /datum/quirk/item_quirk/unique_blood_color
-	name = "异色血液"
+	name = "Blood Pigmentation"
 	desc = "你的血液颜色与你所属种族通常的颜色不同。"
 	gain_text = span_purple("你的血肉色泽发生了变化。")
 	lose_text = span_purple("你的血肉恢复了自然的色泽。")

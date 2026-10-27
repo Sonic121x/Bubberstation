@@ -233,7 +233,7 @@
 	for(var/area_path in GLOB.the_station_areas)
 		var/area/candidate = GLOB.areas_by_type[area_path]
 		if(candidate)
-			options[candidate.name] = candidate
+			options[chinese_area_display(candidate.name)] = candidate
 	if(!length(options))
 		to_chat(user, span_warning("没有可供瞄准的空间站区域。"))
 		return

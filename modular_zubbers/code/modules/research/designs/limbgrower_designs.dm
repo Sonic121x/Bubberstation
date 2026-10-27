@@ -115,7 +115,7 @@
 	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/vox_nitrogen_lungs
-	name = "Vox 氮气肺"
+	name = "沃克斯氮气肺"
 	id = "nitrogenlungvox"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)

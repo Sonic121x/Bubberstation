@@ -275,11 +275,11 @@
 		return
 	switch(target_hair)
 		if("头发")
-			var/new_style = tgui_input_list(owner, "选择一种发型", "发型改造", SSaccessories.hairstyles_list)
+			var/new_style = chinese_accessory_choice(owner, "选择一种发型", "发型改造", SSaccessories.hairstyles_list)
 			if(new_style)
 				alterer.set_hairstyle(new_style, update = TRUE)
 		if("面部毛发")
-			var/new_style = tgui_input_list(alterer, "选择一种面部毛发样式", "发型改造", SSaccessories.facial_hairstyles_list)
+			var/new_style = chinese_accessory_choice(alterer, "选择一种面部毛发样式", "发型改造", SSaccessories.facial_hairstyles_list)
 			if(new_style)
 				alterer.set_facial_hairstyle(new_style, update = TRUE)
 		if("发色")
@@ -373,7 +373,7 @@
 		return
 
 	var/choice_list = available_choices[chosen_key]
-	var/chosen_name_key = tgui_input_list(
+	var/chosen_name_key = chinese_accessory_choice(
 		alterer,
 		"你想让这个部位变成什么？",
 		"身体部位改造",
@@ -435,7 +435,7 @@
  */
 /datum/action/innate/alter_form/proc/alter_markings(mob/living/carbon/human/alterer)
 	var/list/candidates = GLOB.body_marking_sets
-	var/chosen_name = tgui_input_list(
+	var/chosen_name = chinese_accessory_choice(
 		alterer,
 		"选择你想更换为哪套体表纹样",
 		"纹样改造",

@@ -85,7 +85,7 @@ GLOBAL_DATUM_INIT(secmed_crewmonitor, /datum/crewmonitor/secmed, new)
 		if (id_card)
 
 			entry["name"] = id_card.registered_name
-			entry["assignment"] = id_card.assignment
+			entry["assignment"] = chinese_job_display(id_card.assignment)
 			var/trim_assignment = id_card.get_trim_assignment()
 
 			//Check if they are security
@@ -137,7 +137,7 @@ GLOBAL_DATUM_INIT(secmed_crewmonitor, /datum/crewmonitor/secmed, new)
 
 			// Location
 			if (sensor_mode >= SENSOR_COORDS)
-				entry["area"] = get_area_name(tracked_living_mob, format_text = TRUE)
+				entry["area"] = chinese_area_display(get_area_name(tracked_living_mob, format_text = TRUE))
 
 			entry["can_track"] = tracked_living_mob.can_track()
 

@@ -422,9 +422,9 @@
 /obj/machinery/plantgenes/proc/repaint_seed()
 	if(!seed)
 		return
-	if(copytext(seed.name, 1, 13) == "experimental")//13 == length("experimental") + 1
+	if(copytext(seed.name, 1, 13) == "experimental" || findtext(seed.name, "实验型 ") == 1)//13 == length("experimental") + 1
 		return // Already modded name and icon
-	seed.name = "experimental " + seed.name
+	seed.name = "实验型 " + seed.name
 	seed.icon_state = "seed-x"
 
 /* Not adding this right now

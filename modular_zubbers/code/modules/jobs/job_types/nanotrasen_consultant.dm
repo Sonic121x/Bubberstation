@@ -183,7 +183,7 @@
 
 /obj/item/pen/fountain/green
 	name = "纳米传讯钢笔"
-	desc = "一支昂贵的绿色钢笔。笔壳或许是塑料的，但那金色可是货真价实的！"
+	desc = "一支昂贵的绿色钢笔。笔壳或许是塑料的，但镶着的金子可是货真价实的！"
 	icon = 'modular_zubbers/icons/obj/service/bureaucracy.dmi'
 	icon_state = "pen-fountain-nt"
 	colour = "#18610D"

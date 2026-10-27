@@ -14,8 +14,8 @@
 	var/was_ejected = 0
 
 /obj/item/ammo_box/magazine/security/rocket
-	name = "手枪弹匣（9mm 墨菲 火箭抛壳）"
-	desc = parent_type::desc + "内部装有小型装药，抛壳时会迸出火花；这种弹匣装弹量更少，但抛出的弹壳具有致命的速度。"
+	name = "手枪弹匣（9mm 墨菲 火箭弹出）"
+	desc = parent_type::desc + "内部装有小型装药，弹出时会迸出火花；这种弹匣装弹量更少，但弹出时的速度足以致命。"
 	ammo_type = /obj/item/ammo_casing/security
 	max_ammo = 10
 	base_icon_state = "9x19pI"

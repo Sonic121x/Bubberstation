@@ -53,7 +53,7 @@
 
 /datum/design/rbmk2_upgrade_safeties
 	name = "RB-MK2 软件升级磁盘——安全系统优化"
-	desc = "一张磁盘，可让你为 RB-MK 安装升级，将安全阈值从 75% 有效降至 95%，防止过早喷出。"
+	desc = "一张磁盘，可让你为 RB-MK 安装升级，将安全触发阈值从 75% 调整为 95%，防止过早喷出。"
 	id = "rbmk2_disk_safeties"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/glass = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/gold =SHEET_MATERIAL_AMOUNT, /datum/material/uranium =SHEET_MATERIAL_AMOUNT)

@@ -30,7 +30,7 @@
 	announce_to_ghosts(rift)
 
 /datum/round_event/clown_rift/announce(fake)
-	priority_announce("在 [impact_area.name] 检测到小丑能量冲击")
+	priority_announce("在 [chinese_area_display(impact_area.name)] 检测到小丑能量冲击")
 
 /datum/round_event/clown_rift/proc/find_area()
 	var/static/list/allowed_areas

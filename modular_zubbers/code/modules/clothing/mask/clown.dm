@@ -32,23 +32,23 @@
 	change_base_icon_state = TRUE
 
 /datum/atom_skin/coloured_clown_mask/down_clown
-	preview_name = "沮丧小丑"
+	preview_name = "Down Clown"
 	new_icon_state = "blueclown"
 
 /datum/atom_skin/coloured_clown_mask/jumbo
-	preview_name = "巨无霸"
+	preview_name = "Jumbo"
 	new_icon_state = "greenclown"
 
 /datum/atom_skin/coloured_clown_mask/stepchild
-	preview_name = "继子"
+	preview_name = "Stepchild"
 	new_icon_state = "redclown"
 
 /datum/atom_skin/coloured_clown_mask/banana_brained
-	preview_name = "香蕉脑"
+	preview_name = "Banana Brained"
 	new_icon_state = "yellowclown"
 
 /datum/atom_skin/coloured_clown_mask/rhubarb_rubber
-	preview_name = "大黄橡胶"
+	preview_name = "Rhubarb Rubber"
 	new_icon_state = "purpleclown"
 
 /obj/item/clothing/mask/gas/bubber/clown/proc/on_reskin(datum/source, skin_name)

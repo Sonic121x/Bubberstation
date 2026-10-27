@@ -334,7 +334,7 @@
 	keyslot = /obj/item/encryptionkey/headset_sci
 
 /obj/item/radio/headset/guard_bowman/science/get_reporting_department()
-	return "科学部"
+	return "科研部"
 
 /obj/item/radio/headset/guard_bowman/medical
 	greyscale_colors = COLOR_WHITE + COLOR_MEDICAL_BLUE

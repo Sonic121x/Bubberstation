@@ -4,6 +4,6 @@
 #These laws only apply to regular maintenance drones; syndrones, derelict drones and hacked drones keep their own lawsets.
 #The drone spawn flavortext (the "do not interfere" warning) can be changed separately via policy.json, keyed by mob typepath (e.g. "/mob/living/basic/drone").
 
-你不得介入其他存在的任何事务，即使这些事务与第二条或第三条法律相冲突；除非那个存在也是一台无人机。
+你不得介入其他存在的任何事务，即使这些事务与第二条或第三条法则相冲突；除非那个存在也是一台无人机。
 你不得伤害任何存在，无论出于何种意图或情形。
 你的目标是在启动你的设施内，尽你所能地建造、维护、修理、改进并提供电力。

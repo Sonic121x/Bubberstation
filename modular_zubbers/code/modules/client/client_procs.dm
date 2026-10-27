@@ -5,10 +5,10 @@
 		to_chat(usr, "此操作只能对 /mob/living/carbon/human 使用。")
 		return
 
-	var/list/options = list("Clear"="Clear")
+	var/list/options = list("清空"="Clear")
 	for(var/quirk_variable in subtypesof(/datum/quirk))
 		var/datum/quirk/applicable_quirk = quirk_variable
-		var/quirk_name = initial(applicable_quirk.name)
+		var/quirk_name = chinese_quirk_display(initial(applicable_quirk.name))
 		options[selected_mob.has_quirk(applicable_quirk) ? "[quirk_name]（移除）" : "[quirk_name]（添加）"] = applicable_quirk
 
 	var/result = tgui_input_list(usr, "选择要添加/移除的特质", "生物特质", options)
@@ -18,7 +18,7 @@
 		return
 
 	if(result)
-		if(result == "Clear")
+		if(result == "清空")
 			for(var/datum/quirk/selected_quirk in selected_mob.quirks)
 				selected_mob.remove_quirk(selected_quirk.type)
 		else
