@@ -5,7 +5,6 @@
 /datum/design/board/ripley_main
 	name = "APLU“雷普利”中央控制模块"
 	desc = "可用于制造“雷普利”中央控制模块。"
-	id = "ripley_main"
 	build_path = /obj/item/circuitboard/mecha/ripley/main
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_RIPLEY
@@ -15,7 +14,6 @@
 /datum/design/board/ripley_peri
 	name = "APLU“雷普利”外围控制模块"
 	desc = "可用于制造“雷普利”外围控制模块。"
-	id = "ripley_peri"
 	build_path = /obj/item/circuitboard/mecha/ripley/peripherals
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_RIPLEY
@@ -25,7 +23,6 @@
 /datum/design/board/odysseus_main
 	name = "“奥德修斯”中央控制模块"
 	desc = "可用于制造“奥德修斯”中央控制模块。"
-	id = "odysseus_main"
 	build_path = /obj/item/circuitboard/mecha/odysseus/main
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_ODYSSEUS
@@ -35,7 +32,6 @@
 /datum/design/board/odysseus_peri
 	name = "“奥德修斯”外围控制模块"
 	desc = "可用于制造“奥德修斯”外围控制模块。"
-	id = "odysseus_peri"
 	build_path = /obj/item/circuitboard/mecha/odysseus/peripherals
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_ODYSSEUS
@@ -45,7 +41,6 @@
 /datum/design/board/gygax_main
 	name = "“吉盖克斯”中央控制模块"
 	desc = "可用于制造“吉盖克斯”中央控制模块。"
-	id = "gygax_main"
 	build_path = /obj/item/circuitboard/mecha/gygax/main
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_GYGAX
@@ -55,7 +50,6 @@
 /datum/design/board/gygax_peri
 	name = "“吉盖克斯”外围控制模块"
 	desc = "可用于制造“吉盖克斯”外围控制模块。"
-	id = "gygax_peri"
 	build_path = /obj/item/circuitboard/mecha/gygax/peripherals
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_GYGAX
@@ -65,7 +59,6 @@
 /datum/design/board/gygax_targ
 	name = "“吉盖克斯”武器与瞄准控制模块"
 	desc = "可用于制造“吉盖克斯”武器与瞄准控制模块。"
-	id = "gygax_targ"
 	build_path = /obj/item/circuitboard/mecha/gygax/targeting
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_GYGAX
@@ -75,7 +68,6 @@
 /datum/design/board/durand_main
 	name = "“杜兰德”中央控制模块"
 	desc = "可用于制造“杜兰德”中央控制模块。"
-	id = "durand_main"
 	build_path = /obj/item/circuitboard/mecha/durand/main
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_DURAND
@@ -85,7 +77,6 @@
 /datum/design/board/durand_peri
 	name = "“杜兰德”外围控制模块"
 	desc = "可用于制造“杜兰德”外围控制模块。"
-	id = "durand_peri"
 	build_path = /obj/item/circuitboard/mecha/durand/peripherals
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_DURAND
@@ -95,7 +86,6 @@
 /datum/design/board/durand_targ
 	name = "“杜兰德”武器与瞄准控制模块"
 	desc = "可用于制造“杜兰德”武器与瞄准控制模块。"
-	id = "durand_targ"
 	build_path = /obj/item/circuitboard/mecha/durand/targeting
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_DURAND
@@ -105,7 +95,6 @@
 /datum/design/board/honker_main
 	name = "“H.O.N.K.”中央控制模块"
 	desc = "可用于制造“H.O.N.K.”中央控制模块。"
-	id = "honker_main"
 	build_path = /obj/item/circuitboard/mecha/honker/main
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_HONK
@@ -115,7 +104,6 @@
 /datum/design/board/honker_peri
 	name = "“H.O.N.K.”外围控制模块"
 	desc = "可用于制造“H.O.N.K.”外围控制模块。"
-	id = "honker_peri"
 	build_path = /obj/item/circuitboard/mecha/honker/peripherals
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_HONK
@@ -125,7 +113,6 @@
 /datum/design/board/honker_targ
 	name = "“H.O.N.K.”武器与瞄准控制模块"
 	desc = "可用于制造“H.O.N.K.”武器与瞄准控制模块。"
-	id = "honker_targ"
 	build_path = /obj/item/circuitboard/mecha/honker/targeting
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_HONK
@@ -135,7 +122,6 @@
 /datum/design/board/phazon_main
 	name = "“相位行者”中央控制模块"
 	desc = "可用于制造“相位行者”中央控制模块。"
-	id = "phazon_main"
 	materials = list(/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace =SMALL_MATERIAL_AMOUNT)
 	build_path = /obj/item/circuitboard/mecha/phazon/main
 	category = list(
@@ -146,7 +132,6 @@
 /datum/design/board/phazon_peri
 	name = "“相位行者”外围控制模块"
 	desc = "可用于制造“相位行者”外围控制模块。"
-	id = "phazon_peri"
 	materials = list(/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace =SMALL_MATERIAL_AMOUNT)
 	build_path = /obj/item/circuitboard/mecha/phazon/peripherals
 	category = list(
@@ -157,7 +142,6 @@
 /datum/design/board/phazon_targ
 	name = "“相位行者”武器与瞄准控制模块"
 	desc = "可用于制造“相位行者”武器与瞄准控制模块。"
-	id = "phazon_targ"
 	materials = list(/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace =SMALL_MATERIAL_AMOUNT)
 	build_path = /obj/item/circuitboard/mecha/phazon/targeting
 	category = list(
@@ -168,7 +152,6 @@
 /datum/design/board/clarke_main
 	name = "“克拉克”中央控制模块"
 	desc = "可用于制造“克拉克”中央控制模块。"
-	id = "clarke_main"
 	build_path = /obj/item/circuitboard/mecha/clarke/main
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_CLARKE
@@ -178,7 +161,6 @@
 /datum/design/board/clarke_peri
 	name = "“克拉克”外围控制模块"
 	desc = "可用于制造“克拉克”外围控制模块。"
-	id = "clarke_peri"
 	build_path = /obj/item/circuitboard/mecha/clarke/peripherals
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_CLARKE
@@ -188,7 +170,6 @@
 /datum/design/board/savannah_ivanov_main
 	name = "“萨凡纳-伊万诺夫”中央控制模块"
 	desc = "可用于制造“萨凡纳-伊万诺夫”中央控制模块。"
-	id = "savannah_ivanov_main"
 	build_path = /obj/item/circuitboard/mecha/savannah_ivanov/main
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_SAVANNAH_IVANOV
@@ -198,7 +179,6 @@
 /datum/design/board/savannah_ivanov_peri
 	name = "“萨凡纳-伊万诺夫”外围控制模块"
 	desc = "可用于制造“萨凡纳-伊万诺夫”外围控制模块。"
-	id = "savannah_ivanov_peri"
 	build_path = /obj/item/circuitboard/mecha/savannah_ivanov/peripherals
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_SAVANNAH_IVANOV
@@ -208,7 +188,6 @@
 /datum/design/board/savannah_ivanov_targ
 	name = "“萨凡纳-伊万诺夫”武器与瞄准控制模块"
 	desc = "可用于制造“萨凡纳-伊万诺夫”武器与瞄准控制模块。"
-	id = "savannah_ivanov_targ"
 	build_path = /obj/item/circuitboard/mecha/savannah_ivanov/targeting
 	category = list(
 		RND_CATEGORY_EXOSUIT_BOARDS + RND_SUBCATEGORY_EXOSUIT_BOARDS_SAVANNAH_IVANOV
@@ -222,7 +201,6 @@
 /datum/design/mech_scattershot
 	name = "LBX AC 10“散射弹”"
 	desc = "可用于制造 LBX AC 10。"
-	id = "mech_scattershot"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5)
@@ -241,7 +219,6 @@
 /datum/design/mech_scattershot_ammo
 	name = "LBX AC 10 弹药"
 	desc = "LBX AC 10 外骨骼武器的弹药。"
-	id = "mech_scattershot_ammo"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_ammo/scattershot
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*3)
@@ -260,7 +237,6 @@
 /datum/design/mech_carbine
 	name = "FNX-99“哈迪斯”卡宾枪"
 	desc = "可用于制造 FNX-99“哈迪斯”卡宾枪。"
-	id = "mech_carbine"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5)
@@ -279,7 +255,6 @@
 /datum/design/mech_carbine_ammo
 	name = "FNX-99 卡宾枪弹药"
 	desc = "FNX-99“哈迪斯”卡宾枪的弹药。"
-	id = "mech_carbine_ammo"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_ammo/incendiary
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*3)
@@ -298,7 +273,6 @@
 /datum/design/mech_ion
 	name = "MKIV 离子重炮"
 	desc = "可用于制造 MKIV 离子重炮。"
-	id = "mech_ion"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/ion
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*10,/datum/material/silver=SHEET_MATERIAL_AMOUNT*3,/datum/material/uranium=SHEET_MATERIAL_AMOUNT)
@@ -317,7 +291,6 @@
 /datum/design/mech_tesla
 	name = "MKI 特斯拉炮"
 	desc = "可用于制造 MKI 特斯拉炮。"
-	id = "mech_tesla"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/tesla
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*10,/datum/material/silver=SHEET_MATERIAL_AMOUNT*4)
@@ -336,7 +309,6 @@
 /datum/design/mech_laser
 	name = "CH-PS“焚祭者”激光"
 	desc = "可用于制造 CH-PS 激光。"
-	id = "mech_laser"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5)
@@ -355,7 +327,6 @@
 /datum/design/mech_laser_heavy
 	name = "CH-LC“索拉里斯”激光炮"
 	desc = "可用于制造 CH-LC 激光炮。"
-	id = "mech_laser_heavy"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5)
@@ -374,7 +345,6 @@
 /datum/design/mech_disabler
 	name = "CH-DS“和平缔造者”电击枪"
 	desc = "可用于制造 CH-DS 电击枪。"
-	id = "mech_disabler"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/disabler
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5)
@@ -393,7 +363,6 @@
 /datum/design/mech_grenade_launcher
 	name = "SGL-6 榴弹发射器"
 	desc = "可用于制造 SGL-6 榴弹发射器。"
-	id = "mech_grenade_launcher"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*11,/datum/material/gold=SHEET_MATERIAL_AMOUNT*3,/datum/material/silver=SHEET_MATERIAL_AMOUNT*4)
@@ -412,7 +381,6 @@
 /datum/design/mech_grenade_launcher_ammo
 	name = "SGL-6 榴弹发射器弹药"
 	desc = "SGL-6 榴弹发射器的弹药。"
-	id = "mech_grenade_launcher_ammo"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_ammo/flashbang
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*2,/datum/material/gold=SMALL_MATERIAL_AMOUNT*5)
@@ -431,7 +399,6 @@
 /datum/design/mech_missile_rack
 	name = "PEP-6 导弹发射架"
 	desc = "可用于制造 PEP-6 破障导弹发射架。"
-	id = "mech_missile_rack"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/breaching
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*11,/datum/material/gold=SHEET_MATERIAL_AMOUNT*3,/datum/material/silver=SHEET_MATERIAL_AMOUNT*4)
@@ -450,7 +417,6 @@
 /datum/design/mech_missile_rack_ammo
 	name = "PEP-6 导弹发射架弹药"
 	desc = "PEP-6 导弹发射架的弹药。"
-	id = "mech_missile_rack_ammo"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_ammo/missiles_pep
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*4,/datum/material/gold=SMALL_MATERIAL_AMOUNT*5)
@@ -469,7 +435,6 @@
 /datum/design/clusterbang_launcher
 	name = "SOB-3 集束闪光弹发射器"
 	desc = "一款以每分钟 3 发的射速违反《日内瓦公约》的武器。"
-	id = "clusterbang_launcher"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*10,/datum/material/gold=SHEET_MATERIAL_AMOUNT*5,/datum/material/uranium=SHEET_MATERIAL_AMOUNT*5)
@@ -488,7 +453,6 @@
 /datum/design/clusterbang_launcher_ammo
 	name = "SOB-3 集束闪光弹发射器弹药"
 	desc = "SOB-3 集束闪光弹发射器的弹药。"
-	id = "clusterbang_launcher_ammo"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_ammo/clusterbang
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*3,/datum/material/gold=HALF_SHEET_MATERIAL_AMOUNT * 1.5,/datum/material/uranium=HALF_SHEET_MATERIAL_AMOUNT * 1.5)
@@ -507,7 +471,6 @@
 /datum/design/mech_wormhole_gen
 	name = "局部虫洞发生器"
 	desc = "一种外骨骼模块，可生成小型准稳定虫洞。"
-	id = "mech_wormhole_gen"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/wormhole_generator
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5)
@@ -529,7 +492,6 @@
 /datum/design/mech_teleporter
 	name = "传送模块"
 	desc = "一种外骨骼模块，可让外骨骼传送至视野内任意位置。"
-	id = "mech_teleporter"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/teleporter
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5,/datum/material/diamond=SHEET_MATERIAL_AMOUNT*5)
@@ -551,7 +513,6 @@
 /datum/design/mech_rcd
 	name = "RCD 模块"
 	desc = "安装于外骨骼上的快速建造装置。"
-	id = "mech_rcd"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/rcd
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*15,/datum/material/gold=SHEET_MATERIAL_AMOUNT*10,/datum/material/plasma=SHEET_MATERIAL_AMOUNT*12.5,/datum/material/silver=SHEET_MATERIAL_AMOUNT*10)
@@ -573,7 +534,6 @@
 /datum/design/mech_thrusters
 	name = "RCS 推进器组件"
 	desc = "外骨骼用的推进器组件。从内置生命维持气罐中喷出气体以产生推力。"
-	id = "mech_thrusters"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/thrusters/gas
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*12.5,/datum/material/titanium=SHEET_MATERIAL_AMOUNT * 2.5,/datum/material/silver=SHEET_MATERIAL_AMOUNT*1.5)
@@ -594,7 +554,6 @@
 /datum/design/mech_gravcatapult
 	name = "引力弹射模块"
 	desc = "安装于外骨骼上的引力弹射器。"
-	id = "mech_gravcatapult"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/gravcatapult
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5)
@@ -616,7 +575,6 @@
 /datum/design/mech_repair_droid
 	name = "维修机器人模块"
 	desc = "自动维修机器人。哔卟。"
-	id = "mech_repair_droid"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/repair_droid
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5,/datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5,/datum/material/gold=HALF_SHEET_MATERIAL_AMOUNT,/datum/material/silver=SHEET_MATERIAL_AMOUNT)
@@ -638,7 +596,6 @@
 /datum/design/mech_ccw_armor
 	name = "外骨骼冲击缓冲板"
 	desc = "安装于外骨骼上的近战装甲强化件。"
-	id = "mech_ccw_armor"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/armor/anticcw_armor_booster
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*10,/datum/material/silver=SHEET_MATERIAL_AMOUNT * 2.5)
@@ -660,7 +617,6 @@
 /datum/design/mech_proj_armor
 	name = "外骨骼弹射防护罩"
 	desc = "安装于外骨骼上的远程装甲强化件。"
-	id = "mech_proj_armor"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/armor/antiproj_armor_booster
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*10,/datum/material/gold=SHEET_MATERIAL_AMOUNT * 2.5)
@@ -682,7 +638,6 @@
 /datum/design/mech_emp_armor
 	name = "外骨骼烧蚀绝缘层"
 	desc = "安装于外骨骼上的能量与 EMP 装甲强化件。警告：该改装会削弱外骨骼船体装甲板的受力点。"
-	id = "mech_emp_armor"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/armor/antiemp_armor_booster
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*10,/datum/material/gold=SHEET_MATERIAL_AMOUNT * 2.5)
@@ -704,7 +659,6 @@
 /datum/design/mech_diamond_drill
 	name = "金刚石采矿钻头"
 	desc = "标准钻头的升级版本。"
-	id = "mech_diamond_drill"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/drill/diamonddrill
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5,/datum/material/diamond=SHEET_MATERIAL_AMOUNT*3.25)
@@ -719,7 +673,6 @@
 /datum/design/mech_plasma_cutter
 	name = "217-D 重型等离子切割器"
 	desc = "一种以极高速度发射共振等离子束的装置。其冲击能够粉碎岩石、摧毁坚固障碍物。"
-	id = "mech_plasma_cutter"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*4, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plasma =SHEET_MATERIAL_AMOUNT)
@@ -740,7 +693,6 @@
 /datum/design/mecha_kineticgun
 	name = "外骨骼原型动能加速器"
 	desc = "一种安装于外骨骼上的采矿工具，在低压环境中造成的伤害更高。由机载电源供电，射程比手持版本更远。"
-	id = "mecha_kineticgun"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/mecha_kineticgun
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*4, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
@@ -761,7 +713,6 @@
 /datum/design/mech_lmg
 	name = "Ultra AC 2 轻机枪"
 	desc = "一种战斗外骨骼用武器。可进行快速的三连发射击。"
-	id = "mech_lmg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5)
@@ -779,7 +730,6 @@
 /datum/design/mech_lmg_ammo
 	name = "Ultra AC 2 弹药"
 	desc = "Ultra AC 2 轻机枪的弹药。"
-	id = "mech_lmg_ammo"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_ammo/lmg
 	materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT *2)
@@ -797,7 +747,6 @@
 /datum/design/mech_sleeper
 	name = "外挂休眠舱"
 	desc = "医疗外骨骼装备。一台外挂休眠舱，可稳定患者状况，并可从外骨骼储备中注入试剂。"
-	id = "mech_sleeper"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/sleeper/medical
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT*5)
@@ -811,7 +760,6 @@
 /datum/design/mech_syringe_gun
 	name = "外骨骼医疗（注射枪）"
 	desc = "医疗外骨骼装备。带注射枪的化学合成器。内部试剂处于停滞状态，因此不会发生反应。"
-	id = "mech_syringe_gun"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*1.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT)
@@ -825,7 +773,6 @@
 /datum/design/mech_medical_beamgun
 	name = "外骨骼医疗（医疗光束枪）"
 	desc = "医疗外骨骼装备。一台外挂式医疗纳米机器人投射器，可用聚焦光束治疗患者。"
-	id = "mech_medi_beam"
 	build_type = MECHFAB
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*7.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT*4, /datum/material/plasma =SHEET_MATERIAL_AMOUNT*1.5, /datum/material/gold = SHEET_MATERIAL_AMOUNT*4, /datum/material/diamond =SHEET_MATERIAL_AMOUNT)
 	construction_time = 25 SECONDS

@@ -12,10 +12,10 @@
 	desc = "病毒使前庭系统发炎，导致阵发性眩晕。"
 	illness = "晕动病"
 	stealth = 1
-	resistance = 0
-	stage_speed = -2
-	transmittable = -1
-	level = 4
+	resistance = 1
+	stage_speed = 3
+	transmittable = 3
+	level = 2
 	severity = 2
 	base_message_chance = 50
 	symptom_delay = 22.5
@@ -25,6 +25,7 @@
 		"传染性 6" = "还会造成吸毒般的视觉扭曲。",
 		"隐蔽性 4" = "症状在发作前不会显露。",
 	)
+	var/suppress_warning = FALSE
 
 /datum/symptom/dizzy/Start(datum/disease/advance/A)
 	. = ..()
@@ -46,6 +47,6 @@
 				to_chat(M, span_warning("[pick("你感到眩晕。", "你感到天旋地转。")]"))
 		else
 			to_chat(M, span_userdanger("一阵眩晕向你袭来！"))
-			M.adjust_dizzy_up_to(1 MINUTES, 140 SECONDS)
+			M.adjust_dizzy_up_to(40 SECONDS, 80 SECONDS)
 			if(power >= 2)
-				M.set_drugginess(80 SECONDS)
+				M.set_drugginess(60 SECONDS)

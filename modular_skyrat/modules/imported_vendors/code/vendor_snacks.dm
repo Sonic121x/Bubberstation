@@ -184,54 +184,6 @@
 	desc = "透明塑料让你一眼看出，这袋里已经没有给你那些长翅膀的朋友的美味了。"
 	icon_state = "moth_bag_trash"
 
-/obj/item/reagent_containers/cup/soda_cans/skyrat/lemonade
-	name = "\improper Gyárhajó 1023：柠檬水"
-	desc = "一罐柠檬水，为那些好这一口的人准备，或者只是别无选择的人。"
-	icon_state = "lemonade"
-	list_reagents = list(/datum/reagent/consumable/lemonade = 30)
-	drink_type = FRUIT
-
-/obj/item/reagent_containers/cup/soda_cans/skyrat/lemonade/examine_more(mob/user)
-	. = ..()
-	. += span_notice("罐上的标记显示，这一罐产自大游牧舰队的<i>1023 号工厂舰</i>。")
-	return .
-
-/obj/item/reagent_containers/cup/soda_cans/skyrat/navy_rum
-	name = "\improper Gyárhajó 1506：海军朗姆酒"
-	desc = "一罐由游牧舰队某支分遣队酿造并进口的海军朗姆酒，至少罐子上是这么说的。"
-	icon_state = "navy_rum"
-	list_reagents = list(/datum/reagent/consumable/ethanol/navy_rum = 30)
-	drink_type = ALCOHOL
-
-/obj/item/reagent_containers/cup/soda_cans/skyrat/navy_rum/examine_more(mob/user)
-	. = ..()
-	. += span_notice("罐上的标记显示，这一罐产自大游牧舰队的<i>1506 号工厂舰</i>。")
-	return .
-
-/obj/item/reagent_containers/cup/soda_cans/skyrat/soda_water_moth
-	name = "\improper Gyárhajó 1023：苏打水"
-	desc = "一罐苏打水。何不来杯朗姆加苏打？——仔细一想，还是算了。"
-	icon_state = "soda_water"
-	list_reagents = list(/datum/reagent/consumable/sodawater = 30)
-	drink_type = SUGAR
-
-/obj/item/reagent_containers/cup/soda_cans/skyrat/soda_water_moth/examine_more(mob/user)
-	. = ..()
-	. += span_notice("罐上的标记显示，这一罐产自大游牧舰队的<i>1023 号工厂舰</i>。")
-	return .
-
-/obj/item/reagent_containers/cup/soda_cans/skyrat/ginger_beer
-	name = "\improper Gyárhajó 1023：姜汁啤酒"
-	desc = "一罐姜汁啤酒，别被“啤酒”二字骗了，这完全不含酒精。"
-	icon_state = "gingie_beer"
-	list_reagents = list(/datum/reagent/consumable/sol_dry = 30)
-	drink_type = SUGAR
-
-/obj/item/reagent_containers/cup/soda_cans/skyrat/ginger_beer/examine_more(mob/user)
-	. = ..()
-	. += span_notice("罐上的标记显示，这一罐产自大游牧舰队的<i>1023 号工厂舰</i>。")
-	return .
-
 /*
 *	Tiziran Snacks
 */
@@ -294,9 +246,4 @@
 	list_reagents = list(/datum/reagent/consumable/mushroom_tea = 40)
 	custom_price = PAYCHECK_LOWER * 2
 
-/obj/item/reagent_containers/cup/soda_cans/skyrat/kortara
-	name = "科塔拉"
-	desc = "一罐科塔拉，一种用科塔种子酿造的酒精饮品，这赋予了它独特的胡椒般辛辣风味。"
-	icon_state = "kortara"
-	list_reagents = list(/datum/reagent/consumable/ethanol/kortara = 30)
-	drink_type = ALCOHOL
+

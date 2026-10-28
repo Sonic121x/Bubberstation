@@ -64,7 +64,6 @@
 /datum/design/adv_part_disk
 	name = "高级部件设计磁盘"
 	desc = "一张用于自动车床的磁盘，内含高级部件的设计图。"
-	id = "adv_part_disk"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1.5)
 	build_path = /obj/item/disk/design_disk/advanced_parts
@@ -77,7 +76,6 @@
 /datum/design/high_tech_part_disk
 	name = "高科技部件设计磁盘"
 	desc = "一张用于自动车床的磁盘，内含高科技部件的设计图。"
-	id = "high_tech_part_disk"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1.5, /datum/material/gold = SMALL_MATERIAL_AMOUNT*1.5, /datum/material/silver = SMALL_MATERIAL_AMOUNT*1.5)
 	build_path = /obj/item/disk/design_disk/high_tech_parts
@@ -88,14 +86,14 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/techweb_node/parts_upg/New()
-	design_ids += list(
-		"adv_part_disk",
+	unlocked_designs += list(
+		/datum/design/adv_part_disk,
 	)
 	return ..()
 
 /datum/techweb_node/parts_adv/New()
-	design_ids += list(
-		"high_tech_part_disk",
+	unlocked_designs += list(
+		/datum/design/high_tech_part_disk,
 	)
 	return ..()
 

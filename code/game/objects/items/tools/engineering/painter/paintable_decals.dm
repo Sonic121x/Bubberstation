@@ -370,6 +370,14 @@ GLOBAL_LIST_INIT(paintable_decals, init_subtypes(/datum/paintable_decal_category
 	name = "饰线拐角"
 	icon_state = "trimline_corner"
 
+/datum/paintable_decal/trimline/corner_long
+	name = "Trimline Corner Long"
+	icon_state = "trimline_corner_long"
+
+/datum/paintable_decal/trimline/corner_long_alternate
+	name = "Trimline Corner Long Alt"
+	icon_state = "trimline_corner_long_alt"
+
 /datum/paintable_decal/trimline/circle
 	name = "饰线圆形"
 	icon_state = "trimline"

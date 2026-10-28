@@ -68,7 +68,7 @@
 
 /mob/living/basic/clown/get_bloodtype()
 	if (check_holidays(APRIL_FOOLS))
-		return get_blood_type(BLOOD_TYPE_CLOWN)
+		return get_blood_type(/datum/blood_type/clown)
 	return ..()
 
 /mob/living/basic/clown/lube
@@ -83,7 +83,7 @@
 	response_disarm_continuous = "轻轻舀到一旁"
 	response_disarm_simple = "轻轻舀到一旁"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_SLIME
-	damage_coeff = list(BRUTE = 0.25, BURN = 1, TOX = 1, STAMINA = 1, OXY = 1)
+	physiology = list(BRUTE = 0.25)
 	emotes = list(
 		BB_EMOTE_SAY = list("HONK!!", "Honk!", "欢迎来到小丑星球！"),
 		BB_EMOTE_HEAR = list("冒起泡来。", "渗出黏液。"),
@@ -388,7 +388,6 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	obj_damage = 50
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 1, OXY = 1)
 	attack_verb_continuous = "猛砸"
 	attack_verb_simple = "猛砸"
 	///Tracks how many total foods we have eaten, used for calculating when we should gain max health.

@@ -108,7 +108,7 @@
 	name = "凝胶立方体"
 	desc = "一种原产于肖勒斯七号星的立方体软泥。\n自从太空旅行时代开启以来，这个物种已经在数个太空殖民地的废物处理设施中安了家。\n由于其高度好斗、充满捕食性的天性，它常被认为是第三臭名昭著的入侵物种。"
 	speed = 1
-	damage_coeff = list(BRUTE = 1, BURN = 0.6, TOX = 0.5, STAMINA = 0, OXY = 1)
+	physiology = list(BRUTE = 1, BURN = 0.6, TOX = 0.5, OXY = 1, STAMINA = 0)
 	melee_damage_lower = 20
 	melee_damage_upper = 20
 	armour_penetration = 15
@@ -302,7 +302,7 @@
 	speed = 1
 	health = 200
 	maxHealth = 200
-	damage_coeff = list(BRUTE = 1, BURN = 0.8, TOX = 0.5, STAMINA = 0, OXY = 1)
+	physiology = list(BRUTE = 1, BURN = 0.8, TOX = 0.5, OXY = 1, STAMINA = 0)
 	melee_damage_lower = 12
 	melee_damage_upper = 12
 	obj_damage = 15

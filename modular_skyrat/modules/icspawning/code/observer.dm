@@ -23,8 +23,8 @@
 	var/outfit_option
 	/// Initial list of outfits
 	var/list/outfit_options = list(
-		"蓝空间技师（管理员）" = /datum/outfit/admin/bst,
 		"蓝空间技师（管理员）（MOD 外骨骼）" = /datum/outfit/admin/bst/mod,
+		"蓝空间技师（管理员）" = /datum/outfit/admin/bst,
 		"裸体" = /datum/outfit,
 		"显示全部" = "显示全部",
 	)

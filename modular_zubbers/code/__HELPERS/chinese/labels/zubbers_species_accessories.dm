@@ -63,3 +63,15 @@
 		display_names[value] = chinese_zubbers_species_accessory_display(value)
 	data["display_names"] = display_names
 	return data
+
+/datum/preference/choiced/mob_height/compile_constant_data()
+	var/list/data = ..()
+	data[CHOICED_PREFERENCE_DISPLAY_NAMES] = list(
+		"Shortest" = "最矮",
+		"Short" = "矮小",
+		"Average" = "中等",
+		"Tall" = "高大",
+		"Taller" = "更高",
+		"Tallest" = "最高",
+	)
+	return data

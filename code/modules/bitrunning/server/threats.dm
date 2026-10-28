@@ -128,7 +128,7 @@
 
 
 /// Oh boy - transports the antag station side
-/obj/machinery/quantum_server/proc/station_spawn(mob/living/antag, obj/machinery/byteforge/chosen_forge)
+/obj/machinery/quantum_server/proc/station_spawn(mob/living/antag, obj/machinery/byteforge/chosen_forge, turf/goal_turf)
 	antag.balloon_alert(antag, "扫描中……")
 	chosen_forge.setup_particles(angry = TRUE)
 	var/obj/machinery/announcement_system/aas = get_announcement_system(null, src, list(RADIO_CHANNEL_SUPPLY))
@@ -158,6 +158,10 @@
 	if(bitrunners_alive)
 		to_chat(antag, span_warning("还有 [bitrunners_alive] 名罪犯留在这里，盗取你的域。在你处理掉他们之前，离开会更加困难。"))
 
+	timeout -= 0.5 SECONDS
+
+	if(!do_after(antag, 0.5 SECONDS, timed_action_flags = IGNORE_USER_LOC_CHANGE) || QDELETED(antag) || antag.loc != goal_turf || QDELETED(chosen_forge) || QDELETED(src))
+		return
 	if(!do_after(antag, timeout) || QDELETED(chosen_forge) || QDELETED(antag) || QDELETED(src) || !is_ready || !is_operational)
 		chosen_forge.setup_particles()
 		return
@@ -189,7 +193,7 @@
 		qdel(temp_body)
 
 	do_teleport(antag, get_turf(chosen_forge), forced = TRUE, asoundin = 'sound/effects/magic/ethereal_enter.ogg', asoundout = 'sound/effects/magic/ethereal_exit.ogg', channel = TELEPORT_CHANNEL_QUANTUM)
-
+	antag.client?.give_award(/datum/award/achievement/misc/red_pill, antag)
 
 /// Removes any invalid candidates from the list
 /obj/machinery/quantum_server/proc/validate_mutation_candidates()

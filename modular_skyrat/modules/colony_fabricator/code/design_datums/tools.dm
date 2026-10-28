@@ -1,23 +1,18 @@
 /datum/techweb_node/colony_fabricator_special_tools
-	id = TECHWEB_NODE_COLONY_TOOLS
 	display_name = "殖民地制造机工具设计"
 	description = "包含殖民地制造机的所有工具设计。"
-	design_ids = list(
-		"colony_power_drive",
-		"colony_prybar",
-		"colony_arc_welder",
-		"colony_compact_drill",
+	unlocked_designs = list(
+		/datum/design/colony_power_driver,
+		/datum/design/colony_door_crowbar,
+		/datum/design/colony_arc_welder,
+		/datum/design/colony_compact_drill,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = INFINITY) // God save you
-	hidden = TRUE
-	show_on_wiki = FALSE
-	starting_node = TRUE
+	node_flags = TECHWEB_NODE_HIDDEN | TECHWEB_NODE_EXPERIMENTAL
 
 // Screw-Wrench-Wirecutter combo machine
-
 /datum/design/colony_power_driver
 	name = "电动螺丝刀"
-	id = "colony_power_drive"
 	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/screwdriver/omni_drill
 	materials = list(
@@ -34,7 +29,6 @@
 
 /datum/design/colony_door_crowbar
 	name = "撬棍"
-	id = "colony_prybar"
 	// build_type = COLONY_FABRICATOR // Zubber Edit: Takes it out of the all-too-easy to acquire RCF
 	build_path = /obj/item/crowbar/large/doorforcer
 	materials = list(
@@ -50,7 +44,6 @@
 
 /datum/design/colony_arc_welder
 	name = "电弧焊接工具"
-	id = "colony_arc_welder"
 	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/weldingtool/electric/arc_welder
 	materials = list(
@@ -67,7 +60,6 @@
 
 /datum/design/colony_compact_drill
 	name = "紧凑型采矿钻机"
-	id = "colony_compact_drill"
 	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/pickaxe/drill/compact
 	materials = list(

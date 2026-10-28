@@ -4,7 +4,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	range = 5 // You want this to be low so you can drag them around
-	damage_coeff = list(BRUTE = 0.4, BURN = 0.4, TOX = 0.4, STAMINA = 0, OXY = 0.4)
+	physiology = list(BRUTE = 0.4, BURN = 0.4, TOX = 0.4, OXY = 0.4, STAMINA = 0)
 	playstyle_string = span_holoparasite("作为<b>保护者</b>型，你使召唤者牵引到你身边，而不是你牵引到他们身边，并拥有两种模式：战斗模式，你造成并承受中等伤害；保护模式，你造成并承受的伤害几乎为零，但移动稍慢。")
 	creator_name = "保护者"
 	creator_desc = "与其他寄生体不同，当使用者超出范围时，会使其传送至你身边。拥有两种模式：战斗模式，造成并承受中等伤害；保护模式，造成并承受的伤害几乎为零，但移动稍慢。"
@@ -71,9 +71,6 @@
 	/// Overlay for our protection shield.
 	var/mutable_appearance/shield_overlay
 	/// Damage coefficients when shielded
-	var/static/list/shielded_damage = list(BRUTE = 0.05, BURN = 0.05, TOX = 0.05, STAMINA = 0, OXY = 0.05)
-	// What the damage coefficients were previously
-	var/list/original_damage_coeff
 
 /datum/status_effect/protector_shield/on_apply()
 	if (isguardian(owner))
@@ -86,10 +83,10 @@
 	owner.melee_damage_upper -= damage_penalty
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/status_effect/guardian_shield)
 
-	if (isbasicmob(owner)) // Better hope you are or this status is doing basically nothing useful for you
-		var/mob/living/basic/basic_owner = owner
-		original_damage_coeff = basic_owner.damage_coeff
-		basic_owner.damage_coeff = shielded_damage
+	MODIFY_PHYSIOLOGY(owner, BRUTE, 0.125)
+	MODIFY_PHYSIOLOGY(owner, BURN, 0.125)
+	MODIFY_PHYSIOLOGY(owner, TOX, 0.125)
+	MODIFY_PHYSIOLOGY(owner, OXY, 0.125)
 
 	to_chat(owner, span_bolddanger("你进入了保护模式。"))
 	RegisterSignal(owner, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(on_update_overlays))
@@ -102,9 +99,10 @@
 	owner.melee_damage_upper += damage_penalty
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/status_effect/guardian_shield)
 
-	if (isbasicmob(owner))
-		var/mob/living/basic/basic_owner = owner
-		basic_owner.damage_coeff = original_damage_coeff
+	MODIFY_PHYSIOLOGY(owner, BRUTE, 8)
+	MODIFY_PHYSIOLOGY(owner, BURN, 8)
+	MODIFY_PHYSIOLOGY(owner, TOX, 8)
+	MODIFY_PHYSIOLOGY(owner, OXY, 8)
 
 	to_chat(owner, span_bolddanger("你恢复了正常模式。"))
 	UnregisterSignal(owner, list(COMSIG_ATOM_UPDATE_OVERLAYS) + COMSIG_LIVING_ADJUST_STANDARD_DAMAGE_TYPES)

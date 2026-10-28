@@ -76,8 +76,7 @@
 	else if(!locked) //Not locked and not primitive? escape immediately
 		open_machine()
 
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
 	user.visible_message(span_notice("你看见[user]正踢打[src]的舱门！"), \
 		span_notice("你背靠[src]的后壁，开始用力推门……（大约需要[DisplayTimeText(breakout_time)]。）"), \
 		span_hear("你听见[src]发出金属吱嘎声。"))

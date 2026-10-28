@@ -44,7 +44,7 @@
 
 /datum/instability_meltdown/not_alright/meltdown(mob/living/carbon/human/victim)
 	to_chat(victim, span_notice("哦，我感觉其实还挺好的！"))
-	victim.physiology.damage_resistance -= 20000 //you thought
+	victim.damage_resistance -= 20000
 	victim.log_message("因[type]基因崩溃而受到 200 倍伤害倍率影响")
 
 /// Turns you into a slime

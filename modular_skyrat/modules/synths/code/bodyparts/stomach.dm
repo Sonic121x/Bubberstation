@@ -37,7 +37,6 @@
 /datum/design/synth_stomach
 	name = "合成人生物反应堆"
 	desc = "合成人专用的特制微型反应堆，设有保障基本功能的低功耗模式。没有它，合成人便无法维持供电。"
-	id = "synth_stomach"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

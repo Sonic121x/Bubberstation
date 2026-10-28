@@ -225,6 +225,30 @@
 /turf/open/floor/plastic/broken_states()
 	return list("plastic-damaged1","plastic-damaged2")
 
+/turf/open/floor/plastic/puzzle
+	name = "塑料拼图地板"
+	icon_state = "plastic_puzzle"
+	floor_tile = /obj/item/stack/tile/plastic/puzzle
+
+/turf/open/floor/hauntium
+	name = "幽魂矿地板"
+	icon_state = "hauntium"
+	desc = "这地砖可真够阴森的。"
+	custom_materials = list(/datum/material/hauntium=SMALL_MATERIAL_AMOUNT*5)
+	floor_tile = /obj/item/stack/tile/hauntium
+
+/turf/open/floor/hauntium/tiled
+	name = "幽魂矿砖地板"
+	icon_state = "hauntium_tiled"
+	floor_tile = /obj/item/stack/tile/hauntium/tiled
+
+/turf/open/floor/sandstone
+	name = "砂岩砖地板"
+	desc = "砂岩地砖，让你感觉自己像个法老。"
+	icon_state = "sandstone_floor"
+	custom_materials = list(/datum/material/sandstone=SMALL_MATERIAL_AMOUNT*5)
+	floor_tile = /obj/item/stack/tile/mineral/sandstone
+
 /turf/open/floor/eighties
 	name = "复古地板"
 	desc = "这一款能把你带回过去。"
@@ -283,20 +307,14 @@
 		下才有意义，因为你要把冰冷的真空挡在外面。有人跟上我的思路了吗？\
 		所谓“简陋的”铁墙这个概念根本说不通！我说的这些到底有哪一句是真的？得有人去核实一下！"
 	icon_state = "stone_floor"
+	custom_materials = list(/datum/material/rock=SMALL_MATERIAL_AMOUNT*5)
+	floor_tile = /obj/item/stack/tile/mineral/stone
 
 /turf/open/floor/stone/lavaland
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
 /turf/open/floor/stone/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
-	name = "石砖地板"
-	desc = "说真的，挺奇怪的：它看起来和铁墙一模一样，却是石头而不是铁。那么，这究竟是在抱怨\
-		墙太有铁味还是地板太有石头味，就完全由你判断了。可你真的见过那么暗淡的铁吗？我是说，\
-		空间站有暗淡的金属墙还算合理，但我们说的是一堵简陋铁墙该有的样子。中世纪的人甚至根本不用铁\
-		墙，铁墙其实根本不存在，因为铁是一种昂贵又不怎么适合用来造墙的东西。它只在太空环境\
-		下才有意义，因为你要把冰冷的真空挡在外面。有人跟上我的思路了吗？\
-		所谓“简陋的”铁墙这个概念根本说不通！我说的这些到底有哪一句是真的？得有人去核实一下！"
-	icon_state = "stone_floor"
 
 /turf/open/floor/vault
 	name = "奇怪的地板"

@@ -509,7 +509,7 @@
 #define IFF_FACTION_EVERYONE "Non-Allies"
 
 /obj/item/organ/eyes/robotic/tacvisor
-	name = "战术 EFF 面罩"
+	name = "战术敌我识别目镜"
 	desc = "这是将 IFF 系统直接集成到士兵前额叶皮层的失败尝试。这套复杂的传感器阵列已被证明并不实用，因为额外的负担损害了使用者辨认他人外貌或声音的能力。那块屏幕只是为了威慑。"
 	icon_state = "eyes_tacvisor"
 	eye_icon_state = "eyes_tacvisor"
@@ -949,10 +949,22 @@
 	), COLORSPACE_HSL)
 
 /obj/item/organ/eyes/robotic/tacvisor/deathsquad
+	name = "死亡小队敌我识别目镜"
 	friendly_faction = IFF_FACTION_CENTCOM
 	hostile_faction = IFF_FACTION_EVERYONE
 	actions_types = null
 	user_controls = FALSE
+	organ_traits = list(TRAIT_THERMAL_VISION)
+
+/obj/item/organ/eyes/robotic/tacvisor/deathsquad/on_examine(mob/source, atom/target, list/examine_strings, list/examine_overrides)
+
+	if (target == owner || !iscarbon(target) && !(isliving(target) && (obj_flags & EMAGGED)))
+		return
+
+	if(get_iff_signature(target) == IFF_FRIENDLY)
+		examine_overrides[EXAMINE_OVERRIDE_PRIORITY_IFF] = span_notice("中央指挥部人员。禁止攻击。")
+	else
+		examine_overrides[EXAMINE_OVERRIDE_PRIORITY_IFF] = span_boldwarning("杀！杀！杀！杀！杀！杀！！！")
 
 /obj/item/organ/eyes/robotic/tacvisor/deathsquad/ui_status(mob/user, datum/ui_state/state)
 	return UI_CLOSE

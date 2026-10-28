@@ -91,7 +91,7 @@
 			span_notice("你把 [src] 的罐子在 [target] 的额头上捏扁了。"),
 		)
 	playsound(src, 'sound/items/weapons/pierce.ogg', rand(10, 50), TRUE)
-	var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(target.drop_location())
+	var/obj/item/trash/can/crushed_can = new trash_type(target.drop_location()) // BUBBER EDIT - ALLOW MORE TRASH TYPES
 	crushed_can.icon_state = icon_state
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -102,7 +102,7 @@
 		return
 	if(!proj.damage || proj.damage_type != BRUTE)
 		return
-	var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(loc)
+	var/obj/item/trash/can/crushed_can = new trash_type(loc) // BUBBER EDIT - ALLOW MORE TRASH TYPES
 	crushed_can.icon_state = icon_state
 	var/atom/throw_target = get_edge_target_turf(crushed_can, pick(GLOB.alldirs))
 	crushed_can.throw_at(throw_target, rand(1,2), 7)
@@ -275,7 +275,7 @@
 
 	burst_soda(hit_atom, hide_message = TRUE)
 	visible_message(span_danger("[src] 撞上 [hit_atom] 后破裂，内容物洒得到处都是！"))
-	var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(loc)
+	var/obj/item/trash/can/crushed_can = new trash_type(loc) // BUBBER EDIT - ALLOW MORE TRASH TYPES
 	crushed_can.icon_state = icon_state
 	moveToNullspace()
 	QDEL_IN(src, 1 SECONDS) // give it a second so it can still be logged for the throw impact
@@ -322,6 +322,7 @@
 	name = "太空可乐"
 	desc = "太空里的可乐。"
 	icon_state = "cola"
+	inhand_icon_state = "cola"
 	list_reagents = list(/datum/reagent/consumable/space_cola = 30)
 	drink_type = SUGAR
 
@@ -329,6 +330,7 @@
 	name = "T-Borg 汤力水"
 	desc = "奎宁的味道有点怪，但至少能赶走那该死的太空疟疾。"
 	icon_state = "tonic"
+	inhand_icon_state = "tonic"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/tonic = 50)
 	drink_type = ALCOHOL
@@ -337,6 +339,7 @@
 	name = "苏打水"
 	desc = "一罐苏打水。何不调一杯苏格兰威士忌苏打呢？"
 	icon_state = "sodawater"
+	inhand_icon_state = "sodawater"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/sodawater = 50)
 
@@ -344,6 +347,7 @@
 	name = "橙味汽水"
 	desc = "你想要的是橙子味。它给你的却是柠檬青柠味。"
 	icon_state = "lemon-lime"
+	inhand_icon_state = "lemon-lime"
 	list_reagents = list(/datum/reagent/consumable/lemon_lime = 30)
 	drink_type = FRUIT
 
@@ -362,6 +366,7 @@
 	name = "太空七喜！"
 	desc = "喝起来就像嘴里开了个船体破洞。"
 	icon_state = "space-up"
+	inhand_icon_state = "space-up"
 	list_reagents = list(/datum/reagent/consumable/space_up = 30)
 	drink_type = SUGAR | JUNKFOOD
 
@@ -369,6 +374,7 @@
 	name = "星吻"
 	desc = "液态的恒星滋味。还有，一点金枪鱼味……？"
 	icon_state = "starkist"
+	inhand_icon_state = "starkist"
 	list_reagents = list(/datum/reagent/consumable/space_cola = 15, /datum/reagent/consumable/orangejuice = 15)
 	drink_type = SUGAR | FRUIT | JUNKFOOD
 
@@ -376,6 +382,7 @@
 	name = "太空山风"
 	desc = "像一阵太空风一样直接吹透你的身体。"
 	icon_state = "space_mountain_wind"
+	inhand_icon_state = "space_mountain_wind"
 	list_reagents = list(/datum/reagent/consumable/spacemountainwind = 30)
 	drink_type = SUGAR | JUNKFOOD
 
@@ -383,6 +390,7 @@
 	name = "十三洛克"
 	desc = "首席医疗官已告诫船员，饮用十三洛克可能导致抽搐、失明、醉酒，甚至死亡。请理性饮用。"
 	icon_state = "thirteen_loko"
+	inhand_icon_state = "thirteen_loko"
 	list_reagents = list(/datum/reagent/consumable/ethanol/thirteenloko = 30)
 	drink_type = SUGAR | JUNKFOOD
 
@@ -390,6 +398,7 @@
 	name = "吉布博士"
 	desc = "由 42 种不同风味调制而成的美味混合物。"
 	icon_state = "dr_gibb"
+	inhand_icon_state = "dr_gibb"
 	list_reagents = list(/datum/reagent/consumable/dr_gibb = 30)
 	drink_type = SUGAR | JUNKFOOD
 
@@ -397,6 +406,7 @@
 	name = "电玩能量"
 	desc = "唯一一款拥有真正玩家渴望的 PWR 的饮料。当玩家谈起“玩家燃料”时，说的就是它。"
 	icon_state = "purple_can"
+	inhand_icon_state = "purple_can"
 	list_reagents = list(/datum/reagent/consumable/pwr_game = 30)
 
 /obj/item/reagent_containers/cup/soda_cans/shamblers
@@ -418,6 +428,7 @@
 	name = "威尔奇果汁"
 	desc = "一种奇怪的紫色饮料，散发着海水的味道。远处某处，你听见了海鸥的叫声。"
 	icon_state = "wellcheers"
+	inhand_icon_state = "wellcheers"
 	list_reagents = list(/datum/reagent/consumable/wellcheers = 30)
 	drink_type = SUGAR | JUNKFOOD
 
@@ -441,6 +452,7 @@
 	name = "24 伏特能量"
 	desc = "用 24 伏特能量来充电吧！"
 	icon_state = "volt_energy"
+	inhand_icon_state = "volt_energy"
 	list_reagents = list(/datum/reagent/consumable/volt_energy = 30)
 	drink_type = SUGAR | JUNKFOOD
 
@@ -448,6 +460,7 @@
 	name = "坎苏米蜜瓜汽水"
 	desc = "日本最受欢迎的蜜瓜汽水，现已推出罐装！"
 	icon_state = "melon_soda"
+	inhand_icon_state = "melon_soda"
 	list_reagents = list(/datum/reagent/consumable/melon_soda = 30)
 	drink_type = SUGAR | JUNKFOOD
 
@@ -461,6 +474,7 @@
 	name = "太空啤酒"
 	desc = "罐装啤酒。在太空里。"
 	icon_state = "space_beer"
+	inhand_icon_state = "space_beer"
 	volume = 40
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 40)
 	drink_type = GRAIN
@@ -469,6 +483,7 @@
 	name = "大米啤酒"
 	desc = "一种清淡的米制拉格啤酒，在火星很受欢迎。按照 1516 年的《纯净法》，这算是对巴伐利亚人的仇恨犯罪。"
 	icon_state = "ebisu"
+	inhand_icon_state = "ebisu"
 	list_reagents = list(/datum/reagent/consumable/ethanol/rice_beer = 40)
 
 /obj/item/reagent_containers/cup/soda_cans/beer/rice/Initialize(mapload)

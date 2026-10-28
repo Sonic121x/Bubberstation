@@ -3,7 +3,7 @@
 	desc = "一台小机器人。它拿着自行车喇叭，看起来很开心。"
 	icon_state = "honkbot"
 	base_icon_state = "honkbot"
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, STAMINA = 0, OXY = 0)
+	physiology = list(TOX = 0, OXY = 0, STAMINA = 0)
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5.8, /datum/material/cardboard = SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
 	req_access = list(ACCESS_ROBOTICS, ACCESS_THEATRE, ACCESS_JANITOR)
 	radio_key = /obj/item/encryptionkey/headset_service

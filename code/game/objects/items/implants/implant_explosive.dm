@@ -189,6 +189,21 @@
 		进入待爆状态后，会尝试与探测到的其他微型炸药同步以提高爆炸当量；\
 		然而，微型炸弹之间的握手过程需要一点时间，探测到的微型炸弹越多，耗时越长。"
 
+// Version with the same appearance and delay as a macrobomb, but is actually a microbomb with a surprise!
+/obj/item/implant/explosive/macro/fake
+	explosion_light = /obj/item/implant/explosive::explosion_light
+	explosion_heavy = /obj/item/implant/explosive::explosion_heavy
+	explosion_devastate = /obj/item/implant/explosive::explosion_devastate
+
+/obj/item/implant/explosive/macro/fake/explode(atom/override_explode_target)
+	honkerblast(
+		origin = override_explode_target || src,
+		light_range = /obj/item/implant/explosive/macro::explosion_light * 0.5,
+		medium_range = /obj/item/implant/explosive/macro::explosion_heavy * 0.5,
+		heavy_range = /obj/item/implant/explosive/macro::explosion_devastate * 0.5,
+	)
+	return ..()
+
 ///Microbomb which prevents you from going into critical condition but also explodes after a timer when you reach critical condition in the first place.
 /obj/item/implant/explosive/deniability
 	name = "战术免责植入体"
@@ -247,6 +262,10 @@
 /obj/item/implanter/explosive_macro
 	name = "植入器（巨型炸弹）"
 	imp_type = /obj/item/implant/explosive/macro
+
+/obj/item/implanter/explosive_macro/fake
+	name = "implanter (fake macrobomb)"
+	imp_type = /obj/item/implant/explosive/macro/fake
 
 /obj/item/implanter/tactical_deniability
 	name = "植入器（战术免责）"

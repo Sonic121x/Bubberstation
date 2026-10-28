@@ -2,7 +2,7 @@
 
 ///Magnetic Harness - Automatically puts guns in your suit storage when you drop them.
 /obj/item/mod/module/magnetic_harness
-	name = "MOD 磁力挂具模块"
+	name = "\improper MOD 磁力挂具模块"
 	desc = "这种磁力挂具基于旧时的地球政府挂具套件，会自动把掉落的枪械重新挂回佩戴者身上。"
 	icon_state = "mag_harness"
 	complexity = 2
@@ -72,7 +72,7 @@
 
 ///Pepper Shoulders - When hit, reacts with a spray of pepper spray around the user.
 /obj/item/mod/module/pepper_shoulders
-	name = "MOD 胡椒肩甲模块"
+	name = "\improper MOD 胡椒肩甲模块"
 	desc = "一种在 MOD 套装双肩各装一台胡椒喷雾器的模块，受到接触时会在使用者周围喷出喷雾。"
 	icon_state = "pepper_shoulder"
 	module_type = MODULE_USABLE
@@ -106,7 +106,7 @@
 
 ///Holster - Instantly holsters any not huge gun.
 /obj/item/mod/module/holster
-	name = "MOD 枪套模块"
+	name = "\improper MOD 枪套模块"
 	desc = "基于典型的储物隔间，这套系统让套装能在其表面收纳一把\
 		标准枪械，并能极快地取出。\
 		有人喜欢把它放在胸口，有人喜欢放在前臂以便快速取用，\
@@ -156,7 +156,7 @@
 
 ///Megaphone - Lets you speak loud.
 /obj/item/mod/module/megaphone
-	name = "MOD 扩音器模块"
+	name = "\improper MOD 扩音器模块"
 	desc = "一枚与 MOD 套装相连的芯片扩音器，用于非常重要的作用，比如：响亮。"
 	icon_state = "megaphone"
 	module_type = MODULE_TOGGLE
@@ -187,7 +187,7 @@
 
 ///Criminal Capture - Generates hardlight bags you can put people in and sinch.
 /obj/item/mod/module/criminalcapture
-	name = "MOD 罪犯捕获模块"
+	name = "\improper MOD 罪犯捕获模块"
 	desc = "奉命就地格杀目标的私人安保公司对自己那身\
 		太空防护套装相当满意，但那些想把自己目标\
 		活着带回的人，则需要一种能“分享”这种\
@@ -273,7 +273,7 @@
 
 ///Mirage grenade dispenser - Dispenses grenades that copy the user's appearance.
 /obj/item/mod/module/dispenser/mirage
-	name = "MOD 幻影手雷配发模块"
+	name = "\improper MOD 幻影手雷配发模块"
 	desc = "这个模块能按使用者的意愿制造幻影手雷。这些手雷会生成使用者的全息复制体。"
 	icon_state = "mirage_grenade"
 	cooldown_time = 20 SECONDS
@@ -308,7 +308,7 @@
 
 ///Projectile Dampener - Weakens projectiles in range.
 /obj/item/mod/module/projectile_dampener
-	name = "MOD 弹道削弱模块"
+	name = "\improper MOD 弹道削弱模块"
 	desc = "这个模块使用来自和平半机械人的技术，能削弱附近范围内的所有弹道物体。"
 	icon_state = "projectile_dampener"
 	module_type = MODULE_TOGGLE
@@ -347,7 +347,7 @@
 
 ///Active Sonar - Displays a hud circle on the turf of any living creatures in the given radius
 /obj/item/mod/module/active_sonar
-	name = "MOD 主动声呐"
+	name = "\improper MOD 主动声呐"
 	desc = "这项源自 20 世纪的古老技术，利用声波探测使用者半径内的活物。\
 		它的基本功能是缓慢扫描使用者周围的所有生物信号，但也可以超频同时扫描所有方向。\
 		它响亮的脉冲声在室内空间站里比在它原本设计的野外作业中难藏得多。"
@@ -464,7 +464,7 @@
  * Both modes prevent the user from dual wielding guns.
  */
 /obj/item/mod/module/shooting_assistant
-	name = "MOD 射击辅助模块"
+	name = "\improper MOD 射击辅助模块"
 	desc = "一件本意是提升 TGMC 那群吃蜡笔的家伙枪法、结果却搞砸了的原型机。\
 		它的配置里只有两种模式可用：\
 		‘快速射击风暴兵’和‘慢速跳弹神射手’，\
@@ -569,7 +569,7 @@
 #undef SHARPSHOOTER_MODE
 
 /obj/item/mod/module/shove_blocker
-	name = "MOD 壁垒模块"
+	name = "\improper MOD 壁垒模块"
 	desc = "一层又一层的减震板，只为不让你被愤怒的暴民推得撞上墙。"
 	icon_state = "bulwark"
 	complexity = 3
@@ -589,7 +589,7 @@
 	complexity = 0
 
 /obj/item/mod/module/quick_cuff
-	name = "MOD 拘束辅助模块"
+	name = "\improper MOD 拘束辅助模块"
 	desc = "增强型护手抓握垫，能帮助更快地给他人戴上拘束具。看起来它们是拆不下来的。"
 	removable = FALSE
 	complexity = 0

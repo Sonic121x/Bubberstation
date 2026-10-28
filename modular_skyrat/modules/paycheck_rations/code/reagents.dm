@@ -83,10 +83,3 @@
 	desc = "按航海配给标准分装的一小瓶焦糖。过去发的是一种叫“糖蜜”的东西，\
 		也就是精炼糖留下的黏稠残渣。如今政府足够富裕，直接改发焦糖了。"
 	list_reagents = list(/datum/reagent/consumable/caramel = 10)
-
-/obj/item/reagent_containers/cup/soda_cans/skyrat/wine_voltaic
-	name = "罐装伏打黄葡萄酒"
-	desc = "一罐注入电能的葡萄酒，能为以太人充电，可以安全饮用。"
-	icon = 'modular_skyrat/modules/paycheck_rations/icons/food_containers.dmi'
-	icon_state = "wine_voltaic_canned"
-	list_reagents = list(/datum/reagent/consumable/ethanol/wine_voltaic = 30)

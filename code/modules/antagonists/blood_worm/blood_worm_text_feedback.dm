@@ -63,29 +63,14 @@
 
 	result += span_notice("[target]体内有 [rounded_volume] 单位血液[growth_string]。其血液为<b>[synth_string]合成血液</b>。")
 
-/mob/living/basic/blood_worm/get_status_tab_items()
-	return ..() + get_special_status_tab_items()
+/mob/living/basic/blood_worm/proc/get_info_title()
+	. = "血虫生命值：[round((health / maxHealth) * 100)]%"
 
-/mob/living/basic/blood_worm/proc/on_host_get_status_tab_items(datum/source, list/items)
-	SIGNAL_HANDLER
-	items += "血虫生命值：[round((health / maxHealth) * 100)]%"
-	items += get_special_status_tab_items()
-
-/mob/living/basic/blood_worm/proc/get_special_status_tab_items()
-	. = list()
-
-	var/normal = consumed_normal_blood
-	var/synth = consumed_synth_blood
-	var/total = normal + synth
-
-	var/total_required = cocoon_action?.total_blood_required
-
-	if (total_required > 0)
-		. += "成长：[FLOOR(total / total_required * 100, 1)]%"
-	. += "已吸取血液"
-	. += "- 普通：[ceil(normal)]u"
-	. += "- 合成：[ceil(synth)]u（上限：[maximum_synth_blood]u）"
-	. += "- 总计：[ceil(total)]u（需求：[total_required]u）"
+/mob/living/basic/blood_worm/proc/get_info_desc()
+	. = "已吸取血液<br/>"
+	. += "- 普通：[ceil(consumed_normal_blood)]u<br/>"
+	. += "- 合成：[ceil(consumed_synth_blood)]u（上限：[maximum_synth_blood]u）<br/>"
+	. += "- 总计：[ceil(consumed_normal_blood + consumed_synth_blood)]u<br/>"
 
 /// Sends text to the blood worm, whether they are possessing a host or not.
 /mob/living/basic/blood_worm/proc/to_chat_self(text)

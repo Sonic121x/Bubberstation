@@ -440,18 +440,6 @@
 							U.uplink_handler.set_telecrystals(crystals)
 							message_admins("[key_name_admin(usr)]将[current]的传送水晶数量改为[crystals]。")
 							log_admin("[key_name(usr)]将[current]的传送水晶数量改为[crystals]。")
-			if("progression")
-				if(!check_rights(R_FUN))
-					return
-				var/datum/component/uplink/uplink = find_syndicate_uplink()
-				if(!uplink)
-					return
-				var/progression = input("设置[key]的新进展点数","辛迪加上行链路", uplink.uplink_handler.progression_points) as null | num
-				if(isnull(progression))
-					return
-				uplink.uplink_handler.progression_points = progression
-				message_admins("[key_name_admin(usr)]将[current]的进展点数改为[progression]。")
-				log_admin("[key_name(usr)]将[current]的进展点数改为[progression]。")
 			if("uplink")
 				var/datum/antagonist/traitor/traitor_datum = has_antag_datum(/datum/antagonist/traitor)
 				if(!give_uplink(antag_datum = traitor_datum || null))

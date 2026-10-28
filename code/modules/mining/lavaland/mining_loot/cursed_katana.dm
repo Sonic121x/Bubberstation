@@ -50,6 +50,7 @@
 	即便武器已被毁，所有封存着那生物的部分仍重新凝结在一起，去寻找新的宿主。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "cursed_katana"
+	inhand_icon_state = "cursed_katana"
 	icon_angle = -45
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'

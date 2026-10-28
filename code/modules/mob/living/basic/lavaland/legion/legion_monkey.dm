@@ -1,8 +1,8 @@
-/// Weak mob spawned if a legion infests a monkey
-/mob/living/basic/mining/legion/monkey
+/// Weak mob spawned if a legion infests a monkey or any lesser humanoid
+/mob/living/basic/mining/legion/lesser
 	name = "暴民"
 	desc = "在翻涌的腐化团块之下，你能看出那曾经是一只猴子。它的生物量不足以进行繁殖。"
-	icon_state = "legion_monkey"
+	icon_state = "legion_lesser"
 	pass_flags = PASSTABLE
 	speed = 5
 	maxHealth = 40
@@ -15,33 +15,34 @@
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	speak_emote = list("吱吱尖叫")
 	corpse_type = /obj/effect/mob_spawn/corpse/human/monkey
-	ai_controller = /datum/ai_controller/basic_controller/legion_monkey
+	ai_controller = /datum/ai_controller/basic_controller/legion_lesser
+	desc_word_to_replace = "monkey"
 
-/mob/living/basic/mining/legion/monkey/Initialize(mapload)
+/mob/living/basic/mining/legion/lesser/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 	AddComponent(/datum/component/regenerator, outline_colour = COLOR_SOFT_RED)
 
-/mob/living/basic/mining/legion/monkey/assign_abilities()
+/mob/living/basic/mining/legion/lesser/assign_abilities()
 	return
 
-/mob/living/basic/mining/legion/monkey/get_loot_list()
+/mob/living/basic/mining/legion/lesser/get_loot_list()
 	return
 
 /// Icebox variant
-/mob/living/basic/mining/legion/monkey/snow
+/mob/living/basic/mining/legion/lesser/snow
 	name = "雪地暴民"
 	desc = "在压实厚重的雪层下，你能看出那曾经是一只猴子。它看起来可不太友好。"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
-	icon_state = "snow_monkey"
+	icon_state = "snow_lesser"
 	has_emissive = FALSE
 
-/mob/living/basic/mining/legion/monkey/snow/Initialize(mapload)
+/mob/living/basic/mining/legion/lesser/snow/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/appearance_on_aggro, aggro_state = "snow_monkey_alive") // Surprise! I was real!
+	AddComponent(/datum/component/appearance_on_aggro, aggro_state = "snow_lesser_alive") // Surprise! I was real!
 
 /// Opportunistically hops in and out of vents, if it can find one and is not biting someone.
-/datum/ai_controller/basic_controller/legion_monkey
+/datum/ai_controller/basic_controller/legion_lesser
 	behavior_tree_json = "code/modules/mob/living/basic/lavaland/legion/legion_monkey.bt.json"
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,

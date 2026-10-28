@@ -148,7 +148,6 @@
 /datum/design/board/gbp_machine
 	name = "优秀助理积分兑换机电路板"
 	desc = "优秀助理积分兑换机的电路板。"
-	id = "gbp_machine"
 	build_path = /obj/item/circuitboard/machine/gbp_redemption
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_CARGO

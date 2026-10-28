@@ -1,6 +1,7 @@
 /obj/item/grenade/gas_crystal
-	desc = "某种晶体，不应出现在正常游戏中。"
 	name = "气体晶体"
+	desc = "某种晶体。"
+	abstract_type = /obj/item/grenade/gas_crystal
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "bluefrag"
 	inhand_icon_state = "flashbang"
@@ -24,7 +25,7 @@
 	addtimer(CALLBACK(src, PROC_REF(detonate)), isnull(delayoverride)? det_time : delayoverride)
 
 /obj/item/grenade/gas_crystal/healium_crystal
-	name = "愈合气晶体"
+	name = "\improper 愈合气晶体"
 	desc = "由愈合气制成的晶体，触感冰凉。"
 	icon_state = "healium_crystal"
 	///Range of the grenade that will cool down and affect mobs
@@ -47,8 +48,8 @@
 	qdel(src)
 
 /obj/item/grenade/gas_crystal/proto_nitrate_crystal
-	name = "原硝气晶体"
-	desc = "由原硝气制成的晶体，可以看到内部液化的气体。"
+	name = "\improper 原硝气晶体"
+	desc = "由原硝气制成的晶体，比你想象中更轻。"
 	icon_state = "proto_nitrate_crystal"
 	///Range of the grenade air refilling
 	var/refill_range = 5
@@ -73,8 +74,8 @@
 	qdel(src)
 
 /obj/item/grenade/gas_crystal/nitrous_oxide_crystal
-	name = "笑气晶体"
-	desc = "由笑气制成的晶体，可以看到内部液化的气体。"
+	name = "\improper 笑气晶体"
+	desc = "由笑气制成的晶体，光是看着它就让人昏昏欲睡。"
 	icon_state = "n2o_crystal"
 	///Range of the grenade air refilling
 	var/fill_range = 1

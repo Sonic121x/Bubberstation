@@ -8,6 +8,7 @@
 	desc = "你完全搞不懂这团奇怪的骨头有什么用。"
 	icon_state = "liver-bone"
 	organ_traits = list(TRAIT_STABLELIVER)
+	organ_flags = ORGAN_MINERAL
 	///Var for brute healing via milk
 	var/milk_brute_healing = 2.5
 	///Var for burn healing via milk

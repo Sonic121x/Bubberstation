@@ -23,7 +23,7 @@
 			人工智能何时在看着你，有助于判断何时需要维持伪装，而找到附近的 \
 			盲区则能帮你确定逃跑路线。"
 	item = /obj/item/multitool/ai_detect
-	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
+	purchasable_from = ~UPLINK_FIREBASE_OPS
 	cost = 1
 
 /datum/uplink_item/stealthy_tools/chameleon
@@ -116,11 +116,10 @@
 	desc = "购买后，会有一段病毒被上传至通讯处理服务器，使其暂时自行停运。"
 	item = ABSTRACT_UPLINK_ITEM
 	surplus = 0
-	progression_minimum = 15 MINUTES
 	limited_stock = 1
 	cost = 4
 	restricted = TRUE
-	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS) //Can still be purchased by loneops to give them an edge.
+	purchasable_from = ~UPLINK_FIREBASE_OPS //Can still be purchased by loneops to give them an edge.
 
 /datum/uplink_item/stealthy_tools/telecomm_blackout/spawn_item(spawn_path, mob/user, datum/uplink_handler/uplink_handler, atom/movable/source)
 	force_event(/datum/round_event_control/communications_blackout, "一种辛迪加病毒")
@@ -131,11 +130,10 @@
 	desc = "购买后，会有一段病毒被上传至工程处理服务器，强制进行一次例行电网检查，使空间站上所有 APC 暂时失效。"
 	item = ABSTRACT_UPLINK_ITEM
 	surplus = 0
-	progression_minimum = 15 MINUTES
 	limited_stock = 1
 	cost = 6
 	restricted = TRUE
-	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS) //Can still be purchased by loneops to give them an edge.
+	purchasable_from = ~UPLINK_FIREBASE_OPS //Can still be purchased by loneops to give them an edge.
 
 /datum/uplink_item/stealthy_tools/blackout/spawn_item(spawn_path, mob/user, datum/uplink_handler/uplink_handler, atom/movable/source)
 	force_event(/datum/round_event_control/grid_check, "一种辛迪加病毒")

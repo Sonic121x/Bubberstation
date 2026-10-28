@@ -9,17 +9,15 @@
 	)
 
 /datum/techweb_node/mutanttech
-	id = TECHWEB_NODE_MUTANT_TECH
 	display_name = "纳米传讯高级病毒生物武器技术"
 	description = "来自纳米传讯病毒生物武器部门的研究设备！遭遇病毒问题？它能救你一命。"
-	prereq_ids = list("exp_tools", "cytology")
-	design_ids = list("rna_vial", "rna_extractor", "rna_recombinator")
-	research_costs = list(TECHWEB_NODE_SURGERY_TOOLS, TECHWEB_NODE_CYTOLOGY)
+	prerequisite_nodes = list(/datum/techweb_node/exp_tools, /datum/techweb_node/cytology)
+	unlocked_designs = list(/datum/design/rna_vial, /datum/design/rna_extractor, /datum/design/board/rna_recombinator)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 
 /datum/design/rna_vial
 	name = "空RNA样本瓶"
 	desc = "用于储存遗传信息的空RNA样本瓶。"
-	id = "rna_vial"
 	build_type = PROTOLATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -35,7 +33,6 @@
 /datum/design/rna_extractor
 	name = "RNA提取装置"
 	desc = "一台RNA提取装置，对想提取RNA数据的对象使用。需要装入RNA样本瓶才能工作。"
-	id = "rna_extractor"
 	build_type = PROTOLATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
@@ -52,7 +49,6 @@
 /datum/design/board/rna_recombinator
 	name = "机器设计（RNA重组机）"
 	desc = "信使RNA重组机采用纳米传讯最先进的技术之一，能够精确重组病毒RNA。"
-	id = "rna_recombinator"
 	build_path = /obj/item/circuitboard/machine/rna_recombinator
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_RESEARCH,

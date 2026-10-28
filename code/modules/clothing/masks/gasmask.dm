@@ -11,7 +11,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 	name = "防毒面具"
 	desc = "覆盖面部的面具，可连接气源。适合隐藏身份，并带有一个过滤器插槽，可帮助去除那些毒素。" //More accurate
 	icon_state = "gas_alt"
-	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS | GAS_FILTERING
+	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 	w_class = WEIGHT_CLASS_NORMAL
 	inhand_icon_state = "gas_alt"
@@ -348,6 +348,13 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 		update_item_action_buttons()
 		to_chat(user, span_notice("你的小丑面具现在变成了 [choice]，赞美洪克之母！"))
 		return TRUE
+
+/obj/item/clothing/mask/gas/clown_hat/clownops
+	name = "tactical clown wig and mask"
+	desc = "A tactical twist on a troubadour's tradition."
+	flash_protect = FLASH_PROTECTION_FLASH
+	resistance_flags = FIRE_PROOF
+	flags_cover = MASKCOVERSEYES | PEPPERPROOF
 
 /obj/item/clothing/mask/gas/sexyclown
 	name = "性感小丑假发与面具"

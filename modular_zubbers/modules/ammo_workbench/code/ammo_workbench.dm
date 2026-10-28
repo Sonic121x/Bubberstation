@@ -646,7 +646,6 @@
 /datum/design/board/ammo_workbench
 	name = "机器设计（弹药工作台）"
 	desc = "一台专门用于制造弹药的机器，有点类似车床。它有一个插槽，可放入弹匣或桥夹等弹药容器。"
-	id = "ammo_workbench"
 	build_path = /obj/item/circuitboard/machine/ammo_workbench
 	category = list(RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_FAB)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY

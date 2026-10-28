@@ -70,21 +70,21 @@
 	return
 
 /obj/machinery/atmospherics/components/unary/hypertorus/fuel_input
-	name = "HFR 燃料输入口"
+	name = "\improper HFR 燃料输入口"
 	desc = "超环面聚变反应堆的输入口，用于接收燃料，最佳燃料配比为 50/50。"
 	icon_state = "fuel_input"
 	base_icon_state = "fuel_input"
 	circuit = /obj/item/circuitboard/machine/HFR_fuel_input
 
 /obj/machinery/atmospherics/components/unary/hypertorus/waste_output
-	name = "HFR 废气输出口"
+	name = "\improper HFR 废气输出口"
 	desc = "超环面聚变反应堆的废气口，用于排出机器核心产生的高温废气。"
 	icon_state = "waste_output"
 	base_icon_state = "waste_output"
 	circuit = /obj/item/circuitboard/machine/HFR_waste_output
 
 /obj/machinery/atmospherics/components/unary/hypertorus/moderator_input
-	name = "HFR 慢化剂输入口"
+	name = "\improper HFR 慢化剂输入口"
 	desc = "超环面聚变反应堆的慢化剂口，用于在机器内部输送气体，以冷却并控制反应进程。"
 	icon_state = "moderator_input"
 	base_icon_state = "moderator_input"
@@ -135,7 +135,7 @@
 		. += emissive_appearance(icon, "[base_icon_state]_active", src, alpha = src.alpha)
 
 /obj/machinery/hypertorus/interface
-	name = "HFR 接口"
+	name = "\improper HFR 接口"
 	desc = "HFR 的控制接口，用于调节反应进程。"
 	icon_state = "interface"
 	base_icon_state = "interface"
@@ -379,7 +379,7 @@
 				. = TRUE
 
 /obj/machinery/hypertorus/corner
-	name = "HFR 角落部件"
+	name = "\improper HFR 角落部件"
 	desc = "机器的结构部件。"
 	icon_state = "corner"
 	base_icon_state = "corner"
@@ -411,7 +411,7 @@
 	请使用更高级的指南来了解各种气体作为慢化剂的作用。"
 
 /obj/item/hfr_box
-	name = "HFR 箱体"
+	name = "\improper HFR 箱体"
 	desc = "如果你看到这个，快报警。"
 	icon = 'icons/obj/machines/atmospherics/hypertorus.dmi'
 	icon_state = "error"
@@ -421,39 +421,39 @@
 	var/part_path
 
 /obj/item/hfr_box/corner
-	name = "HFR 角落箱体"
+	name = "\improper HFR 角落箱体"
 	desc = "将其放置为 3x3 多方块聚变反应堆的角落"
 	icon_state = "box_corner"
 	box_type = "corner"
 	part_path = /obj/machinery/hypertorus/corner
 
 /obj/item/hfr_box/body
-	name = "HFR 主体箱体"
+	name = "\improper HFR 主体箱体"
 	desc = "将其放置在 3x3 多方块聚变反应堆核心箱体的侧面"
 	box_type = "body"
 	icon_state = "box_body"
 
 /obj/item/hfr_box/body/fuel_input
-	name = "HFR 箱体燃料输入"
+	name = "\improper HFR 箱体燃料输入"
 	icon_state = "box_fuel"
 	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/fuel_input
 
 /obj/item/hfr_box/body/moderator_input
-	name = "HFR 箱体慢化剂输入"
+	name = "\improper HFR 箱体慢化剂输入"
 	icon_state = "box_moderator"
 	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/moderator_input
 
 /obj/item/hfr_box/body/waste_output
-	name = "HFR 箱体废气输出"
+	name = "\improper HFR 箱体废气输出"
 	icon_state = "box_waste"
 	part_path = /obj/machinery/atmospherics/components/unary/hypertorus/waste_output
 
 /obj/item/hfr_box/body/interface
-	name = "HFR 箱体接口"
+	name = "\improper HFR 箱体接口"
 	part_path = /obj/machinery/hypertorus/interface
 
 /obj/item/hfr_box/core
-	name = "HFR 箱体核心"
+	name = "\improper HFR 箱体核心"
 	desc = "布置好其他箱体后，用多功能工具激活此物以展开完整机器"
 	icon_state = "box_core"
 	box_type = "core"

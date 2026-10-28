@@ -4,7 +4,7 @@
  */
 /mob/living/basic/mining/legion
 	name = "军团"
-	desc = "在翻涌的腐化团块之下，你仍能看出那曾经是一个人。"
+	desc = "在翻涌的腐化团块之下，你仍能看出那曾经是一个人类。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "legion"
 	icon_living = "legion"
@@ -33,6 +33,8 @@
 	var/mob/living/stored_mob = null
 	/// Do we have emissives?
 	var/has_emissive = TRUE
+	/// Used for replacing the word "human" or "monkey" in the description with the name of the species of the stored mob (if any)
+	var/desc_word_to_replace = "human"
 
 /mob/living/basic/mining/legion/Initialize(mapload)
 	. = ..()
@@ -71,6 +73,22 @@
 		new corpse_type(loc)
 	return ..()
 
+/mob/living/basic/mining/legion/update_name()
+	. = ..()
+	if (stored_mob && (!HAS_TRAIT(stored_mob, TRAIT_LESSER_HUMANOID) || stored_mob == GLOB.the_one_and_only_punpun))
+		name = stored_mob.real_name
+	else
+		name = initial(name)
+
+/mob/living/basic/mining/legion/update_desc()
+	. = ..()
+	desc = initial(desc)
+	if(!stored_mob || !desc_word_to_replace)
+		return
+	var/replacement = chinese_footprint_species_display(astype(stored_mob, /mob/living/carbon)?.dna?.species?.name || initial(stored_mob.name))
+	desc = replacetext(desc, desc_word_to_replace == "human" ? "人类" : desc_word_to_replace == "monkey" ? "猴子" : desc_word_to_replace, replacement)
+
+
 /mob/living/basic/mining/legion/update_overlays()
 	. = ..()
 	if (stat != DEAD && has_emissive) // Shouldn't really happen but just in case
@@ -80,8 +98,6 @@
 /mob/living/basic/mining/legion/proc/consume(mob/living/carbon/human/consumed)
 	new /obj/effect/gibspawner/generic(consumed.loc)
 	gender = consumed.gender
-	if (!ismonkey(consumed) || consumed == GLOB.the_one_and_only_punpun)
-		name = consumed.real_name
 	consumed.investigate_log("被虫巢领主侵染致死。", INVESTIGATE_DEATHS)
 	consumed.death()
 	consumed.extinguish_mob()
@@ -93,6 +109,7 @@
 	ai_controller?.set_blackboard_key(BB_LEGION_RECENT_LINES, consumed.copy_recent_speech(line_chance = 80))
 	stored_mob = consumed
 	visible_message(span_warning("[src] 摇摇晃晃地撑着 [p_their()] 身体站了起来！"))
+	update_appearance(UPDATE_NAME|UPDATE_DESC)
 	if (prob(75))
 		return
 	// Congratulations you have won a special prize: cancer
@@ -112,7 +129,7 @@
 /// Like a Legion but it's an adorable snowman
 /mob/living/basic/mining/legion/snow
 	name = "雪地军团"
-	desc = "在压实厚重的雪层下，你隐约能看出那曾经是一个人。可爱，却又阴森。"
+	desc = "在压实厚重的雪层下，你隐约能看出那曾经是一个人类。可爱，却又阴森。"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	icon_state = "snowlegion"
 	icon_living = "snowlegion"
@@ -134,7 +151,7 @@
 /// Like a Legion but shorter and faster
 /mob/living/basic/mining/legion/dwarf
 	name = "矮小军团"
-	desc = "在翻涌的腐化团块之下，你仍能看出那曾经是个身材矮小的人。"
+	desc = "在翻涌的腐化团块之下，你仍能看出那曾经是个身材矮小的人类。"
 	icon_state = "dwarf_legion"
 	icon_living = "dwarf_legion"
 	icon_dead = "dwarf_legion"
@@ -161,6 +178,7 @@
 	pixel_x = -16
 	sentience_type = SENTIENCE_BOSS
 	has_emissive = FALSE
+	desc_word_to_replace = ""
 
 /mob/living/basic/mining/legion/large/Initialize(mapload)
 	. = ..()
@@ -171,6 +189,7 @@
 		max_spawned = 3,\
 		spawn_text = "从本体上剥落下来，源自",\
 		faction = faction,\
+		spawner_logic = SPAWN_CONTINUOUS_BEHAVIOR,\
 	)
 
 /// Create what we want to drop on death, in proc form so we can always return a static list

@@ -59,48 +59,56 @@
 	)
 
 /datum/design/cat_tail
+	name = "猫尾"
 	category = list(SPECIES_FELINE, RND_CATEGORY_INITIAL)
 
 /datum/design/cat_ears
+	name = "猫耳"
 	category = list(SPECIES_FELINE, RND_CATEGORY_INITIAL)
 
 /datum/design/cat_tongue
+	name = "猫舌"
 	category = list(SPECIES_FELINE, RND_CATEGORY_INITIAL)
 
 /datum/design/ethereal_stomach
+	name = "以太人胃"
 	category = list(SPECIES_ETHEREAL, RND_CATEGORY_INITIAL)
 
 /datum/design/ethereal_tongue
+	name = "以太人舌头"
 	category = list(SPECIES_ETHEREAL, RND_CATEGORY_INITIAL)
 
 /datum/design/ethereal_lungs
-	category = list(SPECIES_ETHEREAL, RND_CATEGORY_INITIAL)
-
-/datum/design/ethereal_heart
+	name = "以太人肺"
 	category = list(SPECIES_ETHEREAL, RND_CATEGORY_INITIAL)
 
 /datum/design/lizard_tail
+	name = "蜥蜴尾巴"
 	category = list(SPECIES_LIZARD, RND_CATEGORY_INITIAL)
 
 /datum/design/lizard_tongue
+	name = "蜥蜴舌头"
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
 	category = list(SPECIES_LIZARD, RND_CATEGORY_INITIAL)
 
 /datum/design/plasmaman_lungs
+	name = "等离子人肺"
 	category = list(SPECIES_PLASMAMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/plasmaman_tongue
+	name = "等离子人舌头"
 	category = list(SPECIES_PLASMAMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/plasmaman_liver
+	name = "等离子人肝脏"
 	category = list(SPECIES_PLASMAMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/plasmaman_stomach
+	name = "等离子人胃"
 	category = list(SPECIES_PLASMAMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/humanoidbrain
 	name = "大脑"
-	id = "blankbrain"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 100)
 	build_path = /obj/item/organ/brain
@@ -108,7 +116,6 @@
 
 /datum/design/nitrogen_lungs
 	name = "氮气适应肺"
-	id = "nitrogenlunggeneric"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)
 	build_path = /obj/item/organ/lungs/nitrogen
@@ -116,7 +123,6 @@
 
 /datum/design/vox_nitrogen_lungs
 	name = "沃克斯氮气肺"
-	id = "nitrogenlungvox"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)
 	build_path = /obj/item/organ/lungs/nitrogen/vox
@@ -124,7 +130,6 @@
 
 /datum/design/cold_lungs
 	name = "耐寒肺"
-	id = "coldlungs"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 35)
 	build_path = /obj/item/organ/lungs/adaptive/cold
@@ -132,7 +137,6 @@
 
 /datum/design/hot_lungs
 	name = "耐热肺"
-	id = "hotlungs"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 35)
 	build_path = /obj/item/organ/lungs/adaptive/hot
@@ -140,7 +144,6 @@
 
 /datum/design/oxy_lungs
 	name = "低氧适应肺"
-	id = "oxylungs"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 35)
 	build_path = /obj/item/organ/lungs/oxy
@@ -148,7 +151,6 @@
 
 /datum/design/tox_lungs
 	name = "耐毒肺"
-	id = "toxlungs"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 35)
 	build_path = /obj/item/organ/lungs/toxin
@@ -156,7 +158,6 @@
 
 /datum/design/hemophage_heart
 	name = "搏动肿瘤"
-	id = "hemophageheart"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 25, /datum/reagent/blood = 10)
 	build_path = /obj/item/organ/heart/hemophage
@@ -164,7 +165,6 @@
 
 /datum/design/hemophage_liver
 	name = "腐化肝脏"
-	id = "hemophageliver"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 15, /datum/reagent/blood = 10)
 	build_path = /obj/item/organ/liver/hemophage
@@ -172,7 +172,6 @@
 
 /datum/design/hemophage_stomach
 	name = "腐化胃"
-	id = "hemophagestomach"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10, /datum/reagent/blood = 10)
 	build_path = /obj/item/organ/stomach/hemophage
@@ -180,7 +179,6 @@
 
 /datum/design/hemophage_tongue
 	name = "腐化舌头"
-	id = "hemophagetongue"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 5, /datum/reagent/blood = 10)
 	build_path = /obj/item/organ/tongue/hemophage
@@ -189,7 +187,6 @@
 //Shadekin organs
 /datum/design/shadekin_ears
 	name = "影裔耳朵"
-	id = "shadekinears"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 15)
 	build_path = /obj/item/organ/ears/shadekin
@@ -197,7 +194,6 @@
 
 /datum/design/shadekin_eyes
 	name = "影裔眼睛"
-	id = "shadekineyes"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 15)
 	build_path = /obj/item/organ/eyes/shadekin
@@ -206,7 +202,6 @@
 //Tajaran organs
 /datum/design/tajaran_ears
 	name = "塔亚拉耳朵"
-	id = "tajaranears"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
 	build_path = /obj/item/organ/ears/cat/tajaran
@@ -214,7 +209,6 @@
 
 /datum/design/tajaran_eyes
 	name = "塔亚拉眼睛"
-	id = "tajaraneyes"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
 	build_path = /obj/item/organ/eyes/tajaran
@@ -222,7 +216,6 @@
 
 /datum/design/tajaran_tongue
 	name = "塔亚拉舌头"
-	id = "tajarantounge"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
 	build_path = /obj/item/organ/tongue/cat/tajaran
@@ -231,7 +224,6 @@
 //Teshari organs
 /datum/design/teshari_ears
 	name = "特沙利耳朵"
-	id = "teshariears"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
 	build_path = /obj/item/organ/ears/teshari
@@ -239,7 +231,6 @@
 
 /datum/design/teshari_eyes
 	name = "特沙利眼睛"
-	id = "tesharieyes"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
 	build_path = /obj/item/organ/eyes/teshari
@@ -247,7 +238,6 @@
 
 /datum/design/teshari_tongue
 	name = "特沙利舌头"
-	id = "tesharitongue"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
 	build_path = /obj/item/organ/tongue/teshari
@@ -255,7 +245,6 @@
 
 /datum/design/wholehuman
 	name = "空白躯体"
-	id = "blankhuman"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 600)
 	build_path = /mob/living/carbon/human/empty
@@ -264,11 +253,10 @@
 /// Available through TECHWEB_NODE_CYBER_ORGANS_UPGRADED
 /obj/item/disk/design_disk/limbs/adaptive_lungs
 	name = "适应性肺器官设计磁盘"
-	limb_designs = list(/datum/design/hot_lungs, /datum/design/oxy_lungs, /datum/design/tox_lungs)
+	blueprints = list(/datum/design/hot_lungs, /datum/design/oxy_lungs, /datum/design/tox_lungs)
 
 /// Available through TECHWEB_NODE_CYBER_ORGANS_UPGRADED
 /datum/design/limb_disk/adaptive_lungs
 	name = "适应性肺器官设计磁盘"
 	desc = "包含供肢体培育机使用的转基因适应性肺设计。"
-	id = "limbdesign_adaptive_lungs"
 	build_path = /obj/item/disk/design_disk/limbs/adaptive_lungs

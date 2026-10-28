@@ -32,7 +32,7 @@
 	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-/datum/status_effect/song/antimagic/get_examine_text()
+/datum/status_effect/song/antimagic/get_examine_text(mob/examiner)
 	return span_notice("[owner]似乎笼罩在暗淡的灰色光环中。")
 
 /datum/status_effect/song/light
@@ -51,5 +51,5 @@
 /datum/status_effect/song/light/on_remove()
 	QDEL_NULL(mob_light_obj)
 
-/datum/status_effect/song/light_song/get_examine_text()
+/datum/status_effect/song/light_song/get_examine_text(mob/examiner)
 	return span_notice("[owner]似乎笼罩在闪耀的光环中。")

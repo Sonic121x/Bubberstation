@@ -58,11 +58,8 @@ export const AlertPane = (props) => {
                     : 'good')
               }
             >
-              {overclock_mode
-                ? `超频中（${Math.round(
-                    overclock_temp_percentage * 100,
-                  )}%）`
-                : '超频'}
+              {overclock_mode ? "超频中 " : "超频 "}
+              ({Math.round(Math.max(overclock_temp_percentage * 100, 0))}%)
             </Button>
             {!!overclock_safety_available && (
               <Button

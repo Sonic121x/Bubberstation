@@ -7,7 +7,6 @@
 	lose_text = span_notice("你意识到刚才眼前突然一黑，只是因为眼皮重新长了出来。")
 	medical_record_text = "患者在一场惨烈的事故中失去了眼皮。"
 	hardcore_value = 6
-	quirk_flags = QUIRK_HUMAN_ONLY
 	mail_goodies = list(/obj/item/reagent_containers/cup/bottle/salglu_solution, /obj/item/light/bulb)
 
 /datum/quirk/item_quirk/fluoride_stare/is_species_appropriate(datum/species/mob_species)

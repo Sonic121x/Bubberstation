@@ -6,6 +6,7 @@
 	desc = "这是我的扫帚棍！它既可以直接使用，也可以双手握持，让你在移动时清扫物品。它配有可伸缩的手柄，便于紧凑收纳。"
 	icon = 'icons/obj/service/janitor.dmi'
 	icon_state = "broom0"
+	inhand_icon_state = "broom0"
 	base_icon_state = "broom"
 	icon_angle = 135
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'

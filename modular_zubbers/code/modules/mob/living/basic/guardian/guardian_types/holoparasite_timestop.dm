@@ -13,7 +13,7 @@
  */
 /mob/living/basic/guardian/standard/timestop
 	// Like Bloodsuckers do, you will take more damage to Burn and less to Brute
-	damage_coeff = list(BRUTE = 0.5, BURN = 2.5, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
+	physiology = list(BRUTE = 0.5, BURN = 2.5, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	playstyle_string = span_holoparasite("作为<b>时停</b>型，你拥有停止时间的能力，敌人乃至飞行物都会被冻结，而你能自由行动。你还对钝击伤害有抗性，但惧怕烧伤。")
 	creator_name = "时停"
 	creator_desc = "毁灭性的近战攻击与极高的物理伤害抗性，但惧怕烧伤。能砸穿脆弱的墙壁并停止时间。"

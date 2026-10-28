@@ -1,8 +1,8 @@
 /obj/item/storage/belt/fannypack
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/belts/belts_teshari.dmi'
 
-/obj/item/storage/belt/bluespace
-	name = "蓝空间技师腰带"
+/obj/item/storage/belt/debug
+	name = "技师腰带"
 	desc = "可容纳各种物品，具体而言最多能装 21 件。你大概不该拥有这个。"
 	content_overlays = FALSE
 	icon = 'modular_zubbers/icons/obj/clothing/belts/belts.dmi'
@@ -17,12 +17,14 @@
 	preload = FALSE
 	storage_type = /datum/storage/bluespace_belt
 
-/obj/item/storage/belt/bluespace/PopulateContents()
-	new /obj/item/screwdriver/power/bluespace(src)
-	new /obj/item/crowbar/power/bluespace(src)
-	new /obj/item/weldingtool/experimental/bluespace(src)
-	new /obj/item/multitool/abductor/bluespace(src)
+/obj/item/storage/belt/debug/PopulateContents()
+	new /obj/item/screwdriver/power/debug(src)
+	new /obj/item/crowbar/power/debug(src)
+	new /obj/item/weldingtool/experimental/debug(src)
+	new /obj/item/multitool/abductor/debug(src)
 	new /obj/item/construction/rcd/combat/admin(src)
 	new /obj/item/pipe_dispenser/bluespace(src)
 	new /obj/item/holosign_creator/atmos(src)
 	new /obj/item/extinguisher/advanced(src)
+	new /obj/item/analyzer/ranged(src)
+	new /obj/item/radio/admin(src)

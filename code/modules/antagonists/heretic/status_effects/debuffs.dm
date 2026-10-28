@@ -347,7 +347,7 @@
 	// Causes them to need to eat at 10x the normal rate
 	owner.adjust_nutrition(-hunger_rate * HUNGER_FACTOR)
 	if(SPT_PROB(10, seconds_between_ticks))
-		to_chat(owner, span_notice(pick("你止不住地想着生肉……", "你**必须**吃掉某个人。", "饥饿的绞痛又来了……", "你渴望血肉。", "你快要饿死了！")))
+		to_chat(owner, span_notice(pick("你止不住地想着生肉……", "你<b>必须</b>吃掉某个人。", "饥饿的绞痛又来了……", "你渴望血肉。", "你快要饿死了！")))
 	owner.overeatduration = max(owner.overeatduration - 200 SECONDS, 0)
 
 /datum/status_effect/eldritch_painting/desire/on_remove()

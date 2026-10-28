@@ -1,7 +1,7 @@
 ADMIN_VERB(law_panel, R_ADMIN, "AI 法则面板", "查看 AI 法则。", ADMIN_CATEGORY_EVENTS)
 	if(!isobserver(user) && SSticker.HasRoundStarted())
 		message_admins("[key_name_admin(user)] 通过 AI 法则面板查看了 AI 法则。")
-	var/datum/law_panel/tgui = new
+	var/datum/law_panel/tgui = new()
 	tgui.ui_interact(user.mob)
 	BLACKBOX_LOG_ADMIN_VERB("Law Panel")
 

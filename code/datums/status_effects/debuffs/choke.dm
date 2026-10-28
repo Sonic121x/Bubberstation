@@ -121,7 +121,7 @@
 		var/atom/target = get_edge_target_turf(source, source.dir)
 		choking_on.throw_at(target, distance, 1, source)
 
-/datum/status_effect/choke/get_examine_text()
+/datum/status_effect/choke/get_examine_text(mob/examiner)
 	return span_boldwarning("[owner]正在窒息！")
 
 /datum/status_effect/choke/proc/remove_choke(datum/source)
@@ -216,6 +216,8 @@
 		var/mob/living/carbon/carbon_victim = victim
 		var/obj/item/bodypart/chest = carbon_victim.get_bodypart(BODY_ZONE_CHEST)
 		carbon_victim.cause_wound_of_type_and_severity(WOUND_BLUNT, chest, WOUND_SEVERITY_SEVERE, wound_source = "human force to the chest")
+
+	aggressor.client?.give_award(/datum/award/achievement/misc/samaritan, aggressor)
 
 	playsound(owner, 'sound/mobs/humanoids/human/gag_vomit/crack_vomit.ogg', 120, extrarange = 5, falloff_exponent = 4)
 	vomit_up()

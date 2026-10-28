@@ -122,7 +122,7 @@
 // Basic canister per gas below here
 
 /obj/machinery/portable_atmospherics/canister/air
-	name = "空气储罐"
+	name = "\improper 空气储罐"
 	desc = "预先混合好的空气。"
 	icon_state = "/obj/machinery/portable_atmospherics/canister/air"
 	post_init_icon_state = ""
@@ -130,7 +130,7 @@
 	greyscale_colors = "#c6c0b5"
 
 /obj/machinery/portable_atmospherics/canister/antinoblium
-	name = "反惰性气体储罐"
+	name = "\improper 反惰性气体储罐"
 	gas_type = /datum/gas/antinoblium
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/antinoblium"
@@ -147,7 +147,7 @@
 	greyscale_colors = "#9b5d7f#d0d2a0"
 
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide
-	name = "二氧化碳储罐"
+	name = "\improper 二氧化碳储罐"
 	gas_type = /datum/gas/carbon_dioxide
 	icon_state = "/obj/machinery/portable_atmospherics/canister/carbon_dioxide"
 	post_init_icon_state = ""
@@ -155,7 +155,7 @@
 	greyscale_colors = "#4e4c48#eaeaea"
 
 /obj/machinery/portable_atmospherics/canister/freon
-	name = "氟利昂储罐"
+	name = "\improper 氟利昂储罐"
 	gas_type = /datum/gas/freon
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/freon"
@@ -164,7 +164,7 @@
 	greyscale_colors = "#6696ee#fefb30"
 
 /obj/machinery/portable_atmospherics/canister/halon
-	name = "哈龙储罐"
+	name = "\improper 哈龙储罐"
 	gas_type = /datum/gas/halon
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/halon"
@@ -173,7 +173,7 @@
 	greyscale_colors = "#9b5d7f#368bff"
 
 /obj/machinery/portable_atmospherics/canister/healium
-	name = "愈合气储罐"
+	name = "\improper 愈合气储罐"
 	gas_type = /datum/gas/healium
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/healium"
@@ -182,7 +182,7 @@
 	greyscale_colors = "#009823#ff0e00"
 
 /obj/machinery/portable_atmospherics/canister/helium
-	name = "氦气储罐"
+	name = "\improper 氦气储罐"
 	gas_type = /datum/gas/helium
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/helium"
@@ -191,7 +191,7 @@
 	greyscale_colors = "#9b5d7f#368bff"
 
 /obj/machinery/portable_atmospherics/canister/hydrogen
-	name = "氢气储罐"
+	name = "\improper 氢气储罐"
 	gas_type = /datum/gas/hydrogen
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/hydrogen"
@@ -200,7 +200,7 @@
 	greyscale_colors = "#eaeaea#be3455"
 
 /obj/machinery/portable_atmospherics/canister/miasma
-	name = "瘴气储罐"
+	name = "\improper 瘴气储罐"
 	gas_type = /datum/gas/miasma
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/miasma"
@@ -209,7 +209,7 @@
 	greyscale_colors = "#009823#f7d5d3"
 
 /obj/machinery/portable_atmospherics/canister/nitrogen
-	name = "氮气储罐"
+	name = "\improper 氮气储罐"
 	gas_type = /datum/gas/nitrogen
 	icon_state = "/obj/machinery/portable_atmospherics/canister/nitrogen"
 	post_init_icon_state = ""
@@ -217,7 +217,7 @@
 	greyscale_colors = "#e9ff5c#f4fce8"
 
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide
-	name = "一氧化二氮储罐"
+	name = "\improper 一氧化二氮储罐"
 	gas_type = /datum/gas/nitrous_oxide
 	icon_state = "/obj/machinery/portable_atmospherics/canister/nitrous_oxide"
 	post_init_icon_state = ""
@@ -225,7 +225,7 @@
 	greyscale_colors = "#c63e3b#f7d5d3"
 
 /obj/machinery/portable_atmospherics/canister/nitrium
-	name = "氮素气储罐"
+	name = "\improper 氮素气储罐"
 	gas_type = /datum/gas/nitrium
 	icon_state = "/obj/machinery/portable_atmospherics/canister/nitrium"
 	post_init_icon_state = ""
@@ -233,7 +233,7 @@
 	greyscale_colors = "#7b4732"
 
 /obj/machinery/portable_atmospherics/canister/nob
-	name = "超惰性气体储罐"
+	name = "\improper 超惰性气体储罐"
 	gas_type = /datum/gas/hypernoblium
 	icon_state = "/obj/machinery/portable_atmospherics/canister/nob"
 	post_init_icon_state = ""
@@ -241,7 +241,7 @@
 	greyscale_colors = "#6399fc#b2b2b2"
 
 /obj/machinery/portable_atmospherics/canister/oxygen
-	name = "氧气储罐"
+	name = "\improper 氧气储罐"
 	gas_type = /datum/gas/oxygen
 	icon_state = "/obj/machinery/portable_atmospherics/canister/oxygen"
 	post_init_icon_state = ""
@@ -249,7 +249,7 @@
 	greyscale_colors = "#2786e5#e8fefe"
 
 /obj/machinery/portable_atmospherics/canister/pluoxium
-	name = "富氧气储罐"
+	name = "\improper 富氧气储罐"
 	gas_type = /datum/gas/pluoxium
 	icon_state = "/obj/machinery/portable_atmospherics/canister/pluoxium"
 	post_init_icon_state = ""
@@ -257,7 +257,7 @@
 	greyscale_colors = "#2786e5"
 
 /obj/machinery/portable_atmospherics/canister/proto_nitrate
-	name = "原硝气储罐"
+	name = "\improper 原硝气储罐"
 	gas_type = /datum/gas/proto_nitrate
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/proto_nitrate"
@@ -266,7 +266,7 @@
 	greyscale_colors = "#008200#33cc33"
 
 /obj/machinery/portable_atmospherics/canister/plasma
-	name = "等离子体储罐"
+	name = "\improper 等离子体储罐"
 	gas_type = /datum/gas/plasma
 	icon_state = "/obj/machinery/portable_atmospherics/canister/plasma"
 	post_init_icon_state = ""
@@ -274,7 +274,7 @@
 	greyscale_colors = "#f62800#000000"
 
 /obj/machinery/portable_atmospherics/canister/tritium
-	name = "氚气储罐"
+	name = "\improper 氚气储罐"
 	gas_type = /datum/gas/tritium
 	icon_state = "/obj/machinery/portable_atmospherics/canister/tritium"
 	post_init_icon_state = ""
@@ -282,7 +282,7 @@
 	greyscale_colors = "#3fcd40#000000"
 
 /obj/machinery/portable_atmospherics/canister/water_vapor
-	name = "水蒸气储罐"
+	name = "\improper 水蒸气储罐"
 	gas_type = /datum/gas/water_vapor
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/water_vapor"
@@ -291,7 +291,7 @@
 	greyscale_colors = "#4c4e4d#f7d5d3"
 
 /obj/machinery/portable_atmospherics/canister/zauker
-	name = "灼蚀气储罐"
+	name = "\improper 灼蚀气储罐"
 	gas_type = /datum/gas/zauker
 	filled = 1
 	icon_state = "/obj/machinery/portable_atmospherics/canister/zauker"

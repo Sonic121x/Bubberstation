@@ -2,7 +2,7 @@
 
 ///Storage - Adds a storage component to the suit.
 /obj/item/mod/module/storage
-	name = "MOD 紧凑存储模块"
+	name = "\improper MOD 紧凑存储模块"
 	desc = "本质上是一系列集成储物隔间和专用口袋，安装在\
 		套装表面各处，适合存放各种零零碎碎。这个版本经过精简以节省空间。"
 	icon_state = "storage"
@@ -27,6 +27,9 @@
 	var/obj/item/clothing/suit = mod.get_part_from_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(suit))
 		RegisterSignal(suit, COMSIG_ITEM_PRE_UNEQUIP, PROC_REF(on_suit_unequip))
+	// You could easily allow modsuits to be strip accessible like backpacks like so
+	// But we figured there should be special handling for stuff like DNA locks first
+	// mod.AddElement(/datum/element/strip_accessible_storage)
 
 /obj/item/mod/module/storage/on_uninstall(deleting = FALSE)
 	. = ..()
@@ -37,6 +40,7 @@
 	var/obj/item/clothing/suit = mod.get_part_from_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(suit))
 		UnregisterSignal(suit, COMSIG_ITEM_PRE_UNEQUIP)
+	// mod.RemoveElement(/datum/element/strip_accessible_storage)
 
 /obj/item/mod/module/storage/proc/on_suit_unequip(obj/item/source, force, atom/newloc, no_move, invdrop, silent)
 	if(QDELETED(source) || !invdrop || !mod.wearer || newloc == mod.wearer || !mod.wearer.s_store)
@@ -49,7 +53,7 @@
 	mod.wearer.temporarilyRemoveItemFromInventory(mod.wearer.s_store)
 
 /obj/item/mod/module/storage/large_capacity
-	name = "MOD 存储模块"
+	name = "\improper MOD 存储模块"
 	desc = "中村工程公司根据咚克公司的设计逆向研制的这套隐藏隔间系统，\
 		完全位于套装内部，能均匀分散物品和重量，确保使用者获得舒适的体验；\
 		无论是用于走私，还是单纯搬运。"
@@ -59,7 +63,7 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/uranium = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/mod/module/storage/syndicate
-	name = "MOD 辛迪加存储模块"
+	name = "\improper MOD 辛迪加存储模块"
 	desc = "一种使用赛博太阳工业研发的纳米技术的存储系统，这些隔间利用\
 		深奥的技术压缩放入其中的物品的物理物质，\
 		本质上就是把物品缩小，以便更轻松、更便携地存放。"
@@ -68,7 +72,7 @@
 	storage_type = /datum/storage/mod_storage/syndicate
 
 /obj/item/mod/module/storage/belt
-	name = "MOD 储物箱模块"
+	name = "\improper MOD 储物箱模块"
 	desc = "在制造压缩式模块化套装核心时，总得做出一些妥协。\
 		因此，玫瑰银河公司为其套装配备了一个薄型储物箱。\
 		如果你发现标准模块化套装上装着这个，那几乎可以肯定有人在正规存储模块上坑了你。"
@@ -78,7 +82,7 @@
 	storage_type = /datum/storage/mod_storage/belt
 
 /obj/item/mod/module/storage/bluespace
-	name = "MOD 蓝空间存储模块"
+	name = "\improper MOD 蓝空间存储模块"
 	desc = "一种由纳米传讯研发的存储系统，这些隔间采用\
 		微型化的蓝空间口袋，代表了存储技术的极致；无论放入其中的物体有多重。"
 	complexity = 3
@@ -87,7 +91,7 @@
 
 ///Ion Jetpack - Lets the user fly freely through space using battery charge.
 /obj/item/mod/module/jetpack
-	name = "MOD 离子喷气背包模块"
+	name = "\improper MOD 离子喷气背包模块"
 	desc = "一系列安装在套装各处的电动推进器，是见习工程师们高度期待的模块。\
 		这些喷气器不靠燃气燃烧推进，而是用套装的电量加速离子。\
 		有人说这并非中村工程公司第一次涉足带喷气功能的套装。"
@@ -170,7 +174,7 @@
 	REMOVE_TRAIT(mod.wearer, TRAIT_NOGRAV_ALWAYS_DRIFT, REF(src))
 
 /obj/item/mod/module/jetpack/advanced
-	name = "MOD 高级离子喷气背包模块"
+	name = "\improper MOD 高级离子喷气背包模块"
 	desc = "对前代电动推进器的改进。这一型号通过加装更多喷气口\
 		并涂上红色涂料，实现了更高的精度和空间稳定性。"
 	icon_state = "jetpack_advanced"
@@ -183,7 +187,7 @@
 
 ///Jump Jet - Briefly removes the effect of gravity and pushes you up one z-level if possible.
 /obj/item/mod/module/jump_jet
-	name = "MOD 离子跳跃喷气模块"
+	name = "\improper MOD 离子跳跃喷气模块"
 	desc = "一种专用离子推进器，能提供短暂而强劲、足以对抗重力的推力，\
 		但之后需要时间充能。"
 	icon_state = "jump_jet"
@@ -219,7 +223,7 @@
 
 ///Status Readout - Puts a lot of information including health, nutrition, fingerprints, temperature to the suit TGUI.
 /obj/item/mod/module/status_readout
-	name = "MOD 状态读取模块"
+	name = "\improper MOD 状态读取模块"
 	desc = "一种曾经很常见的模块，可惜这项技术在太空较安全的地区已经不再流行；\
 		却在顺旋边区的科研网络中获得了新生。这个特定单元会接入套装的脊柱，\
 		能够采集并显示佩戴者所有可获取的生物特征数据；睡眠、营养、体能、指纹，\
@@ -315,7 +319,7 @@
 
 ///Eating Apparatus - Lets the user eat/drink with the suit on.
 /obj/item/mod/module/mouthhole
-	name = "MOD 进食装置模块"
+	name = "\improper MOD 进食装置模块"
 	desc = "矿工们的最爱，这项头盔改装在嘴部前方利用一层纳米技术屏障，\
 		让使用者能在保持防护和气压的同时吃喝。不过，它不能让你摆脱面罩，\
 		胡椒喷雾仍能穿过，而且它也无法改善歌利亚牛排的味道。"
@@ -372,7 +376,7 @@
 
 ///EMP Shield - Protects the suit from EMPs.
 /obj/item/mod/module/emp_shield
-	name = "MOD EMP 护盾模块"
+	name = "\improper MOD EMP 护盾模块"
 	desc = "一种安装在套装内的场抑制器，可保护套装免受反馈伤害，例如\
 		电磁脉冲，否则这些脉冲会损坏套装或其模块的电子系统。\
 		不过，这么做会消耗套装的电力。"
@@ -400,7 +404,7 @@
 		mod_part.emp_protection -= protection_factor/all_parts.len
 
 /obj/item/mod/module/emp_shield/advanced
-	name = "MOD 高级 EMP 护盾模块"
+	name = "\improper MOD 高级 EMP 护盾模块"
 	desc = "一种安装在套装内的高级场抑制器，可保护套装免受反馈伤害，例如\
 		电磁脉冲，否则这些脉冲会损坏套装或佩戴者身上电子设备的电子系统，\
 		包括义体增强。不过，这么做会消耗套装的电力。"
@@ -414,7 +418,7 @@
 
 ///Flashlight - Gives the suit a customizable flashlight.
 /obj/item/mod/module/flashlight
-	name = "MOD 手电筒模块"
+	name = "\improper MOD 手电筒模块"
 	desc = "一对简单的可调手电筒，安装在头盔左右两侧，\
 		能在多种范围和颜色下提供照明。\
 		有些生存主义者偏爱用绿光照明，原因不明。"
@@ -486,7 +490,7 @@
 
 ///Like the flashlight module, except the light color is stuck to black and cannot be changed.
 /obj/item/mod/module/flashlight/darkness
-	name = "MOD 暗光手电模块"
+	name = "\improper MOD 暗光手电模块"
 	desc = "一对古怪的可调暗光手电，安装在头盔两侧，\
 		能在可调范围内提供黑暗。"
 	light_color = COLOR_BLACK
@@ -501,7 +505,7 @@
 
 ///Dispenser - Dispenses an item after a time passes.
 /obj/item/mod/module/dispenser
-	name = "MOD 汉堡配发模块"
+	name = "\improper MOD 汉堡配发模块"
 	desc = "一件罕见的逆向工程设备，原型来自一艘咚克公司的飞船。\
 		它能从套装的电量中抽取惊人的能量，在使用者手套的掌心\
 		制造可食用的有机物；不过，研究似乎完全止步于汉堡。\
@@ -531,7 +535,7 @@
 
 ///Longfall - Nullifies fall damage, removing charge instead.
 /obj/item/mod/module/longfall
-	name = "MOD 坠落缓冲模块"
+	name = "\improper MOD 坠落缓冲模块"
 	desc = "既能保护套装也能保护佩戴者，\
 		利用常见系统将坠落可能造成的伤害转化为动能电荷，\
 		并用内置陀螺仪确保使用者安全落地。\
@@ -570,7 +574,7 @@
 
 ///Thermal Regulator - Regulates the wearer's core temperature.
 /obj/item/mod/module/thermal_regulator
-	name = "MOD 温度调节模块"
+	name = "\improper MOD 温度调节模块"
 	desc = "先进的气候控制系统，使用一件贴身内衬，其中交织着数千条细小而\
 		柔韧的冷却管路。它让冷却液以使用者设定的各种温度循环，\
 		确保他们始终舒适；即便他们属于喜欢高温的那类人。"
@@ -602,7 +606,7 @@
 
 ///DNA Lock - Prevents people without the set DNA from activating the suit.
 /obj/item/mod/module/dna_lock
-	name = "MOD DNA 锁模块"
+	name = "\improper MOD DNA 锁模块"
 	desc = "一种与套装系统上的各种锁具和密封装置联动的模块，\
 		使套装只能被与使用者 DNA 完全相符的人穿戴；\
 		不过，这个极其敏感的模块会被 EMP 烧毁。幸好克隆已被取缔。"
@@ -691,7 +695,7 @@
 
 ///Plasma Stabilizer - Prevents plasmamen from igniting in the suit
 /obj/item/mod/module/plasma_stabilizer
-	name = "MOD 等离子稳定模块"
+	name = "\improper MOD 等离子稳定模块"
 	desc = "这套系统本质上在套装内部形成了一个独立的大气环境，\
 		高效而迅速地防止氧气让使用者的头部燃起火焰。\
 		这让等离子人得以安全地摘下头盔，从而更方便地\
@@ -724,7 +728,7 @@
 //Finally, https://pipe.miroware.io/5b52ba1d94357d5d623f74aa/mspfa/Nuke%20Ops/Panels/0648.gif can be real:
 ///Hat Stabilizer - Allows displaying a hat over the MOD-helmet, à la plasmamen helmets.
 /obj/item/mod/module/hat_stabilizer
-	name = "MOD 帽子固定模块"
+	name = "\improper MOD 帽子固定模块"
 	desc = "一套简单的可展开支架，直接位于头顶；\
 		这些支架会在帽子下方展开，防止帽子掉落，使帽子能戴在密闭头盔之上。\
 		不过，头盔展开时你仍需要先把帽子从头上取下。\
@@ -756,7 +760,7 @@
 	helmet.AddComponent(/datum/component/hat_stabilizer, loose_hat = TRUE)
 
 /obj/item/mod/module/hat_stabilizer/syndicate
-	name = "MOD 精英帽子固定模块"
+	name = "\improper MOD 精英帽子固定模块"
 	desc = "一套简单的可展开支架，直接位于头顶；\
 		这些支架会在帽子下方展开，防止帽子掉落，使帽子能戴在密闭头盔之上。\
 		不过，头盔展开时你仍需要先把帽子从头上取下。对\
@@ -766,7 +770,7 @@
 
 ///Sign Language Translator - allows people to sign over comms using the modsuit's gloves.
 /obj/item/mod/module/signlang_radio
-	name = "MOD 手套翻译模块"
+	name = "\improper MOD 手套翻译模块"
 	desc = "一种在套装手套中加入运动传感器的模块，\
 		它与一台短程亚空间发射器配合工作，\
 		让听觉受损者能在通讯频道上使用手语。"
@@ -785,7 +789,7 @@
 
 ///A module that recharges the suit by an itsy tiny bit whenever the user takes a step. Originally called "magneto module" but the videogame reference sounds cooler.
 /obj/item/mod/module/joint_torsion
-	name = "MOD 关节扭转棘轮模块"
+	name = "\improper MOD 关节扭转棘轮模块"
 	desc = "一台紧凑而微弱的交流发电机，靠行走为套装的内部电池充电。在零重力下不管用。可以安装多个。"
 	icon_state = "joint_torsion"
 	complexity = 1
@@ -822,7 +826,7 @@
 
 /// Module that shoves garbage inside its material container when the user crosses it, and eject the recycled material with MMB.
 /obj/item/mod/module/recycler
-	name = "MOD 回收模块"
+	name = "\improper MOD 回收模块"
 	desc = "一种创新的垃圾收集模块，能把收集到的垃圾回收成可用的材料。\
 		对残骸和某些物品无效。可能会回收实弹弹药。\
 		对附近的地面或储物容器使用可卸载已存储的材料。"
@@ -940,7 +944,7 @@
 
 ///A black market variant of the above that dispenses riot foam dart boxes
 /obj/item/mod/module/recycler/donk
-	name = "MOD 防暴泡沫弹回收模块"
+	name = "\improper MOD 防暴泡沫弹回收模块"
 	desc = "一种 MOD 模块，能把发射过的泡沫弹（以及垃圾）收集起来重新包装成半尺寸的防暴泡沫弹弹药箱。\
 		对附近的地面或储物容器使用可卸载已存储的弹药箱。"
 	icon_state = "donk_recycler"
@@ -964,7 +968,7 @@
 	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 50, TRUE)
 
 /obj/item/mod/module/fishing_glove
-	name = "MOD 钓鱼手套模块"
+	name = "\improper MOD 钓鱼手套模块"
 	desc = "一种 MOD 模块，可装入外置钓竿，让使用者无需手持也能钓鱼，同时还能让钓鱼稍微容易一些。"
 	icon_state = "fishing_glove"
 	complexity = 1
@@ -1038,7 +1042,7 @@
 		qdel(gloves.GetComponent(/datum/component/profound_fisher))
 
 /obj/item/mod/module/shock_absorber
-	name = "MOD 电击吸收模块"
+	name = "\improper MOD 电击吸收模块"
 	desc = "一种让使用者更难被警棍击倒、并抵抗警棍造成的中枢神经干扰的模块。"
 	icon_state = "no_baton"
 	complexity = 1

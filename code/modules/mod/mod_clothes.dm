@@ -1,5 +1,5 @@
 /obj/item/clothing/head/mod
-	name = "MOD 头盔"
+	name = "\improper MOD 头盔"
 	desc = "MOD 外骨骼的头盔。"
 	icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	icon_state = "standard-helmet"
@@ -15,9 +15,10 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NO_SPEED_POTION, INNATE_TRAIT)
 	AddComponent(/datum/component/hat_stabilizer, loose_hat = TRUE)
+	//AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_HEAD, /datum/bodypart_texture/mesh/space) // BUBBER EDIT REMOVAL - WE HAVE OUR OWN MESHES
 
 /obj/item/clothing/suit/mod
-	name = "MOD 胸甲"
+	name = "\improper MOD 胸甲"
 	desc = "MOD 外骨骼的胸甲。"
 	icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	icon_state = "standard-chestplate"
@@ -38,9 +39,10 @@
 /obj/item/clothing/suit/mod/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NO_SPEED_POTION, INNATE_TRAIT)
+	//AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_CHEST, /datum/bodypart_texture/mesh/space) // BUBBER EDIT REMOVAL - WE HAVE OUR OWN MESHES
 
 /obj/item/clothing/gloves/mod
-	name = "MOD 护手"
+	name = "\improper MOD 护手"
 	desc = "MOD 外骨骼的一副护手。"
 	icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	icon_state = "standard-gauntlets"
@@ -59,7 +61,7 @@
 	ADD_TRAIT(src, TRAIT_NO_SPEED_POTION, INNATE_TRAIT)
 
 /obj/item/clothing/shoes/mod
-	name = "MOD 靴子"
+	name = "\improper MOD 靴子"
 	desc = "MOD 外骨骼的一双靴子。"
 	icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	icon_state = "standard-boots"
@@ -77,8 +79,19 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NO_SPEED_POTION, INNATE_TRAIT)
 
+/obj/item/clothing/shoes/mod/proc/update_footstep_sounds()
+	switch(slowdown)
+		if(0.3 to INFINITY)
+			AddComponent(/datum/component/shoe_footstep, list('sound/items/modsuit/rigstep_chonk.ogg'), volume = 50)
+		if(0.2 to 0.3)
+			AddComponent(/datum/component/shoe_footstep, list('sound/items/modsuit/rigstep_heavy.ogg'), volume = 50)
+		if(0.1 to 0.2)
+			AddComponent(/datum/component/shoe_footstep, list('sound/items/modsuit/rigstep_medium.ogg'), volume = 50)
+		if(-INFINITY to 0.1)
+			AddComponent(/datum/component/shoe_footstep, list('sound/items/modsuit/rigstep.ogg'), volume = 50)
+
 /obj/item/clothing/glasses/mod
-	name = "MOD 眼镜"
+	name = "\improper MOD 眼镜"
 	desc = "MOD 外骨骼的一副眼镜。"
 	icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	icon_state = "standard-glasses"
@@ -94,7 +107,7 @@
 	ADD_TRAIT(src, TRAIT_NO_SPEED_POTION, INNATE_TRAIT)
 
 /obj/item/clothing/neck/mod
-	name = "MOD 领带"
+	name = "\improper MOD 领带"
 	desc = "MOD 外骨骼的领带。"
 	icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	icon_state = "standard-tie"

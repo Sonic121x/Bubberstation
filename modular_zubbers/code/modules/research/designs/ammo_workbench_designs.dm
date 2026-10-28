@@ -1,6 +1,8 @@
+/datum/design/disk
+	abstract_type = /datum/design/disk
+
 /datum/design/disk/ammo_workbench_lethal
 	name = "弹药工作台高级弹药数据磁盘"
-	id = "ammoworkbench_disk_lethal"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT

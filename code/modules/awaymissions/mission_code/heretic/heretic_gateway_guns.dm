@@ -1,8 +1,9 @@
-/obj/item/gun/energy/shrink_ray/one_shot
-	name = "缩小射线爆破枪"
+/obj/item/gun/energy/recharge/shrink_ray/one_shot
+	name = "缩小射线枪"
 	desc = "这是一件骇人的外星科技，能在局部空间增强原子的磁引力，使物体暂时缩小。 \
 		也可能只是太空魔法。不管怎样，它能把东西缩小，这一把被临时改装成可使用非外星电池。不过它仍然能充能。"
 	ammo_type = list(/obj/item/ammo_casing/energy/shrink/worse)
+	holds_charge = TRUE
 
 /obj/item/ammo_casing/energy/shrink/worse
 	projectile_type = /obj/projectile/magic/shrink/alien

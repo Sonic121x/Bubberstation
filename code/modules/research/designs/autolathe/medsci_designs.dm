@@ -1,7 +1,6 @@
 // Medical Designs
 /datum/design/pillbottle
 	name = "药瓶"
-	id = "pillbottle"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic =SMALL_MATERIAL_AMOUNT*0.2, /datum/material/glass =SMALL_MATERIAL_AMOUNT)
 	build_path = /obj/item/storage/pill_bottle
@@ -13,7 +12,6 @@
 
 /datum/design/reflexhammer
 	name = "反射锤"
-	id = "reflex_hammer"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.75, /datum/material/plastic =SMALL_MATERIAL_AMOUNT*0.5)
 	build_path = /obj/item/reflexhammer
@@ -25,7 +23,6 @@
 
 /datum/design/blood_scanner
 	name = "血液分析扫描仪"
-	id = "blood_scanner"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*2, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.5)
 	build_path = /obj/item/blood_scanner
@@ -37,7 +34,6 @@
 
 /datum/design/stethoscope
 	name = "听诊器"
-	id = "stethoscope"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/clothing/neck/stethoscope
@@ -49,7 +45,6 @@
 
 /datum/design/sticky_tape/surgical
 	name = "手术胶带"
-	id = "surgical_tape"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/plastic =SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/stack/medical/wrap/sticky_tape/surgical
@@ -62,7 +57,6 @@
 // Science Designs
 /datum/design/slime_scanner
 	name = "史莱姆扫描仪"
-	id = "slime_scanner"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2)
 	build_path = /obj/item/slime_scanner
@@ -74,7 +68,6 @@
 
 /datum/design/petridish
 	name = "培养皿"
-	id = "petri_dish"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(/datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/petri_dish
@@ -86,7 +79,6 @@
 
 /datum/design/swab
 	name = "无菌拭子"
-	id = "swab"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(/datum/material/plastic =SMALL_MATERIAL_AMOUNT * 2)
 	build_path = /obj/item/swab
@@ -98,7 +90,6 @@
 
 /datum/design/telescreen_research
 	name = "科研监控屏"
-	id = "telescreen_research"
 	build_type = PROTOLATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
@@ -113,7 +104,6 @@
 
 /datum/design/telescreen_ordnance
 	name = "炸弹试验场监控屏"
-	id = "telescreen_ordnance"
 	build_type = PROTOLATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
@@ -129,7 +119,6 @@
 // MedSci Designs
 /datum/design/syringe
 	name = "注射器"
-	id = "syringe"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.1, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.2)
 	build_path = /obj/item/reagent_containers/syringe
@@ -141,7 +130,6 @@
 
 /datum/design/dropper
 	name = "滴管"
-	id = "dropper"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.1, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.3)
 	build_path = /obj/item/reagent_containers/dropper
@@ -153,7 +141,6 @@
 
 /datum/design/blood_filter
 	name = "血液过滤器"
-	id = "blood_filter"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/silver =SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/blood_filter
@@ -165,7 +152,6 @@
 
 /datum/design/scalpel
 	name = "手术刀"
-	id = "scalpel"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/scalpel
@@ -177,7 +163,6 @@
 
 /datum/design/circular_saw
 	name = "圆锯"
-	id = "circular_saw"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 3)
 	build_path = /obj/item/circular_saw
@@ -189,7 +174,6 @@
 
 /datum/design/bonesetter
 	name = "接骨器"
-	id = "bonesetter"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 5,  /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.25)
 	build_path = /obj/item/bonesetter
@@ -201,7 +185,6 @@
 
 /datum/design/surgicaldrill
 	name = "手术钻"
-	id = "surgicaldrill"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 3)
 	build_path = /obj/item/surgicaldrill
@@ -213,7 +196,6 @@
 
 /datum/design/retractor
 	name = "牵开器"
-	id = "retractor"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/glass =SHEET_MATERIAL_AMOUNT * 1.5)
 	build_path = /obj/item/retractor
@@ -225,7 +207,6 @@
 
 /datum/design/cautery
 	name = "烧灼器"
-	id = "cautery"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.25, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 7.5)
 	build_path = /obj/item/cautery
@@ -237,7 +218,6 @@
 
 /datum/design/hemostat
 	name = "止血钳"
-	id = "hemostat"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.25)
 	build_path = /obj/item/hemostat

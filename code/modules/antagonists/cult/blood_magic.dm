@@ -792,11 +792,11 @@
 		construct_thing.balloon_alert(user, "血液耗尽！")
 		return FALSE
 	if(uses > missing_health)
-		construct_thing.adjust_health(-missing_health)
+		construct_thing.adjust_brute_loss(-missing_health)
 		construct_thing.visible_message(span_warning("[construct_thing]被[user]的血魔法完全治愈！"))
 		uses -= missing_health
 	else
-		construct_thing.adjust_health(-uses)
+		construct_thing.adjust_brute_loss(-uses)
 		construct_thing.visible_message(span_warning("[construct_thing]被[user]的血魔法部分治愈！"))
 		uses = 0
 	playsound(get_turf(construct_thing), 'sound/effects/magic/staff_healing.ogg', 25)

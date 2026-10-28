@@ -2,7 +2,7 @@
 
 ///Springlock Mechanism - allows your modsuit to activate faster, but reagents are very dangerous.
 /obj/item/mod/module/springlock
-	name = "MOD 弹簧锁模块"
+	name = "\improper MOD 弹簧锁模块"
 	desc = "一种覆盖整个 MOD 单元体积、位于外壳之下的模块。\
 		这种机械外骨骼会在使用者进入时被推开，从而帮助完成启动，\
 		但它被现代套装弃用，因为弹簧锁在受潮时有“回弹”归位的倾向。\
@@ -105,7 +105,7 @@
 
 ///Rave Visor - Gives you a rainbow visor and plays jukebox music to you.
 /obj/item/mod/module/visor/rave
-	name = "MOD 狂欢面罩模块"
+	name = "\improper MOD 狂欢面罩模块"
 	desc = "一款超酷炫面罩（SCAV），专为模块化套装设计。"
 	icon_state = "rave_visor"
 	complexity = 1
@@ -188,7 +188,7 @@
 
 ///Tanner - Tans you with spraytan.
 /obj/item/mod/module/tanner
-	name = "MOD 美黑模块"
+	name = "\improper MOD 美黑模块"
 	desc = "一种用于模块化套装的美黑模块。皮肤癌功能从未得到证实，\
 		不过谣言这种东西谁说得准呢……"
 	icon_state = "tanning"
@@ -210,7 +210,7 @@
 
 ///Balloon Blower - Blows a balloon.
 /obj/item/mod/module/balloon
-	name = "MOD 吹气球模块"
+	name = "\improper MOD 吹气球模块"
 	desc = "一种多年前由几位巧手默剧演员发明的古怪模块。它能吹气球。"
 	icon_state = "bloon"
 	module_type = MODULE_USABLE
@@ -234,7 +234,7 @@
 
 ///Paper Dispenser - Dispenses (sometimes burning) paper sheets.
 /obj/item/mod/module/paper_dispenser
-	name = "MOD 纸张配发模块"
+	name = "\improper MOD 纸张配发模块"
 	desc = "一种由火炬湾的官僚们设计的简单模块。\
 		它会把‘温暖、洁净、挺括的纸张’配发到附近的桌子上。通常情况下如此。"
 	icon_state = "paper_maker"
@@ -276,7 +276,7 @@
 
 ///Stamper - Extends a stamp that can switch between accept/deny modes.
 /obj/item/mod/module/stamp
-	name = "MOD 印章模块"
+	name = "\improper MOD 印章模块"
 	desc = "一种安装在套装手腕处的模块，可作为一台高功率印章使用，\
 		能在批准、拒绝和作废模式之间切换。"
 	icon_state = "stamp"
@@ -289,7 +289,7 @@
 	required_slots = list(ITEM_SLOT_GLOVES|ITEM_SLOT_NECK)
 
 /obj/item/stamp/mod
-	name = "MOD 电子印章"
+	name = "\improper MOD 电子印章"
 	desc = "一台高功率印章，使用时能在批准、拒绝和作废模式之间切换。"
 	icon_state = "stamp-ok"
 
@@ -315,7 +315,7 @@
 
 ///Atrocinator - Flips your gravity.
 /obj/item/mod/module/atrocinator
-	name = "MOD 阿特罗西纳模块"
+	name = "\improper MOD 阿特罗西纳模块"
 	desc = "一颗神秘的球体，装入 MOD 套装后会产生神秘的效果。"
 	icon_state = "atrocinator"
 	module_type = MODULE_TOGGLE
@@ -423,7 +423,7 @@
 
 
 /obj/item/mod/module/recycler/donk/safe
-	name = "MOD 泡沫弹回收模块"
+	name = "\improper MOD 泡沫弹回收模块"
 	desc = "一种 MOD 模块，能把发射过的泡沫弹收集起来重新包装成半尺寸的弹药箱。\
 		对附近的地面或储物容器使用可卸载已存储的弹药箱。"
 	icon_state = "donk_safe_recycler"

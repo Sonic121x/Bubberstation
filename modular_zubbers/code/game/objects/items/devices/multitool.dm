@@ -1,4 +1,4 @@
-/obj/item/multitool/abductor/bluespace
+/obj/item/multitool/abductor/debug
 	name = "蓝空间多功能工具"
 	desc = "功能完全一样，但我们得保持主题一致。你拿着这东西大概没问题，也可能有问题。"
 	icon = 'modular_zubbers/icons/obj/tools.dmi'

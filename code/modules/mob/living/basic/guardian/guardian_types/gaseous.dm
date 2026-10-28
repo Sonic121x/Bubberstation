@@ -3,7 +3,7 @@
 	guardian_type = GUARDIAN_GASEOUS
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 0)
+	physiology = list(OXY = 0, STAMINA = 0)
 	range = 7
 	playstyle_string = span_holoparasite("作为<b>气体</b>型，你只有轻度伤害抗性，但可以在区域内释放气体。此外，你的拳头会擦出火花，并使你的召唤者获得防火能力。")
 	creator_name = "气体"

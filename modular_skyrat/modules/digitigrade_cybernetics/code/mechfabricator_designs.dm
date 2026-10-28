@@ -3,7 +3,6 @@
 
 /datum/design/digitigrade_cyber_r_leg
 	name = "趾行式义体右腿"
-	id = "digitigrade_cyber_r_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/right/robot/digi
 	materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT * 2)
@@ -14,7 +13,6 @@
 
 /datum/design/digitigrade_cyber_l_leg
 	name = "趾行式义体左腿"
-	id = "digitigrade_cyber_l_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/left/robot/digi
 	materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT * 2)
@@ -25,7 +23,6 @@
 
 /datum/design/digitigrade_adv_r_leg
 	name = "高级趾行式右腿"
-	id = "digitigrade_advanced_r_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/right/robot/advanced/digi
 	materials = list(
@@ -40,7 +37,6 @@
 
 /datum/design/digitigrade_adv_l_leg
 	name = "高级趾行式左腿"
-	id = "digitigrade_advanced_l_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/left/robot/advanced/digi
 	materials = list(

@@ -1,7 +1,7 @@
 /obj/item/mod/control/pre_equipped/protean
 	name = "\improper 普罗蒂安 MOD 外骨骼"
 	desc = "普罗蒂安的外骨骼单元，让它们能缩入其中，或展开一套可抵御多种环境的护甲。"
-	theme = /datum/mod_theme // Standard theme. TODO: Can be changed with standard mod armors
+	theme = /datum/mod_theme/standard // Standard theme. TODO: Can be changed with standard mod armors
 
 	applied_core = /obj/item/mod/core/protean
 	applied_cell = null // Goes off stomach

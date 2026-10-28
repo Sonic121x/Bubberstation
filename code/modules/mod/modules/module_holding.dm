@@ -2,7 +2,7 @@
 #define HOLDING_MODULE_CHECK_CONFIRMED 2
 
 /obj/item/mod/module/storage/holding
-	name = "MOD 次元储物模块"
+	name = "\improper MOD 次元储物模块"
 	desc = "一种利用异常蓝空间现象来储存大量物质的原型存储模块。\
 		遗憾的是，它与其独立版本有着相同的缺陷，\
 		包括在嵌套进以类似方式产生的蓝空间口袋时<b>会撕开灾难性的现实裂隙</b>。"
@@ -59,12 +59,12 @@
 	storage_type = /datum/storage/bag_of_holding
 	create_storage(storage_type = /datum/storage/bag_of_holding)
 	atom_storage.set_locked(STORAGE_FULLY_LOCKED)
-	item_flags |= BLUESPACE_INTERFERENCE
+	ADD_TRAIT(src, TRAIT_BLUESPACE_INTERFERENCE, TRAIT_GENERIC)
 
 /obj/item/mod/module/storage/holding/proc/on_core_removed()
 	QDEL_NULL(atom_storage)
 	storage_type = null
-	item_flags &= ~BLUESPACE_INTERFERENCE
+	REMOVE_TRAIT(src, TRAIT_BLUESPACE_INTERFERENCE, TRAIT_GENERIC)
 
 /obj/item/mod/module/storage/holding/proc/try_install(_source, obj/item/mod/control/suit, mob/user)
 	SIGNAL_HANDLER
@@ -95,7 +95,6 @@
 
 /obj/item/mod/module/storage/holding/prebuilt
 	prebuilt = TRUE
-	item_flags = BLUESPACE_INTERFERENCE
 
 /obj/item/mod/module/storage/holding/prebuilt/locked
 	core_removable = FALSE

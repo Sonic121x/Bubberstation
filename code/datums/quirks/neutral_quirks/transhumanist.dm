@@ -17,7 +17,7 @@
 	name = "Transhumanist"
 	desc = "你认为硅基生命是完美的生命形式，鄙视有机血肉。与硅基生命相处会让你开心，身边有有机生命则让你烦躁。你渴望以完美的机械取代脆弱的血肉，开局时已有一处机械改造。"
 	icon = FA_ICON_ROBOT
-	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES|QUIRK_MOODLET_BASED
+	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES
 	value = 0
 	gain_text = span_notice("你渴望抛弃脆弱的有机血肉，与机器人为伴。")
 	lose_text = span_danger("机器人似乎不再那么伟大了。")

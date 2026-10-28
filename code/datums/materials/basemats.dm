@@ -557,7 +557,7 @@
 //formed when freon react with o2, emits a lot of plasma when heated
 /datum/material/hot_ice
 	name = "hot ice"
-	desc = "一种奇怪的冰，摸起来却是温热的。"
+	desc = "氟利昂与氧气反应形成的晶体固态物质。极易燃烧，受热便容易起火。"
 	color = "#88cdf1"
 	alpha = 150
 	starlight_color = COLOR_BLUE_LIGHT
@@ -587,8 +587,8 @@
 
 // It's basically adamantine, but it isn't!
 /datum/material/metalhydrogen
-	name = "Metal Hydrogen"
-	desc = "固态的金属氢。有人说这根本不可能存在。"
+	name = "metal hydrogen"
+	desc = "在极高压力下形成的金属态氢。有人说根本不可能实现这种状态。"
 	color = "#62708A"
 	starlight_color = COLOR_MODERATE_BLUE
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_METAL | MATERIAL_CLASS_RIGID
@@ -868,7 +868,7 @@
 
 /datum/material/zaukerite
 	name = "zaukerite"
-	desc = "一种吸收光线的晶体。"
+	desc = "灼蚀气形成的吸光晶体。与这种气体本身一样，带有些许毒性。"
 	color = COLOR_ALMOST_BLACK
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_CRYSTAL | MATERIAL_CLASS_RIGID
 	mat_properties = list(

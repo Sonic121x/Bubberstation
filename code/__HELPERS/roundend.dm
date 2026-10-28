@@ -579,6 +579,8 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 		parts += "班次结束时最富有的船员是 <b>[mr_moneybags.account_holder]，拥有 [mr_moneybags.account_balance]</b> [MONEY_SYMBOL]！</div>"
 	else
 		parts += "不知为何，本班次竟然没人赚到钱！这会导致预算削减……</div>"
+	SSblackbox.record_feedback("amount", "mail_opened", SSeconomy.mail_opened)
+	parts += "船员共投递并拆开了 [SSeconomy.mail_opened] 封邮件[(SSeconomy.mail_opened > 1) ? "！" : "……"]<br>"
 	return parts.Join()
 
 /**

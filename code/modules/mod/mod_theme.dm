@@ -1,24 +1,21 @@
 /// Global proc that sets up all MOD themes as singletons in a list and returns it.
 /proc/setup_mod_themes()
 	. = list()
-	for(var/path in typesof(/datum/mod_theme))
+	for(var/path in valid_subtypesof(/datum/mod_theme))
 		var/datum/mod_theme/new_theme = new path()
 		.[path] = new_theme
 
 /// MODsuit theme, instanced once and then used by MODsuits to grab various statistics.
 /datum/mod_theme
+	abstract_type = /datum/mod_theme
 	/// Theme name for the MOD.
-	var/name = "标准"
+	var/name = "调试"
 	/// Description added to the MOD.
-	var/desc = "中村工程公司出品的民用级套装，除了移动稍快之外没有太多优点。"
+	var/desc = "一个抽象的 MOD 主题。"
 	/// Extended description on examine_more
-	var/extended_desc = "中村工程公司出品的第三代模块化民用级套装，\
-		这种套装是银河系民用领域的常见装备。它配备供氧系统，\
-		可在太空中使用，能抵御火焰与化学威胁，并且对从喷嚏到生物武器的各种侵害都免疫。\
-		然而，由于出厂时安装的装甲板数量有限，其战斗用途极其有限，\
-		其促动器也只能带来比工业套装稍快一点的速度。"
+	var/extended_desc = "一个抽象的 MOD 描述。"
 	/// Default skin of the MOD.
-	var/default_skin = "standard"
+	var/default_skin = "debug"
 	/// The slot this mod theme fits on
 	var/slot_flags = ITEM_SLOT_BACK
 	/// Armor shared across the MOD parts.
@@ -51,7 +48,7 @@
 	var/list/allowed_suit_storage = list()
 	/// List of variants and items created by them, with the flags we set.
 	var/list/variants = list(
-		"standard" = list(
+		"debug" = list(
 			/obj/item/clothing/head/mod = list(
 				UNSEALED_LAYER = NECK_LAYER,
 				UNSEALED_CLOTHING = SNUG_FIT,
@@ -185,6 +182,51 @@
 	fire = 25
 	acid = 25
 	wound = 5
+
+/datum/mod_theme/standard
+	name = "标准"
+	desc = "中村工程公司出品的民用级套装，除了移动稍快之外没有太多优点。"
+	extended_desc = "中村工程公司出品的第三代模块化民用级套装，\
+		这种套装是银河系民用领域的常见装备。它配备供氧系统，\
+		可在太空中使用，能抵御火焰与化学威胁，并且对从喷嚏到生物武器的各种侵害都免疫。\
+		然而，由于出厂时安装的装甲板数量有限，其战斗用途极其有限，\
+		其促动器也只能带来比工业套装稍快一点的速度。"
+	default_skin = "standard"
+	variants = list(
+		"standard" = list(
+			/obj/item/clothing/head/mod = list(
+				UNSEALED_LAYER = NECK_LAYER,
+				UNSEALED_CLOTHING = SNUG_FIT,
+				SEALED_CLOTHING = THICKMATERIAL|STOPSPRESSUREDAMAGE|HEADINTERNALS,
+				SEALED_INVISIBILITY = HIDEFACIALHAIR|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDESNOUT,
+				SEALED_COVER = HEADCOVERSMOUTH|HEADCOVERSEYES|PEPPERPROOF,
+				UNSEALED_MESSAGE = HELMET_UNSEAL_MESSAGE,
+				SEALED_MESSAGE = HELMET_SEAL_MESSAGE,
+			),
+			/obj/item/clothing/suit/mod = list(
+				UNSEALED_CLOTHING = THICKMATERIAL,
+				SEALED_CLOTHING = STOPSPRESSUREDAMAGE,
+				SEALED_INVISIBILITY = HIDEJUMPSUIT,
+				UNSEALED_MESSAGE = CHESTPLATE_UNSEAL_MESSAGE,
+				SEALED_MESSAGE = CHESTPLATE_SEAL_MESSAGE,
+			),
+			/obj/item/clothing/gloves/mod = list(
+				UNSEALED_CLOTHING = THICKMATERIAL,
+				SEALED_CLOTHING = STOPSPRESSUREDAMAGE,
+				CAN_OVERSLOT = TRUE,
+				UNSEALED_MESSAGE = GAUNTLET_UNSEAL_MESSAGE,
+				SEALED_MESSAGE = GAUNTLET_SEAL_MESSAGE,
+			),
+			/obj/item/clothing/shoes/mod = list(
+				UNSEALED_CLOTHING = THICKMATERIAL,
+				SEALED_CLOTHING = STOPSPRESSUREDAMAGE,
+				CAN_OVERSLOT = TRUE,
+				UNSEALED_MESSAGE = BOOT_UNSEAL_MESSAGE,
+				SEALED_MESSAGE = BOOT_SEAL_MESSAGE,
+			),
+		),
+	)
+
 
 /datum/mod_theme/civilian
 	name = "民用"

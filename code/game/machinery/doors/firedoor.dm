@@ -146,13 +146,9 @@
 				if(ishuman(living_user))
 					context[SCREENTIP_CONTEXT_LMB] = "敲门"
 					return CONTEXTUAL_SCREENTIP_SET
-			else
-				if(ismonkey(living_user))
-					context[SCREENTIP_CONTEXT_LMB] = "攻击"
-					return CONTEXTUAL_SCREENTIP_SET
-				if(ishuman(living_user))
-					context[SCREENTIP_CONTEXT_LMB] = "猛砸"
-					return CONTEXTUAL_SCREENTIP_SET
+			else if(ishuman(living_user))
+				context[SCREENTIP_CONTEXT_LMB] = "猛砸"
+				return CONTEXTUAL_SCREENTIP_SET
 		else if(issilicon(living_user))
 			context[SCREENTIP_CONTEXT_LMB] = "关闭"
 			return CONTEXTUAL_SCREENTIP_SET
@@ -556,7 +552,7 @@
 		being_held_open = TRUE
 		crowbar_owner.balloon_alert_to_viewers("正撑住防火门", "正撑住防火门")
 		COOLDOWN_START(src, activation_cooldown, REACTIVATION_DELAY)
-		open()
+		open(opener = user)
 		if(QDELETED(crowbar_owner))
 			being_held_open = FALSE
 			return
@@ -573,7 +569,7 @@
 		return
 
 	if(density)
-		open()
+		open(opener = user)
 		/* BUBBERSTATION CHANGE: Crowbar secondary actually permanently opens firelocks.
 		if(active)
 			addtimer(CALLBACK(src, PROC_REF(correct_state)), 2 SECONDS, TIMER_UNIQUE)
@@ -604,7 +600,7 @@
 	if(welded || operating || machine_stat & NOPOWER)
 		return TRUE
 	if(density)
-		open()
+		open(opener = user)
 		if(active)
 			addtimer(CALLBACK(src, PROC_REF(correct_state)), 2 SECONDS, TIMER_UNIQUE)
 	else
@@ -619,7 +615,7 @@
 	if(welded)
 		balloon_alert(user, "纹丝不动！")
 		return
-	open()
+	open(opener = user)
 	if(active)
 		addtimer(CALLBACK(src, PROC_REF(correct_state)), 2 SECONDS, TIMER_UNIQUE)
 
@@ -688,7 +684,7 @@
 		INVOKE_ASYNC(src, PROC_REF(open))
 		return
 
-/obj/machinery/door/firedoor/open()
+/obj/machinery/door/firedoor/open(forced = DEFAULT_DOOR_CHECKS, mob/living/opener)
 	if(welded)
 		return
 	var/old_activity = active

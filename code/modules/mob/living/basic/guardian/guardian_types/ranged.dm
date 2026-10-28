@@ -6,7 +6,7 @@
 	friendly_verb_simple = "静静地打量"
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	damage_coeff = list(BRUTE = 0.9, BURN = 0.9, TOX = 0.9, STAMINA = 0, OXY = 0.9)
+	physiology = list(BRUTE = 0.9, BURN = 0.9, TOX = 0.9, OXY = 0.9, STAMINA = 0)
 	range = 13
 	playstyle_string = span_holoparasite("作为<b>远程</b>型，你只有轻微的伤害抗性，但能以极快的速度喷射水晶碎片。你还可以布置监视陷阱来监视敌人的动向。最后，你可以切换到侦察模式，在该模式下你无法攻击，但可以不受限制地移动。")
 	creator_name = "远程"

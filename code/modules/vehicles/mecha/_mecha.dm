@@ -541,9 +541,9 @@
 		if(45 to 65)
 			examine_text = "它受损严重。"
 		if(25 to 45)
-			examine_text = "它损毁惨重。"
+			examine_text = span_warning("它损毁惨重。")
 		else
-			examine_text = "它快要散架了。"
+			examine_text = span_warning("它快要散架了！")
 
 	return examine_text
 

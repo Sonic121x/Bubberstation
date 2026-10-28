@@ -4,6 +4,8 @@
 #define CRACK_DELAY_CHANCE 33
 #define CRACK_LENGTH_DEFAULT 8
 
+GLOBAL_LIST_EMPTY(weakpoints_spawned)
+
 /obj/effect/weakpoint
 	name = "薄弱处裂缝"
 	desc = "一道可疑的裂缝沿着地面延伸。"
@@ -12,7 +14,7 @@
 	base_icon_state = "weakpoint"
 	layer = ABOVE_NORMAL_TURF_LAYER
 	move_resist = INFINITY
-	alpha = 0
+	alpha = 255
 
 	/// The required strength of explosion for a weakpoint to propogate
 	var/required_strength = EXPLODE_LIGHT
@@ -34,6 +36,8 @@
 
 /obj/effect/weakpoint/Initialize(mapload)
 	. = ..()
+	GLOB.weakpoints_spawned += src
+	alpha = 0
 	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE, INVISIBILITY_OBSERVER, use_anchor = TRUE)
 	RegisterSignal(src, COMSIG_TURF_CHANGE, PROC_REF(turf_changed))
 	register_context()
@@ -93,6 +97,10 @@
 	. = ..()
 	. += span_notice("可以用焊接器修补[src]。")
 	. += span_warning("足够强烈的爆炸会使[src]扩大。")
+
+/obj/effect/weakpoint/Destroy(force)
+	GLOB.weakpoints_spawned -= src
+	return ..()
 
 /**
  * Generates a list of turfs from the start location meandering along a randomized set of turns.

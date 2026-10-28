@@ -35,7 +35,6 @@
 /datum/design/synth_ears
 	name = "听觉传感器"
 	desc = "一对安装在IPC或合成人头部的麦克风，赋予其听觉能力。"
-	id = "synth_ears"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

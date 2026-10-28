@@ -1,5 +1,5 @@
 /obj/item/mod/module/circuit
-	name = "MOD 电路适配器模块"
+	name = "\improper MOD 电路适配器模块"
 	desc = "一种模块外壳，可插入电路并与 MOD 模块化外骨骼对接。"
 	module_type = MODULE_USABLE
 	complexity = 1

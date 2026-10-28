@@ -80,7 +80,8 @@
 	return ..()
 
 /datum/weather/rad_storm/end()
-	if(..())
+	. = ..()
+	if(!.)
 		return
 	priority_announce("空间站已通过辐射带。如出现任何异常症状，请前往医务室。维修区即将恢复正常门禁。", "辐射警报解除", ANNOUNCER_RADIATIONPASSED) // BUBBER EDIT CHANGE
 	status_alarm(FALSE)

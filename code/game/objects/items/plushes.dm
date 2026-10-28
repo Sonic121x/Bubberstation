@@ -724,7 +724,6 @@
 	name = "奔跑者毛绒玩具"
 	desc = "一个描绘异形奔跑者的毛绒玩具，为纪念 LV-426 战役一百周年而制。比真货好抱多了。"
 	icon_state = "rouny"
-	item_flags = XENOMORPH_HOLDABLE
 	inhand_icon_state = null
 	attack_verb_continuous = list("挥砍着", "撕咬着", "冲锋着")
 	attack_verb_simple = list("挥砍", "撕咬", "冲锋")

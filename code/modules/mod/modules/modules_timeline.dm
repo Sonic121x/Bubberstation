@@ -5,7 +5,7 @@
 
 ///Eradication lock - Prevents people who aren't the owner of the suit from existing on the timeline via eradicating the suit with the intruder inside
 /obj/item/mod/module/eradication_lock
-	name = "MOD 根除锁定模块"
+	name = "\improper MOD 根除锁定模块"
 	desc = "一个能记住外骨骼最初主人的模块，即使是来自其他宇宙的 \
 			版本也不例外。当非主人进入时，根除锁定会开始将这套外骨骼 \
 			从时间线中抹除……连同里面的入侵者一起。这可不是你想要的死法，所以它 \
@@ -57,7 +57,7 @@
 
 ///Rewinder - Activating saves a point in time, after 10 seconds you will jump back to that state.
 /obj/item/mod/module/rewinder
-	name = "MOD 倒带模块"
+	name = "\improper MOD 倒带模块"
 	desc = "一个模块，只要设定一个锚点，就能把使用者拉回过去。 \
 			这是完成工作的绝佳工具，但请记住，在准备回溯期间，外骨骼会 \
 			出于安全考虑而锁定。"
@@ -99,7 +99,7 @@
 
 ///Timestopper - Need I really explain? It's the wizard's time stop, but the user channels it by not moving instead of a duration.
 /obj/item/mod/module/timestopper
-	name = "MOD 时间停止模块"
+	name = "\improper MOD 时间停止模块"
 	desc = "一个能在使用者周围的小范围内停止时间的模块…… \
 			想停多久就停多久！非常适合发表长篇独白或吃午饭。请注意， \
 			移动会结束时间停止，而且该模块有很长的冷却时间，以避免现实错误。"
@@ -149,7 +149,7 @@
 
 ///Timeline Jumper - Infinite phasing. needs some special effects
 /obj/item/mod/module/timeline_jumper
-	name = "MOD 时间线跳跃模块"
+	name = "\improper MOD 时间线跳跃模块"
 	desc = "一种用于穿越时间线的模块，能让使用者在事件洪流中相位进出。"
 	icon_state = "timeline_jumper"
 	module_type = MODULE_USABLE
@@ -201,7 +201,7 @@
 
 ///TEM - Lets you eradicate people.
 /obj/item/mod/module/tem
-	name = "MOD 时间流抹除模块"
+	name = "\improper MOD 时间流抹除模块"
 	desc = "由时间之外的第四维度集团制造的校正装置，用于改变时间线的 \
 			终点。这台设备能够将一个存在从时间流中彻底抹去。他们将不复存在， \
 			从未存在过，也永远不会存在。"

@@ -714,6 +714,14 @@
 	cost = 10
 	purchasable_from = UPLINK_NUKE_OPS
 
+/datum/uplink_item/bundles_tc/induction_kit/clown
+	name = "Syndicate Circus Induction Kit"
+	desc = "Found a particularly entertaining and skilled performer on the station? \
+		This kit allows you to induct them into the Syndicate circus! Contains equipment them with all the necessary gear for their new role. \
+		*NOT* for usage with Reinforcements, and does not brainwash the target!"
+	item = /obj/item/storage/box/syndie_kit/induction_kit/clown
+	purchasable_from = UPLINK_CLOWN_OPS
+
 /datum/uplink_item/bundles_tc/cowboy
 	name = "辛迪加亡命徒套件"
 	desc = "据说这一带出没着一个亡命徒。那家伙心狠手辣又高效，没有哪个巡警能抓住他。 \
@@ -795,7 +803,6 @@
 	item = /obj/item/storage/box/syndie_kit/romerol
 	cost = 25
 	population_minimum = TRAITOR_POPULATION_LOWPOP
-	progression_minimum = 30 MINUTES
 	purchasable_from = UPLINK_ALL_SYNDIE_OPS /*| UPLINK_TRAITORS */ // Don't give this to spies // BUBBER EDIT - Romerol only for nukies
 	cant_discount = TRUE
 
@@ -806,7 +813,7 @@
 	desc = "辛迪加 MOD 外骨骼的升级精英版。具备防火性能，而且 \
 		相比标准辛迪加 MOD 外骨骼，能为使用者提供更优越的护甲和机动性。"
 	item = /obj/item/mod/control/pre_equipped/elite
-	purchasable_from = (UPLINK_ALL_SYNDIE_OPS | UPLINK_SPY)
+	purchasable_from = (UPLINK_SERIOUS_OPS | UPLINK_SPY)
 
 /datum/uplink_item/suits/energy_shield
 	name = "MOD 外骨骼能量护盾模块"
@@ -873,7 +880,6 @@
 	item = /obj/item/assault_pod
 	cost = 30
 	surplus = 0
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
 	restricted = TRUE
 	purchasable_from = UPLINK_FIREBASE_OPS
 
@@ -883,7 +889,7 @@
 		在撬棍形态下，它可以用来强行打开气闸。对于进入空间站或其各部门非常有用。"
 	item = /obj/item/crowbar/power/syndicate
 	cost = 4
-	purchasable_from = UPLINK_SERIOUS_OPS | UPLINK_SPY
+	purchasable_from = UPLINK_ALL_SYNDIE_OPS | UPLINK_SPY
 
 /datum/uplink_item/device_tools/medkit
 	name = "辛迪加战斗军医包"
@@ -892,7 +898,7 @@
 		用于在战场上加速愈合。还附带基础医疗工具和消毒剂。"
 	item = /obj/item/storage/medkit/tactical
 	cost = 4
-	purchasable_from = UPLINK_SERIOUS_OPS
+	purchasable_from = UPLINK_ALL_SYNDIE_OPS
 
 /datum/uplink_item/device_tools/medkit/premium
 	name = "辛迪加战斗医疗全套装备"
@@ -910,7 +916,7 @@
 	desc = "一种由辛迪加卧底特工冒着极大风险回收、随后又用辛迪加科技改造的药水。 \
 		使用后能让任何动物获得智力，并绑定为你效力，同时为它植入一枚用于交流的内部无线电和一张用于开门的内部身份卡。"
 	cost = 4
-	purchasable_from = UPLINK_SERIOUS_OPS | UPLINK_SPY
+	purchasable_from = UPLINK_ALL_SYNDIE_OPS | UPLINK_SPY
 	restricted = TRUE
 
 // Implants
@@ -927,6 +933,7 @@
 		任何生物体内，无论生物还是机械。"
 	item = /obj/item/storage/box/syndie_kit/imp_deathrattle
 	cost = 4
+	purchasable_from = UPLINK_ALL_SYNDIE_OPS
 
 /datum/uplink_item/implants/nuclear/microbomb
 	name = "微型炸弹植入体"
@@ -935,7 +942,7 @@
 		不过，这会永久摧毁你的身体。"
 	item = /obj/item/storage/box/syndie_kit/imp_microbomb
 	cost = 2
-	purchasable_from = UPLINK_SERIOUS_OPS | UPLINK_SPY
+	purchasable_from = UPLINK_ALL_SYNDIE_OPS | UPLINK_SPY
 
 /datum/uplink_item/implants/nuclear/macrobomb
 	name = "大型炸弹植入体"
@@ -944,6 +951,15 @@
 	item = /obj/item/storage/box/syndie_kit/imp_macrobomb
 	cost = 20
 	restricted = TRUE
+	purchasable_from = UPLINK_ALL_SYNDIE_OPS
+
+/datum/uplink_item/implants/nuclear/macrobomb/fake
+	name = "Fake Macrobomb Implant"
+	desc = "A bomb implant with the same delay as a true macrobomb, but is ultimately no greater than a standard microbomb. \
+		However, its detonation also comes with a surprise that the standard microbomb doesn't..."
+	item = /obj/item/storage/box/syndie_kit/imp_macrobomb_fake
+	cost = /datum/uplink_item/implants/nuclear/microbomb::cost
+	purchasable_from = UPLINK_CLOWN_OPS
 
 /datum/uplink_item/implants/nuclear/deniability
 	name = "战术推责植入体"
@@ -1012,7 +1028,7 @@
 		微生物共生到史莱姆核心武器化，这张特殊授权卡能让你以惊人速度突破生物恐怖主义的 \
 		边界。作为额外福利，这些实验室甚至还配备了自然生命维持系统！*不含植物。"
 	item = /obj/item/keycard/syndicate_bio
-	purchasable_from = UPLINK_CLOWN_OPS | UPLINK_NUKE_OPS
+	purchasable_from = UPLINK_FIREBASE_OPS
 
 /datum/uplink_item/base_keys/chem_key
 	name = "辛迪加化工厂门禁卡"
@@ -1021,7 +1037,7 @@
 		可以立即送到你的位置。制造开创性的化学药剂、下厨、贩卖顶级毒品， \
 		并欣赏今日最佳古典音乐！"
 	item = /obj/item/keycard/syndicate_chem
-	purchasable_from = UPLINK_CLOWN_OPS | UPLINK_NUKE_OPS
+	purchasable_from = UPLINK_FIREBASE_OPS
 
 /datum/uplink_item/base_keys/fridge_key
 	name = "洛佩斯门禁卡"
@@ -1030,14 +1046,14 @@
 		我从他口袋里摸到了这个。他一直在找。拿去吧，进到冷藏库，在他回来之前 \
 		想做什么就做什么。记住：别告诉任何人！——M.T"
 	item = /obj/item/keycard/syndicate_fridge
-	purchasable_from = UPLINK_CLOWN_OPS | UPLINK_NUKE_OPS
+	purchasable_from = UPLINK_FIREBASE_OPS
 
 /datum/uplink_item/base_keys/custodial_key
 	name = "辛迪加清洁工具间门禁卡"
 	desc = "你的工作场所脏了？没问题！有了这张卡，你就能进入清洁工具间。里面有一辆清洁推车， \
 	配有一些清洁用品和一罐水蒸气。"
 	item = /obj/item/keycard/syndicate_custodial
-	purchasable_from = UPLINK_CLOWN_OPS | UPLINK_NUKE_OPS
+	purchasable_from = UPLINK_FIREBASE_OPS
 
 // Hats
 // It is fundamental for the game's health for there to be a hat crate for nuclear operatives.

@@ -196,13 +196,13 @@
 
 /obj/item/food/grown/banana/bunch/monkeybomb/examine(mob/user)
 	. = ..()
-	if(!is_simian(user))
+	if(!HAS_TRAIT(user, TRAIT_SIMIAN))
 		. += span_notice("其中一根香蕉上贴着一张标签，但你看不清上面的细节。")
 		return
 	. += span_notice("这串香蕉上的标签说明，猴子可以把它当作定时 3 秒的音波手榴弹使用！")
 
 /obj/item/food/grown/banana/bunch/monkeybomb/attack_self(mob/user, modifiers)
-	if(!is_simian(user))
+	if(!HAS_TRAIT(user, TRAIT_SIMIAN))
 		return to_chat(user, span_notice("你不太清楚该拿它怎么办。"))
 	else start_ripening()
 

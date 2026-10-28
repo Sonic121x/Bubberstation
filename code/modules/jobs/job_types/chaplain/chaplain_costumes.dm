@@ -54,6 +54,7 @@
 	name = "修行袍"
 	desc = "毫无胡闹成分的修女装。"
 	icon_state = "habit"
+	inhand_icon_state = "habit"
 	alternate_worn_layer = GLOVES_LAYER // since the sleeves cover a part of the hands, this way it looks better while retaining glove overlay correctly.
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS|HANDS
 	flags_inv = HIDEJUMPSUIT|HIDEBELT
@@ -145,6 +146,7 @@
 /obj/item/clothing/suit/chaplainsuit/armor/clock/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_PLATE_ARMOR_RUSTLE, 8)
+	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_CHEST, /datum/bodypart_texture/mesh/drake)
 
 /obj/item/clothing/head/helmet/chaplain
 	name = "十字军头盔"
@@ -169,6 +171,7 @@
 /obj/item/clothing/suit/chaplainsuit/armor/templar/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_PLATE_ARMOR_RUSTLE, 8)
+	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_CHEST, /datum/bodypart_texture/mesh/biosuit_dark)
 
 /obj/item/clothing/head/helmet/chaplain/cage
 	name = "铁笼"
@@ -184,6 +187,10 @@
 	icon_state = "knight_ancient"
 	inhand_icon_state = null
 
+/obj/item/clothing/head/helmet/chaplain/ancient/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_HEAD, /datum/bodypart_texture/mesh/biosuit_dark)
+
 /obj/item/clothing/suit/chaplainsuit/armor/ancient
 	name = "远古护甲"
 	desc = "守护宝藏……"
@@ -194,6 +201,7 @@
 /obj/item/clothing/suit/chaplainsuit/armor/ancient/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_PLATE_ARMOR_RUSTLE, 8)
+	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_CHEST, /datum/bodypart_texture/mesh/biosuit_dark)
 
 /obj/item/clothing/head/helmet/chaplain/witchunter_hat
 	name = "猎巫人帽子"
@@ -255,12 +263,20 @@
 	flags_cover = HEADCOVERSEYES
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
 
+/obj/item/clothing/head/helmet/chaplain/heretic/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_HEAD, /datum/bodypart_texture/mesh/heretic)
+
 /obj/item/clothing/suit/chaplainsuit/armor/heretic
 	name = "神秘学家长袍"
 	desc = "保护你的身体免受他人未曾察觉之物的侵扰。"
 	icon_state = "hereticrobe"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|LEGS
+
+/obj/item/clothing/suit/chaplainsuit/armor/heretic/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_CHEST, /datum/bodypart_texture/mesh/heretic)
 
 /obj/item/clothing/suit/hooded/chaplain_hoodie
 	name = "信徒连帽衫"

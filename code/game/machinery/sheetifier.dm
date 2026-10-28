@@ -1,5 +1,5 @@
 /obj/machinery/sheetifier
-	name = "板材大师 2000"
+	name = "\improper 板材大师 2000"
 	desc = "一台很有板有眼的机器。"
 	icon = 'icons/obj/machines/sheetifier.dmi'
 	icon_state = "base_machine"

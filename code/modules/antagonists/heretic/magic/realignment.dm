@@ -57,7 +57,7 @@
 	///Traits to add/remove
 	var/list/realignment_traits = list(TRAIT_BATON_RESISTANCE, TRAIT_PACIFISM)
 
-/datum/status_effect/realignment/get_examine_text()
+/datum/status_effect/realignment/get_examine_text(mob/examiner)
 	return span_notice("[owner]泛着柔和的白光。")
 
 /datum/status_effect/realignment/on_apply()

@@ -7,7 +7,6 @@
 	lose_text = span_notice("你突然觉得肺部呼吸顺畅多了！")
 	medical_record_text = "患者患有哮喘。"
 	hardcore_value = 2
-	quirk_flags = QUIRK_HUMAN_ONLY
 	mail_goodies = list(/obj/item/reagent_containers/inhaler_canister/albuterol)
 
 	/// At this percentage of inflammation, our lung pressure mult reaches 0. From 0-1.

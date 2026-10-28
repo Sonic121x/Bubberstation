@@ -1,11 +1,10 @@
-/obj/item/clothing/head/utility/hardhat/bluespace
-	name = "蓝空间技师安全帽"
-	desc = "一顶坚固而精良的安全帽，由纳米传讯的理论蓝空间技师佩戴。你大概不该拥有这个。"
+/obj/item/clothing/head/utility/hardhat/debug
+	name = "技师安全帽"
+	desc = "一顶坚固而精良的安全帽，由纳米传讯理论上存在的蓝空间技师佩戴。你大概不该拥有这个。"
 
 	icon = 'modular_zubbers/icons/obj/clothing/head/utility.dmi'
 	icon_state = "hardhat0_bst"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/utility.dmi'
-	worn_icon_state = "hardhat0_bst"
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/utility_teshari.dmi'
 	hat_type = "bst"
 	inhand_icon_state = null
@@ -30,7 +29,8 @@
 	light_power = 1.6
 	light_color = "#ffcc99"
 
-/obj/item/clothing/head/utility/hardhat/bluespace/Initialize(mapload)
+/obj/item/clothing/head/utility/hardhat/debug/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/earhealing)
+	AddElement(/datum/element/radiation_protected_clothing)
 	AddComponent(/datum/component/wearertargeting/earprotection, protection_amount = EAR_PROTECTION_FULL)

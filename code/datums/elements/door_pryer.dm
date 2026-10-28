@@ -51,11 +51,11 @@
 	if (!airlock_target.hasPower())
 		attacker.visible_message(span_warning("[attacker]强行打开了[airlock_target]。"))
 		attacker.log_message("撬开了位于[loc_name(src)]的[src]。", LOG_GAME)
-		airlock_target.open(FORCING_DOOR_CHECKS)
+		airlock_target.open(FORCING_DOOR_CHECKS, attacker)
 		return
 
 	if (airlock_target.allowed(attacker))
-		airlock_target.open(DEFAULT_DOOR_CHECKS)
+		airlock_target.open(DEFAULT_DOOR_CHECKS, attacker)
 		return
 
 	attacker.visible_message(\
@@ -75,5 +75,5 @@
 		return
 	attacker.visible_message(span_warning("[attacker]强行打开了[airlock_target]。"))
 	attacker.log_message("成功撬开位于[loc_name(src)]的[src]。", LOG_GAME)
-	airlock_target.open(BYPASS_DOOR_CHECKS)
+	airlock_target.open(BYPASS_DOOR_CHECKS, attacker)
 	airlock_target.take_damage(AIRLOCK_PRY_DAMAGE, BRUTE, sound_effect = FALSE)

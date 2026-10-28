@@ -458,7 +458,7 @@
 			H.Paralyze(8 SECONDS)
 		if(H.staminaloss && !H.IsSleeping())
 			var/total_health = (H.health - H.staminaloss)
-			if(total_health <= HEALTH_THRESHOLD_CRIT && !IS_UNCONSCIOUS_OR_CRIT(H))
+			if(total_health <= H.crit_threshold && !IS_UNCONSCIOUS_OR_CRIT(H))
 				H.visible_message(span_warning("[user]重击了[H]的头部，将其打昏！"), \
 								span_userdanger("[user]将你打昏了！"), span_hear("你听到了令人作呕的肉体撞击声！"), null, user)
 				to_chat(user, span_danger("你重击了[H]的头部，将其打昏！"))

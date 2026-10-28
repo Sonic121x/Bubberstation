@@ -916,12 +916,12 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	return add_item_to_steal(src, /obj/item/mod/control/pre_equipped/rescue)
 
 /datum/objective_item/steal/spy/cmo_defib
-	name = "首席医疗官的紧凑型除颤器"
+	name = "首席医疗官的实验型紧凑除颤器"
 	targetitem = /obj/item/defibrillator/compact/loaded/cmo
 	excludefromjob = list(JOB_CHIEF_MEDICAL_OFFICER)
 	exists_on_map = TRUE
 	difficulty = 2
-	steal_hint = "紧凑型除颤器，由首席医疗官随身携带或存放在其储物柜中。"
+	steal_hint = "实验型紧凑除颤器，尸体堆积如山时，通常能在首席医疗官附近找到它。"
 
 /obj/item/defibrillator/compact/loaded/cmo/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/defibrillator/compact/loaded/cmo)

@@ -5,7 +5,7 @@
 	value = -2
 	medical_record_text = "患者对一件传家宝表现出异乎寻常的依恋。"
 	hardcore_value = 1
-	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES|QUIRK_MOODLET_BASED
+	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES
 	/// A weak reference to our heirloom.
 	var/datum/weakref/heirloom
 	mail_goodies = list(/obj/item/storage/briefcase/secure)

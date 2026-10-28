@@ -100,7 +100,7 @@
 	return names[value] || value
 
 /proc/chinese_batch_ten_theme_display(value)
-	var/static/list/names = list("tarkon" = "塔肯", "Prototype: Hauler" = "原型：搬运者")
+	var/static/list/names = list("tarkon" = "塔肯", "Prototype: Hauler" = "原型：搬运者", "civilian" = "民用", "honkerative" = "洪克特战")
 	return names[value] || value
 
 /proc/chinese_batch_ten_station_trait_display(value)

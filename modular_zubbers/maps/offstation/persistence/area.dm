@@ -221,16 +221,12 @@
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec
-	name = "囚犯活动室"
+	name = "私人休息室"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/shower
 	name = "监狱淋浴室"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
-
-/datum/weather/rad_storm/New()
-	. = ..()
-	protected_areas += /area/ruin/space/has_grav/bubbers/persistance
 
 //roof areas
 /area/ruin/space/has_grav/bubbers/persistance/roof

@@ -40,9 +40,7 @@
 		to_chat(user, span_alert("加密钥匙端口未配置。"))
 		return ITEM_INTERACT_BLOCKING
 
-	pai.radio.attackby(tool, user, modifiers)
-	to_chat(user, span_notice("你把 [tool] 插入了 [src]。"))
-	return ITEM_INTERACT_SUCCESS
+	return pai.radio.install_key(user, tool)
 
 /obj/item/pai_card/attack_self(mob/user)
 	if(!in_range(src, user))

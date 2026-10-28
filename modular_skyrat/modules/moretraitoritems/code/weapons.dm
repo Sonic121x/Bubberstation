@@ -25,9 +25,11 @@
 	ricochet_incidence_leeway = 80
 	ricochet_decay_chance = 1
 
+/datum/design/c357
+	abstract_type = /datum/design/c357
+
 /datum/design/c357/peacemaker
 	name = "快速装弹器（.357和平缔造者）"
-	id = "a357PM"
 	build_type = AUTOLATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,

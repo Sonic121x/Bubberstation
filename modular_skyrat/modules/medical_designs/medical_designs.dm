@@ -1,6 +1,5 @@
 /datum/design/hospital_gown
 	name = "医院病号服"
-	id = "hospital_gown"
 	build_type = PROTOLATHE
 	materials = list(
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,

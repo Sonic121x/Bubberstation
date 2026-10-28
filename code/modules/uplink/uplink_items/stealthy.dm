@@ -14,7 +14,7 @@
 	item = /obj/item/gun/syringe/syndicate
 	cost = 4
 	surplus = 50
-	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
+	purchasable_from = ~UPLINK_SERIOUS_OPS
 
 /datum/uplink_item/stealthy_weapons/dehy_carp
 	name = "脱水太空鲤鱼"
@@ -74,7 +74,7 @@
 			睡着之前，他们仍然能够移动和行动。"
 	item = /obj/item/pen/sleepy
 	cost = 4
-	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
+	purchasable_from = ~UPLINK_FIREBASE_OPS
 
 
 /datum/uplink_item/stealthy_weapons/origami_kit
@@ -94,7 +94,6 @@
 			拒绝使用不光彩的远程武器，而穿着有护甲的衣物会让你更难躲避攻击。 \
 			预先打包附赠一整套武术服装！"
 	item = /obj/item/storage/box/syndicate/sleeping_carp
-	progression_minimum = 30 MINUTES
 	population_minimum = TRAITOR_POPULATION_LOWPOP
 	cost = 17
 	surplus = 0

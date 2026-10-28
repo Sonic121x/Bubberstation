@@ -75,6 +75,10 @@
 
 	SET_BASE_PIXEL(-8, 0)
 
+/obj/item/gun/ballistic/rifle/boltaction/presawn
+	WHEN_MAP(icon_state = "sakhno_sawn")
+	spawn_sawn_off = TRUE
+
 /obj/item/gun/ballistic/rifle/boltaction/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
 		lore = "萨赫诺精确步枪的起源与萨赫诺集团密切相关。该集团是第三苏联在二月革命中解体之前 \
@@ -95,12 +99,10 @@
 /obj/item/gun/ballistic/rifle/boltaction/add_bayonet_point()
 	AddComponent(/datum/component/bayonet_attachable, offset_x = 41, offset_y = 14, bayonet_overlay = "bayonet_thin")
 
-/obj/item/gun/ballistic/rifle/boltaction/sawoff(mob/user)
+/obj/item/gun/ballistic/rifle/boltaction/do_sawoff()
 	. = ..()
-	if(.)
-		spread = 36
-		SET_BASE_PIXEL(0, 0)
-		update_appearance()
+	spread = 36
+	SET_BASE_PIXEL(0, 0)
 
 /obj/item/gun/ballistic/rifle/boltaction/attack_self(mob/user)
 	if(jammed)
@@ -194,10 +196,9 @@
 	. = ..()
 	AddComponent(/datum/component/scope, range_modifier = 1.5)
 
-/obj/item/gun/ballistic/rifle/boltaction/prime/sawoff(mob/user)
+/obj/item/gun/ballistic/rifle/boltaction/prime/do_sawoff()
 	. = ..()
-	if(.)
-		name = "\improper 现代奥布雷兹" // wear it loud and proud
+	name = "\improper 现代奥布雷兹" // wear it loud and proud
 
 /obj/item/gun/ballistic/rifle/boltaction/donkrifle
 	name = "\improper 咚克公司杰扎伊尔步枪"
@@ -230,11 +231,10 @@
 			而且不会有拿到一把翻修过、保养糟糕、卡壳比射击还频繁的剩余军械的风险。" \
 	)
 
-/obj/item/gun/ballistic/rifle/boltaction/donkrifle/sawoff(mob/user) //the heavy price one pays for fitting this in a backpack
+/obj/item/gun/ballistic/rifle/boltaction/donkrifle/do_sawoff() //the heavy price one pays for fitting this in a backpack
 	. = ..()
-	if(.)
-		projectile_damage_multiplier = 0.75
-		spread = 50
+	projectile_damage_multiplier = 0.75
+	spread = 50
 
 /obj/item/gun/ballistic/rifle/rebarxbow
 	name = "加热钢筋弩"

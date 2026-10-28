@@ -7,6 +7,7 @@
 	desc_controls = "右键点击更改直播名称，按住 Alt 点击开关麦克风。"
 	icon = 'icons/obj/service/broadcast.dmi'
 	icon_state = "broadcast_cam0"
+	inhand_icon_state = "broadcast_cam0"
 	base_icon_state = "broadcast_cam"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'

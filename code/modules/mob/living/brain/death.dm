@@ -4,7 +4,7 @@
 	set_stat(DEAD)
 
 	if(!gibbed && container)//If not gibbed but in a container.
-		var/obj/item/mmi = container
+		var/obj/item/brain_processor/mmi = container
 		mmi.visible_message(span_warning("[src] 的人机接口失去信号了！"), \
 					span_hear("你听到某个东西的生命信号中断了。"))
 		mmi.update_appearance()

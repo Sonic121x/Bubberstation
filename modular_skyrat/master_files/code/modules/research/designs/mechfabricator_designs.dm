@@ -4,7 +4,6 @@
 
 /datum/design/module/mod_remote
 	name = "MOD 遥控模块"
-	id = "mod_remote_module"
 	build_path = /obj/item/mod/module/remote_control
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT *3 ,

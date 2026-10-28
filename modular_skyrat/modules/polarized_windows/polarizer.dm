@@ -53,7 +53,6 @@
 
 /datum/design/polarizer
 	name = "窗户偏振遥控器"
-	id = "polarizer"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE | COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT,

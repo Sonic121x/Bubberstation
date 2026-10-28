@@ -31,7 +31,7 @@
 	cost = CARGO_CRATE_VALUE
 	access_view = ACCESS_SECURITY
 	contains = list(/obj/item/mod/construction/plating/security)
-	crate_name = "MOD 装甲板板条箱"
+	crate_name = "\improper MOD 装甲板板条箱"
 
 /datum/supply_pack/security/disabler
 	name = "瘫痪枪板条箱"

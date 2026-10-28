@@ -19,6 +19,12 @@
 	/// Tracks tim ein EVA
 	var/seconds_in_eva = 0
 
+/datum/heretic_knowledge/spell/space_phase/has_charges(mob/living/user)
+	return HAS_TRAIT(user, TRAIT_MAGICALLY_PHASED) || ..()
+
+/datum/heretic_knowledge/spell/space_phase/should_deduct_charge(mob/living/user)
+	return !HAS_TRAIT(user, TRAIT_MAGICALLY_PHASED)
+
 /datum/heretic_knowledge/spell/space_phase/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
 	. = ..()
 	RegisterSignal(user, COMSIG_MOB_CRUSHED_BLUESPACE_CRYSTAL, PROC_REF(on_crystal_crushed))
@@ -79,32 +85,75 @@
 	research_tree_icon_state = "rustgrenade"
 	drafting_tier = 4
 
-/datum/heretic_knowledge/spell/crimson_cleave
-	name = "绯红劈砍"
-	desc = "赋予你绯红劈砍，一种定向法术，可在小范围内吸取生命。\
-		<br>施放时还会治愈所有伤口。"
+/datum/heretic_knowledge/crimson_cleave
+	name = "绯红屠刀"
+	desc = "让你能够锻造绯红屠刀，一把渴求鲜血的恐怖武器。<br>\
+		它的攻击会根据造成的伤害治疗你，且能一次劈中多个敌人。\
+		它也是一件颇为有效的投掷武器，投出后会返回持有者手中。"
 	gain_text = "起初我并不懂这些战争器具，但祭司 \
 		让我尽管使用。他说，很快我就会熟悉它们。"
+	transmute_text = "转化一把屠刀和一些血液——\
+		可以是血泊或血滴、染血的抹布或绷带、装有血液的烧杯或小瓶，甚至是屠刀自身沾染的血液。"
 	required_atoms = list(
-		list(/obj/effect/decal/cleanable/blood, /obj/item/rag, /obj/item/stack/medical/wrap/gauze) = 1,
+		/obj/item/knife/butcher = 1,
 	)
-	action_to_add = /datum/action/cooldown/spell/pointed/crimson_cleave
+	result_atoms = list(/obj/item/knife/butcher/heretic)
+	banned_atom_types = list(/obj/item/knife/butcher/heretic)
 	cost = 2
 	drafting_tier = 4
-	max_charges = 3
-	path_recharge_amount = 0.0
-	focus_recharge_amount = 0.33
-	holywater_drain_amount = 0.33
+	research_tree_icon_path = /obj/item/knife/butcher/heretic::icon
+	research_tree_icon_state = /obj/item/knife/butcher/heretic::icon_state
 
-/datum/heretic_knowledge/spell/crimson_cleave/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
+/datum/heretic_knowledge/crimson_cleave/prepare_atom_for_ritual_test(atom/what)
 	. = ..()
+	what.add_blood_DNA(list("Test DNA" = get_blood_type(/datum/blood_type/human/o_minus)))
+
+/datum/heretic_knowledge/crimson_cleave/get_extra_requirements()
+	return "一些血液——可以是血泊或血滴、染血的抹布或绷带、装有血液的烧杯或小瓶，甚至是屠刀自身沾染的血液"
+
+/datum/heretic_knowledge/crimson_cleave/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
+	for(var/obj/item/knife/butcher/cleaver in atoms)
+		selected_atoms += cleaver
+		if(GET_ATOM_BLOOD_DNA_LENGTH(cleaver))
+			return TRUE // two for one deal
+		break
+
+	for(var/obj/effect/decal/cleanable/blood/blood in atoms)
+		selected_atoms += blood // blood is blood
+		return TRUE
+
 	for(var/obj/item/rag/rag in atoms)
-		if(!GET_ATOM_BLOOD_DNA_LENGTH(rag))
-			atoms -= rag
+		if(GET_ATOM_BLOOD_DNA_LENGTH(rag))
+			selected_atoms += rag
+			return TRUE
 
 	for(var/obj/item/stack/medical/wrap/gauze/medwrap in atoms)
-		if(!GET_ATOM_BLOOD_DNA_LENGTH(medwrap))
-			atoms -= medwrap
+		if(GET_ATOM_BLOOD_DNA_LENGTH(medwrap))
+			selected_atoms += medwrap
+			return TRUE
+
+	for(var/obj/item/reagent_containers/container in atoms)
+		for(var/datum/reagent/reagent_content as anything in container.reagents.reagent_list)
+			if(LAZYACCESS(reagent_content.data, BLOOD_DATA_DNA))
+				selected_atoms += container
+				return TRUE
+
+	loc.balloon_alert(user, "仪式失败，缺少血液！")
+	to_chat(user, span_mansus("你缺少完成仪式“[name]”所需的血液。"))
+	return FALSE
+
+/datum/heretic_knowledge/crimson_cleave/cleanup_atoms(list/selected_atoms)
+	for(var/obj/item/reagent_containers/container in selected_atoms)
+		for(var/datum/reagent/reagent_content as anything in container.reagents.reagent_list)
+			if(LAZYACCESS(reagent_content.data, BLOOD_DATA_DNA))
+				container.reagents.del_reagent(reagent_content.type)
+		selected_atoms -= container
+
+	for(var/obj/item/stack/medical/wrap/gauze/medwrap in selected_atoms)
+		medwrap.use(1)
+		selected_atoms -= medwrap
+
+	return ..()
 
 /datum/heretic_knowledge/rifle
 	name = "猎狮者步枪"

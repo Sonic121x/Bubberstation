@@ -7,6 +7,7 @@
 	name = "快速建造装置（RCD）"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rcd"
+	inhand_icon_state = "rcd"
 	worn_icon_state = "RCD"
 	inside_belt_icon_state = "rcd"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -645,6 +646,7 @@
 	desc = "为 RCD 提供的高压缩物质。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rcdammo"
+	inhand_icon_state = "rcdammo"
 	w_class = WEIGHT_CLASS_TINY
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'

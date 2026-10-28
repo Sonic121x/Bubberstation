@@ -241,10 +241,7 @@
 		brainopslastname = creator_op.nuke_team.syndicate_name
 	var/brainopsname = "[brainfirstname] [brainopslastname]"
 
-	borg.mmi.name = "[initial(borg.mmi.name)]: [brainopsname]"
-	borg.mmi.brain.name = "[brainopsname]的大脑"
-	borg.mmi.brainmob.real_name = brainopsname
-	borg.mmi.brainmob.name = brainopsname
+	borg.mmi.set_name(brainopsname)
 	borg.real_name = borg.name
 
 	borg.PossessByPlayer(C.key)
@@ -444,7 +441,7 @@
 
 /obj/item/antag_spawner/loadout/monkey_man/proc/allergy(mob/living/second_lifer, datum/species/folly_species)
 	SIGNAL_HANDLER
-	if(is_simian(second_lifer))
+	if(HAS_TRAIT(second_lifer, TRAIT_SIMIAN))
 		return
 	// timer is long to let them panic and consider their folly, and because allergies take a while
 	second_lifer.visible_message(span_bolddanger("[second_lifer]的身体开始不健康地膨胀。看来他们对变成[folly_species]产生了过敏反应！"), span_userdanger("随着你的猴子特征逐渐变形，你感到过敏反应正在袭来。哦不。"))

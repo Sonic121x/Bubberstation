@@ -9,7 +9,7 @@
 	var/obj/act_module = get_active_held_item()
 	if(act_module)
 		. += "正拿着 [icon2html(act_module, user)] [act_module]。"
-	. += get_status_effect_examinations()
+	. += get_status_effect_examinations(user)
 	if (get_brute_loss())
 		if (get_brute_loss() < maxHealth*0.5)
 			. += span_warning("看起来略有凹陷。")
@@ -31,7 +31,13 @@
 	if(opened)
 		. += span_warning("盖板已打开，电池[cell ? "已安装" : "缺失"]。")
 	else
-		. += "盖板已关闭[locked ? "" : "，而且看起来没有上锁"]。"
+		var/cover_message = "盖板已关闭"
+		if(locked)
+			if(user == src)
+				cover_message += "，但<a href='byond://?src=[REF(src)];unlock_self=1'>你可以将其解锁</a>"
+		else
+			cover_message += "，而且看起来没有上锁"
+		. += span_notice("[cover_message]。")
 
 	if(cell && cell.charge <= 0)
 		. += span_warning("电池指示灯正在闪红光！")

@@ -292,8 +292,7 @@
 	if(opened)
 		return
 	// The player is trying to dig themselves out of an early grave
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
 	user.visible_message(
 		span_warning("[src] 的泥土开始松动、隆隆作响！"),
 		span_notice("你拼命刨挖周围的泥土，想要从土里钻出去……（大约需要 [DisplayTimeText(breakout_time)]。）"),

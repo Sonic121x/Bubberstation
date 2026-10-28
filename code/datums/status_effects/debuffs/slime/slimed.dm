@@ -111,7 +111,7 @@
 		))
 		to_chat(owner, span_userdanger("黏液侵蚀着你，[feedback_text]！"))
 
-/datum/status_effect/slimed/get_examine_text()
+/datum/status_effect/slimed/get_examine_text(mob/examiner)
 	return span_warning("[owner]身上沾满了冒泡的黏液！")
 
 #undef MIN_HEALTH

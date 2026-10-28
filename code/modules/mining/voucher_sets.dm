@@ -51,13 +51,13 @@
 
 /datum/voucher_set/mining/extraction_kit
 	name = "提取与救援套装"
-	description = "包含一包富尔顿回收包和一只信标信号器，让你无需动用采矿穿梭机就能把矿物、物品和尸体送回站内。此外还附赠 30 枚标记信标，方便你更好地标记路线。"
+	description = "包含一个富尔顿回收包和一个信标信号器，让你能通过“烛光”导航网络运输矿物、物品、尸体和自己。此外还免费附赠 30 枚导航信标。"
 	icon = 'icons/obj/fulton.dmi'
 	icon_state = "extraction_pack"
 	set_items = list(
-		/obj/item/extraction_pack,
-		/obj/item/fulton_core,
-		/obj/item/stack/marker_beacon/thirty,
+		/obj/item/extraction_pack/networked,
+		/obj/item/fulton_core/networked,
+		/obj/item/stack/candela_beacon/thirty,
 	)
 
 /datum/voucher_set/mining/resonator_kit

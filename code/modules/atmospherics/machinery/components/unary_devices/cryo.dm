@@ -517,8 +517,7 @@
 			set_on(TRUE)
 
 /obj/machinery/cryo_cell/container_resist_act(mob/living/user)
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
 	user.visible_message(span_notice("你看到 [user] 正在踢 [src] 的玻璃！"), \
 		span_notice("你在 [src] 里挣扎，用脚踢着释放装置……（这大约需要 [DisplayTimeText(CRYO_BREAKOUT_TIME)]。）"), \
 		span_hear("你听到 [src] 传来一声闷响。"))

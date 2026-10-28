@@ -140,7 +140,7 @@
 #undef MODPAINT_MIN_OVERALL_COLORS
 
 /obj/item/mod/skin_applier
-	name = "MOD 外观涂装器"
+	name = "\improper MOD 外观涂装器"
 	desc = "这种一次性外观涂装器可为特定类型的 MOD 模块化外骨骼添加一款外观。必须用于未启动的控制单元。"
 	icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
 	icon_state = "skinapplier"
@@ -148,7 +148,7 @@
 
 /obj/item/mod/skin_applier/Initialize(mapload)
 	. = ..()
-	name = "MOD [skin] 外观涂装器"
+	name = "\improper MOD [chinese_batch_ten_theme_display(skin)] 外观涂装器"
 
 /obj/item/mod/skin_applier/interact_with_atom(atom/attacked_atom, mob/living/user, params)
 	if(!istype(attacked_atom, /obj/item/mod/control))

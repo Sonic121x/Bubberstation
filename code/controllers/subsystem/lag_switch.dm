@@ -120,7 +120,7 @@ SUBSYSTEM_DEF(lag_switch)
 				to_chat(world, span_boldannounce("视差效果已重新启用。"))
 
 			for (var/mob/mob as anything in GLOB.mob_list)
-				mob.hud_used?.update_parallax_pref()
+				mob.client?.update_parallax_prefs()
 		if (DISABLE_FOOTSTEPS)
 			if (state)
 				to_chat(world, span_boldannounce("为改善性能，已禁用脚步声。"))

@@ -1,6 +1,5 @@
 /datum/award/achievement/misc
 	category = "杂项"
-	icon_state = "basemisc" //for those achievements that still need an actual icon, later.
 
 /datum/award/achievement/misc/meteor_examine
 	name = "人生走马灯"
@@ -60,16 +59,19 @@
 	name = "我曾是个少年无政府主义者"
 	desc = "你原本正痛快地反抗体制，直到那台自动售货机决定还手。"
 	database_id = MEDAL_VENDORSQUISH
+	icon_state = "vendor_squish"
 
 /datum/award/achievement/misc/swirlie
 	name = "马桶里的美丽新世界"
 	desc = "在顺旋边区，死得惨的方法数不胜数，但淹死在马桶里大概不在你的计划中。大概吧。"
 	database_id = MEDAL_SWIRLIE
+	icon_state = "swirlie"
 
 /datum/award/achievement/misc/selfouch
 	name = "怎么切换手啊？？？"
 	desc = "在银河系里除了这里的任何地方，看到有人若无其事地拿工具箱敲自己的脑袋，你大概都会替他担心。"
 	database_id = MEDAL_SELFOUCH
+	icon_state = "self_touch"
 
 /datum/award/achievement/misc/cleanboss
 	name = "精悍凶猛的清洁机器"
@@ -257,3 +259,51 @@
 		或许有一天你会寻得安宁。但不是今天。"
 	database_id = MEDAL_DESENSITIZED
 	icon_state = "desensitized"
+
+/datum/award/achievement/misc/spicy_handshake
+	name = "火辣握手"
+	desc = "以令人终身难忘的方式背叛他人的信任。"
+	database_id = MEDAL_SPICY_HANDSHAKE
+	icon_state = "spicy_handshake"
+
+/datum/award/achievement/misc/down_low_too_slow
+	name = "卑鄙一手"
+	desc = "用足以让小学生引以为傲的小把戏耍弄他人。"
+	database_id = MEDAL_DOWN_LOW_TOO_SLOW
+	icon_state = "down_low_too_slow"
+
+/datum/award/achievement/misc/souvenir
+	name = "到头来只拿了个破成就"
+	desc = "带一件纪念品回家。"
+	database_id = MEDAL_SOUVENIR
+	icon_state = "souvenir"
+
+/datum/award/achievement/misc/samaritan
+	name = "乐善好施"
+	desc = "及时出手，挽救一条生命。"
+	database_id = MEDAL_SAMARITAN
+	icon_state = "samaritan"
+
+/datum/award/achievement/misc/red_pill
+	name = "红色药丸"
+	desc = "看看这兔子洞究竟有多深。"
+	database_id = MEDAL_RED_PILL
+	icon_state = "red_pill"
+
+/datum/award/achievement/misc/kong
+	name = "金刚崛起"
+	desc = "我就是丛林之王，宝贝！！"
+	database_id = MEDAL_KONG
+	icon_state = "kong"
+
+/datum/award/achievement/misc/no_parking
+	name = "这里不能停车"
+	desc = "试图停进别人的专属车位。"
+	database_id = MEDAL_NO_PARKING
+	icon_state = "no_parking"
+
+/datum/award/achievement/misc/clever_girl
+	name = "聪明姑娘"
+	desc = "生命自会找到出路。"
+	database_id = MEDAL_CLEVER_GIRL
+	icon_state = "clever_girl"

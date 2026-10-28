@@ -1,29 +1,26 @@
 //Programs that buff the host in generally passive ways.
 
 /datum/nanite_program/nervous
-	name = "神经辅助"
-	desc = "纳米机器人充当第二套神经系统，缩短宿主被击晕的时间。"
+	name = "神经支持"
+	desc = "纳米机器人充当第二套神经系统，缩短宿主被眩晕的时间。"
 	use_rate = 1.5
 	rogue_types = list(/datum/nanite_program/nerve_decay)
 
 /datum/nanite_program/nervous/enable_passive_effect()
 	. = ..()
-	if(ishuman(host_mob))
-		var/mob/living/carbon/human/H = host_mob
-		H.physiology.stun_mod *= 0.5
+	MODIFY_PHYSIOLOGY(host_mob, PHYS_COEFF_STUN, 0.5)
 
 /datum/nanite_program/nervous/disable_passive_effect()
 	. = ..()
-	if(ishuman(host_mob))
-		var/mob/living/carbon/human/H = host_mob
-		H.physiology.stun_mod *= 2
+	MODIFY_PHYSIOLOGY(host_mob, PHYS_COEFF_STUN, 2)
 
+/* - The damage procs and rework to physiology currently do not allow this. TODO: Datumize damage packets upstream
 /datum/nanite_program/dermal_armor
-	name = "真皮硬化"
-	desc = "纳米机器人在宿主皮肤下形成网状结构，保护其免受近战与子弹冲击。 \
-			每次受击都会按伤害的两倍消耗纳米机器人，但纳米机器人越多，获得的防护也越强。 \
-			50 纳米机器人 = 1 点固定护甲，每次受击按伤害的两倍消耗纳米机器人。 \
-			无法与其他真皮护甲程序同时启用。"
+	name = "Dermal Hardening"
+	desc = "The nanites form a mesh under the host's skin, protecting them from melee and bullet impacts. \
+			Each hit costs nanites two times to damage, but the more nanites you have, the more protection you get. \
+			50 nanites = 10% damage reduction, with each hit costing two times its damage in nanites. \
+			Will not turn on with other dermal armor programs."
 	use_rate = 2
 	rogue_types = list(/datum/nanite_program/skin_decay)
 	var/damage_type = BRUTE
@@ -95,7 +92,7 @@
 	if(actual_damage >= nanites.nanite_volume)
 		playsound(host_mob, SFX_SHATTER)
 		host_mob.Knockdown(1 SECONDS)
-		to_chat(host_mob, span_warning("你皮肤下有东西碎裂，一阵剧痛袭来！"))
+		to_chat(host_mob, span_warning("Something shatters under your skin, and you feel a sharp pain!"))
 		disable_passive_effect()
 		return
 
@@ -159,32 +156,15 @@
 	host_mob.remove_filter(filter_name)
 	cleanup_timer = null
 
-/datum/nanite_program/dermal_armor/proc/update_damage_modifier(amount)
-	var/mob/living/carbon/human/humie = host_mob
-	var/valid_change = clamp(amount, 1, 30)
-	if(!humie)
-		stack_trace("A nanite program is running without a host mob present. Something's wrong.")
-		return
-	humie.physiology.flat_brute_mod += current_flat_mod
-	current_flat_mod = valid_change
-	humie.physiology.flat_brute_mod -= valid_change
-
 /datum/nanite_program/dermal_armor/refractive
-	name = "真皮折射层"
-	desc = "纳米机器人在宿主皮肤上形成一层膜，减轻激光与能量冲击的影响。 \
-			每次受击都会消耗与伤害等量的纳米机器人，但纳米机器人越多，获得的防护也越强。 \
-			50 纳米机器人 = 1 点固定护甲，每次受击按伤害的两倍消耗纳米机器人。 \
-			无法与其他真皮护甲程序同时启用。"
+	name = "Dermal Refractive Surface"
+	desc = "The nanites form a membrane above the host's skin, reducing the effect of laser and energy impacts. \
+			Each hit costs nanites equilavent to damage, but the more nanites you have, the more protection you get. \
+			50 nanites = 1 flat armor, with each hit costing two times it's damage in nanites. \
+			Will not turn on with other dermal armor programs."
 	damage_type = BURN
 	rgb_color = list(255, 255, 0)
-
-/datum/nanite_program/dermal_armor/refractive/update_damage_modifier(mob/living/carbon/human/humie, amount)
-	if(!humie)
-		stack_trace("A nanite program is running without a host mob present. Something's wrong.")
-		return
-	humie.physiology.flat_burn_mod -= current_flat_mod
-	current_flat_mod = amount
-	humie.physiology.flat_burn_mod += amount
+*/
 
 /datum/nanite_program/coagulating
 	name = "静脉增压"
@@ -194,15 +174,11 @@
 
 /datum/nanite_program/coagulating/enable_passive_effect()
 	. = ..()
-	if(ishuman(host_mob))
-		var/mob/living/carbon/human/H = host_mob
-		H.physiology.bleed_mod *= 0.5
+	MODIFY_PHYSIOLOGY(host_mob, PHYS_COEFF_BLEED, 0.5)
 
 /datum/nanite_program/coagulating/disable_passive_effect()
 	. = ..()
-	if(ishuman(host_mob))
-		var/mob/living/carbon/human/H = host_mob
-		H.physiology.bleed_mod *= 2
+	MODIFY_PHYSIOLOGY(host_mob, PHYS_COEFF_BLEED, 2)
 
 /datum/nanite_program/conductive
 	name = "导电"
@@ -220,8 +196,8 @@
 	REMOVE_TRAIT(host_mob, TRAIT_SHOCKIMMUNE, NANITES_TRAIT)
 
 /datum/nanite_program/mindshield
-	name = "精神屏障"
-	desc = "纳米机器人在宿主大脑周围形成保护膜，在其激活期间抵御异常影响。"
+	name = "心智屏障"
+	desc = "纳米机器人在宿主大脑周围形成保护膜，激活时可使其免受异常影响。"
 	use_rate = 0.40
 	rogue_types = list(/datum/nanite_program/brain_decay, /datum/nanite_program/brain_misfire)
 

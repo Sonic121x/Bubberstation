@@ -6,7 +6,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	speed = -0.5
-	damage_coeff = list(BRUTE = 0.75, BURN = 0.75, TOX = 0.75, STAMINA = 0, OXY = 0.75)
+	physiology = list(BRUTE = 0.75, BURN = 0.75, TOX = 0.75, OXY = 0.75, STAMINA = 0)
 	playstyle_string = span_holoparasite("作为<b>冲锋者</b>型，你造成中等伤害，具有轻度伤害抗性，移动极快，可被骑乘，并能向某个位置冲锋，对撞到的目标造成伤害并迫使其丢下手中物品。")
 	creator_name = "冲锋者"
 	creator_desc = "移动极快，攻击造成中等伤害，可被骑乘，并能向目标冲锋，对第一个撞到的目标造成伤害并迫使其丢下手中物品。"

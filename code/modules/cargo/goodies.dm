@@ -251,6 +251,12 @@
 	cost = PAYCHECK_CREW * 2
 	contains = list(/obj/item/dyespray)
 
+/datum/supply_pack/goody/pilotsuit
+	name = "Mech Pilot Suit"
+	desc = "For when you need to look the part during your pre-battle checks. Can be reskinned with alt-click."
+	cost = PAYCHECK_CREW * 2
+	contains = list(/obj/item/clothing/under/costume/mech_suit)
+
 /datum/supply_pack/goody/beach_ball
 	name = "沙滩球单包装"
 	// uses desc from item
@@ -455,3 +461,15 @@
 	desc = "一台单独的广播摄像机，可向空间站的娱乐显示器进行广播，满足你所有的戏剧需求。"
 	cost = PAYCHECK_COMMAND * 8
 	contains = list(/obj/item/broadcast_camera/cargo)
+
+/datum/supply_pack/goody/rock_tape
+	name = "Boombox tape (Rock)"
+	desc = "A classic rock track by George Patel, 'Bainrock'. Requires a boombox to play."
+	cost = PAYCHECK_CREW * 4
+	contains = list(/obj/item/music_tape/rock)
+
+/datum/supply_pack/goody/hiphop_tape
+	name = "Boombox tape (HipHop)"
+	desc = "A trendy hiphop track by F'norkiz Gamma, 'Groovepad'. Requires a boombox to play."
+	cost = PAYCHECK_CREW * 4
+	contains = list(/obj/item/music_tape/hiphop)

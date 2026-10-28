@@ -10,7 +10,6 @@
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	sharpness = SHARP_POINTY
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1)
 	playstyle_string = span_holoparasite("作为<b>刺客</b>型，你造成中等伤害且没有伤害抗性，但可以进入潜行，大幅提升下一次攻击的伤害并使其无视护甲。攻击或受到伤害时潜行会解除。")
 	creator_name = "刺客"
 	creator_desc = "造成中等伤害并承受全额伤害，但可以进入潜行，使其下一次攻击造成巨额伤害并无视护甲。不过，从潜行中攻击后，它会短暂无法被召回。"

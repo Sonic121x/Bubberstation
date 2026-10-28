@@ -23,7 +23,7 @@
 /datum/heretic_knowledge/medallion
 	name = "灰烬之眼"
 	desc = "雕制一枚邪异徽章。<br>\
-		佩戴邪异徽章可让你获得热成像视觉，它还能作为施法聚焦物。"
+		佩戴邪异徽章可让你获得热成像视觉。"
 	transmute_text = "使用一对眼睛、一根蜡烛和一块玻璃碎片进行转化。"
 	gain_text = "锐利的双眼指引他们穿行于凡俗之中。黑暗与恐惧都无法阻挡他们。"
 	required_atoms = list(
@@ -306,3 +306,93 @@
 	if(feedback)
 		to_chat(the_spell.owner, span_mansus("你需要一颗活体心脏才能施放[the_spell]！"))
 	return SPELL_CANCEL_CAST
+
+/datum/heretic_knowledge/lodestone
+	name = "律动磁石"
+	desc = "将磁石注入一个物体。<br>\
+		磁石会与活体心脏同步搏动，只要它尚未被摧毁，你便能无视距离追踪它。"
+	transmute_text = "转化一台 GPS 和至多三个任意物体。"
+	gain_text = "我迷失了方向。没人说过在漫宿中寻路是件轻松的事。\
+		我得重新找回自己。集中精神。倾听心跳。"
+	notice = "一次最多可为三件物品注入磁石。武器、装备和贵重物品优先。"
+	required_atoms = list(
+		/obj/item/gps = 1,
+	)
+	cost = 1
+	drafting_tier = 1
+	is_shop_only = TRUE
+	research_tree_icon_path = /obj/item/gps::icon
+	research_tree_icon_state = /obj/item/gps::icon_state
+
+/datum/heretic_knowledge/lodestone/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
+	for(var/obj/whatever in atoms)
+		if(istype(whatever, /obj/item/gps) || whatever.anchored)
+			continue
+		selected_atoms += whatever
+
+	if(!length(selected_atoms))
+		loc.balloon_alert(user, "没有可注入的物品！")
+		return FALSE
+	return TRUE
+
+/datum/heretic_knowledge/lodestone/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
+	var/lodestones_created = 0
+
+	var/list/valuable_pool = list()
+	var/list/equipment_pool = list()
+	var/list/weapon_pool = list()
+	var/list/item_pool = list()
+	var/list/leftover_pool = list()
+	for(var/obj/new_trackable in selected_atoms)
+		if(istype(new_trackable, /obj/item/gps))
+			continue
+
+		if(new_trackable.resistance_flags & INDESTRUCTIBLE)
+			valuable_pool += new_trackable
+		if(isclothing(new_trackable) || astype(new_trackable, /obj/item)?.slot_flags)
+			equipment_pool += new_trackable
+		if(new_trackable.force >= 15 || isgun(new_trackable))
+			weapon_pool += new_trackable
+		if(isitem(new_trackable))
+			item_pool += new_trackable
+		leftover_pool += new_trackable
+
+	// Valuable items first, then clothing items (so you can track people wearing them), then weapons (stuff you probably want), then random items
+	for(var/obj/item/new_trackable as anything in valuable_pool | equipment_pool | weapon_pool | item_pool | leftover_pool)
+		var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
+		LAZYADD(heretic_datum.tracked_items, new_trackable)
+		to_chat(user, span_mansus("你感到[new_trackable]中的新磁石开始与你的心脏同步搏动。"))
+		lodestones_created += 1
+		if(lodestones_created >= 3)
+			break
+
+	return lodestones_created >= 1
+
+/datum/heretic_knowledge/lodestone/cleanup_atoms(list/selected_atoms)
+	qdel(locate(/obj/item/gps) in selected_atoms)
+	selected_atoms.Cut() // ASSUMING DIRECT CONTROL
+	return ..()
+
+/datum/heretic_knowledge/blessed_poppy
+	name = "祝福罂粟"
+	desc = "催生一朵祝福罂粟。<br>\
+		祝福罂粟可敷在受伤的肢体上，逐渐治愈伤势。\
+		戴在头上时，它还能稳定危重者的生命体征。\
+		无论哪种用法，最终都会耗尽罂粟的力量，使其枯萎。"
+	transmute_text = "转化一朵罂粟和至少四卷纱布。"
+	gain_text = "\"在佛兰德斯的田野，罂粟花开，\
+		/ 一排排十字架之间，花朵摇曳。\
+		/ 标示着我们长眠之地；天空中，\
+		/ 云雀依旧勇敢歌唱，振翅飞翔，\
+		/ 歌声却几乎被下方的炮火淹没。\"\
+	"
+	required_atoms = list(
+		/obj/item/food/grown/flower/poppy = 1,
+		/obj/item/stack/medical/wrap/gauze = 4,
+	)
+	result_atoms = list(/obj/item/food/grown/flower/poppy/blessed)
+	cost = 1
+	drafting_tier = 1
+	is_shop_only = TRUE
+	research_tree_icon_path = /obj/item/food/grown/flower/poppy::icon
+	research_tree_icon_state = /obj/item/food/grown/flower/poppy::icon

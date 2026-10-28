@@ -4,7 +4,7 @@
 	name = "奇怪物体"
 	description = "纳米传讯对奇怪的物体产生了兴趣。在维护区找一个，然后立刻送往中央指挥部。"
 	reward = CARGO_CRATE_VALUE * 2.4
-	wanted_types = list(/obj/item/relic = TRUE)
+	wanted_types = list(/obj/item/assembly/relic = TRUE)
 
 /datum/bounty/item/assistant/scooter
 	name = "滑板车"

@@ -222,12 +222,28 @@
 	foodtypes = GRAIN | VEGETABLES | DAIRY | MEAT
 	crafting_complexity = FOOD_COMPLEXITY_3
 
-/obj/item/food/pizzaslice/meat/pizzeria //Reward for pizzeria bitrunning domain
+/obj/item/food/pizzaslice/meat/pizzeria //Reward for pizzeria bitrunning domain; not really meant to be eaten but functionality as food still exists for remote tasters and absurdly determined persons.
 	name = "披萨店肉披萨切片"
-	desc = "一片号称营养丰富的肉披萨，来自一家早已关门的披萨店。"
-	food_reagents = null
+	desc = "一片几乎没什么营养的肉披萨，来自一家早已关门的披萨店。它硬得像纸板，看着几乎不能吃，大概不值得为吃它崩掉下巴。"
 	tastes = list("饼皮" = 1, "番茄酱" = 1, "“芝士”" = 1, "神秘肉" = 1, "胶水" = 1)
-	foodtypes = null
+	bite_consumption = 0.1
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment = 1,
+	)
+	foodtypes = parent_type::foodtypes | GROSS
+	eat_time = 5 MINUTES
+
+/obj/item/food/pizzaslice/meat/pizzeria/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_FOOD_CONSUMED, PROC_REF(on_consumed))
+
+/// Little bit of flavor for the absurdly persistent pizza eater.
+/obj/item/food/pizzaslice/meat/pizzeria/proc/on_consumed(datum/source, mob/living/eater, mob/feeder)
+	SIGNAL_HANDLER
+
+	to_chat(eater, span_notice("你终于吃完了那块垃圾，胃里的疼痛也印证了这一点。这片披萨肯定还有更好的用途……"))
+
+	return NONE
 
 /obj/item/food/pizza/mushroom
 	name = "蘑菇披萨"

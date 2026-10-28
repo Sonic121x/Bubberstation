@@ -89,7 +89,6 @@
 	name = "辛迪加迷你炸弹"
 	desc = "迷你炸弹是一枚引信为五秒的手榴弹。引爆时，除了对附近人员造成大量伤害之外， \
 			还会在船体上炸出一个小破口。"
-	progression_minimum = 30 MINUTES
 	item = /obj/item/grenade/syndieminibomb
 	cost = 2
 	limited_stock = 4
@@ -116,7 +115,6 @@
 		被传送到你身边，激活后会把真正的炸弹传送到信标处。请注意，这枚炸弹 \
 		可以被拆除，有些船员可能会尝试这么做。 \
 		炸弹核心可以被撬出来，并用其他爆炸物手动引爆。"
-	progression_minimum = 30 MINUTES
 	item = /obj/item/sbeacondrop/bomb
 	cost = 11
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS /// Ops get their own version.

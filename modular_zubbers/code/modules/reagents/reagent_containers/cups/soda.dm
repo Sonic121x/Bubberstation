@@ -1,5 +1,17 @@
-//Soda Modular File for Bubber
-////Add your custom sodas here, use this first one as a reference if you want
+/obj/item/reagent_containers/cup/soda_cans
+	/// Trash type that gets created upon crushing the can
+	/// This is a Bubber feature
+	/// Done by edits in the TG proc definitions for the type
+	var/trash_type = /obj/item/trash/can
+
+/obj/item/reagent_containers/cup/soda_cans/bubber
+	icon = 'modular_zubbers/icons/obj/drinks/soda.dmi'
+	icon_state = null
+	trash_type = /obj/item/trash/can/bubber
+
+/obj/item/trash/can/bubber
+	icon = 'modular_zubbers/icons/obj/janitor.dmi'
+	icon_state = "tangorine_soda"
 
 /obj/item/reagent_containers/cup/soda_cans/bubber/blood_tea
 	name = "血红蛋白冰茶"
@@ -14,75 +26,84 @@
 	drink_type = SUGAR | FRUIT
 	list_reagents = list(/datum/reagent/consumable/orangejuice = 20, /datum/reagent/consumable/sodawater = 10)
 
-//CODING SIN BYOND HERE - This is reusing some code from 'code/modules/reagents/reagent_containers/cups/soda.dm' to crush cans and to throw it. Subtype moment.
+/obj/item/reagent_containers/cup/soda_cans/bubber/lubricola
+	name = "润滑可乐"
+	desc = "为你疲惫的齿轮准备的最佳润滑剂。"
+	icon_state = "lubricola"
+	list_reagents = list(/datum/reagent/fuel/oil = 30)
+	custom_price = PAYCHECK_LOWER * 1.2
 
-/obj/item/trash/can/bubber
-	icon = 'modular_zubbers/icons/obj/janitor.dmi'
-	icon_state = "tangorine_soda"
+/obj/item/reagent_containers/cup/soda_cans/bubber/welding_fizz
+	name = "焊接汽水"
+	desc = "能量比简易爆炸装置还多！现已充入碳酸。警告：含有毒且易燃的燃料。"
+	icon_state = "welding_fizz"
+	list_reagents = list(/datum/reagent/fuel = 25, /datum/reagent/carbondioxide = 5)
+	custom_price = PAYCHECK_LOWER * 1.2
 
-/*
-*	BUBBER SODA CANS
-*/
+/obj/item/reagent_containers/cup/soda_cans/bubber/synthanolcan
+	name = "傻锥合成醇"
+	desc = "一罐重新编译过的合成醇。"
+	icon_state = "synthanolcan"
+	list_reagents = list(/datum/reagent/consumable/ethanol/synthanol = 30)
+	custom_price = PAYCHECK_CREW
 
-/// How much fizziness is added to the can of soda by throwing it, in percentage points
-#define SODA_FIZZINESS_THROWN 15
-/// How much fizziness is added to the can of soda by shaking it, in percentage points
-#define SODA_FIZZINESS_SHAKE 5
+/obj/item/reagent_containers/cup/soda_cans/bubber/wine_voltaic
+	name = "罐装伏打黄葡萄酒"
+	desc = "一罐带电的葡萄酒，能为以太人充能，可以安全饮用。"
+	icon_state = "wine_voltaic"
+	list_reagents = list(/datum/reagent/consumable/ethanol/wine_voltaic = 30)
 
-/obj/item/reagent_containers/cup/soda_cans/bubber
-	icon = 'modular_zubbers/icons/obj/drinks/soda.dmi'
-	icon_state = null
+/obj/item/reagent_containers/cup/soda_cans/bubber/kortara
+	name = "科塔拉"
+	desc = "一罐由科塔种子酿制的科塔拉酒，带有独特的胡椒辛香。"
+	icon_state = "kortara"
+	list_reagents = list(/datum/reagent/consumable/ethanol/kortara = 30)
+	drink_type = ALCOHOL
 
-/obj/item/reagent_containers/cup/soda_cans/bubber/attack(mob/M, mob/living/user)
-	if(istype(M, /mob/living/carbon) && !reagents.total_volume && user.combat_mode && user.zone_selected == BODY_ZONE_HEAD)
-		if(M == user)
-			user.visible_message(span_warning("[user] 把 [src] 的罐子在自己额头上捏扁了！"), span_notice("你把 [src] 的罐子在额头上捏扁了。"))
-		else
-			user.visible_message(span_warning("[user] 把 [src] 的罐子在 [M] 的额头上捏扁了！"), span_notice("你把 [src] 的罐子在 [M] 的额头上捏扁了。"))
-		playsound(M,'sound/items/weapons/pierce.ogg', rand(10,50), TRUE)
-		var/obj/item/trash/can/bubber/crushed_can = new /obj/item/trash/can/bubber(M.loc)
-		crushed_can.icon_state = icon_state
-		qdel(src)
-		return TRUE
+/obj/item/reagent_containers/cup/soda_cans/bubber/lemonade
+	name = "\improper 工厂舰 1023：柠檬水"
+	desc = "一罐柠檬水，献给喜欢它的人，以及别无选择的人。"
+	icon_state = "lemonade"
+	list_reagents = list(/datum/reagent/consumable/lemonade = 30)
+	drink_type = FRUIT
+
+/obj/item/reagent_containers/cup/soda_cans/bubber/lemonade/examine_more(mob/user)
 	. = ..()
+	. += span_notice("罐身标记表明，它产自大游牧舰队的<i>工厂舰 1023</i>。")
+	return .
 
-/obj/item/reagent_containers/cup/soda_cans/bubber/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit = FALSE)
+/obj/item/reagent_containers/cup/soda_cans/bubber/navy_rum
+	name = "\improper 工厂舰 1506：海军朗姆酒"
+	desc = "一罐由游牧舰队分遣队酿造并出口的海军朗姆酒，至少罐子上是这么写的。"
+	icon_state = "navy_rum"
+	list_reagents = list(/datum/reagent/consumable/ethanol/navy_rum = 30)
+	drink_type = ALCOHOL
+
+/obj/item/reagent_containers/cup/soda_cans/bubber/navy_rum/examine_more(mob/user)
 	. = ..()
+	. += span_notice("罐身标记表明，它产自大游牧舰队的<i>工厂舰 1506</i>。")
+	return .
 
-	if(. != BULLET_ACT_HIT)
-		return
+/obj/item/reagent_containers/cup/soda_cans/bubber/soda_water_moth
+	name = "\improper 工厂舰 1023：苏打水"
+	desc = "一罐苏打水。不如调杯朗姆苏打？仔细想想，还是算了。"
+	icon_state = "soda_water"
+	list_reagents = list(/datum/reagent/consumable/sodawater = 30)
+	drink_type = SUGAR
 
-	if(hitting_projectile.damage > 0 && hitting_projectile.damage_type == BRUTE && !QDELETED(src))
-		var/obj/item/trash/can/bubber/crushed_can = new /obj/item/trash/can/bubber(src.loc)
-		crushed_can.icon_state = icon_state
-		var/atom/throw_target = get_edge_target_turf(crushed_can, pick(GLOB.alldirs))
-		crushed_can.throw_at(throw_target, rand(1,2), 7)
-		qdel(src)
-		return
-
-/**
- * Burst the soda open on someone. Fun! Opens and empties the soda can, but does not crush it.
- *
- * Arguments:
- * * target - Who's getting covered in soda
- * * hide_message - Stops the generic fizzing message, so you can do your own
- */
-
-/obj/item/reagent_containers/cup/soda_cans/bubber/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+/obj/item/reagent_containers/cup/soda_cans/bubber/soda_water_moth/examine_more(mob/user)
 	. = ..()
-	if(. || !reagents.total_volume) // if it was caught, already opened, or has nothing in it
-		return
+	. += span_notice("罐身标记表明，它产自大游牧舰队的<i>工厂舰 1023</i>。")
+	return .
 
-	fizziness += SODA_FIZZINESS_THROWN
-	if(!prob(fizziness))
-		return
+/obj/item/reagent_containers/cup/soda_cans/bubber/ginger_beer
+	name = "\improper 工厂舰 1023：姜汁啤酒"
+	desc = "一罐姜汁啤酒，别被名字里的“啤酒”骗了，它完全不含酒精。"
+	icon_state = "gingie_beer"
+	list_reagents = list(/datum/reagent/consumable/sol_dry = 30)
+	drink_type = SUGAR
 
-	burst_soda(hit_atom, hide_message = TRUE)
-	visible_message(span_danger("[src] 撞上 [hit_atom] 后爆裂开来，洒得到处都是！"))
-	var/obj/item/trash/can/bubber/crushed_can = new /obj/item/trash/can/bubber(src.loc)
-	crushed_can.icon_state = icon_state
-	moveToNullspace()
-	QDEL_IN(src, 1 SECONDS) // give it a second so it can still be logged for the throw impact
-
-#undef SODA_FIZZINESS_THROWN
-#undef SODA_FIZZINESS_SHAKE
+/obj/item/reagent_containers/cup/soda_cans/bubber/ginger_beer/examine_more(mob/user)
+	. = ..()
+	. += span_notice("罐身标记表明，它产自大游牧舰队的<i>工厂舰 1023</i>。")
+	return .

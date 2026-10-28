@@ -32,7 +32,6 @@
 /datum/design/synth_tongue
 	name = "合成舌头"
 	desc = "包覆柔软硅胶、功能齐全的合成舌头，配有高保真发声系统和味觉感受器。"
-	id = "synth_tongue"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

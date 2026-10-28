@@ -92,7 +92,6 @@
 	surplus = 0
 	item = /obj/item/storage/briefcase/launchpad
 	cost = 6
-	progression_minimum = 50 MINUTES //Normally this is not there but it exist to delay you just buying it and getting into everywhere before sec is prepared
 /* //Bubber edit - Moves the comment to keep the syndicate teleport commented out. Skyrat commented this out.
 /datum/uplink_item/device_tools/syndicate_teleporter
 	name = "Experimental Syndicate Teleporter"
@@ -144,13 +143,6 @@
 	cost = 4
 	restricted = TRUE
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
-
-/datum/uplink_item/device_tools/frame/spawn_item(spawn_path, mob/user, datum/uplink_handler/uplink_handler, atom/movable/source)
-	. = ..()
-	var/obj/item/disk/computer/virus/frame/target = .
-	if(!target)
-		return
-	target.current_progression = uplink_handler.progression_points
 
 /datum/uplink_item/device_tools/failsafe
 	name = "上行链路自毁密码"
@@ -263,7 +255,6 @@
 			活跃的引力奇点或特斯拉球拉向自己。如果发动机仍在 \
 			约束状态下，则不会生效。由于体积庞大，无法携带。订购该物品 \
 			会送给你一个小信标，激活后会把大型信标传送到你的位置。"
-	progression_minimum = 20 MINUTES
 	item = /obj/item/sbeacondrop
 	cost = 4
 	surplus = 0 // not while there isnt one on any station
@@ -274,7 +265,6 @@
 	desc = "当用螺丝固定在电网线路上并激活后，这个大型装置会亮起，并向电网施加过量 \
 			负荷，造成全站性停电。虹吸器体积庞大，无法装入大多数 \
 			常规包袋和箱子。警告：如果电力网中能量足够多，它会爆炸。"
-	progression_minimum = 20 MINUTES
 	item = /obj/item/powersink
 	cost = 11
 	limited_stock = 1

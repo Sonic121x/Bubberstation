@@ -41,6 +41,7 @@
 	desc = "一副极其先进的太阳镜，能为你眼前几乎任何东西提供各种传感器扫描和视觉读数。\
 		说实话，这有点让人应接不暇。戴上几个小时，你大概就会头疼。"
 	icon_state = "sunhudmed"
+	inhand_icon_state = "sunhudmed"
 	flags_cover = GLASSESCOVERSEYES
 	flash_protect = FLASH_PROTECTION_WELDER
 	clothing_traits = list(TRAIT_REAGENT_SCANNER, TRAIT_SECURITY_HUD, TRAIT_MEDICAL_HUD, TRAIT_DIAGNOSTIC_HUD)

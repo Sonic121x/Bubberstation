@@ -4,9 +4,7 @@ import {
   Box,
   Button,
   Flex,
-  Icon,
   Input,
-  NoticeBox,
   Section,
   Stack,
 } from 'tgui-core/components';
@@ -327,21 +325,6 @@ export function PersonalityPage() {
             </Flex.Item>
           </Flex>
         </Stack.Item>
-        {!data.mood_enabled && (
-          <Stack.Item>
-            <NoticeBox danger align="center" fontSize="14px">
-              <Flex>
-                <Flex.Item>
-                  <Icon name="exclamation-triangle" mr={1} />
-                </Flex.Item>
-                <Flex.Item>
-                  本服务器已禁用情绪系统。你仍可选择
-                  性格，但它们不会产生效果。
-                </Flex.Item>
-              </Flex>
-            </NoticeBox>
-          </Stack.Item>
-        )}
         <Stack.Item mb={1}>
           <Input
             fluid

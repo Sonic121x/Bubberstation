@@ -2,7 +2,7 @@
 
 ///Pathfinder - Can fly the suit from a long distance to an implant installed in someone.
 /obj/item/mod/module/pathfinder
-	name = "MOD 寻路模块"
+	name = "\improper MOD 寻路模块"
 	desc = "本模块由中村工程公司提供，包含两个部分。\
 		第一部分是一组推进器和一套计算机化定位子程序，安装在\
 		套装的控制单元之中，使套装能以高速公路般的速度飞行，并利用套装的权限锁\
@@ -193,7 +193,7 @@
 
 
 /obj/item/implant/mod
-	name = "MOD 寻路植入体"
+	name = "\improper MOD 寻路植入体"
 	desc = "让你可以随时召回 MOD 模块化外骨骼。"
 	actions_types = list(/datum/action/item_action/mod_recall)
 	allow_multiple = TRUE // Surgrey is annoying if you loose your MOD

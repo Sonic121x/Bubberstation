@@ -16,7 +16,7 @@
 	response_help_simple = "抚摸"
 	response_disarm_continuous = "轻轻推到一边"
 	response_disarm_simple = "轻轻推到一边"
-	damage_coeff = list(BRUTE = 1, BURN = 1.25, TOX = 4, STAMINA = 1, OXY = 1)
+	physiology = list(BURN = 1.25, TOX = 4)
 	basic_mob_flags = FLAMMABLE_MOB
 	status_flags = NONE
 	speed = 0.2

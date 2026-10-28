@@ -8,6 +8,7 @@
 	can_unwrench = TRUE
 	construction_type = /obj/item/pipe/trinary/flippable/filter
 	pipe_state = "filter"
+	light_mask_on = TRUE
 
 	///Rate of transfer of the gases to the outputs
 	var/transfer_rate = MAX_TRANSFER_RATE
@@ -224,57 +225,75 @@
 /obj/machinery/atmospherics/components/trinary/filter/atmos //Used for atmos waste loops
 	on = TRUE
 	icon_state = "filter_on-0"
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/n2
 	name = "氮气过滤器"
 	filter_type = list(/datum/gas/nitrogen)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/o2
 	name = "氧气过滤器"
 	filter_type = list(/datum/gas/oxygen)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/co2
 	name = "二氧化碳过滤器"
 	filter_type = list(/datum/gas/carbon_dioxide)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/n2o
 	name = "一氧化二氮过滤器"
 	filter_type = list(/datum/gas/nitrous_oxide)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/plasma
 	name = "等离子过滤器"
 	filter_type = list(/datum/gas/plasma)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/bz
 	name = "BZ 过滤器"
 	filter_type = list(/datum/gas/bz)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/freon
 	name = "氟利昂过滤器"
 	filter_type = list(/datum/gas/freon)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/halon
 	name = "哈龙过滤器"
 	filter_type = list(/datum/gas/halon)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/healium
 	name = "愈合气过滤器"
 	filter_type = list(/datum/gas/healium)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/h2
 	name = "氢气过滤器"
 	filter_type = list(/datum/gas/hydrogen)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/hypernoblium
 	name = "超惰性气体过滤器"
 	filter_type = list(/datum/gas/hypernoblium)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/miasma
 	name = "瘴气过滤器"
 	filter_type = list(/datum/gas/miasma)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/no2
 	name = "氮素气过滤器"
 	filter_type = list(/datum/gas/nitrium)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/pluoxium
 	name = "富氧气过滤器"
 	filter_type = list(/datum/gas/pluoxium)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/proto_nitrate
 	name = "原硝气过滤器"
 	filter_type = list(/datum/gas/proto_nitrate)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/tritium
 	name = "氚气过滤器"
 	filter_type = list(/datum/gas/tritium)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/h2o
 	name = "水蒸气过滤器"
 	filter_type = list(/datum/gas/water_vapor)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/zauker
 	name = "灼蚀气过滤器"
 	filter_type = list(/datum/gas/zauker)
@@ -290,63 +309,83 @@
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped //This feels wrong, I know
 	icon_state = "filter_on-0_f"
 	flipped = TRUE
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2
 	name = "氮气过滤器"
 	filter_type = list(/datum/gas/nitrogen)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2
 	name = "氧气过滤器"
 	filter_type = list(/datum/gas/oxygen)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/co2
 	name = "二氧化碳过滤器"
 	filter_type = list(/datum/gas/carbon_dioxide)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2o
 	name = "一氧化二氮过滤器"
 	filter_type = list(/datum/gas/nitrous_oxide)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/plasma
 	name = "等离子过滤器"
 	filter_type = list(/datum/gas/plasma)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/bz
 	name = "BZ 过滤器"
 	filter_type = list(/datum/gas/bz)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/freon
 	name = "氟利昂过滤器"
 	filter_type = list(/datum/gas/freon)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/halon
 	name = "哈龙过滤器"
 	filter_type = list(/datum/gas/halon)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/healium
 	name = "愈合气过滤器"
 	filter_type = list(/datum/gas/healium)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/h2
 	name = "氢气过滤器"
 	filter_type = list(/datum/gas/hydrogen)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/hypernoblium
 	name = "超惰性气体过滤器"
 	filter_type = list(/datum/gas/hypernoblium)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/miasma
 	name = "瘴气过滤器"
 	filter_type = list(/datum/gas/miasma)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/no2
 	name = "氮素气过滤器"
 	filter_type = list(/datum/gas/nitrium)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/pluoxium
 	name = "富氧气过滤器"
 	filter_type = list(/datum/gas/pluoxium)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/proto_nitrate
 	name = "原硝气过滤器"
 	filter_type = list(/datum/gas/proto_nitrate)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/tritium
 	name = "氚气过滤器"
 	filter_type = list(/datum/gas/tritium)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/h2o
 	name = "水蒸气过滤器"
 	filter_type = list(/datum/gas/water_vapor)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/zauker
 	name = "灼蚀气过滤器"
 	filter_type = list(/datum/gas/zauker)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/helium
 	name = "氦气过滤器"
 	filter_type = list(/datum/gas/helium)
+
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/antinoblium
 	name = "反惰性气体过滤器"
 	filter_type = list(/datum/gas/antinoblium)

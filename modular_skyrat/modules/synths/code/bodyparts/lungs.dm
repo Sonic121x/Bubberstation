@@ -39,7 +39,6 @@
 /datum/design/synth_heatsink
 	name = "散热器"
 	desc = "将产生的热量转移到流体介质中以实现冷却的设备。它能让合成人保持冷静，外形类似肺部。"
-	id = "synth_lungs"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

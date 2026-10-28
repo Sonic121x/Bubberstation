@@ -394,10 +394,7 @@
 
 /obj/item/disk/design_disk/liberator
 	name = "非法 3D 打印机设计磁盘"
-
-/obj/item/disk/design_disk/liberator/Initialize(mapload)
-	. = ..()
-	blueprints += new /datum/design/liberator_gun
+	blueprints = list(/datum/design/liberator_gun)
 
 #undef DOORHICKEY_GUN_MIN_DAMAGE
 #undef DOORHICKEY_GUN_MAX_DAMAGE

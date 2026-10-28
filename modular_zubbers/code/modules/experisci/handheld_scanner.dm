@@ -4,6 +4,7 @@
 	desc = "实验扫描仪的蓝空间型号，可从远处完成现代科学中无穷无尽的实验。"
 	icon = 'modular_zubbers/icons/obj/devices/scanner.dmi'
 	icon_state = "bs_experiscanner"
+	inhand_icon_state = "bs_experiscanner"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/items/devices_righthand.dmi'
 

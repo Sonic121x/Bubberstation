@@ -4,6 +4,7 @@
 		这种震荡会削弱被其切开的任何物体的分子键，从而提升切割能力。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "hfrequency0"
+	inhand_icon_state = "hfrequency0"
 	worn_icon_state = "hfrequency0"
 	icon_angle = -45
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'

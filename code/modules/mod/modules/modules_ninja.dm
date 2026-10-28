@@ -2,7 +2,7 @@
 
 ///Cloaking - Lowers the user's visibility, can be interrupted by being touched or attacked.
 /obj/item/mod/module/stealth
-	name = "MOD 原型隐形模块"
+	name = "\improper MOD 原型隐形模块"
 	desc = "这是对套装的一次彻底改装，是一种视觉隐匿技术，借助深奥的\
 		技术弯折使用者周围的光线，并用拟态材料让套装表面根据传感器数据\
 		与周围环境相融。不知为何，这项技术很少见到。"
@@ -59,7 +59,7 @@
 
 //Advanced Cloaking - Doesn't turf off on bump, less power drain, more stealthy.
 /obj/item/mod/module/stealth/ninja
-	name = "MOD 高级隐形模块"
+	name = "\improper MOD 高级隐形模块"
 	desc = "最新型的隐形技术，这个模块相较前代版本无疑是一次升级。\
 		力场经过调校，反应更灵敏、起效更迅速，稳定性也足以\
 		在使用者撞到他人时继续维持力场运作。\
@@ -83,7 +83,7 @@
 
 ///Camera Vision - Prevents flashes, blocks tracking.
 /obj/item/mod/module/welding/camera_vision
-	name = "MOD 摄像视觉模块"
+	name = "\improper MOD 摄像视觉模块"
 	desc = "一种安装在套装头盔内的模块。这件专为隐蔽行动打造的特殊装备，\
 		用一个纳米技术显示屏取代了标准面罩；它能在\
 		恰到好处的频率上显示特殊影像，干扰所有已知的摄像追踪与面部识别，\
@@ -117,7 +117,7 @@
 
 //Ninja Star Dispenser - Dispenses ninja stars.
 /obj/item/mod/module/dispenser/ninja
-	name = "MOD 忍者镖配发模块"
+	name = "\improper MOD 忍者镖配发模块"
 	desc = "这件蜘蛛氏族的技术能够利用已知的能量-物质等价原理，\
 		使用已经寄宿在佩戴者套装里的纳米机器人转化出单分子手里剑。\
 		虽然它们没有传统投掷星那种极致的锋利感，\
@@ -176,7 +176,7 @@
 
 ///Hacker - This module hooks onto your right-clicks with empty hands and causes ninja actions.
 /obj/item/mod/module/hacker
-	name = "MOD 黑客模块"
+	name = "\improper MOD 黑客模块"
 	desc = "为单一目的——电子战——而打造，这个模块被植入双手之中。\
 		它通过近场通信以及对机器线路进行精确的电刺激，\
 		这件骇客梦寐以求的装备通常被用来像幽灵一样穿门而过。\
@@ -377,7 +377,7 @@
 /obj/machinery/rnd/server/proc/ninjadrain_charge(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(!do_after(ninja, 30 SECONDS, target = src, cog_icon = null))
 		return
-	stored_research.modify_points_all(0)
+	stored_research.adjust_all_points(-INFINITY)
 	to_chat(ninja, span_notice("破坏完成。研究笔记已损坏。"))
 	var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
 	if(!ninja_antag)
@@ -679,7 +679,7 @@
 #undef NINJA_MAX_DRAIN
 ///Weapon Recall - Teleports your katana to you, prevents gun use.
 /obj/item/mod/module/weapon_recall
-	name = "MOD 武器召回模块"
+	name = "\improper MOD 武器召回模块"
 	desc = "这是氏族成员作为刀术大师的人生基石，也是象征他们与武器永恒羁绊的模块。\
 		它接入能量武士刀刀柄内的微型蓝空间驱动器，能将刀召回使用者\
 		熟练的手中，无论他们在哪里。然而，与武器结下此种羁绊的人注定\
@@ -770,7 +770,7 @@
 
 //Reinforced DNA Lock - Gibs if wrong DNA, emp-proof.
 /obj/item/mod/module/dna_lock/reinforced
-	name = "MOD 强化 DNA 锁模块"
+	name = "\improper MOD 强化 DNA 锁模块"
 	desc = "一种与套装系统上的各种锁具和密封装置联动的模块，\
 		使套装只能被与使用者 DNA 完全相符的人穿戴。\
 		由于采用了一层贴身阻尼护盾，这个模块完全密封，可抵御电磁干扰；\
@@ -797,7 +797,7 @@
 
 //EMP Pulse - In addition to normal shielding, can also launch an EMP itself.
 /obj/item/mod/module/emp_shield/pulse
-	name = "MOD EMP 脉冲模块"
+	name = "\improper MOD EMP 脉冲模块"
 	desc = "这个模块通常被设定为在夸张的手势下激活，将套装的\
 		EMP 阻尼护盾反转并扩张，从而自行产生一次电磁脉冲。虽然这不会影响佩戴者，\
 		但会激怒周围所有人。"
@@ -813,7 +813,7 @@
 
 /// Ninja Status Readout - Like the normal status display (see the base type), but with a clock.
 /obj/item/mod/module/status_readout/ninja
-	name = "MOD 蜘蛛氏族状态读取模块"
+	name = "\improper MOD 蜘蛛氏族状态读取模块"
 	desc = "一种曾经很常见的模块，可惜这项技术在太空较安全的地区已经不再流行；\
 		而且，根据这个特定单元外壳上的额外标记来看，它径直落入了蜘蛛氏族的蛛爪之中。\
 		与其他类似单元一样，这一个会接入套装的脊柱，能够采集并显示\
@@ -827,7 +827,7 @@
 
 ///Energy Net - Ensnares enemies in a net that prevents movement.
 /obj/item/mod/module/energy_net
-	name = "MOD 能量网模块"
+	name = "\improper MOD 能量网模块"
 	desc = "一种定制的掷网器。这种捕获装置的常规实现方案\
 		使用单分子纤维或锋利的剃刀铁丝，而这个则使用硬光技术，部署一片\
 		连最强壮的对手也能束缚住的陷阱力场。"
@@ -949,7 +949,7 @@
 
 ///Adrenaline Boost - Stops all stuns the ninja is affected with, increases his speed.
 /obj/item/mod/module/adrenaline_boost
-	name = "MOD 肾上腺素注射模块"
+	name = "\improper MOD 肾上腺素注射模块"
 	desc = "蜘蛛氏族的秘密数不胜数。他们套装的精确规格，\
 		他们让每一刀都令敌人钦佩落泪的技法，\
 		但他们最大的谜团之一，是刺客破坏者在危急时刻使用的化合物。\

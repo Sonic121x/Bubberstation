@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/healium_grenade
 	id = "healium_g"
-	name = "愈合气体水晶"
+	name = "愈合气结晶"
 	min_temp = 200
 	max_temp = 400
 	energy_release = -2000000
@@ -65,7 +65,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/proto_nitrate_grenade
 	id = "proto_nitrate_g"
-	name = "原硝酸盐水晶"
+	name = "原硝气结晶"
 	min_temp = 200
 	max_temp = 400
 	energy_release = 1500000
@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/plasma_sheet
 	id = "plasma_sheet"
-	name = "等离子体板"
+	name = "固态等离子体"
 	min_temp = 10
 	max_temp = 20
 	energy_release = 3500000
@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/zaukerite
 	id = "zaukerite"
-	name = "扎克岩板"
+	name = "固态灼蚀气"
 	min_temp = 5
 	max_temp = 20
 	energy_release = 2900000
@@ -168,14 +168,14 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/crystal_foam
 	id = "crystal_foam"
-	name = "水晶泡沫手榴弹"
+	name = "泡沫结晶"
 	energy_release = 140000
 	requirements = list(/datum/gas/carbon_dioxide = 150, /datum/gas/nitrous_oxide = 100, /datum/gas/water_vapor = 25)
 	products = list(/obj/item/grenade/gas_crystal/crystal_foam = 1)
 
 /datum/gas_recipe/crystallizer/crystallized_nitrium
 	id = "crystallized_nitrium"
-	name = "奈特利姆晶体"
+	name = "氮素气结晶"
 	min_temp = 10
 	max_temp = 25
 	energy_release = -45000

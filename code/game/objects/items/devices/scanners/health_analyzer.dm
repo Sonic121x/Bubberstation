@@ -207,7 +207,7 @@
 		has_brain = TRUE
 	else if(iscyborg(target))
 		var/mob/living/silicon/robot/cyborg_target = target
-		if(cyborg_target.mmi?.brain)
+		if(astype(cyborg_target.mmi, /obj/item/brain_processor/organic)?.brain)
 			has_brain = TRUE
 
 	if(!has_brain) // kept exclusively for soul purposes
@@ -355,7 +355,7 @@
 
 		//body temperature
 		var/datum/species/targetspecies = humantarget.dna.species
-		var/disguised = !ishumanbasic(humantarget) && istype(humantarget.head, /obj/item/clothing/head/hooded/human_head) && istype(humantarget.wear_suit, /obj/item/clothing/suit/hooded/bloated_human)
+		var/disguised = !ishumanbasic(humantarget) && HAS_TRAIT(humantarget, TRAIT_HUMAN_DISGUISE)
 		var/species_name = "[disguised ? "\"[chinese_footprint_species_display(/datum/species/human::name)]\"" : chinese_footprint_species_display(targetspecies.name)][mutant ? "衍生突变体" : ""]"
 
 		render_list += "<span class='info ml-1'>物种：<b>[species_name]</b></span><br>" // Bubber Edit: Bold species name

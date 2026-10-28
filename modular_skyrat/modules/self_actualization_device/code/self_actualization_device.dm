@@ -10,7 +10,6 @@
 /datum/design/board/self_actualization_device
 	name = "机器设计（自我重塑装置）"
 	desc = "维医公司的自我重塑装置电路板。维医，一家关爱家庭的公司。"
-	id = "self_actualization_device"
 	build_path = /obj/item/circuitboard/machine/self_actualization_device
 	category = list(RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_MEDICAL)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL

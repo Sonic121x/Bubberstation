@@ -2,7 +2,6 @@
 /datum/design/board/smelter
 	name = "巨石熔炼炉电路板"
 	desc = "巨石熔炼炉的电路板。技术含量很低，可以直接用车床打印。"
-	id = "b_smelter"
 	build_type = AUTOLATHE
 	materials = list(
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
@@ -18,7 +17,6 @@
 /datum/design/board/refinery
 	name = "巨石精炼机电路板"
 	desc = "巨石精炼机的电路板。技术含量很低，可以直接用车床打印。"
-	id = "b_refinery"
 	build_type = AUTOLATHE
 	materials = list(
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT,

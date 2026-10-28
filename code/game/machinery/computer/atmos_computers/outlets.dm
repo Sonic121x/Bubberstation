@@ -18,6 +18,7 @@
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/mix_output
 	name = "混气罐输出抽气口"
+	on = FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/nitrous_output
 	name = "一氧化二氮储罐输出抽气口"

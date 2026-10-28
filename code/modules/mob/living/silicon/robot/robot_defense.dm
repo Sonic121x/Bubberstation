@@ -208,10 +208,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 	if(!allowed(user))
 		balloon_alert(user, "权限不足！")
 		return ITEM_INTERACT_BLOCKING
-	locked = !locked
-	update_icons()
-	balloon_alert(user, "机壳盖[emagged ? "锁具故障" : "[locked ? "已锁定" : "已解锁"]"]")
-	logevent("[emagged ? "ChÃ¥vÃis" : "机壳"] 盖锁[locked ? "已啮合" : "已解除"]")
+	toggle_cover(user)
 	return ITEM_INTERACT_SUCCESS
 
 #define LOW_DAMAGE_UPPER_BOUND 1/3
@@ -515,7 +512,20 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		. = TRUE
 	return ..() || .
 
-/mob/living/silicon/robot/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, exposed_wound_bonus, sharpness, attack_direction, attacking_item, wound_clothing)
+/mob/living/silicon/robot/apply_damage(
+	damage = 0,
+	damagetype = BRUTE,
+	def_zone = null,
+	blocked = 0,
+	forced = FALSE,
+	spread_damage = FALSE,
+	wound_bonus = 0,
+	exposed_wound_bonus = 0,
+	sharpness = NONE,
+	attack_direction = null,
+	attacking_item,
+	wound_clothing = TRUE,
+)
 	var/mob/living/silicon/robot/borg = src
 	var/obj/item/shield_module/shield = locate() in borg
 	if(!shield)

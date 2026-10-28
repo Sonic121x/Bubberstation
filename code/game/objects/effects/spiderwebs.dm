@@ -99,6 +99,8 @@
 
 /// Drains stamina and shows feedback when you get stuck moving thru a web
 /obj/structure/spider/stickyweb/proc/stuck_react(mob/living/victim)
+	if(QDELETED(victim))
+		return
 	if(victim.get_stamina_loss() > 90)
 		if(victim.body_position != LYING_DOWN)
 			to_chat(victim, span_warning("你因精疲力竭被[src]绊倒了！"))
@@ -232,8 +234,7 @@
 
 /obj/structure/spider/cocoon/container_resist_act(mob/living/user)
 	var/breakout_time = 600
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
 	to_chat(user, span_notice("你试图挣脱紧紧的束缚……（大约需要[DisplayTimeText(breakout_time)]。）"))
 	visible_message(span_notice("你看到有什么东西正在[src]中挣扎扭动！"))
 	if(do_after(user,(breakout_time), target = src))

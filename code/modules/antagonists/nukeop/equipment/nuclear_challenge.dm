@@ -105,7 +105,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 		var/obj/machinery/announcement_system/announcement_system = get_announcement_system(null, null, list(RADIO_CHANNEL_SCIENCE))
 		if (!isnull(announcement_system))
 			announcement_system.broadcast("依照应急协议，已从纳米传讯研发部收到额外研究数据。", list(RADIO_CHANNEL_SCIENCE), TRUE)
-		station_techweb.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS * 3))
+		station_techweb.adjust_points(TECHWEB_POINT_TYPE_GENERIC, TECHWEB_TIER_5_POINTS * 3)
 
 	qdel(src)
 

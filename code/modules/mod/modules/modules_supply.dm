@@ -2,7 +2,7 @@
 
 ///Internal GPS - Extends a GPS you can use.
 /obj/item/mod/module/gps
-	name = "MOD 内置 GPS 模块"
+	name = "\improper MOD 内置 GPS 模块"
 	desc = "这个模块使用纳米传讯的常见技术计算使用者在太空中的位置，\
 		精确到确切坐标。这些信息会汇入一个中央数据库，可从设备本身查看，\
 		不过用它去帮助别人还得看你自己。"
@@ -24,7 +24,7 @@
 
 ///Hydraulic Clamp - Lets you pick up and drop crates.
 /obj/item/mod/module/clamp
-	name = "MOD 液压夹钳模块"
+	name = "\improper MOD 液压夹钳模块"
 	desc = "一系列安装在套装双臂上的致动器，号称举升能力接近一吨。\
 		不过，纳米传讯已将这一设计锁定为主要用于夹取各种板条箱。\
 		很多人会说装卸货物是件无聊的差事，但你绝对不会同意。"
@@ -117,7 +117,7 @@
 	return TRUE
 
 /obj/item/mod/module/clamp/loader
-	name = "MOD 装卸液压夹钳模块"
+	name = "\improper MOD 装卸液压夹钳模块"
 	icon_state = "clamp_loader"
 	complexity = 0
 	removable = FALSE
@@ -130,7 +130,7 @@
 
 ///Drill - Lets you dig through rock and basalt.
 /obj/item/mod/module/drill
-	name = "MOD 钻机模块"
+	name = "\improper MOD 钻机模块"
 	desc = "一把臂挂式钻机，通常会伸出到使用者手部之上。虽然钻穿岩石很有用，\
 		但你的钻头必定是既能贯穿、也能开辟天界的那一个。它与采矿 MOD 的球体\
 		变形模块集成，可将其从单纯的通行工具变为高功率挖掘单元。"
@@ -246,7 +246,7 @@
 
 /// Ore Bag - Lets you pick up ores and drop them from the suit.
 /obj/item/mod/module/orebag
-	name = "MOD 矿石袋模块"
+	name = "\improper MOD 矿石袋模块"
 	desc = "一套安装在套装内的集成矿石储存系统，\
 		它利用精确的电磁铁和储物隔间自动收集并存放矿石。\
 		中村工程公司建议还是把那些矿石存到当地的精炼厂去。"
@@ -319,7 +319,7 @@
 		playsound(mod.wearer, SFX_RUSTLE, 50, TRUE)
 
 /obj/item/mod/module/hydraulic
-	name = "MOD 装卸液压臂模块"
+	name = "\improper MOD 装卸液压臂模块"
 	desc = "一对安装在 MOD 套装内的强力液压臂。"
 	icon_state = "launch_loader"
 	module_type = MODULE_ACTIVE
@@ -372,7 +372,7 @@
 	user.transform = user.transform.Turn(angle)
 
 /obj/item/mod/module/disposal_connector
-	name = "MOD 废物管道选择模块"
+	name = "\improper MOD 废物管道选择模块"
 	desc = "一种连接废物管道系统的模块，能让使用者进入自己在配置中选择的废物管道。\
 		似乎只在套装开启时有效。"
 	icon_state = "disposal"
@@ -410,7 +410,7 @@
 	disposal_holder.destinationTag = disposal_tag
 
 /obj/item/mod/module/magnet
-	name = "MOD 装卸液压磁铁模块"
+	name = "\improper MOD 装卸液压磁铁模块"
 	desc = "一块强力液压电磁铁，能把板条箱和储物柜吸向使用者，并让它们保持吸附。"
 	icon_state = "magnet_loader"
 	module_type = MODULE_ACTIVE
@@ -464,7 +464,7 @@
 	UnregisterSignal(locker, COMSIG_ATOM_NO_LONGER_PULLED)
 
 /obj/item/mod/module/ash_accretion
-	name = "MOD 积灰模块"
+	name = "\improper MOD 积灰模块"
 	desc = "一种从地形上收集灰烬、在套装表面覆盖一层保护层的模块，这层灰烬\
 		在穿过普通地形时会脱落。"
 	icon_state = "ash_accretion"
@@ -585,7 +585,7 @@
 		balloon_alert(mod.wearer, "灰烬掉光了！")
 
 /obj/item/mod/module/sphere_transform
-	name = "MOD 球体变形模块"
+	name = "\improper MOD 球体变形模块"
 	desc = "一种能重新排布套装部件的模块，可将套装与使用者一同变成一颗球。若套装用胆汁虫皮做了绝缘，激活时使用者将免受熔岩伤害。\
 		球体能快速移动，甚至能穿过熔岩，还能发射采矿微型导弹，把地形和动物一并摧毁。"
 	icon_state = "sphere"
@@ -792,3 +792,75 @@
 	lifespan = 1 SECONDS
 	fade = 1 SECONDS
 	spin = generator(GEN_NUM, -20, 20)
+
+/obj/item/mod/module/candela_spool
+	name = "\improper MOD “烛光”信标卷盘模块"
+	desc = "一套系绳与连接器，可从 MOD 外骨骼内部自动部署“烛光”信标。"
+	icon_state = "candela_spool"
+	module_type = MODULE_ACTIVE
+	use_energy_cost = DEFAULT_CHARGE_DRAIN
+	incompatible_modules = list(/obj/item/mod/module/candela_spool)
+	cooldown_time = 1 SECONDS
+	required_slots = list(ITEM_SLOT_BACK, ITEM_SLOT_GLOVES)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.75)
+	/// Our network handler datum
+	/// We handle the network separately from the beacons we deploy, and supercede all of its' behaviors
+	var/datum/candela_item_handler/handler = null
+
+/obj/item/mod/module/candela_spool/Initialize(mapload)
+	. = ..()
+	handler = new(src, on_network_cut_callback = CALLBACK(src, PROC_REF(on_network_cut)))
+
+/obj/item/mod/module/candela_spool/Destroy()
+	QDEL_NULL(handler)
+	return ..()
+
+/obj/item/mod/module/candela_spool/on_install()
+	. = ..()
+	RegisterSignal(mod, COMSIG_ATOM_STORED_ITEM, PROC_REF(on_stored_item))
+
+/obj/item/mod/module/candela_spool/on_uninstall(deleting = FALSE)
+	. = ..()
+	UnregisterSignal(mod, COMSIG_ATOM_STORED_ITEM)
+
+/obj/item/mod/module/candela_spool/on_activation(mob/activator)
+	handler.set_owner(activator)
+
+/obj/item/mod/module/candela_spool/on_deactivation(mob/activator, display_message, deleting)
+	handler.set_owner(null)
+
+/obj/item/mod/module/candela_spool/on_select_use(atom/target)
+	. = ..()
+	if(!.)
+		return
+	attempt_deploy(mod.wearer, get_turf(mod.wearer))
+
+/obj/item/mod/module/candela_spool/proc/on_stored_item(datum/source, obj/item/stored, mob/user, force)
+	SIGNAL_HANDLER
+
+	if (!istype(stored, /obj/item/stack/candela_beacon))
+		return
+
+	// When storing linked beacons in our MODsuit, inherit their link for convinience
+	var/obj/item/stack/candela_beacon/beacons = stored
+	if (beacons.handler.network)
+		handler.set_network(beacons.handler.network, beacons.handler.closest_node)
+
+/// Callback to react to breaking LOS/reaching maximum distance with a beacon
+/obj/item/mod/module/candela_spool/proc/on_network_cut(atom/old_loc, old_dir, interrupt)
+	if (mod.wearer && handler.closest_node && !interrupt)
+		return attempt_deploy(mod.wearer, old_loc, silent = TRUE)
+	return FALSE
+
+/// Attempt to deploy a candela beacon at a given location
+/obj/item/mod/module/candela_spool/proc/attempt_deploy(mob/activator, atom/location, silent = FALSE)
+	var/obj/item/stack/candela_beacon/beacons = locate() in mod.atom_storage.real_location
+	if (isnull(beacons))
+		balloon_alert(activator, "没有信标！")
+		return FALSE
+
+	if (!beacons.place_beacon(activator, loc_override = location, handler_override = handler, silent = silent))
+		return FALSE
+
+	drain_power(use_energy_cost)
+	return TRUE

@@ -58,7 +58,7 @@
 	resistance = -2
 	stage_speed = 0
 	transmittable = 1
-	level = 6
+	level = 8
 	passive_message = span_notice("你怀念星光照在皮肤上的感觉。")
 	var/nearspace_penalty = 0.3
 	threshold_descs = list(
@@ -408,7 +408,7 @@
 	resistance = -1
 	stage_speed = 0
 	transmittable = 1
-	level = 6
+	level = 4
 	passive_message = span_notice("你的皮肤感觉异常干燥……")
 	required_organ = ORGAN_SLOT_LIVER
 	threshold_descs = list(
@@ -574,7 +574,7 @@
 	resistance = -2
 	stage_speed = 2
 	transmittable = -3
-	level = 6
+	level = 7
 	passive_message = span_notice("你的皮肤短暂地发出微光。")
 	threshold_descs = list(
 		"抗性 7" = "提高治疗速度。",
@@ -613,9 +613,8 @@
 	resistance = 1
 	stage_speed = 0
 	transmittable = -1
-	level = 4
+	level = 5
 	base_message_chance = 0
-	symptom_cure = null
 	power = 2
 
 	threshold_descs = list(
@@ -629,4 +628,40 @@
 
 /datum/symptom/heal/aggressive_healing/Heal(mob/living/carbon/carbon_host, datum/disease/advance/our_disease, actual_power)
 	carbon_host.heal_overall_damage(actual_power, actual_power, required_bodytype = healable_bodytypes)
+	return TRUE
+
+/datum/symptom/heal/genetic
+	name = "突变再生"
+	desc = "病毒会缓慢修复基因稳定的宿主体内的组织损伤。"
+	stealth = 1
+	resistance = -3
+	stage_speed = -4
+	transmittable = -4
+	level = 9
+	threshold_descs = list(
+		"抗性 9" = "稳定基因带来的治疗速度翻倍。",
+		"阶段速度 6" = "略微提高所有基因稳定性不为负值的宿主的治疗速度。",
+	)
+	power = 0
+	var/stability_divisor = 25
+
+/datum/symptom/heal/genetic/Start(datum/disease/advance/our_disease)
+	. = ..()
+	if(!.)
+		return
+	if(our_disease.totalResistance() >= 9)
+		power = 0.2
+	if(our_disease.totalStageSpeed() >= 6)
+		stability_divisor = 12.5
+
+/datum/symptom/heal/genetic/CanHeal(datum/disease/advance/our_disease)
+	if(!our_disease.affected_mob.has_dna())
+		return power
+	var/dna_stability = our_disease.affected_mob.dna.stability
+	if(dna_stability >= initial(our_disease.affected_mob.dna.stability))
+		return power + (dna_stability - initial(our_disease.affected_mob.dna.stability)) / stability_divisor
+
+/datum/symptom/heal/genetic/Heal(mob/living/carbon/carbon_host, datum/disease/advance/our_disease, actual_power)
+	if(carbon_host.heal_overall_damage(actual_power, actual_power, required_bodytype = healable_bodytypes) && prob(5))
+		to_chat(carbon_host, span_notice("你感觉伤势正在缓缓好转。"))
 	return TRUE

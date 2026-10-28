@@ -369,6 +369,7 @@
 	singular_name = "淤伤包"
 	desc = "一种治疗用凝胶包与绷带，用于处理钝器创伤。"
 	icon_state = "brutepack"
+	inhand_icon_state = "brutepack"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	heal_brute = 40
@@ -619,6 +620,7 @@
 	gender = PLURAL
 	singular_name = "烧伤药膏"
 	icon_state = "ointment"
+	inhand_icon_state = "ointment"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	amount = 8

@@ -15,7 +15,7 @@
 	resistance = 0
 	stage_speed = -1
 	transmittable = -1
-	level = 3
+	level = 6
 	severity = 3
 	base_message_chance = 15
 	symptom_delay = 20
@@ -26,6 +26,7 @@
 		"阶段速度 8" = "更频繁地引发窒息。",
 		"隐蔽性 4" = "症状在发作前不会显露。"
 	)
+	var/suppress_warning = FALSE
 
 /datum/symptom/choking/Start(datum/disease/advance/A)
 	. = ..()
@@ -79,20 +80,19 @@ Asphyxiation
 Bonus
 	Inflicts large spikes of oxyloss
 	Introduces Asphyxiating drugs to the system
-	Causes cardiac arrest on dying victims.
 
 //////////////////////////////////////
 */
 
 /datum/symptom/asphyxiation
 	name = "急性呼吸窘迫综合征"
-	desc = "病毒使宿主的肺部萎缩，引发严重窒息，也可能导致心脏病发作。"
+	desc = "病毒使宿主的肺部萎缩，引发严重窒息。"
 	illness = "铁肺病"
 	stealth = -2
 	resistance = 0
 	stage_speed = -1
 	transmittable = -2
-	level = 7
+	level = 9
 	severity = 6
 	base_message_chance = 15
 	symptom_delay = 22

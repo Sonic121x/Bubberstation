@@ -7,8 +7,8 @@
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN
 	icon = 'icons/obj/pipes_n_cables/atmos.dmi'
 	icon_state = "electrolyzer-off"
-	name = "太空电解机"
-	desc = "得益于我们电解机快速而灵敏的响应，现场制氢得到了保障。被小丑使用则保修失效。"
+	name = "电解机"
+	desc = "一台便携式电解机，可用于现场制氢。被小丑使用则保修失效。"
 	max_integrity = 250
 	armor_type = /datum/armor/machinery_electrolyzer
 	circuit = /obj/item/circuitboard/machine/electrolyzer
@@ -71,9 +71,9 @@
 		. += "电量计读数为 [cell ? round(cell.percent(), 1) : 0]%。"
 	else
 		. += "未安装电池。"
-	if(in_range(user, src) || isobserver(user))
+	if(in_range(user, src) && !isobserver(user))
 		. += span_notice("<b>Alt 点击</b>以[on ? "关闭" : "开启"]。")
-		. += span_notice("<b>固定</b>后将从 APC 而非电池取电")
+		. += span_notice("<b>固定</b>后将从区域 APC 而非内部电池取电。")
 	. += span_notice("它将从[anchored ? "区域 APC" : "内部电池"]取电。")
 
 

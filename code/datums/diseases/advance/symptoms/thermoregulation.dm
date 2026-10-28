@@ -13,7 +13,7 @@
 	resistance = 1
 	stage_speed = -2
 	transmittable = 0
-	level = 5
+	level = 4
 	severity = 0
 	threshold_descs = list(
 		"抗性 8" = "提高体温调节速度。"

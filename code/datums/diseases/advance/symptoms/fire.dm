@@ -27,6 +27,7 @@
 		"传染性 8" = "宿主起火时会通过皮屑传播病毒。",
 		"隐蔽性 4" = "症状在发作前不会显露。",
 	)
+	var/suppress_warning = FALSE
 
 /datum/symptom/fire/Start(datum/disease/advance/A)
 	. = ..()
@@ -97,7 +98,7 @@ Bonus
 	resistance = -2
 	stage_speed = -2
 	transmittable = -2
-	level = 7
+	level = 9
 	severity = 6
 	base_message_chance = 100
 	symptom_delay = 60

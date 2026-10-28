@@ -7,7 +7,7 @@
 	attack_verb_simple = "电击"
 	melee_damage_type = BURN
 	attack_sound = 'sound/machines/defib/defib_zap.ogg'
-	damage_coeff = list(BRUTE = 0.7, BURN = 0.7, TOX = 0.7, STAMINA = 0, OXY = 0.7)
+	physiology = list(BRUTE = 0.7, BURN = 0.7, TOX = 0.7, OXY = 0.7, STAMINA = 0)
 	range = 7
 	playstyle_string = span_holoparasite("作为<b>闪电</b>型，你攻击时会对目标施加闪电链，并与召唤者之间保持一条闪电链。闪电链会电击附近的任何人。")
 	creator_name = "闪电"

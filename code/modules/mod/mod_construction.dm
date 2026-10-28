@@ -4,7 +4,7 @@
 	inhand_icon_state = "rack_parts"
 
 /obj/item/mod/construction/helmet
-	name = "MOD 头盔"
+	name = "\improper MOD 头盔"
 	icon_state = "helmet"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5)
 
@@ -13,7 +13,7 @@
 	. += span_notice("你可以把它插入<b>MOD 外壳</b>……")
 
 /obj/item/mod/construction/chestplate
-	name = "MOD 胸甲"
+	name = "\improper MOD 胸甲"
 	icon_state = "chestplate"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5)
 
@@ -22,7 +22,7 @@
 	. += span_notice("你可以把它插入<b>MOD 外壳</b>……")
 
 /obj/item/mod/construction/gauntlets
-	name = "MOD 护手"
+	name = "\improper MOD 护手"
 	icon_state = "gauntlets"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5)
 
@@ -31,7 +31,7 @@
 	. += span_notice("你可以把这些插入<b>MOD 外壳</b>……")
 
 /obj/item/mod/construction/boots
-	name = "MOD 靴子"
+	name = "\improper MOD 靴子"
 	icon_state = "boots"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5)
 
@@ -88,16 +88,16 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/mod/construction/plating
-	name = "MOD 外部装甲板"
+	name = "\improper MOD 外部装甲板"
 	desc = "用于完成 MOD 控制单元的外部装甲板。"
 	icon_state = "standard-plating"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SMALL_MATERIAL_AMOUNT * 5)
-	var/datum/mod_theme/theme = /datum/mod_theme
+	var/datum/mod_theme/theme = /datum/mod_theme/standard
 
 /obj/item/mod/construction/plating/Initialize(mapload)
 	. = ..()
 	var/datum/mod_theme/used_theme = GLOB.mod_themes[theme]
-	name = "MOD [chinese_batch_ten_theme_display(used_theme.name)] 外部装甲板"
+	name = "\improper MOD [chinese_batch_ten_theme_display(used_theme.name)] 外部装甲板"
 	desc = "[desc] [used_theme.desc]"
 	icon_state = "[used_theme.default_skin]-plating"
 
@@ -139,7 +139,7 @@
 #define SCREWED_ASSEMBLY_STEP "screwed_assembly"
 
 /obj/item/mod/construction/shell
-	name = "MOD 外壳"
+	name = "\improper MOD 外壳"
 	icon_state = "mod-construction_start"
 	desc = "一个 MOD 外壳。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 2.5)

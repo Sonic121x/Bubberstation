@@ -112,6 +112,7 @@
 	desc = "有时候你就是特别想抽一根。这对肺恐怕不太好。"
 	icon = FA_ICON_SMOKING
 	value = -4
+	process_interval = 5 MINUTES // BUBBER EDIT - Longer interval between forced nicotine addiction ticks
 	gain_text = span_danger("你现在真想抽一根。")
 	lose_text = span_notice("你不再那么依赖尼古丁了。")
 	medical_record_text = "患者目前仍有吸烟习惯。"

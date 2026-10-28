@@ -13,7 +13,7 @@
 		if (gas_info[META_GAS_MOLES_VISIBLE][gas_path])
 			gas_info[META_GAS_OVERLAY][gas_path] += generate_gas_overlays(0, SSmapping.max_plane_offset, gas_path)
 		gas_info[META_GAS_FUSION_POWER][gas_path] = initial(gas_path.fusion_power)
-		gas_info[META_GAS_DANGER][gas_path] = initial(gas_path.dangerous)
+		gas_info[META_GAS_DANGER][gas_path] = initial(gas_path.cargo_flags) & GAS_DANGEROUS
 		gas_info[META_GAS_ID][gas_path] = initial(gas_path.id)
 		gas_info[META_GAS_DESC][gas_path] = initial(gas_path.desc)
 
@@ -39,44 +39,44 @@
 			return path
 	return ""
 
-/*||||||||||||||/----------\||||||||||||||*\
-||||||||||||||||[GAS DATUMS]||||||||||||||||
-||||||||||||||||\__________/||||||||||||||||
-|||| These should never be instantiated. ||||
-|||| They exist only to make it easier   ||||
-|||| to add a new gas. They are accessed ||||
-|||| only by meta_gas_list().            ||||
-\*||||||||||||||||||||||||||||||||||||||||*/
-
-//This is a plot created using the values for gas exports. Each gas has a value that works as its kind of soft-cap, which limits you from making billions of credits per sale, based on the base_value variable on the gasses themselves. Most of these gasses as a result have a rather low value when sold, like nitrogen and oxygen at 1500 and 600 respectively at their maximum value. The
+/**
+ * # Gas datums
+ *
+ * These are never and should never be instantiated,
+ * they just exist to hold data which is passed into the gas metadata list.
+ *
+ * They are templates for how gases should generally act.
+ */
 /datum/gas
 	var/id = ""
 	var/specific_heat = 0
 	var/name = ""
+	var/desc
 	///icon_state in icons/effects/atmospherics.dmi
 	var/gas_overlay = ""
 	var/moles_visible = null
-	///currently used by canisters
-	var/dangerous = FALSE
 	///How much the gas accelerates a fusion reaction
 	var/fusion_power = 0
 	/// relative rarity compared to other gases, used when setting up the reactions list.
 	var/rarity = 0
-	///Can gas of this type can purchased through cargo?
-	var/purchaseable = FALSE
-	///How does a single mole of this gas sell for? Formula to calculate maximum value is in code\modules\cargo\exports\large_objects.dm. Doesn't matter for roundstart gasses.
+	/// Flags that relate to how the gas is handled in cargo
+	/// GAS_PURCHASABLE - Can be purchased in cargo
+	/// GAS_EXPORTABLE - Can be sold in cargo
+	/// GAS_DANGEROUS - Is considered dangerous, requires elevated access to purchase
+	var/cargo_flags = NONE
+	/// How does a single mole of this gas buy/sell for?
+	/// Formula to calculate maximum value is in [code\modules\cargo\exports\large_objects.dm].
+	/// Only necessary for exportable or purchasable gases, otherwise meaningless.
 	var/base_value = 0
-	var/desc
-	///RGB code for use when a generic color representing the gas is needed. Colors taken from contants.ts
+	/// RGB code for use when a generic color representing the gas is needed. Colors taken from contants.ts
 	var/primary_color
-
 
 /datum/gas/oxygen
 	id = GAS_O2
 	specific_heat = 20
 	name = "氧气"
 	rarity = 900
-	purchaseable = TRUE
+	cargo_flags = GAS_PURCHASABLE
 	base_value = 0.2
 	desc = "大多数生命形式赖以生存的气体。同时也是一种氧化剂。"
 	primary_color = "#0000ff"
@@ -86,7 +86,7 @@
 	specific_heat = 20
 	name = "氮气"
 	rarity = 1000
-	purchaseable = TRUE
+	cargo_flags = GAS_PURCHASABLE
 	base_value = 0.1
 	desc = "一种非常常见的气体，用于将人造大气补充至适宜居住的气压。"
 	primary_color = "#ffff00"
@@ -95,11 +95,11 @@
 	id = GAS_CO2
 	specific_heat = 30
 	name = "二氧化碳"
-	dangerous = TRUE
 	rarity = 700
-	purchaseable = TRUE
+	cargo_flags = GAS_PURCHASABLE | GAS_DANGEROUS
 	base_value = 0.2
 	desc = "二氧化碳到底他妈的是什么东西？"
+	// desc = "A colorless, odorless gas commonly produced by respiration and combustion. Potentially dangerous when inhaled in high concentrations."
 	primary_color = COLOR_GRAY
 
 /datum/gas/plasma
@@ -108,10 +108,10 @@
 	name = "等离子体"
 	gas_overlay = "plasma"
 	moles_visible = MOLES_GAS_VISIBLE
-	dangerous = TRUE
+	cargo_flags = GAS_DANGEROUS
 	rarity = 800
 	base_value = 1.5
-	desc = "一种可燃气体，具有许多其他奇特的性质。对它的研究是纳米传讯的主要目标之一。"
+	desc = "一种具有许多奇特性质的可燃气体。对它的研究是纳米传讯的主要目标之一。"
 	primary_color = "#ffc0cb"
 
 /datum/gas/water_vapor
@@ -122,7 +122,7 @@
 	moles_visible = MOLES_GAS_VISIBLE
 	fusion_power = 8
 	rarity = 500
-	purchaseable = TRUE
+	cargo_flags = GAS_PURCHASABLE
 	base_value = 0.5
 	desc = "气态的水。会使地板变滑，并清洗其上的物品。"
 	primary_color = "#b0c4de"
@@ -135,8 +135,9 @@
 	moles_visible = MOLES_GAS_VISIBLE
 	fusion_power = 10
 	rarity = 50
+	cargo_flags = GAS_EXPORTABLE
 	base_value = 2.5
-	desc = "所有气体中最惰性的一种。大量的超惰性气体会主动阻止反应发生。"
+	desc = "所有气体中最惰性的一种。大量存在时会主动阻止反应发生。"
 	primary_color = COLOR_TEAL
 
 /datum/gas/nitrous_oxide
@@ -146,11 +147,11 @@
 	gas_overlay = "nitrous_oxide"
 	moles_visible = MOLES_GAS_VISIBLE * 2
 	fusion_power = 10
-	dangerous = TRUE
 	rarity = 600
-	purchaseable = TRUE
+	cargo_flags = GAS_PURCHASABLE | GAS_DANGEROUS
 	base_value = 1.5
-	desc = "会引起困倦、欣快感，最终导致失去意识。"
+	desc = "一种会引起困倦、欣快感，最终导致失去意识的气体。\
+		常用于手术麻醉，偶尔也被用作娱乐性药物。"
 	primary_color = "#ffe4c4"
 
 /datum/gas/nitrium
@@ -160,10 +161,10 @@
 	fusion_power = 7
 	gas_overlay = "nitrium"
 	moles_visible = MOLES_GAS_VISIBLE
-	dangerous = TRUE
+	cargo_flags = GAS_DANGEROUS | GAS_EXPORTABLE
 	rarity = 1
 	base_value = 6
-	desc = "一种实验性的增强体能的气体。随着更多氮素气进入血液，其效果会不断增强。"
+	desc = "一种带有轻微毒性的实验性体能增强气体，吸入后可提升速度和警觉性。"
 	primary_color = "#a52a2a"
 
 /datum/gas/tritium
@@ -172,7 +173,7 @@
 	name = "氚"
 	gas_overlay = "tritium"
 	moles_visible = MOLES_GAS_VISIBLE
-	dangerous = TRUE
+	cargo_flags = GAS_DANGEROUS | GAS_EXPORTABLE
 	fusion_power = 5
 	rarity = 300
 	base_value = 2.5
@@ -183,10 +184,9 @@
 	id = GAS_BZ
 	specific_heat = 20
 	name = "BZ"
-	dangerous = TRUE
 	fusion_power = 8
 	rarity = 400
-	purchaseable = TRUE
+	cargo_flags = GAS_PURCHASABLE | GAS_EXPORTABLE | GAS_DANGEROUS
 	base_value = 1.5
 	desc = "一种强效致幻神经毒剂，能够造成认知损伤。"
 	primary_color = "#9370db"
@@ -197,27 +197,30 @@
 	name = "富氧气"
 	fusion_power = -10
 	rarity = 200
+	cargo_flags = GAS_EXPORTABLE
 	base_value = 2.5
-	desc = "吸入后能为血液提供更多氧气，且本身并非氧化剂的气体。"
+	desc = "一种氧气替代品，在肺部的扩散效率是氧气的八倍，\
+		甚至具有轻微的治疗效果，而其本身并非氧化剂。"
 	primary_color = "#7b68ee"
 
 /datum/gas/miasma
 	id = GAS_MIASMA
 	specific_heat = 20
 	name = "瘴气"
-	dangerous = TRUE
+	cargo_flags = GAS_DANGEROUS | GAS_EXPORTABLE
 	gas_overlay = "miasma"
 	moles_visible = MOLES_GAS_VISIBLE * 60
 	rarity = 250
 	base_value = 1
-	desc = "瘴气未必是一种气体，它指的是大气中的生物污染物。"
+	desc = "瘴气未必是一种气体，而是泛指大气中的生物污染物，\
+		这些污染物会引发疾病和恶心。"
 	primary_color = COLOR_OLIVE
 
 /datum/gas/freon
 	id = GAS_FREON
 	specific_heat = 600
 	name = "氟利昂"
-	dangerous = TRUE
+	cargo_flags = GAS_DANGEROUS | GAS_EXPORTABLE
 	gas_overlay = "freon"
 	moles_visible = MOLES_GAS_VISIBLE *30
 	fusion_power = -5
@@ -230,7 +233,7 @@
 	id = GAS_HYDROGEN
 	specific_heat = 15
 	name = "氢气"
-	dangerous = TRUE
+	cargo_flags = GAS_DANGEROUS | GAS_EXPORTABLE
 	fusion_power = 2
 	rarity = 600
 	base_value = 1
@@ -241,43 +244,45 @@
 	id = GAS_HEALIUM
 	specific_heat = 10
 	name = "愈合气"
-	dangerous = TRUE
+	cargo_flags = GAS_DANGEROUS | GAS_EXPORTABLE
 	gas_overlay = "healium"
 	moles_visible = MOLES_GAS_VISIBLE
 	rarity = 300
 	base_value = 5.5
-	desc = "会引发深度的再生性睡眠。"
+	desc = "一种实验性的麻醉剂替代品，吸入后会使人失去意识，\
+		并在此状态下加速愈合与再生。"
 	primary_color = "#fa8072"
 
 /datum/gas/proto_nitrate
 	id = GAS_PROTO_NITRATE
 	specific_heat = 30
 	name = "原硝气"
-	dangerous = TRUE
+	cargo_flags = GAS_DANGEROUS | GAS_EXPORTABLE
 	gas_overlay = "proto_nitrate"
 	moles_visible = MOLES_GAS_VISIBLE
 	rarity = 200
 	base_value = 2.5
-	desc = "一种非常不稳定的气体，与各种气体的反应各不相同。"
+	desc = "一种非常不稳定的气体，与其他气体的反应各不相同。"
 	primary_color = "#adff2f"
 
 /datum/gas/zauker
 	id = GAS_ZAUKER
 	specific_heat = 350
 	name = "灼蚀气"
-	dangerous = TRUE
+	cargo_flags = GAS_DANGEROUS | GAS_EXPORTABLE
 	gas_overlay = "zauker"
 	moles_visible = MOLES_GAS_VISIBLE
 	rarity = 1
 	base_value = 7
-	desc = "一种剧毒气体，其生产不仅困难，而且受到严格管制。它接触氮气时还会分解。"
+	desc = "一种剧毒且难以制取的气体。\
+		它接触氮气时会分解，因此在类似地球的大气中相对安全。"
 	primary_color = "#006400"
 
 /datum/gas/halon
 	id = GAS_HALON
 	specific_heat = 175
 	name = "哈龙"
-	dangerous = TRUE
+	cargo_flags = GAS_DANGEROUS | GAS_EXPORTABLE
 	gas_overlay = "halon"
 	moles_visible = MOLES_GAS_VISIBLE
 	rarity = 300
@@ -291,21 +296,24 @@
 	name = "氦气"
 	fusion_power = 7
 	rarity = 50
+	cargo_flags = GAS_EXPORTABLE
 	base_value = 3.5
-	desc = "一种非常惰性的气体，由氢气及其衍生物聚变产生。"
+	desc = "一种由氢气及其衍生物聚变产生的惰性气体。\
+		因比空气轻且吸入后会使声音变尖而广为人知。"
 	primary_color = "#f0f8ff"
 
 /datum/gas/antinoblium
 	id = GAS_ANTINOBLIUM
 	specific_heat = 1
 	name = "反惰性气体"
-	dangerous = TRUE
+	cargo_flags = GAS_DANGEROUS | GAS_EXPORTABLE
 	gas_overlay = "antinoblium"
 	moles_visible = MOLES_GAS_VISIBLE
 	fusion_power = 20
 	rarity = 1
 	base_value = 10
-	desc = "我们仍不知道它有什么用，但能卖不少钱。"
+	desc = "一种能够自我复制的神秘高活性气体。\
+		因其稀有而备受追捧，出口时可卖出高价。"
 	primary_color = COLOR_MAROON
 
 /obj/effect/overlay/gas
@@ -329,4 +337,3 @@
 /obj/effect/overlay/gas/Initialize(mapload)
 	. = ..()
 	SET_PLANE_W_SCALAR(src, initial(plane), plane_offset)
-

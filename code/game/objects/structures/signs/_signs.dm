@@ -181,11 +181,13 @@
 	if(!Adjacent(user)) //Make sure user is adjacent still.
 		to_chat(user, span_warning("你需要站在标牌旁边才能更换它！"))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice("你开始更换[src]。"))
+	user.visible_message(span_notice("[user]开始更换[src]。"), \
+						span_notice("你开始更换[src]。"))
 	if(!do_after(user, 4 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 	set_sign_type(GLOB.editable_sign_types[choice])
-	user.visible_message(span_notice("你完成了标牌的更换。"))
+	user.visible_message(span_notice("[user]完成了标牌的更换。"), \
+						span_notice("你完成了标牌的更换。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/sign/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)

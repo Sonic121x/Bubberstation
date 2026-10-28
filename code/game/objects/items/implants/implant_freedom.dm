@@ -14,6 +14,8 @@
 		以非破坏性的方式解开相关束缚。遗憾的是，这只对四肢上的束缚有效；\
 		拘束衣等更大型的约束装置对纳米机器人来说过于复杂。"
 
+	var/resist_strength = 3 MINUTES
+
 /obj/item/implant/freedom/implant(mob/living/target, mob/user, silent, force)
 	. = ..()
 	if(!.)
@@ -32,7 +34,7 @@
 
 	uses--
 
-	carbon_imp_in.uncuff()
+	carbon_imp_in.uncuff(resist_strength)
 	var/obj/item/clothing/shoes/shoes = carbon_imp_in.get_item_by_slot(ITEM_SLOT_FEET)
 	if(istype(shoes) && shoes.tied == SHOES_KNOTTED)
 		shoes.adjust_laces(SHOES_TIED, carbon_imp_in)
@@ -42,8 +44,9 @@
 		qdel(src)
 
 /obj/item/implant/freedom/proc/can_trigger(mob/living/carbon/implanted_in)
-	if(implanted_in.handcuffed || implanted_in.legcuffed)
-		return TRUE
+	for(var/obj/item/restraint in implanted_in.get_all_attached_restraints())
+		if(restraint.breakouttime <= resist_strength)
+			return TRUE
 
 	var/obj/item/clothing/shoes/shoes = implanted_in.get_item_by_slot(ITEM_SLOT_FEET)
 	if(istype(shoes) && shoes.tied == SHOES_KNOTTED)

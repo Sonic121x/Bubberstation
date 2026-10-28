@@ -113,8 +113,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	if(!locked)
 		open()
 		return
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
 	user.visible_message(null, \
 		span_notice("你抵住[src]的后部，开始把托盘往外推……（这大约需要 [DisplayTimeText(BREAKDOWN_TIME)]。）"), \
 		span_hear("你听到[src]传来金属摩擦的吱嘎声。"))

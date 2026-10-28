@@ -4,6 +4,7 @@
 	desc = "近战科技的巅峰之作，这把锤子驾驭微型奇点的力量，打出毁灭性的重击。"
 	icon = 'icons/obj/weapons/hammer.dmi'
 	icon_state = "singularity_hammer0"
+	inhand_icon_state = "singularity_hammer0"
 	base_icon_state = "singularity_hammer"
 	icon_angle = -45
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
@@ -78,6 +79,7 @@
 	desc = "配得上神明的武器，能以闪电的力量发动打击。它噼啪作响，能量几乎难以约束。"
 	icon = 'icons/obj/weapons/hammer.dmi'
 	icon_state = "mjollnir0"
+	inhand_icon_state = "mjollnir0"
 	base_icon_state = "mjollnir"
 	worn_icon_state = "mjollnir"
 	icon_angle = -45

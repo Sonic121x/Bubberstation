@@ -82,7 +82,7 @@
 	if(HAS_TRAIT(owner, TRAIT_DREAMING))
 		damage_mods += damage_mod
 
-/datum/status_effect/dream_protection/get_examine_text()
+/datum/status_effect/dream_protection/get_examine_text(mob/examiner)
 	if(IS_UNCONSCIOUS_AND_ALIVE(owner) || HAS_TRAIT(owner, TRAIT_DREAMING))
 		return "一层柔和的青色光芒笼罩着此人，反射着光亮。"
 

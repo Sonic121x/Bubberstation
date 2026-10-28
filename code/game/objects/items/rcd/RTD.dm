@@ -15,6 +15,7 @@
 	desc = "用于快速铺设与拆除地砖。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rtd"
+	inhand_icon_state = "rtd"
 	worn_icon_state = "RCD"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'

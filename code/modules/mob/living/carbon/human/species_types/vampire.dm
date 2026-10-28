@@ -16,10 +16,12 @@
 	)
 	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	changesource_flags = MIRROR_BADMIN | MIRROR_PRIDE | WABBAJACK | ERT_SPAWN
-	exotic_bloodtype = BLOOD_TYPE_VAMPIRE
+	exotic_bloodtype = /datum/blood_type/universal/vampire
 	blood_deficiency_drain_rate = BLOOD_DEFICIENCY_MODIFIER // vampires already passively lose blood, so this just makes them lose it slightly more quickly when they have blood deficiency.
+	mutant_organs = list(
+		/obj/item/organ/fangs/vampire,
+	)
 	mutantheart = /obj/item/organ/heart/vampire
-	mutanttongue = /obj/item/organ/tongue/vampire
 	///some starter text sent to the vampire initially, because vampires have shit to do to stay alive
 	var/info_text = "你是一名<span class='danger'>吸血鬼</span>。在棺材外时，你会缓慢但持续地失血。待在棺材里时，你会缓慢痊愈。你可以抓住活着的受害者并使用吸血能力来补充血液。"
 
@@ -123,7 +125,7 @@
 		SPECIES_PERK_ICON = "tint",
 		SPECIES_PERK_NAME = "渴血",
 		SPECIES_PERK_DESC = "吸血鬼不进食，而是饱受“渴血”之苦。\
-			渴的是什么？血！他们的舌头能抓住他人并 \
+			渴的是什么？血！他们的獠牙能抓住他人并 \
 			吸食血液，若血液耗尽便会死亡。需要说明的是，喝下谁的 \
 			血都无所谓，被吸收后都会转化为你的血 \
 			型。",
@@ -147,28 +149,29 @@
 
 	return to_add
 
-/obj/item/organ/tongue/vampire
-	name = "吸血鬼牙齿"
+/obj/item/organ/fangs/vampire
+	name = "吸血鬼獠牙"
 	desc = "这是唯一能让你理直气壮说出“我要把你吸干！”的东西。"
-	icon_state = "tongue_vampire"
+	icon_state = "fangs_vampire"
 	actions_types = list(/datum/action/item_action/organ_action/vampire)
 	organ_traits = list(
 		TRAIT_DRINKS_BLOOD,
 		// future todo : tie nobreath and nohunger to a vampire organ set bonus
 		TRAIT_NOBREATH,
 		TRAIT_NOHUNGER,
+		TRAIT_REFINED_BITER,
 	)
 	COOLDOWN_DECLARE(drain_cooldown)
 
-/obj/item/organ/tongue/vampire/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
+/obj/item/organ/fangs/vampire/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
 	. = ..()
 	RegisterSignal(receiver, COMSIG_ATOM_ITEM_INTERACTION, PROC_REF(stab_bloodbag))
 
-/obj/item/organ/tongue/vampire/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
+/obj/item/organ/fangs/vampire/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
 	UnregisterSignal(organ_owner, COMSIG_ATOM_ITEM_INTERACTION)
 
-/obj/item/organ/tongue/vampire/proc/stab_bloodbag(mob/living/source, mob/living/user,  obj/item/used_item, list/modifiers)
+/obj/item/organ/fangs/vampire/proc/stab_bloodbag(mob/living/source, mob/living/user,  obj/item/used_item, list/modifiers)
 	SIGNAL_HANDLER
 
 	if(user != source)
@@ -188,7 +191,7 @@
 	INVOKE_ASYNC(src, PROC_REF(async_stab_bloodbag), user, used_item)
 	return ITEM_INTERACT_BLOCKING
 
-/obj/item/organ/tongue/vampire/proc/async_stab_bloodbag(mob/living/carbon/user, obj/item/reagent_containers/blood/bloodbag, time = 0.5 SECONDS)
+/obj/item/organ/fangs/vampire/proc/async_stab_bloodbag(mob/living/carbon/user, obj/item/reagent_containers/blood/bloodbag, time = 0.5 SECONDS)
 	if(!do_after(user, time, bloodbag))
 		return
 
@@ -210,8 +213,8 @@
 		return FALSE
 
 	var/mob/living/carbon/user = owner
-	var/obj/item/organ/tongue/vampire/licker_drinker = target
-	if(!COOLDOWN_FINISHED(licker_drinker, drain_cooldown))
+	var/obj/item/organ/fangs/vampire/fang_drinker = target
+	if(!COOLDOWN_FINISHED(fang_drinker, drain_cooldown))
 		to_chat(user, span_warning("你刚刚吸过血，等几秒钟！"))
 		return FALSE
 
@@ -232,7 +235,7 @@
 		else
 			to_chat(user, span_warning("[victim] 体内没有你能咽得下去的东西！"))
 		return FALSE
-	COOLDOWN_START(licker_drinker, drain_cooldown, 3 SECONDS)
+	COOLDOWN_START(fang_drinker, drain_cooldown, 3 SECONDS)
 	if(victim.can_block_magic(MAGIC_RESISTANCE_HOLY, charge_cost = 0))
 		victim.show_message(span_warning("[user] 试图咬你，但在碰到你之前停了下来！"))
 		to_chat(user, span_warning("[victim] 受到祝福！你及时收手，才没有着火。"))

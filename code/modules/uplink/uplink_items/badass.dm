@@ -59,6 +59,7 @@
 	name = "小丑服装"
 	desc = "没有什么比拿着全自动武器的小丑更可怕的了。"
 	item = /obj/item/storage/backpack/duffelbag/clown/syndie
+	// Not purchaseable from clown ops, because they are already clowns
 
 /datum/uplink_item/badass/costumes/tactical_naptime
 	name = "安眠睡衣套装"
@@ -66,12 +67,14 @@
 	item = /obj/item/storage/box/syndie_kit/sleepytime
 	limited_stock = 1
 	cant_discount = TRUE
+	purchasable_from = parent_type::purchasable_from | UPLINK_CLOWN_OPS
 
 /datum/uplink_item/badass/costumes/obvious_chameleon
 	name = "损坏的变色龙套件"
 	desc = "一套搭载变色龙技术的物品，能让你伪装成空间站上几乎任何东西，甚至更多！ \
 			请注意，本套件并未通过质检。"
 	item = /obj/item/storage/box/syndie_kit/chameleon/broken
+	purchasable_from = parent_type::purchasable_from | UPLINK_CLOWN_OPS
 
 /datum/uplink_item/badass/costumes/centcom_official
 	name = "中央指挥部官员服装"

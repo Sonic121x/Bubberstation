@@ -146,6 +146,7 @@
 	name = "黑色浴衣"
 	desc = "一件舒适的黑色棉质浴衣，灵感源自传统设计，非常适合非正式场合。"
 	icon_state = "yukata1"
+	inhand_icon_state = "yukata1"
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
@@ -157,11 +158,13 @@
 	name = "绿色浴衣"
 	desc = "一件舒适的绿色棉质浴衣，灵感源自传统设计，非常适合非正式场合。"
 	icon_state = "yukata2"
+	inhand_icon_state = "yukata2"
 
 /obj/item/clothing/under/costume/yukata/white
 	name = "白色浴衣"
 	desc = "一件舒适的白色棉质浴衣，灵感源自传统设计，非常适合非正式场合。"
 	icon_state = "yukata3"
+	inhand_icon_state = "yukata3"
 
 /obj/item/clothing/under/costume/kimono
 	name = "黑色和服"
@@ -291,29 +294,44 @@
 	abstract_type = /datum/atom_skin/mech_suit
 
 /datum/atom_skin/mech_suit/red
-	preview_name = "红色"
+	preview_name = "红色" //Asuka from evangelion
 	new_icon_state = "red_mech_suit"
 
 /datum/atom_skin/mech_suit/white
-	preview_name = "白色"
+	preview_name = "白色" //Rei from evangelion
 	new_icon_state = "white_mech_suit"
 
 /datum/atom_skin/mech_suit/blue
-	preview_name = "蓝色"
+	preview_name = "蓝色" //Shinji from Evangelion
 	new_icon_state = "blue_mech_suit"
 
 /datum/atom_skin/mech_suit/black
-	preview_name = "黑色"
+	preview_name = "黑色" //Based on the robotics jumpsuot
 	new_icon_state = "black_mech_suit"
+
+/datum/atom_skin/mech_suit/royal
+	preview_name = "皇家师团" //Kallen Stadtfeld from Code Geass
+	new_icon_state = "royal_mech_suit"
+
+/datum/atom_skin/mech_suit/royal_alt
+	preview_name = "皇家师团 - 变体" //Kallen again, with her alternate design
+	new_icon_state = "royal_mech_suit_alt"
+
+/datum/atom_skin/mech_suit/explorer
+	preview_name = "探索兵团" //Sleeker version of the robotics jumpsuit
+	new_icon_state = "explorer_mech_suit"
+
+/datum/atom_skin/mech_suit/explorer_alt
+	preview_name = "探索兵团 - 变体" //Elster from SIGNALIS
+	new_icon_state = "explorer_mech_suit_alt"
 
 /obj/item/clothing/under/costume/mech_suit
 	name = "机甲驾驶员服"
-	desc = "一件机甲驾驶员服。可能会让你的屁股显得很大。"
-	icon_state = "red_mech_suit"
+	desc = "一件机甲驾驶员服。可能会让你的屁股显得很大。Alt 点击可更换外观。"
+	icon_state = "explorer_mech_suit"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	female_sprite_flags = NO_FEMALE_UNIFORM
 	alternate_worn_layer = GLOVES_LAYER //covers hands but gloves can go over it. This is how these things work in my head.
 	can_adjust = FALSE
 

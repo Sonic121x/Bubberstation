@@ -50,34 +50,42 @@
 
 /datum/golem_food_buff/uranium
 	status_effect = /datum/status_effect/golem/uranium
+	nutrition = 5
 	added_info = "食用后，这种矿物将代替食物为你供能，并使你的消化暂停五分钟。"
 
 /datum/golem_food_buff/silver
 	status_effect = /datum/status_effect/golem/silver
+	nutrition = 4
 	added_info = "食用后，这种矿物将驱退超自然力量，使你获得对神秘效果的抗性。"
 
 /datum/golem_food_buff/plasma
 	status_effect = /datum/status_effect/golem/plasma
+	nutrition = 6
 	added_info = "食用后，这种矿物将让你能够吸收热量并将其转化为能量。"
 
 /datum/golem_food_buff/plasteel
 	status_effect = /datum/status_effect/golem/plasteel
+	nutrition = 7
 	added_info = "食用后，这种矿物将使你硬化，以抵御太空的危害。"
 
 /datum/golem_food_buff/gold
 	status_effect = /datum/status_effect/golem/gold
+	nutrition = 5
 	added_info = "食用后，这种矿物将赋予你一层闪亮的涂层，可以反射投射物。"
 
 /datum/golem_food_buff/diamond
 	status_effect = /datum/status_effect/golem/diamond
+	nutrition = 9
 	added_info = "食用后，这种矿物将折射你周围的光线，使你速度更快、更难被看见。"
 
 /datum/golem_food_buff/titanium
 	status_effect = /datum/status_effect/golem/titanium
+	nutrition = 5
 	added_info = "食用后，这种矿物将使你更加结实，出拳也更重。"
 
 /datum/golem_food_buff/bananium
 	status_effect = /datum/status_effect/golem/bananium
+	nutrition = 10
 	added_info = "食用后，这种矿物将使你更有趣。"
 
 /datum/golem_food_buff/lightbulb
@@ -89,6 +97,7 @@
 
 /datum/golem_food_buff/gibtonite
 	exclusive = FALSE
+	nutrition = 5
 	added_info = "食用后，你可以像火箭一样把这种矿物发射出去。只是它有点难留在胃里。"
 
 /datum/golem_food_buff/gibtonite/apply_effects(mob/living/carbon/human/consumer, atom/movable/consumed, multiplier = 1)
@@ -107,6 +116,7 @@
 
 /datum/golem_food_buff/bluespace
 	exclusive = FALSE
+	nutrition = 10
 	added_info = "食用后，你可以使用储存的能量将自己传送走。"
 
 /datum/golem_food_buff/bluespace/apply_effects(mob/living/carbon/human/consumer, atom/movable/consumed, multiplier = 1)
