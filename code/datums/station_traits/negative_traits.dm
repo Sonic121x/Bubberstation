@@ -762,12 +762,12 @@
 
 ///A negative trait that empties the food and drink products available from vending machines throughout the station.
 /datum/station_trait/vending_shortage
-	name = "Vending products shortage"
+	name = "售货机商品短缺"
 	trait_type = STATION_TRAIT_NEGATIVE
 	weight = 3
 	show_in_report = TRUE
 	can_revert = FALSE // because it touches every maploaded vending machine on the station.
-	report_message = "We haven't had the time to take care of the station's food and drink vending machines. Food and drink products are empty and need to be restocked."
+	report_message = "我们还没来得及维护空间站的食品和饮料售货机。食品饮料库存已经耗尽，需要补货。"
 	trait_to_give = STATION_TRAIT_VENDING_SHORTAGE
 
 #undef GLOW_NEBULA

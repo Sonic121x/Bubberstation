@@ -6,7 +6,7 @@
 	duration = GOOD_MOOD_LENGTH
 	tick_interval = STATUS_EFFECT_NO_TICK
 	alert_type = null
-	special_description = "a soothing effect on sentient minds"
+	special_description = "安抚心灵的效果"
 	var/potency = 1
 
 /datum/status_effect/magical_light/good_mood/on_creation(mob/living/new_owner, potency, ...)
@@ -38,24 +38,24 @@
 	multiplicative_slowdown = -0.08
 
 /datum/mood_event/good_magic_mood
-	description = span_nicegreen("I feel pretty good right now!\n")
+	description = span_nicegreen("我现在感觉相当不错！\n")
 	mood_change = 2
 	timeout = GOOD_MOOD_LENGTH
 
 /datum/mood_event/good_magic_mood/great
-	description = span_nicegreen("I feel great right now, feels like there's energy soothing my mind!\n")
+	description = span_nicegreen("我现在感觉好极了，仿佛有股能量正在安抚我的心灵！\n")
 	mood_change = 4
 
 /datum/mood_event/good_magic_mood/amazing
-	description = span_nicegreen("Just feeling amazing for some reason!\n")
+	description = span_nicegreen("不知为什么，我感觉棒极了！\n")
 	mood_change = 8
 
 /datum/status_effect/magical_light/healing
-	id = "magical_light_good_mood"
+	id = "magical_light_healing"
 	duration = 15 SECONDS
 	tick_interval = 3 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/magical_light/good
-	special_description = "a regenerative effect on all things living"
+	special_description = "促进所有生物再生的效果"
 	var/potency = 1
 
 /datum/status_effect/magical_light/healing/on_creation(mob/living/new_owner, potency, ...)
@@ -81,7 +81,7 @@
 ///
 /// Also heals organs
 /datum/status_effect/magical_light/healing/revivify
-	special_description = "an <span class='nicegreen'>extremely powerful</span> regenerative effect on all things"
+	special_description = "令万物再生的<span class='nicegreen'>极其强大</span>的效果"
 
 /datum/status_effect/magical_light/healing/revivify/tick(seconds_between_ticks)
 	. = ..()

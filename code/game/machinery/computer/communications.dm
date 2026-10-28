@@ -299,7 +299,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 
 					var/crew_in_department = get_department_employee_count(dept_shuttle.department_type)
 					if(crew_in_department <= 0 || crew_in_department < max_crew_count)
-						to_chat(user, span_alert("This shuttle can be buyed only if this department has most employees."))
+						to_chat(user, span_alert("只有该部门的员工人数最多时，才能购买这艘穿梭机。"))
 						return
 			if (!shuttle.prerequisites_met())
 				to_chat(user, span_alert("你尚未满足购买此穿梭机的条件。"))
@@ -719,7 +719,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 						"prerequisites" = shuttle_template.prerequisites,
 						"ref" = REF(shuttle_template),
 						"department_locked" = department_locked,
-						"department_name" = department_name_string,
+						"department_name" = chinese_department_display(department_name_string),
 					))
 
 				data["budget"] = bank_account.account_balance

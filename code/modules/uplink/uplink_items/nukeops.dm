@@ -715,10 +715,10 @@
 	purchasable_from = UPLINK_NUKE_OPS
 
 /datum/uplink_item/bundles_tc/induction_kit/clown
-	name = "Syndicate Circus Induction Kit"
-	desc = "Found a particularly entertaining and skilled performer on the station? \
-		This kit allows you to induct them into the Syndicate circus! Contains equipment them with all the necessary gear for their new role. \
-		*NOT* for usage with Reinforcements, and does not brainwash the target!"
+	name = "辛迪加马戏团入团套件"
+	desc = "在站上发现了一位格外有趣、技艺精湛的表演者？\
+		这套装备能让你将其招入辛迪加马戏团！包含履行新职责所需的全部装备。\
+		*不要*用于增援，而且它不会给目标洗脑！"
 	item = /obj/item/storage/box/syndie_kit/induction_kit/clown
 	purchasable_from = UPLINK_CLOWN_OPS
 
@@ -954,9 +954,9 @@
 	purchasable_from = UPLINK_ALL_SYNDIE_OPS
 
 /datum/uplink_item/implants/nuclear/macrobomb/fake
-	name = "Fake Macrobomb Implant"
-	desc = "A bomb implant with the same delay as a true macrobomb, but is ultimately no greater than a standard microbomb. \
-		However, its detonation also comes with a surprise that the standard microbomb doesn't..."
+	name = "假大型炸弹植入体"
+	desc = "引爆延迟与真正的大型炸弹相同，但最终威力只相当于标准微型炸弹的植入体。\
+		不过，引爆时还会带来标准微型炸弹没有的惊喜……"
 	item = /obj/item/storage/box/syndie_kit/imp_macrobomb_fake
 	cost = /datum/uplink_item/implants/nuclear/microbomb::cost
 	purchasable_from = UPLINK_CLOWN_OPS

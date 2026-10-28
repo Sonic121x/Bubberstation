@@ -1,7 +1,7 @@
 /obj/item/stack/candela_beacon
-	name = "mining navigation beacon"
-	singular_name = "mining navigation beacon"
-	desc = "\"Candela\"-type extending mining beacon, capable of linking with nearby beacons and devices to form a satellite-free navigation network."
+	name = "采矿导航信标"
+	singular_name = "采矿导航信标"
+	desc = "“烛光”型延伸式采矿信标，可连接附近的信标和设备，组成无需卫星的导航网络。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "candela_beacon"
 	w_class = WEIGHT_CLASS_SMALL
@@ -42,12 +42,12 @@
 /obj/item/stack/candela_beacon/proc/place_beacon(mob/user, atom/loc_override = null, datum/candela_item_handler/handler_override = null, silent = FALSE)
 	if (!isturf(user.loc))
 		if (!silent)
-			to_chat(user, span_warning("You need more space to place a [singular_name] here."))
+			to_chat(user, span_warning("这里没有足够的空间放置[singular_name]。"))
 		return FALSE
 
 	if (locate(/obj/structure/candela_beacon) in (loc_override || user.loc))
 		if (!silent)
-			to_chat(user, span_warning("There is already a [singular_name] here."))
+			to_chat(user, span_warning("这里已经有一个[singular_name]了。"))
 		return FALSE
 
 	var/datum/candela_item_handler/used_handler = handler_override || handler
@@ -57,7 +57,7 @@
 		return FALSE
 
 	if (!silent)
-		to_chat(user, span_notice("You activate and anchor [amount ? "a":"the"] [singular_name] in place."))
+		to_chat(user, span_notice("你启动了一个[singular_name]，并将其固定在原地。"))
 
 	playsound(user, 'sound/machines/click.ogg', 50, TRUE)
 	var/obj/structure/candela_beacon/beacon = new(loc_override || user.loc, our_network, used_handler)
@@ -76,7 +76,7 @@
 	if (.)
 		return
 	handler.set_network(null)
-	balloon_alert(user, "network connection severed")
+	balloon_alert(user, "已断开网络连接")
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/stack/candela_beacon/update_overlays()
@@ -85,9 +85,9 @@
 
 /obj/item/stack/candela_beacon/examine(mob/user)
 	. = ..()
-	. += "Use in-hand to plant a beacon, [EXAMINE_HINT("right-click")] in-hand to sever network link."
-	. += "Click on a placed beacon to form a network connection, or [EXAMINE_HINT("right-click")] to pick it up."
-	. += "Automatically deployed upon reaching maximum distance or breaking line-of-sight to the network when placed in pocket or belt slots, or in storage in pocket or belt slots."
+	. += "在手中使用以部署信标，在手中[EXAMINE_HINT("右键点击")]以断开网络连接。"
+	. += "点击已部署的信标以连接网络，或[EXAMINE_HINT("右键点击")]将其收起。"
+	. += "放在口袋、腰带槽，或这些槽位中的储物容器内时，达到最大距离或与网络失去视线连接后，会自动部署。"
 
 /obj/item/stack/candela_beacon/ten
 	amount = 10
@@ -98,8 +98,8 @@
 // Deployed beacon structure
 
 /obj/structure/candela_beacon
-	name = "mining navigation beacon"
-	desc = "\"Candela\"-type extending mining beacon, capable of linking with nearby beacons and devices to form a satellite-free navigation network."
+	name = "采矿导航信标"
+	desc = "“烛光”型延伸式采矿信标，可连接附近的信标和设备，组成无需卫星的导航网络。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "candela_deployed"
 	layer = ABOVE_OBJ_LAYER
@@ -152,7 +152,7 @@
 	. = ..()
 	if (.)
 		return
-	balloon_alert(user, "picking up the beacon...")
+	balloon_alert(user, "正在收起信标……")
 	if (!do_after(user, 2 SECONDS, src))
 		return
 
@@ -168,9 +168,9 @@
 
 	var/obj/item/stack/candela_beacon/collection = tool
 	if(collection.amount >= collection.max_amount)
-		balloon_alert(user, "stack full!")
+		balloon_alert(user, "已达堆叠上限！")
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You start picking [src] up..."))
+	to_chat(user, span_notice("你开始收起[src]……"))
 	if(!do_after(user, 2 SECONDS, src) || collection.amount >= collection.max_amount)
 		return ITEM_INTERACT_BLOCKING
 

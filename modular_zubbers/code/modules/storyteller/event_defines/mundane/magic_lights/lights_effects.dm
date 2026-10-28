@@ -1,10 +1,10 @@
 /// A small twinkling shining light that imbues people and things
 /// with magical effects upon walking through.
 /obj/effect/magical_light
-	name = "sparkles"
+	name = "闪光"
 	icon = 'modular_zubbers/icons/effects/magic_lights.dmi'
 	icon_state = "lights"
-	desc = "A set of nice sparkling lights."
+	desc = "一簇漂亮的闪烁光点。"
 	light_range = 0.8
 	light_power = 0.3
 	light_system = OVERLAY_LIGHT
@@ -23,7 +23,7 @@
 /obj/effect/magical_light/Initialize(mapload)
 	. = ..()
 	var/turf/our_turf = get_turf(src)
-	if(HAS_TRAIT(our_turf, TRAIT_TURF_BLESSED) | isnull(our_turf))
+	if(isnull(our_turf) || HAS_TRAIT(our_turf, TRAIT_TURF_BLESSED))
 		return INITIALIZE_HINT_QDEL
 
 	var/randomized_color = rgb2hsv("#" + random_color())
@@ -63,18 +63,18 @@
 			for(var/i in 1 to effect_types.len)
 				var/datum/status_effect/magical_light/light_eff = effect_types[i]
 				if(i != 1 && i != effect_types.len)
-					magic_desc += ","
+					magic_desc += "、"
 				else if (i == effect_types.len && effect_types.len > 1)
-					magic_desc += ", and" // Oxford comma :)
+					magic_desc += "以及" // Oxford comma :)
 				magic_desc += " [light_eff::special_description]"
 				if (i == effect_types.len)
-					magic_desc += "."
+					magic_desc += "。"
 
-			. += span_notice("The lights are charged with magic that has[magic_desc]")
+			. += span_notice("这些光点蕴含的魔力具有[magic_desc]")
 		else
-			. += span_notice("The lights are charged with magic that has no effect in this plane.")
+			. += span_notice("这些光点蕴含的魔力在这个位面不会产生效果。")
 	else
-		. += span_notice("Feels like the chaplain might know more about these.")
+		. += span_notice("感觉牧师可能更了解这些东西。")
 
 
 /obj/effect/magical_light/proc/on_enter(datum/source, atom/movable/entered)
@@ -87,7 +87,7 @@
 
 /obj/effect/magical_light/proc/on_bless(datum/source)
 	SIGNAL_HANDLER
-	src.visible_message(span_notice("The sparkling lights fizzle out of existence."))
+	src.visible_message(span_notice("闪烁的光点逐渐消散了。"))
 	qdel(src)
 
 /obj/effect/magical_light/proc/handle_new_entry(atom/movable/entered)

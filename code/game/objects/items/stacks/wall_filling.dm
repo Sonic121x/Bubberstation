@@ -136,9 +136,9 @@ GLOBAL_LIST_EMPTY(wall_reskin_lists)
 
 ///Window-fill. Same, but for windows.
 /obj/item/stack/wall_filling/plastitaniumglass
-	name = "plastitaniumglass window filling"
-	singular_name = "plastitanium window filler"
-	desc = "A filling for a standard plastitanium glass window."
+	name = "塑钛玻璃窗填充件"
+	singular_name = "塑钛玻璃窗填充件"
+	desc = "标准塑钛玻璃窗的填充件。"
 	icon_state = "plastitanium-window-fill"
 	inhand_icon_state = "sheet-plastitaniumglass"
 	mats_per_unit = list(/datum/material/alloy/plastitaniumglass=SHEET_MATERIAL_AMOUNT*2)
@@ -153,8 +153,8 @@ GLOBAL_LIST_EMPTY(wall_reskin_lists)
 	merge_type = /obj/item/stack/wall_filling/plastitaniumglass/basic
 
 /obj/item/stack/wall_filling/plastitaniumglass/pod
-	name = "pod window filling"
-	singular_name = "pod window filler"
+	name = "舱窗填充件"
+	singular_name = "舱窗填充件"
 	icon_state = "pod-window-fill"
-	desc = "A filling for a elegant yet formidable window. Mostly seen in hostile enviroments."
+	desc = "优雅而坚固的窗户填充件，多用于恶劣环境。"
 	merge_type = /obj/item/stack/wall_filling/plastitaniumglass/pod

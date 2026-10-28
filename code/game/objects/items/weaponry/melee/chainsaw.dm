@@ -163,8 +163,8 @@
 	return FALSE
 
 /obj/item/chainsaw/dual
-	name = "double-ended chainsaw spear"
-	desc = "A dangerous, crazy contraption that could fall apart from a slight breeze. WHAT WERE THEY THINKING?!"
+	name = "双头链锯矛"
+	desc = "危险而疯狂的装置，一阵微风都可能让它散架。他们到底在想什么？！"
 	icon_state = "chainsawdual"
 	inhand_icon_state = "chainsawdual"
 	base_icon_state = "chainsawdual"
@@ -187,7 +187,7 @@
 /obj/item/chainsaw/dual/pre_attack(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_HULK))
-		to_chat(user, span_warning("You grip the weapon too hard and accidentally drop it!"))
+		to_chat(user, span_warning("你把武器握得太紧，不小心让它脱手了！"))
 		user.dropItemToGround(src, force=TRUE)
 		return TRUE
 
@@ -209,13 +209,13 @@
 	dance_rotate(user, CALLBACK(user, TYPE_PROC_REF(/mob, dance_flip)))
 
 /obj/item/chainsaw/dual/proc/impale(mob/living/user)
-	to_chat(user, span_warning("You horrifically tear yourself with [src]!"))
+	to_chat(user, span_warning("你用[src]把自己撕得惨不忍睹！"))
 	user.take_bodypart_damage(45,check_armor = TRUE, wound_bonus = 20, sharpness = SHARP_EDGED)
 	user.do_attack_animation(user)
 	user.Stun(1 SECONDS)
 	user.Knockdown(5 SECONDS)
 
-/obj/item/chainsaw/dual/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/chainsaw/dual/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == PROJECTILE_ATTACK || attack_type == LEAP_ATTACK || attack_type == OVERWHELMING_ATTACK)
 		final_block_chance = 0
 	if(attack_type != PROJECTILE_ATTACK && prob(30))
@@ -230,7 +230,7 @@
 	new /obj/item/chainsaw(drop_location())
 	new /obj/item/restraints/handcuffs/cable(drop_location())
 	if(isliving(loc))
-		loc.balloon_alert(loc, "weapon broken!")
+		loc.balloon_alert(loc, "武器损坏！")
 	return ..()
 
 /datum/action/item_action/startchainsaw

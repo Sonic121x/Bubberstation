@@ -128,7 +128,7 @@
 				return FALSE
 			completed_waves++
 			var/atom/spawner_atom = parent
-		spawner_atom.balloon_alert_to_viewers("波次 [completed_waves]/[max_waves]")
+			spawner_atom.balloon_alert_to_viewers("波次 [completed_waves]/[max_waves]")
 	return TRUE
 
 /// Try to create a new mob

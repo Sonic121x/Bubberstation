@@ -194,9 +194,9 @@
 
 /datum/round_event/vent_clog/proc/on_examine(datum/source, mob/user, list/examine_list)
 	if(vent.welded)
-		examine_list += span_notice("Something's moving around in it, but it's being blocked by the welded opening.")
+		examine_list += span_notice("里面有什么东西在动，但被焊死的开口挡住了。")
 		return
-	examine_list += span_warning("Something's trying to get out. You could use a [span_green("plunger")] to send it back on its way.")
+	examine_list += span_warning("有什么东西正试图钻出来。你可以用[span_green("皮搋子")]把它送回去。")
 
 ///Handles the initial steps of clogging a vent, either at event start or when the vent moves.
 /datum/round_event/vent_clog/proc/clog_vent()

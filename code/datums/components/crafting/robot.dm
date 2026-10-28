@@ -194,7 +194,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/mod_core_candela
-	name = "MOD core (Candela)"
+	name = "MOD核心（烛光）"
 	result = /obj/item/mod/core/candela
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 10 SECONDS

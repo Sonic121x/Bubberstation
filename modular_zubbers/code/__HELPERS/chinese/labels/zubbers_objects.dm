@@ -22,3 +22,14 @@
 		displayed[chinese_radio_channel_display(choice)] = choice
 	var/selected = tgui_input_list(user, message, title, displayed)
 	return displayed[selected]
+
+/proc/chinese_boombox_radial(mob/user, atom/anchor, list/choices)
+	var/static/list/labels = list("Play" = "播放", "Stop" = "停止", "Eject" = "弹出")
+	var/list/displayed = list()
+	var/list/original = list()
+	for(var/key in choices)
+		var/label = labels[key] || key
+		displayed[label] = choices[key]
+		original[label] = key
+	var/selected = show_radial_menu(user, anchor, displayed, radius = 36, require_near = TRUE)
+	return original[selected]

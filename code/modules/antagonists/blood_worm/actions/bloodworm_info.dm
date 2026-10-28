@@ -1,6 +1,6 @@
 /atom/movable/screen/alert/bloodworm_info
-	name = "Bloodworm Info"
-	desc = "Shows you stats on all Bloodworm-related activities when hovering over."
+	name = "血虫信息"
+	desc = "悬停时显示所有与血虫活动有关的统计信息。"
 	icon = 'icons/mob/actions/backgrounds.dmi'
 	icon_state = "bg_demon"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT

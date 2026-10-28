@@ -726,7 +726,7 @@ const ReactionComponentDisplay = (props: ReactionComponentDisplayProps) => {
   } = props;
   const { data } = useBackend<Data>();
   const { chemicals, reaction_list } = data;
-
+  const [forceFloating, setForceFloating] = useState(false);
   // check if it's a base reagent
   const baseReagent = chemicals.find(
     (chem) => chem.title === reagentComponent.name,
@@ -757,7 +757,7 @@ const ReactionComponentDisplay = (props: ReactionComponentDisplayProps) => {
       </Button>
     );
 
-  const [forceFloating, setForceFloating] = useState(false);
+
 
   return (
     <Floating

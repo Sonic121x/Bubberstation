@@ -88,8 +88,8 @@
 						  span_userdanger("你踩到了[src]上，柄正好砸在你脸上！"))
 
 /obj/item/cultivator/rake/pitchfork
-	name = "gardening pitchfork"
-	desc = "About as traditional of a rake as you can get. Far better known, however, as the sign of \"political disagreements\"."
+	name = "园艺草叉"
+	desc = "再传统不过的农具。不过，它更为人所知的用途是表达“政治分歧”。"
 	icon_state = "pitchfork"
 	inhand_icon_state = "pitchfork"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
@@ -98,8 +98,8 @@
 	throwforce = 16
 	throw_speed = 4
 	w_class = WEIGHT_CLASS_BULKY
-	attack_verb_continuous = list("pokes", "pierces", "impales", "stabs")
-	attack_verb_simple = list("poke", "pierce", "impale", "stab")
+	attack_verb_continuous = list("戳", "刺穿", "贯穿", "刺")
+	attack_verb_simple = list("戳", "刺穿", "贯穿", "刺")
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2, /datum/material/iron = SHEET_MATERIAL_AMOUNT)
 	resistance_flags = FLAMMABLE | FIRE_PROOF
@@ -170,8 +170,8 @@
 
 /* Skyrat Edit Start - Modularization and New Scythes
 /obj/item/scythe
-	name = "scythe"
-	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
+	name = "长柄镰刀"
+	desc = "长长的纤维金属柄上装着锋利的弯刃，让你轻松收获自己播种的作物。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "scythe0"
 	inhand_icon_state = "scythe0"
@@ -188,8 +188,8 @@
 	armour_penetration = 20
 	wound_bonus = 10
 	slot_flags = ITEM_SLOT_BACK
-	attack_verb_continuous = list("chops", "slices", "cuts", "reaps")
-	attack_verb_simple = list("chop", "slice", "cut", "reap")
+	attack_verb_continuous = list("劈", "切", "割", "收割")
+	attack_verb_simple = list("劈", "切", "割", "收割")
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 	item_flags = CRUEL_IMPLEMENT //maybe they want to use it in surgery
@@ -202,7 +202,7 @@
 	AddComponent(/datum/component/walking_aid)
 
 /obj/item/scythe/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is beheading [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正用[src]砍下自己的脑袋！看起来[user.p_they()]正在试图自杀！"))
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		var/obj/item/bodypart/BP = C.get_bodypart(BODY_ZONE_HEAD)

@@ -223,7 +223,7 @@ function Details({ serverState }: { serverState: ServerState }) {
             className="escape-menu__details-link"
             onClick={() => Byond.command(`.url ${serverState.mapWebmap}`)}
           >
-            {` (Open Map)`}
+            {` （打开地图）`}
           </span>
         )}
       </div>

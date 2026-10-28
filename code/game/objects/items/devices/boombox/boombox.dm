@@ -1,6 +1,6 @@
 /obj/item/boombox
-	name = "\proper Nanomusic boombox"
-	desc = "Never quit making all that racket with this booming box."
+	name = "\proper 纳米音乐手提音响"
+	desc = "带上这台轰鸣的音响，让喧闹永不停歇。"
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "boombox"
 	inhand_icon_state = "boombox"
@@ -40,15 +40,15 @@
 
 /obj/item/boombox/examine(mob/user)
 	. = ..()
-	. += span_notice("The boombox can be worn in hand or on your shoulder. Alt-Right-click to toggle.")
+	. += span_notice("手提音响既能提在手里，也能扛在肩上。按住 Alt 右键点击以切换。")
 	if(tapedeck)
-		. += "It has [span_bold("[tapedeck]")] inside."
+		. += "里面装着[span_bold("[tapedeck]")]。"
 	else
-		. += "It has no tapedeck inside."
+		. += "里面没有磁带。"
 
 /obj/item/boombox/click_alt_secondary(mob/user)
 	swag_mode = !swag_mode
-	balloon_alert(user, "wearing [swag_mode ? "on shoulder" : "in hand"]")
+	balloon_alert(user, "[swag_mode ? "扛在肩上" : "提在手中"]")
 	if(loc == user)
 		playsound(user, pickup_sound, 30)
 	update_appearance()
@@ -58,16 +58,16 @@
 /obj/item/boombox/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/music_tape))
 		if(tapedeck)
-			balloon_alert(user, "eject first!")
+			balloon_alert(user, "请先弹出磁带！")
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/music_tape/tunes = tool
 		user.transferItemToLoc(tunes, src)
 		tapedeck = tunes
-		balloon_alert(user, "tape inserted")
+		balloon_alert(user, "已插入磁带")
 		playsound(src, 'sound/items/taperecorder/taperecorder_close.ogg', 50, FALSE)
 		return ITEM_INTERACT_SUCCESS
 	if(istype(tool, /obj/item/tape))
-		balloon_alert(user, "won't fit!")
+		balloon_alert(user, "放不进去！")
 		return ITEM_INTERACT_BLOCKING
 	return ..()
 
@@ -87,9 +87,9 @@
 
 /obj/item/boombox/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_RMB] = "Control boombox"
-	context[SCREENTIP_CONTEXT_LMB] = "Pick up (Drag)"
-	context[SCREENTIP_CONTEXT_ALT_RMB] = "Change worn style"
+	context[SCREENTIP_CONTEXT_RMB] = "操作手提音响"
+	context[SCREENTIP_CONTEXT_LMB] = "拾起（拖动）"
+	context[SCREENTIP_CONTEXT_ALT_RMB] = "切换携带姿势"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/boombox/update_icon_state()
@@ -106,13 +106,13 @@
 /obj/item/boombox/proc/display_radial_menu(mob/living/user)
 	if(!user)
 		return FALSE
-	var/choice = show_radial_menu(user, src, boombox_acts, radius = 36, require_near = TRUE)
+	var/choice = chinese_boombox_radial(user, src, boombox_acts)
 	if(!choice)
 		return FALSE
 	switch(choice)
 		if("Play")
 			if(!tapedeck)
-				balloon_alert(user, "no tape!")
+				balloon_alert(user, "没有磁带！")
 				return
 			boombox_audio = tapedeck.song_inside
 			music_particles = new (src, /particles/musical_notes, PARTICLE_ATTACH_MOB)
@@ -123,7 +123,7 @@
 
 		if("Stop")
 			if(!boombox_audio)
-				balloon_alert(user, "nothing playing!")
+				balloon_alert(user, "没有正在播放的音乐！")
 				return
 			stop_music(user)
 			active = FALSE

@@ -503,22 +503,22 @@
 	merge_type = /obj/item/stack/tile/iron/recharge_floor
 
 /obj/item/stack/tile/iron/recharge_floor/dark
-	name = "dark recharge floor tile"
-	singular_name = "dark recharge floor tile"
+	name = "深色充电地板砖"
+	singular_name = "深色充电地板砖"
 	icon_state = "tile_dark_recharge"
 	turf_type = /turf/open/floor/iron/recharge_floor/dark
 	merge_type = /obj/item/stack/tile/iron/recharge_floor/dark
 
 /obj/item/stack/tile/iron/recharge_floor/white
-	name = "white recharge floor tile"
-	singular_name = "white recharge floor tile"
+	name = "白色充电地板砖"
+	singular_name = "白色充电地板砖"
 	icon_state = "tile_white_recharge"
 	turf_type = /turf/open/floor/iron/recharge_floor/white
 	merge_type = /obj/item/stack/tile/iron/recharge_floor/white
 
 /obj/item/stack/tile/iron/recharge_floor/smooth
-	name = "smooth recharge floor tile"
-	singular_name = "smooth recharge floor tile"
+	name = "光滑充电地板砖"
+	singular_name = "光滑充电地板砖"
 	icon_state = "tile_smooth_recharge"
 	turf_type = /turf/open/floor/iron/recharge_floor/smooth
 	merge_type = /obj/item/stack/tile/iron/recharge_floor/smooth

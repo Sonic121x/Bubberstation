@@ -550,7 +550,7 @@
 
 /datum/map_template/shuttle/emergency/departmental
 	who_can_purchase = null
-	admin_notes = "Parent shuttle for other departmental shuttles."
+	admin_notes = "其他部门专属穿梭机的父级模板。"
 	///requires a job_department datum to present it to communications console.
 	var/department_type = null
 	///requires a name of department to send it to ui.
@@ -560,32 +560,32 @@
 /datum/map_template/shuttle/emergency/departmental/command
 	suffix = "dep_cap"
 	name = "Command Emergency Shuttle"
-	description = "It could have been some oligarch's personal shuttle, but the union wouldn't let us make a deal, \
-	so this shuttle is being put into operation as an elite shuttle."
-	admin_notes = "Has Shutters and an Axe in bridge area."
+	description = "这本来可以成为某位寡头的私人穿梭机，但工会不让我们达成交易，\
+	所以现在把它作为精英专用穿梭机投入运营。"
+	admin_notes = "舰桥区配有卷帘门和一把斧头。"
 	credit_cost = CARGO_CRATE_VALUE * 17.5
 	who_can_purchase = list(ACCESS_CAPTAIN)
 	department_type = /datum/job_department/command
 	department_name = DEPARTMENT_COMMAND
-	occupancy_limit = "40, also 7 people can take part in banquet."
+	occupancy_limit = "40 人，另有 7 人可参加宴会。"
 
 /datum/map_template/shuttle/emergency/departmental/civil
 	suffix = "dep_civ"
 	name = "Assistants Emergency Shuttle"
-	description = "A shuttle designed to satisfy assistants' wishes. Converted into Maintenance Rooms."
-	admin_notes = "Maintenance Shuttle."
+	description = "为满足助理们的愿望而设计的穿梭机，内部改装成了维修区。"
+	admin_notes = "维修区风格穿梭机。"
 	credit_cost = CARGO_CRATE_VALUE * 5.5
 	who_can_purchase = list(ACCESS_CAPTAIN)
 	department_type = /datum/job_department/assistant
 	department_name = DEPARTMENT_ASSISTANT
-	occupancy_limit = "Fine for a bunch of assistans."
+	occupancy_limit = "足够容纳一群助理。"
 
 /datum/map_template/shuttle/emergency/departmental/engineering
 	suffix = "dep_eng"
 	name = "Engineering Emergency Shuttle"
-	description = "According to the engineers, the laws of physics reports that the shuttle cannot fly without energy, \
-	so we installed supermatter shard and atmos shuttle with turbine and mixing chamber."
-	admin_notes = "Has inactive supermatter shard, axe, insuls, free engi vending machines and electrified grilles, if engineers powers the shuttle."
+	description = "工程师们说，按照物理定律，穿梭机没有能源就飞不起来，\
+	所以我们装上了超物质碎片，并设置了带涡轮和混气室的大气处理区。"
+	admin_notes = "配有未启动的超物质碎片、斧头、绝缘手套和免费工程售货机；工程师为船供电后，格栅也会通电。"
 	credit_cost = CARGO_CRATE_VALUE * 15.5
 	who_can_purchase = list(ACCESS_CAPTAIN)
 	department_type = /datum/job_department/engineering
@@ -595,21 +595,21 @@
 /datum/map_template/shuttle/emergency/departmental/medical
 	suffix = "dep_med"
 	name = "Medical Emergency Shuttle"
-	description = "Someone decided that driving a shuttle and treating people is very convenient, \
-	so they decided to please the surgeons who perform heart operations and launched medical shuttle with a treating center, virology and chemistry lab."
-	admin_notes = "Has functioning pharmacy and virology."
+	description = "有人认为一边开穿梭机一边治病救人很方便，\
+	于是为了讨心脏外科医生们欢心，推出了配备治疗中心、病毒学实验室和化学实验室的医疗穿梭机。"
+	admin_notes = "配有可用的药房和病毒学实验室。"
 	credit_cost = CARGO_CRATE_VALUE * 12
 	who_can_purchase = list(ACCESS_CAPTAIN)
 	department_type = /datum/job_department/medical
 	department_name = DEPARTMENT_MEDICAL
-	occupancy_limit = "30 lives bodies and 1 dead body."
+	occupancy_limit = "30 名活人和 1 具遗体。"
 
 /datum/map_template/shuttle/emergency/departmental/science
 	suffix = "dep_sci"
 	name = "Science Emergency Shuttle"
-	description = "We're so fed up with scientists that we built a separate shuttle for them. \
-	We took real asteroid to build up ordnance lab and extension to xenobiology."
-	admin_notes = "Has functional R&D."
+	description = "我们受够了科学家们，所以专门给他们造了一艘穿梭机。\
+	还搬来了一块真正的小行星，用于建造军械实验室和异种生物学扩建区。"
+	admin_notes = "配有可用的研发设施。"
 	credit_cost = CARGO_CRATE_VALUE * 10
 	who_can_purchase = list(ACCESS_CAPTAIN)
 	department_type = /datum/job_department/science
@@ -619,20 +619,20 @@
 /datum/map_template/shuttle/emergency/departmental/security
 	suffix = "dep_sec"
 	name = "Security Emergency Shuttle"
-	description = "Created in honor of the Security Officer, who saved head of CC Representative. \
-	He was a very good man, until he died at the hands of a traitor."
-	admin_notes = "Has 2 prison cells, 1 holding cell and permabrig instead of seating area."
+	description = "为纪念一位救下中央指挥部代表性命的安保官而建造。\
+	他是个非常好的人，直到牺牲在叛徒手中。"
+	admin_notes = "配有 2 间牢房、1 间临时拘留室，以及取代乘坐区的永久监狱。"
 	credit_cost = CARGO_CRATE_VALUE * 16
 	who_can_purchase = list(ACCESS_CAPTAIN)
 	department_type = /datum/job_department/security
 	department_name = DEPARTMENT_SECURITY
-	occupancy_limit = "40 in prison crew and 10 freedom crew."
+	occupancy_limit = "40 名囚犯和 10 名自由船员。"
 
 /datum/map_template/shuttle/emergency/departmental/service
 	suffix = "dep_srv"
 	name = "Service Emergency Shuttle"
-	description = "Shuttle is built solely for bar hopping and has no tool storage or medbay."
-	admin_notes = "Shuttle is spacious, but many important things for a shuttle are missing."
+	description = "这艘穿梭机专为流连酒吧而造，没有工具库或医疗区。"
+	admin_notes = "空间宽敞，但缺少许多穿梭机的重要设施。"
 	credit_cost = CARGO_CRATE_VALUE * 8
 	who_can_purchase = list(ACCESS_CAPTAIN)
 	department_type = /datum/job_department/service
@@ -642,9 +642,9 @@
 /datum/map_template/shuttle/emergency/departmental/cargo
 	suffix = "dep_sup"
 	name = "Cargo Emergency Shuttle"
-	description = "It was built by order of the Cargotic separatists. \
-	Don't worry, every single one of the separatists has already been jailed. Project was that good, that we made that for public sale."
-	admin_notes = "Has unloaded rocket launcher and express suply console."
+	description = "应货运分离主义者的要求而建造。\
+	别担心，所有分离主义者都已入狱。设计实在太出色，所以我们决定公开销售。"
+	admin_notes = "配有未装弹的火箭筒和快速补给控制台。"
 	credit_cost = CARGO_CRATE_VALUE * 9.5
 	who_can_purchase = list(ACCESS_CAPTAIN)
 	department_type = /datum/job_department/cargo

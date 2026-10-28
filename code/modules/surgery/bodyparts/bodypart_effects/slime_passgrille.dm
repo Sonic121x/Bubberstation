@@ -53,7 +53,7 @@
 	if(owner.pass_flags & PASSGRILLE)
 		clear_passgrille()
 	if(try_spit_out())
-		to_chat(owner, span_warning("You get squeezed out of the crevice you were within!"))
+		to_chat(owner, span_warning("你被挤出了藏身的缝隙！"))
 
 /datum/status_effect/grouped/bodypart_effect/slime_passgrille/proc/try_spit_out()
 	var/turf/start_loc = get_turf(owner)
@@ -88,17 +88,17 @@
 	// squeeze time goes up if they have any items on - not for balance reasons, but just to let them now they're about to be stripped clean.
 	if(length(items))
 		squeeze_time += 2 SECONDS
-		warning_message = " (This will drop all of your equipment!)"
+		warning_message = "（这会让你掉落所有装备！）"
 	// another check is made for dangerous_unequip items, which will also add to the squeeze time and give a more specific warning message.
 	for(var/obj/item/thing as anything in items)
 		if(HAS_TRAIT(thing, TRAIT_DANGEROUS_UNEQUIP))
 			squeeze_time += 3 SECONDS
-			warning_message = " (This will drop ALL of your equipment, <b>including [thing]</b>!)"
+			warning_message = "（这会让你掉落所有装备，<b>包括[thing]</b>！）"
 			break
 
 	owner.visible_message(
-		span_warning("[owner] starts squeezing through the crevices within [bumped]..."),
-		span_notice("You start squeezing through the crevices within [bumped]...[warning_message]"),
+		span_warning("[owner]开始挤进[bumped]的缝隙……"),
+		span_notice("你开始挤进[bumped]的缝隙……[warning_message]"),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 
@@ -106,8 +106,8 @@
 		return
 
 	owner.visible_message(
-		span_warning("[owner] squeezes into the crevices within [bumped]!"),
-		span_notice("You squeeze into the crevices within [bumped]."),
+		span_warning("[owner]挤进了[bumped]的缝隙！"),
+		span_notice("你挤进了[bumped]的缝隙。"),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 

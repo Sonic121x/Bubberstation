@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -51,9 +51,9 @@ export const AtmosControlConsole = (props) => {
       : chambers.find((chamber) => chamber.id === chamberId);
   const [setActiveGasId, setActiveReactionId] = atmosHandbookHooks();
 
-  if (defaultGas) {
-    setActiveGasId(defaultGas);
-  }
+  useEffect(() => {
+    if (defaultGas) setActiveGasId(defaultGas);
+  }, [defaultGas, setActiveGasId]);
 
   return (
     <Window width={550} height={600}>

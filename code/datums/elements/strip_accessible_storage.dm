@@ -46,14 +46,14 @@
 
 /datum/element/strip_accessible_storage/proc/attempt_access(obj/item/source, atom/owner, mob/living/user)
 	owner.visible_message(
-		span_warning("[user] tries to open [owner]'s [source]..."),
-		span_userdanger("[user] is trying to open your [source]!"),
-		blind_message = span_hear("You hear rustling."),
+		span_warning("[user]试图打开[owner]的[source]……"),
+		span_userdanger("[user]正试图打开你的[source]！"),
+		blind_message = span_hear("你听到了窸窣声。"),
 		ignored_mobs = user,
 	)
-	to_chat(user, span_notice("You try to open [owner]'s [source]..."))
+	to_chat(user, span_notice("你试图打开[owner]的[source]……"))
 	if(astype(owner, /mob)?.is_blind())
-		to_chat(owner, span_userdanger("Someone is trying to open your [source]!"))
+		to_chat(owner, span_userdanger("有人正试图打开你的[source]！"))
 
 	if(!do_after(user, source.strip_delay + 1 SECONDS, owner, extra_checks = CALLBACK(src, PROC_REF(can_access_storage), source, owner, user) ))
 		return

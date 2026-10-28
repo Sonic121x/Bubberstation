@@ -135,7 +135,7 @@
 	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/chainsaw/dual
-	name = "Double-ended chainsaw spear"
+	name = "双头链锯长矛"
 	result = /obj/item/chainsaw/dual
 	reqs = list(
 		/datum/reagent/consumable/ethanol/beer = 20,

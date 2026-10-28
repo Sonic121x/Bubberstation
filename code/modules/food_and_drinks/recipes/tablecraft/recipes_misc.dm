@@ -591,7 +591,7 @@
 	dish_category = DISH_BREAD
 
 /datum/crafting_recipe/food/nutrient_bar
-	name = "Nutrient Bar"
+	name = "营养棒"
 	reqs = list(
 		/obj/item/food/grown/ash_flora/inozhakust = 2,
 		/datum/reagent/consumable/sugar = 3,

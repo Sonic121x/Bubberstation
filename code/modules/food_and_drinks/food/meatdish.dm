@@ -450,8 +450,8 @@
 	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT)
 
 /obj/item/food/polar_bear_steak
-	name = "fillet polar migrawr"
-	desc = "Because eating bear on fire wasn't slavic enough."
+	name = "极地熊吼菲力"
+	desc = "因为吃着火的熊肉还不够有斯拉夫风味。"
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "bearsteakfrost"
 	food_reagents = list(
@@ -461,7 +461,7 @@
 		/datum/reagent/consumable/ethanol/blue_blazer = 3,
 		/datum/reagent/toxin/berserker = 3
 	)
-	tastes = list("meat" = 1, "cold" = 1)
+	tastes = list("肉" = 1, "冰凉" = 1)
 	foodtypes = MEAT | ALCOHOL
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_EXOTIC
@@ -871,8 +871,8 @@
 	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT * 2)
 
 /obj/item/food/drake_ribs
-	name = "drake ribs"
-	desc = "Ribs from bear meat and scrapes of drake hide, slathered in BBQ sauce and Cold sauce. If it'd be any more meaty it'd inflict mental anguish upon vegans."
+	name = "龙肋排"
+	desc = "用熊肉和龙皮碎屑制成的肋排，涂满烧烤酱与冰冷酱。肉味再浓一点，就会让纯素食者精神崩溃。"
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "drake_ribs"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -883,7 +883,7 @@
 		/datum/reagent/consumable/frostoil = 5,
 		/datum/reagent/consumable/bbqsauce = 5,
 	)
-	tastes = list("meat" = 3, "cold sauce" = 1)
+	tastes = list("肉" = 3, "冰冷酱" = 1)
 	foodtypes = MEAT | SUGAR
 	crafting_complexity = FOOD_COMPLEXITY_3
 	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT * 2)
@@ -1298,8 +1298,8 @@
 
 /obj/item/food/wendigo_feast
 	trash_type = /obj/item/wendigo_skull
-	name = "wendigo feast"
-	desc = "A full load of meat, cold sauce and BBQ sauce. All topped by a Skull of a Wendigo stuffed with plants native to Freyja."
+	name = "温迪戈盛宴"
+	desc = "堆满肉、冰冷酱和烧烤酱的盛宴，顶上放着一颗塞满弗蕾亚本土植物的温迪戈头骨。"
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "wendigofeast"
 	food_reagents = list(
@@ -1311,7 +1311,7 @@
 		/datum/reagent/consumable/bbqsauce = 5,
 		/datum/reagent/toxin/berserker = 5,
 	)
-	tastes = list("chicken" = 3, "vegetables" = 1, "gravy" = 1)
+	tastes = list("鸡肉" = 3, "蔬菜" = 1, "肉汁" = 1)
 	foodtypes = MEAT | VEGETABLES | FRUIT | SUGAR
 	w_class = WEIGHT_CLASS_NORMAL
 	venue_value = FOOD_PRICE_EXOTIC

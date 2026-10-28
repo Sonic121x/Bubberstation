@@ -1,6 +1,6 @@
 /obj/item/food/grown/flower/poppy/blessed
-	name = "blessed poppy"
-	desc = "A strange poppy flower, one that has never seen the light of day."
+	name = "祝福罂粟"
+	desc = "一朵从未见过天日的奇异罂粟花。"
 	icon_state = "/obj/item/food/grown/flower/poppy/blessed"
 	post_init_icon_state = "map_flower"
 	icon = 'icons/map_icons/items/_item.dmi'
@@ -57,18 +57,18 @@
 	if(wearer.stat == STABLE)
 		save_count += 1
 		if(prob(25 * save_count))
-			to_chat(wearer, span_mansus("[src] withers away."))
+			to_chat(wearer, span_mansus("[src]枯萎了。"))
 			burn()
 
 	else if(SPT_PROB(33, seconds_per_tick))
 		new /obj/effect/temp_visual/heal(get_turf(src), pick(COLOR_PINK, COLOR_YELLOW))
 		if(prob(20))
-			wearer.visible_message(span_mansus("The petals of [wearer]'s [name] glow faintly."))
+			wearer.visible_message(span_mansus("[wearer]身上的[name]花瓣泛起微光。"))
 
 /obj/item/food/grown/flower/poppy/blessed/proc/heal_limb(seconds_per_tick)
 	var/obj/item/bodypart/limb = loc
 	if(!length(limb.wounds))
-		to_chat(limb.owner, span_mansus("[src] withers away."))
+		to_chat(limb.owner, span_mansus("[src]枯萎了。"))
 		burn()
 		return
 
@@ -94,7 +94,7 @@
 	if(healed && SPT_PROB(33, seconds_per_tick))
 		new /obj/effect/temp_visual/heal(get_turf(src), pick(COLOR_PINK, COLOR_YELLOW))
 		if(prob(20))
-			limb.owner.visible_message(span_mansus("The petals of [src] on [limb.owner]'s [limb.plaintext_zone] glow faintly."))
+			limb.owner.visible_message(span_mansus("[limb.owner]的[chinese_body_zone_display(limb.plaintext_zone)]上，[src]的花瓣泛起微光。"))
 
 #define LIMB_CATEGORY_POPPY "poppy"
 
@@ -105,20 +105,20 @@
 	var/mob/living/carbon/carbon_target = interacting_with
 	var/obj/item/bodypart/target_limb = carbon_target.get_bodypart(user.zone_selected)
 	if(isnull(target_limb))
-		carbon_target.balloon_alert(user, "no limb there!")
+		carbon_target.balloon_alert(user, "那里没有肢体！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!length(target_limb.wounds))
-		carbon_target.balloon_alert(user, "no wounds to heal!")
+		carbon_target.balloon_alert(user, "没有需要治疗的伤口！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(LAZYACCESS(target_limb.applied_items, LIMB_CATEGORY_POPPY))
-		carbon_target.balloon_alert(user, "already healing!")
+		carbon_target.balloon_alert(user, "已经在治疗了！")
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice("[user] lays [src] over [carbon_target == user ? "[user.p_their()] own" : "[carbon_target]'s"] [target_limb.plaintext_zone]."),
-		span_notice("You lay [src] over [carbon_target == user ? "your" : "[carbon_target]'s"] [target_limb.plaintext_zone]."),
+		span_notice("[user]将[src]敷在[carbon_target == user ? "自己" : "[carbon_target]"]的[chinese_body_zone_display(target_limb.plaintext_zone)]上。"),
+		span_notice("你将[src]敷在[carbon_target == user ? "自己" : "[carbon_target]"]的[chinese_body_zone_display(target_limb.plaintext_zone)]上。"),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		vision_distance = 5,
 	)
@@ -126,8 +126,8 @@
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_mansus("[user] lays [src] over [carbon_target == user ? "[user.p_their()] own" : "[carbon_target]'s"] [target_limb.plaintext_zone]. The petals begin to glow, as vines begin to wrap the limb."),
-		span_mansus("You lay [src] over [carbon_target == user ? "your" : "[carbon_target]'s"] [target_limb.plaintext_zone]. The petals begin to glow, as vines begin to wrap the limb."),
+		span_mansus("[user]将[src]敷在[carbon_target == user ? "自己" : "[carbon_target]"]的[chinese_body_zone_display(target_limb.plaintext_zone)]上。花瓣开始发光，藤蔓缠绕住了肢体。"),
+		span_mansus("你将[src]敷在[carbon_target == user ? "自己" : "[carbon_target]"]的[chinese_body_zone_display(target_limb.plaintext_zone)]上。花瓣开始发光，藤蔓缠绕住了肢体。"),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		vision_distance = 5,
 	)

@@ -264,7 +264,7 @@
 	imp_type = /obj/item/implant/explosive/macro
 
 /obj/item/implanter/explosive_macro/fake
-	name = "implanter (fake macrobomb)"
+	name = "植入器（假大型炸弹）"
 	imp_type = /obj/item/implant/explosive/macro/fake
 
 /obj/item/implanter/tactical_deniability

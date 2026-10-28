@@ -248,8 +248,8 @@
 	variation = 6
 
 /obj/item/spear/pillow
-	name = "pillow lance"
-	desc = "Looks like someone duct-taped a body-pillow onto a long pole, as some kind of blunt spear."
+	name = "抱枕骑枪"
+	desc = "看起来有人用胶带把抱枕绑在长杆上，做成了一种钝头长矛。"
 	damtype = STAMINA
 	force_unwielded = 12
 	force_wielded = 18
@@ -305,7 +305,7 @@
 		if(current_tile_charge >= min_tile_charge)
 			if(!charging)
 				user.add_movespeed_modifier(/datum/movespeed_modifier/lance_charge)
-				user.balloon_alert(user, "charging!")
+				user.balloon_alert(user, "冲锋中！")
 				charging = TRUE
 			user.adjust_stamina_loss(stamina_per_tile)
 		current_tile_charge++
@@ -315,7 +315,7 @@
 	SIGNAL_HANDLER
 
 	if(current_tile_charge < min_tile_charge)
-		user.balloon_alert(user, "too slow!")
+		user.balloon_alert(user, "太慢了！")
 		return
 	INVOKE_ASYNC(target, TYPE_PROC_REF(/atom, attackby), src, user)
 	target.adjust_stamina_loss(damage_boost_per_tile * current_tile_charge)
@@ -328,8 +328,8 @@
 	new /obj/effect/temp_visual/pillow_hit(get_turf(target))
 
 /obj/item/shield/mattress
-	name = "mattress shield"
-	desc = "A typical twin mattress repurposed into a makeshift shield"
+	name = "床垫盾牌"
+	desc = "一张普通单人床垫，被改造成了临时盾牌。"
 	icon_state = "mattress_shield"
 	inhand_icon_state = "mattress_shield"
 	damtype = STAMINA
@@ -368,7 +368,7 @@
 	block_chance += 20
 	ADD_TRAIT(user, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, HELD_ITEM_TRAIT)
 	user.add_movespeed_modifier(/datum/movespeed_modifier/pillow_fortify)
-	user.visible_message(span_alert("[user.name] hunkers down into a defensive stance!"))
+	user.visible_message(span_alert("[user.name]压低身体，摆出了防御姿态！"))
 	user.add_filter(FORTIFY_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 0, "size" = 1))
 	var/filter = user.get_filter(FORTIFY_FILTER)
 	animate(filter, alpha = 200, time = 0.5 SECONDS, loop = -1)
@@ -383,6 +383,6 @@
 	var/filter = user.get_filter(FORTIFY_FILTER)
 	animate(filter)
 	user.remove_filter(FORTIFY_FILTER)
-	user.visible_message(span_alert("[user] loosens up and relaxes a bit."))
+	user.visible_message(span_alert("[user]松开架势，稍稍放松下来。"))
 
 #undef FORTIFY_FILTER

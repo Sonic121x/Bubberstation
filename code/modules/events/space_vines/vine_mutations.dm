@@ -75,7 +75,7 @@
 	hue = "#B2EA70"
 	quality = POSITIVE
 	severity = SEVERITY_TRIVIAL
-	venus_flavor_text = "Light - Your body emits a glowing light"
+	venus_flavor_text = "发光——你的身体会发出光芒"
 
 /datum/spacevine_mutation/light/on_grow(obj/structure/spacevine/vine)
 	if(vine.growth_stage)
@@ -90,7 +90,7 @@
 	hue = "#9B3675"
 	severity = SEVERITY_AVERAGE
 	quality = NEGATIVE
-	venus_flavor_text = "Toxin Resistance - Immune to chemical weedkillers and toxins"
+	venus_flavor_text = "毒素抗性——免疫化学除草剂和毒素"
 	var/required_coverage = HEAD|CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 
 /datum/spacevine_mutation/toxicity/on_cross(obj/structure/spacevine/vine, mob/living/crosser)
@@ -131,7 +131,7 @@
 	hue = "#D83A56"
 	quality = NEGATIVE
 	severity = SEVERITY_MAJOR
-	venus_flavor_text = "Explosive - You will violently explode upon death"
+	venus_flavor_text = "爆炸——你死亡时会发生猛烈爆炸"
 
 /datum/spacevine_mutation/explosive/on_explosion(explosion_severity, target, obj/structure/spacevine/vine)
 	if(explosion_severity >= EXPLODE_DEVASTATE)
@@ -158,7 +158,7 @@
 	hue = "#FF616D"
 	quality = MINOR_NEGATIVE
 	severity = SEVERITY_ABOVE_AVERAGE
-	venus_flavor_text = "Heat Resistance - Immune to extreme heat and fire"
+	venus_flavor_text = "耐热——免疫极端高温和火焰"
 
 /datum/spacevine_mutation/fire_proof/on_hit(obj/structure/spacevine/vine, obj/item/item,  mob/living/hitter, list/modifiers, list/attack_modifiers)
 	if(item?.damtype == BURN)
@@ -179,7 +179,7 @@
 	hue = "#0BD5D9"
 	quality = MINOR_NEGATIVE
 	severity = SEVERITY_AVERAGE
-	venus_flavor_text = "Cold Resistance - Immune to freezing temperatures"
+	venus_flavor_text = "耐寒——免疫严寒"
 
 /datum/spacevine_mutation/cold_proof/on_grow(obj/structure/spacevine/vine)
 	vine.resistance_flags |= FREEZE_PROOF
@@ -219,7 +219,7 @@
 	hue = "#F4A442"
 	quality = MINOR_NEGATIVE
 	severity = SEVERITY_MINOR
-	venus_flavor_text = "Vine Eating - Increased regeneration while on vines"
+	venus_flavor_text = "吞食藤蔓——站在藤蔓上时恢复更快"
 
 /// Destroys any vine on spread-target's tile. The checks for if this should be done are in the spread() proc.
 /datum/spacevine_mutation/vine_eating/on_spread(obj/structure/spacevine/vine, turf/target)
@@ -235,7 +235,7 @@
 	hue = "#316b2f"
 	severity = SEVERITY_MAJOR
 	quality = NEGATIVE
-	venus_flavor_text = "Aggressive Spreading - Can travel farther away from vines before taking damage"
+	venus_flavor_text = "强势扩张——可离开藤蔓更远才会受到伤害"
 
 /// Checks mobs on spread-target's turf to see if they should be hit by a damaging proc or not.
 /datum/spacevine_mutation/aggressive_spread/on_spread(obj/structure/spacevine/vine, turf/turf, mob/living)
@@ -303,7 +303,7 @@
 	hue = ""
 	quality = POSITIVE
 	severity = SEVERITY_TRIVIAL
-	venus_flavor_text = "Transparency - Your body is transparent"
+	venus_flavor_text = "透明——你的身体是透明的"
 
 /datum/spacevine_mutation/transparency/on_birth(obj/structure/spacevine/vine)
 	vine.light_state = PASS_LIGHT
@@ -372,7 +372,7 @@
 	hue = "#9ECCA4"
 	severity = SEVERITY_AVERAGE
 	quality = NEGATIVE
-	venus_flavor_text = "Thorny - Your physical attacks deal reduced damage but cause wounds"
+	venus_flavor_text = "荆棘——物理攻击伤害降低，但会造成创伤"
 
 /datum/spacevine_mutation/thorns/on_cross(obj/structure/spacevine/vine, mob/living/crosser)
 	if(isvineimmune(crosser) || HAS_TRAIT(crosser, TRAIT_PIERCEIMMUNE))
@@ -411,7 +411,7 @@
 	hue = "#997700"
 	quality = NEGATIVE
 	severity = SEVERITY_ABOVE_AVERAGE
-	venus_flavor_text = "Hardened - Increased health"
+	venus_flavor_text = "硬化——生命值提高"
 
 /datum/spacevine_mutation/hardened/on_grow(obj/structure/spacevine/vine)
 	if(vine.growth_stage)
@@ -432,7 +432,7 @@
 	hue = "#a4a9ac"
 	quality = POSITIVE
 	severity = SEVERITY_MINOR
-	venus_flavor_text = "Timid - You no longer have the ability to shoot tangling vines at targets"
+	venus_flavor_text = "胆怯——无法再向目标发射缠绕藤蔓"
 
 //This specific mutation only covers floors instead of structures, items, mobs and cant tangle mobs
 /datum/spacevine_mutation/timid/on_birth(obj/structure/spacevine/vine)
@@ -465,8 +465,8 @@
 		vine.entangle(crosser)
 
 /datum/spacevine_mutation/slippery
-	name = "Slippery"
-	description = "Causes the vines to be slippery"
+	name = "湿滑"
+	description = "使藤蔓变得湿滑"
 	hue = "#a5980c"
 	quality = NEGATIVE
 	severity = SEVERITY_AVERAGE
@@ -494,8 +494,8 @@
 		attacking_item?.AddComponent(/datum/component/slippery_item, fall_chance=25, fall_catch_chance=25, duration=5 SECONDS)
 
 /datum/spacevine_mutation/conductive
-	name = "Conductive"
-	description = "Causes the vines to be electrified when on top of cables"
+	name = "导电"
+	description = "使长在电缆上的藤蔓带电"
 	hue = "#ad5c00"
 	quality = NEGATIVE
 	severity = SEVERITY_MINOR
@@ -523,8 +523,8 @@
 	attempt_shock(vine, buckled)
 
 /datum/spacevine_mutation/radioactive
-	name = "Radioactive"
-	description = "Causes the vines to be radioactive"
+	name = "放射性"
+	description = "使藤蔓带有放射性"
 	hue = "#09b82f"
 	quality = NEGATIVE
 	severity = SEVERITY_MAJOR

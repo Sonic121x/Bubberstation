@@ -110,7 +110,7 @@
 		return ..()
 	moth_snack ||= create_moth_snack()
 	if(isnull(moth_snack))
-		to_chat(user, span_warning("You can't eat [src]!"))
+		to_chat(user, span_warning("你不能吃[src]！"))
 		return
 	moth_snack.attack(target, user, modifiers)
 

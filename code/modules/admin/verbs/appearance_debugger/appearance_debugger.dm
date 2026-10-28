@@ -187,7 +187,7 @@
 				SET_PLANE_IMPLICIT(proxy_view_selected, selected_appearance.plane)
 
 		if ("pickBackdropColor")
-			backdrop_color = tgui_color_picker(usr, "Choose preview backdrop color:", "Backdrop Color", backdrop_color || COLOR_WHITE)
+			backdrop_color = tgui_color_picker(usr, "选择预览背景颜色：", "背景颜色", backdrop_color || COLOR_WHITE)
 			if (!isnull(hover_id))
 				set_appearance_proxy(proxy_view_hover, hover_id)
 			if (!isnull(selected_id))

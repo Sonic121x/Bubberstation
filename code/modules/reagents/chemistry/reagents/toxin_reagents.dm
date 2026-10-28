@@ -300,18 +300,18 @@
 		data += dna
 
 /obj/item/paper/guides/carnivorous_blood
-	name = "Thank you for your purchase!"
-	default_raw_text = "We thank you for your purchase of a sample of Carnivorous Blood for your \[MEDICAL RESEARCH\].\
-	<br>We at Interdyne Pharmaceuticals love to see passion for the field of \[BLOODOLOGY\].\
-	<br>We hope to see you succeed in your goal of \[JUSTGIVEIT\].\
-	<br>Please exercise caution. Interdyne Pharmaceuticals is not responsible for bodily harm caused by the substance.\
+	name = "感谢惠顾！"
+	default_raw_text = "感谢您购买食血生物剂样本，用于您的\[医学研究\]。\
+	<br>英特戴恩制药公司很高兴看到您对\[血液学\]领域的热情。\
+	<br>我们祝愿您实现\[快把它给我\]的目标。\
+	<br>请谨慎使用。英特戴恩制药公司不对该物质造成的人身伤害负责。\
 	<br>\
-	<br>☣BIOHAZARD WARNING☣\
+	<br>☣生物危害警告☣\
 	<ul>\
-	<li>NEVER allow Carnivorous Blood to enter a living being's bloodstream. The substance has been found to rapidly deplete blood cell counts.\
-	<li>NEVER mix Carnivorous Blood with actual blood outside a living being. Doing so will greatly increase the risk to the blood's donor if the substance finds itself within their bloodstream.\
-	<li>If three or more beings have had their blood mixed with a sample of Carnivorous Blood, this additional risk no longer applies, though the sample should be disposed of immediately.\
-	<li>NEVER mix liquified meat, or any other high-protein liquid, with Carnivorous Blood. Doing so will cause the substance to rapidly self-replicate.\
+	<li>绝不可让食血生物剂进入活体的血液循环。已发现该物质会迅速减少血细胞数量。\
+	<li>绝不可在活体外将食血生物剂与真正的血液混合。若该物质随后进入供血者体内，将大幅增加对其的危害。\
+	<li>若一份食血生物剂样本混入了三个或更多生物的血液，上述额外风险将不再适用，但仍应立即处置该样本。\
+	<li>绝不可将液化肉或任何其他高蛋白液体与食血生物剂混合，否则该物质会迅速自我复制。\
 	</ul>\
 	"
 
@@ -1793,13 +1793,13 @@
 		affected_mob.change_mob_type(/mob/living/basic/spider/giant, delete_old_mob = TRUE)
 
 /datum/reagent/toxin/berserker
-	name = "Berserker Toxin"
-	description = "A psychoactive substance irritating the neural sectors responsible for fight or flight response, damaging them in the process."
+	name = "狂战士毒素"
+	description = "一种精神活性物质，会刺激负责战斗或逃跑反应的神经区域，并在过程中损伤它们。"
 	silent_toxin = TRUE
 	color = "#ad378d"
 	penetrates_skin = VAPOR
 	toxpwr = 0.2
-	taste_description = "bitter rage"
+	taste_description = "苦涩的怒火"
 	chemical_flags = REAGENT_NO_RANDOM_RECIPE
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_ANALGESIA, TRAIT_STIMULATED)
@@ -1830,6 +1830,6 @@
 /datum/reagent/toxin/berserker/proc/on_stamcrit(mob/living/affected_mob)
 	SIGNAL_HANDLER
 	affected_mob.set_stamina_loss(90, updating_stamina = TRUE)
-	to_chat(affected_mob, span_message("This can't end like this... Blood rushes away from your head..."))
+	to_chat(affected_mob, span_message("不能就这样结束……你感到脑中的血液迅速退去……"))
 	volume -= volume
 	return STAMCRIT_CANCELLED

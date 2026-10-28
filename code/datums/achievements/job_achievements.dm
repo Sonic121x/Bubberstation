@@ -47,8 +47,8 @@
 	icon_state = "snail"
 
 /datum/award/achievement/jobs/bag_of_holding
-	name = "Prepare for Unforeseen Consequences"
-	desc = "Cause significant amounts of property damage with your experimental technology."
+	name = "准备迎接不可预见的后果"
+	desc = "使用你的实验性技术造成大量财产损失。"
 	database_id = MEDAL_BAG_OF_HOLDING
 	icon_state = "bag_of_holding"
 

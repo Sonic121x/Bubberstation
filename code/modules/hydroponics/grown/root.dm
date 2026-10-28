@@ -183,11 +183,11 @@
 
 /// Drake Beet
 /obj/item/seeds/drake_beet
-	name = "drake beet seed pack"
-	desc = "These seeds grow into drake beet producing plants."
+	name = "龙形甜菜种子包"
+	desc = "这些种子会长成结出龙形甜菜的植株。"
 	icon_state = "seed-drakebeet"
 	species = "drakebeet"
-	plantname = "Drake-Beet Plants"
+	plantname = "龙形甜菜植株"
 	product = /obj/item/food/grown/drake_beet
 	lifespan = 60
 	endurance = 60
@@ -201,8 +201,8 @@
 
 /obj/item/food/grown/drake_beet
 	seed = /obj/item/seeds/drake_beet
-	name = "drake beet"
-	desc = "Despite the intimidating exterior, drakebeets are actually rich in sugars, extracted from the soil. And just slightly spicy."
+	name = "龙形甜菜"
+	desc = "虽然外表吓人，龙形甜菜却富含从土壤中提取的糖分，还带着一点辣味。"
 	icon_state = "drakebeet"
 	bite_consumption_mod = 2
 	foodtypes = VEGETABLES

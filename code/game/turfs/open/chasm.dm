@@ -143,7 +143,7 @@
 
 // Chasm produced by the Pride ruin. Leads to a random space Z-level at the same x/y coordinate.
 /turf/open/chasm/pride
-	desc = "It's beautiful down there, dotted with pinpricks of light."
+	desc = "下方点缀着星星点点的微光，美不胜收。"
 	baseturfs = /turf/open/chasm/pride
 	light_color = COLOR_STARLIGHT
 	light_range = 1.9

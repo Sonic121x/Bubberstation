@@ -133,15 +133,15 @@
 		return NONE
 
 	playsound(user,'sound/items/weapons/bladeslice.ogg', 50)
-	user.visible_message(span_suicide("[user] moves [user.p_their()] head in the way of [src]'s blades! \
-		It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]把头伸向[src]的叶片！\
+		看起来[user.p_they()]正在试图自杀！"))
 	user.set_suicide(TRUE)
 	user.apply_damage(75, BRUTE, BODY_ZONE_HEAD, wound_bonus = 100, forced = TRUE, sharpness = SHARP_EDGED, attacking_item = src)
 	if(head.dismember())
 		user.death() // anti-ling check
 		return MANUAL_SUICIDE
 
-	user.visible_message(span_suicide("...but fails to separate [user.p_their()] head from [user.p_their()] body! Ouch!"))
+	user.visible_message(span_suicide("……但没能让自己身首异处！好痛！"))
 	return SHAME
 
 ///Updates the worn back icon for the current loc

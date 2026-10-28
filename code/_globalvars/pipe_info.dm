@@ -92,87 +92,87 @@
 		dirtype = id_atmos::construction_type::RPD_type
 
 /datum/pipe_info/pipe/bridge_pipe
-	name = "Bridge Pipe"
-	desc = "Can be used to cross pipelines of the same layer and color without accidentally joining them together.<br>\
-		Redundant for pipelines on different layers or of different colors."
+	name = "跨接管"
+	desc = "可让同层同色的管线交叉而不意外相连。<br>\
+		不同层或不同颜色的管线无需使用。"
 	id = /obj/machinery/atmospherics/pipe/bridge_pipe
 	all_layers = TRUE
 
 /datum/pipe_info/pipe/multiz_connector
-	name = "Multi-Deck Adapter"
-	desc = "Directly connects pipelines vertically across station levels."
+	name = "跨层适配管"
+	desc = "将空间站不同楼层的管线直接垂直连接。"
 	id = /obj/machinery/atmospherics/pipe/multiz
 	all_layers = FALSE
 
 /datum/pipe_info/pipe/manual_valve
-	name = "Manual Valve"
-	desc = "Blocks the flow of gas through the pipeline.<br>Cannot be operated by silicons. Does not require power."
+	name = "手动阀门"
+	desc = "阻断管线中的气流。<br>硅基生命无法操作。无需供电。"
 	id = /obj/machinery/atmospherics/components/binary/valve
 	all_layers = TRUE
 
 /datum/pipe_info/pipe/digital_valve
-	name = "Digital Valve"
-	desc = "Blocks the flow of gas through the pipeline.<br>Can be operated by silicons. Does not require power, despite being digital."
+	name = "数字阀门"
+	desc = "阻断管线中的气流。<br>可由硅基生命操作。虽然是数字设备，但无需供电。"
 	id = /obj/machinery/atmospherics/components/binary/valve/digital
 	all_layers = TRUE
 
 /datum/pipe_info/pipe/gas_pump
-	name = "Pressure Pump"
-	desc = "Moves gas from one pipeline to another.<br>Transfers a variable amount of gas until the output network reaches the configured pressure."
+	name = "压力泵"
+	desc = "将气体从一条管线输送至另一条。<br>输送量可变，直到输出管网达到设定压力。"
 	id = /obj/machinery/atmospherics/components/binary/pump
 	all_layers = TRUE
 
 /datum/pipe_info/pipe/volume_pump
-	name = "Volume Pump"
-	desc = "Moves gas from one pipeline to another.<br>Transfers a fixed volume of gas based on the configured volume.<br>\
-		Can be overclocked to increase volume moved, though potentially causing leaks."
+	name = "容积泵"
+	desc = "将气体从一条管线输送至另一条。<br>按照设定值输送固定体积的气体。<br>\
+		可超频以增大输送体积，但可能造成泄漏。"
 	id = /obj/machinery/atmospherics/components/binary/volume_pump
 	all_layers = TRUE
 
 /datum/pipe_info/pipe/passive_gate
-	name = "Passive Gate"
-	desc = "Blocks the flow of gas through the pipeline while the output pipeline has higher pressure \
-		than either the configured pressure or the input pipeline's pressure.<br>Does not allow backwards flow, and does not require power."
+	name = "被动阀"
+	desc = "当输出管线的压力高于设定压力\
+		或输入管线压力时，阻断管线中的气流。<br>不允许逆流，无需供电。"
 	id = /obj/machinery/atmospherics/components/binary/passive_gate
 	all_layers = TRUE
 
 /datum/pipe_info/pipe/pressure_valve
-	name = "Pressure Gate"
-	desc = "Blocks the flow of gas through the pipeline while the input pipeline's pressure \
-		is below the configured pressure.<br>Does not allow backwards flow, and does not require power."
+	name = "压力阀"
+	desc = "当输入管线的压力\
+		低于设定压力时，阻断管线中的气流。<br>不允许逆流，无需供电。"
 	id = /obj/machinery/atmospherics/components/binary/pressure_valve
 	all_layers = TRUE
 
 /datum/pipe_info/pipe/temperature_gate
-	name = "Temperature Gate"
-	desc = "Blocks the flow of gas through the pipeline while the input pipeline's temperature is below the configured temperature.<br>\
-		Does not allow backwards flow, and can be multitooled to instead check for exceeding the configured temperature."
+	name = "温控阀"
+	desc = "当输入管线温度低于设定温度时，阻断管线中的气流。<br>\
+		不允许逆流，可用多功能工具改为在超过设定温度时阻断。"
 	id = /obj/machinery/atmospherics/components/binary/temperature_gate
 	all_layers = TRUE
 
 /datum/pipe_info/pipe/temperature_pump
-	name = "Temperature Pump"
-	desc = "Moves heat from one pipeline to another, cooling the input pipeline and heating the output pipeline. No gas is transferred."
+	name = "热泵"
+	desc = "将热量从一条管线传递至另一条，使输入管线冷却、输出管线升温。不会输送气体。"
 	id = /obj/machinery/atmospherics/components/binary/temperature_pump
 	all_layers = TRUE
 
 /datum/pipe_info/pipe/vent
-	name = "Pump Vent"
-	desc = "A vent with an inbuilt pressure pump.<br>Forces gas from the connected pipeline into the exterior atmosphere, \
-		or pulls gas from the exterior atmosphere into the connected pipeline, depending on air alarm configuration.<br>\
-		Can be overclocked."
+	name = "通风泵"
+	desc = "内置压力泵的通风口。<br>根据空气警报器的设置，将相连管线中的气体排入外部环境，\
+		或将外部环境中的气体吸入管线。<br>\
+		可超频。"
 	id = /obj/machinery/atmospherics/components/unary/vent_pump
 	all_layers = TRUE
 
 /datum/pipe_info/pipe/passive_vent
-	name = "Passive Vent"
-	desc = "Combines exterior atmosphere with the connected pipeline.<br>Does not require power."
+	name = "被动通风口"
+	desc = "使外部环境与相连管线中的气体自然交换。<br>无需供电。"
 	id = /obj/machinery/atmospherics/components/unary/passive_vent
 	all_layers = TRUE
 
 /datum/pipe_info/pipe/heat_exchanger
-	name = "Heat Exchanger"
-	desc = "When directly facing another heat exchanger, balances the temperature of the gases within each connected pipeline."
+	name = "热交换器"
+	desc = "与另一台热交换器正面相对时，使双方相连管线中的气体温度趋于一致。"
 	id = /obj/machinery/atmospherics/components/unary/heat_exchanger
 	all_layers = FALSE
 

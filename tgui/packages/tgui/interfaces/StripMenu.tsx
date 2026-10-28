@@ -115,7 +115,7 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
 
   access_storage: {
     icon: 'box-open',
-    text: 'Open',
+    text: '打开',
   },
 
   adjust_bridle: {

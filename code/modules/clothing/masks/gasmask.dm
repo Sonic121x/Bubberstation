@@ -350,8 +350,8 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 		return TRUE
 
 /obj/item/clothing/mask/gas/clown_hat/clownops
-	name = "tactical clown wig and mask"
-	desc = "A tactical twist on a troubadour's tradition."
+	name = "战术小丑假发面具"
+	desc = "为巡游艺人的传统装扮增添战术风格。"
 	flash_protect = FLASH_PROTECTION_FLASH
 	resistance_flags = FIRE_PROOF
 	flags_cover = MASKCOVERSEYES | PEPPERPROOF

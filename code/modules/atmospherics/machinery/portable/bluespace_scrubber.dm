@@ -1,7 +1,7 @@
 //BLUESPACE SCRUBBER
 /obj/machinery/portable_atmospherics/scrubber/bluespace
-	name = "portable bluespace scrubber"
-	desc = "A portable variant of the station scrubbers, capable of filtering gas from the air around it or inserted tank. May also be linked with bluespace gas receivers."
+	name = "便携式蓝空间洗气机"
+	desc = "空间站洗气机的便携版本，可从周围空气或插入的气罐中滤出气体。也可连接蓝空间气体接收器。"
 	icon_state = "bluespace_scrubber"
 
 	var/obj/machinery/portable_atmospherics/gas_receiver/target = null
@@ -13,12 +13,12 @@
 //Links scrubber with a bluespace gas receiver with multitool
 /obj/machinery/portable_atmospherics/scrubber/bluespace/multitool_act(mob/living/user, obj/item/multitool/M)
 	if(!istype(M.buffer, /obj/machinery/portable_atmospherics/gas_receiver))
-		to_chat(user, span_warning("Invalid buffer."))
+		to_chat(user, span_warning("缓冲区中的目标无效。"))
 		return ITEM_INTERACT_BLOCKING
 
 	set_teleport_target(M.buffer)
 
-	to_chat(user, span_green("You successfully link [src] to the [M.buffer]."))
+	to_chat(user, span_green("你成功将[src]连接至[M.buffer]。"))
 	return ITEM_INTERACT_SUCCESS
 
 //Set a receiving gas object, cleaning up any previous link first.
@@ -71,8 +71,8 @@
 
 //GAS RECEIVER
 /obj/machinery/portable_atmospherics/gas_receiver
-	name = "Bluespace Gas Receiver"
-	desc = "Receive gases from a bluespace portable scrubber."
+	name = "蓝空间气体接收器"
+	desc = "接收便携式蓝空间洗气机传送的气体。"
 	icon_state = "bluespace_gas_receiver"
 	density = TRUE
 	max_integrity = 250
@@ -108,7 +108,7 @@
 
 /obj/machinery/portable_atmospherics/gas_receiver/multitool_act(mob/living/user, obj/item/multitool/M)
 	M.set_buffer(src)
-	balloon_alert(user, "saved to multitool buffer")
+	balloon_alert(user, "已保存至多功能工具缓冲区")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/portable_atmospherics/gas_receiver/click_alt(mob/user)
@@ -119,7 +119,7 @@
 	on = !on
 	update_icon_state()
 
-	balloon_alert(user, "turned [on ? "on" : "off"]")
+	balloon_alert(user, "已[on ? "开启" : "关闭"]")
 	investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
 	return CLICK_ACTION_SUCCESS
 
@@ -156,5 +156,5 @@
 // wirecutter makes it lose all its senders
 /obj/machinery/portable_atmospherics/gas_receiver/wirecutter_act(mob/living/user, obj/item/I)
 	lose_senders()
-	to_chat(user, span_warning("All scrubbers has been disconnected from receiver."))
+	to_chat(user, span_warning("所有洗气机都已与接收器断开连接。"))
 	return ITEM_INTERACT_SUCCESS

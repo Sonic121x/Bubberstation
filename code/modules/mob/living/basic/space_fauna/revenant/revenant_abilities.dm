@@ -21,8 +21,8 @@
 	return ..(get_turf(revenant), 2)
 
 /datum/action/mirror_talk
-	name = "Mirror Talk"
-	desc = "Communicate with the living world through your prison."
+	name = "镜中低语"
+	desc = "通过囚禁你的牢笼与生者世界交流。"
 	background_icon_state = "bg_revenant"
 	overlay_icon_state = "bg_revenant_border"
 	button_icon = 'icons/mob/actions/actions_revenant.dmi'
@@ -38,7 +38,7 @@
 	var/obj/structure/mirror/mirror = astype(clicker.loc)
 	if(!mirror)
 		return FALSE
-	var/message = tgui_input_text(clicker, "What do you wish to say?", "Mirror Talk", max_length = MAX_MESSAGE_LEN)
+	var/message = tgui_input_text(clicker, "你想说什么？", "镜中低语", max_length = MAX_MESSAGE_LEN)
 	if(!message || QDELETED(src) || QDELETED(clicker) || !IsAvailable())
 		return FALSE
 	clicker.log_message("\"[message]\"", LOG_SAY)

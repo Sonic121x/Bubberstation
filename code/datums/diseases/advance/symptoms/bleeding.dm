@@ -70,8 +70,8 @@
 	REMOVE_TRAIT(carbon_host, TRAIT_EASYBLEED, DISEASE_TRAIT)
 
 /datum/symptom/hypertension
-	name = "Hypertension"
-	desc = "Dramatically increases blood pressure, leading to blood vessels bursting open across the host's body."
+	name = "高血压"
+	desc = "大幅升高血压，导致宿主全身多处血管破裂。"
 	stealth = -2
 	resistance = -1
 	stage_speed = -1
@@ -91,9 +91,9 @@
 	for(var/datum/reagent/poison as anything in chems)
 		list_of_names += poison::name
 	threshold_descs = list(
-		"Resistance 7" = "Additionally synthesizes [english_list(list_of_names)] inside the host.",
-		"Stage Speed 9" = "Increases the frequency of inflicted wounds.",
-		"Transmission 8" = "Randomly increases the severity of inflicted wounds and quantity of chems synthesized."
+		"抗性 7" = "额外在宿主体内合成[english_list(list_of_names)]。",
+		"阶段速度 9" = "提高造成伤口的频率。",
+		"传染性 8" = "随机提高伤口严重程度及化学物质的合成量。"
 	)
 
 /datum/symptom/hypertension/Start(datum/disease/advance/our_disease)
@@ -123,7 +123,7 @@
 		return // full borg or borg with organic stumps
 	var/obj/item/bodypart/victim_limb = pick(bleeding_bodyparts)
 	var/wound_severity = WOUND_SEVERITY_MODERATE
-	var/warning = "Your [victim_limb.name] tears itself open!"
+	var/warning = "你的[victim_limb.name]自行裂开了！"
 	if(our_disease.stage >= 4)
 		wound_severity = WOUND_SEVERITY_SEVERE
 		if(adding_chems)
@@ -134,7 +134,7 @@
 				chance = 66
 			if(prob(chance))
 				wound_severity = WOUND_SEVERITY_CRITICAL
-				warning = "The blood vessels in your [victim_limb.name] suddenly rip open!"
+				warning = "你[victim_limb.name]里的血管突然破裂了！"
 				if(adding_chems)
 					add_reagents(carbon_host) // Crit slashes add twice as many chems
 	if (carbon_host.cause_wound_of_type_and_severity(WOUND_SLASH, victim_limb, wound_severity))

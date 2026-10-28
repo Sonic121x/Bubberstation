@@ -29,7 +29,7 @@
 	category = CAT_TILES
 
 /datum/crafting_recipe/goliath
-	name = "Goliath Carpet"
+	name = "歌利亚皮地毯"
 	result = /obj/item/stack/tile/carpet/goliath
 	reqs = list(
 		/obj/item/stack/sheet/animalhide/goliath_hide = 1,
@@ -38,7 +38,7 @@
 	result_amount = 4
 
 /datum/crafting_recipe/stained_glass_red
-	name = "Red Stained Glass"
+	name = "红色彩绘玻璃"
 	reqs = list(
 		/obj/item/stack/tile/glass = 40,
 		/obj/item/stack/rods = 20,
@@ -49,7 +49,7 @@
 	category = CAT_TILES
 
 /datum/crafting_recipe/stained_glass_orange
-	name = "Orange Stained Glass"
+	name = "橙色彩绘玻璃"
 	reqs = list(
 		/obj/item/stack/tile/glass = 40,
 		/obj/item/stack/rods = 20,
@@ -60,7 +60,7 @@
 	category = CAT_TILES
 
 /datum/crafting_recipe/stained_glass_yellow
-	name = "Yellow Stained Glass"
+	name = "黄色彩绘玻璃"
 	reqs = list(
 		/obj/item/stack/tile/glass = 40,
 		/obj/item/stack/rods = 20,
@@ -71,7 +71,7 @@
 	category = CAT_TILES
 
 /datum/crafting_recipe/stained_glass_green
-	name = "Green Stained Glass"
+	name = "绿色彩绘玻璃"
 	reqs = list(
 		/obj/item/stack/tile/glass = 40,
 		/obj/item/stack/rods = 20,
@@ -82,7 +82,7 @@
 	category = CAT_TILES
 
 /datum/crafting_recipe/stained_glass_blue
-	name = "Blue Stained Glass"
+	name = "蓝色彩绘玻璃"
 	reqs = list(
 		/obj/item/stack/tile/glass = 40,
 		/obj/item/stack/rods = 20,
@@ -93,7 +93,7 @@
 	category = CAT_TILES
 
 /datum/crafting_recipe/stained_glass_purple
-	name = "Purple Stained Glass"
+	name = "紫色彩绘玻璃"
 	reqs = list(
 		/obj/item/stack/tile/glass = 40,
 		/obj/item/stack/rods = 20,
@@ -104,7 +104,7 @@
 	category = CAT_TILES
 
 /datum/crafting_recipe/stained_glass_white
-	name = "White Stained Glass"
+	name = "白色彩绘玻璃"
 	reqs = list(
 		/obj/item/stack/tile/glass = 40,
 		/obj/item/stack/rods = 20,
@@ -115,7 +115,7 @@
 	category = CAT_TILES
 
 /datum/crafting_recipe/stained_glass_black
-	name = "Black Stained Glass"
+	name = "黑色彩绘玻璃"
 	reqs = list(
 		/obj/item/stack/tile/glass = 40,
 		/obj/item/stack/rods = 20,

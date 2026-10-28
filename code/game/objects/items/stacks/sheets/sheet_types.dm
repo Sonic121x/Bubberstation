@@ -1029,7 +1029,7 @@ GLOBAL_LIST_INIT(pizza_sheet_recipes, list(
  * Hauntium
  */
 GLOBAL_LIST_INIT(hauntium_recipes, list(
-	new /datum/stack_recipe("hauntium tile", /obj/item/stack/tile/hauntium, 1, 4, 20, time = 2 SECONDS, crafting_flags = NONE, category = CAT_TILES), \
+	new /datum/stack_recipe("幽魂矿地板砖", /obj/item/stack/tile/hauntium, 1, 4, 20, time = 2 SECONDS, crafting_flags = NONE, category = CAT_TILES), \
 ))
 
 /obj/item/stack/sheet/hauntium/get_main_recipes()

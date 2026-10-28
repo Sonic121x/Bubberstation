@@ -48,7 +48,7 @@
 
 	log_antag_prompt("Antag prompt for [cast_control.name] ([cast_control.antag_flag]): [length(candidates)] eligible, [prompted] offered, [length(accepted)] accepted, [declined] declined. [disabled_total] have prompts disabled for the round ([disabled_now] this prompt). Decoy [decoy_flag || "none"]: [length(decoy_candidates)] offered, [length(decoy_accepted)] accepted.")
 	if(CONFIG_GET(flag/antag_prompt_admin_messages))
-		message_admins(span_yellowteamradio("Antag prompt ([cast_control.antag_flag]): [prompted] prompted, [length(accepted)] accepted, [declined] declined. [disabled_total] player\s have antag prompts disabled for the round ([disabled_now] opted out during this one)."))
+		message_admins(span_yellowteamradio("反派招募（[cast_control.antag_flag]）：已询问 [prompted] 人，接受 [length(accepted)] 人，拒绝 [declined] 人。本回合共有 [disabled_total] 名玩家禁用了反派招募提示（其中 [disabled_now] 人在本次招募中禁用）。"))
 	SSblackbox.record_feedback("associative", "antag_prompt", 1, list(
 		"antag" = cast_control.antag_flag,
 		"eligible" = length(candidates),
@@ -85,7 +85,7 @@
 		ignore_category = ANTAG_PROMPT_IGNORE_CATEGORY,
 		group = group,
 		alert_pic = preview ? image(preview) : null,
-		role_name_text = LOWER_TEXT(role_flag),
+		role_name_text = chinese_poll_role_display(role_flag),
 		chat_text_border_icon = preview,
 		announce_chosen = FALSE,
 		show_candidate_amount = FALSE,

@@ -116,8 +116,8 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/glass/bronze
-	name = "bronze glass floor"
-	desc = "Do jump on it, there's no rat'var cultists around to give you smack for it."
+	name = "青铜玻璃地板"
+	desc = "尽管在上面跳吧，附近没有拉特瓦信徒会为此揍你。"
 	icon = 'icons/turf/floors/glass_bronze.dmi'
 	icon_state = "glass_bronze-0"
 	base_icon_state = "glass_bronze"
@@ -126,8 +126,8 @@
 	alpha_to_leave = 206
 
 /turf/open/floor/glass/cult
-	name = "cult glass floor"
-	desc = "If you jump on it, there's no guarantee you won't fall into some kinf of nightmare dimension."
+	name = "血教玻璃地板"
+	desc = "如果在上面跳，谁也不能保证你不会掉进某种噩梦维度。"
 	icon = 'icons/turf/floors/glass_runic.dmi'
 	icon_state = "glass_runic-0"
 	base_icon_state = "glass_runic"
@@ -136,8 +136,8 @@
 	alpha_to_leave = 206
 
 /turf/open/floor/glass/titatanium
-	name = "titatanium glass floor"
-	desc = "Do jump on it, it can take it."
+	name = "钛玻璃地板"
+	desc = "尽管在上面跳吧，它撑得住。"
 	icon = 'icons/turf/floors/glass_titanium.dmi'
 	icon_state = "glass_titanium-0"
 	base_icon_state = "glass_titanium"
@@ -146,8 +146,8 @@
 	alpha_to_leave = 206
 
 /turf/open/floor/glass/plastitatanium
-	name = "plastitatanium glass floor"
-	desc = "Do jump on it, it can take it."
+	name = "塑钛玻璃地板"
+	desc = "尽管在上面跳吧，它撑得住。"
 	icon = 'icons/turf/floors/glass_plastitanium.dmi'
 	icon_state = "glass_plastitanium-0"
 	base_icon_state = "glass_plastitanium"
@@ -156,8 +156,8 @@
 	alpha_to_leave = 206
 
 /turf/open/floor/glass/stained_red
-	name = "red stained glass floor"
-	desc = "Glass floor, stained red. Not with blood, hopefuly."
+	name = "红色彩绘玻璃地板"
+	desc = "染成红色的玻璃地板。希望不是用血染的。"
 	icon = 'icons/turf/floors/glass_stained_red.dmi'
 	icon_state = "glass_stained_red-0"
 	base_icon_state = "glass_stained_red"
@@ -165,8 +165,8 @@
 	starlight_color = COLOR_CRAYON_RED
 
 /turf/open/floor/glass/stained_orange
-	name = "orange stained glass floor"
-	desc = "Glass floor, stained orange. Somebody spilled their orange juice?"
+	name = "橙色彩绘玻璃地板"
+	desc = "染成橙色的玻璃地板。谁把橙汁洒了吗？"
 	icon = 'icons/turf/floors/glass_stained_orange.dmi'
 	icon_state = "glass_stained_orange-0"
 	base_icon_state = "glass_stained_orange"
@@ -174,8 +174,8 @@
 	starlight_color = COLOR_CRAYON_ORANGE
 
 /turf/open/floor/glass/stained_yellow
-	name = "yellow stained glass floor"
-	desc = "Glass floor, stained yellow. Probably by some mellow fellow."
+	name = "黄色彩绘玻璃地板"
+	desc = "染成黄色的玻璃地板。大概出自某位性情温和的人之手。"
 	icon = 'icons/turf/floors/glass_stained_yellow.dmi'
 	icon_state = "glass_stained_yellow-0"
 	base_icon_state = "glass_stained_yellow"
@@ -183,8 +183,8 @@
 	starlight_color = COLOR_CRAYON_YELLOW
 
 /turf/open/floor/glass/stained_green
-	name = "green stained glass floor"
-	desc = "Glass floor, stained green. That's what you get when putting liquid uranium at the edge of your table."
+	name = "绿色彩绘玻璃地板"
+	desc = "染成绿色的玻璃地板。这就是把液态铀放在桌边的下场。"
 	icon = 'icons/turf/floors/glass_stained_green.dmi'
 	icon_state = "glass_stained_green-0"
 	base_icon_state = "glass_stained_green"
@@ -192,8 +192,8 @@
 	starlight_color = COLOR_CRAYON_GREEN
 
 /turf/open/floor/glass/stained_blue
-	name = "blue stained glass floor"
-	desc = "Glass floor, stained blue. With tears of someone feeling blue, obviously."
+	name = "蓝色彩绘玻璃地板"
+	desc = "染成蓝色的玻璃地板。显然是用某个忧郁之人的眼泪染的。"
 	icon = 'icons/turf/floors/glass_stained_blue.dmi'
 	icon_state = "glass_stained_blue-0"
 	base_icon_state = "glass_stained_blue"
@@ -201,8 +201,8 @@
 	starlight_color = COLOR_CRAYON_BLUE
 
 /turf/open/floor/glass/stained_purple
-	name = "purple stained glass floor"
-	desc = "Glass floor, stained purple. It tastes purple, too."
+	name = "紫色彩绘玻璃地板"
+	desc = "染成紫色的玻璃地板。尝起来也是紫色的。"
 	icon = 'icons/turf/floors/glass_stained_purple.dmi'
 	icon_state = "glass_stained_purple-0"
 	base_icon_state = "glass_stained_purple"
@@ -210,8 +210,8 @@
 	starlight_color = COLOR_CRAYON_PURPLE
 
 /turf/open/floor/glass/stained_white
-	name = "white stained glass floor"
-	desc = "Glass floor, stained white. Or perhaps it was bleached?"
+	name = "白色彩绘玻璃地板"
+	desc = "染成白色的玻璃地板。或者是漂白过？"
 	icon = 'icons/turf/floors/glass_stained_white.dmi'
 	icon_state = "glass_stained_white-0"
 	base_icon_state = "glass_stained_white"
@@ -219,8 +219,8 @@
 	starlight_color = COLOR_VERY_LIGHT_GRAY /// White crayon doesn't have a colour.
 
 /turf/open/floor/glass/stained_black
-	name = "black stained glass floor"
-	desc = "Glass floor, stained black. A space squid inked it."
+	name = "黑色彩绘玻璃地板"
+	desc = "染成黑色的玻璃地板。一只太空鱿鱼朝它喷了墨。"
 	icon = 'icons/turf/floors/glass_stained_black.dmi'
 	icon_state = "glass_stained_black-0"
 	base_icon_state = "glass_stained_black"

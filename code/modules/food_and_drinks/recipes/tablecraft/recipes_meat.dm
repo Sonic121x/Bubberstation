@@ -97,7 +97,7 @@
 	dish_category = DISH_MEAT
 
 /datum/crafting_recipe/food/polar_bear_steak
-	name = "Filet polar migrawr"
+	name = "极地熊吼菲力"
 	reqs = list(
 		/datum/reagent/consumable/ethanol/frosty_dorf = 3,
 		/datum/reagent/consumable/ethanol/blue_blazer = 3,
@@ -206,7 +206,7 @@
 	dish_category = DISH_MEAT
 
 /datum/crafting_recipe/food/drake_ribs
-	name = "Drake Ribs"
+	name = "龙肋排"
 	reqs = list(
 		/datum/reagent/consumable/guidoferrun = 1,
 		/datum/reagent/consumable/frostoil = 4,
@@ -435,7 +435,7 @@
 	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/wendigo_feast
-	name = "Wendigo feast"
+	name = "温迪戈盛宴"
 	reqs = list(
 		/obj/item/food/drake_ribs = 1,
 		/obj/item/food/polar_bear_steak = 1,

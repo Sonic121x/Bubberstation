@@ -10,23 +10,23 @@
 	/// knowledgeable (Chaplains, Wizards)
 	///
 	/// "It's charged with magic that has [special_description]"
-	var/special_description = "no special effect"
+	var/special_description = "没有特殊效果"
 
 /datum/status_effect/magical_light/on_creation(mob/living/new_owner, potency, ...)
 	. = ..()
 
 /atom/movable/screen/alert/status_effect/magical_light
-	name = "Magical aura"
-	desc = "You feel an aura of magic around yourself"
+	name = "魔法光环"
+	desc = "你感觉自己被魔法光环笼罩着。"
 	icon = 'modular_zubbers/icons/hud/screen_alert.dmi'
 	icon_state = "magic_aura"
 
 /atom/movable/screen/alert/status_effect/magical_light/good
-	name = "Magical boon" // Take away my thesaurus, I dare you
-	desc = "An aura of benevolent magic is surrounding you"
+	name = "魔法赐福" // Take away my thesaurus, I dare you
+	desc = "一道善意的魔法光环正环绕着你。"
 	icon_state = "magic_boon"
 
 /atom/movable/screen/alert/status_effect/magical_light/bad
-	name = "Magical malady"
-	desc = "An aura of malevolent magic is surrounding you"
+	name = "魔法灾厄"
+	desc = "一道恶意的魔法光环正环绕着你。"
 	icon_state = "magic_malady"

@@ -7,7 +7,7 @@
 	duration = MAGICAL_BLIND_BASE_TIME
 	tick_interval = STATUS_EFFECT_NO_TICK // Only apply and remove
 	alert_type = /atom/movable/screen/alert/status_effect/magical_light/bad
-	special_description = "some blinding radiance"
+	special_description = "散发致盲光辉的效果"
 
 /datum/status_effect/magical_light/blindness/on_creation(mob/living/new_owner, potency, ...)
 	. = ..()
@@ -29,7 +29,7 @@
 	duration = 120 SECONDS
 	tick_interval = STATUS_EFFECT_NO_TICK
 	alert_type = /atom/movable/screen/alert/status_effect/magical_light/bad
-	special_description = "nutriment draining properties"
+	special_description = "消耗营养的效果"
 
 /datum/status_effect/magical_light/hunger/on_apply()
 	if(!ishuman(owner))
@@ -45,7 +45,7 @@
 	duration = 10 SECONDS
 	tick_interval = 2 SECONDS
 	alert_type = null
-	special_description = "blood draining properties"
+	special_description = "抽取血液的效果"
 	var/potency = 1
 
 /datum/status_effect/magical_light/blood_drain/on_creation(mob/living/new_owner, potency, ...)

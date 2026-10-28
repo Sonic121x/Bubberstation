@@ -294,7 +294,7 @@
 			categories = list("无法获取")
 
 		all_circuit_designs[component_path] = list(
-			"id" = component_path.type,
+			"id" = component_path,
 			"categories" = categories,
 			"cost" = list(),
 			"desc" = component_path::desc,

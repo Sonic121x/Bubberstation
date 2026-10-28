@@ -239,18 +239,18 @@
 	return list(/obj/item/food/grown/icepepper = 1)
 
 /obj/structure/flora/ash/fonarstolbe
-	name = "fonarstolbe fruit"
-	desc = "A chemotrophic, insignificantly bioluminescent plant dubbed fonarstolbe by spinward scientists. They can survive for weeks in environments and presures lethal to most other plants, as long as they are well rooted.."
+	name = "灯柱果"
+	desc = "一种靠化学能生存、发出微弱生物光的植物，被顺旋方向的科学家称为灯柱果。只要扎根牢固，它就能在足以杀死大多数植物的环境和压力下存活数周。"
 	icon_state = "lamppostfruit1"
 	base_icon_state = "lamppostfruit"
 	light_range = 1.5
 	light_power = 2.1
-	harvested_name = "fonarstolbe"
-	harvested_desc = "Stem of a fonarstolbe. It should grow back up, sooner or later. And once it does, you can pluck its sweet and sour fruit."
+	harvested_name = "灯柱果植株"
+	harvested_desc = "灯柱果的茎。迟早会重新长大，到时就能采摘它酸甜的果实。"
 	harvest_amount_high = 3
-	harvest_message_low = "You pluck a single fonarstolbe fruit."
-	harvest_message_med = "You pluck a number of fonarstolbe fruits."
-	harvest_message_high = "You pluck quite a lot of fonarstolbe fruits."
+	harvest_message_low = "你摘下一颗灯柱果。"
+	harvest_message_med = "你摘下几颗灯柱果。"
+	harvest_message_high = "你摘下许多灯柱果。"
 	harvest_time = 40
 	number_of_variants = 4
 
@@ -258,16 +258,16 @@
 	return list(/obj/item/food/grown/ash_flora/fonarstolbe = 1)
 
 /obj/structure/flora/ash/vahrezjia
-	name = "vahrezjia flowers"
-	desc = "Bright blue stalks emerging from purple flowery pods. Apparently they can drive animals aggresive. They definetly sped up huskies and bears shipped in here by Spinward colonizers going feral. Quite unlikely they were the direct reason, though."
+	name = "狂蓝花"
+	desc = "亮蓝色的花茎从紫色花荚中伸出。它似乎能让动物变得好斗，确实加快了顺旋殖民者运来的哈士奇和熊的野化进程，不过不太可能是直接诱因。"
 	icon_state = "flowerpod1"
 	base_icon_state = "flowerpod"
-	harvested_name = "vahrezjia pods"
-	harvested_desc = "A bunch of vahrezjia pods. Despite repeated attempts to burn or uproot them away, they somehow still spread around and perservere."
+	harvested_name = "狂蓝花荚"
+	harvested_desc = "一丛狂蓝花荚。尽管人们多次试图烧毁它们或连根拔除，它们仍然顽强地生存并四处蔓延。"
 	harvest_amount_high = 3
-	harvest_message_low = "You pluck a single vahrezjia stalk."
-	harvest_message_med = "You pluck a number of vahrezjia stalks."
-	harvest_message_high = "You pluck quite a lot of vahrezjia stalks."
+	harvest_message_low = "你摘下一根狂蓝花茎。"
+	harvest_message_med = "你摘下几根狂蓝花茎。"
+	harvest_message_high = "你摘下许多狂蓝花茎。"
 	harvest_time = 25
 	number_of_variants = 4
 
@@ -275,16 +275,16 @@
 	return list(/obj/item/food/grown/ash_flora/vahrezjia = 1)
 
 /obj/structure/flora/ash/podsneyzka
-	name = "podsneyzka flower"
-	desc = "A bunch of flowering podsneyzkas. These flowers are known to taste quite like meat, and have quite similiar chemical composition to it. Better not to think about it, perhaps."
+	name = "雪肉花"
+	desc = "一丛盛开的雪肉花。这种花吃起来很像肉，化学成分也十分相似。或许最好别多想。"
 	icon_state = "flower1"
 	base_icon_state = "flower"
-	harvested_name = "podsneyzka stems"
-	harvested_desc = "A bunch of podsneyzka stems. Most of the plants is actually underground, and their roots are extremely long, ever searching for decomposing corpses to sap off of."
+	harvested_name = "雪肉花茎"
+	harvested_desc = "一丛雪肉花茎。植株的大部分其实埋在地下，极长的根系不断寻找腐尸以汲取养分。"
 	harvest_amount_high = 5
-	harvest_message_low = "You menage to pluck a single bunch of podzneyzkas."
-	harvest_message_med = "You carefully pluck a whole bunch of podzneyzkas."
-	harvest_message_high = "You very carefully pluck quite a lot of podzneyzkas."
+	harvest_message_low = "你勉强摘下一小束雪肉花。"
+	harvest_message_med = "你小心地摘下一整束雪肉花。"
+	harvest_message_high = "你十分小心地摘下许多雪肉花。"
 	harvest_time = 30
 	number_of_variants = 4
 
@@ -292,16 +292,16 @@
 	return list(/obj/item/food/grown/ash_flora/podsneyzka = 1)
 
 /obj/structure/flora/ash/inozhakust
-	name = "inozhakust"
-	desc = "A plant looking like roots growing into the sky, covered in mushy, wet, oily vines. They squelch and break apart when touched. You'll have to gather them as a paste."
+	name = "油藤灌木"
+	desc = "这种植物看起来像朝天生长的树根，覆满湿软油腻的藤蔓。轻轻一碰，藤蔓就会噗叽一声碎掉，因此只能收集成糊状。"
 	icon_state = "shrub1"
 	base_icon_state = "shrub"
-	harvested_name = "inozhakust"
-	harvested_desc = "A plant looking like roots growing into the sky - inozhakust. Filters chemical compounds in both earth and dirt, and spits out disgusting vines which you should be able to harvest soon."
+	harvested_name = "油藤灌木"
+	harvested_desc = "像朝天生长的树根一样的油藤灌木。它过滤泥土中的化合物，长出令人作呕的藤蔓，应该很快就能收获。"
 	harvest_amount_high = 5
-	harvest_message_low = "You menage to scoop just a bit of inozhakust's vines into paste."
-	harvest_message_med = "You menage to scoop some inozhakust's vines into paste."
-	harvest_message_high = "You menage to scoop quite a lot of inozhakust's vines into paste."
+	harvest_message_low = "你挖下少量油藤灌木的藤蔓，收集成糊状。"
+	harvest_message_med = "你挖下一些油藤灌木的藤蔓，收集成糊状。"
+	harvest_message_high = "你挖下大量油藤灌木的藤蔓，收集成糊状。"
 	harvest_time = 30
 	number_of_variants = 4
 
@@ -309,19 +309,19 @@
 	return list(/obj/item/food/grown/ash_flora/inozhakust = 1)
 
 /obj/structure/flora/ash/plasma_flower
-	name = "plasma flower"
-	desc = "A bunch of vines surrounding a clustered bunch of plasma flowers. Researches still are trying to wrap their heads around these ones."
+	name = "等离子花"
+	desc = "一丛藤蔓环绕着簇生的等离子花。研究人员至今仍在努力弄清它们的奥秘。"
 	icon_state = "plasma_flower1"
 	base_icon_state = "plasma_flower"
 	light_range = LIGHT_FIRE_BLOSSOM
 	light_power = LIGHT_FIRE_BLOSSOM
 	light_color = COLOR_BIOLUMINESCENCE_PURPLE
-	harvested_name = "fire blossom vines"
-	harvested_desc = "A few plasma flower vines, missing their flowers."
+	harvested_name = "烈焰花藤"
+	harvested_desc = "几根花朵已被摘去的等离子花藤蔓。"
 	harvest_amount_high = 3
-	harvest_message_low = "You pluck a single, suitable flower."
-	harvest_message_med = "You pluck a number of flowers, leaving a few unsuitable ones."
-	harvest_message_high = "You pluck quite a lot of suitable flowers."
+	harvest_message_low = "你摘下一朵适合采收的花。"
+	harvest_message_med = "你摘下几朵花，留下几朵不适合采收的。"
+	harvest_message_high = "你摘下许多适合采收的花。"
 	regrowth_time_low = 4 MINUTES
 	regrowth_time_high = 7 MINUTES
 	number_of_variants = 2
@@ -342,16 +342,16 @@
 	return ..()
 
 /obj/structure/flora/ash/drake_beet
-	name = "drake beet"
-	desc = "An mutated beet. It seems to have adapted to local ecosystems by vaguely mimicking the appearance of a drake. Unsure how that helps, but its probably still tasty."
+	name = "龙形甜菜"
+	desc = "一种变异甜菜。它似乎通过粗略模仿龙的外形来适应当地生态。不知道这有什么用，不过应该依然好吃。"
 	icon_state = "drakebeet1"
 	base_icon_state = "drakebeet"
-	harvested_name = "young drake beet"
-	harvested_desc = "An mutated beet. These ones are yet to grow up. Brought here by spinwarders in order to make borstch then went wild and mutated like everything else."
+	harvested_name = "龙形甜菜幼苗"
+	harvested_desc = "尚未长成的变异甜菜。顺旋居民为制作罗宋汤将它引入此地，随后它像这里的其他生物一样野化并发生变异。"
 	harvest_amount_high = 4
-	harvest_message_low = "You pull a single suitable beet from the ground."
-	harvest_message_med = "You pull a number of suitable beets from the ground."
-	harvest_message_high = "You pull quite a lot of suitable beets from the ground."
+	harvest_message_low = "你从地里拔出一颗成熟的甜菜。"
+	harvest_message_med = "你从地里拔出几颗成熟的甜菜。"
+	harvest_message_high = "你从地里拔出许多成熟的甜菜。"
 	regrowth_time_low = 3 MINUTES
 	regrowth_time_high = 6 MINUTES
 	harvest_time = 25
@@ -463,40 +463,40 @@
 //SNACKS - icebox
 
 /obj/item/food/grown/ash_flora/fonarstolbe
-	name = "fonarstolbe fruit"
-	desc = "A fonarstolbe fruit. It's glowing blue, faintly."
+	name = "灯柱果"
+	desc = "一颗发出微弱蓝光的灯柱果。"
 	icon_state = "fonarstolbe"
 	seed = /obj/item/seeds/lavaland/fonarstolbe
 	wine_power = 50
 	foodtypes = FRUIT
 
 /obj/item/food/grown/ash_flora/vahrezjia
-	name = "vahrezjia stalks"
-	desc = "Bunched together vahrezjia stalks. Suprisingly coarse in texture."
+	name = "狂蓝花茎"
+	desc = "捆成一束的狂蓝花茎，质地出乎意料地粗糙。"
 	icon_state = "vahrezjia"
 	seed = /obj/item/seeds/lavaland/vahrezjia
 	wine_power = 50
 	foodtypes = FRUIT
 
 /obj/item/food/grown/ash_flora/podsneyzka
-	name = "podsneyzka bunch"
-	desc = "A bunch of spotted podsneyzka flowers, folded onto themselves. They smell bit like rotten meat."
+	name = "雪肉花束"
+	desc = "一束卷拢的斑点雪肉花，闻起来有点像腐肉。"
 	icon_state = "podsneyzka"
 	seed = /obj/item/seeds/lavaland/podsneyzka
 	wine_power = 50
 	foodtypes = MEAT|VEGETABLES
 
 /obj/item/food/grown/ash_flora/inozhakust
-	name = "inozhakust mash"
-	desc = "The mashed up vines of an inozhakust scooped into whatever you had on hand."
+	name = "油藤糊"
+	desc = "将油藤灌木的藤蔓捣碎后，随手装进容器里得到的糊状物。"
 	icon_state = "inozhakust"
 	seed = /obj/item/seeds/lavaland/inozhakust
 	distill_reagent = /datum/reagent/consumable/ethanol/mouthwash
 	foodtypes = VEGETABLES|GROSS
 
 /obj/item/food/grown/ash_flora/plasma_flower
-	name = "plasma flower"
-	desc = "A bit of vine conected a crystalized plasma flower."
+	name = "等离子花"
+	desc = "一截连着结晶等离子花的藤蔓。"
 	icon_state = "plasmaflower"
 	slot_flags = ITEM_SLOT_HEAD
 	seed = /obj/item/seeds/lavaland/plasma_flower
@@ -649,11 +649,11 @@
 /// SEEDS - icebox
 
 /obj/item/seeds/lavaland/fonarstolbe
-	name = "fonarstolbe seed pack"
-	desc = "These seeds grow into fonarstolbe."
+	name = "灯柱果种子包"
+	desc = "这些种子会长成灯柱果。"
 	icon_state = "seed-fonarstolbe"
 	species = "fonarstolbe"
-	plantname = "Fonarstolbe"
+	plantname = "灯柱果"
 	lifespan = 40
 	production = 5
 	yield = 3
@@ -665,11 +665,11 @@
 	graft_gene = /datum/plant_gene/trait/glow/blue
 
 /obj/item/seeds/lavaland/vahrezjia
-	name = "vahrezjia seed pack"
-	desc = "These seeds grow into vahrezjia."
+	name = "狂蓝花种子包"
+	desc = "这些种子会长成狂蓝花。"
 	icon_state = "seed-vahrezjia"
 	species = "vahrezjia"
-	plantname = "Vahrezjia"
+	plantname = "狂蓝花"
 	growthstages = 3
 	product = /obj/item/food/grown/ash_flora/vahrezjia
 	genes = list(/datum/plant_gene/trait/tox_resistance, /datum/plant_gene/trait/repeated_harvest)
@@ -677,11 +677,11 @@
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.02, /datum/reagent/consumable/nutriment = 0.02, /datum/reagent/toxin/berserker = 0.06, /datum/reagent/consumable/nutriment/fat/oil = 0.03)
 
 /obj/item/seeds/lavaland/podsneyzka
-	name = "podsneyzka seed pack"
-	desc = "These seeds grow into podsneyzkas."
+	name = "雪肉花种子包"
+	desc = "这些种子会长成雪肉花。"
 	icon_state = "seed-podsneyzka"
 	species = "podsneyzka"
-	plantname = "Podsneyzka"
+	plantname = "雪肉花"
 	lifespan = 30
 	endurance = 15
 	production = 4
@@ -694,11 +694,11 @@
 	graft_gene = /datum/plant_gene/trait/chem_cooling
 
 /obj/item/seeds/lavaland/inozhakust
-	name = "inozhakust seed pack"
-	desc = "These seeds grow into a inozhakust."
+	name = "油藤灌木种子包"
+	desc = "这些种子会长成油藤灌木。"
 	icon_state = "seed-inozhakust"
 	species = "inozhakust"
-	plantname = "Inozhakust"
+	plantname = "油藤灌木"
 	lifespan = 40
 	endurance = 30
 	yield = 3
@@ -710,11 +710,11 @@
 	graft_gene = /datum/plant_gene/trait/plant_type/toxin_adaptation
 
 /obj/item/seeds/lavaland/plasma_flower
-	name = "plasma flower seed pack"
-	desc = "These seeds grow into plasma flowers."
+	name = "等离子花种子包"
+	desc = "这些种子会长成等离子花。"
 	icon_state = "seed-plasmaflower"
 	species = "plasmaflower"
-	plantname = "Plasma flower"
+	plantname = "等离子花"
 	lifespan = 40
 	endurance = 15
 	production = 5

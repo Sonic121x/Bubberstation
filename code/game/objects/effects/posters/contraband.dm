@@ -851,29 +851,29 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/bojack, 32)
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/double_rainbow, 32)
 
 /obj/structure/sign/poster/contraband/rabbit_hole
-	name = "Down the Rabbit Hole"
-	desc = "I'm late! I'm late! For a very important date..."
+	name = "坠入兔子洞"
+	desc = "我迟到了！我迟到了！一场非常重要的约会……"
 	icon_state = "rabbit_hole"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/rabbit_hole, 32)
 
 /obj/structure/sign/poster/contraband/rabbit_swole
-	name = "Damn that Rabbit Swole"
-	desc = "Someone's been hitting that 'Eat me' cake..."
+	name = "这兔子可真壮"
+	desc = "看来有人吃了不少写着“吃我”的蛋糕……"
 	icon_state = "rabbit_swole"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/rabbit_swole, 32)
 
 /obj/structure/sign/poster/contraband/double_gunshow
-	name = "Double Gunshow"
-	desc = "All the whey all across this guy..."
+	name = "双臂肌肉秀"
+	desc = "这家伙浑身上下都是乳清蛋白的成果……"
 	icon_state = "double_gunshow"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/double_gunshow, 32)
 
 /obj/structure/sign/poster/contraband/bridge_bunny
-	name = "Bridge Bunny"
-	desc = "Ideas are like rabbits. You... uh... What were you thinking about again?"
+	name = "舰桥兔女郎"
+	desc = "点子就像兔子。你……呃……你刚才想到哪儿了？"
 	icon_state = "nt-bunny"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/bridge_bunny, 32)

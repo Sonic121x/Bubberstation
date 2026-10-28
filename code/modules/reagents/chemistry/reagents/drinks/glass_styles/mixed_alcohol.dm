@@ -119,22 +119,22 @@
 
 /datum/glass_style/drinking_glass/frosty_dorf
 	required_drink_type = /datum/reagent/consumable/ethanol/frosty_dorf
-	name = "The Frosty Dorf"
-	desc = "A herbal variant of the dwarven classic. Makes you feel like digging a mountain keep."
+	name = "冰霜矮人"
+	desc = "矮人经典饮品的草本变体，让你想挖出一座山中堡垒。"
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "frosty_dorf"
 
 /datum/glass_style/drinking_glass/stone_cold_stout
 	required_drink_type = /datum/reagent/consumable/ethanol/stone_cold_stout
-	name = "Stone Cold Stout"
-	desc = "Stone-cold drink, challenging even for seasoned drinkers. If you can survive it, you can take on anything."
+	name = "冷石烈性黑啤"
+	desc = "冰冷彻骨的饮品，连老酒鬼都难以招架。撑过这一杯，就没有什么能难倒你。"
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "stone_cold_stout"
 
 /datum/glass_style/drinking_glass/ramp_rager
 	required_drink_type = /datum/reagent/consumable/ethanol/ramp_rager
-	name = "Ramp Rager"
-	desc = "Furiously bubbling drink, capable of making people go berserk. An invitation for a bar fight."
+	name = "狂怒冲锋"
+	desc = "剧烈冒泡、能让人陷入狂暴的饮品，简直是酒吧斗殴的邀请函。"
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "ramprager"
 
@@ -1256,22 +1256,22 @@
 
 /datum/glass_style/drinking_glass/mouthwash_strong
 	required_drink_type = /datum/reagent/consumable/ethanol/mouthwash_strong
-	name = "Strong Mouthwash"
-	desc = "A bottle of strong mouthwash, with increased alcohol content. The label proudly proclaims 'Kills 99.9% of all germs'. Another, smaller label reads 'Take responsibility for your hygiene'."
+	name = "烈性漱口水"
+	desc = "一瓶酒精含量更高的烈性漱口水。标签自豪地宣称“杀灭99.9%的细菌”，另一张小标签上写着“请对自己的卫生负责”。"
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "mouthwash_strong"
 
 /datum/glass_style/drinking_glass/sea_lantern
 	required_drink_type = /datum/reagent/consumable/ethanol/sea_lantern
-	name = "Sea Lantern"
-	desc = "A layered cocktail of fonarstolbe and strawberry shake composed to roughly mimic a sea lantern, as seen in history books. Advancement in sonar technology and sensors made these buildings long absolote."
+	name = "海上灯塔"
+	desc = "用灯柱果和草莓奶昔调制的分层鸡尾酒，大致模仿了历史书中海上灯塔的模样。声呐和传感器的进步早已使这类建筑过时。"
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "sea_lantern"
 
 /datum/glass_style/drinking_glass/icegrave
 	required_drink_type = /datum/reagent/consumable/ethanol/icegrave
-	name = "Icegrave"
-	desc = "A single big ice cube suspended in liquids mostly unsafe for human consumption. The glass its held in is frosted, its a miracle it hasn't shattered yet."
+	name = "冰墓"
+	desc = "一块大冰块悬在大多不适合人类饮用的液体中。盛装它的玻璃杯已经结霜，至今还没碎真是个奇迹。"
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "icegrave"
 

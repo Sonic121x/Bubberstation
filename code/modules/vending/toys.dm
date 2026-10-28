@@ -9,7 +9,7 @@
 	light_mask = "donksoft-light-mask"
 	product_categories = list(
 		list(
-			"name" = "toys",
+			"name" = "玩具",
 			"icon" = "gifts",
 			"products" = list(
 				/obj/item/card/emagfake = 4,
@@ -23,7 +23,7 @@
 			)
 		),
 		list(
-			"name" = "pillow weapons",
+			"name" = "枕头武器",
 			"icon" = "bed",
 			"products" = list(
 				/obj/item/shield/mattress = 10,

@@ -1,11 +1,11 @@
 /datum/round_event_control/magic_lights
-	name = "Magic Lights - Weak"
+	name = "魔法光点 - 微弱"
 	typepath = /datum/round_event/magic_lights
 	min_players = 5
 	earliest_start = 10 MINUTES
 	max_occurrences = 3
 	category = EVENT_CATEGORY_WIZARD
-	description = "Summons a few sparkling lights in the station maintenance."
+	description = "在空间站维修区召唤一些闪烁的光点。"
 	min_wizard_trigger_potency = 2
 	max_wizard_trigger_potency = 2
 
@@ -14,7 +14,7 @@
 	tags = list(TAG_NEUTRAL, TAG_MAGIC, TAG_COMMUNAL)
 
 /datum/round_event_control/magic_lights/strong
-	name = "Magic Lights - Strong"
+	name = "魔法光点 - 强烈"
 	typepath = /datum/round_event/magic_lights/strong
 	weight = 20
 	max_occurrences = 1

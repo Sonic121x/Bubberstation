@@ -1,7 +1,7 @@
 //HUD Voting System. Ported from Monkestation 2.0 (#10369)
 
 /atom/movable/screen/mapvote_hud
-	name = "vote"
+	name = "投票"
 	icon = 'modular_zubbers/icons/hud/screen_vote.dmi'
 	icon_state = "Glass_header"
 	maptext_width = 96
@@ -81,12 +81,12 @@
 	var/datum/vote/vote = SSvote.current_vote
 	if(vote)
 		var/text = "[vote.override_question ? vote.override_question : vote.name]"
-		var/vote_type = "Multiple"
+		var/vote_type = "多选"
 		if(latest_vote_count == VOTE_COUNT_METHOD_SINGLE)
-			vote_type = "Single"
+			vote_type = "单选"
 		else if(latest_vote_count == VOTE_COUNT_METHOD_RANKED)
-			vote_type = "Ranked"
-		text = "[text]\n[vote_type] choice"
+			vote_type = "排序"
+		text = "[text]\n[vote_type]投票"
 		maptext = MAPTEXT("<div align='center' valign='top' style='position:relative;'><font color=[color_preference]>[text]</font></div>")
 	for(var/atom/movable/screen/mapvote_button/button as anything in buttons)
 		if(istype(button, /atom/movable/screen/mapvote_button/exit))
@@ -181,12 +181,12 @@
 
 	var/color_preference = theme_colors[user_preference] ? theme_colors[user_preference] : "cyan"
 	var/text = "[vote.override_question ? vote.override_question : vote.name]"
-	var/vote_type = "Multiple"
+	var/vote_type = "多选"
 	if(latest_vote_count == VOTE_COUNT_METHOD_SINGLE)
-		vote_type = "Single"
+		vote_type = "单选"
 	else if(latest_vote_count == VOTE_COUNT_METHOD_RANKED)
-		vote_type = "Ranked"
-	text = "[text]\n[vote_type] choice"
+		vote_type = "排序"
+	text = "[text]\n[vote_type]投票"
 	maptext = MAPTEXT("<div align='center' valign='top' style='position:relative;'><font color=[color_preference]>[text]</font></div>")
 	maptext_y = -4
 
@@ -334,7 +334,7 @@
 		last_choice = button
 
 /atom/movable/screen/mapvote_button
-	name = "map voting button"
+	name = "地图投票按钮"
 	icon = 'modular_zubbers/icons/hud/screen_vote_buttons.dmi'
 	icon_state = "Glass_button"
 	plane = SPLASHSCREEN_PLANE
@@ -383,7 +383,7 @@
 	closeToolTip(usr)
 
 /atom/movable/screen/mapvote_button/exit
-	name = "close vote"
+	name = "关闭投票"
 	icon = 'modular_zubbers/icons/hud/screen_vote_buttons.dmi'
 	icon_state = "Glass_exit"
 	plane = SPLASHSCREEN_PLANE

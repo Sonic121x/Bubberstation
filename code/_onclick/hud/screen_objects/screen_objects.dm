@@ -329,7 +329,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	return TRUE
 
 /atom/movable/screen/storage_up
-	name = "go up a storage level"
+	name = "返回上一级储物空间"
 	plane = ABOVE_HUD_PLANE
 	icon = 'icons/hud/screen_midnight.dmi'
 	icon_state = "storage_up"
@@ -1356,8 +1356,8 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 #define POTION_DROP_SPEED 5 DECISECONDS
 
 /atom/movable/screen/slime_power
-	name = "Power Level"
-	desc = "How much electricity they are generating. The higher this is, the stronger your attacks are."
+	name = "电力水平"
+	desc = "显示你产生的电量。数值越高，你的攻击就越强。"
 	icon_state = "slime_display"
 	base_icon_state = "slime_display"
 	screen_loc = ui_slime_powerlevel
@@ -1366,7 +1366,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 
 /atom/movable/screen/slime_power/Click(location, control, params)
 	. = ..()
-	to_chat(usr, span_notice("Shows you how much electricity they are generating. The higher this is, the higher chance you will strike with overwhelming electrical force."))
+	to_chat(usr, span_notice("显示你产生的电量。数值越高，你越有可能发动强劲的电击。"))
 
 /atom/movable/screen/slime_power/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()

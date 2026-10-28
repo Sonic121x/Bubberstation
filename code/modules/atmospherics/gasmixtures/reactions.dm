@@ -184,7 +184,7 @@
 	id = "plasmafire"
 	expands_hotspot = TRUE
 	desc = "氧气与等离子体的燃烧反应，会生成二氧化碳与水蒸气，\
-		若混合气体中等离子体足够丰富，甚至可能生成氚。"
+		若混合气体中氧气相对于等离子体足够丰富，甚至可能生成氚。"
 
 /datum/gas_reaction/standard/plasmafire/init_reqs()
 	requirements = list(

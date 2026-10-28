@@ -1,6 +1,6 @@
 /obj/item/knife/butcher/heretic
-	name = "\improper Crimson Cleaver"
-	desc = "A cleaver with an intricately designed red handle and slightly curved back. A tool of war, rather than cooking, no doubt."
+	name = "\improper 绯红屠刀"
+	desc = "一把红色刀柄雕饰繁复、刀背略微弯曲的屠刀。毫无疑问，这是战争的凶器，而非烹饪的厨具。"
 	icon = 'icons/obj/weapons/khopesh.dmi'
 	force = 20
 	throwforce = 20
@@ -20,7 +20,7 @@
 /obj/item/knife/butcher/heretic/Initialize(mapload)
 	. = ..()
 	add_lifesteal_filter()
-	boomerang_examine ||= span_mansus("[src]'s blade is curved so subtly, that it may return to your hand when thrown...")
+	boomerang_examine ||= span_mansus("[src]的刀刃弧度精妙，掷出后也许会回到你的手中……")
 	AddComponent(/datum/component/boomerang, boomerange_range, FALSE, boomerang_examine)
 
 /obj/item/knife/butcher/heretic/equipped(mob/living/user, slot, initial)
@@ -65,24 +65,24 @@
 		start_lifesteal_cd(6 SECONDS)
 		if(coefficient < 1)
 			if(IS_HERETIC_OR_MONSTER(user))
-				to_chat(user, span_warning("You fail to unleash the energies within [src] - something is suppressing it!"))
+				to_chat(user, span_warning("你无法释放[src]中的能量——有什么正在压制它！"))
 			else
-				to_chat(user, span_warning("Some evil energy attempts to escape from [src], but you suppress it!"))
+				to_chat(user, span_warning("一股邪恶能量试图从[src]中逸出，但被你压制了！"))
 		return
 
 	if(target.can_block_magic(MAGIC_RESISTANCE, charge_cost = 1))
 		start_lifesteal_cd(8 SECONDS)
 		if(IS_HERETIC_OR_MONSTER(user))
-			to_chat(user, span_warning("Your attempt to siphon the life force of [target] is resisted!"))
+			to_chat(user, span_warning("你汲取[target]生命力的尝试遭到了抵抗！"))
 		else
-			to_chat(user, span_warning("Some evil energy attempts to flow into [target], but they resist it!"))
+			to_chat(user, span_warning("一股邪恶能量试图流入[target]体内，却遭到了抵抗！"))
 		return
 
 	user.adjust_brute_loss(-0.5 * coefficient * amount)
 	user.adjust_nutrition(0.75 * coefficient * amount)
 	target.transfer_blood_to(user, coefficient * amount, ignore_low_blood = TRUE, ignore_incompatibility = TRUE, transfer_viruses = FALSE)
 	target.adjust_nutrition(-0.75 * coefficient * amount)
-	to_chat(target, span_warning("You feel your life force drain away..."))
+	to_chat(target, span_warning("你感觉自己的生命力正在流逝……"))
 	new /obj/effect/temp_visual/cleave(get_turf(target))
 
 	for(var/datum/wound/active_wound as anything in astype(user, /mob/living/carbon)?.all_wounds)
@@ -210,15 +210,15 @@
 
 	switch(curse_level)
 		if(2)
-			to_chat(owner, span_mansus("You feel pleased that the cleaver has returned to your hand."))
+			to_chat(owner, span_mansus("屠刀回到手中，让你感到欣喜。"))
 			owner.add_mood_event("[id]_lost", /datum/mood_event/crimson_curse/reunited/low)
 
 		if(3)
-			to_chat(owner, span_hypnophrase("The cleaver is back! Time to get to work!"))
+			to_chat(owner, span_hypnophrase("屠刀回来了！该干活了！"))
 			owner.add_mood_event("[id]_lost", /datum/mood_event/crimson_curse/reunited/medium)
 
 		if(4)
-			to_chat(owner, span_hypnophrase("YES! THERE IS STILL BLOOD TO BE SPILT!"))
+			to_chat(owner, span_hypnophrase("没错！还有鲜血等待泼洒！"))
 			owner.add_mood_event("[id]_lost", /datum/mood_event/crimson_curse/reunited/severe)
 
 /datum/status_effect/crimson_cleaver_curse/proc/on_unequipped_item(datum/source, obj/item/unequipped, ...)
@@ -233,15 +233,15 @@
 
 	switch(curse_level)
 		if(2)
-			to_chat(owner, span_mansus("You feel reluctant to part with the cleaver."))
+			to_chat(owner, span_mansus("你不愿与屠刀分离。"))
 			owner.add_mood_event("[id]_lost", /datum/mood_event/crimson_curse/separated/low)
 
 		if(3)
-			to_chat(owner, span_hypnophrase("No! The cleaver! How will I satiate myself now?!"))
+			to_chat(owner, span_hypnophrase("不！我的屠刀！现在我该如何满足自己？！"))
 			owner.add_mood_event("[id]_lost", /datum/mood_event/crimson_curse/separated/medium)
 
 		if(4)
-			to_chat(owner, span_hypnophrase("MY TOOL! MY WEAPON! IT HAS BEEN WRESTED FROM ME! I MUST HAVE IT BACK!"))
+			to_chat(owner, span_hypnophrase("我的工具！我的武器！它被人从我手中夺走了！我必须把它夺回来！"))
 			owner.add_mood_event("[id]_lost", /datum/mood_event/crimson_curse/separated/severe)
 
 /datum/status_effect/crimson_cleaver_curse/tick(seconds_between_ticks)
@@ -249,7 +249,7 @@
 	for(var/obj/item/knife/butcher/heretic/cleaver in owner)
 		// it's clearly mind based, and it's clearly magical, and it's clearly unholy. so everything fits
 		if(owner.can_block_magic(ALL_MAGIC_RESISTANCE, charge_cost = SPT_PROB(50, seconds_between_ticks) ? 1 : 0))
-			to_chat(owner, span_notice("The cleaver thrums ominously."))
+			to_chat(owner, span_notice("屠刀发出不祥的低鸣。"))
 		else
 			curse_timer += seconds_between_ticks
 			curse_ticking = TRUE
@@ -263,33 +263,33 @@
 	if(curse_timer > 10)
 		if(curse_level < 1)
 			curse_level = 1
-			to_chat(owner, span_mansus("The cleaver sits firmly in your hand. It feels unnaturally well balanced - it would be a joy to swing."))
+			to_chat(owner, span_mansus("屠刀稳稳地握在你手中。它的配重好得异乎寻常——挥舞起来一定很痛快。"))
 			owner.add_mood_event(id, /datum/mood_event/crimson_curse/low)
 			return
 	else
 		if(curse_level == 1)
 			curse_level = 0
-			to_chat(owner, span_mansus("Your mind clears. The cleaver still sits in your hand. It unsettles you."))
+			to_chat(owner, span_mansus("你的头脑清醒了。屠刀仍在手中，令你感到不安。"))
 			owner.clear_mood_event(id)
 			return
 
 	if(curse_timer > 30)
 		if(curse_level < 2)
 			curse_level = 2
-			to_chat(owner, span_mansus("The cleaver starts to feel heavy in your hand. You feel like bringing it down. Hard."))
+			to_chat(owner, span_mansus("手中的屠刀开始变得沉重。你想把它劈下去，狠狠地劈下去。"))
 			owner.add_mood_event(id, /datum/mood_event/crimson_curse/medium)
 			return
 	else
 		if(curse_level == 2)
 			curse_level = 1
-			to_chat(owner, span_mansus("The cleaver starts to slip from your hand. Your grip is no longer as sure as it was."))
+			to_chat(owner, span_mansus("屠刀开始从你的手中滑落。你的握持不再像之前那样稳固。"))
 			owner.clear_mood_event(id)
 			return
 
 	if(curse_timer > 60)
 		if(curse_level < 3)
 			curse_level = 3
-			to_chat(owner, span_mansus("The cleaver was made to spill blood and cleave flesh. You grip it with all your life, compelled to fulfill its purpose."))
+			to_chat(owner, span_mansus("屠刀为泼洒鲜血、劈开血肉而生。你拼尽全力将它攥紧，被迫去实现它的使命。"))
 			owner.add_mood_event(id, /datum/mood_event/crimson_curse/severe)
 			for(var/obj/item/knife/butcher/heretic/cleaver in owner)
 				ADD_TRAIT(src, TRAIT_NODROP, TRAIT_STATUS_EFFECT(id))
@@ -313,10 +313,10 @@
 			owner.overeatduration = max(owner.overeatduration - 200 SECONDS, 0)
 			if(prob(33))
 				to_chat(owner, span_notice(pick(
-					"The cleaver yearns to cut.",
-					"The hunger pangs are back...",
-					"You can't stop thinking about meat...",
-					"You hunger for flesh.",
+					"屠刀渴望砍切。",
+					"饥饿的绞痛又回来了……",
+					"你满脑子都是肉……",
+					"你渴望血肉。",
 				)))
 		if(SPT_PROB(10, seconds_between_ticks))
 			owner.adjust_hallucinations_up_to(6 SECONDS, 60 SECONDS)
@@ -329,7 +329,7 @@
 	else
 		if(curse_level == 3)
 			curse_level = 2
-			to_chat(owner, span_mansus("The cleaver's compulsions fade. Your fingers unclench from the hilt."))
+			to_chat(owner, span_mansus("屠刀带来的冲动消退了。你的手指松开了刀柄。"))
 			owner.clear_mood_event(id)
 			for(var/obj/item/knife/butcher/heretic/cleaver in owner)
 				REMOVE_TRAIT(src, TRAIT_NODROP, TRAIT_STATUS_EFFECT(id))
@@ -351,8 +351,8 @@
 	if(curse_timer > 120)
 		if(curse_level < 4)
 			curse_level = 4
-			to_chat(owner, span_mansus("The cleaver is an extension of you. It is a tool to rend flesh from bone. You are a tool to rend flesh from bone."))
-			to_chat(owner, span_hypnophrase("Swing it. Swing it now."))
+			to_chat(owner, span_mansus("屠刀是你身体的延伸。它是将血肉从骨头上剥离的工具。你也是将血肉从骨头上剥离的工具。"))
+			to_chat(owner, span_hypnophrase("挥刀。现在就挥刀。"))
 			owner.add_mood_event(id, /datum/mood_event/crimson_curse/extreme)
 			owner.apply_status_effect(/datum/status_effect/forced_combat, INFINITY)
 			curse_timer += 20 // medium buffer
@@ -361,24 +361,24 @@
 	else
 		if(curse_level == 4)
 			curse_level = 3
-			to_chat(owner, span_mansus("You return to your senses. Or have you truly? The cleaver is still in your hands."))
+			to_chat(owner, span_mansus("你恢复了理智。但真的恢复了吗？屠刀仍握在你手中。"))
 			owner.clear_mood_event(id)
 			owner.remove_status_effect(/datum/status_effect/forced_combat)
 			return
 
 /datum/mood_event/crimson_curse/low
-	description = "What a strange cleaver."
+	description = "真是一把古怪的屠刀。"
 
 /datum/mood_event/crimson_curse/medium
-	description = "It'd be pretty nice to swing that cleaver around."
+	description = "挥舞那把屠刀一定很痛快。"
 	mood_change = -2
 
 /datum/mood_event/crimson_curse/severe
-	description = "I feel a hunger that only the cleaver can sate."
+	description = "我感到一种只有屠刀才能满足的饥渴。"
 	mood_change = -4
 
 /datum/mood_event/crimson_curse/extreme
-	description = "SWING! SWING! SWING!"
+	description = "挥刀！挥刀！挥刀！"
 	mood_change = -8
 	special_screen_obj = "mood_despair"
 
@@ -386,15 +386,15 @@
 	timeout = 6 MINUTES
 
 /datum/mood_event/crimson_curse/separated/low
-	description = "I think I need the cleaver back."
+	description = "我想我得把屠刀拿回来。"
 	mood_change = -5
 
 /datum/mood_event/crimson_curse/separated/medium
-	description = "I need the cleaver back. I don't think I can live without it."
+	description = "我得把屠刀拿回来。我觉得没有它我就活不下去。"
 	mood_change = -12
 
 /datum/mood_event/crimson_curse/separated/severe
-	description = "I HAVE BEEN SEPARATED FROM MY TOOL! I MUST HAVE IT BACK!"
+	description = "我与我的工具分离了！我必须把它夺回来！"
 	mood_change = -48
 	special_screen_obj = "mood_despair"
 
@@ -402,15 +402,15 @@
 	timeout = 1 MINUTES
 
 /datum/mood_event/crimson_curse/reunited/low
-	description = "I feel a little better now that I have the cleaver back."
+	description = "屠刀回来了，我感觉好了一些。"
 	mood_change = 2
 
 /datum/mood_event/crimson_curse/reunited/medium
-	description = "The cleaver is back in my hands. Time to get to work!"
+	description = "屠刀又回到我手中了。该干活了！"
 	mood_change = 6
 
 /datum/mood_event/crimson_curse/reunited/severe
-	description = "My tool, my weapon, my body! I feel whole again!"
+	description = "我的工具，我的武器，我的身体！我又完整了！"
 	mood_change = 12
 
 /particles/crimson_curse

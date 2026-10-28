@@ -2669,9 +2669,9 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/wittelvirusfood
-	name = "Exotic Agar"
+	name = "异种琼脂"
 	color = "#C3CF7C" // rgb: 195, 207, 124
-	taste_description = "sourness"
+	taste_description = "酸味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 

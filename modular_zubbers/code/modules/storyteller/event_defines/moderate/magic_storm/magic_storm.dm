@@ -2,10 +2,10 @@
 /// station, prioritizing people unfortunate enough to be in space.
 /// Nowhere near as destructive but small damage is to be expected
 /datum/round_event_control/magic_storm
-	name = "Magic Storm"
+	name = "魔法风暴"
 	typepath = /datum/round_event/magic_storm
-	description = "Pummels the station in spell projectiles, targeting \
-	those unlucky enough to be in space."
+	description = "用法术弹幕轰击空间站，瞄准\
+	那些不幸身处太空的人。"
 	weight = 40 // Fairly common (Comms failure common)
 	min_players = 20
 	max_occurrences = 3
@@ -56,7 +56,7 @@
 	// I just spent 12 hours trying to hack it in to look good, with no success
 
 /datum/round_event/magic_storm/announce(fake)
-	priority_announce("The station is entering a magical dust cloud. Crew are advised to stay inside the station until the storm passes.")
+	priority_announce("空间站正进入魔法尘云。建议全体船员留在站内，直至风暴结束。")
 
 /datum/round_event/magic_storm/tick()
 	var/list/potential_victims = list()
@@ -72,4 +72,4 @@
 	spawn_space_spells(4, spell_list, null, pick(potential_victims))
 
 /datum/round_event/magic_storm/end()
-	priority_announce("The magical dust cloud has passed the station.")
+	priority_announce("魔法尘云已离开空间站。")

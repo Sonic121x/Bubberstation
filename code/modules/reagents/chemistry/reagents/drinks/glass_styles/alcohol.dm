@@ -225,8 +225,8 @@
 
 /datum/glass_style/drinking_glass/mouthwash
 	required_drink_type = /datum/reagent/consumable/ethanol/mouthwash
-	name = "Mouthwash"
-	desc = "A bottle of mouthwash. The label proudly proclaims 'Kills 99.9% of all germs'. It seems to be more sugar than alcohol in content, though. Smells kind of like ice drake's breath."
+	name = "漱口水"
+	desc = "一瓶漱口水，标签自豪地宣称“杀灭99.9%的细菌”。不过糖似乎比酒精还多，闻起来有点像冰龙的吐息。"
 	icon = 'icons/obj/drinks/drinks.dmi'
 	icon_state = "mouthwash"
 

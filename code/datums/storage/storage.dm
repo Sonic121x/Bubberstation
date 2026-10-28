@@ -439,7 +439,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 	if(to_insert.anchored)
 		if(messages && user && !silent_for_user)
-			user.balloon_alert(user, "anchored!")
+			user.balloon_alert(user, "已固定！")
 		return FALSE
 
 	var/can_hold_it = isnull(can_hold) || is_type_in_typecache(to_insert, can_hold) || is_type_in_typecache(to_insert, exception_hold)

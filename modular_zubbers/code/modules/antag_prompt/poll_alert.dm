@@ -17,8 +17,8 @@
 	var/mob/asked = owner
 	var/choice = tgui_alert(
 		asked,
-		"This hides every antagonist prompt for the rest of the round, not just this one. You can turn them back on with the Clear Poll Ignores verb in the OOC tab.",
-		"Disable antagonist prompts?",
+		"这会在本回合剩余时间内隐藏所有反派招募提示，而不只是这一条。你可以使用 OOC 标签页中的“清除招募屏蔽”命令重新启用。",
+		"禁用反派招募提示？",
 		list("Yes", "No"),
 	)
 	if(choice != "Yes" || isnull(poll) || owner != asked)

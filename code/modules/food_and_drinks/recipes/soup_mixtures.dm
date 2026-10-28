@@ -1083,9 +1083,9 @@
 
 // Red beet soup
 /datum/reagent/consumable/nutriment/soup/drake_beet
-	name = "Drake Beet Soup"
-	description = "A soup made out of drake beets and sinew clinging to drake hide."
-	data = list("drake beet" = 4, "spice" = 1)
+	name = "龙形甜菜汤"
+	description = "用龙形甜菜和附在龙皮上的筋腱熬制的汤。"
+	data = list("龙形甜菜" = 4, "香料" = 1)
 	color = "#851127"
 
 /datum/glass_style/has_foodtype/soup/drake_beet
@@ -1159,9 +1159,9 @@
 
 // Iceberg soup
 /datum/reagent/consumable/nutriment/soup/iceberg
-	name = "Iceberg Soup"
-	description = "A slight upgrade upon the wish soup, this one has some nutrient content."
-	data = list("cold" = 4, "tundra wilds" = 1)
+	name = "冰山汤"
+	description = "比许愿汤稍好一些，至少含有一点营养。"
+	data = list("冰凉" = 4, "苔原荒野" = 1)
 	color = "#26AEB9"
 
 /datum/glass_style/has_foodtype/soup/iceberg
@@ -1323,9 +1323,9 @@
 
 // Wolf Goulash
 /datum/reagent/consumable/nutriment/soup/goulash
-	name = "Wolf Goulash"
-	description = "A thick soup with heavy focus on the meat. In this rendition, the meat from wolf sinew."
-	data = list("meat" = 4, "vegetables" = 1, "spice" = 1)
+	name = "匈牙利炖狼肉"
+	description = "一道以肉为主的浓汤，这一版本用的是狼的筋腱。"
+	data = list("肉" = 4, "蔬菜" = 1, "香料" = 1)
 	color = "#CA3518"
 
 /datum/glass_style/has_foodtype/soup/goulash

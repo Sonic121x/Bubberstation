@@ -845,7 +845,7 @@
 				return
 
 			if(length(mutation.sources) && get_mutation_class(mutation) == SCANNER_MUTATION_CLASS_OTHER)
-				say("ERROR: This mutation is anomalous, and cannot be printed.")
+				say("错误：此突变属于异常类型，无法打印。")
 				return
 
 			// Create a new DNA Injector and add the appropriate mutations to it
@@ -977,7 +977,7 @@
 				return
 
 			if(length(original.sources) && get_mutation_class(original) == SCANNER_MUTATION_CLASS_OTHER)
-				say("ERROR: This mutation is anomalous, and cannot be saved.")
+				say("错误：此突变属于异常类型，无法保存。")
 				return
 
 			diskette.mutations += original.make_copy()

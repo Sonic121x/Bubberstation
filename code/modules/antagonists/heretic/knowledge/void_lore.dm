@@ -63,7 +63,7 @@
 	eldritch_passive = /datum/status_effect/heretic_passive/void
 
 /datum/heretic_knowledge/limited_amount/starting/get_extra_requirements()
-	return "a sub-zero environment"
+	return "零摄氏度以下的环境"
 
 /datum/heretic_knowledge/limited_amount/starting/base_void/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
 	if(!isopenturf(loc))

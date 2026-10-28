@@ -292,8 +292,8 @@
 	sheet_path = /obj/item/stack/sheet/mineral/uranium
 
 /obj/machinery/power/port_gen/pacman/wood
-	name = "\improper P.L.A.N.K.M.A.N.-type portable generator"
-	desc = "Burns wood to generate some power. Do not touch when powered."
+	name = "\improper P.L.A.N.K.M.A.N.型便携式发电机"
+	desc = "燃烧木材来发电。运行时请勿触摸。"
 	circuit = /obj/item/circuitboard/machine/plankman
 	icon_state = "portgen3_0"
 	base_icon_state = "portgen3"

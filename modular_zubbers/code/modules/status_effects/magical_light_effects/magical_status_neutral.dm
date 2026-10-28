@@ -3,7 +3,7 @@
 	duration = 6 MINUTES
 	tick_interval = STATUS_EFFECT_NO_TICK
 	alert_type = null
-	special_description = "a harmless effect similar to irradiation"
+	special_description = "类似辐射的无害效果"
 
 /datum/status_effect/magical_light/fake_rad/on_apply()
 	if(!ishuman(owner))
@@ -28,7 +28,7 @@
 	duration = 1 MINUTES
 	tick_interval = STATUS_EFFECT_NO_TICK
 	alert_type = /atom/movable/screen/alert/status_effect/magical_light
-	special_description = "a glowing effect on one's retina"
+	special_description = "让视网膜发光的效果"
 	var/obj/item/flashlight/eyelight/eye
 
 /datum/status_effect/magical_light/eye_glow/on_apply()

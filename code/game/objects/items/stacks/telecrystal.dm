@@ -37,7 +37,7 @@
 	amount = 20
 
 GLOBAL_LIST_INIT(telecrystal_recipes, list ( \
-	new/datum/stack_recipe("telecrystal tile", /obj/item/stack/tile/mineral/telecrystal, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES), \
+	new/datum/stack_recipe("传送水晶地板砖", /obj/item/stack/tile/mineral/telecrystal, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES), \
 ))
 
 /obj/item/stack/telecrystal/get_main_recipes()

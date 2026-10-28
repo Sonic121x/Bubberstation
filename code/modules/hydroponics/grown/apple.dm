@@ -25,7 +25,7 @@
 	for(var/obj/item/food/grown/apple/applum in result)
 		if(prob(worm_chance))
 			applum.appleworm = new(applum) // There is a worm in this apple!
-			applum.tastes = list("apple" = 1, "worms" = 2)
+			applum.tastes = list("苹果" = 1, "虫子" = 2)
 			applum.ediblecomponent = IS_EDIBLE(applum)
 			if(applum.ediblecomponent)
 				applum.ediblecomponent.foodtypes |= (GROSS | MEAT | BUGS)
@@ -48,21 +48,21 @@
 /obj/item/food/grown/apple/examine(mob/user)
 	. = ..()
 	if(!found_worm && !isobserver(user) && appleworm)
-		balloon_alert(user, "there is a hole in this [src.name]!")
+		balloon_alert(user, "这颗[src.name]上有个洞！")
 		found_worm = TRUE
-		desc = "It's a little piece of Eden. Serpent not included, contains a worm as a replacement."
+		desc = "这是伊甸园的一小片。不含蛇，附赠一条虫子作为替代。"
 
 /obj/item/food/grown/apple/attack_self(mob/user)
 	if(!appleworm)
 		return
-	balloon_alert(user, "pulling out [appleworm.name]...")
+	balloon_alert(user, "正在拉出[appleworm.name]……")
 	if(!do_after(user, 5 SECONDS, target = src))
 		return
 	appleworm.forceMove(drop_location())
 	appleworm = null
-	tastes = list("apple" = 1)
+	tastes = list("苹果" = 1)
 	var/datum/component/edible/ediblecomponent = IS_EDIBLE(src)
-	desc = "It's a little piece of Eden. The [pick("serpent", "worm", "extra protein", "friendly neighbor")] is gone."
+	desc = "这是伊甸园的一小片。[pick("蛇", "虫子", "额外的蛋白质", "友好的邻居")]已经不在了。"
 	if(!ediblecomponent)
 		return
 	ediblecomponent.foodtypes &= ~(GROSS | MEAT | BUGS)
@@ -70,7 +70,7 @@
 /obj/item/food/grown/apple/proc/on_consume(mob/living/eater)
 	if(!ishuman(eater) && !appleworm)
 		return
-	to_chat(eater, span_alert("That apple was wormy!"))
+	to_chat(eater, span_alert("那颗苹果里有虫子！"))
 
 /obj/item/food/grown/apple/juice_typepath()
 	return /datum/reagent/consumable/applejuice

@@ -3497,11 +3497,11 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/ethanol/mouthwash
-	name = "Mouthwash"
-	description = "A minty, slightly foamy liquid. It seems to be more sugar than alcohol in content, and smells kind of like ice drake's breath."
+	name = "漱口水"
+	description = "带薄荷味、微微起泡的液体。糖似乎比酒精还多，闻起来有点像冰龙的吐息。"
 	boozepwr = 14
 	color = "#10b486"
-	taste_description = "sweet and minty"
+	taste_description = "甜味和薄荷味"
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -3510,11 +3510,11 @@
 	drinker.apply_status_effect(/datum/status_effect/throat_soothed)
 
 /datum/reagent/consumable/ethanol/mouthwash_strong
-	name = "Strong Mouthwash"
-	description = "A minty, slightly foamy liquid. As strong as it might be, it won't actually clean your teeth. And no matter how sweet it is, it will leave bitterness in your mouth."
+	name = "烈性漱口水"
+	description = "带薄荷味、微微起泡的液体。再烈也清洁不了牙齿，再甜也会在嘴里留下苦味。"
 	boozepwr = 30
 	color = "#10b4ac"
-	taste_description = "dentist appointment"
+	taste_description = "看牙医的滋味"
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -3525,20 +3525,20 @@
 		drinker.adjust_hallucinations(8 SECONDS * metabolization_ratio)
 
 /datum/reagent/consumable/ethanol/frosty_dorf
-	name = "Frosty Dorf"
-	description = "Herbal variant of the dwarven classic. Makes you feel like digging a mountain keep."
+	name = "冰霜矮人"
+	description = "矮人经典饮品的草本变体，让你想挖出一座山中堡垒。"
 	boozepwr = 75
 	color = "#A1C89A"
-	taste_description = "hair on your beard"
+	taste_description = "胡须"
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/ethanol/stone_cold_stout
-	name = "Stone Cold Stout"
-	description = "Stone-cold drink, challenging even for seasoned drinkers. If you can survive it, you can take on anything."
+	name = "冷石烈性黑啤"
+	description = "冰冷彻骨的饮品，连老酒鬼都难以招架。撑过这一杯，就没有什么能难倒你。"
 	boozepwr = 100
 	color = "#9DDCFA"
-	taste_description = "bitter rock bottom"
+	taste_description = "跌入谷底的苦涩"
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -3553,11 +3553,11 @@
 	MODIFY_PHYSIOLOGY(drinker, BURN, 1.25)
 
 /datum/reagent/consumable/ethanol/ramp_rager
-	name = "Ramp Rager"
-	description = "Furiously bubbling drink, capable of making people go berserk. An invitation for a bar fight."
+	name = "狂怒冲锋"
+	description = "剧烈冒泡、能让人陷入狂暴的饮品，简直是酒吧斗殴的邀请函。"
 	boozepwr = 65
 	color = "#1D789B"
-	taste_description = "bottled rage"
+	taste_description = "瓶装怒火"
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	metabolized_traits = list(TRAIT_ANALGESIA, TRAIT_STIMULATED, TRAIT_FEARLESS)
@@ -3589,25 +3589,25 @@
 /datum/reagent/consumable/ethanol/ramp_rager/proc/on_stamcrit(mob/living/drinker)
 	SIGNAL_HANDLER
 	drinker.set_stamina_loss(90, updating_stamina = TRUE)
-	to_chat(drinker, span_message("This can't end like this... Blood rushes away from your head..."))
+	to_chat(drinker, span_message("不能就这样结束……你感到脑中的血液迅速退去……"))
 	volume -= (min(volume, 6))
 	return STAMCRIT_CANCELLED
 
 /datum/reagent/consumable/ethanol/sea_lantern
-	name = "Sea Lantern"
-	description = "Layered drink using fonarstolbe's unique properties. May it guide you away from harm, in these trying times."
+	name = "海上灯塔"
+	description = "利用灯柱果的独特性质调制的分层饮品。愿它在艰难时刻为你指引方向，远离伤害。"
 	boozepwr = 35
 	color = "#9FE7EC"
-	taste_description = "sweet and minty"
+	taste_description = "甜味和薄荷味"
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/ethanol/icegrave
-	name = "Ice Grave"
-	description = "A very, very cold drink, almost thorny to the touch. Like ice magic in liquid form."
+	name = "冰墓"
+	description = "极其寒冷的饮品，触碰时几乎像针扎一样，仿佛液态的冰霜魔法。"
 	boozepwr = 40
 	color = "#443EAC"
-	taste_description = "cold"
+	taste_description = "冰凉"
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 

@@ -410,14 +410,14 @@ Removal End */
 	crate_type = /obj/structure/closet/crate/goldcrate
 
 /datum/supply_pack/imports/angry_mob
-	name = "Pitchfork and Torches Gardening Crate"
-	desc = "Sometimes, you need to help organize some \"gardening\" enthusiasts, and you just need some extra tools!\
-		Load up on \"gardening\" gear this this helpful supply crate."
+	name = "草叉与火把园艺箱"
+	desc = "有时你需要组织一群“园艺”爱好者，这时就需要额外的工具！\
+		用这箱实用的补给品配齐你的“园艺”装备。"
 	cost = CARGO_CRATE_VALUE * 5
 	order_flags = ORDER_CONTRABAND
 	contains = list(
 		/obj/item/cultivator/rake/pitchfork = 4,
 		/obj/item/flashlight/flare/torch = 4,
 	)
-	crate_name = "gardening kit"
+	crate_name = "园艺工具包"
 	crate_type = /obj/structure/closet/crate/wooden

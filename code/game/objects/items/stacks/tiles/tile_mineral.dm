@@ -12,8 +12,8 @@
 		return ITEM_INTERACT_BLOCKING
 	if(!tool.use_tool(src, user, 0, volume=40))
 		return ITEM_INTERACT_BLOCKING
-	var/sheet_type = text2path("/obj/item/stack/sheet/mineral/[mineralType]")
-	var/obj/item/stack/sheet/mineral/new_item = new sheet_type(user.drop_location())
+	var/sheet_type = ispath(mineralType, /obj/item/stack) ? mineralType : text2path("/obj/item/stack/sheet/mineral/[mineralType]")
+	var/obj/item/stack/new_item = new sheet_type(user.drop_location())
 	user.visible_message(span_notice("[user]用[tool]把[src]塑造成了[new_item]。"), \
 						span_notice("你用[tool]把[src]塑造成了[new_item]。"), \
 						span_hear("你听到焊接声。"))
@@ -86,7 +86,7 @@
 
 /obj/item/stack/tile/mineral/gold/sun
 	icon_state = "tile_gold_sun"
-	desc = "A tile made out of gold, portraying the sun."
+	desc = "一块描绘太阳的黄金地板砖。"
 	turf_type = /turf/open/floor/mineral/gold/sun
 	merge_type = /obj/item/stack/tile/mineral/gold/sun
 
@@ -113,7 +113,7 @@
 
 /obj/item/stack/tile/mineral/silver/moon
 	icon_state = "tile_silver_moon"
-	desc = "A tile made out of silver, portraying the moon."
+	desc = "一块描绘月亮的白银地板砖。"
 	turf_type = /turf/open/floor/mineral/silver/moon
 	merge_type = /obj/item/stack/tile/mineral/silver/moon
 	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST)
@@ -160,13 +160,13 @@
 	merge_type = /obj/item/stack/tile/mineral/bananium/tiled
 
 /obj/item/stack/tile/mineral/bluespace
-	name = "bluespace tile"
-	singular_name = "bluespace floor tile"
-	desc = "A tile made out of bluespace crystals. Latest innovation in random teleportation."
+	name = "蓝空间地板砖"
+	singular_name = "蓝空间地板砖"
+	desc = "由蓝空间水晶制成的地板砖。随机传送领域的最新创新。"
 	icon_state = "tile_bluespacecrystal"
 	inhand_icon_state = "tile-bluespacecrystal"
 	turf_type = /turf/open/floor/mineral/bluespace
-	mineralType = "bluespace"
+	mineralType = /obj/item/stack/sheet/bluespace_crystal
 	mats_per_unit = list(/datum/material/bluespace=SHEET_MATERIAL_AMOUNT*0.25)
 	merge_type = /obj/item/stack/tile/mineral/bluespace
 	tile_reskin_types = list(
@@ -180,13 +180,13 @@
 	merge_type = /obj/item/stack/tile/mineral/bluespace/tiled
 
 /obj/item/stack/tile/mineral/telecrystal
-	name = "telecrystal tile"
-	singular_name = "telecrystal floor tile"
-	desc = "A tile made out of telecrystals. Pretty sure its illegal."
+	name = "传送水晶地板砖"
+	singular_name = "传送水晶地板砖"
+	desc = "由传送水晶制成的地板砖。几乎可以肯定这东西是违法的。"
 	icon_state = "tile_telecrystal"
 	inhand_icon_state = "tile-telecrystal"
 	turf_type = /turf/open/floor/mineral/telecrystal
-	mineralType = "telecrystal"
+	mineralType = /obj/item/stack/telecrystal
 	mats_per_unit = list(/datum/material/telecrystal=SHEET_MATERIAL_AMOUNT*0.25)
 	merge_type = /obj/item/stack/tile/mineral/telecrystal
 	tile_reskin_types = list(
@@ -200,9 +200,9 @@
 	merge_type = /obj/item/stack/tile/mineral/telecrystal/tiled
 
 /obj/item/stack/tile/mineral/adamantine
-	name = "adamantine tile"
-	singular_name = "adamantine floor tile"
-	desc = "A tile made out of adamantine. Industrial style, favourite of golems."
+	name = "精金地板砖"
+	singular_name = "精金地板砖"
+	desc = "由精金制成的地板砖。工业风格，魔像的最爱。"
 	icon_state = "tile_adamantine"
 	inhand_icon_state = "tile-adamantine"
 	turf_type = /turf/open/floor/mineral/adamantine
@@ -220,13 +220,13 @@
 	merge_type = /obj/item/stack/tile/mineral/adamantine/tiled
 
 /obj/item/stack/tile/mineral/metal_hydrogen
-	name = "metal hydrogen tile"
-	singular_name = "metal hydrogen floor tile"
-	desc = "A tile made out of metal hydrogen. Like walking on a cloud!"
+	name = "金属氢地板砖"
+	singular_name = "金属氢地板砖"
+	desc = "由金属氢制成的地板砖。踩上去就像漫步云端！"
 	icon_state = "tile_metal_hydrogen"
 	inhand_icon_state = "tile-metalhydrogen"
 	turf_type = /turf/open/floor/mineral/metal_hydrogen
-	mineralType = "metal hydrogen"
+	mineralType = "metal_hydrogen"
 	mats_per_unit = list(/datum/material/metalhydrogen=SHEET_MATERIAL_AMOUNT*0.25)
 	merge_type = /obj/item/stack/tile/mineral/metal_hydrogen
 	tile_reskin_types = list(
@@ -240,9 +240,9 @@
 	merge_type = /obj/item/stack/tile/mineral/metal_hydrogen/tiled
 
 /obj/item/stack/tile/mineral/runite
-	name = "runite tile"
-	singular_name = "runite floor tile"
-	desc = "A quite magical tile made from runite. You feel its polarity is determined by the direction of the winds of magic."
+	name = "符文矿地板砖"
+	singular_name = "符文矿地板砖"
+	desc = "由符文矿制成、颇具魔力的地板砖。你感觉它的极性由魔法之风的方向决定。"
 	icon_state = "tile_runite"
 	inhand_icon_state = "tile-runite"
 	turf_type = /turf/open/floor/mineral/runite
@@ -257,9 +257,9 @@
 	merge_type = /obj/item/stack/tile/mineral/runite/tiled
 
 /obj/item/stack/tile/mineral/mythril
-	name = "mythril tile"
-	singular_name = "mythril floor tile"
-	desc = "Definetly the best use of such an legendary, unfathomable material."
+	name = "秘银地板砖"
+	singular_name = "秘银地板砖"
+	desc = "如此传奇而深不可测的材料，当然最适合拿来铺地。"
 	icon_state = "tile_mythril"
 	inhand_icon_state = "tile-mythril"
 	turf_type = /turf/open/floor/mineral/mythril
@@ -273,8 +273,8 @@
 	merge_type = /obj/item/stack/tile/mineral/mythril/tiled
 
 /obj/item/stack/tile/mineral/sandstone
-	name = "sandstone brick tile"
-	desc = "A tile made out of sandstone."
+	name = "砂岩砖地板"
+	desc = "由砂岩制成的地板砖。"
 	icon_state = "sandstone_floor"
 	inhand_icon_state = "tile-sandstone"
 	mineralType = "sandstone"
@@ -283,11 +283,11 @@
 	merge_type = /obj/item/stack/tile/mineral/sandstone
 
 /obj/item/stack/tile/mineral/stone
-	name = "stone brick tile"
-	desc = "A tile made out of stone."
+	name = "石砖地板"
+	desc = "由石头制成的地板砖。"
 	icon_state = "stone_floor"
 	inhand_icon_state = "tile-stone"
-	mineralType = "stone"
+	mineralType = null
 	mats_per_unit = list(/datum/material/rock = HALF_SHEET_MATERIAL_AMOUNT / 2)
 	turf_type = /turf/open/floor/stone
 	merge_type = /obj/item/stack/tile/mineral/stone

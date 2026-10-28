@@ -227,14 +227,14 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/food/nutrient_bar
-	name = "\improper Nutrient Bar"
+	name = "\improper 营养棒"
 	icon_state = "nutrientbar"
-	desc = "A nutrieeint rich bar from inozhakust mash, with just enough sugar to not taste utterly horrid."
+	desc = "用油藤糊制成的营养棒，加了刚好足够的糖，让味道不至于糟糕透顶。"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 12,
 		/datum/reagent/consumable/sugar = 3,
 	)
-	tastes = list("cardboard" = 3, "sugar" = 2)
+	tastes = list("纸板" = 3, "糖" = 2)
 	foodtypes = VEGETABLES
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL

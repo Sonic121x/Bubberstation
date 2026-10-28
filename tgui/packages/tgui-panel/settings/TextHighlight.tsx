@@ -70,12 +70,12 @@ export function TextHighlightSettings(props) {
 }
 
 const HIGHLIGHT_SOUND_OPTIONS = [
-  { label: 'Beep', value: 'sound/misc/highlight_sounds/Beep.ogg' },
-  { label: 'Pillow Hit', value: 'sound/items/pillow/pillow_hit.ogg' },
-  { label: 'Coin Flip', value: 'sound/items/coinflip.ogg' },
-  { label: 'Pen Click', value: 'sound/items/pen_click.ogg' },
-  { label: 'Rattling Keys', value: 'sound/items/rattling_keys.ogg' },
-  { label: 'Honk!', value: 'sound/items/bikehorn.ogg' },
+  { label: '哔声', value: 'sound/misc/highlight_sounds/Beep.ogg' },
+  { label: '枕头击打声', value: 'sound/items/pillow/pillow_hit.ogg' },
+  { label: '抛硬币声', value: 'sound/items/coinflip.ogg' },
+  { label: '按笔声', value: 'sound/items/pen_click.ogg' },
+  { label: '钥匙碰撞声', value: 'sound/items/rattling_keys.ogg' },
+  { label: '小丑喇叭声', value: 'sound/items/bikehorn.ogg' },
 ];
 
 const oneCharacterRegex = /^(\[.*\]|\\.|.)$/;
@@ -219,7 +219,7 @@ function TextHighlightSetting(props) {
         <Stack.Item>
           <Button.Checkbox
             checked={!!playSound}
-            tooltip="If this option is selected, a sound will play when the highlight is triggered."
+            tooltip="启用后，触发高亮时会播放提示音。"
             onClick={() =>
               updateHighlight({
                 id,
@@ -239,7 +239,7 @@ function TextHighlightSetting(props) {
               selected={
                 HIGHLIGHT_SOUND_OPTIONS.find(
                   (option) => option.value === soundFile,
-                )?.label ?? 'Beep'
+                )?.label ?? '哔声'
               }
               disabled={!playSound}
               onSelected={(label) => {

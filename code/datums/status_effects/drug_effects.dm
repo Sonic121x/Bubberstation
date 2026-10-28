@@ -105,16 +105,16 @@
 	if(istype(blood_type, /datum/blood_type/human) || istype(blood_type, /datum/blood_type/animal))
 		return
 	if(istype(blood_type, /datum/blood_type/lizard))
-		linked_alert.name = "Green blood cell deficiency"
+		linked_alert.name = "绿细胞缺乏"
 		return
 	if(istype(blood_type, /datum/blood_type/clown))
-		linked_alert.name = "Potassium deficiency"
+		linked_alert.name = "缺钾"
 		return
 	if(istype(blood_type, /datum/blood_type/ethereal))
-		linked_alert.name = "Low specific conductance"
+		linked_alert.name = "电导率过低"
 		return
 	if(istype(blood_type, /datum/blood_type/xeno))
-		linked_alert.name = "Alkalosis"
+		linked_alert.name = "碱中毒"
 
 /datum/status_effect/stacking/saline_glucose_dilution/tick(seconds_between_ticks)
 	if(owner.has_reagent(/datum/reagent/medicine/salglu_solution))
@@ -122,7 +122,7 @@
 			add_stacks(seconds_between_ticks)
 		linked_alert.desc = initial(linked_alert.desc)
 		return
-	linked_alert.desc = "Saline-Glucose Solution was supporting your bloodstream, and you are now recovering."
+	linked_alert.desc = "葡萄糖盐水此前维持着你的血液循环，你现在正在恢复。"
 	return ..() // Parent is stack decay, only decay while blood is pure
 
 /datum/status_effect/stacking/saline_glucose_dilution/can_have_status()
@@ -141,6 +141,6 @@
 #undef SALINE_GLUCOSE_STACK_DILUTION
 
 /atom/movable/screen/alert/status_effect/saline_dilution
-	name = "Red blood cell deficiency"
-	desc = "Saline-Glucose Solution is supporting your bloodstream, but it is losing its effectiveness over time."
+	name = "红细胞缺乏"
+	desc = "葡萄糖盐水正在维持你的血液循环，但其效果正随时间减弱。"
 	icon_state = "saline_dilution"
