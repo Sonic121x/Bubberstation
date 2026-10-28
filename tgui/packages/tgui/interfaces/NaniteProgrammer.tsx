@@ -11,8 +11,8 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import * as nanite from '../localization/zhNaniteDisplay';
 import type { NaniteProgram } from './Nanites/types';
-
 interface ExtraSetting {
   name: string;
   value: string;
@@ -184,7 +184,7 @@ export const NaniteExtraEntry = (props) => {
     boolean: <NaniteExtraBoolean extra_setting={extra_setting} />,
   };
   return (
-    <LabeledList.Item label={name}>{typeComponentMap[type]}</LabeledList.Item>
+    <LabeledList.Item label={nanite.display(name)}>{typeComponentMap[type]}</LabeledList.Item>
   );
 };
 
@@ -235,9 +235,9 @@ export const NaniteExtraType = (props) => {
   return (
     <Dropdown
       over
-      selected={value}
+      selected={value} displayText={nanite.display(value)}
       width="150px"
-      options={types}
+      options={nanite.options(types)}
       onSelected={(val) =>
         act('set_extra_setting', {
           target_setting: name,
@@ -269,7 +269,7 @@ export const NaniteExtraBoolean = (props) => {
         })
       }
     >
-      {value ? true_text : false_text}
+      {nanite.display(value ? true_text : false_text)}
     </Button.Checkbox>
   );
 };

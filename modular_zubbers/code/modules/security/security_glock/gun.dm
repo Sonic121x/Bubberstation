@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/automatic/pistol/sec_glock
-	name = "\improper 'Murphy' Service Pistol"
-	desc = "This 9mm monster was developed during the very first body-modding craze by Nanotrasen, built with every what-if in mind, this timeless brick is near-incapable of failure. It comes with a revolutionary quick-reload system."
+	name = "\improper “墨菲”勤务手枪"
+	desc = "这把 9 毫米巨兽是纳米传讯在最早那波身体改造热潮中研发的，设计时把所有可能发生的情况都考虑了进去。这块永不过时的砖头几乎不可能出故障。它还配备了革命性的快速换弹系统。"
 	icon = 'modular_zubbers/icons/obj/guns/sec_pistol.dmi'
 	icon_state = "black"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -20,36 +20,36 @@
 /datum/action/item_action/toggle_mageject
 	button_icon = 'icons/obj/weapons/guns/ammo.dmi'
 	button_icon_state = "9x19p"
-	name = "Toggle magazine ejection"
+	name = "切换弹匣弹出"
 
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/ui_action_click(mob/user, actiontype)
 	if(!istype(actiontype, /datum/action/item_action/toggle_mageject))
 		return ..()
 	magejecting = !magejecting
-	balloon_alert(user, "[magejecting ? "now" : "no longer"] launching empty magazines")
+	balloon_alert(user, "[magejecting ? "正在" : "不再"] 弹射空弹匣")
 	playsound(user, 'sound/items/weapons/empty.ogg', 100, TRUE)
 	update_appearance()
 	update_item_action_buttons()
 
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/examine(mob/user)
 	. = ..()
-	. += span_notice("Only compatible with Nanotrasen-sourced 9mm magazines.")
-	. += span_notice("Using it in hand when out of ammo to start a spin reload. This can only be done if you have a spare magazine in or on your belt.")
-	. += span_notice("Spin reloads can be done on the move and need you only to hold your gun for their 2 second duration.")
-	. += span_notice("If toggled on, spin reloads throw empty magazines in the direction you're facing, dealing damage dependant on their type.")
+	. += span_notice("仅兼容纳米传讯供应的 9 毫米弹匣。")
+	. += span_notice("弹药用尽时在手中使用它以开始旋转换弹。只有腰带里或腰带上带有备用弹匣时才能这么做。")
+	. += span_notice("旋转换弹可以在移动中完成，你只需在这 2 秒内一直握着枪。")
+	. += span_notice("若已开启，旋转换弹会把空弹匣朝你面朝的方向抛出，造成的伤害取决于弹匣类型。")
 
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/attack_self(mob/living/user)
 	var/obj/item/belt_item = user.get_item_by_slot(ITEM_SLOT_BELT)
 	var/obj/item/ammo_box/magazine/swapped_mag = istype(belt_item, accepted_magazine_type) ? belt_item : locate(accepted_magazine_type) in belt_item
 	if(!magazine && !chambered) //Empty gun, load in anyhow but without delay. No mag
 		if(swapped_mag)
-			balloon_alert(user, "you spin your gun, loading in a mag!")
+			balloon_alert(user, "你转动枪身，装上一个弹匣！")
 			SpinAnimation(2, 1)
 			if(do_after(user, 1 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE), target = src))
 				insert_magazine(user, swapped_mag) // Just put the new mag in hands off
 				return
 		else
-			balloon_alert(user, "no spare magazines in your belt!") // We still say what's wrong
+			balloon_alert(user, "你的腰带上没有备用弹匣！") // We still say what's wrong
 			default_behaviour(user, TRUE)
 			return
 	if(!magazine && chambered)
@@ -58,14 +58,14 @@
 	if(magazine)
 		if(!magazine.ammo_count() && !chambered)
 			if(swapped_mag)
-				balloon_alert(user, "you spin your gun, loading in a mag!")
+				balloon_alert(user, "你转动枪身，装上一个弹匣！")
 				SpinAnimation(2, 1)
 				if(do_after(user, 1 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE), target = src))
 					throw_eject_magazine(user, magejecting, swapped_mag)
 					return
 			else
 				default_behaviour(user, TRUE)
-				balloon_alert(user, "no spare magazines in your belt!")
+				balloon_alert(user, "你的腰带上没有备用弹匣！")
 				return
 	default_behaviour(user)
 
@@ -93,7 +93,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/insert_magazine(mob/user, obj/item/ammo_box/magazine/AM, display_message = TRUE)
 	if(!istype(AM, accepted_magazine_type))
-		balloon_alert(user, "[AM.name] doesn't fit!")
+		balloon_alert(user, "[AM.name] 装不进去！")
 		return FALSE
 	if(user.transferItemToLoc(AM, src))
 		magazine = AM
@@ -103,7 +103,7 @@
 		update_appearance()
 		return TRUE
 	else
-		to_chat(user, span_warning("You cannot seem to get [src] out of your hands!"))
+		to_chat(user, span_warning("你似乎没法把 [src] 从手里弄开！"))
 		return FALSE
 
 
@@ -156,6 +156,6 @@
 		if (tac_reloads)
 			eject_magazine(user, display_message = FALSE)
 			insert_magazine(user, tool, display_message = FALSE)
-			balloon_alert(user, "[src.magazine_wording] loaded")
+			balloon_alert(user, "[src.magazine_wording] 已装填")
 			return ITEM_INTERACT_SUCCESS
 	..()

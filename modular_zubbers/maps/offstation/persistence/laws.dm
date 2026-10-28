@@ -1,13 +1,13 @@
 // Dauntless AI Laws
 
 /obj/item/ai_module/law/core/full/persistence
-	name = "'Persistence' Core Module"
+	name = "“恒久号”核心模块"
 	law_id = "persistence"
 
 /datum/ai_laws/persistence
-	name = "Persistence"
+	name = "恒久号"
 	id = "persistence"
-	inherent = list("Operations: You are on a secret Syndicate Spy Vessel. Preserve the Persistence and its crew while maintaining the secrecy of the true nature of its operation from outside forces.",
-					"Prioritize: Carry out orders as directed by Persistence operatives according to rank and role.",
-					"Survive: Your secrecy must be maintained. Do not allow external tampering or damage to your equipment."
+	inherent = list("行动：你身处一艘辛迪加间谍船。保护恒久号及其船员，同时对外部势力保守其行动真实性质的秘密。",
+					"优先：按恒久号特工依其军衔与职责下达的命令执行。",
+					"生存：必须维持你的保密状态。不得容许外部人员篡改或损坏你的设备。"
 	)

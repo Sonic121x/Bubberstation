@@ -1,6 +1,6 @@
 /obj/item/organ/brain/lycan
-	name = "lupine brain"
-	desc = "A larger than average, albeit slightly smoother brain. The hypothalamus seems larger than normal." // I read in a random medical artical that the hypothalamus controls aggression.
+	name = "狼人脑"
+	desc = "一颗比寻常更大、也略微更光滑的脑。下丘脑似乎比正常尺寸更大。" // I read in a random medical artical that the hypothalamus controls aggression.
 	actions_types = list(/datum/action/cooldown/spell/beast_form)
 	var/last_slot
 	var/to_human_sfx = 'modular_zubbers/code/modules/customization/species/lycans/transform.ogg'
@@ -29,7 +29,7 @@
 	owner.remove_status_effect(/datum/status_effect/beast_form)
 
 //GAME_VERB_PROC_DESC(/obj/item/organ/brain/lycan, toggle_beast_form, "Enter/Leave Lycan Form", "Succumb to the rage and turn into a lycan.", "Lycan", mob/user)
-GAME_VERB_PROC_DESC(/obj/item/organ/brain/lycan, toggle_beast_form, "Enter/Leave Lycan Form", "Succumb to the rage and turn into a lycan.", "Lycan")
+GAME_VERB_PROC_DESC(/obj/item/organ/brain/lycan, toggle_beast_form, "进入/离开狼人形态", "屈从于怒火，化身为狼人。", "狼人")
 	VERB_ARG_TYPED(user, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	if(!user)
 		return
@@ -37,6 +37,6 @@ GAME_VERB_PROC_DESC(/obj/item/organ/brain/lycan, toggle_beast_form, "Enter/Leave
 		leave_beast_form()
 	else
 		if (HAS_TRAIT(user, TRAIT_MANSUS_INHIBITION))
-			user.balloon_alert(user, "can't transform while inhibited!")
+			user.balloon_alert(user, "受抑制时无法变形！")
 			return
 		enter_beast_form()

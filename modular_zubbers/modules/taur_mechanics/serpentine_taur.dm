@@ -4,8 +4,8 @@
 
 	clothing_cropping_state = NAGA_CLIPPING_MASK
 
-	left_leg_name = "upper serpentine body"
-	right_leg_name = "lower serpentine body"
+	left_leg_name = "上半蛇身"
+	right_leg_name = "下半蛇身"
 
 	/// Did our owner have their feet blocked before we ran on_mob_insert? Used for determining if we should unblock their feet slots on removal.
 	var/owner_blocked_feet_before_insert

@@ -1,6 +1,6 @@
 /datum/preference/choiced/mutant_choice/halo
 	savefile_key = "feature_halo"
-	main_feature_name = "Halo"
+	main_feature_name = "光环"
 	category = PREFERENCE_CATEGORY_FEATURES
 	relevant_mutant_bodypart = "halo"
 	default_accessory_type = /datum/sprite_accessory/halo/none

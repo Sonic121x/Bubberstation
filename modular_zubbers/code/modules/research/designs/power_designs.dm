@@ -1,2 +1,2 @@
 /datum/design/diode_disk_stamina
-	desc = "A stamina damaging Diode Disk."
+	desc = "一种会造成耐力伤害的二极管磁盘。"

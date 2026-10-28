@@ -27,6 +27,6 @@
 		if(attached.key || attached.get_ghost() || istype(attached.loc, /obj/vore_belly))
 			continue
 
-		attached.investigate_log("was dusted due to no longer being linked to a player or ghost.", INVESTIGATE_DEATHS)
+		attached.investigate_log("因不再与任何玩家或幽灵关联而被化为尘埃。", INVESTIGATE_DEATHS)
 		attached.dust(TRUE, force = TRUE)
 		Detach(attached)

@@ -1,11 +1,11 @@
 /datum/job/nanotrasen_consultant
 	title = JOB_NT_REP
-	rpg_title = "Guild Adviser"
-	description = "Represent Nanotrasen on the station, argue with the HoS about why he can't just field execute people for petty theft, get drunk in your office."
+	rpg_title = "公会顾问"
+	description = "在空间站上代表纳米传讯，和安保主管争论他为什么不能因为小偷小摸就当场处决别人，再在自己办公室里喝个烂醉。"
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "Central Command"
+	supervisors = "中央指挥部"
 	minimal_player_age = 14
 	exp_requirements = 600
 	exp_required_type = EXP_TYPE_CREW
@@ -87,15 +87,15 @@
 	id_trim = /datum/id_trim/job/nanotrasen_consultant
 
 /obj/item/radio/headset/heads/nanotrasen_consultant
-	name = "\proper the Nanotrasen consultant's headset"
-	desc = "An official Central Command headset."
+	name = "\proper 纳米传讯顾问耳机"
+	desc = "一副中央指挥部的官方耳机。"
 	icon_state = "cent_headset"
 	keyslot = new /obj/item/encryptionkey/headset_com
 	keyslot2 = new /obj/item/encryptionkey/headset_cent
 
 /obj/item/radio/headset/heads/nanotrasen_consultant/alt
-	name = "\proper the Nanotrasen consultant's bowman headset"
-	desc = "An official Central Command headset. Protects ears from flashbangs."
+	name = "\proper 纳米传讯顾问战术耳机"
+	desc = "一副中央指挥部的官方耳机。可保护耳朵免受闪光弹伤害。"
 	icon_state = "cent_headset_alt"
 
 /obj/item/radio/headset/heads/nanotrasen_consultant/alt/Initialize(mapload)
@@ -108,8 +108,8 @@
 	icon = 'modular_skyrat/master_files/icons/mob/landmarks.dmi'
 
 /obj/item/clothing/accessory/medal/gold/nanotrasen_consultant
-	name = "medal of diplomacy"
-	desc = "A golden medal awarded exclusively to those promoted to the rank of Nanotrasen Consultant. It signifies the diplomatic abilities of said individual and their sheer dedication to Nanotrasen."
+	name = "外交勋章"
+	desc = "一枚金质勋章，只授予晋升为纳米传讯顾问的人。它象征着此人的外交才能，以及其对纳米传讯的赤诚奉献。"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /datum/outfit/plasmaman/nanotrasen_consultant
@@ -120,7 +120,7 @@
 	head = /obj/item/clothing/head/helmet/space/plasmaman/centcom_official
 
 /obj/item/modular_computer/pda/nanotrasen_consultant
-	name = "nanotrasen consultant's PDA"
+	name = "纳米传讯顾问 PDA"
 	icon_state = "/obj/item/modular_computer/pda/nanotrasen_consultant"
 	inserted_disk = /obj/item/disk/computer/command/captain
 	inserted_item = /obj/item/pen/fountain/green
@@ -132,8 +132,8 @@
 	)
 
 /obj/item/storage/bag/garment/nanotrasen_consultant
-	name = "nanotrasen consultant's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the Nanotrasen consultant."
+	name = "纳米传讯顾问的服装袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个属于纳米传讯顾问。"
 
 /obj/item/storage/bag/garment/nanotrasen_consultant/PopulateContents()
 	new /obj/item/clothing/shoes/sneakers/brown(src)
@@ -160,7 +160,7 @@
 	new /obj/item/clothing/head/hats/intern(src)
 
 /obj/structure/closet/secure_closet/nanotrasen_consultant
-	name = "nanotrasen consultant's locker"
+	name = "纳米传讯顾问储物柜"
 	req_access = list()
 	req_one_access = list(ACCESS_CENT_GENERAL)
 	icon_state = "cc"
@@ -182,16 +182,16 @@
 
 
 /obj/item/pen/fountain/green
-	name = "nanotrasen fountain pen"
-	desc = "It's an expensive green fountain pen. The case may be plastic, but that gold is real!"
+	name = "纳米传讯钢笔"
+	desc = "一支昂贵的绿色钢笔。笔壳或许是塑料的，但镶着的金子可是货真价实的！"
 	icon = 'modular_zubbers/icons/obj/service/bureaucracy.dmi'
 	icon_state = "pen-fountain-nt"
 	colour = "#18610D"
 	custom_materials = list(/datum/material/gold = SMALL_MATERIAL_AMOUNT*7.5)
 
 /obj/item/storage/belt/holster/consultant
-	name = "consultant's holster"
-	desc = "A familiar-looking leather holster, with black, leather straps and padded jackets painted in an iconic CentCom green. This one belongs to the Nanotrasen consultant."
+	name = "顾问枪套"
+	desc = "一个看着很眼熟的皮质枪套，黑色皮带与衬垫外套涂着中央指挥部标志性的绿色。这个属于纳米传讯顾问。"
 	icon = 'modular_zubbers/icons/obj/clothing/belts/belts.dmi'
 	icon_state = "holster_ntc"
 	storage_type = /datum/storage/holster/consultant
@@ -231,8 +231,8 @@
 	), src)
 
 /obj/item/consultant/weapon_case
-	name = "consultant's weapon case"
-	desc = "A secure case containing the consultant's trustworthy weapon."
+	name = "顾问武器箱"
+	desc = "一个保险箱，里面装着顾问那把值得信赖的武器。"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/gunsets.dmi'
 	icon_state = "guncase"
 	worn_icon = 'modular_skyrat/modules/modular_weapons/icons/mob/worn/cases.dmi'
@@ -262,25 +262,25 @@
 
 		var/datum/radial_menu_choice/centcomsabre_option = new
 		centcomsabre_option.image = image(icon = 'modular_zubbers/icons/obj/weapons/melee.dmi', icon_state = "cc-sheath-full")
-		centcomsabre_option.info = span_boldnotice("A beautiful sabre, coming with a green leather sheath, fashioned after those granted to the Centcom Commanders. A status symbol for the true bureaucrat. For when the sword is mightier than the pen.")
+		centcomsabre_option.info = span_boldnotice("一柄精美的军刀，配有绿色皮质刀鞘，仿照授予中央指挥部指挥官的那些款式打造。这是真正官僚的身份象征。当刀剑比笔墨更有说服力时，就用它。")
 
 		var/datum/radial_menu_choice/admiralsabre_option = new
 		admiralsabre_option.image = image(icon = 'modular_zubbers/icons/obj/weapons/melee.dmi', icon_state = "admiral-sheath-full")
-		admiralsabre_option.info = span_boldnotice("A beautiful sabre, coming with a black leather sheath, fashioned after those granted to Nanotrasen Admirals. A status symbol for the true bureaucrat. For when the sword is mightier than the pen.")
+		admiralsabre_option.info = span_boldnotice("一柄精美的军刀，配有黑色皮质刀鞘，仿照授予纳米传讯上将的那些款式打造。这是真正官僚的身份象征。当刀剑比笔墨更有说服力时，就用它。")
 
 		var/datum/radial_menu_choice/miniegun_option = new
 		miniegun_option.image = image(icon = 'icons/obj/weapons/guns/energy.dmi', icon_state = "mini")
-		miniegun_option.info = span_boldnotice("The classic, the mini e-gun. Fits in your pocket, has a disabler and a lethal mode, and includes a flashlight. Perfect for the consultant who doesn't want to draw too much attention to themselves, but still wants to be prepared for anything.")
+		miniegun_option.info = span_boldnotice("经典款微型能量枪。可放进口袋，兼具瘫痪与致命两种模式，还附带手电筒。对于不想太引人注目、却又想有备无患的顾问来说再合适不过。")
 
 		var/datum/radial_menu_choice/verdict_option = new
 		verdict_option.image = image(icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi', icon_state = "niimconsultantrevolver")
-		verdict_option.info = span_boldnotice("The Verdict, a weapon reminiscent of the other Nanotrasen Armories revolvers. It's similar to the all-slavic Unica, but with a lovely nickel polish. It is, however, much weaker and lighter than one, and uses a unique .32 caliber. Comes with a holster. Now all you're missing is a fat cigar.")
+		verdict_option.info = span_boldnotice("“裁决”，一把令人联想到纳米传讯军械部其他左轮手枪的武器。它形似泛斯拉夫风格的乌尼卡，却有着漂亮的镀镍表面。不过它比乌尼卡轻得多、也弱得多，使用的是独特的 .32 口径。附赠枪套。现在你只差一根粗雪茄了。")
 
 		options = list(
-			"Commander's Sabre Replica" = centcomsabre_option,
-			"Admiral's Sabre Replica" = admiralsabre_option,
-			"Miniature Energy Gun" = miniegun_option,
-			"The Verdict" = verdict_option,
+			"指挥官军刀复制品" = centcomsabre_option,
+			"上将军刀复制品" = admiralsabre_option,
+			"微型能量枪" = miniegun_option,
+			"裁决" = verdict_option,
 		)
 
 	var/selection = show_radial_menu(redeemer, src, options, custom_check = CALLBACK(src, PROC_REF(check_redeem_menu), redeemer), radius = 38, require_near = TRUE, tooltips = TRUE)
@@ -289,13 +289,13 @@
 
 	var/spawn_path
 	switch(selection)
-		if("Commander's Sabre Replica")
+		if("指挥官军刀复制品")
 			spawn_path = /obj/item/storage/belt/sheath/sabre/ntc_commander
-		if("Admiral's Sabre Replica")
+		if("上将军刀复制品")
 			spawn_path = /obj/item/storage/belt/sheath/sabre/ntc_admiral
-		if("Miniature Energy Gun")
+		if("微型能量枪")
 			spawn_path = /obj/item/gun/energy/e_gun/mini
-		if("The Verdict")
+		if("裁决")
 			spawn_path = /obj/item/storage/belt/holster/consultant
 		else
 			return
@@ -303,7 +303,7 @@
 	redeemed = TRUE
 	var/obj/item/chosen_item = new spawn_path(drop_location())
 	redeemer.put_in_hands(chosen_item)
-	balloon_alert(redeemer, "selected [LOWER_TEXT(selection)]")
+	balloon_alert(redeemer, "已选择 [LOWER_TEXT(selection)]")
 	qdel(src)
 
 /obj/item/consultant/weapon_case/proc/check_redeem_menu(mob/living/redeemer)

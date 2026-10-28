@@ -1,6 +1,6 @@
 /mob/living/basic/blankbody/shaggoth
-	name = "Shaggoth"
-	desc = "It was a terrible, indescribable thing vaster than any subway train—a shapeless congeries of protoplasmic bubbles, faintly self-luminous, and with myriads of temporary eyes forming and un-forming as pustules of greenish light all over the tunnel-filling front that bore down upon us, crushing the frantic penguins and slithering over the glistening floor that it and its kind had swept so evilly free of all litter."
+	name = "修格斯"
+	desc = "那是一个可怕的、难以名状的东西，比任何地铁列车都要庞大——一团无定形的原生质气泡聚结体，隐约自身发光，无数临时形成的眼睛如绿色光的脓疱般布满它那塞满隧道、朝我们压来的整个前部，不断形成又消散，碾碎惊慌失措的企鹅，并在它和它的同类曾如此恶意地清扫得一尘不染、闪闪发亮的地面上滑行。"
 	icon_state = "blank-body"
 	icon_living = "blank-body"
 	icon_dead = "blank-dead"

@@ -1,5 +1,5 @@
 /datum/species/ghoul
-	name = "\improper Ghoul"
+	name = "\improper 食尸鬼"
 	id = SPECIES_GHOUL
 	examine_limb_id = SPECIES_GHOUL
 	can_have_genitals = FALSE
@@ -79,19 +79,19 @@
 		return ..()
 
 	if (user.handcuffed)
-		to_chat(user, span_alert("You can't get a good enough grip with your hands bound."))
+		to_chat(user, span_alert("双手被绑住时，你没法抓得足够稳。"))
 		return FALSE
 
 	// Robotic limbs cannot be detatched this way.
 	if (!IS_ORGANIC_LIMB(affecting))
-		to_chat(user, "That thing is on there good. It's not coming off with a gentle tug.")
+		to_chat(user, "那东西装得很牢。轻轻一扯是弄不下来的。")
 		return FALSE
 
-	user.visible_message("[user] grabs onto [p_their()] own [affecting.name] and pulls.", span_notice("You grab hold of your [affecting.name] and yank hard."))
+	user.visible_message("[user] 抓住自己的[affecting.name]用力拉扯。", span_notice("你抓住自己的[affecting.name]，用力一扯。"))
 	if (!do_after(user, 3 SECONDS, target))
 		return FALSE
 
-	user.visible_message("[user]'s [affecting.name] comes right off in their hand.", span_notice("Your [affecting.name] pops right off."))
+	user.visible_message("[user] 的[affecting.name]应声脱落，落在手中。", span_notice("你的[affecting.name]应声脱落。"))
 	playsound(get_turf(user), 'sound/effects/meatslap.ogg', 40, 1)
 
 	var/obj/item/I = affecting.drop_limb()
@@ -121,12 +121,12 @@
 	if(!(target_zone in swappable_parts))
 		return NONE
 
-	user.visible_message("[user] begins mashing [tool] into [target]'s torso.", span_notice("You begin mashing [tool] into [target == user ? "your" : "[target]'s"] torso."))
+	user.visible_message("[user] 开始把[tool]往[target]的躯干里塞。", span_notice("你开始把[tool]往[target == user ? "自己" : "[target]的"]躯干里塞。"))
 
 	ASYNC
 		if(do_after(user, 3 SECONDS, target))
 			var/obj/item/bodypart/new_limb = target.newBodyPart(target_zone, FALSE)
-			target.visible_message("The meat sprouts digits and becomes [target]'s new [new_limb.name]!", span_notice("The meat sprouts digits and becomes your new [new_limb.name]!"))
+			target.visible_message("那块肉长出指头，变成了[target]的新[new_limb.name]！", span_notice("那块肉长出指头，变成了你的新[new_limb.name]！"))
 			new_limb.try_attach_limb(target)
 			qdel(tool)
 			playsound(get_turf(target), 'sound/effects/meatslap.ogg', 50, 1)

@@ -1,6 +1,6 @@
 /obj/item/clothing/under/rank/civilian/bubber //Saves having to type the icon stuff, means you just type in the state, smiley face emoji heart
-	name = "bee movie"
-	desc = "eating my coins with the shell on smiley face"
+	name = "蜜蜂总动员"
+	desc = "把我的硬币连壳一起吃了，笑脸"
 	icon = 'modular_zubbers/icons/obj/clothing/under/service.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/service.dmi'
 	icon_state = null
@@ -13,20 +13,20 @@
 //Clown Skirt sprite from Paradise Station: https://github.com/ParadiseSS13/Paradise
 
 /obj/item/clothing/under/rank/civilian/bubber/clown/skirt //If you know how to make this be equipped with the skirt prefs, do tell.
-	name = "clown skirt"
-	desc = "Ce n'est pas un clown."
+	name = "小丑短裙"
+	desc = "这不是小丑。"
 	icon_state = "clown_skirt_s"
 
 //'Clussy' and Jester stuff from Splurt.
 /obj/item/clothing/under/rank/civilian/bubber/clown/skirt/clussy
-	name = "pink clown skirt"
-	desc = "There's a small sign on the back labelled simply 'Honkland's shame'."
+	name = "粉色小丑短裙"
+	desc = "背面别着一个小牌子，上面只写着“洪克兰之耻”。"
 	icon_state = "clussy_outfit"
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/service_teshari.dmi'
 
 /obj/item/clothing/under/rank/civilian/bubber/clown/jester
-	name = "amazing jester outfit"
-	desc = "Update: No dessert based jokes, Central's told us this is a different jester outfit."
+	name = "惊艳弄臣装"
+	desc = "更新：禁止使用甜点相关的笑话，中央指挥部告诉我们这是另一套弄臣服装。"
 	icon_state = "striped_jester_outfit"
 	// new digi sprites
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/service_digi.dmi'

@@ -6,8 +6,8 @@
 
 // SYNDICATS!
 /mob/living/basic/pet/cat/syndicat
-	name = "Syndie Cat"
-	desc = "OH GOD! RUN!! IT CAN SMELL THE DISK!"
+	name = "辛迪加猫"
+	desc = "天啊！快跑！！它能闻到磁盘的味道！"
 	icon = 'modular_zubbers/icons/mob/simple/pets.dmi'
 	held_lh = 'modular_zubbers/icons/mob/inhands/pets_held_lh.dmi'
 	held_rh = 'modular_zubbers/icons/mob/inhands/pets_held_rh.dmi'

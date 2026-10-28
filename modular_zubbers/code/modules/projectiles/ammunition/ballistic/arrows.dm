@@ -1,5 +1,5 @@
 /datum/crafting_recipe/blunted_arrow
-	name = "Arrow (Less-lethal)"
+	name = "箭（低致命）"
 	result = /obj/item/ammo_casing/arrow/blunt
 	reqs = list(
 		/obj/item/stack/sheet/mineral/wood = 1,
@@ -13,7 +13,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/blunted_arrow_conversion
-	name = "Blunt Arrow Conversion"
+	name = "钝头箭改造"
 	result = /obj/item/ammo_casing/arrow/blunt
 	reqs = list(
 		/obj/item/ammo_casing/arrow = 1,
@@ -21,10 +21,10 @@
 	tool_behaviors = list(TOOL_SAW)
 	category = CAT_WEAPON_AMMO
 	non_craftable = TRUE
-	steps = list("Smooth the arrowhead with the saw.")
+	steps = list("用锯子把箭头磨平。")
 
 /datum/crafting_recipe/taser_arrow
-	name = "Arrow (Electric, Non-lethal)"
+	name = "箭（电击，非致命）"
 	result = /obj/item/ammo_casing/arrow/taser
 	reqs = list(
 		/obj/item/stack/sheet/mineral/wood = 1,
@@ -41,7 +41,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/taser_arrow_conversion
-	name = "Taser Arrow Conversion"
+	name = "电击箭改造"
 	result = /obj/item/ammo_casing/arrow/taser
 	reqs = list(
 		/obj/item/ammo_casing/arrow = 1,
@@ -57,15 +57,15 @@
 	category = CAT_WEAPON_AMMO
 
 /obj/item/ammo_casing/arrow/blunt
-	name = "blunt arrow"
-	desc = "An arrow with its head reduced to a blunt tip. Suitable for breaking bones and subduing targets without excessive physical damage. Staggers targets on impact."
+	name = "钝头箭"
+	desc = "箭头被磨成钝尖的箭。适合在不造成过多物理伤害的情况下打断骨头并制服目标。命中时会令目标踉跄。"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/arrows.dmi'
 	icon_state = "blunt_arrow"
 	projectile_type = /obj/projectile/bullet/arrow/blunt
 
 /obj/projectile/bullet/arrow/blunt
-	name = "blunt arrow"
-	desc = "A blunted arrow."
+	name = "钝头箭"
+	desc = "一支钝头箭。"
 	damage = 5 // ow
 	stamina = 40 // its okay
 	wound_bonus = 35 // will sometimes cause dislocations at close range
@@ -87,9 +87,9 @@
 	living_target.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH * (1 - percent_blocked), 10 SECONDS) // it hits really hard
 
 /obj/item/ammo_casing/arrow/taser
-	name = "taser arrow"
-	desc = "An arrow, the head removed, replaced with an igniter, and hooked up to a power cell. Negligible damage, but capable of delivering a terrible electric shock.\n\
-	Likely to break apart on impact. Ineffective against those insulated against electricity."
+	name = "电击箭"
+	desc = "箭头已被拆除、换上点火器并接上电池的箭。伤害微不足道，但能释放可怕的电击。\n\
+	很可能在命中时碎裂。对电绝缘的目标无效。"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/arrows.dmi'
 	icon_state = "taser_arrow"
 	reusable = FALSE
@@ -98,8 +98,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.2, /datum/material/wood = SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 1.1)
 
 /obj/projectile/bullet/arrow/taser
-	name = "taser arrow"
-	desc = "A jury-rigged taser arrow, capable of delivering a terrible electric shock, and not much else."
+	name = "电击箭"
+	desc = "一支临时拼凑的电击箭，能释放可怕的电击，除此之外没什么用。"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/arrows.dmi'
 	icon_state = "taser_arrow_projectile"
 	damage = 0 // lol

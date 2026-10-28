@@ -1,6 +1,6 @@
 /obj/machinery/vending/tool/super
-	name = "You (best) tool"
-	desc = "Architector tools for free!"
+	name = "你（最佳）工具"
+	desc = "免费的建筑师工具！"
 	max_integrity = 99999
 	products = list(
 		/obj/item/crowbar/freeman/ultimate = 999,

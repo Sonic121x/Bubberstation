@@ -1,21 +1,21 @@
 //Programs that are generally useful for population control and non-harmful suppression.
 
 /datum/nanite_program/sleepy
-	name = "Sleep Induction"
-	desc = "The nanites induce rapid narcolepsy when triggered."
+	name = "诱导睡眠"
+	desc = "触发时，纳米机器人会迅速诱发嗜睡症。"
 	can_trigger = TRUE
 	trigger_cost = 15
 	trigger_cooldown = 1200
 	rogue_types = list(/datum/nanite_program/brain_misfire, /datum/nanite_program/brain_decay)
 
 /datum/nanite_program/sleepy/on_trigger(comm_message)
-	to_chat(host_mob, span_warning("You start to feel very sleepy..."))
+	to_chat(host_mob, span_warning("你开始感到非常困倦……"))
 	host_mob.adjust_drowsiness(20)
 	addtimer(CALLBACK(host_mob, TYPE_PROC_REF(/mob/living, Sleeping), 200), rand(60,200))
 
 /datum/nanite_program/paralyzing
-	name = "Paralysis"
-	desc = "The nanites force muscle contraction, effectively paralyzing the host."
+	name = "麻痹"
+	desc = "纳米机器人强制肌肉收缩，使宿主陷入瘫痪。"
 	use_rate = 3
 	rogue_types = list(/datum/nanite_program/nerve_decay)
 
@@ -24,15 +24,15 @@
 
 /datum/nanite_program/paralyzing/enable_passive_effect()
 	. = ..()
-	to_chat(host_mob, span_warning("Your muscles seize! You can't move!"))
+	to_chat(host_mob, span_warning("你的肌肉僵住了！你动不了！"))
 
 /datum/nanite_program/paralyzing/disable_passive_effect()
 	. = ..()
-	to_chat(host_mob, span_notice("Your muscles relax, and you can move again."))
+	to_chat(host_mob, span_notice("你的肌肉放松下来，又能活动了。"))
 
 /datum/nanite_program/shocking
-	name = "Electric Shock"
-	desc = "The nanites shock the host when triggered. Destroys a large amount of nanites!"
+	name = "电击"
+	desc = "触发时，纳米机器人会电击宿主。会消耗大量纳米机器人！"
 	can_trigger = TRUE
 	trigger_cost = 10
 	trigger_cooldown = 300
@@ -40,11 +40,11 @@
 	rogue_types = list(/datum/nanite_program/toxic)
 
 /datum/nanite_program/shocking/on_trigger(comm_message)
-	host_mob.electrocute_act(rand(5,10), "shock nanites", 1, SHOCK_NOGLOVES)
+	host_mob.electrocute_act(rand(5,10), "电击纳米机器人", 1, SHOCK_NOGLOVES)
 
 /datum/nanite_program/stun
-	name = "Neural Shock"
-	desc = "The nanites pulse the host's nerves when triggered, inapacitating them for a short period."
+	name = "神经电击"
+	desc = "触发时，纳米机器人向宿主的神经发出脉冲，使其短暂丧失行动能力。"
 	can_trigger = TRUE
 	trigger_cost = 4
 	trigger_cooldown = 300
@@ -55,8 +55,8 @@
 	host_mob.Paralyze(80)
 
 /datum/nanite_program/pacifying
-	name = "Pacification"
-	desc = "The nanites suppress the aggression center of the brain, preventing the host from causing direct harm to others."
+	name = "安抚"
+	desc = "纳米机器人抑制大脑的侵略中枢，使宿主无法对他人造成直接伤害。"
 	use_rate = 1
 	rogue_types = list(/datum/nanite_program/brain_misfire, /datum/nanite_program/brain_decay)
 
@@ -69,8 +69,8 @@
 	REMOVE_TRAIT(host_mob, TRAIT_PACIFISM, NANITES_TRAIT)
 
 /datum/nanite_program/blinding
-	name = "Blindness"
-	desc = "The nanites suppress the host's ocular nerves, blinding them while they're active."
+	name = "失明"
+	desc = "纳米机器人抑制宿主的眼部神经，在激活期间使其失明。"
 	use_rate = 1.5
 	rogue_types = list(/datum/nanite_program/nerve_decay)
 
@@ -83,8 +83,8 @@
 	host_mob.cure_blind(NANITES_TRAIT)
 
 /datum/nanite_program/mute
-	name = "Mute"
-	desc = "The nanites suppress the host's speech, making them mute while they're active."
+	name = "缄默"
+	desc = "纳米机器人抑制宿主的语言能力，在激活期间使其无法说话。"
 	use_rate = 0.75
 	rogue_types = list(/datum/nanite_program/brain_decay, /datum/nanite_program/brain_misfire)
 
@@ -97,8 +97,8 @@
 	REMOVE_TRAIT(host_mob, TRAIT_MUTE, NANITES_TRAIT)
 
 /datum/nanite_program/fake_death
-	name = "Death Simulation"
-	desc = "The nanites induce a death-like coma into the host, able to fool most medical scans."
+	name = "模拟死亡"
+	desc = "纳米机器人使宿主陷入类似死亡的昏迷，能骗过大多数医疗扫描。"
 	use_rate = 3.5
 	rogue_types = list(/datum/nanite_program/nerve_decay, /datum/nanite_program/necrotic, /datum/nanite_program/brain_decay)
 
@@ -124,12 +124,12 @@
 	if(!activated || !comm_code.get_value())
 		return
 	if(signal_comm_code == comm_code.get_value())
-		host_mob.investigate_log("'s [name] nanite program was messaged by [comm_source] with comm code [signal_comm_code] and message '[comm_message]'.", INVESTIGATE_NANITES)
+		host_mob.investigate_log("的 [name] 纳米机器人程序收到来自 [comm_source] 的消息，通讯代码 [signal_comm_code]，内容为“[comm_message]”。", INVESTIGATE_NANITES)
 		trigger(FALSE, comm_message)
 
 /datum/nanite_program/comm/speech
-	name = "Forced Speech"
-	desc = "The nanites force the host to say a pre-programmed sentence when triggered."
+	name = "强制发言"
+	desc = "触发时，纳米机器人会迫使宿主说出一句预设的话。"
 	unique = FALSE
 	trigger_cost = 3
 	trigger_cooldown = 20
@@ -153,12 +153,12 @@
 		return
 	if(host_mob.stat == DEAD)
 		return
-	to_chat(host_mob, span_warning("You feel compelled to speak..."))
+	to_chat(host_mob, span_warning("你不由自主地想说话……"))
 	host_mob.say(sent_message, forced = "nanite speech")
 
 /datum/nanite_program/comm/voice
-	name = "Skull Echo"
-	desc = "The nanites echo a synthesized message inside the host's skull."
+	name = "颅骨回声"
+	desc = "纳米机器人在宿主的颅骨内回响一段合成消息。"
 	unique = FALSE
 	trigger_cost = 1
 	trigger_cooldown = 20
@@ -178,8 +178,8 @@
 	send_user_message(sent_message)
 
 /datum/nanite_program/comm/hallucination
-	name = "Hallucination"
-	desc = "The nanites make the host hallucinate something when triggered."
+	name = "幻觉"
+	desc = "触发时，纳米机器人会让宿主产生某种幻觉。"
 	trigger_cost = 4
 	trigger_cooldown = 80
 	unique = FALSE
@@ -257,12 +257,12 @@
 				extra_settings.Remove(NES_HALLUCINATION_DETAIL)
 
 /datum/nanite_program/mood
-	name = "Happiness Enhancer"
-	desc = "The nanites synthesize serotonin inside the host's brain, creating an artificial sense of happiness."
+	name = "幸福感增强器"
+	desc = "纳米机器人在宿主脑内合成血清素，制造出人工的幸福感。"
 	use_rate = 0.1
 	rogue_types = list(/datum/nanite_program/brain_decay)
 	var/mood_event = /datum/mood_event/nanite_happiness
-	var/default_text = "HAPPINESS ENHANCEMENT"
+	var/default_text = "幸福感增强"
 	var/mood_category = "nanite_happy"
 
 /datum/nanite_program/mood/register_extra_settings()
@@ -278,8 +278,8 @@
 	host_mob.clear_mood_event(mood_category)
 
 /datum/nanite_program/mood/bad
-	name = "Happiness Suppressor"
-	desc = "The nanites suppress the production of serotonin inside the host's brain, creating an artificial state of depression."
+	name = "幸福感抑制器"
+	desc = "纳米机器人抑制宿主脑内血清素的生成，制造出人工的抑郁状态。"
 	mood_event = /datum/mood_event/nanite_sadness
-	default_text = "HAPPINESS SUPPRESSION"
+	default_text = "幸福感抑制"
 	mood_category = "nanite_unhappy"

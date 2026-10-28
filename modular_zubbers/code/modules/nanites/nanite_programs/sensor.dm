@@ -1,6 +1,6 @@
 /datum/nanite_program/sensor
-	name = "Sensor Nanites"
-	desc = "These nanites send a signal code when a certain condition is met."
+	name = "传感纳米机器人"
+	desc = "这些纳米机器人在满足特定条件时发送信号代码。"
 	unique = FALSE
 	var/can_rule = FALSE
 
@@ -13,7 +13,7 @@
 /datum/nanite_program/sensor/proc/send_code()
 	if(activated)
 		var/datum/nanite_extra_setting/ES = extra_settings[NES_SENT_CODE]
-		SEND_SIGNAL(host_mob, COMSIG_NANITE_SIGNAL, ES.value, "a [name] program")
+		SEND_SIGNAL(host_mob, COMSIG_NANITE_SIGNAL, ES.value, "一个[name]程序")
 
 /datum/nanite_program/sensor/active_effect()
 	if(check_event())
@@ -23,8 +23,8 @@
 	return
 
 /datum/nanite_program/sensor/repeat
-	name = "Signal Repeater"
-	desc = "When triggered, sends another signal to the nanites, optionally with a delay."
+	name = "信号中继器"
+	desc = "触发时，向纳米机器人发送另一个信号，可设置延迟。"
 	can_trigger = TRUE
 	trigger_cost = 0
 	trigger_cooldown = 10
@@ -39,8 +39,8 @@
 	addtimer(CALLBACK(src, PROC_REF(send_code)), ES.get_value() * 10)
 
 /datum/nanite_program/sensor/relay_repeat
-	name = "Relay Signal Repeater"
-	desc = "When triggered, sends another signal to a relay channel, optionally with a delay."
+	name = "中继信号中继器"
+	desc = "触发时，向某个中继频道发送另一个信号，可设置延迟。"
 	can_trigger = TRUE
 	trigger_cost = 0
 	trigger_cooldown = 10
@@ -61,18 +61,18 @@
 		for(var/X in SSnanites.nanite_relays)
 			var/datum/nanite_program/relay/N = X
 			var/datum/nanite_extra_setting/code = extra_settings[NES_SENT_CODE]
-			N.relay_signal(code.get_value(), relay.get_value(), "a [name] program")
+			N.relay_signal(code.get_value(), relay.get_value(), "一个[name]程序")
 
 /datum/nanite_program/sensor/health
-	name = "Health Sensor"
-	desc = "The nanites receive a signal when the host's health is above/below a target percentage."
+	name = "生命值传感器"
+	desc = "当宿主的生命值高于/低于目标百分比时，纳米机器人会收到一个信号。"
 	can_rule = TRUE
 	var/spent = FALSE
 
 /datum/nanite_program/sensor/health/register_extra_settings()
 	. = ..()
 	extra_settings[NES_HEALTH_PERCENT] = new /datum/nanite_extra_setting/number(50, -99, 100, "%")
-	extra_settings[NES_DIRECTION] = new /datum/nanite_extra_setting/boolean(TRUE, "Above", "Below")
+	extra_settings[NES_DIRECTION] = new /datum/nanite_extra_setting/boolean(TRUE, "高于", "低于")
 
 /datum/nanite_program/sensor/health/check_event()
 	var/health_percent = host_mob.health / host_mob.maxHealth * 100
@@ -104,8 +104,8 @@
 	return rule
 
 /datum/nanite_program/sensor/crit
-	name = "Critical Health Sensor"
-	desc = "The nanites receive a signal when the host first reaches critical health."
+	name = "濒危生命值传感器"
+	desc = "当宿主首次进入濒危状态时，纳米机器人会收到一个信号。"
 	can_rule = TRUE
 	var/spent = FALSE
 
@@ -124,8 +124,8 @@
 	return rule
 
 /datum/nanite_program/sensor/death
-	name = "Death Sensor"
-	desc = "The nanites receive a signal when they detect the host is dead."
+	name = "死亡传感器"
+	desc = "当检测到宿主死亡时，纳米机器人会收到一个信号。"
 	can_rule = TRUE
 	var/spent = FALSE
 
@@ -137,15 +137,15 @@
 	return rule
 
 /datum/nanite_program/sensor/nanite_volume
-	name = "Nanite Volume Sensor"
-	desc = "The nanites receive a signal when the nanite supply is above/below a certain percentage."
+	name = "纳米机器人容量传感器"
+	desc = "当纳米机器人储量高于/低于特定百分比时，纳米机器人会收到一个信号。"
 	can_rule = TRUE
 	var/spent = FALSE
 
 /datum/nanite_program/sensor/nanite_volume/register_extra_settings()
 	. = ..()
 	extra_settings[NES_NANITE_PERCENT] = new /datum/nanite_extra_setting/number(50, -99, 100, "%")
-	extra_settings[NES_DIRECTION] = new /datum/nanite_extra_setting/boolean(TRUE, "Above", "Below")
+	extra_settings[NES_DIRECTION] = new /datum/nanite_extra_setting/boolean(TRUE, "高于", "低于")
 
 /datum/nanite_program/sensor/nanite_volume/check_event()
 	var/nanite_percent = (nanites.nanite_volume - nanites.safety_threshold)/(nanites.max_nanites - nanites.safety_threshold)*100
@@ -177,8 +177,8 @@
 	return rule
 
 /datum/nanite_program/sensor/damage
-	name = "Damage Sensor"
-	desc = "The nanites receive a signal when a host's specific damage type is above/below a target value."
+	name = "伤害传感器"
+	desc = "当宿主的特定伤害类型高于/低于目标数值时，纳米机器人会收到一个信号。"
 	can_rule = TRUE
 	var/spent = FALSE
 
@@ -186,7 +186,7 @@
 	. = ..()
 	extra_settings[NES_DAMAGE_TYPE] = new /datum/nanite_extra_setting/type(BRUTE, list(BRUTE, BURN, TOX, OXY))
 	extra_settings[NES_DAMAGE] = new /datum/nanite_extra_setting/number(50, 0, 500)
-	extra_settings[NES_DIRECTION] = new /datum/nanite_extra_setting/boolean(TRUE, "Above", "Below")
+	extra_settings[NES_DIRECTION] = new /datum/nanite_extra_setting/boolean(TRUE, "高于", "低于")
 
 /datum/nanite_program/sensor/damage/check_event()
 	var/reached_threshold = FALSE
@@ -232,13 +232,13 @@
 	return rule
 
 /datum/nanite_program/sensor/voice
-	name = "Voice Sensor"
-	desc = "The nanites receive a signal when they detect a specific, preprogrammed word or phrase being said."
+	name = "语音传感器"
+	desc = "当检测到说出特定的预设单词或短语时，纳米机器人会收到一个信号。"
 
 /datum/nanite_program/sensor/voice/register_extra_settings()
 	. = ..()
 	extra_settings[NES_SENTENCE] = new /datum/nanite_extra_setting/text("")
-	extra_settings[NES_INCLUSIVE_MODE] = new /datum/nanite_extra_setting/boolean(TRUE, "Inclusive", "Exclusive")
+	extra_settings[NES_INCLUSIVE_MODE] = new /datum/nanite_extra_setting/boolean(TRUE, "包含", "不包含")
 
 /datum/nanite_program/sensor/voice/on_mob_add()
 	. = ..()
@@ -261,8 +261,8 @@
 			send_code()
 
 /datum/nanite_program/sensor/species
-	name = "Species Sensor"
-	desc = "When triggered, the nanites scan the host to determine their species and receive a signal depending on the conditions set in the settings."
+	name = "物种传感器"
+	desc = "触发时，纳米机器人会扫描宿主以判定其物种，并根据设置中的条件接收信号。"
 	can_trigger = TRUE
 	trigger_cost = 0
 	trigger_cooldown = 5
@@ -285,7 +285,7 @@
 		species_types += name
 	species_types += "Other"
 	extra_settings[NES_RACE] = new /datum/nanite_extra_setting/type("Human", species_types)
-	extra_settings[NES_MODE] = new /datum/nanite_extra_setting/boolean(TRUE, "Is", "Is Not")
+	extra_settings[NES_MODE] = new /datum/nanite_extra_setting/boolean(TRUE, "是", "不是")
 
 /datum/nanite_program/sensor/species/on_trigger(comm_message)
 	var/datum/nanite_extra_setting/species_type = extra_settings[NES_RACE]

@@ -9,8 +9,8 @@
  */
 
 /obj/item/organ/brain/protean
-	name = "\improper Protean core"
-	desc = "An advanced positronic brain, typically found in the core of a Protean."
+	name = "\improper 普罗蒂安核心"
+	desc = "一枚先进的正电子脑，通常位于普罗蒂安的核心之中。"
 	icon = PROTEAN_ORGAN_SPRITE
 	icon_state = "posi1"
 	zone = BODY_ZONE_CHEST
@@ -29,7 +29,7 @@
 	handle_refactory(owner.get_organ_slot(ORGAN_SLOT_STOMACH))
 	handle_orchestrator(owner.get_organ_slot(ORGAN_SLOT_HEART))
 	if(owner.stat >= HARD_CRIT && !dead)
-		to_chat(owner, span_red("Your fragile refactory withers away with your mass reduced to scraps. Someone will have to help you."))
+		to_chat(owner, span_red("你脆弱的重构厂枯萎殆尽，你的质量体也随之化为碎屑。得有人来帮你了。"))
 		dead = TRUE
 		owner.revive(list(HEAL_DAMAGE, HEAL_ORGANS), TRUE, TRUE) // So we dont get dead human inside of suit
 		qdel(owner.get_organ_slot(ORGAN_SLOT_STOMACH))
@@ -43,7 +43,7 @@
 	if(isnull(organ) || !istype(organ, /obj/item/organ/stomach/protean))
 		owner.adjust_brute_loss(3, forced = TRUE)
 		if(COOLDOWN_FINISHED(src, refactory_cooldown))
-			to_chat(owner, span_warning("Your mass is slowly degrading without your refactory!"))
+			to_chat(owner, span_warning("没有重构厂，你的质量体正在缓慢崩解！"))
 			COOLDOWN_START(src, refactory_cooldown, 30 SECONDS)
 
 /obj/item/organ/brain/protean/proc/handle_orchestrator(obj/item/organ) // If you're missing an orchestrator, you will have trouble walking.
@@ -57,7 +57,7 @@
 	if(isnull(organ) || !istype(organ, /obj/item/organ/heart/protean))
 		owner.KnockToFloor(TRUE, TRUE, 1 SECONDS)
 		owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/protean_slowdown, multiplicative_slowdown = 2)
-		to_chat(owner, span_warning("You're struggling to walk without your orchestrator!"))
+		to_chat(owner, span_warning("没有调度模块，你连走路都很艰难！"))
 	else
 		owner.remove_movespeed_modifier(/datum/movespeed_modifier/protean_slowdown)
 
@@ -74,7 +74,7 @@
 	if(!forced)
 		if(!do_after(owner, 5 SECONDS))
 			return
-	owner.visible_message(span_warning("[owner] retreats into [suit]!"))
+	owner.visible_message(span_warning("[owner] 缩回了 [suit] 之中！"))
 	owner.extinguish_mob()
 	owner.invisibility = 101
 	new /obj/effect/temp_visual/protean_to_suit(owner.loc, owner.dir)
@@ -93,7 +93,7 @@
 		return
 	var/obj/item/mod/control/pre_equipped/protean/suit = protean.species_modsuit
 	if(dead)
-		to_chat(owner, span_warning("Your mass is destroyed. You are unable to leave."))
+		to_chat(owner, span_warning("你的质量体已被摧毁，无法离开。"))
 		return
 	if(!forced)
 		if(!do_after(owner, 5 SECONDS, suit, IGNORE_INCAPACITATED))
@@ -120,7 +120,7 @@
 	owner.SetStun(0)
 	owner.remove_traits(TRANSFORM_TRAITS, PROTEAN_TRAIT)
 	owner.apply_status_effect(/datum/status_effect/protean_low_power_mode/reform)
-	owner.visible_message(span_warning("[owner] reforms from [suit]!"))
+	owner.visible_message(span_warning("[owner] 从 [suit] 中重新成形！"))
 	if(!HAS_TRAIT(suit, TRAIT_NODROP))
 		ADD_TRAIT(suit, TRAIT_NODROP, "protean")
 
@@ -132,10 +132,10 @@
 	var/obj/item/organ/liver/protean/liver = owner.get_organ_slot(ORGAN_SLOT_LIVER)
 
 	if(stomach.metal <= PROTEAN_STOMACH_FULL * 0.6 && istype(stomach))
-		to_chat(owner, span_warning("Not enough metal to heal body!"))
+		to_chat(owner, span_warning("金属不足，无法修复身体！"))
 		return
 	if(!istype(owner.loc, /obj/item/mod/control))
-		to_chat(owner, span_warning("Not in the open. You must be inside your suit!"))
+		to_chat(owner, span_warning("不能在外面操作。你必须待在自己的外骨骼里！"))
 		return
 	var/datum/species/protean/species = owner.dna.species
 	if(!do_after(owner, 30 SECONDS, species.species_modsuit, IGNORE_INCAPACITATED))
@@ -174,12 +174,12 @@
 /obj/item/organ/brain/protean/proc/revive()
 	dead = FALSE
 	playsound(owner, 'sound/machines/ping.ogg', 30)
-	to_chat(owner, span_warning("You have regained all your mass!"))
+	to_chat(owner, span_warning("你的质量体已完全恢复！"))
 	owner.fully_heal()
 	owner.set_stat(STABLE)
 
 /obj/item/organ/brain/protean/proc/revive_timer()
-	balloon_alert_to_viewers("repairing")
+	balloon_alert_to_viewers("正在修复")
 	addtimer(CALLBACK(src, PROC_REF(revive)), 5 MINUTES) // Bump to 5 minutes
 
 /obj/effect/temp_visual/protean_to_suit
@@ -202,10 +202,10 @@
 		return
 	switch(severity)
 		if (EMP_HEAVY)
-			to_chat(owner, span_boldwarning("Your core nanites [pick("buzz erratically", "surge chaotically")]!"))
+			to_chat(owner, span_boldwarning("你核心中的纳米机器人[pick("杂乱地嗡鸣", "混乱地涌流")]！"))
 			owner.set_drugginess_if_lower(40 SECONDS)
 		if (EMP_LIGHT)
-			to_chat(owner, span_warning("Your core nanites feel [pick("fuzzy", "unruly", "sluggish")]."))
+			to_chat(owner, span_warning("你核心中的纳米机器人感觉[pick("模模糊糊", "不听使唤", "迟钝无力")]。"))
 			owner.set_drugginess_if_lower(20 SECONDS)
 
 #undef TRANSFORM_TRAITS

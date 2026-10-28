@@ -57,7 +57,7 @@
 
 	// Stat check
 	if(IS_UNCONSCIOUS_OR_CRIT(usr))
-		to_chat(usr, span_warning("You can't do this right now..."))
+		to_chat(usr, span_warning("你现在不能这样做……"))
 		return
 
 	// Only show the 'reveal all' button if we are already hiding something
@@ -99,22 +99,22 @@
 		choices[choice] = option
 	// Radial choices
 	sort_list(choices)
-	var/pick = show_radial_menu(usr, src, choices, custom_check = FALSE, tooltips = TRUE)
+	var/pick = chinese_mutant_visibility_radial(usr, src, choices)
 	if(!pick)
 		return
 
 	// Choice to action
 	if(pick == "reveal all")
-		to_chat(usr, span_notice("You are no longer trying to hide your mutant parts."))
+		to_chat(usr, span_notice("你不再试图隐藏你的变异部位。"))
 		LAZYNULL(try_hide_mutant_parts)
 		update_body_parts()
 		return
 
 	else if(pick in try_hide_mutant_parts)
-		to_chat(usr, span_notice("You are no longer trying to hide your [pick]."))
+		to_chat(usr, span_notice("你不再试图隐藏你的[chinese_mutant_visibility_display(pick)]。"))
 		LAZYREMOVE(try_hide_mutant_parts, pick)
 	else
-		to_chat(usr, span_notice("You are now trying to hide your [pick]."))
+		to_chat(usr, span_notice("你现在试图隐藏你的[chinese_mutant_visibility_display(pick)]。"))
 		LAZYOR(try_hide_mutant_parts, pick)
 	update_body_parts()
 	// automatically re-do the menu after making a selection

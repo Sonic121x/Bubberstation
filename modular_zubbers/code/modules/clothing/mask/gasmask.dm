@@ -5,14 +5,14 @@
 	flags_inv = HIDEEYES|HIDEFACE|HIDESNOUT
 
 /obj/item/clothing/mask/gas/modulator
-	name = "modified gas mask"
-	desc = "An older model of gas mask issued for use on station to help protect against airborne hazards. This one appears to be \
-		heavily modified, and the filter assembly has been replaced with a voice modulator to make the wearer sound more robotic."
+	name = "改装防毒面具"
+	desc = "一款旧型号防毒面具，配发给站内人员以抵御空气传播的危险。这一副似乎经过 \
+		大幅改装，滤毒组件已被替换为变声器，让佩戴者听起来更像机器人。"
 	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	max_filters = 0
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.55, /datum/material/glass = SMALL_MATERIAL_AMOUNT)
 	///Our SPEAKING name while our voice is cloaked. Defaults to "Unknown", but can be set by var editing.
-	var/modulated_name = "Unknown"
+	var/modulated_name = "未知"
 	///Used to store a special name if they wearer has one before equipping the mask.
 	var/previous_special_name = null
 	///If we are actually using the voice changer or not
@@ -24,16 +24,16 @@
 
 /obj/item/clothing/mask/gas/modulator/examine(mob/user)
 	. = ..()
-	. += span_notice("Its voice modulator is currently [modulate_voice ? "enabled" : "disabled"]. <b>Alt-click</b> to toggle it.")
+	. += span_notice("它的变声器目前处于[modulate_voice ? "启用" : "停用"]状态。<b>Alt-点击</b>可切换。")
 
 /obj/item/clothing/mask/gas/modulator/examine_more(mob/user)
 	. = ..()
-	. += span_notice("<i>You examine [src] closer, and notice a warning label on the side of the voice analyzer module.. \
-		\"Please enunciate words CLEARLY and PRECISELY for device to function.\"</i>")
+	. += span_notice("<i>你凑近端详[src]，注意到语音分析模块侧面有一张警告标签…… \
+		“请清晰、准确地咬字发音，设备才能正常工作。”</i>")
 
 /obj/item/clothing/mask/gas/modulator/click_alt(mob/user)
 	modulate_voice = !modulate_voice
-	balloon_alert(user, "voice modulator [modulate_voice ? "enabled":"disabled"]")
+	balloon_alert(user, "变声器已[modulate_voice ? "启用":"停用"]")
 	update_voice(user)
 
 	return CLICK_ACTION_SUCCESS
@@ -61,7 +61,7 @@
 
 /obj/item/clothing/mask/gas/modulator/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "[modulate_voice ? "Disable":"Enable"] voice modulator"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "[modulate_voice ? "停用":"启用"]变声器"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/clothing/mask/gas/modulator/proc/update_voice(mob/user)
@@ -75,7 +75,7 @@
 		return
 
 	if(HAS_TRAIT(human_user, TRAIT_SIGN_LANG))
-		user_tongue.temp_say_mod = "signs"
+		user_tongue.temp_say_mod = "打手语"
 		human_user.override_voice = previous_special_name
 		previous_special_name = null
 		return
@@ -85,7 +85,7 @@
 
 	if(human_user.wear_mask == src && modulate_voice)
 		human_user.override_voice = modulated_name
-		user_tongue.temp_say_mod = "states"
+		user_tongue.temp_say_mod = "说道"
 		return
 
 	human_user.override_voice = previous_special_name

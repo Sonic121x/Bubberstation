@@ -5,8 +5,8 @@
 	return ""
 
 /datum/vote/storyteller
-	name = "Storyteller"
-	default_message = "Vote for the storyteller!"
+	name = "故事讲述者"
+	default_message = "为故事讲述者投票！"
 	has_desc = TRUE
 	count_method = VOTE_COUNT_METHOD_RANKED
 	winner_method = VOTE_WINNER_METHOD_RANKED
@@ -28,7 +28,7 @@
 	if((length(choices) == 1)) // Only one choice, no need to vote.
 		var/de_facto_winner = choices[1]
 		SSgamemode.storyteller_vote_result(de_facto_winner)
-		to_chat(world, span_boldannounce("The storyteller vote has been skipped because there is only one storyteller left to vote for. The storyteller has been changed to [de_facto_winner]."))
+		to_chat(world, span_boldannounce("由于只剩下一名可投票的故事讲述者，本次投票已被跳过。故事讲述者已更换为 [de_facto_winner]。"))
 		return FALSE
 
 /datum/vote/storyteller/can_be_initiated(mob/by_who, forced = FALSE)
@@ -37,7 +37,7 @@
 		return TRUE
 
 	if(SSgamemode.storyteller_voted)
-		default_message = "The next Storyteller has already been selected."
+		default_message = "下一任故事讲述者已被选定。"
 		return FALSE
 
 /datum/vote/storyteller/finalize_vote(winning_option)

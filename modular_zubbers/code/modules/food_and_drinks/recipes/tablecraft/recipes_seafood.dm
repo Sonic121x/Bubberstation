@@ -1,7 +1,7 @@
 /datum/crafting_recipe/food/nekoroll
 	added_foodtypes = MEAT
 	removed_foodtypes = BREAKFAST | SEAFOOD
-	name = "Neko roll"
+	name = "猫脸寿司卷"
 	reqs = list(
 		/obj/item/food/fishmeat = 1,
 		/obj/item/food/boiledrice = 1,
@@ -13,7 +13,7 @@
 /datum/crafting_recipe/food/bignekoroll
 	added_foodtypes = MEAT
 	removed_foodtypes = BREAKFAST | SEAFOOD
-	name = "Nekobara roll"
+	name = "壮猫饭团"
 	reqs = list(
 		/obj/item/food/fishmeat = 2,
 		/obj/item/food/boiledrice = 4,

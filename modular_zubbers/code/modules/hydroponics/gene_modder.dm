@@ -1,6 +1,6 @@
 /obj/machinery/plantgenes
-	name = "plant DNA manipulator"
-	desc = "An advanced device designed to manipulate plant genetic makeup."
+	name = "植物 DNA 操纵仪"
+	desc = "一台用于操纵植物遗传构成的先进装置。"
 	icon =  'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "dnamod"
 	base_icon_state = "dnamod"
@@ -88,23 +88,23 @@
 
 	if(istype(I, /obj/item/seeds))
 		if (operation)
-			to_chat(user, "<span class='notice'>Please complete current operation.</span>")
+			to_chat(user, "<span class='notice'>请先完成当前操作。</span>")
 			return
 		if(!user.transferItemToLoc(I, src))
 			return
 		eject_seed()
 		insert_seed(I)
-		to_chat(user, "<span class='notice'>You add [I] to the machine.</span>")
+		to_chat(user, "<span class='notice'>你将 [I] 放入机器中。</span>")
 		interact(user)
 	else if(istype(I, /obj/item/disk/computer/plantgene))
 		if (operation)
-			to_chat(user, "<span class='notice'>Please complete current operation.</span>")
+			to_chat(user, "<span class='notice'>请先完成当前操作。</span>")
 			return
 		if(!user.transferItemToLoc(I, src))
 			return
 		eject_disk()
 		disk = I
-		to_chat(user, "<span class='notice'>You add [I] to the machine.</span>")
+		to_chat(user, "<span class='notice'>你将 [I] 放入机器中。</span>")
 		interact(user)
 	else
 		..()
@@ -115,7 +115,7 @@
 	if(!user)
 		return
 
-	var/datum/browser/popup = new(user, "plantdna", "Plant DNA Manipulator", 450, 600)
+	var/datum/browser/popup = new(user, "plantdna", "植物 DNA 操纵仪", 450, 600)
 	if(!(in_range(src, user) || issilicon(user)))
 		popup.close()
 		return
@@ -134,70 +134,70 @@
 			interact(user)
 			return
 
-		dat += "<div class='line'><h3>Confirm Operation</h3></div>"
-		dat += "<div class='statusDisplay'>Are you sure you want to [operation] "
+		dat += "<div class='line'><h3>确认操作</h3></div>"
+		dat += "<div class='statusDisplay'>你确定要执行以下操作吗？<br>"
 		switch(operation)
 			if("remove")
-				dat += "<span class='highlight'>[target.get_name()]</span> gene from \the <span class='highlight'>[seed]</span>?<br>"
+				dat += "从 \the <span class='highlight'>[seed]</span> 上移除基因 <span class='highlight'>[target.get_name()]</span>？<br>"
 			if("extract")
-				dat += "<span class='highlight'>[target.get_name()]</span> gene from \the <span class='highlight'>[seed]</span>?<br>"
-				dat += "<span class='bad'>The sample will be destroyed in process!</span>"
+				dat += "从 \the <span class='highlight'>[seed]</span> 上提取基因 <span class='highlight'>[target.get_name()]</span>？<br>"
+				dat += "<span class='bad'>样本将在处理过程中被销毁！</span>"
 				if(istype(target, /datum/plant_gene/core))
 					var/datum/plant_gene/core/gene = target
 					if(istype(target, /datum/plant_gene/core/potency))
 						if(gene.value > max_potency)
-							dat += "<br><br>This device's extraction capabilities are currently limited to <span class='highlight'>[max_potency]</span> potency. "
-							dat += "Target gene will be degraded to <span class='highlight'>[max_potency]</span> potency on extraction."
+							dat += "<br><br>本装置的提取能力目前仅限 <span class='highlight'>[max_potency]</span> 点效力。 "
+							dat += "提取时目标基因将降级为 <span class='highlight'>[max_potency]</span> 点效力。"
 					else if(istype(target, /datum/plant_gene/core/lifespan))
 						if(gene.value > max_endurance)
-							dat += "<br><br>This device's extraction capabilities are currently limited to <span class='highlight'>[max_endurance]</span> lifespan. "
-							dat += "Target gene will be degraded to <span class='highlight'>[max_endurance]</span> Lifespan on extraction."
+							dat += "<br><br>本装置的提取能力目前仅限 <span class='highlight'>[max_endurance]</span> 点寿命。 "
+							dat += "提取时目标基因将降级为 <span class='highlight'>[max_endurance]</span> 点寿命。"
 					else if(istype(target, /datum/plant_gene/core/endurance))
 						if(gene.value > max_endurance)
-							dat += "<br><br>This device's extraction capabilities are currently limited to <span class='highlight'>[max_endurance]</span> endurance. "
-							dat += "Target gene will be degraded to <span class='highlight'>[max_endurance]</span> endurance on extraction."
+							dat += "<br><br>本装置的提取能力目前仅限 <span class='highlight'>[max_endurance]</span> 点耐久。 "
+							dat += "提取时目标基因将降级为 <span class='highlight'>[max_endurance]</span> 点耐久。"
 					else if(istype(target, /datum/plant_gene/core/yield))
 						if(gene.value > max_yield)
-							dat += "<br><br>This device's extraction capabilities are currently limited to <span class='highlight'>[max_yield]</span> yield. "
-							dat += "Target gene will be degraded to <span class='highlight'>[max_yield]</span> yield on extraction."
+							dat += "<br><br>本装置的提取能力目前仅限 <span class='highlight'>[max_yield]</span> 点产量。 "
+							dat += "提取时目标基因将降级为 <span class='highlight'>[max_yield]</span> 点产量。"
 					else if(istype(target, /datum/plant_gene/core/production))
 						if(gene.value < min_production)
-							dat += "<br><br>This device's extraction capabilities are currently limited to <span class='highlight'>[min_production]</span> production. "
-							dat += "Target gene will be degraded to <span class='highlight'>[min_production]</span> production on extraction."
+							dat += "<br><br>本装置的提取能力目前仅限 <span class='highlight'>[min_production]</span> 点生产时间。 "
+							dat += "提取时目标基因将降级为 <span class='highlight'>[min_production]</span> 点生产时间。"
 					else if(istype(target, /datum/plant_gene/core/weed_rate))
 						if(gene.value < min_wrate)
-							dat += "<br><br>This device's extraction capabilities are currently limited to <span class='highlight'>[min_wrate]</span> weed rate. "
-							dat += "Target gene will be degraded to <span class='highlight'>[min_wrate]</span> weed rate on extraction."
+							dat += "<br><br>本装置的提取能力目前仅限 <span class='highlight'>[min_wrate]</span> 点杂草生长率。 "
+							dat += "提取时目标基因将降级为 <span class='highlight'>[min_wrate]</span> 点杂草生长率。"
 					else if(istype(target, /datum/plant_gene/core/weed_chance))
 						if(gene.value < min_wchance)
-							dat += "<br><br>This device's extraction capabilities are currently limited to <span class='highlight'>[min_wchance]</span> weed chance. "
-							dat += "Target gene will be degraded to <span class='highlight'>[min_wchance]</span> weed chance on extraction."
+							dat += "<br><br>本装置的提取能力目前仅限 <span class='highlight'>[min_wchance]</span> 点杂草易感度。 "
+							dat += "提取时目标基因将降级为 <span class='highlight'>[min_wchance]</span> 点杂草易感度。"
 
 			if("replace")
-				dat += "<span class='highlight'>[target.get_name()]</span> gene with <span class='highlight'>[disk.gene.get_name()]</span>?<br>"
+				dat += "将 <span class='highlight'>[target.get_name()]</span> 基因替换为 <span class='highlight'>[disk.gene.get_name()]</span>？<br>"
 			if("insert")
-				dat += "<span class='highlight'>[disk.gene.get_name()]</span> gene into \the <span class='highlight'>[seed]</span>?<br>"
-		dat += "</div><div class='line'><a href='byond://?src=[REF(src)];gene=[REF(target)];op=[operation]'>Confirm</a> "
-		dat += "<a href='byond://?src=[REF(src)];abort=1'>Abort</a></div>"
+				dat += "将 <span class='highlight'>[disk.gene.get_name()]</span> 基因插入 \the <span class='highlight'>[seed]</span>？<br>"
+		dat += "</div><div class='line'><a href='byond://?src=[REF(src)];gene=[REF(target)];op=[operation]'>确认</a> "
+		dat += "<a href='byond://?src=[REF(src)];abort=1'>取消</a></div>"
 		popup.set_content(dat)
 		popup.open()
 		return
 
 	dat+= "<div class='statusDisplay'>"
 
-	dat += "<div class='line'><div class='statusLabel'>Plant Sample:</div><div class='statusValue'><a href='byond://?src=[REF(src)];eject_seed=1'>"
-	dat += seed ? seed.name : "None"
+	dat += "<div class='line'><div class='statusLabel'>植物样本：</div><div class='statusValue'><a href='byond://?src=[REF(src)];eject_seed=1'>"
+	dat += seed ? seed.name : "无"
 	dat += "</a></div></div>"
 
-	dat += "<div class='line'><div class='statusLabel'>Data Disk:</div><div class='statusValue'><a href='byond://?src=[REF(src)];eject_disk=1'>"
+	dat += "<div class='line'><div class='statusLabel'>数据磁盘：</div><div class='statusValue'><a href='byond://?src=[REF(src)];eject_disk=1'>"
 	if(!disk)
-		dat += "None"
+		dat += "无"
 	else if(!disk.gene)
-		dat += "Empty Disk"
+		dat += "空白磁盘"
 	else
 		dat += disk.gene.get_name()
 	if(disk && disk.read_only)
-		dat += " (RO)"
+		dat += "（只读）"
 	dat += "</a></div></div>"
 
 	dat += "<br></div>"
@@ -206,57 +206,57 @@
 		var/can_insert = disk && disk.gene && disk.gene.can_add(seed)
 		var/can_extract = disk && !disk.read_only
 
-		dat += "<div class='line'><h3>Core Genes</h3></div><div class='statusDisplay'><table>"
+		dat += "<div class='line'><h3>核心基因</h3></div><div class='statusDisplay'><table>"
 		for(var/a in core_genes)
 			var/datum/plant_gene/G = a
 			if(!G)
 				continue
 			dat += "<tr><td width='260px'>[G.get_name()]</td><td>"
 			if(can_extract && G.mutability_flags & PLANT_GENE_GRAFTABLE)
-				dat += "<a href='byond://?src=[REF(src)];gene=[REF(G)];op=extract'>Extract</a>"
+				dat += "<a href='byond://?src=[REF(src)];gene=[REF(G)];op=extract'>提取</a>"
 			if(can_insert && istype(disk.gene, G.type) && G.mutability_flags & PLANT_GENE_REMOVABLE)
-				dat += "<a href='byond://?src=[REF(src)];gene=[REF(G)];op=replace'>Replace</a>"
+				dat += "<a href='byond://?src=[REF(src)];gene=[REF(G)];op=replace'>替换</a>"
 			dat += "</td></tr>"
 		dat += "</table></div>"
 
 		if(seed.yield != -1)
-			dat += "<div class='line'><h3>Content Genes</h3></div><div class='statusDisplay'>"
+			dat += "<div class='line'><h3>内容基因</h3></div><div class='statusDisplay'>"
 			if(reagent_genes.len)
 				dat += "<table>"
 				for(var/a in reagent_genes)
 					var/datum/plant_gene/G = a
 					dat += "<tr><td width='260px'>[G.get_name()]</td><td>"
 					if(can_extract && G.mutability_flags & PLANT_GENE_GRAFTABLE)
-						dat += "<a href='byond://?src=[REF(src)];gene=[REF(G)];op=extract'>Extract</a>"
+						dat += "<a href='byond://?src=[REF(src)];gene=[REF(G)];op=extract'>提取</a>"
 					if(G.mutability_flags & PLANT_GENE_REMOVABLE)
-						dat += "<a href='byond://?src=[REF(src)];gene=[REF(G)];op=remove'>Remove</a>"
+						dat += "<a href='byond://?src=[REF(src)];gene=[REF(G)];op=remove'>移除</a>"
 					dat += "</td></tr>"
 				dat += "</table>"
 			else
-				dat += "No content-related genes detected in sample.<br>"
+				dat += "样本中未检测到与内容相关的基因。<br>"
 			dat += "</div>"
 			if(can_insert && istype(disk.gene, /datum/plant_gene/reagent))
-				dat += "<a href='byond://?src=[REF(src)];op=insert'>Insert: [disk.gene.get_name()]</a>"
+				dat += "<a href='byond://?src=[REF(src)];op=insert'>插入：[disk.gene.get_name()]</a>"
 
-			dat += "<div class='line'><h3>Trait Genes</h3></div><div class='statusDisplay'>"
+			dat += "<div class='line'><h3>性状基因</h3></div><div class='statusDisplay'>"
 			if(trait_genes.len)
 				dat += "<table>"
 				for(var/a in trait_genes)
 					var/datum/plant_gene/G = a
 					dat += "<tr><td width='260px'>[G.get_name()]</td><td>"
 					if(can_extract && G.mutability_flags & PLANT_GENE_GRAFTABLE)
-						dat += "<a href='byond://?src=[REF(src)];gene=[REF(G)];op=extract'>Extract</a>"
+						dat += "<a href='byond://?src=[REF(src)];gene=[REF(G)];op=extract'>提取</a>"
 					if(G.mutability_flags & PLANT_GENE_REMOVABLE)
-						dat += "<a href='byond://?src=[REF(src)];gene=[REF(G)];op=remove'>Remove</a>"
+						dat += "<a href='byond://?src=[REF(src)];gene=[REF(G)];op=remove'>移除</a>"
 					dat += "</td></tr>"
 				dat += "</table>"
 			else
-				dat += "No trait-related genes detected in sample.<br>"
+				dat += "样本中未检测到与性状相关的基因。<br>"
 			if(can_insert && istype(disk.gene, /datum/plant_gene/trait))
-				dat += "<a href='byond://?src=[REF(src)];op=insert'>Insert: [disk.gene.get_name()]</a>"
+				dat += "<a href='byond://?src=[REF(src)];op=insert'>插入：[disk.gene.get_name()]</a>"
 			dat += "</div>"
 	else
-		dat += "<br>No sample found.<br><span class='highlight'>Please, insert a plant sample to use this device.</span>"
+		dat += "<br>未找到样本。<br><span class='highlight'>请插入植物样本以使用本装置。</span>"
 	popup.set_content(dat)
 	popup.open()
 
@@ -273,7 +273,7 @@
 				return
 			eject_seed()
 			insert_seed(I)
-			to_chat(usr, "<span class='notice'>You add [I] to the machine.</span>")
+			to_chat(usr, "<span class='notice'>你将 [I] 放入机器中。</span>")
 		else
 			eject_seed()
 	else if(href_list["eject_disk"] && !operation)
@@ -283,7 +283,7 @@
 				return
 			eject_disk()
 			disk = I
-			to_chat(usr, "<span class='notice'>You add [I] to the machine.</span>")
+			to_chat(usr, "<span class='notice'>你将 [I] 放入机器中。</span>")
 		else
 			eject_disk()
 	else if(href_list["op"] == "insert" && disk && disk.gene && seed)
@@ -337,7 +337,7 @@
 							else if(istype(G, /datum/plant_gene/core/weed_chance))
 								gene.value = max(gene.value, min_wchance)
 						disk.gene = gene
-						to_chat(usr, "<span class='notice'>You add [gene] to the disk.</span>")
+						to_chat(usr, "<span class='notice'>你将 [gene] 写入磁盘。</span>")
 						disk.update_disk_name()
 						qdel(seed)
 						seed = null
@@ -422,9 +422,9 @@
 /obj/machinery/plantgenes/proc/repaint_seed()
 	if(!seed)
 		return
-	if(copytext(seed.name, 1, 13) == "experimental")//13 == length("experimental") + 1
+	if(copytext(seed.name, 1, 13) == "experimental" || findtext(seed.name, "实验型 ") == 1)//13 == length("experimental") + 1
 		return // Already modded name and icon
-	seed.name = "experimental " + seed.name
+	seed.name = "实验型 " + seed.name
 	seed.icon_state = "seed-x"
 
 /* Not adding this right now
@@ -439,8 +439,8 @@
  */
 
 /obj/item/disk/computer/plantgene
-	name = "plant data disk"
-	desc = "A disk for storing plant genetic data."
+	name = "植物数据磁盘"
+	desc = "一张用于储存植物遗传数据的磁盘。"
 	icon_state = "datadisk4"
 	custom_materials = list(/datum/material/iron=30, /datum/material/glass=10)
 	var/datum/plant_gene/gene
@@ -455,16 +455,16 @@
 
 /obj/item/disk/computer/plantgene/proc/update_disk_name()
 	if(gene)
-		name = "[gene.get_name()] (plant data disk)"
+		name = "[gene.get_name()]（植物数据磁盘）"
 	else
-		name = "plant data disk"
+		name = "植物数据磁盘"
 
 /obj/item/disk/computer/plantgene/attack_self(mob/user)
 	read_only = !read_only
-	to_chat(user, "<span class='notice'>You flip the write-protect tab to [src.read_only ? "protected" : "unprotected"].</span>")
+	to_chat(user, "<span class='notice'>你将写保护开关拨到 [src.read_only ? "保护" : "未保护"]。</span>")
 
 /obj/item/disk/computer/plantgene/examine(mob/user)
 	. = ..()
 	if(gene && (istype(gene, /datum/plant_gene/core/potency)))
-		. += "<span class='notice'>Percent is relative to potency, not maximum volume of the plant.</span>"
-	. += "The write-protect tab is set to [src.read_only ? "protected" : "unprotected"]."
+		. += "<span class='notice'>百分比是相对于效力而言的，与植物的最大体积无关。</span>"
+	. += "写保护开关当前处于 [src.read_only ? "保护" : "未保护"] 状态。"

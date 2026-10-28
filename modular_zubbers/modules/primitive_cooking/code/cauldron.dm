@@ -1,6 +1,6 @@
 /obj/machinery/cauldron
-	name = "stone cauldron"
-	desc = "Cooks and boils stuff the old fashioned way."
+	name = "石制大锅"
+	desc = "用老办法烹煮、熬炖各种东西。"
 	icon = 'modular_zubbers/icons/obj/machines/cauldron.dmi'
 	icon_state = "cauldron_back_off"
 	density = TRUE
@@ -49,17 +49,17 @@
 /obj/machinery/cauldron/examine(mob/user)
 	. = ..()
 
-	. += span_notice("It can be taken apart with a <b>crowbar</b>.")
+	. += span_notice("可用<b>撬棍</b>拆解。")
 
 	if(!in_range(user, src) && !isobserver(user))
-		. += span_warning("You're too far away to examine [src]'s contents!")
+		. += span_warning("你离得太远，无法查看[src]里的东西！")
 		return
 	if(operating)
-		. += span_notice("\The [src] is boiling.")
+		. += span_notice("[src]正在沸腾。")
 		return
 
 	if(length(ingredients))
-		. += span_notice("\The [src] contains:")
+		. += span_notice("[src]里装有：")
 		var/list/items_counts = new
 		for(var/i in ingredients)
 			if(isstack(i))
@@ -69,9 +69,9 @@
 				var/atom/movable/single_item = i
 				items_counts[single_item.name]++
 		for(var/item in items_counts)
-			. += span_notice("- [items_counts[item]]x [item].")
+			. += span_notice("- [item] ×[items_counts[item]]。")
 	else
-		. += span_notice("\The [src] is empty.")
+		. += span_notice("[src]是空的。")
 
 /obj/machinery/cauldron/Exited(atom/movable/gone, direction)
 	if(gone in ingredients)
@@ -94,17 +94,17 @@
 /obj/machinery/cauldron/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(held_item?.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Unsecure" : "Secure"]"
+		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "解除固定" : "固定"]"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item?.tool_behaviour == TOOL_CROWBAR)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
-	context[SCREENTIP_CONTEXT_LMB] = "Show menu"
+	context[SCREENTIP_CONTEXT_LMB] = "显示菜单"
 
 	if(length(ingredients) != 0)
-		context[SCREENTIP_CONTEXT_RMB] = "Start cooking"
+		context[SCREENTIP_CONTEXT_RMB] = "开始烹饪"
 
 	return CONTEXTUAL_SCREENTIP_SET
 
@@ -166,7 +166,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/cauldron/crowbar_act(mob/living/user, obj/item/tool)
-	user.balloon_alert_to_viewers("disassembling...")
+	user.balloon_alert_to_viewers("正在拆解……")
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 100))
 		return
 	new /obj/item/stack/sheet/mineral/stone(drop_location(), 5) // Made with stone instead of iron so that it doesn't outbalance microwaves on station
@@ -182,21 +182,21 @@
 
 	if(!anchored)
 		if(IS_EDIBLE(item))
-			balloon_alert(user, "not secured!")
+			balloon_alert(user, "尚未固定！")
 			return ITEM_INTERACT_BLOCKING
 		return NONE
 
 	if(item.w_class <= WEIGHT_CLASS_NORMAL && !user.combat_mode && isnull(item.atom_storage))
 		if(ingredients.len >= max_n_of_items)
-			balloon_alert(user, "it's full!")
+			balloon_alert(user, "已经满了！")
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(item, src))
-			balloon_alert(user, "it's stuck to your hand!")
+			balloon_alert(user, "它粘在你手上了！")
 			return ITEM_INTERACT_BLOCKING
 
 		ingredients += item
 		open(autoclose = 0.6 SECONDS)
-		user.visible_message(span_notice("[user] adds \a [item] to \the [src]."), span_notice("You add [item] to \the [src]."))
+		user.visible_message(span_notice("[user] 把[item]放进了[src]。"), span_notice("你把[item]放进[src]。"))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -213,7 +213,7 @@
 	var/loaded = 0
 	if(!istype(tool, /obj/item/storage/bag/tray))
 		// Non-tray dumping requires a do_after
-		to_chat(user, span_notice("You start dumping out the contents of [tool] into [src]..."))
+		to_chat(user, span_notice("你开始把[tool]里的东西倒进[src]……"))
 		if(!do_after(user, 2 SECONDS, target = tool))
 			return
 
@@ -221,7 +221,7 @@
 		if(!IS_EDIBLE(tray_item))
 			continue
 		if(ingredients.len >= max_n_of_items)
-			balloon_alert(user, "it's full!")
+			balloon_alert(user, "已经满了！")
 			return TRUE
 		if(tool.atom_storage.attempt_remove(tray_item, src))
 			loaded++
@@ -229,7 +229,7 @@
 
 	if(loaded)
 		open(autoclose = 0.6 SECONDS)
-		to_chat(user, span_notice("You insert [loaded] items into \the [src]."))
+		to_chat(user, span_notice("你把[loaded]件物品放进了[src]。"))
 		update_appearance()
 
 /obj/machinery/cauldron/mouse_drop_receive(obj/item/tool, mob/user, params)
@@ -243,7 +243,7 @@
 		return
 	if(user.can_perform_action(src))
 		if(!length(ingredients))
-			balloon_alert(user, "it's empty!")
+			balloon_alert(user, "里面是空的！")
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 		cook(user)
@@ -254,7 +254,7 @@
 	. = ..()
 
 	if(!anchored)
-		balloon_alert(user, "not secured!")
+		balloon_alert(user, "尚未固定！")
 		return
 	if(operating || !user.can_perform_action(src))
 		return
@@ -263,14 +263,14 @@
 		if(isAI(user))
 			examine(user)
 		else
-			balloon_alert(user, "it's empty!")
+			balloon_alert(user, "里面是空的！")
 		return
 
 	var/choice = show_radial_menu(user, src, radial_options, require_near = TRUE)
 
 	// post choice verification
 	if(!anchored)
-		balloon_alert(user, "not secured!")
+		balloon_alert(user, "尚未固定！")
 		return
 	if(operating || !user.can_perform_action(src))
 		return
@@ -310,7 +310,7 @@
  * * cooker - The mob that initiated the cook cycle
  */
 /obj/machinery/cauldron/proc/start(mob/cooker)
-	visible_message(span_notice("\The [src] heats up."), null, span_hear("You hear bubbling as the cauldron ignites."))
+	visible_message(span_notice("[src]开始升温。"), null, span_hear("你听到大锅点燃后咕嘟作响。"))
 	operating = TRUE
 	update_appearance()
 	cook_loop(cycles = 10, cooker = cooker)

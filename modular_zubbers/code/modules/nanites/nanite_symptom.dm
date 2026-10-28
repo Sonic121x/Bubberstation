@@ -1,6 +1,6 @@
 /datum/symptom/nano_boost
-	name = "Nano-symbiosis"
-	desc = "The virus reacts to nanites in the host's bloodstream by enhancing their replication cycle."
+	name = "纳米共生"
+	desc = "病毒会与宿主血液中的纳米机器人发生反应，增强其复制周期。"
 	stealth = 0
 	resistance = 2
 	stage_speed = 2
@@ -10,8 +10,8 @@
 	symptom_delay = 1
 	var/reverse_boost = FALSE
 	threshold_descs = list(
-		"Transmission 5" = "Increases the virus' growth rate while nanites are present.",
-		"Stage Speed 7" = "Increases the replication boost."
+		"传播性 5" = "存在纳米机器人时提高病毒的生长速率。",
+		"阶段速度 7" = "提高复制增益。"
 	)
 
 /datum/symptom/nano_boost/Start(datum/disease/advance/A)
@@ -34,8 +34,8 @@
 			A.stage = min(A.stage + 1,A.max_stages)
 
 /datum/symptom/nano_destroy
-	name = "Silicolysis"
-	desc = "The virus reacts to nanites in the host's bloodstream by attacking and consuming them."
+	name = "硅裂解"
+	desc = "病毒会与宿主血液中的纳米机器人发生反应，攻击并吞噬它们。"
 	stealth = 0
 	resistance = 4
 	stage_speed = -1
@@ -45,8 +45,8 @@
 	symptom_delay = 1
 	var/reverse_boost = FALSE
 	threshold_descs = list(
-		"Stage Speed 5" = "Increases the virus' growth rate while nanites are present.",
-		"Resistance 7" = "Severely increases the rate at which the nanites are destroyed."
+		"阶段速度 5" = "存在纳米机器人时提高病毒的生长速率。",
+		"抗性 7" = "大幅提高纳米机器人的被摧毁速率。"
 	)
 
 /datum/symptom/nano_destroy/Start(datum/disease/advance/A)

@@ -1,33 +1,33 @@
 /datum/species/skrell/get_species_description()
 	return list(
-	"The Skrell are a dying amphibious species from the marshworld Qerrbalak, \
-	possessing some of the most intelligent minds in the galaxy due to their often singular focus.",
-	"Their blood is rich in copper, oxidizing their skin to a blue tint. \
-	Amebocytes in their blood filter out smaller doses of toxins, \
-	though their livers are unable to break down alcohol, among other things. \
-	They are resistant to heat and burns by retaining potable water, but bruise more easily than humans. \
-	This water can freeze in cold temperatures.",
+	"斯克雷尔是来自沼泽世界奎尔巴拉克的濒危两栖种族， \
+	由于常常专注于一隅，他们拥有银河中最聪慧的头脑。",
+	"他们的血液富含铜，使皮肤氧化成蓝色。 \
+	血液中的变形细胞能过滤掉少量毒素， \
+	但他们的肝脏无法分解酒精等物质。 \
+	他们通过储存可饮用水来抵抗高温与灼伤，但比人类更容易淤伤。 \
+	这些水在低温下会结冰。",
 	)
 
 /datum/species/skrell/get_species_lore()
 	return list(
-		"The Skrell are an amphibious species from the ancient swampy world of Qerrbalak. \
-		They are a gregarious people with a love of music and social activity and a deep and abiding fascination with all things related to the mind and the consciousness. \
-		The Skrell posess some of the most talented medical professionals in the galaxy, especially in the fields of neurology, neuroscience, and psychology. \
-		They are heralded as one of the more ancient species in the galaxy, and are well known to favor academics than most other pursuits, with an impressive singular focus.",
+		"斯克雷尔是来自古老沼泽世界奎尔巴拉克的两栖种族。 \
+		他们乐于交际，热爱音乐与社交活动，对一切与心智和意识相关的事物怀有深切而持久的迷恋。 \
+		斯克雷尔拥有银河中一些最有才华的医疗专业人员，尤其是在神经病学、神经科学和心理学领域。 \
+		他们被誉为银河中较为古老的种族之一，并以对学术的偏爱胜过大多数其他追求而闻名，专注力令人印象深刻。",
 
-		"Skrell are mostly androgynous in appearance, and completely unable to deliver any emotion in their face due to lack of the musculature to do so. \
-		They make up for this by having emotive personalities and tone.	Where a human may be happy, a Skrell is joyous. This trend originated from their first contacts with other life, due to confusion \
-		caused by their apparent stoic expression, and has simply become a part of their cultural identity. Skrell are singularly passionate about their life's focus, \
-		extremely adept and focused to a point of comedy. Skrell are known to love vibrant colors and have a deep sense of aesthetics, despite largely being very secular.",
+		"斯克雷尔在外观上大多雌雄莫辨，而且由于缺乏相应肌肉，他们的面部完全无法表达任何情绪。 \
+		他们通过富有情感的性格和语调来弥补。人类可能只是高兴，斯克雷尔则会欢欣雀跃。这一倾向源于他们与其他生命的初次接触， \
+		因为他们表面上的冷漠表情引起了困惑，后来这已成为他们文化身份的一部分。斯克雷尔对毕生专注之事怀有非同寻常的热情， \
+		极其专注且投入，甚至专注到滑稽的程度。斯克雷尔以热爱鲜艳色彩和拥有深厚审美感著称，尽管他们大多非常世俗。",
 
-		"The Skrell have been in space the longest of all the known sapients, establishing extraplanetary colonies very early compared to other species. \
-		The Skrell have witnessed much of galactic history, and assisted in many endeavours, famously including the founding of the Galactic Federation \
-		and the structuring of its healthcare and medical systems. Long have the Skrell enjoyed the dominance of their vast wealth of knowledge, \
-		their galaxy-class doctors and scientists, and their hallowed halls of academic study.",
+		"在所有已知智慧生命中，斯克雷尔在太空中生活的时间最长，与其他种族相比很早就建立了行星外殖民地。 \
+		斯克雷尔见证了银河历史的大部分，并协助过许多事业，其中最著名的包括银河联邦的建立 \
+		及其医疗与卫生系统的构建。长期以来，斯克雷尔一直享有其渊博知识、 \
+		银河级医生与科学家以及神圣学术殿堂所带来的优势地位。",
 
-		"In time, however, the Skrell would be able to go no further, causing population numbers to drastically decline over the past few generations. The reasons remain a subject of debate, \
-		some outside sources seem to believe it is primarily due to their inability to crossbreed but it is certain that the Skrell have declined outside their core systems, \
-		now officially labeled endangered by the FHO, an organization they created. Many of the brightest minds of the Skrell have returned to Qerrbalak to try and stay the extinction of the Skrell species, \
-		but many more have chosen to live out their final days, at home or where they are.",
+		"然而，随着时间的推移，斯克雷尔再也无法更进一步，导致过去几代中人口数量急剧下降。原因仍有争议， \
+		一些外部资料似乎认为主要是因为他们无法与其他种族杂交，但可以确定的是，斯克雷尔在其核心星系之外已经衰落， \
+		如今被 FHO——一个由他们自己创立的组织——正式列为濒危物种。许多斯克雷尔最聪明的头脑已返回奎尔巴拉克，试图阻止斯克雷尔物种的灭绝， \
+		但更多人选择在家中或他们所在的地方度过余生。",
 	)

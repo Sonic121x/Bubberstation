@@ -1,7 +1,7 @@
 // Empty shell
 
 /datum/design/synthclone
-	name = "Blank synthetic shell"
+	name = "空白合成人躯壳"
 	id = "blanksynth"
 	build_type = MECHFAB
 	construction_time = 60 SECONDS
@@ -17,7 +17,7 @@
 	build_path = /mob/living/carbon/human/species/synth/empty
 
 /datum/design/borg_upgrade_advcutter
-	name = "Advanced Plasma Cutter"
+	name = "高级等离子切割器"
 	id = "borg_upgrade_advcutter"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/advcutter
@@ -34,7 +34,7 @@
 
 //research cyborg upgrades
 /datum/design/borg_upgrade_advancedhealth
-	name = "Research Advanced Health Analyzer"
+	name = "研究型高级健康分析仪"
 	id = "borg_upgrade_advancedanalyzer"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/healthanalyzer
@@ -46,7 +46,7 @@
 
 //Blue space Rped upgrade
 /datum/design/borg_upgrade_brped
-	name = "Bluespace Rapid Part Exchange Device"
+	name = "蓝空间快速部件更换装置"
 	id = "borg_upgrade_brped"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/brped
@@ -60,7 +60,7 @@
 	)
 
 /datum/design/borg_upgrade_research_rcd
-	name = "Research cyborg synthetic repair tool"
+	name = "研究型半机械人合成体修复工具"
 	id = "borg_upgrade_research_rcd"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/robotics_rcd
@@ -76,7 +76,7 @@
 	)
 
 /datum/design/borg_upgrade_inducer_sci
-	name = "Research Cyborg inducer"
+	name = "研究型半机械人感应充电器"
 	id = "borg_upgrade_inducer_sci"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/inducer_sci
@@ -87,7 +87,7 @@
 	)
 
 /datum/design/borg_dominatrix
-	name = "Cyborg dominatrix module"
+	name = "半机械人调教模块"
 	id = "dominatrixmodule"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/dominatrixmodule
@@ -101,7 +101,7 @@
 	)
 
 /datum/design/borg_obedience
-	name = "Cyborg Obedience Module"
+	name = "半机械人服从模块"
 	id = "obediencemodule"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/obediencemodule
@@ -115,7 +115,7 @@
 	)
 
 /datum/design/borg_waddle
-	name = "Cyborg Waddle Module"
+	name = "半机械人摇摆模块"
 	id = "waddle_module"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/waddle_module
@@ -130,7 +130,7 @@
 
 //so we have our own category
 /datum/design/borg_upgrade_surgical_processor_sci
-	name = "Research Surgical Processor"
+	name = "研究型外科手术处理器"
 	id = "borg_upgrade_surgicalprocessor_sci"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/processor
@@ -146,8 +146,8 @@
 
 //Some new toys
 /datum/design/experi_scanner/bluespace_borg
-	name = "Cyborg Bluespace Experimental Scanner"
-	desc = "A version of the experiment scanner that allows for performing experiment scans from a distance."
+	name = "半机械人蓝空间实验扫描仪"
+	desc = "一种实验扫描仪的变体，可远程执行实验扫描。"
 	id = "bs_experi_scanner_cyborg"
 	build_type = MECHFAB
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 2.5)
@@ -157,7 +157,7 @@
 	)
 
 /datum/design/module/mind_transfer
-	name = "Mind Transference Module"
+	name = "思维转移模块"
 	id = "mod_mind_transfer"
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -169,8 +169,8 @@
 	)
 
 /datum/design/rld
-	name = "Cyborg Rapid Lighting Device"
-	desc = "A device that allows rapid, range deployment of lights and glowsticks."
+	name = "半机械人快速照明装置"
+	desc = "一种可快速、远距离部署照明灯与荧光棒的工具。"
 	id = "rld_cyborg"
 	build_type = MECHFAB
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 2.5)
@@ -182,7 +182,7 @@
 //	JANITOR CYBORG UPGRADES
 
 /datum/design/borg_upgrade_detailer
-	name = "Detailing Tools"
+	name = "细节修饰工具"
 	id = "borg_upgrade_detailer"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/detailer
@@ -196,8 +196,8 @@
 	)
 
 /datum/design/rld_janitor
-	name = "Cyborg Rapid Lighting Device"
-	desc = "A device that allows rapid, range deployment of lights and glowsticks."
+	name = "半机械人快速照明装置"
+	desc = "一种可快速、远距离部署照明灯与荧光棒的工具。"
 	id = "rld_cyborg_janitor"
 	build_type = MECHFAB
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 2.5)
@@ -207,8 +207,8 @@
 	)
 
 /datum/design/cyborg_cable_coil
-	name = "Integrated Cable Coil"
-	desc = "Condensed spooling technology allows cabling technology in janitorial modules."
+	name = "集成电缆线圈"
+	desc = "紧凑的线轴技术让清洁模块也能携带线缆工具。"
 	id = "cable_coil_cyborg"
 	build_type = MECHFAB
 	materials = list(
@@ -221,8 +221,8 @@
 	)
 
 /datum/design/xenoarch/equipment/bag_adv_borg
-	name = "Cyborg Advanced Xenoarchaeology Bag"
-	desc = "An improved bag to pick up strange rocks for science"
+	name = "半机械人高级异星考古袋"
+	desc = "一种改进型袋子，用于为科学研究收集奇特的岩石。"
 	id = "adv_xenoarchbag_cyborg"
 	build_type = MECHFAB
 	materials = list(
@@ -236,8 +236,8 @@
 	)
 
 /datum/design/pinpointer/vent
-	name = "Vent Pinpointer"
-	desc = "A modularized tracking device. It will locate and point to nearby vents."
+	name = "矿脉指示器"
+	desc = "一种模块化追踪装置，可定位并指向附近的矿脉喷口。"
 	id = "pinpointer_vent_cyborg"
 	build_type = MECHFAB
 	materials = list(
@@ -251,7 +251,7 @@
 	)
 
 /datum/design/module/protean/servo
-	name = "Protean Servo Module"
+	name = "普罗蒂安伺服模块"
 	id = "mod_protean_servo"
 	build_type = MECHFAB
 	materials = list(
@@ -261,7 +261,7 @@
 	build_path = /obj/item/mod/module/protean_servo
 
 /datum/design/module/hat_stabilizer
-	name = "Hat Stabilizer Module"
+	name = "MOD 帽子固定模块"
 	id = "mod_hat_stabilizer"
 	build_type = MECHFAB
 	materials = list(
@@ -275,7 +275,7 @@
 //Borg PKAs
 
 /datum/design/kinetic_accelerator/railgun/cyborg
-	name = "proto-kinetic railgun"
+	name = "原型动能轨道炮"
 	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/railgun::desc
 	id = "pka_railgun_cyborg"
 	build_type = MECHFAB
@@ -292,7 +292,7 @@
 	)
 
 /datum/design/kinetic_accelerator/repeater/cyborg
-	name = "proto-kinetic repeater"
+	name = "原型动能连发枪"
 	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/repeater::desc
 	id = "pka_repeater_cyborg"
 	build_type = MECHFAB
@@ -307,7 +307,7 @@
 	)
 
 /datum/design/kinetic_accelerator/shotgun/cyborg
-	name = "proto-kinetic shotgun"
+	name = "原型动能霰弹枪"
 	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/shotgun::desc
 	id = "pka_shotgun_cyborg"
 	build_type = MECHFAB
@@ -323,7 +323,7 @@
 	)
 
 /datum/design/kinetic_accelerator/glock/cyborg
-	name = "proto-kinetic pistol"
+	name = "原型动能手枪"
 	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/glock::desc
 	id = "pka_pistol_cyborg"
 	build_type = MECHFAB
@@ -339,7 +339,7 @@
 	)
 
 /datum/design/kinetic_accelerator/shockwave/cyborg
-	name = "proto-kinetic shockwave"
+	name = "原型动能冲击波发生器"
 	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/shockwave::desc
 	id = "pka_shockwave_cyborg"
 	build_type = MECHFAB
@@ -356,7 +356,7 @@
 	)
 
 /datum/design/kinetic_accelerator/m79/cyborg
-	name = "proto-kinetic grenade launcher"
+	name = "原型动能榴弹发射器"
 	desc = /obj/item/gun/energy/recharge/kinetic_accelerator/m79::desc
 	id = "pka_m79_cyborg"
 	build_type = MECHFAB

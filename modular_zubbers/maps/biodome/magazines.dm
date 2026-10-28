@@ -4,27 +4,27 @@
 
 //Flavor item for the Biodome arrivals shuttle, but I think it's funny if it still appears elsewhere.
 /obj/item/book/granter/magazine/biodome
-	name = "Nanotrasen 'Biodome' Travel Brochure"
-	starting_title = "Nanotrasen 'Biodome' Travel Brochure"
-	desc = "A somewhat tacky brochure for Nanotrasen's new line of 'Biodome'-class stations."
+	name = "纳米传讯“生态穹顶”旅游手册"
+	starting_title = "纳米传讯“生态穹顶”旅游手册"
+	desc = "一本稍显俗气的宣传册，介绍纳米传讯新推出的“生态穹顶”级空间站系列。"
 	icon_state = "biochure"
 	pages_to_mastery = 2 //so you can see a few remarks each time
 	remarks = list(
-		"Take a scenic tour through the Biodome skybridge, looking down upon the tamed wilderness!",
-		"Relax by the fountain in the expanded Biodome service department!",
-		"Now with live, open-air entertainment (entertainment is still largely clown-based)...",
-		"See the dome in style with our new 'BioTube' transit system...",
-		"Take a calming river ride across the scenic Biodome Lake! (Minimum speed 70 kph).",
-		"Research in style in our state-of-the-art 'VapoRnDwave' facilities!",
-		"Now with safety measures to prevent turbine exhaust from destroying atmosian windows!",
-		"See such exciting zoo exhibits as axolotls, endangered lagomorphs, or even the rare Gondolas! (Gondola flesh not included)",
-		"Note: due to construction expenses, transfers to 'Biodome'-class stations currently comes with a 20% pay cut...",
-		"All the comforts of living on a planet without actually being on a planet!",
-		"Too warm? Take a trip to the wintery medical bay, kept at a bracing 62 degrees Fahrenheit (17 C) at all times...",
-		"All employee breakrooms equipped with cozy fireplaces (fuel supplies minimal to prevent smoke inhalation)...",
-		"There is nothing behind the walls.",
-		"The captain can always watch over you with our new, patented 'OverBridge' design! Give them a wave!",
-		"Climbing across the rooftops is strictly prohibited...",
-		"Maybe you COULD use a vacation...",
+		"沿观光路线穿过生态穹顶天桥，俯瞰这片被驯服的荒野！",
+		"在扩建后的生态穹顶服务部里，到喷泉旁放松一下吧！",
+		"现已推出露天现场娱乐（娱乐内容仍以小丑为主）……",
+		"搭乘全新的“BioTube”交通系统，优雅地游览穹顶……",
+		"沿着风景如画的生态穹顶湖，来一段平缓的河上巡游！（最低时速 70 千米）。",
+		"在我们最先进的“VapoRnDwave”设施中，开展有格调的研究！",
+		"新增安全措施，防止涡轮废气摧毁大气部的窗户！",
+		"观赏美西螈、濒危兔形目动物，甚至稀有的贡多拉等精彩动物园展品！（不含贡多拉血肉）",
+		"注意：由于建设开支，调往“生态穹顶”级空间站目前会伴随 20% 的降薪……",
+		"享受住在行星上的一切舒适，而实际上根本不在行星上！",
+		"太热了？去冬意十足的医疗舱走一趟吧，那里常年维持在 62 华氏度（17 摄氏度）的凉爽温度……",
+		"所有员工休息室均配有舒适壁炉（燃料按最低量供应，以防吸入烟雾）……",
+		"墙后什么都没有。",
+		"凭借我们全新专利的“OverBridge”设计，舰长随时都能守望着你！朝他挥挥手吧！",
+		"严禁攀爬屋顶……",
+		"也许你确实该休个假了……",
 	)
 

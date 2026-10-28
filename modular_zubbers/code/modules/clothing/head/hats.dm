@@ -1,6 +1,6 @@
 /obj/item/clothing/head/soft/allamerican
-	name = "all-american diner employee cap"
-	desc = "It's a salmon colored baseball cap that All-American Diner employees wear, you see the name of the diner on the front of the cap, just to tell you where you are."
+	name = "全美餐馆员工帽"
+	desc = "一顶鲑鱼色的棒球帽，全美餐馆的员工都会戴。你可以在帽子正面看到餐馆的名字，好让你知道自己身在何处。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "allamericansoft"
@@ -8,8 +8,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/galfedcap
-	name = "Galactic Federation cap"
-	desc = "A cap with the Galactic Federation logo on the front, it's a nice shade of blue."
+	name = "银河联邦帽"
+	desc = "一顶正面印有银河联邦标志的帽子，蓝色调很好看。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "galfedsoft"
@@ -17,16 +17,16 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/peacekeeperberet
-	name = "peacekeeper Beret"
-	desc = "A relic from the past. Its effectiveness as a stylish hat was never debated."
+	name = "维和者贝雷帽"
+	desc = "一件来自过去的遗物。它作为时尚帽子的效果从未受到质疑。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "unberet"
 	dog_fashion = null
 
 /obj/item/clothing/head/beret/lizardgas
-	name = "Veteran Lizard Gas Beret"
-	desc = "A beret awarded to team members who have lasted a full year or more under the employment of the Lizard Gas brand! A pizza party is sure to be held on their anniversary."
+	name = "蜥蜴燃气资深员工贝雷帽"
+	desc = "一顶授予在蜥蜴燃气品牌旗下任职满一年或更久的团队成员的贝雷帽！他们的周年纪念日肯定会举办披萨派对。"
 	icon_state = "/obj/item/clothing/head/beret/science/rd"
 	post_init_icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
@@ -35,21 +35,21 @@
 
 //Ported from Kuro020 of TGMC.
 /obj/item/clothing/head/bandana/snake
-	name = "soldier's bandana"
-	desc = "<i>Her</i> bandana, salvaged from Lake Nicaragua and lovingly repaired."
+	name = "士兵头巾"
+	desc = "<i>她的</i>头巾，从尼加拉瓜湖中打捞上来，并被用心修补过。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "headband_snake"
 
 /obj/item/clothing/head/bandana/snake/sec
-	name = "armored bandana"
-	desc = "For ten years, we lived and died together. You couldn't possibly understand."
+	name = "装甲头巾"
+	desc = "十年来，我们同生共死。你根本不可能理解。"
 	armor_type = /datum/armor/cosmetic_sec
 
 //virosec hats
 /obj/item/clothing/head/sec/viro
-	name = "security softcap"
-	desc = "A soft hat to give security operators less strain on their necks after wearing helmets all day."
+	name = "安保软帽"
+	desc = "一顶软帽，让安保人员在整天戴头盔之后，脖子能少受点罪。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "secsoft_v"
@@ -61,15 +61,15 @@
 	default_accessories = list("security_cap_accs_front", "security_cap_accs_logo")
 	core_components = list(
 		list(
-			"name" = "Cap",
+			"name" = "帽身",
 			"key" = "cap",
 			"default" = "security",
 			"options" = list(
 				"security" = list(
-					"name" = "Security cap",
+					"name" = "安保帽",
 					"state" = "security_cap",
 					"color_id" = 1,
-					"color_label" = "Main",
+					"color_label" = "主色",
 					"default_color" = "#A53429",
 				),
 			),
@@ -79,20 +79,20 @@
 		"Backing" = list(
 			"state" = "security_cap_accs_front",
 			"color_id" = 2,
-			"color_label" = "Backing",
+			"color_label" = "衬垫",
 			"default_color" = "#3F6E9E",
 		),
 		"Logo" = list(
 			"state" = "security_cap_accs_logo",
 			"color_id" = 3,
-			"color_label" = "Logo",
+			"color_label" = "徽标",
 			"default_color" = "#FFFFFF",
 		),
 	)
 
 /obj/item/clothing/head/soft/sec/recolorable
-	name = "security cap"
-	desc = "It's a robust baseball hat, this one seems to have been custom ordered."
+	name = "安保帽"
+	desc = "一顶结实的棒球帽，这一顶似乎是定制的。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "security_cap"
@@ -122,11 +122,11 @@
 	update_greyscale_component_icons()
 
 /obj/item/clothing/head/soft/sec/recolorable/flip(mob/user)
-	balloon_alert(user, "can't be flipped!")
+	balloon_alert(user, "无法翻转！")
 
 /obj/item/clothing/head/sec/viro/beanie
-	name = "security beanie"
-	desc = "A beanie for security purposes"
+	name = "安保针织帽"
+	desc = "一顶用于安保工作的针织帽"
 	icon_state = "security_beanie"
 	armor_type = /datum/armor/cosmetic_sec
 

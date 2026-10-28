@@ -2,8 +2,8 @@
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/belts/belts_teshari.dmi'
 
 /obj/item/storage/belt/bluespace
-	name = "bluespace tech's belt"
-	desc = "Can hold various things, and specifically up to 21 things. You likely shouldn't have this."
+	name = "蓝空间技师腰带"
+	desc = "可容纳各种物品，具体而言最多能装 21 件。你大概不该拥有这个。"
 	content_overlays = FALSE
 	icon = 'modular_zubbers/icons/obj/clothing/belts/belts.dmi'
 	icon_state = "bst_belt"

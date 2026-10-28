@@ -1,6 +1,6 @@
 /obj/item/clothing/head/utility/hardhat/bluespace
-	name = "bluespace tech's hard hat"
-	desc = "A robust and elite hard hat, worn by Nanotrasen's theoretical bluespace technicians. You probably shouldn't have this."
+	name = "蓝空间技师安全帽"
+	desc = "一顶坚固而精良的安全帽，由纳米传讯的理论蓝空间技师佩戴。你大概不该拥有这个。"
 
 	icon = 'modular_zubbers/icons/obj/clothing/head/utility.dmi'
 	icon_state = "hardhat0_bst"

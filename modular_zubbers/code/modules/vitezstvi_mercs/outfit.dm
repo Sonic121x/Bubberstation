@@ -1,6 +1,6 @@
 /obj/item/clothing/head/helmet/space/beret/vitezstvi
-	name = "contractor's beret"
-	desc = "An armoured olive beret with a gold Vítězství Arms pin. The plating is sewn between two layers of felt, which is either clever or a war crime depending on who you ask."
+	name = "承包商的贝雷帽"
+	desc = "一顶橄榄色装甲贝雷帽，别着金色胜利军械徽章。装甲板缝在两层毛毡之间，这算巧妙还是算战争罪行，就看你去问谁了。"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/helmet/space/beret"
 	post_init_icon_state = "beret_badge"
@@ -9,9 +9,9 @@
 	greyscale_colors = "#397F3F#FFCE5B"
 
 /obj/item/card/id/advanced/centcom/ert/nri/vitezstvi
-	name = "contractor's ID card"
-	desc = "An ID straight from the Pan-Slavic Commonwealth. Or was it the NRI?"
-	registered_name = "Vítězství Arms Contractor"
+	name = "承包商的 ID 卡"
+	desc = "一张直接来自泛斯拉夫联邦的 ID 卡。还是说，是新俄罗斯帝国？"
+	registered_name = "胜利军械承包商"
 	trim = /datum/id_trim/nri/vitezstvi
 
 /datum/outfit/vitezstvi_merc
@@ -64,7 +64,7 @@
 	)
 
 /datum/id_trim/nri/vitezstvi
-	assignment = "Vítězství Arms Contractor"
+	assignment = "胜利军械承包商"
 	department_color = COLOR_OLIVE_GREEN
 	subdepartment_color = COLOR_GOLD
 	sechud_icon_state = "hudvitezstvi"
@@ -105,7 +105,7 @@
 	new /obj/item/ammo_box/speedloader/c357(src)
 
 /obj/item/reagent_containers/cup/glass/flask/vitezstvi
-	name = "contractor's flask"
-	desc = "Standard issue, including the Vodka."
+	name = "承包商的酒壶"
+	desc = "标准配发品，伏特加也包含在内。"
 	icon_state = "flask"
 	list_reagents = list(/datum/reagent/consumable/ethanol/vodka = 60)

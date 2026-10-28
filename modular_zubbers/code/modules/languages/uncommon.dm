@@ -1,7 +1,7 @@
 /datum/language/uncommon
 	name = "Terran Uncommon"
-	desc = "Developed in protest against the subversion of its traditional lingua franca by integrationists, Terran Uncommon is most commonly spoken on its namesake, Terra. \
-		Being a pidgin of English, Mandarin and Hindi, Terran Uncommon is similar to, but decisively distinct from, its Common counterpart, free of alien influence."
+	desc = "地球异通用语是为抗议融合派颠覆其传统通用语而发展出来的，最常在其名字的来源地——地球上使用。\
+		作为英语、普通话与印地语的混合语，它与其通用语对应语言相似却有着决定性的区别：它不受任何外星影响。"
 	key = "!"
 	flags = LANGUAGE_TONGUELESS_SPEECH
 	space_chance = 20

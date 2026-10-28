@@ -5,8 +5,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/protean_low_power_mode
 
 /atom/movable/screen/alert/status_effect/protean_low_power_mode
-	name = "Low Power Mode"
-	desc = "You are running on low power mode, this slows you down but means you'll use way less material to sustain yourself"
+	name = "低功率模式"
+	desc = "你正运行在低功率模式下，这会让你变慢，但你维持自身所需的材料会大幅减少"
 	icon = 'modular_zubbers/icons/hud/screen_alert.dmi'
 	icon_state = "protean_lowpower"
 
@@ -26,8 +26,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/protean_low_power_mode/reform
 
 /atom/movable/screen/alert/status_effect/protean_low_power_mode/reform
-	name = "Freshly reformed"
-	desc = "You have just reformed from inside your modsuit, leaving you slowed down and weaker as you finalize your form."
+	name = "刚刚重组"
+	desc = "你刚刚从外骨骼内部重组而出，在形体最终稳定之前，你会行动迟缓且更为脆弱。"
 	icon_state = "protean_reform"
 
 /datum/status_effect/protean_low_power_mode/reform/on_apply()

@@ -14,9 +14,9 @@
 /mob/living/basic/guardian/standard/timestop
 	// Like Bloodsuckers do, you will take more damage to Burn and less to Brute
 	damage_coeff = list(BRUTE = 0.5, BURN = 2.5, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
-	playstyle_string = span_holoparasite("As a <b>timestop</b> type you have the ability to stop time, allowing you to move freely while your enemies and even projectiles are frozen. You are also resistant to brute damage, but weak to burn damage.")
-	creator_name = "Timestop"
-	creator_desc = "Devastating close combat attacks and high physical damage resistance, but weak to burns. Can smash through weak walls and stop time."
+	playstyle_string = span_holoparasite("作为<b>时停</b>型，你拥有停止时间的能力，敌人乃至飞行物都会被冻结，而你能自由行动。你还对钝击伤害有抗性，但惧怕烧伤。")
+	creator_name = "时停"
+	creator_desc = "毁灭性的近战攻击与极高的物理伤害抗性，但惧怕烧伤。能砸穿脆弱的墙壁并停止时间。"
 	creator_icon = "standard"
 
 /mob/living/basic/guardian/standard/timestop/set_summoner(mob/living/to_who, different_person = FALSE)
@@ -27,57 +27,57 @@
 
 ///Guardian Timestop ability
 /datum/action/cooldown/spell/timestop/guardian
-	name = "Guardian Timestop"
-	desc = "This spell stops time for everyone except for you and your master, \
-		allowing you to move freely while your enemies and even projectiles are frozen."
+	name = "守护灵时停"
+	desc = "这道法术会为除你和你主人之外的所有人停止时间，\
+		让你能在敌人乃至飞行物都被冻结时自由行动。"
 	cooldown_time = 60 SECONDS
 	spell_requirements = NONE
 	invocation_type = INVOCATION_NONE
 
 /datum/guardian_fluff/tech
 	guardian_fluff = list(
-		GUARDIAN_ASSASSIN = "Boot sequence complete. Stealth modules loaded. Holoparasite swarm online.",
-		GUARDIAN_CHARGER = "Boot sequence complete. Overclocking motive engines. Holoparasite swarm online.",
-		GUARDIAN_DEXTROUS = "Boot sequence complete. Armed combat routines loaded. Holoparasite swarm online.",
-		GUARDIAN_EXPLOSIVE = "Boot sequence complete. Payload generator online. Holoparasite swarm online.",
-		GUARDIAN_GASEOUS = "Boot sequence complete. Atmospheric projectors operational. Holoparasite swarm online.",
-		GUARDIAN_GRAVITOKINETIC = "Boot sequence complete. Gravitic engine spinning up. Holoparasite swarm online.",
-		GUARDIAN_LIGHTNING = "Boot sequence complete. Tesla projectors charged. Holoparasite swarm online.",
-		GUARDIAN_PROTECTOR = "Boot sequence complete. Bodyguard routines loaded. Holoparasite swarm online.",
-		GUARDIAN_RANGED = "Boot sequence complete. Flechette launchers operational. Holoparasite swarm online.",
-		GUARDIAN_STANDARD = "Boot sequence complete. CQC suite engaged. Holoparasite swarm online.",
-		GUARDIAN_SUPPORT = "Boot sequence complete. Medical suite active. Holoparasite swarm online.",
-		GUARDIAN_TIMESTOP = "ERROR... T$M3 M4N!PULA%I0N modules loaded. Holoparasite swarm online.",
+		GUARDIAN_ASSASSIN = "启动程序完成。隐匿模块已加载。全息寄生体群已上线。",
+		GUARDIAN_CHARGER = "启动程序完成。动力引擎超频中。全息寄生体群已上线。",
+		GUARDIAN_DEXTROUS = "启动程序完成。武装战斗程序已加载。全息寄生体群已上线。",
+		GUARDIAN_EXPLOSIVE = "启动程序完成。载荷发生器已上线。全息寄生体群已上线。",
+		GUARDIAN_GASEOUS = "启动程序完成。大气投影器运行中。全息寄生体群已上线。",
+		GUARDIAN_GRAVITOKINETIC = "启动程序完成。重力引擎加速启动中。全息寄生体群已上线。",
+		GUARDIAN_LIGHTNING = "启动程序完成。特斯拉投射器充能完毕。全息寄生体群已上线。",
+		GUARDIAN_PROTECTOR = "启动程序完成。保镖程序已加载。全息寄生体群已上线。",
+		GUARDIAN_RANGED = "启动程序完成。飞镖发射器运行中。全息寄生体群已上线。",
+		GUARDIAN_STANDARD = "启动程序完成。近身格斗套件已启用。全息寄生体群已上线。",
+		GUARDIAN_SUPPORT = "启动程序完成。医疗套件已激活。全息寄生体群已上线。",
+		GUARDIAN_TIMESTOP = "错误……时$间操%控模块已加载。全息寄生体群已上线。",
 	)
 
 /datum/guardian_fluff/miner
 	guardian_fluff = list(
-		GUARDIAN_ASSASSIN = "The shard reveals... Glass, a sharp but fragile ambusher.",
-		GUARDIAN_CHARGER = "The shard reveals... Titanium, a lightweight, agile fighter.",
-		GUARDIAN_DEXTROUS = "The shard reveals... Gold, a malleable hoarder of treasure.",
-		GUARDIAN_EXPLOSIVE = "The shard reveals... Gibtonite, volatile and surprising.",
-		GUARDIAN_GASEOUS = "The shard reveals... Plasma, the bringer of flame.",
-		GUARDIAN_GRAVITOKINETIC = "The shard reveals... Bananium, a manipulator of motive forces.",
-		GUARDIAN_LIGHTNING = "The shard reveals... Iron, a conductive font of lightning.",
-		GUARDIAN_PROTECTOR = "The shard reveals... Uranium, dense and resistant.",
-		GUARDIAN_RANGED = "The shard reveals... Diamond, projecting a million sharp edges.",
-		GUARDIAN_STANDARD = "The shard reveals... Plastitanium, a powerful fighter.",
-		GUARDIAN_SUPPORT = "The shard reveals... Bluespace, master of relocation.",
-		GUARDIAN_TIMESTOP = "You encounter... The World, the controller of time and space."
+		GUARDIAN_ASSASSIN = "碎片揭示了……玻璃，锋利却脆弱的伏击者。",
+		GUARDIAN_CHARGER = "碎片揭示了……钛，轻盈敏捷的战士。",
+		GUARDIAN_DEXTROUS = "碎片揭示了……黄金，可塑的财宝囤积者。",
+		GUARDIAN_EXPLOSIVE = "碎片揭示了……爆裂矿，易爆而令人意外。",
+		GUARDIAN_GASEOUS = "碎片揭示了……等离子体，火焰的带来者。",
+		GUARDIAN_GRAVITOKINETIC = "碎片揭示了……香蕉矿，动力的操纵者。",
+		GUARDIAN_LIGHTNING = "碎片揭示了……铁，导电的闪电之源。",
+		GUARDIAN_PROTECTOR = "碎片揭示了……铀，致密而坚韧。",
+		GUARDIAN_RANGED = "碎片揭示了……钻石，投射出百万锋刃。",
+		GUARDIAN_STANDARD = "碎片揭示了……塑钛，强大的战士。",
+		GUARDIAN_SUPPORT = "碎片揭示了……蓝空间，位移的大师。",
+		GUARDIAN_TIMESTOP = "你遭遇了……“世界”，时间与空间的掌控者。"
 	)
 
 /datum/guardian_fluff/carp
 	guardian_fluff = list(
-		GUARDIAN_ASSASSIN = "CARP CARP CARP! Caught one! It's an assassin carp! Just when you thought it was safe to go back to the water... which is unhelpful, because we're in space.",
-		GUARDIAN_CHARGER = "CARP CARP CARP! Caught one! It's a charger carp which likes running at people. But it doesn't have any legs...",
-		GUARDIAN_DEXTROUS = "CARP CARP CARP! You caught one! It's a dextrous carp ready to slap people with a fish, once it picks one up.",
-		GUARDIAN_EXPLOSIVE = "CARP CARP CARP! Caught one! It's an explosive carp! You two are going to have a blast.",
-		GUARDIAN_GASEOUS = "CARP CARP CARP! You caught one! It's a gaseous carp, but don't worry it actually smells pretty good!",
-		GUARDIAN_GRAVITOKINETIC = "CARP CARP CARP! Caught one! It's a gravitokinetic carp! Now do you understand the gravity of the situation?",
-		GUARDIAN_LIGHTNING = "CARP CARP CARP! Caught one! It's a lightning carp! What a shocking result!",
-		GUARDIAN_PROTECTOR = "CARP CARP CARP! You caught one! Wait, no... it caught you! The fisher has become the fishy...",
-		GUARDIAN_RANGED = "CARP CARP CARP! You caught one! It's a ranged carp! It has been collecting glass shards in preparation for this moment.",
-		GUARDIAN_STANDARD = "CARP CARP CARP! You caught one! This one is a little generic and disappointing... Better punch through some walls to ease the tension.",
-		GUARDIAN_SUPPORT = "CARP CARP CARP! You caught a support carp! Now it's here, now you're over there!",
-		GUARDIAN_TIMESTOP = "CARP CARP CARP! You caught one! It's imbued with the power of Carp'Sie herself. Time to rule THE WORLD!."
+		GUARDIAN_ASSASSIN = "鲤鱼鲤鱼鲤鱼！抓到一条！是一条刺客鲤鱼！正当你以为回到水里就安全了……可惜这没用，因为我们在太空里。",
+		GUARDIAN_CHARGER = "鲤鱼鲤鱼鲤鱼！抓到一条！是一条喜欢朝人猛冲的冲锋鲤鱼。可它没有腿……",
+		GUARDIAN_DEXTROUS = "鲤鱼鲤鱼鲤鱼！你抓到一条！是一条灵巧鲤鱼，只要捡起一条鱼，就准备拿鱼抽人。",
+		GUARDIAN_EXPLOSIVE = "鲤鱼鲤鱼鲤鱼！抓到一条！是一条爆炸鲤鱼！你们俩一定会炸翻天。",
+		GUARDIAN_GASEOUS = "鲤鱼鲤鱼鲤鱼！你抓到一条！是一条气态鲤鱼，不过别担心，它闻起来其实挺香的！",
+		GUARDIAN_GRAVITOKINETIC = "鲤鱼鲤鱼鲤鱼！抓到一条！是一条重力动能鲤鱼！现在你明白局势有多严重了吧？",
+		GUARDIAN_LIGHTNING = "鲤鱼鲤鱼鲤鱼！抓到一条！是一条闪电鲤鱼！结果真是令人震惊！",
+		GUARDIAN_PROTECTOR = "鲤鱼鲤鱼鲤鱼！你抓到一条！等等，不……是它抓到了你！渔夫反倒成了鱼饵……",
+		GUARDIAN_RANGED = "鲤鱼鲤鱼鲤鱼！你抓到一条！是一条远程鲤鱼！它一直在收集玻璃碎片，为这一刻做准备。",
+		GUARDIAN_STANDARD = "鲤鱼鲤鱼鲤鱼！你抓到一条！这条有点普通，令人失望……最好去捶穿几堵墙来缓解一下紧张。",
+		GUARDIAN_SUPPORT = "鲤鱼鲤鱼鲤鱼！你抓到了一条辅助鲤鱼！现在它在这边，你却在那边了！",
+		GUARDIAN_TIMESTOP = "鲤鱼鲤鱼鲤鱼！你抓到一条！它被鲤鱼神本人的力量所灌注。统治世界的时候到了！"
 	)

@@ -14,8 +14,8 @@
 */
 
 /obj/item/clothing/under/greyscale/turtleneck
-	name = "turtleneck with pants"
-	desc = "A rather comfortable turtleneck worn with pants. Talk about robust threads."
+	name = "高领衫配长裤"
+	desc = "一件相当舒适的高领衫，搭配长裤。这才叫够强劲的衣料。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/greyscale/turtleneck"
 	post_init_icon_state = "turtleneck"
@@ -27,8 +27,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/greyscale/turtleneck/skirt
-	name = "greyscaleturtleneck_skirt"
-	desc = "A rather comfortable turtleneck worn with a skirt. A skirtleneck, if you would."
+	name = "高领衫配短裙"
+	desc = "一件相当舒适的高领衫，搭配短裙。要是你愿意，也可以叫它“裙领衫”。"
 	icon_state = "/obj/item/clothing/under/greyscale/turtleneck/skirt"
 	post_init_icon_state = "skirtleneck"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -37,8 +37,8 @@
 	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/under/greyscale/gorkas
-	name = "gorka jumpsuit"
-	desc = "A somewhat comfortable gorka, as comfy as a regular jumpsuit but with a more unique design."
+	name = "戈尔卡连体服"
+	desc = "一件还算舒适的戈尔卡套服，和普通连体服一样舒服，但设计更独特。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/greyscale/gorkas"
 	post_init_icon_state = "gags_gorka"
@@ -49,8 +49,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/greyscale/overalls
-	name = "turtleneck with overalls"
-	desc = "Overalls worn over a turtleneck. A combination providing comfort and coverage... or, at the least, the coverage."
+	name = "高领衫配背带裤"
+	desc = "高领衫外穿背带裤。这套组合既舒适又有遮盖……至少遮盖是有的。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/greyscale/overalls"
 	post_init_icon_state = "overalls"
@@ -62,8 +62,8 @@
 	can_adjust = TRUE
 
 /obj/item/clothing/under/greyscale/overalls/skirt
-	name = "turtleneck with overalls-skirt"
-	desc = "An overalls-skirt worn over a turtleneck. A combination providing comfort and coverage... or, at the least- no, wait, this doesn't really provide either."
+	name = "高领衫配背带短裙"
+	desc = "高领衫外穿背带短裙。这套组合既舒适又有遮盖……至少——不，等等，这两样其实都没有。"
 	icon_state = "/obj/item/clothing/under/greyscale/overalls/skirt"
 	post_init_icon_state = "overalls_skirt"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -72,8 +72,8 @@
 	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/under/greyscale/playsuit
-	name = "playsuit"
-	desc = "For the love of the game."
+	name = "连身运动装"
+	desc = "为了对这项运动的热爱。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/greyscale/playsuit"
 	post_init_icon_state = "playsuit"
@@ -95,9 +95,9 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/pants/greyscale/big_pants
-	name = "\improper 'JUNCO' megacargo pants"
-	desc = "De riguer for techno classicists, these extreme wide leg pants come back into style every \
-		now and then. This pair has generous onboard storage."
+	name = "\improper JUNCO 超大工装裤"
+	desc = "对技术古典主义者而言这是必备款，这种极限宽腿裤每隔一阵就会重新流行起来。 \
+		这一条还带有充裕的内置储物空间。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/pants/greyscale/big_pants"
 	post_init_icon_state = "big_pants"
@@ -109,8 +109,8 @@
 	alternate_worn_layer = LOW_FACEMASK_LAYER
 
 /obj/item/clothing/under/pants/greyscale/loose_pants
-	name = "loose pants"
-	desc = "Some loose pants with a belt that looks comfy."
+	name = "宽松长裤"
+	desc = "一条宽松的长裤，腰带看起来很舒服。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/pants/greyscale/loose_pants"
 	post_init_icon_state = "loose_pants"
@@ -121,8 +121,8 @@
 	alternate_worn_layer = LOW_FACEMASK_LAYER
 
 /obj/item/clothing/under/pants/greyscale/wide_leg
-	name = "wide legged pants"
-	desc = "An airy pair of wide-legged pants with a reasonably high waist."
+	name = "宽腿长裤"
+	desc = "一条透气的宽腿长裤，腰线相当高。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/pants/greyscale/wide_leg"
 	post_init_icon_state = "wide_leg"

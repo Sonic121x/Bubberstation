@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/maintsrooms
-	name = "random maintsrooms spawn"
-	desc = "Spawns a random object, mob, or structure for the maintsrooms awaymission."
+	name = "随机维护间生成器"
+	desc = "为维护间外勤任务生成随机的物体、生物或结构。"
 	loot = list(
 		/turf/closed/wall/r_wall = 31,
 		/turf/open/floor/white = 37,
@@ -37,7 +37,7 @@
 		return ..()
 
 /obj/effect/spawner/random/maintsrooms/no_walls
-	name = "random maintsrooms spawn (no walls)"
+	name = "随机维护间生成器（无墙壁）"
 
 /obj/effect/spawner/random/maintsrooms/no_walls/New()
 	loot[/turf/open/floor/white] = (loot[/turf/open/floor/white] + loot[/turf/closed/wall/r_wall])

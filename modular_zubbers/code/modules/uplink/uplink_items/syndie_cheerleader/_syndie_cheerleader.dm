@@ -1,16 +1,16 @@
 // Syndicate Cheerleader Outfit - Traitor Uplink Entry
 
 /datum/uplink_item/badass/syndie_cheerleader
-	name = "Syndicate Cheerleader Outfit"
-	desc = "Cybersun Industries is proud to support operative wellness. \
-		Studies show that having someone in your corner makes contract completion 12% more likely."
+	name = "辛迪加啦啦队服装"
+	desc = "赛博太阳工业以支持特工的身心健康为荣。 \
+		研究表明，只要有个人在你身后撑腰，合同完成率就能提高 12%。"
 	item = /obj/item/storage/box/syndie_cheerleader
 	cost = 6
 	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
 
 /obj/item/storage/box/syndie_cheerleader
-	name = "suspicious red box"
-	desc = "A sleek, sturdy box. The Cybersun logo is printed on the side for some reason."
+	name = "可疑的红盒子"
+	desc = "一只流线型的坚固箱子。侧面不知为何印着赛博太阳的标志。"
 	icon_state = "syndiebox"
 
 /obj/item/storage/box/syndie_cheerleader/PopulateContents()

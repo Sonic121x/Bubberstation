@@ -1,6 +1,6 @@
 /datum/phystool_mode
-	var/name = "Defualt mode"
-	var/desc = "Coder button."
+	var/name = "默认模式"
+	var/desc = "程序员按钮。"
 	var/obj/item/phystool/our_tool
 
 

@@ -4,8 +4,8 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/rnd/roboticist/alt
-	desc = "It's a slimming black with red alternative with reinforced seams; great for industrial work."
-	name = "roboticist's jumpsuit (Alt)"
+	desc = "这是一款显瘦的黑色配红色变体，接缝经过加固；适合工业作业。"
+	name = "机器人学家连体服（变体）"
 	icon = 'modular_zubbers/icons/obj/clothing/under/rnd.dmi'
 	icon_state = "robotics_new_2"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/rnd.dmi'
@@ -13,8 +13,8 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/rnd/roboticist/skirt/alt
-	name = "roboticist's jumpskirt (Alt)"
-	desc = "It's a slimming black with red alternative with reinforced seams; great for industrial work."
+	name = "机器人学家连体裙（变体）"
+	desc = "这是一款显瘦的黑色配红色变体，接缝经过加固；适合工业作业。"
 	icon = 'modular_zubbers/icons/obj/clothing/under/rnd.dmi'
 	icon_state = "robotics_skirt_new_2"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/rnd.dmi'

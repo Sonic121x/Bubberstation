@@ -1,12 +1,12 @@
 /obj/effect/mob_spawn/ghost_role/human/lavaland_gasstation
-	name = "Gas Station Attendant"
-	desc = "Seems like there's somebody inside, peacefully sleeping."
+	name = "加油站店员"
+	desc = "里面好像有人正在安睡。"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	prompt_name = "a gas station worker"
-	you_are_text = "You are a worker at a Lizard's Gas Station close to a mining facility."
-	flavour_text = "Your employer, however, failed to realize that there are hostile megafauna and tribes in the area, so make sure that you can defend yourself. Also sell stuff to people, occasionally."
-	important_text = "Do NOT let your workplace get damaged! Do not abandon it either!"
+	prompt_name = "一名加油站工人"
+	you_are_text = "你是采矿设施附近一家蜥蜴加油站的员工。"
+	flavour_text = "然而你的雇主没意识到这一带有敌对的巨型生物和部落，所以务必确保你能自卫。另外，偶尔也要卖点东西给客人。"
+	important_text = "绝不要让工作场所受损！也不要弃之不顾！"
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 	loadout_enabled = TRUE
@@ -40,18 +40,18 @@
 	if(visualsOnly)
 		return
 	hermit.mind?.teach_crafting_recipe(/datum/crafting_recipe/research_paper)
-	to_chat(hermit, span_notice("You learn the recipe for the <b>research paper</b>, giving you the ability to craft everything from nothing."))
+	to_chat(hermit, span_notice("你学会了<b>研究论文</b>的配方，这让你能够无中生有地制作一切。"))
 
 /// Manager and departmental ID additions
 #define ROLE_LZGAS "Lizard Gas Station Manager"
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_gasstation/manager
-	name = "Gas Station Manager"
-	prompt_name = "a gas station manager"
+	name = "加油站经理"
+	prompt_name = "一名加油站经理"
 	outfit = /datum/outfit/lavaland_gasstation/manager
-	you_are_text = "You are the branch manager of a Lizard's Gas Station close to a mining facility."
-	flavour_text = "Years of working at Lizard's Gas finally paid off, and you been promoted to a Branch Manager! Sadly, your employer, failed to realize that there are hostile megafauna and tribes in the area, so make sure that you can defend yourself and your employees. Also sell stuff to people, occasionally."
-	important_text = "Care for your employees, they are irreplaceable! Do NOT let your workplace get damaged! Do not abandon it either! Being the manager, you are held to a higher standard."
+	you_are_text = "你是采矿设施附近一家蜥蜴加油站的分店经理。"
+	flavour_text = "在蜥蜴加油站工作多年终于有了回报，你被提升为分店经理！遗憾的是，你的雇主没意识到这一带有敌对的巨型生物和部落，所以务必确保你能保护自己和你的员工。另外，偶尔也要卖点东西给客人。"
+	important_text = "照顾好你的员工，他们无可替代！绝不要让工作场所受损！也不要弃之不顾！身为经理，你要以更高的标准要求自己。"
 
 /datum/outfit/lavaland_gasstation/manager
 	name = "Lizard Gas Station Manager"

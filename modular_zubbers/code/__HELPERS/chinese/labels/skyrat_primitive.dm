@@ -22,7 +22,7 @@
 	return isnull(selection) ? null : original_choices[selection]
 
 /proc/chinese_skyrat_player_rank_display(value)
-	var/static/list/labels = list("donator" = "赞助者", "mentor" = "导师", "vetted" = "已认证玩家")
+	var/static/list/labels = list("donator" = "赞助者", "mentor" = "导师", "vetted" = "已认证玩家", "vetted user" = "已认证玩家")
 	return labels[LOWER_TEXT(value)] || value
 
 /proc/chinese_skyrat_glass_step_display(value)
@@ -30,8 +30,8 @@
 	return labels[value] || value
 
 /proc/chinese_skyrat_plant_skin_display(value, atom/target)
-	if(!istype(target, /obj/item/storage/bag/plants))
-		return value
+	if(!istype(target, /obj/item/storage/bag/plants) && !ispath(target, /obj/item/storage/bag/plants))
+		return chinese_zubbers_reskin_display(value)
 	var/static/list/labels = list("Original" = "原版", "Linen" = "亚麻")
 	return labels[value] || value
 

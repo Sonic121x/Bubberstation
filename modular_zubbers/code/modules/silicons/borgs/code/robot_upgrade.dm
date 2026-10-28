@@ -1,6 +1,6 @@
 /obj/item/borg/upgrade/transform/ntjack
-	name = "borg module picker (Centcom)"
-	desc = "Allows you to to turn a cyborg into a experimental nanotrasen cyborg."
+	name = "半机械人模块选择器（中央指挥部）"
+	desc = "让你能把半机械人转变为实验性纳米传讯半机械人。"
 	icon_state = "module_illegal"
 	new_model = /obj/item/robot_model/centcom
 
@@ -8,8 +8,8 @@
 	return ..()
 
 /obj/item/borg/upgrade/transform/security
-	name = "borg model picker (Security)"
-	desc = "Allows you to to turn a cyborg into a Security model, shitsec abound."
+	name = "半机械人型号选择器（安保）"
+	desc = "让你能把半机械人转变为安保型号，随之而来的自然是满地的烂安保。"
 	icon_state = "module_security"
 	new_model = /obj/item/robot_model/security
 
@@ -17,8 +17,8 @@
 
 //ADVANCED ROBOTICS REPAIR
 /obj/item/borg/upgrade/healthanalyzer
-	name = "Research cyborg advanced Health Analyzer"
-	desc = "An upgrade to the Research model cyborg's standard health analyzer."
+	name = "科研半机械人高级健康分析仪"
+	desc = "将科研型号半机械人的标准健康分析仪升级为高级型号。"
 	icon_state = "module_medical"
 	custom_materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.25, /datum/material/silver = SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT * 1.5)
 	require_model = TRUE
@@ -30,8 +30,8 @@
 
 //Science inducer
 /obj/item/borg/upgrade/inducer_sci
-	name = "Research integrated power inducer"
-	desc = "An integrated inducer that can charge a device's internal cell from power provided by the cyborg."
+	name = "科研集成式感应充电器"
+	desc = "一种集成式感应充电器，可利用半机械人提供的电力为设备的内部电池充电。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/sci)
@@ -40,8 +40,8 @@
 
 //Bluespace RPED
 /obj/item/borg/upgrade/brped
-	name = "Research cyborg Rapid Part Exchange Device Upgrade"
-	desc = "An upgrade to the Research model cyborg's standard RPED."
+	name = "科研半机械人快速部件更换装置升级"
+	desc = "将科研型号半机械人的标准 RPED 升级为蓝空间型号。"
 	icon_state = "module_engineer"
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
@@ -67,8 +67,8 @@
 
 //Upgrade for the experi scanner
 /obj/item/borg/upgrade/experi_scanner
-	name = "Research cyborg BlueSpace Experi-Scanner"
-	desc = "An upgrade to the Research model cyborg's standard health analyzer."
+	name = "科研半机械人蓝空间实验扫描仪"
+	desc = "将科研型号半机械人的标准健康分析仪升级为高级型号。"
 	icon_state = "module_general"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/sci)
@@ -81,7 +81,7 @@
 // Borg Dom Aura :)
 /obj/item/borg/upgrade/dominatrixmodule/action(mob/living/silicon/robot/borg, mob/living/user)
 	if(borg.hasToys)
-		to_chat(usr, span_warning("This unit already has a 'recreational' module installed!"))
+		to_chat(usr, span_warning("本单位已安装了“娱乐”模块！"))
 		return FALSE
 	. = ..()
 	if(.)
@@ -97,8 +97,8 @@
 
 // Engineering RLD
 /obj/item/borg/upgrade/rld
-	name = "Engineering Cyborg Rapid Lighting Device Upgrade"
-	desc = "An upgrade to allow a cyborg to use a Rapid Lighting Device."
+	name = "工程半机械人快速照明装置升级"
+	desc = "一种升级模块，让半机械人得以使用快速照明装置。"
 	icon_state = "module_engineer"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 2.5)
 	require_model = TRUE
@@ -109,8 +109,8 @@
 // Borg Advanced Xenoarchaeology Bag
 
 /obj/item/borg/upgrade/xenoarch/adv
-	name = "Cyborg Advanced Xenoarchaeology Bag"
-	desc = "An improved bag to pick up strange rocks for science"
+	name = "半机械人高级异星考古袋"
+	desc = "一种改进型收纳袋，用于为科研拾取奇异的岩石。"
 	icon_state = "module_general"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/miner, /obj/item/robot_model/sci)
@@ -121,8 +121,8 @@
 // Mining Borg Vent Pinpointer
 
 /obj/item/borg/upgrade/pinpointer/vent
-	name = "Vent Pinpointer"
-	desc = "A modularized tracking device. It will locate and point to nearby vents."
+	name = "通风口定位仪"
+	desc = "一种模块化追踪装置，能定位并指向附近的通风口。"
 	icon_state = "module_miner"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/miner)
@@ -139,32 +139,32 @@
 			return install(pkamods, usr, FALSE)
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/railgun/cyborg
-	desc = "Portable particle accelerator. Only Usable on lavaland"
+	desc = "便携式粒子加速器，仅可在熔岩地带使用。"
 	holds_charge = TRUE
 	unique_frequency = TRUE
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/repeater/cyborg
-	desc = "A PKA with a three shot magazine"
+	desc = "一种配备三发弹匣的 PKA。"
 	holds_charge = TRUE
 	unique_frequency = TRUE
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/shotgun/cyborg
-	desc = "A PKA that fires three shots with a longer cooldown."
+	desc = "一种一次射出三发、冷却时间更长的 PKA。"
 	holds_charge = TRUE
 	unique_frequency = TRUE
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/glock/cyborg
-	desc = "A Snub Nosed PKA with more mode capacity but less damage and range."
+	desc = "一种短管 PKA，模式容量更高，但伤害与射程较低。"
 	holds_charge = TRUE
 	unique_frequency = TRUE
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/shockwave/cyborg
-	desc = "Creates a shockwave around the user, with the same power as the base PKA."
+	desc = "在用户周围制造冲击波，威力与基础 PKA 相同。"
 	holds_charge = TRUE
 	unique_frequency = TRUE
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/m79/cyborg
-	desc = "Fires the same bombs used by the mining modsuit. Only usable on lavaland"
+	desc = "发射采矿 MOD 模块化外骨骼所用的同款炸弹，仅可在熔岩地带使用。"
 	holds_charge = TRUE
 	unique_frequency = TRUE
 
@@ -241,8 +241,8 @@
 	var/hasToys = FALSE
 
 /obj/item/borg/upgrade/obediencemodule
-	name = "Cyborg Obedience Module"
-	desc = "A module that greatly upgrades the ability of borgs to display affection."
+	name = "半机械人服从模块"
+	desc = "一种大幅提升半机械人表达亲昵能力的模块。"
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_lust"
 	custom_materials = list(
@@ -261,7 +261,7 @@
 // WellTrained Obedience Behaviour
 /obj/item/borg/upgrade/obediencemodule/action(mob/living/silicon/robot/borg, mob/living/user)
 	if(borg.hasToys)
-		to_chat(usr, span_warning("This unit already has a 'recreational' module installed!"))
+		to_chat(usr, span_warning("本单位已安装了“娱乐”模块！"))
 		return FALSE
 	. = ..()
 	if(.)
@@ -277,8 +277,8 @@
 		borg.remove_quirk(/datum/quirk/well_trained)
 
 /obj/item/borg/upgrade/detailer
-	name = "janitor detailing toolset"
-	desc = "Upgrades a janitor cyborgs tiling capabilities while adding the ability to modify floor decals."
+	name = "清洁半机械人细节处理工具组"
+	desc = "升级清洁半机械人的铺砖能力，并额外赋予修改地板贴花的能力。"
 	icon_state = "module_janitor"
 	custom_materials = list(
 		/datum/material/iron =SHEET_MATERIAL_AMOUNT*15.25,
@@ -293,8 +293,8 @@
 						)
 
 /obj/item/borg/upgrade/cyborg_cable_coil
-	name = "integrated cable coil"
-	desc = "Condensed spooling technology allows cabling technology in janitorial modules."
+	name = "集成电缆盘"
+	desc = "压缩卷绕技术让清洁半机械人模块也能携带线缆工具。"
 	icon_state = "module_janitor"
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
@@ -309,8 +309,8 @@
 //Research cyborg RCD
 
 /obj/item/borg/upgrade/robotics_rcd
-	name = "Research cyborg synthetic repair tool"
-	desc = "A cut down RCD designed to assist in synthetic repairs."
+	name = "科研半机械人合成体维修工具"
+	desc = "一种精简版 RCD，专为协助合成体维修而设计。"
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,

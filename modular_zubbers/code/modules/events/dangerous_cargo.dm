@@ -1,13 +1,13 @@
 ////////////////////// violent gorilla //////////////////////
 
 /datum/round_event_control/stray_cargo/ape_escape
-	name = "Escaped Gorilla Pod"
+	name = "逃脱的大猩猩空投舱"
 	typepath = /datum/round_event/stray_cargo/ape_escape
 	weight = 1
 	min_players = 30
 	max_occurrences = 1
 	earliest_start = 45 MINUTES
-	description = "Sends one violent gorilla to the station."
+	description = "向空间站投放一只凶猛的大猩猩。"
 	admin_setup = list(/datum/event_admin_setup/set_location/stray_cargo,)
 	category = EVENT_CATEGORY_ENTITIES
 	tags = list(TAG_COMBAT, TAG_NPC_ANTAG)
@@ -22,7 +22,7 @@
 	var/mob/spawned_mob = /mob/living/basic/gorilla/dangerous
 
 /datum/round_event/stray_cargo/ape_escape/announce(fake)
-	priority_announce("The ape has escaped. Beware.", "CentCom Dangerous Wildlife Division", sound = ANNOUNCER_SPOOKY, color_override = "yellow")
+	priority_announce("那只猿猴逃出来了。小心。", "中央指挥部危险野生动物部", sound = ANNOUNCER_SPOOKY, color_override = "yellow")
 
 /datum/round_event/stray_cargo/ape_escape/make_pod()
 	var/obj/structure/closet/supplypod/fivenightsatfreddys = new
@@ -39,13 +39,13 @@
 ////////////////////// syndie bomb squad //////////////////////
 
 /datum/round_event_control/stray_cargo/syndie_bombsquad
-	name = "Syndicate Bomb Squad"
+	name = "辛迪加爆破小队"
 	typepath = /datum/round_event/stray_cargo/syndie_bombsquad
 	weight = 10
 	min_players = 30
 	max_occurrences = 1
 	earliest_start = 45 MINUTES
-	description = "A team of Syndicate saboteurs will try to blow up an important location."
+	description = "一队辛迪加破坏者会试图炸毁一处重要地点。"
 	admin_setup = list(/datum/event_admin_setup/set_location/stray_cargo,)
 	category = EVENT_CATEGORY_ENTITIES
 	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_NPC_ANTAG, TAG_DESTRUCTIVE)
@@ -74,7 +74,7 @@
 /datum/round_event/stray_cargo/syndie_bombsquad/announce(fake)
 	if(fake)
 		impact_area = find_event_area()
-	priority_announce("The Syndicate has dispatched a bomb squad to attack [impact_area.name]. \n\nSecurity intervention recommended to eliminate threats.\nEngineering intervention recommended to open the bomb and defuse the wires.", "CentCom Department of Intelligence", 'modular_zubbers/sound/alerts/amber.ogg', color_override = "yellow")
+	priority_announce("辛迪加已派出爆破小队袭击[impact_area.name]。 \n\n建议安保介入以清除威胁。\n建议工程介入以打开炸弹并拆除导线。", "中央指挥部情报部", 'modular_zubbers/sound/alerts/amber.ogg', color_override = "yellow")
 
 ///Apply the syndicate pod skin
 /datum/round_event/stray_cargo/syndie_bombsquad/make_pod()
@@ -117,8 +117,8 @@
 	return pick(potential_areas)
 
 /obj/machinery/syndicatebomb/ezbomb
-	name = "Syndicate EZ-Bomb"
-	desc = "An off-the-shelf bomb stolen from Nanotrasen. An entry-level engineer can defuse this by snipping the 'Activate' wire."
+	name = "辛迪加简易炸弹"
+	desc = "从纳米传讯窃来的现成炸弹。入门级工程师剪断“激活”导线即可拆除。"
 	color = "#33bb33"
 	minimum_timer = 500
 	timer_set = 500
@@ -130,7 +130,7 @@
 	set_wires(new /datum/wires/syndicatebomb/ezbomb(src))
 
 /datum/wires/syndicatebomb/ezbomb
-	proper_name = "Unconfigured Syndicate Explosive Device"
+	proper_name = "未配置的辛迪加爆炸装置"
 
 /datum/wires/syndicatebomb/ezbomb/can_reveal_wires(mob/user)
 	if(HAS_TRAIT(user, TRAIT_KNOW_ENGI_WIRES))

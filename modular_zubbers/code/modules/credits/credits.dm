@@ -109,33 +109,33 @@ GAME_VERB_PROC(/client, ClearCredits, "Stop End Titles", "OOC")
 	var/chunksize = 0
 	if(!GLOB.end_credits_title)
 		/* Establish a big-ass list of potential titles for the "episode". */
-		possible_titles += "THE [pick("DOWNFALL OF ", "RISE OF ", "TROUBLE WITH ", "FINAL STAND OF ", "DARK SIDE OF ", "DESOLATION OF ", "DESTRUCTION OF ", "CRISIS OF ")]\
-							[pick("SPACEMEN", "HUMANITY", "DIGNITY", "SANITY", "THE CHIMPANZEES", "THE VENDOMAT PRICES", "GIANT ARMORED", "THE GAS JANITOR",\
-							"THE SUPERMATTER CRYSTAL", "MEDICAL", "ENGINEERING", "SECURITY", "RESEARCH", "THE SERVICE DEPARTMENT", "COMMAND", "THE CLOWNS", "CARGO",\
-							"BUBBER STATION")]"
-		possible_titles += "THE CREW GETS [pick("TINGLED", "PICKLED", "AN INCURABLE DISEASE", "PIZZA", "A VALUABLE HISTORY LESSON", "A BREAK", "HIGH", "TO LIVE", "TO RELIVE THEIR CHILDHOOD", "EMBROILED IN CIVIL WAR", "A BAD HANGOVER", "SERIOUS ABOUT [pick("DRUG ABUSE", "CRIME", "PRODUCTIVITY", "ANCIENT AMERICAN CARTOONS", "SPACEBALL", "DECOMPRESSION PROCEDURES")]")]"
-		possible_titles += "THE CREW LEARNS ABOUT [pick("LOVE", "DRUGS", "THE DANGERS OF MONEY LAUNDERING", "XENIC SENSITIVITY", "INVESTMENT FRAUD", "KELOTANE ABUSE", "RADIATION PROTECTION", "SACRED GEOMETRY", "STRING THEORY", "ABSTRACT MATHEMATICS", "[pick("TIZARIAN", "SKRELLIAN", "RABBIT", "FELINID", "VOX", "BUNNY")] MATING RITUALS", "ANCIENT CHINESE MEDICINE")]"
-		possible_titles += "A VERY [pick("CORPORATE", "NANOTRASEN", "FLEET", "BUNNY", "CLOWN", "XENOLIFE", "EXPEDITIONARY", "RABBIT", "PLASMA", "MARTIAN", "SERPENTID")] [pick("CHRISTMAS", "EASTER", "HOLIDAY", "WEEKEND", "THURSDAY", "VACATION")]"
-		possible_titles += "[pick("GUNS, GUNS EVERYWHERE", "THE LITTLEST ARMALIS", "WHAT HAPPENS WHEN YOU MIX MAINTENANCE DRONES AND COMMERCIAL-GRADE PACKING FOAM", "ATTACK! ATTACK! ATTACK!", "SEX BOMB", "THE LEGEND OF THE ALIEN ARTIFACT: PART [pick("I","II","III","IV","V","VI","VII","VIII","IX", "X", "C","M","L")]")]"
-		possible_titles += "[pick("SPACE", "SEXY", "DRAGON", "WARLOCK", "LAUNDRY", "GUN", "ADVERTISING", "DOG", "CARBON MONOXIDE", "NINJA", "WIZARD", "SOCRATIC", "JUVENILE DELIQUENCY", "POLITICALLY MOTIVATED", "RADTACULAR SICKNASTY")] [pick("QUEST", "FORCE", "ADVENTURE")]"
-		possible_titles += "[pick("THE DAY [pick("NANOTRASEN", "THE SYNDICATE", "ARMADYNE CORPORATION", "THE CLOWN",)] STOOD STILL", "HUNT FOR THE GREEN WEENIE", "ALIEN VS VENDOMAT", "SPACE TRACK")]"
-		titles += "<center><h1>EPISODE [rand(1,1000)]<br>[pick(possible_titles)]<h1></h1></h1></center>"
+		possible_titles += "《[pick("衰亡：", "崛起：", "麻烦：", "最后一战：", "阴暗面：", "荒芜：", "毁灭：", "危机：")]\
+							[pick("太空人", "人类", "尊严", "理智", "黑猩猩", "自动售货机的物价", "巨型装甲", "瓦斯清洁工",\
+							"超物质晶体", "医疗部", "工程部", "安保部", "科研部", "服务部", "指挥部", "小丑们", "货运部",\
+							"巴伯站")]》"
+		possible_titles += "船员们[pick("浑身发麻", "被腌了起来", "染上一种不治之症", "吃上披萨", "上了一堂宝贵的历史课", "获得一次休息", "嗨到飞起", "得以活下去", "重温童年", "卷入内战", "落下严重的宿醉", "认真对待[pick("药物滥用", "犯罪", "生产力", "古老美国卡通片", "太空球", "减压程序")]")]"
+		possible_titles += "船员们了解了[pick("爱情", "毒品", "洗钱的危害", "异种敏感度", "投资诈骗", "凯洛坦滥用", "辐射防护", "神圣几何", "弦理论", "抽象数学", "[pick("提兹拉人", "斯克雷尔人", "兔子", "猫科人", "沃克斯人", "兔兔")]的交配仪式", "古代中医")]"
+		possible_titles += "一场非常[pick("企业", "纳米传讯", "舰队", "兔兔", "小丑", "异星生物", "远征", "兔子", "等离子", "火星", "蛇人")]的[pick("圣诞节", "复活节", "节日", "周末", "星期四", "假期")]"
+		possible_titles += "[pick("枪，到处都是枪", "最小的阿玛利斯", "当维护无人机遇上商用级填充泡沫", "进攻！进攻！进攻！", "性爱炸弹", "外星神器传说：第 [pick("I","II","III","IV","V","VI","VII","VIII","IX", "X", "C", "M", "L")] 部")]"
+		possible_titles += "[pick("太空", "性感", "巨龙", "术士", "洗衣", "枪械", "广告", "狗狗", "一氧化碳", "忍者", "巫师", "苏格拉底式", "少年犯罪", "政治动机", "辐射到爆的恶心玩意")] [pick("任务", "力量", "冒险")]"
+		possible_titles += "[pick("[pick("纳米传讯", "辛迪加", "阿玛达因公司", "小丑",)] 静止的那一天", "追捕绿色小香肠", "异形大战自动售货机", "太空赛道")]"
+		titles += "<center><h1>第 [rand(1,1000)] 集<br>[pick(possible_titles)]<h1></h1></h1></center>"
 	else
-		titles += "<center><h1>EPISODE [rand(1,1000)]<br>[GLOB.end_credits_title]<h1></h1></h1></center>"
+		titles += "<center><h1>第 [rand(1,1000)] 集<br>[GLOB.end_credits_title]<h1></h1></h1></center>"
 
 	for(var/datum/mind/mind in get_crewmember_minds())
 		if(!mind)
 			continue
 		if(!cast.len && !chunksize)
-			chunk += "CAST:"
+			chunk += "演员表："
 		var/datum/job/job = mind?.assigned_role
-		var/jobtitle = job?.title || "No title"
+		var/jobtitle = job?.title || "无头衔"
 		var/used_name = mind?.current?.name
 		var/antag_string
 		for(var/datum/antagonist/antagonist as anything in mind?.antag_datums)
 			antag_string ? (antag_string += ", ") : (antag_string += "...")
 			antag_string += "[antagonist?.name]"
-		chunk += "[used_name] as the [mind?.antag_datums ? "[antag_string] and [jobtitle]" : jobtitle]"
+		chunk += "[used_name] 饰 [mind?.antag_datums ? "[antag_string] 与 [jobtitle]" : jobtitle]"
 		chunksize++
 
 		if(chunksize > 2)
@@ -157,37 +157,37 @@ GAME_VERB_PROC(/client, ClearCredits, "Stop End Titles", "OOC")
 		else if(H?.real_name)
 			corpses += H?.real_name
 	if(corpses.len)
-		titles += "<center>BASED ON REAL EVENTS<br>In memory of [english_list(corpses)].</center>"
+		titles += "<center>根据真实事件改编<br>谨以此纪念 [english_list(corpses)]。</center>"
 
-	var/list/staff = list("PRODUCTION STAFF:")
-	var/static/list/staffjobs = list("Coffee Fetcher", "Cameraman", "Angry Yeller", "Chair Operator", "Choreographer", "Historical Consultant", "Costume Designer", "Chief Editor", "Executive Assistant")
+	var/list/staff = list("制作人员：")
+	var/static/list/staffjobs = list("端咖啡的", "摄影师", "咆哮担当", "椅子操作员", "编舞", "历史顾问", "服装设计师", "总编辑", "行政助理")
 	var/list/goodboys = list()
 	for(var/client/C)
 		if(!C?.holder)
 			continue
 		if(C?.holder)
-			staff += "[uppertext(pick(staffjobs))] a.k.a. '[C?.key]'"
+			staff += "[uppertext(pick(staffjobs))] 又名“[C?.key]”"
 
 	titles += "<center>[jointext(staff,"<br>")]</center>"
 	if(goodboys.len)
-		titles += "<center>STAFF'S GOOD BOYS:<br>[english_list(goodboys)]</center><br>"
+		titles += "<center>工作人员的乖狗狗：<br>[english_list(goodboys)]</center><br>"
 
-	var/disclaimer = "<br>Sponsored by [pick("Nanotrasen", "The Syndicate", "The Armadyne Corporation", "YOU, THE PLAYER",)].<br>All rights reserved.<br>\
-					This motion picture is protected under the copyright laws of the Galactic Federation, <br> and other nations throughout the galaxy.<br>\
-					Planet of First Publication: [pick("Mars", "Luna", "Earth", "Venus", "Phobos", "Ceres", "Tiamat", "Ceti Epsilon", "Eos", "Pluto", "Ouere", \
-					"Lordania", "Kingston", "Cinu", "Yuklid V", "Lorriman", "Tersten", "Carota",)].<br>"
-	disclaimer += pick("Use for parody prohibited. PROHIBITED.",
-					   "All stunts were performed by underpaid interns. Do NOT try at home.",
-					   "[pick("Nanotrasen", "The Syndicate", "The Armadyne Corporation", )] does not endorse behaviour depicted. Attempt at your own risk.",
-					   "Any unauthorized exhibition, distribution, or copying of this film or any part thereof (including soundtrack)<br>\
-						may result in an ERT being called to storm your home and take it back by force.",
-						"The story, all names, characters, and incidents portrayed in this production are fictitious. No identification with actual<br>\
-						persons (living or deceased), places, buildings, and products is intended or should be inferred.<br>\
-						This film is based on a true story and all individuals depicted are based on real people, despite what we just said.",
-						"No person or entity associated with this film received payment or anything of value, or entered into any agreement, in connection<br>\
-						with the depiction of tobacco products, despite the copious amounts of smoking depicted within.<br>\
-						(This disclaimer sponsored by [pick("Nanotrasen! Have a Nanotastic Day!", "The Tiger Cooperative! Kill first, ask questions never!", "The Armadyne Corporation! How are we still a thing?", "You, and other players like you who keep our server afloat!",)](TM)).",
-						"No animals were harmed in the making of this motion picture except for those listed previously as dead. Do not try this at home before signing a waiver.")
+	var/disclaimer = "<br>由 [pick("纳米传讯", "辛迪加", "阿玛达因公司", "你，也就是玩家")] 赞助。<br>保留所有权利。<br>\
+					本影片受银河联邦及银河系各国的版权法保护。<br>\
+					首次公映行星：[pick("火星", "月球", "地球", "金星", "火卫一", "谷神星", "提亚马特", "鲸鱼座ε", "厄俄斯", "冥王星", "欧埃雷", \
+					"洛达尼亚", "金斯顿", "西努", "尤克利德五号", "洛里曼", "特斯滕", "卡罗塔")]。<br>"
+	disclaimer += pick("禁止用于恶搞。绝对禁止。",
+					   "所有特技均由薪酬过低的实习生完成。请勿在家中尝试。",
+					   "[pick("纳米传讯", "辛迪加", "阿玛达因公司", )] 不认可片中展现的行为。尝试风险自负。",
+					   "未经授权放映、发行或复制本影片及其任何部分（包括配乐）<br>\
+						可能导致紧急响应小队被召来强攻你家，以武力将其收回。",
+						"本片中的故事、所有姓名、角色与事件均属虚构。无意暗示或应被推断为与任何实际<br>\
+						人物（在世或已故）、地点、建筑及产品有关。<br>\
+						本片改编自真实故事，片中所有人物均以真人为原型，尽管我们刚才才说过相反的话。",
+						"与本品相关的任何个人或实体均未因片中烟草产品的展示而获得任何款项或财物，或达成任何协议，<br>\
+						尽管片中有大量吸烟镜头。<br>\
+						（本免责声明由 [pick("纳米传讯！祝你拥有纳米级美好一天！", "猛虎合作社！先杀后问，永远别问！", "阿玛达因公司！我们怎么还活着？", "你，以及其他让我们的服务器持续运转的玩家！",)](TM) 赞助。）",
+						"本片制作过程中没有任何动物受到伤害，此前列为死亡者除外。未签署免责书前请勿在家中尝试。")
 	titles += "<hr>"
 	titles += "<center><span style='font-size:6pt;'>[JOINTEXT(disclaimer)]</span></center>"
 

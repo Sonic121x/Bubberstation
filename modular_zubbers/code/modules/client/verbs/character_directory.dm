@@ -155,10 +155,10 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 	COOLDOWN_DECLARE(char_directory_cooldown)
 
 //Make a verb to open the character directory
-GAME_VERB_DESC(/client, show_character_directory, "Character Directory", "Shows a listing of all active characters, along with their associated OOC notes, flavor text, and more.", "OOC")
+GAME_VERB_DESC(/client, show_character_directory, "角色目录", "显示所有活跃角色的列表，以及他们相关的 OOC 备注、风味文本等信息。", "OOC")
 	// This is primarily to stop malicious users from trying to lag the server by spamming this verb
 	if(!COOLDOWN_FINISHED(src, char_directory_cooldown))
-		to_chat(src, span_alert("Hold your horses! It's still refreshing!"))
+		to_chat(src, span_alert("别急！还在刷新呢！"))
 		return
 	COOLDOWN_START(src, char_directory_cooldown, 10)
 
@@ -176,7 +176,7 @@ GAME_VERB_DESC(/client, show_character_directory, "Character Directory", "Shows 
 /datum/character_directory/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "ZubbersCharacterDirectory", "Character Directory")
+		ui = new(user, src, "ZubbersCharacterDirectory", "角色目录")
 		ui.open()
 
 //We want this information to update any time the player updates their preferences, not just when the panel is refreshed
@@ -208,16 +208,16 @@ GAME_VERB_DESC(/client, show_character_directory, "Character Directory", "Shows 
 	for(var/mob/mob in GLOB.alive_player_list)
 		// These are the variables we're trying to display in the directory
 		var/name = ""
-		var/species = "Ask"
+		var/species = "询问"
 		var/ooc_notes = ""
 		var/flavor_text = ""
 		var/nsfw_flavor_text = ""
-		var/attraction = "Unset"
-		var/gender = "Nonbinary"
-		var/erp = "Ask"
-		var/vore = "Ask"
-		var/hypno = "Ask"
-		var/noncon = "Ask"
+		var/attraction = "未设置"
+		var/gender = "非二元"
+		var/erp = "询问"
+		var/vore = "询问"
+		var/hypno = "询问"
+		var/noncon = "询问"
 		var/character_ad = ""
 		var/exploitable = ""
 		var/ref = REF(mob)
@@ -239,7 +239,7 @@ GAME_VERB_DESC(/client, show_character_directory, "Character Directory", "Shows 
 			flavor_text = READ_PREFS(human, text/flavor_text)
 			if((READ_PREFS(human, choiced/show_nsfw_flavor_text) == "Always On") || ((READ_PREFS(human, choiced/show_nsfw_flavor_text) == "Nude Only") && !(human.w_uniform)))
 				nsfw_flavor_text = READ_PREFS(human, text/flavor_text_nsfw)
-			else nsfw_flavor_text = "Unavailable"
+			else nsfw_flavor_text = "不可用"
 
 		else if(issilicon(mob))
 			var/mob/living/silicon/silicon = mob
@@ -249,7 +249,7 @@ GAME_VERB_DESC(/client, show_character_directory, "Character Directory", "Shows 
 			flavor_text = READ_PREFS(silicon, text/silicon_flavor_text)
 			if(READ_PREFS(silicon, choiced/show_nsfw_flavor_text) != "Never")
 				nsfw_flavor_text = READ_PREFS(silicon, text/flavor_text_nsfw/silicon)
-			else nsfw_flavor_text = "Unavailable"
+			else nsfw_flavor_text = "不可用"
 		//Don't show if they are not a human or a silicon
 		else continue
 		//List of all the shown ERP preferences in the Directory. If there is none, return "Unset"
@@ -264,9 +264,9 @@ GAME_VERB_DESC(/client, show_character_directory, "Character Directory", "Shows 
 		//If the user is an antagonist or Observer, we want them to be able to see exploitables in the Directory.
 		if(user.mind?.has_antag_datum(/datum/antagonist) || isobserver(user))
 			if(exploitable == EXPLOITABLE_DEFAULT_TEXT)
-				exploitable = "Unset"
+				exploitable = "未设置"
 			else exploitable = READ_PREFS(mob, text/exploitable)
-		else exploitable = "Obscured"
+		else exploitable = "已遮蔽"
 		//And finally, we want to get the mob's name, taking into account disguised names.
 		name = mob.real_name ? mob.name : mob.real_name
 
@@ -304,7 +304,7 @@ GAME_VERB_DESC(/client, show_character_directory, "Character Directory", "Shows 
 		if("refresh")
 			// This is primarily to stop malicious users from trying to lag the server by spamming this verb
 			if(!COOLDOWN_FINISHED(user.client, char_directory_cooldown))
-				to_chat(user, "<span class='warning'>Don't spam character directory refresh.</span>")
+				to_chat(user, "<span class='warning'>不要刷屏刷新角色目录。</span>")
 				return
 			COOLDOWN_START(user.client, char_directory_cooldown, 10)
 			update_static_data(user, ui)

@@ -1,8 +1,8 @@
 /obj/item/storage/lunchbox
-	name = "lunchbox"
+	name = "午餐盒"
 	icon = 'modular_zubbers/icons/obj/storage/lunchbox.dmi'
 	icon_state = "lunchbox"
-	desc = "It's fucked, yell at coders."
+	desc = "这玩意儿彻底坏了，去骂程序员吧。"
 	inhand_icon_state = "lunchbox"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/equipment/lunchbox_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/equipment/lunchbox_righthand.dmi'
@@ -24,43 +24,43 @@
 		))
 
 /obj/item/storage/lunchbox/nanotrasen
-	name = "nanotrasen lunchbox"
+	name = "纳米传讯午餐盒"
 	icon_state = "lunchbox_nanotrasen"
 	inhand_icon_state = "lunchbox_nanotrasen"
-	desc = "A refined blue lunchbox to show your support for everyone's favourite megacorporation."
+	desc = "一款精致的蓝色午餐盒，用来表达你对大家最爱的巨型企业的支持。"
 
 /obj/item/storage/lunchbox/medical
-	name = "medical lunchbox"
+	name = "医疗午餐盒"
 	icon_state = "lunchbox_medical"
 	inhand_icon_state = "lunchbox_medical"
-	desc = "A green lunchbox, designed for hungry doctors."
+	desc = "绿色的午餐盒，专为饥肠辘辘的医生设计。"
 
 /obj/item/storage/lunchbox/bunny
-	name = "rabbit lunchbox"
+	name = "兔子午餐盒"
 	icon_state = "lunchbox_bunny"
 	inhand_icon_state = "lunchbox"
-	desc = "An adorable lunchbox with a rabbit printed on it."
+	desc = "印着兔子的可爱午餐盒。"
 
 /obj/item/storage/lunchbox/corgi
-	name = "corgi lunchbox"
+	name = "柯基午餐盒"
 	icon_state = "lunchbox_corgi"
 	inhand_icon_state = "lunchbox"
-	desc = "An adorable lunchbox with a corgi printed on it."
+	desc = "印着柯基的可爱午餐盒。"
 
 /obj/item/storage/lunchbox/heart
-	name = "heart lunchbox"
+	name = "爱心午餐盒"
 	icon_state = "lunchbox_heart"
 	inhand_icon_state = "lunchbox_heart"
-	desc = "A pink lunchbox with a heart pattern printed on it."
+	desc = "印着心形图案的粉色午餐盒。"
 
 /obj/item/storage/lunchbox/safetymoth
-	name = "safety moth lunchbox"
+	name = "安全蛾午餐盒"
 	icon_state = "lunchbox_safetymoth"
 	inhand_icon_state = "lunchbox_safetymoth"
-	desc = "An orange, lead lined lunchbox with everyone's favourite moth printed on it."
+	desc = "橙色的衬铅午餐盒，印着大家最爱的飞蛾。"
 
 /obj/item/storage/lunchbox/amongus
-	name = "suspicious lunchbox"
+	name = "可疑午餐盒"
 	icon_state = "lunchbox_suspicious"
 	inhand_icon_state = "lunchbox_suspicious"
-	desc = "A plain red lunchbox... right?"
+	desc = "一个朴素的红色午餐盒……对吧？"

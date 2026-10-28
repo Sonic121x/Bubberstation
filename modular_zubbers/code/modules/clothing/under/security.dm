@@ -1,7 +1,7 @@
 ///SECMED
 /obj/item/clothing/under/rank/medical/scrubs/skyrat/red/sec
-	name = "security medic scrubs"
-	desc = "It's made of a special fiber that provides minor protection against biohazards and acid, along with some light padding. This one is in a deep red."
+	name = "安保医疗刷手服"
+	desc = "它由一种特殊纤维制成，能对生物危害和酸液提供轻微防护，还带有一些薄衬垫。这一件是深红色的。"
 	armor_type = /datum/armor/clothing_under/red_sec
 
 /datum/armor/clothing_under/red_sec
@@ -14,8 +14,8 @@
 //Maid SEC
 
 /obj/item/clothing/under/rank/security/maid ///Icon by Onule!
-	name = "cnc maid uniform"
-	desc = "Unlike a normal maid costume, this one is made of high-performance durathread weave. This relatively innocent at first glance outfit is actually the specialized type worn by Nanotrasen's infamous high profile 'Cleaning and Clearing' kill squads. It's a lot more robust than it's janitorial counterpart.."
+	name = "CNC 女仆制服"
+	desc = "与普通女仆装不同，这一件采用高性能的耐久纤维编织而成。这套乍看之下相当无辜的服装，实际上是纳米传讯臭名昭著的高调“清洁与清剿”杀戮小队所穿的专用款式。它比对应的清洁工款式结实得多。"
 	icon_state = "security_maid"
 	icon = 'modular_zubbers/icons/obj/clothing/under/maidsec.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/maidsec.dmi'
@@ -25,8 +25,8 @@
 //Metro Cops
 
 /obj/item/clothing/under/rank/security/metrocop //Sprite done by HL13 Station
-	name = "civil protection uniform"
-	desc = "Standard issue uniforms for Civil Protection forces. Uses advanced GigaSlop brand Matrixes to allow alternative variants!"
+	name = "国民护卫队制服"
+	desc = "国民护卫队部队的标准配发制服。采用 GigaSlop 品牌的先进矩阵技术，可切换其他变体！"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	icon_state = "civilprotection"
@@ -62,8 +62,8 @@
 
 //MGS stuff sprited by Crumpaloo for onlyplateau, please credit when porting, which you obviously have permission to do.
 /obj/item/clothing/under/rank/security/snake
-	name = "stealth suit"
-	desc = "We may all be headed straight to hell. But what better place for us than this?"
+	name = "潜行服"
+	desc = "我们也许都在直奔地狱而去。但还有哪里比这里更适合我们呢？"
 	icon = 'modular_zubbers/icons/obj/clothing/under/syndicate.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/syndicate_digi.dmi'
@@ -71,8 +71,8 @@
 	icon_state = "snake"
 
 /obj/item/clothing/under/rank/security/camo
-	name = "armored camouflage uniform"
-	desc = "DO YOU FIND THAT FUNNY BUTTHEAD?!"
+	name = "装甲迷彩制服"
+	desc = "你觉得这很好笑吗，蠢货？！"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/rank/security/camo"
 	post_init_icon_state = "solfed_camo"
@@ -87,8 +87,8 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/officer/turtleneck
-	name = "security turtleneck"
-	desc = "A tactical turtleneck meant for those long nights out on the night shift."
+	name = "安保高领衫"
+	desc = "一件战术高领衫，专为夜班那些漫长的夜晚而备。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "jumpsuit_red"
@@ -102,7 +102,7 @@
 	default_accessories = list("security_shirt_accs_tie")
 	core_components = list(
 		list(
-			"name" = "Shirt",
+			"name" = "上衣",
 			"key" = "shirt",
 			"default" = "security",
 			"groups" = list(
@@ -111,152 +111,152 @@
 			),
 			"options" = list(
 				"security" = list(
-					"name" = "Security shirt",
+					"name" = "安保上衣",
 					"state" = "security_shirt",
 					"color_id" = 1,
-					"color_label" = "Shirt",
+					"color_label" = "上衣",
 					"default_color" = "#BA3B2E",
 				),
 				"viro" = list(
-					"name" = "Virosec shirt",
+					"name" = "防疫安保上衣",
 					"state" = "security_shirt_viro",
 					"parent" = "security",
 					"color_id" = 1,
-					"color_label" = "Shirt",
+					"color_label" = "上衣",
 					"default_color" = "#BA3B2E",
 				),
 				"suit" = list(
-					"name" = "Security suit",
+					"name" = "安保西装",
 					"state" = "security_shirt_suit",
 					"parent" = "security",
 					"color_id" = 1,
-					"color_label" = "Shirt",
+					"color_label" = "上衣",
 					"default_color" = "#BA3B2E",
 				),
 				"turtleneck" = list(
-					"name" = "Security turtleneck",
+					"name" = "安保高领衫",
 					"state" = "security_shirt_turtleneck",
 					"parent" = "security",
 					"color_id" = 1,
-					"color_label" = "Shirt",
+					"color_label" = "上衣",
 					"default_color" = "#BA3B2E",
 				),
 			),
 		),
 		list(
-			"name" = "Pants",
+			"name" = "裤子",
 			"key" = "pants",
 			"default" = "security",
 			"options" = list(
 				"security" = list(
-					"name" = "Security pants",
+					"name" = "安保长裤",
 					"state" = "security_pants",
 					"color_id" = 2,
-					"color_label" = "Pants",
+					"color_label" = "裤子",
 					"default_color" = "#4B4C51",
 				),
 				"skirt" = list(
-					"name" = "Security skirt",
+					"name" = "安保短裙",
 					"state" = "security_pants_skirt",
 					"parent" = "security",
 					"color_id" = 2,
-					"color_label" = "Pants",
+					"color_label" = "裤子",
 					"default_color" = "#4B4C51",
 				),
 				"viro" = list(
-					"name" = "Virosec pants",
+					"name" = "防疫安保长裤",
 					"state" = "security_pants_viro",
 					"parent" = "security",
 					"color_id" = 2,
-					"color_label" = "Pants",
+					"color_label" = "裤子",
 					"default_color" = "#4B4C51",
 				),
 			),
 		),
 	)
 	accessories = list(
-		"Tie" = list(
+		"领带" = list(
 			"state" = "security_shirt_accs_tie",
 			"applies_to" = list("shirt" = list(COMPONENT_CORE_GROUP = "tie_compatible")),
 			"color_id" = 3,
-			"color_label" = "Tie",
+			"color_label" = "领带",
 			"default_color" = "#2D2D33",
 		),
-		"Arm trim one" = list(
+		"袖口饰边一" = list(
 			"state" = "security_shirt_accs_arm_trim_one",
 			"applies_to" = list("shirt" = list(COMPONENT_CORE_EXACT = list("security", "viro"))),
 			"color_id" = 4,
-			"color_label" = "Arm trim one",
+			"color_label" = "袖口饰边一",
 			"default_color" = "#39393F",
 		),
-		"Arm trim two" = list(
+		"袖口饰边二" = list(
 			"state" = "security_shirt_accs_arm_trim_two",
 			"applies_to" = list("shirt" = list(COMPONENT_CORE_GROUP = "arm_trim_compatible")),
 			"color_id" = 13,
-			"color_label" = "Arm trim two",
+			"color_label" = "袖口饰边二",
 			"default_color" = "#46464D",
 		),
-		"Arm trim three" = list(
+		"袖口饰边三" = list(
 			"state" = "security_shirt_accs_arm_trim_three",
 			"applies_to" = list("shirt" = list(COMPONENT_CORE_GROUP = "arm_trim_compatible")),
 			"color_id" = 12,
-			"color_label" = "Arm trim three",
+			"color_label" = "袖口饰边三",
 			"default_color" = "#D0D0D0",
 		),
-		"Epaulettes" = list(
+		"肩章" = list(
 			"state" = "security_shirt_accss_epaulettes",
 			"applies_to" = list("shirt" = list(COMPONENT_CORE_BRANCH = "security")),
 			"color_id" = 11,
-			"color_label" = "Epaulettes",
+			"color_label" = "肩章",
 			"default_color" = "#39393F",
 		),
-		"Viro shirt trim" = list(
+		"防疫上衣饰边" = list(
 			"state" = "security_shirt_accs_trim_viro",
 			"applies_to" = list("shirt" = list("viro" = COMPONENT_CORE_EXACT)),
 			"color_id" = 8,
-			"color_label" = "Viro shirt trim",
+			"color_label" = "防疫上衣饰边",
 			"default_color" = "#46464D",
 		),
-		"Suit inner shirt" = list(
+		"西装内衬上衣" = list(
 			"state" = "security_shirt_suit_accs_inner",
 			"applies_to" = list("shirt" = list("suit" = COMPONENT_CORE_EXACT)),
 			"color_id" = 9,
-			"color_label" = "Suit inner shirt",
+			"color_label" = "西装内衬上衣",
 			"default_color" = "#EBEBEB",
 		),
-		"Buckle" = list(
+		"皮带扣" = list(
 			"state" = "security_pants_accs_buckle",
 			"applies_to" = list("pants" = COMPONENT_CORE_ALL),
 			"color_id" = 10,
-			"color_label" = "Buckle",
+			"color_label" = "皮带扣",
 			"default_color" = "#B5BBCF",
 		),
-		"Skirt outer trim" = list(
+		"短裙外饰边" = list(
 			"state" = "security_pants_skirt_accs_outer_trim",
 			"applies_to" = list("pants" = list("skirt" = COMPONENT_CORE_EXACT)),
 			"color_id" = 5,
-			"color_label" = "Skirt outer trim",
+			"color_label" = "短裙外饰边",
 			"default_color" = "#46464D",
 		),
-		"Skirt inner trim" = list(
+		"短裙内饰边" = list(
 			"state" = "security_pants_skirt_accs_inner_trim",
 			"applies_to" = list("pants" = list("skirt" = COMPONENT_CORE_EXACT)),
 			"color_id" = 6,
-			"color_label" = "Skirt inner trim",
+			"color_label" = "短裙内饰边",
 			"default_color" = "#46464D",
 		),
-		"Viro pants trim" = list(
+		"防疫长裤饰边" = list(
 			"state" = "security_pants_viro_accs_trim",
 			"applies_to" = list("pants" = list("viro" = COMPONENT_CORE_EXACT)),
 			"color_id" = 7,
-			"color_label" = "Viro pants trim",
+			"color_label" = "防疫长裤饰边",
 			"default_color" = "#7D2A25",
 		),
 	)
 
 /obj/item/clothing/under/rank/security/officer/recolorable
-	name = "security uniform"
-	desc = "A tactical security jumpsuit for officers. This one seems to have a few custom modifications."
+	name = "安保制服"
+	desc = "一件为警官设计的战术安保连体服。这一件似乎做过一些自定义改装。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
@@ -289,8 +289,8 @@
 // Virosec, sprites by axietheaxolotl
 
 /obj/item/clothing/under/rank/security/viro/officer/
-	name = "security uniform"
-	desc = "A tactical security jumpsuit for officers complete with Nanotrasen belt buckle."
+	name = "安保制服"
+	desc = "一件为警官设计的战术安保连体服，配有纳米传讯皮带扣。"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
@@ -299,15 +299,15 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/security/viro/officer/lowcut
-	name = "low-cut security uniform"
-	desc = "A tactical security uniform for officers, complete lower-cut top."
+	name = "低领安保制服"
+	desc = "一件为警官设计的战术安保制服，上衣领口更低。"
 	icon_state = "security_lowcut"
 	inhand_icon_state = "r_suit"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/security/viro/officer/skirt/
-	name = "security skirt"
-	desc = "A \"tactical\" security uniform with the legs replaced by a skirt."
+	name = "安保短裙"
+	desc = "一件“战术”安保制服，裤腿部分换成了短裙。"
 	icon_state = "security_skirt"
 	inhand_icon_state = "r_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -316,16 +316,16 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/security/viro/officer/formal/
-	name = "security officer's formal uniform"
-	desc = "The latest in fashionable security outfits."
+	name = "安保警官礼服"
+	desc = "安保制服的最新时尚款式。"
 	icon_state = "security_formals"
 	inhand_icon_state = "r_suit"
 	alt_covers_chest = TRUE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/security/viro/officer/bodysuit
-	name = "seucrity officer's bodysuit"
-	desc = "The latest in form-fitting, high speed, and low drag security equipment."
+	name = "安保警官紧身衣"
+	desc = "最新的贴身、高速、低阻力安保装备。"
 	icon_state = "security_bodysuit"
 	can_adjust = FALSE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
@@ -342,8 +342,8 @@
 	affected_mob.update_worn_undersuit()
 
 /obj/item/clothing/under/rank/security/viro/warden/
-	name = "security suit"
-	desc = "A formal security suit for officers complete with Nanotrasen belt buckle."
+	name = "安保西装"
+	desc = "一件为警官设计的正式安保西装，配有纳米传讯皮带扣。"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
@@ -352,8 +352,8 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/security/viro/warden/skirt/
-	name = "warden's suitskirt"
-	desc = "A formal security suitskirt for officers complete with Nanotrasen belt buckle."
+	name = "典狱官西装短裙"
+	desc = "一件为警官设计的正式安保西装短裙，配有纳米传讯皮带扣。"
 	icon_state = "warden_skirt"
 	inhand_icon_state = "r_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -362,16 +362,16 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/security/viro/warden/formal/
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Warden."
-	name = "warden's formal uniform"
+	desc = "这套制服上的徽记表明它属于典狱官。"
+	name = "典狱官礼服"
 	icon_state = "wardenblueclothes"
 	inhand_icon_state = null
 	alt_covers_chest = TRUE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/security/viro/warden/formal/skirt
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Warden. This one has a skirt."
-	name = "warden's formal uniform"
+	desc = "这套制服上的徽记表明它属于典狱官。这一件还配有短裙。"
+	name = "典狱官礼服"
 	icon_state = "wardenblueclothes_skirt"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -380,8 +380,8 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/security/viro/head_of_security/viro
-	name = "head of security's uniform"
-	desc = "A security jumpsuit decorated for those few with the dedication to achieve the position of Head of Security."
+	name = "安保主管制服"
+	desc = "一件安保连体服，专为少数有毅力坐上安保主管之位的人装饰而成。"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
@@ -397,8 +397,8 @@
 	wound = 10
 
 /obj/item/clothing/under/rank/security/viro/head_of_security/skirt
-	name = "head of security's skirt"
-	desc = "A security jumpskirt decorated for those few with the dedication to achieve the position of Head of Security."
+	name = "安保主管短裙"
+	desc = "一件安保连体短裙，专为少数有毅力坐上安保主管之位的人装饰而成。"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
@@ -410,15 +410,15 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/security/viro/head_of_security/alt
-	name = "head of security's turtleneck"
-	desc = "A stylish alternative to the normal head of security jumpsuit, complete with tactical pants."
+	name = "安保主管高领衫"
+	desc = "普通安保主管连体服的时尚替代款式，配有战术长裤。"
 	icon_state = "hosalt"
 	inhand_icon_state = "bl_suit"
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/skirt
-	name = "head of security's turtleneck skirt"
-	desc = "A stylish alternative to the normal head of security jumpsuit, complete with a tactical skirt."
+	name = "安保主管高领短裙"
+	desc = "普通安保主管连体服的时尚替代款式，配有战术短裙。"
 	icon_state = "hosalt_skirt"
 	inhand_icon_state = "bl_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -428,8 +428,8 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/security/viro/head_of_security/formal
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Head of Security."
-	name = "head of security's formal uniform"
+	desc = "这套制服上的徽记表明它属于安保主管。"
+	name = "安保主管礼服"
 	icon_state = "hosblueclothes"
 	inhand_icon_state = null
 	alt_covers_chest = TRUE
@@ -437,8 +437,8 @@
 // Red versions of classic bluesec gear
 
 /obj/item/clothing/under/rank/security/viro/head_of_security/formal/skirt
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Head of Security."
-	name = "head of security's formal uniform skirt"
+	desc = "这套制服上的徽记表明它属于安保主管。"
+	name = "安保主管礼服短裙"
 	icon_state = "hosblueclothes"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -447,8 +447,8 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/security/officer/suit/red
-	name = "security officer's suit"
-	desc = "A sleek, formal three-piece suit with a red suit jacket dawned with security insignia, not guaranteed to be good to run in!"
+	name = "安保警官西装"
+	desc = "一套线条利落的正式三件套西装，红色西装外套上缀有安保徽记——但不保证穿着它适合奔跑！"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
@@ -464,8 +464,8 @@
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/warden/suit/red
-	name = "warden's suit"
-	desc = "A sleek, formal three-piece suit with a red suit jacket dawned with security insignia, not guaranteed to be good to run in!"
+	name = "典狱官西装"
+	desc = "一套线条利落的正式三件套西装，红色西装外套上缀有安保徽记——但不保证穿着它适合奔跑！"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
@@ -481,8 +481,8 @@
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/suit/red
-	name = "head of security's suit"
-	desc = "A sleek, formal three-piece suit with a red suit jacket dawned with security insignia, not guaranteed to be good to run in!"
+	name = "安保主管西装"
+	desc = "一套线条利落的正式三件套西装，红色西装外套上缀有安保徽记——但不保证穿着它适合奔跑！"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
@@ -498,8 +498,8 @@
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/officer/turtleneck/red
-	name = "security turtleneck"
-	desc = " comfortable turtleneck in the classic security red, dawned with security insignia. Paired with black cargo pants to look tactical!"
+	name = "安保高领衫"
+	desc = " 一件经典的安保红色舒适高领衫，缀有安保徽记。搭配黑色工装裤，看起来很有战术感！"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
@@ -515,13 +515,13 @@
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/officer/turtleneck/red/skirt
-	name = "security turtleneck skirt"
-	desc = "A comfortable turtleneck in the classic security red, dawned with security insignia. Paired with a black skirt to look tactical!"
+	name = "安保高领短裙"
+	desc = "一件经典的安保红色舒适高领衫，缀有安保徽记。搭配黑色短裙，看起来很有战术感！"
 	icon_state = "turtleneck_skirt"
 
 /obj/item/clothing/under/rank/security/warden/turtleneck/red
-	name = "security turtleneck"
-	desc = " comfortable turtleneck in the classic security red, dawned with security insignia. Paired with black cargo pants to look tactical!"
+	name = "安保高领衫"
+	desc = " 一件经典的安保红色舒适高领衫，缀有安保徽记。搭配黑色工装裤，看起来很有战术感！"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
@@ -537,13 +537,13 @@
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/warden/turtleneck/red/skirt
-	name = "warden's turtleneck skirt"
-	desc = "A comfortable turtleneck in the classic security red, dawned with security insignia. Paired with a black skirt to look tactical!"
+	name = "典狱官高领短裙"
+	desc = "一件经典的安保红色舒适高领衫，缀有安保徽记。搭配黑色短裙，看起来很有战术感！"
 	icon_state = "turtleneck_warden_skirt"
 
 /obj/item/clothing/under/rank/security/head_of_security/turtleneck/red
-	name = "head of security's turtleneck"
-	desc = "A comfortable turtleneck in the classic security red, dawned with security insignia. Paired with black cargo pants to look tactical!"
+	name = "安保主管高领衫"
+	desc = "一件经典的安保红色舒适高领衫，缀有安保徽记。搭配黑色工装裤，看起来很有战术感！"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
@@ -559,13 +559,13 @@
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/turtleneck/red/skirt
-	name = "head of security's turtleneck skirt"
-	desc = "A comfortable turtleneck in the classic security red, dawned with security insignia. Paired with a black skirt to look tactical!"
+	name = "安保主管高领短裙"
+	desc = "一件经典的安保红色舒适高领衫，缀有安保徽记。搭配黑色短裙，看起来很有战术感！"
 	icon_state = "turtleneck_hos_skirt"
 
 /obj/item/clothing/under/rank/security/warden/battledress/red
-	name = "warden's battle dress"
-	desc = "An asymmetrical, unisex uniform with the legs replaced by a utility skirt. This version is specifically designed for the warden!"
+	name = "典狱官战斗裙装"
+	desc = "一套不对称的男女通用制服，裤腿部分换成了多功能短裙。这一款专为典狱官设计！"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
@@ -581,8 +581,8 @@
 		qdel(reskin_component)
 
 /obj/item/clothing/under/rank/security/head_of_security/battledress/red
-	name = "head of security's battle dress"
-	desc = "An asymmetrical, unisex uniform with the legs replaced by a utility skirt. This version is specifically designed for the head of security!"
+	name = "安保主管战斗裙装"
+	desc = "一套不对称的男女通用制服，裤腿部分换成了多功能短裙。这一款专为安保主管设计！"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'

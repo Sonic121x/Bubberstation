@@ -1,5 +1,5 @@
 /datum/design/disk/ammo_workbench_lethal
-	name = "Ammo Workbench Advanced Munitions Datadisk"
+	name = "弹药工作台高级弹药数据磁盘"
 	id = "ammoworkbench_disk_lethal"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(

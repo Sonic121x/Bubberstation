@@ -1,6 +1,6 @@
 /obj/item/organ/halo
-	name = "halo"
-	desc = "An intangible pattern of light that manifests above its owner's head. It cannot be touched and possesses no apparent physical volume, fading away when its owner loses consciousness. Beyond that, its nature remains a mystery."
+	name = "光环"
+	desc = "一种无实体的光之图样，在主人头顶上方显现。它无法被触摸，也没有任何可感知的物理体积，当主人失去意识时会逐渐消散。除此之外，它的本质仍是个谜。"
 	mutantpart_key = "halo"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Messenger Halo", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"))
 	zone = BODY_ZONE_HEAD

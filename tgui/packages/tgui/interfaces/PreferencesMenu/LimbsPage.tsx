@@ -161,12 +161,12 @@ export const AugmentationPage = (props) => {
             </Stack.Item>
             <Stack.Item>
               <Stack fill vertical>
-                <Stack.Item>Style:</Stack.Item>
+                <Stack.Item>样式：</Stack.Item>
                 <Stack.Item grow>
                   <Dropdown
                     width="100%"
-                    options={props.data.robotic_styles}
-                    selected={props.limb.chosen_style}
+                    options={props.data.robotic_styles.map((value) => ({ value, displayText: props.data.robotic_style_labels?.[value] ?? value }))}
+                    selected={props.limb.chosen_style} displayText={props.data.robotic_style_labels?.[props.limb.chosen_style] ?? props.limb.chosen_style}
                     onSelected={(value) =>
                       act('set_limb_aug_style', {
                         limb_slot: props.limb.slot,

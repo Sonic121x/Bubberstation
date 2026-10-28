@@ -153,8 +153,8 @@ SUBSYSTEM_DEF(gamemode)
 			var/holiday_categorized = FALSE
 			for(var/datum/holiday/current_holiday as anything in GLOB.holidays)
 				if(current_holiday == event.holidayID)
-					log_game("Storyteller enabled event [event] due to active holiday [current_holiday]")
-					message_admins("Storyteller enabled event [event] due to active holiday [current_holiday].")
+					log_game("故事讲述者因当前节日 [current_holiday] 而启用了事件 [event]")
+					message_admins("故事讲述者因当前节日 [current_holiday] 而启用了事件 [event]。")
 					event_pools[event.track] += event
 					holiday_categorized = TRUE
 					break
@@ -204,7 +204,7 @@ SUBSYSTEM_DEF(gamemode)
 			else if(!sch_event.alerted_admins && world.time >= sch_event.start_time - 1 MINUTES)
 				///Alert admins 1 minute before running and allow them to cancel or refund the event, once again.
 				sch_event.alerted_admins = TRUE
-				message_admins("Scheduled Event: [sch_event.event] will run in [(sch_event.start_time - world.time) / 10] seconds. (<a href='byond://?src=[REF(sch_event)];action=cancel'>CANCEL</a>) (<a href='byond://?src=[REF(sch_event)];action=refund'>REFUND</a>)")
+				message_admins("预定事件：[sch_event.event] 将在 [(sch_event.start_time - world.time) / 10] 秒后运行。（<a href='byond://?src=[REF(sch_event)];action=cancel'>取消</a>）（<a href='byond://?src=[REF(sch_event)];action=refund'>退还</a>）")
 
 	// Reset the cache value to false
 	pop_data_cached = FALSE
@@ -370,9 +370,9 @@ SUBSYSTEM_DEF(gamemode)
 	if(storyteller.disable_distribution)
 		return
 	if(storyteller_halted)
-		message_admins("WARNING: Didn't roll roundstart events (including antagonists) due to the storyteller being halted.")
+		message_admins("警告：由于故事讲述者已暂停，未进行回合开始事件（包括反派）的抽取。")
 		return
-	log_dynamic("Initializing storyteller [storyteller.name] with the following multipliers! [english_list_assoc(storyteller.tag_multipliers)]")
+	log_dynamic("正在初始化故事讲述者 [storyteller.name]，使用以下倍率！[english_list_assoc(storyteller.tag_multipliers)]")
 	while(TRUE)
 		if(!storyteller.handle_tracks())
 			break
@@ -392,9 +392,9 @@ SUBSYSTEM_DEF(gamemode)
 	var/datum/scheduled_event/scheduled = new (passed_event, world.time + passed_time, passed_cost, passed_ignore, passed_announce)
 	var/round_started = SSticker.HasRoundStarted()
 	if(round_started)
-		message_admins("Event: [passed_event] has been scheduled to run in [passed_time / 10] seconds. (<a href='byond://?src=[REF(scheduled)];action=cancel'>CANCEL</a>) (<a href='byond://?src=[REF(scheduled)];action=refund'>REFUND</a>)")
+		message_admins("事件：[passed_event] 已预定在 [passed_time / 10] 秒后运行。（<a href='byond://?src=[REF(scheduled)];action=cancel'>取消</a>）（<a href='byond://?src=[REF(scheduled)];action=refund'>退还</a>）")
 	else //Only roundstart events can be scheduled before round start
-		message_admins("Event: [passed_event] has been scheduled to run on roundstart. (<a href='byond://?src=[REF(scheduled)];action=cancel'>CANCEL</a>)")
+		message_admins("事件：[passed_event] 已预定在回合开始时运行。（<a href='byond://?src=[REF(scheduled)];action=cancel'>取消</a>）")
 	scheduled_events += scheduled
 
 /datum/controller/subsystem/gamemode/proc/update_crew_infos()
@@ -518,8 +518,8 @@ SUBSYSTEM_DEF(gamemode)
 
 /datum/controller/subsystem/gamemode/proc/toggleWizardmode()
 	wizardmode = !wizardmode //TODO: decide what to do with wiz events
-	message_admins("Summon Events has been [wizardmode ? "enabled, events will occur [SSgamemode.event_frequency_multiplier] times as fast" : "disabled"]!")
-	log_game("Summon Events was [wizardmode ? "enabled" : "disabled"]!")
+	message_admins("召唤事件已[wizardmode ? "启用，事件发生速度将提升至 [SSgamemode.event_frequency_multiplier] 倍" : "停用"]！")
+	log_game("召唤事件已[wizardmode ? "启用" : "停用"]！")
 
 ///Attempts to select players for special roles the mode might have.
 /datum/controller/subsystem/gamemode/proc/pre_setup()
@@ -577,7 +577,7 @@ SUBSYSTEM_DEF(gamemode)
 //Reports player logouts//
 //////////////////////////
 /proc/display_roundstart_logout_report()
-	var/list/msg = list("[span_boldnotice("Roundstart logout report")]\n\n")
+	var/list/msg = list("[span_boldnotice("回合开始登出报告")]\n\n")
 	for(var/i in GLOB.mob_living_list)
 		var/mob/living/L = i
 		var/mob/living/carbon/C = L
@@ -586,22 +586,22 @@ SUBSYSTEM_DEF(gamemode)
 			continue  // never had a client
 
 		if(L.ckey && !GLOB.directory[L.ckey])
-			msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
+			msg += "<b>[L.name]</b>（[L.key]），[L.job]（<font color='#ffcc00'><b>已断开连接</b></font>）\n"
 
 		if(L.ckey && L.client)
 			var/failed = FALSE
 			if(L.client.inactivity >= (15 MINUTES)) //Connected, but inactive (alt+tabbed or something)
-				msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
+				msg += "<b>[L.name]</b>（[L.key]），[L.job]（<font color='#ffcc00'><b>已连接，但未活动</b></font>）\n"
 				failed = TRUE //AFK client
 			if(!failed && L.stat)
 				if(H.get_dnr()) //Suicider
-					msg += "<b>[L.name]</b> ([L.key]), the [L.job] ([span_boldannounce("Suicide")])\n"
+					msg += "<b>[L.name]</b>（[L.key]），[L.job]（[span_boldannounce("自杀")]）\n"
 					failed = TRUE //Disconnected client
 				if(!failed && (IS_UNCONSCIOUS_OR_CRIT(L)))
-					msg += "<b>[L.name]</b> ([L.key]), the [L.job] (Dying)\n"
+					msg += "<b>[L.name]</b>（[L.key]），[L.job]（濒死）\n"
 					failed = TRUE //Unconscious
 				if(!failed && L.stat == DEAD)
-					msg += "<b>[L.name]</b> ([L.key]), the [L.job] (Dead)\n"
+					msg += "<b>[L.name]</b>（[L.key]），[L.job]（死亡）\n"
 					failed = TRUE //Dead
 
 			continue //Happy connected client
@@ -609,16 +609,16 @@ SUBSYSTEM_DEF(gamemode)
 			if(D.mind && D.mind.current == L)
 				if(L.stat == DEAD)
 					if(H.get_dnr()) //Suicider
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_boldannounce("Suicide")])\n"
+						msg += "<b>[L.name]</b>（[ckey(D.mind.key)]），[L.job]（[span_boldannounce("自杀")]）\n"
 						continue //Disconnected client
 					else
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (Dead)\n"
+						msg += "<b>[L.name]</b>（[ckey(D.mind.key)]），[L.job]（死亡）\n"
 						continue //Dead mob, ghost abandoned
 				else
 					if(D.can_reenter_corpse)
 						continue //Adminghost, or cult/wizard ghost
 					else
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_boldannounce("Ghosted")])\n"
+						msg += "<b>[L.name]</b>（[ckey(D.mind.key)]），[L.job]（[span_boldannounce("已幽灵化")]）\n"
 						continue //Ghosted while alive
 
 	for (var/C in GLOB.admins)
@@ -712,7 +712,7 @@ SUBSYSTEM_DEF(gamemode)
 		vote_message += "[storyboy.desc]"
 		vote_message += ""
 	var/finalized_message = "[vote_message.Join("\n")]"
-	to_chat(world, vote_font(fieldset_block("Storyteller Vote", "[finalized_message]", "boxed_message purple_box")))
+	to_chat(world, vote_font(fieldset_block("故事讲述者投票", "[finalized_message]", "boxed_message purple_box")))
 	return choices
 
 /datum/controller/subsystem/gamemode/proc/storyteller_vote_result(winner_name)
@@ -728,21 +728,21 @@ SUBSYSTEM_DEF(gamemode)
 
 /datum/controller/subsystem/gamemode/proc/init_storyteller()
 	if(storyteller) // If this is true, then an admin bussed one, don't overwrite it
-		log_dynamic("Roundstart storyteller has been set by admins to [storyteller.name], the vote was not considered.")
+		log_dynamic("回合开始的故事讲述者已由管理员设为 [storyteller.name]，投票结果未被采用。")
 		return
 	var/datum/storyteller/storyteller_pick
 	if(!voted_storyteller)
 		storyteller_pick = pick(storytellers)
-		log_dynamic("Roundstart picked storyteller [storyteller_pick.name] randomly due to no vote result.")
+		log_dynamic("由于没有投票结果，回合开始随机选中了故事讲述者 [storyteller_pick.name]。")
 		voted_storyteller = storyteller_pick
 
 	set_storyteller(voted_storyteller)
 	if(vote_datum)
 		var/list/vote_results = vote_datum.elimination_results
 		var/serialized_vote_results = "[vote_results.Join("\n")]"
-		var/list/vote_result_message = list("Method: Ranked Vote\n\nElimination order:\n[serialized_vote_results]")
+		var/list/vote_result_message = list("方式：排序投票\n\n淘汰顺序：\n[serialized_vote_results]")
 		to_chat(world, custom_boxed_message("purple_box", vote_font("[vote_result_message.Join("\n")]")))
-	to_chat(world, vote_font(fieldset_block("Storyteller: [storyteller.name]", "[storyteller.welcome_text]", "boxed_message purple_box")))
+	to_chat(world, vote_font(fieldset_block("故事讲述者：[storyteller.name]", "[storyteller.welcome_text]", "boxed_message purple_box")))
 
 	if(vote_datum)
 		QDEL_NULL(vote_datum)
@@ -750,7 +750,7 @@ SUBSYSTEM_DEF(gamemode)
 	// Notify discord about the round's selected storyteller
 	for(var/channel_tag in CONFIG_GET(str_list/channel_announce_new_game))
 		send2chat(
-			new /datum/tgs_message_content("The storyteller selected for this round is [storyteller.name]!"),
+			new /datum/tgs_message_content("本回合选定的故事讲述者是 [storyteller.name]！"),
 			channel_tag,
 		)
 
@@ -763,7 +763,7 @@ SUBSYSTEM_DEF(gamemode)
 */
 /datum/controller/subsystem/gamemode/proc/set_storyteller(passed_type, forced, force_ckey)
 	if(!storytellers[passed_type])
-		message_admins("Attempted to set an invalid storyteller type: [passed_type].")
+		message_admins("尝试设置无效的故事讲述者类型：[passed_type]。")
 		CRASH("Attempted to set an invalid storyteller type: [passed_type].")
 	storyteller = storytellers[passed_type]
 
@@ -774,7 +774,7 @@ SUBSYSTEM_DEF(gamemode)
 	point_thresholds[EVENT_TRACK_CREWSET] = track_data.threshold_crewset * CONFIG_GET(number/crewset_point_threshold)
 	point_thresholds[EVENT_TRACK_GHOSTSET] = track_data.threshold_ghostset * CONFIG_GET(number/ghostset_point_threshold)
 
-	log_admin_private("Storyteller switched to [storyteller.name]. [forced ? "Forced by admin ckey [force_ckey]" : ""]")
+	log_admin_private("故事讲述者已切换为 [storyteller.name]。[forced ? "由管理员 ckey [force_ckey] 强制指定" : ""]")
 
 /**
  * halt_storyteller
@@ -785,8 +785,8 @@ SUBSYSTEM_DEF(gamemode)
 	storyteller_halted = !storyteller_halted
 	if(isnull(user))
 		return
-	message_admins("[key_name_admin(user)] has [storyteller_halted ? "HALTED" : "un-halted"] the Storyteller.")
-	log_dynamic("Storyteller [storyteller_halted ? "halted" : "un-halted"] by admin [user.ckey].")
+	message_admins("[key_name_admin(user)] 已[storyteller_halted ? "暂停" : "恢复"]故事讲述者。")
+	log_dynamic("故事讲述者已被管理员 [user.ckey] [storyteller_halted ? "暂停" : "恢复"]。")
 
 /**
  * force_next_event
@@ -801,8 +801,8 @@ SUBSYSTEM_DEF(gamemode)
 		return
 	event_track_points[track] = point_thresholds[track]
 	storyteller.handle_tracks()
-	message_admins("[key_name_admin(user)] has forced an event for the [track] track.")
-	log_admin_private("Storyteller track [track] forced to run an event by [user.ckey]")
+	message_admins("[key_name_admin(user)] 已为 [track] 轨道强制触发一个事件。")
+	log_admin_private("故事讲述者轨道 [track] 被 [user.ckey] 强制触发事件")
 
 /**
  * get_scheduled_by_event_type
@@ -840,23 +840,23 @@ SUBSYSTEM_DEF(gamemode)
 	event.run_event(admin_forced = TRUE)
 
 /datum/controller/subsystem/gamemode/proc/reroll_antagonist(datum/round_event_control/event_control, antag_name, datum/antagonist/existing_antag)
-	message_admins(span_yellowteamradio("[key_name_admin(usr)] requested a new antagonist to replace [antag_name]."))
-	log_admin("[key_name_admin(usr)] requested a new antagonist to replace [antag_name].")
+	message_admins(span_yellowteamradio("[key_name_admin(usr)] 请求生成一名新反派来替换 [antag_name]。"))
+	log_admin("[key_name_admin(usr)] 请求生成一名新反派来替换 [antag_name]。")
 	if (isnull(event_control) && !isnull(existing_antag))
 		event_control = SSgamemode.antag_rerolls_by_pref[existing_antag.pref_flag]
 	if(isnull(event_control))
 		event_control = pick_weight(SSgamemode.antag_rerolls)
 	SSgamemode.inject_event(event_control = event_control)
 
-ADMIN_VERB(create_antagonist, R_FUN, "Create Antagonist", "Inject a little more action into the round.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(create_antagonist, R_FUN, "生成反派", "给本回合增添一点刺激。", ADMIN_CATEGORY_EVENTS)
 	var/list/available_antags = list()
 	for(var/datum/round_event_control/event_control as anything in SSgamemode.antag_rerolls)
 		LAZYADD(available_antags, event_control)
 
-	var/datum/round_event_control/selected_event = tgui_input_list(user, "Choose a crew antagonist type to spawn.", "Create Antagonist", available_antags)
+	var/datum/round_event_control/selected_event = tgui_input_list(user, "选择要生成的船员反派类型。", "生成反派", available_antags)
 	if(isnull(selected_event))
 		return
 
-	SSgamemode.reroll_antagonist(event_control = selected_event, antag_name = "nobody")
+	SSgamemode.reroll_antagonist(event_control = selected_event, antag_name = "无指定对象")
 
 #undef INIT_ORDER_GAMEMODE

@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/gas/bubber //Saves having to type the icon stuff, means you just type in the state, smiley face emoji heart
-	name = "EMERGENCY!!"
-	desc = "The next 72 hours are going to be dangerous."
+	name = "紧急情况！！"
+	desc = "接下来的 72 小时将会十分危险。"
 	icon = 'modular_zubbers/icons/obj/clothing/mask/mask.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/mask/mask.dmi'
 	icon_state = null
@@ -8,8 +8,8 @@
 //Sprites from Sojourn Station: https://github.com/sojourn-13/sojourn-station
 
 /obj/item/clothing/mask/gas/bubber/clown
-	name = "coloured clown mask"
-	desc = "After a painful 48 year delay, the matching non-ginger Clown masks have arrived! Shoes are still in transit."
+	name = "彩色小丑面具"
+	desc = "在痛苦地延迟了 48 年之后，配套的非红发小丑面具终于到货了！鞋子仍在运输途中。"
 	clothing_flags = MASKINTERNALS
 	icon_state = "redclown"
 	dye_color = DYE_CLOWN
@@ -59,8 +59,8 @@
 	voice_filter = null // performer masks expect to be talked through
 
 /obj/item/clothing/mask/gas/half_mask
-	name = "tacticool neck gaiter"
-	desc = "A black techwear mask. Its low-profile design contrasts with the edge. Has a small respirator to be used with internals."
+	name = "战术风脖套"
+	desc = "一款黑色科技风面罩。低调的设计与锐利的风格形成反差。配有一个小型呼吸器，可与内部供气系统配合使用。"
 	actions_types = list(/datum/action/item_action/adjust)
 	alternate_worn_layer = BODY_FRONT_UNDER_CLOTHES
 	icon_state = "half_mask"

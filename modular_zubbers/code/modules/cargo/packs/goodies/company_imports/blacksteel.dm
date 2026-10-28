@@ -31,20 +31,20 @@
 
 /datum/supply_pack/company_import/blacksteel/forging_metals/fake_cobalt
 	item_type = /obj/item/stack/sheet/cobolterium/three
-	desc = "A three-pack of our finest cobolterium alloy, with an unmatched regal blue color for creating the strongest metalworks from."
+	desc = "三块装的上等钴蓝金合金，拥有无可比拟的皇家蓝色泽，可用来打造最坚固的金属制品。"
 	cost = PAYCHECK_CREW
 
 /datum/supply_pack/company_import/blacksteel/forging_metals/fake_copper
 	item_type = /obj/item/stack/sheet/copporcitite/three
-	desc = "A three-pack of our finest copporcitite alloy, with a powerful, fiery orange color for creating the strongest metalworks from."
+	desc = "三块装的上等铜橙石合金，色泽是浓烈炽热的橙色，可用来打造最坚固的金属制品。"
 	cost = PAYCHECK_CREW
 
 /datum/supply_pack/company_import/blacksteel/forging_metals/fake_really_blue_aluminum
 	item_type = /obj/item/stack/sheet/tinumium/three
-	desc = "A three-pack of our finest tinumium alloy, with a mystical faded blue color for creating the strongest metalworks from."
+	desc = "三块装的上等锡银金合金，呈现出神秘的褪色蓝调，可用来打造最坚固的金属制品。"
 	cost = PAYCHECK_CREW
 
 /datum/supply_pack/company_import/blacksteel/forging_metals/fake_brass
 	item_type = /obj/item/stack/sheet/brussite/three
-	desc = "A three-pack of our finest brussite alloy, with a robust yellow color for creating the strongest metalworks from."
+	desc = "三块装的上等黄铜石合金，色泽是沉稳的黄色，可用来打造最坚固的金属制品。"
 	cost = PAYCHECK_CREW

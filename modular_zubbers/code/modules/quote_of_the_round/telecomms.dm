@@ -69,19 +69,19 @@
 		SSticker.quote_of_the_round_attribution = "[found_name], [found_job]"
 		SSticker.quote_of_the_round_record_start = null //Chosen!
 		SSticker.quote_of_the_round_ckey = found_user.ckey ? found_user.ckey : "NO CKEY" //It's possible to be null.
-		message_admins("[found_message] by [ADMIN_LOOKUPFLW(found_user)] has been randomly selected as quote of the round. <a href='byond://?src=[REF(src)];cancel_quote=1'>Click here to change</a>.")
-		log_world("[key_name(found_user)] has been randomly selected for quote of the round with the quote \"[found_message]\".")
+		message_admins("[found_message]（作者 [ADMIN_LOOKUPFLW(found_user)]）已被随机选为回合金句。<a href='byond://?src=[REF(src)];cancel_quote=1'>点击此处更换</a>。")
+		log_world("[key_name(found_user)] 已被随机选为回合金句，内容为“[found_message]”。")
 
 /obj/machinery/telecomms/hub/Topic(href, href_list)
 	. = ..()
 	if(href_list["cancel_quote"] && check_rights(R_ADMIN))
 		if(!SSticker.quote_of_the_round_text)
-			to_chat(usr, span_warning("This quote of the day has already been changed."), confidential = TRUE)
+			to_chat(usr, span_warning("这条回合金句已经被更换过了。"), confidential = TRUE)
 			return
-		log_admin("[key_name_admin(usr)] has rerolled the quote of the round, which was: \"[SSticker.quote_of_the_round_text]\" by CKEY [key_name(SSticker.quote_of_the_round_ckey)].")
+		log_admin("[key_name_admin(usr)] 重新抽取了回合金句，原为：“[SSticker.quote_of_the_round_text]”，CKEY [key_name(SSticker.quote_of_the_round_ckey)]。")
 		SSticker.quote_of_the_round_text = null
 		SSticker.quote_of_the_round_attribution = null
 		SSticker.quote_of_the_round_ckey = null
 		SSticker.quote_of_the_round_record_start = world.time + 5 MINUTES
-		message_admins("[key_name_admin(usr)] has rerolled the quote of the round. A new one will be chosen in 5 minutes.")
+		message_admins("[key_name_admin(usr)] 重新抽取了回合金句。新的金句将在 5 分钟后选出。")
 

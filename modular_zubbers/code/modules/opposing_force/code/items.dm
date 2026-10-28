@@ -1,6 +1,6 @@
 /obj/item/codeword_granter
-	name = "codeword manual"
-	desc = "A black manual with a red S lovingly inscribed on the cover by only the finest of presses from a factory."
+	name = "暗语手册"
+	desc = "一本黑色手册，封面上由工厂最优秀的印刷机精心印着一个红色 S。"
 	icon = 'modular_zubbers/code/modules/opposing_force/icons/items.dmi'
 	icon_state = "codeword_book"
 	/// Number of charges the book has, limits the number of times it can be used.
@@ -11,12 +11,12 @@
 	if(!isliving(user))
 		return
 
-	to_chat(user, span_boldannounce("You start skimming through [src], and feel suddenly imparted with the knowledge of the following code words:"))
+	to_chat(user, span_boldannounce("你开始翻阅[src]，忽然感到自己获知了以下暗语："))
 
 	user.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_phrase_regex, "blue", src)
 	user.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_response_regex, "red", src)
-	to_chat(user, "<b>Code Phrases</b>: [jointext(SStraitor.syndicate_code_phrase, ", ")]")
-	to_chat(user, "<b>Code Responses</b>: [span_red("[jointext(SStraitor.syndicate_code_response, ", ")]")]")
+	to_chat(user, "<b>暗语口令</b>：[jointext(SStraitor.syndicate_code_phrase, ", ")]")
+	to_chat(user, "<b>暗语应答</b>：[span_red("[jointext(SStraitor.syndicate_code_response, ", ")]")]")
 
 	use_charge(user)
 
@@ -32,14 +32,14 @@
 	playsound(loc, SFX_PUNCH, 25, TRUE, -1)
 
 	if(attacked_mob.stat == DEAD)
-		attacked_mob.visible_message(span_danger("[user] smacks [attacked_mob]'s lifeless corpse with [src]."), span_userdanger("[user] smacks your lifeless corpse with [src]."), span_hear("You hear smacking."))
+		attacked_mob.visible_message(span_danger("[user]用[src]拍打[attacked_mob]毫无生气的尸体。"), span_userdanger("[user]用[src]拍打你毫无生气的尸体。"), span_hear("你听到拍打声。"))
 	else
-		attacked_mob.visible_message(span_notice("[user] teaches [attacked_mob] by beating [attacked_mob.p_them()] over the head with [src]!"), span_boldnotice("As [user] hits you with [src], you feel suddenly imparted with the knowledge of some [span_red("specific words")]."), span_hear("You hear smacking."))
+		attacked_mob.visible_message(span_notice("[user]用[src]猛敲[attacked_mob]的脑袋，以此教导[attacked_mob.p_them()]！"), span_boldnotice("当[user]用[src]打你时，你忽然感到自己获知了一些[span_red("特定的词语")]。"), span_hear("你听到拍打声。"))
 		attacked_mob.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_phrase_regex, "blue", src)
 		attacked_mob.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_response_regex, "red", src)
-		to_chat(attacked_mob, span_boldnotice("You feel suddenly imparted with the knowledge of the following code words:"))
-		to_chat(attacked_mob, "<b>Code Phrases</b>: [span_blue("[jointext(SStraitor.syndicate_code_phrase, ", ")]")]")
-		to_chat(attacked_mob, "<b>Code Responses</b>: [span_red("[jointext(SStraitor.syndicate_code_response, ", ")]")]")
+		to_chat(attacked_mob, span_boldnotice("你忽然感到自己获知了以下暗语："))
+		to_chat(attacked_mob, "<b>暗语口令</b>：[span_blue("[jointext(SStraitor.syndicate_code_phrase, ", ")]")]")
+		to_chat(attacked_mob, "<b>暗语应答</b>：[span_red("[jointext(SStraitor.syndicate_code_response, ", ")]")]")
 		use_charge(user)
 
 
@@ -48,33 +48,33 @@
 
 	if(!charges)
 		var/turf/src_turf = get_turf(src)
-		src_turf.visible_message(span_warning("The cover and contents of [src] start shifting and changing! It slips out of your hands!"))
+		src_turf.visible_message(span_warning("[src]的封面与内容开始扭曲变化！它从你手中滑落！"))
 		new /obj/item/book/manual/random(src_turf)
 		qdel(src)
 
 
 /obj/item/antag_granter/changeling
-	name = "viral injector"
-	desc = "A blue injector filled with some viscous, red substance. It has no markings apart from an orange warning stripe near the large needle."
+	name = "病毒注射器"
+	desc = "一支蓝色注射器，装满了黏稠的红色物质。除了靠近粗大针头处的一道橙色警示条纹外，没有任何标记。"
 	icon_state = "changeling_injector"
 	antag_datum = /datum/antagonist/changeling
-	user_message = "As you inject the substance into yourself, you start to feel... <span class='red'><b>better</b></span>."
+	user_message = "当你将这种物质注入体内，你开始感觉……<span class='red'><b>好多了</b></span>。"
 
 
 /obj/item/antag_granter/heretic
-	name = "strange book"
-	desc = "A purple book with a green eye on the cover. You swear it's looking at you...."
+	name = "奇怪的书"
+	desc = "一本紫色封面的书，上面有一只绿色的眼睛。你发誓它正在看着你……"
 	icon_state = "heretic_granter"
 	antag_datum = /datum/antagonist/heretic
-	user_message = "As you open the book, you see a great flash as <span class='hypnophrase'>the world becomes all the clearer for you</span>."
+	user_message = "当你打开这本书，眼前闪过一道强光，<span class='hypnophrase'>世界在你眼中变得前所未有地清晰</span>。"
 
 /obj/item/antag_granter/clock_cultist
-	name = "brass contraption"
-	desc = "A cogwheel-shaped device of brass, with a glass lens floating, suspended in the center."
+	name = "黄铜装置"
+	desc = "黄铜制成的齿轮状装置，中央悬浮着一枚玻璃透镜。"
 	icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_objects.dmi'
 	icon_state = "vanguard_cogwheel"
 	antag_datum = /datum/antagonist/clock_cultist/solo
-	user_message = "A whirring fills your ears as <span class='brass'>knowledge of His Eminence fills your mind</span>."
+	user_message = "耳边响起嗡鸣，<span class='brass'>关于尊主的知识充满了你的头脑</span>。"
 
 /obj/item/antag_granter/clock_cultist/attack_self(mob/user, modifiers)
 	. = ..()

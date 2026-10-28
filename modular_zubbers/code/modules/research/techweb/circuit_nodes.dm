@@ -1,8 +1,8 @@
 /datum/techweb_node/programming
 	id = TECHWEB_NODE_PROGRAMMING
 	starting_node = TRUE
-	display_name = "Programming"
-	description = "Dedicate an entire shift to program a fridge to greet you when opened."
+	display_name = "编程"
+	description = "把整整一个班次都用来给冰箱编程，好让它在被打开时向你问好。"
 	prereq_ids = list(TECHWEB_NODE_ROBOTICS)
 	design_ids = list(
 		"component_printer",

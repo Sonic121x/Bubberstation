@@ -69,12 +69,12 @@
 	slot = AUGMENT_SLOT_HEAD
 
 /datum/augment_item/limb/head/cyborg
-	name = "Cyborg head"
+	name = "半机械人头"
 	path = /obj/item/bodypart/head/robot/weak
 
 /datum/augment_item/limb/head/cyborg/greyscale
 	uses_greyscale = TRUE
-	name = "Cyborg head (Greyscale)"
+	name = "半机械人头（灰度）"
 	path = /obj/item/bodypart/head/robot/weak/greyscale
 
 //CHESTS
@@ -82,12 +82,12 @@
 	slot = AUGMENT_SLOT_CHEST
 
 /datum/augment_item/limb/chest/cyborg
-	name = "Cyborg chest"
+	name = "半机械人躯干"
 	path = /obj/item/bodypart/chest/robot/weak
 
 /datum/augment_item/limb/chest/cyborg/greyscale
 	uses_greyscale = TRUE
-	name = "Cyborg chest (Greyscale)"
+	name = "半机械人躯干（灰度）"
 	path = /obj/item/bodypart/chest/robot/weak/greyscale
 
 //LEFT ARMS
@@ -95,44 +95,44 @@
 	slot = AUGMENT_SLOT_L_ARM
 
 /datum/augment_item/limb/l_arm/prosthetic
-	name = "Prosthetic left arm"
+	name = "廉价义体左臂"
 	path = /obj/item/bodypart/arm/left/robot/surplus
 	cost = -1
 
 /datum/augment_item/limb/l_arm/prosthetic/greyscale
 	uses_greyscale = TRUE
-	name = "Prosthetic left arm (Greyscale)"
+	name = "廉价义体左臂（灰度）"
 	path = /obj/item/bodypart/arm/left/robot/surplus/greyscale
 	cost = -1
 
 /datum/augment_item/limb/l_arm/kinetic
-	name = "Kinetic prosthetic left arm"
+	name = "动能义体左臂"
 	path = /obj/item/bodypart/arm/left/kinetic
 	cost = -2
 	uses_robotic_styles = FALSE
 
 /datum/augment_item/limb/l_arm/peg
-	name = "Left peg arm"
+	name = "左木桩臂"
 	path = /obj/item/bodypart/arm/left/ghetto
 	cost = -3
 	uses_robotic_styles = FALSE
 
 /datum/augment_item/limb/l_arm/cyborg
-	name = "Cyborg left arm"
+	name = "半机械人左臂"
 	path = /obj/item/bodypart/arm/left/robot/weak
 
 /datum/augment_item/limb/l_arm/cyborg/greyscale
 	uses_greyscale = TRUE
-	name = "Cyborg left arm (Greyscale)"
+	name = "半机械人左臂（灰度）"
 	path = /obj/item/bodypart/arm/left/robot/weak/greyscale
 
 /datum/augment_item/limb/l_arm/plasmaman
-	name = "Plasmaman left arm"
+	name = "等离子人左臂"
 	path = /obj/item/bodypart/arm/left/plasmaman
 	uses_robotic_styles = FALSE
 
 /datum/augment_item/limb/l_arm/self_destruct
-	name = "No Left Arm"
+	name = "无左臂"
 	path = /obj/item/bodypart/arm/left/self_destruct
 	cost = -3
 	uses_robotic_styles = FALSE
@@ -142,44 +142,44 @@
 	slot = AUGMENT_SLOT_R_ARM
 
 /datum/augment_item/limb/r_arm/prosthetic
-	name = "Prosthetic right arm"
+	name = "廉价义体右臂"
 	path = /obj/item/bodypart/arm/right/robot/surplus
 	cost = -1
 
 /datum/augment_item/limb/r_arm/prosthetic/greyscale
 	uses_greyscale = TRUE
-	name = "Prosthetic right arm (Greyscale)"
+	name = "廉价义体右臂（灰度）"
 	path = /obj/item/bodypart/arm/right/robot/surplus/greyscale
 	cost = -1
 
 /datum/augment_item/limb/r_arm/kinetic
-	name = "Kinetic prosthetic right arm"
+	name = "动能义体右臂"
 	path = /obj/item/bodypart/arm/right/kinetic
 	cost = -2
 	uses_robotic_styles = FALSE
 
 /datum/augment_item/limb/r_arm/peg
-	name = "Right peg arm"
+	name = "右木桩臂"
 	path = /obj/item/bodypart/arm/right/ghetto
 	cost = -3
 	uses_robotic_styles = FALSE
 
 /datum/augment_item/limb/r_arm/cyborg
-	name = "Cyborg right arm"
+	name = "半机械人右臂"
 	path = /obj/item/bodypart/arm/right/robot/weak
 
 /datum/augment_item/limb/r_arm/cyborg/greyscale
 	uses_greyscale = TRUE
-	name = "Cyborg right arm (Greyscale)"
+	name = "半机械人右臂（灰度）"
 	path = /obj/item/bodypart/arm/right/robot/weak/greyscale
 
 /datum/augment_item/limb/r_arm/plasmaman
-	name = "Plasmaman right arm"
+	name = "等离子人右臂"
 	path = /obj/item/bodypart/arm/right/plasmaman
 	uses_robotic_styles = FALSE
 
 /datum/augment_item/limb/r_arm/self_destruct
-	name = "No Right Arm"
+	name = "无右臂"
 	path = /obj/item/bodypart/arm/right/self_destruct
 	cost = -3
 	uses_robotic_styles = FALSE
@@ -189,45 +189,45 @@
 	slot = AUGMENT_SLOT_L_LEG
 
 /datum/augment_item/limb/l_leg/prosthetic
-	name = "Prosthetic left leg"
+	name = "廉价义体左腿"
 	path = /obj/item/bodypart/leg/left/robot/surplus
 	cost = -1
 
 /datum/augment_item/limb/l_leg/prosthetic/greyscale
 	uses_greyscale = TRUE
-	name = "Prosthetic left leg (Greyscale)"
+	name = "廉价义体左腿（灰度）"
 	supports_digitigrade = TRUE
 	path = /obj/item/bodypart/leg/left/robot/surplus/greyscale
 	cost = -1
 
 /datum/augment_item/limb/l_leg/kinetic
-	name = "Kinetic prosthetic left leg"
+	name = "动能义体左腿"
 	path = /obj/item/bodypart/leg/left/kinetic
 	cost = -2
 	uses_robotic_styles = FALSE
 
 /datum/augment_item/limb/l_leg/peg
-	name = "Left peg leg"
+	name = "左木桩腿"
 	path = /obj/item/bodypart/leg/left/ghetto
 	cost = -3
 
 /datum/augment_item/limb/l_leg/cyborg
-	name = "Cyborg left leg"
+	name = "半机械人左腿"
 	path = /obj/item/bodypart/leg/left/robot/weak
 
 /datum/augment_item/limb/l_leg/cyborg/greyscale
 	uses_greyscale = TRUE
 	supports_digitigrade = TRUE
-	name = "Cyborg left leg (Greyscale)"
+	name = "半机械人左腿（灰度）"
 	path = /obj/item/bodypart/leg/left/robot/weak/greyscale
 
 /datum/augment_item/limb/l_leg/plasmaman
-	name = "Plasmaman left leg"
+	name = "等离子人左腿"
 	path = /obj/item/bodypart/leg/left/plasmaman
 	uses_robotic_styles = FALSE
 
 /datum/augment_item/limb/l_leg/self_destruct
-	name = "No Left Leg"
+	name = "无左腿"
 	path = /obj/item/bodypart/leg/left/self_destruct
 	cost = -3
 	uses_robotic_styles = FALSE
@@ -237,45 +237,45 @@
 	slot = AUGMENT_SLOT_R_LEG
 
 /datum/augment_item/limb/r_leg/prosthetic
-	name = "Prosthetic right leg"
+	name = "廉价义体右腿"
 	path = /obj/item/bodypart/leg/right/robot/surplus
 	cost = -1
 
 /datum/augment_item/limb/r_leg/prosthetic/greyscale
 	uses_greyscale = TRUE
 	supports_digitigrade = TRUE
-	name = "Prosthetic right leg (Greyscale)"
+	name = "廉价义体右腿（灰度）"
 	path = /obj/item/bodypart/leg/right/robot/surplus/greyscale
 	cost = -1
 
 /datum/augment_item/limb/r_leg/kinetic
-	name = "Kinetic prosthetic right leg"
+	name = "动能义体右腿"
 	path = /obj/item/bodypart/leg/right/kinetic
 	cost = -2
 	uses_robotic_styles = FALSE
 
 /datum/augment_item/limb/r_leg/peg
-	name = "Right peg leg"
+	name = "右木桩腿"
 	path = /obj/item/bodypart/leg/right/ghetto
 	cost = -3
 
 /datum/augment_item/limb/r_leg/cyborg
-	name = "Cyborg right leg"
+	name = "半机械人右腿"
 	path = /obj/item/bodypart/leg/right/robot/weak
 
 /datum/augment_item/limb/r_leg/cyborg/greyscale
 	uses_greyscale = TRUE
 	supports_digitigrade = TRUE
-	name = "Cyborg right leg (Greyscale)"
+	name = "半机械人右腿（灰度）"
 	path = /obj/item/bodypart/leg/right/robot/weak/greyscale
 
 /datum/augment_item/limb/r_leg/plasmaman
-	name = "Plasmaman right leg"
+	name = "等离子人右腿"
 	path = /obj/item/bodypart/leg/right/plasmaman
 	uses_robotic_styles = FALSE
 
 /datum/augment_item/limb/r_leg/self_destruct
-	name = "No Right Leg"
+	name = "无右腿"
 	path = /obj/item/bodypart/leg/right/self_destruct
 	cost = -3
 	uses_robotic_styles = FALSE

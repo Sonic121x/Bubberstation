@@ -1,7 +1,7 @@
 //Programs that interact with other programs or nanites directly, or have other special purposes.
 /datum/nanite_program/viral
-	name = "Viral Replica"
-	desc = "The nanites constantly send encrypted signals attempting to forcefully copy their own programming into other nanite clusters, also overriding or disabling their cloud sync."
+	name = "病毒复制体"
+	desc = "纳米机器人不断发出加密信号，试图将自己的程序强行复制到其他纳米机器人集群中，同时覆盖或禁用它们的云同步。"
 	use_rate = 0.5
 	rogue_types = list(/datum/nanite_program/toxic)
 	var/pulse_cooldown = 0
@@ -27,8 +27,8 @@
 	pulse_cooldown = world.time + 75
 
 /datum/nanite_program/monitoring
-	name = "Monitoring"
-	desc = "The nanites monitor the host's vitals and location, sending them to the suit sensor network."
+	name = "生命监测"
+	desc = "纳米机器人监测宿主的生命体征与位置，并将其发送至宇航服传感器网络。"
 	rogue_types = list(/datum/nanite_program/toxic)
 
 /datum/nanite_program/monitoring/enable_passive_effect()
@@ -47,8 +47,8 @@
 	host_mob.hud_set_nanite_indicator()
 
 /datum/nanite_program/self_scan
-	name = "Host Scan"
-	desc = "The nanites display a detailed readout of a body scan to the host."
+	name = "宿主扫描"
+	desc = "纳米机器人向宿主显示详细的身体扫描读数。"
 	unique = FALSE
 	can_trigger = TRUE
 	trigger_cost = 3
@@ -73,8 +73,8 @@
 			SEND_SIGNAL(host_mob, COMSIG_NANITE_SCAN, host_mob, TRUE)
 
 /datum/nanite_program/stealth
-	name = "Stealth"
-	desc = "The nanites mask their activity from superficial scans, becoming undetectable by HUDs and non-specialized scanners."
+	name = "隐匿"
+	desc = "纳米机器人向表面扫描隐藏自身活动，使其无法被 HUD 和非专用扫描仪探测到。"
 	rogue_types = list(/datum/nanite_program/toxic)
 	use_rate = 0.2
 
@@ -87,9 +87,9 @@
 	nanites.stealth = FALSE
 
 /datum/nanite_program/nanite_debugging
-	name = "Nanite Debugging"
-	desc = "Enables various high-cost diagnostics in the nanites, making them able to communicate their program list to portable scanners. \
-			Doing so uses some power, slightly decreasing their replication speed."
+	name = "纳米机器人调试"
+	desc = "在纳米机器人中启用多种高成本诊断功能，使其能够将程序列表传送给便携式扫描仪。 \
+			此功能会消耗一些电力，略微降低其复制速度。"
 	rogue_types = list(/datum/nanite_program/toxic)
 	use_rate = 0.1
 
@@ -102,8 +102,8 @@
 	nanites.diagnostics = FALSE
 
 /datum/nanite_program/relay
-	name = "Relay"
-	desc = "The nanites receive and relay long-range nanite signals."
+	name = "中继"
+	desc = "纳米机器人接收并中继远程纳米机器人信号。"
 	rogue_types = list(/datum/nanite_program/toxic)
 
 /datum/nanite_program/relay/register_extra_settings()
@@ -138,8 +138,8 @@
 	SEND_SIGNAL(host_mob, COMSIG_NANITE_COMM_SIGNAL, comm_code, comm_message)
 
 /datum/nanite_program/metabolic_synthesis
-	name = "Metabolic Synthesis"
-	desc = "The nanites use the metabolic cycle of the host to speed up their replication rate, using their extra nutrition as fuel."
+	name = "代谢合成"
+	desc = "纳米机器人利用宿主的代谢循环加快复制速率，并以宿主多余的营养作为燃料。"
 	use_rate = -0.5 //generates nanites
 	rogue_types = list(/datum/nanite_program/toxic)
 
@@ -155,8 +155,8 @@
 	host_mob.adjust_nutrition(-0.5)
 
 /datum/nanite_program/access
-	name = "Subdermal ID"
-	desc = "The nanites store the host's ID access rights in a subdermal magnetic strip. Updates when triggered, copying the host's current access."
+	name = "皮下 ID"
+	desc = "纳米机器人将宿主的 ID 权限储存在皮下磁条中。触发时更新，复制宿主当前的权限。"
 	can_trigger = TRUE
 	trigger_cost = 3
 	trigger_cooldown = 30
@@ -186,9 +186,9 @@
 	access = new_access
 
 /datum/nanite_program/spreading
-	name = "Infective Exo-Locomotion"
-	desc = "The nanites gain the ability to survive for brief periods outside of the human body, as well as the ability to start new colonies without an integration process; \
-			resulting in an extremely infective strain of nanites."
+	name = "感染性体外移动"
+	desc = "纳米机器人获得在人体外短暂存活的能力，以及无需整合流程即可建立新群落的能力； \
+			从而形成一种极具感染性的纳米机器人菌株。"
 	use_rate = 1.50
 	rogue_types = list(/datum/nanite_program/aggressive_replication, /datum/nanite_program/necrotic)
 	var/spread_cooldown = 0
@@ -212,14 +212,14 @@
 		infectee.AddComponent(/datum/component/nanites, 10)
 		SEND_SIGNAL(infectee, COMSIG_NANITE_SYNC, nanites)
 		SEND_SIGNAL(infectee, COMSIG_NANITE_SET_CLOUD, nanites.cloud_id)
-		infectee.investigate_log("was infected by spreading nanites with cloud ID [nanites.cloud_id] by [key_name(host_mob)] at [AREACOORD(infectee)].", INVESTIGATE_NANITES)
+		infectee.investigate_log("被 [key_name(host_mob)] 在 [AREACOORD(infectee)] 用云 ID 为 [nanites.cloud_id] 的扩散纳米机器人感染。", INVESTIGATE_NANITES)
 
 /datum/nanite_program/nanite_sting
-	name = "Nanite Sting"
-	desc = "When triggered, builds a invisible spikes of nanites on the host's skin that \
-			can infect a nearby non-host with a copy of the host's nanites cluster \
-			that is unlinked from the cloud. \
-			Will not work on hosts or those already infected."
+	name = "纳米机器人刺针"
+	desc = "触发时，在宿主皮肤上生成肉眼不可见的纳米机器人尖刺， \
+			可将宿主纳米机器人集群的复制体感染附近 \
+			的非宿主目标，该复制体与云网络断开链接。 \
+			对宿主或已感染者无效。"
 	can_trigger = TRUE
 	trigger_cost = 15
 	trigger_cooldown = 100
@@ -233,7 +233,7 @@
 	. = ..()
 
 /datum/nanite_program/nanite_sting/on_trigger(comm_message)
-	to_chat(host_mob, span_warning("Your hands becomes sharp and prickly."))
+	to_chat(host_mob, span_warning("你的双手变得尖锐刺痛。"))
 	RegisterSignal(host_mob, COMSIG_LIVING_EARLY_UNARMED_ATTACK, PROC_REF(on_attack_hand))
 	decay_timer = addtimer(CALLBACK(src, PROC_REF(decay_sting)), 30 SECONDS, TIMER_STOPPABLE)
 
@@ -243,38 +243,38 @@
 	if(!isliving(living))
 		return
 	if(!CAN_HAVE_NANITES(living))
-		host_mob.balloon_alert(host_mob, "can't be infected!")
+		host_mob.balloon_alert(host_mob, "无法被感染！")
 		return
 	if(SEND_SIGNAL(living, COMSIG_HAS_NANITES))
-		host_mob.balloon_alert(host_mob, "already infected!")
+		host_mob.balloon_alert(host_mob, "已被感染！")
 		return
 	if(!living.Adjacent(host_mob))
-		host_mob.balloon_alert(host_mob, "can't reach!")
+		host_mob.balloon_alert(host_mob, "够不到！")
 		return
 	var/chances = 100 - living.run_armor_check(host_mob.zone_selected, BIO, silent = TRUE)
 	var/success = prob(chances)
-	host_mob.balloon_alert(host_mob, "[chances]% chance [success ? "success" : "failed!"]")
+	host_mob.balloon_alert(host_mob, "[chances]% 概率 [success ? "成功" : "失败！"]")
 	if(success)
 		//unlike with Infective Exo-Locomotion, this can't take over existing nanites, because Nanite Sting only targets non-hosts.
 		living.AddComponent(/datum/component/nanites, 5)
 		SEND_SIGNAL(living, COMSIG_NANITE_SYNC, nanites)
 		// SEND_SIGNAL(living, COMSIG_NANITE_SET_CLOUD, nanites.cloud_id) won't set the cloud
 		SEND_SIGNAL(living, COMSIG_NANITE_SET_CLOUD_SYNC, NANITE_CLOUD_DISABLE)
-		living.investigate_log("was infected by a nanite cluster with cloud ID [nanites.cloud_id] by [key_name(host_mob)] at [AREACOORD(living)].", INVESTIGATE_NANITES)
-		to_chat(living, span_warning("You feel a tiny prick."))
+		living.investigate_log("被 [key_name(host_mob)] 在 [AREACOORD(living)] 用云 ID 为 [nanites.cloud_id] 的纳米机器人集群感染。", INVESTIGATE_NANITES)
+		to_chat(living, span_warning("你感到被轻轻刺了一下。"))
 	decay_sting()
 
 /datum/nanite_program/nanite_sting/proc/decay_sting()
-	to_chat(host_mob, span_warning("Your hands no longer feel like they're covered in spines."))
+	to_chat(host_mob, span_warning("你的双手不再有布满尖刺的感觉。"))
 	deltimer(decay_timer)
 	decay_timer = null
 	UnregisterSignal(host_mob, COMSIG_LIVING_EARLY_UNARMED_ATTACK)
 
 /datum/nanite_program/mitosis
-	name = "Mitosis"
-	desc = "The nanites gain the ability to self-replicate, using bluespace to power the process. Becomes more effective the more nanites are already in the host; \
-			For every 50 nanite volume in the host, the production rate is increased by 0.5. The replication has also a chance to corrupt the nanite programming \
-			due to copy faults - constant cloud sync is highly recommended."
+	name = "有丝分裂"
+	desc = "纳米机器人获得自我复制的能力，利用蓝空间为过程供能。宿主体内已有的纳米机器人越多，效果越强； \
+			宿主体内每有 50 点纳米机器人容量，产出速率就提高 0.5。复制还有可能因拷贝错误而损坏 \
+			纳米机器人程序——强烈建议保持持续的云同步。"
 	use_rate = 0
 	rogue_types = list(/datum/nanite_program/toxic)
 
@@ -287,17 +287,17 @@
 		if(fault == src)
 			return
 		fault.software_error()
-		host_mob.investigate_log("[fault] nanite program received a software error due to Mitosis program.", INVESTIGATE_NANITES)
+		host_mob.investigate_log("[fault] 纳米机器人程序因有丝分裂程序出现软件错误。", INVESTIGATE_NANITES)
 
 /datum/nanite_program/dermal_button
-	name = "Dermal Button"
-	desc = "Displays a button on the host's skin, which can be used to send a signal to the nanites."
+	name = "真皮按钮"
+	desc = "在宿主皮肤上显示一个按钮，可用于向纳米机器人发送信号。"
 	unique = FALSE
 	var/datum/action/innate/nanite_button/button
 
 /datum/nanite_program/dermal_button/register_extra_settings()
 	extra_settings[NES_SENT_CODE] = new /datum/nanite_extra_setting/number(1, 1, 9999)
-	extra_settings[NES_BUTTON_NAME] = new /datum/nanite_extra_setting/text("Button")
+	extra_settings[NES_BUTTON_NAME] = new /datum/nanite_extra_setting/text("按钮")
 	extra_settings[NES_ICON] = new /datum/nanite_extra_setting/type("power", list("blank","one","two","three","four","five","plus","minus","exclamation","question","cross","info","heart","skull","brain","brain_damage","injection","blood","shield","reaction","network","power","radioactive","electricity","magnetism","scan","repair","id","wireless","say","sleep","bomb"))
 
 /datum/nanite_program/dermal_button/enable_passive_effect()
@@ -320,13 +320,13 @@
 
 /datum/nanite_program/dermal_button/proc/press()
 	if(activated)
-		host_mob.visible_message(span_notice("[host_mob] presses a button on [host_mob.p_their()] forearm."),
-								span_notice("You press the nanite button on your forearm."), null, 2)
+		host_mob.visible_message(span_notice("[host_mob] 按下了前臂上的按钮。"),
+								span_notice("你按下了前臂上的纳米机器人按钮。"), null, 2)
 		var/datum/nanite_extra_setting/sent_code = extra_settings[NES_SENT_CODE]
-		SEND_SIGNAL(host_mob, COMSIG_NANITE_SIGNAL, sent_code.get_value(), "a [name] program")
+		SEND_SIGNAL(host_mob, COMSIG_NANITE_SIGNAL, sent_code.get_value(), "一个[name]程序")
 
 /datum/action/innate/nanite_button
-	name = "Button"
+	name = "按钮"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	button_icon_state = "bci_power"

@@ -1,13 +1,13 @@
 /obj/item/storage/box/gas_miner_beacons/syndicate
-	name = "box of syndicate gas miner delivery beacons"
-	desc = "Contains two beacons for delivery of atmospheric gas miners."
+	name = "辛迪加气体采矿机投放信标箱"
+	desc = "内含两个用于投放大气气体采矿机的信标。"
 
 /obj/item/storage/box/gas_miner_beacons/syndicate/PopulateContents()
 	new /obj/item/summon_beacon/gas_miner/syndicate(src)
 	new /obj/item/summon_beacon/gas_miner/syndicate(src)
 
 /obj/item/summon_beacon/gas_miner/syndicate
-	name = "syndicate gas miner beacon"
+	name = "辛迪加气体采矿机信标"
 
 	allowed_areas = list(/area/ruin/space/has_grav/bubbers/dauntless/cargo,
 						/area/ruin/space/has_grav/bubbers/dauntless/engineering,

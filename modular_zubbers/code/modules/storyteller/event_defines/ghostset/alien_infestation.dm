@@ -1,12 +1,12 @@
 /datum/round_event_control/alien_infestation
-	name = "Alien Infestation"
+	name = "异形入侵"
 	typepath = /datum/round_event/ghost_role/alien_infestation
 	weight = 2
 	track = EVENT_TRACK_GHOSTSET
 	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_CHAOTIC)
 	min_players = 35
 	category = EVENT_CATEGORY_ENTITIES
-	description = "A xenomorph larva spawns on a random vent."
+	description = "一只异形幼虫会从随机通风口生成。"
 
 /datum/round_event_control/alien_infestation/can_spawn_event(players_amt, allow_magic = FALSE)
 	. = ..()
@@ -21,7 +21,7 @@
 	announce_when = 400
 
 	minimum_required = 1
-	role_name = "alien larva"
+	role_name = "异形幼虫"
 
 	// 50% chance of being incremented by one
 	var/spawncount = 1
@@ -40,7 +40,7 @@
 			living_aliens = TRUE
 
 	if(living_aliens || fake)
-		priority_announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", ANNOUNCER_ALIENS)
+		priority_announce("检测到不明生命体正在进入[station_name()]。请封锁所有外部通道，包括管道和通风系统。", "生命信号警报", ANNOUNCER_ALIENS)
 
 
 /datum/round_event/ghost_role/alien_infestation/spawn_role()
@@ -58,7 +58,7 @@
 				vents += temp_vent
 
 	if(!vents.len)
-		message_admins("An event attempted to spawn an alien but no suitable vents were found. Shutting down.")
+		message_admins("某事件试图生成异形，但未找到合适的通风口，正在中止。")
 		return MAP_ERROR
 
 	var/list/candidates = SSpolling.poll_ghost_candidates(check_jobban = ROLE_ALIEN, role = ROLE_ALIEN, alert_pic = /mob/living/carbon/alien/larva, role_name_text = role_name)
@@ -74,8 +74,8 @@
 		new_xeno.move_into_vent(vent)
 
 		spawncount--
-		message_admins("[ADMIN_LOOKUPFLW(new_xeno)] has been made into an alien by an event.")
-		new_xeno.log_message("was spawned as an alien by an event.", LOG_GAME)
+		message_admins("[ADMIN_LOOKUPFLW(new_xeno)] 因事件被转化为异形。")
+		new_xeno.log_message("因事件被生成为异形。", LOG_GAME)
 		spawned_mobs += new_xeno
 
 	return SUCCESSFUL_SPAWN

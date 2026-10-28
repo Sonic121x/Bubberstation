@@ -1,5 +1,5 @@
 /datum/round_event_control/antagonist/team/nuke_ops
-	name = "Nuclear Operatives"
+	name = "核爆特工"
 	roundstart = TRUE
 
 	antag_flag = ROLE_OPERATIVE

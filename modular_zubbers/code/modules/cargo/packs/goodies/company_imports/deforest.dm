@@ -1,7 +1,7 @@
 /datum/supply_pack/company_import/deforest
-	desc = "Contains one DeForest medical import item."
+	desc = "内含一件德福雷斯特医疗进口商品。"
 	subcategory = "DeForest Medical"
-	crate_name = "DeForest supply package"
+	crate_name = "德福雷斯特供应包裹"
 
 /datum/supply_pack/company_import/deforest/New()
 	. = ..()
@@ -10,9 +10,9 @@
 	contains = list(item_type)
 	var/obj/item/template_item = new item_type
 	if(name == initial(name))
-		name = "[template_item.name] Single-Pack"
+		name = "[template_item.name] 单件装"
 	if(desc == initial(desc))
-		desc = "Contains one [template_item.name]."
+		desc = "内含一件 [template_item.name]。"
 	qdel(template_item)
 
 /datum/supply_pack/company_import/deforest/first_aid_kit
@@ -288,25 +288,25 @@
 	cost = PAYCHECK_COMMAND * 2
 
 /datum/supply_pack/company_import/deforest/medical_modules/injector
-	name = "MOD injector module"
+	name = "MOD 注射模块"
 	item_type = /obj/item/mod/module/injector
 
 /datum/supply_pack/company_import/deforest/medical_modules/organizer
-	name = "MOD organizer module"
+	name = "MOD 器官整备模块"
 	item_type = /obj/item/mod/module/organizer
 
 /datum/supply_pack/company_import/deforest/medical_modules/patient_transport
-	name = "MOD patient transport module"
+	name = "MOD 病患运输模块"
 	item_type = /obj/item/mod/module/criminalcapture/patienttransport
 
 /datum/supply_pack/company_import/deforest/medical_modules/thread_ripper
-	name = "MOD thread ripper module"
+	name = "MOD 裂线模块"
 	item_type = /obj/item/mod/module/thread_ripper
 
 /datum/supply_pack/company_import/deforest/medical_modules/surgical_processor
-	name = "MOD surgical processor module"
+	name = "MOD 手术处理器模块"
 	item_type = /obj/item/mod/module/surgical_processor
 
 /datum/supply_pack/company_import/deforest/medical_modules/defibrillator
-	name = "MOD defibrillator module"
+	name = "MOD 除颤模块"
 	item_type = /obj/item/mod/module/defibrillator

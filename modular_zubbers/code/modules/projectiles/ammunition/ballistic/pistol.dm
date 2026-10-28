@@ -12,7 +12,7 @@
 		qdel(src)
 
 /obj/projectile/bullet/c22hl //.22 HL
-	name = "hardlight beam"
+	name = "硬光光束"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "disabler_bullet"
 	armor_flag = ENERGY
@@ -37,7 +37,7 @@
 		qdel(src)
 
 /obj/projectile/bullet/c22ls //.22LS
-	name = "laser beam"
+	name = "激光束"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "disabler_bullet"
 	armor_flag = LASER
@@ -50,15 +50,15 @@
 	shrapnel_type = null
 
 /obj/item/ntusp_conversion_kit
-	name = "NT22-HCS conversion kit"
-	desc = "A standard conversion kit for use in converting NT22-HCS magazines to be more lethal or less lethal."
+	name = "NT22-HCS 改装套件"
+	desc = "标准改装套件，用于将 NT22-HCS 弹匣改装为更致命或更不致命的模式。"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/usp_modkit.dmi'
 	icon_state = "modkit_ntusp"
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/ammo_box/magazine/recharge/ntusp/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/ntusp_conversion_kit))
-		to_chat(user, span_danger("[A] makes a whirring sound as it modifies \the [src]'s lens to fabricate more lethal rounds."))
+		to_chat(user, span_danger("[A]发出嗡鸣声，改装了\the [src]的透镜，使其能够制造更致命的弹药。"))
 		new /obj/item/ammo_box/magazine/recharge/ntusp/laser/empty(get_turf(src)) // you thought you were getting free bullets?
 		qdel(src)
 	else
@@ -66,7 +66,7 @@
 
 /obj/item/ammo_box/magazine/recharge/ntusp/laser/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/ntusp_conversion_kit))
-		to_chat(user, span_notice("[A] makes a whirring sound as it modifies \the [src]'s lens to fabricate less lethal rounds."))
+		to_chat(user, span_notice("[A]发出嗡鸣声，改装了\the [src]的透镜，使其能够制造更不致命的弹药。"))
 		new /obj/item/ammo_box/magazine/recharge/ntusp/empty(get_turf(src))
 		qdel(src)
 	else
@@ -79,8 +79,8 @@
 	..()
 
 /obj/item/ammo_casing/c38/c32 //They will never know
-	name = ".32 bullet casing"
-	desc = "A .32 bullet casing."
+	name = ".32 子弹壳"
+	desc = "一枚 .32 子弹壳。"
 	projectile_type = /obj/projectile/bullet/c38/c32
 	caliber = CALIBER_32
 
@@ -88,4 +88,4 @@
 	projectile_type = null
 
 /obj/projectile/bullet/c38/c32
-	name = ".32 bullet"
+	name = ".32 子弹"

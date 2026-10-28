@@ -1,6 +1,6 @@
 /datum/language/legalese
 	name = "Federation Legalese"
-	desc = "The language of the Federation bureaucracy, bastardized from centuries of misunderstanding and misapplying Latin terminology."
+	desc = "联邦官僚体系的语言，经数个世纪对拉丁术语的误解与滥用，早已变得面目全非。"
 	key = "X" //lowercase X used by Shadowtongue
 	space_chance = 100
 	syllables = list(

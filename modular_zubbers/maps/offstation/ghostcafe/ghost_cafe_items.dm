@@ -1,12 +1,12 @@
 /obj/structure/showcase/fake_cafe_console
-	name = "civilian console"
-	desc = "A stationary computer. This one comes preloaded with generic programs."
+	name = "民用控制台"
+	desc = "一台固定式计算机。这台预装了通用程序。"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer"
 
 /obj/structure/showcase/fake_cafe_console/rd
-	name = "R&D Console"
-	desc = "A console used to interface with R&D tools."
+	name = "研发控制台"
+	desc = "用于连接研发工具的控制台。"
 
 /obj/structure/showcase/fake_cafe_console/rd/Initialize(mapload)
 	. = ..()
@@ -15,15 +15,15 @@
 
 
 /obj/machinery/computer/camera_advanced/cafe
-	name = "Human Observation Console"
+	name = "人类观察控制台"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "camera"
 	icon_keyboard = null
 	icon_screen = null
 
 /obj/structure/closet/ghostcafe/build
-	name = "construction closet"
-	desc = "Management condemns using these tools to stab your friends."
+	name = "建造衣柜"
+	desc = "管理层谴责用这些工具捅朋友的行为。"
 	icon_state = "eng"
 	icon_door = "eng_tool"
 
@@ -45,8 +45,8 @@
 	new /obj/item/stack/sheet/mineral/wood/fifty(src)
 
 /obj/item/storage/box/syndie_kit/chameleon/ghostcafe
-	name = "cafe costuming kit"
-	desc = "Look just the way you did in life - or better!"
+	name = "咖啡厅服装套件"
+	desc = "让你看起来和生前一样——或者更好！"
 	icon_state = "ghostcostuming"
 
 /obj/item/storage/box/syndie_kit/chameleon/ghostcafe/Initialize(mapload)
@@ -71,8 +71,8 @@
 	new /obj/item/hhmirror/syndie(src)
 
 /obj/item/card/id/advanced/chameleon/ghost_cafe
-	name = "\improper Cafe ID"
-	desc = "An ID straight from God."
+	name = "\improper 咖啡厅身份卡"
+	desc = "一张直接来自神的身份卡。"
 	icon_state = "card_centcom"
 	assigned_icon_state = "assigned_centcom"
 	registered_age = null

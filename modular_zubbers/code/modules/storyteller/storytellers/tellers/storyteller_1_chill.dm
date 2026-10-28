@@ -1,8 +1,8 @@
 /datum/storyteller/chill
-	name = "Light (Low Event/Antag Rolls)"
-	desc = "This storyteller will be light on events and antag rolls compared to other storytellers, especially so on ones involving combat, destruction, or chaos. \
-	The least hectic storyteller of all, while still having some spice. Best for RP-focused rounds with a few events and antags sprinkled in."
-	welcome_text = "If you vote for this storyteller on Ice Box, you have no originality."
+	name = "轻度（事件/反派抽取较少）"
+	desc = "与其他故事讲述者相比，这位故事讲述者的事件和反派抽取会少一些，尤其是涉及战斗、破坏或混乱的内容。\
+	它是所有故事讲述者中最不折腾的，但仍然保留了一些调味。最适合以角色扮演为主、偶尔穿插少量事件和反派的回合。"
+	welcome_text = "如果你在冰盒站上投给这位故事讲述者，那你可真没创意。"
 
 	track_data = /datum/storyteller_data/tracks/chill
 

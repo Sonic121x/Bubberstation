@@ -120,7 +120,7 @@
 
 /datum/round_event/droppod_airraid/proc/get_announce_wave_text()
 	var/area/myarea = selected_spawn_areas[wave_to_announce]
-	return "Drop Pod trajectories calculated enroute to: [myarea.name]"
+	return "空投舱轨迹已计算完毕，正飞往：[myarea.name]"
 
 /datum/round_event/droppod_airraid/proc/after_wave_announce()
 	wave_to_announce++
@@ -198,7 +198,7 @@
 /datum/round_event/droppod_airraid/proc/after_wave()
 	var/static/mutable_appearance/target_appearance = mutable_appearance('icons/obj/supplypods_32x32.dmi', "LZ")
 	var/turf/ghost_target_turf = pick(get_area_turfs(get_current_wave()))
-	notify_ghosts("A droppod wave is attacking [get_current_wave().name]!", source = ghost_target_turf, header = "Invasion in progress", alert_overlay = target_appearance)
+	notify_ghosts("一波空投舱正在袭击[get_current_wave().name]！", source = ghost_target_turf, header = "入侵进行中", alert_overlay = target_appearance)
 	set_next_incident_time()
 	current_wave++
 
@@ -246,8 +246,8 @@
 //////////////////////////////////////
 
 /datum/round_event_control/drop_troopers_syndicate
-	name = "Drop Troopers: Syndicate"
-	description = "The Syndicate sends large numbers of drop pod soldiers to fight the station."
+	name = "空降兵：辛迪加"
+	description = "辛迪加派出大量空投舱士兵攻打空间站。"
 	typepath = /datum/round_event/droppod_airraid/syndicate
 	weight = 20
 	max_occurrences = 2
@@ -285,7 +285,7 @@
 	min_droppod_dropdelay = 30
 
 /datum/round_event/droppod_airraid/syndicate/announce(fake)
-	priority_announce("Alert! The Syndicate is sending orbital drop shock troopers to [GLOB.station_name]. Please brace for impact.", "Incoming Enemy Signatures", 'sound/announcer/alarm/airraid.ogg',color_override = "red")
+	priority_announce("警报！辛迪加正向[GLOB.station_name]派遣轨道空降突击兵。请做好冲击准备。", "敌方信号接近中", 'sound/announcer/alarm/airraid.ogg',color_override = "red")
 
 /datum/round_event/droppod_airraid/syndicate/new_boss_spawn()
 	. = ..()
@@ -296,13 +296,13 @@
 		grievous.add_faction(ROLE_SYNDICATE)
 
 /datum/round_event/droppod_airraid/syndicate/announce_end()
-	priority_announce("The Syndicate attack on [GLOB.station_name] has ceased. Please calmly return to your work tasks.")
+	priority_announce("辛迪加对[GLOB.station_name]的袭击已停止。请冷静返回工作岗位。")
 
 ////////////////////////////////////////
 
 /datum/round_event_control/drop_troopers_syndicate_lesser
-	name = "Drop Troopers: Syndicate (Lesser)"
-	description = "The Syndicate sends small numbers of drop pod soldiers to fight the station."
+	name = "空降兵：辛迪加（小规模）"
+	description = "辛迪加派出少量空投舱士兵攻打空间站。"
 	typepath = /datum/round_event/droppod_airraid/syndicate/lesser
 	weight = 12
 	max_occurrences = 1
@@ -321,15 +321,15 @@
 	time_to_next_wave_droppod_factor = 50
 
 /datum/round_event/droppod_airraid/syndicate/lesser/announce(fake)
-	priority_announce("Alert! The Syndicate is sending a skirmishing party to [GLOB.station_name]. Please brace for impact.", "Incoming Enemy Scouts", sound = 'sound/announcer/notice/notice1.ogg', color_override = "orange")
+	priority_announce("警报！辛迪加正向[GLOB.station_name]派遣一支散兵小队。请做好冲击准备。", "敌方侦察兵接近中", sound = 'sound/announcer/notice/notice1.ogg', color_override = "orange")
 
 //////////////////////////////////////
 //////////////// BOTS ////////////////
 //////////////////////////////////////
 
 /datum/round_event_control/drop_troopers_hivebots
-	name = "Drop Troopers: Hivebots"
-	description = "A fleet of autonomous robot invaders attacks the station."
+	name = "空降兵：蜂巢机器人"
+	description = "一支自主机器人入侵舰队袭击空间站。"
 	typepath = /datum/round_event/droppod_airraid/hivebots
 	weight = 16
 	max_occurrences = 2
@@ -359,7 +359,7 @@
 	min_droppod_dropdelay = 30
 
 /datum/round_event/droppod_airraid/hivebots/announce(fake)
-	priority_announce("Alert! Unidentified pod signatures have been detected en-route to [GLOB.station_name]. Please brace for impact.", "Unidentified Drop Pods", sound = 'sound/announcer/notice/notice1.ogg', color_override = "orange")
+	priority_announce("警报！检测到不明空投舱信号正飞往[GLOB.station_name]。请做好冲击准备。", "不明空投舱", sound = 'sound/announcer/notice/notice1.ogg', color_override = "orange")
 
 /datum/round_event/droppod_airraid/hivebots/announce_end()
-	priority_announce("The pod fleet colliding into [GLOB.station_name] has ceased. Please calmly return to your work tasks.")
+	priority_announce("撞击[GLOB.station_name]的空投舱舰队已停止。请冷静返回工作岗位。")

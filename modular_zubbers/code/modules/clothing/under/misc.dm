@@ -1,6 +1,6 @@
 /obj/item/clothing/under/misc/diver //Donor item for patriot210
-	name = "black divers uniform"
-	desc = "An old exploration uniform used by a now-defunct mining coalition, even after all this time, it still fits."
+	name = "黑色潜水制服"
+	desc = "一套老式探索制服，曾属于如今已解体的某个采矿联盟，过了这么久居然还很合身。"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	icon_state = "diver"
 	worn_icon_state = "diver"
@@ -20,8 +20,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/costume/playbunny/greyscale
-	name = "bunny suit"
-	desc = "The staple of any bunny themed waiters and the like. It has a little cottonball tail too."
+	name = "兔兔装"
+	desc = "任何兔兔主题服务员之类的角色的必备单品。屁股上还缀着一小团棉球尾巴。"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/playbunny/greyscale"
 	post_init_icon_state = "playbunny"
@@ -31,8 +31,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/syndicate/syndibunny //heh
-	name = "blood-red bunny suit"
-	desc = "The staple of any bunny themed syndicate assassins. Are those carbon nanotube stockings?"
+	name = "血红兔兔装"
+	desc = "任何兔兔主题辛迪加刺客的必备单品。那双腿上是碳纳米管长袜吗？"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	icon_state = "syndibunny"
@@ -42,8 +42,8 @@
 	armor_type = /datum/armor/clothing_under
 
 /obj/item/clothing/under/costume/playbunny/magician
-	name = "magician's bunny suit"
-	desc = "The staple of any bunny themed stage magician."
+	name = "魔术师的兔兔装"
+	desc = "任何兔兔主题舞台魔术师的必备单品。"
 	icon_state = "playbunny_wiz"
 
 /obj/item/clothing/under/costume/playbunny/magician/Initialize(mapload)
@@ -60,27 +60,27 @@
 	exception_hold = exception_cache
 
 /obj/item/clothing/under/costume/playbunny/centcom
-	name = "centcom bunnysuit"
-	desc = "A modified Centcom version of a bunny outfit, using Lunarian technology to condense countless amounts of rabbits into a material that is extremely comfortable and light to wear."
+	name = "中央指挥部兔兔装"
+	desc = "一套改装过的中央指挥部版兔兔装，使用月人技术将无数只兔子压缩成一种极为舒适、轻若无物的材质。"
 	icon_state = "playbunny_centcom"
 
 /obj/item/clothing/under/costume/playbunny/british
-	name = "british bunny suit"
-	desc = "The staple of any bunny themed monarchists. It has a little cottonball tail too."
+	name = "英国兔兔装"
+	desc = "任何兔兔主题君主主义者的必备单品。屁股上还缀着一小团棉球尾巴。"
 	icon_state = "playbunny_brit"
 
 /obj/item/clothing/under/costume/playbunny/communist
-	name = "really red bunny suit"
-	desc = "The staple of any bunny themed communists. It has a little cottonball tail too."
+	name = "真·红色兔兔装"
+	desc = "任何兔兔主题共产主义者的必备单品。屁股上还缀着一小团棉球尾巴。"
 	icon_state = "playbunny_communist"
 
 /obj/item/clothing/under/costume/playbunny/usa
-	name = "striped bunny suit"
-	desc = "A bunny outfit stitched together from several American flags. It has a little cottonball tail too."
+	name = "条纹兔兔装"
+	desc = "一套用好几面美国国旗缝成的兔兔装。屁股上还缀着一小团棉球尾巴。"
 	icon_state = "playbunny_usa"
 
 /obj/item/clothing/under/costume/playbunny/custom_playbunny
-	name = "tailormade bunny suit"
+	name = "定制兔兔装"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/playbunny/custom_playbunny"
 	post_init_icon_state = "playbunny"
@@ -94,8 +94,8 @@
 //CAPTAIN
 
 /obj/item/clothing/under/rank/captain/bunnysuit
-	desc = "The staple of any bunny themed captains. Great for securing the disk."
-	name = "captain's bunnysuit"
+	desc = "任何兔兔主题舰长的必备单品。非常适合看住那张磁盘。"
+	name = "舰长的兔兔装"
 	icon_state = "bunnysuit_captain"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -107,8 +107,8 @@
 //CARGO
 
 /obj/item/clothing/under/rank/cargo/quartermaster_bunnysuit
-	name = "quartermaster's bunny suit"
-	desc = "The staple of any bunny themed quartermasters. Complete with gold buttons and a nametag."
+	name = "货运主管的兔兔装"
+	desc = "任何兔兔主题货运主管的必备单品。配有金色纽扣和一块名牌。"
 	icon_state = "bunnysuit_qm"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -117,8 +117,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/cargo/cargo_bunnysuit
-	name = "cargo bunny suit"
-	desc = "The staple of any bunny themed cargo technicians. Nigh indistinguishable from the quartermasters bunny suit."
+	name = "货运兔兔装"
+	desc = "任何兔兔主题货运技师的必备单品。和货运主管那套兔兔装几乎分不出来。"
 	icon_state = "bunnysuit_cargo"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -127,8 +127,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/cargo/miner/bunnysuit
-	name = "shaft miner's bunny suit"
-	desc = "The staple of any bunny themed shaft miners. The perfect outfit for fighting demons on an ash choked hell planet."
+	name = "矿工的兔兔装"
+	desc = "任何兔兔主题矿工的必备单品。在被灰烬呛满的地狱行星上打恶魔，穿这身再合适不过。"
 	icon_state = "bunnysuit_miner"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -137,8 +137,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/cargo/mailman_bunnysuit
-	name = "mailman's bunny suit"
-	desc = "The staple of any bunny themed mailmen. A sleek mailman outfit for when you need to deliver mail as quickly and with as little wind resistance possible."
+	name = "邮差的兔兔装"
+	desc = "任何兔兔主题邮差的必备单品。一套流线型邮差装，适合在尽可能快、风阻尽可能小的情况下送信。"
 	icon_state = "bunnysuit_mail"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -147,8 +147,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/cargo/bitrunner/bunnysuit
-	name = "bunrunner suit"
-	desc = "The staple of any bunny themed gamer. Has enough space for one extra soda, if you're worthy."
+	name = "兔跑者装"
+	desc = "任何兔兔主题玩家的必备单品。如果你够格，还能多塞下一罐汽水。"
 	icon_state = "bunnysuit_bitrunner"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -159,8 +159,8 @@
 //ENGI
 
 /obj/item/clothing/under/rank/engineering/engineer_bunnysuit
-	name = "engineering bunny suit"
-	desc = "The staple of any bunny themed engineers. Keeps loose clothing to a minimum in a fashionable manner."
+	name = "工程兔兔装"
+	desc = "任何兔兔主题工程师的必备单品。以时尚的方式把松垮的衣物减到最少。"
 	icon_state = "bunnysuit_engi"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -170,8 +170,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/engineering/atmos_tech_bunnysuit
-	name = "atmospheric technician's bunny suit"
-	desc = "The staple of any bunny themed atmospheric technicians. Perfect for any blue collar worker wanting to keep up with fashion trends."
+	name = "大气技师的兔兔装"
+	desc = "任何兔兔主题大气技师的必备单品。对任何想跟上潮流的蓝领工人来说都很完美。"
 	icon_state = "bunnysuit_atmos"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -181,8 +181,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/engineering/chief_engineer/bunnysuit
-	name = "chief engineer's bunny suit"
-	desc = "The staple of any bunny themed chief engineers. The airy design helps with keeping cool when  engine fires get too hot to handle."
+	name = "总工程师的兔兔装"
+	desc = "任何兔兔主题总工程师的必备单品。通透的设计能在引擎起火、热得没法处理时帮你保持凉爽。"
 	icon_state = "bunnysuit_ce"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -194,8 +194,8 @@
 //MEDICAL
 
 /obj/item/clothing/under/rank/medical/doctor_bunnysuit
-	desc = "The staple of any bunny themed doctors. The open design is great for both comfort and surgery."
-	name = "medical bunnysuit"
+	desc = "任何兔兔主题医生的必备单品。敞开式设计既舒适又便于手术。"
+	name = "医疗兔兔装"
 	icon_state = "bunnysuit_doctor"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -204,8 +204,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/medical/paramedic_bunnysuit
-	desc = "The staple of any bunny themed paramedics. Comes with spare pockets for medical supplies fastened to the leggings."
-	name = "paramedic's bunnysuit"
+	desc = "任何兔兔主题急救员的必备单品。裤腿上固定着几个备用口袋，可以装医疗用品。"
+	name = "急救员的兔兔装"
 	icon_state = "bunnysuit_paramedic"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -213,8 +213,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/medical/chemist/bunnysuit
-	desc = "The staple of any bunny themed chemists. The stockings are both airy and acid resistant."
-	name = "chemist's bunnysuit"
+	desc = "任何兔兔主题化学师的必备单品。长袜既透气又耐酸。"
+	name = "化学师的兔兔装"
 	icon_state = "bunnysuit_chem"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -223,8 +223,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/medical/pathologist_bunnysuit
-	desc = "The staple of any bunny themed pathologists. The stockings, while cute, do nothing to combat pathogens."
-	name = "pathologist's bunnysuit"
+	desc = "任何兔兔主题病理学家的必备单品。这双长袜虽然可爱，但对病原体毫无作用。"
+	name = "病理学家的兔兔装"
 	icon_state = "bunnysuit_viro"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -233,8 +233,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/medical/coroner_bunnysuit
-	desc = "The staple of any bunny themed coroners. A rejected mime costume."
-	name = "coroner's bunnysuit"
+	desc = "任何兔兔主题验尸官的必备单品。一套落选的默剧演员服装。"
+	name = "验尸官的兔兔装"
 	icon_state = "bunnysuit_coroner"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -242,8 +242,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/medical/cmo_bunnysuit
-	desc = "The staple of any bunny themed chief medical officers. The more vibrant blue accents denote a higher status."
-	name = "chief medical officer's bunnysuit"
+	desc = "任何兔兔主题首席医疗官的必备单品。更鲜艳的蓝色点缀代表更高的地位。"
+	name = "首席医疗官的兔兔装"
 	icon_state = "bunnysuit_cmo"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -254,8 +254,8 @@
 //SCIENCE
 
 /obj/item/clothing/under/rank/rnd/scientist/bunnysuit
-	desc = "The staple of any bunny themed scientists. Smart bunnies, Hef."
-	name = "scientist's bunnysuit"
+	desc = "任何兔兔主题科学家的必备单品。真是聪明的兔兔，赫夫。"
+	name = "科学家的兔兔装"
 	icon_state = "bunnysuit_sci"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -263,8 +263,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/rnd/scientist/roboticist_bunnysuit
-	desc = "The staple of any bunny themed roboticists. The open design and thin leggings help to keep cool when piloting mechs."
-	name = "roboticist's bunnysuit"
+	desc = "任何兔兔主题机器人学家的必备单品。敞开式设计与薄裤腿能在驾驶机甲时帮你保持凉爽。"
+	name = "机器人学家的兔兔装"
 	icon_state = "bunnysuit_roboticist"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -272,8 +272,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/rnd/geneticist/bunnysuit
-	desc = "The staple of any bunny themed geneticists. Doesn't go great with an abominable green muscled physique, but then again, what does?"
-	name = "geneticist's bunnysuit"
+	desc = "任何兔兔主题基因学家的必备单品。和那副可怕的绿色肌肉体格并不怎么搭，不过话说回来，什么搭呢？"
+	name = "基因学家的兔兔装"
 	icon_state = "bunnysuit_genetics"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -281,8 +281,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/rnd/research_director/bunnysuit
-	desc = "The staple of any bunny themed head researchers. Advanced technology allows this suit to stimulate spontaneous bunny tail growth when worn, though it's nigh-indistinguishable from the standard cottonball and disappears as soon as the suit is removed."
-	name = "research director's bunnysuit"
+	desc = "任何兔兔主题科研主管的必备单品。先进技术让这套服装在穿上时能刺激出兔尾生长，不过它与标准棉球尾巴几乎无从分辨，且一脱下服装就会消失。"
+	name = "科研主管的兔兔装"
 	icon_state = "bunnysuit_rd"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -293,8 +293,8 @@
 //SECURITY
 
 /obj/item/clothing/under/rank/security/security_bunnysuit
-	desc = "The staple of any bunny themed security officers. The red coloring helps to hide any blood that may stain this."
-	name = "security bunnysuit"
+	desc = "任何兔兔主题安保官的必备单品。红色配色有助于掩盖可能染上的血迹。"
+	name = "安保兔兔装"
 	icon_state = "bunnysuit_sec"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -304,8 +304,8 @@
 
 
 /obj/item/clothing/under/rank/security/security_assistant_bunnysuit
-	desc = "The staple of any bunny themed security assistants. Can't lost respect you don't have!"
-	name = "security assistant's bunnysuit"
+	desc = "任何兔兔主题安保助理的必备单品。本来就没威信，也谈不上丢威信！"
+	name = "安保助理的兔兔装"
 	icon_state = "bunnysuit_sec_assistant"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -316,8 +316,8 @@
 
 
 /obj/item/clothing/under/rank/security/warden_bunnysuit
-	desc = "The staple of any bunny themed wardens. The more formal security bunny suit for a less combat focused job."
-	name = "warden's bunnysuit"
+	desc = "任何兔兔主题看守长的必备单品。适合不那么偏重战斗岗位的、更正式的安保兔兔装。"
+	name = "看守长的兔兔装"
 	icon_state = "bunnysuit_warden"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -327,8 +327,8 @@
 
 
 /obj/item/clothing/under/rank/security/brig_phys_bunnysuit
-	desc = "The staple of any bunny themed brig physicians. The rejected alternative to an already discontinued alternate uniform, now sold at a premium!"
-	name = "brig physician's bunnysuit"
+	desc = "任何兔兔主题禁闭室医师的必备单品。它是已被停产的另一款制服的落选替代品，如今还溢价出售！"
+	name = "禁闭室医师的兔兔装"
 	icon_state = "bunnysuit_brig_phys"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -337,8 +337,8 @@
 
 
 /obj/item/clothing/under/rank/security/detective_bunnysuit
-	desc = "The staple of any bunny themed detectives. Capable of storing precious candy corns."
-	name = "detective's bunnysuit"
+	desc = "任何兔兔主题侦探的必备单品。能装下珍贵的玉米糖。"
+	name = "侦探的兔兔装"
 	icon_state = "bunnysuit_det"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -348,8 +348,8 @@
 
 
 /obj/item/clothing/under/rank/security/detective_bunnysuit/noir
-	desc = "The staple of any noir bunny themed detectives. Capable of storing precious candy corns."
-	name = "noir detective's bunnysuit"
+	desc = "任何黑色电影风的兔兔主题侦探的必备单品。能装下珍贵的玉米糖。"
+	name = "黑色电影风侦探的兔兔装"
 	icon_state = "bunnysuit_det_noir"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -359,8 +359,8 @@
 
 
 /obj/item/clothing/under/rank/security/prisoner_bunnysuit
-	desc = "The staple of any bunny themed prisoners. Great for hiding shanks and other small contrabands."
-	name = "prisoner's bunnysuit"
+	desc = "任何兔兔主题囚犯的必备单品。很适合藏匿自制刀片和其他小件违禁品。"
+	name = "囚犯的兔兔装"
 	icon_state = "bunnysuit_prisoner"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -370,8 +370,8 @@
 
 
 /obj/item/clothing/under/rank/security/head_of_security/bunnysuit
-	desc = "The staple of any bunny themed security commanders. Includes kevlar weave stockings and a gilded tail."
-	name = "Head of Security's bunnysuit"
+	desc = "任何兔兔主题安保指挥官的必备单品。附赠凯夫拉织法长袜和一条镀金尾巴。"
+	name = "安保主管的兔兔装"
 	icon_state = "bunnysuit_hos"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
@@ -382,8 +382,8 @@
 //SERVICE
 
 /obj/item/clothing/under/rank/civilian/hop_bunnysuit
-	name = "head of personnel's bunny suit"
-	desc = "The staple of any bunny themed bureaucrats. It has a spare “pocket” for holding extra pens and paper."
+	name = "人事主管的兔兔装"
+	desc = "任何兔兔主题官僚的必备单品。上面有一个备用“口袋”，可以多装几支笔和几张纸。"
 	icon_state = "bunnysuit_hop"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -392,8 +392,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/civilian/janitor/bunnysuit
-	name = "janitor's bunny suit"
-	desc = "The staple of any bunny themed janitors. The stockings are made of cotton to allow for easy laundering."
+	name = "清洁工的兔兔装"
+	desc = "任何兔兔主题清洁工的必备单品。长袜由棉制成，方便洗涤。"
 	icon_state = "bunnysuit_janitor"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -402,8 +402,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/civilian/bartender_bunnysuit
-	name = "bartender's bunnysuit"
-	desc = "The staple of any bunny themed bartenders. Looks even more stylish than the standard bunny suit."
+	name = "调酒师的兔兔装"
+	desc = "任何兔兔主题调酒师的必备单品。比标准兔兔装还要时髦。"
 	icon_state = "bunnysuit_bar"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -413,8 +413,8 @@
 	custom_price = PAYCHECK_CREW
 
 /obj/item/clothing/under/rank/civilian/cook_bunnysuit
-	name = "cook's bunny suit"
-	desc = "The staple of any bunny themed chefs. Shame there aren't any fishnets."
+	name = "厨师的兔兔装"
+	desc = "任何兔兔主题厨师的必备单品。可惜没有网袜。"
 	icon_state = "bunnysuit_chef"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -423,8 +423,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/civilian/hydroponics/bunnysuit
-	name = "botanist's bunny suit"
-	desc = "The staple of any bunny themed botanists. The stockings are made of faux-denim to mimic the look of overalls."
+	name = "植物学家的兔兔装"
+	desc = "任何兔兔主题植物学家的必备单品。长袜由仿丹宁布制成，模仿背带裤的外观。"
 	icon_state = "bunnysuit_botany"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -433,8 +433,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/civilian/clown/clown_bunnysuit
-	name = "clown's bunny suit"
-	desc = "The staple of any bunny themed clowns. Now this is just ridiculous."
+	name = "小丑的兔兔装"
+	desc = "任何兔兔主题小丑的必备单品。这下可真是荒唐透顶了。"
 	icon_state = "bunnysuit_clown"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -443,8 +443,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/civilian/mime_bunnysuit
-	name = "mime's bunny suit"
-	desc = "The staple of any bunny themed mimes. Includes black and white stockings in order to comply with mime federation outfit regulations."
+	name = "默剧演员的兔兔装"
+	desc = "任何兔兔主题默剧演员的必备单品。附黑白长袜，以符合默剧联盟的服装规定。"
 	icon_state = "bunnysuit_mime"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -454,8 +454,8 @@
 
 
 /obj/item/clothing/under/rank/civilian/chaplain_bunnysuit
-	name = "chaplain's bunny suit"
-	desc = "The staple of any bunny themed chaplains. The wool for the stockings came from a sacrificial lamb, making them extra holy."
+	name = "牧师的兔兔装"
+	desc = "任何兔兔主题牧师的必备单品。长袜用的羊毛来自一只献祭的羔羊，因此格外神圣。"
 	icon_state = "bunnysuit_chaplain"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -464,8 +464,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/civilian/curator_bunnysuit_red
-	name = "curator's red bunny suit"
-	desc = "The staple of any bunny themed librarians. A professional yet comfortable suit perfect for the aspiring bunny academic."
+	name = "馆长的红色兔兔装"
+	desc = "任何兔兔主题图书管理员的必备单品。既专业又舒适，非常适合有志的兔兔学者。"
 	icon_state = "bunnysuit_curator_red"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -474,8 +474,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/civilian/curator_bunnysuit_green
-	name = "curator's green bunny suit"
-	desc = "The staple of any bunny themed librarians. A professional yet comfortable suit perfect for the aspiring bunny academic."
+	name = "馆长的绿色兔兔装"
+	desc = "任何兔兔主题图书管理员的必备单品。既专业又舒适，非常适合有志的兔兔学者。"
 	icon_state = "bunnysuit_curator_green"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -484,8 +484,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/civilian/curator_bunnysuit_teal
-	name = "curator's teal bunny suit"
-	desc = "The staple of any bunny themed librarians. A professional yet comfortable suit perfect for the aspiring bunny academic."
+	name = "馆长的青蓝色兔兔装"
+	desc = "任何兔兔主题图书管理员的必备单品。既专业又舒适，非常适合有志的兔兔学者。"
 	icon_state = "bunnysuit_curator_teal"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -495,8 +495,8 @@
 
 
 /obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_black
-	name = "lawyer's black bunny suit"
-	desc = "A black linen coat worn by bunny themed lawyers. May or may not contain souls of the damned in suit pockets."
+	name = "律师的黑色兔兔装"
+	desc = "一件由兔兔主题律师穿着的黑色亚麻外套。口袋里也许装着受诅咒者的灵魂，也许没有。"
 	icon_state = "bunnysuit_law_black"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -507,8 +507,8 @@
 
 
 /obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_blue
-	name = "lawyer's blue bunny suit"
-	desc = "The staple of any bunny themed lawyers. EXTREMELY professional."
+	name = "律师的蓝色兔兔装"
+	desc = "任何兔兔主题律师的必备单品。极其专业。"
 	icon_state = "bunnysuit_law_blue"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -518,8 +518,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_red
-	name = "lawyer's red bunny suit"
-	desc = "The staple of any bunny themed lawyers. EXTREMELY professional."
+	name = "律师的红色兔兔装"
+	desc = "任何兔兔主题律师的必备单品。极其专业。"
 	icon_state = "bunnysuit_law_red"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -529,8 +529,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/civilian/lawyer_bunnysuit_good
-	name = "good lawyer's bunny suit"
-	desc = "The staple of any bunny themed lawyers. EXTREMELY professional."
+	name = "好律师的兔兔装"
+	desc = "任何兔兔主题律师的必备单品。极其专业。"
 	icon_state = "bunnysuit_law_good"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -540,8 +540,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/civilian/psychologist_bunnysuit
-	name = "psychologist's bunny suit"
-	desc = "The staple of any bunny themed psychologists. Perhaps not the best choice for making your patients feel at home."
+	name = "心理学家的兔兔装"
+	desc = "任何兔兔主题心理学家的必备单品。想让病人感到宾至如归的话，这大概不是最好的选择。"
 	icon_state = "bunnysuit_psychologist"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
@@ -552,8 +552,8 @@
 //BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION
 
 /obj/item/clothing/under/rank/civilian/microstar_suit
-	name = "\improper MicroStar SCI-MED suit"
-	desc = "A non-spaceproof partial pressure suit manufactured by MicroStar Inc; designed for maximum comfort, safety, and enhancement of productivity. Its proprietary helmet seems to be missing."
+	name = "\improper MicroStar SCI-MED 套装"
+	desc = "由 MicroStar 公司制造的非太空防护部分加压服；旨在提供最大舒适度、安全性并提升生产力。它那顶专有头盔似乎不见了。"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	icon = 'modular_zubbers/icons/obj/clothing/under/scimed_suit.dmi'
 	icon_state = "scimed_suit"
@@ -568,8 +568,8 @@
 	*/
 
 /obj/item/clothing/under/costume/loincloth
-	name = "loincloth"
-	desc = "A simple leather covering. It's better than wearing nothing at least."
+	name = "缠腰布"
+	desc = "一块简单的皮革遮蔽物。至少比什么都不穿强。"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	icon_state = "loincloth"
@@ -581,15 +581,15 @@
 	has_sensor = HAS_SENSORS
 
 /obj/item/clothing/under/costume/loincloth/cloth
-	desc = "A simple cloth covering. It's better than wearing nothing at least."
+	desc = "一块简单的布料遮蔽物。至少比什么都不穿强。"
 	icon_state = "loincloth_cloth"
 
 /obj/item/clothing/under/costume/loincloth/cloth/sensor
 	has_sensor = HAS_SENSORS
 
 /obj/item/clothing/under/costume/lizardgas
-	name = "lizard gas uniform"
-	desc = "A purple shirt with a nametag, and some ill-fitting jeans. The bare minimum required by company standards."
+	name = "蜥蜴燃气制服"
+	desc = "一件别着名牌的紫色衬衫，还有一条不合身的牛仔裤。公司标准所要求的最低限度。"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/costume_digi.dmi'
@@ -598,8 +598,8 @@
 	has_sensor = NO_SENSORS //you're not NT employed, so they don't care about you
 
 /obj/item/clothing/under/costume/allamerican
-	name = "all-american diner employee uniform"
-	desc = "A salmon colored short-sleeved dress shirt with a white nametag, bearing the name of the employee. Along with some snazzy dark grey slacks, a formal attire for a classy joint."
+	name = "全美式餐馆员工制服"
+	desc = "一件鲑鱼色短袖衬衫，配着写有员工名字的白色名牌。再配上一条时髦的深灰色长裤，很适合高档场所的正式装束。"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/costume_digi.dmi'
@@ -610,14 +610,14 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/allamerican/manager
-	name = "all-american diner manager uniform"
-	desc = "A salmon colored long-sleeved dress shirt with a white nametag, bearing the name of the employee. Along with some snazzy dark grey slacks held up by a belt with a gold buckle, a formal attire for a classy joint."
+	name = "全美式餐馆经理制服"
+	desc = "一件鲑鱼色长袖衬衫，配着写有员工名字的白色名牌。再配上一条由金色带扣皮带束住的时髦深灰色长裤，很适合高档场所的正式装束。"
 	icon_state = "allamerican_manager"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 
 /obj/item/clothing/under/red_and_white_collared_outfit
-	desc = "An outfit that screams 'I've never killed anyone!', which is probably true."
-	name = "red and white collared outfit"
+	desc = "一套尖叫着“我从没杀过人！”的服装，而且这多半是真的。"
+	name = "红白领口套装"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/uniforms.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/uniform.dmi'
 	icon_state = "whiteandred_kiryulmfao"
@@ -625,8 +625,8 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/costume/hlciv
-	name = "blue citizen uniform"
-	desc = "Sometimes, I dream about cheese."
+	name = "蓝色市民制服"
+	desc = "有时候，我会梦见奶酪。"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	icon_state = "citizenblue"
@@ -634,8 +634,8 @@
 //MGS stuff sprited by Crumpaloo for onlyplateau, please credit when porting, which you obviously have permission to do.
 
 /obj/item/clothing/under/rank/civilian/bubber/snake
-	name = "big boss' stealth suit"
-	desc = "We may all be headed straight to hell. But what better place for us than this?"
+	name = "大首领的潜行服"
+	desc = "我们也许都在直奔地狱。但还有比这里更适合我们的地方吗？"
 	icon = 'modular_zubbers/icons/obj/clothing/under/syndicate.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/syndicate_digi.dmi'
@@ -643,8 +643,8 @@
 	icon_state = "snake"
 
 /obj/item/clothing/under/rank/civilian/bubber/camo
-	name = "camouflage uniform"
-	desc = "Well my wife left me, so now I make stolen valor videos at the mall."
+	name = "迷彩制服"
+	desc = "唉，我老婆跑了，所以我现在在商场里拍冒领军功的视频。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/rank/civilian/bubber/camo"
 	post_init_icon_state = "solfed_camo"

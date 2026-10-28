@@ -1,76 +1,76 @@
 
 /datum/design/biogen/diethylamine
-	name = "Diethylamine"
+	name = "二乙胺"
 	id = "diethylamine"
 	materials = list(/datum/material/biomass = 0.5)
 	make_reagent = /datum/reagent/diethylamine
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_CHEMICALS)
 
 /datum/design/biogen/saltpetre
-	name = "Saltpetre"
+	name = "硝石"
 	id = "saltpetre"
 	materials = list(/datum/material/biomass = 0.5)
 	make_reagent = /datum/reagent/saltpetre
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_CHEMICALS)
 
 /datum/design/biogen/orangejuice
-	name = "Orange Juice"
+	name = "橙汁"
 	id = "orangejuice"
 	materials = list(/datum/material/biomass = 0.1)
 	make_reagent = /datum/reagent/consumable/orangejuice
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
 /datum/design/biogen/lemonjuice
-	name = "Lemon Juice"
+	name = "柠檬汁"
 	id = "lemonjuice"
 	materials = list(/datum/material/biomass = 0.1)
 	make_reagent = /datum/reagent/consumable/lemonjuice
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
 /datum/design/biogen/limejuice
-	name = "Lime Juice"
+	name = "青柠汁"
 	id = "limejuice"
 	materials = list(/datum/material/biomass = 0.1)
 	make_reagent = /datum/reagent/consumable/limejuice
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
 /datum/design/biogen/berryjuice
-	name = "Berry Juice"
+	name = "浆果汁"
 	id = "berryjuice"
 	materials = list(/datum/material/biomass = 0.1)
 	make_reagent = /datum/reagent/consumable/orangejuice
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
 /datum/design/biogen/berryjuice
-	name = "Tomato Juice"
+	name = "番茄汁"
 	id = "tomatojuice"
 	materials = list(/datum/material/biomass = 0.1)
 	make_reagent = /datum/reagent/consumable/tomatojuice
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
 /datum/design/biogen/grenadine
-	name = "Grenadine Syrup"
+	name = "石榴糖浆"
 	id = "grenadine"
 	materials = list(/datum/material/biomass = 0.1)
 	make_reagent = /datum/reagent/consumable/grenadine
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
 /datum/design/biogen/soysauce //Alternative to having to make it using sulphuric acid
-	name = "Soy Sauce"
+	name = "酱油"
 	id = "soysauce"
 	materials = list(/datum/material/biomass = 0.5)
 	make_reagent = /datum/reagent/consumable/soysauce
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
 /datum/design/biogen/salt
-	name = "Salt"
+	name = "盐"
 	id = "salt"
 	materials = list(/datum/material/biomass = 0.2)
 	make_reagent = /datum/reagent/consumable/salt
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
 /datum/design/biogen/diskplantgene
-	name = "Plant Data Disk"
+	name = "植物数据磁盘"
 	id = "biogen-diskplantgene"
 	materials = list(/datum/material/biomass = 10)
 	build_path = /obj/item/disk/computer/plantgene

@@ -6,7 +6,7 @@
 	if (get_lycanthropy_intensity(affected_mob) == 0)
 		return
 
-	to_chat(affected_mob, span_userdanger("THE SILVER STEEL OF LUNA IS WITHIN YOUR VERY VEINS! YOUR FLESH BURNS AND BOILS!"))
+	to_chat(affected_mob, span_userdanger("月神的银钢已深入你的血脉！你的血肉在燃烧沸腾！"))
 	affected_mob.emote("scream")
 
 /datum/reagent/silver/on_mob_end_metabolize(mob/living/affected_mob, metabolization_ratio)
@@ -15,7 +15,7 @@
 	if (get_lycanthropy_intensity(affected_mob) == 0)
 		return
 
-	to_chat(affected_mob, span_bolddanger("You feel comfort return to you as the last of the blessed lunar steel is filtered from your blood."))
+	to_chat(affected_mob, span_bolddanger("当最后一点受祝福的月神之银从你的血液中被滤净，舒适感重新回到你身上。"))
 
 /datum/reagent/silver/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -34,7 +34,7 @@
 	)
 
 	if (SPT_PROB(5, seconds_per_tick))
-		to_chat(affected_mob, span_warning("The silver in your veins burns your lycanthropic flesh...!"))
+		to_chat(affected_mob, span_warning("你血管中的银正在灼烧你的狼人之躯……！"))
 		affected_mob.emote("scream")
 
 /datum/reagent/silver/proc/get_lycanthropy_intensity(mob/living/carbon/affected_mob)

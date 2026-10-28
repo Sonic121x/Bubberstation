@@ -1,5 +1,5 @@
 /datum/crafting_recipe/food/redbayseasoning
-	name = "Red Bay Seasoning"
+	name = "红湾调味料"
 	reqs = list(
 		/obj/item/food/grown/peppercorn = 1,
 		/obj/item/food/grown/bell_pepper = 1,
@@ -12,7 +12,7 @@
 	dish_category = DISH_CONDIMENT
 
 /datum/crafting_recipe/food/curry_powder
-	name = "Curry powder"
+	name = "咖喱粉"
 	reqs = list(
 		/obj/item/food/grown/peppercorn = 1,
 		/obj/item/food/grown/nakati = 1,
@@ -24,7 +24,7 @@
 	dish_category = DISH_CONDIMENT
 
 /datum/crafting_recipe/food/worcestershire
-	name = "Worcestershire Sauce"
+	name = "伍斯特酱"
 	reqs = list(
 		/obj/item/food/fishmeat = 1,
 		/obj/item/food/grown/onion = 1,
@@ -37,7 +37,7 @@
 	dish_category = DISH_CONDIMENT
 
 /datum/crafting_recipe/food/dashiconcentrate
-	name = "Concentrated Dashi"
+	name = "浓缩日式高汤"
 	reqs = list(
 		/obj/item/food/fishmeat = 1,
 		/obj/item/food/seaweedsheet = 1,
@@ -48,7 +48,7 @@
 	dish_category = DISH_CONDIMENT
 
 /datum/crafting_recipe/food/chapmix
-	name = "Chap mix"
+	name = "CHAP 肉酱"
 	reqs = list(
 		/obj/item/food/meat/slab = 1,
 		/obj/item/food/grown/herbs = 1,
@@ -59,8 +59,8 @@
 	meal_category = MEAL_COMPONENT
 
 /obj/item/food/meat/chapmix
-	name = "chap mix"
-	desc = "A mass of seasoned meat, ready to be processed."
+	name = "CHAP 肉酱"
+	desc = "一团调味肉糜，等待加工。"
 	icon_state = "raw_meatloaf"
 	foodtypes = MEAT | VEGETABLES | RAW
 
@@ -72,12 +72,12 @@
 
 /// Healthy foods that the food processor pops out. Mostly to get the food_processor unit test all happy.
 /obj/item/food/peanuts/healthy
-	name = "organic peanuts"
+	name = "有机花生"
 	foodtypes = NUTS
 
 /obj/item/food/chips/healthy
-	name = "organic chips"
-	desc = "These chips are for when you want to convince yourself that you're eating a healthy alternative."
+	name = "有机薯片"
+	desc = "这款薯片适合在你想要说服自己正在吃健康替代品的时候享用。"
 	foodtypes = FRIED | VEGETABLES
 
 /datum/food_processor_process/chap
@@ -109,7 +109,7 @@
 	output = /obj/item/food/canned/larvae
 
 /datum/crafting_recipe/food/snailmix
-	name = "Snail mix"
+	name = "蜗牛肉酱"
 	reqs = list(
 		/obj/item/food/meat/slab/bugmeat = 1,
 		/obj/item/food/grown/herbs = 1,
@@ -120,8 +120,8 @@
 	meal_category = MEAL_COMPONENT
 
 /obj/item/food/meat/snailmix
-	name = "snail mix"
-	desc = "A mass of seasoned meat, ready to be processed... DO NOT CONFUSE WITH TRAIL MIX!"
+	name = "蜗牛肉酱"
+	desc = "一团调味肉糜，等待加工……切勿与什锦果仁混装搞混！"
 	icon_state = "raw_meatloaf"
 	foodtypes = MEAT | VEGETABLES | RAW | BUGS
 
@@ -134,7 +134,7 @@
 	food_multiplier = 2 //Giving a 2x multiplier as bug meat is slightly rarer to come across once you've killed all the snails.
 
 /datum/crafting_recipe/food/mac_balls_fresh
-	name = "Macheronirölen (Mac balls) Fresh"
+	name = "马切罗尼罗伦（通心粉球）新鲜装"
 	reqs = list(
 		/obj/item/food/spaghetti/mac_n_cheese = 1,
 		/obj/item/food/tomato_sauce = 1,

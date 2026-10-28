@@ -1,6 +1,6 @@
 /obj/item/phystool
-	name = "Toolgun"
-	desc = "Some kind of a revolver with a bluespace power cell and an anomaly core attached together."
+	name = "工具枪"
+	desc = "某种将左轮手枪、蓝空间能量电池和异常核心拼装在一起的东西。"
 	icon = 'modular_zubbers/icons/obj/equipment/architector_items.dmi'
 	icon_state = "toolgun"
 	inhand_icon_state = "toolgun"
@@ -33,9 +33,9 @@
 
 /obj/item/phystool/examine(mob/user)
 	. = ..()
-	. += span_notice("Use ALT + LMB on the device to choose the mode.")
+	. += span_notice("在装置上使用 ALT + 左键来选择模式。")
 	if(!selected_mode)
-		. += span_notice("No selected mode!")
+		. += span_notice("未选择模式！")
 		return
 	. += span_notice(selected_mode.desc)
 
@@ -43,7 +43,7 @@
 	. = ..()
 	if(selected_mode)
 		qdel(selected_mode)
-	var/datum/phystool_mode/mode_to_select = tgui_input_list(user, "Select work mode:", "Phystool mode", available_modes)
+	var/datum/phystool_mode/mode_to_select = tgui_input_list(user, "选择工作模式：", "物理工具模式", available_modes)
 	if(!mode_to_select)
 		return
 	selected_mode = new mode_to_select

@@ -4,9 +4,9 @@
 /*------*/
 
 /datum/map_template/ruin/icemoon/bubberstation/syndicate_base
-	name = "Syndicate Ice Base"
+	name = "辛迪加冰原基地"
 	id = "ice-base"
-	description = "A secret base researching illegal bioweapons, it is closely guarded by an elite team of syndicate agents."
+	description = "一处研究非法生物武器的秘密基地，由一支辛迪加特工精英小队严密守卫。"
 	suffix = "icemoon_interdyne.dmm"
 	allow_duplicates = FALSE
 	never_spawn_with = list(/datum/map_template/ruin/lavaland/bubberstation/dauntless)

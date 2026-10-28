@@ -7,8 +7,8 @@
 	select_mode(src, /datum/air_alarm_mode/medical)
 
 /datum/air_alarm_mode/medical
-	name = "Medical"
-	desc = "Filter medical gases"
+	name = "医疗"
+	desc = "过滤医疗气体"
 	danger = FALSE
 
 /datum/air_alarm_mode/medical/apply(area/applied)

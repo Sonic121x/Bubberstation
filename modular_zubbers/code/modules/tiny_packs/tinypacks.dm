@@ -1,6 +1,6 @@
 /obj/item/storage/backpack/storage_belt
-	name = "storage belt"
-	desc = "A small belt coated from front to back in pouches."
+	name = "收纳腰带"
+	desc = "一条前后都缝满小袋的小腰带。"
 	icon_state = "tinypakb"
 	inhand_icon_state = "messenger"
 	icon = 'modular_zubbers/icons/mob/clothing/clothing_icon/tinypack.dmi'
@@ -10,8 +10,8 @@
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 
 /obj/item/storage/backpack/waist_pack
-	name = "waist pack"
-	desc = "A small, waist-mounted pack for storing stuff. Also things. Perhaps even knick-knacks."
+	name = "腰包"
+	desc = "一款挂在腰间的小包，用来装东西。也装物件。说不定还能装小玩意儿。"
 	icon_state = "tinypaka"
 	inhand_icon_state = "messenger"
 	icon = 'modular_zubbers/icons/mob/clothing/clothing_icon/tinypack.dmi'
@@ -21,8 +21,8 @@
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 
 /obj/item/storage/backpack/chest_pack
-	name = "chest pack"
-	desc = "Like a fannypack, but for your chest!"
+	name = "胸包"
+	desc = "就像腰包，不过是挂在胸前的！"
 	icon_state = "tinypakc"
 	inhand_icon_state = "messenger"
 	icon = 'modular_zubbers/icons/mob/clothing/clothing_icon/tinypack.dmi'

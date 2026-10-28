@@ -1,7 +1,7 @@
 // Dauntless - Lavaland
 
 /area/ruin/space/has_grav/bubbers/dauntless
-	name = "SSV Dauntless"
+	name = "SSV 无畏号"
 	icon = 'icons/area/areas_centcom.dmi'
 	icon_state = "syndie-ship"
 	outdoors = FALSE
@@ -10,308 +10,308 @@
 // Cargo
 
 /area/ruin/space/has_grav/bubbers/dauntless/cargo
-	name = "Dauntless Hangarbay"
+	name = "无畏号机库"
 	sound_environment = SOUND_AREA_LARGE_ENCLOSED
 
 // Engineering
 
 /area/ruin/space/has_grav/bubbers/dauntless/engineering
-	name = "Dauntless Engineering Bay"
+	name = "无畏号工程舱"
 
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine
-	name = "Dauntless Turbine Room"
+	name = "无畏号涡轮机房"
 
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/mining
-	name = "Dauntless Bluespace Mining"
+	name = "无畏号蓝空间采矿区"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals
-	name = "Dauntless Dispolsals System"
+	name = "无畏号垃圾处理系统"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 // Service - Recreation
 
 /area/ruin/space/has_grav/bubbers/dauntless/service
-	name = "Central Spine"
+	name = "中央主脊"
 
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner
-	name = "Dauntless Diner"
+	name = "无畏号餐厅"
 	mood_bonus = 5
-	mood_message = "I love being in the diner!"
+	mood_message = "我喜欢待在餐厅里！"
 
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen
-	name = "Dauntless Kitchen"
+	name = "无畏号厨房"
 
 /area/ruin/space/has_grav/bubbers/dauntless/service/freezer
-	name = "Kitchen Freezer"
+	name = "厨房冷库"
 
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro
-	name = "Dauntless Hydroponics"
+	name = "无畏号水培区"
 
 /area/ruin/space/has_grav/bubbers/dauntless/service/shower
-	name = "Public Showers"
+	name = "公共淋浴室"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms
-	name = "Dauntless Dormitories"
+	name = "无畏号宿舍区"
 	mood_bonus = 3
-	mood_message = "I feel at ease here."
+	mood_message = "我在这里感到安心。"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym
-	name = "Dauntless Gym"
+	name = "无畏号健身房"
 	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna
-	name = "Dauntless Sauna"
+	name = "无畏号桑拿房"
 	mood_bonus = 5
-	mood_message = "This place is quite relaxing."
+	mood_message = "这地方挺让人放松的。"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/dauntless/service/construct
-	name = "Construction and Storage"
+	name = "建造与仓储区"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 // Science
 
 /area/ruin/space/has_grav/bubbers/dauntless/sci
-	name = "Dauntless Science"
+	name = "无畏号科研部"
 
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd
-	name = "Dauntless Experimentation Lab"
+	name = "无畏号实验研究室"
 
 /area/ruin/space/has_grav/bubbers/dauntless/sci/robotics
-	name = "Dauntless Robotics Lab"
+	name = "无畏号机器人实验室"
 
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio
-	name = "Dauntless Xenobiology Lab"
+	name = "无畏号异种生物实验室"
 
 // Medical
 
 /area/ruin/space/has_grav/bubbers/dauntless/med
-	name = "Dauntless Medical"
+	name = "无畏号医疗部"
 
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment
-	name = "Dauntless Treatment Bay"
+	name = "无畏号治疗舱"
 
 /area/ruin/space/has_grav/bubbers/dauntless/med/storage
-	name = "Dauntless Medical Storage"
+	name = "无畏号医疗储藏室"
 
 /area/ruin/space/has_grav/bubbers/dauntless/med/chem
-	name = "Dauntless Chemistry Lab"
+	name = "无畏号化学实验室"
 
 /area/ruin/space/has_grav/bubbers/dauntless/med/viro
-	name = "Dauntless Virology Lab"
+	name = "无畏号病毒研究实验室"
 
 /area/ruin/space/has_grav/bubbers/dauntless/command
-	name = "Dauntless Command"
+	name = "无畏号指挥部"
 
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge
-	name = "Dauntless Bridge"
+	name = "无畏号舰桥"
 
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral
-	name = "Admirals Office"
+	name = "上将办公室"
 
 /area/ruin/space/has_grav/bubbers/dauntless/command/liason
-	name = "Syndicate Liaison Office"
+	name = "辛迪加联络官办公室"
 
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault
-	name = "High Security Vault"
+	name = "高安保金库"
 
 /area/ruin/space/has_grav/bubbers/dauntless/command/maa
-	name = "Master At Arms Office"
+	name = "纠察长办公室"
 
 //Security - Prison
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec
-	name = "Dauntless Security"
+	name = "无畏号安保部"
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec/brig
-	name = "Dauntless Brig Transfer"
+	name = "无畏号拘留区转运通道"
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec/holding
-	name = "Holding Cells"
+	name = "拘留牢房"
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec/armory
-	name = "Dauntless Armory"
+	name = "无畏号军械库"
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer
-	name = "Preperations"
+	name = "准备室"
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation
-	name = "Interrogation and Solutions"
+	name = "审讯与处理室"
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison // Prison
-	name = "Dauntless General Population"
+	name = "无畏号公共监区"
 	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/holding
-	name = "Isolation Cell"
+	name = "隔离牢房"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec
-	name = "Prisoner Privlages Room"
+	name = "囚犯优待室"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/shower
-	name = "Prison Showers"
+	name = "监狱淋浴室"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 // Dauntless - Space
 
 /area/ruin/space/has_grav/bubbers/dauntless_space
-	name = "SSV Dauntless"
+	name = "SSV 无畏号"
 	icon = 'icons/area/areas_centcom.dmi'
 	icon_state = "syndie-ship"
 
 // Cargo
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/cargo
-	name = "Dauntless Hangarbay"
+	name = "无畏号机库"
 	sound_environment = SOUND_AREA_LARGE_ENCLOSED
 
 // Engineering
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/engineering
-	name = "Dauntless Engineering Bay"
+	name = "无畏号工程舱"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/engineering/turbine
-	name = "Dauntless Turbine Room"
+	name = "无畏号涡轮机房"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/engineering/mining
-	name = "Dauntless Bluespace Mining"
+	name = "无畏号蓝空间采矿区"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/engineering/dispolsals
-	name = "Dauntless Dispolsals System"
+	name = "无畏号垃圾处理系统"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 // Service - Recreation
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/service
-	name = "Central Spine"
+	name = "中央主脊"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/diner
-	name = "Dauntless Diner"
+	name = "无畏号餐厅"
 	mood_bonus = 5
-	mood_message = "I love being in the diner!"
+	mood_message = "我喜欢待在餐厅里！"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/kitchen
-	name = "Dauntless Kitchen"
+	name = "无畏号厨房"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/freezer
-	name = "Kitchen Freezer"
+	name = "厨房冷库"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/hydro
-	name = "Dauntless Hydroponics"
+	name = "无畏号水培区"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/shower
-	name = "Public Showers"
+	name = "公共淋浴室"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/dorms
-	name = "Dauntless Dormitories"
+	name = "无畏号宿舍区"
 	mood_bonus = 3
-	mood_message = "I feel at ease here."
+	mood_message = "我在这里感到安心。"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/gym
-	name = "Dauntless Gym"
+	name = "无畏号健身房"
 	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/sauna
-	name = "Dauntless Sauna"
+	name = "无畏号桑拿房"
 	mood_bonus = 5
-	mood_message = "This place is quite relaxing."
+	mood_message = "这地方挺让人放松的。"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/construct
-	name = "Construction and Storage"
+	name = "建造与仓储区"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 // Science
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/sci
-	name = "Dauntless Science"
+	name = "无畏号科研部"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/sci/rnd
-	name = "Dauntless Experimentation Lab"
+	name = "无畏号实验研究室"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/sci/robotics
-	name = "Dauntless Robotics Lab"
+	name = "无畏号机器人实验室"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/sci/xenobio
-	name = "Dauntless Xenobiology Lab"
+	name = "无畏号异种生物实验室"
 
 // Medical
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/med
-	name = "Dauntless Medical"
+	name = "无畏号医疗部"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/med/treatment
-	name = "Dauntless Treatment Bay"
+	name = "无畏号治疗舱"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/med/storage
-	name = "Dauntless Medical Storage"
+	name = "无畏号医疗储藏室"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/med/chem
-	name = "Dauntless Chemistry Lab"
+	name = "无畏号化学实验室"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/med/viro
-	name = "Dauntless Virology Lab"
+	name = "无畏号病毒研究实验室"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/command
-	name = "Dauntless Command"
+	name = "无畏号指挥部"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/command/bridge
-	name = "Dauntless Bridge"
+	name = "无畏号舰桥"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/command/admiral
-	name = "Admirals Office"
+	name = "上将办公室"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/command/liason
-	name = "Syndicate Liason Office"
+	name = "辛迪加联络官办公室"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/command/vault
-	name = "High Security Vault"
+	name = "高安保金库"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/command/maa
-	name = "Master At Arms Office"
+	name = "纠察长办公室"
 
 //Security - Prison
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec
-	name = "Dauntless Security"
+	name = "无畏号安保部"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/brig
-	name = "Dauntless Brig Transfer"
+	name = "无畏号拘留区转运通道"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/holding
-	name = "Holding Cells"
+	name = "拘留牢房"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/armory
-	name = "Dauntless Armory"
+	name = "无畏号军械库"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/officer
-	name = "Preperations"
+	name = "准备室"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/interrogation
-	name = "Interrogation and Solutions"
+	name = "审讯与处理室"
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison // Prison
-	name = "Dauntless General Population"
+	name = "无畏号公共监区"
 	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison/holding
-	name = "Isolation Cell"
+	name = "隔离牢房"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison/rec
-	name = "Prisoner Privlages Room"
+	name = "囚犯优待室"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison/shower
-	name = "Prison Showers"
+	name = "监狱淋浴室"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /datum/weather/rad_storm/New()

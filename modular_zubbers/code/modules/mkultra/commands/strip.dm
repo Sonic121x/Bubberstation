@@ -1,7 +1,7 @@
 /datum/mkultra_command/strip
-	name = "Strip"
-	description = "Have your enthralled strip for you."
-	feedback = "strips off all their clothes."
+	name = "脱衣"
+	description = "让你的奴隶为你脱光衣服。"
+	feedback = "脱光了所有衣服。"
 	trigger = "strip|remove your clothes|derobe|nude"
 	phase_requirement = 2
 	erp_command = TRUE
@@ -20,4 +20,4 @@
 		if(stuff == person.w_uniform)
 			person.dropItemToGround(stuff)
 			continue
-	to_chat(person, span_userlove("Before you can even think about it, your own hands move to take off your clothes in response to [status.get_gender()]'s command!"))
+	to_chat(person, span_userlove("还没等你反应过来，你的双手就已经遵从[status.get_gender()]的命令开始脱去衣物！"))

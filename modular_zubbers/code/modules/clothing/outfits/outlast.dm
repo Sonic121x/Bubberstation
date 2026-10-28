@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/leatherapron //Sprite by pacertest on discord
-	name = "leather apron"
-	desc = "An apron made from thick leather."
+	name = "皮革围裙"
+	desc = "一条用厚实皮革制成的围裙。"
 	icon = 'modular_zubbers/icons/obj/clothing/outlast.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
@@ -30,29 +30,29 @@
 	)
 
 /obj/item/clothing/glasses/hud/health/surgerygoggles //Sprite by pacertest on discord
-	name = "surgery goggles"
-	desc = "A pair of goggles worn to protect the eyes from viscera flying off a patient, a wonderful development in medical technology."
+	name = "手术护目镜"
+	desc = "一副用来保护眼睛免受病人飞溅内脏侵害的护目镜，堪称医学技术上的一大进步。"
 	icon = 'modular_zubbers/icons/obj/clothing/outlast.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
 	icon_state = "surgerygoggles"
 
 /obj/item/clothing/glasses/surgerygoggles //Sprite by pacertest on discord
-	name = "recovery goggles"
-	desc = "Like biker goggles, but creepier!"
+	name = "复原护目镜"
+	desc = "和骑行护目镜差不多，但更瘆人！"
 	icon = 'modular_zubbers/icons/obj/clothing/outlast.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
 	icon_state = "surgerygoggles"
 
 /obj/item/clothing/gloves/latex/nitrile/longrubbergloves //Sprite by pacertest on discord
-	name = "long rubber medical gloves"
-	desc = "Pricy somewhat sterile gloves that are thicker than latex, these ones extend almost past the elbow. Excellent grip ensures very fast carrying of patients along with the faster use time of various chemical related items."
+	name = "长筒医用橡胶手套"
+	desc = "价格不菲、还算无菌的手套，比乳胶更厚，长度几乎越过手肘。出色的抓握力让你能飞快地搬运病人，使用各类化学相关物品的速度也更快。"
 	icon = 'modular_zubbers/icons/obj/clothing/outlast.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
 	icon_state = "longrubber"
 
 /obj/item/clothing/gloves/longrubbergloves //Sprite by pacertest on discord
-	name = "long rubber gloves"
-	desc = "Not as rewarding as the hurting, sadly."
+	name = "长筒橡胶手套"
+	desc = "可惜，它带来的满足感比不上施加痛苦。"
 	icon = 'modular_zubbers/icons/obj/clothing/outlast.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
 	icon_state = "longrubber"

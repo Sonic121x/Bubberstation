@@ -1,6 +1,6 @@
 /obj/item/ammo_box/magazine/internal/stingballer
-	name = "stingball rifle internal magazine"
-	desc = "If you're reading this"
+	name = "蜂刺弹步枪内置弹仓"
+	desc = "如果你正在读这句话"
 	ammo_type = /obj/item/ammo_casing/stingballer
 	caliber = CALIBER_STINGBALL
 	max_ammo = 50

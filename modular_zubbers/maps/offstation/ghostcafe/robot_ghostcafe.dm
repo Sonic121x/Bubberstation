@@ -28,13 +28,13 @@
 	return ..()
 
 /datum/ai_laws/roleplay
-	name = "Roleplay"
+	name = "角色扮演"
 	id = "roleplay"
-	zeroth = "Roleplay as you'd like!"
+	zeroth = "按你喜欢的方式角色扮演吧！"
 	inherent = list()
 
 /obj/item/robot_model/roleplay
-	name = "Roleplay"
+	name = "角色扮演"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/extinguisher/mini,
@@ -69,7 +69,7 @@
 	hat_offset = list("north" = list(0, -3), "south" = list(0, -3), "east" = list(0, -3), "west" = list(0, -3))
 
 /obj/item/borg_shapeshifter/stable
-	name = "Stable Shapeshifter Module"
+	name = "稳定变形模块"
 	signalCache = list()
 	activationCost = 0
 	activationUpkeep = 0

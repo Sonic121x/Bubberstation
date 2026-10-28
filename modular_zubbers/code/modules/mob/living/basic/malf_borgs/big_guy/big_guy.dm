@@ -1,6 +1,6 @@
 /mob/living/basic/malf_borg/big_guy
-	name = "Malfunctioning Military Robot"
-	desc = "A military robot unit, hacked or malfunctioning. This one looks really tough."
+	name = "故障军用机器人"
+	desc = "一台军用机器人单位，遭到入侵或发生故障。这一台看起来相当强悍。"
 	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
 
 	ai_controller = /datum/ai_controller/basic_controller/simple/simple_skirmisher
@@ -17,8 +17,8 @@
 	exposed_wound_bonus = 0
 	sharpness = NONE
 
-	attack_verb_continuous = "gunbutts"
-	attack_verb_simple = "gunbutt"
+	attack_verb_continuous = "用枪托砸"
+	attack_verb_simple = "用枪托砸"
 	attack_sound = 'sound/items/weapons/smash.ogg'
 
 	projectiletype = /obj/projectile/bullet/c45

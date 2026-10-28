@@ -1,6 +1,6 @@
 /obj/item/mod/module/mind_swap
-	name = "MOD Neural Transference module"
-	desc = "Swaps the MOD wearer's and Assistant AI's neural pathways."
+	name = "MOD 神经转移模块"
+	desc = "交换 MOD 穿着者与辅助 AI 的神经通路。"
 	removable = FALSE
 	module_type = MODULE_ACTIVE
 	//Who's in control of the wearer's body
@@ -17,13 +17,13 @@
 
 /obj/item/mod/module/mind_swap/on_select()
 	if(!mod.ai_assistant)
-		balloon_alert(mod.wearer, "no AI present")
+		balloon_alert(mod.wearer, "没有 AI 在场")
 		return
 	if(isnull(mod.wearer.client))
-		balloon_alert(mod.ai_assistant, "host is unresponsive")
+		balloon_alert(mod.ai_assistant, "宿主无响应")
 		return
 	if(isnull(mod.ai_assistant.client))
-		balloon_alert(mod.wearer, UNLINT("AI is unresponsive"))
+		balloon_alert(mod.wearer, UNLINT("AI 无响应"))
 		return
 	return ..()
 

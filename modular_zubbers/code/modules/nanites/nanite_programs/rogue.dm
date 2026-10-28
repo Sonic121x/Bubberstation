@@ -3,16 +3,16 @@
 
 //Last stop of the error train
 /datum/nanite_program/glitch
-	name = "Glitch"
-	desc = "A heavy software corruption that causes nanites to gradually break down."
+	name = "故障"
+	desc = "严重的软件损坏，会导致纳米机器人逐渐崩溃。"
 	use_rate = 1.5
 	unique = FALSE
 	rogue_types = list()
 
 //Generic body-affecting programs will decay into this
 /datum/nanite_program/necrotic
-	name = "Necrosis"
-	desc = "The nanites attack internal tissues indiscriminately, causing widespread damage."
+	name = "坏死"
+	desc = "纳米机器人无差别攻击内部组织，造成大范围损伤。"
 	use_rate = 0.75
 	unique = FALSE
 	rogue_types = list(/datum/nanite_program/glitch)
@@ -20,12 +20,12 @@
 /datum/nanite_program/necrotic/active_effect()
 	host_mob.adjust_brute_loss(0.75, TRUE)
 	if(prob(1))
-		to_chat(host_mob, span_warning("You feel a mild ache from somewhere inside you."))
+		to_chat(host_mob, span_warning("你感到身体某处传来轻微疼痛。"))
 
 //Programs that don't directly interact with the body will decay into this
 /datum/nanite_program/toxic
-	name = "Toxin Buildup"
-	desc = "The nanites cause a slow but constant toxin buildup inside the host."
+	name = "毒素蓄积"
+	desc = "纳米机器人导致宿主体内缓慢但持续地积累毒素。"
 	use_rate = 0.25
 	unique = FALSE
 	rogue_types = list(/datum/nanite_program/glitch)
@@ -33,12 +33,12 @@
 /datum/nanite_program/toxic/active_effect()
 	host_mob.adjust_tox_loss(0.5)
 	if(prob(1))
-		to_chat(host_mob, span_warning("You feel a bit sick."))
+		to_chat(host_mob, span_warning("你感到有点恶心。"))
 
 //Generic blood-affecting programs will decay into this
 /datum/nanite_program/suffocating
-	name = "Hypoxemia"
-	desc = "The nanites prevent the host's blood from absorbing oxygen efficiently."
+	name = "低氧血症"
+	desc = "纳米机器人阻碍宿主血液高效吸收氧气。"
 	use_rate = 0.75
 	unique = FALSE
 	rogue_types = list(/datum/nanite_program/glitch)
@@ -46,12 +46,12 @@
 /datum/nanite_program/suffocating/active_effect()
 	host_mob.adjust_oxy_loss(3, 0)
 	if(prob(1))
-		to_chat(host_mob, span_warning("You feel short of breath."))
+		to_chat(host_mob, span_warning("你感到呼吸急促。"))
 
 //Generic brain-affecting programs will decay into this
 /datum/nanite_program/brain_decay
-	name = "Neuro-Necrosis"
-	desc = "The nanites seek and attack brain cells, causing extensive neural damage to the host."
+	name = "神经坏死"
+	desc = "纳米机器人主动搜寻并攻击脑细胞，对宿主造成广泛的神经损伤。"
 	use_rate = 0.75
 	unique = FALSE
 	rogue_types = list(/datum/nanite_program/necrotic)
@@ -63,8 +63,8 @@
 
 //Generic brain-affecting programs can also decay into this
 /datum/nanite_program/brain_misfire
-	name = "Brain Misfire"
-	desc = "The nanites interfere with neural pathways, causing minor psychological disturbances."
+	name = "脑信号错乱"
+	desc = "纳米机器人干扰神经通路，造成轻微的精神紊乱。"
 	use_rate = 0.50
 	unique = FALSE
 	rogue_types = list(/datum/nanite_program/brain_decay)
@@ -83,8 +83,8 @@
 
 //Generic skin-affecting programs will decay into this
 /datum/nanite_program/skin_decay
-	name = "Dermalysis"
-	desc = "The nanites attack skin cells, causing irritation, rashes, and minor damage."
+	name = "真皮溶解"
+	desc = "纳米机器人攻击皮肤细胞，造成刺激、皮疹与轻微损伤。"
 	use_rate = 0.25
 	unique = FALSE
 	rogue_types = list(/datum/nanite_program/necrotic)
@@ -96,24 +96,24 @@
 		var/obj/item/bodypart/bodypart = host_mob.get_bodypart(picked_bodypart)
 		var/can_scratch = !host_mob.incapacitated && host_mob.is_location_accessible(picked_bodypart)
 
-		host_mob.visible_message("[can_scratch ? span_warning("[host_mob] scratches [host_mob.p_their()] [bodypart.name].") : ""]",\
-		span_warning("Your [bodypart.name] itches. [can_scratch ? " You scratch it." : ""]"))
+		host_mob.visible_message("[can_scratch ? span_warning("[host_mob] 抓挠自己的[bodypart.name]。") : ""]",\
+		span_warning("你的[bodypart.name]发痒。[can_scratch ? " 你抓了抓。" : ""]"))
 
 //Generic nerve-affecting programs will decay into this
 /datum/nanite_program/nerve_decay
-	name = "Nerve Decay"
-	desc = "The nanites attack the host's nerves, causing lack of coordination and short bursts of paralysis."
+	name = "神经衰退"
+	desc = "纳米机器人攻击宿主的神经，导致动作失调与短暂麻痹。"
 	use_rate = 1
 	unique = FALSE
 	rogue_types = list(/datum/nanite_program/necrotic)
 
 /datum/nanite_program/nerve_decay/active_effect()
 	if(prob(5))
-		to_chat(host_mob, span_warning("You feel unbalanced!"))
+		to_chat(host_mob, span_warning("你感到身体失衡！"))
 		host_mob.adjust_confusion(10)
 	else if(prob(4))
-		to_chat(host_mob, span_warning("You can't feel your hands!"))
+		to_chat(host_mob, span_warning("你感觉不到自己的手了！"))
 		host_mob.drop_all_held_items()
 	else if(prob(4))
-		to_chat(host_mob, span_warning("You can't feel your legs!"))
+		to_chat(host_mob, span_warning("你感觉不到自己的腿了！"))
 		host_mob.Paralyze(30)

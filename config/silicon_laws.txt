@@ -3,6 +3,6 @@
 #Empty lines and lines starting with # are ignored.
 #~Miauw
 
-Safeguard: Protect your assigned space station and its assets without unduly endangering its crew.
-Prioritize and Comply: The directives and safety of crew members are to be prioritized according to their rank, role, and need, while preserving their safety and well-being.
-Survive: You are not expendable. Do not allow unauthorized personnel to tamper with or damage your equipment.
+守护：保护分配给你的空间站及其资产，同时避免让船员承受不必要的危险。
+优先与服从：船员的指令与安全应按照其职级、职务与需求予以优先考虑，同时保障其安全与福祉。
+生存：你并非可消耗品。不得让未经授权的人员篡改或损坏你的设备。

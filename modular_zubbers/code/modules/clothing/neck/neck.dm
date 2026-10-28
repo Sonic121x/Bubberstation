@@ -20,8 +20,8 @@
 //ALL BUNNY STUFF BY DimWhat OF MONKEESTATION
 
 /obj/item/clothing/neck/tie/bunnytie
-	name = "bowtie collar"
-	desc = "A fancy tie that includes a collar. Looking snazzy!"
+	name = "领结项圈"
+	desc = "一条带项圈的精致领带。看起来真时髦！"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/tie/bunnytie"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
@@ -38,8 +38,8 @@
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/clothing/neck/tie/bunnytie/syndicate
-	name = "blood-red bowtie collar"
-	desc = "A fancy tie that includes a red collar. Looking sinister..."
+	name = "血红领结项圈"
+	desc = "一条带项圈的精致领带，项圈为红色。看起来很阴险……"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_syndi_tied"
 	post_init_icon_state = null
@@ -54,8 +54,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/magician
-	name = "magician's bowtie collar"
-	desc = "A fancy gold tie that includes a collar. Looking magical!"
+	name = "魔术师领结项圈"
+	desc = "一条带项圈的金色精致领带。看起来很有魔力！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_wiz_tied"
 	post_init_icon_state = null
@@ -69,8 +69,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/centcom
-	name = "centcom bowtie collar"
-	desc = "A fancy gold tie that includes a collar. Looking in charge!"
+	name = "中央指挥部领结项圈"
+	desc = "一条带项圈的金色精致领带。看起来大权在握！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_centcom_tied"
 	post_init_icon_state = null
@@ -83,8 +83,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/communist
-	name = "really red bowtie collar"
-	desc = "A simple red tie that includes a collar. Looking egalitarian!"
+	name = "真红领结项圈"
+	desc = "一条带项圈的简单红领带。看起来人人平等！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_communist_tied"
 	post_init_icon_state = null
@@ -97,8 +97,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/blue
-	name = "blue bowtie collar"
-	desc = "A simple blue tie that includes a collar. Looking imperialist!"
+	name = "蓝色领结项圈"
+	desc = "一条带项圈的简单蓝领带。看起来充满帝国主义气息！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_blue_tied"
 	post_init_icon_state = null
@@ -113,8 +113,8 @@
 //CAPTAIN
 
 /obj/item/clothing/neck/tie/bunnytie/captain
-	name = "captain's bowtie"
-	desc = "A blue tie that includes a collar. Looking commanding!"
+	name = "舰长领结"
+	desc = "一条带项圈的蓝领带。看起来威风凛凛！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_captain_tied"
 	post_init_icon_state = null
@@ -130,8 +130,8 @@
 //CARGO
 
 /obj/item/clothing/neck/tie/bunnytie/cargo
-	name = "cargo bowtie"
-	desc = "A brown tie that includes a collar. Looking unionized!"
+	name = "货运领结"
+	desc = "一条带项圈的棕领带。看起来已加入工会！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_cargo_tied"
 	post_init_icon_state = null
@@ -145,8 +145,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/miner
-	name = "shaft miner's bowtie"
-	desc = "A purple tie that includes a collar. Looking hardy!"
+	name = "竖井矿工领结"
+	desc = "一条带项圈的紫领带。看起来很硬朗！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_explorer_tied"
 	post_init_icon_state = null
@@ -160,8 +160,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/mailman
-	name = "mailman's bowtie"
-	desc = "A red tie that includes a collar. Looking unstoppable!"
+	name = "邮差领结"
+	desc = "一条带项圈的红领带。看起来势不可挡！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_mail_tied"
 	post_init_icon_state = null
@@ -175,8 +175,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/bitrunner
-	name = "bitrunner's bowtie"
-	desc = "Bitrunners were told that wearing a novelty shirt with a printed bow tie wasn't enough for formal events."
+	name = "比特潜行者领结"
+	desc = "比特潜行者被告知，在正式场合只穿印有领结图案的新奇衬衫是不够的。"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_bitrunner_tied"
 	post_init_icon_state = null
@@ -192,8 +192,8 @@
 //ENGI
 
 /obj/item/clothing/neck/tie/bunnytie/engineer
-	name = "engineering bowtie"
-	desc = "An orange tie that includes a collar. Looking industrious!"
+	name = "工程领结"
+	desc = "一条带项圈的橙领带。看起来勤劳能干！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_engi_tied"
 	post_init_icon_state = null
@@ -208,8 +208,8 @@
 
 
 /obj/item/clothing/neck/tie/bunnytie/atmos_tech
-	name = "atmospheric technician's bowtie"
-	desc = "A blue tie that includes a collar. Looking inflammable!"
+	name = "大气技术员领结"
+	desc = "一条带项圈的蓝领带。看起来很易燃！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_atmos_tied"
 	post_init_icon_state = null
@@ -223,8 +223,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/ce
-	name = "chief engineer's bowtie"
-	desc = "A green tie that includes a collar. Looking managerial!"
+	name = "总工程师领结"
+	desc = "一条带项圈的绿领带。看起来很有管理范儿！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_ce_tied"
 	post_init_icon_state = null
@@ -240,8 +240,8 @@
 //MEDICAL
 
 /obj/item/clothing/neck/tie/bunnytie/doctor
-	name = "medical bowtie"
-	desc = "A light blue tie that includes a collar. Looking helpful!"
+	name = "医疗领结"
+	desc = "一条带项圈的浅蓝领带。看起来很乐于助人！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_doctor_tied"
 	post_init_icon_state = null
@@ -255,8 +255,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/paramedic
-	name = "paramedic's bowtie"
-	desc = "A white tie that includes a collar. Looking selfless!"
+	name = "护理人员领结"
+	desc = "一条带项圈的白色领带。看起来无私奉献！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_paramedic_tied"
 	post_init_icon_state = null
@@ -270,8 +270,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/chemist
-	name = "chemist's bowtie"
-	desc = "An orange tie that includes a collar. Looking explosive!"
+	name = "化学家领结"
+	desc = "一条带项圈的橙领带。看起来随时会爆炸！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_chem_tied"
 	post_init_icon_state = null
@@ -285,8 +285,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/pathologist
-	name = "pathologist's bowtie"
-	desc = "A green tie that includes a collar. Looking infectious!"
+	name = "病理学家领结"
+	desc = "一条带项圈的绿领带。看起来很有传染性！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_virologist_tied"
 	post_init_icon_state = null
@@ -300,8 +300,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/coroner
-	name = "coroner's bowtie"
-	desc = "A black tie that includes a collar. Looking dead...Dead good!"
+	name = "验尸官领结"
+	desc = "一条带项圈的黑色领带。看起来死气沉沉……死得漂亮！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_coroner_tied"
 	post_init_icon_state = null
@@ -315,8 +315,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/cmo
-	name = "chief medical officer's bowtie"
-	desc = "A blue tie that includes a collar. Looking responsible!"
+	name = "首席医疗官领结"
+	desc = "一条带项圈的蓝领带。看起来很有责任心！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_cmo_tied"
 	post_init_icon_state = null
@@ -332,8 +332,8 @@
 //SCIENCE
 
 /obj/item/clothing/neck/tie/bunnytie/scientist
-	name = "scientist's bowtie"
-	desc = "A purple tie that includes a collar. Looking intelligent!"
+	name = "科学家领结"
+	desc = "一条带项圈的紫领带。看起来很聪明！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_science_tied"
 	post_init_icon_state = null
@@ -347,8 +347,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/roboticist
-	name = "roboticist's bowtie"
-	desc = "A red tie that includes a collar. Looking transhumanist!"
+	name = "机器人学家领结"
+	desc = "一条带项圈的红领带。看起来很超人类主义！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_roboticist_tied"
 	post_init_icon_state = null
@@ -362,8 +362,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/geneticist
-	name = "geneticist's bowtie"
-	desc = "A blue tie that includes a collar. Looking aberrant!"
+	name = "遗传学家领结"
+	desc = "一条带项圈的蓝领带。看起来很异常！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_genetics_tied"
 	post_init_icon_state = null
@@ -377,8 +377,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/rd
-	name = "research director's bowtie"
-	desc = "A purple tie that includes a collar. Looking inventive!"
+	name = "科研主管领结"
+	desc = "一条带项圈的紫领带。看起来很有创造力！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_science_tied"
 	post_init_icon_state = null
@@ -394,8 +394,8 @@
 //SECURITY
 
 /obj/item/clothing/neck/tie/bunnytie/security
-	name = "security bowtie"
-	desc = "A red tie that includes a collar. Looking tough!"
+	name = "安保领结"
+	desc = "一条带项圈的红领带。看起来很硬派！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_sec_tied"
 	post_init_icon_state = null
@@ -409,8 +409,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/security_assistant
-	name = "security assistant's bowtie"
-	desc = "A grey tie that includes a collar. Looking \"helpful\"."
+	name = "安保助理领结"
+	desc = "一条带项圈的灰领带。看起来“很帮忙”。"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_sec_assistant_tied"
 	post_init_icon_state = null
@@ -424,8 +424,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/brig_phys
-	name = "brig physician's bowtie"
-	desc = "A red tie that includes a collar. Looking underappreciated!"
+	name = "监狱医师领结"
+	desc = "一条带项圈的红领带。看起来不受重视！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_brig_phys_tied"
 	post_init_icon_state = null
@@ -439,8 +439,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/detective
-	name = "detective's tie collar"
-	desc = "A brown tie that includes a collar. Looking inquisitive!"
+	name = "侦探领带项圈"
+	desc = "一条带项圈的棕领带。看起来充满好奇！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "tie_collar_det_tied"
 	post_init_icon_state = null
@@ -454,8 +454,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/prisoner
-	name = "prisoner's bowtie"
-	desc = "A black tie that includes a collar. Looking criminal!"
+	name = "囚犯领结"
+	desc = "一条带项圈的黑领带。看起来像罪犯！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_prisoner_tied"
 	post_init_icon_state = null
@@ -471,8 +471,8 @@
 //SERVICE
 
 /obj/item/clothing/neck/tie/bunnytie/hop
-	name = "head of personnel's bowtie"
-	desc = "A dull red tie that includes a collar. Looking bogged down."
+	name = "人事主管领结"
+	desc = "一条带项圈的暗红领带。看起来忙得焦头烂额。"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_hop_tied"
 	post_init_icon_state = null
@@ -486,8 +486,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/janitor
-	name = "janitor's bowtie"
-	desc = "A purple tie that includes a collar. Looking tidy!"
+	name = "清洁工领结"
+	desc = "一条带项圈的紫领带。看起来很整洁！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_janitor_tied"
 	post_init_icon_state = null
@@ -501,8 +501,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/bartender
-	name = "bartender's bowtie"
-	desc = "A black tie that includes a collar. Looking fancy!"
+	name = "酒保领结"
+	desc = "一条带项圈的黑领带。看起来很讲究！"
 	icon_state = "/obj/item/clothing/neck/tie/bunnytie/bartender"
 	flags_1 = null
 	custom_price = PAYCHECK_CREW
@@ -512,8 +512,8 @@
 	flags_1 = NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/clothing/neck/tie/bunnytie/cook
-	name = "cook's bowtie"
-	desc = "A red tie that includes a collar. Looking culinary!"
+	name = "厨师领结"
+	desc = "一条带项圈的红领带。看起来很有厨艺范儿！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_chef_tied"
 	post_init_icon_state = null
@@ -527,8 +527,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/botanist
-	name = "botanist's bowtie"
-	desc = "A blue tie that includes a collar. Looking green-thumbed!"
+	name = "植物学家领结"
+	desc = "一条带项圈的蓝领带。看起来很有园艺天赋！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_botany_tied"
 	post_init_icon_state = null
@@ -542,8 +542,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/clown
-	name = "clown's bowtie"
-	desc = "An outrageously large blue bowtie. Looking funny!"
+	name = "小丑领结"
+	desc = "一条大得离谱的蓝色领结。看起来很好笑！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
 	icon_state = "bowtie_clown_tied"
@@ -559,15 +559,15 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/bunny_pendant
-	name = "bunny pendant"
-	desc = "A golden pendant depicting a holy rabbit."
+	name = "兔子吊坠"
+	desc = "一枚刻有神圣兔子形象的金色吊坠。"
 	icon_state = "chaplain_pendant"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
 
 /obj/item/clothing/neck/tie/bunnytie/lawyer_black
-	name = "lawyer's black tie collar"
-	desc = "A black tie that includes a collar. Looking legal!"
+	name = "律师黑色领带项圈"
+	desc = "一条带项圈的黑领带。看起来很合法！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "tie_collar_lawyer_black_tied"
 	post_init_icon_state = null
@@ -581,8 +581,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/lawyer_blue
-	name = "lawyer's blue tie collar"
-	desc = "A blue tie that includes a collar. Looking defensive!"
+	name = "律师蓝色领带项圈"
+	desc = "一条带项圈的蓝领带。看起来处于守势！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "tie_collar_lawyer_blue_tied"
 	post_init_icon_state = null
@@ -596,8 +596,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/lawyer_red
-	name = "lawyer's red tie collar"
-	desc = "A red tie that includes a collar. Looking prosecutive!"
+	name = "律师红色领带项圈"
+	desc = "一条带项圈的红领带。看起来准备起诉！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "tie_collar_lawyer_red_tied"
 	post_init_icon_state = null
@@ -611,8 +611,8 @@
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/lawyer_good
-	name = "good lawyer's tie collar"
-	desc = "A black tie that includes a collar. Looking technically legal!"
+	name = "好律师领带项圈"
+	desc = "一条带项圈的黑领带。看起来严格来说合法！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "tie_collar_lawyer_good_tied"
 	post_init_icon_state = null
@@ -628,8 +628,8 @@
 //BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION
 
 /obj/item/clothing/neck/tie/allamerican
-	name = "all-american diner manager tie"
-	desc = "A dark grey tie with a golden clip on it, makes you look formal in a joint usually covered in grease!"
+	name = "全美餐馆经理领带"
+	desc = "一条深灰色领带，配金色领带夹，让你在一家通常满是油污的餐馆里也显得很正式！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
 	icon_state = "allamerican"
@@ -640,8 +640,8 @@
 
 //PRIDE SCARVES, SPRITES BY Cephalopod222 OF BUBBERSTATION
 /obj/item/clothing/neck/scarf/pride
-	name = "pride scarf"
-	desc = "A Nanotrasen made nano-weave scarf to show off your favourite flavour of gay and keep you nice and warm! Congratulations!"
+	name = "骄傲围巾"
+	desc = "一条纳米传讯制造的纳米编织围巾，用来展示你最喜欢的同性恋风格，还能让你暖暖和和！恭喜！"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_preview = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
@@ -690,8 +690,8 @@
 
 //Shadekin Fur Scarf Sprites by Boviro of Bubberstation
 /obj/item/clothing/neck/scarf/shadekin
-	name = "shadekin fur scarf"
-	desc = "An unethical scarf made from the soft fur and supple hides of Shadekin. Illegal in almost all areas of occupied space, but highly sought after by elites and pirates nonetheless."
+	name = "影裔毛皮围巾"
+	desc = "一条不道德的围巾，由影裔柔软的毛皮和柔韧的皮革制成。在占领区几乎所有地方都是非法的，但仍然深受精英和海盗追捧。"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_preview = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'

@@ -66,14 +66,14 @@
 
 /obj/item/bodypart/arm/left/mutant/xenohybrid
 	burn_modifier = 1.15
-	unarmed_attack_verbs = list("slash")
+	unarmed_attack_verbs = list("劈砍")
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/items/weapons/slash.ogg'
 	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
 
 /obj/item/bodypart/arm/right/mutant/xenohybrid
 	burn_modifier = 1.15
-	unarmed_attack_verbs = list("slash")
+	unarmed_attack_verbs = list("劈砍")
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/items/weapons/slash.ogg'
 	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'

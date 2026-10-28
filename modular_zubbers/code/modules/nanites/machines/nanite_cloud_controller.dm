@@ -1,6 +1,6 @@
 /obj/machinery/computer/nanite_cloud_controller
-	name = "nanite cloud controller"
-	desc = "Stores and controls nanite cloud backups."
+	name = "纳米机器人云控制器"
+	desc = "储存并控制纳米机器人云备份。"
 	icon = 'modular_zubbers/icons/obj/machines/nanite_machines.dmi'
 	icon_state = "nanite_cloud_controller"
 	circuit = /obj/item/circuitboard/computer/nanite_cloud_controller
@@ -26,17 +26,17 @@
 
 /obj/machinery/computer/nanite_cloud_controller/examine(mob/user)
 	. = ..()
-	. += span_notice("Use with a linked multitool to link to a techweb server.")
+	. += span_notice("使用已链接的多功能工具，将其连接到科技网络服务器。")
 
 /obj/machinery/computer/nanite_cloud_controller/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(isnull(held_item))
 		return
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "Open Panel"
+		context[SCREENTIP_CONTEXT_LMB] = "打开面板"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(held_item.tool_behaviour == TOOL_MULTITOOL)
-		context[SCREENTIP_CONTEXT_LMB] = "Upload Techweb"
+		context[SCREENTIP_CONTEXT_LMB] = "上传科技网络"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/computer/nanite_cloud_controller/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -46,7 +46,7 @@
 	var/obj/item/disk/nanite_program/new_disk = tool
 	if(!user.transferItemToLoc(new_disk, src))
 		return NONE
-	to_chat(user, span_notice("You insert [new_disk] into [src]"))
+	to_chat(user, span_notice("你将 [new_disk] 插入 [src]。"))
 	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 	if(disk)
 		eject(user)
@@ -56,7 +56,7 @@
 /obj/machinery/computer/nanite_cloud_controller/multitool_act(mob/living/user, obj/item/multitool/tool)
 	if(!QDELETED(tool.buffer) && istype(tool.buffer, /datum/techweb))
 		linked_techweb = tool.buffer
-		balloon_alert(user, "linked!")
+		balloon_alert(user, "已链接！")
 		update_static_data_for_all_viewers()
 	return TRUE
 
@@ -65,7 +65,7 @@
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
 	if(disk && user.can_perform_action(src, !issilicon(user)))
-		to_chat(user, span_notice("You take out [disk] from [src]."))
+		to_chat(user, span_notice("你从 [src] 中取出 [disk]。"))
 		eject(user)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -84,7 +84,7 @@
 
 /obj/machinery/computer/nanite_cloud_controller/proc/generate_backup(cloud_id, mob/user)
 	if(SSnanites.get_cloud_backup(cloud_id, TRUE))
-		to_chat(user, span_warning("Cloud ID already registered."))
+		to_chat(user, span_warning("云 ID 已被注册。"))
 		return
 
 	var/datum/nanite_cloud_backup/backup = new(src)
@@ -93,7 +93,7 @@
 	backup.nanites = cloud_copy
 	if(linked_techweb)
 		backup.techweb = linked_techweb
-	investigate_log("[key_name(user)] created a new nanite cloud backup with id #[cloud_id]", INVESTIGATE_NANITES)
+	investigate_log("[key_name(user)] 创建了新的纳米机器人云备份，ID 为 #[cloud_id]", INVESTIGATE_NANITES)
 
 /obj/machinery/computer/nanite_cloud_controller/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
@@ -238,7 +238,7 @@
 			if(backup)
 				playsound(src, 'sound/machines/terminal/terminal_prompt.ogg', 50, FALSE)
 				qdel(backup)
-				investigate_log("[key_name(usr)] deleted the nanite cloud backup #[current_view]", INVESTIGATE_NANITES)
+				investigate_log("[key_name(usr)] 删除了纳米机器人云备份 #[current_view]", INVESTIGATE_NANITES)
 			. = TRUE
 		if("upload_program")
 			if(disk?.program)
@@ -247,7 +247,7 @@
 					playsound(src, 'sound/machines/terminal/terminal_prompt.ogg', 50, FALSE)
 					var/datum/component/nanites/nanites = backup.nanites
 					nanites.add_program(null, disk.program.copy())
-					investigate_log("[key_name(usr)] uploaded program [disk.program.name] to cloud #[current_view]", INVESTIGATE_NANITES)
+					investigate_log("[key_name(usr)] 将程序 [disk.program.name] 上传至云 #[current_view]", INVESTIGATE_NANITES)
 			. = TRUE
 		if("remove_program")
 			var/datum/nanite_cloud_backup/backup = get_backup(current_view)
@@ -255,7 +255,7 @@
 				playsound(src, 'sound/machines/terminal/terminal_prompt.ogg', 50, FALSE)
 				var/datum/component/nanites/nanites = backup.nanites
 				var/datum/nanite_program/P = nanites.programs[text2num(params["program_id"])]
-				investigate_log("[key_name(usr)] deleted program [P.name] from cloud #[current_view]", INVESTIGATE_NANITES)
+				investigate_log("[key_name(usr)] 从云 #[current_view] 中删除了程序 [P.name]", INVESTIGATE_NANITES)
 				qdel(P)
 			. = TRUE
 		if("add_rule")
@@ -270,7 +270,7 @@
 					var/datum/nanite_program/P = nanites.programs[text2num(params["program_id"])]
 					var/datum/nanite_rule/rule = rule_template.make_rule(P)
 
-					investigate_log("[key_name(usr)] added rule [rule.display()] to program [P.name] in cloud #[current_view]", INVESTIGATE_NANITES)
+					investigate_log("[key_name(usr)] 在云 #[current_view] 中为程序 [P.name] 添加了规则 [rule.display()]", INVESTIGATE_NANITES)
 			. = TRUE
 		if("remove_rule")
 			var/datum/nanite_cloud_backup/backup = get_backup(current_view)
@@ -281,7 +281,7 @@
 				var/datum/nanite_rule/rule = P.rules[text2num(params["rule_id"])]
 				rule.remove()
 
-				investigate_log("[key_name(usr)] removed rule [rule.display()] from program [P.name] in cloud #[current_view]", INVESTIGATE_NANITES)
+				investigate_log("[key_name(usr)] 在云 #[current_view] 中从程序 [P.name] 移除了规则 [rule.display()]", INVESTIGATE_NANITES)
 			. = TRUE
 		if("toggle_rule_logic")
 			var/datum/nanite_cloud_backup/backup = get_backup(current_view)
@@ -290,7 +290,7 @@
 				var/datum/component/nanites/nanites = backup.nanites
 				var/datum/nanite_program/P = nanites.programs[text2num(params["program_id"])]
 				P.all_rules_required = !P.all_rules_required
-				investigate_log("[key_name(usr)] edited rule logic for program [P.name] into [P.all_rules_required ? "All" : "Any"] in cloud #[current_view]", INVESTIGATE_NANITES)
+				investigate_log("[key_name(usr)] 将云 #[current_view] 中程序 [P.name] 的规则逻辑改为 [P.all_rules_required ? "全部" : "任意"]", INVESTIGATE_NANITES)
 				. = TRUE
 
 /datum/nanite_cloud_backup

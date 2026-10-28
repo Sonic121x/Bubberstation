@@ -1,13 +1,13 @@
 /datum/phystool_mode/remove_mode
-	name = "Remove tool"
-	desc = "Use LMB to delete object from world."
+	name = "移除工具"
+	desc = "使用左键将物体从世界中删除。"
 
 /datum/phystool_mode/remove_mode/main_act(atom/target, mob/user)
 	. = ..()
 	if(isliving(target))
 		var/mob/living/living_target = target
 		if(living_target.client)
-			user.balloon_alert(user, "client inside!")
+			user.balloon_alert(user, "里面有玩家！")
 			return FALSE
 	//Is there is somthing inside target.
 	if(target.contents.len)

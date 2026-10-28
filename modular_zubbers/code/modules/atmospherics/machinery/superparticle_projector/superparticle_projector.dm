@@ -15,40 +15,40 @@
 #define SP_GAS_FLAG_HEALIUM (1<<1)
 
 /obj/item/paper/guides/jobs/atmos/superparticlegen
-	name = "paper- 'Guide to Superparticle Projector'"
-	default_raw_text = "<B>How to operate the Superparticle Projector</B><BR>\
-	-Build the machine using provided machine board.<BR>\
-	-Activate the projector and select a Supermatter engine you'd like to link it to.<BR>\
-	-Machine can be turned off and on again to change your selected engine.<BR><BR>\
-	<B>Basic function:</B><BR>\
-	-Projector offers protective field of particles simulating pressurised conditions. \
-	Any humanoid in range will be immune to harm from a cold environment, low pressure, \
-	or running out of air to breathe, making sure the crew stays alive in case of station hull breach.<BR>\
-	-Field is invisible to the naked eye, it is centered at the location of the Projector itself, not the linked engine.\
-	You can inspect the Projector at any time to check how far it can reach. \
-	Radius will scale with the internal power of the Supermatter engine that you choose to link this machine to, \
-	reaching 20 tile radius at 4.5GeV of internal power.\
-	Once internal power is above 4.5GeV, the field reach across entire station \
-	(off station projector will require their own engines), however, projector can't support more then 5.5GeV and will not work past that threshhold.<BR><BR>\
-	<B>Additional effects:</B><BR>\
-	Projector will offer additional benefits, depending on type of gas present around chosen Supermatter engine<BR>\
-	-Above 20% Carbon Dioxide - it will recharge power cells carried by carbons and power cells powering cyborgs (10% of random cell every 10 seconds)<BR>\
-	-Above 20% Healium - the field will slowly fix brute and burn damage to both crew and cyborgs \
-	(0.2 per second if below 30 damage)<BR><BR>\
-	Superparticle Projector is a new device in active development, this guide will be updated if any of the above information changes. \
-	If something does not work the way it should, make sure to read it again and look for changes."
+	name = "纸张 - '超粒子投射器指南'"
+	default_raw_text = "<B>超粒子投射器操作指南</B><BR>\
+	-使用随附的机器电路板建造该机器。<BR>\
+	-启动投射器，并选择一台你希望与之链接的超物质引擎。<BR>\
+	-可以关闭再重新开启机器，以更换所选的引擎。<BR><BR>\
+	<B>基本功能：</B><BR>\
+	-投射器会展开一层模拟加压环境的粒子防护场。\
+	范围内的所有人形生物都不会受到寒冷环境、低气压\
+	或耗尽呼吸空气的伤害，确保在空间站外壳破损时船员依然存活。<BR>\
+	-力场肉眼不可见，其中心位于投射器本身所在位置，而非所链接的引擎处。\
+	你可以随时检视投射器，以确认它能覆盖多远。\
+	覆盖半径会随你所链接的超物质引擎的内部功率而增长，\
+	内部功率达到 4.5GeV 时半径可达 20 格。\
+	一旦内部功率超过 4.5GeV，力场将覆盖整个空间站\
+	（站外的投射器需要各自配备引擎），但投射器无法承受超过 5.5GeV 的功率，超过该阈值后将停止工作。<BR><BR>\
+	<B>附加效果：</B><BR>\
+	投射器会依据所选超物质引擎周围存在的气体种类提供额外增益：<BR>\
+	-二氧化碳占比高于 20% - 它会为碳基生物携带的电池以及为半机械人供电的电池充电（每 10 秒为随机一块电池充 10%）<BR>\
+	-愈合气占比高于 20% - 力场会缓慢修复船员与半机械人的钝击伤和烧伤\
+	（伤害低于 30 时每秒修复 0.2）<BR><BR>\
+	超粒子投射器是一款仍在积极开发中的新设备，若上述信息发生变化，本指南将随之更新。\
+	若有任何功能运行异常，请务必重读本指南并留意其中的变更。"
 
 /datum/supply_pack/engineering/superparticlegen
-	name = "Superparticle Projector"
-	desc = "Generator that creates beneficial field to crew members, effects are based on state of Supermatter engine. Contains machine board and a guide."
+	name = "超粒子投射器"
+	desc = "一种能生成有益力场、为船员提供增益的发电机，效果取决于超物质引擎的状态。内含机器电路板与一本指南。"
 	cost = CARGO_CRATE_VALUE * 50 // 10,000
 	contains = list(/obj/item/circuitboard/machine/superparticlegen,
 	/obj/item/paper/guides/jobs/atmos/superparticlegen)
-	crate_name = "Superparticle Projector Circuitboard Crate"
+	crate_name = "超粒子投射器电路板箱"
 	crate_type = /obj/structure/closet/crate/engineering
 
 /obj/item/circuitboard/machine/superparticlegen
-	name = "Superparticle Projector"
+	name = "超粒子投射器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/power/superparticlegen
 	req_components = list(
@@ -63,10 +63,10 @@
 	icon = 'modular_zubbers/icons/obj/machines/superparticle_projector.dmi'
 	icon_state = "superparticle_projector"
 	base_icon_state = "superparticle_projector"
-	name = "Superparticle Projector"
-	desc = "Generates a field around itself that grants space immunity to all humanoids in range. \
-	Range scales with internal power of chosen Supermatter engine. \
-	Using specific gasses on chosen Supermatter engine, grants additional benefits"
+	name = "超粒子投射器"
+	desc = "在自身周围生成力场，使范围内的所有人形生物免疫太空环境。\
+	覆盖范围随所选超物质引擎的内部功率变化。\
+	在所选超物质引擎中使用特定气体，可获得额外增益"
 	max_integrity = 250
 	circuit = /obj/item/circuitboard/machine/superparticlegen
 	armor_type = /datum/armor/superparticlegen
@@ -102,17 +102,17 @@
 
 /obj/machinery/power/superparticlegen/examine(mob/user)
 	. = ..()
-	. += "It is [on ? "on" : "off"]."
+	. += "它处于[on ? "开启" : "关闭"]状态。"
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("<b>Right-click</b> to toggle [on ? "off" : "on"].")
+		. += span_notice("<b>右键</b>可将其切换为[on ? "关闭" : "开启"]。")
 		if(connected_supermatter.internal_energy < SUPERPARTICLE_MAX_POWER)
-			. += span_notice("Current range of the field: [range] tiles.")
+			. += span_notice("力场当前范围：[range] 格。")
 		else
-			. += span_notice("The superparticle fields effect is extending over the entire area around the projector!")
-		. += span_notice("<b>Carbon Dioxide</b> effect is <b>[superparticle_gas_flags & SP_GAS_FLAG_CARBON ? "active" : "not active"]</b>.")
-		. += span_notice("<b>Healium</b> effect is <b>[superparticle_gas_flags & SP_GAS_FLAG_HEALIUM ? "active" : "not active"]</b>.")
+			. += span_notice("超粒子力场的效果已扩展至投射器周围的整个区域！")
+		. += span_notice("<b>二氧化碳</b>效果<b>[superparticle_gas_flags & SP_GAS_FLAG_CARBON ? "已生效" : "未生效"]</b>。")
+		. += span_notice("<b>愈合气</b>效果<b>[superparticle_gas_flags & SP_GAS_FLAG_HEALIUM ? "已生效" : "未生效"]</b>。")
 		if (connected_supermatter.internal_energy >= SUPERPARTICLE_STOP_POWER)
-			. += span_warning("The connected crystal is overloaded, disabling the superparticle field!")
+			. += span_warning("所连接的晶体已过载，超粒子力场已停用！")
 
 /obj/machinery/power/superparticlegen/attack_hand_secondary(mob/user, list/modifiers)
 	if(!can_interact(user))
@@ -125,7 +125,7 @@
 	for(var/obj/machinery/power/supermatter_crystal/sm as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power/supermatter_crystal))
 		if((loc.z == sm.z) | (is_station_level(loc.z) & is_station_level(sm.z)))
 			supermatters += sm
-	connected_supermatter = tgui_input_list(user, "Which engine would you like to link to?", "Select an engine!", supermatters)
+	connected_supermatter = tgui_input_list(user, "你想链接到哪台引擎？", "选择一台引擎！", supermatters)
 	turn_on(user)
 
 /obj/machinery/power/superparticlegen/proc/toggle_on(mob/user)
@@ -135,11 +135,11 @@
 	if(anchored)
 		display_options(user)
 	else
-		balloon_alert(user, "anchor first")
+		balloon_alert(user, "请先固定！")
 
 /obj/machinery/power/superparticlegen/proc/turn_on(mob/user)
 	if(!isnull(user))
-		balloon_alert(user, "turned on")
+		balloon_alert(user, "已开启")
 	on = TRUE
 	START_PROCESSING(SSmachines, src)
 	update_appearance()
@@ -147,16 +147,16 @@
 /obj/machinery/power/superparticlegen/proc/turn_off(mob/user)
 	on = FALSE
 	if(!isnull(user))
-		balloon_alert(user, "turned off")
+		balloon_alert(user, "已关闭")
 	STOP_PROCESSING(SSmachines, src)
 	update_appearance()
 
 /obj/machinery/power/superparticlegen/screwdriver_act(mob/living/user, obj/item/tool)
 	if(on)
-		balloon_alert(user, "turn off!")
+		balloon_alert(user, "请先关闭！")
 		return ITEM_INTERACT_SUCCESS
 	if(!anchored)
-		balloon_alert(user, "anchor!")
+		balloon_alert(user, "请先固定！")
 		return ITEM_INTERACT_SUCCESS
 
 	return default_deconstruction_screwdriver(user, tool)
@@ -167,7 +167,7 @@
 /obj/machinery/power/superparticlegen/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(on)
-		balloon_alert(user, "turn off first!")
+		balloon_alert(user, "请先关闭！")
 		return
 	default_unfasten_wrench(user, tool)
 	if(anchored)

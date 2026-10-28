@@ -1,8 +1,8 @@
 /datum/language/common
 	name = "Galactic Common"
-	desc = "Common, as it's usually referred to, is an amalgam of languages, handcrafted by the founding Federation states to form a comprehensive language for communication. \
-	It is not uncommon for one to speak both Common and their home tongue, as by design it shares many structures and langage quirks, \
-	to the extent that speaking Galactic Common is almost like speaking 20 different languages simultaneously."
+	desc = "通用语，人们通常这么称呼它，是联邦创始成员国为全面沟通而精心糅合诸多语言打造而成的。\
+	一个人同时会说通用语与自己的母语并不稀奇，因为它在设计上共享了许多结构与语言怪癖，\
+	以至于说银河通用语几乎就像在同时说二十种不同的语言。"
 	syllables = list(
 		"at", "bo", "cre", "del", "ei", "fir", "guh", "ho", "ill", "jo", "kat", "le", "mon", "ne", "op", "po", "que", "ro", "set", "tin", "um", "ven", "wir", "xa", "yo", "zet",
 		"ao", "bar", "co", "don", "ef", "fo", "gon", "hi", "io", "jit", "kir", "lol", "mit", "no", "oh", "pa", "quo", "rex", "so", "ta", "ur", "va", "wa", "xi", "ye", "zat",

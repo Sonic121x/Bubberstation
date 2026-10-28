@@ -11,9 +11,9 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import * as nanite from '../localization/zhNaniteDisplay';
 import { TechwebWarning } from './Nanites/NoTechwebWarning';
 import type { NaniteProgram, Techweb } from './Nanites/types';
-
 interface NaniteInfoBoxProps {
   has_disk: boolean;
   has_program: boolean;
@@ -140,11 +140,11 @@ export const NaniteInfoBox = (props) => {
                 </>
               ),
               text: setting.value,
-              type: setting.value,
-              boolean: setting.value ? setting.true_text : setting.false_text,
+              type: nanite.value(setting),
+              boolean: nanite.value(setting),
             };
             return (
-              <LabeledList.Item key={setting.name} label={setting.name}>
+              <LabeledList.Item key={setting.name} label={nanite.display(setting.name)}>
                 {naniteTypesDisplayMap[setting.type]}
               </LabeledList.Item>
             );

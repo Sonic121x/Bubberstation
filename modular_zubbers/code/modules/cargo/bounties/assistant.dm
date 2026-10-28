@@ -1,21 +1,21 @@
 // Migrated TG Bounties
 
 /datum/bounty/item/assistant/strange_object
-	name = "Strange Object"
-	description = "Nanotrasen has taken an interest in strange objects. Find one in maintenance, and ship it off to CentCom right away."
+	name = "奇怪物体"
+	description = "纳米传讯对奇怪的物体产生了兴趣。在维护区找一个，然后立刻送往中央指挥部。"
 	reward = CARGO_CRATE_VALUE * 2.4
 	wanted_types = list(/obj/item/relic = TRUE)
 
 /datum/bounty/item/assistant/scooter
-	name = "Scooter"
-	description = "Nanotrasen has determined walking to be wasteful. Ship a scooter to CentCom to speed operations up."
+	name = "滑板车"
+	description = "纳米传讯认定步行纯属浪费。往中央指挥部运一辆滑板车，让运作快起来。"
 	reward = CARGO_CRATE_VALUE * 2.16 // the mat hoffman
 	wanted_types = list(/obj/vehicle/ridden/scooter = TRUE)
 	include_subtypes = FALSE
 
 /datum/bounty/item/assistant/skateboard
-	name = "Skateboard"
-	description = "Nanotrasen has determined walking to be wasteful. Ship a skateboard to CentCom to speed operations up."
+	name = "滑板"
+	description = "纳米传讯认定步行纯属浪费。往中央指挥部运一块滑板，让运作快起来。"
 	reward = CARGO_CRATE_VALUE * 1.8 // the tony hawk
 	wanted_types = list(
 		/obj/vehicle/ridden/scooter/skateboard = TRUE,
@@ -23,21 +23,21 @@
 	)
 
 /datum/bounty/item/assistant/stunprod
-	name = "Stunprod"
-	description = "CentCom demands a stunprod to use against dissidents. Craft one, then ship it."
+	name = "电击棒"
+	description = "中央指挥部需要一根电击棒来对付异见分子。做一根，然后运过来。"
 	reward = CARGO_CRATE_VALUE * 2.6
 	wanted_types = list(/obj/item/melee/baton/security/cattleprod = TRUE)
 
 /datum/bounty/item/assistant/spear
-	name = "Spears"
-	description = "CentCom's security forces are going through budget cuts. You will be paid if you ship a set of spears."
+	name = "长矛"
+	description = "中央指挥部的安保部队正在削减预算。只要运来一套长矛，你就能拿到报酬。"
 	reward = CARGO_CRATE_VALUE * 4
 	required_count = 5
 	wanted_types = list(/obj/item/spear = TRUE)
 
 /datum/bounty/item/assistant/toolbox
-	name = "Stocked Toolbox"
-	description = "There's an absence of robustness at Central Command. Ship them a fully packed toolbox as a solution, containing a screwdriver, wrench, welding tool, crowbar, analyzer, and wirecutters."
+	name = "装满的工具箱"
+	description = "中央指挥部正缺能干活的人手。给他们运一只装满的工具箱作为解决方案，内含螺丝刀、扳手、焊接工具、撬棍、分析仪和剪线钳。"
 	reward = CARGO_CRATE_VALUE * 4
 	wanted_types = list(/obj/item/storage/toolbox = TRUE)
 	/// List of tools that we want to see sorted into a toolbox
@@ -68,101 +68,101 @@
 			object.forceMove(shipped.drop_location())
 
 /datum/bounty/item/assistant/statue
-	name = "Statue"
-	description = "Central Command would like to commission an artsy statue for the lobby. Ship one out, when possible."
+	name = "雕像"
+	description = "中央指挥部想为大厅定制一座有艺术感的雕像。方便时运一座过来。"
 	reward = CARGO_CRATE_VALUE * 4
 	wanted_types = list(/obj/structure/statue = TRUE)
 
 /datum/bounty/item/assistant/baseball_bat
-	name = "Baseball Bat"
-	description = "Baseball fever is going on at CentCom! Be a dear and ship them some baseball bats, so that management can live out their childhood dream."
+	name = "棒球棍"
+	description = "中央指挥部正掀起棒球热！行行好，给他们运些棒球棍，好让管理层实现儿时的梦想。"
 	reward = CARGO_CRATE_VALUE * 4
 	required_count = 5
 	wanted_types = list(/obj/item/melee/baseball_bat = TRUE)
 
 /datum/bounty/item/assistant/donut
-	name = "Donuts"
-	description = "CentCom's security forces are facing heavy losses against the Syndicate. Ship donuts to raise morale."
+	name = "甜甜圈"
+	description = "中央指挥部的安保部队在与辛迪加的交锋中损失惨重。运些甜甜圈去提振士气。"
 	reward = CARGO_CRATE_VALUE * 6
 	required_count = 6
 	wanted_types = list(/obj/item/food/donut = TRUE)
 
 /datum/bounty/item/assistant/monkey_hide
-	name = "Monkey Hide"
-	description = "One of the scientists at CentCom is interested in testing products on monkey skin. Your mission is to acquire monkey's hide and ship it."
+	name = "猴子皮"
+	description = "中央指挥部的一位科学家想用猴子皮测试产品。你的任务是弄到猴子皮并运过来。"
 	reward = CARGO_CRATE_VALUE * 3
 	wanted_types = list(/obj/item/stack/sheet/animalhide/carbon/monkey = TRUE)
 
 /datum/bounty/item/assistant/comfy_chair
-	name = "Comfy Chairs"
-	description = "Commander Pat is unhappy with his chair. He claims it hurts his back. Ship some alternatives out to humor him."
+	name = "舒适座椅"
+	description = "帕特指挥官对自己的椅子很不满意，声称它弄疼了自己的背。运几把替代品过去哄哄他。"
 	reward = CARGO_CRATE_VALUE * 3
 	required_count = 5
 	wanted_types = list(/obj/structure/chair/comfy = TRUE)
 
 /datum/bounty/item/assistant/monkey_cubes
-	name = "Monkey Cubes"
-	description = "Due to a recent genetics accident, Central Command is in serious need of monkeys. Your mission is to ship monkey cubes."
+	name = "猴子方块"
+	description = "由于近期的一起基因事故，中央指挥部急需猴子。你的任务是运送猴子方块。"
 	reward = CARGO_CRATE_VALUE * 4
 	required_count = 3
 	wanted_types = list(/obj/item/food/monkeycube = TRUE)
 
 /datum/bounty/item/assistant/ied
-	name = "IED"
-	description = "Nanotrasen's maximum security prison at CentCom is undergoing personnel training. Ship a handful of IEDs to serve as a training tools."
+	name = "简易爆炸装置"
+	description = "纳米传讯位于中央指挥部的最高安全监狱正在进行人员训练。运几枚简易爆炸装置，用作训练工具。"
 	reward = CARGO_CRATE_VALUE * 6 // Boosted from default since they've been made harder to make.
 	required_count = 3
 	wanted_types = list(/obj/item/grenade/iedcasing = TRUE)
 
 /datum/bounty/item/assistant/toys
-	name = "Arcade Toys"
-	description = "The vice president's son saw an ad for new toys on the telescreen and now he won't shut up about them. Ship some arcade toys over to ease his complaints."
+	name = "街机玩具"
+	description = "副总裁的儿子在电视屏上看到了新玩具的广告，现在他整天念叨个没完。运些街机玩具过去，好让他少抱怨几句。"
 	reward = CARGO_CRATE_VALUE * 8
 	required_count = 5
 	wanted_types = list(/obj/item/toy = TRUE)
 
 /datum/bounty/item/assistant/paper_bin
-	name = "Paper Bins"
-	description = "Our accounting division is all out of paper. We need a new shipment immediately."
+	name = "纸盒"
+	description = "我们会计部的纸全用完了。急需一批新货。"
 	reward = CARGO_CRATE_VALUE * 5
 	required_count = 5
 	wanted_types = list(/obj/item/paper_bin = TRUE)
 
 /datum/bounty/item/assistant/crayons
-	name = "Crayons"
-	description = "Dr. Jones's kid ate all of our crayons again. Please send us yours."
+	name = "蜡笔"
+	description = "琼斯博士的孩子又把我们的蜡笔全吃了。请把你的寄给我们。"
 	reward = CARGO_CRATE_VALUE * 4
 	required_count = 7 // Edited down to 7. There's only 7 in a pack.
 	wanted_types = list(/obj/item/toy/crayon = TRUE)
 
 /datum/bounty/item/assistant/water_tank
-	name = "Water Tank"
-	description = "We need more water for our hydroponics bay. Find a water tank and ship it out to us."
+	name = "水箱"
+	description = "我们的水培舱需要更多水。找一只水箱运给我们。"
 	reward = CARGO_CRATE_VALUE * 5
 	wanted_types = list(/obj/structure/reagent_dispensers/watertank = TRUE)
 
 /datum/bounty/item/assistant/pneumatic_cannon
-	name = "Pneumatic Cannon"
-	description = "We're figuring out how hard we can launch supermatter shards out of a pneumatic cannon. Send us one as soon as possible."
+	name = "气动加农炮"
+	description = "我们正在研究用气动加农炮能把超物质碎片发射出多大的力道。尽快给我们送一台。"
 	reward = CARGO_CRATE_VALUE * 4
 	wanted_types = list(/obj/item/pneumatic_cannon/ghetto = TRUE)
 
 /datum/bounty/item/assistant/improvised_shells
-	name = "Junk Shells"
-	description = "Our assistant militia has chewed through all our iron supplies. To stop them making bullets out of station property, we need junk shells, pronto."
+	name = "垃圾弹壳"
+	description = "我们的助手民兵把铁材料全吃光了。为了阻止他们拿空间站财物做子弹，我们急需垃圾弹壳。"
 	reward = CARGO_CRATE_VALUE * 4
 	required_count = 5
 	wanted_types = list(/obj/item/ammo_casing/junk = TRUE)
 
 /datum/bounty/item/assistant/flamethrower
-	name = "Flamethrower"
-	description = "We have a moth infestation, send a flamethrower to help deal with the situation."
+	name = "火焰喷射器"
+	description = "我们这里蛾灾泛滥，请送一台火焰喷射器来协助处理。"
 	reward = CARGO_CRATE_VALUE * 4
 	wanted_types = list(/obj/item/flamethrower = TRUE)
 
 /datum/bounty/item/assistant/fish
-	name = "Fish"
-	description = "We need fish to populate our aquariums with. Fishes that are dead or bought from cargo will only be paid half as much."
+	name = "鱼"
+	description = "我们需要鱼来充实水族箱。死亡或从货运购买的鱼只能按一半价格支付。"
 	reward = CARGO_CRATE_VALUE * 9.5
 	required_count = 4
 	wanted_types = list(/obj/item/fish = TRUE, /obj/item/storage/fish_case = TRUE)
@@ -206,8 +206,8 @@
 /datum/bounty/item/assistant/fish/fluid/New()
 	..()
 	fluid_type = pick(AQUARIUM_FLUID_FRESHWATER, AQUARIUM_FLUID_SALTWATER, AQUARIUM_FLUID_SULPHWATEVER)
-	name = "[fluid_type] Fish"
-	description = "We need [LOWER_TEXT(fluid_type)] fish to populate our aquariums with. Fishes that are dead or bought from cargo will only be paid half as much."
+	name = "[chinese_aquarium_fluid_display(fluid_type)]鱼"
+	description = "我们需要[chinese_aquarium_fluid_display(fluid_type)]鱼来充实水族箱。死亡或从货运购买的鱼只能按一半价格支付。"
 
 /datum/bounty/item/assistant/fish/fluid/can_ship_fish(obj/item/fish/fishie)
 	return (fluid_type in GLOB.fish_compatible_fluid_types[fishie.required_fluid_type])
@@ -215,94 +215,94 @@
 // Bubber Bounties
 
 /datum/bounty/item/assistant/towels
-	name = "Towels"
-	description = "Radioactive moths ate everything in the Central Command locker rooms. We need more towels immediately."
+	name = "毛巾"
+	description = "有放射性的蛾子把中央指挥部更衣室里的东西吃得一干二净。我们急需更多毛巾。"
 	reward = CARGO_CRATE_VALUE * 6
 	required_count = 6
 	wanted_types = list(/obj/item/towel = TRUE)
 
 /datum/bounty/item/assistant/clipboards
-	name = "Clipboards"
-	description = "Things are getting a bit disorderly, send Centcom some clipboards to get things back on track."
+	name = "写字板"
+	description = "这里有点乱套了，给中央指挥部送些写字板，让一切重回正轨。"
 	reward = CARGO_CRATE_VALUE * 4
 	required_count = 4
 	wanted_types = list(/obj/item/clipboard = TRUE)
 
 /datum/bounty/item/assistant/mousetraps
-	name = "Mousetraps"
-	description = "A rodent rebellion is stirring in CentCom. Send us mousetraps to help stop their advance."
+	name = "捕鼠夹"
+	description = "中央指挥部里正酝酿一场啮齿动物叛乱。给我们送些捕鼠夹，帮忙挡住它们。"
 	reward = CARGO_CRATE_VALUE * 3.75
 	required_count = 4
 	wanted_types = list(/obj/item/assembly/mousetrap = TRUE)
 
 /datum/bounty/item/assistant/dancefloor
-	name = "wired floor tiles"
-	description = "There's a distinct lack of flare to CentCom's recreational area. Wire up some dance flooring for us so we can make things pop. Make sure they're complete!"
+	name = "灯线地板砖"
+	description = "中央指挥部的休闲区实在缺乏气氛。帮我们接好一片舞池地板，好让气氛热闹起来。务必保证它们是完整的！"
 	reward = CARGO_CRATE_VALUE * 9
 	required_count = 9
 	wanted_types = list(/obj/item/stack/tile/light = TRUE)
 
 /datum/bounty/item/assistant/toysword
-	name = "Toy Swords"
-	description = "CentCom Security forces are looking for a safer way to train after their last... accident. Send them some toy swords to fiddle with."
+	name = "玩具剑"
+	description = "经历了上次那场……事故之后，中央指挥部安保部队想找更安全的训练方式。给他们送些玩具剑玩玩。"
 	reward = CARGO_CRATE_VALUE * 8
 	required_count = 3
 	wanted_types = list(/obj/item/toy/sword = TRUE)
 
 /datum/bounty/item/assistant/bolas
-	name = "Bolas"
-	description = "A humanized monkey escaped containment and covered itself in cooking oil. Please send some bola's so CentCom can capture them."
+	name = "流星锤"
+	description = "一只被人类化的猴子逃出了收容，还给自己裹满了食用油。请送些流星锤来，好让中央指挥部抓住它。"
 	reward = CARGO_CRATE_VALUE * 5
 	required_count = 5
 	wanted_types = list(/obj/item/restraints/legcuffs/bola = TRUE)
 
 /datum/bounty/item/assistant/coffin
-	name = "Coffin"
-	description = "A beloved station pet was found dead. Please expedite the grieving process by shipping a coffin right away."
+	name = "棺材"
+	description = "一只深受喜爱的空间站宠物被发现死掉了。请立刻运一口棺材过来，好让哀悼流程尽快走完。"
 	reward = CARGO_CRATE_VALUE * 3 //Coffins themselves export for 100 credits, but this is a bounty. Plus, you'd only get 50% when wrapping them with barcodes.
 	wanted_types = list(/obj/structure/closet/crate/coffin = TRUE)
 
 /datum/bounty/item/assistant/cargo_shelf
-	name = "Cargo Shelves"
-	description = "Centcom's packaging facility is getting a bit tight, send us some cargo shelving kits so we can make room."
+	name = "货运货架"
+	description = "中央指挥部的包装设施有点挤了，给我们送些货运货架套件，好腾出空间。"
 	reward = CARGO_CRATE_VALUE * 3
 	required_count = 4
 	wanted_types = list(/obj/item/rack_parts/cargo_shelf = TRUE)
 
 /datum/bounty/item/assistant/duffelbag
-	name = "Duffelbags"
-	description = "Centcom's assistant brigade needs duffelbags for a long haul. Ship some right away."
+	name = "行李袋"
+	description = "中央指挥部的助手旅要跑长途，需要行李袋。立刻运一些过来。"
 	reward = CARGO_CRATE_VALUE * 5
 	required_count = 6
 	wanted_types = list(/obj/item/storage/backpack/duffelbag = TRUE)
 
 /datum/bounty/item/assistant/watermelon
-	name = "Watermelons"
-	description = "The new office craze is melon water. Send Centcom some watermelons so we can squeeze a few pitchers."
+	name = "西瓜"
+	description = "办公室新流行起了瓜水。给中央指挥部送些西瓜，好让我们榨上几壶。"
 	reward = CARGO_CRATE_VALUE * 6
 	required_count = 6
 	wanted_types = list(/obj/item/food/grown/melonlike/watermelon = TRUE)
 
 /datum/bounty/item/assistant/dogbed
-	name = "Dog Bed"
-	description = "After a series of unfortunate events, Central Command has found itself in need of a dog bed. Please ship one immediately."
+	name = "狗床"
+	description = "经历了一连串不幸事件后，中央指挥部发现自己需要一张狗床。请立即送一张过来。"
 	reward = CARGO_CRATE_VALUE * 3
 	wanted_types = list(/obj/structure/bed/dogbed = TRUE)
 
 /datum/bounty/item/assistant/blueprints
-	name = "Crude Blueprints"
-	description = "Centcom is looking for creative individuals from the civilian sector. Ship us your crude blueprints."
+	name = "简陋蓝图"
+	description = "中央指挥部正在民用领域寻找有创造力的人。把你的简陋蓝图运给我们。"
 	reward = CARGO_CRATE_VALUE * 5.75
 	wanted_types = list(/obj/item/shuttle_blueprints/crude = TRUE)
 
 /datum/bounty/item/assistant/wheelchair
-	name = "Motorized Wheelchair"
-	description = "Older members of Command are having some issues getting around. Send us a motorized wheelchair so they have an easier time getting around."
+	name = "电动轮椅"
+	description = "指挥部的一些年长成员行动有些不便。给我们送一台电动轮椅，好让他们行动更方便。"
 	reward = CARGO_CRATE_VALUE * 8
 	wanted_types = list(/obj/vehicle/ridden/wheelchair/motorized = TRUE)
 
 /datum/bounty/item/assistant/trapdoor
-	name = "Trapdoor Kit"
-	description = "It'll be better if we don't elaborate on why this is needed. Send Central Command a trapdoor kit and be rewarded."
+	name = "活板门套件"
+	description = "关于为什么需要这个，我们还是不细说了。给中央指挥部运一套活板门套件，你就会得到报酬。"
 	reward = CARGO_CRATE_VALUE * 8
 	wanted_types = list(/obj/item/trapdoor_kit = TRUE)

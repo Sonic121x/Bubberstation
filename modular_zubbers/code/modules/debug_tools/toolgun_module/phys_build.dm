@@ -1,6 +1,6 @@
 /datum/phystool_mode/build_mode
-	name = "Build mode"
-	desc = "Use LMB for build mode, RMB for remover and in hands to choose between structures."
+	name = "建造模式"
+	desc = "使用左键进行建造，使用右键进行移除，在手中使用以在结构之间选择。"
 
 	var/atom/selected_atom
 
@@ -14,7 +14,7 @@
 	)
 	var/choised_mode = show_radial_menu(user, user, choise, require_near = TRUE)
 	if(!choised_mode)
-		user.balloon_alert(user, "select one!")
+		user.balloon_alert(user, "请选择一个！")
 		return FALSE
 	var/list/pick = list()
 	if(choised_mode == "Wall mode")
@@ -25,7 +25,7 @@
 			pick -= T
 	if(choised_mode == "Structure mode")
 		pick = init_subtypes_w_path_keys(/obj/machinery/door)
-	selected_atom = tgui_input_list(user, "Selected object:", "Toolgun work", pick)
+	selected_atom = tgui_input_list(user, "选定的对象：", "工具枪施工", pick)
 	return TRUE
 
 /datum/phystool_mode/build_mode/secondnary_act(atom/target, mob/user)
@@ -43,14 +43,14 @@
 	. = ..()
 
 	if(!selected_atom)
-		user.balloon_alert(user, "select atom first!")
+		user.balloon_alert(user, "请先选择对象！")
 		return FALSE
 	if(!isopenturf(target))
-		user.balloon_alert(user, "blocked!")
+		user.balloon_alert(user, "被阻挡！")
 		return FALSE
 	var/turf/T = target
 	if(T.is_blocked_turf())
-		user.balloon_alert(user, "blocked!")
+		user.balloon_alert(user, "被阻挡！")
 		return FALSE
 	if(!isturf(selected_atom))
 		T.place_on_top(selected_atom)

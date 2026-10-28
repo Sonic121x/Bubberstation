@@ -38,8 +38,8 @@
 
 /// Regal rat swallows sludge to transform themselves into a different looking rat
 /datum/action/cooldown/rat_fashion
-	name = "Rat King's Transformation"
-	desc = "Assume your true form, whatever you decide it is at the moment."
+	name = "鼠王之变"
+	desc = "展现你的真身——至于真身是什么，由你此刻决定。"
 	check_flags = AB_CHECK_CONSCIOUS
 	cooldown_time = 10 SECONDS
 	melee_cooldown_time = 0 SECONDS
@@ -51,7 +51,7 @@
 /datum/action/cooldown/rat_fashion/Activate(atom/target)
 	var/mob/living/basic/regal_rat/rat_owner = owner
 	if (!istype(rat_owner))
-		owner.balloon_alert(owner, "not a rat!")
+		owner.balloon_alert(owner, "你不是老鼠！")
 		qdel(src)
 		return
 
@@ -70,14 +70,14 @@
 
 	var/datum/rat_fashion/chosen = picks_to_instances[pick]
 	if (rat_owner.current_look.name == chosen.name)
-		owner.balloon_alert(owner, "nothing to change!")
+		owner.balloon_alert(owner, "无需变化！")
 		return
 
 	var/turf/origin = get_turf(owner)
-	owner.balloon_alert_to_viewers("shudders...")
+	owner.balloon_alert_to_viewers("浑身一颤……")
 
 	if (!do_after(owner, 3 SECONDS, target = origin))
-		owner.balloon_alert(owner, "interrupted!")
+		owner.balloon_alert(owner, "被打断了！")
 		return
 
 	rat_owner.current_look = chosen
@@ -115,14 +115,14 @@
 
 /// Normal
 /datum/rat_fashion/default
-	name = "regal rat"
+	name = "鼠王"
 	icon = 'icons/mob/simple/animal.dmi'
 	icon_state_living = "regalrat"
 	icon_state_dead = "regalrat_dead"
 
 /// Old sprite
 /datum/rat_fashion/classic
-	name = "retro rat"
+	name = "复古鼠"
 	allow_random = FALSE
 	icon_state_living = "classic"
 	icon_state_dead = "classic_dead"
@@ -130,7 +130,7 @@
 /// Rat KING (ported from PR #10294 of space-wizards/space-station-14)
 
 /datum/rat_fashion/swole
-	name = "swoleking"
+	name = "壮硕鼠王"
 	allow_random = FALSE
 	icon_state_living = "buffking"
 	icon_state_dead = "buffking_dead"
@@ -138,7 +138,7 @@
 /// Rat queen (thicc rat)
 
 /datum/rat_fashion/rat_queen
-	name = "rat queen"
+	name = "鼠后"
 	allow_random = TRUE
 	icon_state_living = "ratqueen"
 	icon_state_dead = "ratqueen_dead"
@@ -146,7 +146,7 @@
 /// Rat queen alt (thicc rat but fat)
 
 /datum/rat_fashion/rat_queen_alt
-	name = "rat queen alt"
+	name = "鼠后（另版）"
 	allow_random = TRUE
 	icon_state_living = "ratqueen_fat"
 	icon_state_dead = "ratqueen_dead"
@@ -154,7 +154,7 @@
 /// Ringmaster (thicc rat but clothed)
 
 /datum/rat_fashion/ringmaster
-	name = "ringmaster"
+	name = "马戏团长"
 	allow_random = FALSE
 	icon_state_living = "ringmaster"
 	icon_state_dead = "ratqueen_dead"

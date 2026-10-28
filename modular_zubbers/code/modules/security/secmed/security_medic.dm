@@ -1,6 +1,6 @@
 /datum/job/security_medic
 	title = JOB_SECURITY_MEDIC
-	description = "Patch up officers and prisoners, revive the HoS after they throw themselves into battle, barge into Medbay and beg for pharmacy access"
+	description = "为警员和囚犯处理伤口，在安保主管一头扎进战场后把他救回来，冲进医疗部讨要药房权限"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	faction = FACTION_STATION
 	total_positions = 1
@@ -39,7 +39,7 @@
 		/obj/item/reagent_containers/hypospray/medipen/penacid = 10,
 		/obj/item/reagent_containers/hypospray/medipen/survival/luxury = 5
 	)
-	rpg_title = "Battle Cleric"
+	rpg_title = "战地牧师"
 	job_flags = JOB_ANTAG_PROTECTED | JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
 
 	sec_antag_cap = 1.25
@@ -92,13 +92,13 @@
 	icon = 'modular_skyrat/master_files/icons/mob/landmarks.dmi'
 
 /obj/item/encryptionkey/headset_medsec
-	name = "medical-security encryption key"
+	name = "医疗-安保加密密钥"
 	icon_state = "sec_cypherkey"
 	channels = list(RADIO_CHANNEL_MEDICAL = 1, RADIO_CHANNEL_SECURITY = 1)
 
 /obj/item/radio/headset/headset_medsec
-	name = "security medic's bowman headset"
-	desc = "Used to hear how many security officers need to be stitched back together."
+	name = "安保医疗兵的弓形耳机"
+	desc = "用来听有多少安保官需要被重新缝合起来。"
 	icon = 'modular_zubbers/icons/obj/secmed_equipment.dmi'
 	icon_state = "headset"
 	keyslot = new /obj/item/encryptionkey/headset_medsec
@@ -115,8 +115,8 @@
 	glass_colour_type = /datum/client_colour/glass_colour/blue
 
 /obj/item/storage/bag/garment/secmed
-	name = "Security medic's garment bag"
-	desc = "A bag containing extra clothing for the security medic"
+	name = "安保医疗兵的服装袋"
+	desc = "一只装有安保医疗兵备用衣物的袋子"
 
 /obj/item/storage/bag/garment/secmed/PopulateContents()
 	. = ..()
@@ -130,7 +130,7 @@
 	new /obj/item/clothing/under/rank/security/peacekeeper/security_medic/skirt(src)
 
 /obj/structure/closet/secure_closet/security_medic
-	name = "security medic's locker"
+	name = "安保医疗兵的储物柜"
 	req_access = list(ACCESS_BRIG)
 	icon = 'modular_zubbers/icons/obj/closets/secmed_closet.dmi'
 	icon_state = "secmed"

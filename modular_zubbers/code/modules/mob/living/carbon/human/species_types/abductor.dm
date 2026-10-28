@@ -11,9 +11,9 @@
 	)
 
 /datum/species/abductor/lesser/get_physical_attributes()
-	return "Abductors do not need to breathe, eat, do not have blood, a heart, stomach, or lungs and cannot be infected by human viruses. \
-		Their chunky tridactyl hands make it hard to operate human equipment."
+	return "绑架者不需要呼吸、进食，没有血液、心脏、胃或肺，也不会感染人类病毒。\
+		他们粗壮的三指手使他们很难操作人类的设备。"
 
 /datum/species/abductor/get_species_description()
-	return list("Abductors, colloquially known as \"Greys\" (or \"Grays\"), \
-		are, three fingered, pale skinned inquisitive aliens who can't communicate well to the average crew-member.",)
+	return list("绑架者，俗称“灰人”（或“小灰人”），\
+		是三指、苍白皮肤、充满好奇心的外星人，无法与普通船员顺畅交流。",)

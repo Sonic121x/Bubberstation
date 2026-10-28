@@ -3,17 +3,17 @@
 
 /datum/supply_pack/company_import/kahraman/machinery/biogenerator
 	item_type = /obj/item/flatpacked_machine/organics_printer
-	desc = "An advanced machine seen in frontier outposts and colonies capable of turning organic plant matter into reagents and items of use that a fabricator can't typically make."
+	desc = "一种见于边疆前哨与殖民地的先进机器，能把有机植物物质转化为试剂，以及制造机通常做不出的实用物品。"
 	cost = CARGO_CRATE_VALUE * 3
 
 /datum/supply_pack/company_import/kahraman/machinery/ore_thumper
 	item_type = /obj/item/flatpacked_machine/ore_thumper
-	desc = "A frame with a heavy block of metal suspended atop a pipe. Must be deployed outdoors and given a wired power connection. Forces pressurized gas into the ground which brings up buried resources."
+	desc = "一副框架，钢管上方悬着一块沉重的金属块。必须在户外部署并接入有线电源。它把加压气体压入地下，将埋藏的资源顶上来。"
 	cost = CARGO_CRATE_VALUE * 5
 
 /datum/supply_pack/company_import/kahraman/machinery/gps_beacon
 	item_type = /obj/item/flatpacked_machine/gps_beacon
-	desc = "A packed GPS beacon, can be deployed and anchored into the ground to provide and unobstructed homing beacon for wayward travelers across the galaxy."
+	desc = "一台打包好的 GPS 信标，可部署并固定在地面上，为银河各地迷途的旅人提供无遮挡的归航信标。"
 	cost = PAYCHECK_LOWER
 
 /datum/supply_pack/company_import/kahraman/ppe/weldhat

@@ -1,7 +1,7 @@
 /datum/mod_theme/entombed
-	name = "fused"
-	desc = "Circumstances have rendered this protective suit into someone's second skin. Literally."
-	extended_desc = "Some great aspect of someone's past has permanently bound them to this device, for better or worse."
+	name = "融合"
+	desc = "种种境遇已让这套防护服变成了某人的第二层皮肤。字面意义上的。"
+	extended_desc = "某人过往中某种宏大的因素已将他与这台装置永久绑定，无论好坏。"
 
 	default_skin = "standard"
 	armor_type = /datum/armor/mod_theme_civilian
@@ -19,15 +19,15 @@
 	)
 
 /obj/item/mod/module/joint_torsion/entombed
-	name = "internal joint torsion adaptation"
-	desc = "Your adaptation to life in this MODsuit shell allows you to ambulate in such a way that your movements recharge the suit's internal batteries slightly, but only while under the effect of gravity."
+	name = "内部关节扭转适配"
+	desc = "你已适应在这套 MOD 套装外壳中的生活，能以特定方式活动，让你行动时略微为套装的内置电池充电，但仅在受重力影响时有效。"
 	removable = FALSE
 	complexity = 0
 	power_per_step = DEFAULT_CHARGE_DRAIN * 0.4
 
 /obj/item/mod/module/plasma_stabilizer/entombed
-	name = "colony-stabilized interior seal"
-	desc = "Your colony has fully integrated the internal segments of your suit's plate into your skeleton, forming a hermetic seal between you and the outside world from which none of your atmosphere can escape. This is enough to allow your head to view the world with your helmet retracted."
+	name = "菌落稳定的内部密封"
+	desc = "你体内的菌落已将套装护板的内侧部分与你的骨骼完全融合，在你与外界之间形成气密密封，使你的大气一丝也逃不出去。这足以让你在收起头盔时仍能用头部观察世界。"
 	complexity = 0
 	idle_power_cost = 0
 	removable = FALSE
@@ -49,12 +49,12 @@
 	var/obj/item/mod/module/storage/inventory = locate() in src.modules
 	if (!isnull(inventory))
 		src.atom_storage.remove_all()
-		to_chat(who, span_notice("You empty out all the items from the MODsuit's storage module!"))
-		who.balloon_alert(who, "emptied out MOD storage items!")
+		to_chat(who, span_notice("你把 MOD 套装储物模块中的所有物品都倒了出来！"))
+		who.balloon_alert(who, "已清空 MOD 储物模块物品！")
 		return TRUE
 
-	to_chat(who, span_warning("The suit seems permanently fused to their frame - you can't remove it!"))
-	who.balloon_alert(who, "can't strip a fused MODsuit!")
+	to_chat(who, span_warning("这套装似乎已永久融合在对方的躯体上——你无法将其脱下！"))
+	who.balloon_alert(who, "无法脱下已融合的 MOD 套装！")
 	return ..()
 
 /obj/item/mod/control/pre_equipped/entombed/retract(mob/user, obj/item/part, instant = FALSE)
@@ -65,7 +65,7 @@
 		if (tomb_quirk && tomb_quirk.deploy_locked)
 			if (istype(part, /obj/item/clothing)) // make sure it's a modsuit piece and not a module, we retract those too
 				if (!istype(part, /obj/item/clothing/head/mod)) // they can only retract the helmet, them's the sticks
-					human_user.balloon_alert(human_user, "part is fused to you - can't retract!")
+					human_user.balloon_alert(human_user, "该部件已与你融合——无法收起！")
 					playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 					return
 	return ..()
@@ -76,7 +76,7 @@
 		var/datum/quirk/equipping/entombed/tomb_quirk = human_user.get_quirk(/datum/quirk/equipping/entombed)
 		//if we're deploy_locked, just disable this functionality entirely
 		if (tomb_quirk && tomb_quirk.deploy_locked)
-			human_user.balloon_alert(human_user, "you can only retract your helmet, and only manually!")
+			human_user.balloon_alert(human_user, "你只能收起头盔，而且只能手动操作！")
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return
 	return ..()

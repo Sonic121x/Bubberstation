@@ -1,7 +1,7 @@
 #define TEAM_BACKSTORY_SIZE 4
 
 /datum/round_event_control/fugitives
-	name = "Spawn Fugitives"
+	name = "生成逃犯"
 	typepath = /datum/round_event/ghost_role/fugitives
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_COMBAT)
@@ -9,12 +9,12 @@
 	min_players = 20
 	earliest_start = 30 MINUTES //deadchat sink, lets not even consider it early on.
 	category = EVENT_CATEGORY_INVASION
-	description = "Fugitives will hide on the station, followed by hunters."
+	description = "逃犯会躲藏在空间站上，随后会有猎人追来。"
 	map_flags = EVENT_SPACE_ONLY
 
 /datum/round_event/ghost_role/fugitives
 	minimum_required = 1
-	role_name = "fugitive"
+	role_name = "逃犯"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/fugitives/spawn_role()
@@ -66,7 +66,7 @@
 		HUNTER_PACK_MI13,
 	)
 	addtimer(CALLBACK(src, PROC_REF(check_spawn_hunters), hunter_backstory, 10 MINUTES), 1 MINUTES)
-	role_name = "fugitive hunter"
+	role_name = "逃犯猎人"
 	return SUCCESSFUL_SPAWN
 
 /datum/round_event/ghost_role/fugitives/proc/gear_fugitive(mob/dead/selected, turf/landing_turf, backstory) //spawns normal fugitive
@@ -90,8 +90,8 @@
 			S.equipOutfit(/datum/outfit/synthetic)
 		if(FUGITIVE_BACKSTORY_INVISIBLE)
 			S.equipOutfit(/datum/outfit/invisible_man)
-	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a Fugitive by an event.")
-	S.log_message("was spawned as a Fugitive by an event.", LOG_GAME)
+	message_admins("[ADMIN_LOOKUPFLW(S)] 因事件被转化为逃犯。")
+	S.log_message("因事件被生成为逃犯。", LOG_GAME)
 	spawned_mobs += S
 	return S
 
@@ -113,7 +113,7 @@
 	addtimer(CALLBACK(src, PROC_REF(check_spawn_hunters), backstory, remaining_time - 1 MINUTES), 1 MINUTES)
 
 /datum/round_event/ghost_role/fugitives/proc/spawn_hunters(backstory)
-	var/list/candidates = SSpolling.poll_ghost_candidates("Do you wish to be considered for a group of [span_notice(backstory)]?", check_jobban = ROLE_FUGITIVE_HUNTER, alert_pic = /obj/machinery/sleeper, role_name_text = backstory)
+	var/list/candidates = SSpolling.poll_ghost_candidates("你愿意被考虑加入[span_notice(backstory)]吗？", check_jobban = ROLE_FUGITIVE_HUNTER, alert_pic = /obj/machinery/sleeper, role_name_text = backstory)
 	shuffle_inplace(candidates)
 
 	var/datum/map_template/shuttle/hunter/ship
@@ -145,47 +145,47 @@
 				var/mob/spawned_mob = spawner.create_from_ghost(our_candidate)
 				candidates -= our_candidate
 				notify_ghosts(
-					"[spawner.prompt_name] has awoken: [spawned_mob]!",
+					"[spawner.prompt_name] 已苏醒：[spawned_mob]！",
 					source = spawned_mob,
-					header = "Come look!",
+					header = "快来看！",
 				)
 			else
 				notify_ghosts(
-					"[spawner.prompt_name] spawner has been created!",
+					"[spawner.prompt_name] 生成器已创建！",
 					source = spawner,
-					header = "Spawn Here!",
+					header = "在此生成！",
 				)
 
 	var/list/announcement_text_list = list()
 	var/announcement_title = ""
 	switch(backstory)
 		if(HUNTER_PACK_COPS)
-			announcement_text_list += "Attention Crew of [GLOB.station_name], this is the Police. A wanted criminal has been reported taking refuge on your station."
-			announcement_text_list += "We have a warrant from the SSC authorities to take them into custody. Officers have been dispatched to your location."
-			announcement_text_list += "We demand your cooperation in bringing this criminal to justice."
-			announcement_title += "Spacepol Command"
+			announcement_text_list += "注意，[GLOB.station_name] 的全体船员，这里是警察。据报有一名通缉犯躲藏在你们的空间站上。"
+			announcement_text_list += "我们持有顺旋星际联盟当局签发的逮捕令，要将此人收押。警员已派往你们所在的位置。"
+			announcement_text_list += "我们要求你们配合，将此罪犯绳之以法。"
+			announcement_title += "太空警察指挥部"
 		if(HUNTER_PACK_RUSSIAN)
-			announcement_text_list += "Zdraviya zhelaju, [GLOB.station_name] crew. We are coming to your station."
-			announcement_text_list += "There is a criminal aboard. We will arrest them and return them to the gulag. That's good, yes?"
-			announcement_title += "Russian Freighter"
+			announcement_text_list += "祝你们健康，[GLOB.station_name] 的船员们。我们正前往你们的空间站。"
+			announcement_text_list += "船上有一名罪犯。我们会逮捕他们，把他们送回古拉格。这很好，对吧？"
+			announcement_title += "俄罗斯货船"
 		if(HUNTER_PACK_BOUNTY)
-			announcement_text_list += "[GLOB.station_name]. One of our bounty marks has ended up on your station. We will be arriving to collect shortly."
-			announcement_text_list += "Let's make this quick. If you don't want trouble, stay the hell out of our way."
-			announcement_title += "Unregistered Signal"
+			announcement_text_list += "[GLOB.station_name]。我们的一个赏金目标跑到了你们的空间站上。我们很快就会抵达并把他带走。"
+			announcement_text_list += "速战速决吧。不想惹麻烦，就给我滚远点。"
+			announcement_title += "未注册信号"
 		if(HUNTER_PACK_PSYKER)
-			announcement_text_list += "HEY, CAN YOU HEAR US? We're coming to your station. There's a bad guy down there, really bad guy. We need to arrest them."
-			announcement_text_list += "We're also offering fortune telling services out of the front door if you have paying customers."
-			announcement_title += "Fortune-Telling Entertainment Shuttle"
+			announcement_text_list += "喂，能听见我们吗？我们要来你们的空间站了。下面有个坏蛋，特别坏的坏蛋。我们得逮捕他们。"
+			announcement_text_list += "如果你们有愿意付钱的顾客，我们也会在前门提供算命服务。"
+			announcement_title += "算命娱乐穿梭机"
 		if(HUNTER_PACK_MI13)
-			announcement_text_list += "Illegal intrusion detected in the crew monitoring network. Central Command has been informed."
-			announcement_text_list += "Please report any suspicious individuals or behaviour to your local security team."
-			announcement_title += "Nanotrasen Intrusion Countermeasures Electronics"
+			announcement_text_list += "船员监控网络检测到非法入侵。中央指挥部已获悉此事。"
+			announcement_text_list += "请向当地安保小队报告任何可疑人员或行为。"
+			announcement_title += "纳米传讯入侵反制电子系统"
 	if(!length(announcement_text_list))
-		announcement_text_list += "Unidentified ship detected near the station."
+		announcement_text_list += "在空间站附近检测到不明船只。"
 		stack_trace("Fugitive hunter announcement was unable to generate an announcement text based on backstory: [backstory]")
 
 	if(!length(announcement_title))
-		announcement_title += "Unknown Signal"
+		announcement_title += "未知信号"
 		stack_trace("Fugitive hunter announcement was unable to generate an announcement title based on backstory: [backstory]")
 
 	priority_announce(jointext(announcement_text_list, " "), announcement_title)

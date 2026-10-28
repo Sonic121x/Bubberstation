@@ -1,5 +1,5 @@
 /obj/effect/spawner/random/food_or_drink/island_booze
-	name = "island booze spawner"
+	name = "海岛酒水生成器"
 	icon_state = "beer"
 	loot = list(
 		/obj/item/reagent_containers/cup/glass/drinkingglass/filled/agua_fresca = 1,
@@ -20,63 +20,63 @@
 
 //filled drinks to populate the spawner with (these are here because they aren't used anywhere else)
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/agua_fresca
-	name = "Agua Fresca"
+	name = "阿瓜弗雷斯卡"
 	list_reagents = list(/datum/reagent/consumable/agua_fresca = 30)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/bahama_mama
-	name = "Bahama Mama"
+	name = "巴哈马妈妈"
 	list_reagents = list(/datum/reagent/consumable/ethanol/bahama_mama = 25)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/cuba_libre
-	name = "Cuba Libre"
+	name = "自由古巴"
 	list_reagents = list(/datum/reagent/consumable/ethanol/cuba_libre = 25)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/iced_tea
-	name = "Iced Tea"
+	name = "冰茶"
 	list_reagents = list(/datum/reagent/consumable/icetea = 50)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/long_island_iced_tea
-	name = "Long Island Iced Tea"
+	name = "长岛冰茶"
 	list_reagents = list(/datum/reagent/consumable/ethanol/longislandicedtea = 25)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/long_john_silver
-	name = "Long John Silver"
+	name = "长约翰·西尔弗"
 	list_reagents = list(/datum/reagent/consumable/ethanol/long_john_silver = 25)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/margarita
-	name = "Margarita"
+	name = "玛格丽特"
 	list_reagents = list(/datum/reagent/consumable/ethanol/margarita = 25)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/mauna_loa
-	name = "Mauna Loa"
+	name = "冒纳罗亚"
 	list_reagents = list(/datum/reagent/consumable/ethanol/mauna_loa = 25)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/painkiller
-	name = "Painkiller"
+	name = "止痛剂"
 	list_reagents = list(/datum/reagent/consumable/ethanol/painkiller = 25)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/pina_colada
-	name = "Pina Colada"
+	name = "椰林飘香"
 	list_reagents = list(/datum/reagent/consumable/ethanol/pina_colada = 25)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/salt_and_swell
-	name = "Salt and Swell"
+	name = "盐与浪"
 	list_reagents = list(/datum/reagent/consumable/ethanol/salt_and_swell = 25)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/sea_breeze
-	name = "Sea Breeze"
+	name = "海风"
 	list_reagents = list(/datum/reagent/consumable/ethanol/sea_breeze = 25)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/tequila_sunrise
-	name = "Tequila Sunrise"
+	name = "龙舌兰日出"
 	list_reagents = list(/datum/reagent/consumable/ethanol/tequila_sunrise = 25)
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/tropical_storm
-	name = "Tropical Storm"
+	name = "热带风暴"
 	list_reagents = list(/datum/reagent/consumable/ethanol/tropical_storm = 25)
 
 /obj/effect/spawner/random/clothing/island_time
-	name = "island time clothing spawner"
+	name = "海岛时光服装生成器"
 	loot = list(
 		/obj/item/clothing/suit/costume/hawaiian = 4,
 		/obj/item/clothing/glasses/sunglasses/cheap = 3,
@@ -93,6 +93,6 @@
 
 //Because sunglasses of all things are a powerful and rare item, here's some cheap ones that don't do anything
 /obj/item/clothing/glasses/sunglasses/cheap
-	name = "cheap sunglasses"
-	desc = "Cheap plastic eye lenses to protect you from harsh sunlight. These flimsy ones won't help against flashes."
+	name = "廉价太阳镜"
+	desc = "廉价塑料镜片，替你挡住刺眼阳光。但这么脆弱的货色可挡不了闪光。"
 	flash_protect = FLASH_PROTECTION_NONE

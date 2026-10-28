@@ -1,6 +1,6 @@
 /mob/living/basic/carp/advanced/pipe_carp
-	name = "carpmospheric technician"
-	desc = "Ferocious, highly aggressive fish that thrives in the depths of shoddy engineering work. Drawn to poorly sealed pipes, mismatched connectors, and hastily patched atmospherics, these creatures feast on structural incompetence with alarming efficiency."
+	name = "大气鲤鱼技师"
+	desc = "凶猛且极具攻击性的鱼，在粗劣工程的深处繁衍。它们被密封不良的管道、规格不符的接头和草草修补的大气系统所吸引，以惊人的效率吞噬着结构上的无能。"
 	icon = 'modular_zubbers/icons/mob/simple/pipe_carp.dmi'
 	greyscale_config = null
 	ai_controller = /datum/ai_controller/basic_controller/carp/pipe_carp
@@ -40,15 +40,15 @@
 	)
 
 /datum/round_event_control/carp_migration/pipe_carp
-	name = "Pipe Carp"
-	description = "Summons a school of supermatter loving carp."
+	name = "管道鲤鱼"
+	description = "召唤一群热爱超物质的鲤鱼。"
 	typepath = /datum/round_event/carp_migration/pipe_carp
 	weight = 5
 	max_occurrences = 1
 	admin_setup = null
 
 /datum/round_event/carp_migration/pipe_carp
-	fluff_signal = "Unknown engineering entities"
+	fluff_signal = "不明工程实体"
 	carp_type = /mob/living/basic/carp/advanced/pipe_carp
 	var/turf/pipes_turf
 	var/obj/effect/landmark/carpspawn/engineering
@@ -73,7 +73,7 @@
 			potential_spawns += spawn_landmark
 		engineering = get_closest_atom(/obj/effect/landmark/carpspawn, potential_spawns, pipes)
 
-	message_admins("Pipe carp spawn location is [ADMIN_COORDJMP(engineering)]!")
+	message_admins("管道鲤鱼的生成位置为[ADMIN_COORDJMP(engineering)]！")
 
 /datum/round_event/carp_migration/pipe_carp/pick_carp_migration_points(z_level_key)
 	var/travel_dir = get_dir(engineering, pipes_turf)

@@ -1,8 +1,8 @@
 /datum/reagent/mkultra
 	name = "MKUltra"
-	description = "A velvety, rich substance once injested, will enhance the draw of its creator's voice to those effected by it."
+	description = "一种丝绒般醇厚的物质，一旦摄入，会增强其创造者声音对那些受其影响者的吸引力。"
 	color = "#660015"
-	taste_description = "synthetic chocolate, a base tone of alcohol, and high notes of roses"
+	taste_description = "合成巧克力、淡淡酒香和鲜明的玫瑰香"
 	metabolization_rate = REAGENTS_METABOLISM * 0.4
 	overdose_threshold = 50
 	ph = 10

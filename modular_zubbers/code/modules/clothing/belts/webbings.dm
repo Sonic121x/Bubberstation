@@ -1,6 +1,6 @@
 /obj/item/storage/belt/webbing
-	name = "webbing"
-	desc = "A sturdy mess of synthetic belts and buckles, ready to share your burden."
+	name = "织带"
+	desc = "一堆结实的合成皮带与搭扣，随时为你分担重负。"
 	icon = 'modular_zubbers/icons/obj/clothing/belts/belts.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belts/belts.dmi'
 	icon_state = "webbing"
@@ -8,8 +8,8 @@
 	storage_type = /datum/storage/belt/webbing
 
 /obj/item/storage/belt/webbing/colonial_webbing
-	name = "colonial webbing vest"
-	desc = "A versatile individual carrying equipment, cherished by colonists and hoarders alike."
+	name = "殖民地织带背心"
+	desc = "一件多功能的单兵携行装备，深受殖民者和囤积狂的喜爱。"
 	icon = 'modular_skyrat/modules/food_replicator/icons/clothing.dmi'
 	worn_icon = 'modular_skyrat/modules/food_replicator/icons/clothing_worn.dmi'
 	icon_state = "accessory_webbing"
@@ -23,8 +23,8 @@
 
 //vest
 /obj/item/storage/belt/webbing_vest
-	name = "webbing vest"
-	desc = "A robust vest with lots of pockets to hold whatever you need, ready to share your burdens."
+	name = "织带背心"
+	desc = "一件结实的背心，有许多口袋可以装下你需要的一切，随时为你分担重负。"
 	icon = 'modular_zubbers/icons/obj/clothing/belts/belts.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belts/belts.dmi'
 	icon_state = "vest_brown"
@@ -41,8 +41,8 @@
 
 //drop pouches
 /obj/item/storage/belt/webbing_pouch
-	name = "drop pouches"
-	desc = "A robust pair of drop pouches with good capacity, ready to share your burdens."
+	name = "挂腿袋"
+	desc = "一对结实的挂腿袋，容量可观，随时为你分担重负。"
 	icon = 'modular_zubbers/icons/obj/clothing/belts/belts.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belts/belts.dmi'
 	icon_state = "thigh_brown"
@@ -59,8 +59,8 @@
 
 //rigging
 /obj/item/storage/belt/webbing_pilot
-	name = "full rigging"
-	desc = "A sturdy mess of synthetic belts and buckles, ready to share your burden."
+	name = "全套挂具"
+	desc = "一堆结实的合成皮带与搭扣，随时为你分担重负。"
 	icon = 'modular_zubbers/icons/obj/clothing/belts/belts.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belts/belts.dmi'
 	icon_state = "pilot_webbing1"
@@ -68,6 +68,6 @@
 	storage_type = /datum/storage/belt/webbing
 
 /obj/item/storage/belt/webbing_pilot/low
-	name = "low slung rigging"
+	name = "低垂挂具"
 	icon_state = "pilot_webbing2"
 	worn_icon_state = "pilot_webbing2"

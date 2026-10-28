@@ -1,6 +1,6 @@
 /obj/item/sensor_device/secmed
-	name = "security medic's handheld monitor"
-	desc = "A unique model of the handheld crew monitors that seems to have been customized for security medics."
+	name = "安保医疗兵便携监测仪"
+	desc = "一款独特的便携式船员监测仪型号，看上去是为安保医疗兵专门定制的。"
 	icon = 'modular_zubbers/icons/obj/scanner.dmi'
 	icon_state = "secmed_crewmonitor"
 

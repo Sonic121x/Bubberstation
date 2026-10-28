@@ -2,10 +2,10 @@
 #define LOADING_TIME (0.75 SECONDS) //How long it takes to load a cartridge, to prevent instant loading and firing again.
 
 /obj/item/gun/ballistic/derringer
-	name = "\improper Yinbi Derringer"
-	desc = "A very compact twin-barreled pistol, chambered in .310 strilka. \
-		Despite using a rifle cartridge, the short barrels leave a lot to \
-		be desired for ballistic performance and suffer from immense dropoff."
+	name = "\improper 隐蔽德林加"
+	desc = "一把非常紧凑的双管手枪，发射 .310 飞箭弹。 \
+		尽管使用步枪弹药，但短枪管带来的弹道性能实在 \
+		难以令人满意，而且弹道下坠极为严重。"
 	icon = 'modular_zubbers/icons/obj/guns/sakhno_concern_guns32x.dmi'
 	icon_state = "derringer"
 	w_class = WEIGHT_CLASS_SMALL
@@ -39,12 +39,12 @@
 /obj/item/gun/ballistic/derringer/examine_more(mob/user)
 	. = ..()
 
-	. += "The Yinbi Derringer was originally marketed as a companion sidearm to the Sakhno rifle, \
-		allowing the user to have a easy to carry and conceal self-defence weapon without having to \
-		keep several calibers of ammo on hand. While initial sales were promising, the poor ranged \
-		performance ultimately lead to production halting for this model. Most of the remaining stock \
-		was liquidated, and they are now found at rather affordable prices on the secondary market. \
-		Unlike the rifles they were partnered with, they have held up much better over the years."
+	. += "隐蔽德林加最初是作为萨赫诺步枪的随身副武器推向市场的， \
+		让使用者拥有一件易于携带和隐藏的自卫武器，而无需 \
+		随身备着好几种口径的弹药。虽然初期销量喜人，但其糟糕的 \
+		远距离表现最终导致该型号停产。剩余库存大部分 \
+		被清仓处理，如今在二手市场上价格相当实惠。 \
+		与它们搭配销售的步枪不同，这些年来它们的状况要好得多。"
 
 	return .
 
@@ -53,7 +53,7 @@
 								/obj/item/ammo_box/c310_cargo_box,
 								/obj/item/ammo_box/speedloader/strilka310)))
 		if(!do_after(user, LOADING_TIME, src, IGNORE_USER_LOC_CHANGE)) // We are allowed to move while reloading.
-			to_chat(user, span_danger("You fail to chamber a round into [src]!"))
+			to_chat(user, span_danger("你未能将一发子弹上膛到 [src] 中！"))
 			return TRUE
 
 	. = ..()

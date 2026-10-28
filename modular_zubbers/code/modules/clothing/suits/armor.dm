@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/armor/vest/collared_vest//Sprite done by offwrldr/Bangle - same person. Recently edited sprite.
-	name = "GLP-C 'Úlfur' Vest"
-	desc = "A set of General Light Protective armor, with complimentary pauldrons and an additional armored collar, similar to a gorget. This pattern of armored vest is typically afforded to diplomats and members of the press in hostile environments, though has seen use among private security forces. The armored collar is designed to protect the neck and throat from shrapnel. All things considered, it's quite comfortable, though many unfortunate wearers are often mistaken for combatants given the militarized aesthetic."
+	name = "GLP-C“Úlfur”防弹背心"
+	desc = "一套通用轻型防护装甲，配有配套护肩和类似颈甲的额外装甲领。这种防弹背心通常配发给身处敌对环境的外交官和新闻界人士，不过也有私营安保部队使用。装甲领设计用于保护颈部和咽喉免受弹片伤害。总的来说，它相当舒适，不过许多不幸的穿戴者常因这副军事化外观而被当作战斗人员。"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/collared_vest.dmi'
 	worn_icon = 'modular_zubbers/icons/obj/clothing/suits/collared_vest.dmi'
 	icon_state = "vest_worn"
@@ -27,8 +27,8 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/collared_vest)
 
 /obj/item/clothing/suit/armor/vest/secjacket // Port from TG Station (DrTuxedo)
-	name = "security jacket"
-	desc = "A red jacket in red Security colors. It has hi-vis stripes all over it."
+	name = "安保夹克"
+	desc = "一件安保部红色配色的夹克。上面布满了高可视性条纹。"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	icon_state = "secjacket"
@@ -48,8 +48,8 @@
 //Maid SEC
 //Icon by Onule!
 /obj/item/clothing/suit/armor/vest/maid
-	name = "cnc discreet armour vest"
-	desc = "An armored durathread apron. This relatively innocent at first glance outfit is actually the specialized type worn by Nanotrasen's infamous high profile 'Cleaning and Clearing' kill squads. It's a lot more robust than it's janitorial counterpart. There are loops on the back for holding your 'mop'."
+	name = "C&C 隐蔽护甲背心"
+	desc = "一条耐久纤维材质的装甲围裙。这套乍看之下相当无害的服装，实际上是纳米传讯那支臭名昭著的高调“清洁与清除”杀戮小队所穿的专用装备。它比清洁工的对应用品结实得多。背后还缝有挂环，用来固定你的“拖把”。"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
@@ -81,7 +81,7 @@
 	allowed += GLOB.security_vest_allowed
 
 /obj/item/clothing/suit/armor/elder_atmosian
-	desc = "The pinnacle of atmospherics equipment, an expensive modified atmospherics firesuit plated in one of the most luxurious and durable metals known to man. Providing full atmos coverage without the heavy materials of the firesuit to slow the user down, it also offers far greater protection to most sources of damage."
+	desc = "大气设备中的巅峰之作，一套价格高昂的改装大气防火服，表面覆着人类已知最奢华、最坚固的金属之一。它能提供完整的大气防护，又不像防火服那样用沉重材料拖慢穿戴者，同时对大多数伤害来源都有远超寻常的防护力。"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
@@ -114,8 +114,8 @@
 
 //MetroCop armor, by HL13 station.
 /obj/item/clothing/suit/armor/vest/alt/sec/metrocop
-	name = "metrocop armor"
-	desc = "Pick up that can. Uses advanced GigaSlop brand Matrixes to allow alternative variants!"
+	name = "都市警察护甲"
+	desc = "把那罐子捡起来。采用先进的 GigaSlop 牌矩阵，可实现多种替代外观！"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "civilprotection"
@@ -158,8 +158,8 @@
 // Virosec armor, sprites by axietheaxolotl
 
 /obj/item/clothing/suit/armor/vest/viro
-	name = "armor vest"
-	desc = "A plate carrier meant to protect against all forms of threats."
+	name = "护甲背心"
+	desc = "一件用于抵御各种形式威胁的防弹插板背心。"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "sec_platecarrier"
@@ -167,25 +167,25 @@
 	blood_overlay_type = "armor"
 
 /obj/item/clothing/suit/armor/vest/viro/heavy
-	name = "heavy armor vest"
-	desc = "A heavier plate carrier meant to protect against all forms of threats."
+	name = "重型护甲背心"
+	desc = "一件更厚重的防弹插板背心，用于抵御各种形式的威胁。"
 	icon_state = "sec_heavyvest"
 	inhand_icon_state = "armor"
 	blood_overlay_type = "armor"
 
 /obj/item/clothing/suit/armor/vest/viro/leatherjacket
-	name = "security leather jacket"
-	desc = "A leather jacket for security officers, with a badass red collar."
+	name = "安保皮夹克"
+	desc = "一件为安保人员准备的皮夹克，配有帅气的红色衣领。"
 	icon_state = "sec_leatherjacket"
 
 /obj/item/clothing/suit/armor/vest/viro/softshell
-	name = "Security softshell jacket"
-	desc = "A softshell weather-resistant jacket perfect for those plants with stormy weather."
+	name = "安保软壳夹克"
+	desc = "一件防风雨的软壳夹克，非常适合常有暴风雨的星球。"
 	icon_state = "sec_softshell"
 
 /obj/item/clothing/suit/armor/hos/viro
-	name = "armored greatcoat"
-	desc = "A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence."
+	name = "装甲军大衣"
+	desc = "一件用特殊合金强化过的军大衣，为气质威严的人提供额外防护与风度。"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "hos_greatcoat"
@@ -197,8 +197,8 @@
 	strip_delay = 8 SECONDS
 
 /obj/item/clothing/suit/armor/hos/viro/vest
-	name = "Head of Security's Plate Carrier"
-	desc = "A plate carrier enhanced with a special alloy for some extra protection and style for those with a commanding presence."
+	name = "安保主管防弹插板背心"
+	desc = "一件用特殊合金强化过的防弹插板背心，为气质威严的人提供额外防护与风度。"
 	icon_state = "hos_platecarrier"
 	inhand_icon_state = "armor"
 
@@ -213,22 +213,22 @@
 	wound = 10
 
 /obj/item/clothing/suit/armor/hos/viro/trenchcoat
-	name = "armored trenchcoat"
-	desc = "A trenchcoat enhanced with a special lightweight kevlar. The epitome of tactical plainclothes."
+	name = "装甲风衣"
+	desc = "一件用特殊轻质凯夫拉强化过的风衣。战术便装中的典范。"
 	icon_state = "hos_overcoat"
 	inhand_icon_state = "hostrench"
 	flags_inv = 0
 	strip_delay = 8 SECONDS
 
 /obj/item/clothing/suit/armor/hos/viro/trenchcoat/winter
-	name = "head of security's winter trenchcoat"
-	desc = "A trenchcoat enhanced with a special lightweight kevlar, padded with wool on the collar and inside. You feel strangely lonely wearing this coat."
+	name = "安保主管冬季风衣"
+	desc = "一件用特殊轻质凯夫拉强化过的风衣，衣领和内衬填有羊毛。穿上这件大衣，你会莫名感到孤独。"
 	icon_state = "hos_wintercoat"
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 
 /obj/item/clothing/suit/armor/vest/viro/warden
-	name = "warden's jacket"
-	desc = "A navy-blue armored jacket with blue shoulder designations and '/Warden/' stitched into one of the chest pockets."
+	name = "看守长夹克"
+	desc = "一件藏青色装甲夹克，肩部有蓝色标识，其中一个胸袋上绣着“/Warden/”。"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "warden_jacket_v"
@@ -241,13 +241,13 @@
 	dog_fashion = null
 
 /obj/item/clothing/suit/armor/vest/viro/warden/alt
-	name = "warden's armored jacket"
-	desc = "A red jacket with silver rank pips and body armor strapped on top."
+	name = "看守长装甲夹克"
+	desc = "一件红色夹克，缀有银色军衔星徽，外面还绑着防弹护甲。"
 	icon_state = "warden_alt"
 
 /obj/item/clothing/suit/armor/vest/viro/warden/wintercoat
-	name = "the warden's winter coat"
-	desc = "A winter coat with an armored vest resting atop it, with some padded with wool on the collar and inside."
+	name = "看守长冬季大衣"
+	desc = "一件冬季大衣，外面罩着护甲背心，衣领和内衬填有羊毛。"
 	icon_state = "warden_winterjacket"
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 
@@ -270,11 +270,11 @@
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
 
 /obj/item/clothing/suit/hooded/secjuggernaut
-	name = "security juggernaut suit"
-	desc = "The Advanced Security Suit offers nigh-perfect protection of the wearer through an advanced layering of kevlar, titanium, and ceramic plates. \
-		The construction of the suit unfortunately renders it incredibly heavy and cumbersome, effectively slowing the user to a crawl and heavily limiting their mobility options. \
-		Only through recently developed micro-anti-gravitational generators can the suit actually be worn and moved in. \
-		Comes along with a built-in helmet for EVA action."
+	name = "安保重装服"
+	desc = "先进安保服通过凯夫拉、钛合金与陶瓷插板的先进分层结构，为穿戴者提供近乎完美的防护。 \
+		遗憾的是，这套服装的构造使它无比沉重笨拙，会让穿戴者的速度慢如爬行，行动选择也大受限制。 \
+		只有借助近来研发的微型反重力发生器，才能真正穿上这套服装并移动。 \
+		还附带一顶内置头盔，可用于舱外活动。"
 	icon_state = "security_jugger"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
@@ -315,17 +315,17 @@
 
 /obj/item/clothing/suit/hooded/secjuggernaut/examine(mob/user)
 	. = ..()
-	. += span_warning("Trying to buckle to anything while wearing this is impossible, whether it be a chair, cyborg, horse, or golf cart.")
+	. += span_warning("穿着这身衣服时，想把自己系在任何东西上都是不可能的——不管是椅子、半机械人、马还是高尔夫球车。")
 
 /obj/item/clothing/suit/hooded/secjuggernaut/Initialize(mapload)
 	. = ..()
 	allowed += GLOB.security_vest_allowed
 
 /obj/item/clothing/head/hooded/secjuggernaut
-	name = "security juggernaut helmet"
-	desc = "A helmet built into the Advanced Security Suit. It offers nigh-perfect protection with the drawback of being permanently affixed to an incredibly heavy suit. \
-		It is pressure resistant, flash-protected, and comes with a built-in seclite for visiblity in dark areas.\
-		While made of the same materials and having the same overall construction, built-in servos and actuators allow it to be easily put on compared to the suit it comes with."
+	name = "安保重装头盔"
+	desc = "内置于先进安保服中的头盔。它提供近乎完美的防护，代价是永久固定在无比沉重的套装上。 \
+		它耐压、防闪光，还内置安保灯，方便在黑暗区域视物。\
+		虽然材质与整体构造相同，但内置的伺服机构与驱动器让它比配套套装容易穿戴得多。"
 	icon_state = "security_jugger0"
 	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'

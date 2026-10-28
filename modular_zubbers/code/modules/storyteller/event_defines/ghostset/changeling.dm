@@ -6,7 +6,7 @@
 */
 
 /datum/round_event_control/changeling
-	name = "Changeling Meteor"
+	name = "变形怪陨石"
 	typepath = /datum/round_event/ghost_role/changeling
 	track = EVENT_TRACK_GHOSTSET
 	tags = list(TAG_COMBAT, TAG_CREW_ANTAG)
@@ -14,11 +14,11 @@
 	max_occurrences = 3
 	min_players = 20
 	category = EVENT_CATEGORY_ENTITIES
-	description = "A meteor containing a changeling is summoned and thrown at the exterior of the station."
+	description = "召唤一颗内含变形怪的陨石，并将其抛向空间站外壁。"
 
 /datum/round_event/ghost_role/changeling
 	minimum_required = 1
-	role_name = "space changeling"
+	role_name = "太空变形怪"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/changeling/spawn_role()

@@ -1,6 +1,6 @@
 /obj/item/organ/eyes/robotic/protean
-	name = "imaging nanites"
-	desc = "Nanites designed to collect visual data from the surrounding world."
+	name = "成像纳米机器人"
+	desc = "设计用于从周围世界收集视觉数据的纳米机器人。"
 	organ_flags = ORGAN_ROBOTIC
 
 /obj/item/organ/eyes/robotic/protean/Initialize(mapload)

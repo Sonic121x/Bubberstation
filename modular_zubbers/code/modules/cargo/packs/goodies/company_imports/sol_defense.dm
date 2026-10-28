@@ -29,7 +29,7 @@
 	item_type = /obj/item/clothing/suit/armor/vest/det_suit/terra
 
 /datum/supply_pack/company_import/sol_defense/armor/slim_vest
-	name = "type I vest"
+	name = "I 型护甲背心"
 	item_type = /obj/item/clothing/suit/armor/vest
 
 /datum/supply_pack/company_import/sol_defense/armor_hardened

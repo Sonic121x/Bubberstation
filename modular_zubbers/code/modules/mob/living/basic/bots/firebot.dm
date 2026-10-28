@@ -1,8 +1,8 @@
 /mob/living/basic/bot/firebot
-	desc = "A little fire extinguishing bot. He looks rather anxious. Giving him a piece of <b>hot ice</b> would be quite an upgrade."
+	desc = "一台小小的灭火机器人。他看起来相当焦虑。给他一块<b>热冰</b>，会是个相当不错的升级。"
 
 /mob/living/basic/bot/firebot/hotice_upgrade
-	desc = "A little fire extinguishing bot. Looks like he's holding a piece of <b>hot ice</b>! His foam will bring air temperature toward 20C."
+	desc = "一台小小的灭火机器人。看起来他正拿着一块<b>热冰</b>！他的泡沫会把气温调节到 20 摄氏度附近。"
 	light_color = "#8cdeff"
 
 /mob/living/basic/bot/firebot/hotice_upgrade/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
@@ -25,8 +25,8 @@
 	if(!istype(given_item, /obj/item/stack/sheet/hot_ice))
 		return ..()
 	var/obj/item/stack/sheet/hot_ice/ice = given_item
-	balloon_alert(user, "inserted")
-	to_chat(user, span_warning("You give a piece of hot ice to the firebot. He seems rather happy! His foam will now bring air temperature toward 20C."))
+	balloon_alert(user, "已插入")
+	to_chat(user, span_warning("你把一块热冰递给灭火机器人。他看起来相当高兴！他的泡沫现在会把气温调节到 20 摄氏度附近。"))
 	var/atom/movable/to_move = ice.split_stack(1)
 	to_move.forceMove(src)
 	src.change_mob_type(/mob/living/basic/bot/firebot/hotice_upgrade, delete_old_mob = TRUE)
@@ -35,7 +35,7 @@
 // freon firefighting foam
 /// A variant of firefighting foam for firebot upgrade, atop of usual plasma removal and bringing temperature down, it will also raise the temperature up to 20C and wont leave plasma stains on floor
 /obj/effect/particle_effect/fluid/foam/firefighting_freon
-	name = "freon firefighting foam"
+	name = "氟利昂消防泡沫"
 	lifetime = 10 //doesn't last as long as normal foam
 	allow_duplicate_results = FALSE
 	slippery_foam = FALSE

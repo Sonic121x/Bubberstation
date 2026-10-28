@@ -127,7 +127,7 @@ GLOBAL_LIST_INIT(dreams, populate_dream_list())
 	else
 		fragment = replacetext(fragment, "%ADJECTIVE% ", "")
 	if(findtext(fragment, "%A% "))
-		fragment = "\a [replacetext(fragment, "%A% ", "")]"
+		fragment = chinese_dream_article(fragment)
 	. += fragment
 
 	//Verb
@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(dreams, populate_dream_list())
 	else
 		fragment = replacetext(fragment, "%ADJECTIVE% ", "")
 	if(findtext(fragment, "%A% "))
-		fragment = "\a [replacetext(fragment, "%A% ", "")]"
+		fragment = chinese_dream_article(fragment)
 	. += fragment
 
 /datum/dream/random/proc/get_dream_nouns(mob/living/carbon/dreamer)

@@ -1,7 +1,7 @@
 /datum/mod_theme/asset_protection
-	name = "Asset Protection"
-	desc = "A weaker version of the Apocryphal Modsuit, chiefly worn by Nanotrasen Asset Protection."
-	extended_desc = "A weaker version of the Apocryphal Modsuit meant for the Nanotrasen Asset Protection Division. This suit boasts higher speed and advanced actuators that make moving feel almost weightless, with advanced features for the savvy bodyguard."
+	name = "资产保护"
+	desc = "伪典 MOD 外骨骼的弱化版本，主要由纳米传讯资产保护部使用。"
+	extended_desc = "一种为纳米传讯资产保护部打造的伪典 MOD 外骨骼弱化版。这套外骨骼拥有更高的速度与先进的促动器，让移动几乎毫无重量感，并配备供老练保镖使用的先进功能。"
 	default_skin = "asset_protection"
 	armor_type = /datum/armor/mod_theme_ap
 	resistance_flags = FIRE_PROOF|ACID_PROOF
@@ -104,19 +104,19 @@
 	)
 	. = ..()
 
-#define LUSTWISH_HELMET_SEAL "slides closed"
-#define LUSTWISH_HELMET_UNSEAL "slides open"
-#define LUSTWISH_CHESTPLATE_SEAL "squeezes snugly around your body"
-#define LUSTWISH_CHESTPLATE_UNSEAL "spontaniously loosens"
-#define LUSTWISH_GAUNTLET_SEAL "clenches between each finger"
-#define LUSTWISH_GAUNTLET_UNSEAL "relaxes from your hand"
-#define LUSTWISH_BOOT_SEAL "squeezes tightly around your ankles"
-#define LUSTWISH_BOOT_UNSEAL "gives room to your feet"
+#define LUSTWISH_HELMET_SEAL "滑拢闭合"
+#define LUSTWISH_HELMET_UNSEAL "滑开"
+#define LUSTWISH_CHESTPLATE_SEAL "紧紧贴合住你的身体"
+#define LUSTWISH_CHESTPLATE_UNSEAL "自行松开"
+#define LUSTWISH_GAUNTLET_SEAL "在每根手指之间收紧"
+#define LUSTWISH_GAUNTLET_UNSEAL "从你的手上松弛下来"
+#define LUSTWISH_BOOT_SEAL "紧紧勒住你的脚踝"
+#define LUSTWISH_BOOT_UNSEAL "给你的双脚让出空间"
 
 //// Sprites done by Toriate - Commissioned by The Sharkenning
 /datum/mod_theme/lustwish
-	name = "lustwish"
-	desc = "A specialty designed lustwish themed modsuit which is based entirely off of earlier civilian modsuits."
+	name = "欲愿"
+	desc = "一款特别设计的欲愿主题 MOD 外骨骼，完全以早期民用 MOD 外骨骼为基础。"
 	default_skin = "lustwish"
 	hardlight_color = ROYAL_PURPLE
 	ui_theme = "ntos_darkmode"
@@ -169,9 +169,9 @@
 // VOSKHOD MOD, ported from Nova. By Vinylspiders
 
 /datum/mod_theme/voskhod
-	name = "refitted voskhod"
-	desc = "An upgraded set of aging VOSKHOD armor, brought up to more modern MODular standards."
-	extended_desc = "While Modular Suits are still somewhat of a rare sight within the PSC, many client nations within the CIN itself have needed to refit aging suits of VOSKHOD suits into something much more modern. This package provides said modernized alternative, with MODular suit technology baked in. Often done with a specialized fabircation system, the same effects can be done with somewhat rare aftermarket parts kits, and quite a bit of elbow grease."
+	name = "改装型 VOSKHOD"
+	desc = "一套经过升级的老旧 VOSKHOD 装甲，已提升至更现代的 MOD 模块化标准。"
+	extended_desc = "虽然模块化外骨骼在泛斯拉夫联邦境内仍较为少见，但 CIN 内部的许多成员国都需要将老旧的 VOSKHOD 套装改装成更现代的东西。此套件提供了这种现代化替代方案，并内置了 MOD 模块化外骨骼技术。这通常由专门的制造系统完成，但用一些稀有的售后零件套件再加上不少力气，也能达到同样的效果。"
 	default_skin = "voskhod"
 	armor_type = /datum/armor/mod_theme_voskhod
 	complexity_max = DEFAULT_MAX_COMPLEXITY //Five of which is occupied by the in-builts, thus it's closer to 10

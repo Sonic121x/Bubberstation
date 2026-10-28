@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/toggle_eye_shields
-	name = "Toggle Eye Shields"
-	desc = "Toggle your protective eye shields."
+	name = "切换护眼罩"
+	desc = "切换你的防护眼罩。"
 	button_icon = 'modular_zubbers/icons/actions/gas.dmi'
 	button_icon_state = "gas_eyeshield"
 	spell_requirements = null
@@ -12,7 +12,7 @@
 	if(!eyes)
 		return
 	if(!eyes.eyes_shielded)
-		to_chat(owner, span_notice("Nearly opaque lenses slide down to shield your eyes."))
+		to_chat(owner, span_notice("近乎不透明的镜片滑下来遮住你的双眼。"))
 		eyes.eyes_shielded = TRUE
 		eyes.flash_protect = FLASH_PROTECTION_WELDER_SENSITIVE
 		owner.overlay_fullscreen("eyeshield", /atom/movable/screen/fullscreen/blind)
@@ -20,7 +20,7 @@
 		human_owner.dna.update_ui_block((/datum/dna_block/identity/eye_colors))
 		human_owner.update_body()
 	else
-		to_chat(owner, span_notice("Your protective lenses retract out of the way."))
+		to_chat(owner, span_notice("你的防护镜片缩了回去。"))
 		eyes.eyes_shielded = FALSE
 		eyes.flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE
 		owner.clear_fullscreen("eyeshield")
@@ -29,8 +29,8 @@
 		human_owner.update_body()
 
 /datum/action/cooldown/spell/toggle_active_camo
-	name = "Toggle Active Camo"
-	desc = "Toggle your active camo ability, becoming more translucent."
+	name = "切换主动迷彩"
+	desc = "切换你的主动迷彩能力，使自己变得更加半透明。"
 	button_icon = 'modular_zubbers/icons/actions/gas.dmi'
 	button_icon_state = "gas-cloak-0"
 	spell_requirements = null
@@ -49,8 +49,8 @@
 		update_button_state("gas-cloak-0")
 
 /datum/action/cooldown/spell/toggle_threat_display
-	name = "Toggle Threat Display"
-	desc = "Toggle your threat display, letting your enemies know that you are ready for a fight!"
+	name = "切换威吓展示"
+	desc = "切换你的威吓展示，让敌人知道你已准备好开战！"
 	button_icon = 'modular_zubbers/icons/actions/gas.dmi'
 	button_icon_state = "gas-threat"
 	spell_requirements = null
@@ -66,16 +66,16 @@
 	var/mob/living/carbon/human/snake_owner = owner
 	var/datum/species/gas/gas_species = snake_owner.dna.species
 	if(owner.incapacitated)
-		to_chat(owner, span_warning("You can't do a threat display in your current state."))
+		to_chat(owner, span_warning("以你当前的状态，无法进行威吓展示。"))
 		return
 	if(gas_species.displaying_threat == FALSE)
 		gas_species.threat_overlay = image('modular_skyrat/modules/bodyparts/icons/serpentid_parts_greyscale.dmi', "threat", MOB_LAYER)
-		var/message = tgui_alert(owner, "Would you like to show a scary message?", "Be Scary", list("Yes", "No", "Cancel"))
-		if(message == "Cancel")
+		var/message = tgui_alert(owner, "你想展示一条吓人的信息吗？", "吓吓人", list("是", "否", "取消"))
+		if(message == "取消")
 			return
-		else if(message == "Yes")
-			owner.visible_message(span_warning("\The [owner]'s skin shifts to a deep red colour with dark chevrons running down in an almost hypnotic \
-				pattern. Standing tall, [owner.p_they()] strikes, sharp spikes aimed at those threatening [owner.p_them()], claws whooshing through the air past them."))
+		else if(message == "是")
+			owner.visible_message(span_warning("\The [owner] 的皮肤转为深红色，深色的人字形纹路如催眠般向下延伸。 \
+				[owner] 挺直身子发起攻击，尖锐的棘刺瞄准那些威胁自己的家伙，利爪破空呼啸而过。"))
 		playsound(owner.loc, 'modular_skyrat/modules/emotes/sound/emotes/angryserpentid.ogg', 60, 0)
 		gas_species.displaying_threat = TRUE
 		snake_owner.add_overlay(gas_species.threat_overlay)

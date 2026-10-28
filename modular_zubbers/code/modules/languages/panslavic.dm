@@ -1,6 +1,6 @@
 /datum/language/spinwarder
 	name = "Interslavic"
-	desc = "An elaborate mix of various Slavic languages with similar properties that has long since become the official language of the NRI, with a steady amount of relevance in TerraGov colonies with Slavic descendants and various types of trading posts and spaceports across Human space - it even managed to find a niche in communication with other species."
+	desc = "一种精心融合了多种性质相近的斯拉夫语言而成的混合语，早已成为新俄罗斯帝国的官方语言，在有斯拉夫后裔的地球政府殖民地以及人类疆域内各类贸易站与太空港中始终占有一席之地——它甚至在其他物种的交流中也找到了用武之地。"
 	key = "P"
 	flags = LANGUAGE_TONGUELESS_SPEECH
 	syllables = list(

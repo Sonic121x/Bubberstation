@@ -15,7 +15,7 @@
 	lawupdate = FALSE
 	scrambledcodes = TRUE // These are not station borgs.
 	ionpulse = TRUE
-	var/playstyle_string = "<span class='big bold'>You are a Central Command cyborg!</span><br>"
+	var/playstyle_string = "<span class='big bold'>你是一台中央指挥部半机械人！</span><br>"
 	set_model = /obj/item/robot_model/centcom
 	cell = /obj/item/stock_parts/power_store/cell/bluespace
 

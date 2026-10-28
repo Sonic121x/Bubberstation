@@ -1,6 +1,6 @@
 /obj/item/organ/heart/lycan
-	name = "lupine heart"
-	desc = "A large heart that beats powerfully. The veins on it are far larger than normal."
+	name = "狼人心脏"
+	desc = "一颗强劲搏动的大心脏。上面的血管远比正常情况粗大。"
 
 /obj/item/organ/heart/lycan/on_mob_insert(mob/living/carbon/organ_owner, special)
 	. = ..()

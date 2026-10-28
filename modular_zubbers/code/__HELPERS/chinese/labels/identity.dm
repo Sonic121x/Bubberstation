@@ -1,4 +1,6 @@
 /proc/chinese_job_display(value, return_mapping = FALSE)
+	if(!return_mapping && istext(value) && findtextEx(value, "已下班 ") == 1)
+		return "已下班 [chinese_job_display(copytext_char(value, 5))]"
 	var/static/list/display_names
 	if(isnull(display_names))
 		display_names = list(
@@ -25,6 +27,7 @@
 	)
 	display_names |= chinese_skyrat_items_job_display(null, TRUE)
 	display_names |= chinese_batch_ten_job_display(null, TRUE)
+	display_names |= chinese_zubbers_modules_job_display(null, TRUE)
 	display_names["Asset Protection"] = "资产保护"
 	display_names["Icemoon Dweller"] = "冰月居民"
 	if(return_mapping)

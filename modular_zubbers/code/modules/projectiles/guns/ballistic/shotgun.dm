@@ -45,10 +45,10 @@
 	compact_bolt_animating = FALSE
 	update_appearance(UPDATE_OVERLAYS)
 /obj/item/gun/ballistic/shotgun/bulldog/beanbag
-	name = "\improper Beandog Shotgun"
-	desc = "A 2-round burst fire, mag-fed shotgun for target suppression in narrow corridors, \
-		nicknamed 'Beandog' by internal security. Compatible only with specialized 8-round beanbag slug drum magazines. \
-		Can have a secondary magazine attached to quickly reload."
+	name = "\improper “豆犬”霰弹枪"
+	desc = "一种两发点射、弹匣供弹的霰弹枪，用于在狭窄走廊中压制目标，\
+		被内部安保人员戏称为“豆犬”。仅兼容特制的 8 发豆袋弹丸弹鼓。\
+		可外挂一个副弹匣，以实现快速装填。"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/beandog
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "beandog"

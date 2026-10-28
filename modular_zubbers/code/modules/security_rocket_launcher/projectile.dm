@@ -1,7 +1,7 @@
 //The projectile itself
 /obj/projectile/bullet/security_missile
-	name = "active radar HE rocket"
-	desc = "If you can read this, you're too close."
+	name = "主动雷达高爆火箭"
+	desc = "如果你能读到这行字，说明你离得太近了。"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/sec_missile.dmi'
 	icon_state = "rocket_launched"
 
@@ -68,7 +68,7 @@
 
 			if(isliving(firer) && prob(5))
 				var/mob/living/firer_as_living = firer
-				firer_as_living.say("A DUD!!", forced = "rocket dud")
+				firer_as_living.say("哑弹！！", forced = "rocket dud")
 
 		playsound(target, 'sound/items/weapons/smash.ogg', 50, TRUE, -1)
 

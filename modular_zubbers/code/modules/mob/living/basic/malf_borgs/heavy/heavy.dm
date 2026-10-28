@@ -1,6 +1,6 @@
 /mob/living/basic/malf_borg/heavy
-	name = "Malfunctioning Heavy Cyborg"
-	desc = "A large cyborg unit, hacked or malfunctioning. It—oh my god is that a chainsaw?!"
+	name = "故障重型半机械人"
+	desc = "一台大型半机械人单位，遭到入侵或发生故障。它——我的天，那是电锯吗？！"
 	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
 
 	icon_state = "evilbotheavy"
@@ -19,8 +19,8 @@
 	exposed_wound_bonus = 15
 	sharpness = SHARP_EDGED
 
-	attack_verb_continuous = "saws"
-	attack_verb_simple = "saw"
+	attack_verb_continuous = "用电锯锯切"
+	attack_verb_simple = "用电锯锯"
 	attack_sound = 'sound/items/weapons/chainsawhit.ogg'
 
 /mob/living/basic/malf_borg/heavy/Initialize(mapload)

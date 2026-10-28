@@ -23,16 +23,16 @@
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_BRAIN,
-			SPECIES_PERK_NAME = "Cortical Augmentation",
-			SPECIES_PERK_DESC = "[plural_form] have an augmented brain, making them vulnerable to EMPs. On the bright side, their brains can be repaired with a multitool.",
+			SPECIES_PERK_NAME = "皮层强化",
+			SPECIES_PERK_DESC = "[plural_form]的大脑经过强化，因此易受电磁脉冲影响。好的一面是，他们的大脑可以用多功能工具修复。",
 		))
 
 	if ((brain_flags & ORGAN_ROBOTIC) && !(brain_flags & ORGAN_ORGANIC))
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = FA_ICON_BRAIN,
-			SPECIES_PERK_NAME = "Superior Cortical Augmentation",
-			SPECIES_PERK_DESC = "[plural_form] have an augmented brain: Their brains can be repaired with a multitool, and aren't at risk from biological processes. However, they are vulnerable to EMPs.",
+			SPECIES_PERK_NAME = "高级皮层强化",
+			SPECIES_PERK_DESC = "[plural_form]的大脑经过强化：可以用多功能工具修复，且不受生物过程影响。但他们易受电磁脉冲影响。",
 		))
 
 	return to_add
@@ -71,4 +71,4 @@
 	SHOULD_CALL_PARENT(FALSE)
 
 	//stack_trace("Species [name] ([type]) did not have a description set, and is a selectable roundstart race! Override get_species_description.")
-	return list("No species description set, file a bug report!",)
+	return list("未设置种族描述，请提交错误报告！",)

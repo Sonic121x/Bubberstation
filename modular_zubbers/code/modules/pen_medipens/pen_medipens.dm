@@ -1,7 +1,7 @@
 // why it's a subtype of deforest medipens? so I don't have to rewrite injection code...
 /obj/item/reagent_containers/hypospray/medipen/deforest/printable
-	name = "pen injector"
-	desc = "The pen injector is an open-source copy of the medipen system - It's less compact design eases mass production, and ensures safety even with untrained personnel by retracting the needle after use, while requiring a more deliberate pen-like grip."
+	name = "笔式注射器"
+	desc = "笔式注射器是医疗笔系统的开源仿制品——它不那么紧凑的设计便于批量生产，并在使用后收回针头，即使未经训练的人员也能保证安全，但需要像握笔一样更刻意地握持。"
 	icon = 'modular_zubbers/icons/obj/medical/pen_medipens/pen_medipens.dmi'
 	icon_state = "default"
 	base_icon_state = "default"

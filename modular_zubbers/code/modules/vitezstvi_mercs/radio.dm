@@ -1,11 +1,11 @@
 /obj/item/encryptionkey/vitezstvi
-	name = "Vítězství Arms radio encryption key"
+	name = "胜利军械无线电加密密钥"
 	channels = list(RADIO_CHANNEL_FACTION = 1)
 	special_channels = RADIO_SPECIAL_CENTCOM
 
 /obj/item/radio/headset/vitezstvi
-	name = "contractor bowman headset"
-	desc = "A Vítězství Arms contractor bowman headset credited with being the only reason anyone who works for this company can still hear anything at all."
+	name = "承包商鲍曼耳机"
+	desc = "一副胜利军械承包商鲍曼耳机，据说这是全公司上下至今还能听见任何声音的唯一原因。"
 	icon = 'modular_zubbers/icons/obj/devices/guard_bowman.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/guard_bowman_worn.dmi'
 	icon_state = "guard_bowman"

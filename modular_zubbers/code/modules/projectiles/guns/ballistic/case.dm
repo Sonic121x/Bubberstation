@@ -1,20 +1,20 @@
 /obj/item/storage/toolbox/guncase/skyrat/pistol/ntusp
-	name = "\improper NT22-HCS 'Enforcer' case"
+	name = "\improper NT22-HCS“执法者”箱"
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/ntusp/PopulateContents()
 	new /obj/item/gun/ballistic/automatic/pistol/ntusp(src)
 	new /obj/item/ammo_box/magazine/recharge/ntusp(src)
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5
-	name = "\improper NT22-HCS-MP 'Lancer' case"
+	name = "\improper NT22-HCS-MP“枪骑兵”箱"
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5/PopulateContents()
 	new /obj/item/gun/ballistic/automatic/ntmp5(src)
 	new /obj/item/ammo_box/magazine/recharge/ntmp5(src)
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5/blueshield
-	name = "\improper DAP NT22-HCS-MP 'Lancer' case"
-	desc = "A thick gun case with foam inserts laid out to fit a weapon, magazines, and gear securely. On the top is a silver plaque, emblazoned with the symbol of a shield with D.A.P. written on it in bold."
+	name = "\improper DAP NT22-HCS-MP“枪骑兵”箱"
+	desc = "一只厚实的枪箱，内部衬有泡沫凹槽，可稳妥地放置武器、弹匣和装备。箱顶有一块银色铭牌，上面刻着一个盾牌标志，并用粗体字写着 D.A.P.。"
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5/blueshield/PopulateContents()
 	new /obj/item/gun/ballistic/automatic/ntmp5(src)
@@ -24,16 +24,16 @@
 	new /obj/item/paper/fluff/ntmp5_message(src)
 
 /obj/item/paper/fluff/ntmp5_message
-	name = "message from a friend"
-	default_raw_text = {"Agent,
+	name = "来自朋友的消息"
+	default_raw_text = {"特工：
 <br>
-This station is worse than what they put in the reports. You'll figure it quickly enough, if you haven't already.
-Well, someone in the DAP thought it'd best you went in properly equipped. Consider it a courtesy.
-This is a Lancer, a NT22-HCS-MP. .22HL, battery-fed. Two of the magazines shoot less-than-lethal projectiles. The red one, well, let's just say they're a fair bit more lethal.
-You'll also find a suppressor in there. I'm sure it speaks for itself.
-Stay sharp.
+这座空间站比报告里写的还要糟糕。如果你还没察觉，很快也会明白的。
+总之，DAP 里有人觉得你最好带上合适的装备再去。就当这是一份好意吧。
+这是一把“枪骑兵”，NT22-HCS-MP。.22HL，电池供弹。其中两个弹匣发射低致命弹丸。至于红色的那个，这么说吧，它们的致命性要高得多。
+箱子里还附赠一个消音器。我想它的用处不言自明。
+保持警惕。
 <br>
--*A Friend in Asset Protection*"}
+-*资产保护部的一位朋友*"}
 
 /// Odds that the Aniolek's second ammo box is armour piercing rather than plain lethal
 #define ANIOLEK_ARMOR_PIERCING_CHANCE 15
@@ -44,24 +44,24 @@ Stay sharp.
 
 /// A line apiece for the radial menu, so the quartermaster knows what they are choosing between
 GLOBAL_LIST_INIT(szot_case_blurbs, list(
-	/obj/item/gun/ballistic/automatic/lanca/jastrzab = "A prototype Lanca fitted with something called \
-		\"Smart Drift Control.\" You'll still miss your ex-wife, BUT YOUR AIM IS GETTING BETTER!",
-	/obj/item/gun/ballistic/revolver/aniolek = "A monstrous five-round officer's revolver chambered in \
-		.310. Failure is not an option; nor, apparently, is subtlety. WARNING: YOU MUST WEIGH AT LEAST \
-		20KG TO FIRE THIS WEAPON SAFELY",
-	/obj/item/melee/energy/sword/opor = "A near-mint-condition CIN energy sword from the days before \
-		anyone had figured out how to make one run indefinitely. Powered by a replaceable cell, and \
-		every bit as defiant as the people it was made for.",
-	/obj/item/minespawner/straznik = "Four reusable energy mines expertly engineered to deliver \
-		\"electrothermal discouragement\" to unauthorized personnel... or anyone else you forgot to \
-		warn about them.",
+	/obj/item/gun/ballistic/automatic/lanca/jastrzab = "一把装有名为 \
+		“智能漂移控制”功能的“骑枪”原型枪。你依然会为前妻黯然神伤，但你的准头正在变好！",
+	/obj/item/gun/ballistic/revolver/aniolek = "一把发射 \
+		.310 弹的怪物级五发警官左轮。失败不是选项；显然，低调也不是。警告：你必须至少重 \
+		20 公斤才能安全地使用此武器",
+	/obj/item/melee/energy/sword/opor = "一把近乎全新品相的 CIN 能量剑，来自还没人弄明白如何让它无限运转的年代。由可更换电池供电，\
+		与它为之打造的那些人一样桀骜不驯，\
+		毫不妥协。",
+	/obj/item/minespawner/straznik = "四枚可重复使用的能量地雷，经过精心设计，可向未经授权的人员送去 \
+		“电热劝退”……或者送给任何你忘了 \
+		提醒的人。",
 ))
 
 // The QM's mystery war trophy. Swipe vault access, pick one Szot gun, live with your choice.
 
 /obj/item/storage/toolbox/guncase/skyrat/szot_warstory
-	name = "\improper Szot Dynamica gun case"
-	desc = "A battered weapon case the quartermaster insists is from \"the war\", while refusing to elaborate on exactly which war. Inexplicably, security does not bother them about possession of this weapon."
+	name = "\improper 绍特动力公司枪箱"
+	desc = "一只破旧的武器箱，军需官坚称它来自“那场战争”，却拒绝说明究竟是哪场战争。令人费解的是，安保部门并不追究他们持有这件武器。"
 	icon = 'modular_zubbers/icons/obj/szot_case.dmi'
 	icon_state = "case_szot"
 	req_access = list(ACCESS_VAULT)
@@ -112,13 +112,13 @@ GLOBAL_LIST_INIT(szot_case_blurbs, list(
 		/obj/item/stock_parts/power_store/cell,
 	))
 	// set_holdable rebuilds this from initial(name), and the abstract ammo box's name is a placeholder
-	atom_storage.can_hold_description = "Szot Dynamica weapons, their ammunition, and one very tired beret"
+	atom_storage.can_hold_description = "绍特动力公司的武器、它们的弹药，以及一顶饱经风霜的贝雷帽"
 	register_context()
 
 /obj/item/storage/toolbox/guncase/skyrat/szot_warstory/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(isnull(held_item) || lock_broken || isnull(held_item.GetID()))
 		return NONE
-	context[SCREENTIP_CONTEXT_LMB] = case_locked ? "Unlock with ID" : "Lock with ID"
+	context[SCREENTIP_CONTEXT_LMB] = case_locked ? "用证件解锁" : "用证件上锁"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /// The case never actually loses integrity. It keeps its own tally of the beating instead, reports
@@ -137,19 +137,19 @@ GLOBAL_LIST_INIT(szot_case_blurbs, list(
 /obj/item/storage/toolbox/guncase/skyrat/szot_warstory/examine(mob/user)
 	. = ..()
 	if(lock_broken)
-		. += span_notice("The lock appears to be broken.")
+		. += span_notice("锁似乎已经坏了。")
 	else if(!case_locked && !gun_chosen)
-		. += span_notice("The time to raise arms has come again... What kind of gun did you squirrel away in this thing anyway?")
+		. += span_notice("再次举起武器的时刻到了……你到底在这东西里藏了把什么枪？")
 	var/wear = (scuffing / max_integrity) * 100
 	switch(wear)
 		if(1 to 25)
-			. += "It looks a little scuffed."
+			. += "它看起来有点磨损。"
 		if(25 to 60)
-			. += "It looks slightly damaged."
+			. += "它看起来略有损坏。"
 		if(60 to 90)
-			. += "It appears heavily damaged."
+			. += "它看起来损坏严重。"
 		if(90 to INFINITY)
-			. += span_warning("It's falling apart!")
+			. += span_warning("它快散架了！")
 
 /// Forces the lock and leaves the case intact
 /obj/item/storage/toolbox/guncase/skyrat/szot_warstory/proc/break_lock()
@@ -177,34 +177,34 @@ GLOBAL_LIST_INIT(szot_case_blurbs, list(
 	if(isnull(id_card))
 		return NONE
 	if(!check_access(id_card))
-		balloon_alert(user, "access denied!")
+		balloon_alert(user, "拒绝访问！")
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 		return ITEM_INTERACT_BLOCKING
 	if(!case_locked && opened)
-		balloon_alert(user, "close the lid first!")
+		balloon_alert(user, "先合上盖子！")
 		return ITEM_INTERACT_BLOCKING
 	if(lock_broken)
-		balloon_alert(user, "lock is broken!")
+		balloon_alert(user, "锁已损坏！")
 		return ITEM_INTERACT_BLOCKING
 	case_locked = !case_locked
 	// the storage itself only opens up once something has actually been put in it
 	atom_storage.set_locked(case_locked || !gun_chosen ? STORAGE_FULLY_LOCKED : STORAGE_NOT_LOCKED)
 	if(case_locked)
 		atom_storage.hide_contents(user)
-	balloon_alert(user, case_locked ? "case locked" : "case unlocked")
+	balloon_alert(user, case_locked ? "箱子已上锁" : "箱子已解锁")
 	playsound(src, 'sound/machines/click.ogg', 40, TRUE)
 	update_icon()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/storage/toolbox/guncase/skyrat/szot_warstory/attack_hand_secondary(mob/user, list/modifiers)
 	if(!gun_chosen)
-		balloon_alert(user, "it won't budge!")
+		balloon_alert(user, "它纹丝不动！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	return ..()
 
 /obj/item/storage/toolbox/guncase/skyrat/szot_warstory/attack_self(mob/user)
 	if(case_locked)
-		balloon_alert(user, "it's locked!")
+		balloon_alert(user, "它锁着呢！")
 		return
 	if(!gun_chosen)
 		choose_weapon(user)
@@ -213,10 +213,10 @@ GLOBAL_LIST_INIT(szot_case_blurbs, list(
 
 /obj/item/storage/toolbox/guncase/skyrat/szot_warstory/click_alt(mob/user)
 	if(case_locked)
-		balloon_alert(user, "it's locked!")
+		balloon_alert(user, "它锁着呢！")
 		return CLICK_ACTION_BLOCKING
 	if(!gun_chosen)
-		balloon_alert(user, "pick a weapon first!")
+		balloon_alert(user, "先选一件武器！")
 		return CLICK_ACTION_BLOCKING
 	return ..()
 
@@ -227,7 +227,7 @@ GLOBAL_LIST_INIT(szot_case_blurbs, list(
 	for(var/obj/item/gun_path as anything in weapon_choices)
 		var/gun_name = initial(gun_path.name)
 		if(ispath(gun_path, /obj/item/minespawner/straznik))
-			gun_name = "Strażnik Energy Mine Pack"
+			gun_name = "守卫者能量地雷包"
 		var/datum/radial_menu_choice/option = new
 		option.image = image(icon = initial(gun_path.icon), icon_state = initial(gun_path.icon_state))
 		option.info = span_boldnotice(GLOB.szot_case_blurbs[gun_path])
@@ -246,7 +246,7 @@ GLOBAL_LIST_INIT(szot_case_blurbs, list(
 	new /obj/item/clothing/head/beret/szot_surplus(src)
 	// tallied so maintainers can see which option actually gets picked round to round
 	SSblackbox.record_feedback("tally", "szot_case_choice", 1, "[choice]")
-	user.log_message("chose [choice] from [src]", LOG_GAME)
+	user.log_message("从[src]中选择了[choice]", LOG_GAME)
 
 	var/obj/item/picked_gun = name_to_path[choice]
 	new picked_gun(src)
@@ -264,7 +264,7 @@ GLOBAL_LIST_INIT(szot_case_blurbs, list(
 	else
 		unpack_shells()
 
-	balloon_alert(user, "case unpacked")
+	balloon_alert(user, "箱子已拆开")
 	atom_storage.show_contents(user)
 
 /// A mine on its own is no use, so the case hands over a working set of four
@@ -309,9 +309,9 @@ GLOBAL_LIST_INIT(szot_case_blurbs, list(
 // Donk Co's contribution to the 12 gauge arms race, boxed for your convenience
 
 /obj/item/ammo_box/advanced/s12gauge/donk
-	name = "\improper Donk Spike ammo box"
-	desc = "A box of 7 'Donk Spike' shells. Each shell holds a fistful of plastic flechettes nobody else wanted. Looks like a donk-pocket! \
-		Eat and/or microwave at your own risk. Donk Co assumes no liability for damaged teeth or bodily tissue."
+	name = "\improper 咚克尖刺弹药盒"
+	desc = "一盒 7 发“咚克尖刺”霰弹。每发都装着一把别人不要的塑料飞镖弹。看起来就像个咚克口袋饼！ \
+		食用和/或微波加热风险自负。咚克公司对牙齿或身体组织的损伤不承担任何责任。"
 	icon = 'modular_zubbers/icons/obj/donk_shotbox.dmi'
 	icon_state = "donk"
 	ammo_type = /obj/item/ammo_casing/shotgun/flechette/donk

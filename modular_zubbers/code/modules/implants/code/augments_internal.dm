@@ -1,8 +1,8 @@
 //BRAIN IMPLANTS
 
 /obj/item/organ/cyberimp/brain/wound_scanner
-	name = "internal wound analyzer chip"
-	desc = "A simple implanted health monitoring chip to scan for wounds and give treatment instructions, relayed to the brain."
+	name = "内置伤口分析芯片"
+	desc = "一枚简单的植入式健康监测芯片，可扫描伤口并给出治疗指示，再把结果传回大脑。"
 	slot = ORGAN_SLOT_BRAIN_AID
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "cpu_super"

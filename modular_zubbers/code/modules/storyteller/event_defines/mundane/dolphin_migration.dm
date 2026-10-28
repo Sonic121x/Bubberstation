@@ -3,13 +3,13 @@
 /// Dolphins and Manatees however don't path to station, so they will just float harmlessly
 /// in the surrounding space
 /datum/round_event_control/dolphin_migration
-	name = "Dolphin Migration"
+	name = "海豚迁徙"
 	typepath = /datum/round_event/dolphin_migration
 	min_players = 0 // Neutral mobs, no destruction, just spawn whenever
 	earliest_start = 10 MINUTES
 	max_occurrences = 6
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Summons a school of harmless space dolphins around the station."
+	description = "在空间站周围召唤一群无害的太空海豚。"
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 3
 
@@ -28,7 +28,7 @@
 	var/fluff_signal = /datum/round_event/carp_migration::fluff_signal // Steal directly from the carp event
 
 /datum/round_event/dolphin_migration/announce(fake)
-	priority_announce("[fluff_signal] have been detected near [station_name()], please stand-by.", "Lifesign Alert")
+	priority_announce("在 [station_name()] 附近检测到[fluff_signal]，请待命。", "生命信号警报")
 
 /datum/round_event/dolphin_migration/start()
 	for(var/obj/effect/landmark/carpspawn/spawn_point in GLOB.landmarks_list)

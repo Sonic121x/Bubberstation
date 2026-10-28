@@ -1,6 +1,6 @@
 /obj/item/ammo_box/magazine/security
-	name = "pistol magazine (9mm Murphy)"
-	desc = "A 9mm handgun magazine, suitable for the Nanotrasen Service Pistol. It comes with a more robust spring than the average magazine and weight to boot."
+	name = "手枪弹匣（9mm 墨菲）"
+	desc = "9mm 手枪弹匣，适用于纳米传讯制式手枪。它配备了比普通弹匣更坚固的弹簧，还额外增加了配重。"
 	icon = 'modular_skyrat/modules/aesthetics/guns/icons/magazine.dmi'
 	icon_state = "9x19p"
 	base_icon_state = "9x19p"
@@ -14,8 +14,8 @@
 	var/was_ejected = 0
 
 /obj/item/ammo_box/magazine/security/rocket
-	name = "pistol magazine (9mm Murphy Rocket Eject)"
-	desc = parent_type::desc + "With a small charge inside that sparks on ejection, this one has less room for ammo and a lethal velocity to it's ejections."
+	name = "手枪弹匣（9mm 墨菲 火箭弹出）"
+	desc = parent_type::desc + "内部装有小型装药，弹出时会迸出火花；这种弹匣装弹量更少，但弹出时的速度足以致命。"
 	ammo_type = /obj/item/ammo_casing/security
 	max_ammo = 10
 	base_icon_state = "9x19pI"
@@ -27,7 +27,7 @@
 		return
 	if(was_ejected)
 		playsound(get_turf(src.loc), 'sound/effects/explosion/explosion1.ogg', 40, 1)
-		visible_message(span_warning("[src] crumbles into scrap from the force of the impact"))
+		visible_message(span_warning("[src]在冲击力下碎裂成废铁"))
 		if(isliving(hit_atom))
 			var/mob/living/hit_mob = hit_atom
 			hit_mob.Knockdown(2 SECONDS)
@@ -35,8 +35,8 @@
 		qdel(src)
 
 /obj/item/ammo_box/magazine/recharge/ntusp
-	name = "small disabling power pack"
-	desc = "A small, rechargeable power pack for the NT22 HCS 'Enforcer'. Synthesizes up to twelve .22HL bullets that tire targets."
+	name = "小型失能能量包"
+	desc = "NT22-HCS“执法者”用的小型可充电能量包。最多可合成十二发能让目标疲惫的 .22HL 弹药。"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ammo.dmi'
 	base_icon_state = "powerpack_small"
 	icon_state = "powerpack_small-12"
@@ -45,8 +45,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/ammo_box/magazine/recharge/ntusp/laser
-	name = "small lethal power pack"
-	desc = "A small, rechargeable power pack for the NT22 HCS 'Enforcer' that has been modified. Synthesizes up to eight .22LS bullets that fire lasers."
+	name = "小型致命能量包"
+	desc = "经过改装、供 NT22-HCS“执法者”使用的小型可充电能量包。最多可合成八发激光 .22LS 弹药。"
 	ammo_type = /obj/item/ammo_casing/caseless/c22ls
 	base_icon_state = "powerpack_small-l"
 	icon_state = "powerpack_small-l-8"
@@ -70,8 +70,8 @@
 		update_icon()
 
 /obj/item/ammo_box/speedloader/security
-	name = "speed loader (9mm Murphy)"
-	desc = "Designed to quickly reload five-chambered 9mm revolvers."
+	name = "快速装弹器（9mm 墨菲）"
+	desc = "用于快速为五发装 9mm 左轮手枪装弹。"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ammo.dmi'
 	icon_state = "9mm"
 	base_icon_state = "9mm"
@@ -104,7 +104,7 @@
 	)
 
 /obj/item/ammo_box/speedloader/c38/c32
-	name = "speed loader (.32)"
-	desc = "Designed to quickly reload six-chamber .32 revolvers."
+	name = "快速装弹器（.32）"
+	desc = "用于快速为六发装 .32 左轮手枪装弹。"
 	ammo_type = /obj/item/ammo_casing/c38/c32
 	caliber = CALIBER_32

@@ -3,13 +3,13 @@
 //Infiltrator mod minus the Psi Emitter
 
 /datum/mod_theme/infiltrator/persistence
-	extended_desc = "Several questions have been raised over the years in regards to the clandestine Infiltrator modular suit. \
-		Why is the suit blood red despite being a sneaking suit? Why did a movie company of all things develop a stealth suit? \
-		The simplest answer is that Roseus Galactic hire more than a few eccentric individuals who know more about \
-		visual aesthetics and prop design than they do functional operative camouflage. But the true reason goes deeper. \
-		The visual appearance of the suit exemplifies brazen displays of power, not true stealth. However, the suit's inbuilt stealth mechanisms\
-		prevent anyone from fully recognizing the occupant, only the suit, creating perfect anonymity. \
-		This one seems to lack the Psi Emitter usually seen in this type of modsuit."
+	extended_desc = "多年来，关于这套隐秘的渗透者模块化套装，人们提出过不少疑问。 \
+		为什么明明是潜行套装，却是血红色的？为什么偏偏是一家电影公司研发了隐形套装？ \
+		最简单的答案是，瑰红银河公司雇了不少古怪的家伙，他们对 \
+		视觉美学和道具设计的了解，远多于对实用特工伪装的了解。但真正的原因还要更深。 \
+		这套套装的外观彰显的是赤裸裸的力量炫耀，而非真正的潜行。然而，套装内置的潜行机制 \
+		能阻止任何人完全认清穿着者，只能看到套装，从而制造出完美的匿名性。 \
+		这一套似乎缺少这类模块化套装通常配备的灵能发射器。"
 
 	inbuilt_modules = list(/obj/item/mod/module/infiltrator, /obj/item/mod/module/storage/belt)
 	allowed_suit_storage = list(
@@ -48,17 +48,17 @@
 	)
 
 /datum/mod_theme/daimyo
-	name = "daimyo"
-	desc = "A bleeding-edge armored suit designed by Cybersun Industries in tandem with Nakamura Engineering."
-	extended_desc = "A strikingly unique looking up-armored MODsuit which calls back to Cybersun's long lineage, \
-		the Daimyo MODsuit was designed in tandem with Nakamura Engineering's top divisions. It utilizes advanced technology\
-		provided to them by a secretive Cybersun West subsidiary known only as the Invictia Research Division. \
-		Created as a response to the Apocryphal MODsuit, the Daimyo MODsuit provides less overall protection \
-		to lean on a more agressive approach to confrontations. Only seen worn by Cybersun Executives and \
-		high ranking employees, this MODsuit symbolizes Cybersun excellence and power. This one has been modified \
-		slightly to better protect the wearer from the harshness of Lavaland, where it's deployed. \
-		A tag on the core reads 'This is the most expensive piece of equipment you'll ever handle in your life, \
-		do NOT lose it.' -Ruggero"
+	name = "大名"
+	desc = "由赛博太阳工业与中村工程公司联手设计的顶尖装甲套装。"
+	extended_desc = "这套外观别具一格的加强装甲 MOD 套装承袭了赛博太阳的悠久传承， \
+		大名 MOD 套装由中村工程公司最顶尖的部门联手设计。它采用的先进技术 \
+		由一家行事隐秘、仅以“因维克提亚研究部”为名的赛博太阳西部子公司提供。 \
+		作为对伪典 MOD 套装的回应，大名 MOD 套装的整体防护较弱， \
+		以便在对峙中采取更加激进的打法。只有赛博太阳的高管和 \
+		高层员工才会穿戴，这套 MOD 套装象征着赛博太阳的卓越与力量。这一套经过了 \
+		轻微改装，以便更好地保护穿戴者免受其所部署的熔岩地带的严酷环境。 \
+		核心上挂着一枚标签，写着：“这是你一辈子接触过的最昂贵的装备， \
+		绝对不要弄丢。”——鲁杰罗"
 	default_skin = "daimyo"
 	hardlight_color = CONTRACTOR_RED
 	armor_type = /datum/armor/mod_theme_daimyo

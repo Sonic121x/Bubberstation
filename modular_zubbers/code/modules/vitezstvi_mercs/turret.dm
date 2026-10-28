@@ -8,8 +8,8 @@
 #define VITEZSTVI_TURRET_ID "vitezstvi_sentry"
 
 /obj/machinery/porta_turret/vitezstvi
-	name = "\improper Vítězství Arms sentry"
-	desc = "A mind-boggling Vítězství Arms product you've never seen on the market. No doubt cooked up as part of a half-baked, vodka-soaked scheme. An ammo box on the side indicates it's loaded with .60 Strela, the same anti-material round the Wyłom chambers; it will probably atomize anyone it deems insufficiently Tsarist, though that part is merely implied."
+	name = "\improper 胜利军械哨戒炮"
+	desc = "一件令人费解的胜利军械产品，你在市场上从没见过。八成是某个泡在伏特加里的半吊子计划的产物。侧面的弹药箱表明它装填的是 .60 利箭，与破阵所用的同款反器材弹药；它大概率会把任何被判定为“沙皇成色不足”的人彻底气化，不过这一点只是暗示。"
 	installation = null
 	uses_stored = FALSE // we hardcode projectiles, so process() must not wait on a stored_gun
 	max_integrity = 260
@@ -56,8 +56,8 @@
 	return 0
 
 /obj/machinery/turretid/vitezstvi
-	name = "sentry control"
-	desc = "Used to control the Vítězství Arms shuttle's automated defenses. The labelling is confident about which way they point."
+	name = "哨戒炮控制台"
+	desc = "用于控制胜利军械穿梭机的自动防御系统。标签对炮口朝向信心十足。"
 	system_id = VITEZSTVI_TURRET_ID
 	req_access = list()
 	req_one_access = list(ACCESS_MERC, ACCESS_COMMAND)

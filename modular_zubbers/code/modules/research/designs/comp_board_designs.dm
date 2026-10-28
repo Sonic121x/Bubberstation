@@ -1,6 +1,6 @@
 /datum/design/board/minesweeper
-	name = "Minesweeper Arcade Machine Board"
-	desc = "Allows for the construction of circuit boards used to build a new arcade machine."
+	name = "扫雷街机电路板"
+	desc = "可用于建造新扫雷街机的电路板。"
 	id = "minesweeper"
 	build_path = /obj/item/circuitboard/computer/arcade/minesweeper
 	category = list(
@@ -9,8 +9,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/board/mechpad_console
-	name = "Mecha Orbital Pad Console Board"
-	desc = "The circuit board for the console of the mecha orbital pad."
+	name = "轨道机甲平台控制台电路板"
+	desc = "轨道机甲平台控制台的电路板。"
 	id = "mechlauncher_console"
 	build_path = /obj/item/circuitboard/computer/mechpad
 	category = list(

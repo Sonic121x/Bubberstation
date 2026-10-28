@@ -1,2 +1,2 @@
-ADMIN_VERB(storyteller_panel, R_ADMIN, "Storyteller Panel", "Control panel for the Storyteller.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(storyteller_panel, R_ADMIN, "故事讲述者面板", "故事讲述者的控制面板。", ADMIN_CATEGORY_GAME)
 	SSgamemode.ui_interact(usr)

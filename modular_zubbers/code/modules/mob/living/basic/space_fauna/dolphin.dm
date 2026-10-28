@@ -2,8 +2,8 @@
 
 // Space dolphins and manatees woo
 /mob/living/basic/dolphin
-	name = "space dolphin"
-	desc = "So long, and thanks for all the fish."
+	name = "太空海豚"
+	desc = "别了，谢谢你们的鱼。"
 	icon = 'modular_zubbers/icons/mob/simple/animals.dmi'
 	icon_state = "dolphin"
 	icon_living = "dolphin"
@@ -12,12 +12,12 @@
 	mob_biotypes = MOB_ORGANIC | MOB_BEAST | MOB_AQUATIC
 	butcher_results = list(/obj/item/food/fishmeat = 2)
 
-	response_help_simple = "pet"
-	response_help_continuous = "pets"
-	response_disarm_simple = "gently shove"
-	response_disarm_continuous = "gently shovess"
-	response_harm_simple = "hit"
-	response_harm_continuous = "hits"
+	response_help_simple = "轻抚"
+	response_help_continuous = "轻抚"
+	response_disarm_simple = "轻轻推开"
+	response_disarm_continuous = "轻轻推开"
+	response_harm_simple = "敲打"
+	response_harm_continuous = "敲打"
 
 	speed = 0
 	pass_flags = PASSTABLE | PASSSTRUCTURE | PASSVEHICLE
@@ -27,11 +27,11 @@
 	health = 25
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "啃咬"
+	attack_verb_simple = "咬"
 
 	attack_sound = 'sound/items/weapons/bite.ogg'
-	speak_emote = list("chitters", "squeeks", "clicks")
+	speak_emote = list("唧唧作响", "吱吱作响", "咔哒作响")
 
 	habitable_atmos = null
 	minimum_survivable_temperature = 0
@@ -49,8 +49,8 @@
 	AddElement(/datum/element/ai_retaliate) // So we can actually get angry at people who hit us
 
 /mob/living/basic/dolphin/manatee
-	name = "space manatee"
-	desc = "Large slow sea critters. Known for being very good at operating motor vehicles."
+	name = "太空海牛"
+	desc = "体型庞大、行动迟缓的海洋生物。以非常擅长驾驶机动车辆而闻名。"
 	gold_core_spawnable = NO_SPAWN
 
 	icon_state = "manatee"

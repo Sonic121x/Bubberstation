@@ -1,7 +1,7 @@
 /datum/mkultra_command/antiresist
-	name = "Anti-Resist"
-	description = "Make your victim unable to resist for a short time"
-	feedback = "stops resisting."
+	name = "反抗抑制"
+	description = "让你的受害者短时间内无法反抗"
+	feedback = "停止了反抗。"
 	trigger = "stop resisting|give up|give in|stop being difficult|unable to resist"
 	cooldown = 60 SECONDS
 	phase_requirement = 3
@@ -31,6 +31,6 @@
 /datum/mkultra_command/antiresist/proc/resist_command_block(mob/living/owner)
 	SIGNAL_HANDLER
 	if(resist)
-		to_chat(owner, span_warning("You find yourself incapable of resisting with the recent command permeating your thoughts."))
+		to_chat(owner, span_warning("最近的命令萦绕在脑海中，你发现自己无法反抗。"))
 		return COMPONENT_BLOCK_RESIST
 

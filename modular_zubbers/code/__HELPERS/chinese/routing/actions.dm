@@ -1,5 +1,6 @@
 /// Resolve type-specific collisions before the older general reverse dictionaries.
 /proc/chinese_action_storage_name(value, action_type)
+	value = chinese_zubbers_modules_action_storage(value, action_type)
 	value = chinese_bloodsucker_action_storage(value, action_type)
 	value = chinese_skyrat_items_more_action_storage(value, action_type)
 	value = chinese_skyrat_systems_action_storage(value, action_type)

@@ -1,9 +1,9 @@
 //Metro Cop stuff by HL13
 
 /obj/item/clothing/head/helmet/metrocophelmet
-	name = "civil protection helmet"
+	name = "民事防护头盔"
 	flags_inv = HIDEHAIR | HIDEFACE | HIDESNOUT | HIDEFACIALHAIR
-	desc = "Standard issue helmet for Civil Protection. Uses advanced GigaSlop brand Matrixes to allow alternative variants!"
+	desc = "民事防护的标准配发头盔。采用先进的 GigaSlop 品牌矩阵，可实现不同变体！"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	icon_state = "metrocopHelm"
@@ -46,16 +46,16 @@
 	new_icon_state = "overwatch_red"
 
 /obj/item/clothing/head/helmet/abductor/fake
-	name = "Kabrus Utility Helmet"
-	desc = "A very plain helmet used by the Greys of the Kabrus Mining Site. This helmet only protects the wearer from wind and rain it seems."
+	name = "卡布鲁斯通用头盔"
+	desc = "一顶非常普通的头盔，由卡布鲁斯采矿场的灰人使用。看来这顶头盔只能为佩戴者挡风遮雨。"
 	icon_state = "alienhelmet"
 	inhand_icon_state = null
 	armor_type = /datum/armor/none
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 
 /obj/item/clothing/head/helmet/toggleable/pinwheel //sprites by Keila
-	name = "pinwheel hat"
-	desc = "Space Jesus gives his silliest hats to his most whimsical of goobers."
+	name = "风车帽"
+	desc = "太空耶稣把他最滑稽的帽子赐给他最异想天开的傻瓜们。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "pinwheel"
@@ -67,8 +67,8 @@
 	clothing_flags = null
 	flags_cover = null
 	flags_inv = null
-	toggle_message = "You stop the spinner on"
-	alt_toggle_message = "You spin the spinner on"
+	toggle_message = "你让风车停了下来"
+	alt_toggle_message = "你让风车转了起来"
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 	///Cooldown for toggling the spinner.
 	COOLDOWN_DECLARE(pinwheel_toggle_cooldown)
@@ -80,22 +80,22 @@
 	return ..()
 
 /obj/item/clothing/head/helmet/toggleable/pinwheel/gold
-	name = "magnificent pinwheel hat"
-	desc = "The strongest possible pinwheel hat. Such is fate that the silliest things in the world are also the most beautiful; others may not see the shine in you, but the magnificent pinwheel hat does. It appreciates you for who you are and what you've done. It feels alive, and makes you feel alive too. You see the totality of existence reflected in the golden shimmer of the pin." //Does literally nothing more than the regular pinwheel hat. Just for emphasis.
+	name = "华丽风车帽"
+	desc = "史上最强的风车帽。世上最滑稽的事物往往也最美，这是命中注定的；别人或许看不到你身上的光芒，但华丽风车帽看得到。它欣赏你现在的样子，也欣赏你所做的一切。它仿佛有生命，也让你感到自己充满生机。在别针的金色微光中，你看到了存在的全部。" //Does literally nothing more than the regular pinwheel hat. Just for emphasis.
 	icon_state = "pinwheel_gold"
 	base_icon_state = "pinwheel_gold"
 
 //Clussy and Jester sprites from Splurt.
 /obj/item/clothing/head/costume/bubber/jester
-	name = "amazing jester hat"
-	desc = "It's my money, it's my game, Kill Jester."
+	name = "了不起的弄臣帽"
+	desc = "这是我的钱，这是我的游戏，杀了弄臣。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "striped_jester_hat"
 
 /obj/item/clothing/head/costume/bubber/clussy
-	name = "pink clown wig"
-	desc = "Did you know that the first Wig was made for John William Whig, founder of the Whig Party? They only allowed bald men until the year 1972, when the party became unpopular."
+	name = "粉色小丑假发"
+	desc = "你知道吗，第一顶假发是为辉格党创始人约翰·威廉·辉格制作的？直到 1972 年该党不受欢迎之前，他们都只允许秃头男性戴假发。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "clussy_wig"
@@ -104,8 +104,8 @@
 // Henchmen Sprites by Cannibal Hunter of MonkeStation
 
 /obj/item/clothing/head/henchmen_hat
-	name = "henchmen cap"
-	desc = "Alright boss.. I'll handle it."
+	name = "跟班帽"
+	desc = "好的老板……我来处理。"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/henchmen_hat"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
@@ -119,8 +119,8 @@
 //ALL BUNNY STUFF BY DimWhat OF MONKEESTATION
 
 /obj/item/clothing/head/playbunnyears
-	name = "bunny ears headband"
-	desc = "A pair of bunny ears attached to a headband. One of the ears is already crooked."
+	name = "兔耳头带"
+	desc = "一对固定在头带上的兔耳。其中一只已经歪了。"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/playbunnyears"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
@@ -132,8 +132,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/head/playbunnyears/syndicate
-	name = "blood-red bunny ears headband"
-	desc = "An unusually suspicious pair of bunny ears attached to a headband. The headband looks reinforced with plasteel... but why?"
+	name = "血红兔耳头带"
+	desc = "一对固定着头带的、可疑得非同寻常的兔耳。头带看上去用塑钢加固过……但为什么呢？"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "syndibunny_ears"
 	post_init_icon_state = null
@@ -147,8 +147,8 @@
 	armor_type = /datum/armor/none
 
 /obj/item/clothing/head/playbunnyears/centcom
-	name = "centcom bunny ears headband"
-	desc = "A pair of very professional bunny ears attached to a headband. The ears themselves came from an endangered species of green rabbits."
+	name = "中央指挥部兔耳头带"
+	desc = "一对固定在头带上的、非常专业的兔耳。兔耳本身取自一种濒危的绿兔。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "playbunny_ears_centcom"
 	post_init_icon_state = null
@@ -157,8 +157,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/british
-	name = "british bunny ears headband"
-	desc = "A pair of classy bunny ears attached to a headband. Worn to honor the crown."
+	name = "英国兔耳头带"
+	desc = "一对固定在头带上的、颇具格调的兔耳。为致敬王冠而戴。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "playbunny_ears_brit"
 	post_init_icon_state = null
@@ -167,8 +167,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/communist
-	name = "really red bunny ears headband"
-	desc = "A pair of red and gold bunny ears attached to a headband. Commonly used by any collectivizing bunny waiters."
+	name = "真红兔耳头带"
+	desc = "一对固定在头带上的红金双色兔耳。常被集体化的兔耳侍者使用。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "playbunny_ears_communist"
 	post_init_icon_state = null
@@ -177,8 +177,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/usa
-	name = "usa bunny ears headband"
-	desc = "A pair of star spangled bunny ears attached to a headband. The headband of a true patriot."
+	name = "美国兔耳头带"
+	desc = "一对固定在头带上的星条兔耳。真正爱国者的头带。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "playbunny_ears_usa"
 	post_init_icon_state = null
@@ -189,8 +189,8 @@
 //CAPTAIN
 
 /obj/item/clothing/head/hats/caphat/bunnyears_captain
-	name = "captain's bunny ears"
-	desc = "A pair of dark blue bunny ears attached to a headband. Worn in lieu of the more traditional bicorn hat."
+	name = "舰长兔耳"
+	desc = "一对固定在头带上的深蓝兔耳。用来代替更传统的双角帽。"
 	icon_state = "captain"
 	inhand_icon_state = "that"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
@@ -201,8 +201,8 @@
 //CARGO
 
 /obj/item/clothing/head/playbunnyears/quartermaster
-	name = "quartermaster's bunny ears"
-	desc = "Brown and gray bunny ears attached to a headband. The brown headband denotes relative importance."
+	name = "货运主管兔耳"
+	desc = "一对固定在头带上的棕灰双色兔耳。棕色头带代表相对更高的地位。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "qm"
 	post_init_icon_state = null
@@ -211,8 +211,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/cargo
-	name = "cargo bunny ears"
-	desc = "Brown and gray bunny ears attached to a headband. The gray headband denotes relative unimportance."
+	name = "货运兔耳"
+	desc = "一对固定在头带上的棕灰双色兔耳。灰色头带代表相对较低的地位。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "cargo_tech"
 	post_init_icon_state = null
@@ -221,8 +221,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/miner
-	name = "shaft miner's bunny ears"
-	desc = "Muddy gray bunny ears attached to a headband. Has zero resistance against the hostile lavaland atmosphere."
+	name = "竖井矿工兔耳"
+	desc = "一对固定在头带上的泥灰色兔耳。对充满敌意的熔岩地带大气毫无抵抗力。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "explorer"
 	post_init_icon_state = null
@@ -232,8 +232,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/mailman
-	name = "mailman's bunny ears"
-	desc = "Blue and red bunny ears attached to a headband. Shows everyone your commitment to speed and efficiency."
+	name = "邮差兔耳"
+	desc = "一对固定在头带上的蓝红双色兔耳。向所有人展示你对速度与效率的执着。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "mail"
 	post_init_icon_state = null
@@ -242,8 +242,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/bitrunner
-	name = "bunrunner's bunny ears"
-	desc = "Black and gold with stains of space mountain. The official wear of the Carota E-Sports team."
+	name = "比特潜行者兔耳"
+	desc = "黑金双色，还沾着太空山地的污渍。卡罗塔电子竞技队的官方佩戴款。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "bitrunner"
 	post_init_icon_state = null
@@ -254,8 +254,8 @@
 //ENGI
 
 /obj/item/clothing/head/playbunnyears/engineer
-	name = "engineering bunny ears"
-	desc = "Yellow and orange bunny ears attached to a headband. Likely to get caught in heavy machinery."
+	name = "工程兔耳"
+	desc = "一对固定在头带上的黄橙双色兔耳。很容易被重型机械卷进去。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "engi"
 	post_init_icon_state = null
@@ -264,8 +264,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/atmos_tech
-	name = "atmospheric technician's bunny ears"
-	desc = "Yellow and blue bunny ears attached to a headband. Gives zero protection against both fires and extreme pressures."
+	name = "大气技术员兔耳"
+	desc = "一对固定在头带上的黄蓝双色兔耳。对火焰和极端气压都没有任何防护。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "atmos"
 	post_init_icon_state = null
@@ -274,8 +274,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/ce
-	name = "chief engineer's bunny ears"
-	desc = "Green and white bunny ears attached to a headband. Just keep them away from the supermatter."
+	name = "总工程师兔耳"
+	desc = "一对固定在头带上的绿白双色兔耳。只是别让它们靠近超物质。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "ce"
 	post_init_icon_state = null
@@ -286,8 +286,8 @@
 //MEDICAL
 
 /obj/item/clothing/head/playbunnyears/doctor
-	name = "medical bunny ears"
-	desc = "White and blue bunny ears attached to a headband. Certainly cuter than a head mirror."
+	name = "医疗兔耳"
+	desc = "一对固定在头带上的白蓝双色兔耳。肯定比额镜可爱。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "doctor"
 	post_init_icon_state = null
@@ -296,8 +296,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/paramedic
-	name = "paramedic's bunny ears"
-	desc = "Blue and white bunny ears attached to a headband. Marks you clearly as a bunny first responder, allowing you a high degree of respect and deference… yeah right."
+	name = "护理人员兔耳"
+	desc = "一对固定在头带上的蓝白双色兔耳。能清楚表明你是兔耳急救员，让你享有高度的尊敬与礼遇……想得美。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "paramedic"
 	post_init_icon_state = null
@@ -306,8 +306,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/chemist
-	name = "chemist's bunny ears"
-	desc = "White and orange bunny ears attached to a headband. One of the ears is already crooked."
+	name = "化学家兔耳"
+	desc = "一对固定在头带上的白橙双色兔耳。其中一只已经歪了。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "chem"
 	post_init_icon_state = null
@@ -316,8 +316,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/pathologist
-	name = "pathologist's bunny ears"
-	desc = "White and green bunny ears attached to a headband. This is not proper PPE gear."
+	name = "病理学家兔耳"
+	desc = "一对固定在头带上的白绿双色兔耳。这可不是合规的 PPE 装备。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "virologist"
 	post_init_icon_state = null
@@ -326,8 +326,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/coroner
-	name = "coroner's bunny ears"
-	desc = "Black and white bunny ears attached to a headband. Please don't wear this to a funeral."
+	name = "验尸官兔耳"
+	desc = "一对固定在头带上的黑白双色兔耳。请别戴着它去参加葬礼。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "coroner"
 	post_init_icon_state = null
@@ -336,8 +336,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/cmo
-	name = "chief medical officer's bunny ears"
-	desc = "White and blue bunny ears attached to a headband. A headband that commands respect from the entire medical team."
+	name = "首席医疗官兔耳"
+	desc = "一对固定在头带上的白蓝双色兔耳。一条能让整个医疗团队肃然起敬的头带。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "cmo"
 	post_init_icon_state = null
@@ -348,8 +348,8 @@
 //SCIENCE
 
 /obj/item/clothing/head/playbunnyears/scientist
-	name = "scientist's bunny ears"
-	desc = "Purple and white bunny ears attached to a headband. Completes the look for lagomorphic studies."
+	name = "科学家兔耳"
+	desc = "一对固定在头带上的紫白双色兔耳。为兔形目研究造型画上句点。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "science"
 	post_init_icon_state = null
@@ -358,8 +358,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/roboticist
-	name = "roboticist's bunny ears"
-	desc = "Black and red bunny ears attached to a headband. Installed with servos to imitate the movement of real bunny ears."
+	name = "机器人学家兔耳"
+	desc = "一对固定在头带上的黑红双色兔耳。内置伺服电机，可模仿真正兔耳的动作。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "roboticist"
 	post_init_icon_state = null
@@ -368,8 +368,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/geneticist
-	name = "geneticist's bunny ears"
-	desc = "Blue and white bunny ears attached to a headband. For when you have no bunnies to splice your genes with."
+	name = "遗传学家兔耳"
+	desc = "一对固定在头带上的蓝白双色兔耳。当你没有兔子可以拼接基因时就用它。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "genetics"
 	post_init_icon_state = null
@@ -378,8 +378,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/rd
-	name = "research director's bunny ears"
-	desc = "Purple and black bunny ears attached to a headband. Large amounts of funding went into creating a piece of headgear capable of increasing the wearers height, this is what was produced."
+	name = "科研主管兔耳"
+	desc = "一对固定在头带上的紫黑双色兔耳。大笔经费投入到了研发一种能增加佩戴者身高的头饰上，而这就是成果。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "rd"
 	post_init_icon_state = null
@@ -390,8 +390,8 @@
 //SECURITY
 
 /obj/item/clothing/head/playbunnyears/security
-	name = "security bunny ears"
-	desc = "Red and black bunny ears attached to a headband. The band is made out of hardened steel."
+	name = "安保兔耳"
+	desc = "一对固定在头带上的红黑双色兔耳。头带由硬化钢制成。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "sec"
 	post_init_icon_state = null
@@ -403,15 +403,15 @@
 
 
 /obj/item/clothing/head/playbunnyears/security/assistant
-	name = "security assistant's bunny ears"
-	desc = "A pair of red and grey bunny ears attatched to a headband. Snugly fit, to keep it attatched during long distance tackles."
+	name = "安保助理兔耳"
+	desc = "一对固定在头带上的红灰双色兔耳。佩戴贴合，以便在远距离扑抱时不会脱落。"
 	icon_state = "sec_assistant"
 
 //TODO: Find a way to add Warden stuff that isn't hack-y.
 
 /obj/item/clothing/head/playbunnyears/warden
-	name = "warden's bunny ears"
-	desc = "Red and white bunny ears attached to a headband. Keeps the hair out of the face when checking on cameras."
+	name = "典狱官兔耳"
+	desc = "一对固定在头带上的红白双色兔耳。查看监控时能防止头发挡住脸。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "warden"
 	post_init_icon_state = null
@@ -422,8 +422,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/brig_phys
-	name = "brig physician's bunny ears"
-	desc = "A pair of red and grey bunny ears attatched to a headband. Whoever's wearing these is surely a professional... right?"
+	name = "监狱医师兔耳"
+	desc = "一对固定在头带上的红灰双色兔耳。戴着它的人肯定很专业……对吧？"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "brig_phys"
 	post_init_icon_state = null
@@ -432,8 +432,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/detective
-	name = "detective's bunny ears"
-	desc = "Brown bunny ears attached to a headband. Big ears for listening to calls from hysteric dames."
+	name = "侦探兔耳"
+	desc = "一对固定在头带上的棕色兔耳。大耳朵方便听歇斯底里女士们的来电。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "detective"
 	post_init_icon_state = null
@@ -444,13 +444,13 @@
 
 
 /obj/item/clothing/head/playbunnyears/detective/noir
-	name = "noir detective's bunny ears"
-	desc = "Black bunny ears attached to a white headband. Big ears for listening to calls from hysteric dames. In glorious black and white!"
+	name = "黑色电影侦探兔耳"
+	desc = "一对固定在白色头带上的黑色兔耳。大耳朵方便听歇斯底里女士们的来电。光荣的黑白配色！"
 	icon_state = "detective_noir"
 
 /obj/item/clothing/head/playbunnyears/prisoner
-	name = "prisoner's bunny ears"
-	desc = "Black and orange bunny ears attached to a headband. This outfit was long ago outlawed under the space geneva convention for being a “cruel and unusual punishment”."
+	name = "囚犯兔耳"
+	desc = "一对固定在头带上的黑橙双色兔耳。这套装扮早已被太空日内瓦公约以“残忍且不寻常的惩罚”为由取缔。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "prisoner"
 	post_init_icon_state = null
@@ -459,8 +459,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/hos
-	name = "head of security's bunny ears"
-	desc = "Red and gold bunny ears attached to a headband. Shows your authority over all bunny officers."
+	name = "安保主管兔耳"
+	desc = "一对固定在头带上的红金双色兔耳。彰显你对所有兔耳警官的权威。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "hos"
 	post_init_icon_state = null
@@ -473,8 +473,8 @@
 //SERVICE
 
 /obj/item/clothing/head/playbunnyears/hop
-	name = "head of personnel's bunny ears"
-	desc = "A pair of muted blue bunny ears attached to a headband. The preferred color of bunnycrats everywhere."
+	name = "人事主管兔耳"
+	desc = "一对固定在头带上的暗蓝色兔耳。各地兔耳官僚都偏爱的颜色。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "hop"
 	post_init_icon_state = null
@@ -484,8 +484,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/janitor
-	name = "janitor's bunny ears"
-	desc = "A pair of purple bunny ears attached to a headband. Kept meticulously clean."
+	name = "清洁工兔耳"
+	desc = "一对固定在头带上的紫色兔耳。被一丝不苟地保持清洁。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "janitor"
 	post_init_icon_state = null
@@ -494,8 +494,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/bartender
-	name = "bartender's bunny ears"
-	desc = "A pair of classy black and white bunny ears attached to a headband. They smell faintly of alchohol."
+	name = "酒保兔耳"
+	desc = "一对固定在头带上的优雅黑白双色兔耳。隐约带着酒味。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "bar"
 	post_init_icon_state = null
@@ -505,8 +505,8 @@
 	custom_price = PAYCHECK_CREW
 
 /obj/item/clothing/head/playbunnyears/cook
-	name = "cook's bunny ears"
-	desc = "A pair of white and red bunny ears attached to a headband. Helps keep hair out of the food."
+	name = "厨师兔耳"
+	desc = "一对固定在头带上的白红双色兔耳。有助于防止头发掉进食物里。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "chef"
 	post_init_icon_state = null
@@ -515,8 +515,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/botanist
-	name = "botanist's bunny ears"
-	desc = "A pair of green and blue bunny ears attached to a headband. Good for keeping the sweat out of your eyes during long days on the farm."
+	name = "植物学家兔耳"
+	desc = "一对固定在头带上的绿蓝双色兔耳。在农场漫长的一天里，能防止汗水流进眼睛。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "botany"
 	post_init_icon_state = null
@@ -525,8 +525,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/clown
-	name = "clown's bunny ears"
-	desc = "A pair of orange and pink bunny ears. They even squeak."
+	name = "小丑兔耳"
+	desc = "一对橙粉双色兔耳。甚至还会吱吱叫。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "clown"
 	post_init_icon_state = null
@@ -535,8 +535,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/mime
-	name = "mime's bunny ears"
-	desc = "Red and black bunny ears attached to a headband. Great for street performers sick of the standard beret."
+	name = "默剧演员兔耳"
+	desc = "一对固定在头带上的红黑双色兔耳。适合厌倦了标准贝雷帽的街头艺人。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "mime"
 	post_init_icon_state = null
@@ -545,8 +545,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/chaplain
-	name = "chaplain's bunny ears"
-	desc = "A pair of black and white bunny ears attached to a headband. Worn in worship of The Gardener of Carota."
+	name = "牧师兔耳"
+	desc = "一对固定在头带上的黑白双色兔耳。为敬拜卡罗塔的园丁而戴。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "chaplain"
 	post_init_icon_state = null
@@ -555,8 +555,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/curator_red
-	name = "curator's red bunny ears"
-	desc = "A pair of red and beige bunny ears attached to a headband. Marks you as an expert in all things bunny related."
+	name = "馆长红色兔耳"
+	desc = "一对固定在头带上的红米双色兔耳。表明你是与兔子相关的一切的专家。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "curator_red"
 	post_init_icon_state = null
@@ -565,8 +565,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/curator_green
-	name = "curator's green bunny ears"
-	desc = "A pair of green and black bunny ears attached to a headband. Marks you as an expert in all things bunny related."
+	name = "馆长绿色兔耳"
+	desc = "一对固定在头带上的绿黑双色兔耳。表明你是与兔子相关的一切的专家。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "curator_green"
 	post_init_icon_state = null
@@ -575,8 +575,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/curator_teal
-	name = "curator's teal bunny ears"
-	desc = "A pair of teal bunny ears attached to a headband. Marks you as an expert in all things bunny related."
+	name = "馆长青色兔耳"
+	desc = "一对固定在头带上的青色兔耳。表明你是与兔子相关的一切的专家。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "curator_teal"
 	post_init_icon_state = null
@@ -585,8 +585,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/lawyer_black
-	name = "lawyer's black bunny ears"
-	desc = "A pair of black bunny ears attached to a headband. The perfect headband to wear while negotiating a settlement."
+	name = "律师黑色兔耳"
+	desc = "一对固定在头带上的黑色兔耳。谈判和解时最适合戴的头带。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "lawyer_black"
 	post_init_icon_state = null
@@ -595,8 +595,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/lawyer_blue
-	name = "lawyer's blue bunny ears"
-	desc = "A pair of blue and white bunny ears attached to a headband. The perfect headband to wear while negotiating a settlement."
+	name = "律师蓝色兔耳"
+	desc = "一对固定在头带上的蓝白双色兔耳。谈判和解时最适合戴的头带。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "lawyer_blue"
 	post_init_icon_state = null
@@ -605,8 +605,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/lawyer_red
-	name = "lawyer's red bunny ears"
-	desc = "A pair of red and white bunny ears attached to a headband. The perfect headband to wear while negotiating a settlement."
+	name = "律师红色兔耳"
+	desc = "一对固定在头带上的红白双色兔耳。谈判和解时最适合戴的头带。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "lawyer_red"
 	post_init_icon_state = null
@@ -615,8 +615,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/lawyer_good
-	name = "good lawyer's bunny ears"
-	desc = "A pair of beige and blue bunny ears attached to a headband. The perfect headband to wear while negotiating a settlement."
+	name = "好律师兔耳"
+	desc = "一对固定在头带上的米蓝双色兔耳。谈判和解时最适合戴的头带。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "lawyer_good"
 	post_init_icon_state = null
@@ -625,8 +625,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/psychologist
-	name = "psychologist's bunny ears"
-	desc = "A pair of black bunny ears. And how do they make you feel?"
+	name = "心理医生兔耳"
+	desc = "一对黑色兔耳。它们让你有什么感觉？"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "psychologist"
 	post_init_icon_state = null
@@ -638,8 +638,8 @@
 
 //Maid SEC
 /obj/item/clothing/head/security_maid //Icon by Onule!
-	name = "cnc maid headband"
-	desc = "A highly durable headband with the 'cleaning and clearing' insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
+	name = "清洁与肃清女仆头带"
+	desc = "一条极为耐用的头带，上面印有“清洁与肃清”徽记。采用加固面料，可提供足够的防护。"
 	icon_state = "security_maid"
 	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
@@ -650,8 +650,8 @@
 //BEGIN HAT SPRITES BY APRIL
 
 /obj/item/clothing/head/security_kepi
-	name = "security kepi"
-	desc = "Bonjour, inspecteur. A kepi police cap first popularized by planetary police on Pluto. This one appears armored."
+	name = "安保军帽"
+	desc = "你好，督察。一种最初由冥王星行星警察带火的军帽式警帽。这一顶似乎带装甲。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "kepi_sec_red"
@@ -660,8 +660,8 @@
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/head/hos_kepi
-	name = "HoS kepi"
-	desc = "Bonjour, commandante. A kepi for the Head of Security. It has a embroidered pattern going around it. This one appears well armored."
+	name = "安保主管军帽"
+	desc = "你好，指挥官。一顶安保主管的军帽。帽上环绕着刺绣花纹。这一顶似乎装甲精良。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "kepi_sec_red_hos"
@@ -671,7 +671,7 @@
 // END HATS ADDED BY APRIL
 
 /obj/item/clothing/head/helmet/elder_atmosian
-	desc = "The pinnacle of atmospherics equipment, an expensive modified atmospherics fire helmet plated in one of the most luxurous and durable metals known to man. Providing full atmos coverage without the heavy materials to slow the user down, it also offers far greater protection to most sources of damage, even offering great protection against gases, and other nasty things that try to get into your face."
+	desc = "大气设备中的巅峰之作，一顶昂贵的改装大气消防头盔，镀有人类已知最奢华、最耐用的金属之一。它在提供全面大气防护的同时，没有沉重到拖慢使用者的程度，还能对大多数伤害来源提供远为出色的防护，甚至能强力抵御气体以及其他试图钻进你脸上的讨厌东西。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
@@ -717,8 +717,8 @@
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
 
 /obj/item/clothing/head/helmet/space/plasmaman/plasmax_black
-	name = "plasMAX envirosuit helmet"
-	desc = "Extra large version of plasmaman helmet, made to fit those with non-humanoid skulls."
+	name = "plasMAX 环境服头盔"
+	desc = "等离子人头盔的超大号版本，专为适应非人形头骨而制。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	icon_state = "plasmax_black"
@@ -728,16 +728,16 @@
 // virosec helmets, sprites by axietheaxolotl
 
 /obj/item/clothing/head/helmet/sec/viro
-	name = "helmet"
-	desc = "Standard Security gear. Protects the head from impacts."
+	name = "头盔"
+	desc = "标准安保装备。保护头部免受撞击。"
 	base_icon_state = "security_helmet"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "security_helmet"
 
 /obj/item/clothing/head/helmet/sec/viro/hos
-	name = "head of security's helmet"
-	desc = "Standard Security gear. Protects the head from impacts. This one has a golden stripe."
+	name = "安保主管头盔"
+	desc = "标准安保装备。保护头部免受撞击。这一顶带有金色条纹。"
 	base_icon_state = "hos_helmet"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'

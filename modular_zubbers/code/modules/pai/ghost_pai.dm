@@ -11,14 +11,14 @@
 		return
 	if(pai)
 		return
-	var/pai_ask = tgui_alert(user, "Become a pAI? (Warning, You can no longer be revived, and all past lives will be forgotten!)", "Confirm", list("Yes","No"))
-	if(pai_ask != "Yes" || QDELETED(src))
+	var/pai_ask = tgui_alert(user, "成为个人 AI？（警告：你将无法再被复活，所有前世都会被遗忘！）", "确认", list("是","否"))
+	if(pai_ask != "是" || QDELETED(src))
 		return
 	var/pai_ckey = user.ckey
 	if(!user.client || !isobserver(user) || is_banned_from(pai_ckey, ROLE_PAI))
 		return
 	if(!SSpai.candidates[pai_ckey])
-		to_chat(user, span_warning("Personality Matrix Corrupted! Please reload Personality file (Open the pAI submit window and click the load button before trying again)"))
+		to_chat(user, span_warning("人格矩阵已损坏！请重新加载人格文件（打开个人 AI 提交窗口，点击加载按钮后再试）"))
 		return
 	var/datum/pai_candidate/candidate = SSpai.candidates[pai_ckey]
 	var/mob/living/silicon/pai/ghost_pai = new(src)

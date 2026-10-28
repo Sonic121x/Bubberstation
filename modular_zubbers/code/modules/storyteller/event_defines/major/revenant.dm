@@ -1,7 +1,7 @@
 #define REVENANT_SPAWN_THRESHOLD 20
 
 /datum/round_event_control/revenant
-	name = "Spawn Revenant" // Did you mean 'griefghost'?
+	name = "生成亡魂" // Did you mean 'griefghost'?
 	typepath = /datum/round_event/ghost_role/revenant
 	weight = 7
 	min_players = 20
@@ -9,14 +9,14 @@
 	tags = list(TAG_DESTRUCTIVE, TAG_SPOOKY)
 	max_occurrences = 1
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Spawns an angry, soul sucking ghost."
+	description = "生成一个愤怒的、吸食灵魂的幽灵。"
 	min_wizard_trigger_potency = 4
 	max_wizard_trigger_potency = 7
 
 
 /datum/round_event/ghost_role/revenant
 	var/ignore_mobcheck = FALSE
-	role_name = "revenant"
+	role_name = "亡魂"
 
 /datum/round_event/ghost_role/revenant/New(my_processing = TRUE, new_ignore_mobcheck = FALSE)
 	..()
@@ -28,7 +28,7 @@
 		for(var/mob/M in GLOB.dead_mob_list)
 			deadMobs++
 		if(deadMobs < REVENANT_SPAWN_THRESHOLD)
-			message_admins("Event attempted to spawn a revenant, but there were only [deadMobs]/[REVENANT_SPAWN_THRESHOLD] dead mobs.")
+			message_admins("事件尝试生成亡魂，但当时只有 [deadMobs]/[REVENANT_SPAWN_THRESHOLD] 个死亡生物。")
 			return WAITING_FOR_SOMETHING
 
 	var/mob/chosen_one = SSpolling.poll_ghost_candidates(check_jobban = ROLE_REVENANT, role = ROLE_REVENANT, alert_pic = /mob/living/basic/revenant, amount_to_pick = 1)
@@ -53,8 +53,8 @@
 
 	var/mob/living/basic/revenant/revvie = new(pick(spawn_locs))
 	revvie.PossessByPlayer(chosen_one.key)
-	message_admins("[ADMIN_LOOKUPFLW(revvie)] has been made into a revenant by an event.")
-	revvie.log_message("was spawned as a revenant by an event.", LOG_GAME)
+	message_admins("[ADMIN_LOOKUPFLW(revvie)] 因事件被转化为亡魂。")
+	revvie.log_message("因事件被生成为亡魂。", LOG_GAME)
 	spawned_mobs += revvie
 	qdel(chosen_one)
 	return SUCCESSFUL_SPAWN

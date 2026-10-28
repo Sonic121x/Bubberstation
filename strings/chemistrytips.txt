@@ -1,16 +1,16 @@
-100% pure Inacusiate will let you hear whispers from a distance while it's in your system.
-A reaction can be slowed down by cooling the beaker it's in!
-Chemical analyzers scan more than just pH. They can tell you the purity of each reagent.
-ChemMaster 3000s can tell you the optimal pH of a reagent's reaction with their analyze function.
-Eigenstasium's wild ride can be halted by taking more Eigenstasium, Bluespace dust, or Stabilizing agent.
-Exact organ health values can be determined by using a health analyzer while Technetium 99 is in their system.
-Inverse Neurine will not delete an imaginary friend. Once a friend, always a friend!
-Merge my PRs!
-Nutriment can be created in the lab by failing food related reactions.
-Oculine slightly improves your eyesight while it's in your system, to a degree based on its purity.
-Overdosing on Mannitol will give you pro tips from your newfound enlightenment. Perhaps you know that already, though!
-Purity isn't that scary, I promise!
-The information depth of pH meter readouts can be reduced by using it in hand!
-The longer synthtissue has been growing, the more stuff it can do!
-Thermometers crafted in the chemistry section will let you detect the temperature of anything that has a reagent temperature. This includes people too!
-Turning sugar into caramel before attempting to make Eigenstasium makes it much easier to create.
+100% 纯度的复聪素在体内期间，能让你听见远处的低语。
+冷却反应所在的烧杯可以减慢反应速度！
+化学分析仪扫描的不只是 pH，它还能告诉你每种试剂的纯度。
+化学大师 3000 的分析功能可以告诉你试剂反应的最佳 pH。
+本征态素的疯狂之旅可以通过再摄入本征态素、蓝空间粉尘或稳定剂来中止。
+在目标体内有锝-99 时使用健康分析仪，可以确定精确的器官健康值。
+神经哀鸣不会删除想象中的朋友。一日为友，终身为友！
+把我的 PR 合并了吧！
+在实验室里把与食物相关的反应搞砸，就能得到营养素。
+眼明素在你体内期间会略微改善视力，改善程度取决于它的纯度。
+甘露醇过量会让你因茅塞顿开而获得专业提示。不过，也许你早就知道了！
+纯度没那么可怕，我保证！
+手持 pH 计使用，可以减少其读数的信息量！
+合成组织生长的时间越长，它能起的作用就越多！
+在化学区制作的温度计可以探测任何具有试剂温度的物体的温度。这也包括人！
+在尝试制作本征态素之前，先把糖熬成焦糖，会让制作过程容易许多。

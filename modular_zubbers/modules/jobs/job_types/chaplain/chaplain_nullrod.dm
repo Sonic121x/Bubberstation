@@ -1,6 +1,6 @@
 /obj/item/nullrod/sylvanstaff
-	name = "Sylvan Staff"
-	desc = "Dryads and druids use staves like this one as a focus to better attune with Nature"
+	name = "林间法杖"
+	desc = "树妖与德鲁伊使用这样的法杖作为法器，以便更好地与自然共鸣。"
 	icon = 'icons/obj/weapons/guns/magic.dmi'
 	icon_state = "staffofdoor"
 	inhand_icon_state = "staffofdoor"
@@ -12,9 +12,9 @@
 	throwforce = 15
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
-	attack_verb_continuous = list("bashes", "smacks", "whacks")
-	attack_verb_simple = list("bash", "smack", "whack")
-	menu_description = "A staff strongly attuned to nature. Doesnt hit as hard, but deals burn damage, also has a chance to transfer your reagents to the target. Wearable in the back."
+	attack_verb_continuous = list("猛砸", "拍击", "重击")
+	attack_verb_simple = list("猛砸", "拍击", "重击")
+	menu_description = "一根与自然高度共鸣的法杖。打击力度不高，但造成灼烧伤害，还有几率将你体内的试剂转移到目标身上。可背在背上。"
 
 // Pride hammer reagent transfer effect.
 
@@ -24,8 +24,8 @@
 	. = ..()
 	AddElement(
 		/datum/element/chemical_transfer,\
-		span_notice("You feel your body being cleansed"),\
-		span_userdanger("You feel the hit transfer impurities within you."),\
+		span_notice("你感觉自己的身体被净化了"),\
+		span_userdanger("你感觉这一击把你体内的杂质转移了出去。"),\
 		CHEMICAL_TRANSFER_CHANCE\
 	)
 

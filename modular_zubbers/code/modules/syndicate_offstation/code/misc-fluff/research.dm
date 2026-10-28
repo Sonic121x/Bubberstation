@@ -3,7 +3,7 @@
 ///// First we enstate a techweb so we can add the node. /////
 /datum/techweb/interdyne
 	id = "INTERDYNE"
-	organization = "Interdyne Pharmaceutics"
+	organization = "英特戴恩制药公司"
 	should_generate_points = TRUE
 
 /datum/techweb/interdyne/New()
@@ -14,8 +14,8 @@
 //techweb nodes
 /datum/techweb_node/interdyne
 	id = TECHWEB_NODE_INTERDYNE
-	display_name = "Syndicate Technology"
-	description = "Tools used by the Syndicate."
+	display_name = "辛迪加科技"
+	description = "辛迪加使用的工具。"
 	required_items_to_unlock = list(
 		/obj/item/circuitboard/machine/syndiepad,
 		/obj/item/circuitboard/computer/cargo/express/interdyne,
@@ -39,8 +39,8 @@
 
 /datum/techweb_node/encryption
 	id = TECHWEB_NODE_INTERDYNE_ENCRYPTION
-	display_name = "Advanced Syndicate Encryption"
-	description = "Provides emergency use Interdyne encryption keys in case operational comms are compromised."
+	display_name = "高级辛迪加加密"
+	description = "在行动通讯被破解时提供应急用的英特戴恩加密钥匙。"
 	required_items_to_unlock = list(
 		/obj/item/encryptionkey/headset_syndicate/interdyne
 	)
@@ -54,24 +54,24 @@
 //Syndicate Machinery Boards
 
 /obj/machinery/rnd/production/protolathe/interdyne
-	name = "Interdyne Branded Protolathe"
-	desc = "Converts raw materials into useful objects. Refurbished and updated from its previous, limited capabilities."
+	name = "英特戴恩牌原型制造机"
+	desc = "把原材料转化为有用的物品。经过翻新与升级，摆脱了原本有限的能力。"
 	circuit = /obj/item/circuitboard/machine/protolathe/interdyne
 	stripe_color = "#d40909"
 
 /obj/item/circuitboard/machine/protolathe/interdyne
-	name = "Interdyne Branded Protolathe"
+	name = "英特戴恩牌原型制造机"
 	greyscale_colors = CIRCUIT_COLOR_SECURITY
 	build_path = /obj/machinery/rnd/production/protolathe/interdyne
 
 //Adding the actual physical Server
 
 /obj/item/circuitboard/machine/rdserver/interdyne
-	name = "Interdyne Pharmaceutics R&D Server"
+	name = "英特戴恩制药研发服务器"
 	build_path = /obj/machinery/rnd/server/interdyne
 
 /obj/machinery/rnd/server/interdyne
-	name = "\improper Interdyne Pharmaceutics R&D Server"
+	name = "\improper 英特戴恩制药研发服务器"
 	circuit = /obj/item/circuitboard/machine/rdserver/interdyne
 	req_access = list(ACCESS_RESEARCH)
 
@@ -83,14 +83,14 @@
 /obj/machinery/rnd/server/interdyne/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(held_item && istype(held_item, /obj/item/research_notes))
-		context[SCREENTIP_CONTEXT_LMB] = "Generate research points"
+		context[SCREENTIP_CONTEXT_LMB] = "生成研究点数"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/rnd/server/interdyne/examine(mob/user)
 	. = ..()
 	if(!in_range(user, src) && !isobserver(user))
 		return
-	. += span_notice("Insert [EXAMINE_HINT("Research Notes")] to generate points.")
+	. += span_notice("插入[EXAMINE_HINT("研究笔记")]以生成点数。")
 
 /obj/machinery/rnd/server/interdyne/attackby(obj/item/attacking_item, mob/user, params)
 	if(istype(attacking_item, /obj/item/research_notes) && stored_research)

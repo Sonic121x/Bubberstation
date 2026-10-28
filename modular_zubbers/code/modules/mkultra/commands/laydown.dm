@@ -1,7 +1,7 @@
 /datum/mkultra_command/laydown
-	name = "Kneel / Laydown"
-	description = "Causes your thrall to lay down."
-	feedback = "immediately places themselves on the ground."
+	name = "下跪 / 趴下"
+	description = "让你的奴隶趴到地上。"
+	feedback = "立刻趴到了地上。"
 	trigger = "lay down|kneel|rest|on the floor"
 	phase_requirement = 1
 	erp_command = TRUE
@@ -13,6 +13,6 @@
 		return
 	var/datum/status_effect/mkultra/ultra = status
 	var/mob/living/victim = owner
-	to_chat(owner, span_userlove("You quickly bring yourself to the floor at [ultra.get_gender()]'s sharp command!"))
+	to_chat(owner, span_userlove("[ultra.get_gender()]一声令下，你立刻伏倒在地！"))
 	victim.toggle_resting()
 

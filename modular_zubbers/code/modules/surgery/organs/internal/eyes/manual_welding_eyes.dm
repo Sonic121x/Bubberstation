@@ -1,11 +1,11 @@
 //Eyes that you can close
 /obj/item/organ/eyes/robotic/manuallyshield
-	name = "manually shielded robotic eyes"
-	desc = "These eyes will protect you from going blind while welding after you manually activate them."
+	name = "手动遮光型义体眼"
+	desc = "只要你先手动启用，这双眼睛就能在焊接时保护你不至于失明。"
 	icon_state = "eyes_cyber_shield"
 	flash_protect = FLASH_PROTECTION_NONE
 	pupils_name = "manual shields"
-	penlight_message = "have toggleable metal eyelids that are blocking all vision when active"
+	penlight_message = "装有可切换的金属眼睑，启用时会挡住全部视线"
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
 	var/active = FALSE
 	var/toggle_sound = 'sound/vehicles/mecha/mechmove03.ogg'
@@ -18,7 +18,7 @@
 	currently_toggled = TRUE
 
 	if(!do_after(owner, 1 SECONDS))
-		to_chat(owner, span_notice("You fail to concentrate on the vision shield toggle."))
+		to_chat(owner, span_notice("你没能集中精神去切换视觉遮光罩。"))
 		currently_toggled = FALSE
 		return
 
@@ -45,13 +45,13 @@
 //MOTH VERSION - Still vulnerable to flashes when shield is not engaged
 
 /obj/item/organ/eyes/robotic/manuallyshield/moth
-	name = "manually shielded robotic moth eyes"
+	name = "手动遮光型机械蛾眼"
 	icon_state = "eyes_moth_cyber_shield"
 	eye_icon_state = "motheyes_white"
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	blink_animation = FALSE
 	pupils_name = "aperture clusters"
-	penlight_message = "have collapsible shields, protecting insectoid compound eyes."
+	penlight_message = "装有可收起的遮光罩，保护着昆虫式的复眼"
 
 /obj/item/organ/eyes/robotic/manuallyshield/moth/ui_action_click()
 	if(currently_toggled)
@@ -60,7 +60,7 @@
 	currently_toggled = TRUE
 
 	if(!do_after(owner, 1 SECONDS))
-		to_chat(owner, span_notice("You fail to concentrate on the vision shield toggle."))
+		to_chat(owner, span_notice("你没能集中精神去切换视觉遮光罩。"))
 		currently_toggled = FALSE
 		return
 

@@ -1,7 +1,7 @@
 /datum/storyteller/bomb
-	name = "Bomb (Destructive Event Focus)"
-	desc = "This storyteller will try to make more destructive events. For when you have a full engineering team. Or not, because they all cryo'd."
-	welcome_text = "Somebody set up us the bomb."
+	name = "爆破（侧重破坏性事件）"
+	desc = "这位故事讲述者会倾向于安排更多破坏性事件。适合在你有一整支工程团队的时候。或者没人的时候，因为他们全都进低温休眠舱了。"
+	welcome_text = "有人给我们装了个炸弹。"
 	track_data = /datum/storyteller_data/tracks/bomb
 
 	tag_multipliers = list(

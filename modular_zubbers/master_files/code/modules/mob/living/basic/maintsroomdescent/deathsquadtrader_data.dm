@@ -7,7 +7,7 @@
 	///Sound used when item sold/bought
 	sell_sound = 'sound/effects/cashregister.ogg'
 	///The currency name
-	currency_name = "credits"
+	currency_name = "信用点"
 	///The initial products that the trader offers
 	/// one crew paycheck is 50 credits
 	initial_products = list(
@@ -53,52 +53,52 @@
 	///The speech data of the trader
 	say_phrases = list(
 		ITEM_REJECTED_PHRASE = list(
-			"I don't want any of that stuff you're showing me. Come back when you have some raw anomalies for me.",
+			"你拿给我看的那些东西我一样都不想要。等你搞到些原始异常核心再来找我。",
 		),
 		ITEM_SELLING_CANCELED_PHRASE = list(
-			"I'll be here- im stuck here.",
+			"我会在这儿的——我被困在这儿了。",
 		),
 		ITEM_SELLING_ACCEPTED_PHRASE = list(
-			"Thanks, put em to good use.",
+			"谢了，把它们派上点用场。",
 		),
 		INTERESTED_PHRASE = list(
-			"Hey, you got some raw anomalies. Hand over those useless things to me I'll give you some credits for it, deal?",
+			"嘿，你搞到了一些原始异常核心。把那些没用的东西交给我，我给你些信用点，成交？",
 		),
 		BUY_PHRASE = list(
-			"Use my stuff well!",
+			"好好用我的东西！",
 		),
 		NO_CASH_PHRASE = list(
-			"Look bro, these prices for the anomalies is high sure, but it needs to be so i can profit.",
+			"瞧，兄弟，这些异常核心的价格确实很高，但我得这样才能赚到钱。",
 		),
 		NO_STOCK_PHRASE = list(
-			"Somebody else came through and bought all my refined anomalies- come through next cycle for more.",
+			"别人来过，把我精炼好的异常核心全买走了——下个周期再来吧。",
 		),
 		NOT_WILLING_TO_BUY_PHRASE = list(
-			"I don't want to buy anymore of those anomalies this cycle, the amount ive been sold will take me a long while to refine anyway.",
+			"这个周期我不想再买那些异常核心了，已经卖给我的量够我精炼好一阵子了。",
 		),
 		ITEM_IS_WORTHLESS_PHRASE = list(
-			"This gun is dogshit, take that donksoft toy elsewhere. I dont use anomalies much myself but- I set the prices.",
+			"这枪就是垃圾，把那把咚克软玩具拿到别处去。我自己不怎么用异常核心，但——价格是我定的。",
 		),
 		TRADER_HAS_ENOUGH_ITEM_PHRASE = list(
-			"Are you guys trying to flood the market and cause fucking inflation? I cant buy anymore of that right now.",
+			"你们是想让市场泛滥、搞出他妈的通货膨胀吗？我现在不能再买那个了。",
 		),
 		TRADER_LORE_PHRASE = list(
-			"Heya buddy welcome to my bar- feel free to take some food do some surgery get some healing and all of that good stuff. Make sure to at least give us some commerce in turn.",
-			"How did I get here? Well I came in with other people from my squad and we got split up and I got lost- now I seem, bound to this bar. The food restocks and I dont seem to age so im not complaining. Its about as good as any retirement I could ask for from Nanotrasen but if you see any members of my squad like pristine let them know I say hi, if anybody is still alive from my squad that is.",
+			"嘿，朋友，欢迎来到我的酒吧——请自便，吃点东西，做点手术，接受点治疗，诸如此类的好事。不过也记得至少给我们做点生意作为回报。",
+			"我怎么到这儿来的？嗯，我和小队里的其他人一起进来，然后我们走散了，我迷了路——现在嘛，我似乎被束缚在这间酒吧里了。食物会补货，我好像也不会变老，所以我没什么好抱怨的。这已经算是纳米传讯能给我的最好的退休生活了，但如果你见到我小队的成员，比如普里斯汀，替我向他们问好——前提是我小队里还有人活着。",
 		),
 		TRADER_NOT_BUYING_ANYTHING = list(
-			"I'm not buying any more anomalies today I already got enough for this cycle.",
+			"我今天不再买异常核心了，这个周期我已经收够了。",
 		),
 		TRADER_NOT_SELLING_ANYTHING = list(
-			"Youve bought all of my anomalies ive had- come back next cycle.",
+			"你已经把我手头的异常核心全买走了——下个周期再来。",
 		),
 		TRADER_BATTLE_START_PHRASE = list(
-			"come here fuckwad.",
+			"过来啊，混蛋。",
 		),
 		TRADER_BATTLE_END_PHRASE = list(
-			"A real shame.",
+			"真是可惜。",
 		),
 		TRADER_SHOP_OPENING_PHRASE = list(
-			"Welcome to my anomaly shop its uh- one of the only things around so yea...",
+			"欢迎来到我的异常核心商店，它呃——是这附近仅有的几家店之一，所以……",
 		),
 	)

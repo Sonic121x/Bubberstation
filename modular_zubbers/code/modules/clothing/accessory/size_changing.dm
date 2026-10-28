@@ -1,6 +1,6 @@
 /obj/item/clothing/accessory/syntech
-	name = "normalizer safety pin"
-	desc = "A surprisingly weighty pin cast in a silvery-gold metal, with a small, embedded gemstone. When attached to a piece of clothing, it will 'normalize' the size of the wearer to a specified height for approved work conditions, hitting you with the realization that it's meant for the safety of whoever is around you... and the furniture."
+	name = "标准化安全别针"
+	desc = "一枚出奇沉重的别针，由银金色金属铸成，镶着一颗小小的宝石。将它别在衣物上后，它会把佩戴者的体型“标准化”为经批准的工作条件所规定的身高，同时让你意识到它是为了你身边的人……以及家具的安全而设计的。"
 	icon = 'modular_zubbers/icons/obj/clothing/accessories.dmi'
 	icon_state = "normalizer"
 	worn_icon = "modular_zubbers/icons/mob/clothing/accessories.dmi"

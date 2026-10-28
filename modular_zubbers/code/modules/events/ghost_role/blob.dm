@@ -1,5 +1,5 @@
 /proc/lose_some_weight_lardass()
-	var/unlucky_victim = "your mother" //debug text that should never trigger but should tell coders that something went wrong without breaking immersion
+	var/unlucky_victim = "你妈妈" //debug text that should never trigger but should tell coders that something went wrong without breaking immersion
 	var/unlucky_victim_fatty_score = 0
 	//Get the fattest person
 	for(var/mob/living/carbon/human/possible_fatty as anything in GLOB.human_list)
@@ -27,9 +27,9 @@
 			unlucky_victim_fatty_score = possible_fatty_score
 
 	priority_announce(
-		"It appears that the level 5 biohazard aboard [station_name()] was a false alarm, as our sensors appeared to have mistakenly labeled [unlucky_victim] as a level 5 biohazard. \
-		All crewmembers are reminded to practice healthy eating habbits as part of Nanotrasen's Safe and Healthy Eating program.",
-		"Biohazard Alert"
+		"看来[station_name()]上的五级生物危害其实是误报，我们的传感器似乎错误地将[unlucky_victim]标记为五级生物危害。 \
+		全体船员被提醒：请遵循纳米传讯的“安全健康饮食”计划，养成健康的饮食习惯。",
+		"生物危害警报"
 	)
 
 /datum/round_event/ghost_role/blob/announce(fake)

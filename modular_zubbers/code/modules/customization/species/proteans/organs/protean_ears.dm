@@ -1,6 +1,6 @@
 /obj/item/organ/ears/cybernetic/protean
-	name = "sensory nanites"
-	desc = "Nanites designed to collect audio feedback from the surrounding world."
+	name = "感知纳米机器人"
+	desc = "设计用于从周围世界收集声音反馈的纳米机器人。"
 	organ_flags = ORGAN_ROBOTIC
 
 /obj/item/organ/ears/cybernetic/protean/Insert(mob/living/carbon/receiver, special, movement_flags)

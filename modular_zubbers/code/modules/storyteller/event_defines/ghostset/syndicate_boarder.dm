@@ -1,10 +1,10 @@
 /datum/round_event_control/syndicate_boarder
-	name = "Spawn Syndicate Boarder"
+	name = "生成辛迪加登船者"
 	typepath = /datum/round_event/ghost_role/syndicate_boarder
 	max_occurrences = 2
 	min_players = 10
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Spawns a Syndicate Boarder, a non-crew syndicate agent."
+	description = "生成一名辛迪加登船者，即不属于船员的辛迪加特工。"
 	min_wizard_trigger_potency = NEVER_TRIGGERED_BY_WIZARDS
 	max_wizard_trigger_potency = NEVER_TRIGGERED_BY_WIZARDS
 	weight = 10
@@ -41,6 +41,6 @@
 	player_mind.add_antag_datum(/datum/antagonist/traitor/syndicate_boarder)
 	spawned_mobs += operative
 
-	message_admins("[ADMIN_LOOKUPFLW(operative)] has been made into a Syndicate Boarder.")
-	log_game("[key_name(operative)] was spawned as a Syndicate Boarder")
+	message_admins("[ADMIN_LOOKUPFLW(operative)] 因事件被转化为辛迪加登船者。")
+	log_game("[key_name(operative)] 因事件被生成为辛迪加登船者。")
 	return SUCCESSFUL_SPAWN

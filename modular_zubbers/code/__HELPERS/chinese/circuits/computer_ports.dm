@@ -3,6 +3,7 @@
 	var/static/list/names
 	if(!names)
 		names = list(
+			"Color Options" = "颜色选项", "Color" = "颜色", "Language" = "语言", "On" = "开启", "Output" = "输出",
 			"Toggle Lights" = "切换灯光", "Red" = "红", "Green" = "绿", "Blue" = "蓝", "Set Color" = "设置颜色",
 			"Turn On/Off" = "开/关机", "Print Text" = "打印文本", "Print" = "打印", "Turned On" = "已开启", "Shut Down" = "已关机",
 			"Receiver" = "接收方", "Set Message" = "设置消息", "MODsuit Controlled" = "受控 MOD 外骨骼",

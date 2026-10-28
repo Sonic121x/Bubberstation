@@ -1,12 +1,12 @@
 #define CARGO_CUT 0.05
 
 /datum/supply_pack/company_import
-	desc = "Contains one imported company item."
+	desc = "内含一件进口公司商品。"
 	group = "Company Imports"
 	order_flags = ORDER_GOODY
 	crate_type = null
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
-	crate_name = "import package"
+	crate_name = "进口包裹"
 	allow_non_private_purchase = TRUE
 	var/obj/item/item_type
 
@@ -15,11 +15,11 @@
 	if(!item_type)
 		return
 	contains = list(item_type)
-	name = "[item_type::name] Single-Pack"
+	name = "[item_type::name] 单件装"
 	if(desc == initial(desc))
-		desc = "Contains one [item_type::name]."
+		desc = "内含一件 [item_type::name]。"
 	if(CONFIG_GET(flag/permit_pins) && item_type && istype(item_type, /obj/item/gun))
-		desc += " The gun will come with a permit pin installed."
+		desc += "该枪械会附带一个已安装的许可击发针。"
 
 /datum/supply_pack/company_import/generate(atom/A, datum/bank_account/paying_account, crate_override)
 	. = ..()

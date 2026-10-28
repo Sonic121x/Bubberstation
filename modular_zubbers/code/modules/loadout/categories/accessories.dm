@@ -2,34 +2,34 @@
 
 /datum/loadout_item/accessory/armband
 	abstract_type = /datum/loadout_item/accessory/armband
-	group = "Armbands"
+	group = "臂章"
 
 /datum/loadout_item/accessory/armband/med/blue
-	name = "Blue-White Armband"
+	name = "蓝白臂章"
 	item_path = /obj/item/clothing/accessory/armband/medblue/nonsec
 
 /datum/loadout_item/accessory/armband/med
-	name = "White Armband"
+	name = "白色臂章"
 	item_path = /obj/item/clothing/accessory/armband/med/nonsec
 
 /datum/loadout_item/accessory/armband/cargo
-	name = "Brown Armband"
+	name = "棕色臂章"
 	item_path = /obj/item/clothing/accessory/armband/cargo/nonsec
 
 /datum/loadout_item/accessory/armband/engineering
-	name = "Orange Armband"
+	name = "橙色臂章"
 	item_path = /obj/item/clothing/accessory/armband/engine/nonsec
 
 /datum/loadout_item/accessory/armband/red
-	name = "Red Armband"
+	name = "红色臂章"
 	item_path = /obj/item/clothing/accessory/armband
 
 /datum/loadout_item/accessory/armband/science
-	name = "Purple Armband"
+	name = "紫色臂章"
 	item_path = /obj/item/clothing/accessory/armband/science/nonsec
 
 /datum/loadout_item/accessory/lewdapron
-	name = "Latex Maid Apron"
+	name = "乳胶女仆围裙"
 	item_path = /obj/item/clothing/accessory/lewdapron
 
 //No red armband for obvious reasons.
@@ -40,39 +40,39 @@
 
 /datum/loadout_item/accessory/heirloom
 	abstract_type = /datum/loadout_item/accessory/heirloom
-	group = "Heirlooms and Badges"
+	group = "传家宝与徽章"
 
 /datum/loadout_item/accessory/heirloom/bone_charm
-	name = "Heirloom Bone Talisman"
+	name = "传家骨护符"
 	item_path = /obj/item/clothing/accessory/talisman/armourless
 
 /datum/loadout_item/accessory/heirloom/bone_codpiece
-	name = "Heirloom Skull Codpiece"
+	name = "传家骷髅护裆"
 	item_path = /obj/item/clothing/accessory/skullcodpiece/armourless
 
 /datum/loadout_item/accessory/heirloom/sinew_kilt
-	name = "Heirloom Sinew Skirt"
+	name = "传家肌腱短裙"
 	item_path = /obj/item/clothing/accessory/skilt/armourless
 
 /datum/loadout_item/accessory/heirloom/holobadge
-	name = "Holobadge"
+	name = "全息徽章"
 	item_path = /obj/item/clothing/accessory/badge/holo
 
 /datum/loadout_item/accessory/heirloom/holobadge/cord
-	name = "Holobadge with Lanyard"
+	name = "全息徽章（挂绳）"
 	item_path = /obj/item/clothing/accessory/badge/holo/cord
 
 /datum/loadout_item/accessory/heirloom/dogtags
-	name = "Dogtags"
+	name = "狗牌"
 	item_path = /obj/item/clothing/accessory/dogtags
 
 /datum/loadout_item/accessory/heirloom/mercbadge
-	name = "Jade Badge"
+	name = "翡翠徽章"
 	item_path = /obj/item/clothing/accessory/badge/holo/jade
 	//ckeywhitelist = list("konstyantyn")
 
 /datum/loadout_item/accessory/heirloom/syntech
-	name = "Normalizer Safety Pin"
+	name = "标准化安全别针"
 	item_path = /obj/item/clothing/accessory/syntech
 /*
 *
@@ -81,103 +81,103 @@
 */
 /datum/loadout_item/accessory/medal
 	abstract_type = /datum/loadout_item/accessory/medal
-	group = "Medals"
+	group = "勋章"
 
 /datum/loadout_item/accessory/medal/fake_medal
-	name = "Fake Medal"
+	name = "假勋章"
 	item_path = /obj/item/clothing/accessory/fake/medal
 
 /datum/loadout_item/accessory/medal/shield
-	name = "Medal - Shield"
+	name = "勋章·盾形"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/shield
 
 /datum/loadout_item/accessory/medal/shield_br
-	name = "Medal - Shield (Bar-Ribbon)"
+	name = "勋章·盾形（横杠缎带）"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/shield/bar_ribbon
 
 /datum/loadout_item/accessory/medal/shield_h
-	name = "Medal - Shield (Hollow)"
+	name = "勋章·盾形（空心）"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/shield/hollow
 
 /datum/loadout_item/accessory/medal/bar
-	name = "Medal - Bar"
+	name = "勋章·横杠"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/bar
 
 /datum/loadout_item/accessory/medal/bar_br
-	name = "Medal - Bar (Bar-Ribbon)"
+	name = "勋章·横杠（横杠缎带）"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/bar/bar_ribbon
 
 /datum/loadout_item/accessory/medal/bar_h
-	name = "Medal - Bar (Hollow)"
+	name = "勋章·横杠（空心）"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/bar/hollow
 
 /datum/loadout_item/accessory/medal/circle
-	name = "Medal - Circle"
+	name = "勋章·圆形"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/circle
 
 /datum/loadout_item/accessory/medal/circle_br
-	name = "Medal - Circle (Bar-Ribbon)"
+	name = "勋章·圆形（横杠缎带）"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/circle/bar_ribbon
 
 /datum/loadout_item/accessory/medal/circle_alt
-	name = "Medal - Circle (Alt)"
+	name = "勋章·圆形（备选）"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal
 	//This is actually the default setup for our medals!
 
 /datum/loadout_item/accessory/medal/circle_h
-	name = "Medal - Circle (Hollow)"
+	name = "勋章·圆形（空心）"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/circle/hollow
 
 /datum/loadout_item/accessory/medal/circle_h_br
-	name = "Medal - Circle (Hollow, Bar-Ribbon)"
+	name = "勋章·圆形（空心，横杠缎带）"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/circle/hollow/bar_ribbon
 
 /datum/loadout_item/accessory/medal/heart
-	name = "Medal - Heart"
+	name = "勋章·心形"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/heart
 
 /datum/loadout_item/accessory/medal/heart_br
-	name = "Medal - Heart (Bar-Ribbon)"
+	name = "勋章·心形（横杠缎带）"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/heart/bar_ribbon
 
 /datum/loadout_item/accessory/medal/heart_s
-	name = "Medal - Heart (Special)"
+	name = "勋章·心形（特殊）"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/heart/special
 
 /datum/loadout_item/accessory/medal/heart_s_br
-	name = "Medal - Heart (Special, Bar-Ribbon)"
+	name = "勋章·心形（特殊，横杠缎带）"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/heart/special/bar_ribbon
 
 /datum/loadout_item/accessory/medal/crown
-	name = "Medal - Crown"
+	name = "勋章·皇冠"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/crown
 
 /datum/loadout_item/accessory/medal/crown_br
-	name = "Medal - Crown (Bar-Ribbon)"
+	name = "勋章·皇冠（横杠缎带）"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/crown/bar_ribbon
 
 /datum/loadout_item/accessory/medal/crown_h
-	name = "Medal - Crown (Hollow)"
+	name = "勋章·皇冠（空心）"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/crown/hollow
 
 /datum/loadout_item/accessory/medal/crown_h_br
-	name = "Medal - Crown (Hollow, Bar-Ribbon)"
+	name = "勋章·皇冠（空心，横杠缎带）"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/crown/hollow/bar_ribbon
 
 /datum/loadout_item/accessory/medal/rankpin_star
-	name = "Rankpin (Star)"
+	name = "军衔别针（星形）"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/rankpin
 
 /datum/loadout_item/accessory/medal/rankpin_bar
-	name = "Rankpin (Bar)"
+	name = "军衔别针（横杠）"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/rankpin/bar
 
 /datum/loadout_item/accessory/medal/rankpin_twobar
-	name = "Rankpin (Double Bars)"
+	name = "军衔别针（双横杠）"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/rankpin/two_bar
 
 /datum/loadout_item/accessory/medal/kiara
-	name = "Insignia of Steele"
+	name = "斯蒂尔徽章"
 	item_path = /obj/item/clothing/accessory/medal/steele
 	//ckeywhitelist = list("inferno707")
 
@@ -186,15 +186,15 @@
 */
 
 /datum/loadout_item/accessory/medal/cc_pin
-	name = "Neckpin - CentCom"
+	name = "领针·中央指挥部"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/neckpin/centcom
 	restricted_roles = list(JOB_NT_REP, JOB_CAPTAIN, JOB_BLUESHIELD)
 
 /datum/loadout_item/accessory/medal/nt_pin
-	name = "Neckpin - Nanotrasen"
+	name = "领针·纳米传讯"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/neckpin
 
 /datum/loadout_item/accessory/medal/pt_pin
-	name = "Neckpin - Port Tarkon"
+	name = "领针·塔肯港"
 	item_path = /obj/item/clothing/accessory/bubber/acc_medal/neckpin/porttarkon
 

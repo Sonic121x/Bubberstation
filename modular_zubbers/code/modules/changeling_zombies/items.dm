@@ -1,6 +1,6 @@
 /obj/item/melee/arm_blade/changeling_zombie
 
-	name = "prototype arm blade"
+	name = "原型臂刃"
 
 	force = 21 //Normally 25.
 
@@ -25,9 +25,9 @@
 /obj/item/melee/arm_blade/changeling_zombie/examine(mob/user)
 	. = ..()
 	if(blood_chance <= 0)
-		. += span_warning("This variant is non-infectious.")
+		. += span_warning("这一变体不会造成感染。")
 	else
-		. += span_warning("Has a [blood_chance]% chance to infect when drawing blood on hit, with a [CHANGELING_ZOMBIE_REINFECT_DELAY/10] second cooldown.")
+		. += span_warning("命中并见血时有 [blood_chance]% 的几率造成感染，冷却时间为 [CHANGELING_ZOMBIE_REINFECT_DELAY/10] 秒。")
 
 /obj/item/melee/arm_blade/changeling_zombie/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
@@ -45,13 +45,13 @@
 	if(!prob(blood_chance))
 		return
 	if(!can_become_changeling_zombie(target_mob))
-		target_mob.balloon_alert(user, "cannot infect")
+		target_mob.balloon_alert(user, "无法感染")
 		return
 	var/mob/living/carbon/human/host = target_mob
 	var/datum/component/changeling_zombie_infection/infection = host.AddComponent(/datum/component/changeling_zombie_infection)
 	if(!infection)
 		return
-	target_mob.balloon_alert(user, "infected")
+	target_mob.balloon_alert(user, "已感染")
 	var/datum/component/changeling_zombie_infection/component = user.GetComponent(/datum/component/changeling_zombie_infection)
 	if(!component)
 		return
@@ -66,7 +66,7 @@
 		COOLDOWN_START(src, sound_cooldown, 3 SECONDS)
 
 /obj/item/clothing/suit/armor/changeling/prototype
-	name = "prototype chitinous mass"
+	name = "原型几丁质团块"
 	armor_type = /datum/armor/armor_changeling_zombie
 
 /datum/armor/armor_changeling_zombie

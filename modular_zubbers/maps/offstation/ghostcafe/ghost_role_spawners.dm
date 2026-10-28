@@ -1,13 +1,13 @@
 /obj/effect/mob_spawn/ghost_role/robot
-	name = "Ghost Role Robot"
-	prompt_name = "a robot"
-	you_are_text = "You are a robot. This probably shouldn't be happening."
-	flavour_text = "You are a robot. This probably shouldn't be happening."
+	name = "幽灵角色机器人"
+	prompt_name = "一个机器人"
+	you_are_text = "你是一个机器人。这大概不该发生。"
+	flavour_text = "你是一个机器人。这大概不该发生。"
 	mob_type = /mob/living/silicon/robot
 
 /obj/effect/mob_spawn/ghost_role/robot/ghostcafe
-	name = "Cafe Robotic Storage"
-	prompt_name = "a ghost cafe robot"
+	name = "咖啡厅机器人存储舱"
+	prompt_name = "一个幽灵咖啡厅机器人"
 	infinite_use = TRUE
 	deletes_on_zero_uses_left = FALSE
 	icon = 'modular_skyrat/modules/ghostcafe/icons/robot_storage.dmi'
@@ -15,8 +15,8 @@
 	anchored = TRUE
 	density = FALSE
 	spawner_job_path = /datum/job/ghostcafe
-	you_are_text = "You are a Cafe Robot!"
-	flavour_text = "Who could have thought? This awesome local cafe accepts cyborgs too!"
+	you_are_text = "你是一台咖啡厅机器人！"
+	flavour_text = "谁能想到呢？这家超棒的本地咖啡厅也接待半机械人！"
 	mob_type = /mob/living/silicon/robot/model/roleplay
 	random_appearance = FALSE
 	allow_custom_character = ALL
@@ -35,13 +35,13 @@
 		new_spawn.RegisterSignal(new_spawn, COMSIG_MOVABLE_USING_RADIO, TYPE_PROC_REF(/mob/living, on_using_radio))
 		ADD_TRAIT(new_spawn, TRAIT_SIXTHSENSE, TRAIT_GHOSTROLE)
 		ADD_TRAIT(new_spawn, TRAIT_FREE_GHOST, TRAIT_GHOSTROLE)
-		to_chat(new_spawn,span_warning("<b>Ghosting is free!</b>"))
+		to_chat(new_spawn,span_warning("<b>幽灵化免费！</b>"))
 		var/datum/action/toggle_dead_chat_mob/D = new(new_spawn)
 		D.Grant(new_spawn)
 
 /obj/effect/mob_spawn/ghost_role/human/ghostcafe
-	name = "Cafe Sleeper"
-	prompt_name = "a ghost cafe human"
+	name = "咖啡厅休眠舱"
+	prompt_name = "一个幽灵咖啡厅人类"
 	infinite_use = TRUE
 	deletes_on_zero_uses_left = FALSE
 	icon = 'icons/obj/machines/sleeper.dmi'
@@ -49,8 +49,8 @@
 	density = FALSE
 	spawner_job_path = /datum/job/ghostcafe
 	outfit = /datum/outfit/ghostcafe
-	you_are_text = "You are a Cafe Visitor!"
-	flavour_text = "You are off-duty and have decided to visit your favourite cafe. Enjoy yourself."
+	you_are_text = "你是咖啡厅访客！"
+	flavour_text = "你正值休班，决定去最喜欢的咖啡厅坐坐。好好享受吧。"
 	random_appearance = FALSE
 	loadout_enabled = TRUE
 	quirks_enabled = TRUE
@@ -65,7 +65,7 @@
 		new_spawn.RegisterSignal(new_spawn, COMSIG_MOVABLE_USING_RADIO, TYPE_PROC_REF(/mob/living, on_using_radio))
 		ADD_TRAIT(new_spawn, TRAIT_SIXTHSENSE, TRAIT_GHOSTROLE)
 		ADD_TRAIT(new_spawn, TRAIT_FREE_GHOST, TRAIT_GHOSTROLE)
-		to_chat(new_spawn,span_warning("<b>Ghosting is free!</b>"))
+		to_chat(new_spawn,span_warning("<b>幽灵化免费！</b>"))
 		var/datum/action/toggle_dead_chat_mob/D = new(new_spawn)
 		D.Grant(new_spawn)
 
@@ -95,8 +95,8 @@
 /datum/action/toggle_dead_chat_mob
 	button_icon = 'icons/mob/simple/mob.dmi'
 	button_icon_state = "ghost"
-	name = "Toggle deadchat"
-	desc = "Turn off or on your ability to hear ghosts."
+	name = "切换亡者频道"
+	desc = "开启或关闭你听见亡魂的能力。"
 
 /datum/action/toggle_dead_chat_mob/Trigger(trigger_flags)
 	if(!..())
@@ -104,9 +104,9 @@
 	var/mob/M = target
 	if(HAS_TRAIT_FROM(M,TRAIT_SIXTHSENSE,TRAIT_GHOSTROLE))
 		REMOVE_TRAIT(M,TRAIT_SIXTHSENSE,TRAIT_GHOSTROLE)
-		to_chat(M,span_notice("You're no longer hearing deadchat."))
+		to_chat(M,span_notice("你已不再能听见亡者频道。"))
 	else
 		ADD_TRAIT(M,TRAIT_SIXTHSENSE,TRAIT_GHOSTROLE)
-		to_chat(M,span_notice("You're once again hearing deadchat."))
+		to_chat(M,span_notice("你又能听见亡者频道了。"))
 
 

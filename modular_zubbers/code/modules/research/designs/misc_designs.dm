@@ -1,6 +1,6 @@
 /datum/design/diskplantgene
-	name = "Plant Data Disk"
-	desc = "A disk for storing plant genetic data."
+	name = "植物数据磁盘"
+	desc = "用于储存植物基因数据的磁盘。"
 	id = "diskplantgene"
 	build_type = PROTOLATHE
 	materials = list(
@@ -13,8 +13,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/nitrogen_tank
-	name = "Nitrogen Tank"
-	desc = "An empty nitrogen tank."
+	name = "氮气罐"
+	desc = "一个空氮气罐。"
 	id = "nitrogen_tank"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
@@ -39,8 +39,8 @@
 */
 
 /datum/design/anesthetic_tank
-	name = "Anesthetic Tank"
-	desc = "An empty tank designed specifically for use with anesthetics."
+	name = "麻醉气体罐"
+	desc = "一种专为配合麻醉剂使用而设计的空罐。"
 	id = "anesthetic_tank"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT)
@@ -51,8 +51,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/civilian_hud
-	name = "Civilian HUD"
-	desc = "A heads-up display that scans the humanoids around you and displays their ID status. Experts say this has well over 9000 uses."
+	name = "民用 HUD"
+	desc = "一种平视显示器，可扫描周围的人形生物并显示其 ID 状态。专家称其用途远超 9000 种。"
 	id = "civ_hud"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -66,8 +66,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/cyberimp_civ_hud
-	name = "Civilian HUD Implant"
-	desc = "These cybernetic eyes will display a civilian HUD over everything you see. Wiggle eyes to control."
+	name = "民用 HUD 植入体"
+	desc = "这些义眼会在你看到的一切之上叠加民用 HUD。转动眼球以控制。"
 	id = "ci-civhud"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 5 SECONDS
@@ -85,7 +85,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/umbrella
-	name = "Umbrella"
+	name = "雨伞"
 	id = "umbrella"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.75, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.25)

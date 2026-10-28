@@ -1,6 +1,6 @@
 /datum/voucher_set/mining/bunny
-	name = "Bunny Conscription Kit"
-	description = "Designed for Miners on the planet of Carota, this kit includes all you need to imitate them! Weapons sold seperately."
+	name = "兔兔征召套件"
+	description = "专为卡罗塔行星上的矿工设计，这套装备包含模仿他们所需的一切！武器另售。"
 	icon = 'icons/mob/simple/rabbit.dmi'
 	icon_state = "rabbit_white"
 	set_items = list(
@@ -18,8 +18,8 @@
 	new /obj/item/storage/lunchbox/bunny/carrot(src)
 
 /obj/item/storage/lunchbox/bunny/carrot
-	name = "carrot lunchbox"
-	desc = "Who needs Mesons?"
+	name = "胡萝卜午餐盒"
+	desc = "谁还需要介子护目镜？"
 
 /obj/item/storage/lunchbox/bunny/carrot/PopulateContents()
 	for(var/i in 1 to 7)
@@ -29,8 +29,8 @@
 	blackbox_key = "suit_voucher_redeemed"
 
 /datum/voucher_set/mining_suit/explorer
-	name = "Explorer Suit"
-	description = "An armoured suit for exploring harsh environments. It can be reinforced with goliath plates."
+	name = "探险服"
+	description = "一套用于探索恶劣环境的装甲服。可用歌利亚护甲板加固。"
 	icon = 'icons/obj/clothing/suits/utility.dmi'
 	icon_state = "explorer"
 	set_items = list(
@@ -39,8 +39,8 @@
 	)
 
 /datum/voucher_set/mining_suit/seva
-	name = "SEVA Suit"
-	description = "A fire-proof suit for exploring hot environments. It can't be reinforced with goliath plates, but is ash storm proof."
+	name = "SEVA 防护服"
+	description = "一套防火服，用于探索高温环境。无法用歌利亚护甲板加固，但能抵御灰烬风暴。"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	icon_state = "seva"
 	set_items = list(
@@ -49,8 +49,8 @@
 	)
 
 /datum/voucher_set/mining_suit/carota
-	name = "Bunny Suit"
-	description = "Designed for Miners on the planet of Carota, while you might get some odd looks from your co-workers, decency is a foreign word around here."
+	name = "兔兔服"
+	description = "专为卡罗塔行星上的矿工设计。虽然同事可能会用奇怪的眼神看你，但在这地方，“体面”是个外来词。"
 	icon = 'icons/mob/simple/rabbit.dmi'
 	icon_state = "rabbit_white"
 	set_items = list(
@@ -63,8 +63,8 @@
 	)
 
 /datum/voucher_set/mining_suit/winter
-	name = "Winter Suit"
-	description = "Brr! Chilly! While this won't get you far on Lavaland, it's perfectly suited for colder locales! Includes free Hot Coco!"
+	name = "冬季套装"
+	description = "啊！好冷！虽然这身在熔岩地带撑不了多久，但非常适合更寒冷的地方！附赠免费热可可！"
 	icon = 'icons/obj/clothing/suits/wintercoat.dmi'
 	icon_state = "coatminer"
 	set_items = list(
@@ -73,8 +73,8 @@
 	)
 
 /datum/voucher_set/mining_suit/bomber
-	name = "Bomber Jacket"
-	description = "Trade in a hood for what your great-grandparents called 'Aura'. Cigars and or mask sold seperately."
+	name = "飞行夹克"
+	description = "用兜帽换一件你曾祖父母口中的“气场”。雪茄与面具另售。"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "bombermining"
 	set_items = list(
@@ -82,8 +82,8 @@
 	)
 
 /datum/voucher_set/mining_suit/diy
-	name = "DIY Mining Suit"
-	description = "Do-it-yourself custom mining suit. Includes specialized kit to turn your outfit into custom explorer/SEVA suit."
+	name = "自制采矿服"
+	description = "自己动手定制的采矿服。内含专用套件，可将你的服装改造成定制的探险服或 SEVA 防护服。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "retool_kit"
 	set_items = list(

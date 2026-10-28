@@ -1,7 +1,7 @@
 /mob/living/basic/mining/cazador
 
-	name = "cazador"
-	desc = "You feel a little woozy..."
+	name = "卡萨多"
+	desc = "你感到有点头晕目眩……"
 
 	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
 	icon_state = "cazador"
@@ -22,13 +22,13 @@
 	unsuitable_cold_damage = 4
 	unsuitable_heat_damage = 4
 
-	friendly_verb_continuous = "buzzes at"
-	friendly_verb_simple = "buzz at"
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently shoos aside"
-	response_disarm_simple = "gently shoo aside"
-	speak_emote = list("buzzes")
+	friendly_verb_continuous = "友好地嗡鸣"
+	friendly_verb_simple = "友好地嗡鸣"
+	response_help_continuous = "轻抚"
+	response_help_simple = "轻抚"
+	response_disarm_continuous = "轻轻拨开"
+	response_disarm_simple = "轻轻拨开"
+	speak_emote = list("嗡嗡作响")
 
 	combat_mode = TRUE
 	melee_attack_cooldown = 2 SECONDS
@@ -38,10 +38,10 @@
 
 	attack_vis_effect = ATTACK_EFFECT_MECHTOXIN
 	attack_sound = 'sound/items/weapons/pierce.ogg'
-	attack_verb_continuous = "stings"
-	attack_verb_simple = "sting"
+	attack_verb_continuous = "蜇刺"
+	attack_verb_simple = "蜇刺"
 
-	throw_blocked_message = "does nothing to the tough carapace of"
+	throw_blocked_message = "撞在坚硬甲壳上，未能伤及"
 
 	speed = 1
 	movement_type = FLYING
@@ -60,19 +60,19 @@
 	AddElement(/datum/element/venomous, /datum/reagent/toxin/cazador, 2, injection_flags = INJECT_CHECK_PENETRATE_THICK)
 
 /datum/reagent/toxin/cazador
-	name = "Cazador Venom"
+	name = "卡萨多毒液"
 	toxpwr = 4
-	description = "An extremely toxic chemical produced by the rare cazador. Makes you feel woozy."
+	description = "一种由稀有的卡萨多产生的剧毒化学物质。会让你头晕目眩。"
 	health_required = 10
 	liver_damage_multiplier = 0
 
 /datum/reagent/toxin/cazador/on_mob_add(mob/living/carbon/affected_mob)
 	. = ..()
-	to_chat(affected_mob, span_danger("You feel a little woozy..."))
+	to_chat(affected_mob, span_danger("你感到有点头晕目眩……"))
 
 /obj/item/reagent_containers/cup/tube/cazador_venom
-	name = "cazador venom vial"
-	desc = "A small vial. Contains cazador venom."
+	name = "卡萨多毒液药瓶"
+	desc = "一个小药瓶。里面装着卡萨多毒液。"
 	list_reagents = list(/datum/reagent/toxin/cazador = 10)
 
 /mob/living/simple_animal/hostile/cazador

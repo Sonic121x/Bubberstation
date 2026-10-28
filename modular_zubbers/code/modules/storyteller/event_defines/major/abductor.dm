@@ -1,5 +1,5 @@
 /datum/round_event_control/abductor
-	name = "Abductors"
+	name = "绑架者"
 	typepath = /datum/round_event/ghost_role/abductor
 	weight = 10
 	track = EVENT_TRACK_MAJOR
@@ -7,11 +7,11 @@
 	max_occurrences = 1
 	min_players = 20
 	category = EVENT_CATEGORY_INVASION
-	description = "One or more abductor teams spawns, and they plan to experiment on the crew."
+	description = "生成一支或多支绑架者小队，他们打算对船员进行实验。"
 
 /datum/round_event/ghost_role/abductor
 	minimum_required = 2
-	role_name = "abductor team"
+	role_name = "绑架者小队"
 	fakeable = FALSE //Nothing to fake here
 
 /datum/round_event/ghost_role/abductor/spawn_role()
@@ -33,8 +33,8 @@
 	if(T.team_number > 4)
 		return MAP_ERROR
 
-	scientist.log_message("has been selected as [T.name] abductor scientist.", LOG_GAME)
-	agent.log_message("has been selected as [T.name] abductor agent.", LOG_GAME)
+	scientist.log_message("被选中担任 [T.name] 的绑架者科学家。", LOG_GAME)
+	agent.log_message("被选中担任 [T.name] 的绑架者特工。", LOG_GAME)
 
 	scientist.mind.add_antag_datum(/datum/antagonist/abductor/scientist, T)
 	agent.mind.add_antag_datum(/datum/antagonist/abductor/agent, T)

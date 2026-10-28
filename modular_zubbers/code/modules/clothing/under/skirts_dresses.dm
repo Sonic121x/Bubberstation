@@ -3,14 +3,14 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/skirts_dresses.dmi'
 
 /obj/item/clothing/under/dress/bubber/strapped
-	name = "formal evening gown"
-	desc = "A richly made dress of quality fabrics, but not much of them."
+	name = "正式晚礼服"
+	desc = "一件用料考究的高级面料礼服，只不过用料不多。"
 	icon_state = "dress_strapped"
 	body_parts_covered = CHEST|GROIN|LEGS
 
 /obj/item/clothing/under/dress/miniskirt
-	name = "miniskirt"
-	desc = "This skirt is quite small, even by skirt standards."
+	name = "迷你短裙"
+	desc = "这条短裙相当小，就算以短裙的标准来看也是如此。"
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
 	icon_state = "/obj/item/clothing/under/dress/miniskirt"
 	post_init_icon_state = "miniskirt"
@@ -26,8 +26,8 @@
 	body_parts_covered = GROIN | LEGS
 
 /obj/item/clothing/under/dress/bubber/midnight_gown
-	name = "midnight gown"
-	desc = "A seductive gown purpose tailored to show off one's legs."
+	name = "午夜长裙"
+	desc = "一件为展现双腿而量身定制的诱人长裙。"
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
 	icon_state = "/obj/item/clothing/under/dress/bubber/midnight_gown"
 	post_init_icon_state = "midnight_right"
@@ -112,8 +112,8 @@
 	new_icon_state = "giant_scarf_heart"
 
 /obj/item/clothing/under/dress/bubber/giant_scarf
-	name = "giant scarf"
-	desc = "An absurdly massive scarf, worn as the main article of clothing over the body. Ironically, not very suitable for the cold."
+	name = "巨型围巾"
+	desc = "一条大得离谱的围巾，直接当作主要衣物披在身上。讽刺的是，它并不太适合御寒。"
 	body_parts_covered = CHEST|GROIN|LEGS
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
 	icon_state = "/obj/item/clothing/under/dress/bubber/giant_scarf"

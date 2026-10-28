@@ -14,7 +14,7 @@
 	results = list(/datum/reagent/consumable/ethanol/cranberry_cadillac = 5)
 	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/ethanol/champagne = 2, /datum/reagent/consumable/ethanol/cognac = 1, /datum/reagent/blood = 1)
 	required_temp = 373.15 //Roughly the temp to boil sugar to make sugar crystals
-	mix_message = "The sugar melts then crystalizes around the blood, making candy rocks..."
+	mix_message = "糖融化后又在血液周围结晶，凝成了一块块糖果岩石……"
 
 /datum/chemical_reaction/drink/jubokko
 	results = list(/datum/reagent/consumable/ethanol/jubokko = 4)

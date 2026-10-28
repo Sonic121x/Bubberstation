@@ -1,21 +1,21 @@
 /datum/round_event_control/morph
-	name = "Spawn Morph"
+	name = "生成拟态怪"
 	typepath = /datum/round_event/ghost_role/morph
 	weight = 0
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_DESTRUCTIVE, TAG_SPOOKY)
 	max_occurrences = 1
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Spawns a hungry shapeshifting blobby creature."
+	description = "生成一只饥饿的、能变形的黏团生物。"
 	min_wizard_trigger_potency = 4
 	max_wizard_trigger_potency = 7
 
 /datum/round_event/ghost_role/morph
 	minimum_required = 1
-	role_name = "morphling"
+	role_name = "拟态怪"
 
 /datum/round_event/ghost_role/morph/spawn_role()
-	var/mob/chosen_one = SSpolling.poll_ghost_candidates(check_jobban = ROLE_ALIEN, role = ROLE_ALIEN, alert_pic = /mob/living/basic/morph, role_name_text = "morph", amount_to_pick = 1)
+	var/mob/chosen_one = SSpolling.poll_ghost_candidates(check_jobban = ROLE_ALIEN, role = ROLE_ALIEN, alert_pic = /mob/living/basic/morph, role_name_text = "拟态怪", amount_to_pick = 1)
 	if(isnull(chosen_one))
 		return NOT_ENOUGH_PLAYERS
 	var/datum/mind/player_mind = new /datum/mind(chosen_one.key)
@@ -30,7 +30,7 @@
 	player_mind.set_assigned_role(SSjob.get_job_type(/datum/job/morph))
 	player_mind.add_antag_datum(/datum/antagonist/morph)
 	SEND_SOUND(corpus_accipientis, sound('sound/effects/magic/mutate.ogg'))
-	message_admins("[ADMIN_LOOKUPFLW(corpus_accipientis)] has been made into a morph by an event.")
-	corpus_accipientis.log_message("was spawned as a morph by an event.", LOG_GAME)
+	message_admins("[ADMIN_LOOKUPFLW(corpus_accipientis)] 因事件被转化为拟态怪。")
+	corpus_accipientis.log_message("因事件被生成为拟态怪。", LOG_GAME)
 	spawned_mobs += corpus_accipientis
 	return SUCCESSFUL_SPAWN

@@ -3,13 +3,13 @@
 	if(!istype(robot))
 		return NONE
 	if(!robot.opened)
-		to_chat(user, span_warning("[robot] must be opened to insert this item."))
+		to_chat(user, span_warning("[robot]必须先打开才能放入此物品。"))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You insert [src] into [robot]."))
+	to_chat(user, span_notice("你把[src]插入了[robot]。"))
 	var/datum/action/cooldown/spell/voice_of_god/voice = new
 	voice.Grant(robot)
 	if(!user.dropItemToGround(src, TRUE, TRUE))
-		to_chat(user, span_notice("You are unable to drop [src]."))
+		to_chat(user, span_notice("你无法丢下[src]。"))
 		return ITEM_INTERACT_BLOCKING
 	forceMove(robot)
 	RegisterSignal(robot, COMSIG_BORG_SAFE_DECONSTRUCT, PROC_REF(on_silicon_decon))

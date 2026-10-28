@@ -3,8 +3,8 @@
 #define DEFAULT_SHELF_VERTICAL_OFFSET 10 // Vertical pixel offset of shelving-related things. Set to 10 by default due to this leaving more of the crate on-screen to be clicked.
 
 /obj/structure/cargo_shelf //Crate shelf port from Shiptest: https://github.com/shiptest-ss13/Shiptest/pull/2374
-	name = "Cargo shelf"
-	desc = "It's a shelf! For storing crates!"
+	name = "货运货架"
+	desc = "这是货架！用来放板条箱的！"
 	icon = 'modular_zubbers/icons/obj/structures.dmi'
 	icon_state = "shelf_base"
 	density = TRUE
@@ -40,12 +40,12 @@
 
 /obj/structure/cargo_shelf/examine(mob/user)
 	. = ..()
-	. += span_notice("There are some <b>bolts</b> holding [src] together.")
+	. += span_notice("有几颗<b>螺栓</b>把 [src] 固定在一起。")
 	if(shelf_contents.Find(null)) // If there's an empty space in the shelf, let the examiner know.
-		. += span_notice("You could <b>drag and drop</b> a crate into [src].")
+		. += span_notice("你可以把板条箱<b>拖放</b>进 [src]。")
 	if(contents.len) // If there are any crates in the shelf, let the examiner know.
-		. += span_notice("You could <b>drag and drop</b> a crate out of [src].")
-		. += span_notice("[src] contains:")
+		. += span_notice("你可以把板条箱从 [src] <b>拖放</b>出来。")
+		. += span_notice("[src] 内有：")
 		for(var/obj/structure/closet/crate/crate in shelf_contents)
 			. += "	[icon2html(crate, user)] [crate]"
 
@@ -58,13 +58,13 @@
 	return ..()
 
 /obj/structure/cargo_shelf/relay_container_resist_act(mob/living/user, obj/structure/closet/crate)
-	to_chat(user, span_notice("You begin attempting to knock [crate] out of [src]"))
+	to_chat(user, span_notice("你开始试着把 [crate] 从 [src] 里敲出来"))
 	if(do_after(user, 30 SECONDS, target = crate))
 		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != crate || crate.loc != src)
 			return // If the user is in a strange condition, return early.
-		visible_message(span_warning("[crate] falls off of [src]!"),
-						span_notice("You manage to knock [crate] free of [src]"),
-						span_notice("You hear a thud."))
+		visible_message(span_warning("[crate] 从 [src] 上掉了下来！"),
+						span_notice("你成功把 [crate] 从 [src] 里敲了出来"),
+						span_notice("你听到一声闷响。"))
 		crate.forceMove(drop_location()) // Drop the crate onto the shelf,
 		step_rand(crate, 1) // Then try to push it somewhere.
 		crate.layer = initial(crate.layer) // Reset the crate back to having the default layer, otherwise we might get strange interactions.
@@ -79,7 +79,7 @@
 /obj/structure/cargo_shelf/proc/load(obj/structure/closet/crate/crate, mob/user)
 	var/next_free = shelf_contents.Find(null) // Find the first empty slot in the shelf.
 	if(!next_free) // If we don't find an empty slot, return early.
-		balloon_alert(user, "shelf full!")
+		balloon_alert(user, "货架已满！")
 		return FALSE
 	if(do_after(user, use_delay, target = crate))
 		if(shelf_contents[next_free] != null)
@@ -103,7 +103,7 @@
 	if(!unload_turf)
 		unload_turf = get_turf(user) // If a turf somehow isn't passed into the proc, put it at the user's feet.
 	if(!unload_turf.Enter(crate)) // If moving the crate from the shelf to the desired turf would bump, don't do it! Thanks Kapu1178 for the help here. - Generic DM
-		unload_turf.balloon_alert(user, "no room!")
+		unload_turf.balloon_alert(user, "没有空间！")
 		return FALSE
 	if(do_after(user, use_delay, target = crate))
 		if(!shelf_contents.Find(crate))
@@ -128,12 +128,12 @@
 		switch(pick(1, 1, 1, 1, 2, 2, 3)) // Randomly pick whether to do nothing, open the crate, or break it open.
 			if(2) // Open the crate!
 				if(crate.open()) // Break some open, cause a little chaos.
-					crate.visible_message(span_warning("[crate]'s lid falls open!"))
+					crate.visible_message(span_warning("[crate] 的盖子自己弹开了！"))
 				else // If we somehow fail to open the crate, just break it instead!
-					crate.visible_message(span_warning("[crate] falls apart!"))
+					crate.visible_message(span_warning("[crate] 散架了！"))
 					crate.deconstruct()
 			if(3) // Break that crate!
-				crate.visible_message(span_warning("[crate] falls apart!"))
+				crate.visible_message(span_warning("[crate] 散架了！"))
 				crate.deconstruct()
 		shelf_contents[shelf_contents.Find(crate)] = null
 	if(!(flags_1 & NO_DEBRIS_AFTER_DECONSTRUCTION))
@@ -157,23 +157,23 @@
 		return shelf.load(src, user) // If we're being dropped onto a crate shelf, and we're in a turf, load.
 
 /obj/item/rack_parts/cargo_shelf
-	name = "Cargo shelf parts"
+	name = "货运货架零件"
 	icon = 'modular_zubbers/icons/obj/structures.dmi'
 	icon_state = "rack_parts"
-	desc = "Parts of a cargo shelf, for storing crates."
+	desc = "货运货架的零件，用于存放板条箱。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 4)
 
 /obj/item/rack_parts/cargo_shelf/attack_self(mob/user)
 	if(building)
 		return
 	building = TRUE
-	to_chat(user, span_notice("You start constructing a cargo shelf..."))
+	to_chat(user, span_notice("你开始建造货运货架……"))
 	if(do_after(user, 50, target = user, show_progress = TRUE))
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			return
 		var/obj/structure/cargo_shelf/R = new /obj/structure/cargo_shelf(get_turf(src))
-		user.visible_message("<span class='notice'>[user] assembles \a [R].\
-			</span>", span_notice("You assemble \a [R]."))
+		user.visible_message("<span class='notice'>[user] 组装了一个[R]。\
+			</span>", span_notice("你组装了一个[R]。"))
 		R.add_fingerprint(user)
 		qdel(src)
 	building = FALSE
@@ -185,21 +185,21 @@
 	qdel(src)
 
 /obj/item/rack_parts/gun
-	name = "gun rack parts"
-	desc = "Parts of a gun rack."
+	name = "枪架零件"
+	desc = "枪架的零件。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/rack_parts/gun/attack_self(mob/user)
 	if(building)
 		return
 	building = TRUE
-	to_chat(user, span_notice("You start constructing a gun rack..."))
+	to_chat(user, span_notice("你开始建造枪架……"))
 	if(do_after(user, 50, target = user, show_progress = TRUE))
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			return
 		var/obj/structure/rack/gunrack/R = new /obj/structure/rack/gunrack(get_turf(src))
-		user.visible_message("<span class='notice'>[user] assembles \a [R].\
-			</span>", span_notice("You assemble \a [R]."))
+		user.visible_message("<span class='notice'>[user] 组装了一个[R]。\
+			</span>", span_notice("你组装了一个[R]。"))
 		R.add_fingerprint(user)
 		qdel(src)
 	building = FALSE
@@ -211,21 +211,21 @@
 	qdel(src)
 
 /obj/item/rack_parts/shelf
-	name = "shelf parts"
-	desc = "Parts of a standard shelf."
+	name = "货架零件"
+	desc = "标准货架的零件。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/rack_parts/shelf/attack_self(mob/user)
 	if(building)
 		return
 	building = TRUE
-	to_chat(user, span_notice("You start constructing a standard shelf..."))
+	to_chat(user, span_notice("你开始建造标准货架……"))
 	if(do_after(user, 50, target = user, show_progress = TRUE))
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			return
 		var/obj/structure/rack/shelf/R = new /obj/structure/rack/shelf(get_turf(src))
-		user.visible_message("<span class='notice'>[user] assembles \a [R].\
-			</span>", span_notice("You assemble \a [R]."))
+		user.visible_message("<span class='notice'>[user] 组装了一个[R]。\
+			</span>", span_notice("你组装了一个[R]。"))
 		R.add_fingerprint(user)
 		qdel(src)
 	building = FALSE

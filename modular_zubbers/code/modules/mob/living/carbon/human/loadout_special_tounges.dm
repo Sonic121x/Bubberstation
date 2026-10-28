@@ -1,7 +1,7 @@
 /obj/item/organ/tongue/xenobubble_tongue
-	name = "alien tongue"
+	name = "异形舌头"
 	icon_state = "tonguexeno"
-	say_mod = "hisses"
+	say_mod = "嘶嘶说道"
 	taste_sensitivity = 10
 
 /obj/item/organ/tongue/xenobubble_tongue/Initialize(mapload)
@@ -11,10 +11,10 @@
 	AddComponent(/datum/component/bubble_icon_override, "alien", BUBBLE_ICON_PRIORITY_ORGAN)
 
 /obj/item/organ/tongue/robotic_speaker
-	name = "robotic speaker"
+	name = "机械扬声器"
 	organ_flags = ORGAN_ROBOTIC
 	icon_state = "tonguerobot"
-	say_mod = "beeps"
+	say_mod = "哔哔说道"
 	modifies_speech = TRUE
 	taste_sensitivity = 25
 	organ_traits = list(TRAIT_SPEAKS_CLEARLY, TRAIT_SILICON_EMOTES_ALLOWED)
@@ -28,18 +28,18 @@
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
 
 /obj/item/organ/tongue/holo_bubble
-	name = "holographic tongue"
+	name = "全息舌头"
 	icon_state = "tongue-ghost"
-	say_mod = "transmits"
+	say_mod = "传讯道"
 
 /obj/item/organ/tongue/holo_bubble/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/bubble_icon_override, "guardian", BUBBLE_ICON_PRIORITY_ORGAN)
 
 /obj/item/organ/tongue/slimebubble_tounge
-	name = "slime tongue"
+	name = "史莱姆舌头"
 	icon_state = "tonguetied"
-	say_mod = "blorbles"
+	say_mod = "咕叽说道"
 
 /obj/item/organ/tongue/slimebubble_tounge/Initialize(mapload)
 	. = ..()

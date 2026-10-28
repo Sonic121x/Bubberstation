@@ -1,6 +1,6 @@
 /obj/machinery/nanite_program_hub
-	name = "nanite program hub"
-	desc = "Compiles nanite programs from the techweb servers and downloads them into disks."
+	name = "纳米机器人程序中枢"
+	desc = "从科技网络服务器编译纳米机器人程序，并将其下载到磁盘中。"
 	icon = 'modular_zubbers/icons/obj/machines/nanite_machines.dmi'
 	icon_state = "nanite_program_hub"
 	use_power = IDLE_POWER_USE
@@ -13,13 +13,13 @@
 	var/current_category = "Main"
 	var/detail_view = TRUE
 	var/categories = list(
-		list(name = "Utility Nanites"),
-		list(name = "Medical Nanites"),
-		list(name = "Sensor Nanites"),
-		list(name = "Augmentation Nanites"),
-		list(name = "Suppression Nanites"),
-		list(name = "Weaponized Nanites"),
-		list(name = "Protocols"),
+		list(name = "实用纳米机器人"),
+		list(name = "医疗纳米机器人"),
+		list(name = "传感纳米机器人"),
+		list(name = "强化纳米机器人"),
+		list(name = "抑制纳米机器人"),
+		list(name = "武器化纳米机器人"),
+		list(name = "协议"),
 	)
 
 /obj/machinery/nanite_program_hub/Initialize(mapload, obj/item/circuitboard/C)
@@ -30,17 +30,17 @@
 
 /obj/machinery/nanite_program_hub/examine(mob/user)
 	. = ..()
-	. += span_notice("Use with a linked multitool to link to a techweb server.")
+	. += span_notice("使用已链接的多功能工具，将其连接到科技网络服务器。")
 
 /obj/machinery/nanite_program_hub/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(isnull(held_item))
 		return
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "Open Panel"
+		context[SCREENTIP_CONTEXT_LMB] = "打开面板"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(held_item.tool_behaviour == TOOL_MULTITOOL)
-		context[SCREENTIP_CONTEXT_LMB] = "Upload Techweb"
+		context[SCREENTIP_CONTEXT_LMB] = "上传科技网络"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/nanite_program_hub/update_overlays()
@@ -64,7 +64,7 @@
 	var/obj/item/disk/nanite_program/new_disk = tool
 	if(!user.transferItemToLoc(new_disk, src))
 		return NONE
-	to_chat(user, span_notice("You insert [new_disk] into [src]"))
+	to_chat(user, span_notice("你将 [new_disk] 插入 [src]。"))
 	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 	if(disk)
 		eject(user)
@@ -74,7 +74,7 @@
 /obj/machinery/nanite_program_hub/multitool_act(mob/living/user, obj/item/multitool/tool)
 	if(!QDELETED(tool.buffer) && istype(tool.buffer, /datum/techweb))
 		linked_techweb = tool.buffer
-		balloon_alert(user, "linked!")
+		balloon_alert(user, "已链接！")
 		update_static_data_for_all_viewers()
 	return TRUE
 
@@ -99,7 +99,7 @@
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
 	if(disk && user.can_perform_action(src, !issilicon(user)))
-		to_chat(user, span_notice("You take out [disk] from [src]."))
+		to_chat(user, span_notice("你从 [src] 中取出 [disk]。"))
 		eject(user)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -139,7 +139,7 @@
 		var/datum/design/nanites/D = SSresearch.techweb_design_by_id(i)
 		if(!istype(D))
 			continue
-		var/cat_name = D.category[1] //just put them in the first category fuck it
+		var/cat_name = chinese_nanite_category_display(D.category[1]) //just put them in the first category fuck it
 		if(isnull(data["programs"][cat_name]))
 			data["programs"][cat_name] = list()
 		var/list/program_design = list()

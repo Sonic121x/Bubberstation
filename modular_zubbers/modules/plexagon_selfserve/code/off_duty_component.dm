@@ -54,11 +54,11 @@
 		return FALSE
 
 	if(!(ACCESS_HOP in hop_id.access))
-		to_chat(user, span_warning("You lack the access to unlock [parent]"))
+		to_chat(user, span_warning("你没有解锁 [parent] 的权限"))
 		return FALSE
 
 	hop_locked = FALSE
-	to_chat(user, span_notice("[parent] has been unlocked, the owner is now able to clock in."))
-	log_admin("[parent] has been unlocked by [user] and is now able to be clocked back in.")
+	to_chat(user, span_notice("[parent] 已解锁，其所有者现在可以签到了。"))
+	log_admin("[parent] 已被 [user] 解锁，现在可以重新签到了。")
 
 	return TRUE

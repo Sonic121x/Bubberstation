@@ -1,6 +1,6 @@
 /obj/machinery/computer/nanite_chamber_control
-	name = "nanite chamber control console"
-	desc = "Controls a connected nanite chamber. Can inoculate nanites, load programs, and analyze existing nanite swarms."
+	name = "纳米机器人舱控制台"
+	desc = "控制已连接的纳米机器人舱。可接种纳米机器人、加载程序并分析现有的纳米机器人集群。"
 	icon = 'modular_zubbers/icons/obj/machines/computer.dmi'
 	icon_screen = "nanite_chamber_control"
 	circuit = /obj/item/circuitboard/computer/nanite_chamber_control
@@ -33,17 +33,17 @@
 	var/list/data = list()
 
 	if(!chamber)
-		data["status_msg"] = "No chamber detected."
+		data["status_msg"] = "未检测到舱体。"
 		return data
 
 	if(!chamber.occupant)
-		data["status_msg"] = "No occupant detected."
+		data["status_msg"] = "未检测到使用者。"
 		return data
 
 	var/mob/living/L = chamber.occupant
 
 	if(!CAN_HAVE_NANITES(L))
-		data["status_msg"] = "Occupant not compatible with nanites."
+		data["status_msg"] = "使用者无法兼容纳米机器人。"
 		return data
 
 	if(chamber.busy)
@@ -79,14 +79,14 @@
 			if(!isnull(threshold))
 				chamber.set_safety(clamp(round(threshold, 1),0,500))
 				playsound(src, "terminal_type", 25, FALSE)
-				chamber.occupant.investigate_log("'s nanites' safety threshold was set to [threshold] by [key_name(usr)] via [src] at [AREACOORD(src)].", INVESTIGATE_NANITES)
+				chamber.occupant.investigate_log("的纳米机器人安全阈值被 [key_name(usr)] 通过 [src] 在 [AREACOORD(src)] 设置为 [threshold]。", INVESTIGATE_NANITES)
 			. = TRUE
 		if("set_cloud")
 			var/cloud_id = text2num(params["value"])
 			if(!isnull(cloud_id))
 				chamber.set_cloud(clamp(round(cloud_id, 1),NANITE_MIN_CLOUD_ID,NANITE_MAX_CLOUD_ID))
 				playsound(src, "terminal_type", 25, FALSE)
-				chamber.occupant.investigate_log("'s nanites' cloud id was set to [cloud_id] by [key_name(usr)] via [src] at [AREACOORD(src)].", INVESTIGATE_NANITES)
+				chamber.occupant.investigate_log("的纳米机器人云 ID 被 [key_name(usr)] 通过 [src] 在 [AREACOORD(src)] 设置为 [cloud_id]。", INVESTIGATE_NANITES)
 			. = TRUE
 		if("connect_chamber")
 			find_chamber()
@@ -94,14 +94,14 @@
 		if("remove_nanites")
 			playsound(src, 'sound/machines/terminal/terminal_prompt.ogg', 25, FALSE)
 			chamber.remove_nanites()
-			log_combat(usr, chamber.occupant, "cleared nanites from", null, "via [src]")
-			chamber.occupant.investigate_log("'s nanites were cleared by [key_name(usr)] via [src] at [AREACOORD(src)].", INVESTIGATE_NANITES)
+			log_combat(usr, chamber.occupant, "清除了以下对象的纳米机器人", null, "通过 [src]")
+			chamber.occupant.investigate_log("的纳米机器人被 [key_name(usr)] 通过 [src] 在 [AREACOORD(src)] 清除。", INVESTIGATE_NANITES)
 			. = TRUE
 		if("nanite_injection")
 			playsound(src, 'sound/machines/terminal/terminal_prompt.ogg', 25, FALSE)
 			chamber.inject_nanites()
-			log_combat(usr, chamber.occupant, "injected", null, "with nanites via [src]")
-			chamber.occupant.investigate_log("was injected with nanites by [key_name(usr)] via [src] at [AREACOORD(src)].", INVESTIGATE_NANITES)
+			log_combat(usr, chamber.occupant, "向以下对象注射了纳米机器人", null, "通过 [src]")
+			chamber.occupant.investigate_log("被 [key_name(usr)] 通过 [src] 在 [AREACOORD(src)] 注射了纳米机器人。", INVESTIGATE_NANITES)
 			. = TRUE
 
 /obj/machinery/computer/nanite_chamber_control/proc/set_connected_chamber(new_chamber)

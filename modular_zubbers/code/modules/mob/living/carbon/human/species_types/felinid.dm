@@ -3,32 +3,32 @@
 
 /datum/species/human/felinid/get_species_description()
 	return list(
-		"Felinids are one of the many types of bespoke genetic \
-		modifications to come of humanity's mastery of genetic science, and are \
-		also one of the most common. They consist of humans generally modified with cat ears and a tail. \
-		They are susceptible to laser pointers and hairballs. \
-		They have catlike grace, and are known to go \"gremlin mode\" on aggressors.",
+		"猫人是人类掌握基因科学后创造的众多定制基因 \
+		改造类型之一，也是 \
+		最常见的一种。他们通常是经过猫耳和尾巴改造的人类。 \
+		他们对激光笔和毛球没有抵抗力。 \
+		他们拥有猫一般的优雅，并会在面对攻击者时进入“捣蛋鬼模式”。",
 	)
 
 /datum/species/human/felinid/get_species_lore()
 	return list(
-		"Felinids are generally fairly aloof and cat-like in their behavior, and often sleep for long hours with little productivity. \
-		They tend to seek short-term thrills in the times that they are awake, and are generally looked down upon by their human counterparts. \
-		Despite how it may seem, many felinids are perfectly capable of higher thought and are able to integrate into human communities with little issue as a result of \
-		their shared cultural background and pet-like demeanor, but for one obstacle-- Green Tuesday, 2203.",
-		"It all started when Felinids were first created on Luna, the Terran moon. \
-		Produced as a personal project of the CEO of Interdyne Pharmaceutics at the time, humanity generally (and rightfully) found their existence abhorrent. \
-		Despite this, they would go on to live relatively normal lives on Luna's colonies, often studying Asian languages as they were the most commonly spoken. \
-		This changed in 2203 when a set of Nanotrasen cloning machines were disrupted (knowingly or not) by the waste produced by a nearby Interdyne facility. \
-		The early prototype cloners were damaged by the introduction of toxic sludge to their interiors, and would produce faulty products en masse-- \
-		namely, the Felinids, at varying levels of intelligence.",
-		"The local Martian government ordered Interdyne to produce industrial quantities of nerve agent in order to cull the population of cloned Felinids emerging \
-		from the vats, that would ultimately produce the stigma that would cause cloning to be heavily restricted in the Galactic Federation. Several high-profile \
-		corporate officials would be tried for crimes against Felinidity at the Hague as a result of what would come to be known as \"Green Tuesday\" and would directly \
-		result in the severe delay of formalized talks with the galactic community until 2209. Many of those tried after this incident would go on to be charged with eternal servitude as first-gen cyborgs. For many, it is a black stain on the history of Humanity.",
-		"Despite their place in the universe, Felinids have found surprising acceptance among Tajaran communities, who find common cause with the outcast subhumans, or generally \
-		find them less insufferable. Many felinids go on to receive genetic modification to more closely resemble Tajarans due to a sense of failing to belong with humans, or \
-		move to Felinid enclaves in Terran space where they can be alone and in good company. These enclaves are generally fairly isolationist, and have formed a Creole called \
-		\"Nekomimetic\" in order to communicate amongst themselves. Notable Felinid cells have begun to spring up in the past century as a result of severe isolation and \ oppression, generally targetting public infrastructure and cat cafés, which are considered cultural appropriation by radical groups. \
-		Despite many efforts over the years, including reparations, it is unlikely that the rift between Felinids and humanity can ever be truly mended.",
+		"猫人通常行为相当高冷、像猫，常常一睡就是很久，效率低下。 \
+		他们醒着的时候往往追求短暂的刺激，通常也被人类同胞看不起。 \
+		尽管表面看来如此，许多猫人完全具备高级思维能力，并能顺利融入人类社会，这得益于 \
+		他们共享的文化背景和宠物般的举止，但有一个障碍——2203 年的“绿色星期二”。",
+		"这一切始于猫人最初在地球卫星月球上被创造之时。 \
+		他们是当时英特戴恩制药公司 CEO 的个人项目产物，人类普遍（且理直气壮地）认为他们的存在令人憎恶。 \
+		尽管如此，他们还是在月球殖民地过着相对正常的生活，常常学习亚洲语言，因为那是当地最常用的语言。 \
+		2203 年，附近英特戴恩设施产生的废料（无论有意与否）干扰了一组纳米传讯克隆机，情况由此改变。 \
+		早期原型克隆机因内部被灌入有毒污泥而受损，开始大量产出残次品—— \
+		也就是智力水平参差不齐的猫人。",
+		"当地火星政府命令英特戴恩生产工业规模的神经毒剂，以扑杀从培养槽中涌出的克隆猫人， \
+		这最终造成了污名，使克隆技术在银河联邦受到严格限制。数名知名 \
+		企业官员因这起后来被称为“绿色星期二”的事件，在海牙以反猫人罪受审，并直接 \
+		导致与银河共同体正式谈判的严重推迟，直到 2209 年才恢复。事件后受审的许多人后来被判处永久奴役，成为第一代半机械人。对许多人来说，这是人类历史上的一大污点。",
+		"尽管处境如此，猫人在塔亚拉社群中却获得了出人意料的接纳；塔亚拉人与这些被排斥的亚人同病相怜，或者通常 \
+		觉得他们没那么难以忍受。许多猫人因觉得自己无法融入人类，而接受基因改造，让自己更像塔亚拉人，或者 \
+		搬到地球空间的猫人聚居地，在那里他们可以独处，也有好伙伴。这些聚居地通常相当孤立主义，并形成了一种名为 \
+		“猫语”的克里奥尔语，以便彼此交流。过去一个世纪里，由于严重的孤立与 \ 压迫，一些引人注目的猫人团体开始涌现，通常以公共基础设施和猫咖啡馆为目标，激进组织认为后者属于文化挪用。 \
+		尽管多年来做出了许多努力，包括赔偿，猫人与人类之间的裂痕也不太可能真正弥合。",
 	)

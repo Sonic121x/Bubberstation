@@ -12,10 +12,10 @@
 
 /mob/living/basic/mining/moonsnake
 
-	name = "venomous coded moonsnake"
-	desc = "The serpens lunaeprogramma, or venomous coded moonsnake, is a species of territorial watersnake endemic to the hotter regions of this moon. \
-	Their diet includes the eggs of cazadors, which are devoured whole in its special stomach that carefully extracts the venom and uses it for its own purposes. \
-	It is said that the meat from this snake tastes just like chicken."
+	name = "有毒编码月蛇"
+	desc = "学名为 serpens lunaeprogramma 的有毒编码月蛇，是一种仅分布于本月亮较炎热地区的领地性水蛇。\
+	它的食谱包括卡萨多的卵，整颗吞入后会由特化的胃仔细提取其中的毒素，据为己用。\
+	据说这种蛇的肉吃起来和鸡肉一模一样。"
 
 	icon = 'modular_zubbers/icons/mob/simple/snake.dmi'
 	icon_state = "moonsnake"
@@ -45,13 +45,13 @@
 	unsuitable_cold_damage = 3
 	unsuitable_heat_damage = 3
 
-	friendly_verb_continuous = "hisses at"
-	friendly_verb_simple = "hiss at"
-	response_help_continuous = "strokes"
-	response_help_simple = "stroke"
-	response_disarm_continuous = "gently shoos aside"
-	response_disarm_simple = "gently shoo aside"
-	speak_emote = list("hisses")
+	friendly_verb_continuous = "对着嘶嘶作响"
+	friendly_verb_simple = "嘶嘶作响"
+	response_help_continuous = "轻抚"
+	response_help_simple = "轻抚"
+	response_disarm_continuous = "轻轻拨开"
+	response_disarm_simple = "轻轻拨开"
+	speak_emote = list("嘶嘶作响")
 
 	combat_mode = TRUE
 	melee_attack_cooldown = 1 SECONDS
@@ -62,10 +62,10 @@
 
 	attack_vis_effect = ATTACK_EFFECT_MECHTOXIN
 	attack_sound = 'sound/items/weapons/pierce.ogg'
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "啃咬"
+	attack_verb_simple = "咬"
 
-	throw_blocked_message = "does nothing to the evasive nature of"
+	throw_blocked_message = "被灵巧地闪开，未能伤及"
 
 	ai_controller = /datum/ai_controller/basic_controller/coded_moonsnake
 

@@ -1,7 +1,7 @@
 /obj/machinery/vending/boozeomat
 	zubbers_product_categories = list(
 		list(
-			"name" = "Alcoholic",
+			"name" = "含酒精",
 			"icon" = "wine-bottle",
 			"products" = list(
 				/obj/item/reagent_containers/cup/soda_cans/skyrat/synthanolcan = 6,

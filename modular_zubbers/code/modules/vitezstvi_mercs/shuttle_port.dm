@@ -1,7 +1,7 @@
 /// Furthest the hull will shove debris. Past the long axis.
 #define VITEZSTVI_SHOVE_LIMIT 48
 /// Opt-out row in the admin list.
-#define VITEZSTVI_LEAVE_IT "Leave it to the drunks"
+#define VITEZSTVI_LEAVE_IT "交给那些醉鬼吧"
 
 /obj/docking_port/mobile/emergency/vitezstvi
 	/// Time before impact to fire each collision warning.
@@ -24,21 +24,21 @@
 		var/time_left = timeLeft(1)
 		if(!early_warned && time_left <= early_warning_time)
 			early_warned = TRUE
-			var/site_line = GLOB.vitezstvi_crash_area_name || "Somewhere important"
+			var/site_line = GLOB.vitezstvi_crash_area_name || "某个重要的地方"
 			priority_announce(
-				text = "Station, this is VARS-7 Provodnik. Quartermaster, you old bastard, we received your tender. We are coming to get your people out. There is only small problem with approach vector. Pavel, why is station getting bigger? [site_line]? Comrades in this area, please be comrades somewhere else. Thank you for choosing Vítězství Arms.",
-				title = "COLLISION WARNING",
+				text = "空间站，这里是 VARS-7“向导”号。军需官，你个老混蛋，我们收到你的招标了。我们这就来把你的人接出去。只是接近航向有点小问题。帕维尔，空间站怎么越来越大了？[site_line]？这一带的同志们，麻烦你们到别处去当同志。感谢您选择胜利军械。",
+				title = "碰撞警告",
 				sound = 'sound/machines/warning-buzzer.ogg',
-				sender_override = "VARS-7 Proximity Alarm",
+				sender_override = "VARS-7 接近警报",
 				color_override = "red",
 			)
 		if(!imminent_warned && time_left <= imminent_warning_time)
 			imminent_warned = TRUE
 			take_manifest()
 			priority_announce(
-				text = "OH, BLYAT, PAVEL, IT IS STILL GETTING BIGGER! EVERYONE MOVE! GET THE FUCK OUT OF THE WAY!",
-				title = "COLLISION WARNING",
-				sender_override = "VARS-7 Proximity Alarm",
+				text = "哦，我操，帕维尔，它还在变大！大家都动起来！快他妈闪开！",
+				title = "碰撞警告",
+				sender_override = "VARS-7 接近警报",
 				color_override = "red",
 			)
 			sound_collision_klaxon()
@@ -105,11 +105,11 @@
 	if(!length(bunks))
 		return
 	var/list/takers = SSpolling.poll_ghost_candidates(
-		question = "Would you like to be considered for a position at Vítězství Arms?",
+		question = "你愿意考虑在胜利军械谋个职位吗？",
 		check_jobban = ROLE_SENTIENCE,
 		poll_time = 20 SECONDS,
 		alert_pic = /obj/item/radio/headset/vitezstvi,
-		role_name_text = "Vitezstvi Arms contractor",
+		role_name_text = "胜利军械承包商",
 		amount_to_pick = length(bunks),
 	)
 	if(!islist(takers))
@@ -227,29 +227,29 @@
 /// Deliberately unrestricted: every station area is offered.
 /obj/docking_port/mobile/emergency/vitezstvi/proc/admin_retarget(mob/user)
 	if(early_warned)
-		to_chat(user, span_warning("The shuttle is too close to alter its trajectory!"))
+		to_chat(user, span_warning("穿梭机已经太近了，无法改变其轨迹！"))
 		return
 	var/list/options = list()
 	for(var/area_path in GLOB.the_station_areas)
 		var/area/candidate = GLOB.areas_by_type[area_path]
 		if(candidate)
-			options[candidate.name] = candidate
+			options[chinese_area_display(candidate.name)] = candidate
 	if(!length(options))
-		to_chat(user, span_warning("There are no station areas to aim at."))
+		to_chat(user, span_warning("没有可供瞄准的空间站区域。"))
 		return
 	var/list/menu = sort_list(options)
 	menu.Insert(1, VITEZSTVI_LEAVE_IT)
-	var/choice = tgui_input_list(user, "Where we droppin'?", "Vitezstvi Arms Flight Control", menu)
+	var/choice = tgui_input_list(user, "我们要落哪儿？", "胜利军械飞行控制", menu)
 	if(isnull(choice) || choice == VITEZSTVI_LEAVE_IT)
 		return
 	var/area/destination = options[choice]
 	var/turf/target = vitezstvi_crash_turf(list(destination.type))
 	if(!target || !vitezstvi_place_crash_target(target))
-		to_chat(user, span_warning("Nowhere to put a shuttle in [choice]."))
+		to_chat(user, span_warning("[choice] 里没有地方能放下穿梭机。"))
 		return
 	vitezstvi_announce_target(rerouted = TRUE)
-	message_admins("[key_name_admin(user)] rerouted the VARS-7 Provodnik to [choice].")
-	log_admin("[key_name(user)] rerouted the VARS-7 Provodnik to [choice].")
+	message_admins("[key_name_admin(user)] 将 VARS-7“向导”号改道至 [choice]。")
+	log_admin("[key_name(user)] 将 VARS-7“向导”号改道至 [choice]。")
 
 #undef VITEZSTVI_SHOVE_LIMIT
 #undef VITEZSTVI_LEAVE_IT

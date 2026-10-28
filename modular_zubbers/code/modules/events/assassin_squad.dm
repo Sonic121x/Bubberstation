@@ -1,11 +1,11 @@
 /datum/round_event_control/syndicate_assassination_attempt
-	name = "Syndicate Assasination Attempt"
+	name = "辛迪加暗杀行动"
 	typepath = /datum/round_event/syndicate_assassination_attempt
 	weight = 16
 	min_players = 30
 	max_occurrences = 4
 	earliest_start = 40 MINUTES
-	description = "Syndicate goons appear from a drop pod and attack a targeted player."
+	description = "辛迪加打手乘空投舱出现，袭击被选中的玩家。"
 	tags = list(TAG_COMBAT, TAG_NPC_ANTAG)
 	track = EVENT_TRACK_MODERATE
 
@@ -57,7 +57,7 @@
 /datum/round_event/syndicate_assassination_attempt/announce(fake)
 	if(fake)
 		victim = pick_fake_victim()
-	priority_announce(get_announce_text(victim), "The Syndicate", 'sound/announcer/announcement/announce_syndi.ogg', ANNOUNCEMENT_TYPE_SYNDICATE, has_important_message = TRUE, color_override = "red")
+	priority_announce(get_announce_text(victim), "辛迪加", 'sound/announcer/announcement/announce_syndi.ogg', ANNOUNCEMENT_TYPE_SYNDICATE, has_important_message = TRUE, color_override = "red")
 
 /datum/round_event/syndicate_assassination_attempt/proc/pick_fake_victim()
 	var/list/candidates = list()
@@ -78,11 +78,11 @@
 
 /datum/round_event/syndicate_assassination_attempt/proc/get_announce_text(victim)
 	var/list/potential_text = list( \
-		"Dear [victim], count your days left, because they are numbered. You're marked for death and we're here to collect.",\
-		"Hello, Nanotrasen scum. We are here to murder [victim]. Submit or perish.",\
-		"Knock knock, it's the Syndicate talking! We have a kill warrant for [victim]. Open up.",\
-		"[victim] is still alive; we will be arriving soon to fix that.",\
-		"We are dispatching a cruelty squad straight to [victim]. 30 minutes or it's free.",\
+		"亲爱的[victim]，数数你还剩多少日子吧，因为所剩无几了。你已被列入死亡名单，我们是来收账的。",\
+		"你好啊，纳米传讯的渣滓。我们是来谋杀[victim]的。服从，否则就去死。",\
+		"咚咚咚，是辛迪加在说话！我们手上有针对[victim]的处决令。开门。",\
+		"[victim]还活着；我们很快会赶到纠正这一点。",\
+		"我们正派出一支冷酷小队直奔[victim]。30 分钟内解决，超时免费。",\
 	)
 	return pick(potential_text)
 
@@ -104,7 +104,7 @@
 	alert_ghosts(victim)
 
 /datum/round_event/syndicate_assassination_attempt/proc/alert_ghosts(mob/victim)
-	notify_ghosts("[victim.name] is being attacked by the syndicate!", source = victim, header = "Assassination in progress")
+	notify_ghosts("[victim.name]正遭到辛迪加袭击！", source = victim, header = "暗杀进行中")
 
 /datum/round_event/syndicate_assassination_attempt/proc/get_blacklisted_areas()
 	return GLOB.expected_erp_areas.Copy()
@@ -129,13 +129,13 @@
 ///////////////////////////////////////////////////
 
 /datum/round_event_control/syndicate_assassination_attempt/kill_this_guy_with_hammers
-	name = "Kill this guy with hammers"
+	name = "用锤子干掉这家伙"
 	typepath = /datum/round_event/syndicate_assassination_attempt/hammers
 	weight = 1
 	max_occurrences = 1
 	min_players = 30
 	earliest_start = 40 MINUTES
-	description = "Syndicate goons appear from a drop pod and attack a targeted player with hammers."
+	description = "辛迪加打手乘空投舱出现，手持锤子袭击被选中的玩家。"
 	tags = list(TAG_COMBAT, TAG_NPC_ANTAG)
 	track = EVENT_TRACK_MODERATE
 
@@ -146,13 +146,13 @@
 	spawn_number = 8
 
 /datum/round_event/syndicate_assassination_attempt/hammers/get_announce_text(victim)
-	return "We are going to kill [victim] with hammers. This is a threat."
+	return "我们要用锤子干掉[victim]。这是一个威胁。"
 
 /mob/living/basic/trooper/syndicate/melee/hammer
 	melee_damage_lower = 25
 	melee_damage_upper = 25
-	attack_verb_continuous = "hammers"
-	attack_verb_simple = "hammer"
+	attack_verb_continuous = "用锤猛砸"
+	attack_verb_simple = "用锤砸"
 	attack_sound = 'sound/items/weapons/sonic_jackhammer.ogg'
 	armour_penetration = 35
 	r_hand = /obj/item/melee/breaching_hammer

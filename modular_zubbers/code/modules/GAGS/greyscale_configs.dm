@@ -3,50 +3,50 @@
 // Reason: See code/datums/greyscale/_greyscale_config.dm lines 63-69.
 
 /datum/greyscale_config/collar/ringbell
-	name = "Ring Bell Collar"
+	name = "铃铛项圈"
 	icon_file = 'modular_zubbers/icons/obj/clothing/GAGS/collar.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/ringbell.json'
 
 /datum/greyscale_config/collar/ringbell/worn
-	name = "Ring Bell Collar (Worn)"
+	name = "铃铛项圈（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/ringbell_worn.json'
 
 /datum/greyscale_config/collar/gps
-	name = "GPS Collar"
+	name = "GPS 项圈"
 	icon_file = 'modular_zubbers/icons/obj/clothing/GAGS/collar.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/gps.json'
 
 /datum/greyscale_config/collar/gps/worn
-	name = "GPS Collar (Worn)"
+	name = "GPS 项圈（穿戴）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/gps_worn.json'
 
 /datum/greyscale_config/collar/gps/lefthand
-	name = "GPS Collar (Left hand)"
+	name = "GPS 项圈（左手）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/gps_lefthand.json'
 
 /datum/greyscale_config/collar/gps/righthand
-	name = "GPS Collar (Right hand)"
+	name = "GPS 项圈（右手）"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/gps_righthand.json'
 
 //Bunny stuff, sprites from MonkieStation
 
 /datum/greyscale_config/bunnysuit
-	name = "Bunny Suit"
+	name = "兔女郎套装"
 	icon_file = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/bunnysuit.json'
 
 /datum/greyscale_config/bunnysuit_worn
-	name = "Worn Bunny Suit"
+	name = "兔女郎套装（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/bunnysuit_worn.json'
 
 /datum/greyscale_config/custom_bunnysuit
-	name = "Tailormade Bunny Suit"
+	name = "定制兔女郎套装"
 	icon_file = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/custom_bunnysuit.json'
 
 /datum/greyscale_config/custom_bunnysuit_worn
-	name = "Worn Tailormade Bunny Suit"
+	name = "定制兔女郎套装（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/custom_bunnysuit_worn.json'
 
@@ -54,125 +54,125 @@
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 
 /datum/greyscale_config/tailcoat
-	name = "Tailcoat"
+	name = "燕尾服"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/tailcoat.json'
 
 /datum/greyscale_config/tailcoat_worn
-	name = "Worn Tailcoat"
+	name = "燕尾服（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/tailcoat_worn.json'
 
 /datum/greyscale_config/tailcoat_bar
-	name = "Bartender's Tailcoat"
+	name = "调酒师燕尾服"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/tailcoat_bar.json'
 
 /datum/greyscale_config/tailcoat_bar_worn
-	name = "Worn Bartender's Tailcoat"
+	name = "调酒师燕尾服（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/tailcoat_bar_worn.json'
 
 /datum/greyscale_config/bowtie_collar
-	name = "Bowtie Collar"
+	name = "领结项圈"
 	icon_file = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/bowtie_collar.json'
 
 /datum/greyscale_config/bowtie_collar_worn
-	name = "Worn Bowtie Collar"
+	name = "领结项圈（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/bowtie_collar_worn.json'
 
 /datum/greyscale_config/playbunnyears
-	name = "Playbunny Ears"
+	name = "兔女郎耳朵"
 	icon_file = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/playbunny_ears.json'
 
 /datum/greyscale_config/playbunnyears_worn
-	name = "Worn Playbunny Ears"
+	name = "兔女郎耳朵（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/playbunny_ears_worn.json'
 
 /datum/greyscale_config/henchmen
-	name = "Henchmen"
+	name = "跟班"
 	icon_file = 'modular_zubbers/icons/obj/clothing/GAGS/monkehenchmenobj.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/henchmen/henchmen.json'
 
 /datum/greyscale_config/henchmen/worn
-	name = "Henchmen Worn"
+	name = "跟班（穿戴）"
 	icon_file = 'modular_zubbers/icons/obj/clothing/GAGS/monkehenchmenmob.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/henchmen/henchmen.json'
 
 /datum/greyscale_config/miniskirt
-	name = "Miniskirt"
+	name = "迷你裙"
 	icon_file = 'modular_zubbers/icons/obj/clothing/under/skirts_dresses.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/miniskirt.json'
 
 /datum/greyscale_config/miniskirt_worn
-	name = "Worn Miniskirt"
+	name = "迷你裙（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/miniskirt_worn.json'
 
 /datum/greyscale_config/miniskirt_worn/teshari
-	name = "Worn Miniskirt (Teshari)"
+	name = "迷你裙（穿戴，特沙利）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses_teshari.dmi'
 
 // SHORT-SLEEVED CROPPED JACKET
 
 /datum/greyscale_config/crop_jacket
-	name = "Tailored Jacket"
+	name = "定制夹克"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/crop_jacket.json'
 
 /datum/greyscale_config/crop_jacket/worn
-	name = "Tailored Jacket (Worn)"
+	name = "定制夹克（穿戴）"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket_worn.dmi'
 
 /datum/greyscale_config/crop_jacket/worn/teshari
-	name = "Tailored Jacket (Worn, Teshari)"
+	name = "定制夹克（穿戴，特沙利）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
 
 /datum/greyscale_config/shortsleeve_crop_jacket
-	name = "Tailored Jacket (Short-Sleeved)"
+	name = "定制夹克（短袖）"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/crop_jacket_short.json'
 
 /datum/greyscale_config/shortsleeve_crop_jacket/worn
-	name = "Tailored Jacket (Short-Sleeved, Worn)"
+	name = "定制夹克（短袖，穿戴）"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket_worn.dmi'
 
 /datum/greyscale_config/shortsleeve_crop_jacket/worn/teshari
-	name = "Tailored Jacket (Short-Sleeved, Worn, Teshari)"
+	name = "定制夹克（短袖，穿戴，特沙利）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
 
 // SLEEVELESS CROPPED JACKET
 
 /datum/greyscale_config/sleeveless_crop_jacket
-	name = "Tailored Jacket (Sleeveless)"
+	name = "定制夹克（无袖）"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/crop_jacket_none.json'
 
 /datum/greyscale_config/sleeveless_crop_jacket/worn
-	name = "Tailored Jacket (Sleeveless, Worn)"
+	name = "定制夹克（无袖，穿戴）"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket_worn.dmi'
 
 /datum/greyscale_config/sleeveless_crop_jacket/worn/teshari
-	name = "Tailored Jacket (Sleeveless, Worn, Teshari)"
+	name = "定制夹克（无袖，穿戴，特沙利）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
 
 //ITEMS
 /datum/greyscale_config/umbrella
-	name = "Umbrella"
+	name = "雨伞"
 	icon_file = 'modular_zubbers/icons/obj/equipment/umbrella.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/items/_umbrella.json'
 
 /datum/greyscale_config/umbrella_inhand_left
-	name = "Held Umbrella, Left, Closed"
+	name = "手持雨伞，左手，收起"
 	icon_file = 'modular_zubbers/icons/obj/equipment/umbrella_inhand_l.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/items/_umbrella_inhand.json'
 
 /datum/greyscale_config/umbrella_inhand_right
-	name = "Held Umbrella, Right, Closed"
+	name = "手持雨伞，右手，收起"
 	icon_file = 'modular_zubbers/icons/obj/equipment/umbrella_inhand_r.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/items/_umbrella_inhand.json'
 
@@ -183,7 +183,7 @@
 */
 
 /datum/greyscale_config/medals
-	name = "Debug Medal Config"
+	name = "调试奖章配置"
 	//This sets the Obj icon. Worn configs still seperately change this to /mob/clothing/accessories.dmi
 	icon_file = 'modular_zubbers/icons/obj/clothing/accessories.dmi'
 	//This needs a json_config to work. Touch hacky, however, I *really* want this /medals for the subtyping.
@@ -191,292 +191,292 @@
 
 //Medals
 /datum/greyscale_config/medals/syndicate
-	name = "Syndicate Medal"
+	name = "辛迪加奖章"
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/syndicate.json'
 
 /datum/greyscale_config/medals/syndicate/worn
-	name = "Syndicate Medal (Worn)"
+	name = "辛迪加奖章（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
 
 /datum/greyscale_config/medals/shield
-	name = "Shield Medal"
+	name = "盾形奖章"
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/shield_medal.json'
 
 /datum/greyscale_config/medals/shield/worn
-	name = "Shield Medal (Worn)"
+	name = "盾形奖章（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
 
 /datum/greyscale_config/medals/bar
-	name = "Bar Medal"
+	name = "条状奖章"
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/bar_medal.json'
 
 /datum/greyscale_config/medals/bar/worn
-	name = "Bar Medal (Worn)"
+	name = "条状奖章（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
 
 /datum/greyscale_config/medals/circle
-	name = "Circle Medal"
+	name = "圆形奖章"
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/circle_medal.json'
 
 /datum/greyscale_config/medals/circle/worn
-	name = "Circle Medal (Worn)"
+	name = "圆形奖章（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
 
 /datum/greyscale_config/medals/heart
-	name = "Heart Medal"
+	name = "心形奖章"
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/heart_medal.json'
 
 /datum/greyscale_config/medals/heart/worn
-	name = "Heart Medal (Worn)"
+	name = "心形奖章（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
 
 /datum/greyscale_config/medals/crown
-	name = "Crown Medal"
+	name = "冠形奖章"
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/crown_medal.json'
 
 /datum/greyscale_config/medals/crown/worn
-	name = "Crown Medal (Worn)"
+	name = "冠形奖章（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
 
 /datum/greyscale_config/medals/glow
-	name = "Glow Medal"
+	name = "发光奖章"
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/glow_medal.json'
 
 /datum/greyscale_config/medals/glow/worn
-	name = "Glow Medal (Worn)"
+	name = "发光奖章（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
 
 //Pins
 /datum/greyscale_config/medals/neckpins
-	name = "Neckpin Medal"
+	name = "领针奖章"
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/neckpins.json'
 
 /datum/greyscale_config/medals/neckpins/worn
-	name = "Neckpin Medal (Worn)"
+	name = "领针奖章（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
 
 /datum/greyscale_config/medals/rank_pins
-	name = "Rank Pins"
+	name = "军衔别针"
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/rankpins.json'
 
 /datum/greyscale_config/medals/rank_pins/worn
-	name = "Rank Pins (Worn)"
+	name = "军衔别针（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
 
 //Ribbons
 /datum/greyscale_config/medals/color_ribbon
-	name = "Color Ribbon"
+	name = "彩色绶带"
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/color_ribbon.json'
 
 /datum/greyscale_config/medals/color_ribbon/worn
-	name = "Color Ribbon (Worn)"
+	name = "彩色绶带（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
 
 /datum/greyscale_config/medals/military_ribbon
-	name = "Military Ribbon"
+	name = "军功绶带"
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/militaryribbon.json'
 
 /datum/greyscale_config/medals/military_ribbon/worn
-	name = "Military Ribbon (Worn)"
+	name = "军功绶带（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
 
 // GalFed Accessories
 /datum/greyscale_config/galfedribbons
-	name = "GalFed Ribbons"
+	name = "银河联邦绶带"
 	icon_file = 'modular_zubbers/icons/obj/clothing/accessories.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/accessories/medals/sfranks.json'
 
 /datum/greyscale_config/galfedribbons/worn
-	name = "GalFed Ribbons (Worn)"
+	name = "银河联邦绶带（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
 
 //Midnight Gown (created on Nova by  Jureiia)
 
 /datum/greyscale_config/midnight_gown
-	name = "Midnight Gown"
+	name = "午夜长裙"
 	icon_file = 'modular_zubbers/icons/obj/clothing/under/skirts_dresses.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/dresses/midnight_gown.json'
 
 /datum/greyscale_config/midnight_gown/worn
-	name = "Midnight Gown (Worn)"
+	name = "午夜长裙（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses.dmi'
 
 /datum/greyscale_config/midnight_gown/worn/digi
-	name = "Midnight Gown (Worn, Digi)"
+	name = "午夜长裙（穿戴，趾行）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses_digi.dmi'
 
 //Camo from Nova
 /datum/greyscale_config/camo
-	name = "Camouflage"
+	name = "迷彩服"
 	icon_file = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/uniform/maincamo.json'
 
 /datum/greyscale_config/camo/worn
-	name = "Camouflage (Worn)"
+	name = "迷彩服（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 
 /datum/greyscale_config/camo/worn/digi
-	name = "Camouflage (Worn, Digi)"
+	name = "迷彩服（穿戴，趾行）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 
 /datum/greyscale_config/camo/worn/teshari
-	name = "Camouflage (Worn, Teshari)"
+	name = "迷彩服（穿戴，特沙利）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
 
 // Giant Scarf (Sprites by Iskawhiskers)
 /datum/greyscale_config/giant_scarf
-	name = "Giant Scarf"
+	name = "巨型围巾"
 	icon_file = 'modular_zubbers/icons/obj/clothing/under/skirts_dresses.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/dresses/giant_scarf.json'
 
 /datum/greyscale_config/giant_scarf/worn
-	name = "Giant Scarf (Worn)"
+	name = "巨型围巾（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses.dmi'
 
 /datum/greyscale_config/giant_scarf/worn/teshari
-	name = "Giant Scarf (Worn, Teshari)"
+	name = "巨型围巾（穿戴，特沙利）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses_teshari.dmi'
 
 /// Greyscale clothing Nova port
 /datum/greyscale_config/turtlenecks
-	name = "Turtlenecks"
+	name = "高领毛衣"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/turtlenecks.json'
 
 /datum/greyscale_config/turtlenecks/worn
-	name = "Turtlenecks (Worn)"
+	name = "高领毛衣（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/turtlenecks_worn.json'
 
 /datum/greyscale_config/turtlenecks/worn/digi
-	name = "Turtlenecks (Worn, Digi)"
+	name = "高领毛衣（穿戴，趾行）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
 
 /datum/greyscale_config/gorkas
-	name = "Gorkas"
+	name = "Gorka 套装"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/gorkas.json'
 
 /datum/greyscale_config/gorkas/worn
-	name = "Gorkas (Worn)"
+	name = "Gorka 套装（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
 
 /datum/greyscale_config/gorkas/worn/digi
-	name = "Gorkas (Worn, Digi)"
+	name = "Gorka 套装（穿戴，趾行）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
 
 /// Has to be named this to avoid problems
 /datum/greyscale_config/sus_overalls
-	name = "Overalls"
+	name = "工装背带裤"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/overalls.json'
 
 /datum/greyscale_config/sus_overalls/worn
-	name = "Overalls (Worn)"
+	name = "工装背带裤（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/overalls_worn.json'
 
 /datum/greyscale_config/sus_overalls/worn/digi
-	name = "Overalls (Worn, Digi)"
+	name = "工装背带裤（穿戴，趾行）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
 
 /datum/greyscale_config/playsuit
-	name = "Playsuit"
+	name = "连体衣"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/playsuit.json'
 
 /datum/greyscale_config/playsuit/worn
-	name = "Playsuit (Worn)"
+	name = "连体衣（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
 
 /datum/greyscale_config/playsuit/worn/digi
-	name = "Playsuit (Worn, Digi)"
+	name = "连体衣（穿戴，趾行）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
 
 /datum/greyscale_config/camo_pants
-	name = "Camo Pants"
+	name = "迷彩裤"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/camo_pants.json'
 
 /datum/greyscale_config/camo_pants/worn
-	name = "Camo Pants (Worn)"
+	name = "迷彩裤（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
 
 /datum/greyscale_config/camo_pants/worn/digi
-	name = "Camo Pants (Worn, Digi)"
+	name = "迷彩裤（穿戴，趾行）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
 
 /datum/greyscale_config/big_pants
-	name = "'JUNCO' megacargo pants"
+	name = "“JUNCO”巨型货运长裤"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/big_pants.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/big_pants/big_pants.json'
 
 /datum/greyscale_config/big_pants/worn
-	name = "'JUNCO' megacargo pants (Worn)"
+	name = "“JUNCO”巨型货运长裤（穿戴）"
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/big_pants/big_pants_worn.json'
 
 /datum/greyscale_config/big_pants/worn/digi
-	name = "'JUNCO' megacargo pants (Worn, Digi)"
+	name = "“JUNCO”巨型货运长裤（穿戴，趾行）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
 
 /datum/greyscale_config/loose_pants
-	name = "Loose pants"
+	name = "宽松长裤"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/loose_pants.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/loose_pants/loose_pants.json'
 
 /datum/greyscale_config/loose_pants/worn
-	name = "Loose pants (Worn)"
+	name = "宽松长裤（穿戴）"
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/loose_pants/loose_pants_worn.json'
 
 /datum/greyscale_config/wide_leg
-	name = "Wide Pants"
+	name = "阔腿长裤"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/wide_leg.json'
 
 /datum/greyscale_config/wide_leg/worn
-	name = "Wide Pants (Worn)"
+	name = "阔腿长裤（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
 
 /datum/greyscale_config/wide_leg/worn/digi
-	name = "Wide Pants (Worn, Digi)"
+	name = "阔腿长裤（穿戴，趾行）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
 
 /datum/greyscale_config/sweater_greyscale_1
-	name = "Big Sweater"
+	name = "大毛衣"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/greyscale_suits.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/suit/sweater/sweater.json'
 
 /datum/greyscale_config/sweater_greyscale_1/worn
-	name = "Big Sweater (Worn)"
+	name = "大毛衣（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/suits/greyscale_suits.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/suit/sweater/sweater.json'
 
 /datum/greyscale_config/sweater_greyscale_2
-	name = "Big Sweater With Bow"
+	name = "带蝴蝶结的大毛衣"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/greyscale_suits.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/suit/sweater/sweaterbow.json'
 
 /datum/greyscale_config/sweater_greyscale_2/worn
-	name = "Big Sweater With Bow (Worn)"
+	name = "带蝴蝶结的大毛衣（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/suits/greyscale_suits.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/suit/sweater/sweaterbow.json'
 
 /datum/greyscale_config/fluffywintercoat
-	name = "Fluffy Coat"
+	name = "蓬松外套"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/greyscale_suits.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/suit/fluffywintercoat/coat.json'
 
 /datum/greyscale_config/fluffywintercoat/worn
-	name = "Fluffy Coat (Worn)"
+	name = "蓬松外套（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/suits/greyscale_suits.dmi'
 
 /datum/greyscale_config/dagger_mantle
-	name = "'Dagger' Designer Mantle"
+	name = "“Dagger”设计师披肩"
 	icon_file = 'modular_zubbers/icons/mob/clothing/suits/greyscale_suits.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/neck/dagger_mantle/dagger_mantle.json'
 
 /datum/greyscale_config/dagger_mantle/worn
-	name = "'Dagger' Designer Mantle (Worn)"
+	name = "“Dagger”设计师披肩（穿戴）"
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/neck/dagger_mantle/dagger_mantle_worn.json'
 ///Greyscale clothing Nova port end
 
@@ -484,42 +484,42 @@
 // Sprites by Onule
 
 /datum/greyscale_config/ba_cheerleader
-	name = "BA Cheerleader Outfit"
+	name = "BA 啦啦队服"
 	icon_file = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/outfit.json'
 
 /datum/greyscale_config/ba_cheerleader/worn
-	name = "BA Cheerleader Outfit (Worn)"
+	name = "BA 啦啦队服（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/ba_cheerleader.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/outfit_worn.json'
 
 /datum/greyscale_config/ba_cheerleader/inhand_left
-	name = "BA Cheerleader Outfit (Left Hand)"
+	name = "BA 啦啦队服（左手）"
 	icon_file = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/inhand_left.json'
 
 /datum/greyscale_config/ba_cheerleader/inhand_right
-	name = "BA Cheerleader Outfit (Right Hand)"
+	name = "BA 啦啦队服（右手）"
 	icon_file = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/inhand_right.json'
 
 /datum/greyscale_config/ba_cheerleader_gloves
-	name = "BA Cheerleader Gloves"
+	name = "BA 啦啦队手套"
 	icon_file = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/gloves.json'
 
 /datum/greyscale_config/ba_cheerleader_gloves/worn
-	name = "BA Cheerleader Gloves (Worn)"
+	name = "BA 啦啦队手套（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/ba_cheerleader.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/gloves_worn.json'
 
 /datum/greyscale_config/ba_cheerleader_shoes
-	name = "BA Cheerleader Sneakers"
+	name = "BA 啦啦队运动鞋"
 	icon_file = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/shoes.json'
 
 /datum/greyscale_config/ba_cheerleader_shoes/worn
-	name = "BA Cheerleader Sneakers (Worn)"
+	name = "BA 啦啦队运动鞋（穿戴）"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/ba_cheerleader.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/shoes_worn.json'
 

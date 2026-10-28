@@ -1,2 +1,2 @@
 /obj/item/emitter_disk/stamina
-	desc = "This disk can be used on an emitter with an open panel to make it shoot lasers which will exhaust living creatures. The disk will be consumed in the process."
+	desc = "将此磁盘用于打开面板的发射器，可让其发射能使生物力竭的激光。此过程中磁盘会被消耗。"

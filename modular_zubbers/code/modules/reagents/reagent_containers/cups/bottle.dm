@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/cup/bottle/large
-	name = "large bottle"
-	desc = "A large bottle."
+	name = "大号瓶子"
+	desc = "一个大号瓶子。"
 	icon = 'modular_zubbers/icons/obj/medical/chemical.dmi'
 	icon_state = "bottle_large"
 	fill_icon = 'modular_zubbers/icons/obj/medical/reagent_fillings.dmi'
@@ -17,7 +17,7 @@
 /obj/item/reagent_containers/cup/bottle/medi
 
 /obj/item/reagent_containers/cup/bottle/plushmium
-	name = "plushmium bottle"
-	desc = "A small bottle of plushmium."
+	name = "毛绒素瓶"
+	desc = "一小瓶毛绒素。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	list_reagents = list(/datum/reagent/plushmium = 30)

@@ -1,37 +1,37 @@
 /datum/species/plasmaman/get_species_description()
-	return list("Plasmamen are a relatively new and complex organism that has entered onto the galactic stage. \
-			Their biology is truly unique when compared to most other species that travel the stars: rather than being a lifeform with skin, organs, and a brain, \
-			plasmamen are beings made purely of plasma and bacteria, and fall under the classification of a fungal colony.",
+	return list("等离子人是进入银河舞台的相对较新且复杂的生物。\
+			与大多数星际旅行物种相比，他们的生物学特性真正独一无二：他们不是拥有皮肤、器官和大脑的生命体，\
+			而是完全由等离子体和细菌构成的生物，被归类为真菌聚落。",
 
-			"Due to their plasma nature, Plasmamen are prone to combustion when exposed to oxygen, so they reside within special envirosuits suited to their needs, \
-			and provided with plasma respiration systems. Plasmamen are also provided structures for their fungal colony bodies to grow on. \
-			These structures are typically resemblant of skeletons, partially for practicality, but also for making them less horrifying to look at. ",
+			"由于本质是等离子体，等离子人接触氧气时极易燃烧，因此他们居住在与自身需求相适应的特殊环境服中，\
+			并配有等离子呼吸系统。等离子人还配有供其真菌聚落身体生长的结构。\
+			这些结构通常形似骨架，部分出于实用考虑，也为了让他们看起来不那么骇人。 ",
 	) // Bubber edit
 
 /datum/species/plasmaman/get_species_lore()
 	return list(
-		"Plasmamen are not a naturally occurring species, and were originally created by Nanotrasen on Freyja, the icemoon orbiting Indecipheres. \
-		Originally, Plasmamen were discovered when scientists discovered that there were micro-organisms in the plasma rivers that had advanced neural networks, \
-		and when they formed colonies, would basically become big brains. \
-		They could be brought to form colonies with items simply by dipping them into the plasma-lake.",
+		"等离子人并非自然产生的物种，最初由纳米传讯在弗雷亚——环绕因德西菲瑞斯的冰月——上创造。\
+		最初，科学家发现等离子河流中存在拥有高级神经网络的微生物，\
+		当它们形成聚落时，基本上会变成巨大的大脑，等离子人由此被发现。\
+		只要把物品浸入等离子湖中，就能让这些微生物在其上形成聚落。",
 
-		"A few methods such as creating pseudo-skeletons and using that as a basis for plasmamen to colonize were used, \
-		however the tactic evolved into tossing those that donated their bodies to Nanotrasen into the lakes, burning their skin off and leaving a plasmaman. \
-		These Plasmamen created from people often had great differences from the original person that they were, \
-		and most of the time have been classified as a new person entirely.",
+		"曾使用过几种方法，比如制造伪骨架并以其为基础供等离子人定殖，\
+		但后来这种做法演变为将那些向纳米传讯捐献遗体的人投入湖中，烧掉他们的皮肤，留下一个等离子人。\
+		这些由人转化而成的等离子人往往与其原本的人格存在巨大差异，\
+		大多数时候被完全归类为一个新人。",
 
-		"The creation of an entirely new species of people wasn’t without its consequences, \
-		as the Galactic Federation caught Nanotrasen doing this and began to take action against seemingly playing God with life and death. \
-		These new plasmamen were saved from NT’s plans for having a slave labour force by giving many basic rights, citizenship, and mandatory education plans, \
-		however what they couldn’t be saved from was NT’s eternal greed. After that was all said and done, the practice of creating Plasmamen by NT was regulated, \
-		but the Plasmamen themselves were still obligated to work for NT, lest they be stranded on the icemoon with no financial assistance.",
+		"创造一个全新的人形物种并非没有后果，\
+		银河联邦发现纳米传讯在进行此事后，开始对其看似扮演生死之神的行径采取行动。\
+		这些新的等离子人通过获得许多基本权利、公民身份和强制教育计划，摆脱了 NT 将他们当作奴隶劳动力的计划，\
+		但他们无法摆脱的是 NT 永恒的贪婪。这一切尘埃落定后，NT 创造等离子人的做法受到管制，\
+		但等离子人本身仍必须为 NT 工作，否则就会被困在冰月上，得不到任何经济援助。",
 
-		"Plasmamen reproduce sexually and asexually, producing spores asexually, then those spores sexually interacting with other spores to form a new, diverse Plasmaman. \
-		Much of their reproductive cycles and internal biology are constructed from biologists, as without these, \
-		the Plasmamen would simply be just big brains that didn’t do anything. This has, however, \
-		locked them out of a lot of genetic modifications as their genetics are simply incompatible with any other species’ genetics. \
-		This does not, however, stop Plasmamen from feeling many of the similar attractions and repulsions that most species inhibit, partially as part of their environment, \
-		and partially implemented in their biology.",
+		"等离子人既有有性繁殖也有无性繁殖：先无性产生孢子，再让这些孢子与其他孢子进行有性结合，形成一个新的、多样化的等离子人。\
+		他们的繁殖周期和内部生物学很大部分是由生物学家构建的，因为若没有这些，\
+		等离子人只不过是什么也做不了的大脑袋。然而，这也\
+		使他们被排除在许多基因改造之外，因为他们的基因与任何其他物种的基因都不兼容。\
+		不过，这并不妨碍等离子人感受到大多数物种所具有的许多相似的好恶，这既是环境的一部分，\
+		也有部分写入了他们的生物学。",
 
-		"In modern times, a majority of Plasmamen still work for NT, though there are many that have since escaped from NT’s influence to move on to greener pastures.",
+		"在现代，大多数等离子人仍为 NT 工作，不过也有许多已经摆脱 NT 的影响，前往更美好的地方。",
 	)

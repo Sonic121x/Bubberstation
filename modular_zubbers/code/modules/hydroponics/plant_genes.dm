@@ -12,11 +12,11 @@
 	var/formatted_name
 	if(!(mutability_flags & PLANT_GENE_REMOVABLE && mutability_flags & PLANT_GENE_MUTATABLE))
 		if(mutability_flags & PLANT_GENE_REMOVABLE)
-			formatted_name += "Fragile "
+			formatted_name += "脆弱 "
 		else if(mutability_flags & PLANT_GENE_MUTATABLE)
-			formatted_name += "Essential "
+			formatted_name += "必需 "
 		else
-			formatted_name += "Immutable "
+			formatted_name += "不可变 "
 	formatted_name += name
 	return formatted_name
 
@@ -49,56 +49,56 @@
 	return S.get_gene(src.type)
 
 /datum/plant_gene/core/lifespan
-	name = "Lifespan"
+	name = "寿命"
 	value = 25
 
 /datum/plant_gene/core/lifespan/apply_stat(obj/item/seeds/S)
 	S.lifespan = value
 
 /datum/plant_gene/core/endurance
-	name = "Endurance"
+	name = "耐久"
 	value = 15
 
 /datum/plant_gene/core/endurance/apply_stat(obj/item/seeds/S)
 	S.endurance = value
 
 /datum/plant_gene/core/production
-	name = "Production Speed"
+	name = "生产速度"
 	value = 6
 
 /datum/plant_gene/core/production/apply_stat(obj/item/seeds/S)
 	S.production = value
 
 /datum/plant_gene/core/yield
-	name = "Yield"
+	name = "产量"
 	value = 3
 
 /datum/plant_gene/core/yield/apply_stat(obj/item/seeds/S)
 	S.yield = value
 
 /datum/plant_gene/core/potency
-	name = "Potency"
+	name = "效力"
 	value = 10
 
 /datum/plant_gene/core/potency/apply_stat(obj/item/seeds/S)
 	S.potency = value
 
 /datum/plant_gene/core/instability
-	name = "Stability"
+	name = "稳定性"
 	value = 10
 
 /datum/plant_gene/core/instability/apply_stat(obj/item/seeds/S)
 	S.instability = value
 
 /datum/plant_gene/core/weed_rate
-	name = "Weed Growth Rate"
+	name = "杂草生长率"
 	value = 1
 
 /datum/plant_gene/core/weed_rate/apply_stat(obj/item/seeds/S)
 	S.weed_rate = value
 
 /datum/plant_gene/core/weed_chance
-	name = "Weed Vulnerability"
+	name = "杂草易感度"
 	value = 5
 
 /datum/plant_gene/core/weed_chance/apply_stat(obj/item/seeds/S)

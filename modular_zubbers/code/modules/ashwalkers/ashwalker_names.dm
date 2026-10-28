@@ -81,7 +81,7 @@ GLOBAL_LIST_INIT(ashwalker_consonants,list(
 
 	return .
 
-ADMIN_VERB(generate_ashwalker_names, R_DEBUG, "Generate Ashwalker Names", "Generate a list of 50 random ashwalker names.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(generate_ashwalker_names, R_DEBUG, "生成灰行者名字", "生成一份包含 50 个随机灰行者名字的列表。", ADMIN_CATEGORY_DEBUG)
 
 	var/list/returning_data = ""
 	for(var/i in 1 to 50)

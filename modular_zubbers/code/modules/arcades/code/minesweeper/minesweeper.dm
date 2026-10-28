@@ -1,5 +1,5 @@
 /obj/item/circuitboard/computer/arcade/minesweeper
-	name = "Minesweeper"
+	name = "扫雷"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/computer/arcade/minesweeper
 
@@ -17,8 +17,8 @@
 /// The machine itself.
 
 /obj/machinery/computer/arcade/minesweeper
-	name = "Minesweeper"
-	desc = "An arcade machine that generates grids. It seems that the machine sparks and screeches when a grid is generated, as if it cannot cope with the intensity of generating the grid."
+	name = "扫雷"
+	desc = "一台能生成网格的街机。每次生成网格时，机器都会迸出火花并发出刺耳的尖啸，仿佛承受不住生成网格的强度。"
 	icon_state = "arcade"
 	circuit = /obj/item/circuitboard/computer/arcade/minesweeper
 
@@ -69,7 +69,7 @@
 
 	data["board_data"] = board.board_data
 	data["game_status"] = board.game_status
-	data["difficulty"] = board.diff_text(board.difficulty)
+	data["difficulty"] = list("Beginner", "Intermediate", "Expert", "Custom")[board.difficulty]
 	data["current_difficulty"] = board.current_difficulty
 	data["emagged"] = obj_flags & EMAGGED
 	data["flag_mode"] = board.flag_mode
@@ -161,23 +161,23 @@
 			board.play_snd('modular_zubbers/sound/arcade/minesweeper_boardpress.ogg')
 			if(board.ticket_count >= 1)
 				new /obj/item/stack/arcadeticket(loc, 1)
-				to_chat(user, span_notice("[src] dispenses a ticket!"))
+				to_chat(user, span_notice("[src] 吐出了一张奖券！"))
 				board.ticket_count -= 1
 			else
-				to_chat(user, span_notice("You don't have any stored tickets!"))
+				to_chat(user, span_notice("你没有存下的奖券！"))
 			return TRUE
 
 /obj/machinery/computer/arcade/minesweeper/emag_act(mob/living/user)
 	if(obj_flags & EMAGGED)
 		return
-	desc = "An arcade machine that generates grids. It's clunking and sparking everywhere, almost as if threatening to explode at any moment!"
+	desc = "一台能生成网格的街机。它到处发出哐当声并迸出火花，几乎像是在威胁随时要爆炸！"
 	do_sparks(5, 1, src)
 	obj_flags |= EMAGGED
 	if(board.game_status != MINESWEEPER_CONTINUE)
-		to_chat(user, span_warning("An ominous tune plays from the arcade's speakers!"))
+		to_chat(user, span_warning("街机的扬声器里传出一段不祥的旋律！"))
 		playsound(user, 'modular_zubbers/sound/arcade/minesweeper_emag1.ogg', 100, 0, extrarange = 3, falloff_exponent = 10)
 	else	//Can't let you do that, star fox!
-		to_chat(user, span_warning("The machine buzzes and sparks... the game has been reset!"))
+		to_chat(user, span_warning("机器嗡嗡作响并迸出火花……游戏已被重置！"))
 		playsound(user, 'sound/machines/buzz/buzz-sigh.ogg', 100, 0, extrarange = 3, falloff_exponent = 10)	//Loud buzz
 		board.game_status = MINESWEEPER_IDLE
 
@@ -187,8 +187,8 @@
 /// COMPUTER MINESWEEPER PROGRAM
 /datum/computer_file/program/minesweeper
 	filename = "minesweeper"
-	filedesc = "Nanotrasen Micro Arcade: Minesweeper"
-	extended_desc = "A port of the classic game 'Minesweeper', redesigned to run on tablets."
+	filedesc = "纳米传讯微型街机：扫雷"
+	extended_desc = "经典游戏《扫雷》的移植版，经过重新设计，可在平板电脑上运行。"
 	size = 6
 	tgui_id = "NtosMinesweeper"
 	program_icon = "gamepad"
@@ -218,7 +218,7 @@
 
 	data["board_data"] = board.board_data
 	data["game_status"] = board.game_status
-	data["difficulty"] = board.diff_text(board.difficulty)
+	data["difficulty"] = list("Beginner", "Intermediate", "Expert", "Custom")[board.difficulty]
 	data["current_difficulty"] = board.current_difficulty
 	data["emagged"] = FALSE
 	data["flag_mode"] = board.flag_mode
@@ -308,7 +308,7 @@
 	var/current_mines = 10
 	var/difficulty = MINESWEEPER_BEGINNER
 	var/value = MINESWEEPER_BEGINNER
-	var/current_difficulty = "Beginner"
+	var/current_difficulty = "新手"
 
 	var/starting_time = 0
 	var/time_frozen = 0
@@ -356,7 +356,7 @@
 
 /datum/minesweeper/proc/new_game()
 	if(!COOLDOWN_FINISHED(src, new_game_cd))
-		host.say("Please wait [COOLDOWN_TIMELEFT(src, new_game_cd)/10] more seconds before starting a new game.")
+		host.say("开始新游戏前请再等 [COOLDOWN_TIMELEFT(src, new_game_cd)/10] 秒。")
 		return
 	COOLDOWN_START(src, new_game_cd, 1.5 SECONDS)
 	generate_new_board(difficulty)
@@ -440,31 +440,31 @@
 	switch(result)
 		if(MINESWEEPER_VICTORY)
 			play_snd('modular_zubbers/sound/arcade/minesweeper_win.ogg')
-			host.say("You cleared the board of all mines! Congratulations!")
+			host.say("你清除了棋盘上所有的地雷！恭喜！")
 			user.won_game()
 			if(emaggable && host.obj_flags & EMAGGED && value >= 1)
 				var/itemname
 				switch(rand(1,3))
 					if(1)
-						itemname = "plastic explosives"
+						itemname = "塑胶炸药"
 						new /obj/item/grenade/c4
 						new /obj/item/grenade/c4
 					if(2)
-						itemname = "grenade launcher"
+						itemname = "榴弹发射器"
 						new /obj/item/gun/grenadelauncher
 						new /obj/item/grenade/frag
 						new /obj/item/grenade/frag
 						new /obj/item/grenade/frag
 						new /obj/item/grenade/frag
 					if(3)
-						itemname = "concussion grenades"
+						itemname = "震荡手雷"
 						new /obj/item/grenade/syndieminibomb/concussion
 						new /obj/item/grenade/syndieminibomb/concussion
 						new /obj/item/grenade/syndieminibomb/concussion
 						new /obj/item/grenade/syndieminibomb/concussion
 
-				message_admins("[key_name_admin(user)] won emagged Minesweeper and got [itemname]!")
-				vis_msg(span_notice("[host] dispenses [itemname]!"), span_notice("You hear a chime and a clunk."))
+				message_admins("[key_name_admin(user)] 通关了被电磁破坏的扫雷游戏，并获得了 [itemname]！")
+				vis_msg(span_notice("[host] 吐出了 [itemname]！"), span_notice("你听到一声叮当和哐当。"))
 			ticket_count += value
 
 		if(MINESWEEPER_DEAD)
@@ -564,7 +564,7 @@
 	return tiles_left <= mines ? MINESWEEPER_VICTORY : MINESWEEPER_CONTINUE
 
 /datum/minesweeper/proc/diff_text(diff)
-	return list("Beginner", "Intermediate", "Expert", "Custom")[diff]
+	return list("新手", "中级", "专家", "自定义")[diff]
 
 /datum/minesweeper/proc/find_in_mines(list/coord)
 	var/order = 0

@@ -3,8 +3,8 @@
 #define POWERATOR_FACTION_TARKON "tarkon"
 
 /obj/item/circuitboard/machine/powerator
-	name = "Powerator"
-	desc = "The powerator is a machine that allows stations to sell their power to other stations that require additional sources."
+	name = "电力贩子"
+	desc = "电力贩子是一种让空间站把电力出售给需要额外电源的其他空间站的机器。"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/powerator
 	req_components = list(
@@ -18,16 +18,16 @@
 	needs_anchored = TRUE
 
 /datum/supply_pack/misc/powerator
-	name = "Powerator"
-	desc = "We know the feeling of losing power and Central sending power, it is our time to do the same."
+	name = "电力贩子"
+	desc = "我们体会过断电、然后由中央指挥部送电过来的滋味，现在轮到我们这样做了。"
 	cost = CARGO_CRATE_VALUE * 50 // 10,000
 	contains = list(/obj/item/circuitboard/machine/powerator)
-	crate_name = "Powerator Circuitboard Crate"
+	crate_name = "电力贩子电路板箱"
 	crate_type = /obj/structure/closet/crate
 
 /datum/design/board/powerator
-	name = "Machine Design (Powerator)"
-	desc = "Allows for the construction of circuit boards used to build a powerator."
+	name = "机器设计（电力贩子）"
+	desc = "允许制造用于建造电力贩子的电路板。"
 	id = "powerator"
 	build_path = /obj/item/circuitboard/machine/powerator
 	category = list(
@@ -37,8 +37,8 @@
 
 /datum/techweb_node/powerator
 	id = TECHWEB_NODE_POWERATOR
-	display_name = "Powerator"
-	description = "We've been saved by it in the past, we should send some power ourselves!"
+	display_name = "电力贩子"
+	description = "过去我们曾靠它得救，现在我们也该送出一些电力了！"
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	hidden = TRUE
 	experimental = TRUE
@@ -48,8 +48,8 @@
 	)
 
 /obj/machinery/powerator
-	name = "powerator"
-	desc = "Beyond the ridiculous name, it is the standard for transporting and selling energy to power networks that require additional sources!"
+	name = "电力贩子"
+	desc = "抛开这个荒唐的名字不谈，它是向需要额外电源的电网输送并出售电能的标准设备！"
 	icon = 'modular_zubbers/icons/obj/machines/powerator.dmi'
 	icon_state = "powerator"
 
@@ -92,38 +92,38 @@
 /obj/machinery/powerator/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(!held_item)
-		context[SCREENTIP_CONTEXT_LMB] = "Adjust power draw"
+		context[SCREENTIP_CONTEXT_LMB] = "调整取电量"
 		return CONTEXTUAL_SCREENTIP_SET
 	switch(held_item.tool_behaviour)
 		if(TOOL_WRENCH)
-			context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Unanchor" : "Anchor"]"
+			context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "卸下固定" : "固定"]"
 			return CONTEXTUAL_SCREENTIP_SET
 		if(TOOL_SCREWDRIVER)
-			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 			return CONTEXTUAL_SCREENTIP_SET
 		if(TOOL_CROWBAR)
 			if(panel_open)
-				context[SCREENTIP_CONTEXT_LMB] = "Dismantle machine"
+				context[SCREENTIP_CONTEXT_LMB] = "拆解机器"
 				return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/powerator/examine(mob/user)
 	. = ..()
 	if(panel_open)
-		. += span_warning("The maintenance panel is currently open, preventing [src] from working!")
+		. += span_warning("维护面板当前处于打开状态，导致[src]无法工作！")
 
 	if(!anchored)
-		. += span_warning("The anchors are not bolted to the floor, preventing [src] from working!")
+		. += span_warning("固定螺栓未拧入地板，导致[src]无法工作！")
 
 	if(machine_stat & (NOPOWER | BROKEN))
-		. += span_warning("There is either damage or no power being supplied, preventing [src] from working!")
+		. += span_warning("设备已损坏或没有供电，导致[src]无法工作！")
 
 	if(!attached_cable)
-		. += span_warning("There is no power cable underneath, preventing [src] from working!")
+		. += span_warning("下方没有电力电缆，导致[src]无法工作！")
 
-	. += span_notice("Current Power: [display_power(current_power)]/[display_power(max_power)]")
-	. += span_notice("This machine has made [credits_made] credits from selling power so far.")
+	. += span_notice("当前功率：[display_power(current_power)]/[display_power(max_power)]")
+	. += span_notice("这台机器迄今已通过售电赚取了 [credits_made] 信用点。")
 	if(length(powerator_list[powerator_faction]) > 1)
-		. += span_notice("Multiple powerators detected, total efficiency reduced by [(powerator_penalty_multiplier_list[powerator_faction])*100]%")
+		. += span_notice("检测到多台电力贩子，总效率降低了 [(powerator_penalty_multiplier_list[powerator_faction])*100]%")
 
 /obj/machinery/powerator/RefreshParts()
 	. = ..()
@@ -192,7 +192,7 @@
 
 /obj/machinery/powerator/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	var/new_power = tgui_input_number(user, "How much power (in kilowatts) would you like to draw? Max: [display_power(max_power)]", "Power Draw", energy_to_power(current_power) / (1 KILO WATTS), energy_to_power(max_power) / (1 KILO WATTS), 1)
+	var/new_power = tgui_input_number(user, "你想取用多少电力（千瓦）？上限：[display_power(max_power)]", "取电量", energy_to_power(current_power) / (1 KILO WATTS), energy_to_power(max_power) / (1 KILO WATTS), 1)
 	if(!isnum(new_power))
 		return TRUE
 	current_power = power_to_energy(new_power) KILO WATTS
@@ -223,13 +223,13 @@
 // Ghost role versions
 
 /obj/item/circuitboard/machine/powerator/interdyne
-	name = "Interdyne Powerator"
+	name = "英特戴恩电力贩子"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/powerator/interdyne
 
 /obj/machinery/powerator/interdyne
-	name = "Interdyne powerator"
-	desc = "Beyond the ridiculous name, it is the standard for transporting and selling energy to power networks that require additional sources! It appears to be an earlier variant before environmental regulation reduced its efficiency."
+	name = "英特戴恩电力贩子"
+	desc = "抛开这个荒唐的名字不谈，它是向需要额外电源的电网输送并出售电能的标准设备！它看起来是环保法规降低其效率之前的早期型号。"
 	circuit = /obj/item/circuitboard/machine/powerator/interdyne
 
 	powerator_faction = POWERATOR_FACTION_INTERDYNE
@@ -237,14 +237,14 @@
 
 
 /obj/item/circuitboard/machine/powerator/tarkon
-	name = "Tarkon Powerator"
+	name = "塔肯电力贩子"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/powerator/tarkon
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT)
 
 /obj/machinery/powerator/tarkon
-	name = "Tarkon powerator"
-	desc = "Beyond the ridiculous name, it is the standard for transporting and selling energy to power networks that require additional sources! It appears to be an earlier variant before environmental regulation reduced its efficiency."
+	name = "塔肯电力贩子"
+	desc = "抛开这个荒唐的名字不谈，它是向需要额外电源的电网输送并出售电能的标准设备！它看起来是环保法规降低其效率之前的早期型号。"
 	circuit = /obj/item/circuitboard/machine/powerator/tarkon
 
 	powerator_faction = POWERATOR_FACTION_TARKON

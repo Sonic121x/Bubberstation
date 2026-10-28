@@ -7,35 +7,35 @@
 // Burn Treatments
 
 /datum/design/biogen/dfbbr_balm
-	name = "Red Sun Balm"
+	name = "红日药膏"
 	id = "dfbbr_sun_balm"
 	materials = list(/datum/material/biomass = 18)
 	build_path = /obj/item/stack/medical/ointment/red_sun
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_ointment
-	name = "Ointment"
+	name = "烧伤药膏"
 	id = "dfbbr_ointment"
 	materials = list(/datum/material/biomass = 6)
 	build_path = /obj/item/stack/medical/ointment
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_aseptic_gauze
-	name = "Sealed Aseptic Gauze"
+	name = "密封无菌纱布"
 	id = "dfbbr_aseptic_gauze"
 	materials = list(/datum/material/biomass = 16)
 	build_path = /obj/item/stack/medical/wrap/gauze/sterilized
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_mesh
-	name = "Regenerative Mesh"
+	name = "再生网纱"
 	id = "dfbbr_mesh"
 	materials = list(/datum/material/biomass = 12)
 	build_path = /obj/item/stack/medical/mesh
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_hemo_mesh
-	name = "Hemostatic Mesh"
+	name = "止血网"
 	id = "dfbbr_slavic_mesh"
 	materials = list(/datum/material/biomass = 10)
 	build_path = /obj/item/stack/medical/mesh/bloody
@@ -44,28 +44,28 @@
 // Brute Treatments
 
 /datum/design/biogen/dfbbr_bruise_pack
-	name = "Bruise Packs"
+	name = "淤伤包"
 	id = "dfbbr_bruise_packs"
 	materials = list(/datum/material/biomass = 8)
 	build_path = /obj/item/stack/medical/bruise_pack
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_bandaid
-	name = "First Aid Bandage"
+	name = "急救绷带"
 	id = "dfbbr_bandaid"
 	materials = list(/datum/material/biomass = 50)
 	build_path = /obj/item/stack/medical/bandage
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_sutures
-	name = "Sutures"
+	name = "缝合线"
 	id = "dfbbr_suture"
 	materials = list(/datum/material/biomass = 16)
 	build_path = /obj/item/stack/medical/suture
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_hemo_sutures
-	name = "Hemostatic Sutures"
+	name = "止血缝合线"
 	id = "dfbbr_slavic_suture"
 	materials = list(/datum/material/biomass = 30)
 	build_path = /obj/item/stack/medical/suture/bloody
@@ -74,14 +74,14 @@
 // Bleed Treatments
 
 /datum/design/biogen/dfbbr_coagulant_f
-	name = "Coagulant-F Packet"
+	name = "凝血剂-F 药包"
 	id = "dfbbr_coagulant_pack"
 	materials = list(/datum/material/biomass = 10)
 	build_path = /obj/item/stack/medical/suture/coagulant
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_coagulant_rapid
-	name = "Rapid Coagulant Applicator"
+	name = "快速凝血剂涂抹器"
 	id = "dfbbr_coagulant_rapid"
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/stack/medical/wound_recovery/rapid_coagulant
@@ -90,21 +90,21 @@
 // Synth Treatments
 
 /datum/design/biogen/dfbbr_synth_patch
-	name = "Robotic Repair Patch"
+	name = "机械修复贴片"
 	id = "dfbbr_repair_patch"
 	materials = list(/datum/material/biomass = 50)
 	build_path = /obj/item/reagent_containers/applicator/pill/robotic_patch/synth_repair
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_repair_foam
-	name = "Robotic Repair Spray"
+	name = "机械修复喷剂"
 	id = "dfbbr_repair_foam"
 	materials = list(/datum/material/biomass = 80)
 	build_path = /obj/item/stack/medical/wound_recovery/robofoam
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_repair_foam_premium
-	name = "Premium Robotic Repair Spray"
+	name = "高级机械修复喷剂"
 	id = "dfbbr_repair_foam_premium"
 	materials = list(/datum/material/biomass = 160)
 	build_path = /obj/item/stack/medical/wound_recovery/robofoam_super
@@ -113,28 +113,28 @@
 // Fracture Treatments
 
 /datum/design/biogen/dfbbr_gauze
-	name = "Medical Gauze"
+	name = "医用纱布"
 	id = "dfbbr_slavic_gauze"
 	materials = list(/datum/material/biomass = 16)
 	build_path = /obj/item/stack/medical/wrap/gauze
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_bone_gel
-	name = "Bone Gel"
+	name = "骨胶"
 	id = "dfbbr_bone_gel"
 	materials = list(/datum/material/biomass = 50)
 	build_path = /obj/item/stack/medical/bone_gel
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_surgical_tape
-	name = "Surgical Tape"
+	name = "手术胶带"
 	id = "dfbbr_surgical_tape"
 	materials = list(/datum/material/biomass = 50)
 	build_path = /obj/item/stack/medical/wrap/sticky_tape/surgical
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_splint_applicator
-	name = "Subdermal Splint Applicator"
+	name = "皮下夹板贴敷器"
 	id = "dfbbr_splint_applicator"
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/stack/medical/wound_recovery
@@ -145,21 +145,21 @@
 // Patches
 
 /datum/design/biogen/dfbbr_bruise_patch
-	name = "Bruise Patch"
+	name = "淤伤贴片"
 	id = "dfbbr_bruise_patch"
 	materials = list(/datum/material/biomass = 250)
 	build_path = /obj/item/reagent_containers/applicator/patch/libital
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICINE)
 
 /datum/design/biogen/dfbbr_burn_patch
-	name = "Burn Patch"
+	name = "烧伤贴片"
 	id = "dfbbr_burn_patch"
 	materials = list(/datum/material/biomass = 250)
 	build_path = /obj/item/reagent_containers/applicator/patch/aiuri
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICINE)
 
 /datum/design/biogen/dfbbr_synthflesh_patch
-	name = "Synthflesh Patch"
+	name = "合成肉液贴片"
 	id = "dfbbr_synthflesh_patch"
 	materials = list(/datum/material/biomass = 500)
 	build_path = /obj/item/reagent_containers/applicator/patch/synthflesh
@@ -168,49 +168,49 @@
 // Pills
 
 /datum/design/biogen/dfbbr_amollin_pill
-	name = "Amollin Painkiller"
+	name = "阿莫林止痛药"
 	id = "dfbbr_amollin_pill"
 	materials = list(/datum/material/biomass = 25)
 	build_path = /obj/item/reagent_containers/applicator/pill/amollin
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICINE)
 
 /datum/design/biogen/dfbbr_iron_pill
-	name = "Iron Pill"
+	name = "铁药丸"
 	id = "dfbbr_iron_pill"
 	materials = list(/datum/material/biomass = 25)
 	build_path = /obj/item/reagent_containers/applicator/pill/iron
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICINE)
 
 /datum/design/biogen/dfbbr_probital_pill
-	name = "Probital Pill"
+	name = "普罗比妥药丸"
 	id = "dfbbr_probital_pill"
 	materials = list(/datum/material/biomass = 150)
 	build_path = /obj/item/reagent_containers/applicator/pill/probital
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICINE)
 
 /datum/design/biogen/dfbbr_epi_pill
-	name = "Epinephrine Pill"
+	name = "肾上腺素药丸"
 	id = "dfbbr_epi"
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/reagent_containers/applicator/pill/epinephrine
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICINE)
 
 /datum/design/biogen/dfbbr_conv_pill
-	name = "Convermol Pill"
+	name = "康弗莫药丸"
 	id = "dfbbr_conv"
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/reagent_containers/applicator/pill/convermol
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICINE)
 
 /datum/design/biogen/dfbbr_multiver_pill
-	name = "Multiver Pill"
+	name = "穆尔提弗药丸"
 	id = "dfbbr_multiver"
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/reagent_containers/applicator/pill/multiver
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICINE)
 
 /datum/design/biogen/dfbbr_potassiodide_pill
-	name = "Potassium Iodide Pill"
+	name = "碘化钾药丸"
 	id = "dfbbr_potassiodide"
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/reagent_containers/applicator/pill/potassiodide
@@ -219,14 +219,14 @@
 // Quirk Related Meds //
 
 /datum/design/biogen/dfbbr_insulin_pill
-	name = "Insulin Pill"
+	name = "胰岛素药丸"
 	id = "dfbbr_insulin"
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/reagent_containers/applicator/pill/insulin
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICINE)
 
 /datum/design/biogen/dfbbr_psicodine_pill
-	name = "Psicodine Pill"
+	name = "心定宁药丸"
 	id = "dfbbr_psicodine"
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/reagent_containers/applicator/pill/psicodine
@@ -234,14 +234,14 @@
 
 // Spacer, working in lavaland... or it is Ice Box. At least it also allows people with the Spacer quirk to visit safely.
 /datum/design/biogen/dfbbr_ondansetron_pill
-	name = "Ondansetron Pill"
+	name = "昂丹司琼药丸"
 	id = "dfbbr_ondansetron"
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/reagent_containers/applicator/pill/ondansetron
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICINE)
 
 /datum/design/biogen/dfbbr_sansufentanyl_pill
-	name = "Sansufentanyl Pill"
+	name = "桑苏芬太尼药丸"
 	id = "dfbbr_sansufentanyl"
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/reagent_containers/applicator/pill/sansufentanyl
@@ -249,14 +249,14 @@
 
 // I don't know why you'd do it, but just in case someone plays with the brain degeneration.
 /datum/design/biogen/dfbbr_mannitol_pill
-	name = "Mannitol Pill"
+	name = "甘露醇药丸"
 	id = "dfbbr_mannitol"
 	materials = list(/datum/material/biomass = 150)
 	build_path = /obj/item/reagent_containers/applicator/pill/mannitol
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICINE)
 
 /datum/design/biogen/dfbbr_neurine_pill
-	name = "Neurine Pill"
+	name = "神经碱药丸"
 	id = "dfbbr_neurine"
 	materials = list(/datum/material/biomass = 200)
 	build_path = /obj/item/reagent_containers/applicator/pill/neurine
@@ -264,7 +264,7 @@
 
 // Asthma, on lavaland, truly a genius move.
 /datum/design/biogen/dfbbr_albuterol_canister
-	name = "Albuterol Canister"
+	name = "沙丁胺醇气罐"
 	id = "dfbbr_albuterol_canister"
 	materials = list(/datum/material/biomass = 500)
 	build_path = /obj/item/reagent_containers/inhaler_canister/albuterol
@@ -273,35 +273,35 @@
 //// Autoinjectors ////
 
 /datum/design/biogen/dfbbr_autoinjector_occuisate
-	name = "Occuisate Sensory Restoration Injector"
+	name = "奥库伊萨特感官恢复注射器"
 	id = "dfbbr_autoinjector_occuisate"
 	materials = list(/datum/material/biomass = 500)
 	build_path = /obj/item/reagent_containers/hypospray/medipen/deforest/occuisate
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_INJECTORS)
 
 /datum/design/biogen/dfbbr_autoinjector_calopine
-	name = "Calopine Emergency Stabilizant Injector"
+	name = "卡洛平应急稳定剂注射器"
 	id = "dfbbr_autoinjector_calopine"
 	materials = list(/datum/material/biomass = 500)
 	build_path = /obj/item/reagent_containers/hypospray/medipen/deforest/calopine
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_INJECTORS)
 
 /datum/design/biogen/dfbbr_autoinjector_halobinin
-	name = "Halobinin Soberant Injector"
+	name = "哈洛比宁醒酒剂注射器"
 	id = "dfbbr_autoinjector_halobinin"
 	materials = list(/datum/material/biomass = 500)
 	build_path = /obj/item/reagent_containers/hypospray/medipen/deforest/halobinin
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_INJECTORS)
 
 /datum/design/biogen/dfbbr_autoinjector_synthcleaner
-	name = "Synthetic Cleaner Autoinjector"
+	name = "合成体清洁剂自动注射器"
 	id = "dfbbr_autoinjector_synthcleaner"
 	materials = list(/datum/material/biomass = 500)
 	build_path = /obj/item/reagent_containers/hypospray/medipen/deforest/robot_system_cleaner
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_INJECTORS)
 
 /datum/design/biogen/dfbbr_autoinjector_liquidsolder
-	name = "Synthetic Smart-Solder Autoinjector"
+	name = "合成体智能焊锡自动注射器"
 	id = "dfbbr_autoinjector_liquidsolder"
 	materials = list(/datum/material/biomass = 500)
 	build_path = /obj/item/reagent_containers/hypospray/medipen/deforest/robot_liquid_solder

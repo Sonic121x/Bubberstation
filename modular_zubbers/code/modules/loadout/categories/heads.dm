@@ -1,83 +1,83 @@
 //Title Capitalization for names please!!!
 
 /datum/loadout_item/head/pinwheel_hat //sprites by Keila.
-	name = "Pinwheel Hat"
+	name = "风车帽"
 	item_path = /obj/item/clothing/head/helmet/toggleable/pinwheel
 
 /datum/loadout_item/head/hats/bubber/clown/jester/amazing
-	name = "Amazing Jester Hat"
+	name = "惊艳弄臣帽"
 	item_path = /obj/item/clothing/head/costume/bubber/jester
 	restricted_roles = list(JOB_CLOWN)
 
 /datum/loadout_item/head/hats/bubber/clown/clussy
-	name = "Pink Clown Wig"
+	name = "粉色小丑假发"
 	item_path = /obj/item/clothing/head/costume/bubber/clussy
 
 /datum/loadout_item/head/hats/bubber/hench
-	name = "Henchmen Flat Cap"
+	name = "跟班鸭舌帽"
 	item_path = /obj/item/clothing/head/henchmen_hat
 
 /datum/loadout_item/head/alien_fake
-	name = "Kabrus Utility Helmet"
+	name = "卡布鲁斯勤务头盔"
 	item_path = /obj/item/clothing/head/helmet/abductor/fake
 	donator_only = TRUE //Dono item for MyphicBowser
 
 /datum/loadout_item/head/hats/warden/drill
-	name = "Warden's Campaign Hat"
+	name = "典狱长战役帽"
 	item_path = /obj/item/clothing/head/hats/warden/drill
 	restricted_roles = list(JOB_WARDEN)
 
 /datum/loadout_item/head/helmet/sec/futuristic
-	name = "Futuristic Security Helmet"
+	name = "未来风安保头盔"
 	item_path = /obj/item/clothing/head/helmet/sec/futuristic
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/sombrero
-	name = "Sombrero"
+	name = "墨西哥宽边帽"
 	item_path = /obj/item/clothing/head/costume/sombrero
 
 /datum/loadout_item/head/hats/caphat/drill
-	name = "Captain's Campaign Hat"
+	name = "舰长战役帽"
 	item_path = /obj/item/clothing/head/hats/warden/drill/captain
 	donator_only = TRUE
 	restricted_roles = list(JOB_CAPTAIN)
 
 /datum/loadout_item/head/hats/blueshield/drill
-	name = "Blueshield's Campaign Hat"
+	name = "蓝盾战役帽"
 	item_path = /obj/item/clothing/head/hats/warden/drill/blueshield
 	donator_only = TRUE
 	restricted_roles = list(JOB_BLUESHIELD)
 
 /datum/loadout_item/head/hats/hos/drill
-	name = "Head of Security's Campaign Hat"
+	name = "安保主管战役帽"
 	item_path = /obj/item/clothing/head/hats/warden/drill/hos
 	donator_only = TRUE
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/loadout_item/head/hats/nanotrasen_consultant/drill
-	name = "Nanotrasen Representative's Campaign Hat"
+	name = "纳米传讯顾问战役帽"
 	item_path = /obj/item/clothing/head/hats/warden/drill/nanotrasen
 	donator_only = TRUE
 	restricted_roles = list(JOB_NT_REP)
 
 /datum/loadout_item/head/hats/blueshield_beret
-	name = "Blueshield's Beret"
+	name = "蓝盾贝雷帽"
 	item_path = /obj/item/clothing/head/beret/blueshield
 	restricted_roles = list(JOB_BLUESHIELD)
 
 
 /datum/loadout_item/head/hats/blueshield_beret_navy
-	name = "Navy Blueshield's Beret"
+	name = "海军蓝盾贝雷帽"
 	item_path = /obj/item/clothing/head/beret/blueshield/navy
 	restricted_roles = list(JOB_BLUESHIELD)
 
 /datum/loadout_item/head/security_cap/soft
-	name = "Security Soft Cap"
+	name = "安保软帽"
 	item_path = /obj/item/clothing/head/soft/sec
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/security_cap/recolorable
-	name = "Recolorable Security Cap"
+	name = "可调色安保帽"
 	item_path = /obj/item/clothing/head/soft/sec/recolorable
 	restricted_roles = list(ALL_JOBS_SEC)
 	greyscale_component_preview_icon_file = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
@@ -93,98 +93,98 @@
 	apply_component_style_to_equipped_item(equipped_item, item_details)
 
 /datum/loadout_item/head/security_cap/veteran
-	name = "Veteran's Soft Security Cap"
+	name = "老兵的安保软帽"
 	item_path = /obj/item/clothing/head/soft/veteran
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/security_cap/colonial
-	name = "Imperial Police Cap"
+	name = "帝国警察帽"
 	item_path = /obj/item/clothing/head/hats/colonial/nri_police
 	restricted_roles = list(ALL_JOBS_SEC, JOB_CUSTOMS_AGENT)
 
 /datum/loadout_item/head/security_beanie
-	name = "Security Beanie"
+	name = "安保毛线帽"
 	item_path = /obj/item/clothing/head/security_beanie
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/beret/sec/peacekeeper
-	name = "Peacekeeper Beret"
+	name = "维和贝雷帽"
 	item_path = /obj/item/clothing/head/beret/sec
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/beret/sec/peacekeeper/white
-	name = "Peacekeeper White Beret"
+	name = "维和白色贝雷帽"
 	item_path = /obj/item/clothing/head/beret/sec/white
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/helmet/sec/redsec
-	name = "Security Red Helmet"
+	name = "安保红色头盔"
 	item_path = /obj/item/clothing/head/helmet/sec/redsec
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/helmet/nri_police
-	name = "Imperial Police Helmet"
+	name = "帝国警察头盔"
 	item_path = /obj/item/clothing/head/helmet/nri_police
 	restricted_roles = list(ALL_JOBS_SEC, JOB_CUSTOMS_AGENT)
 
 /datum/loadout_item/head/hats/security_kepi
-	name = "Security Kepi"
+	name = "安保军便帽"
 	item_path = /obj/item/clothing/head/security_kepi
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/beret/sec/peacekeeper/armadyne
-	name = "Armadyne Corporate Beret"
+	name = "阿玛达因公司贝雷帽"
 	item_path = /obj/item/clothing/head/beret/sec/peacekeeper/armadyne
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/helmet/sec/peacekeeper/security_medic
-	name = "Security Medic Helmet"
+	name = "安保医护头盔"
 	item_path = /obj/item/clothing/head/helmet/sec/peacekeeper/security_medic
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/head/beret/sec/peacekeeper/security_medic
-	name = "Security Medic Beret"
+	name = "安保医护贝雷帽"
 	item_path = /obj/item/clothing/head/beret/sec/security_medic
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/head/lace_bow
-	name = "Hair Bow"
+	name = "发结"
 	item_path = /obj/item/clothing/head/costume/hairbow
 	donator_only = TRUE
 
 /datum/loadout_item/head/tactical_maid_headband //Donor item for skyefree
-	name = "Tactical Maid Headband"
+	name = "战术女仆发带"
 	item_path = /obj/item/clothing/head/costume/maid_headband/syndicate
 	donator_only = TRUE
 
 /datum/loadout_item/head/mime_bunny_ears
-	name = "Mime's Bunny Ears"
+	name = "默剧演员兔耳"
 	item_path = /obj/item/clothing/head/playbunnyears/mime
 
 /datum/loadout_item/head/kabuto
-	name = "Kabuto"
+	name = "武士盔"
 	item_path = /obj/item/clothing/head/costume/kabuto
 
 /datum/loadout_item/head/bunny_ears_headband
-	name = "Bunny Ears Headband"
+	name = "兔耳发带"
 	item_path = /obj/item/clothing/head/playbunnyears
 
 /datum/loadout_item/head/soft/galfedcap
-	name = "Galactic Federation Cap"
+	name = "银河联邦帽"
 	item_path = /obj/item/clothing/head/soft/galfedcap
 
 /datum/loadout_item/head/soft/frontier_colonist
-	name = "Frontier Cap"
+	name = "边疆帽"
 	item_path = /obj/item/clothing/head/soft/frontier_colonist
 
 /datum/loadout_item/head/skull
-	name = "Skull Helmet"
+	name = "骷髅头盔"
 	item_path = /obj/item/clothing/head/helmet/skull/fake
 
 /datum/loadout_item/head/soft/plasmax_black
-	name = "PlasMAX Envirosuit Helmet"
+	name = "PlasMAX 等离子防护头盔"
 	item_path = /obj/item/clothing/head/helmet/space/plasmaman/plasmax_black
 
 /datum/loadout_item/head/colonial
-	name = "Colonial Cap"
+	name = "殖民地帽"
 	item_path = /obj/item/clothing/head/hats/colonial

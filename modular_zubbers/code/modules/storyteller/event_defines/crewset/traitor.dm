@@ -1,5 +1,5 @@
 /datum/round_event_control/antagonist/solo/traitor
-	name = "Traitors"
+	name = "叛徒"
 	roundstart = TRUE
 
 	antag_flag = ROLE_TRAITOR
@@ -10,11 +10,11 @@
 	tags = list(TAG_CREW_ANTAG)
 
 /datum/round_event_control/antagonist/solo/traitor/midround
-	name = "Sleeper Agents (Traitors)"
+	name = "潜伏特工（叛徒）"
 	roundstart = FALSE
 
 /datum/round_event_control/antagonist/solo/traitor/event
-	name = "Event Generated Traitor"
+	name = "事件生成的叛徒"
 	roundstart = FALSE
 	tags = list(TAG_ANTAG_REROLL)
 	max_occurrences = 0

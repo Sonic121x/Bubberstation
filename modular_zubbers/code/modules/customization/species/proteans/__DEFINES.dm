@@ -3,17 +3,17 @@
  * Instead of a 500 line file with identical code, element, or compoment: a macro is used as a short cut to condense the logic.
 */
 /// Brute damage messages
-#define LIGHT_NANO_BRUTE "scratched"
-#define MEDIUM_NANO_BRUTE "festering"
-#define HEAVY_NANO_BRUTE "falling apart"
+#define LIGHT_NANO_BRUTE "有些划痕"
+#define MEDIUM_NANO_BRUTE "正在溃散"
+#define HEAVY_NANO_BRUTE "快要散架"
 
 /// Burn damage messages
-#define LIGHT_NANO_BURN "scorched"
-#define MEDIUM_NANO_BURN "melted"
-#define HEAVY_NANO_BURN "boiling"
+#define LIGHT_NANO_BURN "有些焦痕"
+#define MEDIUM_NANO_BURN "正在熔化"
+#define HEAVY_NANO_BURN "沸腾不止"
 
-#define BRUTE_EXAMINE_NANO "deformation"
-#define BURN_EXAMINE_NANO "scorching"
+#define BRUTE_EXAMINE_NANO "变形"
+#define BURN_EXAMINE_NANO "焦痕"
 
 /obj/item/bodypart
 	var/bodypart_species

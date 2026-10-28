@@ -2,8 +2,8 @@
 
 	var/list/candidates_tickets = candidates_to_tickets(cast_control.get_candidates())
 	if(!length(candidates_tickets))
-		message_admins(span_yellowteamradio("Antag tickets system failed to find any candidates!"))
-		log_game("Antag tickets system failed to find any candidates!")
+		message_admins(span_yellowteamradio("反派票系统未能找到任何候选人！"))
+		log_game("反派票系统未能找到任何候选人！")
 		return
 
 	//Logging purposes.
@@ -24,4 +24,4 @@
 		if(!total_tickets)
 			total_tickets = our_weight
 		var/percent_chance = round( (our_weight/total_tickets)*100, 1)
-		log_antag_tickets("[key_name(candidate)] was made an antagonist with a [percent_chance]% chance to roll (self tickets: [our_weight], total tickets: [total_tickets], average tickets: [average_tickets]).")
+		log_antag_tickets("[key_name(candidate)] 以 [percent_chance]% 的抽取概率被设为反派（自身票数：[our_weight]，总票数：[total_tickets]，平均票数：[average_tickets]）。")

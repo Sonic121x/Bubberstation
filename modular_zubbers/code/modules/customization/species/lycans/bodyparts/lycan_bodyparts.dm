@@ -16,8 +16,8 @@
 /obj/item/bodypart/arm/left/mutant/lycan
 	icon_greyscale = BODYPART_ICON_LYCAN
 	limb_id = SPECIES_LYCAN
-	unarmed_attack_verbs = list("slash", "scratch", "claw")
-	grappled_attack_verb = "lacerate"
+	unarmed_attack_verbs = list("劈砍", "抓挠", "挥爪")
+	grappled_attack_verb = "撕裂"
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/items/weapons/slash.ogg'
 	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'
@@ -30,8 +30,8 @@
 /obj/item/bodypart/arm/right/mutant/lycan
 	icon_greyscale = BODYPART_ICON_LYCAN
 	limb_id = SPECIES_LYCAN
-	unarmed_attack_verbs = list("slash", "scratch", "claw")
-	grappled_attack_verb = "lacerate"
+	unarmed_attack_verbs = list("劈砍", "抓挠", "挥爪")
+	grappled_attack_verb = "撕裂"
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/items/weapons/slash.ogg'
 	unarmed_miss_sound = 'sound/items/weapons/slashmiss.ogg'

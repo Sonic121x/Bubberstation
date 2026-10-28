@@ -14,9 +14,9 @@
 		SetStun(0, ignore_canstun = TRUE)
 
 	if(client && admin)
-		to_chat(src, span_userdanger("An admin has [!admin_frozen ? "un" : ""]frozen you."))
-		log_admin("[key_name(admin)] toggled admin-freeze on [key_name(src)].")
-		message_admins("[key_name_admin(admin)] toggled admin-freeze on [key_name_admin(src)].")
+		to_chat(src, span_userdanger("管理员已[!admin_frozen ? "解冻" : "冻结"]了你。"))
+		log_admin("[key_name(admin)] 对 [key_name(src)] 的管理员冻结状态进行了切换。")
+		message_admins("[key_name_admin(admin)] 对 [key_name_admin(src)] 的管理员冻结状态进行了切换。")
 
 /// Toggle admin sleeping
 /mob/living/proc/toggle_admin_sleep(client/admin)
@@ -28,6 +28,6 @@
 		SetSleeping(0)
 
 	if(client && admin)
-		to_chat(src, span_userdanger("An admin has [!admin_sleeping ? "un": ""]slept you."))
-		log_admin("[key_name(admin)] toggled admin-sleep on [key_name(src)].")
-		message_admins("[key_name_admin(admin)] toggled admin-sleep on [key_name_admin(src)].")
+		to_chat(src, span_userdanger("管理员已使你[!admin_sleeping ? "醒来" : "入睡"]。"))
+		log_admin("[key_name(admin)] 对 [key_name(src)] 的管理员催眠状态进行了切换。")
+		message_admins("[key_name_admin(admin)] 对 [key_name_admin(src)] 的管理员催眠状态进行了切换。")

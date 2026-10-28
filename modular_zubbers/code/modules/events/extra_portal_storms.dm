@@ -1,11 +1,11 @@
 /datum/round_event_control/portal_storm_lavaland
-	name = "Portal Storm: Lavaland"
+	name = "传送门风暴：熔岩地带"
 	typepath = /datum/round_event/portal_storm/lavaland
 	weight = 2
 	min_players = 15
 	earliest_start = 50 MINUTES
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Lavaland creatures pour out of portals."
+	description = "熔岩地带的生物从传送门中涌出。"
 	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_NPC_ANTAG)
 
 /datum/round_event/portal_storm/lavaland
@@ -22,13 +22,13 @@
 	)
 
 /datum/round_event_control/portal_storm_icemoon
-	name = "Portal Storm: Icemoon"
+	name = "传送门风暴：冰月"
 	typepath = /datum/round_event/portal_storm/icemoon
 	weight = 2
 	min_players = 30
 	earliest_start = 50 MINUTES
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Icemoon creatures pour out of portals."
+	description = "冰月的生物从传送门中涌出。"
 	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_NPC_ANTAG)
 
 /datum/round_event/portal_storm/icemoon
@@ -43,13 +43,13 @@
 	)
 
 /datum/round_event_control/portal_storm_xen
-	name = "Portal Storm: Xen"
+	name = "传送门风暴：异星"
 	typepath = /datum/round_event/portal_storm/xen
 	weight = 2
 	min_players = 30
 	earliest_start = 50 MINUTES
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Xen creatures pour out of portals."
+	description = "异星的生物从传送门中涌出。"
 	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_NPC_ANTAG)
 
 /datum/round_event/portal_storm/xen

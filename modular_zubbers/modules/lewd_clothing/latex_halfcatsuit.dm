@@ -1,6 +1,6 @@
 /obj/item/clothing/under/misc/latex_halfcatsuit
-	name = "latex half-catsuit"
-	desc = "A shiny uniform that fits snugly to the skin. The legs have been cut off this one."
+	name = "乳胶半身猫装"
+	desc = "一件闪亮、紧贴皮肤的制服。这一件的裤腿被剪掉了。"
 	icon_state = "latex_halfcatsuit_female"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_uniform.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_uniform/lewd_uniform.dmi'

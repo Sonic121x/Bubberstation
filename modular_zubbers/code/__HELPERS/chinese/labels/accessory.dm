@@ -27,6 +27,8 @@
 		"Knee-high (Ace)" = "及膝袜（无性恋旗）", "Knee-high (Bee)" = "及膝袜（蜜蜂）", "Knee-high (Black)" = "及膝袜（黑）", "Knee-High (Commie)" = "及膝袜（共产主义）", "Knee-High (Freedom)" = "及膝袜（自由旗帜）", "Knee-high (Rainbow)" = "及膝袜（彩虹）", "Knee-high (Striped)" = "及膝袜（条纹）", "Knee-high (Thin)" = "及膝袜（薄款）", "Knee-high (Trans)" = "及膝袜（跨性别旗）", "Knee-High (UK)" = "及膝袜（英国旗）", "Knee-high (White)" = "及膝袜（白）", "Knee-high (Fishnet)" = "及膝袜（渔网）", "Normal (Black)" = "普通袜（黑）", "Normal (White)" = "普通袜（白）", "Pantyhose" = "连裤袜", "Short (Black)" = "短袜（黑）", "Short (White)" = "短袜（白）",
 		"Stockings (Blue)" = "长袜（蓝）", "Stockings (Cyan)" = "长袜（青）", "Stockings (Dark Pink)" = "长袜（深粉）", "Stockings (Green)" = "长袜（绿）", "Stockings (Orange)" = "长袜（橙）", "Stockings (Programmer)" = "长袜（程序员）", "Stockings (Purple)" = "长袜（紫）", "Stockings (Yellow)" = "长袜（黄）", "Stockings (Fishnet)" = "长袜（渔网）", "Thigh-high (Ace)" = "过膝袜（无性恋旗）", "Thigh-high (Bee)" = "过膝袜（蜜蜂）", "Thigh-high (Black)" = "过膝袜（黑）", "Thigh-high (Commie)" = "过膝袜（共产主义）", "Thigh-high (Freedom)" = "过膝袜（自由旗帜）", "Thigh-high (Rainbow)" = "过膝袜（彩虹）", "Thigh-high (Striped)" = "过膝袜（条纹）", "Thigh-high (Thin)" = "过膝袜（薄款）", "Thigh-high (Trans)" = "过膝袜（跨性别旗）", "Thigh-high (UK)" = "过膝袜（英国旗）", "Thigh-high (White)" = "过膝袜（白）", "Thigh-high (Fishnet)" = "过膝袜（渔网）", "Thocks" = "一体过膝袜"
 	)
+	display_names |= chinese_zubbers_modules_accessory_display(null, TRUE)
+	display_names |= chinese_zubbers_species_accessory_display(null, TRUE)
 	if(return_mapping)
 		return display_names
 	return display_names[value] || chinese_zubbers_choice_display(value)
@@ -61,7 +63,7 @@
 
 /proc/chinese_outfit_display(value)
 	var/static/list/display_names = list("Naked" = "裸体", "Custom" = "自定义", "As Job..." = "按职业……", "As Plasmaman..." = "等离子人装备……", "Standard Gear" = "标准装备")
-	return display_names[value] || chinese_job_display(value)
+	return display_names[value] || chinese_zubbers_modules_outfit_display(value)
 
 /proc/chinese_granter_spell_display(value)
 	var/static/list/names = list("fireball" = "火球术", "smoke" = "烟雾术", "blind" = "致盲术", "forcewall" = "力场墙", "knock" = "敲击术", "barnyard" = "畜栏诅咒", "charge" = "充能术")

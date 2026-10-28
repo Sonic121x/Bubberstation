@@ -4,35 +4,35 @@
 
 /datum/species/pod/get_species_description()
 	return list(
-	"Aeons ago, the precursor Podpeople stood alone among the sea of stars. They resolved to spread the seeds of life \
-	that would ultimately survive them. Disease forced the last remnants into scarce few seedvaults, sequestered away. \
-	Genetic reconstruction has revived this species from bone and dust, growing new life from replica pods designed to simulate the genesis of Podpeople.",
+	"千万年前，豆荚人的先驱独自立于星海之中。他们决心播撒生命的种子，\
+	让这些种子最终在他们消亡后延续下去。疾病迫使最后的残存者退入寥寥无几的种子库中，与世隔绝。\
+	基因重构已从骨与尘中复活了这个物种，用模拟豆荚人起源的复制豆荚培育出新的生命。",
 
-	"Their complex biology is benign to medical scanners, and they heal in starlight, at the cost of being more susceptible to heat and burns.",
+	"他们复杂的生物学特性不会触发医疗扫描仪，并且能在星光下愈合，代价是更容易受到高温和灼伤影响。",
 	)
 
 /datum/species/pod/get_species_lore()
 	return list(
-		"Podpeople (known as Sylvans to their own) are a species of plant person deeply connected to nature. \
-		Their hair is generally vibrant, made of vines and brambles, and Podpeople generally take great joy in styling it. \
-		Podpeople generally grow at a similar rate and size to humans, though their hair tends to grow facing the most common \
-		direction of the sun in the system in which they reside, sometimes growing fruits and other plants when light is plentiful.",
+		"豆荚人（他们自称希尔凡）是一个与自然紧密相连的植物人种族。\
+		他们的头发通常色彩鲜亮，由藤蔓和荆棘构成，豆荚人通常非常乐于打理头发。\
+		豆荚人的生长速度和体型大致与人类相近，不过他们的头发往往朝着所在星系中太阳最常出现的 \
+		方向生长，光照充足时有时还会结出果实和其他植物。",
 
-		"Podpeople are often characterized as curious and outgoing, yet sheltered. The scale of the universe can be overwhelming to them. \
-		Podpeople that exist outside of the seed vaults tend to excel at intellectual pursuits, like archaeology, research, and hydroponics. \
-		They have recently become more prevalent in Sector C7 due to recently discovered evidence of Sylvan development on Indecipheres. \
-		Podpeople tend to live for two to three centuries, so the extended contracts offered by Nanotrasen are less daunting.",
+		"豆荚人常被描述为好奇、外向却又涉世未深。宇宙的规模可能让他们不知所措。\
+		生活在种子库之外的豆荚人往往擅长学术性工作，比如考古、研究和水培。\
+		由于最近在因德西菲瑞斯发现了希尔凡开发的证据，他们近来在 C7 星区变得更加常见。\
+		豆荚人通常能活两到三个世纪，因此纳米传讯提供的长期合同对他们来说没那么可怕。",
 
-		"Podpeople were one of the first species in the life of the universe to spring into existence \
-		when planets were more tightly packed together and the universe was warmer. Their home planet is suspected to have been unusually verdant, \
-		which the Sylvans seemed to have a symbiotic relationship with. It has been described in detail, but its location remains elusive. \
-		True Sylvans encountered by xenoarchaeologists have thus far tended to die of disease months after being exposed to outside life.",
+		"豆荚人是宇宙生命史上最早出现的物种之一，\
+		那时行星彼此靠得更近，宇宙也更温暖。他们的母星据信异常翠绿繁茂，\
+		希尔凡似乎与它保持着共生关系。关于这颗星球已有详细描述，但其位置仍然成谜。\
+		异种考古学家遇到的真正希尔凡，迄今为止往往在接触外界生命几个月后死于疾病。",
 
-		"At some point in their life cycle, Podpeople were shown to be capable of some form of short-range space travel, spreading their progeny through the stars. \
-		Their technological advancements were apparently few, at least compared to contemporary examples, and no Podperson vessels have been uncovered to date. \
-		Recovered documentation and oral history suggest that the Podpeople feared diseases that would prey on their apparent lack of genetic diversity.",
+		"在他们的生命周期的某个阶段，豆荚人展现出了进行某种短途太空旅行的能力，将后代播撒到群星之间。\
+		他们的技术进步显然不多，至少与同时期的例子相比如此，而且至今没有发现任何豆荚人飞船。\
+		回收的文献和口述历史表明，豆荚人害怕那些会利用他们明显缺乏基因多样性这一弱点的疾病。",
 
-		"There are records of Podperson vaults across the universe, typically containing one or two operators, \
-		though the largest by far has recently been discovered on the surface of Indecipheres, \
-		suggesting a connection between the Podpeople and the living nature of the asteroid. Research is currently ongoing.",
+		"宇宙各地都有豆荚人种子库的记录，通常只有一两名操作员，\
+		但迄今为止最大的一座最近在因德西菲瑞斯地表被发现，\
+		这表明豆荚人与这颗小行星的活体自然之间存在联系。相关研究正在进行中。",
 	)

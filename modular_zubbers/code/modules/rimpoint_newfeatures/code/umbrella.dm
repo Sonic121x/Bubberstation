@@ -1,7 +1,7 @@
 //Sprites by Constellado, MapleStation
 
 /obj/item/umbrella
-	name = "umbrella"
+	name = "雨伞"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/umbrella"
 	post_init_icon_state = "umbrella"
@@ -13,8 +13,8 @@
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/iron= SMALL_MATERIAL_AMOUNT * 0.5)
-	attack_verb_continuous = list("bludgeons", "whacks", "disciplines", "pummels")
-	attack_verb_simple = list("bludgeon", "whack", "discipline", "pummel")
+	attack_verb_continuous = list("猛击", "敲打", "惩戒", "狠揍")
+	attack_verb_simple = list("猛击", "敲打", "惩戒", "狠揍")
 	hitsound = 'sound/items/weapons/genhit3.ogg'
 
 	//open umbrella offsets for the inhands
@@ -59,8 +59,8 @@
 		hitsound_on = "sound/weapons/genhit1.ogg", \
 		w_class_on = WEIGHT_CLASS_BULKY, \
 		clumsy_check = FALSE, \
-		attack_verb_continuous_on = list("swooshes", "whacks", "fwumps"), \
-		attack_verb_simple_on = list("swoosh", "whack", "fwump"), \
+		attack_verb_continuous_on = list("挥打", "敲打", "扑打"), \
+		attack_verb_simple_on = list("挥打", "敲打", "扑打"), \
 	)
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 
@@ -81,7 +81,7 @@
 	inhand_icon_state = active ? on_inhand_icon_state : inhand_icon_state
 	open = active
 	if(user)
-		balloon_alert(user, active ? "opened" : "closed")
+		balloon_alert(user, active ? "已打开" : "已收起")
 	if(active)
 		ADD_TRAIT(user, TRAIT_SHADED, REF(src))
 	else
@@ -124,8 +124,8 @@
 //other umbrellas
 
 /obj/item/umbrella/parasol
-	name = "parasol"
-	desc = "A black laced parsol, how intricate."
+	name = "阳伞"
+	desc = "一把黑色蕾丝阳伞，做工可真精致。"
 	icon = 'modular_zubbers/icons/obj/equipment/umbrella.dmi'
 	icon_state = "parasol"
 	inhand_icon_state = "parasol_closed"

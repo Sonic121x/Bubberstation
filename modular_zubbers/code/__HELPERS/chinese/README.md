@@ -44,3 +44,18 @@
 - `bloodsucker`、`zubbers_heretic`：氏族、能力、敌对身份和模块的显示及存档兼容。
 
 职业、种族和区域扩展同时合并到返回完整映射的入口，供界面显示和中文输入反查原始标识使用。特性下拉选项通过指定偏好类型接入 `display_names`，不会修改保存的选择值。
+
+## 第 10001–12000 项复查扩展
+
+- `actions/zubbers_modules.dm`：按动作类型还原本批中文按钮名称对应的旧布局存档键。
+- `labels/zubbers_roles.dm`：集中管理下游职业和无畏号、恒久号等装备标签；通用入口继续提供完整职业映射。
+- `labels/zubbers_reskins.dm`：换肤标签；`preview_name` 和 `initial_skin` 保留英文。配装界面提交 `preview_name`，中文仅用于 tooltip 和无图标时的显示。
+- `labels/zubbers_robotic_styles.dm`：义肢样式标签；偏好界面使用独立的 `robotic_style_labels`，原始名称继续用于保存及回传。
+- `labels/zubbers_modules_accessories.dm`、`labels/zubbers_species_accessories.dm`：身体纹样、附件、内衣和尖叫等选项，合并到通用外观显示映射。
+- `labels/zubbers_module_options.dm`：特质、纳米机器人分类/伤害规则和变异部位显隐选项。
+- `labels/dreams.dm`：梦境中文名词短语移除英文冠词，英文短语保留原来的冠词行为。
+- TGUI 的 `localization/zhNaniteDisplay.ts`：纳米机器人设置枚举的中文标签，选择值和 `act` 参数保持原值，自定义文本不进入翻译映射。
+
+本批名称生成词库和共用梦境形容词、动词词库仍含英文。本次保留这些原始词库，不将编译或静态检查通过视为其已经完成汉化。注释、开发工具、生成的行为树数据及配置键也不作为待翻译显示文本。
+
+2026-10-27 验证：dm-mcp 编译 0 错误、3 条既有构建方式警告；DreamChecker 0 错误、0 警告、1128 条既有 hint；TypeScript 检查和本次涉及的 7 个前端文件 Biome lint 通过。原文件行数、逐行缩进、UTF-8、include 唯一性及 `git diff --check` 检查通过。未进行服务器内交互测试。

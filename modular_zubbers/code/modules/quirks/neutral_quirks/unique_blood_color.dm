@@ -2,10 +2,10 @@
 
 /datum/quirk/item_quirk/unique_blood_color
 	name = "Blood Pigmentation"
-	desc = "Your blood has a different colour than what your species usually has."
-	gain_text = span_purple("Your flesh shifts in hue.")
-	lose_text = span_purple("Your flesh returns to a natural look.")
-	medical_record_text = "Patient has unusual blood pigmentation."
+	desc = "你的血液颜色与你所属种族通常的颜色不同。"
+	gain_text = span_purple("你的血肉色泽发生了变化。")
+	lose_text = span_purple("你的血肉恢复了自然的色泽。")
+	medical_record_text = "患者具有不寻常的血液色素。"
 	value = 0
 	icon = FA_ICON_DROPLET
 	//this should only ever be a hex
@@ -53,7 +53,7 @@
 	SIGNAL_HANDLER
 ///Check if new blood type is same as old. Jank, but it should prevent cases of special blood types made from relative normal blood
 	if(quirked.dna.blood_type.get_color() == color_code)
-		to_chat(quirked, span_notice("...but nothing had actually changed."))
+		to_chat(quirked, span_notice("……但实际什么也没有改变。"))
 		remove_from_current_holder()
 		WARNING("quirk 'unique_blood_color' automatically removed from [quirked.name]")
 		return
@@ -72,4 +72,4 @@
 /datum/quirk/item_quirk/unique_blood_color/add_unique(client/client_source)
 	var/get_bloodtype_id = old_blood.name
 	var/obj/item/clothing/accessory/dogtag/unique_blood/dogtag = new(quirk_holder, get_bloodtype_id, color_code)
-	give_item_to_holder(dogtag, list(LOCATION_BACKPACK, LOCATION_HANDS), flavour_text = "Medical should probably see this...", notify_player = TRUE)
+	give_item_to_holder(dogtag, list(LOCATION_BACKPACK, LOCATION_HANDS), flavour_text = "医疗部大概该看看这个……", notify_player = TRUE)

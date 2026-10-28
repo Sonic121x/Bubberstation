@@ -19,8 +19,8 @@
 
 
 /obj/item/gun/ballistic/rifle/boltaction/lionhunterlarp
-	name = "antique hunting rifle"
-	desc = "This Sahko's clearly seen a lot more love than the average 3SU or even PSC relics that are more often found. One wonders why someone bothered to inlay such fine material over a common rifle, feature a strange, 5 pointed mark, and use such an antiquated optic. We'll never know, but it's in your hands now."
+	name = "古董猎枪"
+	desc = "这把 Sahko 显然比常见的 3SU、乃至更常遇到的泛斯拉夫联邦遗物都要受宠得多。令人费解的是，为什么有人会费心在一把普通步枪上镶嵌如此精美的材料、加上一个奇怪的五芒星标记，还配上一具如此老旧的瞄具。我们永远无从得知，但它现在在你手里。"
 	icon = 'icons/obj/weapons/guns/wide_guns.dmi'
 	icon_state = "lionhunter"
 	inhand_icon_state = "lionhunter"
@@ -31,8 +31,8 @@
 	. = ..()
 	AddComponent(/datum/component/scope, range_modifier = 1.5)
 /obj/item/gun/ballistic/rifle/stingballer
-	name = "\improper S-K Stingball Rifle"
-	desc = "A pneumatic rifle designed to rapidly fire stingballs. Holds up to 50 rounds."
+	name = "\improper S-K 震爆弹步枪"
+	desc = "一种气动步枪，专为快速发射震爆弹丸而设计。最多可装填 50 发。"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "stingballer"
 	fire_sound = 'modular_zubbers/sound/weapons/gun/light_gunfire.ogg'

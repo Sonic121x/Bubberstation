@@ -23,7 +23,7 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 	if(name)
 		src.name = name
 	else
-		src.name = "off-station group"
+		src.name = "站外小组"
 
 /datum/offstation_deathrattle_group/proc/register(obj/item/implant/deathrattle/implant)
 	if(implant in implants)
@@ -63,9 +63,9 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 	return (RADIO_CHANNEL_SUPPLY in headset.channels) || (RADIO_CHANNEL_MEDICAL in headset.channels)
 
 /datum/offstation_deathrattle_group/proc/notify_recipient(mob/living/recipient, victim_name, victim_area, sound)
-	var/radio_prefix = span_radio("Your headset crackles with a strange, robotic voice...")
-	var/death_notice = span_robot("<b>[victim_name]</b> has died at <b>[victim_area]</b>.")
-	to_chat(recipient, "[radio_prefix] \"[death_notice]\"")
+	var/radio_prefix = span_radio("你的耳机中传来一个陌生而机械的声音……")
+	var/death_notice = span_robot("<b>[victim_name]</b> 已在 <b>[victim_area]</b> 死亡。")
+	to_chat(recipient, "[radio_prefix]“[death_notice]”")
 	recipient.playsound_local(get_turf(recipient), sound, vol = 75, vary = FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 
 /datum/offstation_deathrattle_group/proc/area_auth(mob/living/owner)
@@ -122,7 +122,7 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 		notify_recipient(recipient, victim_name, victim_area, sound)
 
 /obj/item/implant/deathrattle/offstation
-	name = "off-station deathrattle implant"
+	name = "站外亡语植入体"
 
 /obj/item/implant/deathrattle/offstation/Initialize(mapload)
 	. = ..()
@@ -132,13 +132,13 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 	group.register(src)
 
 /obj/item/implantcase/deathrattle/offstation
-	name = "implant case - 'Off-Station Deathrattle'"
-	desc = "A glass case containing an off-station deathrattle implant."
+	name = "植入体盒 - “站外亡语”"
+	desc = "一个装有站外亡语植入体的玻璃盒。"
 	imp_type = /obj/item/implant/deathrattle/offstation
 
 /obj/item/storage/box/offstation_deathrattle
-	name = "boxed off-station deathrattle implant kit"
-	desc = "A quick and easy kit for a single deathrattle implant that will send a distress signal to the medical and supply channels when the user dies off-station. Perfect for miners and space hikers alike!"
+	name = "盒装站外亡语植入体套件"
+	desc = "一套简单快捷的套件，内含单枚亡语植入体；当使用者在站外死亡时，它会向医疗与后勤频道发送求救信号。对矿工和太空徒步者来说都是绝佳之选！"
 	icon = 'modular_skyrat/modules/aesthetics/storage/storage.dmi'
 	icon_state = "box"
 

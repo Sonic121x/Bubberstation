@@ -1,7 +1,7 @@
 /obj/item/circuit_component/color
-	display_name = "Color"
-	desc = "A component that has a drop-down of pickable colors to change the color in chat."
-	category = "String"
+	display_name = "颜色"
+	desc = "一种带有可选颜色下拉菜单、可改变聊天中文字颜色的元件。"
+	category = "字符串"
 
 	/// Colors to pick from to change to, list defined in spans.dm (modular_zubber)
 	var/datum/port/input/option/color_options

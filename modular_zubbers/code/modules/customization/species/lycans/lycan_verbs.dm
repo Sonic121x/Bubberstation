@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/beast_form
-	name = "Toggle Beast Form"
-	desc = "Transform between human and lycan form."
+	name = "切换野兽形态"
+	desc = "在人形与狼人形态之间转换。"
 	button_icon = 'modular_zubbers/code/modules/customization/species/lycans/lycan_verbs.dmi'
 	button_icon_state = "lycan_form"
 

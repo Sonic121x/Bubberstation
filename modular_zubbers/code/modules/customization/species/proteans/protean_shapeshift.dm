@@ -9,37 +9,37 @@
 	alter_action?.Remove(target)
 
 /datum/action/innate/alter_form/protean
-	name = "Alter Form"
+	name = "改变形态"
 	slime_restricted = FALSE
-	shapeshift_text = "'s nanites begin to move around their body and shift, as their orchestrator whirrs."
+	shapeshift_text = "纳米机器人开始沿身体游走、重组，调度模块随之嗡嗡作响。"
 
 /datum/action/innate/alter_form/protean/change_form(mob/living/carbon/human/alterer)
 	var/selected_alteration = show_radial_menu(
 		alterer,
 		alterer,
 		list(
-			"Body Colours" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "slime_rainbow"),
+			"体色" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "slime_rainbow"),
 			"DNA" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "dna"),
-			"Hair" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "scissors"),
-			"Markings" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "rainbow_spraycan"),
-			"Character" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "alter_form")
+			"发型" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "scissors"),
+			"体表纹样" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "rainbow_spraycan"),
+			"角色" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "alter_form")
 		),
 		tooltips = TRUE,
 	)
 	if(!selected_alteration)
 		return
 	switch(selected_alteration)
-		if("Body Colours")
+		if("体色")
 			alter_colours(alterer)
 		if("DNA")
 			alter_dna(alterer)
-		if("Hair")
+		if("发型")
 			alter_hair(alterer)
-		if("Markings")
+		if("体表纹样")
 			alter_markings(alterer)
-		if("Character")
+		if("角色")
 			var/mob/living/carbon/person = owner
 			var/datum/species/protean/species = person.dna.species
 			if(owner.loc == species.species_modsuit)
-				return to_chat(owner, span_notice("You must leave your suit first!"))
+				return to_chat(owner, span_notice("你必须先离开外骨骼！"))
 			begin_character_alteration(alterer)

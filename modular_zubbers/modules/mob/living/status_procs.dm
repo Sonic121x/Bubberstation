@@ -9,5 +9,5 @@
 		dat += candidate.security_record_text
 
 	if(!length(dat))
-		return "No prior security issues."
+		return "此前无安保问题记录。"
 	return dat.Join(" ")

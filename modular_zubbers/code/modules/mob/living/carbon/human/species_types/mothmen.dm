@@ -1,25 +1,25 @@
 /datum/species/moth/get_species_description()
 	return list(
-	"Seeking a homeworld lost long ago, the nomadic mothpeople circle the stars, led by the flagship Va Lumla. \
-	They have precious, fragile wings that allow them to fly in lower pressure environments, \
-	and can eat clothes for temporary nourishment. Their eyes are acutely sensitive to light.",
-	"They have a strong tight-knit culture of self-reliance and community, and often easily fit in with other species. \
-	A mothic captain can be sure to staunchly support his crew, and be the last one out in a crisis.",
+	"游牧的蛾族人由旗舰瓦·吕姆拉率领，在群星间徘徊，寻找很久以前失去的母星。\
+	他们拥有珍贵而脆弱的翅膀，能在低压环境中飞行，\
+	还能吃下衣物来暂时充饥。他们的眼睛对光极为敏感。",
+	"他们有着紧密团结、自立互助的浓厚文化，往往能轻松融入其他种族。\
+	蛾族船长必定会坚定支持自己的船员，并在危机中最后一个撤离。",
 	)
 
 /datum/species/moth/get_species_lore()
 	return list(
-		"Moths are most commonly described as \"friend shaped\" due to their strong sense of community and ability to integrate well into other cultures. \
-		Young moths are commonly expected to strike out in their relatively short lifespan, averaging between 70 and 100 years old, \
-		when the rigors of fleet life weigh on their desire for freedom, returning later in life with new experiences and knowledge for the fleet, though some never return.",
-		"Moths generally receive a universal basic income, and can struggle to understand money as they get accustomed to life outside, often spending impulsively on luxuries \
-		like jewelry and clothes the moment they are given some measure of agency. \
-		Moths tend to be very expressive with their body language, using the beating of their wings, clicking of their mandibles and chitters in normal conversation for emphasis. They often gravitate towards spaces that can feed their insatiable desire to novelty, which is why so many moths are seen in Sector C7 today.",
-		"Life on the mothic fleet is rugged and scrappy-- every moth is expected to do their part, often having to take on extra work in order to make ends meet, especially with little ones. It is regimented, with the needs of the community outweighing the needs of the few, and ration cards can be held back for those refusing to contribute adequately to the whole. Every moth must undergo some form of military training and civil service at sixteen, after which they are free to remain or leave as they see fit. Many young moths see the end of their civil duty as an exciting time, as it often means being set loose into the wide sea of stars. There is often a wide variety of options in terms of places to go, as the Mothic fleet never stays in one place for long.",
-		"At some unknown point in the past, the Mothpeople lost their homeworld, the only remains of it being a field of debris \
-		that has created an asteroid belt in their home system. What started as a mostly improvised fleet of merchant ships, frigates, destroyers and cruisers \
-		has developed early through piracy and shrewd diplomacy to become a nucleic fleet that floats across the stars in search of a new home for its people, \
-		able to support its neutrality with force if necessary. It would still prefer to never need to consider such in the first place. \
-		In the few cases where the Mothic fleet has engaged in combat or piracy in the modern day, it has been mainly due to necessity, and casualties have been minimal. \
-		They are known to escort and tug damaged ships to port.",
+		"由于强烈的社群意识和融入其他文化的能力，蛾族人最常被形容为“朋友的模样”。\
+		年轻的蛾族人通常被期望在相对短暂的一生中外出闯荡——他们平均寿命在 70 到 100 岁之间——\
+		当舰队生活的艰苦压过他们对自由的渴望时，他们会在晚年带着新经历和知识回到舰队，不过有些人再也不会回来。",
+		"蛾族人通常领取全民基本收入，而在适应外界生活时，他们可能很难理解金钱，一旦获得些许自主权，\
+		就常常冲动地把钱花在珠宝和衣物等奢侈品上。\
+		蛾族人往往非常善于用身体语言表达，在日常交谈中会拍动翅膀、叩击上颚并发出啁啾声来强调语气。他们常常被能满足其无尽新奇渴望的场所吸引，这也是今天 C7 星区能看到这么多蛾族人的原因。",
+		"蛾族舰队上的生活艰苦而将就——每只蛾子都要尽自己的一份力，为了糊口常常得承担额外工作，尤其是有了孩子之后。舰队生活纪律严明，社群的需要高于少数人的需要，拒绝为整体做出足够贡献的人会被扣留配给卡。每只蛾子在十六岁时都必须接受某种形式的军事训练和公民服务，之后便可自由决定留下还是离开。许多年轻蛾族人把公民义务的结束视为激动人心的时刻，因为这通常意味着被放归广阔的星海。可去的地方往往多种多样，因为蛾族舰队从不在一个地方久留。",
+		"在过去的某个未知时刻，蛾族人失去了母星，唯一残留的是一片碎片场，\
+		它在他们的母星系中形成了一条小行星带。最初主要由商船、护卫舰、驱逐舰和巡洋舰临时拼凑而成的舰队，\
+		早期通过海盗活动和精明的外交发展壮大，成为一支在群星间漂流、为其人民寻找新家园的核心舰队，\
+		必要时能以武力维护自身的中立。不过它仍然宁愿永远不必考虑这种事。\
+		在现代，蛾族舰队少数几次卷入战斗或海盗活动，主要是出于无奈，伤亡也一直很小。\
+		他们以护送和拖拽受损船只入港而闻名。",
 	)

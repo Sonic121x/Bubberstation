@@ -1,7 +1,7 @@
 
 /obj/item/clothing/mask/bridle
-	name = "bridle"
-	desc = "A Sunny Stables design of a leather horse bridle, complete with blinders and a bit. It's made of several leather straps and metal fittings. You can tighten or loosen the straps to make sure that the blinders and the bit stay in place."
+	name = "马笼头"
+	desc = "阳光马厩设计的皮革马笼头，配有眼罩与衔铁。它由数条皮带与金属配件制成。你可以收紧或放松皮带，让眼罩与衔铁保持在位。"
 	icon_state = "bridle"
 	inhand_icon_state = "sechailer"
 	icon = 'modular_zubbers/icons/obj/clothing/mask/mask.dmi'
@@ -63,9 +63,9 @@
 		return
 	straps_locked = !straps_locked
 	if(straps_locked)
-		to_chat(user, span_notice("You secure the bridle's straps."))
+		to_chat(user, span_notice("你扣紧了马笼头的皮带。"))
 	else
-		to_chat(user, span_notice("You loosen the bridle's straps."))
+		to_chat(user, span_notice("你放松了马笼头的皮带。"))
 
 /obj/item/clothing/mask/bridle/proc/get_wearer()
 	var/mob/living/carbon/wearer = istype(loc, /mob/living/carbon) ? loc : null
@@ -82,15 +82,15 @@
 	if(!user)
 		return
 	if(should_show_user_message(user))
-		to_chat(user, span_notice("The straps are too secure to adjust."))
+		to_chat(user, span_notice("皮带扣得太紧，无法调节。"))
 	else
-		to_chat(user, span_warning("The straps are too secure!"))
+		to_chat(user, span_warning("皮带扣得太紧了！"))
 
 /obj/item/clothing/mask/bridle/examine(mob/user)
 	. = ..()
-	var/blinders_state_text = blinders_enabled ? "down" : "up"
-	var/gag_state_text = gag_enabled ? "set" : "unset"
-	. += span_notice("The blinders are [blinders_state_text], and the bit is [gag_state_text].")
+	var/blinders_state_text = blinders_enabled ? "已放下" : "已抬起"
+	var/gag_state_text = gag_enabled ? "已就位" : "未就位"
+	. += span_notice("眼罩[blinders_state_text]，衔铁[gag_state_text]。")
 
 /obj/item/clothing/mask/bridle/proc/update_bridle_state(mob/user, notify_wearer = TRUE)
 	var/mob/living/carbon/wearer = get_wearer()
@@ -105,21 +105,21 @@
 				var/blinders_effect
 				var/blinders_self
 				if(blinders_enabled)
-					blinders_action = "lowers"
-					blinders_action_self = "lower"
-					blinders_effect = "obscuring your vision"
-					blinders_self = "lower, obscuring your vision"
+					blinders_action = "放下"
+					blinders_action_self = "放下"
+					blinders_effect = "遮住了你的视线"
+					blinders_self = "放了下来，遮住了你的视线"
 				else
-					blinders_action = "raises"
-					blinders_action_self = "raise"
-					blinders_effect = "restoring your sight"
-					blinders_self = "raise, restoring your sight"
+					blinders_action = "抬起"
+					blinders_action_self = "抬起"
+					blinders_effect = "恢复了你的视力"
+					blinders_self = "抬了起来，恢复了你的视力"
 				if(user && user != wearer)
-					to_chat(wearer, span_userdanger("[user] [blinders_action] the bridle's blinders, [blinders_effect]."))
+					to_chat(wearer, span_userdanger("[user] [blinders_action]了马笼头的眼罩，[blinders_effect]。"))
 				else if(user)
-					to_chat(wearer, span_notice("You [blinders_action_self] the bridle's blinders, [blinders_effect]."))
+					to_chat(wearer, span_notice("你[blinders_action_self]了马笼头的眼罩，[blinders_effect]。"))
 				else
-					to_chat(wearer, span_notice("The bridle's blinders [blinders_self]."))
+					to_chat(wearer, span_notice("马笼头的眼罩[blinders_self]。"))
 			last_blinders_enabled = blinders_enabled
 		if(gag_enabled != last_gag_enabled)
 			if(notify_wearer)
@@ -128,21 +128,21 @@
 				var/gag_effect
 				var/gag_self
 				if(gag_enabled)
-					gag_action = "sets"
-					gag_action_self = "set"
-					gag_effect = "muffling your speech"
-					gag_self = "fits in your mouth, muffling your speech"
+					gag_action = "塞紧"
+					gag_action_self = "塞紧"
+					gag_effect = "让你的话语含混不清"
+					gag_self = "塞紧了，让你的话语含混不清"
 				else
-					gag_action = "loosens"
-					gag_action_self = "loosen"
-					gag_effect = "letting you speak freely"
-					gag_self = "loosens, allowing you to speak freely"
+					gag_action = "松开"
+					gag_action_self = "松开"
+					gag_effect = "让你能自由说话"
+					gag_self = "松开了，让你能自由说话"
 				if(user && user != wearer)
-					to_chat(wearer, span_userdanger("[user] [gag_action] the bridle's bit, [gag_effect]."))
+					to_chat(wearer, span_userdanger("[user] [gag_action]了马笼头的衔铁，[gag_effect]。"))
 				else if(user)
-					to_chat(wearer, span_notice("You [gag_action_self] the bridle's bit, [gag_effect]."))
+					to_chat(wearer, span_notice("你[gag_action_self]了马笼头的衔铁，[gag_effect]。"))
 				else
-					to_chat(wearer, span_notice("The bridle's bit [gag_self]."))
+					to_chat(wearer, span_notice("马笼头的衔铁[gag_self]。"))
 			last_gag_enabled = gag_enabled
 		wearer.update_tint()
 		wearer.update_worn_mask()
@@ -159,10 +159,10 @@
 	if(should_show_user_message(user))
 		var/blinders_action
 		if(blinders_enabled)
-			blinders_action = "lower"
+			blinders_action = "放下"
 		else
-			blinders_action = "raise"
-		to_chat(user, span_notice("You [blinders_action] the bridle's blinders."))
+			blinders_action = "抬起"
+		to_chat(user, span_notice("你[blinders_action]了马笼头的眼罩。"))
 	update_bridle_state(user)
 
 /obj/item/clothing/mask/bridle/proc/toggle_gag(mob/user)
@@ -173,10 +173,10 @@
 	if(should_show_user_message(user))
 		var/gag_action
 		if(gag_enabled)
-			gag_action = "secure"
+			gag_action = "塞紧"
 		else
-			gag_action = "loosen"
-		to_chat(user, span_notice("You [gag_action] the bridle's bit."))
+			gag_action = "松开"
+		to_chat(user, span_notice("你[gag_action]了马笼头的衔铁。"))
 	update_bridle_state(user)
 
 /obj/item/clothing/mask/bridle/proc/cycle_mode(mob/user)
@@ -203,26 +203,26 @@
 	if(user)
 		var/balloon_state
 		if(blinders_enabled && gag_enabled)
-			balloon_state = "blinders + bit"
+			balloon_state = "眼罩 + 衔铁"
 		else if(blinders_enabled)
-			balloon_state = "blinders"
+			balloon_state = "眼罩"
 		else if(gag_enabled)
-			balloon_state = "bit"
+			balloon_state = "衔铁"
 		else
-			balloon_state = "none"
+			balloon_state = "无"
 		if(should_show_user_message(user))
-			balloon_alert(user, "mode: [balloon_state]")
+			balloon_alert(user, "模式：[balloon_state]")
 	if(should_show_user_message(user))
 		var/state_text
 		if(blinders_enabled && gag_enabled)
-			state_text = "blinders and bit"
+			state_text = "眼罩与衔铁"
 		else if(blinders_enabled)
-			state_text = "blinders"
+			state_text = "眼罩"
 		else if(gag_enabled)
-			state_text = "bit"
+			state_text = "衔铁"
 		else
-			state_text = "none"
-		to_chat(user, span_notice("Bridle set to: [state_text]."))
+			state_text = "无"
+		to_chat(user, span_notice("马笼头已设为：[state_text]。"))
 	update_bridle_state(user, notify_wearer)
 
 /obj/item/clothing/mask/bridle/proc/strip_adjust(mob/living/carbon/wearer, mob/living/stripper)
@@ -234,7 +234,7 @@
 	if(wearer.get_item_by_slot(ITEM_SLOT_MASK) != src)
 		return
 	if(!stripper.Adjacent(wearer))
-		wearer.balloon_alert(stripper, "can't reach!")
+		wearer.balloon_alert(stripper, "够不着！")
 		return
 	if(!do_after(stripper, strip_adjust_delay, wearer))
 		return
@@ -256,11 +256,11 @@
 		new_gag = FALSE
 	var/list/parts = list()
 	if(old_blinders != new_blinders)
-		parts += (new_blinders ? "lower the bridle's blinders" : "raise the bridle's blinders")
+		parts += (new_blinders ? "放下马笼头的眼罩" : "抬起马笼头的眼罩")
 	if(old_gag != new_gag)
-		parts += (new_gag ? "set the bridle's bit" : "loosen the bridle's bit")
-	var/action_text = parts.len ? jointext(parts, " and ") : "adjust the bridle"
-	to_chat(stripper, span_notice("You [action_text]."))
+		parts += (new_gag ? "塞紧马笼头的衔铁" : "松开马笼头的衔铁")
+	var/action_text = parts.len ? jointext(parts, "，并") : "调整马笼头"
+	to_chat(stripper, span_notice("你[action_text]。"))
 	set_mode(new_blinders, new_gag, stripper, TRUE)
 
 /datum/strippable_item/mob_item_slot/mask/get_alternate_actions(atom/source, mob/user, obj/item/item)
@@ -298,7 +298,7 @@
 	if(emote.key in list("snort", "neigh", "neigh2")) //Can still do horse emotes because DUH
 		return NONE
 	if(!emote.hands_use_check && (emote.emote_type & EMOTE_AUDIBLE))
-		source.audible_message("makes a [pick("strong ", "weak ", "")]noise.", audible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE)
+		source.audible_message("发出一阵[pick("响亮", "细弱", "")]噪音。", audible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE)
 		return COMPONENT_CANT_EMOTE
 	return NONE
 
@@ -322,8 +322,8 @@
 	speech_args[SPEECH_MESSAGE] = spoken_message
 
 /datum/action/item_action/bridle_toggle_blinders
-	name = "Toggle blinders"
-	desc = "Adjust the bridle blinders."
+	name = "切换眼罩"
+	desc = "调节马笼头的眼罩。"
 
 /datum/action/item_action/bridle_toggle_blinders/Trigger(trigger_flags)
 	if(!..())
@@ -333,8 +333,8 @@
 		bridle.toggle_blinders(owner)
 
 /datum/action/item_action/bridle_toggle_gag
-	name = "Toggle gag"
-	desc = "Adjust the bridle bit."
+	name = "切换衔铁"
+	desc = "调节马笼头的衔铁。"
 
 /datum/action/item_action/bridle_toggle_gag/Trigger(trigger_flags)
 	if(!..())

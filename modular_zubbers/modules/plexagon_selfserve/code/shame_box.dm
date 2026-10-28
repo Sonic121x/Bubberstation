@@ -1,6 +1,6 @@
 /obj/item/storage/lockbox/timeclock
-	name = "crew equipment lockbox"
-	desc = "Holds a crew's restricted equipment while they are temporarily assigned off-duty. A service contract between Nanotrasen and Lustwish stipulates that company issued batons, masks, restraints, and other equipment are not to be used for recreational purposes. Employees may purchase recreational provisions from an approved vendor."
+	name = "船员装备锁箱"
+	desc = "在船员被临时安排休班期间，用来存放其受限装备。纳米传讯与欲愿之间的服务合同规定，公司配发的警棍、面具、束缚具及其他装备不得用于娱乐用途。员工可从经批准的供应商处购买娱乐用品。"
 	icon = 'modular_zubbers/icons/obj/storage/shame_box.dmi'
 	icon_state = "crewbox+l"
 	icon_locked = "crewbox+l"
@@ -27,12 +27,12 @@
 /obj/item/storage/lockbox/timeclock/examine(mob/user)
 	. = ..()
 	if(!isnull(locked_contents))
-		. += span_notice("The contents label reads: [locked_contents].")
+		. += span_notice("内容物标签上写着：[locked_contents]。")
 
 /obj/item/storage/lockbox/timeclock/can_unlock(mob/living/user, obj/item/card/id/id_card)
 	. = ..()
 	if(!.)
-		to_chat(user, span_warning("[src] can only be unlocked while on-duty or by the HoP, HoS, or Captain!"))
+		to_chat(user, span_warning("[src] 只能在上班期间解锁，或由人事主管、安保主管、舰长解锁！"))
 
 /// Timeclock boxes can only be opened while the crew member is on duty, or by a command member with the proper access.
 /obj/item/storage/lockbox/timeclock/check_access(obj/item/crew_id)
@@ -69,6 +69,6 @@
 /obj/item/storage/lockbox/timeclock/proc/release_contents()
 	do_harmless_sparks(number = 6, source = src)
 	emptyStorage()
-	usr.visible_message(span_notice("[usr] activates the lockbox mechanism, releasing its contents before vanishing in a puff of bluespace smoke!"))
+	usr.visible_message(span_notice("[usr] 启动了锁箱机关，其中的物品被释放出来，而锁箱随即在一团蓝空间烟雾中消失了！"))
 	associated_card = null
 	qdel(src)

@@ -4,8 +4,8 @@
 #define SUPERPARTICLE_HEALIUM_HEALING_DMG_TRESHHOLD (30)
 
 /atom/movable/screen/alert/status_effect/atmosgenbuff
-	name = "Superparticle Field"
-	desc = "Your are immune to cold conditions of space"
+	name = "超粒子力场"
+	desc = "你免疫太空的寒冷环境"
 	icon = 'modular_zubbers/icons/obj/machines/superparticle_projector.dmi'
 	icon_state = "superparticle_projector"
 

@@ -13,8 +13,8 @@
 	reagents.add_reagent(/datum/reagent/consumable/nutriment, 25)
 
 /obj/item/fish/jumpercable/karl
-	name = "Karl"
-	desc = "A deadly syndicate monojumper cable saved from the horrors of Nanotrasen by the animal rights consortium. Its been given a new home as a power source for syndicate operations!"
+	name = "卡尔"
+	desc = "一条致命的辛迪加单克隆跨接电缆，被动物权利联盟从纳米传讯的魔爪中救了出来。如今它有了新家，作为辛迪加行动的电力来源！"
 	stable_population = 4
 	random_case_rarity = FISH_RARITY_NOPE
 	fish_flags = parent_type::fish_flags & ~FISH_FLAG_SHOW_IN_CATALOG
@@ -23,19 +23,19 @@
 	compatible_types = list(/obj/item/fish/jumpercable, /obj/item/fish/jumpercable)
 
 /obj/item/fish/jumpercable/karl/carl
-	name = "Carl"
+	name = "卡尔"
 
 /obj/item/fish/jumpercable/karl/carly
-	name = "Carly"
+	name = "卡莉"
 
 	compatible_types = list(/obj/item/fish/jumpercable, /obj/item/fish/jumpercable)
 
 /obj/item/fish/jumpercable/karl/frank
-	name = "Frank"
+	name = "弗兰克"
 
 
 /obj/item/storage/fish_case/syndicate/persistence
-	name = "ominous fish case"
+	name = "不祥的鱼盒"
 
 /obj/item/storage/fish_case/syndicate/get_fish_type()
 	return pick(/obj/item/fish/jumpercable/karl/frank, /obj/item/fish/jumpercable/karl/carly, /obj/item/fish/jumpercable/karl/carl, /obj/item/fish/jumpercable/karl)

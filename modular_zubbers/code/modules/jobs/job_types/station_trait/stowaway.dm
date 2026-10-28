@@ -1,8 +1,8 @@
 /datum/job/assistant/stowaway
 	title = "Stowaway"
-	description = "Be a stowaway aboard a hazardous research station that is infamous for many reasons."
+	description = "在一座因种种原因而臭名昭著的危险研究站上做一名偷渡客。"
 	faction = FACTION_NONE
-	supervisors = "yourself"
+	supervisors = "你自己"
 	minimal_player_age = 7
 	total_positions = 0
 	spawn_positions = 0

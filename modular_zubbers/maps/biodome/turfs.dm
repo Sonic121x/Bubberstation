@@ -1,22 +1,22 @@
 /turf/closed/wall/r_wall/fakewood
-	desc = "A huge chunk of reinforced metal used to separate rooms. This one has been painted like a log."
+	desc = "一大块用于分隔房间的加固金属。这一块被漆成了原木的样子。"
 	color = COLOR_ORANGE_BROWN
 
 /turf/open/water/jungle/biodome
-	name="biodome lake"
+	name="生态穹顶湖"
 	fishing_datum = /datum/fish_source/ocean/beach
 	planetary_atmos = FALSE
 
 /turf/open/water/beach/biodome
-	name="biodome waters"
+	name="生态穹顶水域"
 	planetary_atmos = FALSE
 
 /turf/open/misc/beach/sand/biodome
-	name="biodome beach"
+	name="生态穹顶海滩"
 	planetary_atmos = FALSE
 
 /turf/open/misc/ashplanet/wateryrock/biodome
-	name="biodome lake Rocks"
+	name="生态穹顶湖岩地"
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	planetary_atmos = FALSE
 
@@ -26,7 +26,7 @@
 	planetary_atmos = FALSE
 
 /turf/open/floor/fake_iron_sand
-	desc = "Wait a minute. This martian soil is just painted on!"
+	desc = "等等。这火星土壤居然只是画上去的！"
 	icon_state = "ironsand1"
 	base_icon_state = "ironsand1"
 	footstep = FOOTSTEP_SAND

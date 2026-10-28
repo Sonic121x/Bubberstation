@@ -1,7 +1,7 @@
 /datum/round_event_control/clown_rift
-	name = "Clown rift"
+	name = "小丑裂隙"
 	category = EVENT_CATEGORY_JANITORIAL
-	description = "Opens up a rift and throws a mess of clown items out of it"
+	description = "撕开一道裂隙，从里面抛出一堆乱七八糟的小丑物品"
 	typepath = /datum/round_event/clown_rift
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_CLOWN, TAG_NEUTRAL)
@@ -30,7 +30,7 @@
 	announce_to_ghosts(rift)
 
 /datum/round_event/clown_rift/announce(fake)
-	priority_announce("Clowning energy impact detected at [impact_area.name]")
+	priority_announce("在 [chinese_area_display(impact_area.name)] 检测到小丑能量冲击")
 
 /datum/round_event/clown_rift/proc/find_area()
 	var/static/list/allowed_areas
@@ -63,7 +63,7 @@
 	return pick(possible_turfs)
 
 /datum/event_admin_setup/set_location/clown_rift
-	input_text = "Spawn rift at your current area?"
+	input_text = "在你当前所在的区域生成裂隙？"
 
 /datum/event_admin_setup/set_location/clown_rift/apply_to_event(datum/round_event/clown_rift/event)
 	event.impact_turf = chosen_turf

@@ -3,7 +3,7 @@
 /datum/species/protean/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "ProteanUI", "Protean Interface")
+		ui = new(user, src, "ProteanUI", "普罗蒂安界面")
 		ui.open()
 
 /datum/species/protean/ui_data(mob/user)
@@ -44,7 +44,7 @@
 			if(usr != owner)
 				return TRUE
 			if(!species_modsuit?.stored_modsuit)
-				owner.balloon_alert(owner, "no assimilated suit")
+				owner.balloon_alert(owner, "没有已同化的外骨骼")
 				return TRUE
 			INVOKE_ASYNC(src, PROC_REF(eject_stored_modsuit))
 		if("protean_transform")
@@ -55,7 +55,7 @@
 					UnregisterSignal(species_modsuit, COMSIG_ITEM_PRE_UNEQUIP)
 					qdel(component)
 				else if(species_modsuit.wearer == owner)
-					to_chat(owner, span_notice("You already look like yourself!"))
+					to_chat(owner, span_notice("你看起来已经是你自己了！"))
 				else
 					playsound(owner, 'sound/machines/click.ogg', 25)
 					species_modsuit.wearer.AddComponent(/datum/component/transformation, source = owner)
@@ -64,7 +64,7 @@
 	return TRUE
 
 /datum/species/protean/proc/eject_stored_modsuit()
-	to_chat(owner, span_notice("You begin to extract [species_modsuit.stored_modsuit] from your body."))
+	to_chat(owner, span_notice("你开始把 [species_modsuit.stored_modsuit] 从体内抽出。"))
 	if(!do_after(owner, 5 SECONDS))
 		return
 	if(!species_modsuit?.stored_modsuit)
@@ -80,8 +80,8 @@
 		qdel(component)
 
 /datum/action/protean
-	name = "Protean Interface"
-	desc = "<b>Left Click</b> Opens the Protean interface.<br><b>Right Click</b> toggles suit transformation."
+	name = "普罗蒂安界面"
+	desc = "<b>左键</b>打开普罗蒂安界面。<br><b>右键</b>切换外骨骼变形。"
 	button_icon = 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	button_icon_state = "standard-control-sealed"
 

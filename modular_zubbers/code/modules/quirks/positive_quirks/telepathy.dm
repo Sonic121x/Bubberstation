@@ -2,8 +2,8 @@
 	power_path = /datum/action/cooldown/spell/pointed/telepathy
 
 /datum/action/cooldown/spell/pointed/telepathy
-	name = "Telepathic Communication"
-	desc = "<b>Left click</b>: point target to project a thought to them. <b>Right click</b>: project to your last thought target, if in range."
+	name = "心灵感应通讯"
+	desc = "<b>左键点击</b>：指定目标，向他们投射一段思绪。<b>右键点击</b>：若在范围内，向你上一个思绪目标投射。"
 	button_icon = 'icons/mob/actions/actions_revenant.dmi'
 	button_icon_state = "r_transmit"
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
@@ -23,18 +23,18 @@
 		return FALSE
 
 	if (!isliving(cast_on))
-		to_chat(owner, span_warning("Inanimate objects can't hear your thoughts."))
-		owner.balloon_alert(owner, "not a thing with thoughts!")
+		to_chat(owner, span_warning("无生命的物体听不见你的思绪。"))
+		owner.balloon_alert(owner, "这不是有思维的东西！")
 		return FALSE
 
 	var/mob/living/living_target = cast_on
 	if (living_target.stat == DEAD)
-		to_chat(owner, span_warning("The disruptive noise of departed resonance inhibits your ability to communicate with the dead."))
-		owner.balloon_alert(owner, "can't transmit to the dead!")
+		to_chat(owner, span_warning("逝者共振的杂音干扰了你与死者交流的能力。"))
+		owner.balloon_alert(owner, "无法向死者传送！")
 		return FALSE
 
 	if (get_dist(living_target, owner) > cast_range)
-		owner.balloon_alert(owner, "too far away!")
+		owner.balloon_alert(owner, "距离太远了！")
 		return FALSE
 
 	return TRUE
@@ -44,12 +44,12 @@
 	if(. & SPELL_CANCEL_CAST || blocked)
 		return
 
-	message = autopunct_bare(capitalize(tgui_input_text(owner, "What do you wish to whisper to [cast_on]? You can also use # in front of the message for subtler.", "[src]", max_length = MAX_MESSAGE_LEN)))
+	message = autopunct_bare(capitalize(tgui_input_text(owner, "你想向 [cast_on] 低语什么？你也可以在消息前加上 #，让它更加隐蔽。", "[src]", max_length = MAX_MESSAGE_LEN)))
 	if(QDELETED(src) || QDELETED(owner) || QDELETED(cast_on) || !can_cast_spell())
 		return . | SPELL_CANCEL_CAST
 
 	if(get_dist(cast_on, owner) > cast_range)
-		owner.balloon_alert(owner, "they're too far!")
+		owner.balloon_alert(owner, "对方离得太远了！")
 		return . | SPELL_CANCEL_CAST
 
 	if(!message || length(message) == 0)
@@ -62,15 +62,15 @@
 
 		if(isnull(last_target))
 			last_target_ref = null
-			owner.balloon_alert(owner, "last target is not available!")
+			owner.balloon_alert(owner, "上一个目标已不可用！")
 			return
 		else if(get_dist(last_target, owner) > cast_range)
-			owner.balloon_alert(owner, "[last_target] is too far away!")
+			owner.balloon_alert(owner, "[last_target] 离得太远了！")
 			return
 
 		blocked = TRUE
 
-		message = autopunct_bare(capitalize(tgui_input_text(owner, "What do you wish to whisper to [last_target]?", "[src]", null, max_length = MAX_MESSAGE_LEN, multiline = TRUE)))
+		message = autopunct_bare(capitalize(tgui_input_text(owner, "你想向 [last_target] 低语什么？", "[src]", null, max_length = MAX_MESSAGE_LEN, multiline = TRUE)))
 		if(QDELETED(src) || QDELETED(owner) || QDELETED(last_target) || !can_cast_spell())
 			blocked = FALSE
 			return
@@ -84,7 +84,7 @@
 /datum/action/cooldown/spell/pointed/telepathy/cast(mob/living/cast_on)
 	. = ..()
 	owner.visible_message(
-		span_warning("[owner]'s attention locks onto [cast_on]."),
+		span_warning("[owner] 的注意力锁定在 [cast_on] 身上。"),
 		ignored_mobs = owner,
 	)
 	send_thought(owner, cast_on, message)
@@ -98,7 +98,7 @@
 	if (copytext(message, 1, 2) == "#")
 		subtler = TRUE
 		message = copytext(message, 2) // Strip the leading #
-	to_chat(owner, span_boldnotice("You reach out and convey to [target]: \"[span_purple(message)]\""))
+	to_chat(owner, span_boldnotice("你伸出手，向 [target] 传达：“[span_purple(message)]”"))
 	// flub a runechat chat message, do something with the language later
 	if(owner.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 		owner.create_chat_message(owner, owner.get_selected_language(), message, list("italics"))
@@ -109,15 +109,15 @@
 			var/datum/mutation/telepathy/tele_mut = human_caster.dna.get_mutation(/datum/mutation/telepathy)
 
 			if (tele_mut)
-				to_chat(target, span_boldnotice("A psychic presence resounds in your mind: \"[span_purple(message)]\""))
+				to_chat(target, span_boldnotice("一个灵能存在在你的脑海中回响：“[span_purple(message)]”"))
 			else
-				to_chat(target, span_boldnotice("[caster]'s voice echoes in your head: \"[span_purple(message)]\""))
+				to_chat(target, span_boldnotice("[caster] 的声音在你脑中回荡：“[span_purple(message)]”"))
 
 		if(target.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 			target.create_chat_message(target, target.get_selected_language(), message, list("italics")) // it appears over them since they hear it in their head
 	else
-		owner.balloon_alert(owner, "something blocks your thoughts!")
-		to_chat(owner, span_warning("Your mind encounters impassable resistance: the thought was blocked!"))
+		owner.balloon_alert(owner, "有什么东西挡住了你的思绪！")
+		to_chat(owner, span_warning("你的心智遭遇无法逾越的阻力：思绪被挡住了！"))
 		return
 
 	if (subtler)
@@ -132,14 +132,14 @@
 		var/to_link = FOLLOW_LINK(ghost, target)
 		var/to_mob_name = span_name("[target]")
 
-		to_chat(ghost, "[from_link] " + span_purple("<b>\[Telepathy\]</b> [from_mob_name] transmits, \"[message]\"") + " to [to_mob_name] [to_link]")
+		to_chat(ghost, "[from_link] " + span_purple("<b>\[心灵感应\]</b> [from_mob_name] 传达：“[message]”") + " 至 [to_mob_name] [to_link]")
 
 /datum/quirk/telepathic
 	name = "Telepathic"
-	desc = "You are able to transmit your thoughts to other living creatures."
-	gain_text = span_purple("Your mind roils with psychic energy.")
-	lose_text = span_notice("Mundanity encroaches upon your thoughts once again.")
-	medical_record_text = "Patient has an unusually enlarged Broca's area visible in cerebral biology, and appears to be able to communicate via extrasensory means."
+	desc = "你能将自己的思绪传送给其他活着的生物。"
+	gain_text = span_purple("你的心智翻涌着灵能。")
+	lose_text = span_notice("凡俗再度侵入你的思绪。")
+	medical_record_text = "患者脑部可见异常增大的布罗卡区，似乎能通过超感官方式进行交流。"
 	value = 3
 	icon = FA_ICON_HEAD_SIDE_COUGH
 	/// Ref used to easily retrieve the action used when removing the quirk from silicons
@@ -177,10 +177,10 @@
 
 /datum/quirk/psionic_dampener
 	name = "Psionic Dampener"
-	desc = "Your mind is abnormally resistant to psionic intrusion. Telepathic communication fail to reach you."
-	gain_text = span_notice("Only your own thoughts echo within your mind; the whispers of others fade into silence.")
-	lose_text = span_purple("The distant hum of foreign thoughts returns, brushing gently against your own.")
-	medical_record_text = "Subject exhibits a persistent dampening of cortical resonance. Neural mapping suggests near-total immunity to telepathic or psionic contact."
+	desc = "你的心智对灵能侵入有异常的抗性。心灵感应通讯无法抵达你。"
+	gain_text = span_notice("只有你自己的思绪在心间回响；他人的低语尽数归于沉寂。")
+	lose_text = span_purple("远方异己思绪的嗡鸣再度归来，轻轻拂过你自己的思绪。")
+	medical_record_text = "受试者表现出持续的皮层共振抑制。神经映射显示其几乎完全免疫心灵感应或灵能接触。"
 	mob_trait = TRAIT_PSIONIC_DAMPENER
 	value = 0
 	icon = FA_ICON_BELL_SLASH

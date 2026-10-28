@@ -26,6 +26,6 @@
 
 	if (!victim.ai_controller || victim.stat == DEAD)
 		return
-	victim.balloon_alert_to_viewers("looks upset")
+	victim.balloon_alert_to_viewers("看起来很恼火")
 	victim.ai_controller = new awake_controller(victim)
 	victim.RemoveElement(/datum/element/sedated_mob, awake_controller)

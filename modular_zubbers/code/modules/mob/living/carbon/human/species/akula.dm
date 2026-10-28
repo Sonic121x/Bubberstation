@@ -1,5 +1,5 @@
 /obj/item/organ/tongue/akula
-	say_mod = "bubbles"
+	say_mod = "咕嘟说道"
 
 /obj/item/organ/tongue/akula/Initialize(mapload)
 	. = ..()
