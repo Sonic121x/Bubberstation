@@ -31,7 +31,7 @@ export const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
           right="4px"
           icon="chevron-up"
         >
-          Hide
+          隐藏
         </Button>
         <Stack justify="center">
           <Stack.Item>
@@ -104,7 +104,7 @@ export const SaturationValue: React.FC<SaturationValueProps> = React.memo(
           containerRef={containerRef}
           onMove={handleMove}
           onKey={handleKey}
-          aria-label="Color"
+          aria-label="颜色"
           aria-valuetext={`Saturation ${Math.round(
             hsva.s,
           )}%, Brightness ${Math.round(hsva.v)}%`}
@@ -146,7 +146,7 @@ export const Hue: React.FC<HueProps> = React.memo(
           containerRef={containerRef}
           onMove={handleMove}
           onKey={handleKey}
-          aria-label="Hue"
+          aria-label="色相"
           aria-valuenow={Math.round(hue)}
           aria-valuemax={360}
           aria-valuemin={0}
@@ -199,7 +199,7 @@ export const Saturation: React.FC<SaturationProps> = React.memo(
           style={{ background }}
           onMove={handleMove}
           onKey={handleKey}
-          aria-label="Saturation"
+          aria-label="饱和度"
           aria-valuenow={Math.round(color.s)}
           aria-valuemax={100}
           aria-valuemin={0}
@@ -261,7 +261,7 @@ export const Value: React.FC<ValueProps> = React.memo(
           containerRef={containerRef}
           onMove={handleMove}
           onKey={handleKey}
-          aria-label="Value"
+          aria-label="明度"
           aria-valuenow={Math.round(color.v)}
           aria-valuemax={100}
           aria-valuemin={0}

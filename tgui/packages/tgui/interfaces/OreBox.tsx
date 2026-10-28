@@ -21,21 +21,21 @@ export const OreBox = (props) => {
     <Window width={335} height={415}>
       <Window.Content scrollable>
         <Section
-          title="Ores & Boulders"
+          title="矿石与巨石"
           buttons={
             <Button
               disabled={materials.length === 0}
               onClick={() => act('removeall')}
             >
-              Empty
+              清空
             </Button>
           }
         >
           <Table>
             <Table.Row header>
-              <Table.Cell>Item</Table.Cell>
+              <Table.Cell>物品</Table.Cell>
               <Table.Cell collapsing textAlign="right">
-                Amount
+                数量
               </Table.Cell>
             </Table.Row>
             {materials.map((material, id) => (
@@ -52,10 +52,10 @@ export const OreBox = (props) => {
         </Section>
         <Section>
           <Box>
-            Ores can be loaded here via a mining satchel or by hand. Boulders
-            can also be stored here
+            可用矿石袋或徒手装入矿石。巨石
+            也可存放在这里。
             <br />
-            Gibtonite is not accepted.
+            不接受爆裂矿。
           </Box>
         </Section>
       </Window.Content>

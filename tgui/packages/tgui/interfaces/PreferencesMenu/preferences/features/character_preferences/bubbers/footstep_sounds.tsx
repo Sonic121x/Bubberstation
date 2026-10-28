@@ -2,7 +2,7 @@ import type { FeatureChoiced } from '../../base';
 import { FeatureDropdownInput } from '../../dropdowns';
 
 export const footstep_sound: FeatureChoiced = {
-  name: 'Footstep Sound',
-  description: 'The type of sound you will make when you walk around barefoot.',
+  name: '脚步声',
+  description: '赤脚行走时发出的声音类型。',
   component: FeatureDropdownInput,
 };

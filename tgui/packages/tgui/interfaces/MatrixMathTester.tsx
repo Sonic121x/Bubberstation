@@ -58,7 +58,7 @@ export const MatrixMathTester = (props) => {
   const [angle, setAngle] = useState(0);
 
   return (
-    <Window title="Nobody Wants to Learn Matrix Math" width={290} height={270}>
+    <Window title="没人想学矩阵数学" width={290} height={270}>
       <Window.Content>
         <Section fill>
           <Table>
@@ -75,7 +75,7 @@ export const MatrixMathTester = (props) => {
                 <MatrixMathTesterInput value={matrix_d} varName="d" />
               </Table.Cell>
               <Table.Cell>
-                <Input disabled placeholder="0 (fixed value)" fluid />
+                <Input disabled placeholder="0（固定值）" fluid />
               </Table.Cell>
             </Table.Row>
             <Table.Row>
@@ -86,7 +86,7 @@ export const MatrixMathTester = (props) => {
                 <MatrixMathTesterInput value={matrix_e} varName="e" />
               </Table.Cell>
               <Table.Cell>
-                <Input disabled placeholder="0 (fixed value)" fluid />
+                <Input disabled placeholder="0（固定值）" fluid />
               </Table.Cell>
             </Table.Row>
             <Table.Row>
@@ -97,13 +97,13 @@ export const MatrixMathTester = (props) => {
                 <MatrixMathTesterInput value={matrix_f} varName="f" />
               </Table.Cell>
               <Table.Cell>
-                <Input disabled placeholder="1 (fixed value)" fluid />
+                <Input disabled placeholder="1（固定值）" fluid />
               </Table.Cell>
             </Table.Row>
           </Table>
           <Table mt={3}>
             <Table.Row header>
-              <Table.Cell>Action</Table.Cell>
+              <Table.Cell>操作</Table.Cell>
               <Table.Cell>X</Table.Cell>
               <Table.Cell>Y</Table.Cell>
             </Table.Row>
@@ -114,7 +114,7 @@ export const MatrixMathTester = (props) => {
                   fluid
                   onClick={() => act('scale', { x: scaleX, y: scaleY })}
                 >
-                  Scale
+                  缩放
                 </Button>
               </Table.Cell>
               <Table.Cell>
@@ -149,7 +149,7 @@ export const MatrixMathTester = (props) => {
                     act('translate', { x: translateX, y: translateY })
                   }
                 >
-                  Translate
+                  平移
                 </Button>
               </Table.Cell>
               <Table.Cell>
@@ -182,7 +182,7 @@ export const MatrixMathTester = (props) => {
                   fluid
                   onClick={() => act('shear', { x: shearX, y: shearY })}
                 >
-                  Shear
+                  错切
                 </Button>
               </Table.Cell>
               <Table.Cell>
@@ -215,7 +215,7 @@ export const MatrixMathTester = (props) => {
                   fluid
                   onClick={() => act('turn', { angle: angle })}
                 >
-                  Rotate
+                  旋转
                 </Button>
               </Table.Cell>
               <Table.Cell>
@@ -234,7 +234,7 @@ export const MatrixMathTester = (props) => {
                   icon="dog"
                   color="bad"
                   selected={pixelated}
-                  tooltip="Pixel Enhanced Transforming"
+                  tooltip="像素增强变换"
                   tooltipPosition="bottom"
                   fluid
                   onClick={() => act('toggle_pixel')}

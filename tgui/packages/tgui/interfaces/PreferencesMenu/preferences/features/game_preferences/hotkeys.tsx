@@ -1,9 +1,9 @@
 import { CheckboxInputInverse, type FeatureToggle } from '../base';
 
 export const hotkeys: FeatureToggle = {
-  name: 'Classic hotkeys',
+  name: '经典快捷键',
   category: 'GAMEPLAY',
   description:
-    'When enabled, will revert to the legacy hotkeys, using the input bar rather than popups.',
+    '启用后恢复旧版快捷键，使用输入栏而不是弹窗。',
   component: CheckboxInputInverse,
 };

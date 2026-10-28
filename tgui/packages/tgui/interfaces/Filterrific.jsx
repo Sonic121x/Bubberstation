@@ -17,7 +17,7 @@ import { numberOfDecimalDigits, toFixed } from 'tgui-core/math';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { filterDisplay } from '../localization/filterDisplay';
 const FilterIntegerEntry = (props) => {
   const { value, name, filterName } = props;
   const { act } = useBackend();
@@ -66,7 +66,7 @@ const FilterFloatEntry = (props) => {
         }
       />
       <Box inline ml={2} mr={1}>
-        Step:
+        步长：
       </Box>
       <NumberInput
         value={step}
@@ -143,7 +143,7 @@ const FilterIconEntry = (props) => {
         }
       />
       <Box inline ml={1}>
-        {value}
+        {value === 'Not Set' ? '未设置' : value}
       </Box>
     </>
   );
@@ -168,7 +168,7 @@ const FilterFlagsEntry = (props) => {
       }
       key={flagName}
     >
-      {flagName}
+      {filterDisplay(flagName)}
     </Button.Checkbox>
   ));
 };
@@ -180,8 +180,8 @@ const FilterOptionsEntry = (props) => {
   const options = filterInfo[filterType].options[name];
   return (
     <Dropdown
-      selected={Object.keys(options).find((x) => value === options[x])}
-      options={Object.keys(options)}
+      selected={Object.keys(options).find((x) => value === options[x])} displayText={filterDisplay(Object.keys(options).find((x) => value === options[x]))}
+      options={Object.keys(options).map((value) => ({ value, displayText: filterDisplay(value) }))}
       onSelected={(value) =>
         act('modify_filter_value', {
           name: filterName,
@@ -300,9 +300,9 @@ const FilterMatrixEntry = (props) => {
   return (
     <Box>
       <Dropdown
-        displayText="Matrix Size"
+        displayText="矩阵大小"
         selected={matrix.length}
-        options={matrix_sizes.map((size) => `${size} elements`)}
+        options={matrix_sizes.map((size) => ({ value: `${size} elements`, displayText: `${size}个元素` }))}
         onSelected={(option) =>
           matrix.length === parseInt(option.split(' '), 10)
             ? null
@@ -363,7 +363,7 @@ const FilterDataEntry = (props) => {
     options: <FilterOptionsEntry {...props} />,
     transform: <FilterTransformEntry {...props} />,
     matrix: <FilterMatrixEntry {...props} />,
-    plug: 'Not Implemented',
+    plug: '尚未实现',
   };
 
   const filterEntryMap = {
@@ -394,14 +394,14 @@ const FilterDataEntry = (props) => {
   }
 
   return (
-    <LabeledList.Item label={name}>
+    <LabeledList.Item label={filterDisplay(name)}>
       <Box inline>
         {filterEntryTypes[filterInputType] ||
-          'Not Found (This is an error)'}{' '}
+          '未找到（发生错误）'}{' '}
       </Box>
       {!hasValue && (
         <Box inline color="average">
-          (Default)
+          （默认）
         </Box>
       )}
     </LabeledList.Item>
@@ -419,7 +419,7 @@ const FilterEntry = (props) => {
 
   return (
     <Collapsible
-      title={`${name} (${type})`}
+      title={`${name} (${filterDisplay(type)})`}
       buttons={
         <>
           <NumberInput
@@ -435,7 +435,7 @@ const FilterEntry = (props) => {
             }
           />
           <Button.Input
-            buttonText="Rename"
+            buttonText="重命名"
             onCommit={(value) =>
               act('rename_filter', {
                 name,
@@ -476,7 +476,7 @@ const FilterEntry = (props) => {
 
 export const Filterrific = (props) => {
   const { act, data } = useBackend();
-  const name = data.target_name || 'Unknown Object';
+  const name = data.target_name || '未知对象';
   const filters = data.target_filter_data || {};
   const hasFilters = Object.keys(filters).length !== 0;
   const filterDefaults = data.filter_info;
@@ -484,18 +484,18 @@ export const Filterrific = (props) => {
   const [hiddenSecret, setHiddenSecret] = useState(false);
 
   return (
-    <Window title="Filterrific" width={500} height={500}>
+    <Window title="滤镜编辑器" width={500} height={500}>
       <Window.Content scrollable>
         <NoticeBox danger>
-          DO NOT MESS WITH EXISTING FILTERS IF YOU DO NOT KNOW THE CONSEQUENCES.
-          YOU HAVE BEEN WARNED.
+          如果不清楚后果，请勿随意修改现有滤镜。
+          警告已告知。
         </NoticeBox>
         <Section
           title={
             hiddenSecret ? (
               <>
                 <Box mr={0.5} inline>
-                  MASS EDIT:
+                  批量编辑：
                 </Box>
                 <Input
                   value={massApplyPath}
@@ -503,8 +503,8 @@ export const Filterrific = (props) => {
                   onChange={setMassApplyPath}
                 />
                 <Button.Confirm
-                  content="Apply"
-                  confirmContent="ARE YOU SURE?"
+                  content="应用"
+                  confirmContent="确定吗？"
                   onClick={() => act('mass_apply', { path: massApplyPath })}
                 />
               </>
@@ -517,9 +517,9 @@ export const Filterrific = (props) => {
           buttons={
             <Dropdown
               icon="plus"
-              displayText="Add Filter"
+              displayText="添加滤镜"
               noChevron
-              options={Object.keys(filterDefaults)}
+              options={Object.keys(filterDefaults).map((value) => ({ value, displayText: filterDisplay(value) }))}
               onSelected={(value) =>
                 act('add_filter', {
                   name: 'default',
@@ -531,7 +531,7 @@ export const Filterrific = (props) => {
           }
         >
           {!hasFilters ? (
-            <Box>No filters</Box>
+            <Box>无滤镜</Box>
           ) : (
             map(filters, (entry, key) => (
               <FilterEntry

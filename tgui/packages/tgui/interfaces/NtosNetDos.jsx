@@ -30,7 +30,7 @@ export const NtosNetDosContent = (props) => {
         <NoticeBox>{error}</NoticeBox>
         <Button
           fluid
-          content="Reset"
+          content="重置"
           textAlign="center"
           onClick={() => act('PRG_reset')}
         />
@@ -56,7 +56,7 @@ export const NtosNetDosContent = (props) => {
   if (target) {
     return (
       <Section fontFamily="monospace" textAlign="center">
-        <Box>CURRENT SPEED: {speed} GQ/s</Box>
+        <Box>当前速度：{speed} GQ/s</Box>
         <Box>
           {/* I don't care anymore */}
           {generate10String(lineLength)}
@@ -72,7 +72,7 @@ export const NtosNetDosContent = (props) => {
   return (
     <Section>
       <LabeledList>
-        <LabeledList.Item label="Target">
+        <LabeledList.Item label="目标">
           {relays.map((relay) => (
             <Button
               key={relay.id}
@@ -90,7 +90,7 @@ export const NtosNetDosContent = (props) => {
       <Button
         fluid
         bold
-        content="EXECUTE"
+        content="执行"
         color="bad"
         textAlign="center"
         disabled={!focus}

@@ -17,11 +17,11 @@ import type { Threshold } from './types';
 export const SymptomDisplay = (props) => {
   const { symptoms = [] } = props;
   if (!symptoms?.length) {
-    return <NoticeBox>No symptoms detected.</NoticeBox>;
+    return <NoticeBox>未检测到症状。</NoticeBox>;
   }
 
   return (
-    <Section fill title="Symptoms">
+    <Section fill title="症状">
       {symptoms.map((symptom) => {
         const { name, desc, threshold_desc } = symptom;
         return (
@@ -49,9 +49,9 @@ const Thresholds = (props) => {
   const convertedThresholds = Object.entries<Threshold>(thresholds);
 
   return (
-    <Section mt={1} title="Thresholds">
+    <Section mt={1} title="阈值">
       {!convertedThresholds.length ? (
-        <NoticeBox>None</NoticeBox>
+        <NoticeBox>无</NoticeBox>
       ) : (
         <LabeledList>
           {convertedThresholds.map(([label, descr], index) => {
@@ -74,35 +74,35 @@ const Traits = (props) => {
   } = props;
 
   return (
-    <Section title="Modifiers">
+    <Section title="修正值">
       <LabeledList>
-        <Tooltip content="Rarity of the symptom.">
-          <LabeledList.Item color={getColor(level)} label="Level">
+        <Tooltip content="症状的稀有程度。">
+          <LabeledList.Item color={getColor(level)} label="等级">
             {level}
           </LabeledList.Item>
         </Tooltip>
-        <Tooltip content="Protection from cures and natural recovery.">
-          <LabeledList.Item color={getColor(resistance)} label="Resistance">
+        <Tooltip content="抵抗治疗和自然康复的能力。">
+          <LabeledList.Item color={getColor(resistance)} label="抗性">
             {resistance}
           </LabeledList.Item>
         </Tooltip>
-        <Tooltip content="Symptomic progression.">
-          <LabeledList.Item color={getColor(stage_speed)} label="Stage Speed">
+        <Tooltip content="症状发展的速度。">
+          <LabeledList.Item color={getColor(stage_speed)} label="阶段速度">
             {stage_speed}
           </LabeledList.Item>
         </Tooltip>
-        <Tooltip content="Detection difficulty from medical equipment.">
-          <LabeledList.Item color={getColor(stealth)} label="Stealth">
+        <Tooltip content="医疗设备检测到症状的难度。">
+          <LabeledList.Item color={getColor(stealth)} label="隐蔽性">
             {stealth}
           </LabeledList.Item>
         </Tooltip>
-        <Tooltip content="Decides the spread type.">
-          <LabeledList.Item color={getColor(transmission)} label="Transmission">
+        <Tooltip content="决定传播方式。">
+          <LabeledList.Item color={getColor(transmission)} label="传播性">
             {transmission}
           </LabeledList.Item>
         </Tooltip>
-        <Tooltip content="What reagent remedies this symptom.">
-          <LabeledList.Item color={cure_color} label="Cure">
+        <Tooltip content="可治疗此症状的试剂。">
+          <LabeledList.Item color={cure_color} label="治疗药物">
             {symptom_cure}
           </LabeledList.Item>
         </Tooltip>

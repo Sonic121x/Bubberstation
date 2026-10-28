@@ -1,25 +1,25 @@
 {
 	"curse_announce": [
-		"A fuel technician just slit his own throat and begged for death.",
-		"A scan of the shuttle's fuel tank has revealed tainting by a mixture of humanoid innards and teeth.",
-		"A security incident involving a frenzied shuttle worker attacking coworkers with a laser cutter has just been reported as resolved by on-site security.",
-		"A shuttle engineer began screaming 'DEATH IS NOT THE END' and ripped out wires until an arc flash seared off her flesh.",
-		"A shuttle engineer was spotted inside the cockpit, feverishly arranging her innards on the floor in the shape of a rune before expiring.",
-		"A shuttle inspector started laughing madly over the radio and then threw herself into an engine turbine.",
-		"The corpse of an unidentified shuttle worker was found mutilated beyond recognition in the shuttle's main hold, with at least five unique sources of blood on the scene.",
-		"The shuttle dispatcher was found dead with bloody symbols carved into their flesh.",
-		"The shuttle's custodian was found washing the windows with their own blood.",
-		"The shuttle's navigation programming was replaced by a file containing just two words: IT COMES.",
-		"The shuttle's transponder is emitting the encoded message 'FEAR THE OLD BLOOD' in lieu of its assigned identification signal."
+		"一名燃料技术员刚刚割开了自己的喉咙，并乞求死亡。",
+		"对穿梭机燃料箱的扫描发现，其中混入了类人生物的内脏和牙齿。",
+		"现场安保刚刚报告，已解决一起发狂的穿梭机工人用激光切割器攻击同事的事件。",
+		"一名穿梭机工程师高喊着‘死亡并非终点’，不断扯断电线，直到电弧闪光烧去了她的血肉。",
+		"有人在驾驶舱内发现一名穿梭机工程师，她临死前正狂热地将自己的内脏在地板上摆成符文。",
+		"一名穿梭机检查员开始在无线电中疯狂大笑，随后投身引擎涡轮。",
+		"穿梭机主货舱内发现了一名身份不明的穿梭机工人的尸体，已被肢解得面目全非，现场至少有五个不同来源的血液。",
+		"穿梭机调度员被发现已经死亡，血肉上刻着鲜血淋漓的符号。",
+		"有人发现穿梭机清洁员正在用自己的血擦洗窗户。",
+		"穿梭机的导航程序被替换为一个只写着四个字的文件：它将降临。",
+		"穿梭机应答器正发送‘敬畏古老之血’的编码信息，而非指定的识别信号。"
 	],
 
 	"omfg_announce": [
-		"OH MY FUCKING GOD WHAT JUST HAPPENED IN OUR SHUTTLE DOCK",
-		"HOLY SHIT OUR SHUTTLE DOCK IS A WARZONE",
-		"JESUS FUCKING CHRIST LEAVE OUR SHUTTLE WORKERS ALONE",
-		"WHAT THE FUCK",
-		"LEAVE THE SHUTTLE WORKERS ALONE YOU FUCKING ANIMALS",
-		"STOP STOPS STOPST OSPTOPSTOP",
-		"CHELP"
+		"我的老天爷，我们穿梭机码头他妈的发生了什么",
+		"操，我们穿梭机码头变成战场了",
+		"天杀的，放过我们的穿梭机工人吧",
+		"什么鬼东西",
+		"你们这群畜生，放过穿梭机工人",
+		"停下停下停下停停停停下",
+		"救命啊"
 	]
 }

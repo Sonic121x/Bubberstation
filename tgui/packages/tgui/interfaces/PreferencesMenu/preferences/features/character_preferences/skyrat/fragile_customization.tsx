@@ -2,11 +2,11 @@
 import { type Feature, FeatureNumberInput } from '../../base';
 
 export const fragile_brute: Feature<number> = {
-  name: 'Brute Modifier',
+  name: '物理伤害倍率',
   component: FeatureNumberInput,
 };
 
 export const fragile_burn: Feature<number> = {
-  name: 'Burn Modifier',
+  name: '灼伤倍率',
   component: FeatureNumberInput,
 };

@@ -72,7 +72,7 @@ export function NumberInputModal(props) {
                     disabled={value === min_value}
                     icon="angle-double-left"
                     onClick={() => setValue(min_value ?? 0)}
-                    tooltip={min_value ? `Min (${min_value})` : 'Min'}
+                    tooltip={min_value ? `最小值 (${min_value})` : '最小值'}
                   />
                 </Stack.Item>
 
@@ -111,7 +111,7 @@ export function NumberInputModal(props) {
                     disabled={value === max_value}
                     icon="angle-double-right"
                     onClick={() => setValue(max_value ?? 10000)}
-                    tooltip={max_value ? `Max (${max_value})` : 'Max'}
+                    tooltip={max_value ? `最大值 (${max_value})` : '最大值'}
                   />
                 </Stack.Item>
                 <Stack.Item>
@@ -119,7 +119,7 @@ export function NumberInputModal(props) {
                     disabled={value === init_value}
                     icon="redo"
                     onClick={() => setValue(init_value ?? 0)}
-                    tooltip={init_value ? `Reset (${init_value})` : 'Reset'}
+                    tooltip={init_value ? `重置 (${init_value})` : '重置'}
                   />
                 </Stack.Item>
               </Stack>

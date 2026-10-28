@@ -33,7 +33,7 @@ export const OutfitEditor = (props) => {
                   ml={0.5}
                   color="transparent"
                   icon="pencil-alt"
-                  title="Rename this outfit"
+                  title="重命名此装备套装"
                   onClick={() => act('rename', {})}
                 />
                 {outfit.name}
@@ -42,12 +42,12 @@ export const OutfitEditor = (props) => {
                 <Button
                   color="transparent"
                   icon="info"
-                  tooltip="Ctrl-click a button to select *any* item instead of what will probably fit in that slot."
+                  tooltip="按住 Ctrl 点击按钮可选择任意物品，不受该栏位通常适用的物品类型限制。"
                   tooltipPosition="bottom-start"
                 />
                 <Button
                   icon="code"
-                  tooltip="Edit this outfit on a VV window"
+                  tooltip="在变量查看窗口中编辑此套装"
                   tooltipPosition="bottom-start"
                   onClick={() => act('vv')}
                 />
@@ -56,8 +56,8 @@ export const OutfitEditor = (props) => {
                   icon={saveable ? 'save' : 'trash-alt'}
                   tooltip={
                     saveable
-                      ? 'Save this outfit to the custom outfit list'
-                      : 'Remove this outfit from the custom outfit list'
+                      ? '将此套装保存到自定义套装列表'
+                      : '从自定义套装列表中移除此套装'
                   }
                   tooltipPosition="bottom-start"
                   onClick={() => act(saveable ? 'save' : 'delete')}
@@ -68,43 +68,43 @@ export const OutfitEditor = (props) => {
         >
           <Box textAlign="center">
             <Stack mb={2}>
-              <OutfitSlot name="Headgear" icon="hard-hat" slot="head" />
-              <OutfitSlot name="Glasses" icon="glasses" slot="glasses" />
-              <OutfitSlot name="Ears" icon="headphones-alt" slot="ears" />
+              <OutfitSlot name="头饰" icon="hard-hat" slot="head" />
+              <OutfitSlot name="眼镜" icon="glasses" slot="glasses" />
+              <OutfitSlot name="耳部" icon="headphones-alt" slot="ears" />
             </Stack>
             <Stack mb={2}>
-              <OutfitSlot name="Neck" icon="stethoscope" slot="neck" />
-              <OutfitSlot name="Mask" icon="theater-masks" slot="mask" />
+              <OutfitSlot name="颈部" icon="stethoscope" slot="neck" />
+              <OutfitSlot name="面罩" icon="theater-masks" slot="mask" />
             </Stack>
             <Stack mb={2}>
-              <OutfitSlot name="Uniform" icon="tshirt" slot="uniform" />
-              <OutfitSlot name="Suit" icon="user-tie" slot="suit" />
-              <OutfitSlot name="Gloves" icon="mitten" slot="gloves" />
+              <OutfitSlot name="制服" icon="tshirt" slot="uniform" />
+              <OutfitSlot name="外套" icon="user-tie" slot="suit" />
+              <OutfitSlot name="手套" icon="mitten" slot="gloves" />
             </Stack>
             <Stack mb={2}>
               <OutfitSlot
-                name="Suit Storage"
+                name="外套储物栏"
                 icon="briefcase-medical"
                 slot="suit_store"
               />
-              <OutfitSlot name="Back" icon="shopping-bag" slot="back" />
-              <OutfitSlot name="ID" icon="id-card-o" slot="id" />
+              <OutfitSlot name="背部" icon="shopping-bag" slot="back" />
+              <OutfitSlot name="身份卡" icon="id-card-o" slot="id" />
             </Stack>
             <Stack mb={2}>
-              <OutfitSlot name="Belt" icon="band-aid" slot="belt" />
-              <OutfitSlot name="Left Hand" icon="hand-paper" slot="l_hand" />
-              <OutfitSlot name="Right Hand" icon="hand-paper" slot="r_hand" />
+              <OutfitSlot name="腰带" icon="band-aid" slot="belt" />
+              <OutfitSlot name="左手" icon="hand-paper" slot="l_hand" />
+              <OutfitSlot name="右手" icon="hand-paper" slot="r_hand" />
             </Stack>
             <Stack mb={2}>
-              <OutfitSlot name="Shoes" icon="socks" slot="shoes" />
+              <OutfitSlot name="鞋子" icon="socks" slot="shoes" />
               <OutfitSlot
-                name="Left Pocket"
+                name="左口袋"
                 icon="envelope-open-o"
                 iconRot={180}
                 slot="l_pocket"
               />
               <OutfitSlot
-                name="Right Pocket"
+                name="右口袋"
                 icon="envelope-open-o"
                 iconRot={180}
                 slot="r_pocket"
@@ -160,7 +160,7 @@ const OutfitSlot = (props) => {
         }}
         title={currItem?.path}
       >
-        {currItem?.name || 'Empty'}
+        {currItem?.name || '空'}
       </Box>
     </Stack.Item>
   );

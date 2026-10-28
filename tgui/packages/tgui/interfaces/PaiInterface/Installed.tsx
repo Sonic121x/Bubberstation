@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Button, NoticeBox, Section, Stack } from 'tgui-core/components';
-
+import { softwareDisplay } from './softwareDisplay';
 import { DOOR_JACK, HOST_SCAN, PHOTO_MODE, SOFTWARE_DESC } from './constants';
 import type { PaiData } from './types';
 
@@ -16,7 +16,7 @@ export function InstalledDisplay(props) {
 
   const [currentSelection, setCurrentSelection] = useState('');
 
-  const title = !currentSelection ? 'Select a Program' : currentSelection;
+  const title = !currentSelection ? '选择程序' : softwareDisplay(currentSelection);
 
   return (
     <Stack fill vertical>
@@ -33,9 +33,9 @@ export function InstalledDisplay(props) {
         </Section>
       </Stack.Item>
       <Stack.Item grow={2}>
-        <Section fill scrollable title="Installed Software">
+        <Section fill scrollable title="已安装软件">
           {!installed.length ? (
-            <NoticeBox>Nothing installed!</NoticeBox>
+            <NoticeBox>尚未安装任何软件！</NoticeBox>
           ) : (
             installed.map((software, index) => {
               return (
@@ -43,7 +43,7 @@ export function InstalledDisplay(props) {
                   key={index}
                   onClick={() => setCurrentSelection(software)}
                 >
-                  {software}
+                  {softwareDisplay(software)}
                 </Button>
               );
             })
@@ -76,25 +76,25 @@ function SoftwareButtons(props: SoftwareButtonsProps) {
             disabled={!!door_jack}
             icon="plug"
             onClick={() => act(currentSelection, { mode: DOOR_JACK.Cable })}
-            tooltip="Drops a cable. Insert into a compatible airlock."
+            tooltip="伸出线缆，可插入兼容的气闸。"
           >
-            Extend Cable
+            伸出线缆
           </Button>
           <Button
             color="bad"
             disabled={!door_jack}
             icon="door-open"
             onClick={() => act(currentSelection, { mode: DOOR_JACK.Hack })}
-            tooltip="Begins overriding the airlock security protocols."
+            tooltip="开始覆盖气闸的安全协议。"
           >
-            Hack Door
+            破解门禁
           </Button>
           <Button
             disabled={!door_jack}
             icon="unlink"
             onClick={() => act(currentSelection, { mode: DOOR_JACK.Cancel })}
           >
-            Cancel
+            取消
           </Button>
         </>
       );
@@ -104,17 +104,17 @@ function SoftwareButtons(props: SoftwareButtonsProps) {
           <Button
             icon="hand-holding-heart"
             onClick={() => act(currentSelection, { mode: HOST_SCAN.Target })}
-            tooltip="Must be held or scooped up to scan."
+            tooltip="必须被拿在手中或抱起才能扫描。"
           >
-            Scan Holder
+            扫描持有者
           </Button>
           <Button
             disabled={!master_name}
             icon="user-cog"
             onClick={() => act(currentSelection, { mode: HOST_SCAN.Master })}
-            tooltip="Scans any bound masters."
+            tooltip="扫描已绑定的主人。"
           >
-            Scan Master
+            扫描主人
           </Button>
         </>
       );
@@ -124,23 +124,23 @@ function SoftwareButtons(props: SoftwareButtonsProps) {
           <Button
             icon="camera-retro"
             onClick={() => act(currentSelection, { mode: PHOTO_MODE.Camera })}
-            tooltip="Toggles the camera. Click an area to take a photo."
+            tooltip="开关相机。点击目标区域拍照。"
           >
-            Camera
+            相机
           </Button>
           <Button
             icon="print"
             onClick={() => act(currentSelection, { mode: PHOTO_MODE.Printer })}
-            tooltip="Gives a list of stored photos."
+            tooltip="显示已存储的照片列表。"
           >
-            Printer
+            打印机
           </Button>
           <Button
             icon="search-plus"
             onClick={() => act(currentSelection, { mode: PHOTO_MODE.Zoom })}
-            tooltip="Adjusts zoom level on future photographs."
+            tooltip="调整后续照片的变焦倍率。"
           >
-            Zoom
+            变焦
           </Button>
         </>
       );
@@ -151,7 +151,7 @@ function SoftwareButtons(props: SoftwareButtonsProps) {
           onClick={() => act(currentSelection)}
           disabled={!!languages}
         >
-          {!languages ? 'Install' : 'Installed'}
+          {!languages ? '安装' : '已安装'}
         </Button>
       );
     default:
@@ -159,9 +159,9 @@ function SoftwareButtons(props: SoftwareButtonsProps) {
         <Button
           icon="power-off"
           onClick={() => act(currentSelection)}
-          tooltip="Attempts to enable the module."
+          tooltip="尝试启用此模块。"
         >
-          Toggle
+          切换
         </Button>
       );
   }

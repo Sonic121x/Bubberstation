@@ -33,16 +33,16 @@ export const AtmosFilter = (props) => {
           buttons={
             <Button
               icon={on ? 'power-off' : 'times'}
-              content={on ? 'On' : 'Off'}
+              content={on ? '开启' : '关闭'}
               selected={on}
               onClick={() => act('power')}
             />
           }
           fill
-          title="Gas Filter"
+          title="气体过滤器"
         >
           <LabeledList>
-            <LabeledList.Item label="Transfer Rate">
+            <LabeledList.Item label="传输流量">
               <NumberInput
                 animated
                 tickWhileDragging
@@ -61,7 +61,7 @@ export const AtmosFilter = (props) => {
               <Button
                 ml={1}
                 icon="plus"
-                content="Max"
+                content="最大"
                 disabled={rate === max_rate}
                 onClick={() =>
                   act('rate', {
@@ -70,7 +70,7 @@ export const AtmosFilter = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Filter Types">
+            <LabeledList.Item label="过滤类型">
               {filter_types.map(({ enabled, gas_id }, index) => (
                 <Button
                   key={index}

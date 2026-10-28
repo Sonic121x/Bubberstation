@@ -1,5 +1,5 @@
 {
-	"adventure_name": "There is a yacht cruising through space.",
+	"adventure_name": "一艘游艇正在太空中巡航。",
 	"version": 1,
 	"author": "Kinnebian",
 	"starting_node": "A yacht in space?",
@@ -14,21 +14,21 @@
 	"nodes": [
 		{
 			"name": "A yacht in space?",
-			"description": "You see a normal looking yacht, floating above you.",
+			"description": "你看见一艘外观普通的游艇，正漂浮在上方。",
 			"choices": [
 				{
 					"key": "choice 0",
-					"name": "Ignore it, its not worth investigating.",
+					"name": "无视它，不值得调查。",
 					"exit_node": "FAIL",
 					"delay": 10,
-					"delay_message": "You fly on by..."
+					"delay_message": "你径直飞过……"
 				},
 				{
 					"key": "choice 4",
-					"name": "Investigate it closer!",
+					"name": "靠近调查！",
 					"exit_node": "Looks like the doors are sealed shut.",
 					"delay": 30,
-					"delay_message": "You begin to fly up to and around the yacht.."
+					"delay_message": "你飞近游艇，开始绕行查看……"
 				}
 			],
 			"image": null,
@@ -36,32 +36,32 @@
 		},
 		{
 			"name": "Looks like the doors are sealed shut.",
-			"description": "You fly up to the \"boat\" and find that all the doors are locked tight, and welded shut. You think you hear.. music inside? There is a welded vent, too. You reckon you could force it open if you hit it hard enough, but it would be less risky to unweld it using a welder.",
+			"description": "你飞近这艘“船”，发现所有门都锁得死死的，还焊了起来。里面似乎传来……音乐？旁边还有一个焊死的通风口。用力撞击应该能把它撞开，不过用焊枪解焊会更安全。",
 			"choices": [
 				{
 					"key": "choice 2",
-					"name": "Try to force the door!",
+					"name": "尝试强行破门！",
 					"exit_node": "You destroyed the drone.",
 					"delay": 10,
-					"delay_message": "You begin forcing the door.."
+					"delay_message": "你开始强行破门……"
 				},
 				{
 					"key": "choice 3",
-					"name": "Try to force the vent.",
+					"name": "尝试撞开通风口。",
 					"exit_node": "The music grows louder..",
 					"delay": 20,
-					"delay_message": "You begin forcing the vent.."
+					"delay_message": "你开始撞击通风口……"
 				},
 				{
 					"key": "choice 5",
-					"name": "Fly away, no chance in hell of getting in there..",
+					"name": "飞走吧，根本不可能进得去……",
 					"exit_node": "FAIL",
 					"delay": 5,
-					"delay_message": "Moving.."
+					"delay_message": "移动中……"
 				},
 				{
 					"key": "choice 14",
-					"name": "Unweld the vent.",
+					"name": "解焊通风口。",
 					"exit_node": "The music grows louder..",
 					"requirements": [
 						{
@@ -71,7 +71,7 @@
 						}
 					],
 					"delay": 5,
-					"delay_message": "Welding.."
+					"delay_message": "焊接中……"
 				}
 			],
 			"image": null,
@@ -79,45 +79,45 @@
 		},
 		{
 			"name": "The music grows louder..",
-			"description": "The music gets louder as you enter through the vent... maybe you should turn back?",
+			"description": "进入通风管后，音乐越来越响……也许该回头了？",
 			"choices": [
 				{
 					"key": "choice 6",
-					"name": "Continue onwards!",
+					"name": "继续前进！",
 					"exit_node": "You fall down!",
 					"delay": 5,
-					"delay_message": "Moving..."
+					"delay_message": "移动中……"
 				},
 				{
 					"key": "choice 7",
-					"name": "Turn back.",
+					"name": "回头。",
 					"exit_node": "Looks like the doors are sealed shut.",
 					"delay": 5,
-					"delay_message": "Moving.."
+					"delay_message": "移动中……"
 				}
 			],
 			"image": "default"
 		},
 		{
 			"name": "You fall down!",
-			"description": "As you are crawling through the vents of this Space Yacht, the vent gives way! You're dropped into an empty room, completely filled with plasma! There is a desk and filing cabinet in here, along with a window observing the main portion of the yacht. The music is deafening at this point, it sounds like a horrible mix of sea shanties and EDM. ",
+			"description": "你正在太空游艇的通风管内爬行，管道突然塌了！你掉进一间空无一人的房间，里面充满等离子体！房内有书桌和文件柜，还有一扇能俯瞰游艇主体区域的窗户。此时音乐震耳欲聋，听起来像是水手号子与电子舞曲的糟糕混搭。 ",
 			"choices": [
 				{
 					"key": "choice 8",
-					"name": "Look through the window.",
+					"name": "透过窗户看看。",
 					"exit_node": "A rockin' party.",
 					"delay": 0
 				},
 				{
 					"key": "choice 9",
-					"name": "Fly outta of there.",
+					"name": "飞离这里。",
 					"exit_node": "The music grows louder..",
 					"delay": 5,
-					"delay_message": "Moving.."
+					"delay_message": "移动中……"
 				},
 				{
 					"key": "choice 10",
-					"name": "Rummage in the desk, using your key to open it.",
+					"name": "用钥匙打开书桌，翻找一番。",
 					"exit_node": "Drugs and cash!",
 					"requirements": [
 						{
@@ -127,21 +127,21 @@
 						}
 					],
 					"delay": 0,
-					"delay_message": "Rummaging.."
+					"delay_message": "翻找中……"
 				},
 				{
 					"key": "choice 11",
-					"name": "Take a sample of the atmosphere.",
+					"name": "采集气体样本。",
 					"exit_node": "The atmospherics scan",
 					"delay": 30,
-					"delay_message": "Taking sample.."
+					"delay_message": "采样中……"
 				},
 				{
 					"key": "choice 13",
-					"name": "Trash the place, fuck the police!",
+					"name": "砸烂这里，去他妈的警察！",
 					"exit_node": "You wrecked yourself.",
 					"delay": 30,
-					"delay_message": "Trashing the place..."
+					"delay_message": "大肆破坏中……"
 				}
 			],
 			"image": null,
@@ -149,11 +149,11 @@
 		},
 		{
 			"name": "You wrecked yourself.",
-			"description": "In the midst of trashing the place, a filing cabinet tips over on you, crushing the fragile, expensive drone. Nice job, idiot.",
+			"description": "你正砸得起劲，一个文件柜翻倒下来，压碎了脆弱又昂贵的无人机。干得漂亮，蠢货。",
 			"choices": [
 				{
 					"key": "choice 15",
-					"name": "Shit.",
+					"name": "该死。",
 					"exit_node": "FAIL_DEATH",
 					"delay": 0
 				}
@@ -163,18 +163,18 @@
 		},
 		{
 			"name": "Drugs and cash!",
-			"description": "Rummaging through the drawer, you find that the person who lives in here stores all his drugs and cash in here too. Good for you!",
+			"description": "翻找抽屉时，你发现住在这里的人把所有毒品和现金也藏在了里面。你走运了！",
 			"choices": [
 				{
 					"key": "choice 17",
-					"name": "Head back with your newly acquired things. ",
+					"name": "带着新到手的东西返航。 ",
 					"exit_node": "WIN",
 					"delay": 30,
-					"delay_message": "Stealing..."
+					"delay_message": "行窃中……"
 				},
 				{
 					"key": "choice 18",
-					"name": "Take one last look around the place.",
+					"name": "最后再四下看看。",
 					"exit_node": "You fall down!",
 					"delay": 0
 				}
@@ -184,11 +184,11 @@
 		},
 		{
 			"name": "A rockin' party.",
-			"description": "Looking down through the window, you can see up to 20 plasmamen dancing on a disco floor. They look to be enjoying themselves, and none of them have noticed you. Oh, hey! Theres a key on the floor right next to you!",
+			"description": "透过窗户向下看，你看见将近二十个等离子人正在迪斯科舞池里跳舞。他们看起来玩得很开心，谁也没注意到你。哦，嘿！你旁边的地板上有一把钥匙！",
 			"choices": [
 				{
 					"key": "choice 16",
-					"name": "Swipe the key and head back to the desk.",
+					"name": "拿走钥匙，回到书桌旁。",
 					"exit_node": "You fall down!",
 					"on_selection_effects": [
 						{
@@ -201,7 +201,7 @@
 				},
 				{
 					"key": "choice 19",
-					"name": "Tap on the window!",
+					"name": "敲敲窗户！",
 					"exit_node": "Weak.",
 					"delay": 0
 				}
@@ -210,11 +210,11 @@
 		},
 		{
 			"name": "Weak.",
-			"description": "You weakly tap on the window, and nobody hears you through the blasting music.",
+			"description": "你轻轻敲了敲窗户，可音乐太响，没人听见。",
 			"choices": [
 				{
 					"key": "choice 20",
-					"name": "Oh well.",
+					"name": "好吧。",
 					"exit_node": "A rockin' party.",
 					"delay": 0
 				}
@@ -223,11 +223,11 @@
 		},
 		{
 			"name": "You destroyed the drone.",
-			"description": "You smash into the door, and your screen goes red. Looks like you managed to destroy your drone, nice job. \n\n\nIdiot.",
+			"description": "你猛撞向门，屏幕顿时一片红。看来你成功弄毁了无人机，干得漂亮。\n\n\n蠢货。",
 			"choices": [
 				{
 					"key": "choice 21",
-					"name": "Fuck.",
+					"name": "操。",
 					"exit_node": "FAIL_DEATH",
 					"delay": 0
 				}
@@ -236,11 +236,11 @@
 		},
 		{
 			"name": "The atmospherics scan",
-			"description": "100% plasma, jam packed with it. This is definitely the home of some plasma-party-people.",
+			"description": "百分之百的等离子体，浓得不能再浓。这里绝对是一群等离子派对狂的家。",
 			"choices": [
 				{
 					"key": "choice 22",
-					"name": "Huh.",
+					"name": "嗯。",
 					"exit_node": "You fall down!",
 					"delay": 0
 				}

@@ -27,20 +27,20 @@ export const MicrofusionGunControl = (props) => {
   } = data;
   return (
     <Window
-      title={`Micron Control Systems Incorporated: ${gun_name}`}
+      title={`微米控制系统公司：${gun_name}`}
       width={500}
       height={700}
     >
       <Window.Content>
         <Stack vertical grow>
           <Stack.Item>
-            <Section title={'Gun Info'}>
+            <Section title={'枪械信息'}>
               <LabeledList>
-                <LabeledList.Item label="Name">{gun_name}</LabeledList.Item>
-                <LabeledList.Item label="Description">
+                <LabeledList.Item label="名称">{gun_name}</LabeledList.Item>
+                <LabeledList.Item label="描述">
                   {gun_desc}
                 </LabeledList.Item>
-                <LabeledList.Item label="Active Heat Dissipation">
+                <LabeledList.Item label="主动散热">
                   {`${gun_heat_dissipation} C/s`}
                 </LabeledList.Item>
               </LabeledList>
@@ -48,11 +48,11 @@ export const MicrofusionGunControl = (props) => {
           </Stack.Item>
           <Stack.Item>
             <Section
-              title="Power Cell"
+              title="电池"
               buttons={
                 <Button
                   icon="eject"
-                  content="Eject Cell"
+                  content="弹出电池"
                   disabled={!has_cell}
                   onClick={() => act('eject_cell')}
                 />
@@ -60,13 +60,13 @@ export const MicrofusionGunControl = (props) => {
             >
               {has_cell ? (
                 <LabeledList>
-                  <LabeledList.Item label="Cell Type">
+                  <LabeledList.Item label="电池类型">
                     {cell_data.type}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Cell Status">
-                    {cell_data.status ? 'ERROR' : 'Nominal'}
+                  <LabeledList.Item label="电池状态">
+                    {cell_data.status ? '故障' : '正常'}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Cell Charge">
+                  <LabeledList.Item label="电池电量">
                     <ProgressBar
                       value={cell_data.charge}
                       minValue={0}
@@ -89,23 +89,23 @@ export const MicrofusionGunControl = (props) => {
                   {!!cell_data.charge <= 0 && (
                     <LabeledList.Item>
                       <Section>
-                        <NoticeBox color="bad">Charge depleted!</NoticeBox>
+                        <NoticeBox color="bad">电量耗尽！</NoticeBox>
                       </Section>
                     </LabeledList.Item>
                   )}
                 </LabeledList>
               ) : (
-                <NoticeBox color="bad">No cell installed!</NoticeBox>
+                <NoticeBox color="bad">未安装电池！</NoticeBox>
               )}
             </Section>
           </Stack.Item>
           <Stack.Item>
             <Section
-              title="Phase Emitter"
+              title="相位发射器"
               buttons={
                 <Button
                   icon="eject"
-                  content="Eject Emitter"
+                  content="弹出发射器"
                   disabled={!has_emitter}
                   onClick={() => act('eject_emitter')}
                 />
@@ -113,13 +113,13 @@ export const MicrofusionGunControl = (props) => {
             >
               {has_emitter ? (
                 phase_emitter_data.damaged ? (
-                  <NoticeBox color="bad">Phase emitter is damaged!</NoticeBox>
+                  <NoticeBox color="bad">相位发射器已损坏！</NoticeBox>
                 ) : (
                   <LabeledList>
-                    <LabeledList.Item label="Emitter Type">
+                    <LabeledList.Item label="发射器类型">
                       {phase_emitter_data.type}
                     </LabeledList.Item>
-                    <LabeledList.Item label="Temperature">
+                    <LabeledList.Item label="温度">
                       <ProgressBar
                         value={phase_emitter_data.current_heat}
                         minValue={0}
@@ -143,29 +143,29 @@ export const MicrofusionGunControl = (props) => {
                           '%)'}
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Maximum Temperature">
+                    <LabeledList.Item label="最高温度">
                       {`${phase_emitter_data.max_heat} C`}
                     </LabeledList.Item>
-                    <LabeledList.Item label="Temperature Throttle Percent">
+                    <LabeledList.Item label="过热降频阈值">
                       {`${phase_emitter_data.throttle_percentage}% `}
                       <Button
                         icon="wrench"
-                        content="Overclock"
+                        content="超频"
                         color="bad"
                         disabled={!phase_emitter_data.hacked}
                         onClick={() => act('overclock_emitter')}
                       />
                     </LabeledList.Item>
-                    <LabeledList.Item label="Passive Heat Dissipation">
+                    <LabeledList.Item label="被动散热">
                       {`${phase_emitter_data.heat_dissipation_per_tick} C/s`}
                     </LabeledList.Item>
-                    <LabeledList.Item label="Cooling System">
+                    <LabeledList.Item label="冷却系统">
                       <Button
                         icon="snowflake"
                         content={
                           phase_emitter_data.cooling_system
-                            ? 'ONLINE'
-                            : 'OFFLINE'
+                            ? '在线'
+                            : '离线'
                         }
                         color={
                           phase_emitter_data.cooling_system ? 'blue' : 'bad'
@@ -173,11 +173,11 @@ export const MicrofusionGunControl = (props) => {
                         disabled={!has_cell}
                         onClick={() => act('toggle_cooling_system')}
                       />
-                      {' Cooling System Rate: ' +
+                      {' 冷却系统速率：' +
                         phase_emitter_data.cooling_system_rate +
                         ' C/s'}
                     </LabeledList.Item>
-                    <LabeledList.Item label="Total Heat Dissipation">
+                    <LabeledList.Item label="总散热速率">
                       {phase_emitter_data.cooling_system
                         ? phase_emitter_data.heat_dissipation_per_tick +
                           gun_heat_dissipation +
@@ -187,7 +187,7 @@ export const MicrofusionGunControl = (props) => {
                           gun_heat_dissipation +
                           ' C/s'}
                     </LabeledList.Item>
-                    <LabeledList.Item label="Integrity">
+                    <LabeledList.Item label="完整度">
                       <ProgressBar
                         value={phase_emitter_data.integrity}
                         minValue={0}
@@ -201,7 +201,7 @@ export const MicrofusionGunControl = (props) => {
                         {`${phase_emitter_data.integrity}%`}
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Process Time Per Shot">
+                    <LabeledList.Item label="每次射击处理时间">
                       <ProgressBar
                         value={phase_emitter_data.process_time}
                         minValue={0}
@@ -212,32 +212,32 @@ export const MicrofusionGunControl = (props) => {
                           bad: [3, 5],
                         }}
                       >
-                        {`${phase_emitter_data.process_time / 10}s`}
+                        {`${phase_emitter_data.process_time / 10} 秒`}
                       </ProgressBar>
                     </LabeledList.Item>
                     {phase_emitter_data.heat_percent >=
                       phase_emitter_data.throttle_percentage && (
                       <LabeledList.Item>
                         <NoticeBox color="orange">
-                          Thermal throttle active!
+                          过热降频已启动！
                         </NoticeBox>
                       </LabeledList.Item>
                     )}
                     {phase_emitter_data.current_heat >=
                       phase_emitter_data.max_heat && (
                       <LabeledList.Item>
-                        <NoticeBox color="bad">Overheating!</NoticeBox>
+                        <NoticeBox color="bad">过热！</NoticeBox>
                       </LabeledList.Item>
                     )}
                   </LabeledList>
                 )
               ) : (
-                <NoticeBox color="bad">No phase emitter installed!</NoticeBox>
+                <NoticeBox color="bad">未安装相位发射器！</NoticeBox>
               )}
             </Section>
           </Stack.Item>
           <Stack.Item>
-            <Section title={'Attachments'}>
+            <Section title={'配件'}>
               {has_attachments ? (
                 attachments.map((attachment, index) => (
                   <Section
@@ -246,7 +246,7 @@ export const MicrofusionGunControl = (props) => {
                     buttons={
                       <Button
                         icon="eject"
-                        content="Eject Attachment"
+                        content="卸下配件"
                         onClick={() =>
                           act('remove_attachment', {
                             attachment_ref: attachment.ref,
@@ -256,14 +256,14 @@ export const MicrofusionGunControl = (props) => {
                     }
                   >
                     <LabeledList>
-                      <LabeledList.Item label="Description">
+                      <LabeledList.Item label="描述">
                         {attachment.desc}
                       </LabeledList.Item>
-                      <LabeledList.Item label="Slot">
+                      <LabeledList.Item label="插槽">
                         {attachment.slot}
                       </LabeledList.Item>
                       {attachment.information && (
-                        <LabeledList.Item label="Information">
+                        <LabeledList.Item label="信息">
                           {attachment.information}
                         </LabeledList.Item>
                       )}
@@ -291,7 +291,7 @@ export const MicrofusionGunControl = (props) => {
                   </Section>
                 ))
               ) : (
-                <NoticeBox color="blue">No attachments installed!</NoticeBox>
+                <NoticeBox color="blue">未安装配件！</NoticeBox>
               )}
             </Section>
           </Stack.Item>

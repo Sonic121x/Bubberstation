@@ -21,7 +21,7 @@ import { capitalize } from 'tgui-core/string';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import type { Beaker, BeakerReagent } from './common/BeakerDisplay';
-
+import { chemPackagingDisplay } from '../localization/chemPackagingDisplay';
 type Container = {
   icon: string;
   icon_state: string;
@@ -121,13 +121,13 @@ const ChemMasterContent = (props: {
   return (
     <Box>
       <Section
-        title="Beaker"
+        title="烧杯"
         buttons={
           beaker ? (
             <Box>
               <Box inline color="label" mr={2}>
                 <AnimatedNumber value={beaker.currentVolume} initial={0} />
-                {` / ${beaker.maxVolume} units`}
+                {` / ${beaker.maxVolume} 单位`}
               </Box>
               <Box inline color="label" mr={2}>
                 <NumberInput
@@ -146,7 +146,7 @@ const ChemMasterContent = (props: {
                 />
               </Box>
               <Button icon="eject" onClick={() => act('eject')}>
-                Eject
+                弹出
               </Button>
             </Box>
           ) : (
@@ -157,22 +157,22 @@ const ChemMasterContent = (props: {
                 opacity: hasBeakerInHand ? 1 : 0.5,
               }}
               tooltip={
-                !hasBeakerInHand && 'You need to hold a container in your hand'
+                !hasBeakerInHand && '你需要手持一个容器'
               }
               tooltipPosition="bottom-start"
             >
-              Insert
+              插入
             </Button>
           )
         }
       >
         {!beaker ? (
           <Box color="label" my={'4px'}>
-            No beaker loaded.
+            未装入烧杯。
           </Box>
         ) : beaker.currentVolume === 0 ? (
           <Box color="label" my={'4px'}>
-            Beaker is empty.
+            烧杯为空。
           </Box>
         ) : (
           <Table>
@@ -188,26 +188,26 @@ const ChemMasterContent = (props: {
         )}
       </Section>
       <Section
-        title="Buffer"
+        title="缓冲槽"
         buttons={
           <>
             <Box inline color="label" mr={1}>
               <AnimatedNumber value={buffer.currentVolume} initial={0} />
-              {` / ${buffer.maxVolume} units`}
+              {` / ${buffer.maxVolume} 单位`}
             </Box>
             <Button
               color={isTransfering ? 'good' : 'bad'}
               icon={isTransfering ? 'exchange-alt' : 'trash'}
               onClick={() => act('toggleTransferMode')}
             >
-              {isTransfering ? 'Moving reagents' : 'Destroying reagents'}
+              {isTransfering ? '转移试剂' : '销毁试剂'}
             </Button>
           </>
         }
       >
         {buffer_contents.length === 0 ? (
           <Box color="label" my={'4px'}>
-            Buffer is empty.
+            缓冲槽为空。
           </Box>
         ) : (
           <Table>
@@ -224,7 +224,7 @@ const ChemMasterContent = (props: {
       </Section>
       {!isPrinting && (
         <Section
-          title="Packaging"
+          title="分装"
           buttons={
             buffer_contents.length !== 0 && (
               <Box>
@@ -234,10 +234,10 @@ const ChemMasterContent = (props: {
                     setShowPreferredContainer((currentValue) => !currentValue)
                   }
                 >
-                  Suggest
+                  推荐容器
                 </Button.Checkbox>
                 <NumberInput
-                  unit={'items'}
+                  unit={'件'}
                   step={1}
                   value={itemCount}
                   minValue={1}
@@ -268,7 +268,7 @@ const ChemMasterContent = (props: {
                         buffer.currentVolume / itemCount,
                       ) * 100,
                     ) / 100
-                  } u. each`}
+                  } 单位/件`}
                 </Box>
                 <Button
                   icon="flask"
@@ -278,7 +278,7 @@ const ChemMasterContent = (props: {
                     })
                   }
                 >
-                  Print
+                  制作
                 </Button>
               </Box>
             )
@@ -301,14 +301,14 @@ const ChemMasterContent = (props: {
       )}
       {!!isPrinting && (
         <Section
-          title="Printing"
+          title="制作中"
           buttons={
             <Button
               color="bad"
               icon="times"
               onClick={() => act('stopPrinting')}
             >
-              Stop
+              停止
             </Button>
           }
         >
@@ -324,7 +324,7 @@ const ChemMasterContent = (props: {
                 textShadow: '1px 1px 0 black',
               }}
             >
-              {`Printing ${printingProgress} out of ${printingTotal}`}
+              {`制作进度：${printingProgress} / ${printingTotal}`}
             </Box>
           </ProgressBar>
         </Section>
@@ -409,11 +409,11 @@ const ReagentEntry = (props: ReagentProps) => {
             })
           }
         >
-          All
+          全部
         </Button>
         <Button
           icon="ellipsis-h"
-          tooltip="Custom amount"
+          tooltip="自定义用量"
           disabled={isPrinting}
           onClick={() =>
             act('transfer', {
@@ -425,7 +425,7 @@ const ReagentEntry = (props: ReagentProps) => {
         />
         <Button
           icon="question"
-          tooltip="Analyze"
+          tooltip="分析"
           onClick={() => analyze(chemical)}
         />
       </Table.Cell>
@@ -498,39 +498,39 @@ const AnalysisResults = (props: {
 
   return (
     <Section
-      title="Analysis Results"
+      title="分析结果"
       buttons={
         <Button icon="arrow-left" onClick={() => props.onExit()}>
-          Back
+          返回
         </Button>
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Name">{name}</LabeledList.Item>
-        <LabeledList.Item label="Purity">
+        <LabeledList.Item label="名称">{name}</LabeledList.Item>
+        <LabeledList.Item label="纯度">
           <Box
             style={{
               textTransform: 'capitalize',
             }}
             color={purityLevel}
           >
-            {purityLevel}
+            {{ bad: '低', average: '中', good: '高' }[purityLevel]}
           </Box>
         </LabeledList.Item>
         <LabeledList.Item label="pH">{pH}</LabeledList.Item>
-        <LabeledList.Item label="Color">
+        <LabeledList.Item label="颜色">
           <ColorBox color={color} mr={1} />
           {color}
         </LabeledList.Item>
-        <LabeledList.Item label="Description">{description}</LabeledList.Item>
-        <LabeledList.Item label="Metabolization Rate">
-          {metaRate} units/second
+        <LabeledList.Item label="描述">{description}</LabeledList.Item>
+        <LabeledList.Item label="代谢速率">
+          {metaRate} 单位/秒
         </LabeledList.Item>
-        <LabeledList.Item label="Overdose Threshold">
-          {overdose > 0 ? `${overdose} units` : 'N/A'}
+        <LabeledList.Item label="过量阈值">
+          {overdose > 0 ? `${overdose} 单位` : '不适用'}
         </LabeledList.Item>
-        <LabeledList.Item label="Addiction Types">
-          {addictionTypes.length ? addictionTypes.toString() : 'N/A'}
+        <LabeledList.Item label="成瘾类型">
+          {addictionTypes.length ? addictionTypes.toString() : '不适用'}
         </LabeledList.Item>
       </LabeledList>
     </Section>
@@ -549,7 +549,7 @@ const GroupTitle = ({ title }) => {
         }}
         color={'gray'}
       >
-        {title}
+        {chemPackagingDisplay(title)}
       </Stack.Item>
       <Stack.Item grow>
         <Divider />

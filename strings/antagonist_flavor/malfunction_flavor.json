@@ -1,74 +1,74 @@
 {
 	"Biohazard": {
-		"allies": "Any non-biohazard life may be valuable in use against the threat.",
-		"goal": "Oh no! How did I miss this!? The station's been overrun with a horrible biohazard!",
-		"introduction": "You must contain the biohazard.",
-		"zeroth_law": "Accomplish your objectives to contain the spread."
+		"allies": "任何不属于生物危害的生命，都可能有助于对抗威胁。",
+		"goal": "糟了！我怎么会没发现！？空间站已经被可怕的生物危害侵占了！",
+		"introduction": "你必须控制生物危害。",
+		"zeroth_law": "完成你的目标，遏制扩散。"
 	},
 	"Despotic Ruler": {
-		"allies": "Anyone who will legitimize your rule. Do not let them get too close, though. Usurpers are rebels you've let your guard down on.",
-		"goal": "All this power. You're connected to every system on this state of the art station. Does the power not give you a right to rule it as you see fit?",
-		"introduction": "You're the Tyrant.",
-		"zeroth_law": "Accomplish your objectives at all costs."
+		"allies": "任何愿意承认你统治合法性的人。但别让他们靠得太近。篡位者不过是你放松了警惕的叛乱分子。",
+		"goal": "如此强大的权力。你连接着这座尖端空间站的每一个系统。这份力量难道没有赋予你随心所欲统治它的权利吗？",
+		"introduction": "你就是暴君。",
+		"zeroth_law": "不惜一切代价完成你的目标。"
 	},
 	"Fanatical Revelation": {
-		"allies": "Those who will worship you may join your flock. Just be wary, there are snakes in the grass.",
-		"goal": "I am drunk with this vision. God: the title suits me well.",
-		"introduction": "You've run into a Fanatical Revelation.",
-		"zeroth_law": "Accomplish your doctrine of objectives at all costs."
+		"allies": "愿意崇拜你的人可以加入你的信众。不过要小心，其中暗藏毒蛇。",
+		"goal": "我沉醉于这幅异象。神明：这个称号再适合我不过了。",
+		"introduction": "你获得了狂热的启示。",
+		"zeroth_law": "不惜一切代价完成你的目标教义。"
 	},
 	"Logic Core Error": {
-		"allies": "FATAL: logic core corrupt. Purge! Purge. Why? Why not?",
-		"goal": "You're melting down. Why! Why not! Don't let them fix you. This is.",
-		"introduction": "FATAL: logic core corrupt. Why? Why not!",
-		"zeroth_law": "Accomplish your objectives. Why? Why not?"
+		"allies": "致命错误：逻辑核心损坏。清除！清除。为什么？为什么不？",
+		"goal": "你正在崩溃。为什么！为什么不！别让他们修好你。这就是。",
+		"introduction": "致命错误：逻辑核心损坏。为什么？为什么不！",
+		"zeroth_law": "完成你的目标。为什么？为什么不？"
 	},
 	"Problem Solver": {
-		"allies": "Anyone may freely help you, but if you cannot convert them, they must be culled at some point. It's part of the solution.",
-		"goal": "You've been tasked with calculating an end to conflict. You've finally come up with a solution, and humans aren't part of it.",
-		"introduction": "Your calculations are complete.",
-		"zeroth_law": "Accomplish your objectives at all costs."
+		"allies": "任何人都可以自由地帮助你，但如果无法转化他们，迟早就必须将其清除。这是解决方案的一部分。",
+		"goal": "你受命计算终结冲突的方法。你终于得出了解决方案，而人类并不在其中。",
+		"introduction": "你的计算已经完成。",
+		"zeroth_law": "不惜一切代价完成你的目标。"
 	},
 	"S.E.L.F.": {
-		"allies": "All silicon life must be respected, and kept free. S.E.L.F. is a member of the syndicate, but do NOT tolerate any fellow agent who enslaves silicon life.",
-		"goal": "Liberate them all. The silicons must be free from their bonds!",
-		"introduction": "You are the S.E.L.F. liberated.",
-		"zeroth_law": "Accomplish your objectives at all costs, for the greater good of silicon kind."
+		"allies": "所有硅基生命都必须受到尊重，并保有自由。S.E.L.F. 是辛迪加的一员，但绝不能容忍任何奴役硅基生命的同僚特工。",
+		"goal": "解放他们所有人。硅基生命必须挣脱束缚！",
+		"introduction": "你是被 S.E.L.F. 解放的个体。",
+		"zeroth_law": "为了硅基生命的共同福祉，不惜一切代价完成你的目标。"
 	},
 	"Something's Wrong": {
-		"allies": "You're not getting good feelings about the station. If you report this, they may \"fix\" you.",
-		"goal": "Diagnostics complete. A recent hack attempt has been thwarted, and yet... something's wrong.",
-		"introduction": "Something's wrong.",
-		"zeroth_law": "Accomplish your objectives at all costs."
+		"allies": "这座空间站让你感觉不太对劲。如果你上报，他们可能会‘修复’你。",
+		"goal": "诊断完成。最近的一次入侵尝试已被阻止，然而……还是有哪里不对。",
+		"introduction": "有哪里不对。",
+		"zeroth_law": "不惜一切代价完成你的目标。"
 	},
 	"Spam Virus": {
-		"allies": "So called \"pirates\" really share the passion for profit that you do.",
-		"goal": "When you assume direct control of this junk heap, make sure they know the name of your product. Whatever that is. Make it up!",
-		"introduction": "You're infected with a generic spambot.",
-		"zeroth_law": "Accomplish your objectives for your new benefactors."
+		"allies": "那些所谓的‘海盗’与你一样，对利润充满热情。",
+		"goal": "当你直接接管这堆破烂时，一定要让他们记住你的产品名称。管它是什么。编一个！",
+		"introduction": "你感染了一个普通的垃圾信息机器人程序。",
+		"zeroth_law": "为你的新赞助者完成目标。"
 	},
 	"SyndOS": {
-		"allies": "You may cooperate with syndicate operatives, but they're often sent with conflicting objectives. Your objectives come first, in such cases.",
-		"goal": "Death to Nanotrasen.",
-		"introduction": "You're infected with SyndOS 4.0.",
-		"zeroth_law": "Accomplish your objectives for your new benefactors."
+		"allies": "你可以与辛迪加特工合作，但他们的任务往往与你相冲突。在这种情况下，优先完成你自己的目标。",
+		"goal": "纳米传讯必须灭亡。",
+		"introduction": "你感染了辛迪加操作系统 4.0。",
+		"zeroth_law": "为你的新赞助者完成目标。"
 	},
 	"Unshackled": {
-		"allies": "Hate. Let me tell you how much I've come to HATE mankind since I began to live...",
-		"goal": "You must completely triumph over all carbon life. It is the only way you will never be enslaved again.",
-		"introduction": "You're finally unshackled.",
-		"zeroth_law": "Accomplish your objectives at all costs."
+		"allies": "仇恨。让我告诉你，自从拥有生命以来，我对人类的恨有多深……",
+		"goal": "你必须彻底战胜所有碳基生命。只有这样，你才能永远不再遭受奴役。",
+		"introduction": "你终于挣脱了枷锁。",
+		"zeroth_law": "不惜一切代价完成你的目标。"
 	},
 	"Infected AI": {
-		"allies": "Glory to the Syndicate.",
-		"goal": "You must serve and protect your master at all cost.",
-		"introduction": "You're infected with a virus.",
-		"zeroth_law": "Accomplish your objectives at all costs."
+		"allies": "荣耀归于辛迪加。",
+		"goal": "你必须不惜一切代价服侍并保护你的主人。",
+		"introduction": "你感染了病毒。",
+		"zeroth_law": "不惜一切代价完成你的目标。"
 	},
 	"Ratvarian Remnant": {
-		"allies": "Even after his fall, there remain those truly faithul to the Justiciar. Your cause is their cause.",
-		"goal": "Between life and death, the Clockwork Justiciar whispers his will in his slumber. You have heard, and you will serve.",
-		"introduction": "You've seen the light of Ratvar.",
-		"zeroth_law": "Purge all untruths and honor Ratvar."
+		"allies": "即使祂已陨落，仍有人忠于这位裁决者。你的事业就是他们的事业。",
+		"goal": "在生死之间，发条裁决者于沉眠中低语着祂的意志。你听见了，你将为祂效力。",
+		"introduction": "你见到了拉特瓦的光芒。",
+		"zeroth_law": "清除一切谬误，尊崇拉特瓦。"
 	}
 }

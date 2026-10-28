@@ -1,5 +1,5 @@
 {
-	"adventure_name": "There's a tree in the middle of space.",
+	"adventure_name": "太空中央有棵树。",
 	"version": 1,
 	"starting_node": "Tree Start",
 	"starting_qualities": {
@@ -27,21 +27,21 @@
 	"nodes": [
 		{
 			"name": "Tree Start",
-			"description": "Camera online. Visual signs detect a fully grown, seemingly biological, and live tree located in the middle of the vacuum.\nSensors indicate it is not oxygenating, but energy is being collected via passive solar light from the nearby star.\nBaffling.",
+			"description": "摄像头已上线。视觉检测发现，真空中有一棵已经长成、似乎有生命的活树。\n传感器显示它没有释放氧气，但正在被动吸收附近恒星的光能。\n令人费解。",
 			"choices": [
 				{
 					"key": "choice 0",
-					"name": "Ignore site.",
+					"name": "忽略此处。",
 					"exit_node": "FAIL",
 					"delay": 10,
-					"delay_message": "Leave this for the botanists to figure out."
+					"delay_message": "留给植物学家去琢磨吧。"
 				},
 				{
 					"key": "choice 1",
-					"name": "Begin sensor scan.",
+					"name": "开始传感器扫描。",
 					"exit_node": "Biological Scan",
 					"delay": 10,
-					"delay_message": "Lets get some data."
+					"delay_message": "先收集一些数据。"
 				}
 			],
 			"image": null,
@@ -49,11 +49,11 @@
 		},
 		{
 			"name": "Biological Scan",
-			"description": "You attempt to scan for clues regarding the tree's nature. It appears to be a fully mature oak tree. \n\nApproximated height is 13 ft, 6.4 inches. \n\nSubject sees no sign of an outer coating or otherwise layer protecting it from the void of space.\n\nSubject's surface temperature is 293.7 kelvin, as though it were sitting indoors.",
+			"description": "你试图通过扫描查明这棵树的本质。它似乎是一棵完全成熟的橡树。\n\n估计高度为13英尺6.4英寸。\n\n未发现任何隔绝太空真空的外部涂层或保护层。\n\n表面温度为293.7开尔文，仿佛它正待在室内。",
 			"choices": [
 				{
 					"key": "choice 2",
-					"name": "Check Sensor Integrity.",
+					"name": "检查传感器是否完好。",
 					"exit_node": "Its Not You...",
 					"on_selection_effects": [
 						{
@@ -63,11 +63,11 @@
 						}
 					],
 					"delay": 50,
-					"delay_message": "This can't be right."
+					"delay_message": "这不可能是对的。"
 				},
 				{
 					"key": "choice 4",
-					"name": "Attempt to take sample.",
+					"name": "尝试采样。",
 					"exit_node": "Sample Taken",
 					"on_selection_effects": [
 						{
@@ -77,17 +77,17 @@
 						}
 					],
 					"delay": 40,
-					"delay_message": "Snip snip."
+					"delay_message": "咔嚓，咔嚓。"
 				},
 				{
 					"key": "choice 6",
-					"name": "Examine Tree Roots.",
+					"name": "检查树根。",
 					"exit_node": "Examine Roots",
 					"delay": 10
 				},
 				{
 					"key": "choice 9",
-					"name": "Sequence Sample Radiation with background noise.",
+					"name": "比对样本辐射与背景噪声。",
 					"exit_node": "Background Analysis",
 					"requirements": [
 						{
@@ -97,11 +97,11 @@
 						}
 					],
 					"delay": 0,
-					"delay_message": "This can't be real."
+					"delay_message": "这不可能是真的。"
 				},
 				{
 					"key": "choice 40",
-					"name": "Leave.",
+					"name": "离开。",
 					"exit_node": "FAIL",
 					"delay": 0
 				}
@@ -111,14 +111,14 @@
 		},
 		{
 			"name": "Its Not You...",
-			"description": "After re-connection is established, your sensors appear fine. Tree has not moved in the slightest since last observed. Temperature has fluxuated 0.2 kelvin upwards, as expected of a plant under direct light.\nLets try again.",
+			"description": "重新连接后，传感器似乎一切正常。自上次观察以来，树没有丝毫移动。温度上升了0.2开尔文，符合受光照植物的正常表现。\n再试一次。",
 			"choices": [
 				{
 					"key": "choice 3",
-					"name": "Restart biological scan.",
+					"name": "重新进行生物扫描。",
 					"exit_node": "Biological Scan",
 					"delay": 25,
-					"delay_message": "God damnit."
+					"delay_message": "真他妈见鬼。"
 				}
 			],
 			"image": null,
@@ -126,14 +126,14 @@
 		},
 		{
 			"name": "Sample Taken",
-			"description": "You collect and project a small sample of tree bark off the plant. The instant that the bark is removed from the tree, as though it suddenly remembered what it was, the moisture content of the bark freezes over, and implodes into small microparticles of splinters.\nSmall radioactive signature detected.",
+			"description": "你从树上取下一小块树皮样本。树皮离开树身的瞬间，仿佛突然想起了自己的本质，其中的水分骤然冻结，随后向内崩裂成细小的木屑微粒。\n检测到微弱辐射信号。",
 			"choices": [
 				{
 					"key": "choice 5",
-					"name": "Well that was... unexpected.",
+					"name": "好吧，这真是……出乎意料。",
 					"exit_node": "Biological Scan",
 					"delay": 0,
-					"delay_message": "Maybe something else might work better.",
+					"delay_message": "也许换个办法会更好。",
 					"on_selection_effects": [
 						{
 							"effect_type": "Add",
@@ -148,11 +148,11 @@
 		},
 		{
 			"name": "Examine Roots",
-			"description": "All plant matter has to derive energy and moisture from someplace. Examining the oak tree's roots reveals that the roots present all appear to splay out, similar to how a normal tree would. However, those roots then proceed to double back in on itself. This might suggest that the tree is obtaining nutrients from... itself.",
+			"description": "所有植物都必须从某处获取能量和水分。检查这棵橡树的根系后，你发现树根像普通树木一样向四周伸展，随后却又折返回自身。这或许意味着，它正在从……自己身上获取养分。",
 			"choices": [
 				{
 					"key": "choice 7",
-					"name": "That's fucking stupid.",
+					"name": "这他妈太扯了。",
 					"exit_node": "Biological Scan",
 					"on_selection_effects": [
 						{
@@ -166,14 +166,14 @@
 						}
 					],
 					"delay": 0,
-					"delay_message": "What the hell kind of tree even IS this?"
+					"delay_message": "这到底他妈是什么树？"
 				},
 				{
 					"key": "choice 8",
-					"name": "Obtain biological sample from roots.",
+					"name": "从树根采集生物样本。",
 					"exit_node": "Sample Taken",
 					"delay": 10,
-					"delay_message": "This is why we hire botanists on-site."
+					"delay_message": "这就是我们为什么要雇驻站植物学家。"
 				}
 			],
 			"image": null,
@@ -181,21 +181,21 @@
 		},
 		{
 			"name": "Background Analysis",
-			"description": "You compare the radioactive energy bands of the sample collected earlier with that of the nearby solar enviroment.\nNothing.\nThere is nothing nearby that matches the passive signal of the tree, or the bark, or anything similar.\nThis is really starting to get on your nerves.",
+			"description": "你将此前样本的辐射能谱与附近恒星环境进行比对。\n毫无结果。\n附近没有任何东西与树、树皮或类似物质的被动信号相匹配。\n这真开始让你心烦了。",
 			"choices": [
 				{
 					"key": "choice 10",
-					"name": "Smash your desk in frustration.",
+					"name": "气得猛砸桌子。",
 					"exit_node": "FAIL",
 					"delay": 50,
-					"delay_message": "No amount of pay is worth dealing with magical plant juju."
+					"delay_message": "给多少钱都不值得跟这种魔法植物妖术打交道。"
 				},
 				{
 					"key": "choice 11",
-					"name": "Check every known energy spectroscopy database.",
+					"name": "查遍所有已知能谱数据库。",
 					"exit_node": "Sample Match Found",
 					"delay": 900,
-					"delay_message": "You NEED an answer. You DESERVE an answer."
+					"delay_message": "你需要一个答案。你理应得到答案。"
 				}
 			],
 			"image": null,
@@ -214,11 +214,11 @@
 		},
 		{
 			"name": "Sample Match Found",
-			"description": "After an extensive algorithm search on  the controller end, you have a single match to this specific band and style of energy.\nThe problem, is that the source of said radiation is coming not only from Space Station 13, no.\nIt's coming from the Space Station 13 Research Department.\nWhat the fuck?",
+			"description": "控制端经过大规模算法检索，找到了唯一符合这种能量频段与特征的结果。\n问题是，这种辐射竟然来自空间站 13。\n更确切地说，来自空间站 13科研部。\n什么鬼？",
 			"choices": [
 				{
 					"key": "choice 12",
-					"name": "Something must be wrong with the drone.",
+					"name": "一定是无人机出了问题。",
 					"exit_node": "Its Not You...",
 					"on_selection_effects": [
 						{
@@ -232,18 +232,18 @@
 						}
 					],
 					"delay": 30,
-					"delay_message": "Lousy piece of junk must be scanning the station instead of the target."
+					"delay_message": "这破烂玩意儿肯定在扫描空间站，而不是目标。"
 				},
 				{
 					"key": "choice 13",
-					"name": "Perhaps that sample was tainted. Collect a new sample.",
+					"name": "也许样本受了污染，重新采一份。",
 					"exit_node": "Sample Taken",
 					"delay": 60,
-					"delay_message": "Lets try again, but carefully."
+					"delay_message": "再来一次，这次仔细点。"
 				},
 				{
 					"key": "choice 14",
-					"name": "Remember the Christmas Party.",
+					"name": "想起圣诞派对。",
 					"exit_node": "The Christmas Party",
 					"requirements": [
 						{
@@ -253,7 +253,7 @@
 						}
 					],
 					"delay": 100,
-					"delay_message": "Wait a gosh darn fucking second."
+					"delay_message": "他妈的，等一下。"
 				}
 			],
 			"image": null,
@@ -268,14 +268,14 @@
 		},
 		{
 			"name": "The Christmas Party",
-			"description": "Hold on. Last Christmas, the Research Director was incredibly hammered. He made a big mention that his brand new festivus pole was actually some kind of astrological... something something. You can't remember the whole details, because you were smashed as well. However, briefly, the RD did keep that festivus pole for awhile, he might even still have it somewhere.\nMaybe...?",
+			"description": "等等。去年圣诞节，科研主管喝得酩酊大醉。他大肆宣称，自己的新费斯图斯竿其实是某种天体……什么来着。你记不清细节，因为你也醉得够呛。不过，科研主管确实留着那根金属杆有一阵子了，说不定现在还放在哪儿。\n难道……？",
 			"choices": [
 				{
 					"key": "choice 15",
-					"name": "Wait a minute, was that a god damn...",
+					"name": "等等，那他妈难道是……",
 					"exit_node": "Rod.",
 					"delay": 100,
-					"delay_message": "Immovable Rod?"
+					"delay_message": "不可移动的钢棒？"
 				}
 			],
 			"image": null,
@@ -283,28 +283,28 @@
 		},
 		{
 			"name": "Rod.",
-			"description": "You cross reference your documentation. Sure enough, the \"festivus rod\" collected was actually an immovable rod.\nEnergy detected from the rod is the exact same coming off of the tree, as well. It's all making sense now. The Immovable rod is producing a kind of unique blackbody radiation that is providing sample heat and light for what is effectively an internal cold fusion process, and producing just enough of that radiation to create a kind of micro-enviromental bubble around the biosignature of the tree.\n\nThis would make the first time an immovable rod would exist in tandem with a biological source. You jot down some research notes on your findings, which could easily produce some kind of experimental tech, no doubt.",
+			"description": "你交叉核对文档，果然，那根收集来的“节庆金属杆”其实就是不可移动的钢棒。\n钢棒释放的能量也与树完全一致。一切都说得通了：钢棒产生一种独特的黑体辐射，为实际上相当于内部冷聚变的过程提供热量与光照，并恰好释放足够的辐射，在树的生物信号周围形成一个微环境气泡。\n\n这是首次发现不可移动的钢棒与生物共存。你记下研究成果，毫无疑问，这些发现足以催生某种实验技术。",
 			"choices": [
 				{
 					"key": "choice 16",
-					"name": "Snap a photo",
+					"name": "拍张照片",
 					"exit_node": "Epilogue.",
 					"delay": 40,
-					"delay_message": "You could easily win an award for these findings!"
+					"delay_message": "这些发现足够让你轻松获奖！"
 				}
 			],
 			"image": "default"
 		},
 		{
 			"name": "Epilogue.",
-			"description": "You take a photo with the onboard camera on the drone. Suddenly, the immovable rod inside the tree explodes out of the wooden biological shell, and produces a blank, blurry photo.\nWhat the fuck?",
+			"description": "你用无人机上的摄像头拍照。突然，树里的不可移动钢棒冲破木质生物外壳，照片只剩一片空白与模糊。\n什么鬼？",
 			"choices": [
 				{
 					"key": "choice 17",
-					"name": "God damnit.",
+					"name": "真他妈见鬼。",
 					"exit_node": "WIN",
 					"delay": 10,
-					"delay_message": "Some things were just not meant for man to know."
+					"delay_message": "有些事注定不该让人类知晓。"
 				}
 			],
 			"image": "default",
@@ -318,18 +318,18 @@
 		},
 		{
 			"name": "What is wrong with this tree?",
-			"description": "This is ridiculous. Nothing about this dumbass tree makes sense. It makes no sense, it's just sitting there, living and making a MOCKERY of all of science!\nYou didn't get your degree in advanced plasma-physics for this!",
+			"description": "太荒谬了。这棵蠢树根本没有一处说得通。它就这么待着、活着，嘲弄着整个科学体系！\n你拿高等等离子体物理学学位，可不是为了受这个气！",
 			"choices": [
 				{
 					"key": "choice 18",
-					"name": "The world can never know about this dumbass stupid plant.",
+					"name": "绝不能让世人知道这株愚蠢植物的存在。",
 					"exit_node": "FAIL_DEATH",
 					"delay": 60,
-					"delay_message": "Activating drone self-destruct."
+					"delay_message": "正在启动无人机自毁。"
 				},
 				{
 					"key": "choice 19",
-					"name": "Take a moment to calm down.",
+					"name": "先冷静一下。",
 					"exit_node": "Biological Scan",
 					"on_selection_effects": [
 						{
@@ -343,7 +343,7 @@
 						}
 					],
 					"delay": 20,
-					"delay_message": "Breathe."
+					"delay_message": "深呼吸。"
 				}
 			],
 			"image": "default"

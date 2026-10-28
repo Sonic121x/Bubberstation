@@ -29,9 +29,9 @@ export const ChemPress = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Product">
+            <LabeledList.Item label="成品">
               <Button.Checkbox
-                content="Pills"
+                content="药丸"
                 checked={product === 'pill'}
                 onClick={() =>
                   act('change_product', {
@@ -40,7 +40,7 @@ export const ChemPress = (props) => {
                 }
               />
               <Button.Checkbox
-                content="Patches"
+                content="贴片"
                 checked={product === 'patch'}
                 onClick={() =>
                   act('change_product', {
@@ -49,7 +49,7 @@ export const ChemPress = (props) => {
                 }
               />
               <Button.Checkbox
-                content="Bottles"
+                content="药瓶"
                 checked={product === 'bottle'}
                 onClick={() =>
                   act('change_product', {
@@ -58,7 +58,7 @@ export const ChemPress = (props) => {
                 }
               />
               <Button.Checkbox
-                content="Vials"
+                content="试剂瓶"
                 checked={product === 'vial'}
                 onClick={() =>
                   act('change_product', {
@@ -67,7 +67,7 @@ export const ChemPress = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Volume">
+            <LabeledList.Item label="体积">
               <NumberInput
                 value={current_volume}
                 unit="u"
@@ -83,7 +83,7 @@ export const ChemPress = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Name">
+            <LabeledList.Item label="名称">
               <Input
                 value={product_name}
                 placeholder={product_name}
@@ -93,10 +93,10 @@ export const ChemPress = (props) => {
                   })
                 }
               />
-              <Box as="span">{product}</Box>
+              <Box as="span">{{ pill: '药丸', patch: '贴片', bottle: '药瓶', vial: '试剂瓶' }[product] || product}</Box>
             </LabeledList.Item>
             {product === 'pill' && (
-              <LabeledList.Item label="Style">
+              <LabeledList.Item label="样式">
                 {pill_styles.map((pill) => (
                   <Button
                     key={pill.id}
@@ -116,7 +116,7 @@ export const ChemPress = (props) => {
               </LabeledList.Item>
             )}
             {product === 'patch' && (
-              <LabeledList.Item label="Style">
+              <LabeledList.Item label="样式">
                 {patch_styles.map((patch) => (
                   <Button
                     key={patch.style}

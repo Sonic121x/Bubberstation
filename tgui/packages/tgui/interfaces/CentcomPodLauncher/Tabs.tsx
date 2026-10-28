@@ -6,9 +6,9 @@ import type { PodLauncherData } from './types';
 export function TabPod(props) {
   return (
     <Box color="label">
-      Note: You can right click on this
+      注意：你可以右键点击这个
       <br />
-      blueprint pod and edit vars directly
+      空投舱模板，直接编辑变量
     </Box>
   );
 }
@@ -20,14 +20,14 @@ export function TabBay(props) {
   return (
     <>
       <Button icon="street-view" onClick={() => act('teleportCentcom')}>
-        Teleport
+        传送
       </Button>
       <Button
         disabled={!oldArea}
         icon="undo-alt"
         onClick={() => act('teleportBack')}
       >
-        {oldArea ? oldArea.substring(0, 17) : 'Go Back'}
+        {oldArea ? oldArea.substring(0, 17) : '返回'}
       </Button>
     </>
   );
@@ -40,14 +40,14 @@ export function TabDrop(props) {
   return (
     <>
       <Button icon="street-view" onClick={() => act('teleportDropoff')}>
-        Teleport
+        传送
       </Button>
       <Button
         disabled={!oldArea}
         icon="undo-alt"
         onClick={() => act('teleportBack')}
       >
-        {oldArea ? oldArea.substring(0, 17) : 'Go Back'}
+        {oldArea ? oldArea.substring(0, 17) : '返回'}
       </Button>
     </>
   );

@@ -24,11 +24,11 @@ export const NanopaintNewDialog = (props: NanopaintNewDialogProps) => {
   const [templatesOpen, setTemplatesOpen] = useState(false);
   return (
     <Dimmer>
-      <Section title="New Project">
+      <Section title="新建项目">
         <Stack vertical>
           <Stack.Item>
             <LabeledList>
-              <LabeledList.Item label="Width">
+              <LabeledList.Item label="宽度">
                 <NumberInput
                   value={width}
                   minValue={minSize}
@@ -37,7 +37,7 @@ export const NanopaintNewDialog = (props: NanopaintNewDialogProps) => {
                   onChange={(v) => setWidth(Math.round(v))}
                 />
               </LabeledList.Item>
-              <LabeledList.Item label="Height">
+              <LabeledList.Item label="高度">
                 <NumberInput
                   value={height}
                   minValue={minSize}
@@ -88,7 +88,7 @@ export const NanopaintNewDialog = (props: NanopaintNewDialogProps) => {
                 iconPosition="right"
                 onClick={() => setTemplatesOpen(!templatesOpen)}
               >
-                Template Sizes
+                模板尺寸
               </Button>
             </Floating>
           </Stack.Item>
@@ -96,11 +96,11 @@ export const NanopaintNewDialog = (props: NanopaintNewDialogProps) => {
             <Stack fill justify="end">
               <Stack.Item>
                 <Button onClick={() => act('new', { width, height })}>
-                  OK
+                  确定
                 </Button>
               </Stack.Item>
               <Stack.Item>
-                <Button onClick={() => act('closeDialog')}>Cancel</Button>
+                <Button onClick={() => act('closeDialog')}>取消</Button>
               </Stack.Item>
             </Stack>
           </Stack.Item>

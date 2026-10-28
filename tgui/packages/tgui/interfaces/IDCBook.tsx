@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Section, Stack } from 'tgui-core/components';
 import { type BookEntry, BookUI, type TOCEntry } from './common/PaginatedBook';
 import '../styles/interfaces/DeForestLogo.scss';
-
+import { idcCode, idcDisplay } from '../localization/idcDisplay';
 type Disease = {
   name: string; // used by symptoms and diseases - name of the disease or symptom
   desc: string; // used by symptoms and diseases - description of the disease or symptom
@@ -20,11 +20,11 @@ type DiseaseData = {
 };
 
 function isSymptom(entry: BookEntry<Disease>) {
-  return entry.form.toLowerCase() === 'symptom';
+  return idcCode(entry.form) === 'symptom';
 }
 
 function formToColor(form: string) {
-  switch (form.toLowerCase()) {
+  switch (idcCode(form)) {
     case 'symptom':
       return 'lightgreen';
     case 'condition':
@@ -41,13 +41,13 @@ function formToColor(form: string) {
 }
 
 function formatSpreadBy(spread_by: string) {
-  switch (spread_by.toLowerCase()) {
+  switch (idcCode(spread_by)) {
     case 'airborne':
       return (
         <Stack align="end">
-          <Stack.Item>Airborne</Stack.Item>
+          <Stack.Item>空气传播</Stack.Item>
           <Stack.Item fontSize="10px" pb={0.2}>
-            (e.g. coughing, sneezing)
+            （例如咳嗽、打喷嚏）
           </Stack.Item>
         </Stack>
       );
@@ -55,36 +55,36 @@ function formatSpreadBy(spread_by: string) {
     case 'contact':
       return (
         <Stack align="end">
-          <Stack.Item>Contact</Stack.Item>
+          <Stack.Item>接触传播</Stack.Item>
           <Stack.Item fontSize="10px" pb={0.2}>
-            (e.g. touching infected persons)
+            （例如触碰感染者）
           </Stack.Item>
         </Stack>
       );
     case 'fluid contact':
       return (
         <Stack align="end">
-          <Stack.Item>Liquids</Stack.Item>
+          <Stack.Item>液体传播</Stack.Item>
           <Stack.Item fontSize="10px" pb={0.2}>
-            (e.g. touching contaminated fluids)
+            （例如接触受污染的液体）
           </Stack.Item>
         </Stack>
       );
     case 'blood':
       return (
         <Stack align="end">
-          <Stack.Item>Blood</Stack.Item>
+          <Stack.Item>血液传播</Stack.Item>
           <Stack.Item fontSize="10px" pb={0.2}>
-            (e.g. tranfusion of infected blood)
+            （例如输入感染者的血液）
           </Stack.Item>
         </Stack>
       );
     case 'none':
       return (
         <Stack align="end">
-          <Stack.Item>None</Stack.Item>
+          <Stack.Item>无</Stack.Item>
           <Stack.Item fontSize="10px" pb={0.2}>
-            (non-contagious)
+            （不传染）
           </Stack.Item>
         </Stack>
       );
@@ -98,7 +98,7 @@ function estimateHeight(entry: BookEntry<Disease>) {
   const extra_spacing = 40;
   if (isSymptom(entry)) {
     const desc_height = Math.ceil(entry.desc.length / 50) * 14;
-    const illness_height = entry.illness !== 'Unidentified' ? 10 : 0;
+    const illness_height = !['Unidentified', '未识别'].includes(entry.illness) ? 10 : 0;
     const cured_by_height = 10;
     const level_height = 10;
 
@@ -138,7 +138,7 @@ function renderDSMEntry(entry: BookEntry<Disease>) {
         <Stack align="end">
           <Stack.Item grow>{entry.name}</Stack.Item>
           <Stack.Item italic fontSize="10px" pb={0.2} pr={0.5}>
-            ({entry.form})
+            （{idcDisplay(entry.form)}）
           </Stack.Item>
         </Stack>
       }
@@ -148,20 +148,20 @@ function renderDSMEntry(entry: BookEntry<Disease>) {
           <>
             <Stack.Item>
               <Box inline color="label">
-                Description:
+                描述：
               </Box>{' '}
               {entry.desc}
             </Stack.Item>
             <Stack.Item>
               <Box inline color="label">
-                Level:
+                等级：
               </Box>{' '}
               {entry.level}
             </Stack.Item>
-            {entry.illness !== 'Unidentified' && (
+            {!['Unidentified', '未识别'].includes(entry.illness) && (
               <Stack.Item>
                 <Box inline color="label">
-                  Common associated illness:
+                  常见相关疾病：
                 </Box>{' '}
                 "{entry.illness}"
               </Stack.Item>
@@ -169,7 +169,7 @@ function renderDSMEntry(entry: BookEntry<Disease>) {
             {!!entry.cured_by && (
               <Stack.Item>
                 <Box inline color="label">
-                  Common cures:
+                  常见治疗方法：
                 </Box>{' '}
                 {entry.cured_by}
               </Stack.Item>
@@ -179,25 +179,25 @@ function renderDSMEntry(entry: BookEntry<Disease>) {
           <>
             <Stack.Item>
               <Box inline color="label">
-                Agent:
+                病因：
               </Box>{' '}
               {entry.agent}
             </Stack.Item>
             <Stack.Item>
               <Box inline color="label">
-                Description:
+                描述：
               </Box>{' '}
               {entry.desc}
             </Stack.Item>
             <Stack.Item>
               <Box inline color="label">
-                Spread By:
+                传播途径：
               </Box>{' '}
               <Box inline>{formatSpreadBy(entry.spread_by)}</Box>
             </Stack.Item>
             <Stack.Item>
               <Box inline color="label">
-                Cured By:
+                治疗方法：
               </Box>{' '}
               {entry.cured_by}
             </Stack.Item>
@@ -223,7 +223,7 @@ function renderTOCEntry(tocentry: TOCEntry<Disease>) {
         }}
         pb={0.2}
       >
-        ({tocentry.entry.form})
+        （{idcDisplay(tocentry.entry.form)}）
       </Stack.Item>
     </Stack>
   );

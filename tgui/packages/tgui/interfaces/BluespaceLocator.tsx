@@ -103,7 +103,7 @@ export const BluespaceLocator = (props) => {
               color="rgba(100, 150, 255, 0.5)"
               style={{ filter: 'blur(1px)' }}
             />
-            <div>Bluespace signatures not detected</div>
+            <div>未检测到蓝空间信号</div>
             <div
               style={{
                 fontSize: '0.9rem',
@@ -111,7 +111,7 @@ export const BluespaceLocator = (props) => {
                 maxWidth: '80%',
               }}
             >
-              No active tracking implants detected within operational range
+              工作范围内未检测到活动的追踪植入物
             </div>
           </div>
         </Window.Content>
@@ -152,7 +152,7 @@ export const BluespaceLocator = (props) => {
                 />
               )}
               <Input
-                placeholder="Search targets..."
+                placeholder="搜索目标……"
                 value={searchQuery}
                 onChange={(value) => setSearchQuery(value)}
                 width="100%"
@@ -276,7 +276,7 @@ export const BluespaceLocator = (props) => {
                 }}
               >
                 <Icon name="search" size={3} color="rgba(200, 200, 200, 0.5)" />
-                <div>No targets matching search criteria</div>
+                <div>没有符合搜索条件的目标</div>
               </div>
             ) : selectedImplant ? (
               <>
@@ -309,7 +309,7 @@ export const BluespaceLocator = (props) => {
                       fontSize: '1.1rem',
                     }}
                   >
-                    Distance: {selectedImplant.distance}
+                    距离：{selectedImplant.distance}
                   </div>
                 </div>
               </>

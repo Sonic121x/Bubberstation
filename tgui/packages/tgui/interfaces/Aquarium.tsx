@@ -68,7 +68,7 @@ export const Aquarium = (props) => {
           <Stack.Item grow>
             <Flex>
               <Flex.Item height="300px" width="75%">
-                <Section fill title="Fish" scrollable>
+                <Section fill title="鱼类" scrollable>
                   <Stack wrap>
                     {fishData.map((fish) => (
                       <Stack.Item
@@ -174,7 +174,7 @@ const FishInfo = (props: FishInfoProps) => {
                 })
               }
             >
-              Pet
+              抚摸
             </Button>
           </Flex.Item>
           <Flex.Item width="50%">
@@ -184,7 +184,7 @@ const FishInfo = (props: FishInfoProps) => {
               ml={1}
               fluid
               icon="keyboard"
-              buttonText="Rename"
+              buttonText="重命名"
               color="transparent"
               onCommit={(value) => {
                 act('rename_fish', {
@@ -211,7 +211,7 @@ const PropTypes = (props) => {
   const { propData } = data;
 
   return (
-    <Section scrollable fill title="Props">
+    <Section scrollable fill title="装饰物">
       <Stack vertical>
         {propData.map((prop) => (
           <Stack.Item className="candystripe" key={prop.prop_ref}>
@@ -289,7 +289,7 @@ const Settings = (props) => {
   return (
     <Flex fill>
       <Flex.Item grow>
-        <Section fill title="Temperature">
+        <Section fill title="温度">
           {!!lockedFluidTemp && <LockedSection />}
           <Knob
             mt={3}
@@ -310,7 +310,7 @@ const Settings = (props) => {
         </Section>
       </Flex.Item>
       <Flex.Item ml={1} grow>
-        <Section fill title="Fluid">
+        <Section fill title="介质">
           {!!lockedFluidTemp && <LockedSection />}
           <Flex direction="column" mb={1}>
             {fluidTypes.map((f) => (
@@ -329,10 +329,10 @@ const Settings = (props) => {
         </Section>
       </Flex.Item>
       <Flex.Item ml={1} grow>
-        <Section fill title="Settings">
+        <Section fill title="设置">
           <Box mt={2}>
             <LabeledList>
-              <LabeledList.Item label="Aquarium Mode">
+              <LabeledList.Item label="水族箱模式">
                 <Dropdown
                   width="80%"
                   selected={currentMode} displayText={chineseDisplay(currentMode)}
@@ -350,14 +350,14 @@ const Settings = (props) => {
                   />
                 </Tooltip>
               </LabeledList.Item>
-              <LabeledList.Item label="Feeding Interval">
+              <LabeledList.Item label="喂食间隔">
                 <NumberInput
                   width="15px"
                   value={feedingInterval}
                   minValue={1}
                   maxValue={7}
                   step={1}
-                  unit="minutes"
+                  unit="分钟"
                   onChange={(value) =>
                     act('feeding_interval', {
                       feeding_interval: value,
@@ -383,7 +383,7 @@ const LockedSection = () => {
         <Stack ml={-2}>
           <Icon color="red" name="lock" size={3} />
         </Stack>
-        <Stack.Item fontSize="20px">LOCKED</Stack.Item>
+        <Stack.Item fontSize="20px">已锁定</Stack.Item>
       </Stack>
     </Dimmer>
   );

@@ -4,11 +4,11 @@ import { createSearch } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
-
+import { recordDisplay } from '../localization/batchThreeDisplay'; import { displayRole } from '../localization/roleDisplay';
 export const NtosRecords = (props) => {
   const { act, data } = useBackend();
   const [searchTerm, setSearchTerm] = useState('');
-  const { mode, records } = data;
+  const { mode, records } = data; const zh = (value) => displayRole(recordDisplay(value, data));
 
   const isMatchingSearchTerms = createSearch(searchTerm);
 
@@ -16,11 +16,11 @@ export const NtosRecords = (props) => {
     <NtosWindow width={600} height={800}>
       <NtosWindow.Content scrollable>
         <Section textAlign="center">
-          NANOTRASEN PERSONNEL RECORDS (CLASSIFIED)
+          纳米传讯人事档案（机密）
         </Section>
         <Section>
           <Input
-            placeholder="Filter results..."
+            placeholder="筛选结果……"
             value={searchTerm}
             fluid
             textAlign="center"
@@ -38,11 +38,11 @@ export const NtosRecords = (props) => {
                   isMatchingSearchTerms(
                     record.name +
                       ' ' +
-                      record.rank +
+                      record.rank + zh(record.rank) +
                       ' ' +
-                      record.species +
+                      record.species + zh(record.species) +
                       ' ' +
-                      record.gender +
+                      record.gender + zh(record.gender) +
                       ' ' +
                       record.age +
                       ' ' +
@@ -60,24 +60,24 @@ export const NtosRecords = (props) => {
                 {record.name}
               </Box>
               <br />
-              Rank: {record.rank}
+              职务：{zh(record.rank)}
               <br />
-              Species: {record.species}
+              种族：{zh(record.species)}
               <br />
-              Gender: {record.gender}
+              性别：{zh(record.gender)}
               <br />
               {/* SKYRAT EDIT CHANGE - Chronological age, ORIGINAL: Age: {record.age} */}
-              Physical Age: {record.age}
+              生理年龄：{record.age}
               {/* SKYRAT EDIT CHANGE END */}
               <br />
               {/* SKYRAT EDIT ADDITION BEGIN - Chronological age */}
-              Chronological Age: {record.chrono_age}
+              实际年龄：{record.chrono_age}
               <br />
               {/* SKYRAT EDIT ADDITION END */}
-              Fingerprint Hash: {record.fingerprint}
+              指纹哈希：{record.fingerprint}
               <br />
               <br />
-              Criminal Status: {record.wanted || 'DELETED'}
+              犯罪状态：{record.wanted ? zh(record.wanted) : '已删除'}
             </Section>
           ))}
         {mode === 'medical' &&
@@ -92,9 +92,9 @@ export const NtosRecords = (props) => {
                       ' ' +
                       record.bloodtype +
                       ' ' +
-                      record.mental_status +
+                      record.mental_status + zh(record.mental_status) +
                       ' ' +
-                      record.physical_status,
+                      record.physical_status + zh(record.physical_status),
                   )
                 )
               }
@@ -105,23 +105,23 @@ export const NtosRecords = (props) => {
               </Box>
               <br />
               {/* SKYRAT EDIT ADDITION BEGIN - Chronological age */}
-              Physical Age: {record.age}
+              生理年龄：{record.age}
               <br />
-              Chronological Age: {record.chrono_age}
+              实际年龄：{record.chrono_age}
               <br />
               {/* SKYRAT EDIT ADDITION END */}
-              Bloodtype: {record.bloodtype}
+              血型：{record.bloodtype}
               <br />
-              Minor Disabilities:
+              轻度残疾：
               {record.mi_dis?.split('<br>').map((entry, index) => (
                 <Box key={index}>&#8226; {entry}</Box>
               ))}
-              Major Disabilities:
+              重度残疾：
               {record.ma_dis?.split('<br>').map((entry, index) => (
                 <Box key={index}>&#8226; {entry}</Box>
               ))}
               <br />
-              Notes: {record.notes}
+              备注：{record.notes}
             </Section>
           ))}
       </NtosWindow.Content>

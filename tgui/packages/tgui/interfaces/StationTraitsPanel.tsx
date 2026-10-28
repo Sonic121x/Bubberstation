@@ -59,7 +59,7 @@ const FutureStationTraitsPage = (props) => {
           <Dropdown
             onSelected={setSelectedTrait}
             options={traitNames}
-            placeholder="Select trait to add..."
+            placeholder="选择要添加的特性……"
             selected={selectedTrait}
             width="100%"
           />
@@ -96,7 +96,7 @@ const FutureStationTraitsPage = (props) => {
               });
             }}
           >
-            Add
+            添加
           </Button>
         </Stack.Item>
       </Stack>
@@ -124,7 +124,7 @@ const FutureStationTraitsPage = (props) => {
                         });
                       }}
                     >
-                      Delete
+                      删除
                     </Button>
                   </Stack.Item>
                 </Stack>
@@ -133,23 +133,23 @@ const FutureStationTraitsPage = (props) => {
           </Stack>
         ) : (
           <>
-            <Box>No station traits will run next round.</Box>
+            <Box>下一回合将不启用空间站特性。</Box>
 
             <Box>
               <Button
                 color="red"
                 icon="times"
-                tooltip="The next round will roll station traits randomly, just like normal"
+                tooltip="下一回合将照常随机选择空间站特性"
                 onClick={() => act('clear_future_traits')}
               >
-                Run Station Traits Normally
+                照常启用空间站特性
               </Button>
             </Box>
           </>
         )
       ) : (
         <>
-          <Box>No future station traits are planned.</Box>
+          <Box>尚未安排后续回合的空间站特性。</Box>
 
           <Box>
             <Button
@@ -161,7 +161,7 @@ const FutureStationTraitsPage = (props) => {
                 })
               }
             >
-              Prevent station traits from running next round
+              禁用下一回合的空间站特性
             </Button>
           </Box>
         </>
@@ -182,14 +182,14 @@ const ViewStationTraitsPage = (props) => {
 
             <Stack.Item>
               <Button.Confirm
-                content="Revert"
+                content="撤销"
                 color="red"
                 disabled={data.too_late_to_revert || !stationTrait.can_revert}
                 tooltip={
                   (!stationTrait.can_revert &&
-                    'This trait is not revertable.') ||
+                    '此特性不可撤销。') ||
                   (data.too_late_to_revert &&
-                    "It's too late to revert station traits, the round has already started.")
+                    '回合已经开始，无法再撤销空间站特性。')
                 }
                 icon="times"
                 onClick={() =>
@@ -204,7 +204,7 @@ const ViewStationTraitsPage = (props) => {
       ))}
     </Stack>
   ) : (
-    <Box>There are no active station traits.</Box>
+    <Box>没有生效中的空间站特性。</Box>
   );
 };
 
@@ -225,7 +225,7 @@ export const StationTraitsPanel = (props) => {
   }
 
   return (
-    <Window title="Modify Station Traits" height={500} width={500}>
+    <Window title="修改空间站特性" height={500} width={500}>
       <Window.Content scrollable>
         <Tabs>
           <Tabs.Tab
@@ -233,7 +233,7 @@ export const StationTraitsPanel = (props) => {
             selected={currentTab === Tab.ViewStationTraits}
             onClick={() => setCurrentTab(Tab.ViewStationTraits)}
           >
-            View
+            查看
           </Tabs.Tab>
 
           <Tabs.Tab
@@ -241,7 +241,7 @@ export const StationTraitsPanel = (props) => {
             selected={currentTab === Tab.SetupFutureStationTraits}
             onClick={() => setCurrentTab(Tab.SetupFutureStationTraits)}
           >
-            Edit
+            编辑
           </Tabs.Tab>
         </Tabs>
 

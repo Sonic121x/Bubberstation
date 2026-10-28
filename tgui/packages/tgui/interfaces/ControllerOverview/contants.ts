@@ -6,42 +6,42 @@ type SortType = {
 
 export const SORTING_TYPES: readonly SortType[] = [
   {
-    label: 'Alphabetical',
+    label: '名称顺序',
     propName: 'name',
     inDeciseconds: false,
   },
   {
-    label: 'Cost',
+    label: '耗时',
     propName: 'cost_ms',
     inDeciseconds: true,
   },
   {
-    label: 'Init Order',
+    label: '初始化顺序',
     propName: 'init_order',
     inDeciseconds: false,
   },
   {
-    label: 'Last Fire',
+    label: '上次执行',
     propName: 'last_fire',
     inDeciseconds: false,
   },
   {
-    label: 'Next Fire',
+    label: '下次执行',
     propName: 'next_fire',
     inDeciseconds: false,
   },
   {
-    label: 'Tick Usage',
+    label: '时刻占用率',
     propName: 'tick_usage',
     inDeciseconds: true,
   },
   {
-    label: 'Avg Usage Per Tick',
+    label: '每时刻平均占用率',
     propName: 'usage_per_tick',
     inDeciseconds: true,
   },
   {
-    label: 'Subsystem Overtime',
+    label: '子系统超时',
     propName: 'overtime',
     inDeciseconds: true,
   },

@@ -24,10 +24,10 @@ export const VaultController = (props) => {
     <Window width={300} height={120}>
       <Window.Content>
         <Section
-          title="Lock Status: "
+          title="锁定状态："
           buttons={
             <Button
-              content={doorstatus ? 'Locked' : 'Unlocked'}
+              content={doorstatus ? '已锁定' : '已解锁'}
               icon={doorstatus ? 'lock' : 'unlock'}
               disabled={stored < max}
               onClick={() => act('togglelock')}
@@ -48,7 +48,7 @@ const VaultList = (props) => {
 
   return (
     <LabeledList>
-      <LabeledList.Item label="Charge">
+      <LabeledList.Item label="电量">
         <ProgressBar
           value={stored / max}
           ranges={{

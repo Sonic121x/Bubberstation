@@ -45,11 +45,11 @@ const Info = (props) => {
 
   return (
     <LabeledList>
-      <LabeledList.Item label="Name">
+      <LabeledList.Item label="名称">
         {can_rename ? (
           <Input
-            placeholder="Input a name"
-            value={name === 'Unknown' ? '' : name}
+            placeholder="输入名称"
+            value={name === 'Unknown' || name === '未知' ? '' : name}
             onBlur={(value) =>
               act('rename_disease', {
                 index: index,
@@ -61,11 +61,11 @@ const Info = (props) => {
           <Box color="bad">{decodeHtmlEntities(name)}</Box>
         )}
       </LabeledList.Item>
-      <LabeledList.Item label="Description">{description}</LabeledList.Item>
-      <LabeledList.Item label="Agent">
+      <LabeledList.Item label="描述">{description}</LabeledList.Item>
+      <LabeledList.Item label="病原体">
         {capitalizeFirst(agent)}
       </LabeledList.Item>
-      <LabeledList.Item label="Spread">{spread}</LabeledList.Item>
+      <LabeledList.Item label="传播方式">{spread}</LabeledList.Item>
     </LabeledList>
   );
 };
@@ -81,35 +81,35 @@ const Traits = (props) => {
   } = props;
 
   return (
-    <Section title="Statistics">
+    <Section title="属性">
       <LabeledList>
-        <Tooltip content="Protection from cures and natural recovery.">
-          <LabeledList.Item color={getColor(resistance)} label="Resistance">
+        <Tooltip content="抵抗治疗和自然康复的能力。">
+          <LabeledList.Item color={getColor(resistance)} label="抗性">
             {resistance}
           </LabeledList.Item>
         </Tooltip>
-        <Tooltip content="Symptomic progression.">
-          <LabeledList.Item color={getColor(stage_speed)} label="Stage speed">
+        <Tooltip content="症状发展的速度。">
+          <LabeledList.Item color={getColor(stage_speed)} label="阶段速度">
             {stage_speed}
           </LabeledList.Item>
         </Tooltip>
-        <Tooltip content="Detection difficulty from medical equipment.">
-          <LabeledList.Item color={getColor(stealth)} label="Stealth">
+        <Tooltip content="医疗设备检测到疾病的难度。">
+          <LabeledList.Item color={getColor(stealth)} label="隐蔽性">
             {stealth}
           </LabeledList.Item>
         </Tooltip>
-        <Tooltip content="Decides the spread type.">
+        <Tooltip content="决定传播方式。">
           <LabeledList.Item
             color={getColor(transmission)}
-            label="Transmissibility"
+            label="传播性"
           >
             {transmission}
           </LabeledList.Item>
         </Tooltip>
-        <Tooltip content="Overall danger posed by the disease.">
+        <Tooltip content="疾病的总体危险程度。">
           <LabeledList.Item
             color={getColor(severity)}
-            label="Severity"
+            label="严重程度"
           >
             {severity}
           </LabeledList.Item>

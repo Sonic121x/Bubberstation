@@ -193,7 +193,7 @@ const GASES = [
     id: 'plasma',
     path: '/datum/gas/plasma',
     name: 'Plasma',
-    label: 'Plasma',
+    label: '等离子体',
     color: 'pink',
   },
   {
@@ -207,7 +207,7 @@ const GASES = [
     id: 'hypernoblium',
     path: '/datum/gas/hypernoblium',
     name: 'Hyper-noblium',
-    label: 'Hyper-nob',
+    label: '超惰性气体',
     color: 'teal',
   },
   {
@@ -221,14 +221,14 @@ const GASES = [
     id: 'no2',
     path: '/datum/gas/nitrium',
     name: 'Nitrium',
-    label: 'Nitrium',
+    label: '氮素气',
     color: 'brown',
   },
   {
     id: 'tritium',
     path: '/datum/gas/tritium',
     name: 'Tritium',
-    label: 'Tritium',
+    label: '氚',
     color: 'limegreen',
   },
   {
@@ -242,21 +242,21 @@ const GASES = [
     id: 'pluoxium',
     path: '/datum/gas/pluoxium',
     name: 'Pluoxium',
-    label: 'Pluoxium',
+    label: '富氧气',
     color: 'mediumslateblue',
   },
   {
     id: 'miasma',
     path: '/datum/gas/miasma',
     name: 'Miasma',
-    label: 'Miasma',
+    label: '瘴气',
     color: 'olive',
   },
   {
     id: 'freon',
     path: '/datum/gas/freon',
     name: 'Freon',
-    label: 'Freon',
+    label: '氟利昂',
     color: 'paleturquoise',
   },
   {
@@ -270,28 +270,28 @@ const GASES = [
     id: 'healium',
     path: '/datum/gas/healium',
     name: 'Healium',
-    label: 'Healium',
+    label: '愈合气',
     color: 'salmon',
   },
   {
     id: 'proto_nitrate',
     path: '/datum/gas/proto_nitrate',
     name: 'Proto Nitrate',
-    label: 'Proto-Nitrate',
+    label: '原硝气',
     color: 'greenyellow',
   },
   {
     id: 'zauker',
     path: '/datum/gas/zauker',
     name: 'Zauker',
-    label: 'Zauker',
+    label: '灼蚀气',
     color: 'darkgreen',
   },
   {
     id: 'halon',
     path: '/datum/gas/halon',
     name: 'Halon',
-    label: 'Halon',
+    label: '哈龙',
     color: 'purple',
   },
   {
@@ -305,14 +305,14 @@ const GASES = [
     id: 'antinoblium',
     path: '/datum/gas/antinoblium',
     name: 'Antinoblium',
-    label: 'Anti-Noblium',
+    label: '反惰性气体',
     color: 'maroon',
   },
   {
     id: 'nitrium',
     path: '/datum/gas/nitrium',
     name: 'Nitrium',
-    label: 'Nitrium',
+    label: '氮素气',
     color: 'brown',
   },
   // BUBBERSTATION CHANGE: ADDS GOBLIN GAS
@@ -328,7 +328,7 @@ const GASES = [
 
 // Returns gas label based on gasId
 export const getGasLabel = (gasId: string, fallbackValue?: string) => {
-  if (!gasId) return fallbackValue || 'None';
+  if (!gasId) return fallbackValue || '无';
 
   const gasSearchString = gasId.toLowerCase();
 
@@ -338,7 +338,7 @@ export const getGasLabel = (gasId: string, fallbackValue?: string) => {
     }
   }
 
-  return fallbackValue || 'None';
+  return fallbackValue || '无';
 };
 
 // Returns gas color based on gasId

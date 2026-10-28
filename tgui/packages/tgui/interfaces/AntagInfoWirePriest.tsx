@@ -18,39 +18,39 @@ export const AntagInfoWirePriest = (props) => {
           <Stack.Item width="50%">
             <Section fill>
               <Stack vertical fill>
-                <Stack.Item fontSize="25px">You are the Wire Priest</Stack.Item>
+                <Stack.Item fontSize="25px">你是线缆祭司</Stack.Item>
                 <Stack.Item>
                   <BlockQuote>
-                    You are part of the fleshmind, this means any fleshmind
-                    entities, structures, mobs are your ally. You must not
-                    attack them. You must roleplay that you are part of the
-                    fleshmind. Your number one goal is converting other hosts
-                    and spreading the flesh.
+                    你是血肉心智的一部分，这意味着所有血肉心智
+                    实体、结构和生物都是你的盟友。你不得
+                    攻击它们。你必须扮演血肉心智的一员。
+                    你的首要目标是转化其他宿主，
+                    并传播血肉。
                   </BlockQuote>
                 </Stack.Item>
                 <Stack.Divider />
                 <Stack.Item textColor="label">
-                  <span style={tipstyle}>Create:&ensp;</span>
-                  Create tech structures, basic structures, and wireweed itself
-                  to help defend and spread the fleshmind. These structures
-                  depend on the current level of the core.
+                  <span style={tipstyle}>创造：&ensp;</span>
+                  创建科技结构、基础结构和线缆蔓，
+                  帮助保卫并传播血肉心智。这些结构的可用性
+                  取决于核心当前的等级。
                   <br />
                   <br />
-                  <span style={tipstyle}>Defend:&ensp;</span>
-                  Call flesh reinforcements and use your knife to defend the
-                  your core. Remember, if you die, you will no longer be loyal
-                  to your precious fleshmind, protecct it with your life.
+                  <span style={tipstyle}>保卫：&ensp;</span>
+                  呼叫血肉增援，使用你的刀保护
+                  核心。记住，如果你死去，就不再忠于
+                  你珍视的血肉心智。用生命保护它。
                   <br />
                   <br />
-                  <span style={tipstyle}>Convert:&ensp;</span>
-                  Convert station dwellers with mechivers, rally them using the
-                  call flesh reinforcements ability. You may be weak alone, but
-                  with numbers you can easily overwhelm the crew.
+                  <span style={tipstyle}>转化：&ensp;</span>
+                  使用机械转化者转化空间站居民，并通过
+                  呼叫血肉增援能力集结他们。你独自一人或许弱小，
+                  但人数众多时就能轻易压倒船员。
                   <br />
                   <br />
-                  <span style={tipstyle}>Communicate:&ensp;</span>
-                  Speak with your fellow enlightened ones using your flesh chat
-                  ability. Communication is key afterall.
+                  <span style={tipstyle}>交流：&ensp;</span>
+                  使用血肉通讯能力，与同样受启迪的
+                  同伴交流。毕竟，沟通至关重要。
                 </Stack.Item>
               </Stack>
             </Section>

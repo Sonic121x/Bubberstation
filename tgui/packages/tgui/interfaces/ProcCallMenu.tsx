@@ -39,9 +39,9 @@ export const ProcCallMenu = (props) => {
       <Window.Content scrollable>
         <Stack fill>
           <Stack.Item>
-            <Section fill title="Options">
+            <Section fill title="选项">
               <Stack vertical width="180px">
-                <Stack.Item color="label">Expected Output:</Stack.Item>
+                <Stack.Item color="label">预期输出：</Stack.Item>
                 <Stack.Item>
                   <Dropdown
                     width="100%"
@@ -56,7 +56,7 @@ export const ProcCallMenu = (props) => {
                 <Stack.Divider />
                 <Stack.Item>
                   <Button.Checkbox
-                    content="Resolve Weakref"
+                    content="解析弱引用"
                     textAlign="center"
                     checked={resolve_weakref}
                     onClick={() => act('resolve_weakref')}
@@ -65,15 +65,15 @@ export const ProcCallMenu = (props) => {
                 </Stack.Item>
                 <Stack.Item>
                   <NoticeBox info width="100%">
-                    This determines whether we automatically resolve any
-                    weakrefs in lists.
+                    此选项决定是否自动解析列表中的
+                    所有弱引用。
                   </NoticeBox>
                 </Stack.Item>
               </Stack>
             </Section>
           </Stack.Item>
           <Stack.Item grow>
-            <Section fill title="Arguments">
+            <Section fill title="参数">
               <Stack vertical>
                 {input_ports.map((val, index) => (
                   <PortEntry
@@ -104,7 +104,7 @@ export const ProcCallMenu = (props) => {
                 <Stack.Item>
                   <Button
                     fluid
-                    content="Add Argument"
+                    content="添加参数"
                     color="good"
                     icon="plus"
                     onClick={() => act('add_argument')}
@@ -135,7 +135,7 @@ const PortEntry = (props) => {
     <Stack.Item {...rest}>
       <Stack>
         <Stack.Item grow>
-          <Input placeholder="Name" value={name} onChange={onEnter} fluid />
+          <Input placeholder="名称" value={name} onChange={onEnter} fluid />
         </Stack.Item>
         <Stack.Item>
           <Dropdown

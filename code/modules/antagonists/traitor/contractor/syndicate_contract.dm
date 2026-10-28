@@ -53,7 +53,7 @@
 	var/verb_string = pick_list(WANTED_FILE, "verb")
 	var/noun = pick_list_weighted(WANTED_FILE, "noun")
 	var/location = pick_list_weighted(WANTED_FILE, "location")
-	wanted_message = "[base] [verb_string] [noun] [location]."
+	wanted_message = "[base][location][verb_string][noun]。"
 
 /datum/syndicate_contract/proc/handle_extraction(mob/living/user)
 	if (contract.target && contract.dropoff_check(user, contract.target.current))

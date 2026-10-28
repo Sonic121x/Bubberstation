@@ -1,6 +1,6 @@
 import { Button, LabeledList } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
+import { useBackend } from '../../backend'; import { reagentTagDisplay } from '../../localization/reagentTagDisplay';
 import { bitflagInfo, type ReagentsData, type ReagentsProps } from './types';
 
 export function TagBox(props: ReagentsProps) {
@@ -28,7 +28,7 @@ export function TagBox(props: ReagentsProps) {
   return (
     <LabeledList>
       {Object.entries(categorizedBitflags).map(([category, metas]) => (
-        <LabeledList.Item label={category} key={category}>
+        <LabeledList.Item label={reagentTagDisplay(category)} key={category}>
           {metas.map((meta) => {
             const flag = bitflags[meta.flag];
             return (
@@ -42,7 +42,7 @@ export function TagBox(props: ReagentsProps) {
                   setPage(1);
                 }}
               >
-                {meta.flag}
+                {reagentTagDisplay(meta.flag)}
               </Button>
             );
           })}

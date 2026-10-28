@@ -8,7 +8,7 @@ export function NifProductInfo() {
   const { product_notes } = data;
 
   return (
-    <Section title="Product Info">
+    <Section title="产品信息">
       <BlockQuote>{product_notes}</BlockQuote>
     </Section>
   );

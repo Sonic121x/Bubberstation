@@ -5,7 +5,7 @@ import type { SpriteData, SpriteEditorToolContext } from '../types';
 
 export class Eyedropper extends Tool {
   icon = 'eye-dropper';
-  name = 'Eyedropper';
+  name = '取色器';
 
   onMouseDown(
     context: SpriteEditorToolContext,

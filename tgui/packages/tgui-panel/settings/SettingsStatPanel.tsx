@@ -7,13 +7,13 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
-import { capitalize } from 'tgui-core/string';
+import { zhPanelDisplay } from './zhPanelDisplay';
 import { useSettings } from './use-settings';
 
 const tabViews = ['default', 'classic', 'scrollable'];
 
 function LinkedToChat() {
-  return <NoticeBox color="red">Unlink Stat Panel from chat!</NoticeBox>;
+  return <NoticeBox color="red">请先取消状态面板与聊天面板的关联！</NoticeBox>;
 }
 
 export function SettingsStatPanel(props) {
@@ -25,7 +25,7 @@ export function SettingsStatPanel(props) {
       <Stack fill vertical>
         <Stack.Item>
           <LabeledList>
-            <LabeledList.Item label="Tabs" verticalAlign="middle">
+            <LabeledList.Item label="标签页" verticalAlign="middle">
               {tabViews.map((view) => (
                 <Button
                   key={view}
@@ -33,11 +33,11 @@ export function SettingsStatPanel(props) {
                   selected={statTabsStyle === view}
                   onClick={() => updateSettings({ statTabsStyle: view })}
                 >
-                  {capitalize(view)}
+                  {zhPanelDisplay(view)}
                 </Button>
               ))}
             </LabeledList.Item>
-            <LabeledList.Item label="Font size">
+            <LabeledList.Item label="字号">
               <Stack.Item grow>
                 {statLinked ? (
                   <LinkedToChat />
@@ -68,7 +68,7 @@ export function SettingsStatPanel(props) {
             color={statLinked ? 'bad' : 'good'}
             onClick={() => updateSettings({ statLinked: !statLinked })}
           >
-            {statLinked ? 'Unlink from chat' : 'Link to chat'}
+            {statLinked ? '取消与聊天面板关联' : '与聊天面板关联'}
           </Button>
         </Stack.Item>
       </Stack>

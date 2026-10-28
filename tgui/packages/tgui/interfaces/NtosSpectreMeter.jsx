@@ -9,22 +9,22 @@ export const NtosSpectreMeter = (props) => {
   return (
     <NtosWindow width={400} height={180}>
       <NtosWindow.Content>
-        <Section title="Spectre-Meter">
+        <Section title="幽灵探测仪">
           <Box>
             <Button
               inline
               icon="cog"
-              content={auto_mode ? 'Auto' : 'Manual'}
+              content={auto_mode ? '自动' : '手动'}
               onClick={() => act('toggle_mode')}
               selected={auto_mode}
-              tooltip="Toggle automatic scanning. Can be noisy"
+              tooltip="切换自动扫描，可能会很吵。"
             />
             <Button
               inline
               icon="magnifying-glass"
-              content="Scan"
+              content="扫描"
               disabled={auto_mode || on_cooldown}
-              tooltip="Has cooldown of about 2 seconds"
+              tooltip="冷却时间约为 2 秒"
               onClick={() => act('manual_scan')}
             />
           </Box>
@@ -46,7 +46,7 @@ export const NtosSpectreMeter = (props) => {
               fluid
             >
               <Icon spin name="ghost" />
-              {` Spookiness: ${spook_value}% `}
+              {` 灵异程度：${spook_value}% `}
               <Icon spin name="ghost" />
             </Box>
           </ProgressBar>

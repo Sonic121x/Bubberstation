@@ -1,38 +1,38 @@
 {
     "workers": [
-		"Our team of highly trained psychic monkeys have",
-		"Our spies that spy on spies have",
-		"Our highly unpaid interns have",
-		"A certified gangstalker has",
-		"A court-ordered communications monitor has",
-		"Our good friend Steve has",
-		"A peeping tomboy has",
-		"Our professional internet chatroom monitor has"
+		"我们训练有素的灵能猴小队已经",
+		"我们负责监视间谍的间谍已经",
+		"我们分文不取的实习生已经",
+		"一名认证的团伙跟踪者已经",
+		"一名奉法院之命监听通讯的人已经",
+		"我们的好朋友史蒂夫已经",
+		"一个偷看的假小子已经",
+		"我们的专业网络聊天室监控员已经"
     ],
     "action": [
-		"divined",
-		"detected",
-		"spotted",
-		"revealed",
-		"unveiled",
-		"identified",
-		"sighted",
-		"unencrypted",
-		"decoded",
-		"deciphered",
-		"just happened upon"
+		"占卜出了",
+		"检测到了",
+		"发现了",
+		"揭示了",
+		"揭开了",
+		"识别出了",
+		"目睹了",
+		"解密了",
+		"解码了",
+		"破译了",
+		"碰巧发现了"
     ],
 	"message": [
-		"a message",
-		"a rambling",
-		"an audio recording",
-		"a memorable quote",
-		"a famous quote",
-		"an infamous quote",
-		"a certified Nanotrasen moment",
-		"a certified Nanotrasen classic",
-		"timeless classic of a quote",
-		"another banger of a quote",
-		"an honest to god cry for help"
+		"一条消息",
+		"一段胡言乱语",
+		"一段录音",
+		"一句令人难忘的名言",
+		"一句著名言论",
+		"一句臭名昭著的言论",
+		"一个官方认证的纳米传讯时刻",
+		"一段官方认证的纳米传讯经典",
+		"一句永不过时的经典名言",
+		"又一句精彩名言",
+		"一声千真万确的求救"
 	]
 }

@@ -23,7 +23,7 @@ export function PlantAnalyzerGraft(props) {
 
   return (
     <Section
-      title={`Graft: ${capitalizeFirst(graft_data.name)}`}
+      title={`接穗：${capitalizeFirst(graft_data.name)}`}
       buttons={
         !!graft_data.graft_gene && (
           <TraitTooltip path={graft_data.graft_gene} trait_db={data.trait_db} />
@@ -42,7 +42,7 @@ export function PlantAnalyzerGraft(props) {
         </Stack.Item>
         <Stack.Item>
           <LabeledList>
-            <LabeledList.Item label="Endurance">
+            <LabeledList.Item label="耐久">
               <ProgressBar
                 value={graft_data.endurance / 100}
                 ranges={{
@@ -55,7 +55,7 @@ export function PlantAnalyzerGraft(props) {
               </ProgressBar>
             </LabeledList.Item>
 
-            <LabeledList.Item label="Lifespan">
+            <LabeledList.Item label="寿命">
               <ProgressBar
                 value={graft_data.lifespan / 100}
                 ranges={{
@@ -68,7 +68,7 @@ export function PlantAnalyzerGraft(props) {
               </ProgressBar>
             </LabeledList.Item>
 
-            <LabeledList.Item label="Yield">
+            <LabeledList.Item label="产量">
               <ProgressBar
                 value={graft_data.yield / 10}
                 ranges={{
@@ -81,7 +81,7 @@ export function PlantAnalyzerGraft(props) {
               </ProgressBar>
             </LabeledList.Item>
 
-            <LabeledList.Item label="Instability">
+            <LabeledList.Item label="不稳定性">
               <ProgressBar
                 value={graft_data.weed_chance}
                 maxValue={100}
@@ -95,16 +95,16 @@ export function PlantAnalyzerGraft(props) {
               </ProgressBar>
             </LabeledList.Item>
 
-            <LabeledList.Item label="Production">
-              {graft_data.production * data.cycle_seconds} seconds
+            <LabeledList.Item label="生产周期">
+              {graft_data.production * data.cycle_seconds} 秒
             </LabeledList.Item>
 
-            <LabeledList.Item label="Weeds">
+            <LabeledList.Item label="杂草">
               {graft_data.weed_chance && graft_data.weed_rate
                 ? graft_data.weed_chance +
-                  '% chance to grow by ' +
+                  '% 概率增长 ' +
                   graft_data.weed_rate
-                : 'No weed growth'}
+                : '不生长杂草'}
             </LabeledList.Item>
           </LabeledList>
         </Stack.Item>

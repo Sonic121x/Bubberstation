@@ -30,15 +30,15 @@ export function ReverseMenu(props) {
           }}
           selected={effectReverse}
           tooltip={`
-            Doesn't send items.
-            Afer landing, returns to
-            dropoff turf (or bay
-            if none specified).`}
+            不发送物品。
+            着陆后返回
+            卸货地格（未指定时
+            返回装载区）。`}
           tooltipPosition="bottom"
         />
       }
       fill
-      title="Reverse"
+      title="回收模式"
     >
       {!!effectReverse && (
         <Stack fill vertical>
@@ -48,11 +48,11 @@ export function ReverseMenu(props) {
               onClick={() => act('pickDropoffTurf')}
               selected={picking_dropoff_turf}
               tooltip={`
-                Where reverse pods
-                go after landing`}
+                回收舱着陆后
+                前往的地点`}
               tooltipPosition="bottom-end"
             >
-              Dropoff Turf
+              卸货地格
             </Button>
             <Button
               disabled={!customDropoff}
@@ -66,10 +66,10 @@ export function ReverseMenu(props) {
                 }
               }}
               tooltip={`
-                Clears the custom dropoff
-                location. Reverse pods will
-                instead dropoff at the
-                selected bay.`}
+                清除自定义
+                卸货地点。回收舱
+                将改为在
+                所选装载区卸货。`}
               tooltipPosition="bottom"
             />
           </Stack.Item>

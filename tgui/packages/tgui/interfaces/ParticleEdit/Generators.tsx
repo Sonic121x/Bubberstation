@@ -1,4 +1,4 @@
-import { Dropdown, NumberInput, Stack } from 'tgui-core/components';
+import { Dropdown, NumberInput, Stack } from 'tgui-core/components'; import { chineseDisplay } from 'tgui/localization/zhDisplay';
 
 import { useBackend } from '../../backend';
 import {
@@ -49,8 +49,8 @@ export const GeneratorListEntry = (props: GeneratorProps) => {
     <>
       <Stack.Item>
         <Dropdown
-          options={allowed_generators}
-          selected={type}
+          options={allowed_generators.map((value) => ({ value, displayText: chineseDisplay(value) }))}
+          selected={type} displayText={chineseDisplay(type)}
           onSelected={(e) =>
             act('edit', {
               var: var_name,
@@ -219,8 +219,8 @@ export const GeneratorListEntry = (props: GeneratorProps) => {
       </Stack.Item>
       <Stack.Item>
         <Dropdown
-          options={RandTypes}
-          selected={rand_type}
+          options={RandTypes.map((value) => ({ value, displayText: chineseDisplay(value) }))}
+          selected={rand_type} displayText={chineseDisplay(rand_type)}
           onSelected={(value) =>
             act('edit', {
               var: var_name,

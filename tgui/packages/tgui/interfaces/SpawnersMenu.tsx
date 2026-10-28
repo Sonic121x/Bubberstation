@@ -24,7 +24,7 @@ export const SpawnersMenu = (props) => {
   const { spawners = [] } = data;
 
   return (
-    <Window title="Spawners Menu" width={700} height={525}>
+    <Window title="可加入角色" width={700} height={525}>
       <Window.Content scrollable>
         <Stack vertical>
           {spawners.map((spawner) => (
@@ -37,16 +37,16 @@ export const SpawnersMenu = (props) => {
                   <Stack>
                     {spawner.infinite ? (
                       <Stack.Item fontSize="14px" color="green">
-                        Infinite
+                        不限数量
                       </Stack.Item>
                     ) : (
                       <Stack.Item fontSize="14px" color="green">
-                        {spawner.amount_left} left
+                        剩余{spawner.amount_left}个
                       </Stack.Item>
                     )}
                     <Stack.Item>
                       <Button
-                        content="Jump"
+                        content="跳转"
                         onClick={() =>
                           act('jump', {
                             name: spawner.name,
@@ -54,7 +54,7 @@ export const SpawnersMenu = (props) => {
                         }
                       />
                       <Button
-                        content="Spawn"
+                        content="加入"
                         onClick={() =>
                           act('spawn', {
                             name: spawner.name,
@@ -67,19 +67,19 @@ export const SpawnersMenu = (props) => {
               >
                 <LabeledList>
                   {spawner.desc ? (
-                    <LabeledList.Item label="Description">
+                    <LabeledList.Item label="描述">
                       {spawner.desc}
                     </LabeledList.Item>
                   ) : (
                     <div>
-                      <LabeledList.Item label="Origin">
-                        {spawner.you_are_text || 'Unknown'}
+                      <LabeledList.Item label="身份背景">
+                        {spawner.you_are_text || '未知'}
                       </LabeledList.Item>
-                      <LabeledList.Item label="Directives">
-                        {spawner.flavor_text || 'None'}
+                      <LabeledList.Item label="指引">
+                        {spawner.flavor_text || '无'}
                       </LabeledList.Item>
-                      <LabeledList.Item color="bad" label="Conditions">
-                        {spawner.important_text || 'None'}
+                      <LabeledList.Item color="bad" label="条件">
+                        {spawner.important_text || '无'}
                       </LabeledList.Item>
                     </div>
                   )}

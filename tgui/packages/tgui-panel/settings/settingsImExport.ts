@@ -16,7 +16,7 @@ export function exportChatSettings(): void {
     suggestedName: `ss13-chatsettings-${new Date().toJSON().slice(0, 10)}.json`,
     types: [
       {
-        description: 'SS13 file',
+        description: 'SS13 文件',
         accept: { 'application/json': ['.json'] },
       },
     ],

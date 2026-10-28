@@ -31,7 +31,7 @@ type Reel = {
 };
 
 const pluralS = (amount: number) => {
-  return amount === 1 ? '' : 's';
+  return '';
 };
 
 const pickRandomMany = <T,>(items: T[], n: number) => {
@@ -84,7 +84,7 @@ export const SlotMachine = () => {
           <Stack.Item>
             <Section fill align={'center'}>
               <Box inline textAlign={'center'} color="good" bold>
-                Jackpot:
+                头奖：
               </Box>
               {jackpotSymbol && (
                 <Box
@@ -99,7 +99,7 @@ export const SlotMachine = () => {
               {trapSymbol && (
                 <>
                   <Box inline color="bad" bold ml={5} mr={1}>
-                    Trap:
+                    陷阱：
                   </Box>
                   <Box
                     className={classes([
@@ -117,18 +117,18 @@ export const SlotMachine = () => {
               <Stack.Item grow={1}>
                 <Section
                   fill
-                  title="Balance"
+                  title="余额"
                   buttons={
                     <Button
                       onClick={() => act('payout')}
                       disabled={balance <= 0}
                     >
-                      Refund
+                      退还余额
                     </Button>
                   }
                 >
                   <Box textAlign={'center'} fontSize={2}>
-                    {formatMoney(balance)} cr
+                    {formatMoney(balance)} 信用点
                   </Box>
                 </Section>
               </Stack.Item>
@@ -142,7 +142,7 @@ export const SlotMachine = () => {
                     onClick={() => act('spin')}
                     disabled={spinning || balance < cost}
                   >
-                    Spin!
+                    转动！
                   </Button>
                 </Section>
               </Stack.Item>
@@ -164,42 +164,42 @@ const getBannerPages = () => [
 ];
 
 const BANNER_TEXTS = [
-  'SPIN! SPIN!',
-  'WARMED UP!',
-  'HOT SLOTS',
-  'SPIN & WIN!',
-  'BELIEVE IT!',
-  'ZERO 2 HERO!',
-  'JUST ONE MORE',
-  'SPIN OF FATE',
-  'BONUS TIME!',
-  'BORN TO SPIN!',
-  'NICE SPIN!',
-  'NO SPIN NO WIN',
-  'BET & FORGET',
-  'HONK 4 LUCK',
-  'DEBT 4 LIFE',
-  'SPINGULARITY',
-  'SPIN CITY',
-  'BURN & EARN',
-  'JACKPOT SOON!',
-  'WIN THE DAY!',
-  'FORTUNE CALLS',
-  'INSTANT GOLD!',
-  'DREAM BIGGER!',
-  'WINNERS ONLY!',
-  'SPIN IS LIFE',
-  'BIG ONE SOON!',
-  'LUCKY SPIN!',
-  'CASH OUT? NO!',
+  '转！转！',
+  '热身完毕！',
+  '火热老虎机',
+  '一转就赢！',
+  '相信自己！',
+  '从零到英雄！',
+  '再来一次',
+  '命运之转',
+  '奖励时间！',
+  '为转动而生！',
+  '转得漂亮！',
+  '不转怎能赢',
+  '下注忘烦恼',
+  '丑叫求好运',
+  '负债一辈子',
+  '转动奇点',
+  '转盘之城',
+  '烧钱来赚钱',
+  '头奖就要来！',
+  '今天大获全胜！',
+  '财富在召唤',
+  '马上发财！',
+  '梦想再大点！',
+  '赢家专属！',
+  '转动即人生',
+  '大奖马上到！',
+  '幸运一转！',
+  '提现？不！',
 ];
 
 const WINNING_TEXTS = [
   null,
-  'FREE SPINS!',
-  'PRIZE!',
-  'BIG PRIZE!',
-  'JACKPOT!!!',
+  '免费转动！',
+  '中奖！',
+  '大奖！',
+  '头奖！！！',
 ];
 
 const Banner = () => {
@@ -241,9 +241,9 @@ const BannerTitle = (props: BannerTitleProps) => {
   let text = props.text;
   if (!text) {
     if (data.balance <= 0) {
-      text = 'INSERT COIN';
+      text = '请投币';
     } else if (data.balance <= 5) {
-      text = 'ONE LAST SPIN';
+      text = '最后再转一次';
     } else {
       text = defaultText.current;
     }
@@ -265,14 +265,14 @@ const BannerOnlyFewCreds = () => {
   if (variant.current === 1) {
     return (
       <div>
-        For only{' '}
+        只需{' '}
         <Blink interval={200} time={200}>
           <b>{data.cost}</b>
         </Blink>{' '}
-        credit{pluralS(data.cost)}!
+        信用点{pluralS(data.cost)}！
         <br />
         <Box inline fontSize={'12px'}>
-          You can fix all your problems!
+          一次解决所有烦恼！
         </Box>
       </div>
     );
@@ -280,13 +280,13 @@ const BannerOnlyFewCreds = () => {
 
   return (
     <div>
-      Only{' '}
+      只需{' '}
       <Blink interval={200} time={200}>
         <b>{data.cost}</b>
       </Blink>{' '}
-      credit{pluralS(data.cost)} for a chance
+      信用点{pluralS(data.cost)}就有机会
       <br />
-      to win <b>big</b>!
+      赢得<b>大奖</b>！
     </div>
   );
 };
@@ -295,10 +295,10 @@ const BannerPrizeMoney = () => {
   const { data } = useBackend<Data>();
   return (
     <div>
-      Available prize money:
+      可赢取奖金：
       <br />
       <b>
-        {data.money} credit{pluralS(data.money)}
+        {data.money} 信用点{pluralS(data.money)}
       </b>
     </div>
   );
@@ -308,10 +308,10 @@ const BannerJackpot = () => {
   const { data } = useBackend<Data>();
   return (
     <div>
-      Current jackpot:
+      当前头奖：
       <br />
       <b>
-        {data.money + data.jackpot} credit{pluralS(data.money + data.jackpot)}!
+        {data.money + data.jackpot} 信用点{pluralS(data.money + data.jackpot)}！
       </b>
     </div>
   );
@@ -322,15 +322,15 @@ const BannerStats = () => {
   return (
     <div>
       <Box inline fontSize={'13px'}>
-        So far people have spun{' '}
+        迄今玩家已转动{' '}
         <b>
-          {data.plays} time{pluralS(data.plays)}
+          {data.plays} 次{pluralS(data.plays)}
         </b>
       </Box>
       <br />
-      and won{' '}
+      并赢得{' '}
       <b>
-        {data.jackpots} jackpot{pluralS(data.jackpots)}!
+        {data.jackpots} 次头奖{pluralS(data.jackpots)}！
       </b>
     </div>
   );

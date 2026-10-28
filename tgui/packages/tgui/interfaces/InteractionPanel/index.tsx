@@ -16,7 +16,7 @@ export function InteractionPanel() {
   const { self, erp_interaction } = data;
 
   return (
-    <Window width={500} height={600} title={`Interact - ${self}`}>
+    <Window width={500} height={600} title={`互动 - ${self}`}>
       <Window.Content scrollable>
         {erp_interaction && (
           <Section>

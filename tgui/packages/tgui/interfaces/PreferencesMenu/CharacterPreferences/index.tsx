@@ -62,7 +62,7 @@ function CharacterProfiles(props: ProfileProps) {
           selected={profiles[activeSlot]}
           options={profiles.map((profile, slot) => ({
             value: slot,
-            displayText: profile ?? 'New Character',
+            displayText: profile ?? '新角色',
           }))}
           onSelected={(slot) => {
             onClick(slot);
@@ -146,7 +146,7 @@ export function CharacterPreferenceWindow(props) {
               }}
               fontSize="13px"
               icon="copy"
-              tooltip="Duplicate Current Character (Experimental)" //Delete this comment about being experimental before merge
+              tooltip="复制当前角色（实验性功能）" //Delete this comment about being experimental before merge
               tooltipPosition="top"
             />
             {/* BUBBER EDIT ADDITION END */}
@@ -155,8 +155,8 @@ export function CharacterPreferenceWindow(props) {
             <Stack.Item grow align="center" mb={-1}>
               <NoticeBox color="grey">
                 <a href="https://www.byond.com/membership">
-                  Become a BYOND Member to unlock more character slots and other
-                  members-only benefits!
+                  成为 BYOND 会员，解锁更多角色栏位和其他
+                  会员专属福利！
                 </a>
               </NoticeBox>
             </Stack.Item>
@@ -173,7 +173,7 @@ export function CharacterPreferenceWindow(props) {
               setPage={setCurrentPage}
               otherActivePages={[Page.Species]}
             >
-              Character
+              角色
             </PageButton>
           </Stack.Item>
 
@@ -183,7 +183,7 @@ export function CharacterPreferenceWindow(props) {
               page={Page.Loadout}
               setPage={setCurrentPage}
             >
-              Loadout
+              配装
             </PageButton>
           </Stack.Item>
 
@@ -197,7 +197,7 @@ export function CharacterPreferenceWindow(props) {
                     Fun fact: This isn't "Jobs" so that it intentionally
                     catches your eyes, because it's really important!
                   */}
-              Occupations
+              职业
             </PageButton>
           </Stack.Item>
 
@@ -208,7 +208,7 @@ export function CharacterPreferenceWindow(props) {
               page={Page.Limbs}
               setPage={setCurrentPage}
             >
-              Markings/Organs
+              斑纹／器官
             </PageButton>
           </Stack.Item>
 
@@ -218,7 +218,7 @@ export function CharacterPreferenceWindow(props) {
               page={Page.Languages}
               setPage={setCurrentPage}
             >
-              Languages
+              语言
             </PageButton>
           </Stack.Item>
           {/* BUBBER EDIT ADDITION END */}
@@ -229,7 +229,7 @@ export function CharacterPreferenceWindow(props) {
               page={Page.Antags}
               setPage={setCurrentPage}
             >
-              Antagonists
+              反派
             </PageButton>
           </Stack.Item>
 
@@ -239,7 +239,7 @@ export function CharacterPreferenceWindow(props) {
               page={Page.Quirks}
               setPage={setCurrentPage}
             >
-              Quirks and Personality
+              特质与个性
             </PageButton>
           </Stack.Item>
         </Stack>

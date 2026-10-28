@@ -11,8 +11,8 @@ export const widescreenpref: FeatureToggle = {
 // BUBBER EDIT END
 
 export const fullscreen_mode: FeatureToggle = {
-  name: 'Toggle Fullscreen',
+  name: '切换全屏',
   category: 'UI',
-  description: 'Toggles Fullscreen for the game, can also be toggled with F11.',
+  description: '切换游戏全屏模式，也可按 F11 切换。',
   component: CheckboxInput,
 };

@@ -1,123 +1,123 @@
 {
 	"Animal Rights Consortium": {
-		"allies": "You may cooperate with other syndicate operatives if they support our cause. Maybe you can convince the Bee Liberation Front operatives to cooperate for once?",
-		"goal": "The creatures of this world must be freed from the iron grasp of Nanotrasen, and you are their only hope!",
-		"introduction": "You are the ARC Terrorist.",
-		"roundend_report": "was an activist from the Animal Rights Consortium.",
+		"allies": "只要其他辛迪加特工支持我们的事业，你就可以与他们合作。也许这次你能说服蜜蜂解放阵线的特工携手行动？",
+		"goal": "必须把世间生灵从纳米传讯的铁掌下解放出来，你是它们唯一的希望！",
+		"introduction": "你是动物权利联盟的恐怖分子。",
+		"roundend_report": "是动物权利联盟的活动分子。",
 		"ui_theme": "syndicate",
-		"uplink": "The Syndicate have graciously given one of their uplinks for your task."
+		"uplink": "辛迪加慷慨地提供了一台上行终端，供你完成任务。"
 	},
 	"Bee Liberation Front": {
-		"allies": "You may cooperate with other syndicate operatives if they support our cause. Maybe you can recruit an Animal Rights Consort to be useful for once?",
-		"goal": "We must prove ourselves to the Syndicate or we will not be able to join. Animal Rights Consort will roll us!",
-		"introduction": "You are the Bee Liberation Front Operative.",
-		"roundend_report": "was an activist of the Bee Liberation Front.",
+		"allies": "只要其他辛迪加特工支持我们的事业，你就可以与他们合作。也许能拉拢一名动物权利联盟成员，让他们总算派上点用场？",
+		"goal": "我们必须向辛迪加证明自己的实力，否则就无法加入。动物权利联盟会把我们比下去的！",
+		"introduction": "你是蜜蜂解放阵线的特工。",
+		"roundend_report": "是蜜蜂解放阵线的活动分子。",
 		"ui_theme": "syndicate",
-		"uplink": "The Syndicate have graciously given one of their uplinks to see if we are worthy."
+		"uplink": "辛迪加慷慨地提供了一台上行终端，以检验我们是否有资格加入。"
 	},
 	"Champions of Evil": {
-		"allies": "Anyone who sees as you see, feels as you feel, may join the Champions of Evil! That means the Syndicate, the self-serving, or even the insane, as long as it has a heart of darkness, it's cool with the Champions!",
-		"goal": "You've got some napkin-note-plans for some EVIL to do today. On the side, the Champions of Evil are always looking for more morally malodorous malefactors! Get some recruiting done!",
-		"introduction": "You are the Champion of Evil.",
-		"roundend_report": "was a Champion of Evil!",
+		"allies": "任何与你志同道合的人都可以加入邪恶斗士！无论是辛迪加、自私自利之徒，甚至疯子，只要心怀黑暗，斗士们都欢迎！",
+		"goal": "你已在餐巾纸上草草写下今天的作恶计划。另外，邪恶斗士始终欢迎更多道德败坏的恶棍！去招募些新人吧！",
+		"introduction": "你是邪恶斗士。",
+		"roundend_report": "是一名邪恶斗士！",
 		"ui_theme": "neutral",
-		"uplink": "The Champions of Evil is well connected to the black market. Your uplink has been provided for utmost evil!"
+		"uplink": "邪恶斗士在黑市人脉广泛。给你这台上行终端，就是要你坏事做绝！"
 	},
 	"Corporate Climber": {
-		"allies": "Death to the Syndicate.",
-		"goal": "Killing needlessly would make you some kind of traitor, or at least definitely seen as one. This is all just a means to an end.",
-		"introduction": "You are the Corporate Climber.",
-		"roundend_report": "was a corporate climber.",
+		"allies": "辛迪加去死。",
+		"goal": "滥杀无辜会让你成为叛徒，至少在别人眼中肯定如此。这一切不过是达成目的的手段。",
+		"introduction": "你是公司里的升迁投机者。",
+		"roundend_report": "是一名公司升迁投机者。",
 		"ui_theme": "neutral",
-		"uplink": "You have connections to the black market for the deeds. Knock off a few loose weights, and your climb will be so much smoother."
+		"uplink": "你有黑市关系，可以帮你办这些事。除掉几个绊脚石，你的晋升之路就会顺畅得多。"
 	},
 	"Cybersun Industries": {
-		"allies": "Fellow Cybersun operatives are to be trusted. Members of the MI13 organization can be trusted. All other syndicate operatives are not to be trusted.",
-		"goal": "Do not establish substantial presence on the designated facility, as larger incidents are harder to cover up.",
-		"introduction": "You are from Cybersun Industries.",
-		"roundend_report": "was a specialist from Cybersun Industries.",
+		"allies": "可以信任其他赛博太阳特工，也可以信任军情十三处成员。其他辛迪加特工一概不可信。",
+		"goal": "不要在目标设施内大张旗鼓地活动，事情闹得越大，越难掩盖。",
+		"introduction": "你来自赛博太阳工业。",
+		"roundend_report": "是赛博太阳工业的专家。",
 		"ui_theme": "syndicate",
-		"uplink": "You have been supplied the tools for the job in the form of a standard syndicate uplink."
+		"uplink": "你已获得一台标准辛迪加上行终端，可从中获取任务所需工具。"
 	},
 	"Donk Corporation": {
-		"allies": "Members of Waffle Corp. are to be killed on sight; they are not allowed to be on the station while we're around.",
-		"goal": "We do not approve of mindless killing of innocent workers; \"get in, get done, get out\" is our motto.",
-		"introduction": "You are the Donk Co. Traitor.",
-		"roundend_report": "was an employee from Donk Corporation.",
+		"allies": "发现华夫公司成员就立即击杀；有我们在，就不许他们留在空间站。",
+		"goal": "我们不赞同毫无意义地杀害无辜员工；我们的座右铭是“潜入、办事、撤离”。",
+		"introduction": "你是咚克公司的叛徒特工。",
+		"roundend_report": "是咚克公司的员工。",
 		"ui_theme": "syndicate",
-		"uplink": "You have been provided with a standard uplink to accomplish your task."
+		"uplink": "你已获得一台标准上行终端，用于完成任务。"
 	},
 	"Gone Postal": {
-		"allies": "If the syndicate learns of your plan, they're going to kill you and take your uplink. Take no chances.",
-		"goal": "The preparations are finally complete. Today is the day you go postal. You're going to hijack the emergency shuttle and live a new life free of Nanotrasen.",
-		"introduction": "You're going postal today.",
-		"roundend_report": "simply went completely postal!",
+		"allies": "如果辛迪加知道了你的计划，他们就会杀死你，夺走上行终端。别心存侥幸。",
+		"goal": "准备终于完成了。今天就是你彻底爆发的日子。你要劫持紧急撤离穿梭机，摆脱纳米传讯，开始新生活。",
+		"introduction": "今天你要彻底发狂了。",
+		"roundend_report": "彻底发了狂！",
 		"ui_theme": "neutral",
-		"uplink": "You've actually managed to steal a full uplink a month ago. This should certainly help accomplish your goals."
+		"uplink": "一个月前，你竟然成功偷到了一台完整的上行终端。它一定能帮你实现目标。"
 	},
 	"Gorlex Marauders": {
-		"allies": "You may collaborate with any friends of the Syndicate coalition, but keep an eye on any of those Tiger punks if they do show up.",
-		"goal": "Getting noticed is not an issue, and you may use any level of ordinance to get the job done. That being said, do not make this sloppy by dragging in random slaughter.",
-		"introduction": "You are a Gorlex Marauder.",
-		"roundend_report": "was a Gorlex Marauder.",
+		"allies": "你可以与辛迪加联盟的任何友军合作，但如果猛虎合作社的混混出现，记得盯紧他们。",
+		"goal": "引人注目不成问题，你可以动用任何火力完成任务。不过，不要因滥杀无辜而把事情搞砸。",
+		"introduction": "你是戈尔莱克斯掠夺者。",
+		"roundend_report": "是一名戈尔莱克斯掠夺者。",
 		"ui_theme": "syndicate",
-		"uplink": "You have been provided with a standard uplink to accomplish your task."
+		"uplink": "你已获得一台标准上行终端，用于完成任务。"
 	},
 	"Internal Affairs Agent": {
-		"allies": "Do NOT reveal your agent status, to anyone. Work to root out corruption from the station from the shadows.",
-		"goal": "While you have a license to kill, unneeded property damage or loss of employee life will lead to your contract being terminated.",
-		"introduction": "You are the Internal Affairs Agent.",
-		"roundend_report": "was part of Nanotrasen Internal Affairs.",
+		"allies": "不要向任何人透露你的特工身份。在暗中行动，根除空间站内的腐败。",
+		"goal": "虽然你有杀人许可，但不必要的财产损失或员工伤亡会导致你的合同被终止。",
+		"introduction": "你是内务特工。",
+		"roundend_report": "是纳米传讯内务部门的成员。",
 		"ui_theme": "ntos",
-		"uplink": "For the sake of plausible deniability, you have been equipped with an array of captured Syndicate weaponry available via uplink."
+		"uplink": "为了保留否认介入的余地，公司为你配备了上行终端，可获取多种缴获的辛迪加武器。"
 	},
 	"Legal Trouble": {
-		"allies": "Death to the Syndicate.",
-		"goal": "Try to finish your to-do list, and don't get caught. If they find out what you're actually doing, this scandal will go galactic.",
-		"introduction": "You are in legal trouble.",
-		"roundend_report": "was in legal trouble.",
+		"allies": "辛迪加去死。",
+		"goal": "设法完成你的待办事项，别被抓住。一旦他们发现你实际在做什么，这桩丑闻就会传遍银河。",
+		"introduction": "你惹上了法律麻烦。",
+		"roundend_report": "惹上了法律麻烦。",
 		"ui_theme": "neutral",
-		"uplink": "You've connected to the black market to clean this mess up. If there's no evidence, there's no crime."
+		"uplink": "你联系上了黑市，准备收拾这个烂摊子。没有证据，就没有犯罪。"
 	},
 	"MI13": {
-		"allies": "You are the only operative we are sending, any others are fake. All other syndicate operatives are not to be trusted, with the exception of Cybersun operatives.",
-		"goal": "Avoid killing innocent personnel at all costs. You are not here to mindlessly kill people, as that would attract too much attention and is not our goal. Avoid detection at all costs.",
-		"introduction": "You are the MI13 Agent.",
-		"roundend_report": "was an MI13 agent.",
+		"allies": "你是我们派出的唯一特工，其他自称我方特工的人都是冒牌货。除赛博太阳特工外，其他辛迪加特工均不可信。",
+		"goal": "务必避免杀害无辜人员。你来这里不是为了滥杀，那会引起过多注意，也不是我们的目标。务必避免暴露。",
+		"introduction": "你是军情十三处的特工。",
+		"roundend_report": "是一名军情十三处特工。",
 		"ui_theme": "syndicate",
-		"uplink": "You have been provided with a standard uplink to accomplish your task."
+		"uplink": "你已获得一台标准上行终端，用于完成任务。"
 	},
 	"Tiger Cooperative Fanatic": {
-		"allies": "Only the enlightened Tiger brethren can be trusted; all others must be expelled from this mortal realm!",
-		"goal": "Remember the teachings of Hy-lurgixon; kill first, ask questions later!",
-		"introduction": "You are the Tiger Cooperative Fanatic.",
-		"roundend_report": "was a Tiger Cooperative Fanatic.",
+		"allies": "只有开悟的猛虎兄弟值得信任；其他人都必须被逐出凡世！",
+		"goal": "牢记海鲁吉克森的教诲：先杀再问！",
+		"introduction": "你是猛虎合作社的狂热信徒。",
+		"roundend_report": "是一名猛虎合作社狂热信徒。",
 		"ui_theme": "abductor",
-		"uplink": "You have been provided with a hy-lurgixon tome to prove yourself to the changeling hive. If you accomplish your tasks, you will be assimilated.",
-		"uplink_name": "hy-lurgixon tome"
+		"uplink": "你已获得海鲁吉克森典籍，用于向变形怪蜂巢证明自己。完成任务后，你将被同化。",
+		"uplink_name": "海鲁吉克森典籍"
 	},
 	"Waffle Corporation": {
-		"allies": "Members of Donk Co. are to be killed on sight; they are not allowed to be on the station while we're around. Do not trust fellow members of the Waffle.co (but try not to rat them out), as they might have been assigned opposing objectives.",
-		"goal": "You are not here for a station-wide demonstration. Again, other Waffle Corp. Traitors may be, so watch out. Your job is to only accomplish your objectives.",
-		"introduction": "You are the Waffle Corp. Traitor.",
-		"roundend_report": "was an employee from Waffle Corporation.",
+		"allies": "发现咚克公司成员就立即击杀；有我们在，就不许他们留在空间站。不要信任其他华夫公司成员，但尽量别出卖他们，因为他们可能接到了与你相冲突的目标。",
+		"goal": "你不是来搞全站示威的。不过，其他华夫公司叛徒可能是，所以务必小心。你的工作只是完成自己的目标。",
+		"introduction": "你是华夫公司的叛徒特工。",
+		"roundend_report": "是华夫公司的员工。",
 		"ui_theme": "syndicate",
-		"uplink": "You have been provided with a standard uplink to accomplish your task."
+		"uplink": "你已获得一台标准上行终端，用于完成任务。"
 	},
 	"Waffle Corporation Terrorist": {
-		"allies": "Most other syndicate operatives are not to be trusted, except for members of the Gorlex Marauders. Do not trust fellow members of the Waffle.co (but try not to rat them out), as they might have been assigned opposing objectives.",
-		"goal": "Our investors need a demonstration of our pledge to destroying Nanotrasen. Let's give them a loud one!",
-		"introduction": "You are the Waffle Corporation Terrorist.",
-		"roundend_report": "was a terrorist from Waffle Corporation.",
+		"allies": "除戈尔莱克斯掠夺者外，大多数其他辛迪加特工都不可信。不要信任其他华夫公司成员，但尽量别出卖他们，因为他们可能接到了与你相冲突的目标。",
+		"goal": "投资者需要看到我们摧毁纳米传讯的决心。给他们来场轰轰烈烈的示范吧！",
+		"introduction": "你是华夫公司的恐怖分子。",
+		"roundend_report": "是华夫公司的恐怖分子。",
 		"ui_theme": "syndicate",
-		"uplink": "You have been provided with a standard uplink to accomplish your task."
+		"uplink": "你已获得一台标准上行终端，用于完成任务。"
 	},
 	"Contractor Support Unit": {
-		"allies": "You are being sent to help your designated agent. Their allegiences are above all others.",
-		"goal": "Help your designated agent to the furtest extent you can, their life is above your own.",
-		"introduction": "You are the Contractor Support Agent.",
-		"roundend_report": "was a contractor support agent.",
+		"allies": "你被派来协助指定特工。你对其的忠诚高于一切其他关系。",
+		"goal": "尽你所能帮助指定特工，其生命优先于你自己的生命。",
+		"introduction": "你是承包商支援特工。",
+		"roundend_report": "是一名承包商支援特工。",
 		"ui_theme": "syndicate",
-		"uplink": "You do not come with your own uplink, defer to your agent."
+		"uplink": "你没有配备自己的上行终端，请听从指定特工安排。"
 	}
 }

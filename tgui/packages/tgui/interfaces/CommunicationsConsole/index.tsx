@@ -38,7 +38,7 @@ export function CommunicationsConsole(props) {
       currentPage = <PageMessages />;
       break;
     default:
-      currentPage = <Box>Page not implemented: {page}</Box>;
+      currentPage = <Box>页面尚未实现：{page}</Box>;
       break;
   }
 
@@ -48,34 +48,34 @@ export function CommunicationsConsole(props) {
         {!hasConnection && <NoConnectionModal />}
 
         {(canLogOut || !authenticated) && (
-          <Section title="Authentication">
+          <Section title="身份验证">
             <Button
               icon={authenticated ? 'sign-out-alt' : 'sign-in-alt'}
               color={authenticated ? 'bad' : 'good'}
               onClick={() => act('toggleAuthentication')}
             >
               {authenticated
-                ? `Log Out${authorizeName ? ` (${authorizeName})` : ''}`
-                : 'Log In'}
+                ? `登出${authorizeName ? ` (${authorizeName})` : ''}`
+                : '登录'}
             </Button>
           </Section>
         )}
 
         {canRequestSafeCode ? (
-          <Section title="Emergency Safe Code">
+          <Section title="应急保险柜密码">
             <Button
               icon="key"
               color="good"
               onClick={() => act('requestSafeCodes')}
             >
-              Request Safe Code
+              请求保险柜密码
             </Button>
           </Section>
         ) : (
           !!safeCodeDeliveryWait && (
-            <Section title="Emergency Safe Code Delivery" color="label">
-              {`Drop pod to ${safeCodeDeliveryArea} in \
-            ${Math.round(safeCodeDeliveryWait / 10)}s`}
+            <Section title="应急保险柜密码投送" color="label">
+              {`空投舱抵达 ${safeCodeDeliveryArea} 的剩余时间：\
+            ${Math.round(safeCodeDeliveryWait / 10)} 秒`}
             </Section>
           )
         )}

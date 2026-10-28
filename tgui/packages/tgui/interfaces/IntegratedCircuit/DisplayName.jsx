@@ -1,5 +1,5 @@
 import { Box, Button, Flex } from 'tgui-core/components';
-import { batchThreeDisplay } from '../../localization/batchThreeDisplay';
+import { batchThreeDisplay } from '../../localization/batchThreeDisplay'; import { circuitDatatypeDisplay } from '../../localization/zhDisplay';
 import {
   DATATYPE_DISPLAY_HANDLERS,
   FUNDAMENTAL_DATA_TYPES,
@@ -61,7 +61,7 @@ export const DisplayName = (props) => {
             opacity={0.5}
             textAlign={isOutput ? 'right' : 'left'}
           >
-            {displayType || 'unknown'}
+            {TypeDisplayHandler ? batchThreeDisplay(port.name) : circuitDatatypeDisplay(displayType || 'unknown')}
           </Box>
         </Flex.Item>
       </Flex>

@@ -1,14 +1,14 @@
 import { type Antagonist, Category } from '../base';
 
 export const VAMPIRE_MECHANICAL_DESCRIPTION = `
-After your death, you awaken to see yourself as an undead monster.
-Use your Vampiric abilities as best you can.
-Scrape by Space Station 13, or take over it, ghoulizing your way.
+死后苏醒，你发现自己变成了不死怪物。
+尽情运用你的吸血鬼能力。
+在空间站13艰难求生，或转化血仆，一路夺取空间站。
 `;
 
 const BloodsuckerBreakout: Antagonist = {
   key: 'bloodsuckerlatejoin',
-  name: 'Bloodsucker (Latejoin)',
+  name: '吸血鬼（中途加入）',
   description: [VAMPIRE_MECHANICAL_DESCRIPTION],
   category: Category.Latejoin,
 };

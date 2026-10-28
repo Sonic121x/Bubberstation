@@ -2,60 +2,60 @@
 import { CheckboxInput, type Feature } from '../../base';
 
 export const well_trained__prefers_males: Feature<boolean> = {
-  name: 'Subs To He/Him',
+  name: '臣服于使用He/Him代词者',
   component: CheckboxInput,
 };
 
 export const well_trained__prefers_females: Feature<boolean> = {
-  name: 'Subs To She/Her',
+  name: '臣服于使用She/Her代词者',
   component: CheckboxInput,
 };
 
 export const well_trained__prefers_plurals: Feature<boolean> = {
-  name: 'Subs To They/Them',
+  name: '臣服于使用They/Them代词者',
   component: CheckboxInput,
 };
 
 export const well_trained__prefers_neuters: Feature<boolean> = {
-  name: 'Subs To It/Its',
+  name: '臣服于使用It/Its代词者',
   component: CheckboxInput,
 };
 
 export const well_trained__prefers_other: Feature<boolean> = {
-  name: 'Subs To Any Other Genders',
+  name: '臣服于其他性别者',
   component: CheckboxInput,
 };
 
 export const well_trained__snap: Feature<boolean> = {
-  name: 'Be Commanded With *snap',
+  name: '接受*snap命令',
   component: CheckboxInput,
 };
 
 export const well_trained__snap2: Feature<boolean> = {
-  name: 'Be Commanded With *snap2',
+  name: '接受*snap2命令',
   component: CheckboxInput,
 };
 
 export const well_trained__snap3: Feature<boolean> = {
-  name: 'Be Commanded With *snap3',
+  name: '接受*snap3命令',
   component: CheckboxInput,
 };
 
 export const well_trained__clicker: Feature<boolean> = {
-  name: 'Be Commanded With Clicker',
+  name: '接受响片命令',
   component: CheckboxInput,
 };
 
 export const well_trained__sub_inspect_dom: Feature<boolean> = {
-  name: 'Be Embarassed Upon Examining Dom',
+  name: '检视支配者时感到害羞',
   component: CheckboxInput,
   description:
-    'If unchecked, you will not blush and turn when inspecting a compatible dom. ',
+    '取消勾选后，检视偏好相符的支配者时不会脸红并转身。',
 };
 
 export const well_trained__sub_sense_dom: Feature<boolean> = {
-  name: 'Dom Sense',
+  name: '支配者感知',
   component: CheckboxInput,
   description:
-    'If unchecked, you will not be alerted to the presence of compatible doms automatically, and will not recieve a positive moodlet for being near them. ',
+    '取消勾选后，不会自动感知偏好相符的支配者，也不会因靠近对方而获得正面心情。',
 };

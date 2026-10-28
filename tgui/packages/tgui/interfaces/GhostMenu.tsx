@@ -10,7 +10,7 @@ import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { chineseDisplay, chineseDropdownOptions } from '../localization/zhDisplay';
 type Data = {
   can_boo: BooleanLike;
   hud_info: HudInfo[];
@@ -42,7 +42,7 @@ export const GhostMenu = (props) => {
   const { has_fun, can_boo } = data;
   return (
     <Window
-      title="Ghost Menu"
+      title="幽灵菜单"
       width={500}
       height={630}
       buttons={
@@ -50,16 +50,16 @@ export const GhostMenu = (props) => {
           <>
             <Button
               disabled={!can_boo}
-              tooltip="Haunts things near you, with a cooldown."
+              tooltip="惊吓附近的事物，有冷却时间。"
               onClick={() => act('boo')}
             >
-              Boo!
+              吓！
             </Button>
             <Button
-              tooltip="Allows you to possess any non-sentient mob."
+              tooltip="允许你附身于任何没有自主意识的生物。"
               onClick={() => act('possess')}
             >
-              Possess
+              附身
             </Button>
           </>
         )
@@ -68,13 +68,13 @@ export const GhostMenu = (props) => {
       <Window.Content>
         <Stack fill>
           <Stack.Item width="40%">
-            <Section title="Player & Round Info">
+            <Section title="玩家与回合信息">
               <RoundSection />
             </Section>
-            <Section title="HUDs">
+            <Section title="抬头显示">
               <HudSection />
             </Section>
-            <Section title="Ghost Settings">
+            <Section title="幽灵设置">
               <GhostSettingsSection />
             </Section>
           </Stack.Item>
@@ -97,18 +97,18 @@ const RoundSection = (props) => {
           fluid
           dmIcon="icons/mob/simple/mob.dmi"
           dmIconState="ghost"
-          tooltip="Click to re-enter your corpse."
+          tooltip="点击以返回你的身体。"
           onClick={() => act('return_to_body')}
           fontSize="11px"
           buttons={
             <Button.Confirm
               icon="ghost"
-              tooltip="Become unable to be resusitated, permanently leaving your corpse behind."
+              tooltip="永久离开你的身体，此后无法再被复苏。"
               onClick={() => act('DNR')}
             />
           }
         >
-          Re-enter {body_name}
+          返回{body_name}的身体
         </ImageButton>
       )}
       <ImageButton
@@ -118,7 +118,7 @@ const RoundSection = (props) => {
         onClick={() => act('crew_manifest')}
         fontSize="11px"
       >
-        View Crew Manifest
+        查看船员名单
       </ImageButton>
       <ImageButton
         fluid
@@ -127,7 +127,7 @@ const RoundSection = (props) => {
         onClick={() => act('signup_pai')}
         fontSize="11px"
       >
-        Sign up as pAI
+        报名成为个人AI
       </ImageButton>
     </>
   );
@@ -155,10 +155,10 @@ const HudSection = (props) => {
       ))}
       {!lag_switch_on && (
         <Button
-          tooltip="Performs a t-ray scan where you are."
+          tooltip="对你所在的位置进行T射线扫描。"
           onClick={() => act('tray_scan')}
         >
-          T-ray Scan
+          T射线扫描
         </Button>
       )}
     </Stack>
@@ -178,8 +178,8 @@ const GhostSettingsSection = (props) => {
     <Stack vertical>
       <Stack.Item>
         <Dropdown
-          options={darkness_levels}
-          selected={current_darkness}
+          options={chineseDropdownOptions(darkness_levels)}
+          selected={current_darkness} displayText={chineseDisplay(current_darkness)}
           onSelected={(value) =>
             act('darkness', {
               darkness_level: value,
@@ -190,15 +190,15 @@ const GhostSettingsSection = (props) => {
       <Stack.Item>
         <Button
           fluid
-          tooltip="Restores your ghost character's appearance and username to that in your character preferences."
+          tooltip="将幽灵角色的外观与名称恢复为角色偏好设置中的内容。"
           onClick={() => act('restore_appearance')}
         >
-          Restore Ghost Character
+          恢复幽灵角色
         </Button>
       </Stack.Item>
       {!lag_switch_on && (
         <Stack.Item mx={1}>
-          Extra View Distance:
+          额外视距：
           <NumberInput
             width="30px"
             step={1}
@@ -221,7 +221,7 @@ const NotificationPreferences = (props) => {
   const { act, data } = useBackend<Data>();
   const { notification_data } = data;
   if (!notification_data) {
-    return 'No notifications!';
+    return '无通知！';
   }
 
   const ignores = notification_data.sort((a, b) => {
@@ -240,19 +240,19 @@ const NotificationPreferences = (props) => {
     <Section
       scrollable
       fill
-      title="Ghost Role Notifications"
+      title="幽灵角色通知"
       buttons={
         <>
           <Button
             icon="check"
             color="good"
-            tooltip="Enable all notifications."
+            tooltip="启用所有通知。"
             onClick={() => act('turn_all_on')}
           />
           <Button
             icon="times"
             color="bad"
-            tooltip="Disable all notifications."
+            tooltip="禁用所有通知。"
             onClick={() => act('turn_all_off')}
           />
         </>

@@ -13,7 +13,7 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { interfaceUtilityDisplay } from '../localization/interfaceUtilityDisplay';
 type Data = {
   food_types: Record<string, number>;
   obscure_food_types: string;
@@ -50,21 +50,21 @@ export const FoodPreferences = (props) => {
                 <Tooltip
                   position="bottom"
                   content={
-                    'You HAVE to pick at lease ONE TOXIC food and THREE Disliked foods. You Can have a maximum of THREE LIKED foods.'
+                    '必须选择至少一种有毒食物和三种不喜欢的食物。最多可选择三种喜欢的食物。'
                   }
                 >
                   <Box inline>
                     <Button icon="circle-question" mr="0.5em" />
                     {data.invalid ? (
                       <Box as="span" color="#bd2020">
-                        Preferences are Invalid!{' '}
+                        偏好设置无效！{' '}
                         {data.invalid.charAt(0).toUpperCase() +
                           data.invalid.slice(1)}{' '}
                         |&nbsp;
                       </Box>
                     ) : (
                       <Box as="span" color="green">
-                        Preferences are Valid!
+                        偏好设置有效！
                       </Box>
                     )}
                   </Box>
@@ -74,9 +74,9 @@ export const FoodPreferences = (props) => {
                   style={{ position: 'absolute', right: '20em' }}
                   color={'red'}
                   onClick={() => act('reset')}
-                  tooltip="Reset to the default values!"
+                  tooltip="恢复默认设置！"
                 >
-                  Reset
+                  重置
                 </Button>
 
                 <Button
@@ -87,29 +87,29 @@ export const FoodPreferences = (props) => {
                   disabled={data.race_disabled}
                   tooltip={
                     <>
-                      Toggles if these food preferences will be applied to your
-                      character on spawn.
+                      切换是否在角色生成时应用这些
+                      饮食偏好。
                       <Divider />
-                      Remember, these are mostly suggestions, and you are
-                      encouraged to roleplay liking meals that your character
-                      likes, even if you don&apos;t have it&apos;s food type
-                      liked here!
+                      请记住，这些主要是参考建议。即使没有
+                      在此将某类食物设为喜欢，也鼓励你在
+                      角色扮演中表现出角色对特定菜肴的
+                      喜爱！
                     </>
                   }
                 >
-                  Use Custom Food Preferences
+                  使用自定义饮食偏好
                 </Button>
               </Box>
             }
           >
             {(data.race_disabled && (
               <ErrorOverlay>
-                You&apos;re using a race which isn&apos;t affected by food
-                preferences!
+                你所选的种族不受饮食
+                偏好影响！
               </ErrorOverlay>
             )) ||
               (!data.enabled && (
-                <ErrorOverlay>Your food preferences are disabled!</ErrorOverlay>
+                <ErrorOverlay>你的饮食偏好已禁用！</ErrorOverlay>
               ))}
             <Box style={{ columns: '30em' }}>
               {Object.entries(data.food_types).map((element) => {
@@ -119,9 +119,9 @@ export const FoodPreferences = (props) => {
                     <Section
                       title={
                         <>
-                          {foodName}
+                          {interfaceUtilityDisplay(foodName)}
                           {data.obscure_food_types[foodName] && (
-                            <Tooltip content="This food doesn't count towards your maximum likes, and is free!">
+                            <Tooltip content="此食物不占喜欢的食物名额，可以自由选择！">
                               <Box
                                 as="span"
                                 fontSize={0.75}
@@ -142,9 +142,9 @@ export const FoodPreferences = (props) => {
                           (!data.selection[foodName] &&
                             foodPointValues === FOOD_TOXIC)
                         }
-                        content={<>Toxic</>}
+                        content={<>有毒</>}
                         color="olive"
-                        tooltip="Your character will almost immediately throw up on eating anything toxic."
+                        tooltip="你的角色吃下有毒食物后几乎会立即呕吐。"
                       />
                       <FoodButton
                         foodName={foodName}
@@ -154,9 +154,9 @@ export const FoodPreferences = (props) => {
                           (!data.selection[foodName] &&
                             foodPointValues === FOOD_DISLIKED)
                         }
-                        content={<>Disliked</>}
+                        content={<>不喜欢</>}
                         color="red"
-                        tooltip="Your character will become grossed out, before eventually throwing up after a decent intake of disliked food."
+                        tooltip="你的角色会感到恶心，吃下较多不喜欢的食物后最终会呕吐。"
                       />
                       <FoodButton
                         foodName={foodName}
@@ -166,9 +166,9 @@ export const FoodPreferences = (props) => {
                           (!data.selection[foodName] &&
                             foodPointValues === FOOD_NEUTRAL)
                         }
-                        content={<>Neutral</>}
+                        content={<>一般</>}
                         color="yellow"
-                        tooltip="Your character has very little to say about something that's neutral."
+                        tooltip="你的角色对这类食物没有特别感受。"
                       />
                       <FoodButton
                         foodName={foodName}
@@ -178,9 +178,9 @@ export const FoodPreferences = (props) => {
                           (!data.selection[foodName] &&
                             foodPointValues === FOOD_LIKED)
                         }
-                        content={<>Liked</>}
+                        content={<>喜欢</>}
                         color="green"
-                        tooltip="Your character will enjoy anything that's liked."
+                        tooltip="你的角色会享受喜欢的食物。"
                       />
                     </Section>
                   </Box>

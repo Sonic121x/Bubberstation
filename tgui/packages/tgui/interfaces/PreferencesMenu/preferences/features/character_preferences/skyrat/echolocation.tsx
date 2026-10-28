@@ -7,11 +7,11 @@ import {
 } from '../../base';
 
 export const echolocation_outline: Feature<string> = {
-  name: 'Echo outline color',
+  name: '回声轮廓颜色',
   component: FeatureColorInput,
 };
 
 export const echolocation_use_echo: FeatureToggle = {
-  name: 'Display echo overlay',
+  name: '显示回声叠层',
   component: CheckboxInput,
 };

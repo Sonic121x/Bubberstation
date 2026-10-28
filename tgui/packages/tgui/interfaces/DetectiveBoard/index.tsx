@@ -338,12 +338,12 @@ export function DetectiveBoard(props) {
                 </Stack.Item>
                 <Stack.Item align="center">
                   <Box color="red" fontSize="18px" bold mt={5}>
-                    You have no cases! Create the first one
+                    还没有案件！创建第一个案件吧
                   </Box>
                 </Stack.Item>
                 <Stack.Item align="center" grow={3}>
                   <Button icon="plus" onClick={() => act('add_case')}>
-                    Create case
+                    创建案件
                   </Button>
                 </Stack.Item>
               </Stack>

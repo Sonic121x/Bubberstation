@@ -78,11 +78,11 @@ const processColorModifiers = (content: string): string | React.JSX.Element => {
     .replace('Southeast', 'Page Down')
     .replace('Northwest', 'Home')
     .replace('Southwest', 'End')
-    .replace('North', 'Up')
-    .replace('South', 'Down')
-    .replace('East', 'Right')
-    .replace('West', 'Left')
-    .replace('Numpad', 'Numpad ');
+    .replace('North', '上箭头')
+    .replace('South', '下箭头')
+    .replace('East', '右箭头')
+    .replace('West', '左箭头')
+    .replace('Numpad', '数字小键盘 ');
 };
 
 const KeyBinding = (props: KeyBindingBoxProps) => (
@@ -93,23 +93,23 @@ export const HotkeysHelp = (props) => {
   const { act, data } = useBackend<HotkeysHelpData>();
 
   return (
-    <Window title="Hotkeys" width={500} height={800}>
+    <Window title="快捷键" width={500} height={800}>
       <Window.Content scrollable>
         <Section
-          title="Sorted by Key"
+          title="按键排序"
           buttons={
             <Button icon="wrench" onClick={() => act('open_keybindings')}>
-              Open Hotkey Settings
+              打开快捷键设置
             </Button>
           }
         >
           <Table>
             <Table.Row header>
               <Table.Cell textAlign="center" m={1}>
-                Key
+                按键
               </Table.Cell>
               <Table.Cell textAlign="center" m={1}>
-                Binding
+                绑定动作
               </Table.Cell>
             </Table.Row>
             {data.hotkeys.map((hotkey) => (

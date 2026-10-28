@@ -8,7 +8,7 @@ import {
 } from 'tgui-core/components';
 import { capitalizeAll, capitalizeFirst } from 'tgui-core/string';
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import { Window } from '../layouts'; import { chineseDisplay } from '../localization/zhDisplay';
 
 type Data = {
   raptor_scan: boolean;
@@ -38,7 +38,7 @@ type Data = {
 
 export const RaptorDex = (props) => {
   return (
-    <Window title="Raptor Data" width={770} height={370} theme="hackerman">
+    <Window title="迅猛龙数据" width={770} height={370} theme="hackerman">
       <Window.Content>
         <RaptorDexContent />
       </Window.Content>
@@ -75,14 +75,14 @@ export const RaptorDexContent = (props) => {
   } = data;
 
   if (!raptor_scan) {
-    return <Modal textAlign="center">No scan data present.</Modal>;
+    return <Modal textAlign="center">暂无扫描数据。</Modal>;
   }
 
   return (
     <Stack>
       {' '}
       <Stack.Item width="33%">
-        <Section textAlign="center" title={capitalizeAll(raptor_color)}>
+        <Section textAlign="center" title={chineseDisplay(capitalizeAll(raptor_color))}>
           <Image
             src={`data:image/jpeg;base64,${raptor_image}`}
             height="128px"
@@ -94,33 +94,33 @@ export const RaptorDexContent = (props) => {
             }}
           />
         </Section>
-        <Section fill title="Description">
+        <Section fill title="描述">
           {raptor_description}
         </Section>
       </Stack.Item>
       <Stack.Item width="33%" textAlign="center">
-        <Section title="Stats">
+        <Section title="属性">
           <LabeledList>
-            <LabeledList.Item label="Health">
+            <LabeledList.Item label="生命值">
               {raptor_health} / {raptor_max_health}
             </LabeledList.Item>
-            <LabeledList.Item label="Attack">{raptor_attack}</LabeledList.Item>
-            <LabeledList.Item label="Speed">
+            <LabeledList.Item label="攻击">{raptor_attack}</LabeledList.Item>
+            <LabeledList.Item label="速度">
               {Math.round(10 / Math.max(raptor_speed, 0.5))}
             </LabeledList.Item>
-            <LabeledList.Item label="Gender">
-              {capitalizeFirst(raptor_gender)}
+            <LabeledList.Item label="性别">
+              {chineseDisplay(capitalizeFirst(raptor_gender))}
             </LabeledList.Item>
             {!!can_grow && (
-              <LabeledList.Item label="Growth">
+              <LabeledList.Item label="成长">
                 <ProgressBar value={raptor_growth} maxValue={100} />
               </LabeledList.Item>
             )}
           </LabeledList>
         </Section>
-        <Section title="Inherit Modifiers">
+        <Section title="遗传修正">
           <LabeledList>
-            <LabeledList.Item label="Health">
+            <LabeledList.Item label="生命值">
               <ProgressBar
                 value={inherited_health}
                 maxValue={inherited_health_max}
@@ -131,7 +131,7 @@ export const RaptorDexContent = (props) => {
                 }}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Attack">
+            <LabeledList.Item label="攻击">
               <ProgressBar
                 value={inherited_attack}
                 maxValue={inherited_attack_max}
@@ -142,7 +142,7 @@ export const RaptorDexContent = (props) => {
                 }}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Speed">
+            <LabeledList.Item label="速度">
               <ProgressBar
                 value={inherited_speed}
                 maxValue={inherited_speed_max}
@@ -153,7 +153,7 @@ export const RaptorDexContent = (props) => {
                 }}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Capability">
+            <LabeledList.Item label="能力">
               <ProgressBar
                 value={inherited_ability}
                 maxValue={inherited_ability_max}
@@ -164,7 +164,7 @@ export const RaptorDexContent = (props) => {
                 }}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Growth Speed">
+            <LabeledList.Item label="成长速度">
               <ProgressBar
                 value={inherited_growth}
                 maxValue={inherited_growth_max}
@@ -179,7 +179,7 @@ export const RaptorDexContent = (props) => {
         </Section>
       </Stack.Item>
       <Stack.Item width="33%">
-        <Section textAlign="center" title="Friendship bond">
+        <Section textAlign="center" title="友谊羁绊">
           <Image
             mt={-9.5}
             src={`data:image/jpeg;base64,${raptor_happiness}`}
@@ -187,7 +187,7 @@ export const RaptorDexContent = (props) => {
             width="72px"
           />
         </Section>
-        <Section textAlign="center" title="Inherited Traits">
+        <Section textAlign="center" title="遗传特征">
           <Stack vertical>
             {inherited_traits.map((trait, index) => (
               <Stack.Item key={index}>{trait}</Stack.Item>

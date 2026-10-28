@@ -14,7 +14,7 @@ import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
 import type { NTOSData } from '../layouts/NtosWindow';
 import { AccessList } from './common/AccessList';
-
+import { displayRole as zh } from '../localization/roleDisplay';
 type CardData = {
   has_trim: BooleanLike;
   id_age: number;
@@ -93,14 +93,14 @@ export const NtosCardContent = (props) => {
       {!!modified_card && !!authed_user && (
         <Stack.Item>
           <Section
-            title="Templates"
+            title="模板"
             mt={1}
             buttons={
               <Button
                 icon="question-circle"
                 tooltip={
-                  'Will attempt to apply all access for the template to the ID card.\n' +
-                  'Does not use wildcards unless the template specifies them.'
+                  '尝试将模板中的全部权限应用到身份卡。\n' +
+                  '除非模板另有指定，否则不使用通配权限。'
                 }
                 tooltipPosition="left"
               />
@@ -109,7 +109,7 @@ export const NtosCardContent = (props) => {
             {modified_card.has_trim ? (
               <TemplateDropdown templates={templates} />
             ) : (
-              'Templates require a trim already applied to the card. Please use an ID Painter to apply a trim.'
+              '使用模板前必须先为身份卡应用饰边。请使用身份卡涂装机应用饰边。'
             )}
           </Section>
         </Stack.Item>
@@ -129,8 +129,8 @@ export const NtosCardContent = (props) => {
                 showBasic={!!show_basic}
                 extraButtons={
                   <Button.Confirm
-                    content="Terminate Employment"
-                    confirmContent="Fire Employee?"
+                    content="解除雇佣"
+                    confirmContent="确认解雇员工？"
                     color="bad"
                     onClick={() => act('PRG_terminate')}
                   />
@@ -160,8 +160,8 @@ const LoginPage = () => {
         <Stack.Item grow>
           <NoticeBox info={!!authed_user}>
             {authed_user
-              ? `Login: ${authed_user}`
-              : 'Please log in to continue.'}
+              ? `登录用户：${authed_user}`
+              : '请登录以继续。'}
           </NoticeBox>
         </Stack.Item>
         <Stack.Item width="100%">
@@ -177,8 +177,8 @@ const LoginPage = () => {
                 disabled={!auth_card && !is_holding_id}
               >
                 {auth_card
-                  ? `${auth_card.id_owner} (${auth_card.id_rank})`
-                  : 'Insert ID'}
+                  ? `${auth_card.id_owner}（${zh(auth_card.id_rank)}）`
+                  : '插入身份卡'}
               </Button>
             </Flex.Item>
             <Flex.Item>
@@ -189,7 +189,7 @@ const LoginPage = () => {
                   act(authed_user ? 'PRG_logout' : 'PRG_authenticate');
                 }}
               >
-                {authed_user ? 'Log Out' : 'Log In'}
+                {authed_user ? '登出' : '登录'}
               </Button>
             </Flex.Item>
           </Flex>
@@ -219,8 +219,8 @@ const IdCardPage = (props) => {
                 disabled={!modified_card && !is_holding_id}
               >
                 {modified_card
-                  ? `${modified_card.id_owner} (${modified_card.id_rank})`
-                  : 'Insert ID'}
+                  ? `${modified_card.id_owner}（${zh(modified_card.id_rank)}）`
+                  : '插入身份卡'}
               </Button>
             </Flex.Item>
             <Flex.Item>
@@ -229,7 +229,7 @@ const IdCardPage = (props) => {
                 disabled={!modified_card || !authed_user}
                 onClick={() => act('PRG_print')}
               >
-                Print Report
+                打印报告
               </Button>
             </Flex.Item>
           </Flex>
@@ -238,7 +238,7 @@ const IdCardPage = (props) => {
       {!!(modified_card && authed_user) && (
         <>
           <Stack mt={1}>
-            <Stack.Item align="center">Details:</Stack.Item>
+            <Stack.Item align="center">详细信息：</Stack.Item>
             <Stack.Item grow={1} mr={1} ml={1}>
               <Input
                 width="100%"
@@ -254,7 +254,7 @@ const IdCardPage = (props) => {
               <NumberInput
                 step={1}
                 value={modified_card.id_age || 0}
-                unit="Years"
+                unit="岁"
                 minValue={17}
                 maxValue={85}
                 onChange={(value) => {
@@ -266,7 +266,7 @@ const IdCardPage = (props) => {
             </Stack.Item>
           </Stack>
           <Stack>
-            <Stack.Item align="center">Assignment:</Stack.Item>
+            <Stack.Item align="center">职务：</Stack.Item>
             <Stack.Item grow={1} ml={1}>
               <Input
                 fluid
@@ -299,16 +299,16 @@ const TemplateDropdown = (props) => {
       <Stack.Item grow>
         <Dropdown
           width="100%"
-          placeholder="Select a template..."
+          placeholder="选择模板……"
           options={templateKeys.map((path) => {
-            return templates[path];
+            return { value: templates[path], displayText: zh(templates[path]) };
           })}
           onSelected={(sel) =>
             act('PRG_template', {
               name: sel,
             })
           }
-          selected="None"
+          selected="None" displayText="无"
         />
       </Stack.Item>
     </Stack>

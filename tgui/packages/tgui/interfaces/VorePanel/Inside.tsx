@@ -9,26 +9,26 @@ export const Inside = (props) => {
   const { inside } = data;
 
   if (!inside) {
-    return <Section title="Inside!">You are not inside anyone!</Section>;
+    return <Section title="体内！">你不在任何人的体内！</Section>;
   }
 
   const preyMode = types.digestModeToPreyMode[inside.digest_mode];
 
   return (
-    <Section title="Inside!">
+    <Section title="体内！">
       <Box>
         <Box color="yellow" inline>
-          You are currently inside
+          你目前位于
         </Box>{' '}
         <Box inline color="blue">
-          {inside.owner_name || 'someone'}
-          &apos;s
+          {inside.owner_name || '某人'}
+          的
         </Box>{' '}
         <Box inline color="red">
           {inside.name}
         </Box>{' '}
         <Box inline color="yellow">
-          and you are
+          内，正
         </Box>{' '}
         <Box inline color={preyMode.color}>
           {preyMode.text}
@@ -38,11 +38,11 @@ export const Inside = (props) => {
         {inside.desc}
       </Box>
       {inside.contents.length ? (
-        <Collapsible title="Belly Contents">
+        <Collapsible title="腹腔内容物">
           <BellyContents contents={inside.contents} />
         </Collapsible>
       ) : (
-        'There is nothing else around you.'
+        '你周围没有其他东西。'
       )}
     </Section>
   );

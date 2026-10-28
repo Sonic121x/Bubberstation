@@ -33,7 +33,7 @@ export const ExosuitControlConsole = (props) => {
   return (
     <Window width={500} height={500}>
       <Window.Content scrollable>
-        {mechs.length === 0 && <NoticeBox>No exosuits detected</NoticeBox>}
+        {mechs.length === 0 && <NoticeBox>未检测到机甲</NoticeBox>}
         {mechs.map((mech) => (
           <Section
             key={mech.tracker_ref}
@@ -49,7 +49,7 @@ export const ExosuitControlConsole = (props) => {
                     })
                   }
                 >
-                  Message
+                  发送消息
                 </Button>
                 <Button
                   icon="wifi"
@@ -61,13 +61,13 @@ export const ExosuitControlConsole = (props) => {
                     })
                   }
                 >
-                  {mech.emp_recharging ? 'Recharging...' : 'EMP Burst'}
+                  {mech.emp_recharging ? '充能中……' : '电磁脉冲'}
                 </Button>
               </>
             }
           >
             <LabeledList>
-              <LabeledList.Item label="Integrity">
+              <LabeledList.Item label="结构完整性">
                 <Box
                   color={
                     (mech.integrity <= 30 && 'bad') ||
@@ -78,7 +78,7 @@ export const ExosuitControlConsole = (props) => {
                   {mech.integrity}%
                 </Box>
               </LabeledList.Item>
-              <LabeledList.Item label="Charge">
+              <LabeledList.Item label="电量">
                 {mech.charge !== null ? (
                   <Box
                     color={
@@ -90,20 +90,20 @@ export const ExosuitControlConsole = (props) => {
                     {mech.charge}%
                   </Box>
                 ) : (
-                  <Box>Not Found</Box>
+                  <Box>未找到</Box>
                 )}
               </LabeledList.Item>
-              <LabeledList.Item label="Airtank">
+              <LabeledList.Item label="气罐">
                 {mech.airtank !== null ? (
                   <AnimatedNumber
                     value={mech.airtank}
                     format={(value) => `${toFixed(value, 2)} kPa`}
                   />
                 ) : (
-                  'Not Equipped'
+                  '未配备'
                 )}
               </LabeledList.Item>
-              <LabeledList.Item label="Pilot">
+              <LabeledList.Item label="驾驶员">
                 {mech.pilot.length > 0
                   ? mech.pilot.map((pilot) => (
                       <Box key={pilot} inline>
@@ -111,13 +111,13 @@ export const ExosuitControlConsole = (props) => {
                         {mech.pilot.length > 1 ? '|' : ''}
                       </Box>
                     ))
-                  : 'None'}
+                  : '无'}
               </LabeledList.Item>
-              <LabeledList.Item label="Location">
-                {mech.location || 'Unknown'}
+              <LabeledList.Item label="位置">
+                {mech.location || '未知'}
               </LabeledList.Item>
               {mech.cargo_space !== undefined && (
-                <LabeledList.Item label="Used Cargo Space">
+                <LabeledList.Item label="已用货舱空间">
                   <Box
                     color={
                       (mech.cargo_space <= 30 && 'good') ||

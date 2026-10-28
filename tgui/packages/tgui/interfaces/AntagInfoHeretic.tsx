@@ -21,7 +21,7 @@ import {
   ObjectivePrintout,
   ReplaceObjectivesButton,
 } from './common/Objectives';
-
+import { hereticComplexityDisplay, hereticThemeSuffix } from '../localization/hereticDisplay';
 const hereticRed = {
   color: '#e03c3c',
 };
@@ -121,7 +121,7 @@ const IntroductionSection = (props) => {
   return (
     <Stack justify="space-evenly" height="100%" width="100%">
       <Stack.Item grow>
-        <Section title="You are the Heretic!" fill fontSize="14px" scrollable>
+        <Section title="你是异教徒！" fill fontSize="14px" scrollable>
           <Stack vertical>
             <FlavorSection />
             <Stack.Divider />
@@ -141,17 +141,17 @@ const IntroductionSection = (props) => {
                   fill
                   titleMessage={
                     can_change_objective
-                      ? 'Your OPFOR objectives are your primary ones, but in order to ascend, you have these tasks to fulfill' /* SKYRAT EDIT CHANGE - opfor objectives */
-                      : 'Your OPFOR objectives are your primary ones. Use your dark knowledge to fulfill your personal goal' /* SKYRAT EDIT CHANGE - opfor objectives  */
+                      ? '敌对势力目标是你的首要目标，但若想飞升，你还必须完成以下任务' /* SKYRAT EDIT CHANGE - opfor objectives */
+                      : '敌对势力目标是你的首要目标。运用黑暗知识实现你的个人目标' /* SKYRAT EDIT CHANGE - opfor objectives  */
                   }
                   objectives={objectives}
                   objectiveFollowup={
                     <ReplaceObjectivesButton
                       can_change_objective={can_change_objective}
-                      button_title={'Reject Ascension'}
+                      button_title={'拒绝飞升'}
                       button_colour={'red'}
                       button_tooltip={
-                        'Turn your back on the Mansus to accomplish a task of your choosing. Selecting this option will prevent you from ascending!'
+                        '背弃漫宿，转而完成自行选择的任务。选择此项后，你将无法飞升！'
                       }
                     />
                   }
@@ -171,18 +171,18 @@ export const FlavorSection = () => {
       <Stack vertical textAlign="center" fontSize="14px">
         <Stack.Item>
           <i>
-            Another day at a meaningless job. You feel a&nbsp;
-            <span style={hereticBlue}>shimmer</span>
-            &nbsp;around you, as a realization of something&nbsp;
-            <span style={hereticRed}>strange</span>
-            &nbsp;in the air unfolds. You look inwards and discover something
-            that will change your life.
+            又是毫无意义的工作日。你察觉到周围的一丝&nbsp;
+            <span style={hereticBlue}>微光</span>
+            &nbsp;，逐渐意识到空气中存在某种&nbsp;
+            <span style={hereticRed}>异样</span>
+            &nbsp;。你审视内心，发现了某种
+            将改变一生的东西。
           </i>
         </Stack.Item>
         <Stack.Item>
           <b>
-            The <span style={hereticPurple}>Gates of Mansus</span>
-            &nbsp;open up to your mind.
+            <span style={hereticPurple}>漫宿之门</span>
+            &nbsp;向你的心灵敞开。
           </b>
         </Stack.Item>
       </Stack>
@@ -197,48 +197,48 @@ const GuideSection = () => {
     <Stack.Item>
       <Stack vertical fontSize="12px">
         <Stack.Item>
-          - Find reality smashing&nbsp;
-          <span style={hereticPurple}>influences</span>
-          &nbsp;around the station invisible to the normal eye and&nbsp;
-          <b>right click</b> on them to harvest them for&nbsp;
-          <span style={hereticBlue}>knowledge points</span>. Tapping them makes
-          them visible to all after a short time. Dreaming of Mansus may help to
-          find them.
+          - 寻找空间站各处撕裂现实的&nbsp;
+          <span style={hereticPurple}>异界影响</span>
+          &nbsp;，它们无法被常人的肉眼看见。&nbsp;
+          <b>右键点击</b>，汲取它们以获得&nbsp;
+          <span style={hereticBlue}>知识点数</span>。汲取后不久，
+          所有人都将能看见它们。梦游漫宿可能有助于
+          寻找它们。
         </Stack.Item>
         <Stack.Item>
-          - Use your&nbsp;
-          <span style={hereticRed}>Living Heart action</span>
-          &nbsp;to track down&nbsp;
-          <span style={hereticRed}>sacrifice targets</span>, but be careful:
-          Pulsing it will produce a heartbeat sound that nearby people may hear.
-          This action is tied to your <b>heart</b> - if you lose it, you must
-          complete a ritual to regain it.
+          - 使用你的&nbsp;
+          <span style={hereticRed}>活心脉动能力</span>
+          &nbsp;来追踪&nbsp;
+          <span style={hereticRed}>献祭目标</span>，但要小心：
+          脉动会发出心跳声，附近的人可能听见。
+          此能力与你的<b>心脏</b>绑定；若失去心脏，你必须
+          完成仪式才能重新获得此能力。
         </Stack.Item>
         <Stack.Item>
-          - Draw a&nbsp;
-          <span style={hereticGreen}>transmutation rune</span> by using a
-          drawing tool (a pen or crayon) on the floor while having&nbsp;
-          <span style={hereticGreen}>Mansus Grasp</span>
-          &nbsp;active in your other hand. This rune allows you to complete
-          rituals and sacrifices.
+          - 绘制&nbsp;
+          <span style={hereticGreen}>嬗变符文</span>的方法是：
+          使用绘图工具（钢笔或蜡笔）点击地板，同时在另一只手激活&nbsp;
+          <span style={hereticGreen}>漫宿之握</span>
+          &nbsp;。此符文可以用于完成
+          仪式和献祭。
         </Stack.Item>
         <Stack.Item>
-          - Follow your <span style={hereticRed}>Living Heart</span> to find
-          your targets. Bring them back to a&nbsp;
-          <span style={hereticGreen}>transmutation rune</span> in critical or
-          worse condition to&nbsp;
-          <span style={hereticRed}>sacrifice</span> them for&nbsp;
-          <span style={hereticBlue}>knowledge points</span>. The Mansus{' '}
-          <b>ONLY</b> accepts targets pointed to by the&nbsp;
-          <span style={hereticRed}>Living Heart</span>.
+          - 跟随<span style={hereticRed}>活心</span>寻找
+          目标。将处于濒死或更糟状态的目标带到&nbsp;
+          <span style={hereticGreen}>嬗变符文</span>上，
+          然后&nbsp;
+          <span style={hereticRed}>献祭</span>以获得&nbsp;
+          <span style={hereticBlue}>知识点数</span>。漫宿{' '}
+          <b>只</b>接受&nbsp;
+          <span style={hereticRed}>活心</span>指定的目标。
         </Stack.Item>
         <Stack.Item>
-          - Accumulating a total of <b>{points_to_aura}</b>&nbsp;
-          <span style={hereticBlue}>knowledge points</span>
-          &nbsp;will manifest a visible aura of&nbsp;
-          <span style={hereticPurple}>Mansus energy</span> around you. This aura
-          will be visible to all those around you and will mark you as a
-          Heretic. Consider the risks before accumulating too much knowledge!
+          - 累计获得 <b>{points_to_aura}</b> 点&nbsp;
+          <span style={hereticBlue}>知识</span>
+          &nbsp;后，你周围将显现出&nbsp;
+          <span style={hereticPurple}>漫宿能量</span>光环。此光环
+          对周围所有人可见，并将暴露你的
+          异教徒身份。在积累过多知识前，请考虑风险！
         </Stack.Item>
       </Stack>
     </Stack.Item>
@@ -254,27 +254,27 @@ const InformationSection = () => {
         {!!ascended && (
           <Stack.Item>
             <Stack align="center">
-              <Stack.Item>You have</Stack.Item>
+              <Stack.Item>你已</Stack.Item>
               <Stack.Item fontSize="24px">
                 <Box inline color="yellow">
-                  ASCENDED
+                  飞升
                 </Box>
-                !
+                ！
               </Stack.Item>
             </Stack>
           </Stack.Item>
         )}
         <Stack.Item>
-          You have <b>{charges || 0}</b>&nbsp;
+          你拥有 <b>{charges || 0}</b> 点&nbsp;
           <span style={hereticBlue}>
-            knowledge point{charges !== 1 ? 's' : ''}
+            知识
           </span>
-          .
+          。
         </Stack.Item>
         <Stack.Item>
-          You have made a total of&nbsp;
+          你已完成共计&nbsp;
           <b>{total_sacrifices || 0}</b>&nbsp;
-          <span style={hereticRed}>sacrifices</span>.
+          次<span style={hereticRed}>献祭</span>。
         </Stack.Item>
       </Stack>
     </Stack.Item>
@@ -288,13 +288,13 @@ const KnowledgeTree = () => {
   const nodesToShow = knowledge_tiers.filter((tier) => tier.nodes.length > 0);
 
   return (
-    <Section title="Research Tree" fill scrollable>
+    <Section title="研究树" fill scrollable>
       <Box textAlign="center" fontSize="32px">
-        <span style={hereticYellow}>DAWN</span>
+        <span style={hereticYellow}>黎明</span>
       </Box>
       <Stack vertical>
         {nodesToShow.length === 0
-          ? 'None!'
+          ? '无！'
           : nodesToShow.map((tier, i) => (
               <Stack.Item key={i}>
                 <Stack
@@ -389,7 +389,7 @@ const KnowledgeNode = (props: KnowledgeNodeProps) => {
             </Stack.Item>
             <Stack.Item>
               <BlockQuote>
-                <span style={hereticPurple}>Result: </span>{' '}
+                <span style={hereticPurple}>效果：</span>{' '}
               </BlockQuote>
               {formatTooltipText(node.desc)}
             </Stack.Item>
@@ -401,7 +401,7 @@ const KnowledgeNode = (props: KnowledgeNodeProps) => {
             {!!node.info && (
               <Stack.Item>
                 <BlockQuote>
-                  <span style={hereticGreen}>Recipe: </span>{' '}
+                  <span style={hereticGreen}>配方：</span>{' '}
                 </BlockQuote>
                 {formatTooltipText(node.info)}
               </Stack.Item>
@@ -451,12 +451,12 @@ const KnowledgeNode = (props: KnowledgeNodeProps) => {
           bold
           style={{ margin: '2px', borderRadius: '100%' }}
         >
-          {isBuyable && (node.cost > 0 ? node.cost : 'FREE')}
+          {isBuyable && (node.cost > 0 ? node.cost : '免费')}
         </Box>
       </Button>
       {!!node.ascension && (
         <Box textAlign="center" fontSize="32px">
-          <span style={hereticPurple}>DUSK</span>
+          <span style={hereticPurple}>黄昏</span>
         </Box>
       )}
     </Stack.Item>
@@ -472,7 +472,7 @@ export const KnowledgeShop = () => {
   }
 
   return (
-    <Section title="Knowledge Shop" fill scrollable>
+    <Section title="知识商店" fill scrollable>
       <Stack vertical fill>
         <Knowledges />
       </Stack>
@@ -492,7 +492,7 @@ export const KnowledgeShop = () => {
 
     return tiers?.map((tier, index) => (
       <Stack.Item key={`tier-${index}`}>
-        Tier {index + 1}
+        第 {index + 1} 阶
         <Stack fill scrollable wrap="wrap">
           {tier.map((knowledge) => (
             <Stack.Item key={`knowledge-${knowledge.path}`}>
@@ -516,11 +516,11 @@ export const ResearchInfo = () => {
   return (
     <Stack vertical fill>
       <Stack.Item mb={1.5} fontSize="20px" textAlign="center">
-        You have <b>{charges || 0}</b>&nbsp;
+        你拥有 <b>{charges || 0}</b> 点&nbsp;
         <span style={hereticBlue}>
-          knowledge point{charges !== 1 ? 's' : ''}
+          知识
         </span>{' '}
-        to spend.
+        可供使用。
       </Stack.Item>
       <Stack fill>
         <Stack.Item grow>
@@ -606,9 +606,9 @@ const PathContentUnselected = ({ path }: { path: HereticPath }) => {
         />
         <Stack.Item>
           <h3>
-            Complexity:{' '}
+            复杂度：{' '}
             <span style={{ color: path.complexity_color }}>
-              {path.complexity}
+              {hereticComplexityDisplay(path.complexity)}
             </span>
           </h3>
         </Stack.Item>
@@ -625,7 +625,7 @@ const PathContentUnselected = ({ path }: { path: HereticPath }) => {
         <Stack>
           <Stack.Item style={{ justifyItems: 'center' }} width="50%">
             <Stack vertical>
-              <Stack.Item bold>Passive: {path.passive.name}</Stack.Item>
+              <Stack.Item bold>被动能力：{path.passive.name}</Stack.Item>
               <Stack.Item italic>{path.passive.recharge}</Stack.Item>
               <Stack.Item className="Passive" width="100%">
                 {path.passive.description[0]}
@@ -634,7 +634,7 @@ const PathContentUnselected = ({ path }: { path: HereticPath }) => {
           </Stack.Item>
           <Stack.Item width="50%">
             <Stack vertical>
-              <Stack.Item bold>Path Abilities:</Stack.Item>
+              <Stack.Item bold>途径能力：</Stack.Item>
               <Stack.Item>
                 <Stack wrap="wrap" justify="center">
                   {path.preview_abilities.map((ability) => (
@@ -652,10 +652,10 @@ const PathContentUnselected = ({ path }: { path: HereticPath }) => {
       <Stack.Item>
         <Stack>
           <Stack.Item width="50%">
-            <PathProCons proconlist={path.pros} title="Pros" />
+            <PathProCons proconlist={path.pros} title="优势" />
           </Stack.Item>
           <Stack.Item width="50%">
-            <PathProCons proconlist={path.cons} title="Cons" />
+            <PathProCons proconlist={path.cons} title="弱点" />
           </Stack.Item>
         </Stack>
       </Stack.Item>
@@ -680,7 +680,7 @@ const PathContentSelected = ({
       <Stack.Item>
         <Stack vertical>
           <Stack.Item bold>
-            Passive: {path.passive.name}, level: {passive_level}
+            被动能力：{path.passive.name}，等级：{passive_level}
           </Stack.Item>
           <Stack.Item italic>{path.passive.recharge}</Stack.Item>
           {path.passive.description.map((line, index) => (
@@ -689,7 +689,7 @@ const PathContentSelected = ({
               className={`Passive ${passive_level >= index + 1 ? 'Passive--Active' : ''}`}
               width="100%"
             >
-              Level {index + 1}
+              等级 {index + 1}
               <br />
               {line}
             </Stack.Item>
@@ -698,7 +698,7 @@ const PathContentSelected = ({
       </Stack.Item>
       <Stack.Item textAlign="left" mt={2} mb={1}>
         <Stack.Item bold mb={1}>
-          Tips:
+          技巧：
         </Stack.Item>
         <Stack.Item>
           <Stack vertical>
@@ -758,18 +758,18 @@ export const AntagInfoHeretic = () => {
   );
 
   const tabs = [
-    { label: 'Information', icon: 'info', content: <IntroductionSection /> },
+    { label: '信息', icon: 'info', content: <IntroductionSection /> },
     {
-      label: 'Paths',
+      label: '途径',
       icon: 'info',
       content: <PathInfo currentPath={currentPath} />,
     },
-    { label: 'Research', icon: 'book', content: <ResearchInfo /> },
+    { label: '研究', icon: 'book', content: <ResearchInfo /> },
   ];
 
   const currentTheme = () => {
     if (currentPath?.route) {
-      return `Heretic theme-Heretic--${currentPath.route.replace(' ', '')}`;
+      return `Heretic theme-Heretic--${hereticThemeSuffix(currentPath.route)}`;
     }
     return 'Heretic';
   };

@@ -82,7 +82,7 @@
 		if(is_radio)
 			chosen = pick(list("救命！",
 				"救命！[pick_list_replacements(HALLUCINATION_FILE, "location")][prob(50)?"！":"！！"]",
-				"[pick_list_replacements(HALLUCINATION_FILE, "people")] 就是 [pick_list_replacements(HALLUCINATION_FILE, "accusations")]！",
+				"[pick_list_replacements(HALLUCINATION_FILE, "people")][pick_list_replacements(HALLUCINATION_FILE, "accusations")]！",
 				"[pick_list_replacements(HALLUCINATION_FILE, "people")] 持有 [pick_list_replacements(HALLUCINATION_FILE, "contraband")]！",
 				"[pick_list_replacements(HALLUCINATION_FILE, "location")] 出现 [pick_list_replacements(HALLUCINATION_FILE, "threat")][prob(50)?"！":"！！"]",
 				"[pick("[first_name(hallucinator.name)] 在哪？", "把 [first_name(hallucinator.name)] 设为逮捕！")]",

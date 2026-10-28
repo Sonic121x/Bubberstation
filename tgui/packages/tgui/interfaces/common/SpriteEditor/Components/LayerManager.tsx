@@ -44,15 +44,15 @@ export const LayerManager = (props: LayerManagerProps) => {
     <Box {...rest}>
       <Section
         fill
-        title="Layers"
+        title="图层"
         buttons={
           <Button
             icon="plus"
-            tooltip="Add Layer"
+            tooltip="添加图层"
             onClick={() =>
               act('spriteEditorCommand', {
                 command: 'transaction',
-                transaction: { type: 'addLayer', name: 'Add Layer' },
+                transaction: { type: 'addLayer', name: '添加图层' },
               })
             }
           />
@@ -103,7 +103,7 @@ export const LayerManager = (props: LayerManagerProps) => {
                         command: 'transaction',
                         transaction: {
                           type: 'renameLayer',
-                          name: `Rename ${name} to ${value}`,
+                          name: `将 ${name} 重命名为 ${value}`,
                           layer: i + 1,
                           newName: value,
                           oldName: name,
@@ -149,14 +149,14 @@ export const LayerManager = (props: LayerManagerProps) => {
                     <Stack.Item>
                       <Button
                         icon="arrow-up"
-                        tooltip="Move Up"
+                        tooltip="上移"
                         disabled={i === layerCount - 1}
                         onClick={() =>
                           act('spriteEditorCommand', {
                             command: 'transaction',
                             transaction: {
                               type: 'moveLayerUp',
-                              name: `Move ${name} Up`,
+                              name: `上移 ${name}`,
                               layer: i + 1,
                             },
                           })
@@ -166,14 +166,14 @@ export const LayerManager = (props: LayerManagerProps) => {
                     <Stack.Item>
                       <Button
                         icon="arrow-down"
-                        tooltip="Move Down"
+                        tooltip="下移"
                         disabled={i === 0}
                         onClick={() =>
                           act('spriteEditorCommand', {
                             command: 'transaction',
                             transaction: {
                               type: 'moveLayerDown',
-                              name: `Move ${name} Down`,
+                              name: `下移 ${name}`,
                               layer: i + 1,
                             },
                           })
@@ -183,14 +183,14 @@ export const LayerManager = (props: LayerManagerProps) => {
                     <Stack.Item>
                       <Button
                         icon="layer-group"
-                        tooltip="Flatten"
+                        tooltip="向下合并"
                         disabled={i === 0}
                         onClick={() =>
                           act('spriteEditorCommand', {
                             command: 'transaction',
                             transaction: {
                               type: 'flattenLayer',
-                              name: `Flatten ${name} onto ${layers[i - 1].name}`,
+                              name: `将 ${name} 合并到 ${layers[i - 1].name}`,
                               layer: i + 1,
                             },
                           })
@@ -200,7 +200,7 @@ export const LayerManager = (props: LayerManagerProps) => {
                     <Stack.Item>
                       <Button.Confirm
                         icon="xmark"
-                        tooltip="Delete"
+                        tooltip="删除"
                         confirmIcon="xmark"
                         disabled={layerCount === 1}
                         onClick={() =>
@@ -208,7 +208,7 @@ export const LayerManager = (props: LayerManagerProps) => {
                             command: 'transaction',
                             transaction: {
                               type: 'deleteLayer',
-                              name: `Delete ${name}`,
+                              name: `删除 ${name}`,
                               layer: i + 1,
                             },
                           })

@@ -55,7 +55,7 @@ export const Photocopier = (props) => {
 
   return (
     <Window
-      title="Photocopier"
+      title="复印机"
       width={selectedCategory ? 550 : 325}
       height={525}
     >
@@ -124,19 +124,19 @@ const Status = (props: StatusProps) => {
   return (
     <Section
       fill
-      title="Status"
+      title="状态"
       buttons={
         <Button
           icon="eject"
           disabled={!has_toner}
           onClick={() => act('remove_toner')}
         >
-          Eject Toner
+          弹出墨盒
         </Button>
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Toner">
+        <LabeledList.Item label="墨粉">
           {has_toner ? (
             <ProgressBar
               minValue={0}
@@ -149,11 +149,11 @@ const Status = (props: StatusProps) => {
             />
           ) : (
             <ProgressBar color="bad" minValue={0} value={0} maxValue={1}>
-              No Cartridge
+              未安装墨盒
             </ProgressBar>
           )}
         </LabeledList.Item>
-        <LabeledList.Item label="Paper Stored">
+        <LabeledList.Item label="存储纸张">
           <ProgressBar
             minValue={0}
             value={paper_count}
@@ -166,21 +166,21 @@ const Status = (props: StatusProps) => {
             {paper_count} / {max_paper_count}
           </ProgressBar>
         </LabeledList.Item>
-        <LabeledList.Item label="Queue">
+        <LabeledList.Item label="队列">
           <ProgressBar
             verticalAlign="middle"
             minValue={0}
             value={copies_left}
             maxValue={num_copies}
           >
-            {copies_left ? `${copies_left} / ${num_copies}` : 'Empty'}
+            {copies_left ? `${copies_left} / ${num_copies}` : '空'}
           </ProgressBar>
         </LabeledList.Item>
-        <LabeledList.Item label="Blank" textAlign="center">
-          <b>{selectedBlank ? selectedBlank : 'Not Selected'}</b>
+        <LabeledList.Item label="表单" textAlign="center">
+          <b>{selectedBlank ? selectedBlank : '未选择'}</b>
         </LabeledList.Item>
 
-        <LabeledList.Item label="Paper Type">
+        <LabeledList.Item label="纸张类型">
           <Stack align="center">
             {paper_types.map((paper) => (
               <Stack.Item grow key={paper.type}>
@@ -188,7 +188,7 @@ const Status = (props: StatusProps) => {
                   fluid
                   dmIcon={paper.icon}
                   dmIconState={paper.icon_state}
-                  tooltip={`${paper.name} amount is ${paper.amount}`}
+                  tooltip={`${paper.name}：${paper.amount} 张`}
                   imageSize={32}
                   disabled={!paper.amount}
                   selected={created_paper === paper.type && paper.amount}
@@ -225,12 +225,12 @@ const Actions = (props: ActionsProps) => {
   } = data;
 
   return (
-    <Section fill title="Actions">
+    <Section fill title="操作">
       <Stack fill vertical textAlign="center">
         <Stack.Item>
           <Stack align="center" textAlign="left">
             <Stack.Item grow color="label">
-              Copies:
+              份数：
             </Stack.Item>
             <Stack.Item grow>
               <Slider
@@ -256,7 +256,7 @@ const Actions = (props: ActionsProps) => {
               disabled={!can_AI_print}
               onClick={() => act('ai_photo', { code: selectedBlank })}
             >
-              Print photo from database
+              打印数据库中的照片
             </Button>
           </Stack.Item>
         )}
@@ -269,7 +269,7 @@ const Actions = (props: ActionsProps) => {
                 disabled={!selectedBlank}
                 onClick={() => act('print_blank', { code: selectedBlank })}
               >
-                Print
+                打印
               </Button>
             </Stack.Item>
             <Stack.Item grow>
@@ -279,7 +279,7 @@ const Actions = (props: ActionsProps) => {
                 disabled={!has_item}
                 onClick={() => act('make_copy')}
               >
-                Copy
+                复印
               </Button>
             </Stack.Item>
           </Stack>
@@ -298,7 +298,7 @@ const Actions = (props: ActionsProps) => {
                     })
                   }
                 >
-                  Color
+                  彩色
                 </Button>
               </Stack.Item>
               <Stack.Item grow>
@@ -312,7 +312,7 @@ const Actions = (props: ActionsProps) => {
                     })
                   }
                 >
-                  Greyscale
+                  灰度
                 </Button>
               </Stack.Item>
             </Stack>
@@ -325,7 +325,7 @@ const Actions = (props: ActionsProps) => {
             disabled={!has_item}
             onClick={() => act('remove')}
           >
-            Eject Item
+            弹出物品
           </Button>
         </Stack.Item>
       </Stack>
@@ -346,11 +346,11 @@ const Categories = (props: CategoriesProps) => {
     <Section
       fill
       scrollable
-      title="Blanks"
+      title="表单"
       buttons={
         <Button
           icon="times"
-          tooltip="Close selected blank category"
+          tooltip="关闭所选表单类别"
           disabled={!selectedCategory}
           onClick={() => {
             setSelectedCategory('');
@@ -369,7 +369,7 @@ const Categories = (props: CategoriesProps) => {
               setSelectedCategory('All Blanks');
             }}
           >
-            All Blanks
+            全部表单
           </Button>
         </Stack.Item>
         {data.categories.map((category) => (
@@ -416,12 +416,12 @@ const Blanks = (props: BlanksProps) => {
     <Section
       fill
       scrollable
-      title={selectedCategory}
+      title={selectedCategory === 'All Blanks' ? '全部表单' : selectedCategory}
       buttons={
         <Input
           width={8.75}
           value={searchText}
-          placeholder="Search blank..."
+          placeholder="搜索表单……"
           onChange={setSearchText}
         />
       }

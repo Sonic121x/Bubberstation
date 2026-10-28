@@ -1,39 +1,39 @@
 {
 	"do_something": [
-		"CLEAN YOUR ROOM THIS INSTANT!",
-		"DON'T SIT THAT CLOSE TO THE TV!",
-		"FOR GOD'S SAKE, GO TAKE A SHOWER!!",
-		"IT'S TIME TO WAKE UP FOR SCHOOL!!",
-		"PAUSE THAT ONLINE GAME! NOW!",
-		"PUT SOME CLOTHES ON! YOU'LL CATCH A COLD!",
-		"STOP ASKING FOR MONEY, I'M NOT AN ATM!",
-		"WATCH YOUR MOUTH, CHILD!!",
-		"WHY DON'T YOU ANSWER MY PHONE CALLS?!",
-		"YOU SHOULD @pick(verb) YOUR @pick(relative) ONCE IN A WHILE!"
+		"马上去收拾你的房间！",
+		"别坐得离电视那么近！",
+		"老天爷啊，快去洗澡！！",
+		"该起床上学了！！",
+		"把那个网游暂停！立刻！",
+		"穿上衣服！你会着凉的！",
+		"别再要钱了，我又不是提款机！",
+		"小孩子说话注意点！！",
+		"你为什么不接我电话？！",
+		"你也该偶尔@pick(verb)你的@pick(relative)！"
 	],
 
 	"be_upset": [
-		"BECAUSE I SAID SO!",
-		"I DON'T CARE WHAT YOU SAY!",
-		"I'M NOT ASKING; I'M TELLING!!",
-		"I WASN'T BORN YESTERDAY!",
-		"MONEY DOESN'T GROW ON TREES!",
-		"WHAT DID I DO TO DESERVE A KID LIKE THIS...",
-		"USELESS!",
-		"YOU INSULT YOUR GRANDPARENTS!"
+		"因为我说了算！",
+		"你说什么都没用！",
+		"我不是在征求你的意见，是在命令你！！",
+		"你当我三岁小孩啊！",
+		"钱又不是大风刮来的！",
+		"我造了什么孽，生出这么个孩子……",
+		"没出息！",
+		"你这是在羞辱你的祖父母！"
 	],
 
 	"get_reprimanded": [
-		"I BROUGHT YOU INTO THIS WORLD, I CAN TAKE YOU OUT!!!",
-		"I'M GOING TO THROW A FLIP-FLOP AT YOU!!",
-		"NO VIDEOGAMES FOR THE REST OF THE DAY!",
-		"WAIT UNTIL YOUR FATHER GETS HOME!",
-		"YOU'LL THANK ME ONE DAY!",
-		"YOU'RE DISOWNED!!!",
-		"YOU'RE GROUNDED!!"
+		"我能把你生出来，也能把你送回去！！！",
+		"信不信我拿拖鞋扔你！！",
+		"今天剩下的时间不许玩电子游戏！",
+		"等你爸回家再收拾你！",
+		"总有一天你会感谢我的！",
+		"我没你这个孩子！！！",
+		"你被禁足了！！"
 	],
 
-	"verb": ["CALL", "HELP", "VISIT"],
+	"verb": ["打电话问候一下", "帮帮", "看看"],
 
-	"relative": ["AUNT AND UNCLE", "DAD", "GRANDPARENTS", "MOM"]
+	"relative": ["叔叔阿姨", "爸爸", "祖父母", "妈妈"]
 }

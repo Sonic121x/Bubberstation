@@ -11,7 +11,7 @@ export function AirAlarmControlVents(props) {
   if (!vents || vents.length === 0) {
     return (
       <NoticeBox info textAlign="center">
-        Nothing to show
+        无可显示的内容
       </NoticeBox>
     );
   }

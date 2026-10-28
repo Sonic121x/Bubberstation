@@ -20,7 +20,7 @@ export const CommandReportConsole = (props) => {
     error,
   } = data;
   return (
-    <Window title="Create Fleet Report" width={325} height={525}>
+    <Window title="创建舰队报告" width={325} height={525}>
       <Window.Content>
         {!!error && (
           <NoticeBox textAlign="center" color="red">
@@ -29,7 +29,7 @@ export const CommandReportConsole = (props) => {
         )}
         <Stack vertical>
           <Stack.Item>
-            <Section title="Set report title:" textAlign="center">
+            <Section title="设置报告标题：" textAlign="center">
               <Input
                 width="100%"
                 mt={1}
@@ -41,7 +41,7 @@ export const CommandReportConsole = (props) => {
                 }
               />
             </Section>
-            <Section title="Set report text:" textAlign="center">
+            <Section title="设置报告正文：" textAlign="center">
               <TextArea
                 height="200px"
                 mb={1}
@@ -59,7 +59,7 @@ export const CommandReportConsole = (props) => {
                     checked={announce_contents}
                     onClick={() => act('toggle_announce')}
                   >
-                    Announce Contents
+                    广播报告内容
                   </Button.Checkbox>
                 </Stack.Item>
                 <Stack.Item>
@@ -68,7 +68,7 @@ export const CommandReportConsole = (props) => {
                     icon="check"
                     color="good"
                     textAlign="center"
-                    content="Submit Report"
+                    content="提交报告"
                     onClick={() => act('submit_report')}
                   />
                 </Stack.Item>

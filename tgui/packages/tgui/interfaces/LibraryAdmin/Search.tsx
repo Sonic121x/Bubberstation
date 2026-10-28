@@ -58,7 +58,7 @@ export function SearchAndDisplay(props) {
             <Stack.Item>
               <Input
                 value={book_id?.toString()}
-                placeholder={book_id === null ? 'ID' : String(book_id)}
+                placeholder={book_id === null ? '编号' : String(book_id)}
                 width="70px"
                 onBlur={(value) =>
                   act('set_search_id', {
@@ -81,7 +81,7 @@ export function SearchAndDisplay(props) {
             <Stack.Item>
               <Input
                 value={title}
-                placeholder={title || 'Title'}
+                placeholder={title || '书名'}
                 mt={0.5}
                 onBlur={(value) =>
                   act('set_search_title', {
@@ -93,7 +93,7 @@ export function SearchAndDisplay(props) {
             <Stack.Item>
               <Input
                 value={author}
-                placeholder={author || 'Author'}
+                placeholder={author || '作者'}
                 mt={0.5}
                 onBlur={(value) =>
                   act('set_search_author', {
@@ -105,7 +105,7 @@ export function SearchAndDisplay(props) {
             <Stack.Item>
               <Input
                 value={author_ckey}
-                placeholder={author_ckey || 'Ckey'}
+                placeholder={author_ckey || '账号'}
                 mt={0.5}
                 onBlur={(value) =>
                   act('set_search_ckey', {
@@ -126,7 +126,7 @@ export function SearchAndDisplay(props) {
                 color={params_changed ? 'good' : ''}
                 icon="rotate-right"
               >
-                Refresh
+                刷新
               </Button>
               <Button
                 disabled={!can_db_request}
@@ -135,7 +135,7 @@ export function SearchAndDisplay(props) {
                 color="bad"
                 icon="fire"
               >
-                Reset Search
+                重置搜索
               </Button>
             </Stack.Item>
             <Stack.Item>
@@ -145,7 +145,7 @@ export function SearchAndDisplay(props) {
                 color={view_raw ? 'purple' : 'blue'}
                 icon={view_raw ? 'theater-masks' : 'glasses'}
               >
-                {view_raw ? 'Raw' : 'Normal'}
+                {view_raw ? '源文本' : '正常显示'}
               </Button>
               <Button
                 textAlign="right"
@@ -153,7 +153,7 @@ export function SearchAndDisplay(props) {
                 color={show_deleted ? 'purple' : 'green'}
                 icon={show_deleted ? 'trash' : 'mountain-sun'}
               >
-                {show_deleted ? 'All' : 'Undeleted'}
+                {show_deleted ? '全部' : '未删除'}
               </Button>
             </Stack.Item>
           </Stack>
@@ -162,11 +162,11 @@ export function SearchAndDisplay(props) {
       <Table>
         <Table.Row>
           <Table.Cell fontSize={1.5}>#</Table.Cell>
-          <Table.Cell fontSize={1.5}>Category</Table.Cell>
-          <Table.Cell fontSize={1.5}>Title</Table.Cell>
-          <Table.Cell fontSize={1.5}>Author</Table.Cell>
-          <Table.Cell fontSize={1.5}>C-Key</Table.Cell>
-          <Table.Cell fontSize={1.5}>Un/Delete</Table.Cell>
+          <Table.Cell fontSize={1.5}>类别</Table.Cell>
+          <Table.Cell fontSize={1.5}>书名</Table.Cell>
+          <Table.Cell fontSize={1.5}>作者</Table.Cell>
+          <Table.Cell fontSize={1.5}>账号</Table.Cell>
+          <Table.Cell fontSize={1.5}>恢复／删除</Table.Cell>
         </Table.Row>
         {books.map((book) => (
           <Table.Row key={book.key}>
@@ -199,7 +199,7 @@ export function SearchAndDisplay(props) {
                   icon="undo"
                   color="blue"
                 >
-                  Restore
+                  恢复
                 </Button>
               ) : (
                 <Button
@@ -213,7 +213,7 @@ export function SearchAndDisplay(props) {
                   icon="hammer"
                   color="violet"
                 >
-                  Delete
+                  删除
                 </Button>
               )}
             </Table.Cell>

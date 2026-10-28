@@ -19,7 +19,7 @@ export const ChunkViewModal = (props: ChunkViewModalProps) => {
         fill
         scrollable
         scrollableHorizontal
-        title="Chunk"
+        title="代码块"
         buttons={
           <Button
             color="red"
@@ -29,7 +29,7 @@ export const ChunkViewModal = (props: ChunkViewModalProps) => {
               setViewedChunk(undefined);
             }}
           >
-            Close
+            关闭
           </Button>
         }
       >

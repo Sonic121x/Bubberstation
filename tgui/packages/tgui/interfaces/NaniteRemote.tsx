@@ -10,7 +10,7 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { naniteControlsDisplay as zh } from '../localization/zhNaniteControlsDisplay';
 export const NaniteRemote = (props, context) => {
   return (
     <Window width={420} height={500}>
@@ -56,21 +56,21 @@ export const NaniteRemoteContent = () => {
   const modes = ['Off', 'Local', 'Targeted', 'Area', 'Relay'];
 
   if (locked) {
-    return <NoticeBox>This interface is locked.</NoticeBox>;
+    return <NoticeBox>此界面已锁定。</NoticeBox>;
   }
 
   return (
     <>
       <Section
-        title="Nanite Control"
+        title="纳米机器人控制"
         buttons={
           <Button icon="lock" onClick={() => act('lock')}>
-            Lock Interface
+            锁定界面
           </Button>
         }
       >
         <LabeledList>
-          <LabeledList.Item label="Name">
+          <LabeledList.Item label="名称">
             <Input
               value={program_name}
               maxLength={14}
@@ -82,10 +82,10 @@ export const NaniteRemoteContent = () => {
               }
             />
             <Button icon="save" onClick={() => act('save')}>
-              Save
+              保存
             </Button>
           </LabeledList.Item>
-          <LabeledList.Item label={comms ? 'Comm Code' : 'Signal Code'}>
+          <LabeledList.Item label={comms ? '通信代码' : '信号代码'}>
             <NumberInput
               value={code}
               minValue={0}
@@ -101,7 +101,7 @@ export const NaniteRemoteContent = () => {
             />
           </LabeledList.Item>
           {!!comms && (
-            <LabeledList.Item label="Message">
+            <LabeledList.Item label="消息">
               <Input
                 value={message}
                 width="270px"
@@ -114,7 +114,7 @@ export const NaniteRemoteContent = () => {
             </LabeledList.Item>
           )}
           {mode === 'Relay' && (
-            <LabeledList.Item label="Relay Code">
+            <LabeledList.Item label="中继代码">
               <NumberInput
                 value={relay_code}
                 minValue={0}
@@ -130,7 +130,7 @@ export const NaniteRemoteContent = () => {
               />
             </LabeledList.Item>
           )}
-          <LabeledList.Item label="Signal Mode">
+          <LabeledList.Item label="信号模式">
             {modes.map((key) => (
               <Button
                 key={key}
@@ -141,27 +141,27 @@ export const NaniteRemoteContent = () => {
                   })
                 }
               >
-                {key}
+                {zh(key)}
               </Button>
             ))}
           </LabeledList.Item>
         </LabeledList>
       </Section>
-      <Section title="Saved Settings">
+      <Section title="已保存的设置">
         {saved_settings.length > 0 ? (
           <Table>
             <Table.Row header>
-              <Table.Cell width="35%">Name</Table.Cell>
-              <Table.Cell width="20%">Mode</Table.Cell>
-              <Table.Cell collapsing>Code</Table.Cell>
-              <Table.Cell collapsing>Relay</Table.Cell>
+              <Table.Cell width="35%">名称</Table.Cell>
+              <Table.Cell width="20%">模式</Table.Cell>
+              <Table.Cell collapsing>代码</Table.Cell>
+              <Table.Cell collapsing>中继</Table.Cell>
             </Table.Row>
             {saved_settings.map((setting) => (
               <Table.Row key={setting.id} className="candystripe">
                 <Table.Cell bold color="label">
                   {setting.name}:
                 </Table.Cell>
-                <Table.Cell>{setting.mode}</Table.Cell>
+                <Table.Cell>{zh(setting.mode)}</Table.Cell>
                 <Table.Cell>{setting.code}</Table.Cell>
                 <Table.Cell>
                   {setting.mode === 'Relay' && setting.relay_code}
@@ -190,7 +190,7 @@ export const NaniteRemoteContent = () => {
             ))}
           </Table>
         ) : (
-          <NoticeBox>No settings currently saved</NoticeBox>
+          <NoticeBox>目前没有已保存的设置</NoticeBox>
         )}
       </Section>
     </>

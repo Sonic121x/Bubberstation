@@ -62,7 +62,7 @@ export const PipeScrubber = (props) => {
     <Window width={400} height={350}>
       <Window.Content>
         <Section
-          title="Status"
+          title="状态"
           buttons={
             !!hasHypernobCrystal && (
               <Button
@@ -71,18 +71,18 @@ export const PipeScrubber = (props) => {
                 onClick={() => act('reaction_suppression')}
               >
                 {reactionSuppressionEnabled
-                  ? 'Reaction Suppression Enabled'
-                  : 'Reaction Suppression Disabled'}
+                  ? '反应抑制已启用'
+                  : '反应抑制已禁用'}
               </Button>
             )
           }
         >
           <LabeledControls p={1}>
-            <LabeledControls.Item label="Buffer Port">
+            <LabeledControls.Item label="缓冲接口">
               <Box position="relative">
                 <Tooltip
                   position="top"
-                  content={connected ? 'Connected' : 'Disconnected'}
+                  content={connected ? '已连接' : '未连接'}
                 >
                   <Icon
                     size={2}
@@ -92,7 +92,7 @@ export const PipeScrubber = (props) => {
                 </Tooltip>
               </Box>
             </LabeledControls.Item>
-            <LabeledControls.Item label="Buffer">
+            <LabeledControls.Item label="缓冲区">
               <RoundGauge
                 size={1.75}
                 value={pressurePump}
@@ -107,7 +107,7 @@ export const PipeScrubber = (props) => {
                 format={formatPressure}
               />
             </LabeledControls.Item>
-            <LabeledControls.Item label="Tank">
+            <LabeledControls.Item label="气罐">
               <RoundGauge
                 size={1.75}
                 value={pressureTank}
@@ -122,7 +122,7 @@ export const PipeScrubber = (props) => {
                 format={formatPressure}
               />
             </LabeledControls.Item>
-            <LabeledControls.Item label="Pump">
+            <LabeledControls.Item label="气泵">
               <Button
                 my={0.5}
                 width={6}
@@ -132,22 +132,22 @@ export const PipeScrubber = (props) => {
                 selected={on}
                 onClick={() => act('power')}
               >
-                {on ? 'On' : 'Off'}
+                {on ? '开启' : '关闭'}
               </Button>
             </LabeledControls.Item>
           </LabeledControls>
         </Section>
         <Section
-          title="Direction"
+          title="方向"
           buttons={
             <Button onClick={() => act('direction')}>
-              {direction ? 'Buffer → Tank' : 'Tank → Buffer'}
+              {direction ? '缓冲区 → 气罐' : '气罐 → 缓冲区'}
             </Button>
           }
         >
           {!!direction && (
             <>
-              <Box>Filtering gases from the buffer into the internal tank.</Box>
+              <Box>将缓冲区内的气体过滤到内部气罐。</Box>
               <Section>
                 {filterTypes.map((filter) => (
                   <Button
@@ -166,7 +166,7 @@ export const PipeScrubber = (props) => {
             </>
           )}
           {!direction && (
-            <Box>Dumping internal tank gases into the buffer.</Box>
+            <Box>将内部气罐中的气体排入缓冲区。</Box>
           )}
         </Section>
       </Window.Content>

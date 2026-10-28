@@ -34,7 +34,7 @@ export function LeaveBodyPage({
               />
             )}
           </div>
-          <div className="escape-menu__large-button-label">Suicide</div>
+          <div className="escape-menu__large-button-label">自杀</div>
         </button>
         <button
           className="escape-menu__large-button"
@@ -47,7 +47,7 @@ export function LeaveBodyPage({
             <span className="escape-menu-icons96x96 leave-template" />
             <span className="escape-menu-icons96x96 leave-ghost escape-menu__icon-overlay" />
           </div>
-          <div className="escape-menu__large-button-label">Ghost</div>
+          <div className="escape-menu__large-button-label">成为幽灵</div>
         </button>
       </div>
     </>
@@ -61,7 +61,7 @@ function BackButton({ onClick }: { onClick: () => void }) {
         <span className="escape-menu-icons40x40 template" />
         <span className="escape-menu-icons40x40 back escape-menu__icon-overlay" />
       </div>
-      <span>Back</span>
+      <span>返回</span>
     </button>
   );
 }

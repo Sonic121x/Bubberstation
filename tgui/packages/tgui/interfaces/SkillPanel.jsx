@@ -23,7 +23,7 @@ export const SkillPanel = (props) => {
   const { act, data } = useBackend();
   const skills = data.skills || [];
   return (
-    <Window title="Manage Skills" width={600} height={500}>
+    <Window title="管理技能" width={600} height={500}>
       <Window.Content scrollable>
         <Section title={skills.playername}>
           <LabeledList>
@@ -33,22 +33,22 @@ export const SkillPanel = (props) => {
                 <br />
                 <Level skill_lvl_num={skill.lvlnum} skill_lvl={skill.lvl} />
                 <br />
-                Total Experience: [{skill.exp} XP]
+                总经验值：[{skill.exp} 经验]
                 <br />
-                XP To Next Level:
+                升至下一级所需经验：
                 {skill.exp_req !== 0 ? (
                   <span>
                     [{skill.exp_prog} / {skill.exp_req}]
                   </span>
                 ) : (
-                  <span style={skillgreen}>[MAXXED]</span>
+                  <span style={skillgreen}>[已满级]</span>
                 )}
                 <br />
-                Overall Skill Progress: [{skill.exp} / {skill.max_exp}]
+                总技能进度：[{skill.exp} / {skill.max_exp}]
                 <ProgressBar value={skill.exp_percent} color="good" />
                 <br />
                 <Button
-                  content="Adjust Exp"
+                  content="调整经验"
                   onClick={() =>
                     act('adj_exp', {
                       skill: skill.path,
@@ -56,7 +56,7 @@ export const SkillPanel = (props) => {
                   }
                 />
                 <Button
-                  content="Set Exp"
+                  content="设置经验"
                   onClick={() =>
                     act('set_exp', {
                       skill: skill.path,
@@ -64,7 +64,7 @@ export const SkillPanel = (props) => {
                   }
                 />
                 <Button
-                  content="Set Level"
+                  content="设置等级"
                   onClick={() =>
                     act('set_lvl', {
                       skill: skill.path,
@@ -86,7 +86,7 @@ const Level = (props) => {
   const { skill_lvl_num, skill_lvl } = props;
   return (
     <Box inline>
-      Level: [
+      等级：[
       <Box inline bold textColor={`hsl(${skill_lvl_num * 50}, 50%, 50%)`}>
         {skill_lvl}
       </Box>

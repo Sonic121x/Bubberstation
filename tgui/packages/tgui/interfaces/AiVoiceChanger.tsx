@@ -24,19 +24,19 @@ export function AiVoiceChanger(props) {
   const { loud, name, on, say_verb, voices, selected } = data;
 
   return (
-    <Window title="Voice changer settings" width={400} height={200}>
+    <Window title="变声器设置" width={400} height={200}>
       <Section fill>
         <LabeledList>
-          <LabeledList.Item label="Power">
+          <LabeledList.Item label="电源">
             <Button
               icon={on ? 'power-off' : 'times'}
               selected={!!on}
               onClick={() => act('power')}
             >
-              {on ? 'On' : 'Off'}
+              {on ? '开启' : '关闭'}
             </Button>
           </LabeledList.Item>
-          <LabeledList.Item label="Accent">
+          <LabeledList.Item label="口音">
             <Dropdown
               options={voices}
               onSelected={(value) => {
@@ -47,7 +47,7 @@ export function AiVoiceChanger(props) {
               selected={selected}
             />
           </LabeledList.Item>
-          <LabeledList.Item label="Verb">
+          <LabeledList.Item label="说话动词">
             <Input
               value={say_verb}
               onBlur={(value) =>
@@ -57,16 +57,16 @@ export function AiVoiceChanger(props) {
               }
             />
           </LabeledList.Item>
-          <LabeledList.Item label="Volume">
+          <LabeledList.Item label="音量">
             <Button
               icon={loud ? 'power-off' : 'times'}
               selected={!!loud}
               onClick={() => act('loud')}
             >
-              {loud ? 'Loudmode on' : 'Loudmode Off'}
+              {loud ? '高音量模式开启' : '高音量模式关闭'}
             </Button>
           </LabeledList.Item>
-          <LabeledList.Item label="Fake name">
+          <LabeledList.Item label="假名">
             <Input
               value={name}
               onBlur={(value) =>

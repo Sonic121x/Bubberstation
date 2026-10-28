@@ -59,9 +59,9 @@ const SyncedBorgDimmer = (props: { master: string }) => {
           <Icon color="green" name="wifi" size={10} />
         </Stack.Item>
         <Stack.Item fontSize="18px">
-          This cyborg is linked to &quot;{props.master}&quot;.
+          此半机械人已连接至“{props.master}”。
         </Stack.Item>
-        <Stack.Item fontSize="14px">Modify their laws instead.</Stack.Item>
+        <Stack.Item fontSize="14px">请修改其主控 AI 的法则。</Stack.Item>
       </Stack>
     </Dimmer>
   );
@@ -111,7 +111,7 @@ export const LawPrintout = (props: { cyborg_ref: string; lawset: Law[] }) => {
                       })
                     }
                   >
-                    Edit
+                    编辑
                   </Button>
                 </Stack.Item>
                 {law.lawtype === 'inherent' && (
@@ -162,7 +162,7 @@ export const LawPrintout = (props: { cyborg_ref: string; lawset: Law[] }) => {
         <Button
           icon="plus"
           color={'green'}
-          content={'Add Law'}
+          content={'添加法则'}
           onClick={() => act('add_law', { ref: cyborg_ref })}
         />
       </LabeledList.Item>
@@ -190,9 +190,9 @@ export const SiliconReadout = (props: { cyborg: Silicon }) => {
                     fluid
                     textAlign="center"
                     color="danger"
-                    content={`This silicon has a null law datum. This isn't
-                      supposed to ever happen! Issue report
-                      and then click this this give them one.`}
+                    content={`此硅基生物的法则数据为空。这是
+                      不应发生的错误！请提交问题报告，
+                      然后点击此处为其创建法则数据。`}
                     onClick={() => act('give_law_datum', { ref: cyborg.ref })}
                   />
                 ) : (
@@ -204,9 +204,9 @@ export const SiliconReadout = (props: { cyborg: Silicon }) => {
                   <Stack.Item>
                     <Button
                       icon="bullhorn"
-                      content={'Force State Laws'}
-                      tooltip={`Forces the silicon to state laws.
-                        Only states inherent / core laws.`}
+                      content={'强制宣读法则'}
+                      tooltip={`强制该硅基生物宣读法则。
+                        只宣读固有／核心法则。`}
                       onClick={() =>
                         act('force_state_laws', { ref: cyborg.ref })
                       }
@@ -215,10 +215,10 @@ export const SiliconReadout = (props: { cyborg: Silicon }) => {
                   <Stack.Item>
                     <Button
                       icon="message"
-                      content={'Privately Announce Laws'}
-                      tooltip={`Displays all of the silicon's laws
-                        in their chat box. Also shows to all
-                        linked cyborgs for AIs.`}
+                      content={'私下告知法则'}
+                      tooltip={`在该硅基生物的聊天框中显示
+                        其全部法则。若对象为 AI，
+                        也会向所有连接的半机械人显示。`}
                       onClick={() =>
                         act('announce_law_changes', { ref: cyborg.ref })
                       }
@@ -227,10 +227,10 @@ export const SiliconReadout = (props: { cyborg: Silicon }) => {
                   <Stack.Item>
                     <Button
                       icon="bell"
-                      content={'"Laws Updated" Alert'}
-                      tooltip={`Throws a screen alert to the silicon that their
-                        laws have been updated. Also displays the laws in chat
-                        and alerts deadchat.`}
+                      content={'“法则已更新”提示'}
+                      tooltip={`向该硅基生物发出屏幕提示，告知其
+                        法则已更新。也会在聊天框中显示法则，
+                        并通知亡者频道。`}
                       onClick={() =>
                         act('laws_updated_alert', { ref: cyborg.ref })
                       }
@@ -251,16 +251,16 @@ export const Lawpanel = (props) => {
   const { all_silicons } = data;
 
   return (
-    <Window title="Law Panel" theme="admin" width={800} height={600}>
+    <Window title="法则面板" theme="admin" width={800} height={600}>
       <Window.Content>
         <Section
           fill
-          title="All Silicon Laws"
+          title="所有硅基生物法则"
           scrollable
           buttons={
             <Button
               icon="robot"
-              content="Logs"
+              content="日志"
               onClick={() => act('lawchange_logs')}
             />
           }
@@ -274,7 +274,7 @@ export const Lawpanel = (props) => {
               ))
             ) : (
               <Stack.Item>
-                <NoticeBox>There are no silicons in existence.</NoticeBox>
+                <NoticeBox>当前不存在硅基生物。</NoticeBox>
               </Stack.Item>
             )}
           </Stack>

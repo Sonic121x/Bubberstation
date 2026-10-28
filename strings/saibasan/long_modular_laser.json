@@ -1,114 +1,114 @@
 {
 	"pickup": [
-		"Welcome back, @pick(operator).",
-		"Zǎo shàng hǎo.",
-		"Wǎn shàng hǎo.",
-		"Charge systems operational, entering combat mode.",
-		"@pick(operator), carp migrations have been reported in the sector.",
-		"@pick(operator), having a pleasant day?",
-		"@pick(operator), please maintain good health while performing combat.",
-		"@pick(operator), are you sure I'm not too heavy for you?",
-		"Would you mind cleaning my lens later, @pick(operator)?"
+		"欢迎回来，@pick(operator)。",
+		"早上好。",
+		"晚上好。",
+		"充能系统正常，进入战斗模式。",
+		"@pick(operator)，本星区报告了鲤鱼迁徙活动。",
+		"@pick(operator)，今天过得愉快吗？",
+		"@pick(operator)，战斗时也请注意身体健康。",
+		"@pick(operator)，你确定我对你来说不会太重吗？",
+		"@pick(operator)，待会儿能帮我清洁镜片吗？"
 	],
 
 	"putdown": [
-		"Understood, @pick(operator), entering sleep mode.",
-		"Good night, @pick(operator).",
-		"Wǎn`ān, hǎo mèng.",
-		"Dàjiā ān.",
-		"Good night.",
-		"Entering sleep mode now.",
-		"Entering recharge cycle."
+		"明白，@pick(operator)，进入休眠模式。",
+		"晚安，@pick(operator)。",
+		"晚安，好梦。",
+		"大家安。",
+		"晚安。",
+		"正在进入休眠模式。",
+		"开始充电循环。"
 	],
 
 	"worn": [
-		"Working on your strength will help you keep me steady.",
-		"Investing in backup magnetic slings is a good idea...",
-		"Thank you for observing proper carrying protocols.",
-		"I get a nicer view of your surroundings if you point my barrel upwards.",
-		"I'll watch your back if you watch my stock.",
-		"So much nicer than being in a case~!"
+		"锻炼力量有助于把我握得更稳。",
+		"买些备用磁力枪带是个好主意……",
+		"谢谢你遵守正确的携行规范。",
+		"把枪口朝上，我就能更清楚地观察你周围。",
+		"你护好我的枪托，我就替你看好背后。",
+		"这可比待在箱子里舒服多了～！"
 	],
 
 	"lowcharge": [
-		"Energy reserves low, I can't do much more @pick(operator)...",
-		"I'm out... sorry @pick(operator), I need to rest..."
+		"储能不足，我撑不了多久了，@pick(operator)……",
+		"没电了……抱歉，@pick(operator)，我需要休息……"
 	],
 
 	"fullcharge": [
-		"Energy reserves at maximum capacity! Please avoid accidental discharge.",
-		"Energy reserves at maximum capacity! Please follow safety guidelines.",
-		"Energy reserves at maximum capacity! It's nice to not be left at half-charge."
+		"能量已充满！请避免走火。",
+		"能量已充满！请遵守安全规范。",
+		"能量已充满！不用一直半满电真好。"
 	],
 
 	"combatmode": [
-		"Biological markers indicate heightened stress response. Combat protocols initiated.",
-		"Adrenaline spike detected. Combat protocols initiated."
+		"生理指标显示应激反应升高。战斗协议已启动。",
+		"检测到肾上腺素激增。战斗协议已启动。"
 	],
 
 	"kill": [
-		"Switching to burst fire.",
-		"Switching to rapid-pattern assault.",
-		"Moving to dual-shot pattern.",
-		"Moving to close-quarters burst doctrine, lethal.",
-		"@pick(operator), please tightly control my recoil pattern.",
-		"@pick(operator), please hold me firmly to ensure accuracy."
+		"切换至点射模式。",
+		"切换至快速突击模式。",
+		"切换至双发射击模式。",
+		"切换至近距离连射战术，致命模式。",
+		"@pick(operator)，请稳稳压住我的后坐力。",
+		"@pick(operator)，请握紧我，以确保精度。"
 	],
 
 	"sniper": [
-		"Sighting in, scope extending.",
-		"Sighting in, preparing for long-range combat.",
-		"Sighting in, engaging marksman mode.",
-		"@pick(operator), take deep breaths to improve your aim.",
-		"Extending scope; @pick(operator), make sure it's well-maintained.",
-		"One shot, one kill.",
-		"Assassination doctrine engaged, @pick(operator). Make every shot count.",
-		"Scope extending, please avoid overpenetration in non-terrestrial combat environments.",
-		"Sighting in, please be aware of cross-fire."
+		"校准瞄准，展开瞄准镜。",
+		"校准瞄准，准备远程战斗。",
+		"校准瞄准，启用精确射手模式。",
+		"@pick(operator)，深呼吸有助于瞄准。",
+		"展开瞄准镜；@pick(operator)，请确保保养良好。",
+		"一枪毙命。",
+		"暗杀战术已启用，@pick(operator)。不要浪费任何一发。",
+		"展开瞄准镜，在非地面作战环境中请避免过度穿透。",
+		"校准瞄准，请留意交叉火力。"
 	],
 
 	"disable": [
-		"Preparing to enter full-power stun mode.",
-		"Mass crowd-control mode engaged, non-lethal.",
-		"This should be... fun, right @pick(operator)?",
-		"This is going to be stressful on my battery, but...",
-		"Is this really okay...? This is quite difficult from my usual operation...",
-		"Switching to high output mode.",
-		"Switching to gatling doctrine, non-lethal."
+		"准备进入全功率眩晕模式。",
+		"大范围人群控制模式已启用，非致命。",
+		"这应该会……很有趣，对吧，@pick(operator)？",
+		"这会给我的电池带来很大负担，不过……",
+		"这样真的没问题吗……这可比我平时的工作难多了……",
+		"切换至高输出模式。",
+		"切换至加特林战术，非致命。"
 	],
 
 	"launcher": [
-		"Forming plasma grenades at your request, @pick(operator)!",
-		"Grenadier mode engaged, @pick(operator)!",
-		"Aim my grenades carefully in an arc, @pick(operator)!",
-		"Energy detonation doctrine engaged.",
-		"Crowd-control mode engaged, lethal. Is this really okay?",
-		"Charging magnetic containment coils, plasma condensing..."
+		"按你的要求生成等离子体榴弹，@pick(operator)！",
+		"掷弹兵模式已启用，@pick(operator)！",
+		"@pick(operator)，请沿抛物线仔细瞄准我的榴弹！",
+		"能量爆破战术已启用。",
+		"人群控制模式已启用，致命。这样真的没问题吗？",
+		"磁约束线圈充能中，正在凝聚等离子体……"
 	],
 
 	"shotgun": [
-		"Close-quarters...? I'm not really the tool for this job...",
-		"I'm more of a rifle, @pick(operator), but I'll try...",
-		"Is this really okay...? This is more of a carbine's job...",
-		"Switching to wide-band spread.",
-		"Changing to diffusion lens, shotgun doctrine engaged.",
-		"Close-quarters mode engaged, lethal."
+		"近距离作战……？我不太适合这份工作……",
+		"@pick(operator)，我更像一把步枪，不过我会试试……",
+		"这样真的没问题吗……这更像是卡宾枪的活儿……",
+		"切换至宽幅散射。",
+		"切换扩散镜片，霰弹枪战术已启用。",
+		"近距离作战模式已启用，致命。"
 	],
 
 	"flare": [
-	"Ignite the flames! Now!",
-	"Incendiary, incendiary!",
-	"Fabricating 'Balrog' energy flares; this'll be sick.",
-	"Fabricating 'Balrog' energy flares; can you feel the fire?",
-	"Firestarter, twisted firestarter!",
-	"Apocalyptic meltdown!",
-	"Incendiary weapons are banned in numerous sectors; makes it kind of risqué..",
-	"Dragon breath!"
+	"点燃烈焰！就是现在！",
+	"燃烧弹，燃烧弹！",
+	"正在制造“炎魔”能量火弹，这一定很带劲。",
+	"正在制造“炎魔”能量火弹，你感受到烈火了吗？",
+	"纵火者，疯狂的纵火者！",
+	"末日熔毁！",
+	"燃烧武器在许多星区遭到禁用，这可有点刺激……",
+	"龙息！"
 	],
 
 
 	"operator": [
-		"Operator",
-		"Handler"
+		"操作员",
+		"持枪者"
 	]
 }

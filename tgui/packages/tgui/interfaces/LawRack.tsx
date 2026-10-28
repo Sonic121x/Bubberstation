@@ -112,9 +112,9 @@ const LawSlot = (props: { slot: SlotData; index: number }) => {
           <LawSlotScrew
             tooltip={
               slot.security === SlotSecurity.SCREWED && !holding_screwdriver
-                ? 'You need a screwdriver to unscrew this module.'
+                ? '你需要螺丝刀才能拧下此模块的螺丝。'
                 : holding_screwdriver && slot.security === SlotSecurity.WELDED
-                  ? `You can't remove the screws before unwelding it.`
+                  ? `必须先解除焊接，才能拆下螺丝。`
                   : undefined
             }
             noscrew={slot.empty || slot.security === SlotSecurity.NONE}
@@ -134,11 +134,11 @@ const LawSlot = (props: { slot: SlotData; index: number }) => {
               fluid
               tooltip={
                 slot.security === SlotSecurity.WELDED && !holding_welder
-                  ? `You can't remove this module before unwelding it.`
+                  ? `必须先解除焊接，才能拆下此模块。`
                   : holding_welder &&
                       slot.security === SlotSecurity.NONE &&
                       !slot.empty
-                    ? 'Screw this module in place before welding.'
+                    ? '焊接前请先用螺丝固定此模块。'
                     : undefined
               }
               className={
@@ -154,10 +154,10 @@ const LawSlot = (props: { slot: SlotData; index: number }) => {
               onClick={() => act('weld_module', { slot: index + 1 })}
             >
               {slot.security === SlotSecurity.WELDED
-                ? 'Welded'
+                ? '已焊接'
                 : slot.empty
-                  ? slot.name || 'Empty'
-                  : 'Weld Module'}
+                  ? slot.name || '空'
+                  : '焊接模块'}
             </Button>
           )}
           {slot.security !== SlotSecurity.WELDED && !!holding_multitool && (
@@ -169,7 +169,7 @@ const LawSlot = (props: { slot: SlotData; index: number }) => {
               disabled={!slot.ioned}
               onClick={() => act('multitool_module', { slot: index + 1 })}
             >
-              Repair Ion Damage
+              修复离子损伤
             </Button>
           )}
           {slot.security !== SlotSecurity.WELDED &&
@@ -182,7 +182,7 @@ const LawSlot = (props: { slot: SlotData; index: number }) => {
                 fluid
                 tooltip={
                   slot.security === SlotSecurity.SCREWED
-                    ? `You can't remove this module before unscrewing it.`
+                    ? `必须先拧下螺丝，才能拆下此模块。`
                     : undefined
                 }
                 disabled={
@@ -199,7 +199,7 @@ const LawSlot = (props: { slot: SlotData; index: number }) => {
                   )
                 }
               >
-                {slot.name || 'Empty'}
+                {slot.name || '空'}
               </Button>
             )}
         </Flex.Item>
@@ -207,9 +207,9 @@ const LawSlot = (props: { slot: SlotData; index: number }) => {
           <LawSlotScrew
             tooltip={
               slot.security === SlotSecurity.SCREWED && !holding_screwdriver
-                ? 'You need a screwdriver to unscrew this module.'
+                ? '你需要螺丝刀才能拧下此模块的螺丝。'
                 : holding_screwdriver && slot.security === SlotSecurity.WELDED
-                  ? `You can't remove the screws before unwelding it.`
+                  ? `必须先解除焊接，才能拆下螺丝。`
                   : undefined
             }
             noscrew={slot.empty || slot.security === SlotSecurity.NONE}
@@ -373,10 +373,10 @@ const BroadcasterDisplay = () => {
       <Stack.Item width="50%">
         <Stack p={1} className="LawRack__Console" vertical>
           <Stack.Item>
-            &gt; <b>Linked Rack:</b>
+            &gt; <b>已连接机架：</b>
           </Stack.Item>
           <Stack.Item>
-            {parent_rack ? capitalize(parent_rack.name) : 'N/A'}
+            {parent_rack ? capitalize(parent_rack.name) : '无'}
           </Stack.Item>
         </Stack>
       </Stack.Item>
@@ -389,16 +389,16 @@ const BroadcasterDisplay = () => {
               disabled={depowered || !parent_rack}
               tooltip={
                 depowered
-                  ? 'No power!'
+                  ? '没有电力！'
                   : parent_rack
                     ? undefined
-                    : 'No linked rack!'
+                    : '未连接机架！'
               }
               fontFamily="monospace"
               color={depowered || !parent_rack ? 'grey' : 'black'}
               onClick={() => act('unlink_rack')}
             >
-              &gt; Unlink Rack
+              &gt; 断开机架连接
             </Button>
           </Stack.Item>
           <Stack.Item>
@@ -420,18 +420,18 @@ const BroadcasterDisplay = () => {
                   }
                   tooltip={
                     depowered
-                      ? 'No power!'
+                      ? '没有电力！'
                       : linkable_racks?.length
                         ? parent_rack
-                          ? 'Already linked!'
+                          ? '已经连接！'
                           : undefined
-                        : 'No linkable racks!'
+                        : '没有可连接的机架！'
                   }
                   fontFamily="monospace"
                   color={depowered || parent_rack ? 'grey' : 'black'}
                   onClick={() => setRackLink(!rackLink)}
                 >
-                  &gt; New Link
+                  &gt; 新建连接
                 </Button>
               }
             />
@@ -454,10 +454,10 @@ const BaseDisplay = () => {
       <Stack.Item>
         <Stack p={1} className="LawRack__Console" vertical>
           <Stack.Item>
-            &gt; <b>Linked Silicons:</b>
+            &gt; <b>已连接硅基生物：</b>
           </Stack.Item>
           <Stack.Item style={{ wordBreak: 'break-word' }}>
-            {linked_mobs?.length ? linked_mobs.join(', ') : 'N/A'}
+            {linked_mobs?.length ? linked_mobs.join('、') : '无'}
           </Stack.Item>
         </Stack>
       </Stack.Item>
@@ -467,7 +467,7 @@ const BaseDisplay = () => {
             show_floating={siliconUnlink}
             unlinkable={linked_mobs || []}
             can_unlink={!depowered}
-            unlink_tooltip={depowered ? 'No power!' : undefined}
+            unlink_tooltip={depowered ? '没有电力！' : undefined}
             unlink_act={(index, name) =>
               act('unlink_silicon', {
                 silicon_index: index,
@@ -481,16 +481,16 @@ const BaseDisplay = () => {
                 disabled={!linked_mobs?.length || depowered}
                 tooltip={
                   depowered
-                    ? 'No power!'
+                    ? '没有电力！'
                     : linked_mobs?.length
                       ? undefined
-                      : 'No linked silicons!'
+                      : '未连接硅基生物！'
                 }
                 color={depowered || !linked_mobs?.length ? 'grey' : 'black'}
                 fontFamily="monospace"
                 onClick={() => setSiliconUnlink(!siliconUnlink)}
               >
-                &gt; Manage Connections
+                &gt; 管理连接
               </Button>
             }
           />
@@ -513,12 +513,12 @@ const BaseDisplay = () => {
                   }
                   tooltip={
                     depowered
-                      ? 'No power!'
+                      ? '没有电力！'
                       : linkable_silicons?.length
                         ? parent_rack
-                          ? 'Linked to another rack!'
+                          ? '已连接至另一机架！'
                           : undefined
-                        : 'No linkable silicons!'
+                        : '没有可连接的硅基生物！'
                   }
                   color={
                     depowered || !linkable_silicons?.length ? 'gray' : 'black'
@@ -526,7 +526,7 @@ const BaseDisplay = () => {
                   fontFamily="monospace"
                   onClick={() => setSiliconLink(!siliconLink)}
                 >
-                  &gt; New Connection
+                  &gt; 新建连接
                 </Button>
               }
             />
@@ -560,7 +560,7 @@ export const LawRack = () => {
   };
 
   return (
-    <Window title="Module Rack" width={400} height={slots.length * 40 + 200}>
+    <Window title="模块机架" width={400} height={slots.length * 40 + 200}>
       <Window.Content>
         <Section>
           <Stack vertical>
@@ -576,14 +576,14 @@ export const LawRack = () => {
                 p={0.5}
                 textAlign="center"
               >
-                <b>{linked_rack_module_count}</b> other module(s) are being
-                loaded remotely.
+                正在远程加载另外 <b>{linked_rack_module_count}</b> 个
+                模块。
               </Stack.Item>
             )}
           </Stack>
         </Section>
         <Section
-          title="Controls"
+          title="控制"
           buttons={
             <Button
               icon="refresh"
@@ -591,10 +591,10 @@ export const LawRack = () => {
               tooltipPosition="left"
               tooltip={
                 depowered
-                  ? 'No power!'
+                  ? '没有电力！'
                   : refresh_cooldown > 0
-                    ? `Cooldown: ${Math.round(refresh_cooldown / 10)}s`
-                    : 'Refreshes module and link data.'
+                    ? `冷却：${Math.round(refresh_cooldown / 10)} 秒`
+                    : '刷新模块和连接数据。'
               }
               onClick={() => act('refresh')}
             />

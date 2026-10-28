@@ -2,8 +2,8 @@
 import { CheckboxInput, type FeatureToggle } from '../../base';
 
 export const auto_dementor_pref: FeatureToggle = {
-  name: 'Auto dementor',
+  name: '自动卸任导师',
   category: 'ADMIN',
-  description: 'When enabled, you will automatically dementor.',
+  description: '启用后，你会自动卸任导师。',
   component: CheckboxInput,
 };

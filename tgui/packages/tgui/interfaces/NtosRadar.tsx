@@ -77,12 +77,12 @@ const ObjectDisplay = (props) => {
       <Section>
         <Button
           icon="redo-alt"
-          content={scanning ? 'Scanning...' : 'Scan'}
+          content={scanning ? '正在扫描……' : '扫描'}
           color="blue"
           disabled={scanning}
           onClick={() => act('scan')}
         />
-        {!object.length && !scanning && <div>No trackable signals found</div>}
+        {!object.length && !scanning && <div>未找到可追踪的信号</div>}
         {!scanning &&
           object.map((object) => (
             <div
@@ -127,7 +127,7 @@ const TargetDisplay = (props) => {
         fontSize="30px"
         textAlign="center"
       >
-        Signal Lost
+        信号丢失
       </NoticeBox>
     );
   }

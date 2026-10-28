@@ -33,7 +33,7 @@ type Info = {
 
 export const BorerEvolution = (props) => {
   return (
-    <Window width={675} height={600} theme="wizard" title="Evolution Tree">
+    <Window width={675} height={600} theme="wizard" title="进化树">
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item grow>
@@ -51,9 +51,9 @@ const PastEvolutions = (props) => {
 
   return (
     <Stack.Item grow>
-      <Section title="Past Evolutions" fill scrollable>
+      <Section title="已获得的进化" fill scrollable>
         <Stack vertical>
-          {(!learnedEvolution.length && 'None!') ||
+          {(!learnedEvolution.length && '无！') ||
             learnedEvolution.map((learned) => (
               <Stack.Item key={learned.name}>
                 <Button
@@ -78,8 +78,8 @@ const EvolutionList = (props) => {
 
   return (
     <Stack.Item grow>
-      <Section title="Possible Evolutions" fill scrollable>
-        {(!learnableEvolution.length && 'None!') ||
+      <Section title="可获得的进化" fill scrollable>
+        {(!learnableEvolution.length && '无！') ||
           learnableEvolution.map((toLearn) => (
             <Stack.Item key={toLearn.name} mb={1}>
               <Button
@@ -91,13 +91,13 @@ const EvolutionList = (props) => {
                 } ${
                   toLearn.cost > 0
                     ? `${toLearn.name}: ${toLearn.cost}
-                  point${toLearn.cost !== 1 ? 's' : ''}`
+                  点进化点数`
                     : toLearn.name
                 }`}
                 tooltip={
                   toLearn.exclusive
                     ? toLearn.desc +
-                      ` By taking this, you cannot take other T3+ gneomes.`
+                      ` 选择此项后，你将无法选择其他三级及以上的基因组。`
                     : toLearn.desc
                 }
                 onClick={() => act('evolve', { path: toLearn.path })}
@@ -123,11 +123,11 @@ const EvoInfo = (props) => {
       <Stack.Item grow>
         <Stack vertical height="100%">
           <Stack.Item fontSize="20px" textAlign="center">
-            You have <b>{evolution_points || 0}</b>&nbsp;
+            你有 <b>{evolution_points || 0}</b>&nbsp;
             <span style={borerColor}>
-              evolution point{evolution_points !== 1 ? 's' : ''}
+              点进化点数
             </span>{' '}
-            to spend.
+            可供使用。
           </Stack.Item>
           <Stack.Item grow>
             <Stack height="100%">

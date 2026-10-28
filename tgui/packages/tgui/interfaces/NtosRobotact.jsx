@@ -17,7 +17,7 @@ import { formatPower } from 'tgui-core/format';
 
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
-
+import { robotactDisplay as zh } from '../localization/zhRobotactDisplay';
 export const NtosRobotact = (props) => {
   return (
     <NtosWindow width={800} height={600}>
@@ -72,7 +72,7 @@ export const NtosRobotactContent = (props) => {
             selected={tab_main === 1}
             onClick={() => setTab_main(1)}
           >
-            Status
+            状态
           </Tabs.Tab>
           <Tabs.Tab
             icon="list"
@@ -80,7 +80,7 @@ export const NtosRobotactContent = (props) => {
             selected={tab_main === 2}
             onClick={() => setTab_main(2)}
           >
-            Logs
+            日志
           </Tabs.Tab>
           <Tabs.Tab
             icon="list"
@@ -88,7 +88,7 @@ export const NtosRobotactContent = (props) => {
             selected={tab_main === 3}
             onClick={() => setTab_main(3)}
           >
-            Network
+            网络
           </Tabs.Tab>
         </Tabs>
       </Flex.Item>
@@ -96,12 +96,12 @@ export const NtosRobotactContent = (props) => {
         <>
           <Flex direction={'row'}>
             <Flex.Item width="30%">
-              <Section title="Configuration" fill>
+              <Section title="配置" fill>
                 <LabeledList>
-                  <LabeledList.Item label="Unit">
+                  <LabeledList.Item label="单位">
                     {borgName.slice(0, 17)}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Type">{borgType}</LabeledList.Item>
+                  <LabeledList.Item label="类型">{borgType}</LabeledList.Item>
                   <LabeledList.Item label="AI">
                     {masterAI.slice(0, 17)}
                   </LabeledList.Item>
@@ -109,10 +109,10 @@ export const NtosRobotactContent = (props) => {
               </Section>
             </Flex.Item>
             <Flex.Item grow={1} basis="content" ml={1}>
-              <Section title="Status">
-                Charge:
+              <Section title="状态">
+                电量：
                 <Button
-                  content="Power Alert"
+                  content="电量警报"
                   disabled={charge}
                   onClick={() => act('alertPower')}
                 />
@@ -129,7 +129,7 @@ export const NtosRobotactContent = (props) => {
                     format={(charge) => formatEnergy(charge)}
                   />
                 </ProgressBar>
-                Chassis Integrity:
+                机体完整度：
                 <ProgressBar
                   value={integrity}
                   minValue={0}
@@ -141,7 +141,7 @@ export const NtosRobotactContent = (props) => {
                   }}
                 />
               </Section>
-              <Section title="Lamp Power">
+              <Section title="灯光强度">
                 <Slider
                   value={lampIntensity}
                   step={1}
@@ -154,7 +154,7 @@ export const NtosRobotactContent = (props) => {
                     })
                   }
                 />
-                Lamp power usage: {formatPower(lampIntensity * lampConsumption)}
+                灯光功耗：{formatPower(lampIntensity * lampConsumption)}
               </Section>
             </Flex.Item>
             <Flex.Item width="50%" ml={1}>
@@ -166,7 +166,7 @@ export const NtosRobotactContent = (props) => {
                     selected={tab_sub === 1}
                     onClick={() => setTab_sub(1)}
                   >
-                    Actions
+                    操作
                   </Tabs.Tab>
                   <Tabs.Tab
                     icon=""
@@ -174,7 +174,7 @@ export const NtosRobotactContent = (props) => {
                     selected={tab_sub === 2}
                     onClick={() => setTab_sub(2)}
                   >
-                    Upgrades
+                    升级模块
                   </Tabs.Tab>
                   <Tabs.Tab
                     icon=""
@@ -182,55 +182,55 @@ export const NtosRobotactContent = (props) => {
                     selected={tab_sub === 3}
                     onClick={() => setTab_sub(3)}
                   >
-                    Diagnostics
+                    诊断
                   </Tabs.Tab>
                 </Tabs>
               </Section>
               {tab_sub === 1 && (
                 <Section>
                   <LabeledList>
-                    <LabeledList.Item label="Maintenance Cover">
+                    <LabeledList.Item label="维护舱盖">
                       <Button.Confirm
-                        content="Unlock"
+                        content="解锁"
                         disabled={cover === 'UNLOCKED'}
                         onClick={() => act('coverunlock')}
                       />
                     </LabeledList.Item>
-                    <LabeledList.Item label="Sensor Overlay">
+                    <LabeledList.Item label="传感器叠加显示">
                       <Button
-                        content={sensors}
+                        content={zh(sensors)}
                         onClick={() => act('toggleSensors')}
                       />
                     </LabeledList.Item>
                     <LabeledList.Item
-                      label={`Stored Photos (${printerPictures})`}
+                      label={`已存储照片（${printerPictures}）`}
                     >
                       <Button
-                        content="View"
+                        content="查看"
                         disabled={!printerPictures}
                         onClick={() => act('viewImage')}
                       />
                       <Button
-                        content="Print"
+                        content="打印"
                         disabled={!printerPictures}
                         onClick={() => act('printImage')}
                       />
                     </LabeledList.Item>
-                    <LabeledList.Item label="Printer Toner">
+                    <LabeledList.Item label="打印机碳粉">
                       <ProgressBar value={printerToner / printerTonerMax} />
                     </LabeledList.Item>
                     {!!thrustersInstalled && (
-                      <LabeledList.Item label="Toggle Thrusters">
+                      <LabeledList.Item label="推进器开关">
                         <Button
-                          content={thrustersStatus}
+                          content={zh(thrustersStatus)}
                           onClick={() => act('toggleThrusters')}
                         />
                       </LabeledList.Item>
                     )}
                     {!!selfDestructAble && (
-                      <LabeledList.Item label="Self Destruct">
+                      <LabeledList.Item label="自毁">
                         <Button.Confirm
-                          content="ACTIVATE"
+                          content="激活"
                           color="red"
                           onClick={() => act('selfDestruct')}
                         />
@@ -252,7 +252,7 @@ export const NtosRobotactContent = (props) => {
                 <Section>
                   <LabeledList>
                     <LabeledList.Item
-                      label="AI Connection"
+                      label="AI 连接"
                       color={
                         wireAI === 'FAULT'
                           ? 'red'
@@ -261,16 +261,16 @@ export const NtosRobotactContent = (props) => {
                             : 'green'
                       }
                     >
-                      {wireAI}
+                      {zh(wireAI)}
                     </LabeledList.Item>
                     <LabeledList.Item
-                      label="LawSync"
+                      label="法则同步"
                       color={wireLaw === 'FAULT' ? 'red' : 'green'}
                     >
-                      {wireLaw}
+                      {zh(wireLaw)}
                     </LabeledList.Item>
                     <LabeledList.Item
-                      label="Camera"
+                      label="摄像头"
                       color={
                         wireCamera === 'FAULT'
                           ? 'red'
@@ -279,16 +279,16 @@ export const NtosRobotactContent = (props) => {
                             : 'green'
                       }
                     >
-                      {wireCamera}
+                      {zh(wireCamera)}
                     </LabeledList.Item>
                     <LabeledList.Item
-                      label="Module Controller"
+                      label="模块控制器"
                       color={wireModule === 'FAULT' ? 'red' : 'green'}
                     >
-                      {wireModule}
+                      {zh(wireModule)}
                     </LabeledList.Item>
                     <LabeledList.Item
-                      label="Motor Controller"
+                      label="运动控制器"
                       color={
                         locomotion === 'FAULT'
                           ? 'red'
@@ -297,13 +297,13 @@ export const NtosRobotactContent = (props) => {
                             : 'green'
                       }
                     >
-                      {locomotion}
+                      {zh(locomotion)}
                     </LabeledList.Item>
                     <LabeledList.Item
-                      label="Maintenance Cover"
+                      label="维护舱盖"
                       color={cover === 'UNLOCKED' ? 'red' : 'green'}
                     >
-                      {cover}
+                      {zh(cover)}
                     </LabeledList.Item>
                   </LabeledList>
                 </Section>
@@ -312,13 +312,13 @@ export const NtosRobotactContent = (props) => {
           </Flex>
           <Flex.Item height={21} mt={1}>
             <Section
-              title="Laws"
+              title="法则"
               fill
               scrollable
               buttons={
                 <>
                   <Button
-                    content="State Laws"
+                    content="宣读法则"
                     onClick={() => act('lawstate')}
                   />
                   <Button icon="volume-off" onClick={() => act('lawchannel')} />
@@ -348,17 +348,17 @@ export const NtosRobotactContent = (props) => {
       {tab_main === 3 && (
         <Flex.Item height={40}>
           <Section
-            title={MasterAI_connected ? masterAI : 'NOT CONFIGURED'}
+            title={MasterAI_connected ? masterAI : '未配置'}
             textAlign="center"
           >
             <LabeledList>
-              <LabeledList.Item label="Status">
+              <LabeledList.Item label="状态">
                 <Box color={masterAI_online ? 'good' : 'bad'}>
                   {!MasterAI_connected
-                    ? 'No Conection'
+                    ? '未连接'
                     : masterAI_online
-                      ? 'Online'
-                      : 'Unresponsive'}
+                      ? '在线'
+                      : '无响应'}
                 </Box>
               </LabeledList.Item>
             </LabeledList>
@@ -375,7 +375,7 @@ export const NtosRobotactContent = (props) => {
                         title={cyborg.otherBorgName.slice(0, 20)}
                       >
                         <LabeledList>
-                          <LabeledList.Item label="Status">
+                          <LabeledList.Item label="状态">
                             <Box
                               color={
                                 cyborg.status
@@ -386,15 +386,15 @@ export const NtosRobotactContent = (props) => {
                               }
                             >
                               {cyborg.status
-                                ? 'Not Responding'
+                                ? '无响应'
                                 : cyborg.locked_down
-                                  ? 'Locked Down'
+                                  ? '已锁定'
                                   : cyborg.shell_discon
-                                    ? 'Nominal/Disconnected'
-                                    : 'Nominal'}
+                                    ? '正常／已断开连接'
+                                    : '正常'}
                             </Box>
                           </LabeledList.Item>
-                          <LabeledList.Item label="Condition">
+                          <LabeledList.Item label="机体状况">
                             <Box
                               color={
                                 cyborg.integ <= 25
@@ -405,15 +405,15 @@ export const NtosRobotactContent = (props) => {
                               }
                             >
                               {cyborg.integ === 0
-                                ? 'Hard Fault'
+                                ? '严重故障'
                                 : cyborg.integ <= 25
-                                  ? 'Functionality Disrupted'
+                                  ? '功能严重受损'
                                   : cyborg.integ <= 75
-                                    ? 'Functionality Impaired'
-                                    : 'Operational'}
+                                    ? '功能受损'
+                                    : '运行正常'}
                             </Box>
                           </LabeledList.Item>
-                          <LabeledList.Item label="Charge">
+                          <LabeledList.Item label="电量">
                             <Box
                               color={
                                 cyborg.charge <= 30
@@ -425,10 +425,10 @@ export const NtosRobotactContent = (props) => {
                             >
                               {typeof cyborg.charge === 'number'
                                 ? `${cyborg.charge}%`
-                                : 'No Cell'}
+                                : '无电池'}
                             </Box>
                           </LabeledList.Item>
-                          <LabeledList.Item label="Model">
+                          <LabeledList.Item label="型号">
                             {cyborg.module}
                           </LabeledList.Item>
                         </LabeledList>
@@ -444,7 +444,7 @@ export const NtosRobotactContent = (props) => {
           {!cyborg_groups.length && (
             <NoticeBox textAlign="center" top="30%" position="relative">
               <Box fontSize={2}>
-                CONNECTION UNAVAILABLE -- NETWORK STATUS UNKNOWN
+                无法连接——网络状态未知
               </Box>
             </NoticeBox>
           )}

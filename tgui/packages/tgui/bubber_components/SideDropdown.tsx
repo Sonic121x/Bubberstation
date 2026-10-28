@@ -89,7 +89,7 @@ export function SideDropdown(props: Props) {
     onClick,
     onSelected,
     options = [],
-    placeholder = 'Select...',
+    placeholder = '选择……',
     selected,
     width = 15,
   } = props;
@@ -154,7 +154,7 @@ export function SideDropdown(props: Props) {
         content={
           <div ref={innerRef} className="Dropdown__menu">
             {options.length === 0 ? (
-              <div className="Dropdown__menu--entry">No options</div>
+              <div className="Dropdown__menu--entry">无选项</div>
             ) : (
               options.map((option) => {
                 const value = getOptionValue(option);

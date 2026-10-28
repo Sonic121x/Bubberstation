@@ -25,17 +25,17 @@ export const Electropack = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Power">
+            <LabeledList.Item label="电源">
               <Button
                 icon={power ? 'power-off' : 'times'}
                 selected={power}
                 onClick={() => act('power')}
               >
-                {power ? 'On' : 'Off'}
+                {power ? '开启' : '关闭'}
               </Button>
             </LabeledList.Item>
             <LabeledList.Item
-              label="Frequency"
+              label="频率"
               buttons={
                 <Button
                   icon="sync"
@@ -45,7 +45,7 @@ export const Electropack = (props) => {
                     })
                   }
                 >
-                  Reset
+                  重置
                 </Button>
               }
             >
@@ -68,7 +68,7 @@ export const Electropack = (props) => {
               />
             </LabeledList.Item>
             <LabeledList.Item
-              label="Code"
+              label="代码"
               buttons={
                 <Button
                   icon="sync"
@@ -78,7 +78,7 @@ export const Electropack = (props) => {
                     })
                   }
                 >
-                  Reset
+                  重置
                 </Button>
               }
             >

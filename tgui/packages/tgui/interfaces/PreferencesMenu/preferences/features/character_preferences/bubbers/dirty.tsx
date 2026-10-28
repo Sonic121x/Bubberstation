@@ -1,13 +1,13 @@
 import { FeatureColorInput, FeatureTextInput, type Feature } from '../../base';
 
 export const dirty_quirk_color: Feature<string> = {
-  name: 'Dirt Color',
+  name: '污垢颜色',
   component: FeatureColorInput,
 };
 
 export const dirty_quirk_text: Feature<string> = {
-  name: 'Flavor text',
+  name: '外观描述',
   description:
-    'Displayed when you are dirty.',
+    '身上脏污时显示的描述。',
   component: FeatureTextInput,
 };

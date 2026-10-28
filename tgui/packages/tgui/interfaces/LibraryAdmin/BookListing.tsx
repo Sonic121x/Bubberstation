@@ -13,8 +13,8 @@ export function BookListing(props) {
   if (!can_connect) {
     return (
       <NoticeBox>
-        Unable to retrieve book listings. Please contact your system
-        administrator for assistance.
+        无法获取书籍列表。请联系系统
+        管理员寻求帮助。
       </NoticeBox>
     );
   }

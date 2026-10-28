@@ -31,7 +31,7 @@ const TurbineDisplay = (props) => {
 
   return (
     <Section
-      title="Status"
+      title="状态"
       buttons={
         <Button
           icon={data.active ? 'power-off' : 'times'}
@@ -39,12 +39,12 @@ const TurbineDisplay = (props) => {
           disabled={!!(data.rpm >= 1000)}
           onClick={() => act('toggle_power')}
         >
-          {data.active ? 'Online' : 'Offline'}
+          {data.active ? '在线' : '离线'}
         </Button>
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Intake Regulator">
+        <LabeledList.Item label="进气调节器">
           <NumberInput
             animated
             tickWhileDragging
@@ -60,7 +60,7 @@ const TurbineDisplay = (props) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Turbine Integrity">
+        <LabeledList.Item label="涡轮完整度">
           <ProgressBar
             value={data.integrity}
             minValue={0}
@@ -72,19 +72,19 @@ const TurbineDisplay = (props) => {
             }}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Turbine Speed">
+        <LabeledList.Item label="涡轮转速">
           {data.rpm} RPM
         </LabeledList.Item>
-        <LabeledList.Item label="Max Turbine Speed">
+        <LabeledList.Item label="最大涡轮转速">
           {data.max_rpm} RPM
         </LabeledList.Item>
-        <LabeledList.Item label="Input Temperature">
+        <LabeledList.Item label="输入温度">
           {data.temp} K
         </LabeledList.Item>
-        <LabeledList.Item label="Max Temperature">
+        <LabeledList.Item label="最高温度">
           {data.max_temperature} K
         </LabeledList.Item>
-        <LabeledList.Item label="Generated Power">
+        <LabeledList.Item label="发电功率">
           {formatPower(data.power)}
         </LabeledList.Item>
       </LabeledList>
@@ -99,7 +99,7 @@ const OutOfService = (props) => {
         <Stack.Item textAlign="center">
           <Box style={{ margin: 'auto' }} textAlign="center" width="300px">
             {
-              'Parts not connected, close all mantainence panels/use a multitool on the rotor before trying again'
+              '部件未连接，请关闭所有维护面板，或对转子使用多功能工具后重试'
             }
           </Box>
         </Stack.Item>

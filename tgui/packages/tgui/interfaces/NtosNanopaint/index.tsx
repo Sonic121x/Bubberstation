@@ -132,13 +132,13 @@ export const NtosNanopaint = (props) => {
                     checked={showGrid}
                     onClick={() => setShowGrid(!showGrid)}
                   >
-                    Show Grid
+                    显示网格
                   </Button.Checkbox>
                 </Stack.Item>
                 <Stack.Item>
                   <Button
                     icon="search-minus"
-                    tooltip="Zoom Out (Shift + Scroll Down)"
+                    tooltip="缩小（Shift + 向下滚动）"
                     disabled={!workspaceOpen || zoom <= 1}
                     onClick={() => setZoom(zoom - 1)}
                   />
@@ -146,7 +146,7 @@ export const NtosNanopaint = (props) => {
                 <Stack.Item>
                   <Button
                     icon="search-plus"
-                    tooltip="Zoom In (Shift + Scroll Up)"
+                    tooltip="放大（Shift + 向上滚动）"
                     disabled={!workspaceOpen || zoom >= 20}
                     onClick={() => setZoom(zoom + 1)}
                   />

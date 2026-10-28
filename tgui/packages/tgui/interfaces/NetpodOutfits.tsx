@@ -12,7 +12,7 @@ import { createSearch } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { displayRole } from '../localization/roleDisplay';
 type Data = {
   netsuit: string;
   collections: Collection[];
@@ -36,7 +36,7 @@ export const NetpodOutfits = (props) => {
   const [selectedType, setSelectedType] = useState(collections[0]);
   const [search, setSearch] = useState('');
 
-  const searchFn = createSearch(search, (outfit: Outfit) => outfit.name);
+  const searchFn = createSearch(search, (outfit: Outfit) => `${outfit.name} ${displayRole(outfit.name)}`);
 
   const filtered = selectedType?.outfits
     ?.filter(searchFn)
@@ -44,21 +44,21 @@ export const NetpodOutfits = (props) => {
 
   const selected =
     selectedType.outfits?.find((outfit) => outfit.path === netsuit)?.name ??
-    'None';
+    '无';
 
   return (
-    <Window title="Net Pod" height={300} width={400}>
+    <Window title="网络舱" height={300} width={400}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item grow>
             <Section
               fill
-              title="Select an outfit"
+              title="选择装备方案"
               buttons={
                 <Input
                   autoFocus
                   onChange={setSearch}
-                  placeholder="Search"
+                  placeholder="搜索"
                   value={search}
                 />
               }
@@ -90,7 +90,7 @@ export const NetpodOutfits = (props) => {
                           color="transparent"
                           onClick={() => act('select_outfit', { outfit: path })}
                         >
-                          {name}
+                          {displayRole(name)}
                         </Button>
                       </Stack.Item>
                     ))}
@@ -101,7 +101,7 @@ export const NetpodOutfits = (props) => {
           </Stack.Item>
           <Stack.Item>
             <NoticeBox info align="right">
-              {selected}
+              {displayRole(selected)}
             </NoticeBox>
           </Stack.Item>
         </Stack>

@@ -16,13 +16,13 @@ type Attempts = {
 
 const check_attempts = (attempts_to_check: number) => {
   return attempts_to_check === 1
-    ? 'on next failed access attempt.'
-    : `after ${attempts_to_check} failed access attempts.`;
+    ? '在下次解锁失败时启动。'
+    : `在 ${attempts_to_check} 次解锁失败后启动。`;
 };
 
-const BULLS_COWS_INFO = `Codes are made of a series of non-repeating digits.
-Each wrong guess will return the number of correct digits in correct locations,
-and the number of correct digits in incorrect locations.`;
+const BULLS_COWS_INFO = `密码由一串不重复的数字组成。
+每次猜错后，会显示数字和位置都正确的个数，
+以及数字正确但位置错误的个数。`;
 
 export const AbandonedCrate = (props) => {
   const { data } = useBackend<Data>();
@@ -32,7 +32,7 @@ export const AbandonedCrate = (props) => {
     <Window width={335} height={180 + previous_attempts.length * 19}>
       <Window.Content scrollable>
         <Section
-          title="Deca-Code Lock"
+          title="十进制密码锁"
           buttons={
             <Button
               tooltip={BULLS_COWS_INFO}
@@ -42,7 +42,7 @@ export const AbandonedCrate = (props) => {
           }
         >
           <NoticeBox color="bad">
-            Anti-Tamper Bomb will activate {check_attempts(attempts_left)}
+            防拆炸弹将{check_attempts(attempts_left)}
           </NoticeBox>
           <Table>
             {!!previous_attempts.length && (
@@ -53,18 +53,18 @@ export const AbandonedCrate = (props) => {
                   textAlign="center"
                   pr="5px"
                 >
-                  Attempt
+                  尝试
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   <Button
-                    tooltip={`Correct digits at correct positions`}
+                    tooltip={`数字和位置都正确`}
                     icon="check"
                     color="green"
                   />
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   <Button
-                    tooltip={`Correct digits at incorrect positions`}
+                    tooltip={`数字正确但位置错误`}
                     icon="asterisk"
                     color="yellow"
                   />

@@ -66,7 +66,7 @@ export const LightController = (props) => {
   const category_keys = category_ids ? Object.keys(category_ids) : [];
 
   return (
-    <Window title={`${light_info.name}: Lighting`} width={600} height={400}>
+    <Window title={`${light_info.name}：照明`} width={600} height={400}>
       <Window.Content scrollable>
         <Stack fill>
           <Stack.Item>
@@ -138,7 +138,7 @@ const LightControl = (props: LightControlProps) => {
               <Button
                 fontSize="16px"
                 icon="brush"
-                tooltip="Change light color"
+                tooltip="更改灯光颜色"
                 textColor={info.color}
                 onClick={() => act('change_color')}
               >
@@ -148,7 +148,7 @@ const LightControl = (props: LightControlProps) => {
                 fontSize="16px"
                 color={on ? 'good' : 'bad'}
                 icon="power-off"
-                tooltip="Enable/Disable the light"
+                tooltip="开启／关闭灯光"
                 onClick={() =>
                   act('set_on', {
                     value: !on,
@@ -159,7 +159,7 @@ const LightControl = (props: LightControlProps) => {
                 fontSize="16px"
                 color="purple"
                 icon="handcuffs"
-                tooltip="Isolate this light for a bit"
+                tooltip="暂时仅显示此光源"
                 onClick={() => act('isolate')}
               />
             </Stack.Item>
@@ -168,12 +168,12 @@ const LightControl = (props: LightControlProps) => {
         <Stack.Item>
           <Stack justify="space-around">
             <Stack.Item>
-              <Section title="Direction" textAlign="center" fontSize="11px">
+              <Section title="方向" textAlign="center" fontSize="11px">
                 <DirectionSelect />
               </Section>
             </Stack.Item>
             <Stack.Item>
-              <Section title="Angle" textAlign="center" fontSize="11px">
+              <Section title="角度" textAlign="center" fontSize="11px">
                 <AngleSelect />
               </Section>
             </Stack.Item>
@@ -181,7 +181,7 @@ const LightControl = (props: LightControlProps) => {
         </Stack.Item>
         <Stack.Item align="end">
           <Slider
-            unit="tiles"
+            unit="格"
             value={info.range}
             color="blue"
             minValue={0}
@@ -195,7 +195,7 @@ const LightControl = (props: LightControlProps) => {
             stepPixelSize={5}
           />
           <Slider
-            unit="intensity"
+            unit="强度"
             value={info.power}
             color="olive"
             minValue={-1}
@@ -230,7 +230,7 @@ const LightInfo = (props: LightInfoProps) => {
           <Stack justify="space-between">
             <Stack.Item>
               <Box fontSize="16px" mt={0.5}>
-                Template: {light_info.name}
+                模板：{light_info.name}
               </Box>
               <Box fontSize="12px" ml={1} color="#aaaaaa">
                 {light.description}
@@ -243,7 +243,7 @@ const LightInfo = (props: LightInfoProps) => {
               <Button
                 fontSize="16px"
                 icon="upload"
-                tooltip="Use template"
+                tooltip="使用模板"
                 onClick={() =>
                   act('mirror_template', {
                     id: light.id,
@@ -255,7 +255,7 @@ const LightInfo = (props: LightInfoProps) => {
         </Stack.Item>
         <Stack.Item align="end">
           <Slider
-            unit="tiles"
+            unit="格"
             value={light_info.range}
             color="blue"
             minValue={0}
@@ -263,7 +263,7 @@ const LightInfo = (props: LightInfoProps) => {
             step={0}
           />
           <Slider
-            unit="intensity"
+            unit="强度"
             value={light_info.power}
             color="olive"
             minValue={-1}

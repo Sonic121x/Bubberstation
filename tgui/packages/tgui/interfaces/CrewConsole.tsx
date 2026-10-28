@@ -23,13 +23,13 @@ const jobIsHead = (jobId: number) => jobId % 10 === 0;
 
 const SORT_OPTIONS = [
   {
-    name: 'Job',
+    name: '职务',
     sort: (a: CrewSensor, b: CrewSensor) => {
       return a.ijob - b.ijob;
     }
   },
   {
-    name: 'Name',
+    name: '姓名',
     sort: (a: CrewSensor, b: CrewSensor) => {
       if (a.name > b.name) return 1;
       if (a.name < b.name) return -1;
@@ -37,7 +37,7 @@ const SORT_OPTIONS = [
     }
   },
   {
-    name: 'Area',
+    name: '区域',
     sort: (a: CrewSensor, b: CrewSensor) => {
       if (a.area === undefined) return 1;
       if (b.area === undefined) return -1;
@@ -47,7 +47,7 @@ const SORT_OPTIONS = [
     }
   },
   {
-    name: 'Vitals',
+    name: '生命体征',
     sort: (a: CrewSensor, b: CrewSensor) => {
       if (a.life_status > b.life_status) return -1;
       if (a.life_status < b.life_status) return 1;
@@ -129,7 +129,7 @@ const HealthStat = (props: HealthStatProps) => {
 
 export const CrewConsole = () => {
   return (
-    <Window title="Crew Monitor" width={600} height={600}>
+    <Window title="船员监控" width={600} height={600}>
       <Window.Content scrollable>
         <Section minHeight="540px">
           <CrewTable />
@@ -190,7 +190,7 @@ const CrewTable = () => {
             />
           </Button>
           <Input
-            placeholder="Search for name..."
+            placeholder="搜索姓名……"
             onChange={setSearchQuery}
             value={searchQuery}
           />
@@ -199,17 +199,17 @@ const CrewTable = () => {
     >
       <Table>
         <Table.Row>
-          <Table.Cell bold>Name</Table.Cell>
+          <Table.Cell bold>姓名</Table.Cell>
           <Table.Cell bold collapsing />
           <Table.Cell bold collapsing textAlign="center">
-            Vitals
+            生命体征
           </Table.Cell>
           <Table.Cell bold textAlign="center">
-            Position
+            位置
           </Table.Cell>
           {!!data.link_allowed && (
             <Table.Cell bold collapsing textAlign="center">
-              Tracking
+              追踪
             </Table.Cell>
           )}
         </Table.Row>
@@ -278,9 +278,9 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
             <HealthStat type="brute" value={brutedam} />
           </Box>
         ) : life_status !== STAT_DEAD ? (
-          'Alive'
+          '存活'
         ) : (
-          'Dead'
+          '死亡'
         )}
       </Table.Cell>
       <Table.Cell>
@@ -299,7 +299,7 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
               })
             }
           >
-            Track
+            追踪
           </Button>
         </Table.Cell>
       )}

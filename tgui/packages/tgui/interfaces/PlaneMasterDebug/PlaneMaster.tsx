@@ -82,7 +82,7 @@ export function PlaneMaster(props: PlaneMasterProps) {
             <Button
               icon="pager"
               compact
-              tooltip="Inspect and edit this plane"
+              tooltip="检查并编辑此平面"
               onClick={() => {
                 setActivePlane(plane.plane);
                 if (planeOpen) {
@@ -150,7 +150,7 @@ export function PlaneMaster(props: PlaneMasterProps) {
                     setActivePlane(plane.plane);
                     setConnectionOpen(true);
                   }}
-                  tooltip="Connect to another plane"
+                  tooltip="连接到另一个平面"
                 />
               </Stack.Item>
             </Stack>

@@ -268,11 +268,11 @@ export function AdminVerbPanel() {
   const visibleVerbs = getVisibleVerbs();
 
   return (
-    <Window title="Admin Verb Panel" width={800} height={520} theme="admin">
+    <Window title="管理员指令面板" width={800} height={520} theme="admin">
       <Window.Content>
         <Stack fill>
           <Stack.Item basis="140px">
-            <Section fill scrollable title="Categories">
+            <Section fill scrollable title="分类">
               {userCategories.map((cat) => (
                 <Stack key={cat} align="center">
                   <Stack.Item grow>
@@ -310,7 +310,7 @@ export function AdminVerbPanel() {
                     setSelectedTarget(null);
                   }}
                 >
-                  Favourites
+                  收藏
                 </Button>
               )}
               {(hasFavourites || userCategories.length > 0) && (
@@ -344,7 +344,7 @@ export function AdminVerbPanel() {
                   <Stack.Item grow>
                     <Input
                       fluid
-                      placeholder="New category..."
+                      placeholder="新分类……"
                       value={newCategoryName}
                       onChange={setNewCategoryName}
                       onEnter={addUserCategory}
@@ -367,7 +367,7 @@ export function AdminVerbPanel() {
               <Stack.Item>
                 <Input
                   fluid
-                  placeholder="Search..."
+                  placeholder="搜索……"
                   value={searchText}
                   onChange={(val: string) => {
                     setSearchText(val);
@@ -418,10 +418,10 @@ export function AdminVerbPanel() {
                   <Section
                     fill
                     scrollable
-                    title="Target"
+                    title="目标"
                     buttons={
                       <Input
-                        placeholder="Filter..."
+                        placeholder="筛选……"
                         value={targetSearch}
                         onChange={setTargetSearch}
                         width="120px"
@@ -430,9 +430,9 @@ export function AdminVerbPanel() {
                   >
                     <Table>
                       <Table.Row header>
-                        <Table.Cell>Name</Table.Cell>
-                        {isMobList && <Table.Cell>Job</Table.Cell>}
-                        {isMobList && <Table.Cell>CKey</Table.Cell>}
+                        <Table.Cell>名称</Table.Cell>
+                        {isMobList && <Table.Cell>职位</Table.Cell>}
+                        {isMobList && <Table.Cell>账号</Table.Cell>}
                       </Table.Row>
                       {filteredTargets.map((t) => (
                         <Table.Row
@@ -479,7 +479,7 @@ export function AdminVerbPanel() {
                               }}
                             >
                               <Dropdown
-                                options={['None', ...userCategories]}
+                                options={[{ value: 'None', displayText: '无' }, ...userCategories]}
                                 selected={
                                   favourites[selectedVerb.type] || 'None'
                                 }
@@ -533,7 +533,7 @@ export function AdminVerbPanel() {
                   </Section>
                 ) : (
                   <Section fill>
-                    <Box color="label">Select a verb from the list.</Box>
+                    <Box color="label">从列表中选择指令。</Box>
                   </Section>
                 )}
               </Stack.Item>
@@ -622,14 +622,14 @@ function ArgInput(props: ArgInputProps) {
     return (
       <Stack align="center">
         <Stack.Item basis="100px">{arg.name}</Stack.Item>
-        <Stack.Item color="label">Sound input not yet supported</Stack.Item>
+        <Stack.Item color="label">暂不支持声音输入</Stack.Item>
       </Stack>
     );
   }
   return (
     <Stack align="center">
       <Stack.Item basis="100px">{arg.name}</Stack.Item>
-      <Stack.Item color="label">Unknown arg type</Stack.Item>
+      <Stack.Item color="label">未知参数类型</Stack.Item>
     </Stack>
   );
 }

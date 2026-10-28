@@ -60,7 +60,7 @@ export const UsersScreen = () => {
           <Table.Cell bold>
             <Stack>
               <Stack.Item grow fontSize="14px">
-                Account
+                账户
               </Stack.Item>
               <Stack.Item>
                 <SortButton
@@ -74,7 +74,7 @@ export const UsersScreen = () => {
           <Table.Cell bold>
             <Stack>
               <Stack.Item grow fontSize="14px">
-                Balance
+                余额
               </Stack.Item>
               <Stack.Item>
                 <SortButton
@@ -88,7 +88,7 @@ export const UsersScreen = () => {
           <Table.Cell bold>
             <Stack>
               <Stack.Item grow fontSize="14px">
-                Assignment
+                职务
               </Stack.Item>
               <Stack.Item>
                 <SortButton
@@ -100,10 +100,10 @@ export const UsersScreen = () => {
             </Stack>
           </Table.Cell>
           <Table.Cell bold fontSize="14px">
-            Pay
+            工资
           </Table.Cell>
           <Table.Cell bold fontSize="14px">
-            Advances
+            预支次数
           </Table.Cell>
         </Table.Row>
         {accountsSorted.map((account, index) => (

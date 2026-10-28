@@ -54,33 +54,33 @@ const MuleControls = (props) => {
   return (
     <>
       <Section
-        title="Controls"
+        title="控制"
         buttons={
           <>
             {!!load && (
               <Button icon="eject" onClick={() => act('unload')}>
-                Unload
+                卸货
               </Button>
             )}
             {!!paiInserted && (
               <Button icon="eject" onClick={() => act('eject_pai')}>
-                Eject PAI
+                弹出个人 AI
               </Button>
             )}
           </>
         }
       >
         <LabeledList>
-          <LabeledList.Item label="ID">
+          <LabeledList.Item label="编号">
             <Button onClick={() => act('setid')}>{botId}</Button>
           </LabeledList.Item>
-          <LabeledList.Item label="Home">
+          <LabeledList.Item label="基地">
             <Button onClick={() => act('sethome')}>{homeDestination}</Button>
           </LabeledList.Item>
-          <LabeledList.Item label="Destination">
+          <LabeledList.Item label="目的地">
             <Dropdown
               over
-              selected={destination || 'None'}
+              selected={destination || '无'}
               options={destinationsList}
               width="188px"
               onSelected={(value) => act('destination', { value })}
@@ -88,7 +88,7 @@ const MuleControls = (props) => {
           </LabeledList.Item>
         </LabeledList>
       </Section>
-      <Section title="Actions">
+      <Section title="操作">
         <Stack style={{ padding: '0px 30px' }}>
           <Stack.Item grow>
             <Button
@@ -97,7 +97,7 @@ const MuleControls = (props) => {
               color="bad"
               onClick={() => act('stop')}
             >
-              Stop
+              停止
             </Button>
           </Stack.Item>
           <Stack.Item grow>
@@ -107,27 +107,27 @@ const MuleControls = (props) => {
               color="average"
               onClick={() => act('go')}
             >
-              Go
+              出发
             </Button>
           </Stack.Item>
           <Stack.Item>
             <Button width="60px" icon="home" onClick={() => act('home')}>
-              Home
+              返回基地
             </Button>
           </Stack.Item>
         </Stack>
       </Section>
-      <Section title="Settings">
+      <Section title="设置">
         <Button.Checkbox checked={autoReturn} onClick={() => act('autored')}>
-          Auto-Return
+          自动返回
         </Button.Checkbox>
         <br />
         <Button.Checkbox checked={autoPickup} onClick={() => act('autopick')}>
-          Auto-Pickup
+          自动装货
         </Button.Checkbox>
         <br />
         <Button.Checkbox checked={reportDelivery} onClick={() => act('report')}>
-          Report-Delivery
+          报告送达
         </Button.Checkbox>
         <br />
         {!!allowPossession && (
@@ -135,7 +135,7 @@ const MuleControls = (props) => {
             checked={possessionEnabled}
             onClick={() => act('toggle_personality')}
           >
-            Download Personality
+            下载人格
           </Button.Checkbox>
         )}
       </Section>
@@ -163,11 +163,11 @@ export const Mule = (props) => {
       <Window.Content scrollable>
         <InterfaceLockNoticeBox />
         <Section
-          title="Status"
+          title="状态"
           buttons={
             <>
               <Button icon="fa-poll-h" onClick={() => act('rename')}>
-                Rename
+                重命名
               </Button>
               {!mulebotLocked && (
                 <Button
@@ -175,7 +175,7 @@ export const Mule = (props) => {
                   selected={powerStatus}
                   onClick={() => act('on')}
                 >
-                  {powerStatus ? 'On' : 'Off'}
+                  {powerStatus ? '开启' : '关闭'}
                 </Button>
               )}
             </>
@@ -188,14 +188,14 @@ export const Mule = (props) => {
           <Stack mt={1} vertical>
             <Stack.Item grow>
               <LabeledList>
-                <LabeledList.Item label="Mode" color={modeStatus}>
+                <LabeledList.Item label="模式" color={modeStatus}>
                   {mode}
                 </LabeledList.Item>
                 <LabeledList.Item
-                  label="Load"
+                  label="货物"
                   color={load ? 'good' : 'average'}
                 >
-                  {load ? capitalize(loadName ?? '') : 'None'}
+                  {load ? capitalize(loadName ?? '') : '无'}
                 </LabeledList.Item>
               </LabeledList>
             </Stack.Item>

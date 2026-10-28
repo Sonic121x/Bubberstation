@@ -135,7 +135,7 @@ const ChangelogList = (props) => {
     .sort()
     .reverse()
     .map((date) => (
-      <Section key={date} title={dateformat(date, 'd mmmm yyyy', true)} pb={1}>
+      <Section key={date} title={dateformat(date, 'yyyy-mm-dd', true)} pb={1}>
         <Box ml={3}>
           {bubberContents[date] && (
             <Section mb={-2}>
@@ -168,7 +168,7 @@ const BubberChangelogEntry = (props) => {
       <Box>
         <h4>
           <Image verticalAlign="bottom" src={resolveAsset('bubber_16.png')} />{' '}
-          {author} changed:
+          {author} 的更改：
         </h4>
       </Box>
       <Box ml={3} mt={-0.2}>
@@ -217,7 +217,7 @@ const ChangelogEntry = (props) => {
       <Box>
         <h4>
           <Image verticalAlign="bottom" src={resolveAsset('tg_16.png')} />{' '}
-          {author} changed:
+          {author} 的更改：
         </h4>
       </Box>
       <Box ml={3} mt={-0.2}>
@@ -267,8 +267,8 @@ export const BubberChangelog = (props) => {
   const [selectedDateIndex, setSelectedDateIndex] = useState(0);
 
   useEffect(() => {
-    setContents('Loading changelog data...');
-    setBubberContents('Loading changelog data...');
+    setContents('正在加载更新日志……');
+    setBubberContents('正在加载更新日志……');
     getData(selectedDate);
   }, [selectedDate]);
 
@@ -277,7 +277,7 @@ export const BubberChangelog = (props) => {
     const maxAttempts = 6;
 
     if (attemptNumber > maxAttempts) {
-      setContents(`Failed to load data after ${maxAttempts} attempts.`);
+      setContents(`尝试 ${maxAttempts} 次后仍无法加载数据。`);
       return;
     }
 
@@ -293,9 +293,9 @@ export const BubberChangelog = (props) => {
       if (links[0].status !== 200 && links[1].status !== 200) {
         const timeout = 50 + attemptNumber * 50;
 
-        setContents(`Loading changelog data${'.'.repeat(attemptNumber + 3)}`);
+        setContents(`正在加载更新日志${'.'.repeat(attemptNumber + 3)}`);
         setBubberContents(
-          `Loading changelog data${'.'.repeat(attemptNumber + 3)}`,
+          `正在加载更新日志${'.'.repeat(attemptNumber + 3)}`,
         );
         setTimeout(() => {
           getData(date, attemptNumber + 1);
@@ -315,26 +315,26 @@ export const BubberChangelog = (props) => {
 
   const header = (
     <Section>
-      <h1>Bubberstation 13</h1>
+      <h1>巴伯站 13</h1>
       <p>
-        <b>Thanks to: </b>
+        <b>鸣谢：</b>
         /tg/station 13, Effigy, Stellar Haven, Baystation 12, /vg/station,
-        NTstation, CDK Station devs, FacepunchStation, GoonStation devs, the
-        original Space Station 13 developers, and the countless others who have
-        contributed to the game.
+        NTstation、CDK Station 开发者、FacepunchStation、GoonStation 开发者、
+        最初的 Space Station 13 开发者，以及无数其他
+        为这款游戏作出贡献的人。
       </p>
       <p>
-        {'Current organization members can be found '}
-        <a href="https://github.com/orgs/Bubberstation/people">here</a>
-        {', recent GitHub contributors can be found '}
+        {'当前组织成员可查看'}
+        <a href="https://github.com/orgs/Bubberstation/people">此处</a>
+        {'，近期 GitHub 贡献者可查看'}
         <a href="https://github.com/Bubberstation/Bubberstation/pulse/monthly">
-          here
+          此处
         </a>
         .
       </p>
       <p>
-        {'You can also join our discord '}
-        <a href="https://discord.com/invite/AvjrTqnqEx">here</a>!
+        {'你也可以加入我们的 Discord，点击'}
+        <a href="https://discord.com/invite/AvjrTqnqEx">此处</a>！
       </p>
       <DateDropdown
         dates={dates}
@@ -355,31 +355,31 @@ export const BubberChangelog = (props) => {
         selectedDateIndex={selectedDateIndex}
         setSelectedDateIndex={setSelectedDateIndex}
       />
-      <h2>Licenses</h2>
-      <Section title="Bubberstation 13">
+      <h2>许可证</h2>
+      <Section title="巴伯站 13">
         <p>
-          {'All code is licensed under '}
+          {'所有代码均采用 '}
           <a href="https://www.gnu.org/licenses/agpl-3.0.html">GNU AGPL v3</a>.
-          {' See '}
+          {' 许可证。请参阅 '}
           <a href="https://github.com/bubberstation/bubberstation/blob/master/LICENSE">
             LICENSE
           </a>{' '}
-          for more details.
+          了解详情。
         </p>
         <p>
-          {'All assets including icons and sound are under a '}
+          {'包括图标和声音在内的所有资源均采用 '}
           <a href="https://creativecommons.org/licenses/by-sa/3.0/">
-            Creative Commons 3.0 BY-SA license
+            知识共享署名—相同方式共享 3.0 许可证
           </a>
-          {' unless otherwise indicated.'}
+          {'，另有说明的除外。'}
         </p>
       </Section>
       <Section title="TGS">
         <p>
-          The TGS DMAPI API is licensed as a subproject under the MIT license.
+          TGS DMAPI API 作为子项目采用 MIT 许可证。
         </p>
         <p>
-          {' See the footer of '}
+          {' MIT 许可证见 '}
           <a
             href={
               'https://github.com/tgstation/tgstation/blob/master' +
@@ -388,7 +388,7 @@ export const BubberChangelog = (props) => {
           >
             code/__DEFINES/tgs.dm
           </a>
-          {' and '}
+          {' 文件底部及 '}
           <a
             href={
               'https://github.com/tgstation/tgstation/blob/master' +
@@ -397,80 +397,80 @@ export const BubberChangelog = (props) => {
           >
             code/modules/tgs/LICENSE
           </a>
-          {' for the MIT license.'}
+          {'。'}
         </p>
       </Section>
       <Section title="/tg/station 13">
         <p>
-          {'All code after '}
+          {'以下提交之后的所有代码：'}
           <a
             href={
               'https://github.com/tgstation/tgstation/commit/' +
               '333c566b88108de218d882840e61928a9b759d8f'
             }
           >
-            commit 333c566b88108de218d882840e61928a9b759d8f on 2014/31/12 at
-            4:38 PM PST
+            333c566b88108de218d882840e61928a9b759d8f，提交于 2014 年 12 月 31 日
+            太平洋标准时间下午 4:38
           </a>
-          {' is licensed under '}
+          {'，均采用 '}
           <a href="https://www.gnu.org/licenses/agpl-3.0.html">GNU AGPL v3</a>.
         </p>
         <p>
-          {'All code before that commit is licensed under '}
+          {'该提交之前的所有代码均采用 '}
           <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GPL v3</a>
-          {', including tools unless their readme specifies otherwise. See '}
+          {' 许可证，包括所有工具，除非其自述文件另有说明。请参阅 '}
           <a href="https://github.com/tgstation/tgstation/blob/master/LICENSE">
             LICENSE
           </a>
-          {' and '}
+          {' 和 '}
           <a href="https://github.com/tgstation/tgstation/blob/master/GPLv3.txt">
             GPLv3.txt
           </a>
-          {' for more details.'}
+          {' 了解详情。'}
         </p>
         <p>
-          {'All assets including icons and sound are under a '}
+          {'包括图标和声音在内的所有资源均采用 '}
           <a href="https://creativecommons.org/licenses/by-sa/3.0/">
-            Creative Commons 3.0 BY-SA license
+            知识共享署名—相同方式共享 3.0 许可证
           </a>
-          {' unless otherwise indicated.'}
+          {'，另有说明的除外。'}
         </p>
       </Section>
       <Section title="Goonstation SS13">
         <p>
-          <b>Coders: </b>
+          <b>程序开发：</b>
           Stuntwaffle, Showtime, Pantaloons, Nannek, Keelin, Exadv1, hobnob,
           Justicefries, 0staf, sniperchance, AngriestIBM, BrianOBlivion
         </p>
         <p>
-          <b>Spriters: </b>
+          <b>像素美术：</b>
           Supernorn, Haruhi, Stuntwaffle, Pantaloons, Rho, SynthOrange, I Said
           No
         </p>
         <p>
-          Bubberstation and /tg/station 13 are thankful to the GoonStation 13
-          Development Team for its work on the game up to the
-          {' r4407 release. The changelog for changes up to r4407 can be seen '}
-          <a href="https://wiki.ss13.co/Pre-2016_Changelog#April_2010">here</a>.
+          Bubberstation 和 /tg/station 13 感谢 GoonStation 13
+          开发团队为这款游戏作出的贡献，截至
+          {' r4407 版本。r4407 及之前版本的更新日志可查看'}
+          <a href="https://wiki.ss13.co/Pre-2016_Changelog#April_2010">此处</a>。
         </p>
         <p>
-          {'Except where otherwise noted, Goon Station 13 is licensed under a '}
+          {'除另有说明外，Goon Station 13 采用 '}
           <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">
-            Creative Commons Attribution-Noncommercial-Share Alike 3.0 License
+            知识共享署名—非商业性使用—相同方式共享 3.0 许可证
           </a>
           .
         </p>
         <p>
-          {'Rights are currently extended to '}
+          {'目前相关权利仅授予 '}
           <a href="http://forums.somethingawful.com/">SomethingAwful Goons</a>
-          {' only.'}
+          {'。'}
         </p>
       </Section>
     </Section>
   );
 
   return (
-    <Window title="Changelog" width={730} height={700}>
+    <Window title="更新日志" width={730} height={700}>
       <Window.Content scrollable>
         {header}
         <ChangelogList contents={contents} bubberContents={bubberContents} />

@@ -52,7 +52,7 @@ const formatPressure = (value) => {
 
 export const TankCompressor = (props) => {
   return (
-    <Window title="Tank Compressor" width={440} height={440}>
+    <Window title="气罐压缩机" width={440} height={440}>
       <Window.Content>
         <TankCompressorContent />
       </Window.Content>
@@ -74,14 +74,14 @@ const TankCompressorContent = (props) => {
           style={{
             textTransform: 'capitalize',
           }}
-          title={disk ? `${disk} (${storage})` : 'No Disk Inserted'}
+          title={disk ? `${disk} (${storage})` : '未插入磁盘'}
           buttons={
             <Button
               icon="eject"
               disabled={!disk}
               onClick={() => act('eject_disk')}
             >
-              Eject Disk
+              弹出磁盘
             </Button>
           }
         >
@@ -117,36 +117,36 @@ const TankCompressorControls = (props) => {
           ? 'average'
           : 'good';
   const notice_text = usingLastData
-    ? 'Tank destroyed. Displaying last recorded data.'
+    ? '气罐已毁。正在显示最后记录的数据。'
     : !tankPresent
-      ? 'No Tank Detected'
+      ? '未检测到气罐'
       : leaking
-        ? 'Tank Leaking'
+        ? '气罐泄漏中'
         : !pressure
-          ? 'No Pressure Detected'
+          ? '未检测到压力'
           : pressure < leakPressure
-            ? 'Tank Pressure Nominal'
+            ? '气罐压力正常'
             : pressure < fragmentPressure
-              ? 'Leak Hazard'
-              : 'Explosive Hazard';
+              ? '泄漏危险'
+              : '爆炸危险';
 
   return (
     <Stack.Item>
       <Section
-        title="Tank"
+        title="气罐"
         buttons={
           <Button
             icon="eject"
             disabled={!tankPresent || tankPressure > ejectPressure}
             onClick={() => act('eject_tank')}
           >
-            {'Eject Tank'}
+            {'弹出气罐'}
           </Button>
         }
       >
         <NoticeBox color={notice_color}>{notice_text}</NoticeBox>
         <LabeledControls p={2}>
-          <LabeledControls.Item label="Pressure">
+          <LabeledControls.Item label="压力">
             <RoundGauge
               size={2.5}
               value={pressure}
@@ -161,12 +161,12 @@ const TankCompressorControls = (props) => {
               format={formatPressure}
             />
           </LabeledControls.Item>
-          <LabeledControls.Item label="Flow rate">
+          <LabeledControls.Item label="流量">
             <Box position="relative">
               <Knob
                 size={2}
                 value={transferRate}
-                unit="Liters/sec."
+                unit="升／秒"
                 minValue={0}
                 maxValue={maxTransfer}
                 step={1}
@@ -205,7 +205,7 @@ const TankCompressorControls = (props) => {
               />
             </Box>
           </LabeledControls.Item>
-          <LabeledControls.Item label="Compressor">
+          <LabeledControls.Item label="压缩机">
             <Button
               my={0.5}
               lineHeight={2}
@@ -215,7 +215,7 @@ const TankCompressorControls = (props) => {
               selected={active}
               onClick={() => act('toggle_injection')}
             >
-              {active ? 'On' : 'Off'}
+              {active ? '开启' : '关闭'}
             </Button>
           </LabeledControls.Item>
         </LabeledControls>
@@ -237,7 +237,7 @@ const TankCompressorRecords = (props) => {
   if (records.length === 0) {
     return (
       <Stack.Item grow>
-        <NoticeBox>No Records</NoticeBox>
+        <NoticeBox>无记录</NoticeBox>
       </Stack.Item>
     );
   }
@@ -262,16 +262,16 @@ const TankCompressorRecords = (props) => {
         {activeRecord ? (
           <Stack.Item grow>
             <LabeledList>
-              <LabeledList.Item label="Title">
+              <LabeledList.Item label="标题">
                 {activeRecord.name}
               </LabeledList.Item>
-              <LabeledList.Item label="Time">
+              <LabeledList.Item label="时间">
                 {activeRecord.timestamp}
               </LabeledList.Item>
-              <LabeledList.Item label="Source">
+              <LabeledList.Item label="来源">
                 {activeRecord.source}
               </LabeledList.Item>
-              <LabeledList.Item label="Gases">
+              <LabeledList.Item label="气体">
                 <LabeledList>
                   {Object.keys(activeRecord.gases).map((gas_name) => (
                     <LabeledList.Item label={gas_name} key={gas_name}>
@@ -279,17 +279,17 @@ const TankCompressorRecords = (props) => {
                         activeRecord.gases[gas_name]
                           ? activeRecord.gases[gas_name].toFixed(2)
                           : '-'
-                      } moles`}
+                      } 摩尔`}
                     </LabeledList.Item>
                   ))}
                 </LabeledList>
               </LabeledList.Item>
-              <LabeledList.Item label="Actions">
+              <LabeledList.Item label="操作">
                 <Button
                   icon="floppy-disk"
-                  content="Save to Disk"
+                  content="保存到磁盘"
                   disabled={!disk}
-                  tooltip="Save the record selected to an inserted data disk."
+                  tooltip="将选中的记录保存到插入的数据磁盘。"
                   tooltipPosition="bottom"
                   onClick={() => {
                     act('save_record', {
@@ -311,7 +311,7 @@ const TankCompressorRecords = (props) => {
           </Stack.Item>
         ) : (
           <Stack.Item grow={1} basis={0}>
-            <NoticeBox>No Record Selected</NoticeBox>
+            <NoticeBox>未选择记录</NoticeBox>
           </Stack.Item>
         )}
       </Stack>

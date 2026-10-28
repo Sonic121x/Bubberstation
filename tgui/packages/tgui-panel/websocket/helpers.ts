@@ -61,7 +61,7 @@ function startReconnectLoop() {
     if (retryCount >= MAX_RETRIES) {
       clearReconnectTimer();
       sendWSNotice(
-        `Websocket failed to reconnect after ${MAX_RETRIES} attempts.`,
+        `WebSocket 尝试重连 ${MAX_RETRIES} 次后仍未成功。`,
         true,
       );
       return;
@@ -112,19 +112,19 @@ function setupWebsocket(force = false) {
   } catch (e: any) {
     if (e.name === 'SyntaxError') {
       sendWSNotice(
-        `Error creating websocket: Invalid address! Make sure you're following the placeholder. Example: <code>localhost:1234</code>`,
+        `创建 WebSocket 连接失败：地址无效！请按提示格式填写，例如：<code>localhost:1234</code>`,
         true,
       );
       return;
     }
-    sendWSNotice(`Error creating websocket: ${e.name} - ${e.message}`);
+    sendWSNotice(`创建 WebSocket 连接失败：${e.name} - ${e.message}`);
     startReconnectLoop();
     return;
   }
 
   websocket.addEventListener('open', () => {
     clearReconnectTimer();
-    sendWSNotice('Websocket connected!', true);
+    sendWSNotice('WebSocket 已连接！', true);
     Byond.sendMessage('requestMetadata'); // let's be nice and request metadata
     retryCount = 0;
   });
@@ -141,7 +141,7 @@ function setupWebsocket(force = false) {
     if (manuallyClosed || ev.code === WEBSOCKET_DISABLED) return;
 
     sendWSNotice(
-      `Websocket disconnected! Code: ${ev.code} Reason: ${ev.reason || 'None provided'}`,
+      `WebSocket 已断开！代码：${ev.code}；原因：${ev.reason || '未提供'}`,
       true,
     );
 
@@ -171,7 +171,7 @@ export function wsUpdate(enabled: boolean): void {
 
 export function wsReconnect(): void {
   setupWebsocket(true);
-  sendWSNotice('Attempting to connect to websocket...', true);
+  sendWSNotice('正在尝试连接 WebSocket……', true);
 }
 
 export function wsDisconnect(): void {
@@ -180,7 +180,7 @@ export function wsDisconnect(): void {
   safeClose(WEBSOCKET_DISABLED);
   websocket = null;
   retryCount = 0;
-  sendWSNotice('Websocket forcefully disconnected. (Retry count reset)', true);
+  sendWSNotice('已强制断开 WebSocket。（重试次数已重置）', true);
 }
 
 export function wsSend(msg: Record<string, any>): void {

@@ -182,7 +182,7 @@ function CatalogTabs(props: CatalogTabsProps & Props) {
   } = props;
   // BUBBER EDIT ADDITION
   const { self_paid, allow_private_purchases } = data;
-  const getSubcategoryLabel = (subcategory: string) => subcategory || 'General';
+  const getSubcategoryLabel = (subcategory: string) => subcategory || '通用';
   // BUBBER EDIT END
 
   const sorted = sortBy(categories, [(supply) => supply.name]);
@@ -270,10 +270,10 @@ function CatalogTabs(props: CatalogTabsProps & Props) {
             color={self_paid ? 'caution' : 'transparent'}
             icon={self_paid ? 'check-square-o' : 'square-o'}
             onClick={() => act('toggleprivate')}
-            tooltip="Use your own funds to purchase items."
+            tooltip="使用你自己的资金购买物品。"
             tooltipPosition="top"
           >
-            Buy Privately
+            私人购买
           </Button>
         )}
         {/* BUBBER EDIT END */}
@@ -362,11 +362,11 @@ function CatalogList(props: CatalogListProps) {
                 <Stack.Item>
                   <Stack reverse>
                     {!!pack.small_item &&
-                      tooltipIcon('Small Item', 'compress-alt', 'purple')}
+                      tooltipIcon('小型物品', 'compress-alt', 'purple')}
                     {!!pack.access &&
-                      tooltipIcon('Restricted', 'lock', 'average')}
+                      tooltipIcon('受限物资', 'lock', 'average')}
                     {!!pack.contraband &&
-                      tooltipIcon('Contraband', 'pastafarianism', 'bad')}
+                      tooltipIcon('违禁品', 'pastafarianism', 'bad')}
                   </Stack>
                 </Stack.Item>
               )}
@@ -423,7 +423,7 @@ function CatalogPackInfo(props: CatalogContentsProps) {
               />
             }
           >
-            <BlockQuote>{pack?.desc || 'No description available.'}</BlockQuote>
+            <BlockQuote>{pack?.desc || '暂无描述。'}</BlockQuote>
           </Section>
         </Stack.Item>
         <Stack.Item m={0} grow>
@@ -455,8 +455,8 @@ function CatalogPackInfo(props: CatalogContentsProps) {
                   <Icon name="triangle-exclamation" size={6} color="orange" />
                 </Stack.Item>
                 <Stack.Item mt={2} color="label" textAlign="center">
-                  {`We can't find information about even the approximate contents
-                  of this order.`}
+                  {`无法查到此订单的内容信息，
+                  甚至连大致的内容都不清楚。`}
                 </Stack.Item>
               </Stack>
             )}

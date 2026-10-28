@@ -19,13 +19,13 @@ function ForbiddenModal(props) {
   return (
     <Modal>
       <Box className="LibraryComputer__CultText" fontSize="28px">
-        Accessing Forbidden Lore Vault v 1.3:
+        正在访问禁忌知识宝库 v 1.3：
       </Box>
       <Box className="LibraryComputer__CultText" pt={0.4}>
-        Are you absolutely sure you want to proceed?
+        你真的确定要继续吗？
       </Box>
       <Box className="LibraryComputer__CultText" pt={0.2} bold>
-        EldritchRelics Inc. will take no responsibility for this choice
+        邪异遗物公司不对此选择承担任何责任
       </Box>
       <Stack justify="center" align="center">
         <Stack.Item>
@@ -38,7 +38,7 @@ function ForbiddenModal(props) {
             onClick={() => act('lore_spawn')}
             lineHeight={2}
           >
-            Assent
+            同意
           </Button>
         </Stack.Item>
         <Stack.Item>
@@ -51,7 +51,7 @@ function ForbiddenModal(props) {
             onClick={() => act('lore_deny')}
             lineHeight={2}
           >
-            Decline
+            拒绝
           </Button>
         </Stack.Item>
       </Stack>

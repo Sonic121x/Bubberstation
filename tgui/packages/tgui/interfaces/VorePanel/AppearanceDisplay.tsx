@@ -131,7 +131,7 @@ export const BellyFullscreenIcon = (props: {
     };
     image.onerror = () => {
       context.fillStyle = 'red';
-      context.fillText('Error', 0, 0, 248);
+      context.fillText('错误', 0, 0, 248);
     };
   }, [icon, icon_state, color, recolorable]);
 

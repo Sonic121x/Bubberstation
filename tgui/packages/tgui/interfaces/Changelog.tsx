@@ -66,7 +66,7 @@ export class ChangelogContent extends Component<any, ChangelogState> {
     super(props);
     this.dateChoices = [];
     this.state = {
-      loaded_text: 'Loading changelog data...',
+      loaded_text: '正在加载更新日志……',
       selectedDate: '',
       selectedIndex: 0,
     };
@@ -88,7 +88,7 @@ export class ChangelogContent extends Component<any, ChangelogState> {
     const maxAttempts = 6;
 
     if (attemptNumber > maxAttempts) {
-      return this.setData(`Failed to load data after ${maxAttempts} attempts`);
+      return this.setData(`尝试 ${maxAttempts} 次后仍无法加载数据`);
     }
 
     act('get_month', { date });
@@ -96,12 +96,12 @@ export class ChangelogContent extends Component<any, ChangelogState> {
     fetch(resolveAsset(`${date}.yml`)).then(async (changelogData) => {
       if (!changelogData.ok) {
         if (attemptNumber >= maxAttempts) {
-          this.setData(`Failed to load after ${maxAttempts} attempts`);
+          this.setData(`尝试 ${maxAttempts} 次后仍无法加载`);
           return;
         }
 
         const timeout = 50 + attemptNumber * 50;
-        this.setData(`Loading changelog data${'.'.repeat(attemptNumber + 3)}`);
+        this.setData(`正在加载更新日志${'.'.repeat(attemptNumber + 3)}`);
         setTimeout(() => {
           this.getData(date, attemptNumber + 1);
         }, timeout);
@@ -121,7 +121,7 @@ export class ChangelogContent extends Component<any, ChangelogState> {
 
     if (dates) {
       dates.forEach((date) => {
-        this.dateChoices.push(dateformat(date, 'mmmm yyyy', true));
+        this.dateChoices.push(dateformat(date, 'yyyy-mm', true));
       });
       this.setSelectedDate(this.dateChoices[0]);
       this.getData(dates[0]);
@@ -145,7 +145,7 @@ export class ChangelogContent extends Component<any, ChangelogState> {
             onClick={() => {
               const index = selectedIndex - 1;
 
-              this.setData('Loading changelog data...');
+              this.setData('正在加载更新日志……');
               this.setSelectedIndex(index);
               this.setSelectedDate(dateChoices[index]);
               window.scrollTo(
@@ -164,7 +164,7 @@ export class ChangelogContent extends Component<any, ChangelogState> {
             onSelected={(value) => {
               const index = dateChoices.indexOf(value);
 
-              this.setData('Loading changelog data...');
+              this.setData('正在加载更新日志……');
               this.setSelectedIndex(index);
               this.setSelectedDate(value);
               window.scrollTo(
@@ -186,7 +186,7 @@ export class ChangelogContent extends Component<any, ChangelogState> {
             onClick={() => {
               const index = selectedIndex + 1;
 
-              this.setData('Loading changelog data...');
+              this.setData('正在加载更新日志……');
               this.setSelectedIndex(index);
               this.setSelectedDate(dateChoices[index]);
               window.scrollTo(
@@ -203,27 +203,27 @@ export class ChangelogContent extends Component<any, ChangelogState> {
 
     const header = (
       <Section>
-        <h1>Bubberstation 13</h1>
+        <h1>巴伯站 13</h1>
         <p>
-          <b>Thanks to: </b>
+          <b>鸣谢：</b>
           /tg/ Station, Skyrat Space Station 13, Traditional Games 13,
           Baystation 12, /vg/station, NTstation, CDK Station
-          devs,FacepunchStation, GoonStation devs, the original Space Station 13
-          developers, Invisty for the title image and the countless others who
-          have contributed to the game.
+          开发者、FacepunchStation、GoonStation 开发者、最初的 Space Station 13
+          开发者、提供标题画面的 Invisty，以及无数其他
+          为这款游戏作出贡献的人。
         </p>
         <p>
-          {'Current project maintainers can be found '}
-          <a href="https://github.com/skyrat-ss13?tab=members">here</a>
-          {', recent GitHub contributors can be found '}
+          {'当前项目维护者可查看'}
+          <a href="https://github.com/skyrat-ss13?tab=members">此处</a>
+          {'，近期 GitHub 贡献者可查看'}
           <a href="https://github.com/Skyrat-SS13/Skyrat-tg/pulse/monthly">
-            here
+            此处
           </a>
           .
         </p>
         <p>
-          {'You can also join our forums '}
-          <a href="https://forum.skyrat13.tk/">here</a>.
+          {'你也可以加入我们的论坛，点击'}
+          <a href="https://forum.skyrat13.tk/">此处</a>。
         </p>
         {dateDropdown}
       </Section>
@@ -232,61 +232,61 @@ export class ChangelogContent extends Component<any, ChangelogState> {
     const footer = (
       <Section>
         {dateDropdown}
-        <h3>GoonStation 13 Development Team</h3>
+        <h3>GoonStation 13 开发团队</h3>
         <p>
-          <b>Coders: </b>
+          <b>程序开发：</b>
           Stuntwaffle, Showtime, Pantaloons, Nannek, Keelin, Exadv1, hobnob,
           Justicefries, 0staf, sniperchance, AngriestIBM, BrianOBlivion
         </p>
         <p>
-          <b>Spriters: </b>
+          <b>像素美术：</b>
           Supernorn, Haruhi, Stuntwaffle, Pantaloons, Rho, SynthOrange, I Said
           No
         </p>
         <p>
-          Traditional Games Space Station 13 is thankful to the GoonStation 13
-          Development Team for its work on the game up to the
-          {' r4407 release. The changelog for changes up to r4407 can be seen '}
-          <a href="https://wiki.ss13.co/Pre-2016_Changelog#April_2010">here</a>.
+          Traditional Games Space Station 13 感谢 GoonStation 13
+          开发团队为这款游戏作出的贡献，截至
+          {' r4407 版本。r4407 及之前版本的更新日志可查看'}
+          <a href="https://wiki.ss13.co/Pre-2016_Changelog#April_2010">此处</a>。
         </p>
         <p>
-          {'Except where otherwise noted, Goon Station 13 is licensed under a '}
+          {'除另有说明外，Goon Station 13 采用 '}
           <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">
-            Creative Commons Attribution-Noncommercial-Share Alike 3.0 License
+            知识共享署名—非商业性使用—相同方式共享 3.0 许可证
           </a>
-          {'. Rights are currently extended to '}
+          {'。目前相关权利仅授予 '}
           <a href="http://forums.somethingawful.com/">SomethingAwful Goons</a>
-          {' only.'}
+          {'。'}
         </p>
-        <h3>Traditional Games Space Station 13 License</h3>
+        <h3>Traditional Games Space Station 13 许可证</h3>
         <p>
-          {'All code after '}
+          {'以下提交之后的所有代码：'}
           <a
             href={
               'https://github.com/tgstation/tgstation/commit/' +
               '333c566b88108de218d882840e61928a9b759d8f'
             }
           >
-            commit 333c566b88108de218d882840e61928a9b759d8f on 2014/31/12 at
-            4:38 PM PST
+            333c566b88108de218d882840e61928a9b759d8f，提交于 2014 年 12 月 31 日
+            太平洋标准时间下午 4:38
           </a>
-          {' is licensed under '}
+          {'，均采用 '}
           <a href="https://www.gnu.org/licenses/agpl-3.0.html">GNU AGPL v3</a>
-          {'. All code before that commit is licensed under '}
+          {' 许可证。该提交之前的所有代码均采用 '}
           <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GPL v3</a>
-          {', including tools unless their readme specifies otherwise. See '}
+          {' 许可证，包括所有工具，除非其自述文件另有说明。请参阅 '}
           <a href="https://github.com/tgstation/tgstation/blob/master/LICENSE">
             LICENSE
           </a>
-          {' and '}
+          {' 和 '}
           <a href="https://github.com/tgstation/tgstation/blob/master/GPLv3.txt">
             GPLv3.txt
           </a>
-          {' for more details.'}
+          {' 了解详情。'}
         </p>
         <p>
-          The TGS DMAPI API is licensed as a subproject under the MIT license.
-          {' See the footer of '}
+          TGS DMAPI API 作为子项目采用 MIT 许可证。
+          {' MIT 许可证见 '}
           <a
             href={
               'https://github.com/tgstation/tgstation/blob/master' +
@@ -295,7 +295,7 @@ export class ChangelogContent extends Component<any, ChangelogState> {
           >
             code/__DEFINES/tgs.dm
           </a>
-          {' and '}
+          {' 文件底部及 '}
           <a
             href={
               'https://github.com/tgstation/tgstation/blob/master' +
@@ -304,14 +304,14 @@ export class ChangelogContent extends Component<any, ChangelogState> {
           >
             code/modules/tgs/LICENSE
           </a>
-          {' for the MIT license.'}
+          {'。'}
         </p>
         <p>
-          {'All assets including icons and sound are under a '}
+          {'包括图标和声音在内的所有资源均采用 '}
           <a href="https://creativecommons.org/licenses/by-sa/3.0/">
-            Creative Commons 3.0 BY-SA license
+            知识共享署名—相同方式共享 3.0 许可证
           </a>
-          {' unless otherwise indicated.'}
+          {'，另有说明的除外。'}
         </p>
       </Section>
     );
@@ -322,11 +322,11 @@ export class ChangelogContent extends Component<any, ChangelogState> {
       Object.entries(loaded_text)
         .reverse()
         .map(([date, authors]) => (
-          <Section key={date} title={dateformat(date, 'd mmmm yyyy', true)}>
+          <Section key={date} title={dateformat(date, 'yyyy-mm-dd', true)}>
             <Box ml={3}>
               {Object.entries(authors).map(([name, changes]) => (
                 <Fragment key={name}>
-                  <h4>{name} changed:</h4>
+                  <h4>{name} 的更改：</h4>
                   <Box ml={3}>
                     <Table>
                       {changes.map((change) => {
@@ -379,7 +379,7 @@ export class ChangelogContent extends Component<any, ChangelogState> {
 
 export const Changelog = () => {
   return (
-    <Window title="Changelog" width={675} height={650}>
+    <Window title="更新日志" width={675} height={650}>
       <Window.Content scrollable>
         <ChangelogContent />
       </Window.Content>

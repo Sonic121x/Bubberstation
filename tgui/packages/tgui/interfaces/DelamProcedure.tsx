@@ -6,99 +6,99 @@ import { Window } from '../layouts';
 export const DelamProcedure = () => {
   return (
     <Window
-      title="Safety Moth - Delamination Emergency Procedure"
+      title="安全蛾——崩解应急处置流程"
       width={666}
       height={865}
       theme="dark"
     >
       <Window.Content>
-        <Section title="NT-approved delam emergency procedure">
+        <Section title="纳米传讯认证的崩解应急处置流程">
           <NoticeBox danger m={2}>
             <b>
-              So you&apos;ve found yourself in a bit of a pickle with a
-              delamination of a supermatter reactor.
+              看来你遇到了一点小麻烦：
+              超物质反应堆正在崩解。
               <br />
               <br />
-              Don&apos;t worry, saving the day is just a few steps away!
+              别担心，只需几步就能拯救局面！
             </b>
           </NoticeBox>
           <BlockQuote m={2}>
-            Locate the ever-elusive red emergency stop button. It&apos;s
-            probably hiding in plain sight, so take your time, have a laugh, and
-            enjoy the anticipation. Remember, it&apos;s like a treasure hunt,
-            only with the added bonus of preventing a nuclear disaster.
+            找到那个总是难觅踪影的红色紧急停止按钮。它
+            很可能就在你眼前，所以慢慢找，笑一笑，
+            好好享受期待的过程。记住，这就像寻宝，
+            只不过额外的奖品是阻止一场核灾难。
           </BlockQuote>
           <BlockQuote m={2}>
-            Once you&apos;ve uncovered the button, muster all your courage and
-            push it like there&apos;s no tomorrow. Well, actually, you&apos;re
-            pushing it to ensure there is a tomorrow. But hey, who doesn&apos;t
-            love a little paradoxical button-pushing?
+            找到按钮后，鼓起全部勇气，
+            像没有明天一样按下去。呃，其实你按下它
+            正是为了确保还有明天。不过，谁不喜欢
+            这种有点自相矛盾的按按钮体验呢？
           </BlockQuote>
           <BlockQuote m={2}>
-            Prepare for the impending suppression of the supermatter engine
-            room, because things are about to get real quiet. Just make sure
-            everyone has evacuated, or else they&apos;ll be in for a surprise.
-            The system needs its space, and it&apos;s not known for being the
-            friendliest neighbour.
+            做好准备，超物质引擎室即将启动抑制措施，
+            周围很快就会安静下来。务必确保
+            所有人都已撤离，否则他们可要大吃一惊了。
+            这套系统需要独处空间，而且它可不是什么
+            和善的邻居。
           </BlockQuote>
           <BlockQuote m={2}>
-            After the delamination is successfully suppressed, take a moment to
-            appreciate the delicate beauty of crystal-based electricity. Take a
-            look around and fix any damage to those fragile glass components.
-            Feel free to put on your finest overalls and channel your inner
-            engiborg while doing so.
+            成功抑制崩解后，不妨花点时间
+            欣赏晶体发电的精妙之美。检查
+            四周，修好那些脆弱玻璃组件的损伤。
+            干活时尽管穿上你最好的工作服，
+            发挥心中工程机器人的本领吧。
           </BlockQuote>
           <BlockQuote m={2}>
-            Keep an eye out for fires and the infamous air mix. It&apos;s always
-            an adventure trying to strike the perfect balance between breathable
-            air and potential suffocation. Remember, oxygen plus a spark equals
-            fireworks - the kind you definitely don&apos;t want inside a
-            reactor.
+            留意火灾和那臭名昭著的混合气体。在可呼吸
+            空气与潜在窒息之间寻求完美平衡，
+            总是一场冒险。记住，氧气加火花等于
+            烟花——而你绝不想让这种烟花在
+            反应堆里绽放。
           </BlockQuote>
           <NoticeBox info m={2}>
             <b>
-              Did you know freon catches fire at low temperatures?
+              你知道氟利昂会在低温下燃烧吗？
               <br />
               <br />
-              It even forms hot ice between 120K and 160K!
+              它甚至会在 120K 至 160K 之间形成热冰！
               <br />
               <br />
-              Remember you can always turn the engine room air alarm to
-              contaminated to assist in removing harmful gases!
+              记住，你随时可以将引擎室空气警报器设为
+              污染模式，帮助清除有害气体！
             </b>
           </NoticeBox>
           <BlockQuote m={2}>
-            To avoid singeing your eyebrows off, consider enlisting the help of
-            a synth or a trusty borg. After all, nothing says &quot;safety
-            first&quot; like outsourcing your firefighting to non-living,
-            non-breathing assistants.
+            为了避免烧掉眉毛，不妨请合成人
+            或可靠的机器人帮忙。毕竟，把灭火工作
+            外包给不需要呼吸的非生命助手，
+            才最能体现“安全第一”。
           </BlockQuote>
           <BlockQuote m={2}>
-            Clear out any lightly radioactive debris and/or hot ice (The cargo
-            department will probably love to dispose it for you.)
+            清理所有轻度放射性碎屑和热冰（货运部
+            大概会很乐意替你处理）。
           </BlockQuote>
           <BlockQuote m={2}>
-            Finally, revel in the satisfaction of knowing that you&apos;ve
-            single-handedly prevented a delamination. But, of course, don&apos;t
-            forget to feel guilty because SAFETY MOTH Knows. SAFETY MOTH knows
-            everything. It&apos;s always watching, judging, and probably taking
-            notes for its next safety briefing. So bask in the glory of your
-            heroism, but know that the all-knowing Moff is onto you.
+            最后，尽情享受那份成就感吧：你凭一己之力
+            阻止了崩解。当然，也别
+            忘了心怀愧疚，因为安全蛾全都知道。安全蛾无所不知。
+            它一直在观察、评判，可能还在
+            为下一场安全简报做笔记。所以，尽管享受
+            英雄的荣光，但要知道那只全知的蛾子已经盯上你了。
           </BlockQuote>
           <Box m={2}>
-            <b>Optional step, for the true daredevils out there</b>
+            <b>可选步骤，献给真正的亡命之徒</b>
           </Box>
           <BlockQuote m={2}>
-            When it comes time for your second attempt at starting the SM: Take
-            this sign, give it a good toss towards the crystal, and watch it
-            soar through the air. <br />
+            当你准备第二次启动超物质引擎时：拿起
+            这块标牌，朝晶体用力扔过去，看着它
+            在空中飞翔。<br />
             <br />
-            Nothing says &quot;I&apos;m dealing with a potentially catastrophic
-            situation&quot; like engaging in some whimsical shenanigans.
+            没有什么比胡闹一番更能表现出
+            “我正在应对一场潜在灾难”了。
           </BlockQuote>
           <NoticeBox m={2}>
             <b>
-              Hopefully you&apos;ll never need to do this. However, good luck!
+              希望你永远用不上这些。不过，祝你好运！
             </b>
           </NoticeBox>
         </Section>

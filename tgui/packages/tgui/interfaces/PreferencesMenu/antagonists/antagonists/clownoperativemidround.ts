@@ -3,11 +3,11 @@ import { OPERATIVE_MECHANICAL_DESCRIPTION } from './operative';
 
 const ClownoOperativeMidround: Antagonist = {
   key: 'clownoperativemidround',
-  name: 'Clown Ass-ailant',
+  name: '小丑捣蛋特工',
   description: [
     `
-     A form of clown operative that is offered to ghosts in the middle
-     of the shift.
+     在班次进行中向幽灵开放的
+     一种小丑特工角色。
     `,
 
     OPERATIVE_MECHANICAL_DESCRIPTION,

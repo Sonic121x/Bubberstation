@@ -2,7 +2,7 @@
 import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import { Window } from '../layouts'; import { displayRole } from '../localization/roleDisplay'; import { chineseDisplay } from '../localization/zhDisplay';
 
 export const TimeClock = (props) => {
   const { act, data } = useBackend();
@@ -17,25 +17,25 @@ export const TimeClock = (props) => {
   } = data;
 
   return (
-    <Window title={'Time Clock'} width={500} height={250} resizable>
+    <Window title={'考勤钟'} width={500} height={250} resizable>
       <Window.Content>
         <Section>
           <Box textAlign="center" fontSize="15px">
-            Station Time : <b>{current_time}</b>
+            空间站时间：<b>{current_time}</b>
           </Box>
           <Box textAlign="center" fontSize="15px">
-            Current Alert Level : <b>{station_alert_level}</b>
+            当前警戒等级：<b>{chineseDisplay(station_alert_level)}</b>
           </Box>
         </Section>
         {inserted_id ? (
           <>
             <Section title={false}>
               <LabeledList>
-                <LabeledList.Item label="ID Holder">
+                <LabeledList.Item label="身份卡持有人">
                   {id_holder_name}
                 </LabeledList.Item>
-                <LabeledList.Item label="Current Job">
-                  {id_job_title}
+                <LabeledList.Item label="当前职业">
+                  {displayRole(id_job_title)}
                 </LabeledList.Item>
               </LabeledList>
             </Section>
@@ -45,7 +45,7 @@ export const TimeClock = (props) => {
                 disabled={insert_id_cooldown}
                 onClick={() => act('clock_in_or_out')}
               >
-                <center>{clock_status ? 'Clock In' : 'Clock Out'} </center>
+                <center>{clock_status ? '上班打卡' : '下班打卡'} </center>
               </Button>
               <Button icon="eject" onClick={() => act('eject_id')} />
             </Box>
@@ -55,7 +55,7 @@ export const TimeClock = (props) => {
             {' '}
             <Box fontSize="18px">
               <center>
-                <b> Insert an ID to begin!</b>
+                <b>请插入身份卡以开始！</b>
               </center>
             </Box>
           </Section>

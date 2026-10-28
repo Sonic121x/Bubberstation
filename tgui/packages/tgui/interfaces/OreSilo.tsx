@@ -20,7 +20,7 @@ import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { MaterialAccessBar } from './Fabrication/MaterialAccessBar';
 import type { Material } from './Fabrication/Types';
-
+import { oreSiloDisplay } from '../localization/zhOreSiloDisplay';
 type Machine = {
   name: string;
   icon: string;
@@ -81,7 +81,7 @@ export const OreSilo = (props: Data) => {
   const [currentTab, setCurrentTab] = useState<Tab>(Tab.Logs);
 
   return (
-    <Window title="Ore Silo" width={620} height={600}>
+    <Window title="矿石筒仓" width={620} height={600}>
       <Window.Content className="OreSilo">
         <Stack vertical fill>
           <Stack.Item>
@@ -91,14 +91,14 @@ export const OreSilo = (props: Data) => {
                 selected={currentTab === Tab.Machines}
                 onClick={() => setCurrentTab(Tab.Machines)}
               >
-                Connections
+                连接
               </Tabs.Tab>
               <Tabs.Tab
                 icon="book-bookmark"
                 selected={currentTab === Tab.Logs}
                 onClick={() => setCurrentTab(Tab.Logs)}
               >
-                Logs
+                日志
               </Tabs.Tab>
             </Tabs>
           </Stack.Item>
@@ -150,7 +150,7 @@ const MachineList = (props: MachineListProps) => {
       ))}
     </Section>
   ) : (
-    <NoticeBox>No machines connected!</NoticeBox>
+    <NoticeBox>没有连接的机器！</NoticeBox>
   );
 };
 
@@ -195,8 +195,8 @@ const MachineDisplay = (props: MachineProps) => {
       <Tooltip
         content={
           machine.on_hold
-            ? `Resume ${machine.name} usage.`
-            : `Put ${machine.name} on hold.`
+            ? `恢复使用${machine.name}。`
+            : `暂停使用${machine.name}。`
         }
       >
         <Box
@@ -211,7 +211,7 @@ const MachineDisplay = (props: MachineProps) => {
           <Icon name={machine.on_hold ? 'circle-play' : 'circle-pause'} />
         </Box>
       </Tooltip>
-      <Tooltip content={`Disconnect ${machine.name}.`}>
+      <Tooltip content={`断开${machine.name}的连接。`}>
         <Box
           className={classes([
             'FabricatorRecipe__Button',
@@ -247,7 +247,7 @@ const RestrictButton = () => {
           right: 0,
         }}
       >
-        {ID_required ? 'Disable ID Requirement' : 'Enable ID Requirement'}
+        {ID_required ? '关闭ID验证' : '启用ID验证'}
       </Button>
     </Box>
   );
@@ -281,14 +281,14 @@ const LogsList = (props: LogsListProps) => {
   return (
     <Stack vertical fill>
       <Stack.Item>
-        <Section title="Action Logs" buttons={<RestrictButton />}>
+        <Section title="操作日志" buttons={<RestrictButton />}>
           <Stack>
             <Stack.Item grow>
               <Input
                 fluid
                 height={1.7}
                 autoFocus
-                placeholder="Search for names, locations and resources..."
+                placeholder="搜索姓名、地点和资源……"
                 value={query}
                 onChange={(value) => setQuery(value)}
               />
@@ -314,8 +314,8 @@ const LogsList = (props: LogsListProps) => {
           ) : (
             <NoticeBox textAlign="center">
               {query
-                ? 'No logs seem to match your request.'
-                : 'Nothing here...'}
+                ? '没有符合搜索条件的日志。'
+                : '这里空空如也……'}
             </NoticeBox>
           )}
         </Section>
@@ -341,8 +341,8 @@ const UserItem = (props: UserData) => {
   const { banned_users } = data;
   return (
     <Stack align="center">
-      <Stack.Item>{name},</Stack.Item>
-      <Stack.Item>{assignment}</Stack.Item>
+      <Stack.Item>{oreSiloDisplay(name)}，</Stack.Item>
+      <Stack.Item>{oreSiloDisplay(assignment)}</Stack.Item>
       {!id_read_failure && !silicon_override && (
         <Stack.Item>
           <Button
@@ -350,8 +350,8 @@ const UserItem = (props: UserData) => {
             onClick={() => act('toggle_ban', { user_data: props })}
             lineHeight={1.6}
           >
-            {banned_users.includes(account_id) ? 'Unrestrict' : 'Restrict'}{' '}
-            access
+            {banned_users.includes(account_id) ? '解除' : '限制'}{' '}
+            使用权限
           </Button>
         </Stack.Item>
       )}
@@ -404,18 +404,18 @@ const LogEntry = (props: Log) => {
               width="8em"
               textAlign="center"
             >
-              {action.toUpperCase()}
+              {oreSiloDisplay(action.toUpperCase())}
             </Button>
           </Stack.Item>
           <Stack.Item style={{ display: 'flex', alignItems: 'center' }}>
             <Icon name="arrow-right" ml={1} mr={1} />
           </Stack.Item>
           <Stack.Item grow style={{ display: 'flex', alignItems: 'center' }}>
-            {` ${formatAmount(action, amount)} ${noun}`}
+            {` ${formatAmount(action, amount)} ${oreSiloDisplay(noun)}`}
           </Stack.Item>
           <Stack.Item style={{ display: 'flex', alignItems: 'center' }}>
             <Button icon="user" color="gray">
-              {user_data.name} ({user_data.assignment})
+              {user_data.name} ({oreSiloDisplay(user_data.assignment)})
             </Button>
           </Stack.Item>
         </Stack>
@@ -425,25 +425,25 @@ const LogEntry = (props: Log) => {
         <Box mt={0.5}>
           <Table>
             <Table.Row className="candystripe" lineHeight={2}>
-              <Table.Cell pl={1}>Time</Table.Cell>
+              <Table.Cell pl={1}>时间</Table.Cell>
               <Table.Cell>{time}</Table.Cell>
             </Table.Row>
             <Table.Row className="candystripe" lineHeight={2}>
-              <Table.Cell pl={1}>Machine</Table.Cell>
+              <Table.Cell pl={1}>机器</Table.Cell>
               <Table.Cell>{capitalize(machine_name)}</Table.Cell>
             </Table.Row>
             <Table.Row className="candystripe" lineHeight={2}>
-              <Table.Cell pl={1}>Location</Table.Cell>
+              <Table.Cell pl={1}>地点</Table.Cell>
               <Table.Cell>{area_name}</Table.Cell>
             </Table.Row>
             <Table.Row className="candystripe" lineHeight={2}>
-              <Table.Cell pl={1}>Materials</Table.Cell>
+              <Table.Cell pl={1}>材料</Table.Cell>
               <Table.Cell color={amount > 0 ? 'good' : 'bad'}>
                 {raw_materials}
               </Table.Cell>
             </Table.Row>
             <Table.Row className="candystripe" lineHeight={2}>
-              <Table.Cell pl={1}>User</Table.Cell>
+              <Table.Cell pl={1}>用户</Table.Cell>
               <Table.Cell>
                 <UserItem {...user_data} />
               </Table.Cell>

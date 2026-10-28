@@ -49,7 +49,7 @@ export function TabbedMenu(props: TabbedMenuProps) {
             fluid
             height="2em"
             fontSize="1.2em"
-            placeholder="Search..."
+            placeholder="搜索……"
             value={props.searchText}
             onChange={props.setSearchText}
           />

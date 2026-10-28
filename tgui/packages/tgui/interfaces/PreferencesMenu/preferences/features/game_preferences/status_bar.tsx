@@ -1,11 +1,11 @@
 import { CheckboxInput, type FeatureToggle } from '../base';
 
 export const status_bar: FeatureToggle = {
-  name: 'Enable status bar',
+  name: '启用状态栏',
   category: 'UI',
   description: `
-      When toggled, a bar at the bottom left of the screen will display
-      the name of what your mouse cursor is hovering over.
+      启用后，屏幕左下角的状态栏会显示
+      鼠标光标下对象的名称。
     `,
   component: CheckboxInput,
 };

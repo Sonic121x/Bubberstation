@@ -1,9 +1,9 @@
 import { CheckboxInput, type FeatureToggle } from '../../base';
 
 export const ready_job: FeatureToggle = {
-  name: 'Toggle Job Readying',
+  name: '显示准备职业',
   category: 'UI',
   description:
-    'Toggles whether your highest job shows in the pre-game Job Estimation panel.',
+    '是否在开局前的职业估计面板中显示你优先级最高的职业。',
   component: CheckboxInput,
 };

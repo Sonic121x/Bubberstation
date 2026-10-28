@@ -21,10 +21,10 @@ export const NanopaintConfirmDialog = (props: NanopaintConfirmDialogProps) => {
           <Stack.Item>
             <Stack fill justify="space-evenly">
               <Stack.Item>
-                <Button onClick={() => act(confirmAct, params)}>Yes</Button>
+                <Button onClick={() => act(confirmAct, params)}>是</Button>
               </Stack.Item>
               <Stack.Item>
-                <Button onClick={() => act('closeDialog')}>No</Button>
+                <Button onClick={() => act('closeDialog')}>否</Button>
               </Stack.Item>
             </Stack>
           </Stack.Item>

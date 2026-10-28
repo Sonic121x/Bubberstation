@@ -14,7 +14,7 @@ export function PageChangingStatus(props) {
           icon="chevron-left"
           onClick={() => act('setState', { state: ShuttleState.MAIN })}
         >
-          Back
+          返回
         </Button>
       </Section>
 

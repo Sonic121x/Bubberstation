@@ -46,8 +46,8 @@ export function PlantAnalyzerTrayStats(props) {
                     color={tray_data.self_sustaining ? 'yellow' : 'transparent'}
                     tooltip={
                       tray_data.self_sustaining
-                        ? 'Autogrow active - providing light, reclaiming water and reducing weed and pest levels.'
-                        : 'Autogrow inactive'
+                        ? '自动培育已启用：提供光照、回收水分，并减少杂草和害虫。'
+                        : '自动培育未启用'
                     }
                     disabled={1}
                   />
@@ -58,8 +58,8 @@ export function PlantAnalyzerTrayStats(props) {
                     color={tray_data.being_pollinated ? 'teal' : 'transparent'}
                     tooltip={
                       tray_data.being_pollinated
-                        ? 'Cross pollinating nearby plants - potentially sharing plant reagents.'
-                        : 'Not cross pollinating'
+                        ? '正在与附近植物异花授粉，可能共享植物试剂。'
+                        : '未进行异花授粉'
                     }
                     disabled={1}
                   />
@@ -70,8 +70,8 @@ export function PlantAnalyzerTrayStats(props) {
                     color={tray_data.yield_mod > 1 ? 'olive' : 'transparent'}
                     tooltip={
                       tray_data.yield_mod > 1
-                        ? 'Pollinated by bees - doubling yield.'
-                        : 'No yield modifier'
+                        ? '已由蜜蜂授粉，产量翻倍。'
+                        : '无产量修正'
                     }
                     disabled={1}
                   />
@@ -83,8 +83,8 @@ export function PlantAnalyzerTrayStats(props) {
         <Stack.Item width="100%">
           <LabeledList>
             <LabeledList.Item
-              label="Water"
-              tooltip="The plant starts withering without water, unless it is a mushroom."
+              label="水分"
+              tooltip="缺水会使植物开始枯萎，蘑菇除外。"
             >
               <ProgressBar
                 value={tray_data.water / tray_data.water_max}
@@ -99,8 +99,8 @@ export function PlantAnalyzerTrayStats(props) {
             </LabeledList.Item>
 
             <LabeledList.Item
-              label="Nutrients"
-              tooltip="The plant starts withering without nutrients, unless it is a weed. Nutrients may affect plant and tray stats."
+              label="养分"
+              tooltip="缺少养分会使植物开始枯萎，杂草除外。养分可能影响植物和种植槽的属性。"
             >
               {tray_data.reagents.length > 0 ? (
                 <Box>
@@ -142,8 +142,8 @@ export function PlantAnalyzerTrayStats(props) {
             </LabeledList.Item>
 
             <LabeledList.Item
-              label="Light"
-              tooltip="The plant withers when the light is below 40%. Mushrooms need only 20%."
+              label="光照"
+              tooltip="光照低于 40% 时植物会枯萎。蘑菇只需 20%。"
             >
               <ProgressBar
                 value={tray_data.light_level}
@@ -159,8 +159,8 @@ export function PlantAnalyzerTrayStats(props) {
             </LabeledList.Item>
 
             <LabeledList.Item
-              label="Weeds"
-              tooltip="Damage the Yield stat of the plant. At high level may invade the tray. Remove by cultivating."
+              label="杂草"
+              tooltip="降低植物产量。数量过多时可能侵占种植槽。通过耕作清除。"
             >
               <ProgressBar
                 value={tray_data.weeds}
@@ -176,8 +176,8 @@ export function PlantAnalyzerTrayStats(props) {
             </LabeledList.Item>
 
             <LabeledList.Item
-              label="Pests"
-              tooltip="Damage the plant and reduce its Potency stat. Remove with pest controlling nutrients."
+              label="害虫"
+              tooltip="伤害植物并降低效力。使用杀虫营养液清除。"
             >
               <ProgressBar
                 value={tray_data.pests}
@@ -193,8 +193,8 @@ export function PlantAnalyzerTrayStats(props) {
             </LabeledList.Item>
 
             <LabeledList.Item
-              label="Toxins"
-              tooltip="Damage the plant. Remove with detoxing nutrients."
+              label="毒素"
+              tooltip="伤害植物。使用解毒营养液清除。"
             >
               <ProgressBar
                 value={tray_data.toxins}
@@ -225,16 +225,16 @@ export function PlantAnalyzerTrayChems(props) {
   }
 
   return (
-    <Section title={capitalizeFirst(`${tray_data.name} Nutrients`)}>
+    <Section title={capitalizeFirst(`${tray_data.name}养分`)}>
       {tray_data.reagents.length === 0 ? (
         <NoticeBox color="red" align="center">
-          No reagents detected
+          未检测到试剂
         </NoticeBox>
       ) : (
         <Table>
           <Table.Row header>
-            <Table.Cell>Reagent</Table.Cell>
-            <Table.Cell>Volume</Table.Cell>
+            <Table.Cell>试剂</Table.Cell>
+            <Table.Cell>容量</Table.Cell>
           </Table.Row>
           {tray_data.reagents.map((reagent, i) => (
             <Table.Row key={i} className="candystripe">

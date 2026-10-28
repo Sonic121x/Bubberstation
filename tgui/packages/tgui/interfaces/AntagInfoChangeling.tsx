@@ -118,13 +118,13 @@ const IntroductionSection = (props) => {
   return (
     <Section
       fill
-      title="Intro"
+      title="简介"
       style={{ overflowY: 'auto' }}
       buttons={
         <Button
           icon="dna"
           tooltipPosition="left"
-          tooltip={`Absorbed DNA`}
+          tooltip={`已吸收的 DNA`}
           color="purple"
         >
           {absorbed_dna}
@@ -133,8 +133,8 @@ const IntroductionSection = (props) => {
     >
       <Stack vertical fill>
         <Stack.Item fontSize="25px">
-          You are {true_name} from the
-          <span style={hivestyle}> {hive_name}</span>.
+          你是{true_name}，来自
+          <span style={hivestyle}>{hive_name}</span>。
         </Stack.Item>
         <Stack.Item>
           <ObjectivePrintout
@@ -142,7 +142,7 @@ const IntroductionSection = (props) => {
             objectiveFollowup={
               <ReplaceObjectivesButton
                 can_change_objective={can_change_objective}
-                button_title={'Evolve New Directives'}
+                button_title={'演化新指令'}
                 button_colour={'green'}
               />
             }
@@ -157,25 +157,25 @@ const AbilitiesSection = () => {
   const { act, data } = useBackend<Info>();
   const { true_name } = data;
   return (
-    <Section fill title="Abilities">
+    <Section fill title="能力">
       <Stack fill>
         <Stack.Item grow>
           <Stack fill vertical>
             <Stack.Item textColor="label" grow>
-              Your
-              <span style={absorbstyle}>&ensp;Absorb DNA</span> ability allows
-              you to steal the DNA and memories of a victim. The
-              <span style={absorbstyle}>&ensp;Extract DNA Sting</span> ability
-              also steals the DNA of a victim, and is undetectable, but does not
-              grant you their memories or speech patterns.
+              你的
+              <span style={absorbstyle}>&ensp;吸收 DNA</span>能力
+              能窃取受害者的 DNA 和记忆。
+              <span style={absorbstyle}>&ensp;提取 DNA 毒刺</span>能力
+              也能窃取受害者的 DNA，而且不会被察觉，但无法
+              获得其记忆或说话方式。
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item textColor="label" grow>
-              Your
-              <span style={revivestyle}>&ensp;Reviving Stasis</span> ability
-              allows you to revive. It means nothing short of a complete body
-              destruction can stop you! Obviously, this is loud and so should
-              not be done in front of people you are not planning on silencing.
+              你的
+              <span style={revivestyle}>&ensp;复苏停滞</span>能力
+              能让你复活。这意味着只有彻底摧毁
+              你的身体才能阻止你！显然，这会发出很大动静，
+              因此不要在你不打算灭口的人面前使用。
             </Stack.Item>
           </Stack>
         </Stack.Item>
@@ -183,19 +183,19 @@ const AbilitiesSection = () => {
         <Stack.Item grow>
           <Stack fill vertical>
             <Stack.Item textColor="label" grow>
-              Your
-              <span style={transformstyle}>&ensp;Transform</span> ability allows
-              you to change into the form of those you have collected DNA from,
-              lethally and nonlethally. It will also mimic (NOT REAL CLOTHING)
-              the clothing they were wearing for every slot you have open.
+              你的
+              <span style={transformstyle}>&ensp;变形</span>能力
+              能让你变成已收集 DNA 的对象，无论收集方式是否致命。
+              它还会在你的空装备槽位上模拟对方穿着的衣物
+              （并非真正的衣物）。
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item textColor="label" grow>
-              The
-              <span style={storestyle}>&ensp;Cellular Emporium</span> is where
-              you purchase more abilities beyond your starting kit. You have 10
-              genetic points to spend on abilities and you are able to readapt
-              after absorbing a body, refunding your points for different kits.
+              在
+              <span style={storestyle}>&ensp;细胞商场</span>中，
+              你可以购买初始能力之外的更多能力。你有 10 点
+              基因点数可用于购买能力，吸收身体后还能重新适应，
+              返还点数，以选择不同的能力组合。
             </Stack.Item>
           </Stack>
         </Stack.Item>
@@ -203,22 +203,22 @@ const AbilitiesSection = () => {
         <Stack.Item grow>
           <Stack fill vertical>
             <Stack.Item textColor="label" grow>
-              All abilities require using{' '}
-              <span style={hivemindstyle}>chemicals</span>, you can see how much
-              you have with the HUD on the left side of the screen. You may also
-              hover your cursor over it to see the maximum amount of chemicals
-              you can hold. This number can increase by
-              <span style={absorbstyle}>&ensp;absorbing</span> other
-              Changelings.
+              所有能力都需要消耗{' '}
+              <span style={hivemindstyle}>化学物质</span>，你可以通过
+              屏幕左侧的抬头显示查看当前储量。将鼠标悬停于此，
+              还可以查看你能储存的化学物质
+              上限。你可以通过
+              <span style={absorbstyle}>&ensp;吸收</span>其他
+              变形怪来提高上限。
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item textColor="label" grow>
-              All Changelings, regardless of origin, are linked together by the{' '}
-              <span style={hivemindstyle}>hivemind</span>. You may communicate
-              to other Changelings under your mental alias,{' '}
-              <span style={hivemindstyle}>{true_name}</span>, by starting a
-              message with <span style={hivemindstyle}>:g</span>. Work together,
-              and you will bring the station to new heights of terror.
+              无论出身如何，所有变形怪都由{' '}
+              <span style={hivemindstyle}>蜂巢意识</span>连接在一起。你可以
+              使用自己的精神化名{' '}
+              <span style={hivemindstyle}>{true_name}</span>与其他变形怪交流，
+              只需在消息前加上<span style={hivemindstyle}>:g</span>。齐心协力，
+              让空间站见识前所未有的恐怖吧。
             </Stack.Item>
           </Stack>
         </Stack.Item>
@@ -230,11 +230,11 @@ const AbilitiesSection = () => {
 const BetrayalWarning = (props) => {
   return (
     <NoticeBox danger>
-      Other Changelings are strong allies, but some Changelings may betray you.
-      Changelings grow in power greatly by absorbing their kind, and getting
-      absorbed by another Changeling will leave you as a{' '}
-      <span style={fallenstyle}>Fallen Changeling</span>. There is no greater
-      humiliation.
+      其他变形怪是强大的盟友，但其中一些可能会背叛你。
+      变形怪可以通过吸收同类大幅增强实力，而被
+      另一个变形怪吸收会让你沦为{' '}
+      <span style={fallenstyle}>堕落变形怪</span>。没有比这
+      更大的耻辱。
     </NoticeBox>
   );
 };
@@ -255,21 +255,21 @@ const MemoriesSection = (props) => {
     <Section
       fill
       scrollable={!!memories && !!memories.length}
-      title="Stolen Memories"
+      title="窃取的记忆"
       buttons={
         <Button
           icon="info"
           tooltipPosition="left"
           tooltip={`
-            Absorbing targets allows
-            you to collect their memories. They should
-            help you impersonate your target!
+            吸收目标
+            可以获得其记忆。这些记忆
+            能帮助你冒充目标！
           `}
         />
       }
     >
       {(!!memories && !memories.length && (
-        <Dimmer fontSize="20px">Absorb a victim first!</Dimmer>
+        <Dimmer fontSize="20px">先吸收一个受害者！</Dimmer>
       )) || (
         <Stack vertical>
           <Stack.Item>
@@ -296,10 +296,10 @@ const VictimPatternsSection = (props) => {
     <Section
       fill
       scrollable={!!stolen_antag_info}
-      title="Additional Stolen Information"
+      title="额外窃取的信息"
     >
       {(!!stolen_antag_info && stolen_antag_info) || (
-        <Dimmer fontSize="20px">Absorb a victim first!</Dimmer>
+        <Dimmer fontSize="20px">先吸收一个受害者！</Dimmer>
       )}
     </Section>
   );

@@ -21,16 +21,16 @@ function SystemWallpaper(props) {
   const { data } = useBackend<PaiData>();
   const { emagged } = data;
 
-  const owner = !emagged ? 'NANOTRASEN' : ' SYNDICATE';
+  const owner = !emagged ? '纳米传讯' : ' 辛迪加';
   const eyebrows = !emagged ? "/\\ ' /\\" : ' \\\\ // ';
 
   const paiAscii = [
     ' ________  ________  ___',
     ' |\\   __  \\|\\   __  \\|\\  \\',
-    ' \\ \\  \\|\\  \\ \\  \\|\\  \\ \\  \\     Interface',
-    '  \\ \\   ____\\ \\   __  \\ \\  \\     Version 2.5',
+    ' \\ \\  \\|\\  \\ \\  \\|\\  \\ \\  \\     操作界面',
+    '  \\ \\   ____\\ \\   __  \\ \\  \\     版本 2.5',
     '   \\ \\  \\___|\\ \\  \\ \\  \\ \\  \\',
-    '    \\ \\__\\    \\ \\__\\ \\__\\ \\__\\     Property of',
+    '    \\ \\__\\    \\ \\__\\ \\__\\ \\__\\     所属机构',
     `     \\|__|     \\|__|\\|__|\\|__|      ${owner}`,
     '',
   ].join('\n');
@@ -74,16 +74,16 @@ function SystemInfo(props) {
             disabled={!master_dna}
             icon="dna"
             onClick={() => act('check dna')}
-            tooltip="Verifies your master's DNA. Must be carried in hand."
+            tooltip="验证主人的 DNA。必须被拿在手中。"
           >
-            Verify
+            验证
           </Button>
           <Button
             icon={screen_image_interface_icon}
             onClick={() => act('change image')}
-            tooltip="Change your display image."
+            tooltip="更换显示图像。"
           >
-            Display
+            显示图像
           </Button>
           {/** BUBBER EDIT: pAI self Wipe */}
           <Button
@@ -91,20 +91,20 @@ function SystemInfo(props) {
             color="bad"
             onClick={() => act('wipe files')}
           >
-            WIPE
+            清除人格
           </Button>
           {/** BUBBER EDIT END: pAI self wipe */}
         </>
       }
       fill
-      title="System Info"
+      title="系统信息"
     >
       <LabeledList>
-        <LabeledList.Item label="Master">
-          {master_name || 'None.'}
+        <LabeledList.Item label="主人">
+          {master_name || '无。'}
         </LabeledList.Item>
         <LabeledList.Item color={master_dna ? 'red' : ''} label="DNA">
-          {master_dna || 'None.'}
+          {master_dna || '无。'}
         </LabeledList.Item>
       </LabeledList>
     </Section>

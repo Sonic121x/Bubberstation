@@ -1,8 +1,8 @@
 import { CheckboxInput, type FeatureToggle } from '../../base';
 
 export const chat_examine_headshot: FeatureToggle = {
-  name: 'Examine chat headshots',
+  name: '在查看消息中显示头像',
   category: 'GAMEPLAY',
-  description: 'Shows character headshots in examine chat when available.',
+  description: '角色有头像时，在聊天栏的查看信息中显示。',
   component: CheckboxInput,
 };

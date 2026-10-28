@@ -2,9 +2,9 @@
 import { CheckboxInput, type FeatureToggle } from '../../base';
 
 export const soulcatcher_overlays: FeatureToggle = {
-  name: 'Soulcatcher Overlays',
+  name: '灵魂捕手叠层',
   category: 'GAMEPLAY',
   description:
-    'When enabled, will you be shown fullscreen overlays while inside of a soulcatcher?',
+    '启用后，位于灵魂捕手中时显示全屏叠层。',
   component: CheckboxInput,
 };

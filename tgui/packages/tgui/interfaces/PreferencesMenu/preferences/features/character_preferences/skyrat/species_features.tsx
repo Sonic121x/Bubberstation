@@ -16,7 +16,7 @@ import {
 import { FeatureDropdownInput } from '../../dropdowns';
 
 export const feature_leg_type: FeatureChoiced = {
-  name: 'Leg type',
+  name: '腿部类型',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -25,151 +25,151 @@ export const feature_leg_type: FeatureChoiced = {
 };
 
 export const feature_mcolor2: Feature<string> = {
-  name: 'Mutant color 2',
+  name: '变异部位颜色 2',
   component: FeatureColorInput,
 };
 export const feature_mcolor3: Feature<string> = {
-  name: 'Mutant color 3',
+  name: '变异部位颜色 3',
   component: FeatureColorInput,
 };
 
 export const flavor_text: Feature<string> = {
-  name: 'Flavor Text',
+  name: '角色描述',
   description:
-    'Appears when examined, provides a visual description with personality, allowing other characters to form their first impression of you. Check the wiki guides for help.',
+    '被查看时显示，提供带有个性的外貌描述，让其他角色形成对你的第一印象。需要帮助时请查阅 Wiki 指南。',
   component: FeatureTextInput,
 };
 
 export const silicon_flavor_text: Feature<string> = {
-  name: 'Silicon Flavor Text',
-  description: "Flavor text, but shows up when you're playing as a borg or AI.",
+  name: '硅基角色描述',
+  description: "扮演半机械人或 AI 时显示的角色描述。",
   component: FeatureTextInput,
 };
 
 export const ooc_notes: Feature<string> = {
-  name: 'OOC Notes',
+  name: '戏外备注',
   description:
-    'Covers your sexual preferences, information about you OOC, any additional art references, and other misc. details. Here, you introduce yourself, rather than your character.',
+    '可填写性偏好、玩家本人信息、额外的美术参考及其他细节。这里介绍的是你本人，而非你的角色。',
   component: FeatureTextInput,
 };
 
 export const custom_species: Feature<string> = {
-  name: 'Custom Species Name',
+  name: '自定义物种名称',
   description:
-    'The name of your custom species. If left blank, you will use your selected species name (E.g. Human, Lizardperson).',
+    '自定义物种的名称。留空时使用所选物种的名称，例如人类、蜥蜴人。',
   component: FeatureShortTextInput,
 };
 
 export const custom_species_lore: Feature<string> = {
-  name: 'Custom Species Lore',
+  name: '自定义物种设定',
   description:
-    "The lore for your custom species, if you aren't using the server's lore. Leave blank to use the lore for your selected species.",
+    "若不使用服务器设定，可在此填写自定义物种的设定。留空则使用所选物种的设定。",
   component: FeatureTextInput,
 };
 
 export const custom_taste: Feature<string> = {
-  name: 'Character Taste',
-  description: 'What does your character taste like when licked?',
+  name: '角色味道',
+  description: '别人舔你的角色时，会尝到什么味道？',
   component: FeatureShortTextInput,
 };
 
 export const custom_smell: Feature<string> = {
-  name: 'Character Smell',
-  description: 'What does your character smell like when sniffed?',
+  name: '角色气味',
+  description: '别人嗅闻你的角色时，会闻到什么气味？',
   component: FeatureShortTextInput,
 };
 
 export const general_record: Feature<string> = {
-  name: 'Records - General',
+  name: '档案 - 一般信息',
   description:
-    'The first part of any record that describes you. \
-    For a quick description, your languages and origin, and birthday.',
+    '用于描述你的档案的第一部分。\
+    可填写简要描述、语言、出身和生日。',
   component: FeatureTextInput,
 };
 
 export const security_record: Feature<string> = {
-  name: 'Records - Security',
+  name: '档案 - 安保',
   description:
-    'Privileged information accessible by Security, Command and the NTC. \
-    Used to throw these roles a bone, and give more information to work with. \
-    For employment and criminal history, loyalties and exploitable tidbits, and more.',
+    '仅供安保、指挥部和纳米传讯顾问查看的受限信息。\
+    用于为这些角色提供更多可用于互动的信息。\
+    可填写工作和犯罪记录、忠诚对象、可利用的细节等。',
   component: FeatureTextInput,
 };
 
 export const medical_record: Feature<string> = {
-  name: 'Records - Medical',
+  name: '档案 - 医疗',
   description:
-    'Viewable with medical access. \
-  For things like medical history, prescriptions, DNR orders, etc.',
+    '拥有医疗权限者可查看。\
+  可填写病史、处方、拒绝复苏指令等。',
   component: FeatureTextInput,
 };
 
 export const exploitable_info: Feature<string> = {
-  name: 'Records - Exploitable',
+  name: '档案 - 可利用信息',
   description:
-    'Can be IC or OOC. Viewable by certain antagonists/OPFOR users, as well as ghosts. Generally contains \
-  things like weaknesses, strengths, important background, trigger words, etc. It ALSO may contain things like \
-  antagonist preferences, e.g. if you want to be antagonized, by whom, with what, etc.',
+    '可包含戏内或戏外信息，供特定反派、敌对势力玩家及幽灵查看。通常包含\
+  弱点、优势、重要背景、触发词等。也可以填写\
+  对反派互动的偏好，例如是否希望遭遇敌对行为、希望由谁实施、以何种方式等。',
   component: FeatureTextInput,
 };
 
 export const background_info: Feature<string> = {
-  name: 'Records - Background',
+  name: '档案 - 背景',
   description:
-    'Only viewable by yourself and ghosts. You can have whatever you want in here - it may be valuable as a way to orient yourself to what your character is.',
+    '仅你自己和幽灵可见。这里可以填写任何内容，帮助你理清角色的定位。',
   component: FeatureTextInput,
 };
 
 export const pda_ringer: Feature<string> = {
-  name: 'PDA Ringer Message',
+  name: 'PDA 铃声消息',
   description:
-    'Want your PDA to say something other than "beep"? Accepts the first 20 characters.',
+    '想让 PDA 发出“哔”以外的声音吗？仅取前 20 个字符。',
   component: FeatureShortTextInput,
 };
 
 export const allow_mismatched_parts_toggle: FeatureToggle = {
-  name: 'Allow Mismatched Parts',
-  description: 'Allows parts from any species to be picked.',
+  name: '允许混搭部位',
+  description: '允许选择任意物种的部位。',
   component: CheckboxInput,
 };
 
 export const allow_mismatched_hair_color_toggle: FeatureToggle = {
-  name: 'Allow Mismatched Hair Color',
+  name: '允许自定义发色',
   description:
-    'Allows species who normally have a fixed hair color to have different hair colors. This includes in-round sources such as dyeing hair, alter form, etc. Currently only applicable to slimes.',
+    '允许通常具有固定发色的物种使用其他发色，包括回合内染发、改变形态等方式。目前仅适用于史莱姆。',
   component: CheckboxInput,
 };
 
 export const allow_genitals_toggle: FeatureToggle = {
-  name: 'Allow Genital Parts',
-  description: 'Enables if you want to have genitals on your character.',
+  name: '允许生殖器部位',
+  description: '想让角色拥有生殖器时启用。',
   component: CheckboxInput,
 };
 
 export const allow_emissives_toggle: FeatureToggle = {
-  name: 'Allow Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '允许发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: CheckboxInput,
 };
 
 export const eye_emissives: FeatureToggle = {
-  name: 'Eye Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '眼睛发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: CheckboxInput,
 };
 
 export const eyes_opacity: Feature<number> = {
-  name: 'Eyes Opacity',
+  name: '眼睛不透明度',
   component: FeatureNumberInput,
 };
 
 export const body_markings_toggle: FeatureToggle = {
-  name: 'Body Markings',
+  name: '身体斑纹',
   component: CheckboxInput,
 };
 
 export const feature_body_markings: Feature<string> = {
-  name: 'Body Markings Selection',
+  name: '身体斑纹选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -178,22 +178,22 @@ export const feature_body_markings: Feature<string> = {
 };
 
 export const body_markings_color: Feature<string[]> = {
-  name: 'Body Markings Colors',
+  name: '身体斑纹颜色',
   component: FeatureTriColorInput,
 };
 
 export const body_markings_emissive: Feature<boolean[]> = {
-  name: 'Body Markings Emissives',
+  name: '身体斑纹发光部位',
   component: FeatureTriBoolInput,
 };
 
 export const tail_toggle: FeatureToggle = {
-  name: 'Tail',
+  name: '尾巴',
   component: CheckboxInput,
 };
 
 export const feature_tail: Feature<string> = {
-  name: 'Tail Selection',
+  name: '尾巴选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -202,23 +202,23 @@ export const feature_tail: Feature<string> = {
 };
 
 export const tail_color: Feature<string[]> = {
-  name: 'Tail Colors',
+  name: '尾巴颜色',
   component: FeatureTriColorInput,
 };
 
 export const tail_emissive: Feature<boolean[]> = {
-  name: 'Tail Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '尾巴发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const snout_toggle: FeatureToggle = {
-  name: 'Snout',
+  name: '口鼻',
   component: CheckboxInput,
 };
 
 export const feature_snout: Feature<string> = {
-  name: 'Snout Selection',
+  name: '口鼻选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -227,23 +227,23 @@ export const feature_snout: Feature<string> = {
 };
 
 export const snout_color: Feature<string[]> = {
-  name: 'Snout Colors',
+  name: '口鼻颜色',
   component: FeatureTriColorInput,
 };
 
 export const snout_emissive: Feature<boolean[]> = {
-  name: 'Snout Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '口鼻发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const horns_toggle: FeatureToggle = {
-  name: 'Horns',
+  name: '角',
   component: CheckboxInput,
 };
 
 export const feature_horns: Feature<string> = {
-  name: 'Horns Selection',
+  name: '角选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -252,23 +252,23 @@ export const feature_horns: Feature<string> = {
 };
 
 export const horns_color: Feature<string[]> = {
-  name: 'Horns Colors',
+  name: '角颜色',
   component: FeatureTriColorInput,
 };
 
 export const horns_emissive: Feature<boolean[]> = {
-  name: 'Horns Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '角发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const ears_toggle: FeatureToggle = {
-  name: 'Ears',
+  name: '耳朵',
   component: CheckboxInput,
 };
 
 export const feature_ears: Feature<string> = {
-  name: 'Ears Selection',
+  name: '耳朵选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -277,40 +277,40 @@ export const feature_ears: Feature<string> = {
 };
 
 export const ears_color: Feature<string[]> = {
-  name: 'Ears Colors',
+  name: '耳朵颜色',
   component: FeatureTriColorInput,
 };
 
 export const ears_emissive: Feature<boolean[]> = {
-  name: 'Ears Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '耳朵发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const quad_eyes: FeatureToggle = {
-  name: 'Quad Eyes',
+  name: '四眼',
   description:
-    'Gives the character four eyes, may have some oddities with custom eyes (Snail, moth, shadekin, akula, etc...) - ( ** v ** )',
+    '赋予角色四只眼睛。特殊眼睛可能显示异常，例如蜗牛、蛾人、影裔、阿库拉等。- ( ** v ** )',
   component: CheckboxInput,
 };
 
 export const quad_eyes_offset: Feature<number> = {
-  name: 'Quad Eyes Offset',
+  name: '四眼偏移',
   component: FeatureNumberInput,
 };
 
 export const quad_eyes_offset_width: Feature<number> = {
-  name: 'Quad Eyes Offset Width',
+  name: '四眼水平偏移',
   component: FeatureNumberInput,
 };
 
 export const wings_toggle: FeatureToggle = {
-  name: 'Wings',
+  name: '翅膀',
   component: CheckboxInput,
 };
 
 export const feature_wings: Feature<string> = {
-  name: 'Wings Selection',
+  name: '翅膀选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -319,23 +319,23 @@ export const feature_wings: Feature<string> = {
 };
 
 export const wings_color: Feature<string[]> = {
-  name: 'Wings Colors',
+  name: '翅膀颜色',
   component: FeatureTriColorInput,
 };
 
 export const wings_emissive: Feature<boolean[]> = {
-  name: 'Wings Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '翅膀发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const frills_toggle: FeatureToggle = {
-  name: 'Frills',
+  name: '颈褶',
   component: CheckboxInput,
 };
 
 export const feature_frills: Feature<string> = {
-  name: 'Frills Selection',
+  name: '颈褶选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -344,23 +344,23 @@ export const feature_frills: Feature<string> = {
 };
 
 export const frills_color: Feature<string[]> = {
-  name: 'Frills Colors',
+  name: '颈褶颜色',
   component: FeatureTriColorInput,
 };
 
 export const frills_emissive: Feature<boolean[]> = {
-  name: 'Frills Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '颈褶发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const spines_toggle: FeatureToggle = {
-  name: 'Spines',
+  name: '背刺',
   component: CheckboxInput,
 };
 
 export const feature_spines: Feature<string> = {
-  name: 'Spines Selection',
+  name: '背刺选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -369,18 +369,18 @@ export const feature_spines: Feature<string> = {
 };
 
 export const spines_color: Feature<string[]> = {
-  name: 'Spines Colors',
+  name: '背刺颜色',
   component: FeatureTriColorInput,
 };
 
 export const spines_emissive: Feature<boolean[]> = {
-  name: 'Spines Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '背刺发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const digitigrade_legs: FeatureChoiced = {
-  name: 'Legs',
+  name: '腿部',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -389,12 +389,12 @@ export const digitigrade_legs: FeatureChoiced = {
 };
 
 export const caps_toggle: FeatureToggle = {
-  name: 'Cap',
+  name: '菌盖',
   component: CheckboxInput,
 };
 
 export const feature_caps: Feature<string> = {
-  name: 'Cap Selection',
+  name: '菌盖选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -403,23 +403,23 @@ export const feature_caps: Feature<string> = {
 };
 
 export const caps_color: Feature<string[]> = {
-  name: 'Cap Colors',
+  name: '菌盖颜色',
   component: FeatureTriColorInput,
 };
 
 export const caps_emissive: Feature<boolean[]> = {
-  name: 'Caps Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '菌盖发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const moth_antennae_toggle: FeatureToggle = {
-  name: 'Moth Antenna',
+  name: '蛾触角',
   component: CheckboxInput,
 };
 
 export const feature_moth_antennae: Feature<string> = {
-  name: 'Moth Antenna Selection',
+  name: '蛾触角选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -428,23 +428,23 @@ export const feature_moth_antennae: Feature<string> = {
 };
 
 export const moth_antennae_color: Feature<string[]> = {
-  name: 'Moth Antenna Colors',
+  name: '蛾触角颜色',
   component: FeatureTriColorInput,
 };
 
 export const moth_antennae_emissive: Feature<boolean[]> = {
-  name: 'Moth Antenna Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '蛾触角发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const moth_markings_toggle: FeatureToggle = {
-  name: 'Moth Markings',
+  name: '蛾斑纹',
   component: CheckboxInput,
 };
 
 export const feature_moth_markings: Feature<string> = {
-  name: 'Moth Markings Selection',
+  name: '蛾斑纹选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -453,23 +453,23 @@ export const feature_moth_markings: Feature<string> = {
 };
 
 export const moth_markings_color: Feature<string[]> = {
-  name: 'Moth Markings Colors',
+  name: '蛾斑纹颜色',
   component: FeatureTriColorInput,
 };
 
 export const moth_markings_emissive: Feature<boolean[]> = {
-  name: 'Moth Markings Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '蛾斑纹发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const fluff_toggle: FeatureToggle = {
-  name: 'Fluff',
+  name: '绒毛',
   component: CheckboxInput,
 };
 
 export const feature_fluff: Feature<string> = {
-  name: 'Fluff Selection',
+  name: '绒毛选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -478,23 +478,23 @@ export const feature_fluff: Feature<string> = {
 };
 
 export const fluff_color: Feature<string[]> = {
-  name: 'Fluff Colors',
+  name: '绒毛颜色',
   component: FeatureTriColorInput,
 };
 
 export const fluff_emissive: Feature<boolean[]> = {
-  name: 'Fluff Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '绒毛发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const head_acc_toggle: FeatureToggle = {
-  name: 'Head Accessories',
+  name: '头部配饰',
   component: CheckboxInput,
 };
 
 export const feature_head_acc: Feature<string> = {
-  name: 'Head Accessories Selection',
+  name: '头部配饰选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -503,19 +503,19 @@ export const feature_head_acc: Feature<string> = {
 };
 
 export const head_acc_color: Feature<string[]> = {
-  name: 'Head Accessories Colors',
+  name: '头部配饰颜色',
   component: FeatureTriColorInput,
 };
 
 export const head_acc_emissive: Feature<boolean[]> = {
-  name: 'Head Accessories Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '头部配饰发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const feature_ipc_screen: Feature<string> = {
-  name: 'IPC Screen Selection',
-  description: 'Can be changed in-round.',
+  name: 'IPC 屏幕选择',
+  description: '可在回合内更改。',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -524,23 +524,23 @@ export const feature_ipc_screen: Feature<string> = {
 };
 
 export const ipc_screen_color: Feature<string> = {
-  name: 'IPC Screen Greyscale Color',
+  name: 'IPC 屏幕灰度着色',
   component: FeatureColorInput,
 };
 
 export const ipc_screen_emissive: Feature<boolean> = {
-  name: 'IPC Screen Emissive',
-  description: 'Emissive parts glow in the dark.',
+  name: 'IPC 屏幕发光',
+  description: '发光部位会在黑暗中发亮。',
   component: CheckboxInput,
 };
 
 export const ipc_antenna_toggle: FeatureToggle = {
-  name: 'Synth Antenna',
+  name: '合成人天线',
   component: CheckboxInput,
 };
 
 export const feature_ipc_antenna: Feature<string> = {
-  name: 'Synth Antenna Selection',
+  name: '合成人天线选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -549,19 +549,19 @@ export const feature_ipc_antenna: Feature<string> = {
 };
 
 export const ipc_antenna_color: Feature<string[]> = {
-  name: 'Synth Antenna Colors',
+  name: '合成人天线颜色',
   component: FeatureTriColorInput,
 };
 
 export const ipc_antenna_emissive: Feature<boolean[]> = {
-  name: 'Synth Antenna Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '合成人天线发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const feature_ipc_chassis: Feature<string> = {
-  name: 'Synth Chassis Selection',
-  description: 'Only works for synths.',
+  name: '合成人机体选择',
+  description: '仅对合成人生效。',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -570,15 +570,15 @@ export const feature_ipc_chassis: Feature<string> = {
 };
 
 export const ipc_chassis_color: Feature<string> = {
-  name: 'Synth Chassis Colors',
+  name: '合成人机体颜色',
   description:
-    'Only works for Synths and chassis that support greyscale coloring.',
+    '仅对合成人和支持灰度着色的机体生效。',
   component: FeatureColorInput,
 };
 
 export const feature_ipc_head: Feature<string> = {
-  name: 'Synth Head Selection',
-  description: 'Only works for Synths.',
+  name: '合成人头部选择',
+  description: '仅对合成人生效。',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -587,27 +587,27 @@ export const feature_ipc_head: Feature<string> = {
 };
 
 export const ipc_head_color: Feature<string> = {
-  name: 'Synth Head Colors',
+  name: '合成人头部颜色',
   component: FeatureColorInput,
 };
 
 export const feature_hair_opacity_toggle: Feature<boolean> = {
-  name: 'Hair Opacity Override',
+  name: '覆盖头发不透明度',
   component: CheckboxInput,
 };
 
 export const feature_hair_opacity: Feature<number> = {
-  name: 'Hair Opacity',
+  name: '头发不透明度',
   component: FeatureNumberInput,
 };
 
 export const neck_acc_toggle: FeatureToggle = {
-  name: 'Neck Accessories',
+  name: '颈部配饰',
   component: CheckboxInput,
 };
 
 export const feature_neck_acc: Feature<string> = {
-  name: 'Neck Accessories Selection',
+  name: '颈部配饰选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -616,22 +616,22 @@ export const feature_neck_acc: Feature<string> = {
 };
 
 export const neck_acc_color: Feature<string[]> = {
-  name: 'Neck Accessories Colors',
+  name: '颈部配饰颜色',
   component: FeatureTriColorInput,
 };
 
 export const neck_acc_emissive: Feature<boolean[]> = {
-  name: 'Neck Accessories Emissives',
+  name: '颈部配饰发光部位',
   component: FeatureTriBoolInput,
 };
 
 export const skrell_hair_toggle: FeatureToggle = {
-  name: 'Skrell Hair',
+  name: '斯克雷尔头发',
   component: CheckboxInput,
 };
 
 export const feature_skrell_hair: Feature<string> = {
-  name: 'Skrell Hair Selection',
+  name: '斯克雷尔发型选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -640,23 +640,23 @@ export const feature_skrell_hair: Feature<string> = {
 };
 
 export const skrell_hair_color: Feature<string[]> = {
-  name: 'Skrell Hair Colors',
+  name: '斯克雷尔发色',
   component: FeatureTriColorInput,
 };
 
 export const skrell_hair_emissive: Feature<boolean[]> = {
-  name: 'Skrell Hair Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '斯克雷尔头发发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const taur_toggle: FeatureToggle = {
-  name: 'Taur',
+  name: '半人马身躯',
   component: CheckboxInput,
 };
 
 export const feature_taur: Feature<string> = {
-  name: 'Taur Selection',
+  name: '半人马身躯选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -665,37 +665,37 @@ export const feature_taur: Feature<string> = {
 };
 
 export const taur_color: Feature<string[]> = {
-  name: 'Taur Colors',
+  name: '半人马身躯颜色',
   component: FeatureTriColorInput,
 };
 
 export const taur_emissive: Feature<boolean[]> = {
-  name: 'Taur Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '半人马身躯发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const naga_sole: FeatureToggle = {
-  name: 'Taur (Naga) disable hardened soles',
+  name: '半人马（纳迦）禁用硬化腹鳞',
   description:
-    'If using a serpentine taur body, determines if you are immune to caltrops and a few other effects of being barefoot.',
+    '使用蛇形半人马身躯时，决定是否免疫铁蒺藜和部分赤足效果。',
   component: CheckboxInput,
 };
 
 export const synthetic_taur: FeatureToggle = {
-  name: 'Taur (Synthetic)',
+  name: '机械半人马身躯',
   description:
-    "If using a taur body, determines if the taur body is synthetic, doesn't apply to taur bodies that are already synthetic.",
+    "使用半人马身躯时，决定该身躯是否为机械结构；不适用于本来就是机械结构的身躯。",
   component: CheckboxInput,
 };
 
 export const xenodorsal_toggle: FeatureToggle = {
-  name: 'Xenodorsal',
+  name: '异形背管',
   component: CheckboxInput,
 };
 
 export const feature_xenodorsal: Feature<string> = {
-  name: 'Xenodorsal Selection',
+  name: '异形背管选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -704,23 +704,23 @@ export const feature_xenodorsal: Feature<string> = {
 };
 
 export const xenodorsal_color: Feature<string[]> = {
-  name: 'Xenodorsal Colors',
+  name: '异形背管颜色',
   component: FeatureTriColorInput,
 };
 
 export const xenodorsal_emissive: Feature<boolean[]> = {
-  name: 'Xenodorsal Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '异形背管发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const xenohead_toggle: FeatureToggle = {
-  name: 'Xeno Head',
+  name: '异形头部',
   component: CheckboxInput,
 };
 
 export const feature_xenohead: Feature<string> = {
-  name: 'Xeno Head Selection',
+  name: '异形头部选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -729,33 +729,33 @@ export const feature_xenohead: Feature<string> = {
 };
 
 export const xenohead_color: Feature<string[]> = {
-  name: 'Xeno Head Colors',
+  name: '异形头部颜色',
   component: FeatureTriColorInput,
 };
 
 export const xenohead_emissive: Feature<boolean[]> = {
-  name: 'Xeno Head Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '异形头部发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const undershirt_color: Feature<string> = {
-  name: 'Undershirt color',
+  name: '内衫颜色',
   component: FeatureColorInput,
 };
 
 export const socks_color: Feature<string> = {
-  name: 'Socks color',
+  name: '袜子颜色',
   component: FeatureColorInput,
 };
 
 export const heterochromia_toggle: FeatureToggle = {
-  name: 'Heterochromia',
+  name: '异色瞳',
   component: CheckboxInput,
 };
 
 export const feature_heterochromia: Feature<string> = {
-  name: 'Heterochromia Selection',
+  name: '异色瞳选择',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -764,18 +764,18 @@ export const feature_heterochromia: Feature<string> = {
 };
 
 export const heterochromia_color: Feature<string[]> = {
-  name: 'Heterochromia Colors',
+  name: '异色瞳颜色',
   component: FeatureTriColorInput,
 };
 
 export const heterochromia_emissive: Feature<boolean[]> = {
-  name: 'Heterochromia Emissives',
-  description: 'Emissive parts glow in the dark.',
+  name: '异色瞳发光部位',
+  description: '发光部位会在黑暗中发亮。',
   component: FeatureTriBoolInput,
 };
 
 export const vox_bodycolor: Feature<string> = {
-  name: 'Vox Bodycolor',
+  name: '沃克斯身体颜色',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -784,12 +784,12 @@ export const vox_bodycolor: Feature<string> = {
 };
 
 export const pod_hair_color: Feature<string[]> = {
-  name: 'Floral Hair Color',
+  name: '花朵头发颜色',
   component: FeatureTriColorInput,
 };
 
 export const pod_hair_emissive: Feature<boolean> = {
-  name: 'Floral Hair Emissive',
-  description: 'Emissive parts glow in the dark.',
+  name: '花朵头发发光',
+  description: '发光部位会在黑暗中发亮。',
   component: CheckboxInput,
 };

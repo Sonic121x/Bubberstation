@@ -18,51 +18,51 @@ export const ApprenticeContract = (props) => {
         <Stack vertical fill>
           <Stack.Item>
             <Section textColor="lightgreen" fontSize="15px">
-              If you cannot reach any of your apprentices today, you can feed
-              the contract back into your spellbook to refund it.
+              如果今天联系不到任何学徒，你可以把
+              契约放回法术书中退款。
             </Section>
           </Stack.Item>
           <Stack.Item grow>
             <ApprenticeSelection
               iconName="fire"
-              fluffName="Apprentice of Destruction"
+              fluffName="毁灭学徒"
               schoolTitle="destruction"
               assetName="destruction.png"
               blurb={`
-                Your apprentice is skilled in offensive magic.
-                They know Magic Missile and Fireball.
+                你的学徒擅长攻击魔法。
+                其掌握魔法飞弹与火球术。
               `}
             />
             <ApprenticeSelection
               iconName="route"
-              fluffName="Student of Translocation"
+              fluffName="移形学生"
               schoolTitle="bluespace"
               assetName="bluespace.png"
               blurb={`
-              Your apprentice is able to defy physics, melting through
-              solid objects and travelling great distances in the
-              blink of an eye. They know Teleport and Ethereal Jaunt.
+              你的学徒能够违背物理法则，穿过
+              实体障碍，并在眨眼间跨越
+              遥远距离。其掌握传送术与以太漫步。
               `}
             />
             <ApprenticeSelection
               iconName="medkit"
-              fluffName="Neophyte of Restoration"
+              fluffName="复原新徒"
               schoolTitle="healing"
               assetName="healing.png"
               blurb={`
-              Your apprentice is training to cast spells that will
-              aid your survival. They know Forcewall and Charge and
-              come with a Staff of Healing.
+              你的学徒正在学习施展能够
+              帮你生存的法术。其掌握力场墙与充能术，
+              并配有一根治疗法杖。
               `}
             />
             <ApprenticeSelection
               iconName="user-secret"
-              fluffName="Robeless Pupil"
+              fluffName="无袍弟子"
               schoolTitle="robeless"
               assetName="robeless.png"
               blurb={`
-              Your apprentice is training to cast spells without
-              their robes. They know Knock and Mindswap.
+              你的学徒正在学习不穿法袍
+              施法。其掌握敲击术与心灵交换。
               `}
             />
           </Stack.Item>
@@ -99,7 +99,7 @@ const ApprenticeSelection = (props) => {
                   })
                 }
               >
-                Select
+                选择
               </Button>
             </Stack.Item>
           </Stack>

@@ -16,9 +16,9 @@ export const listTypes = {
 };
 
 export const listNames = {
-  Objects: 'Search objects',
-  Turfs: 'Search turfs',
-  Mobs: 'Search mobs',
+  Objects: '搜索物体',
+  Turfs: '搜索地块',
+  Mobs: '搜索生物',
 };
 
 export const spawnLocationIcons = {
@@ -44,12 +44,12 @@ export const directionRotation = {
 };
 
 export const directionNames = {
-  1: 'NORTH',
-  2: 'SOUTH',
-  4: 'EAST',
-  8: 'WEST',
-  5: 'NORTHEAST',
-  6: 'SOUTHEAST',
-  9: 'NORTHWEST',
-  10: 'SOUTHWEST',
+  1: '北',
+  2: '南',
+  4: '东',
+  8: '西',
+  5: '东北',
+  6: '东南',
+  9: '西北',
+  10: '西南',
 };

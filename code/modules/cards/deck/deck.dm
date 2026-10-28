@@ -61,7 +61,7 @@
 	. = ..()
 
 	if(HAS_TRAIT(user, TRAIT_XRAY_VISION) && count_cards() > 0)
-		. += span_notice("你用 X 光视觉扫视了牌堆，最上面那张写着：[fetch_card_atoms()[1].cardname]。")
+		. += span_notice("你用 X 光视觉扫视了牌堆，最上面那张写着：[chinese_playing_card_display(fetch_card_atoms()[1].cardname)]。")
 
 	// This can only happen if card_atoms have been generated
 	if(LAZYLEN(card_atoms) > 0)

@@ -24,31 +24,31 @@ export const CTFPanel = (props) => {
   const { act, data } = useBackend<CTFPanelData>();
 
   return (
-    <Window title="CTF Panel" width={700} height={600}>
+    <Window title="夺旗模式面板" width={700} height={600}>
       <Window.Content scrollable>
         {'teams' in data ? (
           <Flex align="center" wrap="wrap" textAlign="center" m={-0.5}>
             {data.teams.map((team) => (
               <Flex.Item key={team.name} width="49%" m={0.5} mb={8}>
-                <Section key={team.name} title={`${team.color} Team`}>
+                <Section key={team.name} title={`${({ red: '红', blue: '蓝', green: '绿', yellow: '黄', white: '白' }[team.color.toLowerCase()] || team.color)}队`}>
                   <Stack fill mb={1}>
                     <Stack.Item grow>
                       <Box>
-                        <b>{team.team_size}</b> member
-                        {team.team_size === 1 ? '' : 's'}
+                        <b>{team.team_size}</b> 名队员
+                        {''}
                       </Box>
                     </Stack.Item>
 
                     <Stack.Item grow>
                       <Box>
-                        <b>{team.score}</b> point
-                        {team.score === 1 ? '' : 's'}
+                        <b>{team.score}</b> 分
+                        {''}
                       </Box>
                     </Stack.Item>
                   </Stack>
 
                   <Button
-                    content="Jump"
+                    content="跳转"
                     fontSize="18px"
                     fluid
                     color={team.color.toLowerCase()}
@@ -60,7 +60,7 @@ export const CTFPanel = (props) => {
                   />
 
                   <Button
-                    content="Join"
+                    content="加入"
                     fontSize="18px"
                     fluid
                     color={team.color.toLowerCase()}
@@ -82,7 +82,7 @@ export const CTFPanel = (props) => {
               </Box>
               <br />
               <Box fontSize="30px" textAlign="center">
-                CTF voters
+                夺旗模式投票人数
               </Box>
             </Stack.Item>
 
@@ -98,7 +98,7 @@ export const CTFPanel = (props) => {
                   }
                 }}
               >
-                {data.voted ? 'Unvote for CTF' : 'Vote for CTF'}
+                {data.voted ? '撤回夺旗模式投票' : '投票开启夺旗模式'}
               </Button>
             </Stack.Item>
           </Stack>

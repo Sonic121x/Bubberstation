@@ -47,7 +47,7 @@ export function Panel(props) {
                   color="grey"
                   selected={audioVisible}
                   icon="music"
-                  tooltip="Music player"
+                  tooltip="音乐播放器"
                   tooltipPosition="bottom-start"
                   onClick={() => setAudioVisible((v) => !v)}
                 />
@@ -56,7 +56,7 @@ export function Panel(props) {
                 <Button
                   icon={settingsVisible ? 'times' : 'cog'}
                   selected={settingsVisible}
-                  tooltip={settingsVisible ? 'Close settings' : 'Open settings'}
+                  tooltip={settingsVisible ? '关闭设置' : '打开设置'}
                   tooltipPosition="bottom-start"
                   onClick={() => setSettingsVisible((v) => !v)}
                 />
@@ -84,14 +84,14 @@ export function Panel(props) {
             <Notifications>
               {game.connectionLostAt && (
                 <Notifications.Item rightSlot={<ReconnectButton />}>
-                  You are either AFK, experiencing lag or the connection has
-                  closed.
+                  你可能正在挂机、遇到网络延迟，或者连接已经
+                  断开。
                 </Notifications.Item>
               )}
               {game.roundRestartedAt && (
                 <Notifications.Item>
-                  The connection has been closed because the server is
-                  restarting. Please wait while you automatically reconnect.
+                  服务器正在重新启动，连接已断开。
+                  请等待客户端自动重新连接。
                 </Notifications.Item>
               )}
             </Notifications>

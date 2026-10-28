@@ -84,16 +84,16 @@ export function AppearanceBox(props: AppearanceProps) {
             <Stack.Item grow>
               {appearance.data.name || appearance.data.icon_state}
               {isEmissive(appearance)
-                ? ' (Emissive)'
+                ? '（自发光）'
                 : isEmissiveBlocker(appearance)
-                  ? ' (Emissive Blocker)'
+                  ? '（自发光遮挡层）'
                   : ''}
             </Stack.Item>
             <Stack.Item>
               <Button
                 icon="pager"
                 compact
-                tooltip="View Variables (Mirror)"
+                tooltip="查看变量（镜像）"
                 onClick={() => act('vvAppearance', { id: appearance.data.id })}
               />
             </Stack.Item>
@@ -112,7 +112,7 @@ export function AppearanceBox(props: AppearanceProps) {
               layer:{` ${getReadableLayer(appearance, layerToText)}`}
             </Stack.Item>
             <Stack.Item style={{ borderBottom: '1px dashed hsl(0, 0%, 60%);' }}>
-              <Tooltip content={`True plane: ${appearance.data.plane_true}`}>
+              <Tooltip content={`真实渲染平面：${appearance.data.plane_true}`}>
                 plane:{` ${getReadablePlane(appearance, planeToText)}`}
               </Tooltip>
             </Stack.Item>

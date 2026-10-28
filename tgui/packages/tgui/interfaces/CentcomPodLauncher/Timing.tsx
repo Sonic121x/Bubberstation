@@ -18,8 +18,8 @@ export function Timing(props) {
             icon="undo"
             onClick={() => act('resetTiming')}
             tooltip={`
-            Reset all pod
-            timings/delays`}
+            重置所有空投舱的
+            计时和延迟`}
             tooltipPosition="bottom-start"
           />
           <Button
@@ -29,16 +29,16 @@ export function Timing(props) {
             onClick={() => act('toggleRevDelays')}
             selected={custom_rev_delay}
             tooltip={`
-            Toggle Reverse Delays
-            Note: Top set is
-            normal delays, bottom set
-            is reversing pod's delays`}
+            切换回收延迟
+            注意：上面一组
+            为普通延迟，下面一组
+            为回收舱的延迟`}
             tooltipPosition="bottom"
           />
         </>
       }
       fill
-      title="Time"
+      title="时间"
     >
       <DelayHelper delay_list={DELAYS} />
       {!!custom_rev_delay && (

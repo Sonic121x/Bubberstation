@@ -27,15 +27,15 @@ export const ProgressSwitch = (param) => {
     case -1:
       return '_';
     case 0:
-      return 'Connecting';
+      return '正在连接';
     case 25:
-      return 'Starting Transfer';
+      return '开始传输';
     case 50:
-      return 'Downloading';
+      return '正在下载';
     case 75:
-      return 'Downloading';
+      return '正在下载';
     case 100:
-      return 'Formatting';
+      return '正在格式化';
   }
 };
 
@@ -46,7 +46,7 @@ export const NtosCyborgRemoteMonitorContent = (props) => {
   const storedlog = data.borglog || [];
 
   if (!cyborgs.length) {
-    return <NoticeBox>No cyborg units detected.</NoticeBox>;
+    return <NoticeBox>未检测到半机械人单位。</NoticeBox>;
   }
 
   return (
@@ -59,7 +59,7 @@ export const NtosCyborgRemoteMonitorContent = (props) => {
             selected={tab_main === 1}
             onClick={() => setTab_main(1)}
           >
-            Cyborgs
+            半机械人
           </Tabs.Tab>
           <Tabs.Tab
             icon="clipboard"
@@ -67,7 +67,7 @@ export const NtosCyborgRemoteMonitorContent = (props) => {
             selected={tab_main === 2}
             onClick={() => setTab_main(2)}
           >
-            Stored Log File
+            已存储的日志文件
           </Tabs.Tab>
         </Tabs>
       </Stack.Item>
@@ -75,7 +75,7 @@ export const NtosCyborgRemoteMonitorContent = (props) => {
         <>
           {!card && (
             <Stack.Item>
-              <NoticeBox>Certain features require an ID card login.</NoticeBox>
+              <NoticeBox>部分功能需要使用身份卡登录。</NoticeBox>
             </Stack.Item>
           )}
           <Stack.Item grow={1}>
@@ -87,7 +87,7 @@ export const NtosCyborgRemoteMonitorContent = (props) => {
                   buttons={
                     <Button
                       icon="terminal"
-                      content="Send Message"
+                      content="发送消息"
                       color="blue"
                       disabled={!card}
                       onClick={() =>
@@ -99,7 +99,7 @@ export const NtosCyborgRemoteMonitorContent = (props) => {
                   }
                 >
                   <LabeledList>
-                    <LabeledList.Item label="Status">
+                    <LabeledList.Item label="状态">
                       <Box
                         color={
                           cyborg.status
@@ -110,15 +110,15 @@ export const NtosCyborgRemoteMonitorContent = (props) => {
                         }
                       >
                         {cyborg.status
-                          ? 'Not Responding'
+                          ? '无响应'
                           : cyborg.locked_down
-                            ? 'Locked Down'
+                            ? '已锁定'
                             : cyborg.shell_discon
-                              ? 'Nominal/Disconnected'
-                              : 'Nominal'}
+                              ? '正常／已断开连接'
+                              : '正常'}
                       </Box>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Condition">
+                    <LabeledList.Item label="机体状况">
                       <Box
                         color={
                           cyborg.integ <= 25
@@ -129,15 +129,15 @@ export const NtosCyborgRemoteMonitorContent = (props) => {
                         }
                       >
                         {cyborg.integ === 0
-                          ? 'Hard Fault'
+                          ? '严重故障'
                           : cyborg.integ <= 25
-                            ? 'Functionality Disrupted'
+                            ? '功能严重受损'
                             : cyborg.integ <= 75
-                              ? 'Functionality Impaired'
-                              : 'Operational'}
+                              ? '功能受损'
+                              : '运行正常'}
                       </Box>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Charge">
+                    <LabeledList.Item label="电量">
                       <Box
                         color={
                           cyborg.charge <= 30
@@ -149,13 +149,13 @@ export const NtosCyborgRemoteMonitorContent = (props) => {
                       >
                         {typeof cyborg.charge === 'number'
                           ? `${cyborg.charge}%`
-                          : 'Not Found'}
+                          : '未找到'}
                       </Box>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Model">
+                    <LabeledList.Item label="型号">
                       {cyborg.module}
                     </LabeledList.Item>
-                    <LabeledList.Item label="Upgrades">
+                    <LabeledList.Item label="升级模块">
                       {cyborg.upgrades}
                     </LabeledList.Item>
                   </LabeledList>
@@ -169,7 +169,7 @@ export const NtosCyborgRemoteMonitorContent = (props) => {
         <>
           <Stack.Item>
             <Section>
-              Scan a cyborg to download stored logs.
+              扫描半机械人以下载其存储的日志。
               <ProgressBar value={DL_progress / 100}>
                 {ProgressSwitch(DL_progress)}
               </ProgressBar>

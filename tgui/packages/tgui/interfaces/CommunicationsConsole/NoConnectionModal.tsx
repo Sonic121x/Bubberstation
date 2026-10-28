@@ -23,7 +23,7 @@ export function NoConnectionModal() {
         </Flex.Item>
 
         <Flex.Item fontSize="16px">
-          A connection to the station cannot be established.
+          无法与空间站建立连接。
         </Flex.Item>
       </Flex>
     </Dimmer>

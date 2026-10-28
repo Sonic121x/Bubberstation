@@ -36,7 +36,7 @@ export const ForensicsSpoofer = (props) => {
   const [currentTab, setTab] = useState(0);
   return (
     <Window
-      title="Forensics Spoofing Device"
+      title="法医痕迹伪造装置"
       width={460}
       height={340}
       theme="syndicate"
@@ -50,8 +50,8 @@ export const ForensicsSpoofer = (props) => {
                   <Button
                     width="100%"
                     icon={silent ? 'eye-slash' : 'eye'}
-                    content={silent ? 'Silent Mode: On' : 'Silent Mode: Off'}
-                    tooltip="On Silent Mode this device will make the same sounds and sights as an actual Forensics Scanner."
+                    content={silent ? '隐蔽模式：开启' : '隐蔽模式：关闭'}
+                    tooltip="在隐蔽模式下，此设备会模拟真正法医扫描仪的声光效果。"
                     onClick={() => act('stealth')}
                   />
                 </Stack.Item>
@@ -59,7 +59,7 @@ export const ForensicsSpoofer = (props) => {
                   <Button
                     width="100%"
                     icon={scanmode ? 'magnifying-glass' : 'share-from-square'}
-                    content={scanmode ? 'Mode: Scan' : 'Mode: Apply'}
+                    content={scanmode ? '模式：扫描' : '模式：涂抹'}
                     color={scanmode ? 'blue' : 'red'}
                     onClick={() => act('scanmode')}
                   />
@@ -76,7 +76,7 @@ export const ForensicsSpoofer = (props) => {
                   onClick={() => setTab(0)}
                   width="50%"
                 >
-                  Fingerprints {Object.keys(fingerprints).length}/{max_storage}
+                  指纹 {Object.keys(fingerprints).length}/{max_storage}
                 </Tabs.Tab>
                 <Tabs.Tab
                   icon="shirt"
@@ -84,7 +84,7 @@ export const ForensicsSpoofer = (props) => {
                   width="50%"
                   onClick={() => setTab(1)}
                 >
-                  Fibers {Object.keys(fibers).length}/{max_storage}
+                  纤维 {Object.keys(fibers).length}/{max_storage}
                 </Tabs.Tab>
               </Tabs>
               <Divider />

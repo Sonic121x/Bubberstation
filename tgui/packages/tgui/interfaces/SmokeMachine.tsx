@@ -27,14 +27,14 @@ export const SmokeMachine = (props) => {
     <Window width={350} height={350}>
       <Window.Content>
         <Section
-          title="Dispersal Tank"
+          title="喷雾储罐"
           buttons={
             <Button
               icon={active ? 'power-off' : 'times'}
               selected={active}
               onClick={() => act('power')}
             >
-              {active ? 'On' : 'Off'}
+              {active ? '开启' : '关闭'}
             </Button>
           }
         >
@@ -49,7 +49,7 @@ export const SmokeMachine = (props) => {
           </ProgressBar>
           <Box mt={1}>
             <LabeledList>
-              <LabeledList.Item label="Range">
+              <LabeledList.Item label="范围">
                 {[1, 2, 3, 4, 5].map((amount) => (
                   <Button
                     disabled={maxSetting < amount}
@@ -66,16 +66,16 @@ export const SmokeMachine = (props) => {
           </Box>
         </Section>
         <Section
-          title="Contents"
+          title="内容物"
           buttons={
             <Button icon="trash" onClick={() => act('purge')}>
-              Purge
+              清空
             </Button>
           }
         >
           {tank.contents.map((chemical) => (
             <Box key={chemical.name} color="label">
-              <AnimatedNumber initial={0} value={chemical.volume} /> units of{' '}
+              <AnimatedNumber initial={0} value={chemical.volume} /> 单位{' '}
               {chemical.name}
             </Box>
           ))}

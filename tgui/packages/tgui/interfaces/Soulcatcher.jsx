@@ -39,31 +39,31 @@ export const Soulcatcher = (props) => {
               <>
                 <Button
                   icon="palette"
-                  tooltip="Change the color of the room"
+                  tooltip="更改房间颜色"
                   onClick={() =>
                     act('change_room_color', { room_ref: room.reference })
                   }
                 >
-                  Recolor
+                  改色
                 </Button>
                 <Button
                   icon="pen"
-                  tooltip="Change the name of the room"
+                  tooltip="更改房间名称"
                   onClick={() =>
                     act('rename_room', { room_ref: room.reference })
                   }
                 >
-                  Rename
+                  重命名
                 </Button>
                 <Button
                   icon="trash"
-                  tooltip="Delete the room"
+                  tooltip="删除房间"
                   color="red"
                   onClick={() =>
                     act('delete_room', { room_ref: room.reference })
                   }
                 >
-                  Delete
+                  删除
                 </Button>
               </>
             }
@@ -72,7 +72,7 @@ export const Soulcatcher = (props) => {
             <Box>
               <Button
                 icon="scroll"
-                tooltip="Performs an emote, without sending a name."
+                tooltip="发送不带姓名的动作描述。"
                 onClick={() =>
                   act('send_message', {
                     room_ref: room.reference,
@@ -81,12 +81,12 @@ export const Soulcatcher = (props) => {
                   })
                 }
               >
-                Narrate
+                旁白
               </Button>
 
               <Button
                 icon="comment"
-                tooltip="Speak inside of the room."
+                tooltip="在房间内说话。"
                 onClick={() =>
                   act('send_message', {
                     room_ref: room.reference,
@@ -94,12 +94,12 @@ export const Soulcatcher = (props) => {
                   })
                 }
               >
-                Say
+                说话
               </Button>
 
               <Button
                 icon="face-smile"
-                tooltip="Do an emote inside of the room."
+                tooltip="在房间内发送动作描述。"
                 onClick={() =>
                   act('send_message', {
                     room_ref: room.reference,
@@ -107,60 +107,60 @@ export const Soulcatcher = (props) => {
                   })
                 }
               >
-                Emote
+                动作
               </Button>
 
               <Button
                 icon="user-gear"
-                tooltip="Edits the name that is sent when emoting and saying."
+                tooltip="编辑说话和发送动作描述时使用的姓名。"
                 onClick={() =>
                   act('modify_name', {
                     room_ref: room.reference,
                   })
                 }
               >
-                Edit Name
+                编辑姓名
               </Button>
               <Button
                 icon="book"
-                tooltip="Changes the description of the room"
+                tooltip="更改房间描述"
                 onClick={() =>
                   act('redescribe_room', { room_ref: room.reference })
                 }
               >
-                Redecorate
+                重新布置
               </Button>
               <Button
                 icon="image"
-                tooltip="Changes the current overlay of the room"
+                tooltip="更改房间当前叠层"
                 onClick={() =>
                   act('change_overlay', { room_ref: room.reference })
                 }
               >
-                {room.overlay_name ? room.overlay_name : 'Change Overlay'}
+                {room.overlay_name ? room.overlay_name : '更改叠层'}
               </Button>
               {room.overlay_name && (
                 <>
                   <Button
                     icon="eye"
-                    tooltip="Previews the overlay of the current room"
+                    tooltip="预览当前房间叠层"
                     onClick={() =>
                       act('preview_overlay', { room_ref: room.reference })
                     }
                   >
-                    Preview Room
+                    预览房间
                   </Button>
                   {room.overlay_recolorable && (
                     <Button
                       icon="eye-dropper"
-                      tooltip="changes the color of the current room overlay"
+                      tooltip="更改当前房间叠层的颜色"
                       onClick={() =>
                         act('change_overlay_color', {
                           room_ref: room.reference,
                         })
                       }
                     >
-                      Modify Color
+                      修改颜色
                     </Button>
                   )}
                 </>
@@ -173,24 +173,24 @@ export const Soulcatcher = (props) => {
                   act('toggle_joinable_room', { room_ref: room.reference })
                 }
               >
-                {room.joinable ? 'Room joinable' : 'Room unjoinable'}
+                {room.joinable ? '允许进入房间' : '禁止进入房间'}
               </Button>
               <Button
                 icon={room.currently_targeted ? 'check' : 'xmark'}
-                tooltip="Choose where messages using the soulcatcher verbs are sent."
+                tooltip="选择灵魂捕手指令发送消息的目标房间。"
                 color={room.currently_targeted ? 'green' : 'red'}
                 onClick={() =>
                   act('change_targeted_room', { room_ref: room.reference })
                 }
               >
-                {room.currently_targeted ? 'Targeted' : 'Untargeted'}
+                {room.currently_targeted ? '已设为目标' : '未设为目标'}
               </Button>
             </Box>
             {room.souls && (
               <>
                 <br />
                 <Box textAlign="center" fontSize="15px" opacity={0.8}>
-                  <b>Current Souls</b>
+                  <b>当前灵魂</b>
                 </Box>
                 <Divider />
                 <Flex direction="column">
@@ -205,7 +205,7 @@ export const Soulcatcher = (props) => {
                                 <Button
                                   color="green"
                                   icon="pen"
-                                  tooltip="Change the mob's name."
+                                  tooltip="更改该角色的姓名。"
                                   onClick={() =>
                                     act('change_name', {
                                       target_mob: mob.reference,
@@ -216,7 +216,7 @@ export const Soulcatcher = (props) => {
                                 <Button
                                   color="red"
                                   icon="arrow-rotate-left"
-                                  tooltip="Reset the mob's name."
+                                  tooltip="重置该角色的姓名。"
                                   onClick={() =>
                                     act('reset_name', {
                                       target_mob: mob.reference,
@@ -228,7 +228,7 @@ export const Soulcatcher = (props) => {
                             )}
                             <Button
                               icon="paper-plane"
-                              tooltip="Transfer a mob to another room"
+                              tooltip="将角色转移到另一个房间"
                               onClick={() =>
                                 act('transfer_mob', {
                                   room_ref: room.reference,
@@ -240,7 +240,7 @@ export const Soulcatcher = (props) => {
                         }
                       >
                         <Box textAlign="center" fontSize="13px" opacity={0.8}>
-                          <b>Flavor Text</b>
+                          <b>外观描述</b>
                         </Box>
                         <Divider />
                         <BlockQuote preserveWhitespace>
@@ -248,7 +248,7 @@ export const Soulcatcher = (props) => {
                         </BlockQuote>
                         <br />
                         <Box textAlign="center" fontSize="13px" opacity={0.8}>
-                          <b>OOC Notes</b>
+                          <b>戏外备注</b>
                         </Box>
                         <Divider />
                         <BlockQuote preserveWhitespace>
@@ -256,11 +256,11 @@ export const Soulcatcher = (props) => {
                         </BlockQuote>
                         <br />
                         <LabeledList>
-                          <LabeledList.Item label="Outside Hearing">
+                          <LabeledList.Item label="外界听觉">
                             <Button
                               color={mob.outside_hearing ? 'green' : 'red'}
                               fluid
-                              tooltip="Is the mob able to hear the outside world?"
+                              tooltip="该角色能否听到外界的声音？"
                               onClick={() =>
                                 act('toggle_soul_sense', {
                                   target_mob: mob.reference,
@@ -269,14 +269,14 @@ export const Soulcatcher = (props) => {
                                 })
                               }
                             >
-                              {mob.outside_hearing ? 'Enabled' : 'Disabled'}
+                              {mob.outside_hearing ? '已启用' : '已禁用'}
                             </Button>
                           </LabeledList.Item>
-                          <LabeledList.Item label="Outside Sight">
+                          <LabeledList.Item label="外界视觉">
                             <Button
                               color={mob.outside_sight ? 'green' : 'red'}
                               fluid
-                              tooltip="Is the mob able to see the outside world?"
+                              tooltip="该角色能否看见外界？"
                               onClick={() =>
                                 act('toggle_soul_sense', {
                                   target_mob: mob.reference,
@@ -285,14 +285,14 @@ export const Soulcatcher = (props) => {
                                 })
                               }
                             >
-                              {mob.outside_sight ? 'Enabled' : 'Disabled'}
+                              {mob.outside_sight ? '已启用' : '已禁用'}
                             </Button>
                           </LabeledList.Item>
-                          <LabeledList.Item label="Hearing">
+                          <LabeledList.Item label="内部听觉">
                             <Button
                               color={mob.internal_hearing ? 'green' : 'red'}
                               fluid
-                              tooltip="Is the mob able to hear inside the room?"
+                              tooltip="该角色能否听到房间内的声音？"
                               onClick={() =>
                                 act('toggle_soul_sense', {
                                   target_mob: mob.reference,
@@ -301,14 +301,14 @@ export const Soulcatcher = (props) => {
                                 })
                               }
                             >
-                              {mob.internal_hearing ? 'Enabled' : 'Disabled'}
+                              {mob.internal_hearing ? '已启用' : '已禁用'}
                             </Button>
                           </LabeledList.Item>
-                          <LabeledList.Item label="Sight">
+                          <LabeledList.Item label="内部视觉">
                             <Button
                               color={mob.internal_sight ? 'green' : 'red'}
                               fluid
-                              tooltip="Is the mob able to see inside the room?"
+                              tooltip="该角色能否看见房间内部？"
                               onClick={() =>
                                 act('toggle_soul_sense', {
                                   target_mob: mob.reference,
@@ -317,14 +317,14 @@ export const Soulcatcher = (props) => {
                                 })
                               }
                             >
-                              {mob.internal_sight ? 'Enabled' : 'Disabled'}
+                              {mob.internal_sight ? '已启用' : '已禁用'}
                             </Button>
                           </LabeledList.Item>
-                          <LabeledList.Item label="Speech">
+                          <LabeledList.Item label="说话">
                             <Button
                               color={mob.able_to_speak ? 'green' : 'red'}
                               fluid
-                              tooltip="Is the mob able to speak?"
+                              tooltip="该角色能否说话？"
                               onClick={() =>
                                 act('toggle_soul_sense', {
                                   target_mob: mob.reference,
@@ -333,14 +333,14 @@ export const Soulcatcher = (props) => {
                                 })
                               }
                             >
-                              {mob.able_to_speak ? 'Enabled' : 'Disabled'}
+                              {mob.able_to_speak ? '已启用' : '已禁用'}
                             </Button>
                           </LabeledList.Item>
-                          <LabeledList.Item label="Emote">
+                          <LabeledList.Item label="动作">
                             <Button
                               color={mob.able_to_emote ? 'green' : 'red'}
                               fluid
-                              tooltip="Is the mob able to emote?"
+                              tooltip="该角色能否发送动作描述？"
                               onClick={() =>
                                 act('toggle_soul_sense', {
                                   target_mob: mob.reference,
@@ -349,12 +349,12 @@ export const Soulcatcher = (props) => {
                                 })
                               }
                             >
-                              {mob.able_to_emote ? 'Enabled' : 'Disabled'}
+                              {mob.able_to_emote ? '已启用' : '已禁用'}
                             </Button>
                           </LabeledList.Item>
                           {communicate_as_parent && (
                             <>
-                              <LabeledList.Item label="External Speech">
+                              <LabeledList.Item label="对外说话">
                                 <Button
                                   color={
                                     mob.able_to_speak_as_container
@@ -362,7 +362,7 @@ export const Soulcatcher = (props) => {
                                       : 'red'
                                   }
                                   fluid
-                                  tooltip="Is the mob able to speak the container?"
+                                  tooltip="该角色能否以容器的身份说话？"
                                   onClick={() =>
                                     act('toggle_soul_sense', {
                                       target_mob: mob.reference,
@@ -373,11 +373,11 @@ export const Soulcatcher = (props) => {
                                   }
                                 >
                                   {mob.able_to_speak_as_container
-                                    ? 'Enabled'
-                                    : 'Disabled'}
+                                    ? '已启用'
+                                    : '已禁用'}
                                 </Button>
                               </LabeledList.Item>
-                              <LabeledList.Item label="External Emote">
+                              <LabeledList.Item label="对外动作">
                                 <Button
                                   color={
                                     mob.able_to_emote_as_container
@@ -385,7 +385,7 @@ export const Soulcatcher = (props) => {
                                       : 'red'
                                   }
                                   fluid
-                                  tooltip="Is the mob able to emote as the container?"
+                                  tooltip="该角色能否以容器的身份发送动作描述？"
                                   onClick={() =>
                                     act('toggle_soul_sense', {
                                       target_mob: mob.reference,
@@ -396,17 +396,17 @@ export const Soulcatcher = (props) => {
                                   }
                                 >
                                   {mob.able_to_emote_as_container
-                                    ? 'Enabled'
-                                    : 'Disabled'}
+                                    ? '已启用'
+                                    : '已禁用'}
                                 </Button>
                               </LabeledList.Item>
                             </>
                           )}
-                          <LabeledList.Item label="Rename">
+                          <LabeledList.Item label="重命名">
                             <Button
                               color={mob.able_to_rename ? 'green' : 'red'}
                               fluid
-                              tooltip="Is the mob able to rename themselves?"
+                              tooltip="该角色能否更改自己的姓名？"
                               onClick={() =>
                                 act('toggle_soul_sense', {
                                   target_mob: mob.reference,
@@ -415,7 +415,7 @@ export const Soulcatcher = (props) => {
                                 })
                               }
                             >
-                              {mob.able_to_rename ? 'Enabled' : 'Disabled'}
+                              {mob.able_to_rename ? '已启用' : '已禁用'}
                             </Button>
                           </LabeledList.Item>
                         </LabeledList>
@@ -431,7 +431,7 @@ export const Soulcatcher = (props) => {
                             })
                           }
                         >
-                          Remove Soul
+                          移除灵魂
                         </Button>
                       </Collapsible>
                     </Flex.Item>
@@ -450,7 +450,7 @@ export const Soulcatcher = (props) => {
               maxValue={max_mobs}
               value={max_mobs - current_mob_count}
             >
-              Remaining mob capacity: {max_mobs - current_mob_count}
+              剩余角色容量：{max_mobs - current_mob_count}
             </ProgressBar>
           </Section>
         )}
@@ -460,7 +460,7 @@ export const Soulcatcher = (props) => {
           icon="plus"
           onClick={() => act('create_room', {})}
         >
-          Create new room
+          创建新房间
         </Button>
         <Button
           fluid
@@ -468,7 +468,7 @@ export const Soulcatcher = (props) => {
           icon={ghost_joinable ? 'door-open' : 'door-closed'}
           onClick={() => act('toggle_joinable', {})}
         >
-          {ghost_joinable ? 'Opened' : 'Closed'} to ghosts
+          {ghost_joinable ? '允许' : '禁止'}幽灵进入
         </Button>
         <Button
           fluid
@@ -476,7 +476,7 @@ export const Soulcatcher = (props) => {
           icon={require_approval ? 'lock' : 'lock-open'}
           onClick={() => act('toggle_approval', {})}
         >
-          Approval is {require_approval ? '' : 'not'} required to join
+          进入{require_approval ? '需要' : '无需'}批准
         </Button>
         <Button
           fluid
@@ -484,7 +484,7 @@ export const Soulcatcher = (props) => {
           icon={carrier_targeted ? 'check' : 'xmark'}
           onClick={() => act('change_targeted_carrier', {})}
         >
-          Verb messages are {require_approval ? '' : 'not'} sent to this carrier
+          指令消息{require_approval ? '会' : '不会'}发送至此载体
         </Button>
         {removable && (
           <Button
@@ -494,7 +494,7 @@ export const Soulcatcher = (props) => {
             icon="eject"
             onClick={() => act('delete_self', {})}
           >
-            Remove soulcatcher from parent object
+            从所属物体上移除灵魂捕手
           </Button>
         )}
       </Window.Content>

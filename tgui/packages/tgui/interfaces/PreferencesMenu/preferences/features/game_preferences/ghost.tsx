@@ -15,9 +15,9 @@ import {
 import { FeatureDropdownInput } from '../dropdowns';
 
 export const ghost_accs: FeatureChoiced = {
-  name: 'Ghost accessories',
+  name: '幽灵配饰',
   category: 'GHOST',
-  description: 'Determines what adjustments your ghost will have.',
+  description: '决定你的幽灵使用哪些外观配饰。',
   component: FeatureDropdownInput,
 };
 
@@ -42,7 +42,7 @@ function GhostFormInput(
 
   const displayNames = serverData.display_names;
   if (!displayNames) {
-    return <Box color="red">No display names for ghost_form!</Box>;
+    return <Box color="red">ghost_form 缺少显示名称！</Box>;
   }
 
   const displayTexts = {};
@@ -93,25 +93,25 @@ function GhostFormInput(
 }
 
 export const ghost_form: FeatureChoiced = {
-  name: 'Ghosts form',
+  name: '幽灵形态',
   category: 'GHOST',
-  description: 'The appearance of your ghost. Requires BYOND membership.',
+  description: '你的幽灵外观。需要 BYOND 会员。',
   component: GhostFormInput,
 };
 
 export const ghost_hud: FeatureToggle = {
-  name: 'Ghost HUD',
+  name: '幽灵 HUD',
   category: 'GHOST',
-  description: 'Enable HUD buttons for ghosts.',
+  description: '启用幽灵的 HUD 按钮。',
   component: CheckboxInput,
 };
 
 export const ghost_orbit: FeatureChoiced = {
-  name: 'Ghost orbit',
+  name: '幽灵环绕轨迹',
   category: 'GHOST',
   description: `
-    The shape in which your ghost will orbit.
-    Requires BYOND membership.
+    你的幽灵环绕目标时的轨迹形状。
+    需要 BYOND 会员。
   `,
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
@@ -125,30 +125,30 @@ export const ghost_orbit: FeatureChoiced = {
 };
 
 export const ghost_others: FeatureChoiced = {
-  name: 'Ghosts of others',
+  name: '其他人的幽灵',
   category: 'GHOST',
   description: `
-    Do you want the ghosts of others to show up as their own setting, as
-    their default sprites, or always as the default white ghost?
+    其他人的幽灵应使用其自选外观、
+    默认图像，还是始终显示为默认白色幽灵？
   `,
   component: FeatureDropdownInput,
 };
 
 export const inquisitive_ghost: FeatureToggle = {
-  name: 'Ghost inquisitiveness',
+  name: '幽灵点击查看',
   category: 'GHOST',
-  description: 'Clicking on something as a ghost will examine it.',
+  description: '作为幽灵点击某个对象时会查看它。',
   component: CheckboxInput,
 };
 
 export const ghost_roles: FeatureToggle = {
-  name: 'Get ghost roles',
+  name: '接收幽灵角色通知',
   category: 'GHOST',
   description: `
-    If you de-select this, you will not get any ghost role pop-ups what-so-ever!
-    Every single type of these pop-ups WILL be muted for you when you are
-    ghosted. Very useful for those who find ghost roles or the
-    pop-ups annoying, use at your own peril.
+    取消选择后，你将完全不再收到幽灵角色弹窗！
+    变成幽灵后，所有此类弹窗
+    都会被屏蔽。适合不想看到幽灵角色或
+    相关弹窗的玩家，请自行权衡。
 `,
   component: CheckboxInput,
 };

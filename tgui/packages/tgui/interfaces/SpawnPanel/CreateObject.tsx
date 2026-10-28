@@ -307,7 +307,7 @@ export function CreateObject(props: CreateObjectProps) {
                     italic
                     style={{ color: 'rgba(200, 200, 200, 0.7)' }}
                   >
-                    {allObjects[selectedObj].description || 'no description'}
+                    {allObjects[selectedObj].description || '无描述'}
                   </Stack.Item>
                 </Stack>
               </Stack.Item>
@@ -329,7 +329,7 @@ export function CreateObject(props: CreateObjectProps) {
                     const nextIndex = (currentIndex + 1) % types.length;
                     updateSortBy(types[nextIndex]);
                   }}
-                  tooltip={`Cycle the searching target (objects, mobs, turfs)`}
+                  tooltip={`切换搜索目标（物体、生物、地块）`}
                 >
                   {
                     listNames[
@@ -346,9 +346,9 @@ export function CreateObject(props: CreateObjectProps) {
                   onClick={() => {
                     updateSearchBy(!searchBy);
                   }}
-                  tooltip={`Cycle the search method (by name, by type)`}
+                  tooltip={`切换搜索方式（按名称、按类型）`}
                 >
-                  {searchBy ? 'By type' : 'By name'}
+                  {searchBy ? '按类型' : '按名称'}
                 </Button>
               </Stack.Item>
               <Stack.Item>
@@ -358,9 +358,9 @@ export function CreateObject(props: CreateObjectProps) {
                   }}
                   color={!hideMapping && 'good'}
                   checked={!hideMapping}
-                  tooltip={`Toggle mapping objects visibility`}
+                  tooltip={`切换是否显示地图编辑用物体`}
                 >
-                  Mapping
+                  地图编辑
                 </Button.Checkbox>
               </Stack.Item>
               <Stack.Item>
@@ -370,9 +370,9 @@ export function CreateObject(props: CreateObjectProps) {
                   }}
                   color={showIcons && 'good'}
                   checked={showIcons}
-                  tooltip={`Toggle preview icons on hovering`}
+                  tooltip={`切换悬停时的图标预览`}
                 >
-                  Icons
+                  图标
                 </Button.Checkbox>
               </Stack.Item>
               <Stack.Item>
@@ -382,9 +382,9 @@ export function CreateObject(props: CreateObjectProps) {
                   }}
                   color={showPreview && 'good'}
                   checked={showPreview}
-                  tooltip={`Toggle the large object preview panel`}
+                  tooltip={`切换大型物体预览面板`}
                 >
-                  Preview
+                  预览
                 </Button.Checkbox>
               </Stack.Item>
               <Stack.Item>
@@ -398,7 +398,7 @@ export function CreateObject(props: CreateObjectProps) {
             </Stack>
             <Stack.Item grow>
               <Input
-                placeholder="Search here..."
+                placeholder="在此搜索……"
                 value={query}
                 onChange={(value) => updateSearchText(value)}
                 fluid
@@ -412,11 +412,11 @@ export function CreateObject(props: CreateObjectProps) {
         <Section fill scrollable={filteredResults.length !== 0}>
           {query === '' ? (
             <NoticeBox textAlign="center" color="blue" width="100%">
-              Begin typing to search...
+              开始输入以搜索……
             </NoticeBox>
           ) : !filteredResults.length ? (
             <NoticeBox textAlign="center" color="blue" width="100%">
-              Nothing found
+              未找到结果
             </NoticeBox>
           ) : (
             <VirtualList>

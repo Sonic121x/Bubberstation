@@ -1,8 +1,8 @@
 import { CheckboxInput, type FeatureToggle } from '../base';
 
 export const buttons_locked: FeatureToggle = {
-  name: 'Lock action buttons',
+  name: '锁定动作按钮',
   category: 'GAMEPLAY',
-  description: 'When enabled, action buttons will be locked in place.',
+  description: '启用后，动作按钮的位置将被锁定。',
   component: CheckboxInput,
 };

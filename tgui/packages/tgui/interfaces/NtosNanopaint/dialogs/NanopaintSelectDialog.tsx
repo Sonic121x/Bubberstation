@@ -55,9 +55,9 @@ export const NanopaintSelectDialog = (props: NanopaintSelectDialogProps) => {
             <Stack fill height="300px">
               <Stack.Item>
                 <Tabs vertical>
-                  <Tabs.Tab selected={tab === 'drive'}>Local Drive</Tabs.Tab>
+                  <Tabs.Tab selected={tab === 'drive'}>本地驱动器</Tabs.Tab>
                   {!!diskInserted && (
-                    <Tabs.Tab selected={tab === 'disk'}>Data Disk</Tabs.Tab>
+                    <Tabs.Tab selected={tab === 'disk'}>数据磁盘</Tabs.Tab>
                   )}
                 </Tabs>
               </Stack.Item>
@@ -153,7 +153,7 @@ export const NanopaintSelectDialog = (props: NanopaintSelectDialogProps) => {
                 </Button>
               </Stack.Item>
               <Stack.Item>
-                <Button onClick={() => act('closeDialog')}>Cancel</Button>
+                <Button onClick={() => act('closeDialog')}>取消</Button>
               </Stack.Item>
             </Stack>
           </Stack.Item>

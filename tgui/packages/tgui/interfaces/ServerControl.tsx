@@ -46,7 +46,7 @@ export const ServerControl = (props) => {
       <Window width={575} height={450}>
         <Window.Content>
           <NoticeBox textAlign="center" danger>
-            Not connected to a Server. Please sync one using a multitool.
+            未连接服务器。请使用多功能工具同步一台服务器。
           </NoticeBox>
         </Window.Content>
       </Window>
@@ -57,13 +57,13 @@ export const ServerControl = (props) => {
       <Window.Content scrollable>
         {!servers ? (
           <NoticeBox mt={2} info>
-            No servers found.
+            未找到服务器。
           </NoticeBox>
         ) : (
           <Section>
             <Table textAlign="center">
               <Table.Row header>
-                <Table.Cell>Research Servers</Table.Cell>
+                <Table.Cell>研究服务器</Table.Cell>
               </Table.Row>
               {servers.map((server) => (
                 <>
@@ -77,7 +77,7 @@ export const ServerControl = (props) => {
                     mt={1}
                     tooltip={server.server_details}
                     color={server.server_disabled ? 'bad' : 'good'}
-                    content={server.server_disabled ? 'Offline' : 'Online'}
+                    content={server.server_disabled ? '离线' : '在线'}
                     fluid
                     textAlign="center"
                     onClick={() =>
@@ -94,13 +94,13 @@ export const ServerControl = (props) => {
 
         {!consoles ? (
           <NoticeBox mt={2} info>
-            No consoles found.
+            未找到控制台。
           </NoticeBox>
         ) : (
           <Section align="right">
             <Table textAlign="center">
               <Table.Row header>
-                <Table.Cell>Research Consoles</Table.Cell>
+                <Table.Cell>研究控制台</Table.Cell>
               </Table.Row>
               {consoles.map((console) => (
                 <>
@@ -111,13 +111,13 @@ export const ServerControl = (props) => {
                   />
                   <Table.Cell>
                     {' '}
-                    {console.console_name} - Location:{' '}
+                    {console.console_name} - 位置：{' '}
                     {console.console_location}{' '}
                   </Table.Cell>
                   <Button
                     mt={1}
                     color={console.console_locked ? 'bad' : 'good'}
-                    content={console.console_locked ? 'LOCKED' : 'UNLOCKED'}
+                    content={console.console_locked ? '已锁定' : '已解锁'}
                     fluid
                     textAlign="center"
                     onClick={() =>
@@ -132,19 +132,19 @@ export const ServerControl = (props) => {
           </Section>
         )}
 
-        <Collapsible title="Research History">
+        <Collapsible title="研究历史">
           {!logs.length ? (
             <NoticeBox mt={2} info>
-              No history found.
+              未找到历史记录。
             </NoticeBox>
           ) : (
             <Section>
               <Table>
                 <Table.Row header>
-                  <Table.Cell>Research Name</Table.Cell>
-                  <Table.Cell>Cost</Table.Cell>
-                  <Table.Cell>Researcher Name</Table.Cell>
-                  <Table.Cell>Console Location</Table.Cell>
+                  <Table.Cell>研究名称</Table.Cell>
+                  <Table.Cell>费用</Table.Cell>
+                  <Table.Cell>研究员姓名</Table.Cell>
+                  <Table.Cell>控制台位置</Table.Cell>
                 </Table.Row>
                 {logs.map((server_log) => (
                   <Table.Row

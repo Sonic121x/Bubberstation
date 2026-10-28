@@ -27,7 +27,7 @@ export const Savefile = (props: {
       <Flex.Item width={40}>
         <LabeledList>
           <LabeledList.Item
-            label="Currently Loaded Belly Slot"
+            label="当前加载的腹腔存档槽"
             buttons={
               <Button
                 selected={editing}
@@ -64,7 +64,7 @@ export const Savefile = (props: {
                       }}
                       disabled={data.not_our_owner}
                     >
-                      Load Slot
+                      加载存档槽
                     </Button>
                   </Stack.Item>
                   <Stack.Item>
@@ -73,7 +73,7 @@ export const Savefile = (props: {
                       icon="upload"
                       onClick={() => act('import_bellies')}
                     >
-                      Import
+                      导入
                     </Button>
                   </Stack.Item>
                 </Stack>
@@ -87,7 +87,7 @@ export const Savefile = (props: {
                       onClick={() => act('copy_to_slot')}
                       disabled={data.not_our_owner}
                     >
-                      Copy To Slot
+                      复制到存档槽
                     </Button>
                   </Stack.Item>
                   <Stack.Item>
@@ -97,7 +97,7 @@ export const Savefile = (props: {
                       onClick={() => act('export_bellies')}
                       disabled={data.not_our_owner}
                     >
-                      Export
+                      导出
                     </Button>
                   </Stack.Item>
                 </Stack>
@@ -111,7 +111,7 @@ export const Savefile = (props: {
               onClick={() => act('belly_backups')}
               disabled={data.not_our_owner}
             >
-              Download Backup
+              下载备份
             </Button>
           </Stack.Item>
           <Stack.Item>
@@ -121,7 +121,7 @@ export const Savefile = (props: {
               onClick={() => act('toggle_lookup_data')}
               disabled={data.not_our_owner}
             >
-              Associate Character Slots with Belly Layouts
+              将角色存档槽与腹腔配置关联
             </Button>
           </Stack.Item>
         </Stack>
@@ -135,7 +135,7 @@ export const SlotLookupTable = (props) => {
   const { character_slots, vore_slots, lookup_table } = data;
 
   if (!character_slots || !vore_slots || !lookup_table) {
-    return <Box>CRITICAL ERROR</Box>;
+    return <Box>严重错误</Box>;
   }
 
   const pickable_vore_slots = Object.keys(vore_slots).map(
@@ -147,7 +147,7 @@ export const SlotLookupTable = (props) => {
   const pickable_character_slots = character_slots
     .map((key, index) => {
       return {
-        displayText: key || `New Slot (${index + 1})`,
+        displayText: key || `新存档槽（${index + 1}）`,
         value: index + 1,
       };
     })
@@ -159,16 +159,16 @@ export const SlotLookupTable = (props) => {
 
   return (
     <Section
-      title="Character-Layout Associations"
+      title="角色与腹腔配置关联"
       buttons={
         <>
           <Button
             color="green"
             tooltip={
               <Box italic mb={1}>
-                To associate a belly slot with a character, click New, then pick
-                the character you want, and the belly slot you want that
-                character to automatically load.
+                要将腹腔存档槽与角色关联，请点击“新增”，
+                然后选择角色，以及希望该角色
+                自动加载的腹腔存档槽。
               </Box>
             }
           >
@@ -185,10 +185,10 @@ export const SlotLookupTable = (props) => {
       <Table>
         <Table.Row header>
           <Table.Cell width={15} header collapsing>
-            Character Name
+            角色姓名
           </Table.Cell>
           <Table.Cell width={15} header collapsing>
-            Belly Slot
+            腹腔存档槽
           </Table.Cell>
           <Table.Cell header collapsing />
           <Table.Cell header />
@@ -197,7 +197,7 @@ export const SlotLookupTable = (props) => {
           Object.entries(lookup_table).map(([k, v]) => (
             <Table.Row key={k}>
               <Table.Cell width={15} collapsing verticalAlign="middle">
-                {character_slots[parseInt(k, 10) - 1] || `New Slot (${k})`}
+                {character_slots[parseInt(k, 10) - 1] || `新存档槽（${k}）`}
               </Table.Cell>
               <Table.Cell width={15} collapsing verticalAlign="middle">
                 {editingRow === k ? (
@@ -207,7 +207,7 @@ export const SlotLookupTable = (props) => {
                     displayText={
                       <Box>
                         {pickable_vore_slots.find((x) => x.value === vSlot)
-                          ?.displayText || 'None'}
+                          ?.displayText || '无'}
                       </Box>
                     }
                     onSelected={(value) => setVSlot(value)}
@@ -230,7 +230,7 @@ export const SlotLookupTable = (props) => {
                   }}
                   color={k === editingRow ? 'bad' : ''}
                 >
-                  {k === editingRow ? 'Cancel' : 'Edit'}
+                  {k === editingRow ? '取消' : '编辑'}
                 </Button>
               </Table.Cell>
               <Table.Cell collapsing verticalAlign="middle">
@@ -248,7 +248,7 @@ export const SlotLookupTable = (props) => {
                       });
                     }}
                   >
-                    Save
+                    保存
                   </Button>
                 ) : (
                   <Button.Confirm
@@ -259,7 +259,7 @@ export const SlotLookupTable = (props) => {
                       act('delete_lookup_table_entry', { slot_to_delete: k })
                     }
                   >
-                    Delete
+                    删除
                   </Button.Confirm>
                 )}
               </Table.Cell>
@@ -275,7 +275,7 @@ export const SlotLookupTable = (props) => {
                 displayText={
                   <Box>
                     {pickable_character_slots.find((x) => x.value === cSlot)
-                      ?.displayText || 'None'}
+                      ?.displayText || '无'}
                   </Box>
                 }
                 onSelected={(value) => setCSlot(value)}
@@ -288,7 +288,7 @@ export const SlotLookupTable = (props) => {
                 displayText={
                   <Box>
                     {pickable_vore_slots.find((x) => x.value === vSlot)
-                      ?.displayText || 'None'}
+                      ?.displayText || '无'}
                   </Box>
                 }
                 onSelected={(value) => setVSlot(value)}
@@ -305,7 +305,7 @@ export const SlotLookupTable = (props) => {
                   setEditingRow(null);
                 }}
               >
-                Add
+                添加
               </Button>
             </Table.Cell>
             <Table.Cell collapsing verticalAlign="middle">
@@ -317,7 +317,7 @@ export const SlotLookupTable = (props) => {
                   setEditingRow(null);
                 }}
               >
-                Cancel
+                取消
               </Button>
             </Table.Cell>
             <Table.Cell />
@@ -338,7 +338,7 @@ export const SlotLookupTable = (props) => {
         mt={1}
         icon="plus"
       >
-        New
+        新增
       </Button>
     </Section>
   );

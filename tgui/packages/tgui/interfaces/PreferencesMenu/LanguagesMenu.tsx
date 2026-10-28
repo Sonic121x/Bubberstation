@@ -1,5 +1,5 @@
 import { Box, Button, Section, Stack, Tooltip } from 'tgui-core/components';
-
+import { languageDisplay } from '../../localization/zhCharacterDisplay';
 import { useBackend } from '../../backend';
 import type { PreferencesMenuData } from './types';
 
@@ -12,22 +12,22 @@ export const KnownLanguage = (props) => {
           <Tooltip
             content={
               <>
-                <div>Spoken? {props.language.can_speak ? 'Yes' : 'No'}</div>
+                <div>能够说话：{props.language.can_speak ? '是' : '否'}</div>
                 <div>
-                  Understood? {props.language.can_understand ? 'Yes' : 'No'}
+                  能够理解：{props.language.can_understand ? '是' : '否'}
                 </div>
               </>
             }
           >
             <Box as="span">
-              {props.language.name}{' '}
+              {languageDisplay(props.language.name)}{' '}
               <Button
                 color="bad"
                 onClick={() =>
                   act('remove_language', { language_name: props.language.name })
                 }
               >
-                Forget{' '}
+                遗忘{' '}
                 <Box className={`languages16x16 ${props.language.icon}`} />
               </Button>
             </Box>
@@ -43,15 +43,15 @@ export const KnownLanguage = (props) => {
 export const UnknownLanguage = ({ language, isAtLimit, remaining }) => {
   const { act } = useBackend<PreferencesMenuData>();
   const tooltipContent = isAtLimit
-    ? "You've reached the maximum number of languages."
-    : `You have ${remaining} language${remaining === 1 ? '' : 's'} remaining.`;
+    ? '你已达到可掌握语言的数量上限。'
+    : `你还可学习 ${remaining} 种语言。`;
 
   return (
     <Stack.Item>
       <Section
         title={
           <>
-            {language.name}{' '}
+            {languageDisplay(language.name)}{' '}
             <Tooltip content={tooltipContent}>
               <Button
                 color="good"
@@ -61,7 +61,7 @@ export const UnknownLanguage = ({ language, isAtLimit, remaining }) => {
                   act('give_language', { language_name: language.name })
                 }
               >
-                Learn <Box className={`languages16x16 ${language.icon}`} />
+                学习 <Box className={`languages16x16 ${language.icon}`} />
               </Button>
             </Tooltip>
           </>
@@ -109,16 +109,16 @@ export const LanguagesPage = (props) => {
         <Stack>
           <Stack.Item minWidth="50%" style={{ marginRight: '2px' }}>
             <Box fontWeight="bold">
-              Available Languages ({remaining} remaining)
+              可选语言（还可学习 {remaining} 种）
             </Box>
           </Stack.Item>
           <Stack.Item minWidth="50%">
             <Box fontWeight="bold">
-              Known Languages ({currentCount} of {maxAllowed})
+              已掌握语言（{currentCount}／{maxAllowed}）
             </Box>
             {isAtLimit && (
               <Box color="bad" mt={1}>
-                You have reached the maximum number of languages.
+                你已达到可掌握语言的数量上限。
               </Box>
             )}
           </Stack.Item>

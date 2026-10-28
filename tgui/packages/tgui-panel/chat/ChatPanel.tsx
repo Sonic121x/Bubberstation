@@ -68,7 +68,7 @@ export function ChatPanel(props: Props) {
           icon="arrow-down"
           onClick={() => chatRenderer.scrollToBottom()}
         >
-          Scroll to bottom
+          滚动到底部
         </Button>
       )}
     </>

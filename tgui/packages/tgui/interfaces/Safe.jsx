@@ -49,7 +49,7 @@ const Dialer = (properties) => {
       <Button
         disabled={open || (right && !locked) || broken}
         icon={`arrow-${right ? 'right' : 'left'}`}
-        content={`${right ? 'Right' : 'Left'} ${amount}`}
+        content={`${right ? '右转' : '左转'} ${amount}`}
         iconPosition={right ? 'right' : 'left'}
         onClick={() =>
           act(!right ? 'turnright' : 'turnleft', {
@@ -64,7 +64,7 @@ const Dialer = (properties) => {
       <Button
         disabled={locked && !broken}
         icon={open ? 'lock' : 'lock-open'}
-        content={open ? 'Close' : 'Open'}
+        content={open ? '关闭' : '打开'}
         mb="0.5rem"
         onClick={() => act('open')}
       />
@@ -114,20 +114,20 @@ const Help = (properties) => {
   return (
     <Section
       className="Safe__help"
-      title="Safe opening instructions (because you all keep forgetting)"
+      title="保险箱开启指南（因为你们总是忘记）"
     >
       <Box>
-        1. Turn the dial left to the first number.
+        1. 向左转动拨盘至第一个数字。
         <br />
-        2. Turn the dial right to the second number.
+        2. 向右转动拨盘至第二个数字。
         <br />
-        3. Continue repeating this process for each number, switching between
-        left and right each time.
+        3. 对后续每个数字重复此过程，
+        每次交替向左或向右转动。
         <br />
-        4. Open the safe.
+        4. 打开保险箱。
       </Box>
       <Box bold>
-        To lock fully, turn the dial to the left after closing the safe.
+        关闭保险箱后，将拨盘向左转动才能完全上锁。
       </Box>
     </Section>
   );

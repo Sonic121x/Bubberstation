@@ -21,11 +21,11 @@ type Data = {
 };
 
 const paperNameOptions = [
-  'Nanotrasen Official Report',
-  'Syndicate Report',
+  '纳米传讯官方报告',
+  '辛迪加报告',
 ] as const;
 
-const fromWhoOptions = ['Nanotrasen', 'Syndicate'] as const;
+const fromWhoOptions = ['纳米传讯', '辛迪加'] as const;
 
 export function AdminFax(props) {
   const { act, data } = useBackend<Data>();
@@ -46,10 +46,10 @@ export function AdminFax(props) {
   }
 
   return (
-    <Window title="Admin Fax Panel" width={400} height={675} theme="admin">
+    <Window title="管理员传真面板" width={400} height={675} theme="admin">
       <Window.Content scrollable>
         <Section
-          title="Fax Menu"
+          title="传真菜单"
           buttons={
             <Button
               icon="arrow-up"
@@ -60,12 +60,12 @@ export function AdminFax(props) {
                 })
               }
             >
-              Follow
+              跟随
             </Button>
           }
         >
           <Dropdown
-            placeholder="Choose fax machine..."
+            placeholder="选择传真机……"
             fluid
             selected={fax}
             options={faxes.map((value) => ({ value, displayText: skyratFaxDisplay(value) }))}
@@ -73,7 +73,7 @@ export function AdminFax(props) {
           />
         </Section>
         <Section
-          title="Paper"
+          title="纸张"
           buttons={
             <Button
               icon="eye"
@@ -84,14 +84,14 @@ export function AdminFax(props) {
                 })
               }
             >
-              Preview
+              预览
             </Button>
           }
         >
           <Stack fill vertical>
             <Stack.Item>
               <Input
-                placeholder="Paper name..."
+                placeholder="纸张名称……"
                 value={paperName}
                 fluid
                 onChange={setPaperName}
@@ -101,13 +101,13 @@ export function AdminFax(props) {
               <SourceButtons
                 stateSetter={setPaperName}
                 options={paperNameOptions}
-                tooltip="What is written on the top of the fax paper?"
+                tooltip="传真纸顶部的标题。"
               />
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item>
               <Input
-                placeholder="From who..."
+                placeholder="发件人……"
                 value={fromWho}
                 fluid
                 onChange={setFromWho}
@@ -117,13 +117,13 @@ export function AdminFax(props) {
               <SourceButtons
                 stateSetter={setFromWho}
                 options={fromWhoOptions}
-                tooltip="What was written in fax log?"
+                tooltip="传真日志中记录的发件人。"
               />
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item>
               <TextArea
-                placeholder="Your message here..."
+                placeholder="在此输入内容……"
                 height="200px"
                 fluid
                 value={rawText}
@@ -134,8 +134,8 @@ export function AdminFax(props) {
             <Stack.Item>
               <Dropdown
                 fluid
-                options={stamps}
-                selected="Choose stamp(optional)"
+                options={stamps.map((value) => ({ value, displayText: value === 'None' ? '无' : value }))}
+                selected="选择印章（可选）"
                 onSelected={(value) => {
                   if (value === 'None') {
                     setStamp('');
@@ -150,7 +150,7 @@ export function AdminFax(props) {
               {stamp && (
                 <>
                   <h4>
-                    X Coordinate:{' '}
+                    X 坐标：{' '}
                     <NumberInput
                       step={1}
                       width="45px"
@@ -162,7 +162,7 @@ export function AdminFax(props) {
                   </h4>
 
                   <h4>
-                    Y Coordinate:{' '}
+                    Y 坐标：{' '}
                     <NumberInput
                       step={1}
                       width="45px"
@@ -174,7 +174,7 @@ export function AdminFax(props) {
                   </h4>
 
                   <Box textAlign="center">
-                    <h4>Rotation Angle</h4>
+                    <h4>旋转角度</h4>
                     <Knob
                       size={1.5}
                       value={stampAngle}
@@ -189,7 +189,7 @@ export function AdminFax(props) {
             </Stack.Item>
           </Stack>
         </Section>
-        <Section title="Actions">
+        <Section title="操作">
           <Button
             disabled={!saved || !fax}
             icon="paper-plane"
@@ -199,7 +199,7 @@ export function AdminFax(props) {
               })
             }
           >
-            Send
+            发送
           </Button>
           <Button
             icon="floppy-disk"
@@ -218,7 +218,7 @@ export function AdminFax(props) {
               });
             }}
           >
-            Save
+            保存
           </Button>
           <Button
             disabled={!saved}
@@ -229,7 +229,7 @@ export function AdminFax(props) {
               })
             }
           >
-            Create paper
+            生成纸张
           </Button>
         </Section>
       </Window.Content>
@@ -251,12 +251,12 @@ function SourceButtons(props: SourceButtonsProps) {
       <Stack fill>
         <Stack.Item grow>
           <Button fluid icon="n" onClick={() => stateSetter(options[0])}>
-            Nanotrasen
+            纳米传讯
           </Button>
         </Stack.Item>
         <Stack.Item grow>
           <Button fluid icon="s" onClick={() => stateSetter(options[1])}>
-            Syndicate
+            辛迪加
           </Button>
         </Stack.Item>
       </Stack>

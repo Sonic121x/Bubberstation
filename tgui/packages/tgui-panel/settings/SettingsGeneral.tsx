@@ -10,7 +10,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
-import { capitalize } from 'tgui-core/string';
+import { zhPanelDisplay } from './zhPanelDisplay';
 import { chatRenderer } from '../chat/renderer';
 import { FONTS, THEMES } from './constants';
 import { resetPaneSplitters, setEditPaneSplitters } from './scaling';
@@ -26,7 +26,7 @@ export function SettingsGeneral(props) {
   return (
     <Section>
       <LabeledList>
-        <LabeledList.Item label="Theme">
+        <LabeledList.Item label="主题">
           {THEMES.map((THEME) => (
             <Button
               key={THEME}
@@ -38,11 +38,11 @@ export function SettingsGeneral(props) {
                 })
               }
             >
-              {capitalize(THEME)}
+              {zhPanelDisplay(THEME)}
             </Button>
           ))}
         </LabeledList.Item>
-        <LabeledList.Item label="UI sizes">
+        <LabeledList.Item label="界面大小">
           <Stack>
             <Stack.Item>
               <Button
@@ -55,21 +55,21 @@ export function SettingsGeneral(props) {
                 color={editingPanes ? 'red' : undefined}
                 icon={editingPanes ? 'save' : undefined}
               >
-                {editingPanes ? 'Save' : 'Adjust UI Sizes'}
+                {editingPanes ? '保存' : '调整界面大小'}
               </Button>
             </Stack.Item>
             <Stack.Item>
               <Button onClick={resetPaneSplitters} icon="refresh" color="red">
-                Reset
+                重置
               </Button>
             </Stack.Item>
           </Stack>
         </LabeledList.Item>
-        <LabeledList.Item label="Font style">
+        <LabeledList.Item label="字体">
           <Stack.Item>
             {!freeFont ? (
               <Collapsible
-                title={settings.fontFamily}
+                title={zhPanelDisplay(settings.fontFamily)}
                 width="100%"
                 buttons={
                   <Button
@@ -79,7 +79,7 @@ export function SettingsGeneral(props) {
                       setFreeFont(!freeFont);
                     }}
                   >
-                    Custom font
+                    自定义字体
                   </Button>
                 }
               >
@@ -95,7 +95,7 @@ export function SettingsGeneral(props) {
                       })
                     }
                   >
-                    {FONT}
+                    {zhPanelDisplay(FONT)}
                   </Button>
                 ))}
               </Collapsible>
@@ -118,13 +118,13 @@ export function SettingsGeneral(props) {
                     setFreeFont(!freeFont);
                   }}
                 >
-                  Custom font
+                  自定义字体
                 </Button>
               </Stack>
             )}
           </Stack.Item>
         </LabeledList.Item>
-        <LabeledList.Item label="Font size" verticalAlign="middle">
+        <LabeledList.Item label="字号" verticalAlign="middle">
           <Stack textAlign="center">
             <Stack.Item grow>
               <Slider
@@ -141,7 +141,7 @@ export function SettingsGeneral(props) {
             </Stack.Item>
           </Stack>
         </LabeledList.Item>
-        <LabeledList.Item label="Line height">
+        <LabeledList.Item label="行高">
           <Slider
             width="100%"
             step={0.01}
@@ -162,38 +162,38 @@ export function SettingsGeneral(props) {
         <Stack.Item mt={0.15}>
           <Button
             icon="compact-disc"
-            tooltip="Export chat settings"
+            tooltip="导出聊天设置"
             onClick={exportChatSettings}
           >
-            Export settings
+            导出设置
           </Button>
         </Stack.Item>
         <Stack.Item mt={0.15}>
           <Button.File
             accept=".json"
-            tooltip="Import chat settings"
+            tooltip="导入聊天设置"
             icon="arrow-up-from-bracket"
             onSelectFiles={importChatSettings}
           >
-            Import settings
+            导入设置
           </Button.File>
         </Stack.Item>
         <Stack.Item grow mt={0.15}>
           <Button
             icon="save"
-            tooltip="Export current tab history into HTML file"
+            tooltip="将当前标签页的历史消息导出为 HTML 文件"
             onClick={() => chatRenderer.saveToDisk()}
           >
-            Save chat log
+            保存聊天日志
           </Button>
         </Stack.Item>
         <Stack.Item mt={0.15}>
           <Button.Confirm
             icon="trash"
-            tooltip="Erase current tab history"
+            tooltip="删除当前标签页的历史消息"
             onClick={() => chatRenderer.clearChat()}
           >
-            Clear chat
+            清空聊天
           </Button.Confirm>
         </Stack.Item>
       </Stack>

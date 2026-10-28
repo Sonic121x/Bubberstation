@@ -8,7 +8,7 @@ export const Preferences = (props) => {
   const { preferences } = data;
 
   return (
-    <Section title="Vore Preferences">
+    <Section title="吞食偏好">
       <Flex wrap>
         {Object.entries(preferences).map(([key, value]) => {
           const data = PREF_TYPE_MAP[key];
@@ -21,7 +21,7 @@ export const Preferences = (props) => {
           } else {
             return (
               <Flex.Item key={key} basis="33%">
-                Unknown pref: {key}
+                未知偏好：{key}
               </Flex.Item>
             );
           }
@@ -49,13 +49,13 @@ export const PrefTrinary = (props: {
       selected={value === 2}
       tooltip={
         value === 2
-          ? 'You will automatically accept vore of this type'
+          ? '你将自动接受此类吞食互动'
           : value === 1
-            ? 'You will always be prompted whether you are okay with vore of this type'
-            : 'You will automatically reject vore of this type'
+            ? '每次发生此类吞食互动时，都会询问你是否同意'
+            : '你将自动拒绝此类吞食互动'
       }
     >
-      {name} - {value === 2 ? 'Always' : value === 1 ? 'Prompt' : 'Never'}
+      {name} - {value === 2 ? '总是' : value === 1 ? '询问' : '从不'}
     </Button>
   );
 };
@@ -75,25 +75,25 @@ export const PrefBinary = (props: {
       textAlign="center"
       tooltipPosition="bottom"
       onClick={() => act('set_pref', { key, value: !value })}
-      tooltip={value ? 'Enabled' : 'Disabled'}
+      tooltip={value ? '已启用' : '已禁用'}
       selected={value}
     >
-      {name} - {value ? 'Enabled' : 'Disabled'}
+      {name} - {value ? '已启用' : '已禁用'}
     </Button>
   );
 };
 
 export const PREF_TYPE_MAP = {
-  prey_toggle: { component: PrefTrinary, name: 'Prey Toggle' },
-  pred_toggle: { component: PrefTrinary, name: 'Pred Toggle' },
-  eating_noises: { component: PrefBinary, name: 'Eating Noises' },
-  digestion_noises: { component: PrefBinary, name: 'Digestion Noises' },
-  belch_noises: { component: PrefBinary, name: 'Belch Noises' },
-  digestion_allowed: { component: PrefBinary, name: 'Take Digestion Damage' },
-  qdel_allowed: { component: PrefBinary, name: 'Deleted After Digestion' },
-  absorb_allowed: { component: PrefBinary, name: 'Absorption Allowed' },
+  prey_toggle: { component: PrefTrinary, name: '作为猎物' },
+  pred_toggle: { component: PrefTrinary, name: '作为捕食者' },
+  eating_noises: { component: PrefBinary, name: '进食音效' },
+  digestion_noises: { component: PrefBinary, name: '消化音效' },
+  belch_noises: { component: PrefBinary, name: '打嗝音效' },
+  digestion_allowed: { component: PrefBinary, name: '承受消化伤害' },
+  qdel_allowed: { component: PrefBinary, name: '消化后删除身体' },
+  absorb_allowed: { component: PrefBinary, name: '允许吸收' },
   fullscreen_overlays_allowed: {
     component: PrefBinary,
-    name: 'Fullscreen Overlays',
+    name: '全屏叠加效果',
   },
 };

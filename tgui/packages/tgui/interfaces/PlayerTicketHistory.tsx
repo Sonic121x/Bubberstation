@@ -11,7 +11,7 @@ import {
 } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import { Window } from '../layouts'; import { ticketActionDisplay, ticketMessageDisplay } from '../localization/zhTicketHistoryDisplay';
 
 type Data = {
   db_connected: boolean;
@@ -51,9 +51,9 @@ export const PlayerTicketHistory = (props: any) => {
 
   if (!data.db_connected) {
     return (
-      <Window title="Player Ticket History" width={300} height={300}>
+      <Window title="玩家工单历史" width={300} height={300}>
         <Window.Content>
-          <NoticeBox>The database is not connected.</NoticeBox>
+          <NoticeBox>数据库未连接。</NoticeBox>
         </Window.Content>
       </Window>
     );
@@ -63,7 +63,7 @@ export const PlayerTicketHistory = (props: any) => {
     <Window
       width={300}
       height={300}
-      title={`Player Ticket History${
+      title={`玩家工单历史${
         data.target_ckey ? ` - ${data.target_ckey}` : ''
       }`}
     >
@@ -74,14 +74,14 @@ export const PlayerTicketHistory = (props: any) => {
             selected={page === Pages.Cache}
             onClick={() => setPage(Pages.Cache)}
           >
-            Cache
+            缓存
           </Tabs.Tab>
           <Tabs.Tab
             key={Pages.TicketHistory}
             selected={page === Pages.TicketHistory}
             onClick={() => setPage(Pages.TicketHistory)}
           >
-            Ticket History
+            工单历史
           </Tabs.Tab>
         </Tabs>
         {page === Pages.TicketHistory && <TicketHistory />}
@@ -104,7 +104,7 @@ const TicketHistory = (props: any) => {
   if (data.ticket_cache === undefined) {
     return (
       <Section>
-        <NoticeBox>No player selected.</NoticeBox>
+        <NoticeBox>未选择玩家。</NoticeBox>
       </Section>
     );
   }
@@ -121,7 +121,7 @@ const TicketHistory = (props: any) => {
 
   return (
     <Section>
-      Tickets in order of most recent to oldest:
+      工单按时间从新到旧排列：
       <hr />
       <Section scrollableHorizontal>
         <Stack>
@@ -146,7 +146,7 @@ const TicketHistory = (props: any) => {
       </Section>
       <hr />
       {activeTicket === undefined ? (
-        <NoticeBox>No ticket selected.</NoticeBox>
+        <NoticeBox>未选择工单。</NoticeBox>
       ) : (
         <TicketView ticket={activeTicket} />
       )}
@@ -167,7 +167,7 @@ const Cache = (props: CacheProps) => {
   return (
     <Section>
       <div>
-        Query and cache:&nbsp;
+        查询并缓存：&nbsp;
         <Input
           value={props.cacheInput}
           onBlur={(value) => props.setCacheInput(value.toLowerCase())}
@@ -233,11 +233,11 @@ const TicketView = (props: TicketViewProps) => {
         <Collapsible
           open={forceExpand}
           key={`${props.ticket.round_id}-${props.ticket.ticket_number}-${index}`}
-          title={`${log.action} - ${log.origin_ckey}${
+          title={`${ticketActionDisplay(log.action)} - ${log.origin_ckey}${
             log.target_ckey ? ` -> ${log.target_ckey}` : ''
           }`}
         >
-          {log.message}
+          {ticketMessageDisplay(log.action, log.message)}
         </Collapsible>
       ))}
     </Section>

@@ -11,7 +11,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-
+import { virtualPetDisplay, virtualPetOptions } from '../localization/zhVirtualPetDisplay';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { IconDisplay } from './LootPanel/IconDisplay';
@@ -123,7 +123,7 @@ export const PetBuilder = (props) => {
   };
 
   return (
-    <Window title="Create Your Pet!" width={665} height={325}>
+    <Window title="创建你的宠物！" width={665} height={325}>
       <Window.Content>
         <Flex width="50%">
           <Flex.Item>
@@ -166,7 +166,7 @@ export const PetBuilder = (props) => {
                       <Flex.Item>
                         <Icon name="paw" />
                       </Flex.Item>
-                      <Flex.Item ml={1}>Finalize Pet!</Flex.Item>
+                      <Flex.Item ml={1}>确认宠物！</Flex.Item>
                       <Flex.Item>
                         <Icon ml={1} name="paw" />
                       </Flex.Item>
@@ -297,7 +297,7 @@ const PetDetails = ({
     <Flex style={{ borderBottom: '1px solid gray' }}>
       <Flex.Item>
         <Stack vertical>
-          <Stack.Item style={{ fontSize: '16px' }}>Pet Name</Stack.Item>
+          <Stack.Item style={{ fontSize: '16px' }}>宠物名称</Stack.Item>
           <Stack.Item>
             <Input
               mb={2}
@@ -323,7 +323,7 @@ const PetDetails = ({
     </Flex>
     <Stack.Item>
       <Stack vertical>
-        <Stack.Item style={{ fontSize: '16px' }}>Pet Gender</Stack.Item>
+        <Stack.Item style={{ fontSize: '16px' }}>宠物性别</Stack.Item>
         <Stack.Item>
           <Stack mt={0.5} style={{ borderBottom: '1px solid gray' }}>
             <Stack.Item grow ml={2} mb={2}>
@@ -366,10 +366,10 @@ const TrickSequence = ({
     mt={1}
     width="80%"
     style={{ borderBottom: '0px solid #6f1d94' }}
-    title={TrickName}
+    title={TrickName === 'Trick' ? '招式' : TrickName}
     buttons={
       <Button.Input
-        buttonText="Rename"
+        buttonText="重命名"
         color="transparent"
         onCommit={setTrickName}
         value={TrickName}
@@ -379,11 +379,11 @@ const TrickSequence = ({
     <Box ml={2}>
       <LabeledList>
         {sequences.map((sequence: string, index: number) => (
-          <LabeledList.Item key={index} label={`Move ${index + 1}`}>
+          <LabeledList.Item key={index} label={`动作 ${index + 1}`}>
             <Dropdown
               width="80%"
-              selected={sequences[index]}
-              options={pet_possible_emotes}
+              selected={sequences[index]} displayText={virtualPetDisplay(sequences[index])}
+              options={virtualPetOptions(pet_possible_emotes)}
               onSelected={(selected: string) => UpdateSequence(index, selected)}
             />
           </LabeledList.Item>

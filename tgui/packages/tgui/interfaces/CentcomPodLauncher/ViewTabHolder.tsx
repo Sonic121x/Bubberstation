@@ -27,7 +27,7 @@ export function ViewTabHolder(props) {
                 act('tabSwitch', { tabIndex: 2 });
               }}
               selected={tab === 2}
-              tooltip="View Dropoff Location"
+              tooltip="查看卸货地点"
             />
           )}
           <Button
@@ -39,7 +39,7 @@ export function ViewTabHolder(props) {
               act('tabSwitch', { tabIndex: 0 });
             }}
             selected={tab === 0}
-            tooltip="View Pod"
+            tooltip="查看空投舱"
           />
           <Button
             color="transparent"
@@ -50,7 +50,7 @@ export function ViewTabHolder(props) {
               act('tabSwitch', { tabIndex: 1 });
             }}
             selected={tab === 1}
-            tooltip="View Source Bay"
+            tooltip="查看来源装载区"
           />
           <span style={POD_GREY}>|</span>
           <Button
@@ -61,12 +61,12 @@ export function ViewTabHolder(props) {
               setTab(tab);
               act('refreshView');
             }}
-            tooltip="Refresh view window in case it breaks"
+            tooltip="视图出现异常时点击刷新"
           />
         </>
       }
       fill
-      title="View"
+      title="视图"
     >
       <Stack fill vertical>
         <Stack.Item>

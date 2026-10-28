@@ -12,7 +12,7 @@ export function PlayersPage({ serverState, onNavigate, onAction }: Props) {
       <BackButton onClick={() => onNavigate('home')} />
       <div className="escape-menu__player-list">
         {serverState.admins.length > 0 ? (
-          <PlayerSection title="Admins">
+          <PlayerSection title="管理员">
             {serverState.admins.map((admin) => (
               <PlayerEntry
                 key={admin.ckey}
@@ -25,10 +25,10 @@ export function PlayersPage({ serverState, onNavigate, onAction }: Props) {
           </PlayerSection>
         ) : (
           <div className="escape-menu__player-section-title">
-            No Admins Online!
+            没有管理员在线！
           </div>
         )}
-        <PlayerSection title="Players">
+        <PlayerSection title="玩家">
           {serverState.players.map((player) => (
             <PlayerEntry
               key={player.ckey}
@@ -40,7 +40,7 @@ export function PlayersPage({ serverState, onNavigate, onAction }: Props) {
           ))}
         </PlayerSection>
         {serverState.ignoredOffline.length > 0 && (
-          <PlayerSection title="Ignored (Offline)">
+          <PlayerSection title="已屏蔽（离线）">
             {serverState.ignoredOffline.map((ckey) => (
               <div
                 key={ckey}
@@ -68,7 +68,7 @@ function BackButton({ onClick }: { onClick: () => void }) {
         <span className="escape-menu-icons40x40 template" />
         <span className="escape-menu-icons40x40 back escape-menu__icon-overlay" />
       </div>
-      <span>Back</span>
+      <span>返回</span>
     </button>
   );
 }

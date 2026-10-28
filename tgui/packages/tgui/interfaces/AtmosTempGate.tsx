@@ -25,15 +25,15 @@ export const AtmosTempGate = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Power">
+            <LabeledList.Item label="电源">
               <Button
                 icon={on ? 'power-off' : 'times'}
-                content={on ? 'On' : 'Off'}
+                content={on ? '开启' : '关闭'}
                 selected={on}
                 onClick={() => act('power')}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Heat settings">
+            <LabeledList.Item label="温度设置">
               <NumberInput
                 animated
                 value={temperature}
@@ -51,7 +51,7 @@ export const AtmosTempGate = (props) => {
               <Button
                 ml={1}
                 icon="plus"
-                content="Max"
+                content="最大"
                 disabled={temperature === max_temperature}
                 onClick={() =>
                   act('temperature', {

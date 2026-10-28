@@ -3,7 +3,7 @@ import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { machineStatusDisplay } from '../localization/machineStatusDisplay';
 type Data = {
   area_notice: string;
   area_name: string;
@@ -55,7 +55,7 @@ const WireList = () => {
   return (
     <Section>
       <Button fluid icon="chevron-left" onClick={() => act('exit_legend')}>
-        Back
+        返回
       </Button>
       <Stack fill wrap g={0.5} mt={1}>
         {wire_devices.map((wire) => (
@@ -85,12 +85,12 @@ const WireArea = () => {
   return (
     <Section>
       <Button fluid icon="chevron-left" onClick={() => act('view_legend')}>
-        Back
+        返回
       </Button>
-      <Box bold>{wires_name} wires:</Box>
+      <Box bold>{wires_name}的电线：</Box>
       {wire_data.map((wire) => (
         <Box ml={1} m={1} key={wire.message}>
-          <span style={{ color: wire.color }}>{wire.color}</span>:{' '}
+          <span style={{ color: wire.color }}>{machineStatusDisplay(wire.color)}</span>：{' '}
           {wire.message}
         </Box>
       ))}
@@ -116,7 +116,7 @@ const MainMenu = () => {
   };
 
   return (
-    <Section title={`${station_name} blueprints`}>
+    <Section title={`${station_name}蓝图`}>
       <Box italic fontSize={0.9}>
         {fluff_notice}
       </Box>
@@ -131,12 +131,12 @@ const MainMenu = () => {
             icon="pencil"
             onClick={() => act('create_area')}
           >
-            Create or modify an existing area
+            创建或修改现有区域
           </Button>
         </Stack.Item>
         <Stack.Item>
           <Button {...buttonProps} icon="font" onClick={() => act('edit_area')}>
-            Change area name
+            更改区域名称
           </Button>
         </Stack.Item>
         <Stack.Item>
@@ -146,7 +146,7 @@ const MainMenu = () => {
             iconPosition="right"
             onClick={() => act('toggle_allow_shuttle_docking')}
           >
-            Allow shuttle docking
+            允许穿梭机停靠
           </Button>
         </Stack.Item>
         <Stack.Item>
@@ -155,7 +155,7 @@ const MainMenu = () => {
             icon="chevron-right"
             onClick={() => act('view_legend')}
           >
-            View wire color legend
+            查看电线颜色图例
           </Button>
         </Stack.Item>
         <Stack.Item>
@@ -169,7 +169,7 @@ const MainMenu = () => {
                   act(viewing ? 'hide_blueprints' : 'view_blueprints')
                 }
               >
-                {viewing ? 'Hide' : 'View'} structural data
+                {viewing ? '隐藏' : '查看'}结构数据
               </Button>
             </Stack.Item>
             {!!viewing && (
@@ -178,7 +178,7 @@ const MainMenu = () => {
                   {...buttonProps}
                   p={0.75}
                   icon="refresh"
-                  tooltip="Refresh structural data"
+                  tooltip="刷新结构数据"
                   onClick={() => act('refresh')}
                 />
               </Stack.Item>

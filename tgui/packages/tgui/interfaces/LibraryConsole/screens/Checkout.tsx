@@ -30,7 +30,7 @@ export function Checkout(props) {
         <Stack vertical height="100%">
           <Stack.Item grow>
             <ScrollableSection
-              header="Checked Out Books"
+              header="已借出书籍"
               contents={<CheckoutEntries />}
             />
           </Stack.Item>
@@ -55,7 +55,7 @@ export function Checkout(props) {
           fontSize="20px"
           onClick={() => setCheckoutBook(true)}
         >
-          Check-Out Book
+          借出书籍
         </Button>
       </Stack.Item>
       {!!checkoutBook && <CheckoutModal />}
@@ -78,21 +78,21 @@ function CheckoutModal(props) {
   const { checkoutBookState } = useLibraryContext();
   const [checkoutBook, setCheckoutBook] = checkoutBookState;
 
-  const [checkoutee, setCheckoutee] = useState('Recipient');
+  const [checkoutee, setCheckoutee] = useState('借阅人');
   const [checkoutPeriod, setCheckoutPeriod] = useState(5);
 
   return (
     <Modal width="500px" py={4}>
       <Stack fill vertical>
         <Stack.Item fontSize="20px">
-          Are you sure you want to loan out this book?
+          确定要借出这本书吗？
         </Stack.Item>
         <Stack.Item>
           <Dropdown
             over
             width="100%"
             selected={checkout_title}
-            placeholder="Insert Book name..."
+            placeholder="输入书名……"
             displayText={checkout_title}
             options={inventory.map((book) => book.title)}
             onSelected={(e) => {
@@ -104,17 +104,17 @@ function CheckoutModal(props) {
         </Stack.Item>
         <Stack.Item>
           <LabeledList>
-            <LabeledList.Item label="Loan To">
+            <LabeledList.Item label="借阅人">
               <Input
                 width="160px"
                 value={checkoutee}
                 onChange={setCheckoutee}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Loan Period">
+            <LabeledList.Item label="借阅期限">
               <NumberInput
                 value={checkoutPeriod}
-                unit=" Minutes"
+                unit=" 分钟"
                 minValue={1}
                 maxValue={120}
                 step={1}
@@ -140,7 +140,7 @@ function CheckoutModal(props) {
                 }}
                 lineHeight={2}
               >
-                Loan Out
+                借出
               </Button>
             </Stack.Item>
             <Stack.Item>
@@ -151,7 +151,7 @@ function CheckoutModal(props) {
                 onClick={() => setCheckoutBook(false)}
                 lineHeight={2}
               >
-                Return
+                返回
               </Button>
             </Stack.Item>
           </Stack>
@@ -168,16 +168,16 @@ export function CheckoutEntries(props) {
   return (
     <Table>
       <Table.Row header className="candystripe">
-        <Table.Cell>Title</Table.Cell>
-        <Table.Cell>Author</Table.Cell>
-        <Table.Cell>Borrower</Table.Cell>
-        <Table.Cell>Time Left</Table.Cell>
-        <Table.Cell>Check-In</Table.Cell>
+        <Table.Cell>书名</Table.Cell>
+        <Table.Cell>作者</Table.Cell>
+        <Table.Cell>借阅人</Table.Cell>
+        <Table.Cell>剩余时间</Table.Cell>
+        <Table.Cell>归还</Table.Cell>
       </Table.Row>
       {checkouts.length === 0 ? (
         <Table.Row>
           <Table.Cell textAlign="center" colSpan={5}>
-            <NoticeBox>No books checked out.</NoticeBox>
+            <NoticeBox>没有已借出的书籍。</NoticeBox>
           </Table.Cell>
         </Table.Row>
       ) : (
@@ -187,7 +187,7 @@ export function CheckoutEntries(props) {
             <Table.Cell>{entry.author}</Table.Cell>
             <Table.Cell>{entry.borrower}</Table.Cell>
             <Table.Cell backgroundColor={entry.overdue ? 'bad' : 'good'}>
-              {entry.overdue ? 'Overdue' : `${entry.due_in_minutes} Minutes`}
+              {entry.overdue ? '已逾期' : `${entry.due_in_minutes} 分钟`}
             </Table.Cell>
             <Table.Cell width="70px" textAlign="center">
               <Button

@@ -46,76 +46,76 @@ type AlternateAction = {
 const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
   knot: {
     icon: 'shoe-prints',
-    text: 'Knot',
+    text: '打结',
   },
 
   untie: {
     icon: 'shoe-prints',
-    text: 'Untie',
+    text: '松开鞋带',
   },
 
   unknot: {
     icon: 'shoe-prints',
-    text: 'Unknot',
+    text: '解开绳结',
   },
 
   remove_item_cuffs: {
     icon: 'handcuffs',
-    text: 'Remove Handcuffs',
+    text: '取下手铐',
   },
 
   enable_internals: {
     icon: 'tg-air-tank',
-    text: 'Enable internals',
+    text: '开启供气',
   },
 
   disable_internals: {
     icon: 'tg-air-tank-slash',
-    text: 'Disable internals',
+    text: '关闭供气',
   },
 
   adjust_jumpsuit: {
     icon: 'tshirt',
-    text: 'Adjust jumpsuit',
+    text: '调整连身服',
   },
 
   adjust_sensor: {
     icon: 'microchip',
-    text: 'Adjust sensors',
+    text: '调整传感器',
   },
   // BUBBER EDIT BEGIN - entombed quirk suit reactivation
   entombed_emergency_reactivate: {
     icon: 'power-off',
-    text: 'Emergency MODsuit reactivation',
+    text: '紧急重新激活模块化装甲',
   }, // BUBBER EDIT END
 
   strip_accessory: {
     icon: 'ribbon',
-    text: 'Strip accessory',
+    text: '取下配饰',
   },
 
   deploy: {
     icon: 'plus',
-    text: 'Deploy MOD',
+    text: '展开模块化装甲',
   },
 
   undeploy: {
     icon: 'minus',
-    text: 'Undeploy MOD',
+    text: '收起模块化装甲',
   },
 
   activate_mod: {
     icon: 'power-off',
-    text: 'Activate MOD',
+    text: '激活模块化装甲',
   },
   deactivate_mod: {
     icon: 'power-off',
-    text: 'Deactivate MOD',
+    text: '停用模块化装甲',
   },
 
   adjust_bridle: {
     icon: 'mask',
-    text: 'Adjust bridle',
+    text: '调整笼头',
   },
 };
 
@@ -129,152 +129,152 @@ const SLOTS: Record<
   }
 > = {
   eyes: {
-    displayName: 'eyewear',
+    displayName: '眼镜',
     gridSpot: getGridSpotKey([0, 1]),
     image: 'inventory-glasses.png',
   },
 
   head: {
-    displayName: 'headwear',
+    displayName: '头饰',
     gridSpot: getGridSpotKey([0, 2]),
     image: 'inventory-head.png',
   },
 
   neck: {
-    displayName: 'neckwear',
+    displayName: '颈饰',
     gridSpot: getGridSpotKey([1, 1]),
     image: 'inventory-neck.png',
   },
 
   mask: {
-    displayName: 'mask',
+    displayName: '面罩',
     gridSpot: getGridSpotKey([1, 2]),
     image: 'inventory-mask.png',
   },
 
   pet_collar: {
-    displayName: 'collar',
+    displayName: '项圈',
     gridSpot: getGridSpotKey([1, 2]),
     image: 'inventory-collar.png',
   },
 
   ears: {
-    displayName: 'earwear',
+    displayName: '耳饰',
     gridSpot: getGridSpotKey([1, 3]),
     image: 'inventory-ears.png',
   },
 
   parrot_headset: {
-    displayName: 'headset',
+    displayName: '耳机',
     gridSpot: getGridSpotKey([1, 3]),
     image: 'inventory-ears.png',
   },
 
   handcuffs: {
-    displayName: 'handcuffs',
+    displayName: '手铐',
     gridSpot: getGridSpotKey([1, 4]),
   },
 
   legcuffs: {
-    displayName: 'legcuffs',
+    displayName: '脚镣',
     gridSpot: getGridSpotKey([1, 5]),
   },
 
   jumpsuit: {
-    displayName: 'uniform',
+    displayName: '制服',
     gridSpot: getGridSpotKey([2, 1]),
     image: 'inventory-uniform.png',
   },
 
   suit: {
-    displayName: 'suit',
+    displayName: '外套',
     gridSpot: getGridSpotKey([2, 2]),
     image: 'inventory-suit.png',
   },
 
   gloves: {
-    displayName: 'gloves',
+    displayName: '手套',
     gridSpot: getGridSpotKey([2, 3]),
     image: 'inventory-gloves.png',
   },
 
   right_hand: {
-    displayName: 'right hand',
+    displayName: '右手',
     gridSpot: getGridSpotKey([2, 4]),
     image: 'inventory-hand_r.png',
-    additionalComponent: <CornerText align="left">R</CornerText>,
+    additionalComponent: <CornerText align="left">右</CornerText>,
   },
 
   left_hand: {
-    displayName: 'left hand',
+    displayName: '左手',
     gridSpot: getGridSpotKey([2, 5]),
     image: 'inventory-hand_l.png',
-    additionalComponent: <CornerText align="right">L</CornerText>,
+    additionalComponent: <CornerText align="right">左</CornerText>,
   },
 
   shoes: {
-    displayName: 'shoes',
+    displayName: '鞋子',
     gridSpot: getGridSpotKey([3, 2]),
     image: 'inventory-shoes.png',
   },
 
   suit_storage: {
-    displayName: 'suit storage item',
+    displayName: '外套储物物品',
     gridSpot: getGridSpotKey([4, 0]),
     image: 'inventory-suit_storage.png',
   },
 
   id: {
-    displayName: 'ID',
+    displayName: '身份卡',
     gridSpot: getGridSpotKey([4, 1]),
     image: 'inventory-id.png',
   },
 
   belt: {
-    displayName: 'belt',
+    displayName: '腰带',
     gridSpot: getGridSpotKey([4, 2]),
     image: 'inventory-belt.png',
   },
 
   back: {
-    displayName: 'backpack',
+    displayName: '背包',
     gridSpot: getGridSpotKey([4, 3]),
     image: 'inventory-back.png',
   },
 
   left_pocket: {
-    displayName: 'left pocket',
+    displayName: '左口袋',
     gridSpot: getGridSpotKey([4, 4]),
     image: 'inventory-pocket.png',
   },
 
   right_pocket: {
-    displayName: 'right pocket',
+    displayName: '右口袋',
     gridSpot: getGridSpotKey([4, 5]),
     image: 'inventory-pocket.png',
   },
 
   // SKYRAT EDIT ADDITION
   vagina: {
-    displayName: 'vagina',
+    displayName: '阴道',
     gridSpot: getGridSpotKey([5, 1]),
     image: 'inventory-pocket.png',
   },
 
   anus: {
-    displayName: 'anus',
+    displayName: '肛门',
     gridSpot: getGridSpotKey([5, 2]),
     image: 'inventory-pocket.png',
   },
 
   nipples: {
-    displayName: 'nipples',
+    displayName: '乳头',
     gridSpot: getGridSpotKey([5, 3]),
     image: 'inventory-pocket.png',
   },
 
   penis: {
-    displayName: 'penis',
+    displayName: '阴茎',
     gridSpot: getGridSpotKey([5, 4]),
     image: 'inventory-pocket.png',
   },
@@ -333,7 +333,7 @@ export const StripMenu = (props) => {
   return (
     // (64 + 6) * 6 + 6 = 426
     // (64 + 6) * 5 + 6 + 31 (from title) =
-    <Window title={`Stripping ${data.name}`} width={426} height={387}>
+    <Window title={`脱卸 ${data.name} 的装备`} width={426} height={387}>
       <Window.Content>
         <Stack fill vertical>
           {range(0, ROWS).map((row) => (
@@ -448,7 +448,7 @@ export const StripMenu = (props) => {
                       />
                     );
 
-                    tooltip = `obscured ${slot.displayName}`;
+                    tooltip = `被遮挡的${slot.displayName}`;
                   }
 
                   return (

@@ -27,16 +27,16 @@ export const NtosEmojipedia = (props) => {
       <NtosWindow.Content scrollable>
         <Section
           // required: follow semantic versioning every time you touch this file
-          title={`Emojipedia V3.7.10${filter ? ` - ${filter}` : ''}`}
+          title={`表情百科 V3.7.11${filter ? ` - ${filter}` : ''}`}
           buttons={
             <>
               <Input
-                placeholder="Search by name"
+                placeholder="按名称搜索"
                 value={filter}
                 onChange={setFilter}
               />
               <Button
-                tooltip={'Click on an emoji to copy its tag!'}
+                tooltip={'点击表情即可复制其标签！'}
                 tooltipPosition="bottom"
                 icon="circle-question"
               />

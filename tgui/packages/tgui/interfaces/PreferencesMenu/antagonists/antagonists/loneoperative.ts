@@ -3,11 +3,11 @@ import { OPERATIVE_MECHANICAL_DESCRIPTION } from './operative';
 
 const LoneOperative: Antagonist = {
   key: 'loneoperative',
-  name: 'Lone Operative',
+  name: '独狼特工',
   description: [
     `
-      A solo nuclear operative that has a higher chance of spawning the longer
-      the nuclear authentication disk stays in one place.
+      独自行动的核弹特工。核弹认证磁盘在同一个地方
+      停留得越久，其出现的概率就越高。
     `,
 
     OPERATIVE_MECHANICAL_DESCRIPTION,

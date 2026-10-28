@@ -77,7 +77,7 @@ export const ExaminePanel = () => {
 
   return (
     <Window
-      title={`${character_name}'s Examine Panel`}
+      title={`${character_name}的查看面板`}
       width={900}
       height={670}
     >
@@ -88,7 +88,7 @@ export const ExaminePanel = () => {
               <Button
                 color={data.art_ref_nsfw ? 'pink' : 'green'}
                 tooltip={
-                  data.art_ref_nsfw ? 'NSFW Reference Image' : 'Reference Image'
+                  data.art_ref_nsfw ? '成人内容参考图' : '参考图'
                 }
                 icon="image"
                 style={{
@@ -106,7 +106,7 @@ export const ExaminePanel = () => {
                   <Section
                     fill
                     style={{ textAlign: 'center' }}
-                    title="Character Preview"
+                    title="角色预览"
                   >
                     <ByondUi
                       key={previewKey}
@@ -123,7 +123,7 @@ export const ExaminePanel = () => {
                   <>
                     <Section
                       maxheight="310px"
-                      title="Character Preview"
+                      title="角色预览"
                       style={{ textAlign: 'center' }}
                     >
                       <ByondUi
@@ -140,7 +140,7 @@ export const ExaminePanel = () => {
 
                     <Section
                       maxheight="310px"
-                      title="Headshot"
+                      title="头像"
                       style={{ textAlign: 'center' }}
                     >
                       <img
@@ -165,7 +165,7 @@ export const ExaminePanel = () => {
                     >
                       <Section
                         fitted
-                        title={'Flavor Text'}
+                        title={'角色描述'}
                         style={{ textAlign: 'center' }}
                       />
                     </Tabs.Tab>
@@ -175,7 +175,7 @@ export const ExaminePanel = () => {
                     >
                       <Section
                         fitted
-                        title={'NSFW (Warning)'}
+                        title={'成人内容（警告）'}
                         style={{ textAlign: 'center' }}
                       />
                     </Tabs.Tab>
@@ -186,7 +186,7 @@ export const ExaminePanel = () => {
                       <Section
                         fitted
                         title={
-                          custom_species ? custom_species : 'Unnamed Species'
+                          custom_species ? custom_species : '未命名物种'
                         }
                         style={{ textAlign: 'center' }}
                       />
@@ -233,7 +233,7 @@ export const ExaminePanel = () => {
                     >
                       {custom_species
                         ? formatURLs(custom_species_lore)
-                        : 'Just a normal space dweller.'}
+                        : '只是个普通的太空居民。'}
                     </Section>
                   )}
                   <Tabs fluid>
@@ -243,7 +243,7 @@ export const ExaminePanel = () => {
                     >
                       <Section
                         fitted
-                        title={'OOC Notes'}
+                        title={'戏外备注'}
                         style={{ textAlign: 'center' }}
                       />
                     </Tabs.Tab>
@@ -253,7 +253,7 @@ export const ExaminePanel = () => {
                     >
                       <Section
                         fitted
-                        title={'Character Advert'}
+                        title={'角色广告'}
                         style={{ textAlign: 'center' }}
                       />
                     </Tabs.Tab>
@@ -291,7 +291,7 @@ export const ExaminePanel = () => {
         ) : (
           <div>
             <Button
-              content="Back"
+              content="返回"
               icon="arrow-left"
               style={{
                 position: 'absolute',

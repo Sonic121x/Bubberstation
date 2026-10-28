@@ -1,11 +1,11 @@
 {
 	"name": "Pat",
-	"description": "Pat their shoulder; perhaps if to comfort them.",
+	"description": "拍拍对方的肩膀，也许能安慰对方。",
 	"usage": "other",
 	"category": "Miscellaneous",
 	"distance_allowed": 0,
 	"message": [
-		"%USER% pats %TARGET% on their shoulder."
+		"%USER% 拍了拍 %TARGET% 的肩膀。"
 	],
 	"sound_use": 0,
 	"sound_possible": [

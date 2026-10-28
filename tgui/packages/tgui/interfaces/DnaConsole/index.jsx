@@ -28,13 +28,13 @@ export const DnaConsole = (props) => {
   const { consoleMode } = data.view;
 
   return (
-    <Window title="DNA Console" width={539} height={710}>
+    <Window title="DNA 控制台" width={539} height={710}>
       {!!isPulsing && (
         <Dimmer fontSize="14px" textAlign="center">
           <Icon mr={1} name="spinner" spin />
-          Pulse in progress...
+          脉冲发射中……
           <Box mt={1} />
-          {timeToPulse}s
+          {timeToPulse} 秒
         </Dimmer>
       )}
       <Window.Content scrollable>
@@ -52,14 +52,14 @@ export const DnaConsole = (props) => {
               <DnaConsoleEnzymes
                 subjectBlock={subjectUNI}
                 type="ui"
-                name="Enzymes"
+                name="酶"
               />
             )}
             {consoleMode === CONSOLE_MODE_FEATURES && (
               <DnaConsoleEnzymes
                 subjectBlock={subjectUF}
                 type="uf"
-                name="Features"
+                name="特征"
               />
             )}
           </Stack.Item>
@@ -76,19 +76,19 @@ const DnaConsoleCommands = (props) => {
 
   return (
     <Section
-      title="DNA Console"
+      title="DNA 控制台"
       buttons={
         !isInjectorReady && (
           <Box lineHeight="20px" color="label">
-            Injector on cooldown ({injectorSeconds}s)
+            注射器冷却中（{injectorSeconds} 秒）
           </Box>
         )
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Mode">
+        <LabeledList.Item label="模式">
           <Button
-            content="Storage"
+            content="存储"
             selected={consoleMode === CONSOLE_MODE_STORAGE}
             onClick={() =>
               act('set_view', {
@@ -97,7 +97,7 @@ const DnaConsoleCommands = (props) => {
             }
           />
           <Button
-            content="Sequencer"
+            content="测序仪"
             disabled={!data.isViableSubject}
             selected={consoleMode === CONSOLE_MODE_SEQUENCER}
             onClick={() =>
@@ -107,7 +107,7 @@ const DnaConsoleCommands = (props) => {
             }
           />
           <Button
-            content="Enzymes"
+            content="酶"
             selected={consoleMode === CONSOLE_MODE_ENZYMES}
             onClick={() =>
               act('set_view', {
@@ -116,7 +116,7 @@ const DnaConsoleCommands = (props) => {
             }
           />
           <Button
-            content="Features"
+            content="特征"
             selected={consoleMode === CONSOLE_MODE_FEATURES}
             onClick={() =>
               act('set_view', {
@@ -126,10 +126,10 @@ const DnaConsoleCommands = (props) => {
           />
         </LabeledList.Item>
         {!!hasDisk && (
-          <LabeledList.Item label="Disk">
+          <LabeledList.Item label="磁盘">
             <Button
               icon="eject"
-              content="Eject"
+              content="弹出"
               onClick={() => {
                 act('eject_disk');
                 act('set_view', {

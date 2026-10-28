@@ -21,21 +21,21 @@ export const InterviewManager = (props) => {
   return (
     <Window width={500} height={600} theme="admin">
       <Window.Content scrollable>
-        <Section title="Active Interviews">
+        <Section title="进行中的面试">
           {open_interviews.map(({ id, ckey, status, queued, disconnected }) => (
             <Button
               key={id}
-              content={ckey + (disconnected ? ' (DC)' : '')}
+              content={ckey + (disconnected ? '（已断开）' : '')}
               color={queued ? 'default' : colorMap(status)}
               onClick={() => act('open', { id: id })}
             />
           ))}
         </Section>
-        <Section title="Closed Interviews">
+        <Section title="已结束的面试">
           {closed_interviews.map(({ id, ckey, status, disconnected }) => (
             <Button
               key={id}
-              content={ckey + (disconnected ? ' (DC)' : '')}
+              content={ckey + (disconnected ? '（已断开）' : '')}
               color={colorMap(status)}
               onClick={() => act('open', { id: id })}
             />

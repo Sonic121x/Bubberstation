@@ -99,7 +99,7 @@ export const AccessList = (props) => {
   });
 
   return (
-    <Section title="Access" buttons={extraButtons}>
+    <Section title="权限" buttons={extraButtons}>
       <Stack vertical width="100%">
         <Stack.Item>
           <FormatWildcards
@@ -158,7 +158,7 @@ export const FormatWildcards = (props) => {
           selected={selectedWildcard === 'None'}
           onClick={() => setWildcardTab('None')}
         >
-          Trim:
+          职务模板：
           <br />
           {`${basicUsed}/${basicMax}`}
         </Tabs.Tab>

@@ -137,7 +137,7 @@ export const Puzzgrid = (props) => {
               right: '10px',
             }}
           >
-            {Math.ceil(data.time_left)}s
+            {Math.ceil(data.time_left)}秒
           </Box>
         )}
       </Window.Content>

@@ -11,7 +11,7 @@ import {
 } from 'tgui-core/components';
 import { formatMoney } from 'tgui-core/format';
 import type { BooleanLike } from 'tgui-core/react';
-import { toTitleCase } from 'tgui-core/string';
+import { batchThreeDisplay as zh } from '../localization/batchThreeDisplay';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -63,18 +63,18 @@ export const MatMarket = (props) => {
       <Window.Content scrollable>
         {!!catastrophe && <MarketCrashModal />}
         <Section
-          title="Materials for sale"
+          title="在售材料"
           buttons={
             !!canOrderCargo && (
               <Button.Checkbox
                 icon={orderingPrive ? "fa-regular fa-square" : "square-check"}
-                tooltip="Place order from cargo budget."
+                tooltip="使用货运预算下单。"
                 color={orderingPrive ? 'transparent' : 'green'}
                 checked={orderingPrive}
                 content={
                   orderingPrive
-                    ? 'Order via Cargo Budget?'
-                    : 'Ordering via Cargo Budget'
+                    ? '使用货运预算下单？'
+                    : '正在使用货运预算下单'
                 }
                 onClick={() => act('toggle_budget')}
               />
@@ -84,17 +84,17 @@ export const MatMarket = (props) => {
           <Section>
             <Stack>
               <Stack.Item width="15%">
-                Balance: <b>{formatMoney(creditBalance)}</b> cr.
+                余额：<b>{formatMoney(creditBalance)}</b> 信用点
               </Stack.Item>
               <Stack.Item width="15%">
-                Order: <b>{formatMoney(orderBalance)}</b> cr.
+                订单：<b>{formatMoney(orderBalance)}</b> 信用点
               </Stack.Item>
               <Stack.Item
                 width="20%"
                 color={data.updateTime > 150 ? 'green' : '#ad7526'}
               >
-                <b>{Math.round(data.updateTime / 10)} seconds</b> until next
-                update
+                距下次更新还有 <b>{Math.round(data.updateTime / 10)} 秒</b>
+                。
               </Stack.Item>
               <Stack.Item>
                 <Button
@@ -103,7 +103,7 @@ export const MatMarket = (props) => {
                   ml={66}
                   onClick={() => act('clear')}
                 >
-                  Clear
+                  清空
                 </Button>
               </Stack.Item>
             </Stack>
@@ -121,7 +121,7 @@ export const MatMarket = (props) => {
                       width="15%"
                       pr="3%"
                     >
-                      {toTitleCase(material.name)}
+                      {zh(material.name)}
                     </Stack.Item>
                     <Stack.Item
                       width="10%"
@@ -134,7 +134,7 @@ export const MatMarket = (props) => {
                             : 'green'
                       }
                     >
-                      Elasticity: <b>{Math.round(material.elastic)}</b>%
+                      弹性：<b>{Math.round(material.elastic)}</b>%
                     </Stack.Item>
 
                     <Stack.Item
@@ -144,26 +144,26 @@ export const MatMarket = (props) => {
                       <Tooltip
                         content={rangeText({ minPrice: material.min_threshold, maxPrice: material.max_threshold })}
                       >
-                        <u>Trading at <br /><b>{formatMoney(material.price)}</b> cr.</u>
+                        <u>交易价格<br /><b>{formatMoney(material.price)}</b> 信用点</u>
                       </Tooltip>
 
                     </Stack.Item>
                     {material.price < material.min_threshold ? (
                       <Stack.Item width="33%" ml={2} textColor="grey">
-                        Material price critical!
-                        <br /> <b>Trading temporarily suspended.</b>
+                        材料价格跌至临界值！
+                        <br /> <b>交易暂时停止。</b>
                       </Stack.Item>
                     ) : (
                       <Stack.Item width="33%" ml={2}>
                         <Box textColor={material.quantity === 0 ? 'grey' : 'white'}>
-                          <b>{material.quantity || 'Zero'}</b> sheets of{' '}
-                          <b>{material.name}</b> trading.{' '}
+                          在售 <b>{material.quantity || '零'}</b> 张{' '}
+                          <b>{zh(material.name)}</b>板材。{' '}
                         </Box>
                         <Box
                           bold={!!material.requested}
                           textColor={material.requested > 0 ? 'lightblue' : 'white'}
                         >
-                          {material.requested || 'Zero'} sheets ordered.
+                          已订购 {material.requested || '零'} 张板材。
                         </Box>
                       </Stack.Item>
                     )}
@@ -178,8 +178,8 @@ export const MatMarket = (props) => {
                             : 'white'
                       }
                     >
-                      <b>{toTitleCase(material.name)}</b> is trending{' '}
-                      <b>{material.trend}</b>.
+                      <b>{zh(material.name)}</b>的走势：{' '}
+                      <b>{material.trend === 'up' ? '上涨' : material.trend === 'down' ? '下跌' : material.trend === 'neutral' ? '持平' : material.trend}</b>。
                     </Stack.Item>
                   </Stack>
                 </Stack.Item>
@@ -202,7 +202,7 @@ export const MatMarket = (props) => {
                       })
                     }
                   >
-                    Buy 1
+                    购买 1 张
                   </Button>
                   <Button
                     height="35px"
@@ -290,21 +290,21 @@ export const MatMarket = (props) => {
           ),
         )}
         <NoticeBox info>
-            <Collapsible title="Instructions" color="blue">
-              Buy orders for material sheets placed here will be ordered on the
-              next cargo shipment.
+            <Collapsible title="操作说明" color="blue">
+              在此下单购买的材料板材，将随
+              下一批货运物资送达。
               <br /> <br />
-              To sell materials, please insert sheets or similar stacks of
-              materials. All minerals sold on the market directly are subject to
-              a scaling value decrease per material, but this will recover over
-              time. To prevent market manipulation, all registered traders can
-              buy a total of 10 full stacks of materials at a time.
+              如需出售材料，请放入板材或类似的成叠
+              材料。在市场中直接出售矿物时，每种材料的
+              价格都会按比例降低，但会随时间逐渐
+              恢复。为防止操纵市场，所有注册交易者
+              每次最多可购买共计 10 整叠材料。
               <br /> <br />
-              When selling materials, prices will be decreased based on the
-              elastic modifier of the material, which will recover over time.
+              出售材料时，价格会根据该材料的
+              弹性系数降低，之后会随时间恢复。
               <br /> <br />
-              All new purchases will include the cost of the shipped crate,
-              which may be recycled afterwards.
+              所有新订单均包含运输箱费用，
+              运输箱之后可以回收。
             </Collapsible>
           </NoticeBox>
       </Window.Content>
@@ -315,13 +315,13 @@ export const MatMarket = (props) => {
 const MarketCrashModal = (props) => {
   return (
     <Modal textAlign="center" mr={1.5}>
-      ATTENTION! THE MARKET HAS CRASHED
+      注意！市场已经崩盘
       <br /> <br />
-      ALL MATERIALS ARE NOW WORTHLESS
+      所有材料现已一文不值
       <br /> <br />
-      TRADING CIRCUIT BREAKER HAS BEEN ENGAGED FOR ALL TRADERS
+      已对所有交易者启动交易熔断机制
       <br /> <br />
-      <b>DO NOT PANIC, WE ARE FIXING THIS</b>
+      <b>请勿惊慌，我们正在处理</b>
     </Modal>
   );
 };
@@ -334,7 +334,7 @@ type rangeTextProps = {
 function rangeText(props: rangeTextProps) {
   const {minPrice, maxPrice} = props;
   return (
-    "This material can be bought and sold between " + formatMoney(minPrice) +
-    " - " + formatMoney(maxPrice) + " cr."
+    '此材料的交易价格范围为 ' + formatMoney(minPrice) +
+    ' - ' + formatMoney(maxPrice) + ' 信用点。'
   )
 }

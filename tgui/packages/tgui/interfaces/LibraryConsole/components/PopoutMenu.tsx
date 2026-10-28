@@ -16,21 +16,21 @@ export function PopoutMenu(props) {
             fontSize="13px"
             onClick={() => act('toggle_dropdown')}
             icon={show_dropdown === 1 ? 'chevron-left' : 'chevron-right'}
-            tooltip={!show_dropdown && 'Expand'}
+            tooltip={!show_dropdown && '展开'}
           >
-            {!!show_dropdown && 'Collapse'}
+            {!!show_dropdown && '收起'}
           </Button>
         </Stack.Item>
-        <PopoutEntry id={1} icon="list" text="Inventory" />
-        <PopoutEntry id={2} icon="calendar" text="Checkout" />
-        <PopoutEntry id={3} icon="server" text="Archive" />
-        <PopoutEntry id={4} icon="upload" text="Upload" />
-        <PopoutEntry id={5} icon="print" text="Print" />
+        <PopoutEntry id={1} icon="list" text="馆藏" />
+        <PopoutEntry id={2} icon="calendar" text="借阅" />
+        <PopoutEntry id={3} icon="server" text="档案库" />
+        <PopoutEntry id={4} icon="upload" text="上传" />
+        <PopoutEntry id={5} icon="print" text="打印" />
         {!!display_lore && (
           <PopoutEntry
             id={6}
             icon="question"
-            text={screen_state === 6 ? 'Gur Fbeprere' : 'Forbidden Lore'}
+            text={screen_state === 6 ? '咒术秘典' : '禁忌知识'}
             color="black"
             font="copperplate"
           />

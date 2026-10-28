@@ -10,7 +10,7 @@ import {
 } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import { Window } from '../layouts'; import { chineseDisplay } from '../localization/zhDisplay';
 
 export const ShuttleConsole = (props) => {
   const { act, data } = useBackend();
@@ -33,14 +33,14 @@ export const ShuttleConsole = (props) => {
               <Icon name="minus-circle" />
             </Flex.Item>
             <Flex.Item mt={2} ml={2} color="bad">
-              {type === 'shuttle' ? 'SHUTTLE LOCKED' : 'BASE LOCKED'}
+              {type === 'shuttle' ? '穿梭机已锁定' : '基地已锁定'}
             </Flex.Item>
           </Flex>
           <Box fontSize="18px" mt={4}>
             <Button
               lineHeight="40px"
               icon="arrow-circle-right"
-              content="Request Authorization"
+              content="请求授权"
               color="bad"
               onClick={() => act('request')}
             />
@@ -91,22 +91,22 @@ export const ShuttleConsoleContent = (props) => {
       </Box>
       <Box textAlign="center" fontSize="14px" mb={1}>
         <Box inline bold>
-          STATUS:
+          状态：
         </Box>
         <Box inline color={STATUS_COLOR_KEYS[status] || 'bad'} ml={1}>
-          {status || 'Not Available'}
+          {({ 'In Transit': '航行中', Idle: '空闲', Igniting: '点火中', Recharging: '充能中', Missing: '失踪', 'Unauthorized Access': '未经授权的访问', Locked: '已锁定' })[status] || chineseDisplay(status) || '不可用'}
         </Box>
       </Box>
       <Section
-        title={type === 'shuttle' ? 'Shuttle Controls' : 'Base Launch Controls'}
+        title={type === 'shuttle' ? '穿梭机控制' : '基地发射控制'}
         level={2}
       >
         <LabeledList>
-          <LabeledList.Item label="Location">
-            {docked_location || 'Not Available'}
+          <LabeledList.Item label="位置">
+            {docked_location || '不可用'}
           </LabeledList.Item>
           <LabeledList.Item
-            label="Destination"
+            label="目的地"
             buttons={
               type !== 'shuttle' &&
               locations.length === 0 &&
@@ -115,7 +115,7 @@ export const ShuttleConsoleContent = (props) => {
                   color="bad"
                   icon="exclamation-triangle"
                   disabled={authorization_required || !blind_drop}
-                  content={'Blind Drop'}
+                  content={'盲投'}
                   onClick={() => act('random')}
                 />
               )
@@ -123,7 +123,7 @@ export const ShuttleConsoleContent = (props) => {
           >
             {(locations.length === 0 && (
               <Box mb={1.7} color="bad">
-                Not Available
+                不可用
               </Box>
             )) ||
               (locations.length === 1 && (
@@ -139,7 +139,7 @@ export const ShuttleConsoleContent = (props) => {
                   disabled={locked || authorization_required}
                   selected={
                     getLocationNameById(locations, destination) ||
-                    'Select a Destination'
+                    '选择目的地'
                   }
                   onSelected={(value) =>
                     act('set_destination', {
@@ -152,7 +152,7 @@ export const ShuttleConsoleContent = (props) => {
         </LabeledList>
         <Button
           fluid
-          content="Depart"
+          content="出发"
           disabled={
             !getLocationNameById(locations, destination) ||
             locked ||

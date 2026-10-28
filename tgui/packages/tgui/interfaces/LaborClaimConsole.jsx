@@ -18,22 +18,22 @@ export const LaborClaimConsole = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Status">{status_info}</LabeledList.Item>
+            <LabeledList.Item label="状态">{status_info}</LabeledList.Item>
             {!!shuttle_exists && (
-              <LabeledList.Item label="Shuttle controls">
+              <LabeledList.Item label="穿梭机控制">
                 <Button
-                  content="Move shuttle"
+                  content="移动穿梭机"
                   disabled={!can_go_home}
                   onClick={() => act('move_shuttle')}
                 />
               </LabeledList.Item>
             )}
-            <LabeledList.Item label="Points">{id_points}</LabeledList.Item>
+            <LabeledList.Item label="积分">{id_points}</LabeledList.Item>
             <LabeledList.Item
-              label="Unclaimed points"
+              label="未领取积分"
               buttons={
                 <Button
-                  content="Claim points"
+                  content="领取积分"
                   disabled={!unclaimed_points}
                   onClick={() => act('claim_points')}
                 />
@@ -43,22 +43,22 @@ export const LaborClaimConsole = (props) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Directions">
-          Collect boulders and ores from the mining area and bring them to the
-          unloading machine. Then, pull the lever to smelt them into sheets. Use
-          the production console to dispense the sheets, and then bring bring
-          them to the claim console to earn points.
+        <Section title="操作说明">
+          从采矿区收集巨石和矿石，并将其运至
+          卸料机。然后拉动拉杆，将矿石熔炼成板材。使用
+          生产控制台取出板材，再将其送至
+          兑换控制台以获取积分。
           <br />
           <br />
-          Boulders cannot be smelted directly, and will require additional
-          manual processing - strike them with a pickaxe to break them down
-          further.
+          巨石不能直接熔炼，需要额外的
+          人工处理：用镐敲击巨石，
+          将其进一步破碎。
           <br />
           <br />
-          Sheets smelted from the labor camp's furnace will be stamped with an
-          official seal of quality. Only stamped sheets can be claimed for
-          points - so don't bother trying to strip down tables and chairs for
-          bonus metal.
+          劳改营熔炉产出的板材都会印有
+          官方质量认证标记。只有带有标记的板材才能兑换
+          积分，所以别费心拆解桌椅，
+          试图用额外的金属换取积分。
         </Section>
       </Window.Content>
     </Window>

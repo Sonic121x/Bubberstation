@@ -353,7 +353,7 @@
         suggestedName: filename,
         types: [
           {
-            description: 'SS13 file',
+            description: 'SS13 文件',
             accept: accept,
           },
         ],

@@ -3,11 +3,11 @@ import { CHANGELING_MECHANICAL_DESCRIPTION } from './changeling';
 
 const ChangelingMidround: Antagonist = {
   key: 'changelingmidround',
-  name: 'Space Changeling',
+  name: '太空变形怪',
   description: [
     `
-    A midround changeling does not receive a crew identity, instead arriving
-    from space. This will be more difficult than being a round-start changeling!
+    中途出现的变形怪没有船员身份，而是从
+    太空抵达。这比开局担任变形怪更困难！
     `,
     CHANGELING_MECHANICAL_DESCRIPTION,
   ],

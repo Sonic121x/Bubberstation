@@ -3,7 +3,7 @@ import { Button, Icon, Section, Table, Tooltip } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import { Window } from '../layouts'; import { displayRole } from '../localization/roleDisplay'; import { chineseDisplay } from '../localization/zhDisplay';
 
 const commandJobs = [
   'Head of Personnel',
@@ -22,10 +22,10 @@ export const RecordManifest = (props) => {
   const { act } = useBackend();
 
   return (
-    <Window title="All crew with information" width={450} height={500}>
+    <Window title="全体船员情报" width={450} height={500}>
       <Window.Content scrollable>
         {Object.entries(manifest).map(([dept, crew]) => (
-          <Section className={`CrewManifest--${dept}`} key={dept} title={dept}>
+          <Section className={`CrewManifest--${dept}`} key={dept} title={chineseDisplay(dept)}>
             <Table>
               {Object.entries(crew).map(([crewIndex, crewMember]) => (
                 <Table.Row key={crewIndex}>
@@ -34,7 +34,7 @@ export const RecordManifest = (props) => {
                   </Table.Cell>
                   <Table.Cell>
                     <Button
-                      content="Show exploitables"
+                      content="查看可利用情报"
                       onClick={() =>
                         act('show_exploitables', {
                           exploitable_id: crewMember.name,
@@ -50,12 +50,12 @@ export const RecordManifest = (props) => {
                     collapsing
                   >
                     {positions[dept].exceptions.includes(crewMember.rank) && (
-                      <Tooltip content="No position limit" position="bottom">
+                      <Tooltip content="无职位人数限制" position="bottom">
                         <Icon className="CrewManifest__Icon" name="infinity" />
                       </Tooltip>
                     )}
                     {crewMember.rank === 'Captain' && (
-                      <Tooltip content="Captain" position="bottom">
+                      <Tooltip content="船长" position="bottom">
                         <Icon
                           className={classes([
                             'CrewManifest__Icon',
@@ -66,7 +66,7 @@ export const RecordManifest = (props) => {
                       </Tooltip>
                     )}
                     {commandJobs.includes(crewMember.rank) && (
-                      <Tooltip content="Member of command" position="bottom">
+                      <Tooltip content="指挥人员" position="bottom">
                         <Icon
                           className={classes([
                             'CrewManifest__Icon',
@@ -85,7 +85,7 @@ export const RecordManifest = (props) => {
                     ])}
                     collapsing
                   >
-                    {crewMember.rank}
+                    {displayRole(crewMember.rank)}
                   </Table.Cell>
                 </Table.Row>
               ))}

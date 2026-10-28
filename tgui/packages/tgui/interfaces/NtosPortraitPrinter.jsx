@@ -19,22 +19,22 @@ export const NtosPortraitPrinter = (props) => {
   const got_paintings = !!paintings.length;
   const current_portrait_title = got_paintings && paintings[listIndex].title;
   const current_portrait_author =
-    got_paintings && `By ${paintings[listIndex].creator}`;
+    got_paintings && `作者：${paintings[listIndex].creator}`;
   const current_portrait_asset_name =
     got_paintings && `paintings_${paintings[listIndex].md5}`;
   const current_portrait_ratio = got_paintings && paintings[listIndex].ratio;
 
   return (
-    <NtosWindow title="Art Galaxy" width={400} height={460}>
+    <NtosWindow title="艺术星河" width={400} height={460}>
       <NtosWindow.Content>
         <Stack vertical fill>
           <Stack.Item>
-            <Section title="Search">
+            <Section title="搜索">
               <Stack>
                 <Stack.Item grow>
                   <Input
                     fluid
-                    placeholder="Search Paintings..."
+                    placeholder="搜索画作……"
                     value={search_string}
                     onBlur={(value) => {
                       act('search', {
@@ -85,7 +85,7 @@ export const NtosPortraitPrinter = (props) => {
                   </>
                 ) : (
                   <Stack.Item className="Section__titleText">
-                    No paintings found.
+                    未找到画作。
                   </Stack.Item>
                 )}
               </Stack>
@@ -116,7 +116,7 @@ export const NtosPortraitPrinter = (props) => {
                           <Stack.Item>
                             <Button
                               icon="print"
-                              content="Print Portrait"
+                              content="打印画作"
                               disabled={!got_paintings}
                               onClick={() =>
                                 act('print', {
@@ -129,7 +129,7 @@ export const NtosPortraitPrinter = (props) => {
                         <Stack.Item>
                           <Button
                             icon="download"
-                            content="Download"
+                            content="下载"
                             disabled={!got_paintings}
                             onClick={() =>
                               act('download', {
@@ -160,8 +160,8 @@ export const NtosPortraitPrinter = (props) => {
             </Stack>
             <Stack.Item mt={1} mb={-1}>
               <NoticeBox info>
-                Printing a canvas costs 10 paper from the printer installed in
-                your machine.
+                打印一幅画布会消耗您设备中
+                打印机的 10 张纸。
               </NoticeBox>
             </Stack.Item>
           </Stack.Item>

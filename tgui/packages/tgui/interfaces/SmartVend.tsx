@@ -45,7 +45,7 @@ export const SmartVend = (props) => {
         <Section
           fill
           scrollable
-          title="Storage"
+          title="储物"
           buttons={
             <Stack>
               {data.isdryer ? (
@@ -54,7 +54,7 @@ export const SmartVend = (props) => {
                     icon={data.drying ? 'stop' : 'tint'}
                     onClick={() => act('Dry')}
                   >
-                    {data.drying ? 'Stop drying' : 'Dry'}
+                    {data.drying ? '停止烘干' : '烘干'}
                   </Button>
                 </Stack.Item>
               ) : (
@@ -62,7 +62,7 @@ export const SmartVend = (props) => {
                   <Stack.Item>
                     <Input
                       autoFocus
-                      placeholder="Search..."
+                      placeholder="搜索……"
                       value={searchText}
                       onChange={setSearchText}
                       expensive
@@ -76,9 +76,9 @@ export const SmartVend = (props) => {
                   icon="question"
                   tooltip={
                     <>
-                      LMB - Vend selected amount
+                      鼠标左键 - 取出指定数量
                       <br />
-                      RMB - Vend all
+                      鼠标右键 - 全部取出
                     </>
                   }
                   tooltipPosition={'bottom-end'}
@@ -88,7 +88,7 @@ export const SmartVend = (props) => {
           }
         >
           {!contents.length ? (
-            <NoticeBox>Nothing found.</NoticeBox>
+            <NoticeBox>未找到物品。</NoticeBox>
           ) : (
             contents.map((item) =>
               displayMode === LAYOUT.Grid ? (

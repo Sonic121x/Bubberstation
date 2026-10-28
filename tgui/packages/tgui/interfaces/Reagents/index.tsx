@@ -20,7 +20,7 @@ export function Reagents(props) {
             <Lookup />
           </Stack.Item>
           <Stack.Item>
-            <Section title="Tags">
+            <Section title="标签">
               <TagBox pageState={pageState} />
             </Section>
           </Stack.Item>

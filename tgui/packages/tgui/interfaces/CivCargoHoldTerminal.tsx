@@ -55,8 +55,8 @@ export const CivCargoHoldTerminal = (props) => {
   const { act, data } = useBackend<Data>();
   const { id_inserted } = data;
 
-  const in_text = 'Welcome valued employee.';
-  const out_text = 'To begin, insert your ID into the console.';
+  const in_text = '欢迎，尊贵的员工。';
+  const out_text = '请将 ID 卡插入控制台以开始操作。';
   const [tab, setTab] = useState('personal');
   const listBounties = data.listBounty || [];
 
@@ -74,7 +74,7 @@ export const CivCargoHoldTerminal = (props) => {
                   selected={tab === 'personal'}
                   backgroundColor={tab === 'personal' ? "green" : "default"}
                 >
-                  Personal Bounties
+                  个人悬赏
                 </Tabs.Tab>
                 <Tabs.Tab
                   icon="space-shuttle"
@@ -82,7 +82,7 @@ export const CivCargoHoldTerminal = (props) => {
                   selected={tab === 'station'}
                   backgroundColor={tab === 'station' ? "brown" : "default"}
                 >
-                  Station Bounties
+                  空间站悬赏
                 </Tabs.Tab>
               </Tabs>
             </Section>
@@ -110,38 +110,38 @@ const PersonalBountyBlock = (props) => {
   return (
     <>
       <Section
-        title="Cargo Pad"
+        title="货物传送台"
         buttons={
           <>
             <Button
               icon={'sync'}
-              tooltip={'Check Contents'}
+              tooltip={'检查内容'}
               disabled={!pad || !id_inserted}
               onClick={() => act('recalc')} />
             <Button
               icon={sending ? 'times' : 'arrow-up'}
-              tooltip={sending ? 'Stop Sending' : 'Send Goods'}
+              tooltip={sending ? '停止传送' : '传送货物'}
               selected={sending}
               disabled={!pad || !id_inserted}
               onClick={() => act(sending ? 'stop' : 'send')} />
             <Button
               icon={id_bounty_info ? 'recycle' : 'pen'}
               color={id_bounty_info ? 'green' : 'default'}
-              tooltip={id_bounty_info ? 'Replace Bounty' : 'New Bounty'}
+              tooltip={id_bounty_info ? '更换悬赏' : '获取悬赏'}
               disabled={!id_inserted}
               onClick={() => act('bounty')} />
             <Button
               icon={'download'}
-              content={'Eject ID'}
+              content={'弹出 ID 卡'}
               disabled={!id_inserted}
               onClick={() => act('eject')} />
           </>}
         >
         <LabeledList>
-          <LabeledList.Item label="Status" color={pad ? 'good' : 'bad'}>
-            {pad ? 'Online' : 'Not Found'}
+          <LabeledList.Item label="状态" color={pad ? 'good' : 'bad'}>
+            {pad ? '在线' : '未找到'}
           </LabeledList.Item>
-          <LabeledList.Item label="Cargo Report">
+          <LabeledList.Item label="货物报告">
             {status_report}
           </LabeledList.Item>
         </LabeledList>
@@ -155,18 +155,18 @@ const PersonalBountyBlock = (props) => {
 const BountyTextBox = (props) => {
   const { data } = useBackend<Data>();
   const { id_bounty_info, id_bounty_value, id_bounty_num } = data;
-  const na_text = 'N/A, please add a new bounty.';
+  const na_text = '暂无悬赏，请获取一项新悬赏。';
   return (
-    <Section title="Bounty Info">
+    <Section title="悬赏信息">
       <LabeledList>
-        <LabeledList.Item label="Description">
+        <LabeledList.Item label="描述">
           {id_bounty_info ? id_bounty_info : na_text}
         </LabeledList.Item>
-        <LabeledList.Item label="Quantity">
-          {id_bounty_info ? id_bounty_num : 'N/A'}
+        <LabeledList.Item label="数量">
+          {id_bounty_info ? id_bounty_num : '无'}
         </LabeledList.Item>
-        <LabeledList.Item label="Value">
-          {id_bounty_info ? id_bounty_value : 'N/A'}
+        <LabeledList.Item label="价值">
+          {id_bounty_info ? id_bounty_value : '无'}
         </LabeledList.Item>
       </LabeledList>
     </Section>
@@ -178,7 +178,7 @@ const BountyPickBox = (props) => {
   const { act, data } = useBackend<Data>();
   const { id_bounty_names, id_bounty_infos, id_bounty_values } = data;
   return (
-    <Section title="Please Select a Bounty:" textAlign="center">
+    <Section title="请选择悬赏：" textAlign="center">
       <Flex width="100%" wrap>
         <Flex.Item shrink={0} grow={0.5}>
           <BountyPickButton
@@ -236,7 +236,7 @@ const BountyPickButton = (props) => {
       >
         <Box dangerouslySetInnerHTML={{ __html: props.bounty_info }} />
       </Box>
-      <Box>Payout: {props.bounty_value} cr</Box>
+      <Box>报酬：{props.bounty_value} cr</Box>
     </Button>
   );
 };
@@ -282,16 +282,16 @@ const GlobalBountyBlock = (props) => {
             bold
             icon="refresh"
           >
-            Update List
+            更新列表
           </Tabs.Tab>
           ) : (
             <Tabs.Tab
               textColor="#ffffffe5"
               align="center"
               >
-              <Tooltip content="The total number of global bounties will go up by 1 for every 3 completed!">
+              <Tooltip content="每完成 3 项公共悬赏，公共悬赏总数就会增加 1 项！">
                 <Box className="Marquee">
-                  {data.claimed_bounties} bount{data.claimed_bounties === 1 ? "y" : "ies"} served{data.claimed_bounties > 0 ? "!" : "."}
+                  已完成 {data.claimed_bounties} 项悬赏{data.claimed_bounties > 0 ? "！" : "。"}
                 </Box>
               </Tooltip>
             </Tabs.Tab>
@@ -306,7 +306,7 @@ const GlobalBountyBlock = (props) => {
             bold
             icon="print"
           >
-            Printout List
+            打印列表
           </Tabs.Tab>
           {safeListBounty.map((bounty) => (
             <Tabs.Tab
@@ -344,7 +344,7 @@ const GlobalBountyBlock = (props) => {
             maxValue={localBounty.maximum}
             p={1}
             >
-          {localBounty.shipped} / {localBounty.maximum} shipped.
+          已运送 {localBounty.shipped} / {localBounty.maximum}。
           </ProgressBar>
               <Box
                 dangerouslySetInnerHTML={{__html:localBounty.description }}
@@ -364,25 +364,25 @@ const GlobalBountyBlock = (props) => {
                 backgroundColor="green"
                 color="white"
               >
-                <Tooltip content={`You'll receive a cut of ${Math.round(localBounty.reward * 0.3)} Credits.`}>
-                  <b>Reward:</b> {localBounty.reward} Credits
+                <Tooltip content={`你将获得 ${Math.round(localBounty.reward * 0.3)} 信用点的分成。`}>
+                  <b>奖励：</b> {localBounty.reward} 信用点
                 </Tooltip>
             </Box>
           <Button
             width="100%"
             icon={sending ? 'times' : 'arrow-up'}
-            tooltip={sending ? 'Stop Sending' : 'Send Goods'}
+            tooltip={sending ? '停止传送' : '传送货物'}
             selected={sending}
             disabled={!pad || !id_inserted}
             onClick={() => { act(sending ? 'stop' : 'send', { global: true}); setBountyTab(0); }}
           >
-            Send & Claim
+            传送并领取奖励
           </Button>
         </Section>
         ) : (
           <NoticeBox
             width="100%">
-            Please select a bounty from the list.
+            请从列表中选择悬赏。
           </NoticeBox>
         )}
       </Stack.Item>

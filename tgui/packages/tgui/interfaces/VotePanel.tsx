@@ -71,7 +71,7 @@ export const VotePanel = (props) => {
   const { act, data } = useBackend<Data>();
   const { currentVote, user, LastVoteTime, VoteCD } = data;
 
-  let windowTitle = 'Vote';
+  let windowTitle = '投票';
   if (currentVote) {
     windowTitle +=
       ': ' +
@@ -86,7 +86,7 @@ export const VotePanel = (props) => {
         <Stack vertical fill>
           <Stack.Item>
             <Section
-              title="New Vote"
+              title="发起投票"
               buttons={
                 !!user.isLowerAdmin && (
                   <Stack>
@@ -96,7 +96,7 @@ export const VotePanel = (props) => {
                         disabled={LastVoteTime + VoteCD <= 0}
                         onClick={() => act('resetCooldown')}
                       >
-                        Reset cooldown
+                        重置冷却
                       </Button>
                     </Stack.Item>
                     <Stack.Item>
@@ -106,7 +106,7 @@ export const VotePanel = (props) => {
                         checked={!data.deadVoteEnabled}
                         color="primary"
                       >
-                        Dead votes
+                        死者投票
                       </Button.Checkbox>
                     </Stack.Item>
                   </Stack>
@@ -117,7 +117,7 @@ export const VotePanel = (props) => {
             </Section>
           </Stack.Item>
           <Stack.Item grow>
-            <Section fill scrollable title="Active Vote">
+            <Section fill scrollable title="进行中的投票">
               <ChoicesPanel />
             </Section>
           </Stack.Item>
@@ -140,9 +140,9 @@ const VoteOptionDimmer = (props) => {
     <Dimmer>
       <Box textAlign="center">
         <Box fontSize={2} bold>
-          Vote Cooldown
+          投票冷却
         </Box>
-        <Box fontSize={1.5}>{Math.floor((VoteCD + LastVoteTime) / 10)}s</Box>
+        <Box fontSize={1.5}>{Math.floor((VoteCD + LastVoteTime) / 10)} 秒</Box>
       </Box>
     </Dimmer>
   );
@@ -172,7 +172,7 @@ const VoteOptions = (props) => {
                     }
                     tooltip={
                       option.config === VoteConfig.None
-                        ? 'This vote cannot be disabled.'
+                        ? '此投票无法禁用。'
                         : null
                     }
                     onClick={() =>
@@ -181,7 +181,7 @@ const VoteOptions = (props) => {
                       })
                     }
                   >
-                    Active
+                    启用
                   </Button.Checkbox>
                 </Stack.Item>
               )}
@@ -218,7 +218,7 @@ const ChoicesPanel = (props) => {
   return (
     <>
       {currentVote && currentVote.countMethod === VoteSystem.VOTE_SINGLE ? (
-        <NoticeBox success>Select one option</NoticeBox>
+        <NoticeBox success>请选择一个选项</NoticeBox>
       ) : null}
       {currentVote &&
       currentVote.choices.length !== 0 &&
@@ -232,7 +232,7 @@ const ChoicesPanel = (props) => {
                 buttons={
                   <Button
                     tooltip={
-                      user.isGhost && 'Ghost voting was disabled by an admin.'
+                      user.isGhost && '管理员已禁用幽灵投票。'
                     }
                     disabled={
                       user.singleSelection === choice.name || user.isGhost
@@ -241,7 +241,7 @@ const ChoicesPanel = (props) => {
                       act('voteSingle', { voteOption: choice.name });
                     }}
                   >
-                    Vote
+                    投票
                   </Button>
                 }
               >
@@ -249,7 +249,7 @@ const ChoicesPanel = (props) => {
                   choice.name === user.singleSelection && (
                     <Icon align="right" mr={2} color="green" name="vote-yea" />
                   )}
-                {(currentVote.displayStatistics || user.isLowerAdmin) ? `${choice.votes} Votes` : null}
+                {(currentVote.displayStatistics || user.isLowerAdmin) ? `${choice.votes} 票` : null}
               </LabeledList.Item>
               <LabeledList.Divider />
             </Box>
@@ -257,7 +257,7 @@ const ChoicesPanel = (props) => {
         </LabeledList>
       ) : null}
       {currentVote && currentVote.countMethod === VoteSystem.VOTE_MULTI ? (
-        <NoticeBox success>Select any number of options</NoticeBox>
+        <NoticeBox success>可选择任意数量的选项</NoticeBox>
       ) : null}
       {currentVote &&
       currentVote.choices.length !== 0 &&
@@ -271,14 +271,14 @@ const ChoicesPanel = (props) => {
                 buttons={
                   <Button
                     tooltip={
-                      user.isGhost && 'Ghost voting was disabled by an admin.'
+                      user.isGhost && '管理员已禁用幽灵投票。'
                     }
                     disabled={user.isGhost}
                     onClick={() => {
                       act('voteMulti', { voteOption: choice.name });
                     }}
                   >
-                    Vote
+                    投票
                   </Button>
                 }
               >
@@ -286,7 +286,7 @@ const ChoicesPanel = (props) => {
                 user.multiSelection[user.ckey.concat(choice.name)] === 1 ? (
                   <Icon align="right" mr={2} color="blue" name="vote-yea" />
                 ) : null}
-                {choice.votes} Votes
+                {choice.votes} 票
               </LabeledList.Item>
               <LabeledList.Divider />
             </Box>
@@ -296,8 +296,8 @@ const ChoicesPanel = (props) => {
       {/* BUBBER EDIT ADDITION - Ranked Choice Voting */}
       {currentVote && currentVote.countMethod === VoteSystem.VOTE_RANKED ? (
         <NoticeBox success>
-          Click options to rank them in order of preference. Click again to
-          remove.
+          按偏好顺序点击选项进行排序。
+          再次点击可移除选项。
         </NoticeBox>
       ) : null}
       {currentVote &&
@@ -343,9 +343,9 @@ const ChoicesPanel = (props) => {
               // Function to get button text
               const getButtonText = () => {
                 if (currentRank === 0) {
-                  return 'Vote';
+                  return '投票';
                 }
-                return `Choice #${currentRank}`;
+                return `第 ${currentRank} 选择`;
               };
 
               // Function to handle vote click
@@ -397,7 +397,7 @@ const ChoicesPanel = (props) => {
                       <Button
                         tooltip={
                           user.isGhost &&
-                          'Ghost voting was disabled by an admin.'
+                          '管理员已禁用幽灵投票。'
                         }
                         selected={currentRank > 0}
                         disabled={user.isGhost}
@@ -408,7 +408,7 @@ const ChoicesPanel = (props) => {
                     }
                   >
                     {currentVote.displayStatistics || user.isLowerAdmin
-                      ? `${choice.votes} Votes`
+                      ? `${choice.votes} 票`
                       : null}
                   </LabeledList.Item>
                   <LabeledList.Divider />
@@ -418,7 +418,7 @@ const ChoicesPanel = (props) => {
         </LabeledList>
       ) : null}
       {/* BUBBER EDIT ADDITION END */}
-      {currentVote ? null : <NoticeBox>No vote active!</NoticeBox>}
+      {currentVote ? null : <NoticeBox>没有进行中的投票！</NoticeBox>}
     </>
   );
 };
@@ -432,8 +432,8 @@ const TimePanel = (props) => {
       <Stack justify="space-between">
         <Box fontSize={1.5}>
           {currentVote
-            ? `Time remaining: ${currentVote.timeRemaining}s`
-            : 'No current vote'}
+            ? `剩余时间：${currentVote.timeRemaining} 秒`
+            : '当前没有投票'}
         </Box>
         {!!user.isLowerAdmin && (
           <Stack>
@@ -444,7 +444,7 @@ const TimePanel = (props) => {
                 onClick={() => act('endNow')}
                 style={{ lineHeight: '1.8em' }}
               >
-                End Now
+                立即结束
               </Button>
             </Stack.Item>
             <Stack.Item>
@@ -454,7 +454,7 @@ const TimePanel = (props) => {
                 onClick={() => act('cancel')}
                 style={{ lineHeight: '1.8em' }}
               >
-                Cancel
+                取消
               </Button>
             </Stack.Item>
           </Stack>

@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component } from 'react'; import { circuitDatatypeDisplay } from '../../localization/zhDisplay';
 import {
   Box,
   Button,
@@ -57,7 +57,7 @@ export class VariableMenu extends Component {
 
     return (
       <Section
-        title="Variable Options"
+        title="变量选项"
         {...rest}
         fill
         buttons={
@@ -87,7 +87,7 @@ export class VariableMenu extends Component {
                         </Stack.Item>
                         <Stack.Item>
                           <Button textAlign="center" fluid color={val.color}>
-                            {val.datatype}
+                            {circuitDatatypeDisplay(val.datatype)}
                           </Button>
                         </Stack.Item>
                         <Stack.Item>
@@ -97,8 +97,8 @@ export class VariableMenu extends Component {
                             color={val.color}
                             disabled={!!val.is_list}
                             tooltip={`
-                            Drag me onto the circuit's grid
-                            to make a setter for this variable`}
+                            将此按钮拖到电路网格上，
+                            即可创建此变量的赋值器`}
                             icon="pen"
                           />
                         </Stack.Item>
@@ -106,8 +106,8 @@ export class VariableMenu extends Component {
                           <Button
                             fluid
                             tooltip={`
-                            Drag me onto the circuit's grid
-                            to make a getter for this variable`}
+                            将此按钮拖到电路网格上，
+                            即可创建此变量的取值器`}
                             color={val.color}
                             onMouseDown={(e) => handleMouseDownGetter(e, val)}
                             icon="book-open"
@@ -132,7 +132,7 @@ export class VariableMenu extends Component {
               <Stack vertical fill>
                 <Stack.Item>
                   <Input
-                    placeholder="Name"
+                    placeholder="名称"
                     fluid
                     onChange={(val) =>
                       this.setState({
@@ -143,8 +143,8 @@ export class VariableMenu extends Component {
                 </Stack.Item>
                 <Stack.Item>
                   <Dropdown
-                    options={types}
-                    selected={variable_type}
+                    options={types.map((value) => ({ value, displayText: circuitDatatypeDisplay(value) }))}
+                    selected={variable_type} displayText={circuitDatatypeDisplay(variable_type)}
                     className="IntegratedCircuit__BlueBorder"
                     color="black"
                     width="100%"

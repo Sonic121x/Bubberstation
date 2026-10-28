@@ -11,7 +11,7 @@ describe('gas helper functions', () => {
   it('should get the proper gas label', () => {
     const gasId = 'antinoblium';
     const gasLabel = getGasLabel(gasId);
-    expect(gasLabel).toBe('Anti-Noblium');
+    expect(gasLabel).toBe('反惰性气体');
   });
 
   it('should get the proper gas label with a fallback', () => {
@@ -25,7 +25,7 @@ describe('gas helper functions', () => {
     const gasId = 'nonexistent';
     const gasLabel = getGasLabel(gasId);
 
-    expect(gasLabel).toBe('None');
+    expect(gasLabel).toBe('无');
   });
 
   it('should get the proper gas color', () => {
@@ -50,7 +50,7 @@ describe('gas helper functions', () => {
       id: 'antinoblium',
       path: '/datum/gas/antinoblium',
       name: 'Antinoblium',
-      label: 'Anti-Noblium',
+      label: '反惰性气体',
       color: 'maroon',
     });
   });
@@ -70,7 +70,7 @@ describe('gas helper functions', () => {
       id: 'antinoblium',
       path: '/datum/gas/antinoblium',
       name: 'Antinoblium',
-      label: 'Anti-Noblium',
+      label: '反惰性气体',
       color: 'maroon',
     });
   });

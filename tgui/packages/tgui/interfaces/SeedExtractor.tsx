@@ -21,9 +21,9 @@ export const SeedExtractor = (props) => {
           cycle_seconds={data.cycle_seconds}
           renderActions={(item) =>
             <>
-              <Button icon="trash" content="Scrap" color="bad"
+              <Button icon="trash" content="销毁" color="bad"
                 onClick={() => act('scrap', { item: item.key })} />
-              <Button icon="eject" content="Take" ml={1}
+              <Button icon="eject" content="取出" ml={1}
                 onClick={() => act('take', { item: item.key })} />
             </>
           }

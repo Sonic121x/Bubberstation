@@ -80,7 +80,7 @@ function EffectDisplay(props: EffectDisplayProps) {
             ? effect.title +
               '\n' +
               shrapnelType +
-              '\nMagnitude:' +
+              '\n规模：' +
               shrapnelMagnitude
             : effect.title
           : effect.title
@@ -99,7 +99,7 @@ function Extras(props) {
   return (
     <Stack.Item>
       <Box color="label" mb={1}>
-        <b>Extras:</b>
+        <b>其他：</b>
       </Box>
       <Box>
         <Button
@@ -108,7 +108,7 @@ function Extras(props) {
           inline
           m={0}
           onClick={() => act('gamePanel')}
-          tooltip="Game Panel"
+          tooltip="游戏面板"
           tooltipPosition="top-start"
         />
         <Button
@@ -117,7 +117,7 @@ function Extras(props) {
           inline
           m={0}
           onClick={() => act('buildMode')}
-          tooltip="Build Mode"
+          tooltip="建造模式"
           tooltipPosition="top-start"
         />
         <Button
@@ -129,7 +129,7 @@ function Extras(props) {
             setCompact(!compact);
             compact && act('refreshView');
           }}
-          tooltip={compact ? 'Expand mode' : 'Compact mode'}
+          tooltip={compact ? '展开模式' : '紧凑模式'}
           tooltipPosition="top-start"
         />
       </Box>

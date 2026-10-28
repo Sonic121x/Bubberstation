@@ -202,23 +202,23 @@ export function EscapeMenu() {
 function Details({ serverState }: { serverState: ServerState }) {
   return (
     <div className="escape-menu__details">
-      <div>Round ID: {serverState.roundId || 'Unset'}</div>
-      <div>Server Time: {serverState.serverTime}</div>
-      <div>Shift Time: {serverState.shiftTime}</div>
+      <div>回合编号：{serverState.roundId || '未设置'}</div>
+      <div>服务器时间：{serverState.serverTime}</div>
+      <div>班次时间：{serverState.shiftTime}</div>
       <div>
-        Map:{' '}
+        地图：{' '}
         {serverState.mapFeedbackLink ? (
           <span
             className="escape-menu__details-link"
             onClick={() => Byond.command(`.url ${serverState.mapFeedbackLink}`)}
           >
-            {serverState.mapName || 'Loading...'}
+            {serverState.mapName || '正在加载……'}
           </span>
         ) : (
-          serverState.mapName || 'Loading...'
+          serverState.mapName || '正在加载……'
         )}
       </div>
-      <div>Time Dilation: {serverState.timeDilation}%</div>
+      <div>时间膨胀：{serverState.timeDilation}%</div>
     </div>
   );
 }

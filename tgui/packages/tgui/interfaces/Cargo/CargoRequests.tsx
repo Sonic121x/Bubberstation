@@ -11,18 +11,18 @@ export function CargoRequests(props) {
 
   return (
     <Section fill scrollable>
-      {requests.length === 0 && <NoticeBox success>No Requests</NoticeBox>}
+      {requests.length === 0 && <NoticeBox success>暂无申请</NoticeBox>}
       {requests.length > 0 && (
         <Table>
           <Table.Row header color="gray">
-            <Table.Cell>ID</Table.Cell>
-            <Table.Cell>Object</Table.Cell>
-            <Table.Cell>Orderer</Table.Cell>
-            <Table.Cell>Reason</Table.Cell>
-            <Table.Cell>Account</Table.Cell>
-            <Table.Cell>Cost</Table.Cell>
+            <Table.Cell>编号</Table.Cell>
+            <Table.Cell>物品</Table.Cell>
+            <Table.Cell>订购者</Table.Cell>
+            <Table.Cell>理由</Table.Cell>
+            <Table.Cell>账户</Table.Cell>
+            <Table.Cell>费用</Table.Cell>
             {(!requestonly || !!can_send) && !!can_approve_requests && (
-              <Table.Cell>Actions</Table.Cell>
+              <Table.Cell>操作</Table.Cell>
             )}
           </Table.Row>
 

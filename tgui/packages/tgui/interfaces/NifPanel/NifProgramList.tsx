@@ -10,7 +10,7 @@ export function NifProgramList() {
 
   return (
     <Section
-      title={`NIFSoft Programs (${max_nifsofts - loaded_nifsofts.length} slot${max_nifsofts - loaded_nifsofts.length === 1 ? '' : 's'} available)`}
+      title={`纳米植入框架软件（剩余 ${max_nifsofts - loaded_nifsofts.length} 个槽位）`}
     >
       {loaded_nifsofts.length ? (
         <Stack direction="column">
@@ -22,7 +22,7 @@ export function NifProgramList() {
         </Stack>
       ) : (
         <Box p="5px">
-          <Box color="grey">There are no NIFSofts currently installed.</Box>
+          <Box color="grey">目前未安装任何纳米植入框架软件。</Box>
         </Box>
       )}
     </Section>

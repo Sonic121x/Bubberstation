@@ -1,8 +1,8 @@
 import { CheckboxInput, type FeatureToggle } from '../../base';
 
 export const be_round_removed: FeatureToggle = {
-  name: 'Be Round Removed',
+  name: '接受本回合出局',
   description:
-    'Displays to other players that you are okay with being round removed.',
+    '向其他玩家表明你接受角色在本回合永久出局。',
   component: CheckboxInput,
 };

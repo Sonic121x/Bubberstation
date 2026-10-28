@@ -106,7 +106,7 @@ export const LuaEditor = () => {
       if (!globals) {
         tabContent = (
           <h1>
-            Could not retrieve the global table. Was it corrupted or shadowed?
+            无法获取全局表。它是否已损坏或被同名变量遮蔽？
           </h1>
         );
       } else {
@@ -127,7 +127,7 @@ export const LuaEditor = () => {
     }
     case 'tasks': {
       if (!tasks) {
-        tabContent = <h1>Could not retrieve task info.</h1>;
+        tabContent = <h1>无法获取任务信息。</h1>;
       } else {
         tabContent = <TaskManager setModal={setModal} setToCall={setToCall} />;
       }
@@ -180,21 +180,21 @@ export const LuaEditor = () => {
           <MenuBar.Dropdown
             entry="file"
             openWidth="22rem"
-            display="File"
+            display="文件"
             {...menuBarProps}
           >
             <MenuBar.Dropdown.MenuItem
-              displayText="States"
+              displayText="运行环境"
               onClick={closeMenuAndThen(() => {
                 setModal('states');
               })}
             />
             <MenuBar.Dropdown.MenuItem
-              displayText="Open"
+              displayText="打开"
               onClick={closeMenuAndThen(() => fileInputRef.current?.click())}
             />
             <MenuBar.Dropdown.MenuItem
-              displayText="Upload and Run"
+              displayText="上传并运行"
               onClick={closeMenuAndThen(() => act('runCodeFile'))}
             />
           </MenuBar.Dropdown>
@@ -206,7 +206,7 @@ export const LuaEditor = () => {
             align="center"
             justify="space-around"
           >
-            <h1>Please select or create a lua state to get started.</h1>
+            <h1>请选择或创建一个 Lua 运行环境以开始。</h1>
           </Flex>
         ) : (
           <Stack height="calc(100% - 16px)">
@@ -229,7 +229,7 @@ export const LuaEditor = () => {
                         <Button
                           onClick={() => act('runCode', { code: scriptInput })}
                         >
-                          Run
+                          运行
                         </Button>
                       </Stack.Item>
                     </Stack>
@@ -254,14 +254,14 @@ export const LuaEditor = () => {
                             setActiveTab('globals');
                           }}
                         >
-                          Globals
+                          全局变量
                         </Tabs.Tab>
                       )}
                       <Tabs.Tab
                         selected={activeTab === 'tasks'}
                         onClick={() => setActiveTab('tasks')}
                       >
-                        Tasks
+                        任务
                       </Tabs.Tab>
                       <Tabs.Tab
                         selected={activeTab === 'log'}
@@ -270,7 +270,7 @@ export const LuaEditor = () => {
                           setTimeout(handleSectionScroll, 0);
                         }}
                       >
-                        Log
+                        日志
                       </Tabs.Tab>
                     </Tabs>
                   </Stack.Item>
@@ -278,7 +278,7 @@ export const LuaEditor = () => {
                     <Button.Checkbox
                       inline
                       checked={showGlobalTable}
-                      tooltip="WARNING: Displaying the global table can cause significant lag for the entire server, especially when there is a large number of global variables."
+                      tooltip="警告：显示全局表可能导致整个服务器严重卡顿，尤其是在全局变量数量很多时。"
                       onClick={() => {
                         if (showGlobalTable && activeTab === 'globals') {
                           setActiveTab('tasks');
@@ -286,7 +286,7 @@ export const LuaEditor = () => {
                         act('toggleShowGlobalTable');
                       }}
                     >
-                      Show Global Table
+                      显示全局表
                     </Button.Checkbox>
                   </Stack.Item>
                 </Stack>
@@ -306,11 +306,11 @@ export const LuaEditor = () => {
                               checked={supressRuntimes}
                               onClick={() => act('toggleSupressRuntimes')}
                             >
-                              Supress Runtime Logging
+                              禁用运行时错误日志
                             </Button.Checkbox>
                             <Button.Confirm
                               color="red"
-                              tooltip="Delete All Logs"
+                              tooltip="删除所有日志"
                               icon="trash-alt"
                               confirmIcon="trash-alt"
                               confirmContent={null}
@@ -340,7 +340,7 @@ export const LuaEditor = () => {
                             }
                           }}
                         >
-                          Jump to Bottom
+                          跳到底部
                         </Button>
                       </Flex>
                     )}
@@ -365,7 +365,7 @@ export const LuaEditor = () => {
                             value={page / (pageCount - 1)}
                           >
                             <Box width="100%" align="center">
-                              {`Page ${page + 1}/${pageCount}`}
+                              {`第 ${page + 1}/${pageCount} 页`}
                             </Box>
                           </ProgressBar>
                         </Stack.Item>

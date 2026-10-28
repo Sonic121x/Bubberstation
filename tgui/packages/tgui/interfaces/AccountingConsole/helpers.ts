@@ -1,12 +1,12 @@
 const doomMessages = [
-  'BUY GOLD!',
-  'BUY LOW, SELL HIGH!',
-  'INVEST IN CRYPTO!',
-  'SELL EVERYTHING!',
-  'THE ECONOMY IS COLLAPSING!',
-  'THE ECONOMY IS RUINED!',
-  'THE MARKET IS CRASHING!',
-  'THE STATION IS GOING BANKRUPT!',
+  '买黄金！',
+  '低买高卖！',
+  '投资加密货币！',
+  '把一切都卖掉！',
+  '经济正在崩溃！',
+  '经济完蛋了！',
+  '市场正在暴跌！',
+  '空间站要破产了！',
 ];
 
 // Used when the economy is crashing to get a random funny message.

@@ -6,36 +6,36 @@ import {
 } from '../base';
 
 export const chat_on_map: FeatureToggle = {
-  name: 'Enable Runechat',
+  name: '启用头顶聊天',
   category: 'RUNECHAT',
-  description: 'Chat messages will show above heads.',
+  description: '在头顶显示聊天消息。',
   component: CheckboxInput,
 };
 
 export const see_chat_non_mob: FeatureToggle = {
-  name: 'Enable Runechat on objects',
+  name: '启用物体上方聊天',
   category: 'RUNECHAT',
-  description: 'Chat messages will show above objects when they speak.',
+  description: '物体说话时，在其上方显示聊天消息。',
   component: CheckboxInput,
 };
 
 export const chat_on_ghosts: FeatureToggle = {
-  name: 'Enable Runechat on ghosts',
+  name: '启用幽灵头顶聊天',
   category: 'RUNECHAT',
-  description: 'Chat messages will show above ghosts when they speak.',
+  description: '幽灵说话时，在其上方显示聊天消息。',
   component: CheckboxInput,
 };
 
 export const see_rc_emotes: FeatureToggle = {
-  name: 'Enable Runechat emotes',
+  name: '启用头顶表情动作',
   category: 'RUNECHAT',
-  description: 'Emotes will show above heads.',
+  description: '在头顶显示表情动作。',
   component: CheckboxInput,
 };
 
 export const max_chat_length: FeatureNumeric = {
-  name: 'Max chat length',
+  name: '最大聊天长度',
   category: 'RUNECHAT',
-  description: 'The maximum length a Runechat message will show as.',
+  description: '头顶聊天消息显示的最大长度。',
   component: FeatureNumberInput,
 };

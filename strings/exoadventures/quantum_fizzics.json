@@ -1,5 +1,5 @@
 {
-	"adventure_name": "Quantum Fizz-ics",
+	"adventure_name": "量子汽泡学",
 	"version": 1,
 	"author": "EOBGames",
 	"starting_node": "start",
@@ -16,18 +16,18 @@
 	"nodes": [
 		{
 			"name": "start",
-			"description": "As you sweep through the inky void and the site comes into view, you're puzzled by what you see. On a small asteroid sits a vending machine. Despite the odd runes lining its surface, you're fairly certain that the image on the front is a can of soda. While ordinary common sense would dictate that drinking strange alien soda is a bad idea, you can't help but be curious about what exactly this machine dispenses.  There's one problem, however- what currency does this thing take?",
+			"description": "你掠过漆黑的虚空，目标地点渐渐映入眼帘，眼前的景象让你十分困惑。一颗小行星上竟立着一台自动售货机。虽然表面布满古怪符文，但你相当确定，正面的图案是一罐汽水。常识告诉你，喝来历不明的外星汽水可不是什么好主意，可你还是忍不住好奇，这台机器究竟卖些什么。不过有个问题——这玩意儿收哪种货币？",
 			"choices": [
 				{
 					"key": "choice 0",
-					"name": "Leave.",
+					"name": "离开。",
 					"exit_node": "FAIL",
 					"delay": 10,
-					"delay_message": "There are better ways to die than drinking alien soda."
+					"delay_message": "比起喝外星汽水，死法多的是。"
 				},
 				{
 					"key": "choice 1",
-					"name": "Try a holocredit chit.",
+					"name": "试试全息信用点筹码。",
 					"exit_node": "it's_stuck",
 					"requirements": [
 						{
@@ -37,18 +37,18 @@
 						}
 					],
 					"delay": 10,
-					"delay_message": "Hopefully whoever made this machine is part of the Galactic Currency Union..."
+					"delay_message": "但愿造这台机器的人加入了银河货币联盟……"
 				},
 				{
 					"key": "choice 4",
-					"name": "Ram the machine.",
+					"name": "撞击售货机。",
 					"exit_node": "smashing",
 					"delay": 30,
-					"delay_message": "Ramming speed!"
+					"delay_message": "全速撞击！"
 				},
 				{
 					"key": "choice 5",
-					"name": "Search around for some loose change.",
+					"name": "在附近找些零钱。",
 					"exit_node": "lost_wallet",
 					"requirements": [
 						{
@@ -58,11 +58,11 @@
 						}
 					],
 					"delay": 100,
-					"delay_message": "There's a surprising amount of stuff on this asteroid to search..."
+					"delay_message": "这颗小行星上能翻找的东西出乎意料地多……"
 				},
 				{
 					"key": "choice 6",
-					"name": "Use the coin you found.",
+					"name": "使用找到的硬币。",
 					"exit_node": "choices_choices",
 					"requirements": [
 						{
@@ -77,7 +77,7 @@
 						}
 					],
 					"delay": 10,
-					"delay_message": "Thank God for clumsy aliens!"
+					"delay_message": "感谢老天，外星人也会丢三落四！"
 				}
 			],
 			"image": null,
@@ -85,11 +85,11 @@
 		},
 		{
 			"name": "it's_stuck",
-			"description": "Well, only one way to find out, right? You produce a holocredit chit (helpfully taken from the science budget, I'm sure they won't miss it) and jam it into the slot. Then, you realise your mistake, as it sticks in the slot. Whoops. Time to try the old fashioned way, I suppose.",
+			"description": "好吧，试过才知道，对吧？你拿出一枚全息信用点筹码，塞进投币口——当然是从科研预算里顺手拿的，他们肯定不会在意。接着你才意识到自己犯了错：筹码卡住了。哎呀。看来得用老办法了。",
 			"choices": [
 				{
 					"key": "choice 2",
-					"name": "Time to try something a bit more daring?",
+					"name": "该试试更大胆的办法了？",
 					"exit_node": "start",
 					"on_selection_effects": [
 						{
@@ -99,7 +99,7 @@
 						}
 					],
 					"delay": 10,
-					"delay_message": "In hindsight, why would this accept human currency, anyway?"
+					"delay_message": "回头想想，这东西凭什么会收人类的钱？"
 				}
 			],
 			"image": null,
@@ -107,11 +107,11 @@
 		},
 		{
 			"name": "lost_wallet",
-			"description": "Searching around, you come across a lost wallet in a small crater. Flipping it open, inside you find a family photo of 3 identical looking grey aliens in comically different outfits, an (expired) credit card for a bank you've never heard of, a loyalty card to McDonkalds, and, in the coin pouch, a single black coin with glowing purple lines. This is (presumably) what you're looking for.",
+			"description": "搜索一番后，你在一个小陨石坑里发现了丢失的钱包。打开一看，里面有一张全家福：三个长得一模一样的灰色外星人，穿着滑稽而迥异的衣服；还有一张来自陌生银行的过期信用卡、一张麦咚劳会员卡，以及零钱袋里一枚带着紫色发光纹路的黑色硬币。这应该就是你要找的东西。",
 			"choices": [
 				{
 					"key": "choice 3",
-					"name": "Return to the machine with the coin.",
+					"name": "带着硬币回到售货机旁。",
 					"exit_node": "start",
 					"on_selection_effects": [
 						{
@@ -121,7 +121,7 @@
 						}
 					],
 					"delay": 10,
-					"delay_message": "It doesn't count as theft if you found it, right?"
+					"delay_message": "捡来的不算偷，对吧？"
 				}
 			],
 			"image": null,
@@ -129,28 +129,28 @@
 		},
 		{
 			"name": "choices_choices",
-			"description": "You slip the coin into the slot- it's a perfect fit. Now comes the hard part: picking a button on the machine to press.",
+			"description": "你将硬币投入槽口——严丝合缝。现在难题来了：该按哪个按钮呢？",
 			"choices": [
 				{
 					"key": "choice 7",
-					"name": "The red looking soda.",
+					"name": "红色的汽水。",
 					"exit_node": "cha_clunk",
 					"delay": 10,
-					"delay_message": "How exciting..."
+					"delay_message": "真令人期待……"
 				},
 				{
 					"key": "choice 9",
-					"name": "The yellow looking soda.",
+					"name": "黄色的汽水。",
 					"exit_node": "cha_clunk",
 					"delay": 10,
-					"delay_message": "How exciting..."
+					"delay_message": "真令人期待……"
 				},
 				{
 					"key": "choice 10",
-					"name": "The green looking soda.",
+					"name": "绿色的汽水。",
 					"exit_node": "cha_clunk",
 					"delay": 10,
-					"delay_message": "How exciting..."
+					"delay_message": "真令人期待……"
 				}
 			],
 			"image": null,
@@ -158,14 +158,14 @@
 		},
 		{
 			"name": "cha_clunk",
-			"description": "With a satisfying cha-clunk, your fizzy prize drops into the tray. You swipe it, and move on from the site.",
+			"description": "伴随着一声悦耳的咔哐，你冒着汽泡的奖品落进了托盘。你一把拿走，离开了这里。",
 			"choices": [
 				{
 					"key": "choice 11",
-					"name": "Sweet, sugary victory.",
+					"name": "甜蜜又多糖的胜利。",
 					"exit_node": "WIN",
 					"delay": 10,
-					"delay_message": "Hopefully this doesn't like, freeze solid in space. That would be bad, right?"
+					"delay_message": "但愿它不会在太空里冻成一块。那可就糟了，对吧？"
 				}
 			],
 			"image": null,
@@ -173,14 +173,14 @@
 		},
 		{
 			"name": "smashing",
-			"description": "You maneuver the drone into position and begin ramming it into the machine. The machine sways and shakes, and just as you think it may be getting somewhere, it falls directly onto your drone. Now, not only do you not have any soda, but you don't have a drone, either. Dummy.",
+			"description": "你将无人机调到合适的位置，开始撞击售货机。机器摇摇晃晃，正当你以为要有进展时，它直接倒下来砸中了无人机。这下不但汽水没了，无人机也没了。笨蛋。",
 			"choices": [
 				{
 					"key": "choice 8",
-					"name": "Disconnect.",
+					"name": "断开连接。",
 					"exit_node": "FAIL_DEATH",
 					"delay": 10,
-					"delay_message": "Don't feel too bad, it happens to the best of us sometimes."
+					"delay_message": "别太难过，再厉害的人偶尔也会犯傻。"
 				}
 			],
 			"image": null,

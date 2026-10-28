@@ -36,12 +36,12 @@ type Request = {
 };
 
 const displayTypeMap = {
-  request_prayer: 'PRAYER',
-  request_centcom: 'CENTCOM',
-  request_syndicate: 'SYNDICATE',
-  request_nuke: 'NUKE CODE',
-  request_fax: 'FAX',
-  request_internet_sound: 'INTERNET SOUND',
+  request_prayer: '祈祷',
+  request_centcom: '中央指挥部',
+  request_syndicate: '辛迪加',
+  request_nuke: '核弹密码',
+  request_fax: '传真',
+  request_internet_sound: '网络音频',
 };
 
 export const RequestManager = (props) => {
@@ -74,10 +74,10 @@ export const RequestManager = (props) => {
   }
 
   return (
-    <Window title="Request Manager" width={575} height={600} theme="admin">
+    <Window title="请求管理" width={575} height={600} theme="admin">
       <Window.Content scrollable>
         <Section
-          title="Requests"
+          title="请求"
           buttons={
             <Stack>
               <Stack.Item>
@@ -85,15 +85,15 @@ export const RequestManager = (props) => {
                   checked={data.fax_autoprinting}
                   onClick={() => act('toggleprint')}
                   tooltip={
-                    'Enables automatic printing of fax requests to the admin fax machine. By default, this fax is located in the briefing room at the central command station'
+                    '自动将传真请求打印到管理员传真机。默认情况下，该传真机位于中央指挥部的简报室。'
                   }
                 >
-                  Auto-print Faxes
+                  自动打印传真
                 </Button.Checkbox>
                 <Input
                   value={searchText}
                   onChange={setSearchText}
-                  placeholder="Search..."
+                  placeholder="搜索……"
                   mr={1}
                 />
               </Stack.Item>
@@ -112,7 +112,7 @@ export const RequestManager = (props) => {
                 <h2 className="RequestManager__header">
                   <span className="RequestManager__headerText">
                     {request.owner_name}
-                    {request.owner === null && ' [DC]'}
+                    {request.owner === null && ' [已断线]'}
                   </span>
                   <span className="RequestManager__timestamp">
                     {request.timestamp_str}
@@ -148,31 +148,31 @@ const RequestControls = (props) => {
 
   return (
     <div className="RequestManager__controlsContainer">
-      <Button onClick={() => act('pp', { id: request.id })}>PP</Button>
-      <Button onClick={() => act('vv', { id: request.id })}>VV</Button>
-      <Button onClick={() => act('sm', { id: request.id })}>SM</Button>
-      <Button onClick={() => act('flw', { id: request.id })}>FLW</Button>
-      <Button onClick={() => act('tp', { id: request.id })}>TP</Button>
-      <Button onClick={() => act('logs', { id: request.id })}>LOGS</Button>
-      <Button onClick={() => act('smite', { id: request.id })}>SMITE</Button>
+      <Button onClick={() => act('pp', { id: request.id })}>玩家面板</Button>
+      <Button onClick={() => act('vv', { id: request.id })}>变量</Button>
+      <Button onClick={() => act('sm', { id: request.id })}>隐秘消息</Button>
+      <Button onClick={() => act('flw', { id: request.id })}>跟随</Button>
+      <Button onClick={() => act('tp', { id: request.id })}>叛徒面板</Button>
+      <Button onClick={() => act('logs', { id: request.id })}>日志</Button>
+      <Button onClick={() => act('smite', { id: request.id })}>神罚</Button>
       {request.req_type !== 'request_prayer' && (
-        <Button onClick={() => act('rply', { id: request.id })}>RPLY</Button>
+        <Button onClick={() => act('rply', { id: request.id })}>回复</Button>
       )}
       {request.req_type === 'request_nuke' && (
         <Button onClick={() => act('setcode', { id: request.id })}>
-          SETCODE
+          设置密码
         </Button>
       )}
       {request.req_type === 'request_fax' && (
         <>
-          <Button onClick={() => act('show', { id: request.id })}>SHOW</Button>
+          <Button onClick={() => act('show', { id: request.id })}>查看</Button>
           <Button onClick={() => act('print', { id: request.id })}>
-            PRINT
+            打印
           </Button>
         </>
       )}
       {request.req_type === 'request_internet_sound' && (
-        <Button onClick={() => act('play', { id: request.id })}>PLAY</Button>
+        <Button onClick={() => act('play', { id: request.id })}>播放</Button>
       )}
     </div>
   );
@@ -212,7 +212,7 @@ const FilterPanel = (props) => {
         }
       >
         <Button icon="cog" selected={filterVisible}>
-          Type Filter
+          类型筛选
         </Button>
       </Floating>
     </div>

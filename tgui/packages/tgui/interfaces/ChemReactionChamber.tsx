@@ -44,10 +44,10 @@ export const ChemReactionChamber = (props) => {
         <Stack vertical fill>
           <Stack.Item>
             <Section
-              title="Conditions"
+              title="反应条件"
               buttons={
                 <Stack>
-                  <Stack.Item mt={0.3}>{'Target:'}</Stack.Item>
+                  <Stack.Item mt={0.3}>{'目标：'}</Stack.Item>
                   <Stack.Item>
                     <NumberInput
                       tickWhileDragging
@@ -72,7 +72,7 @@ export const ChemReactionChamber = (props) => {
                 <Stack.Item>
                   <Stack fill>
                     <Stack.Item textColor="label">
-                      Current Temperature:
+                      当前温度：
                     </Stack.Item>
                     <Stack.Item grow>
                       <AnimatedNumber
@@ -115,13 +115,13 @@ export const ChemReactionChamber = (props) => {
                         color="transparent"
                         icon="question"
                         tooltip={`
-                        In chemistry, pH is a scale used to specify
-                        the acidity or basicity of an aqueous solution.
-                        Acidic solutions are measured to have lower
-                        pH values than basic or alkaline solutions.
-                        The pH scale is logarithmic and inversely
-                        indicates the concentration of hydrogen ions
-                        in the solution.`}
+                        在化学中，pH 是用于表示
+                        水溶液酸碱程度的标度。
+                        酸性溶液的 pH 值
+                        低于碱性溶液。
+                        pH 采用对数标度，
+                        其值越低，溶液中的
+                        氢离子浓度越高。`}
                         tooltipPosition="bottom-start"
                       />
                     </Stack.Item>
@@ -132,13 +132,13 @@ export const ChemReactionChamber = (props) => {
           </Stack.Item>
           <Stack.Item grow>
             <Section
-              title="Settings"
+              title="设置"
               fill
               scrollable
               buttons={
                 (isReacting && (
                   <Box inline bold color={'purple'}>
-                    {'Reacting'}
+                    {'反应中'}
                   </Box>
                 )) || (
                   <Box
@@ -147,7 +147,7 @@ export const ChemReactionChamber = (props) => {
                     bold
                     color={emptying ? 'bad' : 'good'}
                   >
-                    {emptying ? 'Emptying' : 'Filling'}
+                    {emptying ? '排出中' : '注入中'}
                   </Box>
                 )
               }
@@ -155,7 +155,7 @@ export const ChemReactionChamber = (props) => {
               <Stack vertical fill>
                 <Stack.Item>
                   <LabeledList>
-                    <LabeledList.Item label="Acidic pH limit">
+                    <LabeledList.Item label="pH 下限">
                       <NumberInput
                         tickWhileDragging
                         value={reagentAcidic}
@@ -171,7 +171,7 @@ export const ChemReactionChamber = (props) => {
                         }
                       />
                     </LabeledList.Item>
-                    <LabeledList.Item label="Alkaline pH limit">
+                    <LabeledList.Item label="pH 上限">
                       <NumberInput
                         tickWhileDragging
                         value={reagentAlkaline}
@@ -202,7 +202,7 @@ export const ChemReactionChamber = (props) => {
                           })
                         }
                       >
-                        Add Reagent
+                        添加试剂
                       </Button>
                     </Stack.Item>
                     <Stack.Item>
@@ -236,9 +236,9 @@ export const ChemReactionChamber = (props) => {
                             <Button
                               color="transparent"
                               tooltip={`
-                                This button converts this reagent entry into a catalyst.
-                                Catalyst reagents are not removed from the reaction chamber
-                                on completion. Useful for certain reactions.`}
+                                此按钮将该试剂设为催化剂。
+                                催化剂不会在反应结束时排出反应室，
+                                对某些反应很有用。`}
                               tooltipPosition="bottom-start"
                               onClick={() =>
                                 act('catalyst', {
@@ -246,7 +246,7 @@ export const ChemReactionChamber = (props) => {
                                 })
                               }
                             >
-                              C
+                              催
                             </Button>
                           </Stack.Item>
                           <Stack.Item>
@@ -269,7 +269,7 @@ export const ChemReactionChamber = (props) => {
             </Section>
           </Stack.Item>
           <Stack.Item grow={0.7}>
-            <Section title="Catalysts" fill scrollable>
+            <Section title="催化剂" fill scrollable>
               <Stack.Item>
                 <Stack vertical fill>
                   {catalysts.map((reagent) => (
@@ -290,7 +290,7 @@ export const ChemReactionChamber = (props) => {
                               })
                             }
                           >
-                            C
+                            催
                           </Button>
                         </Stack.Item>
                       </Stack>

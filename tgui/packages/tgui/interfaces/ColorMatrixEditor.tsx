@@ -23,7 +23,7 @@ export const ColorMatrixEditor = (props) => {
   const { mapRef, currentColor } = data;
 
   return (
-    <Window title="Color Matrix Editor" width={600} height={220}>
+    <Window title="颜色矩阵编辑器" width={600} height={220}>
       <Window.Content>
         <Stack fill>
           <Stack.Item align="center">
@@ -67,8 +67,8 @@ export const ColorMatrixEditor = (props) => {
               <Stack.Item grow />
               <Stack.Item align="left">
                 <Button.Confirm
-                  content="Confirm"
-                  confirmContent="Confirm?"
+                  content="确认"
+                  confirmContent="确定吗？"
                   onClick={() => act('confirm')}
                 />
               </Stack.Item>

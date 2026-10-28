@@ -1,0 +1,32 @@
+// Card names may also be icon keys. Translate only their displayed form.
+/proc/chinese_playing_card_display(value)
+	var/static/list/display_names = list(
+		"O1: Spell Cards" = "进攻1：法术卡牌",
+		"O2: Summon Bees" = "进攻2：召唤蜜蜂",
+		"O3: Polymorph" = "进攻3：变形术",
+		"O4: Tesla Blast" = "进攻4：特斯拉爆破",
+		"O5: Rod Form" = "进攻5：钢棒形态",
+		"O6: Mutate" = "进攻6：突变",
+		"O7: Fireball" = "进攻7：火球术",
+		"O8: Mjolnir" = "进攻8：雷神之锤",
+		"O9: Smite" = "进攻9：神罚",
+		"D1: Smoke" = "防御1：烟雾",
+		"D2: Battlemage Armor" = "防御2：战斗法师护甲",
+		"D3: Repulse" = "防御3：斥力",
+		"D4: Magic Missile" = "防御4：魔法飞弹",
+		"D5: Disable Technology" = "防御5：瘫痪科技",
+		"D6: Spell Trap" = "防御6：法术陷阱",
+		"D7: Forcewall" = "防御7：力场墙",
+		"D8: Arcane Heal" = "防御8：奥术治疗",
+		"D9: Stop Time" = "防御9：时间停止",
+		"U1: Shapechange" = "辅助1：变形",
+		"U2: Spacetime Distortion" = "辅助2：时空扭曲",
+		"U3: Scrying Orb" = "辅助3：占卜宝珠",
+		"U4: Blink" = "辅助4：闪现",
+		"U5: Knock" = "辅助5：敲击术",
+		"U6: Teleport" = "辅助6：传送",
+		"U7: Bind Soul" = "辅助7：灵魂绑定",
+		"U8: Warp Whistle" = "辅助8：跃迁口哨",
+		"U9: Jaunt" = "辅助9：幽影漫步",
+	)
+	return display_names[value] || value

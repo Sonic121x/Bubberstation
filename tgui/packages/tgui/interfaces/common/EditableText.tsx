@@ -54,7 +54,7 @@ export const EditableText = (props: Props) => {
           }}
           onClick={() => setEditing(true)}
         >
-          {!text ? '(none)' : (displayText ?? text)}
+          {!text ? '（无）' : (displayText ?? text)}
         </Box>
       </Stack.Item>
       <Stack.Item>
@@ -65,7 +65,7 @@ export const EditableText = (props: Props) => {
           onClick={() =>
             act('edit_field', { field: field, ref: target_ref, value: '' })
           }
-          tooltip="Clear"
+          tooltip="清除"
           tooltipPosition="bottom"
         />
       </Stack.Item>

@@ -42,7 +42,7 @@ const IntroductionSection = (props) => {
   const { act, data } = useBackend<Info>();
   const { intro, objectives } = data;
   return (
-    <Section fill title="Intro" scrollable>
+    <Section fill title="简介" scrollable>
       <Stack vertical fill>
         <Stack.Item fontSize="25px">{intro}</Stack.Item>
         <Stack.Item grow>
@@ -67,18 +67,18 @@ const EmployerSection = (props) => {
   return (
     <Section
       fill
-      title="Employer"
+      title="雇主"
       scrollable
       buttons={
         <Button
           icon="hammer"
           tooltip={`
-            This is a gameplay suggestion for bored traitors.
-            You don't have to follow it, unless you want some
-            ideas for how to spend the round.`}
+            这是给感到无聊的叛徒的玩法建议。
+            你不必遵循它，除非你需要一些
+            度过本回合的灵感。`}
           tooltipPosition="bottom-start"
         >
-          Policy
+          方针
         </Button>
       }
     >
@@ -87,7 +87,7 @@ const EmployerSection = (props) => {
           <Stack vertical>
             <Stack.Item>
               <span style={allystyle}>
-                Your allegiances:
+                你的效忠对象：
                 <br />
               </span>
               <BlockQuote>{allies}</BlockQuote>
@@ -95,7 +95,7 @@ const EmployerSection = (props) => {
             <Stack.Divider />
             <Stack.Item mb={1}>
               <span style={goalstyle}>
-                Employer thoughts:
+                雇主的想法：
                 <br />
               </span>
               <BlockQuote>{goal}</BlockQuote>
@@ -112,17 +112,17 @@ const UplinkSection = (props) => {
   const { has_uplink, uplink_intro, uplink_unlock_info, code, failsafe_code } =
     data;
   return (
-    <Section title="Uplink" mb={!has_uplink && -1}>
+    <Section title="上行链路" mb={!has_uplink && -1}>
       <Stack fill>
         {
           <>
             <Stack.Item bold>
               {uplink_intro}
               <br />
-              {code && <span style={goalstyle}>Code: {code}</span>}
+              {code && <span style={goalstyle}>密码：{code}</span>}
               <br />
               {failsafe_code && (
-                <span style={badstyle}>Failsafe: {failsafe_code}</span>
+                <span style={badstyle}>应急销毁密码：{failsafe_code}</span>
               )}
             </Stack.Item>
             <Stack.Divider />
@@ -148,36 +148,36 @@ const CodewordsSection = (props) => {
   const { data } = useBackend<Info>();
   const { has_codewords, phrases, responses } = data;
   return (
-    <Section title="Codewords" mb={!has_codewords && -1}>
+    <Section title="暗号" mb={!has_codewords && -1}>
       <Stack fill>
         {(!has_codewords && (
           <BlockQuote>
-            You have not been supplied with codewords. You will have to use
-            alternative methods to find potential allies. Proceed with caution,
-            however, as everyone is a potential foe.
+            你没有获得暗号。你必须
+            通过其他方式寻找潜在盟友。但请谨慎行动，
+            因为任何人都可能是敌人。
           </BlockQuote>
         )) || (
           <>
             <Stack.Item grow basis={0}>
               <BlockQuote>
-                Your employer provided you with the following codewords to
-                identify fellow agents. Use the codewords during regular
-                conversation to identify other agents. Proceed with caution,
-                however, as everyone is a potential foe.
+                雇主为你提供了以下暗号，用于
+                识别其他特工。在日常交谈中使用
+                暗号，即可辨认同伴。但请谨慎行动，
+                因为任何人都可能是敌人。
                 <span style={badstyle}>
-                  &ensp;You have memorized the codewords, allowing you to
-                  recognise them when heard.
+                  &ensp;你已记住这些暗号，
+                  听到时便能辨认出来。
                 </span>
               </BlockQuote>
             </Stack.Item>
             <Stack.Divider mr={1} />
             <Stack.Item grow basis={0}>
               <Stack vertical>
-                <Stack.Item>Code Phrases:</Stack.Item>
+                <Stack.Item>暗号词：</Stack.Item>
                 <Stack.Item bold textColor="blue">
                   {phrases}
                 </Stack.Item>
-                <Stack.Item>Code Responses:</Stack.Item>
+                <Stack.Item>暗号回应：</Stack.Item>
                 <Stack.Item bold textColor="red">
                   {responses}
                 </Stack.Item>

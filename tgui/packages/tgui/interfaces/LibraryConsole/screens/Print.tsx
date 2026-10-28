@@ -48,10 +48,10 @@ export function Print(props) {
                 {bible_name}
               </Stack.Item>
               <Stack.Item textAlign="center" fontSize="22px" textColor="purple">
-                In the Name of {deity}
+                以{deity}之名
               </Stack.Item>
               <Stack.Item textAlign="center" fontSize="22px" textColor="purple">
-                For the Sake of {religion}
+                为了{religion}
               </Stack.Item>
               <Stack.Item align="center">
                 <Box className={classes(['bibles224x224', bible_sprite])} />
@@ -75,7 +75,7 @@ export function Print(props) {
                 })
               }
             >
-              Poster
+              海报
             </Button>
           </Stack.Item>
           <Stack.Item grow>
@@ -87,7 +87,7 @@ export function Print(props) {
               textAlign="center"
               onClick={() => act('print_bible')}
             >
-              Bible
+              圣经
             </Button>
           </Stack.Item>
         </Stack>

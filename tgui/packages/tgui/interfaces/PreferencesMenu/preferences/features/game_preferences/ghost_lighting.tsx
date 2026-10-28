@@ -2,8 +2,8 @@ import type { FeatureChoiced } from '../base';
 import { FeatureDropdownInput } from '../dropdowns';
 
 export const ghost_lighting: FeatureChoiced = {
-  name: 'Ghost Lighting',
+  name: '幽灵照明',
   component: FeatureDropdownInput,
   category: 'GHOST',
-  description: 'Effects the brightness of lights for ghosts',
+  description: '调整幽灵视角下的照明亮度。',
 };

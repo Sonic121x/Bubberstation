@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
-
+import { craftToolDisplay } from '../../../localization/zhCraftToolDisplay';
 import { GroupTitle } from '../GroupTitle';
 import { findIcon } from '../helpers';
 import { type CraftingData, type Diet, MODE, type Recipe } from '../types';
@@ -96,7 +96,7 @@ export function RecipeContentCompact(props: Props) {
                 <Box>
                   {!!item.tool_behaviors && (
                     <Tooltip
-                      content={`Tools: ${item.tool_behaviors.join(', ')}`}
+                      content={`工具：${item.tool_behaviors.map(craftToolDisplay).join('、')}`}
                     >
                       <Icon p={1} name="screwdriver-wrench" />
                     </Tooltip>
@@ -120,7 +120,7 @@ export function RecipeContentCompact(props: Props) {
                       })
                     }
                   >
-                    Make
+                    制作
                   </Button>
                   {!!item.mass_craftable && (
                     <Button
@@ -128,7 +128,7 @@ export function RecipeContentCompact(props: Props) {
                       lineHeight={2.5}
                       width="32px"
                       align="center"
-                      tooltip="Repeat this craft until you run out of ingredients."
+                      tooltip="重复制作，直到原料耗尽。"
                       tooltipPosition="top"
                       disabled={!craftable || busy}
                       icon="repeat"
@@ -194,7 +194,7 @@ export function RecipeContent(props: FullProps) {
               {!!item.has_food_effect && (
                 <Box my={2} color="pink">
                   <Icon name="wand-magic-sparkles" mr={1} />
-                  Special effect on consumption.
+                  食用后产生特殊效果。
                 </Box>
               )}
               <Box style={{ textTransform: 'capitalize' }}>
@@ -202,7 +202,7 @@ export function RecipeContent(props: FullProps) {
                   <Box>
                     <GroupTitle
                       title={
-                        mode === MODE.cooking ? 'Ingredients' : 'Materials'
+                        mode === MODE.cooking ? '食材' : '材料'
                       }
                     />
                     {Object.keys(item.reqs).map((atom_id) => (
@@ -216,7 +216,7 @@ export function RecipeContent(props: FullProps) {
                 )}
                 {item.chem_catalysts && (
                   <Box>
-                    <GroupTitle title="Catalysts" />
+                    <GroupTitle title="催化剂" />
                     {Object.keys(item.chem_catalysts).map((atom_id) => (
                       <AtomContent
                         key={atom_id}
@@ -228,7 +228,7 @@ export function RecipeContent(props: FullProps) {
                 )}
                 {(item.tool_paths || item.tool_behaviors) && (
                   <Box>
-                    <GroupTitle title="Tools" />
+                    <GroupTitle title="工具" />
                     {item.tool_paths?.map((tool) => (
                       <AtomContent key={tool} atom_id={tool} amount={1} />
                     ))}
@@ -239,7 +239,7 @@ export function RecipeContent(props: FullProps) {
                 )}
                 {item.machinery && (
                   <Box>
-                    <GroupTitle title="Machinery" />
+                    <GroupTitle title="机器" />
                     {item.machinery.map((atom_id) => (
                       <AtomContent key={atom_id} atom_id={atom_id} amount={1} />
                     ))}
@@ -247,7 +247,7 @@ export function RecipeContent(props: FullProps) {
                 )}
                 {item.structures && (
                   <Box>
-                    <GroupTitle title="Structures" />
+                    <GroupTitle title="结构" />
                     {item.structures.map((atom_id) => (
                       <AtomContent key={atom_id} atom_id={atom_id} amount={1} />
                     ))}
@@ -256,7 +256,7 @@ export function RecipeContent(props: FullProps) {
               </Box>
               {!!item.steps?.length && (
                 <Box>
-                  <GroupTitle title="Steps" />
+                  <GroupTitle title="步骤" />
                   <ul style={{ paddingLeft: '20px' }}>
                     {item.steps.map((step) => (
                       <li key={step}>{step}</li>
@@ -290,7 +290,7 @@ export function RecipeContent(props: FullProps) {
                             })
                           }
                         >
-                          Make
+                          制作
                         </Button>
                       </Stack.Item>
                       <Stack.Item>
@@ -299,7 +299,7 @@ export function RecipeContent(props: FullProps) {
                             minWidth="30px"
                             lineHeight={2.5}
                             align="center"
-                            tooltip="Repeat this craft until you run out of ingredients."
+                            tooltip="重复制作，直到原料耗尽。"
                             tooltipPosition="top"
                             disabled={!craftable || busy}
                             icon="repeat"
@@ -318,7 +318,7 @@ export function RecipeContent(props: FullProps) {
                 <Stack.Item>
                   {!!item.complexity && (
                     <Box color="gray" width="104px" lineHeight={1.5} mt={1}>
-                      Complexity: {item.complexity}
+                      复杂度：{item.complexity}
                     </Box>
                   )}
                   {!!item.foodtypes && item.foodtypes.length > 0 && (

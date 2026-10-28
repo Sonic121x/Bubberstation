@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Box, Button, Flex, Modal, Section } from 'tgui-core/components';
-import { capitalize } from 'tgui-core/string';
+import { communicationsAlertDisplay } from '../../localization/communicationsDisplay';
 
 import { useBackend } from '../../backend';
 import { AlertButton } from './AlertButton';
@@ -45,7 +45,7 @@ export function PageMain(props) {
   return (
     <Box>
       {!syndicate && (
-        <Section title="Emergency Shuttle">
+        <Section title="紧急穿梭机">
           {shuttleCalled ? (
             <Button.Confirm
               icon="space-shuttle"
@@ -54,13 +54,13 @@ export function PageMain(props) {
               tooltip={
                 (canRecallShuttles &&
                   !shuttleRecallable &&
-                  "It's too late for the emergency shuttle to be recalled.") ||
-                'You do not have permission to recall the emergency shuttle.'
+                  '现在已无法召回紧急穿梭机。') ||
+                '你无权召回紧急穿梭机。'
               }
               tooltipPosition="top"
               onClick={() => act('recallShuttle')}
             >
-              Recall Emergency Shuttle
+              召回紧急穿梭机
             </Button.Confirm>
           ) : (
             <Button
@@ -74,27 +74,27 @@ export function PageMain(props) {
               tooltipPosition="top"
               onClick={() => setCallingShuttle(true)}
             >
-              Call Emergency Shuttle
+              呼叫紧急穿梭机
             </Button>
           )}
           {!!shuttleCalledPreviously &&
             (shuttleLastCalled ? (
               <Box>
-                Most recent shuttle call/recall traced to:{' '}
+                最近一次穿梭机呼叫／召回信号来自：{' '}
                 <b>{shuttleLastCalled}</b>
               </Box>
             ) : (
-              <Box>Unable to trace most recent shuttle/recall signal.</Box>
+              <Box>无法追踪最近一次穿梭机呼叫／召回信号。</Box>
             ))}
         </Section>
       )}
 
       {!!canSetAlertLevel && (
-        <Section title="Alert Level">
+        <Section title="警戒等级">
           <Flex justify="space-between">
             <Flex.Item>
               <Box>
-                Currently on <b>{capitalize(alertLevel)}</b> Alert
+                当前处于<b>{communicationsAlertDisplay(alertLevel)}</b>警戒
               </Box>
             </Flex.Item>
 
@@ -130,14 +130,14 @@ export function PageMain(props) {
         </Section>
       )}
 
-      <Section title="Functions">
+      <Section title="功能">
         <Flex direction="column">
           {!!canMakeAnnouncement && (
             <Button
               icon="bullhorn"
               onClick={() => act('makePriorityAnnouncement')}
             >
-              Make Priority Announcement
+              发布优先公告
             </Button>
           )}
 
@@ -148,8 +148,8 @@ export function PageMain(props) {
               color={emergencyAccess ? 'bad' : undefined}
               onClick={() => act('toggleEmergencyAccess')}
             >
-              {emergencyAccess ? 'Disable' : 'Enable'} Emergency Maintenance
-              Access
+              {emergencyAccess ? '禁用' : '启用'}维护区紧急
+              通行权限
             </Button.Confirm>
           )}
 
@@ -160,8 +160,8 @@ export function PageMain(props) {
               color={engineeringOverride ? 'bad' : undefined}
               onClick={() => act('toggleEngOverride')}
             >
-              {engineeringOverride ? 'Disable' : 'Enable'} Engineering Override
-              Access
+              {engineeringOverride ? '禁用' : '启用'}工程越权
+              通行权限
             </Button.Confirm>
           )}
           {/* BUBBER EDIT ADDITION END - Engineering Override */}
@@ -173,7 +173,7 @@ export function PageMain(props) {
                 act('setState', { state: ShuttleState.CHANGING_STATUS })
               }
             >
-              Set Status Display
+              设置状态显示屏
             </Button>
           )}
 
@@ -181,7 +181,7 @@ export function PageMain(props) {
             icon="envelope-o"
             onClick={() => act('setState', { state: ShuttleState.MESSAGES })}
           >
-            Message List
+            消息列表
           </Button>
 
           {canBuyShuttles !== 0 && (
@@ -196,7 +196,7 @@ export function PageMain(props) {
                 act('setState', { state: ShuttleState.BUYING_SHUTTLE })
               }
             >
-              Purchase Shuttle
+              购买穿梭机
             </Button>
           )}
 
@@ -206,7 +206,7 @@ export function PageMain(props) {
               disabled={!importantActionReady}
               onClick={() => setMessagingAssociates(true)}
             >
-              Send message to {emagged ? '[UNKNOWN]' : 'CentCom'}
+              发送消息给{emagged ? '［未知］' : '中央指挥部'}
             </Button>
           )}
 
@@ -216,35 +216,35 @@ export function PageMain(props) {
               disabled={!importantActionReady}
               onClick={() => setRequestingNukeCodes(true)}
             >
-              Request Nuclear Authentication Codes
+              请求核武器授权码
             </Button>
           )}
 
           {!!emagged && !syndicate && (
             <Button icon="undo" onClick={() => act('restoreBackupRoutingData')}>
-              Restore Backup Routing Data
+              恢复备份路由数据
             </Button>
           )}
 
           {/* BUBBER EDIT ADDITION BEGIN - Additional Calls */}
           {!!canMakeAnnouncement && (
             <Button icon="bullhorn" onClick={() => act('callThePolice')}>
-              Call Terran Government 911: Marshals Response
+              呼叫地球政府 911：法警支援
             </Button>
           )}
           {!!canMakeAnnouncement && (
             <Button icon="bullhorn" onClick={() => act('callTheCatmos')}>
-              Call Terran Government 811: Atmospherics Response
+              呼叫地球政府 811：大气支援
             </Button>
           )}
           {!!canMakeAnnouncement && (
             <Button icon="bullhorn" onClick={() => act('callTheParameds')}>
-              Call Terran Government 911: Medical Response
+              呼叫地球政府 911：医疗支援
             </Button>
           )}
           {!!emagged && (
             <Button icon="bullhorn" onClick={() => act('callThePizza')}>
-              Place an Order with Dogginos Pizza
+              向多吉诺披萨店下单
             </Button>
           )}
           {/* BUBBER EDIT ADDITION END - Additional Calls */}
@@ -253,12 +253,12 @@ export function PageMain(props) {
 
       {!!canMessageAssociates && messagingAssociates && (
         <MessageModal
-          label={`Message to transmit to ${
-            emagged ? '[ABNORMAL ROUTING COORDINATES]' : 'CentCom'
-          } via quantum entanglement`}
-          notice="Please be aware that this process is very expensive, and abuse will lead to...termination. Transmission does not guarantee a response."
+          label={`通过量子纠缠发送给${
+            emagged ? '［异常路由坐标］' : '中央指挥部'
+          }的消息`}
+          notice="请注意，此过程成本高昂，滥用将导致……终结。发送消息不保证得到回应。"
           icon="bullhorn"
-          buttonText="Send"
+          buttonText="发送"
           onBack={() => setMessagingAssociates(false)}
           onSubmit={(message) => {
             setMessagingAssociates(false);
@@ -271,10 +271,10 @@ export function PageMain(props) {
 
       {!!canRequestNuke && requestingNukeCodes && (
         <MessageModal
-          label="Reason for requesting nuclear self-destruct codes"
-          notice="Misuse of the nuclear request system will not be tolerated under any circumstances. Transmission does not guarantee a response."
+          label="申请核自毁密码的理由"
+          notice="任何情况下都不允许滥用核武器申请系统。发送消息不保证得到回应。"
           icon="bomb"
-          buttonText="Request Codes"
+          buttonText="申请密码"
           onBack={() => setRequestingNukeCodes(false)}
           onSubmit={(reason) => {
             setRequestingNukeCodes(false);
@@ -287,9 +287,9 @@ export function PageMain(props) {
 
       {!!callingShuttle && (
         <MessageModal
-          label="Nature of emergency"
+          label="紧急情况说明"
           icon="space-shuttle"
-          buttonText="Call Shuttle"
+          buttonText="呼叫穿梭机"
           minLength={callShuttleReasonMinLength}
           onBack={() => setCallingShuttle(false)}
           onSubmit={(reason) => {
@@ -305,7 +305,7 @@ export function PageMain(props) {
         <Modal>
           <Flex direction="column" textAlign="center" width="300px">
             <Flex.Item fontSize="16px" mb={2}>
-              Swipe ID to confirm change
+              刷 ID 卡确认更改
             </Flex.Item>
 
             <Flex.Item mr={2} mb={1}>
@@ -320,7 +320,7 @@ export function PageMain(props) {
                   setNewAlertLevel('');
                 }}
               >
-                Swipe ID
+                刷 ID 卡
               </Button>
 
               <Button
@@ -329,7 +329,7 @@ export function PageMain(props) {
                 fontSize="16px"
                 onClick={() => setNewAlertLevel('')}
               >
-                Cancel
+                取消
               </Button>
             </Flex.Item>
           </Flex>
@@ -337,7 +337,7 @@ export function PageMain(props) {
       )}
 
       {!!canSendToSectors && sectors.length > 0 && (
-        <Section title="Allied Sectors">
+        <Section title="友方星区">
           <Flex direction="column">
             {sectors.map((sectorName) => (
               <Flex.Item key={sectorName}>
@@ -345,7 +345,7 @@ export function PageMain(props) {
                   disabled={!importantActionReady}
                   onClick={() => setMessagingSector(sectorName)}
                 >
-                  Send a message to station in {sectorName} sector
+                  向 {sectorName} 星区的空间站发送消息
                 </Button>
               </Flex.Item>
             ))}
@@ -356,7 +356,7 @@ export function PageMain(props) {
                   disabled={!importantActionReady}
                   onClick={() => setMessagingSector('all')}
                 >
-                  Send a message to all allied station
+                  向所有友方空间站发送消息
                 </Button>
               </Flex.Item>
             )}
@@ -366,10 +366,10 @@ export function PageMain(props) {
 
       {!!canSendToSectors && sectors.length > 0 && messagingSector && (
         <MessageModal
-          label="Message to send to allied station"
-          notice="Please be aware that this process is very expensive, and abuse will lead to...termination."
+          label="发送给友方空间站的消息"
+          notice="请注意，此过程成本高昂，滥用将导致……终结。"
           icon="bullhorn"
-          buttonText="Send"
+          buttonText="发送"
           onBack={() => setMessagingSector('')}
           onSubmit={(message) => {
             act('sendToOtherSector', {

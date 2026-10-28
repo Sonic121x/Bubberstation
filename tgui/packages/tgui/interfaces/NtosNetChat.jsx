@@ -34,11 +34,11 @@ const NoChannelDimmer = (props) => {
           </Stack>
         </Stack.Item>
         <Stack.Item fontSize="18px">
-          Click a channel to start chatting!
+          点击频道开始聊天！
         </Stack.Item>
         <Stack.Item fontSize="15px">
-          (If you&apos;re new, you may want to set your name in the bottom
-          left!)
+          （如果你是新用户，可以先在左下角
+          设置自己的名字！）
         </Stack.Item>
       </Stack>
     </Dimmer>
@@ -96,7 +96,7 @@ export const NtosNetChat = (props) => {
                 <Stack.Item grow>
                   <Button.Input
                     fluid
-                    buttonText="New Channel..."
+                    buttonText="新建频道……"
                     onCommit={(value) =>
                       act('PRG_newchannel', {
                         new_channel_name: value,
@@ -119,7 +119,7 @@ export const NtosNetChat = (props) => {
                   ))}
                 </Stack.Item>
                 <Stack.Item>
-                  <Box>Username:</Box>
+                  <Box>用户名：</Box>
                   <Button.Input
                     fluid
                     mt={1}
@@ -135,7 +135,7 @@ export const NtosNetChat = (props) => {
                     <Button
                       fluid
                       bold
-                      content={`ADMIN MODE: ${adminmode ? 'ON' : 'OFF'}`}
+                      content={`管理员模式：${adminmode ? '开启' : '关闭'}`}
                       color={adminmode ? 'bad' : 'good'}
                       onClick={() => act('PRG_toggleadmin')}
                     />
@@ -162,9 +162,9 @@ export const NtosNetChat = (props) => {
                           fontSize="40px"
                         />
                         <Box mt={1} bold fontSize="18px">
-                          THIS CHANNEL IS PASSWORD PROTECTED
+                          此频道受密码保护
                         </Box>
-                        <Box mt={1}>INPUT PASSWORD TO ACCESS</Box>
+                        <Box mt={1}>请输入密码以访问</Box>
                       </Box>
                     ))) || <NoChannelDimmer />}
                 </Section>
@@ -174,8 +174,8 @@ export const NtosNetChat = (props) => {
                   backgroundColor={this_client?.muted && 'red'}
                   height="22px"
                   placeholder={
-                    (this_client?.muted && 'You are muted!') ||
-                    `Message ${title}`
+                    (this_client?.muted && '你已被禁言！') ||
+                    `向 ${title} 发送消息`
                   }
                   fluid
                   disabled={this_client?.muted}
@@ -215,8 +215,8 @@ export const NtosNetChat = (props) => {
                                     compact
                                     icon="bullhorn"
                                     tooltip={
-                                      (!this_client?.muted && 'Ping') ||
-                                      'You are muted!'
+                                      (!this_client?.muted && '提醒对方') ||
+                                      '你已被禁言！'
                                     }
                                     tooltipPosition="left"
                                     onClick={() =>
@@ -238,8 +238,8 @@ export const NtosNetChat = (props) => {
                                         (!client.muted && 'green') || 'red'
                                       }
                                       tooltip={
-                                        (!client.muted && 'Mute this User') ||
-                                        'Unmute this User'
+                                        (!client.muted && '禁言此用户') ||
+                                        '解除此用户的禁言'
                                       }
                                       tooltipPosition="left"
                                       onClick={() =>
@@ -259,12 +259,12 @@ export const NtosNetChat = (props) => {
                   </Stack.Item>
                   <Section>
                     <Stack vertical g={0.5}>
-                      <Stack.Item>Settings for {title}:</Stack.Item>
+                      <Stack.Item>{title} 的设置：</Stack.Item>
                       {!!(in_channel && authorized) && (
                         <>
                           <Button.Input
                             fluid
-                            buttonText="Save log as..."
+                            buttonText="将日志另存为……"
                             onCommit={(value) =>
                               act('PRG_savelog', {
                                 log_name: value,
@@ -273,7 +273,7 @@ export const NtosNetChat = (props) => {
                           />
                           <Button.Confirm
                             fluid
-                            content="Leave Channel"
+                            content="离开频道"
                             onClick={() => act('PRG_leavechannel')}
                           />
                         </>
@@ -283,13 +283,13 @@ export const NtosNetChat = (props) => {
                           <Button.Confirm
                             fluid
                             disabled={strong}
-                            content="Delete Channel"
+                            content="删除频道"
                             onClick={() => act('PRG_deletechannel')}
                           />
                           <Button.Input
                             fluid
                             disabled={strong}
-                            buttonText="Rename Channel..."
+                            buttonText="重命名频道……"
                             onCommit={(value) =>
                               act('PRG_renamechannel', {
                                 new_name: value,
@@ -298,7 +298,7 @@ export const NtosNetChat = (props) => {
                           />
                           <Button.Input
                             fluid
-                            buttonText="Set Password..."
+                            buttonText="设置密码……"
                             onCommit={(value) =>
                               act('PRG_setpassword', {
                                 new_password: value,

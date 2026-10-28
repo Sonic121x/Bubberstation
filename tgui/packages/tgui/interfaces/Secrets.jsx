@@ -15,26 +15,26 @@ import { Window } from '../layouts';
 
 const TAB2NAME = [
   {
-    title: 'Debugging',
-    blurb: 'Where useless shit goes to die',
+    title: '调试',
+    blurb: '无用垃圾的埋骨之地',
     gauge: 5,
     component: () => DebuggingTab,
   },
   {
-    title: 'Helpful',
-    blurb: 'Where fuckwits put logging',
+    title: '实用',
+    blurb: '蠢货们放日志的地方',
     gauge: 25,
     component: () => HelpfulTab,
   },
   {
-    title: 'Fun',
-    blurb: 'How I ran an """event"""',
+    title: '娱乐',
+    blurb: '我是如何举办一场“活动”的',
     gauge: 75,
     component: () => FunTab,
   },
   {
-    title: 'Only Fun For You',
-    blurb: 'How I spent my last day adminning',
+    title: '只有你觉得好玩',
+    blurb: '我当管理员的最后一天是怎么过的',
     gauge: 95,
     component: () => FunForYouTab,
   },
@@ -54,7 +54,7 @@ const DebuggingTab = (props) => {
           lineHeight={lineHeightDebug}
           icon="question"
           fluid
-          content="Change all maintenance doors to engie/brig access only"
+          content="所有维修门仅允许工程／监狱权限通行"
           onClick={() => act('maint_access_engiebrig')}
         />
       </Stack.Item>
@@ -64,7 +64,7 @@ const DebuggingTab = (props) => {
           lineHeight={lineHeightDebug}
           icon="question"
           fluid
-          content="Change all maintenance doors to brig access only"
+          content="所有维修门仅允许监狱权限通行"
           onClick={() => act('maint_access_brig')}
         />
       </Stack.Item>
@@ -74,7 +74,7 @@ const DebuggingTab = (props) => {
           lineHeight={lineHeightDebug}
           icon="question"
           fluid
-          content="Remove cap on security officers"
+          content="移除安保人员数量上限"
           onClick={() => act('infinite_sec')}
         />
       </Stack.Item>
@@ -94,7 +94,7 @@ const HelpfulTab = (props) => {
               width={buttonWidthNormal}
               height={lineHeightNormal}
             >
-              Your admin button here, coder!
+              开发者，把你的管理员按钮放这里！
             </NoticeBox>
           </Stack.Item>
           <Stack.Item>
@@ -102,7 +102,7 @@ const HelpfulTab = (props) => {
               icon="plus"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Cure all diseases"
+              content="治愈所有疾病"
               onClick={() => act('clear_virus')}
             />
           </Stack.Item>
@@ -111,7 +111,7 @@ const HelpfulTab = (props) => {
               icon="biohazard"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Trigger Outbreak"
+              content="触发疫情"
               onClick={() => act('virus')}
             />
           </Stack.Item>
@@ -124,7 +124,7 @@ const HelpfulTab = (props) => {
               icon="plane-slash"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Fix station gravity"
+              content="修复空间站重力"
               onClick={() => act('fix_gravity')}
             />
           </Stack.Item>
@@ -133,7 +133,7 @@ const HelpfulTab = (props) => {
               icon="grin-beam-sweat"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Break all lights"
+              content="破坏所有灯具"
               onClick={() => act('blackout')}
             />
           </Stack.Item>
@@ -142,7 +142,7 @@ const HelpfulTab = (props) => {
               icon="magic"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Fix all lights"
+              content="修复所有灯具"
               onClick={() => act('whiteout')}
             />
           </Stack.Item>
@@ -155,7 +155,7 @@ const HelpfulTab = (props) => {
               icon="bomb"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="List Bombers"
+              content="查看炸弹制造记录"
               onClick={() => act('list_bombers')}
             />
           </Stack.Item>
@@ -164,7 +164,7 @@ const HelpfulTab = (props) => {
               icon="signal"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="List Signalers"
+              content="查看信号器记录"
               onClick={() => act('list_signalers')}
             />
           </Stack.Item>
@@ -173,7 +173,7 @@ const HelpfulTab = (props) => {
               icon="robot"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="List laws"
+              content="查看法则记录"
               onClick={() => act('list_lawchanges')}
             />
           </Stack.Item>
@@ -186,7 +186,7 @@ const HelpfulTab = (props) => {
               icon="address-book"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Show Manifest"
+              content="查看船员名单"
               onClick={() => act('manifest')}
             />
           </Stack.Item>
@@ -195,7 +195,7 @@ const HelpfulTab = (props) => {
               icon="dna"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Show DNA"
+              content="查看DNA"
               onClick={() => act('dna')}
             />
           </Stack.Item>
@@ -204,7 +204,7 @@ const HelpfulTab = (props) => {
               icon="fingerprint"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Show Fingerprints"
+              content="查看指纹"
               onClick={() => act('fingerprints')}
             />
           </Stack.Item>
@@ -217,7 +217,7 @@ const HelpfulTab = (props) => {
               icon="flag"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Toggle CTF"
+              content="切换夺旗模式"
               onClick={() => act('ctfbutton')}
             />
           </Stack.Item>
@@ -226,7 +226,7 @@ const HelpfulTab = (props) => {
               icon="sync-alt"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Reset Thunderdome"
+              content="重置雷霆竞技场"
               onClick={() => act('tdomereset')}
             />
           </Stack.Item>
@@ -236,7 +236,7 @@ const HelpfulTab = (props) => {
               width={buttonWidthNormal}
               height={lineHeightNormal}
             >
-              Your admin button here, coder!
+              开发者，把你的管理员按钮放这里！
             </NoticeBox>
           </Stack.Item>
         </Stack>
@@ -248,7 +248,7 @@ const HelpfulTab = (props) => {
               icon="pencil-alt"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Rename Station"
+              content="重命名空间站"
               onClick={() => act('set_name')}
             />
           </Stack.Item>
@@ -257,7 +257,7 @@ const HelpfulTab = (props) => {
               icon="eraser"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Default Station Name"
+              content="恢复默认站名"
               onClick={() => act('reset_name')}
             />
           </Stack.Item>
@@ -267,7 +267,7 @@ const HelpfulTab = (props) => {
               width={buttonWidthNormal}
               height={lineHeightNormal}
             >
-              Your admin button here, coder!
+              开发者，把你的管理员按钮放这里！
             </NoticeBox>
           </Stack.Item>
         </Stack>
@@ -287,7 +287,7 @@ const FunTab = (props) => {
               icon="robot"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Make N.E.R.D."
+              content="创建N.E.R.D."
               onClick={() => act('makeNerd')}
             />
           </Stack.Item>
@@ -296,7 +296,7 @@ const FunTab = (props) => {
               icon="flag"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="CTF Instagib Mode"
+              content="夺旗一击必杀模式"
               onClick={() => act('ctf_instagib')}
             />
           </Stack.Item>
@@ -305,7 +305,7 @@ const FunTab = (props) => {
               icon="plus"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Mass Heal everyone"
+              content="治疗所有人"
               onClick={() => act('mass_heal')}
             />
           </Stack.Item>
@@ -318,7 +318,7 @@ const FunTab = (props) => {
               icon="bolt"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="All areas powered"
+              content="所有区域通电"
               onClick={() => act('power')}
             />
           </Stack.Item>
@@ -327,7 +327,7 @@ const FunTab = (props) => {
               icon="moon"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="All areas unpowered"
+              content="所有区域断电"
               onClick={() => act('unpower')}
             />
           </Stack.Item>
@@ -336,7 +336,7 @@ const FunTab = (props) => {
               icon="plug"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="recharge SMESs"
+              content="为SMES充能"
               onClick={() => act('quickpower')}
             />
           </Stack.Item>
@@ -349,7 +349,7 @@ const FunTab = (props) => {
               icon="user-ninja"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Anonymous Names"
+              content="匿名姓名"
               onClick={() => act('anon_name')}
             />
           </Stack.Item>
@@ -358,7 +358,7 @@ const FunTab = (props) => {
               icon="robot"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Triple AI mode"
+              content="三AI模式"
               onClick={() => act('tripleAI')}
             />
           </Stack.Item>
@@ -367,7 +367,7 @@ const FunTab = (props) => {
               icon="bullhorn"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="THERE CAN ONLY BE-"
+              content="只能有一个——"
               onClick={() => act('onlyone')}
             />
           </Stack.Item>
@@ -380,7 +380,7 @@ const FunTab = (props) => {
               icon="grin-beam-sweat"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Summon Guns"
+              content="召唤枪械"
               onClick={() => act('guns')}
             />
           </Stack.Item>
@@ -389,7 +389,7 @@ const FunTab = (props) => {
               icon="magic"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Summon Magic"
+              content="召唤魔法"
               onClick={() => act('magic')}
             />
           </Stack.Item>
@@ -398,7 +398,7 @@ const FunTab = (props) => {
               icon="meteor"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Summon Events"
+              content="召唤事件"
               onClick={() => act('events')}
             />
           </Stack.Item>
@@ -411,7 +411,7 @@ const FunTab = (props) => {
               icon="hammer"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Egalitarian Station"
+              content="人人平等空间站"
               onClick={() => act('eagles')}
             />
           </Stack.Item>
@@ -420,7 +420,7 @@ const FunTab = (props) => {
               icon="house"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Send Shuttle Back"
+              content="让穿梭机返回"
               onClick={() => act('send_shuttle_back')}
             />
           </Stack.Item>
@@ -429,7 +429,7 @@ const FunTab = (props) => {
               icon="oil-well"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Tap Ore Vents"
+              content="开采矿脉喷口"
               onClick={() => act('ore_vents')}
             />
           </Stack.Item>
@@ -442,7 +442,7 @@ const FunTab = (props) => {
               icon="bullseye"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Custom Portal Storm"
+              content="自定义传送门风暴"
               onClick={() => act('customportal')}
             />
           </Stack.Item>
@@ -451,7 +451,7 @@ const FunTab = (props) => {
               icon="bomb"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Change Bomb Cap"
+              content="修改爆炸上限"
               onClick={() => act('changebombcap')}
             />
           </Stack.Item>
@@ -460,7 +460,7 @@ const FunTab = (props) => {
               icon="dollar-sign"
               lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              content="Dpt Order Cooldown"
+              content="部门订购冷却"
               onClick={() => act('department_cooldown_override')}
             />
           </Stack.Item>
@@ -482,7 +482,7 @@ const FunForYouTab = (props) => {
                 color="red"
                 icon="user-secret"
                 fluid
-                content="Everyone is the antag"
+                content="所有人都是反派"
                 onClick={() => act('antag_all')}
               />
             </NoticeBox>
@@ -493,7 +493,7 @@ const FunForYouTab = (props) => {
                 color="red"
                 icon="brain"
                 fluid
-                content="Everyone gets brain damage"
+                content="所有人脑损伤"
                 onClick={() => act('massbraindamage')}
               />
             </NoticeBox>
@@ -508,7 +508,7 @@ const FunForYouTab = (props) => {
                 color="red"
                 icon="hand-lizard"
                 fluid
-                content="Change everyone's species"
+                content="更改所有人的种族"
                 onClick={() => act('allspecies')}
               />
             </NoticeBox>
@@ -519,7 +519,7 @@ const FunForYouTab = (props) => {
                 color="red"
                 icon="paw"
                 fluid
-                content="Change everyone to monkeys"
+                content="将所有人变成猴子"
                 onClick={() => act('monkey')}
               />
             </NoticeBox>
@@ -532,7 +532,7 @@ const FunForYouTab = (props) => {
             color="black"
             icon="fire"
             fluid
-            content="The floor is lava! (DANGEROUS: extremely lame)"
+            content="地板是熔岩！（危险：极其无聊）"
             onClick={() => act('floorlava')}
           />
         </NoticeBox>
@@ -543,7 +543,7 @@ const FunForYouTab = (props) => {
             color="black"
             icon="fire"
             fluid
-            content="Chinese Cartoons! (DANGEROUS: no going back, also fuck you)"
+            content="中国动画！（危险：无法撤销，顺便去你的）"
             onClick={() => act('anime')}
           />
         </NoticeBox>
@@ -556,7 +556,7 @@ const FunForYouTab = (props) => {
                 color="red"
                 icon="cat"
                 fluid
-                content="Mass Purrbation"
+                content="全员猫化"
                 onClick={() => act('masspurrbation')}
               />
             </NoticeBox>
@@ -567,7 +567,7 @@ const FunForYouTab = (props) => {
                 color="blue"
                 icon="user"
                 fluid
-                content="Cure Purrbation"
+                content="解除猫化"
                 onClick={() => act('massremovepurrbation')}
               />
             </NoticeBox>
@@ -582,7 +582,7 @@ const FunForYouTab = (props) => {
                 color="red"
                 icon="explosion"
                 fluid
-                content="CASCAAADE"
+                content="共振级联啊啊啊"
                 onClick={() => act('cascade')}
               />
             </NoticeBox>
@@ -595,7 +595,7 @@ const FunForYouTab = (props) => {
                     color="red"
                     icon="burst"
                     fluid
-                    content="Toggle Meteor Mode"
+                    content="切换流星模式"
                     onClick={() => act('meteormode')}
                   />
                 </NoticeBox>
@@ -612,7 +612,7 @@ const FunForYouTab = (props) => {
                 color="red"
                 icon="flushed"
                 fluid
-                content="Fully Immerse Everyone"
+                content="让所有人完全沉浸"
                 onClick={() => act('massimmerse')}
               />
             </NoticeBox>
@@ -623,7 +623,7 @@ const FunForYouTab = (props) => {
                 color="blue"
                 icon="sync-alt"
                 fluid
-                content="Shatter the Immersion"
+                content="打破沉浸感"
                 onClick={() => act('unmassimmerse')}
               />
             </NoticeBox>
@@ -638,7 +638,7 @@ const FunForYouTab = (props) => {
                 color="red"
                 icon="comment-slash"
                 fluid
-                content="Tower of Babel"
+                content="巴别塔"
                 onClick={() => act('towerOfBabel')}
               />
             </NoticeBox>
@@ -649,7 +649,7 @@ const FunForYouTab = (props) => {
                 color="blue"
                 icon="comment"
                 fluid
-                content="Undo Tower of Babel"
+                content="撤销巴别塔"
                 onClick={() => act('cureTowerOfBabel')}
               />
             </NoticeBox>
@@ -667,24 +667,24 @@ export const Secrets = (props) => {
   const TabComponent = TAB2NAME[tabIndex - 1].component();
 
   return (
-    <Window title="Secrets Panel" width={500} height={520} theme="admin">
+    <Window title="秘密面板" width={500} height={520} theme="admin">
       <Window.Content>
         <Flex direction="column" height="100%">
           <Flex.Item mb={1}>
             <Section
-              title="Secrets"
+              title="秘密"
               buttons={
                 <>
                   <Button
                     color="blue"
                     icon="address-card"
-                    content="Admin Log"
+                    content="管理员日志"
                     onClick={() => act('admin_log')}
                   />
                   <Button
                     color="blue"
                     icon="eye"
-                    content="Show Admins"
+                    content="查看管理员"
                     onClick={() => act('show_admins')}
                   />
                 </>
@@ -693,8 +693,8 @@ export const Secrets = (props) => {
               <Flex mx={-0.5} align="stretch" justify="center">
                 <Flex.Item bold>
                   <NoticeBox color="black">
-                    &quot;The first rule of adminbuse is: you don&apos;t talk
-                    about the adminbuse.&quot;
+                    &quot;管理员滥权的第一条规则就是：
+                    不准谈论管理员滥权。&quot;
                   </NoticeBox>
                 </Flex.Item>
               </Flex>
@@ -708,7 +708,7 @@ export const Secrets = (props) => {
                   <Button
                     selected={tabIndex === 2}
                     icon="check-circle"
-                    content="Helpful"
+                    content="实用"
                     onClick={() => setTabIndex(2)}
                   />
                 </Flex.Item>
@@ -717,7 +717,7 @@ export const Secrets = (props) => {
                     disabled={is_funmin === 0}
                     selected={tabIndex === 3}
                     icon="smile"
-                    content="Fun"
+                    content="娱乐"
                     onClick={() => setTabIndex(3)}
                   />
                 </Flex.Item>
@@ -728,7 +728,7 @@ export const Secrets = (props) => {
                     disabled={is_debugger === 0}
                     selected={tabIndex === 1}
                     icon="glasses"
-                    content="Debugging"
+                    content="调试"
                     onClick={() => setTabIndex(1)}
                   />
                 </Flex.Item>
@@ -736,7 +736,7 @@ export const Secrets = (props) => {
                   <LabeledControls>
                     <LabeledControls.Item
                       minWidth="66px"
-                      label="Chances of admin complaint"
+                      label="被投诉的概率"
                     >
                       <RoundGauge
                         size={2}
@@ -759,7 +759,7 @@ export const Secrets = (props) => {
                     disabled={is_funmin === 0}
                     selected={tabIndex === 4}
                     icon="smile-wink"
-                    content="Only Fun For You"
+                    content="只有你觉得好玩"
                     onClick={() => setTabIndex(4)}
                   />
                 </Flex.Item>
@@ -771,7 +771,7 @@ export const Secrets = (props) => {
               fill={false}
               title={
                 TAB2NAME[tabIndex - 1].title +
-                ' Or: ' +
+                '，又名：' +
                 TAB2NAME[tabIndex - 1].blurb
               }
             >

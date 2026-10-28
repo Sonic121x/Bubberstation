@@ -3,11 +3,11 @@ import { CHANGELING_MECHANICAL_DESCRIPTION } from './changeling';
 
 const Stowaway_Changeling: Antagonist = {
   key: 'stowawaychangeling',
-  name: 'Stowaway Changeling',
+  name: '偷渡变形怪',
   description: [
     `
-      A Changeling that found its way onto the shuttle
-      unbeknownst to the crewmembers on board.
+      一只悄悄混上穿梭机的变形怪，
+      机上的船员毫不知情。
     `,
     CHANGELING_MECHANICAL_DESCRIPTION,
   ],

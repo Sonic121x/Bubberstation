@@ -24,15 +24,15 @@ export const AtmosTempPump = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Power">
+            <LabeledList.Item label="电源">
               <Button
                 icon={on ? 'power-off' : 'times'}
-                content={on ? 'On' : 'Off'}
+                content={on ? '开启' : '关闭'}
                 selected={on}
                 onClick={() => act('power')}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Heat transfer rate">
+            <LabeledList.Item label="热传输率">
               <NumberInput
                 animated
                 value={rate}
@@ -50,7 +50,7 @@ export const AtmosTempPump = (props) => {
               <Button
                 ml={1}
                 icon="plus"
-                content="Max"
+                content="最大"
                 disabled={rate === max_heat_transfer_rate}
                 onClick={() =>
                   act('rate', {

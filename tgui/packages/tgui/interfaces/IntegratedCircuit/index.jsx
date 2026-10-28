@@ -281,8 +281,8 @@ export class IntegratedCircuit extends Component {
 
   handleVarClicked(event, variable, is_setter) {
     const component = {
-      name: is_setter ? 'Setter' : 'Getter',
-      description: 'This is a component',
+      name: is_setter ? '赋值器' : '取值器',
+      description: '这是一个组件',
       color: 'blue',
       input_ports: [],
       output_ports: [],
@@ -291,7 +291,7 @@ export class IntegratedCircuit extends Component {
     if (is_setter) {
       component.input_ports = [
         {
-          name: 'Input',
+          name: '输入',
           type: variable.datatype,
           color: variable.color,
         },
@@ -299,7 +299,7 @@ export class IntegratedCircuit extends Component {
     } else {
       component.output_ports = [
         {
-          name: 'Value',
+          name: '值',
           type: variable.datatype,
           color: variable.color,
         },
@@ -460,7 +460,7 @@ export class IntegratedCircuit extends Component {
           <Stack>
             <Stack.Item>
               <Input
-                placeholder="Name"
+                placeholder="名称"
                 value={display_name}
                 onBlur={(value) =>
                   act('set_display_name', { display_name: value })
@@ -470,7 +470,7 @@ export class IntegratedCircuit extends Component {
             <Stack.Item>
               <Button
                 color="transparent"
-                tooltip="Show Variables Menu"
+                tooltip="显示变量菜单"
                 icon="cog"
                 selected={variableMenuOpen}
                 onClick={() =>
@@ -483,7 +483,7 @@ export class IntegratedCircuit extends Component {
             <Stack.Item>
               <Button
                 color="transparent"
-                tooltip="Show Components Menu"
+                tooltip="显示组件菜单"
                 icon="plus"
                 selected={componentMenuOpen}
                 onClick={() =>
@@ -496,7 +496,7 @@ export class IntegratedCircuit extends Component {
             <Stack.Item>
               <Button
                 color="transparent"
-                tooltip="Enable Grid Aligning"
+                tooltip="启用网格对齐"
                 icon="th-large"
                 selected={grid_mode}
                 onClick={() => act('toggle_grid_mode')}

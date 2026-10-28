@@ -1,11 +1,11 @@
 import { createDropdownInput, type Feature } from '../base';
 
 export const scaling_method: Feature<string> = {
-  name: 'Scaling method',
+  name: '缩放方式',
   category: 'UI',
   component: createDropdownInput({
-    blur: 'Bilinear',
-    distort: 'Nearest Neighbor',
-    normal: 'Point Sampling',
+    blur: '双线性插值',
+    distort: '最近邻插值',
+    normal: '点采样',
   }),
 };

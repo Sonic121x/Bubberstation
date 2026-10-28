@@ -41,21 +41,21 @@ export const ExperimentalCloner = (props: any) => {
   } = data;
 
   return (
-    <Window title="Experimental Cloner" width={500} height={300} theme="ntOS95">
+    <Window title="实验型克隆机" width={500} height={300} theme="ntOS95">
       <Window.Content>
         <Section
-          title="Stored Subject"
+          title="已储存的受试者"
           buttons={
             <Button
               icon="x"
               color="bad"
               tooltip={`
-            Clear the currently stored cloning record.`}
+            清除当前储存的克隆记录。`}
               onClick={() => act('clear_record')}
               disabled={!record_name}
               tooltipPosition="bottom-start"
             >
-              Clear
+              清除
             </Button>
           }
         >
@@ -64,26 +64,26 @@ export const ExperimentalCloner = (props: any) => {
               {record_name} ({recordDisplay(record_species ?? 'Unknown', data)})
             </Stack.Item>
           ) : (
-            'No stored DNA on record.'
+            '记录中未储存DNA。'
           )}
         </Section>
         <Stack fill>
           <Stack.Item width="50%" mb={13}>
-            <Section fill title="Scanner">
+            <Section fill title="扫描仪">
               {linked_scanner ? (
                 <Stack.Item textAlign="center">
                   <Stack vertical>
-                    <Stack.Item bold>Current Occupant:</Stack.Item>
-                    <Stack.Item>{scanner_occupant ?? 'None'}</Stack.Item>
+                    <Stack.Item bold>当前乘员：</Stack.Item>
+                    <Stack.Item>{scanner_occupant ?? '无'}</Stack.Item>
                     {scanner_occupant && (
                       <Stack vertical>
-                        <Stack.Item bold>Occupant Species:</Stack.Item>
+                        <Stack.Item bold>乘员种族：</Stack.Item>
                         <Stack.Item>{recordDisplay(scanner_species ?? 'Unknown', data)}</Stack.Item>
                         <Divider />
                         <Button
                           color="good"
                           onClick={() => act('start_scan')}
-                          content={is_scanning ? 'Scanning...' : 'Scan Now'}
+                          content={is_scanning ? '扫描中……' : '立即扫描'}
                           disabled={is_scanning}
                         />
                       </Stack>
@@ -92,18 +92,18 @@ export const ExperimentalCloner = (props: any) => {
                 </Stack.Item>
               ) : (
                 <Stack.Item textAlign="center">
-                  No scanner connected.
+                  未连接扫描仪。
                 </Stack.Item>
               )}
             </Section>
           </Stack.Item>
           <Stack.Item width="50%" mb={13}>
-            <Section fill title="Cloning Pod">
+            <Section fill title="克隆舱">
               {linked_pod ? (
                 <Stack.Item textAlign="center">
                   {is_cloning ? (
                     <Stack vertical>
-                      <Stack.Item bold>Currently Cloning:</Stack.Item>
+                      <Stack.Item bold>正在克隆：</Stack.Item>
                       <Stack.Item>
                         {cloning_name} ({recordDisplay(cloning_species ?? 'Unknown', data)})
                       </Stack.Item>
@@ -116,7 +116,7 @@ export const ExperimentalCloner = (props: any) => {
                         />
                       </Stack.Item>
                       {cloning_progress === 100 && (
-                        <Stack.Item>Beginning neural kickstart...</Stack.Item>
+                        <Stack.Item>正在启动神经系统……</Stack.Item>
                       )}
                     </Stack>
                   ) : (
@@ -124,15 +124,15 @@ export const ExperimentalCloner = (props: any) => {
                       <Button
                         color="good"
                         onClick={() => act('start_clone')}
-                        content={is_cloning ? 'Cloning...' : 'Begin Cloning'}
+                        content={is_cloning ? '克隆中……' : '开始克隆'}
                         disabled={is_cloning || !record_name}
-                        tooltip={!record_name && 'No DNA on record.'}
+                        tooltip={!record_name && '记录中无DNA。'}
                       />
                     </Stack>
                   )}
                 </Stack.Item>
               ) : (
-                <Stack.Item textAlign="center">No pod connected.</Stack.Item>
+                <Stack.Item textAlign="center">未连接克隆舱。</Stack.Item>
               )}
             </Section>
           </Stack.Item>

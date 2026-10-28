@@ -1,11 +1,11 @@
 {
 	"name": "Salute",
-	"description": "Snap to a salute, perhaps to show respect for the Captain.",
+	"description": "立正敬礼，也许是为了向舰长表达敬意。",
 	"usage": "self",
 	"category": "Miscellaneous",
 	"distance_allowed": 1,
 	"message": [
-		"%USER% snaps to a salute!"
+		"%USER% 立正敬礼！"
 	],
 	"sound_use": 0,
 	"sound_possible": [

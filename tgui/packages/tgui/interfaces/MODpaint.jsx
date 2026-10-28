@@ -11,7 +11,7 @@ import { capitalize } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { chineseDisplay as zh } from '../localization/zhDisplay';
 const colorToMatrix = (param) => {
   switch (param) {
     case 'red':
@@ -47,11 +47,11 @@ const colorToMatrix = (param) => {
 const displayText = (param) => {
   switch (param) {
     case 'r':
-      return 'Red';
+      return '红色';
     case 'g':
-      return 'Green';
+      return '绿色';
     case 'b':
-      return 'Blue';
+      return '蓝色';
   }
 };
 
@@ -68,7 +68,7 @@ export const MODpaint = (props) => {
             {[0, 1, 2].map((row) => (
               <Section
                 key={row}
-                title={`${displayText(prefixes[row])} turns to:`}
+                title={`${displayText(prefixes[row])}转换为：`}
               >
                 {[0, 1, 2].map((col) => (
                   <Flex key={col}>
@@ -100,7 +100,7 @@ export const MODpaint = (props) => {
             ))}
           </Stack.Item>
           <Stack.Item width="25%">
-            <Section height="70%" title="Presets">
+            <Section height="70%" title="预设">
               <Box textAlign="center">
                 {presets.map((preset) => (
                   <Button
@@ -109,7 +109,7 @@ export const MODpaint = (props) => {
                     width="50px"
                     color={preset}
                     tooltipPosition="top"
-                    tooltip={capitalize(preset)}
+                    tooltip={preset === 'teal' ? '蓝绿色' : zh(capitalize(preset))}
                     onClick={() =>
                       act('transition_color', { color: colorToMatrix(preset) })
                     }
@@ -124,7 +124,7 @@ export const MODpaint = (props) => {
                 icon="question"
                 color="average"
                 tooltipPosition="top"
-                tooltip="This is a color matrix. Think of it as editing the image in 3 layers, red, green, and blue, rather than editing the final image like with RGB."
+                tooltip="这是颜色矩阵。可以把它理解为分别编辑图像的红、绿、蓝三个通道，而不是像普通 RGB 调色那样直接更改最终颜色。"
               />
               <Button
                 height="50px"
@@ -132,13 +132,13 @@ export const MODpaint = (props) => {
                 icon="check"
                 color="good"
                 tooltipPosition="top"
-                tooltip="Confirm changes!"
+                tooltip="确认更改！"
                 onClick={() => act('confirm')}
               />
             </Section>
           </Stack.Item>
           <Stack.Item width="45%">
-            <Section fill title="Preview">
+            <Section fill title="预览">
               <ByondUi
                 height="230px"
                 params={{

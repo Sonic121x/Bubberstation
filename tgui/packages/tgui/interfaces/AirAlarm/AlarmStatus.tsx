@@ -6,30 +6,30 @@ import type { AirAlarmData } from './types';
 const dangerMap = {
   0: {
     color: 'good',
-    localStatusText: 'Optimal',
+    localStatusText: '良好',
   },
   1: {
     color: 'average',
-    localStatusText: 'Caution',
+    localStatusText: '注意',
   },
   2: {
     color: 'bad',
-    localStatusText: 'Danger (Internals Required)',
+    localStatusText: '危险（需要内供气）',
   },
 } as const;
 
 const faultMap = {
   0: {
     color: 'good',
-    areaFaultText: 'None',
+    areaFaultText: '无',
   },
   1: {
     color: 'purple',
-    areaFaultText: 'Manual Trigger',
+    areaFaultText: '手动触发',
   },
   2: {
     color: 'average',
-    areaFaultText: 'Automatic Detection',
+    areaFaultText: '自动检测',
   },
 } as const;
 
@@ -41,11 +41,11 @@ export function AirAlarmStatus(props) {
   const areaFault = faultMap[data.faultStatus] || faultMap[0];
 
   return (
-    <Section title="Air Status">
+    <Section title="空气状态">
       <LabeledList>
         {envData.length <= 0 ? (
-          <LabeledList.Item label="Warning" color="bad">
-            Cannot obtain air sample for analysis.
+          <LabeledList.Item label="警告" color="bad">
+            无法获取空气样本进行分析。
           </LabeledList.Item>
         ) : (
           <>
@@ -61,31 +61,31 @@ export function AirAlarmStatus(props) {
                 </LabeledList.Item>
               );
             })}
-            <LabeledList.Item label="Local Status" color={localStatus.color}>
+            <LabeledList.Item label="本地状态" color={localStatus.color}>
               {localStatus.localStatusText}
             </LabeledList.Item>
             <LabeledList.Item
-              label="Area Status"
+              label="区域状态"
               color={data.atmosAlarm || data.fireAlarm ? 'bad' : 'good'}
             >
-              {(data.atmosAlarm && 'Atmosphere Alarm') ||
-                (data.fireAlarm && 'Fire Alarm') ||
-                'Nominal'}
+              {(data.atmosAlarm && '大气警报') ||
+                (data.fireAlarm && '火灾警报') ||
+                '正常'}
             </LabeledList.Item>
-            <LabeledList.Item label="Fault Status" color={areaFault.color}>
+            <LabeledList.Item label="故障状态" color={areaFault.color}>
               {areaFault.areaFaultText}
             </LabeledList.Item>
             <LabeledList.Item
-              label="Fault Location"
+              label="故障位置"
               color={data.faultLocation ? 'blue' : 'good'}
             >
-              {data.faultLocation || 'None'}
+              {data.faultLocation || '无'}
             </LabeledList.Item>
           </>
         )}
         {!!data.emagged && (
-          <LabeledList.Item label="Warning" color="bad">
-            Safety measures offline. Device may exhibit abnormal behavior.
+          <LabeledList.Item label="警告" color="bad">
+            安全措施已停用。设备可能出现异常行为。
           </LabeledList.Item>
         )}
       </LabeledList>

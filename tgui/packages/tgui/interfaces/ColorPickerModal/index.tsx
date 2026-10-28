@@ -39,7 +39,7 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
   }, [default_color]);
 
   if (!title) {
-    title = 'Colour Editor';
+    title = '颜色编辑器';
   }
 
   return (

@@ -6,11 +6,11 @@ import {
 import { FeatureDropdownInput } from '../../dropdowns';
 
 export const seamless_heel_type: FeatureChoiced = {
-  name: 'Heel Type',
+  name: '鞋跟类型',
   component: FeatureDropdownInput,
 };
 
 export const seamless_shoe_color: Feature<string> = {
-  name: 'Shoe Colour',
+  name: '鞋子颜色',
   component: FeatureColorInput,
 };

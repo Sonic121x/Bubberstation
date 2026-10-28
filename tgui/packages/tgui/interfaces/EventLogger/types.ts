@@ -14,12 +14,12 @@ export const CATEGORY_PALETTE: string[] = [
 ];
 
 export const LOG_TYPE_LABELS: Record<string, string> = {
-  text: 'TXT',
-  location: 'LOC',
-  turfs: 'TURF',
-  lines: 'LINE',
-  path: 'PATH',
-  maptext: 'MAPTXT',
+  text: '文本',
+  location: '位置',
+  turfs: '地块',
+  lines: '线段',
+  path: '路径',
+  maptext: '地图文本',
 };
 
 export const LOG_TYPE_COLORS: Record<string, string> = {

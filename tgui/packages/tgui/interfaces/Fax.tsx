@@ -56,34 +56,34 @@ export const Fax = (props) => {
   return (
     <Window width={340} height={540}>
       <Window.Content scrollable>
-        <Section title="About Fax">
-          <LabeledList.Item label="Network name">
+        <Section title="传真机信息">
+          <LabeledList.Item label="网络名称">
             {skyratFaxDisplay(data.fax_name)}
           </LabeledList.Item>
-          <LabeledList.Item label="Network ID">{data.fax_id}</LabeledList.Item>
-          <LabeledList.Item label="Visible to Network">
-            {data.visible ? 'true' : 'false'}
+          <LabeledList.Item label="网络编号">{data.fax_id}</LabeledList.Item>
+          <LabeledList.Item label="网络可见">
+            {data.visible ? '是' : '否'}
           </LabeledList.Item>
         </Section>
         <Section
-          title="Paper"
+          title="纸张"
           buttons={
             <Button onClick={() => act('remove')} disabled={!data.has_paper}>
-              Remove
+              取出
             </Button>
           }
         >
-          <LabeledList.Item label="Paper">
+          <LabeledList.Item label="纸张">
             {data.has_paper ? (
-              <Box color="green">Paper in tray</Box>
+              <Box color="green">托盘中有纸</Box>
             ) : (
-              <Box color="red">No paper</Box>
+              <Box color="red">无纸</Box>
             )}
           </LabeledList.Item>
         </Section>
-        <Section title="Send">
+        <Section title="发送">
           {faxes.length === 0 && special_networks.length === 0 ? (
-            "The fax couldn't detect any other faxes on the network."
+            '传真机未能在网络中检测到其他传真机。'
           ) : (
             <Box mt={0.4}>
               {special_networks.map((special: FaxSpecial) => (
@@ -124,13 +124,13 @@ export const Fax = (props) => {
           )}
         </Section>
         <Section
-          title="History"
+          title="历史记录"
           buttons={
             <Button
               onClick={() => act('history_clear')}
               disabled={!data.fax_history}
             >
-              Clear
+              清除
             </Button>
           }
         >
@@ -142,10 +142,10 @@ export const Fax = (props) => {
                       {
                         <Box
                           color={
-                            history.history_type === 'Send' ? 'Green' : 'Red'
+                            ['Send', '发送'].includes(history.history_type) ? 'Green' : 'Red'
                           }
                         >
-                          {history.history_type}
+                          {({ Send: '发送', Receive: '接收' }[history.history_type]) ?? history.history_type}
                         </Box>
                       }
                       {skyratFaxDisplay(history.history_fax_name)} - {history.history_time}

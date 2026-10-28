@@ -27,7 +27,7 @@ const mapListVariantsInner = (value: any, variant: Variant) => {
       case 'cycle':
         return (
           <Box key="cycle" bold textColor="green">
-            Circular Reference
+            循环引用
           </Box>
         );
       case 'ref':
@@ -43,7 +43,7 @@ const mapListVariantsInner = (value: any, variant: Variant) => {
         return (
           <Tooltip key="error" content={value}>
             <Box bold textColor="red">
-              Conversion Error
+              转换错误
             </Box>
           </Tooltip>
         );
@@ -56,13 +56,13 @@ const mapListVariantsInner = (value: any, variant: Variant) => {
       case 'thread':
         return (
           <Box key="thread" bold backgroundColor="yellow">
-            Thread: {value}
+            线程：{value}
           </Box>
         );
       case 'userdata':
         return (
           <Box key="userdata" bold backgroundColor="grey">
-            Userdata: {value}
+            用户数据：{value}
           </Box>
         );
       case 'error_as_value':
@@ -146,7 +146,7 @@ export const ListMapper = (props: ListMapperProps) => {
         <ListMapper
           {...safeProps}
           list={thing}
-          name={`List[${thing.length}]`}
+          name={`列表[${thing.length}]`}
           path={path}
           collapsible
           {...rest}
@@ -158,7 +158,7 @@ export const ListMapper = (props: ListMapperProps) => {
         case 'ref':
           return (
             <Button
-              tooltip="Click to VV"
+              tooltip="点击查看变量"
               onClick={vvAct && (() => vvAct(path))}
               {...thing.props}
             />
@@ -167,7 +167,7 @@ export const ListMapper = (props: ListMapperProps) => {
           if (canCall && setToCall && setModal) {
             return (
               <Button
-                tooltip="Click to call"
+                tooltip="点击调用"
                 onClick={() => {
                   setToCall({
                     type: 'callFunction',
@@ -237,19 +237,19 @@ export const ListMapper = (props: ListMapperProps) => {
                 <Button
                   icon="arrow-up"
                   disabled={i === 0}
-                  tooltip="Move Up"
+                  tooltip="上移"
                   onClick={() => act('moveArgUp', { path: entryPath })}
                 />
                 <Button
                   icon="arrow-down"
                   disabled={i === list.length - 1}
-                  tooltip="Move Down"
+                  tooltip="下移"
                   onClick={() => act('moveArgDown', { path: entryPath })}
                 />
                 <Button
                   icon="window-close"
                   color="red"
-                  tooltip="Remove"
+                  tooltip="移除"
                   onClick={() => act('removeArg', { path: entryPath })}
                 />
               </>
@@ -268,7 +268,7 @@ export const ListMapper = (props: ListMapperProps) => {
       {editable && (
         <Button
           icon="plus"
-          tooltip="Add"
+          tooltip="添加"
           onClick={() => act('addArg', { path: path })}
         />
       )}
@@ -276,7 +276,7 @@ export const ListMapper = (props: ListMapperProps) => {
   );
 
   const buttons = vvAct && list?.length > 0 && (
-    <Button icon="search" tooltip="VV List" onClick={() => vvAct(path ?? [])} />
+    <Button icon="search" tooltip="查看列表变量" onClick={() => vvAct(path ?? [])} />
   );
 
   return collapsible ? (

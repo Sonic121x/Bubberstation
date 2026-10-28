@@ -30,7 +30,7 @@ export const MODsuitremote = (props) => {
       theme={ui_theme}
       width={550}
       height={350}
-      title="MOD Remote Interface"
+      title="MOD 远程控制界面"
     >
       <Window.Content scrollable>
         <RemoteMODsuitContent />
@@ -44,9 +44,9 @@ const RemoteSection = () => {
   const { erp_pref_check } = data;
   const [emote, setEmote] = useState('');
   return (
-    <Section title="Remote Control">
+    <Section title="远程控制">
       <LabeledList>
-        <LabeledList.Item label="Force Emote">
+        <LabeledList.Item label="强制表情动作">
           <Input
             fluid
             selfClear
@@ -69,7 +69,7 @@ const RemoteMODsuitContent = () => {
           <Icon size={5} name="triangle-exclamation" />
         </center>
         <br />
-        Not installed
+        尚未安装
       </Modal>
     );
   }
@@ -80,7 +80,7 @@ const RemoteMODsuitContent = () => {
           <Icon size={5} name="triangle-exclamation" />
         </center>
         <br />
-        MODsuit Not Worn
+        MOD 套装无人穿戴
       </Modal>
     );
   }

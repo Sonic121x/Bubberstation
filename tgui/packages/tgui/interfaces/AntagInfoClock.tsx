@@ -19,7 +19,7 @@ export const AntagInfoClock = (props) => {
           <Stack vertical>
             <Stack.Item fontSize="20px" color={'good'}>
               <Icon name={'cog'} rotation={0} spin />
-              {` You are the ${antag_name}! `}
+              {` 你是${antag_name}！ `}
               <Icon name={'cog'} rotation={35} spin />
             </Stack.Item>
             <Stack.Item>
@@ -39,15 +39,15 @@ const ObjectivePrintout = (props) => {
   const { data } = useBackend<Info>();
   return (
     <Stack vertical>
-      <Stack.Item bold>Your goals:</Stack.Item>
+      <Stack.Item bold>你的目标：</Stack.Item>
       <Stack.Item>
         {
-          '- Further the goals of any other organization you are a part of using the power granted to you.'
+          '- 利用赐予你的力量，推进你所属其他组织的目标。'
         }
       </Stack.Item>
       <Stack.Item>
         {
-          '- Further the grace, knowledge, and glory of our great lord of the Engine, Ratvar.'
+          '- 传播我们伟大的引擎之主拉特瓦的恩典、知识与荣耀。'
         }
       </Stack.Item>
     </Stack>

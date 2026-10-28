@@ -1,9 +1,9 @@
 import { CheckboxInput, type FeatureToggle } from '../base';
 
 export const particle_weather: FeatureToggle = {
-  name: 'Enable fancy (particle) weather (AMD GPU incompatible)',
+  name: '启用粒子天气（不兼容 AMD 显卡）',
   category: 'GAMEPLAY',
   description:
-    'Enable fancy particle weather. Incompatible with AMD GPUs and will cause heavy lag on them due to a BYOND bug.',
+    '启用精细的粒子天气效果。由于 BYOND 的缺陷，此功能不兼容 AMD 显卡，会导致严重卡顿。',
   component: CheckboxInput,
 };

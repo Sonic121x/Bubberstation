@@ -43,12 +43,12 @@ export function ManufacturingSorter(props) {
   const { filters, unmet_dir } = data;
 
   return (
-    <Window width={450} height={350} title="Manufacturing Sorter">
+    <Window width={450} height={350} title="生产分拣机">
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item height="90%">
             <Section
-              title="Filters"
+              title="筛选器"
               height="100%"
               overflowY="auto"
               buttons={
@@ -57,7 +57,7 @@ export function ManufacturingSorter(props) {
                   icon="plus"
                   onClick={() => act('new_filter')}
                 >
-                  New filter
+                  新建筛选器
                 </Button>
               }
             >
@@ -71,7 +71,7 @@ export function ManufacturingSorter(props) {
                       icon={dir2icon(filter.dir)}
                       onClick={() => act('rotate', { ref: filter.ref })}
                     >
-                      Output
+                      输出
                     </Button>
                     <Button onClick={() => act('edit', { ref: filter.ref })}>
                       <Icon ml="0.2rem" name="pencil" />
@@ -104,7 +104,7 @@ export function ManufacturingSorter(props) {
           <Stack.Item>
             <Stack>
               <Stack.Item>
-                <Box>If no criteria is met, outputting to:</Box>
+                <Box>若不满足任何条件，则输出至：</Box>
               </Stack.Item>
               <Stack.Item>
                 <Button onClick={() => act('rotate_unmet')}>

@@ -6,7 +6,7 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 import { toTitleCase } from 'tgui-core/string';
-
+import { orbitDisplay } from '../../localization/zhOrbitDisplay';
 import { useBackend } from '../../backend';
 import { ANTAG2COLOR } from './constants';
 import { getAntagCategories } from './helpers';
@@ -37,28 +37,28 @@ export function OrbitContent(props) {
     {
       color: 'purple',
       content: data.deadchat_controlled,
-      title: 'Deadchat Controlled',
+      title: '亡者频道控制',
     },
     {
       color: 'blue',
       content: data.alive,
-      title: 'Alive',
+      title: '存活',
     },
     {
       content: data.dead,
-      title: 'Dead',
+      title: '死亡',
     },
     {
       content: data.ghosts,
-      title: 'Ghosts',
+      title: '幽灵',
     },
     {
       content: data.misc,
-      title: 'Misc',
+      title: '其他',
     },
     {
       content: data.npcs,
-      title: 'NPCs',
+      title: '非玩家角色',
     },
   ];
 
@@ -66,7 +66,7 @@ export function OrbitContent(props) {
     <Section fill scrollable>
       <Stack vertical>
         {critical.map((crit) => (
-          <Tooltip content="Click to orbit" key={crit.ref}>
+          <Tooltip content="点击跟随" key={crit.ref}>
             <NoticeBox
               verticalAlign
               color="purple"
@@ -87,7 +87,7 @@ export function OrbitContent(props) {
             color={ANTAG2COLOR[title] || 'bad'}
             key={title}
             section={members}
-            title={title}
+            title={orbitDisplay(title)}
           />
         ))}
 

@@ -30,10 +30,10 @@ export const NaniteDiskBox = () => {
   const { data } = useBackend<NaniteInfoBoxProps>();
   const { has_disk, has_program, disk } = data;
   if (!has_disk) {
-    return <NoticeBox>No disk inserted</NoticeBox>;
+    return <NoticeBox>未插入磁盘</NoticeBox>;
   }
   if (!has_program) {
-    return <NoticeBox>Inserted disk has no program</NoticeBox>;
+    return <NoticeBox>插入的磁盘中没有程序</NoticeBox>;
   }
   return <NaniteInfoBox program={disk} />;
 };
@@ -63,7 +63,7 @@ export const NaniteInfoBox = (props) => {
       title={name}
       buttons={
         <Box inline bold color={activated ? 'good' : 'bad'}>
-          {activated ? 'Activated' : 'Deactivated'}
+          {activated ? '已激活' : '已停用'}
         </Box>
       }
     >
@@ -72,13 +72,13 @@ export const NaniteInfoBox = (props) => {
         <Stack.Item>
           <table>
             <LabeledList>
-              <LabeledList.Item label="Use Rate">{use_rate}</LabeledList.Item>
+              <LabeledList.Item label="消耗速率">{use_rate}</LabeledList.Item>
               {!!can_trigger && (
                 <>
-                  <LabeledList.Item label="Trigger Cost">
+                  <LabeledList.Item label="触发消耗">
                     {trigger_cost}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Trigger Cooldown">
+                  <LabeledList.Item label="触发冷却">
                     {trigger_cooldown}
                   </LabeledList.Item>
                 </>
@@ -89,17 +89,17 @@ export const NaniteInfoBox = (props) => {
       </Stack>
       <Stack>
         <Stack.Item>
-          <Section title="Codes" mr={1}>
+          <Section title="信号代码" mr={1}>
             <LabeledList>
-              <LabeledList.Item label="Activation">
+              <LabeledList.Item label="激活">
                 {activation_code}
               </LabeledList.Item>
-              <LabeledList.Item label="Deactivation">
+              <LabeledList.Item label="停用">
                 {deactivation_code}
               </LabeledList.Item>
-              <LabeledList.Item label="Kill">{kill_code}</LabeledList.Item>
+              <LabeledList.Item label="销毁">{kill_code}</LabeledList.Item>
               {!!can_trigger && (
-                <LabeledList.Item label="Trigger">
+                <LabeledList.Item label="触发">
                   {trigger_code}
                 </LabeledList.Item>
               )}
@@ -107,20 +107,20 @@ export const NaniteInfoBox = (props) => {
           </Section>
         </Stack.Item>
         <Stack.Item>
-          <Section title="Delays" mr={1}>
+          <Section title="延迟" mr={1}>
             <LabeledList>
-              <LabeledList.Item label="Restart">
+              <LabeledList.Item label="重启">
                 {timer_restart} s
               </LabeledList.Item>
-              <LabeledList.Item label="Shutdown">
+              <LabeledList.Item label="关闭">
                 {timer_shutdown} s
               </LabeledList.Item>
               {!!can_trigger && (
                 <>
-                  <LabeledList.Item label="Trigger">
+                  <LabeledList.Item label="重复触发间隔">
                     {timer_trigger} s
                   </LabeledList.Item>
-                  <LabeledList.Item label="Trigger Delay">
+                  <LabeledList.Item label="触发延迟">
                     {timer_trigger_delay} s
                   </LabeledList.Item>
                 </>
@@ -129,7 +129,7 @@ export const NaniteInfoBox = (props) => {
           </Section>
         </Stack.Item>
       </Stack>
-      <Section title="Extra Settings">
+      <Section title="附加设置">
         <LabeledList>
           {extra_settings?.map((setting) => {
             const naniteTypesDisplayMap = {
@@ -181,7 +181,7 @@ export const NaniteCloudBackupList = () => {
         })
       }
     >
-      {`Backup #${backup.cloud_id}`}
+      {`备份 #${backup.cloud_id}`}
     </Button>
   ));
 };
@@ -199,12 +199,12 @@ export const NaniteCloudBackupDetails = () => {
   const { current_view, disk, has_program, cloud_backup } = data;
   const can_rule = disk?.can_rule || false;
   if (!cloud_backup) {
-    return <NoticeBox>ERROR: Backup not found</NoticeBox>;
+    return <NoticeBox>错误：未找到备份</NoticeBox>;
   }
   const cloud_programs = data.cloud_programs || [];
   return (
     <Section
-      title={`Backup #${current_view}`}
+      title={`备份 #${current_view}`}
       buttons={
         !!has_program && (
           <Button
@@ -212,7 +212,7 @@ export const NaniteCloudBackupDetails = () => {
             color="good"
             onClick={() => act('upload_program')}
           >
-            Upload Program from Disk
+            从磁盘上传程序
           </Button>
         )
       }
@@ -240,7 +240,7 @@ export const NaniteCloudBackupDetails = () => {
               {(!!can_rule || !!program.has_rules) && (
                 <Section
                   mt={-2}
-                  title="Rules"
+                  title="规则"
                   buttons={
                     <>
                       {!!can_rule && (
@@ -253,7 +253,7 @@ export const NaniteCloudBackupDetails = () => {
                             })
                           }
                         >
-                          Add Rule from Disk
+                          从磁盘添加规则
                         </Button>
                       )}
                       <Button
@@ -266,7 +266,7 @@ export const NaniteCloudBackupDetails = () => {
                           })
                         }
                       >
-                        {program.all_rules_required ? 'Meet all' : 'Meet any'}
+                        {program.all_rules_required ? '满足全部' : '满足任意'}
                       </Button>
                     </>
                   }
@@ -288,7 +288,7 @@ export const NaniteCloudBackupDetails = () => {
                       </Box>
                     ))
                   ) : (
-                    <Box color="bad">No Active Rules</Box>
+                    <Box color="bad">没有生效的规则</Box>
                   )}
                 </Section>
               )}
@@ -315,21 +315,21 @@ export const NaniteCloudControl = () => {
       <Window.Content scrollable>
         <TechwebWarning display={!techweb} />
         <Section
-          title="Program Disk"
+          title="程序磁盘"
           buttons={
             <Button
               icon="eject"
               disabled={!has_disk}
               onClick={() => act('eject')}
             >
-              Eject
+              弹出
             </Button>
           }
         >
           <NaniteDiskBox />
         </Section>
         <Section
-          title="Cloud Storage"
+          title="云端存储"
           buttons={
             current_view ? (
               <Button
@@ -340,11 +340,11 @@ export const NaniteCloudControl = () => {
                   })
                 }
               >
-                Return
+                返回
               </Button>
             ) : (
               <>
-                {'New Backup: '}
+                {'新建备份：'}
                 <NumberInput
                   value={new_backup_id}
                   minValue={min_cloud_id + 1}

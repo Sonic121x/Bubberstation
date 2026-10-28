@@ -24,15 +24,15 @@ export const BankMachine = (props) => {
   return (
     <Window width={350} height={155}>
       <Window.Content>
-        <NoticeBox danger>Authorized personnel only</NoticeBox>
-        <Section title={`${station_name} Vault`}>
+        <NoticeBox danger>仅限授权人员使用</NoticeBox>
+        <Section title={`${station_name}金库`}>
           <LabeledList>
             <LabeledList.Item
-              label="Current Balance"
+              label="当前余额"
               buttons={
                 <Button
                   icon={siphoning ? 'times' : 'sync'}
-                  content={siphoning ? 'Stop Siphoning' : 'Siphon Credits'}
+                  content={siphoning ? '停止抽取' : '抽取信用点'}
                   selected={siphoning}
                   onClick={() => act(siphoning ? 'halt' : 'siphon')}
                 />
@@ -42,7 +42,7 @@ export const BankMachine = (props) => {
                 value={current_balance}
                 format={(value) => formatMoney(value)}
               />
-              {' cr'}
+              {' 信用点'}
             </LabeledList.Item>
           </LabeledList>
         </Section>

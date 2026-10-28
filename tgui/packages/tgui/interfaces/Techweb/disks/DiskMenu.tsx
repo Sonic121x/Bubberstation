@@ -27,24 +27,24 @@ export function TechwebDiskMenu(props: Props) {
       <Flex.Item>
         <Flex justify="space-between" className="Techweb__HeaderSectionTabs">
           <Flex.Item align="center" className="Techweb__HeaderTabTitle">
-            {diskType.charAt(0).toUpperCase() + diskType.slice(1)} Disk
+            {diskType === 'design' ? '设计' : '科技'}磁盘
           </Flex.Item>
           <Flex.Item grow>
             <Tabs>
-              <Tabs.Tab selected>Stored Data</Tabs.Tab>
+              <Tabs.Tab selected>已存数据</Tabs.Tab>
             </Tabs>
           </Flex.Item>
           <Flex.Item align="center">
             {diskType === 'tech' && (
               <Button icon="save" onClick={() => act('loadTech')}>
-                Web &rarr; Disk
+                科技网络 &rarr; 磁盘
               </Button>
             )}
             <Button
               icon="upload"
               onClick={() => act('uploadDisk', { type: diskType })}
             >
-              Disk &rarr; Web
+              磁盘 &rarr; 科技网络
             </Button>
             <Button
               icon="eject"
@@ -53,10 +53,10 @@ export function TechwebDiskMenu(props: Props) {
                 setTechwebRoute({ route: '' });
               }}
             >
-              Eject
+              弹出
             </Button>
             <Button icon="home" onClick={() => setTechwebRoute({ route: '' })}>
-              Home
+              主页
             </Button>
           </Flex.Item>
         </Flex>

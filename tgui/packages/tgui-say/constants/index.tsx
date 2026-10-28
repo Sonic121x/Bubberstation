@@ -32,7 +32,7 @@ export enum LINE_LENGTHS {
 export const RADIO_PREFIXES = {
   ':a ': {
     id: 'hive',
-    label: 'Hive',
+    label: '蜂巢',
   },
   ':b ': {
     id: 'binary',
@@ -40,42 +40,42 @@ export const RADIO_PREFIXES = {
   },
   ':c ': {
     id: 'command',
-    label: 'Cmd',
+    label: '指挥',
   },
   ':e ': {
     id: 'engi',
-    label: 'Engi',
+    label: '工程',
   },
   ':m ': {
     id: 'medical',
-    label: 'Med',
+    label: '医疗',
   },
   ':n ': {
     id: 'science',
-    label: 'Sci',
+    label: '科研',
   },
   ':o ': {
     id: 'ai',
-    label: 'AI',
+    label: '人工智能',
   },
   ':s ': {
     id: 'security',
-    label: 'Sec',
+    label: '安保',
   },
   ':t ': {
     id: 'syndicate',
-    label: 'Syndi',
+    label: '辛迪加',
   },
   ':u ': {
     id: 'supply',
-    label: 'Supp',
+    label: '货运',
   },
   ':v ': {
     id: 'service',
-    label: 'Svc',
+    label: '服务',
   },
   ':y ': {
     id: 'centcom',
-    label: 'CCom',
+    label: '中央指挥部',
   },
 } as const;

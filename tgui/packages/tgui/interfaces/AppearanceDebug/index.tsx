@@ -225,9 +225,9 @@ function getAppearanceWidth(
     textWidth(
       (appearance.data.name || appearance.data.icon_state) +
         (isEmissive(appearance)
-          ? ' (Emissive)'
+          ? '（自发光）'
           : isEmissiveBlocker(appearance)
-            ? ' (Emissive Blocker)'
+            ? '（自发光遮挡层）'
             : ''),
       'Verdana, Geneva',
       12,
@@ -550,7 +550,7 @@ export function AppearanceDebug() {
       <Window
         width={1600}
         height={840}
-        title={`OverFlayer${mainAppearance.name || mainAppearance.icon_state ? `: ${mainAppearance.name || mainAppearance.icon_state}` : ''}${updateWarning ? ' (Out of date)' : ''}`}
+        title={`外观解析器${mainAppearance.name || mainAppearance.icon_state ? `：${mainAppearance.name || mainAppearance.icon_state}` : ''}${updateWarning ? '（已过时）' : ''}`}
         buttons={
           <Stack fill>
             <Stack.Item
@@ -569,7 +569,7 @@ export function AppearanceDebug() {
             >
               <Dropdown
                 options={Object.keys(planeToText).sort()}
-                placeholder="Filter by Plane"
+                placeholder="按渲染平面筛选"
                 selected={planeFilter || ''}
                 searchInput
                 onSelected={(value) => {
@@ -582,7 +582,7 @@ export function AppearanceDebug() {
             <Stack.Item>
               <Button
                 color={hideEmissives ? 'green' : 'transparent'}
-                tooltip="Hide Emissives"
+                tooltip="隐藏自发光层"
                 icon="ban"
                 selected={hideEmissives}
                 onClick={() => {
@@ -594,7 +594,7 @@ export function AppearanceDebug() {
             <Stack.Item>
               <Button
                 color="transparent"
-                tooltip="Refresh Appearance"
+                tooltip="刷新外观"
                 icon="arrows-rotate"
                 onClick={() => act('refreshAppearance')}
               />

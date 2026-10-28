@@ -17,12 +17,12 @@ export function PodLaunch(props) {
       selected={giveLauncher}
       textAlign="center"
       tooltip={`
-        You should know what the
-        Codex Astartes says about this`}
+        你应该知道《阿斯塔特圣典》
+        对此有何教诲`}
       tooltipPosition="top"
     >
       <Box bold fontSize="1.4em" lineHeight={compact ? 1.5 : 3}>
-        LAUNCH
+        发射
       </Box>
     </Button>
   );

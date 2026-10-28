@@ -38,7 +38,7 @@ export function RouletteBetTable(props) {
             'Roulette__lowertable--header',
           ])}
         >
-          Last Spin:
+          上次结果：
         </Table.Cell>
         <Table.Cell
           className={classes([
@@ -47,7 +47,7 @@ export function RouletteBetTable(props) {
             'Roulette__lowertable--header',
           ])}
         >
-          Current Bet:
+          当前下注：
         </Table.Cell>
       </Table.Row>
       <Table.Row>
@@ -69,7 +69,7 @@ export function RouletteBetTable(props) {
           ])}
         >
           <Box bold mt={1} mb={1} fontSize="20px" textAlign="center">
-            {BetAmount} cr on {BetType}
+            下注{BetAmount}信用点于{({ even: '偶数', odd: '奇数', black: '黑色', red: '红色', '1st col': '第一列', '2nd col': '第二列', '3rd col': '第三列' })[BetType] ?? BetType}
           </Box>
           <Box ml={1} mr={1}>
             <Button
@@ -80,7 +80,7 @@ export function RouletteBetTable(props) {
                 })
               }
             >
-              Bet 10 cr
+              下注10信用点
             </Button>
             <Button
               fluid
@@ -90,7 +90,7 @@ export function RouletteBetTable(props) {
                 })
               }
             >
-              Bet 50 cr
+              下注50信用点
             </Button>
             <Button
               fluid
@@ -100,7 +100,7 @@ export function RouletteBetTable(props) {
                 })
               }
             >
-              Bet 100 cr
+              下注100信用点
             </Button>
             <Button
               fluid
@@ -110,7 +110,7 @@ export function RouletteBetTable(props) {
                 })
               }
             >
-              Bet 500 cr
+              下注500信用点
             </Button>
             <Stack>
               <Stack.Item grow>
@@ -122,7 +122,7 @@ export function RouletteBetTable(props) {
                     })
                   }
                 >
-                  Bet custom amount...
+                  下注自定义金额……
                 </Button>
               </Stack.Item>
               <Stack.Item>
@@ -143,16 +143,16 @@ export function RouletteBetTable(props) {
       <Table.Row>
         <Table.Cell colSpan={2}>
           <Box bold m={1} fontSize="14px" textAlign="center">
-            Swipe an ID card with a connected account to spin!
+            刷一张关联账户的身份卡即可转动轮盘！
           </Box>
         </Table.Cell>
       </Table.Row>
       <Table.Row>
         <Table.Cell className="Roulette__lowertable--cell">
           <Box inline bold mr={1}>
-            House Balance:
+            庄家余额：
           </Box>
-          <Box inline>{HouseBalance ? `${HouseBalance} cr` : 'None'}</Box>
+          <Box inline>{HouseBalance ? `${HouseBalance} 信用点` : '无'}</Box>
         </Table.Cell>
         <Table.Cell className="Roulette__lowertable--cell">
           <Button
@@ -162,7 +162,7 @@ export function RouletteBetTable(props) {
             textAlign="center"
             onClick={() => act('anchor')}
           >
-            {IsAnchored ? 'Bolted' : 'Unbolted'}
+            {IsAnchored ? '已固定' : '未固定'}
           </Button>
         </Table.Cell>
       </Table.Row>

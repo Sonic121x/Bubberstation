@@ -1,11 +1,11 @@
 {
 	"name": "Cheer",
-	"description" : "Cheer for them! You go buddy!",
+	"description" : "为对方加油！朋友，你行的！",
 	"usage": "other",
 	"category": "Miscellaneous",
 	"distance_allowed": 1,
 	"message": [
-		"%USER% cheers for %TARGET%!"
+		"%USER% 为 %TARGET% 加油！"
 	],
 	"sound_use": 0,
 	"sound_possible": [

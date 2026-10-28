@@ -97,14 +97,14 @@ export function AccessConfig(props: ConfigProps) {
   return (
     <Section
       fill
-      title="Access"
+      title="权限"
       buttons={
         <>
           <Button icon="check-double" color="good" onClick={grantAll}>
-            Grant All
+            授予全部
           </Button>
           <Button icon="undo" color="bad" onClick={denyAll}>
-            Deny All
+            撤销全部
           </Button>
         </>
       }
@@ -167,7 +167,7 @@ function AccessButtons(props: AccessButtonProps) {
               color="good"
               onClick={() => grantDep(selectedAccess.name)}
             >
-              Grant Region
+              授予区域权限
             </Button>
           </Stack.Item>
           <Stack.Item grow>
@@ -177,7 +177,7 @@ function AccessButtons(props: AccessButtonProps) {
               color="bad"
               onClick={() => denyDep(selectedAccess.name)}
             >
-              Deny Region
+              撤销区域权限
             </Button>
           </Stack.Item>
         </Stack>

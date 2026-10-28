@@ -83,17 +83,17 @@ const RecordList = (props) => {
         <Button
           icon="sync"
           onClick={() => act('refresh')}
-          tooltip="Refresh"
+          tooltip="刷新"
           tooltipPosition="bottom-start"
         />
       }
       fill
       scrollable
-      title="Citations"
+      title="罚单"
     >
       <Stack fill vertical>
         {!records?.length ? (
-          <NoticeBox>No citations issued.</NoticeBox>
+          <NoticeBox>尚未开具罚单。</NoticeBox>
         ) : (
           <Tabs vertical>
             {sorted.map((record, index) => (
@@ -158,22 +158,22 @@ const CitationManager = (props) => {
             act('print', { crew_ref: crew_ref, fine_ref: fine_ref })
           }
         >
-          Print
+          打印
         </Button>
       }
       color={getFineColor(fine)}
       title={fine_name}
     >
       <LabeledList>
-        <LabeledList.Item label="Details">
+        <LabeledList.Item label="详情">
           <BlockQuote>{details}</BlockQuote>
         </LabeledList.Item>
-        <LabeledList.Item label="Author">{author}</LabeledList.Item>
-        <LabeledList.Item label="Time">{time}</LabeledList.Item>
-        <LabeledList.Item label="Fine">{fine}</LabeledList.Item>
-        <LabeledList.Item label="Paid">{paid}</LabeledList.Item>
+        <LabeledList.Item label="开具人">{author}</LabeledList.Item>
+        <LabeledList.Item label="时间">{time}</LabeledList.Item>
+        <LabeledList.Item label="罚款">{fine}</LabeledList.Item>
+        <LabeledList.Item label="已缴">{paid}</LabeledList.Item>
         {fine > 0 && (
-          <LabeledList.Item label="Pay">
+          <LabeledList.Item label="缴纳">
             <RestrictedInput
               maxValue={fine}
               minValue={5}
@@ -191,7 +191,7 @@ const CitationManager = (props) => {
                 })
               }
             >
-              Pay
+              缴纳
             </Button.Confirm>
           </LabeledList.Item>
         )}

@@ -20,33 +20,33 @@ export const AntagInfoMorph = (props) => {
     <Window width={620} height={170} theme="abductor">
       <Window.Content>
         <Stack vertical fill>
-          <Stack.Item fontSize="25px">You are a morph...</Stack.Item>
+          <Stack.Item fontSize="25px">你是拟态怪……</Stack.Item>
           <Stack.Item>
             <BlockQuote>
-              ...a shapeshifting abomination that can eat almost anything. You
-              may take the form of anything you can see by{' '}
+              ……一个能变形、几乎什么都能吃的怪物。你
+              可以模仿任何看得到的东西，只需{' '}
               <span style={noticestyle}>
-                using your &quot;Assume Form&quot; ability on it. Shift-clicking
-                the object in question will also work.
+                对其使用“变化形态”能力。按住 Shift 点击
+                目标物体也可以。
               </span>{' '}
               <span style={badstyle}>
-                &ensp;This process will alert any nearby observers.
+                &ensp;这个过程会惊动附近的所有目击者。
               </span>{' '}
-              While morphed, you move faster, but are unable to attack creatures
-              or eat anything. In addition,
+              变形后，你的移动速度更快，但无法攻击生物
+              或进食。此外，
               <span style={badstyle}>
-                &ensp;anyone within three tiles will note an uncanny wrongness
-                if examining you.
+                &ensp;三格以内的人检查你时，
+                会察觉到诡异的不对劲之处。
               </span>{' '}
-              You can attack any item or dead creature to consume it -
+              你可以攻击任意物品或死亡生物来吞食它；
               <span style={goodstyle}>
-                &ensp;corpses will restore your health.
+                &ensp;尸体能恢复你的生命值。
               </span>{' '}
-              Finally, you can restore yourself to your original form while
-              morphed by{' '}
+              最后，变形状态下想恢复原形，
+              可以{' '}
               <span style={noticestyle}>
-                using the &quot;Assume Form&quot; ability on yourself. You can
-                also shift-click yourself.
+                对自己使用“变化形态”能力。你也可以
+                按住 Shift 点击自己。
               </span>{' '}
             </BlockQuote>
           </Stack.Item>

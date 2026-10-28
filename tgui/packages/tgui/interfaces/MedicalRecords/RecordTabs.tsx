@@ -22,8 +22,8 @@ export const MedicalRecordTabs = (props) => {
   const { act, data } = useBackend<MedicalRecordData>();
   const { records = [], station_z } = data;
   const errorMessage = !records.length
-    ? 'No records found.'
-    : 'No match. Refine your search.';
+    ? '未找到记录。'
+    : '无匹配项。请调整搜索条件。';
 
   const [search, setSearch] = useState('');
 
@@ -38,7 +38,7 @@ export const MedicalRecordTabs = (props) => {
         <Input
           fluid
           onChange={setSearch}
-          placeholder="Name/Job/DNA"
+          placeholder="姓名／职业／DNA"
           expensive
         />
       </Stack.Item>
@@ -61,18 +61,18 @@ export const MedicalRecordTabs = (props) => {
             <Button
               disabled
               icon="plus"
-              tooltip="Add new records by inserting a 1 by 1 meter photo into the terminal. You do not need this screen open."
+              tooltip="将一张 1 米见方的照片放入终端即可添加新记录，无需打开此界面。"
             >
-              Create
+              创建
             </Button>
           </Stack.Item>
           <Stack.Item>
             <Button.Confirm
-              content="Purge"
+              content="清空"
               icon="trash"
               disabled={!station_z}
               onClick={() => act('purge_records')}
-              tooltip="Wipe all record data."
+              tooltip="清除所有记录数据。"
             />
           </Stack.Item>
         </Stack>

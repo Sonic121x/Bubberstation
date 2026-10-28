@@ -1,8 +1,8 @@
 import { CheckboxInput, type FeatureToggle } from '../../base';
 
 export const see_credits: FeatureToggle = {
-  name: 'See Roundend Credits',
+  name: '显示回合结束演职员表',
   category: 'GAMEPLAY',
-  description: 'When enabled, you will see the credits sequence at roundend.',
+  description: '启用后，回合结束时会显示演职员表。',
   component: CheckboxInput,
 };

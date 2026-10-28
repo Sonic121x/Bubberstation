@@ -40,9 +40,9 @@ const ObjectivePrintout = (props: any) => {
   const { objectives } = data;
   return (
     <Stack vertical>
-      <Stack.Item bold>Your current objectives:</Stack.Item>
+      <Stack.Item bold>你当前的目标：</Stack.Item>
       <Stack.Item>
-        {(!objectives && 'None!') ||
+        {(!objectives && '无！') ||
           objectives.map((objective) => (
             <Stack.Item key={objective.count}>
               #{objective.count}: {objective.explanation}
@@ -65,7 +65,7 @@ export const AntagInfoBloodsucker = (props: any) => {
             selected={tab === 1}
             onClick={() => setTab(1)}
           >
-            Introduction
+            简介
           </Tabs.Tab>
           <Tabs.Tab
             icon="list"
@@ -73,7 +73,7 @@ export const AntagInfoBloodsucker = (props: any) => {
             selected={tab === 2}
             onClick={() => setTab(2)}
           >
-            Clan & Powers
+            氏族与能力
           </Tabs.Tab>
         </Tabs>
         {tab === 1 && <BloodsuckerIntro />}
@@ -90,8 +90,8 @@ const BloodsuckerIntro = () => {
         <Section scrollable fill>
           <Stack vertical>
             <Stack.Item textColor="red" fontSize="20px">
-              You are a Bloodsucker, an undead blood-seeking monster living
-              aboard Space Station 13
+              你是吸血鬼，一个潜伏在 13 号空间站上、
+              渴求鲜血的不死怪物。
             </Stack.Item>
             <Stack.Item>
               <ObjectivePrintout />
@@ -100,65 +100,65 @@ const BloodsuckerIntro = () => {
         </Section>
       </Stack.Item>
       <Stack.Item>
-        <Section fill title="Strengths and Weaknesses">
+        <Section fill title="优势与弱点">
           <Stack vertical height="7rem">
             <Stack.Item>
               <span>
-                You regenerate your health slowly, you&#39;re weak to fire, and
-                you depend on blood to survive. Don&#39;t allow your blood to
-                run too low, or you&#39;ll enter a
+                你的生命值会缓慢恢复，你惧怕火焰，
+                并依赖血液生存。不要让血量
+                降得太低，否则你会陷入
               </span>
-              <span className={'color-red'}> Frenzy</span>!<br />
+              <span className={'color-red'}>狂暴</span>！<br />
               <span>
-                Beware of your Humanity level! The more Humanity you lose, the
-                easier it is to fall into a{' '}
-                <span className={'color-red'}> Frenzy</span>!
+                留意你的人性水平！失去的人性越多，
+                就越容易陷入{' '}
+                <span className={'color-red'}>狂暴</span>！
               </span>
               <br />
               <span>
-                Avoid using your Feed ability while near others, or else you
-                will risk <i>breaking the Masquerade</i>!
+                避免在其他人附近使用吸血能力，否则你
+                可能会<i>违反避世戒律</i>！
               </span>
               <span>
-                Loosing your heart will render your powers useless, but going
-                into a coffin with a heart inside will allow you to regenerate
-                it.
+                失去心脏会让你的能力失效，但进入
+                放有心脏的棺材，
+                就能再生心脏。
               </span>
             </Stack.Item>
           </Stack>
         </Section>
       </Stack.Item>
       <Stack.Item>
-        <Section fill title="Items">
+        <Section fill title="物品">
           <Stack vertical>
             <Stack.Item>
-              Rest in a <b>Coffin</b> to claim it, and that area, as your haven.
+              在<b>棺材</b>中休息，即可将其连同所在区域占为你的庇护所。
               <br />
-              Examine your new structures to see how they function!
+              检查你的新建筑，了解它们的功能！
               <br />
-              Medical analyzers and the book of kindred can sell you out, your
-              Masquerade ability will hide your identity to prevent this.
+              医疗分析仪和诺德之书可能暴露你的身份，
+              使用避世伪装能力可以隐藏身份，防止这种情况发生。
               <br />
-              You will learn how to make persuasion racks once you have enough
-              levels to support a ghoul, which you will learn during torpor
-              during daytime. Examine the ghoul rack to see how many ghouls you
-              can have!
+              当等级足以拥有血仆时，
+              你会在白天蛰眠期间学会
+              制作劝化刑架。检查劝化刑架，
+              即可得知你能拥有多少血仆！
               <br />
-              You cannot level up until you select a clan. To select a clan,
-              click the clan tab on the top right of this window.
+              选择氏族之前，你无法升级。要选择氏族，
+              请点击此窗口右上方的氏族标签。
               <br />
-              Ensure to read the descriptions of each ability in the Clan &
-              Powers tab, you may learn something new!
+              务必阅读“氏族与能力”标签中各项能力的说明，
+              你或许会学到新知识！
               <br />
-              After a certain level, Sol will no longer grant you levels,
-              instead, you will need to feed on the blood of others to gain
-              levels.
+              达到一定等级后，太阳将不再让你升级，
+              此时你需要吸食他人的血液
+              来提升等级。
             </Stack.Item>
             <Stack.Item>
               <Section textAlign="center" textColor="red" fontSize="20px">
-                Other Bloodsuckers are not necessarily your friends, but your
-                survival may depend on cooperation. Betray them at your own
-                discretion and peril.
+                其他吸血鬼不一定是你的朋友，但你可能
+                需要合作才能生存。是否背叛它们由你决定，
+                风险也由你承担。
               </Section>
             </Stack.Item>
           </Stack>
@@ -176,7 +176,7 @@ const BloodsuckerClan = (props: any) => {
     return (
       <Section minHeight="220px">
         <Box mt={5} bold textAlign="center" fontSize="40px">
-          You are not in a Clan.
+          你尚未加入氏族。
         </Box>
         <Box mt={3}>
           <Button
@@ -187,7 +187,7 @@ const BloodsuckerClan = (props: any) => {
             lineHeight={2}
             onClick={() => act('join_clan')}
           >
-            Join Clan
+            加入氏族
           </Button>
         </Box>
       </Section>
@@ -211,7 +211,7 @@ const BloodsuckerClan = (props: any) => {
                     style={{ position: 'absolute' }}
                   />
                   <Stack.Item fontSize="20px" textAlign="center">
-                    You are part of the {ClanInfo.clan_name}
+                    你属于{ClanInfo.clan_name}
                   </Stack.Item>
                   <Stack.Item
                     fontSize="16px"

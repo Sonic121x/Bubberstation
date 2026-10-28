@@ -221,9 +221,9 @@ export class Uplink extends Component<any, UplinkState> {
             <Box>{item.desc}</Box>
             {(item.lock_other_purchases && (
               <NoticeBox mt={1}>
-                Taking this item will lock you from further purchasing from the
-                marketplace. Additionally, if you have already purchased an
-                item, you will not be able to purchase this.
+                购买此物品后，你将无法继续
+                在市场中购买物品。此外，如果你已经购买过
+                任何物品，就无法再购买此物品。
               </NoticeBox>
             )) ||
               null}
@@ -231,7 +231,7 @@ export class Uplink extends Component<any, UplinkState> {
         ),
         cost: (
           <Box>
-            {item.cost_override_string || `${item.cost} TC`}
+            {item.cost_override_string || `${item.cost} 蓝晶`}
             {has_progression ? (
               <>
                 ,&nbsp;
@@ -245,9 +245,9 @@ export class Uplink extends Component<any, UplinkState> {
           </Box>
         ),
         population_tooltip:
-          'This item is not cleared for operations performed against stations crewed by fewer than ' +
+          '此物品仅允许在船员人数至少达到 ' +
           item.population_minimum +
-          ' people.',
+          ' 人的空间站上执行任务时使用。',
         insufficient_population: !hasEnoughPop,
         disabled:
           !canBuy ||
@@ -275,17 +275,17 @@ export class Uplink extends Component<any, UplinkState> {
                         content={
                           <Box>
                             <Box>
-                              <Box>Your current level of threat.</Box> Threat
-                              determines what items you can purchase.&nbsp;
+                              <Box>你当前的威胁等级。</Box> 威胁等级
+                              决定了你可以购买哪些物品。&nbsp;
                               <Box mt={0.5}>
                                 {/* A minute in deciseconds */}
-                                Threat passively increases by{' '}
+                                威胁等级每分钟自动增加{' '}
                                 <Box color="green" as="span">
                                   {calculateProgression(
                                     current_progression_scaling,
                                   )}
                                 </Box>
-                                &nbsp;every minute
+                                &nbsp;点
                               </Box>
                               {dangerLevelsTooltip}
                             </Box>
@@ -310,7 +310,7 @@ export class Uplink extends Component<any, UplinkState> {
                             selected={currentTab === 0}
                             onClick={() => this.setState({ currentTab: 0 })}
                           >
-                            Primary Objectives
+                            主要目标
                           </Tabs.Tab>
                         )}
                         <Tabs.Tab
@@ -323,7 +323,7 @@ export class Uplink extends Component<any, UplinkState> {
                           selected={currentTab === 2}
                           onClick={() => this.setState({ currentTab: 2 })}
                         >
-                          Market
+                          市场
                         </Tabs.Tab>
                       </Tabs>
                     </Stack.Item>
@@ -339,7 +339,7 @@ export class Uplink extends Component<any, UplinkState> {
                         px={2}
                         onClick={() => act('lock')}
                       >
-                        Lock
+                        锁定
                       </Button>
                     </Stack.Item>
                   )}
@@ -355,7 +355,7 @@ export class Uplink extends Component<any, UplinkState> {
               )) || (
                 <>
                   <GenericUplink
-                    currency={`${telecrystals} TC`}
+                    currency={`${telecrystals} 蓝晶`}
                     categories={allCategories}
                     items={items}
                     handleBuy={(item: ItemExtraData) => {
@@ -375,7 +375,7 @@ export class Uplink extends Component<any, UplinkState> {
                         align={'top'}
                         as="span"
                       >
-                        SHOP LOCKED
+                        商店已锁定
                       </Box>
                     </Dimmer>
                   )) ||

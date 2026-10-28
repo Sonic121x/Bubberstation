@@ -67,7 +67,7 @@ export const ParticleEdit = (props) => {
   return (
     <ParticleContext.Provider value={{ desc, setDesc }}>
       <Window
-        title={`${data.target_name}'s particles`}
+        title={`${data.target_name}的粒子效果`}
         width={940}
         height={890}
       >
@@ -75,133 +75,133 @@ export const ParticleEdit = (props) => {
         <Window.Content scrollable>
           <LabeledList>
             <Section
-              title={'Affects entire set'}
+              title={'影响整个粒子系统'}
               buttons={
                 <>
                   <Button
                     icon={'question'}
                     onClick={() => setDesc('generator')}
-                    tooltip={'Generator information'}
+                    tooltip={'生成器说明'}
                   />
                   <Button
                     icon={'sync'}
                     onClick={() => act('new_type')}
-                    tooltip={'Change type'}
+                    tooltip={'更改类型'}
                   />
                   <Button
                     icon={'x'}
                     color={'red'}
                     onClick={() => act('delete_and_close')}
-                    tooltip={'Delete and close UI'}
+                    tooltip={'删除并关闭界面'}
                   />
                 </>
               }
             >
-              <EntryFloat name={'Width'} var_name={'width'} float={width} />
-              <EntryFloat name={'Height'} var_name={'height'} float={height} />
-              <EntryFloat name={'Count'} var_name={'count'} float={count} />
+              <EntryFloat name={'宽度'} var_name={'width'} float={width} />
+              <EntryFloat name={'高度'} var_name={'height'} float={height} />
+              <EntryFloat name={'数量上限'} var_name={'count'} float={count} />
               <EntryFloat
-                name={'Spawning'}
+                name={'生成速率'}
                 var_name={'spawning'}
                 float={spawning}
               />
               <EntryCoord
-                name={'Bound corner 1'}
+                name={'边界角点1'}
                 var_name={'bound1'}
                 coord={bound1}
               />
               <EntryCoord
-                name={'Bound corner 2'}
+                name={'边界角点2'}
                 var_name={'bound2'}
                 coord={bound2}
               />
               <EntryCoord
-                name={'Gravity'}
+                name={'重力'}
                 var_name={'gravity'}
                 coord={gravity}
               />
               <EntryGradient
-                name={'Gradient'}
+                name={'渐变'}
                 var_name={'gradient'}
                 gradient={gradient}
               />
               <EntryTransform
-                name={'Transform'}
+                name={'变换'}
                 var_name={'transform'}
                 transform={transform}
               />
             </Section>
-            <Section title={'Evaluated on particle creation'}>
-              <EntryIcon name={'Icon'} var_name={'icon'} icon_state={icon} />
+            <Section title={'创建粒子时计算'}>
+              <EntryIcon name={'图标'} var_name={'icon'} icon_state={icon} />
               <EntryIconState
-                name={'Icon State'}
+                name={'图标状态'}
                 var_name={'icon_state'}
                 icon_state={icon_state}
               />
               <FloatGenerator
-                name={'Lifespan'}
+                name={'生命周期'}
                 var_name={'lifespan'}
                 float={lifespan}
               />
               <FloatGenerator
-                name={'Fade out'}
+                name={'淡出'}
                 var_name={'fade'}
                 float={fade}
               />
               <FloatGenerator
-                name={'Fade in'}
+                name={'淡入'}
                 var_name={'fadein'}
                 float={fadein}
               />
               <FloatGeneratorColor
-                name={'Color'}
+                name={'颜色'}
                 var_name={'color'}
                 float={color}
               />
               <FloatGenerator
-                name={'Color change'}
+                name={'颜色变化'}
                 var_name={'color_change'}
                 float={color_change}
               />
               <EntryGeneratorNumbersList
-                name={'Position'}
+                name={'位置'}
                 var_name={'position'}
                 allow_z
                 input={position}
               />
               <EntryGeneratorNumbersList
-                name={'Velocity'}
+                name={'速度'}
                 var_name={'velocity'}
                 allow_z
                 input={velocity}
               />
               <EntryGeneratorNumbersList
-                name={'Scale'}
+                name={'缩放'}
                 var_name={'scale'}
                 allow_z={false}
                 input={scale}
               />
               <EntryGeneratorNumbersList
-                name={'Grow'}
+                name={'缩放变化'}
                 var_name={'grow'}
                 allow_z={false}
                 input={grow}
               />
               <FloatGenerator
-                name={'Rotation'}
+                name={'旋转角度'}
                 var_name={'rotation'}
                 float={rotation}
               />
-              <FloatGenerator name={'Spin'} var_name={'spin'} float={spin} />
+              <FloatGenerator name={'自转'} var_name={'spin'} float={spin} />
               <FloatGenerator
-                name={'Friction'}
+                name={'摩擦'}
                 var_name={'friction'}
                 float={friction}
               />
             </Section>
-            <Section title={'Evaluated every tick'}>
+            <Section title={'每刻计算'}>
               <EntryGeneratorNumbersList
-                name={'Drift'}
+                name={'漂移'}
                 var_name={'drift'}
                 allow_z
                 input={drift}

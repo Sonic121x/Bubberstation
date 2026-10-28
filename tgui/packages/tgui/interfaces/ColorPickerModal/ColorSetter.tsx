@@ -58,10 +58,10 @@ export const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
             </Stack.Item>
             <Stack.Item mt={3}>
               <Box inline width="100px" height="20px" textAlign="center">
-                New
+                新颜色
               </Box>
               <Box inline width="100px" height="20px" textAlign="center">
-                Current
+                当前颜色
               </Box>
               <br />
               <Tooltip content={hexColor} position="bottom">
@@ -97,7 +97,7 @@ export const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
               <Stack.Item mt={5.5}>
                 <Stack>
                   <Stack.Item>
-                    <Box textColor="label">Hex:</Box>
+                    <Box textColor="label">色码：</Box>
                   </Stack.Item>
                   <Stack.Item grow>
                     <HexColorInput
@@ -113,7 +113,7 @@ export const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
                       icon="chevron-down"
                       onClick={() => setShowPresets(true)}
                     >
-                      Skin Tones and Presets
+                      肤色与预设
                     </Button>
                   </Stack.Item>
                 </Stack>

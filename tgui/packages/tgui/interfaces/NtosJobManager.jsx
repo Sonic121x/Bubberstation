@@ -9,7 +9,7 @@ import {
 
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
-
+import { displayRole } from '../localization/roleDisplay';
 export const NtosJobManager = (props) => {
   return (
     <NtosWindow width={400} height={620}>
@@ -26,7 +26,7 @@ export const NtosJobManagerContent = (props) => {
   if (!authed) {
     return (
       <NoticeBox>
-        Current ID does not have access permissions to change job slots.
+        当前身份卡没有调整职位名额的权限。
       </NoticeBox>
     );
   }
@@ -35,21 +35,21 @@ export const NtosJobManagerContent = (props) => {
       {cooldown > 0 && (
         <Dimmer>
           <Box bold textAlign="center" fontSize="20px">
-            On Cooldown: {cooldown}s
+            冷却中：{cooldown} 秒
           </Box>
         </Dimmer>
       )}
       <Table>
         <Table.Row header>
-          <Table.Cell>Prioritized</Table.Cell>
-          <Table.Cell>Slots</Table.Cell>
+          <Table.Cell>优先招聘</Table.Cell>
+          <Table.Cell>名额</Table.Cell>
         </Table.Row>
         {slots.map((slot) => (
           <Table.Row key={slot.title} className="candystripe">
             <Table.Cell bold>
               <Button.Checkbox
                 fluid
-                content={slot.title}
+                content={displayRole(slot.title)}
                 disabled={slot.total <= 0}
                 checked={slot.total > 0 && prioritized.includes(slot.title)}
                 onClick={() =>
@@ -64,7 +64,7 @@ export const NtosJobManagerContent = (props) => {
             </Table.Cell>
             <Table.Cell collapsing>
               <Button
-                content="Open"
+                content="开放"
                 disabled={!slot.status_open}
                 onClick={() =>
                   act('PRG_open_job', {
@@ -73,7 +73,7 @@ export const NtosJobManagerContent = (props) => {
                 }
               />
               <Button
-                content="Close"
+                content="关闭"
                 disabled={!slot.status_close}
                 onClick={() =>
                   act('PRG_close_job', {

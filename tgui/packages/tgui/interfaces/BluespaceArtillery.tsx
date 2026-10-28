@@ -29,7 +29,7 @@ export const BluespaceArtillery = (props) => {
         {connected ? (
           <>
             <Section
-              title="Target"
+              title="目标"
               buttons={
                 <Button
                   icon="crosshairs"
@@ -39,7 +39,7 @@ export const BluespaceArtillery = (props) => {
               }
             >
               <Box color={target ? 'average' : 'bad'} fontSize="25px">
-                {target || 'No Target Set'}
+                {target || '未设置目标'}
               </Box>
             </Section>
             <Section>
@@ -47,7 +47,7 @@ export const BluespaceArtillery = (props) => {
                 <Box style={{ margin: 'auto' }}>
                   <Button
                     fluid
-                    content="FIRE"
+                    content="开火"
                     color="bad"
                     disabled={!target}
                     fontSize="30px"
@@ -59,11 +59,11 @@ export const BluespaceArtillery = (props) => {
               ) : (
                 <>
                   <Box color="bad" fontSize="18px">
-                    Bluespace artillery is currently locked.
+                    蓝空间火炮目前已锁定。
                   </Box>
                   <Box mt={1}>
-                    Awaiting authorization via keycard reader from at minimum
-                    two station heads.
+                    正在等待至少两名空间站主管
+                    通过钥匙卡读取器授权。
                   </Box>
                 </>
               )}
@@ -72,19 +72,19 @@ export const BluespaceArtillery = (props) => {
         ) : (
           <Section>
             <LabeledList>
-              <LabeledList.Item label="Maintenance">
+              <LabeledList.Item label="维护">
                 {(visualizing) ? (
                   <>
                     <Button color="good" onClick={() => act('build')}>
-                      Confirm Position
+                      确认位置
                     </Button>
                     <Button color="bad" onClick={() => act('unvisualize')}>
-                      Cancel
+                      取消
                     </Button>
                   </>
                 ) : (
                   <Button icon="wrench" onClick={() => act('visualize')}>
-                    Begin Deployment
+                    开始部署
                   </Button>
                 )}
               </LabeledList.Item>

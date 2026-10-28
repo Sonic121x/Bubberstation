@@ -60,12 +60,12 @@ export const BlackMarketUplink = (props) => {
       <ShipmentSelector />
       <Window.Content scrollable>
         <Section
-          title="Black Market Uplink"
+          title="黑市上行链路"
           buttons={
             <Box inline bold>
               <AnimatedNumber
                 value={money}
-                format={(value) => `${formatMoney(value)} cr`}
+                format={(value) => `${formatMoney(value)} 信用点`}
               />
             </Box>
           }
@@ -126,12 +126,12 @@ export const BlackMarketUplink = (props) => {
                     </Stack>
                   </Stack.Item>
                   <Stack.Item color="label">
-                    {item.amount ? `${item.amount} in stock` : 'Out of stock'}
+                    {item.amount ? `库存：${item.amount}` : '缺货'}
                   </Stack.Item>
-                  <Stack.Item>{`${formatMoney(item.cost)} cr`}</Stack.Item>
+                  <Stack.Item>{`${formatMoney(item.cost)} 信用点`}</Stack.Item>
                   <Stack.Item>
                     <Button
-                      content="Buy"
+                      content="购买"
                       disabled={!item.amount || item.cost > money}
                       onClick={() =>
                         act('select', {
@@ -177,7 +177,7 @@ const ShipmentSelector = (props) => {
               <Box mt={1}>{method.description}</Box>
               <Button
                 mt={2}
-                content={`${formatMoney(method.price)} cr`}
+                content={`${formatMoney(method.price)} 信用点`}
                 disabled={money < method.price}
                 onClick={() =>
                   act('buy', {
@@ -189,7 +189,7 @@ const ShipmentSelector = (props) => {
           );
         })}
       </Stack>
-      <Button content="Cancel" color="bad" onClick={() => act('cancel')} />
+      <Button content="取消" color="bad" onClick={() => act('cancel')} />
     </Modal>
   );
 };

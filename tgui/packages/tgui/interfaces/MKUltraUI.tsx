@@ -24,7 +24,7 @@ export const MKUltraUI = () => {
   commands.sort((a, b) => (a.erp < b.erp ? -1 : 1));
 
   return (
-    <Window title="MKUltra Commands" width={700} height={375}>
+    <Window title="MKUltra 指令" width={700} height={375}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item grow>
@@ -37,10 +37,10 @@ export const MKUltraUI = () => {
                     borderBottom: 'thin solid',
                   }}
                 >
-                  <Table.Cell align="center">Name</Table.Cell>
-                  <Table.Cell align="center">Description</Table.Cell>
-                  <Table.Cell align="center">Triggers</Table.Cell>
-                  <Table.Cell align="center">Cooldown</Table.Cell>
+                  <Table.Cell align="center">名称</Table.Cell>
+                  <Table.Cell align="center">描述</Table.Cell>
+                  <Table.Cell align="center">触发词</Table.Cell>
+                  <Table.Cell align="center">冷却时间</Table.Cell>
                 </Table.Row>
                 <Divider hidden />
                 {commands
@@ -68,7 +68,7 @@ export const MKUltraUI = () => {
                           fontSize="10px"
                           color="label"
                         >
-                          Phase: {commands.phase.toString()}
+                          阶段：{commands.phase.toString()}
                           <br />
                           <Button
                             iconSize={1.5}
@@ -95,14 +95,14 @@ export const MKUltraUI = () => {
                               tooltipPosition="top"
                               tooltip={
                                 commands.cooldown > 1
-                                  ? `${commands.cooldown} minutes`
-                                  : `${round(commands.cooldown * 60, 1)} seconds`
+                                  ? `${commands.cooldown} 分钟`
+                                  : `${round(commands.cooldown * 60, 1)} 秒`
                               }
                             />
                           ) : undefined}
                         </Table.Cell>
                       </Table.Row>
-                      {commands.name.toLowerCase() === 'brainwash' ? (
+                      {['brainwash', '洗脑'].includes(commands.name.toLowerCase()) ? (
                         <Table.Row height="20px">
                           <Table.Cell />
                           <Table.Cell
@@ -117,8 +117,8 @@ export const MKUltraUI = () => {
                             }}
                           >
                             <b>
-                              This is mechanical brainwashing and it is only
-                              available to the MKUltra chemical.
+                              这是会产生实际游戏机制效果的洗脑，
+                              仅限使用 MKUltra 药剂时生效。
                             </b>
                           </Table.Cell>
                         </Table.Row>

@@ -1,8 +1,8 @@
 import { CheckboxInput, type FeatureToggle } from '../../base';
 
 export const enable_status_indicators: FeatureToggle = {
-  name: 'Display Status Indicators',
+  name: '显示状态指示',
   category: 'GAMEPLAY',
-  description: 'This toggles whether or not you will see status indicators.',
+  description: '选择是否显示状态指示。',
   component: CheckboxInput,
 };

@@ -33,7 +33,7 @@ export function AirAlarmControlHome(props: Props) {
           color={atmosAlarm && 'caution'}
           onClick={() => act(atmosAlarm ? 'reset' : 'alarm')}
         >
-          Area Atmosphere Alarm
+          区域大气警报
         </Button>
       </Stack.Item>
       <Stack.Item mb={1}>
@@ -46,27 +46,27 @@ export function AirAlarmControlHome(props: Props) {
             })
           }
         >
-          Panic Siphon
+          紧急抽气
         </Button>
       </Stack.Item>
       <Stack.Item>
         <Button icon="sign-out-alt" onClick={() => setScreen('vents')}>
-          Vent Controls
+          通风口控制
         </Button>
       </Stack.Item>
       <Stack.Item>
         <Button icon="filter" onClick={() => setScreen('scrubbers')}>
-          Scrubber Controls
+          洗气器控制
         </Button>
       </Stack.Item>
       <Stack.Item>
         <Button icon="cog" onClick={() => setScreen('modes')}>
-          Operating Mode
+          运行模式
         </Button>
       </Stack.Item>
       <Stack.Item>
         <Button icon="chart-bar" onClick={() => setScreen('thresholds')}>
-          Alarm Thresholds
+          报警阈值
         </Button>
       </Stack.Item>
       {!!sensor && !!allowLinkChange && (
@@ -76,7 +76,7 @@ export function AirAlarmControlHome(props: Props) {
             color="danger"
             onClick={() => act('disconnect_sensor')}
           >
-            Disconnect Sensor
+            断开传感器
           </Button.Confirm>
         </Stack.Item>
       )}

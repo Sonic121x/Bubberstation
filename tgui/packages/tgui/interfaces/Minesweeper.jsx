@@ -33,20 +33,20 @@ export const MinesweeperContent = (props, context) => {
   } = data;
   return (
     <Section
-      title={`Minesweeper ${emagged ? ' EXTREME EDITION' : ''}`}
+      title={`扫雷${emagged ? ' 极限版' : ''}`}
       color={emagged ? 'bad' : 'primary'}
       textAlign="center"
     >
-      <b>DIFFICULTY: </b>
+      <b>难度：</b>
       {current_difficulty}
       <br />
       <b>
-        {emagged ? 'Explode in the game, explode in real life!' : 'Tickets: '}
+        {emagged ? '游戏里炸了，现实中也会炸！' : '奖券：'}
       </b>
       {emagged ? '' : tickets}
-      <b>{emagged ? '' : ' Mines left: '}</b>
+      <b>{emagged ? '' : ' 剩余地雷：'}</b>
       {emagged ? '' : current_mines - flags}
-      <b>{emagged ? '' : ' Time: '}</b>
+      <b>{emagged ? '' : ' 时间：'}</b>
       {emagged ? '' : time_string}
       <br />
       <br />
@@ -103,18 +103,18 @@ export const MinesweeperContent = (props, context) => {
       </Box>
       <br />
       <Button
-        content="Toggle Flagging"
+        content="切换插旗模式"
         color={flag_mode ? 'green' : 'blue'}
         onClick={() => act('PRG_toggle_flag')}
       />
       <Button
-        content="New Game"
+        content="新游戏"
         color="blue"
         onClick={() => act('PRG_new_game')}
       />
       <br />
       <Button
-        content="Beginner"
+        content="新手"
         selected={difficulty === 'Beginner'}
         color={flag_mode ? 'green' : 'blue'}
         onClick={() =>
@@ -124,7 +124,7 @@ export const MinesweeperContent = (props, context) => {
         }
       />
       <Button
-        content="Intermediate"
+        content="中级"
         selected={difficulty === 'Intermediate'}
         color="blue"
         onClick={() =>
@@ -134,7 +134,7 @@ export const MinesweeperContent = (props, context) => {
         }
       />
       <Button
-        content="Expert"
+        content="专家"
         selected={difficulty === 'Expert'}
         color="blue"
         onClick={() =>
@@ -144,7 +144,7 @@ export const MinesweeperContent = (props, context) => {
         }
       />
       <Button
-        content="Custom"
+        content="自定义"
         selected={difficulty === 'Custom'}
         color="blue"
         onClick={() =>
@@ -159,7 +159,7 @@ export const MinesweeperContent = (props, context) => {
           <Knob
             inline
             animated
-            unit=" Width"
+            unit=" 宽度"
             minValue="5"
             maxValue="30"
             stepPixelSize="10"
@@ -174,7 +174,7 @@ export const MinesweeperContent = (props, context) => {
             inline
             animated
             color="blue"
-            unit=" Height"
+            unit=" 高度"
             minValue="5"
             maxValue="17"
             stepPixelSize="20"
@@ -189,7 +189,7 @@ export const MinesweeperContent = (props, context) => {
             inline
             animated
             color="bad"
-            unit=" Mines"
+            unit=" 地雷"
             minValue="5"
             maxValue="250"
             stepPixelSize="2"

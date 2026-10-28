@@ -21,9 +21,9 @@ export function CargoCartButtons(props) {
   return (
     <>
       <Box inline mx={1}>
-        {amount === 0 && 'Cart is empty'}
-        {amount === 1 && '1 item'}
-        {amount >= 2 && `${amount} items`}{' '}
+        {amount === 0 && '购物车为空'}
+        {amount === 1 && '1 件物品'}
+        {amount >= 2 && `${amount} 件物品`}{' '}
         {total > 0 && `(${formatMoney(total)}${displayed_currency_name})`}
       </Box>
 
@@ -33,7 +33,7 @@ export function CargoCartButtons(props) {
         color="transparent"
         onClick={() => act('clear')}
       >
-        Clear
+        清空
       </Button>
     </>
   );

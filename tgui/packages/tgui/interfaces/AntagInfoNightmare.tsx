@@ -19,54 +19,54 @@ export const AntagInfoNightmare = (props) => {
           <Stack.Item width="46.2%">
             <Section fill>
               <Stack vertical fill>
-                <Stack.Item fontSize="25px">You are a Nightmare.</Stack.Item>
+                <Stack.Item fontSize="25px">你是梦魇。</Stack.Item>
                 <Stack.Item>
                   <BlockQuote>
-                    You are a creature from beyond the stars that has incredibly
-                    strong powers in the darkness, becoming nigh unbeatable.
-                    Unfortunately, you wither and burn away in the light. You
-                    must use your
-                    <span style={noticestyle}>&ensp;light eater</span> to dim
-                    the station, making hunting easier.
+                    你是来自群星之外的生物，在黑暗中拥有无比
+                    强大的力量，几乎不可战胜。
+                    遗憾的是，你在光照下会衰弱并遭受灼伤。你
+                    必须使用
+                    <span style={noticestyle}>&ensp;噬光者</span>让
+                    空间站陷入黑暗，以便狩猎。
                   </BlockQuote>
                 </Stack.Item>
                 <Stack.Divider />
                 <Stack.Item textColor="label">
-                  <span style={tipstyle}>Tip #1:&ensp;</span>
-                  Move often. The station will be hunting you after you are
-                  discovered, so don&apos;t stay in one area for long.
+                  <span style={tipstyle}>技巧 1：&ensp;</span>
+                  经常移动。被发现后，空间站人员会追捕你，
+                  所以不要在同一区域停留太久。
                   <br />
-                  <span style={tipstyle}>Tip #2:&ensp;</span>
-                  Pick unfair fights. You are incredibly strong in one versus
-                  one situations, use it. The more you fight, the harder it will
-                  be to keep it dark.
+                  <span style={tipstyle}>技巧 2：&ensp;</span>
+                  挑有利的架打。单打独斗时你极其强大，
+                  要善用这一点。交战越频繁，
+                  维持黑暗就越困难。
                   <br />
-                  <span style={tipstyle}>Tip #3:&ensp;</span>
-                  Fully destroy APCs when possible. Instead of hunting lights
-                  that can be fixed, hunt the APCs which are harder to repair.
+                  <span style={tipstyle}>技巧 3：&ensp;</span>
+                  尽可能彻底摧毁 APC。比起破坏容易修复的灯，
+                  不如破坏更难修复的 APC。
                 </Stack.Item>
               </Stack>
             </Section>
           </Stack.Item>
           <Stack.Item width="53%">
-            <Section fill title="Powers">
+            <Section fill title="能力">
               <LabeledList>
-                <LabeledList.Item label="Shadow Dance">
-                  Whilst in the shadows, you are immune to all ranged attacks,
-                  whilst also rapidly regenerating health.
+                <LabeledList.Item label="暗影之舞">
+                  在阴影中，你免疫所有远程攻击，
+                  并会迅速恢复生命值。
                 </LabeledList.Item>
-                <LabeledList.Item label="Shadow Walk">
-                  You are allowed unlimited, unrestricted movement in the dark.
-                  Light will pull you out of this.
+                <LabeledList.Item label="暗影漫步">
+                  你可以在黑暗中无限制地自由移动。
+                  光照会使你退出此状态。
                 </LabeledList.Item>
-                <LabeledList.Item label="Heart of Darkness">
-                  Your heart invites the shadows. If you die in the darkness,
-                  you will eventually revive if left alone.
+                <LabeledList.Item label="黑暗之心">
+                  你的心脏招来阴影。如果你在黑暗中死去，
+                  只要不受干扰，最终便会复活。
                 </LabeledList.Item>
-                <LabeledList.Item label="Light Eater">
-                  Your twisted appendage. It will consume the light of what it
-                  touches, be it victim or object. After 7 seconds of being in
-                  jaunt, stabbing a foe will stun them or do extra damage.
+                <LabeledList.Item label="噬光者">
+                  你扭曲的肢体。它会吞噬接触之物的光芒，
+                  无论是受害者还是物体。在暗影漫步状态中停留
+                  7 秒后，刺击敌人会使其眩晕或造成额外伤害。
                 </LabeledList.Item>
               </LabeledList>
             </Section>

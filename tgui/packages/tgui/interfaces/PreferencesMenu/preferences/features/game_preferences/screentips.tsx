@@ -8,29 +8,29 @@ import {
 import { FeatureDropdownInput } from '../dropdowns';
 
 export const screentip_color: Feature<string> = {
-  name: 'Screentips: Screentips color',
+  name: '屏幕提示：颜色',
   category: 'UI',
   description: `
-    The color of screen tips, the text you see when hovering over something.
+    鼠标悬停在对象上时显示的屏幕提示文字颜色。
   `,
   component: FeatureColorInput,
 };
 
 export const screentip_images: FeatureToggle = {
-  name: 'Screentips: Allow images',
+  name: '屏幕提示：允许图像',
   category: 'UI',
-  description: `When enabled, screentip hints use images for
-    the mouse button rather than LMB/RMB.`,
+  description: `启用后，屏幕提示用鼠标按钮图像
+    代替 LMB/RMB 文字。`,
   component: CheckboxInput,
 };
 
 export const screentip_pref: FeatureChoiced = {
-  name: 'Screentips: Enable screentips',
+  name: '屏幕提示：启用',
   category: 'UI',
   description: `
-    Enables screen tips, the text you see when hovering over something.
-    When set to "Only with tips", will only show when there is more information
-    than just the name, such as what right-clicking it does.
+    启用鼠标悬停在对象上时显示的屏幕提示。
+    设为“仅有操作提示时”后，只有在名称以外还有更多信息时才会显示，
+    例如右键点击的作用。
   `,
   component: FeatureDropdownInput,
 };

@@ -57,7 +57,7 @@ function buildMarks(
         isMulti,
         count: evts.length,
         tooltip: isMulti
-          ? `${evts.length} events at tick ${tick - (timeStart ?? 0)}`
+          ? `第 ${tick - (timeStart ?? 0)} 时刻发生了 ${evts.length} 个事件`
           : evts[0].info.replace(/<[^>]*>/g, ''),
         tooltipHtml: isMulti
           ? null
@@ -120,7 +120,7 @@ export function EventLogger() {
           dangerouslySetInnerHTML={{ __html: sanitizeText(track.name) }}
         />
         <button
-          title="Remove track and all its events"
+          title="移除轨道及其所有事件"
           onClick={(e) => {
             e.stopPropagation();
             act('remove_track', { ref: track.ref });
@@ -186,7 +186,7 @@ export function EventLogger() {
   }
 
   return (
-    <Window title="Event Logger" width={1600} height={1080}>
+    <Window title="事件记录器" width={1600} height={1080}>
       <Window.Content>
         <Stack vertical fill className="EventLogger">
           {/* Control bar */}

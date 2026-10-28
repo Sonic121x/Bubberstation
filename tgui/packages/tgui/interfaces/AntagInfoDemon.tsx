@@ -43,7 +43,7 @@ export const AntagInfoDemon = (props) => {
                     </Stack.Item>
                     <Stack.Item>
                       <ObjectivePrintout
-                        titleMessage="It is in your nature to accomplish these goals:"
+                        titleMessage="完成这些目标是你的本性："
                         objectiveTextSize="20px"
                         objectives={objectives}
                       />
@@ -53,23 +53,23 @@ export const AntagInfoDemon = (props) => {
               </Stack.Item>
               {!!explain_attack && (
                 <Stack.Item>
-                  <Section fill title="Demonic Powers">
+                  <Section fill title="恶魔之力">
                     <Stack vertical>
                       <Stack.Item>
-                        <span style={jauntstyle}>Blood Jaunt:</span> You can
-                        dive in and out of blood to travel anywhere you need to
-                        be. You will gain a speed boost upon leaving the jaunt
-                        for surprise attacks. You can drag victims you have
-                        disabled through the blood, consuming them and restoring
-                        health.
+                        <span style={jauntstyle}>血遁：</span>你可以
+                        潜入血泊并从另一处血泊中现身，前往所需的
+                        地点。结束血遁时会获得速度加成，
+                        适合发动突袭。你可以把失去反抗能力的
+                        受害者拖入血泊，吞噬他们并恢复
+                        生命值。
                       </Stack.Item>
                       <Stack.Divider />
                       <Stack.Item>
-                        <span style={injurestyle}>Monstrous strike:</span> You
-                        can launch a devastating slam attack by right-clicking,
-                        capable of smashing bones in one strike. Great for
-                        preventing the escape of your victims, as their wounds
-                        will slow them.
+                        <span style={injurestyle}>怪力重击：</span>你
+                        可以通过右键点击发动毁灭性的重击，
+                        一击就能打碎骨头。这很适合
+                        阻止受害者逃跑，因为伤势
+                        会让他们减速。
                       </Stack.Item>
                     </Stack>
                   </Section>

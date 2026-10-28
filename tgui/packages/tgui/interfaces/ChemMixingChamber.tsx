@@ -40,10 +40,10 @@ export const ChemMixingChamber = (props) => {
         <Stack vertical fill>
           <Stack.Item>
             <Section
-              title="Conditions"
+              title="反应条件"
               buttons={
                 <Stack>
-                  <Stack.Item mt={0.3}>{'Target:'}</Stack.Item>
+                  <Stack.Item mt={0.3}>{'目标：'}</Stack.Item>
                   <Stack.Item>
                     <NumberInput
                       tickWhileDragging
@@ -68,7 +68,7 @@ export const ChemMixingChamber = (props) => {
                 <Stack.Item>
                   <Stack fill>
                     <Stack.Item textColor="label">
-                      Current Temperature:
+                      当前温度：
                     </Stack.Item>
                     <Stack.Item grow>
                       <AnimatedNumber
@@ -83,13 +83,13 @@ export const ChemMixingChamber = (props) => {
           </Stack.Item>
           <Stack.Item grow>
             <Section
-              title="Settings"
+              title="设置"
               fill
               scrollable
               buttons={
                 (isReacting && (
                   <Box inline bold color={'purple'}>
-                    {'Reacting'}
+                    {'反应中'}
                   </Box>
                 )) || (
                   <Box
@@ -98,7 +98,7 @@ export const ChemMixingChamber = (props) => {
                     bold
                     color={emptying ? 'bad' : 'good'}
                   >
-                    {emptying ? 'Emptying' : 'Filling'}
+                    {emptying ? '排出中' : '注入中'}
                   </Box>
                 )
               }
@@ -108,7 +108,7 @@ export const ChemMixingChamber = (props) => {
                   <Stack fill>
                     <Stack.Item grow>
                       <Button
-                        content="Add Reagent"
+                        content="添加试剂"
                         color="good"
                         icon="plus"
                         onClick={() =>

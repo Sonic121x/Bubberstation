@@ -3,6 +3,6 @@ import type { FeatureChoiced } from '../../base';
 import { FeatureDropdownInput } from '../../dropdowns';
 
 export const brain_type: FeatureChoiced = {
-  name: 'Silicon and Synth Brain',
+  name: '硅基与合成人的大脑',
   component: FeatureDropdownInput,
 };

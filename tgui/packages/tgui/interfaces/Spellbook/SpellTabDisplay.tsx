@@ -6,7 +6,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { useBackend } from '../../backend';
-import { BUYWORD2ICON } from './constants';
+import { BUYWORD2ICON } from './constants'; import { spellbookDisplay } from '../../localization/spellbookDisplay';
 import {
   Buywords,
   type SpellbookData,
@@ -23,13 +23,13 @@ type Props = {
 function getTimeOrCat(entry: SpellEntry) {
   if (entry.cat === SpellCategory.Rituals) {
     if (entry.times) {
-      return `Cast ${entry.times} times.`;
+      return `已施放 ${entry.times} 次。`;
     } else {
-      return 'Not cast yet.';
+      return '尚未施放。';
     }
   } else {
     if (entry.cooldown) {
-      return `${entry.cooldown}s Cooldown`;
+      return `${entry.cooldown} 秒冷却`;
     } else {
       return '';
     }
@@ -55,7 +55,7 @@ export function SpellTabDisplay(props: Props) {
                 {getTimeOrCat(entry)}
               </Stack.Item>
               <Stack.Item width="60px" ml={pointOffset}>
-                {entry.cost} points
+                {entry.cost} 点
               </Stack.Item>
               {entry.buyword === Buywords.Learn && (
                 <Stack.Item>
@@ -66,8 +66,8 @@ export function SpellTabDisplay(props: Props) {
                     tooltipPosition="bottom-start"
                     tooltip={
                       entry.requires_wizard_garb
-                        ? 'Requires wizard garb.'
-                        : 'Can be cast without wizard garb.'
+                        ? '需要穿着巫师服饰。'
+                        : '无需巫师服饰即可施放。'
                     }
                   />
                 </Stack.Item>
@@ -93,11 +93,11 @@ export function SpellTabDisplay(props: Props) {
                       })
                     }
                   >
-                    {entry.buyword}
+                    {spellbookDisplay(entry.buyword)}
                   </Button>
                   <br />
                   {!entry.refundable ? (
-                    <NoticeBox>No refunds.</NoticeBox>
+                    <NoticeBox>不可退款。</NoticeBox>
                   ) : (
                     <Button
                       textAlign="center"
@@ -109,7 +109,7 @@ export function SpellTabDisplay(props: Props) {
                         })
                       }
                     >
-                      Refund
+                      退款
                     </Button>
                   )}
                 </Stack.Item>

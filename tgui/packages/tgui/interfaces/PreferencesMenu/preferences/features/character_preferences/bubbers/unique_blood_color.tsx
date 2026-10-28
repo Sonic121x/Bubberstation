@@ -6,14 +6,14 @@ import {
 import { FeatureDropdownInput } from '../../dropdowns';
 
 export const input_blood_color: Feature<string> = {
-  name: 'Custom color',
+  name: '自定义颜色',
   description:
-    'NOTE: This matches the colour to the BRIGHTEST px. So, make this slightly (about 10?) more luminescent (HSL) than you want the blood to be.',
+    '注意：该颜色对应最亮的像素。因此，请将HSL亮度设得比期望的血液颜色略高，约高10。',
   component: FeatureColorInput,
 };
 
 export const select_blood_color: FeatureChoiced = {
-  name: 'Preset color',
-  description: 'NOTE: Use the Custom option for custom color.',
+  name: '预设颜色',
+  description: '注意：需要自定义颜色时，请选择“自定义”。',
   component: FeatureDropdownInput,
 };

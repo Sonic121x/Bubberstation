@@ -43,19 +43,19 @@ export const OperatingComputer = () => {
                 selected={tab === ComputerTabs.PatientState}
                 onClick={() => setTab(1)}
               >
-                Patient State
+                患者状态
               </Tabs.Tab>
               <Tabs.Tab
                 selected={tab === ComputerTabs.OperationCatalog}
                 onClick={() => setTab(2)}
               >
-                Operation Catalog
+                手术目录
               </Tabs.Tab>
               <Tabs.Tab
                 selected={tab === ComputerTabs.Experiments}
                 onClick={() => setTab(3)}
               >
-                Experiments
+                实验
               </Tabs.Tab>
             </Tabs>
           </Stack.Item>
@@ -81,8 +81,8 @@ export const OperatingComputer = () => {
           </Stack.Item>
           <Stack.Item textAlign="right" color="label" fontSize="0.7em">
             <Section>
-              DefOS 1.0 &copy; Nanotrasen-Deforest Corporation. All rights
-              reserved.
+              DefOS 1.0 &copy; 纳米传讯—德福雷斯特公司。保留所有
+              权利。
             </Section>
           </Stack.Item>
         </Stack>

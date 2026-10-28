@@ -81,12 +81,12 @@ export const Interview = (props) => {
     >
       <Window.Content scrollable>
         {(!read_only && (
-          <Section title="Welcome!">
+          <Section title="欢迎！">
             <p>{linkifyText(welcome_message)}</p>
           </Section>
         )) || <RenderedStatus status={status} queue_pos={queue_pos} />}
         <Section
-          title="Questionnaire"
+          title="问卷"
           buttons={
             <span>
               <Button
@@ -95,34 +95,34 @@ export const Interview = (props) => {
                 icon="envelope"
                 tooltip={
                   !allAnswered &&
-                  `Please answer all questions.
+                  `请回答所有问题。
                      ${numAnswered} / ${questions.length}`
                 }
               >
-                {read_only ? 'Submitted' : 'Submit'}
+                {read_only ? '已提交' : '提交'}
               </Button>
               {!!is_admin && status === 'interview_pending' && (
                 <span>
                   <Button disabled={!connected} onClick={() => act('adminpm')}>
-                    Admin PM
+                    管理员私信
                   </Button>
                   <Button color="good" onClick={() => act('approve')}>
-                    Approve
+                    批准
                   </Button>
                   <Button color="bad" onClick={() => act('deny')}>
-                    Deny
+                    拒绝
                   </Button>
                   {!!centcom_connected && (
                     <Button
                       color={has_permabans ? 'bad' : 'average'}
                       tooltip={
                         has_permabans
-                          ? 'This user has permabans in their history!'
+                          ? '该用户有永久封禁记录！'
                           : ''
                       }
                       onClick={() => act('check_centcom')}
                     >
-                      Check Centcom
+                      查询中央封禁数据库
                     </Button>
                   )}
                 </span>
@@ -133,20 +133,20 @@ export const Interview = (props) => {
           {!read_only && (
             <>
               <Box as="p" color="label">
-                Please answer the following questions.
+                请回答以下问题。
                 <ul>
                   <li>
-                    You can press enter key or the save button to save an
-                    answer.
+                    你可以按回车键或点击保存按钮来保存
+                    回答。
                   </li>
                   <li>
-                    You can edit your answers until you press the submit button.
+                    在点击提交按钮之前，你可以修改回答。
                   </li>
-                  <li>Press SUBMIT when you are done.</li>
+                  <li>完成后请点击“提交”。</li>
                 </ul>
               </Box>
               <NoticeBox info align="center">
-                You will not be able to edit your answers after submitting.
+                提交后将无法修改回答。
               </NoticeBox>
             </>
           )}
@@ -164,14 +164,14 @@ const RenderedStatus = (props: { status: string; queue_pos: number }) => {
 
   switch (status) {
     case STATUS.Approved:
-      return <NoticeBox success>This interview was approved.</NoticeBox>;
+      return <NoticeBox success>此次面试已获批准。</NoticeBox>;
     case STATUS.Denied:
-      return <NoticeBox danger>This interview was denied.</NoticeBox>;
+      return <NoticeBox danger>此次面试已被拒绝。</NoticeBox>;
     default:
       return (
         <NoticeBox info>
-          Your answers have been submitted. You are position {queue_pos} in
-          queue.
+          你的回答已提交。你目前在队列中排第 {queue_pos}
+          位。
         </NoticeBox>
       );
   }
@@ -199,20 +199,20 @@ const QuestionArea = (props: Question) => {
 
   return (
     <Section
-      title={`Question ${qidx}`}
+      title={`问题 ${qidx}`}
       buttons={
         <Button
           disabled={!saveAvailable}
           onClick={saveResponse}
           icon={isSaved ? 'check' : 'save'}
         >
-          {isSaved ? 'Saved' : 'Save'}
+          {isSaved ? '已保存' : '保存'}
         </Button>
       }
     >
       <p>{linkifyText(question)}</p>
       {read_only || is_admin ? (
-        <BlockQuote>{response || 'No response.'}</BlockQuote>
+        <BlockQuote>{response || '未回答。'}</BlockQuote>
       ) : (
         <TextArea
           fluid
@@ -220,7 +220,7 @@ const QuestionArea = (props: Question) => {
           maxLength={500}
           onChange={setUserInput}
           onEnter={saveResponse}
-          placeholder="Write your response here, max of 500 characters. Press enter to submit."
+          placeholder="在此填写回答，最多 500 个字符。按回车键保存。"
           value={response || undefined}
         />
       )}

@@ -1,7 +1,7 @@
 import { Box, Button, Stack } from 'tgui-core/components';
 
 import type { Category } from './types';
-
+import { interfaceUtilityDisplay } from '../../localization/interfaceUtilityDisplay';
 export type CategoryBarProps = {
   categories: Category[];
   colors: Record<string, string>;
@@ -13,7 +13,7 @@ export function CategoryBar(props: CategoryBarProps) {
   if (!categories.length) {
     return (
       <Box p={0.5} color="label" italic>
-        No categories logged yet.
+        尚未记录任何分类。
       </Box>
     );
   }
@@ -26,7 +26,7 @@ export function CategoryBar(props: CategoryBarProps) {
             style={{ borderLeft: `4px solid ${colors[cat.name] || '#888'}` }}
             onClick={() => act('toggle_category', { name: cat.name })}
           >
-            {cat.name}
+            {interfaceUtilityDisplay(cat.name)}
           </Button>
         </Stack.Item>
       ))}

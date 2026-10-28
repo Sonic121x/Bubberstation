@@ -16,18 +16,18 @@ export function NifPanel() {
 
   return (
     <Window
-      title="Nanite Implant Framework"
+      title="纳米植入框架"
       width={500}
       height={400}
       theme={current_theme}
     >
       <Window.Content scrollable>
         <Section
-          title={`Welcome to your NIF, ${linked_mob_name}`}
+          title={`欢迎使用您的纳米植入框架，${linked_mob_name}`}
           buttons={
             <Button
               icon="cogs"
-              tooltip="NIF Settings"
+              tooltip="纳米植入框架设置"
               tooltipPosition="bottom-end"
               selected={settingsOpen}
               onClick={() => setSettingsOpen(!settingsOpen)}

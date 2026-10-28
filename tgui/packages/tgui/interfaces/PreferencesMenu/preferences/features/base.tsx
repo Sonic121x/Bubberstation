@@ -96,7 +96,7 @@ export function FeatureColorInput(props: FeatureValueProps<string>) {
           />
         </Stack.Item>
 
-        {!shrink && <Stack.Item>Change</Stack.Item>}
+        {!shrink && <Stack.Item>修改</Stack.Item>}
       </Stack>
     </Button>
   );
@@ -272,7 +272,7 @@ export const FeatureTextInput = (
   props: FeatureValueProps<string, string, FeatureShortTextData>,
 ) => {
   if (!props.serverData) {
-    return <Box>Loading...</Box>;
+    return <Box>正在加载……</Box>;
   }
 
   return (
@@ -318,7 +318,7 @@ export const FeatureTriColorInput = (props: FeatureValueProps<string[]>) => {
               />
             </Stack.Item>
 
-            {!props.shrink && <Stack.Item>Change</Stack.Item>}
+            {!props.shrink && <Stack.Item>修改</Stack.Item>}
           </Stack>
         </Button>
       </Stack.Item>

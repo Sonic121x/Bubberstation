@@ -10,7 +10,7 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { commandReportDisplay } from '../localization/commandReportDisplay';
 type Data = {
   announce_contents: string;
   announcement_color: string;
@@ -28,7 +28,7 @@ type Data = {
 export function CommandReport() {
   return (
     <Window
-      title="Create Command Report"
+      title="创建指挥部报告"
       width={325}
       height={685}
       theme="admin"
@@ -67,11 +67,11 @@ function CentComName(props) {
   }
 
   return (
-    <Section title="Set Central Command name" textAlign="center">
+    <Section title="设置中央指挥部名称" textAlign="center">
       <Dropdown
         width="100%"
-        selected={name}
-        options={command_name_presets}
+        selected={name} displayText={commandReportDisplay(name)}
+        options={command_name_presets.map((value) => ({ value, displayText: commandReportDisplay(value) }))}
         onSelected={sendName}
       />
       {!!custom_name && (
@@ -87,12 +87,12 @@ function SubHeader(props) {
   const { subheader } = data;
 
   return (
-    <Section title="Set report subheader" textAlign="center">
+    <Section title="设置报告副标题" textAlign="center">
       <Input
         fluid
         mt={1}
         value={subheader}
-        placeholder="Keep blank to not include a subheader"
+        placeholder="留空则不添加副标题"
         onBlur={(value) =>
           act('set_subheader', {
             new_subheader: value,
@@ -109,11 +109,11 @@ function AnnouncementColor(props) {
   const { announcement_colors = [], announcement_color } = data;
 
   return (
-    <Section title="Set announcement color" textAlign="center">
+    <Section title="设置公告颜色" textAlign="center">
       <Dropdown
         width="100%"
-        selected={announcement_color}
-        options={announcement_colors}
+        selected={announcement_color} displayText={commandReportDisplay(announcement_color)}
+        options={announcement_colors.map((value) => ({ value, displayText: commandReportDisplay(value) }))}
         onSelected={(value) =>
           act('update_announcement_color', {
             updated_announcement_color: value,
@@ -130,11 +130,11 @@ function AnnouncementSound(props) {
   const { announcer_sounds = [], played_sound } = data;
 
   return (
-    <Section title="Set announcement sound" textAlign="center">
+    <Section title="设置公告声音" textAlign="center">
       <Dropdown
         width="100%"
-        selected={played_sound}
-        options={announcer_sounds}
+        selected={played_sound} displayText={commandReportDisplay(played_sound)}
+        options={announcer_sounds.map((value) => ({ value, displayText: commandReportDisplay(value) }))}
         onSelected={(value) =>
           act('set_report_sound', {
             picked_sound: value,
@@ -152,7 +152,7 @@ function ReportText(props) {
   const [commandReport, setCommandReport] = useState(command_report_content);
 
   return (
-    <Section fill title="Set report text" textAlign="center">
+    <Section fill title="设置报告正文" textAlign="center">
       <Stack fill vertical>
         <Stack.Item grow>
           <TextArea
@@ -160,7 +160,7 @@ function ReportText(props) {
             fluid
             onBlur={setCommandReport}
             value={commandReport}
-            placeholder="Enter report text here..."
+            placeholder="在此输入报告正文……"
           />
         </Stack.Item>
         <Stack.Item>
@@ -169,7 +169,7 @@ function ReportText(props) {
             checked={!!announce_contents}
             onClick={() => act('toggle_announce')}
           >
-            Announce Contents
+            广播报告内容
           </Button.Checkbox>
         </Stack.Item>
         <Stack.Item>
@@ -180,11 +180,11 @@ function ReportText(props) {
             onClick={() => act('toggle_printing')}
             tooltip={
               !announce_contents &&
-              "Printing the report is required since we aren't announcing its contents."
+              '由于不广播报告内容，必须打印报告。'
             }
             tooltipPosition="top"
           >
-            Print Report
+            打印报告
           </Button.Checkbox>
         </Stack.Item>
         <Stack.Item>
@@ -194,7 +194,7 @@ function ReportText(props) {
             textAlign="center"
             onClick={() => act('submit_report', { report: commandReport })}
           >
-            Submit Report
+            提交报告
           </Button.Confirm>
         </Stack.Item>
       </Stack>

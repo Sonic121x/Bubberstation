@@ -101,7 +101,7 @@ const ContainerSection = (props: ContainerProps) => {
   return (
     <Section
       fill
-      title={`Container ${number}`}
+      title={`容器 ${number}`}
       buttons={
         <Button
           icon="cog"
@@ -109,7 +109,7 @@ const ContainerSection = (props: ContainerProps) => {
             act('spawn', { spawn_info: containerToSpawnInfo(container) })
           }
         >
-          Spawn
+          生成
         </Button>
       }
     >
@@ -121,7 +121,7 @@ const ContainerSection = (props: ContainerProps) => {
               displayText: readableContainerType(container),
               value: container.id,
             }))}
-            placeholder="Select Container Type"
+            placeholder="选择容器类型"
             selected={container.type}
             displayText={readableContainerType(
               containers.find((c) => c.id === container.type)!,
@@ -178,7 +178,7 @@ const ContainerSection = (props: ContainerProps) => {
                   displayText: readableReagentType(reagent),
                   value: reagent.id,
                 }))}
-                placeholder="Add Reagent"
+                placeholder="添加试剂"
                 selected={setAddingReagent}
                 displayText={readableReagentType(
                   reagents.find((r) => r.id === setAddingReagent)!,
@@ -237,7 +237,7 @@ export const BeakerPanel = () => {
 
   return (
     <Window
-      title="Spawn a Reagent Container"
+      title="生成试剂容器"
       width={750}
       height={400}
       theme="admin"
@@ -252,7 +252,7 @@ export const BeakerPanel = () => {
                     tooltip={
                       grenadeCheck([container_one, container_two])
                         ? ''
-                        : 'Both containers must be beakers!'
+                        : '两个容器都必须是烧杯！'
                     }
                     disabled={!grenadeCheck([container_one, container_two])}
                     onClick={() =>
@@ -268,16 +268,16 @@ export const BeakerPanel = () => {
                       })
                     }
                   >
-                    Spawn Grenade
+                    生成手榴弹
                   </Button>
                 </Stack.Item>
                 <Stack.Item grow>
-                  Timer:&nbsp;
+                  引爆延时：&nbsp;
                   <NumberInput
                     step={0.1}
                     minValue={1.0}
                     maxValue={10.0}
-                    unit="seconds"
+                    unit="秒"
                     value={grenadeTimer}
                     onChange={(value) => {
                       setGrenadeTimer(value);
@@ -286,7 +286,7 @@ export const BeakerPanel = () => {
                 </Stack.Item>
                 <Stack.Item fontSize={0.9} align="center">
                   <i>
-                    Spawned containers will grow to fit all listed reagents!
+                    生成的容器会自动扩容，以容纳所有列出的试剂！
                   </i>
                 </Stack.Item>
               </Stack>

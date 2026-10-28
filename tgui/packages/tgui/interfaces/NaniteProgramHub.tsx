@@ -12,7 +12,7 @@ import { useBackend, useSharedState } from '../backend';
 import { Window } from '../layouts';
 import { TechwebWarning } from './Nanites/NoTechwebWarning';
 import type { NaniteProgram, Techweb } from './Nanites/types';
-
+import { naniteControlsDisplay as zh } from '../localization/zhNaniteControlsDisplay';
 interface NaniteProgramHubProps {
   detail_view: boolean;
   disk: {
@@ -47,7 +47,7 @@ export const NaniteProgramHub = (props, context) => {
       <Window.Content scrollable>
         <TechwebWarning display={!techweb} />
         <Section
-          title="Program Disk"
+          title="程序磁盘"
           buttons={
             <>
               <Button
@@ -55,14 +55,14 @@ export const NaniteProgramHub = (props, context) => {
                 icon="eject"
                 onClick={() => act('eject')}
               >
-                Eject
+                弹出
               </Button>
               <Button
                 disabled={!has_disk}
                 icon="minus-circle"
                 onClick={() => act('clear')}
               >
-                Delete Program
+                删除程序
               </Button>
             </>
           }
@@ -70,32 +70,32 @@ export const NaniteProgramHub = (props, context) => {
           {has_disk ? (
             has_program ? (
               <LabeledList>
-                <LabeledList.Item label="Program Name">
+                <LabeledList.Item label="程序名称">
                   {disk.name}
                 </LabeledList.Item>
-                <LabeledList.Item label="Description">
+                <LabeledList.Item label="描述">
                   {disk.desc}
                 </LabeledList.Item>
               </LabeledList>
             ) : (
-              <NoticeBox>No Program Installed</NoticeBox>
+              <NoticeBox>未安装程序</NoticeBox>
             )
           ) : (
-            <NoticeBox>Insert Disk</NoticeBox>
+            <NoticeBox>请插入磁盘</NoticeBox>
           )}
         </Section>
         <Section
-          title="Programs"
+          title="程序"
           buttons={
             <>
               <Button
                 icon={detail_view ? 'info' : 'list'}
                 onClick={() => act('toggle_details')}
               >
-                {detail_view ? 'Detailed' : 'Compact'}
+                {detail_view ? '详细' : '简洁'}
               </Button>
               <Button icon="sync" onClick={() => act('refresh')}>
-                Sync Research
+                同步研究
               </Button>
             </>
           }
@@ -114,7 +114,7 @@ export const NaniteProgramHub = (props, context) => {
                         selected={category === selectedCategory}
                         onClick={() => setSelectedCategory(category)}
                       >
-                        {tabLabel}
+                        {zh(tabLabel)}
                       </Tabs.Tab>
                     );
                   })}
@@ -136,7 +136,7 @@ export const NaniteProgramHub = (props, context) => {
                             })
                           }
                         >
-                          Download
+                          下载
                         </Button>
                       }
                     >
@@ -159,7 +159,7 @@ export const NaniteProgramHub = (props, context) => {
                               })
                             }
                           >
-                            Download
+                            下载
                           </Button>
                         }
                       />
@@ -169,7 +169,7 @@ export const NaniteProgramHub = (props, context) => {
               </Flex.Item>
             </Flex>
           ) : (
-            <NoticeBox>No nanite programs are currently researched.</NoticeBox>
+            <NoticeBox>目前尚未研究任何纳米机器人程序。</NoticeBox>
           )}
         </Section>
       </Window.Content>

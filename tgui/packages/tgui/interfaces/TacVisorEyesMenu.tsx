@@ -1,6 +1,6 @@
 import { Button, Dropdown, LabeledList, Section } from 'tgui-core/components';
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import { Window } from '../layouts'; import { tacVisorDisplay } from '../localization/tacVisorDisplay';
 
 type Data = {
   friendlyFaction: string;
@@ -27,34 +27,34 @@ export const TacVisorEyesMenu = (props) => {
     threatOptions,
   } = data;
   return (
-    <Window title="Tactical IFF Visor" width={320} height={264}>
+    <Window title="战术敌我识别目镜" width={320} height={264}>
       <Window.Content>
-        <Section title="Settings">
+        <Section title="设置">
           <LabeledList>
-            <LabeledList.Item label="Friendly Faction">
+            <LabeledList.Item label="友方阵营">
               <Dropdown
-                options={validFriendlyFactions}
-                selected={friendlyFaction}
+                options={validFriendlyFactions.map((value) => ({value, displayText: tacVisorDisplay(value)}))}
+                selected={friendlyFaction} displayText={tacVisorDisplay(friendlyFaction)}
                 onSelected={(value) => act('set_friendly', { faction: value })}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Hostile Faction">
+            <LabeledList.Item label="敌对阵营">
               <Dropdown
-                options={validHostileFactions}
-                selected={hostileFaction}
+                options={validHostileFactions.map((value) => ({value, displayText: tacVisorDisplay(value)}))}
+                selected={hostileFaction} displayText={tacVisorDisplay(hostileFaction)}
                 onSelected={(value) => act('set_hostile', { faction: value })}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Visor Image">
+            <LabeledList.Item label="目镜图案">
               <Dropdown
-                options={visorOptions}
-                selected={visorDisplay}
+                options={visorOptions.map((value) => ({value, displayText: tacVisorDisplay(value)}))}
+                selected={visorDisplay} displayText={tacVisorDisplay(visorDisplay)}
                 onSelected={(value) => act('set_display', { display: value })}
               />
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Threat Parameters">
+        <Section title="威胁判定参数">
           {Object.keys(threatOptions).map((option) => (
             <Button.Checkbox
               key={option}

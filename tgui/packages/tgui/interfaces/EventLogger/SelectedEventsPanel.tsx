@@ -60,15 +60,15 @@ export function SelectedEventsPanel(props: SelectedEventsPanelProps) {
   }, [selectedEventIds.size]);
 
   return (
-    <Section title="Selected Events" fill>
+    <Section title="所选事件" fill>
       <div
         ref={scrollRef}
         style={{ overflowY: 'auto', height: '100%', padding: '4px' }}
       >
         {!selected.length ? (
           <Box color="label" italic>
-            No events selected. Click marks in the timeline. Hold Ctrl to select
-            multiple.
+            未选择事件。点击时间线上的标记，按住 Ctrl 可
+            多选。
           </Box>
         ) : (
           selected.map((evt) => {
@@ -91,7 +91,7 @@ export function SelectedEventsPanel(props: SelectedEventsPanelProps) {
                   <Button
                     icon="location-arrow"
                     compact
-                    tooltip={`TP to (${coord.x},${coord.y},${coord.z})`}
+                    tooltip={`传送到 (${coord.x},${coord.y},${coord.z})`}
                     onClick={() => act('teleport_to_event', { id: evt.id })}
                   />
                 )}

@@ -17,26 +17,26 @@ export const SpaceHeater = (props) => {
     <Window width={400} height={305}>
       <Window.Content>
         <Section
-          title="Power"
+          title="电源"
           buttons={
             <>
               {!!data.chemHacked && (
                 <Button
                   icon="eject"
-                  content="Eject beaker"
+                  content="弹出烧杯"
                   disabled={!data.beaker}
                   onClick={() => act('ejectBeaker')}
                 />
               )}
               <Button
                 icon="eject"
-                content="Eject Cell"
+                content="弹出电池"
                 disabled={!data.hasPowercell || !data.open}
                 onClick={() => act('eject')}
               />
               <Button
                 icon={data.on ? 'power-off' : 'times'}
-                content={data.on ? 'On' : 'Off'}
+                content={data.on ? '开启' : '关闭'}
                 selected={data.on}
                 disabled={!data.hasPowercell}
                 onClick={() => act('power')}
@@ -45,7 +45,7 @@ export const SpaceHeater = (props) => {
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Cell" color={!data.hasPowercell && 'bad'}>
+            <LabeledList.Item label="电池" color={!data.hasPowercell && 'bad'}>
               {(data.hasPowercell && (
                 <ProgressBar
                   value={data.powerLevel / 100}
@@ -58,13 +58,13 @@ export const SpaceHeater = (props) => {
                   {`${data.powerLevel}%`}
                 </ProgressBar>
               )) ||
-                'None'}
+                '无'}
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Thermostat">
+        <Section title="恒温控制">
           <LabeledList>
-            <LabeledList.Item label="Current Temperature">
+            <LabeledList.Item label="当前温度">
               <Box
                 fontSize="18px"
                 color={
@@ -78,7 +78,7 @@ export const SpaceHeater = (props) => {
                 {data.currentTemp}°C
               </Box>
             </LabeledList.Item>
-            <LabeledList.Item label="Target Temperature">
+            <LabeledList.Item label="目标温度">
               {(data.open && (
                 <NumberInput
                   animated
@@ -97,12 +97,12 @@ export const SpaceHeater = (props) => {
               )) ||
                 `${data.targetTemp}°C`}
             </LabeledList.Item>
-            <LabeledList.Item label="Mode">
-              {(!data.open && capitalize(data.mode)) || (
+            <LabeledList.Item label="模式">
+              {(!data.open && (({ auto: '自动', heat: '加热', cool: '制冷' })[data.mode] ?? capitalize(data.mode))) || (
                 <>
                   <Button
                     icon="thermometer-half"
-                    content="Auto"
+                    content="自动"
                     selected={data.mode === 'auto'}
                     onClick={() =>
                       act('mode', {
@@ -112,7 +112,7 @@ export const SpaceHeater = (props) => {
                   />
                   <Button
                     icon="fire-alt"
-                    content="Heat"
+                    content="加热"
                     selected={data.mode === 'heat'}
                     onClick={() =>
                       act('mode', {
@@ -122,7 +122,7 @@ export const SpaceHeater = (props) => {
                   />
                   <Button
                     icon="fan"
-                    content="Cool"
+                    content="制冷"
                     selected={data.mode === 'cool'}
                     onClick={() =>
                       act('mode', {

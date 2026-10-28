@@ -6,7 +6,7 @@ import {
   Table,
   TextArea,
 } from 'tgui-core/components';
-import { capitalize } from 'tgui-core/string';
+import { libraryActionDisplay as zh } from '../../localization/zhLibraryDisplay';
 
 import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
@@ -41,17 +41,17 @@ export function ModifyPage(props) {
   return (
     <Window.Content scrollable>
       <NoticeBox>
-        Heads Up! We do not allow you to fully delete books in game
+        注意！游戏内无法彻底删除书籍。
         <br />
-        What you&apos;re doing here is a &quot;don&apos;t show this to
-        anyone&quot; button
+        此操作相当于点击“对所有人
+        隐藏此书”的按钮。
         <br />
-        If you for whatever reason need to fully wipe a book, please speak to
-        your database administrator
+        如果确实需要彻底删除某本书，
+        请联系数据库管理员。
       </NoticeBox>
       <Stack>
         <Stack.Item fontSize="25px" pb={2}>
-          Why do you want to {modifyMethod} this book?
+          你为什么要{zh(modifyMethod)}这本书？
         </Stack.Item>
         <Stack.Item fontSize="17px">
           <Button
@@ -62,7 +62,7 @@ export function ModifyPage(props) {
             }
             icon="book-reader"
           >
-            View
+            查看
           </Button>
         </Stack.Item>
         <Stack.Item fontSize="17px">
@@ -72,7 +72,7 @@ export function ModifyPage(props) {
             color={view_raw ? 'purple' : 'blue'}
             icon={view_raw ? 'theater-masks' : 'glasses'}
           >
-            {view_raw ? 'Raw' : 'Normal'}
+            {view_raw ? '源文本' : '正常显示'}
           </Button>
         </Stack.Item>
       </Stack>
@@ -111,7 +111,7 @@ export function ModifyPage(props) {
             }}
             lineHeight={2}
           >
-            {capitalize(modifyMethod)}
+            {zh(modifyMethod)}
           </Button>
         </Stack.Item>
         <Stack.Item>
@@ -125,20 +125,20 @@ export function ModifyPage(props) {
             }}
             lineHeight={2}
           >
-            Return
+            返回
           </Button>
         </Stack.Item>
       </Stack>
       <Table>
         <Table.Row backgroundColor="rgba(0,0,0, 0.4)" header>
-          <Table.Cell className="LibraryAdmin_RecordHeader">ID</Table.Cell>
-          <Table.Cell className="LibraryAdmin_RecordHeader">Action</Table.Cell>
-          <Table.Cell className="LibraryAdmin_RecordHeader">Reason</Table.Cell>
+          <Table.Cell className="LibraryAdmin_RecordHeader">编号</Table.Cell>
+          <Table.Cell className="LibraryAdmin_RecordHeader">操作</Table.Cell>
+          <Table.Cell className="LibraryAdmin_RecordHeader">原因</Table.Cell>
           <Table.Cell className="LibraryAdmin_RecordHeader">
-            Admin Key
+            管理员账号
           </Table.Cell>
           <Table.Cell className="LibraryAdmin_RecordHeader">
-            Datetime
+            日期时间
           </Table.Cell>
         </Table.Row>
         {entries.map((entry) => (
@@ -150,7 +150,7 @@ export function ModifyPage(props) {
               {entry.id}
             </Table.Cell>
             <Table.Cell className="LibraryAdmin_RecordCell">
-              {capitalize(entry.action)}
+              {zh(entry.action)}
             </Table.Cell>
             <Table.Cell
               className="LibraryAdmin_RecordCell"

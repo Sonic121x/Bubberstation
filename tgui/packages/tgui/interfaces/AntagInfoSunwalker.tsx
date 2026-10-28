@@ -18,15 +18,15 @@ export const AntagInfoSunwalker = (props) => {
           <Stack.Item width="40%">
             <Section fill>
               <Stack vertical fill>
-                <Stack.Item fontSize="25px">You are the Sunwalker</Stack.Item>
+                <Stack.Item fontSize="25px">你是逐日者</Stack.Item>
                 <Stack.Item>
                   <BlockQuote>
-                    You are an ancient voidwalker, having been caught in a
-                    supernova. You are altered, and hateful.
+                    你是曾被卷入超新星爆发的古老
+                    虚空行者。你已发生异变，满怀憎恨。
                   </BlockQuote>
                   <BlockQuote>
-                    There will be no lessons or enlightenment, they wont survive
-                    to learn from it.
+                    不会有教导，也不会有启迪；他们无法活着
+                    领悟这一切。
                   </BlockQuote>
                 </Stack.Item>
                 <Stack.Divider />
@@ -34,23 +34,23 @@ export const AntagInfoSunwalker = (props) => {
             </Section>
           </Stack.Item>
           <Stack.Item width="60%">
-            <Section fill title="Powers">
+            <Section fill title="能力">
               <LabeledList>
-                <LabeledList.Item label="Space Dive">
-                  You can move under the station from space, use this to hunt
-                  and get to isolated sections of space.
+                <LabeledList.Item label="太空潜行">
+                  你可以从太空潜入空间站下方移动，用它来狩猎，
+                  或抵达隔绝的太空区域。
                 </LabeledList.Item>
-                <LabeledList.Item label="Burning Slash">
-                  Your attacks deal great burn damage and ignite those hit.
+                <LabeledList.Item label="灼烧斩击">
+                  你的攻击会造成大量烧伤，并点燃命中的目标。
                 </LabeledList.Item>
-                <LabeledList.Item label="Burning Physiology">
-                  Your very skin heats the air around you, while the vacuum of
-                  space mends any wounds your body might have sustained. You can
-                  move through glass freely, but are slowed in gravity.
+                <LabeledList.Item label="灼热体质">
+                  你的皮肤会加热周围的空气，而太空中的真空
+                  会治愈你身体所受的伤。你可以
+                  自由穿过玻璃，但在重力下会减速。
                 </LabeledList.Item>
-                <LabeledList.Item label="Stellar Charge">
-                  With an exploding burning speed, charge forwards, dealing
-                  damage and burning the surroundings.
+                <LabeledList.Item label="恒星冲锋">
+                  以爆裂的炽热速度向前冲锋，造成
+                  伤害并灼烧周围环境。
                 </LabeledList.Item>
               </LabeledList>
             </Section>

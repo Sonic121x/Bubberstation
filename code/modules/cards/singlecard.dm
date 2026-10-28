@@ -59,11 +59,11 @@
 		return
 
 	if(user.is_holding(src))
-		user.visible_message(span_notice("[user]看了看自己的纸牌。"), span_notice("纸牌上写着：[cardname]。"))
+		user.visible_message(span_notice("[user]看了看自己的纸牌。"), span_notice("纸牌上写着：[chinese_playing_card_display(cardname)]。"))
 		if(blank)
 			. += span_notice("这是一张空白纸牌。可以用笔在上面书写。")
 	else if(HAS_TRAIT(user, TRAIT_XRAY_VISION))
-		. += span_notice("你用 X 光视觉扫视了纸牌，上面写着：[cardname]。")
+		. += span_notice("你用 X 光视觉扫视了纸牌，上面写着：[chinese_playing_card_display(cardname)]。")
 	else
 		. += span_warning("你需要把纸牌拿在手里才能查看！")
 
@@ -118,7 +118,7 @@
 	else
 		flipped = !flipped
 
-	name = flipped ? cardname : "纸牌"
+	name = flipped ? chinese_playing_card_display(cardname) : "纸牌"
 	update_appearance()
 
 /**
@@ -144,7 +144,7 @@
 	return ..()
 
 /obj/item/toy/singlecard/update_name()
-	name = flipped ? cardname : "纸牌"
+	name = flipped ? chinese_playing_card_display(cardname) : "纸牌"
 	return ..()
 
 /obj/item/toy/singlecard/item_interaction(mob/living/user, obj/item/tool, list/modifiers)

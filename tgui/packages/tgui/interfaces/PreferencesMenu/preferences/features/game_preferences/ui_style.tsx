@@ -19,7 +19,7 @@ function UIStyleInput(
   const { icons } = serverData;
 
   if (!icons) {
-    return <Box color="red">ui_style had no icons!</Box>;
+    return <Box color="red">ui_style 缺少图标！</Box>;
   }
 
   const choices = Object.fromEntries(
@@ -61,7 +61,7 @@ function UIStyleInput(
 }
 
 export const UI_style: FeatureChoiced = {
-  name: 'UI Style',
+  name: '界面风格',
   category: 'UI',
   component: UIStyleInput,
 };

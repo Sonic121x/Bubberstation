@@ -25,7 +25,7 @@ export const CallModal = (props: CallModalProps) => {
         fill
         scrollable
         scrollableHorizontal
-        title="Call Function/Task"
+        title="调用函数／任务"
         buttons={
           <Button
             color="red"
@@ -36,11 +36,11 @@ export const CallModal = (props: CallModalProps) => {
               act('clearArgs');
             }}
           >
-            Cancel
+            取消
           </Button>
         }
       >
-        <ListMapper name="Arguments" list={callArguments} editable />
+        <ListMapper name="参数" list={callArguments} editable />
         <Button
           onClick={() => {
             setModal(undefined);
@@ -48,7 +48,7 @@ export const CallModal = (props: CallModalProps) => {
             act(type, params);
           }}
         >
-          Call
+          调用
         </Button>
       </Section>
     </Modal>

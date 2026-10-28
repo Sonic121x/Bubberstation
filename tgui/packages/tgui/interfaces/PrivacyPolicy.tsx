@@ -11,14 +11,14 @@ export const PrivacyPolicy = () => {
   const { policy_text } = data;
 
   return (
-    <Window width={600} height={500} title="Privacy Policy">
+    <Window width={600} height={500} title="隐私政策">
       <Window.Content scrollable>
         <Section>
           <div style={{ whiteSpace: 'pre-wrap' }}>{policy_text}</div>
         </Section>
 
         <Button fluid color="good" onClick={() => act('accept')}>
-          I Agree
+          我同意
         </Button>
       </Window.Content>
     </Window>

@@ -7,7 +7,7 @@ import {
 } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import { Window } from '../layouts'; import { chineseDisplay } from '../localization/zhDisplay';
 
 export const StackingConsole = (props) => {
   const { act, data } = useBackend();
@@ -16,7 +16,7 @@ export const StackingConsole = (props) => {
     <Window width={320} height={340}>
       <Window.Content scrollable>
         {!machine ? (
-          <NoticeBox>No connected stacking machine</NoticeBox>
+          <NoticeBox>未连接堆叠机</NoticeBox>
         ) : (
           <StackingConsoleContent />
         )}
@@ -37,15 +37,15 @@ export const StackingConsoleContent = (props) => {
     <>
       <Section>
         <LabeledList>
-          <LabeledList.Item label="Stacking Amount">
-            {stacking_amount || 'Unknown'}
+          <LabeledList.Item label="堆叠数量">
+            {stacking_amount || '未知'}
           </LabeledList.Item>
           <LabeledList.Item
-            label="Input"
+            label="输入"
             buttons={
               <Button
                 icon="rotate"
-                content="Rotate"
+                content="旋转"
                 onClick={() =>
                   act('rotate', {
                     input: 1,
@@ -54,14 +54,14 @@ export const StackingConsoleContent = (props) => {
               />
             }
           >
-            <Box style={{ textTransform: 'capitalize' }}>{input_direction}</Box>
+            <Box style={{ textTransform: 'capitalize' }}>{chineseDisplay(input_direction)}</Box>
           </LabeledList.Item>
           <LabeledList.Item
-            label="Output"
+            label="输出"
             buttons={
               <Button
                 icon="rotate"
-                content="Rotate"
+                content="旋转"
                 onClick={() =>
                   act('rotate', {
                     input: 0,
@@ -71,14 +71,14 @@ export const StackingConsoleContent = (props) => {
             }
           >
             <Box style={{ textTransform: 'capitalize' }}>
-              {output_direction}
+              {chineseDisplay(output_direction)}
             </Box>
           </LabeledList.Item>
         </LabeledList>
       </Section>
-      <Section title="Stored Materials">
+      <Section title="已存材料">
         {!contents.length ? (
-          <NoticeBox>No stored materials</NoticeBox>
+          <NoticeBox>没有已存材料</NoticeBox>
         ) : (
           <LabeledList>
             {contents.map((sheet) => (
@@ -88,7 +88,7 @@ export const StackingConsoleContent = (props) => {
                 buttons={
                   <Button
                     icon="eject"
-                    content="Release"
+                    content="释放"
                     onClick={() =>
                       act('release', {
                         type: sheet.type,
@@ -97,7 +97,7 @@ export const StackingConsoleContent = (props) => {
                   />
                 }
               >
-                {sheet.amount || 'Unknown'}
+                {sheet.amount || '未知'}
               </LabeledList.Item>
             ))}
           </LabeledList>

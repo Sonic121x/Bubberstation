@@ -10,7 +10,7 @@ import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { getGasColor } from '../constants';
+import { getGasColor, getGasLabel } from '../constants';
 import { Window } from '../layouts';
 
 type Data = {
@@ -54,17 +54,17 @@ const Controls = (props) => {
   const { gas_input, on, selected, selected_recipes = [] } = data;
 
   return (
-    <Section title="Controls">
+    <Section title="控制">
       <LabeledList>
-        <LabeledList.Item label="Power">
+        <LabeledList.Item label="电源">
           <Button
             icon={on ? 'power-off' : 'times'}
-            content={on ? 'On' : 'Off'}
+            content={on ? '开启' : '关闭'}
             selected={on}
             onClick={() => act('power')}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Recipe">
+        <LabeledList.Item label="配方">
           {selected_recipes.map(({ id, name }) => (
             <Button
               key={id}
@@ -78,14 +78,14 @@ const Controls = (props) => {
             />
           ))}
         </LabeledList.Item>
-        <LabeledList.Item label="Gas Input">
+        <LabeledList.Item label="气体输入量">
           <NumberInput
             animated
             tickWhileDragging
             step={0.1}
             value={gas_input}
             width="63px"
-            unit="moles/s"
+            unit="摩尔/秒"
             minValue={0}
             maxValue={250}
             onChange={(value) =>
@@ -105,9 +105,9 @@ const Requirements = (props) => {
   const { requirements, internal_temperature, progress_bar } = data;
 
   return (
-    <Section title="Requirements and progress">
+    <Section title="需求与进度">
       <LabeledList>
-        <LabeledList.Item label="Progress">
+        <LabeledList.Item label="进度">
           <ProgressBar
             value={progress_bar / 100}
             ranges={{
@@ -117,12 +117,12 @@ const Requirements = (props) => {
             }}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Recipe">
+        <LabeledList.Item label="配方">
           <Box m={1} preserveWhitespace>
             {requirements}
           </Box>
         </LabeledList.Item>
-        <LabeledList.Item label="Temperature">
+        <LabeledList.Item label="温度">
           <ProgressBar
             value={logScale(internal_temperature)}
             minValue={0}
@@ -147,17 +147,17 @@ const Gases = (props) => {
   const { internal_gas_data = [] } = data;
 
   return (
-    <Section title="Gases">
+    <Section title="气体">
       <LabeledList>
         {internal_gas_data.map(({ id, name, amount }) => (
-          <LabeledList.Item key={name} label={name}>
+          <LabeledList.Item key={name} label={getGasLabel(id, name)}>
             <ProgressBar
               color={getGasColor(id)}
               value={amount}
               minValue={0}
               maxValue={1000}
             >
-              {`${toFixed(amount, 2)} moles`}
+              {`${toFixed(amount, 2)} 摩尔`}
             </ProgressBar>
           </LabeledList.Item>
         ))}

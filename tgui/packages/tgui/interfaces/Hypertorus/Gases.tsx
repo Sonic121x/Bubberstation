@@ -47,17 +47,17 @@ type HypertorusData = {
 
 const moderator_gases_help = {
   plasma:
-    'Produces basic gases. Has a modest heat bonus to help kick start the early fusion process. When added in large quantities, its high heat capacity can help to slow down temperature changes to manageable speeds.',
-  bz: 'Produces intermediate gases at Fusion Level 3 or higher. Massively increases radiation, and induces hallucinations in bystanders.',
+    '产生基础气体。提供适度热量加成，帮助启动早期聚变。大量添加时，其较高的热容可将温度变化减缓至可控的速度。',
+  bz: '在聚变等级达到 3 或更高时产生中级气体。大幅增加辐射，并使周围人员产生幻觉。',
   proto_nitrate:
-    'Produces advanced gases. Massively increases radiation, and accelerates the rate of temperature change. Make sure you have enough cooling.',
-  o2: 'When added in high quantities, rapidly purges iron content. Does not purge iron content fast enough to keep up with damage at high Fusion Levels.',
+    '产生高级气体。大幅增加辐射，加快温度变化。请确保有足够的冷却能力。',
+  o2: '大量添加时会快速清除铁。在较高聚变等级下，清除速度不足以抵消损伤带来的铁积累。',
   healium:
-    'Directly heals a heavily damaged HFR core at high Fusion Levels, but is rapidly consumed in the process.',
+    '在高聚变等级下直接修复严重受损的 HFR 核心，但过程中会快速消耗。',
   antinoblium:
-    'Provides huge amounts of energy and radiation. Can cause dangerous electrical storms even from a healthy HFR core when present in more than trace amounts. Wear appropriate electrical protection when handling.',
+    '提供大量能量与辐射。只要含量超过微量，即使完好的 HFR 核心也可能产生危险电暴。操作时请穿戴适当的绝缘防护装备。',
   freon:
-    'Saps most forms of energy expression. Slows the rate of temperature change.',
+    '削弱大多数形式的能量释放，减缓温度变化。',
 } as const;
 
 const moderator_gases_sticky_order = ['plasma', 'bz', 'proto_nitrate'] as const;
@@ -105,14 +105,14 @@ const GasList = (props: GasListProps) => {
         label={
           <>
             <HoverHelp content={rateHelp} />
-            Injection control:
+            注入控制：
           </>
         }
       >
         <Button
           disabled={start_power === 0 || start_cooling === 0}
           icon={data[input_switch] ? 'power-off' : 'times'}
-          content={data[input_switch] ? 'On' : 'Off'}
+          content={data[input_switch] ? '开启' : '关闭'}
           selected={data[input_switch]}
           onClick={() => act(input_switch)}
         />
@@ -148,7 +148,7 @@ const GasList = (props: GasListProps) => {
               minValue={0}
               maxValue={minimumScale}
             >
-              {`${toFixed(gas.amount, 2)} moles`}
+              {`${toFixed(gas.amount, 2)} 摩尔`}
             </ProgressBar>
           </LabeledList.Item>
         );
@@ -170,7 +170,7 @@ export const HypertorusGases = (props) => {
 
   return (
     <>
-      <Section title="Internal Fusion Gases">
+      <Section title="内部聚变气体">
         {selected_fuel ? (
           <GasList
             input_rate="fuel_injection_rate"
@@ -181,19 +181,19 @@ export const HypertorusGases = (props) => {
             minimumScale={500}
             prepend={() => <HelpDummy />}
             rateHelp={
-              'The rate at which new fuel is added from the fuel input port.' +
-              ' This rate affects the rate of production,' +
-              ' even when input is not active.'
+              '从燃料输入口添加新燃料的速率。' +
+              '此速率会影响生产速度，' +
+              '即使未启用输入也是如此。'
             }
             stickyGases={selected_fuel.requirements}
           />
         ) : (
           <Box align="center" color="red">
-            {'No recipe selected'}
+            {'尚未选择配方'}
           </Box>
         )}
       </Section>
-      <Section title="Moderator Gases">
+      <Section title="慢化气体">
         <GasList
           input_rate="moderator_injection_rate"
           input_switch="start_moderator"
@@ -202,7 +202,7 @@ export const HypertorusGases = (props) => {
           raw_gases={moderator_gases}
           minimumScale={500}
           rateHelp={
-            'The rate at which new moderator gas is added from the moderator port.'
+            '从慢化气体入口添加新慢化气体的速率。'
           }
           stickyGases={moderator_gases_sticky_order}
           prepend={(gas) =>

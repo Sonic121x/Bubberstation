@@ -45,7 +45,7 @@ export function CargoContent(props) {
       </Stack.Item>
       <Stack.Item>
         <Section
-          title={toTitleCase(tab || '')}
+          title={{ catalog: '目录', 'active requests': '待处理申请', cart: '购物车', help: '帮助' }[tab] || toTitleCase(tab || '')}
           buttons={
             <>
               {tab === TAB.Requests && !requestonly && (
@@ -54,7 +54,7 @@ export function CargoContent(props) {
                   color="transparent"
                   onClick={() => act('denyall')}
                 >
-                  Clear
+                  清空
                 </Button>
               )}
               {(tab === TAB.Catalog || tab === TAB.Cart) && (
@@ -69,7 +69,7 @@ export function CargoContent(props) {
               selected={tab === TAB.Catalog}
               onClick={() => setTab(TAB.Catalog)}
             >
-              Catalog
+              目录
             </Tabs.Tab>
             <Tabs.Tab
               icon="envelope"
@@ -79,7 +79,7 @@ export function CargoContent(props) {
               selected={tab === TAB.Requests}
               onClick={() => setTab(TAB.Requests)}
             >
-              Requests ({requests.length})
+              申请（{requests.length}）
             </Tabs.Tab>
             {!requestonly && (
               <>
@@ -89,14 +89,14 @@ export function CargoContent(props) {
                   selected={tab === TAB.Cart}
                   onClick={() => setTab(TAB.Cart)}
                 >
-                  Checkout ({amount})
+                  结算（{amount}）
                 </Tabs.Tab>
                 <Tabs.Tab
                   icon="question"
                   selected={tab === TAB.Help}
                   onClick={() => setTab(TAB.Help)}
                 >
-                  Help
+                  帮助
                 </Tabs.Tab>
               </>
             )}

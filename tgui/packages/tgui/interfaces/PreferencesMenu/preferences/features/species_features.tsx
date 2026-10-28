@@ -8,17 +8,17 @@ import {
 import { FeatureDropdownInput } from './dropdowns';
 
 export const eye_color: Feature<string> = {
-  name: 'Eye color',
+  name: '眼睛颜色',
   component: FeatureColorInput,
 };
 
 export const facial_hair_color: Feature<string> = {
-  name: 'Facial hair color',
+  name: '面部毛发颜色',
   component: FeatureColorInput,
 };
 
 export const facial_hair_gradient: FeatureChoiced = {
-  name: 'Facial hair gradient',
+  name: '面部毛发渐变',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -27,17 +27,17 @@ export const facial_hair_gradient: FeatureChoiced = {
 };
 
 export const facial_hair_gradient_color: Feature<string> = {
-  name: 'Facial hair gradient color',
+  name: '面部毛发渐变颜色',
   component: FeatureColorInput,
 };
 
 export const hair_color: Feature<string> = {
-  name: 'Hair color',
+  name: '头发颜色',
   component: FeatureColorInput,
 };
 
 export const hair_gradient: FeatureChoiced = {
-  name: 'Hair gradient',
+  name: '头发渐变',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -46,12 +46,12 @@ export const hair_gradient: FeatureChoiced = {
 };
 
 export const hair_gradient_color: Feature<string> = {
-  name: 'Hair gradient color',
+  name: '头发渐变颜色',
   component: FeatureColorInput,
 };
 
 export const feature_cat_ears: FeatureChoiced = {
-  name: 'Ears',
+  name: '耳朵',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -60,7 +60,7 @@ export const feature_cat_ears: FeatureChoiced = {
 };
 
 export const feature_cat_tail: FeatureChoiced = {
-  name: 'Tail',
+  name: '尾巴',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -69,7 +69,7 @@ export const feature_cat_tail: FeatureChoiced = {
 };
 
 export const feature_monkey_tail: FeatureChoiced = {
-  name: 'Tail',
+  name: '尾巴',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -78,7 +78,7 @@ export const feature_monkey_tail: FeatureChoiced = {
 };
 
 export const feature_lizard_legs: FeatureChoiced = {
-  name: 'Legs',
+  name: '腿部',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -87,7 +87,7 @@ export const feature_lizard_legs: FeatureChoiced = {
 };
 
 export const feature_lizard_spines: FeatureChoiced = {
-  name: 'Spines',
+  name: '背刺',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -96,7 +96,7 @@ export const feature_lizard_spines: FeatureChoiced = {
 };
 
 export const feature_lizard_tail: FeatureChoiced = {
-  name: 'Tail',
+  name: '尾巴',
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
   ) => {
@@ -105,26 +105,26 @@ export const feature_lizard_tail: FeatureChoiced = {
 };
 
 export const feature_mcolor: Feature<string> = {
-  name: 'Mutant color',
+  name: '变异部位颜色',
   component: FeatureColorInput,
 };
 
 export const underwear_color: Feature<string> = {
-  name: 'Underwear color',
+  name: '内裤颜色',
   component: FeatureColorInput,
 };
 
 export const bra_color: Feature<string> = {
-  name: 'Bra color',
+  name: '胸罩颜色',
   component: FeatureColorInput,
 };
 
 export const feature_vampire_status: Feature<string> = {
-  name: 'Vampire status',
+  name: '吸血鬼身份',
   component: FeatureDropdownInput,
 };
 
 export const heterochromatic: Feature<string> = {
-  name: 'Heterochromatic (Right Eye) color',
+  name: '异色瞳（右眼）颜色',
   component: FeatureColorInput,
 };

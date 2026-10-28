@@ -46,7 +46,7 @@ export const AbductorConsole = (props) => {
             selected={tab === 1}
             onClick={() => setTab(1)}
           >
-            Abductsoft 3000
+            绑架软件 3000
           </Tabs.Tab>
           <Tabs.Tab
             icon="list"
@@ -54,7 +54,7 @@ export const AbductorConsole = (props) => {
             selected={tab === 2}
             onClick={() => setTab(2)}
           >
-            Mission Settings
+            任务设置
           </Tabs.Tab>
         </Tabs>
         {tab === 1 && <Abductsoft />}
@@ -74,7 +74,7 @@ const Abductsoft = (props) => {
   const { experiment, points, credits, categories } = data;
 
   if (!experiment) {
-    return <NoticeBox danger>No Experiment Machine Detected</NoticeBox>;
+    return <NoticeBox danger>未检测到实验机器</NoticeBox>;
   }
 
   const categoriesList: string[] = [];
@@ -88,7 +88,7 @@ const Abductsoft = (props) => {
         id: item.name,
         name: item.name,
         category: category.name,
-        cost: `${item.cost} Credits`,
+        cost: `${item.cost} 信用点`,
         desc: item.desc,
         disabled: (credits || 0) < item.cost,
         icon: item.icon,
@@ -103,13 +103,13 @@ const Abductsoft = (props) => {
     <>
       <Section>
         <LabeledList>
-          <LabeledList.Item label="Collected Samples">
+          <LabeledList.Item label="已收集样本">
             {points}
           </LabeledList.Item>
         </LabeledList>
       </Section>
       <GenericUplink
-        currency={`${credits} Credits`}
+        currency={`${credits} 信用点`}
         categories={categoriesList}
         items={items}
         handleBuy={(item) => act('buy', { name: item.name })}
@@ -123,29 +123,29 @@ const EmergencyTeleporter = (props) => {
   const { pad, gizmo } = data;
 
   if (!pad) {
-    return <NoticeBox danger>No Telepad Detected</NoticeBox>;
+    return <NoticeBox danger>未检测到传送台</NoticeBox>;
   }
 
   return (
     <Section
-      title="Emergency Teleport"
+      title="紧急传送"
       buttons={
         <Button
           icon="exclamation-circle"
-          content="Activate"
+          content="启动"
           color="bad"
           onClick={() => act('teleporter_send')}
         />
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Mark Retrieval">
+        <LabeledList.Item label="回收标记目标">
           <Button
             icon={gizmo ? 'user-plus' : 'user-slash'}
             disabled={!gizmo}
             onClick={() => act('teleporter_retrieve')}
           >
-            {gizmo ? 'Retrieve' : 'No Mark'}
+            {gizmo ? '回收' : '无标记'}
           </Button>
         </LabeledList.Item>
       </LabeledList>
@@ -158,33 +158,33 @@ const VestSettings = (props) => {
   const { vest, vest_mode, vest_lock } = data;
 
   if (!vest) {
-    return <NoticeBox danger>No Agent Vest Detected</NoticeBox>;
+    return <NoticeBox danger>未检测到特工背心</NoticeBox>;
   }
 
   return (
     <Section
-      title="Agent Vest Settings"
+      title="特工背心设置"
       buttons={
         <Button
           icon={vest_lock ? 'lock' : 'unlock'}
           onClick={() => act('toggle_vest')}
         >
-          {vest_lock ? 'Locked' : 'Unlocked'}
+          {vest_lock ? '已锁定' : '已解锁'}
         </Button>
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Mode">
+        <LabeledList.Item label="模式">
           <Button
             icon={vest_mode === 1 ? 'eye-slash' : 'fist-raised'}
             onClick={() => act('flip_vest')}
           >
-            {vest_mode === 1 ? 'Stealth' : 'Combat'}
+            {vest_mode === 1 ? '潜行' : '战斗'}
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Disguise">
+        <LabeledList.Item label="伪装">
           <Button icon="user-secret" onClick={() => act('select_disguise')}>
-            Select
+            选择
           </Button>
         </LabeledList.Item>
       </LabeledList>

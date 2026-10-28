@@ -34,7 +34,7 @@ export const ImplantPad = (props) => {
       <Window.Content scrollable>
         <Stack bold>
           <Stack.Item grow color="good" align="center">
-            Implant Mini-Computer
+            植入物微型电脑
           </Stack.Item>
           <Stack.Item>
             <Button
@@ -42,15 +42,15 @@ export const ImplantPad = (props) => {
               disabled={!has_case}
               onClick={() => act('eject_implant')}
             >
-              Eject Case
+              弹出收纳盒
             </Button>
           </Stack.Item>
         </Stack>
         <Divider />
         <Section>
-          Saved Deathrattle Group: {saved_deathrattle_group || 'None'}
+          已保存的死亡通知组：{saved_deathrattle_group || '无'}
           <br />
-          Current Deathrattle Group: {current_deathrattle_group || 'None'}
+          当前死亡通知组：{current_deathrattle_group || '无'}
         </Section>
         <Stack>
           <Stack.Item>
@@ -58,7 +58,7 @@ export const ImplantPad = (props) => {
               disabled={!current_deathrattle_group}
               onClick={() => act('save_deathrattle_group')}
             >
-              Save Group
+              保存分组
             </Button>
           </Stack.Item>
           <Stack.Item>
@@ -66,7 +66,7 @@ export const ImplantPad = (props) => {
               disabled={!!current_deathrattle_group || !has_case}
               onClick={() => act('set_deathrattle_group')}
             >
-              Set Group
+              设置分组
             </Button>
           </Stack.Item>
           <Stack.Item>
@@ -75,35 +75,35 @@ export const ImplantPad = (props) => {
               // in case you want to start a new deathrattle group
               onClick={() => act('init_deathrattle_group')}
             >
-              Initialize Group
+              初始化分组
             </Button>
           </Stack.Item>
         </Stack>
         <Divider />
-        <Collapsible open={true} title="Implant Information">
+        <Collapsible open={true} title="植入物信息">
           {!has_case && (
             <Section>
-              No implant case detected. Please insert one to see its contents.
+              未检测到植入物收纳盒。请插入收纳盒以查看内容。
             </Section>
           )}
           {!!has_case && !has_implant && (
             <Section>
-              Implant case does not have an implant. Please insert an implant to
-              continue.
+              收纳盒中没有植入物。请放入植入物
+              以继续。
             </Section>
           )}
           {!!has_case && !!has_implant && <Section>{case_information}</Section>}
         </Collapsible>
-        <Collapsible title="Implant Extended Information">
+        <Collapsible title="植入物详细信息">
           {!has_case && (
             <Section>
-              No implant case detected. Please insert one to see its contents.
+              未检测到植入物收纳盒。请插入收纳盒以查看内容。
             </Section>
           )}
           {!!has_case && !has_implant && (
             <Section>
-              Implant case does not have an implant. Please insert an implant to
-              continue.
+              收纳盒中没有植入物。请放入植入物
+              以继续。
             </Section>
           )}
           {!!has_case && !!has_implant && <Section>{case_lore}</Section>}

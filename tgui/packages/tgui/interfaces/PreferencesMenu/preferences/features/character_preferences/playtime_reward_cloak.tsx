@@ -1,8 +1,8 @@
 import { CheckboxInput, type FeatureToggle } from '../base';
 
 export const playtime_reward_cloak: FeatureToggle = {
-  name: 'Don gamer cloak',
+  name: '穿戴资深玩家披风',
   description:
-    'Your reward for playing 5k+ hours. Don a fancy cloak only wearable by fellow super-veterans.',
+    '游玩超过 5000 小时的奖励。穿上一件仅供超级老玩家穿戴的华丽披风。',
   component: CheckboxInput,
 };

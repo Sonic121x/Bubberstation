@@ -26,11 +26,11 @@ export function DeleteCharacterPopup(props: Props) {
     <Modal>
       <Stack vertical textAlign="center" align="center">
         <Stack.Item>
-          <Box fontSize="3em">Wait!</Box>
+          <Box fontSize="3em">请稍等！</Box>
         </Stack.Item>
 
         <Stack.Item maxWidth="300px">
-          <Box>{`You're about to delete ${data.character_preferences.names[data.name_to_use]} forever. Are you sure you want to do this?`}</Box>
+          <Box>{`你即将永久删除 ${data.character_preferences.names[data.name_to_use]}。确定要这样做吗？`}</Box>
         </Stack.Item>
 
         <Stack.Item>
@@ -46,12 +46,12 @@ export function DeleteCharacterPopup(props: Props) {
                   close();
                 }}
               >
-                {secondsLeft <= 0 ? 'Delete' : `Delete (${secondsLeft})`}
+                {secondsLeft <= 0 ? '删除' : `删除（${secondsLeft}）`}
               </Button>
             </Stack.Item>
 
             <Stack.Item>
-              <Button onClick={close}>{"No, don't delete"}</Button>
+              <Button onClick={close}>{'不，取消删除'}</Button>
             </Stack.Item>
           </Stack>
         </Stack.Item>

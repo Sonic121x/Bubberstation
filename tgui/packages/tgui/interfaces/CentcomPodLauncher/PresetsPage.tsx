@@ -92,12 +92,12 @@ export function PresetsPage(props) {
       }
       fill
       scrollable
-      title="Presets"
+      title="预设"
     >
       {editing && (
         <Stack vertical>
           <Stack.Item>
-            <Input autoFocus onChange={setName} placeholder="Preset Name" />
+            <Input autoFocus onChange={setName} placeholder="预设名称" />
             <Button
               icon="check"
               inline
@@ -105,7 +105,7 @@ export function PresetsPage(props) {
                 newPreset(name, hue, data);
                 setEditing(false);
               }}
-              tooltip="Confirm"
+              tooltip="确认"
               tooltipPosition="right"
             />
             <Button
@@ -115,11 +115,11 @@ export function PresetsPage(props) {
                 setName('');
                 setEditing(false);
               }}
-              tooltip="Cancel"
+              tooltip="取消"
             />
           </Stack.Item>
           <Stack.Item>
-            <span color="label"> Hue: </span>
+            <span color="label"> 色相：</span>
             <NumberInput
               animated
               maxValue={360}
@@ -144,8 +144,8 @@ export function PresetsPage(props) {
 
       {(!presets || presets.length === 0) && (
         <span style={POD_GREY}>
-          Click [+] to define a new preset. They are persistent across
-          rounds/servers!
+          点击 [+] 创建新预设。预设可以跨
+          回合和服务器保留！
         </span>
       )}
       {Array.isArray(presets) &&
@@ -172,7 +172,7 @@ export function PresetsPage(props) {
       <span style={POD_GREY}>
         <br />
         <br />
-        NOTE: Custom sounds from outside the base game files will not save! :(
+        注意：原版游戏文件以外的自定义声音无法保存！:(
       </span>
     </Section>
   );
@@ -197,7 +197,7 @@ function PresetButtons(props: PresetButtonsProps) {
           color="transparent"
           icon="plus"
           onClick={() => setEditing(!editing)}
-          tooltip="New Preset"
+          tooltip="新建预设"
         />
       )}
       <Button
@@ -205,7 +205,7 @@ function PresetButtons(props: PresetButtonsProps) {
         icon="download"
         inline
         onClick={() => saveDataToPreset(presetId, data)}
-        tooltip="Saves preset"
+        tooltip="保存预设"
         tooltipPosition="bottom"
       />
       <Button
@@ -215,14 +215,14 @@ function PresetButtons(props: PresetButtonsProps) {
         onClick={() => {
           loadPreset(presetId);
         }}
-        tooltip="Loads preset"
+        tooltip="加载预设"
       />
       <Button
         color="transparent"
         icon="trash"
         inline
         onClick={() => deletePreset(presetId)}
-        tooltip="Deletes the selected preset"
+        tooltip="删除所选预设"
         tooltipPosition="bottom-start"
       />
     </>

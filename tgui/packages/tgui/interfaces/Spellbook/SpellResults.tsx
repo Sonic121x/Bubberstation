@@ -2,7 +2,7 @@ import { useAtom } from 'jotai';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
 import { heightSection, tabAtom, widthSection } from '.';
 import { CategoryDisplay } from './CategoryDisplay';
-import { TAB2NAME } from './constants';
+import { TAB2NAME } from './constants'; import { spellbookDisplay } from '../../localization/spellbookDisplay';
 
 export function SpellResults() {
   const [tabIndex, setTabIndex] = useAtom(tabAtom);
@@ -19,7 +19,7 @@ export function SpellResults() {
           width={widthSection}
           height={heightSection}
           fill
-          title={activeCat.title}
+          title={spellbookDisplay(activeCat.title)}
           buttons={
             <>
               <Button
@@ -28,7 +28,7 @@ export function SpellResults() {
                 icon="arrow-left"
                 onClick={() => setTabIndex(tabIndex - 2)}
               >
-                Previous Page
+                上一页
               </Button>
               <Box textAlign="right" bold mt={-3.3} mr={1}>
                 {tabIndex}
@@ -46,7 +46,7 @@ export function SpellResults() {
           width={widthSection}
           height={heightSection}
           fill
-          title={activeNextCat.title}
+          title={spellbookDisplay(activeNextCat.title)}
           buttons={
             <>
               <Button
@@ -55,7 +55,7 @@ export function SpellResults() {
                 disabled={tabIndex === 11}
                 onClick={() => setTabIndex(tabIndex + 2)}
               >
-                Next Page
+                下一页
               </Button>
               <Box textAlign="left" bold mt={-3.3} ml={-59.8}>
                 {tabIndex + 1}

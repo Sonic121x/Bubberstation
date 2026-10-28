@@ -44,7 +44,7 @@ export const SoulcatcherUser = (props) => {
             <Button
               color={targeted ? 'green' : 'red'}
               icon={targeted ? 'check' : 'xmark'}
-              tooltip="Toggle if the carrier say and carrier emote verbs will send to this soulcatcher."
+              tooltip="切换载体说话和载体动作指令是否发送到此灵魂捕手。"
               onClick={() => act('toggle_target', {})}
             />
             {!user_data.scan_needed && user_data.able_to_rename && (
@@ -52,13 +52,13 @@ export const SoulcatcherUser = (props) => {
                 <Button
                   color="green"
                   icon="pen"
-                  tooltip="Change your name."
+                  tooltip="更改你的姓名。"
                   onClick={() => act('change_name', {})}
                 />
                 <Button
                   color="red"
                   icon="arrow-rotate-left"
-                  tooltip="Reset your name."
+                  tooltip="重置你的姓名。"
                   onClick={() => act('reset_name', {})}
                 />
               </>
@@ -69,59 +69,59 @@ export const SoulcatcherUser = (props) => {
                 icon={
                   user_data.communicating_externally ? 'bullhorn' : 'microphone'
                 }
-                tooltip="Toggle sending messages as part of the soulcatcher."
+                tooltip="切换是否作为灵魂捕手的一部分对外发送消息。"
                 onClick={() => act('toggle_external_communication', {})}
               />
             )}
           </Box>
           <Divider />
-          <Collapsible title="Flavor Text">
+          <Collapsible title="外观描述">
             <BlockQuote preserveWhitespace>{user_data.description}</BlockQuote>
           </Collapsible>
-          <Collapsible title="OOC Notes">
+          <Collapsible title="戏外备注">
             <BlockQuote preserveWhitespace>{user_data.ooc_notes}</BlockQuote>
           </Collapsible>
-          <Collapsible title="Soul Info">
+          <Collapsible title="灵魂信息">
             <LabeledList textAlign>
-              <LabeledList.Item label="Ability to see outside">
-                {user_data.outside_sight ? 'Enabled' : 'Disabled'}
+              <LabeledList.Item label="看见外界">
+                {user_data.outside_sight ? '已启用' : '已禁用'}
               </LabeledList.Item>
-              <LabeledList.Item label="Ability to hear outside">
-                {user_data.outside_hearing ? 'Enabled' : 'Disabled'}
+              <LabeledList.Item label="听到外界">
+                {user_data.outside_hearing ? '已启用' : '已禁用'}
               </LabeledList.Item>
-              <LabeledList.Item label="Ability to see inside">
-                {user_data.internal_sight ? 'Enabled' : 'Disabled'}
+              <LabeledList.Item label="看见内部">
+                {user_data.internal_sight ? '已启用' : '已禁用'}
               </LabeledList.Item>
-              <LabeledList.Item label="Ability to hear inside">
-                {user_data.internal_hearing ? 'Enabled' : 'Disabled'}
+              <LabeledList.Item label="听到内部">
+                {user_data.internal_hearing ? '已启用' : '已禁用'}
               </LabeledList.Item>
-              <LabeledList.Item label="Ability to speak">
-                {user_data.able_to_speak ? 'Enabled' : 'Disabled'}
+              <LabeledList.Item label="说话能力">
+                {user_data.able_to_speak ? '已启用' : '已禁用'}
               </LabeledList.Item>
-              <LabeledList.Item label="Ability to emote">
-                {user_data.able_to_emote ? 'Enabled' : 'Disabled'}
+              <LabeledList.Item label="动作描述能力">
+                {user_data.able_to_emote ? '已启用' : '已禁用'}
               </LabeledList.Item>
               {communicate_as_parent && (
                 <>
-                  <LabeledList.Item label="Ability to speak as container">
+                  <LabeledList.Item label="以容器身份说话">
                     {user_data.able_to_speak_as_container
-                      ? 'Enabled'
-                      : 'Disabled'}
+                      ? '已启用'
+                      : '已禁用'}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Ability to emote as container">
+                  <LabeledList.Item label="以容器身份描述动作">
                     {user_data.able_to_emote_as_container
-                      ? 'Enabled'
-                      : 'Disabled'}
+                      ? '已启用'
+                      : '已禁用'}
                   </LabeledList.Item>
                 </>
               )}
-              <LabeledList.Item label="Ability to change name">
+              <LabeledList.Item label="更改姓名">
                 {user_data.able_to_rename && !user_data.scan_needed
-                  ? 'Enabled'
-                  : 'Disabled'}
+                  ? '已启用'
+                  : '已禁用'}
               </LabeledList.Item>
-              <LabeledList.Item label="Body Scan Needed">
-                {user_data.scan_needed ? 'True' : 'False'}
+              <LabeledList.Item label="需要身体扫描">
+                {user_data.scan_needed ? '是' : '否'}
               </LabeledList.Item>
             </LabeledList>
           </Collapsible>
@@ -130,7 +130,7 @@ export const SoulcatcherUser = (props) => {
             <>
               <br />
               <Box textAlign="center" fontSize="15px" opacity={0.8}>
-                <b>Souls</b>
+                <b>灵魂</b>
               </Box>
               <Divider />
               <Flex direction="column">
@@ -138,7 +138,7 @@ export const SoulcatcherUser = (props) => {
                   <Flex.Item key={soul.key}>
                     <Collapsible title={soul.name}>
                       <Box textAlign="center" fontSize="13px" opacity={0.8}>
-                        <b>Flavor Text</b>
+                        <b>外观描述</b>
                       </Box>
                       <Divider />
                       <BlockQuote preserveWhitespace>
@@ -146,7 +146,7 @@ export const SoulcatcherUser = (props) => {
                       </BlockQuote>
                       <br />
                       <Box textAlign="center" fontSize="13px" opacity={0.8}>
-                        <b>OOC Notes</b>
+                        <b>戏外备注</b>
                       </Box>
                       <Divider />
                       <BlockQuote preserveWhitespace>

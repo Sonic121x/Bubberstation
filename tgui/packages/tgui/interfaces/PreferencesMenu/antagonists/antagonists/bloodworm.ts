@@ -2,11 +2,11 @@ import { type Antagonist, Category } from '../base';
 
 const BloodWorm: Antagonist = {
   key: 'bloodworm',
-  name: 'Blood Worm',
+  name: '血虫',
   description: [
     `
-      Become a giant, parasitic blood worm. Start as a hatchling in a host,
-      consume blood and conquer the entire station alongside your siblings!
+      成为巨型寄生血虫，从宿主体内的幼虫开始，
+      吞食鲜血，与同胞一起征服整座空间站！
     `,
   ],
   category: Category.Roundstart,

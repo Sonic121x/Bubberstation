@@ -57,7 +57,7 @@ export function LoadoutPage(props) {
   // BUBBER EDIT END
 
   if (!serverData) {
-    return <NoticeBox>Loading...</NoticeBox>;
+    return <NoticeBox>正在加载……</NoticeBox>;
   }
 
   return (
@@ -80,7 +80,7 @@ export function LoadoutPage(props) {
               <Stack.Item height="20px" width="100%">
                 <Stack>
                   <Stack.Item fontSize="1.3rem">
-                    {managingPreset} Loadout Preset
+                    {managingPreset === 'Add' ? '添加' : '重命名'}配装预设
                   </Stack.Item>
                   {managingPreset === 'Add' && (
                     <Stack.Item ml="6px" mt="4px">
@@ -89,7 +89,7 @@ export function LoadoutPage(props) {
                         data.character_preferences.misc.loadout_lists.loadouts
                           .length
                       }{' '}
-                      of 12 total)
+                      ／12 个）
                     </Stack.Item>
                   )}
                   <Stack.Item ml="auto">
@@ -105,7 +105,7 @@ export function LoadoutPage(props) {
               </Stack.Item>
               <Stack.Item width="100%" height="20px">
                 <Input
-                  placeholder="Maximum of 24 characters long"
+                  placeholder="最长 24 个字符"
                   width="100%"
                   maxLength={24}
                   onChange={onType}
@@ -128,7 +128,7 @@ export function LoadoutPage(props) {
                       setManagingPreset(null);
                     }}
                   >
-                    Done
+                    完成
                   </Button>
                 </Stack>
               </Stack.Item>
@@ -151,15 +151,15 @@ export function LoadoutPage(props) {
               <Button.Checkbox
                 checked={searchingTooltips}
                 onClick={() => setSearchingTooltips(!searchingTooltips)}
-                tooltip="Include matches from item tooltip information e.g. Job Whitelist"
+                tooltip="同时搜索物品提示信息，例如职业白名单"
               >
-                Search Tooltips
+                搜索提示信息
               </Button.Checkbox>
               {/* BUBBER EDIT ADDITION END: Search in tooltips */}
               <Input
                 width="200px"
                 onChange={setSearchLoadout}
-                placeholder="Search for an item..."
+                placeholder="搜索物品……"
                 value={searchLoadout}
               />
             </>
@@ -250,9 +250,9 @@ function LoadoutTabs(props: LoadoutTabsProps) {
                     mb="2px"
                     width="100%"
                     options={
-                      data.character_preferences.misc.loadout_lists.loadouts
+                      data.character_preferences.misc.loadout_lists.loadouts.map((value) => ({ value, displayText: value === 'Default' ? '默认' : value }))
                     }
-                    selected={data.character_preferences.misc.loadout_index}
+                    selected={data.character_preferences.misc.loadout_index} displayText={data.character_preferences.misc.loadout_index === 'Default' ? '默认' : data.character_preferences.misc.loadout_index}
                     onSelected={(value) =>
                       act('set_loadout_preset', { name: value })
                     }
@@ -270,15 +270,15 @@ function LoadoutTabs(props: LoadoutTabsProps) {
                     tooltip={
                       data.character_preferences.misc.loadout_index ===
                       'Default'
-                        ? "Can't delete the default loadout entry."
-                        : 'Delete the current loadout entry.'
+                        ? '无法删除默认配装。'
+                        : '删除当前配装。'
                     }
                     onClick={() => act('remove_loadout_preset')}
                   >
-                    Delete
+                    删除
                   </Button.Confirm>
                   <Button onClick={() => setManagingPreset('Add')} icon="plus">
-                    Add Loadout
+                    添加配装
                   </Button>
                   <Button
                     icon="pen"
@@ -305,7 +305,7 @@ function LoadoutTabs(props: LoadoutTabsProps) {
       <Stack.Item grow>
         {searching || activeCategory?.contents ? (
           <Section
-            title={searching ? 'Search results' : 'Catalog'}
+            title={searching ? '搜索结果' : '目录'}
             fill
             scrollable
             buttons={
@@ -332,7 +332,7 @@ function LoadoutTabs(props: LoadoutTabsProps) {
           </Section>
         ) : (
           <Section fill>
-            <Box>No contents for selected tab.</Box>
+            <Box>所选标签页没有内容。</Box>
           </Section>
         )}
       </Stack.Item>
@@ -418,7 +418,7 @@ function LoadoutSelectedSection(props: LoadoutSelectedSectionProps) {
 
   return (
     <Section
-      title="Selected Items"
+      title="已选物品"
       scrollable
       fill
       buttons={
@@ -427,10 +427,10 @@ function LoadoutSelectedSection(props: LoadoutSelectedSectionProps) {
           color="red"
           align="center"
           disabled={!loadout_list || Object.keys(loadout_list).length === 0}
-          tooltip="Clears ALL selected items from all categories."
+          tooltip="清除所有类别中的全部已选物品。"
           onClick={() => act('clear_all_items')}
         >
-          Clear All
+          全部清除
         </Button.Confirm>
       }
     >

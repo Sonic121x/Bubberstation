@@ -29,7 +29,7 @@ export const ExosuitFabricator = (props) => {
   }
 
   return (
-    <Window title="Exosuit Fabricator" width={1100} height={600}>
+    <Window title="机甲制造机" width={1100} height={600}>
       <Window.Content>
         <Stack fill>
           <Stack.Item grow>
@@ -54,7 +54,7 @@ export const ExosuitFabricator = (props) => {
                         });
                       }}
                     >
-                      Queue All
+                      全部加入队列
                     </Button>
                   )}
                 />
@@ -143,7 +143,7 @@ const Recipe = (props: RecipeProps) => {
         </div>
       </Tooltip>
 
-      <Tooltip content={'Add to Queue'} position="right">
+      <Tooltip content={'加入队列'} position="right">
         <div
           className={classes([
             'FabricatorRecipe__Button',
@@ -157,7 +157,7 @@ const Recipe = (props: RecipeProps) => {
         </div>
       </Tooltip>
 
-      <Tooltip content={'Build Now'} position="right">
+      <Tooltip content={'立即制造'} position="right">
         <div
           className={classes([
             'FabricatorRecipe__Button',
@@ -207,27 +207,27 @@ const Queue = (props: QueueProps) => {
         <Stack.Item>
           <Section
             fill
-            title="Queue"
+            title="队列"
             buttons={
               <>
                 <Button.Confirm
                   disabled={!queue.length}
                   color="bad"
                   icon="minus-circle"
-                  content="Clear Queue"
+                  content="清空队列"
                   onClick={() => act('clear_queue')}
                 />
                 {(!!processing && (
                   <Button
                     disabled={!queue.length}
-                    content="Stop"
+                    content="停止"
                     icon="stop"
                     onClick={() => act('stop_queue')}
                   />
                 )) || (
                   <Button
                     disabled={!queue.length}
-                    content="Build Queue"
+                    content="制造队列"
                     icon="play"
                     onClick={() => act('build_queue')}
                   />
@@ -351,7 +351,7 @@ const QueueList = (props: QueueListProps) => {
                   });
                 }}
               >
-                <Tooltip content={'Remove from Queue'}>
+                <Tooltip content={'从队列移除'}>
                   <Icon name="minus-circle" />
                 </Tooltip>
               </div>

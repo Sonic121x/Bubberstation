@@ -1,15 +1,15 @@
 import { type Antagonist, Category } from '../base';
 
 export const WIZARD_MECHANICAL_DESCRIPTION = `
-      Choose between a variety of powerful spells in order to cause chaos
-      among Space Station 13.
+      从多种强大法术中做出选择，
+      在 13 号空间站制造混乱。
     `;
 
 const Wizard: Antagonist = {
   key: 'wizard',
-  name: 'Wizard',
+  name: '巫师',
   description: [
-    `"GREETINGS. WE'RE THE WIZARDS OF THE WIZARD'S FEDERATION."`,
+    `“你们好。我们是巫师联邦的巫师。”`,
     WIZARD_MECHANICAL_DESCRIPTION,
   ],
   category: Category.Roundstart,

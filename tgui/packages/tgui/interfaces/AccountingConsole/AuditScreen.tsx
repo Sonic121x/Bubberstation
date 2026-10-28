@@ -19,16 +19,16 @@ export const AuditScreen = () => {
       <Table>
         <Table.Row>
           <Table.Cell bold fontSize="14px">
-            Account
+            账户
           </Table.Cell>
           <Table.Cell bold fontSize="14px">
-            Cost
+            金额
           </Table.Cell>
           <Table.Cell bold fontSize="14px">
-            Location
+            地点
           </Table.Cell>
           <Table.Cell bold fontSize="14px">
-            Timestamp
+            时间
           </Table.Cell>
         </Table.Row>
         {audit_log.map((purchase, index) => (

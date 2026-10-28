@@ -40,12 +40,12 @@ export const ModularShieldGen = (props) => {
   } = data;
 
   return (
-    <Window title="Modular Shield Generator" width={690} height={225}>
+    <Window title="模块化护盾发生器" width={690} height={225}>
       <Window.Content>
         <Stack fill>
           <Stack.Item grow={2}>
             <Section
-              title="Shield Strength"
+              title="护盾强度"
               color={recovering ? 'red' : 'white'}
             >
               <ProgressBar
@@ -60,7 +60,7 @@ export const ModularShieldGen = (props) => {
                 {current_strength}/{max_strength}
               </ProgressBar>
             </Section>
-            <Section title="Regeneration and Radius">
+            <Section title="再生与半径">
               <ProgressBar
                 value={current_regeneration}
                 maxValue={max_regeneration}
@@ -70,7 +70,7 @@ export const ModularShieldGen = (props) => {
                   bad: [0, max_regeneration * 0.25],
                 }}
               >
-                Regeneration {current_regeneration}/{max_regeneration}
+                再生速率 {current_regeneration}/{max_regeneration}
               </ProgressBar>
               <Section>
                 <ProgressBar
@@ -82,15 +82,15 @@ export const ModularShieldGen = (props) => {
                     bad: [0, max_radius * 0.25],
                   }}
                 >
-                  Radius {current_radius}/{max_radius}
+                  半径 {current_radius}/{max_radius}
                 </ProgressBar>
               </Section>
             </Section>
           </Stack.Item>
           <Stack.Item grow>
-            <Section title="Settings">
+            <Section title="设置">
               <LabeledList>
-                <LabeledList.Item label="Set Radius">
+                <LabeledList.Item label="设置半径">
                   <NumberInput
                     disabled={!!active}
                     fluid
@@ -105,24 +105,24 @@ export const ModularShieldGen = (props) => {
                     }
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="Limitations">
+                <LabeledList.Item label="范围限制">
                   <Button
                     disabled={active}
                     onClick={() => act('toggle_exterior')}
                   >
-                    {exterior_only ? 'External only' : 'Internal & External'}
+                    {exterior_only ? '仅外部' : '内部与外部'}
                   </Button>
                 </LabeledList.Item>
               </LabeledList>
             </Section>
             <Section>
               <LabeledList>
-                <LabeledList.Item label="Toggle Power">
+                <LabeledList.Item label="电源开关">
                   <Button
                     bold
                     disabled={recovering || initiating_field}
                     selected={active}
-                    content={active ? 'On' : 'Off'}
+                    content={active ? '开启' : '关闭'}
                     icon="power-off"
                     onClick={() => act('toggle_shields')}
                   />

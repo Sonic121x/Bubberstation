@@ -112,12 +112,12 @@ export const CellularEmporium = (props) => {
                   disabled={!can_readapt}
                   tooltip={
                     can_readapt
-                      ? 'Un-evolve all abilities and refund genetic points.'
-                      : 'Need more DNA to readapt.'
+                      ? '撤销所有进化能力，并退还基因点数。'
+                      : '需要更多 DNA 才能重新适应。'
                   }
                   onClick={() => act('readapt')}
                 >
-                  Readapt ({can_readapt})
+                  重新适应（{can_readapt}）
                 </Button>
               </Stack.Item>
             </Stack>
@@ -130,7 +130,7 @@ export const CellularEmporium = (props) => {
                   <Input
                     autoFocus
                     value={searchText}
-                    placeholder="Search..."
+                    placeholder="搜索……"
                     onChange={setSearchText}
                     fluid
                   />
@@ -141,7 +141,7 @@ export const CellularEmporium = (props) => {
                     lineHeight={2}
                     textAlign="center"
                     icon={compactMode ? 'maximize' : 'minimize'}
-                    tooltip={compactMode ? 'Detailed view' : 'Compact view'}
+                    tooltip={compactMode ? '详细视图' : '紧凑视图'}
                     onClick={() => setCompactMode(!compactMode)}
                   />
                 </Stack.Item>
@@ -157,7 +157,7 @@ export const CellularEmporium = (props) => {
                         }}
                         mt={1}
                       >
-                        {category.charAt(0).toUpperCase() + category.slice(1)}
+                        {{ combat: '战斗', stealth: '潜行', utility: '实用', stings: '毒刺' }[category] || category}
                       </Tabs.Tab>
                     ))}
                   </Tabs>
@@ -170,8 +170,8 @@ export const CellularEmporium = (props) => {
                 {filteredItems.length === 0 ? (
                   <NoticeBox>
                     {searchText
-                      ? 'No abilities found.'
-                      : 'No abilities in this category.'}
+                      ? '未找到能力。'
+                      : '此分类下没有能力。'}
                   </NoticeBox>
                 ) : (
                   <ItemList
@@ -233,7 +233,7 @@ const ItemList = (props: ItemListProps) => {
           const requirementTooltip = [
             `${ability.genetic_point_required} DNA`,
             ...(ability.absorbs_required > 0
-              ? [`${ability.absorbs_required} absorptions`]
+              ? [`吸收 ${ability.absorbs_required} 次`]
               : []),
             ...(ability.dna_required > 0
               ? [`${ability.dna_required} DNA`]
@@ -242,8 +242,8 @@ const ItemList = (props: ItemListProps) => {
 
           const costDisplay =
             ability.dna_required > 0
-              ? `Cost: ${ability.dna_required} DNA`
-              : `Cost: ${ability.genetic_point_required} DNA`;
+              ? `消耗：${ability.dna_required} DNA`
+              : `消耗：${ability.genetic_point_required} DNA`;
 
           return (
             <Stack.Item key={ability.path} mt={compactMode ? 0.5 : 1}>
@@ -327,7 +327,7 @@ const ItemList = (props: ItemListProps) => {
                             {ability.name}
                             {owned && (
                               <Box color="#44bd46" inline ml={1}>
-                                (Owned)
+                                （已拥有）
                               </Box>
                             )}
                           </Box>

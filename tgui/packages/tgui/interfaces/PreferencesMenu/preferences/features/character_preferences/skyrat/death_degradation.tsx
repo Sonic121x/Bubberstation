@@ -2,116 +2,116 @@
 import { CheckboxInput, type Feature, FeatureNumberInput } from '../../base';
 
 export const dc_starting_degradation: Feature<number> = {
-  name: 'A_Starting Degradation',
+  name: 'A_初始退化程度',
   component: FeatureNumberInput,
-  description: 'The degradation you will start with.',
+  description: '你开始游戏时的退化程度。',
 };
 
 export const dc_max_degradation: Feature<number> = {
-  name: 'A_Max Degradation',
+  name: 'A_最大退化程度',
   component: FeatureNumberInput,
-  description: 'The absolute maximum degradation you can have.',
+  description: '你的退化程度所能达到的绝对上限。',
 };
 
 export const dc_living_degradation_recovery_per_second: Feature<number> = {
-  name: 'B_Recovery per second while alive',
+  name: 'B_存活时每秒恢复量',
   component: FeatureNumberInput,
   description:
-    'While alive, your degradation will be reduced by this much per second. If negative, this will cause you to slowly die.',
+    '存活时，你的退化程度每秒降低此数值。如果为负值，则会让你慢慢死去。',
 };
 
 export const dc_dead_degradation_per_second: Feature<number> = {
-  name: 'B_Degradation per second while dead',
+  name: 'B_死亡时每秒退化量',
   component: FeatureNumberInput,
 };
 
 export const dc_degradation_on_death: Feature<number> = {
-  name: 'B_Immediate degradation on death',
+  name: 'B_死亡时立即增加的退化量',
   component: FeatureNumberInput,
-  description: 'Has a cooldown of around 5 minutes between deaths. ',
+  description: '两次死亡之间有约 5 分钟的冷却时间。',
 };
 
 export const dc_stasis_dead_degradation_mult: Feature<number> = {
-  name: 'B_Stasis degradation mult',
+  name: 'B_停滞状态退化倍率',
   component: FeatureNumberInput,
   description:
-    'While on stasis, any passive degradation you receive will be reduced by this much.',
+    '处于停滞状态时，被动退化会按此倍率降低。',
 };
 
 export const dc_formeldahyde_dead_degradation_mult: Feature<number> = {
-  name: 'C_Formeldehyde death degradation mult',
+  name: 'C_甲醛死亡退化倍率',
   component: FeatureNumberInput,
   description:
-    'If you are organic and have formeldahyde in your system, any passive degradation caused by being dead will be multiplied against this.',
+    '如果你是有机生物且体内含有甲醛，死亡造成的被动退化会乘以此倍率。',
 };
 
 export const dc_rezadone_living_degradation_reduction: Feature<number> = {
-  name: 'C_Pure rezadone degradation reduction',
+  name: 'C_纯雷扎酮退化恢复量',
   component: FeatureNumberInput,
   description:
-    'If you are organic, alive, and metabolizing rezadone at 100% purity, you will passively recover from degradation at this rate per second.',
+    '如果你是存活的有机生物，且正在代谢纯度为 100% 的雷扎酮，退化程度将以此速率每秒被动恢复。',
 };
 
 export const dc_eigenstasium_degradation_reduction: Feature<number> = {
-  name: 'C_Eigenstasium degradation reduction',
+  name: 'C_本征态素退化恢复量',
   component: FeatureNumberInput,
   description:
-    'If you have eigenstasium in your system, you will passively recover from degradation at this rate per second. This works for synths, and while dead.',
+    '如果你体内含有本征态素，退化程度将以此速率每秒被动恢复。此效果对合成人和死者也有效。',
 };
 
 export const dc_crit_threshold_reduction_min_percent_of_max: Feature<number> = {
-  name: 'Crit threshold: Start degradation percent',
+  name: '濒死阈值：开始降低的退化百分比',
   component: FeatureNumberInput,
   description:
-    'Crit threshold will begin decreasing when degradation is this percent to max.',
+    '退化程度达到上限的此百分比时，濒死阈值开始降低。',
 };
 
 export const dc_crit_threshold_reduction_percent_of_max: Feature<number> = {
-  name: 'Crit threshold: End degradation percent',
+  name: '濒死阈值：停止降低的退化百分比',
   component: FeatureNumberInput,
   description:
-    'Crit threshold will stop decreasing and reach its maximum reduction when degradation is this percent to max.',
+    '退化程度达到上限的此百分比时，濒死阈值停止降低，达到最大降幅。',
 };
 
 export const dc_max_crit_threshold_reduction: Feature<number> = {
-  name: 'Crit threshold: Maximum reduction',
+  name: '濒死阈值：最大降幅',
   component: FeatureNumberInput,
   description:
-    'When at the ending degradation percent, crit threshold will be reduced by this, \
-	    with lower percentages causing equally displaced reducions, such as having 50% degradation causing 50% of this to be applied.',
+    '达到终止退化百分比时，濒死阈值会降低此数值，\
+	    较低百分比则按比例降低，例如退化程度为 50% 时会应用此数值的 50%。',
 };
 
 export const dc_stamina_damage_min_percent_of_max: Feature<number> = {
-  name: 'Stamina damage: Start degradation percent',
+  name: '耐力伤害：开始增加的退化百分比',
   component: FeatureNumberInput,
   description:
-    'Minimum stamina damage will start increasing once degradation reaches this percent of maximum degradation.',
+    '退化程度达到上限的此百分比时，耐力伤害下限开始增加。',
 };
 
 export const dc_stamina_damage_percent_of_max: Feature<number> = {
-  name: 'Stamina damage: End degradation percent',
+  name: '耐力伤害：停止增加的退化百分比',
   component: FeatureNumberInput,
   description:
-    'Minimum stamina damage will reach its maximum possible value once degradation reaches this percent of maximum degradation.',
+    '退化程度达到上限的此百分比时，耐力伤害下限达到其最大值。',
 };
 
 export const dc_max_stamina_damage: Feature<number> = {
-  name: 'Stamina damage: Maximum',
+  name: '耐力伤害：最大值',
   component: FeatureNumberInput,
   description:
-    'When at the ending degradation percent, your stamina damage will always be at LEAST this, \
-        with lower percentages causing equally displaced minimums, such as having 50% degradation with 80 max stamina damage causing a minimum of 40 damage.',
+    '达到终止退化百分比时，你的耐力伤害始终至少为此数值，\
+        较低百分比则按比例设定下限，例如退化程度为 50%、最大耐力伤害为 80 时，下限为 40 点伤害。',
 };
 
 export const dc_permakill_at_max: Feature<boolean> = {
-  name: 'PK: Permaghost at maximum degradation',
+  name: '永久死亡：退化至上限时永久幽灵化',
   component: CheckboxInput,
   description:
-    'If true, you will be permanently ghosted if your degradation reaches its maximum possible value.',
+    '启用后，退化程度达到上限时，你将永久变成幽灵。',
 };
 
 export const dc_force_death_if_permakilled: Feature<boolean> = {
-  name: 'PK: Force death if permaghosted',
+  name: '永久死亡：永久幽灵化时强制死亡',
   component: CheckboxInput,
-  description: 'If true, you will be permanently killed on permaghost as well.',
+  description: '启用后，永久幽灵化也会使你永久死亡。',
 };

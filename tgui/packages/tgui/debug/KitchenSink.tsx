@@ -23,10 +23,10 @@ enum Tab {
 }
 
 const tabs = [
-  { name: 'Config', value: Tab.Config },
-  { name: 'Data', value: Tab.Data },
-  { name: 'Shared', value: Tab.Shared },
-  { name: 'Chunks', value: Tab.Chunks },
+  { name: '配置', value: Tab.Config },
+  { name: '数据', value: Tab.Data },
+  { name: '共享状态', value: Tab.Shared },
+  { name: '数据块', value: Tab.Chunks },
 ] as const;
 
 export function KitchenSink(props: Props) {
@@ -37,7 +37,7 @@ export function KitchenSink(props: Props) {
   const Layout = panel ? Pane : Window;
 
   return (
-    <Layout title="Kitchen Sink" width={600} height={500}>
+    <Layout title="界面调试面板" width={600} height={500}>
       <Layout.Content>
         <Stack fill>
           <Stack.Item grow>
@@ -57,7 +57,7 @@ export function KitchenSink(props: Props) {
                 selected={activeTab === Tab.Components}
                 onClick={() => setActiveTab(Tab.Components)}
               >
-                Components
+                组件
               </Tabs.Tab>
             </Tabs>
           </Stack.Item>
@@ -77,8 +77,8 @@ export function KitchenSink(props: Props) {
 function ComponentsPage() {
   return (
     <Section fill>
-      <NoticeBox info>All component stories have been moved.</NoticeBox>
-      View them here{' '}
+      <NoticeBox info>所有组件示例均已迁移。</NoticeBox>
+      请在此查看{' '}
       <a href="https://tgstation.github.io/tgui-core">
         https://tgstation.github.io/tgui-core
       </a>
@@ -100,7 +100,7 @@ function TreePage(props: TreeProps) {
     <Section
       fill
       scrollable
-      title={`${backend.config.interface.name ?? 'TGUI'} data`}
+      title={`${backend.config.interface.name ?? 'TGUI'} 数据`}
     >
       <div style={{ border: 'thin solid var(--color-base)' }}>
         <JSONTree data={inView} theme={tgui16} />

@@ -1,21 +1,21 @@
 {
 	"ballmer_good_msg": [
-		"Hear me out here. What if, and this is just a theory, we made R&D controllable from our PDAs?",
-		"Hey guys, what if we rolled out a bluespace wiring system so mice can't destroy the powergrid anymore?",
-		"I dunno about you guys, but IDs and PDAs being separate is clunky as fuck. Maybe we should merge them into a chip in our arms? That way they can't be stolen easily.",
-		"I'm thinking we should roll out a git repository for our research under the AGPLv3 license so that we can share it among the other stations freely.",
-		"Why the fuck aren't we just making every pair of shoes into galoshes? We have the technology."
+		"听我说，这只是个设想：如果能用PDA控制研发系统，会怎么样？",
+		"嘿，各位，要不要推行蓝空间布线系统，这样老鼠就没法再破坏电网了？",
+		"不知道你们怎么想，但ID卡和PDA分开真他妈麻烦。也许该把它们合并成植入手臂的芯片？这样就不容易被偷了。",
+		"我在想，应该为研究成果建立一个采用AGPLv3许可的Git仓库，这样就能与其他空间站自由共享。",
+		"我们他妈为什么不把所有鞋都做成防滑胶靴？技术明明已经有了。"
 	],
 
 	"ballmer_windows_me_msg": [
-		"Who keeps commiting to master?",
-		"Best idea ever: Disposal pipes instead of hallways.",
-		"Do you know who ate all the donuts?",
-		"Dude, radical idea: H.O.N.K mechs but with no bananium required.",
-		"So like, you know how we separate our codebase from the master copy that runs on our consumer boxes? What if we merged the two and undid the separation between codebase and server?",
-		"We should store bank records in a webscale datastore, like /dev/null.",
-		"What if we use a language that was written on a napkin and created over 1 weekend for all of our servers?",
-		"Yo man, what if, we like, uh, put a webserver that's automatically turned on with default admin passwords into every PDA?",
-		"You ever wonder if /dev/null supports sharding?"
+		"谁老往master分支直接提交？",
+		"史上最佳主意：用垃圾管道代替走廊。",
+		"你知道谁把甜甜圈全吃了吗？",
+		"兄弟，大胆设想：造不需要香蕉矿的H.O.N.K机甲。",
+		"你知道，我们的代码库和用户机器上运行的主副本是分开的吧？如果把两者合起来，取消代码库与服务器的隔离，会怎样？",
+		"银行记录应该放在互联网规模的数据存储里，比如/dev/null。",
+		"如果所有服务器都使用一种写在餐巾纸上、只花一个周末开发的语言，会怎样？",
+		"嘿，伙计，要不在每台PDA里放个自动开启、使用默认管理员密码的网页服务器？",
+		"你想过/dev/null支不支持分片吗？"
 	]
 }

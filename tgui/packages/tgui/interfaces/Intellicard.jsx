@@ -26,12 +26,12 @@ export const Intellicard = (props) => {
     <Window width={500} height={500}>
       <Window.Content scrollable>
         <Section
-          title={name || 'Empty Card'}
+          title={name || '空卡'}
           buttons={
             !!name && (
               <Button
                 icon="trash"
-                content={wiping ? 'Stop Wiping' : 'Wipe'}
+                content={wiping ? '停止擦除' : '擦除'}
                 disabled={isDead}
                 onClick={() => act('wipe')}
               />
@@ -40,10 +40,10 @@ export const Intellicard = (props) => {
         >
           {!!name && (
             <LabeledList>
-              <LabeledList.Item label="Status" color={offline ? 'bad' : 'good'}>
-                {offline ? 'Offline' : 'Operation'}
+              <LabeledList.Item label="状态" color={offline ? 'bad' : 'good'}>
+                {offline ? '离线' : '运行中'}
               </LabeledList.Item>
-              <LabeledList.Item label="Software Integrity">
+              <LabeledList.Item label="软件完整性">
                 <ProgressBar
                   value={health}
                   minValue={0}
@@ -55,21 +55,21 @@ export const Intellicard = (props) => {
                   }}
                 />
               </LabeledList.Item>
-              <LabeledList.Item label="Settings">
+              <LabeledList.Item label="设置">
                 <Button
                   icon="signal"
-                  content="Wireless Activity"
+                  content="无线通信"
                   selected={wireless}
                   onClick={() => act('wireless')}
                 />
                 <Button
                   icon="microphone"
-                  content="Subspace Radio"
+                  content="子空间无线电"
                   selected={radio}
                   onClick={() => act('radio')}
                 />
               </LabeledList.Item>
-              <LabeledList.Item label="Laws">
+              <LabeledList.Item label="法则">
                 {laws.map((law) => (
                   <BlockQuote key={law}>{law}</BlockQuote>
                 ))}

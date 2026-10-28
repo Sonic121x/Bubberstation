@@ -120,7 +120,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 
 			department_jobs[job_datum.title] = job_data
 
-	return list("departments_static" = departments)
+	return list("departments_static" = departments, "job_display_names" = chinese_job_display(null, TRUE))
 
 /datum/latejoin_menu/ui_state(mob/user)
 	return GLOB.new_player_state

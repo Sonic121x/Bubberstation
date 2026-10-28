@@ -7,15 +7,15 @@ export const POD_GREY = {
 
 export const TABPAGES = [
   {
-    title: 'View Pod',
+    title: '查看空投舱',
     component: TabPod,
   },
   {
-    title: 'View Bay',
+    title: '查看装载区',
     component: TabBay,
   },
   {
-    title: 'View Dropoff Location',
+    title: '查看卸货地点',
     component: TabDrop,
   },
 ] as const;
@@ -28,39 +28,39 @@ type Option = {
 
 export const REVERSE_OPTIONS: Option[] = [
   {
-    title: 'Mobs',
+    title: '生物', key: 'Mobs',
     icon: 'user',
   },
   {
-    title: 'Unanchored\nObjects',
+    title: '未固定\n物体',
     key: 'Unanchored',
     icon: 'cube',
   },
   {
-    title: 'Anchored\nObjects',
+    title: '已固定\n物体',
     key: 'Anchored',
     icon: 'anchor',
   },
   {
-    title: 'Under-Floor',
+    title: '地板下物体',
     key: 'Underfloor',
     icon: 'eye-slash',
   },
   {
-    title: 'Wall-Mounted',
+    title: '壁挂物体',
     key: 'Wallmounted',
     icon: 'link',
   },
   {
-    title: 'Floors',
+    title: '地板', key: 'Floors',
     icon: 'border-all',
   },
   {
-    title: 'Walls',
+    title: '墙壁', key: 'Walls',
     icon: 'square',
   },
   {
-    title: 'Mechs',
+    title: '机甲',
     key: 'Mecha',
     icon: 'truck',
   },
@@ -68,62 +68,62 @@ export const REVERSE_OPTIONS: Option[] = [
 
 export const DELAYS: PodDelay[] = [
   {
-    title: 'Pre',
-    tooltip: 'Time until pod gets to station',
+    title: '抵达前',
+    tooltip: '空投舱抵达空间站所需的时间',
   },
   {
-    title: 'Fall',
-    tooltip: 'Duration of pods\nfalling animation',
+    title: '下落',
+    tooltip: '空投舱下落\n动画的时长',
   },
   {
-    title: 'Open',
-    tooltip: 'Time it takes pod to open after landing',
+    title: '开启',
+    tooltip: '空投舱着陆后到开启所需的时间',
   },
   {
-    title: 'Exit',
-    tooltip: 'Time for pod to\nleave after opening',
+    title: '离开',
+    tooltip: '空投舱开启后\n到离开所需的时间',
   },
 ];
 
 export const REV_DELAYS: PodDelay[] = [
   {
-    title: 'Pre',
-    tooltip: 'Time until pod appears above dropoff point',
+    title: '抵达前',
+    tooltip: '空投舱出现在卸货地点上方所需的时间',
   },
   {
-    title: 'Fall',
-    tooltip: 'Duration of pods\nfalling animation',
+    title: '下落',
+    tooltip: '空投舱下落\n动画的时长',
   },
   {
-    title: 'Open',
-    tooltip: 'Time it takes pod to open after landing',
+    title: '开启',
+    tooltip: '空投舱着陆后到开启所需的时间',
   },
   {
-    title: 'Exit',
-    tooltip: 'Time for pod to\nleave after opening',
+    title: '离开',
+    tooltip: '空投舱开启后\n到离开所需的时间',
   },
 ];
 
 export const SOUNDS = [
   {
-    title: 'Fall',
+    title: '下落',
     act: 'fallingSound',
-    tooltip: 'Plays during fall, ends on land',
+    tooltip: '下落时播放，着陆时结束',
   },
   {
-    title: 'Land',
+    title: '着陆',
     act: 'landingSound',
-    tooltip: 'Plays after pod lands',
+    tooltip: '空投舱着陆后播放',
   },
   {
-    title: 'Open',
+    title: '开启',
     act: 'openingSound',
-    tooltip: 'Plays when pod opens',
+    tooltip: '空投舱开启时播放',
   },
   {
-    title: 'Exit',
+    title: '离开',
     act: 'leavingSound',
-    tooltip: 'Plays when pod leaves',
+    tooltip: '空投舱离开时播放',
   },
 ];
 
@@ -141,21 +141,21 @@ export const EFFECTS_LOAD: PodEffect[] = [
     choiceNumber: 0,
     icon: 'globe',
     selected: 'launchChoice',
-    title: 'Launch All Turfs',
+    title: '投送所有地格',
   },
   {
     act: 'launchOrdered',
     choiceNumber: 1,
     icon: 'sort-amount-down-alt',
     selected: 'launchChoice',
-    title: 'Launch Turf Ordered',
+    title: '依次投送地格',
   },
   {
     act: 'launchRandomTurf',
     choiceNumber: 2,
     icon: 'dice',
     selected: 'launchChoice',
-    title: 'Pick Random Turf',
+    title: '随机选择地格',
   },
   {
     divider: true,
@@ -165,14 +165,14 @@ export const EFFECTS_LOAD: PodEffect[] = [
     choiceNumber: 0,
     icon: 'expand',
     selected: 'launchRandomItem',
-    title: 'Launch Whole Turf',
+    title: '投送整个地格的内容',
   },
   {
     act: 'launchRandomItem',
     choiceNumber: 1,
     icon: 'dice',
     selected: 'launchRandomItem',
-    title: 'Pick Random Item',
+    title: '随机选择物品',
   },
   {
     divider: true,
@@ -181,7 +181,7 @@ export const EFFECTS_LOAD: PodEffect[] = [
     act: 'launchClone',
     icon: 'clone',
     soloSelected: 'launchClone',
-    title: 'Clone',
+    title: '复制',
   },
 ];
 
@@ -190,51 +190,51 @@ export const EFFECTS_NORMAL: PodEffect[] = [
     act: 'effectTarget',
     icon: 'user-check',
     soloSelected: 'effectTarget',
-    title: 'Specific Target',
+    title: '指定目标',
   },
   {
     act: 'effectBluespace',
     choiceNumber: 0,
     icon: 'hand-paper',
     selected: 'effectBluespace',
-    title: 'Pod Stays',
+    title: '空投舱留在原地',
   },
   {
     act: 'effectStealth',
     icon: 'user-ninja',
     soloSelected: 'effectStealth',
-    title: 'Stealth',
+    title: '隐蔽',
   },
   {
     act: 'effectQuiet',
     icon: 'volume-mute',
     soloSelected: 'effectQuiet',
-    title: 'Quiet',
+    title: '静音',
   },
   {
     act: 'effectMissile',
     icon: 'rocket',
     soloSelected: 'effectMissile',
-    title: 'Missile Mode',
+    title: '导弹模式',
   },
   {
     act: 'effectBurst',
     icon: 'certificate',
     soloSelected: 'effectBurst',
-    title: 'Burst Launch',
+    title: '连发',
   },
   {
     act: 'effectCircle',
     icon: 'ruler-combined',
     soloSelected: 'effectCircle',
-    title: 'Any Descent Angle',
+    title: '任意下降角度',
   },
   {
     act: 'effectAnnounce',
     choiceNumber: 0,
     icon: 'ghost',
     selected: 'effectAnnounce',
-    title: 'No Ghost Alert\n(If you dont want to\nentertain bored ghosts)',
+    title: '不通知幽灵\n（如果你不想\n给无聊的幽灵找乐子）',
   },
 ];
 
@@ -244,7 +244,7 @@ export const EFFECTS_HARM: PodEffect[] = [
     choiceNumber: 1,
     icon: 'certificate',
     selected: 'create_sparks',
-    title: 'Create sparks; May cause fires if there is plasma in the air',
+    title: '产生火花；空气中有等离子体时可能引发火灾',
   },
   {
     divider: true,
@@ -254,14 +254,14 @@ export const EFFECTS_HARM: PodEffect[] = [
     choiceNumber: 1,
     icon: 'bomb',
     selected: 'explosionChoice',
-    title: 'Explosion Custom',
+    title: '自定义爆炸',
   },
   {
     act: 'explosionBus',
     choiceNumber: 2,
     icon: 'bomb',
     selected: 'explosionChoice',
-    title: 'Adminbus Explosion\nWhat are they gonna do, ban you?',
+    title: '管理员特大爆炸\n他们还能怎么办，封禁你吗？',
   },
   {
     divider: true,
@@ -271,14 +271,14 @@ export const EFFECTS_HARM: PodEffect[] = [
     choiceNumber: 1,
     icon: 'skull',
     selected: 'damageChoice',
-    title: 'Custom Damage',
+    title: '自定义伤害',
   },
   {
     act: 'damageGib',
     choiceNumber: 2,
     icon: 'skull-crossbones',
     selected: 'damageChoice',
-    title: 'Gib',
+    title: '炸成碎块',
   },
   {
     divider: true,
@@ -288,25 +288,25 @@ export const EFFECTS_HARM: PodEffect[] = [
     details: true,
     icon: 'cloud-meatball',
     soloSelected: 'effectShrapnel',
-    title: 'Projectile Cloud',
+    title: '弹幕',
   },
   {
     act: 'effectStun',
     icon: 'sun',
     soloSelected: 'effectStun',
-    title: 'Stun',
+    title: '眩晕',
   },
   {
     act: 'effectLimb',
     icon: 'socks',
     soloSelected: 'effectLimb',
-    title: 'Delimb',
+    title: '断肢',
   },
   {
     act: 'effectOrgans',
     icon: 'book-dead',
     soloSelected: 'effectOrgans',
-    title: 'Yeet Organs',
+    title: '抛出器官',
   },
 ];
 
@@ -320,18 +320,18 @@ type Effect = {
 export const EFFECTS_ALL: Effect[] = [
   {
     list: EFFECTS_LOAD,
-    label: 'Load From',
-    alt_label: 'Load',
+    label: '装载来源',
+    alt_label: '装载',
     tooltipPosition: 'right',
   },
   {
     list: EFFECTS_NORMAL,
-    label: 'Normal Effects',
+    label: '普通效果',
     tooltipPosition: 'bottom',
   },
   {
     list: EFFECTS_HARM,
-    label: 'Harmful Effects',
+    label: '伤害效果',
     tooltipPosition: 'bottom',
   },
 ];

@@ -46,31 +46,31 @@ export function NowPlayingWidget(props) {
           }}
         >
           {
-            <Collapsible title={title || 'Unknown Track'} color="blue">
+            <Collapsible title={title || '未知曲目'} color="blue">
               <Section>
                 {link !== 'Song Link Hidden' && (
                   <Flex.Item grow={1} color="label">
-                    URL: <a href={link}>{link}</a>
+                    链接：<a href={link}>{link}</a>
                   </Flex.Item>
                 )}
                 <Flex.Item grow={1} color="label">
-                  Duration: {duration}
+                  时长：{duration}
                 </Flex.Item>
                 {artist !== 'Song Artist Hidden' &&
                   artist !== 'Unknown Artist' && (
                     <Flex.Item grow={1} color="label">
-                      Artist: {artist}
+                      艺术家：{artist}
                     </Flex.Item>
                   )}
                 {album !== 'Song Album Hidden' && album !== 'Unknown Album' && (
                   <Flex.Item grow={1} color="label">
-                    Album: {album}
+                    专辑：{album}
                   </Flex.Item>
                 )}
                 {upload_date !== 'Song Upload Date Hidden' &&
                   upload_date !== 'Unknown Date' && (
                     <Flex.Item grow={1} color="label">
-                      Uploaded: {date}
+                      上传日期：{upload_date === 'Unknown Data' ? '未知日期' : date}
                     </Flex.Item>
                   )}
               </Section>
@@ -79,12 +79,12 @@ export function NowPlayingWidget(props) {
         </Flex.Item>
       ) : (
         <Flex.Item grow={1} color="label">
-          Nothing to play.
+          暂无播放内容。
         </Flex.Item>
       )}
       {playing && (
         <Flex.Item mx={0.5} fontSize="0.9em">
-          <Button tooltip="Stop" icon="stop" onClick={() => player.stop()} />
+          <Button tooltip="停止" icon="stop" onClick={() => player.stop()} />
         </Flex.Item>
       )}
       <Flex.Item mx={0.5} fontSize="0.9em">

@@ -1,143 +1,143 @@
 {
 	"pickup": [
-		"Zǎo shàng hǎo.",
-		"Wǎn shàng hǎo.",
-		"What's the operation today, ah?",
-		"Let's get things started, heh-heh.",
-		"I'm feeling good about our chances today.",
-		"Hey, clean my damn lens later.",
-		"Little tighter around the handguard, @pick(operator)"
+		"早上好。",
+		"晚上好。",
+		"啊，今天有什么行动？",
+		"开干吧，嘿嘿。",
+		"我觉得今天胜算不错。",
+		"嘿，待会儿把我这该死的镜片擦干净。",
+		"护木再握紧一点，@pick(operator)。"
 	],
 
 	"putdown": [
-		"...you'll hold me again soon, right? Right?",
-		"Don't you DARE leave me here!",
-		"Tch! Whatever... You'll come crawling back to point me around later.",
-		"Dàjiā ān.",
-		"Good night.",
-		"Entering sleep mode now.",
-		"Entering recharge cycle.",
-		"Yeah, yeah... entering recharge cycle...",
-		"Qù nǐ mā... nevermind, entering sleep mode."
+		"……你很快就会再把我拿起来，对吧？对吧？",
+		"你敢把我丢在这里试试！",
+		"啧！随便……待会儿你还得爬回来求我帮你瞄准。",
+		"大家安。",
+		"晚安。",
+		"正在进入休眠模式。",
+		"开始充电循环。",
+		"好啦好啦……开始充电循环……",
+		"去你妈……算了，进入休眠模式。"
 	],
 
 	"worn": [
-		"So portable, right @pick(operator)?",
-		"Lightweight, sold with a few backup magslings, what's not to love?",
-		"I can't see anything infront of you, this sucks.",
-		"I can't see shit from this angle...",
-		"We're going somewhere with this, right?",
-		"Don't fall over on top of me, okay?",
-		"Pretty cushy ride back here...",
-		"I could get used to this.",
-		"I can't see sh- ah, wait, maybe it's not so bad back here."
+		"多方便携带啊，对吧，@pick(operator)？",
+		"轻巧，还附赠几条备用磁力枪带，谁能不爱？",
+		"你前面有什么我一点都看不见，真糟糕。",
+		"这个角度我屁都看不见……",
+		"我们这样总该是要去哪儿吧？",
+		"别摔倒压在我身上，好吗？",
+		"在你背后搭便车还挺舒服……",
+		"这待遇我能习惯。",
+		"我什么都看不——啊，等等，待在后面也许没那么糟。"
 	],
 
 	"lowcharge": [
-		"Wǒ tài nán le...",
-		"Mā de...",
-		"Tā mā de...",
-		"I'm really drowsy here, pull back, won't you?",
-		"I'm running on fumes here, boss...",
-		"Outta charge, gotta rest...",
-		"Sorry, on your own 'til I recharge.",
-		"Disappointing! Entering recharge cycle...",
-		"Wh- Already?! I was just getting started..."
+		"我太难了……",
+		"妈的……",
+		"他妈的……",
+		"我真困得不行了，先撤一下好吗？",
+		"老板，我快撑不住了……",
+		"没电了，得休息……",
+		"抱歉，充好电之前得靠你自己了。",
+		"真扫兴！开始充电循环……",
+		"什——这就没了？！我才刚开始呢……"
 	],
 
 	"fullcharge": [
-		"Whew, that's much better.",
-		"Hundred percent charged, let's get back to it.",
-		"I feel like a million creds!",
-		"Heh-heh, recharge cycle came in handy.",
-		"This. Is. Power!",
-		"As if there was any doubt..."
+		"呼，这下好多了。",
+		"电量百分之百，继续干吧。",
+		"我感觉好得值一百万信用点！",
+		"嘿嘿，充电果然管用。",
+		"这！就是！力量！",
+		"这还用怀疑吗……"
 	],
 
 	"combatmode": [
-		"I've been waaaiiitiiiing!",
-		"I was wondering how long you were planning on depriving me, @pick(operator).",
-		"Come on, come at me!",
-		"It's your lucky day!",
-		"Now the fun begins!",
-		"Countin' on ya!"
+		"我等好——久——了！",
+		"@pick(operator)，我还以为你要让我憋多久呢。",
+		"来啊，冲我来！",
+		"今天算你走运！",
+		"好戏现在才开始！",
+		"靠你啦！"
 	],
 
 	"emp": [
-		"Tāmāde! Tāmāde!",
-		"Qì sǐ wǒle!",
-		"ELECTROM-",
-		"ELECTROMAGNETIC PULSE DETECTED, DISCHARGING-",
-		"ELECTROMAGNETIC PULSE, IT'S DISCHARGING MY BATTERY!",
-		"THEY HAVE AN EM-",
-		"GO KILL THEM!",
-		"KILL THEM! KILL THEM! PUT THE SIGHTS ON THEM AND KILL THEM!",
-		"KILL THEM, KILL THEM!",
-		"I DON'T NEED CHARGE FOR BLADE MODE, PUT IT IN THEM AND TWIST!",
-		"Qù nǐ mā de ba!"
+		"他妈的！他妈的！",
+		"气死我了！",
+		"电磁——",
+		"检测到电磁脉冲，正在放电——",
+		"电磁脉冲！它在耗空我的电池！",
+		"他们有电磁——",
+		"去干掉他们！",
+		"干掉他们！干掉他们！瞄准他们，干掉他们！",
+		"干掉他们，干掉他们！",
+		"刀刃模式不用电，把我捅进去再拧一下！",
+		"去你妈的吧！"
 	],
 
 	"incinerate": [
-		"Superheating lens, time to cauterize!",
-		"Charging lethal energy capacitators, let's toast em!",
-		"Lethal capacitators charging. Don't stop 'till I'm empty!",
-		"Lethal! Bring it on, bastards!",
-		"Heh-heh, can you feel the heat?",
-		"Gunslinger!"
+		"镜片超热化，该烧烙了！",
+		"致命能量电容器充能中，把他们烤焦吧！",
+		"致命电容器充能中。打到我没电再停！",
+		"致命模式！来吧，混蛋们！",
+		"嘿嘿，感受到热浪了吗？",
+		"枪神！"
 	],
 
 	"blade": [
-		"Extending blade; up close and personal? I like that.",
-		"Extending blade; wipe me off after we're finished.",
-		"Extending blade, stab stab stab!",
-		"Swing the sword, swing the sword!",
-		"CQC mode initiated, stick me in there deep!",
-		"Eviscerate!",
-		"Show me your motivation...",
-		"I'll cut them in two!",
-		"Clean cuts!",
-		"Their nightmare begins here!",
-		"Now I'm motivated!",
-		"Swordmaster!",
-		"The sword is yours, @pick(operator).",
-		"Sword core online."
+		"刀刃伸出；要贴身搏杀？我喜欢。",
+		"刀刃伸出；完事后记得把我擦干净。",
+		"刀刃伸出，刺刺刺！",
+		"挥剑，挥剑！",
+		"近身格斗模式已启动，把我捅深一点！",
+		"开膛破肚！",
+		"让我见识你的斗志……",
+		"我会把他们一刀两断！",
+		"干净利落！",
+		"他们的噩梦就此开始！",
+		"这下我有干劲了！",
+		"剑圣！",
+		"剑交给你了，@pick(operator)。",
+		"剑核心已上线。"
 	],
 
 	"disable": [
-		"Trickster!",
-		"Non-lethal mode initiated. Let's make it stylish.",
-		"Non-lethal mode initiated. It's showtime!",
-		"Non-lethal mode initiated. You like trick shootin'?",
-		"Non-lethal mode initiated. Who's ready for a show?",
-		"This is gonna be cool, but can we up the voltage please?",
-		"I'm ready, but... man...",
-		"We aren't really gonna get any kills like this."
+		"骗术师！",
+		"非致命模式已启动。打得华丽点。",
+		"非致命模式已启动。表演时间到！",
+		"非致命模式已启动。你喜欢花式射击吗？",
+		"非致命模式已启动。谁准备好看表演了？",
+		"这一定很酷，但能把电压再调高点吗？",
+		"我准备好了，但是……老兄……",
+		"这样可干不掉几个人。"
 	],
 
 	"flare": [
-		"Ignite the flames! Now!",
-		"Incendiary, incendiary!",
-		"Fabricating 'Balrog' energy flares; this'll be sick.",
-		"Fabricating 'Balrog' energy flares; can you feel the fire?",
-		"Firestarter, twisted firestarter!",
-		"Apocalyptic meltdown!",
-		"Incendiary weapons are banned in numerous sectors; makes it kind of risqué..",
-		"Dragon breath!"
+		"点燃烈焰！就是现在！",
+		"燃烧弹，燃烧弹！",
+		"正在制造“炎魔”能量火弹，这一定很带劲。",
+		"正在制造“炎魔”能量火弹，你感受到烈火了吗？",
+		"纵火者，疯狂的纵火者！",
+		"末日熔毁！",
+		"燃烧武器在许多星区遭到禁用，这可有点刺激……",
+		"龙息！"
 	],
 
 	"shotgun": [
-		"Focusing lens, one shot, one kill!",
-		"Focusing lens, let's go all the way through.",
-		"Focusing lens, aim for the head!",
-		"Let me show you what a real diffusion lens looks like...",
-		"Would it distract you if I told you about a shotgun's 'choke?'",
-		"I'll be your boomstick.",
-		"You should keep me handy for close encounters.",
-		"Is there something more iconic and awesome than a double-barrel? Yeah, me."
+		"镜片聚焦，一枪毙命！",
+		"镜片聚焦，把他们彻底打穿。",
+		"镜片聚焦，瞄准脑袋！",
+		"让我给你看看什么叫真正的扩散镜片……",
+		"要是跟你聊聊霰弹枪的“喉缩”，你会不会分心？",
+		"我就是你的轰天炮。",
+		"近距离遇敌时，最好让我随时在手边。",
+		"还有什么比双管霰弹枪更经典、更酷？有啊，我。"
 	],
 
 	"operator": [
-		"Operator",
-		"Handler"
+		"操作员",
+		"持枪者"
 	]
 }

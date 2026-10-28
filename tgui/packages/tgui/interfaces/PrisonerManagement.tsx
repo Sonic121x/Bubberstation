@@ -57,7 +57,7 @@ const ImplantDisplay = (props: { implant: ImplantInfo }) => {
             </LabeledList.Item>
           ))}
           {buttons.length !== 0 && (
-            <LabeledList.Item label={'Options'}>
+            <LabeledList.Item label={'选项'}>
               {buttons.map((button) => (
                 <Button
                   key={button.action_key}
@@ -136,7 +136,7 @@ const AllImplantDisplay = (props: { implants: ImplantInfo[] }) => {
             <ImplantDisplay key={implant.ref} implant={implant} />
           ))
         ) : (
-          <NoticeBox>No implants detected.</NoticeBox>
+          <NoticeBox>未检测到植入物。</NoticeBox>
         )}
       </Stack.Item>
     </Stack>
@@ -153,11 +153,11 @@ const IdShowcase = (props: { id: IDInfo | null }) => {
         <LabeledList>
           {id ? (
             <>
-              <LabeledList.Item label="ID">
+              <LabeledList.Item label="身份卡">
                 <Button onClick={() => act('eject_id')} icon="eject" mr={1} />
                 {id.name}
               </LabeledList.Item>
-              <LabeledList.Item label="Points">
+              <LabeledList.Item label="积分">
                 <Button
                   onClick={() => act('reset_id')}
                   icon="times"
@@ -166,7 +166,7 @@ const IdShowcase = (props: { id: IDInfo | null }) => {
                 />
                 {id.points}
               </LabeledList.Item>
-              <LabeledList.Item label="Goal">
+              <LabeledList.Item label="目标">
                 <Button
                   onClick={() => act('set_id_goal')}
                   icon="check"
@@ -176,8 +176,8 @@ const IdShowcase = (props: { id: IDInfo | null }) => {
               </LabeledList.Item>
             </>
           ) : (
-            <LabeledList.Item label="ID">
-              <Button onClick={() => act('insert_id')}>No ID Inserted</Button>
+            <LabeledList.Item label="身份卡">
+              <Button onClick={() => act('insert_id')}>未插入身份卡</Button>
             </LabeledList.Item>
           )}
         </LabeledList>
@@ -185,8 +185,8 @@ const IdShowcase = (props: { id: IDInfo | null }) => {
       {!!id && (
         <Stack.Item>
           <NoticeBox>
-            Space Law recommends quotas of 100 points per minute they would
-            normally serve in the brig.
+            太空法建议将原本每分钟的
+            监禁刑期折算为100积分的劳动配额。
           </NoticeBox>
         </Stack.Item>
       )}
@@ -200,18 +200,18 @@ const ManagementConsole = () => {
   return (
     <Stack fill vertical>
       <Stack.Item>
-        <Section title="ID Management">
+        <Section title="身份卡管理">
           <IdShowcase id={data.inserted_id} />
         </Section>
       </Stack.Item>
       <Stack.Item grow>
-        <Section title="Security Implants" scrollable fill>
+        <Section title="安保植入物" scrollable fill>
           <AllImplantDisplay implants={data.implants} />
         </Section>
       </Stack.Item>
       <Stack.Item>
         <NoticeBox align="right" info>
-          Secure Your Workspace.
+          保护您的工作区。
           <Button
             align="right"
             icon="lock"
@@ -219,7 +219,7 @@ const ManagementConsole = () => {
             ml={2}
             onClick={() => act('logout')}
           >
-            Log Out
+            登出
           </Button>
         </NoticeBox>
       </Stack.Item>
@@ -241,14 +241,14 @@ const LogIn = () => {
         </Stack.Item>
         <Stack.Item align="center" grow>
           <Box color="red" fontSize="18px" bold mt={5}>
-            Nanotrasen SecurityHUB
+            纳米传讯安保中心
           </Box>
         </Stack.Item>
         <Stack.Item>
           <NoticeBox align="right">
-            You are not logged in.
+            您尚未登录。
             <Button ml={2} icon="lock-open" onClick={() => act('login')}>
-              Login
+              登录
             </Button>
           </NoticeBox>
         </Stack.Item>
@@ -261,7 +261,7 @@ export const PrisonerManagement = () => {
   const { data } = useBackend<Data>();
   const { authorized } = data;
   return (
-    <Window width={465} height={565} title="Prisoner Management">
+    <Window width={465} height={565} title="囚犯管理">
       <Window.Content>
         {authorized ? <ManagementConsole /> : <LogIn />}
       </Window.Content>

@@ -83,7 +83,7 @@ export const NtosCameraContent = (props) => {
           </Stack.Item>
           <Stack.Item>
             <Box bold textColor="label">
-              Name:
+              名称：
             </Box>
             <Input
               fluid
@@ -99,7 +99,7 @@ export const NtosCameraContent = (props) => {
           </Stack.Item>
           <Stack.Item>
             <Box bold textColor="label">
-              Description:
+              描述：
             </Box>
             <Input
               fluid
@@ -115,7 +115,7 @@ export const NtosCameraContent = (props) => {
           </Stack.Item>
           <Stack.Item>
             <Box bold textColor="label">
-              Caption:
+              图片说明：
             </Box>
             <TextArea
               height="6rem"
@@ -131,33 +131,33 @@ export const NtosCameraContent = (props) => {
             />
           </Stack.Item>
           <Stack.Item align="center">
-            <Button onClick={() => act('savePhoto')}>Save Photo</Button>
+            <Button onClick={() => act('savePhoto')}>保存照片</Button>
           </Stack.Item>
           <Stack.Item align="center">
             <Button
               disabled={storedPaper! < printCost}
               tooltip={
                 !storedPaper &&
-                `You need at least ${printCost} sheet${printCost === 1 ? '' : 's'} of paper to print a photo.`
+                `打印一张照片至少需要 ${printCost} 张纸。`
               }
               onClick={() => act('printPhoto')}
             >
-              Print Photo
+              打印照片
             </Button>
           </Stack.Item>
         </>
       ) : (
         <Stack.Item>
           <NoticeBox>
-            Phototrasen Images - Tap (right-click) with your tablet to snap a
-            photo!
+            纳米传讯影像——手持平板电脑，
+            轻点目标（右键）即可拍照！
           </NoticeBox>
         </Stack.Item>
       )}
       <Stack.Item align="center">{size}</Stack.Item>
       <Stack.Item align="center">
         <Box bold inline textColor="label" mr="0.5rem">
-          Half Width Aperture:
+          取景半宽：
         </Box>
         <Slider
           inline
@@ -174,7 +174,7 @@ export const NtosCameraContent = (props) => {
       </Stack.Item>
       <Stack.Item align="center">
         <Box bold inline textColor="label" mr="0.5rem">
-          Half Height Aperture:
+          取景半高：
         </Box>
         <Slider
           inline

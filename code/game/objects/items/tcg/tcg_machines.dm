@@ -180,9 +180,9 @@ GLOBAL_LIST_EMPTY(tcgcard_machine_radial_choices)
 	update_appearance(UPDATE_OVERLAYS)
 
 /obj/structure/trading_card_summon/get_name_chaser(mob/user, list/name_chaser = list())
-	name_chaser += "阵营：[template.faction]"
+	name_chaser += "阵营：[chinese_tcg_type_display(template.faction)]"
 	name_chaser += "费用：[template.summoncost]"
-	name_chaser += "类型：[template.cardtype] - [template.cardsubtype]"
+	name_chaser += "类型：[chinese_tcg_type_display(template.cardtype)] - [chinese_tcg_type_display(template.cardsubtype)]"
 	name_chaser += "力量/韧度：[summon_power]/[summon_resolve]"
 	if(template.rules) //This can sometimes be empty
 		name_chaser += "规则：[template.rules]"

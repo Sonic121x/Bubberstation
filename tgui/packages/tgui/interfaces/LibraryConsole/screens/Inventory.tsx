@@ -11,7 +11,7 @@ export function Inventory(props) {
 
   if (!has_inventory) {
     return (
-      <NoticeBox>No Book Records detected. Update your inventory!</NoticeBox>
+      <NoticeBox>未检测到书籍记录。请更新馆藏清单！</NoticeBox>
     );
   }
 
@@ -19,7 +19,7 @@ export function Inventory(props) {
     <Stack vertical justify="space-between" height="100%">
       <Stack.Item grow>
         <ScrollableSection
-          header="Library Inventory"
+          header="图书馆馆藏"
           contents={<InventoryDetails />}
         />
       </Stack.Item>
@@ -54,9 +54,9 @@ function InventoryDetails(props) {
   return (
     <Table>
       <Table.Row header className="candystripe">
-        <Table.Cell>Title</Table.Cell>
-        <Table.Cell>Author</Table.Cell>
-        <Table.Cell textAlign="center">Remove</Table.Cell>
+        <Table.Cell>书名</Table.Cell>
+        <Table.Cell>作者</Table.Cell>
+        <Table.Cell textAlign="center">移除</Table.Cell>
       </Table.Row>
       {sorted.map((book) => (
         <Table.Row key={book.key} className="candystripe">
@@ -73,7 +73,7 @@ function InventoryDetails(props) {
               }
               icon="times"
             >
-              Clear Record
+              清除记录
             </Button>
           </Table.Cell>
         </Table.Row>

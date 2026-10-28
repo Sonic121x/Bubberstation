@@ -19,7 +19,7 @@ export function PointLocked(props) {
           />
         </Stack.Item>
         <Stack.Item fontSize="18px" color="purple">
-          You do not have enough points to use this page.
+          你的点数不足，无法使用此页。
         </Stack.Item>
       </Stack>
     </Dimmer>

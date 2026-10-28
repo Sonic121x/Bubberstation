@@ -10,23 +10,23 @@ import type { AlarmScreen } from './types';
 
 export const AIR_ALARM_ROUTES = {
   home: {
-    title: 'Air Controls',
+    title: '空气控制',
     component: AirAlarmControlHome,
   },
   vents: {
-    title: 'Vent Controls',
+    title: '通风口控制',
     component: AirAlarmControlVents,
   },
   scrubbers: {
-    title: 'Scrubber Controls',
+    title: '洗气器控制',
     component: AirAlarmControlScrubbers,
   },
   modes: {
-    title: 'Operating Mode',
+    title: '运行模式',
     component: AirAlarmControlModes,
   },
   thresholds: {
-    title: 'Alarm Thresholds',
+    title: '报警阈值',
     component: AirAlarmControlThresholds,
   },
 } as const;
@@ -36,7 +36,7 @@ export function AirAlarmControl(props) {
 
   const route = AIR_ALARM_ROUTES[screen] || AIR_ALARM_ROUTES.home;
   const Component = route.component;
-  const isHome = route.title === 'Air Controls';
+  const isHome = route === AIR_ALARM_ROUTES.home;
 
   return (
     <Section
@@ -49,7 +49,7 @@ export function AirAlarmControl(props) {
           onClick={() => setScreen('home')}
           disabled={isHome}
         >
-          Back
+          返回
         </Button>
       }
     >

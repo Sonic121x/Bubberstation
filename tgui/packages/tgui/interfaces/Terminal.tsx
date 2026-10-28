@@ -14,7 +14,7 @@ export const Terminal = (props) => {
   const { messages = [], uppertext } = data;
 
   return (
-    <Window theme={data.tguitheme} title="Terminal" width={480} height={520}>
+    <Window theme={data.tguitheme} title="终端" width={480} height={520}>
       <Window.Content scrollable>
         <NoticeBox textAlign="left">{uppertext}</NoticeBox>
         {messages.map((message) => {

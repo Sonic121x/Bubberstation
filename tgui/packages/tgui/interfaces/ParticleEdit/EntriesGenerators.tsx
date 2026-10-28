@@ -32,12 +32,12 @@ export const FloatGenerator = (props: FloatGeneratorProps) => {
           <Button
             icon={'question'}
             onClick={() => setDesc(var_name)}
-            tooltip={'View details'}
+            tooltip={'查看详情'}
           />
         </Stack.Item>
         <Stack.Item>
           <Button
-            content="Generator"
+            content="生成器"
             selected={Array.isArray(float)}
             onClick={() =>
               act('edit', {
@@ -86,12 +86,12 @@ export const FloatGeneratorColor = (props: FloatGeneratorColorProps) => {
           <Button
             icon={'question'}
             onClick={() => setDesc(var_name)}
-            tooltip={'View details'}
+            tooltip={'查看详情'}
           />
         </Stack.Item>
         <Stack.Item>
           <Button
-            content="Generator"
+            content="生成器"
             selected={Array.isArray(float)}
             onClick={() =>
               act('edit', {
@@ -142,12 +142,12 @@ export const EntryGeneratorNumbersList = (
           <Button
             icon={'question'}
             onClick={() => setDesc(var_name)}
-            tooltip={'View details'}
+            tooltip={'查看详情'}
           />
         </Stack.Item>
         <Stack.Item>
           <Button
-            content="Generator"
+            content="生成器"
             selected={isStringArray(input)}
             onClick={() =>
               act('edit', {
@@ -163,7 +163,7 @@ export const EntryGeneratorNumbersList = (
         <Stack.Item>
           <Button
             icon="sync"
-            tooltip={'Toggle Array'}
+            tooltip={'切换数组模式'}
             selected={Array.isArray(input)}
             onClick={() =>
               act('edit', {

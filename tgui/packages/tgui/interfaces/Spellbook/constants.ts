@@ -8,7 +8,7 @@ export const TAB2NAME: TabType[] = [
   {
     title: 'Enscribed Name',
     blurb:
-      "This book answers only to its owner, and of course, must have one. The permanence of the pact between a spellbook and its owner ensures such a powerful artifact cannot fall into enemy hands, or be used in ways that break the Federation's rules such as bartering spells.",
+      '本书只听命于它的主人——当然，它必须有一位主人。法术书与主人之间的契约永久有效，确保这件强大的神器不会落入敌手，也不会被用于交换法术等违反巫师联邦规定的行为。',
     component: EnscribedName,
   },
   {
@@ -17,56 +17,56 @@ export const TAB2NAME: TabType[] = [
   },
   {
     title: 'Offensive',
-    blurb: 'Spells and items geared towards debilitating and destroying.',
+    blurb: '用于削弱与毁灭的法术和物品。',
     scrollable: true,
   },
   {
     title: 'Defensive',
     blurb:
-      "Spells and items geared towards improving your survivability or reducing foes' ability to attack.",
+      '用于提高生存能力或削弱敌人攻击能力的法术和物品。',
     scrollable: true,
   },
   {
     title: 'Mobility',
     blurb:
-      'Spells and items geared towards improving your ability to move. It is a good idea to take at least one.',
+      '用于提高移动能力的法术和物品。建议至少选取一种。',
     scrollable: true,
   },
   {
     title: 'Assistance',
     blurb:
-      'Spells and items geared towards bringing in outside forces to aid you or improving upon your other items and abilities.',
+      '用于召来外援，或强化其他物品与能力的法术和物品。',
     scrollable: true,
   },
   {
     title: 'Challenges',
     blurb:
-      'The Wizard Federation is looking for shows of power. Arming the station against you will increase the danger, but will grant you more charges for your spellbook.',
+      '巫师联邦期待你展现力量。武装空间站来对抗自己会增加危险，但也能为法术书增加充能。',
     locked: true,
     scrollable: true,
   },
   {
     title: 'Rituals',
     blurb:
-      'These powerful spells change the very fabric of reality. Not always in your favour.',
+      '这些强大的法术能够改变现实的根基，但结果未必对你有利。',
     scrollable: true,
   },
   {
     title: 'Loadouts',
     blurb:
-      'The Wizard Federation accepts that sometimes, choosing is hard. You can choose from some approved wizard loadouts here.',
+      '巫师联邦承认，有时做出选择并不容易。你可以在此选用经过认可的巫师配装。',
     component: Loadouts,
   },
   {
     title: 'Randomize',
     blurb:
-      "If you didn't like the loadouts offered, you can embrace chaos. Not recommended for newer wizards.",
+      '如果你不喜欢现有的配装，也可以拥抱混沌。不建议新手巫师使用。',
     component: Randomize,
   },
   {
     title: 'Perks',
     blurb:
-      'Perks are useful (and not so useful) improvements to the soul and body collected from all corners of the universe.',
+      '特长是从宇宙各处收集的身心强化效果，有的实用，有的则不那么实用。',
     scrollable: true,
   },
   {

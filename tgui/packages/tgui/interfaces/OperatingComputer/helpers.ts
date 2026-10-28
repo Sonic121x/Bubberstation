@@ -8,13 +8,13 @@ export function extractSurgeryName(
   // operation names may be "make incision", "lobotomy", or "disarticulation (amputation)"
   const { name, tool_rec } = operation;
   if (!name) {
-    return { name: 'Error Surgery', tool: 'Error' };
+    return { name: '手术错误', tool: '错误' };
   }
-  const parenthesis = name.indexOf('(');
+  const parenthesis = name.search(/[（(]/);
   if (parenthesis === -1) {
     return { name: capitalizeFirst(name), tool: tool_rec };
   }
-  const in_parenthesis = name.slice(parenthesis + 1, name.indexOf(')')).trim();
+  const in_parenthesis = name.slice(parenthesis + 1, name.search(/[）)]/)).trim();
   if (!catalog) {
     return {
       name: capitalizeFirst(in_parenthesis),
@@ -48,29 +48,29 @@ export function extractRequirementMap(
 
   const optional_title = () => {
     if (optional_requirements.length === 1) {
-      if (hard_requirements.length === 0) return 'The following is optional:';
-      return 'Additionally, the following is optional:';
+      if (hard_requirements.length === 0) return '以下条件为可选：';
+      return '另外，以下条件为可选：';
     }
     if (hard_requirements.length === 0)
-      return 'All of the following are optional:';
-    return 'Additionally, all of the following are optional:';
+      return '以下条件均为可选：';
+    return '另外，以下条件均为可选：';
   };
 
   const blocked_title = () => {
     if (blocked_requirements.length === 1) {
       if (hard_requirements.length === 0)
-        return 'The following would block the procedure:';
-      return 'However, the following would block the procedure:';
+        return '以下条件会阻止操作：';
+      return '但以下条件会阻止操作：';
     }
     if (hard_requirements.length === 0)
-      return 'Any of the following would block the procedure:';
-    return 'However, any of the following would block the procedure:';
+      return '以下任一条件都会阻止操作：';
+    return '但以下任一条件都会阻止操作：';
   };
 
   return {
-    [`${hard_requirements.length === 1 ? 'The' : 'All of the'} following are required:`]:
+    '必须满足以下全部条件：':
       hard_requirements,
-    'Additionally, one of the following is required:': soft_requirements,
+    '另外，还必须满足以下任一条件：': soft_requirements,
     [optional_title()]: optional_requirements,
     [blocked_title()]: blocked_requirements,
   };

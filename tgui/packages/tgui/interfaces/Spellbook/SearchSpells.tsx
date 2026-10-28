@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
 import { Box, NoticeBox, Stack } from 'tgui-core/components';
 import { useBackend } from '../../backend';
-import { spellSearchAtom } from '.';
+import { spellSearchAtom } from '.'; import { spellbookDisplay } from '../../localization/spellbookDisplay';
 import { SpellTabDisplay } from './SpellTabDisplay';
 import type { SpellbookData, SpellEntry } from './types';
 
@@ -14,7 +14,7 @@ export function SearchSpells(props) {
 
   let filteredEntries: SpellEntry[] = [];
 
-  if (searchStatement === 'robeless') {
+  if (searchStatement === 'robeless' || searchStatement === '免法袍') {
     // Lets you just search for robeless spells, you're welcome mindswap-bros
     filteredEntries = entries.filter((entry) => !entry.requires_wizard_garb);
   } else {
@@ -29,7 +29,7 @@ export function SearchSpells(props) {
           .includes(searchStatement) ||
         // Also opting to include category
         // so you can search "rituals" to see them all at once
-        entry.cat
+        spellbookDisplay(entry.cat)
           .toLowerCase()
           .includes(searchStatement),
     );
@@ -39,12 +39,12 @@ export function SearchSpells(props) {
     return (
       <Stack width="100%" vertical>
         <Stack.Item>
-          <NoticeBox>No spells found!</NoticeBox>
+          <NoticeBox>未找到法术！</NoticeBox>
         </Stack.Item>
         <Stack.Item>
           <Box italic align="center" color="lightgrey">
-            Search tip: Searching "Robeless" will only show you spells that
-            don't require wizard garb!
+            搜索提示：搜索“免法袍”或“Robeless”
+            将只显示无需巫师服饰的法术！
           </Box>
         </Stack.Item>
       </Stack>

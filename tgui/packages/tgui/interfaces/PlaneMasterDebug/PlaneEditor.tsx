@@ -29,67 +29,67 @@ export function PlaneEditor() {
       top="0px"
       right="0px"
       backgroundColor="#121212DA"
-      title={`Plane Master: ${currentPlane.name}`}
+      title={`平面控制器：${currentPlane.name}`}
       buttons={
         <Button
           icon="times"
-          tooltip="Close"
+          tooltip="关闭"
           onClick={() => setPlaneOpen(false)}
         />
       }
     >
-      <Section title="Information">
+      <Section title="信息">
         <Box dangerouslySetInnerHTML={doc_html} />
         <br />
         <LabeledList>
           <LabeledList.Divider />
           <Tooltip
-            content="Any atoms in the world with the same plane will be drawn to this plane master"
+            content="世界中所有平面值相同的原子都会绘制到此平面控制器上"
             position="right"
           >
-            <LabeledList.Item label="Plane">
+            <LabeledList.Item label="平面">
               {currentPlane.plane}
             </LabeledList.Item>
           </Tooltip>
           <Tooltip
-            content="You can think of this as the 'layer' this plane is on. We make duplicates of each plane for each layer, so we can make multiz work"
+            content="可以将其理解为此平面所在的楼层。我们为每一层复制各个平面，以支持多层地图"
             position="right"
           >
-            <LabeledList.Item label="Offset">
+            <LabeledList.Item label="偏移">
               {currentPlane.offset}
             </LabeledList.Item>
           </Tooltip>
           <Tooltip
-            content="Render targets can be used to either reference or draw existing drawn items on the map. For plane masters, we use these for either relays (the blue lines), or filters (the pink ones)"
+            content="渲染目标可用于引用或绘制地图上已渲染的对象。对于平面控制器，我们将其用于中继（蓝线）或滤镜（粉线）"
             position="right"
           >
-            <LabeledList.Item label="Render Target">
+            <LabeledList.Item label="渲染目标">
               {currentPlane.render_target
                 ? `"${currentPlane.render_target}"`
-                : 'None'}
+                : '无'}
             </LabeledList.Item>
           </Tooltip>
           <Tooltip
-            content="Defines how this plane draws to the things it is relay'd onto. Check the byond ref for more details"
+            content="定义此平面向中继目标绘制时采用的方式。详情请参阅 BYOND 参考文档"
             position="right"
           >
-            <LabeledList.Item label="Blend Mode">
+            <LabeledList.Item label="混合模式">
               {currentPlane.blend_mode}
             </LabeledList.Item>
           </Tooltip>
           <Tooltip
-            content="If this is 1, the plane master is being forced to hide from its mob. This is most often done as an optimization tactic, since some planes only rarely need to be used"
+            content="值为 1 时，此平面控制器会对其所属生物强制隐藏。某些平面很少使用，因此通常借此优化性能"
             position="right"
           >
-            <LabeledList.Item label="Forced Hidden">
-              {currentPlane.force_hidden ? 'True' : 'False'}
+            <LabeledList.Item label="强制隐藏">
+              {currentPlane.force_hidden ? '是' : '否'}
             </LabeledList.Item>
           </Tooltip>
         </LabeledList>
         <br />
-        <Section title="Visuals">
+        <Section title="视觉效果">
           <Button
-            tooltip="Open this plane's VV menu"
+            tooltip="打开此平面的变量查看菜单"
             mr="5px"
             mb="5px"
             onClick={() =>
@@ -98,10 +98,10 @@ export function PlaneEditor() {
               })
             }
           >
-            View Variables
+            查看变量
           </Button>
           <Button
-            tooltip="Apply and edit effects over the whole plane"
+            tooltip="应用并编辑整个平面的效果"
             mr="5px"
             mb="5px"
             onClick={() =>
@@ -110,10 +110,10 @@ export function PlaneEditor() {
               })
             }
           >
-            Edit Filters
+            编辑滤镜
           </Button>
           <Button
-            tooltip="Modify how different color components map to the final plane"
+            tooltip="修改不同颜色分量映射到最终平面的方式"
             mr="5px"
             mb="5px"
             onClick={() =>
@@ -122,7 +122,7 @@ export function PlaneEditor() {
               })
             }
           >
-            Edit Color Matrix
+            编辑颜色矩阵
           </Button>
           <Slider
             value={currentPlane.alpha}
@@ -134,7 +134,7 @@ export function PlaneEditor() {
               act('set_alpha', { edit: currentPlane.plane, alpha: value })
             }
           >
-            Alpha ({currentPlane.alpha})
+            不透明度（{currentPlane.alpha}）
           </Slider>
         </Section>
       </Section>

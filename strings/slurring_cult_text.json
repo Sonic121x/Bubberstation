@@ -10,8 +10,8 @@
 				"s": " SIE "
 			},
 			"uncommon": {
-				" ": " no hope... ",
-				"H": " IT COMES... "
+				" ": " 毫无希望…… ",
+				"H": " 祂来了…… "
 			}
 		},
 		"string_replacements": ["'", "fth", "nglu", "glor"],

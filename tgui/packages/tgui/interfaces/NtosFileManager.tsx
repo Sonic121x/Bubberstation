@@ -83,7 +83,7 @@ const PrintDialog = (props: PrintDialogProps) => {
   return (
     <Dimmer>
       <Section
-        title="Print"
+        title="打印"
         backgroundColor="primary"
         maxHeight="50%"
         maxWidth="90%"
@@ -91,7 +91,7 @@ const PrintDialog = (props: PrintDialogProps) => {
       >
         <Stack fill justify="space-between">
           <Stack.Item maxWidth="70%">
-            <Section title="Formats">
+            <Section title="格式">
               <Stack vertical overflowY="scroll">
                 {printTypes.map((type, i) => {
                   const { displayText } = type;
@@ -156,7 +156,7 @@ const PrintDialog = (props: PrintDialogProps) => {
               </Stack.Item>
               <Stack.Item>
                 <LabeledList>
-                  <LabeledList.Item label="X Offset">
+                  <LabeledList.Item label="X 偏移">
                     <Slider
                       tickWhileDragging
                       minValue={image_width > width ? -maxOffsetX : minOffsetX}
@@ -167,7 +167,7 @@ const PrintDialog = (props: PrintDialogProps) => {
                       }
                     />
                   </LabeledList.Item>
-                  <LabeledList.Item label="Y Offset">
+                  <LabeledList.Item label="Y 偏移">
                     <Slider
                       tickWhileDragging
                       minValue={
@@ -192,11 +192,11 @@ const PrintDialog = (props: PrintDialogProps) => {
                         onConfirm(name, printType, offsetX, offsetY)
                       }
                     >
-                      Print
+                      打印
                     </Button>
                   </Stack.Item>
                   <Stack.Item>
-                    <Button onClick={onCancel}>Cancel</Button>
+                    <Button onClick={onCancel}>取消</Button>
                   </Stack.Item>
                 </Stack>
               </Stack.Item>
@@ -257,7 +257,7 @@ export const NtosFileManager = (props) => {
           />
         </Section>
         {usbconnected && (
-          <Section title="Data Disk">
+          <Section title="数据磁盘">
             <FileTable
               usbmode
               files={usbfiles}
@@ -309,9 +309,9 @@ const FileTable = (props: FileTableProps) => {
   return (
     <Table>
       <Table.Row header>
-        <Table.Cell>File</Table.Cell>
-        <Table.Cell collapsing>Type</Table.Cell>
-        <Table.Cell collapsing>Size</Table.Cell>
+        <Table.Cell>文件</Table.Cell>
+        <Table.Cell collapsing>类型</Table.Cell>
+        <Table.Cell collapsing>大小</Table.Cell>
       </Table.Row>
       {files.map((file) => (
         <Table.Row key={file.name} className="candystripe">
@@ -333,7 +333,7 @@ const FileTable = (props: FileTableProps) => {
               <Button
                 icon={file.alert_silenced ? 'bell-slash' : 'bell'}
                 color={file.alert_silenced ? 'red' : 'default'}
-                tooltip={file.alert_silenced ? 'Unmute Alerts' : 'Mute Alerts'}
+                tooltip={file.alert_silenced ? '取消提醒静音' : '将提醒静音'}
                 onClick={() => onToggleSilence!(file.name)}
               />
             )}
@@ -343,20 +343,20 @@ const FileTable = (props: FileTableProps) => {
                   icon="trash"
                   confirmIcon="times"
                   confirmContent=""
-                  tooltip="Delete"
+                  tooltip="删除"
                   onClick={() => onDelete(file.name)}
                 />
                 {!!usbconnected &&
                   (usbmode ? (
                     <Button
                       icon="download"
-                      tooltip="Download"
+                      tooltip="下载"
                       onClick={() => onUpload(file.name)}
                     />
                   ) : (
                     <Button
                       icon="upload"
-                      tooltip="Upload"
+                      tooltip="上传"
                       onClick={() => onUpload(file.name)}
                     />
                   ))}
@@ -365,7 +365,7 @@ const FileTable = (props: FileTableProps) => {
             {!!file.printable && (
               <Button
                 icon="print"
-                tooltip="Print"
+                tooltip="打印"
                 onClick={() => onPrint(file)}
               />
             )}

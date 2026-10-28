@@ -42,7 +42,7 @@ class PencilTransaction implements LayerTransaction {
       command: 'transaction',
       transaction: {
         type: 'pencil',
-        name: 'Pencil',
+        name: '铅笔',
         layer: this.layer + 1,
         dir: `${this.dir}`,
         color: this.color,
@@ -54,7 +54,7 @@ class PencilTransaction implements LayerTransaction {
 
 export class Pencil extends Tool {
   icon = 'pencil';
-  name = 'Pencil';
+  name = '铅笔';
   currentTransaction: PencilTransaction | null;
   lastPoint: [number, number] | null = null;
 
