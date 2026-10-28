@@ -46,7 +46,7 @@ export function OreRedemptionMachine(props) {
   const [searchItem, setSearchItem] = useState('');
 
   return (
-    <Window title="Ore Redemption Machine" width={435} height={500}>
+    <Window title="矿石兑换机" width={435} height={500}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>
@@ -56,7 +56,7 @@ export function OreRedemptionMachine(props) {
             <PointsSection />
           </Stack.Item>
           <NoticeBox info mb={0}>
-            This machine only accepts ore. Gibtonite and Slag are not accepted.
+            本机只接受矿石，不接受爆裂矿和矿渣。
           </NoticeBox>
           <Stack.Item mb={-1}>
             <MaterialSearchHeader
@@ -103,13 +103,13 @@ function MaterialRow(props: MaterialRowProps) {
       <Table.Cell collapsing textAlign="left">
         <Box color="label">
           {formatSiUnit(sheet_amounts, 0)}{' '}
-          {material.amount === 1 ? 'sheet' : 'sheets'}
+          {material.amount === 1 ? '片' : '片'}
         </Box>
       </Table.Cell>
       <Table.Cell collapsing textAlign="left">
         <Button
           color="transparent"
-          tooltip={material.value ? `${material.value} cr` : 'No cost'}
+          tooltip={material.value ? `${material.value} 信用点` : '免费'}
           onClick={() => onRelease(1)}
         >
           x1
@@ -117,14 +117,14 @@ function MaterialRow(props: MaterialRowProps) {
         <Button
           color="transparent"
           tooltip={
-            material.value ? `${material.value * print_amount} cr` : 'No cost'
+            material.value ? `${material.value * print_amount} 信用点` : '免费'
           }
           onClick={() => onRelease(print_amount)}
         >
           x{print_amount}
         </Button>
         <Button.Input
-          buttonText={`[Max: ${
+          buttonText={`[最多：${
             sheet_amounts < max_sheets ? sheet_amounts : max_sheets
           }]`}
           color="transparent"
@@ -154,11 +154,11 @@ function IDSection(props: IDSectionProps) {
         </Stack.Item>
         <Stack.Item grow>
           <LabeledList>
-            <LabeledList.Item label="Name">
-              {user?.name || 'No Name Detected'}
+            <LabeledList.Item label="姓名">
+              {user?.name || '未检测到姓名'}
             </LabeledList.Item>
-            <LabeledList.Item label="Point Balance">
-              {user?.cash || 'No Balance Detected'}
+            <LabeledList.Item label="点数余额">
+              {user?.cash || '未检测到余额'}
             </LabeledList.Item>
           </LabeledList>
         </Stack.Item>
@@ -167,7 +167,7 @@ function IDSection(props: IDSectionProps) {
             color={compact ? 'red' : 'green'}
             onClick={() => setCompact(!compact)}
           >
-            Compact
+            紧凑显示
           </Button>
         </Stack.Item>
       </Stack>
@@ -185,7 +185,7 @@ function PointsSection(props) {
         <Stack.Item grow>
           <Icon name="coins" color="gold" />
           <Box inline color="label" ml={1}>
-            Unclaimed points:
+            未领取点数：
           </Box>
           {` ${unclaimedPoints}`}
         </Stack.Item>
@@ -196,7 +196,7 @@ function PointsSection(props) {
             tooltip={disconnected}
             onClick={() => act('Claim')}
           >
-            Claim
+            领取
           </Button>
         </Stack.Item>
       </Stack>
@@ -281,7 +281,7 @@ function MaterialSearchHeader(props: SearchProps) {
                 }
               }}
             >
-              Materials
+              材料
             </Tabs.Tab>
             <Tabs.Tab
               icon="list"
@@ -295,7 +295,7 @@ function MaterialSearchHeader(props: SearchProps) {
                 }
               }}
             >
-              Alloys
+              合金
             </Tabs.Tab>
           </Tabs>
         </Stack.Item>
@@ -304,7 +304,7 @@ function MaterialSearchHeader(props: SearchProps) {
             expensive
             style={{ height: '23px' }}
             query={searchItem}
-            placeholder="Search Material..."
+            placeholder="搜索材料……"
             onSearch={(value) => {
               setSearchItem(value);
               if (value.length > 0) {

@@ -1,11 +1,11 @@
 {
 	"name": "Fistbump",
-	"description": "A handshake without the shake.",
+	"description": "用碰拳代替握手。",
 	"usage": "other",
 	"category": "Miscellaneous",
 	"distance_allowed": 0,
 	"message": [
-		"%USER% bumps %TARGET%'s fist with theirs!"
+		"%USER% 和 %TARGET% 碰了碰拳！"
 	],
 	"sound_use": 0,
 	"sound_possible": [

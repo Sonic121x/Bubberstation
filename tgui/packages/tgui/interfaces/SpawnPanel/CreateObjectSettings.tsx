@@ -11,7 +11,7 @@ import {
   Table,
 } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
+import { useBackend } from '../../backend'; import { spawnLocationDisplay } from '../../localization/spawnLocationDisplay';
 import {
   directionNames,
   directionRotation,
@@ -273,7 +273,7 @@ export function CreateObjectSettings(props: CreateObjectSettingsProps) {
             }}
           >
             <Table.Row className="candystripe" lineHeight="26px">
-              <Table.Cell pl={1}>Amnt.:</Table.Cell>
+              <Table.Cell pl={1}>数量：</Table.Cell>
               <Table.Cell>
                 <Stack>
                   <Stack.Item>
@@ -287,7 +287,7 @@ export function CreateObjectSettings(props: CreateObjectSettingsProps) {
                       disabled={isAnyPreciseModeActive}
                     />
                   </Stack.Item>
-                  <Stack.Item>Dir:</Stack.Item>
+                  <Stack.Item>方向：</Stack.Item>
                   <Stack.Item>
                     <Button
                       tooltip={directionNames[dirValues[direction]]}
@@ -324,7 +324,7 @@ export function CreateObjectSettings(props: CreateObjectSettingsProps) {
               </Table.Cell>
             </Table.Row>
             <Table.Row className="candystripe" lineHeight="26px">
-              <Table.Cell pl={1}>Offset:</Table.Cell>
+              <Table.Cell pl={1}>偏移：</Table.Cell>
               <Table.Cell width="1200px">
                 <Stack>
                   <Stack.Item>
@@ -338,7 +338,7 @@ export function CreateObjectSettings(props: CreateObjectSettingsProps) {
                           disablePreciseMode();
                         }
                       }}
-                      tooltip={cordsType ? 'Absolute' : 'Relative'}
+                      tooltip={cordsType ? '绝对坐标' : '相对坐标'}
                       tooltipPosition="top"
                       disabled={
                         isTargetMode ||
@@ -367,14 +367,14 @@ export function CreateObjectSettings(props: CreateObjectSettingsProps) {
             </Table.Row>
             <Table.Row className="candystripe" lineHeight="26px">
               <Table.Cell pl={1} width="80px">
-                Name:
+                名称：
               </Table.Cell>
               <Table.Cell>
                 <Input
                   onChange={(value: string) => updateObjectName(value)}
                   value={objectName}
                   width="100%"
-                  placeholder="leave empty for initial"
+                  placeholder="留空使用初始名称"
                   disabled={isAnyPreciseModeActive}
                 />
               </Table.Cell>
@@ -394,7 +394,7 @@ export function CreateObjectSettings(props: CreateObjectSettingsProps) {
                       width: '22px',
                       lineHeight: '22px',
                     }}
-                    tooltip="Advanced settings"
+                    tooltip="高级设置"
                     tooltipPosition="top"
                     disabled={isAnyPreciseModeActive}
                   />
@@ -408,7 +408,7 @@ export function CreateObjectSettings(props: CreateObjectSettingsProps) {
                       lineHeight: '22px',
                     }}
                     onClick={() => resetAdvancedSettings()}
-                    tooltip="Reset advanced settings"
+                    tooltip="重置高级设置"
                     tooltipPosition="top"
                     disabled={isAnyPreciseModeActive}
                   />
@@ -441,8 +441,8 @@ export function CreateObjectSettings(props: CreateObjectSettingsProps) {
                     tooltip={
                       spawnLocation === 'At a marked object' ||
                       spawnLocation === 'In the marked object'
-                        ? 'Mark atom'
-                        : 'Copy atom path'
+                        ? '标记原子对象'
+                        : '复制原子对象路径'
                     }
                     tooltipPosition="top"
                     disabled={isAnyPreciseModeActive && !isMarkModeActive}
@@ -465,12 +465,12 @@ export function CreateObjectSettings(props: CreateObjectSettingsProps) {
                     icon={spawnLocationIcons[spawnLocation]}
                     selected={isTargetMode && isPreciseModeActive}
                   >
-                    SPAWN
+                    生成
                   </Button>
                 </Stack.Item>
                 <Stack.Item>
                   <Dropdown
-                    options={spawnLocationOptions}
+                    options={spawnLocationOptions.map((value) => ({ value, displayText: spawnLocationDisplay(value) }))}
                     onSelected={(value) => {
                       if (data?.precise_mode && data.precise_mode !== 'Off') {
                         act('toggle-precise-mode', {
@@ -479,7 +479,7 @@ export function CreateObjectSettings(props: CreateObjectSettingsProps) {
                       }
                       updateSpawnLocation(value);
                     }}
-                    selected={spawnLocation}
+                    selected={spawnLocation} displayText={spawnLocationDisplay(spawnLocation)}
                   />
                 </Stack.Item>
               </Stack>

@@ -23,7 +23,7 @@ export function createPage(obj: Record<string, unknown> = {}): Page {
   return {
     isMain: false,
     id: createUuid(),
-    name: 'New Tab',
+    name: '新标签页',
     acceptedTypes,
     unreadCount: 0,
     hideUnreadCount: false,
@@ -40,7 +40,7 @@ export function createMainPage(): Page {
   return createPage({
     id: 'main',
     isMain: true,
-    name: 'Main',
+    name: '主标签页',
     acceptedTypes,
   });
 }

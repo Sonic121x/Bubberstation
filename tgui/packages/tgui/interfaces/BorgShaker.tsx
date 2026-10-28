@@ -37,18 +37,18 @@ export const BorgShaker = (props) => {
     <Window width={650} height={dynamicHeight} theme={theme}>
       <Window.Content>
         <Section
-          title={'Non-Alcoholic'}
+          title={'无酒精饮品'}
           buttons={
             <>
               <Button
                 icon="book"
-                content={'Reaction search'}
+                content={'反应查询'}
                 disabled={
                   data.reagentSearchContainer !==
                     ContainerPreference.InternalBeaker && !data.apparatusHasItem
                 }
                 tooltip={
-                  'Look up recipes and reagents! Choose a container source'
+                  '查询配方和试剂！请选择作为查询来源的容器'
                 }
                 tooltipPosition="bottom-start"
                 onClick={() => act('reaction_lookup')}
@@ -62,7 +62,7 @@ export const BorgShaker = (props) => {
                     ? 'green'
                     : 'default'
                 }
-                tooltip="Search source: Internal Beaker"
+                tooltip="查询来源：内置烧杯"
                 onClick={() => {
                   act('set_preferred_container', {
                     value: ContainerPreference.InternalBeaker,
@@ -72,7 +72,7 @@ export const BorgShaker = (props) => {
               <Button
                 icon="vial"
                 width="24px"
-                tooltip="Search source: Beverage Apparatus"
+                tooltip="查询来源：饮料操作装置"
                 color={
                   data.reagentSearchContainer ===
                   ContainerPreference.BeverageApparatus
@@ -94,7 +94,7 @@ export const BorgShaker = (props) => {
             minimum={minVolume}
           />
         </Section>
-        <Section title={'Alcoholic'}>
+        <Section title={'含酒精饮品'}>
           <ReagentDisplay
             reagents={alcohols}
             selected={selectedReagent}
@@ -110,7 +110,7 @@ const ReagentDisplay = (props) => {
   const { act } = useBackend();
   const { reagents, selected, minimum } = props;
   if (reagents.length === 0) {
-    return <NoticeBox>No reagents available!</NoticeBox>;
+    return <NoticeBox>没有可用试剂！</NoticeBox>;
   }
   return reagents.map((reagent) => (
     <Button

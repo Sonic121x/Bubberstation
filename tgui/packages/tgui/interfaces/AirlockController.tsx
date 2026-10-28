@@ -27,23 +27,23 @@ export const AirlockController = (props) => {
   return (
     <Window width={500} height={190}>
       <Window.Content>
-        <Section title="Airlock Status" buttons={<AirLockButtons />}>
+        <Section title="气闸状态" buttons={<AirLockButtons />}>
           <LabeledList>
-            <LabeledList.Item label="Current Status">
+            <LabeledList.Item label="当前状态">
               {currentStatus.primary}
             </LabeledList.Item>
-            <LabeledList.Item label="Chamber Pressure">
+            <LabeledList.Item label="气闸舱压力">
               <PressureIndicator currentStatus={currentStatus} />
             </LabeledList.Item>
-            <LabeledList.Item label="Control Pump">
+            <LabeledList.Item label="控制泵">
               {nameToUpperCase(pumpStatus)}
             </LabeledList.Item>
-            <LabeledList.Item label="Interior Door">
+            <LabeledList.Item label="内门">
               <Box color={interiorStatus === 'open' && 'good'}>
                 {nameToUpperCase(interiorStatus)}
               </Box>
             </LabeledList.Item>
-            <LabeledList.Item label="Exterior Door">
+            <LabeledList.Item label="外门">
               <Box color={exteriorStatus === 'open' && 'good'}>
                 {nameToUpperCase(exteriorStatus)}
               </Box>
@@ -64,17 +64,17 @@ const AirLockButtons = (props) => {
     case 'depressurize':
       return (
         <Button icon="stop-circle" onClick={() => act('abort')}>
-          Abort
+          中止
         </Button>
       );
     case 'closed':
       return (
         <>
           <Button icon="lock-open" onClick={() => act('cycleInterior')}>
-            Open Interior Airlock
+            打开内侧气闸
           </Button>
           <Button icon="lock-open" onClick={() => act('cycleExterior')}>
-            Open Exterior Airlock
+            打开外侧气闸
           </Button>
         </>
       );
@@ -82,10 +82,10 @@ const AirLockButtons = (props) => {
       return (
         <>
           <Button icon="lock" onClick={() => act('cycleClosed')}>
-            Close Interior Airlock
+            关闭内侧气闸
           </Button>
           <Button icon="sync" onClick={() => act('cycleExterior')}>
-            Cycle to Exterior Airlock
+            循环至外侧气闸
           </Button>
         </>
       );
@@ -93,10 +93,10 @@ const AirLockButtons = (props) => {
       return (
         <>
           <Button icon="lock" onClick={() => act('cycleClosed')}>
-            Close Exterior Airlock
+            关闭外侧气闸
           </Button>
           <Button icon="sync" onClick={() => act('cycleInterior')}>
-            Cycle to Interior Airlock
+            循环至内侧气闸
           </Button>
         </>
       );

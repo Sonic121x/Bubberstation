@@ -17,7 +17,7 @@ import { capitalize } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
-
+import { virtualPetDisplay as zh, virtualPetOptions } from '../localization/zhVirtualPetDisplay';
 type Data = {
   currently_summoned: BooleanLike;
   pet_state: string;
@@ -95,25 +95,25 @@ export const NtosVirtualPet = (props) => {
             selected={tab === Tab.Stats}
             onClick={() => setTab(Tab.Stats)}
           >
-            Stats
+            状态
           </Tabs.Tab>
           <Tabs.Tab
             selected={tab === Tab.Customization}
             onClick={() => setTab(Tab.Customization)}
           >
-            Customization
+            自定义
           </Tabs.Tab>
           <Tabs.Tab
             selected={tab === Tab.Updates}
             onClick={() => setTab(Tab.Updates)}
           >
-            Pet Updates
+            宠物动态
           </Tabs.Tab>
           <Tabs.Tab
             selected={tab === Tab.Tricks}
             onClick={() => setTab(Tab.Tricks)}
           >
-            Tricks
+            技艺
           </Tabs.Tab>
         </Tabs>
         {tab === Tab.Stats && <Stats />}
@@ -146,16 +146,16 @@ const Stats = (props) => {
   } = data;
   return (
     <>
-      <Section title="Pet Stats">
+      <Section title="宠物状态">
         <Flex>
           <Flex.Item>
             <PetIcon our_pet_state={pet_state} />
           </Flex.Item>
           <Flex.Item>
             <Stack vertical position="absolute" right={1}>
-              <Stack.Item>Current Level: {level}</Stack.Item>
+              <Stack.Item>当前等级：{level}</Stack.Item>
               <Stack.Item mt={3}>
-                Happiness:
+                幸福度：
                 <ProgressBar
                   value={happiness}
                   maxValue={maximum_happiness}
@@ -163,7 +163,7 @@ const Stats = (props) => {
                 />
               </Stack.Item>
               <Stack.Item>
-                Exp Progress:
+                经验进度：
                 <ProgressBar
                   value={current_exp}
                   maxValue={required_exp}
@@ -171,7 +171,7 @@ const Stats = (props) => {
                 />
               </Stack.Item>
               <Stack.Item>
-                Hunger:
+                饥饿度：
                 <ProgressBar
                   value={hunger}
                   maxValue={maximum_hunger}
@@ -182,7 +182,7 @@ const Stats = (props) => {
           </Flex.Item>
         </Flex>
       </Section>
-      <Section title="Pet Location" style={{ padding: '5px' }}>
+      <Section title="宠物位置" style={{ padding: '5px' }}>
         <Stack>
           <Stack.Item grow>{pet_area}</Stack.Item>
           <Stack.Item>
@@ -191,23 +191,23 @@ const Stats = (props) => {
               style={{ padding: '3px' }}
               onClick={() => act('summon_pet')}
             >
-              {currently_summoned ? 'Recall' : 'Release'}
+              {currently_summoned ? '收回' : '放出'}
             </Button>
           </Stack.Item>
         </Stack>
       </Section>
       <Stack fill>
         <Stack.Item grow>
-          <Section title="Pet Feed Dropzone">
+          <Section title="宠物饲料投放区">
             <Stack>
-              <Stack.Item grow>{selected_area}</Stack.Item>
+              <Stack.Item grow>{zh(selected_area)}</Stack.Item>
               <Stack.Item>
                 {(in_dropzone && (
                   <Button
                     style={{ padding: '3px' }}
                     onClick={() => act('drop_feed')}
                   >
-                    Get Food
+                    领取饲料
                   </Button>
                 )) || (
                   <Button
@@ -216,8 +216,8 @@ const Stats = (props) => {
                     onClick={() => act('get_feed_location')}
                   >
                     {selected_area === 'No location set'
-                      ? 'Generate'
-                      : 'Reroll'}
+                      ? '生成'
+                      : '重新选择'}
                   </Button>
                 )}
               </Stack.Item>
@@ -231,7 +231,7 @@ const Stats = (props) => {
             style={{ padding: '20px' }}
           >
             {' '}
-            Steps: {steps_counter}
+            步数：{steps_counter}
           </Section>
         </Stack.Item>
       </Stack>
@@ -243,7 +243,7 @@ const PetTricks = (props) => {
   const { act, data } = useBackend<Data>();
   const { possible_emotes } = data;
   const [sequences, setSequences] = useState(['none', 'none', 'none', 'none']);
-  const [TrickName, setTrickName] = useState('Trick');
+  const [TrickName, setTrickName] = useState('技艺');
 
   const UpdateSequence = (Index: number, Trick: string) => {
     const NewSequence = [...sequences];
@@ -256,7 +256,7 @@ const PetTricks = (props) => {
       title={capitalize(TrickName)}
       buttons={
         <Button.Input
-          buttonText="Rename Trick"
+          buttonText="重命名技艺"
           color="transparent"
           onCommit={setTrickName}
         />
@@ -264,11 +264,11 @@ const PetTricks = (props) => {
     >
       <LabeledList>
         {sequences.map((sequence, index) => (
-          <LabeledList.Item key={index} label={`Sequence ${index + 1}`}>
+          <LabeledList.Item key={index} label={`动作 ${index + 1}`}>
             <Dropdown
               width="50%"
-              selected={sequences[index]}
-              options={possible_emotes}
+              selected={sequences[index]} displayText={zh(sequences[index])}
+              options={virtualPetOptions(possible_emotes)}
               onSelected={(selected) => UpdateSequence(index, selected)}
             />
           </LabeledList.Item>
@@ -287,7 +287,7 @@ const PetTricks = (props) => {
           })
         }
       >
-        Teach
+        教授
       </Button>
     </Section>
   );
@@ -326,7 +326,7 @@ const Customization = (props) => {
   );
   return (
     <>
-      <Section title="Pet Preview" textAlign="center">
+      <Section title="宠物预览" textAlign="center">
         <Image
           m={1}
           src={`data:image/jpeg;base64,${preview_icon}`}
@@ -341,7 +341,7 @@ const Customization = (props) => {
       </Section>
       <Stack>
         <Stack.Item width="50%">
-          <Section title="Pet Name">
+          <Section title="宠物名字">
             <Input
               fluid
               maxLength={30}
@@ -351,7 +351,7 @@ const Customization = (props) => {
           </Section>
         </Stack.Item>
         <Stack.Item width="50%">
-          <Section title="Pet Hat">
+          <Section title="宠物帽子">
             <Dropdown
               selected={selectedHat?.hat_name}
               options={hat_selections.map((selected_hat) => {
@@ -366,7 +366,7 @@ const Customization = (props) => {
       </Stack>
       <Stack mt={0.5}>
         <Stack.Item width="50%">
-          <Section title="Pet Color">
+          <Section title="宠物颜色">
             <Dropdown
               selected={selectedColor?.color_name}
               options={possible_colors.map((possible_color) => {
@@ -379,7 +379,7 @@ const Customization = (props) => {
           </Section>
         </Stack.Item>
         <Stack.Item width="50%">
-          <Section title="Pet Gender">
+          <Section title="宠物性别">
             <Stack>
               <Stack.Item grow>
                 <Button
@@ -420,7 +420,7 @@ const Customization = (props) => {
             })
           }
         >
-          Apply
+          应用
         </Button>
       </Section>
     </>
@@ -432,7 +432,7 @@ const AllPetUpdates = (props) => {
   const { pet_updates } = data;
 
   return (
-    <Section title="Pet Updates" fill>
+    <Section title="宠物动态" fill>
       <Stack vertical>
         {pet_updates.map((update) => (
           <Stack.Item key={update.update_id} mt={3}>
@@ -520,7 +520,7 @@ const PetIcon = (props) => {
           }}
         />
       </Stack.Item>
-      <Stack.Item textAlign="center">{capitalize(our_pet_state)}</Stack.Item>
+      <Stack.Item textAlign="center">{zh(our_pet_state)}</Stack.Item>
     </Stack>
   );
 };

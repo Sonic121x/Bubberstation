@@ -14,10 +14,10 @@ export function TechwebDesignDisk(props) {
   return (
     <>
       {blueprints.map((x, i) => (
-        <Section key={i} title={`Slot ${i + 1}`}>
-          {(x === null && 'Empty') || (
+        <Section key={i} title={`槽位 ${i + 1}`}>
+          {(x === null && '空') || (
             <>
-              Contains the design for <b>{design_cache[x].name}</b>:<br />
+              包含 <b>{design_cache[x].name}</b> 的设计：<br />
               <span
                 className={`${design_cache[x].class} Techweb__DesignIcon`}
               />

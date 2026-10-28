@@ -63,7 +63,7 @@ const BarLabel = (props) => {
       ) : (
         <>
           <Box align="center" color="red">
-            Empty
+            空
           </Box>
           <Box className="hypertorus__unselectable">&nbsp;</Box>
         </>
@@ -205,7 +205,7 @@ export const HypertorusTemperatures = (props) => {
   const show_max = label_legible(next_power_level_temperature, maxTemperature);
 
   return (
-    <Section title="Gas Monitoring">
+    <Section title="气体监测">
       <Box className="hypertorus-temperatures__container">
         <Box className="hypertorus-temperatures__y-axis-marks">
           {show_min && (
@@ -214,13 +214,13 @@ export const HypertorusTemperatures = (props) => {
           <TemperatureLabel
             key="prev_fusion_temp"
             icon="chevron-down"
-            tooltip="Previous Fusion Level"
+            tooltip="上一聚变等级"
             value={prev_power_level_temperature}
           />
           <TemperatureLabel
             key="next_fusion_temp"
             icon="chevron-up"
-            tooltip="Next Fusion Level"
+            tooltip="下一聚变等级"
             value={next_power_level_temperature}
           />
           {show_max && (
@@ -236,25 +236,25 @@ export const HypertorusTemperatures = (props) => {
           justify="space-around"
         >
           <TemperatureBar
-            label="Fusion"
+            label="聚变气体"
             value={internal_fusion_temperature}
             delta={internal_fusion_temperature_delta}
             color="#f2711c"
           />
           <TemperatureBar
-            label="Moderator"
+            label="慢化气体"
             value={moderator_internal_temperature}
             delta={moderator_internal_temperature_delta}
             color="#e03997"
           />
           <TemperatureBar
-            label="Coolant"
+            label="冷却剂"
             value={internal_coolant_temperature}
             delta={internal_coolant_temperature_delta}
             color="aliceblue"
           />
           <TemperatureBar
-            label="Output"
+            label="输出"
             value={internal_output_temperature}
             delta={internal_output_temperature_delta}
             color="#20b142"

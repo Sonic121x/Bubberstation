@@ -23,9 +23,9 @@ const parsePanic = (name, panic_json) => {
   return (
     <>
       <Box textColor="red">
-        <b>{name}</b> panicked at {file}:{line}: {message}
+        <b>{name}</b> 在 {file}:{line} 发生严重错误：{message}
       </Box>
-      <Collapsible title="Backtrace">
+      <Collapsible title="调用回溯">
         <Stack vertical>
           {backtrace
             ?.filter(
@@ -36,8 +36,8 @@ const parsePanic = (name, panic_json) => {
                 {i > 0 && <Divider />}
                 <Stack.Item key={i}>
                   <LabeledList>
-                    <LabeledList.Item label="function">{name}</LabeledList.Item>
-                    <LabeledList.Item label="location">
+                    <LabeledList.Item label="函数">{name}</LabeledList.Item>
+                    <LabeledList.Item label="位置">
                       {file}:{line}
                     </LabeledList.Item>
                   </LabeledList>
@@ -71,7 +71,7 @@ export const Log = (props: LogProps) => {
           messageColor = 'blue';
           output = (
             <>
-              <b>{name}</b> slept.
+              <b>{name}</b> 已休眠。
             </>
           );
         }
@@ -81,19 +81,19 @@ export const Log = (props: LogProps) => {
         const { name, return_values, variants } = element;
         output = (
           <>
-            <b>{name}</b> yielded
+            <b>{name}</b> 已让出执行权
             {return_values.length
-              ? ` ${return_values.length} value${
-                  return_values.length > 1 ? 's' : ''
+              ? `，返回 ${return_values.length} 个值${
+                  return_values.length > 1 ? '' : ''
                 }`
               : ''}
-            .
+            。
             {return_values.length ? (
               <ListMapper
                 list={return_values}
                 variants={variants}
                 skipNulls
-                name="Return Values"
+                name="返回值"
                 collapsible
                 vvAct={(path) =>
                   act('vvReturnValue', {
@@ -114,20 +114,20 @@ export const Log = (props: LogProps) => {
         const { name, return_values, variants } = element;
         output = (
           <>
-            <b>{name}</b> returned
+            <b>{name}</b> 已返回
             {return_values.length
-              ? ` ${return_values.length} value${
-                  return_values.length > 1 ? 's' : ''
+              ? ` ${return_values.length} 个值${
+                  return_values.length > 1 ? '' : ''
                 }`
               : ''}
-            .
+            。
             {return_values.length ? (
               <Box color="default">
                 <ListMapper
                   list={return_values}
                   variants={variants}
                   skipNulls
-                  name="Return Values"
+                  name="返回值"
                   collapsible
                   vvAct={(path) =>
                     act('vvReturnValue', {
@@ -160,12 +160,12 @@ export const Log = (props: LogProps) => {
         const { file, line, message, stack } = element;
         output = (
           <>
-            Runtime at {file}:{line}: {message}
+            运行时错误位于 {file}:{line}：{message}
             <ListMapper
               list={stack.map((frame) => {
                 return { key: null, value: frame };
               })}
-              name="Stack Trace"
+              name="堆栈回溯"
               collapsible
             />
           </>
@@ -195,7 +195,7 @@ export const Log = (props: LogProps) => {
               setModal('viewChunk');
             }}
           >
-            View Source
+            查看源代码
           </Button>
         </>
       );

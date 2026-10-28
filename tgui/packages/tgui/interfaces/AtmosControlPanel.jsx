@@ -16,7 +16,7 @@ export const AtmosControlPanel = (props) => {
     [(group) => group.id],
   );
   return (
-    <Window title="SSAir Control Panel" width={900} height={500}>
+    <Window title="大气子系统控制面板" width={900} height={500}>
       <Section m={1}>
         <Flex justify="space-between" align="baseline">
           <Flex.Item>
@@ -24,20 +24,20 @@ export const AtmosControlPanel = (props) => {
               onClick={() => act('toggle-freeze')}
               color={data.frozen === 1 ? 'good' : 'bad'}
             >
-              {data.frozen === 1 ? 'Freeze Subsystem' : 'Unfreeze Subsystem'}
+              {data.frozen === 1 ? '冻结子系统' : '解冻子系统'}
             </Button>
           </Flex.Item>
-          <Flex.Item>Fire Cnt: {data.fire_count}</Flex.Item>
-          <Flex.Item>Active Turfs: {data.active_size}</Flex.Item>
-          <Flex.Item>Excited Groups: {data.excited_size}</Flex.Item>
-          <Flex.Item>Hotspots: {data.hotspots_size}</Flex.Item>
-          <Flex.Item>Superconductors: {data.conducting_size}</Flex.Item>
+          <Flex.Item>执行次数：{data.fire_count}</Flex.Item>
+          <Flex.Item>活动地块：{data.active_size}</Flex.Item>
+          <Flex.Item>活跃组：{data.excited_size}</Flex.Item>
+          <Flex.Item>热点：{data.hotspots_size}</Flex.Item>
+          <Flex.Item>超导地块：{data.conducting_size}</Flex.Item>
           <Flex.Item>
             <Button.Checkbox
               checked={data.showing_user}
               onClick={() => act('toggle_user_display')}
             >
-              Personal View
+              个人视图
             </Button.Checkbox>
           </Flex.Item>
           <Flex.Item>
@@ -45,7 +45,7 @@ export const AtmosControlPanel = (props) => {
               checked={data.show_all}
               onClick={() => act('toggle_show_all')}
             >
-              Display all
+              显示全部
             </Button.Checkbox>
           </Flex.Item>
         </Flex>
@@ -55,14 +55,14 @@ export const AtmosControlPanel = (props) => {
           <Section>
             <Table>
               <Table.Row header>
-                <Table.Cell>Area Name</Table.Cell>
-                <Table.Cell collapsing>Breakdown</Table.Cell>
-                <Table.Cell collapsing>Dismantle</Table.Cell>
-                <Table.Cell collapsing>Turfs</Table.Cell>
+                <Table.Cell>区域名称</Table.Cell>
+                <Table.Cell collapsing>分解</Table.Cell>
+                <Table.Cell collapsing>解散</Table.Cell>
+                <Table.Cell collapsing>地块数</Table.Cell>
                 <Table.Cell collapsing>
-                  {data.display_max === 1 && 'Max Share'}
+                  {data.display_max === 1 && '最大交换量'}
                 </Table.Cell>
-                <Table.Cell collapsing>Display</Table.Cell>
+                <Table.Cell collapsing>显示</Table.Cell>
               </Table.Row>
               {groups.map((group) => (
                 <tr key={group.id}>

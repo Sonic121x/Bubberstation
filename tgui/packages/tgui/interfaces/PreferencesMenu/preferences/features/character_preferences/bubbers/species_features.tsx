@@ -10,186 +10,186 @@ import {
 import { FeatureDropdownInput } from '../../dropdowns';
 
 export const emote_length: FeatureChoiced = {
-  name: 'Preferred Emote Length',
+  name: '偏好的动作描述长度',
   category: 'ADVERT',
   description:
-    'What length of emote your prefer during an RP scene, if you have one. Shows on your Character Advert.',
+    '角色扮演时偏好的动作描述长度，如有。显示在角色招募信息中。',
   component: FeatureDropdownInput,
 };
 
 export const approach_pref: FeatureChoiced = {
-  name: 'Preferred Approach Method',
+  name: '偏好的接洽方式',
   category: 'ADVERT',
   description:
-    'How you would like to be approached for RP scenes, if at all. Shows on your Character Advert.',
+    '希望别人如何与你接洽角色扮演，或是否接受接洽。显示在角色招募信息中。',
   component: FeatureDropdownInput,
 };
 
 export const furry_pref: FeatureChoiced = {
-  name: 'Attraction: Furries?',
+  name: '吸引偏好：毛绒兽人',
   category: 'ADVERT',
   description:
-    'How, and if, you would like to engage in RP with furry characters, such as Anthromorphs, Birdfolk or Insectoids.',
+    '是否愿意以及如何与拟人兽、鸟人或昆虫人等兽人角色扮演。',
   component: FeatureDropdownInput,
 };
 
 export const scalie_pref: FeatureChoiced = {
-  name: 'Attraction: Scalies?',
+  name: '吸引偏好：鳞族',
   category: 'ADVERT',
   description:
-    'How, and if, you would like to engage in RP with scalie characters, such as Lizards, Fish, or Dragons.',
+    '是否愿意以及如何与蜥蜴、鱼或龙等鳞族角色扮演。',
   component: FeatureDropdownInput,
 };
 
 export const other_pref: FeatureChoiced = {
-  name: 'Attraction: Others?',
+  name: '吸引偏好：其他种族',
   category: 'ADVERT',
   description:
-    'How, and if, you would like to engage in RP with outlandish characters, such as Silicons, Taurs, Megafauna and Xenos.',
+    '是否愿意以及如何与硅基生命、半人兽、巨型生物和异形等特殊角色扮演。',
   component: FeatureDropdownInput,
 };
 
 export const demihuman_pref: FeatureChoiced = {
-  name: 'Attraction: Demihumans?',
+  name: '吸引偏好：亚人',
   category: 'ADVERT',
   description:
-    'How, and if, you would like to engage in RP with demihuman characters, such as cat or dog humans, monsterfolk or demons.',
+    '是否愿意以及如何与猫耳人、犬耳人、魔物人或恶魔等亚人角色扮演。',
   component: FeatureDropdownInput,
 };
 
 export const human_pref: FeatureChoiced = {
-  name: 'Attraction: Humans?',
+  name: '吸引偏好：人类',
   category: 'ADVERT',
   description:
-    'How, and if, you would like to engage in RP wih human characters. You know what a human is.',
+    '是否愿意以及如何与人类角色扮演。你知道人类是什么。',
   component: FeatureDropdownInput,
 };
 
 export const character_ad: Feature<string> = {
-  name: 'Character Advert',
+  name: '角色招募信息',
   description:
-    'A roleplay advert for your character. Talk about what you are looking for in terms of roleplay, and how to approach. Give specifics as much as possible.',
+    '为角色撰写的扮演招募信息。说明你希望进行何种扮演，以及如何接洽，尽量写得具体。',
   component: FeatureTextInput,
 };
 
 export const attraction: FeatureChoiced = {
-  name: 'Character Attraction',
+  name: '角色吸引偏好',
   description:
-    'What classifies what your character is attracted to. This is displayed in the Directory.',
+    '角色会被什么对象吸引。显示在角色名录中。',
   component: FeatureDropdownInput,
 };
 
 export const display_gender: FeatureChoiced = {
-  name: 'Character Gender',
+  name: '角色性别',
   description:
-    'What classifies as the gender for your character. This is displayed in the Directory.',
+    '角色的性别认同。显示在角色名录中。',
   component: FeatureDropdownInput,
 };
 
 export const flavor_text_nsfw: Feature<string> = {
-  name: 'Flavor Text (NSFW)',
+  name: '外观描述（成人内容）',
   description:
-    'The NSFW part of your flavor text. Used to store visual sexual details.',
+    '外观描述中的成人内容部分，用于记录可见的性特征细节。',
   component: FeatureTextInput,
 };
 
 export const low_arousal_text: Feature<string> = {
-  name: 'Arousal Flavor - Low',
-  description: 'How your character can be perceived to be slightly aroused',
+  name: '性兴奋描述——轻度',
+  description: '角色轻度性兴奋时可被观察到的表现。',
   component: FeatureShortTextInput,
 };
 
 export const medium_arousal_text: Feature<string> = {
-  name: 'Arousal Flavor - Medium',
-  description: 'How your character can be perceived to be somewhat aroused',
+  name: '性兴奋描述——中度',
+  description: '角色中度性兴奋时可被观察到的表现。',
   component: FeatureShortTextInput,
 };
 
 export const high_arousal_text: Feature<string> = {
-  name: 'Arousal Flavor - Strong',
-  description: 'How your character can be perceived to be highly aroused',
+  name: '性兴奋描述——强烈',
+  description: '角色强烈性兴奋时可被观察到的表现。',
   component: FeatureShortTextInput,
 };
 
 export const silicon_flavor_text_nsfw: Feature<string> = {
-  name: 'Silicon NSFW Flavor Text',
+  name: '硅基角色成人外观描述',
   description:
-    'A portion of your flavor text that is stored in examine, used for Silicons. Used to store visual sexual details.',
+    '检视硅基角色时显示的成人外观描述，用于记录可见的性特征细节。',
   component: FeatureTextInput,
 };
 
 export const headshot_silicon: Feature<string> = {
-  name: 'Silicon Headshot',
+  name: '硅基角色头像',
   description:
-    'Requires a link ending with .png, .jpeg, or .jpg, starting with \
-  https://, and hosted on Catbox, Imgbox, Gyazo, Lensdump, or F-List. \
-  Renders the image underneath your character preview in the examine more window. \
-  Image larger than 250x250 will be resized to 250x250. \
-  Aim for 250x250 whenever possible',
+    '链接须以.png、.jpeg或.jpg结尾，以\
+  https://开头，托管于Catbox、Imgbox、Gyazo、Lensdump或F-List。\
+  图像会显示在详细检视窗口的角色预览下方。\
+  超过250×250的图像会缩放至250×250。\
+  请尽量使用250×250的图像。',
   component: FeatureShortTextInput,
 };
 
 export const headshot_nsfw: Feature<string> = {
-  name: 'Headshot (NSFW)',
+  name: '头像（成人内容）',
   description:
-    'Headshot, but for NSFW references. \
-    Requires a link ending with .png, .jpeg, or .jpg, starting with \
-    https://, and hosted on Catbox, Imgbox, Gyazo, Lensdump, or F-List. \
-    Renders the image underneath your character preview in the examine more window. \
-    Image larger than 250x250 will be resized to 250x250. \
-    Aim for 250x250 whenever possible',
+    '用于成人内容参考的头像。\
+    链接须以.png、.jpeg或.jpg结尾，以\
+    https://开头，托管于Catbox、Imgbox、Gyazo、Lensdump或F-List。\
+    图像会显示在详细检视窗口的角色预览下方。\
+    超过250×250的图像会缩放至250×250。\
+    请尽量使用250×250的图像。',
   component: FeatureShortTextInput,
 };
 
 export const headshot_silicon_nsfw: Feature<string> = {
-  name: 'Silicon Headshot (NSFW)',
+  name: '硅基角色头像（成人内容）',
   description:
-    'Headshot, but for NSFW references on Silicons. \
-    Requires a link ending with .png, .jpeg, or .jpg, starting with \
-    https://, and hosted on Catbox, Imgbox, Gyazo, Lensdump, or F-List. \
-    Renders the image underneath your character preview in the examine more window. \
-    Image larger than 250x250 will be resized to 250x250. \
-    Aim for 250x250 whenever possible',
+    '用于硅基角色成人内容参考的头像。\
+    链接须以.png、.jpeg或.jpg结尾，以\
+    https://开头，托管于Catbox、Imgbox、Gyazo、Lensdump或F-List。\
+    图像会显示在详细检视窗口的角色预览下方。\
+    超过250×250的图像会缩放至250×250。\
+    请尽量使用250×250的图像。',
   component: FeatureShortTextInput,
 };
 
 export const ooc_notes_silicon: Feature<string> = {
-  name: 'OOC Notes (Silicon)',
-  description: 'Same as OOC notes, but for your silicon character!',
+  name: '场外备注（硅基角色）',
+  description: '与场外备注相同，但用于你的硅基角色！',
   component: FeatureTextInput,
 };
 
 export const custom_species_silicon: Feature<string> = {
-  name: 'Silicon Model Name',
+  name: '硅基角色型号名称',
   description:
-    'The name of the module for your Silicon company, such as "Armadyne Pleasure Model."',
+    '硅基角色所属公司的型号名称，例如“阿玛达因享乐型”。',
   component: FeatureShortTextInput,
 };
 
 export const custom_species_lore_silicon: Feature<string> = {
-  name: 'Silicon Model Lore',
+  name: '硅基角色型号背景',
   description:
-    'Lore for your silicon, typically its company, make, model, and details regarding its creation.',
+    '硅基角色的背景，通常包括所属公司、制造商、型号以及诞生经过。',
   component: FeatureTextInput,
 };
 
 export const art_ref: Feature<string> = {
-  name: 'Art Reference',
+  name: '美术参考图',
   description:
-    'Art Reference that others can see for your character \
-    Requires a link ending with .png, .jpeg, or .jpg, starting with \
-    https://, and hosted on Catbox, Imgbox, Gyazo, Lensdump, or F-List.',
+    '供其他人查看的角色美术参考图。\
+    链接须以.png、.jpeg或.jpg结尾，以\
+    https://开头，托管于Catbox、Imgbox、Gyazo、Lensdump或F-List。',
   component: FeatureShortTextInput,
 };
 
 export const art_ref_nsfw: FeatureToggle = {
-  name: 'Art Reference (NSFW)',
-  description: 'Is your reference picture NSFW?',
+  name: '美术参考图（成人内容）',
+  description: '参考图是否含有成人内容？',
   component: CheckboxInput,
 };
 
 export const mutant_colors_color: Feature<string[]> = {
-  name: 'Body Colors',
+  name: '身体颜色',
   component: FeatureTriColorInput,
-  description: 'Body color used for non-human species.',
+  description: '非人类种族使用的身体颜色。',
 };

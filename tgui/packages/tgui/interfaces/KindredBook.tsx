@@ -18,14 +18,14 @@ export const KindredBook = (props) => {
   return (
     <Window width={410} height={460} theme="spookyconsole">
       <Window.Content scrollable>
-        <Section title="Bloodsucker Clans">
+        <Section title="吸血鬼氏族">
           <Table mb={2}>
             <Table.Row>
-              Written by generations of Curators, this holds all information we
-              the Curators know about the undead threat that looms the
-              station...
+              本书由历代馆长共同编纂，收录了
+              我们所知的所有关于潜伏于空间站的
+              不死威胁的情报……
             </Table.Row>
-            <Table.Row>So, what Clan are you interested in?</Table.Row>
+            <Table.Row>那么，你对哪个氏族感兴趣？</Table.Row>
           </Table>
           <Table>
             <Table.Row>

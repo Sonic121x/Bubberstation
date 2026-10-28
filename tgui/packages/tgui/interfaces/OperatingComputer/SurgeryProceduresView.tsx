@@ -7,7 +7,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { capitalizeAll, capitalizeFirst } from 'tgui-core/string';
-import { useBackend, useSharedState } from '../../backend';
+import { useBackend, useSharedState } from '../../backend'; import { craftToolDisplay } from '../../localization/zhCraftToolDisplay';
 import { extractRequirementMap, extractSurgeryName } from './helpers';
 import type { OperatingComputerData, OperationData } from './types';
 
@@ -107,22 +107,22 @@ export const SurgeryProceduresView = (props: SurgeryProceduresViewProps) => {
         <>
           <Input
             width="215px"
-            placeholder="Search..."
+            placeholder="搜索……"
             value={searchText}
             onChange={setSearchText}
           />
           <Button
             icon="filter"
-            tooltip="Filter out robotic surgeries."
+            tooltip="隐藏机械手术。"
             onClick={() => setFilterRobotic(!filterRobotic)}
             selected={filterRobotic}
           >
-            Hide Mechanic
+            隐藏机械手术
           </Button>
           <Button
             width="75px"
             icon="sort"
-            tooltip="Cycle between sorting methods."
+            tooltip="切换排序方式。"
             onClick={() =>
               setSortType(
                 sortType === 'default'
@@ -133,7 +133,7 @@ export const SurgeryProceduresView = (props: SurgeryProceduresViewProps) => {
               )
             }
           >
-            {capitalizeFirst(sortType)}
+            {{ default: '默认', name: '名称', tool: '工具' }[sortType]}
           </Button>
         </>
       }
@@ -179,7 +179,7 @@ export const SurgeryProceduresView = (props: SurgeryProceduresViewProps) => {
                 )}
                 <Stack.Item grow />
                 <Stack.Item italic textAlign="right" fontSize="0.9rem">
-                  {capitalizeAll(tool)}
+                  {craftToolDisplay(capitalizeAll(tool))}
                 </Stack.Item>
               </Stack>
             </Stack.Item>
@@ -199,7 +199,7 @@ export const SurgeryProceduresView = (props: SurgeryProceduresViewProps) => {
                   <Stack.Item bold>{surgery.desc}</Stack.Item>
                   <Stack.Item>
                     <Collapsible
-                      title="Requirements"
+                      title="条件"
                       open={pinnedOperations.includes(surgery.name)}
                     >
                       <Stack

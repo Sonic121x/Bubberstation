@@ -12,13 +12,13 @@ export const NanopaintErrorDialog = (props: NanopaintErrorDialogProps) => {
       <Section>
         <Stack vertical textAlign="center" align="center">
           <Stack.Item align="start" fontSize="16px">
-            Error
+            错误
           </Stack.Item>
           <Stack.Item>{message}</Stack.Item>
           <Stack.Item>
             <Stack fill justify="space-evenly">
               <Stack.Item>
-                <Button onClick={() => act('closeDialog')}>OK</Button>
+                <Button onClick={() => act('closeDialog')}>确定</Button>
               </Stack.Item>
             </Stack>
           </Stack.Item>

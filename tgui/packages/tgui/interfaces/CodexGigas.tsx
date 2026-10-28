@@ -2,7 +2,7 @@ import { Button, LabeledList, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { codexGigasDisplay } from '../localization/codexGigasDisplay';
 type Data = {
   name: string;
   currentSection: number;
@@ -68,9 +68,9 @@ export const CodexGigas = (props) => {
             <Titles />
             <Names />
             <Suffixes />
-            <LabeledList.Item label="Submit">
+            <LabeledList.Item label="提交">
               <Button
-                content="Search"
+                content="搜索"
                 disabled={currentSection < 4}
                 onClick={() => act('search')}
               />
@@ -87,11 +87,11 @@ const Prefixes = (props) => {
   const { currentSection } = data;
 
   return (
-    <LabeledList.Item label="Prefix">
+    <LabeledList.Item label="前缀">
       {PREFIXES.map((prefix) => (
         <Button
           key={prefix.toLowerCase()}
-          content={prefix}
+          content={codexGigasDisplay(prefix)}
           disabled={currentSection !== 1}
           onClick={() => act(`${prefix} `)}
         />
@@ -105,11 +105,11 @@ const Titles = (props) => {
   const { currentSection } = data;
 
   return (
-    <LabeledList.Item label="Title">
+    <LabeledList.Item label="头衔">
       {TITLES.map((title) => (
         <Button
           key={title.toLowerCase()}
-          content={title}
+          content={codexGigasDisplay(title)}
           disabled={currentSection !== 2}
           onClick={() => act(title)}
         />
@@ -123,7 +123,7 @@ const Names = (props) => {
   const { currentSection } = data;
 
   return (
-    <LabeledList.Item label="Name">
+    <LabeledList.Item label="名字">
       {NAMES.map((name) => (
         <Button
           key={name.toLowerCase()}
@@ -141,11 +141,11 @@ const Suffixes = (props) => {
   const { currentSection } = data;
 
   return (
-    <LabeledList.Item label="Suffix">
+    <LabeledList.Item label="后缀">
       {SUFFIXES.map((suffix) => (
         <Button
           key={suffix.toLowerCase()}
-          content={suffix}
+          content={codexGigasDisplay(suffix)}
           disabled={currentSection !== 4}
           onClick={() => act(` ${suffix}`)}
         />

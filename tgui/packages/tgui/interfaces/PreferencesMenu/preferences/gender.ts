@@ -8,21 +8,21 @@ export enum Gender {
 export const GENDERS = {
   [Gender.Male]: {
     icon: 'mars',
-    text: 'He/Him',
+    text: '他（He/Him）',
   },
 
   [Gender.Female]: {
     icon: 'venus',
-    text: 'She/Her',
+    text: '她（She/Her）',
   },
 
   [Gender.Other]: {
     icon: 'transgender',
-    text: 'They/Them',
+    text: 'TA（They/Them）',
   },
 
   [Gender.Other2]: {
     icon: 'neuter',
-    text: 'It/Its',
+    text: '它（It/Its）',
   },
 };

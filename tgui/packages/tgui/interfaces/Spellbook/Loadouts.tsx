@@ -15,27 +15,27 @@ export function Loadouts(props) {
           <SingleLoadout
             loadoutId="loadout_classic"
             loadoutColor="purple"
-            name="The Classic Wizard"
+            name="经典巫师"
             icon="fire"
-            author="Archchancellor Gray"
+            author="大法师院长格雷"
             blurb="
-                This is the classic wizard, crazy popular in
-                the 2550's. Comes with Fireball, Magic Missile,
-                Ei Nath, and Ethereal Jaunt. The key here is that
-                every part of this kit is very easy to pick up and use.
+                这是在 2550 年代
+                风靡一时的经典巫师配装，包含火球术、魔法飞弹、
+                天罚和以太漫步。它最大的特点是
+                每一项能力都非常容易上手使用。
               "
           />
           <SingleLoadout
-            name="Mjolnir's Power"
+            name="妙尔尼尔之力"
             icon="hammer"
             loadoutId="loadout_hammer"
             loadoutColor="green"
-            author="Jegudiel Worldshaker"
+            author="撼世者耶古迪尔"
             blurb="
-                The power of the mighty Mjolnir! Best not to lose it.
-                This loadout has Summon Item, Mutate, Blink, Force Wall,
-                Tesla Blast, and Mjolnir. Mutate is your utility in this case:
-                Use it for limited ranged fire and getting out of bad blinks.
+                感受强大妙尔尼尔的力量！最好别把它弄丢了。
+                此配装包含召唤物品、变异、闪烁、力场墙、
+                特斯拉冲击和妙尔尼尔。其中变异是你的实用工具：
+                提供有限的远程火力，也能在闪烁失误后帮助脱困。
               "
           />
         </Stack>
@@ -43,28 +43,28 @@ export function Loadouts(props) {
       <Stack.Item>
         <Stack fill>
           <SingleLoadout
-            name="Fantastical Army"
+            name="奇幻大军"
             icon="pastafarianism"
             loadoutId="loadout_army"
             loadoutColor="yellow"
-            author="Prospero Spellstone"
+            author="咒石普洛斯佩罗"
             blurb="
-                Why kill when others will gladly do it for you?
-                Embrace chaos with your kit: Soulshards, Staff of Change,
-                Necro Stone, Teleport, and Jaunt! Remember, no offense spells!
+                有人乐意代劳，又何必亲自动手？
+                带上灵魂石碎片、变化法杖、死灵之石、
+                传送和以太漫步，拥抱混沌！注意，此配装没有攻击法术！
              "
           />
           <SingleLoadout
-            name="Soul Tapper"
+            name="汲魂者"
             icon="skull"
             loadoutId="loadout_tap"
             loadoutColor="white"
-            author="Tom the Empty"
+            author="空虚者汤姆"
             blurb="
-                Embrace the dark, and tap into your soul.
-                You can recharge very long recharge spells
-                like Ei Nath by jumping into new bodies with
-                Mind Swap and starting Soul Tap anew.
+                拥抱黑暗，汲取自己的灵魂。
+                你可以使用心智交换进入新的身体，
+                再次施展汲魂，为天罚等
+                冷却时间很长的法术重新充能。
               "
           />
         </Stack>
@@ -92,7 +92,7 @@ function SingleLoadout(props: Props) {
         {blurb}
         <Divider />
         <Button.Confirm
-          confirmContent="Confirm Purchase?"
+          confirmContent="确认购买？"
           confirmIcon="dollar-sign"
           confirmColor="good"
           fluid
@@ -103,10 +103,10 @@ function SingleLoadout(props: Props) {
             })
           }
         >
-          Purchase Loadout
+          购买配装
         </Button.Confirm>
         <Divider />
-        <Box color={loadoutColor}>Added by {author}.</Box>
+        <Box color={loadoutColor}>提供者：{author}。</Box>
       </Section>
     </Stack.Item>
   );

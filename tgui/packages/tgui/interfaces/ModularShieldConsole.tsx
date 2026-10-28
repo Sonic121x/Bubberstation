@@ -29,10 +29,10 @@ export const ModularShieldConsole = () => {
   const { data } = useBackend<Data>();
   const { generators } = data;
   return (
-    <Window title="Modular Shield Console" width={450} height={275}>
+    <Window title="模块化护盾控制台" width={450} height={275}>
       <Window.Content scrollable>
         {generators.length === 0 ? (
-          <NoticeBox>No Generators Connected</NoticeBox>
+          <NoticeBox>未连接护盾发生器</NoticeBox>
         ) : (
           <Section minHeight="200px">
             <GeneratorTable />
@@ -49,12 +49,12 @@ const GeneratorTable = () => {
   return (
     <Table>
       <Table.Row>
-        <Table.Cell bold>Name</Table.Cell>
+        <Table.Cell bold>名称</Table.Cell>
         <Table.Cell bold collapsing textAlign="center">
-          Status
+          状态
         </Table.Cell>
         <Table.Cell bold textAlign="center">
-          Toggle
+          开关
         </Table.Cell>
       </Table.Row>
       {generators.map((stat) => (
@@ -118,7 +118,7 @@ const GeneratorTableEntry = (props: GeneratorTableEntryProps) => {
           bold
           disabled={recovering}
           selected={active}
-          content={active ? 'On' : 'Off'}
+          content={active ? '开启' : '关闭'}
           icon="power-off"
           onClick={() => act('toggle_shields', { id })}
         />

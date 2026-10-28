@@ -16,7 +16,7 @@ import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { holopayDisplay } from '../localization/holopayDisplay';
 type HoloPayData = {
   available_logos: string[];
   balance: number;
@@ -39,10 +39,10 @@ export const HoloPay = (props) => {
   };
 
   return (
-    <Window height={300} width={250} title="Holo Pay">
+    <Window height={300} width={250} title="全息支付">
       <Window.Content>
         {!owner ? (
-          <NoticeBox>Error! Swipe an ID first.</NoticeBox>
+          <NoticeBox>错误！请先刷ID卡。</NoticeBox>
         ) : (
           <Stack fill vertical>
             <Stack.Item>
@@ -69,7 +69,7 @@ const AccountDisplay = (props) => {
   const { data } = useBackend<HoloPayData>();
   const { user } = data;
   if (!user) {
-    return <NoticeBox>Error! No account detected.</NoticeBox>;
+    return <NoticeBox>错误！未检测到账户。</NoticeBox>;
   }
 
   return (
@@ -110,12 +110,12 @@ const TerminalDisplay = (props) => {
       buttons={
         is_owner && (
           <Button icon="edit" onClick={onClick}>
-            Setup
+            设置
           </Button>
         )
       }
       fill
-      title="Terminal"
+      title="终端"
     >
       <Stack fill vertical>
         <Stack.Item align="center" mt={3}>
@@ -134,7 +134,7 @@ const TerminalDisplay = (props) => {
               content={
                 <>
                   <Icon name="coins" />
-                  Pay {`${force_fee} cr`}
+                  支付{`${force_fee}信用点`}
                 </>
               }
               disabled={cannot_pay}
@@ -149,7 +149,7 @@ const TerminalDisplay = (props) => {
               content={
                 <>
                   <Icon name="coins" />
-                  Pay
+                  支付
                 </>
               }
               disabled={cannot_pay}
@@ -186,28 +186,28 @@ const SetupDisplay = (props) => {
             onClick();
           }}
         >
-          Done
+          完成
         </Button>
       }
       fill
       scrollable
-      title="Settings"
+      title="设置"
     >
       <Stack fill vertical>
         <Stack.Item>
           <Box bold color="label">
-            Shop Logo
+            商店标志
           </Box>
           <Dropdown
             onSelected={(value) => act('logo', { logo: value })}
-            options={available_logos}
-            selected={shop_logo}
+            options={available_logos.map((value) => ({ value, displayText: holopayDisplay(value) }))}
+            selected={shop_logo} displayText={holopayDisplay(shop_logo)}
             width="100%"
           />
         </Stack.Item>
         <Stack.Item>
           <Box bold color="label">
-            Name (3 - 42 chars)
+            名称（3至42个字符）
           </Box>
           <TextArea
             fluid
@@ -220,9 +220,9 @@ const SetupDisplay = (props) => {
           />
         </Stack.Item>
         <Stack.Item>
-          <Tooltip content="Set a forced fee rather than pay what you want.">
+          <Tooltip content="设置固定费用，替代任意金额付款。">
             <Box bold color="label">
-              Forced Fee
+              固定费用
             </Box>
             <RestrictedInput
               fluid

@@ -97,19 +97,19 @@ function MasterControls() {
       <Stack.Item>
         <Button
           icon="eject"
-          tooltip="Disengage the claws, dropping the held item"
+          tooltip="松开夹爪，放下持有的物品"
           onClick={() => act('drop_held_atom')}
         >
-          Drop
+          放下
         </Button>
       </Stack.Item>
       <Stack.Item>
         <Button
           icon="person-walking-arrow-right"
-          tooltip="Unbuckle the worker"
+          tooltip="解开作业者的束缚"
           onClick={() => act('unbuckle')}
         >
-          Unbuckle
+          解开
         </Button>
       </Stack.Item>
     </Stack>
@@ -181,7 +181,7 @@ function TaskEditModal(props: TaskEditModalProps) {
   return (
     <Modal style={{ padding: '6px', width: '340px', boxSizing: 'initial' }}>
       <Section
-        title={`Edit: ${task.name}`}
+        title={`编辑：${task.name}`}
         buttons={
           <Button icon="xmark" color="bad" onClick={onClose} />
         }
@@ -190,7 +190,7 @@ function TaskEditModal(props: TaskEditModalProps) {
           <Table>
             <Table.Row className="candystripe" style={{ height: '2em', lineHeight: '2em' }}>
               <Table.Cell>
-                <Box style={{ marginLeft: '5px' }}>Wait Time</Box>
+                <Box style={{ marginLeft: '5px' }}>等待时间</Box>
               </Table.Cell>
               <Table.Cell style={{ paddingRight: '5px' }}>
                 <Slider
@@ -236,36 +236,36 @@ function TaskEditModal(props: TaskEditModalProps) {
               <Table>
                 {!isMove && (
                   <ConfigRow
-                    label="Use Filters"
-                    content={task.filters_status ? 'TRUE' : 'FALSE'}
+                    label="使用筛选器"
+                    content={task.filters_status ? '是' : '否'}
                     onClick={() => adjust('toggle_filter_skip')}
-                    tooltip="Toggle filter usage"
+                    tooltip="切换是否使用筛选器"
                   />
                 )}
                 {isPickup && (
                   <ConfigRow
-                    label="Eagerness"
+                    label="拾取时机"
                     content={batchThreeDisplay(task.pickup_eagerness ?? '—')}
                     onClick={() => adjust('cycle_pickup_eagerness')}
-                    tooltip="Wait for dropoff slot or pick up immediately"
+                    tooltip="等待放置位置可用，或立即拾取"
                   />
                 )}
                 {isDropoff && (
                   <>
                     {task.task_type === 'drop' && (
                       <ConfigRow
-                        label="Overflow"
+                        label="溢出处理"
                         content={batchThreeDisplay(task.overflow_status ?? '—')}
                         onClick={() => adjust('cycle_overflow_status')}
-                        tooltip="Cycle overflow behaviour"
+                        tooltip="切换溢出处理方式"
                       />
                     )}
                     {task.task_type === 'throw' && (
                       <ConfigRow
-                        label="Throw Range"
-                        content={`${task.throw_range} TILES`}
+                        label="投掷距离"
+                        content={`${task.throw_range} 格`}
                         onClick={() => adjust('cycle_throw_range')}
-                        tooltip="Cycle throwing range"
+                        tooltip="切换投掷距离"
                       />
                     )}
                   </>
@@ -273,22 +273,22 @@ function TaskEditModal(props: TaskEditModalProps) {
                 {(task.task_type === 'use' || isInteract) && (
                   <>
                     <ConfigRow
-                      label="Alt Click"
-                      content={task.worker_use_rmb ? 'TRUE' : 'FALSE'}
+                      label="右键点击"
+                      content={task.worker_use_rmb ? '是' : '否'}
                       onClick={() => adjust('toggle_worker_rmb')}
-                      tooltip="Simulate RMB click"
+                      tooltip="模拟鼠标右键点击"
                     />
                     <ConfigRow
-                      label="Combat Mode"
-                      content={task.worker_combat_mode ? 'TRUE' : 'FALSE'}
+                      label="战斗模式"
+                      content={task.worker_combat_mode ? '是' : '否'}
                       onClick={() => adjust('toggle_worker_combat')}
-                      tooltip="Use combat mode during interaction"
+                      tooltip="交互时使用战斗模式"
                     />
                     <ConfigRow
-                      label="Skip Anchored"
-                      content={task.skip_anchored ? 'TRUE' : 'FALSE'}
+                      label="跳过固定物体"
+                      content={task.skip_anchored ? '是' : '否'}
                       onClick={() => adjust('toggle_skip_anchored')}
-                      tooltip="Skip anchored objects when looking for interaction targets"
+                      tooltip="寻找交互目标时跳过已固定的物体"
                     />
                   </>
                 )}
@@ -301,18 +301,18 @@ function TaskEditModal(props: TaskEditModalProps) {
       {isCargo && !isMove && (
         <>
           <Section
-            title="Item Filters"
+            title="物品筛选器"
             buttons={
               <>
                 <Button
                   icon="plus"
                   onClick={() => adjust('add_atom_filter_from_held')}
                 >
-                  Add held
+                  添加手持物
                 </Button>
                 <Button.Confirm
                   onClick={() => adjust('reset_atom_filters')}
-                  confirmContent="Reset?"
+                  confirmContent="确定重置？"
                   icon="trash"
                 />
               </>
@@ -337,7 +337,7 @@ function TaskEditModal(props: TaskEditModalProps) {
           </Section>
 
           {(task.settings_list ?? []).length > 0 && (
-            <Section title="Interaction Priorities">
+            <Section title="交互优先级">
               <Table>
                 {task.settings_list!.map((setting, index) => (
                   <Table.Row className="candystripe" key={setting.name}>
@@ -404,13 +404,13 @@ const TaskList = () => {
   return (
     <>
       <Section
-        title="Tasks"
+        title="任务"
         buttons={
           <>
             <Button
               icon={strategyIcon}
               color="transparent"
-              tooltip="Cycle tasking strategy"
+              tooltip="切换任务执行策略"
               onClick={() => act('cycle_tasking_strategy', {
                 new_strategy: tasking_strategy === 'Sequential' ? 'Strict order' : 'Sequential',
               })}
@@ -420,10 +420,10 @@ const TaskList = () => {
             <Button
               icon="arrows-spin"
               color="transparent"
-              tooltip="Reset tasking index"
+              tooltip="重置当前任务位置"
               onClick={() => act('reset_tasking_index')}
             >
-              Reset
+              重置
             </Button>
           </>
         }
@@ -475,14 +475,14 @@ const TaskList = () => {
 
                           {task.item_filters && task.item_filters.length > 0 && (
                             <Box>
-                              {'...any of: ' +
+                              {'……以下任意一种：' +
                                 task.item_filters.slice(0, 3).join(', ') +
-                                (task.item_filters.length > 3 ? ` and ${task.item_filters.length - 3} more` : '') +
-                                '...'}
+                                (task.item_filters.length > 3 ? `及其他 ${task.item_filters.length - 3} 种` : '') +
+                                '……'}
                             </Box>
                           )}
-                          {task.turf && <Box>...{task.task_type === 'move' ? 'to' : 'at'} [{task.turf}]...</Box>}
-                          {task.time && <Box>...for {task.time} second{task.time > 1 && "s"}...</Box>}
+                          {task.turf && <Box>……{task.task_type === 'move' ? '前往' : '位于'} [{task.turf}]……</Box>}
+                          {task.time && <Box>……持续 {task.time} 秒……</Box>}
                           {task.sub_name && <Box>...{task.sub_name}</Box>}
                         </Box>
                       </Box>
@@ -535,7 +535,7 @@ const TaskList = () => {
                 value: k,
                 displayText: TASK_TYPE_LABELS[k],
               }))}
-              selected={TASK_TYPE_LABELS[selectedType]}
+              selected={selectedType} displayText={TASK_TYPE_LABELS[selectedType]}
               onSelected={(val) => setSelectedType(val)}
             />
           </Stack.Item>
@@ -545,7 +545,7 @@ const TaskList = () => {
               onClick={() => act('create_task', { task_type: selectedType })}
               style={{lineHeight: '22px'}}
             >
-              New
+              新建
             </Button>
           </Stack.Item>
         </Stack>
@@ -566,17 +566,17 @@ export const BigManipulator = () => {
   const { active, stopping } = data;
 
   return (
-    <Window title="Manipulator Interface" width={420} height={560}>
+    <Window title="机械臂界面" width={420} height={560}>
       <Window.Content overflowY="auto">
         <Section
-          title="Action Panel"
+          title="操作面板"
           buttons={
             <Button
               icon={!active ? 'play' : stopping ? 'hourglass-start' : 'stop'}
               color={!active ? 'good' : stopping ? 'blue' : 'bad'}
               onClick={() => act('run_cycle')}
             >
-              {!active ? 'Run' : stopping ? 'Stopping' : 'Stop'}
+              {!active ? '运行' : stopping ? '正在停止' : '停止'}
             </Button>
           }
         >
@@ -596,7 +596,7 @@ export const BigManipulator = () => {
               color={!data.disk_inserted && "none"}
               onClick={() => act('disk_eject')}
             >
-              { data.disk_inserted ? `floppy drive (tasks: ${data.disk_task_count})` : "No drives inserted" }
+              { data.disk_inserted ? `软盘（任务数：${data.disk_task_count}）` : "未插入磁盘" }
             </Button>
             </Stack.Item>
             <Stack.Item>
@@ -607,7 +607,7 @@ export const BigManipulator = () => {
                 disabled={!data.disk_inserted || !!active || !!stopping}
                 onClick={() => act('disk_read')}
               >
-                Read
+                读取
               </Button>
             </Stack.Item>
             <Stack.Item>
@@ -618,7 +618,7 @@ export const BigManipulator = () => {
                 disabled={!data.disk_inserted || !!data.disk_read_only || !!active || !!stopping}
                 onClick={() => act('disk_write')}
               >
-                Write
+                写入
               </Button>
             </Stack.Item>
             <Stack.Item>
@@ -627,9 +627,9 @@ export const BigManipulator = () => {
             }}
                 icon="trash"
                 disabled={!data.disk_inserted || !!data.disk_read_only || !!active || !!stopping}
-                confirmContent="Clear?"
+                confirmContent="确定清空？"
                 onClick={() => act('disk_clear')}
-              >Clear
+              >清空
               </Button.Confirm>
             </Stack.Item>
           </Stack>

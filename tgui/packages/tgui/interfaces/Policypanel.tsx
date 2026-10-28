@@ -28,7 +28,7 @@ export const Policypanel = () => {
   const [currentPolicy, setCurrentPolicy] = useState<string>('');
 
   return (
-    <Window title="Policy Panel" theme="admin" width={400} height={300}>
+    <Window title="规则面板" theme="admin" width={400} height={300}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>
@@ -42,7 +42,7 @@ export const Policypanel = () => {
               </Flex.Item>
               <Flex.Item width="50%">
                 <Input
-                  placeholder="Search..."
+                  placeholder="搜索……"
                   fluid
                   onEnter={(value) => {
                     const results = searchForPolicy(policy, value);
@@ -58,8 +58,8 @@ export const Policypanel = () => {
             <Section scrollable fill>
               <BlockQuote fontSize="16px">
                 {policy[currentPolicy] ||
-                  `Select a policy to view. These policies are displayed
-                    to players upon gaining the relevant role.`}
+                  `选择要查看的规则。这些规则会在玩家
+                    获得对应角色时向其展示。`}
               </BlockQuote>
             </Section>
           </Stack.Item>

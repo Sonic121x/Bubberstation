@@ -10,19 +10,19 @@ export function NifStats() {
   return (
     <Box>
       <LabeledList>
-        <LabeledList.Item label="NIF Condition">
+        <LabeledList.Item label="框架耐久度">
           <NifConditionBar />
         </LabeledList.Item>
-        <LabeledList.Item label="NIF Power">
+        <LabeledList.Item label="框架电量">
           <NifPowerBar />
         </LabeledList.Item>
         {!!nutrition_drain && (
-          <LabeledList.Item label="User Nutrition">
+          <LabeledList.Item label="使用者营养">
             <NifNutritionBar />
           </LabeledList.Item>
         )}
         {!!blood_drain && (
-          <LabeledList.Item label="User Blood Level">
+          <LabeledList.Item label="使用者血量">
             <NifBloodBar />
           </LabeledList.Item>
         )}
@@ -66,7 +66,7 @@ export function NifPowerBar() {
         '%' +
         ' (' +
         (power_usage / max_power) * 100 +
-        '% Usage)'}
+        '% 消耗)'}
     </ProgressBar>
   );
 }

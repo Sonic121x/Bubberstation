@@ -10,7 +10,7 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { logCategoryDisplay as zh } from '../localization/zhLogCategoryDisplay';
 type LogViewerData = {
   round_id: number;
   logging_start_timestamp: string;
@@ -93,11 +93,11 @@ const CategoryBar = (props: CategoryBarProps) => {
 
   return (
     <Section
-      title="Categories"
+      title="类别"
       scrollableHorizontal
       buttons={
         <Input
-          placeholder="Search"
+          placeholder="搜索"
           value={categorySearch}
           onChange={setCategorySearch}
         />
@@ -109,18 +109,18 @@ const CategoryBar = (props: CategoryBarProps) => {
           selected={props.active === ''}
           onClick={() => props.setActive('')}
         >
-          None
+          无
         </Button>
         <Button
-          tooltip="This can be slow!"
+          tooltip="此操作可能较慢！"
           selected={props.active === CATEGORY_ALL}
           onClick={() => props.setActive(CATEGORY_ALL)}
         >
-          All
+          全部
         </Button>
         {sorted
           .filter((cat) =>
-            cat.toLowerCase().includes(categorySearch.toLowerCase()),
+            `${zh(cat)} ${cat}`.toLowerCase().includes(categorySearch.toLowerCase()),
           )
           .map((category) => (
             <Button
@@ -128,7 +128,7 @@ const CategoryBar = (props: CategoryBarProps) => {
               selected={category === props.active}
               onClick={() => props.setActive(category)}
             >
-              {category}
+              {zh(category)}
             </Button>
           ))}
       </Stack>
@@ -165,29 +165,29 @@ const CategoryViewer = (props: CategoryViewerProps) => {
 
   return (
     <Section
-      title={`Category Viewer${
+      title={`分类查看器${
         props.activeCategory
-          ? ` - ${props.activeCategory}[${props.data?.entry_count}]`
-          : ' - Select a category'
+          ? ` - ${zh(props.activeCategory)}[${props.data?.entry_count}]`
+          : ' - 请选择类别'
       }`}
       buttons={
         <>
-          <Input placeholder="Search" value={search} onChange={setSearch} />
+          <Input placeholder="搜索" value={search} onChange={setSearch} />
           <Button
             icon="code"
-            tooltip="RegEx Search"
+            tooltip="正则表达式搜索"
             selected={searchRegex}
             onClick={() => setSearchRegex(!searchRegex)}
           />
           <Button
             icon="font"
             selected={caseSensitive}
-            tooltip="Case Sensitive"
+            tooltip="区分大小写"
             onClick={() => setCaseSensitive(!caseSensitive)}
           />
           <Button
             icon="trash"
-            tooltip="Clear Search"
+            tooltip="清除搜索"
             color="bad"
             onClick={() => {
               setSearch('');
@@ -231,13 +231,13 @@ const CategoryViewer = (props: CategoryViewerProps) => {
                     <Stack.Item>
                       {entry.semver && (
                         <Stack.Item>
-                          <JsonViewer data={entry.semver} title="Semver" />
+                          <JsonViewer data={entry.semver} title="语义版本" />
                         </Stack.Item>
                       )}
                     </Stack.Item>
                     {entry.data && (
                       <Stack.Item>
-                        <JsonViewer data={entry.data} title="Data" />
+                        <JsonViewer data={entry.data} title="数据" />
                       </Stack.Item>
                     )}
                   </Stack>
@@ -247,7 +247,7 @@ const CategoryViewer = (props: CategoryViewerProps) => {
           })
         ) : (
           <NoticeBox danger>
-            Invalid RegEx: {(regexValidation as SyntaxError).message}
+            正则表达式无效：{(regexValidation as SyntaxError).message}
           </NoticeBox>
         )}
       </Stack>

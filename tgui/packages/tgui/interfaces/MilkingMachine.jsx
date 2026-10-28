@@ -3,7 +3,7 @@ import { Box, Button, Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { milkingDisplay as zh } from '../localization/zhMilkingDisplay';
 let palette;
 
 export const MilkingMachine = (props) => {
@@ -56,12 +56,12 @@ const MilkingMachineContent = (props) => {
           <Stack.Item grow textAlign="center">
             {!data.mobName && (
               <Section backgroundColor={palette.SectionBackgroundColor}>
-                No creature in machine loaded
+                机器内没有生物
               </Section>
             )}
             {data.mobName && (
               <Section backgroundColor={palette.SectionBackgroundColor}>
-                Name: {mobName}
+                名称：{mobName}
               </Section>
             )}
           </Stack.Item>
@@ -69,7 +69,7 @@ const MilkingMachineContent = (props) => {
             {mobName && (
               <Button
                 icon="eject"
-                content="Eject creature"
+                content="释放生物"
                 textAlign="center"
                 backgroundColor={palette.ButtonBackGroundColor}
                 onClick={() => act('ejectCreature')}
@@ -78,7 +78,7 @@ const MilkingMachineContent = (props) => {
             {!mobName && (
               <Button
                 icon="eject"
-                content="Eject creature"
+                content="释放生物"
                 textAlign="center"
                 backgroundColor={palette.ButtonBackGroundColor}
                 disabled
@@ -97,7 +97,7 @@ const MilkingMachineContent = (props) => {
                   backgroundColor={palette.SectionBackgroundColor}
                   textAlign="center"
                 >
-                  Machine control
+                  机器控制
                 </Section>
               </Stack.Item>
               <Stack.Item>
@@ -116,7 +116,7 @@ const MilkingMachineContent = (props) => {
                           backgroundColor={palette.SectionBackgroundColor}
                           textAlign="center"
                         >
-                          State: {mode}
+                          状态：{zh(mode)}
                         </Section>
                       </Stack.Item>
                     </Stack>
@@ -140,7 +140,7 @@ const MilkingMachineContent = (props) => {
                   backgroundColor={palette.SectionBackgroundColor}
                   textAlign="center"
                 >
-                  Organ control
+                  器官控制
                 </Section>
               </Stack.Item>
               <Stack.Item>
@@ -152,7 +152,7 @@ const MilkingMachineContent = (props) => {
                           {current_selected_organ !== null && (
                             <Box as="div" m={1}>
                               <Button
-                                content="Unplug"
+                                content="拔下"
                                 textAlign="center"
                                 width="100%"
                                 backgroundColor={palette.ControlButtonOff}
@@ -165,7 +165,7 @@ const MilkingMachineContent = (props) => {
                           {current_selected_organ === null && (
                             <Box as="div" m={1}>
                               <Button
-                                content="Unplug"
+                                content="拔下"
                                 textAlign="center"
                                 width="100%"
                                 backgroundColor={palette.ControlButtonOn}
@@ -181,7 +181,7 @@ const MilkingMachineContent = (props) => {
                               backgroundColor={palette.SectionBackgroundColor}
                               textAlign="center"
                             >
-                              Organ: none
+                              器官：无
                             </Section>
                           )}
                           {current_selected_organ !== null && (
@@ -189,7 +189,7 @@ const MilkingMachineContent = (props) => {
                               backgroundColor={palette.SectionBackgroundColor}
                               textAlign="center"
                             >
-                              Organ: {current_selected_organ}
+                              器官：{zh(current_selected_organ)}
                             </Section>
                           )}
                         </Stack.Item>
@@ -200,7 +200,7 @@ const MilkingMachineContent = (props) => {
                             current_breasts !== null && (
                               <Box as="div" m={1}>
                                 <Button
-                                  content="Breasts"
+                                  content="乳房"
                                   textAlign="center"
                                   width="100%"
                                   backgroundColor={palette.ControlButtonOff}
@@ -213,7 +213,7 @@ const MilkingMachineContent = (props) => {
                           {current_selected_organ === 'the breasts' && (
                             <Box as="div" m={1}>
                               <Button
-                                content="Breasts"
+                                content="乳房"
                                 textAlign="center"
                                 width="100%"
                                 backgroundColor={palette.ControlButtonOn}
@@ -225,7 +225,7 @@ const MilkingMachineContent = (props) => {
                           {current_vagina === null && (
                             <Box as="div" m={1}>
                               <Button
-                                content="Breasts"
+                                content="乳房"
                                 textAlign="center"
                                 width="100%"
                                 backgroundColor={palette.ControlButtonOn}
@@ -241,7 +241,7 @@ const MilkingMachineContent = (props) => {
                             current_vagina !== null && (
                               <Box as="div" m={1}>
                                 <Button
-                                  content="Vagina"
+                                  content="阴道"
                                   textAlign="center"
                                   width="100%"
                                   backgroundColor={palette.ControlButtonOff}
@@ -254,7 +254,7 @@ const MilkingMachineContent = (props) => {
                           {current_selected_organ === 'the vagina' && (
                             <Box as="div" m={1}>
                               <Button
-                                content="Vagina"
+                                content="阴道"
                                 textAlign="center"
                                 width="100%"
                                 backgroundColor={palette.ControlButtonOn}
@@ -266,7 +266,7 @@ const MilkingMachineContent = (props) => {
                           {current_vagina === null && (
                             <Box as="div" m={1}>
                               <Button
-                                content="Vagina"
+                                content="阴道"
                                 textAlign="center"
                                 width="100%"
                                 backgroundColor={palette.ControlButtonOn}
@@ -282,7 +282,7 @@ const MilkingMachineContent = (props) => {
                             current_testicles !== null && (
                               <Box as="div" m={1}>
                                 <Button
-                                  content="Testicles"
+                                  content="睾丸"
                                   textAlign="center"
                                   width="100%"
                                   backgroundColor={palette.ControlButtonOff}
@@ -295,7 +295,7 @@ const MilkingMachineContent = (props) => {
                           {current_selected_organ === 'the testicles' && (
                             <Box as="div" m={1}>
                               <Button
-                                content="Testicles"
+                                content="睾丸"
                                 textAlign="center"
                                 width="100%"
                                 backgroundColor={palette.ControlButtonOn}
@@ -307,7 +307,7 @@ const MilkingMachineContent = (props) => {
                           {current_testicles === null && (
                             <Box as="div" m={1}>
                               <Button
-                                content="Testicles"
+                                content="睾丸"
                                 textAlign="center"
                                 width="100%"
                                 backgroundColor={palette.ControlButtonOn}
@@ -334,7 +334,7 @@ const MilkingMachineContent = (props) => {
                     backgroundColor={palette.SectionBackgroundColor}
                     textAlign="center"
                   >
-                    Beaker: {BeakerName}
+                    烧杯：{BeakerName}
                   </Section>
                 )}
                 {beaker === null && (
@@ -343,7 +343,7 @@ const MilkingMachineContent = (props) => {
                     backgroundColor={palette.SectionBackgroundColor}
                     textAlign="center"
                   >
-                    Beaker: none
+                    烧杯：无
                   </Section>
                 )}
               </Stack.Item>
@@ -355,7 +355,7 @@ const MilkingMachineContent = (props) => {
                         backgroundColor={palette.SectionBackgroundColor}
                         textAlign="center"
                       >
-                        Volume: {Math.round(beakerCurrentVolume)} /{' '}
+                        容量：{Math.round(beakerCurrentVolume)} /{' '}
                         {Math.round(beakerMaxVolume)}
                       </Section>
                     )}
@@ -364,7 +364,7 @@ const MilkingMachineContent = (props) => {
                         backgroundColor={palette.SectionBackgroundColor}
                         textAlign="center"
                       >
-                        Volume: n/a
+                        容量：无
                       </Section>
                     )}
                   </Stack.Item>
@@ -372,7 +372,7 @@ const MilkingMachineContent = (props) => {
                     {beaker !== null && (
                       <Button
                         icon="eject"
-                        content="Eject Beaker"
+                        content="弹出烧杯"
                         textAlign="center"
                         backgroundColor={palette.ButtonBackGroundColor}
                         onClick={() => act('ejectBeaker')}
@@ -381,7 +381,7 @@ const MilkingMachineContent = (props) => {
                     {beaker === null && (
                       <Button
                         icon="eject"
-                        content="Eject Beaker"
+                        content="弹出烧杯"
                         textAlign="center"
                         backgroundColor={palette.ButtonBackGroundColor}
                         disabled
@@ -396,7 +396,7 @@ const MilkingMachineContent = (props) => {
                   backgroundColor={palette.SectionBackgroundColor}
                   textAlign="center"
                 >
-                  Tanks status
+                  储液罐状态
                 </Section>
               </Stack.Item>
               <Stack.Item>
@@ -407,7 +407,7 @@ const MilkingMachineContent = (props) => {
                         {current_vessel === 'MilkContainer' && (
                           <Box as="div" m={1}>
                             <Button
-                              content="Milk"
+                              content="乳汁"
                               textAlign="center"
                               width="100%"
                               backgroundColor={palette.ControlButtonOn}
@@ -419,7 +419,7 @@ const MilkingMachineContent = (props) => {
                         {current_vessel !== 'MilkContainer' && (
                           <Box as="div" m={1}>
                             <Button
-                              content="Milk"
+                              content="乳汁"
                               textAlign="center"
                               width="100%"
                               backgroundColor={palette.ControlButtonOff}
@@ -456,7 +456,7 @@ const MilkingMachineContent = (props) => {
                         {current_vessel === 'GirlcumContainer' && (
                           <Box as="div" m={1}>
                             <Button
-                              content="Girlcum"
+                              content="女性分泌物"
                               textAlign="center"
                               width="100%"
                               backgroundColor={palette.ControlButtonOn}
@@ -468,7 +468,7 @@ const MilkingMachineContent = (props) => {
                         {current_vessel !== 'GirlcumContainer' && (
                           <Box as="div" m={1}>
                             <Button
-                              content="Girlcum"
+                              content="女性分泌物"
                               textAlign="center"
                               width="100%"
                               backgroundColor={palette.ControlButtonOff}
@@ -505,7 +505,7 @@ const MilkingMachineContent = (props) => {
                         {current_vessel === 'SemenContainer' && (
                           <Box as="div" m={1}>
                             <Button
-                              content="Semen"
+                              content="精液"
                               textAlign="center"
                               width="100%"
                               backgroundColor={palette.ControlButtonOn}
@@ -517,7 +517,7 @@ const MilkingMachineContent = (props) => {
                         {current_vessel !== 'SemenContainer' && (
                           <Box as="div" m={1}>
                             <Button
-                              content="Semen"
+                              content="精液"
                               textAlign="center"
                               width="100%"
                               backgroundColor={palette.ControlButtonOff}
@@ -539,7 +539,7 @@ const MilkingMachineContent = (props) => {
                       </Stack.Item>
                       <Stack.Item align="center">
                         <Button
-                          content="All"
+                          content="全部"
                           minWidth="30pt"
                           textAlign="center"
                           backgroundColor={palette.ButtonBackGroundColor}
@@ -571,7 +571,7 @@ const modeButtonStates = (Name, data, palette) => {
     return (
       <Box as="div" m={1}>
         <Button
-          content={Name}
+          content={zh(Name)}
           textAlign="center"
           width="100%"
           backgroundColor={palette.ControlButtonOff}
@@ -589,7 +589,7 @@ const modeButtonStates = (Name, data, palette) => {
     return (
       <Box as="div" m={1}>
         <Button
-          content={Name}
+          content={zh(Name)}
           textAlign="center"
           width="100%"
           backgroundColor={palette.ControlButtonOn}
@@ -605,7 +605,7 @@ const modeButtonStates = (Name, data, palette) => {
     return (
       <Box as="div" m={1}>
         <Button
-          content={Name}
+          content={zh(Name)}
           textAlign="center"
           width="100%"
           backgroundColor={palette.ControlButtonOn}
@@ -619,7 +619,7 @@ const modeButtonStates = (Name, data, palette) => {
     return (
       <Box as="div" m={1}>
         <Button
-          content={Name}
+          content={zh(Name)}
           textAlign="center"
           width="100%"
           backgroundColor={palette.ControlButtonOn}
@@ -649,7 +649,7 @@ const organButtonStates = (Name, data, palette) => {
     return (
       <Box as="div" m={1}>
         <Button
-          content={Name}
+          content={zh(Name)}
           textAlign="center"
           width="100%"
           backgroundColor={palette.ControlButtonOff}
@@ -663,7 +663,7 @@ const organButtonStates = (Name, data, palette) => {
     return (
       <Box as="div" m={1}>
         <Button
-          content={Name}
+          content={zh(Name)}
           textAlign="center"
           width="100%"
           backgroundColor={palette.ControlButtonOn}
@@ -679,7 +679,7 @@ const organButtonStates = (Name, data, palette) => {
     return (
       <Box as="div" m={1}>
         <Button
-          content={Name}
+          content={zh(Name)}
           textAlign="center"
           width="100%"
           backgroundColor={palette.ControlButtonOn}

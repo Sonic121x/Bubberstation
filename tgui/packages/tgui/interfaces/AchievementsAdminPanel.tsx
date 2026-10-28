@@ -11,15 +11,15 @@ export const AchievementsAdminPanel = (props) => {
   const { act, data } = useBackend<Data>();
   const { orphaned_keys, archived_keys } = data;
   return (
-    <Window title="Achievements Admin Panel" width={540} height={680}>
+    <Window title="成就管理面板" width={540} height={680}>
       <Window.Content scrollable>
-        <Section title="Orphaned achievements">
+        <Section title="孤立成就">
           <NoticeBox>
-            These achievements are present in the database but are missing
-            definitions in code. Most likely these were removed and can be
-            cleaned up safely. If you're sharing the same database on multiple
-            servers it's possible these come from a server with later version of
-            the code than this one.
+            这些成就存在于数据库中，但在代码中缺少定义。
+            它们很可能已被移除，可以安全清理。
+            如果多个服务器共用同一数据库，
+            这些成就也可能来自代码版本比本服务器更新的
+            其他服务器。
           </NoticeBox>
           <LabeledList>
             {orphaned_keys.map((key) => (
@@ -31,12 +31,12 @@ export const AchievementsAdminPanel = (props) => {
                     <Button.Confirm
                       onClick={() => act('archive', { key: key })}
                     >
-                      Archive
+                      归档
                     </Button.Confirm>
                     <Button.Confirm
                       onClick={() => act('cleanup_orphan', { key: key })}
                     >
-                      Cleanup
+                      清理
                     </Button.Confirm>
                   </>
                 }
@@ -46,8 +46,8 @@ export const AchievementsAdminPanel = (props) => {
             ))}
           </LabeledList>
         </Section>
-        <Section title="Archived achievements">
-          <NoticeBox>Archived achievements in the database.</NoticeBox>
+        <Section title="已归档成就">
+          <NoticeBox>数据库中已归档的成就。</NoticeBox>
           <LabeledList>
             {archived_keys.map((key) => (
               <LabeledList.Item
@@ -57,7 +57,7 @@ export const AchievementsAdminPanel = (props) => {
                   <Button.Confirm
                     onClick={() => act('cleanup_orphan', { key: key })}
                   >
-                    Cleanup
+                    清理
                   </Button.Confirm>
                 }
               >

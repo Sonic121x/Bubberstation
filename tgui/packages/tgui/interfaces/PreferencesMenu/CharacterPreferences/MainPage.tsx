@@ -16,7 +16,7 @@ import {
 import { exhaustiveCheck } from 'tgui-core/exhaustive'; // BUBBER EDIT ADDITION
 import { classes } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
-
+import { chineseDisplay } from '../../../localization/zhDisplay';
 import { SideDropdown } from '../../../bubber_components/SideDropdown'; // BUBBER EDIT ADDITION
 import { CharacterPreview } from '../../common/CharacterPreview';
 import { PageButton } from '../components/PageButton'; // BUBBER EDIT ADDITION
@@ -64,7 +64,7 @@ function CharacterControls(props: CharacterControlsProps) {
           onClick={() => props.handleRotate(true)} // BUBBER EDIT CHANGE - Original: onClick={props.handleRotate}
           fontSize="22px"
           icon="undo"
-          tooltip="Rotate"
+          tooltip="旋转"
           tooltipPosition="top"
         />
       </Stack.Item>
@@ -75,7 +75,7 @@ function CharacterControls(props: CharacterControlsProps) {
           onClick={() => props.handleRotate(false)}
           fontSize="22px"
           icon="redo"
-          tooltip="Rotate"
+          tooltip="旋转"
           tooltipPosition="top"
         />
       </Stack.Item>
@@ -86,7 +86,7 @@ function CharacterControls(props: CharacterControlsProps) {
           onClick={props.handleOpenSpecies}
           fontSize="22px"
           icon="paw"
-          tooltip="Species"
+          tooltip="种族"
           tooltipPosition="top"
         />
       </Stack.Item>
@@ -105,7 +105,7 @@ function CharacterControls(props: CharacterControlsProps) {
           onClick={props.handleFood}
           fontSize="22px"
           icon="drumstick-bite"
-          tooltip="Edit Food Preferences"
+          tooltip="编辑食物偏好"
           tooltipPosition="top"
         />
       </Stack.Item>
@@ -117,7 +117,7 @@ function CharacterControls(props: CharacterControlsProps) {
           fontSize="22px"
           icon="trash"
           color="red"
-          tooltip="Delete Character"
+          tooltip="删除角色"
           tooltipPosition="top"
           disabled={!props.canDeleteCharacter}
         />
@@ -140,7 +140,7 @@ function ChoicedSelection(props: ChoicedSelectionProps) {
   const [searchText, setSearchText] = useState('');
 
   if (!catalog.icons) {
-    return <Box color="red">Provided catalog had no icons!</Box>;
+    return <Box color="red">提供的目录中没有图标！</Box>;
   }
 
   return (
@@ -157,7 +157,7 @@ function ChoicedSelection(props: ChoicedSelectionProps) {
         <Stack.Item>
           <Section
             fill
-            title={`Select ${props.name.toLowerCase()}`}
+            title={`选择${chineseDisplay(props.name)}`}
             buttons={
               supplementalFeature && (
                 <FeatureValueInput
@@ -172,7 +172,7 @@ function ChoicedSelection(props: ChoicedSelectionProps) {
             <Input
               autoFocus
               fluid
-              placeholder="Search..."
+              placeholder="搜索……"
               onChange={setSearchText}
             />
           </Section>
@@ -189,7 +189,7 @@ function ChoicedSelection(props: ChoicedSelectionProps) {
                         props.onSelect(name);
                       }}
                       selected={name === props.selected}
-                      tooltip={name}
+                      tooltip={chineseDisplay(catalog.display_names?.[name] ?? name)}
                       tooltipPosition="right"
                       style={{
                         height: `${CLOTHING_SELECTION_CELL_SIZE}px`,
@@ -224,7 +224,7 @@ function searchInCatalog(searchText = '', catalog: Record<string, string>) {
   if (searchText) {
     items = filter(
       items,
-      createSearch(searchText, ([name, _icon]) => name),
+      createSearch(searchText, ([name, _icon]) => `${name} ${chineseDisplay(name)}`),
     );
   }
   return items;
@@ -266,7 +266,7 @@ function GenderButton(props: GenderButtonProps) {
         <Button
           fontSize="22px"
           icon={GENDERS[props.gender].icon}
-          tooltip="Gender"
+          tooltip="性别"
           tooltipPosition="top"
         />
       </div>
@@ -409,7 +409,7 @@ export function PreferenceList(props: PreferenceListProps) {
             if (feature === undefined) {
               return (
                 <Stack.Item key={featureId}>
-                  <b>Feature {featureId} is not recognized.</b>
+                  <b>无法识别选项 {featureId}。</b>
                 </Stack.Item>
               );
             }
@@ -601,8 +601,8 @@ export function MainPage(props: MainPageProps) {
       prefPageContents = (
         <>
           <NoticeBox info>
-            This tab is for preferences that only apply when playing the AI or
-            Cyborg jobs!
+            此标签页中的偏好设置仅在扮演 AI 或
+            机器人时生效！
           </NoticeBox>
           <PreferenceList
             randomizations={getRandomization(
@@ -761,7 +761,7 @@ export function MainPage(props: MainPageProps) {
                   page={PrefPage.CharBasics}
                   setPage={setCurrentPrefPage}
                 >
-                  Character Basics
+                  角色基础
                 </PageButton>
               </Stack.Item>
               <Stack.Item grow={2}>
@@ -770,7 +770,7 @@ export function MainPage(props: MainPageProps) {
                   page={PrefPage.Visual}
                   setPage={setCurrentPrefPage}
                 >
-                  Character Visuals
+                  角色外观
                 </PageButton>
               </Stack.Item>
               <Stack.Item grow={2}>
@@ -779,7 +779,7 @@ export function MainPage(props: MainPageProps) {
                   page={PrefPage.Lore}
                   setPage={setCurrentPrefPage}
                 >
-                  Character Lore
+                  角色背景
                 </PageButton>
               </Stack.Item>
               <Stack.Item grow={2}>
@@ -788,7 +788,7 @@ export function MainPage(props: MainPageProps) {
                   page={PrefPage.OOCPref}
                   setPage={setCurrentPrefPage}
                 >
-                  OOC Preferences
+                  OOC 偏好
                 </PageButton>
               </Stack.Item>
               <Stack.Item grow={2}>
@@ -797,7 +797,7 @@ export function MainPage(props: MainPageProps) {
                   page={PrefPage.Silicon}
                   setPage={setCurrentPrefPage}
                 >
-                  Silicon Preferences
+                  硅基偏好
                 </PageButton>
               </Stack.Item>
             </Stack>

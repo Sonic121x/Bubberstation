@@ -19,8 +19,8 @@ export const AccountingConsole = () => {
   const [screenmode, setScreenmode] = useSharedState('screen', SCREENS.none);
 
   const ianFileName = young_ian
-    ? `Ian's first birthday.${pic_file_format}`
-    : `Ian.${pic_file_format}`;
+    ? `伊恩的第一个生日.${pic_file_format}`
+    : `伊恩.${pic_file_format}`;
 
   return (
     <Window width={680} height={440} theme="ntOS95">
@@ -33,7 +33,7 @@ export const AccountingConsole = () => {
                   <Stack.Item>
                     <Stack vertical align="center">
                       <FakeDesktopButton
-                        name="paychecks.exe"
+                        name="工资.exe"
                         setScreenmode={setScreenmode}
                         ownerScreenMode={SCREENS.users}
                       >
@@ -46,7 +46,7 @@ export const AccountingConsole = () => {
                         />
                       </FakeDesktopButton>
                       <FakeDesktopButton
-                        name="audit.exe"
+                        name="审计.exe"
                         setScreenmode={setScreenmode}
                         ownerScreenMode={SCREENS.audit}
                       >
@@ -78,7 +78,7 @@ export const AccountingConsole = () => {
               {screenmode === SCREENS.users && (
                 <Stack.Item grow ml={3}>
                   <FakeWindow
-                    name="Crew Account Summary"
+                    name="船员账户汇总"
                     setScreenmode={setScreenmode}
                   >
                     <UsersScreen />
@@ -87,7 +87,7 @@ export const AccountingConsole = () => {
               )}
               {screenmode === SCREENS.audit && (
                 <Stack.Item grow ml={3}>
-                  <FakeWindow name="Audit Log" setScreenmode={setScreenmode}>
+                  <FakeWindow name="审计日志" setScreenmode={setScreenmode}>
                     <AuditScreen />
                   </FakeWindow>
                 </Stack.Item>
@@ -125,7 +125,7 @@ export const AccountingConsole = () => {
               </Stack.Item>
               <Stack.Item mr={1}>
                 <FakeToolbarButton
-                  name="Account Management"
+                  name="账户管理"
                   currentScreenMode={screenmode}
                   setScreenmode={setScreenmode}
                   ownerScreenMode={SCREENS.users}
@@ -133,7 +133,7 @@ export const AccountingConsole = () => {
               </Stack.Item>
               <Stack.Item mr={1}>
                 <FakeToolbarButton
-                  name="Audit Log"
+                  name="审计日志"
                   currentScreenMode={screenmode}
                   setScreenmode={setScreenmode}
                   ownerScreenMode={SCREENS.audit}

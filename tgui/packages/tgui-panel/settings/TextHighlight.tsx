@@ -40,13 +40,13 @@ export function TextHighlightSettings(props) {
               icon="plus"
               onClick={() => addHighlight()}
             >
-              Add Highlight Setting
+              添加高亮规则
             </Button>
             {highlightSettings.length >= WARN_AFTER_HIGHLIGHT_AMT && (
               <Box inline fontSize="0.9em" ml={1} color="red">
                 <Icon mr={1} name="triangle-exclamation" />
-                Large amounts of highlights can potentially cause performance
-                issues!
+                大量高亮规则可能导致
+                性能问题！
               </Box>
             )}
           </Box>
@@ -55,10 +55,10 @@ export function TextHighlightSettings(props) {
       <Divider />
       <Box>
         <Button icon="check" onClick={() => chatRenderer.rebuildChat()}>
-          Apply now
+          立即应用
         </Button>
         <Box inline fontSize="0.9em" ml={1} color="label">
-          Can freeze the chat for a while.
+          可能导致聊天界面暂时卡顿。
         </Box>
       </Box>
     </Section>
@@ -151,13 +151,13 @@ function TextHighlightSetting(props) {
               })
             }
           >
-            Enabled
+            已启用
           </Button.Checkbox>
         </Stack.Item>
         <Stack.Item>
           <Button.Checkbox
             checked={highlightWholeMessage}
-            tooltip="If this option is selected, the entire message will be highlighted in yellow."
+            tooltip="选中后，整条消息都会以黄色高亮显示。"
             onClick={() =>
               updateHighlight({
                 id,
@@ -165,14 +165,14 @@ function TextHighlightSetting(props) {
               })
             }
           >
-            Whole Message
+            整条消息
           </Button.Checkbox>
         </Stack.Item>
         <Stack.Item>
           <Button.Checkbox
             checked={matchWord}
             tooltipPosition="bottom-start"
-            tooltip="If this option is selected, only exact matches (no extra letters before or after) will trigger. Not compatible with punctuation. Overriden if regex is used."
+            tooltip="选中后，仅完全匹配的词语（前后没有额外字母）才会触发高亮。不兼容标点符号；使用正则表达式时此选项无效。"
             disabled={!!highlightRegex}
             onClick={() =>
               updateHighlight({
@@ -181,12 +181,12 @@ function TextHighlightSetting(props) {
               })
             }
           >
-            Exact
+            精确匹配
           </Button.Checkbox>
         </Stack.Item>
         <Stack.Item>
           <Button.Checkbox
-            tooltip="If this option is selected, the highlight will be case-sensitive."
+            tooltip="选中后，高亮匹配会区分大小写。"
             checked={matchCase}
             onClick={() =>
               updateHighlight({
@@ -195,7 +195,7 @@ function TextHighlightSetting(props) {
               })
             }
           >
-            Case
+            区分大小写
           </Button.Checkbox>
         </Stack.Item>
         <Stack.Item>
@@ -233,9 +233,9 @@ function TextHighlightSetting(props) {
                 ))}
                 {selectableCharacters.length === 0 && (
                   <Box p={0.5} fontSize="0.9em" color="label">
-                    No known characters yet.
+                    暂无已知角色。
                     <br />
-                    Join the game once to fill this list.
+                    加入游戏一次即可填充此列表。
                   </Box>
                 )}
               </div>
@@ -244,8 +244,8 @@ function TextHighlightSetting(props) {
             <Box inline>
               <Button color="transparent" icon="user">
                 {characterFilter.length
-                  ? `Characters: ${characterFilter.length}`
-                  : 'Characters: all'}
+                  ? `角色：${characterFilter.length}`
+                  : '角色：全部'}
               </Button>
             </Box>
           </Floating>
@@ -257,7 +257,7 @@ function TextHighlightSetting(props) {
               <div className="Dropdown__menu">
                 <Input
                   fluid
-                  placeholder="Job titles, e.g. (Captain, Assistant)"
+                  placeholder="职业原名，例如 Captain, Assistant"
                   value={jobFilter}
                   onBlur={(value) =>
                     updateHighlight({
@@ -271,7 +271,7 @@ function TextHighlightSetting(props) {
           >
             <Box inline>
               <Button color="transparent" icon="user-tag">
-                {jobCount ? `Jobs: ${jobCount}` : 'Jobs: all'}
+                {jobCount ? `职业：${jobCount}` : '职业：全部'}
               </Button>
             </Box>
           </Floating>
@@ -282,7 +282,7 @@ function TextHighlightSetting(props) {
             icon="times"
             onClick={() => removeHighlight(id)}
           >
-            Delete
+            删除
           </Button>
         </Stack.Item>
       </Stack>
@@ -290,7 +290,7 @@ function TextHighlightSetting(props) {
         fluid
         height="3em"
         value={highlightText}
-        placeholder="Put words to highlight here. Separate terms with commas, i.e. (term1, term2, term3)"
+        placeholder="在此输入要高亮的词语，用英文逗号分隔，例如：词语1, 词语2, 词语3"
         style={{ border: isRegexValid ? '' : '1px solid red' }}
         onBlur={(value) =>
           updateHighlight({

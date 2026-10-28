@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Button, Icon, Input, Section, Stack } from 'tgui-core/components';
-
+import { orbitDisplay } from '../../localization/zhOrbitDisplay';
 import { useBackend } from '../../backend';
 import { OrbitContext } from '.';
 import { VIEWMODE } from './constants';
@@ -72,7 +72,7 @@ export function OrbitSearchBar(props) {
             fluid
             onEnter={orbitMostRelevant}
             onChange={setSearchQuery}
-            placeholder="Search..."
+            placeholder="搜索……"
             value={searchQuery}
             expensive
           />
@@ -83,7 +83,7 @@ export function OrbitSearchBar(props) {
             color="transparent"
             icon={viewMode}
             onClick={swapViewMode}
-            tooltip={`Color scheme: ${viewModeTitle}`}
+            tooltip={`配色方案：${orbitDisplay(viewModeTitle ?? '')}`}
             tooltipPosition="bottom-start"
           />
         </Stack.Item>
@@ -93,8 +93,8 @@ export function OrbitSearchBar(props) {
               color={autoObserve ? 'good' : 'transparent'}
               icon={autoObserve ? 'toggle-on' : 'toggle-off'}
               onClick={() => setAutoObserve(!autoObserve)}
-              tooltip={`Toggle Auto-Observe. When active, you'll
-            see the UI / full inventory of whoever you're orbiting. Neat!`}
+              tooltip={`切换自动观察。启用后，你将能
+            看到所跟随对象的界面及完整物品栏。真方便！`}
               tooltipPosition="bottom-start"
             />
           </Stack.Item>
@@ -104,7 +104,7 @@ export function OrbitSearchBar(props) {
             color="transparent"
             icon="sync-alt"
             onClick={() => act('refresh')}
-            tooltip="Refresh"
+            tooltip="刷新"
             tooltipPosition="bottom-start"
           />
         </Stack.Item>
@@ -114,8 +114,8 @@ export function OrbitSearchBar(props) {
             icon="passport"
             onClick={() => setRealNameDisplay(!realNameDisplay)}
             selected={realNameDisplay}
-            tooltip="Toggle real name display. When active, you'll see real
-            names instead of disguises in orbit menu."
+            tooltip="切换真实姓名显示。启用后，跟随菜单将显示
+            真实姓名，不显示伪装身份。"
             tooltipPosition="bottom-start"
           />
         </Stack.Item>
@@ -125,7 +125,7 @@ export function OrbitSearchBar(props) {
             icon="sliders-h"
             onClick={() => setBladeOpen(!bladeOpen)}
             selected={bladeOpen}
-            tooltip="Toggle settings blade"
+            tooltip="切换设置侧栏"
             tooltipPosition="left-end"
           />
         </Stack.Item>

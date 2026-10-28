@@ -40,18 +40,18 @@ export const Jukebox = () => {
     <Window width={370} height={313}>
       <Window.Content>
         <Section
-          title="Song Player"
+          title="音乐播放器"
           buttons={
             <>
               <Button
                 icon={active ? 'pause' : 'play'}
-                content={active ? 'Stop' : 'Play'}
+                content={active ? '停止' : '播放'}
                 selected={active}
                 onClick={() => act('toggle')}
               />
               <Button.Checkbox
                 icon={'arrow-rotate-left'}
-                content="Repeat"
+                content="循环播放"
                 disabled={active}
                 checked={looping}
                 onClick={() => act('loop', { looping: !looping })}
@@ -60,12 +60,12 @@ export const Jukebox = () => {
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Track Selected">
+            <LabeledList.Item label="所选曲目">
               <Dropdown
                 width="240px"
                 options={songs_sorted.map((song) => song.name)}
                 disabled={!!active}
-                selected={song_selected?.name || 'Select a Track'}
+                selected={song_selected?.name || '选择曲目'}
                 onSelected={(value) =>
                   act('select_track', {
                     track: value,
@@ -73,18 +73,18 @@ export const Jukebox = () => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Track Length">
-              {song_selected?.length || 'No Track Selected'}
+            <LabeledList.Item label="曲目时长">
+              {song_selected?.length || '未选择曲目'}
             </LabeledList.Item>
-            <LabeledList.Item label="Track Beat">
-              {song_selected?.beat || 'No Track Selected'}
-              {song_selected?.beat === 1 ? ' beat' : ' beats'}
+            <LabeledList.Item label="曲目节拍">
+              {song_selected?.beat || '未选择曲目'}
+              {song_selected?.beat === 1 ? ' 拍' : ' 拍'}
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Machine Settings">
+        <Section title="设备设置">
           <LabeledControls justify="center">
-            <LabeledControls.Item label="Volume">
+            <LabeledControls.Item label="音量">
               <Box position="relative">
                 <Knob
                   size={3.2}

@@ -22,7 +22,7 @@ export function SettingsWebsocket(props) {
       <Stack fill vertical>
         <Stack.Item>
           <LabeledList>
-            <LabeledList.Item label="Websocket Client">
+            <LabeledList.Item label="WebSocket 客户端">
               <Button.Checkbox
                 checked={settings.websocketEnabled}
                 color="transparent"
@@ -32,7 +32,7 @@ export function SettingsWebsocket(props) {
                   wsUpdate(websocketEnabled);
                 }}
               >
-                Enabled
+                已启用
               </Button.Checkbox>
               <Button
                 icon={'question'}
@@ -40,19 +40,19 @@ export function SettingsWebsocket(props) {
                   chatRenderer.processBatch([
                     {
                       html:
-                        '<div class="boxed_message"><b>Websocket Information</b><br><span class="notice">' +
-                        'Quick rundown. This connects to the specified websocket server, and ' +
-                        'forwards all data/payloads from the server, to the websocket. Allowing ' +
-                        'you to have in-game actions reflect in other services, or the real ' +
-                        'world, (ex. Reactive RGB, haptics, play effects/animations in vtubing ' +
-                        'software, etc). You can find more information ' +
-                        '<a href="https://github.com/tgstation/tgstation/pull/96241">here in the pull request.</a></span></div>',
+                        '<div class="boxed_message"><b>WebSocket 说明</b><br><span class="notice">' +
+                        '此功能会连接指定的 WebSocket 服务器，' +
+                        '将游戏服务器发送的所有数据转发给它。' +
+                        '这样就能让游戏内的动作联动其他服务或现实设备，' +
+                        '例如响应式 RGB 灯光、触觉反馈，或在虚拟主播软件中' +
+                        '播放特效和动画等。更多信息请参阅' +
+                        '<a href="https://github.com/tgstation/tgstation/pull/96241">此拉取请求。</a></span></div>',
                     },
                   ]);
                 }}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Websocket Server">
+            <LabeledList.Item label="WebSocket 服务器">
               <Stack.Item>
                 <Stack>
                   <Input
@@ -68,14 +68,14 @@ export function SettingsWebsocket(props) {
                 </Stack>
               </Stack.Item>
             </LabeledList.Item>
-            <LabeledList.Item label="Websocket Controls">
+            <LabeledList.Item label="WebSocket 控制">
               <Button
                 ml={0.5}
                 icon={'globe'}
                 color={'good'}
                 onClick={wsReconnect}
               >
-                Force Reconnect
+                强制重新连接
               </Button>
               <Button
                 ml={0.5}
@@ -83,7 +83,7 @@ export function SettingsWebsocket(props) {
                 color={'bad'}
                 onClick={wsDisconnect}
               >
-                Force Disconnect
+                强制断开连接
               </Button>
             </LabeledList.Item>
           </LabeledList>

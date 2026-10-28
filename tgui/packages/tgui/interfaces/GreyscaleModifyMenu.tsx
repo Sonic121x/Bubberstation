@@ -83,22 +83,22 @@ enum Direction {
 }
 
 const DirectionAbbreviation: Record<Direction, string> = {
-  [Direction.North]: 'N',
-  [Direction.NorthEast]: 'NE',
-  [Direction.East]: 'E',
-  [Direction.SouthEast]: 'SE',
-  [Direction.South]: 'S',
-  [Direction.SouthWest]: 'SW',
-  [Direction.West]: 'W',
-  [Direction.NorthWest]: 'NW',
+  [Direction.North]: '北',
+  [Direction.NorthEast]: '东北',
+  [Direction.East]: '东',
+  [Direction.SouthEast]: '东南',
+  [Direction.South]: '南',
+  [Direction.SouthWest]: '西南',
+  [Direction.West]: '西',
+  [Direction.NorthWest]: '西北',
 };
 
 const ConfigDisplay = (props) => {
   const { act, data } = useBackend<GreyscaleMenuData>();
   return (
-    <Section title="Designs">
+    <Section title="设计">
       <LabeledList>
-        <LabeledList.Item label="Design Type">
+        <LabeledList.Item label="设计类型">
           <Button icon="cogs" onClick={() => act('select_config')} />
           <Input
             value={data.greyscale_config}
@@ -121,7 +121,7 @@ const ComponentStyleDisplay = (props) => {
   }
 
   return (
-    <Section title="Style">
+    <Section title="样式">
       <LabeledList>
         {style.core_components.map((component) => (
           <LabeledList.Item key={component.key} label={component.name}>
@@ -149,7 +149,7 @@ const ComponentStyleDisplay = (props) => {
           </LabeledList.Item>
         ))}
         {!!style.accessories.length && (
-          <LabeledList.Item label="Accessories">
+          <LabeledList.Item label="配饰">
             <Flex wrap>
               {style.accessories.map((item) => (
                 <Flex.Item key={item.value} mr={0.5} mb={0.5}>
@@ -178,21 +178,21 @@ const ColorDisplay = (props) => {
   const { act, data } = useBackend<GreyscaleMenuData>();
   const colors = data.colors || [];
   return (
-    <Section title="Colors">
+    <Section title="颜色">
       <LabeledList>
         {/* BUBBER EDIT START - dynamic uniforms */}
         {!data.hide_full_color_string && (
-          <LabeledList.Item label="Full Color String">
+          <LabeledList.Item label="完整颜色字符串">
             <Button
               icon="dice"
               onClick={() => act('random_all_colors')}
-              tooltip="Randomizes all color groups."
+              tooltip="随机设置所有颜色组。"
             />
             {!!data.component_style && (
               <Button
                 icon="undo"
                 onClick={() => act('component_style_reset_all')}
-                tooltip="Resets colors and style options to their defaults."
+                tooltip="将颜色与样式选项恢复为默认值。"
               />
             )}
             <Input
@@ -210,19 +210,19 @@ const ColorDisplay = (props) => {
         {colors.map((item) => (
           <LabeledList.Item
             key={`colorgroup${item.index}${item.value}`}
-            label={item.label || `Color Group ${item.index}`} //BUBBER EDIT
+            label={item.label || `颜色组${item.index}`} //BUBBER EDIT
             color={item.value}
           >
             <ColorBox color={item.value} />{' '}
             <Button
               icon="palette"
               onClick={() => act('pick_color', { color_index: item.index })}
-              tooltip="Brings up a color pick window to replace this color group."
+              tooltip="打开颜色选择窗口，替换此颜色组。"
             />
             <Button
               icon="dice"
               onClick={() => act('random_color', { color_index: item.index })}
-              tooltip="Randomizes the color for this color group."
+              tooltip="随机设置此颜色组的颜色。"
             />
             {/* BUBBER EDIT START - dynamic uniforms */}
             {!!data.component_style && (
@@ -233,7 +233,7 @@ const ColorDisplay = (props) => {
                     color_index: item.index,
                   })
                 }
-                tooltip="Resets this color group to its default."
+                tooltip="将此颜色组恢复为默认值。"
               />
             )}
             {/* BUBBER EDIT END - dynamic uniforms */}
@@ -285,7 +285,7 @@ const SingleDirection = (props) => {
   return (
     <Flex.Item grow={1} basis={0}>
       <Button
-        tooltip={`Sets the direction of the preview sprite to ${dir}`}
+        tooltip={`将预览图像的朝向设为${DirectionAbbreviation[dir]}`}
         disabled={`${dir}` === data.sprites_dir}
         textAlign="center"
         onClick={() => act('change_dir', { new_sprite_dir: dir })}
@@ -302,13 +302,13 @@ const SingleDirection = (props) => {
 const IconStatesDisplay = (props) => {
   const { data, act } = useBackend<GreyscaleMenuData>();
   return (
-    <Section title="Icon States">
+    <Section title="图标状态">
       <Flex>
         {data.sprites.icon_states.map((item) => (
           <Flex.Item key={item}>
             <Button
               mx={0.5}
-              content={item ? item : 'Blank State'}
+              content={item ? item : '空白状态'}
               disabled={item === data.icon_state}
               onClick={() => act('select_icon_state', { new_icon_state: item })}
             />
@@ -322,7 +322,7 @@ const IconStatesDisplay = (props) => {
 const PreviewDisplay = (props) => {
   const { data } = useBackend<GreyscaleMenuData>();
   return (
-    <Section title={`Preview (${data.sprites_dir})`}>
+    <Section title={`预览（${DirectionAbbreviation[data.sprites_dir] ?? data.sprites_dir}）`}>
       <Table>
         <Table.Row>
           <Table.Cell width="50%">
@@ -341,20 +341,20 @@ const PreviewDisplay = (props) => {
           )}
         </Table.Row>
       </Table>
-      {!!data.unlocked && `Time Spent: ${data.sprites.time_spent}ms`}
+      {!!data.unlocked && `耗时：${data.sprites.time_spent}毫秒`}
       <Divider />
       {!data.refreshing && (
         <Table>
           {!!data.generate_full_preview && data.sprites.steps !== null && (
             <Table.Row header>
               <Table.Cell width="50%" textAlign="center">
-                Layer Source
+                图层来源
               </Table.Cell>
               <Table.Cell width="25%" textAlign="center">
-                Step Layer
+                当前步骤图层
               </Table.Cell>
               <Table.Cell width="25%" textAlign="center">
-                Step Result
+                当前步骤结果
               </Table.Cell>
             </Table.Row>
           )}
@@ -395,7 +395,7 @@ const LoadingAnimation = () => {
 export const GreyscaleModifyMenu = (props) => {
   const { act, data } = useBackend<GreyscaleMenuData>();
   return (
-    <Window title="Color Configuration" width={325} height={800}>
+    <Window title="颜色配置" width={325} height={800}>
       <Window.Content scrollable>
         <ConfigDisplay />
         {/* BUBBER ADDITION START - dynamic uniforms */}
@@ -410,34 +410,34 @@ export const GreyscaleModifyMenu = (props) => {
                 content={
                   <Icon name="file-image-o" spin={data.monitoring_files} />
                 }
-                tooltip="Continuously checks files for changes and reloads when necessary. WARNING: Very expensive"
+                tooltip="持续检查文件更改，并在需要时重新加载。警告：极其消耗性能。"
                 selected={data.monitoring_files}
                 onClick={() => act('toggle_mass_refresh')}
                 width={1.9}
                 mr={-0.2}
               />
               <Button
-                content="Refresh Icon File"
-                tooltip="Loads the json configuration and icon file fresh from disk. This is useful to avoid restarting the server to see changes. WARNING: Expensive"
+                content="刷新图标文件"
+                tooltip="从磁盘重新加载JSON配置和图标文件，无需重启服务器即可查看更改。警告：消耗性能。"
                 onClick={() => act('refresh_file')}
               />
               <Button
-                content="Save Icon File"
-                tooltip="Saves the icon to a temp file in tmp/. This is useful if you want to use a generated icon elsewhere or just view a more accurate representation"
+                content="保存图标文件"
+                tooltip="将图标保存到tmp/中的临时文件，方便在别处使用生成的图标，或查看更准确的效果。"
                 onClick={() => act('save_dmi')}
               />
             </Flex.Item>
           )}
           <Flex.Item>
             <Button
-              content="Apply"
-              tooltip="Applies changes made to the object this menu was created from."
+              content="应用"
+              tooltip="将更改应用到打开此菜单的对象。"
               color="red"
               onClick={() => act('apply')}
             />
             <Button.Checkbox
-              content="Full Preview"
-              tooltip="Generates and displays the full sprite generation process instead of just the final output."
+              content="完整预览"
+              tooltip="生成并显示完整的图像生成过程，而非仅显示最终结果。"
               disabled={!data.generate_full_preview && !data.unlocked}
               checked={data.generate_full_preview}
               onClick={() => act('toggle_full_preview')}

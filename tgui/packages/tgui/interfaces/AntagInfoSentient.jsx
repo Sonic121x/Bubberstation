@@ -5,31 +5,31 @@ import { Window } from '../layouts';
 
 export const AntagInfoSentient = (props) => {
   const { act, data } = useBackend();
-  const { enslaved_to, holographic, p_them, p_their } = data;
+  const { enslaved_to, holographic } = data;
   return (
     <Window width={400} height={400} theme="neutral">
       <Window.Content>
         <Section fill>
           <Stack vertical fill textAlign="center">
             <Stack.Item fontSize="20px">
-              You are a sentient creature!
+              你是有知觉的生物！
             </Stack.Item>
             <Stack.Item>
               <BlockQuote>
-                All at once it makes sense: you know what you are and who you
-                are! Self awareness is yours!
+                一切突然变得清晰：你知道自己是什么，也知道自己是谁！
+                你拥有了自我意识！
                 {!!enslaved_to &&
-                  ' You are grateful to be self aware and owe ' +
+                  ' 你很庆幸自己拥有了自我意识，并深深感激 ' +
                     enslaved_to +
-                    ' a great debt. Serve ' +
+                    '。请服侍 ' +
                     enslaved_to +
-                    ', and assist ' +
-                    p_them +
-                    ' in completing ' +
-                    p_their +
-                    ' goals at any cost.'}
+                    '，并帮助' +
+                    '对方' +
+                    '不惜一切代价完成' +
+                    '其' +
+                    '目标。'}
                 {!!holographic &&
-                  ' You also become depressingly aware that you are not a real creature, but instead a holoform. Your existence is limited to the parameters of the holodeck.'}
+                  ' 你也沮丧地意识到，自己并非真正的生物，而是全息形体。你的存在受限于全息甲板的设定。'}
               </BlockQuote>
             </Stack.Item>
           </Stack>

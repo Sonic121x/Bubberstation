@@ -51,7 +51,7 @@ const HistorianPanel = (props) => {
       {!historian_mode && (
         <Button
           icon="key"
-          content="Insert key for historian mode"
+          content="插入钥匙以开启历史记录模式"
           onClick={() => act('insert_key')}
         />
       )}
@@ -59,12 +59,12 @@ const HistorianPanel = (props) => {
         <div>
           <Button
             icon="times"
-            content="Lock historian mode"
+            content="锁定历史记录模式"
             onClick={() => act('lock')}
           />
           <Button
             icon="pencil"
-            content="Edit description"
+            content="编辑描述"
             disabled={!has_showpiece || holographic_showpiece}
             onClick={() => act('change_message')}
           />
@@ -72,18 +72,18 @@ const HistorianPanel = (props) => {
       )}
       {!!historian_mode && !!holographic_showpiece && (
         <Box>
-          A holographic trophy is already present. Replace it with a new trophy
-          to create a new recording.
+          当前已展示全息纪念品。请用新的纪念品替换它，
+          以创建新的记录。
         </Box>
       )}
-      {!!historian_mode && !has_showpiece && <Box>No trophies located.</Box>}
+      {!!historian_mode && !has_showpiece && <Box>未找到纪念品。</Box>}
       {!!historian_mode &&
         !!has_showpiece &&
         !holographic_showpiece &&
         !!showpiece_description && (
           <Box>
-            Recording has begun. Trophy data will be saved overnight, as long as
-            the trophy stays within an intact case.
+            记录已开始。只要纪念品留在完好的展柜中，
+            其数据就会在夜间保存。
           </Box>
         )}
       {!!historian_mode &&
@@ -91,7 +91,7 @@ const HistorianPanel = (props) => {
         !holographic_showpiece &&
         !showpiece_description && (
           <Box>
-            New trophy detected. Please record a description to begin archival.
+            检测到新的纪念品。请填写描述以开始归档。
           </Box>
         )}
     </Section>
@@ -111,7 +111,7 @@ const ShowpieceDescription = (props) => {
     <Section fill align="center">
       {!has_showpiece && (
         <Box fill className="Trophycase-description">
-          <b>This exhibit is empty. History awaits your contribution!</b>
+          <b>此展柜空空如也。历史等待着你的贡献！</b>
         </Box>
       )}
       {!!holographic_showpiece && <b>{showpiece_description}</b>}
@@ -119,7 +119,7 @@ const ShowpieceDescription = (props) => {
         <Box fill className="Trophycase-description">
           {showpiece_description
             ? decodeHtmlEntities(showpiece_description)
-            : "This exhibit is under construction. Get the curator's key to finalize your contribution!"}
+            : '此展品正在布置中。取得馆长的钥匙以完成你的贡献！'}
         </Box>
       )}
     </Section>
@@ -157,7 +157,7 @@ const ShowpieceName = (props) => {
       <b>
         {showpiece_name
           ? decodeHtmlEntities(showpiece_name)
-          : 'Under construction.'}
+          : '布置中。'}
       </b>
     </Section>
   );

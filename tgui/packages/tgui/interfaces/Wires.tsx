@@ -9,7 +9,7 @@ import {
 import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import { Window } from '../layouts'; import { wireDisplay } from '../localization/wireDisplay';
 
 type Data = {
   proper_name: string;
@@ -37,7 +37,7 @@ export const Wires = (props) => {
           {!!proper_name && (
             <Stack.Item>
               <NoticeBox textAlign="center">
-                {proper_name} Wire Configuration
+                {proper_name} 接线配置
               </NoticeBox>
             </Stack.Item>
           )}
@@ -72,13 +72,13 @@ const WireMap = (props) => {
         <LabeledList.Item
           key={wire.color}
           className="candystripe"
-          label={wire.shownColor}
+          label={wireDisplay(wire.shownColor)}
           labelColor={wire.shownColor.replace(' ', '')}
           color={wire.shownColor.replace(' ', '')}
           buttons={
             <>
               <Button
-                content={wire.cut ? 'Mend' : 'Cut'}
+                content={wire.cut ? '接合' : '剪断'}
                 onClick={() =>
                   act('cut', {
                     wire: wire.color,
@@ -86,7 +86,7 @@ const WireMap = (props) => {
                 }
               />
               <Button
-                content="Pulse"
+                content="脉冲"
                 onClick={() =>
                   act('pulse', {
                     wire: wire.color,
@@ -94,7 +94,7 @@ const WireMap = (props) => {
                 }
               />
               <Button
-                content={wire.attached ? 'Detach' : 'Attach'}
+                content={wire.attached ? '拆下' : '连接'}
                 onClick={() =>
                   act('attach', {
                     wire: wire.color,

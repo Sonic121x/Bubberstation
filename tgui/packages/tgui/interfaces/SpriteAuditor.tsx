@@ -17,7 +17,7 @@ export const SpriteAuditor = (props) => {
   const { act, data } = useBackend<SpriteAuditorData>();
   const { entries } = data;
   return (
-    <Window width={360} height={720} title="Sprite Auditor">
+    <Window width={360} height={720} title="图像审核器">
       <Window.Content>
         <Stack vertical overflowY="scroll">
           {entries?.map((entry, i) => {
@@ -34,17 +34,17 @@ export const SpriteAuditor = (props) => {
                   </Stack.Item>
                   <Stack.Item grow>
                     <LabeledList>
-                      <LabeledList.Item label="Creation Timestamp">
+                      <LabeledList.Item label="创建时间">
                         {timestamp}
                       </LabeledList.Item>
-                      <LabeledList.Item label="Creator">
+                      <LabeledList.Item label="创建者">
                         <Box inline>{`${name} (${ckey})`}</Box>
                         <Button
                           inline
-                          tooltip="Show Player Panel"
+                          tooltip="显示玩家面板"
                           onClick={() => act('playerPanel', { ckey })}
                         >
-                          PP
+                          玩家面板
                         </Button>
                       </LabeledList.Item>
                     </LabeledList>

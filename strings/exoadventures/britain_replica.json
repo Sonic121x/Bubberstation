@@ -1,5 +1,5 @@
 {
-	"adventure_name": "A Model Earth",
+	"adventure_name": "模型地球",
 	"version": 1,
 	"author": "Armhulen",
 	"starting_node": "Planet Start",
@@ -15,18 +15,18 @@
 	"nodes": [
 		{
 			"name": "Planet Start",
-			"description": "You come across a grey planet. It looks familiar, though you swore you've never come across this sector of space before.",
+			"description": "你遇到一颗灰色星球。它看起来很眼熟，可你发誓从未来过这片星区。",
 			"choices": [
 				{
 					"key": "choice 0",
-					"name": "Ignore the planet.",
+					"name": "忽略这颗星球。",
 					"exit_node": "FAIL",
 					"delay": 0,
-					"delay_message": "Whatever, there's a lot of planets in space. Must be a hunch!"
+					"delay_message": "管它呢，太空中星球多的是，一定只是错觉！"
 				},
 				{
 					"key": "choice 1",
-					"name": "Begin Orbital Scan",
+					"name": "开始轨道扫描",
 					"exit_node": "Scanning from Orbit",
 					"requirements": [
 						{
@@ -36,14 +36,14 @@
 						}
 					],
 					"delay": 30,
-					"delay_message": "Scanning planet..."
+					"delay_message": "正在扫描星球……"
 				},
 				{
 					"key": "choice 8",
-					"name": "Descend Into Orbit",
+					"name": "下降进入轨道",
 					"exit_node": "Orbital Descent",
 					"delay": 30,
-					"delay_message": "Descending into Orbit..."
+					"delay_message": "正在下降进入轨道……"
 				}
 			],
 			"image": null,
@@ -51,11 +51,11 @@
 		},
 		{
 			"name": "Scanning from Orbit",
-			"description": "You initiate a long range scan from orbit:\nThis planet has a smoggy cover that blocks any good look at the surface, yet it has a mostly survivable atmosphere.\nThis planet has zero life signs.\n",
+			"description": "你从轨道发起远程扫描：\n这颗星球笼罩着烟雾，无法看清地表，但大气基本适宜生存。\n该星球没有生命迹象。\n",
 			"choices": [
 				{
 					"key": "choice 9",
-					"name": "Stash that Report...",
+					"name": "收好报告……",
 					"exit_node": "Planet Start",
 					"delay": 0
 				}
@@ -72,11 +72,11 @@
 		},
 		{
 			"name": "Orbital Descent",
-			"description": "As you descend into orbit, you see a flying object headed straight for you!\nA garbled voice begins to call out to your drone, but there's no time to decipher it!",
+			"description": "下降进入轨道时，你看见一个飞行物正朝你冲来！\n一个含混不清的声音开始呼叫无人机，但已经没时间辨认了！",
 			"choices": [
 				{
 					"key": "choice 2",
-					"name": "Blast the damn UFO!",
+					"name": "轰掉那该死的不明飞行物！",
 					"exit_node": "Tractor Beam",
 					"on_selection_effects": [
 						{
@@ -91,11 +91,11 @@
 						}
 					],
 					"delay": 30,
-					"delay_message": "Blasting UFO!"
+					"delay_message": "正在轰击不明飞行物！"
 				},
 				{
 					"key": "choice 3",
-					"name": "Attempt Evasive Maneuvers!",
+					"name": "尝试规避机动！",
 					"exit_node": "UFO Evasion!",
 					"on_selection_effects": [
 						{
@@ -109,14 +109,14 @@
 						}
 					],
 					"delay": 30,
-					"delay_message": "You attempt to dodge the UFO..."
+					"delay_message": "你试图躲开不明飞行物……"
 				},
 				{
 					"key": "choice 7",
-					"name": "Do NOTHING. Jesus take the wheel!",
+					"name": "什么都不做，把方向盘交给耶稣！",
 					"exit_node": "FAIL_DEATH",
 					"delay": 30,
-					"delay_message": "What? Why?!"
+					"delay_message": "什么？为什么？！"
 				}
 			],
 			"image": null,
@@ -131,11 +131,11 @@
 		},
 		{
 			"name": "UFO Evasion!",
-			"description": "Were you good enough at flying to avoid the UFO?",
+			"description": "你的驾驶技术足够躲开不明飞行物吗？",
 			"choices": [
 				{
 					"key": "choice 4",
-					"name": "No, Back to flight school with you!",
+					"name": "不行，回航校重学吧！",
 					"exit_node": "FAIL_DEATH",
 					"requirements": [
 						{
@@ -148,7 +148,7 @@
 				},
 				{
 					"key": "choice 5",
-					"name": "You barely avoided them! Nice!",
+					"name": "你险险躲过了！漂亮！",
 					"exit_node": "Tractor Beam",
 					"on_selection_effects": [
 						{
@@ -171,11 +171,11 @@
 		},
 		{
 			"name": "Tractor Beam",
-			"description": "Before you have time to think, your drone is captured by a Tractor beam! Now you've gone and done it.\n\nYou should have some time before you are pulled in.",
+			"description": "你还来不及思考，无人机就被牵引光束捕获了！这下可闯祸了。\n\n被拖进去之前，应该还有一点时间。",
 			"choices": [
 				{
 					"key": "choice 6",
-					"name": "Decipher Garbled Transmission",
+					"name": "辨认含混的通讯",
 					"exit_node": "Deciphering Transmission",
 					"requirements": [
 						{
@@ -190,11 +190,11 @@
 						}
 					],
 					"delay": 30,
-					"delay_message": "Decipering..."
+					"delay_message": "正在辨认……"
 				},
 				{
 					"key": "choice 10",
-					"name": "Look at the surface of the planet",
+					"name": "观察星球地表",
 					"exit_node": "Looking at the Surface",
 					"requirements": [
 						{
@@ -204,11 +204,11 @@
 						}
 					],
 					"delay": 10,
-					"delay_message": "Looking out window..."
+					"delay_message": "正在望向窗外……"
 				},
 				{
 					"key": "choice 13",
-					"name": "Let the beam pull you in and dock you",
+					"name": "任由光束将你拖入并停靠",
 					"exit_node": "Landed, Kinda",
 					"on_selection_effects": [
 						{
@@ -218,7 +218,7 @@
 						}
 					],
 					"delay": 50,
-					"delay_message": "Getting captured..."
+					"delay_message": "正在被俘……"
 				}
 			],
 			"image": null,
@@ -226,11 +226,11 @@
 		},
 		{
 			"name": "Deciphering Transmission",
-			"description": "You review the incoming transmissions your drone has gotten. These aren't in need of deciphering, just un-garbling it from the bad connection...\n\n\"You are in Space British Air Space! Identify yourself, Tally ho!\"\nWhat the fuck?",
+			"description": "你回顾无人机收到的通讯。根本不用破译，只需修复连接不良造成的杂音……\n\n“你已进入太空英国领空！报明身份，伙计！”\n什么鬼？",
 			"choices": [
 				{
 					"key": "choice 11",
-					"name": "Whoops!",
+					"name": "糟糕！",
 					"exit_node": "Tractor Beam",
 					"delay": 0,
 					"requirements": [
@@ -243,7 +243,7 @@
 				},
 				{
 					"key": "choice 12",
-					"name": "Good thing I didn't blast them, then.",
+					"name": "那还好我没轰掉他们。",
 					"exit_node": "Tractor Beam",
 					"delay": 0,
 					"requirements": [
@@ -267,20 +267,20 @@
 		},
 		{
 			"name": "Landed, Kinda",
-			"description": "You have been locked to the surface the beam. Robots are all around you, pointing at your drone with all sorts of old age weapons.\n\nOne of them angrily shouts at you, \"By God, Queen and Country, we've got you now!\"",
+			"description": "光束将你固定在地表。四周都是机器人，拿着各种老式武器对准无人机。\n\n其中一个愤怒地朝你喊道：“为了上帝、女王与国家，你跑不掉了！”",
 			"choices": [
 				{
 					"key": "choice 14",
-					"name": "Go out with a bang. Initiate self destruct!",
+					"name": "轰轰烈烈地退场，启动自毁！",
 					"exit_node": "FAIL",
 					"delay": 0
 				},
 				{
 					"key": "choice 15",
-					"name": "Surrender to the funny looking robot brits...",
+					"name": "向这些滑稽的英国机器人投降……",
 					"exit_node": "British Courtroom Start",
 					"delay": 50,
-					"delay_message": "You are being transported somewhere..."
+					"delay_message": "你正被押往某处……"
 				}
 			],
 			"image": null,
@@ -288,11 +288,11 @@
 		},
 		{
 			"name": "British Courtroom Start",
-			"description": "Wow, that took forever. A one eye judge robot smacks their gavel, and points their hammer at you.\n\"I will now read out the crimes you are accused of!\"\nIs that how the judicial process works? You dunno.\n\"ONE ACCOUNT OF PLANETARY TRESSPASS!\"\nThis blows.",
+			"description": "哇，真是等了好久。一个独眼法官机器人敲响法槌，又拿槌指向你。\n“现在宣读对你的指控！”\n司法程序是这样的吗？你也不知道。\n“非法侵入星球，一项！”\n真糟糕。",
 			"choices": [
 				{
 					"key": "choice 16",
-					"name": "That's not that bad.",
+					"name": "听起来还不算太严重。",
 					"exit_node": "British Courtroom, Continued...",
 					"on_selection_effects": [
 						{
@@ -309,11 +309,11 @@
 		},
 		{
 			"name": "British Courtroom, Continued...",
-			"description": "This big idiot they call a judge just keeps piling on crimes. With each one, some robot you'd like to drone-punch gasps in the back.",
+			"description": "这个被称为法官的大蠢货不停追加罪名。每说一项，后面就有个机器人倒吸一口气，让你恨不得操纵无人机揍它。",
 			"choices": [
 				{
 					"key": "choice 17",
-					"name": "\"INTRUSIVE SCANNING ON OUR CITIZENS\"",
+					"name": "“对我国公民进行侵入式扫描！”",
 					"exit_node": "British Courtroom, Continued...",
 					"on_selection_effects": [
 						{
@@ -338,7 +338,7 @@
 				},
 				{
 					"key": "choice 18",
-					"name": "\"SHOOTING DOWN A COMMERCIAL AIRLINER\"",
+					"name": "“击落民航客机！”",
 					"exit_node": "British Courtroom, Continued...",
 					"on_selection_effects": [
 						{
@@ -363,7 +363,7 @@
 				},
 				{
 					"key": "choice 19",
-					"name": "\"AND WE HAVE PROOF YOU KNEW IT WAS JUST AN AIRLINER!\"",
+					"name": "“而且有证据表明，你明知那只是客机！”",
 					"exit_node": "British Courtroom, Continued...",
 					"on_selection_effects": [
 						{
@@ -388,7 +388,7 @@
 				},
 				{
 					"key": "choice 20",
-					"name": "\"THE TRANSMISSIONS WERE NOT LEGIBLE AND UNTRANSLATED. WE CANNOT PROVE MALICE!\"",
+					"name": "“通讯无法辨认且未经翻译，无法证明存在恶意！”",
 					"exit_node": "British Courtroom, Continued...",
 					"on_selection_effects": [
 						{
@@ -408,7 +408,7 @@
 				},
 				{
 					"key": "choice 24",
-					"name": "I think it's done listing crimes, thank god. Time to argue my case.",
+					"name": "谢天谢地，它好像念完罪名了。该为自己辩护了。",
 					"exit_node": "Verdict",
 					"requirements": [
 						{
@@ -445,20 +445,20 @@
 		},
 		{
 			"name": "Looking at the Surface",
-			"description": "The surface of this world looks exactly like a grey version of Earth! It seems to be an exact replica of some kind.\n\nYou see creatures moving around on the streets",
+			"description": "这个世界的地表，简直就是灰色版的地球！似乎是某种精确复制品。\n\n你看见街上有生物在走动。",
 			"choices": [
 				{
 					"key": "choice 21",
-					"name": "Cool!",
+					"name": "酷！",
 					"exit_node": "Tractor Beam",
 					"delay": 0
 				},
 				{
 					"key": "choice 22",
-					"name": "Scan the creatures.",
+					"name": "扫描这些生物。",
 					"exit_node": "Robo Brits!",
 					"delay": 30,
-					"delay_message": "Scanning..."
+					"delay_message": "扫描中……"
 				}
 			],
 			"image": null,
@@ -466,11 +466,11 @@
 		},
 		{
 			"name": "Robo Brits!",
-			"description": "Wow, they're robotic humanoids that look and act exactly like the British! You see some robots laughing and chatting at a pub, and a Bobby walking down the street looking for crooks. Who created this earth replica? You only know Earth from the books, but you should be where London is!",
+			"description": "哇，这些人形机器人的长相和举止，完全就是英国人！有些机器人在酒馆里谈笑，一名警察正沿街寻找坏人。谁造了这颗复制地球？你只在书里了解过地球，但这里应该就是伦敦！",
 			"choices": [
 				{
 					"key": "choice 23",
-					"name": "Nice! Well, back to getting pulled in by a Tractor beam...",
+					"name": "真不错！好吧，继续任由牵引光束拖走……",
 					"exit_node": "Tractor Beam",
 					"delay": 0
 				}
@@ -487,11 +487,11 @@
 		},
 		{
 			"name": "Verdict",
-			"description": "Before even getting to defend your case, the judge says \"I've heard ENOUGH! It's time for a verdict!\"\nDang! You're definitely in kangaroo court!\n\"GUILTY! AND YOUR SENTENCE IS:\"",
+			"description": "还没轮到你辩护，法官就说：“我已经听够了！现在宣判！”\n该死，这绝对是个袋鼠法庭！\n“有罪！判处你：”",
 			"choices": [
 				{
 					"key": "choice 25",
-					"name": "\"DEATH!\"",
+					"name": "“死刑！”",
 					"exit_node": "FAIL_DEATH",
 					"requirements": [
 						{
@@ -504,7 +504,7 @@
 				},
 				{
 					"key": "choice 26",
-					"name": "\"SPACE JAIL!\"",
+					"name": "“太空监禁！”",
 					"exit_node": "Not Actually Space Jail, Just Normal Jail",
 					"requirements": [
 						{
@@ -514,11 +514,11 @@
 						}
 					],
 					"delay": 20,
-					"delay_message": "You are being jailed..."
+					"delay_message": "你正被送进监狱……"
 				},
 				{
 					"key": "choice 27",
-					"name": "\"FORGIVENESS! Just trespass? That's not that bad!\"",
+					"name": "“赦免！只是非法侵入？没那么严重！”",
 					"exit_node": "Sweet Sweet Freedom!",
 					"requirements": [
 						{
@@ -528,21 +528,21 @@
 						}
 					],
 					"delay": 10,
-					"delay_message": "WOOP WOOP"
+					"delay_message": "呜呼！呜呼！"
 				}
 			],
 			"image": "default"
 		},
 		{
 			"name": "Not Actually Space Jail, Just Normal Jail",
-			"description": "You'll have to wait out your crimes against the robo brits.",
+			"description": "你得服完刑期，偿还对英国机器人犯下的罪。",
 			"choices": [
 				{
 					"key": "choice 28",
-					"name": "Sit out your sentence",
+					"name": "坐牢服刑",
 					"exit_node": "Sweet Sweet Freedom!",
 					"delay": 1200,
-					"delay_message": "Sitting out your sentence..."
+					"delay_message": "服刑中……"
 				}
 			],
 			"image": null,
@@ -550,11 +550,11 @@
 		},
 		{
 			"name": "Sweet Sweet Freedom!",
-			"description": "You're free! You spend a good while travelling around England (or at least the replica) and enjoying the cuisine, people and culture! Good society research is gained from this or something, but really you're just enjoying the sights and sounds.",
+			"description": "你自由了！你花了好一阵子游览英格兰——至少是复制版——享受这里的美食、人情和文化！这或许能带来不错的社会学研究成果，但其实你只是在尽情观光。",
 			"choices": [
 				{
 					"key": "choice 29",
-					"name": "Nice!",
+					"name": "太好了！",
 					"exit_node": "WIN",
 					"delay": 0
 				}

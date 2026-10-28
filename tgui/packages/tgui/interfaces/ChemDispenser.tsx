@@ -19,7 +19,7 @@ import { useBackend, useSharedState } from '../backend';
 import { Window } from '../layouts';
 import { type Beaker, BeakerDisplay } from './common/BeakerDisplay';
 import { bitflagInfo } from './Reagents/types';
-
+import { reagentTagDisplay } from '../localization/reagentTagDisplay';
 type DispensableReagent = {
   title: string;
   id: string;
@@ -165,18 +165,18 @@ export const ChemDispenser = (props) => {
             <Stack vertical fill>
               <Stack.Item>
                 <Section
-                  title="Status"
+                  title="状态"
                   buttons={
                     <>
                       {recording && (
                         <Box inline mx={1} color="red">
                           <Icon name="circle" mr={1} />
-                          Recording
+                          正在记录
                         </Box>
                       )}
                       <Button
                         icon="cog"
-                        tooltip="Color code the reagents by pH"
+                        tooltip="按 pH 值为试剂标色"
                         tooltipPosition="bottom-start"
                         selected={showPhCol}
                         onClick={() => setShowPhCol(!showPhCol)}
@@ -186,31 +186,31 @@ export const ChemDispenser = (props) => {
                         disabled={!beaker}
                         tooltip={
                           beaker
-                            ? 'Look up recipes and reagents!'
-                            : 'Please insert a beaker!'
+                            ? '查询配方和试剂！'
+                            : '请插入烧杯！'
                         }
                         tooltipPosition="bottom-start"
                         onClick={() => act('reaction_lookup')}
                       >
-                        Reactions
+                        反应
                       </Button>
                       <Button
                         icon={showReactionList ? 'arrow-left' : 'arrow-right'}
                         tooltipPosition="bottom-start"
                         onClick={() => setShowReactionList(!showReactionList)}
                       >
-                        Recipes
+                        配方
                       </Button>
                     </>
                   }
                 >
                   <LabeledList>
-                    <LabeledList.Item label="Energy">
+                    <LabeledList.Item label="能量">
                       <ProgressBar value={data.energy / data.maxEnergy}>
                         {data.displayedUnits +
                           ' / ' +
                           data.displayedMaxUnits +
-                          ' units'}
+                          ' 单位'}
                       </ProgressBar>
                     </LabeledList.Item>
                   </LabeledList>
@@ -218,7 +218,7 @@ export const ChemDispenser = (props) => {
               </Stack.Item>
               <Stack.Item>
                 <Section
-                  title="Custom Recipes"
+                  title="自定义配方"
                   buttons={
                     <>
                       {!recording && (
@@ -227,7 +227,7 @@ export const ChemDispenser = (props) => {
                             color="transparent"
                             onClick={() => act('clear_recipes')}
                           >
-                            Clear recipes
+                            清空配方
                           </Button>
                         </Box>
                       )}
@@ -237,7 +237,7 @@ export const ChemDispenser = (props) => {
                           disabled={!beaker}
                           onClick={() => act('record_recipe')}
                         >
-                          Record
+                          记录
                         </Button>
                       )}
                       {recording && (
@@ -246,7 +246,7 @@ export const ChemDispenser = (props) => {
                           color="transparent"
                           onClick={() => act('cancel_recording')}
                         >
-                          Discard
+                          丢弃
                         </Button>
                       )}
                       {recording && (
@@ -255,7 +255,7 @@ export const ChemDispenser = (props) => {
                           color="green"
                           onClick={() => act('save_recording')}
                         >
-                          Save
+                          保存
                         </Button>
                       )}
                     </>
@@ -278,7 +278,7 @@ export const ChemDispenser = (props) => {
                       </Button>
                     ))}
                     {recipes.length === 0 && (
-                      <Box color="light-gray">No recipes.</Box>
+                      <Box color="light-gray">暂无配方。</Box>
                     )}
                   </Box>
                 </Section>
@@ -288,14 +288,14 @@ export const ChemDispenser = (props) => {
                 <Button
                   icon="pen"
                   iconPosition = "right"
-                  content="Custom Amount"
+                  content="自定义用量"
                   onClick={() => act('custom_amount')}
                 />
                 </Stack.Item>
               {/* BUBBER EDIT ADDITION END - CUSTOM AMOUNTS*/}
                 <Stack.Item>
                 <Section
-                  title="Dispense"
+                  title="分配"
                   buttons={beakerTransferAmounts.map((amount) => (
                     <Button
                       key={amount}
@@ -327,7 +327,7 @@ export const ChemDispenser = (props) => {
               <Stack.Item grow>
                 <Section
                   fill
-                  title="Beaker"
+                  title="烧杯"
                   buttons={beakerTransferAmounts.map((amount) => (
                     <Button
                       key={amount}
@@ -342,7 +342,7 @@ export const ChemDispenser = (props) => {
                   {beaker || recording ? (
                     <BeakerDisplay
                       beaker={beaker}
-                      title_label={recording && 'Virtual beaker'}
+                      title_label={recording && '虚拟烧杯'}
                       replace_contents={recordedContents}
                       showpH={data.showpH}
                     />
@@ -354,18 +354,18 @@ export const ChemDispenser = (props) => {
                         alignItems: 'center',
                       }}
                     >
-                      <Box color="label">No beaker loaded.</Box>
+                      <Box color="label">未装入烧杯。</Box>
                       <Button
                         icon="eject"
                         onClick={() => act('insert')}
                         disabled={!hasBeakerInHand}
                         tooltip={
                           !hasBeakerInHand &&
-                          'You need to hold a container in your hand!'
+                          '你需要手持一个容器！'
                         }
                         tooltipPosition="left-start"
                       >
-                        Insert
+                        插入
                       </Button>
                     </Box>
                   )}
@@ -375,13 +375,13 @@ export const ChemDispenser = (props) => {
           </Stack.Item>
           {showReactionList && (
             <Stack.Item width={reactionWidth}>
-              <Section title="Recipes" fill>
+              <Section title="配方" fill>
                 <Stack vertical fill>
                   <Stack.Item>
                     <Stack>
                       <Stack.Item grow>
                         <Input
-                          placeholder="Search reactions..."
+                          placeholder="搜索反应……"
                           value={searchTerm}
                           fluid
                           onChange={(value) => setSearchTerm(value)}
@@ -423,7 +423,7 @@ export const ChemDispenser = (props) => {
                             }
                             selected={(filterByBitflag & flag) !== 0}
                           >
-                            {readable}
+                            {reagentTagDisplay(readable)}
                           </Button>
                         </Stack.Item>
                       ))}
@@ -445,7 +445,7 @@ export const ChemDispenser = (props) => {
                             </Stack.Item>
                           ))
                         ) : (
-                          <NoticeBox>No reactions found.</NoticeBox>
+                          <NoticeBox>未找到反应。</NoticeBox>
                         )}
                       </Stack>
                     </Section>
@@ -580,13 +580,13 @@ const ReactionDisplay = (props: ReactionDisplayProps) => {
       </Stack.Item>
       <Stack.Item>
         <Collapsible
-          title="Recipe"
+          title="配方"
           open={pinnedReactions.includes(reaction.name)}
         >
           <BlockQuote>
             <Stack vertical>
               <Stack.Item>
-                <HorizontalBarWithText text="Formula" />
+                <HorizontalBarWithText text="原料配比" />
               </Stack.Item>
               {reaction.reaction.required_reagents.map((reagent) => (
                 <Stack.Item key={`${reaction.name}-${reagent.name}-req`}>
@@ -602,7 +602,7 @@ const ReactionDisplay = (props: ReactionDisplayProps) => {
                 <>
                   <Stack.Item>
                     <HorizontalBarWithText
-                      text={`Catalyst${reaction.reaction.required_reagents.length === 1 ? '' : 's'}`}
+                      text="催化剂"
                     />
                   </Stack.Item>
                   {reaction.reaction.required_catalysts.map((catalyst) => (
@@ -618,7 +618,7 @@ const ReactionDisplay = (props: ReactionDisplayProps) => {
                 </>
               )}
               <Stack.Item>
-                <HorizontalBarWithText text="Optimal temperature" />
+                <HorizontalBarWithText text="最佳温度" />
               </Stack.Item>
               <Stack.Item fontSize="0.9em">
                 {getTemperatureMessage(
@@ -627,7 +627,7 @@ const ReactionDisplay = (props: ReactionDisplayProps) => {
                 )}
               </Stack.Item>
               <Stack.Item>
-                <HorizontalBarWithText text="Optimal pH range" />
+                <HorizontalBarWithText text="最佳 pH 范围" />
               </Stack.Item>
               <Stack.Item fontSize="0.9em">
                 {getPHMessage(
@@ -649,13 +649,13 @@ const ReactionDisplay = (props: ReactionDisplayProps) => {
 // if lower is <300 and upper is >300, return "keep between X and Y degrees"
 function getTemperatureMessage(lower: number, upper: number): string {
   if (lower === upper) {
-    return `Forms at ${lower}°K`;
+    return `在 ${lower} K 时生成`;
   } else if (lower > 300 && upper > 300) {
-    return `Heat between ${lower}°K-${upper}°K`;
+    return `加热至 ${lower} K–${upper} K`;
   } else if (lower < 300 && upper < 300) {
-    return `Cool between ${Math.min(upper, lower)}°K-${Math.max(upper, lower)}°K`;
+    return `冷却至 ${Math.min(upper, lower)} K–${Math.max(upper, lower)} K`;
   } else {
-    return `Keep between ${lower}°K-${upper}°K`;
+    return `保持在 ${lower} K–${upper} K`;
   }
 }
 
@@ -663,9 +663,9 @@ function getTemperatureMessage(lower: number, upper: number): string {
 // else return "keep between pH X and Y"
 function getPHMessage(lower: number, upper: number): string {
   if (lower === upper) {
-    return `Keep at pH ${lower}`;
+    return `将 pH 保持在 ${lower}`;
   } else {
-    return `Keep between pH ${lower}-${upper}`;
+    return `将 pH 保持在 ${lower}–${upper}`;
   }
 }
 
@@ -732,10 +732,10 @@ const ReactionComponentDisplay = (props: ReactionComponentDisplayProps) => {
         tooltip={
           <Stack vertical>
             <Stack.Item fontSize="0.9em">
-              Left click to pin this recipe.
+              左键点击以置顶此配方。
             </Stack.Item>
             <Stack.Item fontSize="0.9em">
-              Right click to search for this recipe.
+              右键点击以搜索此配方。
             </Stack.Item>
           </Stack>
         }
@@ -754,9 +754,9 @@ const ReactionComponentDisplay = (props: ReactionComponentDisplayProps) => {
 };
 
 function formatReagentName(amount: number, name?: string) {
-  if (!name) return `${amount} part `;
+  if (!name) return `${amount} 份 `;
 
-  return `${amount} part${amount === 1 ? '' : 's'} ${name}`;
+  return `${amount} 份 ${name}`;
 }
 
 const HorizontalBarWithText = (props: { text: string }) => {

@@ -50,11 +50,11 @@ export function CreateObjectAdvancedSettings(
     <Table>
       <Table.Row className="candystripe" lineHeight="26px">
         <Table.Cell pl={1} width="fit-content">
-          Icon:
+          图标：
         </Table.Cell>
         <Table.Cell>
           <Button fluid onClick={() => act('select-new-DMI')}>
-            {data.icon || iconSettings.icon || 'Default'}
+            {data.icon || iconSettings.icon || '默认'}
           </Button>
         </Table.Cell>
         <Table.Cell pr={1} width="25px">
@@ -69,12 +69,12 @@ export function CreateObjectAdvancedSettings(
         </Table.Cell>
       </Table.Row>
       <Table.Row className="candystripe" lineHeight="26px">
-        <Table.Cell pl={1}>Icon state:</Table.Cell>
+        <Table.Cell pl={1}>图标状态：</Table.Cell>
         <Table.Cell>
           <Dropdown
             options={iconStateOptions}
             selected={data.iconState || iconSettings.iconState || 'Default'}
-            displayText={data.iconState || iconSettings.iconState || 'Default'}
+            displayText={data.iconState || iconSettings.iconState || '默认'}
             onSelected={(value) => {
               act('select-new-icon-state', {
                 new_state: value,
@@ -98,7 +98,7 @@ export function CreateObjectAdvancedSettings(
         </Table.Cell>
       </Table.Row>
       <Table.Row className="candystripe" lineHeight="26px">
-        <Table.Cell pl={1}>Explicitly set icon:</Table.Cell>
+        <Table.Cell pl={1}>强制设置图标：</Table.Cell>
         <Table.Cell>
           <Button.Checkbox
             checked={!!iconSettings.applyIcon}
@@ -108,13 +108,13 @@ export function CreateObjectAdvancedSettings(
               act('set-apply-icon-override', { value: next });
             }}
           >
-            Enabled
+            启用
           </Button.Checkbox>
         </Table.Cell>
         <Table.Cell pr={1} />
       </Table.Row>
       <Table.Row className="candystripe" lineHeight="26px">
-        <Table.Cell pl={1}>Icon scale:</Table.Cell>
+        <Table.Cell pl={1}>图标缩放：</Table.Cell>
         <Table.Cell width="auto">
           <Slider
             minValue={25}

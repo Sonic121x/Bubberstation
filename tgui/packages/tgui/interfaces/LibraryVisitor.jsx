@@ -17,7 +17,7 @@ import { PageSelect } from './LibraryConsole/components/PageSelect';
 
 export const LibraryVisitor = (props) => {
   return (
-    <Window title="Library Lookup Console" width={702} height={421}>
+    <Window title="图书馆查询控制台" width={702} height={421}>
       <BookListing />
     </Window>
   );
@@ -29,8 +29,8 @@ const BookListing = (props) => {
   if (!can_connect) {
     return (
       <NoticeBox>
-        Unable to retrieve book listings. Please contact your system
-        administrator for assistance.
+        无法获取书籍列表。请联系系统
+        管理员寻求帮助。
       </NoticeBox>
     );
   }
@@ -87,7 +87,7 @@ const SearchAndDisplay = (props) => {
             <Stack.Item>
               <Input
                 value={book_id}
-                placeholder={book_id === null ? 'ID' : book_id}
+                placeholder={book_id === null ? '编号' : book_id}
                 mt={0.5}
                 width="70px"
                 onBlur={(value) =>
@@ -111,7 +111,7 @@ const SearchAndDisplay = (props) => {
             <Stack.Item>
               <Input
                 value={title}
-                placeholder={title || 'Title'}
+                placeholder={title || '书名'}
                 mt={0.5}
                 onBlur={(value) =>
                   act('set_search_title', {
@@ -123,7 +123,7 @@ const SearchAndDisplay = (props) => {
             <Stack.Item>
               <Input
                 value={author}
-                placeholder={author || 'Author'}
+                placeholder={author || '作者'}
                 mt={0.5}
                 onBlur={(value) =>
                   act('set_search_author', {
@@ -142,7 +142,7 @@ const SearchAndDisplay = (props) => {
             color={params_changed ? 'good' : ''}
             icon="book"
           >
-            Search
+            搜索
           </Button>
           <Button
             disabled={!can_db_request}
@@ -151,16 +151,16 @@ const SearchAndDisplay = (props) => {
             color="bad"
             icon="fire"
           >
-            Reset Search
+            重置搜索
           </Button>
         </Stack.Item>
       </Stack>
       <Table>
         <Table.Row>
           <Table.Cell fontSize={1.5}>#</Table.Cell>
-          <Table.Cell fontSize={1.5}>Category</Table.Cell>
-          <Table.Cell fontSize={1.5}>Title</Table.Cell>
-          <Table.Cell fontSize={1.5}>Author</Table.Cell>
+          <Table.Cell fontSize={1.5}>类别</Table.Cell>
+          <Table.Cell fontSize={1.5}>书名</Table.Cell>
+          <Table.Cell fontSize={1.5}>作者</Table.Cell>
         </Table.Row>
         {records.map((record) => (
           <Table.Row key={record.key}>

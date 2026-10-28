@@ -19,7 +19,7 @@ import {
 import { toFixed } from 'tgui-core/math';
 
 import { AppearanceDisplay, BellyFullscreenIcon } from './AppearanceDisplay';
-import * as types from './types';
+import * as types from './types'; import { voreDisplay } from '../../localization/voreDisplay';
 
 export const BelliesList = (props) => {
   const { act, data } = useBackend<types.Data>();
@@ -83,9 +83,9 @@ export const BelliesList = (props) => {
                   textAlign="center"
                   ml={-2}
                 >
-                  Add Belly{' '}
+                  添加腹腔{' '}
                   {data.bellies.length >= data.max_bellies &&
-                    `(Max: ${data.max_bellies})`}
+                    `（上限：${data.max_bellies}）`}
                 </Button>
               </Stack.Item>
             </Stack>
@@ -116,7 +116,7 @@ export const BellyUI = (props: {
   if (!belly) {
     return (
       <Section mt={0} fill>
-        No Belly Selected
+        未选择腹腔
       </Section>
     );
   }
@@ -156,7 +156,7 @@ export const BellyUI = (props: {
               setEditing(false);
             }}
           >
-            Contents
+            内容物
           </Button>
           <Button
             color="transparent"
@@ -166,7 +166,7 @@ export const BellyUI = (props: {
               setEditing(false);
             }}
           >
-            Messages
+            消息
           </Button>
           <Button
             color="transparent"
@@ -176,7 +176,7 @@ export const BellyUI = (props: {
               setEditing(false);
             }}
           >
-            Settings
+            设置
           </Button>
           <Button
             color="transparent"
@@ -186,7 +186,7 @@ export const BellyUI = (props: {
               setEditing(false);
             }}
           >
-            Visuals
+            视觉效果
           </Button>
         </>
       }
@@ -197,7 +197,7 @@ export const BellyUI = (props: {
       )}
       {selectedTab === 2 && (
         <LabeledList>
-          <LabeledList.Item label="Options" verticalAlign="top">
+          <LabeledList.Item label="选项" verticalAlign="top">
             <Stack align="center" justify="flex-end">
               <Stack.Item>
                 <Button
@@ -206,7 +206,7 @@ export const BellyUI = (props: {
                     act('move_belly', { dir: 'down', ref: belly.ref });
                     setSelectedBelly(belly.index + 1); // this will keep our belly selected
                   }}
-                  tooltip="Move belly down in the list"
+                  tooltip="在列表中下移腹腔"
                 >
                   <Icon name="arrow-down" />
                 </Button>
@@ -218,7 +218,7 @@ export const BellyUI = (props: {
                     act('move_belly', { dir: 'up', ref: belly.ref });
                     setSelectedBelly(belly.index - 1); // this will keep our belly selected
                   }}
-                  tooltip="Move belly up in the list"
+                  tooltip="在列表中上移腹腔"
                 >
                   <Icon name="arrow-up" />
                 </Button>
@@ -229,7 +229,7 @@ export const BellyUI = (props: {
                   selected={editing}
                   onClick={() => setEditing(!editing)}
                 >
-                  Edit
+                  编辑
                 </Button>
               </Stack.Item>
               <Stack.Item>
@@ -241,14 +241,14 @@ export const BellyUI = (props: {
                     setSelectedBelly(1);
                   }}
                 >
-                  Delete
+                  删除
                 </Button.Confirm>
               </Stack.Item>
             </Stack>
           </LabeledList.Item>
           <LabeledList.Item
-            label="Description"
-            tooltip="The following text replacements are available: %pred - Your name | %prey - Prey's name | %belly - Belly name | %count - Prey count"
+            label="描述"
+            tooltip="可使用以下文本替换符：%pred - 你的姓名 | %prey - 猎物姓名 | %belly - 腹腔名称 | %count - 猎物数量"
             verticalAlign="top"
           >
             {editing ? (
@@ -277,7 +277,7 @@ export const BellyUI = (props: {
               </Box>
             )}
           </LabeledList.Item>
-          <LabeledList.Item label="Belly Mode" verticalAlign="top">
+          <LabeledList.Item label="腹腔模式" verticalAlign="top">
             {editing ? (
               <Dropdown
                 color={
@@ -285,8 +285,8 @@ export const BellyUI = (props: {
                     ? 'bad'
                     : 'default'
                 }
-                options={Object.values(types.DigestMode)}
-                selected={belly.digest_mode}
+                options={Object.values(types.DigestMode).map((value) => ({value, displayText: voreDisplay(value)}))}
+                selected={belly.digest_mode} displayText={voreDisplay(belly.digest_mode)}
                 onSelected={(value) =>
                   act('edit_belly', {
                     ref: belly.ref,
@@ -304,11 +304,11 @@ export const BellyUI = (props: {
                     : 'default'
                 }
               >
-                {belly.digest_mode}
+                {voreDisplay(belly.digest_mode)}
               </Box>
             )}
           </LabeledList.Item>
-          <LabeledList.Item label="Burn Damage">
+          <LabeledList.Item label="烧伤伤害">
             {editing ? (
               <NumberInput
                 value={belly.burn_damage}
@@ -328,7 +328,7 @@ export const BellyUI = (props: {
               toFixed(belly.burn_damage, 2)
             )}
           </LabeledList.Item>
-          <LabeledList.Item label="Brute Damage">
+          <LabeledList.Item label="物理伤害">
             {editing ? (
               <NumberInput
                 value={belly.brute_damage}
@@ -348,7 +348,7 @@ export const BellyUI = (props: {
               toFixed(belly.brute_damage, 2)
             )}
           </LabeledList.Item>
-          <LabeledList.Item label="Muffle Radio">
+          <LabeledList.Item label="屏蔽无线电">
             {editing ? (
               <Button
                 icon={belly.muffles_radio ? 'toggle-on' : 'toggle-off'}
@@ -357,15 +357,15 @@ export const BellyUI = (props: {
                   act('edit_belly', { ref: belly.ref, var: 'muffles_radio' })
                 }
               >
-                {belly.muffles_radio ? 'Yes' : 'No'}
+                {belly.muffles_radio ? '是' : '否'}
               </Button>
             ) : belly.muffles_radio ? (
-              'Yes'
+              '是'
             ) : (
-              'No'
+              '否'
             )}
           </LabeledList.Item>
-          <LabeledList.Item label="Chance To Escape">
+          <LabeledList.Item label="逃脱概率">
             {editing ? (
               <NumberInput
                 value={belly.escape_chance}
@@ -385,14 +385,14 @@ export const BellyUI = (props: {
               `${belly.escape_chance}%`
             )}
           </LabeledList.Item>
-          <LabeledList.Item label="Time To Escape">
+          <LabeledList.Item label="逃脱耗时">
             {editing ? (
               <NumberInput
                 value={belly.escape_time / 10}
                 minValue={data.min_escape_time / 10}
                 maxValue={data.max_escape_time / 10}
                 step={1}
-                format={(v) => `${v} seconds`}
+                format={(v) => `${v} 秒`}
                 onChange={(value) =>
                   act('edit_belly', {
                     ref: belly.ref,
@@ -402,10 +402,10 @@ export const BellyUI = (props: {
                 }
               />
             ) : (
-              `${belly.escape_time / 10} seconds`
+              `${belly.escape_time / 10} 秒`
             )}
           </LabeledList.Item>
-          <LabeledList.Item label="Can Taste">
+          <LabeledList.Item label="能够品尝味道">
             {editing ? (
               <Button
                 icon={belly.can_taste ? 'toggle-on' : 'toggle-off'}
@@ -418,15 +418,15 @@ export const BellyUI = (props: {
                   })
                 }
               >
-                {belly.can_taste ? 'Yes' : 'No'}
+                {belly.can_taste ? '是' : '否'}
               </Button>
             ) : belly.can_taste ? (
-              'Yes'
+              '是'
             ) : (
-              'No'
+              '否'
             )}
           </LabeledList.Item>
-          <LabeledList.Item label="Insertion Verb">
+          <LabeledList.Item label="吞入动词">
             {editing ? (
               <Input
                 value={belly.insert_verb}
@@ -443,7 +443,7 @@ export const BellyUI = (props: {
               belly.insert_verb
             )}
           </LabeledList.Item>
-          <LabeledList.Item label="Release Verb">
+          <LabeledList.Item label="释放动词">
             {editing ? (
               <Input
                 value={belly.release_verb}
@@ -460,7 +460,7 @@ export const BellyUI = (props: {
             )}
           </LabeledList.Item>
           <LabeledList.Divider />
-          <LabeledList.Item label="Fancy Sounds">
+          <LabeledList.Item label="丰富音效">
             {editing ? (
               <Button
                 icon={belly.fancy_sounds ? 'toggle-on' : 'toggle-off'}
@@ -473,15 +473,15 @@ export const BellyUI = (props: {
                   })
                 }
               >
-                {belly.fancy_sounds ? 'Yes' : 'No'}
+                {belly.fancy_sounds ? '是' : '否'}
               </Button>
             ) : belly.fancy_sounds ? (
-              'On'
+              '开启'
             ) : (
-              'Off'
+              '关闭'
             )}
           </LabeledList.Item>
-          <LabeledList.Item label="Fleshy Belly">
+          <LabeledList.Item label="血肉腹腔">
             {editing ? (
               <Button
                 icon={belly.is_wet ? 'toggle-on' : 'toggle-off'}
@@ -490,15 +490,15 @@ export const BellyUI = (props: {
                   act('edit_belly', { ref: belly.ref, var: 'is_wet' })
                 }
               >
-                {belly.is_wet ? 'Yes' : 'No'}
+                {belly.is_wet ? '是' : '否'}
               </Button>
             ) : belly.is_wet ? (
-              'Yes'
+              '是'
             ) : (
-              'No'
+              '否'
             )}
           </LabeledList.Item>
-          <LabeledList.Item label="Internal Sound Loop">
+          <LabeledList.Item label="内部循环音效">
             {editing ? (
               <Button
                 icon={belly.wet_loop ? 'toggle-on' : 'toggle-off'}
@@ -507,15 +507,15 @@ export const BellyUI = (props: {
                   act('edit_belly', { ref: belly.ref, var: 'wet_loop' })
                 }
               >
-                {belly.wet_loop ? 'Yes' : 'No'}
+                {belly.wet_loop ? '是' : '否'}
               </Button>
             ) : belly.wet_loop ? (
-              'Yes'
+              '是'
             ) : (
-              'No'
+              '否'
             )}
           </LabeledList.Item>
-          <LabeledList.Item label="Insertion Sound">
+          <LabeledList.Item label="吞入音效">
             {editing ? (
               <Button
                 icon="pencil"
@@ -541,7 +541,7 @@ export const BellyUI = (props: {
               <Icon name="volume-up" />
             </Button>
           </LabeledList.Item>
-          <LabeledList.Item label="Release Sound">
+          <LabeledList.Item label="释放音效">
             {editing ? (
               <Button
                 icon="pencil"
@@ -600,7 +600,7 @@ export const BellyContents = (props: { contents: types.Prey[] }) => {
       ))}
     </Flex>
   ) : (
-    'Nothing is inside this belly.'
+    '此腹腔内空无一物。'
   );
 };
 
@@ -647,13 +647,13 @@ const BellyMessageSection = (props: {
 
   return (
     <Section
-      title={types.bellyKeyToText[message_key] || `Unknown key ${message_key}`}
+      title={types.bellyKeyToText[message_key] || `未知键 ${message_key}`}
       buttons={
         <>
           {dueRefresh && <Icon name="spinner" spin mr={2} />}
           <Button
             disabled={!hasChanges}
-            tooltip="Save Changes"
+            tooltip="保存更改"
             onClick={() => {
               act('edit_belly', {
                 ref: belly_ref,
@@ -669,7 +669,7 @@ const BellyMessageSection = (props: {
           <Button
             color={hasChanges ? 'bad' : ''}
             disabled={!hasChanges}
-            tooltip="Discard Changes"
+            tooltip="放弃更改"
             onClick={() => {
               setBellyValues(values);
               setHasChanges(false);
@@ -680,7 +680,7 @@ const BellyMessageSection = (props: {
           <Button
             disabled={hasChanges}
             color="bad"
-            tooltip="Reset all descriptions."
+            tooltip="重置所有描述。"
             onClick={() => {
               act('edit_belly', {
                 ref: belly_ref,
@@ -737,8 +737,8 @@ const BellyMessageSection = (props: {
         disabled={bellyValues.length >= 10}
         placeholder={
           bellyValues.length >= 10
-            ? 'Description Limit (10) Reached'
-            : 'Add New Message'
+            ? '已达到描述数量上限（10 条）'
+            : '添加新消息'
         }
         fluid
         maxLength={data.max_vore_message_length}
@@ -796,7 +796,7 @@ const BellyVisuals = (props: { belly: types.Belly }) => {
                 })
               }
             >
-              Test Overlay
+              测试叠加效果
             </Button>
           </Stack.Item>
         </Stack>
@@ -814,7 +814,7 @@ const BellyVisuals = (props: { belly: types.Belly }) => {
           }
           icon="eye-slash"
         >
-          No Overlay
+          无叠加效果
         </Button>
       </Stack.Item>
       {available_overlays.map((overlay) => (

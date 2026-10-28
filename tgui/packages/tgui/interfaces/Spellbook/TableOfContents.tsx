@@ -11,11 +11,11 @@ export function TableOfContents(props) {
   return (
     <Box textAlign="center">
       <Button lineHeight={lineHeightToc} fluid icon="pen" disabled>
-        Name Enscription
+        铭刻姓名
       </Button>
 
       <Button lineHeight={lineHeightToc} fluid icon="clipboard" disabled>
-        Table of Contents
+        目录
       </Button>
 
       <Divider />
@@ -25,7 +25,7 @@ export function TableOfContents(props) {
         icon="fire"
         onClick={() => setTabIndex(Tab.Defensive)}
       >
-        Deadly Evocations
+        致命塑能术
       </Button>
 
       <Button
@@ -34,7 +34,7 @@ export function TableOfContents(props) {
         icon="shield-alt"
         onClick={() => setTabIndex(Tab.Defensive)}
       >
-        Defensive Evocations
+        防御塑能术
       </Button>
       <Divider />
       <Button
@@ -43,7 +43,7 @@ export function TableOfContents(props) {
         icon="globe-americas"
         onClick={() => setTabIndex(Tab.Assistance)}
       >
-        Magical Transportation
+        魔法传送
       </Button>
       <Button
         lineHeight={lineHeightToc}
@@ -51,7 +51,7 @@ export function TableOfContents(props) {
         icon="users"
         onClick={() => setTabIndex(Tab.Assistance)}
       >
-        Assistance and Summoning
+        援助与召唤
       </Button>
       <Divider />
       <Button
@@ -60,7 +60,7 @@ export function TableOfContents(props) {
         icon="crown"
         onClick={() => setTabIndex(Tab.Rituals)}
       >
-        Challenges
+        挑战
       </Button>
       <Button
         lineHeight={lineHeightToc}
@@ -68,7 +68,7 @@ export function TableOfContents(props) {
         icon="magic"
         onClick={() => setTabIndex(Tab.Rituals)}
       >
-        Rituals
+        仪式
       </Button>
       <Divider />
       <Button
@@ -77,7 +77,7 @@ export function TableOfContents(props) {
         icon="thumbs-up"
         onClick={() => setTabIndex(Tab.Randomize)}
       >
-        Wizard Approved Loadouts
+        巫师认可配装
       </Button>
       <Button
         lineHeight={lineHeightToc}
@@ -85,7 +85,7 @@ export function TableOfContents(props) {
         icon="dice"
         onClick={() => setTabIndex(Tab.Randomize)}
       >
-        Arcane Randomizer
+        奥术随机配装
       </Button>
       <Divider />
       <Button
@@ -94,7 +94,7 @@ export function TableOfContents(props) {
         icon="cog"
         onClick={() => setTabIndex(Tab.TableOfContents2)}
       >
-        Perks
+        特长
       </Button>
     </Box>
   );

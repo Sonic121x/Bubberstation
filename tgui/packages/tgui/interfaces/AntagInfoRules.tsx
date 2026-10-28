@@ -19,11 +19,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -33,11 +33,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -47,11 +47,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -61,11 +61,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -75,11 +75,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -89,11 +89,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -103,11 +103,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -117,11 +117,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -131,11 +131,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -145,11 +145,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -159,11 +159,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -173,11 +173,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -187,11 +187,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -201,11 +201,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -215,11 +215,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -229,11 +229,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -243,11 +243,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -257,11 +257,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>
@@ -271,11 +271,11 @@ export const Rules = (props) => {
       return (
         // Bubberstation Edit
         <Stack vertical>
-          <Stack.Item bold>Special Rules:</Stack.Item>
+          <Stack.Item bold>特殊规则：</Stack.Item>
           <Stack.Item>
             {
               <a href="https://wiki.bubberstation.org/index.php?title=Rules">
-                Special Rules and Metaprotections!
+                特殊规则与超游戏保护！
               </a>
             }
           </Stack.Item>

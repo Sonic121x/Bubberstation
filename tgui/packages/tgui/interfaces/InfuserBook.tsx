@@ -40,37 +40,37 @@ const PAGE_HEIGHT = 30;
 
 const TIER2TIERDATA: TierData[] = [
   {
-    name: 'Lesser Mutant',
+    name: '低等变种人',
     desc: `
-      Lesser Mutants usually have a smaller list of potential mutations, and
-      do not have bonuses for infusing many organs. Common species, cosmetics,
-      and things of that sort are here. Always available!
+      低等变种人的潜在突变种类通常较少，
+      为多个器官注入 DNA 也不会获得额外加成。常见物种、外观变化
+      等都属于此类。始终可用！
     `,
     icon: 'circle-o',
   },
   {
-    name: 'Regular Mutant',
+    name: '普通变种人',
     desc: `
-      Regular Mutants all have bonuses for infusing DNA into yourself, and are
-      common enough to find consistently in a shift. Always available!
+      普通变种人都能通过注入 DNA 获得额外加成，
+      所需生物较为常见，每个班次通常都能找到。始终可用！
     `,
     icon: 'circle-half-stroke',
   },
   {
-    name: 'Greater Mutant',
+    name: '高等变种人',
     desc: `
-      Greater Mutants have stronger upsides and downsides along with their
-      bonus, and are harder to find in a shift. Must be unlocked by first
-      unlocking a DNA Mutant bonus of a lower tier.
+      高等变种人的优点、缺点和额外加成都更为显著，
+      所需生物也更难找到。必须先解锁
+      较低等级的 DNA 变种人加成，才能解锁此类。
     `,
     icon: 'circle',
   },
   {
-    name: 'Abberation',
+    name: '畸变体',
     desc: `
-      We've been able to get stronger mutants out of vatgrown specimen,
-      henceforth named "Abberations". Abberations have either strong utility
-      purpose, anomalous qualities, or deadly capabilities.
+      我们已成功从培养槽培育的样本中获得更强的变种体，
+      将其命名为“畸变体”。畸变体或具有强大的实用
+      功能，或具有异常特性，或具有致命能力。
     `,
     icon: 'teeth',
   },
@@ -124,11 +124,11 @@ export const InfuserBook = (props) => {
   };
 
   const tabs = [
-    'Introduction',
-    'Tier 0 - Lesser Mutants',
-    'Tier 1 - Regular Mutants',
-    'Tier 2 - Greater Mutants',
-    'Tier 3 - Abberations - RESTRICTED',
+    '简介',
+    '0 级——低等变种人',
+    '1 级——普通变种人',
+    '2 级——高等变种人',
+    '3 级——畸变体——限制访问',
   ];
 
   const paginatedTabs = chunk(tabs, 3);
@@ -136,7 +136,7 @@ export const InfuserBook = (props) => {
   const restrictedNext = chapter === 3 && pageInChapter === 0;
 
   return (
-    <Window title="DNA Infusion Manual" width={620} height={500}>
+    <Window title="DNA 注入手册" width={620} height={500}>
       <Window.Content>
         <Stack vertical>
           <Stack.Item mb={-1}>
@@ -176,12 +176,12 @@ export const InfuserBook = (props) => {
             <Stack fontSize="18px" fill>
               <Stack.Item grow={2}>
                 <Button onClick={() => setPage(pageInChapter - 1)} fluid>
-                  Last Page
+                  上一页
                 </Button>
               </Stack.Item>
               <Stack.Item grow={1}>
                 <Section fitted fill pt="3px">
-                  Page {pageInChapter + 1}/
+                  页码 {pageInChapter + 1}/
                   {paginatedEntries[chapter].length + (chapter === 0 ? 1 : 0)}
                 </Section>
               </Stack.Item>
@@ -191,7 +191,7 @@ export const InfuserBook = (props) => {
                   onClick={() => setPage(pageInChapter + 1)}
                   fluid
                 >
-                  {restrictedNext ? 'RESTRICTED' : 'Next Page'}
+                  {restrictedNext ? '限制访问' : '下一页'}
                 </Button>
               </Stack.Item>
             </Stack>
@@ -204,33 +204,33 @@ export const InfuserBook = (props) => {
 
 export const InfuserInstructions = (props) => {
   return (
-    <Section title="DNA Infusion Guide" height={PAGE_HEIGHT}>
+    <Section title="DNA 注入指南" height={PAGE_HEIGHT}>
       <Stack vertical>
-        <Stack.Item fontSize="16px">What does it do?</Stack.Item>
+        <Stack.Item fontSize="16px">它有什么作用？</Stack.Item>
         <Stack.Item color="label">
-          DNA Infusion is the practice of integrating dead creature DNA into
-          yourself, mutating one of your organs into a genetic slurry that sits
-          somewhere between being yours or the creature&apos;s. While this does
-          bring you further away from being human, and gives a slew of...
-          unfortunate side effects, it also grants new capabilities.{' '}
+          DNA 注入是将死去生物的 DNA 融入
+          自身的过程，使某个器官突变成介于
+          你和该生物之间的基因混合体。虽然这会
+          使你更加偏离人类形态，并带来一系列……
+          不幸的副作用，但也会赋予你新的能力。{' '}
           <b>
-            Above all else, you have to understand that gene-mutants are usually
-            very good at specific things, especially with their threshold
-            bonuses.
+            最重要的是，你必须理解，基因变种人通常
+            在特定方面极为擅长，尤其是在获得阈值
+            加成之后。
           </b>
         </Stack.Item>
-        <Stack.Item fontSize="16px">I&apos;m sold! How do I do it?</Stack.Item>
+        <Stack.Item fontSize="16px">我心动了！该怎么做？</Stack.Item>
         <Stack.Item color="label">
-          1. Load a dead creature into the machine. This is what you&apos;re
-          infusing from.
+          1. 将死去的生物放入机器。它将作为
+          注入的 DNA 来源。
           <br />
-          2. Enter the machine, like you would the DNA scanner.
+          2. 像进入 DNA 扫描仪一样进入机器。
           <br />
-          3. Have someone activate the machine externally.
+          3. 请其他人在外部启动机器。
           <br />
           <Box mt="10px" inline color="white">
-            And you&apos;re done! Note that the infusion source will be
-            obliterated in the process.
+            大功告成！请注意，DNA 来源生物会在
+            此过程中被彻底摧毁。
           </Box>
         </Stack.Item>
       </Stack>
@@ -263,12 +263,12 @@ const InfuserEntry = (props: InfuserEntryProps) => {
           <BlockQuote>
             {entry.desc}{' '}
             {entry.threshold_desc && (
-              <>If a subject infuses with enough DNA, {entry.threshold_desc}</>
+              <>如果受试者注入了足够的 DNA，{entry.threshold_desc}</>
             )}
           </BlockQuote>
         </Stack.Item>
         <Stack.Item grow>
-          Qualities:
+          特性：
           {entry.qualities.map((quality) => {
             return (
               <Box color="label" key={quality}>
@@ -279,11 +279,11 @@ const InfuserEntry = (props: InfuserEntryProps) => {
         </Stack.Item>
         <Stack.Divider />
         <Stack.Item>
-          Created from infusing{' '}
+          通过向受试者注入{' '}
           <Box inline color={entry.name === 'Rejected' ? 'red' : 'green'}>
             {entry.infuse_mob_name}
           </Box>{' '}
-          DNA into a subject.
+          的 DNA 产生。
         </Stack.Item>
       </Stack>
     </Section>

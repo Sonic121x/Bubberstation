@@ -78,7 +78,7 @@ export function DeathmatchLobby(props) {
   const isObserver = observers.find((observer) => observer.key === self);
 
   return (
-    <Window title="Deathmatch Lobby" width={560} height={480}>
+    <Window title="死斗大厅" width={560} height={480}>
       {showMenu && <ModSelector />}
       <Window.Content>
         <Stack fill vertical>
@@ -102,23 +102,23 @@ export function DeathmatchLobby(props) {
                       color="caution"
                       onClick={() => act('admin', { func: 'Force start' })}
                     >
-                      Force Start
+                      强制开始
                     </Button>
                   )}
                 </Stack.Item>
                 <Stack.Item>
                   <Button color="caution" onClick={() => act('observe')}>
-                    {isObserver ? 'Join' : 'Observe'}
+                    {isObserver ? '加入' : '观察'}
                   </Button>
                   <Button color="bad" onClick={() => act('leave_game')}>
-                    Leave Game
+                    离开游戏
                   </Button>
                   <Button
                     color="good"
                     disabled={!allReady}
                     onClick={() => act('start_game')}
                   >
-                    Start Game
+                    开始游戏
                   </Button>
                 </Stack.Item>
               </Stack>
@@ -150,11 +150,11 @@ function PlayerColumn(props) {
       <Table>
         <Table.Row header>
           <Table.Cell collapsing />
-          <Table.Cell>Name</Table.Cell>
-          <Table.Cell>Loadout</Table.Cell>
+          <Table.Cell>名称</Table.Cell>
+          <Table.Cell>装备配置</Table.Cell>
           <Table.Cell collapsing align="center">
             <Tooltip
-              content={!allReady ? 'Players are preparing' : 'Press start!'}
+              content={!allReady ? '玩家正在准备' : '请按开始！'}
             >
               <Icon
                 name={!allReady ? 'check' : 'check-circle'}
@@ -172,12 +172,12 @@ function PlayerColumn(props) {
             <Table.Row className="candystripe" key={player.key}>
               <Table.Cell align="center" collapsing verticalAlign="top">
                 {isHost && (
-                  <Tooltip content="Host">
+                  <Tooltip content="房主">
                     <Icon color="gold" name="star" pt={isSelf && 0.5} />
                   </Tooltip>
                 )}
                 {!host && isSelf && (
-                  <Tooltip content="You">
+                  <Tooltip content="你">
                     <Icon color="green" name="arrow-right" pt={0.9} />
                   </Tooltip>
                 )}
@@ -190,7 +190,7 @@ function PlayerColumn(props) {
                   <Dropdown
                     width={9}
                     selected={player.key}
-                    options={['Kick', 'Transfer host', 'Toggle observe']}
+                    options={[{ value: 'Kick', displayText: '踢出' }, { value: 'Transfer host', displayText: '移交房主' }, { value: 'Toggle observe', displayText: '切换观察模式' }]}
                     onSelected={(value) =>
                       act('host', {
                         id: player.key,
@@ -247,7 +247,7 @@ function PlayerColumn(props) {
                 pt={fullAccess && '2px'}
               >
                 {isHost ? (
-                  <Tooltip content="host">
+                  <Tooltip content="房主">
                     <Icon name="star" />
                   </Tooltip>
                 ) : (
@@ -261,7 +261,7 @@ function PlayerColumn(props) {
                   <Dropdown
                     width={9}
                     selected={observer.key}
-                    options={['Kick', 'Transfer host', 'Toggle observe']}
+                    options={[{ value: 'Kick', displayText: '踢出' }, { value: 'Transfer host', displayText: '移交房主' }, { value: 'Toggle observe', displayText: '切换观察模式' }]}
                     onSelected={(value) =>
                       act('host', {
                         id: observer.key,
@@ -271,7 +271,7 @@ function PlayerColumn(props) {
                   />
                 )}
               </Table.Cell>
-              <Table.Cell color="label">Observing</Table.Cell>
+              <Table.Cell color="label">观察中</Table.Cell>
             </Table.Row>
           );
         })}
@@ -297,13 +297,13 @@ function HostControls(props) {
         <>
           <Divider />
           <Button textAlign="center" fluid onClick={() => act('open_mod_menu')}>
-            Toggle Modifiers
+            切换规则修正
           </Button>
         </>
       )}
       <Divider />
       <NoticeBox info align="center">
-        Loadout Description
+        装备配置说明
       </NoticeBox>
 
       <Box textAlign="center">{loadoutdesc}</Box>
@@ -311,7 +311,7 @@ function HostControls(props) {
         <>
           <Divider />
           <Box textAlign="center">
-            The game is currently in progress, or loading.
+            游戏正在进行或加载中。
           </Box>
         </>
       )}
@@ -326,7 +326,7 @@ const ModSelector = (props) => {
   return (
     <Modal>
       <Button fluid color="bad" onClick={() => act('exit_mod_menu')}>
-        Go Back
+        返回
       </Button>
       {modifiers.map((mod, index) => (
         <Button.Checkbox
@@ -354,7 +354,7 @@ function MapInfo(props) {
   const { host, maps = [], map, players } = data;
 
   if (!host && !map?.name) {
-    return <NoticeBox align="center">No map selected</NoticeBox>;
+    return <NoticeBox align="center">未选择地图</NoticeBox>;
   }
 
   return (
@@ -381,16 +381,16 @@ function MapInfo(props) {
       {map.desc}
       <Divider />
       <LabeledList>
-        <LabeledList.Item label="Max Play Time">
-          {`${map.time / 600}min`}
+        <LabeledList.Item label="最长游戏时间">
+          {`${map.time / 600} 分钟`}
         </LabeledList.Item>
-        <LabeledList.Item label="Min Players">
+        <LabeledList.Item label="最少玩家人数">
           {map.min_players}
         </LabeledList.Item>
-        <LabeledList.Item label="Max Players">
+        <LabeledList.Item label="最多玩家人数">
           {map.max_players}
         </LabeledList.Item>
-        <LabeledList.Item label="Current Players">
+        <LabeledList.Item label="当前玩家人数">
           {players.length}
         </LabeledList.Item>
       </LabeledList>

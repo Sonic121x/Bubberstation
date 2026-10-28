@@ -2,7 +2,7 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Dropdown, Input, LabeledList } from 'tgui-core/components';
 import type { NifPanelData } from './data';
-
+import { themeDisplay, themeOptions } from '../../localization/zhThemeDisplay';
 export function NifSettings() {
   const { act, data } = useBackend<NifPanelData>();
   const {
@@ -21,19 +21,19 @@ export function NifSettings() {
   return (
     <LabeledList>
       <LabeledList.Item
-        label="NIF Theme"
-        tooltip="The theme this window will use."
+        label="纳米植入框架主题"
+        tooltip="此窗口使用的界面主题。"
       >
         <Dropdown
           width="100%"
-          selected={current_theme}
-          options={ui_themes}
+          selected={current_theme} displayText={themeDisplay(current_theme)}
+          options={themeOptions(ui_themes)}
           onSelected={(value) => act('change_theme', { target_theme: value })}
         />
       </LabeledList.Item>
       <LabeledList.Item
-        label="NIF Flavor Text"
-        tooltip="This will appear when people examine you."
+        label="纳米植入框架外观描述"
+        tooltip="他人观察你时会看到这段文字。"
       >
         <Input
           placeholder={default_examine_text}
@@ -43,8 +43,8 @@ export function NifSettings() {
         />
       </LabeledList.Item>
       <LabeledList.Item
-        label="Nutrition Drain"
-        tooltip="Toggles the ability for the NIF to use your food as an energy source. Enabling this may result in increased hunger."
+        label="消耗营养供能"
+        tooltip="允许纳米植入框架消耗你摄取的食物来供能。启用后可能加快饥饿。"
       >
         <Button
           fluid
@@ -52,25 +52,25 @@ export function NifSettings() {
           disabled={nutrition_level < 26}
         >
           {!nutrition_drain
-            ? 'Nutrition Drain Disabled'
-            : 'Nutrition Drain Enabled'}
+            ? '已禁用营养供能'
+            : '已启用营养供能'}
         </Button>
       </LabeledList.Item>
       <LabeledList.Item
-        label="Blood Drain"
-        tooltip="This allows the NIF to use your blood as an energy source. Will cause shortness of breath. Automatically shuts off when blood level is low."
+        label="消耗血液供能"
+        tooltip="允许纳米植入框架消耗你的血液来供能。这会引起呼吸急促，并在血量过低时自动关闭。"
       >
         <Button
           fluid
           onClick={() => act('toggle_blood_drain')}
           disabled={blood_level < minimum_blood_level}
         >
-          {!blood_drain ? 'Blood Drain Disabled' : 'Blood Drain Enabled'}
+          {!blood_drain ? '已禁用血液供能' : '已启用血液供能'}
         </Button>
       </LabeledList.Item>
       <LabeledList.Item
-        label="Rewards Points"
-        tooltip="Rewards Points are an alternative currency gained by purchasing NIFSofts. These carry between shifts."
+        label="奖励积分"
+        tooltip="奖励积分是购买纳米植入框架软件获得的另一种货币，可以跨班次保留。"
       >
         {stored_points}
       </LabeledList.Item>

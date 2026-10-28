@@ -33,55 +33,55 @@ export function StatusDisplayControls(props) {
           color="bad"
           onClick={() => act('setStatusPicture', { picture: 'blank' })}
         >
-          Off
+          关闭
         </Button>
         <Button
           icon="space-shuttle"
           color=""
           onClick={() => act('setStatusPicture', { picture: 'shuttle' })}
         >
-          Shuttle ETA / Off
+          穿梭机到达倒计时／关闭
         </Button>
       </Section>
 
-      <Section title="Graphics">
+      <Section title="图形">
         <Button
           icon="flag"
           onClick={() => act('setStatusPicture', { picture: 'default' })}
         >
-          Logo
+          标志
         </Button>
 
         <Button
           icon="exclamation"
           onClick={() => act('setStatusPicture', { picture: 'currentalert' })}
         >
-          Security Alert Level
+          安全警戒等级
         </Button>
 
         <Button
           icon="exclamation-triangle"
           onClick={() => act('setStatusPicture', { picture: 'lockdown' })}
         >
-          Lockdown
+          封锁
         </Button>
 
         <Button
           icon="biohazard"
           onClick={() => act('setStatusPicture', { picture: 'biohazard' })}
         >
-          Biohazard
+          生物危害
         </Button>
 
         <Button
           icon="radiation"
           onClick={() => act('setStatusPicture', { picture: 'radiation' })}
         >
-          Radiation
+          辐射
         </Button>
       </Section>
 
-      <Section title="Message">
+      <Section title="消息">
         <Flex direction="column" align="stretch">
           <Flex.Item mb={1}>
             <Input
@@ -106,7 +106,7 @@ export function StatusDisplayControls(props) {
               icon="comment-o"
               onClick={() => act('setStatusMessage', { upperText, lowerText })}
             >
-              Send
+              发送
             </Button>
           </Flex.Item>
         </Flex>

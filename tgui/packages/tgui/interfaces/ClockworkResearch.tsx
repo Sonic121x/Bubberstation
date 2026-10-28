@@ -62,7 +62,7 @@ const SelectedSection = (props) => {
     <Box>
       <div style={{ textAlign: 'center' }}>
         <Box color="good" bold fontSize="16px">
-          {'Selected Research'}
+          {'所选研究'}
         </Box>
         <Divider />
         <Box bold fontSize="14px">
@@ -76,16 +76,16 @@ const SelectedSection = (props) => {
         </div>
         <br />
         {data.focused_research.starting ? (
-          <Box>This does not need to be researched.</Box>
+          <Box>此项不需要研究。</Box>
         ) : data.focused_research.researched ? (
           <Box>
-            This ritual occurred in the{' '}
-            <b>{data.focused_research.research_location}</b>.
+            此仪式已于以下地点举行：{' '}
+            <b>{data.focused_research.research_location}</b>。
           </Box>
         ) : (
           <Box>
-            This ritual must occur in the{' '}
-            <b>{data.focused_research.research_location}</b>.
+            此仪式必须于以下地点举行：{' '}
+            <b>{data.focused_research.research_location}</b>。
           </Box>
         )}
         <br />
@@ -94,8 +94,8 @@ const SelectedSection = (props) => {
             disabled={!data.in_area || data.focused_research.researched}
             content={
               data.focused_research.researched
-                ? 'Ritual Completed'
-                : 'Begin Ritual'
+                ? '仪式已完成'
+                : '开始仪式'
             }
             onClick={() => act('start_research')}
           />
@@ -110,7 +110,7 @@ const ResearchSection = (props) => {
   return (
     <Stack vertical>
       <Stack.Item>
-        <Section fill title="Basic Research">
+        <Section fill title="基础研究">
           <div style={{ textAlign: 'center' }}>
             {ResearchNode(data.starting_research, act)}
           </div>
@@ -119,7 +119,7 @@ const ResearchSection = (props) => {
       {data.research_tiers.map((inside_array: Array<Research>) => (
         <Stack vertical fill key={inside_array[0].name}>
           <Section
-            title={`Tier ${data.research_tiers.indexOf(inside_array) + 1}`}
+            title={`第 ${data.research_tiers.indexOf(inside_array) + 1} 阶`}
           >
             {inside_array.map((single_research: Research) => (
               <Stack.Item key={single_research.name}>
@@ -161,7 +161,7 @@ const ResearchNode = (research: Research, act: any) => {
                 <div className="ClockResearch__Icon" key={design_data.name}>
                   <Button
                     className={classes([`design32x32`, design_data.icon2])} // swap back to clockresearch when it's not absolutely broken
-                    tooltip={`${design_data.name} (Tinker's Design)`}
+                    tooltip={`${design_data.name}（修补匠设计）`}
                     tooltipPosition={i % 15 < 7 ? 'right' : 'left'}
                   />
                 </div>
@@ -172,7 +172,7 @@ const ResearchNode = (research: Research, act: any) => {
                 <div className="ClockResearch__Icon" key={scripture_data.name}>
                   <Button
                     className={classes([`design32x32`, scripture_data.icon2])} // swap back to clockresearch when it's not absolutely broken
-                    tooltip={`${scripture_data.name} (Scripture)`}
+                    tooltip={`${scripture_data.name}（经文）`}
                     tooltipPosition={i % 15 < 7 ? 'right' : 'left'}
                   />
                 </div>

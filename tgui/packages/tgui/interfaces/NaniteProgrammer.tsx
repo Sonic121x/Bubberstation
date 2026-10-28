@@ -27,9 +27,9 @@ export const NaniteCodes = () => {
   const { act, data } = useBackend<NaniteProgram>();
   const { activation_code, deactivation_code, kill_code, trigger_code } = data;
   return (
-    <Section title="Codes" mr={1}>
+    <Section title="信号代码" mr={1}>
       <LabeledList>
-        <LabeledList.Item label="Activation">
+        <LabeledList.Item label="激活">
           <NumberInput
             value={activation_code}
             width="47px"
@@ -44,7 +44,7 @@ export const NaniteCodes = () => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Deactivation">
+        <LabeledList.Item label="停用">
           <NumberInput
             value={deactivation_code}
             width="47px"
@@ -59,7 +59,7 @@ export const NaniteCodes = () => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Kill">
+        <LabeledList.Item label="销毁">
           <NumberInput
             value={kill_code}
             width="47px"
@@ -75,7 +75,7 @@ export const NaniteCodes = () => {
           />
         </LabeledList.Item>
         {!!data.can_trigger && (
-          <LabeledList.Item label="Trigger">
+          <LabeledList.Item label="触发">
             <NumberInput
               value={trigger_code}
               width="47px"
@@ -103,9 +103,9 @@ export const NaniteDelays = () => {
     data;
 
   return (
-    <Section title="Delays" ml={1}>
+    <Section title="延迟" ml={1}>
       <LabeledList>
-        <LabeledList.Item label="Restart Timer">
+        <LabeledList.Item label="重启定时器">
           <NumberInput
             value={timer_restart}
             unit="s"
@@ -120,7 +120,7 @@ export const NaniteDelays = () => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Shutdown Timer">
+        <LabeledList.Item label="关闭定时器">
           <NumberInput
             value={timer_shutdown}
             unit="s"
@@ -137,7 +137,7 @@ export const NaniteDelays = () => {
         </LabeledList.Item>
         {!!data.can_trigger && (
           <>
-            <LabeledList.Item label="Trigger Repeat Timer">
+            <LabeledList.Item label="重复触发间隔">
               <NumberInput
                 value={timer_trigger}
                 unit="s"
@@ -152,7 +152,7 @@ export const NaniteDelays = () => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Trigger Delay">
+            <LabeledList.Item label="触发延迟">
               <NumberInput
                 value={timer_trigger_delay}
                 unit="s"
@@ -315,20 +315,20 @@ export const NaniteProgrammerContent = () => {
   } = data;
   if (!has_disk) {
     return (
-      <NoticeBox textAlign="center">Insert a nanite program disk</NoticeBox>
+      <NoticeBox textAlign="center">请插入纳米机器人程序磁盘</NoticeBox>
     );
   }
   if (!has_program) {
     return (
       <Section
-        title="Blank Disk"
+        title="空白磁盘"
         buttons={
           <Button
             disabled={!has_disk}
             icon="eject"
             onClick={() => act('eject')}
           >
-            Eject
+            弹出
           </Button>
         }
       />
@@ -339,23 +339,23 @@ export const NaniteProgrammerContent = () => {
       title={name}
       buttons={
         <Button icon="eject" onClick={() => act('eject')}>
-          Eject
+          弹出
         </Button>
       }
     >
-      <Section title="Info">
+      <Section title="信息">
         <Stack>
           <Stack.Item>{desc}</Stack.Item>
           <Stack.Item>
             <table>
               <LabeledList>
-                <LabeledList.Item label="Use Rate">{use_rate}</LabeledList.Item>
+                <LabeledList.Item label="消耗速率">{use_rate}</LabeledList.Item>
                 {!!can_trigger && (
                   <>
-                    <LabeledList.Item label="Trigger Cost">
+                    <LabeledList.Item label="触发消耗">
                       {trigger_cost}
                     </LabeledList.Item>
-                    <LabeledList.Item label="Trigger Cooldown">
+                    <LabeledList.Item label="触发冷却">
                       {trigger_cooldown}
                     </LabeledList.Item>
                   </>
@@ -366,7 +366,7 @@ export const NaniteProgrammerContent = () => {
         </Stack>
       </Section>
       <Section
-        title="Settings"
+        title="设置"
         buttons={
           <Button
             icon={activated ? 'power-off' : 'times'}
@@ -375,7 +375,7 @@ export const NaniteProgrammerContent = () => {
             bold
             onClick={() => act('toggle_active')}
           >
-            {activated ? 'Active' : 'Inactive'}
+            {activated ? '已激活' : '未激活'}
           </Button>
         }
       >
@@ -388,7 +388,7 @@ export const NaniteProgrammerContent = () => {
           </Stack.Item>
         </Stack>
         {!!has_extra_settings && (
-          <Section title="Special">
+          <Section title="特殊设置">
             <LabeledList>
               {extra_settings.map((setting) => (
                 <NaniteExtraEntry key={setting.name} extra_setting={setting} />

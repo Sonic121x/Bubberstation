@@ -72,8 +72,8 @@ function RepairBotMats(props) {
   const { repairbot_materials } = data;
 
   return (
-    <Section title="Materials" minHeight="100px">
-      {repairbot_materials.length === 0 && <NoticeBox>No Materials!</NoticeBox>}
+    <Section title="材料" minHeight="100px">
+      {repairbot_materials.length === 0 && <NoticeBox>没有材料！</NoticeBox>}
       <Flex style={{ padding: '0% 25%' }}>
         {repairbot_materials.map((mat) => (
           <Flex.Item grow key={mat.material_ref}>

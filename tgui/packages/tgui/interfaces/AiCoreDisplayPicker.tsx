@@ -30,7 +30,7 @@ type Data = {
 
 export const AiCoreDisplayPicker = () => {
   return (
-    <Window width={500} height={600} title="AI Core Display Options">
+    <Window width={500} height={600} title="AI 核心显示选项">
       <Window.Content scrollable>
         <AiCoreDisplayPickerContent />
       </Window.Content>
@@ -53,7 +53,7 @@ const AiCoreDisplayPickerContent = () => {
   return (
     <Stack fill vertical>
       <Stack.Item>
-        <Section title="Current AI Core Display">
+        <Section title="当前 AI 核心显示">
           <Flex align="center" justify="center" direction="column">
             {current_icon && (
               <Flex.Item mb={2}>
@@ -85,7 +85,7 @@ const AiCoreDisplayPickerContent = () => {
 
       <Stack.Item>
         <Input
-          placeholder="Search display options..."
+          placeholder="搜索显示选项……"
           value={searchTerm}
           onChange={(value) => setSearchTerm(value)}
           fluid
@@ -95,7 +95,7 @@ const AiCoreDisplayPickerContent = () => {
       <Stack.Item grow>
         <Stack fill vertical>
           <Stack.Item>
-            <Section title="AI Core Display Options">
+            <Section title="AI 核心显示选项">
               <OptionsList options={filteredOptions} />
             </Section>
           </Stack.Item>
@@ -103,7 +103,7 @@ const AiCoreDisplayPickerContent = () => {
           {filteredOptions.length === 0 && (
             <Stack.Item>
               <Box textAlign="center" color="average" mt={4}>
-                No options found matching "{searchTerm}"
+                未找到与“{searchTerm}”匹配的选项
               </Box>
             </Stack.Item>
           )}

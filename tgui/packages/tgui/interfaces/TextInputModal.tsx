@@ -89,7 +89,7 @@ export const TextInputModal = (props) => {
                 maxLength={max_length}
                 onEscape={() => act('cancel')}
                 onChange={onType}
-                placeholder="Type something..."
+                placeholder="请输入内容……"
                 value={input}
               />
             </Stack.Item>

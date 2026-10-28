@@ -14,10 +14,10 @@ export const PrimaryObjectiveMenu = (props: PrimaryObjectiveMenuProps) => {
   return (
     <Section fill scrollable align="center">
       <Box my={4} bold fontSize={1.2} color="green">
-        WELCOME, AGENT.
+        欢迎，特工。
       </Box>
       <Box my={4} bold fontSize={1.2}>
-        Your Primary Objectives are as follows. Complete these at all costs.
+        你的主要目标如下。不惜一切代价完成它们。
       </Box>
       <Stack vertical>
         {primary_objectives.map((prim_obj, index) => (
@@ -33,17 +33,17 @@ export const PrimaryObjectiveMenu = (props: PrimaryObjectiveMenuProps) => {
       {!!can_renegotiate && (
         <Box mt={3} mb={5} bold fontSize={1.2} align="center" color="white">
           <Button
-            content={'Renegotiate Contract'}
+            content={'重新协商合同'}
             tooltip={
-              'Replace your existing primary objectives with a custom one. This action can only be performed once.'
+              '将现有主要目标替换为一个自定义目标。此操作只能执行一次。'
             }
             onClick={() => act('renegotiate_objectives')}
           />
         </Box>
       )}
       <Box my={4} fontSize={0.8}>
-        <Box>SyndOS Version 3.17</Box>
-        <Box color="green">Connection Secure</Box>
+        <Box>辛迪操作系统 3.17 版</Box>
+        <Box color="green">连接安全</Box>
       </Box>
     </Section>
   );

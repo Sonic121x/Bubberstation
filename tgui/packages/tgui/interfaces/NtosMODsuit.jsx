@@ -22,8 +22,8 @@ const NtosMODsuitContent = (props) => {
   if (!has_suit) {
     return (
       <NoticeBox mt={1} mb={0} danger fontSize="12px">
-        No Modular suit connected, please tap a suit on the application host to
-        sync on
+        未连接 MOD 套装。请用运行此应用的设备轻点套装，
+        以完成同步。
       </NoticeBox>
     );
   } else {

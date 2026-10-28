@@ -3,7 +3,7 @@ import { Button, ColorBox, Section, Stack, Table } from 'tgui-core/components';
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
 import type { NTOSData } from '../layouts/NtosWindow';
-
+import { displayRole as zh } from '../localization/roleDisplay';
 export enum alert_relevancies {
   ALERT_RELEVANCY_SAFE,
   ALERT_RELEVANCY_WARN,
@@ -34,8 +34,8 @@ export const NtosMain = (props) => {
   return (
     <NtosWindow
       title={
-        (PC_device_theme === 'syndicate' && 'Syndix Main Menu') ||
-        'NtOS Main Menu'
+        (PC_device_theme === 'syndicate' && '辛迪加操作系统主菜单') ||
+        '纳米传讯操作系统主菜单'
       }
       width={400}
       height={500}
@@ -78,7 +78,7 @@ export const NtosMain = (props) => {
                       ? '#0000000'
                       : alert_color
                   }
-                  tooltip="The current alert level. Indicator becomes more intense when there is a threat, moreso if your department is responsible for handling it."
+                  tooltip="当前警报等级。存在威胁时指示会更醒目，若您的部门负责处理该威胁则会进一步突出显示。"
                 >
                   {alert_name}
                 </Button>
@@ -100,7 +100,7 @@ export const NtosMain = (props) => {
           </Section>
         )}
         <Section
-          title="Details"
+          title="详细信息"
           buttons={
             <>
               {!!has_light && (
@@ -118,14 +118,14 @@ export const NtosMain = (props) => {
               )}
               <Button
                 icon="eject"
-                content="Eject ID"
+                content="弹出身份卡"
                 disabled={!proposed_login.IDInserted}
                 onClick={() => act('PC_Eject_Disk', { name: 'ID' })}
               />
               {!!show_imprint && (
                 <Button
                   icon="dna"
-                  content="Imprint ID"
+                  content="录入身份信息"
                   disabled={
                     !proposed_login.IDName ||
                     (proposed_login.IDName === login.IDName &&
@@ -139,7 +139,7 @@ export const NtosMain = (props) => {
         >
           <Table>
             <Table.Row>
-              ID Name:{' '}
+              身份卡姓名：{' '}
               {show_imprint
                 ? login.IDName +
                   ' ' +
@@ -147,17 +147,17 @@ export const NtosMain = (props) => {
                 : (proposed_login.IDName ?? '')}
             </Table.Row>
             <Table.Row>
-              Assignment:{' '}
+              职务：{' '}
               {show_imprint
-                ? login.IDJob +
+                ? zh(login.IDJob ?? '') +
                   ' ' +
-                  (proposed_login.IDJob ? `(${proposed_login.IDJob})` : '')
-                : (proposed_login.IDJob ?? '')}
+                  (proposed_login.IDJob ? `（${zh(proposed_login.IDJob)}）` : '')
+                : zh(proposed_login.IDJob ?? '')}
             </Table.Row>
           </Table>
         </Section>
         {!!pai && (
-          <Section title="pAI">
+          <Section title="个人 AI">
             <Table>
               <Table.Row>
                 <Table.Cell>
@@ -165,7 +165,7 @@ export const NtosMain = (props) => {
                     fluid
                     icon="eject"
                     color="transparent"
-                    content="Eject pAI"
+                    content="弹出个人 AI"
                     onClick={() =>
                       act('PC_Pai_Interact', {
                         option: 'eject',
@@ -180,7 +180,7 @@ export const NtosMain = (props) => {
                     fluid
                     icon="cat"
                     color="transparent"
-                    content="Configure pAI"
+                    content="配置个人 AI"
                     onClick={() =>
                       act('PC_Pai_Interact', {
                         option: 'interact',
@@ -207,7 +207,7 @@ const ProgramsTable = (props) => {
   );
 
   return (
-    <Section title="Programs">
+    <Section title="程序">
       <Table>
         {filtered_programs.map((program) => (
           <Table.Row key={program.name}>
@@ -229,7 +229,7 @@ const ProgramsTable = (props) => {
                 <Button
                   color="transparent"
                   icon="times"
-                  tooltip="Close program"
+                  tooltip="关闭程序"
                   tooltipPosition="left"
                   onClick={() =>
                     act('PC_killprogram', {

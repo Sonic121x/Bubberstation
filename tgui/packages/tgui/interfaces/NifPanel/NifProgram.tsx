@@ -34,8 +34,8 @@ export function NifProgram(props: { src: NifProgramData }) {
           <Button.Confirm
             icon="trash"
             color="red"
-            tooltip="Uninstall"
-            confirmContent="Uninstall?"
+            tooltip="卸载"
+            confirmContent="确认卸载？"
             onClick={() =>
               act('uninstall_nifsoft', {
                 nifsoft_to_remove: reference,
@@ -47,10 +47,10 @@ export function NifProgram(props: { src: NifProgramData }) {
             color={!able_to_keep ? 'grey' : keep_installed ? 'green' : null}
             tooltip={
               !able_to_keep
-                ? "Can't save between shifts"
+                ? '无法跨班次保存'
                 : keep_installed
-                  ? 'Saving between shifts'
-                  : 'Not saving between shifts'
+                  ? '已启用跨班次保存'
+                  : '未启用跨班次保存'
             }
             disabled={!able_to_keep}
             onClick={() =>
@@ -62,7 +62,7 @@ export function NifProgram(props: { src: NifProgramData }) {
           <Button
             icon={!active_mode ? 'power-off' : active ? 'pause' : 'play'}
             color={active ? 'yellow' : 'green'}
-            tooltip={!active_mode ? 'Activate' : active ? 'Stop' : 'Start'}
+            tooltip={!active_mode ? '激活' : active ? '停止' : '启动'}
             onClick={() =>
               act('activate_nifsoft', {
                 activated_nifsoft: reference,
@@ -81,8 +81,8 @@ export function NifProgram(props: { src: NifProgramData }) {
               mr="5px"
             />
             {!activation_cost
-              ? 'No activation cost'
-              : `${+(activation_cost / max_power) * 100}% per activation`}
+              ? '激活不消耗电量'
+              : `每次激活消耗 ${+(activation_cost / max_power) * 100}% 电量`}
           </Table.Cell>
           <Table.Cell>
             <Icon
@@ -91,12 +91,12 @@ export function NifProgram(props: { src: NifProgramData }) {
               mr="5px"
             />
             {!active_cost
-              ? 'No active drain'
-              : `${(active_cost / max_power) * 100}% consumed while active`}
+              ? '运行不消耗电量'
+              : `运行时消耗 ${(active_cost / max_power) * 100}% 电量`}
           </Table.Cell>
           <Table.Cell>
             <Icon name="power-off" color={active ? 'green' : 'red'} mr="5px" />
-            {active ? 'Active' : 'Not active'}
+            {active ? '已激活' : '未激活'}
           </Table.Cell>
         </Table.Row>
       </Table>

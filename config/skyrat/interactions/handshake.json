@@ -1,11 +1,11 @@
 {
 	"name": "Handshake",
-	"description": "Shake hands with them. Savvy.",
+	"description": "与对方握手。真有风度。",
 	"usage": "other",
 	"category": "Miscellaneous",
 	"distance_allowed": 0,
 	"message": [
-		"%USER% shakes %TARGET%'s hand."
+		"%USER% 与 %TARGET% 握了握手。"
 	],
 	"sound_use": 0,
 	"sound_possible": [

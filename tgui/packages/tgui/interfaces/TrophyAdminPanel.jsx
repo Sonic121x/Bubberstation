@@ -8,15 +8,15 @@ export const TrophyAdminPanel = (props) => {
   const { act, data } = useBackend();
   const { trophies } = data;
   return (
-    <Window title="Trophies Admin Panel" width={800} height={600}>
+    <Window title="纪念品管理面板" width={800} height={600}>
       <Window.Content scrollable>
         <Table>
           <Table.Row header>
-            <Table.Cell color="label">Path</Table.Cell>
+            <Table.Cell color="label">路径</Table.Cell>
             <Table.Cell color="label" />
-            <Table.Cell color="label">Message</Table.Cell>
+            <Table.Cell color="label">说明</Table.Cell>
             <Table.Cell color="label" />
-            <Table.Cell color="label">Placer Key</Table.Cell>
+            <Table.Cell color="label">放置者账号</Table.Cell>
             <Table.Cell color="label" />
           </Table.Row>
           {!!trophies &&
@@ -36,7 +36,7 @@ export const TrophyAdminPanel = (props) => {
                 <Table.Cell>
                   <Button
                     icon="edit"
-                    tooltip={'Edit path'}
+                    tooltip={'编辑路径'}
                     tooltipPosition="bottom"
                     onClick={() => act('edit_path', { ref: trophy.ref })}
                   />
@@ -52,7 +52,7 @@ export const TrophyAdminPanel = (props) => {
                 <Table.Cell>
                   <Button
                     icon="edit"
-                    tooltip={'Edit message'}
+                    tooltip={'编辑说明'}
                     tooltipPosition="bottom"
                     onClick={() => act('edit_message', { ref: trophy.ref })}
                   />
@@ -68,7 +68,7 @@ export const TrophyAdminPanel = (props) => {
                 <Table.Cell>
                   <Button
                     icon="trash"
-                    tooltip={'Delete trophy'}
+                    tooltip={'删除纪念品'}
                     tooltipPosition="bottom"
                     onClick={() => act('delete', { ref: trophy.ref })}
                   />

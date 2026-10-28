@@ -33,12 +33,12 @@ const DopplerArrayContent = (props) => {
     return record.name === activeRecordName;
   });
   const DopplerArrayFooter = (
-    <Section title={disk ? `${disk} (${storage})` : 'No Disk Inserted'}>
+    <Section title={disk ? `${disk} (${storage})` : '未插入磁盘'}>
       <Button
         textAlign="center"
         fluid
         icon="eject"
-        content="Eject Disk"
+        content="弹出磁盘"
         disabled={!disk}
         onClick={() => act('eject_disk')}
       />
@@ -69,7 +69,7 @@ const DopplerArrayContent = (props) => {
                 <>
                   <Button.Confirm
                     icon="trash"
-                    content="Delete"
+                    content="删除"
                     color="bad"
                     onClick={() =>
                       act('delete_record', {
@@ -79,9 +79,9 @@ const DopplerArrayContent = (props) => {
                   />
                   <Button
                     icon="floppy-disk"
-                    content="Save"
+                    content="保存"
                     disabled={!disk}
-                    tooltip="Save the record selected to an inserted data disk."
+                    tooltip="将所选记录保存到已插入的数据磁盘。"
                     tooltipPosition="bottom"
                     onClick={() =>
                       act('save_record', {
@@ -93,47 +93,47 @@ const DopplerArrayContent = (props) => {
               }
             >
               <LabeledList>
-                <LabeledList.Item label="Timestamp">
+                <LabeledList.Item label="时间戳">
                   {activeRecord.timestamp}
                 </LabeledList.Item>
-                <LabeledList.Item label="Coordinates">
+                <LabeledList.Item label="坐标">
                   {activeRecord.coordinates}
                 </LabeledList.Item>
-                <LabeledList.Item label="Displacement">
-                  {activeRecord.displacement} seconds
+                <LabeledList.Item label="传播延迟">
+                  {activeRecord.displacement} 秒
                 </LabeledList.Item>
-                <LabeledList.Item label="Epicenter Radius">
+                <LabeledList.Item label="爆心半径">
                   {activeRecord.factual_epicenter_radius}
                   {activeRecord.theory_epicenter_radius &&
-                    ' (Theoretical: ' +
+                    '（理论值：' +
                       activeRecord.theory_epicenter_radius +
-                      ')'}
+                      '）'}
                 </LabeledList.Item>
-                <LabeledList.Item label="Outer Radius">
+                <LabeledList.Item label="外围半径">
                   {activeRecord.factual_outer_radius}
                   {activeRecord.theory_outer_radius &&
-                    ` (Theoretical: ${activeRecord.theory_outer_radius})`}
+                    `（理论值：${activeRecord.theory_outer_radius}）`}
                 </LabeledList.Item>
-                <LabeledList.Item label="Shockwave Radius">
+                <LabeledList.Item label="冲击波半径">
                   {activeRecord.factual_shockwave_radius}
                   {activeRecord.theory_shockwave_radius &&
-                    ' (Theoretical: ' +
+                    '（理论值：' +
                       activeRecord.theory_shockwave_radius +
-                      ')'}
+                      '）'}
                 </LabeledList.Item>
-                <LabeledList.Item label="Possible Cause(s)">
+                <LabeledList.Item label="可能原因">
                   {activeRecord.reaction_results.length
                     ? activeRecord.reaction_results.map((reaction_name) => (
                         <Box key={reaction_name}>{reaction_name}</Box>
                       ))
-                    : 'No information available'}
+                    : '无可用信息'}
                 </LabeledList.Item>
               </LabeledList>
             </Section>
           </Stack.Item>
         ) : (
           <Stack.Item grow={1} basis={0}>
-            <NoticeBox>No Record Selected</NoticeBox>
+            <NoticeBox>未选择记录</NoticeBox>
           </Stack.Item>
         )}
       </Stack>
@@ -143,7 +143,7 @@ const DopplerArrayContent = (props) => {
     <Flex direction="column" height="100%">
       <Flex.Item grow>
         {!records.length ? (
-          <NoticeBox>No Records</NoticeBox>
+          <NoticeBox>没有记录</NoticeBox>
         ) : (
           DopplerArrayRecords
         )}

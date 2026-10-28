@@ -72,7 +72,7 @@
 	return all_records
 
 /datum/computer_file/program/records/ui_static_data(mob/user)
-	var/list/data = list()
+	var/list/data = list("jobDisplay" = chinese_job_display(return_mapping = TRUE), "speciesDisplay" = chinese_footprint_species_display(return_mapping = TRUE), "recordDisplay" = chinese_record_value_display(return_mapping = TRUE))
 	data["records"] = GetRecordsReadable()
 	data["mode"] = mode
 	return data

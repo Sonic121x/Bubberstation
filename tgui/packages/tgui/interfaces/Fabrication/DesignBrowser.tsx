@@ -12,7 +12,7 @@ import { classes } from 'tgui-core/react';
 import { useSharedState } from '../../backend';
 import { SearchBar } from '../common/SearchBar';
 import type { Design, MaterialMap } from './Types';
-import { skyratResearchCategoryDisplay } from '../../localization/skyratSystemsDisplay';
+import { skyratResearchCategoryDisplay } from '../../localization/skyratSystemsDisplay'; import { interfaceUtilityDisplay } from '../../localization/interfaceUtilityDisplay';
 /**
  * A function that does nothing.
  */
@@ -212,7 +212,7 @@ export const DesignBrowser = <T extends Design = Design>(
         <Section fill>
           <Stack vertical fill>
             <Stack.Item>
-              <Section title="Categories" fitted />
+              <Section title="分类" fitted />
             </Stack.Item>
             <Stack.Item grow style={{ overflowY: 'auto', overflowX: 'hidden' }}>
               <Section fill>
@@ -227,7 +227,7 @@ export const DesignBrowser = <T extends Design = Design>(
                   >
                     <div className="FabricatorTabs__Label">
                       <div className="FabricatorTabs__CategoryName">
-                        All Designs
+                        所有设计
                       </div>
                       <div className="FabricatorTabs__CategoryCount">
                         ({Object.entries(root.descendants).length})
@@ -257,10 +257,10 @@ export const DesignBrowser = <T extends Design = Design>(
         <Section
           title={
             searchText.length > 0
-              ? `Results for "${searchText}"`
+              ? `“${searchText}”的搜索结果`
               : selectedCategory === ALL_CATEGORY
-                ? 'All Designs'
-                : skyratResearchCategoryDisplay(selectedCategory)
+                ? '所有设计'
+                : interfaceUtilityDisplay(skyratResearchCategoryDisplay(selectedCategory))
           }
           fill
         >
@@ -271,7 +271,7 @@ export const DesignBrowser = <T extends Design = Design>(
                   expensive
                   query={searchText}
                   onSearch={setSearchText}
-                  placeholder={'Search all designs...'}
+                  placeholder={'搜索所有设计……'}
                 />
               </Section>
             </Stack.Item>
@@ -328,7 +328,7 @@ export const DesignBrowser = <T extends Design = Design>(
                 }}
               >
                 <Icon name="cog" spin />
-                {' Building items...'}
+                {' 正在制造物品……'}
               </Dimmer>
             )}
           </Stack>
@@ -375,7 +375,7 @@ const DesignBrowserTab = <T extends Design = Design>(
       }
     >
       <div className="FabricatorTabs__Label">
-        <div className="FabricatorTabs__CategoryName">{skyratResearchCategoryDisplay(category.title)}</div>
+        <div className="FabricatorTabs__CategoryName">{interfaceUtilityDisplay(skyratResearchCategoryDisplay(category.title))}</div>
         {depth === 0 && (
           /** Show recipe counts on top-level categories. */
           <div className={'FabricatorTabs__CategoryCount'}>
@@ -497,7 +497,7 @@ const CategoryView = <T extends Design = Design>(
 
   return (
     <Section
-      title={skyratResearchCategoryDisplay(category.title)}
+      title={interfaceUtilityDisplay(skyratResearchCategoryDisplay(category.title))}
       key={category.anchorKey}
       container_id={category.anchorKey}
       buttons={categoryButtons?.(category)}

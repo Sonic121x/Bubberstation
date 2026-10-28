@@ -21,20 +21,20 @@ export const RestockTracker = (props) => {
     (vend) => vend.percentage,
   ]);
   return (
-    <Section fill title="Vendor Stocking Status">
+    <Section fill title="售货机库存状态">
       <Stack vertical>
         <Stack fill horizontal>
           <Stack.Item bold width="35%">
-            Vending Name
+            售货机名称
           </Stack.Item>
           <Stack.Item bold width="25%">
-            Location
+            位置
           </Stack.Item>
           <Stack.Item bold width="20%">
-            Stock %
+            库存百分比
           </Stack.Item>
           <Stack.Item bold width="20%">
-            Credits stored
+            储存信用点
           </Stack.Item>
         </Stack>
         <hr />
@@ -90,7 +90,7 @@ export const RestockTrackerFull = (props) => {
   const { data } = useBackend();
   return (
     <Section bold textAlign="center">
-      All vending machines stocked!
+      所有售货机均已补满货物！
     </Section>
   );
 };

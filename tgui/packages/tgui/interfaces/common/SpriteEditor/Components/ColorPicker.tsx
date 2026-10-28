@@ -403,7 +403,7 @@ export const ColorPicker = (props: ColorPickerProps) => {
             </Stack.Item>
             <Stack.Item grow ml="1em">
               <LabeledList>
-                <LabeledList.Item verticalAlign="middle" label="Hex">
+                <LabeledList.Item verticalAlign="middle" label="色码">
                   <Input
                     fluid
                     value={rgb2hexstring({ r, g, b, a }, false)}

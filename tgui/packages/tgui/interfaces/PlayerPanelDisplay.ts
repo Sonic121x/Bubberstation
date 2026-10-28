@@ -15,3 +15,23 @@ export const factionDisplay = (value: string) => factionNames[value] || value;
 
 export const factionOptions = (values: string[]) =>
   values.map((value) => ({ value, displayText: factionDisplay(value) }));
+
+const narrateColourNames: Record<string, string> = {
+  White: '白色',
+  Dark: '深色',
+  Red: '红色',
+  'Red Bright': '亮红色',
+  Velvet: '暗红色',
+  Green: '绿色',
+  Blue: '蓝色',
+  Purple: '紫色',
+  'Purple Dark': '深紫色',
+  Narsie: '纳尔西',
+  Ratvar: '拉特瓦尔',
+};
+
+export const narrateColourDisplay = (value: string) =>
+  narrateColourNames[value] ?? value;
+
+export const narrateColourOptions = (values: string[]) =>
+  values.map((value) => ({ value, displayText: narrateColourDisplay(value) }));

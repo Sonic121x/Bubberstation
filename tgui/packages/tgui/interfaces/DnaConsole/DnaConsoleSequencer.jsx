@@ -143,12 +143,12 @@ function buildGenomePairs(sequence, renderGene) {
 const GenomeSequencer = (props) => {
   const { mutation } = props;
   if (!mutation) {
-    return <Box color="average">No genome selected for sequencing.</Box>;
+    return <Box color="average">未选择要测序的基因组。</Box>;
   }
   if (mutation.Scrambled) {
     return (
       <Box color="average">
-        Sequence unreadable due to unpredictable mutation.
+        因不可预测的突变，无法读取序列。
       </Box>
     );
   }
@@ -173,8 +173,8 @@ const GenomeSequencer = (props) => {
     <>
       <Box m={-0.5}>{pairs}</Box>
       <Box color="label" mt={1}>
-        <b>Tip:</b> Ctrl+Click on the gene to set it to X. Right Click to cycle
-        in reverse.
+        <b>提示：</b>按住 Ctrl 点击基因可将其设为 X。右键点击可
+        反向切换。
       </Box>
     </>
   );
@@ -221,7 +221,7 @@ export const DnaConsoleSequencer = (props) => {
       <Stack mb={1}>
         <Stack.Item width={(mutations.length <= 8 && '154px') || '174px'}>
           <Section
-            title="Sequences"
+            title="序列"
             height="214px"
             overflowY={mutations.length > 8 && 'scroll'}
           >
@@ -244,42 +244,42 @@ export const DnaConsoleSequencer = (props) => {
           </Section>
         </Stack.Item>
         <Stack.Item grow={1} basis={0}>
-          <Section title="Sequence Info" minHeight="100%">
+          <Section title="序列信息" minHeight="100%">
             <MutationInfo mutation={mutation} />
           </Section>
         </Stack.Item>
       </Stack>
       {(subjectStatus === SUBJECT_DEAD && (
         <Section color="bad">
-          Genetic sequence corrupted. Subject diagnostic report: DECEASED.
+          基因序列损坏。受试者诊断报告：已死亡。
         </Section>
       )) ||
         (isMonkey && !['Monkified', '猴化'].includes(mutation?.Name) && (
           <Section color="bad">
-            Genetic sequence corrupted. Subject diagnostic report: MONKEY.
+            基因序列损坏。受试者诊断报告：猴子。
           </Section>
         )) ||
         (subjectStatus === SUBJECT_TRANSFORMING && (
           <Section color="bad">
-            Genetic sequence corrupted. Subject diagnostic report: TRANSFORMING.
+            基因序列损坏。受试者诊断报告：变形中。
           </Section>
         )) || (
           <>
             <Section
-              title="Genome Sequencer™"
+              title="基因组测序仪™"
               buttons={
                 (!isJokerReady && (
                   <Box lineHeight="20px" color="label">
-                    Joker on cooldown ({jokerSeconds}s)
+                    万能牌冷却中（{jokerSeconds} 秒）
                   </Box>
                 )) ||
                 (jokerActive && (
                   <>
                     <Box mr={1} inline color="label">
-                      Click on a gene to reveal it.
+                      点击基因以揭示其正确碱基。
                     </Box>
                     <Button
-                      content="Cancel Joker"
+                      content="取消万能牌"
                       onClick={() =>
                         act('set_view', {
                           jokerActive: '',
@@ -291,7 +291,7 @@ export const DnaConsoleSequencer = (props) => {
                   <Button
                     icon="crown"
                     color="purple"
-                    content="Use Joker"
+                    content="使用万能牌"
                     onClick={() =>
                       act('set_view', {
                         jokerActive: '1',
@@ -304,7 +304,7 @@ export const DnaConsoleSequencer = (props) => {
               <GenomeSequencer mutation={mutation} />
             </Section>
             {!!scannerSequence && (
-              <Section title="Held Scanner">
+              <Section title="手持扫描仪">
                 <GenomeSequencerReadOnly sequence={scannerSequence} />
               </Section>
             )}

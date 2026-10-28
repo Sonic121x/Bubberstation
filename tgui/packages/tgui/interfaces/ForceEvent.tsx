@@ -82,7 +82,7 @@ export function ForceEvent(props) {
   const searchQueryState = useState('');
 
   return (
-    <Window theme="admin" title="Force Event" width={450} height={450}>
+    <Window theme="admin" title="强制触发事件" width={450} height={450}>
       <Window.Content>
         <ForceEventContext.Provider
           value={{ announceState, categoryState, searchQueryState }}
@@ -118,7 +118,7 @@ function PanelOptions(props) {
           autoFocus
           fluid
           onChange={setSearchQuery}
-          placeholder="Search..."
+          placeholder="搜索……"
           value={searchQuery}
         />
       </Stack.Item>
@@ -128,7 +128,7 @@ function PanelOptions(props) {
           checked={announce}
           onClick={() => setAnnounce(!announce)}
         >
-          Announce
+          公告
         </Button.Checkbox>
       </Stack.Item>
     </Stack>
@@ -168,7 +168,7 @@ function EventSection(props) {
     EVENT_PAGE_ITEMS,
   );
 
-  const sectionTitle = searchQuery ? 'Searching...' : `${category.name} Events`;
+  const sectionTitle = searchQuery ? '搜索中……' : `${category.name}事件`;
 
   return (
     <Section scrollable fill title={sectionTitle} buttons={<PanelOptions />}>
@@ -183,7 +183,7 @@ function EventSection(props) {
                     tooltip={
                       event.description +
                       (event.has_customization
-                        ? ' Includes admin customization.'
+                        ? ' 支持管理员自定义。'
                         : '')
                     }
                     fluid

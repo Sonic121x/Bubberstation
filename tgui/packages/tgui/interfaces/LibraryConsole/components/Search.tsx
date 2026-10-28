@@ -43,7 +43,7 @@ function SearchTabs(props) {
             <Stack.Item>
               <Input
                 value={book_id}
-                placeholder={book_id === null ? 'ID' : book_id}
+                placeholder={book_id === null ? '编号' : book_id}
                 mt={0.5}
                 width="70px"
                 onBlur={(value) =>
@@ -68,7 +68,7 @@ function SearchTabs(props) {
             <Stack.Item>
               <Input
                 value={title}
-                placeholder={title || 'Title'}
+                placeholder={title || '书名'}
                 mt={0.5}
                 onBlur={(value) =>
                   act('set_search_title', {
@@ -80,7 +80,7 @@ function SearchTabs(props) {
             <Stack.Item>
               <Input
                 value={author}
-                placeholder={author || 'Author'}
+                placeholder={author || '作者'}
                 mt={0.5}
                 onBlur={(value) =>
                   act('set_search_author', {
@@ -99,7 +99,7 @@ function SearchTabs(props) {
             color={params_changed ? 'good' : ''}
             icon="book"
           >
-            Search
+            搜索
           </Button>
           <Button
             disabled={!can_db_request}
@@ -108,7 +108,7 @@ function SearchTabs(props) {
             color="bad"
             icon="fire"
           >
-            Reset Search
+            重置搜索
           </Button>
         </Stack.Item>
       </Stack>
@@ -133,9 +133,9 @@ function SearchResults(props) {
       <Table>
         <Table.Row className="candystripe">
           <Table.Cell fontSize={1.5}>#</Table.Cell>
-          <Table.Cell fontSize={1.5}>Category</Table.Cell>
-          <Table.Cell fontSize={1.5}>Title</Table.Cell>
-          <Table.Cell fontSize={1.5}>Author</Table.Cell>
+          <Table.Cell fontSize={1.5}>类别</Table.Cell>
+          <Table.Cell fontSize={1.5}>书名</Table.Cell>
+          <Table.Cell fontSize={1.5}>作者</Table.Cell>
         </Table.Row>
         {sorted.map((record) => (
           <Table.Row key={record.key} className="candystripe">

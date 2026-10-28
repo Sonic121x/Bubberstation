@@ -67,17 +67,17 @@ export function PlantAnalyzerSeedStats(props) {
                 color="teal"
                 ellipsis
                 tooltip={
-                  'Using secateurs on the plant will produce a graft \
-                  containing the listed gene.'
+                  '用修枝剪修剪植物，可获得 \
+                  含有所列基因的接穗。'
                 }
               >
                 {getTraitInfo(seed_data.graft_gene, trait_db)?.name ||
-                  'No graft gene'}
+                  '无接穗基因'}
               </Button>
             </Stack.Item>
             {seed_data.mutatelist.length > 0 && (
               <Stack.Item width="100%">
-                <Collapsible title="Mutations:" color="olive" textColor="black">
+                <Collapsible title="变异：" color="olive" textColor="black">
                   <Stack vertical>
                     {seed_data.mutatelist.map((mutation) => (
                       <Stack.Item key={`preview_${mutation}`} width="100%">
@@ -89,8 +89,8 @@ export function PlantAnalyzerSeedStats(props) {
                           color="olive"
                           textColor="black"
                           tooltip={
-                            'Once sufficiently unstable the plant may mutate \
-                    into the listed plant.'
+                            '当不稳定性足够高时，植物可能变异 \
+                    为所列植物。'
                           }
                         >
                           {mutation}
@@ -106,7 +106,7 @@ export function PlantAnalyzerSeedStats(props) {
         <Stack.Item width="100%">
           <LabeledList>
             {tray_data && (
-              <LabeledList.Item label="Health">
+              <LabeledList.Item label="健康">
                 <ProgressBar
                   value={tray_data.plant_health / seed_data.endurance}
                   ranges={{
@@ -121,8 +121,8 @@ export function PlantAnalyzerSeedStats(props) {
             )}
 
             <LabeledList.Item
-              label="Endurance"
-              tooltip="The health pool of the plant that delays withering. Improves quality of resulting food & drinks."
+              label="耐久"
+              tooltip="植物的健康值，可延缓枯萎，并提高制成的食物和饮料的品质。"
             >
               <ProgressBar
                 value={seed_data.endurance / 100}
@@ -137,11 +137,11 @@ export function PlantAnalyzerSeedStats(props) {
             </LabeledList.Item>
 
             {tray_data && (
-              <LabeledList.Item label="Age">
+              <LabeledList.Item label="年龄">
                 {tray_data.is_dead ? (
                   <NoticeBox color="red" align="center">
                     <Icon name="skull" mr={1} />
-                    Dead
+                    已死亡
                   </NoticeBox>
                 ) : (
                   <ProgressBar
@@ -161,29 +161,29 @@ export function PlantAnalyzerSeedStats(props) {
             )}
 
             <LabeledList.Item
-              label="Maturation"
-              tooltip="The age at which the plant starts growing products."
+              label="成熟时间"
+              tooltip="植物开始结出产物的年龄。"
             >
               {formatPerSecond(seed_data.maturation, cycle_seconds)}
             </LabeledList.Item>
 
             <LabeledList.Item
-              label="Production"
-              tooltip="The time needed for a mature plant to (re)grow a product."
+              label="生产周期"
+              tooltip="成熟植物首次或再次结出产物所需的时间。"
             >
               {formatPerSecond(seed_data.production, cycle_seconds)}
             </LabeledList.Item>
 
             <LabeledList.Item
-              label="Lifespan"
-              tooltip={`The age at which the plant starts withering. Improves quality of resulting food & drinks.`}
+              label="寿命"
+              tooltip={`植物开始枯萎的年龄。提高制成的食物和饮料的品质。`}
             >
               {formatPerSecond(seed_data.lifespan, cycle_seconds)}
             </LabeledList.Item>
 
             <LabeledList.Item
-              label="Yield"
-              tooltip="The number of products gathered in a single harvest."
+              label="产量"
+              tooltip="每次收获获得的产物数量。"
             >
               <ProgressBar
                 value={seed_data.yield / 10}
@@ -198,8 +198,8 @@ export function PlantAnalyzerSeedStats(props) {
             </LabeledList.Item>
 
             <LabeledList.Item
-              label="Potency"
-              tooltip="Determines product mass, reagent volume and strength of effects."
+              label="效力"
+              tooltip="决定产物质量、试剂容量和效果强度。"
             >
               <ProgressBar
                 value={seed_data.potency / 100}
@@ -214,8 +214,8 @@ export function PlantAnalyzerSeedStats(props) {
             </LabeledList.Item>
 
             <LabeledList.Item
-              label="Instability"
-              tooltip="The likelihood of the plant to randomize stats or mutate. Affects quality of resulting food & drinks."
+              label="不稳定性"
+              tooltip="植物随机改变属性或发生变异的可能性。影响制成的食物和饮料的品质。"
             >
               <ProgressBar
                 value={seed_data.instability}
@@ -230,9 +230,9 @@ export function PlantAnalyzerSeedStats(props) {
               </ProgressBar>
             </LabeledList.Item>
 
-            <LabeledList.Item label="Weeds">
-              {`${seed_data.weed_chance}% chance to grow by
-                ${seed_data.weed_rate} every ${cycle_seconds} seconds`}
+            <LabeledList.Item label="杂草">
+              {`${seed_data.weed_chance}% 概率增长
+                ${seed_data.weed_rate}，每 ${cycle_seconds} 秒判定一次`}
             </LabeledList.Item>
             {seed_data.unique_labels.map((label) => (
               <LabeledList.Item key={label.label} label={label.label}>
@@ -240,7 +240,7 @@ export function PlantAnalyzerSeedStats(props) {
               </LabeledList.Item>
             ))}
           </LabeledList>
-          <Collapsible title="Traits:" open color="brown" width="100%" mt={1}>
+          <Collapsible title="特性：" open color="brown" width="100%" mt={1}>
             <Stack vertical>
               {all_traits.map((trait) => {
                 const traitInfo = getTraitInfo(trait, trait_db);
@@ -258,7 +258,7 @@ export function PlantAnalyzerSeedStats(props) {
                       tooltip={traitInfo?.description}
                       icon={traitInfo?.icon}
                     >
-                      {traitInfo?.name || 'Unknown Trait'}
+                      {traitInfo?.name || '未知特性'}
                     </Button>
                   </Stack.Item>
                 );
@@ -319,24 +319,24 @@ export function PlantAnalyzerSeedChems(props) {
     ) || 0;
 
   return (
-    <Section title={capitalizeFirst(`${seed_data.name} Genes`)}>
+    <Section title={capitalizeFirst(`${seed_data.name}基因`)}>
       <Stack>
         <Stack.Item width="100%">
           {seed_data.reagents.length === 0 ? (
             <NoticeBox color="green" align="center">
-              No reagent genes
+              无试剂基因
             </NoticeBox>
           ) : (
             <Table>
               <Table.Row header>
-                <Table.Cell>Reagent</Table.Cell>
-                <Table.Cell>Percentage</Table.Cell>
+                <Table.Cell>试剂</Table.Cell>
+                <Table.Cell>百分比</Table.Cell>
                 <Table.Cell>
                   <Tooltip
                     content={
-                      'Assuming the plant does not exceed its maximum capacity, \
-                        this is what you can expect to obtain from consuming \
-                        or grinding the product of the seed.'
+                      '假设植物未超过最大容量， \
+                        这些数值表示食用或研磨 \
+                        该种子的产物时预计获得的试剂量。'
                     }
                   >
                     <Box
@@ -345,7 +345,7 @@ export function PlantAnalyzerSeedChems(props) {
                         borderBottom: '2px dotted rgba(255, 255, 255, 0.8)',
                       }}
                     >
-                      Expected Volume
+                      预计容量
                     </Box>
                   </Tooltip>
                 </Table.Cell>
@@ -366,7 +366,7 @@ export function PlantAnalyzerSeedChems(props) {
                 style={{ borderTop: '2px dotted gray' }}
               >
                 <Table.Cell py={1} pl={1}>
-                  Total
+                  总计
                 </Table.Cell>
                 <Table.Cell>
                   {totalPercentage}%
@@ -377,8 +377,8 @@ export function PlantAnalyzerSeedChems(props) {
                         ml={1}
                         disabled={1}
                         color="transparent"
-                        tooltip="Exceeds 100% - each reagent
-                        will be proportionally reduced in the product."
+                        tooltip="超过 100%——产物中各试剂的含量
+                        将按比例减少。"
                       />
                     </Blink>
                   )}
@@ -390,7 +390,7 @@ export function PlantAnalyzerSeedChems(props) {
                 style={{ borderTop: '2px dotted gray' }}
               >
                 <Table.Cell py={1} pl={1}>
-                  Cap
+                  上限
                 </Table.Cell>
                 <Table.Cell>100%</Table.Cell>
                 <Table.Cell>
@@ -403,7 +403,7 @@ export function PlantAnalyzerSeedChems(props) {
                   style={{ borderTop: '2px dotted gray' }}
                 >
                   <Table.Cell py={0.5} pl={1} colSpan={2}>
-                    <i>Grinds nutriments into:</i>
+                    <i>研磨后营养物转化为：</i>
                   </Table.Cell>
                   <Table.Cell>{seed_data.grind_results.join(', ')}</Table.Cell>
                 </Table.Row>
@@ -414,7 +414,7 @@ export function PlantAnalyzerSeedChems(props) {
                   style={{ borderTop: '2px dotted gray' }}
                 >
                   <Table.Cell py={0.5} pl={1} colSpan={2}>
-                    <i>Juices into:</i>
+                    <i>榨汁产物：</i>
                   </Table.Cell>
                   <Table.Cell>{seed_data.juice_name}</Table.Cell>
                 </Table.Row>
@@ -425,7 +425,7 @@ export function PlantAnalyzerSeedChems(props) {
                   style={{ borderTop: '2px dotted gray' }}
                 >
                   <Table.Cell py={0.5} pl={1} colSpan={2}>
-                    <i>Distills into:</i>
+                    <i>蒸馏产物：</i>
                   </Table.Cell>
                   <Table.Cell>{seed_data.distill_reagent}</Table.Cell>
                 </Table.Row>
@@ -448,18 +448,18 @@ export function PlantAnalyzerPlantChems(props) {
   }
 
   return (
-    <Section title={capitalizeFirst(`${seed_data.name} Contents`)}>
+    <Section title={capitalizeFirst(`${seed_data.name}成分`)}>
       <Stack>
         <Stack.Item width="100%">
           {plant_data.reagents.length === 0 ? (
             <NoticeBox color="green" align="center">
-              No reagent genes
+              无试剂基因
             </NoticeBox>
           ) : (
             <Table>
               <Table.Row header>
-                <Table.Cell colSpan={2}>Reagent</Table.Cell>
-                <Table.Cell>Volume</Table.Cell>
+                <Table.Cell colSpan={2}>试剂</Table.Cell>
+                <Table.Cell>容量</Table.Cell>
               </Table.Row>
               {plant_data.reagents.map((reagent) => (
                 <Table.Row key={reagent.name} className="candystripe">
@@ -474,7 +474,7 @@ export function PlantAnalyzerPlantChems(props) {
                 style={{ borderTop: '2px dotted gray' }}
               >
                 <Table.Cell py={1} pl={1} colSpan={2}>
-                  Total
+                  总计
                 </Table.Cell>
                 <Table.Cell>
                   {plant_data.reagents.reduce(
@@ -506,17 +506,17 @@ function formatPerSecond(
   simplify: boolean = true,
 ) {
   if (!simplify) {
-    return `${value * cycle_seconds} second${value * cycle_seconds > 1 ? 's' : ''}`;
+    return `${value * cycle_seconds} 秒`;
   }
   const seconds = Math.round(value * cycle_seconds);
   if (seconds < 60) {
-    return `${seconds} second${seconds > 1 ? 's' : ''}`;
+    return `${seconds} 秒`;
   }
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
-  return `${minutes} minute${minutes > 1 ? 's' : ''}${
+  return `${minutes} 分钟${
     remainingSeconds > 0
-      ? `, ${remainingSeconds} second${remainingSeconds > 1 ? 's' : ''}`
+      ? ` ${remainingSeconds} 秒`
       : ''
   }`;
 }

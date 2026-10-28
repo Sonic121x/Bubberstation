@@ -1,6 +1,6 @@
 import { Box } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
-
+import { craftToolDisplay } from '../../../localization/zhCraftToolDisplay';
 type Props = {
   tool: string;
 };
@@ -18,7 +18,7 @@ export function ToolContent(props: Props) {
         className={classes(['crafting32x32', tool.replace(/ /g, '')])}
       />
       <Box inline verticalAlign="middle">
-        {tool}
+        {craftToolDisplay(tool)}
       </Box>
     </Box>
   );

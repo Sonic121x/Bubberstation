@@ -16,7 +16,7 @@ export const GravityGenerator = (props) => {
   return (
     <Window width={400} height={155}>
       <Window.Content>
-        {!operational && <NoticeBox>No data available</NoticeBox>}
+        {!operational && <NoticeBox>无可用数据</NoticeBox>}
         {!!operational && <GravityGeneratorContent />}
       </Window.Content>
     </Window>
@@ -29,16 +29,16 @@ const GravityGeneratorContent = (props) => {
   return (
     <Section>
       <LabeledList>
-        <LabeledList.Item label="Power">
+        <LabeledList.Item label="电源">
           <Button
             icon={breaker ? 'power-off' : 'times'}
-            content={breaker ? 'On' : 'Off'}
+            content={breaker ? '开启' : '关闭'}
             selected={breaker}
             disabled={!operational}
             onClick={() => act('gentoggle')}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Gravity Charge">
+        <LabeledList.Item label="重力充能">
           <ProgressBar
             value={charge_count / 100}
             ranges={{
@@ -48,13 +48,13 @@ const GravityGeneratorContent = (props) => {
             }}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Charge Mode">
+        <LabeledList.Item label="充能模式">
           {charging_state === 0 &&
-            ((on && <Box color="good">Fully Charged</Box>) || (
-              <Box color="bad">Not Charging</Box>
+            ((on && <Box color="good">充能完毕</Box>) || (
+              <Box color="bad">未充能</Box>
             ))}
-          {charging_state === 1 && <Box color="average">Charging</Box>}
-          {charging_state === 2 && <Box color="average">Discharging</Box>}
+          {charging_state === 1 && <Box color="average">充能中</Box>}
+          {charging_state === 2 && <Box color="average">放能中</Box>}
         </LabeledList.Item>
       </LabeledList>
     </Section>

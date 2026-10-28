@@ -14,7 +14,7 @@ import type { BooleanLike } from 'tgui-core/react';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { JOB2ICON } from './common/JobToIcon';
-
+import { jobSelectionDisplay as zh } from '../localization/zhJobSelectionDisplay';
 type Job = {
   unavailable_reason: string | null;
   command: BooleanLike;
@@ -49,7 +49,7 @@ type JobEntryProps = {
 };
 
 function JobEntry(props: JobEntryProps) {
-  const { jobName, job, department, onClick } = props;
+  const { jobName, job, department, onClick } = props; const { data } = useBackend<Data & { job_display_names?: Record<string, string> }>();
 
   const jobIcon = JOB2ICON[jobName] || null;
 
@@ -74,7 +74,7 @@ function JobEntry(props: JobEntryProps) {
         (job.prioritized ? (
           <>
             <p style={{ marginTop: '0px' }}>
-              <b>The HoP wants more people in this job!</b>
+              <b>人事主管希望有更多人担任此职位！</b>
             </p>
             {job.description}
           </>
@@ -93,7 +93,7 @@ function JobEntry(props: JobEntryProps) {
             <Icon name={jobIcon} />
           </Stack.Item>
         )}
-        <Stack.Item grow>{job.command ? <b>{jobName}</b> : jobName}</Stack.Item>
+        <Stack.Item grow>{job.command ? <b>{data.job_display_names?.[jobName] || jobName}</b> : data.job_display_names?.[jobName] || jobName}</Stack.Item>
         <Stack.Item>
           <span
             style={{
@@ -122,7 +122,7 @@ function DepartmentEntry(props: DepartmentEntryProps) {
       <StyleableSection
         title={
           <>
-            {name}
+            {zh(name)}
             <span
               style={{
                 fontSize: '1rem',
@@ -133,8 +133,8 @@ function DepartmentEntry(props: DepartmentEntryProps) {
               }}
             >
               {department.open_slots +
-                (department.open_slots === 1 ? ' slot' : ' slots') +
-                ' available'}
+                (department.open_slots === 1 ? ' 个' : ' 个') +
+                '空缺职位'}
             </span>
           </>
         }
@@ -197,9 +197,9 @@ export function JobSelection(props) {
           buttons={
             <Button
               onClick={() => act('select_job', { job: 'Random' })}
-              tooltip="Roll target random job. You can re-roll or cancel your random job if you don't like it."
+              tooltip="随机选择一个职位。如果不喜欢，你可以重新随机或取消。"
             >
-              Random Job!
+              随机职位！
             </Button>
           }
           fill
@@ -210,11 +210,11 @@ export function JobSelection(props) {
               {
                 // SKYRAT EDIT ADDITION - Alert level on jobs menu
                 <NoticeBox color={data.alert_level.color}>
-                  The current alert level is: {data.alert_level.name}
+                  当前警戒级别：{zh(data.alert_level.name)}
                 </NoticeBox>
               }
               <Box as="span" color="label">
-                It is currently {round_duration} into the shift.
+                本班次已开始 {round_duration}。
               </Box>
             </>
           }

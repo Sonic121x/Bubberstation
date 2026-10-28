@@ -32,7 +32,7 @@ const DnaScannerButtons = (props) => {
   if (!isScannerConnected) {
     return (
       <Button
-        content="Connect Scanner"
+        content="连接扫描仪"
         onClick={() => act('connect_scanner')}
       />
     );
@@ -41,7 +41,7 @@ const DnaScannerButtons = (props) => {
     <>
       {!!hasDelayedAction && (
         <Button
-          content="Cancel Delayed Action"
+          content="取消延迟操作"
           onClick={() => act('cancel_delay')}
         />
       )}
@@ -50,8 +50,8 @@ const DnaScannerButtons = (props) => {
           disabled={!isScrambleReady || isPulsing}
           onClick={() => act('scramble_dna')}
         >
-          Scramble DNA
-          {!isScrambleReady && ` (${scrambleSeconds}s)`}
+          重组 DNA
+          {!isScrambleReady && `（${scrambleSeconds} 秒）`}
         </Button>
       )}
       <Box inline mr={1} />
@@ -59,12 +59,12 @@ const DnaScannerButtons = (props) => {
         icon={scannerLocked ? 'lock' : 'lock-open'}
         color={scannerLocked && 'bad'}
         disabled={scannerOpen}
-        content={scannerLocked ? 'Locked' : 'Unlocked'}
+        content={scannerLocked ? '已锁定' : '已解锁'}
         onClick={() => act('toggle_lock')}
       />
       <Button
         disabled={scannerLocked}
-        content={scannerOpen ? 'Close' : 'Open'}
+        content={scannerOpen ? '关闭' : '打开'}
         onClick={() => act('toggle_door')}
       />
     </>
@@ -79,39 +79,39 @@ const SubjectStatus = (props) => {
   if (status === SUBJECT_CONCIOUS) {
     return (
       <Box inline color="good">
-        Conscious
+        清醒
       </Box>
     );
   }
   if (status === SUBJECT_UNCONSCIOUS || status === SUBJECT_HARD_CRIT) {
     return (
       <Box inline color="average">
-        Unconscious
+        昏迷
       </Box>
     );
   }
   if (status === SUBJECT_SOFT_CRIT) {
     return (
       <Box inline color="average">
-        Critical
+        危重
       </Box>
     );
   }
   if (status === SUBJECT_DEAD) {
     return (
       <Box inline color="bad">
-        Dead
+        死亡
       </Box>
     );
   }
   if (status === SUBJECT_TRANSFORMING) {
     return (
       <Box inline color="bad">
-        Transforming
+        变形中
       </Box>
     );
   }
-  return <Box inline>Unknown</Box>;
+  return <Box inline>未知</Box>;
 };
 
 const DnaScannerContent = (props) => {
@@ -125,19 +125,19 @@ const DnaScannerContent = (props) => {
     subjectStatus,
   } = data;
   if (!isScannerConnected) {
-    return <Box color="bad">DNA Scanner is not connected.</Box>;
+    return <Box color="bad">DNA 扫描仪未连接。</Box>;
   }
   if (!isViableSubject) {
-    return <Box color="average">No viable subject found in DNA Scanner.</Box>;
+    return <Box color="average">DNA 扫描仪内没有适用的受试者。</Box>;
   }
   return (
     <LabeledList>
-      <LabeledList.Item label="Status">
+      <LabeledList.Item label="状态">
         {subjectName}
         <Icon mx={1} color="label" name="long-arrow-alt-right" />
         <SubjectStatus status={subjectStatus} />
       </LabeledList.Item>
-      <LabeledList.Item label="Health">
+      <LabeledList.Item label="健康">
         <ProgressBar
           value={subjectHealth}
           minValue={0}
@@ -152,7 +152,7 @@ const DnaScannerContent = (props) => {
           {subjectHealth}%
         </ProgressBar>
       </LabeledList.Item>
-      <LabeledList.Item label="Genetic Damage">
+      <LabeledList.Item label="基因损伤">
         <ProgressBar
           value={subjectDamage}
           minValue={0}
@@ -173,7 +173,7 @@ const DnaScannerContent = (props) => {
 
 export const DnaScanner = (props) => {
   return (
-    <Section title="DNA Scanner" buttons={<DnaScannerButtons />}>
+    <Section title="DNA 扫描仪" buttons={<DnaScannerButtons />}>
       <DnaScannerContent />
     </Section>
   );

@@ -46,7 +46,7 @@ function renderDSMEntry(entry: BookEntry<Trauma>) {
         <Stack vertical>
           <Stack.Item>{entry.full_name}</Stack.Item>
           {!checkIdenticalTraumaNames(entry) && (
-            <Stack.Item fontSize="10px">...aka "{entry.scan_name}"</Stack.Item>
+            <Stack.Item fontSize="10px">又称“{entry.scan_name}”</Stack.Item>
           )}
         </Stack>
       }
@@ -54,13 +54,13 @@ function renderDSMEntry(entry: BookEntry<Trauma>) {
       <Stack vertical backgroundColor="white" p={1} width="100%">
         <Stack.Item>
           <Box inline color="label">
-            Description:
+            描述：
           </Box>{' '}
           {entry.desc}
         </Stack.Item>
         <Stack.Item>
           <Box inline color="label">
-            Diagnosis:
+            诊断：
           </Box>{' '}
           {entry.symptoms}
         </Stack.Item>

@@ -26,12 +26,12 @@ export function Port(props: PortProps) {
     <Floating
       content={
         <Stack fill vertical>
-          <Stack.Item>Connected to {connectedPlane.name}</Stack.Item>
+          <Stack.Item>连接到 {connectedPlane.name}</Stack.Item>
           {!!(connection.blend_mode !== undefined) && (
-            <Stack.Item>Blend mode: {connection.blend_mode}</Stack.Item>
+            <Stack.Item>混合模式：{connection.blend_mode}</Stack.Item>
           )}
           {!!('type' in connection) && (
-            <Stack.Item>Filter type: {connection.type}</Stack.Item>
+            <Stack.Item>滤镜类型：{connection.type}</Stack.Item>
           )}
           <Button
             color="bad"
@@ -50,7 +50,7 @@ export function Port(props: PortProps) {
               }
             }}
           >
-            Delete connection
+            删除连接
           </Button>
         </Stack>
       }

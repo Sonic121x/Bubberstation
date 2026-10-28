@@ -52,7 +52,7 @@ export const SolarControl = (props) => {
   return (
     <Window width={330} height={330}>
       <Window.Content>
-        <Section title="Status">
+        <Section title="状态">
           <Box
             mb={1}
             position="relative"
@@ -82,7 +82,7 @@ export const SolarControl = (props) => {
           <Stack>
             <Stack.Item>
               <LabeledList>
-                <LabeledList.Item label="Power output">
+                <LabeledList.Item label="输出功率">
                   <ProgressBar
                     value={capacity > 0 ? supply / capacity : 0}
                     minValue={0}
@@ -94,61 +94,61 @@ export const SolarControl = (props) => {
                     }}
                   >
                     {capacity > 0
-                      ? `${formatPower(supply)} of ${formatPower(
+                      ? `${formatPower(supply)} / ${formatPower(
                           capacity,
                         )} (${Math.round((100 * supply) / capacity)}%)`
                       : formatPower(0)}
                   </ProgressBar>
                 </LabeledList.Item>
                 <LabeledList.Item
-                  label="Solar panels"
+                  label="太阳能板"
                   color={connected_panels > 0 ? 'good' : 'bad'}
                 >
                   {connected_panels}
                 </LabeledList.Item>
                 <LabeledList.Item
-                  label="Solar tracker"
+                  label="太阳追踪器"
                   color={connected_tracker ? 'good' : 'bad'}
                 >
-                  {connected_tracker ? 'OK' : 'N/A'}
+                  {connected_tracker ? '正常' : '不可用'}
                 </LabeledList.Item>
               </LabeledList>
             </Stack.Item>
           </Stack>
         </Section>
         <Section
-          title="Controls"
+          title="控制"
           buttons={
             <Button
               icon="sync"
-              content="Scan for new hardware"
+              content="扫描新硬件"
               onClick={() => act('refresh')}
             />
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Tracking">
+            <LabeledList.Item label="追踪">
               <Button
                 icon="times"
-                content="Off"
+                content="关闭"
                 selected={tracking_state === 0}
                 onClick={() => act('tracking', { mode: 0 })}
               />
               <Button
                 icon="clock-o"
-                content="Timed"
+                content="定时"
                 selected={tracking_state === 1}
                 onClick={() => act('tracking', { mode: 1 })}
               />
               <Button
                 icon="sync"
-                content="Auto"
+                content="自动"
                 selected={tracking_state === 2}
                 disabled={!connected_tracker}
                 onClick={() => act('tracking', { mode: 2 })}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Azimuth">
+            <LabeledList.Item label="方位角">
               <Icon mr={1} name="arrow-up" rotation={azimuth_current} />
               {(tracking_state === 0 || tracking_state === 1) && (
                 <NumberInput
@@ -167,7 +167,7 @@ export const SolarControl = (props) => {
                 <NumberInput
                   tickWhileDragging
                   width="80px"
-                  unit="°/m"
+                  unit="°/分"
                   step={0.01}
                   stepPixelSize={1}
                   minValue={-max_rotation_rate - 0.01}
@@ -182,7 +182,7 @@ export const SolarControl = (props) => {
               )}
               {tracking_state === 2 && (
                 <Box inline color="label" mt="3px">
-                  {`${azimuth_current} °`} (auto)
+                  {`${azimuth_current} °`}（自动）
                 </Box>
               )}
             </LabeledList.Item>

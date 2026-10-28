@@ -11,7 +11,7 @@ import {
 import { useBackend } from '../../backend';
 import { CharacterPreview } from '../common/CharacterPreview';
 import type { PreferencesMenuData } from './types';
-import { skyratAugmentOptions } from '../../localization/skyratSystemsDisplay';
+import { characterOptions, characterDisplay } from '../../localization/zhCharacterDisplay';
 export const RotateCharacterButtons = (props) => {
   const { act } = useBackend<PreferencesMenuData>();
   return (
@@ -20,14 +20,14 @@ export const RotateCharacterButtons = (props) => {
         onClick={() => act('rotate', { backwards: false })}
         fontSize="22px"
         icon="redo"
-        tooltip="Rotate Clockwise"
+        tooltip="顺时针旋转"
         tooltipPosition="bottom"
       />
       <Button
         onClick={() => act('rotate', { backwards: true })}
         fontSize="22px"
         icon="undo"
-        tooltip="Rotate Counter-Clockwise"
+        tooltip="逆时针旋转"
         tooltipPosition="bottom"
       />
     </Box>
@@ -38,15 +38,15 @@ export const Markings = (props) => {
   const { act } = useBackend<PreferencesMenuData>();
   return (
     <Stack fill vertical>
-      <Stack.Item>Markings:</Stack.Item>
+      <Stack.Item>斑纹：</Stack.Item>
       {props.limb.markings.markings_list.map((marking, index) => (
         <Stack.Item key={marking.marking_id}>
           <Stack fill>
             <Stack.Item grow>
               <Dropdown
                 width="100%"
-                options={props.limb.markings.marking_choices}
-                selected={marking.name}
+                options={characterOptions(props.limb.markings.marking_choices)}
+                selected={marking.name} displayText={characterDisplay(marking.name)}
                 buttons
                 onSelected={(shit) =>
                   act('change_marking', {
@@ -72,7 +72,7 @@ export const Markings = (props) => {
             <Stack.Item>
               <Button
                 color={marking.emissive ? 'good' : 'bad'}
-                tooltip="The 'E' is for 'Emissive', meaning does it glow or not. Green for glow, red for no glow."
+                tooltip="切换斑纹是否发光。绿色表示发光，红色表示不发光。"
                 onClick={() =>
                   act('change_emissive', {
                     limb_slot: props.limb.slot,
@@ -81,7 +81,7 @@ export const Markings = (props) => {
                   })
                 }
               >
-                E
+                光
               </Button>
             </Stack.Item>
             <Stack.Item>
@@ -116,7 +116,7 @@ export const LimbPage = (props) => {
   const { act } = useBackend<PreferencesMenuData>();
   return (
     <div>
-      <Section fill title={props.limb.name}>
+      <Section fill title={characterDisplay(props.limb.name)}>
         <Stack vertical fill>
           <Stack.Item>
             <Markings limb={props.limb} />
@@ -134,16 +134,16 @@ export const AugmentationPage = (props) => {
   if (props.limb.can_augment) {
     return (
       <div style={{ marginBottom: '1.5em' }}>
-        <Section fill title={props.limb.name}>
+        <Section fill title={characterDisplay(props.limb.name)}>
           <Stack fill vertical>
             <Stack.Item>
               <Stack fill>
-                <Stack.Item>Augumentation:</Stack.Item>
+                <Stack.Item>植入体：</Stack.Item>
                 <Stack.Item grow>
                   <Dropdown
                     width="100%"
-                    options={skyratAugmentOptions(Object.values(props.limb.aug_choices) as string[])}
-                    selected={props.limb.chosen_aug}
+                    options={characterOptions(Object.values(props.limb.aug_choices) as string[])}
+                    selected={props.limb.chosen_aug} displayText={characterDisplay(props.limb.chosen_aug)}
                     onSelected={(value) => {
                       // Since the costs are positive,
                       // it's added and not substracted
@@ -192,12 +192,12 @@ export const OrganPage = (props) => {
   return (
     <Stack.Item>
       <Stack fill>
-        <Stack.Item>{`${props.organ.name}: `}</Stack.Item>
+        <Stack.Item>{`${characterDisplay(props.organ.name)}：`}</Stack.Item>
         <Stack.Item grow>
           <Dropdown
             width="100%"
-            options={Object.values(props.organ.organ_choices) as string[]}
-            selected={props.organ.chosen_organ}
+            options={characterOptions(Object.values(props.organ.organ_choices) as string[])}
+            selected={props.organ.chosen_organ} displayText={characterDisplay(props.organ.chosen_organ)}
             onSelected={(value) => {
               // Since the costs are positive, it's added and not substracted
               if (balance + props.organ.costs[value] > 0) {
@@ -223,13 +223,13 @@ export const LimbsPage = (props) => {
   return (
     <Stack minHeight="100%">
       <Stack.Item minWidth="33%" minHeight="100%">
-        <Section fill scrollable title="Markings" height="197%">
+        <Section fill scrollable title="斑纹" height="197%">
           <div>
             <Dropdown
               width="100%"
-              options={Object.values(markings)}
-              selected={Object.values(markings)[1]}
-              placeholder="Pick a preset:"
+              options={characterOptions(Object.values(markings) as string[])}
+              selected={Object.values(markings)[1]} displayText={characterDisplay(Object.values(markings)[1] as string)}
+              placeholder="选择预设："
               onSelected={(value) => act('set_preset', { preset: value })}
             />
           </div>
@@ -241,7 +241,7 @@ export const LimbsPage = (props) => {
         </Section>
       </Stack.Item>
       <Stack.Item minWidth="33%">
-        <Section title="Character Preview" fill align="center" height="197%">
+        <Section title="角色预览" fill align="center" height="197%">
           <CharacterPreview
             id={data.character_preview_view}
             height="25%"
@@ -253,7 +253,7 @@ export const LimbsPage = (props) => {
               marginTop: '3em',
             }}
           >
-            <Section title="Quirk Points Balance" />
+            <Section title="特质点数余额" />
           </Box>
 
           <Box
@@ -272,14 +272,14 @@ export const LimbsPage = (props) => {
         </Section>
       </Stack.Item>
       <Stack.Item minWidth="33%">
-        <Section fill title="Organs" height="87%">
+        <Section fill title="器官" height="87%">
           <Stack fill vertical>
             {data.organs_data.map((val) => (
               <OrganPage key={val.slot} organ={val} data={data} />
             ))}
           </Stack>
         </Section>
-        <Section fill scrollable title="Augmentations" height="107%">
+        <Section fill scrollable title="植入体" height="107%">
           {data.limbs_data.map((val) => (
             <AugmentationPage key={val.slot} limb={val} data={data} />
           ))}

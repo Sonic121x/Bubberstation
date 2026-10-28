@@ -24,8 +24,8 @@ export const SecurityRecordTabs = (props) => {
   const { higher_access, records = [], station_z } = data;
 
   const errorMessage = !records.length
-    ? 'No records found.'
-    : 'No match. Refine your search.';
+    ? '未找到档案。'
+    : '没有匹配结果，请调整搜索条件。';
 
   const [search, setSearch] = useState('');
 
@@ -39,7 +39,7 @@ export const SecurityRecordTabs = (props) => {
       <Stack.Item>
         <Input
           fluid
-          placeholder="Name/Job/Fingerprints"
+          placeholder="姓名／职业／指纹"
           onChange={setSearch}
           expensive
         />
@@ -63,18 +63,18 @@ export const SecurityRecordTabs = (props) => {
             <Button
               disabled
               icon="plus"
-              tooltip="Add new records by inserting a 1 by 1 meter photo into the terminal. You do not need this screen open."
+              tooltip="将一张1米见方的照片插入终端即可添加新档案。无需打开此界面。"
             >
-              Create
+              创建
             </Button>
           </Stack.Item>
           <Stack.Item>
             <Button.Confirm
-              content="Purge"
+              content="清空"
               disabled={!higher_access || !station_z}
               icon="trash"
               onClick={() => act('purge_records')}
-              tooltip="Wipe criminal record data."
+              tooltip="清除犯罪记录数据。"
             />
           </Stack.Item>
         </Stack>

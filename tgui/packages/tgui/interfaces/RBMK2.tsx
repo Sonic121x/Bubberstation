@@ -48,47 +48,47 @@ export const RBMK2 = (props) => {
   return (
     <Window width={360} height={710}>
       <Window.Content>
-        <Section textAlign="center" title="Status">
+        <Section textAlign="center" title="状态">
           <LabeledList>
             <LabeledList.Item
-              label="Activity"
-              tooltip="If the reactor is considered active or not."
+              label="运行状态"
+              tooltip="反应堆是否正在运行。"
             >
               <NoticeBox
                 danger
                 textAlign="center"
                 backgroundColor={data.active ? 'good' : 'bad'}
               >
-                {data.active ? 'ONLINE' : 'OFFLINE'}
+                {data.active ? '在线' : '离线'}
               </NoticeBox>
             </LabeledList.Item>
             <LabeledList.Item
-              label="Stability"
-              tooltip="If the reactor is considered stable or not."
+              label="稳定性"
+              tooltip="反应堆是否处于稳定状态。"
             >
               <NoticeBox
                 danger
                 textAlign="center"
                 backgroundColor={data.meltdown ? 'danger' : 'good'}
               >
-                {data.meltdown ? 'MELTDOWN' : 'STABLE'}
+                {data.meltdown ? '堆芯熔毁' : '稳定'}
               </NoticeBox>
             </LabeledList.Item>
             <LabeledList.Item
-              label="Connection"
-              tooltip="The physical connection of the reactor. Jammed connections may result in problems."
+              label="连接"
+              tooltip="反应堆的物理连接状态。连接卡死可能导致问题。"
             >
               <NoticeBox
                 danger
                 textAlign="center"
                 backgroundColor={data.jammed ? 'danger' : 'good'}
               >
-                {data.jammed ? 'JAMMED' : 'SAFE'}
+                {data.jammed ? '卡死' : '安全'}
               </NoticeBox>
             </LabeledList.Item>
             <LabeledList.Item
-              label="Power Generation"
-              tooltip="Power generation is influenced by rod temperature and quality of parts. It is possible to generate bonus power when going over the safety limit, but that is not recommended."
+              label="发电功率"
+              tooltip="发电功率取决于燃料棒温度和零件质量。超过安全限制可产生额外电力，但不建议这样做。"
             >
               <ProgressBar
                 value={data.raw_last_power_output}
@@ -121,8 +121,8 @@ export const RBMK2 = (props) => {
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
-              label="Rod Pressure"
-              tooltip="Pressures above 4500 kPa begin to increasingly slow down the reaction, with the slowest speed by 18,000 kPa. Safety systems will trigger at pressures exceeding 9000 kPa."
+              label="燃料棒压力"
+              tooltip="压力超过4500 kPa后反应会逐渐减慢，在18000 kPa时降至最慢。压力超过9000 kPa时将触发安全系统。"
             >
               <ProgressBar
                 value={data.rod_mix_pressure}
@@ -151,8 +151,8 @@ export const RBMK2 = (props) => {
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
-              label="Core Temperature"
-              tooltip="The general estimate of the core temperature, based on core reactivity. Generally speaking, you should never let this get over 9000 Kelvin."
+              label="堆芯温度"
+              tooltip="根据堆芯反应活性估算的温度。一般来说，绝不应让它超过9000开尔文。"
             >
               <ProgressBar
                 value={data.magic_number}
@@ -181,12 +181,12 @@ export const RBMK2 = (props) => {
                   ],
                 }}
               >
-                {data.magic_number} Kelvin
+                {data.magic_number} 开尔文
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
-              label="Rod Temperature"
-              tooltip="As the temperature of the mix increases, fuel consumption rises, leading to greater power generation."
+              label="燃料棒温度"
+              tooltip="混合气体温度越高，燃料消耗越快，发电功率也越高。"
             >
               <ProgressBar
                 value={data.rod_mix_temperature}
@@ -211,12 +211,12 @@ export const RBMK2 = (props) => {
                   ],
                 }}
               >
-                {data.rod_mix_temperature} Kelvin
+                {data.rod_mix_temperature} 开尔文
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
-              label="Remaining Fuel"
-              tooltip="Amount of tritium remaining in the current rod."
+              label="剩余燃料"
+              tooltip="当前燃料棒中的剩余氚量。"
             >
               <ProgressBar // Changes color based on rate of consumption while giving you a total reading.
                 value={data.fuel_time_left}
@@ -229,15 +229,15 @@ export const RBMK2 = (props) => {
                   good: [60*60, Infinity],
                 }}
               >
-                {data.rod_trit_moles} Moles ({data.fuel_time_left_text})
+                {data.rod_trit_moles} 摩尔（{data.fuel_time_left_text}）
               </ProgressBar>
             </LabeledList.Item>
-            <LabeledList.Item label="Tritium Usage">
+            <LabeledList.Item label="氚消耗速率">
               {data.last_tritium_consumption}μmol/s
             </LabeledList.Item>
             <LabeledList.Item
-              label="Criticality"
-              tooltip="During meltdowns, criticality levels rise significantly. As criticality rises, the risk of explosive integrity failure intensifies (as does the blast radius.) Exceeding 100% criticality poses a severe risk of spontaneous reactor explosion. Kindly don't let this happen planetside; we don't want another incident."
+              label="临界程度"
+              tooltip="堆芯熔毁时临界程度会大幅上升。临界程度越高，结构爆炸失效的风险和爆炸半径也越大。超过100%时，反应堆极有可能自行爆炸。请不要让这种事发生在行星表面；我们不想再出事故了。"
             >
               <ProgressBar
                 value={data.criticality}
@@ -254,8 +254,8 @@ export const RBMK2 = (props) => {
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
-              label="Integrity"
-              tooltip="Estimated structural integrity of the reactor. Don't let this fall below 0%."
+              label="完整性"
+              tooltip="反应堆结构完整性的估算值。不要让它降到0%以下。"
             >
               <ProgressBar
                 value={data.health_percent}
@@ -273,84 +273,84 @@ export const RBMK2 = (props) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Controls" textAlign="center">
+        <Section title="控制" textAlign="center">
           <LabeledList>
             <Button.Confirm
-              tooltip="Reactor Activation/Deactivation Button"
+              tooltip="反应堆启动／关闭按钮"
               textAlign="center"
               width="100%"
               icon="fa-power-off"
-              confirmContent="Are you sure?"
+              confirmContent="确定吗？"
               color={data.active ? 'average' : 'good'}
               onClick={() => act('activate')}
             >
-              {data.active ? 'Deactivate' : 'Activate'}
+              {data.active ? '关闭' : '启动'}
             </Button.Confirm>
             {data.rod ? (
               <Button.Confirm
-                tooltip="Ejects currently inserted rod. NOTE: We haven't been able to consistently recreate this in testing, but this button can (rarely) unjam the rod. It's better to use a crowbar."
+                tooltip="弹出当前插入的燃料棒。注意：虽然测试中无法稳定复现，但此按钮极少数情况下能解除燃料棒卡死。最好还是使用撬棍。"
                 textAlign="center"
                 width="100%"
                 icon="fa-eject"
                 color="orange"
                 onClick={() => act('eject')}
               >
-                Eject Fuel Rod
+                弹出燃料棒
               </Button.Confirm>
             ) : (
               <NoticeBox danger textAlign="center">
-                No control rod to eject
+                没有可弹出的控制棒
               </NoticeBox>
             )}
           </LabeledList>
-          <Section title="Vent Controls" textAlign="center">
-            NOTICE: The vents must be off to change directions.
+          <Section title="通风控制" textAlign="center">
+            注意：必须关闭通风口才能改变方向。
             <br />
-            <i>(This is a cost saving measure - do not print this part.)</i>
+            <i>（这是为了节约成本——请勿打印本段。）</i>
           </Section>
           <LabeledList>
             <LabeledList.Item
-              label="Vent Power"
+              label="通风开关"
               buttons={
                 <>
                   <Box inline mx={2} color={data.venting ? 'good' : 'orange'}>
-                    {data.venting ? 'ONLINE' : 'OFFLINE'}
+                    {data.venting ? '在线' : '离线'}
                   </Box>
                   <Button.Confirm
-                    tooltip="Toggle the vents On/Off."
+                    tooltip="开启或关闭通风口。"
                     textAlign="center"
                     icon="fa-fan"
                     color={data.venting ? 'orange' : 'good'}
                     onClick={() => act('venttoggle')}
                   >
-                    TOGGLE
+                    切换
                   </Button.Confirm>
                 </>
               }
             />
             <LabeledList.Item
-              label="Vent Direction"
+              label="通风方向"
               buttons={
                 <>
                   <Box inline mx={5.68} color={data.vent_dir ? 'orange' : 'good'}>
-                    {data.vent_dir ? 'PULLING' : 'PUSHING'}
+                    {data.vent_dir ? '吸入' : '排出'}
                   </Box>
                   <Button
-                    tooltip="Adjust the vents to draw air from the surrounding environment into the internal chamber of the RBMK2."
+                    tooltip="将通风口设为从周围环境吸入空气到RBMK2内部腔室。"
                     icon="fa-clock-rotate-left"
                     disabled={data.venting}
                     color={data.vent_dir ? 'caution' : 'blue'}
                     onClick={() => act('ventpull')}
                   />
                   <Button
-                    tooltip="Adjust the vents to release the contents of the RBMK2's internal chamber into the surrounding environment."
+                    tooltip="将通风口设为把RBMK2内部腔室的气体排入周围环境。"
                     icon="fa-clock-rotate-left fa-flip-horizontal"
                     disabled={data.venting}
                     color={data.vent_dir ? 'blue' : 'good'}
                     onClick={() => act('ventpush')}
                   />
                   <Button
-                    tooltip="Set the vents to automatically open when too hot, and close when too cold. Requires auto-vent upgrade disk."
+                    tooltip="将通风口设为过热时自动开启、过冷时自动关闭。需要自动通风升级磁盘。"
                     icon="fa-balance-scale"
 					disabled={!data.auto_vent_upgrade}
                     color={data.auto_vent ? 'good' : 'blue'}
@@ -360,26 +360,26 @@ export const RBMK2 = (props) => {
               }
             />
           </LabeledList>
-          <Section title="Adv. Controls" textAlign="center">
-            WARNING: Settings within this section may explosively void your
-            warranty.
+          <Section title="高级控制" textAlign="center">
+            警告：此处的设置可能以爆炸的方式
+            使您的保修失效。
           </Section>
           <LabeledList>
             <LabeledList.Item
-              label="Overclock"
+              label="超频"
               buttons={
                 <>
                   <Box inline mx={2} color={data.overclocked ? 'good' : 'orange'}>
-                    {data.overclocked ? 'ONLINE' : 'OFFLINE'}
+                    {data.overclocked ? '在线' : '离线'}
                   </Box>
                   <Button.Confirm
-                    tooltip="Increases power output at the cost of more tritium consumed and more heat generated. Requires overlock upgrade disk."
+                    tooltip="增加发电功率，但会消耗更多氚并产生更多热量。需要超频升级磁盘。"
                     icon="exclamation-triangle"
                     color={data.overclocked ? 'average' : 'good'}
 					disabled={!data.overclocked_upgrade}
                     onClick={() => act('overclocktoggle')}
                   >
-                    TOGGLE
+                    切换
                   </Button.Confirm>
                 </>
               }

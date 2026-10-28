@@ -32,7 +32,7 @@ export const LTSRBT = (props) => {
             <Input
               width="80%"
               value={name}
-              placeholder="Insert a name"
+              placeholder="输入名称"
               onBlur={(value) =>
                 act('change_name', {
                   value: value,
@@ -45,7 +45,7 @@ export const LTSRBT = (props) => {
               value={price}
               minValue={min_price}
               maxValue={max_price}
-              unit="cr"
+              unit="信用点"
               onChange={(value) =>
                 act('change_price', {
                   value: value,
@@ -72,7 +72,7 @@ export const LTSRBT = (props) => {
               height="100%"
               fluid
               value={desc}
-              placeholder="Insert a description (or don't)"
+              placeholder="输入描述（也可留空）"
               onBlur={(value) =>
                 act('change_desc', {
                   value: value,
@@ -85,7 +85,7 @@ export const LTSRBT = (props) => {
             <Button.Confirm
               fluid
               icon="truck-arrow-right"
-              content="Place on Market"
+              content="上架出售"
               onClick={() => act('place_on_market')}
             />
           </Stack.Item>

@@ -26,10 +26,10 @@ export const MainContent = () => {
   const { erp_interaction } = data;
   const placeholder =
     tabIndex === 0
-      ? 'Search for an interaction'
+      ? '搜索互动'
       : tabIndex === 1
-        ? 'Search for an item'
-        : 'Searching is unavailable for this tab';
+        ? '搜索物品'
+        : '此标签页不支持搜索';
 
   return (
     <Section fill>
@@ -37,14 +37,14 @@ export const MainContent = () => {
         <Stack.Item>
           <Tabs fluid textAlign="center">
             <Tabs.Tab selected={tabIndex === 0} onClick={() => setTabIndex(0)}>
-              Interactions
+              互动
             </Tabs.Tab>
             {erp_interaction && (
               <Tabs.Tab
                 selected={tabIndex === 1}
                 onClick={() => setTabIndex(1)}
               >
-                Lewd Items
+                情趣物品
               </Tabs.Tab>
             )}
           </Tabs>
@@ -68,7 +68,7 @@ export const MainContent = () => {
                   icon={showCategories ? 'folder' : 'list'}
                   color="green"
                   tooltip={
-                    showCategories ? 'Hide Categories' : 'Show Categories'
+                    showCategories ? '隐藏分类' : '显示分类'
                   }
                   onClick={() => setShowCategories(!showCategories)}
                 />

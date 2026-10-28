@@ -37,33 +37,33 @@ export const AntagInfoSpy = () => {
           backgroundImage: 'none',
         }}
       >
-        <Section title={`You are the ${antag_name || 'Spy'}.`}>
+        <Section title={`你是${antag_name || '间谍'}。`}>
           <Stack vertical fill ml={1} mr={1}>
             <Stack.Item fontSize={1.2}>
-              You have been equipped with a special uplink device disguised as{' '}
-              {uplink_location || 'something'} that will allow you to steal from
-              the station.
+              你配备了一台伪装成{' '}
+              {uplink_location || '某件物品'}的特殊上行链路，能让你从
+              空间站窃取物品。
             </Stack.Item>
             <Stack.Item>
               <span style={greenText}>
-                <b>Use it in hand</b> to access your uplink, and{' '}
-                <b>right click</b> on bounty targets to steal them.
+                <b>手持时激活</b>即可打开上行链路，并可{' '}
+                <b>右键点击</b>悬赏目标将其窃取。
               </span>
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item>
-              You may not be alone: There may be other spies on the station.
+              你可能并非孤身一人：空间站上也许还有其他间谍。
             </Stack.Item>
             <Stack.Item>
-              Work together or work against them: The choice is yours, but{' '}
+              与他们合作还是对抗，由你决定。但{' '}
               <span style={redText}>
-                the same bounty cannot be claimed twice.
+                同一项悬赏无法领取两次。
               </span>
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item>
               <ObjectivePrintout
-                titleMessage={'Your mission, should you choose to accept it'}
+                titleMessage={'如果你选择接受，这是你的任务'}
                 objectives={objectives}
               />
             </Stack.Item>
@@ -72,7 +72,7 @@ export const AntagInfoSpy = () => {
               {
                 <ReplaceObjectivesButton
                   can_change_objective={can_change_objective}
-                  button_title={'Make Your Own Plan'}
+                  button_title={'制定自己的计划'}
                   button_colour={'green'}
                 />
               }

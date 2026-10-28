@@ -1,22 +1,22 @@
 import { CheckboxInput, type FeatureToggle } from '../../base';
 
 export const masquerade_toggle: FeatureToggle = {
-  name: 'Enable/Disable Masquerade',
+  name: '启用或禁用避世伪装',
   description:
-    'If enabled, you will be able to eat food, albeit without nutritional value.',
+    '启用后可以进食，但无法获得营养。',
   component: CheckboxInput,
 };
 
 export const sol_weakness_toggle: FeatureToggle = {
-  name: 'Enable/Disable Sol Weakness',
+  name: '启用或禁用日光弱点',
   description:
-    'If enabled, you will have to hide in a coffin or a closet during the day, or risk burning to a crisp.\
-		Thankfully, you will also heal your wounds at half cost in a coffin.',
+    '启用后，白天必须躲进棺材或柜子，否则可能被烧成灰烬。\
+		好在棺材中治疗伤口的消耗也会减半。',
   component: CheckboxInput,
 };
 
 export const pseudo_respiration_toggle: FeatureToggle = {
-  name: 'Enable/Disable Pseudo-Respiration',
-  description: 'If enabled, you will be able to breathe once again.',
+  name: '启用或禁用拟态呼吸',
+  description: '启用后能够再次呼吸。',
   component: CheckboxInput,
 };

@@ -25,7 +25,7 @@ export const RoboticsControlConsole = (props) => {
             selected={tab === 1}
             onClick={() => setTab(1)}
           >
-            Cyborgs ({cyborgs.length})
+            赛博格（{cyborgs.length}）
           </Tabs.Tab>
           <Tabs.Tab
             icon="list"
@@ -33,7 +33,7 @@ export const RoboticsControlConsole = (props) => {
             selected={tab === 2}
             onClick={() => setTab(2)}
           >
-            Drones ({drones.length})
+            无人机（{drones.length}）
           </Tabs.Tab>
         </Tabs>
         {tab === 1 && (
@@ -54,7 +54,7 @@ const Cyborgs = (props) => {
   const { act, data } = useBackend();
   if (!cyborgs.length) {
     return (
-      <NoticeBox>No cyborg units detected within access parameters</NoticeBox>
+      <NoticeBox>未检测到权限范围内的赛博格单元</NoticeBox>
     );
   }
   return cyborgs.map((cyborg) => {
@@ -67,7 +67,7 @@ const Cyborgs = (props) => {
             {!!can_hack && !cyborg.emagged && (
               <Button
                 icon="terminal"
-                content="Hack"
+                content="入侵"
                 color="bad"
                 onClick={() =>
                   act('magbot', {
@@ -79,7 +79,7 @@ const Cyborgs = (props) => {
             <Button.Confirm
               icon={cyborg.locked_down ? 'unlock' : 'lock'}
               color={cyborg.locked_down ? 'good' : 'default'}
-              content={cyborg.locked_down ? 'Release' : 'Lockdown'}
+              content={cyborg.locked_down ? '解除锁定' : '锁定'}
               onClick={() =>
                 act('stopbot', {
                   ref: cyborg.ref,
@@ -89,7 +89,7 @@ const Cyborgs = (props) => {
             {!!can_detonate && (
               <Button.Confirm
                 icon="bomb"
-                content="Detonate"
+                content="引爆"
                 color="bad"
                 onClick={() =>
                   act('killbot', {
@@ -102,20 +102,20 @@ const Cyborgs = (props) => {
         }
       >
         <LabeledList>
-          <LabeledList.Item label="Status">
+          <LabeledList.Item label="状态">
             <Box
               color={
                 cyborg.status ? 'bad' : cyborg.locked_down ? 'average' : 'good'
               }
             >
               {cyborg.status
-                ? 'Not Responding'
+                ? '无响应'
                 : cyborg.locked_down
-                  ? 'Locked Down'
-                  : 'Nominal'}
+                  ? '已锁定'
+                  : '正常'}
             </Box>
           </LabeledList.Item>
-          <LabeledList.Item label="Charge">
+          <LabeledList.Item label="电量">
             <Box
               color={
                 cyborg.charge <= 30
@@ -127,13 +127,13 @@ const Cyborgs = (props) => {
             >
               {typeof cyborg.charge === 'number'
                 ? `${cyborg.charge}%`
-                : 'Not Found'}
+                : '未找到'}
             </Box>
           </LabeledList.Item>
-          <LabeledList.Item label="Model">{batchThreeDisplay(cyborg.module)}</LabeledList.Item>
-          <LabeledList.Item label="Master AI">
+          <LabeledList.Item label="型号">{batchThreeDisplay(cyborg.module)}</LabeledList.Item>
+          <LabeledList.Item label="主控AI">
             <Box color={cyborg.synchronization ? 'default' : 'average'}>
-              {cyborg.synchronization || 'None'}
+              {cyborg.synchronization || '无'}
             </Box>
           </LabeledList.Item>
         </LabeledList>
@@ -148,7 +148,7 @@ const Drones = (props) => {
 
   if (!drones.length) {
     return (
-      <NoticeBox>No drone units detected within access parameters</NoticeBox>
+      <NoticeBox>未检测到权限范围内的无人机单元</NoticeBox>
     );
   }
 
@@ -160,7 +160,7 @@ const Drones = (props) => {
         buttons={
           <Button.Confirm
             icon="bomb"
-            content="Detonate"
+            content="引爆"
             color="bad"
             onClick={() =>
               act('killdrone', {
@@ -171,9 +171,9 @@ const Drones = (props) => {
         }
       >
         <LabeledList>
-          <LabeledList.Item label="Status">
+          <LabeledList.Item label="状态">
             <Box color={drone.status ? 'bad' : 'good'}>
-              {drone.status ? 'Not Responding' : 'Nominal'}
+              {drone.status ? '无响应' : '正常'}
             </Box>
           </LabeledList.Item>
         </LabeledList>

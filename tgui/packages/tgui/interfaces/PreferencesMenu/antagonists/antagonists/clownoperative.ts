@@ -3,13 +3,13 @@ import { OPERATIVE_MECHANICAL_DESCRIPTION } from './operative';
 
 const ClownOperative: Antagonist = {
   key: 'clownoperative',
-  name: 'Clown Operative',
+  name: '小丑特工',
   description: [
     `
-      Honk! You have been chosen, for better or worse to join the Syndicate
-      Clown Operative strike team. Your mission, whether or not you choose
-      to tickle it, is to honk Nanotrasen's most advanced research facility!
-      That's right, you're going to Clown Station 13.
+      Honk！不论是福是祸，你已被选中加入辛迪加
+      小丑特工突击队。不管你是否愿意笑纳，
+      任务都是把纳米传讯最先进的研究设施闹个天翻地覆！
+      没错，你将前往小丑空间站13。
     `,
 
     OPERATIVE_MECHANICAL_DESCRIPTION,

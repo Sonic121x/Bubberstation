@@ -73,10 +73,10 @@ export function RecipeLibrary(props: ReagentsProps) {
     <Section
       fill
       scrollable
-      title={bookmarkMode ? 'Bookmarked recipes' : 'Possible recipes'}
+      title={bookmarkMode ? '已收藏配方' : '可用配方'}
       buttons={
         <>
-          Beaker: {`${linkedBeaker}  `}
+          烧杯：{`${linkedBeaker}  `}
           <Button
             icon="search"
             disabled={bookmarkMode}
@@ -86,7 +86,7 @@ export function RecipeLibrary(props: ReagentsProps) {
               setPage(1);
             }}
           >
-            Filter by reagents in beaker
+            按烧杯内试剂筛选
           </Button>
           <Button
             icon="book"
@@ -96,7 +96,7 @@ export function RecipeLibrary(props: ReagentsProps) {
               setPage(1);
             }}
           >
-            Bookmarks
+            收藏
           </Button>
           <Button
             icon="minus"
@@ -124,16 +124,16 @@ export function RecipeLibrary(props: ReagentsProps) {
       <Table>
         <Table.Row>
           <Table.Cell bold color="label">
-            Reaction
+            反应
           </Table.Cell>
           <Table.Cell bold color="label">
-            Required reagents
+            所需试剂
           </Table.Cell>
           <Table.Cell bold color="label">
-            Tags
+            标签
           </Table.Cell>
           <Table.Cell bold color="label" width="20px">
-            {!bookmarkMode ? 'Save' : 'Del'}
+            {!bookmarkMode ? '收藏' : '删除'}
           </Table.Cell>
         </Table.Row>
         {visibleReactions.slice(startIndex, endIndex).map((reaction) => (

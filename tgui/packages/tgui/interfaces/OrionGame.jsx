@@ -55,49 +55,49 @@ const STATUS2COMPONENT = [
 
 const locationInfo = [
   {
-    title: 'Pluto',
+    title: '冥王星',
     blurb:
-      'Pluto, long since occupied with long-range sensors and scanners, stands ready to, and indeed continues to probe the far reaches of the galaxy.',
+      '冥王星早已部署远程传感器与扫描仪，时刻准备着，并持续探测银河深处。',
   },
   {
-    title: 'Asteroid Belt',
+    title: '小行星带',
     blurb:
-      'At the edge of the Sol system lies a treacherous asteroid belt. Many have been crushed by stray asteroids and misguided judgement.',
+      '太阳系边缘有一片危机四伏的小行星带。许多人因判断失误，被游荡的小行星撞得粉身碎骨。',
   },
   {
-    title: 'Proxima Centauri',
+    title: '比邻星',
     blurb:
-      'The nearest star system to Sol, in ages past it stood as a reminder of the boundaries of sub-light travel, now a low-population sanctuary for adventurers and traders.',
+      '这里是距太阳最近的恒星系，曾象征亚光速航行的极限，如今已成为人烟稀少的冒险者与商人避风港。',
   },
   {
-    title: 'Dead Space',
+    title: '死寂星域',
     blurb:
-      'This region of space is particularly devoid of matter. Such low-density pockets are known to exist, but the vastness of it is astounding.',
+      '这片星域中的物质极其稀少。虽然这种低密度区域并不罕见，但它的广阔程度仍令人震惊。',
   },
   {
-    title: 'Rigel Prime',
+    title: '参宿七主星',
     blurb:
-      'Rigel Prime, the center of the Rigel system, burns hot, basking its planetary bodies in warmth and radiation.',
+      '参宿七星系中央的主星炽热燃烧，让周围行星沐浴在热量与辐射之中。',
   },
   {
-    title: 'Tau Ceti Beta',
+    title: '天仓五贝塔',
     blurb:
-      'Tau Ceti Beta has recently become a waypoint for colonists headed towards Orion. There are many ships and makeshift stations in the vicinity.',
+      '天仓五贝塔最近成为前往猎户座的殖民者的中转站，附近聚集着许多飞船和临时空间站。',
   },
   {
-    title: 'Space Bugs',
+    title: '太空虫',
     blurb:
-      "You see some space bugs out your window. They contort in various reality bending ways, and it makes you sick. You know it's Galactic Policy to report all sightings of space bugs.",
+      '你看见窗外有些太空虫。它们以扭曲现实的方式蠕动，让你感到恶心。银河法规要求报告所有太空虫目击事件。',
   },
   {
-    title: 'Space Outpost Beta-9',
+    title: '贝塔-9 太空前哨',
     blurb:
-      "You have come into range of the first man-made structure in this region of space. It has been constructed not by travellers from Sol, but by colonists from Orion. It stands as a monument to the colonists' success.",
+      '你接近了这片星域中的第一座人造建筑。建造它的不是太阳系旅人，而是来自猎户座的殖民者。它是殖民者成功的丰碑。',
   },
   {
-    title: 'Orion Prime',
+    title: '猎户座主星',
     blurb:
-      'You have made it to Orion! Congratulations! Your crew is one of the few to start a new foothold for mankind!',
+      '你抵达了猎户座！恭喜！你的船员成为了少数为人类开辟新立足点的先驱！',
   },
 ];
 
@@ -116,7 +116,7 @@ const AdventureStatus = (props) => {
   } = data;
   return (
     <Section
-      title="Adventure Status"
+      title="冒险状态"
       fill
       buttons={
         !!lings_suspected && (
@@ -125,7 +125,7 @@ const AdventureStatus = (props) => {
             color="black"
             textAlign="center"
             icon="skull"
-            content="RANDOM KILL"
+            content="随机处决"
             disabled={eventname}
             onClick={() => act('random_kill')}
           />
@@ -143,7 +143,7 @@ const AdventureStatus = (props) => {
                   color="red"
                   textAlign="center"
                   icon="skull"
-                  content="KILL"
+                  content="处决"
                   disabled={lings_suspected || eventname}
                   onClick={() =>
                     act('target_kill', {
@@ -165,7 +165,7 @@ const AdventureStatus = (props) => {
               <Button
                 fluid
                 icon="hamburger"
-                content={`Food Left: ${food}`}
+                content={`剩余食物：${food}`}
                 color="green"
               />
             </Stack.Item>
@@ -173,7 +173,7 @@ const AdventureStatus = (props) => {
               <Button
                 fluid
                 icon="gas-pump"
-                content={`Fuel Left: ${fuel}`}
+                content={`剩余燃料：${fuel}`}
                 color="olive"
               />
             </Stack.Item>
@@ -181,7 +181,7 @@ const AdventureStatus = (props) => {
               <Button
                 fluid
                 icon="wrench"
-                content={`Hull Parts: ${hull}`}
+                content={`船体零件：${hull}`}
                 color="average"
               />
             </Stack.Item>
@@ -189,7 +189,7 @@ const AdventureStatus = (props) => {
               <Button
                 fluid
                 icon="server"
-                content={`Electronics: ${electronics}`}
+                content={`电子零件：${electronics}`}
                 color="blue"
               />
             </Stack.Item>
@@ -197,7 +197,7 @@ const AdventureStatus = (props) => {
               <Button
                 fluid
                 icon="rocket"
-                content={`Engine Parts: ${engine}`}
+                content={`引擎零件：${engine}`}
                 color="violet"
               />
             </Stack.Item>
@@ -217,14 +217,14 @@ const ORION_STATUS_START = (props) => {
         <Stack.Item grow={1} />
         <Stack.Item fontSize="32px">{gamename}</Stack.Item>
         <Stack.Item grow fontSize="15px" color="label">
-          {'"Experience the journey of your ancestors!"'}
+          {'“重温先祖的旅程！”'}
         </Stack.Item>
         <Stack.Item fontSize="15px">
           <Button
             lineHeight={2}
             fluid
             icon="play"
-            content="Begin Game"
+            content="开始游戏"
             onClick={() => act('start_game')}
           />
         </Stack.Item>
@@ -233,7 +233,7 @@ const ORION_STATUS_START = (props) => {
             lineHeight={2}
             fluid
             icon="info"
-            content="Instructions"
+            content="玩法说明"
             onClick={() => act('instructions')}
           />
         </Stack.Item>
@@ -245,27 +245,27 @@ const ORION_STATUS_START = (props) => {
 
 const ORION_STATUS_INSTRUCTIONS = (props) => {
   const { act } = useBackend();
-  const fake_settlers = ['John', 'William', 'Alice', 'Tom'];
+  const fake_settlers = ['约翰', '威廉', '爱丽丝', '汤姆'];
   return (
     <>
       <Section
         color="label"
-        title="Objective"
+        title="目标"
         buttons={
           <Button
-            content="Back to Main Menu"
+            content="返回主菜单"
             onClick={() => act('back_to_menu')}
           />
         }
       >
         <Box fontSize="11px">
-          In the 2200&apos;s, the Orion trail was established as a dangerous yet
-          opportunistic trail through space for those willing to risk it. Many
-          pioneers seeking new lives on the galactic frontier would find exactly
-          what they were seeking... or lose their lives on the way.
+          23 世纪，猎户座航路开辟，
+          为勇于冒险的人提供了一条危险却充满机遇的太空航线。
+          许多在银河边疆追寻新生活的先驱，最终找到了
+          梦寐以求的一切……或者在途中丧命。
         </Box>
       </Section>
-      <Section title="Status Example">
+      <Section title="状态示例">
         <Stack>
           <Stack.Item basis={70} grow align="center">
             {fake_settlers?.map((settler) => (
@@ -277,7 +277,7 @@ const ORION_STATUS_INSTRUCTIONS = (props) => {
                     color="red"
                     textAlign="center"
                     icon="skull"
-                    content="KILL"
+                    content="处决"
                   />
                 </Stack.Item>
                 <Stack.Item className={'moods32x32 mood5'} />
@@ -286,31 +286,31 @@ const ORION_STATUS_INSTRUCTIONS = (props) => {
           </Stack.Item>
           <Divider vertical />
           <Stack.Item>
-            This is the status panel for your pioneers. Each one requires 1 food
-            every time you continue towards <span style={goodstyle}>Orion</span>
-            . You can find more crew on your journey, and lose them as fast as
-            you found &apos;em.
+            这里显示先驱们的状态。每次继续向前航行，
+            每人都要消耗 1 单位食物才能前往<span style={goodstyle}>猎户座</span>
+            。途中可以招募更多船员，但失去他们
+            可能和找到他们一样快。
             <br />
             <br />
-            If you run out of food or crew, it&apos;s{' '}
-            <span style={badstyle}>GAME OVER</span> for you!
+            如果食物耗尽或船员全部死亡，{' '}
+            就会<span style={badstyle}>游戏结束</span>！
           </Stack.Item>
         </Stack>
       </Section>
-      <Section title="Resources">
+      <Section title="资源">
         <Stack>
           <Stack.Item grow>
-            If you want to make it to <span style={goodstyle}>Orion</span>,
-            you&apos;ll need to manage your resources:
+            如果想要抵达<span style={goodstyle}>猎户座</span>，
+            就必须合理管理资源：
             <br />
-            <span style={goodstyle}>Food</span>: Your crewmembers consume it.
-            More crew means this goes down faster!
+            <span style={goodstyle}>食物</span>：船员需要吃饭。
+            船员越多，食物消耗越快！
             <br />
-            <span style={fuelstyle}>Fuel</span>: You use 5u of fuel with every
-            movement. Don&apos;t let it run out.
+            <span style={fuelstyle}>燃料</span>：每次航行消耗 5 单位
+            燃料。别让它耗尽。
             <br />
-            <span style={partstyle}>Parts</span>: Used to repair breakdowns.
-            Nobody likes wasting time on repairs!
+            <span style={partstyle}>零件</span>：用于修复故障。
+            没人喜欢把时间浪费在维修上！
           </Stack.Item>
           <Divider vertical />
           <Stack.Item>
@@ -319,7 +319,7 @@ const ORION_STATUS_INSTRUCTIONS = (props) => {
                 <Button
                   fluid
                   icon="hamburger"
-                  content={'Food Left: 80'}
+                  content={'剩余食物：80'}
                   color="green"
                 />
               </Stack.Item>
@@ -327,7 +327,7 @@ const ORION_STATUS_INSTRUCTIONS = (props) => {
                 <Button
                   fluid
                   icon="gas-pump"
-                  content={'Fuel Left: 60'}
+                  content={'剩余燃料：60'}
                   color="olive"
                 />
               </Stack.Item>
@@ -335,7 +335,7 @@ const ORION_STATUS_INSTRUCTIONS = (props) => {
                 <Button
                   fluid
                   icon="wrench"
-                  content={'Hull Parts: 1'}
+                  content={'船体零件：1'}
                   color="average"
                 />
               </Stack.Item>
@@ -343,7 +343,7 @@ const ORION_STATUS_INSTRUCTIONS = (props) => {
                 <Button
                   fluid
                   icon="server"
-                  content={'Electronics: 1'}
+                  content={'电子零件：1'}
                   color="blue"
                 />
               </Stack.Item>
@@ -351,7 +351,7 @@ const ORION_STATUS_INSTRUCTIONS = (props) => {
                 <Button
                   fluid
                   icon="rocket"
-                  content={'Engine Parts: 1'}
+                  content={'引擎零件：1'}
                   color="violet"
                 />
               </Stack.Item>
@@ -381,7 +381,7 @@ const ORION_STATUS_NORMAL = (props) => {
   return (
     <Stack vertical fill>
       <Stack.Item grow>
-        <Section title={(!!eventname && 'Event') || 'Location'} fill>
+        <Section title={(!!eventname && '事件') || '地点'} fill>
           <Stack fill textAlign="center" vertical>
             <Stack.Item grow>
               <Box bold fontSize="15px">
@@ -411,7 +411,7 @@ const ORION_STATUS_NORMAL = (props) => {
                   lineHeight={3}
                   width={16}
                   icon="arrow-right"
-                  content="Continue"
+                  content="继续"
                   onClick={() => act('continue')}
                 />
               )}
@@ -434,7 +434,7 @@ const ORION_STATUS_GAMEOVER = (props) => {
       <Stack vertical textAlign="center" fill>
         <Stack.Item grow={1} />
         <Stack.Item color="red" fontSize="32px">
-          {'Game Over'}
+          {'游戏结束'}
         </Stack.Item>
         <Stack.Item grow fontSize="15px" color="label">
           {reason}
@@ -444,7 +444,7 @@ const ORION_STATUS_GAMEOVER = (props) => {
             lineHeight={2}
             fluid
             icon="arrow-left"
-            content="Main Menu"
+            content="主菜单"
             onClick={() => act('back_to_menu')}
           />
         </Stack.Item>
@@ -463,19 +463,19 @@ const ORION_STATUS_MARKET = (props) => {
     <Stack vertical fill>
       <Stack.Item grow>
         <Section
-          title="Market"
+          title="市场"
           fill
           buttons={
             <>
               <Button
-                content="Raid"
+                content="劫掠"
                 icon="skull"
                 color="black"
                 disabled={spaceport_raided}
                 onClick={() => act('raid_spaceport')}
               />
               <Button
-                content="Leave"
+                content="离开"
                 icon="arrow-right"
                 onClick={() => act('leave_spaceport')}
               />
@@ -485,31 +485,31 @@ const ORION_STATUS_MARKET = (props) => {
           <Stack fill textAlign="center" vertical>
             <Stack.Item grow>
               <Box mb={-2} bold fontSize="15px">
-                {(turns === 4 && 'Tau Ceti Beta') || 'Small Space Port'}
+                {(turns === 4 && '天仓五贝塔') || '小型太空港'}
               </Box>
               <br />
               <Box fontSize="14px">
                 {(spaceport_raided && (
                   <Box color="red">
-                    You are lucky to have escaped with your life. Attempting to
-                    dock again would be certain death.
+                    你能活着逃出来已经很幸运了。
+                    再次尝试停靠只会送命。
                   </Box>
                 )) ||
-                  "Hello, Pioneer! We have supplies for you to help \
-                  you reach Orion. They aren't free, though!"}
+                  '你好，先驱！我们有物资可以帮助你 \
+                  抵达猎户座。不过可不是免费的！'}
               </Box>
             </Stack.Item>
             {(spaceport_raided && (
               <>
                 <Stack.Item>
-                  The Port is under high security. Any possibility of purchasing
-                  goods has long since sailed.
+                  港口已进入高度戒备状态。
+                  购买物资的机会早已溜走。
                 </Stack.Item>
                 <Stack.Item grow />
               </>
             )) || (
               <>
-                <Stack.Item>General Markets:</Stack.Item>
+                <Stack.Item>综合市场：</Stack.Item>
                 <Stack.Item>
                   <Stack mb={-1} fill>
                     <Stack.Item grow basis={0}>
@@ -518,7 +518,7 @@ const ORION_STATUS_MARKET = (props) => {
                           <Button
                             fluid
                             icon="gas-pump"
-                            content={'5 Food -> 5 Fuel'}
+                            content={'5 食物 → 5 燃料'}
                             color="green"
                             onClick={() =>
                               act('trade', {
@@ -528,12 +528,12 @@ const ORION_STATUS_MARKET = (props) => {
                           />
                         </Stack.Item>
                         <Divider />
-                        <Stack.Item mt={0}>Port Hangar Bay:</Stack.Item>
+                        <Stack.Item mt={0}>港口机库：</Stack.Item>
                         <Stack.Item mb={marketButtonSpacing}>
                           <Button
                             fluid
                             icon="wrench"
-                            content={'5 Fuel for Hull Plates'}
+                            content={'5 燃料换船体板'}
                             color="average"
                             onClick={() =>
                               act('buyparts', {
@@ -546,7 +546,7 @@ const ORION_STATUS_MARKET = (props) => {
                           <Button
                             fluid
                             icon="server"
-                            content={'5 Fuel for Electronics'}
+                            content={'5 燃料换电子零件'}
                             color="blue"
                             onClick={() =>
                               act('buyparts', {
@@ -559,7 +559,7 @@ const ORION_STATUS_MARKET = (props) => {
                           <Button
                             fluid
                             icon="rocket"
-                            content={'5 Fuel for Engine Parts'}
+                            content={'5 燃料换引擎零件'}
                             color="violet"
                             onClick={() =>
                               act('buyparts', {
@@ -576,7 +576,7 @@ const ORION_STATUS_MARKET = (props) => {
                           <Button
                             fluid
                             icon="hamburger"
-                            content={'5 Fuel -> 5 Food'}
+                            content={'5 燃料 → 5 食物'}
                             color="olive"
                             onClick={() =>
                               act('trade', {
@@ -586,12 +586,12 @@ const ORION_STATUS_MARKET = (props) => {
                           />
                         </Stack.Item>
                         <Divider />
-                        <Stack.Item mt={0}>Port Bar:</Stack.Item>
+                        <Stack.Item mt={0}>港口酒吧：</Stack.Item>
                         <Stack.Item mb={marketButtonSpacing}>
                           <Button
                             fluid
                             icon="user-plus"
-                            content={'10 Food, 10 Fuel for Crew'}
+                            content={'10 食物和 10 燃料换船员'}
                             color="white"
                             onClick={() => act('buycrew')}
                           />
@@ -600,7 +600,7 @@ const ORION_STATUS_MARKET = (props) => {
                           <Button
                             fluid
                             icon="user-minus"
-                            content={'Crew for 7 Food, 7 Fuel'}
+                            content={'船员换 7 食物和 7 燃料'}
                             color="black"
                             onClick={() => act('sellcrew')}
                           />
@@ -609,7 +609,7 @@ const ORION_STATUS_MARKET = (props) => {
                           <Button
                             fluid
                             icon="meteor"
-                            content={'Odd Crew (Same Price)'}
+                            content={'古怪船员（同价）'}
                             color="purple"
                             onClick={() =>
                               act('buycrew', {

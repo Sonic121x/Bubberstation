@@ -11,10 +11,10 @@ export function ForensicScanner() {
     <Window width={512} height={512}>
       <Window.Content>
         {logs.length === 0 ? (
-          <NoticeBox>Log empty.</NoticeBox>
+          <NoticeBox>日志为空。</NoticeBox>
         ) : (
           <Section
-            title="Scan history"
+            title="扫描历史"
             fill
             scrollable
             buttons={
@@ -24,10 +24,10 @@ export function ForensicScanner() {
                   color="danger"
                   onClick={() => act('clear')}
                 >
-                  Clear logs
+                  清除日志
                 </Button.Confirm>
                 <Button icon="print" onClick={() => act('print')}>
-                  Print report
+                  打印报告
                 </Button>
               </>
             }

@@ -10,7 +10,7 @@ import { ChatHistory } from './ChatHistory';
 import { LineLength, RADIO_PREFIXES, WindowSize } from './constants';
 import { getPrefix, windowClose, windowOpen, windowSet } from './helpers';
 import { byondMessages } from './timers';
-
+import { zhChatDisplay } from './zhChatDisplay';
 type ByondOpen = {
   channel: Channel;
 };
@@ -310,7 +310,7 @@ export function TguiSay() {
           onMouseUp={handleButtonRelease}
           type="button"
         >
-          {buttonContent}
+          {zhChatDisplay(buttonContent)}
         </button>
         <textarea
           autoCorrect="off"

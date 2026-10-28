@@ -45,7 +45,7 @@ export const PaiCard = (props) => {
   const { pai } = data;
 
   return (
-    <Window width={400} height={400} title="pAI Options Menu">
+    <Window width={400} height={400} title="pAI 选项菜单">
       <Window.Content scrollable>
         {!pai ? <PaiDownload /> : <PaiOptions />}
       </Window.Content>
@@ -64,16 +64,16 @@ const PaiDownload = (props) => {
         <NoticeBox info>
           <Stack fill>
             <Stack.Item grow fontSize="16px">
-              pAI Candidates
+              pAI 候选人格
             </Stack.Item>
             <Stack.Item>
               <Button
                 color="good"
                 icon="bell"
                 onClick={() => act('request')}
-                tooltip="Request more candidates from beyond."
+                tooltip="向彼岸请求更多候选人格。"
               >
-                Request
+                请求
               </Button>
             </Stack.Item>
           </Stack>
@@ -104,21 +104,21 @@ const CandidateDisplay = (props: { candidate: Candidate; index: number }) => {
     <Section
       buttons={
         <Button icon="save" onClick={() => act('download', { ckey })}>
-          Download
+          下载
         </Button>
       }
       overflow="hidden"
-      title={`Candidate ${index}`}
+      title={`候选人格 ${index}`}
     >
       <Stack vertical>
         <Stack.Item>
           <Box color="label" mb={1}>
-            Name:
+            名称：
           </Box>
           {name ? (
             <Box color="green">{name}</Box>
           ) : (
-            'None provided - name will be randomized.'
+            '未提供名称，将随机生成。'
           )}
         </Stack.Item>
         {!!description && (
@@ -126,7 +126,7 @@ const CandidateDisplay = (props: { candidate: Candidate; index: number }) => {
             <Stack.Divider />
             <Stack.Item>
               <Box color="label" mb={1}>
-                IC Description:
+                角色内描述：
               </Box>
               {description}
             </Stack.Item>
@@ -137,7 +137,7 @@ const CandidateDisplay = (props: { candidate: Candidate; index: number }) => {
             <Stack.Divider />
             <Stack.Item>
               <Box color="label" mb={1}>
-                OOC Notes:
+                角色外备注：
               </Box>
               {comments}
             </Stack.Item>
@@ -167,15 +167,15 @@ const PaiOptions = (props) => {
       range,
     },
   } = data;
-  const suppliedLaws = laws[0] ? decodeHtmlEntities(laws[0]) : 'None';
+  const suppliedLaws = laws[0] ? decodeHtmlEntities(laws[0]) : '无';
 
   return (
-    <Section fill scrollable title={`Settings: ${name.toUpperCase()}`}>
+    <Section fill scrollable title={`设置：${name.toUpperCase()}`}>
       <LabeledList>
-        <LabeledList.Item label="Master">
+        <LabeledList.Item label="主人">
           {master || (
             <Button icon="dna" onClick={() => act('set_dna')}>
-              Imprint
+              铭刻
             </Button>
           )}
         </LabeledList.Item>
@@ -184,28 +184,28 @@ const PaiOptions = (props) => {
             {dna}
           </LabeledList.Item>
         )}
-        <LabeledList.Item label="Laws">
+        <LabeledList.Item label="法则">
           <BlockQuote>{suppliedLaws}</BlockQuote>
         </LabeledList.Item>
-        <LabeledList.Item label="Holoform">
+        <LabeledList.Item label="全息形态">
           <Button
             icon={can_holo ? 'toggle-on' : 'toggle-off'}
             onClick={() => act('toggle_holo')}
             selected={can_holo}
           >
-            Toggle
+            切换
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Leash">
+        <LabeledList.Item label="活动限制">
           <Button
             icon={leashed ? 'toggle-on' : 'toggle-off'}
             onClick={() => act('toggle_leash')}
             selected={leashed}
           >
-            {leashed ? 'Unleash' : 'Leash'}
+            {leashed ? '解除限制' : '限制活动'}
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Holoform Range">
+        <LabeledList.Item label="全息形态范围">
           <Stack>
             <Stack.Item>
               <Button
@@ -224,35 +224,35 @@ const PaiOptions = (props) => {
             </Stack.Item>
           </Stack>
         </LabeledList.Item>
-        <LabeledList.Item label="Transmit">
+        <LabeledList.Item label="发送">
           <Button
             icon={transmit ? 'toggle-on' : 'toggle-off'}
             onClick={() => act('toggle_radio', { option: 'transmit' })}
             selected={transmit}
           >
-            Toggle
+            切换
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Receive">
+        <LabeledList.Item label="接收">
           <Button
             icon={receive ? 'toggle-on' : 'toggle-off'}
             onClick={() => act('toggle_radio', { option: 'receive' })}
             selected={receive}
           >
-            Toggle
+            切换
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Troubleshoot">
+        <LabeledList.Item label="故障排除">
           <Button icon="comment" onClick={() => act('fix_speech')}>
-            Fix Speech
+            修复语音
           </Button>
           <Button icon="edit" onClick={() => act('set_laws')}>
-            Set Laws
+            设置法则
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Personality">
+        <LabeledList.Item label="人格">
           <Button icon="trash" onClick={() => act('wipe_pai')}>
-            Erase
+            清除
           </Button>
         </LabeledList.Item>
       </LabeledList>
@@ -263,7 +263,7 @@ const PaiOptions = (props) => {
           mt={1}
           onClick={() => act('reset_software')}
         >
-          Reset Software
+          重置软件
         </Button>
       )}
     </Section>

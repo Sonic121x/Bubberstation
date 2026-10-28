@@ -17,25 +17,25 @@ export const BasketballPanel = (props) => {
   const { act, data } = useBackend<BasketballPanelData>();
 
   return (
-    <Window title="Basketball" width={650} height={580}>
+    <Window title="篮球" width={650} height={580}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item grow>
             <Section
               fill
               scrollable
-              title="Lobby"
+              title="大厅"
               buttons={
                 <>
                   <Button
                     icon="clipboard-check"
                     tooltipPosition="bottom-start"
                     tooltip={`
-                    Signs you up for the next game. If there
-                    is an ongoing one, you will be signed up
-                    for the next.
+                    报名参加下一场比赛。如果
+                    已有比赛正在进行，你将报名
+                    参加之后的一场。
                   `}
-                    content="Sign Up"
+                    content="报名"
                     onClick={() => act('basketball_signup')}
                   />
                   <Button
@@ -43,14 +43,14 @@ export const BasketballPanel = (props) => {
                     disabled={data.total_votes < data.players_min}
                     onClick={() => act('basketball_start')}
                   >
-                    Start
+                    开始
                   </Button>
                 </>
               }
             >
               <NoticeBox info>
-                The lobby has {data.total_votes} players signed up. The minigame
-                is for {data.players_min} to {data.players_max} players.
+                大厅已有 {data.total_votes} 名玩家报名。此小游戏
+                需要 {data.players_min} 至 {data.players_max} 名玩家。
               </NoticeBox>
 
               {data.lobbydata.map((lobbyist) => (
@@ -61,11 +61,11 @@ export const BasketballPanel = (props) => {
                   align="baseline"
                 >
                   <Stack.Item grow>{lobbyist.ckey}</Stack.Item>
-                  <Stack.Item>Status:</Stack.Item>
+                  <Stack.Item>状态：</Stack.Item>
                   <Stack.Item
                     color={lobbyist.status === 'Ready' ? 'green' : 'red'}
                   >
-                    {lobbyist.status}
+                    {lobbyist.status === 'Ready' ? '已就绪' : lobbyist.status === 'Disconnected' ? '已断开连接' : lobbyist.status}
                   </Stack.Item>
                 </Stack>
               ))}

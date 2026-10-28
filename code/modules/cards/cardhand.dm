@@ -23,11 +23,11 @@
 	var/broadcast_check = FALSE
 	for(var/obj/item/toy/singlecard/card in fetch_card_atoms())
 		if(user.is_holding(src) || card.flipped)
-			. += span_notice("这手牌中包含一张：[card.cardname]")
+			. += span_notice("这手牌中包含一张：[chinese_playing_card_display(card.cardname)]")
 			if(!card.flipped)
 				broadcast_check = TRUE
 		else if(HAS_TRAIT(user, TRAIT_XRAY_VISION))
-			. += span_notice("你用 X 光视力扫描这手牌，发现其中有一张：[card.cardname]")
+			. += span_notice("你用 X 光视力扫描这手牌，发现其中有一张：[chinese_playing_card_display(card.cardname)]")
 		var/marked_color = card.getMarkedColor(user)
 		if(marked_color)
 			. += span_notice("这手牌中有一张牌的一角带着 [marked_color] 标记！")

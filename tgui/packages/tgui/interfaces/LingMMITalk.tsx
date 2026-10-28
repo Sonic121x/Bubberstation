@@ -13,7 +13,7 @@ export const LingMMITalk = (props) => {
   const [mmiMessage, setmmiMessage] = useState('');
 
   return (
-    <Window title="Decoy Brain MMI View" height={360} width={360}>
+    <Window title="诱饵大脑人机接口视野" height={360} width={360}>
       <Window.Content>
         <Stack vertical>
           <Stack.Item align="center">
@@ -32,7 +32,7 @@ export const LingMMITalk = (props) => {
                 <TextArea
                   fluid
                   height="60px"
-                  placeholder="Send a message to have our decoy brain speak."
+                  placeholder="发送消息，让我们的诱饵大脑说话。"
                   onChange={setmmiMessage}
                   value={mmiMessage}
                 />
@@ -45,7 +45,7 @@ export const LingMMITalk = (props) => {
                     setmmiMessage('');
                   }}
                 >
-                  Send
+                  发送
                 </Button>
               </Stack.Item>
             </Stack>

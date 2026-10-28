@@ -20,7 +20,7 @@ export function ControlBar(props: ControlBarProps) {
           color={running ? 'bad' : 'good'}
           onClick={() => act('toggle_running')}
         >
-          {running ? 'Stop' : 'Start'}
+          {running ? '停止' : '开始'}
         </Button>
       </Stack.Item>
       <Stack.Item>
@@ -30,7 +30,7 @@ export function ControlBar(props: ControlBarProps) {
           onClick={() => act('clear')}
           disabled={running}
         >
-          Clear
+          清除
         </Button>
       </Stack.Item>
       <Stack.Item>
@@ -40,22 +40,22 @@ export function ControlBar(props: ControlBarProps) {
           selected={awaitingPick}
           onClick={() => act('start_pick_target')}
         >
-          {awaitingPick ? 'Click a target...' : 'Pick Target'}
+          {awaitingPick ? '点击一个目标……' : '选择目标'}
         </Button>
       </Stack.Item>
       <Stack.Item>
         <Button
           icon="angles-right"
           selected={autoScroll}
-          tooltip="Auto-scroll timeline to the latest event"
+          tooltip="自动将时间线滚动到最新事件"
           onClick={() => onAutoScrollChange(!autoScroll)}
         >
-          Auto-Scroll
+          自动滚动
         </Button>
       </Stack.Item>
       <Stack.Item>
         <Box inline color="label">
-          Zoom: {zoom < 1 ? zoom.toFixed(1) : zoom}x
+          缩放：{zoom < 1 ? zoom.toFixed(1) : zoom} 倍
         </Box>
       </Stack.Item>
     </Stack>

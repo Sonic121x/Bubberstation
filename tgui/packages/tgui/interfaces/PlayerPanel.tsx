@@ -18,7 +18,7 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { factionDisplay, factionOptions } from './PlayerPanelDisplay';
+import { factionDisplay, factionOptions, narrateColourDisplay, narrateColourOptions } from './PlayerPanelDisplay';
 type Data = {
   mob_name: string;
   mob_type: string;
@@ -73,13 +73,13 @@ type Data = {
 
 const PAGES = [
   {
-    title: 'General',
+    title: '常规',
     component: () => GeneralActions,
     color: 'green',
     icon: 'tools',
   },
   {
-    title: 'Mob',
+    title: '生物',
     component: () => PhysicalActions,
     color: 'yellow',
     icon: 'bolt',
@@ -88,25 +88,25 @@ const PAGES = [
     },
   },
   {
-    title: 'Transform',
+    title: '变形',
     component: () => TransformActions,
     color: 'orange',
     icon: 'exchange-alt',
   },
   {
-    title: 'Punish',
+    title: '惩罚',
     component: () => PunishmentActions,
     color: 'red',
     icon: 'gavel',
   },
   {
-    title: 'Fun',
+    title: '趣味',
     component: () => FunActions,
     color: 'blue',
     icon: 'laugh',
   },
   {
-    title: 'Other',
+    title: '其他',
     component: () => OtherActions,
     color: 'blue',
     icon: 'crosshairs',
@@ -130,14 +130,14 @@ export const PlayerPanel = () => {
   } = data;
 
   return (
-    <Window title={`${mob_name} Player Panel`} width={600} height={480}>
+    <Window title={`${mob_name} 玩家面板`} width={600} height={480}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>
             <Section>
               <Stack>
                 <Stack.Item width="80px" color="label">
-                  Name:
+                  名称：
                 </Stack.Item>
                 <Stack.Item grow={1}>
                   <Input
@@ -149,7 +149,7 @@ export const PlayerPanel = () => {
                 {!!client_ckey && (
                   <Stack.Item>
                     <Box inline ml=".75rem" mr=".5rem" color="label">
-                      Rank:
+                      等级：
                     </Box>
                     <Stack.Item inline>
                       <Button
@@ -166,7 +166,7 @@ export const PlayerPanel = () => {
 
               <Stack mt={1}>
                 <Stack.Item width="80px" color="label">
-                  Mob Type:
+                  生物类型：
                 </Stack.Item>
                 <Stack.Item grow={1}>{mob_type}</Stack.Item>
                 <Stack.Item>
@@ -177,7 +177,7 @@ export const PlayerPanel = () => {
                     icon="window-restore"
                     onClick={() => act('access_variables')}
                   >
-                    Access Variables
+                    查看变量
                   </Button>
                   {!!client_ckey && (
                     <Button
@@ -188,7 +188,7 @@ export const PlayerPanel = () => {
                       disabled={!playtimes_enabled}
                       onClick={() => act('access_playtimes')}
                     >
-                      {playtimes_enabled ? playtime : 'Playtimes'}
+                      {playtimes_enabled ? playtime : '游玩时长'}
                     </Button>
                   )}
                 </Stack.Item>
@@ -197,12 +197,12 @@ export const PlayerPanel = () => {
               {(!!client_ckey || !!last_ckey) && (
                 <Stack mt={1}>
                   <Stack.Item width="80px" color="label">
-                    {client_ckey ? 'Client:' : 'Last client:'}
+                    {client_ckey ? '客户端：' : '上个客户端：'}
                   </Stack.Item>
                   <Stack.Item grow={1}>
                     <Tooltip
                       position="bottom"
-                      content={ranks || 'No additional ranks'}
+                      content={ranks || '无其他等级'}
                     >
                       <Box
                         inline
@@ -220,7 +220,7 @@ export const PlayerPanel = () => {
                       <Button
                         ml={1}
                         icon="magnifying-glass"
-                        tooltip="Get player's current panel"
+                        tooltip="打开玩家的当前面板"
                         onClick={() => act('open_latest_panel')}
                       />
                     )}
@@ -235,7 +235,7 @@ export const PlayerPanel = () => {
                         icon="comment-dots"
                         onClick={() => act('private_message')}
                       >
-                        Private Message
+                        私人消息
                       </Button>
                       <Button
                         minWidth="11rem"
@@ -244,7 +244,7 @@ export const PlayerPanel = () => {
                         icon="phone-alt"
                         onClick={() => act('subtle_message')}
                       >
-                        Subtle Message
+                        隐秘消息
                       </Button>
                     </Stack.Item>
                   )}
@@ -296,7 +296,7 @@ const GeneralActions = () => {
   const { client_ckey, mob_type, admin_mob_type } = data;
   return (
     <Section>
-      <Section title="Damage">
+      <Section title="伤害">
         <Flex>
           <Button
             width="100%"
@@ -305,7 +305,7 @@ const GeneralActions = () => {
             disabled={!mob_type.includes('/mob/living')}
             onClick={() => act('heal')}
           >
-            Rejuvenate
+            完全恢复
           </Button>
           <Button
             width="100%"
@@ -315,22 +315,22 @@ const GeneralActions = () => {
             disabled={!mob_type.includes('/mob/living/carbon/human')}
             onClick={() => act('smite')}
           >
-            Smite
+            神罚
           </Button>
         </Flex>
       </Section>
 
-      <Section title="Teleportation">
+      <Section title="传送">
         <Flex>
           <Button.Confirm
             width="100%"
             icon="reply"
             onClick={() => act('bring')}
           >
-            Bring
+            拉到身边
           </Button.Confirm>
           <Button width="100%" onClick={() => act('orbit')}>
-            Orbit
+            跟随
           </Button>
           <Button.Confirm
             width="100%"
@@ -338,12 +338,12 @@ const GeneralActions = () => {
             icon="share"
             onClick={() => act('jump_to')}
           >
-            Jump To
+            传送至目标
           </Button.Confirm>
         </Flex>
       </Section>
 
-      <Section title="Miscellaneous">
+      <Section title="杂项">
         <Flex>
           <Button
             width="100%"
@@ -352,7 +352,7 @@ const GeneralActions = () => {
             disabled={!mob_type.includes('/mob/living/carbon/human')}
             onClick={() => act('select_equipment')}
           >
-            Select Equipment
+            选择装备
           </Button>
           <Button.Confirm
             icon="trash-alt"
@@ -361,7 +361,7 @@ const GeneralActions = () => {
             disabled={!mob_type.includes('/mob/living/carbon/human')}
             onClick={() => act('strip')}
           >
-            Drop All Items
+            丢弃全部物品
           </Button.Confirm>
           <Button
             width="100%"
@@ -369,7 +369,7 @@ const GeneralActions = () => {
             disabled={!client_ckey}
             onClick={() => act('traitor_panel')}
           >
-            Traitor Panel
+            叛徒面板
           </Button>
           <Button
             width="100%"
@@ -380,7 +380,7 @@ const GeneralActions = () => {
             }
             onClick={() => act('apply_client_quirks')}
           >
-            Apply Client Quirks
+            应用客户端特质
           </Button>
         </Flex>
         <Flex>
@@ -392,7 +392,7 @@ const GeneralActions = () => {
             disabled={!mob_type.includes('/mob/living/carbon/human')}
             onClick={() => act('cryo')}
           >
-            Send To Cryo
+            送入冷冻舱
           </Button.Confirm>
           <Button
             width="100%"
@@ -402,7 +402,7 @@ const GeneralActions = () => {
             textAlign="center"
             onClick={() => act('logs')}
           >
-            Logs
+            日志
           </Button>
           <Button.Confirm
             width="100%"
@@ -412,12 +412,12 @@ const GeneralActions = () => {
             disabled={!mob_type.includes('/mob/dead/observer')}
             tooltip={
               mob_type !== '/mob/dead/observer'
-                ? 'Can only be used on ghosts'
+                ? '仅可对幽灵使用'
                 : ''
             }
             onClick={() => act('lobby')}
           >
-            Send To Lobby
+            送回大厅
           </Button.Confirm>
         </Flex>
         <Flex>
@@ -427,12 +427,12 @@ const GeneralActions = () => {
             disabled={!mob_type.includes('/mob/living/carbon/human')}
             onClick={() => act('load_preferences')}
           >
-            Load Preferences
+            加载偏好设置
           </Button>
         </Flex>
       </Section>
 
-      <Section title="Control">
+      <Section title="控制">
         <Flex>
           <Button.Confirm
             width="100%"
@@ -441,7 +441,7 @@ const GeneralActions = () => {
             disabled={!client_ckey || !mob_type.includes('/mob/living')}
             onClick={() => act('ghost')}
           >
-            Eject Ghost
+            弹出灵魂
           </Button.Confirm>
           <Button.Confirm
             width="100%"
@@ -452,17 +452,17 @@ const GeneralActions = () => {
             }
             onClick={() => act('take_control')}
           >
-            Take Control
+            接管控制
           </Button.Confirm>
           <Button.Confirm
             width="100%"
             height="100%" // weird ass bug here, so height set to 100%
             icon="ghost"
-            tooltip="Offers control to ghosts"
+            tooltip="向幽灵提供控制权"
             disabled={!mob_type.includes('/mob/living')}
             onClick={() => act('offer_control')}
           >
-            Offer Control
+            提供控制权
           </Button.Confirm>
         </Flex>
       </Section>
@@ -488,7 +488,7 @@ const PhysicalActions = () => {
 
   return (
     <Section fill>
-      <Section title="Traits">
+      <Section title="特性">
         <Flex>
           <Button
             width="100%"
@@ -497,7 +497,7 @@ const PhysicalActions = () => {
             disabled={!mob_type.includes('/mob/living/carbon/human')}
             onClick={() => act('species')}
           >
-            Species
+            种族
           </Button>
           <Button
             width="100%"
@@ -506,7 +506,7 @@ const PhysicalActions = () => {
             disabled={!mob_type.includes('/mob/living/carbon/human')}
             onClick={() => act('quirk')}
           >
-            Quirks
+            特质
           </Button>
           <Button
             width="100%"
@@ -514,7 +514,7 @@ const PhysicalActions = () => {
             icon="magic"
             onClick={() => act('spell')}
           >
-            Spells
+            法术
           </Button>
         </Flex>
         <Flex mt={1}>
@@ -525,7 +525,7 @@ const PhysicalActions = () => {
             disabled={!mob_type.includes('/mob/living/carbon/human')}
             onClick={() => act('martial_art')}
           >
-            Martial Arts
+            武术
           </Button>
           <Button
             width="100%"
@@ -533,7 +533,7 @@ const PhysicalActions = () => {
             icon="lightbulb"
             onClick={() => act('skill_panel')}
           >
-            Skills
+            技能
           </Button>
           <Button
             width="100%"
@@ -541,12 +541,12 @@ const PhysicalActions = () => {
             icon="comment-dots"
             onClick={() => act('languages')}
           >
-            Languages
+            语言
           </Button>
         </Flex>
       </Section>
 
-      <Section title="Status Flags">
+      <Section title="状态标志">
         <Stack wrap>
           {Object.keys(glob_status_flags).map((flag) => {
             let isActive;
@@ -575,7 +575,7 @@ const PhysicalActions = () => {
       </Section>
 
       <Section
-        title="Limbs"
+        title="肢体"
         buttons={
           <Stack>
             {limbs.map((val, index) => (
@@ -613,7 +613,7 @@ const PhysicalActions = () => {
               })
             }
           >
-            Delimb
+            移除肢体
           </Button.Confirm>
           <Button.Confirm
             width="100%"
@@ -629,13 +629,13 @@ const PhysicalActions = () => {
               })
             }
           >
-            Relimb
+            恢复肢体
           </Button.Confirm>
         </Stack>
       </Section>
 
       <Section
-        title="Scale"
+        title="缩放"
         buttons={
           <Button
             icon="sync"
@@ -643,7 +643,7 @@ const PhysicalActions = () => {
               act('scale', { new_scale: 1 });
             }}
           >
-            Reset
+            重置
           </Button>
         }
       >
@@ -661,7 +661,7 @@ const PhysicalActions = () => {
       </Section>
 
       <Section
-        title="Speed"
+        title="速度"
         buttons={
           <Button
             icon="sync"
@@ -669,12 +669,12 @@ const PhysicalActions = () => {
               act('reset_speed');
             }}
           >
-            Reset
+            重置
           </Button>
         }
       >
         <Tooltip
-          content="Negative values = faster, positive values = slower"
+          content="负值加快，正值减慢"
           position="bottom"
         >
           <Box
@@ -686,7 +686,7 @@ const PhysicalActions = () => {
               cursor: 'help',
             }}
           >
-            Current speed: {mob_speed}
+            当前速度：{mob_speed}
           </Box>
         </Tooltip>
         <Slider
@@ -698,14 +698,14 @@ const PhysicalActions = () => {
           onChange={(_event, value: number) => {
             act('set_speed', { speed: value });
           }}
-          unit="Speed"
+          unit="速度"
         />
       </Section>
 
-      <Section title="Speak">
+      <Section title="发言">
         <Stack mt={1}>
           <Stack.Item width="100px" color="label">
-            Force Say:
+            强制说话：
           </Stack.Item>
           <Stack.Item grow={1}>
             <Input
@@ -716,7 +716,7 @@ const PhysicalActions = () => {
         </Stack>
         <Stack mt={2}>
           <Stack.Item width="100px" color="label">
-            Force Emote:
+            强制表情动作：
           </Stack.Item>
           <Stack.Item grow={1}>
             <Input
@@ -727,12 +727,12 @@ const PhysicalActions = () => {
         </Stack>
       </Section>
 
-      <Section title="Faction">
+      <Section title="阵营">
         <Stack vertical>
           <Stack.Item>
             <Stack>
               <Stack.Item width="100px" color="label">
-                Current:
+                当前：
               </Stack.Item>
               <Stack.Item grow={1}>
                 {current_faction && current_faction.length > 0 ? (
@@ -742,7 +742,7 @@ const PhysicalActions = () => {
                         key={index}
                         color="orange"
                         icon="times"
-                        tooltip="Click to remove faction"
+                        tooltip="点击移除阵营"
                         onClick={() => act('remove_faction', { faction })}
                       >
                         {factionDisplay(faction)}
@@ -750,7 +750,7 @@ const PhysicalActions = () => {
                     ))}
                   </Stack>
                 ) : (
-                  <Box color="label">No factions</Box>
+                  <Box color="label">无阵营</Box>
                 )}
               </Stack.Item>
             </Stack>
@@ -758,12 +758,12 @@ const PhysicalActions = () => {
           <Stack.Item>
             <Stack>
               <Stack.Item width="100px" color="label">
-                Add:
+                添加：
               </Stack.Item>
               <Stack.Item grow={1}>
                 <Dropdown
                   width="100%"
-                  placeholder="Select faction to add"
+                  placeholder="选择要添加的阵营"
                   options={factionOptions(glob_factions)}
                   selected={null}
                   onSelected={(value) => act('add_faction', { faction: value })}
@@ -788,7 +788,7 @@ const TransformActions = () => {
         textAlign="center"
         onClick={() => act('transform', { newType: '/mob/living' })}
       >
-        Custom
+        自定义
       </Button>
 
       {transformables.map((transformables_category) => {
@@ -858,10 +858,10 @@ const PunishmentActions = () => {
           disabled={!hasAnyKey}
           onClick={() => act('notes')}
         >
-          Notes
+          备注
         </Button>
       </Flex>
-      <Section title="Contain">
+      <Section title="限制行动">
         <Flex>
           <Button
             width="100%"
@@ -870,7 +870,7 @@ const PunishmentActions = () => {
             disabled={!mob_type.includes('/mob/living')}
             onClick={() => act('freeze')}
           >
-            Freeze
+            冻结
           </Button>
           <Button
             width="100%"
@@ -879,7 +879,7 @@ const PunishmentActions = () => {
             disabled={!mob_type.includes('/mob/living')}
             onClick={() => act('sleep')}
           >
-            Sleep
+            睡眠
           </Button>
           <Button.Confirm
             width="100%"
@@ -889,12 +889,12 @@ const PunishmentActions = () => {
             disabled={!mob_type.includes('/mob/living')}
             onClick={() => act('prison')}
           >
-            Admin Prison
+            管理员监狱
           </Button.Confirm>
         </Flex>
       </Section>
 
-      <Section title="Banishment">
+      <Section title="封禁处理">
         <Flex>
           <Button.Confirm
             width="100%"
@@ -903,7 +903,7 @@ const PunishmentActions = () => {
             disabled={!client_ckey}
             onClick={() => act('kick')}
           >
-            Kick
+            踢出
           </Button.Confirm>
           <Button
             width="100%"
@@ -912,7 +912,7 @@ const PunishmentActions = () => {
             disabled={!hasAnyKey}
             onClick={() => act('ban')}
           >
-            Ban
+            封禁
           </Button>
           <Button.Confirm
             width="100%"
@@ -922,13 +922,13 @@ const PunishmentActions = () => {
             disabled={!hasAnyKey}
             onClick={() => act('sticky_ban')}
           >
-            Sticky Ban
+            关联封禁
           </Button.Confirm>
         </Flex>
       </Section>
 
       <Section
-        title="Mute"
+        title="禁言"
         buttons={
           <>
             <Button
@@ -937,7 +937,7 @@ const PunishmentActions = () => {
               disabled={!client_ckey}
               onClick={() => act('unmute_all')}
             >
-              Unmute All
+              全部解除禁言
             </Button>
             <Button
               icon="lock"
@@ -945,7 +945,7 @@ const PunishmentActions = () => {
               disabled={!client_ckey}
               onClick={() => act('mute_all')}
             >
-              Mute All
+              全部禁言
             </Button>
           </>
         }
@@ -976,11 +976,11 @@ const PunishmentActions = () => {
         </Flex>
       </Section>
       <Section
-        title="Investigate"
+        title="调查"
         buttons={
           <Flex>
             <Flex.Item align="center" mr=".5rem" color="label">
-              Related accounts by:
+              按以下信息查找关联账户：
             </Flex.Item>
             <Button
               minWidth="5rem"
@@ -1005,21 +1005,21 @@ const PunishmentActions = () => {
           </Flex>
         }
       >
-        <Collapsible width="100%" color="orange" title="Details">
+        <Collapsible width="100%" color="orange" title="详情">
           <LabeledList>
-            <LabeledList.Item label="NOW" color="label">
+            <LabeledList.Item label="当前时间" color="label">
               {current_time}
             </LabeledList.Item>
-            <LabeledList.Item label="Account made">
+            <LabeledList.Item label="账户创建时间">
               {data_account_join_date}
             </LabeledList.Item>
-            <LabeledList.Item label="First joined server">
+            <LabeledList.Item label="首次加入服务器">
               {data_player_join_date}
             </LabeledList.Item>
-            <LabeledList.Item label="Byond version">
+            <LabeledList.Item label="BYOND 版本">
               {data_byond_version}
             </LabeledList.Item>
-            <LabeledList.Item label="Old names">
+            <LabeledList.Item label="曾用名">
               {data_old_names}
             </LabeledList.Item>
             <LabeledList.Item label="Discord">
@@ -1029,11 +1029,11 @@ const PunishmentActions = () => {
               discord_id !== 'No ckey found' ? (
                 <Box color="good">{`<@${discord_id}>`}</Box>
               ) : discord_id === 'Not found' ? (
-                <Box color="bad">No Discord ID found</Box>
+                <Box color="bad">未找到 Discord ID</Box>
               ) : discord_id === 'Database error' ? (
-                <Box color="bad">Database error</Box>
+                <Box color="bad">数据库错误</Box>
               ) : discord_id === 'No ckey found' ? (
-                <Box color="bad">No ckey found</Box>
+                <Box color="bad">未找到 ckey</Box>
               ) : (
                 <Button
                   icon="discord"
@@ -1042,7 +1042,7 @@ const PunishmentActions = () => {
                   disabled={!hasAnyKey}
                   onClick={() => act('show_discord_id')}
                 >
-                  Get ID
+                  获取 ID
                 </Button>
               )}
             </LabeledList.Item>
@@ -1093,11 +1093,11 @@ const FunActions = () => {
   return (
     <Section fill>
       <NoticeBox info textAlign="center">
-        These features are centred on YOUR viewport
+        这些功能以你的视图中心为作用中心
       </NoticeBox>
 
       <Section
-        title="Explosion"
+        title="爆炸"
         buttons={
           <>
             <Button.Checkbox
@@ -1105,14 +1105,14 @@ const FunActions = () => {
               color="transparent"
               onClick={() => setEmpMode(!empMode)}
             >
-              EMP Mode
+              电磁脉冲模式
             </Button.Checkbox>
             <Button
               icon={lockExplode ? 'lock' : 'lock-open'}
               onClick={() => setLockExplode(!lockExplode)}
               color={lockExplode ? 'green' : 'bad'}
             >
-              {lockExplode ? 'Locked' : 'Unlocked'}
+              {lockExplode ? '已锁定' : '已解锁'}
             </Button>
           </>
         }
@@ -1129,13 +1129,13 @@ const FunActions = () => {
               }
             >
               <Box height="100%" pt={2} pb={2} textAlign="center">
-                Detonate
+                引爆
               </Box>
             </Button>
           </Flex.Item>
           <Flex.Item ml={1} grow={1}>
             <Slider
-              unit="Range"
+              unit="范围"
               value={expPower}
               stepPixelSize={15}
               onChange={(e, value) => setExpPower(value)}
@@ -1152,14 +1152,14 @@ const FunActions = () => {
         </Flex>
       </Section>
       <Section
-        title="Narrate"
+        title="旁白"
         buttons={
           <Button
             icon={narrateGlobal ? 'check-square-o' : 'square-o'}
             color={narrateGlobal ? 'red' : 'transparent'}
             onClick={() => setNarrateGlobal(!narrateGlobal)}
           >
-            Global Narrate
+            全局旁白
           </Button>
         }
       >
@@ -1167,15 +1167,15 @@ const FunActions = () => {
           <Flex width="100%" wrap>
             <Flex.Item width="52%">
               <LabeledList>
-                <LabeledList.Item label="Colour">
+                <LabeledList.Item label="颜色">
                   <Dropdown
                     width="calc(100% - 1rem)"
-                    options={Object.keys(colours)}
-                    selected={narrateColour}
+                    options={narrateColourOptions(Object.keys(colours))}
+                    selected={narrateColour} displayText={narrateColourDisplay(narrateColour)}
                     onSelected={(value) => setNarrateColour(value)}
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="Font">
+                <LabeledList.Item label="字体">
                   <Dropdown
                     width="calc(100% - 1rem)"
                     selected={narrateFont}
@@ -1193,7 +1193,7 @@ const FunActions = () => {
             </Flex.Item>
             <Flex.Item width="20%">
               <LabeledList>
-                <LabeledList.Item label="Bold">
+                <LabeledList.Item label="粗体">
                   <Button.Checkbox
                     checked={narrateBold}
                     height="100%"
@@ -1201,7 +1201,7 @@ const FunActions = () => {
                     onClick={() => setNarrateBold(!narrateBold)}
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="Italic">
+                <LabeledList.Item label="斜体">
                   <Button.Checkbox
                     checked={narrateItalic}
                     height="100%"
@@ -1213,7 +1213,7 @@ const FunActions = () => {
             </Flex.Item>
             <Flex.Item width="28%">
               <LabeledList>
-                <LabeledList.Item label="Size">
+                <LabeledList.Item label="大小">
                   <NumberInput
                     width="100%"
                     value={narrateSize}
@@ -1227,13 +1227,13 @@ const FunActions = () => {
                   />
                 </LabeledList.Item>
                 {!narrateGlobal && (
-                  <LabeledList.Item label="Range">
+                  <LabeledList.Item label="范围">
                     <NumberInput
                       width="100%"
                       value={narrateRange}
                       minValue={1}
                       maxValue={14}
-                      unit="Tiles"
+                      unit="格"
                       step={1}
                       // align="center"
                       stepPixelSize={25}
@@ -1269,7 +1269,7 @@ const FunActions = () => {
               })
             }
           >
-            Broadcast
+            广播
           </Button>
         </Flex>
 
@@ -1293,7 +1293,7 @@ const OtherActions = () => {
 
   return (
     <Section fill>
-      <Section title="Miscellaneous Features">
+      <Section title="其他功能">
         <Button
           width="100%"
           p=".5rem"
@@ -1302,7 +1302,7 @@ const OtherActions = () => {
           disabled={!client_ckey}
           onClick={() => act('job_exemption_panel')}
         >
-          Job Exemption Panel
+          职位限制豁免面板
         </Button>
         <Button
           width="100%"
@@ -1312,7 +1312,7 @@ const OtherActions = () => {
           disabled={!client_ckey}
           onClick={() => act('commend')}
         >
-          Commend Behavior
+          表彰行为
         </Button>
         <Button
           width="100%"
@@ -1322,7 +1322,7 @@ const OtherActions = () => {
           disabled={!client_ckey}
           onClick={() => act('play_sound_to')}
         >
-          Play Sound To
+          向玩家播放声音
         </Button>
         <Button
           width="100%"
@@ -1332,7 +1332,7 @@ const OtherActions = () => {
           disabled={!mob_type.includes('/mob/living/silicon/robot')}
           onClick={() => act('borg_panel')}
         >
-          Borg Panel
+          机器人面板
         </Button>
       </Section>
     </Section>

@@ -51,21 +51,21 @@ export const Protean = () => {
   return (
     <Section
       fill
-      title="Suit Lock"
+      title="装甲锁定"
       buttons={
         <Button
           style={{ flex: 0.2 }}
           onClick={() => act('lock')}
           color={lock ? 'bad' : 'good'}
         >
-          {lock ? 'Locked' : 'Unlocked'}
+          {lock ? '已锁定' : '已解锁'}
         </Button>
       }
     >
       <NoticeBox color={lock ? 'bad' : 'good'} />
       <Divider />
       <LabeledList>
-        <LabeledList.Item label="Metal Storage">
+        <LabeledList.Item label="金属储量">
           <ProgressBar
             value={metal / metal_max}
             ranges={{
@@ -82,16 +82,16 @@ export const Protean = () => {
       <Table>
         <Table.Row header>
           <Table.Cell fontSize="10px" textAlign="center">
-            Low Power Mode
+            低功耗模式
           </Table.Cell>
           <Table.Cell fontSize="10px" textAlign="center">
-            Suit Transformation
+            装甲变形
           </Table.Cell>
           <Table.Cell fontSize="10px" textAlign="center">
-            Heal Organs
+            修复器官
           </Table.Cell>
           <Table.Cell fontSize="10px" textAlign="center">
-            Wearer Transformation
+            穿戴者变形
           </Table.Cell>
         </Table.Row>
         <Table.Row>
@@ -116,7 +116,7 @@ export const Protean = () => {
             <Button
               color={transformation ? 'good' : 'default'}
               icon="video-camera"
-              tooltip="Make your current wearer temporarily look like you"
+              tooltip="使当前穿戴者暂时变成你的外貌"
               onClick={() => act('protean_transform')}
             />
           </Table.Cell>
@@ -132,7 +132,7 @@ export const Protean = () => {
                 dmIconState={icon_state}
                 style={{ display: 'inline-flex' }}
                 tooltipPosition="top"
-                tooltip="Modsuit UI"
+                tooltip="模块化装甲界面"
                 onClick={() => act('openui')}
               />
             </Stack.Item>
@@ -143,16 +143,16 @@ export const Protean = () => {
                 icon="right-from-bracket"
                 color="good"
                 confirmColor="bad"
-                confirmContent="Are you sure?"
+                confirmContent="确定吗？"
                 disabled={!assimilated || !is_owner}
                 tooltip={
                   assimilated
-                    ? 'Extract the modsuit you absorbed from your body'
-                    : 'No assimilated modsuit'
+                    ? '将吸收的模块化装甲从体内取出'
+                    : '尚未同化模块化装甲'
                 }
                 onClick={() => act('eject_modsuit')}
               >
-                Eject Suit
+                弹出装甲
               </Button.Confirm>
             </Stack.Item>
           </Stack>

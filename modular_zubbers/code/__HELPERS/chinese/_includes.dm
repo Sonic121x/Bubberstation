@@ -76,5 +76,8 @@
 #include "labels/zubbers_robotic_styles.dm"
 #include "labels/zubbers_roles.dm"
 #include "labels/dreams.dm"
+#include "labels/tcg.dm"
+#include "labels/paper_blank.dm"
+#include "labels/playing_card.dm"
 #include "labels/zubbers_modules_accessories.dm"
 #include "labels/zubbers_species_accessories.dm"

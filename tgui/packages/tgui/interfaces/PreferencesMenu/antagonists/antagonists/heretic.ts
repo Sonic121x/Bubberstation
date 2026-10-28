@@ -1,18 +1,18 @@
 import { type Antagonist, Category } from '../base';
 // BUBBER EDIT CHANGE - description completely rewritten
 export const HERETIC_MECHANICAL_DESCRIPTION = `
-      Find hidden influences and ways to gain magical
-      powers and become powerful as one of several paths.
+      寻找隐藏的影响物及获取魔法力量的途径，
+      选择一条道路，逐步变得强大。
    `;
 
 const Heretic: Antagonist = {
   key: 'heretic',
-  name: 'Acolyte', // BUBBER EDIT CHANGE - renamed to Acolyte
+  name: '侍徒', // BUBBER EDIT CHANGE - renamed to Acolyte
   description: [
     `
-      Forgotten, devoured, gutted. Humanity has forgotten the eldritch forces
-      of decay, but the mansus veil has weakened. We will make them taste fear
-      again...
+      遗忘、吞噬、掏空。人类早已忘却那些掌控腐朽的
+      诡异力量，但漫宿的帷幕已然薄弱。我们将让他们
+      再次品尝恐惧……
     `,
     HERETIC_MECHANICAL_DESCRIPTION,
   ],

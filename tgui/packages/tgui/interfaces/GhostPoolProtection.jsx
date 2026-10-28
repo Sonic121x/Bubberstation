@@ -14,7 +14,7 @@ export const GhostPoolProtection = (props) => {
   } = data;
   return (
     <Window
-      title="Ghost Pool Protection"
+      title="幽灵候选池保护"
       width={400}
       height={270}
       theme="admin"
@@ -22,28 +22,28 @@ export const GhostPoolProtection = (props) => {
       <Window.Content>
         <Flex grow={1} height="100%">
           <Section
-            title="Options"
+            title="选项"
             buttons={
               <>
                 <Button
                   color="good"
                   icon="plus-circle"
-                  content="Enable Everything"
+                  content="全部启用"
                   onClick={() => act('all_roles')}
                 />
                 <Button
                   color="bad"
                   icon="minus-circle"
-                  content="Disable Everything"
+                  content="全部禁用"
                   onClick={() => act('no_roles')}
                 />
               </>
             }
           >
             <NoticeBox danger>
-              For people creating a sneaky event: If you toggle Station Created
-              Sentience, people may catch on that admins have disabled roles for
-              your event...
+              筹备秘密事件时请注意：如果切换空间站创造的
+              智慧生命选项，玩家可能会发现管理员为了
+              此事件禁用了角色……
             </NoticeBox>
             <Flex.Item>
               <Button
@@ -51,7 +51,7 @@ export const GhostPoolProtection = (props) => {
                 textAlign="center"
                 color={events_or_midrounds ? 'good' : 'bad'}
                 icon="meteor"
-                content="Events and Midround Rulesets"
+                content="事件与回合中途规则集"
                 onClick={() => act('toggle_events_or_midrounds')}
               />
             </Flex.Item>
@@ -61,7 +61,7 @@ export const GhostPoolProtection = (props) => {
                 textAlign="center"
                 color={spawners ? 'good' : 'bad'}
                 icon="pastafarianism"
-                content="Ghost Role Spawners"
+                content="幽灵角色生成点"
                 onClick={() => act('toggle_spawners')}
               />
             </Flex.Item>
@@ -71,7 +71,7 @@ export const GhostPoolProtection = (props) => {
                 textAlign="center"
                 color={station_sentience ? 'good' : 'bad'}
                 icon="user-astronaut"
-                content="Station Created Sentience"
+                content="空间站创造的智慧生命"
                 onClick={() => act('toggle_station_sentience')}
               />
             </Flex.Item>
@@ -81,7 +81,7 @@ export const GhostPoolProtection = (props) => {
                 textAlign="center"
                 color={silicons ? 'good' : 'bad'}
                 icon="robot"
-                content="Silicons"
+                content="硅基生命"
                 onClick={() => act('toggle_silicons')}
               />
             </Flex.Item>
@@ -91,7 +91,7 @@ export const GhostPoolProtection = (props) => {
                 textAlign="center"
                 color={minigames ? 'good' : 'bad'}
                 icon="gamepad"
-                content="Minigames"
+                content="小游戏"
                 onClick={() => act('toggle_minigames')}
               />
             </Flex.Item>
@@ -101,7 +101,7 @@ export const GhostPoolProtection = (props) => {
                 textAlign="center"
                 color="orange"
                 icon="check"
-                content="Apply Changes"
+                content="应用更改"
                 onClick={() => act('apply_settings')}
               />
             </Flex.Item>

@@ -70,58 +70,58 @@ export const Gps = () => {
       ]),
   ])(data.signals || []);
   return (
-    <Window title="Global Positioning System" width={470} height={700}>
+    <Window title="全球定位系统" width={470} height={700}>
       <Window.Content scrollable>
         <Section
-          title="Control"
+          title="控制"
           buttons={
             <Button
               icon="power-off"
               selected={power}
               onClick={() => act('power')}
             >
-              {power ? 'On' : 'Off'}
+              {power ? '开启' : '关闭'}
             </Button>
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Tag">
+            <LabeledList.Item label="标签">
               <Button icon="pencil-alt" onClick={() => act('rename')}>
                 {tag}
               </Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Scan Mode">
+            <LabeledList.Item label="扫描模式">
               <Button
                 icon={updating ? 'unlock' : 'lock'}
                 color={!updating && 'bad'}
                 onClick={() => act('updating')}
               >
-                {updating ? 'AUTO' : 'MANUAL'}
+                {updating ? '自动' : '手动'}
               </Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Range">
+            <LabeledList.Item label="范围">
               <Button
                 icon="sync"
                 selected={!globalmode}
                 onClick={() => act('globalmode')}
               >
-                {globalmode ? 'MAXIMUM' : 'LOCAL'}
+                {globalmode ? '最大' : '本地'}
               </Button>
             </LabeledList.Item>
           </LabeledList>
         </Section>
         {!!power && (
           <>
-            <Section title="Current Location">
+            <Section title="当前位置">
               <Box fontSize="18px">
                 {currentArea} ({currentCoords})
               </Box>
             </Section>
             <Section
-              title="Detected Signals"
+              title="检测到的信号"
               buttons={
                 <Input
-                  placeholder="Search by name..."
+                  placeholder="按名称搜索……"
                   width="200px"
                   value={searchName}
                   onChange={(value) => setSearchName(value)}
@@ -130,9 +130,9 @@ export const Gps = () => {
             >
               <Table>
                 <Table.Row bold>
-                  <Table.Cell>Name</Table.Cell>
-                  <Table.Cell collapsing>Direction</Table.Cell>
-                  <Table.Cell collapsing>Coordinates</Table.Cell>
+                  <Table.Cell>名称</Table.Cell>
+                  <Table.Cell collapsing>方向</Table.Cell>
+                  <Table.Cell collapsing>坐标</Table.Cell>
                 </Table.Row>
                 {signals
                   .filter(searchByName)

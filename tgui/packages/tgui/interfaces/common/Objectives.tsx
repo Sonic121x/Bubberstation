@@ -42,9 +42,9 @@ export const ObjectivePrintout = (props: ObjectivePrintoutProps) => {
 
   return (
     <Stack fill={fill} vertical>
-      <Stack.Item bold>{titleMessage || `Your current objectives`}:</Stack.Item>
+      <Stack.Item bold>{titleMessage || `你当前的目标`}:</Stack.Item>
       <Stack.Item>
-        {(objectives.length === 0 && 'None!') ||
+        {(objectives.length === 0 && '无！') ||
           objectives.map((objective) => (
             <Stack.Item fontSize={objectiveTextSize} key={objective.count}>
               {objectivePrefix || '#'}
@@ -73,7 +73,7 @@ export const ReplaceObjectivesButton = (props: ReplaceObjectivesProps) => {
     can_change_objective,
     button_title,
     button_colour,
-    button_tooltip = 'Replace your existing objectives with a custom one. This action can only be taken once',
+    button_tooltip = '将现有目标替换为自定义目标。此操作只能执行一次。',
   } = props;
   const { act } = useBackend();
   if (!can_change_objective) {

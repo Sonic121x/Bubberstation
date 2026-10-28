@@ -26,13 +26,13 @@ export const PowerDetails = (props: PowerDetailsProps) => {
     <Section
       fill
       scrollable={!!powers}
-      title="Powers"
+      title="能力"
       buttons={
         <Button
           icon="info"
           tooltipPosition="left"
           tooltip={
-            'Select a Power using the dropdown menu for an in-depth explanation.'
+            '通过下拉菜单选择能力，查看详细说明。'
           }
         />
       }

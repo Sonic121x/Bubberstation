@@ -12,26 +12,26 @@ import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 const weaponlist = [
-  'Fist Fight',
-  'Ceremonial Weapons',
-  'Melee Only',
-  'Any Weapons',
+  '徒手搏斗',
+  '仪式武器',
+  '仅限近战',
+  '任意武器',
 ];
 
-const stakelist = ['No Stakes', 'Holy Match', 'Money Match', 'Your Soul'];
+const stakelist = ['无赌注', '神圣对决', '金钱对决', '你的灵魂'];
 
 const weaponblurb = [
-  'You will fight with your fists only. Any weapons will be considered a violation.',
-  'You can only fight with ceremonial weapons. You will be at a severe disadvantage without one!',
-  'You can fight with weapons, or fists if you have none. Ranged weapons are a violation.',
-  'You can fight with any and all weapons as you please. Try not to kill them, okay?',
+  '只能徒手战斗。使用任何武器都算违规。',
+  '只能使用仪式武器战斗。没有武器会让你处于极大劣势！',
+  '可以使用近战武器，没有武器也可以徒手。使用远程武器算违规。',
+  '可以随意使用任何武器。尽量别杀死对方，好吗？',
 ];
 
 const stakesblurb = [
-  "No stakes, just for fun. Who doesn't love some recreational sparring?",
-  "A match for the chaplain's deity. The Chaplain suffers large consequences for failure, but advances their sect by winning.",
-  'A match with money on the line. Whomever wins takes all the money of whomever loses.',
-  "A lethal match with the loser's soul becoming under ownership of the winner.",
+  "没有赌注，纯粹娱乐。谁不喜欢轻松切磋一下呢？",
+  "献给牧师所信奉神祇的对决。牧师战败会付出沉重代价，获胜则能壮大教派。",
+  '以金钱为赌注的对决。胜者获得败者的全部金钱。',
+  "生死对决，败者的灵魂将归胜者所有。",
 ];
 
 type Info = {
@@ -73,22 +73,22 @@ export const SparringContract = (props) => {
                 <Stack.Item>
                   <Stack fill>
                     <Stack.Item grow fontSize="16px">
-                      Weapons:
+                      武器：
                     </Stack.Item>
                     <Stack.Item>
                       <Button
                         tooltip={`
-                        The Chaplain's Deity wishes for honorable fighting.
-                        As such, it uses contracts. Signing your name will
-                        set the terms for the battle. Then, the person you
-                        intend to spar with must sign the other side. If terms
-                        are changed on an already signed contract, the
-                        signatures will erase and the new terms must be
-                        re-agreed upon.
+                        牧师的神祇希望战斗光明正大，
+                        因此要求签订契约。签下姓名
+                        即表示确定这场战斗的条款。
+                        随后，你的切磋对象必须在另一侧签字。
+                        如果已签署的契约条款发生变化，
+                        所有签名都会被清除，双方必须
+                        重新同意新的条款。
                         `}
                         icon="info"
                       >
-                        Contract?
+                        契约说明
                       </Button>
                     </Stack.Item>
                   </Stack>
@@ -110,7 +110,7 @@ export const SparringContract = (props) => {
             </Stack.Item>
             <Stack.Item>
               <Stack vertical>
-                <Stack.Item fontSize="16px">Arena:</Stack.Item>
+                <Stack.Item fontSize="16px">场地：</Stack.Item>
                 <Stack.Item>
                   <Dropdown
                     width="100%"
@@ -121,15 +121,15 @@ export const SparringContract = (props) => {
                 </Stack.Item>
                 <Stack.Item>
                   <BlockQuote>
-                    This fight will take place in the {area}. Leaving the arena
-                    mid-fight is a violation.
+                    战斗将在{area}进行。
+                    战斗中途离开场地属于违规。
                   </BlockQuote>
                 </Stack.Item>
               </Stack>
             </Stack.Item>
             <Stack.Item>
               <Stack vertical>
-                <Stack.Item fontSize="16px">Stakes:</Stack.Item>
+                <Stack.Item fontSize="16px">赌注：</Stack.Item>
                 <Stack.Item>
                   <Dropdown
                     width="100%"
@@ -160,12 +160,12 @@ export const SparringContract = (props) => {
                         })
                       }
                     >
-                      Sign Here
+                      在此签名
                     </Button>
                   )) ||
                     left_sign}
                 </Stack.Item>
-                <Stack.Item fontSize="16px">VS</Stack.Item>
+                <Stack.Item fontSize="16px">对阵</Stack.Item>
                 <Stack.Item fontSize={right_sign !== 'none' && '14px'} grow>
                   {(right_sign === 'none' && (
                     <Button
@@ -178,7 +178,7 @@ export const SparringContract = (props) => {
                         })
                       }
                     >
-                      Sign Here
+                      在此签名
                     </Button>
                   )) ||
                     right_sign}
@@ -196,38 +196,38 @@ export const SparringContract = (props) => {
                     icon="fist-raised"
                     onClick={() => act('fight')}
                   >
-                    FIGHT!
+                    开战！
                   </Button>
                   <Button
                     tooltip={`
-                      If you've already signed but you want to renegotiate
-                      the terms, you can clear out the signatures with
-                      this button.
+                      如果已经签字但想重新协商
+                      条款，可以使用此按钮
+                      清除所有签名。
                     `}
                     icon="door-open"
                     onClick={() => act('clear')}
                   >
-                    Clear
+                    清除
                   </Button>
                 </Stack.Item>
                 <Stack.Item>
                   <Button
                     tooltip={
                       (in_area &&
-                        `Both participants are present in the ${area}.`) ||
-                      'Both participants need to be in the arena!'
+                        `双方均已到达${area}。`) ||
+                      '双方都必须位于场地内！'
                     }
                     color={(in_area && 'green') || 'red'}
                     icon="ring"
                   >
-                    Arena
+                    场地
                   </Button>
                   <Button
                     tooltip={
                       (left_sign !== 'none' &&
                         right_sign !== 'none' &&
-                        'Both signatures present, terms agreed upon.') ||
-                      'You need signatures from both fighters on the terms!'
+                        '双方均已签名并同意条款。') ||
+                      '双方都必须签名同意条款！'
                     }
                     color={
                       (left_sign !== 'none' &&
@@ -237,18 +237,18 @@ export const SparringContract = (props) => {
                     }
                     icon="file-signature"
                   >
-                    Signatures
+                    签名
                   </Button>
                   <Button
                     tooltip={
                       (!no_chaplains &&
-                        'At least one chaplain is present. Holy matches allowed.') ||
-                      'No chaplain present for this fight. No Holy Matches!'
+                        '至少有一名牧师在场，允许进行神圣对决。') ||
+                      '这场战斗没有牧师参与，无法进行神圣对决！'
                     }
                     color={(!no_chaplains && 'green') || 'yellow'}
                     icon="cross"
                   >
-                    Chaplain
+                    牧师
                   </Button>
                 </Stack.Item>
               </Stack>

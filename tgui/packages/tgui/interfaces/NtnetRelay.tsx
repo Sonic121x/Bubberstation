@@ -17,27 +17,27 @@ type Data = {
   dos_crashed: BooleanLike;
 };
 
-const OUTAGE_WARNING = `This system is suffering temporary outage due to
-overflow of traffic buffers. Until buffered traffic is processed, all
-further requests will be dropped. Frequent occurences of this
-error may indicate insufficient hardware capacity of your
-network. Please contact your network planning department for
-instructions on how to resolve this issue.`;
+const OUTAGE_WARNING = `由于网络缓冲区溢出，
+此系统暂时中断服务。在积压的数据处理完毕前，
+所有新请求都将被丢弃。如果此错误
+频繁出现，可能说明您的网络硬件容量不足。
+请联系网络规划部门，
+了解如何解决此问题。`;
 
 export const NtnetRelay = (props) => {
   const { act, data } = useBackend<Data>();
   const { enabled, dos_capacity, dos_overload, dos_crashed } = data;
 
   return (
-    <Window title="NtNet Quantum Relay" width={400} height={300}>
+    <Window title="纳米传讯网络量子中继器" width={400} height={300}>
       <Window.Content>
         <Section
-          title="Network Buffer"
+          title="网络缓冲区"
           buttons={
             <Button
               icon="power-off"
               selected={enabled}
-              content={enabled ? 'ENABLED' : 'DISABLED'}
+              content={enabled ? '已启用' : '已禁用'}
               onClick={() => act('toggle')}
             />
           }
@@ -54,18 +54,18 @@ export const NtnetRelay = (props) => {
             </ProgressBar>
           ) : (
             <Box fontFamily="monospace">
-              <Box fontSize="20px">NETWORK BUFFER OVERFLOW</Box>
-              <Box fontSize="16px">OVERLOAD RECOVERY MODE</Box>
+              <Box fontSize="20px">网络缓冲区溢出</Box>
+              <Box fontSize="16px">过载恢复模式</Box>
               <Box>{OUTAGE_WARNING}</Box>
               <Box fontSize="20px" color="bad">
-                ADMINISTRATOR OVERRIDE
+                管理员强制操作
               </Box>
               <Box fontSize="16px" color="bad">
-                CAUTION - DATA LOSS MAY OCCUR
+                注意——可能导致数据丢失
               </Box>
               <Button
                 icon="signal"
-                content="PURGE BUFFER"
+                content="清空缓冲区"
                 mt={1}
                 color="bad"
                 onClick={() => act('restart')}

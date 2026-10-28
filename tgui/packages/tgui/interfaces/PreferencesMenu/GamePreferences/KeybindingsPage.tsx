@@ -160,7 +160,7 @@ class KeybindingButton extends Component<{
               : 'green'
         }
       >
-        {keyText}
+        {keyText === 'Unbound' ? '未绑定' : keyText}
       </Button>
     );
 
@@ -217,7 +217,7 @@ function ResetToDefaultButton(props: ResetToDefaultButtonProps) {
         });
       }}
     >
-      Reset to Defaults
+      恢复默认
     </Button>
   );
 }
@@ -431,7 +431,7 @@ export class KeybindingsPage extends Component<any, KeybindingsPageState> {
     }
 
     if (lastKeyboardEvent === undefined) {
-      return 'Set New / ESC to Clear';
+      return '按键设置／ESC 清除';
     }
 
     return formatKeyboardEvent(lastKeyboardEvent);
@@ -507,7 +507,7 @@ export class KeybindingsPage extends Component<any, KeybindingsPageState> {
 
           <Stack.Item align="center">
             <Button.Confirm onClick={() => act('reset_all_keybinds')}>
-              Reset all keybindings
+              重置所有按键绑定
             </Button.Confirm>
           </Stack.Item>
         </Stack>

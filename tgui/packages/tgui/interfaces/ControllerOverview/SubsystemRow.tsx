@@ -30,19 +30,19 @@ export function SubsystemRow(props: Props) {
 
   let icon = 'play';
   let color = 'good';
-  let tooltip = 'Operational';
+  let tooltip = '正常运行';
   if (!initialized) {
     icon = 'circle-exclamation';
     color = 'darkgreen';
-    tooltip = 'Not initialized';
+    tooltip = '尚未初始化';
   } else if (doesnt_fire) {
     icon = 'check';
     color = 'grey';
-    tooltip = 'Does not fire';
+    tooltip = '不定时执行';
   } else if (!can_fire) {
     icon = 'pause';
     color = 'grey';
-    tooltip = 'Paused';
+    tooltip = '已暂停';
   }
 
   let valueDisplay = '';
@@ -96,7 +96,7 @@ export function SubsystemRow(props: Props) {
       <Table.Cell collapsing verticalAlign="top">
         <Button
           icon="wrench"
-          tooltip="View Variables"
+          tooltip="查看变量"
           onClick={() => {
             act('view_variables', { ref: ref });
           }}

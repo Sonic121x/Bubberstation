@@ -28,18 +28,18 @@ export function AdminPage({
           }}
           disabled={!serverState.canAdminHelp}
         >
-          Create Admin Ticket
+          创建管理员求助单
         </MenuButton>
         <MenuButton
           onClick={() => onAction('view_ticket')}
           blinking={serverState.hasTicketNotification}
           tooltip={
             serverState.hasTicketNotification
-              ? 'An admin is trying to talk to you!'
+              ? '有管理员正在尝试联系你！'
               : undefined
           }
         >
-          View Latest Ticket
+          查看最新求助单
         </MenuButton>
         <MenuButton
           onClick={() => {
@@ -47,7 +47,7 @@ export function AdminPage({
             onClose();
           }}
         >
-          See Admin Notices
+          查看管理员通知
         </MenuButton>
         <MenuButton
           onClick={() => {
@@ -55,7 +55,7 @@ export function AdminPage({
             onClose();
           }}
         >
-          Pray
+          祈祷
         </MenuButton>
         {!!serverState.canSeeNotes && (
           <MenuButton
@@ -64,7 +64,7 @@ export function AdminPage({
               onClose();
             }}
           >
-            See Notes
+            查看记录
           </MenuButton>
         )}
       </div>
@@ -79,7 +79,7 @@ function BackButton({ onClick }: { onClick: () => void }) {
         <span className="escape-menu-icons40x40 template" />
         <span className="escape-menu-icons40x40 back escape-menu__icon-overlay" />
       </div>
-      <span>Back</span>
+      <span>返回</span>
     </button>
   );
 }

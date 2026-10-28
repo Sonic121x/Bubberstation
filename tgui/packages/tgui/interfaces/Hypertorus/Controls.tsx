@@ -139,9 +139,9 @@ export const HypertorusSecondaryControls = (props) => {
   } = data;
 
   return (
-    <Section title="Reactor Control">
+    <Section title="反应堆控制">
       <LabeledControls justify="space-around" wrap>
-        <LabeledControls.Item label="Heating Conductor">
+        <LabeledControls.Item label="加热导体">
           <ComboKnob
             color={heating_conductor > 50 && heat_output > 0 && 'yellow'}
             value={heating_conductor}
@@ -151,10 +151,10 @@ export const HypertorusSecondaryControls = (props) => {
             maxValue={500}
             parameter="heating_conductor"
             icon="fire"
-            help="Adjusts the rate the fusion reaction heats or cools. Higher heating values improve production at the risk of a runaway reaction."
+            help="调整聚变反应升温或降温的速率。较高的加热值能提高产量，但有引发反应失控的风险。"
           />
         </LabeledControls.Item>
-        <LabeledControls.Item label="Cooling Volume">
+        <LabeledControls.Item label="冷却容积">
           <ComboKnob
             value={cooling_volume}
             unit="L"
@@ -164,10 +164,10 @@ export const HypertorusSecondaryControls = (props) => {
             parameter="cooling_volume"
             step={25}
             icon="snowflake-o"
-            help="Adjusts the HFR core's internal cooling space. A smaller space will provide less cooling internally, but will move most of the coolant outside of the HFR core, where it can be rapidly cooled when not needed."
+            help="调整 HFR 核心内部的冷却空间。较小的空间会降低内部冷却能力，但能将大部分冷却剂移到核心外，在无需使用时快速冷却。"
           />
         </LabeledControls.Item>
-        <LabeledControls.Item label="Magnetic Constrictor">
+        <LabeledControls.Item label="磁约束器">
           <ComboKnob
             value={magnetic_constrictor}
             unit="m³/T"
@@ -177,10 +177,10 @@ export const HypertorusSecondaryControls = (props) => {
             parameter="magnetic_constrictor"
             icon="magnet"
             flipIcon
-            help="Adjusts the density of the fusion reaction. Denser reactions expose more energy, but may destabilize the reaction if too much mass is involved."
+            help="调整聚变反应的密度。密度更高的反应会释放更多能量，但参与反应的质量过大时可能导致反应失稳。"
           />
         </LabeledControls.Item>
-        <LabeledControls.Item label="Current Damper">
+        <LabeledControls.Item label="电流阻尼器">
           <ComboKnob
             color={current_damper && 'yellow'}
             value={current_damper}
@@ -190,7 +190,7 @@ export const HypertorusSecondaryControls = (props) => {
             maxValue={1000}
             parameter="current_damper"
             icon="sun-o"
-            help="Destabilizes the reaction. A sufficiently destabilized reaction will halt production and become endothermic, cooling the Fusion Mix instead of heating it. Reactions with more iron are harder to destabilize."
+            help="使反应失稳。反应充分失稳后会停止生产并转为吸热，从而冷却聚变混合物。含铁量较高的反应更难失稳。"
           />
         </LabeledControls.Item>
       </LabeledControls>
@@ -203,24 +203,24 @@ export const HypertorusWasteRemove = (props) => {
   const { filter_types = [], waste_remove, mod_filtering_rate } = data;
 
   return (
-    <Section title="Output Control">
+    <Section title="输出控制">
       <LabeledList>
         <LabeledList.Item
           label={
             <>
               <HoverHelp
                 content={
-                  'Remove waste gases from Fusion,' +
-                  ' and any selected gases from the Moderator.'
+                  '从聚变混合物中排出废气，' +
+                  '并从慢化混合物中排出选定的气体。'
                 }
               />
-              Waste remove:
+              废气排出：
             </>
           }
         >
           <Button
             icon={waste_remove ? 'power-off' : 'times'}
-            content={waste_remove ? 'On' : 'Off'}
+            content={waste_remove ? '开启' : '关闭'}
             selected={waste_remove}
             onClick={() => act('waste_remove')}
           />
@@ -229,7 +229,7 @@ export const HypertorusWasteRemove = (props) => {
           label={
             <>
               <HelpDummy />
-              Moderator filtering rate:
+              慢化气体过滤速率：
             </>
           }
         >
@@ -252,7 +252,7 @@ export const HypertorusWasteRemove = (props) => {
           label={
             <>
               <HelpDummy />
-              Filter from moderator mix:
+              从慢化混合物中过滤：
             </>
           }
         >

@@ -2,7 +2,7 @@ import { ImageButton, LabeledList, Section, Stack } from 'tgui-core/components';
 import { capitalizeAll } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import { Window } from '../layouts'; import { constructionDisplay } from '../localization/constructionDisplay';
 
 type Design = {
   name: string;
@@ -33,7 +33,7 @@ const DecorationCard = (props: {
     <ImageButton
       selected={selected}
       color={'transparent'}
-      tooltip={capitalizeAll(design.name)}
+      tooltip={constructionDisplay(capitalizeAll(design.name))}
       tooltipPosition="bottom"
       imageSize={32}
       asset={['rdd32x32', design.icon]}
@@ -59,11 +59,11 @@ export const RapidDecorationDevice = () => {
           <Stack.Item>
             <Section>
               <LabeledList>
-                <LabeledList.Item label="Units Left">
-                  {matter}/{max_matter} Units
+                <LabeledList.Item label="剩余材料">
+                  {matter}/{max_matter} 单位
                 </LabeledList.Item>
-                <LabeledList.Item label="Selected">
-                  {selected_design ? capitalizeAll(selected_design) : 'None'}
+                <LabeledList.Item label="已选设计">
+                  {selected_design ? constructionDisplay(capitalizeAll(selected_design)) : '无'}
                 </LabeledList.Item>
               </LabeledList>
             </Section>

@@ -662,7 +662,7 @@ export function CommandBar() {
         type="button"
         style={{ color: MODE_COLORS[mode] }}
       >
-        {mode}
+        {mode === 'Command' ? '命令' : mode === 'Say' ? '说话' : mode === 'Me' ? '动作' : mode}
       </button>
     </div>
   );

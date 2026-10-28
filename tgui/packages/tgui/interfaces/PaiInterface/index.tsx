@@ -12,7 +12,7 @@ export function PaiInterface(props) {
   const [tab, setTab] = useState(PAI_TAB.System);
 
   return (
-    <Window title="pAI Software Interface v2.5" width={380} height={480}>
+    <Window title="pAI 软件界面 v2.5" width={380} height={480}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item grow>
@@ -28,28 +28,28 @@ export function PaiInterface(props) {
                 onClick={() => setTab(PAI_TAB.System)}
                 selected={tab === PAI_TAB.System}
               >
-                System
+                系统
               </Tabs.Tab>
               <Tabs.Tab
                 icon="list"
                 onClick={() => setTab(PAI_TAB.Directive)}
                 selected={tab === PAI_TAB.Directive}
               >
-                Directives
+                指令
               </Tabs.Tab>
               <Tabs.Tab
                 icon="list"
                 onClick={() => setTab(PAI_TAB.Installed)}
                 selected={tab === PAI_TAB.Installed}
               >
-                Installed
+                已安装
               </Tabs.Tab>
               <Tabs.Tab
                 icon="list"
                 onClick={() => setTab(PAI_TAB.Available)}
                 selected={tab === PAI_TAB.Available}
               >
-                Download
+                下载
               </Tabs.Tab>
             </Tabs>
           </Stack.Item>

@@ -18,20 +18,20 @@ export const Signalvib = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Power">
+            <LabeledList.Item label="电源">
               <Button
                 icon={toystate ? 'power-off' : 'times'}
-                content={toystate ? 'On' : 'Off'}
+                content={toystate ? '开启' : '关闭'}
                 selected={toystate}
                 onClick={() => act('toystate')}
               />
             </LabeledList.Item>
             <LabeledList.Item
-              label="Frequency"
+              label="频率"
               buttons={
                 <Button
                   icon="sync"
-                  content="Reset"
+                  content="重置"
                   onClick={() =>
                     act('reset', {
                       reset: 'freq',
@@ -58,11 +58,11 @@ export const Signalvib = (props) => {
               />
             </LabeledList.Item>
             <LabeledList.Item
-              label="Code"
+              label="代码"
               buttons={
                 <Button
                   icon="sync"
-                  content="Reset"
+                  content="重置"
                   onClick={() =>
                     act('reset', {
                       reset: 'code',

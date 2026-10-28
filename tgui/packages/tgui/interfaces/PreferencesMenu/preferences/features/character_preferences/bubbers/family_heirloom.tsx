@@ -1,8 +1,8 @@
 import { CheckboxInput, type FeatureToggle } from '../../base';
 
 export const random_heirloom_toggle: FeatureToggle = {
-  name: 'Enable Random Heirlooms',
+  name: '启用随机传家宝',
   description:
-    'If enabled, you will recieve random heirlooms instead of being to mark your own.',
+    '启用后将获得随机传家宝，而不能自行指定。',
   component: CheckboxInput,
 };

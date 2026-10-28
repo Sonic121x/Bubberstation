@@ -56,7 +56,7 @@ export const Smes = () => {
   return (
     <Window width={340} height={350}>
       <Window.Content>
-        <Section title="Stored Energy">
+        <Section title="储存电量">
           <ProgressBar
             value={capacityPercent * 0.01}
             ranges={{
@@ -67,26 +67,26 @@ export const Smes = () => {
           />
         </Section>
         <Section
-          title="Input"
+          title="输入"
           buttons={
             <Button
               icon={inputAttempt ? 'sync-alt' : 'times'}
               selected={inputAttempt}
               onClick={() => act('tryinput')}
             >
-              {inputAttempt ? 'Auto' : 'Off'}
+              {inputAttempt ? '自动' : '关闭'}
             </Button>
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Charge Mode">
+            <LabeledList.Item label="充电状态">
               <Box color={inputState}>
-                {(capacityPercent >= 100 && 'Fully Charged') ||
-                  (inputting && 'Charging') ||
-                  'Not Charging'}
+                {(capacityPercent >= 100 && '已充满') ||
+                  (inputting && '充电中') ||
+                  '未充电'}
               </Box>
             </LabeledList.Item>
-            <LabeledList.Item label="Target Input">
+            <LabeledList.Item label="目标输入">
               <Stack fill>
                 <Stack.Item>
                   <Button
@@ -146,34 +146,34 @@ export const Smes = () => {
                 </Stack.Item>
               </Stack>
             </LabeledList.Item>
-            <LabeledList.Item label="Available">
+            <LabeledList.Item label="可用功率">
               {formatPower(inputAvailable)}
             </LabeledList.Item>
           </LabeledList>
         </Section>
         <Section
-          title="Output"
+          title="输出"
           buttons={
             <Button
               icon={outputAttempt ? 'power-off' : 'times'}
               selected={outputAttempt}
               onClick={() => act('tryoutput')}
             >
-              {outputAttempt ? 'On' : 'Off'}
+              {outputAttempt ? '开启' : '关闭'}
             </Button>
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Output Mode">
+            <LabeledList.Item label="输出状态">
               <Box color={outputState}>
                 {outputting
-                  ? 'Sending'
+                  ? '输出中'
                   : charge > 0
-                    ? 'Not Sending'
-                    : 'No Charge'}
+                    ? '未输出'
+                    : '无电量'}
               </Box>
             </LabeledList.Item>
-            <LabeledList.Item label="Target Output">
+            <LabeledList.Item label="目标输出">
               <Stack fill>
                 <Stack.Item>
                   <Button
@@ -232,7 +232,7 @@ export const Smes = () => {
                 </Stack.Item>
               </Stack>
             </LabeledList.Item>
-            <LabeledList.Item label="Outputting">
+            <LabeledList.Item label="实际输出">
               {formatPower(outputUsed)}
             </LabeledList.Item>
           </LabeledList>

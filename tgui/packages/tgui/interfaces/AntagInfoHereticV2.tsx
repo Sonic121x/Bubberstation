@@ -21,7 +21,7 @@ import {
   ObjectivePrintout,
   ReplaceObjectivesButton,
 } from './common/Objectives';
-
+import { hereticThemeSuffix } from '../localization/hereticDisplay';
 const hereticRed = {
   color: '#e03c3c',
 };
@@ -69,7 +69,7 @@ const IntroductionSection = (props) => {
   return (
     <Stack justify="space-evenly" height="100%" width="100%">
       <Stack.Item grow>
-        <Section title="You are the Acolyte!" fill fontSize="14px">
+        <Section title="你是侍徒！" fill fontSize="14px">
           <Stack vertical>
             <FlavorSection />
             <Stack.Divider />
@@ -89,16 +89,16 @@ const IntroductionSection = (props) => {
                   fill
                   titleMessage={
                     can_change_objective
-                      ? `You must complete ${win_amount} of the following objectives` /* SKYRAT EDIT CHANGE - opfor objectives */
-                      : 'Your OPFOR objectives are your primary ones. Use your dark knowledge to fulfill your personal goal' /* SKYRAT EDIT CHANGE - opfor objectives  */
+                      ? `你必须完成以下目标中的 ${win_amount} 项` /* SKYRAT EDIT CHANGE - opfor objectives */
+                      : '敌对势力目标是你的首要目标。运用黑暗知识实现你的个人目标' /* SKYRAT EDIT CHANGE - opfor objectives  */
                   }
                   objectives={objectives}
                   objectiveFollowup={
                     <ReplaceObjectivesButton
                       can_change_objective={can_change_objective}
-                      button_title={'Specify Own Objectives'}
+                      button_title={'自定目标'}
                       button_colour={'red'}
-                      button_tooltip={'Find your own path.'}
+                      button_tooltip={'寻找自己的道路。'}
                     />
                   }
                 />
@@ -116,51 +116,51 @@ const GuideSection = () => {
     <Stack.Item>
       <Stack vertical fontSize="12px">
         <Stack.Item>
-          - Find reality smashing&nbsp;
-          <span style={hereticPurple}>influences</span>
-          &nbsp;around the station invisible to the normal eye and&nbsp;
-          <b>right click</b> on them to harvest them for&nbsp;
-          <span style={hereticBlue}>knowledge points</span>, up to your
-          objective's maximum. Tapping them makes them visible to all after a
-          short time, which will drain their sanity, cause hallucinations, and
-          spawn monsters. Predict the crew becoming hostile once you start
-          draining influences. Be warned - you are obvious when draining
-          influences.
+          - 寻找空间站各处撕裂现实的&nbsp;
+          <span style={hereticPurple}>异界影响</span>
+          &nbsp;，它们无法被常人的肉眼看见。&nbsp;
+          <b>右键点击</b>，汲取它们以获得&nbsp;
+          <span style={hereticBlue}>知识点数</span>，最多可达到
+          目标要求的上限。汲取后不久，所有人都将能看见它们，
+          而它们会侵蚀理智、引发幻觉，
+          并生成怪物。开始汲取异界影响后，船员可能会敌视你。
+          请注意：汲取异界影响时，
+          你的行为十分显眼。
         </Stack.Item>
         <Stack.Item>
-          - Use your&nbsp;
-          <span style={hereticYellow}>Knock of the Twin-finger ritual</span>
-          &nbsp;to track down&nbsp;
-          <span style={hereticYellow}>ways</span>, up to your objective's
-          maximum. Ways are powerful gateways into the mansus that you can open
-          for a few <span style={hereticBlue}>knowledge points</span>. Ways
-          require a full ritual to open as well as a collection of items - using
-          the ritual away from any way will show you all ways, and their items.
-          Opening a way will create a dangerous event in its vicinity after a
-          minute! NOTE - Items required for rituals accept subtypes as well.
+          - 使用&nbsp;
+          <span style={hereticYellow}>双指叩门仪式</span>
+          &nbsp;来追踪&nbsp;
+          <span style={hereticYellow}>通路</span>，最多可达到目标要求的
+          上限。通路是通往漫宿的强大门户，打开它们
+          可以获得一些<span style={hereticBlue}>知识点数</span>。打开通路
+          需要完整的仪式和一组物品；在远离通路处
+          使用仪式，可以显示所有通路及其所需物品。
+          打开通路一分钟后，其附近会发生危险事件！
+          注意：仪式也接受所需物品的子类型。
         </Stack.Item>
         <Stack.Item>
-          - Draw a&nbsp;
-          <span style={hereticGreen}>transmutation rune</span> by using a
-          drawing tool (a pen or crayon) on the floor while having&nbsp;
-          <span style={hereticGreen}>Mansus Grasp</span>
-          &nbsp;active in your other hand. This rune allows you to complete
-          rituals and sacrifices.
+          - 绘制&nbsp;
+          <span style={hereticGreen}>嬗变符文</span>的方法是：
+          使用绘图工具（钢笔或蜡笔）点击地板，同时在另一只手激活&nbsp;
+          <span style={hereticGreen}>漫宿之握</span>
+          &nbsp;。此符文可以用于完成
+          仪式和献祭。
         </Stack.Item>
         <Stack.Item>
-          - Make yourself a <span style={hereticYellow}>focus</span> to be able
-          to cast various advanced spells to assist you in acquiring harder and
-          harder ways.
+          - 为自己制作一件<span style={hereticYellow}>法器</span>，
+          以施放各种高级法术，帮助你获取
+          越来越困难的通路。
         </Stack.Item>
         <Stack.Item>
-          <span style={hereticRed}>WARNING!</span>
+          <span style={hereticRed}>警告！</span>
           <br />
-          You are very obvious while draining&nbsp;
-          <span style={hereticYellow}>influences</span>, but a Codex can make
-          draining them significantly faster.
+          汲取&nbsp;
+          <span style={hereticYellow}>异界影响</span>时，你的行为十分显眼，
+          但法典可以大幅提高汲取速度。
           <br />
-          Creatures spawned from <span style={hereticPurple}>influences</span>{' '}
-          and <span style={hereticYellow}>ways</span> are not friendly to you.
+          <span style={hereticPurple}>异界影响</span>{' '}
+          和<span style={hereticYellow}>通路</span>生成的生物对你并不友善。
         </Stack.Item>
       </Stack>
     </Stack.Item>
@@ -176,32 +176,32 @@ const InformationSection = () => {
         {!!ascended && (
           <Stack.Item>
             <Stack align="center">
-              <Stack.Item>You have</Stack.Item>
+              <Stack.Item>你已</Stack.Item>
               <Stack.Item fontSize="24px">
                 <Box inline color="yellow">
-                  ASCENDED
+                  飞升
                 </Box>
-                !
+                ！
               </Stack.Item>
             </Stack>
           </Stack.Item>
         )}
         <Stack.Item>
-          You have <b>{charges || 0}</b>&nbsp;
+          你拥有 <b>{charges || 0}</b> 点&nbsp;
           <span style={hereticBlue}>
-            knowledge point{charges !== 1 ? 's' : ''}
+            知识
           </span>
-          .
+          。
         </Stack.Item>
         <Stack.Item>
-          You have opened a total of&nbsp;
+          你已开启共计&nbsp;
           <b>{influences_drained || 0}</b>&nbsp;
-          <span style={hereticPurple}>influences</span>.
+          处<span style={hereticPurple}>异界影响</span>。
         </Stack.Item>
         <Stack.Item>
-          You have opened a total of&nbsp;
+          你已开启共计&nbsp;
           <b>{ways_opened || 0}</b>&nbsp;
-          <span style={hereticYellow}>ways</span>.
+          条<span style={hereticYellow}>通路</span>。
         </Stack.Item>
       </Stack>
     </Stack.Item>
@@ -223,18 +223,18 @@ export const AntagInfoHereticV2 = () => {
   );
 
   const tabs = [
-    { label: 'Information', icon: 'info', content: <IntroductionSection /> },
+    { label: '信息', icon: 'info', content: <IntroductionSection /> },
     {
-      label: 'Path Info',
+      label: '途径信息',
       icon: 'info',
       content: <PathInfo currentPath={currentPath} />,
     },
-    { label: 'Research', icon: 'book', content: <ResearchInfo /> },
+    { label: '研究', icon: 'book', content: <ResearchInfo /> },
   ];
 
   const currentTheme = () => {
     if (currentPath?.route) {
-      return `Heretic theme-Heretic--${currentPath.route.replace(' ', '')}`;
+      return `Heretic theme-Heretic--${hereticThemeSuffix(currentPath.route)}`;
     }
     return 'Heretic';
   };

@@ -55,11 +55,11 @@ function PrefsWindowInner(props) {
   switch (window) {
     case PrefsWindow.Character:
       content = <CharacterPreferenceWindow />;
-      title = 'Character Preferences';
+      title = '角色偏好';
       break;
     case PrefsWindow.Game:
       content = <GamePreferenceWindow />;
-      title = 'Game Preferences';
+      title = '游戏偏好';
       break;
     case PrefsWindow.Keybindings:
       content = (
@@ -67,7 +67,7 @@ function PrefsWindowInner(props) {
           startingPage={GamePreferencesSelectedPage.Keybindings}
         />
       );
-      title = 'Keybindings';
+      title = '按键绑定';
       break;
     default:
       exhaustiveCheck(window);

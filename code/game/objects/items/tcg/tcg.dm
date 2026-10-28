@@ -57,9 +57,9 @@
 		return ..()
 	var/datum/card/data_holder = extract_datum()
 
-	name_chaser += "阵营：[data_holder.faction]"
+	name_chaser += "阵营：[chinese_tcg_type_display(data_holder.faction)]"
 	name_chaser += "费用：[data_holder.summoncost]"
-	name_chaser += "类型：[data_holder.cardtype] - [data_holder.cardsubtype]"
+	name_chaser += "类型：[chinese_tcg_type_display(data_holder.cardtype)] - [chinese_tcg_type_display(data_holder.cardsubtype)]"
 	name_chaser += "力量/决心：[data_holder.power]/[data_holder.resolve]"
 	if(data_holder.rules) //This can sometimes be empty
 		name_chaser += "规则：[data_holder.rules]"
@@ -503,7 +503,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 
 /datum/card/New(list/data = list(), list/templates = list())
 	applyTemplates(data, templates)
-	apply(data)
+	apply(data); apply_chinese_card_display()
 	applyKeywords(data | templates)
 
 ///For each var that the card datum and the json entry share, we set the datum var to the json entry

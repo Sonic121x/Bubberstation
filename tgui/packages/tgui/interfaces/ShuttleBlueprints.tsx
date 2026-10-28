@@ -129,12 +129,12 @@ const VisualizationToggle = (props: VisualizationToggleProps) => {
   const { act } = useBackend<ShuttleBlueprintsData>();
   return (
     <Tooltip
-      content="Toggle a visualization of shuttle frames you can use to construct a shuttle.
-                Red tiles indicate frame parts built in invalid areas,
-                or parts of suitable areas that need frame parts built on them."
+      content="切换显示可用于建造穿梭机的框架预览。
+                红色格子表示建在无效区域中的框架，
+                或合适区域中尚需铺设框架的部分。"
     >
       <Box inline>
-        Visualization:
+        可视化：
         <Button
           color="transparent"
           icon={visualizing ? 'toggle-on' : 'toggle-off'}
@@ -190,8 +190,8 @@ const ShuttleConstruction = () => {
     <Stack justify="space-around">
       <Stack.Item grow>
         <DirectionPad
-          title="Shuttle Direction"
-          tooltip="This specifies the direction that the shuttle being built is facing."
+          title="穿梭机朝向"
+          tooltip="设置即将建造的穿梭机的朝向。"
           enabledDirections={Direction.ALL}
           selectedDirection={shuttleDirection}
           onSelect={(dir) => setShuttleDirection(dir)}
@@ -209,17 +209,17 @@ const ShuttleConstruction = () => {
                   disabled={!onShuttleFrame || tooManyShuttles || problems}
                   tooltip={
                     <ProblemsTooltip
-                      description="Create a new shuttle using a shuttle frame."
-                      problemHeader="The following problems prevent you from creating a shuttle with this frame."
+                      description="使用穿梭机框架建造新穿梭机。"
+                      problemHeader="以下问题导致此框架无法用于建造穿梭机。"
                       problems={problems ?? 0}
                       problemStrings={[
-                        'You are not on a shuttle frame.',
-                        'There are too many custom shuttles currently.',
-                        'This frame is too large.',
-                        'This frame includes the APC of a custom area, but does not enclose the entire area.\
-                         Remove the APC or add the rest of the area to the frame.',
-                        'This frame encroaches on an area custom shuttles may not dock at.',
-                        'This frame includes an APC belonging to a non-custom area.',
+                        '你不在穿梭机框架上。',
+                        '当前自定义穿梭机数量过多。',
+                        '此框架过大。',
+                        '此框架包含自定义区域的APC，但未包含整个区域。\
+                         请移除APC，或将区域剩余部分纳入框架。',
+                        '此框架侵入了不允许自定义穿梭机停靠的区域。',
+                        '此框架包含属于非自定义区域的APC。',
                       ]}
                     />
                   }
@@ -227,7 +227,7 @@ const ShuttleConstruction = () => {
                     act('tryBuildShuttle', { dir: shuttleDirection })
                   }
                 >
-                  Build New Shuttle
+                  建造新穿梭机
                 </Button.Confirm>
               </Stack.Item>
               {onShuttleFrame ? (
@@ -254,14 +254,14 @@ const ShuttleConstruction = () => {
               tooltip={
                 onCustomShuttle
                   ? masterExists
-                    ? 'The master blueprint for this shuttle still exists. \
-                          Whoever has it can copy it to this set of blueprints.'
+                    ? '此穿梭机的主蓝图仍然存在。\
+                          持有人可以将其复制到这份蓝图中。'
                     : null
-                  : 'You must be on a custom shuttle to do this.'
+                  : '你必须位于自定义穿梭机上才能执行此操作。'
               }
               onClick={() => act('tryLinkShuttle')}
             >
-              Connect To Existing Shuttle
+              连接现有穿梭机
             </Button.Confirm>
           </Stack.Item>
         </Stack>
@@ -302,17 +302,17 @@ const ShuttleConfiguration = () => {
   return (
     <Stack fill vertical align="center" justify="space-around">
       <Stack.Item textAlign="center">
-        <h2>Current Area:</h2>
+        <h2>当前区域：</h2>
         <h3>
           {onShuttle
             ? inDefaultArea
-              ? 'Default Area'
+              ? '默认区域'
               : currentAreaName
-            : 'Not on Shuttle'}
+            : '不在穿梭机上'}
         </h3>
       </Stack.Item>
       <Stack.Item>
-        <Input fluid placeholder="New Area Name" onChange={setName} />
+        <Input fluid placeholder="新区域名称" onChange={setName} />
         <Stack>
           <Stack.Item>
             <Button.Confirm
@@ -320,13 +320,13 @@ const ShuttleConfiguration = () => {
               tooltip={
                 onShuttle
                   ? inDefaultArea
-                    ? 'Designate a room within the shuttle as its own area.'
-                    : 'You can only designate a new area from the default area.'
-                  : 'You must be on the linked shuttle to do this.'
+                    ? '将穿梭机内的房间划为独立区域。'
+                    : '只能从默认区域中划出新区域。'
+                  : '你必须位于已连接的穿梭机上才能执行此操作。'
               }
               onClick={() => act('createNewArea', { name: name })}
             >
-              Designate New Area
+              划定新区域
             </Button.Confirm>
           </Stack.Item>
           <Stack.Item>
@@ -335,13 +335,13 @@ const ShuttleConfiguration = () => {
               tooltip={
                 onShuttle
                   ? inDefaultArea
-                    ? 'You cannot rename the default area.'
+                    ? '无法重命名默认区域。'
                     : null
-                  : 'You must be on the linked shuttle to do this.'
+                  : '你必须位于已连接的穿梭机上才能执行此操作。'
               }
               onClick={() => act('renameArea', { name: name })}
             >
-              Rename Current Area
+              重命名当前区域
             </Button.Confirm>
           </Stack.Item>
         </Stack>
@@ -350,7 +350,7 @@ const ShuttleConfiguration = () => {
         <Stack fill justify="center">
           <Stack.Item>
             <Dropdown
-              placeholder="Select Area"
+              placeholder="选择区域"
               options={Object.entries(neighboringAreas).map(([ref, name]) => {
                 return {
                   displayText: name,
@@ -369,20 +369,20 @@ const ShuttleConfiguration = () => {
                 !(onShuttle && inDefaultArea && mergeArea) || mergeApcConflict
               }
               tooltip={
-                'Expand the selected area with the connected section of the default area.' +
+                '将默认区域中相连的部分并入所选区域。' +
                 (onShuttle
                   ? mergeArea
                     ? inDefaultArea
                       ? mergeApcConflict
-                        ? '\nBoth the selected area and the region that it would expand into have APCs. You must remove one first.'
+                        ? '\n所选区域和待并入区域均有APC。必须先移除其中一个。'
                         : ''
-                      : '\nYou can only expand the selected area into the default area.'
+                      : '\n只能将所选区域扩展至默认区域。'
                     : ''
-                  : '\nYou must be on the linked shuttle to do this.')
+                  : '\n你必须位于已连接的穿梭机上才能执行此操作。')
               }
               onClick={() => act('mergeIntoArea', { area: mergeAreaRef })}
             >
-              Expand Area
+              扩展区域
             </Button.Confirm>
           </Stack.Item>
         </Stack>
@@ -396,23 +396,23 @@ const ShuttleConfiguration = () => {
                   disabled={!(idle && onShuttleFrame) || problems || tooLarge}
                   tooltip={
                     <ProblemsTooltip
-                      description="Expand the linked shuttle with an adjacent shuttle frame."
-                      problemHeader="The following problems prevent you from expanding the shuttle."
+                      description="使用相邻穿梭机框架扩建已连接的穿梭机。"
+                      problemHeader="以下问题导致穿梭机无法扩建。"
                       problems={problems ?? 0}
                       problemStrings={[
-                        'You must be standing on the shuttle frame you wish to expand the shuttle with.',
-                        'This frame is not adjacent to the linked shuttle.',
-                        'This frame is too large.',
-                        'This frame includes the APC of a custom area, but does not enclose the entire area.\
-                         Remove the APC or add the rest of the area to the frame.',
-                        'This frame encroaches on an area custom shuttles may not dock at.',
-                        'This frame includes an APC belonging to a non-custom area.',
+                        '你必须站在要用于扩建穿梭机的框架上。',
+                        '此框架未与已连接的穿梭机相邻。',
+                        '此框架过大。',
+                        '此框架包含自定义区域的APC，但未包含整个区域。\
+                         请移除APC，或将区域剩余部分纳入框架。',
+                        '此框架侵入了不允许自定义穿梭机停靠的区域。',
+                        '此框架包含属于非自定义区域的APC。',
                       ]}
                     />
                   }
                   onClick={() => act('expandWithFrame')}
                 >
-                  Expand Shuttle With Connected Frame
+                  用相连框架扩建穿梭机
                 </Button.Confirm>
               </Stack.Item>
               <Stack.Item>
@@ -444,34 +444,34 @@ const ShuttleConfiguration = () => {
         <Button.Confirm
           disabled={!onShuttle || inDefaultArea || removalApcConflict}
           tooltip={
-            'Merge the current area into the default area.' +
+            '将当前区域并入默认区域。' +
             (onShuttle
               ? inDefaultArea
-                ? '\nYou are already in the default area.'
+                ? '\n你已位于默认区域内。'
                 : removalApcConflict
-                  ? '\nBoth the current and default areas have APCs. You must remove one first.'
+                  ? '\n当前区域和默认区域均有APC。必须先移除其中一个。'
                   : ''
-              : '\nYou must be on the linked shuttle to do this.')
+              : '\n你必须位于已连接的穿梭机上才能执行此操作。')
           }
           onClick={() => act('releaseArea')}
         >
-          Undesignate Area
+          撤销区域划分
         </Button.Confirm>
       </Stack.Item>
       <Stack.Item>
         <Button.Confirm
           disabled={!idle || !isMaster}
-          tooltip={`Remove all empty space from the shuttle.${
+          tooltip={`移除穿梭机的所有空白空间。${
             isMaster
               ? idle
-                ? '\nThis will delete any areas left without any space, \
-              and will decommission the shuttle entirely if there is nothing left of it.'
-                : '\nThe shuttle must be idle to do this.'
-              : '\nOnly the master blueprint can do this.'
+                ? '\n这会删除所有已无空间的区域，\
+              若穿梭机已无任何部分残留，则会将其彻底注销。'
+                : '\n穿梭机必须处于空闲状态才能执行此操作。'
+              : '\n只有主蓝图能执行此操作。'
           }`}
           onClick={() => act('cleanupEmptyTurfs')}
         >
-          Clean Up Empty Space
+          清理空白空间
         </Button.Confirm>
       </Stack.Item>
     </Stack>
@@ -491,14 +491,14 @@ export const ShuttleBlueprints = (props) => {
               {shuttles && (
                 <Dropdown
                   options={[
-                    { displayText: 'None', value: 0 },
+                    { displayText: '无', value: 0 },
                     ...Object.entries(shuttles).map(
                       ([ref, name]: [string, string]) => {
                         return { displayText: name, value: ref };
                       },
                     ),
                   ]}
-                  selected={linkedShuttle ? shuttles[linkedShuttle] : 'None'}
+                  selected={linkedShuttle ? shuttles[linkedShuttle] : '无'}
                   onSelected={(value) => {
                     if (value === 0) {
                       act('unsetShuttle');
@@ -510,7 +510,7 @@ export const ShuttleBlueprints = (props) => {
               )}
               {!!linkedShuttle && !masterExists && !isMaster && (
                 <Button.Confirm onClick={() => act('promoteToMaster')}>
-                  Promote To Master Blueprint
+                  升级为主蓝图
                 </Button.Confirm>
               )}
             </>

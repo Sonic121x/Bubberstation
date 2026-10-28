@@ -10,9 +10,9 @@ const statusMap = {
 };
 
 const occupiedMap = {
-  owner: 'You Are Here',
-  stranger: 'Occupied',
-  available: 'Swap',
+  owner: '你在此处',
+  stranger: '已被占用',
+  available: '切换',
 };
 
 export const BodyEntry = (props) => {
@@ -35,11 +35,11 @@ export const BodyEntry = (props) => {
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Status" bold color={statusMap[body.status]}>
-          {body.status}
+        <LabeledList.Item label="状态" bold color={statusMap[body.status]}>
+          {({ Dead: '死亡', Unconscious: '昏迷', Conscious: '清醒' })[body.status] ?? body.status}
         </LabeledList.Item>
-        <LabeledList.Item label="Jelly">{body.exoticblood}</LabeledList.Item>
-        <LabeledList.Item label="Location">{body.area}</LabeledList.Item>
+        <LabeledList.Item label="胶质">{body.exoticblood}</LabeledList.Item>
+        <LabeledList.Item label="位置">{body.area}</LabeledList.Item>
       </LabeledList>
     </Section>
   );

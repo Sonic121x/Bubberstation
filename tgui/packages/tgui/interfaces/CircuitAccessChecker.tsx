@@ -19,10 +19,10 @@ export const CircuitAccessChecker = (props) => {
     <Window width={420} height={360}>
       <Window.Content>
         <LabeledList>
-          <LabeledList.Item label="Access Required">
+          <LabeledList.Item label="所需权限">
             <Button
               icon={oneAccess ? 'unlock' : 'lock'}
-              content={oneAccess ? 'One' : 'All'}
+              content={oneAccess ? '任一权限' : '全部权限'}
               onClick={() => act('one_access')}
             />
           </LabeledList.Item>

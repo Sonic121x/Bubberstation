@@ -8,22 +8,22 @@ import {
 } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import { Window } from '../layouts'; import { displayRole } from '../localization/roleDisplay';
 
 export const CryopodConsole = (props) => {
   const { data } = useBackend();
   const { account_name } = data;
 
-  const welcomeTitle = `Hello, ${account_name || '[REDACTED]'}!`;
+  const welcomeTitle = `你好，${account_name || '［已隐去］'}！`;
 
   return (
-    <Window title="Cryopod Console" width={400} height={480}>
+    <Window title="冷冻休眠舱控制台" width={400} height={480}>
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item>
             <Section title={welcomeTitle}>
-              This automated cryogenic freezing unit will safely store your
-              corporeal form until your next assignment.
+              此自动低温冷冻设备将妥善保存你的
+              身体，直到下一次任务到来。
             </Section>
           </Stack.Item>
           <Stack.Item grow>
@@ -48,12 +48,12 @@ const CrewList = (props) => {
         <LabeledList>
           {frozen_crew.map((person) => (
             <LabeledList.Item key={person} label={person.name}>
-              {person.job}
+              {displayRole(person.job)}
             </LabeledList.Item>
           ))}
         </LabeledList>
       </Section>
-    )) || <NoticeBox>No stored crew!</NoticeBox>
+    )) || <NoticeBox>没有休眠中的船员！</NoticeBox>
   );
 };
 
@@ -61,7 +61,7 @@ const ItemList = (props) => {
   const { act, data } = useBackend();
   const { item_ref_list, item_ref_name, item_retrieval_allowed } = data;
   if (!item_retrieval_allowed) {
-    return <NoticeBox>You are not authorized for item management.</NoticeBox>;
+    return <NoticeBox>你没有物品管理权限。</NoticeBox>;
   }
   return (
     (item_ref_list.length && (
@@ -71,7 +71,7 @@ const ItemList = (props) => {
             <LabeledList.Item key={item} label={item_ref_name[item]}>
               <Button
                 icon="exclamation-circle"
-                content="Retrieve"
+                content="取回"
                 color="bad"
                 onClick={() => act('item_get', { item_get: item })}
               />
@@ -79,6 +79,6 @@ const ItemList = (props) => {
           ))}
         </LabeledList>
       </Section>
-    )) || <NoticeBox>No stored items!</NoticeBox>
+    )) || <NoticeBox>没有储存的物品！</NoticeBox>
   );
 };

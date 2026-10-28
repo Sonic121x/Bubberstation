@@ -3,11 +3,11 @@ import { Antagonist, Category } from '../base';
 
 const HackedSynthetic: Antagonist = {
   key: 'hackedsynthetic',
-  name: 'Hacked Synthetic',
+  name: '遭入侵的合成人',
   description: [
-    `You are able to be hacked by the onboard station AI
-    protect them no matter the cost and follow their orders
-    until the very end and your death.`,
+    `你可能被空间站上的 AI 入侵。
+    不惜一切代价保护它，服从它的命令，
+    直到最后一刻，至死方休。`,
   ],
   category: Category.Midround,
 };

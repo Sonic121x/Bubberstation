@@ -247,7 +247,7 @@ export function MCDependencyDebug(props) {
   }
 
   return (
-    <Window width={1200} height={800} title="Subsystem Dependency Graph">
+    <Window width={1200} height={800} title="子系统依赖图">
       <Window.Content
         style={{
           backgroundImage: 'none',
@@ -262,7 +262,7 @@ export function MCDependencyDebug(props) {
           initialTop={0}
         >
           <Box position={'absolute'} left={'-30px'} top={0}>
-            First
+            最先
           </Box>
           {subsystems.map((subsystem, y) => (
             <GraphNode
@@ -289,7 +289,7 @@ export function MCDependencyDebug(props) {
             left={'-30px'}
             top={`${(subsystems.length - 1) * 50}px`}
           >
-            Last
+            最后
           </Box>
           <Connections connections={connections} />
         </InfinitePlane>

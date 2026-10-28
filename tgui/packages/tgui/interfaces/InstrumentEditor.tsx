@@ -62,10 +62,10 @@ export const InstrumentEditor = (props) => {
     <Window width={750} height={500}>
       <Window.Content scrollable>
         <InstrumentSettings />
-        <Collapsible open title="Music Editor" icon="pencil">
+        <Collapsible open title="音乐编辑器" icon="pencil">
           <EditingSettings />
         </Collapsible>
-        <Collapsible title="Help Section" icon="question">
+        <Collapsible title="帮助" icon="question">
           <HelpSection />
         </Collapsible>
       </Window.Content>
@@ -108,11 +108,11 @@ const InstrumentSettings = (props) => {
   };
 
   return (
-    <Section title="Settings">
+    <Section title="设置">
       {lines.length > 0 && (
         <Box fontSize="16px" mb={1}>
           <Button onClick={() => act('play_music')}>
-            {playing ? 'Stop Music' : 'Start Playing'}
+            {playing ? '停止音乐' : '开始演奏'}
           </Button>
         </Box>
       )}
@@ -125,10 +125,10 @@ const InstrumentSettings = (props) => {
           mr={1}
         >
           <Tooltip
-            content="All nearby instruments with the same ID will
-               start playing the same song when any one starts playing."
+            content="附近所有使用相同标识的乐器，
+               会在其中一件开始演奏时一同演奏同一首曲子。"
           >
-            ID:
+            标识：
           </Tooltip>
         </Box>
         <Input
@@ -138,7 +138,7 @@ const InstrumentSettings = (props) => {
         />
       </Box>
       <Box>
-        Repeats Left:
+        剩余重复次数：
         <NumberInput
           ml={1}
           step={1}
@@ -156,7 +156,7 @@ const InstrumentSettings = (props) => {
       <Box>
         {!!can_switch_instrument && (
           <Stack fill>
-            <Stack.Item mt={0.5}>Instrument Using</Stack.Item>
+            <Stack.Item mt={0.5}>当前乐器</Stack.Item>
             <Stack.Item grow>
               <Dropdown
                 width="40%"
@@ -177,7 +177,7 @@ const InstrumentSettings = (props) => {
       </Box>
       <Stack mt={1}>
         <Stack.Item>
-          Playback Settings:
+          演奏设置：
           <Box>
             <NumberInput
               minValue={note_shift_min}
@@ -190,15 +190,15 @@ const InstrumentSettings = (props) => {
                 })
               }
             />
-            keys / {octaves} octaves
+            个半音 / {octaves} 个八度
           </Box>
           <Stack>
-            <Stack.Item mt={0.5}>Mode:</Stack.Item>
+            <Stack.Item mt={0.5}>模式：</Stack.Item>
             <Stack.Item grow>
               <Dropdown
                 width="100%"
-                selected={sustain_mode}
-                options={sustain_modes}
+                selected={sustain_mode} displayText={sustain_mode === 'Linear' ? '线性' : sustain_mode === 'Exponential' ? '指数' : sustain_mode}
+                options={sustain_modes.map((value) => ({ value, displayText: value === 'Linear' ? '线性' : value === 'Exponential' ? '指数' : value }))}
                 onSelected={(value) =>
                   act('set_sustain_mode', {
                     new_mode: value,
@@ -226,18 +226,18 @@ const InstrumentSettings = (props) => {
         <Divider vertical />
         <Stack.Item>
           <Box>
-            Status:
+            状态：
             {instrument_ready ? (
-              <span style={{ color: '#5EFB6E' }}> Ready</span>
+              <span style={{ color: '#5EFB6E' }}> 就绪</span>
             ) : (
               <span style={{ color: '#FF0000' }}>
                 {' '}
-                Instrument Definition Error!
+                乐器定义错误！
               </span>
             )}
           </Box>
           <Box>
-            Volume:
+            音量：
             <NumberInput
               step={1}
               minValue={min_volume}
@@ -251,7 +251,7 @@ const InstrumentSettings = (props) => {
             />
           </Box>
           <Box>
-            Volume Dropoff Threshold:
+            音量衰减阈值：
             <NumberInput
               step={1}
               minValue={1}
@@ -267,8 +267,8 @@ const InstrumentSettings = (props) => {
           <Box>
             <Button onClick={() => act('toggle_sustain_hold_indefinitely')}>
               {sustain_indefinitely
-                ? 'Sustaining last held note indefinitely'
-                : 'Not sustaining last held note indefinitely'}
+                ? '无限延长最后保持的音符'
+                : '不无限延长最后保持的音符'}
             </Button>
           </Box>
         </Stack.Item>
@@ -284,11 +284,11 @@ const EditingSettings = (props) => {
   return (
     <Section>
       <Box>
-        <Button onClick={() => act('start_new_song')}>Start a New Song</Button>
-        <Button onClick={() => act('import_song')}>Import a Song</Button>
+        <Button onClick={() => act('start_new_song')}>新建曲目</Button>
+        <Button onClick={() => act('import_song')}>导入曲目</Button>
       </Box>
       <Box>
-        Tempo:{' '}
+        节拍速度：{' '}
         <Button
           onClick={() => act('tempo', { tempo_change: 'increase_speed' })}
         >
@@ -304,13 +304,13 @@ const EditingSettings = (props) => {
       <Box>
         {lines.map((line, index) => (
           <Box key={index} fontSize="11px">
-            Line {index}:
+            第 {index} 行：
             <Button
               onClick={() =>
                 act('modify_line', { line_editing: line.line_count })
               }
             >
-              Edit
+              编辑
             </Button>
             <Button
               onClick={() =>
@@ -324,7 +324,7 @@ const EditingSettings = (props) => {
         ))}
       </Box>
       <Box>
-        <Button onClick={() => act('add_new_line')}>Add Line</Button>
+        <Button onClick={() => act('add_new_line')}>添加一行</Button>
       </Box>
     </Section>
   );
@@ -337,35 +337,35 @@ const HelpSection = (props) => {
   return (
     <Section>
       <Box>
-        Lines are a series of chords, separated by commas (,), each with notes
-        separated by hyphens (-).
+        每行由一系列以英文逗号（,）分隔的和弦组成，
+        每个和弦的音符用连字符（-）分隔。
         <br />
-        Every note in a chord will play together, with chord timed by the tempo.
+        和弦中的所有音符同时演奏，持续时间由节拍速度决定。
         <br />
-        Notes are played by the names of the note, and optionally, the
-        accidental, and/or the octave number.
+        音符使用音名表示，也可以附加
+        升降记号和八度编号。
         <br />
-        By default, every note is natural and in octave 3. Defining otherwise is
-        remembered for each note.
+        默认情况下，各音符均为第 3 八度的本位音。对音符另作设置后，
+        系统会记住该音符的设置。
         <br />
-        Example: <i>C,D,E,F,G,A,B</i> will play a C major scale.
+        例如：<i>C,D,E,F,G,A,B</i> 会演奏 C 大调音阶。
         <br />
-        After a note has an accidental placed, it will be remembered:{' '}
-        <i>C,C4,C,C3</i> is <i>C3,C4,C4,C3</i>
+        音符的升降与八度设置会沿用到后续同名音符：{' '}
+        <i>C,C4,C,C3</i> 等同于 <i>C3,C4,C4,C3</i>
         <br />
-        Chords can be played simply by seperating each note with a hyphon:{' '}
+        用连字符分隔音符即可演奏和弦：{' '}
         <i>A-C#,Cn-E,E-G#,Gn-B</i>
-        <br />A pause may be denoted by an empty chord: <i>C,E,,C,G</i>
+        <br />空和弦表示休止：<i>C,E,,C,G</i>
         <br />
-        To make a chord be a different time, end it with /x, where the chord
-        length will be length
+        如需改变和弦时长，在末尾添加 /x，和弦
+        的持续时间将等于
         <br />
-        defined by tempo / x: <i>C,G/2,E/4</i>
+        节拍速度规定的时长除以 x：<i>C,G/2,E/4</i>
         <br />
-        Combined, an example is: <i>E-E4/4,F#/2,G#/8,B/8,E3-E4/4</i>
+        综合示例：<i>E-E4/4,F#/2,G#/8,B/8,E3-E4/4</i>
         <br />
-        Lines may be up to {max_line_chars} characters.
-        <br />A song may only contain up to {max_lines} lines.
+        每行最多可包含 {max_line_chars} 个字符。
+        <br />每首曲目最多可包含 {max_lines} 行。
         <br />
       </Box>
     </Section>

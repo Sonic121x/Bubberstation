@@ -533,7 +533,7 @@ export function PlaneMasterDebug() {
       <Window
         width={planeOpen ? 1500 : 1200}
         height={800}
-        title={`Plane Debugging: ${mob_name}`}
+        title={`平面调试：${mob_name}`}
         buttons={
           <Stack fill>
             <Stack.Item
@@ -553,7 +553,7 @@ export function PlaneMasterDebug() {
             >
               <Dropdown
                 options={planes.map((plane) => plane.name).sort()}
-                placeholder="Find Plane"
+                placeholder="查找平面"
                 selected={zoomToPlane}
                 searchInput
                 onSelected={(value) => {
@@ -572,7 +572,7 @@ export function PlaneMasterDebug() {
             </Stack.Item>
             {!!enable_group_view && (
               <Tooltip
-                content="Plane masters are stored in groups, based off where they came from. MAIN is the main group, but if you open something that displays atoms in a new window, it'll show up here."
+                content="平面控制器按来源分组存储。MAIN 是主组；如果打开一个在新窗口中显示原子的界面，它会出现在这里。"
                 position="right"
               >
                 <Dropdown
@@ -587,7 +587,7 @@ export function PlaneMasterDebug() {
             <Stack.Item>
               <Button
                 color="transparent"
-                tooltip="Debugger Documentation"
+                tooltip="调试器文档"
                 icon="question"
                 selected={infoOpen}
                 onClick={() => setInfoOpen(true)}
@@ -597,7 +597,7 @@ export function PlaneMasterDebug() {
               <Stack.Item>
                 <Button
                   color="transparent"
-                  tooltip="Reset Mob Focus"
+                  tooltip="重置关注的生物"
                   icon="magnifying-glass"
                   onClick={() => act('reset_mob')}
                 />
@@ -606,7 +606,7 @@ export function PlaneMasterDebug() {
             <Stack.Item>
               <Button
                 color="transparent"
-                tooltip="View Mirroring"
+                tooltip="视图镜像"
                 icon={our_ref !== mob_ref ? 'ghost' : 'eye'}
                 selected={tracking_active}
                 onClick={() => act('toggle_mirroring')}
@@ -615,7 +615,7 @@ export function PlaneMasterDebug() {
             <Stack.Item>
               <Button
                 color="transparent"
-                tooltip="View Mob Variables"
+                tooltip="查看生物变量"
                 icon="pen"
                 onClick={() => act('vv_mob')}
               />
@@ -623,7 +623,7 @@ export function PlaneMasterDebug() {
             <Stack.Item>
               <Button
                 color="transparent"
-                tooltip="Rebuild Plane Masters"
+                tooltip="重建平面控制器"
                 icon="recycle"
                 onClick={() => act('rebuild')}
               />

@@ -56,7 +56,7 @@ export const Content = (props) => {
                 <>
                   <Button
                     icon="edit"
-                    tooltip="Rename"
+                    tooltip="重命名"
                     tooltipPosition="left"
                     onClick={() => act('changename')}
                   />
@@ -64,7 +64,7 @@ export const Content = (props) => {
                     <Button
                       icon="tachograph-digital"
                       color="violet"
-                      tooltip="Diagnostic"
+                      tooltip="诊断"
                       tooltipPosition="left"
                       onClick={() => act('diagnostic')}
                     />
@@ -90,10 +90,10 @@ export const Content = (props) => {
                     <LightsBar />
                     <CabinSeal />
                     <DNALock />
-                    <LabeledList.Item label="ID Lock">
+                    <LabeledList.Item label="ID 锁">
                       <Button
                         icon={id_lock ? 'lock' : 'lock-open'}
-                        content={id_lock ? 'Enabled' : 'Disabled'}
+                        content={id_lock ? '已启用' : '已禁用'}
                         tooltipPosition="top"
                         onClick={() => {
                           editAccess(false);
@@ -104,14 +104,14 @@ export const Content = (props) => {
                       {!!id_lock && (
                         <>
                           <Button
-                            tooltip="Edit Access"
+                            tooltip="编辑权限"
                             tooltipPosition="top"
                             icon="id-card-o"
                             onClick={() => editAccess(!edit_access)}
                             selected={edit_access}
                           />
                           <Button
-                            tooltip={one_access ? 'Require Any' : 'Require All'}
+                            tooltip={one_access ? '满足任一权限' : '满足全部权限'}
                             tooltipPosition="top"
                             icon={one_access ? 'check' : 'check-double'}
                             onClick={() => act('one_access')}
@@ -164,7 +164,7 @@ const PowerBar = (props) => {
   const { act, data } = useBackend<MainData>();
   const { power_level, power_max } = data;
   return (
-    <LabeledList.Item label="Power">
+    <LabeledList.Item label="电量">
       <ProgressBar
         value={power_max ? power_level / power_max : 0}
         ranges={{
@@ -177,10 +177,10 @@ const PowerBar = (props) => {
         }}
       >
         {power_max === null
-          ? 'Power cell missing'
+          ? '缺少电池'
           : power_level === 1e31
-            ? 'Infinite'
-            : `${formatSiUnit(power_level, 0, 'J')} of ${formatSiUnit(
+            ? '无限'
+            : `${formatSiUnit(power_level, 0, 'J')} / ${formatSiUnit(
                 power_max,
                 0,
                 'J',
@@ -194,7 +194,7 @@ const IntegrityBar = (props) => {
   const { act, data } = useBackend<MainData>();
   const { integrity, integrity_max, scanmod_rating } = data;
   return (
-    <LabeledList.Item label="Integrity">
+    <LabeledList.Item label="完整度">
       <ProgressBar
         value={scanmod_rating ? integrity / integrity_max : 0}
         ranges={{
@@ -206,7 +206,7 @@ const IntegrityBar = (props) => {
           textShadow: '1px 1px 0 black',
         }}
       >
-        {!scanmod_rating ? 'Unknown' : `${integrity} of ${integrity_max}`}
+        {!scanmod_rating ? '未知' : `${integrity} / ${integrity_max}`}
       </ProgressBar>
     </LabeledList.Item>
   );
@@ -218,10 +218,10 @@ const LightsBar = (props) => {
   const has_lights = mecha_flags & mechflag_keys.HAS_LIGHTS;
   const lights_on = mecha_flags & mechflag_keys.LIGHTS_ON;
   return (
-    <LabeledList.Item label="Lights">
+    <LabeledList.Item label="照明">
       <Button
         icon="lightbulb"
-        content={lights_on ? 'On' : 'Off'}
+        content={lights_on ? '开启' : '关闭'}
         selected={lights_on}
         disabled={!has_lights || !power_max || !power_level}
         onClick={() => act('toggle_lights')}
@@ -258,7 +258,7 @@ const CabinSeal = (props) => {
     cabin_pressure > cabin_pressure_hazard_max;
   return (
     <LabeledList.Item
-      label="Cabin Air"
+      label="舱内空气"
       buttons={
         !!cabin_sealed && (
           <>
@@ -272,7 +272,7 @@ const CabinSeal = (props) => {
               }
               icon="temperature-low"
               tooltipPosition="top"
-              tooltip={`Air temperature: ${cabin_temp}°C`}
+              tooltip={`空气温度：${cabin_temp}°C`}
             />
             <Button
               color={
@@ -284,7 +284,7 @@ const CabinSeal = (props) => {
               }
               icon="gauge-high"
               tooltipPosition="top"
-              tooltip={`Air pressure: ${cabin_pressure} kPa`}
+              tooltip={`空气压力：${cabin_pressure} kPa`}
             />
           </>
         )
@@ -292,7 +292,7 @@ const CabinSeal = (props) => {
     >
       <Button
         icon={cabin_sealed ? 'mask-ventilator' : 'wind'}
-        content={cabin_sealed ? 'Sealed' : 'Exposed'}
+        content={cabin_sealed ? '已密封' : '开放'}
         disabled={!enclosed}
         onClick={() => act('toggle_cabin_seal')}
         selected={cabin_sealed}
@@ -305,12 +305,12 @@ const DNALock = (props) => {
   const { act, data } = useBackend<MainData>();
   const { dna_lock } = data;
   return (
-    <LabeledList.Item label="DNA Lock">
+    <LabeledList.Item label="DNA 锁">
       <Button
         onClick={() => act('dna_lock')}
         icon="syringe"
-        content={dna_lock ? 'Enabled' : 'Unset'}
-        tooltip="Set new DNA key"
+        content={dna_lock ? '已启用' : '未设置'}
+        tooltip="设置新的 DNA 密钥"
         selected={!!dna_lock}
         tooltipPosition="top"
       />
@@ -318,14 +318,14 @@ const DNALock = (props) => {
         <>
           <Button
             icon="key"
-            tooltip={`Key enzyme: ${dna_lock}`}
+            tooltip={`密钥酶：${dna_lock}`}
             tooltipPosition="top"
             disabled={!dna_lock}
           />
           <Button
             onClick={() => act('reset_dna')}
             icon="ban"
-            tooltip="Reset DNA lock"
+            tooltip="重置 DNA 锁"
             tooltipPosition="top"
             disabled={!dna_lock}
           />

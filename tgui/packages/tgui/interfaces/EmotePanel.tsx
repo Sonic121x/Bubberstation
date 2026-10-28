@@ -6,7 +6,7 @@ import { capitalizeFirst } from 'tgui-core/string';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { SearchBar } from './common/SearchBar';
-
+import { emoteDisplay } from '../localization/emoteDisplay';
 type Emote = {
   key: string;
   name: string;
@@ -51,7 +51,7 @@ export const EmotePanelContent = (props) => {
             emote.key &&
             (searchText.length > 0
               ? emote.key.toLowerCase().includes(searchText.toLowerCase()) ||
-                emote.name.toLowerCase().includes(searchText.toLowerCase())
+                `${emote.name} ${emoteDisplay(emote.key)}`.toLowerCase().includes(searchText.toLowerCase())
               : true) &&
             (filterVisible ? emote.visible : true) &&
             (filterAudible ? emote.audible : true) &&
@@ -74,7 +74,7 @@ export const EmotePanelContent = (props) => {
   return (
     <Section>
       <Section
-        title="Filters"
+        title="筛选"
         buttons={
           <Flex>
             <Button
@@ -82,7 +82,7 @@ export const EmotePanelContent = (props) => {
               width="100%"
               height="100%"
               align="center"
-              tooltip="Visible"
+              tooltip="可见动作"
               selected={filterVisible}
               onClick={() => toggleVisualFilter(!filterVisible)}
             />
@@ -91,7 +91,7 @@ export const EmotePanelContent = (props) => {
               width="100%"
               height="100%"
               align="center"
-              tooltip="Audible"
+              tooltip="可听动作"
               selected={filterAudible}
               onClick={() => toggleAudibleFilter(!filterAudible)}
             />
@@ -100,7 +100,7 @@ export const EmotePanelContent = (props) => {
               width="100%"
               height="100%"
               align="center"
-              tooltip="Sound"
+              tooltip="带音效"
               selected={filterSound}
               onClick={() => toggleSoundFilter(!filterSound)}
             />
@@ -109,7 +109,7 @@ export const EmotePanelContent = (props) => {
               width="100%"
               height="100%"
               align="center"
-              tooltip="Hands"
+              tooltip="需要双手"
               selected={filterHands}
               onClick={() => toggleHandsFilter(!filterHands)}
             />
@@ -118,7 +118,7 @@ export const EmotePanelContent = (props) => {
               width="100%"
               height="100%"
               align="center"
-              tooltip="Params"
+              tooltip="支持参数"
               selected={filterUseParams}
               onClick={() => toggleUseParamsFilter(!filterUseParams)}
             />
@@ -128,26 +128,26 @@ export const EmotePanelContent = (props) => {
         <SearchBar
           query={searchText}
           onSearch={setSearchText}
-          placeholder="Search all emotes..."
+          placeholder="搜索所有表情动作……"
         />
       </Section>
       <Section
         title={
           searchText.length > 0
-            ? `Search results of "${searchText}"`
-            : `All Emotes`
+            ? `“${searchText}”的搜索结果`
+            : `所有表情动作`
         }
         buttons={
           <Flex>
             <Flex.Item>
               <Button onClick={() => toggleShowNames(!showNames)}>
-                {showNames ? 'Show Names' : 'Show Keys'}
+                {showNames ? '显示名称' : '显示命令键'}
               </Button>
               <Button
                 selected={showIcons}
                 onClick={() => toggleShowIcons(!showIcons)}
               >
-                Show Icons
+                显示图标
               </Button>
             </Flex.Item>
             <Flex.Item>
@@ -156,7 +156,7 @@ export const EmotePanelContent = (props) => {
                 selected={useParams}
                 onClick={() => toggleUseParams(!useParams)}
               >
-                Use Params
+                使用参数
               </Button>
             </Flex.Item>
           </Flex>
@@ -228,7 +228,7 @@ const EmoteButton = (props: EmoteButtonProps) => {
           onClick={onPlay}
         >
           <Box inline width="50%">
-            {showNames ? capitalizeFirst(emote.name.toLowerCase()) : emote.key}
+            {showNames ? (emoteDisplay(emote.key) !== emote.key ? emoteDisplay(emote.key) : capitalizeFirst(emote.name.toLowerCase())) : emote.key}
           </Box>
           {showIcons ? (
             <EmoteIcons
@@ -249,7 +249,7 @@ const EmoteButton = (props: EmoteButtonProps) => {
           <Button
             fluid
             icon="volume-up"
-            tooltip="Preview Sound"
+            tooltip="试听音效"
             onClick={onPreview}
           />
         </Stack.Item>

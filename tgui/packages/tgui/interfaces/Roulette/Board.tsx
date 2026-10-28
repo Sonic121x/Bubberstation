@@ -7,16 +7,16 @@ const firstRow = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36] as const;
 const secondRow = [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35] as const;
 const thirdRow = [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34] as const;
 const fourthRow = {
-  's1-12': '1st 12',
-  's13-24': '2nd 12',
-  's25-36': '3rd 12',
+  's1-12': '第一组12数',
+  's13-24': '第二组12数',
+  's25-36': '第三组12数',
 } as const;
 const fifthRow = [
   { color: 'transparent', text: '1-18', value: 's1-18' },
-  { color: 'transparent', text: 'Even', value: 'even' },
-  { color: 'black', text: 'Black', value: 'black' },
-  { color: 'red', text: 'Red', value: 'red' },
-  { color: 'transparent', text: 'Odd', value: 'odd' },
+  { color: 'transparent', text: '偶数', value: 'even' },
+  { color: 'black', text: '黑色', value: 'black' },
+  { color: 'red', text: '红色', value: 'red' },
+  { color: 'transparent', text: '奇数', value: 'odd' },
   { color: 'transparent', text: '19-36', value: 's19-36' },
 ] as const;
 
@@ -42,7 +42,7 @@ export function RouletteBoard(props) {
           ))}
           <RouletteNumberCell
             color="transparent"
-            text="2 to 1"
+            text="赔付2比1"
             value="s3rd col"
           />
         </Table.Row>
@@ -57,7 +57,7 @@ export function RouletteBoard(props) {
           ))}
           <RouletteNumberCell
             color="transparent"
-            text="2 to 1"
+            text="赔付2比1"
             value="s2nd col"
           />
         </Table.Row>
@@ -72,7 +72,7 @@ export function RouletteBoard(props) {
           ))}
           <RouletteNumberCell
             color="transparent"
-            text="2 to 1"
+            text="赔付2比1"
             value="s1st col"
           />
         </Table.Row>

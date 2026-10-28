@@ -1,10 +1,10 @@
 import { Button, NoticeBox, Section, Stack } from 'tgui-core/components';
-import { capitalizeFirst } from 'tgui-core/string';
+import { jobSelectionDisplay } from '../localization/zhJobSelectionDisplay';
 
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
 import type { NTOSData } from '../layouts/NtosWindow';
-
+import { displayRole } from '../localization/roleDisplay';
 type Data = {
   authCard: string;
   authCardTimeRemaining: string;
@@ -49,25 +49,25 @@ const SelfServePage = (props) => {
   } = data;
 
   return (
-    <Section title="Enterprise Resource Planning">
-      <Section title={`Welcome ${authIDName}`}>
+    <Section title="企业资源规划">
+      <Section title={`欢迎，${authIDName}`}>
         <Stack wrap="wrap">
           <Stack.Item width="100%" mt={1} ml={0}>
-            Current Assignment: {trimAssignment || '-----'}
+            当前职务：{displayRole(trimAssignment || '-----')}
           </Stack.Item>
           <Stack.Item align="center" mt={1} ml={0}>
-            Job Title: {authIDRank || '-----'}
+            职位名称：{displayRole(authIDRank || '-----')}
           </Stack.Item>
           <Stack.Item width="100%" mt={1} ml={0}>
-            Current Status: {trimClockedOut ? 'Off-Duty' : 'Active Duty'}
+            当前状态：{trimClockedOut ? '休班' : '在岗'}
           </Stack.Item>
           <Stack.Item width="100%" mt={1} ml={0}>
-            Station Alert Level: {capitalizeFirst(stationAlertLevel) || '-----'}
+            空间站警报等级：{jobSelectionDisplay(stationAlertLevel) || '-----'}
           </Stack.Item>
         </Stack>
       </Section>
 
-      <Section title="Punch Clock">
+      <Section title="考勤打卡">
         <Stack wrap="wrap">
           <Stack.Item width="100%" mt={1} ml={0}>
             <Stack>
@@ -81,8 +81,8 @@ const SelfServePage = (props) => {
                 >
                   <center>
                     {trimClockedOut
-                      ? 'Return to Job Assignment'
-                      : 'Punch Out from Job Assignment'}
+                      ? '返回工作岗位'
+                      : '下班打卡'}
                   </center>
                 </Button>
               </Stack.Item>
@@ -98,17 +98,17 @@ const SelfServePage = (props) => {
           </Stack.Item>
         </Stack>
       </Section>
-      <Section title="Assignment Information">
+      <Section title="岗位信息">
         <Stack wrap="wrap">
           {!trimClockedOut ? (
             <Stack.Item width="100%" mt={0} ml={0}>
               <NoticeBox info>
-                Before punching out, please return any job gear that is
-                important or limited to your workplace.
+                下班打卡前，请将重要或仅限工作场所使用的
+                岗位装备归还。
               </NoticeBox>
               <NoticeBox info>
-                While off-duty, any restricted items will be transferred to a
-                crew equipment lockbox, to be returned upon punching in.
+                休班期间，受限制的物品将存入
+                船员装备锁箱，上班打卡时归还。
               </NoticeBox>
             </Stack.Item>
           ) : (
@@ -117,23 +117,23 @@ const SelfServePage = (props) => {
           {authCardHOPLocked ? (
             <Stack.Item width="100%" mt={0} ml={0}>
               <NoticeBox danger>
-                Assignment Locked!
+                岗位已锁定！
                 <br />
                 <br />
-                Security and Command members must visit an appropriate Command
-                member to punch in!
+                安保和指挥人员必须找有相应权限的指挥人员，
+                才能上班打卡！
               </NoticeBox>
             </Stack.Item>
           ) : authCardTimeLocked ? (
             <Stack.Item width="100%" mt={0} ml={0}>
               <NoticeBox>
-                It is too early to return to your assignment!
+                现在还不能返回岗位！
                 <br />
-                Time remaining: {authCardTimeRemaining}
+                剩余时间：{authCardTimeRemaining}
                 <br />
                 <br />
-                Please visit the HoP window or your departmental Command member
-                for an override.
+                请前往人事主管窗口或联系本部门主管，
+                以解除限制。
               </NoticeBox>
             </Stack.Item>
           ) : (

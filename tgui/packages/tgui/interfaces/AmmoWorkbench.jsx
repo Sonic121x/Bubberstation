@@ -27,7 +27,7 @@ export const AmmoWorkbench = (props) => {
       width={620}
       height={640}
       theme="ammoworkbench"
-      title="Ammunitions Workbench"
+      title="弹药工作台"
     >
       <Window.Content>
         <Stack vertical fill>
@@ -38,13 +38,13 @@ export const AmmoWorkbench = (props) => {
                 ⌖
               </Box>
               <Box as="span" className="AmmoWorkbench__header-title">
-                ARMADYNE AMMUNITIONS WORKBENCH
+                阿玛达因弹药工作台
               </Box>
               <Tooltip
                 content={
                   silo_connected
-                    ? 'Linked to the ore silo.'
-                    : 'Not linked to an ore silo; using local storage. Link with a multitool.'
+                    ? '已连接矿物储仓。'
+                    : '未连接矿物储仓；正在使用本地存储。使用多功能工具建立连接。'
                 }
               >
                 <Box
@@ -53,7 +53,7 @@ export const AmmoWorkbench = (props) => {
                   color={silo_connected ? 'good' : 'bad'}
                 >
                   <Icon name="wifi" mr={0.5} />
-                  {silo_connected ? 'LINKED' : 'LOCAL'}
+                  {silo_connected ? '已连接' : '本地'}
                 </Box>
               </Tooltip>
               <Box
@@ -61,7 +61,7 @@ export const AmmoWorkbench = (props) => {
                 className="AmmoWorkbench__header-status"
                 color={hacked ? 'bad' : 'good'}
               >
-                {hacked ? 'SAFETY PROTOCOLS: DISENGAGED' : 'SAFETY PROTOCOLS: ENGAGED'}
+                {hacked ? '安全协议：已停用' : '安全协议：已启用'}
               </Box>
             </Box>
           </Stack.Item>
@@ -72,14 +72,14 @@ export const AmmoWorkbench = (props) => {
                 selected={tab === 1}
                 onClick={() => setTab(1)}
               >
-                Ammunitions
+                弹药
               </Tabs.Tab>
               <Tabs.Tab
                 icon="compact-disc"
                 selected={tab === 3}
                 onClick={() => setTab(3)}
               >
-                Datadisks
+                数据盘
               </Tabs.Tab>
             </Tabs>
           </Stack.Item>
@@ -96,11 +96,11 @@ export const AmmoWorkbench = (props) => {
                 mb={1}
               >
                 <Flex.Item color="label" style={{ letterSpacing: '1px' }}>
-                  STOCK
+                  库存
                 </Flex.Item>
                 <Flex.Item grow />
                 <Flex.Item color="label">
-                  reclaim {data.recyclePercent}% · {Math.round(data.efficiency * 100)}% cost
+                  回收率 {data.recyclePercent}% · 材料消耗 {Math.round(data.efficiency * 100)}%
                 </Flex.Item>
               </Flex>
               <MaterialAccessBar
@@ -158,27 +158,27 @@ export const AmmunitionsTab = (props) => {
         )}
       </Box>
 
-      <Section title="Machine Settings">
+      <Section title="机器设置">
         <Flex align="center" justify="space-between">
           <Flex.Item>
             <Flex align="center">
               <Flex.Item mr={2}>
-                <Tooltip content="Component quality. Higher-tier parts mean lower material cost, faster fabrication, and better recycling yield.">
+                <Tooltip content="组件质量。更高级的零件可降低材料消耗、加快制造速度并提高回收率。">
                   <Box>
                     <SignalBars level={partTier} />
                   </Box>
                 </Tooltip>
               </Flex.Item>
               <Flex.Item color="label" mr={1}>
-                Cost
+                材料消耗
               </Flex.Item>
               <Flex.Item bold mr={3}>
                 {Math.round(efficiency * 100)}%
               </Flex.Item>
               <Flex.Item color="label" mr={1}>
-                Time per round
+                每发耗时
               </Flex.Item>
-              <Flex.Item bold>{time}s</Flex.Item>
+              <Flex.Item bold>{time}秒</Flex.Item>
             </Flex>
           </Flex.Item>
           <Flex.Item>
@@ -186,37 +186,37 @@ export const AmmunitionsTab = (props) => {
               checked={turboBoost}
               onClick={() => act('turboBoost')}
             >
-              Turbo Boost
+              涡轮加速
             </Button.Checkbox>
           </Flex.Item>
         </Flex>
       </Section>
 
       <Section
-        title="Loaded Container"
+        title="已装入的容器"
         buttons={
           <>
             <Button
               icon="recycle"
               tooltip={
-                `Empties the container and reclaims ${recyclePercent}% of its rounds' base materials` +
+                `清空容器，并回收其中弹药基础材料的 ${recyclePercent}%` +
                 (recycle_preview ? ` (${recycle_preview})` : '') +
-                '.'
+                '。'
               }
               tooltipPosition="bottom-end"
               disabled={!mag_loaded || !current_rounds || system_busy}
               onClick={() => act('RecycleMag')}
             >
-              Recycle
+              回收
             </Button>
             <Button
               icon="eject"
-              tooltip="Ejects the current container."
+              tooltip="弹出当前容器。"
               tooltipPosition="bottom-end"
               disabled={!mag_loaded || system_busy}
               onClick={() => act('EjectMag')}
             >
-              Eject
+              弹出
             </Button>
           </>
         }
@@ -227,7 +227,7 @@ export const AmmunitionsTab = (props) => {
             <Flex height="100%" align="center" justify="center">
               <Flex.Item color="label" italic>
                 <Icon name="inbox" mr={1} />
-                No container inserted. Insert one to begin.
+                未插入容器。插入容器以开始操作。
               </Flex.Item>
             </Flex>
           ) : (
@@ -238,7 +238,7 @@ export const AmmunitionsTab = (props) => {
                 </Flex.Item>
                 <Flex.Item bold mr={2} style={{ letterSpacing: '1px' }}>
                   {'// '}
-                  {barState}
+                  {{ IDLE: '空闲', FABRICATING: '正在制造', FULL: '已满' }[barState] || barState}
                 </Flex.Item>
                 <Flex.Item bold>
                   {current_rounds} / {max_rounds}
@@ -259,7 +259,7 @@ export const AmmunitionsTab = (props) => {
                   textAlign="center"
                   onClick={() => act('CancelFabrication')}
                 >
-                  Cancel Operation
+                  取消操作
                 </Button>
               )}
             </>
@@ -267,15 +267,15 @@ export const AmmunitionsTab = (props) => {
         </Box>
       </Section>
 
-      <Section title="Available Ammunition Types">
+      <Section title="可用弹药类型">
         {!mag_loaded && (
           <Box color="label" italic>
-            Insert a container to list compatible rounds.
+            插入容器以列出兼容的弹药。
           </Box>
         )}
         {!!mag_loaded && !available_rounds.length && (
           <Box color="label" italic>
-            No printable rounds for this container.
+            没有适用于此容器的可制造弹药。
           </Box>
         )}
         {!!mag_loaded &&
@@ -316,9 +316,9 @@ export const AmmunitionsTab = (props) => {
 
       {!!hacked && (
         <NoticeBox textAlign="center" color="bad">
-          !WARNING! - ARMADYNE SAFETY PROTOCOLS ARE NOT ENGAGED! MISUSE IS NOT
-          COVERED UNDER WARRANTY. SOME MUNITION TYPES MAY CONSTITUTE A WAR CRIME
-          IN YOUR AREA. PLEASE CONTACT AN ARMADYNE ADMINISTRATOR IMMEDIATELY.
+          警告！阿玛达因安全协议未启用！因使用不当导致的损坏
+          不在保修范围内。某些弹药类型在您所在地区可能涉及战争罪。
+          请立即联系阿玛达因管理员。
         </NoticeBox>
       )}
     </>
@@ -345,7 +345,7 @@ export const DatadiskTab = (props) => {
         )}
       </Box>
       <Section
-        title="Datadisk"
+        title="数据盘"
         buttons={
           <>
             <Button
@@ -353,14 +353,14 @@ export const DatadiskTab = (props) => {
               disabled={!datadisk_loaded}
               onClick={() => act('ReadDisk')}
             >
-              Load Disk
+              读取磁盘
             </Button>
             <Button
               icon="eject"
               disabled={!datadisk_loaded}
               onClick={() => act('EjectDisk')}
             >
-              Eject
+              弹出
             </Button>
           </>
         }
@@ -376,16 +376,16 @@ export const DatadiskTab = (props) => {
           ) : (
             <Flex height="3rem" align="center" justify="center">
               <Flex.Item color="label" italic>
-                No datadisk inserted.
+                未插入数据盘。
               </Flex.Item>
             </Flex>
           )}
         </Box>
       </Section>
-      <Section title="Installed Recipe Data" mt={1}>
+      <Section title="已安装的配方数据" mt={1}>
         {!loaded_datadisks.length && (
           <Box color="label" italic>
-            No recipe data installed.
+            未安装配方数据。
           </Box>
         )}
         <Table>

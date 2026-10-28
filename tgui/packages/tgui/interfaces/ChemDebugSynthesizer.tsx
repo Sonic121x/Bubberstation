@@ -19,7 +19,7 @@ export const ChemDebugSynthesizer = (props) => {
     <Window width={390} height={330}>
       <Window.Content scrollable>
         <Section
-          title="Recipient"
+          title="接收容器"
           buttons={
             beaker ? (
               <>
@@ -64,14 +64,14 @@ export const ChemDebugSynthesizer = (props) => {
                 />
                 <Button
                   icon="plus"
-                  content="Input"
+                  content="输入"
                   onClick={() => act('input')}
                 />
               </>
             ) : (
               <Button
                 icon="plus"
-                content="Create Beaker"
+                content="创建烧杯"
                 onClick={() => act('makecup')}
               />
             )

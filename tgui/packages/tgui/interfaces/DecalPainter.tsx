@@ -3,7 +3,7 @@ import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { interfaceUtilityDisplay } from '../localization/interfaceUtilityDisplay';
 type DecalInfo = {
   name: string;
   icon_state: string;
@@ -78,7 +78,7 @@ export const DecalPainter = (props) => {
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>
-            <Section title="Category">
+            <Section title="分类">
               {categories.map((category) => (
                 <Button
                   align="center"
@@ -97,7 +97,7 @@ export const DecalPainter = (props) => {
           </Stack.Item>
           {color_list.length > 1 && (
             <Stack.Item>
-              <Section title="Color">
+              <Section title="颜色">
                 {color_list.map((color) => {
                   if (color.color === 'custom') {
                     return (
@@ -107,7 +107,7 @@ export const DecalPainter = (props) => {
                         onClick={() => act('pick_custom_color')}
                       >
                         <ColorBox color={current_custom_color} mr={0.5} />
-                        Custom
+                        自定义
                       </Button>
                     );
                   }
@@ -122,7 +122,7 @@ export const DecalPainter = (props) => {
                       }
                     >
                       <ColorBox color={filterBoxColor(color.color)} mr={0.5} />
-                      {color.name}
+                      {interfaceUtilityDisplay(color.name)}
                     </Button>
                   );
                 })}
@@ -130,7 +130,7 @@ export const DecalPainter = (props) => {
             </Stack.Item>
           )}
           <Stack.Item grow>
-            <Section title="Style" fill scrollable>
+            <Section title="样式" fill scrollable>
               <Flex wrap="wrap">
                 {decal_list.map((decal) => {
                   const nondirectional = decal.directional === 0;
@@ -159,7 +159,7 @@ export const DecalPainter = (props) => {
                             icon_state={decal.icon_state}
                             dir={dir.dir}
                             color={preview_color}
-                            label={`${dir.name} ${decal.name}`}
+                            label={`${interfaceUtilityDisplay(dir.name)} ${decal.name}`}
                             selected={selected}
                           />
                         );

@@ -14,20 +14,20 @@ export const HypnoChair = (props) => {
   return (
     <Window width={375} height={480}>
       <Window.Content>
-        <Section title="Information" backgroundColor="#450F44">
-          The Enhanced Interrogation Chamber is designed to induce a deep-rooted
-          trance trigger into the subject. Once the procedure is complete, by
-          using the implanted trigger phrase, the authorities are able to ensure
-          immediate and complete obedience and truthfulness.
+        <Section title="信息" backgroundColor="#450F44">
+          强化审讯舱旨在为受试者植入根深蒂固的
+          恍惚状态触发暗示。程序完成后，
+          执法人员只需说出植入的触发语，
+          即可确保受试者立即完全服从并如实回答。
         </Section>
-        <Section title="Occupant Information" textAlign="center">
+        <Section title="舱内人员信息" textAlign="center">
           <LabeledList>
-            <LabeledList.Item label="Name">
-              {data.occupant.name ? data.occupant.name : 'No Occupant'}
+            <LabeledList.Item label="姓名">
+              {data.occupant.name ? data.occupant.name : '无人'}
             </LabeledList.Item>
             {!!data.occupied && (
               <LabeledList.Item
-                label="Status"
+                label="状态"
                 color={
                   data.occupant.stat === 0
                     ? 'good'
@@ -37,25 +37,25 @@ export const HypnoChair = (props) => {
                 }
               >
                 {data.occupant.stat === 0
-                  ? 'Conscious'
+                  ? '清醒'
                   : data.occupant.stat === 1
-                    ? 'Unconscious'
-                    : 'Dead'}
+                    ? '昏迷'
+                    : '死亡'}
               </LabeledList.Item>
             )}
           </LabeledList>
         </Section>
-        <Section title="Operations" textAlign="center">
+        <Section title="操作" textAlign="center">
           <LabeledList>
-            <LabeledList.Item label="Door">
+            <LabeledList.Item label="舱门">
               <Button
                 icon={data.open ? 'unlock' : 'lock'}
                 color={data.open ? 'default' : 'red'}
-                content={data.open ? 'Open' : 'Closed'}
+                content={data.open ? '开启' : '关闭'}
                 onClick={() => act('door')}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Trigger Phrase">
+            <LabeledList.Item label="触发语">
               <Input
                 value={data.trigger}
                 onBlur={(value) =>
@@ -65,13 +65,13 @@ export const HypnoChair = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Interrogate Occupant">
+            <LabeledList.Item label="审讯舱内人员">
               <Button
                 icon="code-branch"
                 content={
                   data.interrogating
-                    ? 'Interrupt Interrogation'
-                    : 'Begin Enhanced Interrogation'
+                    ? '中断审讯'
+                    : '开始强化审讯'
                 }
                 onClick={() => act('interrogate')}
               />

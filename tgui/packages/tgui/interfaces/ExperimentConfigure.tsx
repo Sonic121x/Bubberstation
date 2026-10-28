@@ -115,14 +115,14 @@ export function TechwebServer(props: TechwebServerProps) {
               backgroundColor={server.selected ? 'good' : 'rgba(0, 0, 0, 0.4)'}
               className="ExperimentTechwebServer__ConnectButton"
             >
-              {server.selected ? 'Disconnect' : 'Connect'}
+              {server.selected ? '断开连接' : '连接'}
             </Button>
           </Stack.Item>
         )}
       </Stack>
       <Box className="ExperimentTechwebServer__WebContent">
         <span>
-          Connectivity to this web is maintained by the following servers...
+          以下服务器维持着此科研网络的连接……
         </span>
         <LabeledList>
           {server.all_servers.map((individual_servers, new_index) => (
@@ -244,22 +244,22 @@ export function ExperimentConfigure(props) {
 
   let textContent = '';
   if (experiments.length === 0) {
-    textContent = 'No experiments found on this web';
+    textContent = '此科研网络中未找到实验';
   } else if (always_active) {
     textContent =
-      'This device is configured to attempt to perform all available experiments, so no further configuration is necessary.';
+      '此设备已配置为尝试执行所有可用实验，因此无需进一步配置。';
   } else {
-    textContent = 'Select one of the following experiments...';
+    textContent = '请选择以下一项实验……';
   }
 
   return (
     <Window width={600} height={735}>
       <Window.Content scrollable>
-        <Section title="Servers">
+        <Section title="服务器">
           <Box color="label">
             {webs.size > 0
-              ? 'Please select a techweb to connect to...'
-              : 'Found no servers connected to a techweb!'}
+              ? '请选择要连接的科研网络……'
+              : '未找到连接至科研网络的服务器！'}
           </Box>
           {webs.size > 0 &&
             Array.from(webs, ([techweb, techwebs]) => (
@@ -270,7 +270,7 @@ export function ExperimentConfigure(props) {
           {techwebs.some((e) => e.selected) && (
             <Stack.Item>
               <Section
-                title="Experiments"
+                title="实验"
                 className="ExperimentConfigure__ExperimentsContainer"
                 fill
               >
@@ -293,7 +293,7 @@ export function ExperimentConfigure(props) {
                 disabled={!experiments.some((e) => e.selected)}
                 icon="flask"
               >
-                Perform Experiment
+                执行实验
               </Button>
             </Stack.Item>
           )}

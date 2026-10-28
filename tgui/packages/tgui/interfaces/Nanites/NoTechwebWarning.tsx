@@ -11,7 +11,7 @@ export const TechwebWarning = (props: TechwebWarningProps) => {
   }
   return (
     <NoticeBox danger>
-      <b>Warning:</b> No techweb connected!
+      <b>警告：</b>未连接科技网络！
     </NoticeBox>
   );
 };

@@ -17,7 +17,7 @@ import { Window } from '../layouts';
 import { MaterialAccessBar } from './Fabrication/MaterialAccessBar';
 import { MaterialIcon } from './Fabrication/MaterialIcon';
 import type { Material } from './Fabrication/Types';
-
+import { materialDisplay } from '../localization/batchThreeDisplay';
 type Data = {
   SHEET_MATERIAL_AMOUNT: number;
   materials: Material[];
@@ -37,7 +37,7 @@ export const Flatpacker = (props: any) => {
   const { SHEET_MATERIAL_AMOUNT, materials, design, busy } = data;
 
   return (
-    <Window width={670} height={400} title="Flatpacker">
+    <Window width={670} height={400} title="平装打包机">
       <Window.Content>
         {!!busy && (
           <Dimmer
@@ -47,7 +47,7 @@ export const Flatpacker = (props: any) => {
             }}
           >
             <Icon name="cog" spin />
-            {' Flatpacking...'}
+            {' 正在制造平装套件……'}
           </Dimmer>
         )}
         <Stack fill vertical align="stretch">
@@ -62,13 +62,13 @@ export const Flatpacker = (props: any) => {
                       fontSize: '18px',
                     }}
                   >
-                    {design ? toTitleCase(design.name) : 'No Board!'}
+                    {design ? toTitleCase(design.name) : '无电路板！'}
                   </Box>
                 </Section>
               </Stack.Item>
               <Stack.Item>
                 <Button
-                  tooltip="Eject Board"
+                  tooltip="弹出电路板"
                   tooltipPosition="left"
                   height="37px"
                   width="37px"
@@ -94,7 +94,7 @@ export const Flatpacker = (props: any) => {
                 </Stack.Item>
               </Stack>
             ) : (
-              <NoticeBox>No circuit present!</NoticeBox>
+              <NoticeBox>未放入电路板！</NoticeBox>
             )}
           </Stack.Item>
           <Stack.Item>
@@ -149,7 +149,7 @@ const BoardPreview = (props: BoardPreviewProps) => {
             tooltipPosition="bottom"
             onClick={() => onPrint()}
           >
-            Print
+            打印
           </Button>
         </Stack.Item>
       </Stack>
@@ -181,7 +181,7 @@ const CostPreview = (props: CostPreviewProps) => {
               </Table.Cell>
               <Table.Cell verticalAlign="middle">
                 <div style={{ width: '200px' }}>
-                  {toTitleCase(material.name)}
+                  {materialDisplay(material.name)}
                 </div>
               </Table.Cell>
               <Table.Cell verticalAlign="middle">
@@ -193,7 +193,7 @@ const CostPreview = (props: CostPreviewProps) => {
           ))}
         </Table>
       ) : (
-        <NoticeBox>No materials required!</NoticeBox>
+        <NoticeBox>无需材料！</NoticeBox>
       )}
     </Section>
   );

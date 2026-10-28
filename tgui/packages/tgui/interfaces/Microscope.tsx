@@ -40,7 +40,7 @@ export const Microscope = (props) => {
     <Window width={620} height={620}>
       <Window.Content scrollable>
         <Section
-          title={has_dish ? 'Petri Dish Sample' : 'No Petri Dish'}
+          title={has_dish ? '培养皿样本' : '未放入培养皿'}
           buttons={
             !!has_dish && (
               <Button
@@ -48,7 +48,7 @@ export const Microscope = (props) => {
                 disabled={!has_dish}
                 onClick={() => act('eject_petridish')}
               >
-                Take Dish
+                取出培养皿
               </Button>
             )
           }
@@ -66,7 +66,7 @@ const CellList = (props) => {
     <Icon name="spinner" size={5} height="64px" width="64px" spin />
   );
   if (!cell_lines.length) {
-    return <NoticeBox>No micro-organisms found</NoticeBox>;
+    return <NoticeBox>未发现微生物</NoticeBox>;
   }
 
   return cell_lines.map((cell_line) => {
@@ -88,23 +88,23 @@ const CellList = (props) => {
               <Button
                 color="transparent"
                 icon="circle-question"
-                tooltip="Put the sample into a Growing Vat and pour the required reagents."
+                tooltip="将样本放入培养槽，并倒入所需试剂。"
               />
             }
           >
             <Box my={1}>
-              Consume {cell_line.consumption_rate} units of every nutrient per
-              second to grow by {cell_line.growth_rate}%.
+              每秒消耗各种营养物各 {cell_line.consumption_rate} 单位，
+              生长 {cell_line.growth_rate}%。
             </Box>
             {cell_line.suspectibility > 0 && (
               <Box my={1}>
-                Reduced by {cell_line.suspectibility}% when infected with
-                viruses.
+                受到病毒感染时，生长速度降低
+                {cell_line.suspectibility}%。
               </Box>
             )}
             <Stack fill>
               <Stack.Item grow>
-                <GroupTitle title="Required Reagents" />
+                <GroupTitle title="必需试剂" />
                 {Object.keys(cell_line.requireds).map((reagent) => (
                   <Button fluid key={reagent}>
                     {reagent}
@@ -112,26 +112,26 @@ const CellList = (props) => {
                 ))}
               </Stack.Item>
               <Stack.Item grow>
-                <GroupTitle title="Supplements" />
+                <GroupTitle title="补充剂" />
                 {Object.keys(cell_line.supplementaries).map((reagent) => (
                   <Button
                     fluid
                     color="good"
                     key={reagent}
-                    tooltip={`+${cell_line.supplementaries[reagent]}% growth/sec.`}
+                    tooltip={`每秒生长率 +${cell_line.supplementaries[reagent]}%。`}
                   >
                     {reagent}
                   </Button>
                 ))}
               </Stack.Item>
               <Stack.Item grow>
-                <GroupTitle title="Supressives" />
+                <GroupTitle title="抑制剂" />
                 {Object.keys(cell_line.suppressives).map((reagent) => (
                   <Button
                     fluid
                     color="bad"
                     key={reagent}
-                    tooltip={`${cell_line.suppressives[reagent]}% growth/sec.`}
+                    tooltip={`每秒生长率 ${cell_line.suppressives[reagent]}%。`}
                   >
                     {reagent}
                   </Button>
@@ -149,8 +149,8 @@ const CellList = (props) => {
         <Stack.Item grow pl={1}>
           <Section title={cell_line.desc}>
             <Box my={1}>
-              Reduces growth of other cell lines when not suppressed by
-              Spaceacillin.
+              未受到太空青霉素抑制时，会降低
+              其他细胞系的生长速度。
             </Box>
           </Section>
         </Stack.Item>

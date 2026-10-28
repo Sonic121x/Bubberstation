@@ -1,11 +1,11 @@
 {
 	"name": "Highfive",
-	"description": "Gimme some!",
+	"description": "来，击个掌！",
 	"usage": "other",
 	"category": "Miscellaneous",
 	"distance_allowed": 0,
 	"message": [
-		"%USER% gives %TARGET% a highfive!"
+		"%USER% 与 %TARGET% 击了个掌！"
 	],
 	"sound_use": 0,
 	"sound_possible": [

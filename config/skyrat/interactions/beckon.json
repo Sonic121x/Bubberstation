@@ -1,11 +1,11 @@
 {
 	"name": "Beckon",
-	"description": "Beckon someone over to you.",
+	"description": "招手示意对方过来。",
 	"usage": "other",
 	"category": "Miscellaneous",
 	"distance_allowed": 1,
 	"message": [
-		"%USER% beckons %TARGET% over to them."
+		"%USER% 招手示意 %TARGET% 过来。"
 	],
 	"sound_use": 0,
 	"sound_possible": [

@@ -34,7 +34,7 @@ export const StateLawUi = () => {
 
   return (
     <Window
-      title="State Laws"
+      title="宣读法则"
       width={400}
       height={Math.max(1, all_laws.length) * 55 + 150}
     >
@@ -44,13 +44,13 @@ export const StateLawUi = () => {
         }}
       >
         <Section
-          title="Which laws do you want to include when stating them for the crew?"
+          title="向船员宣读时，要包含哪些法则？"
           scrollable
         >
           <Stack vertical>
             {all_laws.length === 0 ? (
               <Stack.Item>
-                <BlockQuote>No laws available!</BlockQuote>
+                <BlockQuote>没有可用的法则！</BlockQuote>
               </Stack.Item>
             ) : (
               all_laws.map((law, index) => (
@@ -87,7 +87,7 @@ export const StateLawUi = () => {
             onClick={() => act('state_laws')}
             italic={!!locked}
           >
-            {locked ? 'On Cooldown' : 'State Laws'}
+            {locked ? '冷却中' : '宣读法则'}
           </Button.Confirm>
         </Section>
       </Window.Content>

@@ -51,13 +51,13 @@ export const Autolathe = (props) => {
   }
 
   return (
-    <Window title="Autolathe" width={670} height={600}>
+    <Window title="自动车床" width={670} height={600}>
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item>
-            <Section title="Total Materials">
+            <Section title="材料总量">
               <LabeledList>
-                <LabeledList.Item label="Total Materials">
+                <LabeledList.Item label="材料总量">
                   <ProgressBar
                     value={materialtotal}
                     minValue={0}
@@ -71,12 +71,12 @@ export const Autolathe = (props) => {
                     {materialtotal / SHEET_MATERIAL_AMOUNT +
                       '/' +
                       materialsmax / SHEET_MATERIAL_AMOUNT +
-                      ' sheets'}
+                      ' 张'}
                   </ProgressBar>
                 </LabeledList.Item>
                 <LabeledList.Item>
                   {filteredMaterials.length > 0 && (
-                    <Collapsible title="Materials">
+                    <Collapsible title="材料">
                       <LabeledList>
                         {filteredMaterials.map((material) => (
                           <LabeledList.Item
@@ -96,11 +96,11 @@ export const Autolathe = (props) => {
                                 >
                                   <div style={{ transform: 'scaleX(-1)' }}>
                                     {material.amount / SHEET_MATERIAL_AMOUNT +
-                                      ' sheets'}
+                                      ' 张'}
                                   </div>
                                 </ProgressBar>
                               </Stack.Item>
-                              <Stack.Item>Eject:</Stack.Item>
+                              <Stack.Item>弹出：</Stack.Item>
                               {[
                                 1,
                                 5,
@@ -318,7 +318,7 @@ const AutolatheRecipe = (props: AutolatheRecipeProps) => {
       >
         <Button.Input
           color="transparent"
-          buttonText={`[Max: ${maxmult}]`}
+          buttonText={`[最多：${maxmult}]`}
           onCommit={(value) =>
             act('make', {
               id: design.id,

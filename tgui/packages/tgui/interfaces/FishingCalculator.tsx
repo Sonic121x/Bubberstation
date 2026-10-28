@@ -60,7 +60,7 @@ export const FishingCalculator = (props) => {
               onSelected={(e) => setLine(e)}
               width="100%"
             />
-            <Input value={bait} placeholder="Bait" onChange={setBait} fluid />
+            <Input value={bait} placeholder="鱼饵" onChange={setBait} fluid />
             <Button
               onClick={() =>
                 act('recalc', {
@@ -72,17 +72,17 @@ export const FishingCalculator = (props) => {
                 })
               }
             >
-              Calculate
+              计算
             </Button>
           </Stack.Item>
           <Stack.Item>
             <Table>
               <Table.Row header>
-                <Table.Cell>Outcome</Table.Cell>
-                <Table.Cell>Weight</Table.Cell>
-                <Table.Cell>Probabilty</Table.Cell>
-                <Table.Cell>Difficulty</Table.Cell>
-                <Table.Cell>Count</Table.Cell>
+                <Table.Cell>结果</Table.Cell>
+                <Table.Cell>权重</Table.Cell>
+                <Table.Cell>概率</Table.Cell>
+                <Table.Cell>难度</Table.Cell>
+                <Table.Cell>数量</Table.Cell>
               </Table.Row>
               {data.info?.map((result) => (
                 <Table.Row key={result.result}>
@@ -92,7 +92,7 @@ export const FishingCalculator = (props) => {
                     {round((result.weight / weight_sum) * 100, 2)}%
                   </Table.Cell>
                   <Table.Cell>{result.difficulty}</Table.Cell>
-                  <Table.Cell>{result.count}</Table.Cell>
+                  <Table.Cell>{result.count === 'Infinite' ? '无限' : result.count}</Table.Cell>
                 </Table.Row>
               ))}
             </Table>

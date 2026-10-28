@@ -36,12 +36,12 @@ const IntroductionObjectives = (props) => {
     <Section fill>
       <Stack vertical>
         <Stack.Item textColor="red" fontSize="20px">
-          You are the Separatist for a free {nation}!
+          你是为{nation}争取自由的分离主义者！
         </Stack.Item>
         <Stack.Item grow>
           <ObjectivePrintout
             objectives={objectives}
-            titleMessage={`${nation}'s objectives:`}
+            titleMessage={`${nation}的目标：`}
           />
         </Stack.Item>
       </Stack>
@@ -56,33 +56,33 @@ const FrequentlyAskedQuestions = (props) => {
     <Section fill>
       <Stack vertical>
         <Stack.Item fontSize="18px" bold>
-          <Icon name="info" color="label" /> Frequently Asked Questions:
+          <Icon name="info" color="label" /> 常见问题：
         </Stack.Item>
         <Stack.Item fontSize="16px">
-          &quot;What even IS a Separatist?&quot;
+          “分离主义者到底是什么？”
         </Stack.Item>
         <Stack.Item>
-          Separatists are semi-antagonists that every department is filled with
-          when the round starts. They do not have the permission to freely go
-          about and kill, but rather defend the soverignity of their department.
-          You may actually recognize them by their historical mode they existed
-          from: Nations!
+          分离主义者是一种半反派角色，回合开始时
+          各个部门都充满了他们。他们不能随意
+          杀戮，而应捍卫自己部门的主权。
+          你或许听说过他们曾经所属的游戏模式：
+          国家模式！
         </Stack.Item>
         <Stack.Item fontSize="16px">
-          &quot;What am I supposed to do?&quot;
+          “我该做什么？”
         </Stack.Item>
         <Stack.Item>
-          Each department (nation) has an objective. It&apos;s a freeform
-          objective, so try your best to follow it as you would a freeform
-          abductor objective. From experience, eventually nations conflict and
-          devolve into war. As long as both departments know what and why
-          conflict is starting, that&apos;s a green light to attack opposing
-          nations.
+          每个部门（国家）都有一个目标。这是一个自由形式的
+          目标，因此你应像对待绑架者的自由目标一样，
+          尽力完成它。根据经验，各国最终会产生冲突，
+          并演变成战争。只要双方部门都清楚冲突的
+          起因和经过，就可以进攻
+          敌对国家。
         </Stack.Item>
         <Stack.Item fontSize="16px">
-          &quot;Is {nation} the best nation?&quot;
+          “{nation}是最棒的国家吗？”
         </Stack.Item>
-        <Stack.Item>Yes.</Stack.Item>
+        <Stack.Item>是的。</Stack.Item>
       </Stack>
     </Section>
   );

@@ -29,7 +29,7 @@ export function PlantAnalyzer(props) {
                   active_tab === PlantAnalyzerTabs.STATS || !!graft_data
                 }
               >
-                Stats
+                属性
               </Button>
             </Stack.Item>
             <Stack.Item grow>
@@ -40,7 +40,7 @@ export function PlantAnalyzer(props) {
                 selected={active_tab === PlantAnalyzerTabs.CHEM && !graft_data}
                 disabled={!!graft_data}
               >
-                Chemicals
+                化学物质
               </Button>
             </Stack.Item>
           </Stack>

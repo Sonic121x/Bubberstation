@@ -10,12 +10,12 @@ export function AlarmEditingModal(props: EditingModalProps) {
   return (
     <Modal>
       <Section
-        title="Threshold Value Editor"
+        title="阈值编辑器"
         buttons={<Button onClick={() => finish()} icon="times" color="red" />}
       >
         <Box mb={1.5}>
-          Editing the {typeName.toLowerCase()} value for {name.toLowerCase()}
-          ...
+          正在编辑{name}的{typeName}值
+          ……
         </Box>
         {oldValue === -1 ? (
           <Button
@@ -27,7 +27,7 @@ export function AlarmEditingModal(props: EditingModalProps) {
               })
             }
           >
-            Enable
+            启用
           </Button>
         ) : (
           <>
@@ -54,7 +54,7 @@ export function AlarmEditingModal(props: EditingModalProps) {
                 })
               }
             >
-              Disable
+              禁用
             </Button>
           </>
         )}

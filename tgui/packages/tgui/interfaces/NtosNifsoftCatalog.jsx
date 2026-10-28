@@ -31,10 +31,10 @@ export const NtosNifsoftCatalog = (props) => {
       <NtosWindow.Content scrollable>
         <Section>
           <LabeledList>
-            <LabeledList.Item label={'Credits in account'}>
+            <LabeledList.Item label={'账户信用点'}>
               {current_balance}
             </LabeledList.Item>
-            <LabeledList.Item label="Rewards Points">
+            <LabeledList.Item label="奖励积分">
               <b>{rewards_points}</b>
             </LabeledList.Item>
           </LabeledList>
@@ -76,7 +76,7 @@ const ProductCategory = (props) => {
               }
               fill={false}
             >
-              <Collapsible title="Product Notes">
+              <Collapsible title="产品说明">
                 <BlockQuote>{product.desc}</BlockQuote>
               </Collapsible>
               <Button
@@ -92,7 +92,7 @@ const ProductCategory = (props) => {
                 }
                 fluid
               >
-                Purchase for {product.price}cr
+                花费 {product.price} 信用点购买
               </Button>
               <Button
                 icon="piggy-bank"
@@ -109,15 +109,15 @@ const ProductCategory = (props) => {
                 }
                 fluid
               >
-                Purchase for {product.price} rewards points
+                花费 {product.price} 奖励积分购买
               </Button>
               <Box opacity={0.85} textAlign="center">
-                Purchasing this item will give you:{' '}
-                {product.rewards_points_rate * product.price} rewards points
+                购买此商品可获得：{' '}
+                {product.rewards_points_rate * product.price} 奖励积分
               </Box>
               {product.keepable && (
                 <Box opacity={0.85} textAlign="center" bold>
-                  This NIFSoft carries between shifts
+                  此纳米植入框架软件可跨班次保留
                 </Box>
               )}
               <br />

@@ -70,17 +70,17 @@ function lineColor(f: number): string {
 function nodeTypeBadge(nodeType: number): string {
   switch (nodeType) {
     case BT_NODE_SEQUENCE:
-      return 'SEQ';
+      return '顺序';
     case BT_NODE_SELECTOR:
-      return 'SEL';
+      return '选择';
     case BT_NODE_PARALLEL:
-      return 'PAR';
+      return '并行';
     case BT_NODE_DECORATOR:
-      return 'DEC';
+      return '装饰';
     case BT_NODE_SUBTREE:
-      return 'SUB';
+      return '子树';
     case BT_NODE_SUBPLAN:
-      return 'PLAN';
+      return '计划';
     default:
       return '';
   }
@@ -270,7 +270,7 @@ function BtNodeTree(props: BtNodeProps) {
                   color: '#aaccff',
                 }}
               >
-                OBS
+                观察
               </span>
             )}
             {node.invert && (
@@ -283,17 +283,17 @@ function BtNodeTree(props: BtNodeProps) {
                   color: '#ffaaaa',
                 }}
               >
-                NOT
+                取反
               </span>
             )}
             {abort === BT_ABORT_SELF && (
-              <span style={{ fontSize: '9px', color: '#888' }}>SELF</span>
+              <span style={{ fontSize: '9px', color: '#888' }}>自身</span>
             )}
             {abort === BT_ABORT_LOWER_PRIORITY && (
-              <span style={{ fontSize: '9px', color: '#888' }}>LO-PRI</span>
+              <span style={{ fontSize: '9px', color: '#888' }}>低优先级</span>
             )}
             {abort === BT_ABORT_BOTH && (
-              <span style={{ fontSize: '9px', color: '#888' }}>BOTH</span>
+              <span style={{ fontSize: '9px', color: '#888' }}>两者</span>
             )}
           </div>
         )}
@@ -384,12 +384,12 @@ function BlackboardPanel({ entries }: { entries: BlackboardEntry[] }) {
           flexShrink: 0,
         }}
       >
-        Blackboard
+        黑板
       </div>
       <div style={{ overflowY: 'auto', flex: 1, padding: '4px 0' }}>
         {entries.length === 0 ? (
           <div style={{ padding: '8px', fontSize: '11px', color: '#555' }}>
-            No entries
+            无条目
           </div>
         ) : (
           entries.map((entry) => (
@@ -510,7 +510,7 @@ export function BehaviorTreeViewer() {
   );
 
   return (
-    <Window title="Behavior Tree Viewer" width={1200} height={700}>
+    <Window title="行为树查看器" width={1200} height={700}>
       <Window.Content
         fitted
         style={{
@@ -537,7 +537,7 @@ export function BehaviorTreeViewer() {
                     </span>
                   </span>
                 ) : (
-                  <span style={{ color: '#888' }}>No mob selected</span>
+                  <span style={{ color: '#888' }}>未选择生物</span>
                 )}
               </Stack.Item>
               <Stack.Item>
@@ -546,7 +546,7 @@ export function BehaviorTreeViewer() {
                   color={awaiting_pick ? 'yellow' : 'default'}
                   onClick={() => act('pick_target')}
                 >
-                  {awaiting_pick ? 'Click your target...' : 'Pick Mob'}
+                  {awaiting_pick ? '点击目标……' : '选择生物'}
                 </Button>
               </Stack.Item>
               <Stack.Item>
@@ -556,17 +556,17 @@ export function BehaviorTreeViewer() {
                   disabled={!mob_name}
                   onClick={() => act('clear')}
                 >
-                  Clear
+                  清除
                 </Button>
               </Stack.Item>
             </Stack>
             {selectedDec && (
               <Box mt={1} fontSize="11px" color="blue">
-                Observer: <b>{selectedDec.label}</b> — highlighted nodes would
-                be cancelled. Click node again to deselect.
+                观察器：<b>{selectedDec.label}</b>——高亮节点将被
+                取消。再次点击节点可取消选择。
                 {(selectedDec.observed_keys?.length ?? 0) > 0 && (
                   <span style={{ color: '#888', marginLeft: '8px' }}>
-                    Watching: {selectedDec.observed_keys!.join(', ')}
+                    正在观察：{selectedDec.observed_keys!.join(', ')}
                   </span>
                 )}
               </Box>
@@ -630,8 +630,8 @@ export function BehaviorTreeViewer() {
                 }}
               >
                 {mob_name
-                  ? 'No behavior nodes in controller.'
-                  : 'Pick a mob to view its behavior tree.'}
+                  ? '控制器中没有行为节点。'
+                  : '选择生物以查看其行为树。'}
               </Box>
             )}
           </div>

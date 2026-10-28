@@ -31,14 +31,14 @@ export const PortablePump = (props) => {
     minPressure,
     maxPressure,
   } = data;
-  const pump_or_port = connected ? 'Port' : 'Pump';
-  const area_or_tank = holding ? 'Tank' : 'Area';
+  const pump_or_port = connected ? '接口' : '气泵';
+  const area_or_tank = holding ? '气罐' : '区域';
   return (
     <Window width={300} height={340}>
       <Window.Content>
         <PortableBasicInfo />
         <Section
-          title="Pumping"
+          title="泵送"
           buttons={
             <Button
               color={!direction && !holding ? 'caution' : null}
@@ -51,7 +51,7 @@ export const PortablePump = (props) => {
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Output">
+            <LabeledList.Item label="输出压力">
               <NumberInput
                 value={targetPressure}
                 unit="kPa"
@@ -66,7 +66,7 @@ export const PortablePump = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Presets">
+            <LabeledList.Item label="预设">
               <Button
                 icon="minus"
                 disabled={targetPressure === minPressure}

@@ -43,7 +43,7 @@ function LockedPage(props) {
           <Icon color="purple" name="lock" size={10} />
         </Stack.Item>
         <Stack.Item fontSize="18px" color="purple">
-          The Wizard Federation has locked this page.
+          巫师联邦已封锁此页。
         </Stack.Item>
       </Stack>
     </Dimmer>

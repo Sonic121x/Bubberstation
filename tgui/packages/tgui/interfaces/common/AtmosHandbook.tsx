@@ -99,7 +99,7 @@ function GasHandbook(props) {
     <Section
       title={
         <GasSearchBar
-          title={relevantGas ? `Gas: ${relevantGas.name}` : 'Gas Lookup'}
+          title={relevantGas ? `气体：${relevantGas.name}` : '气体查询'}
           onChange={(keyword) =>
             setActiveGasId(
               gasInfo.find((gas) =>
@@ -116,9 +116,9 @@ function GasHandbook(props) {
         <>
           <Box mb="0.5em">{relevantGas.description}</Box>
           <Box mb="0.5em">
-            {`Specific heat: ${relevantGas.specific_heat} Joule/KelvinMol`}
+            {`摩尔热容：${relevantGas.specific_heat} 焦耳/(开尔文·摩尔)`}
           </Box>
-          <Box mb="0.5em">{'Relevant Reactions:'}</Box>
+          <Box mb="0.5em">{'相关反应：'}</Box>
           {Object.entries(relevantGas.reactions).map(
             ([reaction_id, reaction_name]) => (
               <Box key={reaction_id} mb="0.5em">
@@ -151,8 +151,8 @@ function ReactionHandbook(props) {
         <GasSearchBar
           title={
             relevantReaction
-              ? `Reaction: ${relevantReaction.name}`
-              : 'Reaction Lookup'
+              ? `反应：${relevantReaction.name}`
+              : '反应查询'
           }
           onChange={(keyword) =>
             setActiveReactionId(
@@ -169,7 +169,7 @@ function ReactionHandbook(props) {
       {relevantReaction && (
         <>
           <Box mb="0.5em">{relevantReaction.description}</Box>
-          <Box mb="0.5em">{'Relevant Factors:'}</Box>
+          <Box mb="0.5em">{'相关影响因素：'}</Box>
           <LabeledList>
             {relevantReaction.factors.map((factor) => (
               <LabeledList.Item

@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 
 	var/list/parsed_blanks = list()
 	for(var/paper_blank in blanks_json)
-		parsed_blanks += list("[paper_blank["code"]]" = paper_blank)
+		parsed_blanks += list("[paper_blank["code"]]" = chinese_paper_blank_display(paper_blank))
 
 	return parsed_blanks
 

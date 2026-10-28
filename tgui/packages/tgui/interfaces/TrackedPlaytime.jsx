@@ -9,7 +9,7 @@ import {
 } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import { Window } from '../layouts'; import { displayRole } from '../localization/roleDisplay';
 
 const JOB_REPORT_MENU_FAIL_REASON_TRACKING_DISABLED = 1;
 const JOB_REPORT_MENU_FAIL_REASON_NO_RECORDS = 2;
@@ -24,7 +24,7 @@ const PlaytimeSection = (props) => {
   );
 
   if (!sortedPlaytimes.length) {
-    return 'No recorded playtime hours for this section.';
+    return '此分类没有游戏时长记录。';
   }
 
   const mostPlayed = sortedPlaytimes[0][1];
@@ -41,7 +41,7 @@ const PlaytimeSection = (props) => {
                 verticalAlign: 'middle',
               }}
             >
-              <Box align="right">{jobName}</Box>
+              <Box align="right">{displayRole(jobName)}</Box>
             </Table.Cell>
             <Table.Cell>
               <ProgressBar maxValue={mostPlayed} value={playtime}>
@@ -52,7 +52,7 @@ const PlaytimeSection = (props) => {
                       minimumFractionDigits: 1,
                       maximumFractionDigits: 1,
                     })}
-                    h
+                    小时
                   </Flex.Item>
                 </Flex>
               </ProgressBar>
@@ -77,41 +77,41 @@ export const TrackedPlaytime = (props) => {
     adminTime,
   } = data;
   return (
-    <Window title="Tracked Playtime" width={550} height={650}>
+    <Window title="游戏时长记录" width={550} height={650}>
       <Window.Content scrollable>
         {(failReason &&
           ((failReason === JOB_REPORT_MENU_FAIL_REASON_TRACKING_DISABLED && (
-            <Box>This server has disabled tracking.</Box>
+            <Box>此服务器已禁用时长记录。</Box>
           )) ||
             (failReason === JOB_REPORT_MENU_FAIL_REASON_NO_RECORDS && (
-              <Box>You have no records.</Box>
+              <Box>你没有记录。</Box>
             )))) || (
           <Box>
-            <Section title="Total">
+            <Section title="总计">
               <PlaytimeSection
                 playtimes={{
-                  Ghost: ghostTime,
-                  Living: livingTime,
-                  Admin: adminTime,
+                  幽灵: ghostTime,
+                  存活: livingTime,
+                  管理员: adminTime,
                 }}
               />
             </Section>
             <Section
-              title="Jobs"
+              title="职业"
               buttons={
                 !!isAdmin && (
                   <Button.Checkbox
                     checked={!!exemptStatus}
                     onClick={() => act('toggle_exempt')}
                   >
-                    Job Playtime Exempt
+                    豁免职业时长要求
                   </Button.Checkbox>
                 )
               }
             >
               <PlaytimeSection playtimes={jobPlaytimes} />
             </Section>
-            <Section title="Special">
+            <Section title="特殊">
               <PlaytimeSection playtimes={specialPlaytimes} />
             </Section>
           </Box>

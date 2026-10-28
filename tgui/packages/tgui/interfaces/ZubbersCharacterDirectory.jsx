@@ -10,7 +10,7 @@ import {
 } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import { Window } from '../layouts'; import { directoryDisplay } from '../localization/directoryDisplay';
 
 const erpTagColor = {
   Unset: '#000000',
@@ -51,30 +51,30 @@ export const ZubbersCharacterDirectory = (props) => {
   return (
     <Window width={900} height={640} resizeable>
       <Window.Content scrollable>
-        <Section title="Controls">
+        <Section title="控制">
           <LabeledList>
-            <LabeledList.Item label="Visibility">
+            <LabeledList.Item label="可见性">
               <Button fluid>
-                {personalVisibility ? 'Shown' : 'Not Shown'}
+                {personalVisibility ? '显示' : '隐藏'}
               </Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Attraction">
-              <Button fluid>{personalAttraction}</Button>
+            <LabeledList.Item label="吸引倾向">
+              <Button fluid>{directoryDisplay(personalAttraction)}</Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Gender">
-              <Button fluid>{personalGender}</Button>
+            <LabeledList.Item label="性别">
+              <Button fluid>{directoryDisplay(personalGender)}</Button>
             </LabeledList.Item>
-            <LabeledList.Item label="ERP">
-              <Button fluid>{personalErpTag}</Button>
+            <LabeledList.Item label="成人角色扮演">
+              <Button fluid>{directoryDisplay(personalErpTag)}</Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Vore">
-              <Button fluid>{personalVoreTag}</Button>
+            <LabeledList.Item label="吞食">
+              <Button fluid>{directoryDisplay(personalVoreTag)}</Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Hypno">
-              <Button fluid>{personalHypnoTag}</Button>
+            <LabeledList.Item label="催眠">
+              <Button fluid>{directoryDisplay(personalHypnoTag)}</Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Noncon">
-              <Button fluid>{personalNonconTag}</Button>
+            <LabeledList.Item label="非自愿主题">
+              <Button fluid>{directoryDisplay(personalNonconTag)}</Button>
             </LabeledList.Item>
           </LabeledList>
         </Section>
@@ -150,22 +150,22 @@ const CharacterDirectoryList = (props) => {
 
   return (
     <Section
-      title="Directory"
+      title="角色目录"
       buttons={
         <>
           <Button icon="sync" onClick={() => act('refresh')}>
-            {'Refresh'}
+            {'刷新'}
           </Button>
-          <Tooltip content="Display a random player's advert. Click if you dare.">
+          <Tooltip content="显示一位随机玩家的角色介绍。敢的话就点吧。">
             <Button icon="random" onClick={handleRandomView}>
-              {'I Feel Lucky'}
+              {'手气不错'}
             </Button>
           </Tooltip>
         </>
       }
     >
       <Input
-        placeholder="Search name..."
+        placeholder="搜索姓名……"
         onChange={setSearchTerm}
         value={searchTerm}
         mb={2}
@@ -178,7 +178,7 @@ const CharacterDirectoryList = (props) => {
             sortOrder={sortOrder}
             onClick={handleSort}
           >
-            Name
+            姓名
           </SortButton>
           <SortButton
             id="species"
@@ -186,7 +186,7 @@ const CharacterDirectoryList = (props) => {
             sortOrder={sortOrder}
             onClick={handleSort}
           >
-            Species
+            物种
           </SortButton>
           <SortButton
             id="attraction"
@@ -194,7 +194,7 @@ const CharacterDirectoryList = (props) => {
             sortOrder={sortOrder}
             onClick={handleSort}
           >
-            Attraction
+            吸引倾向
           </SortButton>
           <SortButton
             id="gender"
@@ -202,7 +202,7 @@ const CharacterDirectoryList = (props) => {
             sortOrder={sortOrder}
             onClick={handleSort}
           >
-            Gender
+            性别
           </SortButton>
           <SortButton
             id="erp"
@@ -210,7 +210,7 @@ const CharacterDirectoryList = (props) => {
             sortOrder={sortOrder}
             onClick={handleSort}
           >
-            ERP
+            成人角色扮演
           </SortButton>
           <SortButton
             id="vore"
@@ -218,7 +218,7 @@ const CharacterDirectoryList = (props) => {
             sortOrder={sortOrder}
             onClick={handleSort}
           >
-            Vore
+            吞食
           </SortButton>
           <SortButton
             id="hypno"
@@ -226,7 +226,7 @@ const CharacterDirectoryList = (props) => {
             sortOrder={sortOrder}
             onClick={handleSort}
           >
-            Hypno
+            催眠
           </SortButton>
           <SortButton
             id="noncon"
@@ -234,10 +234,10 @@ const CharacterDirectoryList = (props) => {
             sortOrder={sortOrder}
             onClick={handleSort}
           >
-            Noncon
+            非自愿主题
           </SortButton>
           <Table.Cell collapsing textAlign="right">
-            Advert
+            介绍
           </Table.Cell>
         </Table.Row>
         {sortedDirectory.map((character, i) => (
@@ -247,7 +247,7 @@ const CharacterDirectoryList = (props) => {
                 <Button
                   color={erpTagColor[character.erp]}
                   icon="ghost"
-                  tooltip="Orbit"
+                  tooltip="跟随观察"
                   onClick={() => act('orbit', { ref: character.ref })}
                 >
                   {character.name}
@@ -256,13 +256,13 @@ const CharacterDirectoryList = (props) => {
                 character.name
               )}
             </Table.Cell>
-            <Table.Cell>{character.species}</Table.Cell>
-            <Table.Cell>{character.attraction}</Table.Cell>
-            <Table.Cell>{character.gender}</Table.Cell>
-            <Table.Cell>{character.erp}</Table.Cell>
-            <Table.Cell>{character.vore}</Table.Cell>
-            <Table.Cell>{character.hypno}</Table.Cell>
-            <Table.Cell>{character.noncon}</Table.Cell>
+            <Table.Cell>{directoryDisplay(character.species)}</Table.Cell>
+            <Table.Cell>{directoryDisplay(character.attraction)}</Table.Cell>
+            <Table.Cell>{directoryDisplay(character.gender)}</Table.Cell>
+            <Table.Cell>{directoryDisplay(character.erp)}</Table.Cell>
+            <Table.Cell>{directoryDisplay(character.vore)}</Table.Cell>
+            <Table.Cell>{directoryDisplay(character.hypno)}</Table.Cell>
+            <Table.Cell>{directoryDisplay(character.noncon)}</Table.Cell>
             <Table.Cell collapsing textAlign="right">
               <Button
                 onClick={() => act('view', { ref: character.ref })}
@@ -270,7 +270,7 @@ const CharacterDirectoryList = (props) => {
                 icon="sticky-note"
                 mr={1}
               >
-                {'View'}
+                {'查看'}
               </Button>
             </Table.Cell>
           </Table.Row>

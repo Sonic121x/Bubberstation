@@ -7,7 +7,7 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
-import { capitalizeAll } from 'tgui-core/string';
+import { chemPackagingDisplay } from '../localization/chemPackagingDisplay';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -56,18 +56,18 @@ export const ChemPress = () => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Product">
+            <LabeledList.Item label="成品">
               {packaging_types.map((category, i) => (
                 <Button.Checkbox
                   key={category.cat_name}
                   checked={category.cat_name === shownCategory.cat_name}
                   onClick={() => setCategoryName(category.cat_name)}
                 >
-                  {capitalizeAll(category.cat_name)}
+                  {chemPackagingDisplay(category.cat_name)}
                 </Button.Checkbox>
               ))}
             </LabeledList.Item>
-            <LabeledList.Item label="Volume">
+            <LabeledList.Item label="体积">
               <NumberInput
                 value={current_volume}
                 unit="u"
@@ -84,7 +84,7 @@ export const ChemPress = () => {
               />
             </LabeledList.Item>
             {shownCategory.cat_name === 'pills' && (
-              <LabeledList.Item label="Duration">
+              <LabeledList.Item label="持续时间">
                 <NumberInput
                   value={pill_duration}
                   unit="s"
@@ -101,7 +101,7 @@ export const ChemPress = () => {
                 />
               </LabeledList.Item>
             )}
-            <LabeledList.Item label="Name">
+            <LabeledList.Item label="名称">
               <Input
                 value={product_name}
                 onBlur={(value) =>
@@ -111,7 +111,7 @@ export const ChemPress = () => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Styles">
+            <LabeledList.Item label="样式">
               {shownCategory.products.map((design, j) => (
                 <ImageButton
                   asset={['', design.class_name]}

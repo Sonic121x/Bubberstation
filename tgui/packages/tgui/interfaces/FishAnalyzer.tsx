@@ -15,7 +15,7 @@ import { createSearch } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { chineseDisplay } from '../localization/zhDisplay';
 type FishData = {
   fish_name: string;
   fish_icon: string;
@@ -67,7 +67,7 @@ export const FishAnalyzer = (props) => {
 
   return (
     <Window
-      title="Fish Analyzer"
+      title="鱼类分析仪"
       width={fish_scanned ? 530 : 700}
       height={fish_scanned ? 270 : 460}
     >
@@ -85,7 +85,7 @@ export const FishAnalyzer = (props) => {
                   position="relative"
                   mt={0.5}
                   height="20px"
-                  placeholder="Search Fish..."
+                  placeholder="搜索鱼类……"
                   value={searchText}
                   onChange={setSearchText}
                   fluid
@@ -94,7 +94,7 @@ export const FishAnalyzer = (props) => {
             </Stack.Item>
           )}
           <Stack.Item grow>
-            <Section title="Fish" fill scrollable>
+            <Section title="鱼类" fill scrollable>
               <Stack wrap>
                 {fish_filtered.map((fish, index) => (
                   <Stack.Item
@@ -142,7 +142,7 @@ const FishItem = (props) => {
                 />
               </Stack.Item>
               <Stack.Item style={{ fontSize: '10px' }}>
-                {fish.fish_weight} kiloclam
+                {fish.fish_weight} 千蛤
               </Stack.Item>
               <Stack.Item style={{ fontSize: '10px' }}>
                 {fish.fish_size} cm
@@ -167,8 +167,8 @@ const FishItem = (props) => {
               </Stack.Item>
               <Stack.Item mt={2}>
                 {fish.fish_traits.length === 0 ? (
-                  <Button color="transparent" tooltip="Fish has no traits!">
-                    None
+                  <Button color="transparent" tooltip="此鱼没有特性！">
+                    无
                   </Button>
                 ) : (
                   <Stack vertical>
@@ -179,7 +179,7 @@ const FishItem = (props) => {
                           tooltip={
                             <Stack vertical>
                               <Stack.Item>
-                                Inheritance: {trait.trait_inherit}%
+                                遗传概率：{trait.trait_inherit}%
                               </Stack.Item>
                               <Stack.Item>{trait.trait_desc}</Stack.Item>
                             </Stack>
@@ -197,7 +197,7 @@ const FishItem = (props) => {
           <Flex.Item grow ml={2}>
             <Stack vertical>
               <Stack.Item>
-                Health:{' '}
+                健康：{' '}
                 <ProgressBar
                   width="95%"
                   value={fish.fish_health / 100}
@@ -209,7 +209,7 @@ const FishItem = (props) => {
                 />
               </Stack.Item>
               <Stack.Item>
-                Hunger:{' '}
+                饥饿：{' '}
                 <ProgressBar
                   width="95%"
                   value={fish.fish_hunger}
@@ -222,7 +222,7 @@ const FishItem = (props) => {
               </Stack.Item>
               <Stack.Item mt={2}>
                 {fish.fish_evolutions.length === 0 ? (
-                  <Box mb={2}>No evolutions!</Box>
+                  <Box mb={2}>无进化形态！</Box>
                 ) : (
                   <Stack mt={-2} vertical>
                     {fish.fish_evolutions.map((evolution, index) => (
@@ -255,7 +255,7 @@ const FishItem = (props) => {
               color: fish.fish_fluid_compatible ? '#1ac400' : 'red',
             }}
           >
-            {dissectName(fish.fish_fluid_type)}
+            {chineseDisplay(fish.fish_fluid_type)}
           </Flex.Item>
         </Flex>
       </Stack.Item>

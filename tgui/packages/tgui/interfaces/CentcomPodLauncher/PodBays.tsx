@@ -17,27 +17,27 @@ export function PodBays(props) {
             icon="trash"
             onClick={() => act('clearBay')}
             tooltip={`
-              Clears everything
-              from the selected bay`}
+              清除所选装载区
+              内的所有内容`}
             tooltipPosition="top-end"
           />
           <Button
             color="transparent"
             icon="question"
             tooltip={`
-              Each option corresponds
-              to an area on centcom.
-              Launched pods will
-              be filled with items
-              in these areas according
-              to the "Load from Bay"
-              options at the top left.`}
+              每个选项对应
+              中央指挥部的一个区域。
+              发射的空投舱会
+              按照左上角
+              “装载来源”
+              的选项设置，
+              装入这些区域内的物品。`}
             tooltipPosition="top-end"
           />
         </>
       }
       fill
-      title="Bay"
+      title="装载区"
     >
       {BAYS.map((bay, i) => (
         <Button

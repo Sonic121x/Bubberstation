@@ -23,7 +23,7 @@ export const ChemFilterPane = (props: Props) => {
 
   return (
     <Section
-      title={title}
+      title={{ Right: '右侧', Left: '左侧' }[title] || title}
       minHeight="240px"
       buttons={
         <Button
@@ -35,7 +35,7 @@ export const ChemFilterPane = (props: Props) => {
             })
           }
         >
-          Add Reagent
+          添加试剂
         </Button>
       }
     >

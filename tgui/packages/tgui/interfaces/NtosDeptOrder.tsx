@@ -53,13 +53,13 @@ const CooldownEstimate = (props) => {
     (cost >= COST_MODERATE_BOUND && 'yellow') ||
     'green';
   const cooldownText =
-    (cost >= COST_VERY_LONG_BOUND && 'very long') ||
-    (cost >= COST_LONG_BOUND && 'long') ||
-    (cost >= COST_MODERATE_BOUND && 'moderate') ||
-    'short';
+    (cost >= COST_VERY_LONG_BOUND && '极长') ||
+    (cost >= COST_LONG_BOUND && '较长') ||
+    (cost >= COST_MODERATE_BOUND && '适中') ||
+    '较短';
   return (
     <Box as="span" textColor={cooldownColor}>
-      {cooldownText} cooldown.
+      冷却时间{cooldownText}。
     </Box>
   );
 };
@@ -84,11 +84,11 @@ export const DepartmentOrderContent = (props) => {
         <Stack fill vertical>
           <Stack.Item>
             <NoticeBox info>
-              As employees of Nanotrasen, the selection of orders here are
-              completely free of charge, only incurring a cooldown on the
-              service. Cheaper items will make you wait for less time before
-              Nanotrasen allows another purchase, to encourage tasteful
-              spending.
+              作为纳米传讯的员工，您可以
+              免费订购此处的物品，仅需等待
+              服务冷却。订购价格较低的物品后，
+              纳米传讯允许您再次订购前的等待时间也更短，
+              以此鼓励合理消费。
             </NoticeBox>
           </Stack.Item>
           <Stack.Item grow>
@@ -102,7 +102,7 @@ export const DepartmentOrderContent = (props) => {
 
 export const NtosDeptOrder = () => {
   return (
-    <NtosWindow title="Department Orders" width={620} height={580}>
+    <NtosWindow title="部门订购" width={620} height={580}>
       <NtosWindow.Content>
         <DepartmentOrderContent />
       </NtosWindow.Content>
@@ -120,7 +120,7 @@ const CooldownDimmer = () => {
           <Icon color="bug" name="route" size={20} />
         </Stack.Item>
         <Stack.Item fontSize="18px" color="orange">
-          Ready for another order in {time_left}...
+          {time_left} 后可再次订购……
         </Stack.Item>
         <Stack.Item textAlign="center" color="orange">
           <Button
@@ -128,15 +128,15 @@ const CooldownDimmer = () => {
             lineHeight={2}
             tooltip={
               (!!can_override &&
-                'This action requires Head of Staff access!') ||
-              'Crate already shipped! No cancelling now!'
+                '此操作需要部门主管权限！') ||
+              '货箱已发出！现在无法取消！'
             }
             fontSize="14px"
             color="red"
             disabled={!can_override}
             onClick={() => act('override_order')}
           >
-            <Box fontSize="22px">Override</Box>
+            <Box fontSize="22px">强制覆盖</Box>
           </Button>
         </Stack.Item>
       </Stack>
@@ -156,11 +156,11 @@ const NoLinkDimmer = () => {
           </Blink>
         </Stack.Item>
         <Stack.Item textAlign="center" fontSize="22px" color="red">
-          Unlinked!
+          未关联！
         </Stack.Item>
         <Stack.Item textAlign="center" fontSize="14px" color="red">
           <Button disabled={!id_inside} onClick={() => act('link')}>
-            Please insert a silver Head of Staff ID and press to continue.
+            请插入银色部门主管身份卡，然后点击以继续。
           </Button>
         </Stack.Item>
       </Stack>
@@ -216,7 +216,7 @@ const DepartmentCatalog = () => {
                         })
                       }
                     >
-                      Order
+                      订购
                     </Button>
                   </Stack.Item>
                 </Stack>

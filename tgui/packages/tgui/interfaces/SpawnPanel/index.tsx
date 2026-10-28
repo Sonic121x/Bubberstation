@@ -46,7 +46,7 @@ export function SpawnPanel() {
   };
 
   return (
-    <Window height={550} title="Spawn Panel" width={500} theme="admin">
+    <Window height={550} title="生成面板" width={500} theme="admin">
       <Window.Content>
         {advancedSettings && (
           <Modal
@@ -57,7 +57,7 @@ export function SpawnPanel() {
             }}
           >
             <Section
-              title="Advanced settings"
+              title="高级设置"
               buttons={
                 <Button
                   color="transparent"

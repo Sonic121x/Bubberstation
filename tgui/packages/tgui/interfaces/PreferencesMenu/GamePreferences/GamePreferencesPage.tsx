@@ -77,7 +77,7 @@ export function GamePreferencesPage(props) {
             />
           ) : (
             <Box as="b" color="red">
-              ...is not filled out properly!!!
+              ……未正确填写！
             </Box>
           )}
         </Flex.Item>

@@ -33,7 +33,7 @@ type Data = {
 
 export const AiStatusDisplayPicker = () => {
   return (
-    <Window width={500} height={600} title="AI Status Display Options">
+    <Window width={500} height={600} title="AI 状态显示选项">
       <Window.Content scrollable>
         <AiStatusDisplayPickerContent />
       </Window.Content>
@@ -61,7 +61,7 @@ const AiStatusDisplayPickerContent = () => {
   return (
     <Stack fill vertical>
       <Stack.Item>
-        <Section title="Current Display">
+        <Section title="当前显示">
           <Flex align="center" justify="center" direction="column">
             {current_icon && (
               <Flex.Item mb={2}>
@@ -84,7 +84,7 @@ const AiStatusDisplayPickerContent = () => {
             )}
             <Flex.Item mb={1}>
               <Box fontSize="1.4em" textAlign="center" bold color="good">
-                {current_emotion || 'No Selection'}
+                {current_emotion || '未选择'}
               </Box>
             </Flex.Item>
           </Flex>
@@ -95,7 +95,7 @@ const AiStatusDisplayPickerContent = () => {
         <Section>
           <Input
             fluid
-            placeholder="Search display options..."
+            placeholder="搜索显示选项……"
             value={searchTerm}
             onChange={(value) => setSearchTerm(value)}
           />
@@ -106,7 +106,7 @@ const AiStatusDisplayPickerContent = () => {
         <Stack fill vertical>
           {originalOptions.length > 0 && (
             <Stack.Item>
-              <Section title="AI Emotions">
+              <Section title="AI 表情">
                 <OptionsList options={originalOptions} />
               </Section>
             </Stack.Item>
@@ -114,7 +114,7 @@ const AiStatusDisplayPickerContent = () => {
 
           {newOptions.length > 0 && (
             <Stack.Item>
-              <Section title="Additional Status Display Options">
+              <Section title="更多状态显示选项">
                 <OptionsList options={newOptions} />
               </Section>
             </Stack.Item>
@@ -123,7 +123,7 @@ const AiStatusDisplayPickerContent = () => {
           {filteredOptions.length === 0 && (
             <Stack.Item>
               <Box textAlign="center" color="average" mt={4}>
-                No options found matching "{searchTerm}"
+                未找到与“{searchTerm}”匹配的选项
               </Box>
             </Stack.Item>
           )}

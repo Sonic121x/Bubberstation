@@ -11,7 +11,7 @@ import {
 } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import { Window } from '../layouts'; import { storytellerTagDisplay } from '../localization/storytellerTagDisplay';
 
 export type Storyteller_Data = {
   storyteller_name: string;
@@ -91,37 +91,37 @@ export const ZubbersStorytellerRoundData = (props) => {
   } = data;
   return (
     <Section
-      title="Storyteller"
+      title="叙事者"
       buttons={
         <>
           <Box inline bold mr={1}>
             {storyteller_name}
           </Box>
           <Button onClick={() => act('set_storyteller')}>
-            Set Storyteller
+            设置叙事者
           </Button>
         </>
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Storyteller status">
+        <LabeledList.Item label="叙事者状态">
           <Button
             color={storyteller_halt ? 'red' : 'green'}
-            tooltip={`${storyteller_halt ? 'Unhalt' : 'Halt'} storyteller`}
+            tooltip={`${storyteller_halt ? '恢复' : '暂停'}叙事者`}
             onClick={() => act('halt_storyteller')}
             textAlign="center"
           >
-            {storyteller_halt ? 'Halted' : 'Running'}
+            {storyteller_halt ? '已暂停' : '运行中'}
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Active Players">
-          {pop_data.active} {'('}Head: {pop_data.head}, Sec: {pop_data.sec},
-          Eng: {pop_data.eng}, Med: {pop_data.med}
+        <LabeledList.Item label="活跃玩家">
+          {pop_data.active} {'('}主管：{pop_data.head}，安保：{pop_data.sec}，
+          工程：{pop_data.eng}，医疗：{pop_data.med}
           {')'}
         </LabeledList.Item>
         <LabeledList.Item
-          label="Antag Cap"
-          tooltip="Amount of antags / The antag cap"
+          label="反派上限"
+          tooltip="反派人数／反派人数上限"
         >
           <ProgressBar
             value={antag_count}
@@ -149,18 +149,18 @@ export const ZubbersStorytellerTrackData = (props) => {
   const { act, data } = useBackend<Storyteller_Data>();
   const { tracks_data, storyteller_halt } = data;
   return (
-    <Section title="Tracks">
+    <Section title="事件轨道">
       <Table>
         <Table.Row bold>
-          <Table.Cell width={TRACK_DATA_TRACK_WIDTH}>Track</Table.Cell>
-          <Table.Cell width={TRACK_DATA_POINT_WIDTH}>Points</Table.Cell>
+          <Table.Cell width={TRACK_DATA_TRACK_WIDTH}>轨道</Table.Cell>
+          <Table.Cell width={TRACK_DATA_POINT_WIDTH}>点数</Table.Cell>
           <Table.Cell width={TRACK_DATA_NEXT_WIDTH} textAlign="center">
-            Next event
+            下次事件
           </Table.Cell>
           <Table.Cell width={TRACK_DATA_FORCED_WIDTH}>
-            Next forced event
+            下次强制事件
           </Table.Cell>
-          <Table.Cell width={TRACK_DATA_ACTIONS_WIDTH}>Actions</Table.Cell>
+          <Table.Cell width={TRACK_DATA_ACTIONS_WIDTH}>操作</Table.Cell>
         </Table.Row>
         <Stack.Divider />
         {Object.entries(tracks_data).map(([track, track_data]) => {
@@ -171,7 +171,7 @@ export const ZubbersStorytellerTrackData = (props) => {
             <Table.Row key={track}>
               <Table.Cell>
                 <Button
-                  tooltip="Edit points"
+                  tooltip="编辑点数"
                   width="100%"
                   textAlign="center"
                   onClick={() =>
@@ -197,7 +197,7 @@ export const ZubbersStorytellerTrackData = (props) => {
                 </ProgressBar>
               </Table.Cell>
               <Table.Cell textAlign="center">
-                {storyteller_halt ? 'N/A' : `~${track_data.next}min`}
+                {storyteller_halt ? '不适用' : `约 ${track_data.next} 分钟`}
               </Table.Cell>
               <Table.Cell>{forced ? forced.name : ''}</Table.Cell>
               <Table.Cell>
@@ -206,7 +206,7 @@ export const ZubbersStorytellerTrackData = (props) => {
                     act('track_action', { action: 'force_next', track: track })
                   }
                 >
-                  Next Event
+                  下一事件
                 </Button>
               </Table.Cell>
             </Table.Row>
@@ -221,13 +221,13 @@ export const ZubbersStorytellerScheduledData = (props) => {
   const { act, data } = useBackend<Storyteller_Data>();
   const { scheduled_data } = data;
   return (
-    <Section title="Scheduled events">
+    <Section title="已安排事件">
       <Table>
         <Table.Row bold>
-          <Table.Cell>Name</Table.Cell>
-          <Table.Cell>Track</Table.Cell>
-          <Table.Cell>Time</Table.Cell>
-          <Table.Cell>Actions</Table.Cell>
+          <Table.Cell>名称</Table.Cell>
+          <Table.Cell>轨道</Table.Cell>
+          <Table.Cell>时间</Table.Cell>
+          <Table.Cell>操作</Table.Cell>
         </Table.Row>
         {Object.entries(scheduled_data).map(([event_name, event_data]) => {
           const timeNum = Number(event_data.time)?.toFixed(1);
@@ -235,7 +235,7 @@ export const ZubbersStorytellerScheduledData = (props) => {
             <Table.Row key={event_name}>
               <Table.Cell>{event_name}</Table.Cell>
               <Table.Cell>{event_data.track}</Table.Cell>
-              <Table.Cell>{timeNum ? `${timeNum} s` : 'Roundstart'}</Table.Cell>
+              <Table.Cell>{timeNum ? `${timeNum} 秒` : '回合开始'}</Table.Cell>
               <Table.Cell>
                 <Button
                   color="red"
@@ -246,7 +246,7 @@ export const ZubbersStorytellerScheduledData = (props) => {
                     })
                   }
                 >
-                  Cancel
+                  取消
                 </Button>
                 <Button
                   onClick={() =>
@@ -256,7 +256,7 @@ export const ZubbersStorytellerScheduledData = (props) => {
                     })
                   }
                 >
-                  Refund
+                  退还点数
                 </Button>
                 <Button
                   onClick={() =>
@@ -266,7 +266,7 @@ export const ZubbersStorytellerScheduledData = (props) => {
                     })
                   }
                 >
-                  Reschedule
+                  重新安排
                 </Button>
                 <Button
                   color="green"
@@ -277,7 +277,7 @@ export const ZubbersStorytellerScheduledData = (props) => {
                     })
                   }
                 >
-                  Fire
+                  触发
                 </Button>
               </Table.Cell>
             </Table.Row>
@@ -325,7 +325,7 @@ export const ZubbersStorytellerEventPanel = (props) => {
           checked={showRoundstart}
           onClick={() => setRounstart((prevValue) => !prevValue)}
         >
-          Roundstart
+          回合开始
         </Button.Checkbox>
         {event_categories}
       </Stack>
@@ -334,7 +334,7 @@ export const ZubbersStorytellerEventPanel = (props) => {
 
   return (
     <Section
-      title="Event Panel"
+      title="事件面板"
       maxHeight="100%"
       fill
       scrollable
@@ -342,24 +342,24 @@ export const ZubbersStorytellerEventPanel = (props) => {
     >
       <Table>
         <Table.Row bold>
-          <Table.Cell width={EVENT_PANEL_NAME_WIDTH}>Name</Table.Cell>
-          <Table.Cell width={EVENT_PANEL_TAGS_WIDTH}>Tags</Table.Cell>
+          <Table.Cell width={EVENT_PANEL_NAME_WIDTH}>名称</Table.Cell>
+          <Table.Cell width={EVENT_PANEL_TAGS_WIDTH}>标签</Table.Cell>
           <Table.Cell width={EVENT_PANEL_OCCURENCES_WIDTH} textAlign="center">
-            Occ.
+            次数
           </Table.Cell>
           <Table.Cell width={EVENT_PANEL_POP_WIDTH} textAlign="center">
-            M.Pop
+            最低人数
           </Table.Cell>
           <Table.Cell width={EVENT_PANEL_MINTIME_WIDTH} textAlign="center">
-            M.Time
+            最早时间
           </Table.Cell>
           <Table.Cell width={EVENT_PANEL_CANRUN_WIDTH} textAlign="center">
-            Can Run
+            可运行
           </Table.Cell>
           <Table.Cell width={EVENT_PANEL_WEIGHT_WIDTH} textAlign="center">
-            Weight (Raw)
+            权重（原值）
           </Table.Cell>
-          <Table.Cell width={EVENT_PANEL_ACTIONS_WIDTH}>Actions</Table.Cell>
+          <Table.Cell width={EVENT_PANEL_ACTIONS_WIDTH}>操作</Table.Cell>
         </Table.Row>
         <ZubbersStorytellerEventPanelCategory
           current={currentEventCategory}
@@ -411,19 +411,19 @@ export const ZubbersStorytellerEvent = (props: Event_Props) => {
       </Table.Cell>
       <Table.Cell>
         {Object.values(event.tags).map((tag) => {
-          return `${tag} `;
+          return `${storytellerTagDisplay(tag)} `;
         })}
       </Table.Cell>
       <Table.Cell textAlign="center">
         {event.occurences}
-        {event.occurences_shared ? 'S' : ''}
+        {event.occurences_shared ? '（共享）' : ''}
       </Table.Cell>
       <Table.Cell textAlign="center">{event.min_pop}</Table.Cell>
       <Table.Cell textAlign="center">
         {event.start}
-        {'m.'}
+        {'分钟'}
       </Table.Cell>
-      <Table.Cell textAlign="center">{event.can_run ? 'Yes' : 'No'}</Table.Cell>
+      <Table.Cell textAlign="center">{event.can_run ? '是' : '否'}</Table.Cell>
       <Table.Cell textAlign="center">
         {event.weight}
         {` (${event.weight_raw})`}
@@ -438,7 +438,7 @@ export const ZubbersStorytellerEvent = (props: Event_Props) => {
             })
           }
         >
-          Fire
+          触发
         </Button>
         <Button
           onClick={() =>
@@ -449,7 +449,7 @@ export const ZubbersStorytellerEvent = (props: Event_Props) => {
             })
           }
         >
-          Schedule
+          安排
         </Button>
         <Button
           onClick={() =>
@@ -460,7 +460,7 @@ export const ZubbersStorytellerEvent = (props: Event_Props) => {
             })
           }
         >
-          Force Next
+          下次强制触发
         </Button>
       </Table.Cell>
     </Table.Row>

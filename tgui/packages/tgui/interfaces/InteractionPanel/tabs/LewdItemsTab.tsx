@@ -2,7 +2,7 @@
 import { Box, Button, Icon, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../../../backend';
-
+import { interactionDisplay as zh } from '../../../localization/zhInteractionDisplay';
 type LewdSlot = {
   img: string;
   name: string;
@@ -24,7 +24,7 @@ export const LewdItemsTab = (props: LewdItemsTabPropsData) => {
 
   const filteredSlots = lewd_slots.filter((slot) => {
     return (
-      slot.name.toLowerCase().includes(searchLower) ||
+      `${zh(slot.name)} ${slot.name}`.toLowerCase().includes(searchLower) ||
       slot.item_name?.toLowerCase().includes(searchLower)
     );
   });
@@ -45,7 +45,7 @@ export const LewdItemsTab = (props: LewdItemsTabPropsData) => {
                     })
                   }
                   color="pink"
-                  tooltip={`${slot.name}${slot.item_name ? ` - ${slot.item_name}` : ''}`}
+                  tooltip={`${zh(slot.name)}${slot.item_name ? ` - ${slot.item_name}` : ''}`}
                 >
                   <Box
                     style={{

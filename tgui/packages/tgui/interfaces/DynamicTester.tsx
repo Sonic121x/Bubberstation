@@ -67,12 +67,12 @@ export const DynamicTester = () => {
   });
 
   return (
-    <Window width={500} height={400} title="Dynamic Weight Tester">
+    <Window width={500} height={400} title="动态模式权重测试器">
       <Window.Content>
         <Section scrollable height="100%" width="100%">
           <Stack vertical fill>
             <Stack.Item>
-              Tier:
+              等级：
               <NumberInput
                 ml={0.5}
                 value={tier}
@@ -83,7 +83,7 @@ export const DynamicTester = () => {
               />
             </Stack.Item>
             <Stack.Item>
-              Number of players:
+              玩家人数：
               <NumberInput
                 ml={0.5}
                 value={num_players}
@@ -102,7 +102,7 @@ export const DynamicTester = () => {
                     selected={tab === tabName}
                     onClick={() => setTab(tabName)}
                   >
-                    {TABS[tabName]}
+                    {{ Roundstart: '开局', LightMidrounds: '轻度局中事件', HeavyMidrounds: '重度局中事件' }[tabName] || TABS[tabName]}
                   </Tabs.Tab>
                 ))}
               </Tabs>
@@ -110,11 +110,11 @@ export const DynamicTester = () => {
             <Stack.Item>
               <Table>
                 <Table.Row header>
-                  <Table.Cell>Ruleset</Table.Cell>
-                  <Table.Cell>Weight</Table.Cell>
-                  <Table.Cell>Odds</Table.Cell>
-                  <Table.Cell>Max Antags</Table.Cell>
-                  <Table.Cell>Min Antags</Table.Cell>
+                  <Table.Cell>规则集</Table.Cell>
+                  <Table.Cell>权重</Table.Cell>
+                  <Table.Cell>概率</Table.Cell>
+                  <Table.Cell>反派人数上限</Table.Cell>
+                  <Table.Cell>反派人数下限</Table.Cell>
                 </Table.Row>
                 {rulesets_with_weight_percentages
                   .sort((a, b) => (a.name > b.name ? 1 : -1))

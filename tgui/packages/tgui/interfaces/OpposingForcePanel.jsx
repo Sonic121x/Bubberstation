@@ -17,7 +17,7 @@ import {
 import { round } from 'tgui-core/math';
 import { chineseDisplay } from 'tgui/localization/zhDisplay';
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import { Window } from '../layouts'; import { displayRole } from '../localization/roleDisplay';
 
 export const OpposingForcePanel = (props) => {
   const [tab, setTab] = useState(1);
@@ -25,7 +25,7 @@ export const OpposingForcePanel = (props) => {
   const { admin_mode, creator_ckey, owner_antag } = data;
   return (
     <Window
-      title={`Opposing Force: ${creator_ckey}`}
+      title={`敌对势力：${creator_ckey}`}
       width={585}
       height={860}
       theme={owner_antag ? 'syndicate' : 'admin'}
@@ -41,14 +41,14 @@ export const OpposingForcePanel = (props) => {
                     selected={tab === 1}
                     onClick={() => setTab(1)}
                   >
-                    Admin Control
+                    管理员控制
                   </Tabs.Tab>
                   <Tabs.Tab
                     width="100%"
                     selected={tab === 2}
                     onClick={() => setTab(2)}
                   >
-                    Admin Chat
+                    管理员聊天
                   </Tabs.Tab>
                 </>
               ) : (
@@ -58,21 +58,21 @@ export const OpposingForcePanel = (props) => {
                     selected={tab === 1}
                     onClick={() => setTab(1)}
                   >
-                    Summary
+                    概览
                   </Tabs.Tab>
                   <Tabs.Tab
                     width="100%"
                     selected={tab === 2}
                     onClick={() => setTab(2)}
                   >
-                    Equipment
+                    装备
                   </Tabs.Tab>
                   <Tabs.Tab
                     width="100%"
                     selected={tab === 3}
                     onClick={() => setTab(3)}
                   >
-                    Admin Chat
+                    管理员聊天
                   </Tabs.Tab>
                 </>
               )}
@@ -118,8 +118,8 @@ export const OpposingForceTab = (props) => {
         <Section
           title={
             handling_admin
-              ? `Control - Handling Admin: ${handling_admin}`
-              : 'Control'
+              ? `控制 - 负责管理员：${handling_admin}`
+              : '控制'
           }
         >
           <Stack>
@@ -128,11 +128,11 @@ export const OpposingForceTab = (props) => {
                 icon="check"
                 color="good"
                 tooltip={
-                  'Submit your application for review.' +
-                  (blocked ? ' (Blocked)' : '')
+                  '提交申请以供审核。' +
+                  (blocked ? '（已被禁止申请）' : '')
                 }
                 disabled={!can_submit || blocked}
-                content="Submit Application"
+                content="提交申请"
                 onClick={() => act('submit')}
               />
             </Stack.Item>
@@ -141,11 +141,11 @@ export const OpposingForceTab = (props) => {
                 icon="question"
                 color="orange"
                 tooltip={
-                  'Request an update from the admins.' +
-                  (request_updates_muted ? ' (Muted)' : '')
+                  '向管理员询问处理进度。' +
+                  (request_updates_muted ? '（已禁言）' : '')
                 }
                 disabled={!can_request_update || request_updates_muted}
-                content="Ask For Update"
+                content="询问进度"
                 onClick={() => act('request_update')}
               />
             </Stack.Item>
@@ -153,9 +153,9 @@ export const OpposingForceTab = (props) => {
               <Button
                 icon="wrench"
                 color="blue"
-                tooltip="Modify your application, this will reset all authorisations."
+                tooltip="修改申请，这会重置所有批准状态。"
                 disabled={can_edit}
-                content="Modify Request"
+                content="修改申请"
                 onClick={() => act('modify_request')}
               />
             </Stack.Item>
@@ -163,9 +163,9 @@ export const OpposingForceTab = (props) => {
               <Button
                 icon="trash"
                 color="bad"
-                tooltip="Remove your application from the queue."
+                tooltip="将申请从队列中移除。"
                 disabled={status === 'Not submitted'}
-                content="Withdraw Application"
+                content="撤回申请"
                 onClick={() => act('close_application')}
               />
             </Stack.Item>
@@ -175,9 +175,9 @@ export const OpposingForceTab = (props) => {
               <Button
                 icon="file-import"
                 color="blue"
-                tooltip="Import an application from a .json file."
+                tooltip="从 .json 文件导入申请。"
                 disabled={status === 'Awaiting approval'}
-                content="Import JSON"
+                content="导入 JSON"
                 onClick={() => act('import_json')}
               />
             </Stack.Item>
@@ -185,9 +185,9 @@ export const OpposingForceTab = (props) => {
               <Button
                 icon="file-export"
                 color="purple"
-                tooltip="Export an application as a .json file."
+                tooltip="将申请导出为 .json 文件。"
                 disabled={status === 'Awaiting approval'}
-                content="Export JSON"
+                content="导出 JSON"
                 onClick={() => act('export_json')}
               />
             </Stack.Item>
@@ -201,13 +201,13 @@ export const OpposingForceTab = (props) => {
         </Section>
       </Stack.Item>
       <Stack.Item>
-        <Section title="Backstory">
+        <Section title="背景故事">
           <TextArea
             fluid
             disabled={!can_edit}
             height="100px"
             value={backstory}
-            placeholder="Provide a description of why you want to do bad things. Include specifics such as what lead upto the events that made you want to do bad things, think of it as though you were your character, react appropriately. (2000 char limit)"
+            placeholder="说明你为何想要作恶。请写明导致角色产生这种想法的具体经历，站在角色的立场思考并作出合理反应。（限 2000 字符）"
             onBlur={(value) =>
               act('set_backstory', {
                 backstory: value,
@@ -218,11 +218,11 @@ export const OpposingForceTab = (props) => {
       </Stack.Item>
       <Stack.Item>
         <Section
-          title="Objectives"
+          title="目标"
           buttons={
             <Button
               icon="plus"
-              content="Add Objective"
+              content="添加目标"
               onClick={() => act('add_objective')}
             />
           }
@@ -274,7 +274,7 @@ export const OpposingForceObjectives = (props) => {
               >
                 <Stack align="center">
                   <Stack.Item width="80%">
-                    {objective.title ? objective.title : 'Blank Objective'}
+                    {objective.title ? objective.title : '空白目标'}
                   </Stack.Item>
                   <Stack.Item width="20%">
                     <Button
@@ -283,7 +283,7 @@ export const OpposingForceObjectives = (props) => {
                       icon="minus"
                       color="bad"
                       textAlign="center"
-                      tooltip="Remove objective"
+                      tooltip="移除目标"
                       onClick={() =>
                         act('remove_objective', {
                           objective_ref: objective.ref,
@@ -303,12 +303,12 @@ export const OpposingForceObjectives = (props) => {
             <Stack.Item>
               <Stack.Item>
                 <Stack vertical>
-                  <Stack.Item>Title</Stack.Item>
+                  <Stack.Item>标题</Stack.Item>
                   <Stack.Item>
                     <Input
                       disabled={!can_edit}
                       width="100%"
-                      placeholder="blank objective"
+                      placeholder="空白目标"
                       value={selectedObjective.title}
                       onBlur={(value) =>
                         act('set_objective_title', {
@@ -323,7 +323,7 @@ export const OpposingForceObjectives = (props) => {
               <Stack.Item>
                 <Stack vertical mt={2}>
                   <Stack.Item>
-                    Intensity: {selectedObjective.text_intensity}
+                    强度：{chineseDisplay(selectedObjective.text_intensity)}
                   </Stack.Item>
                   <Stack.Item>
                     <Slider
@@ -418,14 +418,14 @@ export const OpposingForceObjectives = (props) => {
               </Stack.Item>
               <Stack.Item>
                 <Stack vertical mt={2}>
-                  <Stack.Item>Description</Stack.Item>
+                  <Stack.Item>描述</Stack.Item>
                   <Stack.Item>
                     <TextArea
                       fluid
                       disabled={!can_edit}
                       height="85px"
                       value={selectedObjective.description}
-                      placeholder="Input objective description here, be descriptive about what you want to do, such as 'Destroy the Death Star' or 'Destroy the Death Star and the Death Star Base' (1000 char limit)."
+                      placeholder="在此详细说明你想达成的目标，例如“摧毁死星”或“摧毁死星及其基地”。（限 1000 字符）"
                       onBlur={(value) =>
                         act('set_objective_description', {
                           objective_ref: selectedObjective.ref,
@@ -438,14 +438,14 @@ export const OpposingForceObjectives = (props) => {
               </Stack.Item>
               <Stack.Item>
                 <Stack vertical mt={2}>
-                  <Stack.Item>Justification</Stack.Item>
+                  <Stack.Item>理由</Stack.Item>
                   <Stack.Item>
                     <TextArea
                       fluid
                       disabled={!can_edit}
                       height="85px"
                       value={selectedObjective.justification}
-                      placeholder="Input justification for the objective here, make sure you have a good reason for the objective (1000 char limit)."
+                      placeholder="在此填写执行该目标的理由，确保你的目标有充分依据。（限 1000 字符）"
                       onBlur={(value) =>
                         act('set_objective_justification', {
                           objective_ref: selectedObjective.ref,
@@ -472,7 +472,7 @@ export const OpposingForceObjectives = (props) => {
           </Stack>
         </Stack.Item>
       ) : (
-        <Stack.Item>No objectives selected.</Stack.Item>
+        <Stack.Item>未选择目标。</Stack.Item>
       )}
     </Stack>
   );
@@ -484,9 +484,9 @@ export const EquipmentTab = (props) => {
   return (
     <Stack vertical grow>
       <Stack.Item>
-        <Section title="Selected Equipment">
+        <Section title="已选装备">
           {selected_equipment.length === 0 ? (
-            <Box color="bad">No equipment selected.</Box>
+            <Box color="bad">未选择装备。</Box>
           ) : (
             selected_equipment.map((equipment) => (
               <>
@@ -509,7 +509,7 @@ export const EquipmentTab = (props) => {
                         <Button
                           icon="times"
                           color="bad"
-                          content="Remove"
+                          content="移除"
                           onClick={() =>
                             act('remove_equipment', {
                               selected_equipment_ref: equipment.ref,
@@ -520,7 +520,7 @@ export const EquipmentTab = (props) => {
                     }
                     label={equipment.name}
                   />
-                  <LabeledList.Item label="Status">
+                  <LabeledList.Item label="状态">
                     {equipment.denied_reason
                       ? chineseDisplay(equipment.status) +
                         '，原因：' +
@@ -533,7 +533,7 @@ export const EquipmentTab = (props) => {
                   mb={1}
                   disabled={!can_edit}
                   width="100%"
-                  placeholder="Reason for item"
+                  placeholder="申请此物品的理由"
                   value={equipment.reason}
                   onBlur={(value) =>
                     act('set_equipment_reason', {
@@ -546,12 +546,12 @@ export const EquipmentTab = (props) => {
             ))
           )}
         </Section>
-        <Section title="Available Equipment">
+        <Section title="可用装备">
           <Stack vertical fill>
             {equipment_list.map((equipment_category) => (
               <Stack.Item key={equipment_category.category}>
                 <Collapsible
-                  title={equipment_category.category}
+                  title={chineseDisplay(equipment_category.category)}
                   key={equipment_category.category}
                 >
                   <Section>
@@ -563,7 +563,7 @@ export const EquipmentTab = (props) => {
                           <Button
                             icon="check"
                             color="good"
-                            content="Select"
+                            content="选择"
                             disabled={!can_edit}
                             onClick={() =>
                               act('select_equipment', {
@@ -574,7 +574,7 @@ export const EquipmentTab = (props) => {
                         }
                       >
                         <LabeledList>
-                          <LabeledList.Item label="Description">
+                          <LabeledList.Item label="描述">
                             {item.description}
                           </LabeledList.Item>
                         </LabeledList>
@@ -608,7 +608,7 @@ export const AdminChatTab = (props) => {
           height="22px"
           fluid
           selfClear
-          placeholder="Send a message or command using '/'"
+          placeholder="发送消息，或使用“/”输入命令"
           mt={1}
           onEnter={(value) =>
             act('send_message', {
@@ -639,24 +639,24 @@ export const AdminTab = (props) => {
   return (
     <Stack vertical grow>
       <Stack.Item>
-        <Section title="User Information">
+        <Section title="用户信息">
           <LabeledList>
-            <LabeledList.Item label="Name">{owner_mob}</LabeledList.Item>
-            <LabeledList.Item label="Role">{owner_role}</LabeledList.Item>
-            <LabeledList.Item label="Application Status">
+            <LabeledList.Item label="名称">{owner_mob}</LabeledList.Item>
+            <LabeledList.Item label="角色">{displayRole(owner_role)}</LabeledList.Item>
+            <LabeledList.Item label="申请状态">
               {chineseDisplay(raw_status)}
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Admin Control">
+        <Section title="管理员控制">
           <Stack mb={1}>
             <Stack.Item>
               <Button
                 icon="check"
                 color="good"
-                tooltip="Approve the application, and any approved objectives."
+                tooltip="批准申请及其中已通过审核的目标。"
                 disabled={approved}
-                content="Approve"
+                content="批准"
                 onClick={() => act('approve')}
               />
             </Stack.Item>
@@ -664,9 +664,9 @@ export const AdminTab = (props) => {
               <Button
                 icon="check-double"
                 color="orange"
-                tooltip="Approve all objectives and equipment as well as the application. Make sure you have reviewed the application and objectives first!"
+                tooltip="批准申请及全部目标和装备。请务必先审核申请与目标！"
                 disabled={approved}
-                content="Approve All"
+                content="全部批准"
                 onClick={() => act('approve_all')}
               />
             </Stack.Item>
@@ -675,8 +675,8 @@ export const AdminTab = (props) => {
                 icon="universal-access"
                 color="purple"
                 disabled={!approved || equipment_issued}
-                tooltip="Issue the player with all approved equipment."
-                content="Issue Gear"
+                tooltip="向玩家发放全部已批准装备。"
+                content="发放装备"
                 onClick={() => act('issue_gear')}
               />
             </Stack.Item>
@@ -685,7 +685,7 @@ export const AdminTab = (props) => {
                 icon="times"
                 color="red"
                 disabled={denied}
-                content="Deny"
+                content="拒绝"
                 onClick={() => act('deny')}
               />
             </Stack.Item>
@@ -694,16 +694,16 @@ export const AdminTab = (props) => {
                 <Button
                   icon="check-circle"
                   color="green"
-                  tooltip="Unblock the user from submitting applications."
-                  content="Unblock User"
+                  tooltip="恢复该用户提交申请的权限。"
+                  content="解除申请限制"
                   onClick={() => act('toggle_block')}
                 />
               ) : (
                 <Button
                   icon="ban"
                   color="red"
-                  tooltip="Block the user from submitting applications."
-                  content="Block User"
+                  tooltip="禁止该用户提交申请。"
+                  content="禁止申请"
                   onClick={() => act('toggle_block')}
                 />
               )}
@@ -712,8 +712,8 @@ export const AdminTab = (props) => {
               <Button
                 icon="suitcase"
                 color="blue"
-                tooltip="Assign yourself as the handling admin."
-                content="Handle"
+                tooltip="将自己设为负责此申请的管理员。"
+                content="接手处理"
                 onClick={() => act('handle')}
               />
             </Stack.Item>
@@ -724,14 +724,14 @@ export const AdminTab = (props) => {
                 <Button
                   icon="volume-up"
                   color="green"
-                  content="Unmute Help Requests"
+                  content="解除求助禁言"
                   onClick={() => act('mute_request_updates')}
                 />
               ) : (
                 <Button
                   icon="volume-mute"
                   color="red"
-                  content="Mute Help Requests"
+                  content="禁止求助请求"
                   onClick={() => act('mute_request_updates')}
                 />
               )}
@@ -740,8 +740,8 @@ export const AdminTab = (props) => {
               <Button
                 icon="compress-arrows-alt"
                 color="teal"
-                tooltip="Follow User Mob"
-                content="Follow"
+                tooltip="跟随用户的生物"
+                content="跟随"
                 onClick={() => act('flw_user')}
               />
             </Stack.Item>
@@ -749,18 +749,18 @@ export const AdminTab = (props) => {
         </Section>
       </Stack.Item>
       <Stack.Item>
-        <Section title="Backstory">
+        <Section title="背景故事">
           {backstory.length === 0 ? (
-            <Box color="bad">No backstory set.</Box>
+            <Box color="bad">未设置背景故事。</Box>
           ) : (
             <Box preserveWhitespace>{backstory}</Box>
           )}
         </Section>
       </Stack.Item>
       <Stack.Item>
-        <Section title="Objectives">
+        <Section title="目标">
           {objectives.length === 0 ? (
-            <Box color="bad">No objectives selected.</Box>
+            <Box color="bad">未选择目标。</Box>
           ) : (
             objectives.map((objective, index) => (
               <Section
@@ -775,7 +775,7 @@ export const AdminTab = (props) => {
                         objective.approved &&
                         objective.status_text !== 'Not Reviewed'
                       }
-                      content="Approve Objective"
+                      content="批准目标"
                       onClick={() =>
                         act('approve_objective', {
                           objective_ref: objective.ref,
@@ -789,7 +789,7 @@ export const AdminTab = (props) => {
                         !objective.approved &&
                         objective.status_text !== 'Not Reviewed'
                       }
-                      content="Deny Objective"
+                      content="拒绝目标"
                       onClick={() =>
                         act('deny_objective', {
                           objective_ref: objective.ref,
@@ -800,19 +800,19 @@ export const AdminTab = (props) => {
                 }
               >
                 <LabeledList key={objective.id}>
-                  <LabeledList.Item label="Description">
+                  <LabeledList.Item label="描述">
                     {objective.description}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Justification">
+                  <LabeledList.Item label="理由">
                     {objective.justification}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Intensity">
+                  <LabeledList.Item label="强度">
                     {'(' +
                       objective.intensity +
                       ') ' +
-                      objective.text_intensity}
+                      chineseDisplay(objective.text_intensity)}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Status">
+                  <LabeledList.Item label="状态">
                     {objective.status_text === 'Not Reviewed'
                       ? '目标未审核'
                       : objective.approved
@@ -829,9 +829,9 @@ export const AdminTab = (props) => {
         </Section>
       </Stack.Item>
       <Stack.Item>
-        <Section title="Equipment">
+        <Section title="装备">
           {selected_equipment.length === 0 ? (
-            <Box color="bad">No equipment selected.</Box>
+            <Box color="bad">未选择装备。</Box>
           ) : (
             selected_equipment.map((equipment, index) => (
               <Section
@@ -846,7 +846,7 @@ export const AdminTab = (props) => {
                         equipment.approved &&
                         equipment.status !== 'Not Reviewed'
                       }
-                      content="Approve Equipment"
+                      content="批准装备"
                       onClick={() =>
                         act('approve_equipment', {
                           selected_equipment_ref: equipment.ref,
@@ -860,7 +860,7 @@ export const AdminTab = (props) => {
                         !equipment.approved &&
                         equipment.status !== 'Not Reviewed'
                       }
-                      content="Deny Equipment"
+                      content="拒绝装备"
                       onClick={() =>
                         act('deny_equipment', {
                           selected_equipment_ref: equipment.ref,
@@ -871,23 +871,23 @@ export const AdminTab = (props) => {
                 }
               >
                 <LabeledList key={equipment.ref}>
-                  <LabeledList.Item label="Description">
+                  <LabeledList.Item label="描述">
                     {equipment.description}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Reason">
+                  <LabeledList.Item label="理由">
                     {equipment.reason}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Status">
+                  <LabeledList.Item label="状态">
                     {equipment.denied_reason
                       ? chineseDisplay(equipment.status) +
                         '，原因：' +
                         equipment.denied_reason
                       : chineseDisplay(equipment.status)}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Amount">
+                  <LabeledList.Item label="数量">
                     {equipment.count}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Equipment Note">
+                  <LabeledList.Item label="装备备注">
                     {equipment.admin_note}
                   </LabeledList.Item>
                 </LabeledList>

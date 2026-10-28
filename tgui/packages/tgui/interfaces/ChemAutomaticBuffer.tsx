@@ -14,7 +14,7 @@ export const ChemAutomaticBuffer = () => {
     <Window width={250} height={120}>
       <Window.Content>
         <LabeledList>
-          <LabeledList.Item label="Threshold">
+          <LabeledList.Item label="阈值">
             <NumberInput
               minValue={1}
               maxValue={200}
@@ -27,11 +27,11 @@ export const ChemAutomaticBuffer = () => {
               }
             />
           </LabeledList.Item>
-          <LabeledList.Item label="Connections">
-            {connections || 'N/A'}
+          <LabeledList.Item label="连接数">
+            {connections || '无'}
           </LabeledList.Item>
-          <LabeledList.Item label="Sync">
-            <Button onClick={() => act('sync')}>Sync Values</Button>
+          <LabeledList.Item label="同步">
+            <Button onClick={() => act('sync')}>同步数值</Button>
           </LabeledList.Item>
         </LabeledList>
       </Window.Content>

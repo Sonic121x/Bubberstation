@@ -11,7 +11,7 @@ import { clamp } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { Window } from '../layouts';
+import { Window } from '../layouts'; import { communicationsAlertDisplay } from '../localization/communicationsDisplay';
 
 type FloorData = {
   name: string;
@@ -68,7 +68,7 @@ export const ElevatorPanel = (props) => {
         {!lift_exists && <NoLiftDimmer />}
         <Stack height="100%" vertical>
           <Stack.Item>
-            <Section title="Floor" align="center">
+            <Section title="楼层" align="center">
               <FloorPanel />
             </Section>
           </Stack.Item>
@@ -102,12 +102,12 @@ export const ElevatorPanel = (props) => {
                   width="65%"
                   icon="door-closed"
                   tooltip={
-                    'Closes all elevator doors, except \
-                    those on the level of the elevator.'
+                    '关闭所有电梯门，\
+                    电梯所在楼层的门除外。'
                   }
                   onClick={() => act('reset_doors')}
                 >
-                  Reset Doors
+                  重置电梯门
                 </Button>
               ) : (
                 <Button
@@ -117,12 +117,12 @@ export const ElevatorPanel = (props) => {
                   color={'bad'}
                   tooltip={
                     is_emergency
-                      ? 'In case of emergency, opens all lift doors.'
-                      : `The station is only at ${emergency_level} alert.`
+                      ? '紧急情况下，打开所有电梯门。'
+                      : `空间站目前仅处于${communicationsAlertDisplay(emergency_level.toLowerCase())}警戒。`
                   }
                   onClick={() => act('emergency_door')}
                 >
-                  Emergency
+                  紧急开门
                 </Button>
               )}
             </Section>
@@ -140,7 +140,7 @@ const NoLiftDimmer = () => {
         <Stack.Item>
           <Icon size={8} name="exclamation" />
         </Stack.Item>
-        <Stack.Item fontSize="16px">No elevator connected.</Stack.Item>
+        <Stack.Item fontSize="16px">未连接电梯。</Stack.Item>
       </Stack>
     </Dimmer>
   );
@@ -153,7 +153,7 @@ const MovingDimmer = () => {
         <Stack.Item>
           <Icon size={8} name="spinner" spin />
         </Stack.Item>
-        <Stack.Item fontSize="16px">Moving...</Stack.Item>
+        <Stack.Item fontSize="16px">运行中……</Stack.Item>
       </Stack>
     </Dimmer>
   );

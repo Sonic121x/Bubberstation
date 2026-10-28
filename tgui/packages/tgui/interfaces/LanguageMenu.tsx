@@ -64,7 +64,7 @@ const LangUnderstandIcon = (props: LanguageProps) => {
   const { language } = props;
   if (!language.can_understand && language.partial_understanding > 0) {
     return (
-      <Tooltip content={`You can only partially understand ${language.name}.`}>
+      <Tooltip content={`你只能部分理解${language.name}。`}>
         <Box
           inline
           style={{
@@ -123,12 +123,12 @@ const LanguageRow = (props: LanguageProps) => {
           <Tooltip
             content={
               language.can_speak
-                ? `Despite knowing how to speak ${language.name},
-              you are unable due to physical limitations
-              (usually, your tongue).`
-                : `Even if you were to learn how to speak ${language.name},
-              you would be unable due to physical limitations
-              (usually, your tongue).`
+                ? `尽管你懂得如何说${language.name}，
+              但你的身体条件不允许你使用这种语言
+              （通常是因为舌头）。`
+                : `即使你学会了如何说${language.name}，
+              你的身体条件也不允许你使用这种语言
+              （通常是因为舌头）。`
             }
           >
             <LangSpeakIcon
@@ -176,7 +176,7 @@ const LanguageRow = (props: LanguageProps) => {
               })
             }
           >
-            Grant
+            授予
           </Button>
           <Button
             disabled={!language.can_speak && !language.can_understand}
@@ -186,7 +186,7 @@ const LanguageRow = (props: LanguageProps) => {
               })
             }
           >
-            Remove
+            移除
           </Button>
         </Table.Cell>
       )}
@@ -199,12 +199,12 @@ const OmnitongueToggle = (props) => {
   const { omnitongue } = data;
   return (
     <Button
-      tooltip={`If enabled, the mob's tongue will no longer prevent them
-        from speaking languages they are physically incapable of speaking.`}
+      tooltip={`启用后，该生物将不再因舌头的构造限制，
+        而无法使用某些语言。`}
       selected={omnitongue}
       onClick={() => act('toggle_omnitongue')}
     >
-      {`Omnitongue ${omnitongue ? 'Enabled' : 'Disabled'}`}
+      {`万语之舌：${omnitongue ? '已启用' : '已禁用'}`}
     </Button>
   );
 };
@@ -231,7 +231,7 @@ export const LanguageMenu = (props) => {
 
   return (
     <Window
-      title="Language Menu"
+      title="语言菜单"
       width={admin_mode ? 700 : 500}
       height={Math.min(
         shown_languages.length * 25 + (admin_mode ? 100 : 70),
@@ -241,19 +241,19 @@ export const LanguageMenu = (props) => {
       <Window.Content>
         <Section
           scrollable
-          title={admin_mode ? <i>- Admin Mode -</i> : null}
+          title={admin_mode ? <i>- 管理员模式 -</i> : null}
           buttons={admin_mode ? <OmnitongueToggle /> : null}
           fill
         >
           <Table>
             <Table.Row header>
-              <Table.Cell>Name</Table.Cell>
-              <Table.Cell>Speak</Table.Cell>
-              <Table.Cell>Understand</Table.Cell>
+              <Table.Cell>名称</Table.Cell>
+              <Table.Cell>表达</Table.Cell>
+              <Table.Cell>理解</Table.Cell>
               <Table.Cell>
                 <Tooltip
-                  content="Use this key in your message
-                  to speak in this language."
+                  content="在消息中使用此语言前缀，
+                  即可使用该语言说话。"
                 >
                   <Box
                     inline
@@ -261,15 +261,15 @@ export const LanguageMenu = (props) => {
                       borderBottom: '2px dotted rgba(255, 255, 255, 0.8)',
                     }}
                   >
-                    Key
+                    前缀
                   </Box>
                 </Tooltip>
               </Table.Cell>
               {!!is_living && (
                 <Table.Cell>
                   <Tooltip
-                    content="Determines which language you speak
-                    naturally, without using the 'key'."
+                    content="决定不输入语言前缀时，
+                    默认使用哪种语言说话。"
                   >
                     <Box
                       inline
@@ -277,7 +277,7 @@ export const LanguageMenu = (props) => {
                         borderBottom: '2px dotted rgba(255, 255, 255, 0.8)',
                       }}
                     >
-                      Default
+                      默认
                     </Box>
                   </Tooltip>
                 </Table.Cell>

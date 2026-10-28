@@ -12,19 +12,19 @@ export const PortraitPicker = (props) => {
   const got_paintings = !!paintings.length;
   const current_portrait_title = got_paintings && paintings[listIndex].title;
   const current_portrait_author =
-    got_paintings && `By ${paintings[listIndex].creator}`;
+    got_paintings && `作者：${paintings[listIndex].creator}`;
   const current_portrait_asset_name =
     got_paintings && `paintings_${paintings[listIndex].md5}`;
 
   return (
-    <Window theme="ntos" title="Portrait Picker" width={400} height={406}>
+    <Window theme="ntos" title="肖像选择器" width={400} height={406}>
       <Window.Content>
         <Flex height="100%" direction="column">
           <Flex.Item mb={1}>
-            <Section title="Search">
+            <Section title="搜索">
               <Input
                 fluid
-                placeholder="Search Paintings..."
+                placeholder="搜索画作……"
                 value={search_string}
                 onBlur={(value) => {
                   act('search', {
@@ -71,7 +71,7 @@ export const PortraitPicker = (props) => {
                   </>
                 ) : (
                   <Flex.Item className="Section__titleText">
-                    No paintings found.
+                    未找到画作。
                   </Flex.Item>
                 )}
               </Flex>
@@ -99,7 +99,7 @@ export const PortraitPicker = (props) => {
                     <Flex.Item grow={3}>
                       <Button
                         icon="check"
-                        content="Select Portrait"
+                        content="选择肖像"
                         disabled={!got_paintings}
                         onClick={() =>
                           act('select', {
@@ -128,17 +128,17 @@ export const PortraitPicker = (props) => {
             </Flex>
             <Flex.Item mt={1}>
               <NoticeBox info>
-                Only the 23x23 or 24x24 canvas size art can be displayed. Make
-                sure you read the warning below before embracing the wide
-                wonderful world of artistic expression!
+                仅可显示画布尺寸为 23×23 或 24×24 的作品。
+                在拥抱广阔而美妙的艺术表达世界之前，
+                请务必阅读下方警告！
               </NoticeBox>
             </Flex.Item>
             <Flex.Item>
               <NoticeBox danger>
-                WARNING: While Central Command loves art as much as you do,
-                choosing erotic art will lead to severe consequences.
-                Additionally, Central Command reserves the right to request you
-                change your display portrait, for any reason.
+                警告：中央指挥部和你一样热爱艺术，
+                但选择色情作品会导致严重后果。
+                此外，中央指挥部保留出于任何原因要求你
+                更换展示肖像的权利。
               </NoticeBox>
             </Flex.Item>
           </Flex.Item>

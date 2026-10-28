@@ -2,17 +2,17 @@
 import { CheckboxInput, type FeatureToggle } from '../../base';
 
 export const looc_admin_pref: FeatureToggle = {
-  name: 'See remote LOOC',
+  name: '查看远处的本地戏外聊天',
   category: 'ADMIN',
   description:
-    'Toggles whether you want to see LOOC anywhere as an admin or not.',
+    '作为管理员时，是否查看任意位置的本地戏外聊天。',
   component: CheckboxInput,
 };
 
 export const enable_looc_runechat: FeatureToggle = {
-  name: 'Enable LOOC runechat',
+  name: '启用本地戏外头顶聊天',
   category: 'RUNECHAT',
   description:
-    "If TRUE, LOOC will appear above the speaker's head as well as in the chat.",
+    "启用后，本地戏外聊天除了显示在聊天栏，还会显示在发言者头顶。",
   component: CheckboxInput,
 };

@@ -1,51 +1,51 @@
 import { CheckboxInput, type FeatureToggle } from '../base';
 
 export const tgui_input: FeatureToggle = {
-  name: 'Input: Enable TGUI',
+  name: '输入：启用 TGUI',
   category: 'UI',
-  description: 'Renders input boxes in TGUI.',
+  description: '使用 TGUI 显示输入框。',
   component: CheckboxInput,
 };
 
 export const tgui_input_large: FeatureToggle = {
-  name: 'Input: Larger buttons',
+  name: '输入：较大按钮',
   category: 'UI',
-  description: 'Makes TGUI buttons less traditional, more functional.',
+  description: '让 TGUI 按钮采用更实用的现代布局。',
   component: CheckboxInput,
 };
 
 export const tgui_input_swapped: FeatureToggle = {
-  name: 'Input: Swap Submit/Cancel buttons',
+  name: '输入：交换提交和取消按钮',
   category: 'UI',
-  description: 'Makes TGUI buttons less traditional, more functional.',
+  description: '让 TGUI 按钮采用更实用的现代布局。',
   component: CheckboxInput,
 };
 
 export const tgui_lock: FeatureToggle = {
-  name: 'Lock TGUI to main monitor',
+  name: '将 TGUI 锁定在主显示器',
   category: 'UI',
-  description: 'Locks TGUI windows to your main monitor.',
+  description: '将 TGUI 窗口限制在主显示器上。',
   component: CheckboxInput,
 };
 
 export const tgui_unlimited_windows: FeatureToggle = {
-  name: 'Uncap TGUI window limit',
+  name: '解除 TGUI 窗口数量限制',
   category: 'UI',
   description:
-    'Disables the window limit for TGUI windows. Having more than 5 windows open can tank performance on lower end computers.',
+    '解除 TGUI 窗口数量限制。打开超过 5 个窗口可能严重影响低配置电脑的性能。',
   component: CheckboxInput,
 };
 
 export const ui_scale: FeatureToggle = {
-  name: 'Toggle UI scaling',
+  name: '切换界面缩放',
   category: 'UI',
-  description: 'If UIs should scale up to match your monitor scaling.',
+  description: '界面是否随显示器缩放设置放大。',
   component: CheckboxInput,
 };
 
 export const tgui_say_light_mode: FeatureToggle = {
-  name: 'Say: Light mode',
+  name: '发言：浅色模式',
   category: 'UI',
-  description: 'Sets TGUI Say to use a light mode.',
+  description: '让 TGUI 发言窗口使用浅色模式。',
   component: CheckboxInput,
 };

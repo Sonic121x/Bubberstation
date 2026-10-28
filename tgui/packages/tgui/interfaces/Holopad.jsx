@@ -23,13 +23,13 @@ export const Holopad = (props) => {
             <Flex.Item mr={2} mt={2}>
               <Icon name="phone-alt" rotation={25} />
             </Flex.Item>
-            <Flex.Item mr={2}>{'Dialing...'}</Flex.Item>
+            <Flex.Item mr={2}>{'拨号中……'}</Flex.Item>
           </Flex>
           <Box mt={2} textAlign="center" fontSize="24px">
             <Button
               lineHeight="40px"
               icon="times"
-              content="Hang Up"
+              content="挂断"
               color="bad"
               onClick={() => act('hang_up')}
             />
@@ -59,12 +59,12 @@ const HolopadContent = (props) => {
   return (
     <>
       <Section
-        title="Holopad"
+        title="全息投影台"
         buttons={
           <Button
             icon="bell"
             content={
-              on_cooldown ? "AI's Presence Requested" : "Request AI's Presence"
+              on_cooldown ? '已请求AI到场' : '请求AI到场'
             }
             disabled={!on_network || on_cooldown}
             onClick={() => act('AIrequest')}
@@ -72,10 +72,10 @@ const HolopadContent = (props) => {
         }
       >
         <LabeledList>
-          <LabeledList.Item label="Communicator">
+          <LabeledList.Item label="通讯器">
             <Button
               icon="phone-alt"
-              content={allowed ? 'Connect To Holopad' : 'Call Holopad'}
+              content={allowed ? '连接全息投影台' : '呼叫全息投影台'}
               disabled={!on_network}
               onClick={() => act('holocall', { headcall: allowed })}
             />
@@ -83,15 +83,15 @@ const HolopadContent = (props) => {
           {holo_calls.map((call) => {
             return (
               <LabeledList.Item
-                label={call.connected ? 'Current Call' : 'Incoming Call'}
+                label={call.connected ? '当前通话' : '来电'}
                 key={call.ref}
               >
                 <Button
                   icon={call.connected ? 'phone-slash' : 'phone-alt'}
                   content={
                     call.connected
-                      ? `Disconnect call from ${call.caller}`
-                      : `Answer call from ${call.caller}`
+                      ? `挂断与${call.caller}的通话`
+                      : `接听${call.caller}的来电`
                   }
                   color={call.connected ? 'bad' : 'good'}
                   disabled={!on_network}
@@ -108,7 +108,7 @@ const HolopadContent = (props) => {
             <LabeledList.Item key="reject">
               <Button
                 icon="phone-slash"
-                content="Reject incoming call(s)"
+                content="拒接所有来电"
                 color="bad"
                 onClick={() => act('rejectall')}
               />
@@ -117,51 +117,51 @@ const HolopadContent = (props) => {
         </LabeledList>
       </Section>
       <Section
-        title="Holodisk"
+        title="全息磁盘"
         buttons={
           <Button
             icon="eject"
-            content="Eject"
+            content="弹出"
             disabled={!disk || replay_mode || record_mode}
             onClick={() => act('disk_eject')}
           />
         }
       >
-        {(!disk && <NoticeBox>No holodisk</NoticeBox>) || (
+        {(!disk && <NoticeBox>无全息磁盘</NoticeBox>) || (
           <LabeledList>
-            <LabeledList.Item label="Disk Player">
+            <LabeledList.Item label="磁盘播放器">
               <Button
                 icon={replay_mode ? 'pause' : 'play'}
-                content={replay_mode ? 'Stop' : 'Replay'}
+                content={replay_mode ? '停止' : '回放'}
                 selected={replay_mode}
                 disabled={record_mode || !disk_record}
                 onClick={() => act('replay_mode')}
               />
               <Button
                 icon={'sync'}
-                content={loop_mode ? 'Looping' : 'Loop'}
+                content={loop_mode ? '循环中' : '循环'}
                 selected={loop_mode}
                 disabled={record_mode || !disk_record}
                 onClick={() => act('loop_mode')}
               />
               <Button
                 icon="exchange-alt"
-                content="Change Offset"
+                content="调整偏移"
                 disabled={!replay_mode}
                 onClick={() => act('offset')}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Recorder">
+            <LabeledList.Item label="录制器">
               <Button
                 icon={record_mode ? 'pause' : 'video'}
-                content={record_mode ? 'End Recording' : 'Record'}
+                content={record_mode ? '结束录制' : '录制'}
                 selected={record_mode}
                 disabled={(disk_record && !record_mode) || replay_mode}
                 onClick={() => act('record_mode')}
               />
               <Button
                 icon="trash"
-                content="Clear Recording"
+                content="清除录像"
                 color="bad"
                 disabled={!disk_record || replay_mode || record_mode}
                 onClick={() => act('record_clear')}

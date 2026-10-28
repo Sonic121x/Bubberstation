@@ -5,7 +5,7 @@ import type { BooleanLike } from 'tgui-core/react';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { ShuttleConsoleContent } from './ShuttleConsole';
-
+import { chineseDisplay } from '../localization/zhDisplay';
 type Data = {
   type: string;
   blind_drop: BooleanLike;
@@ -52,7 +52,7 @@ export const AuxBaseConsole = (props) => {
             selected={tab === TAB.Shuttle}
             onClick={() => setTab(TAB.Shuttle)}
           >
-            {type === 'shuttle' ? 'Shuttle Launch' : 'Base Launch'}
+            {type === 'shuttle' ? '穿梭机发射' : '基地发射'}
           </Tabs.Tab>
           <Tabs.Tab
             icon="list"
@@ -60,7 +60,7 @@ export const AuxBaseConsole = (props) => {
             selected={tab === TAB.Aux}
             onClick={() => setTab(TAB.Aux)}
           >
-            Turrets ({turrets.length})
+            炮塔（{turrets.length}）
           </Tabs.Tab>
         </Tabs>
         {tab === TAB.Shuttle && (
@@ -80,36 +80,36 @@ export const AuxBaseConsoleContent = (props) => {
     <Section
       fill
       scrollable
-      title="Turret Control"
+      title="炮塔控制"
       buttons={
         !!turrets.length && (
           <Button icon="power-off" onClick={() => act('turrets_power')}>
-            Toggle Power
+            切换电源
           </Button>
         )
       }
     >
       {!turrets.length ? (
-        <NoticeBox>No connected turrets</NoticeBox>
+        <NoticeBox>没有连接的炮塔</NoticeBox>
       ) : (
         <Table>
           <Table.Row header>
-            <Table.Cell>Unit</Table.Cell>
-            <Table.Cell>Condition</Table.Cell>
-            <Table.Cell>Status</Table.Cell>
-            <Table.Cell>Direction</Table.Cell>
-            <Table.Cell>Distance</Table.Cell>
-            <Table.Cell>Power</Table.Cell>
+            <Table.Cell>单位</Table.Cell>
+            <Table.Cell>完好度</Table.Cell>
+            <Table.Cell>状态</Table.Cell>
+            <Table.Cell>方向</Table.Cell>
+            <Table.Cell>距离</Table.Cell>
+            <Table.Cell>电源</Table.Cell>
           </Table.Row>
           {turrets.map((turret) => (
             <Table.Row key={turret.key}>
               <Table.Cell bold>{turret.name}</Table.Cell>
               <Table.Cell>{turret.integrity}%</Table.Cell>
               <Table.Cell color={STATUS_COLOR_KEYS[turret.status] || 'bad'}>
-                {turret.status}
+                {({ ERROR: '错误', Disabled: '已禁用', Firing: '正在射击', 'All Clear': '一切正常' } as Record<string, string>)[turret.status] ?? turret.status}
               </Table.Cell>
-              <Table.Cell>{turret.direction}</Table.Cell>
-              <Table.Cell>{turret.distance}m</Table.Cell>
+              <Table.Cell>{chineseDisplay(turret.direction)}</Table.Cell>
+              <Table.Cell>{turret.distance}米</Table.Cell>
               <Table.Cell>
                 <Button
                   icon="power-off"
@@ -119,7 +119,7 @@ export const AuxBaseConsoleContent = (props) => {
                     })
                   }
                 >
-                  Toggle
+                  切换
                 </Button>
               </Table.Cell>
             </Table.Row>

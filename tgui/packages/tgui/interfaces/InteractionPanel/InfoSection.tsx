@@ -50,7 +50,7 @@ export const InfoSection = () => {
                     maxValue={arousalLimit}
                     color="purple"
                   >
-                    <Icon name="heart" /> Pleasure
+                    <Icon name="heart" /> 快感
                   </ProgressBar>
                 </Stack.Item>
                 <Stack.Item>
@@ -59,12 +59,12 @@ export const InfoSection = () => {
                     maxValue={arousalLimit}
                     color="pink"
                   >
-                    <Icon name="tint" /> Arousal
+                    <Icon name="tint" /> 兴奋度
                   </ProgressBar>
                 </Stack.Item>
                 <Stack.Item>
                   <ProgressBar value={pain} maxValue={arousalLimit} color="red">
-                    <Icon name="bolt" /> Pain
+                    <Icon name="bolt" /> 疼痛
                   </ProgressBar>
                 </Stack.Item>
               </Stack>
@@ -78,7 +78,7 @@ export const InfoSection = () => {
                       maxValue={arousalLimit}
                       color="purple"
                     >
-                      <Icon name="heart" /> Pleasure
+                      <Icon name="heart" /> 快感
                     </ProgressBar>
                   </Stack.Item>
                   <Stack.Item>
@@ -87,7 +87,7 @@ export const InfoSection = () => {
                       maxValue={arousalLimit}
                       color="pink"
                     >
-                      <Icon name="tint" /> Arousal
+                      <Icon name="tint" /> 兴奋度
                     </ProgressBar>
                   </Stack.Item>
                   <Stack.Item>
@@ -96,7 +96,7 @@ export const InfoSection = () => {
                       maxValue={arousalLimit}
                       color="red"
                     >
-                      <Icon name="bolt" /> Pain
+                      <Icon name="bolt" /> 疼痛
                     </ProgressBar>
                   </Stack.Item>
                 </Stack>

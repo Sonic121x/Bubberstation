@@ -25,7 +25,7 @@ import { createLogger } from '../logging';
 
 const logger = createLogger('NtosNotepad');
 
-const DEFAULT_DOCUMENT_NAME = 'Untitled';
+const DEFAULT_DOCUMENT_NAME = '无标题';
 
 enum Extensions {
   TXT = 'TXT',
@@ -166,59 +166,59 @@ const NtosNotepadMenuBar = (props: MenuBarProps) => {
       <MenuBar.Dropdown
         entry="file"
         openWidth="22rem"
-        display={<PartiallyUnderlined str="File" indexStart={0} />}
+        display={<PartiallyUnderlined str="文件" indexStart={0} />}
         {...itemProps}
       >
-        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('new', 'New')} />
-        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('open', 'Open')} />
-        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('save', 'Save')} />
+        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('new', '新建')} />
+        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('open', '打开')} />
+        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('save', '保存')} />
         <MenuBar.Dropdown.MenuItem
-          {...getMenuItemProps('save_as', 'Save As')}
+          {...getMenuItemProps('save_as', '另存为')}
         />
         <MenuBar.Dropdown.Separator key="firstSep" />
-        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('exit', 'Exit...')} />
+        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('exit', '退出……')} />
       </MenuBar.Dropdown>
       <MenuBar.Dropdown
         entry="edit"
         openWidth="22rem"
-        display={<PartiallyUnderlined str="Edit" indexStart={0} />}
+        display={<PartiallyUnderlined str="编辑" indexStart={0} />}
         {...itemProps}
       >
-        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('cut', 'Cut')} />
-        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('copy', 'Copy')} />
-        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('paste', 'Paste')} />
-        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('delete', 'Delete')} />
+        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('cut', '剪切')} />
+        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('copy', '复制')} />
+        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('paste', '粘贴')} />
+        <MenuBar.Dropdown.MenuItem {...getMenuItemProps('delete', '删除')} />
       </MenuBar.Dropdown>
       <MenuBar.Dropdown
         entry="format"
         openWidth="15rem"
-        display={<PartiallyUnderlined str="Format" indexStart={1} />}
+        display={<PartiallyUnderlined str="格式" indexStart={1} />}
         {...itemProps}
       >
         <MenuBar.Dropdown.MenuItemToggle
           checked={wordWrap}
-          {...getMenuItemProps('wordWrap', 'Word Wrap')}
+          {...getMenuItemProps('wordWrap', '自动换行')}
         />
       </MenuBar.Dropdown>
       <MenuBar.Dropdown
         entry="view"
         openWidth="15rem"
-        display={<PartiallyUnderlined str="View" indexStart={0} />}
+        display={<PartiallyUnderlined str="视图" indexStart={0} />}
         {...itemProps}
       >
         <MenuBar.Dropdown.MenuItemToggle
           checked={showStatusBar}
-          {...getMenuItemProps('statusBar', 'Status Bar')}
+          {...getMenuItemProps('statusBar', '状态栏')}
         />
       </MenuBar.Dropdown>
       <MenuBar.Dropdown
         entry="help"
         openWidth="17rem"
-        display={<PartiallyUnderlined str="Help" indexStart={0} />}
+        display={<PartiallyUnderlined str="帮助" indexStart={0} />}
         {...itemProps}
       >
         <MenuBar.Dropdown.MenuItem
-          {...getMenuItemProps('aboutNotepad', 'About Notepad')}
+          {...getMenuItemProps('aboutNotepad', '关于记事本')}
         />
       </MenuBar.Dropdown>
     </MenuBar>
@@ -234,10 +234,10 @@ const StatusBar = (props: StatusBarProps) => {
   return (
     <Box className="NtosNotepad__StatusBar">
       <Box className="NtosNotepad__StatusBar__entry" minWidth="25rem">
-        Press shift-enter to insert new line
+        按 Shift + Enter 插入新行
       </Box>
       <Box className="NtosNotepad__StatusBar__entry" minWidth="15rem">
-        Ln {statuses.line}, Col {statuses.column}
+        第 {statuses.line} 行，第 {statuses.column} 列
       </Box>
       <Box className="NtosNotepad__StatusBar__entry" minWidth="5rem">
         100%
@@ -325,22 +325,22 @@ const AboutDialog = (props: AboutDialogProps) => {
   const paragraphStyle = { padding: '.5rem 1rem 0 2rem' };
 
   return (
-    <Dialog title="About Notepad" onClose={close} width={'500px'}>
+    <Dialog title="关于记事本" onClose={close} width={'500px'}>
       <div className="Dialog__body">
         <span className="NtosNotepad__AboutDialog__logo">NtOS</span>
         <Divider />
         <Box className="NtosNotepad__AboutDialog__text">
-          <span style={paragraphStyle}>Nanotrasen NtOS</span>
+          <span style={paragraphStyle}>纳米传讯 NtOS</span>
           <span style={paragraphStyle}>
-            Version 7815696ecbf1c96e6894b779456d330e
+            版本 7815696ecbf1c96e6894b779456d330e
           </span>
           <span style={paragraphStyle}>
-            &copy; NT Corporation. All rights reserved.
+            &copy; 纳米传讯公司。保留所有权利。
           </span>
           <span style={{ padding: '3rem 1rem 3rem 2rem' }}>
-            The NtOS operating system and its user interface are protected by
-            trademark and other pending or existing intellectual property rights
-            in the Sol system and other regions.
+            NtOS 操作系统及其用户界面受到
+            太阳系及其他地区的商标，以及其他已生效或
+            正在申请中的知识产权保护。
           </span>
           <span
             style={{
@@ -348,15 +348,15 @@ const AboutDialog = (props: AboutDialogProps) => {
               maxWidth: '35rem',
             }}
           >
-            This product is licensed under the NT Corporation Terms to:
+            根据纳米传讯公司的条款，本产品授权给：
           </span>
           <span style={{ padding: '0 1rem 0 4rem' }}>
-            {show_imprint ? login.IDName : 'Unknown'}
+            {show_imprint ? login.IDName : '未知'}
           </span>
         </Box>
       </div>
       <div className="Dialog__footer">
-        <Dialog.Button onClick={close}>Ok</Dialog.Button>
+        <Dialog.Button onClick={close}>确定</Dialog.Button>
       </div>
     </Dialog>
   );
@@ -452,7 +452,7 @@ export const NtosNotepad = (props) => {
   const unsavedAsterisk = text !== originalText ? '*' : '';
   return (
     <NtosWindow
-      title={`${unsavedAsterisk}${documentName} - Notepad`}
+      title={`${unsavedAsterisk}${documentName} - 记事本`}
       width={840}
       height={900}
     >
@@ -486,16 +486,16 @@ export const NtosNotepad = (props) => {
         </Box>
       </NtosWindow.Content>
       {activeDialog === Dialogs.SELECT_FILE && (
-        <Dialog title="Open File" onClose={handleCloseDialog} width="520px">
+        <Dialog title="打开文件" onClose={handleCloseDialog} width="520px">
           <div className="Dialog__body">
             <Stack vertical fill>
               <Stack.Item>
-                <Section fill title="Text Files">
+                <Section fill title="文本文件">
                   {files.length ? (
                     <Dropdown
                       selected={selectedFile?.displayName}
                       displayText={selectedFile?.displayName}
-                      placeholder="Pick a file..."
+                      placeholder="选择文件……"
                       options={files.map((file) => file.displayName)}
                       onSelected={(filename) => {
                         setSelectedFileUid(
@@ -505,7 +505,7 @@ export const NtosNotepad = (props) => {
                       }}
                     />
                   ) : (
-                    <Box>No text files available.</Box>
+                    <Box>没有可用的文本文件。</Box>
                   )}
                 </Section>
               </Stack.Item>
@@ -524,14 +524,14 @@ export const NtosNotepad = (props) => {
                 }
               }}
             >
-              {'Open'}
+              {'打开'}
             </Button>
-            <Dialog.Button onClick={handleCloseDialog}>Cancel</Dialog.Button>
+            <Dialog.Button onClick={handleCloseDialog}>取消</Dialog.Button>
           </div>
         </Dialog>
       )}
       {activeDialog === Dialogs.SAVE && (
-        <Dialog title="Save As" onClose={handleCloseDialog} width="420px">
+        <Dialog title="另存为" onClose={handleCloseDialog} width="420px">
           <div className="Dialog__body">
             <Flex justify="space-between">
               <Flex.Item>
@@ -546,7 +546,7 @@ export const NtosNotepad = (props) => {
                 <Dropdown
                   selected={saveExtension}
                   displayText={saveExtension}
-                  placeholder="Pick an extension..."
+                  placeholder="选择扩展名……"
                   options={[Extensions.TXT]}
                   onSelected={(extension) => {
                     setSaveExtension(extension);
@@ -566,16 +566,16 @@ export const NtosNotepad = (props) => {
                 handleCloseDialog();
               }}
             >
-              {'Save'}
+              {'保存'}
             </Dialog.Button>
-            <Dialog.Button onClick={handleCloseDialog}>Cancel</Dialog.Button>
+            <Dialog.Button onClick={handleCloseDialog}>取消</Dialog.Button>
           </div>
         </Dialog>
       )}
       {activeDialog === Dialogs.UNSAVED_CHANGES && (
-        <Dialog title="Notepad" onClose={handleCloseDialog}>
+        <Dialog title="记事本" onClose={handleCloseDialog}>
           <div className="Dialog__body">
-            Do you want to save changes to {documentName}?
+            是否保存对 {documentName} 的更改？
           </div>
           <div className="Dialog__footer">
             <Dialog.Button
@@ -585,12 +585,12 @@ export const NtosNotepad = (props) => {
                 setActiveDialog(Dialogs.NONE);
               }}
             >
-              Save
+              保存
             </Dialog.Button>
             <Dialog.Button onClick={handleCloseDialog}>
-              Don&apos;t Save
+              不保存
             </Dialog.Button>
-            <Dialog.Button onClick={handleCloseDialog}>Cancel</Dialog.Button>
+            <Dialog.Button onClick={handleCloseDialog}>取消</Dialog.Button>
           </div>
         </Dialog>
       )}

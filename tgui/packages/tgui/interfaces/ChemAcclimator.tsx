@@ -10,7 +10,7 @@ type Data = {
   acclimate_state: string;
 };
 
-const States = ['Filling', 'Heating', 'Cooling', 'Emptying'] as const;
+const States = ['注入中', '加热中', '冷却中', '排出中'] as const;
 
 export const ChemAcclimator = (props) => {
   const { act, data } = useBackend<Data>();
@@ -20,10 +20,10 @@ export const ChemAcclimator = (props) => {
     <Window width={320} height={130}>
       <Window.Content>
         <LabeledList>
-          <LabeledList.Item label="Current Temperature">
+          <LabeledList.Item label="当前温度">
             {chem_temp} K
           </LabeledList.Item>
-          <LabeledList.Item label="Target Temperature">
+          <LabeledList.Item label="目标温度">
             <NumberInput
               value={target_temperature}
               unit="K"
@@ -39,7 +39,7 @@ export const ChemAcclimator = (props) => {
               }
             />
           </LabeledList.Item>
-          <LabeledList.Item label="Buffer">
+          <LabeledList.Item label="缓冲容量">
             <NumberInput
               value={max_volume}
               unit="u"
@@ -55,7 +55,7 @@ export const ChemAcclimator = (props) => {
               }
             />
           </LabeledList.Item>
-          <LabeledList.Item label="Current State">
+          <LabeledList.Item label="当前状态">
             {States[acclimate_state]}
           </LabeledList.Item>
         </LabeledList>

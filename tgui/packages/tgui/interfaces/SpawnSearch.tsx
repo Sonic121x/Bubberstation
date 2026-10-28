@@ -243,11 +243,11 @@ export function SpawnSearch() {
     setTimeout(() => document!.getElementById(selected.toString())?.focus(), 1);
   }
 
-  const modeText = regexSearch ? 'RegEx Mode' : 'Standard Mode';
+  const modeText = regexSearch ? '正则表达式模式' : '标准模式';
 
   return (
     <Window
-      title="Spawn Atom"
+      title="生成原子对象"
       width={400}
       height={500}
       buttons={
@@ -255,7 +255,7 @@ export function SpawnSearch() {
           <Button
             icon="font"
             selected={includeAbstracts}
-            tooltip="Include Abstract Types"
+            tooltip="包含抽象类型"
             onClick={() =>
               act('setIncludeAbstracts', {
                 includeAbstracts: !includeAbstracts,
@@ -265,13 +265,13 @@ export function SpawnSearch() {
           <Button
             icon="file-signature"
             selected={searchNames}
-            tooltip="Name Search"
+            tooltip="按名称搜索"
             onClick={() => act('setNameSearch', { searchNames: !searchNames })}
           />
           <Button
             icon="wand-magic-sparkles"
             selected={fancyTypes}
-            tooltip="Fancy Type Display"
+            tooltip="简化类型显示"
             onClick={() => act('setFancyTypes', { fancyTypes: !fancyTypes })}
           />
         </>
@@ -343,7 +343,7 @@ export function SpawnSearch() {
                     fluid
                     onEnter={() => handleSelect(filteredItems[selected])}
                     onChange={handleSearch}
-                    placeholder="Search..."
+                    placeholder="搜索……"
                     value={query}
                     style={{
                       borderColor: invalidInput ? 'red' : undefined,
@@ -409,7 +409,7 @@ function ListItem(props: AtomSpanProps) {
             color: 'rgba(255, 162, 70, 0.5)',
           }}
         >
-          Abstract
+          抽象类型
         </span>
       )}
     </>

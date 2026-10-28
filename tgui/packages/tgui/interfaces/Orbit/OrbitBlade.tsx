@@ -7,8 +7,8 @@ import {
   Stack,
   Tooltip,
 } from 'tgui-core/components';
-import { capitalizeFirst, toTitleCase } from 'tgui-core/string';
-
+import { toTitleCase } from 'tgui-core/string';
+import { orbitDisplay } from '../../localization/zhOrbitDisplay';
 import { useBackend } from '../../backend';
 import { OrbitContext } from '.';
 import { HEALTH, VIEWMODE } from './constants';
@@ -36,10 +36,10 @@ export function OrbitBlade(props) {
             />
           }
           color="label"
-          title="Orbit Settings"
+          title="跟随设置"
         >
-          Keep in mind: Orbit does not update automatically. You will need to
-          click the &quot;Refresh&quot; button to see the latest data.
+          请注意：跟随菜单不会自动更新。你需要
+          点击“刷新”按钮查看最新数据。
         </Section>
       </Stack.Item>
       <Stack.Item>
@@ -56,11 +56,11 @@ export function OrbitBlade(props) {
             />
           }
           color="label"
-          title="Real Name Display"
+          title="显示真实姓名"
         >
-          Real Name mode will display actual character names and their
-          roundstart jobs insteas of being based on their worn ID. If the person
-          lacks a roundstart job, it will still display their ID job icon.
+          真实姓名模式显示角色的真实姓名和
+          开局职业，不依据其佩戴的ID卡。如果角色
+          没有开局职业，则仍显示其ID卡上的职业图标。
         </Section>
       </Stack.Item>
       {!!orbiting && (
@@ -76,10 +76,10 @@ function ViewModeSelector(props) {
   const { viewMode, setViewMode } = useContext(OrbitContext);
 
   return (
-    <Section title="View Mode">
+    <Section title="视图模式">
       <Stack fill vertical>
         <Stack.Item color="label">
-          Change the color and sorting scheme of observable items.
+          修改可观察对象的配色和排序方式。
         </Stack.Item>
 
         {Object.entries(VIEWMODE).map(([key, value]) => (
@@ -92,7 +92,7 @@ function ViewModeSelector(props) {
             onClick={() => setViewMode(value)}
             selected={value === viewMode}
           >
-            {key}
+            {orbitDisplay(key)}
           </Button>
         ))}
       </Stack>
@@ -119,12 +119,12 @@ function OrbitInfo(props) {
   }
 
   return (
-    <Section title="Orbiting">
+    <Section title="正在跟随">
       <Stack fill vertical>
         <Stack.Item>
           {toTitleCase(getDisplayName(full_name, name))}
           {showAFK && (
-            <Tooltip content="Away from keyboard" position="bottom-start">
+            <Tooltip content="暂离键盘" position="bottom-start">
               <Icon ml={1} color="grey" name="bed" />
             </Tooltip>
           )}
@@ -137,11 +137,11 @@ function OrbitInfo(props) {
                 <JobIcon item={orbiting} realNameDisplay={false} />
               </Stack.Item>
               <Stack.Item color="label" grow>
-                {job}
+                {orbitDisplay(job)}
               </Stack.Item>
               {!!department && (
                 <Stack.Item color="grey">
-                  {capitalizeFirst(department)}
+                  {orbitDisplay(department)}
                 </Stack.Item>
               )}
             </Stack>
@@ -166,19 +166,19 @@ function HealthDisplay(props: { health: number }) {
   let howDead;
   switch (true) {
     case health <= HEALTH.Ruined:
-      howDead = `Very Dead: ${health}`;
+      howDead = `死透了：${health}`;
       icon = 'skull';
       break;
     case health <= HEALTH.Dead:
-      howDead = `Dead: ${health}`;
+      howDead = `死亡：${health}`;
       icon = 'heart-broken';
       break;
     case health <= HEALTH.Crit:
-      howDead = `Health critical: ${health}`;
+      howDead = `濒危：${health}`;
       icon = 'tired';
       break;
     case health <= HEALTH.Bad:
-      howDead = `Bad: ${health}`;
+      howDead = `状态不佳：${health}`;
       icon = 'heartbeat';
       break;
   }

@@ -15,16 +15,16 @@ export const ThermoMachine = (props) => {
   return (
     <Window width={300} height={350}>
       <Window.Content>
-        <Section title="Status">
+        <Section title="状态">
           <LabeledList>
-            <LabeledList.Item label="Temperature">
+            <LabeledList.Item label="温度">
               <AnimatedNumber
                 value={data.temperature}
                 format={(value) => toFixed(value, 2)}
               />
               {' K'}
             </LabeledList.Item>
-            <LabeledList.Item label="Pressure">
+            <LabeledList.Item label="压力">
               <AnimatedNumber
                 value={data.pressure}
                 format={(value) => toFixed(value, 2)}
@@ -34,18 +34,18 @@ export const ThermoMachine = (props) => {
           </LabeledList>
         </Section>
         <Section
-          title="Controls"
+          title="控制"
           buttons={
             <Button
               icon={data.on ? 'power-off' : 'times'}
-              content={data.on ? 'On' : 'Off'}
+              content={data.on ? '开启' : '关闭'}
               selected={data.on}
               onClick={() => act('power')}
             />
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Target Temperature">
+            <LabeledList.Item label="目标温度">
               <NumberInput
                 animated
                 tickWhileDragging
@@ -63,11 +63,11 @@ export const ThermoMachine = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Presets">
+            <LabeledList.Item label="预设">
               <Button
                 icon="fast-backward"
                 disabled={data.target === data.min}
-                title="Minimum temperature"
+                title="最低温度"
                 onClick={() =>
                   act('target', {
                     target: data.min,
@@ -77,7 +77,7 @@ export const ThermoMachine = (props) => {
               <Button
                 icon="sync"
                 disabled={data.target === data.initial}
-                title="Room Temperature"
+                title="室温"
                 onClick={() =>
                   act('target', {
                     target: data.initial,
@@ -87,7 +87,7 @@ export const ThermoMachine = (props) => {
               <Button
                 icon="fast-forward"
                 disabled={data.target === data.max}
-                title="Maximum Temperature"
+                title="最高温度"
                 onClick={() =>
                   act('target', {
                     target: data.max,

@@ -38,15 +38,15 @@ export const CrimeWatcher = (props) => {
             onClick={() => setSelectedTab(SECURETAB.Crimes)}
             selected={selectedTab === SECURETAB.Crimes}
           >
-            Crimes: {crimes.length}
+            罪行：{crimes.length}
           </Tabs.Tab>
           <Tabs.Tab
             onClick={() => setSelectedTab(SECURETAB.Citations)}
             selected={selectedTab === SECURETAB.Citations}
           >
-            Citations: {citations.length}
+            罚单：{citations.length}
           </Tabs.Tab>
-          <Tooltip content="Add a new crime or citation" position="bottom">
+          <Tooltip content="添加新罪行或罚单" position="bottom">
             <Tabs.Tab
               onClick={() => setSelectedTab(SECURETAB.Add)}
               selected={selectedTab === SECURETAB.Add}
@@ -83,7 +83,7 @@ const CrimeList = (props) => {
       {!toDisplay.length ? (
         <Stack.Item>
           <NoticeBox>
-            No {tab === SECURETAB.Crimes ? 'crimes' : 'citations'} found.
+            未找到{tab === SECURETAB.Crimes ? '罪行' : '罚单'}。
           </NoticeBox>
         </Stack.Item>
       ) : (
@@ -103,7 +103,7 @@ const CrimeDisplay = ({ item }: { item: Crime }) => {
   const { current_user, higher_access } = data;
   const { author, crime_ref, details, fine, name, paid, time, valid, voider } =
     item;
-  const showFine = fine && fine > 0 ? `: ${fine} cr` : ': PAID OFF';
+  const showFine = fine && fine > 0 ? `：${fine} 信用点` : '：已缴清';
 
   let collapsibleColor = '';
   if (!valid) {
@@ -123,32 +123,32 @@ const CrimeDisplay = ({ item }: { item: Crime }) => {
     <Stack.Item>
       <Collapsible color={collapsibleColor} open={editing} title={displayTitle}>
         <LabeledList>
-          <LabeledList.Item label="Time">{time}</LabeledList.Item>
-          <LabeledList.Item label="Author">{author}</LabeledList.Item>
-          <LabeledList.Item color={!valid ? 'bad' : 'good'} label="Status">
-            {!valid ? 'Void' : 'Active'}
+          <LabeledList.Item label="时间">{time}</LabeledList.Item>
+          <LabeledList.Item label="记录人">{author}</LabeledList.Item>
+          <LabeledList.Item color={!valid ? 'bad' : 'good'} label="状态">
+            {!valid ? '已作废' : '有效'}
           </LabeledList.Item>
           {!valid && (
             <LabeledList.Item
               color={voider ? 'gold' : 'good'}
-              label="Voided by"
+              label="作废人"
             >
-              {!voider ? 'Automation' : voider}
+              {!voider ? '自动处理' : voider}
             </LabeledList.Item>
           )}
           {!!fine && fine > 0 && (
             <>
-              <LabeledList.Item color="bad" label="Fine">
-                {fine}cr <Icon color="gold" name="coins" />
+              <LabeledList.Item color="bad" label="罚款">
+                {fine}信用点 <Icon color="gold" name="coins" />
               </LabeledList.Item>
-              <LabeledList.Item color="good" label="Paid">
-                {paid}cr <Icon color="gold" name="coins" />
+              <LabeledList.Item color="good" label="已缴金额">
+                {paid}信用点 <Icon color="gold" name="coins" />
               </LabeledList.Item>
             </>
           )}
         </LabeledList>
         <Box color="label" mt={1} mb={1}>
-          Details:
+          详情：
         </Box>
         <BlockQuote>{details}</BlockQuote>
 
@@ -159,10 +159,10 @@ const CrimeDisplay = ({ item }: { item: Crime }) => {
               icon="pen"
               onClick={() => setEditing(true)}
             >
-              Edit
+              编辑
             </Button>
             <Button.Confirm
-              content="Invalidate"
+              content="作废"
               disabled={!valid || (!higher_access && author !== current_user)}
               icon="ban"
               onClick={() =>
@@ -187,7 +187,7 @@ const CrimeDisplay = ({ item }: { item: Crime }) => {
                   name: value,
                 });
               }}
-              placeholder="Enter a new name"
+              placeholder="输入新名称"
             />
             <Input
               fluid
@@ -202,7 +202,7 @@ const CrimeDisplay = ({ item }: { item: Crime }) => {
                   description: value,
                 });
               }}
-              placeholder="Enter a new description"
+              placeholder="输入新描述"
             />
           </>
         )}
@@ -253,26 +253,26 @@ const CrimeAuthor = (props) => {
   return (
     <Stack fill vertical>
       <Stack.Item color="label">
-        Name
+        名称
         <Input
           fluid
           maxLength={25}
           onChange={setCrimeName}
-          placeholder="Brief overview"
+          placeholder="简短概述"
         />
       </Stack.Item>
       <Stack.Item color="label">
-        Details
+        详情
         <TextArea
           fluid
           height={4}
           maxLength={1025}
           onChange={setCrimeDetails}
-          placeholder="Type some details..."
+          placeholder="输入详细信息……"
         />
       </Stack.Item>
       <Stack.Item color="label">
-        Fine (leave blank to arrest)
+        罚款（留空则为逮捕）
         <RestrictedInput
           fluid
           value={crimeFine}
@@ -286,9 +286,9 @@ const CrimeAuthor = (props) => {
           disabled={!nameMeetsReqs || !crimeFineIsValid}
           icon="plus"
           onClick={createCrime}
-          tooltip={!nameMeetsReqs ? 'Name must be at least 3 characters.' : ''}
+          tooltip={!nameMeetsReqs ? '名称至少需要3个字符。' : ''}
         >
-          Create
+          创建
         </Button.Confirm>
       </Stack.Item>
     </Stack>

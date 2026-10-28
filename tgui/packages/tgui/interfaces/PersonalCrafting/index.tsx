@@ -206,9 +206,9 @@ export function PersonalCrafting(props: any) {
                     autoFocus
                     expensive
                     placeholder={
-                      'Search in ' +
+                      '搜索 ' +
                       data.recipes.length +
-                      (mode === MODE.cooking ? ' recipes...' : ' designs...')
+                      (mode === MODE.cooking ? ' 份食谱……' : ' 份设计……')
                     }
                     value={searchText}
                     onChange={(value) => {
@@ -235,7 +235,7 @@ export function PersonalCrafting(props: any) {
                         );
                       }}
                     >
-                      Category
+                      类别
                     </Tabs.Tab>
                     {mode === MODE.cooking && (
                       <Tabs.Tab
@@ -253,7 +253,7 @@ export function PersonalCrafting(props: any) {
                           );
                         }}
                       >
-                        Type
+                        类型
                       </Tabs.Tab>
                     )}
                     <Tabs.Tab
@@ -267,7 +267,7 @@ export function PersonalCrafting(props: any) {
                         setMaterial(material_occurences[0].atom_id);
                       }}
                     >
-                      {mode === MODE.cooking ? 'Ingredient' : 'Material'}
+                      {mode === MODE.cooking ? '食材' : '材料'}
                     </Tabs.Tab>
                   </Tabs>
                 </Stack.Item>
@@ -390,7 +390,7 @@ export function PersonalCrafting(props: any) {
                                   <Stack.Item fontSize="0.95em">
                                     <Stack vertical pb={1}>
                                       <Stack.Item>
-                                        <SubGroupTitle title="Cuisines" />
+                                        <SubGroupTitle title="菜系" />
                                       </Stack.Item>
                                       {allFoodCuisines.map((cuisine) => (
                                         <Stack.Item key={cuisine}>
@@ -420,7 +420,7 @@ export function PersonalCrafting(props: any) {
                                         </Stack.Item>
                                       ))}
                                       <Stack.Item>
-                                        <SubGroupTitle title="Dishes" />
+                                        <SubGroupTitle title="菜式" />
                                       </Stack.Item>
                                       {allDishCategories.map((dish) => (
                                         <Stack.Item key={dish}>
@@ -449,7 +449,7 @@ export function PersonalCrafting(props: any) {
                                         </Stack.Item>
                                       ))}
                                       <Stack.Item>
-                                        <SubGroupTitle title="Meals" />
+                                        <SubGroupTitle title="餐次" />
                                       </Stack.Item>
                                       {allMealCategories.map((meal) => (
                                         <Stack.Item key={meal}>
@@ -495,14 +495,14 @@ export function PersonalCrafting(props: any) {
                       act('toggle_recipes');
                     }}
                   >
-                    Can make only
+                    仅显示可制作项
                   </Button.Checkbox>
                   <Button.Checkbox
                     fluid
                     checked={display_compact}
                     onClick={() => act('toggle_compact')}
                   >
-                    Compact list
+                    紧凑列表
                   </Button.Checkbox>
                 </Stack.Item>
                 {!forced_mode && (
@@ -528,7 +528,7 @@ export function PersonalCrafting(props: any) {
                             act('toggle_mode');
                           }}
                         >
-                          Craft
+                          制作
                         </Button.Checkbox>
                       </Stack.Item>
                       <Stack.Item grow>
@@ -551,7 +551,7 @@ export function PersonalCrafting(props: any) {
                             act('toggle_mode');
                           }}
                         >
-                          Cook
+                          烹饪
                         </Button.Checkbox>
                       </Stack.Item>
                     </Stack>
@@ -601,7 +601,7 @@ export function PersonalCrafting(props: any) {
                 </VirtualList>
               ) : (
                 <NoticeBox m={1} p={1}>
-                  No recipes found.
+                  未找到配方。
                 </NoticeBox>
               )}
               {recipes.length > displayLimit && (
@@ -611,8 +611,8 @@ export function PersonalCrafting(props: any) {
                   style={{ cursor: 'pointer' }}
                   onClick={() => setPages(pages + 1)}
                 >
-                  Load {Math.min(pageSize, recipes.length - displayLimit)}{' '}
-                  more...
+                  再加载 {Math.min(pageSize, recipes.length - displayLimit)}{' '}
+                  项……
                 </Section>
               )}
             </Box>

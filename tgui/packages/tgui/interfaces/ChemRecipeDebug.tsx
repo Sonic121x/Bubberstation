@@ -15,7 +15,7 @@ import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { type ActiveReaction, ReactionDisplay } from './ChemHeater';
 import { type Beaker, BeakerSectionDisplay } from './common/BeakerDisplay';
-
+import { chemDebugDisplay } from '../localization/chemDebugDisplay';
 const TEMP_MODES = [
   'Reaction Temp',
   'Forced Temp',
@@ -89,28 +89,28 @@ export const ChemRecipeDebug = (props) => {
   return (
     <Window width={500} height={600}>
       <Window.Content scrollable>
-        <Section title="Controls">
+        <Section title="控制">
           <Tabs>
             <Tabs.Tab
               key={'Environment'}
               selected={controlState === 'Environment'}
               onClick={() => setControlState('Environment')}
             >
-              Environment
+              环境
             </Tabs.Tab>
             <Tabs.Tab
               key={'Reactions'}
               selected={controlState === 'Reactions'}
               onClick={() => setControlState('Reactions')}
             >
-              Reactions
+              反应
             </Tabs.Tab>
             <Tabs.Tab
               key={'Editing'}
               selected={controlState === 'Editing'}
               onClick={() => setControlState('Editing')}
             >
-              Edit Reactions
+              编辑反应
             </Tabs.Tab>
           </Tabs>
           {controlState === 'Environment' && (
@@ -118,7 +118,7 @@ export const ChemRecipeDebug = (props) => {
               <Stack vertical={false}>
                 <Stack.Item>
                   <LabeledList>
-                    <LabeledList.Item label="Temperature">
+                    <LabeledList.Item label="温度">
                       <NumberInput
                         tickWhileDragging
                         width="65px"
@@ -145,14 +145,14 @@ export const ChemRecipeDebug = (props) => {
                             transform: 'translate(0%, -15%)',
                           }}
                         >
-                          Temp Mode:
+                          温度模式：
                         </Box>
                       }
                     >
                       <Dropdown
                         width="100%"
-                        selected={TEMP_MODES[temp_mode]}
-                        options={TEMP_MODES}
+                        selected={TEMP_MODES[temp_mode]} displayText={chemDebugDisplay(TEMP_MODES[temp_mode])}
+                        options={TEMP_MODES.map((value) => ({ value, displayText: chemDebugDisplay(value) }))}
                         onSelected={(value) =>
                           act('temp_mode', {
                             target: value,
@@ -186,13 +186,13 @@ export const ChemRecipeDebug = (props) => {
                 </Stack.Item>
                 <Stack.Item ml="20px">
                   <LabeledList>
-                    <LabeledList.Item label="Force Ph">
+                    <LabeledList.Item label="强制 pH">
                       <Button.Checkbox
                         checked={use_forced_ph}
                         onClick={() => act('toggle_forced_ph')}
                         ml="20px"
                       >
-                        {use_forced_ph ? 'Disable' : 'Enable'}
+                        {use_forced_ph ? '禁用' : '启用'}
                       </Button.Checkbox>
                     </LabeledList.Item>
                   </LabeledList>
@@ -201,7 +201,7 @@ export const ChemRecipeDebug = (props) => {
               <Stack vertical={false} mt="10px">
                 <Stack.Item>
                   <LabeledList>
-                    <LabeledList.Item label={<Box width="82px">Purity:</Box>}>
+                    <LabeledList.Item label={<Box width="82px">纯度：</Box>}>
                       <NumberInput
                         tickWhileDragging
                         width="65px"
@@ -221,12 +221,12 @@ export const ChemRecipeDebug = (props) => {
                 </Stack.Item>
                 <Stack.Item ml="20px">
                   <LabeledList>
-                    <LabeledList.Item label="Force Purity">
+                    <LabeledList.Item label="强制纯度">
                       <Button.Checkbox
                         checked={use_forced_purity}
                         onClick={() => act('toggle_forced_purity')}
                       >
-                        {use_forced_purity ? 'Disable' : 'Enable'}
+                        {use_forced_purity ? '禁用' : '启用'}
                       </Button.Checkbox>
                     </LabeledList.Item>
                   </LabeledList>
@@ -235,7 +235,7 @@ export const ChemRecipeDebug = (props) => {
               <Stack vertical={false} mt="10px">
                 <Stack.Item>
                   <LabeledList>
-                    <LabeledList.Item label="Volume Mulx">
+                    <LabeledList.Item label="体积倍数">
                       <NumberInput
                         tickWhileDragging
                         width="65px"
@@ -262,19 +262,19 @@ export const ChemRecipeDebug = (props) => {
               <Stack vertical>
                 <Stack.Item>
                   <LabeledList>
-                    <LabeledList.Item label="Reagent">
+                    <LabeledList.Item label="试剂">
                       <Button
                         color="green"
                         onClick={() => act('pick_reaction')}
                       >
-                        Select Reaction
+                        选择反应
                       </Button>
                     </LabeledList.Item>
                   </LabeledList>
                 </Stack.Item>
                 <Stack.Item mt="20px">
                   <LabeledList>
-                    <LabeledList.Item label="Reaction">
+                    <LabeledList.Item label="反应">
                       {current_reaction_name}
                     </LabeledList.Item>
                   </LabeledList>
@@ -288,14 +288,14 @@ export const ChemRecipeDebug = (props) => {
                             transform: 'translate(0%, -10%)',
                           }}
                         >
-                          Direction:
+                          顺序：
                         </Box>
                       }
                     >
                       <Dropdown
                         width="35%"
-                        selected={REACTION_MODES[current_reaction_mode]}
-                        options={REACTION_MODES}
+                        selected={REACTION_MODES[current_reaction_mode]} displayText={chemDebugDisplay(REACTION_MODES[current_reaction_mode])}
+                        options={REACTION_MODES.map((value) => ({ value, displayText: chemDebugDisplay(value) }))}
                         disabled={current_reaction_name === 'N/A'}
                         onSelected={(value) =>
                           act('reaction_mode', {
@@ -308,14 +308,14 @@ export const ChemRecipeDebug = (props) => {
                 </Stack.Item>
                 <Stack.Item mt="20px">
                   <LabeledList>
-                    <LabeledList.Item label={<Box width="60px">Process:</Box>}>
+                    <LabeledList.Item label={<Box width="60px">运行：</Box>}>
                       <Button
                         color="green"
                         icon="play"
                         disabled={isReacting || current_reaction_name === 'N/A'}
                         onClick={() => act('start_reaction')}
                       >
-                        Play
+                        开始
                       </Button>
                     </LabeledList.Item>
                   </LabeledList>
@@ -328,13 +328,13 @@ export const ChemRecipeDebug = (props) => {
               <Stack vertical>
                 <Stack.Item>
                   <LabeledList>
-                    <LabeledList.Item label="Reaction">
+                    <LabeledList.Item label="反应">
                       <Button
                         color="green"
                         icon="flask"
                         onClick={() => act('edit_reaction')}
                       >
-                        {editReaction?.name || 'Edit Reaction'}
+                        {editReaction?.name || '编辑反应'}
                       </Button>
                     </LabeledList.Item>
                   </LabeledList>
@@ -349,14 +349,14 @@ export const ChemRecipeDebug = (props) => {
                             width: '57px',
                           }}
                         >
-                          Param:
+                          参数：
                         </Box>
                       }
                     >
                       <Dropdown
                         width="40%"
-                        selected={editReaction?.editVar || REACTION_VARS[1]}
-                        options={REACTION_VARS}
+                        selected={editReaction?.editVar || REACTION_VARS[1]} displayText={chemDebugDisplay(editReaction?.editVar || REACTION_VARS[1])}
+                        options={REACTION_VARS.map((value) => ({ value, displayText: chemDebugDisplay(value) }))}
                         onSelected={(value) =>
                           act('edit_var', { target: value })
                         }
@@ -367,7 +367,7 @@ export const ChemRecipeDebug = (props) => {
                 </Stack.Item>
                 <Stack.Item mt="20px">
                   <LabeledList>
-                    <LabeledList.Item label={<Box width="57px">Value:</Box>}>
+                    <LabeledList.Item label={<Box width="57px">数值：</Box>}>
                       <NumberInput
                         tickWhileDragging
                         width="65px"
@@ -386,7 +386,7 @@ export const ChemRecipeDebug = (props) => {
                       <Button
                         color="green"
                         icon="sync"
-                        tooltip="Reset Value"
+                        tooltip="重置数值"
                         disabled={editReaction === null}
                         onClick={() => act('reset_value')}
                       />
@@ -395,14 +395,14 @@ export const ChemRecipeDebug = (props) => {
                 </Stack.Item>
                 <Stack.Item mt="20px">
                   <LabeledList>
-                    <LabeledList.Item label={<Box width="57px">Export:</Box>}>
+                    <LabeledList.Item label={<Box width="57px">导出：</Box>}>
                       <Button
                         color="green"
                         icon="save"
                         onClick={() => act('export')}
                         disabled={editReaction === null}
                       >
-                        Export
+                        导出
                       </Button>
                     </LabeledList.Item>
                   </LabeledList>
@@ -412,12 +412,12 @@ export const ChemRecipeDebug = (props) => {
           )}
         </Section>
         {beaker && (
-          <Section title="Variables">
+          <Section title="变量">
             <LabeledList>
-              <LabeledList.Item label="Temperature">
+              <LabeledList.Item label="温度">
                 {beaker.currentTemp}
               </LabeledList.Item>
-              <LabeledList.Item label="Purity">
+              <LabeledList.Item label="纯度">
                 {beaker.purity}
               </LabeledList.Item>
             </LabeledList>
@@ -433,7 +433,7 @@ export const ChemRecipeDebug = (props) => {
           />
         )}
         <BeakerSectionDisplay
-          title_label="Internal Buffer"
+          title_label="内部缓冲槽"
           beaker={beaker}
           showpH={false}
         />

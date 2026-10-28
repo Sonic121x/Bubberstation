@@ -1,5 +1,5 @@
 import { Button } from 'tgui-core/components';
-import { capitalize } from 'tgui-core/string';
+import { communicationsAlertDisplay } from '../../localization/communicationsDisplay';
 
 import { useBackend } from '../../backend';
 import { SWIPE_NEEDED } from './constants';
@@ -36,7 +36,7 @@ export function AlertButton(props: Props) {
         }
       }}
     >
-      {capitalize(alertLevel)}
+      {communicationsAlertDisplay(alertLevel)}
     </Button>
   );
 }

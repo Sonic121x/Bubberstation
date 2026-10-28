@@ -73,22 +73,22 @@ type Data = {
 function formatTime(seconds: number): string {
   seconds /= 10;
   if (seconds < 0) {
-    return 'never';
+    return '永不';
   }
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const secs = Math.round(seconds % 60);
 
-  return `${hours}h ${minutes}m ${secs}s`;
+  return `${hours} 小时 ${minutes} 分 ${secs} 秒`;
 }
 
 function getPlayerString(players: Player[]): string {
   if (players.length === 0) {
-    return 'No one';
+    return '无人';
   } else if (players.length === 1) {
     return players[0].key;
   } else if (players.length === 2) {
-    return `${players[0].key} and ${players[1].key}`;
+    return `${players[0].key} 和 ${players[1].key}`;
   }
   let playerString = '';
   for (let i = 0; i < players.length; i++) {
@@ -97,7 +97,7 @@ function getPlayerString(players: Player[]): string {
       playerString += ', ';
     }
     if (i === players.length - 2) {
-      playerString += 'and ';
+      playerString += '和 ';
     }
   }
   return playerString;
@@ -105,7 +105,7 @@ function getPlayerString(players: Player[]): string {
 
 function readableRulesesetCategory(ruleset_category: string): string {
   // Replace underlines with spaces and auto-capitalize first letter of every word
-  return ruleset_category
+  return ({ roundstart: '开局', latejoin: '中途加入', light_midround: '轻度局中事件', heavy_midround: '重度局中事件' }[ruleset_category] || ruleset_category)
     .replace(/_/g, ' ')
     .split(' ')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -136,8 +136,8 @@ const StatusPanel = () => {
   if (!current_tier) {
     return (
       <LabeledList>
-        <LabeledList.Item label="Current Tier">
-          <Button onClick={() => act('set_tier')}>(Click to set)</Button>
+        <LabeledList.Item label="当前等级">
+          <Button onClick={() => act('set_tier')}>（点击设置）</Button>
         </LabeledList.Item>
       </LabeledList>
     );
@@ -145,13 +145,13 @@ const StatusPanel = () => {
 
   return (
     <LabeledList>
-      <LabeledList.Item label="Current Tier">
+      <LabeledList.Item label="当前等级">
         <Box>
           <b>{current_tier.number}</b> ({current_tier.name})
         </Box>
         {!roundstarted && (
           <Button ml={1} onClick={() => act('set_tier')}>
-            (Change)
+            （更改）
           </Button>
         )}
       </LabeledList.Item>
@@ -159,7 +159,7 @@ const StatusPanel = () => {
         Object.entries(ruleset_count).map(([name, count]) => (
           <LabeledList.Item
             key={name}
-            label={`${readableRulesesetCategory(name)} Ruleset Count`}
+            label={`${readableRulesesetCategory(name)}规则集数量`}
           >
             <Flex>
               <Flex.Item>{count}</Flex.Item>
@@ -167,7 +167,7 @@ const StatusPanel = () => {
                 <Flex.Item ml={1}>
                   <Button
                     icon="plus"
-                    tooltip="Add one max ruleset of this type"
+                    tooltip="将此类型的规则集数量上限增加 1"
                     tooltipPosition="right"
                     onClick={() =>
                       act('add_ruleset_category_count', {
@@ -182,7 +182,7 @@ const StatusPanel = () => {
                   <Button
                     icon="times"
                     disabled={count === 0}
-                    tooltip="Set max ruleset of this type to 0"
+                    tooltip="将此类型的规则集数量上限设为 0"
                     tooltipPosition="right"
                     onClick={() =>
                       act('set_ruleset_category_count', {
@@ -197,27 +197,27 @@ const StatusPanel = () => {
           </LabeledList.Item>
         ))}
       {time_until_lights > 0 ? (
-        <LabeledList.Item label="Light Midround Start">
+        <LabeledList.Item label="轻度局中事件开始时间">
           <Flex>
             <Flex.Item>
               <Box>{formatTime(time_until_lights)}</Box>
             </Flex.Item>
             <Flex.Item>
               <Button ml={1} onClick={() => act('light_start_now')}>
-                Start Now
+                立即开始
               </Button>
             </Flex.Item>
           </Flex>
         </LabeledList.Item>
       ) : (
         <>
-          <LabeledList.Item label="Light Midround Cooldown">
+          <LabeledList.Item label="轻度局中事件冷却">
             <Flex>
               <Flex.Item>
                 <Box>
                   {time_until_next_midround > 0
                     ? formatTime(time_until_next_midround)
-                    : `Next dynamic tick (${formatTime(next_dynamic_tick)})`}
+                    : `下次动态更新（${formatTime(next_dynamic_tick)}）`}
                 </Box>
               </Flex.Item>
               <Flex.Item>
@@ -226,12 +226,12 @@ const StatusPanel = () => {
                   disabled={time_until_next_midround <= 0}
                   onClick={() => act('reset_midround_cooldown')}
                 >
-                  Reset Cooldown
+                  重置冷却
                 </Button>
               </Flex.Item>
             </Flex>
           </LabeledList.Item>
-          <LabeledList.Item label="Light Midround Chance">
+          <LabeledList.Item label="轻度局中事件概率">
             <Flex>
               <Flex.Item>
                 <Box
@@ -240,14 +240,14 @@ const StatusPanel = () => {
                     borderBottom: '2px dotted rgba(255, 255, 255, 0.8)',
                   }}
                 >
-                  <Tooltip content="Chance of a light midround ruleset being selected on next dynamic tick">
+                  <Tooltip content="下次动态更新选中轻度局中规则集的概率">
                     {light_midround_chance}%
                   </Tooltip>
                 </Box>
               </Flex.Item>
               <Flex.Item>
                 <Button ml={1} onClick={() => act('max_light_chance')}>
-                  {light_chance_maxxed ? 'Reset' : 'Set to 100%'}
+                  {light_chance_maxxed ? '重置' : '设为 100%'}
                 </Button>
               </Flex.Item>
             </Flex>
@@ -255,27 +255,27 @@ const StatusPanel = () => {
         </>
       )}
       {time_until_heavies > 0 ? (
-        <LabeledList.Item label="Heavy Midround Start">
+        <LabeledList.Item label="重度局中事件开始时间">
           <Flex>
             <Flex.Item>
               <Box>{formatTime(time_until_heavies)}</Box>
             </Flex.Item>
             <Flex.Item>
               <Button ml={1} onClick={() => act('heavy_start_now')}>
-                Start Now
+                立即开始
               </Button>
             </Flex.Item>
           </Flex>
         </LabeledList.Item>
       ) : (
         <>
-          <LabeledList.Item label="Heavy Midround Cooldown">
+          <LabeledList.Item label="重度局中事件冷却">
             <Flex>
               <Flex.Item>
                 <Box>
                   {time_until_next_midround > 0
                     ? formatTime(time_until_next_midround)
-                    : `Next dynamic tick (${formatTime(next_dynamic_tick)})`}
+                    : `下次动态更新（${formatTime(next_dynamic_tick)}）`}
                 </Box>
               </Flex.Item>
               <Flex.Item>
@@ -284,12 +284,12 @@ const StatusPanel = () => {
                   disabled={time_until_next_midround <= 0}
                   onClick={() => act('reset_midround_cooldown')}
                 >
-                  Reset Cooldown
+                  重置冷却
                 </Button>
               </Flex.Item>
             </Flex>
           </LabeledList.Item>
-          <LabeledList.Item label="Heavy Midround Chance">
+          <LabeledList.Item label="重度局中事件概率">
             <Flex>
               <Flex.Item>
                 <Box
@@ -298,14 +298,14 @@ const StatusPanel = () => {
                     borderBottom: '2px dotted rgba(255, 255, 255, 0.8)',
                   }}
                 >
-                  <Tooltip content="Chance of a heavy midround ruleset being selected on next dynamic tick">
+                  <Tooltip content="下次动态更新选中重度局中规则集的概率">
                     {heavy_midround_chance}%
                   </Tooltip>
                 </Box>
               </Flex.Item>
               <Flex.Item>
                 <Button ml={1} onClick={() => act('max_heavy_chance')}>
-                  {heavy_chance_maxxed ? 'Reset' : 'Set to 100%'}
+                  {heavy_chance_maxxed ? '重置' : '设为 100%'}
                 </Button>
               </Flex.Item>
             </Flex>
@@ -313,27 +313,27 @@ const StatusPanel = () => {
         </>
       )}
       {time_until_latejoins > 0 ? (
-        <LabeledList.Item label="Latejoin Start">
+        <LabeledList.Item label="中途加入规则开始时间">
           <Flex>
             <Flex.Item>
               <Box>{formatTime(time_until_latejoins)}</Box>
             </Flex.Item>
             <Flex.Item>
               <Button ml={1} onClick={() => act('latejoin_start_now')}>
-                Start Now
+                立即开始
               </Button>
             </Flex.Item>
           </Flex>
         </LabeledList.Item>
       ) : (
         <>
-          <LabeledList.Item label="Latejoin Cooldown">
+          <LabeledList.Item label="中途加入规则冷却">
             <Flex>
               <Flex.Item>
                 <Box>
                   {time_until_next_latejoin
                     ? formatTime(time_until_next_latejoin)
-                    : 'Next latejoin'}
+                    : '下一名中途加入的玩家'}
                 </Box>
               </Flex.Item>
               <Flex.Item>
@@ -342,12 +342,12 @@ const StatusPanel = () => {
                   disabled={time_until_next_latejoin <= 0}
                   onClick={() => act('reset_latejoin_cooldown')}
                 >
-                  Reset Cooldown
+                  重置冷却
                 </Button>
               </Flex.Item>
             </Flex>
           </LabeledList.Item>
-          <LabeledList.Item label="Latejoin Chance">
+          <LabeledList.Item label="中途加入规则概率">
             <Flex>
               <Flex.Item>
                 <Box
@@ -357,17 +357,17 @@ const StatusPanel = () => {
                   }}
                 >
                   <Tooltip
-                    content="Chance the next person who joins the game will selected for a latejoin ruleset.
-              Note this does not GUARANTEE a latejoin ruleset is ran - if it fails,
-              the chance will increase for the next player who joins."
+                    content="下一名加入游戏的玩家被选中参与中途加入规则集的概率。
+              注意，这不保证规则集一定执行；如果执行失败，
+              下一名加入的玩家被选中的概率将会增加。"
                   >
-                    {latejoin_chance}% ({failed_latejoins} failed attempts)
+                    {latejoin_chance}%（已失败 {failed_latejoins} 次）
                   </Tooltip>
                 </Box>
               </Flex.Item>
               <Flex.Item>
                 <Button ml={1} onClick={() => act('max_latejoin_chance')}>
-                  {latejoin_chance_maxxed ? 'Reset' : 'Set to 100%'}
+                  {latejoin_chance_maxxed ? '重置' : '设为 100%'}
                 </Button>
               </Flex.Item>
             </Flex>
@@ -391,7 +391,7 @@ const ConfigPanel = () => {
   if (configKeys.length === 0) {
     return (
       <NoticeBox>
-        No config loaded - refer to repo defaults for reference.
+        未加载配置，请参考仓库中的默认配置。
       </NoticeBox>
     );
   }
@@ -400,10 +400,10 @@ const ConfigPanel = () => {
     <Stack vertical fill>
       <Stack.Item>
         <NoticeBox>
-          This is the current config read by the dynamic system when running
-          rulesets. If you want to edit these values temporarily, you can do so
-          via View Variables. (Note: Editing tier configs has no effect after
-          roundstart)
+          这是动态系统运行规则集时读取的
+          当前配置。若需临时修改这些值，可以
+          使用查看变量功能。（注意：回合开始后，修改等级配置
+          不再生效。）
         </NoticeBox>
       </Stack.Item>
       <Stack.Item>
@@ -458,11 +458,11 @@ const RulesetsPanel = () => {
   return (
     <Stack vertical fill>
       <Stack.Item>
-        <Section title="Queued Rulesets">
+        <Section title="排队中的规则集">
           <Stack vertical>
             {queued_rulesets.length === 0 ? (
               <Stack.Item grow>
-                <NoticeBox align="center">No rulesets queued.</NoticeBox>
+                <NoticeBox align="center">没有排队中的规则集。</NoticeBox>
               </Stack.Item>
             ) : (
               queued_rulesets.map((ruleset) => (
@@ -470,7 +470,7 @@ const RulesetsPanel = () => {
                   <Button
                     mr={0.5}
                     icon="times"
-                    tooltip="Remove from queue"
+                    tooltip="从队列移除"
                     onClick={() =>
                       act('remove_queued_ruleset', {
                         ruleset_index: ruleset.index,
@@ -486,11 +486,11 @@ const RulesetsPanel = () => {
       </Stack.Item>
       <Stack.Divider />
       <Stack.Item>
-        <Section title="Active Rulesets">
+        <Section title="运行中的规则集">
           <Stack vertical>
             {active_rulesets.length === 0 ? (
               <Stack.Item grow>
-                <NoticeBox align="center">No rulesets active.</NoticeBox>
+                <NoticeBox align="center">没有运行中的规则集。</NoticeBox>
               </Stack.Item>
             ) : (
               active_rulesets.map((ruleset) => (
@@ -509,8 +509,8 @@ const RulesetsPanel = () => {
                       <Button.Checkbox
                         checked={ruleset.hidden}
                         icon="times"
-                        tooltip="If checked, this ruleset
-                          will not show in the roundend report."
+                        tooltip="勾选后，此规则集
+                          将不会显示在回合结束报告中。"
                         onClick={() =>
                           act('hide_ruleset', {
                             ruleset_index: ruleset.index,
@@ -520,7 +520,7 @@ const RulesetsPanel = () => {
                     </Flex.Item>
                   </Flex>
                   <BlockQuote>
-                    Selected: {getPlayerString(ruleset.selected_players)}
+                    已选择：{getPlayerString(ruleset.selected_players)}
                   </BlockQuote>
                 </Stack.Item>
               ))
@@ -532,12 +532,12 @@ const RulesetsPanel = () => {
       <Stack.Item height="330px">
         <Section
           fill
-          title="Available Rulesets"
+          title="可用规则集"
           scrollable
           buttons={
             <>
               <Input
-                placeholder="Search for ruleset..."
+                placeholder="搜索规则集……"
                 onChange={setSearchText}
                 expensive
                 value={searchText}
@@ -546,13 +546,13 @@ const RulesetsPanel = () => {
                 disabled={all_admin_disabled}
                 onClick={() => act('disable_all')}
               >
-                Disable All
+                全部禁用
               </Button>
               <Button
                 disabled={!any_admin_disabled}
                 onClick={() => act('enable_all')}
               >
-                Enable All
+                全部启用
               </Button>
             </>
           }
@@ -579,8 +579,8 @@ const RulesetsPanel = () => {
                                   tooltip={
                                     ruleset_category === 'roundstart' &&
                                     roundstarted
-                                      ? 'Round already started!'
-                                      : 'Add to queue'
+                                      ? '回合已经开始！'
+                                      : '加入队列'
                                   }
                                   tooltipPosition="right"
                                   disabled={
@@ -598,7 +598,7 @@ const RulesetsPanel = () => {
                               <Flex.Item>
                                 <Button
                                   icon="play"
-                                  tooltip="Execute this ruleset"
+                                  tooltip="执行此规则集"
                                   tooltipPosition="right"
                                   onClick={() =>
                                     act('execute_ruleset', {
@@ -614,8 +614,8 @@ const RulesetsPanel = () => {
                                 <Button.Checkbox
                                   ml={0.5}
                                   tooltipPosition="right"
-                                  tooltip="If checked, this ruleset
-                                      will never run randomly."
+                                  tooltip="勾选后，此规则集
+                                      将永远不会随机触发。"
                                   checked={ruleset.admin_disabled}
                                   color={
                                     ruleset.admin_disabled ? 'bad' : 'grey'
@@ -692,7 +692,7 @@ export const DynamicAdmin = () => {
 
   return (
     <Window
-      title="Dynamic Admin Panel"
+      title="动态模式管理面板"
       width={currentTab === TABS.Rulesets ? 800 : 500}
       height={currentTab === TABS.Rulesets ? 600 : 400}
     >
@@ -705,14 +705,14 @@ export const DynamicAdmin = () => {
             <>
               <Button.Checkbox
                 checked={antag_events_enabled}
-                tooltip="If checked, random events that spawn antags
-                  or dynamic rulesets can trigger."
+                tooltip="勾选后，可触发生成反派的随机事件
+                  或动态规则集。"
                 onClick={() => act('toggle_antag_events')}
               >
-                Antag Events
+                反派事件
               </Button.Checkbox>
               <Button
-                tooltip="Opens the Dynamic subsystem VV panel."
+                tooltip="打开动态子系统的变量查看面板。"
                 onClick={() => act('dynamic_vv')}
               >
                 VV
@@ -727,7 +727,7 @@ export const DynamicAdmin = () => {
                 selected={currentTab === tab}
                 onClick={() => setCurrentTab(tab)}
               >
-                {tab}
+                {{ Status: '状态', Rulesets: '规则集', Config: '配置' }[tab] || tab}
               </Tabs.Tab>
             ))}
           </Tabs>

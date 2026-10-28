@@ -47,18 +47,18 @@ const PaperPublishing = (props) => {
   } = data;
   return (
     <>
-      <Section title="Submission Form">
+      <Section title="投稿表单">
         {fileList.length === 0 && (
           <NoticeBox>
-            Use data disk to download files from compressor or doppler array.
+            使用数据磁盘从压缩机或多普勒阵列下载文件。
           </NoticeBox>
         )}
         <LabeledList>
           <LabeledList.Item
-            label="File (required)"
+            label="文件（必填）"
             buttons={
               <Button
-                tooltip="The selected file containing experimental data for our paper. Must be present in the local file system or a data disk to be accesible."
+                tooltip="所选文件包含论文所需的实验数据。文件必须位于本地文件系统或数据磁盘中才能访问。"
                 icon="info-circle"
               />
             }
@@ -77,10 +77,10 @@ const PaperPublishing = (props) => {
             </Box>
           </LabeledList.Item>
           <LabeledList.Item
-            label="Experiment (required)"
+            label="实验（必填）"
             buttons={
               <Button
-                tooltip="The topic we want to publish our paper on. Different topics unlock different technologies and possible partners."
+                tooltip="论文的研究课题。不同课题会解锁不同技术和潜在合作伙伴。"
                 icon="info-circle"
               />
             }
@@ -99,10 +99,10 @@ const PaperPublishing = (props) => {
             </Box>
           </LabeledList.Item>
           <LabeledList.Item
-            label="Tier (required)"
+            label="等级（必填）"
             buttons={
               <Button
-                tooltip="The tier we want to publish on. Higher tiers can confer better rewards but means our data will be judged more harshly."
+                tooltip="论文的发表等级。等级越高，奖励可能越好，但对数据的评审也会更加严格。"
                 icon="info-circle"
               />
             }
@@ -121,10 +121,10 @@ const PaperPublishing = (props) => {
             </Box>
           </LabeledList.Item>
           <LabeledList.Item
-            label="Partner (required)"
+            label="合作伙伴（必填）"
             buttons={
               <Button
-                tooltip="Which organization to partner with. We can obtain research boosts in techs related to the partner's interests."
+                tooltip="选择合作组织。我们可以获得与该组织研究兴趣相关的科技研究加成。"
                 icon="info-circle"
               />
             }
@@ -143,10 +143,10 @@ const PaperPublishing = (props) => {
             </Box>
           </LabeledList.Item>
           <LabeledList.Item
-            label="Principal Author"
+            label="主要作者"
             buttons={
               <Button
-                tooltip="Multiple"
+                tooltip="多位作者"
                 selected={etAlia}
                 icon="users"
                 onClick={() => act('et_alia')}
@@ -164,7 +164,7 @@ const PaperPublishing = (props) => {
               }
             />
           </LabeledList.Item>
-          <LabeledList.Item label="Title">
+          <LabeledList.Item label="标题">
             <Input
               fluid
               value={title}
@@ -175,7 +175,7 @@ const PaperPublishing = (props) => {
               }
             />
           </LabeledList.Item>
-          <LabeledList.Item label="Abstract">
+          <LabeledList.Item label="摘要">
             <Input
               fluid
               value={abstract}
@@ -188,22 +188,22 @@ const PaperPublishing = (props) => {
           </LabeledList.Item>
         </LabeledList>
       </Section>
-      <Section title="Expected Results" key="rewards">
+      <Section title="预期成果" key="rewards">
         <Stack fill>
           <Stack.Item grow>
             <Button
-              tooltip="How much will our relation improve with the particular partner. Cooperation will be used to unlock boosts."
+              tooltip="与所选合作伙伴的关系将提升多少。合作点数可用于解锁研究加成。"
               icon="info-circle"
             />
-            {' Cooperation: '}
+            {' 合作点数：'}
             <BlockQuote>{gains[coopIndex]}</BlockQuote>
           </Stack.Item>
           <Stack.Item grow>
             <Button
-              tooltip="How much grant will we be endowed with upon the publication of this paper."
+              tooltip="发表这篇论文后将获得的资助金额。"
               icon="info-circle"
             />
-            {' Funding: '}
+            {' 资助：'}
             <BlockQuote>{gains[fundingIndex]}</BlockQuote>
           </Stack.Item>
         </Stack>
@@ -215,7 +215,7 @@ const PaperPublishing = (props) => {
           fluid
           onClick={() => act('publish')}
         >
-          Publish Paper
+          发表论文
         </Button>
       </Section>
     </>
@@ -226,7 +226,7 @@ const PaperBrowser = (props) => {
   const { act, data } = useBackend();
   const { publishedPapers, coopIndex, fundingIndex } = data;
   if (publishedPapers.length === 0) {
-    return <NoticeBox> No Published Papers! </NoticeBox>;
+    return <NoticeBox> 尚未发表论文！ </NoticeBox>;
   } else {
     return publishedPapers.map((paper) => (
       <Collapsible
@@ -235,24 +235,24 @@ const PaperBrowser = (props) => {
       >
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Topic">
+            <LabeledList.Item label="课题">
               {`${paper.experimentName} - ${paper.tier}`}
             </LabeledList.Item>
-            <LabeledList.Item label="Author">
-              {paper.author + (paper.etAlia ? ' et al.' : '')}
+            <LabeledList.Item label="作者">
+              {paper.author + (paper.etAlia ? ' 等' : '')}
             </LabeledList.Item>
-            <LabeledList.Item label="Partner">{paper.partner}</LabeledList.Item>
-            <LabeledList.Item label="Yield">
+            <LabeledList.Item label="合作伙伴">{paper.partner}</LabeledList.Item>
+            <LabeledList.Item label="收益">
               <LabeledList>
-                <LabeledList.Item label="Cooperation">
+                <LabeledList.Item label="合作点数">
                   {paper.gains[coopIndex]}
                 </LabeledList.Item>
-                <LabeledList.Item label="Funding">
+                <LabeledList.Item label="资助">
                   {paper.gains[fundingIndex]}
                 </LabeledList.Item>
               </LabeledList>
             </LabeledList.Item>
-            <LabeledList.Item label="Abstract">
+            <LabeledList.Item label="摘要">
               {paper.abstract}
             </LabeledList.Item>
           </LabeledList>
@@ -273,9 +273,9 @@ const ExperimentBrowser = (props) => {
           <LabeledList.Item
             key={tier}
             label={
-              'Optimal ' +
+              '最佳' +
               experiment.prefix +
-              ' Amount - Tier ' +
+              '量——等级 ' +
               String(Number(tier) + 1)
             }
           >
@@ -299,33 +299,33 @@ const PartnersBrowser = (props) => {
   } = data;
   return partnersInformation.map((partner) => (
     <Section title={partner.name} key={partner.path}>
-      <Collapsible title={`Relations: ${relations[partner.path]}`}>
+      <Collapsible title={`关系：${relations[partner.path]}`}>
         <LabeledList>
-          <LabeledList.Item label="Description">
+          <LabeledList.Item label="描述">
             {partner.flufftext}
           </LabeledList.Item>
-          <LabeledList.Item label="Relations">
+          <LabeledList.Item label="关系">
             {relations[partner.path]}
           </LabeledList.Item>
-          <LabeledList.Item label="Cooperation Bonus">
+          <LabeledList.Item label="合作加成">
             {`${partner.multipliers[coopIndex]}x`}
           </LabeledList.Item>
-          <LabeledList.Item label="Funding Bonus">
+          <LabeledList.Item label="资助加成">
             {`${partner.multipliers[fundingIndex]}x`}
           </LabeledList.Item>
-          <LabeledList.Item label="Accepted Experiments">
+          <LabeledList.Item label="接受的实验">
             {partner.acceptedExperiments.map((experiment_name) => (
               <Box key={experiment_name}>{experiment_name}</Box>
             ))}
           </LabeledList.Item>
-          <LabeledList.Item label="Technology Sharing">
+          <LabeledList.Item label="技术共享">
             <Table>
               {partner.boostedNodes.map((node) => (
                 <Table.Row key={node.id}>
                   <Table.Cell>
                     {visibleNodes.includes(node.id)
                       ? node.name
-                      : 'Unknown Technology'}
+                      : '未知技术'}
                   </Table.Cell>
                   <Table.Cell>
                     <Button
@@ -335,8 +335,8 @@ const PartnersBrowser = (props) => {
                       disabled={
                         !purchaseableBoosts[partner.path].includes(node.id)
                       }
-                      content="Purchase"
-                      tooltip={`Discount: ${node.discount}`}
+                      content="购买"
+                      tooltip={`研究费用减免：${node.discount}`}
                       onClick={() =>
                         act('purchase_boost', {
                           purchased_boost: node.id,
@@ -361,8 +361,8 @@ export const NtosScipaperContent = (props) => {
   return (
     <>
       {!has_techweb && (
-        <Section title="No techweb detected!" key="rewards">
-          Please sync this application to a valid techweb to upload progress!
+        <Section title="未检测到科技网络！" key="rewards">
+          请将此应用与有效的科技网络同步，以便上传研究进度！
         </Section>
       )}
       <Tabs key="navigation" fluid align="center">
@@ -374,7 +374,7 @@ export const NtosScipaperContent = (props) => {
             })
           }
         >
-          {'Publish Papers'}
+          {'发表论文'}
         </Tabs.Tab>
         <Tabs.Tab
           selected={currentTab === 2}
@@ -384,7 +384,7 @@ export const NtosScipaperContent = (props) => {
             })
           }
         >
-          {'Publications'}
+          {'已发表论文'}
         </Tabs.Tab>
         <Tabs.Tab
           selected={currentTab === 3}
@@ -394,7 +394,7 @@ export const NtosScipaperContent = (props) => {
             })
           }
         >
-          {'Experiments'}
+          {'实验'}
         </Tabs.Tab>
         <Tabs.Tab
           selected={currentTab === 4}
@@ -404,7 +404,7 @@ export const NtosScipaperContent = (props) => {
             })
           }
         >
-          {'Scientific Partners'}
+          {'科研合作伙伴'}
         </Tabs.Tab>
       </Tabs>
       {currentTab === 1 && <PaperPublishing />}

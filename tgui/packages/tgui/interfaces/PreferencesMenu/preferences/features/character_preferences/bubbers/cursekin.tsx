@@ -4,9 +4,9 @@ import {
 } from '../../base';
 
 export const cursekin_char_slot: Feature<number> = {
-  name: 'Lycan Character Slot',
+  name: '狼人角色槽位',
   description:
-    "The index of the character slot, from top to bottom, of the lycan character slot that will be used when you transform. \
-    Does not use quirks, implants, or the set name. Set to a non-lycan slot to simply switch species instead of loading a slot.",
+    "变身时使用的狼人角色槽位编号，按从上到下的顺序计数。\
+    不加载怪癖、植入物或设定姓名。若选择非狼人角色槽位，则仅切换种族，不加载槽位。",
   component: FeatureNumberInput,
 };

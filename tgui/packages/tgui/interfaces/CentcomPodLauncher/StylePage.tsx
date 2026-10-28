@@ -17,16 +17,16 @@ export function StylePage(props) {
           onClick={() => act('effectName')}
           selected={effectName}
           tooltip={`
-            Edit pod's
-            .id/desc.`}
+            编辑空投舱的
+            名称和描述。`}
           tooltipPosition="bottom-start"
         >
-          Name
+          名称
         </Button>
       }
       fill
       scrollable
-      title="Style"
+      title="样式"
     >
       {podStyles.map((page, i) => (
         <Button

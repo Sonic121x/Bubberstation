@@ -17,12 +17,12 @@ export function DirectiveDisplay(props) {
   const { directives = [], master_name } = data;
   const displayedLaw = directives?.length
     ? decodeHtmlEntities(directives[0])
-    : 'None.';
+    : '无。';
 
   return (
     <Stack fill vertical>
       <Stack.Item grow={2}>
-        <Section fill scrollable title="Logic Core">
+        <Section fill scrollable title="逻辑核心">
           <Box color="label">
             {DIRECTIVE_COMPREHENSION}
             <br />
@@ -32,15 +32,15 @@ export function DirectiveDisplay(props) {
         </Section>
       </Stack.Item>
       <Stack.Item grow>
-        <Section fill scrollable title="Directives">
+        <Section fill scrollable title="指令">
           {!master_name ? (
-            'None.'
+            '无。'
           ) : (
             <LabeledList>
-              <LabeledList.Item label="Prime">
-                Serve your master.
+              <LabeledList.Item label="首要指令">
+                为你的主人服务。
               </LabeledList.Item>
-              <LabeledList.Item label="Supplemental">
+              <LabeledList.Item label="补充指令">
                 <BlockQuote>{displayedLaw}</BlockQuote>
               </LabeledList.Item>
             </LabeledList>

@@ -17,10 +17,10 @@ const HEALTH_COLOR_BY_LEVEL = [
 ];
 
 const SORT_NAMES = {
-  ijob: 'Job',
-  name: 'Name',
-  area: 'Position',
-  health: 'Vitals',
+  ijob: '职务',
+  name: '姓名',
+  area: '位置',
+  health: '生命体征',
 };
 
 const STAT_LIVING = 0;
@@ -127,7 +127,7 @@ const HealthStat = (props: HealthStatProps) => {
 
 export const CrewConsoleBubbers = () => {
   return (
-    <Window title="Crew Monitor" width={600} height={600}>
+    <Window title="船员监控" width={600} height={600}>
       <Window.Content scrollable>
         <Section minHeight="540px">
           <CrewTable />
@@ -200,24 +200,24 @@ const CrewTable = () => {
               name={sortAsc ? 'chevron-up' : 'chevron-down'}
             />
           </Button>
-          <Input placeholder="Search for name..." onChange={setSearchQuery} />
+          <Input placeholder="搜索姓名……" onChange={setSearchQuery} />
         </>
       }
     >
       <Table>
         <Table.Row>
-          <Table.Cell bold>Name</Table.Cell>
+          <Table.Cell bold>姓名</Table.Cell>
           <Table.Cell bold collapsing textAlign="center" />
           <Table.Cell bold collapsing />
           <Table.Cell bold collapsing textAlign="center">
-            Vitals
+            生命体征
           </Table.Cell>
           <Table.Cell bold textAlign="center">
-            Position
+            位置
           </Table.Cell>
           {!!data.link_allowed && (
             <Table.Cell bold collapsing textAlign="center">
-              Tracking
+              追踪
             </Table.Cell>
           )}
         </Table.Row>
@@ -284,7 +284,7 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
         )}
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
-        {life_status === STAT_DEAD && is_dnr ? ' (DNR)' : ''}
+        {life_status === STAT_DEAD && is_dnr ? '（拒绝复苏）' : ''}
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
         {oxydam !== undefined ? (
@@ -298,9 +298,9 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
             <HealthStat type="brute" value={brutedam} />
           </Box>
         ) : life_status !== STAT_DEAD ? (
-          'Alive'
+          '存活'
         ) : (
-          'Dead'
+          '死亡'
         )}
       </Table.Cell>
       <Table.Cell>
@@ -319,7 +319,7 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
               })
             }
           >
-            Track
+            追踪
           </Button>
         </Table.Cell>
       )}

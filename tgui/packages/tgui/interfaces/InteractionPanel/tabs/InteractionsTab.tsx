@@ -11,7 +11,7 @@ import {
 import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../../../backend';
-
+import { interactionDisplay as zh } from '../../../localization/zhInteractionDisplay';
 type Interaction = {
   categories: string[];
   interactions: Record<string, string[]>;
@@ -53,7 +53,7 @@ export const InteractionsTab = (props: InteractionsTabProps) => {
         color={block_interact ? 'grey' : colors[interaction]}
         tooltip={
           block_interact
-            ? 'You cannot interact right now'
+            ? '你现在无法互动'
             : descriptions[interaction]
         }
         icon="exclamation-circle"
@@ -65,7 +65,7 @@ export const InteractionsTab = (props: InteractionsTabProps) => {
           })
         }
       >
-        {interaction}
+        {zh(interaction)}
       </Button>
     );
   };
@@ -74,7 +74,7 @@ export const InteractionsTab = (props: InteractionsTabProps) => {
     let categoryInteractions = interactions[category] || [];
     if (searchText) {
       categoryInteractions = categoryInteractions.filter((interaction) =>
-        interaction.toLowerCase().includes(searchLower),
+        `${zh(interaction)} ${interaction}`.toLowerCase().includes(searchLower),
       );
     }
     return categoryInteractions;
@@ -92,7 +92,7 @@ export const InteractionsTab = (props: InteractionsTabProps) => {
   return (
     <Stack fill vertical>
       <NoticeBox>
-        {block_interact ? 'Unable to Interact' : 'Able to Interact'}
+        {block_interact ? '无法互动' : '可以互动'}
       </NoticeBox>
       <Stack.Item grow>
         {showCategories ? (
@@ -102,11 +102,11 @@ export const InteractionsTab = (props: InteractionsTabProps) => {
             return (
               <Collapsible
                 key={category}
-                title={category}
+                title={zh(category)}
                 buttons={
                   <Box inline color="grey" fontSize={0.9}>
                     {filteredInteractions.length}
-                    {' interactions'}
+                    {' 项互动'}
                   </Box>
                 }
               >

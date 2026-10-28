@@ -7,44 +7,44 @@ type Data = {
   help_text: string;
 };
 
-const DEFAULT_HELP = `No information available! Ask for assistance if needed.`;
+const DEFAULT_HELP = `没有可用信息！如有需要，请寻求帮助。`;
 
 const boxHelp = [
   {
     color: 'purple',
-    text: 'Study the area and do what needs to be done to recover the crate. Pay close attention to domain information and context clues.',
+    text: '调查此区域，完成必要任务以取回货箱。密切留意虚拟域信息和环境线索。',
     icon: 'search-location',
-    title: 'Search',
+    title: '搜寻',
   },
   {
     color: 'green',
-    text: 'Bring the crate to the designated sending location in the safehouse. The area may seem out of place. Examine the safehouse to find it.',
+    text: '将货箱带到安全屋内指定的传送位置。那里可能显得格格不入。检查安全屋以找到它。',
     icon: 'boxes',
-    title: 'Recover',
+    title: '回收',
   },
   {
     color: 'blue',
-    text: 'The ladder represents the safest way to disconnect before the cache is recovered. Should your connection sever, the netpod offers limited resuscitation potential.',
+    text: '在回收数据缓存前，梯子是最安全的断开连接方式。如果连接中断，网络舱只能提供有限的复苏机会。',
     icon: 'plug',
-    title: 'Disconnect',
+    title: '断开连接',
   },
   {
     color: 'yellow',
-    text: 'While connected, you are somewhat safe from environmental hazards and intrusions, but not completely. Pay close attention to alerts.',
+    text: '连接期间，你能在一定程度上免受环境危害和外来侵扰，但并非绝对安全。密切留意警报。',
     icon: 'id-badge',
-    title: 'Security',
+    title: '安全',
   },
   {
     color: 'gold',
-    text: 'Generating avatars costs tremendous bandwidth. Do not waste them.',
+    text: '生成化身需要消耗大量带宽。不要浪费。',
     icon: 'coins',
-    title: 'Limited Attempts',
+    title: '尝试次数有限',
   },
   {
     color: 'red',
-    text: 'Remember that you are physically linked to this presence. You are a foreign body in a hostile environment. It will attempt to forcefully eject you.',
+    text: '记住，你的肉体与此化身相连。你是敌对环境中的异物，它会试图强行将你驱逐。',
     icon: 'skull-crossbones',
-    title: 'Realized Danger',
+    title: '现实危险',
   },
 ] as const;
 
@@ -53,7 +53,7 @@ export const AvatarHelp = (props) => {
   const { help_text = DEFAULT_HELP } = data;
 
   return (
-    <Window title="Domain Information" width={600} height={600}>
+    <Window title="虚拟域信息" width={600} height={600}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item grow>
@@ -61,7 +61,7 @@ export const AvatarHelp = (props) => {
               color="good"
               fill
               scrollable
-              title="Welcome to the Virtual Domain."
+              title="欢迎来到虚拟域。"
             >
               {help_text}
             </Section>

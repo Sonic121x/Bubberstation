@@ -86,7 +86,7 @@ export function InfoPanel(props: InfoPanelProps) {
       grouped[cat].push(entry);
     }
     return Object.entries(grouped).map(([cat, items]) => (
-      <Section key={cat} title={cat}>
+      <Section key={cat} title={cat === 'Info' ? '信息' : cat}>
         <LabeledList>
           {items.map((item) => (
             <LabeledList.Item key={item.title} label={item.title}>
@@ -106,22 +106,22 @@ export function InfoPanel(props: InfoPanelProps) {
     ));
   }
 
-  const displayName = snapshotTrack?.name ?? track?.name ?? 'Track Info';
+  const displayName = snapshotTrack?.name ?? track?.name ?? '轨道信息';
 
   return (
     <Section
-      title={isLatest ? `${displayName} (latest snapshot)` : displayName}
+      title={isLatest ? `${displayName}（最新快照）` : displayName}
       fill
       scrollable
     >
       {!track && !snapshotEntries ? (
         <Box color="label" italic>
-          No track selected. Click a row in the timeline.
+          未选择轨道。请点击时间线中的一行。
         </Box>
       ) : !snapshotEntries ? (
         <Box color="label" italic>
-          No snapshot available. Events on this track do not carry info
-          snapshots.
+          没有可用快照。此轨道上的事件不包含信息
+          快照。
         </Box>
       ) : (
         <>
@@ -136,7 +136,7 @@ export function InfoPanel(props: InfoPanelProps) {
                     }}
                     onClick={() => toggleInfoCat(cat)}
                   >
-                    {cat}
+                    {cat === 'Info' ? '信息' : cat}
                   </Button>
                 </Stack.Item>
               ))}

@@ -321,7 +321,7 @@
 		if(istype(disease, /datum/disease/advance)) // Advanced diseases get more info
 			var/datum/disease/advance/adv_disease = disease
 			var/disease_name = SSdisease.get_disease_name(adv_disease.GetDiseaseID())
-			traits["can_rename"] = ((disease_name == "Unknown") && adv_disease.mutable)
+			traits["can_rename"] = ((disease_name in list("Unknown", "未知")) && adv_disease.mutable)
 			traits["is_adv"] = TRUE
 			traits["name"] = disease_name
 			traits["resistance"] = adv_disease.totalResistance()

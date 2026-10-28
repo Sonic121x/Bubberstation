@@ -52,16 +52,16 @@ export const BattleArcade = (props) => {
     <Window width={420} height={415}>
       <Window.Content>
         <Section align="center">
-          Player stats <br /> HP:{' '}
+          玩家属性<br />生命值：{' '}
           <span style={{ color: '#c91212' }}>
             {player_current_hp}/{max_hp}
           </span>{' '}
-          | MP:{' '}
+          | 魔力值：{' '}
           <span style={{ color: '#0783b5' }}>
             {player_current_mp}/{max_mp}
           </span>{' '}
-          | <span style={{ color: '#b8c10b' }}>{player_gold || 0}</span>G <br />
-          {!equipped_gear.length && 'No gear equipped!'}
+          | <span style={{ color: '#b8c10b' }}>{player_gold || 0}</span>金币<br />
+          {!equipped_gear.length && '未装备任何装备！'}
           {equipped_gear.map((gear, index) => (
             <>
               {gear.slot}: {gear.name} <br />
@@ -89,12 +89,12 @@ const ShopPanel = (props) => {
   const { shop_items, cost_of_items, unlocked_world_modifier } = data;
   return (
     <Section align="center">
-      <Box>Welcome to the Inn!</Box>
+      <Box>欢迎来到旅店！</Box>
       <Image width={8} src={resolveAsset('shopkeeper.png')} />
       <Box m={2}>
-        Feel free to browse our wares, or take a nap. I&apos;ll be here to
-        ensure you&apos;ll get a good night&apos;s rest without worry of
-        ambushing or robbery.
+        随意看看我们的商品，或是小睡一会儿。我会守在这里，
+        确保你能安心睡上一觉，不必担心
+        遭到伏击或抢劫。
       </Box>
       {shop_items.map((item, index) => (
         <Button
@@ -103,14 +103,14 @@ const ShopPanel = (props) => {
           width="100%"
           onClick={() => act('buy_item', { purchasing_item: item })}
         >
-          {item}: {cost_of_items * unlocked_world_modifier}G
+          {item}：{cost_of_items * unlocked_world_modifier}金币
         </Button>
       ))}
       <Button icon="bed" width="100%" onClick={() => act('sleep')}>
-        Rest {cost_of_items / 2}G
+        休息 {cost_of_items / 2}金币
       </Button>
       <Button icon="arrow-left" width="100%" onClick={() => act('leave')}>
-        Leave Inn
+        离开旅店
       </Button>
     </Section>
   );
@@ -122,15 +122,15 @@ const WorldMapPanel = (props) => {
   return (
     <Section align="center">
       <Box>
-        <Button color="transparent" icon="map" /> WORLD MAP{' '}
+        <Button color="transparent" icon="map" /> 世界地图{' '}
         <Button color="transparent" icon="map" />
       </Box>
       <Box m={1}>
-        The further down you go, the harder the enemies will be, but the more
-        loot you will get.
+        越往下走，敌人就越强大，
+        但你获得的战利品也越丰厚。
       </Box>
       <Button icon="house" width="100%" onClick={() => act('enter_inn')}>
-        Enter Inn
+        进入旅店
       </Button>
       {all_worlds.map((world, index) => (
         <Button
@@ -162,10 +162,10 @@ const BattlePanel = (props) => {
     <Section align="center">
       {feedback_message && <Box>{feedback_message}</Box>}
       <Box>
-        {enemy_name}&apos;s HP: {enemy_hp}/{enemy_max_hp}
+        {enemy_name}的生命值：{enemy_hp}/{enemy_max_hp}
       </Box>
       <Box>
-        {enemy_name}&apos;s MP: {enemy_mp}
+        {enemy_name}的魔力值：{enemy_mp}
       </Box>
       <Image width={10} src={resolveAsset(enemy_icon_id)} />
       {attack_types.map((attack, index) => (
@@ -182,10 +182,10 @@ const BattlePanel = (props) => {
       <Button.Confirm
         icon="shoe-prints"
         width="100%"
-        confirmContent="Really Flee?"
+        confirmContent="确定逃跑？"
         onClick={() => act('flee')}
       >
-        Flee (Lose half your Gold)
+        逃跑（损失一半金币）
       </Button.Confirm>
     </Section>
   );
@@ -197,26 +197,26 @@ const BetweenBattlePanel = (props) => {
     <Section align="center">
       <Image width={10} src={resolveAsset('fireplace.png')} />
       <Box m={1}>
-        As night sets, you can choose to rest. This will restore your health and
-        mana to full before the next battle, but you may also be ambushed,
-        forcing you into the next fight without any additional healing.
+        夜幕降临，你可以选择休息，在下场战斗前完全恢复
+        生命值和魔力值。但你也可能遭到伏击，
+        被迫在未获得额外治疗的情况下进入下一场战斗。
       </Box>
       <Button icon="bed" width="100%" onClick={() => act('continue_with_rest')}>
-        Attempt to sleep
+        尝试睡觉
       </Button>
       <Button
         icon="fire"
         width="100%"
         onClick={() => act('continue_without_rest')}
       >
-        Leave without sleeping
+        不休息，直接离开
       </Button>
       <Button
         icon="shoe-prints"
         width="100%"
         onClick={() => act('abandon_quest')}
       >
-        Abandon Quest
+        放弃任务
       </Button>
     </Section>
   );
@@ -227,7 +227,7 @@ const GameOverPanel = (props) => {
   return (
     <Section align="center">
       <Box color="red" fontSize="32px" m={1}>
-        Game Over
+        游戏结束
       </Box>
       <Box fontSize="15px">
         <Button
@@ -236,7 +236,7 @@ const GameOverPanel = (props) => {
           icon="arrow-left"
           onClick={() => act('restart')}
         >
-          Main Menu
+          主菜单
         </Button>
       </Box>
     </Section>

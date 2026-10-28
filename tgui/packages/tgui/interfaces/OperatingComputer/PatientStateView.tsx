@@ -10,7 +10,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { capitalizeAll, capitalizeFirst } from 'tgui-core/string';
-import { useBackend, useSharedState } from '../../backend';
+import { useBackend, useSharedState } from '../../backend'; import { craftToolDisplay } from '../../localization/zhCraftToolDisplay';
 import { type BodyZone, BodyZoneSelector } from '../common/BodyZoneSelector';
 import { extractSurgeryName } from './helpers';
 import {
@@ -36,7 +36,7 @@ export const PatientStateView = (props: PatientStateViewProps) => {
     return (
       <Section fill>
         <NoticeBox color="yellow" align="center">
-          No table detected
+          未检测到手术台
         </NoticeBox>
       </Section>
     );
@@ -45,7 +45,7 @@ export const PatientStateView = (props: PatientStateViewProps) => {
     return (
       <Section fill>
         <NoticeBox color="red" align="center">
-          No patient detected
+          未检测到患者
         </NoticeBox>
       </Section>
     );
@@ -84,13 +84,13 @@ const PatientStateMainStateView = (props: PatientStateMainStateViewProps) => {
 
   return (
     <LabeledList>
-      <LabeledList.Item label="State" color={patient.statstate}>
-        {patient.stat}
+      <LabeledList.Item label="状态" color={patient.statstate}>
+        {{ Conscious: '清醒', Unconscious: '昏迷', Dead: '死亡' }[patient.stat] ?? patient.stat}
       </LabeledList.Item>
-      <LabeledList.Item label="Blood Type">
-        {patient.blood_type || 'Unable to determine blood type'}
+      <LabeledList.Item label="血型">
+        {patient.blood_type || '无法确定血型'}
       </LabeledList.Item>
-      <LabeledList.Item label="Health">
+      <LabeledList.Item label="健康">
         <ProgressBar
           value={patient.health}
           minValue={patient.minHealth}
@@ -103,7 +103,7 @@ const PatientStateMainStateView = (props: PatientStateMainStateViewProps) => {
           />
         </ProgressBar>
       </LabeledList.Item>
-      <LabeledList.Item label="Blood Level">
+      <LabeledList.Item label="血量">
         <ProgressBar
           value={patient.blood_level}
           minValue={0}
@@ -222,13 +222,13 @@ const PatientStateNextOperationsView = (
 
   return (
     <Section
-      title="Possible Operations"
+      title="可执行手术"
       scrollable
       fill
       buttons={
         <Button
           icon="filter"
-          tooltip="Filter by recommended tool. Right click to reset."
+          tooltip="按推荐工具筛选。右键点击重置。"
           tooltipPosition="top"
           width="100px"
           ellipsis
@@ -240,7 +240,7 @@ const PatientStateNextOperationsView = (
           }
           onContextMenu={() => setFilterByTool(allTools[0])}
         >
-          {capitalizeFirst(filterByTool)}
+          {filterByTool === 'all tools' ? '全部工具' : craftToolDisplay(capitalizeFirst(filterByTool))}
         </Button>
       }
     >
@@ -248,7 +248,7 @@ const PatientStateNextOperationsView = (
         {possible_next_operations.length === 0 ? (
           <Stack.Item>
             <NoticeBox color="green" align="center">
-              No operations available
+              无可执行手术
             </NoticeBox>
           </Stack.Item>
         ) : (
@@ -269,26 +269,26 @@ const PatientStateNextOperationsView = (
                         {!!operation.priority && (
                           <Stack.Item color="orange">
                             <Icon name="exclamation" mr={1} />
-                            Recommended next step
+                            建议的下一步
                           </Stack.Item>
                         )}
                         {pinnedOperations.includes(operation.name) && (
                           <Stack.Item color="yellow">
                             <Icon name="thumbtack" mr={1} />
-                            Pinned
+                            已置顶
                           </Stack.Item>
                         )}
                         <Stack.Item>{operation.desc}</Stack.Item>
                         <Stack.Item italic fontSize="0.9rem">
-                          {`Left click ${
+                          {`左键点击${
                             pinnedOperations.includes(operation.name)
-                              ? 'unpins operation from'
-                              : 'pins operation to'
-                          } the top.`}
+                              ? '取消置顶此手术'
+                              : '置顶此手术'
+                          }。`}
                         </Stack.Item>
                         {!!operation.show_in_list && (
                           <Stack.Item italic fontSize="0.9rem">
-                            Right click opens operation info.
+                            右键点击查看手术信息。
                           </Stack.Item>
                         )}
                       </Stack>
@@ -340,7 +340,7 @@ const PatientStateNextOperationsView = (
                       )}
                       <Stack.Item grow />
                       <Stack.Item italic fontSize="0.9rem">
-                        {capitalizeAll(tool)}
+                        {craftToolDisplay(capitalizeAll(tool))}
                       </Stack.Item>
                     </Stack>
                   </Button>

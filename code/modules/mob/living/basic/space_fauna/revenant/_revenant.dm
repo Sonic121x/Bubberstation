@@ -394,10 +394,10 @@
 
 /mob/living/basic/revenant/generate_random_mob_name()
 	var/list/built_name_strings = list()
-	built_name_strings += pick(strings(REVENANT_NAME_FILE, "spirit_type"))
-	built_name_strings += " of "
 	built_name_strings += pick(strings(REVENANT_NAME_FILE, "adverb"))
 	built_name_strings += pick(strings(REVENANT_NAME_FILE, "theme"))
+	built_name_strings += "之"
+	built_name_strings += pick(strings(REVENANT_NAME_FILE, "spirit_type"))
 	return built_name_strings.Join("")
 
 /mob/living/basic/revenant/proc/on_baned(obj/item/weapon, mob/living/user)

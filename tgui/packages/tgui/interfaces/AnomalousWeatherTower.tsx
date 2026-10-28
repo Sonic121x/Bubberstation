@@ -62,7 +62,7 @@ export const AnomalousWeatherTower = () => {
           <Stack.Item>
             <Section fontFamily="Consolas, monospace">
               <Stack vertical align="center">
-                <Stack.Item fontSize="18px">Core charge</Stack.Item>
+                <Stack.Item fontSize="18px">核心电量</Stack.Item>
                 <Stack.Item
                   fontSize="24px"
                   color={chargeColor}
@@ -79,7 +79,7 @@ export const AnomalousWeatherTower = () => {
             </Section>
           </Stack.Item>
           <Stack.Item>
-            <Section title="Active Weather" fontFamily="Consolas, monospace">
+            <Section title="当前天气" fontFamily="Consolas, monospace">
               {active_weather_on_z.length > 0 ? (
                 active_weather_on_z.map((weather) => (
                   <Stack.Item key={weather.id}>
@@ -96,7 +96,7 @@ export const AnomalousWeatherTower = () => {
                           tooltip={
                             can_clear_weather
                               ? undefined
-                              : 'Weather inhibitors are recharging.'
+                              : '天气抑制器正在充能。'
                           }
                         />
                       </Stack.Item>
@@ -105,14 +105,14 @@ export const AnomalousWeatherTower = () => {
                 ))
               ) : (
                 <Stack.Item>
-                  <NoticeBox>None</NoticeBox>
+                  <NoticeBox>无</NoticeBox>
                 </Stack.Item>
               )}
             </Section>
           </Stack.Item>
           <Stack.Item grow>
             <Section
-              title="Summon Weather"
+              title="召唤天气"
               fill
               fontFamily="Consolas, monospace"
             >
@@ -148,10 +148,10 @@ export const AnomalousWeatherTower = () => {
                     }
                     tooltip={
                       core_charges < weather_charge_cost
-                        ? 'Not enough charges to summon weather.'
+                        ? '电量不足，无法召唤天气。'
                         : can_summon_weather
                           ? undefined
-                          : 'Weather coils are recharging.'
+                          : '天气线圈正在充能。'
                     }
                   />
                 </Stack.Item>

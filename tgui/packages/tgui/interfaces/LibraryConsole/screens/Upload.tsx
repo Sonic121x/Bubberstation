@@ -35,13 +35,13 @@ export function Upload(props) {
   if (!has_scanner) {
     return (
       <NoticeBox>
-        No nearby scanner detected, construct one to continue.
+        未检测到附近的扫描仪，请建造一台后继续。
       </NoticeBox>
     );
   }
 
   if (!has_cache) {
-    return <NoticeBox>Scan in a book to upload.</NoticeBox>;
+    return <NoticeBox>请扫描要上传的书籍。</NoticeBox>;
   }
 
   const contentHtml = {
@@ -53,7 +53,7 @@ export function Upload(props) {
       <Stack vertical height="100%">
         <Stack.Item>
           <Box fontSize="20px" textAlign="center" pt="6px">
-            Current Scan Cache
+            当前扫描缓存
           </Box>
         </Stack.Item>
         <Stack.Item grow>
@@ -62,14 +62,14 @@ export function Upload(props) {
               <Stack justify="center">
                 <Stack.Item>
                   <Box pt={1} fontSize={'20px'}>
-                    Title:
+                    书名：
                   </Box>
                 </Stack.Item>
                 <Stack.Item>
                   <Input
                     fontSize="20px"
                     value={cache_title}
-                    placeholder={cache_title || 'Title'}
+                    placeholder={cache_title || '书名'}
                     mt={0.5}
                     width={22}
                     onBlur={(value) =>
@@ -81,14 +81,14 @@ export function Upload(props) {
                 </Stack.Item>
                 <Stack.Item>
                   <Box pt={1} fontSize="20px">
-                    Author:
+                    作者：
                   </Box>
                 </Stack.Item>
                 <Stack.Item>
                   <Input
                     fontSize="20px"
                     value={cache_author}
-                    placeholder={cache_author || 'Author'}
+                    placeholder={cache_author || '作者'}
                     mt={0.5}
                     onBlur={(value) =>
                       act('set_cache_author', {
@@ -105,7 +105,7 @@ export function Upload(props) {
                 scrollable
                 preserveWhitespace
                 fontSize="15px"
-                title="Content:"
+                title="内容："
               >
                 <Box dangerouslySetInnerHTML={contentHtml} />
               </Section>
@@ -120,10 +120,10 @@ export function Upload(props) {
                 fluid
                 tooltip={
                   active_newscaster_cooldown
-                    ? "Send your book to the station's newscaster's channel."
-                    : 'Please wait ' +
+                    ? '将你的书籍发送到空间站的新闻播报频道。'
+                    : '请等待 ' +
                       cooldown_string +
-                      ' before sending your book to the newscaster!'
+                      ' 后再将书籍发送至新闻播报器！'
                 }
                 tooltipPosition="top"
                 icon="newspaper"
@@ -132,7 +132,7 @@ export function Upload(props) {
                 textAlign="center"
                 onClick={() => act('news_post')}
               >
-                Newscaster
+                新闻播报器
               </Button>
             </Stack.Item>
             <Stack.Item grow>
@@ -145,7 +145,7 @@ export function Upload(props) {
                 textAlign="center"
                 onClick={() => setUploadToDB(true)}
               >
-                Archive
+                档案库
               </Button>
             </Stack.Item>
           </Stack>
@@ -170,10 +170,10 @@ function UploadModal(props) {
   return (
     <Modal width="650px">
       <Box fontSize="20px" pb={2}>
-        Are you sure you want to upload this book to the database?
+        确定要将这本书上传至数据库吗？
       </Box>
       <LabeledList>
-        <LabeledList.Item label="Category">
+        <LabeledList.Item label="类别">
           <Dropdown
             options={chineseDropdownOptions(upload_categories)}
             selected={display_category} displayText={chineseDisplay(display_category)}
@@ -196,7 +196,7 @@ function UploadModal(props) {
             }}
             lineHeight={2}
           >
-            Upload To DB
+            上传至数据库
           </Button>
         </Stack.Item>
         <Stack.Item>
@@ -207,7 +207,7 @@ function UploadModal(props) {
             onClick={() => setUploadToDB(false)}
             lineHeight={2}
           >
-            Return
+            返回
           </Button>
         </Stack.Item>
       </Stack>

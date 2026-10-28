@@ -1,73 +1,73 @@
 {
 	"probe_names": [
-		"Cassini",
-		"Galileo",
-		"Juno",
-		"Luna",
-		"Mariner",
-		"Pioneer",
-		"Rosetta",
-		"Sojourner",
-		"Stardust",
-		"Vega",
-		"Venera",
-		"Voyager"
+		"卡西尼号",
+		"伽利略号",
+		"朱诺号",
+		"月神号",
+		"水手号",
+		"先驱者号",
+		"罗塞塔号",
+		"旅居者号",
+		"星尘号",
+		"织女星号",
+		"金星号",
+		"旅行者号"
 	],
 	"trading_station_names": [
-		"Big Bill Hells's used mechs",
-		"Cornerstore at the End of the Universe",
-		"Crazy Redd's Crazy Deals",
-		"Jims Space Emporium",
-		"Rocketing Deals",
-		"The Galactic Market",
-		"Turners Ship & Trade"
+		"大比尔地狱二手机甲店",
+		"宇宙尽头的街角小店",
+		"疯雷德疯狂特卖",
+		"吉姆太空百货",
+		"火箭特卖",
+		"银河市场",
+		"特纳船舶贸易"
 	],
 	"planet_types": [
 		{
-			"name": "barren planet",
-			"description": "A barren planet with very thin atmosphere. Nothing but rocks.",
+			"name": "荒芜行星",
+			"description": "一颗大气十分稀薄的荒芜行星。除了岩石，什么也没有。",
 			"habitable": false,
 			"civilized": false,
 			"tech": false
 		},
 		{
-			"name": "jungle world",
-			"description": "A planet covered in thick jungle. You detect numerous fauna and flora readings.",
+			"name": "丛林世界",
+			"description": "一颗覆盖着茂密丛林的行星。你探测到了大量动植物的信号。",
 			"habitable": true,
 			"civilized": false,
 			"tech": false
 		},
 		{
-			"name": "robot moon",
-			"description": "A tiny rock covered with factories and automatons who seem to ignore your presence for the most part.",
+			"name": "机器人卫星",
+			"description": "一颗小小的岩石卫星，上面布满工厂和自动机械，它们似乎基本无视了你的存在。",
 			"habitable": true,
 			"civilized": true,
 			"tech": true
 		}
 	],
 	"alien_fauna": [
-		"basilisk",
-		"unknown beast",
-		"very angry cow",
-		"xenomorph hunter"
+		"蛇怪",
+		"未知野兽",
+		"极度愤怒的奶牛",
+		"异形猎手"
 	],
 	"fluff_generic": [
-		"This place is emptier than assisstant's credit account.",
-		"You find a huge pile of boredom.",
-		"You find nothing interesting."
+		"这地方比助手的信用点账户还空。",
+		"你发现了一大堆无聊。",
+		"你没有发现任何有趣的东西。"
 	],
 	"fluff_space": [
-		"You detect stardrive activation readings nearby. By time time you arrive at the spot there's nothing there but space dust.",
-		"You pass by a small field of space debris. Nothing but useless junk."
+		"你在附近探测到星际引擎启动的信号。等你赶到那里时，只剩下太空尘埃。",
+		"你经过一小片太空残骸区。里面尽是些无用的垃圾。"
 	],
 	"fluff_trading": [
-		"You encounter a maintenance drone busy at work. It ignores you completely.",
-		"You pass by a drunked local. Good thing smell is not conducted through the drone feed.",
-		"You pass by security patrol. They give you suspicious stares."
+		"你遇见一台忙于工作的维护无人机。它完全无视了你。",
+		"你从一名醉醺醺的当地人身旁经过。幸好无人机传回的画面不会附带气味。",
+		"你经过一支安保巡逻队。他们投来了怀疑的目光。"
 	],
 	"fluff_ruins": [
-		"You encounter a broken statue. You can't tell what its original shape was.",
-		"You have to backtrack from a collapsed passage.",
-		"You pass through a corridor full of cracked tiles."
+		"你遇见一座残破的雕像。已经看不出它原来的模样。",
+		"一条通道坍塌了，你不得不原路返回。",
+		"你穿过一条铺满破裂地砖的走廊。"
 	]
 }

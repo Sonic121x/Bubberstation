@@ -30,15 +30,15 @@ export const NtosFaxBondContent = (props) => {
   return (
     <>
       <NoticeBox>
-        Scan any fax to be notified when it receives a message.
+        扫描传真机，即可在它收到消息时获得通知。
       </NoticeBox>
       {!!faxes_info.length && (
         <Section>
           <Table>
             <Table.Row header>
-              <Table.Cell>ID</Table.Cell>
-              <Table.Cell>Name</Table.Cell>
-              <Table.Cell>Location</Table.Cell>
+              <Table.Cell>编号</Table.Cell>
+              <Table.Cell>名称</Table.Cell>
+              <Table.Cell>位置</Table.Cell>
               <Table.Cell />
             </Table.Row>
             {faxes_info.map((fax) => (
@@ -60,15 +60,15 @@ export const NtosFaxBondContent = (props) => {
                       color={fax.muted ? 'red' : 'default'}
                       tooltip={
                         fax.muted
-                          ? 'Unmute Notifications'
-                          : 'Mute Notifications'
+                          ? '取消通知静音'
+                          : '将通知静音'
                       }
                       onClick={() => act('mute', { id: fax.id })}
                     />
                     <Button.Confirm
                       fluid
                       icon="link-slash"
-                      tooltip="Unsubscribe"
+                      tooltip="取消订阅"
                       confirmContent=""
                       confirmIcon="link-slash"
                       onClick={() => act('unsubscribe', { id: fax.id })}

@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component } from 'react'; import { chineseDisplay } from '../../localization/zhDisplay';
 import {
   Button,
   Dropdown,
@@ -97,7 +97,7 @@ export class ComponentMenu extends Component {
     shownComponents.length = currentLimit;
     return (
       <Section
-        title="Component Menu"
+        title="组件菜单"
         {...rest}
         fill
         buttons={
@@ -112,7 +112,7 @@ export class ComponentMenu extends Component {
           <Stack.Item>
             <Dropdown
               width="100%"
-              options={tabs}
+              options={tabs.map((value) => ({ value, displayText: chineseDisplay(value) }))}
               onSelected={(value) =>
                 this.setState({
                   selectedTab: value,
@@ -120,15 +120,15 @@ export class ComponentMenu extends Component {
                   currentLimit: DEFAULT_COMPONENT_MENU_LIMIT,
                 })
               }
-              selected={selectedTab}
-              placeholder="Category"
+              selected={selectedTab} displayText={chineseDisplay(selectedTab)}
+              placeholder="分类"
               color="transparent"
               className="IntegratedCircuit__BlueBorder"
             />
           </Stack.Item>
           <Stack.Item>
             <Input
-              placeholder="Search.."
+              placeholder="搜索……"
               value={currentSearch}
               fluid
               onChange={(val) =>
@@ -145,9 +145,9 @@ export class ComponentMenu extends Component {
               {trueLength === 0 && (
                 <Stack.Item mt={1} fontSize={1}>
                   <NoticeBox info>
-                    You can hit this integrated circuit onto a component printer
-                    to link it so that you&apos;re able to remotely create and
-                    add components to this circuit.
+                    将此集成电路用于组件打印机，
+                    即可将两者连接，从而远程创建组件，
+                    并将其添加到此电路中。
                   </NoticeBox>
                 </Stack.Item>
               )}
@@ -167,7 +167,7 @@ export class ComponentMenu extends Component {
                     textAlign="center"
                     py={1}
                     mb={1}
-                    content="Show More"
+                    content="显示更多"
                     onClick={() =>
                       this.setState({
                         currentLimit: currentLimit + 5,

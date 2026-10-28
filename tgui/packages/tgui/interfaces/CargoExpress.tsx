@@ -41,7 +41,7 @@ export function CargoExpress(props) {
               <Stack.Item bold color={'red'}>
                 <Icon mb={3} name={'lock'} size={7.5} />
                 <br />
-                {`Swipe a Cargo Technician-level ID card to unlock this interface.`}
+                {`刷具有货运技术员级别权限的 ID 卡以解锁此界面。`}
               </Stack.Item>
             </Stack>
           </Section>
@@ -76,18 +76,18 @@ function CargoExpressContent(props) {
     <Stack fill vertical g={0}>
       <Stack.Item>
         <Section
-          title="Cargo Express"
+          title="货运快递"
           buttons={
             <Box inline bold verticalAlign={'middle'}>
               <AnimatedNumber value={Math.round(points)} />
-              {' credits'}
+              {' 信用点'}
             </Box>
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Landing Location">
+            <LabeledList.Item label="降落地点">
               <Button selected={!using_beacon} onClick={() => act('LZCargo')}>
-                Cargo Bay
+                货运舱
               </Button>
               <Button
                 selected={using_beacon}

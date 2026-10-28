@@ -29,8 +29,8 @@ export const Portagrav = (props) => {
           {!wiremode && percentage !== undefined
             ? `${percentage}%`
             : wiremode
-              ? 'WIRE POWERED'
-              : 'NO CELL'}
+              ? '电缆供电'
+              : '无电池'}
           {` - ${gravity}G`}
         </Box>
         <Box
@@ -38,14 +38,14 @@ export const Portagrav = (props) => {
           className="NuclearBomb__displayBox"
           textAlign="center"
         >
-          {on ? draw : 'OFF'} / Rng: {range}/{maxrange}
+          {on ? draw : '关闭'}／范围：{range}/{maxrange}
         </Box>
         <Section height="65%">
           <Stack>
             <Stack.Item width="30%">
               <Stack vertical ml="1rem">
                 <Stack.Item>
-                  <Box>Power</Box>
+                  <Box>电源</Box>
                 </Stack.Item>
                 <Stack.Divider />
                 <Stack.Item>
@@ -53,7 +53,7 @@ export const Portagrav = (props) => {
                     width="64px"
                     height="64px"
                     className="NuclearBomb__Button NuclearBomb__Button--keypad"
-                    tooltip="Toggles if to take power from cable."
+                    tooltip="切换是否从电缆取电。"
                     onClick={() => act('toggle_wire')}
                   >
                     <Icon name="plug" size={3} mt="0.5rem" ml="0.1rem" />
@@ -73,7 +73,7 @@ export const Portagrav = (props) => {
             </Stack.Item>
             <Stack.Item>
               <Stack vertical>
-                <Box textAlign="center">Gravity Control</Box>
+                <Box textAlign="center">重力控制</Box>
                 <Stack.Divider />
                 <Stack.Item>
                   <Button
@@ -101,7 +101,7 @@ export const Portagrav = (props) => {
             <Stack.Divider />
             <Stack.Item>
               <Stack vertical>
-                <Box textAlign="center">Range Control</Box>
+                <Box textAlign="center">范围控制</Box>
                 <Stack.Divider />
                 <Stack.Item>
                   <Button

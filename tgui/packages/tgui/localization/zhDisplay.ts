@@ -3,6 +3,42 @@ import type { Dropdown } from 'tgui-core/components';
 
 // Display labels only. Never use translated labels as protocol or saved values.
 const displayNames: Readonly<Record<string, string>> = {
+  All: '全部',
+  any: '任意类型',
+  string: '字符串',
+  number: '数值',
+  entity: '实体',
+  datum: '数据对象',
+  user: '用户',
+  signal: '信号',
+  instant: '即时',
+  response: '响应',
+  option: '选项',
+  boolean: '布尔值',
+  unknown: '未知',
+  list: '列表',
+  table: '表格',
+  assoc: '关联',
+  associative: '关联',
+  UNIFORM_RAND: '均匀随机',
+  NORMAL_RAND: '正态随机',
+  LINEAR_RAND: '线性随机',
+  SQUARE_RAND: '平方随机',
+  'Simple Matrix': '简单矩阵',
+  'Complex Matrix': '复杂矩阵',
+  'Projection Matrix': '投影矩阵',
+  COLORSPACE_RGB: 'RGB色彩空间',
+  COLORSPACE_HSV: 'HSV色彩空间',
+  COLORSPACE_HSL: 'HSL色彩空间',
+  COLORSPACE_HCY: 'HCY色彩空间',
+  num: '数值',
+  vector: '向量',
+  box: '长方体',
+  color: '颜色',
+  circle: '圆环',
+  sphere: '球壳',
+  square: '方形框',
+  cube: '立方体壳',
   Blood: '血液',
   Items: '物品',
   'Floor Objects': '地板上的物体',
@@ -286,6 +322,10 @@ export function chineseDisplay(value: string): string {
 }
 
 type DropdownOptions = ComponentProps<typeof Dropdown>['options'];
+
+export function circuitDatatypeDisplay(value: string): string {
+  return value.replace(/\b(?:any|string|number|entity|datum|user|signal|instant|response|option|boolean|unknown|list|table|assoc|associative)\b/g, chineseDisplay);
+}
 
 export function chineseDropdownOptions(options: DropdownOptions): DropdownOptions {
   return options?.map((option) =>

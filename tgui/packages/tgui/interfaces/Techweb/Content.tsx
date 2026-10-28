@@ -24,39 +24,39 @@ export function TechwebContent(props) {
         <Flex className="Techweb__HeaderContent">
           <Flex.Item>
             <LabeledList>
-              <LabeledList.Item label="Security">
+              <LabeledList.Item label="安全协议">
                 <span
                   className={`Techweb__SecProtocol ${
                     !!sec_protocols && 'engaged'
                   }`}
                 >
-                  {sec_protocols ? 'Engaged' : 'Disengaged'}
+                  {sec_protocols ? '已启用' : '已停用'}
                 </span>
               </LabeledList.Item>
               {Object.keys(points).map((k) => (
                 <LabeledList.Item key={k} label={point_types_abbreviations[k]}>
                   <b>{points[k]}</b>
-                  {!!points_last_tick[k] && ` (+${points_last_tick[k]}/sec)`}
+                  {!!points_last_tick[k] && `（+${points_last_tick[k]}/秒）`}
                 </LabeledList.Item>
               ))}
-              <LabeledList.Item label="Queue">
+              <LabeledList.Item label="队列">
                 {queue_nodes.length !== 0
                   ? Object.keys(queue_nodes).map((node_id) => (
                       <Button
                         key={node_id}
-                        tooltip={`Added by: ${queue_nodes[node_id]}`}
+                        tooltip={`添加者：${queue_nodes[node_id]}`}
                       >
                         {node_cache[node_id].name}
                       </Button>
                     ))
-                  : 'Empty'}
+                  : '空'}
               </LabeledList.Item>
             </LabeledList>
           </Flex.Item>
           <Flex.Item grow />
           <Flex.Item>
             <Button fluid onClick={() => act('toggleLock')} icon="lock">
-              Lock Console
+              锁定控制台
             </Button>
             {d_disk && (
               <Flex.Item>
@@ -66,7 +66,7 @@ export function TechwebContent(props) {
                     setTechwebRoute({ route: 'disk', diskType: 'design' })
                   }
                 >
-                  Design Disk Inserted
+                  已插入设计磁盘
                 </Button>
               </Flex.Item>
             )}
@@ -78,7 +78,7 @@ export function TechwebContent(props) {
                     setTechwebRoute({ route: 'disk', diskType: 'tech' })
                   }
                 >
-                  Tech Disk Inserted
+                  已插入科技磁盘
                 </Button>
               </Flex.Item>
             )}

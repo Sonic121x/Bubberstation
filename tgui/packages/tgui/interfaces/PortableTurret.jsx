@@ -24,13 +24,13 @@ export const PortableTurret = (props) => {
     <Window width={310} height={lasertag_turret ? 110 : 292}>
       <Window.Content>
         <NoticeBox>
-          Swipe an ID card to {locked ? 'unlock' : 'lock'} this interface.
+          刷 ID 卡以{locked ? '解锁' : '锁定'}此界面。
         </NoticeBox>
 
         <Section>
           <LabeledList>
             <LabeledList.Item
-              label="Status"
+              label="状态"
               buttons={
                 !lasertag_turret &&
                 (!!allow_manual_control ||
@@ -38,7 +38,7 @@ export const PortableTurret = (props) => {
                   <Button
                     icon={manual_control ? 'wifi' : 'terminal'}
                     content={
-                      manual_control ? 'Remotely Controlled' : 'Manual Control'
+                      manual_control ? '正被远程控制' : '手动控制'
                     }
                     disabled={manual_control}
                     color="bad"
@@ -49,7 +49,7 @@ export const PortableTurret = (props) => {
             >
               <Button
                 icon={on ? 'power-off' : 'times'}
-                content={on ? 'On' : 'Off'}
+                content={on ? '开启' : '关闭'}
                 selected={on}
                 disabled={locked}
                 onClick={() => act('power')}
@@ -59,11 +59,11 @@ export const PortableTurret = (props) => {
         </Section>
         {!lasertag_turret && (
           <Section
-            title="Target Settings"
+            title="目标设置"
             buttons={
               <Button.Checkbox
                 checked={!neutralize_heads}
-                content="Ignore Command"
+                content="忽略指挥人员"
                 disabled={locked}
                 onClick={() => act('shootheads')}
               />
@@ -72,42 +72,42 @@ export const PortableTurret = (props) => {
             <Button.Checkbox
               fluid
               checked={neutralize_all}
-              content="Non-Security and Non-Command"
+              content="非安保且非指挥人员"
               disabled={locked}
               onClick={() => act('shootall')}
             />
             <Button.Checkbox
               fluid
               checked={check_weapons}
-              content="Unauthorized Weapons"
+              content="未经授权的武器"
               disabled={locked}
               onClick={() => act('authweapon')}
             />
             <Button.Checkbox
               fluid
               checked={neutralize_unidentified}
-              content="Unidentified Life Signs"
+              content="不明生命信号"
               disabled={locked}
               onClick={() => act('checkxenos')}
             />
             <Button.Checkbox
               fluid
               checked={neutralize_nonmindshielded}
-              content="Non-Mindshielded"
+              content="无心智护盾者"
               disabled={locked}
               onClick={() => act('checkloyal')}
             />
             <Button.Checkbox
               fluid
               checked={neutralize_criminals}
-              content="Wanted Criminals"
+              content="通缉犯"
               disabled={locked}
               onClick={() => act('shootcriminals')}
             />
             <Button.Checkbox
               fluid
               checked={neutralize_cyborgs}
-              content="Cyborgs"
+              content="机器人"
               disabled={locked}
               onClick={() => act('shootborgs')}
             />

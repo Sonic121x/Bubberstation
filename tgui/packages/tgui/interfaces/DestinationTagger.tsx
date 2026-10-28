@@ -4,7 +4,7 @@ import { Button, Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { interfaceUtilityDisplay } from '../localization/interfaceUtilityDisplay';
 type DestinationTaggerData = {
   locations: string[];
   currentTag: number;
@@ -30,7 +30,7 @@ const sortDestinations = (locations: string[]): DestinationInfo[] => {
       locations,
       (name, index) =>
         ({
-          name: name.toUpperCase(),
+          name: interfaceUtilityDisplay(name),
           sorting_id: index + 1,
         }) as DestinationInfo,
     ),
@@ -43,7 +43,7 @@ export const DestinationTagger = (props) => {
   const { locations, currentTag } = data;
 
   return (
-    <Window theme="retro" title="TagMaster 2.4" width={420} height={500}>
+    <Window theme="retro" title="标签大师 2.4" width={420} height={500}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item grow>
@@ -52,8 +52,8 @@ export const DestinationTagger = (props) => {
               scrollable
               title={
                 !currentTag
-                  ? 'Please Select A Location'
-                  : `Current Destination: ${locations[currentTag - 1]}`
+                  ? '请选择目的地'
+                  : `当前目的地：${interfaceUtilityDisplay(locations[currentTag - 1])}`
               }
             >
               {sortDestinations(locations).map((location) => {

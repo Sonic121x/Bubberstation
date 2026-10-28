@@ -22,19 +22,19 @@ export function ChemDisposer() {
     <Window width={320} height={105}>
       <Window.Content>
         <Section
-          title="Control Panel"
+          title="控制面板"
           buttons={
             <Button
               icon="power-off"
               selected={enabled}
               onClick={() => act('toggle_power')}
             >
-              {enabled ? 'On' : 'Off'}
+              {enabled ? '开启' : '关闭'}
             </Button>
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Volume">
+            <LabeledList.Item label="体积">
               <NumberInput
                 value={disposal_rate}
                 unit="u"

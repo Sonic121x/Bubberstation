@@ -6,7 +6,7 @@ import type { SpriteData, SpriteEditorToolContext } from '../types';
 
 export class Bucket extends Tool {
   icon = 'fill-drip';
-  name = 'Fill';
+  name = '填充';
 
   onMouseDown(
     context: SpriteEditorToolContext,
@@ -24,7 +24,7 @@ export class Bucket extends Tool {
       command: 'transaction',
       transaction: {
         type: 'bucket',
-        name: 'Flood Fill',
+        name: '区域填充',
         layer: selectedLayer + 1,
         dir: `${selectedDir}`,
         color: colorToHexString(currentColor),

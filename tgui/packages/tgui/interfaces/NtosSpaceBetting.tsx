@@ -46,7 +46,7 @@ export const NtosSpaceBetting = () => {
   return (
     <NtosWindow width={500} height={620}>
       <NtosWindow.Content scrollable>
-        <Section title="User Information">
+        <Section title="用户信息">
           <Stack>
             <Stack.Item mr={1.5}>
               <Icon
@@ -57,8 +57,8 @@ export const NtosSpaceBetting = () => {
               />
             </Stack.Item>
             <Stack fill vertical>
-              <Stack.Item>Username: {bank_name}</Stack.Item>
-              <Stack.Item>Money Available: {bank_money}cr</Stack.Item>
+              <Stack.Item>用户名：{bank_name}</Stack.Item>
+              <Stack.Item>可用余额：{bank_money} 信用点</Stack.Item>
             </Stack>
           </Stack>
         </Section>
@@ -77,7 +77,7 @@ export const PollsSection = () => {
     <Section>
       {!active_bets.length ? (
         <Box>
-          There&apos;s currently no active polls to bet on, create one below!
+          目前没有可下注的竞猜，在下方创建一个吧！
         </Box>
       ) : (
         active_bets.map(
@@ -85,7 +85,7 @@ export const PollsSection = () => {
             { name, description, owner, creator, current_bets = [], locked },
             index,
           ) => (
-            <Section title={`${name} - Created by ${creator}`} key={name}>
+            <Section title={`${name} - 创建者：${creator}`} key={name}>
               <Stack>
                 <Stack.Item grow>
                   <Stack.Item grow>{description}</Stack.Item>
@@ -103,7 +103,7 @@ export const PollsSection = () => {
                       >
                         <Stack.Item>
                           <Stack.Item my={1}>
-                            {option_name} (Has {total_amount || 0}cr bet on it)
+                            {option_name}（已下注 {total_amount || 0} 信用点）
                             {!owner ? (
                               <NumberInput
                                 value={personally_invested}
@@ -123,7 +123,7 @@ export const PollsSection = () => {
                               />
                             ) : (
                               <Button.Checkbox
-                                tooltip="Whether this answer won."
+                                tooltip="此选项是否为获胜结果。"
                                 checked={Winner === option_name}
                                 key={option_name}
                                 onClick={() => set_winner(option_name)}
@@ -140,19 +140,19 @@ export const PollsSection = () => {
                         <Button.Confirm
                           fluid
                           icon="minus"
-                          tooltip="Lock the ability to place/retract bets. This is irreversible!"
+                          tooltip="禁止继续下注或撤回赌注。此操作不可撤销！"
                           onClick={() =>
                             act('lock_betting', { bet_selected: name })
                           }
                         >
-                          Lock Betting
+                          封盘
                         </Button.Confirm>
                       </Stack.Item>
                     ) : (
                       <Button.Confirm
                         fluid
                         icon="plus"
-                        tooltip="Finalize results as the checked answer being the winner."
+                        tooltip="结算竞猜，将勾选的选项设为获胜结果。"
                         onClick={() =>
                           act('select_winner', {
                             bet_selected: name,
@@ -160,7 +160,7 @@ export const PollsSection = () => {
                           })
                         }
                       >
-                        Finalize Results
+                        结算结果
                       </Button.Confirm>
                     ))}
                 </Stack.Item>
@@ -169,10 +169,10 @@ export const PollsSection = () => {
                     fluid
                     icon="minus"
                     disabled={locked}
-                    tooltip="If you have any bets, this will remove them and refund the money."
+                    tooltip="撤回您在此竞猜中的全部赌注并退还金额。"
                     onClick={() => act('cancel_bet', { bet_selected: name })}
                   >
-                    Cancel Bet
+                    撤回赌注
                   </Button>
                 </Stack.Item>
               </Stack>
@@ -195,12 +195,12 @@ export const BettingCreation = () => {
   const [option4, setOption4] = useState('');
 
   return (
-    <Collapsible title="Bet Creation">
+    <Collapsible title="创建竞猜">
       <Stack fill vertical>
         <Stack.Item grow>
           <Input
             fluid
-            placeholder="Title"
+            placeholder="标题"
             maxLength={max_title_length}
             onChange={setTitle}
           />
@@ -208,7 +208,7 @@ export const BettingCreation = () => {
         <Stack.Item grow>
           <TextArea
             fluid
-            placeholder="Description"
+            placeholder="描述"
             height="100px"
             width="100%"
             maxLength={max_description_length}
@@ -219,25 +219,25 @@ export const BettingCreation = () => {
         </Stack.Item>
         <Input
           fluid
-          placeholder="Option 1"
+          placeholder="选项 1"
           maxLength={max_title_length}
           onChange={setOption1}
         />
         <Input
           fluid
-          placeholder="Option 2"
+          placeholder="选项 2"
           maxLength={max_title_length}
           onChange={setOption2}
         />
         <Input
           fluid
-          placeholder="Option 3 (Optional)"
+          placeholder="选项 3（可选）"
           maxLength={max_title_length}
           onChange={setOption3}
         />
         <Input
           fluid
-          placeholder="Option 4 (Optional)"
+          placeholder="选项 4（可选）"
           maxLength={max_title_length}
           onChange={setOption4}
         />
@@ -255,7 +255,7 @@ export const BettingCreation = () => {
               })
             }
           >
-            Create Bet!
+            创建竞猜！
           </Button>
         </Stack.Item>
       </Stack>

@@ -52,7 +52,7 @@ export const Experimentor = (props: any) => {
   } = data;
 
   return (
-    <Window width={450} height={350} title="E.X.P.E.R.I-MENTOR">
+    <Window width={450} height={350} title="实验仪（E.X.P.E.R.I-MENTOR）">
       <Window.Content>
         {isServerConnected ? (
           hasItem && loadedItem ? (
@@ -65,12 +65,12 @@ export const Experimentor = (props: any) => {
             />
           ) : (
             <NoticeBox danger textAlign="center">
-              No item present in experimentation chamber. Please insert one.
+              实验舱内没有物品。请放入一件物品。
             </NoticeBox>
           )
         ) : (
           <NoticeBox danger textAlign="center">
-            Not connected to a server. Please sync one using a multitool.
+            未连接服务器。请使用多功能工具同步服务器。
           </NoticeBox>
         )}
       </Window.Content>
@@ -138,7 +138,7 @@ const ItemPreview = (props: ItemPreviewProps) => {
               icon="eject"
               height="100%"
               fontSize={1.5}
-              tooltip="Eject"
+              tooltip="弹出"
               textAlign="center"
               onClick={() => onEject()}
               verticalAlignContent="middle"
@@ -174,7 +174,7 @@ const NodePreview = (props: NodePreviewProps) => {
   const { nodes } = props;
 
   return (
-    <Section fill title="Affected Nodes">
+    <Section fill title="受影响的科技节点">
       {nodes.length > 0 ? (
         <LabeledList>
           {nodes.map((node, index) => (
@@ -183,7 +183,7 @@ const NodePreview = (props: NodePreviewProps) => {
               label={node.name}
               color={node.isUnlocked ? 'good' : 'bad'}
             >
-              {node.isUnlocked ? 'Unlocked' : 'Locked'}
+              {node.isUnlocked ? '已解锁' : '未解锁'}
             </LabeledList.Item>
           ))}
         </LabeledList>
@@ -244,7 +244,7 @@ const ExperimentButtons = (props: ExperimentButtonsProps) => {
               disabled={!isRelic || disabled || !discoverExperiment.isAvailable}
               onClick={() => onExperiment(discoverExperiment.id)}
             >
-              Discover!
+              揭秘！
             </Button>
           )}
         </Stack.Item>

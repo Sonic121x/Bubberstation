@@ -1,14 +1,14 @@
 import { createDropdownInput, type Feature } from '../base';
 
 export const multiz_performance: Feature<number> = {
-  name: 'Multi-Z Depth',
+  name: '多层渲染深度',
   category: 'GAMEPLAY',
   description:
-    'How many Multi-Z levels are rendered before they start getting culled. Decrease this to improve performance in case of lag on multi-z maps.',
+    '决定渲染多少层后开始剔除更深的楼层。多层地图卡顿时，可降低此值以提高性能。',
   component: createDropdownInput({
-    [-1]: 'No Culling',
-    2: 'High',
-    1: 'Medium',
-    0: 'Low',
+    [-1]: '不剔除',
+    2: '高',
+    1: '中',
+    0: '低',
   }),
 };

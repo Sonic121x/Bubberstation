@@ -23,8 +23,8 @@ type Info = {
 function formatCodes(text: string[]) {
   if (text.length === 0) return '';
   if (text.length === 1) return text[0];
-  if (text.length === 2) return `${text[0]} and ${text[1]}`;
-  return `${text.slice(0, -1).join(', ')}, and ${text[text.length - 1]}`;
+  if (text.length === 2) return `${text[0]}和${text[1]}`;
+  return `${text.slice(0, -1).join('、')}和${text[text.length - 1]}`;
 }
 
 export const AntagInfoRevolution = () => {
@@ -36,51 +36,51 @@ export const AntagInfoRevolution = () => {
         <Section scrollable fill>
           <Stack vertical>
             <Stack.Item textColor="red" fontSize="24px" textAlign="center">
-              Viva la Revolution!
+              革命万岁！
             </Stack.Item>
             <Stack.Item>
               {leader ? (
                 <Stack vertical>
                   {lone_wolf ? (
                     <Stack.Item>
-                      - You are a lone leader of the revolution. It is
-                      recommended to act swiftly and decisively - when the
-                      revolution is sufficiently large, more leaders will be
-                      promoted.
+                      - 你是革命唯一的领袖。建议
+                      迅速果断地行动；当革命队伍
+                      足够壮大时，将会提拔
+                      更多领袖。
                     </Stack.Item>
                   ) : (
                     <Stack.Item>
-                      - There are multiple leaders of the revolution. It is
-                      recommended to work together and establish a plan BEFORE
-                      you start converting the crew - being outed early can
-                      prove extremely detrimental.
+                      - 革命有多名领袖。建议
+                      在开始转化船员之前，先合作制定
+                      计划；过早暴露身份
+                      可能造成极大不利。
                     </Stack.Item>
                   )}
                   <Stack.Item>
-                    - Convert the crew to your cause with a flash - any flash
-                    will work.
+                    - 使用闪光器让船员投身你的事业；任何闪光器
+                    都可以。
                   </Stack.Item>
                   <Stack.Item>
-                    - Mindshields will prevent conversion. You can identify them
-                    via the flashing blue border around their job icon.
+                    - 思维护盾会阻止转化。你可以通过目标职位图标
+                    周围闪烁的蓝色边框辨认。
                   </Stack.Item>
                   <Stack.Item>
-                    - The revolution is lost if you and your fellow leaders are
-                    all killed or exiled. Do not let that happen!
+                    - 如果你和其他领袖全被杀死或流放，
+                    革命就会失败。不要让这种事发生！
                   </Stack.Item>
                 </Stack>
               ) : (
                 <Stack vertical>
                   <Stack.Item>
-                    - Help your cause. Do not harm your fellow freedom fighters.
+                    - 为革命事业出力。不要伤害一同争取自由的同志。
                   </Stack.Item>
                   <Stack.Item>
-                    - You can identify your comrades by the red "R" icons, and
-                    your leaders by the blue "R" icons.
+                    - 你可以通过红色“R”图标识别同志，
+                    通过蓝色“R”图标识别领袖。
                   </Stack.Item>
                   <Stack.Item>
-                    - The revolution is lost if all of your leaders are killed
-                    or exiled. Do not let that happen!
+                    - 如果所有领袖都被杀死或流放，
+                    革命就会失败。不要让这种事发生！
                   </Stack.Item>
                 </Stack>
               )}
@@ -91,11 +91,11 @@ export const AntagInfoRevolution = () => {
                 <Stack.Item>
                   <Stack vertical>
                     <Stack.Item fontSize="16px" textAlign="center">
-                      You must kill or exile the heads of staff:
+                      你必须杀死或流放部门主管：
                     </Stack.Item>
                     {heads.map((head, i) => (
                       <Stack.Item key={`head-${i}`}>
-                        - {head.name}, the {head.role}
+                        - {head.name}，{head.role}
                       </Stack.Item>
                     ))}
                   </Stack>
@@ -108,13 +108,13 @@ export const AntagInfoRevolution = () => {
                 <Stack.Item>
                   <Stack vertical>
                     <Stack.Item italic>
-                      To identify your fellow leaders, use the following code:
+                      使用以下暗号识别其他革命领袖：
                     </Stack.Item>
                     <Stack.Item textColor="blue">
-                      Phrases: {formatCodes(code_phrases)}
+                      暗号词：{formatCodes(code_phrases)}
                     </Stack.Item>
                     <Stack.Item textColor="red">
-                      Responses: {formatCodes(code_responses)}
+                      暗号回应：{formatCodes(code_responses)}
                     </Stack.Item>
                   </Stack>
                 </Stack.Item>

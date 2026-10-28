@@ -1,8 +1,8 @@
 import { CheckboxInput, type FeatureToggle } from '../../base';
 
 export const show_in_directory: FeatureToggle = {
-  name: 'Show in Directory',
+  name: '显示在角色名录中',
   category: 'ADVERT',
-  description: 'When enabled, character will be shown in Directory',
+  description: '启用后，角色会显示在角色名录中。',
   component: CheckboxInput,
 };

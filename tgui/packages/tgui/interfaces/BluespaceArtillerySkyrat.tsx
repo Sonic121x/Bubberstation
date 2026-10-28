@@ -12,7 +12,7 @@ import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { machineStatusDisplay } from '../localization/machineStatusDisplay';
 type Data = {
   connected: BooleanLike;
   notice: string;
@@ -45,32 +45,32 @@ export const BluespaceArtillerySkyrat = (props) => {
         {!!notice && <NoticeBox>{notice}</NoticeBox>}
         {connected ? (
           <>
-            <Section title="System Status">
+            <Section title="系统状态">
               <Box
                 color={status !== 'SYSTEM READY' ? 'bad' : 'green'}
                 fontSize="25px"
               >
-                {status}
+                {machineStatusDisplay(status)}
               </Box>
             </Section>
             <Section
-              title="Capacitors"
+              title="电容器"
               buttons={
                 <Button
-                  content="Charge Capacitors"
+                  content="为电容器充电"
                   color="orange"
                   onClick={() => act('charge')}
                 />
               }
             >
               <LabeledList>
-                <LabeledList.Item label="Capacitor Charge">
+                <LabeledList.Item label="电容器电量">
                   {formatPower(capacitor_charge, 1)}
                 </LabeledList.Item>
-                <LabeledList.Item label="Available Power">
+                <LabeledList.Item label="可用功率">
                   {formatPower(powernet_power, 1)}
                 </LabeledList.Item>
-                <LabeledList.Item label="Target Charge">
+                <LabeledList.Item label="目标电量">
                   <Slider
                     value={target_capacitor_charge}
                     fillValue={target_capacitor_charge}
@@ -89,7 +89,7 @@ export const BluespaceArtillerySkyrat = (props) => {
               </LabeledList>
             </Section>
             <Section
-              title="Target"
+              title="目标"
               buttons={
                 <Button
                   icon="crosshairs"
@@ -99,7 +99,7 @@ export const BluespaceArtillerySkyrat = (props) => {
               }
             >
               <Box color={target ? 'average' : 'bad'} fontSize="25px">
-                {target || 'No Target Set'}
+                {target || '未设置目标'}
               </Box>
             </Section>
             <Section>
@@ -107,7 +107,7 @@ export const BluespaceArtillerySkyrat = (props) => {
                 <Box style={{ margin: 'auto' }}>
                   <Button
                     fluid
-                    content="FIRE"
+                    content="开火"
                     color="bad"
                     disabled={!target || status !== 'SYSTEM READY'}
                     fontSize="30px"
@@ -119,11 +119,11 @@ export const BluespaceArtillerySkyrat = (props) => {
               ) : (
                 <>
                   <Box color="bad" fontSize="18px">
-                    Bluespace artillery is currently locked.
+                    蓝空间火炮目前已锁定。
                   </Box>
                   <Box mt={1}>
-                    Awaiting authorization via keycard reader from at minimum
-                    two station heads.
+                    正在等待至少两名空间站主管
+                    通过钥匙卡读取器授权。
                   </Box>
                 </>
               )}
@@ -132,10 +132,10 @@ export const BluespaceArtillerySkyrat = (props) => {
         ) : (
           <Section>
             <LabeledList>
-              <LabeledList.Item label="Maintenance">
+              <LabeledList.Item label="维护">
                 <Button
                   icon="wrench"
-                  content="Complete Deployment"
+                  content="完成部署"
                   onClick={() => act('build')}
                 />
               </LabeledList.Item>

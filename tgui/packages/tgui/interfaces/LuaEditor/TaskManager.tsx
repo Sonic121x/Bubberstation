@@ -17,7 +17,7 @@ export const TaskManager = (props: TaskManagerProps) => {
   return (
     <Stack fill width="100%" justify="space-around">
       <Stack.Item grow shrink>
-        <Section title="Sleeps" fill>
+        <Section title="休眠任务" fill>
           <LabeledList>
             {sleeps.map(({ index, name }, i) => (
               <LabeledList.Item key={i} label={name}>
@@ -28,7 +28,7 @@ export const TaskManager = (props: TaskManagerProps) => {
                     act('killTask', { is_sleep: true, index: index })
                   }
                 >
-                  Kill
+                  终止
                 </Button>
               </LabeledList.Item>
             ))}
@@ -36,7 +36,7 @@ export const TaskManager = (props: TaskManagerProps) => {
         </Section>
       </Stack.Item>
       <Stack.Item grow shrink>
-        <Section title="Yields" fill>
+        <Section title="挂起任务" fill>
           <LabeledList>
             {yields.map(({ index, name }, i) => (
               <LabeledList.Item key={i} label={name}>
@@ -49,7 +49,7 @@ export const TaskManager = (props: TaskManagerProps) => {
                     setModal('call');
                   }}
                 >
-                  Call
+                  调用
                 </Button>
                 <Button
                   color="red"
@@ -58,7 +58,7 @@ export const TaskManager = (props: TaskManagerProps) => {
                     act('killTask', { is_sleep: false, index: index });
                   }}
                 >
-                  Kill
+                  终止
                 </Button>
               </LabeledList.Item>
             ))}

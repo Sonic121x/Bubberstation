@@ -14,19 +14,19 @@ import { type Beaker, BeakerSectionDisplay } from './common/BeakerDisplay';
 
 const damageTypes = [
   {
-    label: 'Brute',
+    label: '蛮力伤害',
     type: 'bruteLoss',
   },
   {
-    label: 'Respiratory',
+    label: '窒息伤害',
     type: 'oxyLoss',
   },
   {
-    label: 'Toxin',
+    label: '毒素伤害',
     type: 'toxLoss',
   },
   {
-    label: 'Burn',
+    label: '烧伤',
     type: 'fireLoss',
   },
 ] as const;
@@ -66,27 +66,27 @@ export const Cryo = () => {
   return (
     <Window width={400} height={550}>
       <Window.Content scrollable>
-        <Section title="Occupant">
+        <Section title="舱内人员">
           <LabeledList>
-            <LabeledList.Item label="Occupant">
-              {occupant?.name || 'No Occupant'}
+            <LabeledList.Item label="舱内人员">
+              {occupant?.name || '无人'}
             </LabeledList.Item>
             {!!occupant && (
               <>
                 <LabeledList.Item
-                  label="State"
+                  label="状态"
                   color={stat_to_color[occupant.stat]}
                 >
-                  {occupant.stat}
+                  {{ Dead: '死亡', Conscious: '清醒', Unconscious: '昏迷' }[occupant.stat] || occupant.stat}
                 </LabeledList.Item>
                 <LabeledList.Item
-                  label="Temperature"
+                  label="体温"
                   color={occupant.bodyTemperature < data.T0C ? 'good' : 'bad'} // Green if the mob can actually be healed by cryoxadone.
                 >
                   <AnimatedNumber value={round(occupant.bodyTemperature, 0)} />
                   {' K'}
                 </LabeledList.Item>
-                <LabeledList.Item label="Health">
+                <LabeledList.Item label="健康">
                   <ProgressBar
                     value={round(occupant.health / occupant.maxHealth, 2)}
                     color={occupant.health > 0 ? 'good' : 'average'}
@@ -112,33 +112,33 @@ export const Cryo = () => {
             )}
           </LabeledList>
         </Section>
-        <Section title="Cell">
+        <Section title="舱室">
           <LabeledList>
-            <LabeledList.Item label="Power">
+            <LabeledList.Item label="电源">
               <Button
                 icon={isOperating ? 'power-off' : 'times'}
                 disabled={isOpen}
                 onClick={() => act('power')}
                 color={isOperating && 'green'}
               >
-                {isOperating ? 'On' : 'Off'}
+                {isOperating ? '开启' : '关闭'}
               </Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Temperature">
+            <LabeledList.Item label="温度">
               <AnimatedNumber value={round(data.cellTemperature, 0)} /> K
             </LabeledList.Item>
-            <LabeledList.Item label="Door">
+            <LabeledList.Item label="舱门">
               <Button
                 icon={isOpen ? 'unlock' : 'lock'}
                 onClick={() => act('door')}
               >
-                {isOpen ? 'Open' : 'Closed'}
+                {isOpen ? '打开' : '关闭'}
               </Button>
               <Button
                 icon={data.autoEject ? 'sign-out-alt' : 'sign-in-alt'}
                 onClick={() => act('autoeject')}
               >
-                {data.autoEject ? 'Auto' : 'Manual'}
+                {data.autoEject ? '自动' : '手动'}
               </Button>
             </LabeledList.Item>
           </LabeledList>

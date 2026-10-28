@@ -10,11 +10,11 @@
 				"m": "nth"
 			},
 			"uncommon": {
-				" ": " endless... ",
-				"H": " THE HANDS... ",
-				"h": " BRIGHT ",
-				"s": " LEAK ",
-				"r": " CRACK "
+				" ": " 无穷无尽…… ",
+				"H": " 那些手…… ",
+				"h": " 明亮 ",
+				"s": " 泄漏 ",
+				"r": " 裂隙 "
 			}
 		},
 		"string_replacements": ["'", "br", "th", "see", "etch"],

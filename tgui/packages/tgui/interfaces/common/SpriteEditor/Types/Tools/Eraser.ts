@@ -17,7 +17,7 @@ import type {
 } from '../types';
 
 class EraserTransaction implements LayerTransaction {
-  name = 'Eraser';
+  name = '橡皮擦';
   layer: number;
   dir: Dir;
   points: Map<string, [number, number]> = new Map();
@@ -47,7 +47,7 @@ class EraserTransaction implements LayerTransaction {
       command: 'transaction',
       transaction: {
         type: 'eraser',
-        name: 'Eraser',
+        name: '橡皮擦',
         layer: this.layer + 1,
         dir: `${this.dir}`,
         points: this.points.values().toArray(),
@@ -58,7 +58,7 @@ class EraserTransaction implements LayerTransaction {
 
 export class Eraser extends Tool {
   icon = 'eraser';
-  name = 'Eraser';
+  name = '橡皮擦';
   currentTransaction: EraserTransaction | null;
   lastPoint: [number, number] | null = null;
 

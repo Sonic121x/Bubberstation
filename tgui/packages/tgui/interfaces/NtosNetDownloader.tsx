@@ -95,13 +95,13 @@ export const NtosNetDownloader = (props) => {
         {!!error && (
           <NoticeBox>
             <Box mb={1}>{error}</Box>
-            <Button content="Reset" onClick={() => act('PRG_reseterror')} />
+            <Button content="重置" onClick={() => act('PRG_reseterror')} />
           </NoticeBox>
         )}
         <Section>
           <LabeledList>
             <LabeledList.Item
-              label="Hard drive"
+              label="硬盘"
               buttons={
                 (!!downloading && (
                   <Button
@@ -110,7 +110,7 @@ export const NtosNetDownloader = (props) => {
                     tooltipPosition="left"
                     tooltip={
                       !!downloading &&
-                      `Download: ${downloadname}.prg (${downloadpercentage}%)`
+                      `下载：${downloadname}.prg（${downloadpercentage}%）`
                     }
                   />
                 )) ||
@@ -119,7 +119,7 @@ export const NtosNetDownloader = (props) => {
                     color="good"
                     icon="download"
                     tooltipPosition="left"
-                    tooltip={`${downloadname}.prg downloaded`}
+                    tooltip={`${downloadname}.prg 已下载`}
                   />
                 ))
               }
@@ -130,7 +130,7 @@ export const NtosNetDownloader = (props) => {
                 maxValue={disk_size}
               >
                 <Box textAlign="left">
-                  {`${disk_free_space} GQ free of ${disk_size} GQ`}
+                  {`剩余 ${disk_free_space} GQ，共 ${disk_size} GQ`}
                 </Box>
               </ProgressBar>
             </LabeledList.Item>
@@ -140,7 +140,7 @@ export const NtosNetDownloader = (props) => {
           <Input
             autoFocus
             height="23px"
-            placeholder="Search program name..."
+            placeholder="搜索程序名称……"
             fluid
             value={searchItem}
             onChange={setSearchItem}
@@ -217,10 +217,10 @@ const Program = (props) => {
                 <Button
                   bold
                   icon="download"
-                  content="Download"
+                  content="下载"
                   disabled={downloading}
                   tooltipPosition="left"
-                  tooltip={!!downloading && 'Awaiting download completion...'}
+                  tooltip={!!downloading && '等待下载完成……'}
                   onClick={() =>
                     act('PRG_downloadfile', {
                       filename: program.filename,
@@ -240,12 +240,12 @@ const Program = (props) => {
                 }
                 content={
                   program.installed
-                    ? 'Installed'
+                    ? '已安装'
                     : !program.compatible
-                      ? 'Incompatible'
+                      ? '不兼容'
                       : !program.access
-                        ? 'No Access'
-                        : 'No Space'
+                        ? '无权限'
+                        : '空间不足'
                 }
               />
             )}
@@ -256,8 +256,8 @@ const Program = (props) => {
       </Box>
       {!program.verifiedsource && (
         <NoticeBox mt={1} mb={0} danger fontSize="12px">
-          Unverified source. Please note that Nanotrasen does not recommend
-          download and usage of software from non-official servers.
+          来源未经验证。请注意，纳米传讯不建议
+          下载和使用来自非官方服务器的软件。
         </NoticeBox>
       )}
     </Section>

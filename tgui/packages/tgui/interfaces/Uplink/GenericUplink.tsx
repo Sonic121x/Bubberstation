@@ -25,7 +25,7 @@ type GenericUplinkProps = {
 export const GenericUplink = (props: GenericUplinkProps) => {
   const { act } = useBackend();
   const {
-    currency = 'cr',
+    currency = '信用点',
     categories,
 
     handleBuy,
@@ -68,7 +68,7 @@ export const GenericUplink = (props: GenericUplinkProps) => {
                   lineHeight={2}
                   textAlign="center"
                   icon={compactMode ? 'maximize' : 'minimize'}
-                  tooltip={compactMode ? 'Detailed view' : 'Compact view'}
+                  tooltip={compactMode ? '详细视图' : '紧凑视图'}
                   onClick={() => setCompactMode(!compactMode)}
                 />
               </Stack.Item>
@@ -78,7 +78,7 @@ export const GenericUplink = (props: GenericUplinkProps) => {
             <Input
               autoFocus
               value={searchText}
-              placeholder="Search..."
+              placeholder="搜索……"
               onChange={setSearchText}
               fluid
             />
@@ -109,8 +109,8 @@ export const GenericUplink = (props: GenericUplinkProps) => {
           {items.length === 0 ? (
             <NoticeBox>
               {searchText.length === 0
-                ? 'No items in this category.'
-                : 'No results found.'}
+                ? '此分类没有物品。'
+                : '未找到结果。'}
             </NoticeBox>
           ) : (
             <ItemList

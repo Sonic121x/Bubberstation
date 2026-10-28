@@ -6,19 +6,19 @@ import {
 } from '../base';
 
 export const enable_tips: FeatureToggle = {
-  name: 'Enable tooltips',
+  name: '启用悬浮提示',
   category: 'TOOLTIPS',
   description: `
-    Do you want to see tooltips when hovering over items?
+    鼠标悬停在物品上时是否显示提示？
   `,
   component: CheckboxInput,
 };
 
 export const tip_delay: Feature<number> = {
-  name: 'Tooltip delay (in milliseconds)',
+  name: '悬浮提示延迟（毫秒）',
   category: 'TOOLTIPS',
   description: `
-    How long should it take to see a tooltip when hovering over items?
+    鼠标在物品上悬停多久后显示提示？
   `,
   component: FeatureNumberInput,
 };

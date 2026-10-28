@@ -8,7 +8,7 @@ import {
   Table,
   Tooltip,
 } from 'tgui-core/components';
-
+import { softwareDisplay } from './softwareDisplay';
 import { SOFTWARE_DESC } from './constants';
 import type { PaiData } from './types';
 
@@ -29,7 +29,7 @@ export function AvailableDisplay(props) {
       buttons={<MemoryDisplay />}
       fill
       scrollable
-      title="Available Software"
+      title="可用软件"
     >
       <Table>
         {entries?.map(([name, cost]) => {
@@ -46,7 +46,7 @@ function MemoryDisplay(props) {
   const { ram } = data;
 
   return (
-    <Tooltip content={`Available System Memory: ${ram}`}>
+    <Tooltip content={`可用系统内存：${ram}`}>
       <Table>
         <Table.Row>
           <Table.Cell>
@@ -91,7 +91,7 @@ function ListItem(props: ListItemProps) {
     <Tooltip content={SOFTWARE_DESC[name]} position="bottom-start">
       <Table.Row className="candystripe">
         <Table.Cell>
-          <Box color="label">{name}</Box>
+          <Box color="label">{softwareDisplay(name)}</Box>
         </Table.Cell>
         <Table.Cell collapsing>
           <Box color={tooExpensive && 'bad'} textAlign="right">

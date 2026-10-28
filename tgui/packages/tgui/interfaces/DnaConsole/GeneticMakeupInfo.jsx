@@ -4,22 +4,22 @@ export const GeneticMakeupInfo = (props) => {
   const { makeup } = props;
 
   return (
-    <Section title="Enzyme Information">
+    <Section title="酶信息">
       <LabeledList>
-        <LabeledList.Item label="Name">
-          {makeup.name || 'None'}
+        <LabeledList.Item label="姓名">
+          {makeup.name || '无'}
         </LabeledList.Item>
-        <LabeledList.Item label="Blood Type">
-          {makeup.blood_type || 'None'}
+        <LabeledList.Item label="血型">
+          {makeup.blood_type || '无'}
         </LabeledList.Item>
-        <LabeledList.Item label="Unique Enzyme">
-          {makeup.UE || 'None'}
+        <LabeledList.Item label="独特酶">
+          {makeup.UE || '无'}
         </LabeledList.Item>
-        <LabeledList.Item label="Unique Identifier">
-          {makeup.UI || 'None'}
+        <LabeledList.Item label="独特标识符">
+          {makeup.UI || '无'}
         </LabeledList.Item>
-        <LabeledList.Item label="Unique Features">
-          {makeup.UF || 'None'}
+        <LabeledList.Item label="独特特征">
+          {makeup.UF || '无'}
         </LabeledList.Item>
       </LabeledList>
     </Section>

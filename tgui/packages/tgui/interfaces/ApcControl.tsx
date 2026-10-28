@@ -54,7 +54,7 @@ export function ApcControl(props) {
   const { authenticated } = data;
 
   return (
-    <Window title="APC Controller" width={550} height={500}>
+    <Window title="APC 控制器" width={550} height={500}>
       <Window.Content>
         {authenticated ? <ApcLoggedIn /> : <ApcLoggedOut />}
       </Window.Content>
@@ -65,7 +65,7 @@ export function ApcControl(props) {
 function ApcLoggedOut(props) {
   const { act, data } = useBackend<Data>();
   const { emagged } = data;
-  const text = emagged ? 'Open' : 'Log In';
+  const text = emagged ? '打开' : '登录';
 
   return (
     <Section fill>
@@ -76,16 +76,16 @@ function ApcLoggedOut(props) {
               <Icon name="bolt-lightning" color="yellow" size={8} />
             </Stack.Item>
             <Stack.Item bold mt={5}>
-              Zeus™ Controller Version 0.19
+              宙斯™控制器 0.19 版
             </Stack.Item>
-            <Stack.Item color="label">Copyright 2526 Nanotrasen</Stack.Item>
+            <Stack.Item color="label">版权所有 2526 纳米传讯</Stack.Item>
           </Stack>
         </Stack.Item>
         <Stack.Item color="#2a2a2a">
-          Nanotrasen and its affiliates do not endorse this product. Risk of
-          serious bodily injury or death is inherent in the use of any device
-          that generates electricity. Nanotrasen is not responsible for any
-          damages caused by the use of this product.
+          纳米传讯及其关联公司不为本产品背书。使用
+          任何发电设备均存在造成严重人身伤害
+          或死亡的风险。纳米传讯不对使用本产品
+          所造成的任何损害负责。
         </Stack.Item>
         <Stack.Item>
           <NoticeBox
@@ -97,7 +97,7 @@ function ApcLoggedOut(props) {
               alignItems: 'center',
             }}
           >
-            Authorized personnel only.
+            仅限授权人员使用。
             <Button
               icon="sign-in-alt"
               color={emagged ? '' : 'good'}
@@ -130,7 +130,7 @@ function ApcLoggedIn(props) {
               act('check-apcs');
             }}
           >
-            APC Control Panel
+            APC 控制面板
           </Tabs.Tab>
           <Tabs.Tab
             selected={tabIndex === Screen.LogView}
@@ -139,14 +139,14 @@ function ApcLoggedIn(props) {
               act('check-logs');
             }}
           >
-            Log View Panel
+            日志查看面板
           </Tabs.Tab>
         </Tabs>
       </Stack.Item>
       {!!restoring && (
         <Dimmer fontSize="32px">
           <Icon name="cog" spin />
-          {' Resetting...'}
+          {' 正在重置……'}
         </Dimmer>
       )}
       <Stack.Item grow>
@@ -190,25 +190,25 @@ function ControlPanel(props: ControlProps) {
     <Stack justify="space-between">
       <Stack.Item>
         <Box inline mr={2} color="label">
-          Sort by:
+          排序依据：
         </Box>
         <Button.Checkbox
           checked={sortByField === 'name'}
           onClick={() => setSortByField('name')}
         >
-          Name
+          名称
         </Button.Checkbox>
         <Button.Checkbox
           checked={sortByField === 'charge'}
           onClick={() => setSortByField('charge')}
         >
-          Charge
+          电量
         </Button.Checkbox>
         <Button.Checkbox
           checked={sortByField === 'draw'}
           onClick={() => setSortByField('draw')}
         >
-          Draw
+          功耗
         </Button.Checkbox>
       </Stack.Item>
       <Stack.Item />
@@ -219,15 +219,15 @@ function ControlPanel(props: ControlProps) {
               color={logging ? 'bad' : 'good'}
               onClick={() => act('toggle-logs')}
             >
-              {logging ? 'Stop Logging' : 'Restore Logging'}
+              {logging ? '停止记录日志' : '恢复记录日志'}
             </Button>
             <Button onClick={() => act('restore-console')}>
-              Reset Console
+              重置控制台
             </Button>
           </>
         )}
         <Button icon="sign-out-alt" color="bad" onClick={() => act('log-out')}>
-          Log Out
+          退出登录
         </Button>
       </Stack.Item>
     </Stack>
@@ -261,15 +261,15 @@ function ApcControlScene(props) {
   return (
     <Table>
       <Table.Row header>
-        <Table.Cell>On/Off</Table.Cell>
-        <Table.Cell>Area</Table.Cell>
-        <Table.Cell collapsing>Charge</Table.Cell>
+        <Table.Cell>开关</Table.Cell>
+        <Table.Cell>区域</Table.Cell>
+        <Table.Cell collapsing>电量</Table.Cell>
         <Table.Cell collapsing textAlign="right">
-          Draw
+          功耗
         </Table.Cell>
-        <Table.Cell collapsing>Eqp</Table.Cell>
-        <Table.Cell collapsing>Lgt</Table.Cell>
-        <Table.Cell collapsing>Env</Table.Cell>
+        <Table.Cell collapsing>设备</Table.Cell>
+        <Table.Cell collapsing>照明</Table.Cell>
+        <Table.Cell collapsing>环境</Table.Cell>
       </Table.Row>
       {sorted.map((apc, i) => (
         <Table.Row key={apc.id} className="candystripe">

@@ -53,35 +53,35 @@ export const NanopaintMenuBar = (props: NanopaintMenuBarProps) => {
       <MenuBar.Dropdown
         entry="file"
         openWidth="22rem"
-        display="File"
+        display="文件"
         {...dropdownProps}
       >
         <MenuBar.Dropdown.MenuItem
-          {...getMenuItemProps('new', 'New', () => act('newDialog'))}
+          {...getMenuItemProps('new', '新建', () => act('newDialog'))}
         />
         <MenuBar.Dropdown.MenuItem
-          {...getMenuItemProps('open', 'Open', () => act('openDialog'))}
+          {...getMenuItemProps('open', '打开', () => act('openDialog'))}
         />
         <MenuBar.Dropdown.MenuItem
-          {...getMenuItemProps('save', 'Save', () => act('save'))}
+          {...getMenuItemProps('save', '保存', () => act('save'))}
           disabled={!workspaceOpen}
         />
         <MenuBar.Dropdown.MenuItem
-          {...getMenuItemProps('saveAs', 'Save As', () => act('saveAsDialog'))}
+          {...getMenuItemProps('saveAs', '另存为', () => act('saveAsDialog'))}
           disabled={!workspaceOpen}
         />
       </MenuBar.Dropdown>
       <MenuBar.Dropdown
         entry="edit"
         openWidth="22rem"
-        display="Edit"
+        display="编辑"
         disabled={!workspaceOpen}
         {...dropdownProps}
       >
         <MenuBar.Dropdown.MenuItem
           {...getMenuItemProps(
             'undo',
-            `Undo${undoHistory.length > 0 ? ` ${undoHistory[0]}` : ''}`,
+            `撤销${undoHistory.length > 0 ? ` ${undoHistory[0]}` : ''}`,
             () => act('spriteEditorCommand', { command: 'undo' }),
           )}
           disabled={undoHistory.length === 0}
@@ -89,7 +89,7 @@ export const NanopaintMenuBar = (props: NanopaintMenuBarProps) => {
         <MenuBar.Dropdown.MenuItem
           {...getMenuItemProps(
             'redo',
-            `Redo${undoHistory.length > 0 ? ` ${redoHistory[0]}` : ''}`,
+            `重做${undoHistory.length > 0 ? ` ${redoHistory[0]}` : ''}`,
             () => act('spriteEditorCommand', { command: 'redo' }),
           )}
           disabled={redoHistory.length === 0}
@@ -98,16 +98,16 @@ export const NanopaintMenuBar = (props: NanopaintMenuBarProps) => {
       <MenuBar.Dropdown
         entry="view"
         openWidth="22rem"
-        display="View"
+        display="视图"
         {...dropdownProps}
       >
         <MenuBar.Dropdown.MenuItem
           disabled={!workspaceOpen || zoom === maxZoom}
-          {...getMenuItemProps('zoomIn', 'Zoom In', () => setZoom(zoom + 1))}
+          {...getMenuItemProps('zoomIn', '放大', () => setZoom(zoom + 1))}
         />
         <MenuBar.Dropdown.MenuItem
           disabled={!workspaceOpen || zoom === minZoom}
-          {...getMenuItemProps('zoomOut', 'Zoom Out', () => setZoom(zoom - 1))}
+          {...getMenuItemProps('zoomOut', '缩小', () => setZoom(zoom - 1))}
         />
       </MenuBar.Dropdown>
     </MenuBar>

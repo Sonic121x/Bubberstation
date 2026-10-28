@@ -1,5 +1,5 @@
 import { LabeledList, NoticeBox } from 'tgui-core/components';
-
+import { orbitDisplay } from '../../localization/zhOrbitDisplay';
 import type { Antagonist, Observable } from './types';
 
 type Props = {
@@ -17,15 +17,15 @@ export function OrbitTooltip(props: Props) {
     antag = item.antag;
   }
 
-  const extraInfo = extra?.split(':');
-  const displayHealth = health && health >= 0 ? `${health}%` : 'Critical';
+  const extraInfo = extra?.split(/[:：](.*)/s);
+  const displayHealth = health && health >= 0 ? `${health}%` : '濒危';
   const showAFK = 'client' in item && !item.client;
   const displayJob = realNameDisplay ? mind_job : job;
 
   return (
     <>
       <NoticeBox textAlign="center" nowrap info={showAFK}>
-        Last Known Data
+        最近已知数据
       </NoticeBox>
       <LabeledList>
         {extraInfo ? (
@@ -35,22 +35,22 @@ export function OrbitTooltip(props: Props) {
         ) : (
           <>
             {!!full_name && (
-              <LabeledList.Item label="Real ID">{full_name}</LabeledList.Item>
+              <LabeledList.Item label="真实身份">{full_name}</LabeledList.Item>
             )}
             {!!displayJob && (
-              <LabeledList.Item label="Job">{displayJob}</LabeledList.Item>
+              <LabeledList.Item label="职业">{orbitDisplay(displayJob)}</LabeledList.Item>
             )}
             {!!antag && (
-              <LabeledList.Item label="Threat">{antag}</LabeledList.Item>
+              <LabeledList.Item label="威胁">{orbitDisplay(antag)}</LabeledList.Item>
             )}
             {!!health && (
-              <LabeledList.Item label="Health">
+              <LabeledList.Item label="健康">
                 {displayHealth}
               </LabeledList.Item>
             )}
           </>
         )}
-        {showAFK && <LabeledList.Item label="Status">Away</LabeledList.Item>}
+        {showAFK && <LabeledList.Item label="状态">暂离</LabeledList.Item>}
       </LabeledList>
     </>
   );

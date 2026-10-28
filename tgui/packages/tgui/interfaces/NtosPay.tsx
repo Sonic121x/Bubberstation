@@ -45,8 +45,8 @@ export const NtosPayContent = (props) => {
   if (!name) {
     return (
       <NoticeBox>
-        You need to insert your ID card into the card slot in order to use this
-        application.
+        您需要将身份卡插入卡槽，
+        才能使用此应用。
       </NoticeBox>
     );
   }
@@ -73,10 +73,10 @@ const Introduction = (props) => {
   return (
     <Section textAlign="center">
       <Table>
-        <Table.Row>Hi, {name}.</Table.Row>
-        <Table.Row>Your pay token is {owner_token}.</Table.Row>
+        <Table.Row>您好，{name}。</Table.Row>
+        <Table.Row>您的支付识别码是 {owner_token}。</Table.Row>
         <Table.Row>
-          Account balance: {money} credit{money === 1 ? '' : 's'}
+          账户余额：{money} 信用点
         </Table.Row>
       </Table>
     </Section>
@@ -96,21 +96,21 @@ const TransferSection = (props) => {
   return (
     <Stack>
       <Stack.Item>
-        <Section title="Transfer Money">
+        <Section title="转账">
           <Box>
             <Tooltip
-              content="Enter the pay token of the account you want to transfer credits to."
+              content="输入您要转入信用点的账户的支付识别码。"
               position="top"
             >
               <Input
-                placeholder="Pay Token"
+                placeholder="支付识别码"
                 width="190px"
                 onChange={setToken}
               />
             </Tooltip>
           </Box>
           <Tooltip
-            content="Enter amount of credits to transfer."
+            content="输入要转账的信用点金额。"
             position="top"
           >
             <RestrictedInput
@@ -131,15 +131,15 @@ const TransferSection = (props) => {
               })
             }
           >
-            Send credits
+            转出信用点
           </Button>
         </Section>
       </Stack.Item>
       <Stack.Item>
-        <Section title="Get Token" width="270px" height="98px">
+        <Section title="查询支付识别码" width="270px" height="98px">
           <Box>
             <Input
-              placeholder="Full name of account."
+              placeholder="账户持有人全名。"
               width="190px"
               onChange={setNameToToken}
             />
@@ -150,7 +150,7 @@ const TransferSection = (props) => {
                 })
               }
             >
-              Get it
+              查询
             </Button>
           </Box>
           <Divider hidden />
@@ -167,7 +167,7 @@ const TransactionHistory = (props) => {
   const { transaction_list = [] } = data;
 
   return (
-    <Section fill title="Transaction History">
+    <Section fill title="交易记录">
       <Section fill scrollable title={<TableHeaders />}>
         <Table>
           {transaction_list.map((log, index) => (
@@ -195,10 +195,10 @@ const TableHeaders = (props) => {
     <Table>
       <Table.Row>
         <Table.Cell color="label" width="100px">
-          Amount
+          金额
         </Table.Cell>
         <Table.Cell color="label" textAlign="center">
-          Reason
+          原因
         </Table.Cell>
       </Table.Row>
     </Table>

@@ -132,8 +132,8 @@ export const ListInputModal = (props: ListInputModalProps) => {
           selected
           tooltip={
             searchBarVisible
-              ? 'Search Mode. Type to search or use arrow keys to select manually.'
-              : 'Hotkey Mode. Type a letter to jump to the first match. Enter to select.'
+              ? '搜索模式。输入文字搜索，或使用方向键手动选择。'
+              : '快捷键模式。输入字母跳到首个匹配项，按回车键选择。'
           }
           tooltipPosition="left"
           onClick={() => onSearchBarToggle()}
@@ -161,7 +161,7 @@ export const ListInputModal = (props: ListInputModalProps) => {
             fluid
             onEnter={() => on_selected(filteredItems[selected])}
             onChange={onSearch}
-            placeholder="Search..."
+            placeholder="搜索……"
             value={searchQuery}
           />
         )}

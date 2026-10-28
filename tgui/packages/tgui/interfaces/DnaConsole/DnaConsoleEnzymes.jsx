@@ -22,21 +22,21 @@ const GeneticMakeupBufferInfo = (props) => {
   // Type of the action for applying makeup
   const ACTION_MAKEUP_APPLY = isViableSubject ? 'makeup_apply' : 'makeup_delay';
   if (!makeup) {
-    return <Box color="average">No stored subject data.</Box>;
+    return <Box color="average">未储存受试者数据。</Box>;
   }
   return (
     <>
       <GeneticMakeupInfo makeup={makeup} />
       <Divider />
       <Box bold color="label" mb={1}>
-        Makeup Actions
+        遗传构成操作
       </Box>
       <LabeledList>
-        <LabeledList.Item label="Enzymes">
+        <LabeledList.Item label="酶">
           <Button
             icon="syringe"
             disabled={!isInjectorReady}
-            content="Print"
+            content="打印"
             onClick={() =>
               act('makeup_injector', {
                 index,
@@ -53,15 +53,15 @@ const GeneticMakeupBufferInfo = (props) => {
               })
             }
           >
-            Transfer
-            {!isViableSubject && ' (Delayed)'}
+            转移
+            {!isViableSubject && '（延迟）'}
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Identity">
+        <LabeledList.Item label="身份">
           <Button
             icon="syringe"
             disabled={!isInjectorReady}
-            content="Print"
+            content="打印"
             onClick={() =>
               act('makeup_injector', {
                 index,
@@ -78,15 +78,15 @@ const GeneticMakeupBufferInfo = (props) => {
               })
             }
           >
-            Transfer
-            {!isViableSubject && ' (Delayed)'}
+            转移
+            {!isViableSubject && '（延迟）'}
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Features">
+        <LabeledList.Item label="特征">
           <Button
             icon="syringe"
             disabled={!isInjectorReady}
-            content="Print"
+            content="打印"
             onClick={() =>
               act('makeup_injector', {
                 index,
@@ -103,15 +103,15 @@ const GeneticMakeupBufferInfo = (props) => {
               })
             }
           >
-            Transfer
-            {!isViableSubject && ' (Delayed)'}
+            转移
+            {!isViableSubject && '（延迟）'}
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Full Makeup">
+        <LabeledList.Item label="完整遗传构成">
           <Button
             icon="syringe"
             disabled={!isInjectorReady}
-            content="Print"
+            content="打印"
             onClick={() =>
               act('makeup_injector', {
                 index,
@@ -128,15 +128,15 @@ const GeneticMakeupBufferInfo = (props) => {
               })
             }
           >
-            Transfer
-            {!isViableSubject && ' (Delayed)'}
+            转移
+            {!isViableSubject && '（延迟）'}
           </Button>
         </LabeledList.Item>
         <LabeledList.Item>
           <Button
             icon="save"
             disabled={!hasDisk || diskReadOnly}
-            content="Export To Disk"
+            content="导出至磁盘"
             onClick={() =>
               act('save_makeup_disk', {
                 index,
@@ -164,14 +164,14 @@ const GeneticMakeupBuffers = (props) => {
     const makeup = makeupStorage[i];
     const element = (
       <Collapsible
-        title={makeup ? makeup.label || makeup.name : `Slot ${i}`}
+        title={makeup ? makeup.label || makeup.name : `存储槽 ${i}`}
         buttons={
           <>
             {!!(hasDisk && diskHasMakeup) && (
               <Button
                 mr={1}
                 disabled={!hasDisk || !diskHasMakeup}
-                content="Import from disk"
+                content="从磁盘导入"
                 onClick={() =>
                   act('load_makeup_disk', {
                     index: i,
@@ -181,7 +181,7 @@ const GeneticMakeupBuffers = (props) => {
             )}
             <Button
               disabled={!isViableSubject}
-              content="Save"
+              content="保存"
               onClick={() =>
                 act('save_makeup_console', {
                   index: i,
@@ -208,13 +208,13 @@ const GeneticMakeupBuffers = (props) => {
     elements.push(element);
   }
   return (
-    <Section title="Genetic Makeup Buffers">
+    <Section title="遗传构成缓冲区">
       {!!geneticMakeupCooldown && (
         <Dimmer fontSize="14px" textAlign="center">
           <Icon mr={1} name="spinner" spin />
-          Genetic makeup transfer ready in...
+          遗传构成转移就绪倒计时……
           <Box mt={1} />
-          {geneticMakeupCooldown}s
+          {geneticMakeupCooldown} 秒
         </Dimmer>
       )}
       {elements}
@@ -226,9 +226,9 @@ const PulseEmitterProbs = (props) => {
   const { data } = useBackend();
   const { stdDevAcc, stdDevStr } = data;
   return (
-    <Section title="Probabilities" minHeight="100%">
+    <Section title="概率" minHeight="100%">
       <LabeledList>
-        <LabeledList.Item label="Accuracy" textAlign="right">
+        <LabeledList.Item label="准确度" textAlign="right">
           {stdDevAcc}
         </LabeledList.Item>
         <LabeledList.Item label={`P(±${stdDevStr})`} textAlign="right">
@@ -279,7 +279,7 @@ const PulseBoard = (props) => {
     }
   }
   return (
-    <Section title={`Unique ${name}`} minHeight="100%" position="relative">
+    <Section title={`独特${name}`} minHeight="100%" position="relative">
       <Box mx="-1px">{blocks}</Box>
     </Section>
   );
@@ -289,9 +289,9 @@ const PulseSettings = (props) => {
   const { data, act } = useBackend();
   const { pulseStrength, pulseDuration } = data;
   return (
-    <Section title="Emitter Configuration" minHeight="100%">
+    <Section title="发射器配置" minHeight="100%">
       <LabeledList>
-        <LabeledList.Item label="Output level">
+        <LabeledList.Item label="输出等级">
           <NumberInput
             animated
             tickWhileDragging
@@ -308,7 +308,7 @@ const PulseSettings = (props) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Pulse duration">
+        <LabeledList.Item label="脉冲持续时间">
           <NumberInput
             animated
             tickWhileDragging
@@ -335,7 +335,7 @@ export const DnaConsoleEnzymes = (props) => {
   const { isScannerConnected } = data;
   const { subjectBlock, type, name } = props;
   if (!isScannerConnected) {
-    return <Section color="bad">DNA Scanner is not connected.</Section>;
+    return <Section color="bad">DNA 扫描仪未连接。</Section>;
   }
   return (
     <>

@@ -44,23 +44,23 @@ const FOOD_ICONS = {
 };
 
 const FOOD_NAMES: Record<keyof typeof FOOD_ICONS, string> = {
-  [Food.Bugs]: 'Bugs',
-  [Food.Cloth]: 'Clothing',
-  [Food.Dairy]: 'Dairy',
-  [Food.Fried]: 'Fried food',
-  [Food.Fruit]: 'Fruit',
-  [Food.Gore]: 'Gore',
-  [Food.Grain]: 'Grain',
-  [Food.Gross]: 'Gross food',
-  [Food.Junkfood]: 'Junk food',
-  [Food.Meat]: 'Meat',
-  [Food.Nuts]: 'Nuts',
-  [Food.Raw]: 'Raw',
-  [Food.Seafood]: 'Seafood',
-  [Food.Stone]: 'Rocks',
-  [Food.Sugar]: 'Sugar',
-  [Food.Toxic]: 'Toxic food',
-  [Food.Vegetables]: 'Vegetables',
+  [Food.Bugs]: '昆虫',
+  [Food.Cloth]: '衣物',
+  [Food.Dairy]: '乳制品',
+  [Food.Fried]: '油炸食物',
+  [Food.Fruit]: '水果',
+  [Food.Gore]: '血肉',
+  [Food.Grain]: '谷物',
+  [Food.Gross]: '恶心食物',
+  [Food.Junkfood]: '垃圾食品',
+  [Food.Meat]: '肉类',
+  [Food.Nuts]: '坚果',
+  [Food.Raw]: '生食',
+  [Food.Seafood]: '海鲜',
+  [Food.Stone]: '岩石',
+  [Food.Sugar]: '糖',
+  [Food.Toxic]: '有毒食物',
+  [Food.Vegetables]: '蔬菜',
 };
 
 const IGNORE_UNLESS_LIKED: Set<Food> = new Set([
@@ -146,7 +146,7 @@ function Diet(props: DietProps) {
         <FoodList
           food={liked_food}
           icon="heart"
-          name="Liked food"
+          name="喜爱的食物"
           className="color-pink"
         />
       </Stack.Item>
@@ -155,7 +155,7 @@ function Diet(props: DietProps) {
         <FoodList
           food={disliked_food.filter(notIn(IGNORE_UNLESS_LIKED))}
           icon="thumbs-down"
-          name="Disliked food"
+          name="讨厌的食物"
           className="color-red"
         />
       </Stack.Item>
@@ -164,7 +164,7 @@ function Diet(props: DietProps) {
         <FoodList
           food={toxic_food.filter(notIn(IGNORE_UNLESS_LIKED))}
           icon="biohazard"
-          name="Toxic food"
+          name="有毒食物"
           className="color-olive"
         />
       </Stack.Item>
@@ -297,7 +297,7 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
     <Stack vertical fill>
       <Stack.Item>
         <Button icon="arrow-left" onClick={props.handleClose}>
-          Go Back
+          返回
         </Button>
       </Stack.Item>
 
@@ -367,7 +367,7 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
                         ))}
                       </Section>
 
-                      <Section title="Features">
+                      <Section title="特点">
                         <SpeciesPerks perks={currentSpecies.perks} />
                       </Section>
                     </Section>
@@ -383,7 +383,7 @@ function SpeciesPageInner(props: SpeciesPageInnerProps) {
               </Box>
 
               <Box mt={1}>
-                <Section title="Lore">
+                <Section title="背景设定">
                   <BlockQuote /* SKYRAT EDIT START - scrollable lore */
                     overflowY="auto"
                     maxHeight="45vh"

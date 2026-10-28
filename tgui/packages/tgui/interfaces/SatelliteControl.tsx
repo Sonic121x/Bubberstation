@@ -45,7 +45,7 @@ const ShieldInfo = (props) => {
   return (
     <Section>
       <LabeledList>
-        <LabeledList.Item label="Coverage">
+        <LabeledList.Item label="覆盖率">
           <ProgressBar
             value={meteor_shield_coverage / meteor_shield_coverage_max}
             ranges={{
@@ -66,7 +66,7 @@ const SatelliteDisplay = (props) => {
   const { satellites = [] } = data;
 
   return (
-    <Section title="Satellite Controls">
+    <Section title="卫星控制">
       <Box mr={-1}>
         {satellites.map((satellite) => (
           <Button.Checkbox

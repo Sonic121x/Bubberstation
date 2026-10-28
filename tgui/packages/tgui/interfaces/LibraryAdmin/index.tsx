@@ -11,7 +11,7 @@ export function LibraryAdmin(props) {
 
   return (
     <Window
-      title="Admin Library Console"
+      title="管理员图书馆控制台"
       theme="admin"
       width={800}
       height={600}

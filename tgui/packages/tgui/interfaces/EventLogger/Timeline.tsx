@@ -188,7 +188,7 @@ export function Timeline<T = unknown>(props: TimelineProps<T>) {
   for (let t = 0; t <= effectiveElapsed + rulerInterval; t += rulerInterval) {
     const seconds = t / ticksPerSecond;
     const leftPx = Math.max(0, t * pxPerTick);
-    rulerLabels.push({ tick: t, label: `${seconds}s`, leftPx });
+    rulerLabels.push({ tick: t, label: `${seconds}秒`, leftPx });
   }
 
   // Render ruler vertical guide lines (behind rows)

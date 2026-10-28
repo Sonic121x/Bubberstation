@@ -25,11 +25,11 @@ export function MalfunctionModulePicker(props) {
 
   const items: Item[] = data.modules.map((module) => ({
     category: module.category,
-    cost: `${module.cost} PT`,
+    cost: `${module.cost} 处理点`,
     desc:
       module.desc +
       (module.minimumApcs > 0
-        ? ` Requires at least ${module.minimumApcs} APCs hacked.`
+        ? ` 至少需要入侵 ${module.minimumApcs} 台 APC。`
         : ''),
     disabled: processingTime < module.cost || hackedAPCs < module.minimumApcs,
     id: module.name,
@@ -46,7 +46,7 @@ export function MalfunctionModulePicker(props) {
         <GenericUplink
           categories={categories}
           items={items}
-          currency={`${processingTime} PT`}
+          currency={`${processingTime} 处理点`}
           handleBuy={(item) => act('buy', { name: item.name })}
         />
       </Window.Content>

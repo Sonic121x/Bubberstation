@@ -69,7 +69,7 @@ export function SelectEquipment(props) {
                 <Input
                   fluid
                   autoFocus
-                  placeholder="Search"
+                  placeholder="搜索"
                   value={searchText}
                   onChange={setSearchText}
                 />
@@ -121,7 +121,7 @@ function DisplayTabs(props) {
           selected={tab === category}
           onClick={() => onSelect(category)}
         >
-          {category}
+          {({ Custom: '自定义', General: '通用', Jobs: '职业', 'Plasmamen Outfits': '等离子人装备' })[category] ?? category}
         </Tabs.Tab>
       ))}
     </Tabs>
@@ -164,7 +164,7 @@ function OutfitDisplay(props) {
           fluid
           onClick={() => act('customoutfit')}
         >
-          Create a custom outfit...
+          创建自定义装备配置……
         </Button>
       )}
     </Section>
@@ -194,7 +194,7 @@ function CurrentlySelectedDisplay(props) {
         </Stack.Item>
       )}
       <Stack.Item grow basis={0}>
-        <Box color="label">Currently selected:</Box>
+        <Box color="label">当前选择：</Box>
         <Box
           title={entry?.path}
           style={{
@@ -217,7 +217,7 @@ function CurrentlySelectedDisplay(props) {
             })
           }
         >
-          Confirm
+          确认
         </Button>
       </Stack.Item>
     </Stack>

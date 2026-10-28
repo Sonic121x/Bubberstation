@@ -61,21 +61,21 @@ export const NaniteChamberControlContent = () => {
 
   return (
     <Section
-      title={`Chamber: ${occupant_name}`}
+      title={`舱室：${occupant_name}`}
       buttons={
         <Button
           icon={locked ? 'lock' : 'lock-open'}
           color={locked ? 'bad' : 'default'}
           onClick={() => act('toggle_lock')}
         >
-          {locked ? 'Locked' : 'Unlocked'}
+          {locked ? '已锁定' : '已解锁'}
         </Button>
       }
     >
       {!has_nanites ? (
         <>
           <Box bold color="bad" textAlign="center" fontSize="30px" mb={1}>
-            No Nanites Detected
+            未检测到纳米机器人
           </Box>
           <Button
             fluid
@@ -87,37 +87,37 @@ export const NaniteChamberControlContent = () => {
             lineHeight="50px"
             onClick={() => act('nanite_injection')}
           >
-            Implant Nanites
+            植入纳米机器人
           </Button>
         </>
       ) : (
         <>
           <Section
-            title="Status"
+            title="状态"
             buttons={
               <Button
                 icon="exclamation-triangle"
                 color="bad"
                 onClick={() => act('remove_nanites')}
               >
-                Destroy Nanites
+                销毁纳米机器人
               </Button>
             }
           >
             <Stack>
               <Stack.Item>
                 <LabeledList>
-                  <LabeledList.Item label="Nanite Volume">
+                  <LabeledList.Item label="纳米机器人数量">
                     {nanite_volume}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Growth Rate">
+                  <LabeledList.Item label="增殖速率">
                     {regen_rate}
                   </LabeledList.Item>
                 </LabeledList>
               </Stack.Item>
               <Stack.Item>
                 <LabeledList>
-                  <LabeledList.Item label="Safety Threshold">
+                  <LabeledList.Item label="安全阈值">
                     <NumberInput
                       value={safety_threshold}
                       minValue={0}
@@ -131,7 +131,7 @@ export const NaniteChamberControlContent = () => {
                       }
                     />
                   </LabeledList.Item>
-                  <LabeledList.Item label="Cloud ID">
+                  <LabeledList.Item label="云端编号">
                     <NumberInput
                       value={cloud_id}
                       minValue={min_cloud_id}
@@ -150,7 +150,7 @@ export const NaniteChamberControlContent = () => {
               </Stack.Item>
             </Stack>
           </Section>
-          <Section title="Programs">
+          <Section title="程序">
             {mob_programs?.map((program) => {
               const extra_settings = program.extra_settings || [];
               const rules = program.rules || [];
@@ -161,12 +161,12 @@ export const NaniteChamberControlContent = () => {
                       {scan_level >= 2 && (
                         <Stack.Item>
                           <LabeledList>
-                            <LabeledList.Item label="Activation Status">
+                            <LabeledList.Item label="激活状态">
                               <Box color={program.activated ? 'good' : 'bad'}>
-                                {program.activated ? 'Active' : 'Inactive'}
+                                {program.activated ? '已激活' : '未激活'}
                               </Box>
                             </LabeledList.Item>
-                            <LabeledList.Item label="Nanites Consumed">
+                            <LabeledList.Item label="纳米机器人消耗">
                               {program.use_rate}/s
                             </LabeledList.Item>
                           </LabeledList>
@@ -178,21 +178,21 @@ export const NaniteChamberControlContent = () => {
                       <Stack>
                         {!!program.can_trigger && (
                           <Stack.Item>
-                            <Section title="Triggers">
+                            <Section title="触发设置">
                               <LabeledList>
-                                <LabeledList.Item label="Trigger Cost">
+                                <LabeledList.Item label="触发消耗">
                                   {program.trigger_cost}
                                 </LabeledList.Item>
-                                <LabeledList.Item label="Trigger Cooldown">
+                                <LabeledList.Item label="触发冷却">
                                   {program.trigger_cooldown}
                                 </LabeledList.Item>
                                 {!!program.timer_trigger_delay && (
-                                  <LabeledList.Item label="Trigger Delay">
+                                  <LabeledList.Item label="触发延迟">
                                     {program.timer_trigger_delay} s
                                   </LabeledList.Item>
                                 )}
                                 {!!program.timer_trigger && (
-                                  <LabeledList.Item label="Trigger Repeat Timer">
+                                  <LabeledList.Item label="重复触发间隔">
                                     {program.timer_trigger} s
                                   </LabeledList.Item>
                                 )}
@@ -209,12 +209,12 @@ export const NaniteChamberControlContent = () => {
                                 {/* I mean, bruh, this indentation level
                                     is ABSOLUTELY INSANE!!! */}
                                 {program.timer_restart && (
-                                  <LabeledList.Item label="Restart Timer">
+                                  <LabeledList.Item label="重启定时器">
                                     {program.timer_restart} s
                                   </LabeledList.Item>
                                 )}
                                 {program.timer_shutdown && (
-                                  <LabeledList.Item label="Shutdown Timer">
+                                  <LabeledList.Item label="关闭定时器">
                                     {program.timer_shutdown} s
                                   </LabeledList.Item>
                                 )}
@@ -225,7 +225,7 @@ export const NaniteChamberControlContent = () => {
                       </Stack>
                     )}
                     {scan_level >= 3 && !!program.has_extra_settings && (
-                      <Section title="Extra Settings">
+                      <Section title="附加设置">
                         <LabeledList>
                           {extra_settings.map((extra_setting) => (
                             <LabeledList.Item
@@ -241,26 +241,26 @@ export const NaniteChamberControlContent = () => {
                     {scan_level >= 4 && (
                       <Stack>
                         <Stack.Item>
-                          <Section title="Codes">
+                          <Section title="信号代码">
                             <LabeledList>
                               {!!program.activation_code && (
-                                <LabeledList.Item label="Activation">
+                                <LabeledList.Item label="激活">
                                   {program.activation_code}
                                 </LabeledList.Item>
                               )}
                               {!!program.deactivation_code && (
-                                <LabeledList.Item label="Deactivation">
+                                <LabeledList.Item label="停用">
                                   {program.deactivation_code}
                                 </LabeledList.Item>
                               )}
                               {!!program.kill_code && (
-                                <LabeledList.Item label="Kill">
+                                <LabeledList.Item label="销毁">
                                   {program.kill_code}
                                 </LabeledList.Item>
                               )}
                               {!!program.can_trigger &&
                                 !!program.trigger_code && (
-                                  <LabeledList.Item label="Trigger">
+                                  <LabeledList.Item label="触发">
                                     {program.trigger_code}
                                   </LabeledList.Item>
                                 )}
@@ -269,7 +269,7 @@ export const NaniteChamberControlContent = () => {
                         </Stack.Item>
                         {program.has_rules && (
                           <Stack.Item>
-                            <Section title="Rules">
+                            <Section title="规则">
                               {rules.map((rule) => (
                                 <Box key={rule.display}>{rule.display}</Box>
                               ))}

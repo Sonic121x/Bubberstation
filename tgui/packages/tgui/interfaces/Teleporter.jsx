@@ -19,22 +19,22 @@ export const Teleporter = (props) => {
         <Section>
           {(!power_station && (
             <Box color="bad" textAlign="center">
-              No power station linked.
+              未连接供电站。
             </Box>
           )) ||
             (!teleporter_hub && (
               <Box color="bad" textAlign="center">
-                No hub linked.
+                未连接传送枢纽。
               </Box>
             )) || (
               <LabeledList>
-                <LabeledList.Item label="Regime">
+                <LabeledList.Item label="模式">
                   <Button
                     content={batchThreeDisplay(regime_set)}
                     onClick={() => act('regimeset')}
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="Target">
+                <LabeledList.Item label="目标">
                   <Button
                     icon="edit"
                     content={target}
@@ -42,18 +42,18 @@ export const Teleporter = (props) => {
                   />
                 </LabeledList.Item>
                 <LabeledList.Item
-                  label="Calibration"
+                  label="校准"
                   buttons={
                     <Button
                       icon="tools"
-                      content="Calibrate"
+                      content="校准"
                       onClick={() => act('calibrate')}
                     />
                   }
                 >
-                  {(calibrating && <Box color="average">In Progress</Box>) ||
-                    (calibrated && <Box color="good">Optimal</Box>) || (
-                      <Box color="bad">Sub-Optimal</Box>
+                  {(calibrating && <Box color="average">进行中</Box>) ||
+                    (calibrated && <Box color="good">最佳</Box>) || (
+                      <Box color="bad">未达最佳</Box>
                     )}
                 </LabeledList.Item>
               </LabeledList>

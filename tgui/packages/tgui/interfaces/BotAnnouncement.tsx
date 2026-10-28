@@ -89,7 +89,7 @@ export const BotAnnouncement = (props) => {
                 setTab(TAB.Announcements);
               }}
             >
-              Announcements
+              广播
             </Tabs.Tab>
             <Tabs.Tab
               selected={tab === TAB.Shortcuts}
@@ -98,7 +98,7 @@ export const BotAnnouncement = (props) => {
                 setTab(TAB.Shortcuts);
               }}
             >
-              Shortcuts
+              快捷按钮
             </Tabs.Tab>
           </Tabs>
         </Section>
@@ -154,7 +154,7 @@ export const BotAnnouncement = (props) => {
                                 )?.color
                           }
                         >
-                          {val.button.channel || 'No radio channel'}
+                          {val.button.channel || '不使用无线电频道'}
                         </Box>
                       </Stack.Item>
                     </Stack>
@@ -171,7 +171,7 @@ export const BotAnnouncement = (props) => {
                 onChange={setSearch}
                 fluid
                 autoFocus
-                placeholder="Search..."
+                placeholder="搜索……"
               />
             </Stack.Item>
             <Stack.Item>
@@ -179,10 +179,10 @@ export const BotAnnouncement = (props) => {
                 {tab === TAB.Announcements ? (
                   <Stack.Item grow>
                     <Dropdown
-                      options={['No radio channel', ...channels]}
+                      options={[{ value: 'No radio channel', displayText: '不使用无线电频道' }, ...channels]}
                       displayText={
                         selectedChannel === null
-                          ? 'No radio channel'
+                          ? '不使用无线电频道'
                           : selectedChannel
                       }
                       width="100%"
@@ -224,8 +224,8 @@ export const BotAnnouncement = (props) => {
                     minWidth="96px"
                   >
                     {tab === TAB.Announcements
-                      ? 'Make Shortcut'
-                      : 'Delete Shortcut'}
+                      ? '创建快捷按钮'
+                      : '删除快捷按钮'}
                   </Button>
                 </Stack.Item>
                 <Stack.Item>
@@ -254,7 +254,7 @@ export const BotAnnouncement = (props) => {
                     disabled={cooldown_left > 0}
                     minWidth="96px"
                   >
-                    Play{' '}
+                    播放{' '}
                     {cooldown_left > 0
                       ? `(${Math.round(cooldown_left / 10)}s)`
                       : ''}

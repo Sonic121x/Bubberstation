@@ -19,7 +19,7 @@ export const StateSelectModal = (props: StateSelectModalProps) => {
     <Modal position="absolute" width="30%" height="50%" top="25%" left="35%">
       <Section
         fill
-        title="States"
+        title="运行环境"
         buttons={
           <Button
             color="red"
@@ -28,7 +28,7 @@ export const StateSelectModal = (props: StateSelectModalProps) => {
               setModal(undefined);
             }}
           >
-            Cancel
+            取消
           </Button>
         }
       >
@@ -47,7 +47,7 @@ export const StateSelectModal = (props: StateSelectModalProps) => {
           <Stack.Item grow>
             <Input
               fluid
-              placeholder="New State"
+              placeholder="新建运行环境"
               value={input}
               onChange={setInput}
             />

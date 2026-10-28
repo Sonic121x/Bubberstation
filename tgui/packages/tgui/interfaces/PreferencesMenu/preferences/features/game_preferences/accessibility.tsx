@@ -1,59 +1,59 @@
 import { CheckboxInput, type Feature, type FeatureToggle, FeatureSliderInput } from '../base';
 
 export const darkened_flash: FeatureToggle = {
-  name: 'Enable darkened flashes',
+  name: '启用暗色闪光',
   category: 'ACCESSIBILITY',
   description: `
-    When toggled, being flashed will show a dark screen rather than a
-    bright one.
+    启用后，被闪光照射时屏幕会变暗，
+    而不是变亮。
   `,
   component: CheckboxInput,
 };
 
 export const screen_shake_darken: FeatureToggle = {
-  name: 'Darken screen shake',
+  name: '屏幕震动时变暗',
   category: 'ACCESSIBILITY',
   description: `
-      When toggled, experiencing screen shake will darken your screen.
+      启用后，发生屏幕震动时屏幕会变暗。
     `,
   component: CheckboxInput,
 };
 
 export const remove_double_click: FeatureToggle = {
-  name: 'Remove double click',
+  name: '免用双击',
   category: 'ACCESSIBILITY',
   description: `
-      When toggled, actions that require a double click will instead offer
-      alternatives, good if you have a not-so-functional mouse.
+      启用后，需要双击的操作会提供替代方式，
+      适合鼠标不太灵敏的情况。
     `,
   component: CheckboxInput,
 };
 
 export const min_recoil_multiplier: Feature<number> = {
-  name: 'Cosmetic Recoil Strength',
+  name: '视觉后坐力强度',
   category: 'ACCESSIBILITY',
   description: `
-      Modifies the strength of cosmetic recoil's effect on your camera.
-      0 will disable cosmetic recoil entirely, though mechanical recoil will be unaffected.
+      调整后坐力视觉效果对镜头的影响强度。
+      设为 0 将完全关闭视觉后坐力，但不影响实际后坐力机制。
     `,
   component: FeatureSliderInput,
 };
 
 export const stair_indicator: FeatureToggle = {
-  name: 'Enable stair indicator',
+  name: '启用楼梯指示',
   category: 'ACCESSIBILITY',
   description: `
-      When toggled, staircases will have a visual indicator showing which
-      direction to walk to transition floors.
+      启用后，楼梯会显示视觉指示，
+      标明切换楼层时应行走的方向。
     `,
   component: CheckboxInput,
 };
 
 export const twelve_hour: FeatureToggle = {
-  name: 'Twelve-Hour Clock',
+  name: '十二小时制时钟',
   category: 'ACCESSIBILITY',
   description: `
-      When toggled, will replace many instances of real-world time with AM/PM instead.
+      启用后，许多现实时间显示将改用带上午/下午标记的十二小时制。
     `,
   component: CheckboxInput,
 };

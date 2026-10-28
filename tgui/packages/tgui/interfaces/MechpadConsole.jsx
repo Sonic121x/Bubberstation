@@ -32,7 +32,7 @@ export const MechpadControl = (props) => {
       buttons={
         <Button
           icon="times"
-          content="Remove"
+          content="移除"
           color="bad"
           onClick={() => act('remove')}
         />
@@ -40,14 +40,14 @@ export const MechpadControl = (props) => {
     >
       {(!connected_mechpad && (
         <Box color="bad" textAlign="center">
-          No Launch Pad Connected.
+          未连接传送平台。
         </Box>
       )) || (
         <Button
           fluid
           icon="upload"
           disabled={!pad_active}
-          content={mechonly ? 'Launch (Mech Only)' : 'Launch'}
+          content={mechonly ? '传送（仅限机甲）' : '传送'}
           color={mechonly ? 'default' : 'good'}
           textAlign="center"
           onClick={() => act('launch')}
@@ -64,7 +64,7 @@ export const MechpadConsole = (props) => {
     <Window width={475} height={130}>
       <Window.Content>
         {(mechpads.length === 0 && (
-          <NoticeBox>No Pads Connected</NoticeBox>
+          <NoticeBox>未连接传送平台</NoticeBox>
         )) || (
           <Section>
             <Flex minHeight="70px">
@@ -90,7 +90,7 @@ export const MechpadConsole = (props) => {
               </Flex.Item>
               <Flex.Item grow={1} basis={0} minHeight="100%">
                 {(selected_id && <MechpadControl />) || (
-                  <Box>Please select a pad</Box>
+                  <Box>请选择一个传送平台</Box>
                 )}
               </Flex.Item>
             </Flex>

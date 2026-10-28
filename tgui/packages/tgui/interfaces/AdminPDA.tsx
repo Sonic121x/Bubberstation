@@ -32,7 +32,7 @@ export function AdminPDA(props) {
   const invisibleState = useState<BooleanLike>(0);
 
   return (
-    <Window title="Send PDA Message" width={300} height={575} theme="admin">
+    <Window title="发送 PDA 消息" width={300} height={575} theme="admin">
       <Window.Content>
         <ReceiverChoice
           invisibleState={invisibleState}
@@ -75,12 +75,12 @@ function ReceiverChoice(props: ReceiverProps) {
     }));
 
   return (
-    <Section title="To Who?" textAlign="center">
+    <Section title="收件人" textAlign="center">
       <Dropdown
         disabled={spam}
         selected={user}
         displayText={users[user]?.username}
-        placeholder="Pick a user..."
+        placeholder="选择用户……"
         options={dropdownOptions}
         width="275px"
         mb={1}
@@ -94,10 +94,10 @@ function ReceiverChoice(props: ReceiverProps) {
           fluid
           onClick={() => setShowInvisible(!showInvisible)}
         >
-          Include invisible?
+          包含隐藏用户？
         </Button.Checkbox>
         <Button.Checkbox checked={spam} fluid onClick={() => setSpam(!spam)}>
-          Should it be sent to everyone?
+          发送给所有人？
         </Button.Checkbox>
       </Box>
     </Section>
@@ -114,12 +114,12 @@ function SenderInfo(props: SenderInfoProps) {
   const [_job, setJob] = props.jobState;
 
   return (
-    <Section title="From Who?" textAlign="center">
+    <Section title="发件人" textAlign="center">
       <Box fontSize="14px">
-        <Input placeholder="Sender name..." fluid onChange={setName} />
+        <Input placeholder="发件人姓名……" fluid onChange={setName} />
       </Box>
       <Box fontSize="14px" pt="10px">
-        <Input placeholder="Sender's job..." fluid onChange={setJob} />
+        <Input placeholder="发件人职位……" fluid onChange={setJob} />
       </Box>
     </Section>
   );
@@ -140,11 +140,11 @@ function getErrorText(
   target: boolean,
 ) {
   const reasonList: string[] = [];
-  if (!target) reasonList.push('target');
-  if (!name) reasonList.push('name');
-  if (!job) reasonList.push('job');
-  if (!message) reasonList.push('message text');
-  return reasonList.join(', ');
+  if (!target) reasonList.push('收件人');
+  if (!name) reasonList.push('姓名');
+  if (!job) reasonList.push('职位');
+  if (!message) reasonList.push('消息正文');
+  return reasonList.join('、');
 }
 
 function MessageInput(props: MessageInputProps) {
@@ -162,11 +162,11 @@ function MessageInput(props: MessageInputProps) {
   const blocked = !name || !job || !messageText;
 
   return (
-    <Section title="Message" textAlign="center">
+    <Section title="消息" textAlign="center">
       <Box>
         <TextArea
           fluid
-          placeholder="Type the message you want to send..."
+          placeholder="输入要发送的消息……"
           height="200px"
           mb={1}
           onChange={setMessageText}
@@ -177,18 +177,18 @@ function MessageInput(props: MessageInputProps) {
           fluid
           checked={force}
           tooltip={
-            'This will immediately broadcast the message, bypassing telecomms altogether.'
+            '立即广播此消息，完全绕过电信系统。'
           }
           onClick={() => setForce(!force)}
         >
-          Force send the message?
+          强制发送消息？
         </Button.Checkbox>
         <Button
           tooltip={
             blocked
-              ? 'Fill in the following lines: ' +
+              ? '请填写以下内容：' +
                 getErrorText(name, job, messageText, spam || !!user)
-              : 'Send message to user(s)'
+              : '向用户发送消息'
           }
           fluid
           disabled={blocked}
@@ -205,7 +205,7 @@ function MessageInput(props: MessageInputProps) {
             })
           }
         >
-          Send Message
+          发送消息
         </Button>
       </Box>
     </Section>

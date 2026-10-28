@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext } from 'react'; import { chineseDisplay } from 'tgui/localization/zhDisplay';
 import {
   Box,
   Button,
@@ -42,7 +42,7 @@ export const EntryFloat = (props: EntryFloatProps) => {
       <Button
         icon={'question'}
         onClick={() => setDesc(var_name)}
-        tooltip={'View details'}
+        tooltip={'查看详情'}
       />
       <NumberInput
         animated
@@ -71,7 +71,7 @@ export const EntryCoord = (props: EntryCoordProps) => {
       <Button
         icon={'question'}
         onClick={() => setDesc(var_name)}
-        tooltip={'View details'}
+        tooltip={'查看详情'}
       />
       <NumberInput
         animated
@@ -145,12 +145,12 @@ export const EntryGradient = (props: EntryGradientProps) => {
           <Button
             icon={'question'}
             onClick={() => setDesc(var_name)}
-            tooltip={'View details'}
+            tooltip={'查看详情'}
           />
         </Stack.Item>
         <Stack.Item>
           <Button
-            tooltip={'Loop'}
+            tooltip={'循环'}
             icon={'sync'}
             selected={!!isLooping}
             onClick={() =>
@@ -165,8 +165,8 @@ export const EntryGradient = (props: EntryGradientProps) => {
         </Stack.Item>
         <Stack.Item>
           <Dropdown
-            options={SpaceTypes}
-            selected={space_type}
+            options={SpaceTypes.map((value) => ({ value, displayText: chineseDisplay(value) }))}
+            selected={space_type} displayText={chineseDisplay(space_type)}
             onSelected={(e) =>
               act('edit', {
                 var: var_name,
@@ -200,7 +200,7 @@ export const EntryGradient = (props: EntryGradientProps) => {
                 />
                 <Button
                   icon="minus"
-                  tooltip="Remove entry"
+                  tooltip="移除条目"
                   onClick={() =>
                     act('edit', {
                       var: var_name,
@@ -215,7 +215,7 @@ export const EntryGradient = (props: EntryGradientProps) => {
         <Stack.Item>
           <Button
             icon={'add'}
-            tooltip={'Add new entry'}
+            tooltip={'添加条目'}
             onClick={() =>
               act('edit', {
                 var: var_name,
@@ -247,13 +247,13 @@ export const EntryTransform = (props: EntryTransformProps) => {
           <Button
             icon={'question'}
             onClick={() => setDesc(var_name)}
-            tooltip={'View details'}
+            tooltip={'查看详情'}
           />
         </Stack.Item>
         <Stack.Item>
           <Dropdown
-            options={MatrixTypes}
-            selected={selected}
+            options={MatrixTypes.map((value) => ({ value, displayText: chineseDisplay(value) }))}
+            selected={selected} displayText={chineseDisplay(selected)}
             onSelected={(e) => act('transform_size', { new_value: e })}
             width="130px"
           />
@@ -295,7 +295,7 @@ export const EntryIcon = (props: EntryIconStateProps) => {
           <Button
             icon={'question'}
             onClick={() => setDesc(var_name)}
-            tooltip={'View details'}
+            tooltip={'查看详情'}
           />
         </Stack.Item>
         {typeof icon_state === 'object' && icon_state !== null ? (
@@ -374,7 +374,7 @@ export const EntryIconState = (props: EntryIconStateProps) => {
           <Button
             icon={'question'}
             onClick={() => setDesc(var_name)}
-            tooltip={'View details'}
+            tooltip={'查看详情'}
           />
         </Stack.Item>
         {typeof icon_state === 'object' && icon_state !== null ? (

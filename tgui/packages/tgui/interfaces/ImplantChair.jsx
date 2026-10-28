@@ -8,14 +8,14 @@ export const ImplantChair = (props) => {
   return (
     <Window width={375} height={280}>
       <Window.Content>
-        <Section title="Occupant Information" textAlign="center">
+        <Section title="舱内人员信息" textAlign="center">
           <LabeledList>
-            <LabeledList.Item label="Name">
-              {data.occupant.name || 'No Occupant'}
+            <LabeledList.Item label="姓名">
+              {data.occupant.name || '无人'}
             </LabeledList.Item>
             {!!data.occupied && (
               <LabeledList.Item
-                label="Status"
+                label="状态"
                 color={
                   data.occupant.stat === 0
                     ? 'good'
@@ -25,35 +25,35 @@ export const ImplantChair = (props) => {
                 }
               >
                 {data.occupant.stat === 0
-                  ? 'Conscious'
+                  ? '清醒'
                   : data.occupant.stat === 1
-                    ? 'Unconscious'
-                    : 'Dead'}
+                    ? '昏迷'
+                    : '死亡'}
               </LabeledList.Item>
             )}
           </LabeledList>
         </Section>
-        <Section title="Operations" textAlign="center">
+        <Section title="操作" textAlign="center">
           <LabeledList>
-            <LabeledList.Item label="Door">
+            <LabeledList.Item label="舱门">
               <Button
                 icon={data.open ? 'unlock' : 'lock'}
                 color={data.open ? 'default' : 'red'}
-                content={data.open ? 'Open' : 'Closed'}
+                content={data.open ? '开启' : '关闭'}
                 onClick={() => act('door')}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Implant Occupant">
+            <LabeledList.Item label="植入舱内人员">
               <Button
                 icon="code-branch"
                 content={
-                  data.ready ? data.special_name || 'Implant' : 'Recharging'
+                  data.ready ? data.special_name || '植入' : '充能中'
                 }
                 onClick={() => act('implant')}
               />
               {data.ready === 0 && <Icon name="cog" color="orange" spin />}
             </LabeledList.Item>
-            <LabeledList.Item label="Implants Remaining">
+            <LabeledList.Item label="剩余植入物">
               {data.ready_implants}
               {data.replenishing === 1 && <Icon name="sync" color="red" spin />}
             </LabeledList.Item>
