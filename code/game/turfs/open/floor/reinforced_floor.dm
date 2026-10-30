@@ -105,7 +105,7 @@
 	initial_gas_mix = ATMOS_TANK_CO2
 
 /turf/open/floor/engine/plasma
-	name = "等离子地板"
+	name = "\improper 等离子地板"
 	initial_gas_mix = ATMOS_TANK_PLASMA
 
 /turf/open/floor/engine/o2

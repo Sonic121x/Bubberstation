@@ -245,7 +245,6 @@
 /datum/design/board/bluespace_miner
 	name = "机器设计（蓝空间采矿机）"
 	desc = "允许制造用于建造蓝空间采矿机的电路板。"
-	id = "bluespace_miner"
 	build_path = /obj/item/circuitboard/machine/bluespace_miner
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
@@ -253,15 +252,13 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/techweb_node/bluespace_miner
-	id = "bluespace_miner"
 	display_name = "蓝空间采矿机"
 	description = "未来已至：我们可以在浩瀚的蓝空间之海中采矿了。"
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
-	hidden = TRUE
-	experimental = TRUE
-	prereq_ids = list("applied_bluespace")
-	design_ids = list(
-		"bluespace_miner",
+	prerequisite_nodes = list(/datum/techweb_node/applied_bluespace)
+	node_flags = TECHWEB_NODE_HIDDEN | TECHWEB_NODE_EXPERIMENTAL
+	unlocked_designs = list(
+		/datum/design/board/bluespace_miner,
 	)
 
 #undef BLUESPACE_MINER_TOO_HOT

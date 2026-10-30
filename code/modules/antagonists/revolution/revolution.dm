@@ -45,7 +45,7 @@
 /datum/antagonist/rev/on_gain()
 	. = ..()
 	equip_rev()
-	owner.current.log_message("已被转化为革命者！", LOG_ATTACK, color="red")
+	owner.current.log_message("已被转化为革命者！", LOG_ATTACK, color = COLOR_CULT_RED)
 
 /datum/antagonist/rev/create_team(datum/team/revolution/new_team)
 	if(!new_team)
@@ -94,6 +94,27 @@
 	.["code_phrases"] = rev_team.head_chose_phrase_raw
 	.["code_responses"] = rev_team.head_code_responses_raw
 	.["lone_wolf"] = !roundstart || length(rev_team.get_head_revolutionaries()) == 1
+	.["conversion_objective_max_length"] = MAX_CHARTER_LEN // it's poetic, not lazy reuse, I swear
+	.["conversion_objective"] = html_decode(conversion_objective)
+
+/datum/antagonist/rev/head/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	switch(action)
+		if("set_conversion_objective")
+			if(!params["conversion_objective"])
+				conversion_objective = ""
+				return
+
+			var/new_objective = trim(sanitize(params["conversion_objective"]), MAX_CHARTER_LEN)
+			if(!new_objective)
+				tgui_alert(usr, "你的目标无效，请重试。")
+				return
+			if(is_ic_filtered(new_objective))
+				tgui_alert(usr, "你的目标包含角色内交流过滤词，请移除后重试。")
+				return
+
+			conversion_objective = new_objective
+			owner.current.log_message("将转化指导方针设为：[conversion_objective]", color = COLOR_CULT_RED)
 
 /datum/antagonist/rev/head/admin_add(datum/mind/new_owner, mob/admin)
 	give_flash = TRUE
@@ -154,6 +175,9 @@
 
 	preview_outfit = /datum/outfit/revolutionary
 	hardcore_random_bonus = TRUE
+
+	/// Headrev-set objective sent to any player they convert
+	var/conversion_objective = ""
 
 	var/remove_clumsy = FALSE
 	var/give_flash = FALSE
@@ -283,8 +307,34 @@
 		rev_mind.current.Stun(10 SECONDS)
 
 	rev_mind.add_memory(/datum/memory/recruited_by_headrev, protagonist = rev_mind.current, antagonist = owner.current)
-	rev_mind.add_antag_datum(/datum/antagonist/rev,rev_team)
+	rev_mind.add_antag_datum(/datum/antagonist/rev, rev_team)
 	return TRUE
+
+/datum/antagonist/rev/head/add_revolutionary(datum/mind/rev_mind, stun = TRUE, mute = TRUE)
+	. = ..()
+	if(!. || !conversion_objective)
+		return
+
+	addtimer(CALLBACK(src, PROC_REF(report_conversion_objective), rev_mind, conversion_objective), 2 SECONDS, TIMER_DELETE_ME)
+
+/datum/antagonist/rev/head/proc/report_conversion_objective(datum/mind/rev_mind, set_conversion_objective)
+	if(QDELETED(rev_mind))
+		return
+
+	if(isnull(rev_mind?.current?.client))
+		if(isnull(rev_mind?.current))
+			return
+		// Try again until they get a client - presumably they're actively being polled for (due to a jobban or something).
+		addtimer(CALLBACK(src, PROC_REF(report_conversion_objective), rev_mind, set_conversion_objective), 3 SECONDS, TIMER_DELETE_ME)
+		return
+
+	var/conversion_formatted = span_slightly_larger(span_hypnophrase(set_conversion_objective))
+	var/hint_formatted = span_warning("这是你的（新）领袖向你灌输的指导方针——\
+		你应尽可能遵循，但它并非严格的命令。\
+		你的（新）领袖之后下达的命令可能会取代它。")
+
+	to_chat(rev_mind.current, fieldset_block(span_warning("一道指示在你的脑海中回响……"), "[conversion_formatted]<br>[hint_formatted]", "boxed_message red_box"))
+	rev_mind.current.log_message("收到了来自[key_name(owner.current)]的转化指导方针：[set_conversion_objective]", color = COLOR_CULT_RED)
 
 /datum/antagonist/rev/head/proc/demote()
 	var/datum/mind/old_owner = owner
@@ -324,7 +374,7 @@
 
 /// Handles rev removal via IC methods such as borging, mindshielding, blunt force trauma to the head or revs losing.
 /datum/antagonist/rev/proc/remove_revolutionary(deconverter)
-	owner.current.log_message("已被[ismob(deconverter) ? key_name(deconverter) : deconverter]解除革命者身份！", LOG_ATTACK, color=COLOR_CULT_RED)
+	owner.current.log_message("已被[ismob(deconverter) ? key_name(deconverter) : deconverter]解除革命者身份！", LOG_ATTACK, color = COLOR_CULT_RED)
 	if(deconverter == DECONVERTER_BORGED)
 		message_admins("[ADMIN_LOOKUPFLW(owner.current)]在身为[name]时被改造成了半机械人")
 	if(iscarbon(owner.current) && deconverter)
@@ -426,7 +476,7 @@
 	for(var/datum/mind/khrushchev as anything in members - head_revolutionaries)
 		if(!can_be_headrev(khrushchev))
 			continue
-		if(ismonkey(khrushchev.current))
+		if(HAS_TRAIT(khrushchev.current, TRAIT_LESSER_HUMANOID))
 			monkey_promotable += khrushchev
 		else
 			promotable += khrushchev

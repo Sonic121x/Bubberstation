@@ -7,16 +7,35 @@
 	product_ads = "用玩具感受强劲！;今天就来释放你内心的童真！;玩具武器不杀人，但合法猎人会！;有了玩具武器，谁还需要责任心？;让你的下一次谋杀变得有趣！"
 	vend_reply = "欢迎再来！"
 	light_mask = "donksoft-light-mask"
-	products = list(
-		/obj/item/card/emagfake = 4,
-		/obj/item/hot_potato/harmless/toy = 4,
-		/obj/item/toy/sword = 12,
-		/obj/item/toy/foamblade = 12,
-		/obj/item/gun/ballistic/automatic/pistol/toy = 8,
-		/obj/item/gun/ballistic/automatic/toy = 8,
-		/obj/item/gun/ballistic/shotgun/toy = 8,
-		/obj/item/ammo_box/foambox/mini = 20,
+	product_categories = list(
+		list(
+			"name" = "玩具",
+			"icon" = "gifts",
+			"products" = list(
+				/obj/item/card/emagfake = 4,
+				/obj/item/hot_potato/harmless/toy = 4,
+				/obj/item/toy/sword = 12,
+				/obj/item/toy/foamblade = 12,
+				/obj/item/gun/ballistic/automatic/pistol/toy = 8,
+				/obj/item/gun/ballistic/automatic/toy = 8,
+				/obj/item/gun/ballistic/shotgun/toy = 8,
+				/obj/item/ammo_box/foambox/mini = 20,
+			)
+		),
+		list(
+			"name" = "枕头武器",
+			"icon" = "bed",
+			"products" = list(
+				/obj/item/shield/mattress = 10,
+				/obj/item/spear/pillow = 10,
+				/obj/item/spear/pillow = 10,
+				/obj/item/pillow/clown = 10,
+				/obj/item/pillow/mime = 10,
+			)
+
+		)
 	)
+
 	contraband = list(
 		/obj/item/toy/balloon/syndicate = 1,
 		/obj/item/gun/ballistic/shotgun/toy/crossbow = 8,

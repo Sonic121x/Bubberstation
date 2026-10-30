@@ -1,6 +1,6 @@
 ///Kinesis - Gives you the ability to move and launch objects.
 /obj/item/mod/module/anomaly_locked/kinesis
-	name = "MOD 念力模块"
+	name = "\improper MOD 念力模块"
 	desc = "这种模块是安装在小臂上的插件，多年来一直被认定已经失传，\
 		尽管它曾搭载的那些套装仍在少量流通。\
 		这项技术能让使用者生成精确的反重力场，\
@@ -255,7 +255,7 @@
 	core_removable = FALSE
 
 /obj/item/mod/module/anomaly_locked/kinesis/prototype
-	name = "MOD 原型念力模块"
+	name = "\improper MOD 原型念力模块"
 	prebuilt = TRUE
 	complexity = 0
 	use_energy_cost = DEFAULT_CHARGE_DRAIN * 5
@@ -263,7 +263,7 @@
 	core_removable = FALSE
 
 /obj/item/mod/module/anomaly_locked/kinesis/plus
-	name = "MOD 念力+ 模块"
+	name = "\improper MOD 念力+ 模块"
 	desc = "这种模块是安装在小臂上的插件，最近才在秘密中重新研制出来。\
 		念力+ 模块是所有恶徒的克星，它是一件强大的工具，能让使用者\
 		随意操纵周围的世界。与旧型号一样，它能操纵\
@@ -274,7 +274,7 @@
 
 /// Admin suit version of kinesis. Can grab anything at any range, may enable phasing through walls.
 /obj/item/mod/module/anomaly_locked/kinesis/admin
-	name = "MOD 念力++ 模块"
+	name = "\improper MOD 念力++ 模块"
 	desc = "这种模块是安装在小臂上的插件，最近才在超级秘密中重新重新研制出来。\
 		这一款能强行让部分被抓取的物体穿墙而过。哦不。"
 	complexity = 0

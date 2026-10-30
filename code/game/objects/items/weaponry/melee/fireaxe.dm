@@ -8,6 +8,7 @@ GLOBAL_DATUM(bridge_axe, /obj/item/fireaxe)
 	desc = "真正属于疯子的武器。谁会想到用斧头去扑火呢？"
 	icon = 'icons/obj/weapons/fireaxe.dmi'
 	icon_state = "fireaxe0"
+	inhand_icon_state = "fireaxe0"
 	base_icon_state = "fireaxe"
 	lefthand_file = 'icons/mob/inhands/weapons/axes_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/axes_righthand.dmi'
@@ -81,6 +82,7 @@ GLOBAL_DATUM(bridge_axe, /obj/item/fireaxe)
 	name = "骨斧"
 	desc = "一把由数块磨尖的骨板粗略捆扎而成的大型凶恶斧头。以怪物为材，靠杀戮怪物制成，用于杀戮怪物。"
 	icon_state = "bone_axe0"
+	inhand_icon_state = "bone_axe0"
 	base_icon_state = "bone_axe"
 	icon_angle = 180
 	force_unwielded = 5
@@ -94,6 +96,7 @@ GLOBAL_DATUM(bridge_axe, /obj/item/fireaxe)
 	name = "金属氢斧"
 	desc = "一把轻量撬棍，前端接有极其锋利的消防斧头。它舍弃了作为武器的分量，换取更便于挂在宇航服上携带而无需占用背包。"
 	icon_state = "metalh2_axe0"
+	inhand_icon_state = "metalh2_axe0"
 	base_icon_state = "metalh2_axe"
 	icon_angle = -45
 	force_unwielded = 5
@@ -108,6 +111,7 @@ GLOBAL_DATUM(bridge_axe, /obj/item/fireaxe)
 	name = "登舰斧"
 	desc = "一柄沉重的劈砍利器，光是看着就让人感到累赘。似乎非常擅长把窗户、气闸、路障乃至人劈成两半。"
 	icon_state = "boarding_axe0"
+	inhand_icon_state = "boarding_axe0"
 	base_icon_state = "boarding_axe"
 	force_unwielded = 5
 	force_wielded = 30

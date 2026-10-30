@@ -60,6 +60,7 @@ type Event = {
   description: string;
   type: string;
   category: string;
+  disabled: BooleanLike;
   has_customization: BooleanLike;
 };
 
@@ -178,26 +179,38 @@ function EventSection(props) {
             <Stack>
               {eventPage.map((event) => (
                 <Stack.Item grow key={event.type}>
-                  <Button
-                    className="Button__rightIcon"
-                    tooltip={
-                      event.description +
-                      (event.has_customization
-                        ? ' 支持管理员自定义。'
-                        : '')
-                    }
-                    fluid
-                    icon={event.has_customization ? 'gear' : undefined}
-                    iconPosition="right"
-                    onClick={() =>
-                      act('forceevent', {
-                        type: event.type,
-                        announce: announce,
-                      })
-                    }
-                  >
-                    {event.name}
-                  </Button>
+                  <Stack fill>
+                    <Stack.Item>
+                      <Button.Checkbox
+                        fluid
+                        checked={!event.disabled}
+                        onClick={() => act('toggleevent', { type: event.type })}
+                        tooltip="取消勾选后，此事件将不会随机触发。"
+                      />
+                    </Stack.Item>
+                    <Stack.Item grow>
+                      <Button
+                        className="Button__rightIcon"
+                        tooltip={
+                          event.description +
+                          (event.has_customization
+                            ? ' 支持管理员自定义。'
+                            : '')
+                        }
+                        fluid
+                        icon={event.has_customization ? 'gear' : undefined}
+                        iconPosition="right"
+                        onClick={() =>
+                          act('forceevent', {
+                            type: event.type,
+                            announce: announce,
+                          })
+                        }
+                      >
+                        {event.name}
+                      </Button>
+                    </Stack.Item>
+                  </Stack>
                 </Stack.Item>
               ))}
             </Stack>

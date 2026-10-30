@@ -6,7 +6,7 @@
 	name = "试剂处理水晶"
 	desc = "一块不知怎地能代谢化学物质的大水晶，存在于等离子人体内。"
 	icon_state = "liver-p"
-	organ_flags = ORGAN_MINERAL
+	organ_flags = parent_type::organ_flags | ORGAN_ORGANIC
 	organ_traits = list(TRAIT_PLASMA_LOVER_METABOLISM)
 	milk_burn_healing = 0
 

@@ -1,6 +1,6 @@
 ADMIN_VERB(outfit_manager, R_DEBUG|R_ADMIN, "服装管理器", "查看并编辑服装。", ADMIN_CATEGORY_DEBUG)
-	var/static/datum/outfit_manager/ui = new
-	ui.ui_interact(user.mob)
+	var/datum/outfit_manager/tgui = new()
+	tgui.ui_interact(user.mob)
 
 /datum/outfit_manager
 

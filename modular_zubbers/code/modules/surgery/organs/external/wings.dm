@@ -1,7 +1,6 @@
 /obj/item/organ/wings/moth
 	name = "蛾翼"
 	desc = "一对毛茸茸的蛾翼。"
-	flight_for_species = list(SPECIES_MOTH)
 	///Our associated shadow jaunt spell, for all nightmares
 	var/datum/action/cooldown/spell/touch/moth_climb/our_climb
 	///Our associated terrorize spell, for antagonist nightmares

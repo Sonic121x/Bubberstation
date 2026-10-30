@@ -118,6 +118,7 @@
 	singular_name = "仙草地板砖"
 	desc = "一丛古怪的、泛着蓝光的草。"
 	icon_state = "tile_fairygrass"
+	inhand_icon_state = "tile_fairygrass"
 	turf_type = /turf/open/floor/grass/fairy
 	resistance_flags = FLAMMABLE
 	merge_type = /obj/item/stack/tile/fairygrass
@@ -173,11 +174,21 @@
 	resistance_flags = FLAMMABLE
 	tile_reskin_types = list(
 		/obj/item/stack/tile/bamboo,
+		/obj/item/stack/tile/bamboo/planks,
 		/obj/item/stack/tile/bamboo/tatami,
 		/obj/item/stack/tile/bamboo/tatami/purple,
 		/obj/item/stack/tile/bamboo/tatami/black,
 	)
 	mats_per_unit = list(/datum/material/bamboo = HALF_SHEET_MATERIAL_AMOUNT / 2)
+
+/obj/item/stack/tile/bamboo/planks
+	name = "竹板地砖"
+	singular_name = "竹板地砖"
+	icon_state = "tile_bamboo_planks"
+	inhand_icon_state = "tile-grass"
+	desc = "将切好的竹片像木板一样层层铺成的地砖。"
+	turf_type = /turf/open/floor/bamboo/planks
+	merge_type = /obj/item/stack/tile/bamboo/planks
 
 /obj/item/stack/tile/bamboo/tatami
 	name = "绿边榻榻米"
@@ -349,6 +360,69 @@
 	inhand_icon_state = "tile-carpet-orange"
 	turf_type = /turf/open/floor/carpet/donk
 	merge_type = /obj/item/stack/tile/carpet/donk
+	tile_reskin_types = null
+
+/obj/item/stack/tile/carpet/bear
+	name = "熊皮地毯"
+	desc = "将熊皮展开制成的地毯，供你踩踏。"
+	icon_state = "tile_carpet_bear"
+	inhand_icon_state = "tile-carpet-bear"
+	turf_type = /turf/open/floor/carpet/bear
+	merge_type = /obj/item/stack/tile/carpet/bear
+	tile_reskin_types = null
+
+/obj/item/stack/tile/carpet/polar_bear
+	name = "北极熊皮地毯"
+	desc = "将北极熊皮展开制成的地毯，供你踩踏。"
+	icon_state = "tile_carpet_bear_polar"
+	inhand_icon_state = "tile-carpet-bear-polar"
+	turf_type = /turf/open/floor/carpet/polar_bear
+	merge_type = /obj/item/stack/tile/carpet/polar_bear
+	tile_reskin_types = null
+
+/obj/item/stack/tile/carpet/moth
+	name = "飞蛾绒地毯"
+	desc = "将飞蛾绒皮展开制成的地毯，供你踩踏。"
+	icon_state = "tile_carpet_moth"
+	inhand_icon_state = "tile-carpet-moth"
+	turf_type = /turf/open/floor/carpet/moth
+	merge_type = /obj/item/stack/tile/carpet/moth
+	tile_reskin_types = null
+
+/obj/item/stack/tile/carpet/goliath
+	name = "歌利亚兽皮地毯"
+	desc = "用守望者的筋腱将歌利亚兽皮甲片编织起来，做成了勉强算是地毯的东西。"
+	icon_state = "tile_carpet_goliath"
+	inhand_icon_state = "tile-carpet-goliath"
+	turf_type = /turf/open/floor/carpet/goliath
+	merge_type = /obj/item/stack/tile/carpet/goliath
+	tile_reskin_types = null
+
+/obj/item/stack/tile/carpet/carp
+	name = "鲤鱼鳞地毯"
+	desc = "用鲤鱼鳞制成的地毯。鲤毯，鲤毯，鲤鲤毯。"
+	icon_state = "tile_carpet_carp"
+	inhand_icon_state = "tile-carpet-carp"
+	turf_type = /turf/open/floor/carpet/carp
+	merge_type = /obj/item/stack/tile/carpet/carp
+	tile_reskin_types = null
+
+/obj/item/stack/tile/carpet/lizard
+	name = "蜥蜴鳞地毯"
+	desc = "用蜥蜴鳞片制成的地毯。制作过程中很可能伤害了蜥蜴。"
+	icon_state = "tile_carpet_lizard"
+	inhand_icon_state = "tile-carpet-lizard"
+	turf_type = /turf/open/floor/carpet/lizard
+	merge_type = /obj/item/stack/tile/carpet/lizard
+	tile_reskin_types = null
+
+/obj/item/stack/tile/carpet/human
+	name = "人皮地毯"
+	desc = "用剥下的人皮制成的地毯。新鲜而湿润。"
+	icon_state = "tile_carpet_skin"
+	inhand_icon_state = "tile-carpet-skin"
+	turf_type = /turf/open/floor/carpet/human
+	merge_type = /obj/item/stack/tile/carpet/human
 	tile_reskin_types = null
 
 /obj/item/stack/tile/carpet/fifty
@@ -1116,9 +1190,39 @@
 	singular_name = "塑料地板砖"
 	desc = "一块廉价、薄脆的塑料地板。"
 	icon_state = "tile_plastic"
+	inhand_icon_state = "tile-bluespace"
 	mats_per_unit = list(/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT / 2)
 	turf_type = /turf/open/floor/plastic
 	merge_type = /obj/item/stack/tile/plastic
+	tile_reskin_types = list(
+		/obj/item/stack/tile/plastic,
+		/obj/item/stack/tile/plastic/puzzle,
+	)
+
+/obj/item/stack/tile/plastic/puzzle
+	icon_state = "tile_plastic_puzzle"
+	inhand_icon_state = "tile-plastic-puzzle"
+	turf_type = /turf/open/floor/plastic/puzzle
+	merge_type = /obj/item/stack/tile/plastic/puzzle
+
+/obj/item/stack/tile/hauntium
+	name = "幽魂矿地板砖"
+	singular_name = "幽魂矿地板砖"
+	desc = "行尸走肉？不如说是在尸体上行走。"
+	icon_state = "tile_hauntium"
+	inhand_icon_state = "tile-hauntium"
+	mats_per_unit = list(/datum/material/hauntium = HALF_SHEET_MATERIAL_AMOUNT / 2)
+	turf_type = /turf/open/floor/hauntium
+	merge_type = /obj/item/stack/tile/hauntium
+	tile_reskin_types = list(
+		/obj/item/stack/tile/hauntium,
+		/obj/item/stack/tile/hauntium/tiled,
+	)
+
+/obj/item/stack/tile/hauntium/tiled
+	icon_state = "tile_hauntium_tiled"
+	turf_type = /turf/open/floor/hauntium/tiled
+	merge_type = /obj/item/stack/tile/hauntium/tiled
 
 /obj/item/stack/tile/material
 	name = "地砖"
@@ -1190,6 +1294,13 @@
 	turf_type = /turf/open/floor/bronze/filled
 	merge_type = /obj/item/stack/tile/bronze/filled
 
+/obj/item/stack/tile/bronze/window
+	name = "青铜玻璃地板砖"
+	singular_name = "青铜玻璃地板砖"
+	icon_state = "tile_glass_bronze"
+	turf_type = /turf/open/floor/glass/bronze
+	merge_type = /obj/item/stack/tile/bronze/window
+
 /obj/item/stack/tile/cult
 	name = "铭刻地砖"
 	singular_name = "铭刻地板砖"
@@ -1198,6 +1309,19 @@
 	turf_type = /turf/open/floor/cult
 	mats_per_unit = list(/datum/material/runedmetal=SMALL_MATERIAL_AMOUNT*5)
 	merge_type = /obj/item/stack/tile/cult
+	tile_reskin_types = list(
+		/obj/item/stack/tile/cult,
+		/obj/item/stack/tile/cult/window,
+	)
+
+/obj/item/stack/tile/cult/window
+	name = "雕纹玻璃地板砖"
+	singular_name = "雕纹玻璃地板砖"
+	desc = "用符文金属制成的奇异玻璃地板砖。似乎并没有真正的超自然力量。"
+	icon_state = "tile_glass_runic"
+	turf_type = /turf/open/floor/glass/cult
+	mats_per_unit = list(/datum/material/runedmetal=SMALL_MATERIAL_AMOUNT*5)
+	merge_type = /obj/item/stack/tile/cult/window
 
 /// Floor tiles used to test emissive turfs.
 /obj/item/stack/tile/emissive_test
@@ -1326,3 +1450,95 @@
 	turf_type = /turf/open/floor/glass/reinforced/plasma
 	merge_type = /obj/item/stack/tile/rglass/plasma
 	mats_per_unit = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.125, /datum/material/alloy/plasmaglass = SHEET_MATERIAL_AMOUNT * 0.25)
+
+/obj/item/stack/tile/glass/titanium
+	name = "钛玻璃地板"
+	singular_name = "钛玻璃地板砖"
+	desc = "钛玻璃地板，能将你与浩瀚的太空隔开。"
+	icon_state = "tile_glass_titanium"
+	turf_type = /turf/open/floor/glass/titatanium
+	merge_type = /obj/item/stack/tile/glass/titanium
+	mats_per_unit = list(/datum/material/alloy/titaniumglass = SHEET_MATERIAL_AMOUNT * 0.25)
+
+/obj/item/stack/tile/glass/plastitanium
+	name = "塑钛玻璃地板"
+	singular_name = "塑钛玻璃地板砖"
+	desc = "塑钛玻璃地板，让你既能欣赏熔岩，又不会被烫伤双脚。"
+	icon_state = "tile_glass_plastitanium"
+	turf_type = /turf/open/floor/glass/plastitatanium
+	merge_type = /obj/item/stack/tile/glass/plastitanium
+	mats_per_unit = list(/datum/material/alloy/plastitaniumglass = SHEET_MATERIAL_AMOUNT * 0.25)
+
+/obj/item/stack/tile/stained_glass
+	name = "彩绘玻璃地板"
+	singular_name = "彩绘玻璃地板砖"
+	desc = "这东西不应该存在。"
+	icon_state = null
+	turf_type = /turf/open/floor/glass
+	inhand_icon_state = "tile-glass"
+	merge_type = /obj/item/stack/tile/stained_glass
+	mats_per_unit = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT * 0.25, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.25,)
+
+/obj/item/stack/tile/stained_glass/red
+	name = "红色彩绘玻璃地板"
+	singular_name = "红色彩绘玻璃地板砖"
+	desc = "染成红色的玻璃地板。希望不是用血染的。"
+	icon_state = "tile_sglass_red"
+	turf_type = /turf/open/floor/glass/stained_red
+	merge_type = /obj/item/stack/tile/stained_glass/red
+
+/obj/item/stack/tile/stained_glass/orange
+	name = "橙色彩绘玻璃地板"
+	singular_name = "橙色彩绘玻璃地板砖"
+	desc = "染成橙色的玻璃地板。是谁打翻了橙汁？"
+	icon_state = "tile_sglass_orange"
+	turf_type = /turf/open/floor/glass/stained_orange
+	merge_type = /obj/item/stack/tile/stained_glass/orange
+
+/obj/item/stack/tile/stained_glass/yellow
+	name = "黄色彩绘玻璃地板"
+	singular_name = "黄色彩绘玻璃地板砖"
+	desc = "染成黄色的玻璃地板。大概出自某位随和人士之手。"
+	icon_state = "tile_sglass_yellow"
+	turf_type = /turf/open/floor/glass/stained_yellow
+	merge_type = /obj/item/stack/tile/stained_glass/yellow
+
+/obj/item/stack/tile/stained_glass/green
+	name = "绿色彩绘玻璃地板"
+	singular_name = "绿色彩绘玻璃地板砖"
+	desc = "染成绿色的玻璃地板。这就是把液态铀放在桌沿的下场。"
+	icon_state = "tile_sglass_green"
+	turf_type = /turf/open/floor/glass/stained_green
+	merge_type = /obj/item/stack/tile/stained_glass/green
+
+/obj/item/stack/tile/stained_glass/blue
+	name = "蓝色彩绘玻璃地板"
+	singular_name = "蓝色彩绘玻璃地板砖"
+	desc = "染成蓝色的玻璃地板。显然用的是某位忧郁人士的眼泪。"
+	icon_state = "tile_sglass_blue"
+	turf_type = /turf/open/floor/glass/stained_blue
+	merge_type = /obj/item/stack/tile/stained_glass/blue
+
+/obj/item/stack/tile/stained_glass/purple
+	name = "紫色彩绘玻璃地板"
+	singular_name = "紫色彩绘玻璃地板砖"
+	desc = "染成紫色的玻璃地板。尝起来也是紫色的。"
+	icon_state = "tile_sglass_purple"
+	turf_type = /turf/open/floor/glass/stained_purple
+	merge_type = /obj/item/stack/tile/stained_glass/purple
+
+/obj/item/stack/tile/stained_glass/white
+	name = "白色彩绘玻璃地板"
+	singular_name = "白色彩绘玻璃地板砖"
+	desc = "染成白色的玻璃地板。也可能是漂白的？"
+	icon_state = "tile_sglass_white"
+	turf_type = /turf/open/floor/glass/stained_white
+	merge_type = /obj/item/stack/tile/stained_glass/white
+
+/obj/item/stack/tile/stained_glass/black
+	name = "黑色彩绘玻璃地板"
+	singular_name = "黑色彩绘玻璃地板砖"
+	desc = "染成黑色的玻璃地板。这是一只太空乌贼喷墨的杰作。"
+	icon_state = "tile_sglass_black"
+	turf_type = /turf/open/floor/glass/stained_black
+	merge_type = /obj/item/stack/tile/stained_glass/black

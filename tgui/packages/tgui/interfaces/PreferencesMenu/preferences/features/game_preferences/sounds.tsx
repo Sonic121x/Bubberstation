@@ -31,7 +31,9 @@ export const sound_announcements: FeatureToggle = {
 export const sound_ghost_poll_prompt: FeatureChoiced = {
   name: '幽灵招募提示音',
   category: 'SOUND',
-  description: '选择收到幽灵招募时播放的提示音。',
+  // BUBBER EDIT CHANGE - ANTAG PROMPT - ORIGINAL : description: 'Choose which sound prompt to play on getting ghost polls.',
+  description:
+    '选择收到幽灵招募时播放的提示音。禁用后也会隐藏相应的聊天消息。',
   component: FeatureDropdownInput,
 };
 
@@ -87,7 +89,8 @@ export const sound_tts_radio: FeatureChoiced = {
 export const sound_tts_hear_self_radio: FeatureToggle = {
   name: '在无线电中听见自己的合成语音',
   category: 'SOUND',
-  description: '启用后，在文字转语音和无线电语音合成均开启时，可以听到自己的无线电语音。',
+  description:
+    '启用后，在文字转语音和无线电语音合成均开启时，可以听到自己的无线电语音。',
   component: CheckboxInput,
 };
 
@@ -101,7 +104,8 @@ export const sound_tts_volume: Feature<number> = {
 export const sound_tts_radio_volume: Feature<number> = {
   name: '无线电语音合成音量',
   category: 'SOUND',
-  description: '无线电文字转语音的播放音量，独立于普通语音合成音量。',
+  description:
+    '无线电文字转语音的播放音量，独立于普通语音合成音量。',
   component: FeatureSliderInput,
 };
 
@@ -138,7 +142,8 @@ export const sound_achievement: FeatureChoiced = {
 export const sound_radio_noise: Feature<number> = {
   name: '无线电提示音量',
   category: 'SOUND',
-  description: '发送或接收无线电消息时播放的提示音量。',
+  description:
+    '发送或接收无线电消息时播放的提示音量。',
   component: FeatureSliderInput,
 };
 

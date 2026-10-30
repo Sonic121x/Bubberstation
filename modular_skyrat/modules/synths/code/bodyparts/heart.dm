@@ -33,7 +33,6 @@
 /datum/design/synth_heart
 	name = "液压泵驱动机"
 	desc = "控制液压泵、为机械肢体提供动力的电子设备。没有它，合成人将无法移动。"
-	id = "synth_heart"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

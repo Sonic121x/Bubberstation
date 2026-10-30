@@ -1,4 +1,4 @@
-/datum/mod_theme/entombed
+/datum/mod_theme/standard/entombed
 	name = "融合"
 	desc = "种种境遇已让这套防护服变成了某人的第二层皮肤。字面意义上的。"
 	extended_desc = "某人过往中某种宏大的因素已将他与这台装置永久绑定，无论好坏。"
@@ -33,7 +33,7 @@
 	removable = FALSE
 
 /obj/item/mod/control/pre_equipped/entombed
-	theme = /datum/mod_theme/entombed
+	theme = /datum/mod_theme/standard/entombed
 	applied_cell = /obj/item/stock_parts/power_store/cell/high
 	applied_modules = list(
 		/obj/item/mod/module/storage/large_capacity

@@ -82,6 +82,7 @@
 	name = "包裹好的彩蛋"
 	desc = "一枚巧克力蛋，里面装着点特别的小东西。拆开享用吧！"
 	icon_state = "egg"
+	inhand_icon_state = "egg"
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_TINY
 	icon = 'icons/obj/food/egg.dmi'

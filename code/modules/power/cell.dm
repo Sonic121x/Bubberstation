@@ -249,7 +249,7 @@
 
 /obj/item/stock_parts/power_store/cell/crystal_cell
 	name = "水晶电池"
-	desc = "由结晶等离子体制成的高功率电池"
+	desc = "由结晶等离子体制成的高功率电池。"
 	icon_state = "crystal_cell"
 	maxcharge = STANDARD_CELL_CHARGE * 50
 	chargerate = 0

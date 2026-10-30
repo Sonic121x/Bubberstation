@@ -2,7 +2,7 @@
 /mob/living/basic/guardian/support
 	guardian_type = GUARDIAN_SUPPORT
 	speed = 0
-	damage_coeff = list(BRUTE = 0.7, BURN = 0.7, TOX = 0.7, STAMINA = 0, OXY = 0.7)
+	physiology = list(BRUTE = 0.7, BURN = 0.7, TOX = 0.7, OXY = 0.7, STAMINA = 0)
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	playstyle_string = span_holoparasite("作为<b>支援</b>型，你可以右键治疗目标。此外，Alt+左键点击相邻的物体或生物，会在短暂延迟后把它们传送到你的蓝空间信标。")

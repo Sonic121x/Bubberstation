@@ -3,7 +3,7 @@
 	guardian_type = GUARDIAN_EXPLOSIVE
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	damage_coeff = list(BRUTE = 0.6, BURN = 0.6, TOX = 0.6, STAMINA = 0, OXY = 0.6)
+	physiology = list(BRUTE = 0.6, BURN = 0.6, TOX = 0.6, OXY = 0.6, STAMINA = 0)
 	range = 13
 	playstyle_string = span_holoparasite("作为<b>爆破</b>型，你具有中等的近战能力，并能通过右键把附近的物品和物体变成伪装的炸弹。")
 	creator_name = "爆破"

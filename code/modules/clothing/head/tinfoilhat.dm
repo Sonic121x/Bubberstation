@@ -5,7 +5,6 @@
 	inhand_icon_state = null
 	armor_type = /datum/armor/costume_foilhat
 	equip_delay_other = 14 SECONDS
-	clothing_flags = ANTI_TINFOIL_MANEUVER
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5)
 	clothing_traits = list(TRAIT_DONT_HEAR_PRAYERS) //stops you from hearing prayers as well, yes
 	// var/datum/brain_trauma/mild/phobia/conspiracies/paranoia BUBBERSTATION CHANGE, REMOVES PARANOIA
@@ -71,7 +70,6 @@
 	name = "烧焦的锡箔帽"
 	desc = "一顶严重变形的帽子。对于它过去能抵挡的那些虚构或真实的危险，这顶帽子恐怕已经无能为力了。"
 	warped = TRUE
-	clothing_flags &= ~ANTI_TINFOIL_MANEUVER
 	if(!isliving(loc)) //BUBBERSTATION CHANGE, REMOVES PARANOIA
 		return
 	var/mob/living/target = loc
@@ -81,6 +79,9 @@
 	// QDEL_NULL(paranoia) BUBBERSTATION CHANGE, REMOVES PARANOIA
 	if(!IS_UNCONSCIOUS(target))
 		to_chat(target, span_warning("随着头上那顶帽子扭曲成一团废料，你狂热的阴谋论信仰迅速消散。那些理论听起来不过是荒唐的吹奏。"))
+
+/obj/item/clothing/head/costume/foilhat/can_throw_equip(atom/hit_atom)
+	return warped
 
 /obj/item/clothing/head/costume/foilhat/attack_hand(mob/user, list/modifiers)
 	if(!warped && user.get_item_by_slot(ITEM_SLOT_HEAD) == src)

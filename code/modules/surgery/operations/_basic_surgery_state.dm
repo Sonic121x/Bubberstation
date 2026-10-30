@@ -18,7 +18,7 @@
 	if(owner.has_limbs)
 		stack_trace("Applied a basic surgery state to [owner], which has limbs. This status effect is intended for limbless mobs.")
 
-/datum/status_effect/basic_surgery_state/get_examine_text()
+/datum/status_effect/basic_surgery_state/get_examine_text(mob/examiner)
 	if(HAS_SURGERY_STATE(surgery_state, SURGERY_SKIN_OPEN))
 		return "其皮肤已被切开[HAS_SURGERY_STATE(surgery_state, SURGERY_BONE_SAWED) ? "，骨头也已被锯开" : ""]。"
 	// other states are not yet supported

@@ -7,7 +7,7 @@
 	lose_text = span_notice("你不再感到抑郁了。") //if only it were that easy!
 	medical_record_text = "患者患有轻度情绪障碍，会出现急性抑郁发作。"
 	medical_symptom_text = "持续感到悲伤、绝望和缺乏动力。"
-	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_MOODLET_BASED|QUIRK_PROCESSES|QUIRK_TRAUMALIKE
+	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES|QUIRK_TRAUMALIKE
 	hardcore_value = 2
 	mail_goodies = list(/obj/item/storage/pill_bottle/happinesspsych)
 

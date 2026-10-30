@@ -446,36 +446,33 @@
 /obj/item/clothing/shoes/sandal
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
 
-/obj/item/clothing/shoes/combat/bluespace
+/obj/item/clothing/shoes/combat/debug
 	name = "技师靴"
-	desc = "一双你本不该拥有的作战靴。鞋垫衬着蓝空间织物，让它能干出些胡扯的事来。"
+	desc = "一双你本不该拥有的作战靴。鞋垫衬着蓝空间织物，让它能干出些胡扯的事来，例如踏空、跨越深渊、漫步太空、踩过熔岩以及穿墙。"
 	strip_delay = 60 SECONDS
 	resistance_flags = INDESTRUCTIBLE|LAVA_PROOF|FIRE_PROOF|UNACIDABLE|ACID_PROOF
 	lace_time = 0.5 SECONDS
-	clothing_traits = list(TRAIT_NO_SLIP_WATER)
+	clothing_traits = list(TRAIT_NO_SLIP_ALL)
 	actions_types = list(/datum/action/item_action/toggle)
 	w_class = WEIGHT_CLASS_SMALL
 
 	var/free_move = FALSE
-	var/list/active_traits = list(TRAIT_NO_SLIP_ICE, TRAIT_NO_SLIP_SLIDE, TRAIT_NO_SLIP_ALL, TRAIT_SPACEWALK)
+	var/list/active_traits = list(TRAIT_SPACEWALK, TRAIT_NEGATES_GRAVITY, TRAIT_MOVE_PHASING, TRAIT_MOVE_FLYING, TRAIT_LAVA_IMMUNE, TRAIT_NO_FLOATING_ANIM)
 
-GAME_VERB_SRC(/obj/item/clothing/shoes/combat/bluespace, toggle, usr, "切换自由移动", null)
-
+GAME_VERB_SRC(/obj/item/clothing/shoes/combat/debug, toggle, usr, "切换蓝空间磁体", null)
 	if(!can_use(usr))
 		return
 	attack_self(usr)
 
-/obj/item/clothing/shoes/combat/bluespace/attack_self(mob/user)
+/obj/item/clothing/shoes/combat/debug/attack_self(mob/user)
 	free_move = !free_move
 	if(free_move)
 		attach_clothing_traits(active_traits)
 	else
 		detach_clothing_traits(active_traits)
 
-	balloon_alert(user, "自由移动已[free_move ? "激活" : "停用"]")
+	balloon_alert(user, "蓝空间磁体已[free_move ? "激活" : "停用"]")
 
-
-
-/obj/item/clothing/shoes/combat/bluespace/examine(mob/user)
+/obj/item/clothing/shoes/combat/debug/examine(mob/user)
 	. = ..()
-	. += "它的蓝空间自由移动装置似乎处于[free_move ? "激活" : "停用"]状态。"
+	. += "它的蓝空间磁体似乎处于[free_move ? "激活" : "停用"]状态。"

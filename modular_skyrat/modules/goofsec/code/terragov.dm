@@ -251,25 +251,6 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	suicide_cry = "为了地球政府！！"
 	var/department = "某堆破事"
 
-/datum/antagonist/ert/request_911/apply_innate_effects(mob/living/mob_override)
-	..()
-	var/mob/living/M = mob_override || owner.current
-	if(M.hud_used)
-		var/datum/hud/H = M.hud_used
-		var/atom/movable/screen/wanted/giving_wanted_lvl = new /atom/movable/screen/wanted(null, H)
-		H.wanted_lvl = giving_wanted_lvl
-		H.add_screen_object(giving_wanted_lvl, null, HUD_GROUP_INFO)
-		H.show_hud(H.hud_version)
-
-
-/datum/antagonist/ert/request_911/remove_innate_effects(mob/living/mob_override)
-	var/mob/living/M = mob_override || owner.current
-	if(M.hud_used)
-		var/datum/hud/H = M.hud_used
-		H.remove_screen_object(H.wanted_lvl)
-		H.wanted_lvl = null
-	..()
-
 /datum/antagonist/ert/request_911/greet()
 	var/missiondesc =  ""
 	missiondesc += "<B><font size=5 color=red>你不是纳米传讯的员工。你为地球政府工作，职务是[role]。</font></B>"

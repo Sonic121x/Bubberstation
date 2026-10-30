@@ -34,8 +34,8 @@
 /obj/item/clothing/suit/toggle/lawyer/greyscale
 	greyscale_config_worn_teshari = /datum/greyscale_config/jacket_lawyer/worn/teshari
 
-/obj/item/clothing/suit/hazardvest/bluespace
-	name = "蓝空间技师的防护背心"
+/obj/item/clothing/suit/hazardvest/debug
+	name = "技师的防护背心"
 	desc = "一件蓝空间技师的黑色与蓝色亮面防护背心。能抵御大多数威胁，包括太空真空。你大概不该拥有它。"
 
 	icon = 'modular_zubbers/icons/obj/clothing/suits/utility.dmi'
@@ -66,3 +66,7 @@
 		/obj/item/gun,
 		/obj/item/tank/internals,
 	)
+
+/obj/item/clothing/suit/hazardvest/debug/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/radiation_protected_clothing)

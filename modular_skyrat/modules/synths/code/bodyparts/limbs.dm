@@ -64,7 +64,6 @@
 
 /datum/design/synth_head
 	name = "仿生人头部底座"
-	id = "synth_head"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(
@@ -122,13 +121,12 @@
 	bodypart_flags = BODYPART_UNHUSKABLE
 
 	wing_types = list(
-		/obj/item/organ/wings/functional/robotic,
-		/obj/item/organ/wings/functional/robotic/virtual
+		/obj/item/organ/wings/robotic,
+		/obj/item/organ/wings/robotic/virtual
 	)
 
 /datum/design/synth_chest
 	name = "仿生人躯干底座"
-	id = "synth_chest"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(
@@ -204,7 +202,6 @@
 
 /datum/design/synth_l_arm
 	name = "仿生人左臂底座"
-	id = "synth_l_arm"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(
@@ -262,7 +259,6 @@
 
 /datum/design/synth_r_arm
 	name = "仿生人右臂底座"
-	id = "synth_r_arm"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(
@@ -321,7 +317,6 @@
 
 /datum/design/synth_l_leg
 	name = "仿生人跖行左腿底座"
-	id = "synth_l_leg"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(
@@ -380,7 +375,6 @@
 
 /datum/design/synth_r_leg
 	name = "仿生人跖行右腿底座"
-	id = "synth_r_leg"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(
@@ -405,7 +399,6 @@
 
 /datum/design/synth_l_d_leg
 	name = "仿生人趾行左腿底座"
-	id = "synth_l_d_leg"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(
@@ -430,7 +423,6 @@
 
 /datum/design/synth_r_d_leg
 	name = "仿生人趾行右腿底座"
-	id = "synth_r_d_leg"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

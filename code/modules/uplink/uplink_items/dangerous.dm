@@ -71,7 +71,6 @@
 	name = "双刃能量剑"
 	desc = "双刃能量剑的伤害略高于标准能量剑，并且能偏转它挡下的 \
 			能量射弹，但需要双手持握。它也难以帮你抵御擒抱。"
-	progression_minimum = 30 MINUTES
 	population_minimum = TRAITOR_POPULATION_LOWPOP
 	item = /obj/item/dualsaber
 

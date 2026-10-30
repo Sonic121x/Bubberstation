@@ -1,6 +1,5 @@
 /datum/design/beanbag_slug
 	name = "豆袋弹（低致命）"
-	id = "beanbag_slug"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3)
 	build_path = /obj/item/ammo_casing/shotgun/beanbag
@@ -12,7 +11,6 @@
 
 /datum/design/rubbershot
 	name = "橡胶弹（低致命）"
-	id = "rubber_shot"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3)
 	build_path = /obj/item/ammo_casing/shotgun/rubbershot
@@ -24,7 +22,6 @@
 
 /datum/design/c38
 	name = "快速装弹器（.38）（致命）"
-	id = "c38"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*3)
 	build_path = /obj/item/ammo_box/speedloader/c38
@@ -36,7 +33,6 @@
 
 /datum/design/recorder
 	name = "通用录音机"
-	id = "recorder"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*0.6, /datum/material/glass = SMALL_MATERIAL_AMOUNT*0.3)
 	build_path = /obj/item/taperecorder/empty
@@ -48,7 +44,6 @@
 
 /datum/design/tape
 	name = "通用录音机磁带"
-	id = "tape"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.2, /datum/material/glass = SMALL_MATERIAL_AMOUNT*0.2)
 	build_path = /obj/item/tape/random
@@ -60,7 +55,6 @@
 
 /datum/design/foam_dart
 	name = "泡沫飞镖盒（无害）"
-	id = "foam_dart"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/ammo_box/foambox
@@ -72,7 +66,6 @@
 
 /datum/design/flamethrower
 	name = "火焰喷射器（致命/高破坏性）"
-	id = "flamethrower"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/flamethrower/full
@@ -84,7 +77,6 @@
 
 /datum/design/electropack
 	name = "电击背包"
-	id = "electropack"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*5, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT*2.5)
 	build_path = /obj/item/electropack
@@ -96,7 +88,6 @@
 
 /datum/design/handcuffs
 	name = "手铐"
-	id = "handcuffs"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/restraints/handcuffs
@@ -107,16 +98,13 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/handcuffs/sec
-	id = "handcuffs_s"
 	build_type = PROTOLATHE | AWAY_LATHE
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SECURITY,
 	)
-	autolathe_exportable = FALSE
 
 /datum/design/receiver
 	name = "模块化机匣"
-	id = "receiver"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*7.5)
 	build_path = /obj/item/weaponcrafting/receiver
@@ -129,7 +117,6 @@
 
 /datum/design/shotgun_dart
 	name = "霰弹飞镖（致命）"
-	id = "shotgun_dart"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3)
 	build_path = /obj/item/ammo_casing/shotgun/dart
@@ -141,7 +128,6 @@
 
 /datum/design/incendiary_slug
 	name = "燃烧独头弹（致命）"
-	id = "incendiary_slug"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3)
 	build_path = /obj/item/ammo_casing/shotgun/incendiary
@@ -153,7 +139,6 @@
 
 /datum/design/riot_dart
 	name = "防暴泡沫飞镖（非致命）"
-	id = "riot_dart"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT) //Discount for making individually - no box = less iron!
 	build_path = /obj/item/ammo_casing/foam_dart/riot
@@ -165,7 +150,6 @@
 
 /datum/design/riot_darts
 	name = "防暴泡沫飞镖盒（非致命）"
-	id = "riot_darts"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*25) //Comes with 40 darts
 	build_path = /obj/item/ammo_box/foambox/riot
@@ -177,7 +161,6 @@
 
 /datum/design/a357
 	name = ".357 子弹壳（极度致命）"
-	id = "a357"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3)
 	build_path = /obj/item/ammo_casing/c357
@@ -189,7 +172,6 @@
 
 /datum/design/strilka310_surplus
 	name = ".310 剩余弹壳（极度致命）"
-	id = "strilka310_surplus"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3)
 	build_path = /obj/item/ammo_casing/strilka310/surplus
@@ -201,7 +183,6 @@
 
 /datum/design/c10mm
 	name = "弹药盒（10mm）（致命）"
-	id = "c10mm"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 30)
 	transfered_materials = list(
@@ -216,7 +197,6 @@
 
 /datum/design/c45
 	name = "弹药盒（.45）（致命）"
-	id = "c45"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 30)
 	transfered_materials = list(
@@ -231,7 +211,6 @@
 
 /datum/design/c9mm
 	name = "弹药盒（9x25mm Mk.12）（致命）" //SKYRAT EDIT: Calibre rename - Original: name = "Ammo Box
-	id = "c9mm"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 30)
 	transfered_materials = list(
@@ -246,7 +225,6 @@
 
 /datum/design/c9mm_sec
 	name = "弹药盒（9x25mm Mk.12）（致命）"
-	id = "c9mm_sec"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 150)
 	build_path = /obj/item/ammo_box/c9mm/security
@@ -258,7 +236,6 @@
 
 /datum/design/telescreen_interrogation
 	name = "审讯监控屏"
-	id = "telescreen_interrogation"
 	build_type = PROTOLATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT*5,
@@ -273,7 +250,6 @@
 
 /datum/design/telescreen_prison
 	name = "监狱监控屏"
-	id = "telescreen_prison"
 	build_type = PROTOLATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT*5,

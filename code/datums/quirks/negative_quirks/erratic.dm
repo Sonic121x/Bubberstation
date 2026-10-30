@@ -7,7 +7,7 @@
 	lose_text = span_notice("你感觉稳定多了。")
 	medical_record_text = "患者的人格与情绪呈双相变化。"
 	medical_symptom_text = "人格、情绪及行为出现突发且难以预测的变化，常在情感与举止的极端之间摇摆。"
-	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_MOODLET_BASED|QUIRK_PROCESSES|QUIRK_TRAUMALIKE
+	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES|QUIRK_TRAUMALIKE
 	hardcore_value = 3
 	mail_goodies = list(/obj/item/storage/pill_bottle/psicodine)
 	/// Cooldown between personality randomizations

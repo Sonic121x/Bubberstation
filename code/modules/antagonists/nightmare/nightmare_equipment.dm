@@ -60,7 +60,7 @@
 		target.Paralyze(issilicon(target) ? 2 SECONDS : 1 SECONDS)
 	else
 		user.visible_message(span_boldwarning("[user]用[src]刺穿了[target]，狠狠地撕开了他们！"), span_userdanger("你用[src]刺穿了[target]，狠狠地撕开了他们！"))
-		target.apply_damage(damage = force, forced = TRUE)
+		target.apply_damage(damage = force)
 	remove_crit()
 
 /obj/item/light_eater/proc/prepare_crit_timer()

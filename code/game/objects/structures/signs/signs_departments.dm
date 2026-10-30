@@ -105,7 +105,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/engineering, 32)
 	desc = "标示赋予你生命的大气来源区域的标牌。"
 	icon_state = "atmos"
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/engineering, 32)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/departments/atmospherics, 32)
 
 ///////SCIENCE
 

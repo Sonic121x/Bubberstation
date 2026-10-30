@@ -4,7 +4,7 @@
 			"name" = "含酒精",
 			"icon" = "wine-bottle",
 			"products" = list(
-				/obj/item/reagent_containers/cup/soda_cans/skyrat/synthanolcan = 6,
+				/obj/item/reagent_containers/cup/soda_cans/bubber/synthanolcan = 6,
 			)
 		)
 	)

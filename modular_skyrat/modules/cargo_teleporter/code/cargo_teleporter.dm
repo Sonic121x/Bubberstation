@@ -226,7 +226,6 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 /datum/design/cargo_teleporter
 	name = "货运传送器"
 	desc = "一件奇妙的物品，可设置标记并把东西传送到这些标记处。"
-	id = "cargotele"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/cargo_teleporter
 	materials = list(
@@ -240,12 +239,11 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/techweb_node/cargo_teleporter
-	id = TECHWEB_NODE_CARGO_TELEPORTER
 	display_name = "货运传送器"
 	description = "只要路径不被阻挡，我们就能把物品传送到很远的距离。"
-	prereq_ids = list(TECHWEB_NODE_BLUESPACE_THEORY)
-	design_ids = list(
-		"cargotele",
+	prerequisite_nodes = list(/datum/techweb_node/bluespace_theory)
+	unlocked_designs = list(
+		/datum/design/cargo_teleporter,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 

@@ -28,7 +28,6 @@
 /datum/design/synth_eyes
 	name = "光学传感器"
 	desc = "一套非常基础的光学传感器，没有额外的视觉模式或功能。"
-	id = "synth_eyes"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

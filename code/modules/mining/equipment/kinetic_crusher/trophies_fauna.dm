@@ -10,8 +10,8 @@
 	denied_type = /obj/item/crusher_trophy/watcher_wing
 	trophy_id = TROPHY_WATCHER
 	bonus_value = 5
-	wildhunter_drops = list(/obj/item/stack/sheet/sinew = 7)
-	custom_materials = list(/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 10, /datum/material/bone = SHEET_MATERIAL_AMOUNT * 5)
+	wildhunter_drops = list(/obj/item/stack/sheet/sinew = 5)
+	custom_materials = list(/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 6, /datum/material/bone = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/crusher_trophy/watcher_wing/effect_desc()
 	return "标记引爆时，使某些生物在 <b>[bonus_value*0.1]</b> 秒内无法使用某些攻击"
@@ -35,7 +35,7 @@
 	icon_state = "magma_wing"
 	denied_type = /obj/item/crusher_trophy/magma_wing
 	wildhunter_drops = list(/obj/item/stack/sheet/sinew/magmawing = 3)
-	custom_materials = list(/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 6, /datum/material/bone = SHEET_MATERIAL_AMOUNT * 3)
+	custom_materials = list(/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 2, /datum/material/bone = SHEET_MATERIAL_AMOUNT * 3)
 	/// List of mobs we've marked
 	var/list/mob/living/marked_targets = list()
 
@@ -97,10 +97,10 @@
 	name = "冰翼守望者之翼"
 	desc = "取自冰翼守望者、经过精心保存的冰冻翅膀。适合作为动能粉碎器的战利品。"
 	icon_state = "ice_wing"
-	bonus_value = 2
+	bonus_value = 1
 	denied_type = /obj/item/crusher_trophy/ice_wing
 	wildhunter_drops = list(/obj/item/stack/sheet/sinew/icewing = 3)
-	custom_materials = list(/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 6, /datum/material/bone = SHEET_MATERIAL_AMOUNT * 3)
+	custom_materials = list(/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 5, /datum/material/bone = SHEET_MATERIAL_AMOUNT * 3)
 
 /obj/item/crusher_trophy/ice_wing/effect_desc()
 	return "引爆标记时，使用者后退 [bonus_value] 格"
@@ -129,7 +129,7 @@
 	denied_type = /obj/item/crusher_trophy/legion_skull
 	bonus_value = 3
 	// No wildhunter drop to prevent refresh cheese
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 5)
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 4)
 
 /obj/item/crusher_trophy/legion_skull/effect_desc()
 	return "动能粉碎器的充能速度加快 <b>[bonus_value*0.1]</b> 秒"
@@ -153,7 +153,7 @@
 	bonus_value = 2
 	trophy_id = TROPHY_GOLIATH_TENTACLE
 	wildhunter_drops = list(/obj/item/stack/sheet/animalhide/goliath_hide = 3)
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 8)
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 6)
 	/// Your missing health is multiplied by this value to find the bonus damage
 	var/missing_health_ratio = 0.1
 
@@ -179,7 +179,7 @@
 	trophy_id = TROPHY_LOBSTER_CLAW
 	bonus_value = 1
 	// No wildhunter drop to prevent refresh cheese
-	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 12, /datum/material/bone = SHEET_MATERIAL_AMOUNT * 5)
+	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 8, /datum/material/bone = SHEET_MATERIAL_AMOUNT * 4)
 
 /obj/item/crusher_trophy/lobster_claw/effect_desc()
 	return "标记引爆时，短暂斥责目标，持续 [bonus_value] 秒"
@@ -215,7 +215,7 @@
 	desc = "一只胆汁虫宝宝。适合作为动能粉碎器的战利品。"
 	denied_type = /obj/item/crusher_trophy/bileworm_spewlet
 	wildhunter_drops = list(/obj/item/stack/sheet/animalhide/bileworm = 3)
-	custom_materials = list(/datum/material/gold = SHEET_MATERIAL_AMOUNT * 12)
+	custom_materials = list(/datum/material/gold = SHEET_MATERIAL_AMOUNT * 8)
 	///item ability that handles the effect
 	var/datum/action/cooldown/mob_cooldown/projectile_attack/dir_shots/spewlet/ability
 

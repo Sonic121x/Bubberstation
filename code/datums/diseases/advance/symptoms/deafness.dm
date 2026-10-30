@@ -25,6 +25,7 @@
 		"隐蔽性 4" = "症状在发作前不会显露。",
 	)
 	var/causes_permanent_deafness = FALSE
+	var/suppress_warning = FALSE
 
 /datum/symptom/deafness/Start(datum/disease/advance/A)
 	. = ..()

@@ -3,11 +3,7 @@
 ///Wizard tower item
 /obj/item/disk/design_disk/knight_gear
 	name = "锻造魔法磁盘"
-
-/obj/item/disk/design_disk/knight_gear/Initialize(mapload)
-	. = ..()
-	blueprints += new /datum/design/knight_armour
-	blueprints += new /datum/design/knight_helmet
+	blueprints = list(/datum/design/knight_armour, /datum/design/knight_helmet)
 
 //Free Golems
 
@@ -15,15 +11,11 @@
 	name = "魔像制造磁盘"
 	desc = "来自解放者的礼物。"
 	icon_state = "datadisk1"
-
-/obj/item/disk/design_disk/golem_shell/Initialize(mapload)
-	. = ..()
-	blueprints += new /datum/design/golem_shell
+	blueprints = list(/datum/design/golem_shell)
 
 /datum/design/golem_shell
 	name = "魔像外壳建造"
 	desc = "允许建造魔像外壳。"
-	id = "golem"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*20)
 	build_path = /obj/item/golem_shell

@@ -324,6 +324,19 @@
 	amount_per_transfer_from_this = 60
 	list_reagents = list(/datum/reagent/medicine/salbutamol = 10, /datum/reagent/medicine/c2/penthrite = 10, /datum/reagent/medicine/oxandrolone = 10, /datum/reagent/medicine/sal_acid = 10 ,/datum/reagent/medicine/omnizine = 10 ,/datum/reagent/medicine/leporazine = 10)
 
+/obj/item/reagent_containers/hypospray/medipen/survival/luxury/purple
+	name = "豪华紫色医疗笔"
+	desc = "尖端蓝空间技术让纳米传讯能将60单位的容量压缩进一支医疗笔。内含稀有而强效的化学品，用于辅助探索极其恶劣的环境。这支是紫色的。警告：切勿与肾上腺素或阿托品混用。"
+	icon_state = "slimepen"
+	base_icon_state = "slimepen"
+	list_reagents = list(/datum/reagent/medicine/salbutamol = 10, /datum/reagent/medicine/c2/penthrite = 10, /datum/reagent/medicine/oxandrolone = 10, /datum/reagent/medicine/sal_acid = 10 ,/datum/reagent/medicine/regen_jelly/diluted = 5 ,/datum/reagent/toxin = 5 ,/datum/reagent/medicine/leporazine = 10)
+
+/obj/item/reagent_containers/hypospray/medipen/survival/luxury/purple/Initialize(mapload)
+	. = ..()
+	if(prob(0.1)) // idea by melbert
+		name = "豪华紫儿色医疗笔"
+		desc = replacetext(desc, "紫色", "紫儿色") // i do not feel like copy-pasting the entire desc for a one-word change
+
 /obj/item/reagent_containers/hypospray/medipen/atropine
 	name = "阿托品自动注射器"
 	desc = "一种快速把人从危重伤势中救回来的手段！另外还含有强效凝血剂，以防止失血。"

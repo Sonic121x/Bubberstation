@@ -224,8 +224,12 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 	template.load(bottom_left) //this is what actually loads the holodeck simulation into the map
 
 	if(template.restricted)
-		usr.log_message("loaded a restricted Holodeck program: [program].", LOG_GAME)
-		message_admins("[ADMIN_LOOKUPFLW(usr)] 加载了一个受限的全息甲板程序：[program]。")
+		if(usr)
+			usr.log_message("loaded a restricted Holodeck program: [program].", LOG_GAME)
+			message_admins("[ADMIN_LOOKUPFLW(usr)] 加载了一个受限的全息甲板程序：[program]。")
+		else
+			log_game("loaded a restricted Holodeck program: [program].")
+			message_admins("已加载一个受限的全息甲板程序：[program]。")
 
 	spawned = template.created_atoms //populate the spawned list with the atoms belonging to the holodeck
 

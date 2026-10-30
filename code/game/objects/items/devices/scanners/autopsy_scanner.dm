@@ -179,7 +179,7 @@
 		if(humantarget.has_dna() && humantarget.dna.stability != initial(humantarget.dna.stability))
 			autopsy_information += "<b>基因稳定性：</b>[humantarget.dna.stability]%。</br>"
 		var/datum/species/targetspecies = humantarget.dna.species
-		var/disguised = !ishumanbasic(humantarget) && istype(humantarget.head, /obj/item/clothing/head/hooded/human_head) && istype(humantarget.wear_suit, /obj/item/clothing/suit/hooded/bloated_human)
+		var/disguised = !ishumanbasic(humantarget) && HAS_TRAIT(humantarget, TRAIT_HUMAN_DISGUISE)
 		var/species_name = "[disguised ? "\"[chinese_footprint_species_display(/datum/species/human::name)]\"" : chinese_footprint_species_display(targetspecies.name)][mutant ? "衍生突变体" : ""]"
 		autopsy_information += "<b>物种：</b>[species_name]</br>"
 		autopsy_information += "<b>核心体温：</b>[round(humantarget.coretemperature-T0C, 0.1)] &deg;C ([round(humantarget.coretemperature*1.8-459.67,0.1)] &deg;F)</br>"

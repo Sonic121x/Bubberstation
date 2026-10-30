@@ -144,7 +144,6 @@
 /datum/design/conveyor_sorter
 	name = "传送带分拣器"
 	desc = "一件绝妙的物品，可以设置标记并强行把东西推向某个方向。"
-	id = "conveysorter"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/conveyor_sorter
 	materials = list(
@@ -157,12 +156,11 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/techweb_node/conveyor_sorter
-	id = TECHWEB_NODE_CONVEYOR_SORTER
 	display_name = "传送带分拣器"
 	description = "终于，可以自动分拣东西了。"
-	prereq_ids = list(TECHWEB_NODE_BLUESPACE_THEORY)
-	design_ids = list(
-		"conveysorter",
+	prerequisite_nodes = list(/datum/techweb_node/bluespace_theory)
+	unlocked_designs = list(
+		/datum/design/conveyor_sorter,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 
@@ -192,7 +190,6 @@
 /datum/design/conveyor_sorter/improved
 	name = "改进型传送带分拣器"
 	desc = "一件绝妙的物品，可以设置标记并强行把东西推向某个方向。容量更大，能分拣更多物品！"
-	id = "conveyor_sorter_improved"
 	build_path = /obj/item/conveyor_sorter/improved
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -203,11 +200,10 @@
 
 
 /datum/techweb_node/conveyor_sorter/improved
-	id = TECHWEB_NODE_CONVEYOR_SORTER_IMPROVED
 	display_name = "改进型传送带分拣器"
 	description = "传送带分拣器的改进版本，可以更精细地控制分拣。"
-	prereq_ids = list(TECHWEB_NODE_APPLIED_BLUESPACE)
-	design_ids = list(
-		"conveyor_sorter_improved",
+	prerequisite_nodes = list(/datum/techweb_node/applied_bluespace)
+	unlocked_designs = list(
+		/datum/design/conveyor_sorter/improved,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS) // Why.

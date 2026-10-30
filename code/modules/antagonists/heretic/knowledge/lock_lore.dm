@@ -226,6 +226,12 @@
 	holywater_drain_amount = 0.33
 	notice = "&bull; 不能在有感知活物附近使用。<br>&bull; 若被反魔法物品击中则会被取消。"
 
+/datum/heretic_knowledge/spell/caretaker_refuge/has_charges(mob/living/user)
+	return user.has_status_effect(/datum/status_effect/caretaker_refuge) || ..()
+
+/datum/heretic_knowledge/spell/caretaker_refuge/should_deduct_charge(mob/living/user)
+	return !user.has_status_effect(/datum/status_effect/caretaker_refuge)
+
 /datum/heretic_knowledge/ultimate/lock_final
 	name = "解锁迷宫"
 	desc = "叩门之道的升格仪式。\

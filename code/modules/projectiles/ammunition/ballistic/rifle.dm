@@ -80,11 +80,7 @@
 
 /obj/item/disk/design_disk/tear_gas_40mm
 	name = "40mm 防暴榴弹设计盘"
-
-/obj/item/disk/design_disk/liberator/Initialize(mapload)
-	. = ..()
-	blueprints += new /datum/design/tear_gas_40mm
-	blueprints += new /datum/design/rubber_40mm
+	blueprints = list(/datum/design/tear_gas_40mm, /datum/design/rubber_40mm)
 
 // Rebar Bolts
 

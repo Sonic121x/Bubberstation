@@ -2,6 +2,7 @@
 	name = "软呢帽"
 	desc = "如果你是个黑帮分子，这帽子超酷。如果你不是，那它就土得掉渣。"
 	icon_state = "fedora"
+	inhand_icon_state = "fedora"
 	icon = 'icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'icons/mob/clothing/head/hats.dmi'
 	hair_mask = /datum/hair_mask/standard_hat_low

@@ -6,7 +6,6 @@
 	mob_trait = TRAIT_FRIENDLY
 	gain_text = span_notice("你想抱抱别人。")
 	lose_text = span_danger("你不再有拥抱别人的冲动。")
-	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_MOODLET_BASED
 	medical_record_text = "患者对身体接触毫不拘束，双臂肌肉发达。请求其他医生接手此病例。"
 	mail_goodies = list(/obj/item/storage/box/hug)
 

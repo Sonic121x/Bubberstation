@@ -7,6 +7,7 @@
 	desc = "一根奇怪的尖刺，似乎没什么用处。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "tail_spike"
+	w_class = WEIGHT_CLASS_SMALL
 	/// If it has a bonus effect, this is how much that effect is
 	var/bonus_value = 10
 	/// ID of the trophy to be sent by the signal

@@ -1,3 +1,13 @@
+/obj/item/toy/plush/attack_self(mob/user)
+	. = ..()
+	if(stuffed)
+		if(HAS_TRAIT(user, TRAIT_MONOPHOBIA))
+			to_chat(user, span_notice("你感到心里暖暖的……你不再那么孤单了。"))
+
+	else
+		if(HAS_TRAIT(user, TRAIT_MONOPHOBIA))
+			to_chat(user, span_warning("你想起了，即使是缝制的伙伴，也无法阻止孤独在心中累积……"))
+
 /obj/item/toy/plush/chaotic_toaster
 	name = "混乱烤面包机"
 	desc = "你不确定这只毛绒玩偶是想要拥抱，还是想摘取你的器官，或者两者都想。"

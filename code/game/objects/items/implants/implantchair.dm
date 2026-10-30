@@ -126,8 +126,7 @@
 	update_appearance()
 
 /obj/machinery/implantchair/container_resist_act(mob/living/user)
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
 	user.visible_message(span_notice("你看到[user]正在踢[src]的门！"), \
 		span_notice("你靠在[src]的后壁上，开始用力推门……（这大约需要[DisplayTimeText(breakout_time)]。）"), \
 		span_hear("你听到[src]传来金属摩擦的吱嘎声。"))

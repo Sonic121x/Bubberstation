@@ -89,7 +89,7 @@ Bonus
 	resistance = -2
 	stage_speed = 1
 	transmittable = -2
-	level = 7
+	level = 9
 	severity = 6
 	base_message_chance = 50
 	symptom_delay = 4.5
@@ -100,6 +100,7 @@ Bonus
 		"阶段速度 7" = "在宿主体内合成肝素和溶脂剂，增加出血和饥饿程度。",
 		"隐蔽性 5" = "症状在发作前不会显露。",
 	)
+	var/suppress_warning = FALSE
 
 /datum/symptom/flesh_death/Start(datum/disease/advance/A)
 	. = ..()

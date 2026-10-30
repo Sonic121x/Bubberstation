@@ -1,7 +1,6 @@
 /datum/design/health_hud_prescription
 	name = "处方生命扫描 HUD"
 	desc = "一种平视显示器，可扫描视野内的人形生物并提供其健康状况的准确数据。此款配备处方镜片。"
-	id = "health_hud_prescription"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -17,7 +16,6 @@
 /datum/design/security_hud_prescription
 	name = "处方安保 HUD"
 	desc = "一种平视显示器，可扫描视野内的人形生物并提供其 ID 状态的准确数据。此款配备处方镜片。"
-	id = "security_hud_prescription"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -33,7 +31,6 @@
 /datum/design/diagnostic_hud_prescription
 	name = "处方诊断 HUD"
 	desc = "一种用于分析并判定机械装置故障的 HUD。此款配备处方镜片。"
-	id = "diagnostic_hud_prescription"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -49,7 +46,6 @@
 /datum/design/science_hud_prescription
 	name = "处方科研 HUD"
 	desc = "这副护目镜可扫描容器的内容物，并以易于阅读的格式呈现给使用者。此款配备处方镜片。"
-	id = "science_hud_prescription"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -65,7 +61,6 @@
 /datum/design/mesons_prescription
 	name = "处方光学介子扫描仪"
 	desc = "供工程与采矿人员使用，可透过墙壁看到基础结构与地形布局，不受光照条件影响。此设计已加入处方镜片。"
-	id = "mesons_prescription"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -81,7 +76,6 @@
 /datum/design/engine_goggles_prescription
 	name = "处方工程扫描眼镜"
 	desc = "工程师使用的眼镜。介子扫描模式可让你隔着墙壁看到基础结构与地形布局，不受光照条件影响。T 射线扫描模式则让你看到地板下的物体，如电缆和管道。此设计已加入处方镜片。"
-	id = "engine_goggles_prescription"
 	build_type = PROTOLATHE | AWAY_LATHE | COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -98,7 +92,6 @@
 /datum/design/tray_goggles_prescription
 	name = "处方光学 T 射线扫描仪"
 	desc = "供工程人员使用，可看到地板下的物体，如电缆和管道。此设计已加入处方镜片。"
-	id = "tray_goggles_prescription"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,

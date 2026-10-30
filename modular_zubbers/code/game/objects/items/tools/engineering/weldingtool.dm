@@ -55,7 +55,14 @@
 	INVOKE_ASYNC(src, PROC_REF(try_auto_heal), interacting_with, user, damaged_limbs, preferred_limb)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/item/weldingtool/experimental/bluespace
+/obj/item/weldingtool/experimental/protonitrate
+	name = "原硝气焊接器"
+	desc = "结合原硝气结晶进一步增强性能的实验性焊接器。"
+	icon = 'modular_zubbers/icons/obj/equipment/equipment.dmi'
+	icon_state = "pn_welder"
+	toolspeed = 0.25
+
+/obj/item/weldingtool/experimental/debug
 	name = "蓝空间焊接器"
 	desc = "你不该拥有的焊接工具。将（蓝空间）太阳的力量挂在腰间。"
 	icon = 'modular_zubbers/icons/obj/tools.dmi'
@@ -69,12 +76,13 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE|LAVA_PROOF|FIRE_PROOF|UNACIDABLE|ACID_PROOF
 	custom_materials = null
+	usesound = SFX_SPARKS
 
 	light_range = 1
 	light_power = 1
 	light_color = LIGHT_COLOR_HALOGEN
 
-/obj/item/weldingtool/experimental/bluespace/process()
+/obj/item/weldingtool/experimental/debug/process()
 	if(get_fuel() <= max_fuel)
 		reagents.add_reagent(/datum/reagent/fuel, 1)
 	..()

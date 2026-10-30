@@ -66,7 +66,7 @@
 		target.dna.remove_mutation(removed_mutation, GLOB.standard_mutation_sources)
 
 	for(var/datum/mutation/added_mutation as anything in add_mutations)
-		if(added_mutation::warn_admins_on_inject && target != user && !ismonkey(target))
+		if(added_mutation::warn_admins_on_inject && target != user && !HAS_TRAIT(target, TRAIT_LESSER_HUMANOID))
 			message_admins("[ADMIN_LOOKUPFLW(user)]用含有[added_mutation::name]的[src]为[key_name_admin(target)]进行了注射。")
 		if(target.dna.mutation_in_sequence(added_mutation))
 			target.dna.activate_mutation(added_mutation)

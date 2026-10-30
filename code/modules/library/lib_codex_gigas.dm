@@ -2,6 +2,7 @@
 	name = "\improper 吉加斯抄本"
 	desc = "一本记载恶魔本性的书。"
 	icon_state ="demonomicon"
+	inhand_icon_state = "demonomicon"
 	lefthand_file = 'icons/mob/inhands/items/books_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/books_righthand.dmi'
 	throw_speed = 1

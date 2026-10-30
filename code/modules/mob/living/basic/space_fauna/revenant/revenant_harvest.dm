@@ -58,11 +58,11 @@
 		to_chat(src, span_revennotice("[target_Their] 的灵魂因智慧而炽燃。"))
 		essence_drained += rand(20, 30)
 
-	if(target.stat != DEAD && !HAS_TRAIT(target, TRAIT_WEAK_SOUL))
+	if(target.stat != DEAD && !HAS_TRAIT(target, TRAIT_LESSER_HUMANOID))
 		to_chat(src, span_revennotice("[target_Their] 的灵魂因生命而熊熊燃烧！"))
 		essence_drained += rand(40, 50)
 
-	if(!target_has_client && HAS_TRAIT(target, TRAIT_WEAK_SOUL))
+	if(!target_has_client && HAS_TRAIT(target, TRAIT_LESSER_HUMANOID))
 		to_chat(src, span_revennotice("[target_Their] 的灵魂虚弱而发育不全。它值不了多少精华。"))
 		essence_drained = 5
 
@@ -123,7 +123,7 @@
 
 	change_essence_amount(essence_drained, FALSE, target)
 
-	if(essence_drained <= 90 && target.stat != DEAD && !HAS_TRAIT(target, TRAIT_WEAK_SOUL))
+	if(essence_drained <= 90 && target.stat != DEAD && !HAS_TRAIT(target, TRAIT_LESSER_HUMANOID))
 		max_essence += 5
 		to_chat(src, span_revenboldnotice("吸收 [target] 的鲜活灵魂提升了你的精华上限。你的新精华上限为 [max_essence]。"))
 

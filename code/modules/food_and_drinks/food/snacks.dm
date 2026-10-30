@@ -6,6 +6,7 @@
 	name = "糖果"
 	desc = "这是牛轧糖，爱它或者恨它。"
 	icon_state = "candy"
+	inhand_icon_state = "candy"
 	trash_type = /obj/item/trash/candy
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
@@ -87,6 +88,7 @@
 	name = "薯片"
 	desc = "瑞克指挥官的“什么鬼薯片”。"
 	icon_state = "chips"
+	inhand_icon_state = "chips"
 	trash_type = /obj/item/trash/chips
 	bite_consumption = 1
 	food_reagents = list(
@@ -221,6 +223,19 @@
 	)
 	tastes = list("pure electricity" = 3, "fitness" = 2)
 	foodtypes = TOXIC
+	food_flags = FOOD_FINGER_FOOD
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/food/nutrient_bar
+	name = "\improper 营养棒"
+	icon_state = "nutrientbar"
+	desc = "用油藤糊制成的营养棒，加了刚好足够的糖，让味道不至于糟糕透顶。"
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment = 12,
+		/datum/reagent/consumable/sugar = 3,
+	)
+	tastes = list("纸板" = 3, "糖" = 2)
+	foodtypes = VEGETABLES
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
 

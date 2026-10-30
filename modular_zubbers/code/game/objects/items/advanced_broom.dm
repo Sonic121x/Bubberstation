@@ -94,7 +94,6 @@
 /datum/design/advbroom
 	name = "高级推扫帚"
 	desc = "带有电动刷毛的小巧推扫帚，一次即可扫走大片区域内的杂物。"
-	id = "advbroom"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.25, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
 	build_path = /obj/item/pushbroom/advanced

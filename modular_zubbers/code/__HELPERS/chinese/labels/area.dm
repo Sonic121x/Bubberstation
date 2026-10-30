@@ -138,6 +138,7 @@
 		"The Arena" = "竞技场",
 		"a meteor with engines strapped to it" = "绑着引擎的陨石",
 		"Escape Shuttle Engine" = "逃生穿梭机引擎室",
+		"Escape Shuttle Xenobiology" = "逃生穿梭机异种生物实验室",
 		"Transport Shuttle" = "运输穿梭机",
 		"Steel Rain" = "钢铁暴雨号",
 		"SBC Starfury" = "SBC 星怒号",

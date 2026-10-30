@@ -95,17 +95,17 @@
 	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
 
 /datum/emote/living/carbon/human/scratch_h
-	key = "scratch_h"
+	key = "scratchhead"
 	message = "挠了挠头。"
 	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
 
 /datum/emote/living/carbon/human/thumb_up
-	key = "thumb_u"
+	key = "thumbsup"
 	message = "竖起了大拇指。"
 	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
 
 /datum/emote/living/carbon/human/thumb_down
-	key = "thumb_d"
+	key = "thumbsdown"
 	message = "大拇指朝下比了个手势。"
 	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
 
@@ -179,7 +179,7 @@
 /datum/emote/living/carbon/human/wag
 	key = "wag"
 	key_third_person = "wags"
-	message = "尾巴。"
+	message = "摇了摇"
 
 /datum/emote/living/carbon/human/wag/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
@@ -195,9 +195,8 @@
 	. = ..()
 	var/obj/item/organ/tail/oranges_accessory = user.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
 	if(oranges_accessory.wag_flags & WAG_WAGGING)
-		. = "停止摇动" + message
-	else
-		. = "摇了摇" + message
+		. = "停止摇动"
+	. += "尾巴。"
 
 /datum/emote/living/carbon/human/wag/can_run_emote(mob/user, status_check, intentional, params)
 	var/obj/item/organ/tail/tail = user.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
@@ -212,7 +211,7 @@
 
 /datum/emote/living/carbon/human/wing/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
-	var/obj/item/organ/wings/functional/wings = user.get_organ_slot(ORGAN_SLOT_EXTERNAL_WINGS)
+	var/obj/item/organ/wings/wings = user.get_organ_slot(ORGAN_SLOT_EXTERNAL_WINGS)
 	if(isnull(wings))
 		CRASH("[type] ran on a mob that has no wings!")
 	if(wings.wings_open)
@@ -221,12 +220,13 @@
 		wings.open_wings()
 
 /datum/emote/living/carbon/human/wing/select_message_type(mob/user, intentional)
-	var/obj/item/organ/wings/functional/wings = user.get_organ_slot(ORGAN_SLOT_EXTERNAL_WINGS)
+	var/obj/item/organ/wings/wings = user.get_organ_slot(ORGAN_SLOT_EXTERNAL_WINGS)
 	var/emote_verb = wings.wings_open ? "收拢" : "展开"
 	return "[emote_verb][message]"
 
 /datum/emote/living/carbon/human/wing/can_run_emote(mob/user, status_check = TRUE, intentional, params)
-	if(!istype(user.get_organ_slot(ORGAN_SLOT_EXTERNAL_WINGS), /obj/item/organ/wings/functional))
+	var/obj/item/organ/wings/wings = user.get_organ_slot(ORGAN_SLOT_EXTERNAL_WINGS)
+	if(!istype(wings) || !wings.has_open_sprite)
 		return FALSE
 	return ..()
 
@@ -274,48 +274,12 @@
 		addtimer(CALLBACK(eyes, TYPE_PROC_REF(/obj/item/organ/eyes, blink), 0.1 SECONDS, FALSE), i * 0.2 SECONDS)
 	eyes.animate_eyelids(user)
 
-///Snowflake emotes only for le epic chimp
-/datum/emote/living/carbon/human/monkey
-
-/datum/emote/living/carbon/human/monkey/can_run_emote(mob/user, status_check = TRUE, intentional, params)
-	if(ismonkey(user))
-		return ..()
-	return FALSE
-
-/datum/emote/living/carbon/human/monkey/gnarl
-	key = "gnarl"
-	key_third_person = "gnarls"
-	message = "龇牙咧嘴，露出了牙齿……"
-	message_mime = "无声地龇牙咧嘴，露出牙齿……"
-
-/datum/emote/living/carbon/human/monkey/roll
-	key = "roll"
-	key_third_person = "rolls"
-	message = "打了个滚。"
-	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
-
-/datum/emote/living/carbon/human/monkey/scratch
-	key = "scratch"
-	key_third_person = "scratches"
-	message = "挠了挠。"
-	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
-
-/datum/emote/living/carbon/human/monkey/screech/roar
+/datum/emote/living/carbon/human/screech/roar
 	key = "roar"
 	key_third_person = "roars"
 	message = "咆哮！"
 	message_mime = "无声地表演了一声咆哮。"
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
-
-/datum/emote/living/carbon/human/monkey/tail
-	key = "tail"
-	message = "挥了挥尾巴。"
-
-/datum/emote/living/carbon/human/monkey/sign
-	key = "sign"
-	key_third_person = "signs"
-	message_param = "用手语比出数字 %t。"
-	can_use_flags = EMOTE_CANUSE_REQUIRE_HANDS
 
 /// emotes for glowy goobers
 /datum/emote/living/carbon/human/glow

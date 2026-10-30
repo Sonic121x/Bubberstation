@@ -170,6 +170,7 @@ GLOBAL_LIST_INIT(rdd_designs, list(
 		其内部可合成廉价塑料制成的自然景观复制品。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rdd"
+	inhand_icon_state = "rdd"
 	worn_icon_state = "RCD"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'

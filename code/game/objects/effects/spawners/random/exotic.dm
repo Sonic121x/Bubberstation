@@ -118,7 +118,7 @@
 	)
 
 /obj/item/mod/module/energy_shield/prototype
-	name = "MOD 原型能量护盾"
+	name = "\improper MOD 原型能量护盾"
 	desc = "为安装在 MOD 模块化外骨骼内而改造的早期能量护盾原型。此前这种护盾\
 	广泛用于现已淘汰的建筑、战斗和采矿外骨骼，其定位介于\
 	MOD 模块化外骨骼与机甲之间。大多数仍能运作的这类外骨骼如今只出现在博物馆或阅兵式上。"

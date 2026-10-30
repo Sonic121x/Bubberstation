@@ -54,7 +54,7 @@
 ///Bluespace RPED. Allows exchanging parts from a distance & through cameras
 /obj/item/storage/part_replacer/bluespace
 	name = "蓝空间快速部件更换装置"
-	desc = "RPED 的一个版本，可从远处更换部件并进行扫描，且部件容量更大。"
+	desc = "RPED 的一个版本，可从远处更换部件并进行扫描，还能存放体积更大的部件。"
 	icon_state = "BS_RPED"
 	inhand_icon_state = "BS_RPED"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -187,7 +187,7 @@
 ///Cyborg variant
 /obj/item/storage/part_replacer/cyborg
 	name = "快速部件更换装置"
-	desc = "用于存放、分类并安装标准机器部件的特殊机械模块。这一台拥有超大隔间，可容纳更多部件。"
+	desc = "用于存放、分类并安装标准机器部件的特殊机械模块。这一台拥有超大隔间，可容纳超大部件。"
 	icon_state = "borgrped"
 	inhand_icon_state = "RPED"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
@@ -195,6 +195,6 @@
 	storage_type = /datum/storage/rped/bluespace
 
 /obj/item/storage/part_replacer/cyborg/small
-	desc = "用于存放、分类并安装标准机器部件的特殊机械模块。这一台的空间与普通 RPED 相同"
+	desc = "用于存放、分类并安装标准机器部件的特殊机械模块。这一台的空间比普通 RPED 还小。"
 	icon_state = "RPED"
-	storage_type = /datum/storage/rped
+	storage_type = /datum/storage/rped/compact

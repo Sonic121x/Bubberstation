@@ -71,7 +71,6 @@
 /datum/uplink_item/bundles_tc/surplus
 	name = "辛迪加盈余箱"
 	desc = "一个从辛迪加仓库深处取出、落满灰尘的箱子，通过补给空投舱直接送到你手上。 \
-			如果传言属实，它会根据你当前的声望来填充内容物。 \
 			箱内物品经过分拣，总价值始终为 " + TC_VALUE_SURPLUS + " TC。辛迪加每名特工只提供一份盈余物资。"
 	item = /obj/structure/closet/crate // will be replaced in purchase()
 	cost = 20
@@ -95,8 +94,6 @@
 		if(!handler.check_if_restricted(uplink_item))
 			continue
 		if(!uplink_item.surplus)
-			continue
-		if(handler.not_enough_reputation(uplink_item))
 			continue
 		possible_items += uplink_item
 	return possible_items
@@ -161,7 +158,7 @@
 	name = "联合盈余箱"
 	desc = "一个闪亮的大箱子，通过补给空投舱直接送到你手上。它配有先进的锁定机制和防篡改协议。 \
 			建议你让另一名特工购买一把盈余箱钥匙后再尝试打开它。团结起来，并肩作战。 \
-			据传会根据你当前的声望装入一批贵重物品。箱内物品经过分拣，总价值始终为 " + TC_VALUE_SURPLUS + " TC。 \
+			箱内物品经过分拣，总价值始终为 " + TC_VALUE_SURPLUS + " TC。 \
 			辛迪加每名特工只提供一份盈余物资。"
 	cost = 20
 	item = /obj/structure/closet/crate/secure/syndicrate

@@ -78,7 +78,7 @@
 	desc = "一种改装的 RCD，储量比常见的纳米传讯 RCD 更少，建造选项也更少，并且为了便于合成人维修而舍弃了拆除功能。使用金属、玻璃或塑钢补充。"
 	icon = 'modular_skyrat/master_files/icons/obj/tools.dmi'
 	icon_state = "roborcd"
-	worn_icon_state = "RCD"
+	inhand_icon_state = "roborcd"
 	lefthand_file = 'modular_skyrat/modules/aesthetics/tools/tools_lefthand.dmi'
 	righthand_file = 'modular_skyrat/modules/aesthetics/tools/tools_righthand.dmi'
 	max_matter = 50
@@ -96,7 +96,7 @@
 	desc = "专为合成人维修而设计的改装 RCD。"
 	icon = 'modular_skyrat/master_files/icons/obj/tools.dmi'
 	icon_state = "roborcd"
-	worn_icon_state = "RCD"
+	inhand_icon_state = "roborcd"
 	lefthand_file = 'modular_skyrat/modules/aesthetics/tools/tools_lefthand.dmi'
 	righthand_file = 'modular_skyrat/modules/aesthetics/tools/tools_righthand.dmi'
 	action_slots = NONE

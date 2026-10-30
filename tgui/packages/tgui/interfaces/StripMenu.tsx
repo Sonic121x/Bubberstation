@@ -113,6 +113,11 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
     text: '停用模块化装甲',
   },
 
+  access_storage: {
+    icon: 'box-open',
+    text: '打开',
+  },
+
   adjust_bridle: {
     icon: 'mask',
     text: '调整笼头',

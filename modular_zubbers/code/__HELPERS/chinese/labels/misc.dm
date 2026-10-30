@@ -76,7 +76,7 @@
 		display_names = list(
 		"command" = "指挥部", "engineering" = "工程部", "medical" = "医疗部",
 		"security" = "安保部", "science" = "科研部", "cargo" = "货运部",
-		"service" = "服务部", "civilian" = "民事部门", "centcom" = "中央指挥部",
+		"service" = "服务部", "civilian" = "民事部门", "centcom" = "中央指挥部", "assistant" = "助理", "assistants" = "助理",
 		"central command" = "中央指挥部", "supply" = "补给部", "silicon" = "硅基单位", "mining" = "采矿部", "unknown" = "未知",
 	)
 	return display_names[LOWER_TEXT(value)] || value

@@ -1,6 +1,6 @@
 
 /obj/machinery/computer/pandemic
-	name = "泛流行病分析仪 2200"
+	name = "\improper 泛流行病分析仪 2200"
 	desc = "用于处理病毒。"
 	density = TRUE
 	icon = 'icons/obj/medical/chemical.dmi'

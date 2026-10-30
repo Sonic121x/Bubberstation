@@ -314,3 +314,14 @@
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/storage/box/mousetraps = 3)
 	crate_name = "捕鼠夹箱"
+
+/datum/supply_pack/service/boombox
+	name = "MC 入门套装与手提音响"
+	desc = "一台顶级的纳米音乐牌手提音响。\
+		可播放专用音乐磁带，供你甚至同事们欣赏。附赠一盒试听磁带。"
+	cost = CARGO_CRATE_VALUE * 3
+	contains = list(
+		/obj/item/boombox = 1,
+		/obj/item/music_tape = 1,
+	)
+	crate_name = "手提音响箱"

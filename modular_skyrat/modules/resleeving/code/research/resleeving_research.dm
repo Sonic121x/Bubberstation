@@ -1,7 +1,6 @@
 /datum/design/rsd_interface
 	name = "共鸣模拟装置命匣"
 	desc = "一种大脑接口，可从唤灵者等型号的手持共鸣模拟装置中转移共鸣。"
-	id = "rsd_interface"
 	build_type = PROTOLATHE | AWAY_LATHE
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 	category = list(

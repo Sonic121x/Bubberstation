@@ -30,6 +30,8 @@
 	var/mob/user = music_player
 	if(user.incapacitated)
 		return FALSE
+	if(user.get_item_by_slot(slot_flags) == src) //can't play while wearing the instrument
+		return FALSE
 	if(!Adjacent(user))
 		return FALSE
 	return TRUE
@@ -83,6 +85,8 @@
 	desc = "满足你一切疯狂速弹的需求。"
 	icon_state = "eguitar"
 	inhand_icon_state = "eguitar"
+	worn_icon = 'icons/mob/clothing/back.dmi'
+	slot_flags = ITEM_SLOT_BACK
 	force = 12
 	attack_verb_continuous = list("弹着金属乐", "狂飙速弹", "猛砸", "重击")
 	attack_verb_simple = list("弹金属乐", "速弹", "猛砸", "重击")

@@ -1,7 +1,6 @@
 // Hypovials
 /datum/design/hypovial
 	name = "无针药瓶"
-	id = "hypovial"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.5,
@@ -16,7 +15,6 @@
 
 /datum/design/hypovial/large
 	name = "大型无针药瓶"
-	id = "large_hypovial"
 	materials = list(
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.5,
@@ -27,7 +25,6 @@
 // Hypospray cases
 /datum/design/hypokit
 	name = "无针注射器箱"
-	id = "hypokit"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 3,
@@ -42,7 +39,6 @@
 
 /datum/design/hypokit/deluxe
 	name = "豪华无针注射器箱"
-	id = "hypokit_deluxe"
 	materials = list(
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 6,
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3,
@@ -54,7 +50,6 @@
 // Hyposprays
 /datum/design/hypomkii
 	name = "无针注射器 Mk. II"
-	id = "hypomkii"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5,
@@ -70,7 +65,6 @@
 // Hypospray upgrade
 /datum/design/hypomkii/deluxe
 	name = "无针注射器 Mk. II 豪华升级套件"
-	id = "hypomkii_deluxe"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 8,
@@ -85,22 +79,16 @@
 
 // Hypospray Research
 /datum/techweb_node/chem_synthesis/New()
-	design_ids += list(
-		"hypovial",
-		"large_hypovial",
-		"hypokit",
-		"hypomkii",
+	unlocked_designs += list(
+		/datum/design/hypovial,
+		/datum/design/hypovial/large,
+		/datum/design/hypokit,
+		/datum/design/hypomkii,
 	)
 	return ..()
 
 /datum/techweb_node/medbay_equip_adv/New()
-	design_ids += list(
-		"hypokit_deluxe",
-	)
-	return ..()
-
-/datum/techweb_node/alien_surgery/New()
-	design_ids += list(
-		"hypomkii_deluxe",
+	unlocked_designs += list(
+		/datum/design/hypokit/deluxe,
 	)
 	return ..()

@@ -13,7 +13,6 @@
 			以及加快战地治疗的药贴。另外附带基础医疗工具和消毒剂。"
 	item = /obj/item/storage/medkit/tactical
 	cost = 4
-	progression_minimum = 15 MINUTES
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/device_tools/guerillagloves_traitor
@@ -45,7 +44,6 @@
 	item = /obj/item/reagent_containers/vapecart/syndicate
 	cost = 5
 	surplus = 90
-	progression_minimum = 20 MINUTES
 
 /datum/uplink_item/device_tools/syndicateborg
 	name = "辛迪加半机械人升级"

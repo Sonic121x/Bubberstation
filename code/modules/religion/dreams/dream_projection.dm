@@ -69,7 +69,7 @@
 	src.target = target
 	return ..()
 
-/datum/status_effect/dream_projection/get_examine_text()
+/datum/status_effect/dream_projection/get_examine_text(mob/examiner)
 	return "正处于沉睡，但双眼目光遥远，仿佛身在远方……"
 
 /datum/status_effect/dream_projection/on_apply()

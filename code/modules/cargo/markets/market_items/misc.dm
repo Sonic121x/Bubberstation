@@ -250,3 +250,13 @@
 	stock_min = 2
 	stock_max = 5
 	availability_prob = 100
+
+/datum/market_item/misc/jazz_tape
+	name = "手提音响磁带（爵士）"
+	desc = "由于星际法规对自由爵士乐的限制，如今已经很难找到好作品了。\
+		朋友，这才是真正的爵士乐，由臭名昭著的“弗兰基·布默”演奏。不含手提音响。"
+	item = /obj/item/music_tape/jazz
+	price_min = PAYCHECK_CREW * 2
+	price_max = PAYCHECK_CREW * 10 //The price is also freeform.
+	stock_max = 1
+	availability_prob = 30

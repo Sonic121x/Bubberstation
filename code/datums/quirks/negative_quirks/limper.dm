@@ -7,7 +7,6 @@
 	medical_record_text = "患者似乎存在腿部无力。"
 	value = -6
 	hardcore_value = 3
-	quirk_flags = QUIRK_HUMAN_ONLY
 
 	mail_goodies = list(
 		/obj/item/cane,

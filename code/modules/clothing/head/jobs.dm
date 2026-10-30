@@ -170,6 +170,7 @@
 	name = "修女面纱"
 	desc = "一点也不荒唐的衣着。"
 	icon_state = "nun_hood_alt"
+	inhand_icon_state = "nun_hood_alt"
 	flags_inv = HIDEHAIR | HIDEEARS
 	clothing_flags = SNUG_FIT // can't be knocked off by throwing a paper hat.
 
@@ -186,6 +187,7 @@
 	desc = "只有一个人能嗅出犯罪那肮脏的恶臭，而他多半正戴着这顶帽子。"
 	armor_type = /datum/armor/fedora_det_hat
 	icon_state = "detective"
+	inhand_icon_state = "detective"
 	interaction_flags_click = NEED_DEXTERITY|NEED_HANDS|ALLOW_RESTING
 	dog_fashion = /datum/dog_fashion/head/detective
 	/// Path for the flask that spawns inside their hat roundstart
@@ -249,6 +251,7 @@
 	desc = "只有一个人会在试图阻止罪犯时肆无忌惮地朝拥挤的街道开枪，\
 		而他多半正戴着这顶帽子。"
 	icon_state = /obj/item/clothing/head/fedora::icon_state
+	inhand_icon_state = "fedora"
 
 ///Detectives Fedora, but like Inspector Gadget. Not a subtype to not inherit candy corn stuff
 /obj/item/clothing/head/fedora/inspector_hat
@@ -256,6 +259,7 @@
 	desc = "只有一个人会去试着阻止邪恶的反派。"
 	armor_type = /datum/armor/fedora_det_hat
 	icon_state = "detective"
+	inhand_icon_state = "detective"
 	dog_fashion = /datum/dog_fashion/head/detective
 	interaction_flags_click = FORBID_TELEKINESIS_REACH|ALLOW_RESTING
 	///prefix our phrases must begin with

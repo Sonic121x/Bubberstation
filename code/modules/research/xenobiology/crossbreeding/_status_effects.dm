@@ -42,18 +42,14 @@
 
 /datum/status_effect/slimeskin/on_apply()
 	owner.add_atom_colour(color_transition_filter("#3070CC", SATURATION_OVERRIDE), TEMPORARY_COLOUR_PRIORITY)
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.damage_resistance += 10
+	owner.damage_resistance += 10
 	owner.visible_message(span_warning("[owner] 突然被一层奇怪的偏蓝色凝胶包裹！"),
 		span_notice("你身上覆盖着一层黏稠、有弹性的凝胶。"))
 	return ..()
 
 /datum/status_effect/slimeskin/on_remove()
 	owner.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.damage_resistance -= 10
+	owner.damage_resistance -= 10
 	owner.visible_message(span_warning("[owner] 的凝胶外壳液化并溶解消散。"),
 		span_notice("你的凝胶第二层皮肤溶解了！"))
 
@@ -300,15 +296,11 @@
 	tick_interval = STATUS_EFFECT_NO_TICK
 
 /datum/status_effect/metalcookie/on_apply()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.brute_mod *= 0.9
+	MODIFY_PHYSIOLOGY(owner, BRUTE, 0.9)
 	return ..()
 
 /datum/status_effect/metalcookie/on_remove()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.brute_mod /= 0.9
+	MODIFY_PHYSIOLOGY(owner, BRUTE, 1 / 0.9)
 
 /datum/status_effect/sparkcookie
 	id = "sparkcookie"
@@ -316,19 +308,13 @@
 	alert_type = null
 	duration = 30 SECONDS
 	tick_interval = STATUS_EFFECT_NO_TICK
-	var/original_coeff
 
 /datum/status_effect/sparkcookie/on_apply()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		original_coeff = H.physiology.siemens_coeff
-		H.physiology.siemens_coeff = 0
+	ADD_TRAIT(owner, TRAIT_SHOCKIMMUNE, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
 /datum/status_effect/sparkcookie/on_remove()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.siemens_coeff = original_coeff
+	REMOVE_TRAIT(owner, TRAIT_SHOCKIMMUNE, TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/toxincookie
 	id = "toxincookie"
@@ -451,15 +437,11 @@
 	tick_interval = STATUS_EFFECT_NO_TICK
 
 /datum/status_effect/adamantinecookie/on_apply()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.burn_mod *= 0.9
+	MODIFY_PHYSIOLOGY(owner, BURN, 0.9)
 	return ..()
 
 /datum/status_effect/adamantinecookie/on_remove()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.burn_mod /= 0.9
+	MODIFY_PHYSIOLOGY(owner, BURN, 1 / 0.9)
 
 ///////////////////////////////////////////////////////
 //////////////////STABILIZED EXTRACTS//////////////////
@@ -559,7 +541,7 @@
 
 	return ..()
 
-/datum/status_effect/stabilized/purple/get_examine_text()
+/datum/status_effect/stabilized/purple/get_examine_text(mob/examiner)
 	if(healed_last_tick)
 		return span_warning("[owner] 正在缓慢再生，紫色黏液正填补着小伤口！")
 
@@ -605,7 +587,7 @@
 	var/cooldown = 10
 	var/max_cooldown = 10
 
-/datum/status_effect/stabilized/yellow/get_examine_text()
+/datum/status_effect/stabilized/yellow/get_examine_text(mob/examiner)
 	return span_warning("[owner] 走到哪儿，附近的电子设备似乎都充得更足了一些。")
 
 /datum/status_effect/stabilized/yellow/tick(seconds_between_ticks)
@@ -652,7 +634,7 @@
 	REMOVE_TRAIT(owner, TRAIT_RESISTHEATHANDS, TRAIT_STATUS_EFFECT(id))
 	QDEL_NULL(fire)
 
-/datum/status_effect/stabilized/darkpurple/get_examine_text()
+/datum/status_effect/stabilized/darkpurple/get_examine_text(mob/examiner)
 	return span_notice("[owner] 的指尖正熊熊燃烧！")
 
 /datum/status_effect/stabilized/darkblue
@@ -692,15 +674,11 @@
 	colour = SLIME_TYPE_SILVER
 
 /datum/status_effect/stabilized/silver/on_apply()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.hunger_mod *= 0.8 //20% buff
+	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_HUNGER_MOD, 0.8)
 	return ..()
 
 /datum/status_effect/stabilized/silver/on_remove()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.hunger_mod /= 0.8
+	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_HUNGER_MOD, 1.25)
 
 //Bluespace has an icon because it's kinda active.
 /atom/movable/screen/alert/status_effect/bluespaceslime
@@ -845,7 +823,7 @@
 	return ..()
 
 // Only occasionally give examiners a warning.
-/datum/status_effect/stabilized/green/get_examine_text()
+/datum/status_effect/stabilized/green/get_examine_text(mob/examiner)
 	if(prob(50))
 		return span_warning("[owner] 看起来有点发绿发黏……")
 
@@ -953,8 +931,8 @@
 		qdel(linked_extract)
 	return ..()
 
-/datum/status_effect/stabilized/oil/get_examine_text()
-	return span_warning("[owner.p_They()] smell[owner.p_s()] of sulfur and oil!")
+/datum/status_effect/stabilized/oil/get_examine_text(mob/examiner)
+	return span_warning("[owner] 身上散发着硫磺和机油的气味！")
 
 /// How much damage is dealt per healing done for the stabilized back.
 /// This multiplier is applied to prevent two people from converting each other's damage away.
@@ -992,7 +970,7 @@
 	to_chat(owner, span_boldnotice("你感到双手在 [draining] 的脖颈周围融化，开始汲取其生命！"))
 	to_chat(draining, span_userdanger("[owner] 的双手在你脖颈周围融化，你能感到自己的生命正被抽走！"))
 
-/datum/status_effect/stabilized/black/get_examine_text()
+/datum/status_effect/stabilized/black/get_examine_text(mob/examiner)
 	var/mob/living/draining = draining_ref?.resolve()
 	if(!draining)
 		return null
@@ -1050,7 +1028,7 @@
 	id = "stabilizedadamantine"
 	colour = SLIME_TYPE_ADAMANTINE
 
-/datum/status_effect/stabilized/adamantine/get_examine_text()
+/datum/status_effect/stabilized/adamantine/get_examine_text(mob/examiner)
 	return span_warning("[owner] 的皮肤上覆着一层奇怪的金属镀层。")
 
 /datum/status_effect/stabilized/gold
@@ -1083,15 +1061,11 @@
 		qdel(familiar)
 
 /datum/status_effect/stabilized/adamantine/on_apply()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.damage_resistance += 5
+	owner.damage_resistance += 5
 	return ..()
 
 /datum/status_effect/stabilized/adamantine/on_remove()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.damage_resistance -= 5
+	owner.damage_resistance -= 5
 
 /datum/status_effect/stabilized/rainbow
 	id = "stabilizedrainbow"

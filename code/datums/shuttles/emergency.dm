@@ -548,4 +548,107 @@
 /datum/map_template/shuttle/emergency/ark/prerequisites_met()
 	return SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_ARK]
 
+/datum/map_template/shuttle/emergency/departmental
+	who_can_purchase = null
+	admin_notes = "其他部门专属穿梭机的父级模板。"
+	///requires a job_department datum to present it to communications console.
+	var/department_type = null
+	///requires a name of department to send it to ui.
+	var/department_name = ""
+	occupancy_limit = "null"
+
+/datum/map_template/shuttle/emergency/departmental/command
+	suffix = "dep_cap"
+	name = "Command Emergency Shuttle"
+	description = "这本来可以成为某位寡头的私人穿梭机，但工会不让我们达成交易，\
+	所以现在把它作为精英专用穿梭机投入运营。"
+	admin_notes = "舰桥区配有卷帘门和一把斧头。"
+	credit_cost = CARGO_CRATE_VALUE * 17.5
+	who_can_purchase = list(ACCESS_CAPTAIN)
+	department_type = /datum/job_department/command
+	department_name = DEPARTMENT_COMMAND
+	occupancy_limit = "40 人，另有 7 人可参加宴会。"
+
+/datum/map_template/shuttle/emergency/departmental/civil
+	suffix = "dep_civ"
+	name = "Assistants Emergency Shuttle"
+	description = "为满足助理们的愿望而设计的穿梭机，内部改装成了维修区。"
+	admin_notes = "维修区风格穿梭机。"
+	credit_cost = CARGO_CRATE_VALUE * 5.5
+	who_can_purchase = list(ACCESS_CAPTAIN)
+	department_type = /datum/job_department/assistant
+	department_name = DEPARTMENT_ASSISTANT
+	occupancy_limit = "足够容纳一群助理。"
+
+/datum/map_template/shuttle/emergency/departmental/engineering
+	suffix = "dep_eng"
+	name = "Engineering Emergency Shuttle"
+	description = "工程师们说，按照物理定律，穿梭机没有能源就飞不起来，\
+	所以我们装上了超物质碎片，并设置了带涡轮和混气室的大气处理区。"
+	admin_notes = "配有未启动的超物质碎片、斧头、绝缘手套和免费工程售货机；工程师为船供电后，格栅也会通电。"
+	credit_cost = CARGO_CRATE_VALUE * 15.5
+	who_can_purchase = list(ACCESS_CAPTAIN)
+	department_type = /datum/job_department/engineering
+	department_name = DEPARTMENT_ENGINEERING
+	occupancy_limit = "20"
+
+/datum/map_template/shuttle/emergency/departmental/medical
+	suffix = "dep_med"
+	name = "Medical Emergency Shuttle"
+	description = "有人认为一边开穿梭机一边治病救人很方便，\
+	于是为了讨心脏外科医生们欢心，推出了配备治疗中心、病毒学实验室和化学实验室的医疗穿梭机。"
+	admin_notes = "配有可用的药房和病毒学实验室。"
+	credit_cost = CARGO_CRATE_VALUE * 12
+	who_can_purchase = list(ACCESS_CAPTAIN)
+	department_type = /datum/job_department/medical
+	department_name = DEPARTMENT_MEDICAL
+	occupancy_limit = "30 名活人和 1 具遗体。"
+
+/datum/map_template/shuttle/emergency/departmental/science
+	suffix = "dep_sci"
+	name = "Science Emergency Shuttle"
+	description = "我们受够了科学家们，所以专门给他们造了一艘穿梭机。\
+	还搬来了一块真正的小行星，用于建造军械实验室和异种生物学扩建区。"
+	admin_notes = "配有可用的研发设施。"
+	credit_cost = CARGO_CRATE_VALUE * 10
+	who_can_purchase = list(ACCESS_CAPTAIN)
+	department_type = /datum/job_department/science
+	department_name = DEPARTMENT_SCIENCE
+	occupancy_limit = "50"
+
+/datum/map_template/shuttle/emergency/departmental/security
+	suffix = "dep_sec"
+	name = "Security Emergency Shuttle"
+	description = "为纪念一位救下中央指挥部代表性命的安保官而建造。\
+	他是个非常好的人，直到牺牲在叛徒手中。"
+	admin_notes = "配有 2 间牢房、1 间临时拘留室，以及取代乘坐区的永久监狱。"
+	credit_cost = CARGO_CRATE_VALUE * 16
+	who_can_purchase = list(ACCESS_CAPTAIN)
+	department_type = /datum/job_department/security
+	department_name = DEPARTMENT_SECURITY
+	occupancy_limit = "40 名囚犯和 10 名自由船员。"
+
+/datum/map_template/shuttle/emergency/departmental/service
+	suffix = "dep_srv"
+	name = "Service Emergency Shuttle"
+	description = "这艘穿梭机专为流连酒吧而造，没有工具库或医疗区。"
+	admin_notes = "空间宽敞，但缺少许多穿梭机的重要设施。"
+	credit_cost = CARGO_CRATE_VALUE * 8
+	who_can_purchase = list(ACCESS_CAPTAIN)
+	department_type = /datum/job_department/service
+	department_name = DEPARTMENT_SERVICE
+	occupancy_limit = "30"
+
+/datum/map_template/shuttle/emergency/departmental/cargo
+	suffix = "dep_sup"
+	name = "Cargo Emergency Shuttle"
+	description = "应货运分离主义者的要求而建造。\
+	别担心，所有分离主义者都已入狱。设计实在太出色，所以我们决定公开销售。"
+	admin_notes = "配有未装弹的火箭筒和快速补给控制台。"
+	credit_cost = CARGO_CRATE_VALUE * 9.5
+	who_can_purchase = list(ACCESS_CAPTAIN)
+	department_type = /datum/job_department/cargo
+	department_name = DEPARTMENT_CARGO
+	occupancy_limit = "40"
+
 #undef EMAG_LOCKED_SHUTTLE_COST

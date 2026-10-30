@@ -1,7 +1,7 @@
 // Don't know of a better place to put these. They're technically related to synths, so they're going here.
 
-/obj/item/mmi/posibrain/circuit
-	name = "紧凑型AI电路"
+/obj/item/brain_processor/positronic/circuit
+	name = "紧凑型 AI 电路"
 	desc = "一块紧凑电路，尺寸恰好适配半机械人的正电子脑插槽。"
 	icon = 'modular_skyrat/master_files/icons/obj/alt_silicon_brains.dmi'
 	icon_state = "circuit"
@@ -10,13 +10,6 @@
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 
-	// It pains me to copy-paste so much, but I can't do it any other way
-	begin_activation_message = span_notice("你仔细找到手动启动开关，启动了紧凑型AI电路的引导程序。")
-	success_message = span_notice("紧凑型AI电路发出提示音，指示灯开始闪烁。成功了！")
-	fail_message = span_notice("紧凑型AI电路轻声嗡鸣，金色灯光逐渐熄灭。也许可以再试一次？")
-	new_mob_message = span_notice("紧凑型AI电路发出轻柔的提示音。")
-	recharge_message = span_warning("紧凑型AI电路还不能再次激活！给它一点时间充电。")
-
 // CODE THAT ACTUALLY APPLIES THE BRAINS.
 // See modular_skyrat/master_files/code/modules/client/preferences/brain.dm for Synth/IPC application.
 
@@ -24,13 +17,13 @@
 /mob/living/proc/prefs_get_brain_to_use(value, is_cyborg = FALSE)
 	switch(value)
 		if(ORGAN_PREF_POSI_BRAIN)
-			return is_cyborg ? /obj/item/mmi/posibrain : /obj/item/organ/brain/synth
+			return is_cyborg ? /obj/item/brain_processor/positronic : /obj/item/organ/brain/synth
 
 		if(ORGAN_PREF_MMI_BRAIN)
-			return is_cyborg ? /obj/item/mmi : /obj/item/organ/brain/synth/mmi
+			return is_cyborg ? /obj/item/brain_processor/organic : /obj/item/organ/brain/synth/mmi
 
 		if(ORGAN_PREF_CIRCUIT_BRAIN)
-			return is_cyborg ? /obj/item/mmi/posibrain/circuit : /obj/item/organ/brain/synth/circuit
+			return is_cyborg ? /obj/item/brain_processor/positronic/circuit : /obj/item/organ/brain/synth/circuit
 
 /mob/living/silicon/robot/Initialize(mapload)
 	. = ..()
@@ -70,15 +63,17 @@
 // This is only implemented for cyborgs at the moment. AI has their own weird way of doing things.
 /mob/living/silicon/robot/transfer_brain_pref(client/player_client)
 	// Read the brain type from prefs and apply it to the mob.
-	var/obj/item/mmi/new_mmi = prefs_get_brain_to_use(player_client?.prefs?.read_preference(/datum/preference/choiced/brain_type), TRUE)
+	var/obj/item/brain_processor/new_mmi = prefs_get_brain_to_use(player_client?.prefs?.read_preference(/datum/preference/choiced/brain_type), TRUE)
 	if(!mmi || !new_mmi || new_mmi == mmi.type)
 		return
 	new_mmi = new new_mmi(src)
 
-	// Probably shitcode, but silicon code is spaghetti as fuck.
-	new_mmi.brain = new /obj/item/organ/brain(new_mmi)
-	new_mmi.brain.organ_flags |= ORGAN_FROZEN
-	new_mmi.brain.name = "[real_name]的大脑"
+	// Probably shitcode, but silicon code is spaghetti as fuck. // Future me: Yes it is
+	if(istype(new_mmi, /obj/item/brain_processor/organic))
+		var/obj/item/brain_processor/organic/organic_mmi = new_mmi
+		organic_mmi.brain = new /obj/item/organ/brain(new_mmi)
+		organic_mmi.brain.organ_flags |= ORGAN_FROZEN
+		organic_mmi.brain.name = "[real_name]的大脑"
 	new_mmi.name = "[initial(new_mmi.name)]: [real_name]"
 	new_mmi.set_brainmob(new /mob/living/brain(new_mmi))
 	new_mmi.brainmob.name = src.real_name

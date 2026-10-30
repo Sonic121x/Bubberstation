@@ -89,6 +89,7 @@
 		"Jolly" = "乐天派",
 		"Keen Nose" = "灵敏嗅觉",
 		"Light Step" = "轻盈步伐",
+		"Death Mimicry" = "装死高手",
 		"Mime Fan" = "默剧迷",
 		"Musician" = "音乐家",
 		"Poster Boy" = "海报达人",

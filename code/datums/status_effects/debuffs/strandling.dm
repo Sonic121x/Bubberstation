@@ -18,7 +18,7 @@
 /datum/status_effect/strandling/on_remove()
 	UnregisterSignal(owner, list(COMSIG_CARBON_PRE_BREATHE, COMSIG_ATOM_TOOL_ACT(TOOL_WIRECUTTER), COMSIG_CARBON_PRE_MISC_HELP))
 
-/datum/status_effect/strandling/get_examine_text()
+/datum/status_effect/strandling/get_examine_text(mob/examiner)
 	return span_warning("一些耐久纤维似乎正勒住[owner]的脖子。你也许可以将它们<b>割断</b>。")
 
 /// Signal proc for [COMSIG_CARBON_PRE_BREATHE], causes losebreath whenever we're trying to breathe

@@ -132,3 +132,29 @@ GLOBAL_LIST_EMPTY(wall_reskin_lists)
 	icon_state = "redpod-wall-fill"
 	desc = "用于红色暗色穿梭机墙体的填充物。颇有几分威慑气息。"
 	merge_type = /obj/item/stack/wall_filling/plastitanium/redpod
+
+
+///Window-fill. Same, but for windows.
+/obj/item/stack/wall_filling/plastitaniumglass
+	name = "塑钛玻璃窗填充件"
+	singular_name = "塑钛玻璃窗填充件"
+	desc = "标准塑钛玻璃窗的填充件。"
+	icon_state = "plastitanium-window-fill"
+	inhand_icon_state = "sheet-plastitaniumglass"
+	mats_per_unit = list(/datum/material/alloy/plastitaniumglass=SHEET_MATERIAL_AMOUNT*2)
+	merge_type = /obj/item/stack/wall_filling/plastitaniumglass
+	made_from = /obj/item/stack/sheet/plastitaniumglass
+	wall_reskin_types = list(
+		/obj/item/stack/wall_filling/plastitaniumglass/basic,
+		/obj/item/stack/wall_filling/plastitaniumglass/pod,
+	)
+
+/obj/item/stack/wall_filling/plastitaniumglass/basic
+	merge_type = /obj/item/stack/wall_filling/plastitaniumglass/basic
+
+/obj/item/stack/wall_filling/plastitaniumglass/pod
+	name = "舱窗填充件"
+	singular_name = "舱窗填充件"
+	icon_state = "pod-window-fill"
+	desc = "优雅而坚固的窗户填充件，多用于恶劣环境。"
+	merge_type = /obj/item/stack/wall_filling/plastitaniumglass/pod

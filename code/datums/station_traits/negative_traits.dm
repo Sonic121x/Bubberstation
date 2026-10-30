@@ -150,15 +150,7 @@
 	show_in_report = TRUE
 	report_message = "由于距离补给站较远，货运穿梭机飞往你站货运部的时间将更长。"
 	blacklist = list(/datum/station_trait/quick_shuttle)
-
-/datum/station_trait/slow_shuttle/New()
-	. = ..()
-	RegisterSignal(SSshuttle, COMSIG_SUBSYSTEM_POST_INITIALIZE, PROC_REF(slow_the_shuttle))
-
-/datum/station_trait/slow_shuttle/proc/slow_the_shuttle(datum/source)
-	SIGNAL_HANDLER
-	SSshuttle.supply.callTime *= 1.5
-	UnregisterSignal(SSshuttle, COMSIG_SUBSYSTEM_POST_INITIALIZE)
+	trait_to_give = STATION_TRAIT_SLOW_SHUTTLE
 
 /datum/station_trait/bot_languages
 	name = "机器人语言矩阵故障"
@@ -767,5 +759,15 @@
 	show_in_report = TRUE
 	report_message = "空间站分部告知我们，由于建筑材料存在缺陷，本站可能有多处结构薄弱点。请留意这些位置，并尽量避免发生爆炸。"
 	trait_to_give = STATION_TRAIT_SPAWN_WEAKPOINTS
+
+///A negative trait that empties the food and drink products available from vending machines throughout the station.
+/datum/station_trait/vending_shortage
+	name = "售货机商品短缺"
+	trait_type = STATION_TRAIT_NEGATIVE
+	weight = 3
+	show_in_report = TRUE
+	can_revert = FALSE // because it touches every maploaded vending machine on the station.
+	report_message = "我们还没来得及维护空间站的食品和饮料售货机。食品饮料库存已经耗尽，需要补货。"
+	trait_to_give = STATION_TRAIT_VENDING_SHORTAGE
 
 #undef GLOW_NEBULA

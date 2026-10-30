@@ -144,12 +144,12 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", /m
 			else
 				body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=observer;mob=[REF(player)]'>变成幽灵</A> | "
 
-			if(ishuman(player) && !ismonkey(player))
+			if(ishuman(player) && !HAS_TRAIT(player, TRAIT_LESSER_HUMANOID))
 				body += "<b>人类</b> | "
 			else
 				body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;mob=[REF(player)]'>变成人类</A> | "
 
-			if(ismonkey(player))
+			if(HAS_TRAIT(player, TRAIT_LESSER_HUMANOID))
 				body += "<b>猴子</b> | "
 			else
 				body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=monkey;mob=[REF(player)]'>变成猴子</A> | "

@@ -117,6 +117,7 @@
 	desc = "一大袋商用园艺土，装满沙子、泥炭和粪肥。你可能不太喜欢这种混合物，但植物就好这一口。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "soil_sack"
+	inhand_icon_state = "soil_sack"
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	base_icon_state =  "soil_sack"
@@ -218,6 +219,7 @@
 	name = "纳米传讯蛭石袋"
 	desc = "一袋膨胀矿物颗粒，可用作无土栽培基质。\n\n你更愿意把它想象成一袋让根系自由呼吸的岩石爆米花。"
 	icon_state = "soil_sack_verm"
+	inhand_icon_state = "soil_sack_verm"
 	base_icon_state = "soil_sack_verm"
 	custom_premium_price = PAYCHECK_CREW * 2
 	stored_soil = /obj/machinery/hydroponics/soil/vermaculite
@@ -227,6 +229,7 @@
 	name = "水凝胶珠袋"
 	desc = "一袋太空时代的高吸水性凝胶珠！你实在想不通预先水化后再运输怎么会符合商业逻辑……"
 	icon_state = "soil_sack_gel"
+	inhand_icon_state = "soil_sack_gel"
 	base_icon_state = "soil_sack_gel"
 	custom_premium_price = PAYCHECK_CREW * 2
 	placement_sound = 'sound/effects/meatslap.ogg'
@@ -236,6 +239,7 @@
 	name = "#1™ 科塔椰糠袋"
 	desc = "一袋提兹拉科塔根椰糠。纤维状的根经过堆肥，直到分离成一根根纤维。\n\n它是腐生蘑菇的绝佳养分来源，并能在炎热的提兹拉气候中帮助保持水分。"
 	icon_state = "soil_sack_coir"
+	inhand_icon_state = "soil_sack_coir"
 	base_icon_state = "soil_sack_coir"
 	custom_premium_price = PAYCHECK_CREW * 3
 	stored_soil = /obj/machinery/hydroponics/soil/coir
@@ -244,6 +248,7 @@
 	name = "蚯蚓粪袋"
 	desc = "一袋蚯蚓堆肥，也就是蚯蚓粪。\n\n这种无脊椎动物的粪便不仅含有植物养分和未消化的有机物，还富含有益微生物菌群。"
 	icon_state = "soil_sack_worm"
+	inhand_icon_state = "soil_sack_worm"
 	base_icon_state = "soil_sack_worm"
 	custom_premium_price = PAYCHECK_CREW * 4
 	stored_soil = /obj/machinery/hydroponics/soil/worm

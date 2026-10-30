@@ -58,6 +58,17 @@ function ShuttleCard(props: ShuttleCardProps) {
     emagged,
   } = data;
 
+  const isButtonDisabled = budget < shuttle.creditCost;
+
+  let buttonTooltip: string | undefined;
+  if (budget < shuttle.creditCost) {
+    buttonTooltip = `还需要 ${shuttle.creditCost - budget} ${displayed_currency_full_name}。`;
+  } else if (shuttle.department_locked) {
+    buttonTooltip = `要求${shuttle.department_name}部门拥有最多员工。`;
+  } else if (shuttle.emagOnly) {
+    buttonTooltip = EMAG_SHUTTLE_NOTICE;
+  }
+
   return (
     <Section
       title={
@@ -72,25 +83,27 @@ function ShuttleCard(props: ShuttleCardProps) {
       }
       buttons={
         <Button
-          color={shuttle.emagOnly ? 'red' : 'default'}
-          disabled={budget < shuttle.creditCost}
+          color={
+            shuttle.department_locked
+              ? 'danger'
+              : shuttle.emagOnly
+                ? 'red'
+                : 'default'
+          }
+          disabled={isButtonDisabled}
           onClick={() =>
             act('purchaseShuttle', {
               shuttle: shuttle.ref,
             })
           }
-          tooltip={
-            budget < shuttle.creditCost
-              ? `还需要 ${shuttle.creditCost - budget} ${displayed_currency_full_name}。`
-              : shuttle.emagOnly
-                ? EMAG_SHUTTLE_NOTICE
-                : undefined
-          }
+          tooltip={buttonTooltip}
           tooltipPosition="left"
         >
-          {shuttle.emagOnly && !emagged
-            ? '购买'
-            : `${shuttle.creditCost} ${displayed_currency_name}`}
+          {shuttle.department_locked
+            ? '已锁定'
+            : shuttle.emagOnly && !emagged
+              ? '购买'
+              : `${shuttle.creditCost} ${displayed_currency_name}`}
         </Button>
       }
     >
@@ -101,6 +114,15 @@ function ShuttleCard(props: ShuttleCardProps) {
       <Box color="violet" fontSize="10px" bold>
         {shuttle.prerequisites && <b>前提条件：{shuttle.prerequisites}</b>}
       </Box>
+      {!!shuttle.department_locked && (
+        <Box
+          color="red"
+          style={{ marginTop: '4px', fontSize: '10px', fontWeight: 'bold' }}
+        >
+          仅当{shuttle.department_name}{' '}
+          部门的员工人数最多时，才能购买此穿梭机！
+        </Box>
+      )}
     </Section>
   );
 }

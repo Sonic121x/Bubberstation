@@ -3,7 +3,7 @@
 	desc = "由于姿势不良，背包和其他袋子背在你身上总是不舒服。不过重量分布均匀的物品没有问题。"
 	icon = FA_ICON_HIKING
 	value = -8
-	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_MOODLET_BASED
+
 	gain_text = span_danger("你的背真的好疼！")
 	lose_text = span_notice("你的背感觉好多了。")
 	medical_record_text = "扫描显示患者存在严重的慢性背痛。"

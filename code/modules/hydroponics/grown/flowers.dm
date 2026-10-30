@@ -342,6 +342,7 @@
 	name = "碳玫瑰"
 	desc = "全新的灰色爱情之花——现代化的爱情之花，没有扎人的刺。"
 	icon_state = "carbonrose"
+	inhand_icon_state = "carbonrose"
 	lefthand_file = 'icons/mob/inhands/weapons/plants_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/plants_righthand.dmi'
 	force = 0

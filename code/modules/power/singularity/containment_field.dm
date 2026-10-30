@@ -74,7 +74,7 @@
 	if(ismegafauna(user))
 		user.visible_message(span_warning("[user] 猛烈地发光，约束力场随之闪灭！"))
 		field_gen_1.calc_power(INFINITY) //rip that 'containment' field
-		user.adjustHealth(-user.obj_damage)
+		user.adjust_brute_loss(-user.obj_damage)
 	else
 		return ..()
 

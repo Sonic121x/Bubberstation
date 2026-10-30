@@ -225,7 +225,7 @@
 	desc = "一款过时的副武器，偶尔仍有CIN成员使用。采用左轮结构，弹巢可容纳四发霰弹。没错，是霰弹。这把枪使用12号口径弹药。"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/rev12ga
 	projectile_damage_multiplier = 0.9
-	recoil = SAWN_OFF_RECOIL
+	recoil = 1
 	weapon_weight = WEAPON_MEDIUM
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/guns_32.dmi'
 	icon_state = "bobr"

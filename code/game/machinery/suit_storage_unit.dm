@@ -579,8 +579,7 @@
 		open_machine()
 		dump_inventory_contents()
 		return
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
 	user.visible_message(span_notice("你看到[user]正在踹[src]的门！"), \
 		span_notice("你开始踹门……（这大约需要[DisplayTimeText(breakout_time)]。）"), \
 		span_hear("你听到[src]里传来一声闷响。"))

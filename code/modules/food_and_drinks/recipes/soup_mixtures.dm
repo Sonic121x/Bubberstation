@@ -1081,6 +1081,30 @@
 	)
 	percentage_of_nutriment_converted = 0.1
 
+// Red beet soup
+/datum/reagent/consumable/nutriment/soup/drake_beet
+	name = "龙形甜菜汤"
+	description = "用龙形甜菜和附在龙皮上的筋腱熬制的汤。"
+	data = list("龙形甜菜" = 4, "香料" = 1)
+	color = "#851127"
+
+/datum/glass_style/has_foodtype/soup/drake_beet
+	required_drink_type = /datum/reagent/consumable/nutriment/soup/drake_beet
+	icon_state = "drakebeetsoup"
+	drink_type = VEGETABLES | MEAT
+
+/datum/chemical_reaction/food/soup/drake_beet
+	required_reagents = list(/datum/reagent/water = 50)
+	required_ingredients = list(
+		/obj/item/food/grown/drake_beet = 2,
+		/obj/item/stack/sheet/animalhide/ashdrake = 1,
+	)
+	results = list(
+		/datum/reagent/consumable/nutriment/soup/drake_beet = 30,
+		/datum/reagent/water = 10,
+	)
+	percentage_of_nutriment_converted = 0.2
+
 // French Onion soup
 /datum/reagent/consumable/nutriment/soup/french_onion
 	name = "法式洋葱汤"
@@ -1131,6 +1155,32 @@
 		/datum/reagent/consumable/nutriment/protein = 6,
 		/datum/reagent/consumable/nutriment/vitamin = 4,
 		/datum/reagent/water = 5,
+	)
+
+// Iceberg soup
+/datum/reagent/consumable/nutriment/soup/iceberg
+	name = "冰山汤"
+	description = "比许愿汤稍好一些，至少含有一点营养。"
+	data = list("冰凉" = 4, "苔原荒野" = 1)
+	color = "#26AEB9"
+
+/datum/glass_style/has_foodtype/soup/iceberg
+	required_drink_type = /datum/reagent/consumable/nutriment/soup/iceberg
+	icon_state = "icebergbowl"
+	drink_type = VEGETABLES
+
+/datum/chemical_reaction/food/soup/iceberg
+	required_reagents = list(
+		/datum/reagent/water = 40,
+		/datum/reagent/consumable/frostoil = 10,
+	)
+	required_ingredients = list(
+		/obj/item/food/grown/ash_flora/fonarstolbe = 1,
+		/obj/item/food/grown/ash_flora/podsneyzka = 1,
+		/obj/item/food/grown/peas = 1,
+	)
+	results = list(
+		/datum/reagent/consumable/nutriment/soup/iceberg = 40,
 	)
 
 // Bungo Tree Curry
@@ -1270,6 +1320,38 @@
 		/datum/reagent/consumable/nutriment/vitamin = 8,
 	)
 	percentage_of_nutriment_converted = 0 // Oats have barely any nutrients
+
+// Wolf Goulash
+/datum/reagent/consumable/nutriment/soup/goulash
+	name = "匈牙利炖狼肉"
+	description = "一道以肉为主的浓汤，这一版本用的是狼的筋腱。"
+	data = list("肉" = 4, "蔬菜" = 1, "香料" = 1)
+	color = "#CA3518"
+
+/datum/glass_style/has_foodtype/soup/goulash
+	required_drink_type = /datum/reagent/consumable/nutriment/soup/goulash
+	icon_state = "goulash"
+	drink_type = VEGETABLES | MEAT
+
+/datum/chemical_reaction/food/soup/goulash
+	required_reagents = list(
+		/datum/reagent/water = 40,
+		/datum/reagent/consumable/flour = 10,
+	)
+	required_ingredients = list(
+		/obj/item/stack/sheet/sinew/wolf = 1,
+		/obj/item/food/grown/drake_beet = 1,
+		/obj/item/food/grown/bell_pepper = 1,
+		/obj/item/food/grown/onion = 1,
+	)
+	results = list(
+		/datum/reagent/consumable/nutriment/soup/goulash = 30,
+		/datum/reagent/consumable/nutriment = 4,
+		/datum/reagent/consumable/nutriment/protein = 3,
+		/datum/reagent/consumable/nutriment/vitamin = 3,
+	)
+	ingredient_reagent_multiplier = 0.5
+	percentage_of_nutriment_converted = 0.1
 
 // Zurek, a Polish soup
 /datum/reagent/consumable/nutriment/soup/zurek

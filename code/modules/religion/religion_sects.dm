@@ -15,7 +15,7 @@
 	/// Opening message when someone gets converted
 	var/desc = "哦天哪！这到底是什么？！？！？！？"
 	/// Tgui icon used by this sect - https://fontawesome.com/icons/
-	var/tgui_icon = "bug"
+	var/tgui_icon = FA_ICON_BUG
 	/// holder for alignments.
 	var/alignment = ALIGNMENT_GOOD
 	/// Does this require something before being available as an option?
@@ -152,7 +152,7 @@
 	name = "纳米传讯认可之神"
 	desc = "中规中矩的教派，没有任何额外好处或恩赐。"
 	quote = "纳米传讯推荐！"
-	tgui_icon = "bible"
+	tgui_icon = FA_ICON_BIBLE
 
 /**** Mechanical God ****/
 
@@ -161,7 +161,7 @@
 	quote = "愿你在金属外壳中找到安宁。"
 	desc = "圣经现在能为半机械人充能，并在瞄准时治疗机械肢体，但\
 	无法治疗有机肢体。你现在可以献祭电池，获得的恩宠取决于其电量。"
-	tgui_icon = "robot"
+	tgui_icon = FA_ICON_ROBOT
 	alignment = ALIGNMENT_NEUT
 	desired_items = list(/obj/item/stock_parts/power_store = "带有电池电量")
 	rites_list = list(/datum/religion_rites/synthconversion, /datum/religion_rites/machine_blessing)
@@ -235,7 +235,7 @@
 	name = "焚焰之神"
 	desc = "献祭烧伤严重的燃烧尸体与蜡烛即可获得恩宠。"
 	quote = "它必须燃烧！原始能量必须受到敬畏。"
-	tgui_icon = "fire-alt"
+	tgui_icon = FA_ICON_FIRE_ALT
 	alignment = ALIGNMENT_NEUT
 	max_favor = 10000
 	desired_items = list(/obj/item/flashlight/flare/candle = "已经点燃")
@@ -267,11 +267,10 @@
 	name = "贪婪之神"
 	quote = "贪婪是好事。"
 	desc = "在你的商业神祇眼中，财富就是恩宠。赚取足够的财富，以购买更多商业机会。"
-	tgui_icon = "dollar-sign"
+	tgui_icon = FA_ICON_DOLLAR_SIGN
 	altar_icon_state = "convertaltar-yellow"
 	alignment = ALIGNMENT_EVIL //greed is not good wtf
 	rites_list = list(/datum/religion_rites/greed/vendatray, /datum/religion_rites/greed/custom_vending)
-	altar_icon_state = "convertaltar-yellow"
 
 /datum/religion_sect/greed/tool_examine(mob/living/holy_creature) //display money policy
 	return "在 [GLOB.deity] 眼中，你的财富就是你的恩宠。"
@@ -318,7 +317,7 @@
 	quote = "要感受自由，必须先理解囚禁。"
 	desc = "以任何方式使自己失能。恶劣突变、失去肢体、创伤，\
 		甚至成瘾。你将从这个被击败的躯壳中领悟宇宙的奥秘。"
-	tgui_icon = "user-injured"
+	tgui_icon = FA_ICON_USER_INJURED
 	altar_icon_state = "convertaltar-burden"
 	alignment = ALIGNMENT_NEUT
 	candle_overlay = FALSE
@@ -391,7 +390,7 @@
 	if(suffocation_damage && !HAS_TRAIT(chaplain, TRAIT_NOBREATH))
 		transferred = TRUE
 		target.adjust_oxy_loss(-suffocation_damage)
-		chaplain.adjust_oxy_loss(suffocation_damage * burden_modifier, forced = TRUE)
+		chaplain.adjust_oxy_loss(suffocation_damage * burden_modifier)
 
 	var/cached_blood_volume = target.get_blood_volume()
 	if (cached_blood_volume < BLOOD_VOLUME_SAFE)
@@ -421,7 +420,7 @@
 	quote = "需要一场善良而荣誉的讨伐邪恶之战。"
 	desc = "你的神祇要求你进行公平决斗。你不得攻击未准备好者、正义者或无辜者。\
 	你通过让他人加入十字军来获得恩宠，也可以消耗恩宠宣布一场战斗，从而绕过部分攻击条件。"
-	tgui_icon = "scroll"
+	tgui_icon = FA_ICON_SCROLL
 	altar_icon_state = "convertaltar-white"
 	alignment = ALIGNMENT_GOOD
 	rites_list = list(/datum/religion_rites/deaconize/crusader, /datum/religion_rites/forgive, /datum/religion_rites/summon_rules)
@@ -444,7 +443,7 @@
 	name = "维护区之神"
 	quote = "你的王国在黑暗之中。"
 	desc = "献祭由浸过焊接燃料的老鼠制成的有机浆液以获得恩宠。用恩宠换取适应维护通道的能力。"
-	tgui_icon = "eye"
+	tgui_icon = FA_ICON_EYE
 	altar_icon_state = "convertaltar-maint"
 	alignment = ALIGNMENT_EVIL //while maint is more neutral in my eyes, the flavor of it kinda pertains to rotting and becoming corrupted by the maints
 	rites_list = list(/datum/religion_rites/maint_adaptation, /datum/religion_rites/adapted_eyes, /datum/religion_rites/adapted_food, /datum/religion_rites/ritual_totem)
@@ -486,7 +485,7 @@
 	name = "决斗之神"
 	quote = "你的下一击必须更快，新手。坚定你的心。"
 	desc = "与其他船员切磋以获得恩宠或其他奖励。用恩宠换取在真正战斗中坚定自身的能力。"
-	tgui_icon = "fist-raised"
+	tgui_icon = FA_ICON_FIST_RAISED
 	altar_icon_state = "convertaltar-orange"
 	alignment = ALIGNMENT_NEUT
 	rites_list = list(
@@ -515,7 +514,7 @@
 	name = "节庆之神"
 	quote = "万物都遵循节奏：宇宙的心跳！"
 	desc = "创造美妙的音乐！用节拍安抚或割裂你的朋友与敌人。"
-	tgui_icon = "music"
+	tgui_icon = FA_ICON_MUSIC
 	altar_icon_state = "convertaltar-festival"
 	alignment = ALIGNMENT_GOOD
 	candle_overlay = FALSE

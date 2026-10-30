@@ -10,7 +10,6 @@
 	cost = 16
 	surplus = 15
 	limited_stock = 1
-	progression_minimum = 15 MINUTES
 
 /datum/uplink_item/dangerous/syndicat
 	name = "辛迪加猫手榴弹"
@@ -19,7 +18,6 @@
 	cost = 12
 	surplus = 5
 	purchasable_from = ~(UPLINK_CLOWN_OPS)
-	progression_minimum = 30 MINUTES
 
 /obj/item/grenade/spawnergrenade/cat/syndicate
 	name = "辛迪加猫雷"

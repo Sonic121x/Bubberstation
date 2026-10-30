@@ -2,7 +2,7 @@
 
 ///Welding Protection - Makes the helmet protect from flashes and welding.
 /obj/item/mod/module/welding
-	name = "MOD 焊接防护模块"
+	name = "\improper MOD 焊接防护模块"
 	desc = "一种安装在套装面罩上的模块，能在使用者眼前投射\
 		一层偏振的全息叠像。其防护等级足以\
 		抵御点焊、弧焊、日食以及手持手电筒等极端强光。"
@@ -27,7 +27,7 @@
 		head_cover.flash_protect = initial(head_cover.flash_protect)
 
 /obj/item/mod/module/welding/syndicate
-	name = "MOD 模块化外骨骼防闪光光学套件"
+	name = "\improper MOD 模块化外骨骼防闪光光学套件"
 	complexity = 0
 	removable = FALSE
 	incompatible_modules = list(/obj/item/mod/module/welding, /obj/item/mod/module/welding/syndicate, /obj/item/mod/module/stealth/wraith)
@@ -59,7 +59,7 @@
 
 ///T-Ray Scan - Scans the terrain for undertile objects.
 /obj/item/mod/module/t_ray
-	name = "MOD T 射线扫描模块"
+	name = "\improper MOD T 射线扫描模块"
 	desc = "一种安装在套装面罩上的模块，让使用者能发射太赫兹辐射脉冲，\
 		像回声定位一样探明地板下方的物体，主要是电缆和管道。\
 		这是大气部门的常备装备，反走私工作也常用到。"
@@ -78,7 +78,7 @@
 
 ///Magnetic Stability - Gives the user a slowdown but makes them negate gravity and be immune to slips.
 /obj/item/mod/module/magboot
-	name = "MOD 磁力稳定模块"
+	name = "\improper MOD 磁力稳定模块"
 	desc = "这是装配在套装靴子里的强力电磁铁，无论室内条件如何，\
 		都能给使用者提供极佳的抓地力，还能让人扒在船体外侧搭顺风车。\
 		不过，这些基础型号没有自动开关的计算机系统，\
@@ -117,14 +117,14 @@
 		module_slowdowns += slowdown_active
 
 /obj/item/mod/module/magboot/advanced
-	name = "MOD 高级磁力稳定模块"
+	name = "\improper MOD 高级磁力稳定模块"
 	removable = FALSE
 	complexity = 0
 	slowdown_active = 0
 
 ///Emergency Tether - Shoots a grappling hook projectile in 0g that throws the user towards it.
 /obj/item/mod/module/tether
-	name = "MOD 应急系绳模块"
+	name = "\improper MOD 应急系绳模块"
 	desc = "一种定制的抓钩，由一台能牵引使用者的绞盘驱动。\
 		虽然一些面向货运的旧式抓钩载重可达数吨，\
 		但这些只在零重力环境下有效，对某些工程师来说反而是好事。"
@@ -206,7 +206,7 @@
 
 /obj/projectile/tether/fire(setAngle)
 	if(firer)
-		line = firer.Beam(src, "line", 'icons/obj/clothing/modsuit/mod_modules.dmi', emissive = FALSE)
+		line = firer.Beam(src, "line", 'icons/obj/clothing/modsuit/mod_modules.dmi', emissive = NONE)
 	return ..()
 
 /obj/projectile/tether/on_hit(atom/target, blocked = 0, pierce_hit)
@@ -370,7 +370,7 @@
 
 ///Radiation Protection - Protects the user from radiation, gives them a geiger counter and rad info in the panel.
 /obj/item/mod/module/rad_protection
-	name = "MOD 辐射防护模块"
+	name = "\improper MOD 辐射防护模块"
 	desc = "一种利用聚合物和反射屏蔽层保护使用者免受电离辐射伤害的模块；\
 		电离辐射是太空中常见的危险。它附带软件，能在佩戴者身处放射性区域时发出提醒，\
 		让这个原本无声的杀手开口说话。"
@@ -413,7 +413,7 @@
 
 ///Constructor - Lets you build quicker and create RCD holograms.
 /obj/item/mod/module/constructor
-	name = "MOD 建造模块"
+	name = "\improper MOD 建造模块"
 	desc = "本模块会完全占用使用者的前臂，因此会与用于搬运船员的\
 		高级手臂伺服系统明显冲突。不过，它可作为一台\
 		极其先进的建造全息扫描仪，并内置\
@@ -440,7 +440,7 @@
 
 ///Safety-First Head Protection - Protects your brain matter from sudden impacts.
 /obj/item/mod/module/headprotector
-	name = "MOD 安全第一头部防护模块"
+	name = "\improper MOD 安全第一头部防护模块"
 	desc = "头盔的后部和上部装有一系列减震板。\
 		这些板会吸收传递到头骨的突发动能冲击。\
 		本模块体积较大，因此无法装入任何\
@@ -460,7 +460,7 @@
 
 ///Mister - Sprays water over an area.
 /obj/item/mod/module/mister
-	name = "MOD 喷水器模块"
+	name = "\improper MOD 喷水器模块"
 	desc = "一种内置喷雾器的模块，可将水喷洒到大片区域。"
 	icon_state = "mister"
 	module_type = MODULE_ACTIVE
@@ -479,7 +479,7 @@
 
 ///Resin Mister - Sprays resin over an area.
 /obj/item/mod/module/mister/atmos
-	name = "MOD 树脂喷雾模块"
+	name = "\improper MOD 树脂喷雾模块"
 	desc = "一种大气用树脂喷雾器，能迅速修补大片区域。"
 	device = /obj/item/extinguisher/mini/nozzle/mod
 	volume = 250
@@ -490,5 +490,5 @@
 	reagents.add_reagent(/datum/reagent/water, volume)
 
 /obj/item/extinguisher/mini/nozzle/mod
-	name = "MOD 大气喷雾器"
+	name = "\improper MOD 大气喷雾器"
 	desc = "一种拥有三种模式的大气树脂喷雾器，以模块形式安装。"

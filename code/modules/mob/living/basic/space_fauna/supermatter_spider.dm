@@ -25,7 +25,7 @@
 	maximum_survivable_temperature = T0C + 1250
 	habitable_atmos = null
 	death_message = "跌落在地，它的晶片黯淡成了可悲的灰色！"
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1)
+	physiology = list(STAMINA = 0)
 
 	faction = list(FACTION_HOSTILE)
 
@@ -41,6 +41,7 @@
 
 /mob/living/basic/supermatter_spider/Initialize(mapload)
 	. = ..()
+	ADD_TRAIT(src, TRAIT_WEB_SURFER, INNATE_TRAIT)
 	AddComponent(/datum/component/swarming)
 
 	AddElement(/datum/element/ai_retaliate)

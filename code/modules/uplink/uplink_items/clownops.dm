@@ -30,18 +30,18 @@
 	purchasable_from = UPLINK_CLOWN_OPS | UPLINK_SPY
 
 /datum/uplink_item/weapon_kits/clownoppin
-	name = "超级搞笑击针"
+	name = "超级搞笑击针套装"
 	desc = "一种击针，装入枪械后，该枪械将只能由小丑和笨拙的人使用，而且任何人试图开火时枪都会发出洪克声。"
 	cost = 1 //much cheaper for clown ops than for clowns
-	item = /obj/item/firing_pin/clown/ultra
+	item = /obj/item/storage/box/syndie_kit/clownpins
 	purchasable_from = UPLINK_CLOWN_OPS
 	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
 
 /datum/uplink_item/weapon_kits/clownopsuperpin
-	name = "超级无敌搞笑击针"
+	name = "超级无敌搞笑击针套装"
 	desc = "和超级搞笑击针一样，只不过当不是笨拙者或小丑的人试图开火时，装入此击针的枪械会直接爆炸。"
 	cost = 4 //much cheaper for clown ops than for clowns
-	item = /obj/item/firing_pin/clown/ultra/selfdestruct
+	item = /obj/item/storage/box/syndie_kit/clownpins/super
 	purchasable_from = UPLINK_CLOWN_OPS
 	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
 
@@ -152,9 +152,10 @@
 	purchasable_from = UPLINK_CLOWN_OPS
 
 /datum/uplink_item/badass/clownopclumsinessinjector //clowns can buy this too, but it's in the role-restricted items section for them
-	name = "笨拙注射器"
-	desc = "给自己注射后，你会变得和小丑一样笨拙……或者给别人注射，让那个人变得和小丑一样笨拙。对于想重拾昔日小丑本性的小丑特工，或者想在杀死猎物前戏弄一番的小丑特工都很有用。"
-	item = /obj/item/dnainjector/clumsymut
-	cost = 1
+	name = "抗笨拙注射器"
+	desc = "给自己注射，以消除你与生俱来的笨拙。\
+		对于计划中的表演需要更高操作精度的特工来说，这是必备品。"
+	item = /obj/item/dnainjector/anticlumsy
+	cost = 2
 	purchasable_from = UPLINK_CLOWN_OPS
 	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND

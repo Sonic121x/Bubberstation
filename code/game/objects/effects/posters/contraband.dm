@@ -17,6 +17,10 @@
 		/obj/structure/sign/poster/contraband/lizard,
 		/obj/structure/sign/poster/contraband/lusty_xenomorph,
 		/obj/structure/sign/poster/contraband/double_rainbow,
+		/obj/structure/sign/poster/contraband/double_gunshow,
+		/obj/structure/sign/poster/contraband/rabbit_hole,
+		/obj/structure/sign/poster/contraband/bridge_bunny,
+		/obj/structure/sign/poster/contraband/rabbit_swole,
 	)
 
 /obj/item/poster/random_contraband/pinup/Initialize(mapload, obj/structure/sign/poster/new_poster_structure)
@@ -845,6 +849,34 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/bojack, 32)
 	icon_state = "double_rainbow"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/double_rainbow, 32)
+
+/obj/structure/sign/poster/contraband/rabbit_hole
+	name = "坠入兔子洞"
+	desc = "我迟到了！我迟到了！一场非常重要的约会……"
+	icon_state = "rabbit_hole"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/rabbit_hole, 32)
+
+/obj/structure/sign/poster/contraband/rabbit_swole
+	name = "这兔子可真壮"
+	desc = "看来有人吃了不少写着“吃我”的蛋糕……"
+	icon_state = "rabbit_swole"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/rabbit_swole, 32)
+
+/obj/structure/sign/poster/contraband/double_gunshow
+	name = "双臂肌肉秀"
+	desc = "这家伙浑身上下都是乳清蛋白的成果……"
+	icon_state = "double_gunshow"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/double_gunshow, 32)
+
+/obj/structure/sign/poster/contraband/bridge_bunny
+	name = "舰桥兔女郎"
+	desc = "点子就像兔子。你……呃……你刚才想到哪儿了？"
+	icon_state = "nt-bunny"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/bridge_bunny, 32)
 
 /obj/structure/sign/poster/contraband/vodka
 	name = "伏特加"

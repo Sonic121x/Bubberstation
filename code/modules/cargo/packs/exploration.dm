@@ -8,7 +8,7 @@
 	name = "废料场板条箱"
 	desc = "外包板条箱，内含各种废品。"
 	cost = CARGO_CRATE_VALUE * 5
-	contains = list(/obj/item/relic,
+	contains = list(/obj/item/assembly/relic,
 					/obj/item/broken_bottle,
 					/obj/item/pickaxe/rusted)
 	crate_name = "废料场板条箱"

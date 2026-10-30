@@ -16,6 +16,20 @@
 	mutatelist = list(/obj/item/seeds/apple/gold)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 
+/obj/item/seeds/apple/harvest(mob/user)
+	var/list/result = ..()
+	var/obj/machinery/hydroponics/tray = loc
+	var/worm_chance = tray.pestlevel
+	if(tray.tray_flags & WORM_HABITAT)
+		worm_chance = 80 // Wormy soil isn't good for apples probably
+	for(var/obj/item/food/grown/apple/applum in result)
+		if(prob(worm_chance))
+			applum.appleworm = new(applum) // There is a worm in this apple!
+			applum.tastes = list("苹果" = 1, "虫子" = 2)
+			applum.ediblecomponent = IS_EDIBLE(applum)
+			if(applum.ediblecomponent)
+				applum.ediblecomponent.foodtypes |= (GROSS | MEAT | BUGS)
+
 /obj/item/food/grown/apple
 	seed = /obj/item/seeds/apple
 	name = "苹果"
@@ -24,6 +38,39 @@
 	foodtypes = FRUIT
 	tastes = list("苹果" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/hcider
+	/// Do we know about the worm?
+	var/found_worm = FALSE
+	/// The worm in question
+	var/obj/item/food/bait/worm/appleworm
+	/// Our edible component
+	var/datum/component/edible/ediblecomponent
+
+/obj/item/food/grown/apple/examine(mob/user)
+	. = ..()
+	if(!found_worm && !isobserver(user) && appleworm)
+		balloon_alert(user, "这颗[src.name]上有个洞！")
+		found_worm = TRUE
+		desc = "这是伊甸园的一小片。不含蛇，附赠一条虫子作为替代。"
+
+/obj/item/food/grown/apple/attack_self(mob/user)
+	if(!appleworm)
+		return
+	balloon_alert(user, "正在拉出[appleworm.name]……")
+	if(!do_after(user, 5 SECONDS, target = src))
+		return
+	appleworm.forceMove(drop_location())
+	appleworm = null
+	tastes = list("苹果" = 1)
+	var/datum/component/edible/ediblecomponent = IS_EDIBLE(src)
+	desc = "这是伊甸园的一小片。[pick("蛇", "虫子", "额外的蛋白质", "友好的邻居")]已经不在了。"
+	if(!ediblecomponent)
+		return
+	ediblecomponent.foodtypes &= ~(GROSS | MEAT | BUGS)
+
+/obj/item/food/grown/apple/proc/on_consume(mob/living/eater)
+	if(!ishuman(eater) && !appleworm)
+		return
+	to_chat(eater, span_alert("那颗苹果里有虫子！"))
 
 /obj/item/food/grown/apple/juice_typepath()
 	return /datum/reagent/consumable/applejuice

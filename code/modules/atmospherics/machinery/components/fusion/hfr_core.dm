@@ -2,7 +2,7 @@
  * This section contain the hfr core with all the variables and the Initialize() and Destroy() procs
  */
 /obj/machinery/atmospherics/components/unary/hypertorus/core
-	name = "HFR 核心"
+	name = "\improper HFR 核心"
 	desc = "这是超环面聚变反应堆的核心，一套能够精细调控机内反应的先进装置。它配有用于冷却气体的输入输出接口。"
 	icon = 'icons/obj/machines/atmospherics/hypertorus.dmi'
 	icon_state = "core"

@@ -265,8 +265,8 @@
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
-	if(istype(tool, /obj/item/mmi))
-		var/obj/item/mmi/potential_brain = tool
+	if(istype(tool, /obj/item/brain_processor))
+		var/obj/item/brain_processor/potential_brain = tool
 		if(!check_completion())
 			to_chat(user, span_warning("MMI 必须在其他所有部件之后才能安装！"))
 			return ITEM_INTERACT_BLOCKING

@@ -79,7 +79,7 @@ GLOBAL_LIST_INIT(abductor_gear, subtypesof(/datum/abductor_gear))
 				也可能只是太空魔法。不管怎样，它确实能把东西缩小。"
 	id = "shrink_ray"
 	cost = 2
-	build_path = list(/obj/item/gun/energy/shrink_ray = 1)
+	build_path = list(/obj/item/gun/energy/recharge/shrink_ray = 1)
 	category = CATEGORY_ADVANCED_GEAR
 
 /datum/abductor_gear/omnitool

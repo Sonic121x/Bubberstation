@@ -6,7 +6,7 @@
 
 ///Health Analyzer - Gives the user a ranged health analyzer and their health status in the panel.
 /obj/item/mod/module/health_analyzer
-	name = "MOD 健康分析仪模块"
+	name = "\improper MOD 健康分析仪模块"
 	desc = "一种安装在套装手套内的模块。这是一套高科技生物扫描套件，\
 		让使用者即使隔着一段距离也能获得他人生命体征和伤势的详细信息，\
 		只需手腕一动。数据会以方便的形式显示出来，但怎么用就看你自己了。"
@@ -66,7 +66,7 @@
 
 ///Quick Carry - Lets the user carry bodies quicker.
 /obj/item/mod/module/quick_carry
-	name = "MOD 快速搬运模块"
+	name = "\improper MOD 快速搬运模块"
 	desc = "一套先进伺服装置，可以重新引导套装手臂的动力来帮助搬运伤员；\
 		或者单纯为了好玩。不过，纳米传讯锁定了该模块在徒手格斗中的辅助能力。"
 	icon_state = "carry"
@@ -88,14 +88,14 @@
 	REMOVE_TRAIT(mod.wearer, quick_carry_trait, REF(src))
 
 /obj/item/mod/module/quick_carry/advanced
-	name = "MOD 高级快速搬运模块"
+	name = "\improper MOD 高级快速搬运模块"
 	removable = FALSE
 	complexity = 0
 	quick_carry_trait = TRAIT_QUICKER_CARRY
 
 ///Injector - Gives the suit an extendable large-capacity piercing syringe.
 /obj/item/mod/module/injector
-	name = "MOD 注射模块"
+	name = "\improper MOD 注射模块"
 	desc = "一种安装在套装手腕处的模块，可作为一支大容量注射器使用，\
 		其针尖足够细，能找准任何装甲上的紧急注射口，\
 		并轻松刺入。包括你自己的。"
@@ -110,7 +110,7 @@
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/reagent_containers/syringe/mod
-	name = "MOD 注射器"
+	name = "\improper MOD 注射器"
 	desc = "一支大容量注射器，其针尖足够细，能找准\
 		任何装甲上的紧急注射口，并轻松刺入。包括你自己的。"
 	icon_state = "mod_0"
@@ -129,7 +129,7 @@
 
 ///Organizer - Lets you shoot organs, immediately replacing them if the target has the organ manipulation surgery.
 /obj/item/mod/module/organizer
-	name = "MOD 器官整备模块"
+	name = "\improper MOD 器官整备模块"
 	desc = "一件从坠毁的英特戴恩制药公司飞船中回收的设备，\
 		这个模块重见天日，不知是福是祸。\
 		它是一件臂挂式设备，所用技术类似现代的快速部件更换装置，\
@@ -219,7 +219,7 @@
 
 ///Patrient Transport - Generates hardlight bags you can put people in.
 /obj/item/mod/module/criminalcapture/patienttransport
-	name = "MOD 病患运输模块"
+	name = "\improper MOD 病患运输模块"
 	desc = "一种嵌入套装前臂的模块。无数支多半已失踪的采矿队被派往\
 		因德西菲瑞斯及其他危险地点，这些经历给德福雷斯特医疗公司上了许多课。\
 		实体尸体袋难以储藏、难以展开，在恶劣环境下更是难以保持完好。\
@@ -234,7 +234,7 @@
 
 ///Defibrillator - Gives the suit an extendable pair of shock paddles.
 /obj/item/mod/module/defibrillator
-	name = "MOD 除颤模块"
+	name = "\improper MOD 除颤模块"
 	desc = "一种嵌入套装护手的模块；医务人员通常称之为‘治愈之手’。\
 		使用者将双掌放在病人上方。套装内的机载计算机会计算所需的电压，\
 		改装过的瞄准计算机会确定使用者按压的最佳位置。\
@@ -264,14 +264,14 @@
 	return COMPONENT_DEFIB_STOP
 
 /obj/item/shockpaddles/mod
-	name = "MOD 除颤护手"
+	name = "\improper MOD 除颤护手"
 	req_defib = FALSE
 	icon_state = "defibgauntlets0"
 	inhand_icon_state = "defibgauntlets0"
 	base_icon_state = "defibgauntlets"
 
 /obj/item/mod/module/defibrillator/combat
-	name = "MOD 战斗除颤模块"
+	name = "\improper MOD 战斗除颤模块"
 	desc = "一种嵌入套装护手的模块；医务人员通常称之为‘治愈之手’。\
 		使用者将双掌放在病人上方。套装内的机载计算机会计算所需的电压，\
 		改装过的瞄准计算机会确定使用者按压的最佳位置。\
@@ -289,7 +289,7 @@
 	defib_cooldown = 2.5 SECONDS
 
 /obj/item/shockpaddles/syndicate/mod
-	name = "MOD 战斗除颤护手"
+	name = "\improper MOD 战斗除颤护手"
 	req_defib = FALSE
 	icon_state = "syndiegauntlets0"
 	inhand_icon_state = "syndiegauntlets0"
@@ -297,7 +297,7 @@
 
 ///Thread Ripper - Temporarily rips apart clothing to make it not cover the body.
 /obj/item/mod/module/thread_ripper
-	name = "MOD 裂线模块"
+	name = "\improper MOD 裂线模块"
 	desc = "一种定制模块，与套装的手腕集成。裂线模块基于\
 		可追溯至 2562 年初的新近技术，当时一位知名的纳米传讯研究员试图\
 		扩展自动衣柜中的快速裁缝技术。裂线模块不能创造\
@@ -378,7 +378,7 @@
 
 ///Surgical Processor - Lets you do advanced surgeries portably.
 /obj/item/mod/module/surgical_processor
-	name = "MOD 手术处理器模块"
+	name = "\improper MOD 手术处理器模块"
 	desc = "一种搭载机载手术计算机的模块，可连接其他计算机下载并\
 		随时随地进行高级手术。"
 	icon_state = "surgical_processor"
@@ -391,7 +391,7 @@
 	custom_materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT * 0.75, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/titanium = SMALL_MATERIAL_AMOUNT * 2.5)
 
 /obj/item/surgical_processor/mod
-	name = "MOD 手术处理器"
+	name = "\improper MOD 手术处理器"
 	custom_materials = null
 
 /obj/item/mod/module/surgical_processor/preloaded

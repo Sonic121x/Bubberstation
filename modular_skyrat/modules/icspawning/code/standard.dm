@@ -6,25 +6,6 @@
 /obj/item/ammo_casing/energy/electrode/debug
 	e_cost = LASER_SHOTS(1000, STANDARD_CELL_CHARGE)
 
-/obj/item/clothing/suit/armor/vest/debug
-	name = "蓝空间技师护甲背心"
-	desc = "一件为蓝空间特工设计的流线型护甲。"
-	armor_type = /datum/armor/vest_debug
-	w_class = WEIGHT_CLASS_TINY
-
-/datum/armor/vest_debug
-	melee = 95
-	melee = 95
-	laser = 95
-	energy = 95
-	bomb = 95
-	bio = 95
-	fire = 98
-	acid = 98
-
-/obj/item/clothing/shoes/combat/debug
-	w_class = WEIGHT_CLASS_TINY
-
 /obj/item/storage/belt/utility/chief/full/debug
 	name = "\improper 蓝空间技师的工具腰带"
 	w_class = WEIGHT_CLASS_TINY

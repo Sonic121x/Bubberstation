@@ -2,7 +2,7 @@
 
 ///Energy Shield - Gives you a rechargeable energy shield that nullifies attacks.
 /obj/item/mod/module/energy_shield
-	name = "MOD 能量护盾模块"
+	name = "\improper MOD 能量护盾模块"
 	desc = "一种常见于军事用途的个人防护力场。\
 		这种高级偏导护盾本质上是星舰护盾的缩小版，\
 		其能量消耗也直观地体现了这一点。然而，它能阻挡几乎任何来袭攻击，\
@@ -72,7 +72,7 @@
 	return NONE
 
 /obj/item/mod/module/energy_shield/wizard
-	name = "MOD 战斗法师护盾模块"
+	name = "\improper MOD 战斗法师护盾模块"
 	desc = "施放此法术的施法者会在身周获得一层可见的屏障，借助铭刻在\
 		套装表面的专用符文引导奥术能量，生成一道力场之墙。\
 		这层护盾能完美抵消从高口径步枪到魔法飞弹的各种攻击，\
@@ -90,7 +90,7 @@
 
 ///Magic Nullifier - Protects you from magic.
 /obj/item/mod/module/anti_magic
-	name = "MOD 魔法抵消模块"
+	name = "\improper MOD 魔法抵消模块"
 	desc = "一系列黑曜石棒被装入套装四周的关键位置，\
 		以特定低频振动使其产生共振。\
 		这会在使用者周围形成一个范围虽小但十分强大的魔法抵消场，\
@@ -108,7 +108,7 @@
 	mod.wearer.remove_traits(list(TRAIT_ANTIMAGIC, TRAIT_HOLY), REF(src))
 
 /obj/item/mod/module/anti_magic/wizard
-	name = "MOD 魔法中和模块"
+	name = "\improper MOD 魔法中和模块"
 	desc = "施放此法术的施法者会在身周获得一层不可见的屏障，借助铭刻在\
 		套装表面的专用符文引导奥术能量，生成反魔法场。\
 		该场会中和所有接触到使用者的魔法。\
@@ -124,7 +124,7 @@
 
 ///Insignia - Gives you a skin specific stripe.
 /obj/item/mod/module/insignia
-	name = "MOD 徽记模块"
+	name = "\improper MOD 徽记模块"
 	desc = "尽管已有 IFF 系统、无线电通讯以及依靠佩戴者自身双眼进行推理的现代手段，\
 		彩色涂装仍然是银河系中不同派系展示自身身份的流行方式。\
 		该系统利用一系列微型移动喷漆器，向套装施加或除去不同的\
@@ -167,7 +167,7 @@
 
 ///Anti Slip - Prevents you from slipping on water.
 /obj/item/mod/module/noslip
-	name = "MOD 防滑模块"
+	name = "\improper MOD 防滑模块"
 	desc = "这是标准磁力靴的改装版本，靴底装有压电晶体。\
 		当使用者迈步时，靴底的两块板会自动伸出并磁化；\
 		这股吸力太弱，不足以让人固定在船体上，但恰好强到\
@@ -203,7 +203,7 @@
 
 ///Flamethrower - Launches fire across the area.
 /obj/item/mod/module/flamethrower
-	name = "MOD 火焰喷射器模块"
+	name = "\improper MOD 火焰喷射器模块"
 	desc = "一台定制制造的火焰喷射器，用来烧穿你的前路。好好烧吧。"
 	icon_state = "flamethrower"
 	module_type = MODULE_ACTIVE
@@ -228,7 +228,7 @@
 
 ///Power kick - Lets the user launch themselves at someone to kick them.
 /obj/item/mod/module/power_kick
-	name = "MOD 动力踢击模块"
+	name = "\improper MOD 动力踢击模块"
 	desc = "本模块使用高功率人造肌肉产生惊人的能量，并将其转化为一记踢击的力量。"
 	icon_state = "power_kick"
 	module_type = MODULE_ACTIVE
@@ -289,7 +289,7 @@
 
 ///Chameleon - lets the suit disguise as any item that would fit on that slot.
 /obj/item/mod/module/chameleon
-	name = "MOD 变色龙模块"
+	name = "\improper MOD 变色龙模块"
 	desc = "一种利用变色龙技术将套装伪装成其他物体的模块。"
 	icon_state = "chameleon"
 	module_type = MODULE_USABLE
@@ -365,7 +365,7 @@
 
 ///Plate Compression - Compresses the suit to normal size
 /obj/item/mod/module/plate_compression
-	name = "MOD 板材压缩模块"
+	name = "\improper MOD 板材压缩模块"
 	desc = "一种让套装保持极度贴合状态、从而减小整体体积的模块。\
 		由于所有部件都承受着压力，常规存储模块无法装入。"
 	icon_state = "plate_compression"
@@ -393,7 +393,7 @@
 	mod.forceMove(mod.drop_location())
 
 /obj/item/mod/module/demoralizer
-	name = "MOD 灵能回响挫志模块"
+	name = "\improper MOD 灵能回响挫志模块"
 	desc = "玫瑰银河公司研发团队中一位极其病态的成员曾向同事们提出一个问题。\
 	‘我希望在杀死敌人的同时还能在精神上给他们留下创伤。谁要阻止我把这功能加进下一个项目？’\
 	于是，灵能回响挫志装置就这样不情不愿地被发明了出来。心理战的未来，就在今天！"
@@ -412,7 +412,7 @@
 	QDEL_NULL(demoralizer)
 
 /obj/item/mod/module/infiltrator
-	name = "MOD 渗透核心程序模块"
+	name = "\improper MOD 渗透核心程序模块"
 	desc = "套装内部运行的主要隐形系统。借助电磁信号，\
 		使用者无法被近距离仔细观察，周围的人也听不清其声音。\
 		它还包含一些减震系统，帮助保护使用者免受头部打击。"
@@ -462,7 +462,7 @@
 
 ///Medbeam - Medbeam but built into a modsuit
 /obj/item/mod/module/medbeam
-	name = "MOD 医疗光束枪模块"
+	name = "\improper MOD 医疗光束枪模块"
 	desc = "腕挂式医疗光束枪，让使用者能在不必担心掉落的情况下治疗盟友。"
 	icon_state = "chronogun"
 	module_type = MODULE_ACTIVE
@@ -475,10 +475,10 @@
 	required_slots = list(ITEM_SLOT_BACK)
 
 /obj/item/gun/medbeam/mod
-	name = "MOD 医疗光束"
+	name = "\improper MOD 医疗光束"
 
 /obj/item/mod/module/stealth/wraith
-	name = "MOD 怨灵隐形模块"
+	name = "\improper MOD 怨灵隐形模块"
 	desc = "隐形模块更具破坏性的改装版本。与护甲模块不兼容。"
 	icon_state = "cloak_traitor"
 	stealth_alpha = 30

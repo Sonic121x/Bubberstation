@@ -97,7 +97,7 @@
 			. += span_notice("窗户已<i>卸下螺丝</i>，但被<b>撬</b>进了框架中。")
 		if(WINDOW_OUT_OF_FRAME)
 			if (anchored)
-				. += span_notice("窗户被<b>螺丝</b>固定在地板上。")
+				. += span_notice("窗户被<b>螺丝</b>固定在地板上。可以将其<b>撬</b>到更牢固的位置。")
 			else
 				. += span_notice("窗户已从地板上<i>卸下螺丝</i>，可以用<b>扳手</b>拆卸。")
 
@@ -113,7 +113,15 @@
 	return FALSE
 
 /obj/structure/window/narsie_act()
+	var/atom/place = loc
 	add_atom_colour(NARSIE_WINDOW_COLOUR, FIXED_COLOUR_PRIORITY)
+	if(src.fulltile)
+		qdel(src)
+		new /obj/structure/window/cult/fulltile(place)
+	else
+		qdel(src)
+		new /obj/structure/window/cult(place)
+	return
 
 /obj/structure/window/singularity_pull(atom/singularity, current_size)
 	..()
@@ -892,6 +900,52 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/tinted/frosted/spaw
 	AddElement(/datum/element/tool_blocker, TOOL_WRENCH, TOOL_ACT_PRIMARY)
 	AddElement(/datum/element/tool_blocker, TOOL_CROWBAR, TOOL_ACT_PRIMARY)
 
+/obj/structure/window/reinforced/titanium
+	name = "穿梭机窗户"
+	desc = "一扇加固的气密舱窗。"
+	icon_state = "titanium_window"
+	armor_type = /datum/armor/reinforced_shuttle
+	receive_ricochet_chance_mod = 1.2
+	explosion_block = 3
+	glass_type = /obj/item/stack/sheet/titaniumglass
+	custom_materials = list(/datum/material/alloy/titaniumglass = SHEET_MATERIAL_AMOUNT * 1)
+
+/obj/structure/window/reinforced/titanium/unanchored
+	anchored = FALSE
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/titanium/spawner, 0)
+
+/obj/structure/window/reinforced/titanium/unanchored
+	anchored = FALSE
+
+/obj/structure/window/reinforced/shuttle/survival_pod
+	name = "逃生舱窗户"
+	icon = 'icons/obj/smooth_structures/pod_window.dmi'
+	icon_state = "pod_window-0"
+	base_icon_state = "pod_window"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_SURVIVAL_TITANIUM_POD
+	canSmoothWith = SMOOTH_GROUP_SURVIVAL_TITANIUM_POD
+	glass_type = /obj/item/stack/wall_filling/plastitaniumglass/pod
+	glass_amount = 1
+	glass_material_datum = /datum/material/alloy/plastitaniumglass
+
+/obj/structure/window/reinforced/shuttle/survival_pod/unanchored
+	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
+
+/obj/structure/window/reinforced/survival_pod
+	name = "逃生舱窗户"
+	icon_state = "plastitanium_window"
+	glass_type = /obj/item/stack/sheet/plastitaniumglass
+	glass_material_datum = /datum/material/alloy/plastitaniumglass
+
+/obj/structure/window/reinforced/survival_pod/unanchored
+	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/survival_pod/spawner, 0)
+
 /obj/structure/window/reinforced/plasma/plastitanium
 	name = "塑钛窗"
 	desc = "由等离子体与钛合金制成的窗户，看起来十分耐用。"
@@ -914,6 +968,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/tinted/frosted/spaw
 	glass_amount = 2
 	rad_insulation = RAD_EXTREME_INSULATION
 	glass_material_datum = /datum/material/alloy/plastitaniumglass
+
+/obj/structure/window/reinforced/plasma/plastitanium/windowfill
+	glass_type = /obj/item/stack/wall_filling/plastitaniumglass/basic
+	glass_amount = 1
 
 /obj/structure/window/reinforced/plasma/plastitanium/indestructible
 	name = "塑钛窗"
@@ -1040,8 +1098,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/tinted/frosted/spaw
 /obj/structure/window/bronze
 	name = "黄铜窗"
 	desc = "一片薄如纸的半透明加固黄铜窗板。算了，这只是脆弱的青铜！"
-	icon = 'icons/obj/smooth_structures/structure_variations.dmi'
-	icon_state = "clockwork_window-single"
+	icon_state = "clockworkwindow"
 	glass_type = /obj/item/stack/sheet/bronze
 	custom_materials = list(/datum/material/bronze = SHEET_MATERIAL_AMOUNT * 1)
 
@@ -1065,4 +1122,33 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/bronze/spawner, 0)
 	custom_materials = list(/datum/material/bronze = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/structure/window/bronze/fulltile/unanchored
+	anchored = FALSE
+
+/obj/structure/window/cult
+	name = "符文窗户"
+	desc = "符文金属框架投射出奥术的血红色力场，看起来有点像窗户。真奇特。"
+	icon_state = "runedwindow"
+	glass_type = /obj/item/stack/sheet/runed_metal
+	custom_materials = list(/datum/material/runedmetal = SHEET_MATERIAL_AMOUNT * 1)
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/cult/spawner, 0)
+
+/obj/structure/window/cult/unanchored
+	anchored = FALSE
+
+/obj/structure/window/cult/fulltile
+	icon = 'icons/obj/smooth_structures/cult_window.dmi'
+	icon_state = "cult_window-0"
+	base_icon_state = "cult_window"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_WINDOW_FULLTILE_CULT + SMOOTH_GROUP_WINDOW_FULLTILE
+	canSmoothWith = SMOOTH_GROUP_WINDOW_FULLTILE_CULT
+	fulltile = TRUE
+	flags_1 = PREVENT_CLICK_UNDER_1
+	obj_flags = CAN_BE_HIT
+	max_integrity = 50
+	glass_amount = 2
+	custom_materials = list(/datum/material/runedmetal = SHEET_MATERIAL_AMOUNT * 2)
+
+/obj/structure/window/cult/fulltile/unanchored
 	anchored = FALSE

@@ -1417,3 +1417,21 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	default_container = /obj/item/reagent_containers/condiment/pack/beef_flavour
+
+/datum/reagent/consumable/guidoferrun
+	name = "铁韧甘胺"
+	description = "一种浓稠黏腻的金属质物质，能以某种方式暂时增厚皮肤。"
+	color = "#4e6b8f"
+	taste_description = "黏腻的金属糊"
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
+
+/datum/reagent/consumable/guidoferrun/on_mob_metabolize(mob/living/carbon/human/affected_mob)
+	. = ..()
+	MODIFY_PHYSIOLOGY(affected_mob, BRUTE, 0.95)
+	MODIFY_PHYSIOLOGY(affected_mob, BURN, 0.95)
+
+/datum/reagent/consumable/guidoferrun/on_mob_end_metabolize(mob/living/carbon/human/affected_mob)
+	. = ..()
+	MODIFY_PHYSIOLOGY(affected_mob, BRUTE, (100/95))
+	MODIFY_PHYSIOLOGY(affected_mob, BURN, (100/95))

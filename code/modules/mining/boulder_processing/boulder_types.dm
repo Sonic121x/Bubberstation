@@ -7,7 +7,7 @@
 	desc = "这块巨石充满了奇异的能量。敲开它，也许能找到对科学研究不同寻常的东西。"
 	icon_state = "boulder_artifact"
 	/// This is the type of item that will be inside the boulder. Default is a strange object.
-	var/artifact_type = /obj/item/relic/lavaland
+	var/artifact_type = /obj/item/assembly/relic/lavaland
 	/// References to the relic inside the boulder, if any.
 	var/obj/item/artifact_inside
 	/// Bonus materials to add to this boulder, in addition to existing materials created by the ore vent.

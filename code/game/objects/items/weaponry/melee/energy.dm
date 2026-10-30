@@ -354,6 +354,7 @@
 	name = "能量刃"
 	desc = "一束凝聚成刀刃状的能量。非常时髦……且致命。"
 	icon_state = "blade"
+	inhand_icon_state = "blade"
 	base_icon_state = "blade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'

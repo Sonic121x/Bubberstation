@@ -100,6 +100,7 @@
 	name = "医疗 HUD 墨镜"
 	desc = "带医疗 HUD 的墨镜。"
 	icon_state = "sunhudmed"
+	inhand_icon_state = "sunhudmed"
 	flash_protect = FLASH_PROTECTION_FLASH
 	flags_cover = GLASSESCOVERSEYES
 	tint = 1
@@ -189,6 +190,7 @@
 	name = "安保 HUD 墨镜"
 	desc = "带安保 HUD 的墨镜。"
 	icon_state = "sunhudsec"
+	inhand_icon_state = "sunhudsec"
 	flash_protect = FLASH_PROTECTION_FLASH
 	flags_cover = GLASSESCOVERSEYES
 	tint = 1

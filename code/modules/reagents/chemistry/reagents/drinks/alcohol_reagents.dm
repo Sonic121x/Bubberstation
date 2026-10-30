@@ -1357,7 +1357,7 @@
 /datum/reagent/consumable/ethanol/bananahonk/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, metabolization_ratio)
 	. = ..()
 	var/obj/item/organ/liver/liver = drinker.get_organ_slot(ORGAN_SLOT_LIVER)
-	if((liver && HAS_TRAIT(liver, TRAIT_COMEDY_METABOLISM)) || is_simian(drinker))
+	if((liver && HAS_TRAIT(liver, TRAIT_COMEDY_METABOLISM)) || HAS_TRAIT(drinker, TRAIT_SIMIAN))
 		var/heal = 1 * metabolization_ratio * seconds_per_tick
 		if(drinker.heal_bodypart_damage(brute = heal, burn = heal, updating_health = FALSE))
 			return UPDATE_MOB_HEALTH
@@ -3495,6 +3495,134 @@
 	taste_description = "克里奥尔式的热情款待"
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/consumable/ethanol/mouthwash
+	name = "漱口水"
+	description = "带薄荷味、微微起泡的液体。糖似乎比酒精还多，闻起来有点像冰龙的吐息。"
+	boozepwr = 14
+	color = "#10b486"
+	taste_description = "甜味和薄荷味"
+	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/consumable/ethanol/mouthwash/on_mob_life(mob/living/drinker, seconds_per_tick, metabolization_ratio)
+	. = ..()
+	drinker.apply_status_effect(/datum/status_effect/throat_soothed)
+
+/datum/reagent/consumable/ethanol/mouthwash_strong
+	name = "烈性漱口水"
+	description = "带薄荷味、微微起泡的液体。再烈也清洁不了牙齿，再甜也会在嘴里留下苦味。"
+	boozepwr = 30
+	color = "#10b4ac"
+	taste_description = "看牙医的滋味"
+	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/consumable/ethanol/mouthwash_strong/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, metabolization_ratio)
+	. = ..()
+	drinker.apply_status_effect(/datum/status_effect/throat_soothed)
+	if(SPT_PROB(5, seconds_per_tick) && !HAS_TRAIT(drinker, TRAIT_ALCOHOL_TOLERANCE))
+		drinker.adjust_hallucinations(8 SECONDS * metabolization_ratio)
+
+/datum/reagent/consumable/ethanol/frosty_dorf
+	name = "冰霜矮人"
+	description = "矮人经典饮品的草本变体，让你想挖出一座山中堡垒。"
+	boozepwr = 75
+	color = "#A1C89A"
+	taste_description = "胡须"
+	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/consumable/ethanol/stone_cold_stout
+	name = "冷石烈性黑啤"
+	description = "冰冷彻骨的饮品，连老酒鬼都难以招架。撑过这一杯，就没有什么能难倒你。"
+	boozepwr = 100
+	color = "#9DDCFA"
+	taste_description = "跌入谷底的苦涩"
+	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/consumable/ethanol/stone_cold_stout/on_mob_metabolize(mob/living/carbon/human/drinker)
+	. = ..()
+	MODIFY_PHYSIOLOGY(drinker, BRUTE, 0.8)
+	MODIFY_PHYSIOLOGY(drinker, BURN, 0.8)
+
+/datum/reagent/consumable/ethanol/stone_cold_stout/on_mob_end_metabolize(mob/living/carbon/human/drinker)
+	. = ..()
+	MODIFY_PHYSIOLOGY(drinker, BRUTE, 1.25)
+	MODIFY_PHYSIOLOGY(drinker, BURN, 1.25)
+
+/datum/reagent/consumable/ethanol/ramp_rager
+	name = "狂怒冲锋"
+	description = "剧烈冒泡、能让人陷入狂暴的饮品，简直是酒吧斗殴的邀请函。"
+	boozepwr = 65
+	color = "#1D789B"
+	taste_description = "瓶装怒火"
+	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+	metabolized_traits = list(TRAIT_ANALGESIA, TRAIT_STIMULATED, TRAIT_FEARLESS)
+
+/datum/reagent/consumable/ethanol/ramp_rager/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, metabolization_ratio)
+	. = ..()
+	var/need_mob_update
+	if(SPT_PROB(15, seconds_per_tick) && !HAS_TRAIT(drinker, TRAIT_ALCOHOL_TOLERANCE))
+		drinker.adjust_hallucinations(8 SECONDS * metabolization_ratio)
+	need_mob_update += drinker.adjust_organ_loss(ORGAN_SLOT_BRAIN, 0.75 * metabolization_ratio * seconds_per_tick)
+	drinker.AdjustAllImmobility(-1 SECONDS * metabolization_ratio * seconds_per_tick)
+	if(drinker.adjust_stamina_loss(-15 * metabolization_ratio * seconds_per_tick, updating_stamina = FALSE))
+		. = UPDATE_MOB_HEALTH
+	if(need_mob_update)
+		. = UPDATE_MOB_HEALTH
+	if(SPT_PROB(5, seconds_per_tick))
+		drinker.emote(pick("twitch", "drool"))
+
+/datum/reagent/consumable/ethanol/ramp_rager/on_mob_metabolize(mob/living/drinker)
+	. = ..()
+	drinker.apply_status_effect(/datum/status_effect/spasms)
+	RegisterSignal(drinker, COMSIG_LIVING_ENTER_STAMCRIT, PROC_REF(on_stamcrit))
+
+/datum/reagent/consumable/ethanol/ramp_rager/on_mob_end_metabolize(mob/living/drinker)
+	. = ..()
+	drinker.remove_status_effect(/datum/status_effect/spasms)
+	UnregisterSignal(drinker, COMSIG_LIVING_ENTER_STAMCRIT)
+
+/datum/reagent/consumable/ethanol/ramp_rager/proc/on_stamcrit(mob/living/drinker)
+	SIGNAL_HANDLER
+	drinker.set_stamina_loss(90, updating_stamina = TRUE)
+	to_chat(drinker, span_message("不能就这样结束……你感到脑中的血液迅速退去……"))
+	volume -= (min(volume, 6))
+	return STAMCRIT_CANCELLED
+
+/datum/reagent/consumable/ethanol/sea_lantern
+	name = "海上灯塔"
+	description = "利用灯柱果的独特性质调制的分层饮品。愿它在艰难时刻为你指引方向，远离伤害。"
+	boozepwr = 35
+	color = "#9FE7EC"
+	taste_description = "甜味和薄荷味"
+	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/consumable/ethanol/icegrave
+	name = "冰墓"
+	description = "极其寒冷的饮品，触碰时几乎像针扎一样，仿佛液态的冰霜魔法。"
+	boozepwr = 40
+	color = "#443EAC"
+	taste_description = "冰凉"
+	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+
+/datum/reagent/consumable/ethanol/icegrave/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
+	. = ..()
+	var/obj/item/organ/liver/liver = affected_mob.get_organ_slot(ORGAN_SLOT_LIVER)
+	if(liver && HAS_TRAIT(liver, TRAIT_CORONER_METABOLISM)) //Coroners know your icegraves. Also, its made using formaldehyde, so.
+		return
+
+	var/icegrave_temp = -200
+	affected_mob.apply_status_effect(/datum/status_effect/ice_block_talisman, 5 SECONDS)
+	var/thermal_protection = 1 - affected_mob.get_insulation_protection(affected_mob.bodytemperature + icegrave_temp)
+	var/applied_temp = (thermal_protection * icegrave_temp) + icegrave_temp
+	affected_mob.adjust_bodytemperature(applied_temp)
 
 #undef ALCOHOL_EXPONENT
 #undef ALCOHOL_THRESHOLD_MODIFIER

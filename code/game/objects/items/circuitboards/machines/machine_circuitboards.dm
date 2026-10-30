@@ -310,6 +310,16 @@
 	var/message = high_production_profile ? "高功率铀燃料模式" : "中功率等离子燃料模式"
 	to_chat(user, span_notice("你将电路板设为[message]。"))
 
+/obj/item/circuitboard/machine/plankman
+	name = "木板人型发电机"
+	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
+	build_path = /obj/machinery/power/port_gen/pacman/wood
+	req_components = list(
+		/obj/item/stack/cable_coil = 5,
+		/obj/item/stack/sheet/iron = 5
+	)
+	needs_anchored = FALSE
+
 /obj/item/circuitboard/machine/turbine_compressor
 	name = "涡轮——进气压缩机"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
@@ -516,7 +526,7 @@
 	build_path = /obj/machinery/rnd/production/circuit_imprinter/department
 
 /obj/item/circuitboard/machine/holopad
-	name = "AI 全息投影台"
+	name = "全息投影台"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/holopad
 	req_components = list(/datum/stock_part/capacitor = 1)
@@ -1768,6 +1778,26 @@
 	needs_anchored = FALSE
 	req_components = list(
 		/obj/item/pipe/directional/scrubber = 1,
+	)
+
+/obj/item/circuitboard/machine/bluespace_scrubber
+	name = "便携式蓝空间洗气机"
+	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
+	build_path = /obj/machinery/portable_atmospherics/scrubber/bluespace
+	needs_anchored = FALSE
+	req_components = list(
+		/obj/item/pipe/directional/scrubber = 1,
+		/obj/item/stack/ore/bluespace_crystal = 1,
+	)
+
+/obj/item/circuitboard/machine/gas_receiver
+	name = "气体接收器"
+	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
+	build_path = /obj/machinery/portable_atmospherics/gas_receiver
+	needs_anchored = FALSE
+	req_components = list(
+		/obj/item/stack/sheet/plasteel = 2,
+		/obj/item/stack/ore/bluespace_crystal = 2,
 	)
 
 /obj/item/circuitboard/machine/pump

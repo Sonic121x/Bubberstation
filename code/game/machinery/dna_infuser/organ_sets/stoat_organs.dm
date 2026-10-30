@@ -4,7 +4,7 @@
 /datum/status_effect/organ_set_bonus/stoat
 	id = "organ_set_bonus_stoat"
 	tick_interval = 3 SECONDS
-	organs_needed = 4
+	organs_needed = 5
 	bonus_activate_text = span_notice("白鼬的 DNA 已与你深度融合！\
 		本能占据了上风——你现在无所畏惧，仿佛无论体型相差多大，都能迎战任何敌人。")
 	bonus_deactivate_text = span_notice("你不再以白鼬成分为主，\
@@ -132,6 +132,20 @@
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/stoat)
 	AddElement(/datum/element/update_icon_blocker)
 
+/obj/item/organ/fangs/stoat
+	desc = "一副原本正常的牙齿，融合了白鼬的 DNA。"
+	bite_low = 7
+	bite_high = 7
+	bite_effectiveness = 20
+	bite_pummeling_bonus = 0.75
+	bite_attack_effect = ATTACK_EFFECT_BITE
+	bite_sharpness = SHARP_POINTY
+	organ_traits = list(TRAIT_FERAL_BITER)
+
+/obj/item/organ/fangs/stoat/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/stoat)
+
 /obj/item/organ/tongue/stoat
 	name = "突变白鼬舌头"
 	desc = "一条原本正常的舌头，融合了白鼬的 DNA。"
@@ -145,7 +159,6 @@
 	liked_foodtypes = MEAT | RAW | GORE | BUGS
 	disliked_foodtypes = FRUIT | VEGETABLES
 	taste_sensitivity = 12
-	organ_traits = list(TRAIT_FERAL_BITER)
 
 /obj/item/organ/tongue/stoat/Initialize(mapload)
 	. = ..()
@@ -159,34 +172,12 @@
 /obj/item/organ/tongue/stoat/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
 	. = ..()
 	RegisterSignals(receiver, COMSIG_LIVING_GET_PERCEIVED_FOOD_QUALITY, PROC_REF(get_perceived_food_quality))
-	if(ishuman(receiver))
-		var/mob/living/carbon/human/human_receiver = receiver
-		human_receiver.physiology.hunger_mod *= 2
+	MODIFY_PHYSIOLOGY(receiver, PHYS_COEFF_HUNGER_MOD, 2)
 
 /obj/item/organ/tongue/stoat/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
 	UnregisterSignal(organ_owner, COMSIG_LIVING_GET_PERCEIVED_FOOD_QUALITY)
-	if(ishuman(organ_owner))
-		var/mob/living/carbon/human/human_remover = organ_owner
-		human_remover.physiology.hunger_mod /= 2
-
-/obj/item/organ/tongue/stoat/on_bodypart_insert(obj/item/bodypart/limb)
-	. = ..()
-	limb.unarmed_damage_low += 7
-	limb.unarmed_damage_high += 7
-	limb.unarmed_effectiveness += 20
-	limb.unarmed_pummeling_bonus += 0.75
-	limb.unarmed_attack_effect = ATTACK_EFFECT_BITE
-	limb.unarmed_sharpness = SHARP_POINTY
-
-/obj/item/organ/tongue/stoat/on_bodypart_remove(obj/item/bodypart/limb)
-	. = ..()
-	limb.unarmed_damage_low -= 7
-	limb.unarmed_damage_high -= 7
-	limb.unarmed_effectiveness -= 20
-	limb.unarmed_pummeling_bonus -= 0.75
-	limb.unarmed_attack_effect = initial(limb.unarmed_attack_effect)
-	limb.unarmed_sharpness = initial(limb.unarmed_sharpness)
+	MODIFY_PHYSIOLOGY(organ_owner, PHYS_COEFF_HUNGER_MOD, 0.5)
 
 /obj/item/organ/tongue/stoat/proc/get_perceived_food_quality(mob/living/carbon/consumer, obj/item/food/consumed_food, list/extra_quality)
 	SIGNAL_HANDLER

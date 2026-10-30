@@ -117,6 +117,27 @@
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "manlydorfglass"
 
+/datum/glass_style/drinking_glass/frosty_dorf
+	required_drink_type = /datum/reagent/consumable/ethanol/frosty_dorf
+	name = "冰霜矮人"
+	desc = "矮人经典饮品的草本变体，让你想挖出一座山中堡垒。"
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "frosty_dorf"
+
+/datum/glass_style/drinking_glass/stone_cold_stout
+	required_drink_type = /datum/reagent/consumable/ethanol/stone_cold_stout
+	name = "冷石烈性黑啤"
+	desc = "冰冷彻骨的饮品，连老酒鬼都难以招架。撑过这一杯，就没有什么能难倒你。"
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "stone_cold_stout"
+
+/datum/glass_style/drinking_glass/ramp_rager
+	required_drink_type = /datum/reagent/consumable/ethanol/ramp_rager
+	name = "狂怒冲锋"
+	desc = "剧烈冒泡、能让人陷入狂暴的饮品，简直是酒吧斗殴的邀请函。"
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "ramprager"
+
 /datum/glass_style/drinking_glass/longislandicedtea
 	required_drink_type = /datum/reagent/consumable/ethanol/longislandicedtea
 	name = "长岛冰茶"
@@ -1233,6 +1254,27 @@
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "vieux_carre"
 
+/datum/glass_style/drinking_glass/mouthwash_strong
+	required_drink_type = /datum/reagent/consumable/ethanol/mouthwash_strong
+	name = "烈性漱口水"
+	desc = "一瓶酒精含量更高的烈性漱口水。标签自豪地宣称“杀灭99.9%的细菌”，另一张小标签上写着“请对自己的卫生负责”。"
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "mouthwash_strong"
+
+/datum/glass_style/drinking_glass/sea_lantern
+	required_drink_type = /datum/reagent/consumable/ethanol/sea_lantern
+	name = "海上灯塔"
+	desc = "用灯柱果和草莓奶昔调制的分层鸡尾酒，大致模仿了历史书中海上灯塔的模样。声呐和传感器的进步早已使这类建筑过时。"
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "sea_lantern"
+
+/datum/glass_style/drinking_glass/icegrave
+	required_drink_type = /datum/reagent/consumable/ethanol/icegrave
+	name = "冰墓"
+	desc = "一块大冰块悬在大多不适合人类饮用的液体中。盛装它的玻璃杯已经结霜，至今还没碎真是个奇迹。"
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "icegrave"
+
 // Shot glasses
 
 /datum/glass_style/shot_glass/toxins_special
@@ -1244,6 +1286,11 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/b52
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "b52glass"
+
+/datum/glass_style/shot_glass/icegrave
+	required_drink_type = /datum/reagent/consumable/ethanol/icegrave
+	icon = 'icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "shot_icegrave"
 
 /datum/glass_style/shot_glass/hcider
 	required_drink_type = /datum/reagent/consumable/ethanol/hcider

@@ -18,6 +18,8 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	var/safe_for_living_creatures = TRUE
 	/// Maximum force that can be used to extract
 	var/max_force_fulton = MOVE_FORCE_STRONG
+	/// How long will the mob be paralyzed for?
+	var/paralyze_duration = 32 SECONDS
 
 /obj/item/extraction_pack/examine()
 	. = ..()
@@ -62,10 +64,8 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	if(thing.anchored)
 		return NONE
 
-	var/obj/structure/extraction_point/beacon = beacon_ref?.resolve()
+	var/atom/movable/beacon = get_beacon(user)
 	if(isnull(beacon))
-		balloon_alert(user, "尚未链接！")
-		beacon_ref = null
 		return ITEM_INTERACT_BLOCKING
 	var/area/area = get_area(thing)
 	if(!can_use_indoors)
@@ -111,7 +111,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 
 	if(isliving(thing))
 		var/mob/living/creature = thing
-		creature.Paralyze(32 SECONDS) // Keep them from moving during the duration of the extraction
+		creature.Paralyze(paralyze_duration) // Keep them from moving during the duration of the extraction
 		ADD_TRAIT(creature, TRAIT_FORCED_STANDING, FULTON_PACK_TRAIT) // Prevents animation jank from happening
 		if(creature.buckled)
 			creature.buckled.unbuckle_mob(creature, TRUE) // Unbuckle them to prevent anchoring problems
@@ -125,11 +125,17 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	var/mutable_appearance/balloon2 = mutable_appearance('icons/effects/fulton_balloon.dmi', "fulton_expand", layer = VEHICLE_LAYER, appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM | KEEP_APART)
 	balloon2.pixel_z = 10
 	holder_obj.add_overlay(balloon2)
-	addtimer(CALLBACK(src, PROC_REF(create_balloon), thing, user, holder_obj, balloon2), 0.4 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(create_balloon), thing, user, holder_obj, balloon2, get_turf(beacon)), 0.4 SECONDS)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/item/extraction_pack/proc/create_balloon(atom/movable/thing, mob/living/user, obj/effect/extraction_holder/holder_obj, mutable_appearance/balloon2)
-	var/turf/beacon_turf = get_turf(beacon_ref.resolve())
+/obj/item/extraction_pack/proc/get_beacon(mob/living/user)
+	var/obj/structure/extraction_point/beacon = beacon_ref?.resolve()
+	if (isnull(beacon))
+		balloon_alert(user, "尚未链接！")
+		beacon_ref = null
+	return beacon
+
+/obj/item/extraction_pack/proc/create_balloon(atom/movable/thing, mob/living/user, obj/effect/extraction_holder/holder_obj, mutable_appearance/balloon2, turf/beacon_turf)
 	var/mutable_appearance/balloon = mutable_appearance('icons/effects/fulton_balloon.dmi', "fulton_balloon", layer = VEHICLE_LAYER, appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM | KEEP_APART)
 	balloon.pixel_z = 10
 	holder_obj.cut_overlay(balloon2)
@@ -190,11 +196,85 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	if(uses_left <= 0)
 		qdel(src)
 
+/obj/item/extraction_pack/networked
+	name = "联网富尔顿回收包"
+	desc = "一种可将设备或人员运往附近“烛光”采矿导航网络中任意富尔顿信标或已开采矿石喷口的气球。任何未被固定的东西都能搬走。"
+	icon_state = "extraction_pack_networked"
+	paralyze_duration = 18 SECONDS
+
+/obj/item/extraction_pack/networked/attack_self(mob/user)
+	var/list/possible_beacons = list()
+	for(var/datum/weakref/point_ref as anything in GLOB.total_extraction_beacons)
+		var/obj/structure/extraction_point/extraction_point = point_ref.resolve()
+		if(isnull(extraction_point))
+			GLOB.total_extraction_beacons.Remove(point_ref)
+			continue
+		if(extraction_point.beacon_network in beacon_networks)
+			possible_beacons += extraction_point
+
+	for (var/datum/mining_beacon_network/network as anything in GLOB.mining_beacon_networks)
+		var/list/fulton_points = list()
+		var/node_located = FALSE
+		for (var/datum/component/candela_node/node as anything in network.linked_nodes)
+			if (node.fulton_point)
+				fulton_points += node.parent
+
+			if (node_located)
+				continue
+
+			if (get_dist(node.parent, user) <= MINING_BEACON_MAX_REACH && (user in viewers(MINING_BEACON_MAX_REACH, node.parent)))
+				node_located = TRUE
+
+		if (node_located)
+			possible_beacons |= fulton_points
+
+	if(!length(possible_beacons))
+		balloon_alert(user, "没有信标")
+		return
+
+	var/chosen_beacon = tgui_input_list(user, "要连接的信标", "气球回收包", sort_names(possible_beacons))
+	if(isnull(chosen_beacon))
+		return
+
+	beacon_ref = WEAKREF(chosen_beacon)
+	balloon_alert(user, "已链接！")
+
+/obj/item/extraction_pack/networked/get_beacon(mob/living/user)
+	var/obj/structure/extraction_point/beacon = beacon_ref?.resolve()
+	if (isnull(beacon))
+		balloon_alert(user, "尚未链接！")
+		beacon_ref = null
+		return null
+
+	// Anything that isn't an extraction point must've came from a Candela network, go through all of its nodes check if we can access it
+	if (istype(beacon))
+		return beacon
+
+	for (var/datum/mining_beacon_network/network as anything in GLOB.mining_beacon_networks)
+		// Check if its even our target's network to begin with
+		var/target_net = FALSE
+		for (var/datum/component/candela_node/node as anything in network.linked_nodes)
+			if (node.parent == beacon)
+				target_net = TRUE
+				break
+
+		if (!target_net)
+			continue
+
+		for (var/datum/component/candela_node/node as anything in network.linked_nodes)
+			if (get_dist(node.parent, user) <= MINING_BEACON_MAX_REACH && (user in viewers(MINING_BEACON_MAX_REACH, node.parent)))
+				return beacon
+
+	balloon_alert(user, "超出网络覆盖范围！")
+	return null
+
 /obj/item/fulton_core
 	name = "回收信标组装套件"
 	desc = "建造后会发出信号，富尔顿回收装置可锁定该信号。在手中激活即可展开为信标。"
 	icon = 'icons/obj/fulton.dmi'
 	icon_state = "folded_extraction"
+	/// Structure to spawn
+	var/point_type = /obj/structure/extraction_point
 
 /obj/item/fulton_core/attack_self(mob/user)
 	var/area/user_area = get_area(user)
@@ -205,9 +285,18 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	if(!do_after(user, 1.5 SECONDS, target = user) || QDELETED(src))
 		return
 
-	new /obj/structure/extraction_point(get_turf(user))
+	new point_type(get_turf(user), user)
 	playsound(src, 'sound/items/deconstruct.ogg', vol = 50, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE)
 	qdel(src)
+
+/obj/item/fulton_core/networked
+	name = "联网回收信标组装套件"
+	desc = "建造后会发出信号，同一“烛光”导航网络中的富尔顿回收装置可锁定该信号。在手中激活即可展开为信标。"
+	point_type = /obj/structure/extraction_point/networked
+
+/obj/item/fulton_core/syndicate
+	name = "可疑的回收信标组装套件"
+	point_type = /obj/structure/extraction_point/syndicate
 
 /obj/structure/extraction_point
 	name = "富尔顿回收信标"
@@ -217,26 +306,53 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	anchored = TRUE
 	density = FALSE
 	obj_flags = CAN_BE_HIT | UNIQUE_RENAME
+	/// String key used to check if a beacon can be accessed by a pack
 	var/beacon_network = "station"
+	/// What type of core do we drop when picked up
+	var/core_type = /obj/item/fulton_core
 
-/obj/structure/extraction_point/Initialize(mapload)
+/obj/structure/extraction_point/Initialize(mapload, mob/creator)
 	. = ..()
 	name += " ([rand(100,999)]) ([get_area_name(src, TRUE)])"
+	INVOKE_ASYNC(src, PROC_REF(poll_name), creator)
 	GLOB.total_extraction_beacons.Add(WEAKREF(src))
 	update_appearance(UPDATE_OVERLAYS)
+
+/obj/structure/extraction_point/proc/poll_name(mob/creator)
+	var/name_input = tgui_input_text(creator, "你想给信标起什么名字？", "富尔顿信标", default = name, max_length = MAX_LABEL_LEN)
+	if (name_input && !QDELETED(src) && !QDELETED(creator) && creator.Adjacent(src))
+		name = name_input
+
+/obj/structure/extraction_point/Destroy(force)
+	GLOB.total_extraction_beacons -= WEAKREF(src)
+	return ..()
 
 /obj/structure/extraction_point/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	balloon_alert_to_viewers("正在收起……")
 	if(!do_after(user, 1.5 SECONDS, src))
 		return
-	new /obj/item/fulton_core(drop_location())
+	new core_type(drop_location())
 	playsound(src, 'sound/items/deconstruct.ogg', vol = 50, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE)
 	qdel(src)
 
 /obj/structure/extraction_point/update_overlays()
 	. = ..()
 	. += emissive_appearance(icon, "[icon_state]_light", src, alpha = src.alpha)
+
+/obj/structure/extraction_point/syndicate
+	beacon_network = "syndicate"
+	core_type = /obj/item/fulton_core/syndicate
+
+/obj/structure/extraction_point/networked
+	name = "联网富尔顿回收信标"
+	desc = "富尔顿回收系统的信标，可通过“烛光”导航网络广播其位置。"
+	icon_state = "extraction_point_networked"
+	core_type = /obj/item/fulton_core/networked
+
+/obj/structure/extraction_point/networked/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/candela_node, new /datum/mining_beacon_network(), null, connection_pixel_x = base_pixel_w, connection_pixel_y = base_pixel_z - 2)
 
 /obj/effect/extraction_holder
 	name = "回收容器"
@@ -264,3 +380,4 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 /obj/item/extraction_pack/syndicate
 	name = "辛迪加富尔顿回收包"
 	can_use_indoors = TRUE
+	beacon_networks = list("station", "syndicate")

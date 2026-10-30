@@ -127,7 +127,7 @@
 		|| !target.has_dna() \
 		|| HAS_TRAIT(target, TRAIT_HUSK) \
 		|| HAS_TRAIT(target, TRAIT_BADDNA) \
-		|| (HAS_TRAIT(target, TRAIT_NO_DNA_COPY) && !ismonkey(target))) // sure, go ahead, make a monk-clone
+		|| (HAS_TRAIT(target, TRAIT_NO_DNA_COPY) && !HAS_TRAIT(target, TRAIT_LESSER_HUMANOID))) // sure, go ahead, make a monk-clone
 		user.balloon_alert(user, "DNA 不兼容！")
 		return FALSE
 	if(target.has_status_effect(/datum/status_effect/temporary_transformation/trans_sting))
@@ -138,7 +138,7 @@
 /datum/action/changeling/sting/transformation/sting_action(mob/living/user, mob/living/target)
 	var/final_duration = sting_duration
 	var/final_message = span_notice("我们将[target]变形为[selected_dna.dna.real_name]。")
-	if(ismonkey(target))
+	if(HAS_TRAIT(target, TRAIT_LESSER_HUMANOID))
 		final_duration = INFINITY
 		final_message = span_warning("我们的基因在尖叫，我们将[target]的低等形态永久变形为[selected_dna.dna.real_name]！")
 
@@ -181,7 +181,7 @@
 
 	..()
 	log_combat(user, target, "刺击了", object = "假臂刃毒刺")
-	if(ismonkey(target))
+	if(HAS_TRAIT(target, TRAIT_LESSER_HUMANOID))
 		to_chat(user, span_notice("我们的基因在尖叫，我们刺了[target.name]！"))
 
 	var/obj/item/melee/arm_blade/false/blade = new(target,1)

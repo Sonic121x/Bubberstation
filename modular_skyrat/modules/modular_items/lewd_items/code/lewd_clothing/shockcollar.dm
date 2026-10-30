@@ -20,7 +20,6 @@
 
 /datum/design/electropack/shockcollar
 	name = "电击项圈"
-	id = "shockcollar"
 	build_type = AUTOLATHE
 	build_path = /obj/item/electropack/shockcollar
 	materials = list(

@@ -206,7 +206,6 @@
 /datum/design/board/cell_charger_multi
 	name = "机器设计（多电池充电架电路板）"
 	desc = "多电池充电架的电路板。"
-	id = "multi_cell_charger"
 	build_path = /obj/item/circuitboard/machine/cell_charger_multi
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING

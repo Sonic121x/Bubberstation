@@ -200,6 +200,7 @@
 	name = "可疑信标"
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "beacon"
+	inhand_icon_state = "beacon"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	desc = "标签上写着：<i>警告：启动此装置会将一个特殊信标送到你的位置</i>。"

@@ -2,7 +2,7 @@
 
 ///Base Visor - Adds a specific HUD and traits to you.
 /obj/item/mod/module/visor
-	name = "MOD 护目镜模块"
+	name = "\improper MOD 护目镜模块"
 	desc = "安装在套装护目镜里的平视显示器。据说戴上它还能让你看到身后。"
 	module_type = MODULE_TOGGLE
 	complexity = 1
@@ -24,7 +24,7 @@
 
 //Medical Visor - Gives you a medical HUD.
 /obj/item/mod/module/visor/medhud
-	name = "MOD 医疗护目镜模块"
+	name = "\improper MOD 医疗护目镜模块"
 	desc = "安装在套装护目镜里的平视显示器。它会将套装传感器数据与现代化的 \
 		生物扫描套件相互比对，让使用者能够看到有机生命体当前的健康状况，并 \
 		以便捷的读数方式调阅病历等数据。据说戴上它还能让你看到身后。"
@@ -34,7 +34,7 @@
 
 //Diagnostic Visor - Gives you a diagnostic HUD.
 /obj/item/mod/module/visor/diaghud
-	name = "MOD 诊断护目镜模块"
+	name = "\improper MOD 诊断护目镜模块"
 	desc = "安装在套装护目镜里的平视显示器。它利用一系列高级传感器读取 \
 		先进机械、外骨骼和其他设备的数据，让使用者能够看到这些设备的当前电量 \
 		与结构完整度。据说戴上它还能让你看到身后。"
@@ -44,7 +44,7 @@
 
 //Security Visor - Gives you a security HUD.
 /obj/item/mod/module/visor/sechud
-	name = "MOD 安保护目镜模块"
+	name = "\improper MOD 安保护目镜模块"
 	desc = "安装在套装护目镜里的平视显示器。这个模块是一套经过重度改装的瞄准系统， \
 		接入了各类犯罪数据库，可以查看逮捕记录、指挥简单的安保机器人， \
 		并且大体上知道该朝谁开枪。据说戴上它还能让你看到身后。"
@@ -54,7 +54,7 @@
 
 //Meson Visor - Gives you meson vision.
 /obj/item/mod/module/visor/meson
-	name = "MOD 介子护目镜模块"
+	name = "\improper MOD 介子护目镜模块"
 	desc = "安装在套装护目镜里的平视显示器。这个模块基于广受喜爱的介子扫描仪 \
 		技术，银河各地的建筑工人和矿工都用它在任何光照条件下看穿墙壁、 \
 		观察基本的建筑结构与地形布局。据说戴上它还能让你看到身后。"
@@ -64,7 +64,7 @@
 
 //Thermal Visor - Gives you thermal vision.
 /obj/item/mod/module/visor/thermal
-	name = "MOD 热成像护目镜模块"
+	name = "\improper MOD 热成像护目镜模块"
 	desc = "安装在套装护目镜里的平视显示器。它使用小型红外扫描仪探测并识别 \
 		使用者附近物体的热辐射输出。虽然它能探测到连啮齿动物这样小的物体 \
 		散发的热量，但仍会产生令人不适的红色叠影。据说戴上它还能让你看到身后。"
@@ -73,7 +73,7 @@
 
 //Night Visor - Gives you night vision.
 /obj/item/mod/module/visor/night
-	name = "MOD 夜视护目镜模块"
+	name = "\improper MOD 夜视护目镜模块"
 	desc = "安装在套装护目镜里的平视显示器。这在民用和军用领域都很常见， \
 		它让使用者能在完全黑暗中看清周围环境，将视野增强十倍； \
 		代价是把一切都照成诡异的绿色荧光。据说戴上它还能让你看到身后。"
@@ -82,7 +82,7 @@
 	visor_traits = list(TRAIT_TRUE_NIGHT_VISION)
 
 /obj/item/mod/module/night // Not Visor type so that it remains compatible with other visors
-	name = "MOD 夜视模块"
+	name = "\improper MOD 夜视模块"
 	desc = "安装在套装护目镜里的平视显示器。这在民用和军用领域都很常见， \
 		它让使用者能在完全黑暗中看清周围环境，将视野增强十倍； \
 		代价是把一切都照成诡异的绿色荧光。据说戴上它还能让你看到身后。 \

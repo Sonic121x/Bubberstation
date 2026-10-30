@@ -28,7 +28,7 @@ export const DnaConsole = (props) => {
   const { consoleMode } = data.view;
 
   return (
-    <Window title="DNA 控制台" width={539} height={710}>
+    <Window title="DNA 控制台" width={550} height={710}>
       {!!isPulsing && (
         <Dimmer fontSize="14px" textAlign="center">
           <Icon mr={1} name="spinner" spin />

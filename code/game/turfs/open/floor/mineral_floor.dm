@@ -46,6 +46,13 @@
 /turf/open/floor/mineral/plasma/disco/crowbar_act(mob/living/user, obj/item/I)
 	return
 
+/turf/open/floor/mineral/plasma/tiled
+	name = "等离子地砖"
+	icon_state = "plasma_tiled"
+	floor_tile = /obj/item/stack/tile/mineral/plasma/tiled
+
+/turf/open/floor/mineral/plasma/tiled/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
 
 //GOLD
 
@@ -57,6 +64,22 @@
 	custom_materials = list(/datum/material/gold = SMALL_MATERIAL_AMOUNT*5)
 	rust_resistance = RUST_RESISTANCE_BASIC
 
+/turf/open/floor/mineral/gold/tiled
+	name = "黄金地砖"
+	icon_state = "gold_tiled"
+	floor_tile = /obj/item/stack/tile/mineral/gold/tiled
+
+/turf/open/floor/mineral/gold/tiled/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+/turf/open/floor/mineral/gold/sun
+	name = "黄金太阳地板"
+	icon_state = "gold_sun"
+	floor_tile = /obj/item/stack/tile/mineral/gold/sun
+
+/turf/open/floor/mineral/gold/sun/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
 //SILVER
 
 /turf/open/floor/mineral/silver
@@ -65,6 +88,22 @@
 	floor_tile = /obj/item/stack/tile/mineral/silver
 	icons = list("silver","silver_dam")
 	custom_materials = list(/datum/material/silver = SMALL_MATERIAL_AMOUNT*5)
+
+/turf/open/floor/mineral/silver/tiled
+	name = "白银地砖"
+	icon_state = "silver_tiled"
+	floor_tile = /obj/item/stack/tile/mineral/silver/tiled
+
+/turf/open/floor/mineral/silver/tiled/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+/turf/open/floor/mineral/silver/moon
+	name = "白银月亮地板"
+	icon_state = "silver_moon"
+	floor_tile = /obj/item/stack/tile/mineral/silver/moon
+
+/turf/open/floor/mineral/silver/moon/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
 
 //TITANIUM (shuttle)
 
@@ -77,8 +116,6 @@
 
 /turf/open/floor/mineral/titanium/broken_states()
 	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
-
-
 
 /turf/open/floor/mineral/titanium/airless
 	initial_gas_mix = AIRLESS_ATMOS
@@ -215,11 +252,26 @@
 	material_flags = NONE //The slippery comp makes it unpractical for good clown decor. The custom mat one should still slip.
 	var/sound_cooldown = 0
 
+/turf/open/floor/mineral/bananium/tiled
+	name = "香蕉矿地砖"
+	icon_state = "bananium_tiled"
+	floor_tile = /obj/item/stack/tile/mineral/bananium/tiled
+
+/turf/open/floor/mineral/bananium/tiled/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
 /turf/open/floor/mineral/bananium/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	if(.)
 		return
 	if(isliving(arrived))
+		squeak()
+
+/turf/open/floor/mineral/bananium/initialize_occupant(atom/movable/occupant)
+	. = ..()
+	if(.)
+		return
+	if(isliving(occupant))
 		squeak()
 
 /turf/open/floor/mineral/bananium/attackby(obj/item/W, mob/user, list/modifiers)
@@ -260,6 +312,14 @@
 	custom_materials = list(/datum/material/diamond = SMALL_MATERIAL_AMOUNT*5)
 	rust_resistance = RUST_RESISTANCE_REINFORCED
 
+/turf/open/floor/mineral/diamond/tiled
+	name = "钻石地砖"
+	icon_state = "diamond_tiled"
+	floor_tile = /obj/item/stack/tile/mineral/diamond/tiled
+
+/turf/open/floor/mineral/diamond/tiled/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
 //URANIUM
 
 /turf/open/floor/mineral/uranium
@@ -273,11 +333,26 @@
 	var/last_event = 0
 	var/active = null
 
+/turf/open/floor/mineral/uranium/tiled
+	name = "铀地砖"
+	icon_state = "uranium_tiled"
+	floor_tile = /obj/item/stack/tile/mineral/uranium/tiled
+
+/turf/open/floor/mineral/uranium/tiled/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
 /turf/open/floor/mineral/uranium/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	if(.)
 		return
 	if(isliving(arrived))
+		radiate()
+
+/turf/open/floor/mineral/uranium/initialize_occupant(atom/movable/occupant)
+	. = ..()
+	if(.)
+		return
+	if(isliving(occupant))
 		radiate()
 
 /turf/open/floor/mineral/uranium/attackby(obj/item/W, mob/user, list/modifiers)
@@ -311,6 +386,102 @@
 			last_event = world.time
 			active = FALSE
 			return
+
+//BLUESPACE
+/turf/open/floor/mineral/bluespace
+	name = "蓝空间地板"
+	icon_state = "bluespacecrystal"
+	floor_tile = /obj/item/stack/tile/mineral/bluespace
+	custom_materials = list(/datum/material/bluespace = SMALL_MATERIAL_AMOUNT*5)
+	rust_resistance = RUST_RESISTANCE_REINFORCED
+
+/turf/open/floor/mineral/bluespace/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+/turf/open/floor/mineral/bluespace/tiled
+	name = "蓝空间地砖"
+	icon_state = "bluespacecrystal_tiled"
+	floor_tile = /obj/item/stack/tile/mineral/bluespace/tiled
+
+//TELECRYSTAL
+/turf/open/floor/mineral/telecrystal
+	name = "传送水晶地板"
+	icon_state = "telecrystal"
+	floor_tile = /obj/item/stack/tile/mineral/telecrystal
+	custom_materials = list(/datum/material/telecrystal = SMALL_MATERIAL_AMOUNT*5)
+	rust_resistance = RUST_RESISTANCE_REINFORCED
+
+/turf/open/floor/mineral/telecrystal/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+/turf/open/floor/mineral/telecrystal/tiled
+	name = "传送水晶地砖"
+	icon_state = "telecrystal_tiled"
+	floor_tile = /obj/item/stack/tile/mineral/telecrystal/tiled
+
+//ADAMANTINE
+/turf/open/floor/mineral/adamantine
+	name = "精金地板"
+	icon_state = "adamantine"
+	floor_tile = /obj/item/stack/tile/mineral/adamantine
+	custom_materials = list(/datum/material/adamantine = SMALL_MATERIAL_AMOUNT*5)
+	rust_resistance = RUST_RESISTANCE_TITANIUM
+
+/turf/open/floor/mineral/adamantine/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+/turf/open/floor/mineral/adamantine/tiled
+	name = "精金地砖"
+	icon_state = "adamantine_tiled"
+	floor_tile = /obj/item/stack/tile/mineral/adamantine/tiled
+
+//METAL HYDROGEN
+/turf/open/floor/mineral/metal_hydrogen
+	name = "金属氢地板"
+	icon_state = "metalhydrogen"
+	floor_tile = /obj/item/stack/tile/mineral/metal_hydrogen
+	custom_materials = list(/datum/material/metalhydrogen = SMALL_MATERIAL_AMOUNT*5)
+	rust_resistance = RUST_RESISTANCE_TITANIUM
+
+/turf/open/floor/mineral/metal_hydrogen/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+/turf/open/floor/mineral/metal_hydrogen/tiled
+	name = "金属氢地砖"
+	icon_state = "metalhydrogen_tiled"
+	floor_tile = /obj/item/stack/tile/mineral/metal_hydrogen/tiled
+
+//RUNITE
+/turf/open/floor/mineral/runite
+	name = "符文矿地板"
+	icon_state = "runite"
+	floor_tile = /obj/item/stack/tile/mineral/runite
+	custom_materials = list(/datum/material/runite = SMALL_MATERIAL_AMOUNT*5)
+	rust_resistance = RUST_RESISTANCE_REINFORCED
+
+/turf/open/floor/mineral/runite/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+/turf/open/floor/mineral/runite/tiled
+	name = "符文矿地砖"
+	icon_state = "runite_tiled"
+	floor_tile = /obj/item/stack/tile/mineral/runite/tiled
+
+//MYTHRIL
+/turf/open/floor/mineral/mythril
+	name = "秘银地板"
+	icon_state = "mythril"
+	floor_tile = /obj/item/stack/tile/mineral/mythril
+	custom_materials = list(/datum/material/mythril = SMALL_MATERIAL_AMOUNT*5)
+	rust_resistance = RUST_RESISTANCE_REINFORCED
+
+/turf/open/floor/mineral/mythril/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+/turf/open/floor/mineral/mythril/tiled
+	name = "秘银地砖"
+	icon_state = "mythril_tiled"
+	floor_tile = /obj/item/stack/tile/mineral/mythril/tiled
 
 // ALIEN ALLOY
 /turf/open/floor/mineral/abductor

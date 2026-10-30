@@ -1,5 +1,5 @@
 /obj/machinery/computer/rdservercontrol
-	name = "研发服务器控制器"
+	name = "\improper 研发服务器控制台"
 	desc = "管理研究数据库与控制台的访问权限。"
 	icon_screen = "rdcomp"
 	icon_keyboard = "rd_key"

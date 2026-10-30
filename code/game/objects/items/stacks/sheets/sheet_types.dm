@@ -459,10 +459,10 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 		return ITEM_INTERACT_SUCCESS
 	else
 		return NONE
+
 /*
  * Bamboo
  */
-
 GLOBAL_LIST_INIT(bamboo_recipes, list ( \
 	new/datum/stack_recipe("尖桩陷阱", /obj/structure/punji_sticks, 5, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_EQUIPMENT), \
 	new/datum/stack_recipe("竹矛", /obj/item/spear/bamboospear, 25, time = 9 SECONDS, crafting_flags = NONE, category = CAT_WEAPON_MELEE), \
@@ -783,7 +783,6 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 /*
  * Bronze
  */
-
 GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	new/datum/stack_recipe("墙壁齿轮", /obj/structure/girder/bronze, 2, time = 2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
 	new /datum/stack_recipe("发条平台", /obj/structure/platform/bronze, 2, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75, category = CAT_STRUCTURE), \
@@ -896,6 +895,9 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
 
+/*
+ * Plastic
+ */
 GLOBAL_LIST_INIT(plastic_recipes, list(
 	new /datum/stack_recipe("塑料地板砖", /obj/item/stack/tile/plastic, 1, 4, 20, time = 2 SECONDS, crafting_flags = NONE, category = CAT_TILES), \
 	new /datum/stack_recipe("浅色电车道砖", /obj/item/stack/thermoplastic/light, 1, 4, 20, time = 2 SECONDS, crafting_flags = NONE, category = CAT_TILES), \
@@ -937,6 +939,9 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	. = ..()
 	. += GLOB.plastic_recipes
 
+/*
+ * Paper Frames
+ */
 GLOBAL_LIST_INIT(paperframe_recipes, list(
 	new /datum/stack_recipe("纸框隔断", /obj/structure/window/paperframe, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_IS_FULLTILE, time = 1 SECONDS), \
 	new /datum/stack_recipe("纸框门", /obj/structure/mineral_door/paperframe, 3, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, time = 1 SECONDS ), \
@@ -967,6 +972,9 @@ GLOBAL_LIST_INIT(paperframe_recipes, list(
 /obj/item/stack/sheet/paperframes/fifty
 	amount = 50
 
+/*
+ * Meat
+ */
 /obj/item/stack/sheet/meat
 	name = "肉板"
 	desc = "某个东西的血淋淋的肉，被压成了一块漂亮的实心肉板。"
@@ -991,6 +999,9 @@ GLOBAL_LIST_INIT(pizza_sheet_recipes, list(
 	new/datum/stack_recipe("巨型披萨", /obj/structure/platform/pizza, 2, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75, category = CAT_STRUCTURE), \
 ))
 
+/*
+ * Pizza
+ */
 /obj/item/stack/sheet/pizza
 	name = "披萨板"
 	desc = "这是一块美味的矩形披萨！"
@@ -1013,6 +1024,17 @@ GLOBAL_LIST_INIT(pizza_sheet_recipes, list(
 	amount = 20
 /obj/item/stack/sheet/pizza/five
 	amount = 5
+
+/*
+ * Hauntium
+ */
+GLOBAL_LIST_INIT(hauntium_recipes, list(
+	new /datum/stack_recipe("幽魂矿地板砖", /obj/item/stack/tile/hauntium, 1, 4, 20, time = 2 SECONDS, crafting_flags = NONE, category = CAT_TILES), \
+))
+
+/obj/item/stack/sheet/hauntium/get_main_recipes()
+	. = ..()
+	. += GLOB.hauntium_recipes
 
 /obj/item/stack/sheet/hauntium
 	name = "幽魂板"

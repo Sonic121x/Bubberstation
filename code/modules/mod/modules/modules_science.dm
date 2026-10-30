@@ -2,7 +2,7 @@
 
 ///Reagent Scanner - Lets the user scan reagents.
 /obj/item/mod/module/reagent_scanner
-	name = "MOD 试剂扫描模块"
+	name = "\improper MOD 试剂扫描模块"
 	desc = "一种基于纳米传讯科研型 HUD 的模块，能够扫描\
 		容器内的内容物，并将信息以易读的格式投射到佩戴者的显示屏上。\
 		它无法检测味道，那还得靠你自己。"
@@ -21,7 +21,7 @@
 	REMOVE_TRAIT(mod.wearer, TRAIT_REAGENT_SCANNER, REF(src))
 
 /obj/item/mod/module/reagent_scanner/advanced
-	name = "MOD 高级试剂扫描模块"
+	name = "\improper MOD 高级试剂扫描模块"
 	desc = "一种具备纳米传讯科研型 HUD 全部功能的先进模块，能够扫描\
 		容器内的内容物，并将信息以易读的格式投射到佩戴者的显示屏上。\
 		它还包含一台研究扫描仪和一台爆炸传感器，可提供附近爆炸的详情。\
@@ -52,7 +52,7 @@
 
 ///Anti-Gravity - Makes the user weightless.
 /obj/item/mod/module/anomaly_locked/antigrav
-	name = "MOD 反重力模块"
+	name = "\improper MOD 反重力模块"
 	desc = "一种利用重力核心让使用者完全失重的模块。"
 	icon_state = "antigrav"
 	module_type = MODULE_TOGGLE
@@ -85,7 +85,7 @@
 
 ///Teleporter - Lets the user teleport to a nearby location.
 /obj/item/mod/module/anomaly_locked/teleporter
-	name = "MOD 传送模块"
+	name = "\improper MOD 传送模块"
 	desc = "一种利用蓝空间核心让使用者把自己的粒子传送到别处的模块。"
 	icon_state = "teleporter"
 	module_type = MODULE_ACTIVE

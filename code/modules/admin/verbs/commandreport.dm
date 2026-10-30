@@ -19,7 +19,7 @@ ADMIN_VERB(change_command_name, R_ADMIN, "更改指挥部名称", "更改中央�
 /// Verb to open the create command report window and send command reports.
 ADMIN_VERB(create_command_report, R_ADMIN, "创建指挥部报告", "创建一份要发送到空间站的指挥部报告。", ADMIN_CATEGORY_EVENTS)
 	BLACKBOX_LOG_ADMIN_VERB("Create Command Report")
-	var/datum/command_report_menu/tgui = new /datum/command_report_menu(user.mob)
+	var/datum/command_report_menu/tgui = new(user.mob)
 	tgui.ui_interact(user.mob)
 
 /// Datum for holding the TGUI window for command reports.

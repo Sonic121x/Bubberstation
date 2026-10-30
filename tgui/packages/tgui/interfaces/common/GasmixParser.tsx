@@ -1,13 +1,17 @@
-import { Box, Button, LabeledList } from 'tgui-core/components';
+import { Box, Button, LabeledList, Stack } from 'tgui-core/components';
+
+type GasEntry = [string, string, number]; // ID, name, and amount.
+
+type ReactionEntry = [string, string, number]; // ID, name, and amount.
 
 export type Gasmix = {
   name?: string;
-  gases: [string, string, number][]; // ID, name, and amount.
+  gases: GasEntry[]; // ID, name, and amount.
   temperature: number;
   volume: number;
   pressure: number;
   total_moles: number;
-  reactions: [string, string, number][]; // ID, name, and amount.
+  reactions: ReactionEntry[]; // ID, name, and amount.
   reference: string;
 };
 
@@ -37,101 +41,134 @@ export const GasmixParser = (props: GasmixParserProps) => {
   const { gases, temperature, volume, pressure, total_moles, reactions } =
     gasmix;
 
-  return !total_moles ? (
-    <Box nowrap italic mb="10px">
-      未检测到气体！
-    </Box>
-  ) : (
-    <LabeledList {...rest}>
-      {gases.map((gas) => (
-        <LabeledList.Item
-          label={
-            gasesOnClick ? (
-              <Button content={gas[1]} onClick={() => gasesOnClick(gas[0])} />
-            ) : (
-              gas[1]
-            )
-          }
-          key={gas[1]}
-        >
-          {gas[2].toFixed(2) +
-            ' mol (' +
-            ((gas[2] / total_moles) * 100).toFixed(2) +
-            ' %)'}
-        </LabeledList.Item>
-      ))}
-      <LabeledList.Item
-        label={
-          temperatureOnClick ? (
-            <Button
-              content={'温度'}
-              onClick={() => temperatureOnClick()}
-            />
-          ) : (
-            '温度'
-          )
-        }
-      >
-        {`${total_moles ? temperature.toFixed(2) : '-'} K`}
-      </LabeledList.Item>
-      <LabeledList.Item
-        label={
-          volumeOnClick ? (
-            <Button content={'体积'} onClick={() => volumeOnClick()} />
-          ) : (
-            '体积'
-          )
-        }
-      >
-        {`${total_moles ? volume.toFixed(2) : '-'} L`}
-      </LabeledList.Item>
-      <LabeledList.Item
-        label={
-          pressureOnClick ? (
-            <Button content={'压力'} onClick={() => pressureOnClick()} />
-          ) : (
-            '压力'
-          )
-        }
-      >
-        {`${total_moles ? pressure.toFixed(2) : '-'} kPa`}
-      </LabeledList.Item>
-      {detailedReactions ? (
-        reactions.map((reaction) => (
-          <LabeledList.Item
-            key={`${gasmix.reference}-${reaction[0]}`}
-            label={
-              reactionOnClick ? (
-                <Button
-                  content={reaction[1]}
-                  onClick={() => reactionOnClick(reaction[0])}
-                />
-              ) : (
-                reaction[1]
-              )
-            }
-          >
-            {reaction[2]}
-          </LabeledList.Item>
-        ))
-      ) : (
-        <LabeledList.Item label="气体反应">
-          {reactions.length
-            ? reactions.map((reaction, index) =>
-                reactionOnClick ? (
-                  <Box key={reaction[1]} mb="0.5em">
+  if (total_moles <= 0) {
+    return (
+      <Box nowrap italic mb="10px">
+        未检测到气体！
+      </Box>
+    );
+  }
+
+  return (
+    <Stack vertical>
+      <Stack.Item>
+        <Stack>
+          <Stack.Item width="60%">
+            {gases.map((gas) => (
+              <LabeledList.Item
+                label={
+                  gasesOnClick ? (
+                    <Button fluid onClick={() => gasesOnClick(gas[0])}>
+                      {gas[1]}
+                    </Button>
+                  ) : (
+                    gas[1]
+                  )
+                }
+                key={gas[1]}
+              >
+                {gas[2].toFixed(2) +
+                  ' mol (' +
+                  ((gas[2] / total_moles) * 100).toFixed(2) +
+                  ' %)'}
+              </LabeledList.Item>
+            ))}
+          </Stack.Item>
+          <Stack.Item grow>
+            <LabeledList>
+              <LabeledList.Item
+                label={
+                  temperatureOnClick ? (
                     <Button
-                      content={reaction[1]}
-                      onClick={() => reactionOnClick(reaction[0])}
+                      content={'温度'}
+                      onClick={() => temperatureOnClick()}
                     />
-                  </Box>
-                ) : (
-                  <div key={reaction[1]}>{reaction[1]}</div>
-                ),
-              )
-            : '未检测到反应'}
-        </LabeledList.Item>
+                  ) : (
+                    '温度'
+                  )
+                }
+              >
+                {`${total_moles ? temperature.toFixed(2) : '-'} K`}
+              </LabeledList.Item>
+              <LabeledList.Item
+                label={
+                  volumeOnClick ? (
+                    <Button
+                      content={'体积'}
+                      onClick={() => volumeOnClick()}
+                    />
+                  ) : (
+                    '体积'
+                  )
+                }
+              >
+                {`${total_moles ? volume.toFixed(2) : '-'} L`}
+              </LabeledList.Item>
+              <LabeledList.Item
+                label={
+                  pressureOnClick ? (
+                    <Button
+                      content={'压力'}
+                      onClick={() => pressureOnClick()}
+                    />
+                  ) : (
+                    '压力'
+                  )
+                }
+              >
+                {`${total_moles ? pressure.toFixed(2) : '-'} kPa`}
+              </LabeledList.Item>
+            </LabeledList>
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+      {!!reactions.length && (
+        <Stack.Item>
+          <Stack vertical>
+            <Stack.Item align="center" fontSize="1.2rem" color="label">
+              正在进行的反应
+            </Stack.Item>
+            {detailedReactions ? (
+              <Stack.Item>
+                {reactions.map((reaction) => (
+                  <Stack.Item key={`${gasmix.reference}-${reaction[0]}`}>
+                    {reactionOnClick ? (
+                      <Button
+                        onClick={() => reactionOnClick(reaction[0])}
+                        mr={1}
+                      >
+                        {reaction[1]}
+                      </Button>
+                    ) : (
+                      reaction[1]
+                    )}
+                    - {reaction[2]}
+                  </Stack.Item>
+                ))}
+              </Stack.Item>
+            ) : (
+              <Stack.Item>
+                <Stack>
+                  {reactions.map((reaction) => (
+                    <Stack.Item key={`${gasmix.reference}-${reaction[0]}`}>
+                      {reactionOnClick ? (
+                        <Button
+                          onClick={() => reactionOnClick(reaction[0])}
+                          mr={1}
+                        >
+                          {reaction[1]}
+                        </Button>
+                      ) : (
+                        reaction[1]
+                      )}
+                    </Stack.Item>
+                  ))}
+                </Stack>
+              </Stack.Item>
+            )}
+          </Stack>
+        </Stack.Item>
       )}
-    </LabeledList>
+    </Stack>
   );
 };

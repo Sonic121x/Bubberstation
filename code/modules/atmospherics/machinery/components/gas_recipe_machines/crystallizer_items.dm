@@ -1,5 +1,5 @@
 /obj/item/hypernoblium_crystal
-	name = "超惰性气体结晶"
+	name = "\improper 超惰性气体结晶"
 	desc = "瓶装的结晶氧与超惰性气体，可让你的衣物耐压，或阻止便携式大气设备中发生的反应。"
 	icon = 'icons/obj/pipes_n_cables/atmos.dmi'
 	icon_state = "hypernoblium_crystal"
@@ -40,8 +40,8 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/nitrium_crystal
-	desc = "一种奇怪的棕色结晶，破碎时会冒烟。"
-	name = "氮素气结晶"
+	name = "\improper 氮素气结晶"
+	desc = "一种奇怪的棕色结晶，碎裂时会散发恶臭烟雾。"
 	icon = 'icons/obj/pipes_n_cables/atmos.dmi'
 	icon_state = "nitrium_crystal"
 	var/cloud_size = 1

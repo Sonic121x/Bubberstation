@@ -354,8 +354,7 @@
 	if(opened || ismovable(loc) || !cinched)
 		return ..()
 
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
 	user.visible_message(span_warning("[src]里有人开始扭动！"), \
 		span_notice("你开始扭动，试图松开[src]的带扣……（这大约需要[DisplayTimeText(breakout_time)]。）"), \
 		span_hear("你听到[src]中传来布料绷紧的声音。"))
@@ -622,8 +621,7 @@
 		open(user)
 		return
 
-	user.changeNext_move(6 SECONDS)
-	user.last_special = world.time + 6 SECONDS
+	user.change_next_special_move(6 SECONDS)
 	user.visible_message(
 		span_warning("[src]里有什么东西开始扭动！"),
 		span_notice("你开始扭动，试图爬出[src]……（这大约需要[DisplayTimeText(breakout_time)]。）"),

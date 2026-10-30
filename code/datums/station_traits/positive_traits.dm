@@ -20,6 +20,12 @@
 
 	COOLDOWN_START(src, party_cooldown, rand(PARTY_COOLDOWN_LENGTH_MIN, PARTY_COOLDOWN_LENGTH_MAX))
 
+	var/list/landing_turfs = list()
+	for(var/turf/open/floor/bar_turf in get_area_turfs(/area/station/service/bar, subtypes = TRUE))
+		landing_turfs += bar_turf
+	if(!length(landing_turfs))
+		return
+
 	var/pizza_type_to_spawn = pick(list(
 		/obj/item/pizzabox/margherita,
 		/obj/item/pizzabox/mushroom,
@@ -28,9 +34,8 @@
 		/obj/item/pizzabox/pineapple
 	))
 
-	var/area/bar_area = pick(GLOB.bar_areas)
 	podspawn(list(
-		"target" = pick(bar_area.contents),
+		"target" = pick(landing_turfs),
 		"path" = /obj/structure/closet/supplypod/centcompod,
 		"spawn" = list(
 			pizza_type_to_spawn,
@@ -150,10 +155,7 @@
 	show_in_report = TRUE
 	report_message = "由于距离补给站较近，货运穿梭机飞往你站货运部的时间将更短。"
 	blacklist = list(/datum/station_trait/slow_shuttle)
-
-/datum/station_trait/quick_shuttle/on_round_start()
-	. = ..()
-	SSshuttle.supply.callTime *= 0.5
+	trait_to_give = STATION_TRAIT_QUICK_SHUTTLE
 
 /datum/station_trait/deathrattle_department
 	name = "部门死亡通报"

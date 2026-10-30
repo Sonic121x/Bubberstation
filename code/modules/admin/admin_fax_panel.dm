@@ -1,6 +1,6 @@
 ADMIN_VERB(fax_panel, R_ADMIN, "传真面板", "查看并回复发送至中央指挥部的传真。", ADMIN_CATEGORY_EVENTS)
-	var/datum/fax_panel_interface/ui = new /datum/fax_panel_interface(user.mob)
-	ui.ui_interact(user.mob)
+	var/datum/fax_panel_interface/tgui = new(user.mob)
+	tgui.ui_interact(user.mob)
 
 /// Admin Fax Panel. Tool for sending fax messages faster.
 /datum/fax_panel_interface

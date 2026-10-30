@@ -19,7 +19,7 @@
 	anchored = 1
 
 /obj/item/fake_items/time_stopper
-	name = "MOD 时间停止模块"
+	name = "\improper MOD 时间停止模块"
 	desc = "一个能让使用者周围小范围时间停止的模块……停多久都行，全凭他们 \
 			高兴！非常适合长篇独白或午休时间。请记住，一旦移动时间停止就会结束，而且 \
 			该模块有相当长的冷却时间，以避免现实错误。"

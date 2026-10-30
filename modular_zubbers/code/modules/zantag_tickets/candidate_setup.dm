@@ -1,7 +1,16 @@
 /datum/round_event/antagonist/candidate_setup(datum/round_event_control/antagonist/cast_control)
 
-	var/list/candidates_tickets = candidates_to_tickets(cast_control.get_candidates())
+	var/list/possible_candidates = cast_control.get_candidates()
+	var/prompted = should_prompt_candidates(cast_control)
+	if(prompted)
+		possible_candidates = prompt_candidates(cast_control, possible_candidates)
+
+	var/list/candidates_tickets = candidates_to_tickets(possible_candidates)
 	if(!length(candidates_tickets))
+		if(prompted)
+			message_admins(span_yellowteamradio("无人接受 [cast_control.name] 的邀请。"))
+			log_game("无人接受 [cast_control.name] 的反派邀请。")
+			return
 		message_admins(span_yellowteamradio("反派票系统未能找到任何候选人！"))
 		log_game("反派票系统未能找到任何候选人！")
 		return

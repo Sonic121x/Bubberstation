@@ -18,13 +18,6 @@
 /obj/item/ectoplasm/revenant/Destroy()
 	return ..()
 
-/obj/item/ectoplasm/revenant/proc/check_for_mirrors(turf/location, radius)
-	PRIVATE_PROC(TRUE)
-	for(var/obj/structure/mirror/mirror in view(radius, location))
-		if(mirror.cursable && !mirror.GetComponent(/datum/component/revenant_prison))
-			return mirror
-	return null
-
 /obj/item/ectoplasm/revenant/attack_self(mob/user)
 	if(inert)
 		return ..()
@@ -32,29 +25,17 @@
 		span_notice("[user] 把 [src] 向四面八方撒开。"),
 		span_notice("你把 [src] 撒满了这片区域。"),
 	)
-	var/obj/structure/mirror/nearby_mirror = check_for_mirrors(drop_location(), 5)
-	if(nearby_mirror)
-		transfer_to_mirror(nearby_mirror)
 	user.dropItemToGround(src)
+	SEND_SIGNAL(src, COMSIG_RESIDUE_DISPERSE)
 	qdel(src)
 
 /obj/item/ectoplasm/revenant/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	if(inert)
 		return
-	var/obj/structure/mirror/nearby_mirror = check_for_mirrors(get_turf(hit_atom), 3)
-	if(!nearby_mirror)
-		visible_message(span_notice("[src] 在撞击的瞬间碎成微粒，随即消散于虚无。"))
-	else
-		transfer_to_mirror(nearby_mirror)
+	visible_message(span_notice("[src] 在撞击的瞬间碎成微粒，随即消散于虚无。"))
+	SEND_SIGNAL(src, COMSIG_RESIDUE_DISPERSE)
 	qdel(src)
-
-/obj/item/ectoplasm/revenant/proc/transfer_to_mirror(obj/structure/mirror/nearby_mirror)
-	PRIVATE_PROC(TRUE)
-	nearby_mirror.TakeComponent(GetComponent(/datum/component/revenant_prison))
-	nearby_mirror.visible_message(span_revenwarning("一声凄凉的哀叹回荡开来，[src] 的微粒落在了 [nearby_mirror] 上！"))
-	log_game("一名亡魂被囚禁在 [nearby_mirror] 中")
-	message_admins("一名亡魂被囚禁在 [nearby_mirror] 中 [ADMIN_JMP(nearby_mirror)]")
 
 /obj/item/ectoplasm/revenant/examine(mob/user)
 	. = ..()
@@ -72,9 +53,9 @@
 /obj/item/ectoplasm/revenant/proc/reform()
 	if(QDELETED(src) || inert)
 		return
-	if(!GetComponent(/datum/component/revenant_prison))
+	if(!(SEND_SIGNAL(src, COMSIG_RESIDUE_REFORM) & COMPONENT_RESIDUE_REFORM_SUCCESS))
+		inert = TRUE
 		return
 	message_admins("亡魂灵质被放置了一分钟仍未被摧毁，正在重塑为一名新的亡魂。")
-	SEND_SIGNAL(src, COMSIG_REVENANT_RELEASE, cause = "灵质重塑")
 	visible_message(span_revenboldnotice("[src] 突然升到空中，随后渐渐消散。"))
 	qdel(src)

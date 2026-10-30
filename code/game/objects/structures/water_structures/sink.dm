@@ -64,12 +64,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 		context[SCREENTIP_CONTEXT_LMB] = "洗手"
 		return CONTEXTUAL_SCREENTIP_SET
 
-	if(is_reagent_container(held_item) && held_item.is_refillable() && !held_item.reagents.holder_full())
-		context[SCREENTIP_CONTEXT_LMB] = "装填容器"
+	if(is_reagent_container(held_item))
+		if(held_item.is_refillable() && !held_item.reagents.holder_full())
+			context[SCREENTIP_CONTEXT_LMB] = "装填容器"
+		if(held_item.reagents.total_volume > 0)
+			context[SCREENTIP_CONTEXT_RMB] = "倒空容器"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/mop) || astype(held_item, /obj/item/rag)?.blood_level == 0)
 		context[SCREENTIP_CONTEXT_LMB] = "浸湿拖把"
+		context[SCREENTIP_CONTEXT_RMB] = "冲洗拖把"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/stock_parts/water_recycler) && !has_water_reclaimer)
@@ -89,6 +93,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 	if(has_water_reclaimer)
 		. += span_notice("已安装水回收器。看起来你可以把它撬出来。")
 	. += span_notice("[reagents.total_volume]/[reagents.maximum_volume] 液体剩余。")
+	. += span_notice("你可以拿着容器[EXAMINE_HINT("右键点击")]它，将容器里的液体倒入下水道。")
 
 /obj/structure/sink/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -218,6 +223,27 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 		user.visible_message(span_notice("[user]用[src]清洗了[tool]。"), \
 							span_notice("你用[src]清洗了[tool]。"))
 		return ITEM_INTERACT_SUCCESS
+
+/obj/structure/sink/item_interaction_secondary(mob/living/user, obj/item/held_item, list/modifiers)
+	if(!is_reagent_container(held_item) && !istype(held_item, /obj/item/mop))
+		return ..()
+
+	if(busy)
+		to_chat(user, span_warning("已经有人在这里清洗了！"))
+		return ITEM_INTERACT_BLOCKING
+
+	if(held_item.reagents.total_volume <= 0)
+		balloon_alert(user, "已经空了！")
+		return ITEM_INTERACT_BLOCKING
+
+	held_item.reagents.clear_reagents()
+	playsound(src, 'sound/effects/slosh.ogg', 25, TRUE)
+
+	user.visible_message(
+		span_notice("[user]将[held_item]里的液体倒入了[src]。"),
+		span_notice("你将[held_item]里的液体倒入[src]，冲进了下水道。"),
+	)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/sink/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)

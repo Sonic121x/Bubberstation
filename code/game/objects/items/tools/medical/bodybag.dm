@@ -90,8 +90,7 @@
 	if(user.incapacitated)
 		to_chat(user, span_warning("像这样被束缚着，你是出不去的！"))
 		return
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
 	to_chat(user, span_notice("你抓挠着[src]的布料，想把它撕开……"))
 	to_chat(loc, span_warning("有人开始试图挣脱[src]！"))
 	if(!do_after(user, 12 SECONDS, src, timed_action_flags = (IGNORE_TARGET_LOC_CHANGE|IGNORE_HELD_ITEM)))

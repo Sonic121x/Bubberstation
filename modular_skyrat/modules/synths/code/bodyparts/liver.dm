@@ -32,7 +32,6 @@
 /datum/design/synth_liver
 	name = "试剂处理单元"
 	desc = "为合成人使用者处理有益化学物质的电子设备。"
-	id = "synth_liver"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

@@ -4,6 +4,7 @@
 	desc = "可补充的罐子，能挤出营养丰富的鱼食。"
 	icon = 'icons/obj/aquarium/supplies.dmi'
 	icon_state = "fish_feed"
+	inhand_icon_state = "fish_feed"
 	w_class = WEIGHT_CLASS_TINY
 	volume = 5
 	amount_per_transfer_from_this = 2.5

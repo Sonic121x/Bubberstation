@@ -5,27 +5,23 @@
 // Techweb node that shouldnt show up anywhere ever specifically for the fabricator to work with
 
 /datum/techweb_node/colony_fabricator_structures
-	id = TECHWEB_NODE_COLONY_STRUCTURES
 	display_name = "殖民地制造机结构设计"
 	description = "包含殖民地制造机的所有结构设计。"
-	design_ids = list(
-		"prefab_airlock_kit",
-		"prefab_manual_airlock_kit",
-		"prefab_shutters_kit",
-		"prefab_floor_tile",
-		"prefab_cat_floor_tile",
-		"colony_fab_plastic_wall_panel",
+	unlocked_designs = list(
+		/datum/design/prefab_airlock_kit,
+		/datum/design/prefab_manual_airlock_kit,
+		/datum/design/prefab_shutters_kit,
+		/datum/design/prefab_floor_tile,
+		/datum/design/prefab_cat_floor_tile,
+		/datum/design/colony_fab_plastic_wall_panel,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = INFINITY) // God save you
-	hidden = TRUE
-	show_on_wiki = FALSE
-	starting_node = TRUE
+	node_flags = TECHWEB_NODE_HIDDEN | TECHWEB_NODE_EXPERIMENTAL
 
 // Airlock kit
 
 /datum/design/prefab_airlock_kit
 	name = "预制气闸"
-	id = "prefab_airlock_kit"
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
@@ -42,7 +38,6 @@
 
 /datum/design/prefab_manual_airlock_kit
 	name = "预制手动气闸"
-	id = "prefab_manual_airlock_kit"
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
@@ -59,7 +54,6 @@
 
 /datum/design/prefab_shutters_kit
 	name = "预制卷帘门"
-	id = "prefab_shutters_kit"
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
@@ -76,7 +70,6 @@
 
 /datum/design/prefab_floor_tile
 	name = "预制地板砖"
-	id = "prefab_floor_tile"
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT / 4,
@@ -92,7 +85,6 @@
 
 /datum/design/prefab_cat_floor_tile
 	name = "预制栈桥地板"
-	id = "prefab_cat_floor_tile"
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT / 4,
@@ -108,7 +100,6 @@
 
 /datum/design/colony_fab_plastic_wall_panel
 	name = "塑料板材"
-	id = "colony_fab_plastic_wall_panel"
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT,

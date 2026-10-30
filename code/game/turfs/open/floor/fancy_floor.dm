@@ -9,7 +9,7 @@
  */
 
 /turf/open/floor/wood
-	desc = "时尚的深色木材。"
+	desc = "时尚的木材。"
 	icon_state = "wood"
 	floor_tile = /obj/item/stack/tile/wood
 	footstep = FOOTSTEP_WOOD
@@ -118,6 +118,13 @@
 
 /turf/open/floor/bamboo/broken_states()
 	return list("bamboodamaged")
+
+/turf/open/floor/bamboo/planks
+	desc = "用切好的竹片制成的地砖。"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "bamboo"
+	floor_tile = /obj/item/stack/tile/bamboo/planks
+	smoothing_flags = NONE
 
 /turf/open/floor/bamboo/tatami
 	desc = "一张传统的日式地板席。"
@@ -423,6 +430,62 @@
 	floor_tile = /obj/item/stack/tile/carpet/donk
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET_DONK
 	canSmoothWith = SMOOTH_GROUP_CARPET_DONK
+
+/turf/open/floor/carpet/bear
+	name = "熊皮毛地毯"
+	desc = "将熊皮毛铺展成地毯，供你踩踏。"
+	icon = 'icons/turf/floors/carpet_bear.dmi'
+	icon_state = "carpet_bear-255"
+	base_icon_state = "carpet_bear"
+	floor_tile = /obj/item/stack/tile/carpet/bear
+
+/turf/open/floor/carpet/polar_bear
+	name = "北极熊皮毛地毯"
+	desc = "将北极熊皮毛铺展成地毯，供你踩踏。"
+	icon = 'icons/turf/floors/carpet_bearpolar.dmi'
+	icon_state = "carpet_bearpolar-255"
+	base_icon_state = "carpet_bearpolar"
+	floor_tile = /obj/item/stack/tile/carpet/polar_bear
+
+/turf/open/floor/carpet/moth
+	name = "飞蛾绒毛地毯"
+	desc = "将飞蛾绒毛铺展成地毯，供你踩踏。"
+	icon = 'icons/turf/floors/carpet_moth.dmi'
+	icon_state = "carpet_moth-255"
+	base_icon_state = "carpet_moth"
+	floor_tile = /obj/item/stack/tile/carpet/moth
+
+/turf/open/floor/carpet/goliath
+	name = "歌利亚皮地毯"
+	desc = "用守望者的筋腱将歌利亚皮甲片编织在一起，做出的一件勉强算是地毯的东西。"
+	icon = 'icons/turf/floors/carpet_goliath.dmi'
+	icon_state = "carpet_goliath-255"
+	base_icon_state = "carpet_goliath"
+	floor_tile = /obj/item/stack/tile/carpet/goliath
+
+/turf/open/floor/carpet/carp
+	name = "鲤鱼鳞片地毯"
+	desc = "鲤鱼鳞片制成的地毯。鲤毯，鲤毯，鲤鱼毯。"
+	icon = 'icons/turf/floors/carpet_carp.dmi'
+	icon_state = "carpet_carp-255"
+	base_icon_state = "carpet_carp"
+	floor_tile = /obj/item/stack/tile/carpet/carp
+
+/turf/open/floor/carpet/lizard
+	name = "蜥蜴鳞片"
+	desc = "蜥蜴鳞片制成的地毯。制作过程中，蜥蜴很可能受到了伤害。"
+	icon = 'icons/turf/floors/carpet_lizard.dmi'
+	icon_state = "carpet_lizard-255"
+	base_icon_state = "carpet_lizard"
+	floor_tile = /obj/item/stack/tile/carpet/lizard
+
+/turf/open/floor/carpet/human
+	name = "人皮地毯"
+	desc = "用剥下的人皮制成的地毯，新鲜而湿润。"
+	icon = 'icons/turf/floors/carpet_skin.dmi'
+	icon_state = "carpet_skin-255"
+	base_icon_state = "carpet_skin"
+	floor_tile = /obj/item/stack/tile/carpet/human
 
 //*****Airless versions of all of the above.*****
 /turf/open/floor/carpet/airless

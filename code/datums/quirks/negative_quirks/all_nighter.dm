@@ -10,7 +10,7 @@
 	lose_text = span_notice("你感觉休息得很充分。")
 	medical_record_text = "患者似乎存在睡眠不足。"
 	hardcore_value = 2
-	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE|QUIRK_MOODLET_BASED|QUIRK_PROCESSES
+	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE|QUIRK_PROCESSES
 
 	mail_goodies = list(
 		/obj/item/clothing/glasses/blindfold,

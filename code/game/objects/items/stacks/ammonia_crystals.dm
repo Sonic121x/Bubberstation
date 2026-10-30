@@ -1,5 +1,6 @@
 /obj/item/stack/ammonia_crystals
 	name = "氨结晶"
+	desc = "结晶状的氨。对某些人来说很有价值，但那个人多半不是你。"
 	singular_name = "氨结晶"
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "ammonia_crystal"

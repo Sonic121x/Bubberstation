@@ -11,6 +11,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { useSharedState } from '../../backend';
 import { formatPower } from 'tgui-core/format';
 import { toFixed } from 'tgui-core/math';
 import { classes } from 'tgui-core/react';
@@ -54,23 +55,41 @@ const moduleSlotLabel = (param) => {
 
 export const ModulesPane = (props) => {
   const { act, data } = useBackend<MainData>();
+  const [showModuleList, setShowModuleList] = useSharedState(
+    'showModuleList',
+    true,
+  );
   const { modules, selected_module_index, weapons_safety } = data;
   return (
     <Section
-      title="装备"
+      title= {
+        showModuleList ? "装备" :
+        <Icon name="screwdriver-wrench" />}
       fill
       style={{ overflowY: 'auto' }}
       buttons={
+        <>
         <Button
           icon={!weapons_safety ? 'triangle-exclamation' : 'helmet-safety'}
           color={!weapons_safety ? 'red' : 'default'}
           onClick={() => act('toggle_safety')}
-          content={
+          content={ showModuleList ? <> {
             !weapons_safety
               ? '安全协议已禁用'
               : '安全协议已启用'
           }
+              </> :
+           null
+          }
         />
+        <Button
+          icon={showModuleList ? 'arrow-left' : 'arrow-right'}
+          content={ showModuleList ?
+            '收起' : '展开'
+          }
+          onClick={() => setShowModuleList(!showModuleList)}
+        />
+        </>
       }
     >
       <Stack>
@@ -94,16 +113,20 @@ export const ModulesPane = (props) => {
                       name={moduleSlotIcon(module.slot)}
                     />
                   </Stack.Item>
-                  <Stack.Item
-                    lineHeight="32px"
-                    style={{
-                      textTransform: 'capitalize',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                    }}
-                  >
-                    {`${moduleSlotLabel(module.slot)}插槽`}
-                  </Stack.Item>
+                  {showModuleList?
+                    <Stack.Item
+                      lineHeight="32px"
+                      style={{
+                        textTransform: 'capitalize',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      }}
+                    >
+                      {`${moduleSlotLabel(module.slot)}插槽`}
+                    </Stack.Item>
+                    :
+                    null
+                  }
                 </Stack>
               </Button>
             ) : (
@@ -126,23 +149,27 @@ export const ModulesPane = (props) => {
                       className={classes(['mecha_equipment32x32', module.icon])}
                     />
                   </Stack.Item>
-                  <Stack.Item
-                    lineHeight="32px"
-                    style={{
-                      textTransform: 'capitalize',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                    }}
-                  >
-                    {module.name}
-                  </Stack.Item>
+                  {showModuleList?
+                    <Stack.Item
+                      lineHeight="32px"
+                      style={{
+                        textTransform: 'capitalize',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      }}
+                    >
+                      {module.name}
+                    </Stack.Item>
+                    :
+                    null
+                  }
                 </Stack>
               </Button>
             ),
           )}
         </Stack.Item>
         <Stack.Item grow pl={1}>
-          {selected_module_index !== null && modules[selected_module_index] && (
+          {selected_module_index !== null && modules[selected_module_index] && showModuleList && (
             <ModuleDetails module={modules[selected_module_index]} />
           )}
         </Stack.Item>

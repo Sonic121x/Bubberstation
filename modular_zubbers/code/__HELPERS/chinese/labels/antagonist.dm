@@ -16,6 +16,34 @@
 		)
 	return names[value] || chinese_skyrat_items_category_display(chinese_zubbers_heretic_category_display(chinese_bloodsucker_category_display(value)))
 
+/proc/chinese_poll_role_display(value)
+	var/static/list/names
+	if(isnull(names))
+		names = list(
+			"Antagonist Prompt" = "敌对角色招募", "Academy Wizard Defender" = "学院巫师守卫", "Cortical Borer" = "皮层钻虫",
+			"Xenomorph larva" = "异形幼体", "Ash Spirit" = "灰烬之灵", "Ashwalker eggs" = "灰行者卵", "Blob spores" = "变形菌孢子",
+			"Bots" = "机器人", "Cargorilla" = "货运大猩猩", "Construct" = "构造体", "Contractor Support Unit" = "承包商支援单位",
+			"Drone shells" = "无人机躯壳", "Fire Shark" = "火焰鲨", "Fugitive Hunter" = "逃犯猎人", "Glitch" = "故障体", "Golems" = "魔像",
+			"Heretic Monster" = "异教徒怪物", "Holoparasite" = "全息寄生体", "Horrific Necktie" = "恐怖领带", "Imaginary Friend" = "幻想朋友",
+			"Lavaland elite" = "熔岩地带精英", "Maid in the Mirror" = "镜中女仆", "Mind magnified monkey" = "心智增幅猴子",
+			"Positronic brain" = "正电子脑", "Possessed blade" = "附身之刃", "Slime" = "史莱姆", "Raw Prophet" = "血肉先知",
+			"Regal rat" = "鼠王", "Rust Walker" = "锈蚀行者", "Sentience potion" = "启智药水", "Shade" = "暗影",
+			"Shuttle denizens" = "穿梭机居民", "Spectral blade" = "幽灵之刃", "Spiders" = "蜘蛛", "Split Personality" = "分裂人格",
+			"Stalker" = "潜猎者", "Syndicate" = "辛迪加", "Syndicate Monkey" = "辛迪加猴子", "Venus Human Traps" = "维纳斯捕人花",
+			"Recovered Crew" = "获救船员", "Free spore" = "自由孢子", "Blood Worm" = "血虫", "Operative" = "核爆特工", "Spy" = "间谍",
+			"Abductor" = "绑架者", "Xenomorph" = "异形", "Blob" = "变形菌", "Blob Infection" = "变形菌感染", "Blood Worm Infestation" = "血虫侵染",
+			"Fugitive" = "逃犯", "Lone Operative" = "孤身特工", "Nightmare" = "梦魇", "Obsessed" = "痴迷者", "Clown Operative" = "小丑特工",
+			"Paradox Clone" = "悖论克隆体", "Syndicate Sleeper Agent" = "辛迪加潜伏特工", "Space Dragon" = "太空龙", "Spider" = "蜘蛛",
+			"Voidwalker" = "虚空行者", "Sunwalker" = "逐日者", "Provocateur" = "煽动者", "Stowaway Changeling" = "偷渡变形怪", "Syndicate Infiltrator" = "辛迪加渗透者",
+			"Borer" = "皮层钻虫", "Mutated Abomination" = "变异憎恶", "Clock Cultist" = "发条教徒", "Bloodsucker" = "吸血鬼",
+			"Monster Hunter" = "怪物猎人", "Ghoul" = "血仆", "Changeling Zombie" = "变形怪僵尸", "Wire Priest" = "线缆祭司", "Hacked Synthetic" = "被入侵的合成人"
+		)
+	if(!istext(value))
+		return value
+	var/base_name = replacetext(replacetext(value, " (Midround)", ""), " (Latejoin)", "")
+	var/display_name = names[base_name] || chinese_job_display(base_name)
+	return "[display_name][findtext(value, " (Midround)") ? "（回合中途）" : ""][findtext(value, " (Latejoin)") ? "（中途加入）" : ""]"
+
 /// Reverse display names only at the boundary of existing action-button preferences.
 /proc/chinese_antag_storage_name(value)
 	var/plain_primitive_name = replacetext(value, "\improper", "")

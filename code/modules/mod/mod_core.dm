@@ -1,5 +1,5 @@
 /obj/item/mod/core
-	name = "MOD 核心"
+	name = "\improper MOD 核心"
 	desc = "一个无法运作的 MOD 核心。如果你看到这个，请通知管理员。"
 	icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
 	icon_state = "mod-core"
@@ -66,9 +66,9 @@
 		（[round((100 * charge_amount) / max_charge_amount, 1)]%）"
 
 /obj/item/mod/core/infinite
-	name = "MOD 无限核心"
+	name = "\improper MOD 无限核心"
 	icon_state = "mod-core-infinite"
-	desc = "一种利用稀有的 Fixium 来维持能量的聚变核心，足以供 MOD 使用者终生使用。\
+	desc = "一种利用稀有的恒定素来维持能量的聚变核心，足以供 MOD 使用者终生使用。\
 		这也许要归功于里面那种会慢慢致命的毒素，不过那只是传言。"
 
 /obj/item/mod/core/infinite/charge_source()
@@ -99,7 +99,7 @@
 	return "无限"
 
 /obj/item/mod/core/standard
-	name = "MOD 标准核心"
+	name = "\improper MOD 标准核心"
 	icon_state = "mod-core-standard"
 	desc = "在行星斯普劳特最繁茂肥沃的地区，生长着一种名为“心花”的水晶。\
 		这些稀有的有机压电水晶对以太人的艺术家阶层具有极高的文化意义，原因在于它们的外形：\
@@ -295,7 +295,7 @@
 		mod.update_charge_alert()
 
 /obj/item/mod/core/ethereal
-	name = "MOD 以太核心"
+	name = "\improper MOD 以太核心"
 	icon_state = "mod-core-ethereal"
 	desc = "一种逆向工程的模块化外装装置核心。它利用以太人天然的液态电流，\
 		无需借助外部来源来转换电荷。由于套装本身就能由\
@@ -360,7 +360,7 @@
 #define PLASMA_CORE_SHEET_CHARGE (2 * STANDARD_CELL_CHARGE)
 
 /obj/item/mod/core/plasma
-	name = "MOD 等离子核心"
+	name = "\improper MOD 等离子核心"
 	icon_state = "mod-core-plasma"
 	desc = "纳米传讯试图将其等离子研究转化为商品的产物。这些等离子核心可通过等离子燃料\
 		补充燃料，让他们的采矿小队能够轻松持续使用。"
@@ -445,7 +445,7 @@
 #undef PLASMA_CORE_SHEET_CHARGE
 
 /obj/item/mod/core/plasma/lavaland
-	name = "MOD 等离子花核心"
+	name = "\improper MOD 等离子花核心"
 	icon_state = "mod-core-plasma-flower"
 	desc = "一朵来自熔岩地带荒芜废土的奇异花朵。它散发着奇异的紫色光芒，脉动着。\
 		从它内部伸出的线缆可以接入 MOD 模块化外骨骼。"
@@ -499,7 +499,7 @@
 	QDEL_IN(flower_boots, 1 SECONDS)
 
 /obj/item/mod/core/soul
-	name = "MOD 灵魂碎片核心"
+	name = "\improper MOD 灵魂碎片核心"
 	desc = "一块被胡乱塞进手工制作的 MOD 核心框架里的灵魂碎片。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/mod/core/soul"
@@ -555,10 +555,10 @@
 	update_greyscale()
 
 /obj/item/mod/core/soul/charge_source()
-	return CONFIG_GET(flag/disable_human_mood) ? src : mod.wearer?.mob_mood
+	return mod.wearer?.mob_mood
 
 /obj/item/mod/core/soul/max_charge_amount()
-	return CONFIG_GET(flag/disable_human_mood) ? INFINITY : SANITY_MAXIMUM
+	return SANITY_MAXIMUM
 
 /obj/item/mod/core/soul/charge_amount()
 	var/mob/living/wearer = mod.wearer
@@ -566,20 +566,14 @@
 		return 0
 	if(HAS_TRAIT(wearer, TRAIT_NO_SOUL))
 		return 0 // Can't draw from something that isn't there.
-	if(CONFIG_GET(flag/disable_human_mood))
-		return INFINITY
 	var/datum/mood/source = charge_source()
 	return source?.sanity
 
 /obj/item/mod/core/soul/check_charge(amount)
-	if(CONFIG_GET(flag/disable_human_mood))
-		return !!mod.wearer
 	return charge_amount() >= amount * 10 / STANDARD_CELL_CHARGE
 
 /obj/item/mod/core/soul/subtract_charge(amount)
 	var/mob/living/wearer = mod.wearer
-	if(CONFIG_GET(flag/disable_human_mood))
-		return !!wearer
 	var/datum/mood/source = charge_source()
 	source.adjust_sanity(-amount * 10 / STANDARD_CELL_CHARGE)
 	var/backlash_type = get_backlash_type(wearer)
@@ -593,8 +587,6 @@
 	var/mob/living/wearer = mod.wearer
 	if(!wearer || HAS_TRAIT(wearer, TRAIT_NO_SOUL))
 		return "未检测到电源。"
-	if(CONFIG_GET(flag/disable_human_mood))
-		return "无限"
 	return "[round(charge_amount() / max_charge_amount() * 100, 0.1)]%"
 
 /obj/item/mod/core/soul/get_chargebar_color()
@@ -662,3 +654,104 @@
 /obj/item/mod/core/soul/wizard
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 	theme = THEME_WIZARD
+
+/obj/item/mod/core/candela
+	name = "\improper MOD 光联网核心"
+	desc = "一种轻巧、容量较低的联网 MOD 核心，可从“烛光”导航网络充电，为在前线作业的矿工提供稳定的电力供应。"
+	icon_state = "mod-core-candela"
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.05, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.05, /datum/material/bluespace = SHEET_MATERIAL_AMOUNT)
+	/// How much charge we can store.
+	var/max_charge = 3 * STANDARD_CELL_CHARGE
+	/// How much charge we are currently storing.
+	var/charge = 3 * STANDARD_CELL_CHARGE
+	/// Amount of charge recovered per second when linked to a Candela network
+	var/charge_recovery_rate = STANDARD_CELL_CHARGE / 10 // 30 seconds to go from empty to full
+	/// Our network handler
+	var/datum/candela_item_handler/handler = null
+
+/obj/item/mod/core/candela/Initialize(mapload)
+	. = ..()
+	handler = new(src)
+
+/obj/item/mod/core/candela/Destroy()
+	QDEL_NULL(handler)
+	return ..()
+
+/obj/item/mod/core/candela/install(obj/item/mod/control/mod_unit)
+	. = ..()
+	RegisterSignal(mod_unit, COMSIG_MOD_WEARER_SET, PROC_REF(on_mod_wearer_set))
+	RegisterSignal(mod_unit, COMSIG_MOD_WEARER_UNSET, PROC_REF(on_mod_wearer_unset))
+	if(mod.wearer)
+		on_mod_wearer_set(mod, mod.wearer)
+
+/obj/item/mod/core/candela/uninstall()
+	UnregisterSignal(mod, list(COMSIG_MOD_WEARER_SET, COMSIG_MOD_WEARER_UNSET))
+	if(mod.wearer)
+		on_mod_wearer_unset(mod)
+	return ..()
+
+/obj/item/mod/core/candela/process(seconds_per_tick)
+	if (charge >= max_charge || !mod.active)
+		return
+
+	if (!handler.network)
+		handler.locate_closest_network()
+
+	if (handler.network?.powered & CANDELA_NETWORK_POWERED)
+		add_charge(charge_recovery_rate * seconds_per_tick)
+
+/obj/item/mod/core/candela/proc/on_mod_wearer_set(datum/source, mob/living/wearer)
+	SIGNAL_HANDLER
+
+	handler.set_owner(wearer)
+	START_PROCESSING(SSprocessing, src)
+
+/obj/item/mod/core/candela/proc/on_mod_wearer_unset(datum/source)
+	SIGNAL_HANDLER
+
+	handler.set_owner(null)
+	STOP_PROCESSING(SSprocessing, src)
+
+/obj/item/mod/core/candela/charge_source()
+	return src
+
+/obj/item/mod/core/candela/charge_amount()
+	return charge
+
+/obj/item/mod/core/candela/max_charge_amount()
+	return max_charge
+
+/obj/item/mod/core/candela/add_charge(amount)
+	charge = min(max_charge, charge + amount)
+	mod.update_charge_alert()
+	return TRUE
+
+/obj/item/mod/core/candela/subtract_charge(amount)
+	amount = min(amount, charge)
+	charge -= amount
+	mod.update_charge_alert()
+	return amount
+
+/obj/item/mod/core/candela/check_charge(amount)
+	return charge_amount() >= amount
+
+/obj/item/mod/core/candela/get_charge_icon_state()
+	switch(round(charge_amount() / max_charge_amount(), 0.01))
+		if(0.75 to INFINITY)
+			return SPACESUIT_CELL_HIGH
+		if(0.5 to 0.75)
+			return SPACESUIT_CELL_MID
+		if(0.25 to 0.5)
+			return SPACESUIT_CELL_LOW
+		if(0.02 to 0.25)
+			return SPACESUIT_CELL_VERY_LOW
+
+	return SPACESUIT_CELL_EMPTY
+
+/obj/item/mod/core/candela/get_chargebar_color()
+	switch(round(charge_amount() / max_charge_amount(), 0.01))
+		if(-INFINITY to 0.33)
+			return "bad"
+		if(0.33 to INFINITY)
+			return "cyan"
+

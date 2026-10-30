@@ -29,6 +29,7 @@
 	display_names |= chinese_batch_ten_job_display(null, TRUE)
 	display_names |= chinese_zubbers_modules_job_display(null, TRUE)
 	display_names["Asset Protection"] = "资产保护"
+	display_names["Citizen"] = "公民"
 	display_names["Icemoon Dweller"] = "冰月居民"
 	if(return_mapping)
 		return display_names
@@ -78,4 +79,4 @@
 		display_names = list(
 		"material" = "材料", "alloy" = "合金", "plasteel" = "塑钢", "plastitanium" = "塑钛", "plasmaglass" = "等离子玻璃", "titanium glass" = "钛玻璃", "plastitanium glass" = "塑钛玻璃", "alien alloy" = "外星合金", "iron" = "铁", "glass" = "玻璃", "silver" = "银", "gold" = "金", "diamond" = "钻石", "uranium" = "铀", "plasma" = "等离子体", "bluespace crystal" = "蓝空间水晶", "bananium" = "香蕉矿", "titanium" = "钛", "runite" = "符文矿", "plastic" = "塑料", "biomass" = "生物质", "wood" = "木材", "adamantine" = "精金", "mythril" = "秘银", "hot ice" = "热冰", "Metal Hydrogen" = "金属氢", "sand" = "沙子", "sandstone" = "砂岩", "snow" = "雪", "runed metal" = "符文金属", "bronze" = "青铜", "paper" = "纸", "cardboard" = "纸板", "bone" = "骨头", "bamboo" = "竹子", "zaukerite" = "灼蚀晶体", "telecrystal" = "传送水晶", "rock" = "岩石", "hauntium" = "幽魂矿", "meat" = "肉", "pizza" = "披萨"
 	)
-	return display_names[value] || chinese_batch_ten_material_display(value)
+	return value == "metal hydrogen" ? "金属氢" : (display_names[value] || chinese_batch_ten_material_display(value))

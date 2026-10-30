@@ -3,7 +3,7 @@
 	guardian_type = GUARDIAN_DEXTROUS
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	damage_coeff = list(BRUTE = 0.75, BURN = 0.75, TOX = 0.75, STAMINA = 0, OXY = 0.75)
+	physiology = list(BRUTE = 0.75, BURN = 0.75, TOX = 0.75, OXY = 0.75, STAMINA = 0)
 	playstyle_string = span_holoparasite("作为<b>灵巧</b>型，你可以手持物品、在体内储存一件物品，并具有中等伤害抗性，但攻击伤害较低。召回和牵引会迫使你丢下未储存的物品！")
 	creator_name = "灵巧"
 	creator_desc = "攻击伤害较低，但能够手持物品并在体内储存一件物品。召回时会丢下手中的物品，但会保留储存的物品。"

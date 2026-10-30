@@ -137,12 +137,7 @@
 	switch(action)
 		if("coverunlock")
 			if(cyborg.locked)
-				cyborg.locked = FALSE
-				cyborg.update_icons()
-				if(cyborg.emagged)
-					cyborg.logevent("ChÃ¥vÃis 机壳盖锁已[cyborg.locked ? "锁定" : "解除"]") //"The cover interface glitches out for a split second"
-				else
-					cyborg.logevent("机壳盖锁已[cyborg.locked ? "锁定" : "解除"]")
+				cyborg.toggle_cover()
 
 		if("lawchannel")
 			cyborg.set_autosay()

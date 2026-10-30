@@ -1,7 +1,6 @@
 /datum/design/satchel_holding
 	name = "惰性次元挎包"
 	desc = "一块金属，安装蓝空间异常核心后即可转变为次元挎包。"
-	id = "satchel_holding"
 	build_type = PROTOLATHE
 	materials = list(
 		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 1.5,
@@ -18,7 +17,6 @@
 /datum/design/duffel_holding
 	name = "惰性次元行李袋"
 	desc = "一块金属，安装蓝空间异常核心后即可转变为次元行李袋。"
-	id = "duffel_holding"
 	build_type = PROTOLATHE
 	materials = list(
 		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 1.5,

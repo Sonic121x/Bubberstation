@@ -3,7 +3,7 @@
 	guardian_type = GUARDIAN_GRAVITOKINETIC
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	damage_coeff = list(BRUTE = 0.75, BURN = 0.75, TOX = 0.75, STAMINA = 0, OXY = 0.75)
+	physiology = list(BRUTE = 0.75, BURN = 0.75, TOX = 0.75, OXY = 0.75, STAMINA = 0)
 	playstyle_string = span_holoparasite("作为<b>重力动能</b>型，你可以右键增强地面的重力，而挥拳会把这一效果施加到目标身上。")
 	creator_name = "重力动能"
 	creator_desc = "攻击会对目标施加重压重力。也可以瞄准地面来减缓向你逼近的目标，但你自己也无法免疫这种效果。"

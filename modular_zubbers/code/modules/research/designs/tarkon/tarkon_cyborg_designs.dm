@@ -1,6 +1,5 @@
 /datum/design/borg_upgrade_tarkon_main
 	name = "半机械人模块解锁器（塔肯）"
-	id = "borg_upgrade_tarkon_main"
 	desc = "允许半机械人转变为实验性的塔肯港半机械人型号。"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/transform/tarkon
@@ -17,7 +16,6 @@
 
 /datum/design/borg_upgrade_tarkon_medical
 	name = "塔肯港医疗模块升级"
-	id = "borg_upgrade_tarkon_medical"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/tarkon/tarkon_medical
 	materials = list(
@@ -33,7 +31,6 @@
 
 /datum/design/borg_upgrade_tarkon_engineering
 	name = "塔肯港工程模块升级"
-	id = "borg_upgrade_tarkon_engineering"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/tarkon/tarkon_engineering
 	materials = list(
@@ -49,7 +46,6 @@
 
 /datum/design/borg_upgrade_tarkon_security
 	name = "塔肯港安保模块升级"
-	id = "borg_upgrade_tarkon_security"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/tarkon/tarkon_security
 	materials = list(
@@ -65,7 +61,6 @@
 
 /datum/design/borg_upgrade_tarkon_cargo
 	name = "塔肯港货运模块升级"
-	id = "borg_upgrade_tarkon_cargo"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/tarkon/tarkon_cargo
 	materials = list(
@@ -81,7 +76,6 @@
 
 /datum/design/borg_upgrade_tarkon_research
 	name = "塔肯港科研模块升级"
-	id = "borg_upgrade_tarkon_research"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/tarkon/tarkon_research
 	materials = list(
@@ -97,7 +91,6 @@
 
 /datum/design/borg_upgrade_tarkon_service
 	name = "塔肯港服务模块升级"
-	id = "borg_upgrade_tarkon_service"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/tarkon/tarkon_service
 	materials = list(
@@ -113,7 +106,6 @@
 
 /datum/design/borg_upgrade_tarkon_janitor
 	name = "塔肯港清洁模块升级"
-	id = "borg_upgrade_tarkon_janitor"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/tarkon/tarkon_janitor
 	materials = list(

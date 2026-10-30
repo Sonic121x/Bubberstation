@@ -449,6 +449,25 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT)
 
+/obj/item/food/polar_bear_steak
+	name = "极地熊吼菲力"
+	desc = "因为吃着火的熊肉还不够有斯拉夫风味。"
+	icon = 'icons/obj/food/meat.dmi'
+	icon_state = "bearsteakfrost"
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment = 4,
+		/datum/reagent/consumable/nutriment/vitamin = 9,
+		/datum/reagent/consumable/ethanol/frosty_dorf = 3,
+		/datum/reagent/consumable/ethanol/blue_blazer = 3,
+		/datum/reagent/toxin/berserker = 3
+	)
+	tastes = list("肉" = 1, "冰凉" = 1)
+	foodtypes = MEAT | ALCOHOL
+	w_class = WEIGHT_CLASS_SMALL
+	venue_value = FOOD_PRICE_EXOTIC
+	crafting_complexity = FOOD_COMPLEXITY_3
+	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT)
+
 /obj/item/food/raw_meatball
 	name = "生肉丸"
 	desc = "一顿全能好饭。可不是一捆木头。还挺生的。"
@@ -849,6 +868,24 @@
 	tastes = list("meat" = 3, "smokey sauce" = 1)
 	foodtypes = MEAT | SUGAR
 	crafting_complexity = FOOD_COMPLEXITY_2
+	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT * 2)
+
+/obj/item/food/drake_ribs
+	name = "龙肋排"
+	desc = "用熊肉和龙皮碎屑制成的肋排，涂满烧烤酱与冰冷酱。肉味再浓一点，就会让纯素食者精神崩溃。"
+	icon = 'icons/obj/food/meat.dmi'
+	icon_state = "drake_ribs"
+	w_class = WEIGHT_CLASS_NORMAL
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment/protein = 15,
+		/datum/reagent/consumable/nutriment/vitamin = 2,
+		/datum/reagent/consumable/guidoferrun = 10,
+		/datum/reagent/consumable/frostoil = 5,
+		/datum/reagent/consumable/bbqsauce = 5,
+	)
+	tastes = list("肉" = 3, "冰冷酱" = 1)
+	foodtypes = MEAT | SUGAR
+	crafting_complexity = FOOD_COMPLEXITY_3
 	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT * 2)
 
 /obj/item/food/meatclown
@@ -1258,6 +1295,28 @@
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_4
 	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT / 2)
+
+/obj/item/food/wendigo_feast
+	trash_type = /obj/item/wendigo_skull
+	name = "温迪戈盛宴"
+	desc = "堆满肉、冰冷酱和烧烤酱的盛宴，顶上放着一颗塞满弗蕾亚本土植物的温迪戈头骨。"
+	icon = 'icons/obj/food/meat.dmi'
+	icon_state = "wendigofeast"
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment/protein = 50,
+		/datum/reagent/consumable/nutriment = 40,
+		/datum/reagent/consumable/nutriment/vitamin = 10,
+		/datum/reagent/consumable/guidoferrun = 10,
+		/datum/reagent/consumable/frostoil = 10,
+		/datum/reagent/consumable/bbqsauce = 5,
+		/datum/reagent/toxin/berserker = 5,
+	)
+	tastes = list("鸡肉" = 3, "蔬菜" = 1, "肉汁" = 1)
+	foodtypes = MEAT | VEGETABLES | FRUIT | SUGAR
+	w_class = WEIGHT_CLASS_NORMAL
+	venue_value = FOOD_PRICE_EXOTIC
+	crafting_complexity = FOOD_COMPLEXITY_5
+	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT * 3)
 
 /obj/item/food/sweet_and_sour_meatballs
 	name = "糖醋肉丸"

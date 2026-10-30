@@ -3,7 +3,7 @@ ADMIN_VERB(policy_panel, R_ADMIN, "政策面板", "查看服务器已设置的�
 		tgui_alert(usr, "政策尚未加载（或服务器未设置任何政策）。", "政策面板", list("确定"))
 		return
 
-	var/datum/policy_panel/tgui = new
+	var/datum/policy_panel/tgui = new()
 	tgui.ui_interact(user.mob)
 	BLACKBOX_LOG_ADMIN_VERB("Policy Panel")
 

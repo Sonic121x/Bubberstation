@@ -94,7 +94,7 @@
 		if (feedback)
 			host.balloon_alert(owner, "大脑损伤过重！")
 		return FALSE
-	if (host.health <= HEALTH_THRESHOLD_DEAD)
+	if (host.health <= host.dead_threshold)
 		if (feedback)
 			host.balloon_alert(owner, "身体损伤过重！")
 		return FALSE

@@ -5,7 +5,6 @@
 
 /datum/design/teshari_cyber_chest
 	name = "猛禽型机械躯干"
-	id = "teshari_cyber_chest"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/chest/robot/teshari
 	materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT * 6)
@@ -16,7 +15,6 @@
 
 /datum/design/teshari_cyber_head
 	name = "猛禽型机械头部"
-	id = "teshari_cyber_head"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/head/robot/teshari
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 0.75)
@@ -27,7 +25,6 @@
 
 /datum/design/teshari_cyber_l_arm
 	name = "猛禽型机械左前肢"
-	id = "teshari_cyber_l_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/arm/left/robot/teshari
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 1.5)
@@ -38,7 +35,6 @@
 
 /datum/design/teshari_cyber_r_arm
 	name = "猛禽型机械右前肢"
-	id = "teshari_cyber_r_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/arm/right/robot/teshari
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5)
@@ -49,7 +45,6 @@
 
 /datum/design/teshari_cyber_l_leg
 	name = "猛禽型机械左后肢"
-	id = "teshari_cyber_l_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/left/robot/teshari
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5)
@@ -60,7 +55,6 @@
 
 /datum/design/teshari_cyber_r_leg
 	name = "猛禽型机械右后肢"
-	id = "teshari_cyber_r_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/right/robot/teshari
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5)
@@ -73,7 +67,6 @@
 
 /datum/design/teshari_advanced_l_arm
 	name = "高级猛禽型机械左前肢"
-	id = "teshari_advanced_l_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/arm/left/robot/teshari_advanced
 	materials = list(
@@ -88,7 +81,6 @@
 
 /datum/design/teshari_advanced_r_arm
 	name = "高级猛禽型机械右前肢"
-	id = "teshari_advanced_r_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/arm/right/robot/teshari_advanced
 	materials = list(
@@ -103,7 +95,6 @@
 
 /datum/design/teshari_advanced_l_leg
 	name = "高级猛禽型机械左后肢"
-	id = "teshari_advanced_l_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/left/robot/teshari_advanced
 	materials = list(
@@ -118,7 +109,6 @@
 
 /datum/design/teshari_advanced_r_leg
 	name = "高级猛禽型机械右后肢"
-	id = "teshari_advanced_r_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/right/robot/teshari_advanced
 	materials = list(
