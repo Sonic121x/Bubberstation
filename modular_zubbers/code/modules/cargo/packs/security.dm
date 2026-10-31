@@ -216,6 +216,16 @@
 		/obj/item/gun/ballistic/shotgun/riot/sol,
 	)
 
+/datum/supply_pack/security/armory/peacekeepers_plus
+	name = "Riot Renoster Shotgun Crate"
+	desc = "Three less-lethal modified Renoster pump-action shotguns to restock your armories with."
+	cost = CARGO_CRATE_VALUE * 10
+	contains = list(
+		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
+		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
+		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
+	)
+
 /datum/supply_pack/security/armory/hoshis
 	name = "星辰模块化激光卡宾枪箱"
 	desc = "本箱内含 3 把地球军械库最新添置的装备，由……“赛巴萨”制造。这些模块化武器可切换多种射击模式，并搭载机载 AI。"
