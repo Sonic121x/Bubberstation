@@ -62,15 +62,21 @@
 	return isnull(selection) ? null : display_choices[selection]
 
 /proc/chinese_outfit_display(value)
-	var/static/list/display_names = list("Naked" = "裸体", "Custom" = "自定义", "As Job..." = "按职业……", "As Plasmaman..." = "等离子人装备……", "Standard Gear" = "标准装备")
+	var/static/list/display_names
+	if(isnull(display_names))
+		display_names = list("Naked" = "裸体", "Custom" = "自定义", "As Job..." = "按职业……", "As Plasmaman..." = "等离子人装备……", "Standard Gear" = "标准装备")
 	return display_names[value] || chinese_zubbers_modules_outfit_display(value)
 
 /proc/chinese_granter_spell_display(value)
-	var/static/list/names = list("fireball" = "火球术", "smoke" = "烟雾术", "blind" = "致盲术", "forcewall" = "力场墙", "knock" = "敲击术", "barnyard" = "畜栏诅咒", "charge" = "充能术")
+	var/static/list/names
+	if(isnull(names))
+		names = list("fireball" = "火球术", "smoke" = "烟雾术", "blind" = "致盲术", "forcewall" = "力场墙", "knock" = "敲击术", "barnyard" = "畜栏诅咒", "charge" = "充能术")
 	return names[value] || value
 
 /proc/chinese_slime_crossbreed_display(value)
-	var/static/list/display_names = list("reproductive" = "繁殖型", "symbiont" = "共生型", "consuming" = "吞噬型", "industrial" = "工业型", "regenerative" = "再生型", "self-sustaining" = "自给型", "burning" = "燃烧型", "charged" = "充能型", "sanguine" = "血液型", "stabilized" = "稳定型", "chilling" = "寒冷型", "gentle" = "温和型", "mutative" = "突变型", "loyal" = "忠诚型", "transformative" = "变形型", "detonating" = "爆炸型", "crystalline" = "晶体型", "warping" = "跃迁型", "prismatic" = "棱彩型", "recurring" = "循环型", "lengthened" = "延长型", "hyperchromatic" = "超彩型")
+	var/static/list/display_names
+	if(isnull(display_names))
+		display_names = list("reproductive" = "繁殖型", "symbiont" = "共生型", "consuming" = "吞噬型", "industrial" = "工业型", "regenerative" = "再生型", "self-sustaining" = "自给型", "burning" = "燃烧型", "charged" = "充能型", "sanguine" = "血液型", "stabilized" = "稳定型", "chilling" = "寒冷型", "gentle" = "温和型", "mutative" = "突变型", "loyal" = "忠诚型", "transformative" = "变形型", "detonating" = "爆炸型", "crystalline" = "晶体型", "warping" = "跃迁型", "prismatic" = "棱彩型", "recurring" = "循环型", "lengthened" = "延长型", "hyperchromatic" = "超彩型")
 	return display_names[value] || value
 
 /proc/chinese_outfit_choice(mob/user, message, title, list/choices)

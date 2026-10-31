@@ -1,6 +1,8 @@
 // BUBBER ADDITION: Downstream job and outfit labels; preserve original identifiers.
 /proc/chinese_zubbers_modules_job_display(value, return_mapping = FALSE)
-	var/static/list/labels = list("Stowaway" = "偷渡客", "Security Medic" = "安保医疗兵", "Security Medical" = "安保医疗兵")
+	var/static/list/labels
+	if(isnull(labels))
+		labels = list("Stowaway" = "偷渡客", "Security Medic" = "安保医疗兵", "Security Medical" = "安保医疗兵")
 	if(return_mapping)
 		return labels
 	return labels[value] || value

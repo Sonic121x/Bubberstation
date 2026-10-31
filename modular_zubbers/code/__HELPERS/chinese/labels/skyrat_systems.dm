@@ -1,6 +1,8 @@
 /// Local display labels; leave subsystem, preference and gameplay keys unchanged.
 /proc/chinese_skyrat_systems_display(value)
-	var/static/list/labels = list("pro-skub" = "支持斯库布", "anti-skub" = "反对斯库布", "i don't frikkin' care" = "我才不在乎", "Runner" = "奔行者", "Sentinel" = "哨兵", "Defender" = "守卫", "Drone" = "雄蜂")
+	var/static/list/labels
+	if(isnull(labels))
+		labels = list("pro-skub" = "支持斯库布", "anti-skub" = "反对斯库布", "i don't frikkin' care" = "我才不在乎", "Runner" = "奔行者", "Sentinel" = "哨兵", "Defender" = "守卫", "Drone" = "雄蜂")
 	return labels[value] || value
 
 /proc/chinese_skyrat_systems_choice(mob/user, message, title, list/choices)

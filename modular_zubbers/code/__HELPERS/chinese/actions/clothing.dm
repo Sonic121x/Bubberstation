@@ -4,7 +4,9 @@
 		return "Toggle Hood"
 	if(ispath(action_type, /datum/action/item_action/chameleon/change) && findtext(value, "更改") == 1 && endswith(value, "外观"))
 		var/item_name = copytext_char(value, 3, -2)
-		var/static/list/item_names = list("物品" = "Item", "颈部配饰" = "Neck Accessory", "印章" = "Stamp", "平板电脑" = "Tablet", "耳机" = "Headset", "腰带" = "Belt", "背包" = "Backpack", "鞋子" = "Shoes", "面罩" = "Mask", "帽子" = "Hat", "手套" = "Gloves", "眼镜" = "Glasses", "外套" = "Suit", "连体服" = "Jumpsuit", "ID 卡" = "ID Card", "ID 卡饰条" = "ID Trim", "枪械" = "Gun", "变色龙扫描器" = "Chameleon Scanner")
+		var/static/list/item_names
+		if(isnull(item_names))
+			item_names = list("物品" = "Item", "颈部配饰" = "Neck Accessory", "印章" = "Stamp", "平板电脑" = "Tablet", "耳机" = "Headset", "腰带" = "Belt", "背包" = "Backpack", "鞋子" = "Shoes", "面罩" = "Mask", "帽子" = "Hat", "手套" = "Gloves", "眼镜" = "Glasses", "外套" = "Suit", "连体服" = "Jumpsuit", "ID 卡" = "ID Card", "ID 卡饰条" = "ID Trim", "枪械" = "Gun", "变色龙扫描器" = "Chameleon Scanner")
 		return "Change [item_names[item_name] || item_name] Appearance"
 	var/static/list/legacy_names
 	if(!legacy_names)

@@ -1,11 +1,11 @@
 //Strikes the target with a lightning bolt, killing them instantly.
 /datum/smite/lightning_instant_death
-	name = "Lightning Bolt (Instant Death)"
+	name = "雷击（即死）"
 	var/ouchie = 600
 
 /datum/smite/lightning_instant_death/effect(client/user, mob/living/target)
 	. = ..()
-	to_chat(target, span_userdanger("The gods have punished you for your sins!"), confidential = TRUE)
+	to_chat(target, span_userdanger("诸神降下天罚，惩戒你的罪行！"), confidential = TRUE)
 
 	var/turf/lightning_source = get_step(get_step(target, NORTH), NORTH)
 	lightning_source.Beam(target, icon_state="lightning[rand(1,12)]", time = 5)
@@ -20,7 +20,7 @@
 
 //Explodes our victim into gibs and explosive fire after a short delay.
 /datum/smite/lightning_instant_death/explosive_gib
-	name = "Lightning Bolt (Explosive Gib)"
+	name = "雷击（炸成碎块）"
 	ouchie = 100
 
 /datum/smite/lightning_instant_death/explosive_gib/effect(client/user, mob/living/target)

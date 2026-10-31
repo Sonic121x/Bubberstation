@@ -1,6 +1,8 @@
 /// Holotool mode names also identify icon states; localize only their presentation.
 /proc/chinese_holotool_mode_display(value)
-	var/static/list/names = list("off" = "关闭", "holo-screwdriver" = "全息螺丝刀", "holo-crowbar" = "全息撬棍", "holo-multitool" = "全息多功能工具", "holo-wrench" = "全息扳手", "holo-wirecutters" = "全息剪线钳", "holo-welder" = "全息焊接器", "holo-knife" = "全息刀")
+	var/static/list/names
+	if(isnull(names))
+		names = list("off" = "关闭", "holo-screwdriver" = "全息螺丝刀", "holo-crowbar" = "全息撬棍", "holo-multitool" = "全息多功能工具", "holo-wrench" = "全息扳手", "holo-wirecutters" = "全息剪线钳", "holo-welder" = "全息焊接器", "holo-knife" = "全息刀")
 	return names[value] || value
 
 /datum/preference/choiced/proc/chinese_zubbers_quirk_choice()
@@ -24,7 +26,9 @@
 	return displayed[selected]
 
 /proc/chinese_boombox_radial(mob/user, atom/anchor, list/choices)
-	var/static/list/labels = list("Play" = "播放", "Stop" = "停止", "Eject" = "弹出")
+	var/static/list/labels
+	if(isnull(labels))
+		labels = list("Play" = "播放", "Stop" = "停止", "Eject" = "弹出")
 	var/list/displayed = list()
 	var/list/original = list()
 	for(var/key in choices)

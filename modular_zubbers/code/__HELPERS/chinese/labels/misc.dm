@@ -2,7 +2,9 @@
 /proc/chinese_vote_display(value)
 	if(!istext(value))
 		return value
-	var/static/list/display_names = list("Map" = "地图", "Custom" = "自定义", "Restart" = "重启", "Transfer" = "船员转移")
+	var/static/list/display_names
+	if(isnull(display_names))
+		display_names = list("Map" = "地图", "Custom" = "自定义", "Restart" = "重启", "Transfer" = "船员转移")
 	return display_names[value] || value
 
 /proc/chinese_weather_display(value)

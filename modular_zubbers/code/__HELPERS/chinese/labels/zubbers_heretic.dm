@@ -1,11 +1,13 @@
 // BUBBER ADDITION: Localize downstream antagonist choices without replacing internal keys.
 /proc/chinese_heretic_trick_display(value)
-	var/static/list/labels = list(
-		"Spawn Confetti" = "喷洒彩纸",
-		"Clean" = "清洁",
-		"Add A Glow To Any Item" = "使物品发光",
-		"Enhance Taste & Add Healing To Food" = "改善食物口味并赋予疗效",
-	)
+	var/static/list/labels
+	if(isnull(labels))
+		labels = list(
+			"Spawn Confetti" = "喷洒彩纸",
+			"Clean" = "清洁",
+			"Add A Glow To Any Item" = "使物品发光",
+			"Enhance Taste & Add Healing To Food" = "改善食物口味并赋予疗效",
+		)
 	return labels[value] || value
 
 /proc/chinese_heretic_trick_radial(mob/user, list/choices)
@@ -29,11 +31,15 @@
 	return input_value
 
 /proc/chinese_zubbers_malf_module_display(value)
-	var/static/list/labels = list("Positronic Chassis Hacking" = "正电子机体入侵", "Manual Law Override" = "手动覆盖法则")
+	var/static/list/labels
+	if(isnull(labels))
+		labels = list("Positronic Chassis Hacking" = "正电子机体入侵", "Manual Law Override" = "手动覆盖法则")
 	return labels[value] || value
 
 /proc/chinese_zubbers_malf_module_storage(value)
-	var/static/list/names = list("正电子机体入侵" = "Positronic Chassis Hacking", "手动覆盖法则" = "Manual Law Override")
+	var/static/list/names
+	if(isnull(names))
+		names = list("正电子机体入侵" = "Positronic Chassis Hacking", "手动覆盖法则" = "Manual Law Override")
 	return names[value] || value
 
 /proc/chinese_zubbers_heretic_category_display(value)
@@ -41,5 +47,7 @@
 		return "冰行者"
 	if(value == "Icemoon Dwellers")
 		return "冰月居民"
-	var/static/list/names = list("Acolyte" = "侍徒", "Acolytes" = "侍徒", "Acolyte (No Influence Spawning)" = "侍徒（不生成影响）", "Hacked Synthetic" = "被入侵的合成人", "Syndicate Boarder" = "辛迪加登船者")
+	var/static/list/names
+	if(isnull(names))
+		names = list("Acolyte" = "侍徒", "Acolytes" = "侍徒", "Acolyte (No Influence Spawning)" = "侍徒（不生成影响）", "Hacked Synthetic" = "被入侵的合成人", "Syndicate Boarder" = "辛迪加登船者")
 	return names[value] || value

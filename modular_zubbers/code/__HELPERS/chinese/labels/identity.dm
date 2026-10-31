@@ -60,17 +60,23 @@
 	return isnull(selection) ? null : display_choices[selection]
 
 /proc/chinese_record_value_display(value, return_mapping = FALSE)
-	var/static/list/display_names = list("Male" = "男", "Female" = "女", "Other" = "其他", "male" = "男", "female" = "女", "neuter" = "无性", "plural" = "复数", "None" = "无", "Unknown" = "未知", "Unassigned" = "未分配", "Active" = "正常", "Stable" = "稳定", "Arrest" = "逮捕", "Incarcerated" = "监禁中", "Paroled" = "假释", "Discharged" = "已释放", "Suspect" = "嫌疑人", "Wanted" = "通缉中", "Disabled" = "残疾", "Unconscious" = "昏迷", "Deceased" = "死亡", "Unstable" = "不稳定", "Insane" = "精神失常")
+	var/static/list/display_names
+	if(isnull(display_names))
+		display_names = list("Male" = "男", "Female" = "女", "Other" = "其他", "male" = "男", "female" = "女", "neuter" = "无性", "plural" = "复数", "None" = "无", "Unknown" = "未知", "Unassigned" = "未分配", "Active" = "正常", "Stable" = "稳定", "Arrest" = "逮捕", "Incarcerated" = "监禁中", "Paroled" = "假释", "Discharged" = "已释放", "Suspect" = "嫌疑人", "Wanted" = "通缉中", "Disabled" = "残疾", "Unconscious" = "昏迷", "Deceased" = "死亡", "Unstable" = "不稳定", "Insane" = "精神失常")
 	if(return_mapping)
 		return display_names
 	return display_names[value] || value
 
 /proc/chinese_direction_display(value)
-	var/static/list/display_names = list("north" = "北", "south" = "南", "east" = "东", "west" = "西", "northeast" = "东北", "northwest" = "西北", "southeast" = "东南", "southwest" = "西南", "up" = "上", "down" = "下")
+	var/static/list/display_names
+	if(isnull(display_names))
+		display_names = list("north" = "北", "south" = "南", "east" = "东", "west" = "西", "northeast" = "东北", "northwest" = "西北", "southeast" = "东南", "southwest" = "西南", "up" = "上", "down" = "下")
 	return display_names[value] || value
 
 /proc/chinese_wrestling_move_display(value)
-	var/static/list/display_names = list("drop" = "坠击", "strike" = "快攻", "kick" = "踢击", "throw" = "旋转投掷", "slam" = "抱摔")
+	var/static/list/display_names
+	if(isnull(display_names))
+		display_names = list("drop" = "坠击", "strike" = "快攻", "kick" = "踢击", "throw" = "旋转投掷", "slam" = "抱摔")
 	return display_names[value] || value
 
 /proc/chinese_material_display(value)
