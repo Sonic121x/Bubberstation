@@ -2,7 +2,9 @@
 /proc/chinese_skyrat_item_label(value)
 	if(!istext(value))
 		return value
-	var/static/list/labels = list("pink" = "粉色", "teal" = "青绿色", "green" = "绿色", "red" = "红色", "yellow" = "黄色", "blue" = "蓝色", "cyan" = "青色", "lime" = "黄绿色", "black" = "黑色", "orange" = "橙色", "purple" = "紫色", "white" = "白色", "metal" = "金属色", "tail" = "尾巴", "small" = "小型", "medium" = "中型", "big" = "大型", "avian" = "鸟类", "canine" = "犬类", "equine" = "马类", "dragon" = "龙类", "human" = "人类", "tentacle" = "触手", "whip" = "长鞭", "crotch" = "短鞭", "weak" = "柔软", "hard" = "坚硬", "penis" = "阴茎", "vagina" = "阴道", "breasts" = "乳房", "nipples" = "乳头")
+	var/static/list/labels
+	if(isnull(labels))
+		labels = list("pink" = "粉色", "teal" = "青绿色", "green" = "绿色", "red" = "红色", "yellow" = "黄色", "blue" = "蓝色", "cyan" = "青色", "lime" = "黄绿色", "black" = "黑色", "orange" = "橙色", "purple" = "紫色", "white" = "白色", "metal" = "金属色", "tail" = "尾巴", "small" = "小型", "medium" = "中型", "big" = "大型", "avian" = "鸟类", "canine" = "犬类", "equine" = "马类", "dragon" = "龙类", "human" = "人类", "tentacle" = "触手", "whip" = "长鞭", "crotch" = "短鞭", "weak" = "柔软", "hard" = "坚硬", "penis" = "阴茎", "vagina" = "阴道", "breasts" = "乳房", "nipples" = "乳头")
 	labels["square"] = "方形"
 	labels["round"] = "圆形"
 	labels["kinetic"] = "动能"

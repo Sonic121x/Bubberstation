@@ -115,7 +115,9 @@
 
 /// Names here are display-only reagent labels; unknown or custom blood stays unchanged.
 /proc/chinese_blood_decal_text(raw_text)
-	var/static/list/names = list("blood" = "血液", "acid" = "酸液", "oil" = "油", "liquid electricity" = "液态电流", "colorful reagent" = "多彩试剂", "slime jelly" = "史莱姆凝胶", "water" = "水", "space lube" = "太空润滑剂", "copper" = "铜", "nanite slurry" = "纳米机器人浆液")
+	var/static/list/names
+	if(isnull(names))
+		names = list("blood" = "血液", "acid" = "酸液", "oil" = "油", "liquid electricity" = "液态电流", "colorful reagent" = "多彩试剂", "slime jelly" = "史莱姆凝胶", "water" = "水", "space lube" = "太空润滑剂", "copper" = "铜", "nanite slurry" = "纳米机器人浆液")
 	var/list/parts = splittext(replacetext(raw_text, " and ", ", "), ", ")
 	var/list/display_parts = list()
 	for(var/part in parts)

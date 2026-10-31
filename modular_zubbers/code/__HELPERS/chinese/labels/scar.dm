@@ -113,7 +113,9 @@
 	)
 	if(display_names[value])
 		return display_names[value]
-	var/static/list/prefixes = list("inner " = "内侧", "outer " = "外侧", "upper " = "上", "lower " = "下", "left " = "左", "right " = "右")
+	var/static/list/prefixes
+	if(isnull(prefixes))
+		prefixes = list("inner " = "内侧", "outer " = "外侧", "upper " = "上", "lower " = "下", "left " = "左", "right " = "右")
 	for(var/prefix in prefixes)
 		if(findtext(value, prefix) != 1)
 			continue

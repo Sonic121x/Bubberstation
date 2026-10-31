@@ -4,7 +4,9 @@
 	var/zubbers_name = chinese_zubbers_template_display(value)
 	if(zubbers_name != value)
 		return zubbers_name
-	var/static/list/ruin_prefixes = list("Ice-Ruin " = "冰月遗迹：", "Lava-Ruin " = "熔岩地带遗迹：", "Space-Ruin " = "太空遗迹：")
+	var/static/list/ruin_prefixes
+	if(isnull(ruin_prefixes))
+		ruin_prefixes = list("Ice-Ruin " = "冰月遗迹：", "Lava-Ruin " = "熔岩地带遗迹：", "Space-Ruin " = "太空遗迹：")
 	var/static/list/ruin_names
 	if(isnull(ruin_names))
 		ruin_names = list(
@@ -35,8 +37,12 @@
 	)
 	if(value in display_names)
 		return display_names[value]
-	var/static/list/shuttle_kinds = list("arrival shuttle" = "抵达穿梭机", "assault pod" = "突击舱", "auxilliary base" = "辅助基地", "supply shuttle" = "补给穿梭机", "cargo ferry" = "货运渡船", "escape pod" = "逃生舱", "labour shuttle" = "劳役穿梭机", "mining shuttle" = "采矿穿梭机", "lavaland shuttle" = "熔岩地带穿梭机", "pirate ship" = "海盗船")
-	var/static/list/variants = list("Box" = "箱型站", "Donut" = "甜甜圈站", "Birdshot" = "鸟弹站", "Delta" = "德尔塔站", "Kilo" = "千型站", "Pubby" = "酒馆站", "North Star" = "北极星站", "Catwalk" = "栈桥站", "Nebula" = "星云站", "Default" = "默认", "Small" = "小型", "Mini" = "迷你", "Birdboat" = "鸟船站", "Large" = "大型", "Luxury" = "豪华", "Cramped" = "拥挤", "Generic" = "通用", "Meta" = "元站", "Silver Scales" = "银鳞", "Flying Dutchman" = "飞翔的荷兰人", "Pharmaceutics Biocraft" = "制药生物船", "The Space Toolbox" = "太空工具箱", "Space IRS" = "太空国税局", "Lustrous Geode" = "辉光晶洞", "Siege Pod" = "攻城舱")
+	var/static/list/shuttle_kinds
+	if(isnull(shuttle_kinds))
+		shuttle_kinds = list("arrival shuttle" = "抵达穿梭机", "assault pod" = "突击舱", "auxilliary base" = "辅助基地", "supply shuttle" = "补给穿梭机", "cargo ferry" = "货运渡船", "escape pod" = "逃生舱", "labour shuttle" = "劳役穿梭机", "mining shuttle" = "采矿穿梭机", "lavaland shuttle" = "熔岩地带穿梭机", "pirate ship" = "海盗船")
+	var/static/list/variants
+	if(isnull(variants))
+		variants = list("Box" = "箱型站", "Donut" = "甜甜圈站", "Birdshot" = "鸟弹站", "Delta" = "德尔塔站", "Kilo" = "千型站", "Pubby" = "酒馆站", "North Star" = "北极星站", "Catwalk" = "栈桥站", "Nebula" = "星云站", "Default" = "默认", "Small" = "小型", "Mini" = "迷你", "Birdboat" = "鸟船站", "Large" = "大型", "Luxury" = "豪华", "Cramped" = "拥挤", "Generic" = "通用", "Meta" = "元站", "Silver Scales" = "银鳞", "Flying Dutchman" = "飞翔的荷兰人", "Pharmaceutics Biocraft" = "制药生物船", "The Space Toolbox" = "太空工具箱", "Space IRS" = "太空国税局", "Lustrous Geode" = "辉光晶洞", "Siege Pod" = "攻城舱")
 	for(var/kind in shuttle_kinds)
 		if(findtextEx(value, "[kind] (") != 1 || !endswith(value, ")"))
 			continue

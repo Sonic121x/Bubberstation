@@ -1,10 +1,10 @@
 //Smites to crush someone with an anvil. First one prompts for a damage value. Second has a preset damage value and shouldn't kill if the person is healthy.
 /datum/smite/crush
-	name = "Crush with Anvil"
+	name = "铁砧砸顶"
 	var/hurty = 120
 
 /datum/smite/crush/configure(client/user)
-	hurty = tgui_input_number(user, "How much do you want them to be crushed? 120 will crit, 240 will kill! Anything more than that is extra.", "Crushing time", 120, 600, 0)
+	hurty = tgui_input_number(user, "你想把目标砸得多惨？120 点伤害会使其重伤，240 点会致死！再多就是鞭尸了。", "铁砧砸顶", 120, 600, 0)
 
 /datum/smite/crush/effect(client/user, mob/living/target)
 	. = ..()
@@ -23,6 +23,6 @@
 	if(hurty > 110)
 		playsound(target, 'modular_skyrat/modules/gladiator/Clang_cut.ogg', 100, TRUE)
 
-	target.visible_message(span_danger("[crushing_thing] crashes from above onto [target]!"))
+	target.visible_message(span_danger("[crushing_thing]从天而降，砸在[target]身上！"))
 	if(target.stat == DEAD)
-		target.visible_message(span_danger("[target] is killed instantly!"))
+		target.visible_message(span_danger("[target]当场毙命！"))

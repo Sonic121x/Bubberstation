@@ -73,8 +73,8 @@
 // Shotgun but it doesn't kill people (sometimes)
 
 /obj/item/gun/ballistic/shotgun/riot/sol/lesslethal
-	name = "\improper Riot Renoster Shotgun"
-	desc = "A modified version of the Renoster shotgun, this one only holds beanbag and rubber rounds. The barrel lacks the threading of the military version and cannot fit muzzle attachments."
+	name = "\improper 防暴犀牛霰弹枪"
+	desc = "犀牛霰弹枪的改装型号，只能装填豆袋弹和橡胶弹。枪管没有军用版的螺纹，无法安装枪口配件。"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/less_lethal
 	can_suppress = FALSE
 
